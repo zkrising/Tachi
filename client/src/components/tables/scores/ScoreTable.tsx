@@ -17,7 +17,8 @@ import ScoreDropdown from "../dropdowns/ScoreDropdown";
 import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";
 import ChartHeader from "../headers/ChartHeader";
 import { GetGPTCoreHeaders } from "../headers/GameHeaders";
-import IndicatorHeader from "../headers/IndicatorHeader";
+import IndicatorHeader, { EmptyHeader } from "../headers/IndicatorHeader";
+import DropdownIndicatorCell from "../cells/DropdownIndicatorCell";
 
 export default function ScoreTable<I extends IDStrings = IDStrings>({
 	dataset,
@@ -43,6 +44,7 @@ export default function ScoreTable<I extends IDStrings = IDStrings>({
 		["Song", "Song", StrSOV(x => x.__related.song.title)],
 		...GetGPTCoreHeaders<ScoreDataset>(game, playtype, rating, setRating, k => k),
 		["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
+		EmptyHeader,
 	];
 
 	if (userCol) {
@@ -109,6 +111,7 @@ function Row<I extends IDStrings = IDStrings>({
 			/>
 			<ScoreCoreCells score={sc} rating={rating} game={game} chart={sc.__related.chart} />
 			<TimestampCell time={sc.timeAchieved} service={sc.service} />
+			<DropdownIndicatorCell />
 		</DropdownRow>
 	);
 }

@@ -319,3 +319,28 @@ export function TruncateString(string: string, len = 30) {
 
 	return `${string.substring(0, len - 3)}...`;
 }
+
+export enum Days {
+	Sunday = 0,
+	Monday,
+	Tuesday,
+	Wednesday,
+	Thursday,
+	Friday,
+	Saturday,
+}
+
+export enum Months {
+	January = 0,
+	February,
+	March,
+	April,
+	May,
+	June,
+	July,
+	August,
+	September,
+	October,
+	November,
+	December,
+}

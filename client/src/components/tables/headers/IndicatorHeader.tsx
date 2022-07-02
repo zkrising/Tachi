@@ -19,4 +19,6 @@ export const FolderIndicatorHeader: Header<FolderDataset[0]> = [
 	() => <td key="f-indicator" style={{ maxWidth: 5, padding: 0 }}></td>,
 ];
 
+export const EmptyHeader: Header<unknown> = ["Empty", "Empty", null, () => <td key="empty" />];
+
 export default IndicatorHeader;

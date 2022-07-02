@@ -96,14 +96,17 @@ export function UGPTBottomNav({
 		<NavItem key="folders" to={`${baseUrl}/folders`}>
 			Folders
 		</NavItem>,
-		<NavItem key="targets" to={`${baseUrl}/targets`}>
-			Targets
-		</NavItem>,
 		<NavItem key="sessions" to={`${baseUrl}/sessions`}>
 			Sessions
 		</NavItem>,
 		<NavItem key="leaderboard" to={`${baseUrl}/leaderboard`}>
 			Leaderboard
+		</NavItem>,
+		<NavItem key="rivals" to={`${baseUrl}/rivals`}>
+			Rivals &amp; Challenges
+		</NavItem>,
+		<NavItem key="targets" to={`${baseUrl}/targets`}>
+			Goals &amp; Milestones
 		</NavItem>,
 	];
 

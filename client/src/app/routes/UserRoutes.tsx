@@ -35,6 +35,7 @@ import {
 } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import { UserSettingsContext } from "context/UserSettingsContext";
+import RivalsMainPage from "app/pages/dashboard/users/games/_game/_playtype/rivals/RivalsMainPage";
 import ScoresPage from "../pages/dashboard/users/games/_game/_playtype/ScoresPage";
 import UserPage from "../pages/dashboard/users/UserPage";
 
@@ -277,6 +278,9 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 				</Route>
 				<Route path="/dashboard/users/:userID/games/:game/:playtype/sessions/:sessionID">
 					<SpecificSessionPage reqUser={reqUser} game={game} playtype={playtype} />
+				</Route>
+				<Route path="/dashboard/users/:userID/games/:game/:playtype/rivals">
+					<RivalsMainPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
 				<Route path="/dashboard/users/:userID/games/:game/:playtype/targets">
 					<TargetsPage reqUser={reqUser} game={game} playtype={playtype} />

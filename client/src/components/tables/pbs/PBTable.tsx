@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { Game, IDStrings, ScoreCalculatedDataLookup } from "tachi-common";
 import { PBDataset } from "types/tables";
 import { Playtype } from "types/tachi";
+import DropdownIndicatorCell from "../cells/DropdownIndicatorCell";
 import IndexCell from "../cells/IndexCell";
 import RankingCell from "../cells/RankingCell";
 import TimestampCell from "../cells/TimestampCell";
@@ -16,6 +17,7 @@ import PBDropdown from "../dropdowns/PBDropdown";
 import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";
 import ChartHeader from "../headers/ChartHeader";
 import { GetGPTCoreHeaders } from "../headers/GameHeaders";
+import { EmptyHeader } from "../headers/IndicatorHeader";
 import PBLeadingRows from "./PBLeadingRows";
 
 export default function PBTable<I extends IDStrings = IDStrings>({
@@ -50,10 +52,15 @@ export default function PBTable<I extends IDStrings = IDStrings>({
 		...GetGPTCoreHeaders<PBDataset>(game, playtype, rating, setRating, x => x),
 		["Site Ranking", "Site Rank", NumericSOV(x => x.rankingData.rank)],
 		["Last Raised", "Last Raised", NumericSOV(x => x.timeAchieved ?? 0)],
+		EmptyHeader,
 	];
 
 	if (showPlaycount) {
+		headers.pop();
+
+		// Put this just before the empty header.
 		headers.push(["Playcount", "Plays", NumericSOV(x => x.__playcount ?? 0)]);
+		headers.push(EmptyHeader);
 	}
 
 	if (indexCol) {
@@ -123,6 +130,7 @@ function Row<I extends IDStrings = IDStrings>({
 			<RankingCell rankingData={pb.rankingData} />
 			<TimestampCell time={pb.timeAchieved} />
 			{showPlaycount && <td>{pb.__playcount ?? 0}</td>}
+			<DropdownIndicatorCell />
 		</DropdownRow>
 	);
 }

@@ -10,6 +10,7 @@ import { Col, Row } from "react-bootstrap";
 import { Route, Switch } from "react-router-dom";
 import { FormatGame, GetGameConfig, PublicUserDocument } from "tachi-common";
 import { GamePT } from "types/react";
+import GoalsPage from "./GoalsPage";
 
 type Props = { reqUser: PublicUserDocument } & GamePT;
 
@@ -48,10 +49,16 @@ export default function TargetsPage({ reqUser, game, playtype }: Props) {
 			</Col>
 			<Col xs={12}>
 				<Switch>
-					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/goals">
-						nil
+					<Route
+						exact
+						path="/dashboard/users/:userID/games/:game/:playtype/targets/goals"
+					>
+						<GoalsPage />
 					</Route>
-					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/milestones">
+					<Route
+						exact
+						path="/dashboard/users/:userID/games/:game/:playtype/targets/milestones"
+					>
 						nal
 					</Route>
 				</Switch>

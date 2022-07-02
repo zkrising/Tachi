@@ -22,6 +22,7 @@ import {
 	UserGameStats,
 	UserGameStatsSnapshot,
 	GoalSubscriptionDocument,
+	ChallengeSubscriptionDocument,
 } from "tachi-common";
 
 export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
@@ -176,4 +177,12 @@ export interface ServerStatus {
 	version: string;
 	whoami: integer | null;
 	permissions: APIPermissions[];
+}
+
+export interface ChallengeSubsReturn {
+	rivals: Array<PublicUserDocument>;
+	pbs: Array<PBScoreDocument>;
+	challengeSubs: Array<ChallengeSubscriptionDocument>;
+	songs: Array<SongDocument>;
+	charts: Array<ChartDocument>;
 }

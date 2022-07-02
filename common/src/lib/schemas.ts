@@ -461,6 +461,15 @@ const PR_CHART_DOCUMENT = (game: Game) => (self: unknown) => {
 	})(self);
 };
 
+const PR_CHALLENGE = {
+	chartID: "string",
+	authorID: p.isPositiveNonZeroInteger,
+	type: p.isIn("lamp", "score"),
+
+	game: p.isIn(games),
+	playtype: isValidPlaytype,
+};
+
 // Returns true on success, throws on failure.
 export type SchemaValidatorFunction = (self: unknown) => true;
 
@@ -1084,6 +1093,15 @@ const PRE_SCHEMAS = {
 			return p.isPositive(self);
 		},
 	}),
+
+	"challenge-wall": prSchemaFnWrap(PR_CHALLENGE),
+	"challenge-subs": prSchemaFnWrap({
+		...PR_CHALLENGE,
+		userID: p.isPositiveNonZeroInteger,
+		achieved: "boolean",
+		achievedAt: "?number",
+	}),
+
 	notifications: prSchemaFnWrap({
 		title: "string",
 		notifID: "string",
@@ -1107,9 +1125,24 @@ const PRE_SCHEMAS = {
 						break;
 					}
 
-					case "MILESTONE_CHANGED":
+					case "MILESTONE_CHANGED": {
 						subSchema = {
 							milestoneID: "string",
+						};
+						break;
+					}
+
+					case "CHALLENGE_BEAT": {
+						subSchema = {
+							userID: p.isPositiveNonZeroInteger,
+							challenge: PR_CHALLENGE,
+						};
+						break;
+					}
+
+					case "CHALLENGE_RECEIVED":
+						subSchema = {
+							challenge: PR_CHALLENGE,
 						};
 				}
 

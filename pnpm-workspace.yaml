@@ -1,9 +1,9 @@
 packages:
-  # - "assets/**"
-  # - "bot/**"
+  # this isn't even JS LOL. doesn't need monorepo management
   # - "docs/**"
   - "client/**"
   - "common/**"
+  - "bot/**"
   # - "database-seeds/**"
   - "server/**"
   - "sieglinde/**"

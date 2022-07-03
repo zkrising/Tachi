@@ -22,7 +22,7 @@ import {
 	UGSRatingsLookup,
 	UserGameStats,
 } from "tachi-common";
-import { GameClassSets } from "tachi-common/js/game-classes";
+import { GameClassSets } from "tachi-common/game-classes";
 import { GPTLeaderboard, UGPTLeaderboardAdjacent } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
 

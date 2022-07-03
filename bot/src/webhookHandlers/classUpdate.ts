@@ -1,5 +1,5 @@
 import { FormatGame, Game, integer, Playtype, WebhookEventClassUpdateV1 } from "tachi-common";
-import { AllClassSets } from "tachi-common/js/game-classes";
+import { AllClassSets } from "tachi-common/game-classes";
 import { BotConfig } from "../config";
 import { client } from "../main";
 import { GetUGPTStats, GetUserInfo } from "../utils/apiRequests";

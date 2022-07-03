@@ -1,5 +1,5 @@
 import { GetGameConfig, GetGamePTConfig } from "../config/config";
-import type { ChartDocument, SongDocument, Game, IDStrings, Playtypes } from "..";
+import type { ChartDocument, Game, IDStrings, Playtypes, SongDocument } from "..";
 import type { Grades, integer } from "../types";
 
 export function FormatInt(v: number): string {
@@ -156,7 +156,13 @@ export function AbsoluteGradeDelta<I extends IDStrings = IDStrings>(
 	const gradeIndex =
 		typeof gradeOrIndex === "number" ? gradeOrIndex : gptConfig.grades.indexOf(gradeOrIndex);
 
-	const gradeScore = Math.ceil((gptConfig.gradeBoundaries[gradeIndex] / 100) * maxScore);
+	const gradeValue = gptConfig.gradeBoundaries[gradeIndex];
+
+	if (gradeValue === undefined) {
+		throw new Error(`Grade Index ${gradeIndex} has no corresponding grade value?`);
+	}
+
+	const gradeScore = Math.ceil((gradeValue / 100) * maxScore);
 
 	return score - gradeScore;
 }
@@ -177,8 +183,16 @@ export function RelativeGradeDelta<I extends IDStrings = IDStrings>(
 		return null;
 	}
 
+	const nextGrade = gptConfig.grades[nextGradeIndex];
+
+	if (nextGrade === undefined) {
+		throw new Error(
+			`Unexpectedly found no grade at index ${nextGradeIndex} for ${game} ${playtype}.`
+		);
+	}
+
 	return {
-		grade: gptConfig.grades[nextGradeIndex],
+		grade: nextGrade,
 		delta: AbsoluteGradeDelta(game, playtype, score, percent, nextGradeIndex),
 	};
 }

@@ -24,7 +24,7 @@
 		"typescript": "4.6.3"
 	},
 	"dependencies": {
-		"@types/express-serve-static-core": "^4.17.28",
+		"@types/express-serve-static-core": "4.17.24",
 		"@types/mongodb": "3.6.18",
 		"prudence": "^0.9.8"
 	},

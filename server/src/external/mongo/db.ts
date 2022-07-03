@@ -6,7 +6,7 @@ import { ONE_MINUTE } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
 import monk from "monk";
-import { allSupportedGames } from "tachi-common/js/config/static-config";
+import { allSupportedGames } from "tachi-common/config/static-config";
 import { GetMillisecondsSince } from "utils/misc";
 import type { OrphanScoreDocument } from "lib/score-import/import-types/common/types";
 import type { TMiddleware, ICollection } from "monk";

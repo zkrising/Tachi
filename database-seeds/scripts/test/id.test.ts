@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import { Game } from "tachi-common";
-import { allSupportedGames } from "tachi-common/js/config/static-config";
-import { SCHEMAS } from "tachi-common/js/lib/schemas";
+import { allSupportedGames } from "tachi-common/config/static-config";
+import { SCHEMAS } from "tachi-common/lib/schemas";
 import { ReadCollection } from "../util";
 import { FormatFunctions } from "./test-utils";
 import get from "lodash.get";

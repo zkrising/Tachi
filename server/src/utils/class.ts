@@ -3,7 +3,7 @@ import { CreateGameSettings } from "lib/game-settings/create-game-settings";
 import CreateLogCtx from "lib/logger/logger";
 import { EmitWebhookEvent } from "lib/webhooks/webhooks";
 import type { Game, IDStrings, integer, Playtype, UserGameStats } from "tachi-common";
-import type { GameClassSets } from "tachi-common/js/game-classes";
+import type { GameClassSets } from "tachi-common/game-classes";
 
 const logger = CreateLogCtx(__filename);
 

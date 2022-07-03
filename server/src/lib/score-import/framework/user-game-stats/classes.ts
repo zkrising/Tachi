@@ -21,7 +21,7 @@ import type {
 	Playtypes,
 	UserGameStats,
 } from "tachi-common";
-import type { GameClasses } from "tachi-common/js/game-classes";
+import type { GameClasses } from "tachi-common/game-classes";
 
 type ClassHandlerMap = {
 	[G in Game]:

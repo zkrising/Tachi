@@ -11,7 +11,7 @@ import {
 	UGSRatingsLookup,
 	UserGameStats,
 } from "tachi-common";
-import { GameClassSets } from "tachi-common/js/game-classes";
+import { GameClassSets } from "tachi-common/game-classes";
 
 export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 	const gptConfig = GetGamePTConfig(ugs.game, ugs.playtype);

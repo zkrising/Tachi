@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"target": "ES2020",
+		"module": "CommonJS",
+		"lib": [
+			"ES2019"
+		],
+		"declaration": true,
+		"strict": true,
+		"allowJs": false,
+		"esModuleInterop": true,
+		"outDir": "./js",
+		"noUncheckedIndexedAccess": true,
+		"sourceMap": true,
+		"noEmit": true
+	},
+}

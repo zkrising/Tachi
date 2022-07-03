@@ -9,7 +9,7 @@ import {
 import { IsNullish } from "utils/misc";
 import type { KtLogger } from "lib/logger/logger";
 import type { Game, integer, Playtype, ScoreCalculatedDataLookup } from "tachi-common";
-import type { GameClasses } from "tachi-common/js/game-classes";
+import type { GameClasses } from "tachi-common/game-classes";
 
 export function CalculateSDVXClass(
 	game: Game,

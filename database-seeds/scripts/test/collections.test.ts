@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { SCHEMAS } from "tachi-common/js/lib/schemas";
+import { SCHEMAS } from "tachi-common/lib/schemas";
 import { ReadCollection } from "../util";
 import { FormatFunctions } from "./test-utils";
 import fs from "fs";

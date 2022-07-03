@@ -3,7 +3,7 @@ import QuickTooltip from "components/layout/misc/QuickTooltip";
 import React from "react";
 import { Badge } from "react-bootstrap";
 import { GetGamePTConfig, IDStrings, integer } from "tachi-common";
-import { GameClassSets } from "tachi-common/js/game-classes";
+import { GameClassSets } from "tachi-common/game-classes";
 import { GamePT } from "types/react";
 
 export default function ClassBadge<I extends IDStrings = IDStrings>({

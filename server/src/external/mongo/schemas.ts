@@ -1,9 +1,9 @@
 import { TachiConfig } from "lib/setup/config";
 import p from "prudence";
-import { SCHEMAS } from "tachi-common/js/lib/schemas";
+import { SCHEMAS } from "tachi-common/lib/schemas";
 import type { Databases } from "./db";
 import type { PrudenceSchema } from "prudence";
-import type { SchemaValidatorFunction } from "tachi-common/js/lib/schemas";
+import type { SchemaValidatorFunction } from "tachi-common/lib/schemas";
 
 // The idea of this file is to export a function for every database
 // that will validate that collection.

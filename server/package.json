@@ -11,9 +11,9 @@
 		"build": "tsc --project tsconfig.build.json",
 		"typecheck": "tsc --project tsconfig.build.json --noEmit",
 		"lint": "eslint ./src --ext .ts --fix",
-		"start": "tsc --project tsconfig.build.json && export NODE_PATH=js/ && node js/main.js",
-		"run": "export NODE_PATH=js/ && node js/main.js",
-		"runscoreworker": "export NODE_PATH=js/ && node js/lib/score-import/worker/worker.js"
+		"start": "tsc --project tsconfig.build.json && pnpm run",
+		"run": "node -r ts-node/register -r tsconfig-paths/register js/main.js",
+		"runscoreworker": "node -r ts-node/register -r tsconfig-paths/register js/lib/score-import/worker/worker.js"
 	},
 	"author": "zkldi",
 	"license": "AGPL3",
@@ -89,7 +89,6 @@
 		"safe-json-stringify": "1.2.0",
 		"semver": "^7.3.7",
 		"seq-logging": "1.1.1",
-		"tachi-common": "0.14.15",
 		"ts-node": "10.4.0",
 		"tsconfig-paths": "3.12.0",
 		"typescript": "4.5.5",

@@ -16,5 +16,9 @@
   "homepage": "https://github.com/TNG-dev/Tachi#readme",
   "devDependencies": {
     "eslint": "8.18.0"
+  },
+  "peerDependencies": {
+    "@types/mongodb": "3.6.18",
+    "@types/bson": "1.0.11"
   }
 }

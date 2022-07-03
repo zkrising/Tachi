@@ -95,7 +95,11 @@ export function CalculateESD(
 		);
 	}
 
-	const largestValue = judgements.slice(0).sort((a, b) => b.value - a.value)[0].value;
+	const largestValue = judgements.slice(0).sort((a, b) => b.value - a.value)[0]?.value;
+
+	if (largestValue === undefined) {
+		throw new Error(`Empty array of judgements passed?`);
+	}
 
 	// massive optimisation possible here by using better initial estimates with precalc'd table of values.
 	// until then, it's just kinda slow.

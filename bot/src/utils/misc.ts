@@ -21,7 +21,7 @@ import {
 	SongDocument,
 	UGSRatingsLookup,
 } from "tachi-common";
-import { GameClassSets } from "tachi-common/js/game-classes";
+import { GameClassSets } from "tachi-common/game-classes";
 import { BotConfig } from "../config";
 
 /**

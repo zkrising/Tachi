@@ -3,7 +3,7 @@ import { GetGamePTConfig } from "tachi-common";
 import { NotNullish } from "utils/misc";
 import type { ClassHandler } from "lib/score-import/framework/user-game-stats/types";
 import type { GamePTConfig, IDStrings } from "tachi-common";
-import type { GameClasses, GameClassSets } from "tachi-common/js/game-classes";
+import type { GameClasses, GameClassSets } from "tachi-common/game-classes";
 
 // Note: This is tested by batch-manuals parser.test.ts.
 export function CreateBatchManualClassHandler(

@@ -4,9 +4,9 @@
 // we want to save disk space by not compiling them at runtime, we need two
 // tsconfigs!
 {
+	"extends": "../tsconfig.json",
 	"compilerOptions": {
-		"target": "ES2020",
-		"module": "CommonJS",
+		"baseUrl": "src",
 		"lib": [
 			"ES2019",
 			// This is necessary because -- for some unknown reason -- the AWS SDK
@@ -14,18 +14,18 @@
 			// I hope not.
 			"DOM"
 		],
-		"declaration": true,
-		"strict": true,
-		"allowJs": false,
-		"esModuleInterop": true,
-		"sourceMap": true,
-		"outDir": "./js",
-		"baseUrl": "src",
-		"noUncheckedIndexedAccess": true,
 		"typeRoots": [
 			"@types",
 			"node_modules/@types",
-		]
+		],
+		"paths": {
+			"tachi-common": [
+				"../../common/src"
+			],
+			"tachi-common/*": [
+				"../../common/src/*"
+			]
+		}
 	},
 	"ts-node": {
 		"require": [
@@ -33,8 +33,7 @@
 		]
 	},
 	"include": [
-		"src/**/*.ts",
-		"src/lib/jobs/inline-job-runner"
+		"src/**/*.ts"
 	],
 	"exclude": [
 		"node_modules"

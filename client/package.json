@@ -96,8 +96,6 @@
 		"@types/react-router": "5.1.15",
 		"@types/react-router-dom": "5.1.7",
 		"@types/react-table": "7.7.2",
-		"@typescript-eslint/eslint-plugin": "4.28.3",
-		"@typescript-eslint/parser": "4.28.3",
 		"copyfiles": "2.1.1",
 		"esbuild-loader": "2.13.1",
 		"is-wsl": "1.1.0",
@@ -117,64 +115,13 @@
 		"webpack-manifest-plugin": "2.1.1",
 		"webpack-messages": "2.0.4",
 		"webpack-rtl-plugin": "2.0.0",
-		"workbox-webpack-plugin": "4.3.1"
-	},
-	"jest": {
-		"roots": [
-			"<rootDir>/src"
-		],
-		"collectCoverageFrom": [
-			"src/**/*.{js,jsx,ts,tsx}",
-			"!src/**/*.d.ts"
-		],
-		"setupFiles": [
-			"react-app-polyfill/jsdom"
-		],
-		"setupFilesAfterEnv": [],
-		"testMatch": [
-			"<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
-			"<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
-		],
-		"testEnvironment": "jest-environment-jsdom-fourteen",
-		"transform": {
-			".+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
-			".+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-			"(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-		},
-		"transformIgnorePatterns": [
-			"[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
-			".+\\.module\\.(css|sass|scss)$"
-		],
-		"modulePaths": [
-			"/home/zkldi/repos/projects/Tachi/tachi-client/src"
-		],
-		"moduleNameMapper": {
-			"react-native$": "react-native-web",
-			".+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
-		},
-		"moduleFileExtensions": [
-			"web.js",
-			"js",
-			"web.ts",
-			"ts",
-			"web.tsx",
-			"tsx",
-			"json",
-			"web.jsx",
-			"jsx",
-			"node"
-		],
-		"watchPlugins": [
-			"jest-watch-typeahead/filename",
-			"jest-watch-typeahead/testname"
-		]
+		"workbox-webpack-plugin": "4.3.1",
+		"eslint-plugin-react": "7.14.3",
+		"eslint-plugin-react-hooks": "1.7.0"
 	},
 	"babel": {
 		"presets": [
 			"react-app"
 		]
-	},
-	"eslintConfig": {
-		"extends": "react-app"
 	}
 }

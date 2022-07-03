@@ -1,16 +1,11 @@
 {
 	"plugins": [
-		"@typescript-eslint",
-		"import",
 		"cadence"
 	],
 	"extends": [
 		"plugin:cadence/recommended"
 	],
-	"rules": {
-		"@typescript-eslint/no-non-null-assertion": "off",
-		"no-inline-comments": "off"
-	},
+	"rules": {},
 	"overrides": [
 		{
 			"files": [

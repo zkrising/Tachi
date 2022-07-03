@@ -8,6 +8,7 @@ import targetsRouter from "./targets/router";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { ONE_HOUR } from "lib/constants/time";
+import { SearchUsersRegExp } from "lib/search/search";
 import NodeCache from "node-cache";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
@@ -291,6 +292,45 @@ router.get(
 			success: true,
 			description: `Returned ${recentClasses.length} recent classes.`,
 			body: { classes: recentClasses, users },
+		});
+	}
+);
+
+/**
+ * Search users that have played this game.
+ *
+ * @param search - The username to search for.
+ *
+ * @name GET /api/v1/games/:game/:playtype/players
+ */
+router.get(
+	"/players",
+	prValidate({
+		search: "string",
+	}),
+	async (req, res) => {
+		const { game, playtype } = GetGPT(req);
+
+		const { search } = req.query as {
+			search: string;
+		};
+
+		const users = await SearchUsersRegExp(search);
+
+		const gameStats = await db["game-stats"].find({
+			userID: { $in: users.map((e) => e.id) },
+			game,
+			playtype,
+		});
+
+		const thoseWithStats = gameStats.map((e) => e.userID);
+
+		const gptPlayers = users.filter((e) => thoseWithStats.includes(e.id));
+
+		return res.status(200).json({
+			success: true,
+			description: `Found ${gptPlayers.length} user(s)`,
+			body: gptPlayers,
 		});
 	}
 );

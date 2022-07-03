@@ -2,6 +2,7 @@ import dm from "deepmerge";
 import db from "external/mongo/db";
 import { GetGamePTConfig } from "tachi-common";
 import t from "tap";
+import { mkFakeGameStats, mkFakeUser } from "test-utils/misc";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { FakeOtherUser } from "test-utils/test-data";
@@ -103,6 +104,61 @@ t.test("GET /api/v1/games/:game/:playtype/leaderboard", (t) => {
 			res.body.body.gameStats.map((e: UserGameStats) => e.userID),
 			[2, 3, 1]
 		);
+
+		t.end();
+	});
+
+	t.end();
+});
+
+t.test("GET /api/v1/games/:game/:playtype/players", (t) => {
+	t.beforeEach(ResetDBState);
+	t.beforeEach(async () => {
+		await db.users.insert([
+			mkFakeUser(2, { usernameLowercase: "scrimblo" }),
+			mkFakeUser(3, { usernameLowercase: "scrimblo_2" }),
+			mkFakeUser(4, { usernameLowercase: "scrimblo_3" }),
+			mkFakeUser(5, { usernameLowercase: "cloudy" }),
+		]);
+
+		await db["game-stats"].insert([
+			mkFakeGameStats(2),
+			mkFakeGameStats(3, { game: "iidx", playtype: "DP" }),
+			mkFakeGameStats(4, { game: "bms", playtype: "7K" }),
+			mkFakeGameStats(5),
+		]);
+	});
+
+	t.test("Should find the users where this game has been played.", async (t) => {
+		const res = await mockApi.get("/api/v1/games/iidx/SP/players?search=scrimblo");
+
+		t.hasStrict(res.body.body, [{ id: 2 }]);
+		t.equal(res.body.body.length, 1);
+
+		t.end();
+	});
+
+	t.test("Should definitely honour the search parameter.", async (t) => {
+		const res = await mockApi.get("/api/v1/games/iidx/SP/players?search=nobody");
+
+		t.strictSame(res.body.body, []);
+
+		t.end();
+	});
+
+	t.test("Should definitely honour the GPT.", async (t) => {
+		const res = await mockApi.get("/api/v1/games/iidx/DP/players?search=scrimblo");
+
+		t.hasStrict(res.body.body, [{ id: 3 }]);
+		t.equal(res.body.body.length, 1);
+
+		t.end();
+	});
+
+	t.test("Should require the search parameter.", async (t) => {
+		const res = await mockApi.get("/api/v1/games/iidx/DP/players");
+
+		t.equal(res.statusCode, 400);
 
 		t.end();
 	});

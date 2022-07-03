@@ -22,6 +22,7 @@ import type {
 	PublicUserDocument,
 	ScoreDocument,
 	UGPTSettings,
+	UserGameStats,
 } from "tachi-common";
 
 /**
@@ -102,4 +103,17 @@ export function mkFakeGoal(modifant: Partial<GoalDocument> = {}) {
 
 export function mkFakeGoalSub(modifant: Partial<GoalSubscriptionDocument> = {}) {
 	return dmf(HC511UserGoal, modifant);
+}
+
+export function mkFakeGameStats(userID: integer, modifant: Partial<UserGameStats> = {}) {
+	return dmf(
+		{
+			userID,
+			game: "iidx",
+			playtype: "SP",
+			classes: {},
+			ratings: {},
+		},
+		modifant
+	);
 }

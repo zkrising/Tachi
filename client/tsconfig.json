@@ -10,6 +10,14 @@
 		"esModuleInterop": true,
 		"jsx": "react",
 		"baseUrl": "src",
+		"paths": {
+			"tachi-common": [
+				"../../common/src"
+			],
+			"tachi-common/*": [
+				"../../common/src/*"
+			]
+		},
 		"lib": [
 			"dom.iterable",
 			"dom",

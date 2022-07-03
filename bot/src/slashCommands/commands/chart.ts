@@ -1,12 +1,13 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageActionRow, MessageSelectMenu, Util } from "discord.js";
-import { Difficulties, FormatChart, IDStrings, integer, SongDocument } from "tachi-common";
 import { GetGPTAndUser, ParseDifficulty } from "../../utils/argParsers";
 import { CreateChartScoresEmbed } from "../../utils/embeds";
 import { TachiServerV1Get } from "../../utils/fetchTachi";
 import { GPTOptions, MakeRequired, OtherUserOption } from "../../utils/options";
-import { ChartQueryReturns } from "../../utils/returnTypes";
-import { SlashCommand } from "../types";
+import { SlashCommandBuilder } from "@discordjs/builders";
+import { MessageActionRow, MessageSelectMenu, Util } from "discord.js";
+import { FormatChart } from "tachi-common";
+import type { ChartQueryReturns } from "../../utils/returnTypes";
+import type { SlashCommand } from "../types";
+import type { Difficulties, IDStrings, integer, SongDocument } from "tachi-common";
 
 const command: SlashCommand = {
 	info: new SlashCommandBuilder()
@@ -52,7 +53,7 @@ const command: SlashCommand = {
 		// As such, we just treat a difficulty (if it exists) as being part of the
 		// song title.
 		if ((game === "bms" || game === "pms") && difficulty) {
-			search += ` ${difficulty}`;
+			search = `${search} ${difficulty}`;
 		}
 
 		const chartsRes = await TachiServerV1Get<ChartQueryReturns>(
@@ -80,7 +81,7 @@ const command: SlashCommand = {
 			chartsRes.body.charts = chartsRes.body.charts.slice(0, 25);
 		}
 
-		const firstChart = chartsRes.body.charts[0];
+		const firstChart = chartsRes.body.charts[0]!; // length is asserted as non-zero
 
 		const songMap = new Map<integer, SongDocument>();
 

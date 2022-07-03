@@ -1,10 +1,10 @@
-import { REST } from "@discordjs/rest";
-import { Routes } from "discord-api-types/v9";
-import { Client } from "discord.js";
+import { SLASH_COMMANDS } from "./commands";
 import { BotConfig, ProcessEnv } from "../config";
 import { LoggerLayers } from "../data/data";
 import { CreateLayeredLogger } from "../utils/logger";
-import { SLASH_COMMANDS } from "./commands";
+import { REST } from "@discordjs/rest";
+import { Routes } from "discord-api-types/v9";
+import type { Client } from "discord.js";
 
 const logger = CreateLayeredLogger(LoggerLayers.slashCommands);
 
@@ -65,6 +65,7 @@ export async function UnregisterAllCommands(client: Client): Promise<void> {
 		// They use collections, which inherit from ES6's Map. Ah well.
 
 		const promises = [];
+
 		for (const [, guild] of guilds) {
 			promises.push(guild.commands.set([]));
 		}

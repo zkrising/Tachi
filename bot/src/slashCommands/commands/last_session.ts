@@ -1,11 +1,11 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { FormatGame } from "tachi-common";
 import { GetMostRecentSession } from "../../utils/apiRequests";
 import { GetGPTAndUser } from "../../utils/argParsers";
 import { CreateSessionEmbed } from "../../utils/embeds";
 import logger from "../../utils/logger";
 import { GPTOptions, MakeRequired, OtherUserOption } from "../../utils/options";
-import { SlashCommand } from "../types";
+import { SlashCommandBuilder } from "@discordjs/builders";
+import { FormatGame } from "tachi-common";
+import type { SlashCommand } from "../types";
 
 const command: SlashCommand = {
 	info: new SlashCommandBuilder()
@@ -24,6 +24,7 @@ const command: SlashCommand = {
 		const { userDoc, game, playtype } = gptUserInfo.content;
 
 		let session;
+
 		try {
 			session = await GetMostRecentSession(userDoc.id, game, playtype);
 		} catch (err) {

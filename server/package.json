@@ -81,7 +81,6 @@
 		"safe-json-stringify": "1.2.0",
 		"semver": "^7.3.7",
 		"seq-logging": "1.1.1",
-		"ts-node": "10.4.0",
 		"tsconfig-paths": "3.12.0",
 		"typescript": "4.5.5",
 		"winston": "3.5.1",

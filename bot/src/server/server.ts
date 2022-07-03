@@ -1,6 +1,4 @@
-import path from "path";
-import express, { Express } from "express";
-import { APITokenDocument, PublicUserDocument, WebhookEvents } from "tachi-common";
+import { ValidateWebhookRequest } from "./middleware";
 import { BotConfig, ProcessEnv } from "../config";
 import { LoggerLayers } from "../data/data";
 import db from "../database/mongo";
@@ -9,7 +7,10 @@ import { CreateLayeredLogger } from "../utils/logger";
 import { VERSION_PRETTY } from "../version";
 import { HandleClassUpdateV1 } from "../webhookHandlers/classUpdate";
 import { HandleGoalAchievedV1 } from "../webhookHandlers/goalAchieved";
-import { ValidateWebhookRequest } from "./middleware";
+import express from "express";
+import path from "path";
+import type { Express } from "express";
+import type { APITokenDocument, PublicUserDocument, WebhookEvents } from "tachi-common";
 
 export const app: Express = express();
 
@@ -123,7 +124,7 @@ app.get("/oauth/callback", async (req, res) => {
 		});
 	}
 
-	return res.sendFile(path.join(__dirname, "../../pages/account-linked.html"));
+	res.sendFile(path.join(__dirname, "../../pages/account-linked.html"));
 });
 
 /**
@@ -139,18 +140,22 @@ app.post("/webhook", ValidateWebhookRequest, async (req, res) => {
 	let statusCode = 200;
 
 	switch (webhookEvent.type) {
-		case "class-update/v1":
+		case "class-update/v1": {
 			statusCode = await HandleClassUpdateV1(webhookEvent.content);
 			break;
-		case "goals-achieved/v1":
+		}
+
+		case "goals-achieved/v1": {
 			statusCode = await HandleGoalAchievedV1(webhookEvent.content);
 			break;
+		}
+
 		case "milestone-achieved/v1":
-		default:
-			// According to the types, this should never happen.
-			// However, tachi-(server/common) may recieve an update
-			// to define new webhooks, and the bot might not
+		default: {
 			// get around to updating in time.
+			// to define new webhooks, and the bot might not
+			// However, tachi-(server/common) may recieve an update
+			// According to the types, this should never happen.
 			logger.warn(
 				`Received unknown webhook event ${
 					(webhookEvent as WebhookEvents).type
@@ -160,6 +165,7 @@ app.post("/webhook", ValidateWebhookRequest, async (req, res) => {
 				success: false,
 				description: `The type ${(webhookEvent as WebhookEvents).type} is unsupported.`,
 			});
+		}
 	}
 
 	return res.sendStatus(statusCode);
@@ -195,6 +201,7 @@ interface ExpressJSONErr extends SyntaxError {
 const MainExpressErrorHandler: express.ErrorRequestHandler = (err, req, res, _next) => {
 	if (err instanceof SyntaxError) {
 		const expErr: ExpressJSONErr = err as ExpressJSONErr;
+
 		if (expErr.status === 400 && "body" in expErr) {
 			logger.info(`Error in parsing JSON in request body from ${req.url}`, {
 				url: req.originalUrl,

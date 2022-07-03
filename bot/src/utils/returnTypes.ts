@@ -1,4 +1,4 @@
-import {
+import type {
 	APIPermissions,
 	ChartDocument,
 	FolderDocument,
@@ -19,10 +19,10 @@ import {
 } from "tachi-common";
 
 export interface ServerConfig {
-	games: Game[];
-	importTypes: ImportTypes[];
+	games: Array<Game>;
+	importTypes: Array<ImportTypes>;
 	name: string;
-	type: "ktchi" | "btchi" | "omni";
+	type: "btchi" | "ktchi" | "omni";
 }
 
 export interface ServerStatus {
@@ -30,7 +30,7 @@ export interface ServerStatus {
 	startTime: number;
 	version: string;
 	whoami: integer | null;
-	permissions: APIPermissions[];
+	permissions: Array<APIPermissions>;
 }
 
 export interface ImportDeferred {
@@ -60,28 +60,28 @@ export interface UGPTStats<I extends IDStrings = IDStrings> {
 }
 
 export interface ChartQueryReturns {
-	charts: (ChartDocument & { __playcount: integer })[];
-	songs: SongDocument[];
+	charts: Array<ChartDocument & { __playcount: integer }>;
+	songs: Array<SongDocument>;
 }
 
 export interface UGPTFolderStat<I extends IDStrings = IDStrings> {
 	folderID: string;
-	grades: Record<Grades[I], integer>;
-	lamps: Record<Lamps[I], integer>;
+	grades: Partial<Record<Grades[I], integer>>;
+	lamps: Partial<Record<Lamps[I], integer>>;
 	chartCount: integer;
 }
 
 export interface UGPTFolderTimeline<I extends IDStrings = IDStrings> {
-	songs: SongDocument<IDStringToGame[I]>[];
-	charts: ChartDocument<I>[];
-	scores: ScoreDocument<I>[];
+	songs: Array<SongDocument<IDStringToGame[I]>>;
+	charts: Array<ChartDocument<I>>;
+	scores: Array<ScoreDocument<I>>;
 	folder: FolderDocument;
 }
 
 export interface SessionInfo {
 	session: SessionDocument;
-	songs: SongDocument[];
-	charts: ChartDocument[];
-	scores: ScoreDocument[];
+	songs: Array<SongDocument>;
+	charts: Array<ChartDocument>;
+	scores: Array<ScoreDocument>;
 	user: PublicUserDocument;
 }

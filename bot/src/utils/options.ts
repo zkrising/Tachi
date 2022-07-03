@@ -1,12 +1,12 @@
-import { SlashCommandStringOption } from "@discordjs/builders";
-import { FormatGame, GetGameConfig } from "tachi-common";
 import { ServerConfig } from "../config";
+import { FormatGame, GetGameConfig } from "tachi-common";
+import type { SlashCommandStringOption } from "@discordjs/builders";
 
 /**
  * Game Playtype options. Frequently used by things that might need
  * game specific listening.
  */
-const GPTChoices: [string, string][] = [];
+const GPTChoices: Array<[string, string]> = [];
 
 for (const game of ServerConfig.games) {
 	const gameConfig = GetGameConfig(game);

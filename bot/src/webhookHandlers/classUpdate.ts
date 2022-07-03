@@ -1,5 +1,3 @@
-import { FormatGame, Game, integer, Playtype, WebhookEventClassUpdateV1 } from "tachi-common";
-import { AllClassSets } from "tachi-common/game-classes";
 import { BotConfig } from "../config";
 import { client } from "../main";
 import { GetUGPTStats, GetUserInfo } from "../utils/apiRequests";
@@ -8,6 +6,9 @@ import { CreateEmbed } from "../utils/embeds";
 import { PrependTachiUrl } from "../utils/fetchTachi";
 import logger from "../utils/logger";
 import { FormatClass, GetGameChannel } from "../utils/misc";
+import { FormatGame } from "tachi-common";
+import type { Game, integer, Playtype, WebhookEventClassUpdateV1 } from "tachi-common";
+import type { AllClassSets } from "tachi-common/game-classes";
 
 export async function HandleClassUpdateV1(
 	event: WebhookEventClassUpdateV1["content"]
@@ -15,10 +16,12 @@ export async function HandleClassUpdateV1(
 	const { game, playtype } = event;
 
 	let channel;
+
 	try {
 		channel = GetGameChannel(client, game);
 	} catch (e) {
 		const err = e as Error;
+
 		logger.error(`ClassUpdate handler failed: ${err.message}`);
 		return 500;
 	}
@@ -35,7 +38,7 @@ export async function HandleClassUpdateV1(
 	// atleast 10 of the volforce ranks, which will just result in channel spam.
 	const minimumNecessaryScores = GetMinimumScores(game, playtype, event.set);
 
-	if (minimumNecessaryScores) {
+	if (minimumNecessaryScores !== null) {
 		const { totalScores } = await GetUGPTStats(userDoc.id, game, playtype);
 
 		// Do not render if the user hasn't hit the score cap.

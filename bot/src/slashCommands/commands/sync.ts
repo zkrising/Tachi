@@ -1,7 +1,7 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
 import { PerformScoreImport } from "../../utils/apiRequests";
 import { CreateImportEmbed } from "../../utils/embeds";
-import { SlashCommand } from "../types";
+import { SlashCommandBuilder } from "@discordjs/builders";
+import type { SlashCommand } from "../types";
 
 const command: SlashCommand = {
 	info: new SlashCommandBuilder()

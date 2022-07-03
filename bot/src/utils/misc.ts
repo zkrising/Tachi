@@ -1,13 +1,12 @@
-import { Client } from "discord.js";
+import { BotConfig } from "../config";
 import humaniseDuration from "humanize-duration";
 import _ from "lodash";
 import { DateTime } from "luxon";
-import {
+import { GenericFormatGradeDelta, GetGameConfig, GetGamePTConfig } from "tachi-common";
+import type { Client } from "discord.js";
+import type {
 	ChartDocument,
 	Game,
-	GenericFormatGradeDelta,
-	GetGameConfig,
-	GetGamePTConfig,
 	GoalDocument,
 	Grades,
 	IDStrings,
@@ -20,15 +19,15 @@ import {
 	ScoreDocument,
 	SongDocument,
 	UGSRatingsLookup,
+	GameConfig,
 } from "tachi-common";
-import { GameClassSets } from "tachi-common/game-classes";
-import { BotConfig } from "../config";
+import type { GameClassSets } from "tachi-common/game-classes";
 
 /**
  * Random From Array - Selects a random value from an array.
  */
-export function RFA<T>(arr: T[]): T {
-	return arr[Math.floor(Math.random() * arr.length)];
+export function RFA<T>(arr: Array<T>): T {
+	return arr[Math.floor(Math.random() * arr.length)] as T;
 }
 
 export function TruncateString(string: string, len = 30) {
@@ -48,7 +47,11 @@ export function IsAdmin(discordID: string) {
 }
 
 export function Sleep(ms: number) {
-	return new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
+	return new Promise<void>((resolve) => {
+		setTimeout(() => {
+			resolve();
+		}, ms);
+	});
 }
 
 export function Pluralise(int: integer, str: string) {
@@ -100,8 +103,8 @@ export function FormatScoreRating(
 /**
  * Typesafe asserted version of Object.entries.
  */
-export function Entries<K extends string, V>(rec: Partial<Record<K, V>>): [K, V][] {
-	return Object.entries(rec) as [K, V][];
+export function Entries<K extends string, V>(rec: Partial<Record<K, V>>): Array<[K, V]> {
+	return Object.entries(rec) as Array<[K, V]>;
 }
 
 export function ParseGPT(str: string) {
@@ -110,7 +113,8 @@ export function ParseGPT(str: string) {
 	const game = spl[0] as Game;
 	const playtype = spl[1] as Playtype;
 
-	const gameConfig = GetGameConfig(game);
+	// this is an interesting way of game checking noah
+	const gameConfig = GetGameConfig(game) as GameConfig | undefined;
 
 	if (!gameConfig || !gameConfig.validPlaytypes.includes(playtype)) {
 		throw new Error(`Invalid GPT Combination '${str}'.`);
@@ -120,6 +124,10 @@ export function ParseGPT(str: string) {
 }
 
 export function UppercaseFirst(str: string) {
+	if (!str[0]) {
+		return "";
+	}
+
 	return str[0].toUpperCase() + str.substring(1);
 }
 
@@ -154,7 +162,15 @@ export function FormatClass(
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	return gptConfig.classHumanisedFormat[classSet][classValue].display;
+	const classInfo = gptConfig.classHumanisedFormat[classSet][classValue];
+
+	if (!classInfo) {
+		throw new Error(
+			`Couldn't find a class at index ${classValue} for ${game} ${playtype} ${classSet}?`
+		);
+	}
+
+	return classInfo.display;
 }
 
 /**
@@ -197,7 +213,7 @@ export function CreateChartLink(chart: ChartDocument, game: Game) {
 	return `${BotConfig.TACHI_SERVER_LOCATION}/dashboard/games/${game}/${chart.playtype}/songs/${chart.songID}/${chart.chartID}`;
 }
 
-type ScOrPBDoc<I extends IDStrings> = ScoreDocument<I> | PBScoreDocument<I>;
+type ScOrPBDoc<I extends IDStrings> = PBScoreDocument<I> | ScoreDocument<I>;
 
 export function FormatScoreData<I extends IDStrings = IDStrings>(score: ScOrPBDoc<I>) {
 	const game = score.game;
@@ -210,7 +226,7 @@ export function FormatScoreData<I extends IDStrings = IDStrings>(score: ScOrPBDo
 	if (game === "iidx" || game === "bms" || game === "pms") {
 		const bp = (
 			score as ScOrPBDoc<
-				"iidx:SP" | "iidx:DP" | "pms:Controller" | "pms:Keyboard" | "bms:14K" | "bms:7K"
+				"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP" | "pms:Controller" | "pms:Keyboard"
 			>
 		).scoreData.hitMeta.bp;
 
@@ -252,7 +268,7 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
 
 	// (hey, this for loop is backwards!)
 	for (let i = boundaries.length; i >= 0; i--) {
-		if (percent + Number.EPSILON >= boundaries[i]) {
+		if (percent + Number.EPSILON >= boundaries[i]!) {
 			return grades[i] as Grades[I];
 		}
 	}
@@ -282,7 +298,7 @@ export function GetChartPertinentInfo<I extends IDStrings>(game: Game, chart: Ch
 	if (game === "iidx") {
 		const ch = chart as ChartDocument<"iidx:DP" | "iidx:SP">;
 
-		if (!ch.data.kaidenAverage || !ch.data.worldRecord) {
+		if (ch.data.kaidenAverage === null || ch.data.worldRecord === null) {
 			return null;
 		}
 
@@ -305,6 +321,7 @@ export function FormatChartTierlistInfo(game: Game, chart: ChartDocument) {
 	}
 
 	const fmts = [];
+
 	for (const tierlist of gptConfig.tierlists) {
 		const data = chart.tierlistInfo[tierlist];
 
@@ -313,7 +330,9 @@ export function FormatChartTierlistInfo(game: Game, chart: ChartDocument) {
 		}
 
 		fmts.push(
-			`${tierlist}: ${data.text} (${data.value}${data.individualDifference ? " ⚖️" : ""})`
+			`${tierlist}: ${data.text} (${data.value}${
+				data.individualDifference === true ? " ⚖️" : ""
+			})`
 		);
 	}
 
@@ -337,7 +356,7 @@ export function ConvertInputIntoGenerousRegex(input: string) {
 	return regex;
 }
 
-export function CreateSongMap<G extends Game = Game>(songs: SongDocument<G>[]) {
+export function CreateSongMap<G extends Game = Game>(songs: Array<SongDocument<G>>) {
 	const songMap = new Map<integer, SongDocument<G>>();
 
 	for (const song of songs) {
@@ -347,7 +366,7 @@ export function CreateSongMap<G extends Game = Game>(songs: SongDocument<G>[]) {
 	return songMap;
 }
 
-export function CreateUserMap(users: PublicUserDocument[]) {
+export function CreateUserMap(users: Array<PublicUserDocument>) {
 	const userMap = new Map<integer, PublicUserDocument>();
 
 	for (const user of users) {
@@ -357,7 +376,7 @@ export function CreateUserMap(users: PublicUserDocument[]) {
 	return userMap;
 }
 
-export function CreateGoalMap(goals: GoalDocument[]) {
+export function CreateGoalMap(goals: Array<GoalDocument>) {
 	const goalMap = new Map<string, GoalDocument>();
 
 	for (const goal of goals) {
@@ -367,8 +386,8 @@ export function CreateGoalMap(goals: GoalDocument[]) {
 	return goalMap;
 }
 
-export function CreateChartIDMap<T extends { chartID: string }>(arr: T[]): Map<string, T> {
-	const map = new Map();
+export function CreateChartIDMap<T extends { chartID: string }>(arr: Array<T>): Map<string, T> {
+	const map = new Map<string, T>();
 
 	for (const t of arr) {
 		map.set(t.chartID, t);
@@ -377,7 +396,7 @@ export function CreateChartIDMap<T extends { chartID: string }>(arr: T[]): Map<s
 	return map;
 }
 
-export function CreateChartMap<I extends IDStrings = IDStrings>(charts: ChartDocument<I>[]) {
+export function CreateChartMap<I extends IDStrings = IDStrings>(charts: Array<ChartDocument<I>>) {
 	const chartMap = new Map<string, ChartDocument<I>>();
 
 	for (const chart of charts) {
@@ -387,7 +406,7 @@ export function CreateChartMap<I extends IDStrings = IDStrings>(charts: ChartDoc
 	return chartMap;
 }
 
-export function CreateScoreIDMap<I extends IDStrings = IDStrings>(scores: ScoreDocument<I>[]) {
+export function CreateScoreIDMap<I extends IDStrings = IDStrings>(scores: Array<ScoreDocument<I>>) {
 	const scoreMap = new Map<string, ScoreDocument<I>>();
 
 	for (const score of scores) {
@@ -405,6 +424,7 @@ export function NumericSOV<T>(getValueFn: (data: T) => number, reverse = false) 
 	if (reverse) {
 		return (a: T, b: T) => getValueFn(b) - getValueFn(a);
 	}
+
 	return (a: T, b: T) => getValueFn(a) - getValueFn(b);
 }
 
@@ -423,6 +443,7 @@ export function UniqueOnKey<T>(prop: keyof T) {
 		if (seenBefore.has(item[prop])) {
 			return false;
 		}
+
 		seenBefore.add(item[prop]);
 
 		return true;

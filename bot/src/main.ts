@@ -1,15 +1,17 @@
-import { Client, CommandInteraction, Intents, SelectMenuInteraction } from "discord.js";
 import { BotConfig, ProcessEnv, ServerConfig } from "./config";
 import { LoggerLayers, METALLIC_MIND_SPLASHES } from "./data/data";
 import { GetUserAndTokenForDiscordID } from "./database/queries";
 import { handleIsCommand } from "./interactionHandlers/handleIsCommand";
 import { handleIsSelectMenu } from "./interactionHandlers/handleIsSelectMenu";
+
 // import { handleIsSelectMenu } from "./interactionHandlers/handleIsSelectMenu";
 import { app } from "./server/server";
 import { RegisterSlashCommands } from "./slashCommands/register";
 import { CreateLayeredLogger } from "./utils/logger";
 import { RFA, TruncateString } from "./utils/misc";
 import { VERSION_PRETTY } from "./version";
+import { Client, Intents } from "discord.js";
+import type { CommandInteraction, SelectMenuInteraction } from "discord.js";
 
 const logger = CreateLayeredLogger(LoggerLayers.client);
 
@@ -57,6 +59,7 @@ async function RequireUserAuth(interaction: CommandInteraction | SelectMenuInter
 	const oAuthLink = `${BotConfig.TACHI_SERVER_LOCATION}/oauth/request-auth?clientID=${BotConfig.OAUTH.CLIENT_ID}&context=${interaction.user.id}`;
 
 	const dmChannel = await interaction.user.createDM();
+
 	await dmChannel.send(`Click this link to authenticate with ${ServerConfig.name}: ${oAuthLink}`);
 	return interaction.reply({
 		content: `To use the bot, your discord account must be linked to ${ServerConfig.name}.

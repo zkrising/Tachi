@@ -1,7 +1,4 @@
-import { SelectMenuInteraction } from "discord.js";
-import { Game, Playtype } from "tachi-common";
 import { LoggerLayers } from "../data/data";
-import { DiscordUserMapDocument } from "../database/documents";
 import { GetUserInfo } from "../utils/apiRequests";
 import {
 	CreateChartScoresEmbed,
@@ -9,6 +6,9 @@ import {
 	CreateFolderTimelineEmbed,
 } from "../utils/embeds";
 import { CreateLayeredLogger } from "../utils/logger";
+import type { DiscordUserMapDocument } from "../database/documents";
+import type { SelectMenuInteraction } from "discord.js";
+import type { Game, Playtype } from "tachi-common";
 
 const logger = CreateLayeredLogger(LoggerLayers.slashCommands);
 
@@ -34,8 +34,8 @@ export async function handleIsSelectMenu(
 
 		if (interaction.customId.startsWith("chart!")) {
 			// horrendous hackery, but we only have 100 chars to store selector metadata.
-			const [, game, playtype, userID] = interaction.customId.match(
-				/!(.*):(.*):(.*)$/u
+			const [, game, playtype, userID] = /!(.*):(.*):(.*)$/u.exec(
+				interaction.customId
 			) as unknown as [string, Game, Playtype, string];
 
 			const userDoc = await GetUserInfo(userID);
@@ -44,32 +44,32 @@ export async function handleIsSelectMenu(
 				userDoc,
 				game,
 				playtype,
-				interaction.values[0],
+				interaction.values[0]!,
 				null
 			);
 
 			await interaction.update({ embeds: [embed] });
 		} else if (interaction.customId.startsWith("folder!")) {
-			const [, game, playtype, username] = interaction.customId.match(
-				/!(.*):(.*):(.*)$/u
+			const [, game, playtype, username] = /!(.*):(.*):(.*)$/u.exec(
+				interaction.customId
 			) as unknown as [string, Game, Playtype, string];
 
 			const embed = await CreateFolderStatsEmbed(
 				game,
 				playtype,
 				username,
-				interaction.values[0]
+				interaction.values[0]!
 			);
 
 			await interaction.update({ embeds: [embed] });
 		} else if (interaction.customId.startsWith("ftl!")) {
 			const [, game, playtype, username, formatMethod, rawTarget] =
-				interaction.customId.match(/!(.*):(.*):(.*):(.*):(.*)$/u) as unknown as [
+				/!(.*):(.*):(.*):(.*):(.*)$/u.exec(interaction.customId) as unknown as [
 					string,
 					Game,
 					Playtype,
 					string,
-					"recent" | "first",
+					"first" | "recent",
 					string
 				];
 
@@ -77,7 +77,7 @@ export async function handleIsSelectMenu(
 				game,
 				playtype,
 				username,
-				interaction.values[0],
+				interaction.values[0]!,
 				formatMethod,
 				rawTarget
 			);

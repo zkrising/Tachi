@@ -1,24 +1,24 @@
-import { APIApplicationCommandOption } from "discord-api-types";
-import {
+import type { DiscordUserMapDocument } from "../database/documents";
+import type { APIApplicationCommandOption } from "discord-api-types";
+import type {
 	CommandInteraction,
 	InteractionReplyOptions,
 	MessageEmbed,
 	MessagePayload,
 } from "discord.js";
-import { DiscordUserMapDocument } from "../database/documents";
 
-export type Emittable = MessagePayload | string | MessageEmbed | InteractionReplyOptions;
+export type Emittable = InteractionReplyOptions | MessageEmbed | MessagePayload | string;
 
 export type Command = (
 	interaction: CommandInteraction,
 	requestingUser: DiscordUserMapDocument
-) => Promise<Emittable> | Emittable;
+) => Emittable | Promise<Emittable>;
 
 export interface SlashCommand {
 	info: {
 		name: string;
 		description: string;
-		options: APIApplicationCommandOption[];
+		options: Array<APIApplicationCommandOption>;
 	};
 	exec: Command;
 }

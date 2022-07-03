@@ -1,16 +1,10 @@
-import { CommandInteraction } from "discord.js";
-import {
-	Difficulties,
-	Game,
-	GetGamePTConfig,
-	IDStrings,
-	Playtype,
-	PublicUserDocument,
-} from "tachi-common";
-import { DiscordUserMapDocument } from "../database/documents";
-import { Emittable } from "../slashCommands/types";
 import { GetUserInfo } from "./apiRequests";
 import { ConvertInputIntoGenerousRegex, ParseGPT } from "./misc";
+import { GetGamePTConfig } from "tachi-common";
+import type { DiscordUserMapDocument } from "../database/documents";
+import type { Emittable } from "../slashCommands/types";
+import type { CommandInteraction } from "discord.js";
+import type { Difficulties, Game, IDStrings, Playtype, PublicUserDocument } from "tachi-common";
 
 /**
  * Utility parser for getting the game, playtype and requesting user, since this is
@@ -20,8 +14,8 @@ export async function GetGPTAndUser(
 	interaction: CommandInteraction,
 	requestingUser: DiscordUserMapDocument
 ): Promise<
-	| { error: null; content: { userDoc: PublicUserDocument; game: Game; playtype: Playtype } }
 	| { error: Emittable }
+	| { error: null; content: { userDoc: PublicUserDocument; game: Game; playtype: Playtype } }
 > {
 	const userID = interaction.options.getString("other_user") ?? requestingUser.userID.toString();
 
@@ -30,6 +24,7 @@ export async function GetGPTAndUser(
 	}
 
 	let userDoc;
+
 	try {
 		userDoc = await GetUserInfo(userID);
 	} catch (err) {

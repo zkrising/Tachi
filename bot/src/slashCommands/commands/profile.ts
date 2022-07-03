@@ -1,10 +1,10 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { FormatGame } from "tachi-common";
 import { GetUGPTStats } from "../../utils/apiRequests";
 import { GetGPTAndUser } from "../../utils/argParsers";
 import { CreateGameProfileEmbed } from "../../utils/embeds";
 import { GPTOptions, MakeRequired, OtherUserOption } from "../../utils/options";
-import { SlashCommand } from "../types";
+import { SlashCommandBuilder } from "@discordjs/builders";
+import { FormatGame } from "tachi-common";
+import type { SlashCommand } from "../types";
 
 const command: SlashCommand = {
 	info: new SlashCommandBuilder()
@@ -23,6 +23,7 @@ const command: SlashCommand = {
 		const { userDoc, game, playtype } = gptUserInfo.content;
 
 		let ugptStats;
+
 		try {
 			ugptStats = await GetUGPTStats(userDoc.id, game, playtype);
 		} catch (err) {

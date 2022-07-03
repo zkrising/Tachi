@@ -1,5 +1,11 @@
-import { CommandInteraction } from "discord.js";
-import {
+import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "./fetchTachi";
+import { CreateLayeredLogger } from "./logger";
+import { Sleep } from "./misc";
+import { LoggerLayers } from "../data/data";
+import { ScoreDocument } from "tachi-common";
+import type { ImportDeferred, ImportPollStatus, SessionInfo, UGPTStats } from "./returnTypes";
+import type { CommandInteraction } from "discord.js";
+import type {
 	ChartDocument,
 	FolderDocument,
 	Game,
@@ -9,15 +15,9 @@ import {
 	PBScoreDocument,
 	Playtype,
 	PublicUserDocument,
-	ScoreDocument,
 	SessionDocument,
 	SongDocument,
 } from "tachi-common";
-import { LoggerLayers } from "../data/data";
-import { RequestTypes, TachiServerV1Get, TachiServerV1Request } from "./fetchTachi";
-import { CreateLayeredLogger } from "./logger";
-import { Sleep } from "./misc";
-import { ImportDeferred, ImportPollStatus, SessionInfo, UGPTStats } from "./returnTypes";
 
 const logger = CreateLayeredLogger(LoggerLayers.apiRequests);
 
@@ -92,7 +92,7 @@ export async function PerformScoreImport(
 	body: Record<string, unknown>,
 	interaction?: CommandInteraction
 ) {
-	const initRes = await TachiServerV1Request<ImportDocument | ImportDeferred>(
+	const initRes = await TachiServerV1Request<ImportDeferred | ImportDocument>(
 		RequestTypes.POST,
 		url,
 		authToken,
@@ -122,23 +122,24 @@ export async function PerformScoreImport(
 
 			if (pollRes.success) {
 				if (pollRes.body.importStatus === "completed") {
+					// is there even a nice way around this --
+					// why *are* we nested so deeply?
+					// eslint-disable-next-line max-depth
 					if (interaction) {
-						interaction.editReply(`Import finished!`);
+						void interaction.editReply(`Import finished!`);
 					}
 
 					return pollRes.body.import;
-				} else {
-					if (interaction) {
-						interaction.editReply(
-							`Importing Scores: ${
-								pollRes.body.progress.description ?? "Importing."
-							}..`
-						);
-					}
-
-					// eslint-disable-next-line no-await-in-loop
-					await Sleep(1000);
 				}
+
+				if (interaction) {
+					void interaction.editReply(
+						`Importing Scores: ${pollRes.body.progress.description}..`
+					);
+				}
+
+				// eslint-disable-next-line no-await-in-loop
+				await Sleep(1000);
 			} else {
 				throw new Error(`Failed to import scores. ${pollRes.description}.`);
 			}
@@ -151,7 +152,7 @@ export async function PerformScoreImport(
 }
 
 export async function FindFolders(game: Game, playtype: Playtype, folderName: string) {
-	const res = await TachiServerV1Get<FolderDocument[]>(
+	const res = await TachiServerV1Get<Array<FolderDocument>>(
 		`/games/${game}/${playtype}/folders`,
 		null,
 		{

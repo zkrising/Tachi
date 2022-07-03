@@ -1,10 +1,11 @@
-import { SlashCommandBuilder, SlashCommandSubcommandBuilder } from "@discordjs/builders";
-import { MessageActionRow, MessageSelectMenu, Util } from "discord.js";
 import { FindFolders } from "../../utils/apiRequests";
 import { GetGPTAndUser } from "../../utils/argParsers";
 import { CreateFolderStatsEmbed, CreateFolderTimelineEmbed } from "../../utils/embeds";
 import { GPTOptions, MakeRequired, OtherUserOption } from "../../utils/options";
-import { SlashCommand } from "../types";
+import { SlashCommandBuilder } from "@discordjs/builders";
+import { MessageActionRow, MessageSelectMenu, Util } from "discord.js";
+import type { SlashCommand } from "../types";
+import type { SlashCommandSubcommandBuilder } from "@discordjs/builders";
 
 function ApplyCommonOptions(sub: SlashCommandSubcommandBuilder) {
 	return sub
@@ -82,7 +83,7 @@ const command: SlashCommand = {
 		}
 
 		// pick an initial folder
-		const folder = folders[0];
+		const folder = folders[0]!; // length is asserted as non-zero
 
 		// with all of the common info, we now need to chalk up what to actually do.
 
@@ -117,7 +118,7 @@ const command: SlashCommand = {
 
 		const rawTarget = interaction.options.getString("target", true);
 
-		const formatMethod = interaction.options.getString("method", true) as "recent" | "first";
+		const formatMethod = interaction.options.getString("method", true) as "first" | "recent";
 
 		const select = new MessageActionRow().addComponents(
 			new MessageSelectMenu()

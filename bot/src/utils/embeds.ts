@@ -1,21 +1,3 @@
-import { EmbedFieldData, MessageEmbed, Util } from "discord.js";
-import {
-	ChartDocument,
-	FolderDocument,
-	FormatChart,
-	FormatGame,
-	Game,
-	GetGamePTConfig,
-	ImportDocument,
-	integer,
-	PBScoreDocument,
-	Playtype,
-	PublicUserDocument,
-	ScoreDocument,
-	SessionDocument,
-	SongDocument,
-} from "tachi-common";
-import { BotConfig, ServerConfig } from "../config";
 import { GetChartInfoForUser, GetSessionInfo } from "./apiRequests";
 import { ParseTimelineTarget } from "./argParsers";
 import { PrependTachiUrl, TachiServerV1Get } from "./fetchTachi";
@@ -37,7 +19,24 @@ import {
 	UniqueOnKey,
 	UppercaseFirst,
 } from "./misc";
-import { UGPTFolderStat, UGPTFolderTimeline, UGPTStats } from "./returnTypes";
+import { BotConfig, ServerConfig } from "../config";
+import { MessageEmbed, Util } from "discord.js";
+import { FormatChart, FormatGame, GetGamePTConfig } from "tachi-common";
+import type { UGPTFolderStat, UGPTFolderTimeline, UGPTStats } from "./returnTypes";
+import type { EmbedFieldData } from "discord.js";
+import type {
+	ChartDocument,
+	FolderDocument,
+	Game,
+	ImportDocument,
+	integer,
+	PBScoreDocument,
+	Playtype,
+	PublicUserDocument,
+	ScoreDocument,
+	SessionDocument,
+	SongDocument,
+} from "tachi-common";
 
 export function CreateEmbed() {
 	return new MessageEmbed()
@@ -99,7 +98,7 @@ export function CreateGameProfileEmbed(userDoc: PublicUserDocument, ugptStats: U
 			Entries(ugptStats.gameStats.classes)
 				.map(
 					([k, v]) =>
-						`**${UppercaseFirst(k)}**: ${gptConfig.classHumanisedFormat[k][v].display}`
+						`**${UppercaseFirst(k)}**: ${gptConfig.classHumanisedFormat[k][v]?.display}`
 				)
 				.join("\n") || "No Classes",
 			true
@@ -107,7 +106,7 @@ export function CreateGameProfileEmbed(userDoc: PublicUserDocument, ugptStats: U
 		.addField("Playcount", ugptStats.totalScores.toString())
 		.addField(
 			"First Play",
-			ugptStats.firstScore.timeAchieved
+			ugptStats.firstScore.timeAchieved !== null
 				? `${FormatDate(ugptStats.firstScore.timeAchieved)}
 (${MillisToSince(ugptStats.firstScore.timeAchieved)})`
 				: "N/A",
@@ -115,7 +114,7 @@ export function CreateGameProfileEmbed(userDoc: PublicUserDocument, ugptStats: U
 		)
 		.addField(
 			"Last Played",
-			ugptStats.mostRecentScore.timeAchieved
+			ugptStats.mostRecentScore.timeAchieved !== null
 				? `${FormatDate(ugptStats.mostRecentScore.timeAchieved)}
 (${MillisToSince(ugptStats.mostRecentScore.timeAchieved)})`
 				: "N/A",
@@ -135,7 +134,7 @@ export async function CreateChartScoresEmbed(
 ) {
 	const { song, chart, pb } = await GetChartInfoForUser(userDoc.id, chartID, game, playtype);
 
-	let score: ScoreDocument | PBScoreDocument | null = renderThisScore;
+	let score: PBScoreDocument | ScoreDocument | null = renderThisScore;
 
 	// if the user didn't pass a score to be rendered, render their PB.
 	if (renderThisScore === null) {
@@ -173,7 +172,7 @@ export async function CreateChartScoresEmbed(
 			)
 			.addField(
 				"Last Raised",
-				score.timeAchieved
+				score.timeAchieved !== null
 					? `${FormatDate(score.timeAchieved)} (${MillisToSince(score.timeAchieved)})`
 					: "N/A",
 				true
@@ -182,7 +181,7 @@ export async function CreateChartScoresEmbed(
 		// if score is a PB
 		if ("rankingData" in score) {
 			embed.addField("Ranking", `#**${score.rankingData.rank}**/${score.rankingData.outOf}`);
-		} else if (pb) {
+		} else {
 			const { scoreStr, lampStr } = FormatScoreData(pb);
 
 			if (pb.scoreData.score !== score.scoreData.score) {
@@ -260,7 +259,7 @@ export async function CreateFolderTimelineEmbed(
 	playtype: Playtype,
 	username: string,
 	folderID: string,
-	formatMethod: "recent" | "first",
+	formatMethod: "first" | "recent",
 	rawTarget: string
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
@@ -289,15 +288,17 @@ export async function CreateFolderTimelineEmbed(
 	const songMap = CreateSongMap(songs);
 	const chartMap = CreateChartMap(charts);
 
-	let fields: EmbedFieldData[] = [];
+	let fields: Array<EmbedFieldData> = [];
 
 	fields = scores
 		.filter((e) => e.timeAchieved !== null)
-		.sort((a, b) =>
-			formatMethod === "first"
-				? a.timeAchieved! - b.timeAchieved!
-				: b.timeAchieved! - a.timeAchieved!
-		)
+		.sort((a, b) => {
+			if (formatMethod === "first") {
+				return a.timeAchieved! - b.timeAchieved!;
+			}
+
+			return b.timeAchieved! - a.timeAchieved!;
+		})
 		.slice(0, 5)
 		.map((sc) => ScoreToEmbed(sc, songMap, chartMap));
 
@@ -353,8 +354,10 @@ export async function CreateSessionEmbed(session: SessionDocument) {
 
 	embed.addFields(
 		scores
+
 			// don't mutate original array
 			.slice(0)
+
 			// sort on default rating alg
 			// @todo Honour the user's preferred rating alg?
 			.sort(
@@ -364,6 +367,7 @@ export async function CreateSessionEmbed(session: SessionDocument) {
 				)
 			)
 			.filter(UniqueOnKey("chartID"))
+
 			// pick best 5
 			.slice(0, 5)
 			.map((sc) => ScoreToEmbed(sc, songMap, chartMap))

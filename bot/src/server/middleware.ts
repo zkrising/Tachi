@@ -1,7 +1,7 @@
-import { RequestHandler } from "express";
 import { BotConfig } from "../config";
 import { LoggerLayers } from "../data/data";
 import { CreateLayeredLogger } from "../utils/logger";
+import type { RequestHandler } from "express";
 
 const logger = CreateLayeredLogger(LoggerLayers.serverAuth);
 
@@ -45,5 +45,5 @@ export const ValidateWebhookRequest: RequestHandler = (req, res, next) => {
 
 	logger.debug("Webhook authorisation successful.");
 
-	return next();
+	next();
 };

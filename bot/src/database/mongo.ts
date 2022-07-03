@@ -1,8 +1,8 @@
-import monk from "monk";
 import { ProcessEnv } from "../config";
 import { LoggerLayers } from "../data/data";
 import { CreateLayeredLogger } from "../utils/logger";
-import { DiscordUserMapDocument, QuoteDocument } from "./documents";
+import monk from "monk";
+import type { DiscordUserMapDocument, QuoteDocument } from "./documents";
 
 const logger = CreateLayeredLogger(LoggerLayers.database);
 

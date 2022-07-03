@@ -1,9 +1,10 @@
-import { GetGameConfig, GoalDocument, integer, WebhookEventGoalAchievedV1 } from "tachi-common";
 import { client } from "../main";
 import { GetGoalWithID, GetUserInfo } from "../utils/apiRequests";
 import { CreateEmbed } from "../utils/embeds";
 import logger from "../utils/logger";
 import { GetGameChannel, Pluralise } from "../utils/misc";
+import { GetGameConfig } from "tachi-common";
+import type { GoalDocument, integer, WebhookEventGoalAchievedV1 } from "tachi-common";
 
 export async function HandleGoalAchievedV1(
 	event: WebhookEventGoalAchievedV1["content"]
@@ -11,10 +12,12 @@ export async function HandleGoalAchievedV1(
 	const { game } = event;
 
 	let channel;
+
 	try {
 		channel = GetGameChannel(client, game);
 	} catch (e) {
 		const err = e as Error;
+
 		logger.error(`ClassUpdate handler failed: ${err.message}`);
 		return 500;
 	}
@@ -26,6 +29,7 @@ export async function HandleGoalAchievedV1(
 	);
 
 	const goalMap = new Map<string, GoalDocument>();
+
 	for (const goalDoc of goalDocuments) {
 		goalMap.set(goalDoc.goalID, goalDoc);
 	}
@@ -53,7 +57,7 @@ export async function HandleGoalAchievedV1(
 						: `${e.old.progressHuman}/${e.old.outOfHuman} -> ${e.new.progressHuman}/${e.new.outOfHuman}`;
 
 				return {
-					name: `${goal.title}${shouldShowPlaytype ? ` (${e.playtype})` : ""}`,
+					name: `${goal.name}${shouldShowPlaytype ? ` (${e.playtype})` : ""}`,
 					value,
 				};
 			})

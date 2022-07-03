@@ -1,8 +1,8 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import deepmerge from "deepmerge";
 import { BotConfig, ServerConfig } from "../../config";
 import { CreateEmbed } from "../../utils/embeds";
-import { SlashCommand } from "../types";
+import { SlashCommandBuilder } from "@discordjs/builders";
+import deepmerge from "deepmerge";
+import type { SlashCommand } from "../types";
 
 const NEUTRAL_FAQ_ENTRIES: Record<string, string> = {
 	duplicates: `Scores on ${ServerConfig.name} are deduplicated based on your score and lamp (and some other things).
@@ -111,8 +111,7 @@ Since I don't play a lot of the the games that ${ServerConfig.name} supports, we
 const KTCHI_FAQ_ENTRIES: Record<string, string> = {
 	kai_support: `Support for KAI based networks (FLO, EAG, MIN) is available, but we are waiting on APIs for more games on their end. At the moment, only IIDX and SDVX are supported.`,
 	bokutachi: `Bokutachi is our public sister website for home games and simulators. Feel free to check out [the discord](${
-		// Note: obfuscating this for obvious reasons so we don't get garbage bot spam.
-		Buffer.from("aHR0cHM6Ly9kaXNjb3JkLmdnL3N3VkJUanhtUFk=", "base64")
+		Buffer.from("aHR0cHM6Ly9kaXNjb3JkLmdnL3N3VkJUanhtUFk=", "base64") // Note: obfuscating this for obvious reasons so we don't get garbage bot spam.
 	})`,
 	sdvx_1259: `Automation Paradise is song ID 1259. It is not a real song, and it is not supported by ${ServerConfig.name}. Related autopara-only songs are not supported, either.`,
 	invites: `To invite your friends, go to your profile and select 'Invites'. From there, you can create an invite code.
@@ -125,7 +124,7 @@ const BTCHI_FAQ_ENTRIES: Record<string, string> = {
 (This is because putting your real password in there is a security nightmare.)`,
 	lr2: `Support for LR2 (the LR2Hook) are **not officially maintained** and therefore **not managed by bokutachi developers**.
 We urge you to use a more modern BMS client like lr2oraja, unless you have very good reason to stay on LR2.
-Beatoraja is actively developed and integrates properly with the Bokutachi IR, it is also significantly more stable and works on modern hardware without encoding hacks.`
+Beatoraja is actively developed and integrates properly with the Bokutachi IR, it is also significantly more stable and works on modern hardware without encoding hacks.`,
 };
 
 let faqEntries = NEUTRAL_FAQ_ENTRIES;

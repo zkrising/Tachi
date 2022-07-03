@@ -1,9 +1,9 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
 import { ServerConfig } from "../../config";
 import { GetUserIDForDiscordID } from "../../database/queries";
 import { GetUserInfo } from "../../utils/apiRequests";
 import { CreateUserEmbed } from "../../utils/embeds";
-import { SlashCommand } from "../types";
+import { SlashCommandBuilder } from "@discordjs/builders";
+import type { SlashCommand } from "../types";
 
 const command: SlashCommand = {
 	info: new SlashCommandBuilder()
@@ -18,7 +18,7 @@ const command: SlashCommand = {
 
 		const userID = await GetUserIDForDiscordID(discordUser.id);
 
-		if (!userID) {
+		if (userID === null) {
 			return `This user is not linked with the bot.`;
 		}
 

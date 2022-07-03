@@ -1,9 +1,9 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
 import { ServerConfig } from "../../config";
 import { TachiServerV1Get } from "../../utils/fetchTachi";
-import { ServerStatus } from "../../utils/returnTypes";
 import { VERSION_PRETTY } from "../../version";
-import { SlashCommand } from "../types";
+import { SlashCommandBuilder } from "@discordjs/builders";
+import type { ServerStatus } from "../../utils/returnTypes";
+import type { SlashCommand } from "../types";
 
 const command: SlashCommand = {
 	info: new SlashCommandBuilder()

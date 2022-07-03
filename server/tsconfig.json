@@ -7,6 +7,7 @@
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
 		"baseUrl": "src",
+		"outDir": "./js",
 		"lib": [
 			"ES2019",
 			// This is necessary because -- for some unknown reason -- the AWS SDK
@@ -26,11 +27,6 @@
 				"../../common/src/*"
 			]
 		}
-	},
-	"ts-node": {
-		"require": [
-			"tsconfig-paths/register"
-		]
 	},
 	"include": [
 		"src/**/*.ts"

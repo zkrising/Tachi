@@ -1,12 +1,12 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Util } from "discord.js";
-import { escapeRegExp } from "lodash";
 import db from "../../database/mongo";
 import { GetQuoteWithID } from "../../database/queries";
 import { GetUserInfo } from "../../utils/apiRequests";
 import { CreateEmbed } from "../../utils/embeds";
 import { FormatDate, IsAdmin, Pluralise, TruncateString } from "../../utils/misc";
-import { SlashCommand } from "../types";
+import { SlashCommandBuilder } from "@discordjs/builders";
+import { Util } from "discord.js";
+import { escapeRegExp } from "lodash";
+import type { SlashCommand } from "../types";
 
 const command: SlashCommand = {
 	info: new SlashCommandBuilder()
@@ -61,11 +61,11 @@ const command: SlashCommand = {
 		.toJSON(),
 	exec: async (interaction, requestingUser) => {
 		const subCommand = interaction.options.getSubcommand() as
-			| "read"
-			| "write"
 			| "delete"
+			| "read"
+			| "search_id"
 			| "search_text"
-			| "search_id";
+			| "write";
 
 		if (subCommand === "search_id" || subCommand === "search_text") {
 			const query = interaction.options.getString("query", true).trim();
@@ -121,58 +121,65 @@ const command: SlashCommand = {
 
 		const quote = await GetQuoteWithID(quoteID);
 
-		if (subCommand === "read") {
-			if (!quote) {
-				return `No quote exists for '${Util.escapeMarkdown(quoteID)}'.`;
+		switch (subCommand) {
+			case "read": {
+				if (!quote) {
+					return `No quote exists for '${Util.escapeMarkdown(quoteID)}'.`;
+				}
+
+				await db.quotes.update({ quoteID }, { $inc: { hits: 1 } });
+
+				const authorInfo = await GetUserInfo(quote.quotedBy);
+
+				return CreateEmbed()
+					.setTitle(`Quote: ${quoteID}`)
+					.setDescription(`\`\`\`${Util.escapeMarkdown(quote.text)}\`\`\``)
+					.setFooter({
+						text: `Quoted by ${authorInfo.username} on ${FormatDate(
+							quote.quotedAt
+						)}. This quote has been read ${quote.hits + 1} times.`,
+					});
 			}
 
-			await db.quotes.update({ quoteID }, { $inc: { hits: 1 } });
+			case "write": {
+				const text = interaction.options.getString("text", true);
 
-			const authorInfo = await GetUserInfo(quote.quotedBy);
+				if (quote) {
+					return `A quote exists for '${Util.escapeMarkdown(quoteID)}' already.`;
+				}
 
-			return CreateEmbed()
-				.setTitle(`Quote: ${quoteID}`)
-				.setDescription(`\`\`\`${Util.escapeMarkdown(quote.text)}\`\`\``)
-				.setFooter({
-					text: `Quoted by ${authorInfo.username} on ${FormatDate(
-						quote.quotedAt
-					)}. This quote has been read ${quote.hits + 1} times.`,
+				if (text.length > 480) {
+					return `Quotes are capped at 480 characters. Not quoting this.`;
+				}
+
+				await db.quotes.insert({
+					quoteID,
+					text,
+					hits: 0,
+					quotedAt: Date.now(),
+					quotedBy: requestingUser.userID,
 				});
-		} else if (subCommand === "write") {
-			const text = interaction.options.getString("text", true);
 
-			if (quote) {
-				return `A quote exists for '${Util.escapeMarkdown(quoteID)}' already.`;
+				return `Quote '${Util.escapeMarkdown(quoteID)}' has been saved.`;
 			}
 
-			if (text.length > 480) {
-				return `Quotes are capped at 480 characters. Not quoting this.`;
+			case "delete": {
+				if (!IsAdmin(requestingUser.discordID)) {
+					return `You are not authorised to delete quotes.`;
+				}
+
+				if (!quote) {
+					return `No quote exists for '${Util.escapeMarkdown(quoteID)}'.`;
+				}
+
+				await db.quotes.remove({ quoteID: quote.quoteID });
+
+				return `Quote '${Util.escapeMarkdown(quoteID)}' has been deleted.`;
 			}
 
-			await db.quotes.insert({
-				quoteID,
-				text,
-				hits: 0,
-				quotedAt: Date.now(),
-				quotedBy: requestingUser.userID,
-			});
-
-			return `Quote '${Util.escapeMarkdown(quoteID)}' has been saved.`;
-		} else if (subCommand === "delete") {
-			if (!IsAdmin(requestingUser.discordID)) {
-				return `You are not authorised to delete quotes.`;
-			}
-
-			if (!quote) {
-				return `No quote exists for '${Util.escapeMarkdown(quoteID)}'.`;
-			}
-
-			await db.quotes.remove({ quoteID: quote.quoteID });
-
-			return `Quote '${Util.escapeMarkdown(quoteID)}' has been deleted.`;
+			default:
+				throw new Error(`Unknown subcommand '${subCommand}'. How did this happen?`);
 		}
-
-		throw new Error(`Unknown subcommand '${subCommand}'. How did this happen?`);
 	},
 };
 

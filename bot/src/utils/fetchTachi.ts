@@ -1,18 +1,16 @@
-import fetch from "node-fetch";
-import { integer, SuccessfulAPIResponse, UnsuccessfulAPIResponse } from "tachi-common";
+import { CreateLayeredLogger } from "./logger";
 import { BotConfig } from "../config";
 import { LoggerLayers } from "../data/data";
 import { VERSION_STR } from "../version";
-import { CreateLayeredLogger } from "./logger";
+import fetch from "node-fetch";
+import { URLSearchParams } from "url";
+import type { integer, SuccessfulAPIResponse, UnsuccessfulAPIResponse } from "tachi-common";
 
 const logger = CreateLayeredLogger(LoggerLayers.tachiFetch);
 
-export type APIResponse<T> = (
-	| SuccessfulAPIResponse<T>
-	| (UnsuccessfulAPIResponse & { body: null })
-) & {
+export type APIResponse<T> = {
 	statusCode: integer;
-};
+} & (SuccessfulAPIResponse<T> | (UnsuccessfulAPIResponse & { body: null }));
 
 export enum RequestTypes {
 	GET = "GET",
@@ -20,6 +18,7 @@ export enum RequestTypes {
 	PATCH = "PATCH",
 	PUT = "PUT",
 	DELETE = "DELETE",
+
 	// HEAD, OPTIONS not used by tachi-server anywhere.
 }
 
@@ -55,7 +54,7 @@ export async function TachiServerV1Request<T>(
 			body: JSON.stringify(body),
 		});
 
-		const json: APIResponse<T> = await res.json();
+		const json: APIResponse<T> = (await res.json()) as unknown as APIResponse<T>;
 
 		const contents = { ...json, statusCode: res.status };
 
@@ -84,6 +83,7 @@ export async function TachiServerV1Get<T = unknown>(
 ): Promise<APIResponse<T>> {
 	try {
 		let authHeader = "";
+
 		if (authToken) {
 			authHeader = `Bearer ${authToken}`;
 		}
@@ -102,7 +102,7 @@ export async function TachiServerV1Get<T = unknown>(
 			},
 		});
 
-		const json: APIResponse<T> = await res.json();
+		const json: APIResponse<T> = (await res.json()) as unknown as APIResponse<T>;
 		const contents = { ...json, statusCode: res.status };
 
 		LogRequestResult(`GET ${realUrl}`, contents);
@@ -119,7 +119,7 @@ export async function TachiServerV1Get<T = unknown>(
  * Takes a url like "/hello" or "bar" and converts it to "https://tachi-server.com/api/v1/hello" or "https://tachi-server.com/api/v1/bar".
  */
 export function PrependTachiUrl(url: string, version: "1" = "1"): string {
-	if (url[0] !== "/") {
+	if (!url.startsWith("/")) {
 		// eslint-disable-next-line no-param-reassign
 		url = `/${url}`;
 	}

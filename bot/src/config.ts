@@ -1,15 +1,16 @@
-import fs from "fs";
-import { config } from "dotenv";
-import JSON5 from "json5";
-import p from "prudence";
-// @ts-expect-error No types available...
-import fetchSync from "sync-fetch";
-import { Game, integer } from "tachi-common";
 import { LoggerLayers } from "./data/data";
 import { CreateLayeredLogger } from "./utils/logger";
 import { IsRecord } from "./utils/predicates";
 import { FormatPrError } from "./utils/prudence";
-import { ServerConfig as ServerConfigType } from "./utils/returnTypes";
+import { config } from "dotenv";
+import JSON5 from "json5";
+import p from "prudence";
+
+// @ts-expect-error No types available...
+import fetchSync from "sync-fetch";
+import fs from "fs";
+import type { ServerConfig as ServerConfigType } from "./utils/returnTypes";
+import type { Game, integer } from "tachi-common";
 
 // Initialise .env.
 config();
@@ -32,7 +33,7 @@ export interface BotConfig {
 		TOKEN: string;
 		SERVER_ID: string;
 		GAME_CHANNELS: Partial<Record<Game, string>>;
-		ADMIN_USERS: string[];
+		ADMIN_USERS: Array<string>;
 	};
 }
 
@@ -41,6 +42,7 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 
 	try {
 		const contents = fs.readFileSync(fileLoc, "utf-8");
+
 		data = JSON5.parse(contents);
 	} catch (err) {
 		logger.error("Failed to find/parse a valid conf.json5 file. Cannot boot.", { err });
@@ -76,6 +78,7 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 
 				return true;
 			},
+
 			// A list of users that are allowed to do powerful stuff.
 			ADMIN_USERS: ["string"],
 		},
@@ -91,7 +94,7 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 }
 
 export interface ProcessEnvironment {
-	nodeEnv: "production" | "dev" | "staging" | "test";
+	nodeEnv: "dev" | "production" | "staging" | "test";
 	mongoUrl: string;
 	port: integer;
 }
@@ -101,6 +104,7 @@ function ParseEnvVars() {
 		process.env,
 		{
 			NODE_ENV: p.isIn("production", "dev", "staging", "test"),
+
 			// mei implicitly reads this.
 			LOG_LEVEL: p.optional(
 				p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit")

@@ -1,4 +1,4 @@
-import { PrudenceError } from "prudence";
+import type { PrudenceError } from "prudence";
 
 /**
  * Formats a PrudenceError into something a little more readable.

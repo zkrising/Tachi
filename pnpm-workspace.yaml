@@ -2,7 +2,7 @@ packages:
     # - "assets/**"
     # - "bot/**"
     # - "docs/**"
-    # - "client/**"
+    - "client/**"
     - "common/**"
     # - "database-seeds/**"
     - "server/**"

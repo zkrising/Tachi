@@ -1,14 +1,2 @@
-/node_modules
-
-.nyc_output
-coverage
-
 out.*
-.vscode
-
-/js
-
-.pnpm-debug
-logs
-
 src/cache

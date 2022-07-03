@@ -1,14 +1,6 @@
-node_modules
-logs
-.pnpm-debug.log
-
+# Single time fired scripts
 scripts/single-time
 
-.vs
-
+# Rerunner output that I don't want to commit
 scripts/rerunners/bpi-output.json
 scripts/rerunners/aix-inf/*.json
-
-failed-tests.log
-
-*.rdb

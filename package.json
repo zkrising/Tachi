@@ -1,11 +1,9 @@
 {
   "name": "tachi",
   "version": "2.2.0-dev",
+  "private": true,
   "description": "The root of the Tachi monorepo. Contains common utils like linters.",
-  "main": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TNG-dev/Tachi.git"
@@ -16,7 +14,7 @@
     "url": "https://github.com/TNG-dev/Tachi/issues"
   },
   "homepage": "https://github.com/TNG-dev/Tachi#readme",
-  "dependencies": {
-    "eslint": "^8.18.0"
+  "devDependencies": {
+    "eslint": "8.18.0"
   }
 }

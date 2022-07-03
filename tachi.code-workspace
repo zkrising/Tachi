@@ -1,37 +1,37 @@
 {
-  "folders": [
-    {
-      "path": ".",
-      "name": "tachi-monorepo-root"
-    },
-    {
-      "path": "common",
-      "name": "tachi-common"
-    },
-    {
-      "path": "server",
-      "name": "tachi-server"
-    },
-    {
-      "path": "client",
-      "name": "tachi-client"
-    },
-    {
-      "path": "bot",
-      "name": "tachi-bot"
-    },
-    {
-      "path": "database-seeds",
-      "name": "tachi-database-seeds"
-    },
-    {
-      "path": "sieglinde",
-      "name": "tachi-sieglinde"
-    },
-    {
-      "path": "docs",
-      "name": "tachi-docs"
-    },
-  ],
-  "settings": {}
+	"folders": [
+		{
+			"path": ".",
+			"name": "tachi-monorepo-root"
+		},
+		{
+			"path": "common",
+			"name": "tachi-common"
+		},
+		{
+			"path": "server",
+			"name": "tachi-server"
+		},
+		{
+			"path": "client",
+			"name": "tachi-client"
+		},
+		{
+			"path": "bot",
+			"name": "tachi-bot"
+		},
+		{
+			"path": "database-seeds",
+			"name": "tachi-database-seeds"
+		},
+		{
+			"path": "sieglinde",
+			"name": "tachi-sieglinde"
+		},
+		{
+			"path": "docs",
+			"name": "tachi-docs"
+		},
+	],
+	"settings": {}
 }

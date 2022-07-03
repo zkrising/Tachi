@@ -1,32 +1,32 @@
 {
-  "name": "tachi",
-  "version": "2.2.0-dev",
-  "private": true,
-  "description": "The root of the Tachi monorepo. Contains common utils like linters.",
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TNG-dev/Tachi.git"
-  },
-  "author": "zkldi",
-  "license": "SEE LICENSE IN EACH PACKAGE",
-  "bugs": {
-    "url": "https://github.com/TNG-dev/Tachi/issues"
-  },
-  "homepage": "https://github.com/TNG-dev/Tachi#readme",
-  "devDependencies": {
-    "@types/node": "17.0.8",
-    "@types/tap": "15.0.3",
-    "eslint": "8.18.0",
-    "eslint-plugin-cadence": "0.0.3",
-    "tap": "15.0.9",
-    "ts-node": "10.0.0",
-    "typescript": "4.6.3",
-    "@typescript-eslint/eslint-plugin": "5.22.0",
-    "@typescript-eslint/parser": "5.22.0"
-  },
-  "peerDependencies": {
-    "@types/mongodb": "3.6.18",
-    "@types/bson": "1.0.11"
-  }
+	"name": "tachi",
+	"version": "2.2.0-dev",
+	"private": true,
+	"description": "The root of the Tachi monorepo. Contains common utils like linters.",
+	"scripts": {},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/TNG-dev/Tachi.git"
+	},
+	"author": "zkldi",
+	"license": "SEE LICENSE IN EACH PACKAGE",
+	"bugs": {
+		"url": "https://github.com/TNG-dev/Tachi/issues"
+	},
+	"homepage": "https://github.com/TNG-dev/Tachi#readme",
+	"devDependencies": {
+		"@types/node": "17.0.8",
+		"@types/tap": "15.0.3",
+		"eslint": "8.18.0",
+		"eslint-plugin-cadence": "0.0.3",
+		"tap": "15.0.9",
+		"ts-node": "10.0.0",
+		"typescript": "4.6.3",
+		"@typescript-eslint/eslint-plugin": "5.22.0",
+		"@typescript-eslint/parser": "5.22.0"
+	},
+	"peerDependencies": {
+		"@types/mongodb": "3.6.18",
+		"@types/bson": "1.0.11"
+	}
 }

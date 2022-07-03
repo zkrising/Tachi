@@ -1,13 +1,13 @@
 /* eslint-disable no-await-in-loop */
-import { TableRes } from "../fetch-tables";
 import logger from "../logger";
-import { CalcReturns } from "../types";
 import { GetBaseline, GetFString, GetScoresForMD5, GetSigmoidalValue, Mean } from "../util";
+import type { TableRes } from "../fetch-tables";
+import type { CalcReturns } from "../types";
 
 /**
  * Sieglinde V0 calc. This just reads out hardcoded values for each table, with no fuzzing.
  */
-export default function SieglindeV0Calc(tableInfo: TableRes): CalcReturns[] {
+export default function SieglindeV0Calc(tableInfo: TableRes): Array<CalcReturns> {
 	const dataset = [];
 
 	for (const chart of tableInfo.charts) {

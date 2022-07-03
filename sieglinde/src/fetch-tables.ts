@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
-import { BMSTablesDataset, BMSTableChart } from "./types";
 import fetch from "node-fetch";
+import type { BMSTablesDataset, BMSTableChart } from "./types";
 
 export const BMS_TABLES = {
 	insane: "★",
@@ -14,7 +14,7 @@ export const BMS_TABLES = {
 	dpInsane: "★",
 };
 
-const registeredTables: BMSTablesDataset[] = [
+const registeredTables: Array<BMSTablesDataset> = [
 	{
 		name: "Insane",
 		playtype: "7K",
@@ -64,6 +64,7 @@ const registeredTables: BMSTablesDataset[] = [
 		url: "http://lr2.sakura.ne.jp/data/score.json",
 		prefix: BMS_TABLES.overjoy,
 	},
+
 	// {
 	// 	name: "DP Insane",
 	// 	description: "The 14K Insane table.",
@@ -86,10 +87,10 @@ const registeredTables: BMSTablesDataset[] = [
 
 export interface TableRes {
 	table: BMSTablesDataset;
-	charts: BMSTableChart[];
+	charts: Array<BMSTableChart>;
 }
 
-export default async function GetTableData(): Promise<TableRes[]> {
+export default async function GetTableData(): Promise<Array<TableRes>> {
 	const out = [];
 
 	// only 7k supported atm

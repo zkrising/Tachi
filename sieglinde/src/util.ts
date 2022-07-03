@@ -1,10 +1,10 @@
 /* eslint-disable no-await-in-loop */
-import fetch from "node-fetch";
-import { XMLParser } from "fast-xml-parser";
-import { BMSTableChart, BMSTablesDataset } from "./types";
-import TableValueGetters from "./lookups";
-import { writeFile, readFile } from "fs/promises";
 import logger from "./logger";
+import TableValueGetters from "./lookups";
+import { XMLParser } from "fast-xml-parser";
+import fetch from "node-fetch";
+import { writeFile, readFile } from "fs/promises";
+import type { BMSTableChart, BMSTablesDataset } from "./types";
 
 const parser = new XMLParser();
 
@@ -55,6 +55,7 @@ export async function GetScoresForMD5(md5: string) {
 		} catch (err) {
 			tries++;
 			const sleepTime = (1000 * tries + (Math.random() - 0.5) * 1000) * 2;
+
 			logger.warn(`Got throttled (${md5}): Sleeping for ${sleepTime.toFixed(0)}ms. ${err}`);
 
 			await Sleep(sleepTime);
@@ -64,7 +65,7 @@ export async function GetScoresForMD5(md5: string) {
 	throw new Error(`Couldn't fetch data in 3 tries. Giving up and killing self.`);
 }
 
-export function Mean(d: number[]) {
+export function Mean(d: Array<number>) {
 	return d.reduce((a, r) => a + r, 0) / d.length;
 }
 
@@ -87,7 +88,11 @@ export function GetFString(table: BMSTablesDataset, chart: BMSTableChart) {
 }
 
 export function Sleep(ms: number) {
-	return new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
+	return new Promise<void>((resolve) =>
+		setTimeout(() => {
+			resolve();
+		}, ms)
+	);
 }
 
 /**
@@ -101,19 +106,24 @@ export function Sleep(ms: number) {
  *
  * @returns Same as calling Promise.all on your promises.
  */
-export async function ChunkifyPromiseAll<D>(promiseFns: (() => Promise<D>)[], chunkSize: number) {
+export async function ChunkifyPromiseAll<D>(
+	promiseFns: Array<() => Promise<D>>,
+	chunkSize: number
+) {
 	const slices = [];
 
-	for (let i = 0; i < promiseFns.length; i += chunkSize) {
+	for (let i = 0; i < promiseFns.length; i = i + chunkSize) {
 		const slice = promiseFns.slice(i, i + chunkSize);
 
 		slices.push(slice);
 	}
 
 	const results = [];
+
 	for (const [n, slice] of Object.entries(slices)) {
 		logger.info(`>>>>> RUNNING SLICE ${n}`);
 		const d = await Promise.all(slice.map((fn) => fn()));
+
 		logger.info(`>>>>> FINISHED SLICE ${n}`, { len: d.length });
 
 		results.push(...d);

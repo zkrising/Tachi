@@ -1,7 +1,5 @@
 /* eslint-disable no-await-in-loop */
-import { TableRes } from "../fetch-tables";
 import logger from "../logger";
-import { CalcReturns } from "../types";
 import {
 	ChunkifyPromiseAll,
 	GetBaseline,
@@ -9,6 +7,8 @@ import {
 	GetScoresForMD5,
 	GetSigmoidalValue,
 } from "../util";
+import type { TableRes } from "../fetch-tables";
+import type { CalcReturns } from "../types";
 
 interface ChartData {
 	title: string;
@@ -30,7 +30,7 @@ interface ChartData {
  *
  * This, however, completely does not work. We genuinely cannot use this at all.
  */
-export default async function SieglindeV0Calc(tableInfo: TableRes): Promise<CalcReturns[]> {
+export default async function SieglindeV0Calc(tableInfo: TableRes): Promise<Array<CalcReturns>> {
 	// We can't do this in full-parallel. The LR2IR hyper-aggressively rate limits this stuff.
 
 	const promises = tableInfo.charts.map((chart) => async () => {
@@ -62,7 +62,7 @@ export default async function SieglindeV0Calc(tableInfo: TableRes): Promise<Calc
 
 	const dataset = (await ChunkifyPromiseAll(promises, 100)).filter(
 		(k) => k !== null
-	) as ChartData[];
+	) as Array<ChartData>;
 
 	const tableLevelAverageClearRates = GetAverageClearRatesForLevel(dataset);
 
@@ -92,6 +92,7 @@ export default async function SieglindeV0Calc(tableInfo: TableRes): Promise<Calc
 			ecStr: `${ecPrefix}${(ecValue < 12.01 ? ecValue : ecValue - 12).toFixed(2)}`,
 			hc: hcValue,
 			hcStr: `${hcPrefix}${(hcValue < 12.01 ? hcValue : hcValue - 12).toFixed(2)}`,
+
 			// DEBUG
 			ecRate: data.ecRate,
 			ecGroupAvg: groupAverageECRate,
@@ -108,7 +109,7 @@ export default async function SieglindeV0Calc(tableInfo: TableRes): Promise<Calc
 	return returns;
 }
 
-function GetAverageClearRatesForLevel(dataset: ChartData[]) {
+function GetAverageClearRatesForLevel(dataset: Array<ChartData>) {
 	const tableLevelTotalClearRates: Record<string, { ec: number; hc: number; total: number }> = {};
 
 	for (const scoreRates of dataset) {
@@ -121,9 +122,9 @@ function GetAverageClearRatesForLevel(dataset: ChartData[]) {
 		} else {
 			const d = tableLevelTotalClearRates[scoreRates.str];
 
-			d.ec += scoreRates.ecRate;
-			d.hc += scoreRates.hcRate;
-			d.total += 1;
+			d.ec = d.ec + scoreRates.ecRate;
+			d.hc = d.hc + scoreRates.hcRate;
+			d.total = d.total + 1;
 		}
 	}
 

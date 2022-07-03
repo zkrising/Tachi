@@ -1,8 +1,8 @@
-import logger from "./logger";
-import fs from "fs";
-import { Command } from "commander";
 import SieglindeV0Calc from "./calc/v0";
 import GetTableData from "./fetch-tables";
+import logger from "./logger";
+import { Command } from "commander";
+import fs from "fs";
 
 if (require.main !== module) {
 	logger.error(`The script main.ts must be invoked directly!`);
@@ -10,6 +10,7 @@ if (require.main !== module) {
 }
 
 const program = new Command();
+
 program
 	.option("-v, --version <The Sieglinde Version to calculate>")
 	.option("-o, --out <Where to output JSON>");
@@ -37,6 +38,7 @@ function WriteOut(data: string) {
 		logger.info(`Starting...`);
 
 		const calcData = [];
+
 		for (const table of tableInfo) {
 			// literally all the parallelism in this codebase has to be turned off because
 			// the lr2ir runs off of a toaster which attempts to gut you if you make more than one

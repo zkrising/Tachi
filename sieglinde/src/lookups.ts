@@ -1,5 +1,5 @@
 const TableValueGetters: Record<
-	"Insane" | "Normal" | "Stella" | "Satellite" | "Insane2" | "Normal2" | "Overjoy",
+	"Insane" | "Insane2" | "Normal" | "Normal2" | "Overjoy" | "Satellite" | "Stella",
 	(x: string) => number | null
 > = {
 	Insane: (c) => {

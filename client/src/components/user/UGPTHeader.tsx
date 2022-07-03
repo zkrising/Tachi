@@ -103,10 +103,10 @@ export function UGPTBottomNav({
 			Leaderboard
 		</NavItem>,
 		<NavItem key="rivals" to={`${baseUrl}/rivals`}>
-			Rivals &amp; Challenges
+			Rivals
 		</NavItem>,
 		<NavItem key="targets" to={`${baseUrl}/targets`}>
-			Goals &amp; Milestones
+			Targets
 		</NavItem>,
 	];
 

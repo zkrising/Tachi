@@ -7,7 +7,6 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { Switch, Route } from "react-router-dom";
 import { FormatGame, Game, GetGameConfig, Playtype, PublicUserDocument } from "tachi-common";
-import ReceivedChallengesPage from "./ReceivedChallengesPage";
 import RivalsOverviewPage from "./RivalsOverviewPage";
 
 export default function RivalsMainPage({
@@ -34,16 +33,16 @@ export default function RivalsMainPage({
 			<Col xs={12} className="text-center">
 				<div className="btn-group">
 					<SelectLinkButton to={`${base}/rivals/challenge-board`}>
-						<Icon type="satellite-dish" />
-						Sent Challenges
+						<Icon type="list" />
+						Rival Score Feed
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/rivals`}>
 						<Icon type="users" />
-						Rivals
+						Manage Rivals
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/rivals/challenges`}>
-						<Icon type="bullseye" />
-						Received Challenges
+					<SelectLinkButton to={`${base}/rivals/pinned-charts`}>
+						<Icon type="thumbtack" />
+						Pinned Charts
 					</SelectLinkButton>
 				</div>
 				<Divider />
@@ -55,14 +54,12 @@ export default function RivalsMainPage({
 					</Route>
 					<Route
 						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/rivals/challenge-board"
+						path="/dashboard/users/:userID/games/:game/:playtype/rivals/feed"
 					></Route>
 					<Route
 						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/rivals/challenges"
-					>
-						<ReceivedChallengesPage reqUser={reqUser} game={game} playtype={playtype} />
-					</Route>
+						path="/dashboard/users/:userID/games/:game/:playtype/rivals/pinned-charts"
+					></Route>
 				</Switch>
 			</Col>
 		</Row>

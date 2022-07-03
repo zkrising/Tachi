@@ -3,7 +3,6 @@ import ClassBadge from "components/game/ClassBadge";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import MiniTable from "components/tables/components/MiniTable";
 import Divider from "components/util/Divider";
-import Icon from "components/util/Icon";
 import React from "react";
 import {
 	GetGamePTConfig,

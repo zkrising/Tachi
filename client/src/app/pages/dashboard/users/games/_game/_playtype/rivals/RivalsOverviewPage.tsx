@@ -1,22 +1,18 @@
 import { APIFetchV1 } from "util/api";
 import { SendErrorToast } from "util/toaster";
-import ProfilePicture from "components/user/ProfilePicture";
+import Card from "components/layout/page/Card";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
+import UserSelectModal from "components/util/modal/UserSelectModal";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
+import UserIcon from "components/util/UserIcon";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useState } from "react";
-import { Alert, Button, Col, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button, Col } from "react-bootstrap";
 import { Game, Playtype, PublicUserDocument } from "tachi-common";
-import { GamePT, JustChildren } from "types/react";
-import UserSelectModal from "components/util/modal/UserSelectModal";
-import UserIcon from "components/util/UserIcon";
-import Card from "components/layout/page/Card";
-import { TachiConfig } from "lib/config";
 
 export default function RivalsOverviewWrapper({
 	reqUser,
@@ -105,35 +101,6 @@ function RivalsOverviewPage({
 
 	return (
 		<>
-			{isRequestingUser && (
-				<>
-					<Card header="About Rivals &amp; Challenges">
-						By setting Rivals on this page, {TachiConfig.name} will restructure parts of
-						the UI to tell you how your Rivals are doing.
-						{game === "bms" && (
-							<>
-								<br />
-								If you're using the beatoraja IR, your rivals will{" "}
-								<b>automatically</b> work in game!
-							</>
-						)}
-						<Divider />
-						By rivalling a user, you also subscribe to their <b>challenges</b>. This is
-						another {TachiConfig.name} feature that goes hand-in-hand with rivals!
-						<br />
-						You'll automatically be notified when they send out a new challenge, and you
-						can track your challenges using the above buttons.
-						<br />
-						You can also send out challenges. All your Reverse Rivals (and anyone who
-						rivals you in the future) will receive it.
-						<br />
-						Just click any PB of yours that you're proud of, and click{" "}
-						<b>Set Challenge</b>!
-					</Card>
-					<Divider />
-				</>
-			)}
-
 			<Card header={`${isRequestingUser ? "Your" : `${reqUser.username}'s`} Rivals`}>
 				<Col xs={12} className="d-flex justify-content-center flex-wrap">
 					{rivals.map(e => (

@@ -23,8 +23,6 @@ export function UGPTHeaderBody({
 	playtype: Playtype;
 	stats: UGPTStatsReturn;
 }) {
-	const gptConfig = GetGamePTConfig(game, playtype);
-
 	return (
 		<>
 			<div className="col-12 col-lg-3">

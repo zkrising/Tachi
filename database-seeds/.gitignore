@@ -1,0 +1,14 @@
+node_modules
+logs
+.pnpm-debug.log
+
+scripts/single-time
+
+.vs
+
+scripts/rerunners/bpi-output.json
+scripts/rerunners/aix-inf/*.json
+
+failed-tests.log
+
+*.rdb

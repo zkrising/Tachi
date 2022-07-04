@@ -1,0 +1,1218 @@
+diff --git a/Scripts/WF-Profiles.lua b/Scripts/WF-Profiles.lua
+index 2c87831..6b62c0c 100644
+--- a/Scripts/WF-Profiles.lua
++++ b/Scripts/WF-Profiles.lua
+@@ -16,19 +16,26 @@
+ -- HERE IT IS BOYS. IT'S THE HASH CACHE #HASHCASH
+ WF.HashCache = {}
+ 
++-- HERE IT IS BOYS. IT'S THE ZKLDI CACHE #ZCACHE
++-- we hijack this process to create useful chart info ourselves
++-- i'm too lazy to write my own proper sm parser
++-- and sm sucks
++-- sorry not sorry
++WF.ZkldiDump = {};
++
+ WF.InitPlayerProfiles = function()
+-   -- these will always be indexed by player number
++    -- these will always be indexed by player number
+     WF.PlayerProfileStats = {}
+ 
+     -- there will be some checks for the validity of a profile when loaded, and if it's found to be invalid, set a
+     -- flag to indicate not to try to save anything
+-    WF.ProfileInvalid = {false,false}
++    WF.ProfileInvalid = { false, false }
+ 
+     -- this is just my own variable to keep track of how many songs has been played per player
+-    WF.CurrentSessionSongsPlayed = {0,0}
++    WF.CurrentSessionSongsPlayed = { 0, 0 }
+ 
+     -- subtitle to appear under name on profile card
+-    WF.ProfileCardSubtitle = {"",""} 
++    WF.ProfileCardSubtitle = { "", "" }
+ end
+ WF.InitPlayerProfiles()
+ 
+@@ -151,17 +158,17 @@ WF.NewPlayerProfileSongStats = function()
+         BestPercentDP = 0,
+         BestPercentDP_ITG = 0,
+         Cleared_ITG = nil,
+-        BestFAPlusCounts = {0,0,0},
++        BestFAPlusCounts = { 0, 0, 0 },
+         TotalSteps = 0,
+         TotalHolds = 0,
+         TotalRolls = 0,
+         TotalMines = 0,
+         BestPlay = {
+             DateObtained = "0000-00-00 00:00:00",
+-            Judgments = {0,0,0,0,0,0,0,0,0},
+-            FAPlus = {0,0},
+-            LifeBarVals = {1000,1000,1000},
+-            ScoreAtLifeEmpty = {0,0,0},
++            Judgments = { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
++            FAPlus = { 0, 0 },
++            LifeBarVals = { 1000, 1000, 1000 },
++            ScoreAtLifeEmpty = { 0, 0, 0 },
+             SignificantMods = {}
+         }
+     }
+@@ -191,7 +198,7 @@ WF.MergePlayerProfileSongStats = function(stats1, stats2)
+ 
+     -- exit if hash and rate aren't the same (no reason to ever merge in this case, so catch it here and log it)
+     if (not ((not iscourse) and stats1.ChartHash == stats2.ChartHash and stats1.RateMod == stats2.RateMod))
+-    and (not ((iscourse) and stats1.CourseID == stats2.CourseID and stats1.RateMod == stats2.RateMod)) then
++        and (not ((iscourse) and stats1.CourseID == stats2.CourseID and stats1.RateMod == stats2.RateMod)) then
+         Trace(string.format("Stats merge error:\nhash/id 1: %s\nrate 1: %s\nhash/id 2: %s\nrate 2:%s",
+             iscourse and stats1.CourseID or stats1.ChartHash, stats1.RateMod,
+             iscourse and stats2.CourseID or stats2.ChartHash, stats2.RateMod))
+@@ -250,8 +257,8 @@ WF.ConsolidateProfileSongAndCourseStats = function(pn)
+     -- first loop through and reassign bad hashes; this needs to be done in a separate loop
+     for score in ivalues(stats) do
+         if (WF.HashCache) and (score.ChartHash) and (score.ChartHash ~= "") and (score.ChartID)
+-        and (score.ChartID ~= "") and (WF.HashCache[score.ChartID])
+-        and (score.ChartHash ~= WF.HashCache[score.ChartID]) then
++            and (score.ChartID ~= "") and (WF.HashCache[score.ChartID])
++            and (score.ChartHash ~= WF.HashCache[score.ChartID]) then
+             score.ChartHash = WF.HashCache[score.ChartID]
+         end
+     end
+@@ -305,7 +312,7 @@ end
+ WF.AddPlayerProfileSongStatsFromSteps = function(song, steps, rate, hash, pn)
+     -- create a new stats object with information from the song and steps passed (and optional rate mod),
+     -- and add it to the player profile stats table.
+-    local player = "PlayerNumber_P"..pn
++    local player = "PlayerNumber_P" .. pn
+ 
+     if not song then
+         song = (not GAMESTATE:IsCourseMode()) and GAMESTATE:GetCurrentSong() or GAMESTATE:GetCurrentCourse()
+@@ -323,7 +330,7 @@ WF.AddPlayerProfileSongStatsFromSteps = function(song, steps, rate, hash, pn)
+     WF.SongStatsUpdateChartAttributes(stats, song, steps, hash, pn)
+     stats.RateMod = rate
+     stats.PlayCount = 0
+-    
++
+     WF.AddSongStatsToProfile(stats, pn)
+     return stats
+ end
+@@ -339,7 +346,7 @@ WF.SavePlayerProfileStats = function(pn)
+     local stats = WF.PlayerProfileStats[pn]
+     if (not stats) or stats == {} then return end
+ 
+-    local dir = PROFILEMAN:GetProfileDir("ProfileSlot_Player"..pn)
++    local dir = PROFILEMAN:GetProfileDir("ProfileSlot_Player" .. pn)
+     if (not dir) or dir == "" then return end
+ 
+     -- table for all sections of the file
+@@ -347,7 +354,8 @@ WF.SavePlayerProfileStats = function(pn)
+ 
+     -- first, the general stats
+     local statsstr = string.format("#STATS\n%s\n%d\n%d\n%d\n%d,%d,%d,%d,%d,%d\n%d,%d\n%d,%d\n%d,%d\n%s\n%s",
+-        GetThemeVersion(), stats.SkillLv, stats.SongsPlayed, stats.CoursesPlayed, stats.TotalTapJudgments[1], stats.TotalTapJudgments[2],
++        GetThemeVersion(), stats.SkillLv, stats.SongsPlayed, stats.CoursesPlayed, stats.TotalTapJudgments[1],
++        stats.TotalTapJudgments[2],
+         stats.TotalTapJudgments[3], stats.TotalTapJudgments[4], stats.TotalTapJudgments[5], stats.TotalTapJudgments[6],
+         stats.TotalHolds[1], stats.TotalHolds[2], stats.TotalHolds[3], stats.TotalHolds[4],
+         stats.TotalMines[1], stats.TotalMines[2], stats.LastSongPlayed, stats.LastPlayedDate)
+@@ -357,7 +365,7 @@ WF.SavePlayerProfileStats = function(pn)
+     for chart in ivalues(stats.SongStats) do
+         -- first, the general stats for the chart
+         local hash = chart.ChartHash and chart.ChartHash or "-"
+-        local itgdp = tostring(chart.BestPercentDP_ITG)..(chart.Cleared_ITG or "")
++        local itgdp = tostring(chart.BestPercentDP_ITG) .. (chart.Cleared_ITG or "")
+         table.insert(ft, string.format("#SONG\n%s\n%s\n%s\n%s\n%s\n%s\n%d\n%d\n%d\n%d\n%s\n%d,%d,%d\n%d\n%d,%d,%d",
+             chart.SongFullTitle, chart.SongArtist, chart.BPM, hash, chart.ChartID, chart.RateMod,
+             chart.DifficultyRating, chart.PlayCount, chart.BestClearType, chart.BestPercentDP, itgdp,
+@@ -380,7 +388,7 @@ WF.SavePlayerProfileStats = function(pn)
+     -- repeat above for courses
+     for course in ivalues(stats.CourseStats) do
+         -- first, the general stats for the course
+-        local itgdp = tostring(course.BestPercentDP_ITG)..(course.Cleared_ITG or "")
++        local itgdp = tostring(course.BestPercentDP_ITG) .. (course.Cleared_ITG or "")
+         table.insert(ft, string.format("#COURSE\n%s\n%s\n%s\n%s\n%d\n%d\n%d\n%d\n%s\n%d,%d,%d\n%d\n%d,%d,%d",
+             course.CourseTitle, course.BPM, course.CourseID, course.RateMod,
+             course.DifficultyRating, course.PlayCount, course.BestClearType, course.BestPercentDP, itgdp,
+@@ -409,16 +417,16 @@ WF.SavePlayerProfileStats = function(pn)
+ 
+     -- write file
+     local fstr = table.concat(ft, "\n")
+-    if File.Write(dir.."/PlayerStats.wfs",fstr) then
+-        Trace("Player "..pn.." profile stats saved.")
++    if File.Write(dir .. "/PlayerStats.wfs", fstr) then
++        Trace("Player " .. pn .. " profile stats saved.")
+     else
+-        SM("Player "..pn.." profile stats failed to save!")
++        SM("Player " .. pn .. " profile stats failed to save!")
+     end
+ end
+ 
+ WF.LoadPlayerProfileStats = function(pn)
+     -- Load all the stats from the main stats file
+-    local dir = PROFILEMAN:GetProfileDir("ProfileSlot_Player"..pn)
++    local dir = PROFILEMAN:GetProfileDir("ProfileSlot_Player" .. pn)
+     WF.ProfileCardSubtitle[pn] = ""
+     if (not dir) or dir == "" then
+         -- nil the stats here and exit; this essentially means a guest profile is being used
+@@ -429,24 +437,24 @@ WF.LoadPlayerProfileStats = function(pn)
+     local stats = WF.ProfileStatsTemplate()
+ 
+     -- get subtitle for profile card
+-    if FILEMAN:DoesFileExist(dir.."/subtitle.txt") then
+-        WF.ProfileCardSubtitle[pn] = File.Read(dir.."/subtitle.txt")
++    if FILEMAN:DoesFileExist(dir .. "/subtitle.txt") then
++        WF.ProfileCardSubtitle[pn] = File.Read(dir .. "/subtitle.txt")
+         -- some light processing, since who knows what people will write in there
+         WF.ProfileCardSubtitle[pn] = (WF.ProfileCardSubtitle[pn]:gsub("[\r\f\n]", " ")):sub(1, 20)
+     else
+-        File.Write(dir.."/subtitle.txt", "")
++        File.Write(dir .. "/subtitle.txt", "")
+     end
+ 
+-    if not FILEMAN:DoesFileExist(dir.."/PlayerStats.wfs") then
++    if not FILEMAN:DoesFileExist(dir .. "/PlayerStats.wfs") then
+         -- file has not been created; just return
+         WF.PlayerProfileStats[pn] = stats
+         return
+     end
+ 
+-    local sfile = File.Read(dir.."/PlayerStats.wfs")
++    local sfile = File.Read(dir .. "/PlayerStats.wfs")
+     if not sfile then
+         -- error loading file
+-        SM("Error loading stats for player "..pn.."!")
++        SM("Error loading stats for player " .. pn .. "!")
+         WF.PlayerProfileStats[pn] = nil
+         return
+     end
+@@ -501,8 +509,8 @@ WF.LoadPlayerProfileStats = function(pn)
+                     stats.ForceImportCourses = true -- force course import since they weren't available before
+ 
+                     -- back up old player stats file
+-                    if not FILEMAN:DoesFileExist(dir.."/PlayerStats_062") then
+-                        File.Write(dir.."/PlayerStats_062", sfile)
++                    if not FILEMAN:DoesFileExist(dir .. "/PlayerStats_062") then
++                        File.Write(dir .. "/PlayerStats_062", sfile)
+                     end
+                     -- back up ecfa stats file if exists
+                     BackUpECFA2021Stats(dir)
+@@ -520,11 +528,11 @@ WF.LoadPlayerProfileStats = function(pn)
+             elseif l == 5 then
+                 -- judgment counts
+                 local judges = line:split_tonumber()
+-                stats.TotalTapJudgments = {judges[1],judges[2],judges[3],judges[4],judges[5],judges[6]}
++                stats.TotalTapJudgments = { judges[1], judges[2], judges[3], judges[4], judges[5], judges[6] }
+             elseif l == 6 then
+                 -- holds
+                 local holds = line:split_tonumber()
+-                stats.TotalHolds = {holds[1],holds[2],0,0}
++                stats.TotalHolds = { holds[1], holds[2], 0, 0 }
+             elseif l == 7 then
+                 -- rolls
+                 local rolls = line:split_tonumber()
+@@ -533,7 +541,7 @@ WF.LoadPlayerProfileStats = function(pn)
+             elseif l == 8 then
+                 -- mines
+                 local mines = line:split_tonumber()
+-                stats.TotalMines = {mines[1],mines[2]}
++                stats.TotalMines = { mines[1], mines[2] }
+             elseif l == 9 then
+                 -- last song played
+                 stats.LastSongPlayed = line
+@@ -597,7 +605,7 @@ WF.LoadPlayerProfileStats = function(pn)
+             elseif l == 12 then
+                 -- high fa+ counts
+                 local counts = line:split_tonumber()
+-                song.BestFAPlusCounts = {counts[1],counts[2],counts[3]}
++                song.BestFAPlusCounts = { counts[1], counts[2], counts[3] }
+             elseif l == 13 then
+                 -- total steps
+                 song.TotalSteps = tonumber(line)
+@@ -614,7 +622,7 @@ WF.LoadPlayerProfileStats = function(pn)
+             elseif l == 16 then
+                 -- tap judgments
+                 local counts = line:split_tonumber()
+-                song.BestPlay.Judgments = {counts[1],counts[2],counts[3],counts[4],counts[5],counts[6],0,0,0}
++                song.BestPlay.Judgments = { counts[1], counts[2], counts[3], counts[4], counts[5], counts[6], 0, 0, 0 }
+             elseif l == 17 then
+                 -- hold judgments
+                 local held = line:split_tonumber()
+@@ -626,15 +634,15 @@ WF.LoadPlayerProfileStats = function(pn)
+             elseif l == 19 then
+                 -- fa+
+                 local counts = line:split_tonumber()
+-                song.BestPlay.FAPlus = {counts[1],counts[2]}
++                song.BestPlay.FAPlus = { counts[1], counts[2] }
+             elseif l == 20 then
+                 -- lifebar vals
+                 local vals = line:split_tonumber()
+-                song.BestPlay.LifeBarVals = {vals[1],vals[2],vals[3]}
++                song.BestPlay.LifeBarVals = { vals[1], vals[2], vals[3] }
+             elseif l == 21 then
+                 -- score at life empty
+                 local vals = line:split_tonumber()
+-                song.BestPlay.ScoreAtLifeEmpty = {vals[1],vals[2],vals[3]}
++                song.BestPlay.ScoreAtLifeEmpty = { vals[1], vals[2], vals[3] }
+             elseif l == 22 then
+                 -- significant mods
+                 local mods = split(",", line)
+@@ -662,7 +670,7 @@ WF.LoadPlayerProfileStats = function(pn)
+         WF.PreloadClearsAndGrades(pn)
+     end
+ 
+-    Trace("Player "..pn.." profile stats loaded.")
++    Trace("Player " .. pn .. " profile stats loaded.")
+ end
+ 
+ WF.CalculateClearTypeAndGradeCounts = function(pn)
+@@ -670,12 +678,12 @@ WF.CalculateClearTypeAndGradeCounts = function(pn)
+     local stats = WF.PlayerProfileStats[pn]
+     if not stats then return end
+ 
+-    stats.ClearTypeCounts = {0,0,0,0,0,0,0,0,  0} -- last index here is basically a dummy for unplayed
+-    stats.GradeCounts = {0,0,0,0,0,0,0}
+-    stats.GradeCounts_ITG = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+-    stats.CourseClearTypeCounts = {0,0,0,0,0,0,0,0,  0}
+-    stats.CourseGradeCounts = {0,0,0,0,0,0,0}
+-    stats.CourseGradeCounts_ITG = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
++    stats.ClearTypeCounts = { 0, 0, 0, 0, 0, 0, 0, 0, 0 } -- last index here is basically a dummy for unplayed
++    stats.GradeCounts = { 0, 0, 0, 0, 0, 0, 0 }
++    stats.GradeCounts_ITG = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
++    stats.CourseClearTypeCounts = { 0, 0, 0, 0, 0, 0, 0, 0, 0 }
++    stats.CourseGradeCounts = { 0, 0, 0, 0, 0, 0, 0 }
++    stats.CourseGradeCounts_ITG = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+ 
+     for song in ivalues(stats.SongStats) do
+         stats.ClearTypeCounts[song.BestClearType] = stats.ClearTypeCounts[song.BestClearType] + 1
+@@ -703,15 +711,15 @@ WF.ProfileStatsTemplate = function()
+         SkillLv = 0,
+         SongsPlayed = 0,
+         CoursesPlayed = 0,
+-        TotalTapJudgments = {0,0,0,0,0,0},
+-        TotalHolds = {0,0,0,0},
+-        TotalMines = {0,0},
++        TotalTapJudgments = { 0, 0, 0, 0, 0, 0 },
++        TotalHolds = { 0, 0, 0, 0 },
++        TotalMines = { 0, 0 },
+         LastSongPlayed = "3D Movie Maker/Bistro Evil Theme",
+         LastPlayedDate = WF.DateString(),
+ 
+-        ClearTypeCounts = {0,0,0,0,0,0,0,0},
+-        GradeCounts = {0,0,0,0,0,0,0},
+-        SessionAchievements = {0,0,0,0,0,0,0},
++        ClearTypeCounts = { 0, 0, 0, 0, 0, 0, 0, 0 },
++        GradeCounts = { 0, 0, 0, 0, 0, 0, 0 },
++        SessionAchievements = { 0, 0, 0, 0, 0, 0, 0 },
+ 
+         GroupClearsAndGrades = {},
+ 
+@@ -738,10 +746,10 @@ WF.WriteDetailedHighScoreStats = function(pn, hsitem, filenameext, filename, cou
+     local song, steps, detailed
+     if not courseind then
+         song = GAMESTATE:GetCurrentSong()
+-        steps = GAMESTATE:GetCurrentSteps("PlayerNumber_P"..pn)
+-        detailed = SL["P"..pn].Stages.Stats[SL.Global.Stages.PlayedThisGame + 1].detailed_judgments
++        steps = GAMESTATE:GetCurrentSteps("PlayerNumber_P" .. pn)
++        detailed = SL["P" .. pn].Stages.Stats[SL.Global.Stages.PlayedThisGame + 1].detailed_judgments
+     else
+-        local te = GAMESTATE:GetCurrentTrail("PlayerNumber_P"..pn):GetTrailEntry(courseind-1)
++        local te = GAMESTATE:GetCurrentTrail("PlayerNumber_P" .. pn):GetTrailEntry(courseind - 1)
+         song = te:GetSong()
+         steps = te:GetSteps()
+         detailed = WF.DetailedJudgmentsPerSongInCourse[pn][courseind]
+@@ -751,7 +759,7 @@ WF.WriteDetailedHighScoreStats = function(pn, hsitem, filenameext, filename, cou
+ 
+     local hashorid = hsitem and (hsitem.ChartHash and hsitem.ChartHash or hsitem.ChartID)
+ 
+-    local abbrev = {Miss = "M", Held = "H", LetGo = "D", HitMine = "N"}
++    local abbrev = { Miss = "M", Held = "H", LetGo = "D", HitMine = "N" }
+ 
+     -- file string will be built from a table to avoid using .. which is bad on performance
+     local ft = {}
+@@ -759,7 +767,7 @@ WF.WriteDetailedHighScoreStats = function(pn, hsitem, filenameext, filename, cou
+     if not hsitem then
+         -- create a dummy (haha dummy!!!! HHHASHAHAHAHHSH) hsitem from steps if none is passed in
+         -- steps can be passed in as an argument, which is useful for courses
+-        local player = "PlayerNumber_P"..pn
++        local player = "PlayerNumber_P" .. pn
+         hsitem = WF.NewPlayerProfileSongStats()
+         local id = WF.GetStepsID(song, steps)
+         hashorid = WF.HashCache[id]
+@@ -774,14 +782,15 @@ WF.WriteDetailedHighScoreStats = function(pn, hsitem, filenameext, filename, cou
+     end
+ 
+     local fname = filename or LookupIdentifier(hashorid, hsitem.RateMod):gsub("/", "]]][[[")
+-    if filenameext then fname = fname..filenameext end
+-    local fullpath = PROFILEMAN:GetProfileDir("ProfileSlot_Player"..pn).."/detailed/"..fname
++    if filenameext then fname = fname .. filenameext end
++    local fullpath = PROFILEMAN:GetProfileDir("ProfileSlot_Player" .. pn) .. "/detailed/" .. fname
+ 
+     -- general info
+     local smods = (#hsitem.BestPlay.SignificantMods > 0) and table.concat(hsitem.BestPlay.SignificantMods, ",") or "-"
+     local songstr = string.format("%s\n%s\n%s\n%s\n%s\n%d\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n%d\n%s",
+         GetThemeVersion(), hsitem.SongFullTitle, hsitem.SongArtist, hsitem.BPM, hsitem.ChartID, hsitem.DifficultyRating,
+-        hsitem.BestPlay.DateObtained, hsitem.RateMod, hsitem.TotalSteps, hsitem.TotalHolds, hsitem.BestPlay.Judgments[7],
++        hsitem.BestPlay.DateObtained, hsitem.RateMod, hsitem.TotalSteps, hsitem.TotalHolds, hsitem.BestPlay.Judgments[7]
++        ,
+         hsitem.TotalRolls, hsitem.BestPlay.Judgments[8], hsitem.TotalMines, smods)
+     table.insert(ft, songstr)
+ 
+@@ -792,7 +801,7 @@ WF.WriteDetailedHighScoreStats = function(pn, hsitem, filenameext, filename, cou
+         local off = (#judge == 3 or judge[2] == "Miss") and abbrev[judge[2]] or string.format("%f", judge[4])
+         table.insert(ft, string.format("%f;%s;%s", judge[1], off, p))
+     end
+-    
++
+     table.insert(ft, "")
+ 
+     local fstr = table.concat(ft, "\n")
+@@ -813,7 +822,7 @@ WF.WriteDetailedHighScoreStatsFromCourseList = function(pn, filenameext, list)
+     -- don't ever use the word leveraged in that way, it's really dumb ok
+     local count = 0
+     for ind in ivalues(list) do
+-        if  WF.WriteDetailedHighScoreStats(pn, nil, filenameext, nil, ind) then
++        if WF.WriteDetailedHighScoreStats(pn, nil, filenameext, nil, ind) then
+             count = count + 1
+         end
+     end
+@@ -829,18 +838,18 @@ WF.WriteAllDetailedHighScoresForCourse = function(pn, wfuslist, itguslist)
+ 
+     -- save each individual file to saved directory
+     for i = 1, #WF.DetailedJudgmentsPerSongInCourse[pn] do
+-        local te = GAMESTATE:GetCurrentTrail("PlayerNumber_P"..pn):GetTrailEntry(i-1)
++        local te = GAMESTATE:GetCurrentTrail("PlayerNumber_P" .. pn):GetTrailEntry(i - 1)
+         local song = te:GetSong()
+         local steps = te:GetSteps()
+         local songtitle = (song:GetDisplayMainTitle():gsub("[^A-Z^a-z^0-9]", ""))
+-		if (not songtitle) or (songtitle == "") then
+-			songtitle = (song:GetTranslitMainTitle():gsub("[^A-Z^a-z^0-9]", ""))
+-		end
+-		if (not songtitle) or (songtitle == "") then songtitle = "UnknownSong" end
+-		local diff = THEME:GetString("Difficulty",
+-			ToEnumShortString(steps:GetDifficulty()))
+-		local datestr = (WF.DateTimeString():gsub(":", ""):gsub(" ", "_"))
+-		local fname = "/saved/"..songtitle.."_"..diff.."_"..datestr
++        if (not songtitle) or (songtitle == "") then
++            songtitle = (song:GetTranslitMainTitle():gsub("[^A-Z^a-z^0-9]", ""))
++        end
++        if (not songtitle) or (songtitle == "") then songtitle = "UnknownSong" end
++        local diff = THEME:GetString("Difficulty",
++            ToEnumShortString(steps:GetDifficulty()))
++        local datestr = (WF.DateTimeString():gsub(":", ""):gsub(" ", "_"))
++        local fname = "/saved/" .. songtitle .. "_" .. diff .. "_" .. datestr
+ 
+         if WF.WriteDetailedHighScoreStats(pn, nil, nil, fname, i) then
+             count = count + 1
+@@ -932,7 +941,7 @@ WF.MergeMachineProfileSongStats = function(stats1, stats2)
+     local newstats = WF.NewMachineProfileSongStats()
+ 
+     if (not ((not iscourse) and stats1.ChartHash == stats2.ChartHash and stats1.RateMod == stats2.RateMod))
+-    and (not ((iscourse) and stats1.CourseID == stats2.CourseID and stats1.RateMod == stats2.RateMod)) then
++        and (not ((iscourse) and stats1.CourseID == stats2.CourseID and stats1.RateMod == stats2.RateMod)) then
+         Trace(string.format("Stats merge error:\nhash/id 1: %s\nrate 1: %s\nhash/id 2: %s\nrate 2:%s",
+             (not iscourse) and stats1.ChartHash or stats1.CourseID, stats1.RateMod,
+             (not iscourse) and stats2.ChartHash or stats2.CourseID, stats2.RateMod))
+@@ -996,7 +1005,7 @@ WF.SongStatsUpdateChartAttributes = function(stats, song, steps, hash, pn)
+     -- a player song stats object, meaning step counts etc will need to be updated too.
+     local iscourse = (stats.CourseTitle ~= nil) -- if course, "song" is course and "steps" is trail
+     local player
+-    if pn then player = "PlayerNumber_P"..pn end
++    if pn then player = "PlayerNumber_P" .. pn end
+     local id = WF.GetItemID(song, steps)
+ 
+     -- generate hash if one isn't passed in (better to not parse again if we don't need to)
+@@ -1053,7 +1062,7 @@ WF.AddMachineProfileSongStatsFromSteps = function(song, steps, rate, hash, playe
+     WF.SongStatsUpdateChartAttributes(stats, song, steps, hash)
+     stats.RateMod = rate
+     stats.PlayCount = 0
+-    
++
+     WF.AddSongStatsToProfile(stats)
+     return stats
+ end
+@@ -1127,11 +1136,11 @@ WF.SaveMachineProfileStats = function()
+             song.BPM, hash, song.ChartID, song.RateMod, song.DifficultyRating, song.PlayCount))
+         for score in ivalues(song.HighScoreList) do
+             table.insert(ft, string.format("$SCORE\n%s\n%s\n%s\n%s\n%d", score.PlayerFullName, score.PlayerHSName,
+-            score.PlayerGuid, score.DateObtained, score.PercentDP))
++                score.PlayerGuid, score.DateObtained, score.PercentDP))
+         end
+         for score in ivalues(song.HighScoreList_ITG) do
+             table.insert(ft, string.format("$ITG\n%s\n%s\n%s\n%s\n%d", score.PlayerFullName, score.PlayerHSName,
+-            score.PlayerGuid, score.DateObtained, score.PercentDP))
++                score.PlayerGuid, score.DateObtained, score.PercentDP))
+         end
+     end
+ 
+@@ -1141,11 +1150,11 @@ WF.SaveMachineProfileStats = function()
+             course.BPM, course.CourseID, course.RateMod, course.DifficultyRating, course.PlayCount))
+         for score in ivalues(course.HighScoreList) do
+             table.insert(ft, string.format("$SCORE\n%s\n%s\n%s\n%s\n%d", score.PlayerFullName, score.PlayerHSName,
+-            score.PlayerGuid, score.DateObtained, score.PercentDP))
++                score.PlayerGuid, score.DateObtained, score.PercentDP))
+         end
+         for score in ivalues(course.HighScoreList_ITG) do
+             table.insert(ft, string.format("$ITG\n%s\n%s\n%s\n%s\n%d", score.PlayerFullName, score.PlayerHSName,
+-            score.PlayerGuid, score.DateObtained, score.PercentDP))
++                score.PlayerGuid, score.DateObtained, score.PercentDP))
+         end
+     end
+ 
+@@ -1153,7 +1162,7 @@ WF.SaveMachineProfileStats = function()
+ 
+     -- write to file
+     local fstr = table.concat(ft, "\n")
+-    if File.Write(dir.."/MachineStats.wfm",fstr) then
++    if File.Write(dir .. "/MachineStats.wfm", fstr) then
+         Trace("Machine profile stats saved.")
+     else
+         SM("Machine profile stats failed to save!")
+@@ -1176,12 +1185,12 @@ WF.LoadMachineProfileStats = function()
+ 
+     WF.MachineProfileStats = WF.MachineProfileStatsTemplate()
+ 
+-    if not FILEMAN:DoesFileExist(dir.."/MachineStats.wfm") then
++    if not FILEMAN:DoesFileExist(dir .. "/MachineStats.wfm") then
+         -- file has not been created; just return
+         return
+     end
+ 
+-    local sfile = File.Read(dir.."/MachineStats.wfm")
++    local sfile = File.Read(dir .. "/MachineStats.wfm")
+     if not sfile then
+         -- error loading file
+         SM("Error loading stats for machine profile!")
+@@ -1251,7 +1260,7 @@ WF.LoadMachineProfileStats = function()
+                 score.PercentDP = tonumber(line)
+                 -- insert into corresponding table
+                 local ext = (token == "ITG") and "_ITG" or ""
+-                curstats["HighScoreList"..ext][#curstats["HighScoreList"..ext]+1] = score
++                curstats["HighScoreList" .. ext][#curstats["HighScoreList" .. ext] + 1] = score
+             end
+         end
+     end
+@@ -1269,7 +1278,7 @@ end
+ WF.FindProfileSongStats = function(hashorid, rate, pn)
+     -- pass in either a hash or a chart id. simple logic will determine which to use.
+     local identifier = hashorid:match("/") and "ChartID" or "ChartHash"
+-    
++
+     -- pass no pn for machine profile
+     local stats = pn ~= nil and WF.PlayerProfileStats[pn] or WF.MachineProfileStats
+     if not stats then return end
+@@ -1421,13 +1430,13 @@ WF.UpdateProfilesOnEvaluation = function(hashes)
+         local pn = tonumber(player:sub(-1))
+         local steps = (not iscourse) and GAMESTATE:GetCurrentSteps(player) or GAMESTATE:GetCurrentTrail(player)
+         allitems[pn] = {}
+-        table.insert(allitems[pn], {song, steps})
++        table.insert(allitems[pn], { song, steps })
+         if iscourse then
+             for i = 1, WF.CurrentSongInCourse do
+-                local te = steps:GetTrailEntry(i-1)
++                local te = steps:GetTrailEntry(i - 1)
+                 local songincourse = te:GetSong()
+                 local stepsincourse = te:GetSteps()
+-                table.insert(allitems[pn], {songincourse, stepsincourse})
++                table.insert(allitems[pn], { songincourse, stepsincourse })
+             end
+         end
+     end
+@@ -1464,16 +1473,16 @@ WF.UpdateProfilesOnEvaluation = function(hashes)
+             local itgdata = (not iscourse) and WF.ITGJudgmentData[pn]
+                 or WF.ITGJudgmentData[pn][WF.CurrentSongInCourse]
+             local ts = itgdata[#itgdata] and (itgdata[#itgdata][3] + 0.02) or 0.1
+-            table.insert(itgdata, {nil, 0, ts})
++            table.insert(itgdata, { nil, 0, ts })
+             -- now just insert into wf lifebar tables
+-            for i = 1, #WF.LifeBarNames do 
++            for i = 1, #WF.LifeBarNames do
+                 if WF.LifeBarChanges[pn][i] then
+                     -- reuse ts here because itg tracks life at every judgment rather than just changes
+                     -- what the fuck am i doing lol
+                     -- [TODO] - this causes a funny bug when itg fails early and then the song is skipped
+                     local barchanges = (not iscourse) and WF.LifeBarChanges[pn][i]
+                         or WF.LifeBarChanges[pn][i][WF.CurrentSongInCourse]
+-                    table.insert(barchanges, {0, ts})
++                    table.insert(barchanges, { 0, ts })
+                 end
+             end
+         end
+@@ -1503,7 +1512,7 @@ WF.UpdateProfilesOnEvaluation = function(hashes)
+                 stats.SongsPlayed = stats.SongsPlayed + WF.CurrentSongInCourse
+             end
+             for i = 1, 5 do
+-                stats.TotalTapJudgments[i] = stats.TotalTapJudgments[i] + pss:GetTapNoteScores("TapNoteScore_W"..i)
++                stats.TotalTapJudgments[i] = stats.TotalTapJudgments[i] + pss:GetTapNoteScores("TapNoteScore_W" .. i)
+             end
+             stats.TotalTapJudgments[6] = stats.TotalTapJudgments[6] + pss:GetTapNoteScores("TapNoteScore_Miss")
+             local ra = pss:GetRadarActual()
+@@ -1515,7 +1524,8 @@ WF.UpdateProfilesOnEvaluation = function(hashes)
+             stats.TotalMines[1] = stats.TotalMines[1] + pss:GetTapNoteScores("TapNoteScore_HitMine")
+             stats.TotalMines[2] = stats.TotalMines[2] + rv:GetValue("Mines")
+             if not iscourse then
+-                stats.LastSongPlayed = song:GetSongDir():gsub("/AdditionalSongs/","",1):gsub("/Songs/","",1):sub(1,-2)
++                stats.LastSongPlayed = song:GetSongDir():gsub("/AdditionalSongs/", "", 1):gsub("/Songs/", "", 1):sub(1,
++                    -2)
+             end
+ 
+             -- loop through all potential "item stats"
+@@ -1533,18 +1543,18 @@ WF.UpdateProfilesOnEvaluation = function(hashes)
+                 local curitgclr = itgclr
+                 local curfaplus = WF.FAPlusCount[pn]
+                 if cind > 1 then
+-                    local jt = {curstatsobj:GetJudgmentCount("W1"),curstatsobj:GetJudgmentCount("W2"),
+-                    curstatsobj:GetJudgmentCount("W3"),curstatsobj:GetJudgmentCount("W4"),
+-                    curstatsobj:GetJudgmentCount("W5"),curstatsobj:GetJudgmentCount("Miss"),
+-                    curstatsobj:GetJudgmentCount("Held"),curstatsobj:GetJudgmentCount("LetGo"),
+-                    curstatsobj:GetJudgmentCount("HitMine")}
++                    local jt = { curstatsobj:GetJudgmentCount("W1"), curstatsobj:GetJudgmentCount("W2"),
++                        curstatsobj:GetJudgmentCount("W3"), curstatsobj:GetJudgmentCount("W4"),
++                        curstatsobj:GetJudgmentCount("W5"), curstatsobj:GetJudgmentCount("Miss"),
++                        curstatsobj:GetJudgmentCount("Held"), curstatsobj:GetJudgmentCount("LetGo"),
++                        curstatsobj:GetJudgmentCount("HitMine") }
+                     curdp = math.floor(WF.CalculatePercentDP(jt, cursteps, player, false) * 10000)
+-                    curitgdp = math.floor(WF.CalculatePercentDP(WF.ITGJudgmentCountsPerSongInCourse[pn][cind-1],
++                    curitgdp = math.floor(WF.CalculatePercentDP(WF.ITGJudgmentCountsPerSongInCourse[pn][cind - 1],
+                         cursteps, player, true) * 10000)
+-                    curfaplus = WF.FAPlusCountPerSongInCourse[pn][cind-1]
++                    curfaplus = WF.FAPlusCountPerSongInCourse[pn][cind - 1]
+                     if WF.ITGFailed[pn] then
+-                        if cind-1 < WF.ITGSongInCourseAtFail[pn] then curitgclr = "C"
+-                        elseif cind-1 == WF.ITGSongInCourseAtFail[pn] then curitgclr = "F"
++                        if cind - 1 < WF.ITGSongInCourseAtFail[pn] then curitgclr = "C"
++                        elseif cind - 1 == WF.ITGSongInCourseAtFail[pn] then curitgclr = "F"
+                         else curitgclr = nil end
+                     end
+                 end
+@@ -1599,8 +1609,9 @@ WF.UpdateProfilesOnEvaluation = function(hashes)
+                 end
+                 local newgrade_itg = CalculateGradeITG(songstats)
+                 if newgrade_itg < oldgrade_itg then
+-                    if oldgrade_itg ~= 99 then stats.GradeCounts_ITG[oldgrade_itg] =
+-                        stats.GradeCounts_ITG[oldgrade_itg] - 1 end
++                    if oldgrade_itg ~= 99 then stats.GradeCounts_ITG[oldgrade_itg] = stats.GradeCounts_ITG[oldgrade_itg]
++                            - 1
++                    end
+                     stats.GradeCounts_ITG[newgrade_itg] = stats.GradeCounts_ITG[newgrade_itg] + 1
+                 end
+                 for i = 1, 2 do
+@@ -1625,7 +1636,7 @@ WF.UpdateProfilesOnEvaluation = function(hashes)
+                     songstats.BestPercentDP = curdp
+                     songstats.BestPlay.DateObtained = dateobtained
+                     for i = 1, 5 do
+-                        songstats.BestPlay.Judgments[i] = curstatsobj:GetJudgmentCount("TapNoteScore_W"..i)
++                        songstats.BestPlay.Judgments[i] = curstatsobj:GetJudgmentCount("TapNoteScore_W" .. i)
+                     end
+                     songstats.BestPlay.Judgments[6] = curstatsobj:GetJudgmentCount("TapNoteScore_Miss")
+                     songstats.BestPlay.Judgments[7] = (cind == 1) and currv:GetValue("Holds")
+@@ -1641,7 +1652,7 @@ WF.UpdateProfilesOnEvaluation = function(hashes)
+                         local bar = WF.LifeBarValues[pn][i]
+                         local saf = (bar.ScoreAtFail ~= -1) and bar.ScoreAtFail or curdp
+                         if cind > 1 then
+-                            saf = (not (bar.Failed and bar.SongInCourseAtFail == cind - 1)) 
++                            saf = (not (bar.Failed and bar.SongInCourseAtFail == cind - 1))
+                                 and bar.ScoreAtFailSongInCourse or curdp
+                         end
+                         songstats.BestPlay.ScoreAtLifeEmpty[i] = saf
+@@ -1652,7 +1663,7 @@ WF.UpdateProfilesOnEvaluation = function(hashes)
+                     if not iscourse then
+                         WF.WriteDetailedHighScoreStats(pn, songstats)
+                     else
+-                        table.insert(wfus[pn], cind-1)
++                        table.insert(wfus[pn], cind - 1)
+                     end
+                 end
+ 
+@@ -1663,7 +1674,7 @@ WF.UpdateProfilesOnEvaluation = function(hashes)
+                     if not iscourse then
+                         WF.WriteDetailedHighScoreStats(pn, nil, "_ITG")
+                     else
+-                        table.insert(itgus[pn], cind-1)
++                        table.insert(itgus[pn], cind - 1)
+                     end
+                 end
+ 
+@@ -1710,18 +1721,18 @@ WF.UpdateProfilesOnEvaluation = function(hashes)
+                 local curitgclr = itgclr
+                 local curfaplus = WF.FAPlusCount[pn]
+                 if cind > 1 then
+-                    local jt = {curstatsobj:GetJudgmentCount("W1"),curstatsobj:GetJudgmentCount("W2"),
+-                    curstatsobj:GetJudgmentCount("W3"),curstatsobj:GetJudgmentCount("W4"),
+-                    curstatsobj:GetJudgmentCount("W5"),curstatsobj:GetJudgmentCount("Miss"),
+-                    curstatsobj:GetJudgmentCount("Held"),curstatsobj:GetJudgmentCount("LetGo"),
+-                    curstatsobj:GetJudgmentCount("HitMine")}
++                    local jt = { curstatsobj:GetJudgmentCount("W1"), curstatsobj:GetJudgmentCount("W2"),
++                        curstatsobj:GetJudgmentCount("W3"), curstatsobj:GetJudgmentCount("W4"),
++                        curstatsobj:GetJudgmentCount("W5"), curstatsobj:GetJudgmentCount("Miss"),
++                        curstatsobj:GetJudgmentCount("Held"), curstatsobj:GetJudgmentCount("LetGo"),
++                        curstatsobj:GetJudgmentCount("HitMine") }
+                     curdp = math.floor(WF.CalculatePercentDP(jt, cursteps, player, false) * 10000)
+-                    curitgdp = math.floor(WF.CalculatePercentDP(WF.ITGJudgmentCountsPerSongInCourse[pn][cind-1],
++                    curitgdp = math.floor(WF.CalculatePercentDP(WF.ITGJudgmentCountsPerSongInCourse[pn][cind - 1],
+                         cursteps, player, true) * 10000)
+-                    curfaplus = WF.FAPlusCountPerSongInCourse[pn][cind-1]
++                    curfaplus = WF.FAPlusCountPerSongInCourse[pn][cind - 1]
+                     if WF.ITGFailed[pn] then
+-                        if cind-1 < WF.ITGSongInCourseAtFail[pn] then curitgclr = "C"
+-                        elseif cind-1 == WF.ITGSongInCourseAtFail[pn] then curitgclr = "F"
++                        if cind - 1 < WF.ITGSongInCourseAtFail[pn] then curitgclr = "C"
++                        elseif cind - 1 == WF.ITGSongInCourseAtFail[pn] then curitgclr = "F"
+                         else curitgclr = nil end
+                     end
+                 end
+@@ -1748,7 +1759,7 @@ WF.UpdateProfilesOnEvaluation = function(hashes)
+                 -- so this essentially checks if the same chart was played and play count has already incremented
+                 curmstats.PlayCount = curmstats.PlayCount + 1
+             end
+-        
++
+ 
+             -- insert into high score list
+             local profile = PROFILEMAN:GetProfile(player)
+@@ -1760,7 +1771,7 @@ WF.UpdateProfilesOnEvaluation = function(hashes)
+             curmr.PlayerGuid = (not isguest) and profile:GetGUID() or "None"
+             curmr.DateObtained = dateobtained
+             curmr.PercentDP = dplist[pn][cind]
+-            curmstats.HighScoreList[#curmstats.HighScoreList+1] = curmr
++            curmstats.HighScoreList[#curmstats.HighScoreList + 1] = curmr
+             table.insert(mr[pn], curmr)
+ 
+             -- insert into itg high score list
+@@ -1771,7 +1782,7 @@ WF.UpdateProfilesOnEvaluation = function(hashes)
+             curitgmr.PlayerGuid = (not isguest) and profile:GetGUID() or ""
+             curitgmr.DateObtained = dateobtained
+             curitgmr.PercentDP = dplist_itg[pn][cind]
+-            curmstats.HighScoreList_ITG[#curmstats.HighScoreList_ITG+1] = curitgmr
++            curmstats.HighScoreList_ITG[#curmstats.HighScoreList_ITG + 1] = curitgmr
+             table.insert(itgmr[pn], curitgmr)
+ 
+             if not iscourse then
+@@ -1803,7 +1814,7 @@ WF.UpdateProfilesOnEvaluation = function(hashes)
+                 for k, v in pairs(score) do if mr[pn][cind][k] ~= v then found = false end end
+                 if found then
+                     if cind == 1 then rt[pn].MachineHSInd = i
+-                    else rt[pn].MachineCourseSongHSInd[cind-1] = i end
++                    else rt[pn].MachineCourseSongHSInd[cind - 1] = i end
+                     break
+                 end
+             end
+@@ -1812,13 +1823,13 @@ WF.UpdateProfilesOnEvaluation = function(hashes)
+                 for k, v in pairs(score) do if itgmr[pn][cind][k] ~= v then found = false end end
+                 if found then
+                     if cind == 1 then rt[pn].MachineHSInd_ITG = i
+-                    else rt[pn].MachineCourseSongHSInd_ITG[cind-1] = i end
++                    else rt[pn].MachineCourseSongHSInd_ITG[cind - 1] = i end
+                     break
+                 end
+             end
+         end
+     end
+-    
++
+     return rt
+ end
+ 
+@@ -1831,7 +1842,7 @@ WF.CopySongStats = function(hs)
+             t[k] = v
+         elseif k == "BestFAPlusCounts" then
+             t[k] = {}
+-            for i = 1,3 do t[k][i] = v[i] end
++            for i = 1, 3 do t[k][i] = v[i] end
+         end
+     end
+     return t
+@@ -1844,15 +1855,15 @@ WF.ImportCheck = function()
+     -- with the new system the UI probably doesn't need to report anything super specific
+     if ThemePrefs.Get("AlwaysMergeScores") then return true end
+     local mdir = PROFILEMAN:GetProfileDir("ProfileSlot_Machine")
+-    if not FILEMAN:DoesFileExist(mdir.."/MachineStats.wfm") then return true end
++    if not FILEMAN:DoesFileExist(mdir .. "/MachineStats.wfm") then return true end
+     if WF.MachineProfileStats and WF.MachineProfileStats.ForceImportCourses then
+         return true
+     end
+     local players = GAMESTATE:GetHumanPlayers()
+     for player in ivalues(players) do
+         local pn = player:sub(-1)
+-        local dir = PROFILEMAN:GetProfileDir("ProfileSlot_Player"..pn)
+-        if (dir ~= "") and (not FILEMAN:DoesFileExist(dir.."/PlayerStats.wfs")) then
++        local dir = PROFILEMAN:GetProfileDir("ProfileSlot_Player" .. pn)
++        if (dir ~= "") and (not FILEMAN:DoesFileExist(dir .. "/PlayerStats.wfs")) then
+             return true
+         end
+         if WF.PlayerProfileStats[pn] and WF.PlayerProfileStats[pn].ForceImportCourses then
+@@ -1870,31 +1881,31 @@ WF.MergeProfileStats = function()
+ 
+     -- There is also now a ThemePref that will force this merge always; this is more affordable to do now
+     -- with the addition of a maintained hash cache #HashCash
+-    
++
+     -- check which we should import first, so that we can minimize the amount of SetStatsPrefix jawns
+     local mdir = PROFILEMAN:GetProfileDir("ProfileSlot_Machine")
+     local alwaysmerge = ThemePrefs.Get("AlwaysMergeScores")
+-    local importmachine = alwaysmerge or (not FILEMAN:DoesFileExist(mdir.."/MachineStats.wfm"))
++    local importmachine = alwaysmerge or (not FILEMAN:DoesFileExist(mdir .. "/MachineStats.wfm"))
+     if (not importmachine) and WF.MachineProfileStats and WF.MachineProfileStats.ForceImportCourses then
+         importmachine = true
+     end
+     local importsongsmachine = importmachine
+     if (importmachine) and (WF.MachineProfileStats.ForceImportCourses) and (not alwaysmerge)
+-        and FILEMAN:DoesFileExist(mdir.."/MachineStats.wfm") then
++        and FILEMAN:DoesFileExist(mdir .. "/MachineStats.wfm") then
+         importsongsmachine = false
+     end
+ 
+     local players = GAMESTATE:GetHumanPlayers()
+     local importplayers = {}
+-    local importsongsplayer = {true,true}
++    local importsongsplayer = { true, true }
+     for player in ivalues(players) do
+         local pn = tonumber(player:sub(-1))
+-        local dir = PROFILEMAN:GetProfileDir("ProfileSlot_Player"..pn)
+-        if alwaysmerge or ((dir ~= "") and (not FILEMAN:DoesFileExist(dir.."/PlayerStats.wfs")))
+-        or (WF.PlayerProfileStats[pn] and WF.PlayerProfileStats[pn].ForceImportCourses) then
++        local dir = PROFILEMAN:GetProfileDir("ProfileSlot_Player" .. pn)
++        if alwaysmerge or ((dir ~= "") and (not FILEMAN:DoesFileExist(dir .. "/PlayerStats.wfs")))
++            or (WF.PlayerProfileStats[pn] and WF.PlayerProfileStats[pn].ForceImportCourses) then
+             table.insert(importplayers, player)
+-            if (not alwaysmerge) and FILEMAN:DoesFileExist(dir.."/PlayerStats.wfs")
+-            and WF.PlayerProfileStats[pn].ForceImportCourses then
++            if (not alwaysmerge) and FILEMAN:DoesFileExist(dir .. "/PlayerStats.wfs")
++                and WF.PlayerProfileStats[pn].ForceImportCourses then
+                 importsongsplayer[pn] = false
+             end
+         end
+@@ -1939,15 +1950,15 @@ WF.ImportProfileStats = function(importsongs, importcourses, pn)
+     -- pn nil for machine
+     local stats = (not pn) and WF.MachineProfileStats or WF.PlayerProfileStats[pn]
+     if not stats then return end
+-    local profile = (not pn) and PROFILEMAN:GetMachineProfile() or PROFILEMAN:GetProfile("PlayerNumber_P"..pn)
++    local profile = (not pn) and PROFILEMAN:GetMachineProfile() or PROFILEMAN:GetProfile("PlayerNumber_P" .. pn)
+     if not profile then return end
+ 
+     local curprefix = PROFILEMAN:GetStatsPrefix()
+-    local scoretype = {["Exp-"] = "standard", [""] = "ITG", ["ECFA-"] = "ITG (FA+)"}
++    local scoretype = { ["Exp-"] = "standard", [""] = "ITG", ["ECFA-"] = "ITG (FA+)" }
+ 
+     -- status message traced to log
+     local name = (not pn) and "Machine" or profile:GetDisplayName()
+-    local statusbase = "Importing scores for profile: "..name
++    local statusbase = "Importing scores for profile: " .. name
+     local status = statusbase
+     Trace(status)
+ 
+@@ -1977,10 +1988,10 @@ WF.ImportProfileStats = function(importsongs, importcourses, pn)
+             if hsl then
+                 local scores = hsl:GetHighScores()
+                 local stepsid = WF.GetItemID(song, steps)
+-                status = statusbase.."\nScores found for chart/course: "..stepsid
++                status = statusbase .. "\nScores found for chart/course: " .. stepsid
+                 Trace(status)
+                 local bestplayset = {} -- used below
+-                
++
+                 for scoreind, score in ipairs(scores) do
+                     -- first check if song stats already exists, and create it if not.
+                     -- need to get the songstats each iteration, because rate might be different (ugh)
+@@ -2006,7 +2017,7 @@ WF.ImportProfileStats = function(importsongs, importcourses, pn)
+                             hs.PlayerGuid = "Unknown"
+                             hs.DateObtained = tostring(score:GetDate())
+                             hs.PercentDP = dp
+-                            list[#list+1] = hs
++                            list[#list + 1] = hs
+                         end
+                     else
+                         -- for player, we need to get all the personal best stuff we can detect.
+@@ -2030,7 +2041,7 @@ WF.ImportProfileStats = function(importsongs, importcourses, pn)
+                                 songstats.BestFAPlusCounts[3] = math.max(songstats.BestFAPlusCounts[3], faplus)
+                                 if newscore then
+                                     stats.TotalTapJudgments[1] = stats.TotalTapJudgments[1] + faplus
+-                                     -- we can detect a "mastery" if score is 100% and there are no W2 judgments
++                                    -- we can detect a "mastery" if score is 100% and there are no W2 judgments
+                                     if score:GetPercentDP() == 1 and score:GetTapNoteScore("TapNoteScore_W2") == 0 then
+                                         songstats.BestClearType = 1
+                                         songstats.BestPercentDP = 10000
+@@ -2067,9 +2078,10 @@ WF.ImportProfileStats = function(importsongs, importcourses, pn)
+                             if newscore then
+                                 for i = 1, 5 do
+                                     stats.TotalTapJudgments[i] = stats.TotalTapJudgments[i]
+-                                        + statsobj:GetJudgmentCount("W"..i)
++                                        + statsobj:GetJudgmentCount("W" .. i)
+                                 end
+-                                stats.TotalTapJudgments[6] = stats.TotalTapJudgments[6] + statsobj:GetJudgmentCount("Miss")
++                                stats.TotalTapJudgments[6] = stats.TotalTapJudgments[6] +
++                                    statsobj:GetJudgmentCount("Miss")
+ 
+                                 -- there is no way to reliably differentiate holds from rolls in terms of performance vs
+                                 -- total, so we'll just ignore those. but we can at least tally mines.
+@@ -2085,7 +2097,7 @@ WF.ImportProfileStats = function(importsongs, importcourses, pn)
+                             if not bestplayset[rate] then
+                                 local bp = songstats.BestPlay
+                                 bp.DateObtained = tostring(score:GetDate())
+-                                for i = 1,5 do bp.Judgments[i] = statsobj:GetJudgmentCount("W"..i) end
++                                for i = 1, 5 do bp.Judgments[i] = statsobj:GetJudgmentCount("W" .. i) end
+                                 bp.Judgments[6] = statsobj:GetJudgmentCount("Miss")
+                                 -- just combine holds held and rolls held into holds held
+                                 bp.Judgments[7] = statsobj:GetJudgmentCount("Held")
+@@ -2096,7 +2108,7 @@ WF.ImportProfileStats = function(importsongs, importcourses, pn)
+                                 bp.LifeBarVals[3] = 0
+                                 bp.LifeBarVals[1] = (not failed) and 1000 or 0
+                                 bp.LifeBarVals[2] = (not failed) and 800 or 0
+-                                for i = 1,3 do bp.ScoreAtLifeEmpty[i] = dp end
++                                for i = 1, 3 do bp.ScoreAtLifeEmpty[i] = dp end
+                                 -- won't bother with significant mods for this
+                                 bestplayset[rate] = true
+                             end
+@@ -2107,7 +2119,7 @@ WF.ImportProfileStats = function(importsongs, importcourses, pn)
+         end
+     end
+ 
+-    status = statusbase.."\nDone"
++    status = statusbase .. "\nDone"
+     Trace(status)
+ 
+     -- save stats before next load (upon changing the prefix)
+@@ -2119,66 +2131,68 @@ end
+ WF.ProfileCardLowerAF = function(pn, items)
+     -- items can be passed in, otherwise will come from ThemePrefs for the profile.
+     -- options are "SongsPlayed", "FCTiers", "FCTiersNoPerfect", "LifeBarClears", "TopGradesITG"
+-    if not items then items = SL["P"..pn].ActiveModifiers.ProfileCardInfo end
++    if not items then items = SL["P" .. pn].ActiveModifiers.ProfileCardInfo end
+     if not items then items = "SongsPlayed" end
+ 
+-    local af = Def.ActorFrame{}
++    local af = Def.ActorFrame {}
+     local iscourse = GAMESTATE:IsCourseMode()
+ 
+     if items == "SongsPlayed" then
+-        af[#af+1] = LoadFont("Common Normal")..{
++        af[#af + 1] = LoadFont("Common Normal") .. {
+             Text = "Current Session:",
+             InitCommand = function(self) self:y(4):zoom(0.8) end
+         }
+-        af[#af+1] = LoadFont("Common Normal")..{
++        af[#af + 1] = LoadFont("Common Normal") .. {
+             Text = string.format("%d %s%s", WF.CurrentSessionSongsPlayed[pn], (not iscourse) and "song" or "course",
+                 (WF.CurrentSessionSongsPlayed[pn] > 1) and "s" or ""),
+             InitCommand = function(self) self:zoom(0.8):y(20) end
+         }
+     elseif items == "FCTiers" or items == "FCTiersNoPerfect" or items == "LifeBarClears" then
+-        local cto = {FCTiers = 0, FCTiersNoPerfect = 1, LifeBarClears = 4}
++        local cto = { FCTiers = 0, FCTiersNoPerfect = 1, LifeBarClears = 4 }
+         local p = (not iscourse) and "" or "Course"
+         for i = 1, 3 do
+             local cti = i + cto[items]
+-            af[#af+1] = LoadFont("Common Normal")..{
++            af[#af + 1] = LoadFont("Common Normal") .. {
+                 Text = WF.ClearTypesShort[cti],
+-                InitCommand = function(self) self:zoom(0.8):diffuse(WF.ClearTypeColor(cti)):xy(-20, 14*(i-1)) end
++                InitCommand = function(self) self:zoom(0.8):diffuse(WF.ClearTypeColor(cti)):xy(-20, 14 * (i - 1)) end
+             }
+-            af[#af+1] = LoadFont("Common Normal")..{
+-                Text = tostring(WF.PlayerProfileStats[pn][p.."ClearTypeCounts"][cti]),
+-                InitCommand = function(self) self:zoom(0.8):xy(36, 14*(i-1)):horizalign("right"):maxwidth(36/0.8) end
++            af[#af + 1] = LoadFont("Common Normal") .. {
++                Text = tostring(WF.PlayerProfileStats[pn][p .. "ClearTypeCounts"][cti]),
++                InitCommand = function(self) self:zoom(0.8):xy(36, 14 * (i - 1)):horizalign("right"):maxwidth(36 / 0.8) end
+             }
+         end
+     elseif items == "TopGradesITG" then
+-        local positions = {{-34, 2}, {12, 2}, {-34, 24}, {12, 24}}
++        local positions = { { -34, 2 }, { 12, 2 }, { -34, 24 }, { 12, 24 } }
+         local p = (not iscourse) and "" or "Course"
+         for i = 1, 4 do
+-            af[#af+1] = LoadActor(THEME:GetPathG("", "_GradesSmall/LetterGrade.lua"), {grade = i, itg = true})..{
+-                OnCommand = function(self) self:zoom(0.2):xy(positions[i][1], positions[i][2]) end
+-            }
+-            af[#af+1] = LoadFont("Common Normal")..{
+-                Text = tostring(WF.PlayerProfileStats[pn][p.."GradeCounts_ITG"][i]),
+-                InitCommand = function(self) self:zoom(0.75):xy(positions[i][1] + 32, positions[i][2]+1)
+-                    :maxwidth(20/0.75):horizalign("right") end
++            af[#af + 1] = LoadActor(THEME:GetPathG("", "_GradesSmall/LetterGrade.lua"), { grade = i, itg = true }) ..
++                {
++                    OnCommand = function(self) self:zoom(0.2):xy(positions[i][1], positions[i][2]) end
++                }
++            af[#af + 1] = LoadFont("Common Normal") .. {
++                Text = tostring(WF.PlayerProfileStats[pn][p .. "GradeCounts_ITG"][i]),
++                InitCommand = function(self) self:zoom(0.75):xy(positions[i][1] + 32, positions[i][2] + 1)
++                        :maxwidth(20 / 0.75):horizalign("right")
++                end
+             }
+         end
+     elseif items == "ECFA2021" then
+         -- unused now
+         local points = tostring(math.floor(WF.PlayerProfileStats[pn].ECFA2021ScoreList.TotalPoints))
+         local songs = tostring(WF.PlayerProfileStats[pn].ECFA2021ScoreList.Songs)
+-        af[#af+1] = LoadFont("Common Normal")..{
++        af[#af + 1] = LoadFont("Common Normal") .. {
+             Text = "ECFA Total",
+             InitCommand = function(self) self:zoom(0.8) end
+         }
+-        af[#af+1] = LoadFont("Common Normal")..{
++        af[#af + 1] = LoadFont("Common Normal") .. {
+             Text = points,
+-            InitCommand = function(self) self:zoom(0.8):y(14):maxwidth(92/0.8) end
++            InitCommand = function(self) self:zoom(0.8):y(14):maxwidth(92 / 0.8) end
+         }
+-        af[#af+1] = LoadFont("Common Normal")..{
++        af[#af + 1] = LoadFont("Common Normal") .. {
+             Text = "Songs Played:",
+             InitCommand = function(self) self:zoom(0.7):xy(-44, 29):horizalign("left") end
+         }
+-        af[#af+1] = LoadFont("Common Normal")..{
++        af[#af + 1] = LoadFont("Common Normal") .. {
+             Text = songs,
+             InitCommand = function(self) self:zoom(0.7):xy(44, 29):horizalign("right") end
+         }
+@@ -2197,26 +2211,25 @@ function TestHashes()
+     for id, v in pairs(HashTest) do
+         if id ~= "WFVersion" then
+             if WF.HashCache[id] == v then
+-                Trace("Hashes match for ID: "..id)
++                Trace("Hashes match for ID: " .. id)
+                 Trace(v or "[NO HASH]")
+                 Trace(WF.HashCache[id] or "[NO HASH]")
+             else
+                 if WF.HashCache[id] then
+                     wrong = wrong + 1
+-                    Trace("Hashes do not match for ID: "..id)
++                    Trace("Hashes do not match for ID: " .. id)
+                     Trace(v or "[NO HASH]")
+                     Trace(WF.HashCache[id] or "[NO HASH]")
+                 else
+                     nochart = nochart + 1
+-                    Trace("No chart or hash for ID: "..id)
++                    Trace("No chart or hash for ID: " .. id)
+                 end
+             end
+         end
+     end
+-    Trace("Hash test complete. "..wrong.." incorrect hashes, "..nochart.." empty hashes.")
++    Trace("Hash test complete. " .. wrong .. " incorrect hashes, " .. nochart .. " empty hashes.")
+ end
+ 
+-
+ -- The following is a really dumb hacky idea, entirely to try to maintain "Last song played."
+ -- Firstly, we'll have a flag that signals to the theme to not do any of the WF file operations for profiles
+ -- if it's set while the Load/SaveProfileCustom functions run, because there is no need.
+@@ -2263,7 +2276,7 @@ WF.InitHashCache = function()
+             if (fn) and fn ~= "" and (steps:GetStepsType():find("Dance") or steps:GetStepsType():find("Pump")) then
+                 local id = WF.GetStepsID(song, steps)
+                 if not WF.HashCache[id] then
+-                    table.insert(WF.NewChartsToCache, {song, steps})
++                    table.insert(WF.NewChartsToCache, { song, steps })
+                 end
+             end
+         end
+@@ -2334,6 +2347,8 @@ WF.SaveHashCache = function()
+         end
+     end
+ 
++    File.Write("/Save/Waterfall/zkldi.json", json.encode(WF.ZkldiDump))
++
+     local fstr = table.concat(ft, "\n")
+     if File.Write(path, fstr) then
+         Trace("Hash Cache successfully written. #HashCash")
+@@ -2347,8 +2362,8 @@ WF.GetHashCacheBuildStatus = function(total)
+     -- if no total is passed in, the number of items in the NewChartsToCache table will be used, and then that
+     -- total can be passed back in
+     if not total then total = #WF.NewChartsToCache end
+-    
+-    local rt = {Step = "Generating hash", ChartID = "", Finished = total - #WF.NewChartsToCache, Total = total}
++
++    local rt = { Step = "Generating hash", ChartID = "", Finished = total - #WF.NewChartsToCache, Total = total }
+     if #WF.NewChartsToCache == 0 then
+         rt.Step = "Done"
+         WF.HashCacheBuildFinish()
+@@ -2381,6 +2396,40 @@ WF.ProcessHashCacheItem = function()
+         hash = GetHashFromSimfileString(item[2], WF.LastMSD.MSD, WF.LastMSD.Type) or ""
+     end
+ 
++
++    local song = item[1]
++    local steps = item[2]
++
++    ParseChartInfo(steps, "P1")
++
++    WF.ZkldiDump[id] = {
++        title = song:GetMainTitle(),
++        artist = song:GetDisplayArtist(),
++        subtitle = song:GetDisplaySubTitle(),
++
++        chartHash = hash,
++        level = steps:GetMeter(),
++        difficulty = steps:GetDifficulty(),
++        breakdown = {
++            detailed = GenerateBreakdownText("P1", 0),
++            partiallySimplified = GenerateBreakdownText("P1", 1),
++            simplified = GenerateBreakdownText("P1", 2),
++            total = GenerateBreakdownText("P1", 3),
++            npsPerMeasure = SL.P1.Streams.NPSperMeasure,
++            notesPerMeasure = SL.P1.Streams.NotesPerMeasure,
++        },
++        tech = {
++            footswitches = SL.P1.Streams.Footswitches,
++            jacks = SL.P1.Streams.Jacks,
++            sideswitches = SL.P1.Streams.Sideswitches,
++            brackets = SL.P1.Streams.Brackets,
++            crossovers = SL.P1.Streams.Crossovers,
++        },
++        length = song:GetLastSecond(),
++        charter = steps:GetAuthorCredit(),
++        displayBPM = steps:GetDisplayBpms()
++    }
++
+     WF.HashCache[id] = hash
+     table.remove(WF.NewChartsToCache, 1)
+ end
+@@ -2430,9 +2479,9 @@ WF.CalculateClearsAndGrades = function(stepstype, groupname, difficulty, rate, p
+ 
+     -- i could do all the dumb logic i did for edits in the song item file, but the idea of tracking a
+     -- "lamp" for a specific index of edit difficulty within a pack seems dumb and pointless to me
+-    if difficulty == "Difficulty_Edit" then return {WF = 0, ITG = 0} end
++    if difficulty == "Difficulty_Edit" then return { WF = 0, ITG = 0 } end
+ 
+-    local arg = {WF = 0, ITG = 0}
++    local arg = { WF = 0, ITG = 0 }
+     for song in ivalues(songs) do
+         local charts = song:GetStepsByStepsType(stepstype)
+         if charts then
+@@ -2464,7 +2513,7 @@ WF.CalculateClearsAndGrades = function(stepstype, groupname, difficulty, rate, p
+     -- if we get here, every chart had a score of some kind. arg.WF = None CT means * for WF
+     -- ITG will already have 99 assigned from CalculateGradeITG if any chart was unplayed
+     if arg.WF == WF.ClearTypes.None then arg.WF = 99 end
+-    
++
+     WF.AddToClearsAndGrades(stepstype, groupname, difficulty, rate, pn, arg.WF, arg.ITG)
+     return arg
+ end
+@@ -2480,14 +2529,14 @@ WF.PreloadClearsAndGrades = function(pn)
+     -- first, get all the rates we need to do this for (i feel like there should be a shortcut here but it's
+     -- like 4am and i'm kinda dumb)
+     local scores = WF.PlayerProfileStats[pn].SongStats
+-    local rates = {"1.0"}
++    local rates = { "1.0" }
+     for score in ivalues(scores) do
+         if (not FindInTable(score.RateMod, rates)) then table.insert(rates, score.RateMod) end
+     end
+ 
+-    local diffs = 
+-        {"Difficulty_Beginner","Difficulty_Easy","Difficulty_Medium","Difficulty_Hard","Difficulty_Challenge"}
+-    local types = {"Dance_Single","Dance_Double","Pump_Single","Pump_Double"}
++    local diffs =
++    { "Difficulty_Beginner", "Difficulty_Easy", "Difficulty_Medium", "Difficulty_Hard", "Difficulty_Challenge" }
++    local types = { "Dance_Single", "Dance_Double", "Pump_Single", "Pump_Double" }
+     local groups = SONGMAN:GetSongGroupNames()
+     for rate in ivalues(rates) do
+         for stype in ivalues(types) do
+@@ -2535,7 +2584,7 @@ WF.PullITGScoreFromGrooveStats = function(pn, hash, gsentry, steps)
+     if not stats then
+         -- no stats for 1.0; make a new one
+         if not steps then
+-            steps = GAMESTATE:GetCurrentSteps("PlayerNumber_P"..pn)
++            steps = GAMESTATE:GetCurrentSteps("PlayerNumber_P" .. pn)
+         end
+         -- don't proceed if certain things don't look right
+         if not steps then return end
+@@ -2575,13 +2624,13 @@ end
+ -- (the following 2 functions were moved from WF-Scoring.lua)
+ WF.GetStepsID = function(song, steps)
+     -- this is the index for any item in the SongStats table, pertaining to any steps
+-    local stypeid = steps:GetStepsType():gsub("StepsType_","")
+-    local songid = song:GetSongDir():gsub("/AdditionalSongs/","",1):gsub("/Songs/","",1):sub(1,-2)
+-    local diffid = steps:GetDifficulty():gsub("Difficulty_","")
++    local stypeid = steps:GetStepsType():gsub("StepsType_", "")
++    local songid = song:GetSongDir():gsub("/AdditionalSongs/", "", 1):gsub("/Songs/", "", 1):sub(1, -2)
++    local diffid = steps:GetDifficulty():gsub("Difficulty_", "")
+     local ext = diffid == "Edit" and WF.GetEditIndex(song, steps) or ""
+-    diffid = diffid:sub(1,1)
++    diffid = diffid:sub(1, 1)
+     --return stypeid.."/"..songid.."/"..diffid..ext
+-    return table.concat({stypeid,songid,diffid..ext}, "/")
++    return table.concat({ stypeid, songid, diffid .. ext }, "/")
+ end
+ 
+ WF.GetEditIndex = function(song, steps)
+@@ -2605,7 +2654,7 @@ WF.GetCourseID = function(course, trail)
+     if course:IsAutogen() then courseid = course:GetDisplayFullTitle() end
+     local diffid = ToEnumShortString(trail:GetDifficulty())
+     diffid = diffid:sub(1, 1)
+-    return table.concat({stypeid, "CRS", courseid, diffid}, "/")
++    return table.concat({ stypeid, "CRS", courseid, diffid }, "/")
+ end
+ 
+ WF.GetItemID = function(songcrs, stepstrl)
+@@ -2618,7 +2667,7 @@ function LookupIdentifier(hashorid, rate)
+     -- OLD FUNCTION, lookup table no longer works this way, but this id is still used for detailed filenames
+     if IsNormalRate(rate) then return hashorid end
+ 
+-    return hashorid.."_"..(NormalizeRateString(rate):gsub("%.", "_"))
++    return hashorid .. "_" .. (NormalizeRateString(rate):gsub("%.", "_"))
+ end
+ 
+ function CheckLookupEntry(t, hashorid, rate)
+@@ -2704,12 +2753,13 @@ function GetSignificantMods(player, steps)
+     -- render it insignificant. this is pretty harmless as all it will do is show the icon at eval, but
+     -- later on i could write a function to evaluate this (not the most complicated thing really)
+     local td = (not iscourse) and steps:GetTimingData()
+-    if (options:CMod()) and (iscourse or (not steps:IsDisplayBpmConstant()) or td:HasStops() or td:HasScrollChanges() 
+-    or td:HasSpeedChanges() or td:HasNegativeBPMs() or td:HasWarps()) then
++    if (options:CMod()) and (
++        iscourse or (not steps:IsDisplayBpmConstant()) or td:HasStops() or td:HasScrollChanges()
++            or td:HasSpeedChanges() or td:HasNegativeBPMs() or td:HasWarps()) then
+         table.insert(t, "C")
+     end
+ 
+-    local turns = {"Left","Right","Mirror","Shuffle","SoftShuffle","SuperShuffle","NoMines"}
++    local turns = { "Left", "Right", "Mirror", "Shuffle", "SoftShuffle", "SuperShuffle", "NoMines" }
+     for turn in ivalues(turns) do
+         if options[turn](options) then
+             table.insert(t, turn)
+@@ -2721,10 +2771,10 @@ function GetSignificantMods(player, steps)
+     end
+ 
+     if slmods.FAPlus ~= 0 then
+-        table.insert(t, string.format("FA%d", slmods.FAPlus*10000))
++        table.insert(t, string.format("FA%d", slmods.FAPlus * 10000))
+     end
+ 
+-    local what = {{"Disabled","NoBoys"},{"Extended","BigBoys"}}
++    local what = { { "Disabled", "NoBoys" }, { "Extended", "BigBoys" } }
+     for boy in ivalues(what) do
+         if math.abs(PREFSMAN:GetPreference("TimingWindowSecondsW5") - WF.GetErrorWindowVal(boy[1])) < 0.00001 then
+             table.insert(t, boy[2])
+@@ -2739,15 +2789,18 @@ end
+ function IsNormalRate(rate)
+     return (rate == "1.0" or NormalizeRateString(rate) == "1.0")
+ end
++
+ function RateFromNumber(num)
+     if math.abs(1 - num) < 0.0001 then return "1.0" end
+     local s = tostring(num)
+-    if s:len() == 1 then s = s..".0" end
++    if s:len() == 1 then s = s .. ".0" end
+     return s
+ end
++
+ function NormalizeRateString(rate)
+     return RateFromNumber(tonumber(rate))
+ end
++
+ function RatesAreEqual(rate1, rate2)
+     return ((IsNormalRate(rate1) and IsNormalRate(rate2)) or NormalizeRateString(rate1) == NormalizeRateString(rate2))
+ end
+@@ -2779,7 +2832,7 @@ WF.TimeString = function(hour, minute, second)
+ end
+ 
+ WF.DateTimeString = function(year, month, day, hour, minute, second)
+-    return WF.DateString(year, month, day).." "..WF.TimeString(hour, minute, second)
++    return WF.DateString(year, month, day) .. " " .. WF.TimeString(hour, minute, second)
+ end
+ 
+ WF.CompareDateTime = function(s1, s2)
+@@ -2852,7 +2905,7 @@ mt_datetime = {
+         return false
+     end,
+     __eq = function(a, b)
+-        local chk = {"Year","Month","Day","Hour","Minute","Second"}
++        local chk = { "Year", "Month", "Day", "Hour", "Minute", "Second" }
+         for field in ivalues(chk) do
+             if a[field] ~= b[field] then return false end
+         end

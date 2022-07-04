@@ -1,0 +1,702 @@
+[
+	{
+		"md5sums": "98fa5d9e8e9ddca1dc78ba15d231bd279a25380cede7740b2f61d03dc5480daf50a21694c6d36650104f07e5ecde5a316c77ca5053489a4857ed4f6d53ff0bda",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 初段",
+		"value": 0
+	},
+	{
+		"md5sums": "b88c27b0eb914887e9866b17a9428f6c98b5e55861b7d80aa2f804bb8e7da67a9000d359f49fa0a5b23b57ba53a637b2d4d1121468e3a2c6df5e7ace219be6ed",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 二段",
+		"value": 1
+	},
+	{
+		"md5sums": "74aed698dbaaefcfb7c127ffa6e52df0864cd738c77820e47b534d5604076ad58afe65a262f4baf6fe3e77ff14053e615b0fe12541a65f142e8bbd6a82cfc05c",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 三段",
+		"value": 2
+	},
+	{
+		"md5sums": "4a61bd30f1c05fd31c4a8674e94cf9973340e601f36de19f588619bca3711cad1cedfdbcf57dfb61034742856d98ae49aa48dcf2d9e1255d486b68cf4ab7030c",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 四段",
+		"value": 3
+	},
+	{
+		"md5sums": "efb3782c7b24dfacdc5b4a82e271285c4fd0fd1666452b5b8303657e916c7e2b0b681af46981a7cf2b545b91a342558cdbf68c2913053f4bdd522bb22b603cf4",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 五段",
+		"value": 4
+	},
+	{
+		"md5sums": "b6c15d50d23d26dd6f4ed704bf841ca030da8fb7c26513b4e4ddbe181f9f76f7d47f8fd5e6869fb8145faef6116d4103f07a6de8994eb2da3c042c22a312631f",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 六段",
+		"value": 5
+	},
+	{
+		"md5sums": "edf3b1ea6f50db56f0e60e6424d6be06409598edc02012ea8221a51a0e13653246b4e241f33bd7c6b29747baf35b31ec537cf5dab0dd15f0269883ca9637369a",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 七段",
+		"value": 6
+	},
+	{
+		"md5sums": "76ffc39aeb37f764acaf0438b4d963808849d1b1d585c41169a0bd293df39bc252c1eb44fd0349389922481998467eac8a5764f0870aef1cd76d7cddc0645dc5",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 八段",
+		"value": 7
+	},
+	{
+		"md5sums": "bdfe182cded7b5a9a3621e144b2cc7211aa32cee26bc4bd1015993ba90443b09163abdc453532bf9fffd7274017785cd209cc0bcdf99cc8bc20406d503a3aff6",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 九段",
+		"value": 8
+	},
+	{
+		"md5sums": "1c99cfd2b59be2886912d33a4847c54bcd08172d882815ec050329e414d902b93e95ebbb4a00a339a6c2507afa74e804dde0d1af6661b320ef3b5280e5bd1c7d",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 十段",
+		"value": 9
+	},
+	{
+		"md5sums": "bce5f4227525f6d985080959d7cf8c4530ee162381930f52ade58071c521029852ffc90743c0f229a15898df0408f6fe29f477f2d0010cd070f13ba7e799a731",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 発狂初段",
+		"value": 10
+	},
+	{
+		"md5sums": "04bd108676a4d74c9667f1d46c59877193001c4a476b60aefb397cd47e016ee60679dc2738135b8584327e7440aa604683dfffe6695cad75d18262e58c93803e",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 発狂二段",
+		"value": 11
+	},
+	{
+		"md5sums": "a18f96c14a98ce2290b35e1827f8ade6c02d8d918d8ce038129464211c9889aff05446eb6b77c79ee0d62114005d840bc0fcc9de190b380187921ebd8171d18a",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 発狂三段",
+		"value": 12
+	},
+	{
+		"md5sums": "a663bfa7a84978c1d96b024c7fa2b7dc40aaa9dc5ab54026719370c068ea39bd7345e3f41c6f0918d6dc431fd0be4bf0a27df82d4fcac0d543a397764a4f265c",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 発狂四段",
+		"value": 13
+	},
+	{
+		"md5sums": "3eb02eb1762dfa2cf6f2689ba15977fec4a096ac67f6e8224e9872bd465308f71db8dea9aabbe945ff39e16545f10f09180b0eb62d37b5cc74a3f5937bd9fdda",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 発狂五段",
+		"value": 14
+	},
+	{
+		"md5sums": "7480de49b770f6852898bf8b6ab51cbca6f82198424691c199e5163f49506554b0a883ac48797b392c1dcf096592809c44f2352a791a52d7e584fa063b4d1b24",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 発狂六段",
+		"value": 15
+	},
+	{
+		"md5sums": "322ef08c16f7420069a67fb66301f93f706085fc30e345fb202037e2482e91f7952e1b207987c5941daa66ed4905e5c429b709780e5bafad29dd451b94137bf8",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 発狂七段",
+		"value": 16
+	},
+	{
+		"md5sums": "c8dc214003898e6ace09d3341701fc01438ab055f0d920b181c67687cebf1cd423ad14776bda285fe04640ebdf98e2681e4c60623dbcdec050af73f4260ba029",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 発狂八段",
+		"value": 17
+	},
+	{
+		"md5sums": "4d59b6c9c5e7ca79b899dc450c2a26d630dc841e3829dfb3003c22fbc77d6fc111ea77e96ba9a1a61447cd35ccecdb77876c09843f04168601f52aa4b17522f6",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 発狂九段",
+		"value": 18
+	},
+	{
+		"md5sums": "a40ee9ce409b7b8ad3a6462843c6950a07ea69b9a864dac1a7e0535e28adccbc5eec61334ada9b17e6f9680283e312d86abd5e8d57c981af7484d9fa25c44e51",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 発狂十段",
+		"value": 19
+	},
+	{
+		"md5sums": "ce4b526b809db30a71e9e2be9880f303307012cfa0cdb675d0b1d4021cfd416a400f6ec1dd53fd3b97c82596f313ea56d085ad2a0303878aefbbd571d02e2790",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 発狂皆伝",
+		"value": 20
+	},
+	{
+		"md5sums": "6fe6ad45f4759fe83787b7aa1da94236344270b1434da215f09d837cf282ca5c1337ece34d90ced31890c67bca9106da4d2362fba5a3940ce9c97763bd92a5a2",
+		"playtype": "14K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 DP段位認定 Overjoy",
+		"value": 21
+	},
+	{
+		"md5sums": "ae11930223a8f24e91633f1a7864e1ebcb661ee05c67990012bfd12703ba656c328dbf235f3b6cb2791e71bfb62951f87c6ca04aa14d07b2c081f4dd35432844",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 初段",
+		"value": 0
+	},
+	{
+		"md5sums": "56528c5f77d140bebf5c3b7070471808d3ed28d0958cd17a93635c6a5604d0aadaab2e157ac86ff4374ffff00a129f85a0aac381114f31691c16b864a401d926",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 二段",
+		"value": 1
+	},
+	{
+		"md5sums": "ad6a62789520c5591c37dada7a063892fba939901ecf81d6d0ffe6c605f17676d89ea641d2ae9502d43f6905a5ede5a029ff7e29c35b7d72cb1a7437fc09b36d",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 三段",
+		"value": 2
+	},
+	{
+		"md5sums": "935ac8a2d9a3e2307a6e0206f87c22adb177143ae68115a0702db737a7e7c5048e17f96a8440ff15923bfe228409c9b66dddd7873ce15935d891730e6f17b992",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 四段",
+		"value": 3
+	},
+	{
+		"md5sums": "c3912d126e1af67d32d236397a7510cbdbf71bc8344d4fd406e154e599c5c27c2e962e84f9ceeb87535fe50a382a380ad2f44370fe455dc1fbffd8c5c6505e77",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 五段",
+		"value": 4
+	},
+	{
+		"md5sums": "33c6dd9cfe024f2600c2cfe6ae42df43c72d51c6d648ea7b5863ca3bfe52a66cf2ef13a310d8d500b918c5126e13ccb152650f7ca6b989917f095f0635c71da4",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 六段",
+		"value": 5
+	},
+	{
+		"md5sums": "4d87528933213d3427ee870c71791538761863c63ecfc1a579f87be40632cce1af07aa8958ee69c4b1ba0876adab86eae9d2bc9465b6172c27df0d7da71f10d6",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 七段",
+		"value": 6
+	},
+	{
+		"md5sums": "07193291a7222c7a1d1f542b6c081953cb95efd400d207ab019bb481c508060a86030ae0cb6945ba653176e021fca4fd5dc2ecda7d5a5615ed10a132ac3cd4bd",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 八段",
+		"value": 7
+	},
+	{
+		"md5sums": "18aa482e76edfda904b3cf3d646c59bf07baa34abf34131ee20ab40b703540377f31675fdb02c22e392e5b98de1baec477dd6afb7bfb291774fbdcf5aa0db282",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 九段",
+		"value": 8
+	},
+	{
+		"md5sums": "f14357d72c2c11081fd45dc00aa4cfface73f117ef9c4a3ff40fb8069e1c3dda2356c21a671f059293a24d4cf14f0db25f6f1c5d3fca5edba8edd537d9927c61",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 十段",
+		"value": 9
+	},
+	{
+		"md5sums": "f872dd65dd08638b06d80470a3233fb91b72e8f6439a698e78f94be16470b7892371263af3b0d644fba62526c9f494818a8a6c2f3511eb0876a6c9a2027d7bbe",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 発狂初段",
+		"value": 10
+	},
+	{
+		"md5sums": "d70e2549e841819708d279d2478bb1e25e3711f2f576f3929156c9594b87efaca56ddb2169246817fb7527363fb9c687cefb4735c26f9488438021b4d7fdca31",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 発狂二段",
+		"value": 11
+	},
+	{
+		"md5sums": "19fbf62d711282d81208f97f7135e2a23791d42c00cdfa135df3779eb0f78505b46b23fa8e2ad96e02763f687bb5a494efae90d527a71d753ea7ad2847ec2006",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 発狂三段",
+		"value": 12
+	},
+	{
+		"md5sums": "47de06762f16d164426e3197c5de967ca718de9a2cd2f88deafbd40f5929abb45077cd14b4759d0e8d61e854eac4e88ac87682922d1b87622b34fe7a7ffba52c",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 発狂四段",
+		"value": 13
+	},
+	{
+		"md5sums": "e9fc0fbbde68bfd10f2d289751a1fc6a3a500560e6ace69e08b51736ff1be0ca8a8019d432ab4dd9bde4e65faf1b663f7fd4d1b5a767fd97343129157782a95f",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 発狂五段",
+		"value": 14
+	},
+	{
+		"md5sums": "f96cf3af3d9356407bff483d27f4aecca29f9500cebd16cbb8d14b69ace79db1871c6aed53c5dd3ac35686d9a92af4f440673cc8ea628a9452f6ae9ac74d5817",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 発狂六段",
+		"value": 15
+	},
+	{
+		"md5sums": "a4b59ca055a856b9a200ccfd1bf5c7bca0f48e96286e0ce275a33fd8cb851ff0c4134c29746e1ece168159ba4ae88d4567a76e7d26f3c3ea99fdc6f912f83021",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 発狂七段",
+		"value": 16
+	},
+	{
+		"md5sums": "f0feb9654ae044c0e95ebf68e2497c2e51e0a29d5c7fc9cdf5e5e8eee1ad11241cf2e138abd7199d6e4656447cfaed6c8e0df85dbf59c4753346f1582e2d4422",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 発狂八段",
+		"value": 17
+	},
+	{
+		"md5sums": "603aae2c3681cc2562b9b53b50408c6979dc444b48299814462ff23a2bf3ab79ff5d7235ba643bc85b804a3df2778590451ed38cdba0323388027129f5929645",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 発狂九段",
+		"value": 18
+	},
+	{
+		"md5sums": "d6fea1389a86fc14eb354fcc5e60e03ee58e3f718d089ec37caa0f2c7149a54b1e049d189ef9bef79824f55764517a58fb975909eb0f60a9190c7a1007515d4b",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 発狂十段",
+		"value": 19
+	},
+	{
+		"md5sums": "10420967a85371e65db57967e6c696cdebc5946c3de24a01048d1c90cbd5c9d645446f6c96bdb081a2054b80cd8f720839d0732ef7fee9ad0c8b044ccbe8a396",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 発狂皆伝",
+		"value": 20
+	},
+	{
+		"md5sums": "cfad3baadce9e02c45021963453d7c9477d23be22b2370925c573d922276bce0188a99f74ab71804f2e360dcf484545cc46a81cb184f5a804c119930d6eba748",
+		"playtype": "7K",
+		"set": "genocideDan",
+		"title": "GENOSIDE 2018 段位認定 Overjoy",
+		"value": 21
+	},
+	{
+		"md5sums": "dca02104c7101cd6d00a5853ba72339da037473f6035219037329c12aef663520127fc65b6e0bfee4814bebd403a77f20d11bf38034b09b171101f0e2815521a",
+		"playtype": "7K",
+		"set": "lnDan",
+		"title": "LN段位認定 初段",
+		"value": 0
+	},
+	{
+		"md5sums": "dbdebdc2db0a49900e05ca39ac32f83be2cfa196586410891e4cfc17de9961fb15e3c89d392646c647fd73071db69307144b2e2239364e305e7950e5578b858a",
+		"playtype": "7K",
+		"set": "lnDan",
+		"title": "LN段位認定 二段",
+		"value": 1
+	},
+	{
+		"md5sums": "46ae355e3680cdd2884e4771881538b5b71c2e87f98b4a9c01c384cf0e854403b587486b12f38529d119edd858b73e8abfaa77caae32c4d51326c555bef5cb6a",
+		"playtype": "7K",
+		"set": "lnDan",
+		"title": "LN段位認定 三段",
+		"value": 2
+	},
+	{
+		"md5sums": "652978806b176ef33481bcb3446130bfe1f42fcf977970f4eb462b48619ed76de70e4d6bf89e94e85dbcb234ea31df23d03d7dcaea9b95bfd6134c6bb2ef29ca",
+		"playtype": "7K",
+		"set": "lnDan",
+		"title": "LN段位認定 四段",
+		"value": 3
+	},
+	{
+		"md5sums": "3ad8d78baa4fdf5edd91924785a7d6cc20090008a5d50566f34f01363e28595d57b5fd7b487d0f5be4c2f79d360d1a63632a7db28f7d7b3f077b256c1d62fa39",
+		"playtype": "7K",
+		"set": "lnDan",
+		"title": "LN段位認定 五段",
+		"value": 4
+	},
+	{
+		"md5sums": "73439b00d535412947aa74d67aaf35b5a22cb279ce7f795411088b27b2734a219e882adb779d29f1e20d9fce885c598ab5ed1381386d6de7af0a8b1b854f5c04",
+		"playtype": "7K",
+		"set": "lnDan",
+		"title": "LN段位認定 六段",
+		"value": 5
+	},
+	{
+		"md5sums": "066eed095b7a6dd2a91a4284839913d97bfb838b6c55da4bb5148405193f200fb9ffe5ed468b4bb8f48a9b66c4454e49224f02343f10f0d5c8aefe2efd24f934",
+		"playtype": "7K",
+		"set": "lnDan",
+		"title": "LN段位認定 七段",
+		"value": 6
+	},
+	{
+		"md5sums": "ef74578215fefb8d60e43a68bec581681b9c813b7d3f76728691d96ccdc2b21f45d9360b9d535ee5462511f643a052cfa8efbdc00c0319febb7032bceb021b8c",
+		"playtype": "7K",
+		"set": "lnDan",
+		"title": "LN段位認定 八段",
+		"value": 7
+	},
+	{
+		"md5sums": "0fd3a31cdb1a745e049d78b94656d46c63a528d3f67fe3a138f2dd3f2d7a9639029dfba1b2ec18937fac78256a866efe547bb7f01e814330f35d7d6f63209838",
+		"playtype": "7K",
+		"set": "lnDan",
+		"title": "LN段位認定 九段",
+		"value": 8
+	},
+	{
+		"md5sums": "f0d9c290e30de61defd29fafb2e346bf0cc8abd2a1d29fac01876bae6b5197296142fc4473735b3be1604adcf3de1ac7daa8054030ebc0cdac82795117777ea7",
+		"playtype": "7K",
+		"set": "lnDan",
+		"title": "LN段位認定 十段",
+		"value": 9
+	},
+	{
+		"md5sums": "c9d94a5387ded1454d27c2d7049b76a7302d04a4d66dbcedd9ef617c19eeb595cee68c43c6effd2f7bca54521b99d4fa1b92d4d96ed2bcca18179323ac90bb0b",
+		"playtype": "7K",
+		"set": "lnDan",
+		"title": "LN段位認定 皆伝",
+		"value": 10
+	},
+	{
+		"md5sums": "2c0e44825ffb611caf472816f078b0dc84bc096c876667e905e72ecd73652d087e942336a88d8f67784b1d31376051f5e85bb7112caee8c9b9dd54f34c9cdd90",
+		"playtype": "7K",
+		"set": "lnDan",
+		"title": "LN段位認定 Overjoy",
+		"value": 11
+	},
+	{
+		"md5sums": "f5695a4a39887bc2970c19c884ca9bfbb7c14bec0632e1b3ad11764fd0281dd48a4dcc16636a91f3240abe813dcb68e2e75f513c5485e9f6599071b208771606",
+		"playtype": "7K",
+		"set": "lnDan",
+		"title": "LN段位認定 うどん",
+		"value": 12
+	},
+	{
+		"md5sums": "3d3d5255905b468abe944bd17699e1f2d49d1a220c1be93ac3dda1ed24c11728872727c4dc8116897bfd2316dd8a0389aa47eec9e2483891f85f116ad5bc481e",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 七級",
+		"value": 0
+	},
+	{
+		"md5sums": "f496ca4b6bb0d3364ea591bb2ca5e6e545b4dc4124e2837d5ec87934903479ade7060267ec5bc4bf7064483f17f84bf90885845f9067ef127cafe48a8fc7bd1b",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 六級",
+		"value": 1
+	},
+	{
+		"md5sums": "de11613763c1aa998b9d85e2f63b64b221ad5555b6e9aebbc7ad95ebbab1a611820004612007ca3f3b5dd17aa1f1712da69ef5923ed5a8b1b30b5df32de26f13",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 五級",
+		"value": 2
+	},
+	{
+		"md5sums": "81ab1dddee58699c52e474d1962f5fc645400e292f7e1f35f5c66eefdb0fd19da81096c5160f406c9cec45b094e8c6d7af248c48b7ecd1931bed175b4c80c755",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 四級",
+		"value": 3
+	},
+	{
+		"md5sums": "c27648e170f545877eadacf6427e7324cc2f28a9ebf06e9328b4f853674010129b1aad42e6faf6882bfd1361dd77a94c87da3e5636873ef817391cf0e3e0a6c5",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 三級",
+		"value": 4
+	},
+	{
+		"md5sums": "f75e2b23fd6cc6dc82b1f5ea28afc11c94a4e9aeb457b5c8c714d14b2a618f9b5cb08ee8f6a44e56f274897765ea89a136734a52f3e052a4bc0f744c4e282952",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 二級",
+		"value": 5
+	},
+	{
+		"md5sums": "2c1fd9cd9912db67f15785ad86ee43e1fb4de222e2abea567651a3e2e1ae3ce12290a0f15dd0387806b03417338fa74141b6863d6b6d218c335d0d8ea62f1033",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 一級",
+		"value": 6
+	},
+	{
+		"md5sums": "e4ce0e7b32dcf2be5cbab112da3edf75714461caefdead80e1222335a1f62db3da501cc53023d990f9cb1566fdfa8c1552c60cf7e8bbb32ed46e9e199546b510",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 初段",
+		"value": 7
+	},
+	{
+		"md5sums": "f946889a19787e7e9d405dc17d3e1c1ff390abb6b59b72bba9c7dba752cabc12eebd547affb449235039090819de4e0f289de1af0f13830112203eb76410a4d6",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 二段",
+		"value": 8
+	},
+	{
+		"md5sums": "d604130c9a409cde9827500d8534b9672e4fbaa3f9968ca6cd5239049520ad1bd11d6bcf5d208fedb19843f3d0cfc02bed40d68d31873d52dd87cd1cf7896113",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 三段",
+		"value": 9
+	},
+	{
+		"md5sums": "a16d63ac359d357f1ad0feb85ff0b89f937b20699bb0df1b236c2fb77c95587f68dd0f1a8f598f1496936c2c744464676ac4a7d3a047e307ce12272d4f6a7751",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 四段",
+		"value": 10
+	},
+	{
+		"md5sums": "38489aa89b243feecb0b007f4dfa1c69d312e5f3b5a3f1211b96f764a0e3ac91cda3343fd00d31998b74fe74f664b941ed4068be79d17221c1ee74fe44fbd1fe",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 五段",
+		"value": 11
+	},
+	{
+		"md5sums": "888333edc187e10c3052421f9e8fd103d047727ac1e04f53c2611a7383123403b3125dad9faddd06386110933be5314311ca0610aeb3b564ea77d95959ac6888",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 六段",
+		"value": 12
+	},
+	{
+		"md5sums": "56dbebc0002f45164112679266a088956bd2f03d509e62e20a3d301771b0de88766ca3606583ca51ee87a97389a8700a78a9cdaf70047109cd4681fce9f1e1fc",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 七段",
+		"value": 13
+	},
+	{
+		"md5sums": "d05a25b1cca3f83ad10894f89303012df346c17c76b5a5b3457d33cc462a992593059fe84d521fb5885122f82e384ddd189b677f1d3c310243d4586388e21497",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 八段",
+		"value": 14
+	},
+	{
+		"md5sums": "169dc9f915a9e43b8488a20e2fb6df510dac32ca8ba27e6f66146e1054e43674336b6155717ce1841028482f6470d4df180d8babdfd3ef6f0066d27ab09b92b3",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 九段",
+		"value": 15
+	},
+	{
+		"md5sums": "e2d6ef694fcf6caffd6d436e8fd4a38cf818fb0fbf819b395877ea7566eda5ac41418f90b426431c94754098e74e2c0ace2f0b5d9752ece78bef80c2506bf871",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 十段",
+		"value": 16
+	},
+	{
+		"md5sums": "89b6c441fd021c872c63453c3041d7a91a89ba0ab527113fc3d00d63870a69a47a80295d155c62c11858d0d586d20f3bf11050396cb3fd3156d4804edeece18a",
+		"playtype": "7K",
+		"set": "scratchDan",
+		"title": "皿段位認定2 皆伝",
+		"value": 17
+	},
+	{
+		"md5sums": "9ee5524e4ed8a3e7033b4de1fedc35fd9498378a847b94b949d11a566a86d3c04023045d9134dfc47e953bc430e5ef07bb5d0716c18b37f9687bbcea17fc646c",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Satellite Skill Analyzer 2nd sl0",
+		"value": 0
+	},
+	{
+		"md5sums": "ddb2c34e1543c219c4b251b13671be1fd2d922aa6bcaeed61087d434b330c30e02af89d2c76d4494b6561ee2c94b15cda0f64c8af8621f4fdce97e24193a76cb",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Satellite Skill Analyzer 2nd sl1",
+		"value": 1
+	},
+	{
+		"md5sums": "e5f4a30db9a9bd1ebab13d97b37fca75fffcdd50280873a3a6a8efb584b5454bbb51e06228e7279b47120b9a5c527421dc5d89d22642fe863b5ec6ec83b3eada",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Satellite Skill Analyzer 2nd sl2",
+		"value": 2
+	},
+	{
+		"md5sums": "de4b2ccfd35befc3aa9fd746343115c18eb958b06d294ec88dc0620ce43e10b36334415043e69d0eb5afc18da3aab1a4e85c07e4aa2601ea97d90d7157a89894",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Satellite Skill Analyzer 2nd sl3",
+		"value": 3
+	},
+	{
+		"md5sums": "d72477a3cbf5f2c096039a4685b4929f1804c40d5ed2092fea58ad5b7e98e8821cc3ef8d8b7dec5515d7168e5e03cfa7d5414294b120d5f2dbfec4eb6cd59f38",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Satellite Skill Analyzer 2nd sl4",
+		"value": 4
+	},
+	{
+		"md5sums": "b6f2c8d798b81f67a14ce05c50cb3b0785ff41c5e0d78d19d06507dbb16ba72f21b4c6161aa75946b0692ed375010f68164efb64a46f8bd10b83c00b9436f5f8",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Satellite Skill Analyzer 2nd sl5",
+		"value": 5
+	},
+	{
+		"md5sums": "fe2fbfefcdf57b56bb6aaa89d6ee11ccc565d6dbf6346e6a28277742ecd9d60c7d8b3dcd63e6adea25807ab25ea1544c438fa3931fcbb5b71c27b6587c5034c3",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Satellite Skill Analyzer 2nd sl6",
+		"value": 6
+	},
+	{
+		"md5sums": "649ee01d75eae442f8c1122ca35c70f0e6e9e37764eb800b5417d43824c92717c778712db728ca7e88b9ba3cf1836479489ddffa0c8d458530d93da6b0354cae",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Satellite Skill Analyzer 2nd sl7",
+		"value": 7
+	},
+	{
+		"md5sums": "b7148c7e0a7a5fd58232c85f3b4b86924ca647a61e781803b2d7bf54f0d582c21bc969cfd715e1bea67839599035c94e225552f7a4a30610e0ff28671ca7230f",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Satellite Skill Analyzer 2nd sl8",
+		"value": 8
+	},
+	{
+		"md5sums": "116b85b4c01a2cd2cc76ac9e4572e3fed7f000e155172ab880f7be09769124cbcf7c4f006cd571da3b83e355bc64f3141bc98542eaf7f0cccfb4026bb3c25f49",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Satellite Skill Analyzer 2nd sl9",
+		"value": 9
+	},
+	{
+		"md5sums": "fd76b7d207db6c3942bfac0af6fac8db24c869a51384af113e9271a766e7d4be1fdd8463a1bc45db75e803f33708ab8e8b3c66f945d041b5df53ba3e292e5c54",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Satellite Skill Analyzer 2nd sl10",
+		"value": 10
+	},
+	{
+		"md5sums": "cc1c4f40886d7ea1d32f867fb9ea2e205ef59b86b228978d435115aa7a9e564a4f86c4d20af4d619f9fbe693db0c0d30be15c9f54f0a0cd0e5c1737415dc7182",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Satellite Skill Analyzer 2nd sl11",
+		"value": 11
+	},
+	{
+		"md5sums": "1eeb095a41e3db3addbacf2483c80a3a6a3762ad91ec89392dda8554360f66c184f24615319041873d799faf257d86bf4648b0a5679acf21bc8102ac95e50585",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Satellite Skill Analyzer 2nd sl12",
+		"value": 12
+	},
+	{
+		"md5sums": "8ee7fc1c67826e7437e07b5e1f92d601ece21e503c88708c4ac0d99b19aa30a11f7bf846bd8b68b2ad8edc28df1c0b345ed1e7aab6eee4e30731365e0e4a601e",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Stella Skill Simulator 3rd st0",
+		"value": 13
+	},
+	{
+		"md5sums": "fc269db1ba717f4f49398edad3f941c4d986fb99cf1e76fd2ff9cd19c035de1ec1bfd068faea54084166dfe126cd02a6481f353fa2626391130030ee623f3a7b",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Stella Skill Simulator 3rd st1",
+		"value": 14
+	},
+	{
+		"md5sums": "e327309eb3aaf0257b4bb8515059946bd3ececb1cdbe03562229610960d132d62fc9c12eeee75532bc464431efc381fc7ccfccdea1b8d4c3dc7691a55649ec15",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Stella Skill Simulator 3rd st2",
+		"value": 15
+	},
+	{
+		"md5sums": "22810fc9f30021c430f59374cf2ffeb0a2284b403d90fdf8c055dab688838079a453ecdda9bf2161f38aa69dd5493ed9fa8ef27697bd34adccb3862ac0a99d69",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Stella Skill Simulator 3rd st3",
+		"value": 16
+	},
+	{
+		"md5sums": "2b5c45cbbe5ce2539c8548d5d523e11f530bb8a64ae5718c7485b28a8a9307792a7771401fc0fdae9419bd2c42473ee104e3d569f934712e5511ddd69983d49c",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Stella Skill Simulator 3rd st4",
+		"value": 17
+	},
+	{
+		"md5sums": "e08c45e9f6e4af3851455201bee6e202d97a2a85dca765f958ac7e90247e29857722f93ce5a0358e080a3e1d24308981ea8b4f1cfa41e2d00fe1a4f0f650926c",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Stella Skill Simulator 3rd st5",
+		"value": 18
+	},
+	{
+		"md5sums": "bda605e76d263c8fd5d62ab4c5dfc3e1dc10488184abbc35bbf234596cbea83f26790f4cd7ffda85c52b63e5ed24da4f9ac398d3e963c9338d3d0c8005bd097b",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Stella Skill Simulator 3rd st6",
+		"value": 19
+	},
+	{
+		"md5sums": "38503c10766176c398e7ffbccfd4b6af4892ab3dc15868eabba8e1c704e78fcb5387b0479ac825cd34be52fec90e3b3154d4facf3ab605c7b5c61177a75ae223",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Stella Skill Simulator 3rd st7",
+		"value": 20
+	},
+	{
+		"md5sums": "655052be72cdca0efda4c89041c056e33b8d7312e10cd4f371bd05c7cc4b00bffdb9d7d8eaca594231dda88b539253cbefc800022aa4b92e1fdb934e829094d8",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Stella Skill Simulator 3rd st8",
+		"value": 21
+	},
+	{
+		"md5sums": "cc132d5c5c8376fb945dbd40601493ef50c63da030f327e60dc038d68e29c4c93a5425bf57c708ffaebcfcd06b8e3784f2bccc36e42020af5762969e0f2a0332",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Stella Skill Simulator 3rd st9",
+		"value": 22
+	},
+	{
+		"md5sums": "24a1ac98307d14fc9094985849120d41795a49f0f1af941dba965d946ca31c6fbfe3c76fb81102273929e641233b7eeb8ac162c2b87608bda93d38c2946da62a",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Stella Skill Simulator 3rd st10",
+		"value": 23
+	},
+	{
+		"md5sums": "22f71b0463955fcedb84eca9d09e60ca2c61b055ab4a80c60786f705d168de4545b1bff2a54e2cb1bab20449c5a7c7f317feecd94600b5eb6e6c30e90cc48353",
+		"playtype": "7K",
+		"set": "stslDan",
+		"title": "Stella Skill Simulator 3rd st11",
+		"value": 24
+	}
+]

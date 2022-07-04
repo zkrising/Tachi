@@ -1,7 +1,3 @@
-// NOT A REAL TSCONFIG FILE
-// THIS IS USED FOR VSCODE SO IT INTEGRATES NICELY
-// IF YOU USE THIS TO BUILD, IT WILL ALSO BUILD THE TEST FILES!!
-// SO, DONT DO THAT, USE TSCONFIG.BUILD.JSON FOR THE BUILD.
 {
 	"compilerOptions": {
 		"target": "ES2020",
@@ -16,6 +12,8 @@
 		"sourceMap": true,
 		"outDir": "./js",
 		"baseUrl": "src",
+		// USE TS-NODE!
+		"noEmit": true,
 		"typeRoots": [
 			"@types",
 			"node_modules/@types"

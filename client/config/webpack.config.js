@@ -24,6 +24,7 @@ const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
 const ForkTsCheckerWebpackPlugin = require("react-dev-utils/ForkTsCheckerWebpackPlugin");
 const typescriptFormatter = require("react-dev-utils/typescriptFormatter");
 const eslint = require("eslint");
+const TSconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 const postcssNormalize = require("postcss-normalize");
 
@@ -343,9 +344,10 @@ module.exports = function (webpackEnv) {
 					"react-dom$": "react-dom/profiling",
 					"scheduler/tracing": "scheduler/tracing-profiling",
 				}),
-				...(modules.webpackAliases || {}),
+				...(modules.webpackAliases || {})
 			},
 			plugins: [
+				new TSconfigPathsPlugin(),
 				// Adds support for installing with Plug'n'Play, leading to faster installs and adding
 				// guards against forgotten dependencies and such.
 				PnpWebpackPlugin,
@@ -354,7 +356,7 @@ module.exports = function (webpackEnv) {
 				// To fix this, we prevent you from importing files out of src/ -- if you'd like to,
 				// please link the files into your node_modules/ and let module-resolution kick in.
 				// Make sure your source files are compiled, as they will not be processed in any way.
-				new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
+				// new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
 			],
 		},
 		resolveLoader: {
@@ -409,7 +411,8 @@ module.exports = function (webpackEnv) {
 						// The preset includes JSX, Flow, TypeScript, and some ESnext features.
 						{
 							test: /\.(js|mjs|jsx|ts|tsx)$/,
-							include: paths.appSrc,
+							// include: [paths.appSrc, ,
+							exclude: /node_modules/,
 							loader: require.resolve("esbuild-loader"),
 							options: {
 								sourcemap: false,

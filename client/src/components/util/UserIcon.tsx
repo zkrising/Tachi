@@ -1,7 +1,7 @@
 import ProfilePicture from "components/user/ProfilePicture";
 import React from "react";
 import { Link } from "react-router-dom";
-import { PublicUserDocument } from "tachi-common/js/types";
+import { PublicUserDocument } from "tachi-common";
 import { JustChildren, GamePT } from "types/react";
 
 export default function UserIcon({

@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"module": "CommonJS",
+		"noImplicitAny": true,
+		"strict": true,
+		"target": "ES2020",
+		"types": [
+			"node",
+			"jest"
+		],
+		"outDir": "js/",
+		"esModuleInterop": true, // lets us use module.exports stuff as if they were ES6 modules.
+	},
+	"include": [
+		"src/**/*"
+	],
+	"exclude": [
+		"node_modules",
+		"**/*.spec.ts"
+	]
+}

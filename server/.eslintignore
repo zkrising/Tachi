@@ -1,0 +1,7 @@
+# Things we don't want ESLint to lint. This is just compiled output
+# and other people's code.
+# Note that an editor or eslint implementation not honouring this file
+# may cause crashes, as it will try and lint a couple million lines of JS.
+
+node_modules
+js

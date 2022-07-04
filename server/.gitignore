@@ -1,0 +1,39 @@
+# General node stuffs
+node_modules
+js
+logs
+.pnpm-debug.log
+
+# Test stuffs
+.nyc_output
+coverage
+.env
+.setup_env
+failed-tests.txt
+
+# Config files
+conf.json5
+*.conf.json5
+
+# HTTPS local certs
+cert
+
+# Error Files
+scripts/validate-database-errs/*
+
+# IDE Specific files
+.vscode
+.idea
+
+# Inline CDN
+local-cdn
+test-cdn
+
+# Weird Redis Dumps
+*.rdb
+
+scripts/quick-insert/insert.ts
+scripts/bpi-poyashi-data/output.json
+
+scripts/sync-database/tachi-database-seeds
+scripts/arc-sync/cache.json

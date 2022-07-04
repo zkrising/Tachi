@@ -1,0 +1,19 @@
+[
+	{
+		"rgcID": null,
+		"chartID": "192b96bdb6150f80ba6412ce02df1249e16c0cb0",
+		"difficulty": "BASIC",
+		"songID": 3,
+		"playtype": "Single",
+		"levelNum": 3,
+		"level": "3",
+		"data": {
+			"inGameID": 3
+		},
+		"tierlistInfo": {},
+		"isPrimary": true,
+		"versions": [
+			"paradiselost"
+		]
+	}
+]

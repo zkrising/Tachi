@@ -1,0 +1,15 @@
+files: "src/test-utils/single-process-tap.ts"
+test-env: [NODE_ENV=test, TCHIS_CONF_LOCATION=test.conf.json5]
+# On a local machine, these tests run in under 2-3 minutes.
+# On github actions, these tests can take an inordinate amount of time.
+# The timeout is set to 16 minutes, which is ridiculous.
+# Doesn't matter for real machines.
+timeout: 960
+ts: true
+before: "./src/test-utils/hack-setup.js"
+check-coverage: true
+branches: 60
+functions: 80
+lines: 80
+statements: 80
+reporter: terse

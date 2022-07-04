@@ -1,0 +1,20 @@
+[
+	{
+		"userID": 1,
+		"game": "iidx",
+		"playtype": "SP",
+		"preferences": {
+			"preferredScoreAlg": null,
+			"preferredSessionAlg": null,
+			"preferredProfileAlg": null,
+			"scoreBucket": null,
+			"defaultTable": null,
+			"stats": [],
+			"gameSpecific": {
+				"display2DXTra": false,
+				"bpiTarget": 0
+			}
+		},
+		"rivals": []
+	}
+]

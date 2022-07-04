@@ -1,0 +1,42 @@
+// This is a base TSConfig for nice integration with IDEs such as VSCode.
+// By default, VSCode reads `tsconfig.json` to know what it should typecheck
+// in the editor. Since we want it to typecheck things like our tests, but
+// we want to save disk space by not compiling them at runtime, we need two
+// tsconfigs!
+{
+	"compilerOptions": {
+		"target": "ES2020",
+		"module": "CommonJS",
+		"lib": [
+			"ES2019",
+			// This is necessary because -- for some unknown reason -- the AWS SDK
+			// depends on the DOM. Do people even run the AWS SDK in the browser?
+			// I hope not.
+			"DOM"
+		],
+		"declaration": true,
+		"strict": true,
+		"allowJs": false,
+		"esModuleInterop": true,
+		"sourceMap": true,
+		"outDir": "./js",
+		"baseUrl": "src",
+		"noUncheckedIndexedAccess": true,
+		"typeRoots": [
+			"@types",
+			"node_modules/@types",
+		]
+	},
+	"ts-node": {
+		"require": [
+			"tsconfig-paths/register"
+		]
+	},
+	"include": [
+		"src/**/*.ts",
+		"src/lib/jobs/inline-job-runner"
+	],
+	"exclude": [
+		"node_modules"
+	]
+}

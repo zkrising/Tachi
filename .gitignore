@@ -1,0 +1,37 @@
+node_modules
+
+# ide stuffs
+.idea
+.vscode
+.vs
+
+# PNPM noise
+.pnpm-debug.log
+
+# Compiled output
+js
+
+# Ignore all .env's apart from example.env
+.env
+*.env
+!example.env
+
+# Ignore all conf.json5's apart from example.conf.json5
+conf.json5
+*.conf.json5
+!example.conf.json5
+
+# Redis dumps these files into PWD if it exits unexpectedly
+*.rdb
+
+# Don't want to check in logs
+logs
+
+# Anything about BFG stuff we shredded
+...bfg-report
+
+# Test coverages
+.nyc_output
+coverage
+out.*
+failed-tests.log

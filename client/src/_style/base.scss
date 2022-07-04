@@ -1,0 +1,65 @@
+.example-highlight > pre {
+	background: none transparent !important;
+	margin: 0 !important;
+	padding-top: 0.5rem;
+	code {
+		overflow-y: auto;
+		display: block;
+
+		span {
+			background: none transparent !important;
+		}
+	}
+}
+
+.json > pre {
+	background: none #fff !important;
+}
+
+.example-code > .json {
+	background: none #fff !important;
+}
+
+.symbol.symbol-45 > svg {
+	width: 100%;
+	max-width: 45px;
+	height: 45px;
+}
+
+.react-bootstrap-table {
+	overflow-x: auto;
+}
+
+.react-bootstrap-table {
+	th {
+		outline: none;
+
+		&.sortable {
+			.svg-icon-sort {
+				opacity: 0;
+			}
+
+			&:hover {
+				cursor: pointer;
+
+				.svg-icon-sort {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	.table.table-head-custom thead tr {
+		.sortable-active {
+			color: #6993ff !important;
+		}
+	}
+}
+
+.cursor-default {
+	cursor: default !important;
+}
+
+.display-block {
+	display: block;
+}

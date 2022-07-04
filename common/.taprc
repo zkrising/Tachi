@@ -1,0 +1,10 @@
+files: "src/**/*.test.ts"
+test-env: NODE_ENV=test
+timeout: 120 # might need to be increased
+ts: true
+check-coverage: true
+branches: 80
+functions: 80
+lines: 80
+statements: 80
+reporter: terse

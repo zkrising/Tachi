@@ -1,6 +1,6 @@
 files: "src/**/*.test.ts"
 test-env: NODE_ENV=test
-timeout: 120 # might need to be increased
+timeout: 120
 ts: true
 check-coverage: true
 branches: 80

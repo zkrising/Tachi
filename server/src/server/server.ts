@@ -52,6 +52,8 @@ const userSessionMiddleware = expressSession({
 
 const app: Express = express();
 
+
+
 if (Environment.nodeEnv !== "production" && IsNonEmptyString(ServerConfig.CLIENT_DEV_SERVER)) {
 	logger.warn(`Enabling CORS requests from ${ServerConfig.CLIENT_DEV_SERVER}.`, {
 		bootInfo: true,
@@ -82,6 +84,15 @@ if (Environment.nodeEnv !== "production" && IsNonEmptyString(ServerConfig.CLIENT
 		app.options("*", (req, res) => res.send());
 	}
 } else {
+	app.use((req, res, next) => {
+		res.header("Access-Control-Allow-Origin", "*");
+		res.header("Access-Control-Allow-Credentials", "false");
+		res.header("Access-Control-Allow-Methods", "GET");
+		next();
+	});
+
+	app.options("*", (req, res) => res.send());
+
 	if (Environment.nodeEnv !== "test") {
 		logger.info("Enabling Helmet, as no CLIENT_DEV_SERVER was set, or we are in production.", {
 			bootInfo: true,

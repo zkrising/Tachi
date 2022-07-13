@@ -33,15 +33,6 @@ export function Footer() {
 				<div className="container d-flex flex-column flex-md-row align-items-center justify-content-between">
 					<div className="order-2 order-md-1">
 						{/* is there a better way to do this? mt-md-3 is the intent */}
-						<div className="d-block d-lg-none mt-3"></div>
-						Client:{" "}
-						<ExternalLink
-							href="https://en.wikipedia.org/wiki/Disintegration_(The_Cure_album)"
-							className="gentle-link"
-						>
-							{FORMATTED_VERSION}
-						</ExternalLink>
-						, Server:{" "}
 						<ExternalLink
 							href="https://en.wikipedia.org/wiki/Dummy_(album)"
 							className="gentle-link"

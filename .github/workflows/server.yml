@@ -2,13 +2,15 @@ name: Server Test, Build, & Deploy
 
 on:
   push:
-    branches: [master, develop]
+    branches: [staging]
     paths:
       - "server/**"
+      - "common/**"
   pull_request:
-    branches: [master, develop]
+    branches: [staging]
     paths:
       - "server/**"
+      - "common/**"
   workflow_dispatch:
 
 jobs:
@@ -81,11 +83,11 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Develop tag
-        if: github.ref == 'refs/heads/develop'
+        if: github.ref == 'refs/heads/staging'
         run: echo "BRANCH_TAG=develop" >> $GITHUB_ENV
 
       - name: Stable tag
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/notrealnotreal"
         run: echo "BRANCH_TAG=stable" >> $GITHUB_ENV
 
       - name: Version tag
@@ -114,7 +116,7 @@ jobs:
     if: github.event_name == 'push'
     steps:
       - name: Deploy to staging
-        if: github.ref == 'refs/heads/develop'
+        if: github.ref == 'refs/heads/staging'
         uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
         with:
           host: ${{ secrets.TACHI_HOST }}
@@ -123,7 +125,7 @@ jobs:
           script: tachi-server-deploy -s
 
       - name: Deploy to live
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/notrealnotreal'
         uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
         with:
           host: ${{ secrets.TACHI_HOST }}

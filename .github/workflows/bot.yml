@@ -5,6 +5,7 @@ on:
     branches: [master]
     paths:
       - "bot/**"
+      - "common/**"
   workflow_dispatch:
   
 jobs:

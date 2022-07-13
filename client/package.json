@@ -95,6 +95,7 @@
 		"@types/react-router": "5.1.15",
 		"@types/react-router-dom": "5.1.7",
 		"@types/react-table": "7.7.2",
+		"@types/history": "4.7.11",
 		"copyfiles": "2.1.1",
 		"esbuild-loader": "2.13.1",
 		"eslint-plugin-react": "7.14.3",

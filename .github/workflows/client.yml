@@ -2,9 +2,10 @@ name: deploy
 
 on:
   push:
-    branches: [master, develop]
+    branches: [staging]
     paths:
       - "client/**"
+      - "common/**"
   workflow_dispatch:
     
 jobs:
@@ -12,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to staging
-        if: github.ref == 'refs/heads/develop'
+        if: github.ref == 'refs/heads/staging'
         uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
         with:
           host: ${{ secrets.TACHI_HOST }}
@@ -21,7 +22,7 @@ jobs:
           script: tachi-client-deploy -s
         
       - name: Deploy to live
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/notrealnotreal'
         uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
         with:
           host: ${{ secrets.TACHI_HOST }}

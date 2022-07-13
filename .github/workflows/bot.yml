@@ -2,7 +2,8 @@ name: Bot Build & Push
 
 on:
   push:
-    branches: [master]
+    branches: 
+      - "release/*"
     paths:
       - "bot/**"
       - "common/**"

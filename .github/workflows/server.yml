@@ -91,7 +91,7 @@ jobs:
         run: echo "BRANCH_TAG=develop" >> $GITHUB_ENV
 
       - name: Stable tag
-        if: startsWith(github.ref, "refs/heads/release")
+        if: startsWith(github.ref, 'refs/heads/release')
         run: echo "BRANCH_TAG=stable" >> $GITHUB_ENV
 
       - name: Version tag
@@ -129,7 +129,7 @@ jobs:
           script: tachi-server-deploy -s
 
       - name: Deploy to live
-        if: startsWith(github.ref, "refs/heads/release")
+        if: startsWith(github.ref, 'refs/heads/release')
         uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
         with:
           host: ${{ secrets.TACHI_HOST }}

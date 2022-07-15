@@ -4,6 +4,6 @@ packages:
   - "client/**"
   - "common/**"
   - "bot/**"
-  # - "database-seeds/**"
+  - "database-seeds/**"
   - "server/**"
   - "sieglinde/**"

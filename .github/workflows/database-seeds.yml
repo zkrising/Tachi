@@ -51,7 +51,7 @@ jobs:
     if: github.event_name == 'push'
     defaults:
       run:
-        working-directory: ./scripts
+        working-directory: ./database-seeds/scripts
     steps:
       - name: Sync Staging Database
         if: github.ref == 'refs/heads/staging'

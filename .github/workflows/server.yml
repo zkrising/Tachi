@@ -2,14 +2,14 @@ name: Server Test, Build, & Deploy
 
 on:
   push:
-    branches: 
+    branches:
       - "staging"
       - "release/*"
     paths:
       - "server/**"
       - "common/**"
   pull_request:
-    branches: 
+    branches:
       - "staging"
       - "release/*"
     paths:
@@ -46,9 +46,6 @@ jobs:
         # configure external dbs
       - uses: supercharge/mongodb-github-action@1.4.1
       - uses: supercharge/redis-github-action@1.1.0
-
-      - name: Move Config File
-        run: mv ./.github/test.conf.json5 ./test.conf.json5
 
       - name: Run Tests
         run: pnpm test

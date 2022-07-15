@@ -6,10 +6,6 @@
 	"scripts": {
 		"test": "./run-tests.sh"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/TeamNewGuys/tachi-database-seeds.git"
-	},
 	"keywords": [
 		"Kamaitachi",
 		"Bokutachi",
@@ -18,10 +14,6 @@
 	],
 	"author": "zkldi",
 	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/TeamNewGuys/tachi-database-seeds/issues"
-	},
-	"homepage": "https://github.com/TeamNewGuys/tachi-database-seeds#readme",
 	"dependencies": {
 		"@types/lodash.get": "^4.4.7",
 		"better-sqlite3": "^7.5.0",

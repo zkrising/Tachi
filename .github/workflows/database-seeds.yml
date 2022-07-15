@@ -20,6 +20,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./scripts
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -35,11 +38,9 @@ jobs:
           version: 6.0.2
 
       - name: Install Dependencies
-        working-directory: ./scripts
         run: pnpm i
 
       - name: Run Tests
-        working-directory: ./scripts
         run: pnpm test
         env:
           NODE_ENV: "test"
@@ -48,6 +49,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test]
     if: github.event_name == 'push'
+    defaults:
+      run:
+        working-directory: ./scripts
     steps:
       - name: Sync Staging Database
         if: github.ref == 'refs/heads/staging'

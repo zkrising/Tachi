@@ -17,7 +17,7 @@
 	},
 	"homepage": "https://github.com/TNG-dev/Tachi#readme",
 	"devDependencies": {
-		"@types/node": "17.0.8",
+		"@types/node": "16.11.7",
 		"@types/tap": "15.0.3",
 		"eslint": "8.18.0",
 		"eslint-plugin-cadence": "0.0.4",
@@ -30,6 +30,14 @@
 	},
 	"peerDependencies": {
 		"@types/mongodb": "3.6.18",
-		"@types/bson": "1.0.11"
+		"@types/bson": "1.0.11",
+		"@types/node": "16.11.7"
+	},
+	"pnpm": {
+		"overrides": {
+			"@types/mongodb": "3.6.18",
+			"@types/bson": "1.0.11",
+			"@types/node": "16.11.7"
+		}
 	}
 }

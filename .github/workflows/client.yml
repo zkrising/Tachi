@@ -1,15 +1,15 @@
-name: Client Deploy
+name: Client CI/CD
 
 on:
   push:
-    branches: 
+    branches:
       - "staging"
       - "release/*"
     paths:
       - "client/**"
       - "common/**"
   workflow_dispatch:
-    
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -22,7 +22,7 @@ jobs:
           username: tachi
           key: ${{ secrets.TACHI_KEY }}
           script: tachi-client-deploy -s
-        
+
       - name: Deploy to live
         if: startsWith(github.ref, 'refs/heads/release')
         uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8

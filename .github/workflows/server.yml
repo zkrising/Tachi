@@ -1,4 +1,4 @@
-name: Server Test, Build, & Deploy
+name: Server CI/CD
 
 on:
   push:

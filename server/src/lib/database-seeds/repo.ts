@@ -5,6 +5,7 @@ import fs from "fs/promises";
 import os from "os";
 import path from "path";
 import type { Game } from "tachi-common";
+import { VERSION_INFO } from "lib/constants/version";
 
 const logger = CreateLogCtx(__filename);
 
@@ -187,9 +188,14 @@ export async function PullDatabaseSeeds() {
 		// stdout is for errors.
 		// there were expletives below this comment, but I have removed them.
 		const { stdout } = await asyncExec(
-			`git clone "${ServerConfig.SEEDS_CONFIG.REPO_URL}" -b "${
-				Environment.nodeEnv === "production" ? "production" : "develop"
-			}" --depth=1 '${seedsDir}'`
+			`git clone --sparse --depth=1 "${ServerConfig.SEEDS_CONFIG.REPO_URL}" -b "${
+				Environment.nodeEnv === "production" ? `release/${VERSION_INFO.major}.${VERSION_INFO.minor}` : "staging"
+			}" '${seedsDir}';
+			
+			
+			cd '${seedsDir}';
+			git sparse-checkout add database-seeds`
+			// ^ now that we're in a monorepo, we only want the seeds.
 		);
 
 		// isn't that confusing
@@ -197,7 +203,7 @@ export async function PullDatabaseSeeds() {
 			logger.error(stdout);
 		}
 
-		return new DatabaseSeedsRepo(seedsDir);
+		return new DatabaseSeedsRepo(`${seedsDir}/database-seeds`);
 	} catch ({ err, stderr }) {
 		logger.error(`Error cloning database-seeds. ${stderr}.`);
 		throw err;

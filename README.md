@@ -33,3 +33,13 @@ This contains all of our API calls, and interfaces with our database, and powers
 
 **This is the source of truth for the songs, charts, and more on the site!**
 By submitting PRs to this, you can fix bugs on the website, add new charts, and more.
+
+- `bot/`, Which is a discord bot frontend for Tachi.
+
+- `common/`, Which contains common types, utils and functions shared between all other packages.
+
+This is also published to NPM when it hits production.
+
+- `docs/`, Which contains Tachi documentation.
+
+- `sieglinde/`, Which contains our BMS/PMS analysis functions.

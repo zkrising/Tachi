@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./scripts
+        working-directory: ./database-seeds/scripts
     steps:
       - name: Checkout
         uses: actions/checkout@v2

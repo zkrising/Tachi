@@ -11,8 +11,8 @@
 		"build": "tsc --project tsconfig.build.json",
 		"typecheck": "tsc --project tsconfig.build.json --noEmit",
 		"lint": "eslint ./src --ext .ts --fix",
-		"start": "tsc --project tsconfig.build.json && pnpm run",
-		"run": "node -r ts-node/register -r tsconfig-paths/register js/main.js",
+		"start": "tsc --project tsconfig.build.json && pnpm start-no-build",
+		"start-no-build": "node -r ts-node/register -r tsconfig-paths/register js/main.js",
 		"runscoreworker": "node -r ts-node/register -r tsconfig-paths/register js/lib/score-import/worker/worker.js"
 	},
 	"author": "zkldi",

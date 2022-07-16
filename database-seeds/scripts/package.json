@@ -6,12 +6,6 @@
 	"scripts": {
 		"test": "./run-tests.sh"
 	},
-	"keywords": [
-		"Kamaitachi",
-		"Bokutachi",
-		"Tachi",
-		"MongoDB"
-	],
 	"author": "zkldi",
 	"license": "MIT",
 	"dependencies": {

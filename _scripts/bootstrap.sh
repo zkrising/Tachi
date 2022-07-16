@@ -13,7 +13,9 @@ cd "$SCRIPT_DIR";
 cd ..;
 
 cp client/.example.env client/.env
+
 cp server/test.conf.json5 server/conf.json5
+cp server/.example.env server/.env
 
 cp bot/example/conf.json5 bot/conf.json5
 cp bot/example/example.env bot/.env

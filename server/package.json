@@ -2,7 +2,7 @@
 	"name": "tachi-server",
 	"version": "2.2.0-dev",
 	"description": "A score tracking server.",
-	"main": "js/index.js",
+	"main": "js/server/src/main.js",
 	"private": true,
 	"scripts": {
 		"test": "tap",
@@ -12,8 +12,8 @@
 		"typecheck": "tsc --project tsconfig.build.json --noEmit",
 		"lint": "eslint ./src --ext .ts --fix",
 		"start": "tsc --project tsconfig.build.json && pnpm start-no-build",
-		"start-no-build": "node -r ts-node/register -r tsconfig-paths/register js/main.js",
-		"runscoreworker": "node -r ts-node/register -r tsconfig-paths/register js/lib/score-import/worker/worker.js"
+		"start-no-build": "node -r ts-node/register -r tsconfig-paths/register js/server/src/main.js",
+		"runscoreworker": "node -r ts-node/register -r tsconfig-paths/register js/server/src/lib/score-import/worker/worker.js"
 	},
 	"author": "zkldi",
 	"license": "AGPL3",

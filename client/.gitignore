@@ -1,2 +1,4 @@
 # compiled react output
 build
+
+!example/**

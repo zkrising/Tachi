@@ -38,7 +38,7 @@ interface SyncInstructions {
 	) => Promise<unknown>;
 }
 
-async function RemoveNotPresent<T>(
+async function RemoveNotPresent<T extends Record<string, any>>(
 	documents: Array<T>,
 	collection: ICollection<T>,
 	field: keyof T,
@@ -58,7 +58,7 @@ async function RemoveNotPresent<T>(
 	}
 }
 
-async function GenericUpsert<T>(
+async function GenericUpsert<T extends Record<string, any>>(
 	documents: Array<T>,
 	collection: ICollection<T>,
 	field: keyof T,
@@ -387,5 +387,9 @@ async function SynchroniseDBWithSeeds() {
 if (require.main === module) {
 	SynchroniseDBWithSeeds()
 		.then(() => process.exit(0))
-		.catch(() => process.exit(1));
+		.catch((err) => {
+			logger.error(err, () => {
+				process.exit(1)
+			})
+		});
 }

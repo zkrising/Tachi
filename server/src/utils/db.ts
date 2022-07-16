@@ -83,20 +83,21 @@ export async function GetRelevantSongsAndCharts(
 }
 
 export async function UpdateGameSongIDCounter(game: "bms" | "pms") {
-	const largestSongID = await db.songs[game].findOne(
+	const latestSong = await db.songs[game].findOne(
 		{},
 		{
 			sort: { id: -1 },
 			projection: { id: 1 },
 		}
-	);
+	)
 
-	if (!largestSongID) {
-		logger.severe(
-			`No ${game} charts loaded, yet BMS sync was attempted? Lost state on ${game}-song-id counter. Panicking.`
+	if (!latestSong) {
+		logger.warn(
+			`No ${game} charts loaded, yet BMS sync was attempted? This was probably an initial setup, starting songIDs from 1.`
 		);
-		throw new Error(`No BMS charts loaded, yet BMS sync was attempted.`);
 	}
+
+	let largestSongID = latestSong?.id ?? 0;
 
 	await db.counters.update(
 		{
@@ -104,7 +105,7 @@ export async function UpdateGameSongIDCounter(game: "bms" | "pms") {
 		},
 		{
 			$set: {
-				value: largestSongID.id + 1,
+				value: largestSongID + 1,
 			},
 		}
 	);

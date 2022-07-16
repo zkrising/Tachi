@@ -14,4 +14,4 @@ local-cdn
 test-cdn
 
 !test.conf.json5
-!.example.env
+!example/**

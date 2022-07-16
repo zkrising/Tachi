@@ -64,10 +64,13 @@ void RunOnInit();
 let instance: http.Server | https.Server;
 
 if (ServerConfig.ENABLE_SERVER_HTTPS === true) {
-	logger.warn(
-		"HTTPS Mode is enabled. This should not be used in production, and you should instead run behind a reverse proxy.",
-		{ bootInfo: true }
-	);
+	if (Environment.nodeEnv === "production") {
+		logger.warn(
+			"HTTPS Mode is enabled. This should not be used in production, and you should instead run behind a reverse proxy.",
+			{ bootInfo: true }
+		);
+	}
+
 	const privateKey = fs.readFileSync("./cert/key.pem");
 	const certificate = fs.readFileSync("./cert/cert.pem");
 

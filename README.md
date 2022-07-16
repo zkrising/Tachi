@@ -17,6 +17,22 @@ By using Tachi, you get access to powerful, novel rhythm game score-tracking fea
 
 There are way more features that Tachi has, and you can read about all of them [here](https://tachi.readthedocs.io/user/features).
 
+## Setup
+
+Setting up a local instance of Tachi at the moment is a bit of a pain. You'll need MongoDB and Redis installed and running.
+
+You'll need `pnpm`. Get it with `npm install -g pnpm`.
+
+Run `_scripts/bootstrap.sh` to move example config files into an active position.
+
+Use `pnpm install` to install all of the necessary dependencies.
+
+Use `pnpm start` in a directory to build and run the `client/` or `server/`.
+
+Run both, together, to have a full tachi setup.
+
+Use `ts-node server/src/scripts/sync-database` to load the database-seeds.
+
 ## Repository Info
 
 This monorepo contains the following codebases:

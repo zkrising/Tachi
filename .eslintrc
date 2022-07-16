@@ -5,6 +5,7 @@
 	"extends": [
 		"plugin:cadence/recommended"
 	],
+	"root": true,
 	"rules": {},
 	"overrides": [
 		{

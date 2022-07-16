@@ -50,7 +50,7 @@ async function RemoveNotPresent<T extends Record<string, any>>(
 	// Note that $nin is incredibly slow.
 	// @ts-expect-error generic system failing
 	const r = (await collection.remove({
-		[field]: { $nin: documents.map((e) => e[field]) },
+		[field]: { $nin: documents.map((e) => e[field] as unknown) },
 	})) as DeleteWriteOpResultObject;
 
 	if (r.deletedCount !== undefined && r.deletedCount > 0) {
@@ -387,8 +387,8 @@ async function SynchroniseDBWithSeeds() {
 if (require.main === module) {
 	SynchroniseDBWithSeeds()
 		.then(() => process.exit(0))
-		.catch((err) => {
-			logger.error(err, () => {
+		.catch((err: unknown) => {
+			logger.error(String(err), () => {
 				process.exit(1);
 			});
 		});

@@ -52,8 +52,6 @@ const userSessionMiddleware = expressSession({
 
 const app: Express = express();
 
-
-
 if (Environment.nodeEnv !== "production" && IsNonEmptyString(ServerConfig.CLIENT_DEV_SERVER)) {
 	logger.warn(`Enabling CORS requests from ${ServerConfig.CLIENT_DEV_SERVER}.`, {
 		bootInfo: true,

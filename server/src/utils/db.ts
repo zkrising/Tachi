@@ -89,7 +89,7 @@ export async function UpdateGameSongIDCounter(game: "bms" | "pms") {
 			sort: { id: -1 },
 			projection: { id: 1 },
 		}
-	)
+	);
 
 	if (!latestSong) {
 		logger.warn(
@@ -97,7 +97,7 @@ export async function UpdateGameSongIDCounter(game: "bms" | "pms") {
 		);
 	}
 
-	let largestSongID = latestSong?.id ?? 0;
+	const largestSongID = latestSong?.id ?? 0;
 
 	await db.counters.update(
 		{

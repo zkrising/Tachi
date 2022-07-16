@@ -165,8 +165,9 @@ const db = {
 	"api-clients": monkDB.get<TachiAPIClientDocument>("api-clients"),
 
 	// i've inlined this one because i don't see it appearing anywhere else.
-	"oauth2-auth-codes":
-		monkDB.get<{ code: string; userID: integer; createdOn: number }>("oauth2-auth-codes"),
+	"oauth2-auth-codes": monkDB.get<{ code: string; userID: integer; createdOn: number }>(
+		"oauth2-auth-codes"
+	),
 
 	"fer-settings": monkDB.get<FervidexSettingsDocument>("fer-settings"),
 	"orphan-chart-queue": monkDB.get<OrphanChart>("orphan-chart-queue"),
@@ -176,10 +177,12 @@ const db = {
 		createdOn: number;
 	}>("password-reset-codes"),
 	"class-achievements": monkDB.get<ClassAchievementDocument>("class-achievements"),
-	"score-blacklist":
-		monkDB.get<{ scoreID: string; userID: integer; score: ScoreDocument }>("score-blacklist"),
-	"verify-email-codes":
-		monkDB.get<{ userID: integer; code: string; email: string }>("verify-email-codes"),
+	"score-blacklist": monkDB.get<{ scoreID: string; userID: integer; score: ScoreDocument }>(
+		"score-blacklist"
+	),
+	"verify-email-codes": monkDB.get<{ userID: integer; code: string; email: string }>(
+		"verify-email-codes"
+	),
 	"recent-folder-views": monkDB.get<RecentlyViewedFolderDocument>("recent-folder-views"),
 	"milestone-sets": monkDB.get<MilestoneSetDocument>("milestone-sets"),
 	migrations: monkDB.get<MigrationDocument>("migrations"),

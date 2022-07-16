@@ -1,3 +1,4 @@
+import { VERSION_INFO } from "lib/constants/version";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
 import { asyncExec } from "utils/misc";
@@ -5,7 +6,6 @@ import fs from "fs/promises";
 import os from "os";
 import path from "path";
 import type { Game } from "tachi-common";
-import { VERSION_INFO } from "lib/constants/version";
 
 const logger = CreateLogCtx(__filename);
 
@@ -189,12 +189,15 @@ export async function PullDatabaseSeeds() {
 		// there were expletives below this comment, but I have removed them.
 		const { stdout } = await asyncExec(
 			`git clone --sparse --depth=1 "${ServerConfig.SEEDS_CONFIG.REPO_URL}" -b "${
-				Environment.nodeEnv === "production" ? `release/${VERSION_INFO.major}.${VERSION_INFO.minor}` : "staging"
+				Environment.nodeEnv === "production"
+					? `release/${VERSION_INFO.major}.${VERSION_INFO.minor}`
+					: "staging"
 			}" '${seedsDir}';
 			
 			
 			cd '${seedsDir}';
 			git sparse-checkout add database-seeds`
+
 			// ^ now that we're in a monorepo, we only want the seeds.
 		);
 

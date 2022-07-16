@@ -389,7 +389,7 @@ if (require.main === module) {
 		.then(() => process.exit(0))
 		.catch((err) => {
 			logger.error(err, () => {
-				process.exit(1)
-			})
+				process.exit(1);
+			});
 		});
 }

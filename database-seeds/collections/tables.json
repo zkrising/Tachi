@@ -1905,7 +1905,7 @@
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
-		"tableID": "jubeat-Single-declv",
+		"tableID": "jubeat-Single-declv-festo",
 		"title": "Decimal Level Folders (festo)"
 	},
 	{
@@ -1967,7 +1967,7 @@
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
-		"tableID": "jubeat-Single-declvhd",
+		"tableID": "jubeat-Single-declvhd-festo",
 		"title": "Hard Mode Decimal Level Folders (festo)"
 	},
 	{
@@ -2019,7 +2019,7 @@
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
-		"tableID": "jubeat-Single-lvhd",
+		"tableID": "jubeat-Single-lvhd-festo",
 		"title": "Hard Mode Level Folders (festo)"
 	},
 	{
@@ -2061,7 +2061,7 @@
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
-		"tableID": "jubeat-Single-lv",
+		"tableID": "jubeat-Single-lv-festo",
 		"title": "Level Folders (festo)"
 	},
 	{

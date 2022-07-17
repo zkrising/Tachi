@@ -71,30 +71,27 @@ export default function ChartInfoFormat({
 			</Col>
 			<Col xs={12} lg={3}>
 				{withTierlists.length !== 0 ? (
-					<>
-						<MiniTable headers={["Tierlist Info"]} colSpan={2}>
-							{withTierlists.map((e) => (
-								<tr key={e}>
-									<td>{e}</td>
-									<td>
-										{chart.tierlistInfo[e]!.text}{" "}
-										<Muted>({chart.tierlistInfo[e]!.value})</Muted>
-										{chart.tierlistInfo[e]!.individualDifference && (
-											<>
-												<br />
-												<QuickTooltip tooltipContent="Individual Difference - The difficulty of this varies massively between people!">
-													<span>
-														<Icon type="balance-scale-left" />
-													</span>
-												</QuickTooltip>
-											</>
-										)}
-									</td>
-								</tr>
-							))}
-						</MiniTable>
-						<Muted>Disagree with these tiers? Let us know in the discord.</Muted>
-					</>
+					<MiniTable headers={["Tierlist Info"]} colSpan={2}>
+						{withTierlists.map((e) => (
+							<tr key={e}>
+								<td>{e}</td>
+								<td>
+									{chart.tierlistInfo[e]!.text}{" "}
+									<Muted>({chart.tierlistInfo[e]!.value})</Muted>
+									{chart.tierlistInfo[e]!.individualDifference && (
+										<>
+											<br />
+											<QuickTooltip tooltipContent="Individual Difference - The difficulty of this varies massively between people!">
+												<span>
+													<Icon type="balance-scale-left" />
+												</span>
+											</QuickTooltip>
+										</>
+									)}
+								</td>
+							</tr>
+						))}
+					</MiniTable>
 				) : (
 					<Muted>No tierlist info.</Muted>
 				)}

@@ -336,6 +336,7 @@ function SocialMediaForm({ reqUser }: { reqUser: PublicUserDocument }) {
 		},
 		onSubmit: async (values) => {
 			const valuesClone: Record<string, string | null> = {};
+
 			for (const v in values) {
 				const vx = v as keyof typeof values;
 				valuesClone[vx] = values[vx] || null;

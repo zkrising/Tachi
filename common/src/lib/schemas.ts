@@ -986,7 +986,7 @@ const PRE_SCHEMAS = {
 			twitch: "*?string",
 		},
 		joinDate: p.isPositiveInteger,
-		about: p.isBoundedString(0, 4000),
+		about: p.isBoundedString(0, 2000),
 		status: p.nullable(p.isBoundedString(3, 140)),
 		customPfpLocation: "?string",
 		customBannerLocation: "?string",

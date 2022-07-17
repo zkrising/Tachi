@@ -77,7 +77,7 @@ router.patch(
 	"/",
 	RequireSelfRequestFromUser,
 	prValidate({
-		about: p.optional(p.isBoundedString(3, 2000)),
+		about: p.optional(p.isBoundedString(0, 2000)),
 		status: optNullFluffStrField,
 		discord: optNullFluffStrField,
 		twitter: optNullFluffStrField,

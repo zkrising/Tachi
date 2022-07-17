@@ -11,6 +11,7 @@ logger.verbose("Instantiated Redis Store", { bootInfo: true });
 export const RedisClient = redis.createClient({
 	url: `redis://${Environment.redisUrl}`,
 });
+
 const startConnect = process.hrtime.bigint();
 
 logger.verbose("Instantiated Redis Client", { bootInfo: true });
@@ -35,13 +36,5 @@ RedisClient.on("connect", () => {
 });
 
 export function CloseRedisConnection() {
-	return new Promise((resolve, reject) => {
-		RedisClient.quit((err, reply) => {
-			if (err) {
-				reject(err);
-			} else {
-				resolve(reply);
-			}
-		});
-	});
+	return RedisClient.quit();
 }

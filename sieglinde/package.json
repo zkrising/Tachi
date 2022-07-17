@@ -8,12 +8,11 @@
 	},
 	"author": "zkldi",
 	"license": "MIT",
-	"devDependencies": {},
 	"dependencies": {
 		"@types/node-fetch": "2",
 		"commander": "^8.3.0",
 		"fast-xml-parser": "^4.0.0-beta.2",
 		"mei-logger": "^1.0.1",
-		"node-fetch": "2"
+		"node-fetch": "2.6.7"
 	}
 }

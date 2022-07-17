@@ -92,7 +92,7 @@ function SearchSongsTable({ game, playtype, search }: { search: string } & GameP
 					[
 						"Chart",
 						"Chart",
-						NumericSOV(chart => {
+						NumericSOV((chart) => {
 							for (const tierlist of gptConfig.tierlists) {
 								if (chart.tierlistInfo[tierlist]) {
 									return chart.tierlistInfo[tierlist]!.value;
@@ -102,17 +102,17 @@ function SearchSongsTable({ game, playtype, search }: { search: string } & GameP
 							return chart.levelNum;
 						}),
 					],
-					["Song Title", "Song", StrSOV(x => x.__related.song.title)],
-					["Playcount", "Playcount", NumericSOV(x => x.__playcount)],
+					["Song Title", "Song", StrSOV((x) => x.__related.song.title)],
+					["Playcount", "Playcount", NumericSOV((x) => x.__playcount)],
 				]}
 				searchFunctions={{
-					title: x => x.__related.song.title,
-					artist: x => x.__related.song.artist,
-					playcount: x => x.__playcount,
-					difficulty: x => x.difficulty,
-					level: x => x.levelNum,
+					title: (x) => x.__related.song.title,
+					artist: (x) => x.__related.song.artist,
+					playcount: (x) => x.__playcount,
+					difficulty: (x) => x.difficulty,
+					level: (x) => x.levelNum,
 				}}
-				rowFunction={d => (
+				rowFunction={(d) => (
 					<tr>
 						<DifficultyCell game={game} chart={d} />
 						<TitleCell chart={d} game={game} song={d.__related.song} />

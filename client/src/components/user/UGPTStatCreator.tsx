@@ -42,7 +42,7 @@ export default function UGPTStatCreator({
 			folderID: undefined,
 			chartID: undefined,
 		},
-		onSubmit: values => {
+		onSubmit: (values) => {
 			let stat: ShowcaseStatDetails;
 
 			if (values.mode === "chart") {
@@ -101,7 +101,7 @@ export default function UGPTStatCreator({
 				throw new Error(res.description);
 			}
 
-			setFolderData(res.body.map(e => ({ folderID: e.folderID, name: e.title })));
+			setFolderData(res.body.map((e) => ({ folderID: e.folderID, name: e.title })));
 		})();
 	}, [folderSearch]);
 
@@ -189,7 +189,7 @@ export default function UGPTStatCreator({
 								<Form.Check
 									id="requesterHasPlayed"
 									checked={requesterHasPlayed}
-									onChange={e => setRequesterHasPlayed(e.target.checked)}
+									onChange={(e) => setRequesterHasPlayed(e.target.checked)}
 									className="mt-4 mb-4"
 									label="Only show charts you've played?"
 								/>
@@ -218,7 +218,7 @@ export default function UGPTStatCreator({
 								<Form.Label>Target</Form.Label>
 								<FolderGTESelect
 									value={gte}
-									onChange={e => setGte(Number(e.target.value))}
+									onChange={(e) => setGte(Number(e.target.value))}
 									{...{
 										game,
 										playtype,

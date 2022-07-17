@@ -52,7 +52,7 @@ export function useZTable<D>(originalDataset: D[], providedOptions?: Partial<ZTa
 		let mutatedSet = originalDataset;
 
 		if (search !== "") {
-			mutatedSet = mutatedSet.filter(v => searchFunction(search, v));
+			mutatedSet = mutatedSet.filter((v) => searchFunction(search, v));
 			setPage(1);
 		}
 
@@ -99,11 +99,10 @@ export function useZTable<D>(originalDataset: D[], providedOptions?: Partial<ZTa
 	}, [page, dataset]);
 
 	// Create a sliding window that can be used for pagination.
-	const window = useMemo(() => dataset.slice((page - 1) * pageLen, page * pageLen), [
-		page,
-		dataset,
-		search,
-	]);
+	const window = useMemo(
+		() => dataset.slice((page - 1) * pageLen, page * pageLen),
+		[page, dataset, search]
+	);
 
 	// simple utilities for previous and next buttons
 	const incrementPage = () => {

@@ -104,7 +104,7 @@ function SearchResults({ results }: { results: SearchReturns }) {
 						Users
 					</div>
 					<div>
-						{results.users.map(u =>
+						{results.users.map((u) =>
 							game && playtype && user ? (
 								<GPTSearchResult
 									key={u.id}
@@ -138,7 +138,7 @@ function SearchResults({ results }: { results: SearchReturns }) {
 						Songs
 					</div>
 					<div className="mb-4">
-						{results.songs.map(s => (
+						{results.songs.map((s) => (
 							<SearchResult
 								key={s.id + s.game}
 								link={`/dashboard/games/${s.game}/${
@@ -237,7 +237,7 @@ export default function SearchBar() {
 				);
 			}
 
-			Promise.all(searches).then(results => {
+			Promise.all(searches).then((results) => {
 				const setValue: SearchReturns = {
 					users: [],
 					songs: [],

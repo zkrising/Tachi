@@ -24,7 +24,7 @@ export default function ITGDensityChart({
 			motionConfig="stiff"
 			crosshairType="x"
 			yScale={{ type: "linear" }}
-			axisLeft={{ format: y => `${npsToBPM(y)}BPM` }}
+			axisLeft={{ format: (y) => `${npsToBPM(y)}BPM` }}
 			enablePoints={false}
 			useMesh={true}
 			enableGridX={false}
@@ -40,10 +40,10 @@ export default function ITGDensityChart({
 				},
 			}}
 			curve="linear"
-			tooltip={d => (
+			tooltip={(d) => (
 				<ChartTooltip
 					point={d.point}
-					renderFn={p => (
+					renderFn={(p) => (
 						<div>
 							Measure {p.data.xFormatted}:{" "}
 							{npsToBPM(Number(p.data.yFormatted)).toFixed()}BPM

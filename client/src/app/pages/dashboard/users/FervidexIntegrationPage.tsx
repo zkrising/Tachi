@@ -9,7 +9,11 @@ import { Link } from "react-router-dom";
 import { FervidexSettingsDocument, PublicUserDocument } from "tachi-common";
 
 export default function FervidexIntegrationPage({ reqUser }: { reqUser: PublicUserDocument }) {
-	const { data: settings, isLoading, error } = useApiQuery<FervidexSettingsDocument | null>(
+	const {
+		data: settings,
+		isLoading,
+		error,
+	} = useApiQuery<FervidexSettingsDocument | null>(
 		`/users/${reqUser.id}/integrations/fervidex/settings`
 	);
 
@@ -62,7 +66,7 @@ function FervidexForm({
 	return (
 		<form
 			className="text-left"
-			onSubmit={async e => {
+			onSubmit={async (e) => {
 				e.preventDefault();
 
 				if (formSettings.cards?.length === 0) {
@@ -87,7 +91,7 @@ function FervidexForm({
 				<Form.Check
 					type="checkbox"
 					checked={formSettings.forceStaticImport}
-					onChange={e => {
+					onChange={(e) => {
 						setFormSettings({ ...formSettings, forceStaticImport: e.target.checked });
 					}}
 					label="Force Static Imports"
@@ -129,20 +133,20 @@ function FervidexForm({
 						</Form.Label>
 						<Form.Control
 							value={formSettings.cards.join(" ")}
-							onChange={e => {
+							onChange={(e) => {
 								setFormSettings({
 									...formSettings,
-									cards: e.target.value.split(" ").map(e => e.toUpperCase()),
+									cards: e.target.value.split(" ").map((e) => e.toUpperCase()),
 								});
 							}}
 						/>
-						{formSettings.cards.some(c => !isCardIDValid(c)) && (
+						{formSettings.cards.some((c) => !isCardIDValid(c)) && (
 							<div className="text-danger">
 								CardIDs should be 16 characters, or a <code>C</code> followed by 12
 								characters!
 							</div>
 						)}
-						{formSettings.cards.some(x => x.startsWith("E004")) && (
+						{formSettings.cards.some((x) => x.startsWith("E004")) && (
 							<div className="text-danger">
 								CardIDs are <b>NOT</b> the ones that start with E004!
 							</div>

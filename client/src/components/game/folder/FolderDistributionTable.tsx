@@ -67,9 +67,9 @@ function FolderThermometer<T extends string>({
 				data={[Object.assign({ id: "" }, values)]}
 				theme={Object.assign({}, TACHI_CHART_THEME, { background: "#1c1c1c" })}
 				// @ts-expect-error temp
-				colors={k => ChangeOpacity(colours[k.id], 0.5)}
+				colors={(k) => ChangeOpacity(colours[k.id], 0.5)}
 				// @ts-expect-error Keys are appended with "." for some reason.
-				borderColor={k => colours[k.data.id]}
+				borderColor={(k) => colours[k.data.id]}
 				labelTextColor="black"
 				labelSkipHeight={12}
 				maxValue={max}
@@ -82,10 +82,10 @@ function FolderThermometer<T extends string>({
 					tickValues: StepFromToMax(max),
 				}}
 				margin={{ right: 50, bottom: 10, top: 20 }}
-				tooltip={d => (
+				tooltip={(d) => (
 					<BarChartTooltip
 						point={d}
-						renderFn={d => (
+						renderFn={(d) => (
 							<div className="w-100 text-center">
 								{d.label}
 								{d.value} ({PercentFrom(d.value, max)})

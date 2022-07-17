@@ -33,16 +33,22 @@ export default function FolderTable<I extends IDStrings = IDStrings>({
 	const [rating, setRating] = useState(defaultRating);
 
 	const headers: Header<FolderDataset[0]>[] = [
-		ChartHeader<FolderDataset>(game, playtype, k => k),
+		ChartHeader<FolderDataset>(game, playtype, (k) => k),
 		FolderIndicatorHeader,
-		["Song", "Song", StrSOV(x => x.__related.song.title)],
-		...GetGPTCoreHeaders<FolderDataset>(game, playtype, rating, setRating, x => x.__related.pb),
+		["Song", "Song", StrSOV((x) => x.__related.song.title)],
+		...GetGPTCoreHeaders<FolderDataset>(
+			game,
+			playtype,
+			rating,
+			setRating,
+			(x) => x.__related.pb
+		),
 		[
 			"Site Ranking",
 			"Site Rank",
-			NumericSOV(x => x.__related.pb?.rankingData.rank ?? -Infinity),
+			NumericSOV((x) => x.__related.pb?.rankingData.rank ?? -Infinity),
 		],
-		["Last Raised", "Last Raised", NumericSOV(x => x.__related.pb?.timeAchieved ?? 0)],
+		["Last Raised", "Last Raised", NumericSOV((x) => x.__related.pb?.timeAchieved ?? 0)],
 	];
 
 	return (
@@ -51,7 +57,9 @@ export default function FolderTable<I extends IDStrings = IDStrings>({
 			headers={headers}
 			entryName="Charts"
 			searchFunctions={CreateDefaultFolderSearchParams(game, playtype)}
-			rowFunction={data => <Row rating={rating} data={data} key={data.chartID} game={game} />}
+			rowFunction={(data) => (
+				<Row rating={rating} data={data} key={data.chartID} game={game} />
+			)}
 		/>
 	);
 }

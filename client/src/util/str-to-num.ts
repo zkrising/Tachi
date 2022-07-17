@@ -3,7 +3,7 @@ import { Game, GetGamePTConfig, Playtypes } from "tachi-common";
 export function HumanFriendlyStrToGradeIndex(game: Game, playtype: Playtypes[Game]) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const lowerGrades = gptConfig.grades.map(e => e.toLowerCase());
+	const lowerGrades = gptConfig.grades.map((e) => e.toLowerCase());
 
 	return (str: string) => {
 		const lowerStr = str.toLowerCase();
@@ -27,7 +27,7 @@ export function HumanFriendlyStrToGradeIndex(game: Game, playtype: Playtypes[Gam
 
 export function HumanFriendlyStrToLampIndex(game: Game, playtype: Playtypes[Game]) {
 	const gptConfig = GetGamePTConfig(game, playtype);
-	const lowerLamps = gptConfig.lamps.map(e => e.toLowerCase());
+	const lowerLamps = gptConfig.lamps.map((e) => e.toLowerCase());
 
 	return (str: string) => {
 		const lowerStr = str.toLowerCase();

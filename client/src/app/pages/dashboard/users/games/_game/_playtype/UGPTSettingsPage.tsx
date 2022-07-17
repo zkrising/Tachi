@@ -93,7 +93,7 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 			defaultTable: settings!.preferences.defaultTable,
 			scoreBucket: settings!.preferences.scoreBucket ?? gptConfig.scoreBucket,
 		},
-		onSubmit: async values => {
+		onSubmit: async (values) => {
 			const rj = await APIFetchV1<PublicUserDocument>(
 				`/users/${reqUser.id}/games/${game}/${playtype}/settings`,
 				{
@@ -113,9 +113,11 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 		},
 	});
 
-	const { data: tables, isLoading, error } = useApiQuery<TableDocument[]>(
-		`/games/${game}/${playtype}/tables?showInactive=true`
-	);
+	const {
+		data: tables,
+		isLoading,
+		error,
+	} = useApiQuery<TableDocument[]>(`/games/${game}/${playtype}/tables?showInactive=true`);
 
 	if (error) {
 		return <ApiError error={error} />;
@@ -126,7 +128,7 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 	}
 
 	const displayableTables = tables.filter(
-		e => !e.inactive || settings?.preferences.defaultTable === e.tableID
+		(e) => !e.inactive || settings?.preferences.defaultTable === e.tableID
 	);
 
 	return (
@@ -139,7 +141,7 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 					value={formik.values.preferredScoreAlg}
 					onChange={formik.handleChange}
 				>
-					{gptConfig.scoreRatingAlgs.map(e => (
+					{gptConfig.scoreRatingAlgs.map((e) => (
 						<option key={e}>{e}</option>
 					))}
 				</Form.Control>
@@ -156,7 +158,7 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 					value={formik.values.preferredSessionAlg}
 					onChange={formik.handleChange}
 				>
-					{gptConfig.sessionRatingAlgs.map(e => (
+					{gptConfig.sessionRatingAlgs.map((e) => (
 						<option key={e}>{e}</option>
 					))}
 				</Form.Control>
@@ -173,7 +175,7 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 					value={formik.values.preferredProfileAlg}
 					onChange={formik.handleChange}
 				>
-					{gptConfig.profileRatingAlgs.map(e => (
+					{gptConfig.profileRatingAlgs.map((e) => (
 						<option key={e}>{e}</option>
 					))}
 				</Form.Control>
@@ -207,12 +209,12 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 					id="defaultTable"
 					value={
 						formik.values.defaultTable ??
-						tables.find(x => x.default)?.tableID ??
+						tables.find((x) => x.default)?.tableID ??
 						displayableTables[0].tableID
 					}
 					onChange={formik.handleChange}
 				>
-					{displayableTables.map(table => (
+					{displayableTables.map((table) => (
 						<option key={table.tableID} value={table.tableID}>
 							{table.title}
 						</option>
@@ -355,7 +357,7 @@ function ShowcaseForm({ reqUser, game, playtype }: Props) {
 				show={show}
 				setShow={setShow}
 				reqUser={reqUser}
-				onCreate={stat => {
+				onCreate={(stat) => {
 					setStats([...stats, stat]);
 				}}
 			/>

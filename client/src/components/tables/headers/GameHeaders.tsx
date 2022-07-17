@@ -25,13 +25,13 @@ export function GetGPTCoreHeaders<Dataset extends FolderDataset | PBDataset | Sc
 	const ScoreHeader: Header<Dataset[0]> = [
 		"Score",
 		"Score",
-		NumericSOV(x => kMapToScoreOrPB(x)?.scoreData.percent ?? -Infinity),
+		NumericSOV((x) => kMapToScoreOrPB(x)?.scoreData.percent ?? -Infinity),
 	];
 
 	const LampHeader: Header<Dataset[0]> = [
 		"Lamp",
 		"Lamp",
-		NumericSOV(x => kMapToScoreOrPB(x)?.scoreData.lampIndex ?? -Infinity),
+		NumericSOV((x) => kMapToScoreOrPB(x)?.scoreData.lampIndex ?? -Infinity),
 	];
 
 	let RatingHeader: Header<Dataset[0]>;
@@ -44,13 +44,13 @@ export function GetGPTCoreHeaders<Dataset extends FolderDataset | PBDataset | Sc
 		RatingHeader = [
 			UppercaseFirst(alg),
 			UppercaseFirst(alg),
-			NumericSOV(x => kMapToScoreOrPB(x)?.calculatedData[alg] ?? -Infinity),
+			NumericSOV((x) => kMapToScoreOrPB(x)?.calculatedData[alg] ?? -Infinity),
 		];
 	} else {
 		RatingHeader = [
 			"Rating",
 			"Rating",
-			NumericSOV(x => kMapToScoreOrPB(x)?.calculatedData[rating] ?? -Infinity),
+			NumericSOV((x) => kMapToScoreOrPB(x)?.calculatedData[rating] ?? -Infinity),
 			(thProps: ZTableTHProps) => (
 				<SelectableRating
 					key={`${game}-${playtype}`}
@@ -73,7 +73,7 @@ export function GetGPTCoreHeaders<Dataset extends FolderDataset | PBDataset | Sc
 				[
 					"Near - Miss",
 					"Nr. Ms.",
-					NumericSOV(x => kMapToScoreOrPB(x)?.scoreData.percent ?? -Infinity),
+					NumericSOV((x) => kMapToScoreOrPB(x)?.scoreData.percent ?? -Infinity),
 				],
 				LampHeader,
 				RatingHeader,
@@ -86,7 +86,7 @@ export function GetGPTCoreHeaders<Dataset extends FolderDataset | PBDataset | Sc
 				[
 					"Deltas",
 					"Deltas",
-					NumericSOV(x => kMapToScoreOrPB(x)?.scoreData.percent ?? -Infinity),
+					NumericSOV((x) => kMapToScoreOrPB(x)?.scoreData.percent ?? -Infinity),
 				],
 				LampHeader,
 				RatingHeader,
@@ -103,7 +103,7 @@ export function GetGPTCoreHeaders<Dataset extends FolderDataset | PBDataset | Sc
 				[
 					"Judgements",
 					"Hits",
-					NumericSOV(x => kMapToScoreOrPB(x)?.scoreData.percent ?? -Infinity),
+					NumericSOV((x) => kMapToScoreOrPB(x)?.scoreData.percent ?? -Infinity),
 				],
 				LampHeader,
 				RatingHeader,
@@ -114,7 +114,7 @@ export function GetGPTCoreHeaders<Dataset extends FolderDataset | PBDataset | Sc
 				[
 					"Judgements",
 					"Hits",
-					NumericSOV(x => kMapToScoreOrPB(x)?.scoreData.percent ?? -Infinity),
+					NumericSOV((x) => kMapToScoreOrPB(x)?.scoreData.percent ?? -Infinity),
 				],
 				[
 					"Lamp",

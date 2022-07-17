@@ -97,7 +97,7 @@ export default function IIDXBPIChart({
 					data={[
 						{
 							id: "data",
-							data: bpiValues.map(d => ({
+							data: bpiValues.map((d) => ({
 								x: d.percent,
 								y: d.bpi,
 								other: d,
@@ -108,7 +108,7 @@ export default function IIDXBPIChart({
 					margin={{ top: 30, bottom: 50, left: 50, right: 50 }}
 					xScale={{ type: "linear", min: bpiValues[0].percent }}
 					axisBottom={{
-						format: x =>
+						format: (x) =>
 							gptConfig.gradeBoundaries!.indexOf(x) === -1
 								? null
 								: gptConfig.grades[gptConfig.gradeBoundaries!.indexOf(x)],
@@ -117,7 +117,7 @@ export default function IIDXBPIChart({
 					motionConfig="stiff"
 					crosshairType="bottom-left"
 					yScale={{ type: "linear", max: 110, min: -20 }}
-					axisLeft={{ format: y => `${y}BPI` }}
+					axisLeft={{ format: (y) => `${y}BPI` }}
 					useMesh={true}
 					pointSize={0}
 					colors={[COLOUR_SET.vibrantBlue]}
@@ -134,7 +134,7 @@ export default function IIDXBPIChart({
 					curve="natural"
 					enablePointLabel
 					pointLabel="label"
-					tooltip={d => (
+					tooltip={(d) => (
 						<ChartTooltip
 							point={d.point}
 							renderFn={(p: any) => {

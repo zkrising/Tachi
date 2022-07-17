@@ -9,7 +9,7 @@ const DropdownTopbarItemToggler = forwardRef((props, ref) => (
 		// @ts-expect-error see todo
 		ref={ref}
 		className="topbar-item"
-		onClick={e => {
+		onClick={(e) => {
 			e.preventDefault();
 			// @ts-expect-error see todo
 			props.onClick(e);

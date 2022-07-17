@@ -48,7 +48,7 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 	defaultView?: "vsPB" | "moreInfo" | "history" | "debug" | "manage";
 	thisScore: ScoreDocument;
 } & GamePT) {
-	const DocComponent: DocumentComponentType = props =>
+	const DocComponent: DocumentComponentType = (props) =>
 		DocComponentCreator({
 			renderScoreInfo: false,
 			...props,
@@ -63,9 +63,13 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 		`/users/${user.id}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`
 	);
 
-	const { isLoading: histIsLoading, error: histError, data: histData } = useApiQuery<
-		ScoreDocument<I>[]
-	>(`/users/${user.id}/games/${game}/${playtype}/scores/${chart.chartID}`);
+	const {
+		isLoading: histIsLoading,
+		error: histError,
+		data: histData,
+	} = useApiQuery<ScoreDocument<I>[]>(
+		`/users/${user.id}/games/${game}/${playtype}/scores/${chart.chartID}`
+	);
 
 	if (error) {
 		return <>An error has occured. Whoops.</>;

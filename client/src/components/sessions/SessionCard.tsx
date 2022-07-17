@@ -57,7 +57,7 @@ export default function SessionCard({ sessionID }: { sessionID: string }) {
 		});
 	}
 
-	scoreDataset.sort(NumericSOV(x => x.timeAchieved ?? 0, true));
+	scoreDataset.sort(NumericSOV((x) => x.timeAchieved ?? 0, true));
 
 	return (
 		<Card header={session.name}>

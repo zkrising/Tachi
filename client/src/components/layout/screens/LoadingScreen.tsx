@@ -28,7 +28,7 @@ export function LoadingScreen({ children }: JustChildren) {
 		);
 
 		Promise.all([
-			APIFetchV1<PublicUserDocument>("/users/me").then(rj => {
+			APIFetchV1<PublicUserDocument>("/users/me").then((rj) => {
 				if (rj.success) {
 					setUser(rj.body);
 				} else {
@@ -40,7 +40,7 @@ export function LoadingScreen({ children }: JustChildren) {
 				setLoading(false);
 				clearTimeout(timeout);
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.error(err);
 				setBroke(
 					`${TachiConfig.name} is currently down, sadly. Check back in a while, or we might be doing a quick server restart. Sorry!`

@@ -22,7 +22,7 @@ export default function ResetPasswordPage() {
 				desc="Pick something you'll remember this time :)"
 			/>
 			<Form
-				onSubmit={async e => {
+				onSubmit={async (e) => {
 					e.preventDefault();
 
 					const res = await APIFetchV1(
@@ -47,7 +47,7 @@ export default function ResetPasswordPage() {
 					<Form.Label>New Password</Form.Label>
 					<Form.Control
 						value={password}
-						onChange={e => setPassword(e.target.value)}
+						onChange={(e) => setPassword(e.target.value)}
 						isValid={password.length >= 8}
 						type="password"
 					/>
@@ -56,7 +56,7 @@ export default function ResetPasswordPage() {
 					<Form.Label>Confirm</Form.Label>
 					<Form.Control
 						value={confirmPass}
-						onChange={e => setConfirmPass(e.target.value)}
+						onChange={(e) => setConfirmPass(e.target.value)}
 						isValid={password === confirmPass}
 						type="password"
 					/>

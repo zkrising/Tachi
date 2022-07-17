@@ -33,7 +33,7 @@ export default function UserSelectModal({
 		const searchParams = new URLSearchParams();
 		searchParams.set("search", search);
 
-		APIFetchV1<PublicUserDocument[]>(`${url}?${searchParams.toString()}`).then(res => {
+		APIFetchV1<PublicUserDocument[]>(`${url}?${searchParams.toString()}`).then((res) => {
 			if (res.success) {
 				setErrMsg(null);
 
@@ -61,7 +61,7 @@ export default function UserSelectModal({
 						<span className="text-danger">{errMsg}</span>
 						<div className="d-flex justify-content-center flex-wrap">
 							{users &&
-								users.map(user => (
+								users.map((user) => (
 									<div className="text-center p-8" key={user.id}>
 										<ProfilePicture user={user} />
 										<h4 className="mt-2">{user.username}</h4>

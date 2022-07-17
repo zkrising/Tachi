@@ -39,16 +39,16 @@ export default function ScoreTable<I extends IDStrings = IDStrings>({
 	const [rating, setRating] = useState(alg ?? defaultRating);
 
 	const headers: Header<ScoreDataset<I>[0]>[] = [
-		ChartHeader<ScoreDataset>(game, playtype, k => k.__related.chart),
+		ChartHeader<ScoreDataset>(game, playtype, (k) => k.__related.chart),
 		IndicatorHeader,
-		["Song", "Song", StrSOV(x => x.__related.song.title)],
-		...GetGPTCoreHeaders<ScoreDataset>(game, playtype, rating, setRating, k => k),
-		["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)],
+		["Song", "Song", StrSOV((x) => x.__related.song.title)],
+		...GetGPTCoreHeaders<ScoreDataset>(game, playtype, rating, setRating, (k) => k),
+		["Timestamp", "Timestamp", NumericSOV((x) => x.timeAchieved ?? 0)],
 		EmptyHeader,
 	];
 
 	if (userCol) {
-		headers.unshift(["User", "User", StrSOV(x => x.__related.user.username)]);
+		headers.unshift(["User", "User", StrSOV((x) => x.__related.user.username)]);
 	}
 
 	return (
@@ -58,7 +58,7 @@ export default function ScoreTable<I extends IDStrings = IDStrings>({
 			headers={headers}
 			entryName="Scores"
 			searchFunctions={CreateDefaultScoreSearchParams(game, playtype)}
-			rowFunction={sc => (
+			rowFunction={(sc) => (
 				<Row
 					game={game}
 					key={sc.scoreID}

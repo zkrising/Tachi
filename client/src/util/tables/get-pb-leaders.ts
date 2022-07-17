@@ -10,8 +10,8 @@ export function GetPBLeadingHeaders(
 	showChart: boolean,
 	chartHeader: PBHeader
 ): PBHeader[] {
-	const userHeader: PBHeader = ["User", "User", StrSOV(x => x.__related.user!.username)];
-	const songHeader: PBHeader = ["Song", "Song", StrSOV(x => x.__related.song.title)];
+	const userHeader: PBHeader = ["User", "User", StrSOV((x) => x.__related.user!.username)];
+	const songHeader: PBHeader = ["Song", "Song", StrSOV((x) => x.__related.song.title)];
 
 	if (showUser && showChart) {
 		return [userHeader, chartHeader, IndicatorHeader, songHeader];

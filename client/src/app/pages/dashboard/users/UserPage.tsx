@@ -98,7 +98,7 @@ function AboutMeCard({ reqUser }: Props) {
 						style={{ height: 200 }}
 						className="w-100"
 						value={content}
-						onChange={e => setContent(e.target.value)}
+						onChange={(e) => setContent(e.target.value)}
 					/>
 					<Muted>
 						You can use{" "}

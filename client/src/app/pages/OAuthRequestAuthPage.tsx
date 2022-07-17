@@ -77,7 +77,7 @@ function OAuthRequestAuthMain({
 				<div className="col-12">
 					The key will have the following permissions.
 					<ul>
-						{client.requestedPermissions.map(e => (
+						{client.requestedPermissions.map((e) => (
 							<li key={e}>{e}</li>
 						))}
 					</ul>

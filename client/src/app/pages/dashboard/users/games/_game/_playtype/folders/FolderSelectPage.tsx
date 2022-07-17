@@ -46,7 +46,7 @@ export default function FoldersSearch({ reqUser, game, playtype }: Props) {
 				{data.folders.length === 0 && (
 					<div className="col-12 text-center">Found nothin'.</div>
 				)}
-				{data.folders.map(e => (
+				{data.folders.map((e) => (
 					<FolderInfoComponent
 						key={e.folderID}
 						folder={e}

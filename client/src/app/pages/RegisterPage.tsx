@@ -44,7 +44,7 @@ export default function RegisterPage() {
 			email: "",
 			captcha: "temp",
 		},
-		onSubmit: async values => {
+		onSubmit: async (values) => {
 			if (values["!password"] !== values.confPassword) {
 				setErr("Password and confirm password do not match!");
 				return;
@@ -269,7 +269,7 @@ function RegisterForm({
 					process.env.REACT_APP_RECAPTCHA_KEY ??
 					"6LdI2swUAAAAAArkM0ZQi4SnttilqgAwsJSFw3PX"
 				}
-				onChange={v => {
+				onChange={(v) => {
 					formik.setFieldValue("captcha", v);
 				}}
 			/>

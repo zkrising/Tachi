@@ -44,7 +44,7 @@ const MoreDataForm: MoreDataForm = ({ setFulfilled, setInfo }) => {
 			</div>
 			<select
 				className="form-control"
-				onChange={e => {
+				onChange={(e) => {
 					const playtype = e.target.value;
 
 					if (playtype === "") {
@@ -63,7 +63,7 @@ const MoreDataForm: MoreDataForm = ({ setFulfilled, setInfo }) => {
 				<Form.Check
 					type="checkbox"
 					checked={!!state.assertPlaytypeCorrect}
-					onChange={e => {
+					onChange={(e) => {
 						setState({
 							...state,
 							assertPlaytypeCorrect: e.target.checked ? "true" : "",
@@ -103,7 +103,7 @@ function ParseFunction(data: string) {
 		throw new Error(`This CSV has no scores? Only found headers.`);
 	}
 
-	const linesWithScores = lines.filter(e => e !== "");
+	const linesWithScores = lines.filter((e) => e !== "");
 
 	return {
 		valid: true,

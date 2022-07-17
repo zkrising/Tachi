@@ -185,7 +185,7 @@ function SongChartRoutes({ game, playtype }: GamePT) {
 		);
 	}
 
-	if (data.charts.every(c => c.playtype !== playtype)) {
+	if (data.charts.every((c) => c.playtype !== playtype)) {
 		return (
 			<Redirect
 				to={`/dashboard/games/${game}/${data.charts[0].playtype}/songs/${data.song.id}`}
@@ -208,7 +208,7 @@ function SongChartRoutes({ game, playtype }: GamePT) {
 					{/* Select the hardest chart for this. */}
 					<Redirect
 						to={`/dashboard/games/${game}/${playtype}/songs/${data.song.id}/${
-							data.charts.slice(0).sort(NumericSOV(x => x.levelNum, true))[0]
+							data.charts.slice(0).sort(NumericSOV((x) => x.levelNum, true))[0]
 								.difficulty
 						}`}
 					/>
@@ -256,7 +256,7 @@ function SongInfoHeader({
 	const sortedCharts = charts
 		.slice(0)
 		.sort(
-			NumericSOV(x =>
+			NumericSOV((x) =>
 				gptConfig.difficulties.indexOf(
 					game === "itg"
 						? (x as ChartDocument<"itg:Stamina">).data.difficultyTag
@@ -431,7 +431,7 @@ function DifficultyList({
 } & Props) {
 	return (
 		<>
-			{charts.map(e => (
+			{charts.map((e) => (
 				<DifficultyButton
 					activeChart={activeChart}
 					setActiveChart={setActiveChart}

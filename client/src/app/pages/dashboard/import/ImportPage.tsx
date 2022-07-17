@@ -44,10 +44,10 @@ export default function ImportPage() {
 			<Divider />
 			<select
 				className="form-control"
-				onChange={e => setGame(e.target.value === "" ? null : (e.target.value as Game))}
+				onChange={(e) => setGame(e.target.value === "" ? null : (e.target.value as Game))}
 			>
 				<option value="">Please select a game.</option>
-				{TachiConfig.games.map(e => (
+				{TachiConfig.games.map((e) => (
 					<option value={e} key={e}>
 						{GetGameConfig(e).name}
 					</option>
@@ -92,8 +92,8 @@ function InnerShowRecentImports({ user }: { user: PublicUserDocument }) {
 			<h4>Recently Used Import Methods</h4>
 			<Divider />
 			{data
-				.filter(e => e.importType.startsWith("file/") || e.importType.startsWith("api/"))
-				.map(e => (
+				.filter((e) => e.importType.startsWith("file/") || e.importType.startsWith("api/"))
+				.map((e) => (
 					<ImportTypeInfoCard
 						key={e.importType}
 						importType={e.importType as FileUploadImportTypes | APIImportTypes}

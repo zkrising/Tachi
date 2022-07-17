@@ -126,7 +126,7 @@ function IntegrationStatus({
 				type="text"
 				value={value}
 				placeholder="H4JxPV3vQH_"
-				onChange={e => setValue(e.target.value)}
+				onChange={(e) => setValue(e.target.value)}
 			/>
 		</Form.Group>
 	);

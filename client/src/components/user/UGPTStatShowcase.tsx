@@ -41,7 +41,7 @@ export default function UGPTStatShowcase({
 	const [projectingStats, setProjectingStats] = useState(false);
 
 	const hasUserPlayedGame =
-		ugs && !!ugs.filter(e => e.game === game && e.playtype === playtype).length;
+		ugs && !!ugs.filter((e) => e.game === game && e.playtype === playtype).length;
 
 	const userIsReqUser = user && user.id === reqUser.id;
 
@@ -172,7 +172,7 @@ export default function UGPTStatShowcase({
 						return { reqUserData: res.body };
 					}}
 				>
-					{data => (
+					{(data) => (
 						<div className="container">
 							{customStat ? (
 								<div className="row justify-content-center">
@@ -252,7 +252,7 @@ export default function UGPTStatShowcase({
 				setShow={setCustomShow}
 				game={game}
 				playtype={playtype}
-				onCreate={stat => setCustomStat(stat)}
+				onCreate={(stat) => setCustomStat(stat)}
 				reqUser={reqUser}
 			/>
 		</>

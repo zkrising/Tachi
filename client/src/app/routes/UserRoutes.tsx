@@ -44,9 +44,11 @@ export default function UserRoutes() {
 	const { userID } = useParams<{ userID: string }>();
 	const history = useHistory();
 
-	const { data: reqUser, isLoading, error } = useApiQuery<PublicUserDocument>(
-		`/users/${params.userID}`
-	);
+	const {
+		data: reqUser,
+		isLoading,
+		error,
+	} = useApiQuery<PublicUserDocument>(`/users/${params.userID}`);
 
 	const { setBackground } = useContext(BackgroundContext);
 	useEffect(() => {

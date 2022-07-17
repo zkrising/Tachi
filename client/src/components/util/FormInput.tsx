@@ -24,7 +24,7 @@ export default function FormInput({
 				as={as}
 				placeholder={placeholder}
 				value={value}
-				onChange={e => setValue(e.target.value)}
+				onChange={(e) => setValue(e.target.value)}
 			/>
 		</InputGroup>
 	);

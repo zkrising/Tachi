@@ -20,7 +20,7 @@ export default function ChartInfoFormat({
 }: { chart: ChartDocument } & GamePT) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const withTierlists = gptConfig.tierlists.filter(e => chart.tierlistInfo[e]);
+	const withTierlists = gptConfig.tierlists.filter((e) => chart.tierlistInfo[e]);
 
 	const { data, isLoading, error } = useApiQuery<FolderDocument[]>(
 		`/games/${game}/${playtype}/charts/${chart.chartID}/folders`
@@ -48,7 +48,7 @@ export default function ChartInfoFormat({
 			<Col xs={12} lg={3}>
 				<h4>Appears In</h4>
 				{data.length !== 0 ? (
-					data.map(e => (
+					data.map((e) => (
 						<li key={e.folderID}>
 							{user && ugs ? (
 								<Link
@@ -73,7 +73,7 @@ export default function ChartInfoFormat({
 				{withTierlists.length !== 0 ? (
 					<>
 						<MiniTable headers={["Tierlist Info"]} colSpan={2}>
-							{withTierlists.map(e => (
+							{withTierlists.map((e) => (
 								<tr key={e}>
 									<td>{e}</td>
 									<td>

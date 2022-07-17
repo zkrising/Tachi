@@ -41,18 +41,18 @@ export default function GenericSessionTable({
 	const [alg, setAlg] = useState<SessionCalculatedDataLookup[IDStrings]>(defaultRating);
 
 	const headers: Header<SessionDataset[0]>[] = [
-		["Name", "Name", StrSOV(x => x.name)],
-		["Scores", "Scores", NumericSOV(x => x.scoreInfo.length)],
-		[UppercaseFirst(alg), UppercaseFirst(alg), NumericSOV(x => x.calculatedData[alg] ?? 0)],
-		["Duration", "Dur.", NumericSOV(x => x.timeEnded - x.timeStarted)],
-		["Timestamp", "Timestamp", NumericSOV(x => x.timeStarted)],
+		["Name", "Name", StrSOV((x) => x.name)],
+		["Scores", "Scores", NumericSOV((x) => x.scoreInfo.length)],
+		[UppercaseFirst(alg), UppercaseFirst(alg), NumericSOV((x) => x.calculatedData[alg] ?? 0)],
+		["Duration", "Dur.", NumericSOV((x) => x.timeEnded - x.timeStarted)],
+		["Timestamp", "Timestamp", NumericSOV((x) => x.timeStarted)],
 	];
 
 	if (gptConfig.sessionRatingAlgs.length > 1) {
 		headers[2] = [
 			"Rating",
 			"Rating",
-			NumericSOV(x => x.calculatedData[alg] ?? 0),
+			NumericSOV((x) => x.calculatedData[alg] ?? 0),
 			(thProps: ZTableTHProps) => (
 				<SelectableRating
 					key={`${game}-${playtype}`}
@@ -68,7 +68,7 @@ export default function GenericSessionTable({
 	}
 
 	if (indexCol) {
-		headers.unshift(["#", "#", NumericSOV(x => x.__related.index)]);
+		headers.unshift(["#", "#", NumericSOV((x) => x.__related.index)]);
 	}
 
 	return (
@@ -77,15 +77,15 @@ export default function GenericSessionTable({
 			headers={headers}
 			entryName="Sessions"
 			searchFunctions={{
-				name: x => x.name,
-				scores: x => x.scoreInfo.length,
-				pbs: x => GetPBs(x.scoreInfo).length,
-				pbRate: x => GetPBs(x.scoreInfo).length / x.scoreInfo.length,
-				duration: x => (x.timeEnded - x.timeStarted) / (1000 * 60),
-				timestamp: x => x.timeStarted,
-				[alg]: x => x.calculatedData[alg] ?? 0,
+				name: (x) => x.name,
+				scores: (x) => x.scoreInfo.length,
+				pbs: (x) => GetPBs(x.scoreInfo).length,
+				pbRate: (x) => GetPBs(x.scoreInfo).length / x.scoreInfo.length,
+				duration: (x) => (x.timeEnded - x.timeStarted) / (1000 * 60),
+				timestamp: (x) => x.timeStarted,
+				[alg]: (x) => x.calculatedData[alg] ?? 0,
 			}}
-			rowFunction={s => (
+			rowFunction={(s) => (
 				<Row
 					reqUser={reqUser}
 					data={s}

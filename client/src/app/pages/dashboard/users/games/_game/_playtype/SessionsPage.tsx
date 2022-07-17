@@ -54,8 +54,8 @@ export default function SessionsPage({
 			return res.body
 				.sort(
 					sessionSet === "best"
-						? NumericSOV(x => x.calculatedData[rating] ?? 0, true)
-						: NumericSOV(x => x.timeEnded ?? 0, true)
+						? NumericSOV((x) => x.calculatedData[rating] ?? 0, true)
+						: NumericSOV((x) => x.timeEnded ?? 0, true)
 				)
 				.map((e, i) => ({
 					...e,

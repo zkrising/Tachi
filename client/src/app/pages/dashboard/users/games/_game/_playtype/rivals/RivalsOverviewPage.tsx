@@ -27,9 +27,13 @@ export default function RivalsOverviewWrapper({
 		`/users/${reqUser.id}/games/${game}/${playtype}/rivals`
 	);
 
-	const { data: challengers, isLoading: cIsLoading, error: cError } = useApiQuery<
-		PublicUserDocument[]
-	>(`/users/${reqUser.id}/games/${game}/${playtype}/rivals/challengers`);
+	const {
+		data: challengers,
+		isLoading: cIsLoading,
+		error: cError,
+	} = useApiQuery<PublicUserDocument[]>(
+		`/users/${reqUser.id}/games/${game}/${playtype}/rivals/challengers`
+	);
 
 	if (error) {
 		<ApiError error={error} />;
@@ -88,7 +92,7 @@ function RivalsOverviewPage({
 			{
 				method: "PUT",
 				body: JSON.stringify({
-					rivalIDs: rivals.map(e => e.id),
+					rivalIDs: rivals.map((e) => e.id),
 				}),
 				headers: {
 					"Content-Type": "application/json",
@@ -103,11 +107,11 @@ function RivalsOverviewPage({
 		<>
 			<Card header={`${isRequestingUser ? "Your" : `${reqUser.username}'s`} Rivals`}>
 				<Col xs={12} className="d-flex justify-content-center flex-wrap">
-					{rivals.map(e => (
+					{rivals.map((e) => (
 						<UserIcon key={e.id} user={e} game={game} playtype={playtype}>
 							<Button
 								variant="outline-danger"
-								onClick={() => setRivals(rivals.filter(u => u.id !== e.id))}
+								onClick={() => setRivals(rivals.filter((u) => u.id !== e.id))}
 							>
 								<Icon type="trash" />
 								Remove
@@ -141,7 +145,7 @@ function RivalsOverviewPage({
 						</Col>
 
 						<UserSelectModal
-							callback={user => {
+							callback={(user) => {
 								if (rivals.length >= 5) {
 									SendErrorToast(`Can't have more than 5 rivals!`);
 								} else {
@@ -151,7 +155,7 @@ function RivalsOverviewPage({
 							show={show}
 							setShow={setShow}
 							url={`/games/${game}/${playtype}/players`}
-							excludeSet={rivals.map(e => e.id)}
+							excludeSet={rivals.map((e) => e.id)}
 						/>
 					</>
 				)}
@@ -177,10 +181,10 @@ function RivalsOverviewPage({
 				}
 			>
 				<Col xs={12} className="d-flex justify-content-center flex-wrap">
-					{challengers.map(e => (
+					{challengers.map((e) => (
 						<UserIcon key={e.id} user={e} game={game} playtype={playtype}>
 							{isRequestingUser &&
-								!rivals.map(e => e.id).includes(e.id) &&
+								!rivals.map((e) => e.id).includes(e.id) &&
 								(rivals.length < 5 ? (
 									<Button
 										variant="outline-success"

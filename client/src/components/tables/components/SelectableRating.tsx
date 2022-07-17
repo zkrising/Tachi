@@ -48,7 +48,7 @@ export default function SelectableRating<I extends IDStrings>({
 	return (
 		<th>
 			<select
-				onChange={v => setRating(v.target.value as AllRatings<I>)}
+				onChange={(v) => setRating(v.target.value as AllRatings<I>)}
 				value={rating}
 				style={{
 					backgroundColor: "#131313",
@@ -59,7 +59,7 @@ export default function SelectableRating<I extends IDStrings>({
 					textAlign: "center",
 				}}
 			>
-				{gptConfig[key].map(s => (
+				{gptConfig[key].map((s) => (
 					<option key={s} value={s}>
 						{UppercaseFirst(s)}
 					</option>

@@ -12,18 +12,19 @@ import { SessionDataset } from "../sessions/GenericSessionTable";
 import DropdownStructure from "./components/DropdownStructure";
 
 export default function GenericSessionDropdown({ data }: { data: SessionDataset[0] }) {
-	const { isLoading, error, data: sessionData } = useQuery(
-		`/sessions/${data.sessionID}`,
-		async () => {
-			const res = await APIFetchV1<SessionReturns>(`/sessions/${data.sessionID}`);
+	const {
+		isLoading,
+		error,
+		data: sessionData,
+	} = useQuery(`/sessions/${data.sessionID}`, async () => {
+		const res = await APIFetchV1<SessionReturns>(`/sessions/${data.sessionID}`);
 
-			if (!res.success) {
-				throw new Error(res.description);
-			}
-
-			return res.body;
+		if (!res.success) {
+			throw new Error(res.description);
 		}
-	);
+
+		return res.body;
+	});
 
 	const [view, setView] = useState<"raises" | "debug">("raises");
 

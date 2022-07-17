@@ -26,7 +26,7 @@ export default function LoginPage() {
 			"!password": "",
 			captcha: "",
 		},
-		onSubmit: async values => {
+		onSubmit: async (values) => {
 			setErr("");
 
 			const rj = await APIFetchV1(
@@ -115,7 +115,7 @@ export default function LoginPage() {
 							process.env.REACT_APP_RECAPTCHA_KEY ??
 							"6LdI2swUAAAAAArkM0ZQi4SnttilqgAwsJSFw3PX"
 						}
-						onChange={v => {
+						onChange={(v) => {
 							formik.setFieldValue("captcha", v);
 						}}
 					/>

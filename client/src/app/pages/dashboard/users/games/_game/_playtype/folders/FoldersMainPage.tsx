@@ -34,7 +34,7 @@ export default function FoldersMainPage({ reqUser, game, playtype }: Props) {
 		<div className="row">
 			<div className="col-12 text-center">
 				<div className="btn-group">
-					{user && ugs?.find(x => x.game === game && x.playtype === playtype) && (
+					{user && ugs?.find((x) => x.game === game && x.playtype === playtype) && (
 						<SelectLinkButton to={`${base}/folders/recent`}>
 							<Icon type="clock" />
 							{user.id === reqUser.id

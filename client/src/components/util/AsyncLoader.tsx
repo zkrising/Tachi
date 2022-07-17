@@ -18,14 +18,14 @@ export default function AsyncLoader<T = unknown>({
 				<Loading />
 			</Async.Pending>
 			<Async.Rejected>
-				{error => (
+				{(error) => (
 					<div className="text-center">
 						Fatal Error: {error.message}. That's not good!
 					</div>
 				)}
 			</Async.Rejected>
 			{/* @ts-expect-error come on */}
-			<Async.Fulfilled>{data => Component(data)}</Async.Fulfilled>
+			<Async.Fulfilled>{(data) => Component(data)}</Async.Fulfilled>
 		</Async>
 	);
 }

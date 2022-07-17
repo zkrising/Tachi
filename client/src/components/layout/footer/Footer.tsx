@@ -12,7 +12,7 @@ export function Footer() {
 	const { setBanned } = useContext(BannedContext);
 
 	useEffect(() => {
-		APIFetchV1<ServerStatus>("/status").then(r => {
+		APIFetchV1<ServerStatus>("/status").then((r) => {
 			if (r.statusCode === 403) {
 				setBanned(true);
 			}

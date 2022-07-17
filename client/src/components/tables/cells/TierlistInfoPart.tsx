@@ -9,7 +9,9 @@ import MiniTable from "../components/MiniTable";
 type K = keyof ChartDocument["tierlistInfo"];
 
 export default function TierlistInfoPart({ chart, game }: { chart: ChartDocument; game: Game }) {
-	const keys = GetGamePTConfig(game, chart.playtype).tierlists.filter(e => chart.tierlistInfo[e]);
+	const keys = GetGamePTConfig(game, chart.playtype).tierlists.filter(
+		(e) => chart.tierlistInfo[e]
+	);
 
 	return (
 		<>
@@ -24,7 +26,7 @@ export default function TierlistInfoPart({ chart, game }: { chart: ChartDocument
 								</tr>
 							</thead>
 							<tbody>
-								{keys.map(k => (
+								{keys.map((k) => (
 									<tr key={k}>
 										<td>{k}</td>
 										<td>
@@ -44,13 +46,13 @@ export default function TierlistInfoPart({ chart, game }: { chart: ChartDocument
 					}
 				>
 					<div>
-						<Muted>{keys.map(k => chart.tierlistInfo[k]!.text).join(" / ")}</Muted>
+						<Muted>{keys.map((k) => chart.tierlistInfo[k]!.text).join(" / ")}</Muted>
 					</div>
 				</QuickTooltip>
 			</div>
 			<div className="d-block d-lg-none">
 				<Muted>
-					{keys.map(k => (
+					{keys.map((k) => (
 						<React.Fragment key={k}>
 							{chart.tierlistInfo[k]!.text}
 							<br />

@@ -284,9 +284,9 @@ function ClassDistributionComponent({ game, playtype }: GamePT) {
 				<Form.Control
 					as="select"
 					value={className}
-					onChange={e => setClassName(e.target.value as gameClasses.AllClassSets)}
+					onChange={(e) => setClassName(e.target.value as gameClasses.AllClassSets)}
 				>
-					{Object.keys(gptConfig.classHumanisedFormat).map(e => (
+					{Object.keys(gptConfig.classHumanisedFormat).map((e) => (
 						<option value={e} key={e}>
 							{UppercaseFirst(e)}
 						</option>
@@ -310,7 +310,7 @@ function ClassDistributionComponent({ game, playtype }: GamePT) {
 						return res.body;
 					}}
 				>
-					{d => <ClassDistChart data={d} gptConfig={gptConfig} className={className} />}
+					{(d) => <ClassDistChart data={d} gptConfig={gptConfig} className={className} />}
 				</AsyncLoader>
 			</Col>
 		</Row>
@@ -353,14 +353,14 @@ function ClassDistChart({
 				indexBy="id"
 				layout="horizontal"
 				margin={{ left: 80, bottom: 40, top: 20, right: 20 }}
-				colors={v => "#cc527a"}
+				colors={(v) => "#cc527a"}
 				axisLeft={{
-					format: v => gptConfig.classHumanisedFormat[className][v]?.display,
+					format: (v) => gptConfig.classHumanisedFormat[className][v]?.display,
 				}}
-				tooltip={d => (
+				tooltip={(d) => (
 					<BarChartTooltip
 						point={d}
-						renderFn={d => (
+						renderFn={(d) => (
 							<div className="w-100 text-center">
 								{
 									gptConfig.classHumanisedFormat[className][

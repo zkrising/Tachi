@@ -106,7 +106,7 @@ function RecentInfo({ user }: { user: PublicUserDocument }) {
 					You've had <b>{data.recentSessions.length}</b> session
 					{data.recentSessions.length !== 1 ? "s" : ""} today!
 					<Divider />
-					{data.recentSessions.sort(NumericSOV(x => x.timeEnded, true)).map(e => (
+					{data.recentSessions.sort(NumericSOV((x) => x.timeEnded, true)).map((e) => (
 						<SessionCard sessionID={e.sessionID} key={e.sessionID} />
 					))}
 					<Divider />
@@ -138,7 +138,7 @@ function RecentInfo({ user }: { user: PublicUserDocument }) {
 						<Divider />
 						<div className="text-white">
 							<ul>
-								{data.recentAchievedGoals.map(e => (
+								{data.recentAchievedGoals.map((e) => (
 									<GentleLink
 										to={`/dashboard/games/${e.game}/${e.playtype}/targets/goals/${e.goalID}`}
 										key={e.goalID}
@@ -157,7 +157,7 @@ function RecentInfo({ user }: { user: PublicUserDocument }) {
 					<h1>Here's some folders you checked out recently.</h1>
 					<Divider />
 					<div className="row">
-						{data.recentFolders.map(e => (
+						{data.recentFolders.map((e) => (
 							<FolderInfoComponent
 								key={e.folderID}
 								folder={e}
@@ -205,8 +205,8 @@ function UserGameStatsInfo({ user }: { user: PublicUserDocument }) {
 					});
 				}}
 			>
-				{ugs =>
-					ugs.map(e => (
+				{(ugs) =>
+					ugs.map((e) => (
 						<GameStatContainer ugs={e} reqUser={user} key={`${e.game}:${e.playtype}`} />
 					))
 				}

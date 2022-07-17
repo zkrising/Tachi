@@ -37,7 +37,7 @@ function ParseFunction(data: string) {
 		throw new Error(`This CSV has no scores? Only found headers.`);
 	}
 
-	const linesWithScores = lines.filter(e => e !== "");
+	const linesWithScores = lines.filter((e) => e !== "");
 
 	return {
 		valid: true,

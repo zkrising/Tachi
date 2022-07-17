@@ -33,8 +33,8 @@ export default function DropdownScoreButtons({
 				<div className="col-12">
 					<CommentContainer
 						comment={pbData.scores
-							.map(e => e.comment)
-							.filter(e => e !== null)
+							.map((e) => e.comment)
+							.filter((e) => e !== null)
 							.join("; ")}
 					/>
 					<PBNote />

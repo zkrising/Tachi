@@ -9,12 +9,18 @@
 	},
 	"plugins": [
 		"@typescript-eslint",
-		"import"
+		"import",
+		"react"
 	],
 	"ignorePatterns": [
 		"**/*.js",
 		"react-app-env.d.ts"
 	],
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"sourceType": "module",
@@ -64,6 +70,7 @@
 		"react/display-name": "off",
 		"import/order": "error",
 		"import/no-unresolved": "off",
+		"import/named": "off",
 		"import/no-named-as-default": "off",
 		"react/prop-types": "off",
 		"require-await": "warn",

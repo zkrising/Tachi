@@ -129,9 +129,9 @@ function AlgSelector({
 				<select
 					className="form-control"
 					value={alg}
-					onChange={e => setAlg(e.target.value as any)}
+					onChange={(e) => setAlg(e.target.value as any)}
 				>
-					{gptConfig.scoreRatingAlgs.map(e => (
+					{gptConfig.scoreRatingAlgs.map((e) => (
 						<option key={e}>{e}</option>
 					))}
 				</select>

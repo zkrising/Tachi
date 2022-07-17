@@ -49,7 +49,7 @@ export default function SessionRaiseBreakdown({ sessionData }: { sessionData: Se
 			return;
 		}
 
-		APIFetchV1(`/games/${game}/${playtype}/tables/${tableID}`).then(r => {
+		APIFetchV1(`/games/${game}/${playtype}/tables/${tableID}`).then((r) => {
 			if (!r.success) {
 				throw new Error(r.description);
 			}
@@ -67,13 +67,13 @@ export default function SessionRaiseBreakdown({ sessionData }: { sessionData: Se
 			return;
 		}
 
-		APIFetchV1(`/games/${game}/${playtype}/folders/${folder.folderID}`).then(r => {
+		APIFetchV1(`/games/${game}/${playtype}/folders/${folder.folderID}`).then((r) => {
 			if (!r.success) {
 				throw new Error(r.description);
 			}
 
 			// @ts-expect-error todo
-			setChartIDs(r.body.charts.map(e => e.chartID));
+			setChartIDs(r.body.charts.map((e) => e.chartID));
 		});
 	}, [folder, tableID, filter]);
 
@@ -130,7 +130,7 @@ export default function SessionRaiseBreakdown({ sessionData }: { sessionData: Se
 						<select
 							className="form-control ml-auto"
 							value={filter}
-							onChange={e => setFilter(e.target.value as any)}
+							onChange={(e) => setFilter(e.target.value as any)}
 						>
 							<option value="all">No Filter</option>
 							<option value="folder">Folder Filters</option>
@@ -145,9 +145,9 @@ export default function SessionRaiseBreakdown({ sessionData }: { sessionData: Se
 							<div className="col-6">
 								<select
 									className="form-control"
-									onChange={e => setTableID(e.target.value)}
+									onChange={(e) => setTableID(e.target.value)}
 								>
-									{data.map(e => (
+									{data.map((e) => (
 										<option key={e.tableID} value={e.tableID}>
 											{e.title}
 										</option>
@@ -158,13 +158,13 @@ export default function SessionRaiseBreakdown({ sessionData }: { sessionData: Se
 								<select
 									className="form-control"
 									value={folder?.folderID}
-									onChange={e =>
+									onChange={(e) =>
 										setFolder(
-											tableFolders.find(f => f.folderID === e.target.value)!
+											tableFolders.find((f) => f.folderID === e.target.value)!
 										)
 									}
 								>
-									{tableFolders.map(e => (
+									{tableFolders.map((e) => (
 										<option key={e.folderID} value={e.folderID}>
 											{e.title}
 										</option>
@@ -198,14 +198,12 @@ function SessionScoreStatBreakdown({
 	const scoreMap = CreateScoreIDMap(sessionData.scores);
 
 	const [newLamps, newGrades] = useMemo(() => {
-		const newLamps: Partial<Record<
-			Lamps[IDStrings],
-			{ score: ScoreDocument; scoreInfo: SessionScoreInfo }[]
-		>> = {};
-		const newGrades: Partial<Record<
-			Grades[IDStrings],
-			{ score: ScoreDocument; scoreInfo: SessionScoreInfo }[]
-		>> = {};
+		const newLamps: Partial<
+			Record<Lamps[IDStrings], { score: ScoreDocument; scoreInfo: SessionScoreInfo }[]>
+		> = {};
+		const newGrades: Partial<
+			Record<Grades[IDStrings], { score: ScoreDocument; scoreInfo: SessionScoreInfo }[]>
+		> = {};
 
 		for (const scoreInfo of sessionData.session.scoreInfo) {
 			const score = scoreMap.get(scoreInfo.scoreID);

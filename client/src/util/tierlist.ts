@@ -9,20 +9,20 @@ type ScaleAchievedFns = {
 
 const ScaleNameAchievedFns: ScaleAchievedFns = {
 	"bms:14K": {
-		"sgl-EC": k => k.scoreData.lampIndex >= IIDX_LAMPS.EASY_CLEAR,
-		"sgl-HC": k => k.scoreData.lampIndex >= IIDX_LAMPS.HARD_CLEAR,
+		"sgl-EC": (k) => k.scoreData.lampIndex >= IIDX_LAMPS.EASY_CLEAR,
+		"sgl-HC": (k) => k.scoreData.lampIndex >= IIDX_LAMPS.HARD_CLEAR,
 	},
 	"bms:7K": {
-		"sgl-EC": k => k.scoreData.lampIndex >= IIDX_LAMPS.EASY_CLEAR,
-		"sgl-HC": k => k.scoreData.lampIndex >= IIDX_LAMPS.HARD_CLEAR,
+		"sgl-EC": (k) => k.scoreData.lampIndex >= IIDX_LAMPS.EASY_CLEAR,
+		"sgl-HC": (k) => k.scoreData.lampIndex >= IIDX_LAMPS.HARD_CLEAR,
 	},
 	"pms:Controller": {
-		"sgl-EC": k => k.scoreData.lampIndex >= IIDX_LAMPS.EASY_CLEAR,
-		"sgl-HC": k => k.scoreData.lampIndex >= IIDX_LAMPS.HARD_CLEAR,
+		"sgl-EC": (k) => k.scoreData.lampIndex >= IIDX_LAMPS.EASY_CLEAR,
+		"sgl-HC": (k) => k.scoreData.lampIndex >= IIDX_LAMPS.HARD_CLEAR,
 	},
 	"pms:Keyboard": {
-		"sgl-EC": k => k.scoreData.lampIndex >= IIDX_LAMPS.EASY_CLEAR,
-		"sgl-HC": k => k.scoreData.lampIndex >= IIDX_LAMPS.HARD_CLEAR,
+		"sgl-EC": (k) => k.scoreData.lampIndex >= IIDX_LAMPS.EASY_CLEAR,
+		"sgl-HC": (k) => k.scoreData.lampIndex >= IIDX_LAMPS.HARD_CLEAR,
 	},
 	"chunithm:Single": {},
 	"ddr:DP": {},
@@ -30,19 +30,19 @@ const ScaleNameAchievedFns: ScaleAchievedFns = {
 	"gitadora:Dora": {},
 	"gitadora:Gita": {},
 	"iidx:DP": {
-		"dp-tier": k => k.scoreData.lampIndex >= IIDX_LAMPS.CLEAR,
+		"dp-tier": (k) => k.scoreData.lampIndex >= IIDX_LAMPS.CLEAR,
 	},
 	"iidx:SP": {
-		"kt-NC": k => k.scoreData.lampIndex >= IIDX_LAMPS.CLEAR,
-		"kt-HC": k => k.scoreData.lampIndex >= IIDX_LAMPS.HARD_CLEAR,
-		"kt-EXHC": k => k.scoreData.lampIndex >= IIDX_LAMPS.EX_HARD_CLEAR,
+		"kt-NC": (k) => k.scoreData.lampIndex >= IIDX_LAMPS.CLEAR,
+		"kt-HC": (k) => k.scoreData.lampIndex >= IIDX_LAMPS.HARD_CLEAR,
+		"kt-EXHC": (k) => k.scoreData.lampIndex >= IIDX_LAMPS.EX_HARD_CLEAR,
 	},
 	"maimai:Single": {},
 	"museca:Single": {
 		"tachi-score": null,
 	},
 	"sdvx:Single": {
-		clear: k => k.scoreData.lampIndex >= SDVX_LAMPS.CLEAR,
+		clear: (k) => k.scoreData.lampIndex >= SDVX_LAMPS.CLEAR,
 	},
 	"usc:Controller": {},
 	"usc:Keyboard": {},

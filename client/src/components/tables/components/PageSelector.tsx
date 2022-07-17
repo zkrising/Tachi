@@ -43,7 +43,7 @@ export default function PageSelector({
 
 		return (
 			<>
-				{pageNums.map(e => (
+				{pageNums.map((e) => (
 					<PageButton key={e} page={e} />
 				))}
 			</>
@@ -60,7 +60,7 @@ export default function PageSelector({
 			) : (
 				<PageButton page={2} />
 			)}
-			{middleNums.map(e => (
+			{middleNums.map((e) => (
 				<PageButton key={e} page={e} />
 			))}
 			{elipseEnd ? (

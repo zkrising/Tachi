@@ -89,7 +89,7 @@ export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 	}
 
 	const displayableTables = data.filter(
-		e =>
+		(e) =>
 			!e.inactive ||
 			(settings?.preferences.defaultTable && settings.preferences.defaultTable === e.tableID)
 	);
@@ -104,9 +104,9 @@ export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 					as="select"
 					size="lg"
 					value={tableID}
-					onChange={e => setTableID(e.target.value)}
+					onChange={(e) => setTableID(e.target.value)}
 				>
-					{displayableTables.map(e => (
+					{displayableTables.map((e) => (
 						<option key={e.tableID} value={e.tableID}>
 							{e.title}
 						</option>
@@ -204,17 +204,17 @@ function TableFolderTable({
 			dataset={dataset}
 			pageLen={25}
 			headers={[
-				["Folder", "Folder", StrSOV(x => x.folder.title)],
-				["Chart Count", "Charts", NumericSOV(x => x.stats.chartCount)],
+				["Folder", "Folder", StrSOV((x) => x.folder.title)],
+				["Chart Count", "Charts", NumericSOV((x) => x.stats.chartCount)],
 				["Buttons", "Buttons"],
 			]}
 			entryName="Folders"
 			searchFunctions={{
-				name: x => x.folder.title,
-				title: x => x.folder.title,
-				charts: x => x.stats.chartCount,
+				name: (x) => x.folder.title,
+				title: (x) => x.folder.title,
+				charts: (x) => x.stats.chartCount,
 			}}
-			rowFunction={data => (
+			rowFunction={(data) => (
 				<tr>
 					<td>{data.folder.title}</td>
 					<td>{data.stats.chartCount}</td>
@@ -360,7 +360,7 @@ function OverviewBarChart({
 	const longestTitle = useMemo(
 		() =>
 			Math.min(
-				dataset.map((e: any) => e.folder).sort(NumericSOV<string>(x => x.length, true))[0]
+				dataset.map((e: any) => e.folder).sort(NumericSOV<string>((x) => x.length, true))[0]
 					?.length ?? 0,
 				10
 			),
@@ -370,10 +370,10 @@ function OverviewBarChart({
 	return (
 		<ResponsiveBar
 			indexBy="folder"
-			tooltip={d => (
+			tooltip={(d) => (
 				<BarChartTooltip
 					point={d}
-					renderFn={d => (
+					renderFn={(d) => (
 						<div className="w-100 text-center">
 							{d.label}
 							<br />
@@ -389,13 +389,13 @@ function OverviewBarChart({
 				/>
 			)}
 			keys={Reverse(gptConfig[mode])}
-			colors={k => ChangeOpacity(colours[k.id], 0.5)}
-			borderColor={k => colours[k.data.id]}
+			colors={(k) => ChangeOpacity(colours[k.id], 0.5)}
+			borderColor={(k) => colours[k.data.id]}
 			borderWidth={1}
 			data={dataset}
 			minValue={0}
 			maxValue={100}
-			valueFormat={v => `${v.toFixed(2)}%`}
+			valueFormat={(v) => `${v.toFixed(2)}%`}
 			margin={{ left: 10 + longestTitle * 8, bottom: 50, top: 20, right: 20 }}
 			layout="horizontal"
 			axisBottom={{
@@ -404,7 +404,7 @@ function OverviewBarChart({
 				tickRotation: 0,
 				legendPosition: "middle",
 				legendOffset: 32,
-				format: v => `${v}%`,
+				format: (v) => `${v}%`,
 			}}
 			enableGridX
 			enableGridY={false}

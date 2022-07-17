@@ -38,7 +38,7 @@ export default function UserGamesPage({ reqUser }: Props) {
 					return res.body;
 				}}
 			>
-				{ugs =>
+				{(ugs) =>
 					ugs.length ? (
 						<GamesInfo ugs={ugs} reqUser={reqUser} />
 					) : (

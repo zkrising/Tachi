@@ -128,8 +128,8 @@ export default function DocumentComponent({
 							)}
 							<CommentContainer
 								comment={pbData.scores
-									.map(e => e.comment)
-									.filter(e => e !== null)
+									.map((e) => e.comment)
+									.filter((e) => e !== null)
 									.join("; ")}
 							/>
 							<PBNote />

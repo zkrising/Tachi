@@ -85,20 +85,20 @@ function FolderMinimapMain({
 
 	const getterFn = useMemo<(f: FolderDataset[0]) => number | undefined>(() => {
 		if (sortAlg === "score") {
-			return c => c.__related.pb?.scoreData.percent;
+			return (c) => c.__related.pb?.scoreData.percent;
 		} else if (sortAlg === "lamp") {
-			return c => c.__related.pb?.scoreData.lampIndex;
+			return (c) => c.__related.pb?.scoreData.lampIndex;
 		} else if (sortAlg.startsWith("tierlist:")) {
 			const v = sortAlg.split("tierlist:")[1];
 
-			return c => c.tierlistInfo[v as keyof ChartDocument["tierlistInfo"]]?.value;
+			return (c) => c.tierlistInfo[v as keyof ChartDocument["tierlistInfo"]]?.value;
 		}
 
 		return () => 0;
 	}, [sortAlg]);
 
 	const sortedDataset = useMemo(
-		() => folderDataset.slice(0).sort(NumericSOV(a => getterFn(a) ?? -Infinity, true)),
+		() => folderDataset.slice(0).sort(NumericSOV((a) => getterFn(a) ?? -Infinity, true)),
 		[getterFn, folderDataset, sortAlg]
 	);
 
@@ -108,15 +108,15 @@ function FolderMinimapMain({
 		}
 
 		return recentSession.scoreInfo
-			.filter(e => e.isNewScore || e.gradeDelta > 0 || e.lampDelta > 0)
-			.map(e => e.scoreID);
+			.filter((e) => e.isNewScore || e.gradeDelta > 0 || e.lampDelta > 0)
+			.map((e) => e.scoreID);
 	}, [recentSession]);
 
 	return (
 		<div className="row">
 			<div className="col-12 col-lg-10 offset-lg-1">
 				<div className="scoreinfo-grid-minimap">
-					{sortedDataset.map(d => (
+					{sortedDataset.map((d) => (
 						<MinimapElement
 							key={d.chartID}
 							data={d}
@@ -126,7 +126,7 @@ function FolderMinimapMain({
 							wasRecent={
 								(d.__related.pb &&
 									recentlyTouched.some(
-										scoreID =>
+										(scoreID) =>
 											d.__related.pb!.composedFrom.scorePB === scoreID ||
 											d.__related.pb!.composedFrom.lampPB === scoreID
 									)) ??
@@ -141,11 +141,11 @@ function FolderMinimapMain({
 					<Form.Control
 						as="select"
 						value={sortAlg}
-						onChange={e => setSortAlg(e.target.value)}
+						onChange={(e) => setSortAlg(e.target.value)}
 					>
 						{view === "grade" && <option value="score">Your Score</option>}
 						{view === "lamp" && <option value="lamp">Your Lamp</option>}
-						{gptConfig.tierlists.map(e => (
+						{gptConfig.tierlists.map((e) => (
 							<option key={`tierlist:${e}`} value={`tierlist:${e}`}>
 								Tierlist: {e}
 							</option>

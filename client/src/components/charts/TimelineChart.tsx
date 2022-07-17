@@ -78,7 +78,7 @@ export default function TimelineChart({
 					useMesh={true}
 					theme={TACHI_CHART_THEME}
 					curve={curve}
-					tooltip={d => <ChartTooltip point={d.point} renderFn={tooltipRenderFn} />}
+					tooltip={(d) => <ChartTooltip point={d.point} renderFn={tooltipRenderFn} />}
 					legends={[]}
 					{...props}
 				/>
@@ -100,7 +100,7 @@ export default function TimelineChart({
 					useMesh={true}
 					theme={TACHI_CHART_THEME}
 					curve={curve}
-					tooltip={d => <ChartTooltip point={d.point} renderFn={tooltipRenderFn} />}
+					tooltip={(d) => <ChartTooltip point={d.point} renderFn={tooltipRenderFn} />}
 					legends={[]}
 					{...props}
 				/>

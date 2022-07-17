@@ -43,7 +43,7 @@ export default function FolderInfoHeader({
 				<select
 					className="form-control"
 					value={breakdownInfo}
-					onChange={e => setBreakdownInfo(e.target.value as any)}
+					onChange={(e) => setBreakdownInfo(e.target.value as any)}
 				>
 					<option value="graph">Thermometer</option>
 					<option value="switchboard">Switchboard</option>

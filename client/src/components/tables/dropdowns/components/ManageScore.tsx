@@ -4,7 +4,7 @@ import React, { useMemo, useReducer, useState } from "react";
 import { ScoreDocument } from "tachi-common";
 
 export default function ManageScore({ score }: { score: ScoreDocument }) {
-	const [warn, upgWarn] = useReducer(r => r + 1, 0);
+	const [warn, upgWarn] = useReducer((r) => r + 1, 0);
 	const message = useMemo(() => {
 		if (warn === 0) {
 			return "Delete Score (Requires Further Confirmation)";

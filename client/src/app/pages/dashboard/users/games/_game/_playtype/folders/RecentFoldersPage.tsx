@@ -52,14 +52,14 @@ export default function RecentFoldersPage({
 		dataset.push({
 			view: recent,
 			// Is it really O(n^2) if the input is capped at 4?
-			folder: data.folders.find(x => x.folderID === recent.folderID)!,
-			stats: data.stats.find(x => x.folderID === recent.folderID)!,
+			folder: data.folders.find((x) => x.folderID === recent.folderID)!,
+			stats: data.stats.find((x) => x.folderID === recent.folderID)!,
 		});
 	}
 
 	return (
 		<Row>
-			{dataset.map(e => (
+			{dataset.map((e) => (
 				<FolderInfoComponent
 					key={e.folder.folderID}
 					reqUser={reqUser}

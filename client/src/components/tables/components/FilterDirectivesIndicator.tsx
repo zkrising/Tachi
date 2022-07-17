@@ -148,7 +148,7 @@ export default function FilterDirectivesIndicator<D>({
 								</tr>
 							</thead>
 							<tbody>
-								{Object.keys(searchFunctions).map(key => (
+								{Object.keys(searchFunctions).map((key) => (
 									<tr key={key}>
 										<td>
 											<strong>

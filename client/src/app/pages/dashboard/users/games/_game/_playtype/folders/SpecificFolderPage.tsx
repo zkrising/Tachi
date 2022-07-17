@@ -75,7 +75,7 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 			});
 		}
 
-		folderDataset.sort(StrSOV(x => x.__related.song.title));
+		folderDataset.sort(StrSOV((x) => x.__related.song.title));
 
 		return folderDataset;
 	}, [data]);
@@ -181,7 +181,7 @@ function TimelineView({ game, playtype, reqUser, folderID }: Props & { folderID:
 						<Form.Control
 							as="select"
 							value={type}
-							onChange={e => setType(e.target.value as "grade" | "lamp")}
+							onChange={(e) => setType(e.target.value as "grade" | "lamp")}
 						>
 							<option value="grade">Grades</option>
 							<option value="lamp">Lamps</option>
@@ -191,7 +191,7 @@ function TimelineView({ game, playtype, reqUser, folderID }: Props & { folderID:
 						<Form.Control
 							as="select"
 							value={value}
-							onChange={e => setValue(Number(e.target.value))}
+							onChange={(e) => setValue(Number(e.target.value))}
 						>
 							{type === "grade"
 								? gptConfig.grades.map((e, i) => (
@@ -257,7 +257,7 @@ function TimelineMain({
 		});
 	}
 
-	scoreDataset.sort(NumericSOV(x => x.timeAchieved ?? Infinity));
+	scoreDataset.sort(NumericSOV((x) => x.timeAchieved ?? Infinity));
 
 	const elements = [];
 
@@ -378,7 +378,7 @@ function TierlistBreakdown({ game, folderDataset, playtype }: InfoProps) {
 	const formik = useFormik({
 		initialValues: {
 			__hideAchieved: false,
-			...Object.fromEntries(gptConfig.tierlists.map(e => [e, true])),
+			...Object.fromEntries(gptConfig.tierlists.map((e) => [e, true])),
 		} as { __hideAchieved: boolean } & Partial<Record<GPTTierlists[IDStrings], true>>,
 		onSubmit: NO_OP,
 	});
@@ -394,7 +394,7 @@ function TierlistBreakdown({ game, folderDataset, playtype }: InfoProps) {
 					<span>Here you can select what tierlist blocks to show!</span>
 					<Divider />
 					{gptConfig.tierlists.length > 1 &&
-						gptConfig.tierlists.map(e => (
+						gptConfig.tierlists.map((e) => (
 							<>
 								<Form.Check
 									key={e}
@@ -490,7 +490,7 @@ function TierlistInfoLadder({
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	for (const bucket of buckets) {
-		bucket.sort(NumericSOV(x => gptConfig.tierlists.indexOf(x.key), true));
+		bucket.sort(NumericSOV((x) => gptConfig.tierlists.indexOf(x.key), true));
 	}
 
 	if (tierlistInfo.length === 0) {
@@ -500,13 +500,13 @@ function TierlistInfoLadder({
 	return (
 		<Row className="text-center">
 			{buckets
-				.filter(e => e.length > 0)
-				.map(bucket => (
+				.filter((e) => e.length > 0)
+				.map((bucket) => (
 					<React.Fragment key={bucket[0].data!.value}>
 						<Col className="ladder-header" xs={12}>
 							{bucket[0].data!.value} (
 							{DistinctArr(
-								bucket.map(e =>
+								bucket.map((e) =>
 									gptConfig.tierlists.length === 1
 										? e.data.text
 										: `${e.key}: ${e.data.text}`
@@ -676,5 +676,5 @@ function FolderDatasetToTierlistInfo(
 		}
 	}
 
-	return tierlistInfo.sort(NumericSOV(x => (x.data ? x.data.value : -Infinity), true));
+	return tierlistInfo.sort(NumericSOV((x) => (x.data ? x.data.value : -Infinity), true));
 }

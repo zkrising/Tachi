@@ -27,7 +27,7 @@ export default function SessionOverview({
 				name="Duration"
 				value={FormatDuration(session.timeEnded - session.timeStarted)}
 			/>
-			<StatThing md12 name="Highlights" value={scores.filter(e => e.highlight).length} />
+			<StatThing md12 name="Highlights" value={scores.filter((e) => e.highlight).length} />
 			<Col xs={12}>
 				<Divider />
 				<div className="card">
@@ -38,7 +38,7 @@ export default function SessionOverview({
 							className="d-flex text-center"
 							style={{ justifyContent: "space-evenly" }}
 						>
-							{gptConfig.sessionRatingAlgs.map(e => (
+							{gptConfig.sessionRatingAlgs.map((e) => (
 								<div key={e}>
 									<div className="display-4">{UppercaseFirst(e)}</div>
 									<div style={{ fontSize: "1.2rem" }}>
@@ -61,7 +61,7 @@ export default function SessionOverview({
 					<ScoreTable
 						game={session.game}
 						playtype={session.playtype}
-						dataset={scoreDataset.filter(e => e.highlight)}
+						dataset={scoreDataset.filter((e) => e.highlight)}
 					/>
 				</Card>
 			</Col>

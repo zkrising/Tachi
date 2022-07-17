@@ -19,7 +19,7 @@ export default function DebounceSearch({
 				className={`form-control ${className}`}
 				type="text"
 				value={uiSearch}
-				onChange={e => {
+				onChange={(e) => {
 					setUISearch(e.target.value);
 
 					if (lastTimeout !== null) {

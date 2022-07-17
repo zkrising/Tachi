@@ -80,7 +80,7 @@ function LastSession({ reqUser, game, playtype }: { reqUser: PublicUserDocument 
 				return { session: res.body, sessionData: sessionDataRes.body };
 			}}
 		>
-			{data =>
+			{(data) =>
 				data && (
 					<Card className="mt-4" header="Most Recent Session">
 						<div className="row d-flex justify-content-center">
@@ -178,7 +178,7 @@ function RecentSessionScoreInfo({
 	sessionData: SessionReturns;
 	reqUser: PublicUserDocument;
 } & GamePT) {
-	const highlightedScores = sessionData.scores.filter(e => e.highlight);
+	const highlightedScores = sessionData.scores.filter((e) => e.highlight);
 
 	const [mode, setMode] = useState<"highlight" | "best" | "recent">(
 		highlightedScores.length > 0 ? "highlight" : "best"
@@ -196,12 +196,12 @@ function RecentSessionScoreInfo({
 		} else if (mode === "best") {
 			scoreSet.sort((a, b) =>
 				NumericSOV<ScoreDocument>(
-					d => d.calculatedData[gptConfig.defaultScoreRatingAlg] ?? 0
+					(d) => d.calculatedData[gptConfig.defaultScoreRatingAlg] ?? 0
 				)(b, a)
 			);
 		} else if (mode === "recent") {
 			// sneaky hack to sort in reverse
-			scoreSet.sort((a, b) => NumericSOV<ScoreDocument>(d => d.timeAchieved ?? 0)(b, a));
+			scoreSet.sort((a, b) => NumericSOV<ScoreDocument>((d) => d.timeAchieved ?? 0)(b, a));
 		}
 
 		const scoreDataset: ScoreDataset = [];
@@ -268,7 +268,7 @@ function RankingInfo({ reqUser, game, playtype }: { reqUser: PublicUserDocument 
 				return res.body;
 			}}
 		>
-			{data => <UserHistory {...{ data, game, playtype, reqUser }} />}
+			{(data) => <UserHistory {...{ data, game, playtype, reqUser }} />}
 		</AsyncLoader>
 	);
 }
@@ -352,11 +352,11 @@ function UserHistory({
 						<select
 							className="form-control"
 							value={rating}
-							onChange={e =>
+							onChange={(e) =>
 								setRating(e.target.value as keyof UserGameStats["ratings"])
 							}
 						>
-							{gptConfig.profileRatingAlgs.map(e => (
+							{gptConfig.profileRatingAlgs.map((e) => (
 								<option key={e} value={e}>
 									{UppercaseFirst(e)}
 								</option>
@@ -372,20 +372,20 @@ function UserHistory({
 					data={[
 						{
 							id: "playcount",
-							data: data.map(d => ({ x: d.timestamp, y: d.playcount })),
+							data: data.map((d) => ({ x: d.timestamp, y: d.playcount })),
 						},
 					]}
 					axisBottom={{
-						format: x => DateTime.fromJSDate(x).toLocaleString(DateTime.DATE_FULL),
+						format: (x) => DateTime.fromJSDate(x).toLocaleString(DateTime.DATE_FULL),
 						tickValues: 3,
 					}}
 					axisLeft={{
 						tickSize: 5,
 						tickPadding: 5,
 						tickRotation: 0,
-						format: y => (Number.isInteger(y) ? y : ""),
+						format: (y) => (Number.isInteger(y) ? y : ""),
 					}}
-					tooltipRenderFn={p => (
+					tooltipRenderFn={(p) => (
 						<div>
 							{p.data.yFormatted} Play{p.data.yFormatted !== "1" && "s"}
 							<br />
@@ -396,7 +396,7 @@ function UserHistory({
 					)}
 					curve={"stepBefore"}
 					enableArea={true}
-					areaBaselineValue={Math.min(...data.map(e => e.playcount))}
+					areaBaselineValue={Math.min(...data.map((e) => e.playcount))}
 				/>
 			) : (
 				<>
@@ -404,11 +404,11 @@ function UserHistory({
 						<select
 							className="form-control"
 							value={rating}
-							onChange={e =>
+							onChange={(e) =>
 								setRating(e.target.value as keyof UserGameStats["ratings"])
 							}
 						>
-							{gptConfig.profileRatingAlgs.map(e => (
+							{gptConfig.profileRatingAlgs.map((e) => (
 								<option key={e} value={e}>
 									{UppercaseFirst(e)}
 								</option>
@@ -431,7 +431,7 @@ function RatingTimeline({
 	rating: keyof UserGameStats["ratings"];
 }) {
 	const ratingDataset = [
-		{ id: rating, data: data.map(e => ({ x: e.timestamp, y: e.ratings[rating] })) },
+		{ id: rating, data: data.map((e) => ({ x: e.timestamp, y: e.ratings[rating] })) },
 	];
 
 	return (
@@ -440,16 +440,16 @@ function RatingTimeline({
 			mobileHeight="20rem"
 			data={ratingDataset}
 			axisBottom={{
-				format: x => DateTime.fromJSDate(x).toLocaleString(DateTime.DATE_FULL),
+				format: (x) => DateTime.fromJSDate(x).toLocaleString(DateTime.DATE_FULL),
 				tickValues: 3, // temp
 			}}
 			axisLeft={{
 				tickSize: 5,
 				tickPadding: 5,
 				tickRotation: 0,
-				format: y => (y ? y.toFixed(2) : "N/A"),
+				format: (y) => (y ? y.toFixed(2) : "N/A"),
 			}}
-			tooltipRenderFn={p => (
+			tooltipRenderFn={(p) => (
 				<div>
 					{p.data.y ? (p.data.y as number).toFixed(2) : "N/A"} {UppercaseFirst(rating)}
 					<br />
@@ -474,21 +474,21 @@ function RankingTimeline({
 			data={[
 				{
 					id: "ranking",
-					data: data.map(d => ({ x: d.timestamp, y: d.rankings[rating].ranking })),
+					data: data.map((d) => ({ x: d.timestamp, y: d.rankings[rating].ranking })),
 				},
 			]}
 			axisBottom={{
-				format: x => DateTime.fromJSDate(x).toLocaleString(DateTime.DATE_FULL),
+				format: (x) => DateTime.fromJSDate(x).toLocaleString(DateTime.DATE_FULL),
 				tickValues: 3, // temp
 			}}
 			axisLeft={{
 				tickSize: 5,
 				tickPadding: 5,
 				tickRotation: 0,
-				format: y => (Number.isInteger(y) ? `#${y}` : ""),
+				format: (y) => (Number.isInteger(y) ? `#${y}` : ""),
 			}}
 			reverse={true}
-			tooltipRenderFn={p => (
+			tooltipRenderFn={(p) => (
 				<div>
 					{MillisToSince(+p.data.xFormatted)}: #{p.data.yFormatted}
 					<br />

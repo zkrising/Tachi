@@ -23,12 +23,12 @@ export default function ChartHeader<D extends ScoreDataset | FolderDataset | PBD
 	playtype: Playtype,
 	chartGetter: (k: D[0]) => ChartDocument
 ): Header<D[0]> {
-	let sortFn: (d: D[0]) => number = k => chartGetter(k).levelNum;
+	let sortFn: (d: D[0]) => number = (k) => chartGetter(k).levelNum;
 
 	if (game === "iidx") {
-		sortFn = k => CascadingTierlistValue(chartGetter(k), "kt-HC", "kt-NC");
+		sortFn = (k) => CascadingTierlistValue(chartGetter(k), "kt-HC", "kt-NC");
 	} else if (game === "bms" || game === "pms") {
-		sortFn = k => CascadingTierlistValue(chartGetter(k), "sgl-HC", "sgl-EC");
+		sortFn = (k) => CascadingTierlistValue(chartGetter(k), "sgl-HC", "sgl-EC");
 	} else if (game === "itg") {
 		return [
 			"Chart",

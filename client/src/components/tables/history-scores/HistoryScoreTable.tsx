@@ -33,7 +33,7 @@ export default function HistoryScoreTable({
 
 	const [rating, setRating] = useState(defaultRating);
 
-	const headers = GetGPTCoreHeaders<ScoreDataset>(game, playtype, rating, setRating, k => k);
+	const headers = GetGPTCoreHeaders<ScoreDataset>(game, playtype, rating, setRating, (k) => k);
 
 	return (
 		<TachiTable
@@ -41,10 +41,13 @@ export default function HistoryScoreTable({
 			pageLen={pageLen}
 			noTopDisplayStr
 			entryName="Scores"
-			headers={[...headers, ["Timestamp", "Timestamp", NumericSOV(x => x.timeAchieved ?? 0)]]}
+			headers={[
+				...headers,
+				["Timestamp", "Timestamp", NumericSOV((x) => x.timeAchieved ?? 0)],
+			]}
 			defaultSortMode="Timestamp"
 			defaultReverseSort
-			rowFunction={sc => (
+			rowFunction={(sc) => (
 				<Row chart={chart} key={sc.scoreID} sc={sc} game={game} rating={rating} />
 			)}
 		/>

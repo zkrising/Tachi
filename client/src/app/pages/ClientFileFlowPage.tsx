@@ -48,7 +48,7 @@ export default function ClientFileFlowPage() {
 					<div className="col-12">
 						The key will have the following permissions.
 						<ul>
-							{data.requestedPermissions.map(e => (
+							{data.requestedPermissions.map((e) => (
 								<li key={e}>{e}</li>
 							))}
 						</ul>

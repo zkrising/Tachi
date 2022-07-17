@@ -11,13 +11,13 @@ export default function useApiQuery<T>(
 		url,
 		async () => {
 			if (Array.isArray(url)) {
-				const results = await Promise.all(url.map(u => APIFetchV1(u, options)));
+				const results = await Promise.all(url.map((u) => APIFetchV1(u, options)));
 
-				if (!results.every(r => r.success)) {
+				if (!results.every((r) => r.success)) {
 					throw results;
 				}
 
-				return (results.map(e => (e as SuccessfulAPIResponse).body) as unknown) as T;
+				return results.map((e) => (e as SuccessfulAPIResponse).body) as unknown as T;
 			}
 
 			const res = await APIFetchV1<T>(url, options);

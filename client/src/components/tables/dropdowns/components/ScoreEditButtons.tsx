@@ -59,12 +59,14 @@ export default function ScoreEditButtons({
 								<Button
 									variant="success"
 									onClick={() =>
-										ModifyScore(score.scoreID, { highlight: false }).then(r => {
-											if (r) {
-												setHighlight(false);
-												score.highlight = false;
+										ModifyScore(score.scoreID, { highlight: false }).then(
+											(r) => {
+												if (r) {
+													setHighlight(false);
+													score.highlight = false;
+												}
 											}
-										})
+										)
 									}
 								>
 									<Icon type="star" />
@@ -76,12 +78,14 @@ export default function ScoreEditButtons({
 								<Button
 									variant="outline-secondary"
 									onClick={() =>
-										ModifyScore(score.scoreID, { highlight: true }).then(r => {
-											if (r) {
-												setHighlight(true);
-												score.highlight = true;
+										ModifyScore(score.scoreID, { highlight: true }).then(
+											(r) => {
+												if (r) {
+													setHighlight(true);
+													score.highlight = true;
+												}
 											}
-										})
+										)
 									}
 								>
 									<Icon type="star" />
@@ -153,7 +157,7 @@ function CommentModal({
 					onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
 						e.preventDefault();
 
-						ModifyScore(scoreID, { comment: innerComment }).then(r => {
+						ModifyScore(scoreID, { comment: innerComment }).then((r) => {
 							if (r) {
 								setComment(innerComment);
 								score.comment = innerComment;
@@ -169,7 +173,7 @@ function CommentModal({
 								type="text"
 								placeholder={comment ?? "This score was great!"}
 								value={innerComment}
-								onChange={e => setInnerComment(e.target.value)}
+								onChange={(e) => setInnerComment(e.target.value)}
 							/>
 							<div className="input-group-append">
 								<Button variant="primary" type="submit">
@@ -183,7 +187,7 @@ function CommentModal({
 						<Button
 							variant="outline-danger"
 							onClick={() =>
-								ModifyScore(scoreID, { comment: null }).then(r => {
+								ModifyScore(scoreID, { comment: null }).then((r) => {
 									if (r) {
 										setComment(null);
 										score.comment = null;

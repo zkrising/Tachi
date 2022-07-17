@@ -127,7 +127,7 @@ function OAuthClientInfo() {
 
 	return (
 		<>
-			{clients.map(e => (
+			{clients.map((e) => (
 				<OAuthClientRow
 					setClients={setClients}
 					clients={clients}
@@ -161,7 +161,7 @@ function CreateNewOAuthClient({ setClients }: { setClients: SetState<TachiAPICli
 				</Modal.Header>
 				<Modal.Body>
 					<Form
-						onSubmit={async e => {
+						onSubmit={async (e) => {
 							e.preventDefault();
 
 							const res = await APIFetchV1(
@@ -196,7 +196,7 @@ function CreateNewOAuthClient({ setClients }: { setClients: SetState<TachiAPICli
 							<input
 								value={name}
 								className="form-control"
-								onChange={e => setName(e.target.value)}
+								onChange={(e) => setName(e.target.value)}
 								placeholder="My API Client"
 							/>
 						</div>
@@ -212,7 +212,7 @@ function CreateNewOAuthClient({ setClients }: { setClients: SetState<TachiAPICli
 							<input
 								value={redirectUri}
 								className="form-control"
-								onChange={e => setRedirectUri(e.target.value)}
+								onChange={(e) => setRedirectUri(e.target.value)}
 								placeholder="https://example.com/callback"
 							/>
 						</div>
@@ -272,18 +272,18 @@ function CreateNewOAuthClient({ setClients }: { setClients: SetState<TachiAPICli
 						<Divider />
 						<h4>Permissions</h4>
 						<div className="px-4">
-							{allPermissions.map(permission => (
+							{allPermissions.map((permission) => (
 								<>
 									<input
 										key={permission}
 										className="form-check-input"
 										type="checkbox"
-										onChange={e => {
+										onChange={(e) => {
 											if (e.target.checked) {
 												setPermissions([...permissions, permission]);
 											} else {
 												setPermissions(
-													permissions.filter(e => e !== permission)
+													permissions.filter((e) => e !== permission)
 												);
 											}
 										}}
@@ -398,7 +398,7 @@ function OAuthClientRow({ client, clients, setClients }: OAuthClientProps) {
 
 							if (res.success) {
 								setClients(
-									clients.map(e => {
+									clients.map((e) => {
 										if (e.clientID === client.clientID) {
 											return res.body;
 										}
@@ -460,7 +460,9 @@ function OAuthClientRow({ client, clients, setClients }: OAuthClientProps) {
 								);
 
 								if (res.success) {
-									setClients(clients.filter(e => e.clientID !== client.clientID));
+									setClients(
+										clients.filter((e) => e.clientID !== client.clientID)
+									);
 								}
 							}}
 						>
@@ -496,7 +498,7 @@ function EditClientModal({
 			</Modal.Header>
 			<Modal.Body>
 				<Form
-					onSubmit={async e => {
+					onSubmit={async (e) => {
 						e.preventDefault();
 
 						const res = await APIFetchV1<TachiAPIClientDocument>(
@@ -520,7 +522,7 @@ function EditClientModal({
 
 						if (res.success) {
 							setClients(
-								clients.map(e => {
+								clients.map((e) => {
 									if (e.clientID === client.clientID) {
 										return res.body;
 									}
@@ -754,7 +756,7 @@ function APIKeysPage({ reqUser }: { reqUser: PublicUserDocument }) {
 				{apiKeys.length === 0 ? (
 					<div className="text-center">You have no API Keys.</div>
 				) : (
-					apiKeys.map(e => (
+					apiKeys.map((e) => (
 						<APIKeyRow
 							apiKeys={apiKeys}
 							setApiKeys={setApiKeys}
@@ -796,7 +798,7 @@ function CreateAPIKeyModal({
 			<Modal.Header>Create API Key</Modal.Header>
 			<Modal.Body>
 				<form
-					onSubmit={async e => {
+					onSubmit={async (e) => {
 						e.preventDefault();
 						const res = await APIFetchV1<APITokenDocument>(
 							`/users/${reqUser.id}/api-tokens/create`,
@@ -827,25 +829,25 @@ function CreateAPIKeyModal({
 						<input
 							value={identifier}
 							className="form-control"
-							onChange={e => setIdentifier(e.target.value)}
+							onChange={(e) => setIdentifier(e.target.value)}
 						/>
 					</div>
 					<Muted>Give your API Key a name, so you dont forget what it's for!</Muted>
 					<Divider />
 					<h4>Permissions</h4>
 					<div className="px-4">
-						{allPermissions.map(permission => (
+						{allPermissions.map((permission) => (
 							<>
 								<input
 									key={permission}
 									className="form-check-input"
 									type="checkbox"
-									onChange={e => {
+									onChange={(e) => {
 										if (e.target.checked) {
 											setPermissions([...permissions, permission]);
 										} else {
 											setPermissions(
-												permissions.filter(e => e !== permission)
+												permissions.filter((e) => e !== permission)
 											);
 										}
 									}}
@@ -904,7 +906,7 @@ function APIKeyRow({
 							true
 						);
 
-						setApiKeys(apiKeys.filter(e => e.token !== apiKey.token));
+						setApiKeys(apiKeys.filter((e) => e.token !== apiKey.token));
 					}
 				}}
 				className="float-right"

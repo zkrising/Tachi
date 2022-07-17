@@ -9,7 +9,7 @@ import {
 } from "tachi-common";
 
 export function IsSupportedGame(str: string): str is Game {
-	return TachiConfig.games.includes((str as unknown) as Game);
+	return TachiConfig.games.includes(str as unknown as Game);
 }
 
 export function IsSupportedPlaytype<G extends Game = Game>(
@@ -18,7 +18,7 @@ export function IsSupportedPlaytype<G extends Game = Game>(
 ): str is Playtypes[G] {
 	const gameConfig = GetGameConfig(game);
 
-	return gameConfig.validPlaytypes.includes((str as unknown) as Playtypes[G]);
+	return gameConfig.validPlaytypes.includes(str as unknown as Playtypes[G]);
 }
 
 export function IsScore<I extends IDStrings>(

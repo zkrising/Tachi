@@ -46,7 +46,7 @@ export default function ImportFileInfo({
 			return;
 		}
 
-		file.text().then(r => {
+		file.text().then((r) => {
 			try {
 				const { valid, info } = parseFunction(r);
 
@@ -108,7 +108,7 @@ export default function ImportFileInfo({
 					type="file"
 					id="batch-manual"
 					multiple={false}
-					onChange={e => setFile(e.target.files![0])}
+					onChange={(e) => setFile(e.target.files![0])}
 				/>
 			</Form.Group>
 			{file && (

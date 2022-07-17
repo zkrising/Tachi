@@ -106,10 +106,10 @@ const NeutralMatch = (sv: string, dv: string) => dv.toLowerCase().includes(sv.to
 
 const BooleanMatch = (sv: string, dv: boolean) => {
 	if (dv) {
-		return ["yes", "true"].some(x => x.startsWith(sv.toLowerCase()));
+		return ["yes", "true"].some((x) => x.startsWith(sv.toLowerCase()));
 	}
 
-	return ["no", "false"].some(x => x.startsWith(sv.toLowerCase()));
+	return ["no", "false"].some((x) => x.startsWith(sv.toLowerCase()));
 };
 
 function GetStrData(dataValue: string | number | [string, number]) {
@@ -211,7 +211,7 @@ export function ComposeSearchFunction<D>(
 		const directives = ParseDirectives(search);
 
 		if (directives.length === 0) {
-			return allGetters.some(vgOrHybrid => {
+			return allGetters.some((vgOrHybrid) => {
 				const v = GetValueGetter(vgOrHybrid)(data);
 
 				if (v === undefined) {

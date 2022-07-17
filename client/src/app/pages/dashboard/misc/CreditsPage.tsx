@@ -176,7 +176,7 @@ export default function CreditsPage() {
 				<ul>
 					{Contributors.slice(0)
 						.sort((a, b) => a.localeCompare(b))
-						.map(e => (
+						.map((e) => (
 							<li key={e}>{e}</li>
 						))}
 				</ul>
@@ -243,7 +243,9 @@ export default function CreditsPage() {
 
 				<p>
 					Everyone who was part of the beta.
-					{user?.badges.some(x => x === "beta" || x === "alpha") ? " (That's you!)" : ""}
+					{user?.badges.some((x) => x === "beta" || x === "alpha")
+						? " (That's you!)"
+						: ""}
 				</p>
 
 				<p>

@@ -69,8 +69,8 @@ function ProfileLeaderboard({ game, playtype }: GamePT) {
 
 	const SelectComponent =
 		gptConfig.profileRatingAlgs.length > 1 ? (
-			<Form.Control as="select" value={alg} onChange={e => setAlg(e.target.value as any)}>
-				{gptConfig.profileRatingAlgs.map(e => (
+			<Form.Control as="select" value={alg} onChange={(e) => setAlg(e.target.value as any)}>
+				{gptConfig.profileRatingAlgs.map((e) => (
 					<option key={e} value={e}>
 						{UppercaseFirst(e)}
 					</option>
@@ -122,23 +122,23 @@ function ProfileLeaderboard({ game, playtype }: GamePT) {
 				dataset={userDataset}
 				entryName="Rankers"
 				headers={[
-					["Ranking", "Rank", NumericSOV(x => x.__related.index)],
-					["User", "User", StrSOV(x => x.__related.user.username)],
+					["Ranking", "Rank", NumericSOV((x) => x.__related.index)],
+					["User", "User", StrSOV((x) => x.__related.user.username)],
 					...gptConfig.profileRatingAlgs.map(
-						e =>
+						(e) =>
 							[
 								UppercaseFirst(e),
 								UppercaseFirst(e),
-								NumericSOV(x => x.ratings[e] ?? -Infinity),
+								NumericSOV((x) => x.ratings[e] ?? -Infinity),
 							] as Header<UGSDataset[0]>
 					),
 					["Classes", "Classes"],
 				]}
-				rowFunction={r => (
+				rowFunction={(r) => (
 					<tr>
 						<IndexCell index={r.__related.index} />
 						<UserCell game={game} playtype={playtype} user={r.__related.user} />
-						{gptConfig.profileRatingAlgs.map(e => (
+						{gptConfig.profileRatingAlgs.map((e) => (
 							<td key={e}>
 								{r.ratings[e]
 									? gptConfig.profileRatingAlgFormatters[e]
@@ -178,8 +178,8 @@ function ScoreLeaderboard({ game, playtype }: GamePT) {
 
 	const SelectComponent =
 		gptConfig.scoreRatingAlgs.length > 1 ? (
-			<Form.Control as="select" value={alg} onChange={e => setAlg(e.target.value as any)}>
-				{gptConfig.scoreRatingAlgs.map(e => (
+			<Form.Control as="select" value={alg} onChange={(e) => setAlg(e.target.value as any)}>
+				{gptConfig.scoreRatingAlgs.map((e) => (
 					<option key={e} value={e}>
 						{UppercaseFirst(e)}
 					</option>

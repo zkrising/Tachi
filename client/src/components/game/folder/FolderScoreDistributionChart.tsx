@@ -1,11 +1,4 @@
-import { DEFAULT_BAR_PROPS } from "util/charts";
-import { ChangeOpacity } from "util/color-opacity";
-import { CreateChartIDMap } from "util/data";
-import { ComposeExpFn, ComposeInverseExpFn, CountElements, Reverse } from "util/misc";
-import { GetGradeChartExpScale } from "util/scales";
-import { NumericSOV } from "util/sorts";
-import { ResponsiveBar } from "@nivo/bar";
-import { BarChartTooltip } from "components/charts/ChartTooltip";
+import { CountElements, Reverse } from "util/misc";
 import React, { useMemo } from "react";
 import { GetGamePTConfig } from "tachi-common";
 import { GamePT } from "types/react";
@@ -27,10 +20,10 @@ export default function FolderScoreDistributionChart({
 
 	const values = useMemo(() => {
 		if (view === "grade") {
-			return CountElements(folderDataset, x => x.__related.pb?.scoreData.grade ?? null);
+			return CountElements(folderDataset, (x) => x.__related.pb?.scoreData.grade ?? null);
 		}
 
-		return CountElements(folderDataset, x => x.__related.pb?.scoreData.lamp ?? null);
+		return CountElements(folderDataset, (x) => x.__related.pb?.scoreData.lamp ?? null);
 	}, [folderDataset, view]);
 
 	return (

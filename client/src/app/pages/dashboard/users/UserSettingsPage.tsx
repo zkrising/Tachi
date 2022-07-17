@@ -81,7 +81,7 @@ function AccountSettings({ reqUser }: { reqUser: PublicUserDocument }) {
 			"!password": "",
 			confPass: "",
 		},
-		onSubmit: async values => {
+		onSubmit: async (values) => {
 			const r = await APIFetchV1<UserSettings>(
 				`/users/${reqUser.id}/change-password`,
 				{
@@ -173,7 +173,7 @@ function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 			advancedMode: settings?.preferences.advancedMode ?? false,
 			deletableScores: settings?.preferences.deletableScores ?? false,
 		},
-		onSubmit: async values => {
+		onSubmit: async (values) => {
 			const res = await APIFetchV1<UserSettings>(
 				`/users/${reqUser.id}/settings`,
 				{
@@ -273,7 +273,7 @@ function ImageForm({ reqUser }: { reqUser: PublicUserDocument }) {
 					type="file"
 					id="pfp"
 					multiple={false}
-					onChange={e => setPfp(e.target.files![0])}
+					onChange={(e) => setPfp(e.target.files![0])}
 				/>
 				<div className="d-flex justify-content-center mt-4">
 					<ProfilePicture
@@ -292,7 +292,7 @@ function ImageForm({ reqUser }: { reqUser: PublicUserDocument }) {
 					type="file"
 					id="banner"
 					multiple={false}
-					onChange={e => setBanner(e.target.files![0])}
+					onChange={(e) => setBanner(e.target.files![0])}
 				/>
 				<div
 					className="d-flex justify-content-center mt-4 rounded"
@@ -334,7 +334,7 @@ function SocialMediaForm({ reqUser }: { reqUser: PublicUserDocument }) {
 			steam: reqUser.socialMedia.steam ?? "",
 			youtube: reqUser.socialMedia.youtube ?? "",
 		},
-		onSubmit: async values => {
+		onSubmit: async (values) => {
 			const valuesClone: Record<string, string | null> = {};
 			for (const v in values) {
 				const vx = v as keyof typeof values;

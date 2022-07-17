@@ -22,8 +22,8 @@ export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 		<MiniTable className="table-sm text-center" headers={["Player Stats"]} colSpan={2}>
 			<>
 				{(Object.keys(gptConfig.classHumanisedFormat) as GameClassSets[IDStrings][])
-					.filter(k => ugs.classes[k] !== undefined)
-					.map(k => (
+					.filter((k) => ugs.classes[k] !== undefined)
+					.map((k) => (
 						<tr key={k}>
 							<td>{UppercaseFirst(k)}</td>
 							<td>

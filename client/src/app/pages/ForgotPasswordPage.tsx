@@ -29,7 +29,7 @@ export default function ForgotPasswordPage() {
 				) : (
 					<>
 						<Form
-							onSubmit={async e => {
+							onSubmit={async (e) => {
 								e.preventDefault();
 
 								const res = await APIFetchV1(
@@ -55,7 +55,7 @@ export default function ForgotPasswordPage() {
 								<Form.Control
 									type="email"
 									value={email}
-									onChange={e => setEmail(e.target.value)}
+									onChange={(e) => setEmail(e.target.value)}
 								/>
 							</Form.Group>
 							<Form.Group className="justify-content-center d-flex pt-4">

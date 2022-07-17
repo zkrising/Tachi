@@ -5,8 +5,8 @@ import Tab from "@material-ui/core/Tab";
 
 export default function Navbar({ children }: { children: JSX.Element[] }) {
 	const links = children
-		.filter(e => e.props.to)
-		.map(e =>
+		.filter((e) => e.props.to)
+		.map((e) =>
 			e.props.to[e.props.to.length - 1] === "/"
 				? e.props.to.substring(0, e.props.to.length - 1)
 				: e.props.to

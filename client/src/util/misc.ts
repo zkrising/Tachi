@@ -21,7 +21,7 @@ export function RFA<T>(arr: T[]): T {
 
 export const NO_OP = () => void 0;
 
-export const PREVENT_DEFAULT: React.FormEventHandler<HTMLFormElement> = e => e.preventDefault();
+export const PREVENT_DEFAULT: React.FormEventHandler<HTMLFormElement> = (e) => e.preventDefault();
 
 export function UppercaseFirst(str: string) {
 	return str[0].toUpperCase() + str.substring(1);
@@ -48,7 +48,7 @@ export function PartialArrayRecordAssign<K extends string | number | symbol, T>(
 }
 
 export function FormatTables(tables: { table: string; level: string }[]) {
-	return tables.map(e => `${e.table}${e.level}`).join(", ");
+	return tables.map((e) => `${e.table}${e.level}`).join(", ");
 }
 
 export function FormatGPTRating(
@@ -71,10 +71,7 @@ export function FormatGPTRating(
 }
 
 export function ReverseStr(str: string) {
-	return str
-		.split("")
-		.reverse()
-		.join("");
+	return str.split("").reverse().join("");
 }
 
 export function FormatMillions(v: number) {
@@ -203,7 +200,7 @@ export function WrapError<T>(fn: () => T, errMsg: string) {
 }
 
 export function Sleep(ms: number) {
-	return new Promise<void>(resolve => setTimeout(() => resolve(), ms));
+	return new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
 }
 
 export function HistorySafeGoBack(history: ReturnType<typeof useHistory>) {

@@ -140,7 +140,7 @@ export default function TachiTable<D>({
 					<div className="col-12 col-lg-3 ml-auto input-group">
 						<input
 							className="form-control filter-directives-enabled"
-							onChange={e => setSearch(e.target.value)}
+							onChange={(e) => setSearch(e.target.value)}
 							type="text"
 							placeholder={`Filter ${entryName}`}
 							value={search}
@@ -157,7 +157,7 @@ export default function TachiTable<D>({
 				<table className="table table-striped table-hover table-vertical-center text-center table-responsive-md">
 					<thead>{headersRow}</thead>
 					<tbody>
-						<NoDataWrapper>{window.map(e => rowFunction(e))}</NoDataWrapper>
+						<NoDataWrapper>{window.map((e) => rowFunction(e))}</NoDataWrapper>
 					</tbody>
 				</table>
 			</div>

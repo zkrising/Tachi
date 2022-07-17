@@ -59,7 +59,7 @@ export function GenericFormatGradeDelta<I extends IDStrings = IDStrings>(
 	score: number,
 	percent: number,
 	grade: Grades[I],
-	formatNumFn: (n: number) => number = s => s
+	formatNumFn: (n: number) => number = (s) => s
 ): {
 	lower: string;
 	upper?: string;

@@ -3,7 +3,7 @@ import React from "react";
 import toast from "react-hot-toast";
 
 export function SendErrorToast(text: string) {
-	toast.error(t => (
+	toast.error((t) => (
 		<div>
 			{text}{" "}
 			<span onClick={() => toast.dismiss(t.id)}>
@@ -14,7 +14,7 @@ export function SendErrorToast(text: string) {
 }
 
 export function SendSuccessToast(text: string) {
-	toast.success(t => (
+	toast.success((t) => (
 		<div>
 			{text}{" "}
 			<span onClick={() => toast.dismiss(t.id)}>

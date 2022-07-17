@@ -126,12 +126,7 @@ function KAINeedsIntegrate({ kaiType, hash, clientID, redirectUri }: Omit<Props,
 			return null;
 		}
 
-		return (
-			hashjs
-				.sha256()
-				.update(url)
-				.digest("hex") === hash
-		);
+		return hashjs.sha256().update(url).digest("hex") === hash;
 	}, [url]);
 
 	return (
@@ -145,9 +140,10 @@ function KAINeedsIntegrate({ kaiType, hash, clientID, redirectUri }: Omit<Props,
 					<InputGroup.Prepend>
 						<InputGroup.Text>https://</InputGroup.Text>
 					</InputGroup.Prepend>
-					<Form.Control value={url} onChange={e => setUrl(e.target.value)} />
+					<Form.Control value={url} onChange={(e) => setUrl(e.target.value)} />
 				</InputGroup>
 			</Form.Group>
+
 			{url.split(".").length >= 3 && (
 				<>
 					<br />

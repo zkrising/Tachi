@@ -7,9 +7,8 @@ export default function useUGPTBase({
 	game,
 	playtype,
 }: { reqUser: PublicUserDocument } & GamePT) {
-	return useMemo(() => `/dashboard/users/${reqUser.username}/games/${game}/${playtype}`, [
-		reqUser,
-		game,
-		playtype,
-	]);
+	return useMemo(
+		() => `/dashboard/users/${reqUser.username}/games/${game}/${playtype}`,
+		[reqUser, game, playtype]
+	);
 }

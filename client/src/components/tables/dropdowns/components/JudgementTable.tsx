@@ -9,7 +9,7 @@ export default function JudgementTable({ score }: { score: ScoreDocument | PBSco
 
 	return (
 		<MiniTable className="text-center table-sm" headers={["Judgements"]} colSpan={2}>
-			{gptConfig.judgements.map(j => (
+			{gptConfig.judgements.map((j) => (
 				<tr key={j}>
 					<td>{j.toUpperCase()}</td>
 					<td>{score.scoreData.judgements[j] ?? "No Data."}</td>

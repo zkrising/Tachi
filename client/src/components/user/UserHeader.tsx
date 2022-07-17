@@ -203,7 +203,7 @@ function ChangeStatusModal({
 							},
 							true,
 							true
-						).then(r => {
+						).then((r) => {
 							if (r.success) {
 								setStatus(innerStatus);
 								reqUser.status = innerStatus;
@@ -219,7 +219,7 @@ function ChangeStatusModal({
 								type="text"
 								placeholder={status ?? "This score was great!"}
 								value={innerStatus}
-								onChange={e => setInnerStatus(e.target.value)}
+								onChange={(e) => setInnerStatus(e.target.value)}
 							/>
 							<div className="input-group-append">
 								<Button variant="primary" type="submit">

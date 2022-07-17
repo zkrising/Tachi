@@ -37,7 +37,7 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 	scoreState: ScoreState;
 	defaultView?: "pb" | "scorePB" | "lampPB" | "history" | "debug";
 } & GamePT) {
-	const DocComponent: DocumentComponentType = props =>
+	const DocComponent: DocumentComponentType = (props) =>
 		DocComponentCreator({ ...props, ...GPTDropdownSettings(game, playtype) });
 
 	// const { settings } = useContext(UserSettingsContext);
@@ -48,9 +48,13 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 		`/users/${userID}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`
 	);
 
-	const { isLoading: histIsLoading, error: histError, data: histData } = useApiQuery<
-		ScoreDocument<I>[]
-	>(`/users/${userID}/games/${game}/${playtype}/scores/${chart.chartID}`);
+	const {
+		isLoading: histIsLoading,
+		error: histError,
+		data: histData,
+	} = useApiQuery<ScoreDocument<I>[]>(
+		`/users/${userID}/games/${game}/${playtype}/scores/${chart.chartID}`
+	);
 
 	const currentScoreDoc: ScoreDocument<I> | PBScoreDocument<I> | null = useMemo(() => {
 		if (!data) {
@@ -63,7 +67,7 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 				// scores have more information than PBs.
 				// In this case, the PB is only composed of one score,
 				// so we should default to this instead.
-				return data.scores.filter(e => e.scoreID === data.pb.composedFrom.lampPB)[0];
+				return data.scores.filter((e) => e.scoreID === data.pb.composedFrom.lampPB)[0];
 			}
 			return data.pb;
 		}
@@ -71,11 +75,13 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 		const idMap = {
 			scorePB: data.pb.composedFrom.scorePB,
 			lampPB: data.pb.composedFrom.lampPB,
-			...Object.fromEntries((data.pb.composedFrom.other ?? []).map(e => [e.name, e.scoreID])),
+			...Object.fromEntries(
+				(data.pb.composedFrom.other ?? []).map((e) => [e.name, e.scoreID])
+			),
 		};
 
 		// @ts-expect-error awful
-		return data.scores.filter(e => e.scoreID === idMap[view])[0];
+		return data.scores.filter((e) => e.scoreID === idMap[view])[0];
 	}, [view, data]);
 
 	if (error) {

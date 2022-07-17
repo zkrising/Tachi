@@ -47,11 +47,11 @@ export default function PBTable<I extends IDStrings = IDStrings>({
 		...GetPBLeadingHeaders(
 			showUser,
 			showChart,
-			ChartHeader<PBDataset>(game, playtype, k => k.__related.chart)
+			ChartHeader<PBDataset>(game, playtype, (k) => k.__related.chart)
 		),
-		...GetGPTCoreHeaders<PBDataset>(game, playtype, rating, setRating, x => x),
-		["Site Ranking", "Site Rank", NumericSOV(x => x.rankingData.rank)],
-		["Last Raised", "Last Raised", NumericSOV(x => x.timeAchieved ?? 0)],
+		...GetGPTCoreHeaders<PBDataset>(game, playtype, rating, setRating, (x) => x),
+		["Site Ranking", "Site Rank", NumericSOV((x) => x.rankingData.rank)],
+		["Last Raised", "Last Raised", NumericSOV((x) => x.timeAchieved ?? 0)],
 		EmptyHeader,
 	];
 
@@ -59,12 +59,12 @@ export default function PBTable<I extends IDStrings = IDStrings>({
 		headers.pop();
 
 		// Put this just before the empty header.
-		headers.push(["Playcount", "Plays", NumericSOV(x => x.__playcount ?? 0)]);
+		headers.push(["Playcount", "Plays", NumericSOV((x) => x.__playcount ?? 0)]);
 		headers.push(EmptyHeader);
 	}
 
 	if (indexCol) {
-		headers.unshift(["#", "#", NumericSOV(x => x.__related.index)]);
+		headers.unshift(["#", "#", NumericSOV((x) => x.__related.index)]);
 	}
 
 	return (
@@ -74,7 +74,7 @@ export default function PBTable<I extends IDStrings = IDStrings>({
 			entryName="PBs"
 			searchFunctions={CreateDefaultPBSearchParams(game, playtype)}
 			defaultSortMode={indexCol ? "#" : undefined}
-			rowFunction={pb => (
+			rowFunction={(pb) => (
 				<Row
 					pb={pb}
 					key={`${pb.chartID}:${pb.userID}`}

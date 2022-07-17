@@ -99,8 +99,8 @@ function InviteList({ reqUser }: { reqUser: PublicUserDocument }) {
 		return <Loading />;
 	}
 
-	const unconsumed = data.invites.filter(e => !e.consumed);
-	const consumed = data.invites.filter(e => e.consumed);
+	const unconsumed = data.invites.filter((e) => !e.consumed);
+	const consumed = data.invites.filter((e) => e.consumed);
 
 	return (
 		<div style={{ fontSize: "1.2rem" }}>
@@ -110,7 +110,7 @@ function InviteList({ reqUser }: { reqUser: PublicUserDocument }) {
 				them onto the site.
 			</Muted>
 			{unconsumed.length ? (
-				unconsumed.map(e => (
+				unconsumed.map((e) => (
 					<div key={e.code}>
 						<code>{e.code}</code>
 					</div>
@@ -121,11 +121,11 @@ function InviteList({ reqUser }: { reqUser: PublicUserDocument }) {
 			<h3 className="mt-4">Users you have Invited</h3>
 			<div style={{ fontSize: "1.1rem" }}>
 				{consumed.length ? (
-					consumed.map(e => (
+					consumed.map((e) => (
 						<div key={e.code}>
 							Invited{" "}
 							<Link to={`/dashboard/users/${e.consumedBy}`}>
-								{data.consumers.find(u => u.id === e.consumedBy)?.username ??
+								{data.consumers.find((u) => u.id === e.consumedBy)?.username ??
 									"Unknown"}
 							</Link>{" "}
 							at {FormatTime(e.consumedAt || 0)}

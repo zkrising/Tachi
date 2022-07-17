@@ -48,7 +48,7 @@ export default function ImportInfo({ importID }: { importID: string }) {
 			return;
 		}
 
-		APIFetchV1<UserGameStats[]>(`/users/${user!.id}/game-stats`).then(r => {
+		APIFetchV1<UserGameStats[]>(`/users/${user!.id}/game-stats`).then((r) => {
 			if (!r.success) {
 				console.warn(`Can't update user stats post-import. ${r.description}`);
 				return;
@@ -130,7 +130,7 @@ export default function ImportInfo({ importID }: { importID: string }) {
 								["Error Name", "Error Name"],
 								["Info", "Info"],
 							]}
-							rowFunction={r => (
+							rowFunction={(r) => (
 								<tr>
 									<td>{r.type}</td>
 									<td>{r.message}</td>
@@ -175,7 +175,7 @@ function SessionTab({ data }: { data: Data }) {
 				["Change Info", "Change Info"],
 				["Scores", "Scores"],
 			]}
-			rowFunction={r => (
+			rowFunction={(r) => (
 				<tr>
 					<td>
 						<Link
@@ -211,7 +211,7 @@ function ScoreTab({ data }: { data: Data }) {
 			const songMap = CreateSongMap(data.songs);
 			const chartMap = CreateChartMap(data.charts);
 
-			for (const [i, score] of data.scores.filter(e => e.playtype === playtype).entries()) {
+			for (const [i, score] of data.scores.filter((e) => e.playtype === playtype).entries()) {
 				scoreDataset.push({
 					...score,
 					__related: {
@@ -260,13 +260,13 @@ type ScoreDatasets = { playtype: Playtype; data: ScoreDataset }[];
 function MultiPlaytypeScoreTable({ datasets, game }: { datasets: ScoreDatasets; game: Game }) {
 	const [playtype, setPlaytype] = useState<Playtype>(datasets[0].playtype);
 
-	const content = useMemo(() => datasets.find(e => e.playtype === playtype)!, [playtype]);
+	const content = useMemo(() => datasets.find((e) => e.playtype === playtype)!, [playtype]);
 
 	return (
 		<div className="row">
 			<div className="col-12">
 				<div className="btn-group">
-					{datasets.map(e => (
+					{datasets.map((e) => (
 						<SelectButton
 							key={e.playtype}
 							value={playtype}

@@ -26,14 +26,14 @@ export default function GoalSubTable({
 	dataset,
 }: GamePT & { dataset: GoalSubDataset }) {
 	const headers: Header<GoalSubDataset[0]>[] = [
-		["User", "User", StrSOV(x => x.__related.user.username)],
-		["Goal", "Goal", StrSOV(x => x.__related.goal.name)],
+		["User", "User", StrSOV((x) => x.__related.user.username)],
+		["Goal", "Goal", StrSOV((x) => x.__related.goal.name)],
 		[
 			"Progress",
 			"Progress",
-			NumericSOV(x => (x.progress === null ? -Infinity : x.progress / x.outOf)),
+			NumericSOV((x) => (x.progress === null ? -Infinity : x.progress / x.outOf)),
 		],
-		["Achieved On", "Achieved", NumericSOV(x => x.timeAchieved ?? -Infinity)],
+		["Achieved On", "Achieved", NumericSOV((x) => x.timeAchieved ?? -Infinity)],
 	];
 
 	return (
@@ -42,11 +42,11 @@ export default function GoalSubTable({
 			headers={headers}
 			entryName="Goals"
 			searchFunctions={{
-				user: k => k.__related.user.username,
-				goal: k => k.__related.goal.name,
-				timestamp: k => k.timeAchieved,
+				user: (k) => k.__related.user.username,
+				goal: (k) => k.__related.goal.name,
+				timestamp: (k) => k.timeAchieved,
 			}}
-			rowFunction={d => (
+			rowFunction={(d) => (
 				<tr>
 					<UserCell game={game} playtype={playtype} user={d.__related.user} />
 					<td>

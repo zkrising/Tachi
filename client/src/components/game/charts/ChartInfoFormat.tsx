@@ -1,6 +1,7 @@
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import MiniTable from "components/tables/components/MiniTable";
 import ApiError from "components/util/ApiError";
+import ExternalLink from "components/util/ExternalLink";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
@@ -101,7 +102,17 @@ export default function ChartInfoFormat({
 }
 
 function ChartInfoMiddle({ game, chart }: { chart: ChartDocument; game: Game }) {
-	// someday
+	if (game === "bms") {
+		return (
+			<ExternalLink
+				href={`http://www.ribbit.xyz/bms/score/view?md5=${
+					(chart as ChartDocument<"bms:7K" | "bms:14K">).data.hashMD5
+				}`}
+			>
+				View Chart on Ribbit
+			</ExternalLink>
+		);
+	}
 
 	return <></>;
 }

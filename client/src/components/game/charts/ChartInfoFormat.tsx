@@ -103,14 +103,34 @@ export default function ChartInfoFormat({
 
 function ChartInfoMiddle({ game, chart }: { chart: ChartDocument; game: Game }) {
 	if (game === "bms") {
+		const bmsChart = chart as ChartDocument<"bms:7K" | "bms:14K">;
+
 		return (
-			<ExternalLink
-				href={`http://www.ribbit.xyz/bms/score/view?md5=${
-					(chart as ChartDocument<"bms:7K" | "bms:14K">).data.hashMD5
-				}`}
-			>
-				View Chart on Ribbit
-			</ExternalLink>
+			<>
+				<ExternalLink
+					href={`http://www.ribbit.xyz/bms/score/view?md5=${bmsChart.data.hashMD5}`}
+				>
+					View Chart on Ribbit
+				</ExternalLink>
+				<br />
+				<ExternalLink
+					href={`http://www.dream-pro.info/~lavalse/LR2IR/search.cgi?&bmsmd5=${bmsChart.data.hashMD5}`}
+				>
+					View on LR2IR
+				</ExternalLink>
+			</>
+		);
+	} else if (game === "pms") {
+		const pmsChart = chart as ChartDocument<"pms:Controller" | "pms:Keyboard">;
+
+		return (
+			<>
+				<ExternalLink
+					href={`http://www.dream-pro.info/~lavalse/LR2IR/search.cgi?&bmsmd5=${pmsChart.data.hashMD5}`}
+				>
+					View on LR2IR
+				</ExternalLink>
+			</>
 		);
 	}
 

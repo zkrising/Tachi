@@ -1910,6 +1910,37 @@
 	},
 	{
 		"default": false,
+		"description": "Decimal Level Folders for jubeat Qubell.",
+		"folders": [
+			"F20ae291c14499228ea751fa248696429796f5e62ee783fe651b3c103eda659f5",
+			"Ff7c38930fb3ca0020356ae6e4b670164b47a5592be8b047212c7e120f2862642",
+			"F8801ade829e863add502acab3c0a12244b06404855d285b5cf83b7a67bf2bdfe",
+			"Fb6b6147f2e7c6b0ad7c2058035883b005c1446b1308eeaf3ce6bbf937b7e6dc1",
+			"F3fce8b8d04e7ba2d707ea2e7051d3205d2fcc9a8b6c58eb71f5402cfd0997a48",
+			"F249dd63ae3b329ac8b5bbcd1e7a0b336797cf7a238cb8260fab0e4975adf13e5",
+			"Fcce4156df9a12a4103b2392e72b1f75d60c262bca01fb839eec8e30e7d522744",
+			"F9d76c89ed6c2f35e9aa1d9742bf3ee4a596cd9bcdc5357db9afb911021b7d387",
+			"Fe430c1ee08c016a0c941602c0a8efdfb17bc11758f4534b6169d153b45bf9972",
+			"F4d2fb041630da3c62e179cfae79ce545262ff59e40be2e23f8ce7a49c04a1f0a",
+			"F896456d42e285a3897f50dabc1bd382f60c7de09fdebb023a4a0e6eabb3cc086",
+			"F4c397041db53903b22865b8c390eef02f73ede5255ce56579a73d0bd70c4f995",
+			"Fdfcb195fb263ff6752d64dd733b3fae721e7f020160ea8de8620a7065f5a5b66",
+			"F27a2a9846643e93056b6b9f156e22a1ed8a76438de0e01414bc1b6fa8a19850e",
+			"Fba5ae25a820d1a91907e87f8520fcd8aa54c341aa886c7f4f0769bea53cf2e7d",
+			"F3f666e978ff44ae33810fa590ba3af10683d5fb7b40c418766a643f3911e5fd9",
+			"F528c7671d51c792696940a0f84a218fbbd34839b08096bf42681f2e75dac0a4b",
+			"F9b9e1d5f6e99168be8b6b4ff4397fb4b5dc51e89c008d10dcefd5e9a29ae76fd",
+			"F2dec754c1fa1878a8573af3f6f4357cc2d59f540081da9ad1613bc1949f4691f",
+			"Fcae67acaf13ad278cf94b17ac08ec53deaead9421dc27c569e708d49737acdf4"
+		],
+		"game": "jubeat",
+		"inactive": true,
+		"playtype": "Single",
+		"tableID": "jubeat-Single-declv-qubell",
+		"title": "Decimal Level Folders (Qubell)"
+	},
+	{
+		"default": false,
 		"description": "Hard Mode Decimal Level Folders for jubeat.",
 		"folders": [
 			"Fb04d0483611fbfa76e6e615f0df4d5b9092b720fcb09b714e3bf9536c9749a94",
@@ -1941,6 +1972,37 @@
 	},
 	{
 		"default": false,
+		"description": "Hard Mode Decimal Level Folders for jubeat Qubell.",
+		"folders": [
+			"F09219275678563e904ab9dc25c3741166f4cb35bff9f9a8520148395a7b312af",
+			"F32b98c655d8e4c9ed1e31f8e45e4cd0dfccb1b69645899677a237e388fea36db",
+			"F69d54c0e3d60411370a1ae429f16b7a53e29d09c074354ede5d0ba2e56bc3a07",
+			"F4a21c50763e0c8d98be6ccd6fc643c4eb72ba2f305b1164bb7f2d1a7c7d8e2c7",
+			"Fafd825da4667bbde09ae3d11c236724032b86a7b7329e103299da4567feae448",
+			"Ff60b9959e9dd7ca4b508c707bd1d38ac53121f79ba87e3bab73dd4ca1e6d6ccc",
+			"Fc861d6bc47e38ce078c550341bc55aa24af9c732a2bdc98c9b10bf27673d1fc3",
+			"F14abe58c1100e9def6786f8a0009edd29b899e4e53c135e55ef48324eeb41449",
+			"F872641c086f45fbb52a14eb7e53604979b792b36fb6f4e9c2d476fd7d5e63770",
+			"F59d3adb67561e2ec175c0e971b8c688c8c15310a09fc0cb689f34d98ec4eacf1",
+			"F27815177696466ed771e1e8254143affd578719428955e6804e6df83783be2d7",
+			"Faf8e169b4b834733fb25d236fb0f4ad92af219cd0f42caf5cacf257ea5171ccc",
+			"F7b118b28476578326314a935d67be1fdd2ad39f23b8e4ff2b5021c706713028a",
+			"F7f48e642b63ac308dad6e90b465c609b9ac7cc3c41d68a41f4773e5d276b54c8",
+			"F202b8591c0a11c8828f8d10da55f823fef26137a04c2109218a667031dbd1a8b",
+			"Faad10d5ab6eb6aea155cab78a244b0b785b26132e752b6231f0e27bfae46b010",
+			"Fbe7f0fd9cf8899d5d637913c5fa49a87ce137c10280d21103ef9c9a9ff3efdfe",
+			"F4f07a4cd561323f986c4cfb7c76ada1da2e1bc41b76e8c74b798fe71e5e6253c",
+			"F0a9e942ed85ddddf3aef43c3ddb888c9e0ab8a2cdddbaeb4b3109a16f6cbdfb9",
+			"F93a79e8959e267ae2c2a8a626e52c30c98b5bd1f6abac612562a5e34be8e08a6"
+		],
+		"game": "jubeat",
+		"inactive": true,
+		"playtype": "Single",
+		"tableID": "jubeat-Single-declvhd-qubell",
+		"title": "Hard Mode Decimal Level Folders (Qubell)"
+	},
+	{
+		"default": false,
 		"description": "Hard Mode Level Folders for jubeat. This table does not have separate folders for each decimal.",
 		"folders": [
 			"F761a8099a3d537432f7d939c10025b3d0ca6813fd26e10acbcb557645d15ce0d",
@@ -1959,6 +2021,27 @@
 		"playtype": "Single",
 		"tableID": "jubeat-Single-lvhd",
 		"title": "Hard Mode Level Folders (festo)"
+	},
+	{
+		"default": false,
+		"description": "Hard Mode Level Folders for jubeat Qubell. This table does not have separate folders for each decimal.",
+		"folders": [
+			"Fe6eca44eb7688565d6dfbbd942866c1e1ad3569ca6c2a17c1e10f2ba207ca7e3",
+			"F208f1a0585dd99b71f2d214235b01d697dc9c78973df90caae6a4b76249f09f1",
+			"F151ef81c121d531a222977c94a5dbbc256f7e2edcbae38869a293b2f6271b6b6",
+			"F87fbdd58a2c247307bfa1c8c46868ad71fd0f8747b51468266df033a5a051177",
+			"Fcb4327d3ac9a2e863f7899347cb14cdf29e1f35f45bf623b4b40aa1b32045939",
+			"F72a0fae6c5eecda2ead01c2043f8e6ed4f8a5ef9a6d702a2cb54e824f8c9a67d",
+			"F8b6f9d77733d0e21d181cfad3bcfe3e355588692d80a4cfc620f4d3ba5e932ed",
+			"Ff1decf8630c85a73ec485792b2efb41a7d167e1645f1b5db2ed2af6f92fa3a0c",
+			"Fb6d2c97d0ba9392fd8eed8c95f8744236e549b1a86828c372c3abf8ba5920f33",
+			"F8a63e5b8ff8a5843ef4f2da6472f6325042b1bf338b1e15d12f0e2550ca93501"
+		],
+		"game": "jubeat",
+		"inactive": true,
+		"playtype": "Single",
+		"tableID": "jubeat-Single-lvhd-qubell",
+		"title": "Hard Mode Level Folders (Qubell)"
 	},
 	{
 		"default": true,
@@ -1980,6 +2063,27 @@
 		"playtype": "Single",
 		"tableID": "jubeat-Single-lv",
 		"title": "Level Folders (festo)"
+	},
+	{
+		"default": false,
+		"description": "Level Folders for jubeat Qubell. This table does not have separate folders for each decimal.",
+		"folders": [
+			"F5597b8e01373f3ed99e7e65ab2cd73abc7dee912edf2bacd146c4e6957da271f",
+			"F901bbbbac9b53f49d32c041051064862d118018e2f9fa719e9b38b2689464c4d",
+			"Ff70993ed87bcadc48d957c29d5173868c34a904038234d50bb525d7eb7eb55e6",
+			"Fe5dd037701ac40f5b134585231bd23cffed503141261bdfc23aad73e44f748cc",
+			"Fc334e07ec305b4bde36800a13538e6d061d9d476386435d3db5ab47dcb9ec2c0",
+			"F34637877cb994285dd864e417a3d2e27dc1454ab2fe1686abb5392c49c784af9",
+			"F5d27bfbb6406037c128bda07923226c7b7285ed5b6e181fb859cba602570df3d",
+			"Fda5de4a190e4d4f3cf8324babade6046663b820b14f7a519803dc2401f8609ba",
+			"Fffa3c667d9eeecc9fd9d404fdef7d4f67d5ff28cb75d7c8e3a7039b44e0aa4a4",
+			"Fdf50d447333221c279fe2179b7cb36812cafc03b05626a7880f21e6b346bb6f7"
+		],
+		"game": "jubeat",
+		"inactive": true,
+		"playtype": "Single",
+		"tableID": "jubeat-Single-lv-qubell",
+		"title": "Level Folders (Qubell)"
 	},
 	{
 		"default": true,
@@ -2058,7 +2162,7 @@
 			"F347921c8d57ccc0eb20eb092c9b55bf5eabb4f9fe7da00738876699cf1035c8c",
 			"F56d1157c3e10438262dfb2af88569075a8f5c484a7aef08a6a84566319af24ea",
 			"Fc5911b7640bf2db62d2acca372f1c5f6c7baf12fec05d990bb8c927ca6241b77",
-			"Fe1171c1e6c031cddc03080911b081e494e3bd526d4274b99b72043135ff6e17d",
+			"Fc5911b7640bf2db62d2acca372f1c5f6c7baf12fec05d990bb8c927ca6241b77",
 			"F9ae7894021d3a3ee23d7a5079e75e2a2234bd54c4735b7caf6327a7c9f4642ed"
 		],
 		"game": "museca",
@@ -2322,7 +2426,6 @@
 			"F0eba4509733294349b3d9140e943f33c80cc545050a61f87b62ebd9980916f0a",
 			"Fa30199d64c0e5c0962bd1a341a0da7c44a923e893d2746eb2d0d996cb1586c7b",
 			"Fb429c7dd6ccb37a4fdab99947c9af2532ac08342bd17acfd2e62898be2488310",
-			"Ff054ed80f6a4aa50038ce84860f6c9a8108b9141a66f1065c868b8ad7d5411dc",
 			"F3c5715f6595048ac14d54980b10ba9cb0ed43ca6c42e3b81c5ec7ad647309a9d",
 			"F66c687a6be070e65ca7bd4cec04d41a90cbda979b560fdd2384c3f5286d8b736",
 			"Fdf1271c9394a91419295534351babe28aaf609dfc98521511848df6271412d9a",

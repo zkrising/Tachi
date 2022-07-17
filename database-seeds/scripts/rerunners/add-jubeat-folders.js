@@ -11,7 +11,7 @@ function CreateFolder(criteria, title) {
 		inactive: false,
 	};
 
-	const folderID = CreateFolderID(f);
+	const folderID = CreateFolderID(f.data, f.game, f.playtype);
 
 	f.folderID = folderID;
 
@@ -117,9 +117,10 @@ MutateCollection("tables.json", (tables) => {
 		inactive: true,
 		tableID: `jubeat-Single-lv-${version}`,
 		game: "jubeat",
+		playtype: "Single",
 		folders: levelFolders.map((e) => e.folderID),
-		description:
-			"Level Folders for jubeat. This table does not have separate folders for each decimal.",
+		description: `Level Folders for jubeat ${versionPretty}. This table does not have separate folders for each decimal.`,
+		default: false,
 	});
 
 	tables.push({
@@ -129,7 +130,8 @@ MutateCollection("tables.json", (tables) => {
 		game: "jubeat",
 		playtype: "Single",
 		folders: detailFolders.map((e) => e.folderID),
-		description: "Decimal Level Folders for jubeat.",
+		description: `Decimal Level Folders for jubeat ${versionPretty}.`,
+		default: false,
 	});
 
 	tables.push({
@@ -139,8 +141,8 @@ MutateCollection("tables.json", (tables) => {
 		game: "jubeat",
 		playtype: "Single",
 		folders: levelHardFolders.map((e) => e.folderID),
-		description:
-			"Hard Mode Level Folders for jubeat. This table does not have separate folders for each decimal.",
+		description: `Hard Mode Level Folders for jubeat ${versionPretty}. This table does not have separate folders for each decimal.`,
+		default: false,
 	});
 
 	tables.push({
@@ -150,7 +152,8 @@ MutateCollection("tables.json", (tables) => {
 		game: "jubeat",
 		playtype: "Single",
 		folders: detailHardFolders.map((e) => e.folderID),
-		description: "Hard Mode Decimal Level Folders for jubeat.",
+		description: `Hard Mode Decimal Level Folders for jubeat ${versionPretty}.`,
+		default: false,
 	});
 
 	return tables;

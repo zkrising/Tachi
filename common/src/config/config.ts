@@ -2063,7 +2063,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		supportedVersions: ["clan", "festo"],
+		supportedVersions: ["qubell", "clan", "festo"],
 
 		tierlists: [],
 		tierlistDescriptions: {},

@@ -22,7 +22,7 @@ export async function UpdateAILevels() {
 
 	await repo.MutateCollection<ChartDocument<"bms:7K">>("charts-bms", (charts) => {
 		for (const chart of charts) {
-			chart.data.aiRating = map[chart.data.hashMD5] ?? null;
+			chart.data.aiLevel = map[chart.data.hashMD5] ?? null;
 		}
 
 		return charts;

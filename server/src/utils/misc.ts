@@ -4,6 +4,7 @@ import { GetGameConfig } from "tachi-common";
 import { exec } from "child_process";
 import crypto from "crypto";
 import { URL } from "url";
+import type { KtLogger } from "lib/logger/logger";
 import type { Game, GamePTConfig, integer, Playtype } from "tachi-common";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
@@ -258,4 +259,18 @@ export function IsNullish<T>(maybeValue: T | null | undefined): maybeValue is nu
 
 export function IsRecord(maybeRecord: unknown): maybeRecord is Record<string, unknown> {
 	return typeof maybeRecord === "object" && maybeRecord !== null;
+}
+
+/**
+ * Wrap a promise in an error handler that exits the process safely, and logs
+ * when it completes.
+ */
+export function WrapScriptPromise(promise: Promise<unknown>, logger: KtLogger) {
+	promise
+		.then(() => logger.info(`Finished executing.`, () => process.exit(0)))
+		.catch((err: unknown) => {
+			logger.error(`Failed executing.`, { err }, () => {
+				process.exit(1);
+			});
+		});
 }

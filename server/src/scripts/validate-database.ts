@@ -4,6 +4,7 @@ import { Command } from "commander";
 import { monkDB } from "external/mongo/db";
 import { DatabaseSchemas } from "external/mongo/schemas";
 import CreateLogCtx from "lib/logger/logger";
+import { WrapScriptPromise } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
 import type { Databases } from "external/mongo/db";
 import type { FindResult } from "monk";
@@ -64,24 +65,8 @@ export async function ValidateAllCollections() {
 if (require.main === module) {
 	if (typeof options.collection === "string") {
 		// @hack This should be typechecked and warned about outside of ValidateCollection.
-		ValidateCollection(options.collection as Databases)
-			.then(() => process.exit(0))
-			.catch((err: unknown) => {
-				logger.error(
-					`Failed to validate collection ${options.collection}?`,
-					{ err },
-					() => {
-						process.exit(1);
-					}
-				);
-			});
+		WrapScriptPromise(ValidateCollection(options.collection as Databases), logger);
 	} else {
-		ValidateAllCollections()
-			.then(() => process.exit(0))
-			.catch((err: unknown) => {
-				logger.error(`Failed to validate all collections?`, { err }, () => {
-					process.exit(1);
-				});
-			});
+		WrapScriptPromise(ValidateAllCollections(), logger);
 	}
 }

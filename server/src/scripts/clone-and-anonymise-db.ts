@@ -102,20 +102,34 @@ function CloneDB(nsFrom: string, nsTo: string) {
 }
 
 if (require.main === module) {
-	CloneDB(options.nsFrom, options.nsTo);
-
-	// Don't run any risks -- there's no way we're ever accidentally anonymising the production database.
-	// any nsTo argument MUST start with anon-
 	if (!options.nsTo.startsWith("anon-")) {
-		AnonymiseDB(options.nsTo)
-			.then(() => {
-				logger.info(`Anonymised database successfully. Saved to ${options.nsTo}.`);
-				process.exit(0);
-			})
-			.catch((err: unknown) => {
-				logger.error(`Failed to anonymise database.`, { err }, () => {
-					process.exit(1);
+		logger.error(
+			`Tried to clone to and anonymise ${options.nsTo}, which is illegal. Anonymised DBs must start with anon-.`,
+			() => {
+				process.exit(1);
+			}
+		);
+	} else {
+		// else guard here is important, as the above statement doesn't immediately halt
+		// execution
+		// -- return isn't valid at top level, and i can't be bothered wrapping this in
+		// a useless fn.
+		CloneDB(options.nsFrom, options.nsTo);
+
+		// Don't run any risks -- there's no way we're ever accidentally anonymising the production database.
+		// any nsTo argument MUST start with anon-
+
+		if (options.nsTo.startsWith("anon-")) {
+			AnonymiseDB(options.nsTo)
+				.then(() => {
+					logger.info(`Anonymised database successfully. Saved to ${options.nsTo}.`);
+					process.exit(0);
+				})
+				.catch((err: unknown) => {
+					logger.error(`Failed to anonymise database.`, { err }, () => {
+						process.exit(1);
+					});
 				});
-			});
+		}
 	}
 }

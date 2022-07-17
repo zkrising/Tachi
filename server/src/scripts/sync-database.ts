@@ -12,7 +12,7 @@ import { UpdateMilestoneSubscriptions } from "lib/targets/milestones";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import { UpdateGameSongIDCounter } from "utils/db";
 import { InitaliseFolderChartLookup } from "utils/folder";
-import { ArrayDiff, IsSupported } from "utils/misc";
+import { ArrayDiff, IsSupported, WrapScriptPromise } from "utils/misc";
 import type { KtLogger } from "lib/logger/logger";
 import type { BulkWriteOperation, DeleteWriteOpResultObject } from "mongodb";
 import type { ICollection } from "monk";
@@ -385,11 +385,5 @@ async function SynchroniseDBWithSeeds() {
 }
 
 if (require.main === module) {
-	SynchroniseDBWithSeeds()
-		.then(() => process.exit(0))
-		.catch((err: unknown) => {
-			logger.error(String(err), () => {
-				process.exit(1);
-			});
-		});
+	WrapScriptPromise(SynchroniseDBWithSeeds(), logger);
 }

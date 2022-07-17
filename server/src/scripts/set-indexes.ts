@@ -2,6 +2,7 @@
 import { SetIndexes } from "../external/mongo/indexes";
 import { Command } from "commander";
 import CreateLogCtx from "lib/logger/logger";
+import { WrapScriptPromise } from "utils/misc";
 
 const program = new Command();
 
@@ -16,10 +17,6 @@ program.option(
 program.parse(process.argv);
 const options: { db: string; reset?: boolean } = program.opts();
 
-SetIndexes(options.db, options.reset === true)
-	.then(() => process.exit(0))
-	.catch((err: unknown) => {
-		logger.error(`Failed to set indexes.`, { err }, () => {
-			process.exit(1);
-		});
-	});
+if (require.main === module) {
+	WrapScriptPromise(SetIndexes(options.db, options.reset === true), logger);
+}

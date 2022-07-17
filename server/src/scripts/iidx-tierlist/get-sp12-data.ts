@@ -5,6 +5,7 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import fetch from "node-fetch";
 import p from "prudence";
+import { WrapScriptPromise } from "utils/misc";
 import { FindChartWithPTDF } from "utils/queries/charts";
 import { FindSongOnTitle } from "utils/queries/songs";
 import type { ChartDocument, Difficulties, integer } from "tachi-common";
@@ -221,11 +222,5 @@ async function HumanisedTitleLookup(originalTitle: string) {
 }
 
 if (require.main === module) {
-	FetchSP12Data()
-		.then(process.exit(0))
-		.catch((err) => {
-			logger.error(`Failed to fetch sp12 data. ${err}`, err, () => {
-				process.exit(1);
-			});
-		});
+	WrapScriptPromise(FetchSP12Data(), logger);
 }

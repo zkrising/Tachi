@@ -8,7 +8,7 @@ t.test("#GetGradeForPercent", (t) => {
 	t.equal(
 		GetGradeFromPercent("chunithm", "Single", 101),
 		"SSS",
-		"Should return SSS for the edge case of chunithms 101% == SS."
+		"Should return SSS for the edge case of chunithms 101%."
 	);
 	t.equal(
 		GetGradeFromPercent("iidx", "SP", 100),
@@ -45,6 +45,11 @@ t.test("#GetGradeForPercent", (t) => {
 		GetGradeFromPercent("iidx", "DP", 0),
 		"F",
 		"Should return SSS for the edge case of 0% == F (iidx DP)."
+	);
+
+	t.throws(
+		() => GetGradeFromPercent("iidx", "DP", -1),
+		"Should throw if percent is unresolvable."
 	);
 
 	t.end();

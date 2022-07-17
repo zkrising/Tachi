@@ -22,7 +22,7 @@ export const FormatFunctions: Partial<
 > = {
 	"bms-course-lookup": (d) => d.title,
 	folders: (d) => d.title,
-	tables: (d) => d.name,
+	tables: (d) => d.title,
 
 	"songs-bms": songFormat,
 	"songs-chunithm": songFormat,

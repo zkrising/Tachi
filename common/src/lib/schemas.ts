@@ -312,7 +312,7 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 				notecount: p.isPositiveNonZeroInteger,
 				hashSHA256: "?string",
 				hashMD5: "?string",
-				aiLevel: "?number",
+				aiLevel: "?string",
 				tableFolders: [
 					{
 						table: "string",
@@ -412,6 +412,9 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 				length: p.isPositive,
 				charter: "string",
 				displayBPM: p.isPositive,
+
+				// todo, maybe constrain this a bit?
+				difficultyTag: "string",
 			};
 		case "gitadora:Dora":
 		case "gitadora:Gita":
@@ -448,7 +451,7 @@ const PR_CHART_DOCUMENT = (game: Game) => (self: unknown) => {
 		level: "string",
 		levelNum: "number",
 		isPrimary: "boolean",
-		difficulty: p.isIn(gptConfig.difficulties),
+		difficulty: game === "itg" ? "string" : p.isIn(gptConfig.difficulties),
 		playtype: p.is(playtype),
 		data,
 		tierlistInfo: Object.fromEntries(
@@ -517,7 +520,7 @@ const PRE_SCHEMAS = {
 
 			return true;
 		},
-		set: p.isIn("genocideDan", "stslDan"),
+		set: p.isIn("genocideDan", "stslDan", "lnDan", "scratchDan"),
 		playtype: p.isIn("7K", "14K"),
 		value: p.isInteger,
 	}),

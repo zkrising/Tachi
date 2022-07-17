@@ -1,9 +1,9 @@
 import chalk from "chalk";
+import fs from "fs";
+import path from "path";
 import { SCHEMAS } from "tachi-common/lib/schemas";
 import { ReadCollection } from "../util";
 import { FormatFunctions } from "./test-utils";
-import fs from "fs";
-import path from "path";
 
 function FormatPrError(err, foreword = "Error") {
 	const receivedText =
@@ -15,7 +15,7 @@ function FormatPrError(err, foreword = "Error") {
 }
 
 let exitCode = 0;
-const suites = [];
+const suites: Array<{ name: string; good: boolean; report: unknown }> = [];
 
 const collections = fs
 	.readdirSync(path.join(__dirname, "../../collections"))
@@ -37,7 +37,13 @@ for (const collection of collections) {
 	let game = "";
 
 	if (collection.startsWith("songs-") || collection.startsWith("charts-")) {
-		game = collection.split("-")[1];
+		const maybeGame = collection.split("-")[1];
+
+		if (maybeGame === undefined) {
+			throw new Error(`Collection passed was literally ${collection}, why?`);
+		}
+
+		game = maybeGame;
 	}
 
 	for (const d of data) {

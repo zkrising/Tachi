@@ -23330,5 +23330,857 @@
 		"searchTerms": [],
 		"title": "Level 9+ (Reverse)",
 		"type": "charts"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "1",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 1 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fdf5a9b9db3a846505e65fa996c9aa3592bc464b80959bb0cbd68c82025a89c06"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "2",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 2 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fbc77f5489a783e2a8a02550f1e19abab42d08625de76d0e30b379b922a358ac4"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "3",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 3 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Ffe634635103f8e289ecff87894fd6626ae1525180d34892b33d571b301cb805e"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "4",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 4 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Ffa8da604e42a607981a3e6756775fc5cd2e5c1b66a7e55c487155c0c2d4f2001"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "5",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 5 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F081f60e92df88ac830eab351bee8c0ed0b34c97d4e1ce732fc48197710f986b7"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "6",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 6 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F954803ab7d11ba39f1a39cec9ba304f18cc82d543d7b2d9b559f9045e34f6399"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "7",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 7 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F6e97f425059c30cf2fec0f1290a72dd605ef3922163ee44f535d8cd9e02b58e8"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "8",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 8 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F71077a2b710e331361cb1152ecd5a0e205ac2d2c1cfae744cef02092912d682a"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"levelNum": {
+				"~gte": 9,
+				"~lt": 10
+			},
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 9.0-9.9 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fe5d29f7a4113f0d6997566df019deb693f9cb9ba2e55d3aa2cc12c4dec5069ee"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"levelNum": {
+				"~gte": 10,
+				"~lt": 11
+			},
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 10.0-10.9 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F14c64144cc655f472282883777a7e39ae12ef28e7abebe728de7eb0806b342c3"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "1",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 1 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fc229e8c6176ac6ad734cb867cfbc5e6ba7fed0a0f49a89a17e9e4cad5d2c237d"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "2",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 2 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fd171cb52932779b7890bdabb2e0f7eaab98a6bb02272ccca66b7c3aa94c270a8"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "3",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 3 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F7dac3ad5c93e4e077f9fbceebd2d65000cdaa0045a97bb6d944cbc195b1bc99b"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "4",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 4 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fca6afd35e745b949876127b6b8513ed8232bb91c62d405f8f5ac224ecd625f3d"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "5",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 5 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F410910648e59593e0fca50f420c64b57ba97a0eeab6d2c53eff96103f22518c2"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "6",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 6 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fbe2c71a29c52f0f8bad023d301e708aaaca9f142410ba1a2624f64f7434533fd"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "7",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 7 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F4afded0ec1884418369acb285c8dac9d25a0b7bdb89c97f8c84ade506e9d5988"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "8",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 8 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fb06f06975fe60068bc848eb4bf92feae52cb23e4ea5f86abe65b977da8698608"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"levelNum": {
+				"~gte": 9,
+				"~lt": 10
+			},
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 9.0-9.9 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F63c2d607302677d5c81742f230678135d108140484481ee9c794f8d666837729"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"levelNum": {
+				"~gte": 10,
+				"~lt": 11
+			},
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 10.0-10.9 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F4ca952c9f50ab0640a893f145cd0c8854d9dcb7399cb15a03f519c80f07568c0"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.0",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 9.0 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fb07ace67223ed8dd542cc21424ea99a91bdec53a45793ba53679fb45c19a0f54"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.1",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 9.1 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F502fd71ce5622ec22abc63eb74e0fc0edd434ea449ce1bde695a897f72191e52"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.2",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 9.2 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fcff6dd5cd759f9ecadb0e62f3606488d722e95bd871afb4dbd485b3315a01e87"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.3",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 9.3 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fa48061e93f68acb104eeb38701b22818e06cf5eed599fa4983fe50c45caf5cdb"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.4",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 9.4 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F0632e541366f9013a6c34c5757b80adbb41d5f88c6bb55dd5b5acf59a9afab6d"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.5",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 9.5 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F65a46e91483c5292ee2a018488ce4487ecab42f1e63df5de889e4d433ee35c71"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.6",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 9.6 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F7de03e7edc965bcfa3d5d6e69f0cc041c692314af9b88428e335df21f4d503a1"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.7",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 9.7 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F464fa2b661d89300bc1858dc833f2f8fc0a756fa024f6a6706bba3a363981af6"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.8",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 9.8 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F6933c622828b50eea323d1a89b0de584461260a11cd84b5ff4f2f3527735e9ff"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.9",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 9.9 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fd6d9a697ba24218a77335a74d409a03d410357092c5f51b542674f4c01549e35"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.0",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 10.0 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fe89d98f9b48079e73adad0ad97b3719e40bf19111c057396fd3d0c82e8cb8189"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.1",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 10.1 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Faea9f0b700a7a7a0cc93643adc3b6bee78ce98609897fa74a9720a84ae2628ae"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.2",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 10.2 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F0931caa15839163cbe1df581552c7bbe6cdfee2f35342e7b61ae5a98101e86ec"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.3",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 10.3 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fd9375a97bd14e7a27a18ffe7dd78b14d9fe95229f27e135876a03e663441972a"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.4",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 10.4 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F15ca96d7b48552ea47fb8d4c2549c9b13abe66e47a8bc389c8da947401e91501"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.5",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 10.5 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F1a1ae8df53ecbc685d8e1263ec5423167982d0de2385e90e7c57c5d37e98ce7f"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.6",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 10.6 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F97aaca476c15c73ee4b77251cb545322ce55765965a878681bbb766d44b0d0e6"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.7",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 10.7 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fe64ecb99fe815e308363a1c4f84c988e2626ff4804021ba298cfa31ce234f439"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.8",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 10.8 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F42a00e626ca7ada4a7d52bb027cbb192ff76e0117f01b147ec704b1ccb5eaabf"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.9",
+			"versions": "qubell",
+			"data¬isHardMode": false
+		},
+		"searchTerms": [],
+		"title": "Level 10.9 (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F5775764ff67636311085b6b44d7c717a67c57eab16ffcde2ec75d80913331633"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.0",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 9.0 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fcf781e3d42a2d53803fa842088fa401362554932f481a7996e0a87a809ff0e85"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.1",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 9.1 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fbb1c319e0d8ce1c3eaa1ea1e5dc8bebd85428bd4f4313f6f6d294815062d7f8c"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.2",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 9.2 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F532bda0170903df3d241bbdafd2c466766c911c74b3160951aecfd952f44fcca"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.3",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 9.3 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fed4a75299f42c66358dd603e384ab3736365bba0db5d36e85f4a20b773f63250"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.4",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 9.4 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fffa286f2bb3816731cd2fefaf9d9287af073ba55ac4beb78a867d692b876aef6"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.5",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 9.5 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F09e1c75fc5cfdea4d2f57a40b9cc647804079c8300558ef17f2dd11305445635"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.6",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 9.6 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fabe8505e35aa0bf43aa0ed8e443bcf7227bb40b19bb840f826952178afa03b25"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.7",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 9.7 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fc7ed27d1fc78a0b1f52da21b2282a40273d663fdf79ca48d63cead20571cfab8"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.8",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 9.8 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fdbe14321b1cdd3d612109a408994502ca68ed3757969ca53b0ecf82221fa2091"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "9.9",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 9.9 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F3dec6f227b21f562a95b78785ca68468a25e157901d6b34e2c9c60d9e46ad39c"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.0",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 10.0 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fff7db1aca35042626dd7ae1ddf09178b9dc17be9d88e3b494f09af06d05ad2b4"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.1",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 10.1 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fa0a13dcc4939de466ed417b7d47f361ec448930ad772790bd83e9de3d22b8ca6"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.2",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 10.2 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F3de7c9091d8898d15bb5a761bba2d089651fc9fe5e2261df00232f2287c79b49"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.3",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 10.3 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fe050024d4ed37987581c9a53f79adee055879907a6fc529471d82aafe7bc9f9c"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.4",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 10.4 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "Fdef00951dfba618c310a201e8c465639caf2efb9147b6751a3bb0604ee6051e0"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.5",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 10.5 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F64c0d4a03a28c9f95bbc3799a2e74cba3fc3b28b08c3c447fc9a1b8828466ca5"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.6",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 10.6 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F13c1998f798d989eb11f7ef254327cf2ac26b088049ccb642ffa2fa9fd902fe1"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.7",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 10.7 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F9e07f649f8f195aeeab7c70291d350ea9b33643358c0460bd17059fd0ab59cc0"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.8",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 10.8 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F83dd467c6426344c1e46806d1b70b09f2ea5a1111fcefdc8483781ec4303e876"
+	},
+	{
+		"game": "jubeat",
+		"playtype": "Single",
+		"data": {
+			"level": "10.9",
+			"versions": "qubell",
+			"data¬isHardMode": true
+		},
+		"searchTerms": [],
+		"title": "Level 10.9 (Hard Mode) (Qubell)",
+		"type": "charts",
+		"inactive": false,
+		"folderID": "F844e8d8ae236ea42ca7848e509f4c4a6965562505fd83f5792c2e75cad565390"
 	}
 ]

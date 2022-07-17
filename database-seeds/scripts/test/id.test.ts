@@ -35,22 +35,22 @@ const UniqueKeys: Partial<Record<keyof typeof SCHEMAS, DuplicateKeyDecl[]>> = {
 	...SongChartKeys,
 };
 
-UniqueKeys["charts-iidx"].push("data.arcChartID");
+UniqueKeys["charts-iidx"]!.push("data.arcChartID");
 
-UniqueKeys["charts-usc"].push(["data.hashSHA1", "playtype"]);
+UniqueKeys["charts-usc"]!.push(["data.hashSHA1", "playtype"]);
 
-UniqueKeys["charts-popn"].push("data.hashSHA256");
+UniqueKeys["charts-popn"]!.push("data.hashSHA256");
 
-UniqueKeys["charts-bms"].push("data.hashMD5");
-UniqueKeys["charts-bms"].push("data.hashSHA256");
+UniqueKeys["charts-bms"]!.push("data.hashMD5");
+UniqueKeys["charts-bms"]!.push("data.hashSHA256");
 
-UniqueKeys["charts-pms"].push(["data.hashMD5", "playtype"]);
-UniqueKeys["charts-pms"].push(["data.hashSHA256", "playtype"]);
+UniqueKeys["charts-pms"]!.push(["data.hashMD5", "playtype"]);
+UniqueKeys["charts-pms"]!.push(["data.hashSHA256", "playtype"]);
 
-UniqueKeys["charts-itg"].push("data.chartHash");
+UniqueKeys["charts-itg"]!.push("data.chartHash");
 
 let exitCode = 0;
-const suites = [];
+const suites: Array<{ name: string; good: boolean; report: unknown }> = [];
 
 for (const [collection, uniqueIDs] of Object.entries(UniqueKeys)) {
 	console.log(`[VALIDATING DUPES] ${collection}`);
@@ -66,7 +66,13 @@ for (const [collection, uniqueIDs] of Object.entries(UniqueKeys)) {
 	let game = "";
 
 	if (collection.startsWith("songs-") || collection.startsWith("charts-")) {
-		game = collection.split("-")[1];
+		const maybeGame = collection.split("-")[1];
+
+		if (maybeGame === undefined) {
+			throw new Error(`You passed ${collection} as a collection. Why?`);
+		}
+
+		game = maybeGame;
 	}
 
 	for (const uniqueID of uniqueIDs) {

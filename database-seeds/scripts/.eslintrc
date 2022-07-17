@@ -22,6 +22,7 @@
 		"plugin:import/errors"
 	],
 	"rules": {
+		// TODO: Use cadence here.
 		"prettier/prettier": [
 			"error",
 			{
@@ -87,6 +88,8 @@
 		"no-unused-expressions": "error",
 		"no-useless-call": "error",
 		"no-useless-return": "error",
-		"require-unicode-regexp": "error"
+		"require-unicode-regexp": "error",
+		// breaks our wacky tachi-common imports
+		"import/no-unresolved": "off"
 	}
 }

@@ -314,7 +314,7 @@ export interface Difficulties {
 	"iidx:SP": `${"" | `${IIDX2DXTraSets} `}${IIDXSPDifficulties}`;
 	"iidx:DP": `${"" | `${IIDX2DXTraSets} `}${IIDXDPDifficulties}`;
 	"popn:9B": "Easy" | "EX" | "Hyper" | "Normal";
-	"sdvx:Single": "ADV" | "EXH" | "GRV" | "HVN" | "INF" | "MXM" | "NOV" | "VVD";
+	"sdvx:Single": "ADV" | "EXH" | "GRV" | "HVN" | "INF" | "MXM" | "NOV" | "VVD" | "XCD";
 	"usc:Controller": "ADV" | "EXH" | "INF" | "NOV";
 	"usc:Keyboard": "ADV" | "EXH" | "INF" | "NOV";
 	"ddr:SP": "BASIC" | "BEGINNER" | "CHALLENGE" | "DIFFICULT" | "EXPERT";

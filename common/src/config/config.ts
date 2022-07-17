@@ -747,7 +747,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			ProfileVF6: (v) => v.toFixed(3),
 		},
 
-		difficulties: ["NOV", "ADV", "EXH", "INF", "GRV", "HVN", "VVD", "MXM"],
+		difficulties: ["NOV", "ADV", "EXH", "INF", "GRV", "HVN", "VVD", "XCD", "MXM"],
 		shortDifficulties: {}, // they're all fine
 		defaultDifficulty: "EXH",
 		difficultyColours: {
@@ -758,6 +758,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			GRV: COLOUR_SET.orange,
 			HVN: COLOUR_SET.teal,
 			VVD: COLOUR_SET.pink,
+			XCD: COLOUR_SET.blue,
 			MXM: COLOUR_SET.white,
 		},
 

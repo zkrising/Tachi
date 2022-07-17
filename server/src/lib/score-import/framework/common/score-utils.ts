@@ -1,7 +1,7 @@
 import { InternalFailure, InvalidScoreFailure } from "./converter-failures";
 import CreateLogCtx from "lib/logger/logger";
 import { ESDCore, GetGamePTConfig } from "tachi-common";
-import { NotNullish } from "utils/misc";
+import { IsNullish, NotNullish } from "utils/misc";
 import type {
 	ChartDocument,
 	Game,
@@ -34,6 +34,15 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
 	// (hey, this for loop is backwards!)
 	for (let i = boundaries.length - 1; i >= 0; i--) {
 		if (percent + Number.EPSILON >= NotNullish(boundaries[i])) {
+			if (IsNullish(grades[i])) {
+				logger.error(
+					`Attempted to get the ${i}th grade for ${game} (${playtype}) for a percent of ${percent}%. The grade fetched was null or undefined. Refusing to process this score.`
+				);
+				throw new InternalFailure(
+					`Failed to process a score with a percent of ${percent}. This has been reported.`
+				);
+			}
+
 			return grades[i] as Grades[I];
 		}
 	}

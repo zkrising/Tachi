@@ -61,4 +61,4 @@ module.exports = function AddLevelVersionFolders(name, game, playtypes, version,
 // 	levels.push(i.toString())
 // }
 //
-// addLevelVersionFolders("CastHour", "iidx", ["SP", "DP"], "29", levels);
+// AddLevelVersionFolders("CastHour", "iidx", ["SP", "DP"], "29", levels);

@@ -174,26 +174,16 @@ switch (day) {
 		break;
 
 	case Days.Tuesday:
+	case Days.Wednesday:
+	case Days.Sunday:
+	case Days.Saturday:
 		// Does *anything* interesting happen on these days?
 		break;
-
-	case Days.Wednesday:
-		daySplashes = ["It is Wednesday"];
-		break;
-
 	case Days.Thursday:
 		daySplashes = ["Feliz Jueves"];
 		break;
 	case Days.Friday:
 		daySplashes = ["It's Femboy Friday", "It's finally Friday"];
-		break;
-
-	case Days.Saturday:
-		daySplashes = ["It's the weekend"];
-		break;
-
-	case Days.Sunday:
-		// Does *anything* interesting happen on these days?
 		break;
 }
 

@@ -27,11 +27,9 @@ Run `_scripts/bootstrap.sh` to move example config files into an active position
 
 Use `pnpm install` to install all of the necessary dependencies.
 
-Use `pnpm start` in a directory to build and run the `client/` or `server/`.
+Use `pnpm start-server` and `pnpm start-client` to run the `server/` and `client/`.
 
 Run both, together, to have a full tachi setup.
-
-Use `ts-node server/src/scripts/sync-database` to load the database-seeds.
 
 ## Repository Info
 

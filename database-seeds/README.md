@@ -7,10 +7,9 @@ really do anything you want with them.
 
 ## Contribution Info
 
-All work should be merged into `develop`. That branch is synced with the staging deploys of Tachi.
+All work should be merged into `staging`. That branch is synced with the staging deploys of Tachi.
 
-Changes will then be merged and cherry picked into `production` whenever is best. Production will
-be reset as a branch every once in a while, and lose its history. This is fine. Don't worry about it.
+Changes will then be merged and cherry picked into `release/v*` whenever is best.
 
 ## What Databases Are Here?
 
@@ -47,16 +46,9 @@ take the files and do whatever.
 If you want to analyse this data in a more advanced fashion,
 install `mongodb-tools` (You'll want mongoimport in `$PATH`) from your favourite location.
 
-Then, run these commands:
-```sh
-cd scripts
-pnpm install
-node import -d your_db_name
-```
+`../_scripts/bootstrap` will synchronise these seeds with your local development install on first setup.
 
-Note that you'll need `pnpm` and `node` installed.
-
-You can then use a tool like [MongoDB Compass](https://www.mongodb.com/products/compass) to analyse the data.
+You can use `server/src/scripts/sync-database` to re-synchronise whenever you want.
 
 ## Contribution
 
@@ -66,9 +58,3 @@ This will ensure diffs stay somewhat sane.
 ## I want db dumps for things like scores and users!
 
 Coming soon...
-
-## Oddities
-
-Yes. I force push `develop` to `production` from time to time. This is because `git cherry-pick` 
-result in a diverging history. Some repositories do this by making a `release-vX.x.x` branch and
-updating that, but I really don't need the archiving.

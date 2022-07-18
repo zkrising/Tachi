@@ -29,15 +29,7 @@ compiling the client takes around 20-30 seconds, whereas the dev server is near 
 
 ## Config
 
-For local development, spawn an instance of [tachi-server](https://github.com/tng-dev/tachi-server). Create a `.env` file with atleast the following content:
-
-```sh
-REACT_APP_TCHIC_MODE="omni"
-REACT_APP_SERVER_URL="https://127.0.0.1:8080"
-REACT_APP_CDN_URL="https://127.0.0.1:8080/cdn"
-```
-
-Replace `8080` with a different port if you've changed it in your instance of tachi-server.
+For local development, use the `bootstrap.sh` script in `../_scripts` to set everything up.
 
 Other configuration variables are as follows:
 ```sh

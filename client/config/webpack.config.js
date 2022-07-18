@@ -11,11 +11,8 @@ const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const safePostCssParser = require("postcss-safe-parser");
-const ManifestPlugin = require("webpack-manifest-plugin");
 const InterpolateHtmlPlugin = require("react-dev-utils/InterpolateHtmlPlugin");
-const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
 const WatchMissingNodeModulesPlugin = require("react-dev-utils/WatchMissingNodeModulesPlugin");
-const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 const getCSSModuleLocalIdent = require("react-dev-utils/getCSSModuleLocalIdent");
 const paths = require("./paths");
 const modules = require("./modules");
@@ -23,7 +20,6 @@ const getClientEnvironment = require("./env");
 const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
 const ForkTsCheckerWebpackPlugin = require("react-dev-utils/ForkTsCheckerWebpackPlugin");
 const typescriptFormatter = require("react-dev-utils/typescriptFormatter");
-const eslint = require("eslint");
 const TSconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 const postcssNormalize = require("postcss-normalize");
@@ -76,7 +72,7 @@ if (process.env.REACT_APP_TCHIC_MODE === "ktchi" || process.env.REACT_APP_TCHIC_
 let scssEntryPoint;
 // If you have access to the private metronic scss submodule
 // and have cloned it, use that.
-if (fs.existsSync(path.join(__dirname, "../_assets/metronic-scss/style.react.scss"))) {
+if (fs.existsSync(path.join(__dirname, "../src/_assets/metronic-scss/style.react.scss"))) {
 	scssEntryPoint = "../_assets/metronic-scss/style.react.scss";
 } else {
 	// Else, use some default compiled css.

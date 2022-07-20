@@ -12,7 +12,7 @@ t.test("#ParseFervidexStatic", (t) => {
 	t.test("Should parse static data from body", (t) => {
 		const res = ParseFervidexStatic(
 			FervidexStaticBase,
-			{ model: "LDJ:J:B:A:2020092900" },
+			{ model: "LDJ:J:B:A:2020092900", shouldImportScores: true },
 			logger
 		);
 
@@ -45,12 +45,42 @@ t.test("#ParseFervidexStatic", (t) => {
 			game: "iidx",
 		});
 
+		t.type(res.classHandler, "function", "Should have a function ready for class handling");
+
+		t.end();
+	});
+
+	t.test("Should not have anything in its iterable if shouldImportScores is false.", (t) => {
+		const res = ParseFervidexStatic(
+			FervidexStaticBase,
+			{ model: "LDJ:J:B:A:2020092900", shouldImportScores: false },
+			logger
+		);
+
+		t.strictSame(res.iterable, []);
+
+		t.hasStrict(res, {
+			context: { version: "27" },
+			game: "iidx",
+		});
+
+		t.type(
+			res.classHandler,
+			"function",
+			"Should have a function ready for class handling, regardless of shouldImportScores being false"
+		);
+
 		t.end();
 	});
 
 	t.test("Should throw an error if no body.scores is present", (t) => {
 		t.throws(
-			() => ParseFervidexStatic({}, { model: "LDJ:J:B:A:2020092900" }, logger),
+			() =>
+				ParseFervidexStatic(
+					{},
+					{ model: "LDJ:J:B:A:2020092900", shouldImportScores: true },
+					logger
+				),
 			"Invalid body.scores"
 		);
 
@@ -62,7 +92,7 @@ t.test("#ParseFervidexStatic", (t) => {
 			() =>
 				ParseFervidexStatic(
 					{ scores: { nonsenseKey: {} } },
-					{ model: "LDJ:J:B:A:2020092900" },
+					{ model: "LDJ:J:B:A:2020092900", shouldImportScores: true },
 					logger
 				),
 			"Invalid songID nonsenseKey"
@@ -72,7 +102,7 @@ t.test("#ParseFervidexStatic", (t) => {
 			() =>
 				ParseFervidexStatic(
 					{ scores: { 1000: null } },
-					{ model: "LDJ:J:B:A:2020092900" },
+					{ model: "LDJ:J:B:A:2020092900", shouldImportScores: true },
 					logger
 				),
 			"Invalid score with songID 1000"
@@ -86,7 +116,7 @@ t.test("#ParseFervidexStatic", (t) => {
 			() =>
 				ParseFervidexStatic(
 					{ scores: { 1000: { spn: null } } },
-					{ model: "LDJ:J:B:A:2020092900" },
+					{ model: "LDJ:J:B:A:2020092900", shouldImportScores: true },
 					logger
 				),
 			"Invalid score with songID 1000"
@@ -96,7 +126,7 @@ t.test("#ParseFervidexStatic", (t) => {
 			() =>
 				ParseFervidexStatic(
 					{ scores: { 1000: { spn: undefined } } },
-					{ model: "LDJ:J:B:A:2020092900" },
+					{ model: "LDJ:J:B:A:2020092900", shouldImportScores: true },
 					logger
 				),
 			"Invalid score with songID 1000"
@@ -106,7 +136,7 @@ t.test("#ParseFervidexStatic", (t) => {
 			() =>
 				ParseFervidexStatic(
 					{ scores: { 1000: { spn: "foo" } } },
-					{ model: "LDJ:J:B:A:2020092900" },
+					{ model: "LDJ:J:B:A:2020092900", shouldImportScores: true },
 					logger
 				),
 			"Invalid score with songID 1000"
@@ -124,7 +154,7 @@ t.test("#ParseFervidexStatic", (t) => {
 							1000: { spn: { ex_score: -1, miss_count: null, clear_type: 0 } },
 						},
 					},
-					{ model: "LDJ:J:B:A:2020092900" },
+					{ model: "LDJ:J:B:A:2020092900", shouldImportScores: true },
 					logger
 				),
 			"Invalid score with songID 1000 at chart spn"
@@ -138,7 +168,7 @@ t.test("#ParseFervidexStatic", (t) => {
 							1000: { spn: { ex_score: 1000, miss_count: "foo", clear_type: 0 } },
 						},
 					},
-					{ model: "LDJ:J:B:A:2020092900" },
+					{ model: "LDJ:J:B:A:2020092900", shouldImportScores: true },
 					logger
 				),
 			"Invalid score with songID 1000 at chart spn"
@@ -152,7 +182,7 @@ t.test("#ParseFervidexStatic", (t) => {
 							1000: { spn: { ex_score: 1000, miss_count: null, clear_type: -1 } },
 						},
 					},
-					{ model: "LDJ:J:B:A:2020092900" },
+					{ model: "LDJ:J:B:A:2020092900", shouldImportScores: true },
 					logger
 				),
 			"Invalid score with songID 1000 at chart spn"
@@ -170,7 +200,7 @@ t.test("#ParseFervidexStatic", (t) => {
 							1000: { spx: { ex_score: 1000, miss_count: null, clear_type: 0 } },
 						},
 					},
-					{ model: "LDJ:J:B:A:2020092900" },
+					{ model: "LDJ:J:B:A:2020092900", shouldImportScores: true },
 					logger
 				),
 			"Invalid chart spx"

@@ -490,7 +490,7 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 		t.end();
 	});
 
-	t.test("Should disallow requests from non INF2 if forceStaticImport is false.", async (t) => {
+	t.test("Should allow requests from non INF2 if forceStaticImport is false.", async (t) => {
 		await db["fer-settings"].update({ userID: 1 }, { $set: { forceStaticImport: false } });
 
 		const res = await mockApi
@@ -500,7 +500,13 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
 			.send(FervidexStaticBase);
 
-		t.equal(res.statusCode, 400, "Should be rejected, as FSI is not set.");
+		t.equal(res.statusCode, 202, "Should be allowed, but no scores should be imported");
+
+		const scoresNow = await db.scores.count({
+			service: "Fervidex Static",
+		});
+
+		t.strictSame(scoresNow, 0, "Should have imported no scores");
 
 		t.end();
 	});

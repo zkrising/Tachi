@@ -13,3 +13,8 @@ export interface FervidexStaticScore {
 export interface FervidexStaticContext {
 	version: GPTSupportedVersions["iidx:DP" | "iidx:SP"];
 }
+
+export interface FervidexStaticHeaders {
+	model: string;
+	shouldImportScores: boolean;
+}

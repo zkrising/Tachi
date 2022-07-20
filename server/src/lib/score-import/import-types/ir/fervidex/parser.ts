@@ -13,7 +13,7 @@ import p from "prudence";
 import { ParseEA3SoftID } from "utils/ea3id";
 import { FormatPrError, optNull } from "utils/prudence";
 import type { ParserFunctionReturns } from "../../common/types";
-import type { FervidexContext, FervidexScore } from "./types";
+import type { FerHeaders as FervidexHeaders, FervidexContext, FervidexScore } from "./types";
 import type { KtLogger } from "lib/logger/logger";
 import type { PrudenceSchema, ValidSchemaValue } from "prudence";
 
@@ -108,13 +108,9 @@ export function SoftwareIDToVersion(model: string, logger: KtLogger) {
 	}
 }
 
-export interface FerHeaders {
-	model: string;
-}
-
 export function ParseFervidexSingle(
 	body: Record<string, unknown>,
-	headers: FerHeaders,
+	headers: FervidexHeaders,
 	logger: KtLogger
 ): ParserFunctionReturns<FervidexScore, FervidexContext> {
 	const version = SoftwareIDToVersion(headers.model, logger);

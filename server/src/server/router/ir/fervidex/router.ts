@@ -72,66 +72,6 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
 	next();
 };
 
-const RequireInf2ModelHeaderOrForceStatic: RequestHandler = async (req, res, next) => {
-	const settings = await db["fer-settings"].findOne({
-		userID: req[SYMBOL_TACHI_API_AUTH].userID!,
-	});
-
-	if (settings?.forceStaticImport === true) {
-		logger.debug(`User ${settings.userID} had forceStaticImport set, allowing request.`);
-
-		// Force static import should ideally only ever be used once. If left on, a users profile
-		// will get innundated with a bunch of pb imports on every game-load. This is not what
-		// people want.
-		// FSI should ideally just be used once to get unreachable scores onto Kamaitachi. Otherwise
-		// they're doing something wrong.
-		await db["fer-settings"].update(
-			{
-				userID: settings.userID,
-			},
-			{
-				$set: {
-					forceStaticImport: false,
-				},
-			}
-		);
-
-		next();
-		return;
-	}
-
-	const swModel = req.header("X-Software-Model");
-
-	if (IsNullishOrEmptyStr(swModel)) {
-		logger.debug(
-			`Rejected empty X-Software-Model from user ${req[SYMBOL_TACHI_API_AUTH].userID}.`
-		);
-		return res.status(400).json({
-			success: false,
-			error: `Invalid X-Software-Model.`,
-		});
-	}
-
-	try {
-		const { model } = ParseEA3SoftID(swModel);
-
-		if (model !== MODEL_INFINITAS_2) {
-			return res.status(400).json({
-				success: false,
-				error: `Refusing to perform static import from non-infinitas client. To do this anyway, enable Force Static Import.`,
-			});
-		}
-	} catch (err) {
-		logger.info(`Invalid softID from ${req[SYMBOL_TACHI_API_AUTH].userID}.`, { err });
-		return res.status(400).json({
-			success: false,
-			error: `Invalid X-Software-Model.`,
-		});
-	}
-
-	next();
-};
-
 const supportedExts = [EXT_HEROIC_VERSE, EXT_BISTROVER];
 
 const ValidateModelHeader: RequestHandler = (req, res, next) => {
@@ -219,6 +159,49 @@ router.use(
 	ValidateCards
 );
 
+async function ShouldImportScoresFromProfileSubmit(swModel: string, userID: integer) {
+	const settings = await db["fer-settings"].findOne({
+		userID,
+	});
+
+	if (settings?.forceStaticImport === true) {
+		logger.debug(`User ${settings.userID} had forceStaticImport set, allowing request.`);
+
+		// Force static import should ideally only ever be used once. If left on, a users profile
+		// will get innundated with a bunch of pb imports on every game-load. This is not what
+		// people want.
+		// FSI should ideally just be used once to get unreachable scores onto Kamaitachi. Otherwise
+		// they're doing something wrong.
+		await db["fer-settings"].update(
+			{
+				userID: settings.userID,
+			},
+			{
+				$set: {
+					forceStaticImport: false,
+				},
+			}
+		);
+
+		return true;
+	}
+
+	try {
+		const { model } = ParseEA3SoftID(swModel);
+
+		return model === MODEL_INFINITAS_2;
+	} catch (err) {
+		logger.warn(
+			`Unexpected fail while parsing swModel ${swModel}, has already been validated?.`,
+			{ err }
+		);
+
+		// try some good-natured attempt to recover, since this isn't that severe of an
+		// issue.
+		return false;
+	}
+}
+
 /**
  * Submits all of a users data to Tachi. This data is extremely minimal,
  * as only a users Lamp and Score are sent. As such, this is not the prefered
@@ -227,10 +210,18 @@ router.use(
  *
  * @name POST /ir/fervidex/profile/submit
  */
-router.post("/profile/submit", RequireInf2ModelHeaderOrForceStatic, (req, res) => {
+router.post("/profile/submit", async (req, res) => {
+	// guaranteed to exist because of RequireInf2ModelHeader
+	const model = req.header("X-Software-Model")!;
+
+	const shouldImportScores = await ShouldImportScoresFromProfileSubmit(
+		model,
+		req[SYMBOL_TACHI_API_AUTH].userID!
+	);
+
 	const headers = {
-		// guaranteed to exist because of RequireInf2ModelHeader
-		model: req.header("X-Software-Model")!,
+		model,
+		shouldImportScores,
 	};
 
 	// Perform a fast return here to not allow fervidex to resend requests.

@@ -6,8 +6,7 @@ import p from "prudence";
 import { IsRecord } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
 import type { ParserFunctionReturns } from "../../common/types";
-import type { FerHeaders } from "../fervidex/parser";
-import type { FervidexStaticContext, FervidexStaticScore } from "./types";
+import type { FervidexStaticContext, FervidexStaticHeaders, FervidexStaticScore } from "./types";
 import type { KtLogger } from "lib/logger/logger";
 import type { PrudenceSchema } from "prudence";
 
@@ -19,10 +18,21 @@ const PR_FERVIDEX_STATIC: PrudenceSchema = {
 
 export function ParseFervidexStatic(
 	body: Record<string, unknown>,
-	headers: FerHeaders,
+	headers: FervidexStaticHeaders,
 	logger: KtLogger
 ): ParserFunctionReturns<FervidexStaticScore, FervidexStaticContext> {
 	const version = SoftwareIDToVersion(headers.model, logger);
+	const classHandler = CreateFerStaticClassHandler(body);
+
+	// if we shouldn't import scores, just sync up dans.
+	if (!headers.shouldImportScores) {
+		return {
+			context: { version },
+			game: "iidx",
+			iterable: [],
+			classHandler,
+		};
+	}
 
 	const staticScores = body.scores;
 
@@ -80,6 +90,6 @@ export function ParseFervidexStatic(
 		context: { version },
 		game: "iidx",
 		iterable: scores,
-		classHandler: CreateFerStaticClassHandler(body),
+		classHandler,
 	};
 }

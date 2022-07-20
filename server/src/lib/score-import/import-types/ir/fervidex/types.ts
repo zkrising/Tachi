@@ -65,3 +65,7 @@ export interface FervidexContext {
 	version: GPTSupportedVersions["iidx:DP" | "iidx:SP"];
 	timeReceived: number;
 }
+
+export interface FerHeaders {
+	model: string;
+}

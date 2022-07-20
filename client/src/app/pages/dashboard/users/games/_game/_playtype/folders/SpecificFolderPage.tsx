@@ -36,6 +36,7 @@ import {
 import { UGPTFolderReturns } from "types/api-returns";
 import { FolderDataset } from "types/tables";
 import { Playtype } from "types/tachi";
+import ReferToUser from "components/util/ReferToUser";
 
 interface Props {
 	reqUser: PublicUserDocument;
@@ -372,7 +373,7 @@ type InfoProps = Props & {
 	data: UGPTFolderReturns;
 };
 
-function TierlistBreakdown({ game, folderDataset, playtype }: InfoProps) {
+function TierlistBreakdown({ game, folderDataset, playtype, reqUser }: InfoProps) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const formik = useFormik({
@@ -427,6 +428,7 @@ function TierlistBreakdown({ game, folderDataset, playtype }: InfoProps) {
 					dataMap={dataMap}
 					game={game}
 					playtype={playtype}
+					reqUser={reqUser}
 				/>
 			</Col>
 		</Row>
@@ -443,11 +445,13 @@ function TierlistInfoLadder({
 	dataMap,
 	game,
 	playtype,
+	reqUser,
 }: {
 	tierlistInfo: NullableTierlistInfo[];
 	dataMap: Map<string, FolderDataset[0]>;
 	game: Game;
 	playtype: Playtype;
+	reqUser: PublicUserDocument;
 }) {
 	const buckets: TierlistInfo[][] = useMemo(() => {
 		const buckets: TierlistInfo[][] = [];
@@ -523,6 +527,7 @@ function TierlistInfoLadder({
 								dataMap={dataMap}
 								bucket={bucket}
 								i={i}
+								reqUser={reqUser}
 							/>
 						))}
 					</React.Fragment>
@@ -537,12 +542,14 @@ function TierlistInfoBucketValues({
 	dataMap,
 	bucket,
 	i,
+	reqUser,
 }: {
 	tierlistInfo: TierlistInfo;
 	bucket: TierlistInfo[];
 	dataMap: Map<string, FolderDataset[0]>;
 	game: Game;
 	i: integer;
+	reqUser: PublicUserDocument;
 }) {
 	const data = dataMap.get(tierlistInfo.chartID)!;
 
@@ -596,11 +603,12 @@ function TierlistInfoBucketValues({
 				)}
 				<Divider className="my-2" />
 				<Muted>
+					<ReferToUser reqUser={reqUser} />
 					{tierlistInfo.achieved === AchievedStatuses.NOT_PLAYED
 						? "Not Played"
 						: tierlistInfo.achieved === AchievedStatuses.SCORE_BASED
-						? `You have: ${data.__related.pb!.scoreData.grade}`
-						: `You have: ${data.__related.pb!.scoreData.lamp}`}
+						? data.__related.pb!.scoreData.grade
+						: data.__related.pb!.scoreData.lamp}
 				</Muted>
 			</Col>
 		</>

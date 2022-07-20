@@ -5051,5 +5051,178 @@
 		"id": 361,
 		"searchTerms": [],
 		"title": "You & DIE"
+	},
+	{
+		"altTitles": [],
+		"artist": "DJ Myosuke",
+		"data": {
+			"artistJP": "ディージェーミョースケ",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "エクストラハード"
+		},
+		"id": 362,
+		"searchTerms": [],
+		"title": "EXTRA HARD"
+	},
+	{
+		"altTitles": [],
+		"artist": "Kobaryo",
+		"data": {
+			"artistJP": "コバリョー",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "オブテイン　アン　アンユーズド　ホエール　イン　ジ　アブストラクト　シー"
+		},
+		"id": 363,
+		"searchTerms": [],
+		"title": "Obtain An Unused Whale In The Abstract Sea"
+	},
+	{
+		"altTitles": [],
+		"artist": "Srav3R",
+		"data": {
+			"artistJP": "スレイバー",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "ミドル"
+		},
+		"id": 364,
+		"searchTerms": [],
+		"title": "Middle"
+	},
+	{
+		"altTitles": [],
+		"artist": "aran",
+		"data": {
+			"artistJP": "アラン",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "アヴェニュー"
+		},
+		"id": 365,
+		"searchTerms": [],
+		"title": "Avenue"
+	},
+	{
+		"altTitles": [],
+		"artist": "Massive New Krew & RoughSketch",
+		"data": {
+			"artistJP": "マッシブニュークルーアンドラフスケッチ",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "エクストリームオンガクスクールフィーチャリングナナヒラ"
+		},
+		"id": 366,
+		"searchTerms": [
+			"Extreme ↑↑ Ongaku School feat. nanahira"
+		],
+		"title": "えくすとりーむ↑↑おんがくスクール feat. ななひら"
+	},
+	{
+		"altTitles": [],
+		"artist": "t+pazolite",
+		"data": {
+			"artistJP": "トパゾライト",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "ティープラスブイエスシャーク"
+		},
+		"id": 367,
+		"searchTerms": [],
+		"title": "T+ VS SHARK"
+	},
+	{
+		"altTitles": [],
+		"artist": "aran",
+		"data": {
+			"artistJP": "アラン",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "ブランニューワールド フューチャリング　ユカッコ"
+		},
+		"id": 368,
+		"searchTerms": [],
+		"title": "Brand New World feat. Yukacco"
+	},
+	{
+		"altTitles": [],
+		"artist": "Kobaryo feat. HiTNEX-X",
+		"data": {
+			"artistJP": "コバリョー　フィーチャリング　ヒットネックス　エックス",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "スーパー　エミュレーター"
+		},
+		"id": 369,
+		"searchTerms": [],
+		"title": "SUPER EMULATOR"
+	},
+	{
+		"altTitles": [],
+		"artist": "Getty",
+		"data": {
+			"artistJP": "ゲッティー",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "ガッキー"
+		},
+		"id": 370,
+		"searchTerms": [],
+		"title": "GAKKY"
+	},
+	{
+		"altTitles": [],
+		"artist": "DJ Noriken",
+		"data": {
+			"artistJP": "ディージェーノリケン",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "ナイトウェーブフラグメンツ"
+		},
+		"id": 371,
+		"searchTerms": [],
+		"title": "NIGHTWAVE FRAGMENTS"
+	},
+	{
+		"altTitles": [],
+		"artist": "Srav3R",
+		"data": {
+			"artistJP": "スレイバー",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "ネクステージ"
+		},
+		"id": 372,
+		"searchTerms": [
+			"NEXTAGE"
+		],
+		"title": "N3XTAGE"
+	},
+	{
+		"altTitles": [],
+		"artist": "USAO",
+		"data": {
+			"artistJP": "ウサオ",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "ビッグダディ"
+		},
+		"id": 373,
+		"searchTerms": [],
+		"title": "Big Daddy"
+	},
+	{
+		"altTitles": [],
+		"artist": "DJ Genki",
+		"data": {
+			"artistJP": "ディージェーゲンキ",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "レディーゴーフィーチャリングユカッコ"
+		},
+		"id": 374,
+		"searchTerms": [],
+		"title": "Ready Go feat. Yukacco"
 	}
 ]

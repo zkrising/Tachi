@@ -231,7 +231,7 @@ const PR_BATCH_MANUAL_CLASSES = (game: Game): PrudenceSchema => {
 
 const PR_BATCH_MANUAL = (game: Game, playtype: Playtype): PrudenceSchema => ({
 	meta: {
-		service: p.isBoundedString(3, 15),
+		service: p.isBoundedString(3, 60),
 		game: p.isIn(TachiConfig.GAMES),
 		playtype: p.is(playtype),
 		version: "*?string",

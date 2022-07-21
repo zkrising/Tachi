@@ -135,7 +135,7 @@ t.test("#ParserFn", (t) => {
 				),
 			new ScoreImportFatalError(
 				400,
-				"Invalid BATCH-MANUAL: meta.service | Expected a string with length between 3 and 15. | Received 1 [type: string]."
+				"Invalid BATCH-MANUAL: meta.service | Expected a string with length between 3 and 60. | Received 1 [type: string]."
 			),
 			"Should throw an error."
 		);
@@ -149,7 +149,7 @@ t.test("#ParserFn", (t) => {
 				),
 			new ScoreImportFatalError(
 				400,
-				"Invalid BATCH-MANUAL: meta.service | Expected a string with length between 3 and 15. | Received 1 [type: number]."
+				"Invalid BATCH-MANUAL: meta.service | Expected a string with length between 3 and 60. | Received 1 [type: number]."
 			),
 			"Should throw an error."
 		);

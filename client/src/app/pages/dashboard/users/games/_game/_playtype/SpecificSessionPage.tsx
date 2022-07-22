@@ -3,7 +3,6 @@ import { CreateChartMap, CreateScoreIDMap, CreateSongMap } from "util/data";
 import { DelayedPageReload } from "util/misc";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import SessionOverview from "components/sessions/SessionOverview";
-import SessionRaiseBreakdown from "components/sessions/SessionRaiseBreakdown";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
@@ -69,7 +68,7 @@ function SessionPage({ data, game, playtype }: Props & { data: SessionReturns })
 		`${user.username}: ${session.name}`
 	);
 
-	const [view, setView] = useState<"raises" | "overview" | "scores">("overview");
+	const [view, setView] = useState<"overview" | "scores">("overview");
 
 	const songMap = CreateSongMap(songs);
 	const chartMap = CreateChartMap(charts);
@@ -204,10 +203,6 @@ function SessionPage({ data, game, playtype }: Props & { data: SessionReturns })
 					</>
 				)}
 				<div className="btn-group">
-					<SelectButton value={view} setValue={setView} id="raises">
-						<Icon type="receipt" />
-						Raises
-					</SelectButton>
 					<SelectButton value={view} setValue={setView} id="overview">
 						<Icon type="chart-area" />
 						Overview
@@ -219,9 +214,7 @@ function SessionPage({ data, game, playtype }: Props & { data: SessionReturns })
 				</div>
 				<Divider />
 			</Col>
-			{view === "raises" ? (
-				<SessionRaiseBreakdown sessionData={data} />
-			) : view === "overview" ? (
+			{view === "overview" ? (
 				<SessionOverview scoreDataset={scoreDataset} sessionData={data} />
 			) : (
 				<Col xs={12}>

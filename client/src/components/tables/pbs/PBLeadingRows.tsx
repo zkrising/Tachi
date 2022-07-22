@@ -1,3 +1,4 @@
+import Muted from "components/util/Muted";
 import React from "react";
 import { SetState } from "types/react";
 import { PBDataset } from "types/tables";
@@ -46,6 +47,9 @@ export default function PBLeadingRows({
 					<TitleCell song={pb.__related.song} chart={pb.__related.chart} game={game} />
 				</>
 			)}
+			<td>
+				<Muted>PB</Muted>
+			</td>
 		</>
 	);
 }

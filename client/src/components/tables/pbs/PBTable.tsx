@@ -49,6 +49,7 @@ export default function PBTable<I extends IDStrings = IDStrings>({
 			showChart,
 			ChartHeader<PBDataset>(game, playtype, (k) => k.__related.chart)
 		),
+		EmptyHeader,
 		...GetGPTCoreHeaders<PBDataset>(game, playtype, rating, setRating, (x) => x),
 		["Site Ranking", "Site Rank", NumericSOV((x) => x.rankingData.rank)],
 		["Last Raised", "Last Raised", NumericSOV((x) => x.timeAchieved ?? 0)],

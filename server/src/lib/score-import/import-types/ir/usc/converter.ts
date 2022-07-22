@@ -82,7 +82,9 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 		data.windows.miss !== USC_DEFAULT_MISS ||
 		data.windows.slam !== USC_DEFAULT_SLAM
 	) {
-		logger.verbose(`Ignored score because hitWindows were modified.`);
+		logger.info(`Ignored score because hitWindows were modified.`, {
+			windows: data.windows,
+		});
 		throw new InvalidScoreFailure(`HitWindows have been modified - Score is invalid.`);
 	}
 

@@ -111,16 +111,17 @@ export default function SessionRaiseBreakdown({ sessionData }: { sessionData: Se
 							<div className="btn-group">
 								<SelectButton value={view} setValue={setView} id="lamps">
 									<Icon type="lightbulb" />
-									New Lamps
+									Lamps Only
 								</SelectButton>
 
 								<SelectButton value={view} setValue={setView} id="both">
 									<Icon type="bolt" />
 									Both
 								</SelectButton>
+
 								<SelectButton value={view} setValue={setView} id="grades">
 									<Icon type="sort-alpha-up" />
-									New Grades
+									Grades Only
 								</SelectButton>
 							</div>
 						</div>
@@ -350,7 +351,7 @@ function ElementStatTable({
 			const firstData = counts[element][0];
 
 			tableContents.push(
-				<tr key={element}>
+				<tr key={element} className="breakdown-hover-row">
 					<td
 						style={{
 							// @ts-expect-error this is a hack due to the funky type of colours and element.
@@ -369,7 +370,7 @@ function ElementStatTable({
 
 			for (const data of counts[element]!.slice(1)) {
 				tableContents.push(
-					<tr key={data.score.scoreID}>
+					<tr key={data.score.scoreID} className="breakdown-hover-row">
 						<BreakdownChartContents
 							{...data}
 							{...{ chartMap, songMap, fullSize, game, gptConfig, type }}
@@ -445,8 +446,6 @@ function BreakdownChartContents({
 			}
 		}
 
-		console.log(game);
-
 		if (score) {
 			return (
 				<>
@@ -467,7 +466,28 @@ function BreakdownChartContents({
 	return (
 		<>
 			<TitleCell noArtist chart={chart} game={game} song={song} />
+			<PseudHighlight highlight={score.highlight} onHighlightChange={() => void 0} />
 			<DifficultyCell alwaysShort chart={chart} game={game} />
 		</>
+	);
+}
+
+function PseudHighlight({
+	highlight,
+	onHighlightChange,
+}: {
+	highlight: boolean;
+	onHighlightChange: (hl: boolean) => void;
+}) {
+	return (
+		<td style={{ verticalAlign: "center" }}>
+			{highlight ? (
+				<Icon colour="warning" type="star" style={{ paddingTop: "0.1rem" }} />
+			) : (
+				<span className="breakdown-hover-highlight-button">
+					<Icon type="star" regular noPad />
+				</span>
+			)}
+		</td>
 	);
 }

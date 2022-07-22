@@ -72,7 +72,7 @@ export async function UpdateChartRanking(chartID: string) {
 		{
 			sort: {
 				"scoreData.percent": -1,
-				timeAchieved: -1,
+				timeAchieved: 1,
 			},
 		}
 	);

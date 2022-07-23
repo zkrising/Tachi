@@ -1,3 +1,5 @@
+throw new Error(`This script doesn't work at the moment.`);
+
 const monk = require("monk");
 const { Command } = require("commander");
 const { StaticConfig } = require("tachi-common");

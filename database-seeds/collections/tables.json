@@ -316,6 +316,7 @@
 		"title": "Satellite"
 	},
 	{
+		"default": true,
 		"description": "The 7K Sara 3 table.",
 		"folders": [
 			"F0b1c75d6731d9834c6f90509c7fcfd9b62b8cd97aef310e332455fd724eb840d",

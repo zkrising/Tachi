@@ -5,7 +5,7 @@ import fetch from "node-fetch";
 import { BMS_TABLES } from "tachi-common";
 import { CreateFolderID, InitaliseFolderChartLookup } from "utils/folder";
 import { FormatBMSTables } from "utils/misc";
-import type { ChartDocument, BMSTableInfo } from "tachi-common";
+import type { BMSTableInfo, ChartDocument } from "tachi-common";
 
 // this seems to be all we care about
 interface TableJSONDoc {
@@ -156,7 +156,7 @@ export async function UpdateTable(table: BMSTableInfo) {
 			searchTerms: [`${table.name} ${level}`],
 		});
 
-		logger.info(`Inserted new table ${table.prefix}${level}.`);
+		logger.info(`Inserted new folder ${table.prefix}${level}.`);
 	}
 
 	await db.tables.update(
@@ -171,6 +171,9 @@ export async function UpdateTable(table: BMSTableInfo) {
 				description: table.description,
 				inactive: false,
 			},
+			$setOnInsert: {
+				default: false,
+			},
 		},
 		{
 			upsert: true,
@@ -178,6 +181,46 @@ export async function UpdateTable(table: BMSTableInfo) {
 	);
 
 	logger.info(`Bumped table ${table.name}.`);
+
+	logger.info(`Checking meta-folder...`);
+
+	const metaQuery = {
+		"data¬tableFolders¬table": table.prefix,
+	};
+
+	const folderID = CreateFolderID(metaQuery, "bms", table.playtype);
+
+	folderIDs.push(folderID);
+
+	const exists = await db.folders.findOne({
+		folderID,
+	});
+
+	if (!exists) {
+		await db.folders.insert({
+			title: `${table.name}`,
+			inactive: false,
+			folderID,
+			game: "bms",
+			playtype: table.playtype,
+			type: "charts",
+			data: metaQuery,
+			searchTerms: [table.asciiPrefix],
+		});
+
+		await db.tables.update(
+			{
+				tableID: `bms-${table.playtype}-meta`,
+			},
+			{
+				$push: {
+					folders: folderID,
+				},
+			}
+		);
+
+		logger.info(`Inserted meta folder for ${table.name}.`);
+	}
 
 	logger.info(`Bumping levels...`);
 	await ImportTableLevels(tableJSON, table.prefix);

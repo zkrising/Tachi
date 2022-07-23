@@ -167,6 +167,11 @@ export class DatabaseSeedsRepo {
 			throw err;
 		}
 	}
+
+	Destroy() {
+		// scary
+		return fs.rm(this.baseDir, { recursive: true, force: true });
+	}
 }
 
 /**

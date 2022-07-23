@@ -172,6 +172,8 @@ export async function UpdatePoyashiData() {
 
 		logger.info(`Finished recalcing scores.`);
 	}
+
+	await repo.Destroy();
 }
 
 if (require.main === module) {

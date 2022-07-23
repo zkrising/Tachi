@@ -27,6 +27,8 @@ export async function UpdateAILevels() {
 
 		return charts;
 	});
+
+	await repo.Destroy();
 }
 
 if (require.main === module) {

@@ -39,6 +39,8 @@ export async function BacksyncBMSPMSSongsAndCharts() {
 	}
 
 	await repo.CommitChangesBack(`Backsync BMS+PMS Songs/Charts ${new Date().toISOString()}`);
+
+	await repo.Destroy();
 }
 
 if (require.main === module) {

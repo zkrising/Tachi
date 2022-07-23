@@ -104,6 +104,8 @@ export async function UpdateDPTiers() {
 		charts = null;
 
 		await repo.CommitChangesBack(`Update DP Tierlist ${new Date().toISOString()}`);
+
+		await repo.Destroy();
 	}
 
 	logger.info("Done.");

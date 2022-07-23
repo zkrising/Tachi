@@ -382,6 +382,8 @@ async function SynchroniseDBWithSeeds() {
 	}
 
 	logger.info(`Done.`);
+
+	await databaseSeedsRepo.Destroy();
 }
 
 if (require.main === module) {

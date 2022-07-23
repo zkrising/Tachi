@@ -300,6 +300,29 @@
 		"title": "Satellite"
 	},
 	{
+		"description": "The satellite table, from Stellaverse.",
+		"folders": [
+			"Fb5e18d5e855e9dd9b1bddece14a26a292f363522a4e1487c547b47ff99cd24ff",
+			"Fbb49b8b0238cc0b335c43ef219aa1673f179e7310939a9c7b4109007263cfa04",
+			"F2715effd17ef676ae92f82184889523d76d7bbb9cf461444c9ee7a88bf4a27ec",
+			"Fe97787056d94f64bea1a16b93ce7f8b8cad2b680605ac6d45ad086546aa2df39",
+			"Facc716f2b3e4d05e69064013418b497ce33c0aa4b3449d34a92e3f3ebd6354fd",
+			"Fee35e1d31721483931e7caa89fab84f19c3c03b090f92eb01a66c8c0b216e035",
+			"F378e430568b9083e20f61a376f3f1919151ff535e195952921d21654011a7552",
+			"F3cbff918489546d0f9a6648cabc0d933aed8475a4d3f99ccbf98f3b6ebf5394e",
+			"Fad24f9ef9c639813ad9da1c1dc7160e7e25a50258de1be291c56a334d385a78b",
+			"Fb6c6601216d4cff13d13af0a8b98d498e3d842140aff73c41a461a70a7f92b0d",
+			"F156fec11a0c705a6129893d40bc00f90b13032d4605b6f7e56f30ae8bafcf70c",
+			"Fccdb3940c28cedf1cfab4b7ffe87778a9f37bcd379d6a28763f90565dbe9f5f9",
+			"Ffb97ed5f7ccd84a5513332bf9415c9e9d6ab1677b407ff4f0a129710d80e211e"
+		],
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"tableID": "bms-7K-satellite",
+		"title": "Satellite"
+	},
+	{
 		"default": false,
 		"description": "The 7K Sara 3 table.",
 		"folders": [
@@ -329,6 +352,84 @@
 		"title": "Scratch 3rd"
 	},
 	{
+		"description": "The 7K Sara 3 table.",
+		"folders": [
+			"F0b1c75d6731d9834c6f90509c7fcfd9b62b8cd97aef310e332455fd724eb840d",
+			"F5bd694997fcb41cb2713a1a858119544853ab60c29c579c6165269c238f59db8",
+			"F02eecf8ae10a6dd8b294e2973f28a34e176200aeef3d635d7edc2bd09a2190ba",
+			"F436892ebe29e2c8fac9346f45114400ec716b9c58dfb6e7bdf46c8a36570de4f",
+			"F229c1007d2d5998e70dc0fe6dcbb0031efb7fbea052234b6cf10eabc162dfd35",
+			"Fe90b5693482ac54837ef864f1675af2d8802a92369f16a3eda38f65d328df89f",
+			"F2a37d0cce08f5614fff6b1890a2f56f5c6c556a280321a07942288e2d4cf4d76",
+			"Fb7b59796f4029f98f73b08fb6793118739ff0260bc68fcf06b2634a0c1d41458",
+			"F8baa889e858a0f710da56999ab98494eae7c2b530cec5d9d08fdeee60b8e7146",
+			"Fb462e36882d79bb9ba10094594f99e1a7b7db31977195675c1f707d8a84202aa",
+			"F4a8d7cf82ea1bbccb0cc17c4492d5988ea347a8fa5952539bb999d7b150f6fb5",
+			"Feffa4ba156bd0e0dca033da95c9b452313fefe2605fe9e0ec55faefa8c881df0",
+			"F778752e1f7f5829c2f54beef9f463d1f00abecdb4a0d3567d4db5e6b5e8aa2e6",
+			"F779570ed0f9b665dd3a4744f252982fb9d7e989475beb71e5140ce9b4c4ae08e",
+			"F28e354fc06e34bcd7fd6690507f3e03c09727d5405c6a05833181f207ac7182f",
+			"F8dd49b1aa8e447e443fa9b4d9ce033fe9aa8fba1bdcac8bd84f4f3cb21e95584",
+			"F157a18634d4d8fa0e4bf2e3207d17642cec30e323d8e29df670b45e8640a00d3",
+			"F3c0ce816bfbbf842005568d9521388756b3bd345e844fafe1249672f09f20d54"
+		],
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"tableID": "bms-7K-scratch",
+		"title": "Scratch 3rd"
+	},
+	{
+		"description": "The 7K Stardust table. This table covers ☆1 to ☆7.",
+		"folders": [
+			"F5223d2972604af59298db03e4bd4551624c5687ab8aa9e46640c4815f50c68a4",
+			"Ffd24b409cdbe702194a0b9726123f52a288b4fbaa56fba65c8da83c332aeeba7",
+			"F72c4e379e5a73cfbd7b175cd95a707925ffea809ef5f9ceeef1c733f58e89f1d",
+			"Fdd8da30201d74d0d07bfbfe0ecbf3a56dcd50d9099b7532d82a1e9ef06ee2533",
+			"F764475cae613244fc167da358708fc3f9d47eb87fc59f92f6124961a4a45b35a",
+			"F737d0cd5c7e1b18ab85c56f9811119c315ad8f386a4babd59b1a95cf9f074004",
+			"Faf3a9c4250dfa3ff84d8a493a28ba07e59fea23d823ae440815b870775a43ac4",
+			"F90a61ff5baa0e827248f958bcc08d4fbdee064a3663e4c9e4b17ae74e3a0c7dc",
+			"Feeda79fa0accf291bf9de608f364d82df40f2db13a1837197eb865a310f5b16e",
+			"F48f9f28b476ec0349fe808aab3b670cbb3603788274800a49ad536b16da026a7",
+			"F259ce798b7244a27c47d5a95edb6f587364fecccbe15b59b744ab13d845fe469",
+			"Fe377607434076c594e9be6c67c1c8f267e62830812bc77a10d27e1210af21449",
+			"F906c3c9295ba33d8ce31f465104d843ad92c7c772ce2226342d775d34101b493",
+			"Fc484371ac8c5cec8f1a9cf2deab6e07a971df167fa58371921511a4254e72a3a"
+		],
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"tableID": "bms-7K-stardust",
+		"title": "Stardust"
+	},
+	{
+		"description": "The 7K Starlight table. This table covers ☆7 to ☆12.",
+		"folders": [
+			"F0f81b0a5f260520d372e2b66e429cfb213591c7bbad822530a7fa4ebf70465f0",
+			"F03ef9202532ef8356111903fa372f2bf7d8311326b2fe01609f488633ac646be",
+			"Fcc8476cf890d946e25d0b99547ddf4536801d7d52e8f484f4c52f90c2443910f",
+			"F7ba4da78d9aae7ac365953a23c7da661f9217da63d3211c23c2fce8814b05529",
+			"Fa85c796d58a0b7233c3bbd8eb729677910aed64c3fccf24f6fcad14ba36f0c6b",
+			"F2f09d60ddc4e6d2a153bf64d29e041927c184523a04428d098e554babcaa03f9",
+			"Fcd34366ee13b5339c690ff99f0ab001d6a50ea4ed357a4a5daee13a47d42934d",
+			"F028a1f6c76b514c135b3d76bad2a9f6f31e9f886c366b2cbe3a98277ee2a166a",
+			"Fca49c662ef26e51b802b3cd4a6d662ba065bd4dc7898816a5642987bd5c863a9",
+			"F68f2b05383f4efe41315053bf07102e0b8c3030e2061ae6c66913225a6401a27",
+			"Fe9d2a0150cb7f5a3fec4b30fd187ccbc0be129ff82ad4007ee4ba8939f0545bb",
+			"F9e8b25af2445a573e4c9231e21492231a4e10bccd0bc2fff239b7aa84e72f06b",
+			"Fe3975b5c1010965519498224010171151bdaf8701d6eb8ce8cf2f25ab94cfb88",
+			"Fac25b0061bf21b3ef209c4a3fae962a1ea6b54f31fa558387b65e5553595b3ca",
+			"F45367aea9b30a92e1b861502b9a8f92edc0e6a6a1249649934e27c0e00a9ce3f",
+			"F0a7b34236ba40e0cde7426a5c6919c0b06866efe6fe3508b6d43a916ed50f1a7"
+		],
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"tableID": "bms-7K-starlight",
+		"title": "Starlight"
+	},
+	{
 		"default": false,
 		"description": "The stella table, from Stellaverse.",
 		"folders": [
@@ -350,6 +451,29 @@
 		"inactive": false,
 		"playtype": "7K",
 		"tableID": "bms-7K-st",
+		"title": "Stella"
+	},
+	{
+		"description": "The stella table, from Stellaverse.",
+		"folders": [
+			"Ffb7654a11bb534e600060c973b2e997c48e73adc62cca9d1a96a344cd5627ed3",
+			"F323987c34aeadd83039bbae10ddff50f8c9613df8130692df14d6918ba817549",
+			"Fbe7ecfb433bcd550a9238268899eeed8713524ae66924a0de5e4d805b8484a26",
+			"F32b0edb7bb7bbd55cd277c24f4f401cacad902320f78e9c4125fee06c26eb483",
+			"F56344e4e22442f0eea66807b202cc6cf374b4b49066f535dc02183f9c8470640",
+			"Fcaf431597a465343d8a33c5426e23fcf23f44f9e473140f699fb30860047d94c",
+			"F6f6b7143e0ad2c18f9fc29f30ad017d789fc9975b347e20463255a4c031eda4e",
+			"Fa702ec79207f52bcf9c60bc907902227c7d205d1510c9bc83661be3ae3de3f48",
+			"F02bfd6b27b37245b8022dee95141b34d0112dc697be058051d93b9c45386247f",
+			"F8412dad28f77a6fdd8fa6cd3761040c25b91a79e5f49818d32533413b4b53fbe",
+			"Fb3776ab1f5b141ffddbeee6806a6894ba139e7d1874b7754bf5cea7543573bb3",
+			"F1575f6a0291579bc1dd71def5c2d11a32bd5f9cc1348c71b5763bed88e2fcadc",
+			"F5d93066203271bc3db84fb01f1adea605fac2792f7595db755e2c3b60f6baa8e"
+		],
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"tableID": "bms-7K-stella",
 		"title": "Stella"
 	},
 	{

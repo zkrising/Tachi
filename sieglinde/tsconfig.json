@@ -1,19 +1,28 @@
 {
+	"extends": "../tsconfig.json",
 	"compilerOptions": {
-		"target": "ES2020",
-		"module": "CommonJS",
+		"baseUrl": "src",
+		"outDir": "./js",
 		"lib": [
 			"ES2019"
 		],
-		"declaration": true,
-		"strict": true,
-		"allowJs": false,
-		"esModuleInterop": true,
-		"sourceMap": true,
-		"outDir": "./js",
 		"typeRoots": [
 			"@types",
+			"node_modules/@types",
 		],
+		"paths": {
+			"tachi-common": [
+				"../../common/src"
+			],
+			"tachi-common/*": [
+				"../../common/src/*"
+			]
+		}
+	},
+	"ts-node": {
+		"require": [
+			"tsconfig-paths/register"
+		]
 	},
 	"include": [
 		"src/**/*.ts",

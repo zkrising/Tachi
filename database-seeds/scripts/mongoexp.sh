@@ -4,7 +4,7 @@
 # folder.
 # Useful for backporting updates, or something.
 
-set -euo pipefail
+set -eo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
 

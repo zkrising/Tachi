@@ -267,6 +267,48 @@
 	},
 	{
 		"data": {
+			"data¬tableFolders¬table": "★"
+		},
+		"folderID": "F769d0e12ce12897efe33a7a402be7260e0990d76629b4fe103ea9a11547a0865",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "14K",
+		"searchTerms": [
+			"dpInsane"
+		],
+		"title": "DP Insane",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders¬table": "δ"
+		},
+		"folderID": "Fe1d3fc21babda6bbf8f0421bbe641e914fe3a6fa7eb61708ea7e3dc44b29e58a",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "14K",
+		"searchTerms": [
+			"dpNormal"
+		],
+		"title": "DP Normal",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders¬table": "sl"
+		},
+		"folderID": "F4442d60db39ca8f8b37c960271e59b8039545272495185c899589db4b11e31f9",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "14K",
+		"searchTerms": [
+			"dpSatellite"
+		],
+		"title": "DP Satellite",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"data¬tableFolders": {
 				"~elemMatch": {
 					"level": "0",
@@ -4216,6 +4258,34 @@
 			"Stella 9"
 		],
 		"title": "st9",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders¬table": "ξ"
+		},
+		"folderID": "Fc307887b9958200a623b03fb2538f5b5ec8d2b951bf119edc6848ac255b335c4",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"stardust"
+		],
+		"title": "Stardust",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders¬table": "sr"
+		},
+		"folderID": "F3aacc76df2f4bc79e4d0944c4e528223e0ff9a8dbda88c07e8377d9c465c7aa0",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"starlight"
+		],
+		"title": "Starlight",
 		"type": "charts"
 	},
 	{

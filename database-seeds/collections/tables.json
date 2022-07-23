@@ -72,6 +72,20 @@
 		"title": "DP Satellite"
 	},
 	{
+		"default": false,
+		"description": "Meta tables that present existing tables as if they were single folders.",
+		"folders": [
+			"F769d0e12ce12897efe33a7a402be7260e0990d76629b4fe103ea9a11547a0865",
+			"Fe1d3fc21babda6bbf8f0421bbe641e914fe3a6fa7eb61708ea7e3dc44b29e58a",
+			"F4442d60db39ca8f8b37c960271e59b8039545272495185c899589db4b11e31f9"
+		],
+		"game": "bms",
+		"inactive": false,
+		"playtype": "14K",
+		"tableID": "bms-14K-meta",
+		"title": "Meta Table"
+	},
+	{
 		"default": true,
 		"description": "The 7K GENOSIDE insane table.",
 		"folders": [
@@ -195,7 +209,9 @@
 			"F592f40c2a6fe1d9e6576af59d2a767f2a8298656b492e8598ff44a89880f0015",
 			"F9147dcbf43425ad1f48b0c1e35536a667d97e7ac93bcff1656a0321694d1f406",
 			"Fffe3af5600bd7e3e5c78df671c11e8137070531ddee2d612f1c6ddc9c2944b0a",
-			"Fd8f69f38e6e033a41fa5a24d87060561ed5e1da4c6c81dc32bf24931a27359dc"
+			"Fd8f69f38e6e033a41fa5a24d87060561ed5e1da4c6c81dc32bf24931a27359dc",
+			"Fc307887b9958200a623b03fb2538f5b5ec8d2b951bf119edc6848ac255b335c4",
+			"F3aacc76df2f4bc79e4d0944c4e528223e0ff9a8dbda88c07e8377d9c465c7aa0"
 		],
 		"game": "bms",
 		"inactive": false,
@@ -296,11 +312,11 @@
 		"game": "bms",
 		"inactive": false,
 		"playtype": "7K",
-		"tableID": "bms-7K-sl",
+		"tableID": "bms-7K-satellite",
 		"title": "Satellite"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "The 7K Sara 3 table.",
 		"folders": [
 			"F0b1c75d6731d9834c6f90509c7fcfd9b62b8cd97aef310e332455fd724eb840d",
@@ -325,8 +341,60 @@
 		"game": "bms",
 		"inactive": false,
 		"playtype": "7K",
-		"tableID": "bms-7K-scr",
+		"tableID": "bms-7K-scratch",
 		"title": "Scratch 3rd"
+	},
+	{
+		"default": false,
+		"description": "The 7K Stardust table. This table covers ☆1 to ☆7.",
+		"folders": [
+			"F5223d2972604af59298db03e4bd4551624c5687ab8aa9e46640c4815f50c68a4",
+			"Ffd24b409cdbe702194a0b9726123f52a288b4fbaa56fba65c8da83c332aeeba7",
+			"F72c4e379e5a73cfbd7b175cd95a707925ffea809ef5f9ceeef1c733f58e89f1d",
+			"Fdd8da30201d74d0d07bfbfe0ecbf3a56dcd50d9099b7532d82a1e9ef06ee2533",
+			"F764475cae613244fc167da358708fc3f9d47eb87fc59f92f6124961a4a45b35a",
+			"F737d0cd5c7e1b18ab85c56f9811119c315ad8f386a4babd59b1a95cf9f074004",
+			"Faf3a9c4250dfa3ff84d8a493a28ba07e59fea23d823ae440815b870775a43ac4",
+			"F90a61ff5baa0e827248f958bcc08d4fbdee064a3663e4c9e4b17ae74e3a0c7dc",
+			"Feeda79fa0accf291bf9de608f364d82df40f2db13a1837197eb865a310f5b16e",
+			"F48f9f28b476ec0349fe808aab3b670cbb3603788274800a49ad536b16da026a7",
+			"F259ce798b7244a27c47d5a95edb6f587364fecccbe15b59b744ab13d845fe469",
+			"Fe377607434076c594e9be6c67c1c8f267e62830812bc77a10d27e1210af21449",
+			"F906c3c9295ba33d8ce31f465104d843ad92c7c772ce2226342d775d34101b493",
+			"Fc484371ac8c5cec8f1a9cf2deab6e07a971df167fa58371921511a4254e72a3a"
+		],
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"tableID": "bms-7K-stardust",
+		"title": "Stardust"
+	},
+	{
+		"default": false,
+		"description": "The 7K Starlight table. This table covers ☆7 to ☆12.",
+		"folders": [
+			"F0f81b0a5f260520d372e2b66e429cfb213591c7bbad822530a7fa4ebf70465f0",
+			"F03ef9202532ef8356111903fa372f2bf7d8311326b2fe01609f488633ac646be",
+			"Fcc8476cf890d946e25d0b99547ddf4536801d7d52e8f484f4c52f90c2443910f",
+			"F7ba4da78d9aae7ac365953a23c7da661f9217da63d3211c23c2fce8814b05529",
+			"Fa85c796d58a0b7233c3bbd8eb729677910aed64c3fccf24f6fcad14ba36f0c6b",
+			"F2f09d60ddc4e6d2a153bf64d29e041927c184523a04428d098e554babcaa03f9",
+			"Fcd34366ee13b5339c690ff99f0ab001d6a50ea4ed357a4a5daee13a47d42934d",
+			"F028a1f6c76b514c135b3d76bad2a9f6f31e9f886c366b2cbe3a98277ee2a166a",
+			"Fca49c662ef26e51b802b3cd4a6d662ba065bd4dc7898816a5642987bd5c863a9",
+			"F68f2b05383f4efe41315053bf07102e0b8c3030e2061ae6c66913225a6401a27",
+			"Fe9d2a0150cb7f5a3fec4b30fd187ccbc0be129ff82ad4007ee4ba8939f0545bb",
+			"F9e8b25af2445a573e4c9231e21492231a4e10bccd0bc2fff239b7aa84e72f06b",
+			"Fe3975b5c1010965519498224010171151bdaf8701d6eb8ce8cf2f25ab94cfb88",
+			"Fac25b0061bf21b3ef209c4a3fae962a1ea6b54f31fa558387b65e5553595b3ca",
+			"F45367aea9b30a92e1b861502b9a8f92edc0e6a6a1249649934e27c0e00a9ce3f",
+			"F0a7b34236ba40e0cde7426a5c6919c0b06866efe6fe3508b6d43a916ed50f1a7"
+		],
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"tableID": "bms-7K-starlight",
+		"title": "Starlight"
 	},
 	{
 		"default": false,
@@ -349,7 +417,7 @@
 		"game": "bms",
 		"inactive": false,
 		"playtype": "7K",
-		"tableID": "bms-7K-st",
+		"tableID": "bms-7K-stella",
 		"title": "Stella"
 	},
 	{

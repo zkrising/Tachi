@@ -1,113 +1,11 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
-import { BMS_TABLES } from "lib/constants/bms-tables";
 import CreateLogCtx from "lib/logger/logger";
 import fetch from "node-fetch";
+import { BMS_TABLES } from "tachi-common";
 import { CreateFolderID, InitaliseFolderChartLookup } from "utils/folder";
 import { FormatBMSTables } from "utils/misc";
-import type { ChartDocument } from "tachi-common";
-
-// I have no confidence in half of these links surviving.
-// Eventually, some of these are going to disappear, and we'll have to find
-// something else. probably.
-const registeredTables: Array<BMSTablesDataset> = [
-	{
-		name: "Insane",
-		humanisedPrefix: "insane",
-		playtype: "7K",
-		prefix: BMS_TABLES.insane,
-		description: "The 7K GENOSIDE insane table.",
-		url: "http://www.ribbit.xyz/bms/tables/insane_body.json",
-	},
-	{
-		name: "Normal",
-		humanisedPrefix: "normal",
-		playtype: "7K",
-		prefix: BMS_TABLES.normal,
-		description: "The 7K GENOSIDE normal table.",
-		url: "http://www.ribbit.xyz/bms/tables/normal_body.json",
-	},
-	{
-		name: "Stella",
-		humanisedPrefix: "st",
-		playtype: "7K",
-		prefix: BMS_TABLES.stella,
-		description: "The stella table, from Stellaverse.",
-		url: "https://stellabms.xyz/st/score.json",
-	},
-	{
-		name: "Satellite",
-		humanisedPrefix: "sl",
-		playtype: "7K",
-		prefix: BMS_TABLES.satellite,
-		description: "The satellite table, from Stellaverse.",
-		url: "https://stellabms.xyz/sl/score.json",
-	},
-	{
-		name: "Insane2",
-		humanisedPrefix: "insane2",
-		playtype: "7K",
-		prefix: BMS_TABLES.insane2,
-		description: "A successor to the original insane table, but is generally less consistent.",
-		url: "http://rattoto10.jounin.jp/js/insane_data.json",
-	},
-	{
-		name: "Normal2",
-		humanisedPrefix: "normal2",
-		playtype: "7K",
-		prefix: BMS_TABLES.normal2,
-		description: "A successor to the original normal table.",
-		url: "http://rattoto10.jounin.jp/js/score.json",
-	},
-	{
-		name: "Overjoy",
-		description: "The overjoy table. Level 1 is roughly equivalent to Insane 20.",
-		humanisedPrefix: "overjoy",
-		playtype: "7K",
-		prefix: BMS_TABLES.overjoy,
-		url: "http://lr2.sakura.ne.jp/data/score.json",
-	},
-	{
-		name: "DP Insane",
-		description: "The 14K Insane table.",
-		humanisedPrefix: "dpInsane",
-		prefix: BMS_TABLES.dpInsane,
-		playtype: "14K",
-		url: "http://dpbmsdelta.web.fc2.com/table/data/insane_data.json",
-	},
-	{
-		name: "DP Normal",
-		description: "The 14K Normal table, Sometimes called the delta table.",
-		humanisedPrefix: "dpNormal",
-		prefix: BMS_TABLES.dpNormal,
-		playtype: "14K",
-		url: "http://dpbmsdelta.web.fc2.com/table/data/dpdelta_data.json",
-	},
-	{
-		name: "DP Satellite",
-		description: "The 14K Satellite table.",
-		humanisedPrefix: "dpSatellite",
-		prefix: BMS_TABLES.satellite,
-		playtype: "14K",
-		url: "https://stellabms.xyz/dp/score.json",
-	},
-	{
-		name: "Scratch 3rd",
-		description: "The 7K Sara 3 table.",
-		humanisedPrefix: "scr",
-		prefix: BMS_TABLES.scratch,
-		playtype: "7K",
-		url: "http://minddnim.web.fc2.com/sara/3rd_hard/json/data.json",
-	},
-	{
-		name: "LN",
-		description: "The 7K LN table.",
-		humanisedPrefix: "ln",
-		prefix: BMS_TABLES.ln,
-		playtype: "7K",
-		url: "http://flowermaster.web.fc2.com/lrnanido/gla/score.json",
-	},
-];
+import type { BMSTableInfo, ChartDocument } from "tachi-common";
 
 // this seems to be all we care about
 interface TableJSONDoc {
@@ -169,15 +67,6 @@ async function ImportTableLevels(tableJSON: Array<TableJSONDoc>, prefix: string)
 	logger.info(`${success} Success | ${failures} Failures | ${total} Total.`);
 }
 
-export interface BMSTablesDataset {
-	url: string;
-	name: string;
-	description: string;
-	humanisedPrefix: string;
-	prefix: string;
-	playtype: "7K" | "14K";
-}
-
 interface BMSTableChart {
 	title: string;
 	artist: string;
@@ -190,7 +79,7 @@ interface BMSTableChart {
 
 const RETRY_COUNT = 3;
 
-export async function UpdateTable(table: BMSTablesDataset) {
+export async function UpdateTable(table: BMSTableInfo) {
 	const res = await fetch(table.url);
 
 	const statusCode = res.status;
@@ -227,7 +116,7 @@ export async function UpdateTable(table: BMSTablesDataset) {
 		}
 	}
 
-	const tableID = `bms-${table.playtype}-${table.humanisedPrefix}`;
+	const tableID = `bms-${table.playtype}-${table.asciiPrefix}`;
 
 	const folderIDs = [];
 	const levels = [...new Set(tableJSON.map((e) => e.level))];
@@ -267,7 +156,7 @@ export async function UpdateTable(table: BMSTablesDataset) {
 			searchTerms: [`${table.name} ${level}`],
 		});
 
-		logger.info(`Inserted new table ${table.prefix}${level}.`);
+		logger.info(`Inserted new folder ${table.prefix}${level}.`);
 	}
 
 	await db.tables.update(
@@ -282,6 +171,9 @@ export async function UpdateTable(table: BMSTablesDataset) {
 				description: table.description,
 				inactive: false,
 			},
+			$setOnInsert: {
+				default: false,
+			},
 		},
 		{
 			upsert: true,
@@ -290,13 +182,53 @@ export async function UpdateTable(table: BMSTablesDataset) {
 
 	logger.info(`Bumped table ${table.name}.`);
 
+	logger.info(`Checking meta-folder...`);
+
+	const metaQuery = {
+		"data¬tableFolders¬table": table.prefix,
+	};
+
+	const folderID = CreateFolderID(metaQuery, "bms", table.playtype);
+
+	folderIDs.push(folderID);
+
+	const exists = await db.folders.findOne({
+		folderID,
+	});
+
+	if (!exists) {
+		await db.folders.insert({
+			title: `${table.name}`,
+			inactive: false,
+			folderID,
+			game: "bms",
+			playtype: table.playtype,
+			type: "charts",
+			data: metaQuery,
+			searchTerms: [table.asciiPrefix],
+		});
+
+		await db.tables.update(
+			{
+				tableID: `bms-${table.playtype}-meta`,
+			},
+			{
+				$push: {
+					folders: folderID,
+				},
+			}
+		);
+
+		logger.info(`Inserted meta folder for ${table.name}.`);
+	}
+
 	logger.info(`Bumping levels...`);
 	await ImportTableLevels(tableJSON, table.prefix);
 	logger.info(`Levels bumped.`);
 }
 
 export async function SyncBMSTables() {
-	for (const table of registeredTables) {
+	for (const table of BMS_TABLES) {
 		// eslint-disable-next-line no-await-in-loop
 		await UpdateTable(table);
 	}

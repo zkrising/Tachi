@@ -1,7 +1,13 @@
-import { BMS_TABLES } from "util/constants/bms-tables";
 import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
 import { ValueGetterOrHybrid } from "util/ztable/search";
-import { ChartDocument, Game, GamePTConfig, GetGamePTConfig, IDStrings } from "tachi-common";
+import {
+	BMS_TABLE_ICONS,
+	ChartDocument,
+	Game,
+	GamePTConfig,
+	GetGamePTConfig,
+	IDStrings,
+} from "tachi-common";
 import { FolderDataset, PBDataset, ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
 
@@ -145,21 +151,21 @@ function HandleBMSNonsense(
 ) {
 	const appendSearches: Record<string, ValueGetterOrHybrid<any>> = playtype === "7K"
 		? {
-				insane: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLES.insane),
-				overjoy: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLES.overjoy),
-				insane2: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLES.insane2),
-				normal: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLES.normal),
-				normal2: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLES.normal2),
-				st: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLES.stella),
-				sl: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLES.satellite),
-				satellite: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLES.satellite),
-				stella: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLES.stella),
+				insane: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.insane),
+				overjoy: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.overjoy),
+				insane2: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.insane2),
+				normal: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.normal),
+				normal2: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.normal2),
+				st: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.stella),
+				sl: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.satellite),
+				satellite: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.satellite),
+				stella: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.stella),
 		  }
 		: {
-				insane: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLES.dpInsane),
-				normal: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLES.dpNormal),
-				sl: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLES.satellite),
-				satellite: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLES.satellite),
+				insane: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.dpInsane),
+				normal: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.dpNormal),
+				sl: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.satellite),
+				satellite: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.satellite),
 		  };
 
 	Object.assign(searchFunctions, appendSearches);

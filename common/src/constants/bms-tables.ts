@@ -27,6 +27,8 @@ export const BMS_TABLE_ICONS = {
 	dpInsane: "★",
 	scratch: "h◎",
 	ln: "◆",
+	stardust: "ξ",
+	starlight: "sr",
 };
 
 // I have no confidence in half of these links surviving.
@@ -128,5 +130,21 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		asciiPrefix: "ln",
 		playtype: "7K",
 		url: "http://flowermaster.web.fc2.com/lrnanido/gla/score.json",
+	},
+	{
+		name: "Stardust",
+		prefix: BMS_TABLE_ICONS.stardust,
+		asciiPrefix: "stardust",
+		playtype: "7K",
+		url: "https://mqppppp.neocities.org/StardustData.json",
+		description: "The 7K Stardust table. This table covers ☆1 to ☆7.",
+	},
+	{
+		name: "Starlight",
+		prefix: BMS_TABLE_ICONS.starlight,
+		asciiPrefix: "starlight",
+		playtype: "7K",
+		url: "https://djkuroakari.github.io/data.json",
+		description: "The 7K Starlight table. This table covers ☆7 to ☆12.",
 	},
 ];

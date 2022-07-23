@@ -3671,6 +3671,310 @@
 		"data": {
 			"data¬tableFolders": {
 				"~elemMatch": {
+					"level": "!",
+					"table": "sr"
+				}
+			}
+		},
+		"folderID": "F0a7b34236ba40e0cde7426a5c6919c0b06866efe6fe3508b6d43a916ed50f1a7",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Starlight !"
+		],
+		"title": "sr!",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "?",
+					"table": "sr"
+				}
+			}
+		},
+		"folderID": "F45367aea9b30a92e1b861502b9a8f92edc0e6a6a1249649934e27c0e00a9ce3f",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Starlight ?"
+		],
+		"title": "sr?",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "0",
+					"table": "sr"
+				}
+			}
+		},
+		"folderID": "F0f81b0a5f260520d372e2b66e429cfb213591c7bbad822530a7fa4ebf70465f0",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Starlight 0"
+		],
+		"title": "sr0",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "1",
+					"table": "sr"
+				}
+			}
+		},
+		"folderID": "F03ef9202532ef8356111903fa372f2bf7d8311326b2fe01609f488633ac646be",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Starlight 1"
+		],
+		"title": "sr1",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "10",
+					"table": "sr"
+				}
+			}
+		},
+		"folderID": "Fe9d2a0150cb7f5a3fec4b30fd187ccbc0be129ff82ad4007ee4ba8939f0545bb",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Starlight 10"
+		],
+		"title": "sr10",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "11",
+					"table": "sr"
+				}
+			}
+		},
+		"folderID": "F9e8b25af2445a573e4c9231e21492231a4e10bccd0bc2fff239b7aa84e72f06b",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Starlight 11"
+		],
+		"title": "sr11",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "12",
+					"table": "sr"
+				}
+			}
+		},
+		"folderID": "Fe3975b5c1010965519498224010171151bdaf8701d6eb8ce8cf2f25ab94cfb88",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Starlight 12"
+		],
+		"title": "sr12",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "13",
+					"table": "sr"
+				}
+			}
+		},
+		"folderID": "Fac25b0061bf21b3ef209c4a3fae962a1ea6b54f31fa558387b65e5553595b3ca",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Starlight 13"
+		],
+		"title": "sr13",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "2",
+					"table": "sr"
+				}
+			}
+		},
+		"folderID": "Fcc8476cf890d946e25d0b99547ddf4536801d7d52e8f484f4c52f90c2443910f",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Starlight 2"
+		],
+		"title": "sr2",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "3",
+					"table": "sr"
+				}
+			}
+		},
+		"folderID": "F7ba4da78d9aae7ac365953a23c7da661f9217da63d3211c23c2fce8814b05529",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Starlight 3"
+		],
+		"title": "sr3",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "4",
+					"table": "sr"
+				}
+			}
+		},
+		"folderID": "Fa85c796d58a0b7233c3bbd8eb729677910aed64c3fccf24f6fcad14ba36f0c6b",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Starlight 4"
+		],
+		"title": "sr4",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "5",
+					"table": "sr"
+				}
+			}
+		},
+		"folderID": "F2f09d60ddc4e6d2a153bf64d29e041927c184523a04428d098e554babcaa03f9",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Starlight 5"
+		],
+		"title": "sr5",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "6",
+					"table": "sr"
+				}
+			}
+		},
+		"folderID": "Fcd34366ee13b5339c690ff99f0ab001d6a50ea4ed357a4a5daee13a47d42934d",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Starlight 6"
+		],
+		"title": "sr6",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "7",
+					"table": "sr"
+				}
+			}
+		},
+		"folderID": "F028a1f6c76b514c135b3d76bad2a9f6f31e9f886c366b2cbe3a98277ee2a166a",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Starlight 7"
+		],
+		"title": "sr7",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "8",
+					"table": "sr"
+				}
+			}
+		},
+		"folderID": "Fca49c662ef26e51b802b3cd4a6d662ba065bd4dc7898816a5642987bd5c863a9",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Starlight 8"
+		],
+		"title": "sr8",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "9",
+					"table": "sr"
+				}
+			}
+		},
+		"folderID": "F68f2b05383f4efe41315053bf07102e0b8c3030e2061ae6c66913225a6401a27",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Starlight 9"
+		],
+		"title": "sr9",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
 					"level": "0",
 					"table": "st"
 				}
@@ -3924,6 +4228,272 @@
 		"playtype": "7K",
 		"searchTerms": [],
 		"title": "Stella",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "?",
+					"table": "ξ"
+				}
+			}
+		},
+		"folderID": "Fc484371ac8c5cec8f1a9cf2deab6e07a971df167fa58371921511a4254e72a3a",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Stardust ?"
+		],
+		"title": "ξ?",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "1",
+					"table": "ξ"
+				}
+			}
+		},
+		"folderID": "F5223d2972604af59298db03e4bd4551624c5687ab8aa9e46640c4815f50c68a4",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Stardust 1"
+		],
+		"title": "ξ1",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "10",
+					"table": "ξ"
+				}
+			}
+		},
+		"folderID": "F48f9f28b476ec0349fe808aab3b670cbb3603788274800a49ad536b16da026a7",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Stardust 10"
+		],
+		"title": "ξ10",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "11",
+					"table": "ξ"
+				}
+			}
+		},
+		"folderID": "F259ce798b7244a27c47d5a95edb6f587364fecccbe15b59b744ab13d845fe469",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Stardust 11"
+		],
+		"title": "ξ11",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "12",
+					"table": "ξ"
+				}
+			}
+		},
+		"folderID": "Fe377607434076c594e9be6c67c1c8f267e62830812bc77a10d27e1210af21449",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Stardust 12"
+		],
+		"title": "ξ12",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "13",
+					"table": "ξ"
+				}
+			}
+		},
+		"folderID": "F906c3c9295ba33d8ce31f465104d843ad92c7c772ce2226342d775d34101b493",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Stardust 13"
+		],
+		"title": "ξ13",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "2",
+					"table": "ξ"
+				}
+			}
+		},
+		"folderID": "Ffd24b409cdbe702194a0b9726123f52a288b4fbaa56fba65c8da83c332aeeba7",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Stardust 2"
+		],
+		"title": "ξ2",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "3",
+					"table": "ξ"
+				}
+			}
+		},
+		"folderID": "F72c4e379e5a73cfbd7b175cd95a707925ffea809ef5f9ceeef1c733f58e89f1d",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Stardust 3"
+		],
+		"title": "ξ3",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "4",
+					"table": "ξ"
+				}
+			}
+		},
+		"folderID": "Fdd8da30201d74d0d07bfbfe0ecbf3a56dcd50d9099b7532d82a1e9ef06ee2533",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Stardust 4"
+		],
+		"title": "ξ4",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "5",
+					"table": "ξ"
+				}
+			}
+		},
+		"folderID": "F764475cae613244fc167da358708fc3f9d47eb87fc59f92f6124961a4a45b35a",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Stardust 5"
+		],
+		"title": "ξ5",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "6",
+					"table": "ξ"
+				}
+			}
+		},
+		"folderID": "F737d0cd5c7e1b18ab85c56f9811119c315ad8f386a4babd59b1a95cf9f074004",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Stardust 6"
+		],
+		"title": "ξ6",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "7",
+					"table": "ξ"
+				}
+			}
+		},
+		"folderID": "Faf3a9c4250dfa3ff84d8a493a28ba07e59fea23d823ae440815b870775a43ac4",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Stardust 7"
+		],
+		"title": "ξ7",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "8",
+					"table": "ξ"
+				}
+			}
+		},
+		"folderID": "F90a61ff5baa0e827248f958bcc08d4fbdee064a3663e4c9e4b17ae74e3a0c7dc",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Stardust 8"
+		],
+		"title": "ξ8",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "9",
+					"table": "ξ"
+				}
+			}
+		},
+		"folderID": "Feeda79fa0accf291bf9de608f364d82df40f2db13a1837197eb865a310f5b16e",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Stardust 9"
+		],
+		"title": "ξ9",
 		"type": "charts"
 	},
 	{

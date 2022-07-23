@@ -496,7 +496,7 @@
 		},
 		"id": 35,
 		"searchTerms": [
-			"Saikyou STRONGER"
+			"SAIKYO STRONGER"
 		],
 		"title": "最強STRONGER"
 	},
@@ -1045,7 +1045,9 @@
 			"titleJP": "デストロイヤー"
 		},
 		"id": 75,
-		"searchTerms": [],
+		"searchTerms": [
+			"Destroyer"
+		],
 		"title": "Destr0yer"
 	},
 	{
@@ -1396,9 +1398,7 @@
 			"titleJP": "ラクシャ"
 		},
 		"id": 100,
-		"searchTerms": [
-			"Laksha/Laksa"
-		],
+		"searchTerms": [],
 		"title": "Lhaksha"
 	},
 	{
@@ -1705,7 +1705,7 @@
 		},
 		"id": 122,
 		"searchTerms": [
-			"KISHIN MADNESS 2153"
+			"QiXiN MADNESS 2153"
 		],
 		"title": "QiXiN MAdN3ss 2153"
 	},
@@ -1775,9 +1775,7 @@
 			"titleJP": "カラカクラ"
 		},
 		"id": 127,
-		"searchTerms": [
-			"KALACAKRA"
-		],
+		"searchTerms": [],
 		"title": "KALACAKLA"
 	},
 	{
@@ -3143,7 +3141,8 @@
 		},
 		"id": 224,
 		"searchTerms": [
-			"Bass-line Yatteru? LOL"
+			"Bassline Yatteru? w",
+			"Can I Friend You On Bassbook? Lol"
 		],
 		"title": "ベースラインやってる？笑"
 	},
@@ -4858,7 +4857,8 @@
 		},
 		"id": 347,
 		"searchTerms": [
-			"Crimson Teio"
+			"Crimson Teio",
+			"Crimson Emperor"
 		],
 		"title": "クリムゾン帝王"
 	},
@@ -4996,7 +4996,7 @@
 		},
 		"id": 357,
 		"searchTerms": [
-			"Moebius"
+			"Mobius"
 		],
 		"title": "Möbius"
 	},

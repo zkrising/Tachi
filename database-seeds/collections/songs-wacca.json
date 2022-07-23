@@ -5224,5 +5224,150 @@
 		"id": 374,
 		"searchTerms": [],
 		"title": "Ready Go feat. Yukacco"
+	},
+	{
+		"altTitles": [],
+		"artist": "aran",
+		"data": {
+			"artistJP": "アラン",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "スクランブルタノシー"
+		},
+		"id": 375,
+		"searchTerms": [],
+		"title": "Scramble TANO*C"
+	},
+	{
+		"altTitles": [],
+		"artist": "DJ Noriken",
+		"data": {
+			"artistJP": "ディージェーノリケン",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "エブリバディセイハードコアタノシー"
+		},
+		"id": 376,
+		"searchTerms": [],
+		"title": "Everybody Say HARDCORE TANO*C"
+	},
+	{
+		"altTitles": [],
+		"artist": "REDALiCE",
+		"data": {
+			"artistJP": "レッドアリス",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "クラッシュアウト"
+		},
+		"id": 377,
+		"searchTerms": [],
+		"title": "Crush Out"
+	},
+	{
+		"altTitles": [],
+		"artist": "P*Light",
+		"data": {
+			"artistJP": "ピライト",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "キープオングルービンフィーチャリングモウモウ"
+		},
+		"id": 378,
+		"searchTerms": [],
+		"title": "Keep on Groovin' feat. mow*2"
+	},
+	{
+		"altTitles": [],
+		"artist": "源屋",
+		"data": {
+			"artistJP": "ミナモトヤ",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "トゥザスカイワッカエディットフィーチャリングモトコ"
+		},
+		"id": 379,
+		"searchTerms": [],
+		"title": "To the sky -wacca edit- feat.motoko"
+	},
+	{
+		"altTitles": [],
+		"artist": "Massive New Krew",
+		"data": {
+			"artistJP": "マッシブニュークルー",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "ウィーアーザマッシブニュークルートゥエンティートゥエンティーエディット"
+		},
+		"id": 380,
+		"searchTerms": [],
+		"title": "We are the Massive New Krew (2020Edit)"
+	},
+	{
+		"altTitles": [],
+		"artist": "SAISEN TURN",
+		"data": {
+			"artistJP": "サイセンタン",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "サイセンタンボウショウグンスリー"
+		},
+		"id": 381,
+		"searchTerms": [
+			"Saisentan-bo Shogun 3 / TOP SHOGUN 3"
+		],
+		"title": "最先端坊将軍３"
+	},
+	{
+		"altTitles": [],
+		"artist": "t+pazolite",
+		"data": {
+			"artistJP": "トパゾライト",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "ビーピーエムイコールアールティー"
+		},
+		"id": 382,
+		"searchTerms": [],
+		"title": "BPM=RT"
+	},
+	{
+		"altTitles": [],
+		"artist": "DJ Myosuke",
+		"data": {
+			"artistJP": "ディージェーミョースケ",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "ワンビーピーエム"
+		},
+		"id": 383,
+		"searchTerms": [],
+		"title": "1BPM"
+	},
+	{
+		"altTitles": [],
+		"artist": "Laur",
+		"data": {
+			"artistJP": "ラウル",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "ヴィエラズ ナイトメア"
+		},
+		"id": 384,
+		"searchTerms": [],
+		"title": "Viyella's Nightmare"
+	},
+	{
+		"altTitles": [],
+		"artist": "Gram",
+		"data": {
+			"artistJP": "グラム",
+			"displayVersion": "reverse",
+			"genre": "TANO*C",
+			"titleJP": "オーディン"
+		},
+		"id": 385,
+		"searchTerms": [],
+		"title": "Odin"
 	}
 ]

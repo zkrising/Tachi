@@ -205,6 +205,16 @@
 	},
 	{
 		"default": false,
+		"description": "Meta tables that present existing tables as if they were single folders.",
+		"folders": [],
+		"game": "bms",
+		"inactive": false,
+		"playtype": "14K",
+		"tableID": "bms-14K-meta",
+		"title": "Meta Table"
+	},
+	{
+		"default": false,
 		"description": "The 7K GENOSIDE normal table.",
 		"folders": [
 			"Fccca26c54f38f5d07b1de00d6f5e07e50ac36b9f0a2dcb967a849abc7e7faf54",

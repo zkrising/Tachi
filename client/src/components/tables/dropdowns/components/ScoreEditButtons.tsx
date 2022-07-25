@@ -183,22 +183,24 @@ function CommentModal({
 						</div>
 					</Form.Group>
 
-					<QuickTooltip tooltipContent="Remove your comment on this score.">
-						<Button
-							variant="outline-danger"
-							onClick={() =>
-								ModifyScore(scoreID, { comment: null }).then((r) => {
-									if (r) {
-										setComment(null);
-										score.comment = null;
-										setShow(false);
-									}
-								})
-							}
-						>
-							<Icon noPad type="trash" />
-						</Button>
-					</QuickTooltip>
+					{comment !== null && (
+						<QuickTooltip tooltipContent="Remove your comment on this score.">
+							<Button
+								variant="outline-danger"
+								onClick={() =>
+									ModifyScore(scoreID, { comment: null }).then((r) => {
+										if (r) {
+											setComment(null);
+											score.comment = null;
+											setShow(false);
+										}
+									})
+								}
+							>
+								<Icon noPad type="trash" />
+							</Button>
+						</QuickTooltip>
+					)}
 				</Form>
 			</Modal.Body>
 		</Modal>

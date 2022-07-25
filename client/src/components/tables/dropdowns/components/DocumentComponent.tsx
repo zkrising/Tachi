@@ -66,7 +66,11 @@ export default function DocumentComponent({
 	chart,
 }: {
 	score: ScoreDocument | PBScoreDocument;
-	scoreState: { highlight: boolean; setHighlight: SetState<boolean> };
+	scoreState: {
+		highlight: boolean;
+		setHighlight: SetState<boolean>;
+		setComment?: SetState<string | null>;
+	};
 	renderScoreInfo?: boolean;
 	showSingleScoreNote?: boolean;
 	pbData: UGPTChartPBComposition;
@@ -87,6 +91,11 @@ export default function DocumentComponent({
 	useEffect(() => {
 		setComment(IsScore(score) ? score.comment : null);
 	}, [score]);
+
+	useEffect(() => {
+		// what kind of crack was i smoking here?
+		scoreState.setComment?.(comment);
+	}, [comment]);
 
 	return (
 		<>

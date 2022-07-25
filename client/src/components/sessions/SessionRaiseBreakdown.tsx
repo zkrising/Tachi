@@ -556,7 +556,12 @@ function PseudHighlight({
 				/>
 			) : (
 				<span className="breakdown-hover-highlight-button">
-					<Icon onClick={() => setHighlight(true)} type="star" regular noPad />
+					<Icon
+						onClick={() => setHighlight(true)}
+						type="star"
+						regular
+						style={{ paddingTop: "0.1rem" }}
+					/>
 				</span>
 			)}
 		</td>

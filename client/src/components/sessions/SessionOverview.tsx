@@ -3,21 +3,31 @@ import { FormatDuration } from "util/time";
 import Card from "components/layout/page/Card";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import Divider from "components/util/Divider";
-import React from "react";
+import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { GetGamePTConfig, SessionDocument } from "tachi-common";
+import { GetGamePTConfig, ScoreDocument, SessionDocument } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
 import { ScoreDataset } from "types/tables";
+import { SetState } from "types/react";
 import SessionRaiseBreakdown from "./SessionRaiseBreakdown";
 
 export default function SessionOverview({
 	sessionData,
+	setSessionData,
 	scoreDataset,
 }: {
 	sessionData: SessionReturns;
+	setSessionData: SetState<SessionReturns>;
 	scoreDataset: ScoreDataset;
 }) {
 	const { scores, session } = sessionData;
+
+	const setScores = (scores: ScoreDocument[]) => {
+		setSessionData({
+			...sessionData,
+			scores,
+		});
+	};
 
 	return (
 		<>
@@ -32,7 +42,7 @@ export default function SessionOverview({
 
 				<Card header="Breakdown">
 					<Row>
-						<SessionRaiseBreakdown sessionData={sessionData} />
+						<SessionRaiseBreakdown sessionData={sessionData} setScores={setScores} />
 					</Row>
 				</Card>
 			</Col>

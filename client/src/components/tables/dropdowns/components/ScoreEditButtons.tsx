@@ -110,7 +110,7 @@ export default function ScoreEditButtons({
 	);
 }
 
-async function ModifyScore(
+export async function ModifyScore(
 	scoreID: string,
 	content: { comment?: string | null; highlight?: boolean }
 ) {

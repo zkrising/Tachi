@@ -50,7 +50,8 @@ export default function SpecificSessionPage({ reqUser, game, playtype }: Props) 
 }
 
 function SessionPage({ data, game, playtype }: Props & { data: SessionReturns }) {
-	const { session, user, charts, scores, songs } = data;
+	const [sessionData, setSessionData] = useState(data);
+	const { session, user, charts, scores, songs } = sessionData;
 
 	const { user: loggedInUser } = useContext(UserContext);
 
@@ -105,7 +106,7 @@ function SessionPage({ data, game, playtype }: Props & { data: SessionReturns })
 		}
 
 		return d;
-	}, [data]);
+	}, [sessionData]);
 
 	const [highlight, setHighlight] = useState(session.highlight);
 	const [showEditModal, setShowEditModal] = useState(false);
@@ -215,7 +216,11 @@ function SessionPage({ data, game, playtype }: Props & { data: SessionReturns })
 				<Divider />
 			</Col>
 			{view === "overview" ? (
-				<SessionOverview scoreDataset={scoreDataset} sessionData={data} />
+				<SessionOverview
+					scoreDataset={scoreDataset}
+					sessionData={sessionData}
+					setSessionData={setSessionData}
+				/>
 			) : (
 				<Col xs={12}>
 					<ScoreTable

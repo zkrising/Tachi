@@ -3,7 +3,6 @@ import { CreateChartMap, CreateScoreIDMap, CreateSongMap } from "util/data";
 import { DelayedPageReload } from "util/misc";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import SessionOverview from "components/sessions/SessionOverview";
-import SessionRaiseBreakdown from "components/sessions/SessionRaiseBreakdown";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
@@ -51,7 +50,8 @@ export default function SpecificSessionPage({ reqUser, game, playtype }: Props) 
 }
 
 function SessionPage({ data, game, playtype }: Props & { data: SessionReturns }) {
-	const { session, user, charts, scores, songs } = data;
+	const [sessionData, setSessionData] = useState(data);
+	const { session, user, charts, scores, songs } = sessionData;
 
 	const { user: loggedInUser } = useContext(UserContext);
 
@@ -69,7 +69,7 @@ function SessionPage({ data, game, playtype }: Props & { data: SessionReturns })
 		`${user.username}: ${session.name}`
 	);
 
-	const [view, setView] = useState<"raises" | "overview" | "scores">("overview");
+	const [view, setView] = useState<"overview" | "scores">("overview");
 
 	const songMap = CreateSongMap(songs);
 	const chartMap = CreateChartMap(charts);
@@ -106,7 +106,7 @@ function SessionPage({ data, game, playtype }: Props & { data: SessionReturns })
 		}
 
 		return d;
-	}, [data]);
+	}, [sessionData]);
 
 	const [highlight, setHighlight] = useState(session.highlight);
 	const [showEditModal, setShowEditModal] = useState(false);
@@ -204,10 +204,6 @@ function SessionPage({ data, game, playtype }: Props & { data: SessionReturns })
 					</>
 				)}
 				<div className="btn-group">
-					<SelectButton value={view} setValue={setView} id="raises">
-						<Icon type="receipt" />
-						Raises
-					</SelectButton>
 					<SelectButton value={view} setValue={setView} id="overview">
 						<Icon type="chart-area" />
 						Overview
@@ -219,10 +215,12 @@ function SessionPage({ data, game, playtype }: Props & { data: SessionReturns })
 				</div>
 				<Divider />
 			</Col>
-			{view === "raises" ? (
-				<SessionRaiseBreakdown sessionData={data} />
-			) : view === "overview" ? (
-				<SessionOverview scoreDataset={scoreDataset} sessionData={data} />
+			{view === "overview" ? (
+				<SessionOverview
+					scoreDataset={scoreDataset}
+					sessionData={sessionData}
+					setSessionData={setSessionData}
+				/>
 			) : (
 				<Col xs={12}>
 					<ScoreTable

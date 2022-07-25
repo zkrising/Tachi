@@ -3,22 +3,31 @@ import { FormatDuration } from "util/time";
 import Card from "components/layout/page/Card";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import Divider from "components/util/Divider";
-import React from "react";
-import { Col } from "react-bootstrap";
-import { GetGamePTConfig } from "tachi-common";
+import React, { useState } from "react";
+import { Col, Row } from "react-bootstrap";
+import { GetGamePTConfig, ScoreDocument, SessionDocument } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
 import { ScoreDataset } from "types/tables";
+import { SetState } from "types/react";
+import SessionRaiseBreakdown from "./SessionRaiseBreakdown";
 
 export default function SessionOverview({
 	sessionData,
+	setSessionData,
 	scoreDataset,
 }: {
 	sessionData: SessionReturns;
+	setSessionData: SetState<SessionReturns>;
 	scoreDataset: ScoreDataset;
 }) {
 	const { scores, session } = sessionData;
 
-	const gptConfig = GetGamePTConfig(session.game, session.playtype);
+	const setScores = (scores: ScoreDocument[]) => {
+		setSessionData({
+			...sessionData,
+			scores,
+		});
+	};
 
 	return (
 		<>
@@ -30,30 +39,12 @@ export default function SessionOverview({
 			<StatThing md12 name="Highlights" value={scores.filter((e) => e.highlight).length} />
 			<Col xs={12}>
 				<Divider />
-				<div className="card">
-					<div className="card-body">
-						<div className="display-4 text-center">Ratings</div>
-						<Divider />
-						<div
-							className="d-flex text-center"
-							style={{ justifyContent: "space-evenly" }}
-						>
-							{gptConfig.sessionRatingAlgs.map((e) => (
-								<div key={e}>
-									<div className="display-4">{UppercaseFirst(e)}</div>
-									<div style={{ fontSize: "1.2rem" }}>
-										{FormatSessionRating(
-											session.game,
-											session.playtype,
-											e,
-											session.calculatedData[e]
-										)}
-									</div>
-								</div>
-							))}
-						</div>
-					</div>
-				</div>
+
+				<Card header="Breakdown">
+					<Row>
+						<SessionRaiseBreakdown sessionData={sessionData} setScores={setScores} />
+					</Row>
+				</Card>
 			</Col>
 			<Col xs={12}>
 				<Divider />
@@ -65,7 +56,37 @@ export default function SessionOverview({
 					/>
 				</Card>
 			</Col>
+			<RatingsOverview session={session} />
 		</>
+	);
+}
+
+// Temporarily shoved to the bottom, as it needs to be significantly improved,
+// but we can't really just remove it lol.
+function RatingsOverview({ session }: { session: SessionDocument }) {
+	const gptConfig = GetGamePTConfig(session.game, session.playtype);
+
+	return (
+		<Col xs={12}>
+			<Divider />
+			<Card header="Ratings">
+				<div className="d-flex text-center" style={{ justifyContent: "space-evenly" }}>
+					{gptConfig.sessionRatingAlgs.map((e) => (
+						<div key={e}>
+							<div className="display-4">{UppercaseFirst(e)}</div>
+							<div style={{ fontSize: "1.2rem" }}>
+								{FormatSessionRating(
+									session.game,
+									session.playtype,
+									e,
+									session.calculatedData[e]
+								)}
+							</div>
+						</div>
+					))}
+				</div>
+			</Card>
+		</Col>
 	);
 }
 

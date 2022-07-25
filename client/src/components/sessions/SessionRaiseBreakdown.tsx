@@ -30,8 +30,19 @@ import {
 	TableDocument,
 } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
+import { ModifyScore } from "components/tables/dropdowns/components/ScoreEditButtons";
+import { SetState } from "types/react";
+import { ScoreDataset } from "types/tables";
 
-export default function SessionRaiseBreakdown({ sessionData }: { sessionData: SessionReturns }) {
+type SetScores = (scores: ScoreDocument[]) => void;
+
+export default function SessionRaiseBreakdown({
+	sessionData,
+	setScores,
+}: {
+	sessionData: SessionReturns;
+	setScores: SetScores;
+}) {
 	const game = sessionData.session.game;
 	const playtype = sessionData.session.playtype;
 
@@ -111,16 +122,17 @@ export default function SessionRaiseBreakdown({ sessionData }: { sessionData: Se
 							<div className="btn-group">
 								<SelectButton value={view} setValue={setView} id="lamps">
 									<Icon type="lightbulb" />
-									New Lamps
+									Lamps Only
 								</SelectButton>
 
 								<SelectButton value={view} setValue={setView} id="both">
 									<Icon type="bolt" />
 									Both
 								</SelectButton>
+
 								<SelectButton value={view} setValue={setView} id="grades">
 									<Icon type="sort-alpha-up" />
-									New Grades
+									Grades Only
 								</SelectButton>
 							</div>
 						</div>
@@ -177,7 +189,7 @@ export default function SessionRaiseBreakdown({ sessionData }: { sessionData: Se
 
 				<Divider className="mt-4 mb-4" />
 			</div>
-			<SessionScoreStatBreakdown {...{ sessionData, chartIDs, filter, view }} />
+			<SessionScoreStatBreakdown {...{ sessionData, chartIDs, filter, view, setScores }} />
 		</>
 	);
 }
@@ -187,8 +199,10 @@ function SessionScoreStatBreakdown({
 	chartIDs,
 	filter,
 	view,
+	setScores,
 }: {
 	sessionData: SessionReturns;
+	setScores: SetScores;
 	chartIDs: string[] | null;
 	filter: "folder" | "all" | "highlighted";
 	view: "lamps" | "both" | "grades";
@@ -254,6 +268,8 @@ function SessionScoreStatBreakdown({
 							className="table-sm"
 						>
 							<ElementStatTable
+								scores={sessionData.scores}
+								setScores={setScores}
 								chartMap={chartMap}
 								songMap={songMap}
 								counts={newLamps}
@@ -270,6 +286,8 @@ function SessionScoreStatBreakdown({
 							className="table-sm"
 						>
 							<ElementStatTable
+								scores={sessionData.scores}
+								setScores={setScores}
 								chartMap={chartMap}
 								songMap={songMap}
 								counts={newGrades}
@@ -284,6 +302,8 @@ function SessionScoreStatBreakdown({
 				<div className="col-12">
 					<MiniTable headers={["Grade", "New Grades"]} colSpan={[1, 100]}>
 						<ElementStatTable
+							scores={sessionData.scores}
+							setScores={setScores}
 							fullSize
 							chartMap={chartMap}
 							songMap={songMap}
@@ -298,6 +318,8 @@ function SessionScoreStatBreakdown({
 				<div className="col-12">
 					<MiniTable headers={["Lamps", "New Lamps"]} colSpan={[1, 100]}>
 						<ElementStatTable
+							scores={sessionData.scores}
+							setScores={setScores}
 							fullSize
 							chartMap={chartMap}
 							songMap={songMap}
@@ -321,8 +343,12 @@ function ElementStatTable({
 	chartMap,
 	game,
 	fullSize = false,
+	scores,
+	setScores,
 }: {
 	type: "lamp" | "grade";
+	setScores: SetScores;
+	scores: ScoreDocument[];
 	counts: Record<string, { score: ScoreDocument; scoreInfo: SessionScoreInfo }[]>;
 	gptConfig: GamePTConfig;
 	songMap: Map<integer, SongDocument<Game>>;
@@ -330,6 +356,28 @@ function ElementStatTable({
 	game: Game;
 	fullSize?: boolean;
 }) {
+	function makeModifyScoreFn(score: ScoreDocument) {
+		return ({ highlight, comment }: { highlight?: boolean; comment?: string }) => {
+			const scoreID = score.scoreID;
+
+			ModifyScore(scoreID, { highlight, comment }).then((r) => {
+				if (r) {
+					const filtered = scores.filter((e) => e.scoreID !== scoreID);
+					const newScore = { ...score };
+
+					if (highlight !== undefined) {
+						newScore.highlight = highlight;
+					}
+					if (comment !== undefined) {
+						newScore.comment = comment;
+					}
+
+					setScores([...filtered, newScore]);
+				}
+			});
+		};
+	}
+
 	const tableContents = useMemo(() => {
 		// relements.. haha
 		const relevantElements =
@@ -349,8 +397,10 @@ function ElementStatTable({
 
 			const firstData = counts[element][0];
 
+			const firstModify = makeModifyScoreFn(firstData.score);
+
 			tableContents.push(
-				<tr key={element}>
+				<tr key={element} className="breakdown-hover-row">
 					<td
 						style={{
 							// @ts-expect-error this is a hack due to the funky type of colours and element.
@@ -363,16 +413,19 @@ function ElementStatTable({
 					<BreakdownChartContents
 						{...firstData}
 						{...{ chartMap, songMap, fullSize, game, gptConfig, type }}
+						modifyScore={firstModify}
 					/>
 				</tr>
 			);
 
 			for (const data of counts[element]!.slice(1)) {
+				const modifyScore = makeModifyScoreFn(data.score);
+
 				tableContents.push(
-					<tr key={data.score.scoreID}>
+					<tr key={data.score.scoreID} className="breakdown-hover-row">
 						<BreakdownChartContents
 							{...data}
-							{...{ chartMap, songMap, fullSize, game, gptConfig, type }}
+							{...{ chartMap, songMap, fullSize, game, gptConfig, type, modifyScore }}
 						/>
 					</tr>
 				);
@@ -402,6 +455,7 @@ function BreakdownChartContents({
 	fullSize,
 	gptConfig,
 	type,
+	modifyScore,
 }: {
 	score: ScoreDocument;
 	scoreInfo: SessionScoreInfo;
@@ -410,10 +464,23 @@ function BreakdownChartContents({
 	songMap: Map<integer, SongDocument>;
 	chartMap: Map<string, ChartDocument>;
 	gptConfig: GamePTConfig;
+	modifyScore: ({ highlight, comment }: { highlight?: boolean; comment?: string }) => void;
 	type: "lamp" | "grade";
 }) {
 	const chart = chartMap.get(score.chartID)!;
 	const song = songMap.get(score.songID)!;
+
+	const [highlight, setHighlight] = useState(score.highlight);
+	const [firstRun, setFirstRun] = useState(true);
+
+	useEffect(() => {
+		if (firstRun) {
+			setFirstRun(false);
+			return;
+		}
+
+		modifyScore({ highlight });
+	}, [highlight]);
 
 	if (!chart || !song) {
 		console.error(`No chart for ${score.chartID}/${score.songID}???`);
@@ -445,8 +512,6 @@ function BreakdownChartContents({
 			}
 		}
 
-		console.log(game);
-
 		if (score) {
 			return (
 				<>
@@ -467,7 +532,38 @@ function BreakdownChartContents({
 	return (
 		<>
 			<TitleCell noArtist chart={chart} game={game} song={song} />
+			<PseudHighlight highlight={highlight} setHighlight={setHighlight} />
 			<DifficultyCell alwaysShort chart={chart} game={game} />
 		</>
+	);
+}
+
+function PseudHighlight({
+	highlight,
+	setHighlight,
+}: {
+	highlight: boolean;
+	setHighlight: (hl: boolean) => void;
+}) {
+	return (
+		<td style={{ verticalAlign: "center" }}>
+			{highlight ? (
+				<Icon
+					onClick={() => setHighlight(false)}
+					colour="warning"
+					type="star"
+					style={{ paddingTop: "0.1rem" }}
+				/>
+			) : (
+				<span className="breakdown-hover-highlight-button">
+					<Icon
+						onClick={() => setHighlight(true)}
+						type="star"
+						regular
+						style={{ paddingTop: "0.1rem" }}
+					/>
+				</span>
+			)}
+		</td>
 	);
 }

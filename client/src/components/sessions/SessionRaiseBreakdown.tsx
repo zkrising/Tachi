@@ -359,20 +359,22 @@ function ElementStatTable({
 	function makeModifyScoreFn(score: ScoreDocument) {
 		return ({ highlight, comment }: { highlight?: boolean; comment?: string }) => {
 			const scoreID = score.scoreID;
-			const filtered = scores.filter((e) => e.scoreID !== scoreID);
 
-			ModifyScore(scoreID, { highlight, comment });
+			ModifyScore(scoreID, { highlight, comment }).then((r) => {
+				if (r) {
+					const filtered = scores.filter((e) => e.scoreID !== scoreID);
+					const newScore = { ...score };
 
-			const newScore = { ...score };
+					if (highlight !== undefined) {
+						newScore.highlight = highlight;
+					}
+					if (comment !== undefined) {
+						newScore.comment = comment;
+					}
 
-			if (highlight !== undefined) {
-				newScore.highlight = highlight;
-			}
-			if (comment !== undefined) {
-				newScore.comment = comment;
-			}
-
-			setScores([...filtered, newScore]);
+					setScores([...filtered, newScore]);
+				}
+			});
 		};
 	}
 

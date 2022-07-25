@@ -105,7 +105,7 @@ function Row<I extends IDStrings = IDStrings>({
 			<IndicatorsCell highlight={scoreState.highlight} />
 			<TitleCell
 				song={sc.__related.song}
-				comment={sc.comment}
+				comment={scoreState.comment}
 				chart={sc.__related.chart}
 				game={game}
 			/>

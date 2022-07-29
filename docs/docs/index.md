@@ -2,13 +2,35 @@
 
 This site serves as the documentation for Tachi.
 
-Tachi is a rhythm game score tracking engine, and is the name of the codebase that powers
+Tachi is a fully-open rhythm game score tracking engine, and is the name of the codebase that powers
 both [Bokutachi](https://bokutachi.xyz) and [Kamaitachi](https://kamaitachi.xyz).
+
+!!! help
+	Tachi is **fully open**. The core is almost exclusively maintained by [one person](https://github.com/zkldi).
+	However, we support nearly twenty games and playtypes now. Said one person cannot reasonably keep up
+	with all the new things coming out in those games.
+
+	If you care about a game you play a lot, and want to help out Tachi, there are loads of ways you can contribute
+	and ease the load on the primary maintainer!
+	
+	Because Tachi is fully open source, if you want a feature, bug-fix, or new content added to your game,
+	you can *become a contributor* or *report to someone who will contribute!*
+
+	We maintain a **comprehensive** [contribution guide](./contributing/overview.md), which is accessible
+	to even people who have never wrote a line of code in their life. If you want to improve Tachi, and maybe even
+	nab some development skills yourself (or look good on a CV!), check it out. I've put a lot of effort into it.
 
 ## About This Documentation
 
-So that we don't have to write and maintain three separate sets of documentation, this site
-works like a Monorepo for Tachi's documentation.
+This is the documentation for *all* of Tachi. It - like Tachi - is primarily maintained by one
+person, and as such, some things may be slightly outdated, wrong, or generally just ill-maintained.
+
+!!! info
+	If you're confused about anything, ask in the `#dev` channel of your Tachi instance's discord!
+	We have a remarkably helpful community of developers and contributors, who should be able to help you out.
+
+Apologies in advance! If you find a problem in the documentation, you can freely contribute a fix
+to it. See the [Contribution Guide](./contributing/overview.md)!
 
 *****
 

@@ -33,22 +33,25 @@ export default function IIDXLampCell({
 		bpText = `[BP: ${sc.scoreData.hitMeta.bp}]`;
 	}
 
+	let cbrkCount;
 	let cbrkText;
 
-	if (
+	if (sc.scoreData.hitMeta.comboBreak) {
+		cbrkCount = sc.scoreData.hitMeta.comboBreak;
+	} else if (
 		IsNotNullish(sc.scoreData.judgements.pgreat) &&
 		IsNotNullish(sc.scoreData.judgements.great) &&
 		IsNotNullish(sc.scoreData.judgements.good)
 	) {
-		const cbrkCount =
+		cbrkCount =
 			chart.data.notecount -
 			sc.scoreData.judgements.pgreat! -
 			sc.scoreData.judgements.great! -
 			sc.scoreData.judgements.good!;
+	}
 
-		if (cbrkCount !== 0) {
-			cbrkText = `[CB: ${cbrkCount}]`;
-		}
+	if (IsNotNullish(cbrkCount)) {
+		cbrkText = `[CB: ${cbrkCount}]`;
 	}
 
 	return (

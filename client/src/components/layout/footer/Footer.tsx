@@ -74,7 +74,7 @@ export function Footer() {
 							</a>
 						)}
 						<a
-							href="https://github.com/tng-dev/tachi-server"
+							href="https://github.com/tng-dev/tachi"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="nav-link px-3"

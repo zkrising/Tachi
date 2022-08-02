@@ -35,7 +35,7 @@ for API abuse.
 
 ## License
 
-[Tachi-Server](https://github.com/zkldi/tachi/server) (Where the API is wrote) is licensed under the [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html).
+[Tachi-Server](https://github.com/tng-dev/tachi/server) (Where the API is wrote) is licensed under the [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html).
 
 To quote GitHub:
 

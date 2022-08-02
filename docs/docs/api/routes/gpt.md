@@ -570,7 +570,7 @@ GET /api/v1/games/bms/7K/player-distribution?class=stslDan
 !!! info
 	You can find the humanised conversions for these classes in the gptConfig for this GPT.
 
-	See [tachi-common](https://github.com/tng-dev/tachi-common) for more information.
+	See [tachi/common](https://github.com/TNG-dev/Tachi/tree/staging/common) for more information.
 
 *****
 

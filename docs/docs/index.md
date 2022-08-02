@@ -30,7 +30,6 @@ View it [here](./tachi-server/overview.md).
 ### Bot Codebase Reference
 
 This is for people who want to work on the `Tachi-Bot`.
-This codebase is maintained by [pfych](https://github.com/pfych), and is wrote in TypeScript.
 
 View it [here](./tachi-bot/overview.md).
 

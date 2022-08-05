@@ -134,6 +134,11 @@ function GetGPTRatingFunction(game: Game, playtype: Playtype): RatingFunction {
 			return async (g, p, u) => ({
 				curatorSkill: await LazySumN("curatorSkill", 20)(g, p, u),
 			});
+		case "maimaidx:Single":
+			return async (g, p, u, l) => ({
+				naiveRate: await LazySumN("rate", 50)(g, p, u),
+				rate: await CalculateMaimaiDXRate(g, p, u, l),
+			});
 		case "wacca:Single":
 			return async (g, p, u, l) => ({
 				naiveRate: await LazySumN("rate", 50)(g, p, u),
@@ -225,6 +230,69 @@ async function CalculateWACCARate(
 	return (
 		best15Hot.reduce((a, e) => a + e.calculatedData.rate!, 0) +
 		best35Cold.reduce((a, e) => a + e.calculatedData.rate!, 0)
+	);
+}
+
+// basically the same as WACCA's.
+async function CalculateMaimaiDXRate(
+	game: Game,
+	playtype: Playtype,
+	userID: integer,
+	_logger: KtLogger
+) {
+	const newChartIDs = (
+		await db.charts.maimaidx.find({ "data.isLatest": true }, { projection: { chartID: 1 } })
+	).map((e) => e.chartID);
+
+	const oldChartIDs = (
+		await db.charts.maimaidx.find({ "data.isLatest": false }, { projection: { chartID: 1 } })
+	).map((e) => e.chartID);
+
+	const best15New = await db["personal-bests"].find(
+		{
+			game,
+			playtype,
+			userID,
+			chartID: { $in: newChartIDs },
+			"calculatedData.rate": { $type: "number" },
+		},
+		{
+			sort: {
+				"calculatedData.rate": -1,
+			},
+			limit: 15,
+			projection: {
+				"calculatedData.rate": 1,
+			},
+		}
+	);
+
+	const best35Old = await db["personal-bests"].find(
+		{
+			game,
+			playtype,
+			userID,
+			chartID: { $in: oldChartIDs },
+			"calculatedData.rate": { $type: "number" },
+		},
+		{
+			sort: {
+				"calculatedData.rate": -1,
+			},
+			limit: 35,
+			projection: {
+				"calculatedData.rate": 1,
+			},
+		}
+	);
+
+	if (best15New.length + best35Old.length === 0) {
+		return null;
+	}
+
+	return (
+		best15New.reduce((a, e) => a + e.calculatedData.rate!, 0) +
+		best35Old.reduce((a, e) => a + e.calculatedData.rate!, 0)
 	);
 }
 

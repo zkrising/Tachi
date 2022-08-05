@@ -5,6 +5,7 @@ import {
 	CalculatePopnClass,
 	CalculateSDVXClass,
 	CalculateWACCAColour,
+	CalculateMaimaiDXColour,
 } from "./builtin-class-handlers";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
@@ -50,6 +51,9 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
 	gitadora: {
 		Gita: CalculateGitadoraColour,
 		Dora: CalculateGitadoraColour,
+	},
+	maimaidx: {
+		Single: CalculateMaimaiDXColour,
 	},
 	museca: null,
 	popn: {

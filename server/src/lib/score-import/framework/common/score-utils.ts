@@ -1,7 +1,7 @@
 import { InternalFailure, InvalidScoreFailure } from "./converter-failures";
 import CreateLogCtx from "lib/logger/logger";
 import { ESDCore, GetGamePTConfig } from "tachi-common";
-import { FloorToNDP, IsNullish, NotNullish } from "utils/misc";
+import { IsNullish, NotNullish } from "utils/misc";
 import type {
 	ChartDocument,
 	Game,
@@ -62,6 +62,7 @@ export function GenericCalculatePercent(game: Game, score: number, chart?: Chart
 			return (score / 10_000_000) * 100;
 		case "popn":
 			return (score / 100_000) * 100;
+
 		case "bms":
 		case "pms":
 		case "iidx": {
@@ -96,12 +97,8 @@ export function GenericCalculatePercent(game: Game, score: number, chart?: Chart
 		// this is a hack: we need a refactor for this.
 		case "gitadora":
 		case "itg":
+		case "maimaidx":
 			return score;
-
-		default: {
-			logger.severe(`Invalid game passed of ${game} to GenericCalcPercent.`);
-			throw new InternalFailure(`Invalid game passed of ${game} to GenericCalcPercent.`);
-		}
 	}
 }
 

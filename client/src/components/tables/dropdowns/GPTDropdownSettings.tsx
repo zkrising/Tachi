@@ -1,5 +1,4 @@
-import { Game } from "tachi-common";
-import { Playtype } from "tachi-common";
+import { Game, Playtype } from "tachi-common";
 import { BMSGraphsComponent } from "./components/BMSScoreDropdownParts";
 import { IIDXGraphsComponent } from "./components/IIDXScoreDropdownParts";
 import { ITGGraphsComponent } from "./components/ITGScoreDropdownParts";

@@ -103,6 +103,7 @@ export function GetGPTCoreHeaders<
 		case "jubeat":
 		case "wacca":
 		case "chunithm":
+		case "maimaidx":
 		case "itg":
 			return [
 				ScoreHeader,

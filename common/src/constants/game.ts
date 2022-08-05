@@ -414,3 +414,43 @@ export enum JUBEAT_COLOURS {
 	ORANGE = 8,
 	GOLD = 9,
 }
+
+export enum MAIMAIDX_COLOURS {
+	WHITE = 0,
+	BLUE = 1,
+	GREEN = 2,
+	YELLOW = 3,
+	RED = 4,
+	PURPLE = 5,
+	BRONZE = 6,
+	SILVER = 7,
+	GOLD = 8,
+	PLATINUM = 9,
+	RAINBOW = 10,
+}
+
+export enum MAIMAIDX_DANS {
+	DAN_1 = 0,
+	DAN_2 = 1,
+	DAN_3 = 2,
+	DAN_4 = 3,
+	DAN_5 = 4,
+	DAN_6 = 5,
+	DAN_7 = 6,
+	DAN_8 = 7,
+	DAN_9 = 8,
+	DAN_10 = 9,
+
+	SHINDAN_1 = 10,
+	SHINDAN_2 = 11,
+	SHINDAN_3 = 12,
+	SHINDAN_4 = 13,
+	SHINDAN_5 = 14,
+	SHINDAN_6 = 15,
+	SHINDAN_7 = 16,
+	SHINDAN_8 = 17,
+	SHINDAN_9 = 18,
+	SHINDAN_10 = 19,
+
+	SHINKAIDEN = 20,
+}

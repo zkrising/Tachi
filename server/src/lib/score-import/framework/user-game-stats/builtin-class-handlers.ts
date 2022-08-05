@@ -2,6 +2,7 @@ import {
 	CHUNITHM_COLOURS,
 	GITADORA_COLOURS,
 	JUBEAT_COLOURS,
+	MAIMAIDX_COLOURS,
 	POPN_CLASSES,
 	SDVX_VF_CLASSES,
 	WACCA_COLOURS,
@@ -253,4 +254,45 @@ function JubilityToColour(jubility: number) {
 	}
 
 	return JUBEAT_COLOURS.BLACK;
+}
+
+export function CalculateMaimaiDXColour(
+	game: Game,
+	playtype: Playtype,
+	userID: integer,
+	ratings: Record<string, number | null>
+) {
+	if (IsNullish(ratings.rate)) {
+		return {};
+	}
+
+	const colour = MaimaiDXRateToColour(ratings.rate);
+
+	return { colour };
+}
+
+function MaimaiDXRateToColour(rate: number) {
+	if (rate >= 15000) {
+		return MAIMAIDX_COLOURS.RAINBOW;
+	} else if (rate >= 14500) {
+		return MAIMAIDX_COLOURS.PLATINUM;
+	} else if (rate >= 14000) {
+		return MAIMAIDX_COLOURS.GOLD;
+	} else if (rate >= 13000) {
+		return MAIMAIDX_COLOURS.SILVER;
+	} else if (rate >= 12000) {
+		return MAIMAIDX_COLOURS.BRONZE;
+	} else if (rate >= 10000) {
+		return MAIMAIDX_COLOURS.PURPLE;
+	} else if (rate >= 7000) {
+		return MAIMAIDX_COLOURS.RED;
+	} else if (rate >= 4000) {
+		return MAIMAIDX_COLOURS.YELLOW;
+	} else if (rate >= 2000) {
+		return MAIMAIDX_COLOURS.GREEN;
+	} else if (rate >= 1000) {
+		return MAIMAIDX_COLOURS.BLUE;
+	}
+
+	return MAIMAIDX_COLOURS.WHITE;
 }

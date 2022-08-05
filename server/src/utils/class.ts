@@ -73,7 +73,7 @@ export async function UpdateClassIfGreater(
 		game,
 		playtype,
 		userID,
-		classOldValue: isGreater === null ? null : userGameStats!.classes[classSet]!,
+		classOldValue: isGreater === null ? null : userGameStats.classes[classSet]!,
 		classSet,
 		classValue: classVal,
 		timeAchieved: Date.now(),
@@ -93,7 +93,7 @@ export async function UpdateClassIfGreater(
 		content: {
 			userID,
 			new: classVal,
-			old: userGameStats!.classes[classSet]!,
+			old: userGameStats.classes[classSet]!,
 			set: classSet,
 			game,
 			playtype,

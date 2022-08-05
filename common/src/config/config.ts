@@ -1629,6 +1629,98 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		tierlists: [],
 		tierlistDescriptions: {},
 	},
+        "maimaidx:Single": {
+                idString: "maimaidx:Single",
+
+                percentMax: 101,
+
+		defaultScoreRatingAlg: "rate",
+		defaultSessionRatingAlg: "rate",
+		defaultProfileRatingAlg: "naiveRate",
+
+		scoreRatingAlgs: ["rate"],
+		sessionRatingAlgs: ["rate"],
+		profileRatingAlgs: ["naiveRate", "rate"],
+
+		scoreRatingAlgDescriptions: {
+			rate: "Rating as it's implemented in game.",
+		},
+		profileRatingAlgDescriptions: {
+			naiveRate: "A naive rating algorithm that just averages your 50 best scores.",
+			rate: "Rating as it's implemented in game, taking 15 scores from the latest version and 35 from all old versions.",
+		},
+		sessionRatingAlgDescriptions: {
+			rate: "The average of your best 10 ratings this session.",
+		},
+
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
+
+		difficulties: ["Basic", "Advanced", "Expert", "Master", "Re:Master"],
+		shortDifficulties: {
+			Basic: "B",
+			Advanced: "A",
+			Expert: "E",
+			Master: "M",
+			"Re:Master": "Re",
+		},
+		defaultDifficulty: "Master",
+		difficultyColours: {
+			Basic: COLOUR_SET.green,
+			Advanced: COLOUR_SET.orange,
+			Expert: COLOUR_SET.red,
+			Master: COLOUR_SET.purple,
+			"Re:Master": COLOUR_SET.white,
+		},
+
+		grades: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "S", "S+", "SS", "SS+", "SSS", "SSS+"],
+		gradeColours: {
+			F: COLOUR_SET.gray,
+			E: COLOUR_SET.red,
+			D: COLOUR_SET.maroon,
+			C: COLOUR_SET.purple,
+			B: COLOUR_SET.paleGreen,
+			A: COLOUR_SET.green,
+			AA: COLOUR_SET.paleBlue,
+			AAA: COLOUR_SET.blue,
+			S: COLOUR_SET.gold,
+			"S+": COLOUR_SET.vibrantYellow,
+			SS: COLOUR_SET.paleOrange,
+			"SS+": COLOUR_SET.orange,
+			SSS: COLOUR_SET.teal,
+			"SSS+": COLOUR_SET.white,
+		},
+		clearGrade: "A",
+
+		gradeBoundaries: [0, 10, 20, 40, 60, 80, 90, 94, 97, 98, 99, 99.5, 100, 100.5],
+
+		lamps: ["FAILED", "CLEAR", "FULL COMBO", "FULL COMBO+", "ALL PERFECT", "ALL PERFECT+"],
+		lampColours: {
+			FAILED: COLOUR_SET.red,
+			CLEAR: COLOUR_SET.green,
+			"FULL COMBO": COLOUR_SET.blue,
+                        "FULL COMBO+": COLOUR_SET.cyan,
+			"ALL PERFECT": COLOUR_SET.gold,
+			"ALL PERFECT+": COLOUR_SET.teal,
+		},
+		clearLamp: "CLEAR",
+
+		classHumanisedFormat: {
+                        colour: MaimaiDXColours,
+                        dan: MaimaiDXDans,
+                },
+
+		supportsESD: false,
+		judgements: ["pcrit", "perfect", "great", "good", "miss"],
+
+		scoreBucket: "grade",
+
+		supportedVersions: ["universeplus"],
+
+		tierlists: [],
+		tierlistDescriptions: {},
+        },
 	"gitadora:Gita": {
 		idString: "gitadora:Gita",
 

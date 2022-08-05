@@ -42,6 +42,15 @@ export enum DDR_LAMPS {
 	MARVELOUS_FULL_COMBO = 6,
 }
 
+export enum MAIMAIDX_LAMPS {
+	FAILED = 0,
+	CLEAR = 1,
+	FULL_COMBO = 2,
+	FULL_COMBO_PLUS = 3,
+	ALL_PERFECT = 4,
+	ALL_PERFECT_PLUS = 5,
+}
+
 export enum GITADORA_LAMPS {
 	FAILED = 0,
 	CLEAR = 1,
@@ -388,4 +397,61 @@ export enum JUBEAT_COLOURS {
 	PINK = 7,
 	ORANGE = 8,
 	GOLD = 9,
+}
+
+export enum MAIMAIDX_COLOURS {
+	WHITE = 0,
+	BLUE = 1,
+	GREEN = 2,
+	YELLOW = 3,
+	RED = 4,
+	PURPLE = 5,
+	BRONZE = 6,
+	SILVER = 7,
+	GOLD = 8,
+	PLATINUM = 9,
+	RAINBOW = 10,
+}
+
+export enum MAIMAIDX_DANS {
+	DAN_1 = 0,
+	DAN_2 = 1,
+	DAN_3 = 2,
+	DAN_4 = 3,
+	DAN_5 = 4,
+	DAN_6 = 5,
+	DAN_7 = 6,
+	DAN_8 = 7,
+	DAN_9 = 8,
+	DAN_10 = 9,
+
+	SHINSHODAN = 10,
+	SHINDAN_2 = 11,
+	SHINDAN_3 = 12,
+	SHINDAN_4 = 13,
+	SHINDAN_5 = 14,
+	SHINDAN_6 = 15,
+	SHINDAN_7 = 16,
+	SHINDAN_8 = 17,
+	SHINDAN_9 = 18,
+	SHINDAN_10 = 19,
+
+	SHINKAIDEN = 20,
+}
+
+export enum MAIMAIDX_GRADES {
+	D = 0,
+	C = 1,
+	B = 2,
+	BB = 3,
+	BBB = 4,
+	A = 5,
+	AA = 6,
+	AAA = 7,
+	S = 8,
+	S_PLUS = 9,
+	SS = 10,
+	SS_PLUS = 11,
+	SSS = 12,
+	SSS_PLUS = 13,
 }

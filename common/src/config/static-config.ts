@@ -54,6 +54,7 @@ export const allIDStrings: Array<IDStrings> = [
 	"gitadora:Dora",
 	"gitadora:Gita",
 	"iidx:DP",
+	"maimaidx:Single",
 	"museca:Single",
 	"sdvx:Single",
 	"usc:Controller",
@@ -68,6 +69,7 @@ export const allIDStrings: Array<IDStrings> = [
 export const allSupportedGames: Array<Game> = [
 	"iidx",
 	"museca",
+	"maimaidx",
 	"jubeat",
 	"popn",
 	"sdvx",

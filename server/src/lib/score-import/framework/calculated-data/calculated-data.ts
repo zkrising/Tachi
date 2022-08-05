@@ -13,6 +13,7 @@ import {
 	WACCARate,
 	ITGHighestUnbroken,
 	CuratorSkill,
+	MaimaiDXRate,
 } from "rg-stats";
 import { GetGamePTConfig } from "tachi-common";
 import { IsNullish } from "utils/misc";
@@ -67,6 +68,7 @@ const CalculatedDataFunctions: CalculatedDataFunctionsType = {
 	"pms:Keyboard": CalculateDataPMSorBMS,
 	"pms:Controller": CalculateDataPMSorBMS,
 	"itg:Stamina": CalculateDataITGStamina,
+	"maimaidx:Single": CalculateDataMaimaiDX,
 };
 
 // Creates Game-Specific calculatedData for the provided game & playtype.
@@ -273,4 +275,13 @@ function CalculateDataITGStamina(
 		highest32: h32,
 		highest256: h256,
 	};
+}
+
+function CalculateDataMaimaiDX(
+	dryScore: DryScore<"maimaidx:Single">,
+	chart: ChartDocument<"maimaidx:Single">
+) {
+	const rate = MaimaiDXRate.calculate(dryScore.scoreData.percent, chart.levelNum);
+
+	return { rate };
 }

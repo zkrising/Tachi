@@ -1,6 +1,6 @@
 import { ONE_DAY } from "util/constants/time";
 import { CreateChartIDMap, CreateChartLink, CreateSongMap } from "util/data";
-import { ChangeAtPosition, DistinctArr, NO_OP } from "util/misc";
+import { DistinctArr, NO_OP } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { GetScaleAchievedFn } from "util/tierlist";
 import { FormatDate, FormatTime } from "util/time";

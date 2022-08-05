@@ -279,6 +279,10 @@ function GetSongDataForGame(game: Game): PrudenceSchema {
 			return {
 				displayVersion: "string",
 			};
+		case "maimaidx":
+			return {
+				displayVersion: "string",
+			};
 		case "museca":
 			return {
 				titleJP: "string",
@@ -363,6 +367,10 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 				kaidenAverage: "?number",
 				worldRecord: "?number",
 				bpiCoefficient: "?number",
+			};
+		case "maimaidx:Single":
+			return {
+				isLatest: "boolean",
 			};
 		case "museca:Single":
 			return {

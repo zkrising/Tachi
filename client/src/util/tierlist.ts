@@ -42,6 +42,7 @@ const ScaleNameAchievedFns: ScaleAchievedFns = {
 		"kt-HC": (k) => k.scoreData.lampIndex >= IIDX_LAMPS.HARD_CLEAR,
 		"kt-EXHC": (k) => k.scoreData.lampIndex >= IIDX_LAMPS.EX_HARD_CLEAR,
 	},
+	"maimaidx:Single": {},
 	"museca:Single": {
 		"tachi-score": null,
 	},

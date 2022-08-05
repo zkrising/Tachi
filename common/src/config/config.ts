@@ -16,6 +16,8 @@ import {
 	SDVXVFClasses,
 	WaccaColours,
 	WaccaStageUps,
+	MaimaiDXColours,
+	MaimaiDXDans,
 } from "../game-classes";
 import type { GPTTierlists } from "..";
 import type { ClassInfo, GameClassSets } from "../game-classes";
@@ -144,6 +146,12 @@ const GAME_CONFIGS: GameConfigs = {
 		defaultPlaytype: "Single",
 		name: "jubeat",
 		internalName: "jubeat",
+		validPlaytypes: ["Single"],
+	},
+	maimaidx: {
+		defaultPlaytype: "Single",
+		name: "maimai DX",
+		internalName: "maimaidx",
 		validPlaytypes: ["Single"],
 	},
 	popn: {
@@ -1265,6 +1273,138 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"sgl-EC": "Sieglinde Easy Clear ratings.",
 			"sgl-HC": "Sieglinde Hard Clear ratings.",
 		},
+	},
+	"maimaidx:Single": {
+		idString: "maimaidx:Single",
+
+		percentMax: 101,
+
+		defaultScoreRatingAlg: "rate",
+		defaultSessionRatingAlg: "rate",
+		defaultProfileRatingAlg: "naiveRate",
+
+		scoreRatingAlgs: ["rate"],
+		sessionRatingAlgs: ["rate"],
+		profileRatingAlgs: ["naiveRate", "rate"],
+
+		scoreRatingAlgDescriptions: {
+			rate: "Rating as it's implemented in game.",
+		},
+		profileRatingAlgDescriptions: {
+			naiveRate: "A naive rating algorithm that just sums your 50 best scores.",
+			rate: "Rating as it's implemented in game, taking 15 scores from the latest version and 35 from all old versions.",
+		},
+		sessionRatingAlgDescriptions: {
+			rate: "The average of your best 10 ratings this session.",
+		},
+
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
+
+		difficulties: [
+			"Basic",
+			"Advanced",
+			"Expert",
+			"Master",
+			"Re:Master",
+			"DX Basic",
+			"DX Advanced",
+			"DX Expert",
+			"DX Master",
+			"DX Re:Master",
+		],
+		shortDifficulties: {
+			Basic: "BAS",
+			Advanced: "ADV",
+			Expert: "EXP",
+			Master: "MAS",
+			"Re:Master": "Re:MAS",
+			"DX Basic": "DX BAS",
+			"DX Advanced": "DX ADV",
+			"DX Expert": "DX EXP",
+			"DX Master": "DX MAS",
+			"DX Re:Master": "DX Re:MAS",
+		},
+		defaultDifficulty: "Master",
+		difficultyColours: {
+			Basic: COLOUR_SET.green,
+			Advanced: COLOUR_SET.orange,
+			Expert: COLOUR_SET.red,
+			Master: COLOUR_SET.purple,
+			"Re:Master": COLOUR_SET.white,
+			"DX Basic": COLOUR_SET.green,
+			"DX Advanced": COLOUR_SET.orange,
+			"DX Expert": COLOUR_SET.red,
+			"DX Master": COLOUR_SET.purple,
+			"DX Re:Master": COLOUR_SET.white,
+		},
+
+		grades: [
+			"D",
+			"C",
+			"B",
+			"BB",
+			"BBB",
+			"A",
+			"AA",
+			"AAA",
+			"S",
+			"S+",
+			"SS",
+			"SS+",
+			"SSS",
+			"SSS+",
+		],
+		gradeColours: {
+			D: COLOUR_SET.gray,
+			C: COLOUR_SET.red,
+			B: COLOUR_SET.maroon,
+			BB: COLOUR_SET.purple,
+			BBB: COLOUR_SET.paleGreen,
+			A: COLOUR_SET.green,
+			AA: COLOUR_SET.paleBlue,
+			AAA: COLOUR_SET.blue,
+			S: COLOUR_SET.gold,
+			"S+": COLOUR_SET.vibrantYellow,
+			SS: COLOUR_SET.paleOrange,
+			"SS+": COLOUR_SET.orange,
+			SSS: COLOUR_SET.teal,
+			"SSS+": COLOUR_SET.white,
+		},
+		clearGrade: "A",
+
+		gradeBoundaries: [0, 10, 20, 40, 60, 80, 90, 94, 97, 98, 99, 99.5, 100, 100.5],
+
+		lamps: ["FAILED", "CLEAR", "FULL COMBO", "FULL COMBO+", "ALL PERFECT", "ALL PERFECT+"],
+		lampColours: {
+			FAILED: COLOUR_SET.red,
+			CLEAR: COLOUR_SET.green,
+			"FULL COMBO": COLOUR_SET.blue,
+			"FULL COMBO+": COLOUR_SET.paleBlue,
+			"ALL PERFECT": COLOUR_SET.gold,
+			"ALL PERFECT+": COLOUR_SET.teal,
+		},
+		clearLamp: "CLEAR",
+
+		classHumanisedFormat: {
+			colour: MaimaiDXColours,
+			dan: MaimaiDXDans,
+		},
+		classProperties: {
+			colour: { downgradable: true },
+			dan: { downgradable: true },
+		},
+
+		supportsESD: false,
+		judgements: ["pcrit", "perfect", "great", "good", "miss"],
+
+		scoreBucket: "grade",
+
+		supportedVersions: ["universeplus"],
+
+		tierlists: [],
+		tierlistDescriptions: {},
 	},
 	"gitadora:Gita": {
 		idString: "gitadora:Gita",

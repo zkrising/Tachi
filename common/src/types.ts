@@ -30,6 +30,7 @@ export type IDStrings =
 	| "iidx:SP"
 	| "itg:Stamina"
 	| "jubeat:Single"
+	| "maimaidx:Single"
 	| "museca:Single"
 	| "pms:Controller"
 	| "pms:Keyboard"
@@ -46,6 +47,7 @@ export interface IDStringToPlaytype {
 	"sdvx:Single": "Single";
 	"usc:Keyboard": "Keyboard";
 	"usc:Controller": "Controller";
+	"maimaidx:Single": "Single";
 	"jubeat:Single": "Single";
 	"museca:Single": "Single";
 	"bms:7K": "7K";
@@ -66,6 +68,7 @@ export interface IDStringToGame {
 	"sdvx:Single": "sdvx";
 	"usc:Keyboard": "usc";
 	"usc:Controller": "usc";
+	"maimaidx:Single": "maimaidx";
 	"jubeat:Single": "jubeat";
 	"museca:Single": "museca";
 	"bms:7K": "bms";
@@ -83,6 +86,7 @@ export interface GameToIDStrings {
 	iidx: "iidx:DP" | "iidx:SP";
 	sdvx: "sdvx:Single";
 	usc: "usc:Controller" | "usc:Keyboard";
+	maimaidx: "maimaidx:Single";
 	jubeat: "jubeat:Single";
 	museca: "museca:Single";
 	bms: "bms:7K" | "bms:14K";
@@ -119,6 +123,7 @@ export type Game =
 	| "iidx"
 	| "itg"
 	| "jubeat"
+	| "maimaidx"
 	| "museca"
 	| "pms"
 	| "popn"
@@ -159,6 +164,7 @@ export interface Playtypes {
 	popn: "9B";
 	sdvx: "Single";
 	usc: "Controller" | "Keyboard";
+	maimaidx: "Single";
 	jubeat: "Single";
 	museca: "Single";
 	chunithm: "Single";
@@ -181,6 +187,21 @@ export interface Grades {
 	"sdvx:Single": SDVXGrades;
 	"usc:Keyboard": SDVXGrades;
 	"usc:Controller": SDVXGrades;
+	"maimaidx:Single":
+		| "A"
+		| "AA"
+		| "AAA"
+		| "B"
+		| "BB"
+		| "BBB"
+		| "C"
+		| "D"
+		| "S"
+		| "S+"
+		| "SS"
+		| "SS+"
+		| "SSS"
+		| "SSS+";
 	"jubeat:Single": "A" | "B" | "C" | "D" | "E" | "EXC" | "S" | "SS" | "SSS";
 	"museca:Single": "佳" | "傑" | "傑G" | "優" | "凡" | "拙" | "没" | "秀" | "良";
 	"bms:7K": IIDXGrades;
@@ -233,6 +254,13 @@ export interface Lamps {
 	"sdvx:Single": SDVXLamps;
 	"usc:Keyboard": SDVXLamps;
 	"usc:Controller": SDVXLamps;
+	"maimaidx:Single":
+		| "ALL PERFECT"
+		| "ALL PERFECT+"
+		| "CLEAR"
+		| "FAILED"
+		| "FULL COMBO"
+		| "FULL COMBO+";
 	"jubeat:Single": "CLEAR" | "EXCELLENT" | "FAILED" | "FULL COMBO";
 	"museca:Single": "CLEAR" | "CONNECT ALL" | "FAILED" | "PERFECT CONNECT ALL";
 	"bms:7K": IIDXLamps;
@@ -257,6 +285,17 @@ export interface Difficulties {
 	"sdvx:Single": "ADV" | "EXH" | "GRV" | "HVN" | "INF" | "MXM" | "NOV" | "VVD" | "XCD";
 	"usc:Controller": "ADV" | "EXH" | "INF" | "NOV";
 	"usc:Keyboard": "ADV" | "EXH" | "INF" | "NOV";
+	"maimaidx:Single":
+		| "Advanced"
+		| "Basic"
+		| "DX Advanced"
+		| "DX Basic"
+		| "DX Expert"
+		| "DX Master"
+		| "DX Re:Master"
+		| "Expert"
+		| "Master"
+		| "Re:Master";
 	"jubeat:Single": "ADV" | "BSC" | "EXT" | "HARD ADV" | "HARD BSC" | "HARD EXT";
 	"museca:Single": "Green" | "Red" | "Yellow";
 	"bms:7K": "CHART";
@@ -387,6 +426,7 @@ export interface SessionCalculatedDataLookup {
 	"sdvx:Single": "ProfileVF6" | "VF6";
 	"usc:Keyboard": "ProfileVF6" | "VF6";
 	"usc:Controller": "ProfileVF6" | "VF6";
+	"maimaidx:Single": "rate";
 	"jubeat:Single": "jubility";
 	"museca:Single": "curatorSkill";
 	"bms:7K": "sieglinde";
@@ -607,6 +647,7 @@ export interface ProfileRatingLookup {
 	"sdvx:Single": "VF6";
 	"usc:Keyboard": "VF6";
 	"usc:Controller": "VF6";
+	"maimaidx:Single": "naiveRate" | "rate";
 	"jubeat:Single": "jubility" | "naiveJubility";
 	"museca:Single": "curatorSkill";
 	"bms:7K": "sieglinde";
@@ -680,6 +721,7 @@ export interface GPTSupportedVersions {
 		| "qubell"
 		| "ripples"
 		| "saucer";
+	"maimaidx:Single": "universeplus";
 	"museca:Single": "1.5-b" | "1.5";
 	"bms:7K": never;
 	"bms:14K": never;
@@ -728,6 +770,7 @@ interface ChartDocumentData {
 	"usc:Keyboard": CDDataUSC;
 	"usc:Controller": CDDataUSC;
 	"jubeat:Single": { inGameID: Array<integer> | integer; isHardMode: boolean };
+	"maimaidx:Single": { isLatest: boolean };
 	"museca:Single": { inGameID: integer };
 	"bms:7K": CDDataBMS;
 	"bms:14K": CDDataBMS;
@@ -770,6 +813,7 @@ export interface GPTTierlists {
 	"sdvx:Single": "clear";
 	"usc:Keyboard": never;
 	"usc:Controller": never;
+	"maimaidx:Single": never;
 	"jubeat:Single": never;
 	"museca:Single": never;
 	"chunithm:Single": never;
@@ -804,6 +848,7 @@ export interface ChartDocument<I extends IDStrings = IDStrings> extends MongoDBD
 interface SongDocumentData {
 	iidx: { genre: string; displayVersion: string | null };
 	museca: { titleJP: string; artistJP: string; displayVersion: string };
+	maimaidx: { displayVersion: string };
 	jubeat: { displayVersion: string };
 	popn: {
 		displayVersion: string | null;
@@ -955,6 +1000,7 @@ interface ScoreMetaLookup {
 	"sdvx:Single": { inSkillAnalyser: boolean | null };
 	"usc:Controller": USCScoreMeta;
 	"usc:Keyboard": USCScoreMeta;
+	"maimaidx:Single": Record<string, never>;
 	"jubeat:Single": Record<string, never>;
 	"museca:Single": Record<string, never>;
 	"bms:7K": BMS7KScoreMeta;
@@ -1029,6 +1075,7 @@ export interface HitMetaLookup {
 	};
 	"usc:Controller": USCHitMeta;
 	"usc:Keyboard": USCHitMeta;
+	"maimaidx:Single": BASE_VALID_HIT_META;
 	"jubeat:Single": BASE_VALID_HIT_META;
 	"museca:Single": BASE_VALID_HIT_META;
 	"bms:7K": BMSHitMeta;
@@ -1059,6 +1106,7 @@ export interface JudgementLookup {
 	"sdvx:Single": SDVXJudges;
 	"usc:Controller": SDVXJudges;
 	"usc:Keyboard": SDVXJudges;
+	"maimaidx:Single": "good" | "great" | "miss" | "pcrit" | "perfect";
 	"jubeat:Single": "good" | "great" | "miss" | "perfect" | "poor";
 	"museca:Single": "critical" | "miss" | "near";
 	"bms:7K": IIDXJudges;
@@ -1079,6 +1127,7 @@ export interface ScoreCalculatedDataLookup {
 	"sdvx:Single": "VF6";
 	"usc:Keyboard": "VF6";
 	"usc:Controller": "VF6";
+	"maimaidx:Single": "rate";
 	"jubeat:Single": "jubility";
 	"museca:Single": "curatorSkill";
 	"bms:7K": "sieglinde";
@@ -1336,6 +1385,7 @@ export interface UGPTSpecificPreferences {
 	"sdvx:Single": { vf6Target: number };
 	"usc:Controller": { vf6Target: number };
 	"usc:Keyboard": { vf6Target: number };
+	"maimaidx:Single": Record<string, never>;
 	"jubeat:Single": { jubilityTarget: number };
 	"museca:Single": Record<string, never>;
 	"bms:7K": { displayTables: Array<string> };

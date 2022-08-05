@@ -6,6 +6,8 @@
 	"scripts": {
 		"start-client": "pnpm --filter ./client start",
 		"start-server": "pnpm --filter ./server start",
+		"test-server": "pnpm --filter ./server test",
+		"test-dbseeds": "pnpm --filter ./database-seeds/scripts test",
 		"start-score-import-worker": "pnpm --filter ./server runscoreworker"
 	},
 	"repository": {

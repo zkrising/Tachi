@@ -17,6 +17,8 @@ import {
 	SDVXVFClasses,
 	WaccaColours,
 	WaccaStageUps,
+	MaimaiDXColours,
+	MaimaiDXDans,
 } from "../game-classes";
 import { FormatInt, FormatSieglindeBMS, FormatSieglindePMS } from "../utils/util";
 import type { GPTTierlists } from "..";
@@ -157,6 +159,12 @@ const GAME_CONFIGS: GameConfigs = {
 		defaultPlaytype: "Single",
 		name: "maimai",
 		internalName: "maimai",
+		validPlaytypes: ["Single"],
+	},
+	maimaidx: {
+		defaultPlaytype: "Single",
+		name: "maimai DX",
+		internalName: "maimaidx",
 		validPlaytypes: ["Single"],
 	},
 	popn: {
@@ -1629,10 +1637,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		tierlists: [],
 		tierlistDescriptions: {},
 	},
-        "maimaidx:Single": {
-                idString: "maimaidx:Single",
+	"maimaidx:Single": {
+		idString: "maimaidx:Single",
 
-                percentMax: 101,
+		percentMax: 101,
 
 		defaultScoreRatingAlg: "rate",
 		defaultSessionRatingAlg: "rate",
@@ -1700,16 +1708,16 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			FAILED: COLOUR_SET.red,
 			CLEAR: COLOUR_SET.green,
 			"FULL COMBO": COLOUR_SET.blue,
-                        "FULL COMBO+": COLOUR_SET.cyan,
+			"FULL COMBO+": COLOUR_SET.paleBlue,
 			"ALL PERFECT": COLOUR_SET.gold,
 			"ALL PERFECT+": COLOUR_SET.teal,
 		},
 		clearLamp: "CLEAR",
 
 		classHumanisedFormat: {
-                        colour: MaimaiDXColours,
-                        dan: MaimaiDXDans,
-                },
+			colour: MaimaiDXColours,
+			dan: MaimaiDXDans,
+		},
 
 		supportsESD: false,
 		judgements: ["pcrit", "perfect", "great", "good", "miss"],
@@ -1720,7 +1728,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		tierlists: [],
 		tierlistDescriptions: {},
-        },
+	},
 	"gitadora:Gita": {
 		idString: "gitadora:Gita",
 

@@ -33,6 +33,7 @@ export type IDStrings =
 	| "itg:Stamina"
 	| "jubeat:Single"
 	| "maimai:Single"
+	| "maimaidx:Single"
 	| "museca:Single"
 	| "pms:Controller"
 	| "pms:Keyboard"
@@ -52,6 +53,7 @@ export interface IDStringToPlaytype {
 	"ddr:SP": "SP";
 	"ddr:DP": "DP";
 	"maimai:Single": "Single";
+	"maimaidx:Single": "Single";
 	"jubeat:Single": "Single";
 	"museca:Single": "Single";
 	"bms:7K": "7K";
@@ -75,6 +77,7 @@ export interface IDStringToGame {
 	"ddr:SP": "ddr";
 	"ddr:DP": "ddr";
 	"maimai:Single": "maimai";
+	"maimaidx:Single": "maimaidx";
 	"jubeat:Single": "jubeat";
 	"museca:Single": "museca";
 	"bms:7K": "bms";
@@ -94,6 +97,7 @@ export interface GameToIDStrings {
 	usc: "usc:Controller" | "usc:Keyboard";
 	ddr: "ddr:DP" | "ddr:SP";
 	maimai: "maimai:Single";
+	maimaidx: "maimaidx:Single";
 	jubeat: "jubeat:Single";
 	museca: "museca:Single";
 	bms: "bms:7K" | "bms:14K";
@@ -132,6 +136,7 @@ export type Game =
 	| "itg"
 	| "jubeat"
 	| "maimai"
+	| "maimaidx"
 	| "museca"
 	| "pms"
 	| "popn"
@@ -174,6 +179,7 @@ export interface Playtypes {
 	usc: "Controller" | "Keyboard";
 	ddr: "DP" | "SP";
 	maimai: "Single";
+	maimaidx: "Single";
 	jubeat: "Single";
 	museca: "Single";
 	chunithm: "Single";
@@ -204,6 +210,22 @@ type DDRGrades =
 	| "D+";
 
 type GitadoraGrades = "A" | "B" | "C" | "MAX" | "S" | "SS";
+
+type MaimaiGrades =
+	| "A"
+	| "AA"
+	| "AAA"
+	| "B"
+	| "C"
+	| "D"
+	| "E"
+	| "F"
+	| "S"
+	| "S+"
+	| "SS"
+	| "SS+"
+	| "SSS"
+	| "SSS+";
 
 export interface Grades {
 	"iidx:SP": IIDXGrades;
@@ -293,7 +315,13 @@ export interface Lamps {
 	"ddr:SP": DDRLamps;
 	"ddr:DP": DDRLamps;
 	"maimai:Single": "ALL PERFECT" | "ALL PERFECT+" | "CLEAR" | "FAILED" | "FULL COMBO";
-	"jubeat:Single": "CLEAR" | "EXCELLENT" | "FAILED" | "FULL COMBO";
+	"maimaidx:Single":
+		| "ALL PERFECT"
+		| "ALL PERFECT+"
+		| "CLEAR"
+		| "FAILED"
+		| "FULL COMBO"
+		| "FULL COMBO+";
 	"museca:Single": "CLEAR" | "CONNECT ALL" | "FAILED" | "PERFECT CONNECT ALL";
 	"bms:7K": IIDXLamps;
 	"bms:14K": IIDXLamps;
@@ -467,6 +495,7 @@ export interface SessionCalculatedDataLookup {
 	"ddr:SP": "ktRating" | "MFCP";
 	"ddr:DP": "ktRating" | "MFCP";
 	"maimai:Single": "ktRating";
+	"maimaidx:Single": "rate";
 	"jubeat:Single": "jubility";
 	"museca:Single": "ktRating";
 	"bms:7K": "sieglinde";
@@ -703,6 +732,7 @@ export interface UGSRatingsLookup {
 	"ddr:SP": "ktRating" | "MFCP";
 	"ddr:DP": "ktRating" | "MFCP";
 	"maimai:Single": "ktRating";
+	"maimaidx:Single": "naiveRate" | "rate";
 	"jubeat:Single": "jubility" | "naiveJubility";
 	"museca:Single": "ktRating";
 	"bms:7K": "sieglinde";
@@ -769,6 +799,7 @@ export interface GPTSupportedVersions {
 	"ddr:SP": "a20";
 	"ddr:DP": "a20";
 	"maimai:Single": "finale";
+	"maimaidx:Single": "universeplus";
 	"jubeat:Single": "clan" | "festo" | "qubell";
 	"museca:Single": "1.5-b" | "1.5";
 	"bms:7K": never;
@@ -830,6 +861,7 @@ interface ChartDocumentData {
 		inGameID: number;
 		inGameStrID: string;
 	};
+	"maimaidx:Single": { isLatest: boolean };
 	"jubeat:Single": { inGameID: integer; isHardMode: boolean };
 	"museca:Single": { inGameID: integer };
 	"bms:7K": CDDataBMS;
@@ -876,6 +908,7 @@ export interface GPTTierlists {
 	"ddr:SP": never;
 	"ddr:DP": never;
 	"maimai:Single": never;
+	"maimaidx:Single": never;
 	"jubeat:Single": never;
 	"museca:Single": never;
 	"chunithm:Single": never;
@@ -911,6 +944,12 @@ interface SongDocumentData {
 	iidx: { genre: string; displayVersion: string | null };
 	museca: { titleJP: string; artistJP: string; displayVersion: string };
 	maimai: { titleJP: string; artistJP: string; displayVersion: string };
+	maimaidx: {
+		titleJP: string;
+		artistJP: string;
+		genre: string;
+		displayVersion: string;
+	};
 	jubeat: { displayVersion: string };
 	popn: {
 		displayVersion: string | null;
@@ -1067,6 +1106,7 @@ interface ScoreMetaLookup {
 	"ddr:SP": Record<string, never>;
 	"ddr:DP": Record<string, never>;
 	"maimai:Single": Record<string, never>;
+	"maimaidx:Single": Record<string, never>;
 	"jubeat:Single": Record<string, never>;
 	"museca:Single": Record<string, never>;
 	"bms:7K": BMS7KScoreMeta;
@@ -1144,6 +1184,7 @@ export interface HitMetaLookup {
 	"ddr:SP": BASE_VALID_HIT_META;
 	"ddr:DP": BASE_VALID_HIT_META;
 	"maimai:Single": BASE_VALID_HIT_META;
+	"maimaidx:Single": BASE_VALID_HIT_META;
 	"jubeat:Single": BASE_VALID_HIT_META;
 	"museca:Single": BASE_VALID_HIT_META;
 	"bms:7K": BMSHitMeta;
@@ -1178,6 +1219,7 @@ export interface JudgementLookup {
 	"ddr:SP": DDRJudges;
 	"ddr:DP": DDRJudges;
 	"maimai:Single": "good" | "great" | "miss" | "perfect";
+	"maimaidx:Single": "good" | "great" | "miss" | "pcrit" | "perfect";
 	"jubeat:Single": "good" | "great" | "miss" | "perfect" | "poor";
 	"museca:Single": "critical" | "miss" | "near";
 	"bms:7K": IIDXJudges;
@@ -1201,6 +1243,7 @@ export interface ScoreCalculatedDataLookup {
 	"ddr:SP": "ktRating" | "MFCP";
 	"ddr:DP": "ktRating" | "MFCP";
 	"maimai:Single": "ktRating";
+	"maimaidx:Single": "rate";
 	"jubeat:Single": "jubility";
 	"museca:Single": "ktRating";
 	"bms:7K": "sieglinde";
@@ -1449,6 +1492,7 @@ export interface UGPTSpecificPreferences {
 	"ddr:SP": Record<string, never>;
 	"ddr:DP": Record<string, never>;
 	"maimai:Single": Record<string, never>;
+	"maimaidx:Single": Record<string, never>;
 	"jubeat:Single": { jubilityTarget: number };
 	"museca:Single": Record<string, never>;
 	"bms:7K": { displayTables: Array<string> };

@@ -329,6 +329,48 @@ export const JubeatColours = [
 	noMouseoverVariant("GOLD", "Gold", "warning"),
 ];
 
+export const MaimaiDXDans = [
+	mouseoverVariant("DAN_1", "初段", "1st Dan", "warning"),
+	mouseoverVariant("DAN_2", "二段", "2nd Dan", "warning"),
+	mouseoverVariant("DAN_3", "三段", "3rd Dan", "warning"),
+	mouseoverVariant("DAN_4", "四段", "4th Dan", "warning"),
+	mouseoverVariant("DAN_5", "五段", "5th Dan", "warning"),
+	mouseoverVariant("DAN_6", "六段", "6th Dan", "warning"),
+	mouseoverVariant("DAN_7", "七段", "7th Dan", "warning"),
+	mouseoverVariant("DAN_8", "八段", "8th Dan", "warning"),
+	mouseoverVariant("DAN_9", "九段", "9th Dan", "warning"),
+	mouseoverVariant("DAN_10", "十段", "10th Dan", "warning"),
+
+	mouseoverCSS("SHINDAN_1", "真初段", "1st Shindan", "purple"),
+	mouseoverCSS("SHINDAN_2", "真二段", "2nd Shindan", "purple"),
+	mouseoverCSS("SHINDAN_3", "真三段", "3rd Shindan", "purple"),
+	mouseoverCSS("SHINDAN_4", "真四段", "4th Shindan", "purple"),
+	mouseoverCSS("SHINDAN_5", "真五段", "5th Shindan", "purple"),
+	mouseoverCSS("SHINDAN_6", "真六段", "6th Shindan", "purple"),
+	mouseoverCSS("SHINDAN_7", "真七段", "7th Shindan", "purple"),
+	mouseoverCSS("SHINDAN_8", "真八段", "8th Shindan", "purple"),
+	mouseoverCSS("SHINDAN_9", "真九段", "9th Shindan", "purple"),
+	mouseoverCSS("SHINDAN_10", "真十段", "10th Shindan", "purple"),
+
+	mouseoverCSS("SHINKAIDEN", "真皆伝", "Shinkaiden", "purple"),
+];
+
+export const MaimaiDXColours = [
+	noMouseoverCSS("WHITE", "White", "white", "black"),
+	noMouseoverCSS("BLUE", "Blue", "cyan", "black"),
+	noMouseoverCSS("GREEN", "Green", "green"),
+	noMouseoverCSS("YELLOW", "Yellow", "yellow", "black"),
+	noMouseoverCSS("RED", "Red", "red"),
+	noMouseoverCSS("PURPLE", "Purple", "purple"),
+	noMouseoverCSS("BRONZE", "Bronze", "brown"),
+	noMouseoverCSS("SILVER", "Silver", "gray"),
+	noMouseoverVariant("GOLD", "Gold", "warning"),
+	noMouseoverCSS("PLATINUM", "Platinum", "lightgoldenrodyellow", "black"),
+
+	// come up with color for dx's rainbow
+	noMouseoverCSS("RAINBOW", "Rainbow", "todo"),
+];
+
 export interface GameClassSets {
 	"iidx:SP": "dan";
 	"iidx:DP": "dan";
@@ -339,7 +381,7 @@ export interface GameClassSets {
 	"ddr:SP": "dan";
 	"ddr:DP": "dan";
 	"maimai:Single": never;
-        "maimaidx:Single": "dan" | "colour";
+	"maimaidx:Single": "colour" | "dan";
 	"jubeat:Single": "colour";
 	"museca:Single": never;
 	"bms:7K": "genocideDan" | "lnDan" | "scratchDan" | "stslDan";

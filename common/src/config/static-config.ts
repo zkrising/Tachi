@@ -54,6 +54,7 @@ export const allIDStrings: Array<IDStrings> = [
 	"gitadora:Gita",
 	"iidx:DP",
 	"maimai:Single",
+	"maimaidx:Single",
 	"museca:Single",
 	"sdvx:Single",
 	"usc:Controller",
@@ -69,6 +70,7 @@ export const allSupportedGames: Array<Game> = [
 	"iidx",
 	"museca",
 	"maimai",
+	"maimaidx",
 	"jubeat",
 	"popn",
 	"sdvx",
@@ -147,6 +149,9 @@ export const PrettyVersions: Versions = {
 	"gitadora:Dora": prettyGitadoraVersions,
 	"maimai:Single": {
 		finale: "FiNALE",
+	},
+	"maimaidx:Single": {
+		universeplus: "UNiVERSE PLUS",
 	},
 	"museca:Single": {
 		1.5: "1 + 1/2",

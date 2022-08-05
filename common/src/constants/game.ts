@@ -50,6 +50,15 @@ export enum MAIMAI_LAMPS {
 	ALL_PERFECT_PLUS = 4,
 }
 
+export enum MAIMAIDX_LAMPS {
+	FAILED = 0,
+	CLEAR = 1,
+	FULL_COMBO = 2,
+	FULL_COMBO_PLUS = 3,
+	ALL_PERFECT = 4,
+	ALL_PERFECT_PLUS = 5,
+}
+
 export enum GITADORA_LAMPS {
 	FAILED = 0,
 	CLEAR = 1,

@@ -339,6 +339,7 @@ export interface GameClassSets {
 	"ddr:SP": "dan";
 	"ddr:DP": "dan";
 	"maimai:Single": never;
+        "maimaidx:Single": "dan" | "colour";
 	"jubeat:Single": "colour";
 	"museca:Single": never;
 	"bms:7K": "genocideDan" | "lnDan" | "scratchDan" | "stslDan";

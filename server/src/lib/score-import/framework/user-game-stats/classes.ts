@@ -55,7 +55,7 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
 	},
 	maimai: null,
 	maimaidx: {
-		single: CalculateMaimaiDXClass,
+		Single: CalculateMaimaiDXColour,
 	},
 	museca: null,
 	popn: {

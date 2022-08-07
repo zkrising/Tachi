@@ -68,7 +68,8 @@ export function GenericCalculatePercent(game: Game, score: number, chart?: Chart
 		case "popn":
 			return (score / 100_000) * 100;
 		case "maimai":
-			// score in maimai is actually just your percent, since nobody cares about
+		case "maimaidx":
+			// score in maimai (and dx) is actually just your percent, since nobody cares about
 			// money score.
 			return score;
 		case "bms":
@@ -104,6 +105,7 @@ export function GenericCalculatePercent(game: Game, score: number, chart?: Chart
 			return score;
 	}
 
+	// technically unreachable code, but we keep it here anyway as a failsafe.
 	logger.severe(`Invalid game passed of ${game} to GenericCalcPercent.`);
 	throw new InternalFailure(`Invalid game passed of ${game} to GenericCalcPercent.`);
 }

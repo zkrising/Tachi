@@ -120,6 +120,10 @@ function GetGPTSessionCalcDataFn(game: Game, playtype: Playtype): SessionCalcDat
 			});
 		case "maimai:Single":
 			return () => ({});
+		case "maimaidx:Single":
+			return (scd) => ({
+				rate: AvgBest10Map(scd, "rate"),
+			});
 		case "itg:Stamina":
 			return (scd) => ({
 				blockRating: AvgBestNMap(scd, "blockRating", 5),

@@ -322,6 +322,7 @@ export interface Lamps {
 		| "FAILED"
 		| "FULL COMBO"
 		| "FULL COMBO+";
+	"jubeat:Single": "CLEAR" | "EXCELLENT" | "FAILED" | "FULL COMBO";
 	"museca:Single": "CLEAR" | "CONNECT ALL" | "FAILED" | "PERFECT CONNECT ALL";
 	"bms:7K": IIDXLamps;
 	"bms:14K": IIDXLamps;

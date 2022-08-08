@@ -12,7 +12,7 @@ export default function WACCASiteImportPage() {
 			<h1 className="text-center mb-4">What Is The WACCA Site Importer?</h1>
 			<div>
 				The WACCA Site Importer is a script that will scrape your profile on the WACCA
-				website and imports it to {TachiConfig.name}.
+				website and import it to {TachiConfig.name}.
 			</div>
 			<Divider />
 			<h1 className="text-center my-4">Setup Instructions</h1>

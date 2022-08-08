@@ -30,7 +30,7 @@ export default function IIDXCoreCells({
 				percent={sc.scoreData.percent}
 				grade={sc.scoreData.grade}
 			/>
-			<IIDXLampCell sc={sc} />
+			<IIDXLampCell sc={sc} chart={chart} />
 			{rating === "BPI" ? (
 				<BPICell chart={chart} score={sc} />
 			) : (

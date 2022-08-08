@@ -1,13 +1,15 @@
 import { IsScore } from "util/asserts";
 import { ChangeOpacity } from "util/color-opacity";
 import { IsNotNullish } from "util/misc";
-import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { ChartDocument, GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
 import React from "react";
 
 export default function IIDXLampCell({
 	sc,
+	chart,
 }: {
 	sc: ScoreDocument<"iidx:SP" | "iidx:DP"> | PBScoreDocument<"iidx:SP" | "iidx:DP">;
+	chart: ChartDocument<"iidx:SP" | "iidx:DP">;
 }) {
 	const gptConfig = GetGamePTConfig("iidx", sc.playtype);
 
@@ -31,6 +33,27 @@ export default function IIDXLampCell({
 		bpText = `[BP: ${sc.scoreData.hitMeta.bp}]`;
 	}
 
+	let cbrkCount;
+	let cbrkText;
+
+	if (sc.scoreData.hitMeta.comboBreak) {
+		cbrkCount = sc.scoreData.hitMeta.comboBreak;
+	} else if (
+		IsNotNullish(sc.scoreData.judgements.pgreat) &&
+		IsNotNullish(sc.scoreData.judgements.great) &&
+		IsNotNullish(sc.scoreData.judgements.good)
+	) {
+		cbrkCount =
+			chart.data.notecount -
+			sc.scoreData.judgements.pgreat! -
+			sc.scoreData.judgements.great! -
+			sc.scoreData.judgements.good!;
+	}
+
+	if (IsNotNullish(cbrkCount)) {
+		cbrkText = `[CB: ${cbrkCount}]`;
+	}
+
 	return (
 		<td
 			style={{
@@ -43,6 +66,13 @@ export default function IIDXLampCell({
 				<>
 					<br />
 					<small>{bpText}</small>
+				</>
+			)}
+
+			{cbrkText && (
+				<>
+					<br />
+					<small>{cbrkText}</small>
 				</>
 			)}
 

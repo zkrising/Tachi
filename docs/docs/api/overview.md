@@ -35,7 +35,7 @@ for API abuse.
 
 ## License
 
-[Tachi-Server](https://github.com/zkldi/tachi-server) (Where the API is wrote) is licensed under the [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html).
+[Tachi-Server](https://github.com/TNG-dev/Tachi/tree/staging/server) (Where the API is wrote) is licensed under the [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html).
 
 To quote GitHub:
 
@@ -96,7 +96,7 @@ The HTTP Status Code for any Failed Response will always be of either 4XX or 5XX
 
 That should be everything. If you have any questions about the API, you can
 contact me on discord at `zkldi#2965`. You can also write an issue on the 
-[Issue Tracker](https://github.com/zkldi/tachi-docs). I'll get around to either.
+[Issue Tracker](https://github.com/TNG-dev/Tachi). I'll get around to either.
 
 It's entirely possible that I might've made a typo or wrote a poor explaination
 of something, so please reach out!

@@ -1,6 +1,6 @@
 # Database Seeds
 
-Tachi uses a separate git repository called the [Database Seeds](https://github.com/tng-dev/tachi-database-seeds) to maintain 'static' databases.
+Tachi uses a separate git repository called the [Database Seeds](https://github.com/TNG-dev/Tachi/tree/staging/database-seeds) to maintain 'static' databases.
 
 The databases in question aren't (normally) altered by the server code. We essentially overload git and its CI tools to version control parts of our database.
 

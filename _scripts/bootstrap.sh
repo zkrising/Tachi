@@ -51,20 +51,6 @@ function pnpmInstall {
 	echo "Installed dependencies."
 }
 
-function startServices {
-	echo "Starting MongoDB Service..."
-
-	systemctl start mongodb.service
-
-	echo "MongoDB is running."
-
-	echo "Starting Redis..."
-
-	redis-server --daemonize yes
-
-	echo "Redis is running."
-}
-
 function syncDatabaseWithSeeds {
 	echo "Syncing database with seeds..."
 
@@ -78,7 +64,6 @@ function syncDatabaseWithSeeds {
 mvExampleFiles
 selfSignHTTPS
 pnpmInstall
-startServices
 syncDatabaseWithSeeds
 
 

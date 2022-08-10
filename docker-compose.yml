@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  mongo:
+    container_name: mongo
+    image: mongo:5
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - tachi:/data/mongo
+  redis:
+    container_name: redis
+    command: redis-server --save 60 1 --loglevel warning
+    image: redis:6
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      - tachi:/data/redis
+volumes:
+  tachi:
+    driver: local

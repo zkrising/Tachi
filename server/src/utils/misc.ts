@@ -265,12 +265,20 @@ export function IsRecord(maybeRecord: unknown): maybeRecord is Record<string, un
  * Wrap a promise in an error handler that exits the process safely, and logs
  * when it completes.
  */
-export function WrapScriptPromise(promise: Promise<unknown>, logger: KtLogger) {
-	promise
-		.then(() => logger.info(`Finished executing.`, () => process.exit(0)))
-		.catch((err: unknown) => {
-			logger.error(`Failed executing.`, { err }, () => {
-				process.exit(1);
-			});
-		});
+export async function WrapScriptPromise(promise: Promise<unknown>, logger: KtLogger) {
+	let code = 0;
+
+	try {
+		await promise;
+
+		logger.info(`Finished executing.`);
+	} catch (err) {
+		logger.error(`Failed executing.`, { err });
+
+		code = 1;
+	}
+
+	logger.end(() => {
+		process.exit(code);
+	});
 }

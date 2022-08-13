@@ -75,23 +75,18 @@ If you're completely unfamiliar with the terminal, check out our [Terminal Guide
 
 You'll need `node` to run JavaScript code on your machine. Our codebase is wrote in JS, so this is pretty important.
 
-This will also install a command called `npm`, which lets us install libraries. We use a lot of libraries - mainly to handle things like interfacing our code with a database, or serving data over the internet.
+Because system package managers may have outdated versions of `node` available (we want Node 16), we're going to use a separate tool called `nvm` to manage our node installs.
 
+Follow [these instructions](https://github.com/nvm-sh/nvm#install--update-script).
+
+Then close and re-open your shell to apply the changes. We can now install node16
 ```sh
-# debian, ubuntu, other derivatives.
-sudo apt-get install nodejs
+# install node 16
+nvm install 16
 
-# arch, manjaro, other derivatives.
-sudo pacman -S nodejs
-
-# MacOS
-brew install node
+# Check it worked
+node --version
 ```
-
-!!! info
-	`Tachi` has only been used on NodeJS versions 14 through 17. In production, we use Node 16. You probably should too.
-
-	To have multiple NodeJS versions on the same device, use a tool like [n](https://www.npmjs.com/package/n).
 
 We use `pnpm` instead of `npm`. To get `pnpm`, you'll need to run:
 
@@ -104,31 +99,41 @@ We use MongoDB and Redis as databases, these external databases require radicall
 
 As such, we're going to take the lazy route and use something called [Docker](https://docker.com).
 
-```sh
-# debian, ubuntu, other derivatives.
-# https://docs.docker.com/engine/install/ubuntu/
-# Installing docker on debian & co. is *embarassingly* difficult, to the point where
-# the docker team maintain a fairly long, complex script that actually installs it on
-# your system.
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
+=== "Windows, WSL Ubuntu"
+	You should install [Docker Desktop](https://docs.docker.com/desktop/) instead.
+	Docker doesn't work well inside WSL.
 
+=== "Debian, Ubuntu"
+	```sh
+	# Installing docker on debian & co. is *embarassingly* difficult, to the point where
+	# the docker team maintain a fairly long, complex script that actually installs it on
+	# your system.
 
-# everywhere else it's trivial, of course.
-# arch, manjaro, other derivatives.
-sudo pacman -S docker docker-compose
+	# The following commands should install docker.
+	sudo apt update
+	sudo apt install apt-transport-https ca-certificates curl software-properties-common
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+	sudo apt install docker-ce
+	sudo usermod -aG docker ${USER}
+	su - ${USER}
 
-# MacOS
-brew install docker docker-compose
-```
+	# The following command should install docker compose.
+	sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+	```
+
+=== "Arch, Manjaro"
+	```sh
+	sudo pacman -S docker docker-compose
+	```
+
+=== "MacOS"
+	```sh
+	brew install docker docker-compose
+	```
 
 !!! info
 	Docker is like a VM[^1]. It runs an entire Linux box to contain your software in, and generally sidesteps the whole "works on my machine" problem, by just shipping the entire machine.
-
-!!! question
-	[Docker Desktop](https://docs.docker.com/desktop/) is something that the Docker team are pushing a bit recently.
-
-	Nobody we know of uses it, but if you want to try it out (it's effectively a docker GUI), let us know how it goes.
 
 ## 2. Fork and pull the repo.
 
@@ -153,17 +158,46 @@ git clone https://github.com/YOUR_GITHUB_USERNAME/Tachi
 code Tachi
 ```
 
-## 3. Start the databases.
+## 3. Authenticate with Github.
+
+You'll need to authenticate with GitHub before you can actually push changes back
+to your repository.
+
+There's a remarkably easy way to do this, using GitHub's `gh` tool.
+
+=== "Debian, Ubuntu, WSL Ubuntu"
+	```sh
+	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+	sudo apt-add-repository https://cli.github.com/packages
+	sudo apt update
+	sudo apt install gh
+	```
+
+=== "Arch, Manjaro"
+	```sh
+	sudo pacman -S gh
+	```
+
+=== "MacOS"
+	```sh
+	brew install gh
+	```
+
+Once you've installed it, type `gh auth` and follow the instructions.
+You should now be properly authenticated!
+
+## 4. Start the databases.
 
 Before we bootstrap, lets get the databases started.
 
+!!! important
+	**You should be inside the Tachi folder you just cloned.**
+
 ```sh
-# Run this at the top of the Tachi repository
-# (where the `docker-compose.yml` file is)**
 docker compose up --detach
 ```
 
-## 4. Bootstrap!
+## 5. Bootstrap!
 
 !!! warning
 	The bootstrap script is a fairly recent addition.
@@ -183,7 +217,7 @@ everything you need.
 	the browser that you trust these certificates. Otherwise, all client requests to
 	the server will silently be chomped by the browser.
 
-## 5. That's it!
+## 6. That's it!
 
 You now have a fully working instance of Tachi on your PC. You can now start to tinker
 with all of its various components.
@@ -199,7 +233,7 @@ To check everything's gone soundly, run `pnpm start-server` and `pnpm start-clie
 You should then be able to navigate to https://127.0.0.1:8080, accept the certificates,
 and view the client on https://127.0.0.1:3000.
 
-## 6. Editor Plugins
+## 7. Editor Plugins
 
 If you're using VSCode as your editor (I *really* recommend it!) You'll want a couple
 plugins.
@@ -212,7 +246,7 @@ Namely, Install the ESLint plugin, and enable "Format On Save" in your settings.
 
 	It's ridiculously convenient, and there's a bunch of other stuff that VSCode helps with.
 
-## 7. OK, Now what.
+## 8. OK, Now what.
 
 Now that you've got a working version of Tachi running on your local PC, you should go check out the [component-specific contribution guides](./components.md)!
 

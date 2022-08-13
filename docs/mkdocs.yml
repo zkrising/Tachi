@@ -23,11 +23,20 @@ theme:
         name: Switch to dark mode
 
 nav:
-  - Introduction: "index.md"
-  - Contributing:
-      - "contributing/overview.md"
+  - Getting Started:
+      - "index.md"
+      - Contributing:
+          - "contributing/overview.md"
+          - "contributing/setup.md"
+          - "contributing/components.md"
+          - Component-Specific Guides:
+              - "contributing/components/issues.md"
+              - "contributing/components/documentation.md"
 
-  - User Reference:
+          - Tooling Guides:
+              - "contributing/tools/terminal.md"
+
+  - Wiki:
       - "user/overview.md"
       - "user/rules.md"
       - "user/games.md"

@@ -34,6 +34,13 @@ to it. See the [Contribution Guide](./contributing/overview.md)!
 
 *****
 
+## Programmer References
+
+These sections are for experienced programmers who want to see documentation on how
+Tachi's components work internally and externally.
+
+If you're looking to contribute to Tachi, check out the [Contribution Guide](./contributing/overview.md).
+
 ### API Reference
 
 This is for people who want to make things with Tachi's API, and assumes basic knowledge of
@@ -56,7 +63,7 @@ This codebase is maintained by [pfych](https://github.com/pfych), and is wrote i
 
 View it [here](./tachi-bot/overview.md).
 
-### User Reference
+### Wiki
 
 This is for end user reference, such as score importing tutorials, documentation on tachi's
 statistics. It requires no programming knowledge, and is mostly used as a wiki-like reference.

@@ -21,11 +21,13 @@ You *must* be on some Unix-Like operating system. That ideally means means Linux
 Don't worry. You can run Linux as a subsystem inside Windows, without any virtual machine
 nonsense. It's a bit of a headache to get sorted, but Microsoft provide a decent [setup guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 
-!!! note
-	You can pick your own Linux distro to use when setting up WSL2. I **highly** recommend
-	using Ubuntu or Debian for this. They're the most battle tested distributions for WSL2.
-	
-	**Kali Linux is NOT Ubuntu.** Don't use it.
+!!! danger
+	You can pick your own Linux distro to use when setting up WSL2.
+
+	**YOU MUST PICK UBUNTU LATEST (22.04) UNLESS YOU KNOW EXACTLY WHAT YOU ARE DOING**. Anything else will likely have *ancient*
+	versions of software installed, and will cause some obscene headaches.
+
+	**UBUNTU 20.04 LTS HAS A SIGNIFICANTLY-TOO-OLD VERSION OF GIT. DO NOT USE IT.**
 
 ### I'm on Mac.
 

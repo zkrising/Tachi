@@ -35,7 +35,7 @@ Use `pip` to install `mkdocs` and `mkdocs-material`.
 
 ## Running the Documentation
 
-Use `mkdocs serve` inside the `docs/` folder to start up a local documentation viewer on port `8000`.
+Use `mkdocs serve` inside Tachi's `docs/` folder to start up a local documentation viewer on port `8000`.
 
 This will automatically refresh when you edit anything related to the documentation, so you can quickly see how your stuff goes.
 

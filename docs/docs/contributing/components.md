@@ -8,7 +8,7 @@ All of them have their own things going on, so this page has all the guides for 
 
 If you're already very familiar with `git`, the terminal, `node` and JSON, and care more about Tachi specific stuff (how to get the components running, what our architecture looks like), you should skip over that stuff in each guide.
 
-We maintain these guides so that people with knowledge about how to improve Tachi can help out, regardless of their skill level! As such, not all of the information will be of use to you - Skip over the easy bits.
+We maintain these guides so that people with knowledge about how to improve Tachi can help out, regardless of their skill level! As such, not all of the information will be of use to you - Skip over the tooling explanations.
 
 ## What can I contribute to?
 

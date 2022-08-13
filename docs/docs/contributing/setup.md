@@ -67,6 +67,10 @@ However, for Windows users we recommend installing the [Windows Terminal](https:
 
 Anyway, with a terminal open you can proceed to the next steps!
 
+### Understanding the Terminal
+
+If you're completely unfamiliar with the terminal, check out our [Terminal Guide](../tools/terminal.md). We'll be assuming you know terminal basics in the below instructions.
+
 ## 1. Getting Node, PNPM and Docker.
 
 You'll need `node` to run JavaScript code on your machine. Our codebase is wrote in JS, so this is pretty important.
@@ -98,21 +102,39 @@ npm install -g pnpm
 
 We use MongoDB and Redis as databases, these external databases require radically different instructions for setup depending on what OS/Linux variant you're on.
 
-As such, we're going to take the lazy route and use something called [Docker](https://docs.docker.com/get-docker/). Get that installed on your PC, and we'll just run the databases inside there.
+As such, we're going to take the lazy route and use something called [Docker](https://docker.com).
+
+```sh
+# debian, ubuntu, other derivatives.
+# https://docs.docker.com/engine/install/ubuntu/
+# Installing docker on debian & co. is *embarassingly* difficult, to the point where
+# the docker team maintain a fairly long, complex script that actually installs it on
+# your system.
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+
+
+# everywhere else it's trivial, of course.
+# arch, manjaro, other derivatives.
+sudo pacman -S docker docker-compose
+
+# MacOS
+brew install docker docker-compose
+```
 
 !!! info
 	Docker is like a VM[^1]. It runs an entire Linux box to contain your software in, and generally sidesteps the whole "works on my machine" problem, by just shipping the entire machine.
 
+!!! question
+	[Docker Desktop](https://docs.docker.com/desktop/) is something that the Docker team are pushing a bit recently.
+
+	Nobody we know of uses it, but if you want to try it out (it's effectively a docker GUI), let us know how it goes.
+
 ## 2. Fork and pull the repo.
-
-!!! info
-	You'll need a [GitHub](https://github.com) account.
-
-	They're free - make one if you don't have one!
 
 Since you can't just commit straight to someone elses codebase (that would be a massive security issue), you need to make a fork of Tachi - One owned by you!
 
-Go to [the Tachi repository](https://github.com/TNG-dev/Tachi) and click the Fork button in the top right.
+Go to [the Tachi repository](https://github.com/TNG-dev/Tachi) and click the Fork button in the top right (Make sure you're signed in).
 
 Now, back to the terminal:
 
@@ -124,7 +146,7 @@ Now, back to the terminal:
 
 ```sh
 # This will create a folder called Tachi on your PC.
-# It'll do it wherever your terminal is currently open in.
+# It'll create it wherever your terminal is currently open in.
 git clone https://github.com/YOUR_GITHUB_USERNAME/Tachi
 
 # Open this repository in VSCode!

@@ -35,6 +35,7 @@ nav:
 
           - Tooling Guides:
               - "contributing/tools/terminal.md"
+              - "contributing/tools/vscode.md"
 
   - Wiki:
       - "user/overview.md"

@@ -1,5 +1,7 @@
 # Single time fired scripts
-scripts/single-time
+scripts/single-time/*
+!scripts/single-time/.gitkeep
+
 
 # Rerunner output that I don't want to commit
 scripts/rerunners/bpi-output.json

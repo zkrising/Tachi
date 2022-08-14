@@ -11,6 +11,17 @@ To properly contribute to the documentation, you'll need to know the following t
 
 If you don't know, or aren't comfortable with all of the things on this list, click on them to learn about them!
 
+## Component Overview
+
+All of the content for this component is inside the `docs/` folder.
+
+It contains another folder, inconveniently called `docs/`, which contains all of the markdown files that are our documentation.
+
+There's another folder called `includes/`, which contains some things that are constantly
+referenced throughout the documentation.
+
+At the top level, there's `mkdocs.yml`, which we'll go over later.
+
 ## Software Overview
 
 We use [MKDocs Material](https://squidfunk.github.io/mkdocs-material/) for our documentation.

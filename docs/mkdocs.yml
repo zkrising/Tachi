@@ -52,6 +52,16 @@ nav:
           - "user/stats/tachi.md"
         #     - "user/stats/esd.md"
 
+  - Documents:
+      - "schemas/overview.md"
+      - "schemas/user.md"
+      - "schemas/session.md"
+      - "schemas/score.md"
+      - "schemas/song.md"
+      - "schemas/chart.md"
+      - "schemas/goal.md"
+      - "schemas/goal-sub.md"
+
   - API Reference:
       - "api/overview.md"
       - "api/auth.md"
@@ -137,16 +147,6 @@ nav:
           - "tachi-server/implementation-details/score-id.md"
           - "tachi-server/implementation-details/goal-id.md"
           - "tachi-server/implementation-details/goals-milestones.md"
-
-      - Documents:
-          - "tachi-server/documents/overview.md"
-          - "tachi-server/documents/user.md"
-          - "tachi-server/documents/session.md"
-          - "tachi-server/documents/score.md"
-          - "tachi-server/documents/song.md"
-          - "tachi-server/documents/chart.md"
-          - "tachi-server/documents/goal.md"
-          - "tachi-server/documents/goal-sub.md"
 
   - Tachi Bot Reference:
       - "tachi-bot/overview.md"

@@ -7,25 +7,25 @@
 ## Definition
 
 ```ts
-interface Public[UserDocument](../../tachi-server/documents/user.md){
+interface PublicUserDocument {
 	username: string;
 	usernameLowercase: string;
 	id: integer;
 	socialMedia: {
-		discord?: String | null;
-		twitter?: String | null;
-		github?: String | null;
-		steam?: String | null;
-		youtube?: String | null;
-		twitch?: String | null;
+		discord?: string | null;
+		twitter?: string | null;
+		github?: string | null;
+		steam?: string | null;
+		youtube?: string | null;
+		twitch?: string | null;
 	};
 	joinDate: integer;
 	lastSeen: integer;
 	about: string;
-	status: String | null;
+	status: string | null;
 	customPfp: boolean;
 	customBanner: boolean;
-	clan: String | null; // Clans are not implemented yet, so this field is null for everyone.
+	clan: string | null; // Clans are not implemented yet, so this field is null for everyone.
 	badges: UserBadges[];
 	authLevel: UserAuthLevels;
 }

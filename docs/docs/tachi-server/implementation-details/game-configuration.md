@@ -15,7 +15,7 @@ lamps for the game.
 	It would be really appreciated if someone formatted
 	the configurations for every game! For the time being,
 	the below documentation is just the raw configuration
-	for each game. Please see [Contributing to Tachi](../contributing.md).
+	for each game. Please see [Contributing to Tachi](../../contributing/overview.md).
 
 *****
 

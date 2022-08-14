@@ -6,7 +6,7 @@ The databases in question aren't (normally) altered by the server code. We essen
 
 ## What's in the seeds?
 
-The seeds contain all the [SongDocument](../documents/song.md)s and [ChartDocument](../documents/chart.md)s for all of the games supported by Tachi.
+The seeds contain all the [SongDocument](../../schemas/song.md)s and [ChartDocument](../../schemas/chart.md)s for all of the games supported by Tachi.
 
 They also include all Folder Documents, Table Documents and BMS Course Documents.
 

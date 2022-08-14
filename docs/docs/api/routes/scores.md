@@ -2,7 +2,7 @@
 
 !!! note
 	Scores are *not* personal bests. For more information
-	on the distinction, see [PBs and Scores](../../user/pbs-scores.md).
+	on the distinction, see [PBs and Scores](../../wiki/pbs-scores.md).
 
 *****
 

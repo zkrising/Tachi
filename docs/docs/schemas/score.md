@@ -82,11 +82,11 @@ sub-document.
 | Property | Description |
 | :: | :: |
 | `score` | A number describing the "score" the user got. Depending on the game, this may be bounded between various numbers. |
-| `lamp` | The lamp the user got. For more information on what a lamp is, see [What are Lamps?](../user/lamps.md)
+| `lamp` | The lamp the user got. For more information on what a lamp is, see [What are Lamps?](../wiki/lamps.md)
 | `percent` | The 'percent' the user got. That is, their score scaled to the total amount of score they could have possibly got. There are some oddities with this field.[^1]. |
 | `grade` | The grade the user got. For most games, this is a set of discrete cutoffs for the score's `percent`.[^2] |
 | `lampIndex`, `gradeIndex` | While `lamp` and `grade` are both strings, these are the raw enum values for those fields. This can be used for filters (select scores where lampIndex > lamps.HARD_CLEAR), or other query methods. |
-| `esd` | Some games support ESD. This field contains the ESD for that score. For more information on what ESD is, see [What is ESD?](../user/stats/esd.md)
+| `esd` | Some games support ESD. This field contains the ESD for that score. For more information on what ESD is, see [What is ESD?](../wiki/stats/esd.md)
 | `judgements` | A record of Judgement->Integer values. The keys for this property depend on the game the score is for. |
 | `hitMeta` | 'Meta' information about the user's *hits*. That is, things that aren't *literally* about the score, but are related to how the user played. This contains properties such as `maxCombo` and `fast` and `slow` counts. All the fields here are optional and nullable. Some games extend this to provide things like `gauge`. |
 

@@ -39,18 +39,18 @@ nav:
               - "contributing/tools/vscode.md"
 
   - Wiki:
-      - "user/index.md"
-      - "user/rules.md"
-      - "user/games.md"
-      - "user/features.md"
-      - "user/pbs-scores.md"
-      - "user/filter-directives.md"
-      - "user/lamps.md"
-      - "user/score-oddities.md"
+      - "wiki/index.md"
+      - "wiki/rules.md"
+      - "wiki/games.md"
+      - "wiki/features.md"
+      - "wiki/pbs-scores.md"
+      - "wiki/filter-directives.md"
+      - "wiki/lamps.md"
+      - "wiki/score-oddities.md"
 
       - Statistics:
-          - "user/stats/tachi.md"
-        #     - "user/stats/esd.md"
+          - "wiki/stats/tachi.md"
+        #     - "wiki/stats/esd.md"
 
   - Documents:
       - "schemas/index.md"

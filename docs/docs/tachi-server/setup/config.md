@@ -332,7 +332,7 @@ Bokutachi only routes, and `omni` will enable both.
 
 #### GAMES
 
-What games are supported by this server. For more information, see [Games](../../user/games.md).
+What games are supported by this server. For more information, see [Games](../../wiki/games.md).
 
 #### IMPORT_TYPES
 

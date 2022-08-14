@@ -2,7 +2,7 @@
 
 This page documents how Sessions are constructed.
 For a humanised explaination of sessions, see
-[this page](../../user/features.md#sessions).
+[this page](../../wiki/features.md#sessions).
 
 *****
 

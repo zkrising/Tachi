@@ -19,17 +19,9 @@ There are way more features that Tachi has, and you can read about all of them [
 
 ## Setup
 
-Setting up a local instance of Tachi at the moment is a bit of a pain. You'll need MongoDB and Redis installed and running.
+Check the [Documentation](https://docs-staging.bokutachi.xyz/contributing/setup) for how to set Tachi up.
 
-You'll need `pnpm`. Get it with `npm install -g pnpm`.
-
-Run `_scripts/bootstrap.sh` to set everything up. This script *must* be ran on a unix system.
-
-The above script will move config files into active places, self-sign HTTPS Certificates for local development, install dependencies, start mongoDB and redis, and synchronise the database with the seeds.
-
-After bootstrapping, you can use `pnpm start-server` and `pnpm start-client` to run the `server/` and `client/`.
-
-Run both, together, to have a full tachi setup.
+You can then check the component-specific guides to see how to run those components and contribute back.
 
 ## Repository Info
 

@@ -32,6 +32,7 @@ nav:
           - Component-Specific Guides:
               - "contributing/components/issues.md"
               - "contributing/components/documentation.md"
+              - "contributing/components/seeds.md"
 
           - Tooling Guides:
               - "contributing/tools/terminal.md"

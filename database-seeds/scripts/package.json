@@ -4,7 +4,8 @@
 	"description": "Scripts for dealing with tachi-database-seeds.",
 	"main": "",
 	"scripts": {
-		"test": "./run-tests.sh"
+		"test": "./run-tests.sh",
+		"sort": "node deterministic-collection-sort.js"
 	},
 	"author": "zkldi",
 	"license": "MIT",

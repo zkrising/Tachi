@@ -26,7 +26,7 @@ nav:
   - Getting Started:
       - "index.md"
       - Contributing:
-          - "contributing"
+          - "contributing/index.md"
           - "contributing/setup.md"
           - "contributing/components.md"
           - Component-Specific Guides:

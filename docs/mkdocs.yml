@@ -26,7 +26,7 @@ nav:
   - Getting Started:
       - "index.md"
       - Contributing:
-          - "contributing/overview.md"
+          - "contributing"
           - "contributing/setup.md"
           - "contributing/components.md"
           - Component-Specific Guides:
@@ -39,7 +39,7 @@ nav:
               - "contributing/tools/vscode.md"
 
   - Wiki:
-      - "user/overview.md"
+      - "user/index.md"
       - "user/rules.md"
       - "user/games.md"
       - "user/features.md"
@@ -63,7 +63,7 @@ nav:
       - "schemas/goal-sub.md"
 
   - API Reference:
-      - "api/overview.md"
+      - "api/index.md"
       - "api/auth.md"
       - "api/terminology.md"
 
@@ -95,7 +95,7 @@ nav:
           - "api/webhooks/class-update-v1.md"
 
   - Tachi Server Reference:
-      - "tachi-server/overview.md"
+      - "tachi-server/index.md"
 
       - Setup:
           - "tachi-server/setup/config.md"
@@ -116,11 +116,11 @@ nav:
           - "tachi-server/structure/testing.md"
 
       - BATCH-MANUAL:
-          - "tachi-server/batch-manual/overview.md"
+          - "tachi-server/batch-manual"
           - "tachi-server/batch-manual/direct-manual.md"
 
       - Score Importing:
-          - "tachi-server/import/overview.md"
+          - "tachi-server/import"
           - "tachi-server/import/main.md"
           - "tachi-server/import/import-types.md"
           - "tachi-server/import/parse-conv.md"
@@ -147,7 +147,7 @@ nav:
           - "tachi-server/implementation-details/goals-milestones.md"
 
   - Tachi Bot Reference:
-      - "tachi-bot/overview.md"
+      - "tachi-bot"
 
 markdown_extensions:
   - admonition

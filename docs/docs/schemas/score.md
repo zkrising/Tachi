@@ -55,7 +55,7 @@ The base score document is structured as follows:
 | Property | Description |
 | :: | :: |
 | `game` | This is the game this score is for. |
-| `service` | This is a humanised string for representing the place this score came from. This is primarily used by [Batch-Manual](../tachi-server/batch-manual/overview.md) formats to declare where the scores are coming from. |
+| `service` | This is a humanised string for representing the place this score came from. This is primarily used by [Batch-Manual](../tachi-server/batch-manual) formats to declare where the scores are coming from. |
 | `userID` | The user that got this score. |
 | `timeAchieved` | This is the time this score was actually achieved. This is **NOT** the time this score was inserted into the database. If this is not known, it can be set to null. |
 | `timeAdded` | This is the time the score was added to the Tachi database. This is **NOT** the time the score was achieved by the player. |

@@ -32,11 +32,11 @@ interface SessionDocument {
 | `desc` | A Description for this session. Session descriptions default to null. |
 | `game` | The game this session was for. |
 | `playtype` | The playtype this session was for. |
-| `importType` | The [Import Type](../import/import-types.md) that produced this session. Sessions converted from Kamaitachi 1 are given an importType of null. |
+| `importType` | The [Import Type](../tachi-server/import/import-types.md) that produced this session. Sessions converted from Kamaitachi 1 are given an importType of null. |
 | `timeInserted` | The time this session was inserted into the database. This is **NOT** when the session started. |
 | `timeStarted` | The time the session started. |
 | `timeEnded` | The time the session ended. Note that if this is less than 2 hours ago, the session may still be extended by future scores. |
-| `calculatedData` | Calculated Statistics about this session. The keys in this object depend on the game and playtype. For more information, see [Statistics](../../user/stats/tachi.md).
+| `calculatedData` | Calculated Statistics about this session. The keys in this object depend on the game and playtype. For more information, see [Statistics](../user/stats/tachi.md).
 | `highlight` | Whether this session was highlighted or not by the user. |
 | `views` | How many people have viewed this session. |
 

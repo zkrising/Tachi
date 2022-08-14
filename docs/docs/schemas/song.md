@@ -64,16 +64,6 @@ type maimaiSongData = { titleJP: string; artistJP: string; displayVersion: strin
 | `artistJP` | The artist for this song when the game is in Japanese locale. |
 | `displayVersion` | The version of the game that this song was released in. |
 
-### Jubeat
-
-```ts
-type jubeatSongData = { displayVersion: string };
-```
-
-| Property | Description |
-| :: | :: |
-| `displayVersion` | The version of the game that this song was released in. |
-
 ### SDVX
 
 ```ts

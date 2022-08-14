@@ -71,7 +71,7 @@ Anyway, with a terminal open you can proceed to the next steps!
 
 ### Understanding the Terminal
 
-If you're completely unfamiliar with the terminal, check out our [Terminal Guide](../tools/terminal.md). We'll be assuming you know terminal basics in the below instructions.
+If you're completely unfamiliar with the terminal, check out our [Terminal Guide](./tools/terminal.md). We'll be assuming you know terminal basics in the below instructions.
 
 ## 1. Getting Node, PNPM and Docker.
 

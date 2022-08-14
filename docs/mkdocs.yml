@@ -53,7 +53,7 @@ nav:
         #     - "user/stats/esd.md"
 
   - Documents:
-      - "schemas/overview.md"
+      - "schemas/index.md"
       - "schemas/user.md"
       - "schemas/session.md"
       - "schemas/score.md"
@@ -96,10 +96,8 @@ nav:
 
   - Tachi Server Reference:
       - "tachi-server/overview.md"
-      - "tachi-server/contributing.md"
 
       - Setup:
-          - "tachi-server/setup/setup.md"
           - "tachi-server/setup/config.md"
 
       - Infrastructure:

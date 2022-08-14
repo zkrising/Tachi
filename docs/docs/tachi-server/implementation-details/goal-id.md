@@ -3,7 +3,7 @@
 Goal IDs exist to dedupe goals when a user creates
 a new goal. For example, if a user wants to create a
 HARD CLEAR Mei goal, but one already exists, we should
-not insert two [Goal Documents](../documents/goal.md)
+not insert two [Goal Documents](../../schemas/goal.md)
 representing the same thing.
 
 *****

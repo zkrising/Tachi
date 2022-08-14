@@ -30,7 +30,7 @@ If they create a goal that does not already exist, it is created, and they are s
 
 Users may unsubscribe from goals that they no longer care about getting pinged for.
 
-Subscriptions to goals are stored in a [GoalSubscriptionDocument](../documents/goal-sub.md).
+Subscriptions to goals are stored in a [GoalSubscriptionDocument](../../schemas/goal-sub.md).
 This document is uniquely identified by the joining of the `goalID` with the `userID`.
 
 ### Instant Direct Achievements

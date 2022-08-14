@@ -55,17 +55,17 @@ The base score document is structured as follows:
 | Property | Description |
 | :: | :: |
 | `game` | This is the game this score is for. |
-| `service` | This is a humanised string for representing the place this score came from. This is primarily used by [Batch-Manual](../batch-manual/overview.md) formats to declare where the scores are coming from. |
+| `service` | This is a humanised string for representing the place this score came from. This is primarily used by [Batch-Manual](../tachi-server/batch-manual/overview.md) formats to declare where the scores are coming from. |
 | `userID` | The user that got this score. |
 | `timeAchieved` | This is the time this score was actually achieved. This is **NOT** the time this score was inserted into the database. If this is not known, it can be set to null. |
 | `timeAdded` | This is the time the score was added to the Tachi database. This is **NOT** the time the score was achieved by the player. |
-| `songID` | The song this score is on. Even though this can be derived from `chartID`, it's kept next to the score for certain query optimisations. You can read on the difference between charts and songs [here](../implementation-details/songs-charts.md). |
+| `songID` | The song this score is on. Even though this can be derived from `chartID`, it's kept next to the score for certain query optimisations. You can read on the difference between charts and songs [here](../tachi-server/implementation-details/songs-charts.md). |
 | `chartID` | The chart this score was achieved on. |
-| `isPrimary` | Whether this score is was achieved on a "primary" chart or not. You can read more on what a primary chart is [here](../implementation-details/songs-charts.md#isPrimary). |
+| `isPrimary` | Whether this score is was achieved on a "primary" chart or not. You can read more on what a primary chart is [here](../tachi-server/implementation-details/songs-charts.md#isPrimary). |
 | `highlight` | Whether this individual score was highlighted or not by the user. This is one of the few mutable fields on the score document. |
 | `comment` | A comment left by the user on this score. If one is not present, it is left as `null`. Comments are capped at 240 characters. |
-| `scoreID` | A unique identifier for this score. Score IDs are prefixed with `R`. This identifier is derived from the content of the score, and thus can be used to dedupe scores. See [Score IDs](../implementation-details/score-id.md). |
-| `importType` | The import type used to import this score. For more on this, see [Import Types](../import/import-types.md) |
+| `scoreID` | A unique identifier for this score. Score IDs are prefixed with `R`. This identifier is derived from the content of the score, and thus can be used to dedupe scores. See [Score IDs](../tachi-server/implementation-details/score-id.md). |
+| `importType` | The import type used to import this score. For more on this, see [Import Types](../tachi-server/import/import-types.md) |
 
 Now, absolutely none of the above fields contain
 information about the actual *score* the user got,
@@ -82,11 +82,11 @@ sub-document.
 | Property | Description |
 | :: | :: |
 | `score` | A number describing the "score" the user got. Depending on the game, this may be bounded between various numbers. |
-| `lamp` | The lamp the user got. For more information on what a lamp is, see [What are Lamps?](../../user/lamps.md)
+| `lamp` | The lamp the user got. For more information on what a lamp is, see [What are Lamps?](../user/lamps.md)
 | `percent` | The 'percent' the user got. That is, their score scaled to the total amount of score they could have possibly got. There are some oddities with this field.[^1]. |
 | `grade` | The grade the user got. For most games, this is a set of discrete cutoffs for the score's `percent`.[^2] |
 | `lampIndex`, `gradeIndex` | While `lamp` and `grade` are both strings, these are the raw enum values for those fields. This can be used for filters (select scores where lampIndex > lamps.HARD_CLEAR), or other query methods. |
-| `esd` | Some games support ESD. This field contains the ESD for that score. For more information on what ESD is, see [What is ESD?](../../user/stats/esd.md)
+| `esd` | Some games support ESD. This field contains the ESD for that score. For more information on what ESD is, see [What is ESD?](../user/stats/esd.md)
 | `judgements` | A record of Judgement->Integer values. The keys for this property depend on the game the score is for. |
 | `hitMeta` | 'Meta' information about the user's *hits*. That is, things that aren't *literally* about the score, but are related to how the user played. This contains properties such as `maxCombo` and `fast` and `slow` counts. All the fields here are optional and nullable. Some games extend this to provide things like `gauge`. |
 
@@ -169,9 +169,9 @@ For all games, the following changes are applied:
 
 | Property | Change |
 | :: | :: |
-| `scoreData.lamp` | This field is restricted to only Lamps for that game. For more information, see [Game Enums](../implementation-details/game-configuration.md). |
-| `scoreData.grade` | This field is restricted to only Grades for that game. For more information, see [Game Enums](../implementation-details/game-configuration.md). |
-| `scoreData.judgements` | The keys of this field are set to only valid Judgements for that game. For more information, see [Game Judgements](../implementation-details/game-configuration.md).
+| `scoreData.lamp` | This field is restricted to only Lamps for that game. For more information, see [Game Enums](../tachi-server/implementation-details/game-configuration.md). |
+| `scoreData.grade` | This field is restricted to only Grades for that game. For more information, see [Game Enums](../tachi-server/implementation-details/game-configuration.md). |
+| `scoreData.judgements` | The keys of this field are set to only valid Judgements for that game. For more information, see [Game Judgements](../tachi-server/implementation-details/game-configuration.md).
 
 !!! info
 	All games implicitly have `fast`, `slow` and `maxCombo`

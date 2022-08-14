@@ -15,8 +15,8 @@ lamps for the game.
 	It would be really appreciated if someone formatted
 	the configurations for every game! For the time being,
 	the below documentation is just the raw configuration
-	for each game. Please see [Contributing to Tachi](../contributing.md).
+	for each game. Please see [Contributing to Tachi](../../contributing/overview.md).
 
 *****
 
-This documentation is unfinished. It is probably easier for you to [just read the config.ts file](https://github.com/tng-dev/tachi-common/tree/master/src/config/config.ts)
+This documentation is unfinished. It is probably easier for you to [just read the config.ts file](https://github.com/TNG-dev/Tachi/tree/develop/common/src/config/config.ts)

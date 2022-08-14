@@ -37,7 +37,7 @@ Writing, maintaining and proofreading the documentation is something that is **s
 at the moment. Simple things like typo fixes, all the way up to writing new explanations about major features
 are **thoroughly** appreciated, as `zkldi` prioritises maintaining the core of working code.
 
-If you're interested in this, check out the [Documentation Contribution Guide](./docs.md).
+If you're interested in this, check out the [Documentation Contribution Guide](./components/documentation.md).
 
 It'll teach you `shell` and `git` basics,
 setting up a programming environment for Tachi,
@@ -64,7 +64,7 @@ our GitHub repository! That means you can:
 
 	Or in general, if you just want to contribute and don't know what to -- **this is the MOST in need of help. Always.**
 
-Want to get started on contributing to the Database? Check out our [Database Contribution Guide](./database.md).
+Want to get started on contributing to the Database? Check out our [Database Contribution Guide](./components/seeds.md).
 
 It'll teach you `shell` and `git` basics,
 setting up a programming environment for Tachi,
@@ -85,7 +85,7 @@ The client tries to then place a slick UI over that logic and its exposed API.
 
 	That said, we still have a thorough guide -- It's not *from 0*, but it is *from some programming knowledge*.
 
-Want to get started on contributing to the Core? Check out our [Core Contribution Guide](./core.md).
+Want to get started on contributing to the Core? Check out our [Core Contribution Guide](./components/core.md).
 
 We'll cover...
 

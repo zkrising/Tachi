@@ -6,7 +6,8 @@
 	"scripts": {
 		"start-client": "pnpm --filter ./client start",
 		"start-server": "pnpm --filter ./server start",
-		"start-score-import-worker": "pnpm --filter ./server runscoreworker"
+		"start-score-import-worker": "pnpm --filter ./server runscoreworker",
+		"start-docs": "cd docs/ && mkdocs serve"
 	},
 	"repository": {
 		"type": "git",

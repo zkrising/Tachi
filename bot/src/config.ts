@@ -4,6 +4,7 @@ import { IsRecord } from "./utils/predicates";
 import { FormatPrError } from "./utils/prudence";
 import { config } from "dotenv";
 import JSON5 from "json5";
+// eslint-disable-next-line import/order
 import p from "prudence";
 
 // @ts-expect-error No types available...
@@ -115,7 +116,7 @@ function ParseEnvVars() {
 			),
 			MONGO_URL: "string",
 			PORT: (self) =>
-				p.isPositiveInteger(Number(self)) ||
+				p.isPositiveInteger(Number(self)) === true ||
 				"Should be a string representing a whole integer port.",
 			SEQ_URL: "*string",
 		},

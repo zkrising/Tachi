@@ -8,7 +8,8 @@
 		"start-server": "pnpm --filter ./server start",
 		"test-server": "pnpm --filter ./server test",
 		"test-dbseeds": "pnpm --filter ./database-seeds/scripts test",
-		"start-score-import-worker": "pnpm --filter ./server runscoreworker"
+		"start-score-import-worker": "pnpm --filter ./server runscoreworker",
+		"start-docs": "cd docs/ && mkdocs serve"
 	},
 	"repository": {
 		"type": "git",

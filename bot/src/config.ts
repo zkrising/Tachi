@@ -4,6 +4,7 @@ import { IsRecord } from "./utils/predicates";
 import { FormatPrError } from "./utils/prudence";
 import { config } from "dotenv";
 import JSON5 from "json5";
+// eslint-disable-next-line import/order
 import p from "prudence";
 
 // @ts-expect-error No types available...
@@ -34,6 +35,9 @@ export interface BotConfig {
 		SERVER_ID: string;
 		GAME_CHANNELS: Partial<Record<Game, string>>;
 		ADMIN_USERS: Array<string>;
+	};
+	LOGGER: {
+		SEQ_API_KEY?: string;
 	};
 }
 
@@ -97,6 +101,7 @@ export interface ProcessEnvironment {
 	nodeEnv: "dev" | "production" | "staging" | "test";
 	mongoUrl: string;
 	port: integer;
+	seqUrl?: string;
 }
 
 function ParseEnvVars() {
@@ -111,8 +116,9 @@ function ParseEnvVars() {
 			),
 			MONGO_URL: "string",
 			PORT: (self) =>
-				p.isPositiveInteger(Number(self)) ||
+				p.isPositiveInteger(Number(self)) === true ||
 				"Should be a string representing a whole integer port.",
+			SEQ_URL: "*string",
 		},
 		{},
 		{ allowExcessKeys: true }
@@ -128,6 +134,7 @@ function ParseEnvVars() {
 		nodeEnv: process.env.NODE_ENV,
 		mongoUrl: process.env.MONGO_URL,
 		port: Number(process.env.PORT),
+		seqUrl: process.env.SEQ_URL,
 	} as ProcessEnvironment;
 }
 

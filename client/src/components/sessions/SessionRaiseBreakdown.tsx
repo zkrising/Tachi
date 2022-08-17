@@ -30,7 +30,7 @@ import {
 	TableDocument,
 } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
-import { ModifyScore } from "components/tables/dropdowns/components/ScoreEditButtons";
+import { CommentModal, ModifyScore } from "components/tables/dropdowns/components/ScoreEditButtons";
 import { SetState } from "types/react";
 import { ScoreDataset } from "types/tables";
 
@@ -357,7 +357,7 @@ function ElementStatTable({
 	fullSize?: boolean;
 }) {
 	function makeModifyScoreFn(score: ScoreDocument) {
-		return ({ highlight, comment }: { highlight?: boolean; comment?: string }) => {
+		return ({ highlight, comment }: { highlight?: boolean; comment?: string | null }) => {
 			const scoreID = score.scoreID;
 
 			ModifyScore(scoreID, { highlight, comment }).then((r) => {
@@ -464,13 +464,14 @@ function BreakdownChartContents({
 	songMap: Map<integer, SongDocument>;
 	chartMap: Map<string, ChartDocument>;
 	gptConfig: GamePTConfig;
-	modifyScore: ({ highlight, comment }: { highlight?: boolean; comment?: string }) => void;
+	modifyScore: ({ highlight, comment }: { highlight?: boolean; comment?: string | null }) => void;
 	type: "lamp" | "grade";
 }) {
 	const chart = chartMap.get(score.chartID)!;
 	const song = songMap.get(score.songID)!;
 
 	const [highlight, setHighlight] = useState(score.highlight);
+	const [comment, setComment] = useState(score.comment);
 	const [firstRun, setFirstRun] = useState(true);
 
 	useEffect(() => {
@@ -479,8 +480,8 @@ function BreakdownChartContents({
 			return;
 		}
 
-		modifyScore({ highlight });
-	}, [highlight]);
+		modifyScore({ highlight, comment });
+	}, [highlight, comment]);
 
 	if (!chart || !song) {
 		console.error(`No chart for ${score.chartID}/${score.songID}???`);
@@ -531,22 +532,55 @@ function BreakdownChartContents({
 
 	return (
 		<>
-			<TitleCell noArtist chart={chart} game={game} song={song} />
-			<PseudHighlight highlight={highlight} setHighlight={setHighlight} />
+			<TitleCell noArtist chart={chart} game={game} song={song} comment={comment} />
+			<CommentHighlightManager
+				highlight={highlight}
+				setHighlight={setHighlight}
+				comment={comment}
+				setComment={setComment}
+			/>
 			<DifficultyCell alwaysShort chart={chart} game={game} />
 		</>
 	);
 }
 
-function PseudHighlight({
+/**
+ * It manages the comment and highlight stuff.
+ *
+ * I don't know what else to call this function.
+ */
+function CommentHighlightManager({
 	highlight,
 	setHighlight,
+	comment,
+	setComment,
 }: {
 	highlight: boolean;
 	setHighlight: (hl: boolean) => void;
+	comment: string | null;
+	setComment: (cm: string | null) => void;
 }) {
+	const [showCommentModal, setShowCommentModal] = useState(false);
+
 	return (
 		<td style={{ verticalAlign: "center" }}>
+			<CommentModal
+				show={showCommentModal}
+				setShow={setShowCommentModal}
+				initialComment={comment}
+				onUpdate={(comment) => {
+					setComment(comment);
+					setShowCommentModal(false);
+				}}
+			/>
+			<span className="breakdown-hover-highlight-button">
+				<Icon
+					onClick={() => setShowCommentModal(true)}
+					type="comment"
+					regular
+					style={{ paddingTop: "0.1rem", paddingRight: "0.33rem" }}
+				/>
+			</span>
 			{highlight ? (
 				<Icon
 					onClick={() => setHighlight(false)}

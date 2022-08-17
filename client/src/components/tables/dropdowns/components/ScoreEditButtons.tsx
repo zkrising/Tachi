@@ -2,7 +2,7 @@ import { APIFetchV1 } from "util/api";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
 import { UserContext } from "context/UserContext";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Game, ScoreDocument } from "tachi-common";
 import { Button, Modal, Form } from "react-bootstrap";
 import { SetState } from "types/react";
@@ -101,10 +101,16 @@ export default function ScoreEditButtons({
 			<CommentModal
 				show={show}
 				setShow={setShow}
-				comment={comment}
-				setComment={setComment}
-				scoreID={score.scoreID}
-				score={score}
+				initialComment={comment}
+				onUpdate={(comment) => {
+					ModifyScore(score.scoreID, { comment }).then((r) => {
+						if (r) {
+							setComment(comment);
+							score.comment = comment;
+							setShow(false);
+						}
+					});
+				}}
 			/>
 		</div>
 	);
@@ -130,22 +136,26 @@ export async function ModifyScore(
 	return res.success;
 }
 
-function CommentModal({
+export function CommentModal({
 	show,
 	setShow,
-	comment,
-	setComment,
-	scoreID,
-	score,
+	initialComment,
+	onUpdate,
 }: {
 	show: boolean;
 	setShow: SetState<boolean>;
-	comment: string | null;
-	setComment: SetState<string | null>;
-	scoreID: string;
-	score: ScoreDocument;
+	initialComment: string | null;
+	onUpdate: (newComment: string | null) => void;
 }) {
-	const [innerComment, setInnerComment] = useState(comment ?? "");
+	const [innerComment, setInnerComment] = useState(initialComment ?? "");
+
+	const ref = useRef<HTMLInputElement>(null);
+
+	useEffect(() => {
+		if (show && ref.current) {
+			ref.current.focus();
+		}
+	}, [show]);
 
 	return (
 		<Modal show={show} onHide={() => setShow(false)}>
@@ -157,24 +167,25 @@ function CommentModal({
 					onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
 						e.preventDefault();
 
-						ModifyScore(scoreID, { comment: innerComment }).then((r) => {
-							if (r) {
-								setComment(innerComment);
-								score.comment = innerComment;
-								setShow(false);
-							}
-						});
+						if (innerComment === "") {
+							onUpdate(null);
+						} else {
+							onUpdate(innerComment);
+						}
 					}}
 				>
 					<Form.Group>
 						<div className="input-group">
 							<input
+								ref={ref}
+								autoFocus
 								className="form-control form-control-lg"
 								type="text"
-								placeholder={comment ?? "This score was great!"}
+								placeholder={initialComment ?? "This score was great!"}
 								value={innerComment}
 								onChange={(e) => setInnerComment(e.target.value)}
 							/>
+
 							<div className="input-group-append">
 								<Button variant="primary" type="submit">
 									Submit
@@ -183,19 +194,15 @@ function CommentModal({
 						</div>
 					</Form.Group>
 
-					{comment !== null && (
+					{initialComment !== null && (
 						<QuickTooltip tooltipContent="Remove your comment on this score.">
 							<Button
 								variant="outline-danger"
-								onClick={() =>
-									ModifyScore(scoreID, { comment: null }).then((r) => {
-										if (r) {
-											setComment(null);
-											score.comment = null;
-											setShow(false);
-										}
-									})
-								}
+								onClick={() => {
+									onUpdate(null);
+
+									setInnerComment("");
+								}}
 							>
 								<Icon noPad type="trash" />
 							</Button>

@@ -264,7 +264,7 @@ function TopShowcase({
 	if (user?.id === bestPlay.userID) {
 		return (
 			<Col xs={12}>
-				<PlayCard name="Best Play" pb={bestPlay} user={bestUser} />
+				<PlayCard name="Best PB" pb={bestPlay} user={bestUser} />
 			</Col>
 		);
 	}
@@ -273,10 +273,10 @@ function TopShowcase({
 		return (
 			<>
 				<Col xs={12} lg={6}>
-					<PlayCard name="Best Play" pb={bestPlay} user={bestUser} />
+					<PlayCard name="Best PB" pb={bestPlay} user={bestUser} />
 				</Col>
 				<Col xs={12} lg={6}>
-					<Card header="Your Score" className="text-center">
+					<Card header="Your PB" className="text-center">
 						<Muted>You've not played this chart.</Muted>
 					</Card>
 				</Col>
@@ -326,7 +326,7 @@ function PlayCard({
 					<span className="text-muted">/{pb.rankingData.outOf}</span>
 				</Col>
 				<Col lg={6}>
-					<MiniTable headers={["Score Info"]}>
+					<MiniTable headers={["PB Info"]}>
 						<tr>
 							<ScoreCell score={pb} />
 						</tr>

@@ -18,7 +18,7 @@ import SelectButton from "components/util/SelectButton";
 import { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
 import { DateTime } from "luxon";
 import React, { useMemo, useState } from "react";
-import { Badge } from "react-bootstrap";
+import { Badge, Row } from "react-bootstrap";
 import {
 	FormatGame,
 	GetGameConfig,
@@ -31,6 +31,7 @@ import {
 import { SessionReturns, UGPTHistory } from "types/api-returns";
 import { GamePT } from "types/react";
 import { ScoreDataset } from "types/tables";
+import SessionRaiseBreakdown from "components/sessions/SessionRaiseBreakdown";
 
 export default function OverviewPage({
 	reqUser,
@@ -84,81 +85,76 @@ function LastSession({ reqUser, game, playtype }: { reqUser: PublicUserDocument 
 				data && (
 					<Card className="mt-4" header="Most Recent Session">
 						<div className="row d-flex justify-content-center">
-							{
-								<>
-									<div className="col-12 text-center">
-										<h4 className="display-4">{data.session.name}</h4>
-										<span className="text-muted">{data.session.desc}</span>
-										<Divider className="mt-4 mb-8" />
-									</div>
+							<div className="col-12 text-center">
+								<h4 className="display-4">{data.session.name}</h4>
+								<span className="text-muted">{data.session.desc}</span>
+								<Divider className="mt-4 mb-8" />
+							</div>
 
-									<div className="col-12 col-lg-3 text-center">
-										<MiniTable
-											className="mt-4"
-											headers={["Information"]}
-											colSpan={2}
-										>
-											<tr>
-												<td>Started</td>
-												<td>{FormatTime(data.session.timeStarted)}</td>
-											</tr>
-											<tr>
-												{/* If session ended less than 2 hours ago, it can still be appended to. */}
-												{/* Kinda - time is a bit nonlinear wrt. importing scores, as scores don't have to have */}
-												{/* happened at the same time they were imported. */}
-												{/* that doesn't matter though - this is just a UI thing */}
-												<td>
-													{Date.now() - data.session.timeEnded <
-													ONE_HOUR * 2
-														? "Last Score"
-														: "Ended At"}
-												</td>
-												<td>
-													{FormatTime(data.session.timeEnded)}
-													{/* if the last score was less than 10 mins ago, this session is probably still being populated */}
-													{Date.now() - data.session.timeEnded <
-														ONE_MINUTE * 10 && (
-														<>
-															<br />
-															<Badge
-																variant="primary"
-																className="mt-2"
-															>
-																Ongoing!
-															</Badge>
-														</>
-													)}
-												</td>
-											</tr>
-											<tr>
-												<td>Duration</td>
-												<td>
-													{FormatDuration(
-														data.session.timeEnded -
-															data.session.timeStarted
-													)}
-												</td>
-											</tr>
-											<tr>
-												<td>Scores</td>
-												<td>{data.session.scoreInfo.length}</td>
-											</tr>
-											<tr>
-												<td>PBs</td>
-												<td>{GetPBs(data.session.scoreInfo).length}</td>
-											</tr>
-										</MiniTable>
-									</div>
-									<div className="col-12 col-lg-9">
-										<RecentSessionScoreInfo
-											{...data}
-											game={game}
-											playtype={playtype}
-											reqUser={reqUser}
-										/>
-									</div>
-								</>
-							}
+							<div className="col-12 col-lg-3 text-center">
+								<MiniTable className="mt-4" headers={["Information"]} colSpan={2}>
+									<tr>
+										<td>Started</td>
+										<td>{FormatTime(data.session.timeStarted)}</td>
+									</tr>
+									<tr>
+										{/* If session ended less than 2 hours ago, it can still be appended to. */}
+										{/* Kinda - time is a bit nonlinear wrt. importing scores, as scores don't have to have */}
+										{/* happened at the same time they were imported. */}
+										{/* that doesn't matter though - this is just a UI thing */}
+										<td>
+											{Date.now() - data.session.timeEnded < ONE_HOUR * 2
+												? "Last Score"
+												: "Ended At"}
+										</td>
+										<td>
+											{FormatTime(data.session.timeEnded)}
+											{/* if the last score was less than 10 mins ago, this session is probably still being populated */}
+											{Date.now() - data.session.timeEnded <
+												ONE_MINUTE * 10 && (
+												<>
+													<br />
+													<Badge variant="primary" className="mt-2">
+														Ongoing!
+													</Badge>
+												</>
+											)}
+										</td>
+									</tr>
+									<tr>
+										<td>Duration</td>
+										<td>
+											{FormatDuration(
+												data.session.timeEnded - data.session.timeStarted
+											)}
+										</td>
+									</tr>
+									<tr>
+										<td>Scores</td>
+										<td>{data.session.scoreInfo.length}</td>
+									</tr>
+									<tr>
+										<td>PBs</td>
+										<td>{GetPBs(data.session.scoreInfo).length}</td>
+									</tr>
+								</MiniTable>
+							</div>
+							<div className="col-12 col-lg-9">
+								<Row>
+									<SessionRaiseBreakdown
+										sessionData={data.sessionData}
+										setScores={() => void 0}
+									/>
+								</Row>
+							</div>
+							<div className="col-12">
+								<Divider />
+								<RecentSessionScoreInfo
+									session={data.session}
+									sessionData={data.sessionData}
+									reqUser={reqUser}
+								/>
+							</div>
 						</div>
 					</Card>
 				)
@@ -170,14 +166,14 @@ function LastSession({ reqUser, game, playtype }: { reqUser: PublicUserDocument 
 function RecentSessionScoreInfo({
 	session,
 	sessionData,
-	game,
-	playtype,
 	reqUser,
 }: {
 	session: SessionDocument;
 	sessionData: SessionReturns;
 	reqUser: PublicUserDocument;
-} & GamePT) {
+}) {
+	const { game, playtype } = session;
+
 	const highlightedScores = sessionData.scores.filter((e) => e.highlight);
 
 	const [mode, setMode] = useState<"highlight" | "best" | "recent">(

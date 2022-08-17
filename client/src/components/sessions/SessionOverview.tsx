@@ -40,7 +40,7 @@ export default function SessionOverview({
 			<Col xs={12}>
 				<Divider />
 
-				<Card header="Breakdown">
+				<Card header="Raise Breakdown">
 					<Row>
 						<SessionRaiseBreakdown sessionData={sessionData} setScores={setScores} />
 					</Row>

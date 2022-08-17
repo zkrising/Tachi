@@ -117,7 +117,7 @@ export default function SessionRaiseBreakdown({
 		<>
 			<div className="col-12">
 				<div className="row">
-					<div className="col-6 col-lg-6 offset-lg-3">
+					<div className="col-12 col-lg-6 offset-lg-3">
 						<div className="d-flex justify-content-center">
 							<div className="btn-group">
 								<SelectButton value={view} setValue={setView} id="lamps">
@@ -138,7 +138,7 @@ export default function SessionRaiseBreakdown({
 						</div>
 					</div>
 
-					<div className="col-6 col-lg-3">
+					<div className="col-lg-3 d-none d-lg-block">
 						<select
 							className="form-control ml-auto"
 							value={filter}

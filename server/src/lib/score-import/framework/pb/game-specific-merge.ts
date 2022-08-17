@@ -1,3 +1,4 @@
+/* eslint-disable require-atomic-updates */
 import { InternalFailure } from "../common/converter-failures";
 import db from "external/mongo/db";
 import { Volforce } from "rg-stats";
@@ -138,6 +139,27 @@ export async function SDVXMergeFn(
 		pbDoc.scoreData.lamp,
 		chart.levelNum
 	);
+
+	// find the users score with the highest exScore
+	const bestExScore = (await db.scores.findOne(
+		{
+			chartID: pbDoc.chartID,
+			"scoreData.hitMeta.exScore": { $type: "number" },
+		},
+		{
+			sort: {
+				"scoreData.hitMeta.exScore": -1,
+			},
+		}
+	)) as ScoreDocument<"sdvx:Single"> | null;
+
+	if (!bestExScore) {
+		pbDoc.scoreData.hitMeta.exScore = undefined;
+	} else {
+		pbDoc.scoreData.hitMeta.exScore = bestExScore.scoreData.hitMeta.exScore;
+
+		pbDoc.composedFrom.other = [{ name: "exScorePB", scoreID: bestExScore.scoreID }];
+	}
 
 	return true;
 }

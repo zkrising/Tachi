@@ -1136,6 +1136,7 @@ export interface HitMetaLookup {
 	};
 	"sdvx:Single": BASE_VALID_HIT_META & {
 		gauge: number | null;
+		exScore: number | null;
 	};
 	"usc:Controller": USCHitMeta;
 	"usc:Keyboard": USCHitMeta;

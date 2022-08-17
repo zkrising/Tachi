@@ -39,6 +39,7 @@ t.test("#ConverterIRKsHookSV6C", (t) => {
 					},
 					hitMeta: {
 						maxCombo: 158,
+						exScore: 1334,
 					},
 				},
 				game: "sdvx",

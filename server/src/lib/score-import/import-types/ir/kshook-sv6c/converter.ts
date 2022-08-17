@@ -57,6 +57,7 @@ export const ConverterIRKsHookSV6C: ConverterFunction<KsHookSV6CScore, KsHookSV6
 			hitMeta: {
 				gauge: data.gauge / 100,
 				maxCombo: data.max_chain,
+				exScore: data.ex_score,
 			},
 		},
 		scoreMeta: {},

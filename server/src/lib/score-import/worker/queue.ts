@@ -6,7 +6,7 @@ const ScoreImportQueue = new Queue(`${TachiConfig.NAME} Score Import Queue`, {
 	defaultJobOptions: {
 		removeOnComplete: true,
 		removeOnFail: 10, // keep the last 10 failed jobs, but start pruning beyond that.
-	}
+	},
 });
 
 export default ScoreImportQueue;

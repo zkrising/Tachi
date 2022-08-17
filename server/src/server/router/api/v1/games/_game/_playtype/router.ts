@@ -9,6 +9,7 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import { ONE_HOUR } from "lib/constants/time";
 import { SearchUsersRegExp } from "lib/search/search";
+import { Environment } from "lib/setup/config";
 import NodeCache from "node-cache";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
@@ -340,6 +341,10 @@ router.use("/songs/:songID", songIDRouter);
 router.use("/folders", foldersRouter);
 router.use("/tables", tablesRouter);
 router.use("/scores", scoresRouter);
-router.use("/targets", targetsRouter);
+
+// stubbed for tests only, not ready for release.
+if (Environment.nodeEnv === "test") {
+	router.use("/targets", targetsRouter);
+}
 
 export default router;

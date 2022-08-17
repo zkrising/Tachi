@@ -10,6 +10,7 @@ import tablesRouter from "./tables/router";
 import targetsRouter from "./targets/router";
 import { Router } from "express";
 import db from "external/mongo/db";
+import { Environment } from "lib/setup/config";
 import { GetGamePTConfig } from "tachi-common";
 import { IsString } from "utils/misc";
 import { GetTachiData, GetUGPT } from "utils/req-tachi-data";
@@ -298,7 +299,13 @@ router.use("/tables", tablesRouter);
 router.use("/showcase", showcaseRouter);
 router.use("/settings", settingsRouter);
 router.use("/folders", foldersRouter);
-router.use("/targets", targetsRouter);
-router.use("/rivals", rivalsRouter);
+
+// these are stubbed out in release, as they aren't ready for full release yet
+// but we desperately need a 2.1 update.
+// they are, however, available in tests because otherwise tests would fail.
+if (Environment.nodeEnv === "test") {
+	router.use("/targets", targetsRouter);
+	router.use("/rivals", rivalsRouter);
+}
 
 export default router;

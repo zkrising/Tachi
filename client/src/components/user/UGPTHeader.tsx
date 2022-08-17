@@ -100,12 +100,12 @@ export function UGPTBottomNav({
 		<NavItem key="leaderboard" to={`${baseUrl}/leaderboard`}>
 			Leaderboard
 		</NavItem>,
-		<NavItem key="rivals" to={`${baseUrl}/rivals`}>
-			Rivals
-		</NavItem>,
-		<NavItem key="targets" to={`${baseUrl}/targets`}>
-			Targets
-		</NavItem>,
+		// <NavItem key="rivals" to={`${baseUrl}/rivals`}>
+		// 	Rivals
+		// </NavItem>,
+		// <NavItem key="targets" to={`${baseUrl}/targets`}>
+		// 	Targets
+		// </NavItem>,
 	];
 
 	if (isRequestedUser) {

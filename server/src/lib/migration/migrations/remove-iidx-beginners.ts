@@ -3,7 +3,7 @@ import { DeleteMultipleScores } from "lib/score-mutation/delete-scores";
 import type { Migration } from "utils/types";
 
 const migration: Migration = {
-	id: "add-rivals-to-ugpt",
+	id: "remove-iidx-beginners",
 	up: async () => {
 		// copied from database-seeds before they were removed
 		// the charts themselves are not guaranteed to be in the db

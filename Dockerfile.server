@@ -4,6 +4,10 @@
 
 FROM node:16 as build
 WORKDIR /app
+
+ARG COMMIT_HASH
+ENV COMMIT_HASH=${COMMIT_HASH}
+
 COPY --chown=node:node ./server /app/server
 COPY --chown=node:node ./common /app/common
 COPY --chown=node:node ./pnpm-lock.yaml /app

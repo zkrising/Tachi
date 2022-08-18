@@ -461,7 +461,7 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
 
 		t.equal(res.status, 200);
 		t.equal(res.body.success, true);
-		t.equal(res.body.description, "Class not updated, as you didn't  clear this course.");
+		t.equal(res.body.description, "Class not updated, as you didn't clear this course.");
 
 		t.end();
 	});

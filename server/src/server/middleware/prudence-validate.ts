@@ -38,6 +38,7 @@ const API_ERR_HANDLER =
 			`Prudence rejection: ${error.message}, ${stringVal} [K:${error.keychain}]`,
 			{
 				userVal: error.userVal,
+				fullObj: req.method === "GET" ? req.query : req.safeBody,
 			}
 		);
 

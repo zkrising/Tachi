@@ -11,7 +11,10 @@ import { RequireNotGuest } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { UpdateClassIfGreater } from "utils/class";
 import { IsRecord, NotNullish } from "utils/misc";
-import type { BeatorajaChart } from "lib/score-import/import-types/ir/beatoraja/types";
+import type {
+	BeatorajaChart,
+	BeatorajaScore,
+} from "lib/score-import/import-types/ir/beatoraja/types";
 import type { integer } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
@@ -185,7 +188,22 @@ router.post(
 				constraint: [p.isIn("LN", "MIRROR", "GAUGE_LR2")],
 			},
 			score: {
-				clear: p.isIn("Clear", "Failed"),
+				// For some reason, a course can have any of these lamps.
+				// Since I'm too lazy to delve into the code to find which of these are actually used
+				// I'm going to assume any of them can come in, and handle them later.
+				clear: p.isIn(
+					"NoPlay",
+					"Failed",
+					"AssistEasy",
+					"LightAssistEasy",
+					"Easy",
+					"Normal",
+					"Hard",
+					"ExHard",
+					"FullCombo",
+					"Perfect",
+					"Max"
+				),
 				lntype: p.isIn(0, 1, 2),
 			},
 		},
@@ -200,7 +218,7 @@ router.post(
 				constraint: Array<"GAUGE_LR2" | "LN" | "MIRROR">;
 			};
 			score: {
-				clear: "Clear" | "Failed";
+				clear: BeatorajaScore["clear"];
 				lntype: 0 | 1 | 2;
 			};
 		};
@@ -208,10 +226,15 @@ router.post(
 		const charts = body.course.charts;
 		const clear = body.score.clear;
 
-		if (clear !== "Clear") {
+		if (
+			clear === "Failed" ||
+			clear === "NoPlay" ||
+			clear === "Easy" ||
+			clear === "LightAssistEasy"
+		) {
 			return res.status(200).json({
 				success: true,
-				description: "Class not updated.",
+				description: "Class not updated, as you didn't clear this course.",
 			});
 		}
 

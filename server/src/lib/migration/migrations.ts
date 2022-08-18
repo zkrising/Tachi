@@ -1,5 +1,7 @@
 import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
+import RemoveIIDXBeginners from "./migrations/remove-iidx-beginners";
 import RemoveMultifolderStats from "./migrations/remove-multifolder-stats";
+import UpdateJubeatPreferredTables from "./migrations/update-jubeat-preferred-tables";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment } from "lib/setup/config";
@@ -24,7 +26,12 @@ export const FAKE_MIGRATION: Migration = {
 const REGISTERED_MIGRATIONS: Array<Migration> =
 	Environment.nodeEnv === "test"
 		? [FAKE_MIGRATION]
-		: [UGPTRivalsMigration, RemoveMultifolderStats];
+		: [
+				UGPTRivalsMigration,
+				RemoveMultifolderStats,
+				RemoveIIDXBeginners,
+				UpdateJubeatPreferredTables,
+		  ];
 
 function CreateMigrationLookupMap(migrations: Array<Migration>) {
 	const map = new Map<string, Migration>();

@@ -51,8 +51,9 @@ const PORTISHEAD_DUMMY = [
 
 const logger = CreateLogCtx(__filename);
 
+// we want to read the monorepo root package.json.
 const packageJSON = JSON.parse(
-	fs.readFileSync(path.join(__dirname, "../../../package.json"), "utf-8")
+	fs.readFileSync(path.join(__dirname, "../../../../package.json"), "utf-8")
 ) as { version: string };
 
 const semverInfo = semver.parse(packageJSON.version);

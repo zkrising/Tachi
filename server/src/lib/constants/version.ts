@@ -2,11 +2,11 @@
 // viz. btchi and ktchi share versioning. This is because they
 // essentially share codebases.
 import CreateLogCtx from "lib/logger/logger";
+import { Environment } from "lib/setup/config";
 import semver from "semver";
 import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
-import { Environment } from "lib/setup/config";
 
 // As is with all front-facing zkldi projects, the version names for tachi-server
 // are from an album I like. In this case, the al(bum is Portishead - Dummy.
@@ -73,8 +73,6 @@ try {
 		// Note that git returns this with a trailing newline, so we have to trim that off.
 		commit = execSync("git rev-parse --short HEAD").toString("utf-8").trim();
 	}
-
-	
 } catch (err) {
 	logger.warn(`Failed to read what commit we're on -- Using null as our commit version.`, {
 		err,

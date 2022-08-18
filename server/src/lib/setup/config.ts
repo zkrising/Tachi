@@ -300,5 +300,5 @@ export const Environment = {
 	nodeEnv,
 	replicaIdentity,
 	seqUrl,
-	commitHash: process.env.COMMIT_HASH
+	commitHash: process.env.COMMIT_HASH,
 };

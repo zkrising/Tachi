@@ -245,7 +245,7 @@ export function FormatSieglindeBMS(sgl: number): string {
 		return `${fixedSgl} (☆${fixedSgl})`;
 	}
 
-	return `${fixedSgl} (🟊${(sgl - 12).toFixed(2)})`;
+	return `${fixedSgl} (★${(sgl - 12).toFixed(2)})`;
 }
 
 export function FormatSieglindePMS(sgl: number): string {

@@ -26,9 +26,6 @@ jobs:
     env:
       NODE_ENV: "test"
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-    # skip the 5 minute time-waste when fast deploying
-    if: ${{ github.event_name != 'workflow_dispatch' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2

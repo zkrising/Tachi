@@ -8,6 +8,12 @@ WORKDIR /app
 ARG COMMIT_HASH
 ENV COMMIT_HASH=${COMMIT_HASH}
 
+# Git 2.22 is the default in node:16
+# This is over 4 years old. We need a later one to be able to do sparse checkouts.
+RUN echo deb http://deb.debian.org/debian buster-backports main | tee /etc/apt/sources.list.d/buster-backports.list && \
+	apt update && \
+	apt install -y -t buster-backports git
+
 COPY --chown=node:node ./server /app/server
 COPY --chown=node:node ./common /app/common
 COPY --chown=node:node ./pnpm-lock.yaml /app

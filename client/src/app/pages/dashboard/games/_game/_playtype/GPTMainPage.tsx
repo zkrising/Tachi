@@ -53,10 +53,10 @@ export default function GPTMainPage({ game, playtype }: GamePT) {
 			<Card header="Recent Highlighted Scores">
 				<RecentHighlightedScoresComponent game={game} playtype={playtype} />
 			</Card>
-			<Divider />
+			{/* <Divider />
 			<Card header="Recent Achieved Goals">
 				<RecentAchievedGoalsComponent game={game} playtype={playtype} />
-			</Card>
+			</Card> */}
 			{Object.keys(gptConfig.classHumanisedFormat).length !== 0 && (
 				<>
 					<Divider />

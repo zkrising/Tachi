@@ -17,7 +17,8 @@ import PBDropdown from "../dropdowns/PBDropdown";
 import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";
 import ChartHeader from "../headers/ChartHeader";
 import { GetGPTCoreHeaders } from "../headers/GameHeaders";
-import { FolderIndicatorHeader } from "../headers/IndicatorHeader";
+import { EmptyHeader, FolderIndicatorHeader } from "../headers/IndicatorHeader";
+import Muted from "components/util/Muted";
 
 export default function FolderTable<I extends IDStrings = IDStrings>({
 	dataset,
@@ -36,6 +37,7 @@ export default function FolderTable<I extends IDStrings = IDStrings>({
 		ChartHeader<FolderDataset>(game, playtype, (k) => k),
 		FolderIndicatorHeader,
 		["Song", "Song", StrSOV((x) => x.__related.song.title)],
+		EmptyHeader,
 		...GetGPTCoreHeaders<FolderDataset>(
 			game,
 			playtype,
@@ -104,6 +106,9 @@ function Row<I extends IDStrings = IDStrings>({
 			<DifficultyCell chart={data} game={game} />
 			<IndicatorsCell highlight={scoreState.highlight} />
 			<TitleCell song={data.__related.song} chart={data} game={game} />
+			<td>
+				<Muted>PB</Muted>
+			</td>
 			<ScoreCoreCells score={score} game={game} rating={rating} chart={data} />
 			<RankingCell rankingData={score.rankingData} />
 			<TimestampCell time={score.timeAchieved} />

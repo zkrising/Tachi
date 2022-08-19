@@ -1,6 +1,7 @@
 import SieglindeV0Calc from "./calc/v0";
 import GetTableData from "./fetch-tables";
 import logger from "./logger";
+import SieglindeV1Calc from "calc/v1-jiminp";
 import { Command } from "commander";
 import fs from "fs";
 
@@ -16,20 +17,37 @@ program
 	.option("-o, --out <Where to output JSON>");
 
 program.parse(process.argv);
-const options = program.opts();
+const options: {
+	out?: string;
+	version?: string;
+} = program.opts();
 
 if (!options.out) {
 	logger.error(`Need to provide an --out parameter for output!`);
 	process.exit(-1);
 }
 
-const version = Number(options.version) ?? 0;
+const version = Number(options.version);
 
-function WriteOut(data: string) {
-	fs.writeFileSync(options.out, data);
+if (Number.isNaN(version)) {
+	throw new Error(`Unknown sieglinde version ${version}.`);
 }
 
-(async () => {
+function WriteOut(data: string) {
+	fs.writeFileSync(options.out!, data);
+}
+
+void (async () => {
+	let calcFn;
+
+	if (version === 0) {
+		calcFn = SieglindeV0Calc;
+	} else if (version === 1) {
+		calcFn = SieglindeV1Calc;
+	} else {
+		throw new Error(`Unknown sieglinde version ${version}.`);
+	}
+
 	if (version === 0) {
 		fs.mkdirSync(`${__dirname}/cache`, { recursive: true });
 
@@ -44,7 +62,7 @@ function WriteOut(data: string) {
 			// the lr2ir runs off of a toaster which attempts to gut you if you make more than one
 			// request a second.
 			// eslint-disable-next-line no-await-in-loop
-			calcData.push(await SieglindeV0Calc(table));
+			calcData.push(await calcFn(table));
 		}
 
 		WriteOut(JSON.stringify(calcData.flat(1)));

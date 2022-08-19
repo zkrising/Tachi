@@ -58,8 +58,6 @@ router.get("/limit", async (req, res) => {
 	});
 });
 
-const InviteLocks = new Set();
-
 /**
  * Create a new invite.
  *
@@ -67,18 +65,38 @@ const InviteLocks = new Set();
  */
 router.post("/create", async (req, res) => {
 	const user = GetTachiData(req, "requestedUser");
+	const userID = user.id;
 
 	try {
+		const lockExists = await db["invite-locks"].findOne({
+			userID,
+		});
+
+		if (!lockExists) {
+			await db["invite-locks"].insert({
+				userID,
+				locked: false,
+			});
+		}
+
+		const isNotLocked = await db["invite-locks"].findOneAndUpdate(
+			{
+				userID,
+				locked: false,
+			},
+			{
+				$set: { locked: true },
+			}
+		);
+
 		// race condition protection
 		// to avoid users double-creating invites.
-		if (InviteLocks.has(user.id)) {
+		if (!isNotLocked) {
 			return res.status(409).json({
 				success: false,
 				description: `You already have an outgoing invite creation request.`,
 			});
 		}
-
-		InviteLocks.add(user.id);
 
 		const existingInvites = await db.invites.count({ createdBy: user.id });
 
@@ -108,7 +126,14 @@ router.post("/create", async (req, res) => {
 			body: inviteDoc,
 		});
 	} finally {
-		InviteLocks.delete(user.id);
+		await db["invite-locks"].findOneAndUpdate(
+			{
+				userID,
+			},
+			{
+				$set: { locked: false },
+			}
+		);
 	}
 });
 

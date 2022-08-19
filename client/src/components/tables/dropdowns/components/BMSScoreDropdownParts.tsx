@@ -89,6 +89,7 @@ function GraphComponent({ type, values }: { type: LampTypes; values: (number | n
 			height="200px"
 			mobileHeight="175px"
 			type={type}
+			usePercentXAxis
 			data={[
 				{
 					id: type,

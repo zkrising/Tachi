@@ -26,12 +26,14 @@ export default function IIDXLampChart({
 	mobileWidth = width,
 	type,
 	data,
+	usePercentXAxis = false,
 }: {
 	mobileHeight?: number | string;
 	mobileWidth?: number | string;
 	width?: number | string;
 	height?: number | string;
 	data: Serie[];
+	usePercentXAxis: boolean;
 	type: "DAN_GAUGE" | "EASY" | "NORMAL" | "HARD" | "EX_HARD";
 } & ResponsiveLine["props"]) {
 	let realData = [];
@@ -78,7 +80,11 @@ export default function IIDXLampChart({
 			data={realData}
 			margin={{ top: 30, bottom: 50, left: 50, right: 50 }}
 			xScale={{ type: "linear" }}
-			axisBottom={{ format: (x) => Math.floor(Number(x) / 4).toString() }}
+			axisBottom={{
+				format: usePercentXAxis
+					? (x) => `${x / 100}%`
+					: (x) => Math.floor(Number(x) / 4).toString(),
+			}}
 			motionConfig="stiff"
 			crosshairType="x"
 			yScale={{ type: "linear", min: 0, max: 100 }}

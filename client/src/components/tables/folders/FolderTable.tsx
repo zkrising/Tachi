@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { Game, IDStrings, ScoreCalculatedDataLookup } from "tachi-common";
 import { FolderDataset } from "types/tables";
 import { Playtype } from "types/tachi";
+import Muted from "components/util/Muted";
 import DifficultyCell from "../cells/DifficultyCell";
 import IndicatorsCell from "../cells/IndicatorsCell";
 import RankingCell from "../cells/RankingCell";
@@ -18,7 +19,6 @@ import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";
 import ChartHeader from "../headers/ChartHeader";
 import { GetGPTCoreHeaders } from "../headers/GameHeaders";
 import { EmptyHeader, FolderIndicatorHeader } from "../headers/IndicatorHeader";
-import Muted from "components/util/Muted";
 
 export default function FolderTable<I extends IDStrings = IDStrings>({
 	dataset,

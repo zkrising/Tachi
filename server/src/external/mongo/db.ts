@@ -156,6 +156,7 @@ const db = {
 	"orphan-scores": monkDB.get<OrphanScoreDocument>("orphan-scores"),
 	"import-locks": monkDB.get<{ userID: integer; locked: boolean }>("import-locks"),
 	tables: monkDB.get<TableDocument>("tables"),
+	"invite-locks": monkDB.get<{ userID: integer; locked: boolean }>("invite-locks"),
 	"game-settings": monkDB.get<UGPTSettings>("game-settings"),
 	"game-stats-snapshots": monkDB.get<UserGameStatsSnapshot>("game-stats-snapshots"),
 	"session-view-cache": monkDB.get<SessionViewDocument>("session-view-cache"),

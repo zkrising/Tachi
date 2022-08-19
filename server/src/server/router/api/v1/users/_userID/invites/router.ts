@@ -3,6 +3,7 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import { GetTotalAllowedInvites } from "lib/invites/invites";
 import { RequireKamaitachi } from "server/middleware/type-require";
+import { UserAuthLevels } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 import { GetTachiData } from "utils/req-tachi-data";
 import { GetUsersWithIDs } from "utils/user";
@@ -100,7 +101,10 @@ router.post("/create", async (req, res) => {
 
 		const existingInvites = await db.invites.count({ createdBy: user.id });
 
-		if (existingInvites >= GetTotalAllowedInvites(user)) {
+		if (
+			existingInvites >= GetTotalAllowedInvites(user) &&
+			user.authLevel !== UserAuthLevels.ADMIN
+		) {
 			InviteLocks.delete(user.id);
 
 			return res.status(400).json({

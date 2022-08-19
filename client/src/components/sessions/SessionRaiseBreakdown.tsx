@@ -536,7 +536,7 @@ function BreakdownChartContents({
 	return (
 		<>
 			<TitleCell noArtist chart={chart} game={game} song={song} comment={comment} />
-			{score.userID === user.id && (
+			{score.userID === user?.id && (
 				<CommentHighlightManager
 					highlight={highlight}
 					setHighlight={setHighlight}
@@ -591,7 +591,7 @@ function CommentHighlightManager({
 					onClick={() => setHighlight(false)}
 					colour="warning"
 					type="star"
-					style={{ paddingTop: "0.1rem" }}
+					style={{ paddingTop: "0.1rem", paddingRight: "0.33rem" }}
 				/>
 			) : (
 				<span className="breakdown-hover-highlight-button">

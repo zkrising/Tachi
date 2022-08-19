@@ -7,7 +7,7 @@ import { ChartDocument, COLOUR_SET } from "tachi-common";
 import Muted from "components/util/Muted";
 import TierlistInfoPart from "./TierlistInfoPart";
 
-export default function BMSPMSDifficultyCell({
+export default function BMSOrPMSDifficultyCell({
 	chart,
 	game,
 }: {

@@ -10,7 +10,7 @@ import {
 	Game,
 	GetGamePTConfig,
 } from "tachi-common";
-import BMSPMSDifficultyCell from "./BMSDifficultyCell";
+import BMSOrPMSDifficultyCell from "./BMSOrPMSDifficultyCell";
 import TierlistInfoPart from "./TierlistInfoPart";
 import USCDifficultyCell from "./USCDifficultyCell";
 import ITGDifficultyCell from "./ITGDifficultyCell";
@@ -32,7 +32,7 @@ export default function DifficultyCell({
 
 	if (game === "bms" || game === "pms") {
 		return (
-			<BMSPMSDifficultyCell
+			<BMSOrPMSDifficultyCell
 				chart={
 					chart as ChartDocument<"bms:7K" | "bms:14K" | "pms:Keyboard" | "pms:Controller">
 				}

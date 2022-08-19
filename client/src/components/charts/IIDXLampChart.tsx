@@ -33,7 +33,7 @@ export default function IIDXLampChart({
 	width?: number | string;
 	height?: number | string;
 	data: Serie[];
-	usePercentXAxis: boolean;
+	usePercentXAxis?: boolean;
 	type: "DAN_GAUGE" | "EASY" | "NORMAL" | "HARD" | "EX_HARD";
 } & ResponsiveLine["props"]) {
 	let realData = [];

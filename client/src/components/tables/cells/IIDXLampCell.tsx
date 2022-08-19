@@ -50,7 +50,7 @@ export default function IIDXLampCell({
 			sc.scoreData.judgements.good!;
 	}
 
-	if (IsNotNullish(cbrkCount)) {
+	if (IsNotNullish(cbrkCount) && cbrkCount !== 0) {
 		cbrkText = `[CB: ${cbrkCount}]`;
 	}
 

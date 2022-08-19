@@ -12,7 +12,7 @@ import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import SelectButton from "components/util/SelectButton";
 import deepmerge from "deepmerge";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import {
 	ChartDocument,
@@ -33,6 +33,7 @@ import { SessionReturns } from "types/api-returns";
 import { CommentModal, ModifyScore } from "components/tables/dropdowns/components/ScoreEditButtons";
 import { SetState } from "types/react";
 import { ScoreDataset } from "types/tables";
+import { UserContext } from "context/UserContext";
 
 type SetScores = (scores: ScoreDocument[]) => void;
 
@@ -470,6 +471,8 @@ function BreakdownChartContents({
 	const chart = chartMap.get(score.chartID)!;
 	const song = songMap.get(score.songID)!;
 
+	const { user } = useContext(UserContext);
+
 	const [highlight, setHighlight] = useState(score.highlight);
 	const [comment, setComment] = useState(score.comment);
 	const [firstRun, setFirstRun] = useState(true);
@@ -533,12 +536,14 @@ function BreakdownChartContents({
 	return (
 		<>
 			<TitleCell noArtist chart={chart} game={game} song={song} comment={comment} />
-			<CommentHighlightManager
-				highlight={highlight}
-				setHighlight={setHighlight}
-				comment={comment}
-				setComment={setComment}
-			/>
+			{score.userID === user.id && (
+				<CommentHighlightManager
+					highlight={highlight}
+					setHighlight={setHighlight}
+					comment={comment}
+					setComment={setComment}
+				/>
+			)}
 			<DifficultyCell alwaysShort chart={chart} game={game} />
 		</>
 	);

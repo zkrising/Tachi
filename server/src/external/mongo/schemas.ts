@@ -26,6 +26,11 @@ function prSchemaify(schema: PrudenceSchema) {
 export const DatabaseSchemas: Record<Databases, SchemaValidatorFunction> = {
 	"import-locks": prSchemaify({
 		userID: p.isPositiveNonZeroInteger,
+		locked: "boolean",
+	}),
+	"invite-locks": prSchemaify({
+		userID: p.isPositiveNonZeroInteger,
+		locked: "boolean",
 	}),
 	"kai-auth-tokens": prSchemaify({
 		userID: p.isPositiveNonZeroInteger,

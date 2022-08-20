@@ -105,8 +105,6 @@ router.post("/create", async (req, res) => {
 			existingInvites >= GetTotalAllowedInvites(user) &&
 			user.authLevel !== UserAuthLevels.ADMIN
 		) {
-			InviteLocks.delete(user.id);
-
 			return res.status(400).json({
 				success: false,
 				description: `You already have your maximum amount of outgoing invites.`,

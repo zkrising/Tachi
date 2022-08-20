@@ -36,7 +36,7 @@ export default function ImportPage() {
 				<DiscordLink>Discord</DiscordLink>.
 				<br />
 				Know how to program, and want to write a script yourself? Check out{" "}
-				<ExternalLink href="https://tachi.readthedocs.io/en/latest/tachi-server/batch-manual/overview/">
+				<ExternalLink href="https://docs.bokutachi.xyz/en/latest/tachi-server/batch-manual/overview/">
 					Batch Manual
 				</ExternalLink>
 				.
@@ -367,7 +367,7 @@ function ImportTypeInfoCard({
 					moreInfo={
 						<>
 							Check{" "}
-							<ExternalLink href="https://tachi.readthedocs.io/en/latest/tachi-server/batch-manual/overview/">
+							<ExternalLink href="https://docs.bokutachi.xyz/en/latest/tachi-server/batch-manual/overview/">
 								the documentation
 							</ExternalLink>
 							.

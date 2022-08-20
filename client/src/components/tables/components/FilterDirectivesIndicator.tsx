@@ -57,7 +57,7 @@ export default function FilterDirectivesIndicator<D>({
 				component={
 					<>
 						You can use{" "}
-						<ExternalLink href="https://tachi.readthedocs.io/en/latest/user/filter-directives/">
+						<ExternalLink href="https://docs.bokutachi.xyz/en/latest/user/filter-directives/">
 							<strong>Filter Directives</strong>
 						</ExternalLink>{" "}
 						inside this filter box.
@@ -80,7 +80,7 @@ export default function FilterDirectivesIndicator<D>({
 					<p>
 						This is a slightly advanced feature for{" "}
 						<HoverText hover="nerds">power users</HoverText>. You can read about it{" "}
-						<a href="https://tachi.readthedocs.io/en/latest/user/filter-directives/">
+						<a href="https://docs.bokutachi.xyz/en/latest/user/filter-directives/">
 							here
 						</a>
 						.<br />

@@ -1,7 +1,7 @@
 site_name: Tachi Documentation
-site_description: Mono-documentation for Kamaitachi, Bokutachi and related things.
+site_description: Documentation for Kamaitachi, Bokutachi and related things.
 site_author: zkldi
-site_url: https://tachi.rtfd.io
+site_url: https://docs.bokutachi.xyz
 
 theme:
   name: material

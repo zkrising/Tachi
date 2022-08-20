@@ -2,7 +2,9 @@
 
 This is the documentation for Tachi.
 
-We host this on readthedocs, and you can find it [here](https://tachi.rtfd.io)!
+Our `staging` branch is hosted under [https://docs-staging.bokutachi.xyz](https://docs-staging.bokutachi.xyz).
+
+Our `release/2.*` branch is hosted under [https://docs.bokutachi.xyz](https://docs.bokutachi.xyz)
 
 # Setup
 

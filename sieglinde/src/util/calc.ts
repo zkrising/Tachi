@@ -73,14 +73,11 @@ export class DifficultyComputer {
 		logger.info(`Read ${this.songDifficulty.size} songs and ${this.userSkill.size} users.`);
 	}
 
-	private readonly _deltaSongDifficulty: Map<SongId, number> = new Map();
-	private readonly _deltaUserSkill: Map<UserId, number> = new Map();
-
 	private _calculateStep(alpha: number): number {
 		let maxDelta = 0;
 
-		const deltaSongDifficulty = this._deltaSongDifficulty;
-		const deltaUserSkill = this._deltaUserSkill;
+		const deltaSongDifficulty: Map<SongId, number> = new Map();
+		const deltaUserSkill: Map<UserId, number> = new Map();
 
 		for (const songId of this.songDifficulty.keys()) {
 			deltaSongDifficulty.set(songId, 0);
@@ -108,21 +105,10 @@ export class DifficultyComputer {
 			);
 		}
 
-		let minSongDifficulty = 0;
-		let maxSongDifficulty = 0;
-
 		for (const [songId, delta] of deltaSongDifficulty) {
 			const newSongDifficulty = this.songDifficulty.get(songId)! + delta * alpha;
 
 			this.songDifficulty.set(songId, newSongDifficulty);
-
-			if (newSongDifficulty < minSongDifficulty) {
-				minSongDifficulty = newSongDifficulty;
-			}
-
-			if (newSongDifficulty > maxSongDifficulty) {
-				maxSongDifficulty = newSongDifficulty;
-			}
 
 			if (
 				maxDelta === 0 ||
@@ -132,29 +118,12 @@ export class DifficultyComputer {
 				maxDelta = delta;
 			}
 		}
-
-		logger.debug(
-			`Song difficulty range (${this.songDifficulty.size} songs): ${minSongDifficulty.toFixed(
-				4
-			)} - ${maxSongDifficulty.toFixed(4)}`
-		);
-
-		let minUserSkill = 0;
-		let maxUserSkill = 0;
 
 		for (const [userId, delta] of deltaUserSkill) {
 			const newUserSkill = this.userSkill.get(userId)! + delta * alpha;
 
 			this.userSkill.set(userId, newUserSkill);
 
-			if (newUserSkill < minUserSkill) {
-				minUserSkill = newUserSkill;
-			}
-
-			if (newUserSkill > maxUserSkill) {
-				maxUserSkill = newUserSkill;
-			}
-
 			if (
 				maxDelta === 0 ||
 				(maxDelta > 0 && delta > maxDelta) ||
@@ -164,49 +133,49 @@ export class DifficultyComputer {
 			}
 		}
 
-		logger.debug(
-			`User skill range (${this.userSkill.size} users): ${minUserSkill.toFixed(
-				4
-			)} - ${maxUserSkill.toFixed(4)}`
-		);
-
 		return maxDelta;
 	}
 
 	computeDifficulty() {
-		const limit = 0.001;
+		const limit = 0.005;
 		let alpha = 1;
-		let md = 0;
-		let mdl = 0;
+		let maxDelta = 0;
+		let lastMaxDelta = 0;
 
 		let t = 0;
 
 		do {
 			logger.info(`Executing one step... (alpha = ${alpha})`);
-			md = this._calculateStep(t < 20 ? 0.5 : alpha / 16) / Math.sqrt(alpha);
+			maxDelta = this._calculateStep(t < 20 ? 0.5 : alpha / 16) / Math.sqrt(alpha);
 
-			logger.debug(`md = ${md}`);
+			logger.info(`Convergence at md = ${maxDelta}`);
 
-			const isMdlPositive = mdl > 0;
-			const isMdPositive = md > 0;
+			const isLMDPositive = lastMaxDelta > 0;
+			const isMDPositive = maxDelta > 0;
 
-			if (isMdlPositive === isMdPositive) {
+			if (isLMDPositive === isMDPositive) {
 				alpha = alpha * (alpha > 5 ? 1.005 : 1.02);
 			} else {
 				alpha = 1;
 			}
 
-			mdl = md;
-			if (md < 0) {
-				md = -md;
+			if (maxDelta === lastMaxDelta) {
+				logger.warn(
+					`NOT CONVERGING: Got in a one-cycle loop at ${maxDelta}. Returning anyway?`
+				);
+				return;
 			}
 
-			if (alpha * md > 1) {
-				alpha = 1 / md;
+			lastMaxDelta = maxDelta;
+
+			maxDelta = Math.abs(maxDelta);
+
+			if (alpha * maxDelta > 1) {
+				alpha = 1 / maxDelta;
 			}
 
 			t = t + 1;
-		} while (md > limit);
+		} while (maxDelta > limit);
 
 		logger.info("Difficulties converged!");
 	}

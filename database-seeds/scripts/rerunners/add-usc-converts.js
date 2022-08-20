@@ -1,7 +1,12 @@
 const { Command } = require("commander");
 const sqlite3 = require("better-sqlite3");
 const fs = require("fs");
-const { CreateChartID, ReadCollection, WriteCollection } = require("../util");
+const {
+	CreateChartID,
+	ReadCollection,
+	WriteCollection,
+	GetFreshScoreIDGenerator,
+} = require("../util");
 
 const program = new Command();
 program.requiredOption("-d, --db <maps.db>");
@@ -19,25 +24,29 @@ console.log(`Found ${dbRows.length} charts.`);
 
 const songs = ReadCollection("songs-usc.json");
 const charts = ReadCollection("charts-usc.json");
-let maxSongId = Math.max(...songs.map((s) => s.id));
 const folderIdToSongId = {};
 
 let newSongs = 0;
 let newCharts = 0;
 
+const getFreshSongID = GetFreshScoreIDGenerator("usc");
+
+// if debug is true, console log. Else, do nothing.
+const log = DEBUG ? console.log : () => undefined;
+
 for (const chart of dbRows) {
 	// Check if chart already exists by comparing hash
 	const existingChart = charts.find((c) => c.data.hashSHA1 === chart.hash);
 	if (existingChart) {
-		if (DEBUG) {
-			console.log(`Chart ${chart.title} ${existingChart.difficulty} already exists.`);
-		}
+		log(`Chart ${chart.title} ${existingChart.difficulty} already exists.`);
 		continue;
 	}
 
 	if (!folderIdToSongId[chart.folderid]) {
 		const splitPath = chart.path.replaceAll("\\", "/").split("/");
 		const folderName = splitPath[splitPath.length - 2];
+
+		// this is sketchy. might have false positives/false negatives!!
 		const existingSong = songs.find(
 			(s) =>
 				(s.title === chart.title ||
@@ -46,14 +55,13 @@ for (const chart of dbRows) {
 					s.searchTerms.includes(folderName.replaceAll(" ", "_"))) &&
 				s.artist === chart.artist
 		);
+
 		if (existingSong) {
-			if (DEBUG) {
-				console.log(`Song ${folderName} already exists with id ${existingSong.id}.`);
-			}
+			log(`Song ${folderName} already exists with id ${existingSong.id}.`);
 			folderIdToSongId[chart.folderid] = existingSong.id;
 		} else {
-			const songID = maxSongId + 1;
-			maxSongId = songID;
+			const songID = getFreshSongID();
+
 			songs.push({
 				id: songID,
 				title: chart.title,
@@ -62,11 +70,10 @@ for (const chart of dbRows) {
 				data: {},
 				searchTerms: [folderName],
 			});
+
 			folderIdToSongId[chart.folderid] = songID;
 			newSongs++;
-			if (DEBUG) {
-				console.log(`Added song ${songID} for folder ${folderName}.`);
-			}
+			log(`Added song ${songID} for folder ${folderName}.`);
 		}
 	}
 
@@ -95,9 +102,7 @@ for (const chart of dbRows) {
 
 	newCharts++;
 
-	if (DEBUG) {
-		console.log(`Added chart ${chart.title} ${chart.diff_shortname}.`);
-	}
+	log(`Added chart ${chart.title} ${chart.diff_shortname}.`);
 }
 
 console.log(`Added ${newSongs} new songs and ${newCharts} new charts.`);

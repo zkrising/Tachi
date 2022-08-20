@@ -1,5 +1,3 @@
-import { CreateLogger } from "mei-logger";
-
-const logger = CreateLogger("Sieglinde");
+const logger = console;
 
 export default logger;

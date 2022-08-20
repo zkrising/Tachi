@@ -6,7 +6,7 @@ import CenterPage from "components/util/CenterPage";
 import SiteWordmark from "components/util/SiteWordmark";
 import { UserContext } from "context/UserContext";
 import { useFormik } from "formik";
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
 import toast from "react-hot-toast";
@@ -19,6 +19,8 @@ export default function LoginPage() {
 	const [err, setErr] = useState("");
 	const { setUser } = useContext(UserContext);
 	const history = useHistory();
+
+	const recaptchaRef = useRef<any>(null);
 
 	const formik = useFormik({
 		initialValues: {
@@ -41,6 +43,8 @@ export default function LoginPage() {
 				false,
 				false
 			);
+
+			recaptchaRef.current.reset();
 
 			if (!rj.success) {
 				setErr(HumaniseError(rj.description));
@@ -111,6 +115,7 @@ export default function LoginPage() {
 					</Form.Group>
 
 					<ReCAPTCHA
+						ref={recaptchaRef}
 						sitekey={
 							process.env.REACT_APP_RECAPTCHA_KEY ??
 							"6LdI2swUAAAAAArkM0ZQi4SnttilqgAwsJSFw3PX"

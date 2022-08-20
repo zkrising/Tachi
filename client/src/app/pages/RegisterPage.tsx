@@ -6,7 +6,7 @@ import Divider from "components/util/Divider";
 import { UserContext } from "context/UserContext";
 import { useFormik } from "formik";
 import { ClientConfig, TachiConfig } from "lib/config";
-import React, { useContext, useState } from "react";
+import React, { MutableRefObject, useContext, useRef, useState } from "react";
 import { Alert, Button, Col, Form } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
 import toast from "react-hot-toast";
@@ -32,6 +32,7 @@ export default function RegisterPage() {
 
 	const { setUser } = useContext(UserContext);
 	const history = useHistory();
+	const recaptchaRef = useRef<any>();
 
 	const urlParams = new URLSearchParams(location.search);
 
@@ -68,6 +69,8 @@ export default function RegisterPage() {
 				false,
 				true
 			);
+
+			recaptchaRef.current.reset();
 
 			if (!rj.success) {
 				setErr(HumaniseError(rj.description));
@@ -126,7 +129,7 @@ export default function RegisterPage() {
 				</div>
 
 				{readRules === "acknowledged" ? (
-					<RegisterForm formik={formik} err={err} />
+					<RegisterForm formik={formik} err={err} recaptchaRef={recaptchaRef} />
 				) : (
 					<div className="text-center">
 						<div className="mb-8">
@@ -191,6 +194,7 @@ export default function RegisterPage() {
 function RegisterForm({
 	formik,
 	err,
+	recaptchaRef,
 }: {
 	formik: UseFormik<{
 		username: string;
@@ -201,6 +205,7 @@ function RegisterForm({
 		captcha: string;
 	}>;
 	err: string;
+	recaptchaRef: MutableRefObject<any>;
 }) {
 	return (
 		<Form onSubmit={formik.handleSubmit}>
@@ -265,6 +270,7 @@ function RegisterForm({
 			)}
 
 			<ReCAPTCHA
+				ref={recaptchaRef}
 				sitekey={
 					process.env.REACT_APP_RECAPTCHA_KEY ??
 					"6LdI2swUAAAAAArkM0ZQi4SnttilqgAwsJSFw3PX"

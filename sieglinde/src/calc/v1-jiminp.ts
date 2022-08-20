@@ -16,7 +16,7 @@ import type { CalcReturns } from "../types";
  *
  * This, however, completely does not work. We genuinely cannot use this at all.
  */
-export default async function SieglindeV2Calc(tableInfo: TableRes): Promise<Array<CalcReturns>> {
+export default async function SieglindeV1Calc(tableInfo: TableRes): Promise<Array<CalcReturns>> {
 	// We can't do this in full-parallel. The LR2IR hyper-aggressively rate limits this stuff.
 	const promises = tableInfo.charts.map((chart) => async () => {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

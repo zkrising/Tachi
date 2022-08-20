@@ -62,19 +62,16 @@ export default async function SieglindeV2Calc(tableInfo: TableRes): Promise<Arra
 		.filter((chart) => ecComputer.songDifficulty.has(chart.md5))
 		.map((chart) => {
 			const ecValue = ecComputer.songDifficulty.get(chart.md5)!;
-			const ecPrefix = "σ";
-
 			const hcValue = hcComputer.songDifficulty.get(chart.md5)!;
-			const hcPrefix = "σ";
 
 			return {
 				md5: chart.md5,
 				title: chart.title,
 				baseLevel: GetFString(tableInfo.table, chart),
 				ec: ecValue,
-				ecStr: `${ecPrefix}${ecValue.toFixed(2)}`,
+				ecStr: `a`,
 				hc: hcValue,
-				hcStr: `${hcPrefix}${hcValue.toFixed(2)}`,
+				hcStr: `a`,
 			};
 		});
 }

@@ -14,7 +14,9 @@ export interface TableRes {
 export default async function GetTableData(): Promise<Array<TableRes>> {
 	const out = [];
 
-	for (const table of registeredTables) {
+	for (const table of registeredTables.filter(
+		(e) => e.name === "Insane" || e.name === "Normal"
+	)) {
 		const charts = await fetch(table.url).then((r) => r.json());
 
 		out.push({ table, charts });

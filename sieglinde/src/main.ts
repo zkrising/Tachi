@@ -48,28 +48,29 @@ void (async () => {
 		throw new Error(`Unknown sieglinde version ${version}.`);
 	}
 
-	if (version === 0) {
-		fs.mkdirSync(`${__dirname}/cache`, { recursive: true });
+	fs.mkdirSync(`${__dirname}/cache`, { recursive: true });
 
-		const tableInfo = await GetTableData();
+	const tableInfo = await GetTableData();
 
-		logger.info(`Starting...`);
+	logger.info(`Starting...`);
 
-		const calcData = [];
+	const calcData = [];
 
-		for (const table of tableInfo) {
-			// literally all the parallelism in this codebase has to be turned off because
-			// the lr2ir runs off of a toaster which attempts to gut you if you make more than one
-			// request a second.
-			// eslint-disable-next-line no-await-in-loop
-			calcData.push(await calcFn(table));
-		}
+	let i = 1;
 
-		WriteOut(JSON.stringify(calcData.flat(1)));
+	for (const table of tableInfo) {
+		logger.info(`Running for table ${table.table.name}. ${i}/${tableInfo.length}`);
 
-		logger.info(`Finished!`);
-	} else {
-		logger.error(`Unsupported/Unknown version ${version}.`);
-		process.exit(-1);
+		// literally all the parallelism in this codebase has to be turned off because
+		// the lr2ir runs off of a toaster which attempts to gut you if you make more than one
+		// request a second.
+		// eslint-disable-next-line no-await-in-loop
+		calcData.push(await calcFn(table));
+
+		i++;
 	}
+
+	WriteOut(JSON.stringify(calcData.flat(1)));
+
+	logger.info(`Finished!`);
 })();

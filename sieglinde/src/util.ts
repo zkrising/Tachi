@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable no-await-in-loop */
 import logger from "./logger";
 import TableValueGetters from "./lookups";
@@ -16,7 +20,8 @@ export async function FetchScoresForMD5(md5: string) {
 			throw new Error(`Invalid cache for ${md5}`);
 		}
 
-		logger.verbose(`Returned ${md5} info from cache.`);
+		logger.debug(`Returned ${md5} info from cache.`);
+
 		return data;
 	} catch {
 		const scores = await fetch(
@@ -28,6 +33,11 @@ export async function FetchScoresForMD5(md5: string) {
 		if (!Array.isArray(data)) {
 			logger.error(`Got rate limited for ${md5}!`, { data });
 			throw new Error(`Got rate limited on ${md5}.`);
+		}
+
+		// xml sucks
+		for (const d of data) {
+			d.name = d.name.toString();
 		}
 
 		await writeFile(`${__dirname}/cache/${md5}.json`, JSON.stringify(data, null, "\t"));
@@ -88,11 +98,11 @@ export function GetFString(table: BMSTablesDataset, chart: BMSTableChart) {
 }
 
 export function Sleep(ms: number) {
-	return new Promise<void>((resolve) =>
+	return new Promise<void>((resolve) => {
 		setTimeout(() => {
 			resolve();
-		}, ms)
-	);
+		}, ms);
+	});
 }
 
 /**

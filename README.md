@@ -11,11 +11,11 @@ In short, it does the things that people would otherwise make spreadsheets for.
 Tachi is a score tracker and analyser for various rhythm games.
 It was designed out of a dislike for existing websites that display your scores.
 I think that scores are integral to the rhythm game experience, and that displaying them
-properly is *just* as important!
+properly is _just_ as important!
 
 By using Tachi, you get access to powerful, novel rhythm game score-tracking features, like automatically breaking your scores into sessions, setting goals and rivals, and more!
 
-There are way more features that Tachi has, and you can read about all of them [here](https://tachi.readthedocs.io/user/features).
+There are way more features that Tachi has, and you can read about all of them [here](https://docs.bokutachi.xyz/user/features).
 
 ## Setup
 

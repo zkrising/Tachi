@@ -82,7 +82,7 @@ export function Footer() {
 							Source Code
 						</a>
 						<a
-							href="https://tachi.readthedocs.io/"
+							href="https://docs.bokutachi.xyz/"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="nav-link px-3"

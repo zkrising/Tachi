@@ -139,7 +139,7 @@ export default function RegisterPage() {
 							<h4>
 								Hey! Before you make an account, please read the{" "}
 								<a
-									href="https://tachi.readthedocs.io/en/latest/user/rules/"
+									href="https://docs.bokutachi.xyz/en/latest/user/rules/"
 									target="_blank"
 									rel="noopener noreferrer"
 									onAuxClick={ReadRulesWait}

@@ -60,12 +60,12 @@ We also maintain a bit more human readable form for schemas in this documentatio
 
 ## Important Scripts
 
-After doing **anything** to the collections, such as adding a new item to the database, you **MUST** run `pnpm sort` inside the `scripts/` folder.
+After doing **anything** to the collections, such as adding a new item to the database, you **MUST** run `pnpm run sort` inside the `scripts/` folder.
 
 This will deterministically sort the data you put into the collections, making sure that `git` history stays sane (i.e. it only says things that actually changed, changed).
 
 !!! info
-	`pnpm sort` is an alias for `node deterministic-collection-sort.js`
+	`pnpm run sort` is an alias for `node deterministic-collection-sort.js`
 
 Before sending any changes, run `pnpm test` to check all your data. If anything you've sent is invalid, it'll be logged in `failed-tests.log`, and the command won't pass.
 

@@ -127,6 +127,7 @@ export const loggedInSplashes = [
 	"Take care of yourself.",
 	"Love in all things.",
 	"You're trolling?",
+	"We teach the users how to cook a full English Breakfast.",
 ];
 
 // Stuff that's bad for the kids, you know?

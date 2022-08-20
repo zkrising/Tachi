@@ -29,29 +29,40 @@ function WriteOut(data: string) {
 	fs.writeFileSync(options.out, data);
 }
 
-(async () => {
+void (async () => {
+	let calcFn;
+
 	if (version === 0) {
-		fs.mkdirSync(`${__dirname}/cache`, { recursive: true });
-
-		const tableInfo = await GetTableData();
-
-		logger.info(`Starting...`);
-
-		const calcData = [];
-
-		for (const table of tableInfo) {
-			// literally all the parallelism in this codebase has to be turned off because
-			// the lr2ir runs off of a toaster which attempts to gut you if you make more than one
-			// request a second.
-			// eslint-disable-next-line no-await-in-loop
-			calcData.push(await SieglindeV0Calc(table));
-		}
-
-		WriteOut(JSON.stringify(calcData.flat(1)));
-
-		logger.info(`Finished!`);
+		calcFn = SieglindeV0Calc;
+	} else if (version === 1) {
+		calcFn = SieglindeV1Calc;
 	} else {
-		logger.error(`Unsupported/Unknown version ${version}.`);
-		process.exit(-1);
+		throw new Error(`Unknown sieglinde version ${version}.`);
 	}
+
+	fs.mkdirSync(`${__dirname}/cache`, { recursive: true });
+
+	const tableInfo = await GetTableData();
+
+	logger.info(`Starting...`);
+
+	const calcData = [];
+
+	let i = 1;
+
+	for (const table of tableInfo) {
+		logger.info(`Running for table ${table.table.name}. ${i}/${tableInfo.length}`);
+
+		// literally all the parallelism in this codebase has to be turned off because
+		// the lr2ir runs off of a toaster which attempts to gut you if you make more than one
+		// request a second.
+		// eslint-disable-next-line no-await-in-loop
+		calcData.push(await calcFn(table));
+
+		i++;
+	}
+
+	WriteOut(JSON.stringify(calcData.flat(1)));
+
+	logger.info(`Finished!`);
 })();

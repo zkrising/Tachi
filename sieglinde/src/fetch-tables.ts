@@ -82,8 +82,9 @@ export interface TableRes {
 export default async function GetTableData(): Promise<Array<TableRes>> {
 	const out = [];
 
-	// only 7k supported atm
-	for (const table of registeredTables.filter((e) => e.playtype === "7K")) {
+	for (const table of registeredTables.filter(
+		(e) => e.name === "Insane" || e.name === "Normal"
+	)) {
 		const charts = await fetch(table.url).then((r) => r.json());
 
 		out.push({ table, charts });

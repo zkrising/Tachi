@@ -3,18 +3,15 @@
 import logger from "../logger";
 import { ChunkifyPromiseAll, GetBaseline, GetFString, GetScoresForMD5 } from "../util";
 import { DifficultyComputer } from "../util/calc";
+import { fmtSgl } from "util/format-sgl";
+import { toInsane } from "util/sigma-to-insane";
 import type { TableRes } from "../fetch-tables";
 import type { CalcReturns } from "../types";
 
 /**
- * Sieglinde V1 calc. This is an incredibly naive implementation of a difficulty
- * engine.
- *
- * The idea is simple - given a base level, check how much the clear rate deviates
- * for the norm for that base level, and adjust the level accordingly. There isn't
- * much complex going on. Just basic maths.
- *
- * This, however, completely does not work. We genuinely cannot use this at all.
+ * Sieglinde V1 calc. This was wrote by JiminP, and determines "player skill" and
+ * compares it against clear rates on each songs. This is circular, so it runs for
+ * a while until the alpha converges.
  */
 export default async function SieglindeV1Calc(tableInfo: TableRes): Promise<Array<CalcReturns>> {
 	// We can't do this in full-parallel. The LR2IR hyper-aggressively rate limits this stuff.
@@ -61,17 +58,27 @@ export default async function SieglindeV1Calc(tableInfo: TableRes): Promise<Arra
 	return tableInfo.charts
 		.filter((chart) => ecComputer.songDifficulty.has(chart.md5))
 		.map((chart) => {
-			const ecValue = ecComputer.songDifficulty.get(chart.md5)!;
-			const hcValue = hcComputer.songDifficulty.get(chart.md5)!;
+			const ecSigma = ecComputer.songDifficulty.get(chart.md5)!;
+			const hcSigma = hcComputer.songDifficulty.get(chart.md5)!;
+
+			// @hack
+			// This is *taped* on, and should be done properly in the future!
+			const ecVal = toInsane(ecSigma);
+			const hcVal = toInsane(hcSigma);
 
 			return {
 				md5: chart.md5,
 				title: chart.title,
 				baseLevel: GetFString(tableInfo.table, chart),
-				ec: ecValue,
-				ecStr: `a`,
-				hc: hcValue,
-				hcStr: `a`,
+
+				ec: ecVal,
+				ecStr: fmtSgl(ecVal),
+
+				hc: hcVal,
+				hcStr: fmtSgl(hcVal),
+
+				ecMetric: ecSigma,
+				hcMetric: hcSigma,
 			};
 		});
 }

@@ -1,17 +1,19 @@
 import logger from "../logger";
+import fs from "fs";
+import path from "path";
 
-type SongId = string;
+type MD5 = string;
 type UserId = number;
 
 const HALF_PI = Math.PI / 2;
 
-function pushMap<K, V>(map: Map<K, Array<V>>, key: K, value: V) {
-	const arr = map.get(key);
+function incrementMap<K>(map: Map<K, number>, key: K) {
+	const value = map.get(key);
 
-	if (arr) {
-		arr.push(value);
+	if (value !== undefined) {
+		map.set(key, value + 1);
 	} else {
-		map.set(key, [value]);
+		map.set(key, 1);
 	}
 }
 
@@ -25,58 +27,87 @@ function dSigmoid(x: number): number {
 	return 4 / (4 + y * y);
 }
 
+export interface V1Score {
+	md5: string;
+	userID: number;
+	clear: boolean;
+}
+
+export interface Computations {
+	songPlaycount: Record<string, number>;
+	userPlaycount: Record<string, number>;
+
+	songDifficulty: Record<string, number>;
+	userSkill: Record<string, number>;
+}
+
 export class DifficultyComputer {
-	normalizedScores: Array<[SongId, UserId, number]> = [];
+	normalizedScores: Array<V1Score> = [];
 
-	songUserMap: Map<SongId, Array<UserId>> = new Map();
-	userSongMap: Map<UserId, Array<SongId>> = new Map();
+	songPlaycountMap: Map<MD5, number> = new Map();
+	userPlaycountMap: Map<UserId, number> = new Map();
 
-	songDifficulty: Map<SongId, number> = new Map();
+	songDifficulty: Map<MD5, number> = new Map();
 	userSkill: Map<UserId, number> = new Map();
 
-	constructor(data: Array<[SongId, UserId, number]>) {
+	constructor(data: Array<V1Score>) {
 		logger.info(`Reading ${data.length} data...`);
 
-		// For binary feature
-		const hasClear: Set<UserId> = new Set();
-		const hasUnclear: Set<UserId> = new Set();
+		const hasClearedAnyChart: Set<UserId> = new Set();
+		const hasFailedAnyChart: Set<UserId> = new Set();
 
-		for (const [_songId, userId, score] of data) {
-			if (score === 1) {
-				hasClear.add(userId);
-			}
-
-			if (score === -1) {
-				hasUnclear.add(userId);
+		for (const { userID, clear } of data) {
+			if (clear) {
+				hasClearedAnyChart.add(userID);
+			} else {
+				hasFailedAnyChart.add(userID);
 			}
 		}
 
-		const deletedUsers: Set<UserId> = new Set();
+		const excludedPlayers: Set<UserId> = new Set();
 
-		for (const [songId, userId, score] of data) {
-			if (hasClear.has(userId) !== hasUnclear.has(userId)) {
-				deletedUsers.add(userId);
+		for (const { md5, userID, clear } of data) {
+			// Exclude players who have a 100% or 0% clear rate.
+			if (hasClearedAnyChart.has(userID) !== hasFailedAnyChart.has(userID)) {
+				excludedPlayers.add(userID);
 				continue;
 			}
 
-			pushMap(this.songUserMap, songId, userId);
-			pushMap(this.userSongMap, userId, songId);
+			incrementMap(this.songPlaycountMap, md5);
+			incrementMap(this.userPlaycountMap, userID);
 
-			this.songDifficulty.set(songId, 0);
-			this.userSkill.set(userId, 0);
+			this.songDifficulty.set(md5, 0);
+			this.userSkill.set(userID, 0);
 
-			this.normalizedScores.push([songId, userId, score]);
+			this.normalizedScores.push({ md5, userID, clear });
 		}
 
-		logger.warn(`${deletedUsers.size} users ignored.`);
+		logger.warn(`${excludedPlayers.size} users ignored.`);
 
 		logger.info(`Read ${this.songDifficulty.size} songs and ${this.userSkill.size} users.`);
+
+		// Sorting MD5s alphabetically in our list of scores results in better
+		// branch predictions when we iterate over the data.
+		// Cool stuff!
+		this.normalizedScores.sort((a, b) => a.md5.localeCompare(b.md5));
+	}
+
+	loadExistingComputations(computations: Computations) {
+		this.songPlaycountMap = new Map(Object.entries(computations.songPlaycount));
+		this.songDifficulty = new Map(Object.entries(computations.songDifficulty));
+
+		this.userPlaycountMap = new Map(
+			Object.entries(computations.userPlaycount).map(([key, value]) => [Number(key), value])
+		);
+		this.userSkill = new Map(
+			Object.entries(computations.userSkill).map(([key, value]) => [Number(key), value])
+		);
 	}
 
 	private _calculateStep(alpha: number): number {
 		let maxDelta = 0;
 
-		const deltaSongDifficulty: Map<SongId, number> = new Map();
+		const deltaSongDifficulty: Map<MD5, number> = new Map();
 		const deltaUserSkill: Map<UserId, number> = new Map();
 
 		for (const songId of this.songDifficulty.keys()) {
@@ -87,22 +118,46 @@ export class DifficultyComputer {
 			deltaUserSkill.set(userId, 0);
 		}
 
-		for (const [songId, userId, score] of this.normalizedScores) {
-			const currSongDifficulty = this.songDifficulty.get(songId)!;
-			const currUserSkill = this.userSkill.get(userId)!;
+		// bizarre optimisations
+		// since this loop is painfully slow. We're trying to hit a juicy v8 hotpath.
+		let lastMD5: string | null = null;
 
-			const potent = currUserSkill - currSongDifficulty;
-			const diff = (sigmoid(potent) - score) * dSigmoid(potent);
+		// all of these 0 values are *fake*, and used to get typescript to shut up.
+		let curSongDiff = 0;
+		let curDeltaSDiff = 0;
+		let curSongPlaycount = 0;
 
-			deltaSongDifficulty.set(
-				songId,
-				deltaSongDifficulty.get(songId)! + diff / this.songUserMap.get(songId)!.length
-			);
+		let lastUserID: number | null = null;
 
-			deltaUserSkill.set(
-				userId,
-				deltaUserSkill.get(userId)! - diff / this.userSongMap.get(userId)!.length
-			);
+		// Same as above, this is an optimisation, these are fake 0 values.
+		let curUserSkill = 0;
+		let curDeltaUSkill = 0;
+		let curUserPlaycount = 0;
+
+		for (const { md5, userID, clear } of this.normalizedScores) {
+			if (lastMD5 !== md5) {
+				curSongDiff = this.songDifficulty.get(md5)!;
+				curSongPlaycount = this.songPlaycountMap.get(md5)!;
+
+				lastMD5 = md5;
+			}
+
+			if (lastUserID !== userID) {
+				curUserSkill = this.userSkill.get(userID)!;
+				curUserPlaycount = this.userPlaycountMap.get(userID)!;
+
+				lastUserID = userID;
+			}
+
+			curDeltaSDiff = deltaSongDifficulty.get(md5)!;
+			curDeltaUSkill = deltaUserSkill.get(userID)!;
+
+			const potent = curUserSkill - curSongDiff;
+			const diff = (sigmoid(potent) - (clear ? 1 : -1)) * dSigmoid(potent);
+
+			deltaSongDifficulty.set(md5, curDeltaSDiff + diff / curSongPlaycount);
+
+			deltaUserSkill.set(userID, curDeltaUSkill - diff / curUserPlaycount);
 		}
 
 		for (const [songId, delta] of deltaSongDifficulty) {
@@ -136,7 +191,7 @@ export class DifficultyComputer {
 		return maxDelta;
 	}
 
-	computeDifficulty() {
+	computeDifficulty(tag: string) {
 		const limit = 0.005;
 		let alpha = 1;
 		let maxDelta = 0;
@@ -178,5 +233,21 @@ export class DifficultyComputer {
 		} while (maxDelta > limit);
 
 		logger.info("Difficulties converged!");
+
+		logger.info("Writing regression info...");
+
+		fs.writeFileSync(
+			path.join(__dirname, `../cache/v1-calc-regressions/${tag}.json`),
+			JSON.stringify({
+				songDifficulty: mapToObj(this.songDifficulty),
+				userSkill: mapToObj(this.userSkill),
+				songPlaycount: mapToObj(this.songPlaycountMap),
+				userPlaycount: mapToObj(this.userPlaycountMap),
+			})
+		);
 	}
+}
+
+function mapToObj<K extends number | string, V>(map: Map<K, V>): Record<string, V> {
+	return Object.fromEntries(map.entries());
 }

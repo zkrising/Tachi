@@ -14,13 +14,11 @@ const parser = new XMLParser();
 
 export async function FetchScoresForMD5(md5: string) {
 	try {
-		const data = JSON.parse(await readFile(`${__dirname}/cache/${md5}.json`, "utf-8"));
+		const data = JSON.parse(await readFile(`${__dirname}/cache/lr2ir/${md5}.json`, "utf-8"));
 
 		if (!Array.isArray(data)) {
 			throw new Error(`Invalid cache for ${md5}`);
 		}
-
-		logger.debug(`Returned ${md5} info from cache.`);
 
 		return data;
 	} catch {
@@ -40,7 +38,7 @@ export async function FetchScoresForMD5(md5: string) {
 			d.name = d.name.toString();
 		}
 
-		await writeFile(`${__dirname}/cache/${md5}.json`, JSON.stringify(data, null, "\t"));
+		await writeFile(`${__dirname}/cache/lr2ir/${md5}.json`, JSON.stringify(data, null, "\t"));
 
 		return data;
 	}
@@ -88,7 +86,7 @@ export function GetSigmoidalValue(x: number) {
 	return 0.5 * (1 + Math.sin(x * Math.PI - Math.PI / 2));
 }
 
-export function GetBaseline(table: BMSTablesDataset, level: string) {
+export function GetBaseline(table: BMSTablesDataset, level: string): number | null {
 	// @ts-expect-error don't care it's exhaustive
 	return TableValueGetters[table.name](level);
 }

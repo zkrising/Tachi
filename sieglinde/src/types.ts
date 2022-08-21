@@ -23,6 +23,7 @@ export interface CalcReturns {
 	hc: number;
 	ecStr: string;
 	hcStr: string;
+	baseLevel: string;
 
 	// Internal values for ec/hc metrics; in the case of the v1 calc, these are
 	// sigma values.

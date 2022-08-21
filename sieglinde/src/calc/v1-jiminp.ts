@@ -1,12 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-await-in-loop */
 import logger from "../logger";
 import { ChunkifyPromiseAll, GetBaseline, GetFString, GetScoresForMD5 } from "../util";
 import { DifficultyComputer } from "../util/calc";
+import fs from "fs";
+import path from "path";
 import { fmtSgl } from "util/format-sgl";
-import { toInsane } from "util/sigma-to-insane";
+import { lerpBetwixt } from "util/lerp";
 import type { TableRes } from "../fetch-tables";
 import type { CalcReturns } from "../types";
+import type { Computations } from "../util/calc";
+import type { EcConstants } from "util/lerp";
 
 /**
  * Sieglinde V1 calc. This was wrote by JiminP, and determines "player skill" and
@@ -30,55 +35,114 @@ export default async function SieglindeV1Calc(tableInfo: TableRes): Promise<Arra
 		);
 
 		// 0 -> noplay, 1 -> failed.. etc.
-		return scores.map(
-			(score: { id: number; clear: number }): [string, number, { clear: number }] => [
-				chart.md5,
-				score.id,
-				score,
-			]
-		);
+		return scores.map((score: { id: number; clear: number }) => ({
+			md5: chart.md5,
+			userID: score.id,
+			clear: score.clear,
+		}));
 	});
 
-	const dataArr: Array<Array<[string, number, { clear: number }]>> = await ChunkifyPromiseAll(
-		promises,
-		100
-	);
+	const dataArr = await ChunkifyPromiseAll(promises, 100);
 
 	const data = dataArr.flat();
+
 	const ecComputer = new DifficultyComputer(
-		data.map(([chart, user, score]) => [chart, user, score.clear > 1 ? 1 : -1])
+		data.map((d) => ({
+			...d,
+
+			// better than or equal to ec
+			clear: d.clear >= 2,
+		}))
 	);
+
 	const hcComputer = new DifficultyComputer(
-		data.map(([chart, user, score]) => [chart, user, score.clear > 3 ? 1 : -1])
+		data.map((d) => ({
+			...d,
+
+			// better than or equal to hc
+			clear: d.clear >= 4,
+		}))
 	);
 
-	ecComputer.computeDifficulty();
-	hcComputer.computeDifficulty();
+	calcRegressionsOrCache(ecComputer, `${tableInfo.table.name}-ec`);
+	calcRegressionsOrCache(hcComputer, `${tableInfo.table.name}-hc`);
 
-	return tableInfo.charts
-		.filter((chart) => ecComputer.songDifficulty.has(chart.md5))
-		.map((chart) => {
-			const ecSigma = ecComputer.songDifficulty.get(chart.md5)!;
-			const hcSigma = hcComputer.songDifficulty.get(chart.md5)!;
+	const chartsWithLevels = tableInfo.charts.filter((chart) =>
+		ecComputer.songDifficulty.has(chart.md5)
+	);
 
-			// @hack
-			// This is *taped* on, and should be done properly in the future!
-			const ecVal = toInsane(ecSigma);
-			const hcVal = toInsane(hcSigma);
+	const cutoffs: Record<string, { count: number; sum: number }> = {};
 
-			return {
-				md5: chart.md5,
-				title: chart.title,
-				baseLevel: GetFString(tableInfo.table, chart),
+	// create a record of { insane1: count, sum }
+	for (const chart of chartsWithLevels) {
+		const existingCutoff = cutoffs[chart.level];
 
-				ec: ecVal,
-				ecStr: fmtSgl(ecVal),
-
-				hc: hcVal,
-				hcStr: fmtSgl(hcVal),
-
-				ecMetric: ecSigma,
-				hcMetric: hcSigma,
+		if (!existingCutoff) {
+			cutoffs[chart.level] = {
+				count: 1,
+				sum: ecComputer.songDifficulty.get(chart.md5)!,
 			};
-		});
+		} else {
+			cutoffs[chart.level] = {
+				count: existingCutoff.count + 1,
+				sum: existingCutoff.sum + ecComputer.songDifficulty.get(chart.md5)!,
+			};
+		}
+	}
+
+	// warning: stupid
+	const avgCutoffs: EcConstants = Object.entries(cutoffs)
+		.map(([key, data]) => ({
+			levelName: key,
+			averageSigma: data.sum / data.count,
+		}))
+
+		// @warning
+		// This is **completely broken** if a harder tier in the table
+		// has a worse average sigma. This will catastrophically break lerpwise.
+		.sort((a, b) => a.averageSigma - b.averageSigma);
+
+	return chartsWithLevels.map((chart) => {
+		const ecSigma = ecComputer.songDifficulty.get(chart.md5)!;
+		const hcSigma = hcComputer.songDifficulty.get(chart.md5)!;
+
+		// @hack
+		// This is *taped* on, and should be done properly in the future!
+		const ecVal = lerpBetwixt(ecSigma, avgCutoffs, tableInfo.table);
+		const hcVal = lerpBetwixt(hcSigma, avgCutoffs, tableInfo.table);
+
+		return {
+			md5: chart.md5,
+			title: chart.title,
+			baseLevel: GetFString(tableInfo.table, chart),
+
+			ec: ecVal,
+			ecStr: fmtSgl(ecVal),
+
+			hc: hcVal,
+			hcStr: fmtSgl(hcVal),
+
+			ecMetric: ecSigma,
+			hcMetric: hcSigma,
+		};
+	});
+}
+
+/**
+ * If regression data exists in the cache, use that instead to avoid recalcing
+ * regressions.
+ */
+function calcRegressionsOrCache(computer: DifficultyComputer, tag: string) {
+	try {
+		const data = JSON.parse(
+			fs.readFileSync(
+				path.join(__dirname, `../cache/v1-calc-regressions/${tag}.json`),
+				"utf-8"
+			)
+		) as Computations;
+
+		computer.loadExistingComputations(data);
+	} catch (err) {
+		computer.computeDifficulty(tag);
+	}
 }

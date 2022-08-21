@@ -67,6 +67,8 @@ void (async () => {
 		// eslint-disable-next-line no-await-in-loop
 		calcData.push(await calcFn(table));
 
+		WriteOut(JSON.stringify(calcData.flat(1)));
+
 		i++;
 	}
 

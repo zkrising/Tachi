@@ -52,6 +52,8 @@ export default function SieglindeV0Calc(tableInfo: TableRes): Array<CalcReturns>
 			ecStr: `${ecPrefix}${ecValue < 12 ? ecValue : ecValue - 12}`,
 			hc: hcValue,
 			hcStr: `${hcPrefix}${hcValue < 12 ? hcValue : hcValue - 12}`,
+			ecMetric: 0,
+			hcMetric: 0,
 		});
 	}
 

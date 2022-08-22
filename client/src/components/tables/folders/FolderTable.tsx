@@ -81,7 +81,7 @@ function Row<I extends IDStrings = IDStrings>({
 				<DifficultyCell chart={data} game={game} />
 				<IndicatorsCell highlight={false} />
 				<TitleCell song={data.__related.song} chart={data} game={game} />
-				<td colSpan={6}>Not Played.</td>
+				<td colSpan={7}>Not Played.</td>
 			</tr>
 		);
 	}

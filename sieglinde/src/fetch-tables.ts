@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import TableValueGetters from "lookups";
 import fetch from "node-fetch";
-import { BMS_TABLE_ICONS } from "tachi-common";
+import { BMS_TABLES } from "tachi-common";
 import type { BMSTablesDataset, BMSTableChart } from "./types";
 
 const registeredTables: Array<BMSTablesDataset> = [

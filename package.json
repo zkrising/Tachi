@@ -8,6 +8,8 @@
 		"start-server": "pnpm --filter ./server start",
 		"test-server": "pnpm --filter ./server test",
 		"test-dbseeds": "pnpm --filter ./database-seeds/scripts test",
+		"sync-database": "pnpm --filter ./server sync-database",
+		"sync-database-local": "pnpm --filter ./server sync-database-local",
 		"start-score-import-worker": "pnpm --filter ./server runscoreworker",
 		"start-docs": "cd docs/ && mkdocs serve"
 	},

@@ -176,8 +176,15 @@ export class DatabaseSeedsRepo {
 
 /**
  * Pulls the database seeds from github, returns an object that can be used to manipulate them.
+ *
+ * @param fetchFromLocalPath - Whether or not to fetch this from a local instance, like a
+ * monorepo database-seeds directory.
  */
-export async function PullDatabaseSeeds() {
+export async function PullDatabaseSeeds(fetchFromLocalPath: string | null = null) {
+	if (fetchFromLocalPath) {
+		return new DatabaseSeedsRepo(fetchFromLocalPath);
+	}
+
 	if (!ServerConfig.SEEDS_CONFIG) {
 		throw new Error(`SEEDS_CONFIG was not defined. You cannot pull a seeds repo.`);
 	}

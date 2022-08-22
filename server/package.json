@@ -14,7 +14,8 @@
 		"start": "pnpm build && pnpm start-no-build",
 		"start-no-build": "node -r ts-node/register -r tsconfig-paths/register js/server/src/main.js",
 		"runscoreworker": "node -r ts-node/register -r tsconfig-paths/register js/server/src/lib/score-import/worker/worker.js",
-		"sync-database": "ts-node src/scripts/sync-database"
+		"sync-database": "ts-node src/scripts/sync-database",
+		"sync-database-local": "ts-node src/scripts/sync-database --localPath '../database-seeds'"
 	},
 	"author": "zkldi",
 	"license": "AGPL3",

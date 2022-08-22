@@ -22,10 +22,12 @@ export type SeedsCollections =
 export class DatabaseSeedsRepo {
 	private readonly baseDir: string;
 	private readonly logger;
+	private readonly dontDestroy: boolean;
 
-	constructor(baseDir: string) {
+	constructor(baseDir: string, dontDelete: boolean) {
 		this.baseDir = baseDir;
 		this.logger = CreateLogCtx(`DatabaseSeeds:${baseDir}`);
+		this.dontDestroy = dontDelete;
 	}
 
 	private CollectionNameToPath(collectionName: SeedsCollections) {
@@ -169,6 +171,11 @@ export class DatabaseSeedsRepo {
 	}
 
 	Destroy() {
+		if (this.dontDestroy) {
+			this.logger.warn(`Refusing to delete seeds as they were instantiated locally.`);
+			return;
+		}
+
 		// scary
 		return fs.rm(this.baseDir, { recursive: true, force: true });
 	}
@@ -182,7 +189,7 @@ export class DatabaseSeedsRepo {
  */
 export async function PullDatabaseSeeds(fetchFromLocalPath: string | null = null) {
 	if (fetchFromLocalPath) {
-		return new DatabaseSeedsRepo(fetchFromLocalPath);
+		return new DatabaseSeedsRepo(fetchFromLocalPath, false);
 	}
 
 	if (!ServerConfig.SEEDS_CONFIG) {
@@ -218,7 +225,7 @@ export async function PullDatabaseSeeds(fetchFromLocalPath: string | null = null
 			logger.error(stdout);
 		}
 
-		return new DatabaseSeedsRepo(`${seedsDir}/database-seeds`);
+		return new DatabaseSeedsRepo(`${seedsDir}/database-seeds`, true);
 	} catch ({ err, stderr }) {
 		logger.error(`Error cloning database-seeds. ${stderr}.`);
 		throw err;

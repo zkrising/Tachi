@@ -31,7 +31,7 @@ export default function TierlistInfoPart({ chart, game }: { chart: ChartDocument
 										<td>{k}</td>
 										<td>
 											{chart.tierlistInfo[k]!.text} (
-											{chart.tierlistInfo[k]!.value})
+											{chart.tierlistInfo[k]!.value.toFixed(2)})
 											{chart.tierlistInfo[k]!.individualDifference && (
 												<>
 													<br />

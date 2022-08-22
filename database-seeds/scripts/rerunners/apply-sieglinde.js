@@ -23,6 +23,29 @@ const APPLICATION_ORDER = [
 	"Insane",
 ];
 
+function fmtSgl(sgl) {
+	if (sgl < 13) {
+		return `☆${sgl.toFixed(2)}`;
+	}
+
+	return `★${(sgl - 12).toFixed(2)}`;
+}
+
+function sl12Fix(x) {
+	const v0 = 19 + 12;
+	const v1 = 21 + 12;
+	const max = 35.98053547;
+
+	if (x < v0) {
+		return x;
+	}
+
+	const diffToMax = (x - v0) / (max - v0);
+
+	// rescale v0 -> max to v0 -> v1, lerp appropriately.
+	return v0 + diffToMax * (v1 - v0);
+}
+
 for (const tableName of APPLICATION_ORDER) {
 	const data = JSON.parse(fs.readFileSync(path.join(options.input, `${tableName}.json`)));
 
@@ -62,6 +85,15 @@ for (const tableName of APPLICATION_ORDER) {
 				if (maybeSgl.baseLevel.startsWith("★★")) {
 					maybeSgl.hc = 0;
 					maybeSgl.hcStr += "?";
+				}
+
+				// sl12 data is screwed, neuter it.
+				if (maybeSgl.baseLevel === "sl12") {
+					maybeSgl.ec = sl12Fix(maybeSgl.ec);
+					maybeSgl.hc = sl12Fix(maybeSgl.hc);
+
+					maybeSgl.ecStr = fmtSgl(maybeSgl.ec);
+					maybeSgl.hcStr = fmtSgl(maybeSgl.hc);
 				}
 
 				chart.tierlistInfo = {

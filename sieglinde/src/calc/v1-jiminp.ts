@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-await-in-loop */
+import { DifficultyComputer } from "./util/calc";
+import { fmtSgl } from "./util/format-sgl";
+import { lerpBetwixt } from "./util/lerp";
 import logger from "../logger";
 import {
 	ChunkifyPromiseAll,
@@ -9,15 +12,12 @@ import {
 	GetScoresForMD5,
 	GetSigmoidalValue,
 } from "../util";
-import { DifficultyComputer } from "../util/calc";
 import fs from "fs";
 import path from "path";
-import { fmtSgl } from "util/format-sgl";
-import { lerpBetwixt } from "util/lerp";
 import type { TableRes } from "../fetch-tables";
 import type { CalcReturns } from "../types";
-import type { Computations } from "../util/calc";
-import type { EcConstants } from "util/lerp";
+import type { Computations } from "./util/calc";
+import type { EcConstants } from "./util/lerp";
 
 /**
  * Sieglinde V1 calc. This was wrote by JiminP, and determines "player skill" and

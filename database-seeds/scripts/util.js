@@ -42,6 +42,10 @@ function WriteCollection(name, data) {
 function MutateCollection(name, cb) {
 	const data = cb(ReadCollection(name));
 
+	if (data === undefined) {
+		throw new Error(`You forgot to return from your MutateCollection function.`);
+	}
+
 	WriteCollection(name, data);
 }
 

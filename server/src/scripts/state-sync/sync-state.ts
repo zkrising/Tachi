@@ -6,6 +6,8 @@ import { RecalcSessions } from "utils/calculations/recalc-sessions";
 const logger = CreateLogCtx(__filename);
 
 (async () => {
+	// note: technically some of this stuff is unecessary/duplicate calculation
+	// however it's idempotent, so, we should be good.
 	await RecalcAllScores();
 	await UpdateAllPBs();
 	await RecalcGameProfiles();

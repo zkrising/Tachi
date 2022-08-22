@@ -22,12 +22,12 @@ export type SeedsCollections =
 export class DatabaseSeedsRepo {
 	private readonly baseDir: string;
 	private readonly logger;
-	private readonly dontDestroy: boolean;
+	private readonly dontDestroy?: "YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD";
 
-	constructor(baseDir: string, dontDelete: boolean) {
+	constructor(baseDir: string, dontDestroy?: "YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD") {
 		this.baseDir = baseDir;
 		this.logger = CreateLogCtx(`DatabaseSeeds:${baseDir}`);
-		this.dontDestroy = dontDelete;
+		this.dontDestroy = dontDestroy;
 	}
 
 	private CollectionNameToPath(collectionName: SeedsCollections) {
@@ -171,7 +171,7 @@ export class DatabaseSeedsRepo {
 	}
 
 	Destroy() {
-		if (this.dontDestroy) {
+		if (this.dontDestroy !== "YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD") {
 			this.logger.warn(`Refusing to delete seeds as they were instantiated locally.`);
 			return;
 		}
@@ -189,7 +189,7 @@ export class DatabaseSeedsRepo {
  */
 export async function PullDatabaseSeeds(fetchFromLocalPath: string | null = null) {
 	if (fetchFromLocalPath) {
-		return new DatabaseSeedsRepo(fetchFromLocalPath, false);
+		return new DatabaseSeedsRepo(fetchFromLocalPath);
 	}
 
 	if (!ServerConfig.SEEDS_CONFIG) {
@@ -225,7 +225,10 @@ export async function PullDatabaseSeeds(fetchFromLocalPath: string | null = null
 			logger.error(stdout);
 		}
 
-		return new DatabaseSeedsRepo(`${seedsDir}/database-seeds`, true);
+		return new DatabaseSeedsRepo(
+			`${seedsDir}/database-seeds`,
+			"YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD"
+		);
 	} catch ({ err, stderr }) {
 		logger.error(`Error cloning database-seeds. ${stderr}.`);
 		throw err;

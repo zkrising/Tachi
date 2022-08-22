@@ -45,6 +45,10 @@ export type EcConstants = Array<{
 /**
  * Linearly interpolate between all AVG(sigma)s in each table. Rebase it ontop of
  * baseLevel. Profit.
+ *
+ * @param confidence - How far we should deviate from baseLevel. 1 implies we should
+ * trust the sigma difference 100%, 50% implies we should apply 50% of the sigma
+ * difference, so on.
  */
 export function lerpBetwixt(value: number, EC_CONSTANTS: EcConstants, table: BMSTablesDataset) {
 	for (let i = 0; i < EC_CONSTANTS.length; i++) {
@@ -102,8 +106,16 @@ export function lerpBetwixt(value: number, EC_CONSTANTS: EcConstants, table: BMS
 	const n0 = EC_CONSTANTS[lowerIndex]!.averageSigma;
 	const n1 = EC_CONSTANTS[upperIndex]!.averageSigma;
 
-	const v0 = 24.5;
-	const v1 = 25.5;
+	const v0 = GetBaseline(table, EC_CONSTANTS[lowerIndex]!.levelName);
+	const v1 = GetBaseline(table, EC_CONSTANTS[upperIndex]!.levelName);
+
+	if (v0 === null || v1 === null) {
+		throw new Error(
+			`Couldn't resolve a baseline for ${EC_CONSTANTS[lowerIndex]!.levelName} and/or ${
+				EC_CONSTANTS[upperIndex]!.levelName
+			} in ${table.name}`
+		);
+	}
 
 	const t = Math.abs((value - n0) / (n1 - n0));
 

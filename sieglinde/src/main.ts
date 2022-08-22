@@ -46,7 +46,7 @@ void (async () => {
 })();
 
 function toCSV(calcData: Array<CalcReturns>) {
-	let str = `"md5","title","baseLevel","ec","ecStr","hc","hcStr"\n`;
+	let str = `"md5","title","baseLevel","ec","ecStr","hc","hcStr","playcount","confidence"\n`;
 
 	for (const data of calcData) {
 		const row = [
@@ -57,6 +57,8 @@ function toCSV(calcData: Array<CalcReturns>) {
 			data.ecStr,
 			data.hc,
 			data.hcStr,
+			data.playcount,
+			data.confidence,
 		];
 
 		str = `${str}"${row.join('","')}"\n`;

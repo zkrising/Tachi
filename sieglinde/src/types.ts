@@ -29,4 +29,7 @@ export interface CalcReturns {
 	// sigma values.
 	ecMetric: number;
 	hcMetric: number;
+
+	playcount: number;
+	confidence: number;
 }

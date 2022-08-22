@@ -2,7 +2,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-await-in-loop */
 import logger from "../logger";
-import { ChunkifyPromiseAll, GetBaseline, GetFString, GetScoresForMD5 } from "../util";
+import {
+	ChunkifyPromiseAll,
+	GetBaseline,
+	GetFString,
+	GetScoresForMD5,
+	GetSigmoidalValue,
+} from "../util";
 import { DifficultyComputer } from "../util/calc";
 import fs from "fs";
 import path from "path";
@@ -106,10 +112,26 @@ export default async function SieglindeV1Calc(tableInfo: TableRes): Promise<Arra
 		const ecSigma = ecComputer.songDifficulty.get(chart.md5)!;
 		const hcSigma = hcComputer.songDifficulty.get(chart.md5)!;
 
-		// @hack
-		// This is *taped* on, and should be done properly in the future!
-		const ecVal = lerpBetwixt(ecSigma, avgCutoffs, tableInfo.table);
-		const hcVal = lerpBetwixt(hcSigma, avgCutoffs, tableInfo.table);
+		const playcount = ecComputer.songPlaycountMap.get(chart.md5)!;
+		const confidence = GetSigmoidalValue(playcount / 1000);
+
+		let ecVal = lerpBetwixt(ecSigma, avgCutoffs, tableInfo.table);
+		let hcVal = lerpBetwixt(hcSigma, avgCutoffs, tableInfo.table);
+
+		// at around 1000 scores, we're pretty confident. Between that, apply the delta
+		// less, upon a sigmoidal curve.
+		if (playcount < 1000) {
+			const baseline = GetBaseline(tableInfo.table, chart.level);
+
+			if (baseline === null) {
+				throw new Error(
+					`Couldn't resolve a baseline for ${tableInfo.table.name} ${chart.level}. Why? Didn't we just do this in lerpBetwixt?`
+				);
+			}
+
+			ecVal = baseline + (ecVal - baseline) * confidence;
+			hcVal = baseline + (hcVal - baseline) * confidence;
+		}
 
 		return {
 			md5: chart.md5,
@@ -124,6 +146,9 @@ export default async function SieglindeV1Calc(tableInfo: TableRes): Promise<Arra
 
 			ecMetric: ecSigma,
 			hcMetric: hcSigma,
+
+			playcount,
+			confidence,
 		};
 	});
 }

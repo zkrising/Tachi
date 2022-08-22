@@ -3,5 +3,5 @@ export function fmtSgl(sgl: number): string {
 		return `☆${sgl.toFixed(2)}`;
 	}
 
-	return `🟊${(sgl - 12).toFixed(2)}`;
+	return `★${(sgl - 12).toFixed(2)}`;
 }

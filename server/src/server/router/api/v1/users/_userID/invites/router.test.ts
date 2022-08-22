@@ -1,5 +1,6 @@
 import db from "external/mongo/db";
 import { ONE_MONTH } from "lib/constants/time";
+import { UserAuthLevels } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
@@ -133,7 +134,10 @@ t.test("POST /api/v1/users/:userID/invites/create", async (t) => {
 
 		// users with less than a month of life in them dont get invites,
 		// so this will force an invite limit honor.
-		await db.users.update({ id: 1 }, { $set: { joinDate: Date.now() } });
+		await db.users.update(
+			{ id: 1 },
+			{ $set: { joinDate: Date.now(), authLevel: UserAuthLevels.USER } }
+		);
 
 		const res = await mockApi.post("/api/v1/users/1/invites/create").set("Cookie", cookie);
 

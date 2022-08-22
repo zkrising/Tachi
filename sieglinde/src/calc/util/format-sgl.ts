@@ -1,5 +1,5 @@
 export function fmtSgl(sgl: number): string {
-	if (sgl < 12) {
+	if (sgl < 13) {
 		return `☆${sgl.toFixed(2)}`;
 	}
 

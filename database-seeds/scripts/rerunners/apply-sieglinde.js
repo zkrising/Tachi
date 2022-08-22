@@ -24,6 +24,17 @@ MutateCollection("charts-bms.json", (charts) => {
 	for (const chart of charts) {
 		const maybeSgl = sglHashmap[chart.data.hashMD5];
 
+		// patch stuff that falls out of bounds
+		if (maybeSgl.ec < 1) {
+			maybeSgl.ec = 1;
+			maybeSgl.ecStr = "☆1";
+		}
+
+		if (maybeSgl.hc < 1) {
+			maybeSgl.hc = 1;
+			maybeSgl.hcStr = "☆1";
+		}
+
 		if (maybeSgl) {
 			chart.tierlistInfo = {
 				"sgl-EC": {

@@ -1,57 +1,68 @@
-import SieglindeV0Calc from "./calc/v0";
 import GetTableData from "./fetch-tables";
 import logger from "./logger";
-import { Command } from "commander";
+import SieglindeV1Calc from "calc/v1-jiminp";
 import fs from "fs";
+import path from "path";
+import type { CalcReturns } from "types";
 
 if (require.main !== module) {
 	logger.error(`The script main.ts must be invoked directly!`);
 	process.exit(-1);
 }
 
-const program = new Command();
+void (async () => {
+	const calcFn = SieglindeV1Calc;
 
-program
-	.option("-v, --version <The Sieglinde Version to calculate>")
-	.option("-o, --out <Where to output JSON>");
+	fs.mkdirSync(`${__dirname}/cache`, { recursive: true });
 
-program.parse(process.argv);
-const options = program.opts();
+	const tableInfo = await GetTableData();
 
-if (!options.out) {
-	logger.error(`Need to provide an --out parameter for output!`);
-	process.exit(-1);
-}
+	logger.info(`Starting...`);
 
-const version = Number(options.version) ?? 0;
+	let i = 1;
 
-function WriteOut(data: string) {
-	fs.writeFileSync(options.out, data);
-}
+	fs.mkdirSync(path.join(__dirname, "output"), { recursive: true });
 
-(async () => {
-	if (version === 0) {
-		fs.mkdirSync(`${__dirname}/cache`, { recursive: true });
+	for (const table of tableInfo) {
+		logger.info(`Running for table ${table.table.name}. ${i}/${tableInfo.length}`);
 
-		const tableInfo = await GetTableData();
+		// literally all the parallelism in this codebase has to be turned off because
+		// the lr2ir runs off of a toaster which attempts to gut you if you make more than one
+		// request a second.
+		// eslint-disable-next-line no-await-in-loop
+		const data = await calcFn(table);
 
-		logger.info(`Starting...`);
+		fs.writeFileSync(
+			path.join(__dirname, `output/${table.table.name}.json`),
+			JSON.stringify(data)
+		);
 
-		const calcData = [];
+		fs.writeFileSync(path.join(__dirname, `output/${table.table.name}.csv`), toCSV(data));
 
-		for (const table of tableInfo) {
-			// literally all the parallelism in this codebase has to be turned off because
-			// the lr2ir runs off of a toaster which attempts to gut you if you make more than one
-			// request a second.
-			// eslint-disable-next-line no-await-in-loop
-			calcData.push(await SieglindeV0Calc(table));
-		}
-
-		WriteOut(JSON.stringify(calcData.flat(1)));
-
-		logger.info(`Finished!`);
-	} else {
-		logger.error(`Unsupported/Unknown version ${version}.`);
-		process.exit(-1);
+		i++;
 	}
+
+	logger.info(`Finished!`);
 })();
+
+function toCSV(calcData: Array<CalcReturns>) {
+	let str = `"md5","title","baseLevel","ec","ecStr","hc","hcStr","playcount","confidence"\n`;
+
+	for (const data of calcData) {
+		const row = [
+			data.md5,
+			data.title.replace(/"/gu, '""'),
+			data.baseLevel,
+			data.ec,
+			data.ecStr,
+			data.hc,
+			data.hcStr,
+			data.playcount,
+			data.confidence,
+		];
+
+		str = `${str}"${row.join('","')}"\n`;
+	}
+
+	return str;
+}

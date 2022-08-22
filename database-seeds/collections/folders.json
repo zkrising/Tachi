@@ -3026,6 +3026,703 @@
 	},
 	{
 		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 13,
+				"~lt": 14
+			}
+		},
+		"folderID": "F73dff03bb1494b7029243d4db4b2af9e11008269ed34217c3a859a7ed651974c",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 1"
+		],
+		"title": "EC ★1",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 22,
+				"~lt": 23
+			}
+		},
+		"folderID": "Fa3c1020329f72d37b1c1763a5ea3ac9d773fe89125d3ba3e26bac4650c24eca9",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 10"
+		],
+		"title": "EC ★10",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 23,
+				"~lt": 24
+			}
+		},
+		"folderID": "F09046ea21b83681cf28ababd8b078a3158237c3e4dab50dd5835622f84d13d8e",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 11"
+		],
+		"title": "EC ★11",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 24,
+				"~lt": 25
+			}
+		},
+		"folderID": "F2b18a6bbb00983d92b2ce16767c92bca0a458a638f5a9ee7d509bd1eb4fedf05",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 12"
+		],
+		"title": "EC ★12",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 25,
+				"~lt": 26
+			}
+		},
+		"folderID": "F142b8f39f0cdaf274e3c60fc195f02799e878ca34f73a037ee15191ea99009b2",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 13"
+		],
+		"title": "EC ★13",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 26,
+				"~lt": 27
+			}
+		},
+		"folderID": "F72f4f61165616bd24ac267582b457fbe9720585eac7be6ac0c01e0cb10cd6eb8",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 14"
+		],
+		"title": "EC ★14",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 27,
+				"~lt": 28
+			}
+		},
+		"folderID": "F8796233ba1c691e3ddedc98b644ad322bda561fd9ac8954a75fb04d9f6426c8b",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 15"
+		],
+		"title": "EC ★15",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 28,
+				"~lt": 29
+			}
+		},
+		"folderID": "F4968d3a306ac467efc18d5db083c75dfdfc9e869dfe9cefa42abdd7f278f922b",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 16"
+		],
+		"title": "EC ★16",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 29,
+				"~lt": 30
+			}
+		},
+		"folderID": "Fe2ffe2b018ec5a510d32268e2885b5789b8e0163b5c8fa525ec0b87e7f12af2b",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 17"
+		],
+		"title": "EC ★17",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 30,
+				"~lt": 31
+			}
+		},
+		"folderID": "F667f5294a9bdc6368917197787840d4aea79a9a01d74cb5c3c76dfb426e524ec",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 18"
+		],
+		"title": "EC ★18",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 31,
+				"~lt": 32
+			}
+		},
+		"folderID": "Fd8584c3e8298cf9b838748dee6c6d1dbe9daf44b26cc69e564ef6bfa9f0a2c03",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 19"
+		],
+		"title": "EC ★19",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 14,
+				"~lt": 15
+			}
+		},
+		"folderID": "F081e04d803c557e52e6811308bb5250fcfa4881ec72f9dc5dd8112adbed3848e",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 2"
+		],
+		"title": "EC ★2",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 32,
+				"~lt": 33
+			}
+		},
+		"folderID": "F44f94ee5631795434d95bd9e56fefa0a7e2fc94792cfb4fdf11fa164a22aa6ab",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 20"
+		],
+		"title": "EC ★20",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 33,
+				"~lt": 34
+			}
+		},
+		"folderID": "F64aa1e1e6da0262fcc0c7e3c8846a2b449919f3a659810dbde77a9def360b01c",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 21"
+		],
+		"title": "EC ★21",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 34,
+				"~lt": 35
+			}
+		},
+		"folderID": "F2cf3e3c1ee4a2626de24408c2656c29aa5e820b57ad6930ffc9348580270c8f4",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 22"
+		],
+		"title": "EC ★22",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 35,
+				"~lt": 36
+			}
+		},
+		"folderID": "F33897e85fe26815ef2ddc6d27ed5ae54ddc106ff47d91c4b52ed4088a81d5921",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 23"
+		],
+		"title": "EC ★23",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 36,
+				"~lt": 37
+			}
+		},
+		"folderID": "F3047e8b7a448e69d5ce338b0d239e94119be9bd4ca992e1bb08bea990e1a40c6",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 24"
+		],
+		"title": "EC ★24",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 37,
+				"~lt": 38
+			}
+		},
+		"folderID": "F64e5941a39d01a8a11353ef22089bdb30dba52b57e92083823da161d58c2dc8c",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 25"
+		],
+		"title": "EC ★25",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 38,
+				"~lt": 39
+			}
+		},
+		"folderID": "F7844cd6db82fd7f32b97bb051c3303e6672138507463250dd3b1c5977993fbd4",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 26"
+		],
+		"title": "EC ★26",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 39,
+				"~lt": 40
+			}
+		},
+		"folderID": "Fb2b3aa7337eb04fcd77270413f996dd37ba2ad792cb82559c3a06feee618c080",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 27"
+		],
+		"title": "EC ★27",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 40,
+				"~lt": 41
+			}
+		},
+		"folderID": "Fad4a1c13904d9ab3971687024c774e765b6205a19be742a9bc393a1d323f62b2",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 28"
+		],
+		"title": "EC ★28",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 41,
+				"~lt": 42
+			}
+		},
+		"folderID": "F1a0fe571f69bbc8608653c41a38f80705e354b04b006ec03c733e7d2e0596e52",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 29"
+		],
+		"title": "EC ★29",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 15,
+				"~lt": 16
+			}
+		},
+		"folderID": "F96ddaa6d4f7f2fd55e157f634eadbeec12bb78db1da464f235eed9258345ba84",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 3"
+		],
+		"title": "EC ★3",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 16,
+				"~lt": 17
+			}
+		},
+		"folderID": "F2370449ef3f06f303bcc664b7070956de864e03dd290fcac7ee91a1a9186458c",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 4"
+		],
+		"title": "EC ★4",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 17,
+				"~lt": 18
+			}
+		},
+		"folderID": "F4f374b7ed5e520dd51624f980412de35c0b721e33b0842825515932b4417ca62",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 5"
+		],
+		"title": "EC ★5",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 18,
+				"~lt": 19
+			}
+		},
+		"folderID": "F23c4378f55d733938d60ce637b6edfef291ecf42c8fee776f1a3da3489ff94e0",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 6"
+		],
+		"title": "EC ★6",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 19,
+				"~lt": 20
+			}
+		},
+		"folderID": "F91644ac588a23b7aaca5bb46be41187f309394c6d09ad4332d4f52e80b55a5cd",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 7"
+		],
+		"title": "EC ★7",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 20,
+				"~lt": 21
+			}
+		},
+		"folderID": "F228a73b6948720d782ba656281b2bd3c6a604344606d3088cd4117c346ca4585",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 8"
+		],
+		"title": "EC ★8",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 21,
+				"~lt": 22
+			}
+		},
+		"folderID": "F2b74b792c7ad9a5f501557a45c1a57a1886575575dfe8240ec000330261853e1",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 9"
+		],
+		"title": "EC ★9",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 1,
+				"~lt": 2
+			}
+		},
+		"folderID": "Ff484ff38c1ada55623fd07d46bf85783171925fd7a7d378e606268080c627af6",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 1"
+		],
+		"title": "EC ☆1",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 10,
+				"~lt": 11
+			}
+		},
+		"folderID": "Fcb2e99e9d8178c9b7107e9be0dfa81eecdb0259ba1aeacea6d49c653b7d32c6b",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 10"
+		],
+		"title": "EC ☆10",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 11,
+				"~lt": 12
+			}
+		},
+		"folderID": "F6d12a47bd3e0d50c58fd72d88e2eba6d10819803354aba30d62f3b3c3498dffc",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 11"
+		],
+		"title": "EC ☆11",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 12,
+				"~lt": 13
+			}
+		},
+		"folderID": "Ffbf8443ac33a10359b1476ead27404b805ca0420d18ed38c7f92271f559269ea",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 12"
+		],
+		"title": "EC ☆12",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 2,
+				"~lt": 3
+			}
+		},
+		"folderID": "F597cfd75f1a67c762c81c52d9cb8cb9eae7e2627295f29e893564dc5e8b33a32",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 2"
+		],
+		"title": "EC ☆2",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 3,
+				"~lt": 4
+			}
+		},
+		"folderID": "F2d5dc1080c6108ae5ed0c78c07f4719a3efcadc48c1370da6717799e67e4e741",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 3"
+		],
+		"title": "EC ☆3",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 4,
+				"~lt": 5
+			}
+		},
+		"folderID": "F58f75780e43dacabb81629216cf6eb21a1f735289a40cfa14ceda43c1dc79bae",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 4"
+		],
+		"title": "EC ☆4",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 5,
+				"~lt": 6
+			}
+		},
+		"folderID": "F40b9d32d03e4ab5ecf16373cbf038e590a23914caacc224cee123dd25659d5d4",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 5"
+		],
+		"title": "EC ☆5",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 6,
+				"~lt": 7
+			}
+		},
+		"folderID": "Fcbf6dc54e72787176c886cef4f35421f91d712eea0d8991588f6e2b4991dce73",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 6"
+		],
+		"title": "EC ☆6",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 7,
+				"~lt": 8
+			}
+		},
+		"folderID": "Fd981681e6c20cf6a034211449cec9e782a2cf66b70d93dd5f5e01d91d68cc239",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 7"
+		],
+		"title": "EC ☆7",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 8,
+				"~lt": 9
+			}
+		},
+		"folderID": "F32756428e345aa89e5519321766fcd9e064c12464b6540f73d792b0226d2512e",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 8"
+		],
+		"title": "EC ☆8",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-EC¬value": {
+				"~gte": 9,
+				"~lt": 10
+			}
+		},
+		"folderID": "Fe4d518368214f1ab5f271fa01703a1ac13e1424f0abc12aae6c994fbb04a2fb6",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 9"
+		],
+		"title": "EC ☆9",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"data¬tableFolders": {
 				"~elemMatch": {
 					"level": "-1",
@@ -3364,6 +4061,703 @@
 			"Scratch 3rd 9"
 		],
 		"title": "h◎9",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 13,
+				"~lt": 14
+			}
+		},
+		"folderID": "F02c8479bbb8035388f83200e114d11df7325098766bd12232ca2efa93a8ddadb",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 1"
+		],
+		"title": "HC ★1",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 22,
+				"~lt": 23
+			}
+		},
+		"folderID": "Fe4bc9657b06ab57d4b193892a6afa229aa98f9926055a5f3521b8955cb840789",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 10"
+		],
+		"title": "HC ★10",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 23,
+				"~lt": 24
+			}
+		},
+		"folderID": "Ff6219991b11281b9fb06c0ad5068f7af6546cdf49694d302e978f23ee0f8dac7",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 11"
+		],
+		"title": "HC ★11",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 24,
+				"~lt": 25
+			}
+		},
+		"folderID": "F9343b05c2a1cad0eb486742d432e6cf1df6ae8f4bfd01d3135683734fe2f1a8c",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 12"
+		],
+		"title": "HC ★12",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 25,
+				"~lt": 26
+			}
+		},
+		"folderID": "Fb4b45b432fcf779b3e50e0825b46562f3cf5bc7be85d8a5c88a44266f4a8f5b2",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 13"
+		],
+		"title": "HC ★13",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 26,
+				"~lt": 27
+			}
+		},
+		"folderID": "F2c092f80b81f2e6c19dc4ac9ecfbc8d9fa921bcaa4de999e6536b46324c19ab1",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 14"
+		],
+		"title": "HC ★14",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 27,
+				"~lt": 28
+			}
+		},
+		"folderID": "F4b410e369249fd301030714103305181d8a1a6705ab138e1d28b29f7d6b54e25",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 15"
+		],
+		"title": "HC ★15",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 28,
+				"~lt": 29
+			}
+		},
+		"folderID": "F92f21e5f4a1ebd7f027ef8f605a943bb273896f4a3471a0d6e24fa3194871967",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 16"
+		],
+		"title": "HC ★16",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 29,
+				"~lt": 30
+			}
+		},
+		"folderID": "Fcd0ca9f7b76e26f646cf7ccaab96aae8090b48b56a83c27a635949aca94830ba",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 17"
+		],
+		"title": "HC ★17",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 30,
+				"~lt": 31
+			}
+		},
+		"folderID": "F279a89fb7887e2992c74dc0715edf454a07370c0c6252aee17ef333d99ad9101",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 18"
+		],
+		"title": "HC ★18",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 31,
+				"~lt": 32
+			}
+		},
+		"folderID": "F3969e05e623cfb6d3640c9ba130729716a87df938f56a97c9f9843859ab9a343",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 19"
+		],
+		"title": "HC ★19",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 14,
+				"~lt": 15
+			}
+		},
+		"folderID": "F80a149e6d0842bdf5f715aa555b3b4af099a37e0676e088d2f12235b364ac24e",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 2"
+		],
+		"title": "HC ★2",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 32,
+				"~lt": 33
+			}
+		},
+		"folderID": "F5ec0b73e6c785b970bde74ae151a13f4c828f98166ec6472bab740623a36ab64",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 20"
+		],
+		"title": "HC ★20",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 33,
+				"~lt": 34
+			}
+		},
+		"folderID": "Fee7c6789b2c7bbd8a394d8aff07e40fd7225ee0d10177e4c52187bff228a1443",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 21"
+		],
+		"title": "HC ★21",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 34,
+				"~lt": 35
+			}
+		},
+		"folderID": "F504df8e78ba68f747eb1df476841ff78515981a8d9aff2beb4c1a530764baeb8",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 22"
+		],
+		"title": "HC ★22",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 35,
+				"~lt": 36
+			}
+		},
+		"folderID": "F394b91f1111662d705464a71a1254566d815aebb2dcdee31071d70948aa1642f",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 23"
+		],
+		"title": "HC ★23",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 36,
+				"~lt": 37
+			}
+		},
+		"folderID": "Fe5cfde7e98b9d351971151190cd1cb49f6b814695a8749f2ad6f352ba8d07eb9",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 24"
+		],
+		"title": "HC ★24",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 37,
+				"~lt": 38
+			}
+		},
+		"folderID": "F0081251a5f1ebc96f835340dfff8a09fb1d912bd99b91bf1c89065e85f7d0df6",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 25"
+		],
+		"title": "HC ★25",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 38,
+				"~lt": 39
+			}
+		},
+		"folderID": "F9fa434247825fd818c042e6fa03832a05a7073e56e8ba0bb90a544b0182a8302",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 26"
+		],
+		"title": "HC ★26",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 39,
+				"~lt": 40
+			}
+		},
+		"folderID": "F56195de974a1d9b2c082f1444860b04709a68c25f5928a39205b996269749b0e",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 27"
+		],
+		"title": "HC ★27",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 40,
+				"~lt": 41
+			}
+		},
+		"folderID": "F87151e35534146abb83da043289828c329b4af050b3eb5c89027554bb6a928d7",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 28"
+		],
+		"title": "HC ★28",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 41,
+				"~lt": 42
+			}
+		},
+		"folderID": "Ff138d4536c51b853133c5a9e081a124bed9c44f7b7cc807a89cff240090958b7",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 29"
+		],
+		"title": "HC ★29",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 15,
+				"~lt": 16
+			}
+		},
+		"folderID": "F75fd0149a7789f42875d59a343d1c0ed4fe1edbe194da243ae3e25b315751091",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 3"
+		],
+		"title": "HC ★3",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 16,
+				"~lt": 17
+			}
+		},
+		"folderID": "F1a73219f2b13cc4b4b0b5bdd8edfb268bc5d002e962d893c64fc56895e784f8c",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 4"
+		],
+		"title": "HC ★4",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 17,
+				"~lt": 18
+			}
+		},
+		"folderID": "F41ebc9ceb74a3f1c3fbfccc4fdb203f79165028cde25dd354fb0d5ecc7c993e7",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 5"
+		],
+		"title": "HC ★5",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 18,
+				"~lt": 19
+			}
+		},
+		"folderID": "F259d9df47362f41fc041cbaf79df960ece7260730794f83ea58b4328bdde6cb3",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 6"
+		],
+		"title": "HC ★6",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 19,
+				"~lt": 20
+			}
+		},
+		"folderID": "F17b1cc00c08ac9f7572af384e01899d78ce3cccefdebf9b4293eac0a37b64ab7",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 7"
+		],
+		"title": "HC ★7",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 20,
+				"~lt": 21
+			}
+		},
+		"folderID": "Fee1a5e6707b920feaebcd006e4137fb64f659454c5cdf9647a632fc0a72f2705",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 8"
+		],
+		"title": "HC ★8",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 21,
+				"~lt": 22
+			}
+		},
+		"folderID": "Ff801799d1550635ef8fe58fd553f6b47c9fe534efe4152a0542862a64f5c80ae",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Insane 9"
+		],
+		"title": "HC ★9",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 1,
+				"~lt": 2
+			}
+		},
+		"folderID": "F1335e546275d67d0dc0a75bbd83e679963879f865ac9c0c54f5a5e747541a481",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 1"
+		],
+		"title": "HC ☆1",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 10,
+				"~lt": 11
+			}
+		},
+		"folderID": "Fdcd138f09f01119994d52bd20bb96c24e30051c0f1021e8b38f0ede8eb6909cf",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 10"
+		],
+		"title": "HC ☆10",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 11,
+				"~lt": 12
+			}
+		},
+		"folderID": "F0c1c2251e96c8eeef664b2e4459f984f4195e4644d66e7d31229b442d677ef51",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 11"
+		],
+		"title": "HC ☆11",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 12,
+				"~lt": 13
+			}
+		},
+		"folderID": "F731c44087d33bbc940a79d14220558f09fef1bc76cf2c5f17db6b9d0ece1110b",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 12"
+		],
+		"title": "HC ☆12",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 2,
+				"~lt": 3
+			}
+		},
+		"folderID": "Fe488da224dad88f5b013678111ccfc80d59383a22e4c1674221f30ec7160a5c6",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 2"
+		],
+		"title": "HC ☆2",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 3,
+				"~lt": 4
+			}
+		},
+		"folderID": "Ff9adc2c9375ec2f93145f509ede3196922917d5fd05c80b6f36ca53bc49db61a",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 3"
+		],
+		"title": "HC ☆3",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 4,
+				"~lt": 5
+			}
+		},
+		"folderID": "Fd2222df2d2d08544b2e97c485fb4b65cc218423ab7884064faa092cb81b39c05",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 4"
+		],
+		"title": "HC ☆4",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 5,
+				"~lt": 6
+			}
+		},
+		"folderID": "F5322c052c0525acbd10a7fe4b52eb1c8223e60dac000a218b48aa9549d2e2f13",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 5"
+		],
+		"title": "HC ☆5",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 6,
+				"~lt": 7
+			}
+		},
+		"folderID": "F841a8bcd4101c1326eee621386604377a8cf0e6cc3504caad8a5b7380da7c760",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 6"
+		],
+		"title": "HC ☆6",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 7,
+				"~lt": 8
+			}
+		},
+		"folderID": "F0c2f80503927906fd522bf5053dbedcc8a63b041fa36db252505545c9242d964",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 7"
+		],
+		"title": "HC ☆7",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 8,
+				"~lt": 9
+			}
+		},
+		"folderID": "Fce5277de8c7c3ebfcef13ca4474229ab9dde53eb605c42ed38381a4564005532",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 8"
+		],
+		"title": "HC ☆8",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"tierlistInfo¬sgl-HC¬value": {
+				"~gte": 9,
+				"~lt": 10
+			}
+		},
+		"folderID": "F458a49e2afc5eabbca52d8fe637b365f8e58f96e15694b786e0537b9f244cc69",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Sieglinde Normal 9"
+		],
+		"title": "HC ☆9",
 		"type": "charts"
 	},
 	{

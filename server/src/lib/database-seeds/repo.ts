@@ -22,10 +22,12 @@ export type SeedsCollections =
 export class DatabaseSeedsRepo {
 	private readonly baseDir: string;
 	private readonly logger;
+	private readonly dontDestroy?: "YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD";
 
-	constructor(baseDir: string) {
+	constructor(baseDir: string, dontDestroy?: "YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD") {
 		this.baseDir = baseDir;
 		this.logger = CreateLogCtx(`DatabaseSeeds:${baseDir}`);
+		this.dontDestroy = dontDestroy;
 	}
 
 	private CollectionNameToPath(collectionName: SeedsCollections) {
@@ -169,6 +171,11 @@ export class DatabaseSeedsRepo {
 	}
 
 	Destroy() {
+		if (this.dontDestroy !== "YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD") {
+			this.logger.warn(`Refusing to delete seeds as they were instantiated locally.`);
+			return;
+		}
+
 		// scary
 		return fs.rm(this.baseDir, { recursive: true, force: true });
 	}
@@ -176,8 +183,15 @@ export class DatabaseSeedsRepo {
 
 /**
  * Pulls the database seeds from github, returns an object that can be used to manipulate them.
+ *
+ * @param fetchFromLocalPath - Whether or not to fetch this from a local instance, like a
+ * monorepo database-seeds directory.
  */
-export async function PullDatabaseSeeds() {
+export async function PullDatabaseSeeds(fetchFromLocalPath: string | null = null) {
+	if (fetchFromLocalPath) {
+		return new DatabaseSeedsRepo(fetchFromLocalPath);
+	}
+
 	if (!ServerConfig.SEEDS_CONFIG) {
 		throw new Error(`SEEDS_CONFIG was not defined. You cannot pull a seeds repo.`);
 	}
@@ -211,7 +225,10 @@ export async function PullDatabaseSeeds() {
 			logger.error(stdout);
 		}
 
-		return new DatabaseSeedsRepo(`${seedsDir}/database-seeds`);
+		return new DatabaseSeedsRepo(
+			`${seedsDir}/database-seeds`,
+			"YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD"
+		);
 	} catch ({ err, stderr }) {
 		logger.error(`Error cloning database-seeds. ${stderr}.`);
 		throw err;

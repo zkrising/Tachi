@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable no-await-in-loop */
 import logger from "./logger";
 import TableValueGetters from "./lookups";
@@ -10,13 +14,12 @@ const parser = new XMLParser();
 
 export async function FetchScoresForMD5(md5: string) {
 	try {
-		const data = JSON.parse(await readFile(`${__dirname}/cache/${md5}.json`, "utf-8"));
+		const data = JSON.parse(await readFile(`${__dirname}/cache/lr2ir/${md5}.json`, "utf-8"));
 
 		if (!Array.isArray(data)) {
 			throw new Error(`Invalid cache for ${md5}`);
 		}
 
-		logger.verbose(`Returned ${md5} info from cache.`);
 		return data;
 	} catch {
 		const scores = await fetch(
@@ -30,7 +33,12 @@ export async function FetchScoresForMD5(md5: string) {
 			throw new Error(`Got rate limited on ${md5}.`);
 		}
 
-		await writeFile(`${__dirname}/cache/${md5}.json`, JSON.stringify(data, null, "\t"));
+		// xml sucks
+		for (const d of data) {
+			d.name = d.name.toString();
+		}
+
+		await writeFile(`${__dirname}/cache/lr2ir/${md5}.json`, JSON.stringify(data, null, "\t"));
 
 		return data;
 	}
@@ -78,7 +86,7 @@ export function GetSigmoidalValue(x: number) {
 	return 0.5 * (1 + Math.sin(x * Math.PI - Math.PI / 2));
 }
 
-export function GetBaseline(table: BMSTablesDataset, level: string) {
+export function GetBaseline(table: BMSTablesDataset, level: string): number | null {
 	// @ts-expect-error don't care it's exhaustive
 	return TableValueGetters[table.name](level);
 }
@@ -88,11 +96,11 @@ export function GetFString(table: BMSTablesDataset, chart: BMSTableChart) {
 }
 
 export function Sleep(ms: number) {
-	return new Promise<void>((resolve) =>
+	return new Promise<void>((resolve) => {
 		setTimeout(() => {
 			resolve();
-		}, ms)
-	);
+		}, ms);
+	});
 }
 
 /**

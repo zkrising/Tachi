@@ -1,6 +1,7 @@
 /* eslint-disable no-await-in-loop */
 // This script syncs this tachi instances database up with the tachi-database-seeds.
 
+import { Command } from "commander";
 import db, { monkDB } from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import { PullDatabaseSeeds } from "lib/database-seeds/repo";
@@ -13,6 +14,7 @@ import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import { UpdateGameSongIDCounter } from "utils/db";
 import { InitaliseFolderChartLookup } from "utils/folder";
 import { ArrayDiff, IsSupported, WrapScriptPromise } from "utils/misc";
+import path from "path";
 import type { KtLogger } from "lib/logger/logger";
 import type { BulkWriteOperation, DeleteWriteOpResultObject } from "mongodb";
 import type { ICollection } from "monk";
@@ -336,11 +338,20 @@ const syncInstructions: Array<SyncInstructions> = [
 
 const logger = CreateLogCtx("Database Sync");
 
+const program = new Command();
+
+program.option("-l, --localPath <path/to/database-seeds>");
+
+program.parse(process.argv);
+const options: {
+	localPath: string | undefined;
+} = program.opts();
+
 async function SynchroniseDBWithSeeds() {
 	// Wait for mongo to connect first.
 	await monkDB.then(() => void 0);
 
-	const databaseSeedsRepo = await PullDatabaseSeeds();
+	const databaseSeedsRepo = await PullDatabaseSeeds(options.localPath);
 
 	for await (const { collectionName, data } of databaseSeedsRepo.IterateCollections()) {
 		const spawnLogger = CreateLogCtx(`${collectionName} Sync`);

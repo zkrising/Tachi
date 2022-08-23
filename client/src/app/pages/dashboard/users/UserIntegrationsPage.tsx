@@ -83,7 +83,7 @@ function OAuthClientPage() {
 					You can read the documentation{" "}
 					<ExternalLink
 						style={{ color: "white" }}
-						href="https://docs.bokutachi.xyz/en/latest/tachi-server/infrastructure/api-clients/"
+						href="https://docs.bokutachi.xyz/tachi-server/infrastructure/api-clients/"
 					>
 						here
 					</ExternalLink>
@@ -243,7 +243,7 @@ function CreateNewOAuthClient({ setClients }: { setClients: SetState<TachiAPICli
 							In what format should a generated API Key be shown to the user? This
 							only applies to Client File Flow. <code>%%TACHI_KEY%%</code> will be
 							replaced with the generated key. Read more about client file flow{" "}
-							<ExternalLink href="https://docs.bokutachi.xyz/en/latest/tachi-server/infrastructure/file-flow/">
+							<ExternalLink href="https://docs.bokutachi.xyz/tachi-server/infrastructure/file-flow/">
 								here
 							</ExternalLink>
 							.
@@ -559,7 +559,7 @@ function EditClientModal({
 					/>
 					<Muted>
 						Where to send webhook events to. Please read the{" "}
-						<ExternalLink href="https://docs.bokutachi.xyz/en/latest/api/webhooks/main/">
+						<ExternalLink href="https://docs.bokutachi.xyz/api/webhooks/main/">
 							Webhook Documentation
 						</ExternalLink>{" "}
 						before using this, as there are necessary security precautions.
@@ -577,7 +577,7 @@ function EditClientModal({
 						In what format should a generated API Key be shown to the user? This only
 						applies to Client File Flow. <code>%%TACHI_KEY%%</code> will be replaced
 						with the generated key. Read more about client file flow{" "}
-						<ExternalLink href="https://docs.bokutachi.xyz/en/latest/tachi-server/infrastructure/file-flow/">
+						<ExternalLink href="https://docs.bokutachi.xyz/tachi-server/infrastructure/file-flow/">
 							here
 						</ExternalLink>
 						.

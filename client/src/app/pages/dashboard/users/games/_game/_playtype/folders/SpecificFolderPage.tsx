@@ -603,7 +603,7 @@ function TierlistInfoBucketValues({
 				)}
 				<Divider className="my-2" />
 				<Muted>
-					<ReferToUser reqUser={reqUser} />
+					<ReferToUser reqUser={reqUser} />{" "}
 					{tierlistInfo.achieved === AchievedStatuses.NOT_PLAYED
 						? "Not Played"
 						: tierlistInfo.achieved === AchievedStatuses.SCORE_BASED

@@ -6,16 +6,16 @@ import { TachiConfig } from "lib/config";
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function BeatorajaDBPage() {
-	useSetSubheader(["Import Scores", "Beatoraja Database File"]);
+export default function LR2orajaDBPage() {
+	useSetSubheader(["Import Scores", "LR2oraja Database File"]);
 
 	return (
 		<>
-			<TISInfo name="Beatoraja Database" />
+			<TISInfo name="LR2Oraja Database" />
 			<Divider />
 			<Muted>
 				This method is intended for syncing up with existing scores. For new scores, you
-				should set up the <Link to="/dashboard/import/beatoraja-ir">Beatoraja IR</Link>, for
+				should set up the <Link to="/dashboard/import/beatoraja-ir">LR2oraja IR</Link>, for
 				automatic score uploading.
 			</Muted>
 			<br />

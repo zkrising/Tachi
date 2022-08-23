@@ -1,6 +1,6 @@
 import BarbatosPage from "app/pages/dashboard/import/BarbatosPage";
 import BatchManualPage from "app/pages/dashboard/import/BatchManualPage";
-import BeatorajaDBPage from "app/pages/dashboard/import/BeatorajaDBPage";
+import LR2orajaDBPage from "app/pages/dashboard/import/LR2orajaDBPage";
 import BeatorajaIRPage from "app/pages/dashboard/import/BeatorajaIRPage";
 import ChunitachiPage from "app/pages/dashboard/import/ChunitachiPage";
 import FervidexPage from "app/pages/dashboard/import/FervidexPage";
@@ -50,7 +50,7 @@ export default function ImportRoutes() {
 
 					{mode !== "ktchi" && (
 						<>
-							<Route exact path="/dashboard/import/beatoraja-ir">
+							<Route exact path="/dashboard/import/lr2oraja-ir">
 								<BeatorajaIRPage game="bms" />
 							</Route>
 							<Route exact path="/dashboard/import/beatoraja-ir-pms">
@@ -69,7 +69,7 @@ export default function ImportRoutes() {
 								<LR2DBPage />
 							</Route>
 							<Route exact path="/dashboard/import/beatoraja-db">
-								<BeatorajaDBPage />
+								<LR2orajaDBPage />
 							</Route>
 						</>
 					)}

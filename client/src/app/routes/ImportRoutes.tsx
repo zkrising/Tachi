@@ -68,7 +68,7 @@ export default function ImportRoutes() {
 							<Route exact path="/dashboard/import/lr2-db">
 								<LR2DBPage />
 							</Route>
-							<Route exact path="/dashboard/import/beatoraja-db">
+							<Route exact path="/dashboard/import/lr2oraja-db">
 								<LR2orajaDBPage />
 							</Route>
 						</>

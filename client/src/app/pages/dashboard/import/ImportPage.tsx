@@ -167,7 +167,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 		Content.unshift(
 			<ImportInfoCard
 				name="LR2oraja IR"
-				href="beatoraja-ir"
+				href="lr2oraja-ir"
 				desc="Automatically import scores, whenever you get them!"
 				moreInfo="This is the recommended way to import BMS scores, as it provides high quality data in real-time."
 				key="LR2oraja IR"
@@ -180,11 +180,11 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				key="LR2 IR"
 			/>,
 			<ImportInfoCard
-				name="Beatoraja Database Import"
-				href="beatoraja-db"
-				desc="Import scores from a beatoraja score database file."
+				name="LR2oraja Database Import"
+				href="lr2oraja-db"
+				desc="Import scores from a LR2oraja score database file."
 				moreInfo="This should be done once initially to sync scores up, but not all the time, as it provides worse quality data."
-				key="Beatoraja Database Import"
+				key="LR2oraja Database Import"
 			/>,
 			<ImportInfoCard
 				name="LR2 Database Import"
@@ -201,7 +201,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				href="usc-ir"
 				desc="Automatically import scores, whenever you get them!"
 				moreInfo="This is the recommended way to import USC scores, as it provides high quality data in real-time."
-				key="Beatoraja IR"
+				key="USC IR"
 			/>,
 			<ImportInfoCard
 				name="USC Database Import"

@@ -24,12 +24,14 @@ exec java -Xms1g -Xmx4g -cp beatoraja.jar:ir/* bms.player.beatoraja.MainLoader
 export default function BeatorajaIRPage({ game }: { game: "bms" | "pms" }) {
 	useSetSubheader(["Import Scores", "Beatoraja IR"]);
 
+	const name = game === "bms" ? "LR2oraja" : "Beatoraja";
+
 	return (
 		<div>
-			<h2 className="text-center mb-4">Beatoraja IR Setup Instructions</h2>
+			<h2 className="text-center mb-4">{name} IR Setup Instructions</h2>
 			<ol className="instructions-list">
 				<li>
-					Download the latest version of the Beatoraja IR{" "}
+					Download the latest version of the {name} IR{" "}
 					<ExternalLink href="https://github.com/TNG-dev/tachi-beatoraja-ir/releases">
 						here
 					</ExternalLink>

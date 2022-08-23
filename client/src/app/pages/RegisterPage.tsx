@@ -142,7 +142,7 @@ export default function RegisterPage() {
 							<h4>
 								Hey! Before you make an account, please read the{" "}
 								<a
-									href="https://docs.bokutachi.xyz/user/rules/"
+									href="https://docs.bokutachi.xyz/wiki/rules/"
 									target="_blank"
 									rel="noopener noreferrer"
 									onAuxClick={ReadRulesWait}

@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DiscordColours } from "./colours";
-import { ONE_MINUTE } from "lib/constants/time";
+import { ONE_HOUR, ONE_MINUTE } from "lib/constants/time";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import SafeJSONStringify from "safe-json-stringify";
 import fetch from "utils/fetch";
-import { IsRecord } from "utils/misc";
+import { IsRecord, Sleep } from "utils/misc";
 import Transport from "winston-transport";
+import type { Response } from "node-fetch";
 import type { TransportStreamOptions } from "winston-transport";
 
 interface DiscordTransportOptions extends TransportStreamOptions {
@@ -50,23 +51,58 @@ export default class DiscordTransport extends Transport {
 
 		this.resetBucketData();
 
-		this.initalised = fetch(opts.webhook)
-			.then((r) => {
-				if (!r.ok) {
-					throw new Error(`Couldn't connect to discord transport. ${r.status}.`);
-				}
+		this.initalised = this.connect(opts);
+	}
 
-				return r.json() as unknown;
-			})
-			.then((content) => {
-				if (!IsRecord(content)) {
+	private async connect(opts: DiscordTransportOptions) {
+		let connected = false;
+
+		let outerData: Response | undefined;
+
+		while (!connected) {
+			// eslint-disable-next-line no-await-in-loop
+			const data = await fetch(opts.webhook);
+
+			if (!data.ok) {
+				if (data.status === 429) {
+					// Any amount of miliseconds between 6 minutes and 60 minutes.
+					const time = Math.max(Math.random(), 0.1) * ONE_HOUR;
+
+					// eslint-disable-next-line no-console
+					console.error(
+						`Couldn't connect to discord transport (${
+							data.status
+						}). Going to try again in ${(time / ONE_MINUTE).toFixed(2)} minutes.`
+					);
+
+					// eslint-disable-next-line no-await-in-loop
+					await Sleep(time);
+				} else {
 					throw new Error(
-						`Discord returned non-object data as JSON? Can't get id or token ${content}.`
+						`Couldn't connect to discord transport (${data.status}). This is not retryable.`
 					);
 				}
+			} else {
+				connected = true;
+				outerData = data;
+			}
+		}
 
-				this.webhookUrl = `https://discordapp.com/api/v6/webhooks/${content.id}/${content.token}`;
-			});
+		if (!outerData) {
+			throw Error(
+				`Unreachable state. Connected with no outerData. This is not even remotely possible, so good luck figuring this one out.`
+			);
+		}
+
+		const content = (await outerData.json()) as unknown;
+
+		if (!IsRecord(content)) {
+			throw new Error(
+				`Discord returned non-object data as JSON? Can't get id or token ${content}.`
+			);
+		}
+
+		this.webhookUrl = `https://discordapp.com/api/v6/webhooks/${content.id}/${content.token}`;
 	}
 
 	private resetBucketData() {

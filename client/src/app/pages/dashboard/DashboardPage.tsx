@@ -65,15 +65,13 @@ function DashboardLoggedIn({ user }: { user: PublicUserDocument }) {
 }
 
 function RecentInfo({ user }: { user: PublicUserDocument }) {
-	const { data, isLoading, error } = useApiQuery<UserRecentSummary>(
-		`/users/${user.id}/recent-summary`
-	);
+	const { data, error } = useApiQuery<UserRecentSummary>(`/users/${user.id}/recent-summary`);
 
 	if (error) {
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

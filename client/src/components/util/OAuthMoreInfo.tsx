@@ -10,13 +10,13 @@ export default function OAuthMoreInfo({
 }: {
 	client: Omit<TachiAPIClientDocument, "clientSecret">;
 }) {
-	const { data, isLoading, error } = useApiQuery<PublicUserDocument>(`/users/${client.author}`);
+	const { data, error } = useApiQuery<PublicUserDocument>(`/users/${client.author}`);
 
 	if (error) {
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

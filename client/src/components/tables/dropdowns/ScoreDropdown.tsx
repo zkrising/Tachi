@@ -59,15 +59,11 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 	const { user: currentUser } = useContext(UserContext);
 	const { settings } = useContext(UserSettingsContext);
 
-	const { isLoading, error, data } = useApiQuery<UGPTChartPBComposition<I>>(
+	const { data, error } = useApiQuery<UGPTChartPBComposition<I>>(
 		`/users/${user.id}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`
 	);
 
-	const {
-		isLoading: histIsLoading,
-		error: histError,
-		data: histData,
-	} = useApiQuery<ScoreDocument<I>[]>(
+	const { error: histError, data: histData } = useApiQuery<ScoreDocument<I>[]>(
 		`/users/${user.id}/games/${game}/${playtype}/scores/${chart.chartID}`
 	);
 
@@ -75,7 +71,7 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 		return <>An error has occured. Whoops.</>;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return (
 			<div style={{ height: "200px" }} className="d-flex align-items-center">
 				<Loading />
@@ -89,7 +85,6 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 		body = (
 			<PlayHistory
 				error={histError}
-				isLoading={histIsLoading}
 				game={game}
 				playtype={playtype}
 				data={histData}

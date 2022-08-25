@@ -23,7 +23,7 @@ export default function RivalsOverviewWrapper({
 	game: Game;
 	playtype: Playtype;
 }) {
-	const { data, isLoading, error } = useApiQuery<PublicUserDocument[]>(
+	const { data, error } = useApiQuery<PublicUserDocument[]>(
 		`/users/${reqUser.id}/games/${game}/${playtype}/rivals`
 	);
 
@@ -39,7 +39,7 @@ export default function RivalsOverviewWrapper({
 		<ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

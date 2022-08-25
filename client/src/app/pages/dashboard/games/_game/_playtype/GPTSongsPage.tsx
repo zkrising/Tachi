@@ -50,7 +50,7 @@ export default function GPTSongsPage({ game, playtype }: GamePT) {
 function SearchSongsTable({ game, playtype, search }: { search: string } & GamePT) {
 	const params = new URLSearchParams({ search });
 
-	const { data, isLoading, error } = useApiQuery<{
+	const { data, error } = useApiQuery<{
 		charts: (ChartDocument & { __playcount: integer })[];
 		songs: SongDocument[];
 	}>(`/games/${game}/${playtype}/charts${search !== "" ? `?${params.toString()}` : ""}`);
@@ -59,7 +59,7 @@ function SearchSongsTable({ game, playtype, search }: { search: string } & GameP
 		return <ApiError error={error} />;
 	}
 
-	if (!data || isLoading) {
+	if (!data) {
 		return <Loading />;
 	}
 

@@ -21,7 +21,7 @@ export default function RecentFoldersPage({
 		return <>Hey, you're not logged in. How did you get here!</>;
 	}
 
-	const { data, isLoading, error } = useApiQuery<{
+	const { data, error } = useApiQuery<{
 		folders: FolderDocument[];
 		views: RecentlyViewedFolderDocument[];
 		stats: FolderStatsInfo[];
@@ -31,7 +31,7 @@ export default function RecentFoldersPage({
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

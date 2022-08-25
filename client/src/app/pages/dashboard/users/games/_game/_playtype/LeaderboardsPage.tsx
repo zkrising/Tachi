@@ -48,7 +48,7 @@ export default function LeaderboardsPage({
 
 	const url = `/users/${reqUser.id}/games/${game}/${playtype}/leaderboard-adjacent?alg=${alg}`;
 
-	const { isLoading, error, data } = useQuery<LeaderboardsData, UnsuccessfulAPIFetchResponse>(
+	const { data, error } = useQuery<LeaderboardsData, UnsuccessfulAPIFetchResponse>(
 		url,
 		async () => {
 			const res = await APIFetchV1<UGPTLeaderboardAdjacent>(url);
@@ -73,7 +73,7 @@ export default function LeaderboardsPage({
 	);
 
 	return (
-		<LoadingWrapper {...{ dataset: data, isLoading, error }}>
+		<LoadingWrapper {...{ dataset: data, error }}>
 			<LeaderboardsPageContent {...{ reqUser, game, playtype, data: data!, alg, setAlg }} />
 		</LoadingWrapper>
 	);

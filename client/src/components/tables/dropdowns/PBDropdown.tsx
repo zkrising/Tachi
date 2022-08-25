@@ -44,15 +44,11 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 
 	const [view, setView] = useState(defaultView);
 
-	const { isLoading, error, data } = useApiQuery<UGPTChartPBComposition<I>>(
+	const { data, error } = useApiQuery<UGPTChartPBComposition<I>>(
 		`/users/${userID}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`
 	);
 
-	const {
-		isLoading: histIsLoading,
-		error: histError,
-		data: histData,
-	} = useApiQuery<ScoreDocument<I>[]>(
+	const { error: histError, data: histData } = useApiQuery<ScoreDocument<I>[]>(
 		`/users/${userID}/games/${game}/${playtype}/scores/${chart.chartID}`
 	);
 
@@ -88,7 +84,7 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return (
 			<div style={{ height: "200px" }} className="d-flex align-items-center">
 				<Loading />
@@ -106,7 +102,6 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 			<PlayHistory
 				data={histData}
 				error={histError}
-				isLoading={histIsLoading}
 				game={game}
 				playtype={playtype}
 				chart={chart}

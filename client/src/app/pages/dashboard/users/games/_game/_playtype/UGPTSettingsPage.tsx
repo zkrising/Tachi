@@ -113,17 +113,15 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 		},
 	});
 
-	const {
-		data: tables,
-		isLoading,
-		error,
-	} = useApiQuery<TableDocument[]>(`/games/${game}/${playtype}/tables?showInactive=true`);
+	const { data: tables, error } = useApiQuery<TableDocument[]>(
+		`/games/${game}/${playtype}/tables?showInactive=true`
+	);
 
 	if (error) {
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !tables) {
+	if (!tables) {
 		return <Loading />;
 	}
 

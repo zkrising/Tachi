@@ -20,7 +20,7 @@ export default function UserInvitesPage({ reqUser }: { reqUser: PublicUserDocume
 		`${reqUser.username}'s Invites`
 	);
 
-	const { data, isLoading, error } = useApiQuery<{ invites: integer; limit: integer }>(
+	const { data, error } = useApiQuery<{ invites: integer; limit: integer }>(
 		`/users/${reqUser.id}/invites/limit`
 	);
 
@@ -28,7 +28,7 @@ export default function UserInvitesPage({ reqUser }: { reqUser: PublicUserDocume
 		return <ApiError error={error} />;
 	}
 
-	if (!data || isLoading) {
+	if (!data) {
 		return <Loading />;
 	}
 
@@ -86,7 +86,7 @@ export default function UserInvitesPage({ reqUser }: { reqUser: PublicUserDocume
 }
 
 function InviteList({ reqUser }: { reqUser: PublicUserDocument }) {
-	const { data, isLoading, error } = useApiQuery<{
+	const { data, error } = useApiQuery<{
 		invites: InviteCodeDocument[];
 		consumers: PublicUserDocument[];
 	}>(`/users/${reqUser.id}/invites`);
@@ -95,7 +95,7 @@ function InviteList({ reqUser }: { reqUser: PublicUserDocument }) {
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

@@ -38,7 +38,7 @@ interface Props {
 }
 
 export default function FolderTablePage({ reqUser, game, playtype }: Props) {
-	const { data, isLoading, error } = useApiQuery<TableDocument[]>(
+	const { data, error } = useApiQuery<TableDocument[]>(
 		`/games/${game}/${playtype}/tables?showInactive=true`
 	);
 
@@ -84,7 +84,7 @@ export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 
@@ -125,7 +125,7 @@ interface UGPTFolderStats {
 }
 
 function TableFolderViewer({ reqUser, game, playtype, table }: Props & { table: TableDocument }) {
-	const { data, isLoading, error } = useApiQuery<UGPTTableReturns>(
+	const { data, error } = useApiQuery<UGPTTableReturns>(
 		`/users/${reqUser.id}/games/${game}/${playtype}/tables/${table.tableID}`
 	);
 
@@ -153,7 +153,7 @@ function TableFolderViewer({ reqUser, game, playtype, table }: Props & { table: 
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data || !hasLoadedFolderMap) {
+	if (!data || !hasLoadedFolderMap) {
 		return <Loading />;
 	}
 

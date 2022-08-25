@@ -20,7 +20,7 @@ export default function OAuth2CallbackPage({
 		return <ErrorPage statusCode={400} />;
 	}
 
-	const { data, isLoading, error } = useApiQuery(counterWeight, {
+	const { data, error } = useApiQuery(counterWeight, {
 		method: "POST",
 		body: JSON.stringify({ code }),
 		headers: {
@@ -32,7 +32,7 @@ export default function OAuth2CallbackPage({
 		<ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return (
 			<div>
 				We're checking up with this site to get your authentication sorted.

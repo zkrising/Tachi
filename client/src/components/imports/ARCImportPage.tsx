@@ -31,7 +31,7 @@ export default function ARCImportPage({ game }: { game: "sdvx" | "iidx" }) {
 		return <>No user? How did you get here!</>;
 	}
 
-	const { data, isLoading, error } = useApiQuery<{
+	const { data, error } = useApiQuery<{
 		iidx: ARCSavedProfileDocument | null;
 		sdvx: ARCSavedProfileDocument | null;
 	}>(`/users/${user.id}/integrations/arc`);
@@ -40,7 +40,7 @@ export default function ARCImportPage({ game }: { game: "sdvx" | "iidx" }) {
 		return <ApiError error={error} />;
 	}
 
-	if (!data || isLoading) {
+	if (!data) {
 		return <Loading />;
 	}
 

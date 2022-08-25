@@ -89,7 +89,7 @@ function InternalGPTChartPage({
 
 	const [mode, setMode] = useState<"leaderboard" | "adjacent">("leaderboard");
 
-	const { data, isLoading, error } = useQuery<ChartPBData, UnsuccessfulAPIFetchResponse>(
+	const { data, error } = useQuery<ChartPBData, UnsuccessfulAPIFetchResponse>(
 		["PBInfo", `${chart.chartID}`],
 		async () => {
 			const lRes = await APIFetchV1<ChartPBLeaderboardReturn>(
@@ -132,7 +132,7 @@ function InternalGPTChartPage({
 		return <ApiError error={error} />;
 	}
 
-	if (!data || isLoading) {
+	if (!data) {
 		return <Loading />;
 	}
 

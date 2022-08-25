@@ -89,7 +89,7 @@ export default function SessionRaiseBreakdown({
 		});
 	}, [folder, tableID, filter]);
 
-	const { isLoading, error, data } = useQuery(`/games/${game}/${playtype}/tables`, async () => {
+	const { data, error } = useQuery(`/games/${game}/${playtype}/tables`, async () => {
 		const res = await APIFetchV1<TableDocument[]>(`/games/${game}/${playtype}/tables`);
 
 		if (!res.success) {
@@ -110,7 +110,7 @@ export default function SessionRaiseBreakdown({
 		return <>{(error as Error).message}</>;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

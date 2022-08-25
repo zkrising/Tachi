@@ -14,7 +14,7 @@ export default function ARCIntegrationPage({ reqUser }: { reqUser: PublicUserDoc
 	const [iidxID, setIIDXID] = useState("");
 	const [sdvxID, setSDVXID] = useState("");
 
-	const { data, isLoading, error } = useApiQuery<{
+	const { data, error } = useApiQuery<{
 		iidx: ARCSavedProfileDocument | null;
 		sdvx: ARCSavedProfileDocument | null;
 	}>(`/users/${reqUser.id}/integrations/arc`, undefined, true);
@@ -30,7 +30,7 @@ export default function ARCIntegrationPage({ reqUser }: { reqUser: PublicUserDoc
 		return <ApiError error={error} />;
 	}
 
-	if (!data || isLoading) {
+	if (!data) {
 		return <Loading />;
 	}
 

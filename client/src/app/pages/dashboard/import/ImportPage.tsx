@@ -71,7 +71,7 @@ function ShowRecentImports() {
 }
 
 function InnerShowRecentImports({ user }: { user: PublicUserDocument }) {
-	const { data, error, isLoading } = useApiQuery<{ importType: ImportTypes; count: integer }[]>(
+	const { data, error } = useApiQuery<{ importType: ImportTypes; count: integer }[]>(
 		`/users/${user.id}/recent-imports`
 	);
 
@@ -79,7 +79,7 @@ function InnerShowRecentImports({ user }: { user: PublicUserDocument }) {
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

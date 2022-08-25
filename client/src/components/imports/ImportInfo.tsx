@@ -37,7 +37,7 @@ interface Data {
 }
 
 export default function ImportInfo({ importID }: { importID: string }) {
-	const { data, isLoading, error } = useApiQuery<Data>(`/imports/${importID}`);
+	const { data, error } = useApiQuery<Data>(`/imports/${importID}`);
 
 	const { setUGS } = useContext(UserGameStatsContext);
 	const { user } = useContext(UserContext);
@@ -70,7 +70,7 @@ export default function ImportInfo({ importID }: { importID: string }) {
 		);
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return (
 			<>
 				<Loading />

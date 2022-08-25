@@ -4,13 +4,11 @@ import { UnsuccessfulAPIResponse } from "tachi-common";
 
 export default function LoadingWrapper({
 	dataset,
-	isLoading,
 	error,
 	children,
 	style,
 }: {
 	dataset: unknown | null | undefined;
-	isLoading: boolean;
 	error: UnsuccessfulAPIResponse | null;
 	children: JSX.Element | JSX.Element[];
 	style?: CSSProperties;
@@ -19,7 +17,7 @@ export default function LoadingWrapper({
 		return <h3>An error has occured. {error.description}</h3>;
 	}
 
-	if (isLoading || !dataset) {
+	if (!dataset) {
 		return <Loading style={style} />;
 	}
 

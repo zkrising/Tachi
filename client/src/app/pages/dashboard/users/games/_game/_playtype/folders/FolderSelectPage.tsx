@@ -24,7 +24,7 @@ export default function FoldersSearch({ reqUser, game, playtype }: Props) {
 
 	const params = useMemo(() => new URLSearchParams({ search }), [search]);
 
-	const { data, isLoading, error } = useApiQuery<UGPTFolderSearch>(
+	const { data, error } = useApiQuery<UGPTFolderSearch>(
 		`/users/${reqUser.id}/games/${game}/${playtype}/folders?${params.toString()}`
 	);
 
@@ -32,7 +32,7 @@ export default function FoldersSearch({ reqUser, game, playtype }: Props) {
 
 	if (error) {
 		body = <>{error.description}</>;
-	} else if (isLoading || !data) {
+	} else if (!data) {
 		body = <Loading />;
 	} else {
 		const statMap = new Map();

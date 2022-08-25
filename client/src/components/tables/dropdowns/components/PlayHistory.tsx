@@ -7,14 +7,12 @@ import { GamePT } from "types/react";
 
 export default function PlayHistory({
 	data,
-	isLoading,
 	error,
 	game,
 	playtype,
 	chart,
 }: {
 	data?: ScoreDocument[];
-	isLoading: boolean;
 	error: UnsuccessfulAPIFetchResponse | null;
 	chart: ChartDocument;
 } & GamePT) {
@@ -22,7 +20,7 @@ export default function PlayHistory({
 		return <>{error.description}</>;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

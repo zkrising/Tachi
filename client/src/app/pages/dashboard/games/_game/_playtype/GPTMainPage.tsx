@@ -74,7 +74,7 @@ export default function GPTMainPage({ game, playtype }: GamePT) {
 }
 
 function RecentAchievedGoalsComponent({ game, playtype }: GamePT) {
-	const { data, isLoading, error } = useApiQuery<{
+	const { data, error } = useApiQuery<{
 		users: PublicUserDocument[];
 		goals: GoalDocument[];
 		goalSubs: GoalSubscriptionDocument[];
@@ -84,7 +84,7 @@ function RecentAchievedGoalsComponent({ game, playtype }: GamePT) {
 		return <ApiError error={error} />;
 	}
 
-	if (!data || isLoading) {
+	if (!data) {
 		return <Loading />;
 	}
 
@@ -129,7 +129,7 @@ function RecentAchievedGoalsComponent({ game, playtype }: GamePT) {
 }
 
 function RecentHighlightedScoresComponent({ game, playtype }: GamePT) {
-	const { data, isLoading, error } = useApiQuery<{
+	const { data, error } = useApiQuery<{
 		scores: ScoreDocument[];
 		users: PublicUserDocument[];
 		charts: ChartDocument[];
@@ -140,7 +140,7 @@ function RecentHighlightedScoresComponent({ game, playtype }: GamePT) {
 		return <ApiError error={error} />;
 	}
 
-	if (!data || isLoading) {
+	if (!data) {
 		return <Loading />;
 	}
 
@@ -178,7 +178,7 @@ function RecentHighlightedScoresComponent({ game, playtype }: GamePT) {
 }
 
 function RecentClassesComponent({ game, playtype }: GamePT) {
-	const { data, isLoading, error } = useApiQuery<RecentClassesReturn>(
+	const { data, error } = useApiQuery<RecentClassesReturn>(
 		`/games/${game}/${playtype}/recent-classes`
 	);
 
@@ -186,7 +186,7 @@ function RecentClassesComponent({ game, playtype }: GamePT) {
 		return <ApiError error={error} />;
 	}
 
-	if (!data || isLoading) {
+	if (!data) {
 		return <Loading />;
 	}
 

@@ -44,11 +44,7 @@ export default function UserRoutes() {
 	const { userID } = useParams<{ userID: string }>();
 	const history = useHistory();
 
-	const {
-		data: reqUser,
-		isLoading,
-		error,
-	} = useApiQuery<PublicUserDocument>(`/users/${params.userID}`);
+	const { data: reqUser, error } = useApiQuery<PublicUserDocument>(`/users/${params.userID}`);
 
 	const { setBackground } = useContext(BackgroundContext);
 	useEffect(() => {
@@ -69,7 +65,7 @@ export default function UserRoutes() {
 		return <ErrorPage statusCode={error.statusCode} customMessage={error.description} />;
 	}
 
-	if (isLoading || !reqUser) {
+	if (!reqUser) {
 		return null;
 	}
 
@@ -221,7 +217,7 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 		};
 	}, [user, game, playtype]);
 
-	const { isLoading, error, data } = useQuery<UGPTStatsReturn, APIFetchV1Return<UserGameStats>>(
+	const { data, error } = useQuery<UGPTStatsReturn, APIFetchV1Return<UserGameStats>>(
 		[reqUser.id, game, playtype],
 		async () => {
 			const res = await APIFetchV1<UGPTStatsReturn>(
@@ -246,7 +242,7 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 		return <ErrorPage statusCode={error.statusCode} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

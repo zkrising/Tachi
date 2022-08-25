@@ -33,7 +33,7 @@ export default function UGPTStatContainer({
 		searchParams.set("gte", stat.gte.toString());
 	}
 
-	const { data, isLoading, error } = useQuery(
+	const { data, error } = useQuery(
 		`/users/${reqUser.id}/games/${game}/${playtype}/showcase/custom?${searchParams.toString()}`,
 		async () => {
 			const res = await APIFetchV1<UGPTPreferenceStatsReturn>(
@@ -66,7 +66,7 @@ export default function UGPTStatContainer({
 		return <>{(error as any).description}</>;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

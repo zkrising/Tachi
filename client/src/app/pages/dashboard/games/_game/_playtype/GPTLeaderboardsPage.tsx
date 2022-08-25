@@ -78,7 +78,7 @@ function ProfileLeaderboard({ game, playtype }: GamePT) {
 			</Form.Control>
 		) : null;
 
-	const { data, isLoading, error } = useApiQuery<UserLeaderboardReturns>(
+	const { data, error } = useApiQuery<UserLeaderboardReturns>(
 		`/games/${game}/${playtype}/leaderboard?alg=${alg}&limit=500`
 	);
 
@@ -91,7 +91,7 @@ function ProfileLeaderboard({ game, playtype }: GamePT) {
 		);
 	}
 
-	if (!data || isLoading) {
+	if (!data) {
 		return (
 			<>
 				{SelectComponent}
@@ -187,7 +187,7 @@ function ScoreLeaderboard({ game, playtype }: GamePT) {
 			</Form.Control>
 		) : null;
 
-	const { data, isLoading, error } = useApiQuery<ScoreLeaderboardReturns>(
+	const { data, error } = useApiQuery<ScoreLeaderboardReturns>(
 		`/games/${game}/${playtype}/score-leaderboard?alg=${alg}`
 	);
 
@@ -200,7 +200,7 @@ function ScoreLeaderboard({ game, playtype }: GamePT) {
 		);
 	}
 
-	if (!data || isLoading) {
+	if (!data) {
 		return (
 			<>
 				{SelectComponent}

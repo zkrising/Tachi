@@ -4,7 +4,7 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { MockBarbatosScore } from "test-utils/test-data";
+import { MockBarbatosScore, MockBarbatosSDVX6Score } from "test-utils/test-data";
 import type { BarbatosScore } from "./types";
 
 const logger = CreateLogCtx(__filename);
@@ -36,13 +36,13 @@ t.test("#ConverterIRBarbatos", (t) => {
 			inGameID: 1,
 		},
 		isPrimary: true,
-		versions: ["booth", "inf", "gw", "heaven", "vivid"],
+		versions: ["booth", "inf", "gw", "heaven", "vivid", "exceed"],
 	};
 
 	t.test("Should convert a BarbatosScore into a Dry Score", async (t) => {
 		const res = await ConverterIRBarbatos(
 			MockBarbatosScore,
-			{ timeReceived: 10 },
+			{ timeReceived: 10, version: "vivid" },
 			"ir/barbatos",
 			logger
 		);
@@ -52,7 +52,7 @@ t.test("#ConverterIRBarbatos", (t) => {
 			chart: albidaChart,
 			dryScore: {
 				game: "sdvx",
-				service: "Barbatos",
+				service: "Barbatos (vivid)",
 				comment: null,
 				importType: "ir/barbatos",
 
@@ -72,10 +72,56 @@ t.test("#ConverterIRBarbatos", (t) => {
 						slow: 10,
 						gauge: 90,
 						maxCombo: 100,
+						exScore: null,
 					},
 				},
 				scoreMeta: {
 					inSkillAnalyser: false,
+				},
+			},
+		});
+
+		t.end();
+	});
+
+	t.test("Should convert a BarbatosSDVX6Score into a Dry Score", async (t) => {
+		const res = await ConverterIRBarbatos(
+			MockBarbatosSDVX6Score,
+			{ timeReceived: 10, version: "exceed" },
+			"ir/barbatos",
+			logger
+		);
+
+		t.hasStrict(res, {
+			song: albidaSong,
+			chart: albidaChart,
+			dryScore: {
+				game: "sdvx",
+				service: "Barbatos (exceed)",
+				comment: null,
+				importType: "ir/barbatos",
+
+				// timeAchieved: , its Date.now() give or take lol
+				scoreData: {
+					score: 9000000,
+					percent: 90,
+					grade: "A+",
+					lamp: "CLEAR",
+					judgements: {
+						critical: 26,
+						near: 2,
+						miss: 17,
+					},
+					hitMeta: {
+						fast: 6,
+						slow: 9,
+						gauge: 90,
+						maxCombo: 100,
+						exScore: 1234,
+					},
+				},
+				scoreMeta: {
+					inSkillAnalyser: null,
 				},
 			},
 		});
@@ -88,12 +134,41 @@ t.test("#ConverterIRBarbatos", (t) => {
 			() =>
 				ConverterIRBarbatos(
 					deepmerge(MockBarbatosScore, { song_id: 1000 }) as BarbatosScore,
-					{ timeReceived: 10 },
+					{ timeReceived: 10, version: "vivid" },
 					"ir/barbatos",
 					logger
 				),
 			{
 				message: /Could not find chart with songID 1000/u,
+			}
+		);
+
+		t.end();
+	});
+
+	t.test("Should honor provided context.version, and match accordingly.", async (t) => {
+		// remove vividwave from the set of charts that this chart appears in.
+		await db.charts.sdvx.update(
+			{
+				"data.inGameID": 1,
+			},
+			{
+				$pull: {
+					versions: "vivid",
+				},
+			}
+		);
+
+		t.rejects(
+			() =>
+				ConverterIRBarbatos(
+					MockBarbatosScore,
+					{ timeReceived: 10, version: "vivid" },
+					"ir/barbatos",
+					logger
+				),
+			{
+				message: /Could not find chart with songID 1/u,
 			}
 		);
 
@@ -106,7 +181,12 @@ t.test("#ConverterIRBarbatos", (t) => {
 
 		t.rejects(
 			() =>
-				ConverterIRBarbatos(MockBarbatosScore, { timeReceived: 10 }, "ir/barbatos", logger),
+				ConverterIRBarbatos(
+					MockBarbatosScore,
+					{ timeReceived: 10, version: "vivid" },
+					"ir/barbatos",
+					logger
+				),
 			{
 				message: /Song 1 \(sdvx\) has no parent song/u,
 			}

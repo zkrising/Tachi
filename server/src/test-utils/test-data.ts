@@ -12,7 +12,10 @@ import fs from "fs";
 import path from "path";
 import type { DryScore } from "lib/score-import/framework/common/types";
 import type { S3Score } from "lib/score-import/import-types/file/solid-state-squad/types";
-import type { BarbatosScore } from "lib/score-import/import-types/ir/barbatos/types";
+import type {
+	BarbatosScore,
+	BarbatosSDVX6Score,
+} from "lib/score-import/import-types/ir/barbatos/types";
 import type { FervidexScore } from "lib/score-import/import-types/ir/fervidex/types";
 import type { KsHookSV6CScore } from "lib/score-import/import-types/ir/kshook-sv6c/types";
 import type { LR2HookScore } from "lib/score-import/import-types/ir/lr2hook/types";
@@ -613,6 +616,42 @@ export const MockBarbatosScore: BarbatosScore = {
 	percent: 90,
 	score: 9_000_000,
 	song_id: 1,
+};
+
+export const MockBarbatosSDVX6Score: BarbatosSDVX6Score = {
+	clear_type: 2,
+	difficulty: 1,
+	level: 10,
+	max_chain: 100,
+	percent: 90,
+	score: 9_000_000,
+	song_id: 1,
+
+	chip_s_crit: 4,
+	chip_crit: 3,
+	chip_near: 2,
+	chip_error: 1,
+
+	early_crit: 5,
+	early_near: 6,
+	early_error: 7,
+
+	ex_score: 1234,
+
+	gauge_type: 1,
+
+	grade: "whocares",
+
+	late_crit: 8,
+	late_near: 9,
+	late_error: 10,
+
+	long_crit: 11,
+	long_error: 12,
+
+	s_crit: 13,
+	vol_crit: 14,
+	vol_error: 15,
 };
 
 export const uscChart: ChartDocument<"usc:Controller" | "usc:Keyboard"> = {

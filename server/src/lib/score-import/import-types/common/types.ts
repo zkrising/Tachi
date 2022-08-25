@@ -4,7 +4,7 @@ import type { ClassHandler } from "../../framework/user-game-stats/types";
 import type { SDVXEamusementCSVData } from "../file/eamusement-sdvx-csv/types";
 import type { MerScore } from "../file/mer-iidx/types";
 import type { S3Score } from "../file/solid-state-squad/types";
-import type { BarbatosContext, BarbatosScore } from "../ir/barbatos/types";
+import type { BarbatosContext, BarbatosScore, BarbatosSDVX6Score } from "../ir/barbatos/types";
 import type { BeatorajaContext, BeatorajaScore } from "../ir/beatoraja/types";
 import type { FervidexStaticContext, FervidexStaticScore } from "../ir/fervidex-static/types";
 import type { FervidexContext, FervidexScore } from "../ir/fervidex/types";
@@ -36,7 +36,7 @@ export interface ImportTypeDataMap {
 	"file/pli-iidx-csv": IIDXEamusementCSVData;
 
 	"ir/direct-manual": BatchManualScore;
-	"ir/barbatos": BarbatosScore;
+	"ir/barbatos": BarbatosScore | BarbatosSDVX6Score;
 	"ir/fervidex": FervidexScore;
 	"ir/fervidex-static": FervidexStaticScore;
 	"ir/beatoraja": BeatorajaScore;

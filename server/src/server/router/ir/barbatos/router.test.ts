@@ -20,7 +20,7 @@ t.test("POST /ir/barbatos/score/submit", (t) => {
 		t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
 		const scores = await db.scores.count({
-			service: "Barbatos",
+			service: "Barbatos (vivid)",
 		});
 
 		t.equal(scores, 1, "Should import 1 score.");

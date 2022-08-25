@@ -116,11 +116,11 @@ nav:
           - "tachi-server/structure/testing.md"
 
       - BATCH-MANUAL:
-          - "tachi-server/batch-manual"
+          - "tachi-server/batch-manual/index.md"
           - "tachi-server/batch-manual/direct-manual.md"
 
       - Score Importing:
-          - "tachi-server/import"
+          - "tachi-server/import/index.md"
           - "tachi-server/import/main.md"
           - "tachi-server/import/import-types.md"
           - "tachi-server/import/parse-conv.md"

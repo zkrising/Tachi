@@ -10,7 +10,7 @@ export class ConverterFailure extends Error {
 		super();
 		this.message = message;
 
-		Object.setPrototypeOf(this, ConverterFailure);
+		Object.setPrototypeOf(this, ConverterFailure.prototype);
 	}
 }
 
@@ -28,7 +28,7 @@ export class SkipScoreFailure extends ConverterFailure {
 		// we have to *enforce* that these classes have the right inheritance,
 		// because we do instanceof checks to determine what kind of error was
 		// thrown. We could switch to a tagged union approach, but this seems more stable.
-		Object.setPrototypeOf(this, SkipScoreFailure);
+		Object.setPrototypeOf(this, SkipScoreFailure.prototype);
 	}
 }
 
@@ -54,7 +54,7 @@ export class KTDataNotFoundFailure<T extends ImportTypes> extends ConverterFailu
 		this.data = data;
 		this.converterContext = context;
 
-		Object.setPrototypeOf(this, KTDataNotFoundFailure);
+		Object.setPrototypeOf(this, KTDataNotFoundFailure.prototype);
 	}
 }
 
@@ -66,7 +66,7 @@ export class InvalidScoreFailure extends ConverterFailure {
 	constructor(message: string) {
 		super(message);
 
-		Object.setPrototypeOf(this, InvalidScoreFailure);
+		Object.setPrototypeOf(this, InvalidScoreFailure.prototype);
 	}
 }
 
@@ -78,6 +78,6 @@ export class InternalFailure extends ConverterFailure {
 	constructor(message: string) {
 		super(message);
 
-		Object.setPrototypeOf(this, InternalFailure);
+		Object.setPrototypeOf(this, InternalFailure.prototype);
 	}
 }

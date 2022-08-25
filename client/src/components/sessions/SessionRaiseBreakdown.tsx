@@ -189,6 +189,10 @@ export default function SessionRaiseBreakdown({
 				</div>
 
 				<Divider className="mt-4 mb-4" />
+
+				<div className="d-lg-block d-none mb-4">
+					Tip: You can click on scores to highlight/add comments!
+				</div>
 			</div>
 			<SessionScoreStatBreakdown {...{ sessionData, chartIDs, filter, view, setScores }} />
 		</>

@@ -32,7 +32,7 @@ export default function OAuthRequestAuthPage() {
 }
 
 function OAuthRequestAuthLoader({ clientID }: { clientID: string }) {
-	const { isLoading, error, data } = useApiQuery<Omit<TachiAPIClientDocument, "clientSecret">>(
+	const { error, data } = useApiQuery<Omit<TachiAPIClientDocument, "clientSecret">>(
 		`/clients/${clientID}`
 	);
 
@@ -40,7 +40,7 @@ function OAuthRequestAuthLoader({ clientID }: { clientID: string }) {
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

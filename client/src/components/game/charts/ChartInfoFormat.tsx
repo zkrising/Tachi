@@ -23,7 +23,7 @@ export default function ChartInfoFormat({
 
 	const withTierlists = gptConfig.tierlists.filter((e) => chart.tierlistInfo[e]);
 
-	const { data, isLoading, error } = useApiQuery<FolderDocument[]>(
+	const { data, error } = useApiQuery<FolderDocument[]>(
 		`/games/${game}/${playtype}/charts/${chart.chartID}/folders`
 	);
 
@@ -34,7 +34,7 @@ export default function ChartInfoFormat({
 		<ApiError error={error} />;
 	}
 
-	if (!data || isLoading) {
+	if (!data) {
 		return <Loading />;
 	}
 

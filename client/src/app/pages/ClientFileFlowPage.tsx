@@ -17,7 +17,7 @@ export default function ClientFileFlowPage() {
 
 	const { user } = useContext(UserContext);
 
-	const { data, isLoading, error } = useApiQuery<Omit<TachiAPIClientDocument, "clientSecret">>(
+	const { data, error } = useApiQuery<Omit<TachiAPIClientDocument, "clientSecret">>(
 		`/clients/${clientID}`
 	);
 
@@ -33,7 +33,7 @@ export default function ClientFileFlowPage() {
 		);
 	}
 
-	if (!data || isLoading) {
+	if (!data) {
 		return <Loading />;
 	}
 

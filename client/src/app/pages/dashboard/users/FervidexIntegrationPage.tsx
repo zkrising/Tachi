@@ -9,11 +9,7 @@ import { Link } from "react-router-dom";
 import { FervidexSettingsDocument, PublicUserDocument } from "tachi-common";
 
 export default function FervidexIntegrationPage({ reqUser }: { reqUser: PublicUserDocument }) {
-	const {
-		data: settings,
-		isLoading,
-		error,
-	} = useApiQuery<FervidexSettingsDocument | null>(
+	const { data: settings, error } = useApiQuery<FervidexSettingsDocument | null>(
 		`/users/${reqUser.id}/integrations/fervidex/settings`
 	);
 
@@ -21,7 +17,7 @@ export default function FervidexIntegrationPage({ reqUser }: { reqUser: PublicUs
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || settings === undefined) {
+	if (settings === undefined) {
 		return <Loading />;
 	}
 

@@ -154,7 +154,7 @@ function GamePlaytypeRoutes({ game }: { game: Game }) {
 function SongChartRoutes({ game, playtype }: GamePT) {
 	const { songID } = useParams<{ songID: string }>();
 
-	const { data, isLoading, error } = useApiQuery<SongsReturn>(
+	const { data, error } = useApiQuery<SongsReturn>(
 		`/games/${game}/${playtype}/songs/${songID}`
 	);
 
@@ -172,7 +172,7 @@ function SongChartRoutes({ game, playtype }: GamePT) {
 		return <ErrorPage statusCode={error.statusCode} customMessage={error.description} />;
 	}
 
-	if (!data || isLoading) {
+	if (!data) {
 		return <Loading />;
 	}
 

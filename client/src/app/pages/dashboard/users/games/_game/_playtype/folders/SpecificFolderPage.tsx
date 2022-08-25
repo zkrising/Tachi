@@ -47,7 +47,7 @@ interface Props {
 export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 	const { folderID } = useParams<{ folderID: string }>();
 
-	const { data, isLoading, error } = useApiQuery<UGPTFolderReturns>(
+	const { data, error } = useApiQuery<UGPTFolderReturns>(
 		`/users/${reqUser.id}/games/${game}/${playtype}/folders/${folderID}`
 	);
 
@@ -101,7 +101,7 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data || !folderDataset) {
+	if (!data || !folderDataset) {
 		return <Loading />;
 	}
 
@@ -227,7 +227,7 @@ function TimelineMain({
 	type: "grade" | "lamp";
 	value: integer;
 }) {
-	const { data, isLoading, error } = useApiQuery<{
+	const { data, error } = useApiQuery<{
 		scores: ScoreDocument[];
 		songs: SongDocument[];
 		charts: ChartDocument[];
@@ -239,7 +239,7 @@ function TimelineMain({
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

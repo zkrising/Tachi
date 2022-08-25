@@ -99,7 +99,7 @@ function OAuthClientPage() {
 }
 
 function OAuthClientInfo() {
-	const { data, isLoading, error } = useApiQuery<TachiAPIClientDocument[]>("/clients");
+	const { data, error } = useApiQuery<TachiAPIClientDocument[]>("/clients");
 
 	const [clients, setClients] = useState<TachiAPIClientDocument[]>([]);
 
@@ -111,7 +111,7 @@ function OAuthClientInfo() {
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 
@@ -682,7 +682,7 @@ function KAIIntegrationStatus({
 	kaiType: "flo" | "eag" | "min";
 	userID: integer;
 }) {
-	const { data, isLoading, error } = useApiQuery<{ authStatus: boolean }>(
+	const { data, error } = useApiQuery<{ authStatus: boolean }>(
 		`/users/${userID}/integrations/kai/${kaiType}`
 	);
 
@@ -690,7 +690,7 @@ function KAIIntegrationStatus({
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 
@@ -720,7 +720,7 @@ function APIKeysPage({ reqUser }: { reqUser: PublicUserDocument }) {
 	const [apiKeys, setApiKeys] = useState<APITokenDocument[]>([]);
 	const [showModal, setShowModal] = useState(false);
 
-	const { data, isLoading, error } = useApiQuery<APITokenDocument[]>(
+	const { data, error } = useApiQuery<APITokenDocument[]>(
 		`/users/${reqUser.id}/api-tokens`
 	);
 
@@ -734,7 +734,7 @@ function APIKeysPage({ reqUser }: { reqUser: PublicUserDocument }) {
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

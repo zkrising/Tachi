@@ -36,7 +36,7 @@ export default function KAIIntegrationPage({ clientID, hash, kaiType, redirectUr
 		return <ErrorPage statusCode={401} />;
 	}
 
-	const { isLoading, error, data } = useApiQuery<{ authStatus: boolean }>(
+	const { data, error } = useApiQuery<{ authStatus: boolean }>(
 		`/users/${user.id}/integrations/kai/${kaiType}`
 	);
 
@@ -44,7 +44,7 @@ export default function KAIIntegrationPage({ clientID, hash, kaiType, redirectUr
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

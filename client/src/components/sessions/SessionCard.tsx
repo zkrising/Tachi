@@ -22,7 +22,7 @@ import { ScoreDataset } from "types/tables";
 export default function SessionCard({ sessionID }: { sessionID: string }) {
 	const { user } = useContext(UserContext);
 
-	const { data, isLoading, error } = useApiQuery<SessionReturns>(`/sessions/${sessionID}`);
+	const { data, error } = useApiQuery<SessionReturns>(`/sessions/${sessionID}`);
 
 	const [highlight, setHighlight] = useState(false);
 
@@ -34,7 +34,7 @@ export default function SessionCard({ sessionID }: { sessionID: string }) {
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

@@ -37,7 +37,7 @@ export default function VerifyEmailPage() {
 }
 
 function VerifyEmail({ code }: { code: string }) {
-	const { data, isLoading, error } = useApiQuery("/auth/verify-email", {
+	const { data, error } = useApiQuery("/auth/verify-email", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -51,7 +51,7 @@ function VerifyEmail({ code }: { code: string }) {
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

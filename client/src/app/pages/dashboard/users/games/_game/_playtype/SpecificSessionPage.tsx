@@ -24,13 +24,13 @@ type Props = { reqUser: PublicUserDocument } & GamePT;
 export default function SpecificSessionPage({ reqUser, game, playtype }: Props) {
 	const { sessionID } = useParams<{ sessionID: string }>();
 
-	const { data, isLoading, error } = useApiQuery<SessionReturns>(`/sessions/${sessionID}`);
+	const { data, error } = useApiQuery<SessionReturns>(`/sessions/${sessionID}`);
 
 	if (error) {
 		return <ApiError error={error} />;
 	}
 
-	if (isLoading || !data) {
+	if (!data) {
 		return <Loading />;
 	}
 

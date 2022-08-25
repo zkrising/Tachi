@@ -42,7 +42,7 @@ export default function SessionsPage({
 
 	const rating = useSessionRatingAlg(game, playtype);
 
-	const { isLoading, error, data } = useQuery<SessionDataset, UnsuccessfulAPIResponse>(
+	const { data, error } = useQuery<SessionDataset, UnsuccessfulAPIResponse>(
 		`${baseUrl}/${sessionSet}`,
 		async () => {
 			const res = await APIFetchV1<SessionDocument[]>(`${baseUrl}/${sessionSet}`);
@@ -93,7 +93,7 @@ export default function SessionsPage({
 			</div>
 			<div className="col-12 mt-4">
 				{search === "" ? (
-					<LoadingWrapper {...{ isLoading, error, dataset: data }}>
+					<LoadingWrapper {...{ error, dataset: data }}>
 						<GenericSessionTable
 							indexCol={sessionSet === "best"}
 							dataset={data!}
@@ -117,7 +117,7 @@ function SearchSessionsTable({
 	reqUser,
 	baseUrl,
 }: { search: string; baseUrl: string; reqUser: PublicUserDocument } & GamePT) {
-	const { isLoading, error, data } = useQuery<SessionDataset, UnsuccessfulAPIResponse>(
+	const { data, error } = useQuery<SessionDataset, UnsuccessfulAPIResponse>(
 		`${baseUrl}?search=${search}`,
 		async () => {
 			const res = await APIFetchV1<SessionDocument[]>(`${baseUrl}?search=${search}`);
@@ -136,7 +136,7 @@ function SearchSessionsTable({
 	);
 
 	return (
-		<LoadingWrapper {...{ isLoading, error, dataset: data }}>
+		<LoadingWrapper {...{ error, dataset: data }}>
 			<GenericSessionTable
 				reqUser={reqUser}
 				dataset={data!}

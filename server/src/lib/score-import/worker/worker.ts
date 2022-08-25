@@ -57,10 +57,6 @@ export const worker = new Worker(
 			);
 		}
 
-		// Create a logger that we can pass around for context.
-		// This helps us debug what score import did what!
-		const logger = CreateLogCtx(`Score Import ${job.id} ${FormatUserDoc(user)}`);
-
 		// Here's a hack. You cant pass buffers to bull workers, as content
 		// **must** be JSON serialisable. As such, all of our buffers get
 		// turned into nonsense objects. We need to "deJSONify" these buffers
@@ -82,7 +78,13 @@ export const worker = new Worker(
 
 		job.data.parserArguments = processedArgs as ScoreImportJobData<I>["parserArguments"];
 
-		logger.debug(`received score import job ${job.id}`, { job });
+		// Create a logger that we can pass around for context.
+		// This helps us debug what score import did what!
+		const logger = CreateLogCtx(
+			`Import ${job.data.importType} ${FormatUserDoc(user)} ${job.id}`
+		);
+
+		logger.debug(`Received score import job ${job.id}`, { job });
 
 		const InputParser = GetInputParser(job.data);
 

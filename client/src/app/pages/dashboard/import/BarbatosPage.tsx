@@ -16,13 +16,24 @@ export default function BarbatosPage() {
 				the scores to a server. {TachiConfig.name} is compatible with what Barbatos sends,
 				so you can use it to submit scores!
 			</div>
-			<Alert variant="warning">Barbatos does not support EXCEED GEAR yet.</Alert>
 			<Divider />
 			<h1 className="text-center my-4">Setup Instructions</h1>
 			<ol className="instructions-list">
 				<li>
-					Download <code>barbatos.dll</code> from{" "}
-					<ExternalLink href="http://f.wcal.xyz/2W9K7kXl">here</ExternalLink>.
+					Download <code>barbatos.dll</code>.{" "}
+					<ul>
+						<li>
+							<ExternalLink href="http://f.wcal.xyz/2W9K7kXl">
+								VIVID WAVE
+							</ExternalLink>
+						</li>
+						<li>
+							<ExternalLink href="https://f.wcal.xyz/3VqnDgcC">
+								EXCEED GEAR
+							</ExternalLink>
+							.
+						</li>
+					</ul>
 				</li>
 				<li>
 					Download your config file{" "}

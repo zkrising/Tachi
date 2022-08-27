@@ -42,7 +42,7 @@ export function ErrorPage({
 					"Looks like the server has completely crashed. Ah well. Try reloading, but there's no promises.";
 				break;
 			default:
-				message = "An unexpected error has occured. This has been reported!";
+				message = "An unexpected error has occurred. This has been reported!";
 				break;
 		}
 	} else {

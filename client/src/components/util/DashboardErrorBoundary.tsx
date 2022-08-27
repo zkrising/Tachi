@@ -26,7 +26,7 @@ export default class DashboardErrorBoundary extends React.Component<
 					<h1>Whoops!</h1>
 					<br />
 					<h4>
-						A fatal error has occured in rendering this page. You should report this!
+						A fatal error has occurred in rendering this page. You should report this!
 					</h4>
 					<Divider />
 					<h3 className="mb-2">Error Log</h3>

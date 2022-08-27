@@ -68,7 +68,7 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 	);
 
 	if (error) {
-		return <>An error has occured. Whoops.</>;
+		return <>An error has occurred. Whoops.</>;
 	}
 
 	if (!data) {

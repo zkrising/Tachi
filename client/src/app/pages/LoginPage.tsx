@@ -60,7 +60,7 @@ export default function LoginPage() {
 
 			if (!userRJ.success) {
 				console.error("Error retrieving own user?");
-				setErr("An internal server error has occured.");
+				setErr("An internal server error has occurred.");
 				return;
 			}
 

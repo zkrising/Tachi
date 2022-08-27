@@ -7,7 +7,7 @@ export default function ApiError({ error }: { error: UnsuccessfulAPIFetchRespons
 
 	return (
 		<div>
-			An error has occured
+			An error has occurred
 			{settings?.preferences.developerMode ? ` (${error.description})` : ""}
 		</div>
 	);

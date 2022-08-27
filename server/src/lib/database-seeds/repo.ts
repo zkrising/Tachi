@@ -186,8 +186,13 @@ export class DatabaseSeedsRepo {
  *
  * @param fetchFromLocalPath - Whether or not to fetch this from a local instance, like a
  * monorepo database-seeds directory.
+ *
+ * You can use the environment variable "FORCE_LOCAL_SEEDS_PATH" to override all calls
+ * to PullDatabaseSeeds to use a local repo instead of the configured remote.
  */
-export async function PullDatabaseSeeds(fetchFromLocalPath: string | null = null) {
+export async function PullDatabaseSeeds(
+	fetchFromLocalPath: string | null = process.env.FORCE_LOCAL_SEEDS_PATH ?? null
+) {
 	if (fetchFromLocalPath) {
 		return new DatabaseSeedsRepo(fetchFromLocalPath);
 	}

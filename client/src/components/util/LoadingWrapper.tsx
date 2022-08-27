@@ -14,7 +14,7 @@ export default function LoadingWrapper({
 	style?: CSSProperties;
 }) {
 	if (error) {
-		return <h3>An error has occured. {error.description}</h3>;
+		return <h3>An error has occurred. {error.description}</h3>;
 	}
 
 	if (!dataset) {

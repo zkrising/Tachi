@@ -23,7 +23,7 @@ export default function BarbatosPage() {
 					Download <code>barbatos.dll</code>.{" "}
 					<ul>
 						<li>
-							<ExternalLink href="http://f.wcal.xyz/2W9K7kXl">
+							<ExternalLink href="https://f.wcal.xyz/2W9K7kXl">
 								VIVID WAVE
 							</ExternalLink>
 						</li>

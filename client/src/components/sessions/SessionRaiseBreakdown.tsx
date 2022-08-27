@@ -7,10 +7,12 @@ import LampCell from "components/tables/cells/LampCell";
 import ScoreCell from "components/tables/cells/ScoreCell";
 import TitleCell from "components/tables/cells/TitleCell";
 import MiniTable from "components/tables/components/MiniTable";
+import { CommentModal, ModifyScore } from "components/tables/dropdowns/components/ScoreEditButtons";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import SelectButton from "components/util/SelectButton";
+import { UserContext } from "context/UserContext";
 import deepmerge from "deepmerge";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useQuery } from "react-query";
@@ -30,10 +32,6 @@ import {
 	TableDocument,
 } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
-import { CommentModal, ModifyScore } from "components/tables/dropdowns/components/ScoreEditButtons";
-import { SetState } from "types/react";
-import { ScoreDataset } from "types/tables";
-import { UserContext } from "context/UserContext";
 
 type SetScores = (scores: ScoreDocument[]) => void;
 
@@ -365,28 +363,6 @@ function ElementStatTable({
 	game: Game;
 	fullSize?: boolean;
 }) {
-	function makeModifyScoreFn(score: ScoreDocument) {
-		return ({ highlight, comment }: { highlight?: boolean; comment?: string | null }) => {
-			const scoreID = score.scoreID;
-
-			ModifyScore(scoreID, { highlight, comment }).then((r) => {
-				if (r) {
-					const filtered = scores.filter((e) => e.scoreID !== scoreID);
-					const newScore = { ...score };
-
-					if (highlight !== undefined) {
-						newScore.highlight = highlight;
-					}
-					if (comment !== undefined) {
-						newScore.comment = comment;
-					}
-
-					setScores([...filtered, newScore]);
-				}
-			});
-		};
-	}
-
 	const tableContents = useMemo(() => {
 		// relements.. haha
 		const relevantElements =
@@ -406,8 +382,6 @@ function ElementStatTable({
 
 			const firstData = counts[element][0];
 
-			const firstModify = makeModifyScoreFn(firstData.score);
-
 			tableContents.push(
 				<tr key={element} className="breakdown-hover-row">
 					<td
@@ -421,20 +395,35 @@ function ElementStatTable({
 					</td>
 					<BreakdownChartContents
 						{...firstData}
-						{...{ chartMap, songMap, fullSize, game, gptConfig, type }}
-						modifyScore={firstModify}
+						{...{
+							chartMap,
+							songMap,
+							fullSize,
+							game,
+							gptConfig,
+							type,
+							scores,
+							setScores,
+						}}
 					/>
 				</tr>
 			);
 
 			for (const data of counts[element]!.slice(1)) {
-				const modifyScore = makeModifyScoreFn(data.score);
-
 				tableContents.push(
 					<tr key={data.score.scoreID} className="breakdown-hover-row">
 						<BreakdownChartContents
 							{...data}
-							{...{ chartMap, songMap, fullSize, game, gptConfig, type, modifyScore }}
+							{...{
+								chartMap,
+								songMap,
+								fullSize,
+								game,
+								gptConfig,
+								type,
+								scores,
+								setScores,
+							}}
 						/>
 					</tr>
 				);
@@ -442,7 +431,7 @@ function ElementStatTable({
 		}
 
 		return tableContents;
-	}, [type, counts, fullSize, game]);
+	}, [type, counts, fullSize, game, scores]);
 
 	if (tableContents.length === 0) {
 		return (
@@ -464,7 +453,8 @@ function BreakdownChartContents({
 	fullSize,
 	gptConfig,
 	type,
-	modifyScore,
+	scores,
+	setScores,
 }: {
 	score: ScoreDocument;
 	scoreInfo: SessionScoreInfo;
@@ -473,9 +463,40 @@ function BreakdownChartContents({
 	songMap: Map<integer, SongDocument>;
 	chartMap: Map<string, ChartDocument>;
 	gptConfig: GamePTConfig;
-	modifyScore: ({ highlight, comment }: { highlight?: boolean; comment?: string | null }) => void;
 	type: "lamp" | "grade";
+	scores: Array<ScoreDocument>;
+	setScores: SetScores;
 }) {
+	const modifyScore = useMemo(
+		() =>
+			(
+				{ highlight, comment }: { highlight?: boolean; comment?: string | null },
+				scores: ScoreDocument[],
+				setScores: SetScores
+			) => {
+				console.log(scores.filter((e) => e.highlight).length);
+
+				const scoreID = score.scoreID;
+
+				ModifyScore(scoreID, { highlight, comment }).then((r) => {
+					if (r) {
+						const filtered = scores.filter((e) => e.scoreID !== scoreID);
+						const newScore = { ...score };
+
+						if (highlight !== undefined) {
+							newScore.highlight = highlight;
+						}
+						if (comment !== undefined) {
+							newScore.comment = comment;
+						}
+
+						setScores([...filtered, newScore]);
+					}
+				});
+			},
+		[score, scores, setScores]
+	);
+
 	const chart = chartMap.get(score.chartID)!;
 	const song = songMap.get(score.songID)!;
 
@@ -491,7 +512,7 @@ function BreakdownChartContents({
 			return;
 		}
 
-		modifyScore({ highlight, comment });
+		modifyScore({ highlight, comment }, scores, setScores);
 	}, [highlight, comment]);
 
 	if (!chart || !song) {

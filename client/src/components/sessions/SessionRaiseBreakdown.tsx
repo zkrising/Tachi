@@ -47,6 +47,8 @@ export default function SessionRaiseBreakdown({
 	const game = sessionData.session.game;
 	const playtype = sessionData.session.playtype;
 
+	const { user } = useContext(UserContext);
+
 	// todo infer default table
 	// const gptConfig = GetGamePTConfig(game, playtype);
 
@@ -190,9 +192,11 @@ export default function SessionRaiseBreakdown({
 
 				<Divider className="mt-4 mb-4" />
 
-				<div className="d-lg-block d-none mb-4">
-					Tip: You can click on scores to highlight/add comments!
-				</div>
+				{user?.id === sessionData.user.id && (
+					<div className="d-lg-block d-none mb-4">
+						Tip: You can click on scores to highlight/add comments!
+					</div>
+				)}
 			</div>
 			<SessionScoreStatBreakdown {...{ sessionData, chartIDs, filter, view, setScores }} />
 		</>

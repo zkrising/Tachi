@@ -69,6 +69,7 @@ export async function UpdateDPTiers() {
 							"tierlistInfo.dp-tier": {
 								text: d[difficulty]!.toString(),
 								value: d[difficulty]!,
+								individualDifference: false,
 							},
 						},
 					}

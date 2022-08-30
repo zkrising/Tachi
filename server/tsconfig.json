@@ -8,6 +8,7 @@
 	"compilerOptions": {
 		"baseUrl": "src",
 		"outDir": "./js",
+		"target": "ES2020",
 		"lib": [
 			"ES2019",
 			// This is necessary because -- for some unknown reason -- the AWS SDK

@@ -3,14 +3,23 @@
 import type { ImportTypeContextMap, ImportTypeDataMap } from "../../import-types/common/types";
 import type { ImportTypes } from "tachi-common";
 
+export type FailureTypes = "Internal" | "InvalidScore" | "KTDataNotFound" | "SkipScore";
+
 export class ConverterFailure extends Error {
 	message: string;
+	failureType: FailureTypes;
 
-	constructor(message: string) {
+	constructor(message: string, failureType: FailureTypes) {
 		super();
 		this.message = message;
 
-		Object.setPrototypeOf(this, ConverterFailure.prototype);
+		// @hack
+		// Typescript sometimes decides to "compile out" prototype chains like this.
+		// This creates problems for things like `instanceof`, which will
+		// (seemingly randomly) stop working properly. Since we can't use instanceof
+		// to stably assert what kind of error was thrown, we use a tagged string
+		// instead.
+		this.failureType = failureType;
 	}
 }
 
@@ -21,14 +30,7 @@ export class ConverterFailure extends Error {
  */
 export class SkipScoreFailure extends ConverterFailure {
 	constructor(message: string) {
-		super(message);
-
-		// @hack
-		// Typescript sometimes decides to "compile out" prototype chains like this
-		// we have to *enforce* that these classes have the right inheritance,
-		// because we do instanceof checks to determine what kind of error was
-		// thrown. We could switch to a tagged union approach, but this seems more stable.
-		Object.setPrototypeOf(this, SkipScoreFailure.prototype);
+		super(message, "SkipScore");
 	}
 }
 
@@ -48,13 +50,11 @@ export class KTDataNotFoundFailure<T extends ImportTypes> extends ConverterFailu
 		data: ImportTypeDataMap[T],
 		context: ImportTypeContextMap[T]
 	) {
-		super(message);
+		super(message, "KTDataNotFound");
 
 		this.importType = importType;
 		this.data = data;
 		this.converterContext = context;
-
-		Object.setPrototypeOf(this, KTDataNotFoundFailure.prototype);
 	}
 }
 
@@ -64,9 +64,7 @@ export class KTDataNotFoundFailure<T extends ImportTypes> extends ConverterFailu
  */
 export class InvalidScoreFailure extends ConverterFailure {
 	constructor(message: string) {
-		super(message);
-
-		Object.setPrototypeOf(this, InvalidScoreFailure.prototype);
+		super(message, "InvalidScore");
 	}
 }
 
@@ -76,8 +74,10 @@ export class InvalidScoreFailure extends ConverterFailure {
  */
 export class InternalFailure extends ConverterFailure {
 	constructor(message: string) {
-		super(message);
-
-		Object.setPrototypeOf(this, InternalFailure.prototype);
+		super(message, "Internal");
 	}
+}
+
+export function IsConverterFailure(err: ConverterFailure | Error): err is ConverterFailure {
+	return "failureType" in err;
 }

@@ -1,21 +1,12 @@
 import { HydrateScore } from "./hydrate-score";
 import { GetScoreQueueMaybe, InsertQueue, QueueScoreInsert } from "./insert-score";
 import { CreateScoreID } from "./score-id";
-import {
-	ConverterFailure,
-	InternalFailure,
-	InvalidScoreFailure,
-	KTDataNotFoundFailure,
-	SkipScoreFailure,
-} from "../common/converter-failures";
+import { IsConverterFailure } from "../common/converter-failures";
 import { OrphanScore } from "../orphans/orphans";
 import db from "external/mongo/db";
 import { AppendLogCtx } from "lib/logger/logger";
-import type {
-	ConverterFnReturnOrFailure,
-	ConverterFnSuccessReturn,
-	ConverterFunction,
-} from "../../import-types/common/types";
+import type { ConverterFnSuccessReturn, ConverterFunction } from "../../import-types/common/types";
+import type { ConverterFailure, KTDataNotFoundFailure } from "../common/converter-failures";
 import type { DryScore } from "../common/types";
 import type { KtLogger } from "lib/logger/logger";
 import type { ScoreImportJob } from "lib/score-import/worker/types";
@@ -128,104 +119,121 @@ export async function ImportIterableDatapoint<D, C>(
 	logger: KtLogger
 ): Promise<ImportProcessingInfo | null> {
 	// Converter Function Return
-	let cfnReturn: ConverterFnReturnOrFailure;
+	let cfnReturn: ConverterFnSuccessReturn;
 
 	try {
 		cfnReturn = await ConverterFunction(data, context, importType, logger);
-	} catch (err) {
-		cfnReturn = err as ConverterFailure | Error;
-	}
+	} catch (e) {
+		const err = e as ConverterFailure | Error;
 
-	// if this conversion failed, return it in the proper format
-	if (cfnReturn instanceof ConverterFailure) {
-		if (cfnReturn instanceof KTDataNotFoundFailure) {
-			logger.info(`KTDataNotFoundFailure: ${cfnReturn.message}`, {
-				cfnReturn,
-				hideFromConsole: ["cfnReturn"],
+		// if this isn't a converterFailure, it's just a general error.
+		// Some sort of internal issue?
+		if (!IsConverterFailure(err)) {
+			logger.error(`Unknown error thrown from converter, Ignoring.`, {
+				err,
 			});
+			return {
+				success: false,
+				type: "InternalError",
+				message: "An internal service error has occured.",
+				content: {},
+			};
+		}
 
-			logger.debug("Inserting orphan...", { cfnReturn });
+		// otherwise, let's handle all the error types.
+		// Originally, we handled this by using `instanceof` to check what class
+		// instance the failure type was. This was neat, but typescript has some
+		// questionable bugs with respect to maintaining prototype chains.
+		// Even though it's uglier, we instead use a stringly-typed union.
+		switch (err.failureType) {
+			case "KTDataNotFound": {
+				const dnfErr = err as KTDataNotFoundFailure<ImportTypes>;
 
-			const insertOrphan = await OrphanScore(
-				cfnReturn.importType,
-				userID,
-				cfnReturn.data,
-				cfnReturn.converterContext,
-				cfnReturn.message,
-				game,
-				logger
-			);
+				logger.info(`KTDataNotFoundFailure: ${dnfErr.message}`, {
+					cfnReturn: dnfErr,
+					hideFromConsole: ["cfnReturn"],
+				});
 
-			if (insertOrphan.success) {
-				logger.debug("Orphan inserted successfully.", { orphanID: insertOrphan.orphanID });
+				logger.debug("Inserting orphan...", { cfnReturn: dnfErr });
+
+				const insertOrphan = await OrphanScore(
+					dnfErr.importType,
+					userID,
+					dnfErr.data,
+					dnfErr.converterContext,
+					dnfErr.message,
+					game,
+					logger
+				);
+
+				if (insertOrphan.success) {
+					logger.debug("Orphan inserted successfully.", {
+						orphanID: insertOrphan.orphanID,
+					});
+					return {
+						success: false,
+						type: "KTDataNotFound",
+						message: dnfErr.message,
+						content: {
+							context: dnfErr.converterContext,
+							data: dnfErr.data,
+							orphanID: insertOrphan.orphanID,
+						},
+					};
+				}
+
+				logger.debug(`Orphan already exists.`, { orphanID: insertOrphan.orphanID });
+
 				return {
 					success: false,
-					type: "KTDataNotFound",
-					message: cfnReturn.message,
+					type: "OrphanExists",
+					message: err.message,
 					content: {
-						context: cfnReturn.converterContext,
-						data: cfnReturn.data,
 						orphanID: insertOrphan.orphanID,
 					},
 				};
 			}
 
-			logger.debug(`Orphan already exists.`, { orphanID: insertOrphan.orphanID });
+			case "InvalidScore": {
+				logger.info(`InvalidScoreFailure: ${err.message}`, {
+					cfnReturn: err,
+					hideFromConsole: ["cfnReturn"],
+				});
+				return {
+					success: false,
+					type: "InvalidDatapoint",
+					message: err.message,
+					content: {},
+				};
+			}
 
-			return {
-				success: false,
-				type: "OrphanExists",
-				message: cfnReturn.message,
-				content: {
-					orphanID: insertOrphan.orphanID,
-				},
-			};
-		} else if (cfnReturn instanceof InvalidScoreFailure) {
-			logger.info(`InvalidScoreFailure: ${cfnReturn.message}`, {
-				cfnReturn,
-				hideFromConsole: ["cfnReturn"],
-			});
-			return {
-				success: false,
-				type: "InvalidDatapoint",
-				message: cfnReturn.message,
-				content: {},
-			};
-		} else if (cfnReturn instanceof InternalFailure) {
-			logger.error(`Internal error occured.`, { cfnReturn });
-			return {
-				success: false,
-				type: "InternalError",
+			case "Internal": {
+				logger.error(`Internal error occured.`, { cfnReturn: err });
+				return {
+					success: false,
+					type: "InternalError",
 
-				// could return cfnReturn.message here, but we might want to hide the details of the crash.
-				message: "An internal error has occured.",
-				content: {},
-			};
-		} else if (cfnReturn instanceof SkipScoreFailure) {
-			return null;
+					// could return cfnReturn.message here, but we might want to hide the details of the crash.
+					message: "An internal error has occured.",
+					content: {},
+				};
+			}
+
+			case "SkipScore":
+				return null;
+
+			default: {
+				logger.warn(`Unknown error returned as ConverterFailure, Ignoring.`, {
+					err,
+				});
+				return {
+					success: false,
+					type: "InternalError",
+					message: "An internal service error has occured.",
+					content: {},
+				};
+			}
 		}
-
-		logger.warn(`Unknown error returned as ConverterFailure, Ignoring.`, {
-			err: cfnReturn,
-		});
-		return {
-			success: false,
-			type: "InternalError",
-			message: "An internal service error has occured.",
-			content: {},
-		};
-	}
-
-	if (cfnReturn instanceof Error) {
-		logger.error(`Unknown error thrown from converter, Ignoring.`, {
-			err: cfnReturn,
-		});
-		return {
-			success: false,
-			type: "InternalError",
-			message: "An internal service error has occured.",
-			content: {},
-		};
 	}
 
 	return ProcessSuccessfulConverterReturn(userID, cfnReturn, blacklist, logger);

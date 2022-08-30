@@ -2,6 +2,7 @@
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
 		"outDir": "./js",
+		"target": "ES2020"
 	},
 	"include": [
 		"src/**/*.ts",

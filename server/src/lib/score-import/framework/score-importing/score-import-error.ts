@@ -12,5 +12,7 @@ export default class ScoreImportFatalError extends Error {
 		super(description);
 
 		this.statusCode = statusCode;
+
+		Object.setPrototypeOf(this, ScoreImportFatalError.prototype);
 	}
 }

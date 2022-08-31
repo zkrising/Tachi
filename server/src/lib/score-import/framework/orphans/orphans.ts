@@ -1,21 +1,17 @@
 import { Converters } from "../../import-types/converters";
-import {
-	ConverterFailure,
-	InternalFailure,
-	KTDataNotFoundFailure,
-} from "../common/converter-failures";
 import { HandlePostImportSteps } from "../score-importing/score-import-main";
 import { ProcessSuccessfulConverterReturn } from "../score-importing/score-importing";
 import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import { GetUserWithID } from "utils/user";
 import type {
-	ConverterFunction,
 	ConverterFnReturnOrFailure,
+	ConverterFunction,
 	ImportTypeContextMap,
 	ImportTypeDataMap,
 	OrphanScoreDocument,
 } from "../../import-types/common/types";
+import type { ConverterFailure } from "../common/converter-failures";
 import type { KtLogger } from "lib/logger/logger";
 import type { Game, ImportTypes, integer } from "tachi-common";
 
@@ -96,10 +92,12 @@ export async function ReprocessOrphan(
 
 	try {
 		res = await ConverterFunction(orphan.data, orphan.context, orphan.importType, logger);
-	} catch (err) {
+	} catch (e) {
+		const err = e as ConverterFailure | Error;
+
 		// this is impossible to test, so we're going to ignore it
 		/* istanbul ignore next */
-		if (!(err instanceof ConverterFailure)) {
+		if (!("failureType" in err)) {
 			logger.error(`Converter function ${orphan.importType} returned unexpected error.`, {
 				err,
 			});
@@ -111,15 +109,18 @@ export async function ReprocessOrphan(
 		res = err;
 	}
 
-	// If the data still can't be found, we do nothing about it.
-	if (res instanceof KTDataNotFoundFailure) {
-		logger.debug(`Unorphaning ${orphan.orphanID} failed. (${res.message})`);
-		return false;
-	} else if (res instanceof InternalFailure) {
-		logger.error(`Orphan Internal Failure - ${res.message}, OrphanID ${orphan.orphanID}`);
+	if ("failureType" in res) {
+		// If the data still can't be found, we do nothing about it.
+		if (res.failureType === "KTDataNotFound") {
+			logger.debug(`Unorphaning ${orphan.orphanID} failed. (${res.message})`);
+			return false;
+		} else if (res.failureType === "Internal") {
+			logger.error(`Orphan Internal Failure - ${res.message}, OrphanID ${orphan.orphanID}`);
 
-		return false;
-	} else if (res instanceof ConverterFailure) {
+			return false;
+		}
+
+		// otherwise, it's another converterfailure we don't need to specifically handle.
 		logger.warn(
 			`received ConverterFailure ${res.message} on orphan ${orphan.orphanID}. Removing orphan.`
 		);

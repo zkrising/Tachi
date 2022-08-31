@@ -283,3 +283,13 @@ export function WrapScriptPromise(promise: Promise<unknown>, logger: KtLogger) {
 			});
 		});
 }
+
+/**
+ * By default, winston won't serialise classes properly.
+ *
+ * This utility function ensures that an instance of a class becomes a json-valid
+ * object, that can be logged.
+ */
+export function ClassToObject(cls: unknown) {
+	return JSON.parse(JSON.stringify(cls)) as unknown;
+}

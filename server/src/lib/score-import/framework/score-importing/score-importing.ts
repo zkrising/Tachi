@@ -5,6 +5,7 @@ import { IsConverterFailure } from "../common/converter-failures";
 import { OrphanScore } from "../orphans/orphans";
 import db from "external/mongo/db";
 import { AppendLogCtx } from "lib/logger/logger";
+import { ClassToObject } from "utils/misc";
 import type { ConverterFnSuccessReturn, ConverterFunction } from "../../import-types/common/types";
 import type { ConverterFailure, KTDataNotFoundFailure } from "../common/converter-failures";
 import type { DryScore } from "../common/types";
@@ -150,7 +151,7 @@ export async function ImportIterableDatapoint<D, C>(
 				const dnfErr = err as KTDataNotFoundFailure<ImportTypes>;
 
 				logger.info(`KTDataNotFoundFailure: ${dnfErr.message}`, {
-					cfnReturn: dnfErr,
+					err: ClassToObject(dnfErr),
 					hideFromConsole: ["cfnReturn"],
 				});
 
@@ -196,7 +197,7 @@ export async function ImportIterableDatapoint<D, C>(
 
 			case "InvalidScore": {
 				logger.info(`InvalidScoreFailure: ${err.message}`, {
-					cfnReturn: err,
+					err: ClassToObject(err),
 					hideFromConsole: ["cfnReturn"],
 				});
 				return {
@@ -208,7 +209,7 @@ export async function ImportIterableDatapoint<D, C>(
 			}
 
 			case "Internal": {
-				logger.error(`Internal error occured.`, { cfnReturn: err });
+				logger.error(`Internal error occured.`, { err: ClassToObject(err) });
 				return {
 					success: false,
 					type: "InternalError",
@@ -224,7 +225,7 @@ export async function ImportIterableDatapoint<D, C>(
 
 			default: {
 				logger.warn(`Unknown error returned as ConverterFailure, Ignoring.`, {
-					err,
+					err: ClassToObject(err),
 				});
 				return {
 					success: false,

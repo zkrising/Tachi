@@ -7,7 +7,7 @@ import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
-import { UserGameStatsContext } from "context/UserGameStatsContext";
+import { AllLUGPTStatsContext } from "context/AllLUGPTStatsContext";
 import React, { useContext } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -28,7 +28,7 @@ export default function ChartInfoFormat({
 	);
 
 	const { user } = useContext(UserContext);
-	const { ugs } = useContext(UserGameStatsContext);
+	const { ugs } = useContext(AllLUGPTStatsContext);
 
 	if (error) {
 		<ApiError error={error} />;

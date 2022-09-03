@@ -2,7 +2,7 @@ import { GetGradeFromPercent, IsNullish } from "util/misc";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Divider from "components/util/Divider";
 import Muted from "components/util/Muted";
-import useUGPTSettings from "components/util/useUGPTSettings";
+import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
 import { PoyashiBPI } from "rg-stats";
@@ -19,7 +19,7 @@ export default function BPICell({
 	chart: ChartDocument<"iidx:SP" | "iidx:DP">;
 }) {
 	const { user } = useContext(UserContext);
-	const { settings } = useUGPTSettings<"iidx:SP" | "iidx:DP">();
+	const { settings } = useLUGPTSettings<"iidx:SP" | "iidx:DP">();
 
 	const bpi = score.calculatedData.BPI;
 	const { kaidenAverage, worldRecord, notecount, bpiCoefficient } = chart.data;

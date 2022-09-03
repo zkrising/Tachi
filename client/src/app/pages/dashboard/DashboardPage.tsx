@@ -14,9 +14,9 @@ import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
-import { UserGameStatsContext } from "context/UserGameStatsContext";
+import { AllLUGPTStatsContext } from "context/AllLUGPTStatsContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
-import { TachiConfig } from "lib/config";
+import { ColourConfig, TachiConfig } from "lib/config";
 import React, { useContext } from "react";
 import { Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -31,7 +31,7 @@ export function DashboardPage() {
 	useSetSubheader("Dashboard", [settings]);
 
 	const { user } = useContext(UserContext);
-	const { ugs } = useContext(UserGameStatsContext);
+	const { ugs } = useContext(AllLUGPTStatsContext);
 
 	if (!user) {
 		return <DashboardNotLoggedIn />;
@@ -88,8 +88,7 @@ function RecentInfo({ user }: { user: PublicUserDocument }) {
 				<>
 					<Alert
 						style={{
-							backgroundColor:
-								TachiConfig.type === "ktchi" ? "#e61c6e44" : "#527acc44",
+							backgroundColor: `${ColourConfig.primary}44`,
 							color: "white",
 						}}
 					>

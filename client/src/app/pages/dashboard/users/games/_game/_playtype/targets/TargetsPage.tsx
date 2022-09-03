@@ -3,9 +3,7 @@ import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import SelectLinkButton from "components/util/SelectLinkButton";
 import useUGPTBase from "components/util/useUGPTBase";
-import { UserContext } from "context/UserContext";
-import { UserGameStatsContext } from "context/UserGameStatsContext";
-import React, { useContext } from "react";
+import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Route, Switch } from "react-router-dom";
 import { FormatGame, GetGameConfig, PublicUserDocument } from "tachi-common";
@@ -16,9 +14,6 @@ type Props = { reqUser: PublicUserDocument } & GamePT;
 
 export default function TargetsPage({ reqUser, game, playtype }: Props) {
 	const gameConfig = GetGameConfig(game);
-
-	const { user } = useContext(UserContext);
-	const { ugs } = useContext(UserGameStatsContext);
 
 	useSetSubheader(
 		["Users", reqUser.username, "Games", gameConfig.name, playtype, "Targets"],

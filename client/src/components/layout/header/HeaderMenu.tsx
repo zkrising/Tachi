@@ -3,7 +3,7 @@ import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
 import useComponentVisible from "components/util/useComponentVisible";
 import { UserContext } from "context/UserContext";
-import { UserGameStatsContext } from "context/UserGameStatsContext";
+import { AllLUGPTStatsContext } from "context/AllLUGPTStatsContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useEffect } from "react";
 import { useQuery } from "react-query";
@@ -24,7 +24,7 @@ export function HeaderMenu({
 	setMobileShow: SetState<boolean>;
 }) {
 	const { user } = useContext(UserContext);
-	const { ugs, setUGS } = useContext(UserGameStatsContext);
+	const { ugs, setUGS } = useContext(AllLUGPTStatsContext);
 
 	const { isLoading, error } = useQuery([user?.id, "game_stats"], async () => {
 		if (!user) {

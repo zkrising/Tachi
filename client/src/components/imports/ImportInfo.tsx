@@ -10,8 +10,7 @@ import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import { UserContext } from "context/UserContext";
-import { UserGameStatsContext } from "context/UserGameStatsContext";
-import { UserSettingsContext } from "context/UserSettingsContext";
+import { AllLUGPTStatsContext } from "context/AllLUGPTStatsContext";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -39,7 +38,7 @@ interface Data {
 export default function ImportInfo({ importID }: { importID: string }) {
 	const { data, error } = useApiQuery<Data>(`/imports/${importID}`);
 
-	const { setUGS } = useContext(UserGameStatsContext);
+	const { setUGS } = useContext(AllLUGPTStatsContext);
 	const { user } = useContext(UserContext);
 	const [hasUpdatedStats, setHasUpdatedStats] = useState(false);
 

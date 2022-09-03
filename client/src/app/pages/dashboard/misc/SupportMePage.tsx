@@ -17,6 +17,11 @@ export default function SupportMePage() {
 				If you want to support {TachiConfig.name} development, you can donate to my{" "}
 				<ExternalLink href="https://ko-fi.com/zkldi">Ko-Fi</ExternalLink>.
 			</p>
+			<p>
+				Alternatively, you can star the{" "}
+				<ExternalLink href="https://github.com/TNG-Dev/Tachi">GitHub Repo</ExternalLink>.
+				This makes me look cool to employers.
+			</p>
 		</div>
 	);
 }

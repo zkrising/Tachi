@@ -117,12 +117,15 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 						<Icon type="table" />
 						Normal View
 					</SelectButton>
-					{gptConfig.tierlists.length !== 0 && (
-						<SelectButton value={mode} setValue={setMode} id="ladder">
-							<Icon type="sort-alpha-up" />
-							Tierlist View
-						</SelectButton>
-					)}
+					{gptConfig.tierlists.length !== 0 &&
+						// temp: tierlist view sucks for BMS and PMS
+						game !== "bms" &&
+						game !== "pms" && (
+							<SelectButton value={mode} setValue={setMode} id="ladder">
+								<Icon type="sort-alpha-up" />
+								Tierlist View
+							</SelectButton>
+						)}
 					<SelectButton value={mode} setValue={setMode} id="timeline">
 						<Icon type="stream" />
 						Timeline View

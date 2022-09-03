@@ -14,7 +14,7 @@ export const AllLUGPTStatsContext = createContext<{
 }>({ ugs: null, setUGS: () => void 0 });
 AllLUGPTStatsContext.displayName = "AllLUGPTStatsContext";
 
-export function UserGameStatsContextProvider({ children }: JustChildren) {
+export function AllLUGPTStatsContextProvider({ children }: JustChildren) {
 	const [ugs, setUGS] = useState<UserGameStats[] | null>(null);
 
 	return (

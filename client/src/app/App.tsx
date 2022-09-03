@@ -3,7 +3,7 @@ import { LoadingScreen } from "components/layout/screens/LoadingScreen";
 import { BannedContextProvider } from "context/BannedContext";
 import { SubheaderContextProvider } from "context/SubheaderContext";
 import { UserContextProvider } from "context/UserContext";
-import { UserGameStatsContextProvider } from "context/UserGameStatsContext";
+import { AllLUGPTStatsContextProvider } from "context/AllLUGPTStatsContext";
 import { UserSettingsContextProvider } from "context/UserSettingsContext";
 import React from "react";
 import { Toaster } from "react-hot-toast";
@@ -22,7 +22,7 @@ export default function App({ basename }: { basename: string }) {
 				<BannedContextProvider>
 					<UserContextProvider>
 						<UserSettingsContextProvider>
-							<UserGameStatsContextProvider>
+							<AllLUGPTStatsContextProvider>
 								<LoadingScreen>
 									<BrowserRouter basename={basename}>
 										<MaterialThemeProvider>
@@ -33,7 +33,7 @@ export default function App({ basename }: { basename: string }) {
 										</MaterialThemeProvider>
 									</BrowserRouter>
 								</LoadingScreen>
-							</UserGameStatsContextProvider>
+							</AllLUGPTStatsContextProvider>
 						</UserSettingsContextProvider>
 					</UserContextProvider>
 				</BannedContextProvider>

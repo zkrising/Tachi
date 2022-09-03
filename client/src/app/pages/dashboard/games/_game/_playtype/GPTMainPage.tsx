@@ -16,7 +16,7 @@ import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
-import { TachiConfig } from "lib/config";
+import { ColourConfig, TachiConfig } from "lib/config";
 import React, { useEffect, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -353,7 +353,7 @@ function ClassDistChart({
 				indexBy="id"
 				layout="horizontal"
 				margin={{ left: 80, bottom: 40, top: 20, right: 20 }}
-				colors={(v) => "#cc527a"}
+				colors={() => ColourConfig.primary}
 				axisLeft={{
 					format: (v) => gptConfig.classHumanisedFormat[className][v]?.display,
 				}}

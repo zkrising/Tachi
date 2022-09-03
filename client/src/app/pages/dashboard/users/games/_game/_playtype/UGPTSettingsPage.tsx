@@ -146,57 +146,63 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 
 	return (
 		<Form onSubmit={formik.handleSubmit}>
-			<Form.Group>
-				<Form.Label>Preferred Score Algorithm</Form.Label>
-				<Form.Control
-					as="select"
-					id="preferredScoreAlg"
-					value={formik.values.preferredScoreAlg}
-					onChange={formik.handleChange}
-				>
-					{gptConfig.scoreRatingAlgs.map((e) => (
-						<option key={e}>{e}</option>
-					))}
-				</Form.Control>
-				<Form.Text className="text-muted">
-					This configures the default rating algorithm to display for scores. This is used
-					for things like score tables and PB tables.
-				</Form.Text>
-			</Form.Group>
-			<Form.Group>
-				<Form.Label>Preferred Session Algorithm</Form.Label>
-				<Form.Control
-					as="select"
-					id="preferredSessionAlg"
-					value={formik.values.preferredSessionAlg}
-					onChange={formik.handleChange}
-				>
-					{gptConfig.sessionRatingAlgs.map((e) => (
-						<option key={e}>{e}</option>
-					))}
-				</Form.Control>
-				<Form.Text className="text-muted">
-					This configures the default rating algorithm to display for sessions. This is
-					used for things like session tables.
-				</Form.Text>
-			</Form.Group>
-			<Form.Group>
-				<Form.Label>Preferred Profile Algorithm</Form.Label>
-				<Form.Control
-					as="select"
-					id="preferredProfileAlg"
-					value={formik.values.preferredProfileAlg}
-					onChange={formik.handleChange}
-				>
-					{gptConfig.profileRatingAlgs.map((e) => (
-						<option key={e}>{e}</option>
-					))}
-				</Form.Control>
-				<Form.Text className="text-muted">
-					This configures the default rating algorithm to display for profiles. This is
-					used for things like leaderboards.
-				</Form.Text>
-			</Form.Group>
+			{gptConfig.scoreRatingAlgs.length > 1 && (
+				<Form.Group>
+					<Form.Label>Preferred Score Algorithm</Form.Label>
+					<Form.Control
+						as="select"
+						id="preferredScoreAlg"
+						value={formik.values.preferredScoreAlg}
+						onChange={formik.handleChange}
+					>
+						{gptConfig.scoreRatingAlgs.map((e) => (
+							<option key={e}>{e}</option>
+						))}
+					</Form.Control>
+					<Form.Text className="text-muted">
+						This configures the default rating algorithm to display for scores. This is
+						used for things like score tables and PB tables.
+					</Form.Text>
+				</Form.Group>
+			)}
+			{gptConfig.sessionRatingAlgs.length > 1 && (
+				<Form.Group>
+					<Form.Label>Preferred Session Algorithm</Form.Label>
+					<Form.Control
+						as="select"
+						id="preferredSessionAlg"
+						value={formik.values.preferredSessionAlg}
+						onChange={formik.handleChange}
+					>
+						{gptConfig.sessionRatingAlgs.map((e) => (
+							<option key={e}>{e}</option>
+						))}
+					</Form.Control>
+					<Form.Text className="text-muted">
+						This configures the default rating algorithm to display for sessions. This
+						is used for things like session tables.
+					</Form.Text>
+				</Form.Group>
+			)}
+			{gptConfig.profileRatingAlgs.length > 1 && (
+				<Form.Group>
+					<Form.Label>Preferred Profile Algorithm</Form.Label>
+					<Form.Control
+						as="select"
+						id="preferredProfileAlg"
+						value={formik.values.preferredProfileAlg}
+						onChange={formik.handleChange}
+					>
+						{gptConfig.profileRatingAlgs.map((e) => (
+							<option key={e}>{e}</option>
+						))}
+					</Form.Control>
+					<Form.Text className="text-muted">
+						This configures the default rating algorithm to display for profiles. This
+						is used for things like leaderboards.
+					</Form.Text>
+				</Form.Group>
+			)}
 			<Form.Group>
 				<Form.Label>Preferred Score Info</Form.Label>
 				<Form.Control

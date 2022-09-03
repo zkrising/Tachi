@@ -20052,5 +20052,73 @@
 		"versions": [
 			"reverse"
 		]
+	},
+	{
+		"chartID": "c2adf46304a309c6e053c6d61f3d66f29dc217e4",
+		"data": {
+			"isHot": true
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.3,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 386,
+		"tierlistInfo": {},
+		"versions": [
+			"reverse"
+		]
+	},
+	{
+		"chartID": "093bd0ca335ba9fc27ca48dc835d7626261e1000",
+		"data": {
+			"isHot": true
+		},
+		"difficulty": "HARD",
+		"isPrimary": true,
+		"level": "9",
+		"levelNum": 9.6,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 386,
+		"tierlistInfo": {},
+		"versions": [
+			"reverse"
+		]
+	},
+	{
+		"chartID": "882a3dde537454c1e1165362cef5a50d98ce4f47",
+		"data": {
+			"isHot": true
+		},
+		"difficulty": "INFERNO",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 386,
+		"tierlistInfo": {},
+		"versions": [
+			"reverse"
+		]
+	},
+	{
+		"chartID": "1d8bfeff73d759ea1904b148b0330da3eae160f0",
+		"data": {
+			"isHot": true
+		},
+		"difficulty": "NORMAL",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 386,
+		"tierlistInfo": {},
+		"versions": [
+			"reverse"
+		]
 	}
 ]

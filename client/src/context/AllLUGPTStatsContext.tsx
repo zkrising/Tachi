@@ -3,20 +3,23 @@ import { UserGameStats } from "tachi-common";
 import { JustChildren, SetState } from "types/react";
 
 /**
- * Contains the current user's stats
+ * Contains all of the currently logged-in users GPTStats.
+ *
+ * Used to display things like the "your games" tab, and assorted
+ * dashboard info.
  */
-export const UserGameStatsContext = createContext<{
+export const AllLUGPTStatsContext = createContext<{
 	ugs: UserGameStats[] | null;
 	setUGS: SetState<UserGameStats[] | null>;
 }>({ ugs: null, setUGS: () => void 0 });
-UserGameStatsContext.displayName = "UserContext";
+AllLUGPTStatsContext.displayName = "AllLUGPTStatsContext";
 
 export function UserGameStatsContextProvider({ children }: JustChildren) {
 	const [ugs, setUGS] = useState<UserGameStats[] | null>(null);
 
 	return (
-		<UserGameStatsContext.Provider value={{ ugs, setUGS }}>
+		<AllLUGPTStatsContext.Provider value={{ ugs, setUGS }}>
 			{children}
-		</UserGameStatsContext.Provider>
+		</AllLUGPTStatsContext.Provider>
 	);
 }

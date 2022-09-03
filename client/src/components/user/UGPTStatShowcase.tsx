@@ -9,7 +9,7 @@ import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import ReferToUser from "components/util/ReferToUser";
 import { UserContext } from "context/UserContext";
-import { UserGameStatsContext } from "context/UserGameStatsContext";
+import { AllLUGPTStatsContext } from "context/AllLUGPTStatsContext";
 import { nanoid } from "nanoid";
 import React, { useContext, useState } from "react";
 import { Alert, OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -35,7 +35,7 @@ export default function UGPTStatShowcase({
 	game,
 	playtype,
 }: { reqUser: PublicUserDocument } & GamePT) {
-	const { ugs } = useContext(UserGameStatsContext);
+	const { ugs } = useContext(AllLUGPTStatsContext);
 	const { user } = useContext(UserContext);
 
 	const [projectingStats, setProjectingStats] = useState(false);

@@ -14,7 +14,7 @@ import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
-import { UserGameStatsContext } from "context/UserGameStatsContext";
+import { AllLUGPTStatsContext } from "context/AllLUGPTStatsContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext } from "react";
@@ -31,7 +31,7 @@ export function DashboardPage() {
 	useSetSubheader("Dashboard", [settings]);
 
 	const { user } = useContext(UserContext);
-	const { ugs } = useContext(UserGameStatsContext);
+	const { ugs } = useContext(AllLUGPTStatsContext);
 
 	if (!user) {
 		return <DashboardNotLoggedIn />;

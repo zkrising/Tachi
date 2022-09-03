@@ -5369,5 +5369,20 @@
 		"id": 385,
 		"searchTerms": [],
 		"title": "Odin"
+	},
+	{
+		"altTitles": [
+			"DIVE With Ü"
+		],
+		"artist": "HARDCORE TANO*C & エリザベス（CV:大西沙織） & リリィ（CV:青木志貴） & ルーン（CV:河瀬茉希）",
+		"data": {
+			"artistJP": "ハードコアタノシーアンドエリザベスオオニシサオリアンドリリィアオキシキアンドルーンカワセマキ",
+			"displayVersion": "reverse",
+			"genre": "オリジナル",
+			"titleJP": "ダイブ ウィズ ユー"
+		},
+		"id": 386,
+		"searchTerms": [],
+		"title": "DIVE with Ü"
 	}
 ]

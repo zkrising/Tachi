@@ -12,7 +12,6 @@ import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import useQueryString from "components/util/useQueryString";
-import { UGPTSettingsContext } from "context/UGPTSettingsContext";
 import deepmerge from "deepmerge";
 import { useFormik } from "formik";
 import { TachiConfig } from "lib/config";
@@ -28,6 +27,8 @@ import {
 	UGPTSettings,
 } from "tachi-common";
 import { GamePT, SetState } from "types/react";
+import { UGPTContext } from "context/UGPTContext";
+import { ErrorPage } from "app/pages/ErrorPage";
 
 type Props = { reqUser: PublicUserDocument } & GamePT;
 
@@ -76,7 +77,18 @@ export default function UGPTSettingsPage({ reqUser, game, playtype }: Props) {
 }
 
 function PreferencesForm({ reqUser, game, playtype }: Props) {
-	const { settings, setSettings } = useContext(UGPTSettingsContext);
+	const { loggedInData, setLoggedInData } = useContext(UGPTContext);
+
+	if (!loggedInData) {
+		return (
+			<ErrorPage
+				statusCode={400}
+				customMessage="You don't appear to have any settings for this game; have you played it?"
+			/>
+		);
+	}
+
+	const settings = loggedInData.settings;
 
 	const gptConfig = GetGamePTConfig(game, playtype);
 
@@ -108,7 +120,10 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 			);
 
 			if (rj.success) {
-				setSettings(deepmerge(settings as UGPTSettings, { preferences: values }));
+				setLoggedInData({
+					...loggedInData,
+					settings: deepmerge(settings as UGPTSettings, { preferences: values }),
+				});
 			}
 		},
 	});
@@ -305,7 +320,18 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 }
 
 function ShowcaseForm({ reqUser, game, playtype }: Props) {
-	const { settings, setSettings } = useContext(UGPTSettingsContext);
+	const { loggedInData, setLoggedInData } = useContext(UGPTContext);
+
+	if (!loggedInData) {
+		return (
+			<ErrorPage
+				statusCode={400}
+				customMessage="You don't appear to have any settings for this game; have you played it?"
+			/>
+		);
+	}
+
+	const settings = loggedInData.settings;
 
 	const [stats, setStats] = useState(settings!.preferences.stats);
 	const [show, setShow] = useState(false);
@@ -323,7 +349,10 @@ function ShowcaseForm({ reqUser, game, playtype }: Props) {
 		);
 
 		if (r.success) {
-			setSettings(r.body);
+			setLoggedInData({
+				...loggedInData,
+				settings: r.body,
+			});
 		}
 	};
 

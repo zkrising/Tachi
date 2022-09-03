@@ -15,8 +15,7 @@ import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import useScoreRatingAlg, { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
-import { UGPTSettingsContext } from "context/UGPTSettingsContext";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { FormatGame, GetGameConfig, GetGamePTConfig } from "tachi-common";
 import { ScoreLeaderboardReturns, UserLeaderboardReturns } from "types/api-returns";
@@ -29,8 +28,6 @@ export default function GPTLeaderboardsPage({ game, playtype }: GamePT) {
 		[game, playtype],
 		`${FormatGame(game, playtype)} Leaderboards`
 	);
-
-	const { settings } = useContext(UGPTSettingsContext);
 
 	const [mode, setMode] = useState<"profile" | "score">("profile");
 

@@ -1,5 +1,3 @@
-import { UGPTSettingsContext } from "context/UGPTSettingsContext";
-import { useContext } from "react";
 import {
 	Game,
 	GetGamePTConfig,
@@ -9,12 +7,13 @@ import {
 	UGSRatingsLookup,
 } from "tachi-common";
 import { Playtype } from "types/tachi";
+import useLUGPTSettings from "./useLUGPTSettings";
 
 export default function useScoreRatingAlg<I extends IDStrings = IDStrings>(
 	game: Game,
 	playtype: Playtype
 ): ScoreCalculatedDataLookup[I] {
-	const { settings } = useContext(UGPTSettingsContext);
+	const { settings } = useLUGPTSettings();
 
 	if (!settings?.preferences.preferredScoreAlg) {
 		const gptConfig = GetGamePTConfig(game, playtype);
@@ -29,7 +28,7 @@ export function useSessionRatingAlg<I extends IDStrings = IDStrings>(
 	game: Game,
 	playtype: Playtype
 ): SessionCalculatedDataLookup[I] {
-	const { settings } = useContext(UGPTSettingsContext);
+	const { settings } = useLUGPTSettings();
 
 	if (!settings?.preferences.preferredSessionAlg) {
 		const gptConfig = GetGamePTConfig(game, playtype);
@@ -44,7 +43,7 @@ export function useProfileRatingAlg<I extends IDStrings = IDStrings>(
 	game: Game,
 	playtype: Playtype
 ): UGSRatingsLookup[I] {
-	const { settings } = useContext(UGPTSettingsContext);
+	const { settings } = useLUGPTSettings();
 
 	if (!settings?.preferences.preferredProfileAlg) {
 		const gptConfig = GetGamePTConfig(game, playtype);

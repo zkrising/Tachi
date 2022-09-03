@@ -1,5 +1,5 @@
 import { IsNullish } from "util/misc";
-import useUGPTSettings from "components/util/useUGPTSettings";
+import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
 import { Volforce } from "rg-stats";
@@ -21,7 +21,7 @@ export default function VF6Cell({
 	chart: ChartDocument<VF6IDStrings>;
 }) {
 	const { user } = useContext(UserContext);
-	const { settings } = useUGPTSettings<VF6IDStrings>();
+	const { settings } = useLUGPTSettings<VF6IDStrings>();
 
 	if (IsNullish(score.calculatedData.VF6)) {
 		return <td>N/A</td>;

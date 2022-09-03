@@ -16,7 +16,7 @@ import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import { useBucket } from "components/util/useBucket";
-import useUGPTSettings from "components/util/useUGPTSettings";
+import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
@@ -42,7 +42,7 @@ export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 		`/games/${game}/${playtype}/tables?showInactive=true`
 	);
 
-	const { settings } = useUGPTSettings();
+	const { settings } = useLUGPTSettings();
 
 	const [tableID, setTableID] = useState("");
 	const [tableMap, setTableMap] = useState(new Map());

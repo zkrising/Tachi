@@ -1,4 +1,4 @@
-import { APIFetchV1, ToCDNURL } from "util/api";
+import { ToCDNURL } from "util/api";
 import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
 import { ChangeOpacity } from "util/color-opacity";
 import { CreateChartLink } from "util/data";
@@ -21,10 +21,7 @@ import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
-import useUGPTSettings from "components/util/useUGPTSettings";
 import { BackgroundContext } from "context/BackgroundContext";
-import { UGPTSettingsContext, UGPTSettingsContextProvider } from "context/UGPTSettingsContext";
-import { UserContext } from "context/UserContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
@@ -36,10 +33,10 @@ import {
 	GetGameConfig,
 	GetGamePTConfig,
 	SongDocument,
-	UGPTSettings,
 } from "tachi-common";
 import { SongsReturn } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
+import useLUGPTSettings from "components/util/useLUGPTSettings";
 
 export default function GameRoutes() {
 	const { game } = useParams<{ game: string }>();
@@ -69,9 +66,7 @@ export default function GameRoutes() {
 			</Route>
 
 			<Route path="/dashboard/games/:game/:playtype">
-				<UGPTSettingsContextProvider>
-					<GamePlaytypeRoutes game={game} />
-				</UGPTSettingsContextProvider>
+				<GamePlaytypeRoutes game={game} />
 			</Route>
 
 			<Route path="*">
@@ -92,30 +87,6 @@ function GamePlaytypeRoutes({ game }: { game: Game }) {
 			/>
 		);
 	}
-
-	const { user } = useContext(UserContext);
-	const { setSettings } = useContext(UGPTSettingsContext);
-
-	useEffect(() => {
-		(async () => {
-			if (user) {
-				const settingsRes = await APIFetchV1<UGPTSettings>(
-					`/users/${user.id}/games/${game}/${playtype}/settings`
-				);
-
-				if (!settingsRes.success) {
-					setSettings(null);
-					return;
-				}
-
-				setSettings(settingsRes.body);
-			}
-		})();
-
-		return () => {
-			setSettings(null);
-		};
-	}, [user, game, playtype]);
 
 	return (
 		<>
@@ -154,9 +125,7 @@ function GamePlaytypeRoutes({ game }: { game: Game }) {
 function SongChartRoutes({ game, playtype }: GamePT) {
 	const { songID } = useParams<{ songID: string }>();
 
-	const { data, error } = useApiQuery<SongsReturn>(
-		`/games/${game}/${playtype}/songs/${songID}`
-	);
+	const { data, error } = useApiQuery<SongsReturn>(`/games/${game}/${playtype}/songs/${songID}`);
 
 	const { settings } = useContext(UserSettingsContext);
 
@@ -460,7 +429,7 @@ function IIDXDifficultyList({
 }: {
 	charts: ChartDocument[];
 } & Props) {
-	const { settings } = useUGPTSettings<"iidx:SP" | "iidx:DP">();
+	const { settings } = useLUGPTSettings<"iidx:SP" | "iidx:DP">();
 
 	const [set, setSet] = useState<null | "All Scratch" | "Kichiku" | "Kiraku">(null);
 

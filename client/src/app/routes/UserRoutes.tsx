@@ -1,12 +1,13 @@
 import { APIFetchV1, APIFetchV1Return, ToAPIURL } from "util/api";
 import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
 import PlaytypeSelect from "app/pages/dashboard/games/_game/PlaytypeSelect";
-import TargetsPage from "app/pages/dashboard/users/games/_game/_playtype/targets/TargetsPage";
 import FoldersMainPage from "app/pages/dashboard/users/games/_game/_playtype/folders/FoldersMainPage";
 import LeaderboardsPage from "app/pages/dashboard/users/games/_game/_playtype/LeaderboardsPage";
 import OverviewPage from "app/pages/dashboard/users/games/_game/_playtype/OverviewPage";
+import RivalsMainPage from "app/pages/dashboard/users/games/_game/_playtype/rivals/RivalsMainPage";
 import SessionsPage from "app/pages/dashboard/users/games/_game/_playtype/SessionsPage";
 import SpecificSessionPage from "app/pages/dashboard/users/games/_game/_playtype/SpecificSessionPage";
+import TargetsPage from "app/pages/dashboard/users/games/_game/_playtype/targets/TargetsPage";
 import UGPTSettingsPage from "app/pages/dashboard/users/games/_game/_playtype/UGPTSettingsPage";
 import UserGamesPage from "app/pages/dashboard/users/UserGamesPage";
 import UserIntegrationsPage from "app/pages/dashboard/users/UserIntegrationsPage";
@@ -20,22 +21,14 @@ import { UserBottomNav, UserHeaderBody } from "components/user/UserHeader";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import { BackgroundContext } from "context/BackgroundContext";
-import { UGPTSettingsContext, UGPTSettingsContextProvider } from "context/UGPTSettingsContext";
+import { UGPTContextProvider } from "context/UGPTContext";
 import { UserContext } from "context/UserContext";
+import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext, useEffect } from "react";
 import { useQuery } from "react-query";
 import { Redirect, Route, Switch, useHistory, useParams } from "react-router-dom";
-import {
-	FormatGame,
-	Game,
-	GetGameConfig,
-	PublicUserDocument,
-	UGPTSettings,
-	UserGameStats,
-} from "tachi-common";
+import { FormatGame, Game, GetGameConfig, PublicUserDocument, UserGameStats } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
-import { UserSettingsContext } from "context/UserSettingsContext";
-import RivalsMainPage from "app/pages/dashboard/users/games/_game/_playtype/rivals/RivalsMainPage";
 import ScoresPage from "../pages/dashboard/users/games/_game/_playtype/ScoresPage";
 import UserPage from "../pages/dashboard/users/UserPage";
 
@@ -173,9 +166,9 @@ function UserGameRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
 			</Route>
 
 			<Route path="/dashboard/users/:userID/games/:game/:playtype">
-				<UGPTSettingsContextProvider>
+				<UGPTContextProvider>
 					<UserGamePlaytypeRoutes reqUser={reqUser} game={game} />
-				</UGPTSettingsContextProvider>
+				</UGPTContextProvider>
 			</Route>
 		</Switch>
 	);
@@ -194,28 +187,6 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument
 	}
 
 	const { user } = useContext(UserContext);
-	const { setSettings } = useContext(UGPTSettingsContext);
-
-	useEffect(() => {
-		(async () => {
-			if (user) {
-				const settingsRes = await APIFetchV1<UGPTSettings>(
-					`/users/${user.id}/games/${game}/${playtype}/settings`
-				);
-
-				if (!settingsRes.success) {
-					setSettings(null);
-					return;
-				}
-
-				setSettings(settingsRes.body);
-			}
-		})();
-
-		return () => {
-			setSettings(null);
-		};
-	}, [user, game, playtype]);
 
 	const { data, error } = useQuery<UGPTStatsReturn, APIFetchV1Return<UserGameStats>>(
 		[reqUser.id, game, playtype],

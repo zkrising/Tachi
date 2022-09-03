@@ -13,7 +13,7 @@ import db from "external/mongo/db";
 import { SendEmail } from "lib/email/client";
 import { EmailFormatResetPassword, EmailFormatVerifyEmail } from "lib/email/formats";
 import CreateLogCtx from "lib/logger/logger";
-import { Environment, ServerConfig } from "lib/setup/config";
+import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import Prudence from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import {
@@ -287,17 +287,23 @@ router.post(
 
 			MountAuthCookie(req, user, newSettings);
 
-			const resetEmailCode = Random20Hex();
+			// If we have an EMAIL_CONFIG set, send out
+			// authentication emails.
+			// Otherwise, don't bother; this is equivalent to
+			// automatically verifying all users' emails.
+			if (ServerConfig.EMAIL_CONFIG) {
+				const resetEmailCode = Random20Hex();
 
-			await db["verify-email-codes"].insert({
-				code: resetEmailCode,
-				userID,
-				email: body.email,
-			});
+				await db["verify-email-codes"].insert({
+					code: resetEmailCode,
+					userID,
+					email: body.email,
+				});
 
-			const { text, html } = EmailFormatVerifyEmail(user.username, resetEmailCode);
+				const { text, html } = EmailFormatVerifyEmail(user.username, resetEmailCode);
 
-			void SendEmail(body.email, "Email Verification", html, text);
+				void SendEmail(body.email, "Email Verification", html, text);
+			}
 
 			return res.status(200).json({
 				success: true,

@@ -73,7 +73,9 @@ CreateAndMountTable(
 		});
 
 		if (!table) {
-			logger.error("Could not find table bms-7K-sgl-EC (even though it should be there...)");
+			logger.error(
+				"Could not find table bms-7K-sgl-EC. Cannot convert sieglinde tables into BMS form!"
+			);
 			return res.status(500).json([]);
 		}
 
@@ -132,7 +134,9 @@ CreateAndMountTable(
 		});
 
 		if (!table) {
-			logger.error("Could not find table bms-7K-sgl-HC (even though it should be there...)");
+			logger.error(
+				"Could not find table bms-7K-sgl-HC. Cannot convert sieglinde tables into BMS form!"
+			);
 			return res.status(500).json([]);
 		}
 

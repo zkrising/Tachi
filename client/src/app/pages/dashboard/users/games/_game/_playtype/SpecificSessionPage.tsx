@@ -247,7 +247,7 @@ function EditModal({
 	setShow: SetState<boolean>;
 }) {
 	const [name, setName] = useState(session.name);
-	const [desc, setDesc] = useState(session.desc ?? "No Description...");
+	const [desc, setDesc] = useState(session.desc ?? "");
 
 	return (
 		<Modal show={show} onHide={() => setShow(false)}>
@@ -268,7 +268,7 @@ function EditModal({
 								},
 								body: JSON.stringify({
 									name,
-									desc,
+									desc: desc.length === 0 ? null : desc,
 								}),
 							},
 							true,
@@ -284,7 +284,7 @@ function EditModal({
 					<Divider />
 					<FormInput
 						fieldName="Session Description"
-						value={desc ?? ""}
+						value={desc ?? "No Description..."}
 						setValue={setDesc as SetState<string>}
 					/>
 					<Divider />

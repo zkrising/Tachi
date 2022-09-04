@@ -26,8 +26,14 @@ router.get("/", (req, res) => {
 	});
 });
 
-router.use("/:game", gameRouter);
+// "Content" endpoints are game-playtype specific.
+// as such, we want to mount them *before* any generic endpoints
+// so that they'll guaranteeably get hit.
 
+// This is a bit unorthodox, but arguably necessary, as all /content
+// endpoints really are *entirely* GPT specific.
 router.use("/bms/7K/content", bmsContentRouter);
+
+router.use("/:game", gameRouter);
 
 export default router;

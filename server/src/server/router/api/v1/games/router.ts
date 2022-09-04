@@ -1,3 +1,4 @@
+import bmsContentRouter from "./_game/_playtype/content/bms-router";
 import gameRouter from "./_game/router";
 import { Router } from "express";
 import { TachiConfig } from "lib/setup/config";
@@ -26,5 +27,7 @@ router.get("/", (req, res) => {
 });
 
 router.use("/:game", gameRouter);
+
+router.use("/bms/7K/content", bmsContentRouter);
 
 export default router;

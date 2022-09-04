@@ -18,6 +18,9 @@ function mvExampleFiles {
 	cp server/example/conf.json5 server/conf.json5
 	cp server/example/.env server/.env
 
+	mkdir -p server/local-cdn
+	cp -r server/example/default-cdn-contents/* server/local-cdn
+
 	cp bot/example/conf.json5 bot/conf.json5
 	cp bot/example/example.env bot/.env
 

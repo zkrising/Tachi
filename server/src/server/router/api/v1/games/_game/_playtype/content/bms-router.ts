@@ -1,6 +1,8 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import { CreateSongMap } from "tachi-common";
+import { integer, SongDocument } from "tachi-common/types";
 import { GetFolderCharts, GetFoldersFromTable } from "utils/folder";
 import { GetTachiData } from "utils/req-tachi-data";
 import type { Request, Response } from "express";
@@ -85,10 +87,10 @@ CreateAndMountTable(
 		for (const folder of folders) {
 			const data = await GetFolderCharts(folder, {}, true);
 			const charts = data.charts as Array<ChartDocument<"bms:7K">>;
-			const songs = data.songs;
+			const songMap = CreateSongMap(data.songs);
 
 			for (const chart of charts) {
-				const song = songs.find((song) => song.id === chart.songID);
+				const song = songMap.get(chart.songID);
 
 				if (!song) {
 					response.push({
@@ -146,10 +148,10 @@ CreateAndMountTable(
 		for (const folder of folders) {
 			const data = await GetFolderCharts(folder, {}, true);
 			const charts = data.charts as Array<ChartDocument<"bms:7K">>;
-			const songs = data.songs;
+			const songMap = CreateSongMap(data.songs);
 
 			for (const chart of charts) {
-				const song = songs.find((song) => song.id === chart.songID);
+				const song = songMap.get(chart.songID);
 
 				if (!song) {
 					response.push({

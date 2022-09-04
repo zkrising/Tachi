@@ -66,7 +66,8 @@ CreateAndMountTable(
 		});
 	},
 	/* body.json */ async (req, res) => {
-		const game = GetTachiData(req, "game");
+		const game = "bms";
+
 		const table = await db.tables.findOne({
 			tableID: "bms-7K-sgl-EC",
 			game,
@@ -127,7 +128,8 @@ CreateAndMountTable(
 		});
 	},
 	/* body.json */ async (req, res) => {
-		const game = GetTachiData(req, "game");
+		const game = "bms";
+
 		const table = await db.tables.findOne({
 			tableID: "bms-7K-sgl-HC",
 			game,

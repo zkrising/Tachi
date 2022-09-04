@@ -1,12 +1,5 @@
-import dm from "deepmerge";
-import db from "external/mongo/db";
-import { GetGamePTConfig } from "tachi-common";
 import t from "tap";
-import { mkFakeGameStats, mkFakeUser } from "test-utils/misc";
 import mockApi from "test-utils/mock-api";
-import ResetDBState from "test-utils/resets";
-import { FakeOtherUser } from "test-utils/test-data";
-import type { PublicUserDocument, UserGameStats } from "tachi-common";
 
 t.test("GET /api/v1/games/bms/7K/content", (t) => {
 	t.test("Should exist.", async (t) => {

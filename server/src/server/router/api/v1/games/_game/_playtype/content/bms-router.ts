@@ -2,6 +2,7 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { CreateSongMap } from "tachi-common";
+import { integer, SongDocument } from "tachi-common/types";
 import { GetFolderCharts, GetFoldersFromTable } from "utils/folder";
 import { GetTachiData } from "utils/req-tachi-data";
 import type { Request, Response } from "express";
@@ -61,7 +62,7 @@ CreateAndMountTable(
 	/* header.json */ (_req, res) => {
 		return res.status(200).send({
 			name: "Sieglinde EC",
-			symbol: "sgl-EC",
+			symbol: "sgl-",
 			data_url: "./body.json",
 		});
 	},
@@ -123,7 +124,7 @@ CreateAndMountTable(
 	/* header.json */ (_req, res) => {
 		return res.status(200).send({
 			name: "Sieglinde HC",
-			symbol: "sgl-HC",
+			symbol: "sgl-",
 			data_url: "./body.json",
 		});
 	},

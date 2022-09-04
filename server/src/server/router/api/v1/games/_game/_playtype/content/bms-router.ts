@@ -10,7 +10,6 @@ const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
 
-
 /**
  * Returns "Endpoint exists"
  *
@@ -23,6 +22,13 @@ router.get("/", (req, res) => {
 	});
 });
 
+/**
+ * Utility function for mounting a BMS-style Table. This defines
+ * a header.json endpoint, and a body.json endpoint.
+ *
+ * It also defines a HTML-emitting endpoint that contains a pointer
+ * to said header.json file.
+ */
 function CreateAndMountTable(
 	router: Router,
 	tableName: string,
@@ -51,7 +57,7 @@ function CreateAndMountTable(
 CreateAndMountTable(
 	router,
 	"sieglindeEC",
-	/* header.json */(_req, res) => {
+	/* header.json */ (_req, res) => {
 		return res.status(200).send({
 			name: "Sieglinde EC",
 			symbol: "sgl-",
@@ -110,7 +116,7 @@ CreateAndMountTable(
 CreateAndMountTable(
 	router,
 	"sieglindeHC",
-	/* header.json */(_req, res) => {
+	/* header.json */ (_req, res) => {
 		return res.status(200).send({
 			name: "Sieglinde HC",
 			symbol: "sgl-",

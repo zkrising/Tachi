@@ -85,6 +85,18 @@ const ConvertEamSDVXCSV: ConverterFunction<SDVXEamusementCSVData, EmptyObject> =
 		);
 	}
 
+	// n.b. "positive int" here means non-negative, 0 is allowed.
+	const exScoreOrZero = AssertStrAsPositiveInt(
+		data.exscore,
+		`${humanisedChartTitle} - Invalid EX score of ${data.score}.`
+	);
+
+	// It's theoretically possible to get an EX score of 0 on a legit play,
+	// but this is also the default value if the PB has no EX score (that is,
+	// this song has never been played with S-crit enabled). In this case,
+	// we should not set exScore.
+	const exScore = exScoreOrZero === 0 ? null : exScoreOrZero;
+
 	const lamp = LAMP_MAP.get(data.lamp);
 
 	if (!lamp) {
@@ -109,7 +121,9 @@ const ConvertEamSDVXCSV: ConverterFunction<SDVXEamusementCSVData, EmptyObject> =
 			percent,
 			grade,
 			judgements: {},
-			hitMeta: {},
+			hitMeta: {
+				exScore,
+			},
 		},
 	};
 

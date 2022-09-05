@@ -56,9 +56,6 @@ export default function ParseEamusementSDVXCSV(
 		level: cells[2],
 		lamp: cells[3],
 		score: cells[5],
-
-		// @todo exscore is currently unused, but we should eventually store it.
-		// It is 0 if the score was played without S-criticals.
 		exscore: cells[6],
 
 		// The other columns (grade, # of different clears) are essentially useless.

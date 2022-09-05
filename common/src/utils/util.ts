@@ -253,3 +253,13 @@ export function FormatSieglindePMS(sgl: number): string {
 
 	return `●${(sgl - 12).toFixed(2)}`;
 }
+
+export function CreateSongMap<G extends Game = Game>(songs: Array<SongDocument<G>>) {
+	const songMap = new Map<integer, SongDocument<G>>();
+
+	for (const song of songs) {
+		songMap.set(song.id, song);
+	}
+
+	return songMap;
+}

@@ -52,6 +52,36 @@ t.test("#ConvertEamSDVXCSV", (t) => {
 		t.end();
 	});
 
+	t.test("Should include exScore if provided", async (t) => {
+		const res = await conv({ exscore: "5730" });
+
+		t.hasStrict(res, {
+			song: TestingSDVXAlbidaSong,
+			chart: TestingAlbidaADV,
+			dryScore: {
+				service: "e-amusement",
+				game: "sdvx",
+				scoreMeta: {},
+				timeAchieved: null,
+				comment: null,
+				importType: "file/eamusement-sdvx-csv",
+				scoreData: {
+					score: 9310699,
+					lamp: "EXCESSIVE CLEAR",
+
+					// percent: 93.10699, floating point
+					grade: "AA",
+					judgements: {},
+					hitMeta: {
+						exScore: 5730,
+					},
+				},
+			},
+		});
+
+		t.end();
+	});
+
 	t.test("Should reject invalid difficulty name", (t) => {
 		t.rejects(() => conv({ difficulty: "INVALID" }), {
 			message: /Invalid difficulty of INVALID\./u,

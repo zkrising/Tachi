@@ -19,6 +19,7 @@ const PR_BEATORAJA_SCORE = {
 	clear: p.isIn(
 		"NoPlay",
 		"Failed",
+		"AssistEasy",
 		"LightAssistEasy",
 		"Easy",
 		"Normal",

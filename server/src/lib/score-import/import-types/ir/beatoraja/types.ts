@@ -38,6 +38,7 @@ export interface BeatorajaScore {
 
 	lntype: 0 | 1;
 	clear:
+		| "AssistEasy"
 		| "Easy"
 		| "ExHard"
 		| "Failed"

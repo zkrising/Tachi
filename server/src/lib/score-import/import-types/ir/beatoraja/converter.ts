@@ -21,6 +21,7 @@ import type { ChartDocument, SongDocument, Playtypes } from "tachi-common";
 const LAMP_LOOKUP = {
 	NoPlay: "NO PLAY",
 	Failed: "FAILED",
+	AssistEasy: "ASSIST CLEAR",
 	LightAssistEasy: "ASSIST CLEAR",
 	Easy: "EASY CLEAR",
 	Normal: "CLEAR",

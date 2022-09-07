@@ -230,7 +230,8 @@ router.post(
 			clear === "Failed" ||
 			clear === "NoPlay" ||
 			clear === "Easy" ||
-			clear === "LightAssistEasy"
+			clear === "LightAssistEasy" ||
+			clear === "AssistEasy"
 		) {
 			return res.status(200).json({
 				success: true,

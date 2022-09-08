@@ -332,6 +332,7 @@ importers:
       bunyan: 1.8.15
       commander: 9.0.0
       connect-redis: 6.1.1
+      csv-parse: ^5.0.3
       deepmerge: 4.2.2
       dotenv: 16.0.0
       express: 4.18.2
@@ -400,6 +401,7 @@ importers:
       bunyan: 1.8.15
       commander: 9.0.0
       connect-redis: 6.1.1
+      csv-parse: 5.0.4
       deepmerge: 4.2.2
       dotenv: 16.0.0
       express: 4.18.2

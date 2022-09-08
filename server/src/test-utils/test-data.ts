@@ -542,6 +542,10 @@ export const TestingSDVXEamusementCSV = GetKTDataBuffer(
 	"./eamusement-sdvx-csv/exceed-gear-score.csv"
 );
 
+export const TestingWaccaMyPageScraperRecordsCSV = GetKTDataBuffer(
+	"./wacca-mypage-scraper/records.csv"
+);
+
 export const TestingBarbatosScore: BarbatosScore = {
 	difficulty: 1,
 	level: 10,

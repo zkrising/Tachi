@@ -212,7 +212,7 @@ export const ConvertAPIKaiIIDX: ConverterFunction<unknown, KaiContext> = async (
 
 	const version = score.version_played.toString();
 
-	if (!["20", "21", "22", "23", "24", "25", "26", "27", "28"].includes(version)) {
+	if (!["20", "21", "22", "23", "24", "25", "26", "27", "28", "29"].includes(version)) {
 		throw new InvalidScoreFailure(`Unsupported version ${score.version_played}.`);
 	}
 
@@ -231,7 +231,7 @@ export const ConvertAPIKaiIIDX: ConverterFunction<unknown, KaiContext> = async (
 		score.difficulty,
 
 		// they send integers like 25, 27 - this will convert to our versions.
-		version as "20" | "21" | "22" | "23" | "24" | "25" | "26" | "27" | "28"
+		version as "20" | "21" | "22" | "23" | "24" | "25" | "26" | "27" | "28" | "29"
 	);
 
 	if (!chart) {

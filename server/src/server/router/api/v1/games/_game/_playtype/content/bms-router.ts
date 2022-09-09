@@ -2,27 +2,13 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { CreateSongMap } from "tachi-common";
-import { integer, SongDocument } from "tachi-common/types";
 import { GetFolderCharts, GetFoldersFromTable } from "utils/folder";
-import { GetTachiData } from "utils/req-tachi-data";
 import type { Request, Response } from "express";
 import type { ChartDocument } from "tachi-common/types";
 
 const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
-
-/**
- * Returns "Endpoint exists"
- *
- * @name GET /api/v1/games/bms/7K/content
- */
-router.get("/", (req, res) => {
-	return res.status(200).json({
-		success: true,
-		description: "Endpoint exists",
-	});
-});
 
 /**
  * Utility function for mounting a BMS-style Table. This defines
@@ -34,8 +20,8 @@ router.get("/", (req, res) => {
 function CreateAndMountTable(
 	router: Router,
 	tableName: string,
-	headerHandler: (req: Request, res: Response) => any,
-	bodyHandler: (req: Request, res: Response) => any
+	headerHandler: (req: Request, res: Response) => unknown,
+	bodyHandler: (req: Request, res: Response) => unknown
 ) {
 	router.get(`/${tableName}`, (req, res) => {
 		return res.status(200).send(`<html>

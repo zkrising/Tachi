@@ -59,9 +59,7 @@ export class DatabaseSeedsRepo {
 		await fs.writeFile(this.CollectionNameToPath(collectionName), JSON.stringify(content));
 
 		// Deterministically sort whatever content we just wrote.
-		await asyncExec(
-			`cd "${this.baseDir}" || exit 1; node scripts/deterministic-collection-sort.js`
-		);
+		await asyncExec(`node scripts/deterministic-collection-sort.js`, this.baseDir);
 	}
 
 	async *IterateCollections() {
@@ -108,12 +106,16 @@ export class DatabaseSeedsRepo {
 			);
 		}
 
-		// @ereti is insistent that this sleep 1 is fine, so, whatever.
-		return asyncExec(
-			`git config user.name "${ServerConfig.SEEDS_CONFIG.USER_NAME}" || exit 3;
-			git config user.email "${ServerConfig.SEEDS_CONFIG.USER_EMAIL}" || exit 4;
-			git config credential.helper '!f() { sleep 1; echo "username=\${GIT_USER}"; echo "password=\${GIT_PASSWORD}"; }; f' || exit 5;`
-		);
+		const email = ServerConfig.SEEDS_CONFIG.USER_EMAIL; // Ensure this is still defined by the second exec
+
+		return asyncExec(`git config user.name "${ServerConfig.SEEDS_CONFIG.USER_NAME}"`)
+			.then(() => asyncExec(`git config user.email "${email}"`))
+			.then(() =>
+				// @ereti is insistent that this sleep 1 is fine, so, whatever.
+				asyncExec(
+					`git config credential.helper '!f() { sleep 1; echo "username=\${GIT_USER}"; echo "password=\${GIT_PASSWORD}"; }; f'`
+				)
+			);
 	}
 
 	/**
@@ -127,9 +129,7 @@ export class DatabaseSeedsRepo {
 		this.logger.verbose(`Received commit-back request.`);
 
 		try {
-			const { stdout: statusOut } = await asyncExec(
-				`cd "${this.baseDir}" || exit 1; git status --porcelain`
-			);
+			const { stdout: statusOut } = await asyncExec(`git status --porcelain`, this.baseDir);
 
 			if (statusOut === "") {
 				this.logger.info(`No changes. Not committing any changes back.`);
@@ -154,12 +154,13 @@ export class DatabaseSeedsRepo {
 
 			await this.#AuthenticateWithGitServer();
 
+			await asyncExec(`git add .`, this.baseDir);
 			const { stdout: commitOut } = await asyncExec(
-				`cd "${this.baseDir}" || exit 2;
-				git add . || exit 3;
-				git commit -am "${commitMsg}" || exit 4;
-				git push`
+				`git commit -am "${commitMsg}"`,
+				this.baseDir
 			);
+
+			await asyncExec(`git push`, this.baseDir);
 
 			this.logger.info(`Commit: ${commitOut}.`);
 
@@ -211,23 +212,27 @@ export async function PullDatabaseSeeds(
 		// stderr in git clone is normal output.
 		// stdout is for errors.
 		// there were expletives below this comment, but I have removed them.
-		const { stdout } = await asyncExec(
+		const { stdout: cloneStdout } = await asyncExec(
 			`git clone --sparse --depth=1 "${ServerConfig.SEEDS_CONFIG.REPO_URL}" -b "${
 				Environment.nodeEnv === "production"
 					? `release/${VERSION_INFO.major}.${VERSION_INFO.minor}`
 					: "staging"
-			}" '${seedsDir}';
-			
-			
-			cd '${seedsDir}';
-			git sparse-checkout add database-seeds`
-
-			// ^ now that we're in a monorepo, we only want the seeds.
+			}" "${seedsDir}"`
 		);
 
-		// isn't that confusing
-		if (stdout) {
-			logger.error(stdout);
+		if (cloneStdout) {
+			throw new Error({ stderr: cloneStdout });
+		}
+
+		const { stdout: checkoutStdout } = await asyncExec(
+			`git sparse-checkout add database-seeds`,
+			seedsDir
+		);
+
+		// ^ now that we're in a monorepo, we only want the seeds.
+
+		if (checkoutStdout) {
+			throw new Error({ stderr: checkoutStdout });
 		}
 
 		return new DatabaseSeedsRepo(

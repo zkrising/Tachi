@@ -95,7 +95,7 @@ export class DatabaseSeedsRepo {
 	 */
 	#AuthenticateWithGitServer() {
 		if (!ServerConfig.SEEDS_CONFIG) {
-			// Shouldn't be possible. Ever, since SEEDS_CONFIG must be deffed in order
+			// Shouldn't be possible. Ever, since SEEDS_CONFIG must be defined in order
 			// to run PullDBSeeds
 			throw new Error(`Cannot commit changes back. SEEDS_CONFIG is not set.`);
 		}
@@ -106,17 +106,21 @@ export class DatabaseSeedsRepo {
 			);
 		}
 
-		const email = ServerConfig.SEEDS_CONFIG.USER_EMAIL; // Ensure this is still defined by the second exec
+		// TS complains that SEEDS_CONFIG.USER_EMAIL might not still be a string by the time the second
+		// callback is called, so lets just define it to a local variable.
+		const email = ServerConfig.SEEDS_CONFIG.USER_EMAIL;
 
-		return asyncExec(`git config user.name "${ServerConfig.SEEDS_CONFIG.USER_NAME}"`)
-			.then(() => asyncExec(`git config user.email "${email}"`))
-			.then(() =>
-				// eslint-disable-next-line lines-around-comment
+		return (
+			asyncExec(`git config user.name "${ServerConfig.SEEDS_CONFIG.USER_NAME}"`)
+				.then(() => asyncExec(`git config user.email "${email}"`))
+
 				// @ereti is insistent that this sleep 1 is fine, so, whatever.
-				asyncExec(
-					`git config credential.helper '!f() { sleep 1; echo "username=\${GIT_USER}"; echo "password=\${GIT_PASSWORD}"; }; f'`
+				.then(() =>
+					asyncExec(
+						`git config credential.helper '!f() { sleep 1; echo "username=\${GIT_USER}"; echo "password=\${GIT_PASSWORD}"; }; f'`
+					)
 				)
-			);
+		);
 	}
 
 	/**

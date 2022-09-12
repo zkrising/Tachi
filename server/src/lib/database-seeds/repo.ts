@@ -111,6 +111,7 @@ export class DatabaseSeedsRepo {
 		return asyncExec(`git config user.name "${ServerConfig.SEEDS_CONFIG.USER_NAME}"`)
 			.then(() => asyncExec(`git config user.email "${email}"`))
 			.then(() =>
+				// eslint-disable-next-line lines-around-comment
 				// @ereti is insistent that this sleep 1 is fine, so, whatever.
 				asyncExec(
 					`git config credential.helper '!f() { sleep 1; echo "username=\${GIT_USER}"; echo "password=\${GIT_PASSWORD}"; }; f'`

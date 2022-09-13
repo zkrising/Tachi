@@ -1,6 +1,5 @@
 import ScoreImportQueue from "./queue";
 import { GetInputParser } from "../framework/common/get-input-parser";
-import ScoreImportFatalError from "../framework/score-importing/score-import-error";
 import ScoreImportMain from "../framework/score-importing/score-import-main";
 import { Worker } from "bullmq";
 import { HandleSIGTERMGracefully } from "lib/handlers/sigterm";
@@ -8,6 +7,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
 import { FormatUserDoc, GetUserWithID } from "utils/user";
 import { EventEmitter } from "events";
+import type ScoreImportFatalError from "../framework/score-importing/score-import-error";
 import type { ScoreImportJob, ScoreImportJobData } from "./types";
 import type { ImportTypes } from "tachi-common";
 
@@ -108,8 +108,13 @@ export const worker = new Worker(
 			logger.debug(`Finished import.`);
 
 			return { success: true, importDocument };
-		} catch (err) {
-			if (err instanceof ScoreImportFatalError) {
+		} catch (e) {
+			const err = e as Error | ScoreImportFatalError;
+
+			// originally, we did `err instanceof ScoreImportFatalError`, but something in our toolchain
+			// has suddenly made all `instanceof` calls faulty. I still - to this day - have absolutely
+			// no idea why or how this broke, but now `instanceof` is considered a footgun so, great.
+			if ("statusCode" in err) {
 				logger.info(
 					`Job ${job.id} hit ScoreImportFatalError (User Fault) with message: ${err.message}`,
 					err
@@ -132,14 +137,8 @@ export const worker = new Worker(
 const logger = CreateLogCtx("Score Import Worker");
 
 worker.on("failed", (job, err) => {
-	if (err instanceof ScoreImportFatalError) {
-		logger.info(
-			`Job ${job.id} hit ScoreImportFatalError (User Fault) with message: ${err.message}`,
-			err
-		);
-	} else {
-		logger.error(`Job ${job.id} failed unexpectedly with message: ${err.message}`, err);
-	}
+	// any errors that escalate this far are unexpected, as they haven't been caught by previous calls.
+	logger.error(`Job ${job.id} failed unexpectedly with message: ${err.message}`, err);
 });
 
 worker.on("completed", (job, result) => {

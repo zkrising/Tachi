@@ -20,7 +20,7 @@ const PR_KAI_IIDX_SCORE = {
 	music_id: p.isPositiveInteger,
 	play_style: p.isIn("SINGLE", "DOUBLE"),
 	difficulty: p.isIn("BEGINNER", "NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"),
-	version_played: p.isBoundedInteger(9, 28),
+	version_played: p.isInteger,
 	lamp: p.isBoundedInteger(0, 7),
 	ex_score: p.isPositiveInteger,
 	miss_count: p.or(p.isPositiveInteger, p.is(-1), "null"),

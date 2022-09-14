@@ -28,7 +28,7 @@ function CreateAndMountTable(
 		<head>
 		<meta name="bmstable" value="./${tableName}/header.json">
 		</head>
-		<body>This is a stub page for beatoraja compatibility. No useful information here!</body>
+		<body>This is a stub page for the ${tableName} table. <a href="/">Go Home?</a></body>
 		</html>`);
 	});
 

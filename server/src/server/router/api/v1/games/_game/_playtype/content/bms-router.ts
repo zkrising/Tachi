@@ -26,7 +26,7 @@ function CreateAndMountTable(
 	router.get(`/${tableName}`, (req, res) => {
 		return res.status(200).send(`<html>
 		<head>
-		<meta name="bmstable" value="./${tableName}/header.json">
+		<meta name="bmstable" value="./header.json">
 		</head>
 		<body>This is a stub page for the ${tableName} table. <a href="/">Go Home?</a></body>
 		</html>`);

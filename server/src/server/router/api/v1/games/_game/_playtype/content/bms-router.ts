@@ -1,14 +1,23 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import { ServerConfig } from "lib/setup/config";
 import { CreateSongMap } from "tachi-common";
 import { GetFolderCharts, GetFoldersFromTable } from "utils/folder";
+import path from "path";
 import type { Request, Response } from "express";
 import type { ChartDocument } from "tachi-common/types";
 
 const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
+
+function mkAbsoluteURL(tableName: string, headerOrBody: "body" | "header") {
+	return (
+		ServerConfig.OUR_URL +
+		path.join("/api/v1/games/bms/7K/content/", tableName, `${headerOrBody}.json`)
+	);
+}
 
 /**
  * Utility function for mounting a BMS-style Table. This defines
@@ -24,9 +33,11 @@ function CreateAndMountTable(
 	bodyHandler: (req: Request, res: Response) => unknown
 ) {
 	router.get(`/${tableName}`, (req, res) => {
+		const ABS_URL = mkAbsoluteURL(tableName, "header");
+
 		return res.status(200).send(`<html>
 		<head>
-		<meta name="bmstable" value="./header.json">
+		<meta name="bmstable" content="${ABS_URL}">
 		</head>
 		<body>This is a stub page for the ${tableName} table. <a href="/">Go Home?</a></body>
 		</html>`);
@@ -49,7 +60,7 @@ CreateAndMountTable(
 		return res.status(200).send({
 			name: "Sieglinde EC",
 			symbol: "sgl-",
-			data_url: "./body.json",
+			data_url: mkAbsoluteURL("sieglindeEC", "body"),
 		});
 	},
 	/* body.json */ async (req, res) => {
@@ -111,7 +122,7 @@ CreateAndMountTable(
 		return res.status(200).send({
 			name: "Sieglinde HC",
 			symbol: "sgl-",
-			data_url: "./body.json",
+			data_url: mkAbsoluteURL("sieglindeHC", "body"),
 		});
 	},
 	/* body.json */ async (req, res) => {

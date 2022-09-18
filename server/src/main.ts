@@ -49,13 +49,19 @@ async function RunOnInit() {
 	try {
 		await fetch("https://example.com");
 	} catch (err) {
-		logger.crit(
-			`Cannot send HTTPS request to https://example.com. This instance of tachi-server cannot access the internet?`,
-			err,
-			() => {
-				process.exit(1);
-			}
-		);
+		if (ServerConfig.ALLOW_RUNNING_OFFLINE === true) {
+			logger.warn(
+				`This instance of tachi-server cannot access the internet, however, ALLOW_RUNNING_OFFLINE was set. Allowing it anyway, but some things will not work.`
+			);
+		} else {
+			logger.crit(
+				`Cannot send HTTPS request to https://example.com. This instance of tachi-server cannot access the internet?`,
+				err,
+				() => {
+					process.exit(1);
+				}
+			);
+		}
 	}
 }
 

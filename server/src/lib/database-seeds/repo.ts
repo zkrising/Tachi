@@ -214,19 +214,20 @@ export async function PullDatabaseSeeds(
 	await fs.rm(seedsDir, { recursive: true, force: true });
 
 	try {
+		const branch =
+			Environment.nodeEnv === "production"
+				? `release/${VERSION_INFO.major}.${VERSION_INFO.minor}`
+				: "staging";
+
 		// stderr in git clone is normal output.
 		// stdout is for errors.
 		// there were expletives below this comment, but I have removed them.
 		const { stdout: cloneStdout } = await asyncExec(
-			`git clone --sparse --depth=1 "${ServerConfig.SEEDS_CONFIG.REPO_URL}" -b "${
-				Environment.nodeEnv === "production"
-					? `release/${VERSION_INFO.major}.${VERSION_INFO.minor}`
-					: "staging"
-			}" "${seedsDir}"`
+			`git clone --sparse --depth=1 "${ServerConfig.SEEDS_CONFIG.REPO_URL}" -b "${branch}" "${seedsDir}"`
 		);
 
 		if (cloneStdout) {
-			throw new Error({ stderr: cloneStdout });
+			throw new Error(cloneStdout);
 		}
 
 		const { stdout: checkoutStdout } = await asyncExec(
@@ -235,9 +236,10 @@ export async function PullDatabaseSeeds(
 		);
 
 		// ^ now that we're in a monorepo, we only want the seeds.
+		// this shaves quite a bit of time off of the clone.
 
 		if (checkoutStdout) {
-			throw new Error({ stderr: checkoutStdout });
+			throw new Error(checkoutStdout);
 		}
 
 		return new DatabaseSeedsRepo(

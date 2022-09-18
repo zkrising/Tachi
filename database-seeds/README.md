@@ -16,7 +16,7 @@ Changes will then be merged and cherry picked into `release/v*` whenever is best
 Nothing private, nothing pertaining to an instance of Tachi. These are backbone files, such
 as songs, charts, and folders.
 
-You can read more about what all these documents mean in [tachi-common](https://github.com/TNG-dev/tachi-common).
+You can read more about what all these documents mean in [common/](https://github.com/TNG-dev/Tachi/tree/staging/common).
 
 - `songs-{game}`
 

@@ -15,6 +15,7 @@ import CreditsPage from "../pages/dashboard/misc/CreditsPage";
 import GameRoutes from "./GameRoutes";
 import ImportRoutes from "./ImportRoutes";
 import UserRoutes from "./UserRoutes";
+import UtilRoutes from "./UtilRoutes";
 
 export default function DashboardRoutes() {
 	const { user } = useContext(UserContext);
@@ -99,6 +100,10 @@ export default function DashboardRoutes() {
 
 					<Route path="/dashboard/import">
 						<ImportRoutes />
+					</Route>
+
+					<Route path="/dashboard/utils">
+						<UtilRoutes />
 					</Route>
 
 					<Route path="*">

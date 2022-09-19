@@ -1,4 +1,5 @@
 import {
+	BMSCourseDocument,
 	ChartDocument,
 	IDStrings,
 	IDStringToGame,
@@ -47,5 +48,12 @@ export type UGSDataset<I extends IDStrings = IDStrings> = (UserGameStats<I> & {
 	__related: {
 		user: PublicUserDocument;
 		index: integer;
+	};
+})[];
+
+export type BMSCourseDataset = (BMSCourseDocument & {
+	__related: {
+		charts: ChartDocument<"bms:7K"|"bms:14K">[];
+		songs: SongDocument<"bms">[];
 	};
 })[];

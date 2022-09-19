@@ -299,7 +299,7 @@ export const Environment = {
 	port,
 	redisUrl,
 	mongoUrl,
-	nodeEnv,
+	nodeEnv: nodeEnv as "dev" | "production" | "staging" | "test",
 	replicaIdentity,
 	seqUrl,
 	commitHash: process.env.COMMIT_HASH,

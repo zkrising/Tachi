@@ -181,9 +181,9 @@ export function OmitUndefinedKeys<T>(obj: Partial<T>): Partial<T> {
  * @param command A bash command to execute on the system.
  * @returns stdout and stderr as strings.
  */
-export function asyncExec(command: string) {
+export function asyncExec(command: string, cwd?: string) {
 	return new Promise<{ stdout: string; stderr: string }>((resolve, reject) => {
-		exec(command, (err, stdout, stderr) => {
+		exec(command, { cwd }, (err, stdout, stderr) => {
 			if (err) {
 				// eslint-disable-next-line prefer-promise-reject-errors
 				reject({ err, stdout, stderr });

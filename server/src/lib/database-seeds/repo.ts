@@ -59,9 +59,7 @@ export class DatabaseSeedsRepo {
 		await fs.writeFile(this.CollectionNameToPath(collectionName), JSON.stringify(content));
 
 		// Deterministically sort whatever content we just wrote.
-		await asyncExec(
-			`cd "${this.baseDir}" || exit 1; node scripts/deterministic-collection-sort.js`
-		);
+		await asyncExec(`node scripts/deterministic-collection-sort.js`, this.baseDir);
 	}
 
 	async *IterateCollections() {
@@ -97,7 +95,7 @@ export class DatabaseSeedsRepo {
 	 */
 	#AuthenticateWithGitServer() {
 		if (!ServerConfig.SEEDS_CONFIG) {
-			// Shouldn't be possible. Ever, since SEEDS_CONFIG must be deffed in order
+			// Shouldn't be possible. Ever, since SEEDS_CONFIG must be defined in order
 			// to run PullDBSeeds
 			throw new Error(`Cannot commit changes back. SEEDS_CONFIG is not set.`);
 		}
@@ -108,11 +106,20 @@ export class DatabaseSeedsRepo {
 			);
 		}
 
-		// @ereti is insistent that this sleep 1 is fine, so, whatever.
-		return asyncExec(
-			`git config user.name "${ServerConfig.SEEDS_CONFIG.USER_NAME}" || exit 3;
-			git config user.email "${ServerConfig.SEEDS_CONFIG.USER_EMAIL}" || exit 4;
-			git config credential.helper '!f() { sleep 1; echo "username=\${GIT_USER}"; echo "password=\${GIT_PASSWORD}"; }; f' || exit 5;`
+		// TS complains that SEEDS_CONFIG.USER_EMAIL might not still be a string by the time the second
+		// callback is called, so lets just define it to a local variable.
+		const email = ServerConfig.SEEDS_CONFIG.USER_EMAIL;
+
+		return (
+			asyncExec(`git config user.name "${ServerConfig.SEEDS_CONFIG.USER_NAME}"`)
+				.then(() => asyncExec(`git config user.email "${email}"`))
+
+				// @ereti is insistent that this sleep 1 is fine, so, whatever.
+				.then(() =>
+					asyncExec(
+						`git config credential.helper '!f() { sleep 1; echo "username=\${GIT_USER}"; echo "password=\${GIT_PASSWORD}"; }; f'`
+					)
+				)
 		);
 	}
 
@@ -127,9 +134,7 @@ export class DatabaseSeedsRepo {
 		this.logger.verbose(`Received commit-back request.`);
 
 		try {
-			const { stdout: statusOut } = await asyncExec(
-				`cd "${this.baseDir}" || exit 1; git status --porcelain`
-			);
+			const { stdout: statusOut } = await asyncExec(`git status --porcelain`, this.baseDir);
 
 			if (statusOut === "") {
 				this.logger.info(`No changes. Not committing any changes back.`);
@@ -154,12 +159,13 @@ export class DatabaseSeedsRepo {
 
 			await this.#AuthenticateWithGitServer();
 
+			await asyncExec(`git add .`, this.baseDir);
 			const { stdout: commitOut } = await asyncExec(
-				`cd "${this.baseDir}" || exit 2;
-				git add . || exit 3;
-				git commit -am "${commitMsg}" || exit 4;
-				git push`
+				`git commit -am "${commitMsg}"`,
+				this.baseDir
 			);
+
+			await asyncExec(`git push`, this.baseDir);
 
 			this.logger.info(`Commit: ${commitOut}.`);
 
@@ -208,26 +214,32 @@ export async function PullDatabaseSeeds(
 	await fs.rm(seedsDir, { recursive: true, force: true });
 
 	try {
+		const branch =
+			Environment.nodeEnv === "production"
+				? `release/${VERSION_INFO.major}.${VERSION_INFO.minor}`
+				: "staging";
+
 		// stderr in git clone is normal output.
 		// stdout is for errors.
 		// there were expletives below this comment, but I have removed them.
-		const { stdout } = await asyncExec(
-			`git clone --sparse --depth=1 "${ServerConfig.SEEDS_CONFIG.REPO_URL}" -b "${
-				Environment.nodeEnv === "production"
-					? `release/${VERSION_INFO.major}.${VERSION_INFO.minor}`
-					: "staging"
-			}" '${seedsDir}';
-			
-			
-			cd '${seedsDir}';
-			git sparse-checkout add database-seeds`
-
-			// ^ now that we're in a monorepo, we only want the seeds.
+		const { stdout: cloneStdout } = await asyncExec(
+			`git clone --sparse --depth=1 "${ServerConfig.SEEDS_CONFIG.REPO_URL}" -b "${branch}" "${seedsDir}"`
 		);
 
-		// isn't that confusing
-		if (stdout) {
-			logger.error(stdout);
+		if (cloneStdout) {
+			throw new Error(cloneStdout);
+		}
+
+		const { stdout: checkoutStdout } = await asyncExec(
+			`git sparse-checkout add database-seeds`,
+			seedsDir
+		);
+
+		// ^ now that we're in a monorepo, we only want the seeds.
+		// this shaves quite a bit of time off of the clone.
+
+		if (checkoutStdout) {
+			throw new Error(checkoutStdout);
 		}
 
 		return new DatabaseSeedsRepo(

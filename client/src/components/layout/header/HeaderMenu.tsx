@@ -10,11 +10,13 @@ import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { FormatGame, GetGameConfig, UserGameStats } from "tachi-common";
 import { SetState } from "types/react";
+import { UserSettingsContext } from "context/UserSettingsContext";
 import AllGames from "./AllGames";
 import ImportScoresLink from "./ImportScoresLink";
 import MenuDropdown from "./MenuDropdown";
 import MenuLink from "./MenuLink";
 import SearchBar from "./SearchBar";
+import UtilsDropdown from "./UtilsDropdown";
 
 export function HeaderMenu({
 	mobileShow,
@@ -24,7 +26,8 @@ export function HeaderMenu({
 	setMobileShow: SetState<boolean>;
 }) {
 	const { user } = useContext(UserContext);
-	const { ugs, setUGS } = useContext(UserGameStatsContext);
+	const { ugs, setUGS } = useContext(AllLUGPTStatsContext);
+	const { settings } = useContext(UserSettingsContext);
 
 	const { isLoading, error } = useQuery([user?.id, "game_stats"], async () => {
 		if (!user) {
@@ -126,6 +129,8 @@ export function HeaderMenu({
 					<AllGames />
 
 					{user && <ImportScoresLink />}
+
+					{settings?.preferences.developerMode && <UtilsDropdown />}
 				</ul>
 			</div>
 		</div>

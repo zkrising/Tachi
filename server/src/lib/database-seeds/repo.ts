@@ -62,10 +62,19 @@ export class DatabaseSeedsRepo {
 		await asyncExec(`node scripts/deterministic-collection-sort.js`, this.baseDir);
 	}
 
+	/**
+	 * Get all available collections as bare filenames, without any extension.
+	 *
+	 * As an example, database-seeds/collections/songs-iidx.json would be "songs-iidx".
+	 */
+	async ListCollections() {
+		const colls = await fs.readdir(path.join(this.baseDir, "collections"));
+
+		return colls.map((e) => path.parse(e).name) as Array<SeedsCollections>;
+	}
+
 	async *IterateCollections() {
-		const collectionNames = (await fs.readdir(path.join(this.baseDir, "collections"))).map(
-			(e) => path.parse(e).name
-		) as Array<SeedsCollections>;
+		const collectionNames = await this.ListCollections();
 
 		for (const collectionName of collectionNames) {
 			// eslint-disable-next-line no-await-in-loop

@@ -20,6 +20,8 @@ export async function IIDXMergeFn(
 	pbDoc.scoreData.hitMeta.gauge = lampPB.scoreData.hitMeta.gauge ?? null;
 	pbDoc.scoreData.hitMeta.gaugeHistory = lampPB.scoreData.hitMeta.gaugeHistory ?? null;
 
+	pbDoc.scoreData.hitMeta.comboBreak = lampPB.scoreData.hitMeta.comboBreak;
+
 	// bad+poor PB document. This is a weird, third indepdenent metric that IIDX players sometimes care about.
 	const bpPB = (await db.scores.findOne(
 		{

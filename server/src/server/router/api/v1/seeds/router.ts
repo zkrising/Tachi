@@ -28,13 +28,20 @@ router.use(RequireLocalDevelopment);
 
 // there's a lady who's sure
 // all that glitters is gold
-//                                             and she's buying a...
-const LOCAL_SEEDS_PATH = path.join(__dirname, "../../../../../../../database-seeds");
+const LOCAL_DEV_SEEDS_PATH = path.join(
+	__dirname,
+
+	// and she's buying a...
+	"../../../../../../../database-seeds/collections"
+);
+const TEST_SEEDS_PATH = path.join(__dirname, "../../../../../test-utils/mock-db");
+
+const LOCAL_SEEDS_PATH = Environment.nodeEnv === "test" ? TEST_SEEDS_PATH : LOCAL_DEV_SEEDS_PATH;
 
 if (Environment.nodeEnv === "dev" || Environment.nodeEnv === "test") {
 	if (!fs.existsSync(LOCAL_SEEDS_PATH)) {
 		logger.error(
-			`Failed to load seeds routes, could not find any database-seeds checked out at ${LOCAL_SEEDS_PATH}.
+			`Failed to load seeds routes, could not find any database-seeds/collections checked out at ${LOCAL_SEEDS_PATH}.
 These were expected to be present as this is local-development!
 All seeds routes will return 500.`
 		);

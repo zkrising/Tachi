@@ -15,6 +15,11 @@ export async function IIDXMergeFn(
 	// lampRating needs to be updated.
 	pbDoc.calculatedData.ktLampRating = lampPB.calculatedData.ktLampRating;
 
+	// Update lamp related iidx-specific info from the lampPB.
+	pbDoc.scoreData.hitMeta.gsm = lampPB.scoreData.hitMeta.gsm ?? null;
+	pbDoc.scoreData.hitMeta.gauge = lampPB.scoreData.hitMeta.gauge ?? null;
+	pbDoc.scoreData.hitMeta.gaugeHistory = lampPB.scoreData.hitMeta.gaugeHistory ?? null;
+
 	// bad+poor PB document. This is a weird, third indepdenent metric that IIDX players sometimes care about.
 	const bpPB = (await db.scores.findOne(
 		{
@@ -53,11 +58,6 @@ export async function IIDXMergeFn(
 	pbDoc.scoreData.hitMeta.bp = bpPB.scoreData.hitMeta.bp!;
 
 	pbDoc.composedFrom.other = [{ name: "Best BP", scoreID: bpPB.scoreID }];
-
-	// Update lamp related iidx-specific info from the lampPB.
-	pbDoc.scoreData.hitMeta.gsm = lampPB.scoreData.hitMeta.gsm ?? null;
-	pbDoc.scoreData.hitMeta.gauge = lampPB.scoreData.hitMeta.gauge ?? null;
-	pbDoc.scoreData.hitMeta.gaugeHistory = lampPB.scoreData.hitMeta.gaugeHistory ?? null;
 
 	return true;
 }

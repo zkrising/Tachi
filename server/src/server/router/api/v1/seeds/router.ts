@@ -5,7 +5,7 @@ import { Environment } from "lib/setup/config";
 import prValidate from "server/middleware/prudence-validate";
 import { RequireLocalDevelopment } from "server/middleware/type-require";
 import { ListGitCommitsInPath } from "utils/git";
-import { IsString } from "utils/misc";
+import { asyncExec, IsString } from "utils/misc";
 import fs from "fs";
 import path from "path";
 
@@ -58,6 +58,38 @@ router.get("/", (req, res) => {
 		success: true,
 		description: `Local seeds are available on this instance of Tachi.`,
 		body: {},
+	});
+});
+
+/**
+ * Check whether there are changes to the database-seeds in this local development
+ * instance that have not been committed yet.
+ *
+ * @name GET /api/v1/seeds/has-uncommitted-changes
+ */
+router.get("/has-uncommitted-changes", async (req, res) => {
+	const { stdout, stderr } = await asyncExec(`git status --porcelain`);
+
+	if (stderr) {
+		logger.error(`Failed to read git status --porcelain.`, { stderr });
+		return res.status(500).json({
+			success: false,
+			description: `Failed to check current git status.`,
+		});
+	}
+
+	// if any change contains database-seeds/collections, it's probably uncommitted
+	// local changes.
+	const hasUncommittedChanges = stdout
+		.split("\n")
+		.some((row) => / database-seeds\/collections/u.exec(row));
+
+	return res.status(200).json({
+		success: true,
+		description: hasUncommittedChanges
+			? "This local instance has uncommitted changes."
+			: "This local instance does not have uncommitted changes.",
+		body: hasUncommittedChanges,
 	});
 });
 

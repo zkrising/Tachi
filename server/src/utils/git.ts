@@ -1,4 +1,5 @@
 import { asyncExec } from "./misc";
+import path from "path";
 
 /**
  * We parse git commits into this format, it's convenient to work with and compatible
@@ -26,9 +27,15 @@ export interface GitCommit {
  * that can be easily manipulated, rather than the raw strings that git log normally
  * returns.
  *
- * @param path - The path to list commits for. Defaults to showing all commits.
+ * **DO NOT PASS UNTRUSTED USER INPUT INTO THIS FUNCTION, AS IT IS POSSIBLE TO EXECUTE
+ * ARBITRARY SHELL COMMANDS AS A RESULT.**
+ *
+ * @param filepath - The path to list commits for. Defaults to showing all commits.
  */
-export async function ListGitCommitsInPath(path = "."): Promise<Array<GitCommit>> {
+export async function ListGitCommitsInPath(filepath = "."): Promise<Array<GitCommit>> {
+	// make sure our path goes from the root of the repository
+	const realPath = path.join(__dirname, "../../../", filepath);
+
 	const format = [
 		"h", // shorthash
 		"B", // subject + body raw.
@@ -57,7 +64,7 @@ export async function ListGitCommitsInPath(path = "."): Promise<Array<GitCommit>
 	// the -z flag replaces \n separators with NUL bytes, which aren't legal in commit
 	// messages as far as I'm aware.
 	// everything else should be obvious.
-	const COMMAND = `PAGER=cat git log -z --pretty="${gitLogPrettyFormat}" -- '${path}'`;
+	const COMMAND = `PAGER=cat git log -z --pretty="${gitLogPrettyFormat}" -- '${realPath}'`;
 
 	const { stdout, stderr } = await asyncExec(COMMAND);
 
@@ -66,6 +73,9 @@ export async function ListGitCommitsInPath(path = "."): Promise<Array<GitCommit>
 	}
 
 	const rows = stdout.split("\0");
+
+	// last row always has 0 elements because the output ends with a NUL.
+	rows.pop();
 
 	const commits: Array<GitCommit> = rows.map((line) => {
 		const split = line.split(ASCII_GROUP_SEPARATOR);
@@ -90,7 +100,10 @@ export async function ListGitCommitsInPath(path = "."): Promise<Array<GitCommit>
 					email: cmtEmail,
 					name: cmtName,
 				},
-				message,
+
+				// trim off the trailing \n from every message.
+				// all messages end with an extraneous newline, and we don't want it.
+				message: message.trim(),
 			},
 		};
 	});

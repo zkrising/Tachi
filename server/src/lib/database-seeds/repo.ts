@@ -22,16 +22,27 @@ export type SeedsCollections =
 export class DatabaseSeedsRepo {
 	private readonly baseDir: string;
 	private readonly logger;
-	private readonly dontDestroy?: "YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD";
+	private readonly shouldDestroy: "YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD" | false;
 
-	constructor(baseDir: string, dontDestroy?: "YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD") {
+	/**
+	 * Create a database-seeds repository.
+	 *
+	 * @param baseDir - A path to the `collections` folder in database-seeds.
+	 * @param shouldDestroy - Whether this repository should be destroyed when .Destroy()
+	 * is called or not. This defaults to false, and will result in nothing happening
+	 * on cleanup. This behaviour is useful for things like local database-seeds work.
+	 */
+	constructor(
+		baseDir: string,
+		shouldDestroy: "YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD" | false = false
+	) {
 		this.baseDir = baseDir;
 		this.logger = CreateLogCtx(`DatabaseSeeds:${baseDir}`);
-		this.dontDestroy = dontDestroy;
+		this.shouldDestroy = shouldDestroy;
 	}
 
 	private CollectionNameToPath(collectionName: SeedsCollections) {
-		return path.join(this.baseDir, "collections", `${collectionName}.json`);
+		return path.join(this.baseDir, `${collectionName}.json`);
 	}
 
 	/**
@@ -68,7 +79,7 @@ export class DatabaseSeedsRepo {
 	 * As an example, database-seeds/collections/songs-iidx.json would be "songs-iidx".
 	 */
 	async ListCollections() {
-		const colls = await fs.readdir(path.join(this.baseDir, "collections"));
+		const colls = await fs.readdir(this.baseDir);
 
 		return colls.map((e) => path.parse(e).name) as Array<SeedsCollections>;
 	}
@@ -186,13 +197,12 @@ export class DatabaseSeedsRepo {
 	}
 
 	Destroy() {
-		if (this.dontDestroy !== "YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD") {
-			this.logger.warn(`Refusing to delete seeds as they were instantiated locally.`);
-			return;
+		if (this.shouldDestroy === "YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD") {
+			// scary
+			return fs.rm(this.baseDir, { recursive: true, force: true });
 		}
 
-		// scary
-		return fs.rm(this.baseDir, { recursive: true, force: true });
+		this.logger.warn(`Refusing to delete seeds as they were instantiated locally.`);
 	}
 }
 
@@ -252,7 +262,7 @@ export async function PullDatabaseSeeds(
 		}
 
 		return new DatabaseSeedsRepo(
-			`${seedsDir}/database-seeds`,
+			`${seedsDir}/database-seeds/collections`,
 			"YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD"
 		);
 	} catch ({ err, stderr }) {

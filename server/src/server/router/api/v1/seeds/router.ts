@@ -82,6 +82,10 @@ router.get("/has-uncommitted-changes", async (req, res) => {
 	// local changes.
 	const hasUncommittedChanges = stdout
 		.split("\n")
+
+		// note that doing this properly is frustrating. This has false positives for
+		// routes that partially contain this route. I've ameliorated this slightly with
+		// a leading space, but that is not a proper solution.
 		.some((row) => / database-seeds\/collections/u.exec(row));
 
 	return res.status(200).json({

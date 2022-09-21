@@ -12,6 +12,7 @@ import { SetState } from "types/react";
 import { TachiConfig } from "lib/config";
 import ExternalLink from "components/util/ExternalLink";
 import Card from "components/layout/page/Card";
+import { GitCommit, Revision } from "types/git";
 
 export default function SeedsViewer() {
 	useSetSubheader(["Developer Utils", "Database Seeds Management"]);
@@ -58,40 +59,51 @@ export default function SeedsViewer() {
 	// return <BMSCourseLookupTable dataset={} />;
 }
 
-type Revision = { c: GitCommit; repo: string };
-
 function InnerSeedsViewer({ hasLocalAPI }: { hasLocalAPI: boolean }) {
 	// base, rev a-la traditional git comparisons. Head is expected to be 'after'
 	// the base, but no order is enforced.
 	const [baseRev, setBaseRev] = useState<Revision | null>(null);
 	const [headRev, setHeadRev] = useState<Revision | null>(null);
 
-	// if we have a base and a head, render the two separately.
-	if (baseRev && headRev) {
-	}
-
 	return (
-		<Row>
-			<Col xs={12} lg={baseRev ? 6 : 12} className="text-center">
-				<SeedsPicker
-					hasLocalAPI={hasLocalAPI}
-					header="Base Commit"
-					setRev={setBaseRev}
-					rev={baseRev}
-				/>
-			</Col>
-			{baseRev && (
-				<Col xs={12} lg={6} className="text-center">
+		<>
+			<Row>
+				<Col xs={12} lg={baseRev ? 6 : 12} className="text-center">
 					<SeedsPicker
 						hasLocalAPI={hasLocalAPI}
-						header="Compare Commit"
-						setRev={setHeadRev}
-						rev={headRev}
+						header="Base Commit"
+						setRev={setBaseRev}
+						rev={baseRev}
 					/>
 				</Col>
+				{baseRev && (
+					<Col xs={12} lg={6} className="text-center">
+						<SeedsPicker
+							hasLocalAPI={hasLocalAPI}
+							header="Compare Commit"
+							message="Optionally, pick another commit to compare against. This commit should be newer than the base commit."
+							setRev={setHeadRev}
+							rev={headRev}
+						/>
+					</Col>
+				)}
+			</Row>
+			{baseRev && (
+				<Row>
+					<Divider />
+					<SeedsLoaderViewer baseRev={baseRev} headRev={headRev} />
+				</Row>
 			)}
-		</Row>
+		</>
 	);
+}
+
+function SeedsLoaderViewer({ baseRev, headRev }: { baseRev: Revision; headRev: Revision | null }) {
+	if (headRev !== null) {
+		return <>temp</>;
+	}
+
+	return <></>;
 }
 
 function SeedsPicker({
@@ -99,11 +111,13 @@ function SeedsPicker({
 	header,
 	rev,
 	setRev,
+	message,
 }: {
 	hasLocalAPI: boolean;
 	header: string;
 	rev: Revision | null;
 	setRev: SetState<Revision | null>;
+	message?: string;
 }) {
 	// a repo is one of the following:
 	// null - nothing has been selected yet
@@ -180,9 +194,18 @@ function SeedsPicker({
 						</div>
 					</div>
 				) : (
-					<Button variant="secondary" onClick={() => setShow(true)}>
-						Pick Commit...
-					</Button>
+					<>
+						{message && (
+							<>
+								<span>{message}</span>
+								<Divider />
+							</>
+						)}
+
+						<Button variant="secondary" onClick={() => setShow(true)}>
+							Pick Commit...
+						</Button>
+					</>
 				)}
 			</Card>
 			<Modal show={show} size="xl" onHide={() => setShow(false)}>
@@ -224,24 +247,6 @@ function SeedsPicker({
 			</Modal>
 		</>
 	);
-}
-
-// stolen straight from server/src/utils/git.ts
-interface GitCommit {
-	sha: string;
-	commit: {
-		author: {
-			name: string;
-			email: string;
-			date: string;
-		};
-		committer: {
-			name: string;
-			email: string;
-			date: string;
-		};
-		message: string;
-	};
 }
 
 function RevSelector({ repo, onSelect }: { repo: string; onSelect: (g: GitCommit) => void }) {

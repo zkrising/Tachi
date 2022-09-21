@@ -1,3 +1,4 @@
+import { ONE_MEGABYTE } from "lib/constants/filesize";
 import { ONE_HOUR } from "lib/constants/time";
 import { TachiConfig } from "lib/setup/config";
 import { GetGameConfig } from "tachi-common";
@@ -183,7 +184,11 @@ export function OmitUndefinedKeys<T>(obj: Partial<T>): Partial<T> {
  */
 export function asyncExec(command: string) {
 	return new Promise<{ stdout: string; stderr: string }>((resolve, reject) => {
-		exec(command, (err, stdout, stderr) => {
+		// note: We set the maximum possible stdout to 1G. We probably won't ever hit
+		// this, since the most expensive thing we do is like, read charts-bms.json
+		// which is ~40mb at the time of writing.
+		// I'm not sure why maxBuffer exists to be honest.
+		exec(command, { maxBuffer: ONE_MEGABYTE * 1024 }, (err, stdout, stderr) => {
 			if (err) {
 				// eslint-disable-next-line prefer-promise-reject-errors
 				reject({ err, stdout, stderr });

@@ -6,7 +6,8 @@ import prValidate from "server/middleware/prudence-validate";
 import { RequireLocalDevelopment } from "server/middleware/type-require";
 import { ListGitCommitsInPath } from "utils/git";
 import { asyncExec, IsString } from "utils/misc";
-import fs from "fs";
+import fsSync from "fs";
+import fs from "fs/promises";
 import path from "path";
 
 const logger = CreateLogCtx(__filename);
@@ -39,7 +40,7 @@ const TEST_SEEDS_PATH = path.join(__dirname, "../../../../../test-utils/mock-db"
 const LOCAL_SEEDS_PATH = Environment.nodeEnv === "test" ? TEST_SEEDS_PATH : LOCAL_DEV_SEEDS_PATH;
 
 if (Environment.nodeEnv === "dev" || Environment.nodeEnv === "test") {
-	if (!fs.existsSync(LOCAL_SEEDS_PATH)) {
+	if (!fsSync.existsSync(LOCAL_SEEDS_PATH)) {
 		logger.error(
 			`Failed to load seeds routes, could not find any database-seeds/collections checked out at ${LOCAL_SEEDS_PATH}.
 These were expected to be present as this is local-development!
@@ -147,6 +148,86 @@ router.get(
 			success: true,
 			description: `Found ${commits.length} commits.`,
 			body: commits,
+		});
+	}
+);
+
+/**
+ * Retrieve the current state of the collection as of this revision.
+ *
+ * This returns a record of "songs-iidx.json" -> PARSED_SONGS_IIDX_JSON_CONTENT
+ * for all collections as of that current revision. As such, you should treat all
+ * returned records as if they might not be present (as they might not be).
+ *
+ * @param revision - The revision fetched. This is resolved using standard git rules,
+ * and can therefore be a branch name, a commit name, or anything else git will resolve
+ * like HEAD@{2020-01-01}.
+ *
+ * If no revision is provided, the current uncommitted state on disk is returned instead.
+ */
+router.get(
+	"/collections",
+	prValidate({
+		revision: "*string",
+	}),
+	async (req, res) => {
+		// asserted by prudence
+		const rev = req.query.revision as string | undefined;
+
+		const data: Record<string, unknown> = {};
+
+		// use local disk
+		if (rev === undefined) {
+			const files = await fs.readdir(LOCAL_SEEDS_PATH);
+
+			await Promise.all(
+				files.map(async (file) => {
+					const content = await fs.readFile(path.join(LOCAL_SEEDS_PATH, file), "utf-8");
+
+					data[file] = JSON.parse(content);
+				})
+			);
+		} else {
+			// we have a revision.
+
+			if (rev.includes(":")) {
+				return res.status(400).json({
+					success: false,
+					description: `Git Revisions cannot contain ':' characters.`,
+				});
+			}
+
+			// @warn we don't actually bother doing any real shell
+			// escaping here, since these routes are only enabled in local development.
+			const { stdout: fileStdout } = await asyncExec(
+				`PAGER=cat git show '${rev}:database-seeds/collections' | tail -n +3`
+			);
+
+			// @warn this breaks for files that have newlines in
+			// I don't care.
+			// also, this ends with a trailing newline which means we get a trailing
+			// empty filename, gotta strip that out.
+			const files = fileStdout.split("\n").filter((e) => e !== "");
+
+			await Promise.all(
+				files.map(async (file) => {
+					// git show fails with 128 *if* this file doesn't exist at the time
+					// of this commit. however, the files we're iterating over are the
+					// files in the collection as of this commit, so, this should never
+					// crash in that way, right?
+					const { stdout: content } = await asyncExec(
+						`PAGER=cat git show '${rev}:database-seeds/collections/${file}'`
+					);
+
+					data[file] = JSON.parse(content);
+				})
+			);
+		}
+
+		return res.status(200).json({
+			success: true,
+			description: `Retrieved data ${rev ? `as of ${rev}` : "off of the current disk"}.`,
+			body: data,
 		});
 	}
 );

@@ -1,15 +1,25 @@
-import { AllDatabaseSeeds, DatabaseSeedNames } from "tachi-common";
+import {
+	AllDatabaseSeeds,
+	ChartDocument,
+	CreateSongMap,
+	DatabaseSeedNames,
+	Game,
+} from "tachi-common";
+import { BMSCourseWithRelated, DatabaseSeedsWithRelated } from "types/seeds";
 import { APIFetchV1 } from "./api";
 
 /**
  * Given a repo and a reference return the status of database-seeds/collections
  * as of that commit.
+ *
+ * If "WORKING_DIRECTORY" is passed as a ref, and the repository is local, this will
+ * be inferred as reading from the current state of collections on-disk.
  */
 export async function LoadSeeds(repo: string, ref: string): Promise<Partial<AllDatabaseSeeds>> {
 	if (repo === "local") {
 		const params = new URLSearchParams();
 
-		if (ref) {
+		if (ref !== "WORKING_DIRECTORY") {
 			params.set("revision", ref);
 		}
 
@@ -53,4 +63,87 @@ export async function LoadSeeds(repo: string, ref: string): Promise<Partial<AllD
 	}
 
 	throw new Error(`Unknown repository type '${repo}'.`);
+}
+
+type NotSongsChartsSeeds = Exclude<
+	keyof AllDatabaseSeeds,
+	`songs-${Game}.json` | `charts-${Game}.json`
+>;
+
+export function MakeDataset<K extends keyof AllDatabaseSeeds>(
+	file: K,
+	data: Partial<AllDatabaseSeeds>
+): DatabaseSeedsWithRelated[K] {
+	if (file.startsWith("songs-")) {
+	} else if (file.startsWith("charts-")) {
+	}
+
+	const f = file as NotSongsChartsSeeds;
+
+	switch (f) {
+		case "bms-course-lookup.json":
+			// temporarily hacking around this stuff with -as-any as i can't be bothered
+			// to figure out how to get the typesystem to accept this.
+			return RelateBMSCourses(data) as any;
+
+		case "folders.json":
+		case "goals.json":
+		case "milestone-sets.json":
+		case "milestones.json":
+		case "tables.json":
+	}
+
+	throw new Error("i've coooome undonne");
+}
+
+function RelateBMSCourses(data: Partial<AllDatabaseSeeds>): BMSCourseWithRelated[] {
+	const base = data["bms-course-lookup.json"];
+
+	if (!base) {
+		return [];
+	}
+
+	const bmsSongs = data["songs-bms.json"];
+	const bmsCharts = data["charts-bms.json"];
+
+	if (!bmsSongs || !bmsCharts) {
+		throw new Error(
+			`Couldn't find songs-bms/charts-bms, but tried to render bms-course-lookup. Not possible?`
+		);
+	}
+
+	const songMap = CreateSongMap(bmsSongs);
+	const chartMap = new Map<string, ChartDocument<"bms:7K" | "bms:14K">>();
+
+	for (const chart of bmsCharts) {
+		chartMap.set(chart.data.hashMD5, chart);
+	}
+
+	return base.map((course) => {
+		// md5 hashes are 32 chars long; a bms course may be comprised of any amount of
+		// md5s. This splits the string every 32 characters into an array.
+		const md5s = course.md5sums.match(/.{32}/gu);
+
+		if (!md5s) {
+			throw new Error(`Invalid MD5s in BMS Course? Got ${md5s}.`);
+		}
+
+		const dwr: BMSCourseWithRelated = {
+			...course,
+			__related: {
+				entries: md5s.map((e) => {
+					if (!chartMap.has(e)) {
+						return e;
+					}
+
+					return {
+						chart: chartMap.get(e)!,
+						song: songMap.get(chartMap.get(e)!.songID)!,
+					};
+				}),
+			},
+		};
+
+		return dwr;
+	});
 }

@@ -17,7 +17,9 @@ import Card from "components/layout/page/Card";
 import { GitCommit, Revision } from "types/git";
 import { AllDatabaseSeeds } from "tachi-common";
 import SelectButton from "components/util/SelectButton";
-import BMSCourseLookupTable from "components/tables/seeds/BMSCourseLookupTable";
+import SeedsBMSCourseLookupTable from "components/tables/seeds/SeedsBMSCourseLookupTable";
+import FormInput from "components/util/FormInput";
+import SeedsTableTable from "components/tables/seeds/SeedsTableTable";
 
 export default function SeedsViewer() {
 	useSetSubheader(["Developer Utils", "Database Seeds Management"]);
@@ -111,6 +113,8 @@ function SeedsLoaderViewer({ baseRev, headRev }: { baseRev: Revision; headRev: R
 
 	useEffect(() => {
 		(async () => {
+			// enter loading...
+			setBaseData(null);
 			const data = await LoadSeeds(baseRev.repo, baseRev.c.sha);
 
 			setBaseData(data);
@@ -119,8 +123,10 @@ function SeedsLoaderViewer({ baseRev, headRev }: { baseRev: Revision; headRev: R
 
 	useEffect(() => {
 		(async () => {
+			// enter loading...
+			setHeadData(null);
+
 			if (headRev === null) {
-				setHeadData(null);
 				return;
 			}
 
@@ -160,9 +166,9 @@ function SeedsAbsoluteState({ seedsData }: { seedsData: Partial<AllDatabaseSeeds
 		<>
 			<Col xs={12}>
 				<Card header="Collections">
-					<div className="d-flex flex-wrap">
+					<div className="d-flex flex-wrap" style={{ justifyContent: "space-around" }}>
 						{files.map((e) => (
-							<div key={e}>
+							<div key={e} className="my-2">
 								<SelectButton id={e} setValue={setFile} value={file}>
 									{e} ({seedsData[e]?.length ?? 0})
 								</SelectButton>
@@ -188,10 +194,12 @@ function SeedsTable({
 	data: Partial<AllDatabaseSeeds>;
 	file: keyof AllDatabaseSeeds;
 }) {
-	const dataset = useMemo(() => MakeDataset(file, data), [file, data]);
+	const dataset: any = useMemo(() => MakeDataset(file, data), [file, data]);
 
 	if (file === "bms-course-lookup.json") {
-		return <BMSCourseLookupTable dataset={dataset as any} />;
+		return <SeedsBMSCourseLookupTable dataset={dataset} />;
+	} else if (file === "tables.json") {
+		return <SeedsTableTable dataset={dataset} />;
 	}
 
 	return <></>;
@@ -342,6 +350,7 @@ function SeedsPicker({
 
 function RevSelector({ repo, onSelect }: { repo: string; onSelect: (g: GitCommit) => void }) {
 	const [revs, setRevs] = useState<Array<GitCommit>>([]);
+	const [filteredRevs, setFilteredRevs] = useState<Array<GitCommit>>([]);
 
 	useEffect(() => {
 		(async () => {
@@ -385,13 +394,46 @@ function RevSelector({ repo, onSelect }: { repo: string; onSelect: (g: GitCommit
 		})();
 	}, [repo]);
 
+	useEffect(() => {
+		setFilteredRevs(revs);
+		setSearch("");
+	}, [revs]);
+
+	const [search, setSearch] = useState("");
+
+	useEffect(() => {
+		if (search === "") {
+			return setFilteredRevs(revs);
+		}
+
+		// remarkably lazy search implementation, but convenient.
+		return setFilteredRevs(
+			revs.filter(
+				(r) =>
+					r.sha.includes(search) ||
+					r.commit.message.includes(search) ||
+					r.commit.author.name.includes(search) ||
+					r.commit.committer.name.includes(search)
+			)
+		);
+	}, [search]);
+
 	return (
-		<div className="timeline timeline-2">
-			<div className="timeline-bar"></div>
-			{revs.map((r) => (
-				<Revision key={r.sha} rev={r} onSelect={onSelect} />
-			))}
-		</div>
+		<>
+			<FormInput
+				fieldName="Search"
+				placeholder="Search commits..."
+				value={search}
+				setValue={setSearch}
+			/>
+			<Divider />
+			<div className="timeline timeline-2">
+				<div className="timeline-bar"></div>
+				{filteredRevs.map((r) => (
+					<Revision key={r.sha} rev={r} onSelect={onSelect} />
+				))}
+			</div>
+		</>
 	);
 }
 

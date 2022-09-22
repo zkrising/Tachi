@@ -32,7 +32,10 @@ export interface GitCommit {
  *
  * @param filepath - The path to list commits for. Defaults to showing all commits.
  */
-export async function ListGitCommitsInPath(filepath = "."): Promise<Array<GitCommit>> {
+export async function ListGitCommitsInPath(
+	branch: string,
+	filepath = "."
+): Promise<Array<GitCommit>> {
 	// make sure our path goes from the root of the repository
 	const realPath = path.join(__dirname, "../../../", filepath);
 
@@ -64,7 +67,7 @@ export async function ListGitCommitsInPath(filepath = "."): Promise<Array<GitCom
 	// the -z flag replaces \n separators with NUL bytes, which aren't legal in commit
 	// messages as far as I'm aware.
 	// everything else should be obvious.
-	const COMMAND = `PAGER=cat git log -z --pretty="${gitLogPrettyFormat}" -- '${realPath}'`;
+	const COMMAND = `PAGER=cat git log -b '${branch}' -z --pretty="${gitLogPrettyFormat}" -- '${realPath}'`;
 
 	const { stdout, stderr } = await asyncExec(COMMAND);
 

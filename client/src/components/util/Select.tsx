@@ -9,6 +9,7 @@ export default function Select<T extends string | null>({
 	allowNull = false,
 	style,
 	className,
+	unselectedName = "Select...",
 }: {
 	value: T;
 	setValue: SetState<T>;
@@ -16,6 +17,7 @@ export default function Select<T extends string | null>({
 	allowNull?: boolean;
 	style?: React.CSSProperties;
 	className?: string;
+	unselectedName?: string;
 }) {
 	return (
 		<Form.Control
@@ -23,9 +25,9 @@ export default function Select<T extends string | null>({
 			className={className}
 			as="select"
 			value={value ?? ""}
-			onChange={(e) => setValue(e.target.value as T)}
+			onChange={(e) => setValue((e.target.value === "" ? null : e.target.value) as T)}
 		>
-			{allowNull && <option value="">Select...</option>}
+			{allowNull && <option value="">{unselectedName}</option>}
 			{children}
 		</Form.Control>
 	);

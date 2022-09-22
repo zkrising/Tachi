@@ -1,4 +1,3 @@
-import SeedsDiffViewer from "app/pages/dashboard/utils/SeedsDiffViewer";
 import SeedsViewer from "app/pages/dashboard/utils/SeedsViewer";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
@@ -8,10 +7,6 @@ export default function UtilRoutes() {
 		<Switch>
 			<Route exact path="/dashboard/utils/seeds">
 				<SeedsViewer />
-			</Route>
-
-			<Route exact path="/dashboard/utils/seeds/diff">
-				<SeedsDiffViewer />
 			</Route>
 		</Switch>
 	);

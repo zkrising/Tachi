@@ -112,35 +112,32 @@ router.get("/has-uncommitted-changes", async (req, res) => {
 router.get(
 	"/commits",
 	prValidate({
+		branch: "string",
 		file: "*string",
 	}),
 	async (req, res) => {
 		// validated by prudence.
 		const file = req.query.file as string | undefined;
+		const branch = req.query.branch as string;
 
 		const seeds = await PullDatabaseSeeds(LOCAL_SEEDS_PATH);
-		const collections = await seeds.ListCollections();
+		const collections = (await seeds.ListCollections()).map((e) => `${e}.json`);
 
-		if (IsString(file)) {
-			// @ts-expect-error it's complaining because collections
-			// and string might not have overlap; fair enough, but the point of this
-			// test is to check that!
-			if (!collections.includes(file)) {
-				return res.status(400).json({
-					success: false,
-					description: `Invalid file of '${file}' requested. Expected any of ${collections.join(
-						", "
-					)}`,
-				});
-			}
+		if (IsString(file) && !collections.includes(file)) {
+			return res.status(400).json({
+				success: false,
+				description: `Invalid file of '${file}' requested. Expected any of ${collections.join(
+					", "
+				)}`,
+			});
 		}
 
-		// if we have a file, suffix it with .json
-		// otherwise, use the do-nothing path.
-		const realFile = file ? `${file}.json` : ".";
+		// if we don't have a file, use the do-nothing path.
+		const realFile = file ?? ".";
 
 		// only check commits in database-seeds/collections
 		const commits = await ListGitCommitsInPath(
+			branch,
 			path.join("database-seeds", "collections", realFile)
 		);
 
@@ -151,6 +148,58 @@ router.get(
 		});
 	}
 );
+
+/**
+ * List branches available on this local repository.
+ *
+ * This returns all branches under `branches`, and the currently selected branch
+ * as `checkedout`, which might be null if the HEAD is currently detached.
+ *
+ * @name GET /api/v1/seeds/branches
+ */
+router.get("/branches", async (req, res) => {
+	const { stdout: branches } = await asyncExec(`PAGER=cat git branch --no-color -v`);
+
+	const allBranches = [];
+	let currentBranch: { name: string; sha: string } | null = null;
+
+	for (const branchStr of branches.split("\n")) {
+		const match = /^ *(\*?) +(.*?) +([a-f0-9]*)/u.exec(branchStr) as
+			| [string, string, string, string]
+			| null;
+
+		if (match === null) {
+			continue;
+		}
+
+		const [_, isCurrent, branchName, sha] = match;
+
+		if (branchName.startsWith("(HEAD detatched at")) {
+			continue;
+		}
+
+		if (branchName === "") {
+			continue;
+		}
+
+		const branch = { name: branchName, sha };
+
+		if (isCurrent === "*") {
+			currentBranch = branch;
+		}
+
+		allBranches.push(branch);
+	}
+
+	return res.status(200).json({
+		success: true,
+		description: `Found ${allBranches.length} branches.`,
+		body: {
+			branches: allBranches,
+			current: currentBranch,
+		},
+	});
+});
 
 /**
  * Retrieve the current state of the collection as of this revision.

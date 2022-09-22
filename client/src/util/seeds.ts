@@ -3,9 +3,10 @@ import {
 	ChartDocument,
 	CreateSongMap,
 	DatabaseSeedNames,
+	FolderDocument,
 	Game,
 } from "tachi-common";
-import { BMSCourseWithRelated, DatabaseSeedsWithRelated } from "types/seeds";
+import { BMSCourseWithRelated, DatabaseSeedsWithRelated, TableWithRelated } from "types/seeds";
 import { APIFetchV1 } from "./api";
 
 /**
@@ -73,7 +74,7 @@ type NotSongsChartsSeeds = Exclude<
 export function MakeDataset<K extends keyof AllDatabaseSeeds>(
 	file: K,
 	data: Partial<AllDatabaseSeeds>
-): DatabaseSeedsWithRelated[K] {
+) /*: DatabaseSeedsWithRelated[K] */ {
 	if (file.startsWith("songs-")) {
 	} else if (file.startsWith("charts-")) {
 	}
@@ -82,15 +83,18 @@ export function MakeDataset<K extends keyof AllDatabaseSeeds>(
 
 	switch (f) {
 		case "bms-course-lookup.json":
-			// temporarily hacking around this stuff with -as-any as i can't be bothered
-			// to figure out how to get the typesystem to accept this.
-			return RelateBMSCourses(data) as any;
+			return RelateBMSCourses(data);
 
 		case "folders.json":
+			// folders don't need any extra data.
+			return data["folders.json"] ?? [];
+
 		case "goals.json":
 		case "milestone-sets.json":
 		case "milestones.json":
+			break;
 		case "tables.json":
+			return RelateTables(data);
 	}
 
 	throw new Error("i've coooome undonne");
@@ -146,4 +150,29 @@ function RelateBMSCourses(data: Partial<AllDatabaseSeeds>): BMSCourseWithRelated
 
 		return dwr;
 	});
+}
+
+function RelateTables(data: Partial<AllDatabaseSeeds>): TableWithRelated[] {
+	const base = data["tables.json"];
+
+	if (!base) {
+		return [];
+	}
+
+	const folderMap = new Map<string, FolderDocument>();
+
+	for (const folder of data["folders.json"] ?? []) {
+		folderMap.set(folder.folderID, folder);
+	}
+
+	return base.map((e) => ({
+		...e,
+		__related: {
+			// If the table refers to a folder that doesn't exist
+			// (which is entirely possible and has happened before)
+			// then when the table renderer goes to render its folders, it will get
+			// undefined anyway.
+			folders: Object.fromEntries(e.folders.map((e) => [e, folderMap.get(e)])),
+		},
+	}));
 }

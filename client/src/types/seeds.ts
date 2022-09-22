@@ -37,7 +37,9 @@ export type BMSCourseWithRelated = BMSCourseDocument & {
 
 export type TableWithRelated = TableDocument & {
 	__related: {
-		folders: Array<FolderDocument>;
+		folders: {
+			[folderID: string]: FolderDocument | undefined;
+		};
 	};
 };
 

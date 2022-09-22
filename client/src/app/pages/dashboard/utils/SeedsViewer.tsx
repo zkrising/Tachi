@@ -1,5 +1,7 @@
 import { FormatTime } from "util/time";
 import { APIFetchV1 } from "util/api";
+import { LoadSeeds, MakeDataset } from "util/seeds";
+import { StrSOV } from "util/sorts";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
@@ -13,6 +15,9 @@ import { TachiConfig } from "lib/config";
 import ExternalLink from "components/util/ExternalLink";
 import Card from "components/layout/page/Card";
 import { GitCommit, Revision } from "types/git";
+import { AllDatabaseSeeds } from "tachi-common";
+import SelectButton from "components/util/SelectButton";
+import BMSCourseLookupTable from "components/tables/seeds/BMSCourseLookupTable";
 
 export default function SeedsViewer() {
 	useSetSubheader(["Developer Utils", "Database Seeds Management"]);
@@ -90,7 +95,9 @@ function InnerSeedsViewer({ hasLocalAPI }: { hasLocalAPI: boolean }) {
 			</Row>
 			{baseRev && (
 				<Row>
-					<Divider />
+					<Col xs={12}>
+						<Divider />
+					</Col>
 					<SeedsLoaderViewer baseRev={baseRev} headRev={headRev} />
 				</Row>
 			)}
@@ -99,8 +106,92 @@ function InnerSeedsViewer({ hasLocalAPI }: { hasLocalAPI: boolean }) {
 }
 
 function SeedsLoaderViewer({ baseRev, headRev }: { baseRev: Revision; headRev: Revision | null }) {
-	if (headRev !== null) {
-		return <>temp</>;
+	const [baseData, setBaseData] = useState<Partial<AllDatabaseSeeds> | null>(null);
+	const [headData, setHeadData] = useState<Partial<AllDatabaseSeeds> | null>(null);
+
+	useEffect(() => {
+		(async () => {
+			const data = await LoadSeeds(baseRev.repo, baseRev.c.sha);
+
+			setBaseData(data);
+		})();
+	}, [baseRev]);
+
+	useEffect(() => {
+		(async () => {
+			if (headRev === null) {
+				setHeadData(null);
+				return;
+			}
+
+			const data = await LoadSeeds(headRev.repo, headRev.c.sha);
+
+			setHeadData(data);
+		})();
+	}, [headRev]);
+
+	if (baseData === null) {
+		return (
+			<Col xs={12}>
+				<div className="d-flex justify-content-center">
+					<div>
+						<Loading />
+						<br />
+						Reading data...
+					</div>
+				</div>
+			</Col>
+		);
+	}
+
+	if (headData !== null) {
+		return <>{Object.keys(headData)}</>;
+	}
+
+	return <SeedsAbsoluteState seedsData={baseData} />;
+}
+
+function SeedsAbsoluteState({ seedsData }: { seedsData: Partial<AllDatabaseSeeds> }) {
+	const files = Object.keys(seedsData).sort(StrSOV((k) => k)) as Array<keyof AllDatabaseSeeds>;
+
+	const [file, setFile] = useState(files[0]);
+
+	return (
+		<>
+			<Col xs={12}>
+				<Card header="Collections">
+					<div className="d-flex flex-wrap">
+						{files.map((e) => (
+							<div key={e}>
+								<SelectButton id={e} setValue={setFile} value={file}>
+									{e} ({seedsData[e]?.length ?? 0})
+								</SelectButton>
+							</div>
+						))}
+					</div>
+				</Card>
+			</Col>
+			<Col xs={12}>
+				<Divider />
+				<h1 className="text-center">{file}</h1>
+				<Divider />
+				<SeedsTable data={seedsData} file={file} />
+			</Col>
+		</>
+	);
+}
+
+function SeedsTable({
+	data,
+	file,
+}: {
+	data: Partial<AllDatabaseSeeds>;
+	file: keyof AllDatabaseSeeds;
+}) {
+	const dataset = useMemo(() => MakeDataset(file, data), [file, data]);
+
+	if (file === "bms-course-lookup.json") {
+		return <BMSCourseLookupTable dataset={dataset as any} />;
 	}
 
 	return <></>;

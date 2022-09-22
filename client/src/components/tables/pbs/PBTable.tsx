@@ -47,7 +47,7 @@ export default function PBTable<I extends IDStrings = IDStrings>({
 		...GetPBLeadingHeaders(
 			showUser,
 			showChart,
-			ChartHeader<PBDataset>(game, playtype, (k) => k.__related.chart)
+			ChartHeader(game, (k) => k.__related.chart)
 		),
 		EmptyHeader,
 		...GetGPTCoreHeaders<PBDataset>(game, playtype, rating, setRating, (x) => x),

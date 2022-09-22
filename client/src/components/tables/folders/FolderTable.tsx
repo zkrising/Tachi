@@ -33,7 +33,7 @@ export default function FolderTable<I extends IDStrings = IDStrings>({
 	const [rating, setRating] = useState(defaultRating);
 
 	const headers: Header<FolderDataset[0]>[] = [
-		ChartHeader<FolderDataset>(game, playtype, (k) => k),
+		ChartHeader(game, (k) => k),
 		FolderIndicatorHeader,
 		["Song", "Song", StrSOV((x) => x.__related.song.title)],
 		...GetGPTCoreHeaders<FolderDataset>(

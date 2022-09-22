@@ -5,8 +5,14 @@ import {
 	DatabaseSeedNames,
 	FolderDocument,
 	Game,
+	SongDocument,
 } from "tachi-common";
-import { BMSCourseWithRelated, DatabaseSeedsWithRelated, TableWithRelated } from "types/seeds";
+import {
+	BMSCourseWithRelated,
+	ChartWithRelated,
+	DatabaseSeedsWithRelated,
+	TableWithRelated,
+} from "types/seeds";
 import { APIFetchV1 } from "./api";
 
 /**
@@ -76,7 +82,9 @@ export function MakeDataset<K extends keyof AllDatabaseSeeds>(
 	data: Partial<AllDatabaseSeeds>
 ) /*: DatabaseSeedsWithRelated[K] */ {
 	if (file.startsWith("songs-")) {
+		return data[file] ?? [];
 	} else if (file.startsWith("charts-")) {
+		return RelateCharts(data, file);
 	}
 
 	const f = file as NotSongsChartsSeeds;
@@ -92,12 +100,10 @@ export function MakeDataset<K extends keyof AllDatabaseSeeds>(
 		case "goals.json":
 		case "milestone-sets.json":
 		case "milestones.json":
-			break;
+			throw new Error("GOALS NOT SUPPORTED ZZZZ");
 		case "tables.json":
 			return RelateTables(data);
 	}
-
-	throw new Error("i've coooome undonne");
 }
 
 function RelateBMSCourses(data: Partial<AllDatabaseSeeds>): BMSCourseWithRelated[] {
@@ -173,6 +179,32 @@ function RelateTables(data: Partial<AllDatabaseSeeds>): TableWithRelated[] {
 			// then when the table renderer goes to render its folders, it will get
 			// undefined anyway.
 			folders: Object.fromEntries(e.folders.map((e) => [e, folderMap.get(e)])),
+		},
+	}));
+}
+
+function RelateCharts(data: Partial<AllDatabaseSeeds>, file: string): ChartWithRelated[] {
+	const [_, game] = /charts-(.*?)\.json/u.exec(file)!;
+
+	// @ts-expect-error too lazy to fix this properly
+	const songs: SongDocument[] = data[`songs-${game}.json`];
+	// @ts-expect-error too lazy to fix this properly
+	const charts: ChartDocument[] = data[`charts-${game}.json`];
+
+	if (!charts) {
+		return [];
+	}
+
+	if (!songs) {
+		throw new Error(`Game ${game} has charts, but no songs?`);
+	}
+
+	const songMap = CreateSongMap(songs);
+
+	return charts.map((e) => ({
+		...e,
+		__related: {
+			song: songMap.get(e.songID),
 		},
 	}));
 }

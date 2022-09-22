@@ -14,6 +14,7 @@ export default function SeedsBMSCourseLookupTable({
 	const headers: Header<BMSCourseWithRelated>[] = [
 		["Title", "Title", StrSOV((x) => x.title)],
 		["Charts", "Charts", StrSOV((x) => x.title)],
+		["MD5s", "MD5s", StrSOV((x) => x.title)],
 		[
 			"Set (Index)",
 			"Set (Idx)",
@@ -37,7 +38,7 @@ export default function SeedsBMSCourseLookupTable({
 			entryName="BMS Courses"
 			searchFunctions={{
 				title: (x) => x.title,
-				set: (x) => x.set,
+				set: (x) => `${x.playtype} ${x.set}`,
 				md5: (x) => x.md5sums,
 				value: (x) => x.value,
 				playtype: (x) => x.playtype,
@@ -73,10 +74,13 @@ function Row({ data }: { data: BMSCourseWithRelated }) {
 						) : (
 							<span>{FormatChart("bms", e.song, e.chart)} </span>
 						)}
-
-						<div className="ml-auto">
-							<code>{typeof e === "string" ? e : e.chart.data.hashMD5}</code>
-						</div>
+					</div>
+				))}
+			</td>
+			<td>
+				{data.__related.entries.map((e, i) => (
+					<div key={i}>
+						<code>{typeof e === "string" ? e : e.chart.data.hashMD5}</code>
 					</div>
 				))}
 			</td>

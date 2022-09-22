@@ -1,13 +1,13 @@
 import { FormatTime } from "util/time";
 import { APIFetchV1 } from "util/api";
-import { LoadSeeds, MakeDataset } from "util/seeds";
+import { LoadSeeds } from "util/seeds";
 import { StrSOV } from "util/sorts";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import Select from "components/util/Select";
 import React, { useEffect, useMemo, useState } from "react";
-import { Button, Col, Modal, Row } from "react-bootstrap";
+import { Badge, Button, Col, Modal, Row } from "react-bootstrap";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import { SetState } from "types/react";
@@ -15,11 +15,10 @@ import { TachiConfig } from "lib/config";
 import ExternalLink from "components/util/ExternalLink";
 import Card from "components/layout/page/Card";
 import { GitCommit, Revision } from "types/git";
-import { AllDatabaseSeeds } from "tachi-common";
+import { AllDatabaseSeeds, DatabaseSeedNames } from "tachi-common";
 import SelectButton from "components/util/SelectButton";
-import SeedsBMSCourseLookupTable from "components/tables/seeds/SeedsBMSCourseLookupTable";
 import FormInput from "components/util/FormInput";
-import SeedsTableTable from "components/tables/seeds/SeedsTableTable";
+import SeedsTable from "components/tables/seeds/SeedsTable";
 
 export default function SeedsViewer() {
 	useSetSubheader(["Developer Utils", "Database Seeds Management"]);
@@ -187,23 +186,7 @@ function SeedsAbsoluteState({ seedsData }: { seedsData: Partial<AllDatabaseSeeds
 	);
 }
 
-function SeedsTable({
-	data,
-	file,
-}: {
-	data: Partial<AllDatabaseSeeds>;
-	file: keyof AllDatabaseSeeds;
-}) {
-	const dataset: any = useMemo(() => MakeDataset(file, data), [file, data]);
-
-	if (file === "bms-course-lookup.json") {
-		return <SeedsBMSCourseLookupTable dataset={dataset} />;
-	} else if (file === "tables.json") {
-		return <SeedsTableTable dataset={dataset} />;
-	}
-
-	return <></>;
-}
+type Branch = { name: string; sha: string };
 
 function SeedsPicker({
 	hasLocalAPI,
@@ -223,6 +206,62 @@ function SeedsPicker({
 	// "local" - we're referring to the files on the local development disk
 	// "GitHub:NAME/REPO" - we're referring to a repository on github, like GitHub:TNG-Dev/Tachi
 	const [repo, setRepo] = useState<string | null>(null);
+
+	// to list commits, we need to know what branch we're looking at.
+	// we also need to know the set of all available branches
+	const [branch, setBranch] = useState<string | null>(null);
+	const [branches, setBranches] = useState<string[] | null>(null);
+
+	const [shaBranchLookup, setSHABranchLookup] = useState<Record<string, string[]>>({});
+
+	// When repo changes, refetch the available branches.
+	useEffect(() => {
+		if (repo === null) {
+			return setBranches(null);
+		}
+
+		(async () => {
+			if (repo === "local") {
+				const res = await APIFetchV1<{ branches: Branch[]; current: Branch | null }>(
+					`/seeds/branches`
+				);
+
+				if (!res.success) {
+					throw new Error(
+						`Failed to fetch branches for your local repo. ${res.description}.`
+					);
+				}
+
+				setBranches(res.body.branches.map((e) => e.name));
+
+				// can't be bothered getting this to work
+				// if (res.body.current) {
+				// 	setBranch(res.body.current.name);
+				// }
+
+				// to get pretty UI stuff, we keep track of the HEADs of all branches
+				// so we can render what branch a commit is the HEAD of in the UI.
+				const lookup: Record<string, string[]> = {};
+
+				for (const branch of res.body.branches) {
+					if (branch.sha in lookup) {
+						lookup[branch.sha].push(branch.name);
+					} else {
+						lookup[branch.sha] = [branch.name];
+					}
+				}
+
+				setSHABranchLookup(lookup);
+			} else if (repo.startsWith("GitHub:")) {
+				throw new Error("TODO");
+			}
+		})();
+	}, [repo]);
+
+	// if branches change, re-prompt for users to select a branch
+	useEffect(() => {
+		setBranch(null);
+	}, [branches]);
 
 	const [show, setShow] = useState(false);
 
@@ -326,13 +365,33 @@ function SeedsPicker({
 									{hasLocalAPI && <option value="local">Your Local Repo</option>}
 								</Select>
 							</div>
+							{branches && (
+								<div className="mt-2">
+									<span style={{ fontSize: "large" }}>Branch:</span>
+									<Select
+										style={{ display: "inline", width: "unset" }}
+										className="mx-2"
+										value={branch}
+										setValue={setBranch}
+										allowNull
+									>
+										{branches.map((e) => (
+											<option key={e} value={e}>
+												{e}
+											</option>
+										))}
+									</Select>
+								</div>
+							)}
 						</Col>
 						<Col xs={12} lg={10} className="offset-lg-1 text-center">
-							{repo && (
+							{repo && branch && (
 								<>
 									<Divider />
 									<RevSelector
+										shaBranchLookup={shaBranchLookup}
 										repo={repo}
+										branch={branch}
 										onSelect={(commit) => {
 											setRev({ c: commit, repo });
 											setShow(false);
@@ -348,17 +407,43 @@ function SeedsPicker({
 	);
 }
 
-function RevSelector({ repo, onSelect }: { repo: string; onSelect: (g: GitCommit) => void }) {
+function RevSelector({
+	repo,
+	onSelect,
+	branch,
+	shaBranchLookup,
+}: {
+	repo: string;
+	onSelect: (g: GitCommit) => void;
+	branch: string;
+	shaBranchLookup: Record<string, string[]>;
+}) {
 	const [revs, setRevs] = useState<Array<GitCommit>>([]);
 	const [filteredRevs, setFilteredRevs] = useState<Array<GitCommit>>([]);
+
+	// We have the option of filtering returned revisions according to only those that
+	// affect a specific file. Sounds useful.
+	const [collection, setCollection] = useState<string | null>(null);
 
 	useEffect(() => {
 		(async () => {
 			if (repo.startsWith("GitHub:")) {
 				throw new Error("Unsupported...");
 			} else {
+				// startLoading
+				setRevs([]);
+
+				const params = new URLSearchParams();
+				params.set("branch", branch);
+
+				if (collection) {
+					params.set("file", collection);
+				}
+
 				// local
-				const res = await APIFetchV1<Array<GitCommit>>("/seeds/commits");
+				const res = await APIFetchV1<Array<GitCommit>>(
+					`/seeds/commits?${params.toString()}`
+				);
 
 				if (!res.success) {
 					throw new Error(`Failed to fetch commits? ${res.description}`);
@@ -392,7 +477,7 @@ function RevSelector({ repo, onSelect }: { repo: string; onSelect: (g: GitCommit
 				}
 			}
 		})();
-	}, [repo]);
+	}, [repo, branch, collection]);
 
 	useEffect(() => {
 		setFilteredRevs(revs);
@@ -420,6 +505,24 @@ function RevSelector({ repo, onSelect }: { repo: string; onSelect: (g: GitCommit
 
 	return (
 		<>
+			<div>
+				<span>Show changes that affect: </span>
+				<Select
+					value={collection}
+					setValue={setCollection}
+					unselectedName="Any Collection"
+					allowNull
+					className="mx-2"
+					style={{ width: "unset", display: "inline" }}
+				>
+					{DatabaseSeedNames.map((e) => (
+						<option key={e} value={e}>
+							{e}
+						</option>
+					))}
+				</Select>
+			</div>
+			<Divider />
 			<FormInput
 				fieldName="Search"
 				placeholder="Search commits..."
@@ -430,7 +533,12 @@ function RevSelector({ repo, onSelect }: { repo: string; onSelect: (g: GitCommit
 			<div className="timeline timeline-2">
 				<div className="timeline-bar"></div>
 				{filteredRevs.map((r) => (
-					<Revision key={r.sha} rev={r} onSelect={onSelect} />
+					<Revision
+						tags={shaBranchLookup[r.sha] ?? []}
+						key={r.sha}
+						rev={r}
+						onSelect={onSelect}
+					/>
 				))}
 			</div>
 		</>
@@ -439,9 +547,11 @@ function RevSelector({ repo, onSelect }: { repo: string; onSelect: (g: GitCommit
 
 function Revision({
 	rev,
+	tags = [],
 	onSelect: onSelect,
 }: {
 	rev: GitCommit;
+	tags?: string[];
 	onSelect: (g: GitCommit) => void;
 }) {
 	const authorNotCommitter = rev.commit.author.email !== rev.commit.committer.email;
@@ -474,6 +584,15 @@ function Revision({
 							) : (
 								<Icon style={{ fontSize: "0.7rem" }} type="chevron-left" />
 							)}
+						</span>
+					)}
+					{tags.length !== 0 && (
+						<span className="ml-2">
+							{tags.map((e) => (
+								<Badge className="ml-2" variant="primary" key={e}>
+									{e}
+								</Badge>
+							))}
 						</span>
 					)}
 					{showBody && <div className="ml-6 mt-1">{body}</div>}

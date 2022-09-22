@@ -75,9 +75,9 @@ export type MilestoneWithRelated = MilestoneDocument & {
 	};
 };
 
-export type ChartWithRelated<T extends IDStrings> = ChartDocument<T> & {
+export type ChartWithRelated<T extends IDStrings = IDStrings> = ChartDocument<T> & {
 	__related: {
-		song: SongDocument<IDStringToGame[T]>;
+		song: SongDocument<IDStringToGame[T]> | undefined;
 	};
 };
 

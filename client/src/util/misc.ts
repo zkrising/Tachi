@@ -341,3 +341,76 @@ export enum Months {
 	November,
 	December,
 }
+
+/**
+ * Converts a keyChain array into a javascript-like single string.
+ *
+ * Taken from Prudence.
+ *
+ * @param keyChain The keychain to stringify.
+ */
+export function StringifyKeyChain(keyChain: string[]): string | null {
+	if (keyChain.length === 0) {
+		return null;
+	}
+
+	let str = keyChain[0];
+
+	if (str.includes(".")) {
+		str = `["${str}"]`;
+	} else if (str.match(/^[0-9]+$/u)) {
+		// if only numbers
+		str = `[${str}]`;
+	} else if (str.match(/^[0-9]/u)) {
+		// if starts with a number but is not only numbers
+		str = `["${str}"]`;
+	}
+
+	for (let i = 1; i < keyChain.length; i++) {
+		const key = keyChain[i];
+
+		if (key.includes(".")) {
+			str += `["${key}"]`;
+		} else if (key.match(/^[0-9]/u)) {
+			// if starts with a number
+			str += `[${key}]`;
+		} else {
+			str += `.${key}`;
+		}
+	}
+
+	return str;
+}
+
+function FlattenRecord(
+	rec: Record<string, unknown>,
+	keychain: string[] = []
+): Array<{ keychain: string[]; value: unknown }> {
+	const flatRec = [];
+
+	for (const [key, value] of Object.entries(rec)) {
+		const newChain = [...keychain, key];
+
+		flatRec.push(...FlattenValue(value, newChain));
+	}
+
+	return flatRec;
+}
+
+export function FlattenValue(
+	value: unknown,
+	keychain: string[] = []
+): Array<{ keychain: string[]; value: unknown }> {
+	if (Array.isArray(value)) {
+		return value.flatMap((e, i) => FlattenValue(e, [...keychain, i.toString()]));
+	} else if (typeof value === "object" && value !== null) {
+		return FlattenRecord(value as Record<string, unknown>, keychain);
+	}
+
+	return [
+		{
+			keychain,
+			value,
+		},
+	];
+}

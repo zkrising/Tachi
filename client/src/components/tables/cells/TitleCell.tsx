@@ -11,6 +11,8 @@ export default function TitleCell({
 	chart,
 	noArtist,
 	comment,
+	showSearchTerms,
+	showAltTitles,
 }: {
 	song: SongDocument;
 	// chart is optional as we overload this titlecell to render pretty song tables
@@ -19,6 +21,8 @@ export default function TitleCell({
 	game: Game;
 	noArtist?: boolean;
 	comment?: string | null;
+	showSearchTerms?: boolean;
+	showAltTitles?: boolean;
 }) {
 	let backgroundImage = undefined;
 	let center = false;
@@ -74,6 +78,19 @@ export default function TitleCell({
 					<>
 						<br />
 						<Muted>{song.data.subtitle}</Muted>
+					</>
+				)}
+
+				{showAltTitles && song.altTitles.length !== 0 && (
+					<>
+						<br />
+						<Muted>AKA {song.altTitles.join(", ")}</Muted>
+					</>
+				)}
+				{showSearchTerms && song.searchTerms.length !== 0 && (
+					<>
+						<br />
+						<Muted>Search Terms: {song.searchTerms.join(", ")}</Muted>
 					</>
 				)}
 				{chart && !chart.isPrimary && (

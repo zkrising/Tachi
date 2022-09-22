@@ -414,3 +414,15 @@ export function FlattenValue(
 		},
 	];
 }
+
+export function ExtractGameFromFile(file: string): Game {
+	const match = /-(.*?).json$/u.exec(file);
+
+	if (match === null) {
+		throw new Error(`Couldn't extract game from ${file}.`);
+	}
+
+	const [_, game] = match;
+
+	return game as Game;
+}

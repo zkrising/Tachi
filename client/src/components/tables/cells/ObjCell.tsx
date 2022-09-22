@@ -7,7 +7,7 @@ export default function ObjCell({ data }: { data: unknown }) {
 			{/* this kinda sucks. have we got a better way to do this? */}
 			{FlattenValue(data).map((e) => (
 				<>
-					{StringifyKeyChain(e.keychain)} = {String(e.value)}
+					<code>{StringifyKeyChain(e.keychain)}</code>: {String(e.value)}
 					<br />
 				</>
 			))}

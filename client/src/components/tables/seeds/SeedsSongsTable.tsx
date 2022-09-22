@@ -27,6 +27,7 @@ export default function SeedsSongsTable({
 			headers={headers}
 			entryName="Songs"
 			searchFunctions={{
+				artist: (x) => x.artist,
 				title: (x) => x.title,
 				songID: (x) => x.id,
 				searchTerms: (x) => x.searchTerms.join(", "),
@@ -45,7 +46,7 @@ function Row({ data, game }: { data: SongDocument; game: Game }) {
 	return (
 		<DropdownRow dropdown={<DebugContent data={{ ...data, __related: undefined }} />}>
 			<td>{data.id}</td>
-			<TitleCell game={game} song={data} />
+			<TitleCell game={game} song={data} showAltTitles showSearchTerms />
 			<ObjCell data={data.data} />
 		</DropdownRow>
 	);

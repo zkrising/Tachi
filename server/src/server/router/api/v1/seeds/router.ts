@@ -4,7 +4,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { Environment } from "lib/setup/config";
 import prValidate from "server/middleware/prudence-validate";
 import { RequireLocalDevelopment } from "server/middleware/type-require";
-import { ListGitCommitsInPath } from "utils/git";
+import { GetCommit, ListGitCommitsInPath } from "utils/git";
 import { asyncExec, IsString } from "utils/misc";
 import fsSync from "fs";
 import fs from "fs/promises";
@@ -213,6 +213,8 @@ router.get("/branches", async (req, res) => {
  * like HEAD@{2020-01-01}.
  *
  * If no revision is provided, the current uncommitted state on disk is returned instead.
+ *
+ * @name GET /api/v1/seeds/collections
  */
 router.get(
 	"/collections",
@@ -278,6 +280,41 @@ router.get(
 			description: `Retrieved data ${rev ? `as of ${rev}` : "off of the current disk"}.`,
 			body: data,
 		});
+	}
+);
+
+/**
+ * Retrieve information about the provided commit.
+ *
+ * @param sha - The commit to fetch information about. Technically, this can be the name
+ * of any git object, but you probably shouldn't.
+ *
+ * @name GET /api/v1/seeds/commit
+ */
+router.get(
+	"/commit",
+	prValidate({
+		sha: "string",
+	}),
+	async (req, res) => {
+		// asserted by prudence
+		const sha = req.query.sha as string;
+
+		try {
+			const commit = await GetCommit(sha);
+
+			return res.status(200).json({
+				success: true,
+				description: `Found commit '${sha}'.`,
+				body: commit,
+			});
+		} catch (err) {
+			logger.info(`Failed to fetch commit.`, { err });
+			return res.status(404).json({
+				success: false,
+				description: `Failed to fetch commit. It may not exist.`,
+			});
+		}
 	}
 );
 

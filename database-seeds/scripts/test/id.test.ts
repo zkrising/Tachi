@@ -29,7 +29,7 @@ for (const game of allSupportedGames) {
 }
 
 const UniqueKeys: Partial<Record<keyof typeof SCHEMAS, DuplicateKeyDecl[]>> = {
-	"bms-course-lookup": ["set", "playtype", "index"],
+	"bms-course-lookup": ["set", "playtype", "value"],
 	folders: ["folderID"],
 	tables: ["tableID"],
 	...SongChartKeys,

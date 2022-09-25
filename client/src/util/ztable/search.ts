@@ -194,6 +194,8 @@ export type ValueGetterOrHybrid<D> =
 	  }
 	| ValueGetter<D>;
 
+export type SearchFunctions<T> = Record<string, ValueGetterOrHybrid<T>>;
+
 export function GetValueGetter<D>(v: ValueGetterOrHybrid<D>) {
 	if (typeof v === "function") {
 		return v;

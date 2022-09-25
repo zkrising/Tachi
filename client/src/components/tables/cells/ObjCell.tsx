@@ -5,12 +5,14 @@ export default function ObjCell({ data }: { data: unknown }) {
 	return (
 		<td className="text-left">
 			{/* this kinda sucks. have we got a better way to do this? */}
-			{FlattenValue(data).map((e) => (
-				<>
-					<code>{StringifyKeyChain(e.keychain)}</code>: {String(e.value)}
-					<br />
-				</>
-			))}
+			{FlattenValue(data)
+				.filter((e) => e.value !== null)
+				.map((e) => (
+					<>
+						<code>{StringifyKeyChain(e.keychain)}</code>: {JSON.stringify(e.value)}
+						<br />
+					</>
+				))}
 		</td>
 	);
 }

@@ -14,6 +14,9 @@ export interface GitCommit {
 		};
 		message: string;
 	};
+	parents: Array<{ sha: string }>;
 }
 
 export type Revision = { c: GitCommit; repo: string };
+
+export type Branch = { name: string; sha: string };

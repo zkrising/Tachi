@@ -1,10 +1,9 @@
 import { CopyToClipboard } from "util/misc";
-import { ComposeSearchFunction, ValueGetterOrHybrid } from "util/ztable/search";
+import { ComposeSearchFunction, SearchFunctions } from "util/ztable/search";
 import Icon from "components/util/Icon";
 import SmallText from "components/util/SmallText";
 import { useZTable, ZTableSortFn } from "components/util/table/useZTable";
 import { UserSettingsContext } from "context/UserSettingsContext";
-import { json2csvAsync } from "json-2-csv";
 import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { integer } from "tachi-common";
@@ -91,7 +90,7 @@ export default function TachiTable<D>({
 	noTopDisplayStr?: boolean;
 	defaultSortMode?: string;
 	defaultReverseSort?: boolean;
-	searchFunctions?: Record<string, ValueGetterOrHybrid<D>>;
+	searchFunctions?: SearchFunctions<D>;
 }) {
 	const [search, setSearch] = useState("");
 

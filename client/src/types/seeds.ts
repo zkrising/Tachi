@@ -1,3 +1,4 @@
+import { JSONAttributeDiff } from "util/misc";
 import {
 	BMSCourseDocument,
 	ChartDocument,
@@ -106,3 +107,13 @@ export type DatabaseSeedsWithRelated = {
 	"milestones.json": Array<MilestoneWithRelated>;
 } & SongSeedsWithRelated &
 	ChartSeedsWithRelated;
+
+export type ChangeIndicator = "ADDED" | "REMOVED" | "MODIFIED" | null;
+
+export type DiffSeedsCollection<T> = {
+	head: T;
+	diff: JSONAttributeDiff[];
+	base: T;
+};
+
+export type CellsRenderFN<T> = (d: { data: T; compress?: boolean }) => JSX.Element;

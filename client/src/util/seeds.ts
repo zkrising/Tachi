@@ -1,19 +1,29 @@
+import { Header } from "components/tables/components/TachiTable";
+import { EmptyHeader } from "components/tables/headers/IndicatorHeader";
+import { ZTableSortFn } from "components/util/table/useZTable";
 import {
 	AllDatabaseSeeds,
+	BMSCourseDocument,
 	ChartDocument,
 	CreateSongMap,
 	DatabaseSeedNames,
 	FolderDocument,
 	Game,
+	GoalDocument,
+	MilestoneDocument,
+	MilestoneSetDocument,
 	SongDocument,
+	TableDocument,
 } from "tachi-common";
 import {
 	BMSCourseWithRelated,
 	ChartWithRelated,
-	DatabaseSeedsWithRelated,
+	DiffSeedsCollection as SeedsDiff,
 	TableWithRelated,
 } from "types/seeds";
 import { APIFetchV1 } from "./api";
+import { Dedupe, JSONAttributeDiff, JSONCompare } from "./misc";
+import { ValueGetterOrHybrid } from "./ztable/search";
 
 /**
  * Given a repo and a reference return the status of database-seeds/collections
@@ -207,4 +217,269 @@ function RelateCharts(data: Partial<AllDatabaseSeeds>, file: string): ChartWithR
 			song: songMap.get(e.songID),
 		},
 	}));
+}
+
+export type DBSeedsCollection = AllDatabaseSeeds[keyof AllDatabaseSeeds][0];
+
+export interface DBSeedsDiffModified<T extends DBSeedsCollection> {
+	type: "MODIFIED";
+	base: T;
+	diff: JSONAttributeDiff[];
+	head: T;
+}
+
+export interface DBSeedsDiffNew<T extends DBSeedsCollection> {
+	type: "ADDED";
+	head: T;
+}
+
+export interface DBSeedsDiffDeleted<T extends DBSeedsCollection> {
+	type: "DELETED";
+	base: T;
+}
+
+/**
+ * A diff may be any of three states:
+ *
+ * ADDED -> This did not exist in base, but now exists in HEAD
+ * DELETED -> This existed in base, but does not exist in HEAD
+ * MODIFIED -> This exists in both base and HEAD, but does not have equivalent checksums.
+ */
+export type DBSeedsDiff<T extends DBSeedsCollection> =
+	| DBSeedsDiffDeleted<T>
+	| DBSeedsDiffNew<T>
+	| DBSeedsDiffModified<T>;
+
+export type DBSeedsDiffs = Partial<{
+	[K in keyof AllDatabaseSeeds]: Array<DBSeedsDiff<DBSeedsCollection>>;
+}>;
+
+/**
+ * Given two full states of seeds, Return all the changes in each collection.
+ *
+ *
+ */
+export function DiffSeeds(
+	base: Partial<AllDatabaseSeeds>,
+	head: Partial<AllDatabaseSeeds>
+): DBSeedsDiffs {
+	const diffs: DBSeedsDiffs = {};
+
+	const baseCollections = Object.keys(base) as (keyof AllDatabaseSeeds)[];
+	const headCollections = Object.keys(head) as (keyof AllDatabaseSeeds)[];
+
+	// Base and HEAD might add new/remove collections. This allows us to iterate
+	// over the union of both sets
+	const allCollections = Dedupe([...baseCollections, ...headCollections]);
+
+	for (const collection of allCollections) {
+		const baseState = base[collection] as DBSeedsCollection[];
+		const headState = head[collection] as DBSeedsCollection[];
+
+		const colDiff = DiffCollection(collection, baseState, headState);
+
+		diffs[collection] = colDiff;
+	}
+
+	return diffs as DBSeedsDiffs;
+}
+
+function DiffCollection<T extends DBSeedsCollection>(
+	collection: keyof AllDatabaseSeeds,
+	baseState: T[] | undefined,
+	headState: T[] | undefined
+): Array<DBSeedsDiff<T>> {
+	if (!headState && !baseState) {
+		// this is a collection that exists,
+		// but, neither head or base reports that it exists?
+		// this should **never** happen, but we can recover.
+		console.warn(
+			`Collection ${collection} exists, but neither HEAD nor base have it as existing?`
+		);
+
+		// return early with 0 diffs I guess? null to null is no diffs.
+		return [];
+	} else if (baseState && !headState) {
+		// if this collection was deleted in head, then everything is a removal.
+
+		// so, typescript has a bit of a moment here where it thinks that an
+		// Array (A) of type T mapped to A' means that T and T'
+		// - although being the same union type -
+		// might be different members of that union via the mapping.
+		// it's right. I know it's right, but god damnit it's wrong.
+		return baseState.map((e) => ({
+			type: "DELETED",
+			base: e as any,
+		}));
+	} else if (!baseState && headState) {
+		// if this collection didn't exist in base, but exists in head
+		// then everything is an addition.
+
+		return headState.map((e) => ({
+			type: "ADDED",
+			head: e as any,
+		}));
+	}
+
+	// the above fail cases mean that both headState and baseState must be defined
+	// however, TS cannot infer this.
+	if (!headState || !baseState) {
+		throw new Error(
+			`INVARIANT FAILED: headState or baseState was undefined. This is not possible at this point in the program due to basic boolean logic, and only exists to prevent a TS error. How did this *ever* happen?`
+		);
+	}
+
+	// otherwise. lets get diffing...
+	const diffs: Array<DBSeedsDiff<T>> = [];
+
+	// create lookup tables on UNIQ(T) -> T for the entire set.
+	const headMap = new Map<string, T>();
+	for (const d of headState) {
+		headMap.set(GetUniqID(collection, d), d);
+	}
+
+	const baseMap = new Map<string, T>();
+	for (const d of baseState) {
+		baseMap.set(GetUniqID(collection, d), d);
+	}
+
+	const allIds = Dedupe([...headMap.keys(), ...baseMap.keys()]);
+
+	for (const id of allIds) {
+		const base = baseMap.get(id);
+		const head = headMap.get(id);
+
+		// not possible. we check it anyway.
+		if (!head && !base) {
+			console.warn(`ID ${id} exists, but neither HEAD nor base have it as existing?`);
+			continue;
+		} else if (base && !head) {
+			// not in head, but was in base.
+			diffs.push({
+				type: "DELETED",
+				base,
+			});
+		} else if (head && !base) {
+			// wasn't in base, but was in head
+			diffs.push({
+				type: "ADDED",
+				head,
+			});
+		} else if (head && base) {
+			// existed in both. We need to compare these two deeply.
+
+			// these things *are* different. time to find out what.
+			const objDiffs = JSONCompare(base, head);
+
+			// shouldn't be possible, but we mightaswell handle it.
+			if (objDiffs.length === 0) {
+				continue;
+			}
+
+			diffs.push({
+				type: "MODIFIED",
+				diff: objDiffs,
+				base,
+				head,
+			});
+		}
+	}
+
+	return diffs;
+}
+
+/**
+ * Given a value and what collection it's from, return it's unique identifier --
+ * so songID, chartID, etc.
+ *
+ * We do this to detect when things have been modified.
+ */
+function GetUniqID<K extends keyof AllDatabaseSeeds>(collection: K, value: AllDatabaseSeeds[K][0]) {
+	if (collection.startsWith("songs-")) {
+		return (value as SongDocument).id.toString();
+	} else if (collection.startsWith("charts-")) {
+		return (value as ChartDocument).chartID;
+	}
+
+	const c = collection as NotSongsChartsSeeds;
+
+	switch (c) {
+		case "bms-course-lookup.json": {
+			const v = value as BMSCourseDocument;
+			return `${v.set}-${v.playtype}-${v.value}`;
+		}
+		case "folders.json": {
+			const v = value as FolderDocument;
+			return v.folderID;
+		}
+		case "tables.json": {
+			const v = value as TableDocument;
+			return v.tableID;
+		}
+		case "goals.json": {
+			const v = value as GoalDocument;
+			return v.goalID;
+		}
+		case "milestones.json": {
+			const v = value as MilestoneDocument;
+			return v.milestoneID;
+		}
+		case "milestone-sets.json": {
+			const v = value as MilestoneSetDocument;
+			return v.setID;
+		}
+	}
+}
+
+/**
+ * Given an array of headers upon T, return the headers for Diff<T>.
+ */
+export function HeadersToDiffHeaders<T>(headers: Header<T>[]): Header<SeedsDiff<T>>[] {
+	const headHeaders = headers.map((e) => {
+		const sortFn = e[2];
+
+		if (sortFn) {
+			// turn the sort function into sort(a.head, b.head);
+			const newSortFn: ZTableSortFn<SeedsDiff<T>> = (a, b) => sortFn(a.head, b.head);
+
+			return [e[0], e[1], newSortFn, e[3]];
+		}
+
+		return e;
+	}) as Header<SeedsDiff<T>>[];
+
+	const newHeaders: Header<SeedsDiff<T>>[] = [
+		EmptyHeader, // diff indicator goes here
+		...headHeaders, // new state
+		["Diff", "Diff"], // raw diff showing
+	];
+
+	return newHeaders;
+}
+
+/**
+ * Given a record of search functions, convert them into ${x}_new and ${x}_old functions.
+ */
+export function SearchFnsToDiffSearchFns<T>(
+	searchFns: Record<string, ValueGetterOrHybrid<T>>
+): Record<string, ValueGetterOrHybrid<SeedsDiff<T>>> {
+	const newSearches: Record<string, ValueGetterOrHybrid<SeedsDiff<T>>> = {};
+
+	for (const [key, fn] of Object.entries(searchFns)) {
+		if (typeof fn === "function") {
+			newSearches[`${key}_old`] = (x) => fn(x.base);
+			newSearches[key] = (x) => fn(x.head);
+		} else {
+			newSearches[`${key}_old`] = {
+				strToNum: fn.strToNum,
+				valueGetter: (x) => fn.valueGetter(x.base),
+			};
+			newSearches[key] = {
+				strToNum: fn.strToNum,
+				valueGetter: (x) => fn.valueGetter(x.head),
+			};
+		}
+	}
+
+	return newSearches;
 }

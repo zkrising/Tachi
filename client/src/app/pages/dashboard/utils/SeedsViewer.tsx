@@ -10,7 +10,6 @@ import SelectButton from "components/util/SelectButton";
 import { TachiConfig } from "lib/config";
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
 import { GitCommit, Revision } from "types/git";
 
 export default function SeedsViewer() {
@@ -55,7 +54,6 @@ export default function SeedsViewer() {
 			<InnerSeedsViewer hasLocalAPI={!failedToGetLocalAPI} />
 		</>
 	);
-	// return <BMSCourseLookupTable dataset={} />;
 }
 
 function InnerSeedsViewer({ hasLocalAPI }: { hasLocalAPI: boolean }) {
@@ -66,11 +64,9 @@ function InnerSeedsViewer({ hasLocalAPI }: { hasLocalAPI: boolean }) {
 	const [urlLoading, setURLLoading] = useState(false);
 	const [isFirstLoad, setIsFirstLoad] = useState(true);
 
-	const params = useParams<{ repo: string | undefined; sha: string | undefined }>();
-
-	console.log(params);
-
-	const { repo, sha } = params;
+	const params = new URLSearchParams(window.location.search);
+	const sha = params.get("sha");
+	const repo = params.get("repo");
 
 	const [view, setView] = useState<"DIFF" | "FULL">("DIFF");
 
@@ -106,14 +102,25 @@ function InnerSeedsViewer({ hasLocalAPI }: { hasLocalAPI: boolean }) {
 				} else if (repo.startsWith("GitHub:")) {
 					const repoName = repo.slice("GitHub:".length);
 
-					const res: GitCommit = await fetch(
-						`https://github.com/${repoName}/seeds/commit/${sha}}`
-					).then((r) => r.json());
+					try {
+						const res = await fetch(
+							`https://api.github.com/repos/${repoName}/commits/${sha}`
+						);
 
-					setBaseRev({
-						c: res,
-						repo,
-					});
+						if (res.status !== 200) {
+							throw new Error(`Failed to fetch commit`);
+						}
+
+						const c: GitCommit = await res.json();
+
+						setBaseRev({
+							c,
+							repo,
+						});
+					} catch (err) {
+						// failed to load
+						setBaseRev(null);
+					}
 
 					setURLLoading(false);
 
@@ -143,10 +150,15 @@ function InnerSeedsViewer({ hasLocalAPI }: { hasLocalAPI: boolean }) {
 
 	if (urlLoading) {
 		return (
-			<div className="w-100 d-flex justify-content-center">
+			<div className="w-100 d-flex flex-column justify-content-center">
 				<Loading />
-				<br />
-				<span>Fetching information from the provided URL...</span>
+				<div className="mt-2 text-center">
+					Fetching information for{" "}
+					<code>
+						{repo}/{sha}
+					</code>
+					...
+				</div>
 			</div>
 		);
 	}

@@ -29,7 +29,7 @@ for (const game of allSupportedGames) {
 }
 
 const UniqueKeys: Partial<Record<keyof typeof SCHEMAS, DuplicateKeyDecl[]>> = {
-	"bms-course-lookup": ["md5sums"],
+	"bms-course-lookup": [["set", "playtype", "value"]],
 	folders: ["folderID"],
 	tables: ["tableID"],
 	...SongChartKeys,
@@ -99,7 +99,7 @@ for (const [collection, uniqueIDs] of Object.entries(UniqueKeys)) {
 			if (set.has(value) && !(uniqueID === "data.arcChartID" && value === null)) {
 				console.error(
 					chalk.red(
-						`[ERR] ${collectionName} | ${pretty} | Is duplicate on ${uniqueID}:${pureValue}.}.`
+						`[ERR] ${collectionName} | ${pretty} | Is duplicate on ${uniqueID}:${pureValue}.`
 					)
 				);
 				fails++;

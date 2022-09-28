@@ -10,3 +10,4 @@ export * from "./constants/game";
 export * from "./constants/bms-tables";
 export * from "./constants/permissions";
 export * as Schemas from "./lib/schemas";
+export * from "./seeds/types";

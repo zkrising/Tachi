@@ -14,6 +14,7 @@ import {
 	SessionDocument,
 } from "tachi-common";
 import { Playtype } from "types/tachi";
+import fjsh from "fast-json-stable-hash";
 
 export function RFA<T>(arr: T[]): T {
 	return arr[Math.floor(Math.random() * arr.length)];
@@ -340,4 +341,194 @@ export enum Months {
 	October,
 	November,
 	December,
+}
+
+/**
+ * Converts a keyChain array into a javascript-like single string.
+ *
+ * Taken from Prudence.
+ *
+ * @param keyChain The keychain to stringify.
+ */
+export function StringifyKeyChain(keyChain: string[]): string | null {
+	if (keyChain.length === 0) {
+		return null;
+	}
+
+	let str = keyChain[0];
+
+	if (str.includes(".")) {
+		str = `["${str}"]`;
+	} else if (str.match(/^[0-9]+$/u)) {
+		// if only numbers
+		str = `[${str}]`;
+	} else if (str.match(/^[0-9]/u)) {
+		// if starts with a number but is not only numbers
+		str = `["${str}"]`;
+	}
+
+	for (let i = 1; i < keyChain.length; i++) {
+		const key = keyChain[i];
+
+		if (key.includes(".")) {
+			str += `["${key}"]`;
+		} else if (key.match(/^[0-9]/u)) {
+			// if starts with a number
+			str += `[${key}]`;
+		} else {
+			str += `.${key}`;
+		}
+	}
+
+	return str;
+}
+
+function FlattenRecord(
+	rec: Record<string, unknown>,
+	keychain: string[] = []
+): Array<{ keychain: string[]; value: unknown }> {
+	const flatRec = [];
+
+	for (const [key, value] of Object.entries(rec)) {
+		const newChain = [...keychain, key];
+
+		flatRec.push(...FlattenValue(value, newChain));
+	}
+
+	return flatRec;
+}
+
+export function FlattenValue(
+	value: unknown,
+	keychain: string[] = []
+): Array<{ keychain: string[]; value: unknown }> {
+	if (Array.isArray(value)) {
+		return value.flatMap((e, i) => FlattenValue(e, [...keychain, i.toString()]));
+	} else if (typeof value === "object" && value !== null) {
+		return FlattenRecord(value as Record<string, unknown>, keychain);
+	}
+
+	return [
+		{
+			keychain,
+			value,
+		},
+	];
+}
+
+export function ExtractGameFromFile(file: string): Game {
+	const match = /-(.*?).json$/u.exec(file);
+
+	if (match === null) {
+		throw new Error(`Couldn't extract game from ${file}.`);
+	}
+
+	const [_, game] = match;
+
+	return game as Game;
+}
+
+/**
+ * Given an array, remove all duplicates in it.
+ */
+export function Dedupe<T>(arr: Array<T>): Array<T> {
+	return [...new Set(arr)];
+}
+
+export function IsRecord(maybeRec: unknown): maybeRec is Record<string, unknown> {
+	return typeof maybeRec === "object" && maybeRec !== null && !Array.isArray(maybeRec);
+}
+
+export type JSONAttributeDiff = {
+	keychain: string[];
+	beforeVal: unknown;
+	afterVal: unknown;
+};
+
+/**
+ * Given two JSON objects, diff them.
+ *
+ * This returns an array of keychains (stringpaths to the value)
+ * and their state before and after. `undefined` implies that the property does not
+ * exist anymore (or didn't exist).
+ *
+ * @note A and B **must** both be json OBJECTS or ARRAYS. They cannot be primitives.
+ */
+export function JSONCompare(before: object, after: object, keychain: string[] = []) {
+	const diffs: JSONAttributeDiff[] = [];
+
+	const bKeys = Object.keys(before);
+	const aKeys = Object.keys(after);
+	const allKeys = Dedupe([...bKeys, ...aKeys]);
+
+	for (const key of allKeys) {
+		const newKeychain = [...keychain, key];
+
+		// @ts-expect-error JS ABUSE WARNING
+		const bef = before[key];
+		// @ts-expect-error JS ABUSE here
+		// you can index arrays with strings as if they were numbers
+		// this is because arrays are secretly objects.
+		// lol!
+		const aft = after[key];
+
+		// -- OBJECT CASES
+		// if both sides are objects, recurse.
+		if (IsRecord(bef) && IsRecord(aft)) {
+			diffs.push(...JSONCompare(bef, aft, newKeychain));
+		} else if (IsRecord(bef) && !IsRecord(aft)) {
+			// if one is an object and the other isn't
+			// compare against the empty object so we still get nice diffs
+			// instead of blubber like key went from 1 to -> {foo: "bar"}
+
+			diffs.push(...JSONCompare(bef, {}, newKeychain));
+		} else if (!IsRecord(bef) && IsRecord(aft)) {
+			// converse of previous case
+			diffs.push(...JSONCompare({}, aft, newKeychain));
+		}
+		// -- ARRAY CASES
+		// we only need to handle the case of ARRAY->ARRAY.
+		// otherwise, it's a guaranteed diff.
+		else if (Array.isArray(bef) && Array.isArray(aft)) {
+			if (fjsh.stringify(bef) !== fjsh.stringify(aft)) {
+				diffs.push({
+					afterVal: aft,
+					beforeVal: bef,
+					keychain: newKeychain,
+				});
+			}
+		}
+
+		// -- PRIMITIVE CASES
+		else if (Object.is(bef, aft)) {
+			// are these two things the same? if so, don't do anything.
+			continue;
+		} else {
+			// these things are different, it's a diff.
+			diffs.push({
+				keychain: newKeychain,
+				beforeVal: bef,
+				afterVal: aft,
+			});
+		}
+	}
+
+	return diffs;
+}
+
+export function JoinJSX(elements: Array<JSX.Element>, joiner: JSX.Element): Array<JSX.Element> {
+	const newArray: Array<JSX.Element> = [];
+
+	for (let i = 0; i < elements.length; i++) {
+		const element = elements[i]!;
+
+		// if this is the last element, don't suffix with a joiner.
+		if (i === elements.length - 1) {
+			newArray.push(element);
+		} else {
+			newArray.push(element, joiner);
+		}
+	}
+
+	return newArray;
 }

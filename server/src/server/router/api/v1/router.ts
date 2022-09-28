@@ -8,6 +8,7 @@ import importsRouter from "./imports/router";
 import oauthRouter from "./oauth/router";
 import scoresRouter from "./scores/router";
 import searchRouter from "./search/router";
+import seedsRouter from "./seeds/router";
 import sessionsRouter from "./sessions/router";
 import statusRouter from "./status/router";
 import usersRouter from "./users/router";
@@ -35,6 +36,7 @@ router.use("/sessions", sessionsRouter);
 router.use("/oauth", oauthRouter);
 router.use("/clients", clientsRouter);
 router.use("/config", configRouter);
+router.use("/seeds", seedsRouter);
 
 /**
  * Return a JSON 404 response if an endpoint is hit that does not exist.

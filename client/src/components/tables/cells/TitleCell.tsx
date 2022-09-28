@@ -11,17 +11,23 @@ export default function TitleCell({
 	chart,
 	noArtist,
 	comment,
+	showSearchTerms,
+	showAltTitles,
 }: {
 	song: SongDocument;
-	chart: ChartDocument;
+	// chart is optional as we overload this titlecell to render pretty song tables
+	// in some places
+	chart?: ChartDocument;
 	game: Game;
 	noArtist?: boolean;
 	comment?: string | null;
+	showSearchTerms?: boolean;
+	showAltTitles?: boolean;
 }) {
 	let backgroundImage = undefined;
 	let center = false;
 
-	if (game === "popn") {
+	if (game === "popn" && chart) {
 		backgroundImage = `linear-gradient(to left, rgba(19, 19, 19, 0.8), rgba(19, 19, 19, 1)), url(${ToCDNURL(
 			`/misc/popn/banners/${(chart as any).data.inGameID}.png`
 		)})`;
@@ -59,7 +65,7 @@ export default function TitleCell({
 					<br />
 				</>
 			)}
-			<GentleLink to={CreateChartLink(chart, game)}>
+			<GentleLink to={chart ? CreateChartLink(chart, game) : ""}>
 				{song.title}
 
 				{!noArtist && (
@@ -74,7 +80,20 @@ export default function TitleCell({
 						<Muted>{song.data.subtitle}</Muted>
 					</>
 				)}
-				{!chart.isPrimary && (
+
+				{showAltTitles && song.altTitles.length !== 0 && (
+					<>
+						<br />
+						<Muted>AKA {song.altTitles.join(", ")}</Muted>
+					</>
+				)}
+				{showSearchTerms && song.searchTerms.length !== 0 && (
+					<>
+						<br />
+						<Muted>Search Terms: {song.searchTerms.join(", ")}</Muted>
+					</>
+				)}
+				{chart && !chart.isPrimary && (
 					<>
 						<br />
 						<small className="text-muted">({chart.versions.join("/")})</small>

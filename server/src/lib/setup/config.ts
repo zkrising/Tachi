@@ -92,6 +92,7 @@ export interface TachiServerConfig {
 	MAX_GOAL_SUBSCRIPTIONS: integer;
 	MAX_MILESTONE_SUBSCRIPTIONS: integer;
 	OUR_URL: string;
+	ALLOW_RUNNING_OFFLINE?: boolean;
 	INVITE_CODE_CONFIG?: {
 		BATCH_SIZE: integer;
 		INVITE_CAP: integer;
@@ -154,6 +155,7 @@ const err = p(config, {
 	OPTIONS_ALWAYS_SUCCEEDS: "*boolean",
 	USE_EXTERNAL_SCORE_IMPORT_WORKER: "*boolean",
 	EXTERNAL_SCORE_IMPORT_WORKER_CONCURRENCY: p.optional(p.isPositiveInteger),
+	ALLOW_RUNNING_OFFLINE: "*boolean",
 	EMAIL_CONFIG: p.optional({
 		FROM: "string",
 		DKIM: "*object",
@@ -297,7 +299,7 @@ export const Environment = {
 	port,
 	redisUrl,
 	mongoUrl,
-	nodeEnv,
+	nodeEnv: nodeEnv as "dev" | "production" | "staging" | "test",
 	replicaIdentity,
 	seqUrl,
 	commitHash: process.env.COMMIT_HASH,

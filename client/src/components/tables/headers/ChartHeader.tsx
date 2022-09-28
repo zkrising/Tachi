@@ -1,8 +1,6 @@
 import { IsNotNullish } from "util/misc";
 import { NumericSOV } from "util/sorts";
 import { ChartDocument, Game } from "tachi-common";
-import { FolderDataset, PBDataset, ScoreDataset } from "types/tables";
-import { Playtype } from "types/tachi";
 import { Header } from "../components/TachiTable";
 
 function CascadingTierlistValue(
@@ -18,12 +16,11 @@ function CascadingTierlistValue(
 	return chart.levelNum;
 }
 
-export default function ChartHeader<D extends ScoreDataset | FolderDataset | PBDataset>(
+export default function ChartHeader<D>(
 	game: Game,
-	playtype: Playtype,
-	chartGetter: (k: D[0]) => ChartDocument
-): Header<D[0]> {
-	let sortFn: (d: D[0]) => number = (k) => chartGetter(k).levelNum;
+	chartGetter: (k: D) => ChartDocument
+): Header<D> {
+	let sortFn: (d: D) => number = (k) => chartGetter(k).levelNum;
 
 	if (game === "iidx") {
 		sortFn = (k) => CascadingTierlistValue(chartGetter(k), "kt-HC", "kt-NC");

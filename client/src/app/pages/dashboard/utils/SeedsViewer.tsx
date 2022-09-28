@@ -1,4 +1,5 @@
 import { APIFetchV1 } from "util/api";
+import { LoadCommit } from "util/seeds";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import SeedsPicker from "components/seeds/SeedsPicker";
 import SeedsStateViewer from "components/seeds/SeedsStateViewer";
@@ -67,6 +68,8 @@ function InnerSeedsViewer({ hasLocalAPI }: { hasLocalAPI: boolean }) {
 	const params = new URLSearchParams(window.location.search);
 	const sha = params.get("sha");
 	const repo = params.get("repo");
+	const compareRepo = params.get("compareRepo");
+	const compareSHA = params.get("compareSHA");
 
 	const [view, setView] = useState<"DIFF" | "FULL">("DIFF");
 
@@ -80,52 +83,27 @@ function InnerSeedsViewer({ hasLocalAPI }: { hasLocalAPI: boolean }) {
 			setURLLoading(true);
 
 			(async () => {
-				if (repo === "local") {
-					const params = new URLSearchParams({ sha });
+				const baseCommit = await LoadCommit(repo, sha);
 
-					const res = await APIFetchV1<GitCommit>(`/seeds/commit?${params.toString()}`);
-
-					if (!res.success) {
-						throw new Error(
-							`Failed to fetch info about commit ${sha}: ${res.description}.`
-						);
-					}
-
-					setBaseRev({
-						c: res.body,
-						repo,
-					});
-
-					setURLLoading(false);
-
-					setIsFirstLoad(false);
-				} else if (repo.startsWith("GitHub:")) {
-					const repoName = repo.slice("GitHub:".length);
-
-					try {
-						const res = await fetch(
-							`https://api.github.com/repos/${repoName}/commits/${sha}`
-						);
-
-						if (res.status !== 200) {
-							throw new Error(`Failed to fetch commit`);
-						}
-
-						const c: GitCommit = await res.json();
-
-						setBaseRev({
-							c,
-							repo,
-						});
-					} catch (err) {
-						// failed to load
-						setBaseRev(null);
-					}
-
-					setURLLoading(false);
-
-					setIsFirstLoad(false);
+				if (baseCommit) {
+					setBaseRev({ c: baseCommit, repo });
+				} else {
+					setBaseRev(null);
 				}
+
+				if (compareRepo && compareSHA) {
+					const headCommit = await LoadCommit(compareRepo, compareSHA);
+
+					if (headCommit) {
+						setHeadRev({ c: headCommit, repo: compareRepo });
+					} else {
+						setHeadRev(null);
+					}
+				}
+
+				setURLLoading(false);
+
+				setIsFirstLoad(false);
 			})();
 		}
 	}, [isFirstLoad]);
@@ -137,11 +115,16 @@ function InnerSeedsViewer({ hasLocalAPI }: { hasLocalAPI: boolean }) {
 				sha: baseRev.c.sha,
 			});
 
+			if (headRev) {
+				params.set("compareRepo", headRev.repo);
+				params.set("compareSHA", headRev.c.sha);
+			}
+
 			window.history.replaceState(null, "", `?${params.toString()}`);
 		} else {
 			window.history.replaceState(null, "", "");
 		}
-	}, [baseRev]);
+	}, [baseRev, headRev]);
 
 	// if sha XOR repo, this should not be allowed.
 	if (!!sha !== !!repo) {

@@ -182,13 +182,13 @@ export function OmitUndefinedKeys<T>(obj: Partial<T>): Partial<T> {
  * @param command A bash command to execute on the system.
  * @returns stdout and stderr as strings.
  */
-export function asyncExec(command: string) {
+export function asyncExec(command: string, cwd?: string) {
 	return new Promise<{ stdout: string; stderr: string }>((resolve, reject) => {
 		// note: We set the maximum possible stdout to 1G. We probably won't ever hit
 		// this, since the most expensive thing we do is like, read charts-bms.json
 		// which is ~40mb at the time of writing.
 		// I'm not sure why maxBuffer exists to be honest.
-		exec(command, { maxBuffer: ONE_MEGABYTE * 1024 }, (err, stdout, stderr) => {
+		exec(command, { maxBuffer: ONE_MEGABYTE * 1024, cwd }, (err, stdout, stderr) => {
 			if (err) {
 				// eslint-disable-next-line prefer-promise-reject-errors
 				reject({ err, stdout, stderr });

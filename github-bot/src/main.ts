@@ -142,3 +142,5 @@ app.all("*", (req, res) =>
 );
 
 console.log(`Starting express server on port ${ProcessEnv.port}.`);
+
+app.listen(ProcessEnv.port);

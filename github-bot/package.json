@@ -1,19 +1,12 @@
 {
 	"name": "tachi-github-bot",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"private": true,
 	"description": "A GitHub bot for listening to Tachi's GitHub Repo.",
 	"author": "zkldi",
-	"license": "ISC",
-	"homepage": "https://github.com//",
-	"keywords": [
-		"probot",
-		"github",
-		"probot-app"
-	],
 	"scripts": {
 		"build": "tsc",
-		"start": "probot run ./lib/index.js"
+		"start": "node js/main.js"
 	},
 	"dependencies": {
 		"@octokit/webhooks": "10.1.5",

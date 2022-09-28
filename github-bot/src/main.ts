@@ -65,12 +65,15 @@ function ConvertGitHubURL(url: string) {
  * @name POST /webhook
  */
 app.post("/webhook", bodyParser.text({ type: "*/*" }), async (req, res) => {
+	console.log(req.body);
+
 	const hash = crypto
 		.createHmac("SHA256", ProcessEnv.webhookSecret)
 		.update(req.body as string)
 		.digest("hex");
 
 	if (hash !== req.header("X-Hub-Signature-256")) {
+		console.log(`Signatures didn't match.`);
 		return res.status(400).json({
 			success: false,
 			description: `Invalid Signature.`,
@@ -86,7 +89,7 @@ app.post("/webhook", bodyParser.text({ type: "*/*" }), async (req, res) => {
 		});
 	}
 
-	const body = JSON.parse(req.body) as EmitterWebhookEvent<"pull_request">["payload"];
+	const body = JSON.parse(req.body as string) as EmitterWebhookEvent<"pull_request">["payload"];
 
 	if (body.action !== "opened" && body.action !== "edited") {
 		return res.status(400).json({

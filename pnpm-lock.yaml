@@ -276,6 +276,29 @@ importers:
       prudence: 0.9.8
       xml2js: 0.4.23
 
+  github-bot:
+    specifiers:
+      '@octokit/webhooks': 10.1.5
+      '@types/express': 4.17.13
+      '@types/node': 16.11.7
+      '@types/node-fetch': 2.5.12
+      dotenv: 16.0.0
+      express: 4.17.2
+      node-fetch: 2.6.7
+      prudence: 0.9.8
+      typescript: 4.5.5
+    dependencies:
+      '@octokit/webhooks': 10.1.5
+      dotenv: 16.0.0
+      express: 4.17.2
+      node-fetch: 2.6.7
+      prudence: 0.9.8
+    devDependencies:
+      '@types/express': 4.17.13
+      '@types/node': 16.11.7
+      '@types/node-fetch': 2.5.12
+      typescript: 4.5.5
+
   server:
     specifiers:
       '@aws-sdk/client-s3': 3.49.0
@@ -3030,6 +3053,44 @@ packages:
       fastq: 1.13.0
     dev: true
 
+  /@octokit/openapi-types/13.12.0:
+    resolution: {integrity: sha512-1QYzZrwnn3rTQE7ZoSxXrO8lhu0aIbac1c+qIPOPEaVXBWSaUyLV1x9yt4uDQOwmu6u5ywVS8OJgs+ErDLf6vQ==}
+    dev: false
+
+  /@octokit/request-error/3.0.1:
+    resolution: {integrity: sha512-ym4Bp0HTP7F3VFssV88WD1ZyCIRoE8H35pXSKwLeMizcdZAYc/t6N9X9Yr9n6t3aG9IH75XDnZ6UeZph0vHMWQ==}
+    engines: {node: '>= 14'}
+    dependencies:
+      '@octokit/types': 7.5.1
+      deprecation: 2.3.1
+      once: 1.4.0
+    dev: false
+
+  /@octokit/types/7.5.1:
+    resolution: {integrity: sha512-Zk4OUMLCSpXNI8KZZn47lVLJSsgMyCimsWWQI5hyjZg7hdYm0kjotaIkbG0Pp8SfU2CofMBzonboTqvzn3FrJA==}
+    dependencies:
+      '@octokit/openapi-types': 13.12.0
+    dev: false
+
+  /@octokit/webhooks-methods/3.0.0:
+    resolution: {integrity: sha512-FAIyAchH9JUKXugKMC17ERAXM/56vVJekwXOON46pmUDYfU7uXB4cFY8yc8nYr5ABqVI7KjRKfFt3mZF7OcyUA==}
+    engines: {node: '>= 14'}
+    dev: false
+
+  /@octokit/webhooks-types/6.3.6:
+    resolution: {integrity: sha512-x6yBtWobk20OhOiJ4VWsH3iJ/30IG+VoDWSgS4Tiyidi2KOiBS3bL+AJrNuq4OyNuWOM/FbHQTp6KEZs1oPD/g==}
+    dev: false
+
+  /@octokit/webhooks/10.1.5:
+    resolution: {integrity: sha512-sQkxM6l9HdG1vsHFj2T/o8SnCPDDxovcs0rsSd4UR5jJFNPCPIBRmFNVHfM37nncLKuTwIpmMeePphNf1k6Waw==}
+    engines: {node: '>= 14'}
+    dependencies:
+      '@octokit/request-error': 3.0.1
+      '@octokit/webhooks-methods': 3.0.0
+      '@octokit/webhooks-types': 6.3.6
+      aggregate-error: 3.1.0
+    dev: false
+
   /@popperjs/core/2.11.5:
     resolution: {integrity: sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==}
     dev: false
@@ -3342,7 +3403,6 @@ packages:
     dependencies:
       '@types/node': 16.11.7
       form-data: 3.0.1
-    dev: false
 
   /@types/node/16.11.7:
     resolution: {integrity: sha512-QB5D2sqfSjCmTuWcBWyJ+/44bcjO7VbjSbOE0ucoVbAsSNQc4Lt6QkgkVXkTDwkL4z/beecZNDvVX15D4P8Jbw==}
@@ -3822,7 +3882,6 @@ packages:
     dependencies:
       clean-stack: 2.2.0
       indent-string: 4.0.0
-    dev: true
 
   /ajv-errors/1.0.1_ajv@6.12.6:
     resolution: {integrity: sha512-DCRfO/4nQ+89p/RK43i8Ezd41EqdGIU4ld7nGF8OQ14oc/we5rEntLCUa7+jrn3nn83BosfwZA0wb4pon2o8iQ==}
@@ -4930,7 +4989,6 @@ packages:
   /clean-stack/2.2.0:
     resolution: {integrity: sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==}
     engines: {node: '>=6'}
-    dev: true
 
   /cli-cursor/2.1.0:
     resolution: {integrity: sha512-8lgKz8LmCRYZZQDpRyT2m5rKJ08TnU4tR9FFFW2rxpxR1FzWi4PQ/NfyODchAatHaUgnSPVcx/R5w6NuTBzFiw==}
@@ -5914,6 +5972,10 @@ packages:
   /depd/2.0.0:
     resolution: {integrity: sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==}
     engines: {node: '>= 0.8'}
+    dev: false
+
+  /deprecation/2.3.1:
+    resolution: {integrity: sha512-xmHIy4F3scKVwMsQ4WnVaS8bHOx0DmVwRywosKhaILI0ywMDWPtBSku2HNxRvF7jtwDRsoEwYQSfbxj8b7RlJQ==}
     dev: false
 
   /dequal/2.0.2:
@@ -7346,7 +7408,6 @@ packages:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       mime-types: 2.1.35
-    dev: false
 
   /form-data/4.0.0:
     resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
@@ -8126,7 +8187,6 @@ packages:
   /indent-string/4.0.0:
     resolution: {integrity: sha512-EdDDZu4A2OyIK7Lr/2zG+w5jmbuk1DVBnEwREQvBzspBJkCEbRa8GxU1lghYcaGJCnRWibjDXlq779X1/y5xwg==}
     engines: {node: '>=8'}
-    dev: true
 
   /indexes-of/1.0.1:
     resolution: {integrity: sha512-bup+4tap3Hympa+JBJUG7XuOsdNQ6fxt0MHyXMKuLBKn0OqsTfvUxkUrroEX1+B2VsSHvCjiIcZVxRtYa4nllA==}

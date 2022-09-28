@@ -7,3 +7,4 @@ packages:
   - "database-seeds/**"
   - "server/**"
   - "sieglinde/**"
+  - "github-bot/**"

@@ -1,14 +1,14 @@
 /* eslint-disable no-console */
 import { ProcessEnv } from "./config";
+import bodyParser from "body-parser";
 import express from "express";
 import fetch from "node-fetch";
+import crypto from "crypto";
 import { URLSearchParams } from "url";
 import type { EmitterWebhookEvent } from "@octokit/webhooks";
 import type { Express } from "express";
 
 export const app: Express = express();
-
-app.use(express.json());
 
 // Let NGINX work its magic.
 app.set("trust proxy", "loopback");
@@ -58,10 +58,24 @@ function ConvertGitHubURL(url: string) {
 /**
  * Listens for GitHub webhook calls.
  *
+ * @note THIS ENDPOINT DOES NOT PARSE REQ BODY INTO AN OBJECT!
+ * it instead leaves it as a raw string, which is necessary because GitHub have
+ * an insane secret checking process.
+ *
  * @name POST /webhook
  */
-app.post("/webhook", async (req, res) => {
-	console.dir(req.body);
+app.post("/webhook", bodyParser.text({ type: "*/*" }), async (req, res) => {
+	const hash = crypto
+		.createHmac("SHA256", ProcessEnv.webhookSecret)
+		.update(req.body as string)
+		.digest("hex");
+
+	if (hash !== req.header("X-Hub-Signature-256")) {
+		return res.status(400).json({
+			success: false,
+			description: `Invalid Signature.`,
+		});
+	}
 
 	const event = req.header("X-GitHub-Event");
 
@@ -72,7 +86,7 @@ app.post("/webhook", async (req, res) => {
 		});
 	}
 
-	const body = req.body as EmitterWebhookEvent<"pull_request">["payload"];
+	const body = JSON.parse(req.body) as EmitterWebhookEvent<"pull_request">["payload"];
 
 	if (body.action !== "opened" && body.action !== "edited") {
 		return res.status(400).json({

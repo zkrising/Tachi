@@ -503,9 +503,7 @@
 		"title": "I Was The One"
 	},
 	{
-		"altTitles": [
-			"I'm In Love Again (Y&Co. Euro Mix)"
-		],
+		"altTitles": [],
 		"artist": "dj TAKA",
 		"data": {
 			"displayVersion": "2",
@@ -4289,7 +4287,8 @@
 	},
 	{
 		"altTitles": [
-			"I'm In Love Again-Y&amp;Co. EURO MIX-"
+			"I'm In Love Again-Y&amp;Co. EURO MIX-",
+			"I'm In Love Again (Y&Co. Euro Mix)"
 		],
 		"artist": "dj TAKA Remixed by Y&Co.",
 		"data": {

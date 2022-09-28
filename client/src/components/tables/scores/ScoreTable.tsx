@@ -39,7 +39,7 @@ export default function ScoreTable<I extends IDStrings = IDStrings>({
 	const [rating, setRating] = useState(alg ?? defaultRating);
 
 	const headers: Header<ScoreDataset<I>[0]>[] = [
-		ChartHeader<ScoreDataset>(game, playtype, (k) => k.__related.chart),
+		ChartHeader(game, (k) => k.__related.chart),
 		IndicatorHeader,
 		["Song", "Song", StrSOV((x) => x.__related.song.title)],
 		...GetGPTCoreHeaders<ScoreDataset>(game, playtype, rating, setRating, (k) => k),

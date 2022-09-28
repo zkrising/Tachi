@@ -1,4 +1,4 @@
-import { GetValueGetter, ValueGetterOrHybrid } from "util/ztable/search";
+import { GetValueGetter, SearchFunctions } from "util/ztable/search";
 import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import HoverText from "components/util/HoverText";
@@ -45,7 +45,7 @@ export default function FilterDirectivesIndicator<D>({
 	searchFunctions,
 	doc,
 }: {
-	searchFunctions: Record<string, ValueGetterOrHybrid<D>>;
+	searchFunctions: SearchFunctions<D>;
 	doc?: D;
 }) {
 	const [modalShow, setModalShow] = useState(false);

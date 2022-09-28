@@ -6,7 +6,7 @@
 	"author": "zkldi",
 	"scripts": {
 		"build": "tsc",
-		"start": "node js/main.js"
+		"start": "tsc && node js/main.js"
 	},
 	"dependencies": {
 		"@octokit/webhooks": "10.1.5",

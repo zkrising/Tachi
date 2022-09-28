@@ -1,5 +1,8 @@
-import "dotenv";
+import { config } from "dotenv";
 import p from "prudence";
+
+// init dotenv
+config();
 
 function ParseEnvVars() {
 	const err = p(
@@ -17,7 +20,7 @@ function ParseEnvVars() {
 	);
 
 	if (err) {
-		throw new Error(err.message);
+		throw new Error(`${err.keychain}: ${err.message}`);
 	}
 
 	return {

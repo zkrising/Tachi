@@ -15,6 +15,7 @@ import {
 	SongDocument,
 	TableDocument,
 } from "tachi-common";
+import { GitCommit } from "types/git";
 import {
 	BMSCourseWithRelated,
 	ChartWithRelated,
@@ -80,6 +81,41 @@ export async function LoadSeeds(repo: string, ref: string): Promise<Partial<AllD
 	}
 
 	throw new Error(`Unknown repository type '${repo}'.`);
+}
+
+export async function LoadCommit(repo: string, sha: string) {
+	if (repo === "local") {
+		const params = new URLSearchParams({ sha });
+
+		const res = await APIFetchV1<GitCommit>(`/seeds/commit?${params.toString()}`);
+
+		if (!res.success) {
+			throw new Error(`Failed to fetch info about commit ${sha}: ${res.description}.`);
+		}
+
+		return res.body;
+	} else if (repo.startsWith("GitHub:")) {
+		const repoName = repo.slice("GitHub:".length);
+
+		try {
+			const res = await fetch(`https://api.github.com/repos/${repoName}/commits/${sha}`);
+
+			if (res.status !== 200) {
+				throw new Error(`Failed to fetch commit`);
+			}
+
+			const c: GitCommit = await res.json();
+
+			return c;
+		} catch (err) {
+			console.error(err);
+			// return null anyway, invalid ref.
+			return null;
+		}
+	}
+
+	console.warn(`Unknown repo type ${repo}.`);
+	return null;
 }
 
 type NotSongsChartsSeeds = Exclude<

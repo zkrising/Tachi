@@ -26,7 +26,7 @@ export function HeaderMenu({
 	setMobileShow: SetState<boolean>;
 }) {
 	const { user } = useContext(UserContext);
-	const { ugs, setUGS } = useContext(AllLUGPTStatsContext);
+	const { ugs, setUGS } = useContext(UserGameStatsContext);
 	const { settings } = useContext(UserSettingsContext);
 
 	const { isLoading, error } = useQuery([user?.id, "game_stats"], async () => {

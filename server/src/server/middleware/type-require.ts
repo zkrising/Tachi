@@ -1,4 +1,4 @@
-import { TachiConfig, Environment } from "lib/setup/config";
+import { TachiConfig, Environment, ServerConfig } from "lib/setup/config";
 import type { RequestHandler } from "express-serve-static-core";
 
 /**
@@ -32,6 +32,18 @@ export const RequireKamaitachi: RequestHandler = (req, res, next) => {
 	return res.status(404).send({
 		success: false,
 		description: `The route ${req.url} is only available on Kamaitachi.`,
+	});
+};
+
+export const RequireInvitesEnabled: RequestHandler = (req, res, next) => {
+	if (ServerConfig.INVITE_CODE_CONFIG) {
+		next();
+		return;
+	}
+
+	return res.status(404).json({
+		success: false,
+		description: `The route ${req.url} is only available if invites are enabled.`,
 	});
 };
 

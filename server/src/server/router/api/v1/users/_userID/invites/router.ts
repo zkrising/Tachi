@@ -2,7 +2,7 @@ import { RequireSelfRequestFromUser } from "../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { GetTotalAllowedInvites } from "lib/invites/invites";
-import { RequireKamaitachi } from "server/middleware/type-require";
+import { RequireInvitesEnabled, RequireKamaitachi } from "server/middleware/type-require";
 import { UserAuthLevels } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 import { GetTachiData } from "utils/req-tachi-data";
@@ -11,7 +11,7 @@ import type { InviteCodeDocument } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
-router.use(RequireKamaitachi);
+router.use(RequireInvitesEnabled);
 router.use(RequireSelfRequestFromUser);
 
 /**

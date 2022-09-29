@@ -2,7 +2,7 @@ import { RequireSelfRequestFromUser } from "../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { GetTotalAllowedInvites } from "lib/invites/invites";
-import { RequireInvitesEnabled, RequireKamaitachi } from "server/middleware/type-require";
+import { RequireInvitesEnabled } from "server/middleware/type-require";
 import { UserAuthLevels } from "tachi-common";
 import { Random20Hex } from "utils/misc";
 import { GetTachiData } from "utils/req-tachi-data";

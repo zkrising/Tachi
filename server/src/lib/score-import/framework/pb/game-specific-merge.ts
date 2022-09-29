@@ -2,6 +2,7 @@
 import { InternalFailure } from "../common/converter-failures";
 import db from "external/mongo/db";
 import { Volforce } from "rg-stats";
+import { DeleteUndefinedProps } from "utils/misc";
 import { FindChartWithChartID } from "utils/queries/charts";
 import type { KtLogger } from "lib/logger/logger";
 import type { PBScoreDocument, ScoreDocument } from "tachi-common";
@@ -16,11 +17,13 @@ export async function IIDXMergeFn(
 	pbDoc.calculatedData.ktLampRating = lampPB.calculatedData.ktLampRating;
 
 	// Update lamp related iidx-specific info from the lampPB.
-	pbDoc.scoreData.hitMeta.gsm = lampPB.scoreData.hitMeta.gsm ?? null;
-	pbDoc.scoreData.hitMeta.gauge = lampPB.scoreData.hitMeta.gauge ?? null;
-	pbDoc.scoreData.hitMeta.gaugeHistory = lampPB.scoreData.hitMeta.gaugeHistory ?? null;
+	pbDoc.scoreData.hitMeta.gsm = lampPB.scoreData.hitMeta.gsm;
+	pbDoc.scoreData.hitMeta.gauge = lampPB.scoreData.hitMeta.gauge;
+	pbDoc.scoreData.hitMeta.gaugeHistory = lampPB.scoreData.hitMeta.gaugeHistory;
 
 	pbDoc.scoreData.hitMeta.comboBreak = lampPB.scoreData.hitMeta.comboBreak;
+
+	DeleteUndefinedProps(pbDoc.scoreData.hitMeta);
 
 	// bad+poor PB document. This is a weird, third indepdenent metric that IIDX players sometimes care about.
 	const bpPB = (await db.scores.findOne(

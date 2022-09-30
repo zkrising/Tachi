@@ -27,6 +27,7 @@ export const BMS_TABLE_ICONS = {
 	dpInsane: "★",
 	scratch: "h◎",
 	ln: "◆",
+	lnOverjoy: "◆◆",
 	stardust: "ξ",
 	starlight: "sr",
 };
@@ -146,5 +147,13 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		playtype: "7K",
 		url: "https://djkuroakari.github.io/data.json",
 		description: "The 7K Starlight table. This table covers ☆7 to ☆12.",
+	},
+	{
+		name: "LN Overjoy",
+		prefix: BMS_TABLE_ICONS.lnOverjoy,
+		asciiPrefix: "lnOverjoy",
+		playtype: "7K",
+		url: "https://notepara.com/glassist/lnoj/body.json",
+		description: "The 7K LN Overjoy table.",
 	},
 ];

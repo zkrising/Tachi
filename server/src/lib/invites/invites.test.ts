@@ -34,7 +34,6 @@ t.test("#GetTotalAllowedInvites", (t) => {
 			(ServerConfig.INVITE_CODE_CONFIG?.BATCH_SIZE ?? 0) * 2,
 			"Should return 2 * BATCH_SIZE for a user who joined two months ago."
 		);
-		t.equal(GetTotalAllowedInvites(mkFakeUser(1, { joinDate: 1638316800000 })), Infinity);
 
 		t.end();
 	});

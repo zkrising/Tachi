@@ -70,7 +70,7 @@ export class DatabaseSeedsRepo {
 		await fs.writeFile(this.CollectionNameToPath(collectionName), JSON.stringify(content));
 
 		// Deterministically sort whatever content we just wrote.
-		await asyncExec(`node scripts/deterministic-collection-sort.js`, this.baseDir);
+		await asyncExec(`node ../scripts/deterministic-collection-sort.js`, this.baseDir);
 	}
 
 	/**

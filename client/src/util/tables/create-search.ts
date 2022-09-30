@@ -1,12 +1,12 @@
 import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
 import { ValueGetterOrHybrid } from "util/ztable/search";
 import {
-	BMS_TABLE_ICONS,
 	ChartDocument,
 	Game,
 	GamePTConfig,
 	GetGamePTConfig,
 	IDStrings,
+	BMS_TABLES,
 } from "tachi-common";
 import { FolderDataset, PBDataset, ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
@@ -144,29 +144,20 @@ function CreateCalcDataSearchFns(gptConfig: GamePTConfig) {
 	);
 }
 
+/**
+ * Add BMS tables to the list of available searchy things.
+ */
 function HandleBMSNonsense(
 	searchFunctions: Record<string, any>,
 	playtype: Playtype,
 	chartGetter: (u: any) => ChartDocument<"bms:7K" | "bms:14K">
 ) {
-	const appendSearches: Record<string, ValueGetterOrHybrid<any>> = playtype === "7K"
-		? {
-				insane: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.insane),
-				overjoy: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.overjoy),
-				insane2: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.insane2),
-				normal: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.normal),
-				normal2: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.normal2),
-				st: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.stella),
-				sl: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.satellite),
-				satellite: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.satellite),
-				stella: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.stella),
-		  }
-		: {
-				insane: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.dpInsane),
-				normal: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.dpNormal),
-				sl: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.satellite),
-				satellite: (x) => GetBMSTableVal(chartGetter(x), BMS_TABLE_ICONS.satellite),
-		  };
+	const appendSearches: Record<string, ValueGetterOrHybrid<any>> = Object.fromEntries(
+		BMS_TABLES.filter((e) => e.playtype === playtype).map((e) => [
+			e.asciiPrefix,
+			(x) => GetBMSTableVal(chartGetter(x), e.prefix),
+		])
+	);
 
 	Object.assign(searchFunctions, appendSearches);
 }

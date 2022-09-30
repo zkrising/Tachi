@@ -7,30 +7,12 @@ export interface BMSTableInfo {
 	 * Used to generate tableIDs. This stops us from having characters like "◎" in tableIDs
 	 * which would undoubtedly break some URLs.
 	 */
-	asciiPrefix: keyof typeof BMS_TABLE_ICONS;
+	asciiPrefix: string;
 	name: string;
 	description: string;
 	playtype: Playtypes["bms"];
 	url: string;
 }
-
-export const BMS_TABLE_ICONS = {
-	insane: "★",
-	overjoy: "★★",
-	normal: "☆",
-	normal2: "▽",
-	insane2: "▼",
-	stella: "st",
-	satellite: "sl",
-	dpSatellite: "sl",
-	dpNormal: "δ",
-	dpInsane: "★",
-	scratch: "h◎",
-	ln: "◆",
-	lnOverjoy: "◆◆",
-	stardust: "ξ",
-	starlight: "sr",
-};
 
 // I have no confidence in half of these links surviving.
 // Eventually, some of these are going to disappear, and we'll have to find
@@ -41,7 +23,7 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		playtype: "7K",
 		description: "The 7K GENOSIDE insane table.",
 		url: "http://www.ribbit.xyz/bms/tables/insane_body.json",
-		prefix: BMS_TABLE_ICONS.insane,
+		prefix: "★",
 		asciiPrefix: "insane",
 	},
 	{
@@ -49,7 +31,7 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		playtype: "7K",
 		description: "The 7K GENOSIDE normal table.",
 		url: "http://www.ribbit.xyz/bms/tables/normal_body.json",
-		prefix: BMS_TABLE_ICONS.normal,
+		prefix: "☆",
 		asciiPrefix: "normal",
 	},
 	{
@@ -57,7 +39,7 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		playtype: "7K",
 		description: "The stella table, from Stellaverse.",
 		url: "https://stellabms.xyz/st/score.json",
-		prefix: BMS_TABLE_ICONS.stella,
+		prefix: "st",
 		asciiPrefix: "stella",
 	},
 	{
@@ -65,7 +47,7 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		playtype: "7K",
 		description: "The satellite table, from Stellaverse.",
 		url: "https://stellabms.xyz/sl/score.json",
-		prefix: BMS_TABLE_ICONS.satellite,
+		prefix: "sl",
 		asciiPrefix: "satellite",
 	},
 	{
@@ -73,7 +55,7 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		playtype: "7K",
 		description: "A successor to the original insane table, but is generally less consistent.",
 		url: "https://rattoto10.github.io/second_table/insane_data.json",
-		prefix: BMS_TABLE_ICONS.insane2,
+		prefix: "▼",
 		asciiPrefix: "insane2",
 	},
 	{
@@ -81,7 +63,7 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		playtype: "7K",
 		description: "A successor to the original normal table.",
 		url: "https://rattoto10.github.io/second_table/score.json",
-		prefix: BMS_TABLE_ICONS.normal2,
+		prefix: "▽",
 		asciiPrefix: "normal2",
 	},
 	{
@@ -89,14 +71,14 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		description: "The overjoy table. Level 1 is roughly equivalent to Insane 20.",
 		playtype: "7K",
 		url: "http://lr2.sakura.ne.jp/data/score.json",
-		prefix: BMS_TABLE_ICONS.overjoy,
+		prefix: "★★",
 		asciiPrefix: "overjoy",
 	},
 	{
 		name: "DP Insane",
 		description: "The 14K Insane table.",
 		playtype: "14K",
-		prefix: BMS_TABLE_ICONS.dpInsane,
+		prefix: "★",
 		asciiPrefix: "dpInsane",
 		url: "http://dpbmsdelta.web.fc2.com/table/data/insane_data.json",
 	},
@@ -104,7 +86,7 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		name: "DP Normal",
 		description: "The 14K Normal table, Sometimes called the delta table.",
 		playtype: "14K",
-		prefix: BMS_TABLE_ICONS.dpNormal,
+		prefix: "δ",
 		asciiPrefix: "dpNormal",
 		url: "http://dpbmsdelta.web.fc2.com/table/data/dpdelta_data.json",
 	},
@@ -112,14 +94,14 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		name: "DP Satellite",
 		description: "The 14K Satellite table.",
 		playtype: "14K",
-		prefix: BMS_TABLE_ICONS.dpSatellite,
+		prefix: "sl",
 		asciiPrefix: "dpSatellite",
 		url: "https://stellabms.xyz/dp/score.json",
 	},
 	{
 		name: "Scratch 3rd",
 		description: "The 7K Sara 3 table.",
-		prefix: BMS_TABLE_ICONS.scratch,
+		prefix: "h◎",
 		asciiPrefix: "scratch",
 		playtype: "7K",
 		url: "http://minddnim.web.fc2.com/sara/3rd_hard/json/data.json",
@@ -127,14 +109,14 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 	{
 		name: "LN",
 		description: "The 7K LN table.",
-		prefix: BMS_TABLE_ICONS.ln,
+		prefix: "◆",
 		asciiPrefix: "ln",
 		playtype: "7K",
 		url: "http://flowermaster.web.fc2.com/lrnanido/gla/score.json",
 	},
 	{
 		name: "Stardust",
-		prefix: BMS_TABLE_ICONS.stardust,
+		prefix: "ξ",
 		asciiPrefix: "stardust",
 		playtype: "7K",
 		url: "https://mqppppp.neocities.org/StardustData.json",
@@ -142,7 +124,7 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 	},
 	{
 		name: "Starlight",
-		prefix: BMS_TABLE_ICONS.starlight,
+		prefix: "sr",
 		asciiPrefix: "starlight",
 		playtype: "7K",
 		url: "https://djkuroakari.github.io/data.json",
@@ -150,10 +132,18 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 	},
 	{
 		name: "LN Overjoy",
-		prefix: BMS_TABLE_ICONS.lnOverjoy,
+		prefix: "◆◆",
 		asciiPrefix: "lnOverjoy",
 		playtype: "7K",
 		url: "https://notepara.com/glassist/lnoj/body.json",
 		description: "The 7K LN Overjoy table.",
+	},
+	{
+		name: "Luminous",
+		prefix: "lm",
+		asciiPrefix: "luminous",
+		playtype: "7K",
+		url: "https://luminous-api.herokuapp.com/api/charts/accept",
+		description: "The 7K Luminous Table. This is an alternative to the mainline LN tables.",
 	},
 ];

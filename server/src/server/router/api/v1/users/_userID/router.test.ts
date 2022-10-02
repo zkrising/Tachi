@@ -120,6 +120,20 @@ t.test("PATCH /api/v1/users/:userID", async (t) => {
 		t.end();
 	});
 
+	t.test("Shouldn't allow empty strings for about me.", async (t) => {
+		const res = await mockApi.patch("/api/v1/users/1").set("Cookie", cookie).send({
+			about: "",
+		});
+
+		t.equal(res.statusCode, 200);
+
+		const dbUser = await db.users.findOne({ id: 1 });
+
+		t.equal(dbUser?.about, "");
+
+		t.end();
+	});
+
 	t.test("Shouldn't allow about me to be set to null.", async (t) => {
 		const res = await mockApi.patch("/api/v1/users/1").set("Cookie", cookie).send({
 			about: null,

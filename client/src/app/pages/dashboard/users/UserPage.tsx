@@ -34,7 +34,7 @@ function AboutMeCard({ reqUser }: Props) {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ about: content.length === 0 ? null : content }),
+				body: JSON.stringify({ about: content }),
 			},
 			true,
 			true

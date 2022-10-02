@@ -120,7 +120,7 @@ t.test("PATCH /api/v1/users/:userID", async (t) => {
 		t.end();
 	});
 
-	t.test("Shouldn't allow empty strings for about me.", async (t) => {
+	t.test("Should allow empty strings for about me.", async (t) => {
 		const res = await mockApi.patch("/api/v1/users/1").set("Cookie", cookie).send({
 			about: "",
 		});

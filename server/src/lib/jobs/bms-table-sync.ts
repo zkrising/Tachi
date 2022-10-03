@@ -1,22 +1,16 @@
 /* eslint-disable no-await-in-loop */
+import { LoadBMSTable } from "bms-table-loader";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import fetch from "node-fetch";
 import { BMS_TABLES } from "tachi-common";
 import { CreateFolderID, InitaliseFolderChartLookup } from "utils/folder";
 import { FormatBMSTables } from "utils/misc";
+import type { BMSTableEntry } from "bms-table-loader";
 import type { BMSTableInfo, ChartDocument } from "tachi-common";
-
-// this seems to be all we care about
-interface TableJSONDoc {
-	md5: string;
-	title?: string;
-	level: string;
-}
 
 const logger = CreateLogCtx(__filename);
 
-async function ImportTableLevels(tableJSON: Array<TableJSONDoc>, prefix: string) {
+async function ImportTableLevels(tableJSON: Array<BMSTableEntry>, prefix: string) {
 	let failures = 0;
 	let success = 0;
 	const total = tableJSON.length;
@@ -67,65 +61,19 @@ async function ImportTableLevels(tableJSON: Array<TableJSONDoc>, prefix: string)
 	logger.info(`${success} Success | ${failures} Failures | ${total} Total.`);
 }
 
-interface BMSTableChart {
-	title: string;
-	artist: string;
-	url: string;
-	url_diff: string;
-	md5: string;
-	sha256: string;
-	level: string;
-}
+export async function UpdateTable(tableInfo: BMSTableInfo) {
+	const table = await LoadBMSTable(tableInfo.url);
 
-const RETRY_COUNT = 3;
-
-export async function UpdateTable(table: BMSTableInfo) {
-	const res = await fetch(table.url);
-
-	const statusCode = res.status;
-
-	let retries = 0;
-
-	// instead of using res.json() we have to use res.text() here
-	// so we have proper logging when some of these bms urls
-	// spontaneously return HTML.
-	let tableJSON: Array<BMSTableChart> | undefined;
-
-	// We need to have a retry counter because some of the bms tables
-	// randomly return useless html for no reason.
-
-	// i hate bms.
-	while (!tableJSON) {
-		let text;
-
-		try {
-			text = await res.text();
-
-			// @hack -- this is a force cast.
-			tableJSON = JSON.parse(text) as unknown as Array<BMSTableChart>;
-		} catch (err) {
-			logger.error(`Failed to fetch ${table.url}`, { err, res, statusCode, text });
-			retries++;
-
-			if (retries > RETRY_COUNT) {
-				logger.error(`SKIPPING TABLE!`);
-				return;
-			}
-
-			logger.info(`Retrying ${table.url}.`);
-		}
-	}
-
-	const tableID = `bms-${table.playtype}-${table.asciiPrefix}`;
+	const tableID = `bms-${tableInfo.playtype}-${tableInfo.asciiPrefix}`;
 
 	const folderIDs = [];
-	const levels = [...new Set(tableJSON.map((e) => e.level))];
+	const levels = table.getLevelOrder();
 
 	for (const level of levels) {
 		const query = {
 			"data¬tableFolders": {
 				"~elemMatch": {
-					table: table.prefix,
+					table: tableInfo.prefix,
 
 					// just incase some dude tries numbers
 					level: level.toString(),
@@ -133,7 +81,7 @@ export async function UpdateTable(table: BMSTableInfo) {
 			},
 		};
 
-		const folderID = CreateFolderID(query, "bms", table.playtype);
+		const folderID = CreateFolderID(query, "bms", tableInfo.playtype);
 
 		folderIDs.push(folderID);
 
@@ -146,17 +94,17 @@ export async function UpdateTable(table: BMSTableInfo) {
 		}
 
 		await db.folders.insert({
-			title: `${table.prefix}${level}`,
+			title: `${tableInfo.prefix}${level}`,
 			inactive: false,
 			folderID,
 			game: "bms",
-			playtype: table.playtype,
+			playtype: tableInfo.playtype,
 			type: "charts",
 			data: query,
-			searchTerms: [`${table.name} ${level}`],
+			searchTerms: [`${tableInfo.name} ${level}`],
 		});
 
-		logger.info(`Inserted new folder ${table.prefix}${level}.`);
+		logger.info(`Inserted new folder ${tableInfo.prefix}${level}.`);
 	}
 
 	await db.tables.update(
@@ -165,10 +113,10 @@ export async function UpdateTable(table: BMSTableInfo) {
 			$set: {
 				tableID,
 				game: "bms",
-				playtype: table.playtype,
+				playtype: tableInfo.playtype,
 				folders: folderIDs,
-				title: table.name,
-				description: table.description,
+				title: tableInfo.name,
+				description: tableInfo.description,
 				inactive: false,
 			},
 			$setOnInsert: {
@@ -180,15 +128,15 @@ export async function UpdateTable(table: BMSTableInfo) {
 		}
 	);
 
-	logger.info(`Bumped table ${table.name}.`);
+	logger.info(`Bumped table ${tableInfo.name}.`);
 
 	logger.info(`Checking meta-folder...`);
 
 	const metaQuery = {
-		"data¬tableFolders¬table": table.prefix,
+		"data¬tableFolders¬table": tableInfo.prefix,
 	};
 
-	const folderID = CreateFolderID(metaQuery, "bms", table.playtype);
+	const folderID = CreateFolderID(metaQuery, "bms", tableInfo.playtype);
 
 	folderIDs.push(folderID);
 
@@ -198,19 +146,19 @@ export async function UpdateTable(table: BMSTableInfo) {
 
 	if (!exists) {
 		await db.folders.insert({
-			title: `${table.name}`,
+			title: `${tableInfo.name}`,
 			inactive: false,
 			folderID,
 			game: "bms",
-			playtype: table.playtype,
+			playtype: tableInfo.playtype,
 			type: "charts",
 			data: metaQuery,
-			searchTerms: [table.asciiPrefix],
+			searchTerms: [tableInfo.asciiPrefix],
 		});
 
 		await db.tables.update(
 			{
-				tableID: `bms-${table.playtype}-meta`,
+				tableID: `bms-${tableInfo.playtype}-meta`,
 			},
 			{
 				$push: {
@@ -219,11 +167,11 @@ export async function UpdateTable(table: BMSTableInfo) {
 			}
 		);
 
-		logger.info(`Inserted meta folder for ${table.name}.`);
+		logger.info(`Inserted meta folder for ${tableInfo.name}.`);
 	}
 
 	logger.info(`Bumping levels...`);
-	await ImportTableLevels(tableJSON, table.prefix);
+	await ImportTableLevels(table.body, tableInfo.prefix);
 	logger.info(`Levels bumped.`);
 }
 

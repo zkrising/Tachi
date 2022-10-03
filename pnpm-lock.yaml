@@ -336,7 +336,7 @@ importers:
       '@types/tap': 15.0.5
       '@valuabletouch/winston-seq': 1.3.0
       bcryptjs: 2.4.3
-      bms-table-loader: ^1.0.0
+      bms-table-loader: 1.0.1
       bullmq: 1.68.4
       bunyan: 1.8.15
       commander: 9.0.0
@@ -404,7 +404,7 @@ importers:
       '@types/semver': 7.3.10
       '@valuabletouch/winston-seq': 1.3.0
       bcryptjs: 2.4.3
-      bms-table-loader: 1.0.0
+      bms-table-loader: 1.0.1
       bullmq: 1.68.4
       bunyan: 1.8.15
       commander: 9.0.0
@@ -4417,8 +4417,8 @@ packages:
   /bluebird/3.7.2:
     resolution: {integrity: sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==}
 
-  /bms-table-loader/1.0.0:
-    resolution: {integrity: sha512-vvwmp8wkhhqyH3T8WlbctxW6MjDXvGuQhnfeNiGQfpo8TgL8eqtKrFWW6WmzLwSqKt7yMvZO02PqCVHaNPD5SA==}
+  /bms-table-loader/1.0.1:
+    resolution: {integrity: sha512-4UtqyeTPcEaHDl+9eeFzU3nf87Lj7uR7SRYzUjHgiXbIZVRj/exrK1g9d/6JFhti87ohnZPp5z31iX/MN5/nxg==}
     dependencies:
       node-fetch: 2.6.2
       zod: 3.19.1

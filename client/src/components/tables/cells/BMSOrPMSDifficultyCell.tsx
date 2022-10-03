@@ -3,7 +3,7 @@ import { FormatTables } from "util/misc";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
 import React from "react";
-import { ChartDocument, COLOUR_SET } from "tachi-common";
+import { BMS_TABLES, ChartDocument, COLOUR_SET } from "tachi-common";
 import Muted from "components/util/Muted";
 import TierlistInfoPart from "./TierlistInfoPart";
 
@@ -19,14 +19,22 @@ export default function BMSOrPMSDifficultyCell({
 	const aiLevel = game === "bms" && (chart as ChartDocument<"bms:7K" | "bms:14K">).data.aiLevel;
 
 	let levelText = "No Rating";
+	let backgroundColour = hasLevel ? COLOUR_SET.red : COLOUR_SET.gray;
+
 	if (hasLevel) {
 		levelText = FormatTables(chart.data.tableFolders);
+
+		if (game === "bms") {
+			// use bms table colour instead of just red/gray.
+			// todo: add pms table colours maybe?
+			backgroundColour = FindTableColour(chart.data.tableFolders);
+		}
 	}
 
 	return (
 		<td
 			style={{
-				backgroundColor: ChangeOpacity(hasLevel ? COLOUR_SET.red : COLOUR_SET.gray, 0.2),
+				backgroundColor: ChangeOpacity(backgroundColour, 0.2),
 			}}
 		>
 			{!hasLevel && aiLevel ? (
@@ -52,4 +60,20 @@ export default function BMSOrPMSDifficultyCell({
 			)}
 		</td>
 	);
+}
+
+function FindTableColour(
+	tableFolders: ChartDocument<"bms:7K" | "bms:14K">["data"]["tableFolders"]
+) {
+	const lookup = new Map(BMS_TABLES.map((e) => [e.prefix, e.colour]));
+
+	for (const table of tableFolders) {
+		const colour = lookup.get(table.table);
+
+		if (colour) {
+			return colour;
+		}
+	}
+
+	return COLOUR_SET.gray;
 }

@@ -18,7 +18,7 @@ export default function SeedsViewer() {
 
 	const { data, error: failedToGetLocalAPI } = useApiQuery<Record<string, never>>("/seeds");
 
-	if (!data) {
+	if (!data && !failedToGetLocalAPI) {
 		return <Loading />;
 	}
 

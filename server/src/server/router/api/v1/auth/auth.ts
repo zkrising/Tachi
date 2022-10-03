@@ -178,5 +178,4 @@ export function MountAuthCookie(
 	};
 
 	req.session.cookie.maxAge = 3.154e10;
-	req.session.cookie.secure = Environment.nodeEnv === "production";
 }

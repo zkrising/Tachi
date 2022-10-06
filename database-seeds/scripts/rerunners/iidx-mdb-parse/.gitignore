@@ -1,2 +1,5 @@
 # this gets flooded with extracted .ifses
 ifs-output/*
+
+# parser.ts spits here if invoked by hand
+debug.json

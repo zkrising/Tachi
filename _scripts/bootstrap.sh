@@ -59,7 +59,7 @@ function syncDatabaseWithSeeds {
 
 	cd server
 
-	pnpm run sync-database
+	pnpm run sync-database-local
 
 	echo "Synced."
 }
@@ -68,7 +68,6 @@ mvExampleFiles
 selfSignHTTPS
 pnpmInstall
 syncDatabaseWithSeeds
-
 
 tput setaf 1
 

@@ -340,7 +340,7 @@ const logger = CreateLogCtx("Database Sync");
 
 const program = new Command();
 
-program.option("-l, --localPath <path/to/database-seeds>");
+program.option("-l, --localPath <path/to/database-seeds/collections>");
 
 program.parse(process.argv);
 const options: {

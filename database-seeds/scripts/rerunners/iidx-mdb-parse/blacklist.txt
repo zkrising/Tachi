@@ -1,0 +1,16 @@
+# songID + playtype + difficulty combos to ignore
+# these are regexes, and parse things in the format of
+# C$songid-$playtype-$difficulty
+# they also receive strings in the format of
+# S$songid
+# this is to support features like ignoring entire songs, with something like
+# S1234$
+# lines starting with '#' are ignored
+
+# we don't care about beginners
+BEGINNER
+
+S16072$
+S16080$
+S16081$
+S16082$

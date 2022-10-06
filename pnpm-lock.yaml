@@ -256,6 +256,7 @@ importers:
       fast-xml-parser: ^4.0.2
       glob: ^7.2.0
       html-entities: ^2.3.2
+      iconv-lite: ^0.6.3
       lodash.get: ^4.4.2
       mei-logger: ^1.0.1
       monk: ^7.3.4
@@ -274,6 +275,7 @@ importers:
       fast-xml-parser: 4.0.2
       glob: 7.2.3
       html-entities: 2.3.3
+      iconv-lite: 0.6.3
       lodash.get: 4.4.2
       mei-logger: 1.0.3
       monk: 7.3.4

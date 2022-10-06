@@ -111,17 +111,19 @@ As such, we're going to take the lazy route and use something called [Docker](ht
 	# the docker team maintain a fairly long, complex script that actually installs it on
 	# your system.
 
-	# The following commands should install docker.
+	# The following commands should install docker. Repace <focal> with your version of ubuntu.
 	sudo apt update
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+	sudo apt update
 	sudo apt install docker-ce
 	sudo usermod -aG docker ${USER}
 	su - ${USER}
 
 	# The following command should install docker compose.
 	sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+	sudo chmod +x /usr/local/bin/docker-compose
 	```
 
 === "Arch, Manjaro"
@@ -196,7 +198,7 @@ Before we bootstrap, lets get the databases started.
 	**You should be inside the Tachi folder you just cloned.**
 
 ```sh
-docker compose up --detach
+docker-compose up --detach
 ```
 
 ## 5. Bootstrap!

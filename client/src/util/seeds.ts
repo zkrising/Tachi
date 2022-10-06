@@ -15,7 +15,7 @@ import {
 	SongDocument,
 	TableDocument,
 } from "tachi-common";
-import { GitCommit } from "types/git";
+import { Branch, GitCommit } from "types/git";
 import {
 	BMSCourseWithRelated,
 	ChartWithRelated,
@@ -83,8 +83,42 @@ export async function LoadSeeds(repo: string, ref: string): Promise<Partial<AllD
 	throw new Error(`Unknown repository type '${repo}'.`);
 }
 
-export async function LoadCommit(repo: string, sha: string) {
+export async function LoadCommit(repo: string, sha: string): Promise<GitCommit | null> {
 	if (repo === "local") {
+		if (sha === "WORKING_DIRECTORY") {
+			const branchRes = await APIFetchV1<{ current: Branch }>(`/seeds/branches`);
+
+			if (!branchRes.success) {
+				throw new Error(`Failed to fetch branches, but was loading LOCAL_DIRECTORY?`);
+			}
+
+			const params = new URLSearchParams({ branch: branchRes.body.current.name });
+
+			const res = await APIFetchV1<Array<GitCommit>>(`/seeds/commits?${params.toString()}`);
+
+			if (!res.success) {
+				throw new Error(`Failed to fetch commits, but was loading LOCAL_DIRECTORY?`);
+			}
+
+			return {
+				sha: "WORKING_DIRECTORY",
+				commit: {
+					author: {
+						name: "Not Committed Yet",
+						date: "1970-01-01",
+						email: "null@example.com",
+					},
+					committer: {
+						name: "Not Committed Yet",
+						date: "1970-01-01",
+						email: "null@example.com",
+					},
+					message: "Uncommitted changes on your local disk.",
+				},
+				parents: [{ sha: res.body[0].sha! }],
+			};
+		}
+
 		const params = new URLSearchParams({ sha });
 
 		const res = await APIFetchV1<GitCommit>(`/seeds/commit?${params.toString()}`);

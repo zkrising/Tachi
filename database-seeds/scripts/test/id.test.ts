@@ -1,11 +1,12 @@
 import chalk from "chalk";
-import { Game } from "tachi-common";
+import { Game, integer } from "tachi-common";
 import { allSupportedGames } from "tachi-common/config/static-config";
 import { SCHEMAS } from "tachi-common/lib/schemas";
 import { ReadCollection } from "../util";
 import { FormatFunctions } from "./test-utils";
 import get from "lodash.get";
 import fjsh from "fast-json-stable-hash";
+import logger from "../logger";
 
 // Either it's a bare string or an array of strings for co-uniqueness.
 type DuplicateKeyDecl = string | string[];
@@ -52,6 +53,41 @@ UniqueKeys["charts-itg"]!.push("data.chartHash");
 let exitCode = 0;
 const suites: Array<{ name: string; good: boolean; report: unknown }> = [];
 
+/**
+ * Turns [[A B], [C], [D E]] into
+ * [A C D], [A C E], [B C D], [B C E]
+ *
+ * https://github.com/izaakschroeder/cartesian-product/blob/master/lib/product.js
+ */
+function cartesianProduct(elements: Array<Array<unknown>>) {
+	const end = elements.length - 1;
+	const result: Array<Array<unknown>> = [];
+
+	function addTo(curr: Array<unknown>, start: integer) {
+		const first = elements[start]!;
+		const last = start === end;
+
+		for (let i = 0; i < first.length; ++i) {
+			const copy = curr.slice();
+			copy.push(first[i]);
+
+			if (last) {
+				result.push(copy);
+			} else {
+				addTo(copy, start + 1);
+			}
+		}
+	}
+
+	if (elements.length > 0) {
+		addTo([], 0);
+	} else {
+		result.push([]);
+	}
+
+	return result;
+}
+
 for (const [collection, uniqueIDs] of Object.entries(UniqueKeys)) {
 	console.log(`[VALIDATING DUPES] ${collection}`);
 
@@ -81,31 +117,45 @@ for (const [collection, uniqueIDs] of Object.entries(UniqueKeys)) {
 		for (const d of data) {
 			const pretty = formatFn(d, game);
 
-			let pureValue: string;
-			let value: string;
+			let value: Array<Array<string | number>>;
 
+			// insane parallelisation code
 			if (Array.isArray(uniqueID)) {
 				const mappedProps = uniqueID.map((e) => get(d, e));
 
-				pureValue = mappedProps.join(", ");
-				value = fjsh.hash(mappedProps, "sha256");
+				value = mappedProps;
 			} else {
-				value = get(d, uniqueID);
-				pureValue = value;
+				value = [get(d, uniqueID)];
 			}
 
-			// Null is special -- we're allowed duplicates of null for some
-			// keys.
-			if (set.has(value) && !(uniqueID === "data.arcChartID" && value === null)) {
-				console.error(
-					chalk.red(
-						`[ERR] ${collectionName} | ${pretty} | Is duplicate on ${uniqueID}:${pureValue}.`
-					)
-				);
-				fails++;
-			} else {
-				success++;
-				set.add(value);
+			// cartesian product values before we interact with them.
+			const values = cartesianProduct(value.map((e) => (Array.isArray(e) ? e : [e]))).map(
+				(e) => ({
+					value: fjsh.hash(e, "sha256"),
+					humanisedValue: e.map((e) => String(e)).join(", "),
+				})
+			);
+
+			for (const { value, humanisedValue } of values) {
+				// Null is special -- we're allowed duplicates of null for some
+				// keys.
+				if (
+					set.has(value) &&
+					// value is not null, and uniqueID isn't data.arcChartID
+					// this is because there may be dupes on data.arcChartID: null.
+					// sparse index, zzz.
+					!(uniqueID === "data.arcChartID" && humanisedValue === "null")
+				) {
+					console.error(
+						chalk.red(
+							`[ERR] ${collectionName} | ${pretty} | Is duplicate on ${uniqueID}:${humanisedValue}.`
+						)
+					);
+					fails++;
+				} else {
+					success++;
+					set.add(value);
+				}
 			}
 		}
 	}

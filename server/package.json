@@ -15,7 +15,7 @@
 		"start-no-build": "node -r ts-node/register -r tsconfig-paths/register js/server/src/main.js",
 		"runscoreworker": "node -r ts-node/register -r tsconfig-paths/register js/server/src/lib/score-import/worker/worker.js",
 		"sync-database": "ts-node src/scripts/sync-database",
-		"sync-database-local": "ts-node src/scripts/sync-database --localPath '../database-seeds'",
+		"sync-database-local": "ts-node src/scripts/sync-database --localPath '../database-seeds/collections'",
 		"recalc-everything": "ts-node src/scripts/state-sync/sync-state.ts"
 	},
 	"author": "zkldi",

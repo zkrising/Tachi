@@ -14,3 +14,9 @@ S16072$
 S16080$
 S16081$
 S16082$
+
+# there are two songs called Changes in omnimix. We support neither.
+# this is because it means we can't use songTitle as a matching thing
+# even though we really want to.
+S10029$
+S6211$

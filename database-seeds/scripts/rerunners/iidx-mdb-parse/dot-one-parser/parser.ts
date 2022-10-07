@@ -18,6 +18,7 @@ import {
 } from "./types";
 import fs from "fs/promises";
 import logger from "../../../logger";
+import path from "path";
 
 interface EventParserContext {
 	isDP?: boolean;
@@ -228,7 +229,11 @@ function ParseEvent(
 				obj.col = 1;
 			} else {
 				logger.warn(
-					`Unknown column of scratchObj sent to EventParser: ${data.param}, expected 7 or 14. Skipping.`
+					`(${
+						parseContext.songTitle ?? "UNKNOWN"
+					}) Unknown column of scratchObj sent to EventParser: ${
+						data.param
+					}, expected 7 or 14. Skipping.`
 				);
 				return null;
 			}
@@ -251,7 +256,13 @@ function ParseEvent(
 		};
 	} else if (type === "BPM") {
 		if (data.param === 0) {
-			logger.warn("Invalid value of 0 for denominator in BPM event. Skipping.");
+			logger.warn(
+				`(${
+					parseContext.songTitle ?? "UNKNOWN"
+				}) Invalid value of 0 for denominator in BPM event (numerator was ${
+					data.val
+				}). Skipping.`
+			);
 			return null;
 		}
 
@@ -291,7 +302,9 @@ function ParseEvent(
 
 		if (!window) {
 			logger.warn(
-				`Unknown type of timingWindow: ${window}, from .1 param ${data.param}. Skipping.`
+				`(${
+					parseContext.songTitle ?? "UNKNOWN"
+				}) Unknown type of timingWindow: ${window}, from .1 param ${data.param}. Skipping.`
 			);
 			return null;
 		}
@@ -328,7 +341,9 @@ function ParseEvent(
 		if (parseContext.isDP) {
 			if (data.param !== 0 && data.param !== 1) {
 				logger.warn(
-					`Invalid parameter for measurebar of ${data.param}. Defaulting to 0 (left hand side).`
+					`(${parseContext.songTitle ?? "UNKNOWN"}) Invalid parameter for measurebar of ${
+						data.param
+					}. Defaulting to 0 (left hand side).`
 				);
 				obj.side = 0;
 			} else {
@@ -353,15 +368,15 @@ function ParseEvent(
 		// this chart is using HCNs.
 		options.isHellCharge = true;
 		return null;
+	} else if (data.type === 11) {
+		// it's some sort of unknown BGA-related thing. Only seems to happen in older
+		// charts. Maybe it was some sort of diverging bga instruction at one point?
+		return null;
 	} else {
 		logger.warn(
 			`(${parseContext.songTitle ?? "UNKNOWN"}) Unknown event type in .1: ${
 				data.type
-			} at ${ms.toFixed(2)}ms. Ignoring.${
-				data.type === 11
-					? " (It's BGA Related. Not sure what it does, but don't worry.)"
-					: ""
-			}`
+			} at ${ms.toFixed(2)}ms. Ignoring.`
 		);
 		return null;
 	}
@@ -457,7 +472,9 @@ export function ParseDotOne(
 
 		if (!difficulty) {
 			logger.warn(
-				`Data present inside directory ${i}, but this corresponds to an unknown difficulty. Ignoring.`
+				`(${
+					context.songTitle ?? "UNKNOWN"
+				}) Data present inside directory ${i}, but this corresponds to an unknown difficulty. Ignoring.`
 			);
 			continue;
 		}
@@ -506,11 +523,20 @@ function getNotecount(events: IIDXChartEvents) {
 }
 
 export async function ParseDotOneFile(
-	fileath: string,
+	filepath: string,
 	context: IIDXParserContext = {},
 	options: IIDXParserOptions = {}
 ) {
-	const data = await fs.readFile(fileath);
+	const data = await fs.readFile(filepath);
 
 	return ParseDotOne(data, context, options);
+}
+
+// if invoked as a script, parse the dotone and spit it out to debug.json.
+if (require.main === module) {
+	(async () => {
+		const res = await ParseDotOneFile(process.argv.slice(2).join(" "));
+
+		await fs.writeFile(path.join(__dirname, "debug.json"), JSON.stringify(res, null, "\t"));
+	})();
 }

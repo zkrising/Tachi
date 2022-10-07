@@ -1,7 +1,7 @@
 // Charts that had their notecounts changed as the result of a recent discovered
-
 import db from "external/mongo/db";
 import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
+import { DeleteMultipleScores } from "lib/score-mutation/delete-scores";
 import UpdateScore from "lib/score-mutation/update-score";
 import { GetGamePTConfig } from "tachi-common";
 import type { ScoreDocument, ChartDocument } from "tachi-common";
@@ -11,8 +11,6 @@ import type { Migration } from "utils/types";
 const recalcChartIDs = [
 	"38ebf85a6b9079bed6acb418cc3866f3a6b6adb7",
 	"88a5f281abf7ce08fde62769edb50b2ed8a1eeb9",
-	"cd89731d004cdcc5292aa10d11c181d8d0545aa5",
-	"8520f95da6f51548adde23ce84bf800e4a19334b",
 	"fcb31b1536d97bfb213cc574462d68d40f9fb15e",
 	"bd67cde14867804902f526c61df59982cb4ffa3e",
 	"241d190af5648d98a91f3b37585d648020d272ff",
@@ -41,9 +39,24 @@ const recalcChartIDs = [
 	"85a4e8cebef9a12dddb407ff581f499a078f6010",
 ];
 
+// jelly kiss DPN and DPH are now unreliable
+// their charts were changed at some point, but the versions are wrong,
+// we have to wipe these charts, sadly.
+const toWipe = [
+	"cd89731d004cdcc5292aa10d11c181d8d0545aa5",
+	"8520f95da6f51548adde23ce84bf800e4a19334b",
+];
+
 const migration: Migration = {
 	id: "recalc-broken-iidx-notecounts",
 	up: async () => {
+		const toDelete = await db.scores.find({
+			game: "iidx",
+			chartID: { $in: toWipe },
+		});
+
+		await DeleteMultipleScores(toDelete);
+
 		await Promise.all(recalcChartIDs.map((e) => HandleChangedIIDXNotecount(e)));
 	},
 	down: () => {

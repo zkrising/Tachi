@@ -1,4 +1,5 @@
 import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
+import RecalcBrokenIIDXNotecounts from "./migrations/recalc-broken-iidx-notecounts";
 import RemoveIIDXBeginners from "./migrations/remove-iidx-beginners";
 import RemoveMultifolderStats from "./migrations/remove-multifolder-stats";
 import UpdateJubeatPreferredTables from "./migrations/update-jubeat-preferred-tables";
@@ -31,6 +32,7 @@ const REGISTERED_MIGRATIONS: Array<Migration> =
 				RemoveMultifolderStats,
 				RemoveIIDXBeginners,
 				UpdateJubeatPreferredTables,
+				RecalcBrokenIIDXNotecounts,
 		  ];
 
 function CreateMigrationLookupMap(migrations: Array<Migration>) {

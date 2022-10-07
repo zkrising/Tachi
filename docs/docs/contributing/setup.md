@@ -111,7 +111,7 @@ As such, we're going to take the lazy route and use something called [Docker](ht
 	# the docker team maintain a fairly long, complex script that actually installs it on
 	# your system.
 
-	# The following commands should install docker. Repace <focal> with your version of ubuntu.
+	# The following commands should install docker. Replace <focal> with your version of ubuntu.
 	sudo apt update
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -198,6 +198,8 @@ Before we bootstrap, lets get the databases started.
 	**You should be inside the Tachi folder you just cloned.**
 
 ```sh
+# you can write either docker compose or docker-compose. However, the former might
+# require you to restart your shell if you've just installed docker compose.
 docker-compose up --detach
 ```
 

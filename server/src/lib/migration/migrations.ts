@@ -5,7 +5,7 @@ import RemoveMultifolderStats from "./migrations/remove-multifolder-stats";
 import UpdateJubeatPreferredTables from "./migrations/update-jubeat-preferred-tables";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { Environment } from "lib/setup/config";
+import { Environment, TachiConfig } from "lib/setup/config";
 import type { Migration } from "utils/types";
 
 const logger = CreateLogCtx(__filename);
@@ -27,13 +27,25 @@ export const FAKE_MIGRATION: Migration = {
 const REGISTERED_MIGRATIONS: Array<Migration> =
 	Environment.nodeEnv === "test"
 		? [FAKE_MIGRATION]
-		: [
-				UGPTRivalsMigration,
-				RemoveMultifolderStats,
-				RemoveIIDXBeginners,
-				UpdateJubeatPreferredTables,
-				RecalcBrokenIIDXNotecounts,
-		  ];
+		: [UGPTRivalsMigration, RemoveMultifolderStats];
+
+// only apply type-specific migrations if we're not in testing
+if (Environment.nodeEnv !== "test") {
+	// kamaitachi specific migrations
+	if (TachiConfig.TYPE !== "btchi") {
+		// these only make sense if iidx is supported.
+		REGISTERED_MIGRATIONS.push(
+			RecalcBrokenIIDXNotecounts,
+			RemoveIIDXBeginners,
+			UpdateJubeatPreferredTables
+		);
+	}
+
+	// bokutachi specific migrations
+	if (TachiConfig.TYPE !== "ktchi") {
+		// none, currently
+	}
+}
 
 function CreateMigrationLookupMap(migrations: Array<Migration>) {
 	const map = new Map<string, Migration>();

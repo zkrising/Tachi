@@ -341,11 +341,22 @@ export async function ResolveMatchTypeToKTData(
 
 			const difficulty = AssertStrAsDifficulty(data.difficulty, game, context.playtype);
 
-			const chart = await db.charts[game].findOne({
-				"data.inGameID": identifier,
-				playtype: context.playtype,
-				difficulty,
-			});
+			let chart;
+
+			if (context.version) {
+				chart = await db.charts[game].findOne({
+					"data.inGameID": identifier,
+					playtype: context.playtype,
+					difficulty,
+					versions: context.version,
+				});
+			} else {
+				chart = await db.charts[game].findOne({
+					"data.inGameID": identifier,
+					playtype: context.playtype,
+					difficulty,
+				});
+			}
 
 			if (!chart) {
 				throw new KTDataNotFoundFailure(

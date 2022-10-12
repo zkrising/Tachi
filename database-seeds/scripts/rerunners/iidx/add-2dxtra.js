@@ -54,7 +54,7 @@ function SplitFervidexChartRef(ferDif) {
 			difficulty = "LEGGENDARIA";
 			break;
 		default:
-			throw new InternalFailure(`Invalid fervidex difficulty of ${ferDif}`);
+			throw new Error(`Invalid fervidex difficulty of ${ferDif}`);
 	}
 
 	return { playtype, difficulty };

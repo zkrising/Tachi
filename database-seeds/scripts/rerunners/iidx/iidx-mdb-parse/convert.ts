@@ -3,7 +3,7 @@ import path from "path";
 import iconv from "iconv-lite";
 import { execSync } from "child_process";
 import { ParseDotOneFile } from "./dot-one-parser/parser";
-import logger from "../../logger";
+import logger from "../../../logger";
 import { IIDXConvertOutput } from "./dot-one-parser/types";
 import { integer } from "tachi-common";
 

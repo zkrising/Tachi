@@ -7,13 +7,13 @@ import {
 	integer,
 	SongDocument,
 } from "tachi-common";
-import logger from "../../logger";
+import logger from "../../../logger";
 import {
 	CreateChartID,
 	GetFreshScoreIDGenerator,
 	ReadCollection,
 	WriteCollection,
-} from "../../util";
+} from "../../../util";
 import { ParseIIDXData } from "./convert";
 import fs from "fs";
 import path from "path";

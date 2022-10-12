@@ -17,7 +17,7 @@ import {
 	TimingWindowsObject,
 } from "./types";
 import fs from "fs/promises";
-import logger from "../../../logger";
+import logger from "../../../../logger";
 import path from "path";
 
 interface EventParserContext {

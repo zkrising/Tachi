@@ -1977,7 +1977,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "lamp",
 
-		supportedVersions: ["peace"],
+		supportedVersions: ["peace", "kaimei"],
 
 		tierlists: [],
 		tierlistDescriptions: {},

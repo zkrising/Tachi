@@ -133,7 +133,7 @@ const prettyGitadoraVersions: Versions["gitadora:Dora"] = {
 export const PrettyVersions: Versions = {
 	"iidx:SP": prettyIIDXVersions,
 	"iidx:DP": prettyIIDXVersions,
-	"popn:9B": { peace: "peace" },
+	"popn:9B": { peace: "peace", kaimei: "Kaimei Riddles" },
 	"bms:7K": {},
 	"bms:14K": {},
 	"chunithm:Single": {

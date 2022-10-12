@@ -761,7 +761,7 @@ type SupportedIIDXVersions =
 export interface GPTSupportedVersions {
 	"iidx:SP": SupportedIIDXVersions;
 	"iidx:DP": SupportedIIDXVersions;
-	"popn:9B": "peace";
+	"popn:9B": "kaimei" | "peace";
 	"sdvx:Single": "booth" | "exceed" | "gw" | "heaven" | "inf" | "konaste" | "vivid";
 	"usc:Controller": never;
 	"usc:Keyboard": never;

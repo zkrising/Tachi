@@ -42,6 +42,32 @@ GET /api/v1/users/1/integrations/kai/flo
 
 *****
 
+## Revoke this user's authentication with this kaiType
+
+`DELETE /api/v1/users/:userID/integrations/kai/:kaiType`
+
+
+**Kamaitachi Only**
+
+!!! note
+	A KaiType is either "flo", "min", or "eag". Since these three services
+	share backends, they all use the same authentication mechanisms, and share
+	endpoints like this.
+
+### Permissions
+
+- Self-key: This request must be made using Cookie authentication, which means it cannot be used with API keys.
+
+### Parameters
+
+None.
+
+### Response
+
+Empty Object.
+
+*****
+
 ## Update a user's access_token and refresh_token from an intermediate code.
 
 `POST /api/v1/users/:userID/integrations/kai/:kaiType/oauth2callback`

@@ -10,6 +10,13 @@ export function GetKaiAuth(userID: integer, service: "EAG" | "FLO" | "MIN") {
 	});
 }
 
+export function RevokeKaiAuth(userID: integer, service: "EAG" | "FLO" | "MIN") {
+	return db["kai-auth-tokens"].remove({
+		userID,
+		service,
+	});
+}
+
 export async function GetKaiAuthGuaranteed(
 	userID: integer,
 	service: "EAG" | "FLO" | "MIN",

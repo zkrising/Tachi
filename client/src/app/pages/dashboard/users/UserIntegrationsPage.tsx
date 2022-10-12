@@ -703,7 +703,32 @@ function KAIIntegrationStatus({
 						: `You are not authenticated with ${kaiType.toUpperCase()}`}
 				</h3>
 				{data.authStatus ? (
-					<h4>There's no configuration to do here. You're all good!</h4>
+					<>
+						<Button
+							variant="danger"
+							onClick={async () => {
+								const res = await APIFetchV1(
+									`/users/${userID}/integrations/kai/${kaiType}`,
+									{
+										method: "DELETE",
+									},
+									true,
+									true
+								);
+
+								if (res.success) {
+									window.location.reload();
+								}
+							}}
+						>
+							Revoke Authentication?
+						</Button>
+						<Divider />
+						The below button will <strong>revoke</strong> your authentication with{" "}
+						{kaiType.toUpperCase()}.
+						<br />
+						You only need to do this if you've revoked it on {kaiType.toLowerCase()}!
+					</>
 				) : (
 					<h4>
 						You should authenticate yourself by going to{" "}
@@ -720,9 +745,7 @@ function APIKeysPage({ reqUser }: { reqUser: PublicUserDocument }) {
 	const [apiKeys, setApiKeys] = useState<APITokenDocument[]>([]);
 	const [showModal, setShowModal] = useState(false);
 
-	const { data, error } = useApiQuery<APITokenDocument[]>(
-		`/users/${reqUser.id}/api-tokens`
-	);
+	const { data, error } = useApiQuery<APITokenDocument[]>(`/users/${reqUser.id}/api-tokens`);
 
 	useEffect(() => {
 		if (data) {

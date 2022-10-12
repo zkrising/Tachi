@@ -12,7 +12,7 @@ import prValidate from "server/middleware/prudence-validate";
 import { RequireKamaitachi } from "server/middleware/type-require";
 import fetch from "utils/fetch";
 import { NotNullish } from "utils/misc";
-import { GetKaiAuth } from "utils/queries/auth";
+import { GetKaiAuth, RevokeKaiAuth } from "utils/queries/auth";
 import { GetTachiData } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
 import { URL } from "url";
@@ -43,6 +43,36 @@ router.get<any>("/", async (req, res) => {
 		body: {
 			authStatus: !!authDoc,
 		},
+	});
+});
+
+/**
+ * Revoke your authentication for this kaiType.
+ * @note - Express's types infer arg0 of "/" to mean no params, for some reason.
+ * the <any> generic overrides this behaviour.
+ *
+ * @name DELETE /api/v1/users/:userID/integrations/kai/:kaiType
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+router.delete<any>("/", async (req, res) => {
+	const user = GetTachiData(req, "requestedUser");
+	const kaiType = NotNullish(req.params.kaiType).toUpperCase() as "EAG" | "FLO" | "MIN";
+
+	const authDoc = await GetKaiAuth(user.id, kaiType);
+
+	if (!authDoc) {
+		return res.status(409).json({
+			success: false,
+			description: `You are not authorised with this service.`,
+		});
+	}
+
+	await RevokeKaiAuth(user.id, kaiType);
+
+	return res.status(200).json({
+		success: true,
+		description: `Revoked authentication for ${kaiType}.`,
+		body: {},
 	});
 });
 

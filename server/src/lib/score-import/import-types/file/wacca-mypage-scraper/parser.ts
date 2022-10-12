@@ -65,7 +65,8 @@ export function ParseMyPageScraperRecordsCsv(
 		const err = p(rawRecord, RECORDS_CSV_SCHEMA, {}, { allowExcessKeys: true });
 
 		if (err) {
-			throw new ScoreImportFatalError(400, `Malformed CSV, invalid columns: ${err.message}`);
+			// TODO: add some context so we don't get things like just "Expected string."
+			throw new ScoreImportFatalError(400, `Malformed CSV, invalid column(s) (${err.keychain}: ${err.userVal}): ${err.message}`);
 		}
 	}
 
@@ -141,7 +142,7 @@ export function ParseMyPageScraperPlayerCsv(
 	const stageArrayString = csvRecord.player_stage;
 
 	if (stageArrayString === undefined) {
-		throw new ScoreImportFatalError(400, `Malformed CSV: no player_stage column.`);
+		throw new ScoreImportFatalError(400, "Malformed CSV: no player_stage column.");
 	}
 
 	// The first element is the full match, the next 3 elements are the groups.
@@ -150,7 +151,7 @@ export function ParseMyPageScraperPlayerCsv(
 		| null;
 
 	if (matches === null) {
-		throw new ScoreImportFatalError(400, `Malformed player_stage entry.`);
+		throw new ScoreImportFatalError(400, "Malformed player_stage entry.");
 	}
 
 	const stage = {

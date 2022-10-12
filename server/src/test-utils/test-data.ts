@@ -167,6 +167,23 @@ export const TestingSDVXScore: ScoreDocument<"sdvx:Single"> = {
 	importType: "ir/direct-manual",
 };
 
+export const TestingSDVXAlbidaChart: ChartDocument<"sdvx:Single"> = {
+	rgcID: null,
+	chartID: "5088a4d0e1ee9d0cc2f625934306e45b1a60699b",
+	difficulty: "ADV",
+	songID: 1,
+	playtype: "Single",
+	levelNum: 10,
+	level: "10",
+	data: {
+		inGameID: 1,
+		arcChartID: "EOZ7FixCDpv",
+	},
+	isPrimary: true,
+	versions: ["booth", "inf", "gw", "heaven", "vivid", "exceed", "konaste"],
+	tierlistInfo: {},
+};
+
 export const TestingKsHookSV6CScore: KsHookSV6CScore = {
 	clear: "CLEAR_EXCESSIVE",
 	critical: 1184,

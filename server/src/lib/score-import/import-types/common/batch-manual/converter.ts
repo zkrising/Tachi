@@ -9,12 +9,15 @@ import {
 	AssertStrAsPositiveInt,
 } from "../../../framework/common/string-asserts";
 import db from "external/mongo/db";
+import { GetGamePTConfig } from "tachi-common";
 import {
 	FindBMSChartOnHash,
 	FindChartWithPTDF,
 	FindChartWithPTDFVersion,
 	FindDDRChartOnSongHash,
 	FindITGChartOnHash,
+	FindSDVXChartOnInGameID,
+	FindSDVXChartOnInGameIDVersion,
 } from "utils/queries/charts";
 import { FindSongOnID, FindSongOnTitleInsensitive } from "utils/queries/songs";
 import type { DryScore } from "../../../framework/common/types";
@@ -28,6 +31,8 @@ import type {
 	IDStrings,
 	ImportTypes,
 	SongDocument,
+	Difficulties,
+	GPTSupportedVersions,
 } from "tachi-common";
 
 /**
@@ -312,18 +317,83 @@ export async function ResolveMatchTypeToKTData(
 			return { song, chart };
 		}
 
+		case "sdvxInGameID": {
+			if (game !== "sdvx") {
+				throw new InvalidScoreFailure(
+					`A matchType of sdvxInGameID is only supported by SDVX.`
+				);
+			}
+
+			let chart: ChartDocument | null;
+
+			const identifier = Number(data.identifier);
+
+			const config = GetGamePTConfig("sdvx", "Single");
+
+			if (!config.difficulties.includes(data.difficulty) && data.difficulty !== "ANY_INF") {
+				throw new InvalidScoreFailure(
+					`Invalid difficulty '${
+						data.difficulty
+					}', Expected any of ${config.difficulties.join(", ")} or ANY_INF`
+				);
+			}
+
+			const diff = data.difficulty as Difficulties["sdvx:Single"] | "ANY_INF";
+
+			if (context.version) {
+				if (!config.supportedVersions.includes(context.version)) {
+					throw new InvalidScoreFailure(
+						`Unsupported version ${
+							context.version
+						}. Expected any of ${config.supportedVersions.join(", ")}.`
+					);
+				}
+
+				chart = await FindSDVXChartOnInGameIDVersion(
+					identifier,
+					diff,
+					context.version as GPTSupportedVersions["sdvx:Single"]
+				);
+			} else {
+				chart = await FindSDVXChartOnInGameID(identifier, diff);
+			}
+
+			if (!chart) {
+				throw new KTDataNotFoundFailure(
+					`Cannot find SDVX chart with inGameID ${identifier}, difficulty ${diff} and version ${context.version}.`,
+					importType,
+					data,
+					context
+				);
+			}
+
+			const song = await db.songs[game].findOne({ id: chart.songID });
+
+			if (!song) {
+				logger.severe(`Song-Chart desync on ${chart.songID}.`);
+				throw new InternalFailure(`Failed to get song for a chart that exists.`);
+			}
+
+			return { song, chart };
+		}
+
 		case "inGameID": {
 			const gamesWithInGameIDSupport = [
 				"iidx",
 				"popn",
 				"ddr",
-				"sdvx",
 				"jubeat",
 				"chunithm",
 				"gitadora",
 				"maimai",
 				"museca",
 			];
+
+			if (game === "sdvx") {
+				throw new InvalidScoreFailure(
+					`Cannot use inGameID as a matchType for SDVX. Use matchType: 'sdvxInGameID' instead.`
+				);
+			}
 
 			if (!gamesWithInGameIDSupport.includes(game)) {
 				throw new InvalidScoreFailure(
@@ -334,7 +404,6 @@ export async function ResolveMatchTypeToKTData(
 			let identifier: number | string = data.identifier;
 
 			// ddr uses weird strings as IDs instead of numbers
-
 			if (game !== "ddr") {
 				identifier = Number(data.identifier);
 			}

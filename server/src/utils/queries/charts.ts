@@ -197,7 +197,7 @@ export function FindSDVXChartOnInGameID(
 ) {
 	const diffQuery =
 		difficulty === "ANY_INF"
-			? { $in: ["INF", "GRV", "HVN", "VVD"] as Array<Difficulties["sdvx:Single"]> }
+			? { $in: ["INF", "GRV", "HVN", "VVD", "XCD"] as Array<Difficulties["sdvx:Single"]> }
 			: difficulty;
 
 	return db.charts.sdvx.findOne({
@@ -209,12 +209,12 @@ export function FindSDVXChartOnInGameID(
 
 export function FindSDVXChartOnInGameIDVersion(
 	inGameID: number,
-	difficulty: "ADV" | "ANY_INF" | "EXH" | "MXM" | "NOV",
+	difficulty: Difficulties["sdvx:Single"] | "ANY_INF",
 	version: GPTSupportedVersions["sdvx:Single"]
 ) {
 	const diffQuery =
 		difficulty === "ANY_INF"
-			? { $in: ["INF", "GRV", "HVN", "VVD"] as Array<Difficulties["sdvx:Single"]> }
+			? { $in: ["INF", "GRV", "HVN", "VVD", "XCD"] as Array<Difficulties["sdvx:Single"]> }
 			: difficulty;
 
 	return db.charts.sdvx.findOne({
@@ -226,12 +226,12 @@ export function FindSDVXChartOnInGameIDVersion(
 
 export function FindSDVXChartOnDFVersion(
 	songID: integer,
-	difficulty: "ADV" | "ANY_INF" | "EXH" | "MXM" | "NOV",
+	difficulty: Difficulties["sdvx:Single"] | "ANY_INF",
 	version: GPTSupportedVersions["sdvx:Single"]
 ) {
 	const diffQuery =
 		difficulty === "ANY_INF"
-			? { $in: ["INF", "GRV", "HVN", "VVD"] as Array<Difficulties["sdvx:Single"]> }
+			? { $in: ["INF", "GRV", "HVN", "VVD", "XCD"] as Array<Difficulties["sdvx:Single"]> }
 			: difficulty;
 
 	return db.charts.sdvx.findOne({

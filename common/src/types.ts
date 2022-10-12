@@ -1500,7 +1500,7 @@ export type BatchManualScore<I extends IDStrings = IDStrings> = {
 			difficulty?: undefined; // hack to stop ts from screaming when this is accessed sometimes
 	  }
 	| {
-			matchType: "ddrSongHash" | "inGameID" | "songTitle" | "tachiSongID";
+			matchType: "ddrSongHash" | "inGameID" | "sdvxInGameID" | "songTitle" | "tachiSongID";
 			difficulty: Difficulties[I];
 	  }
 );

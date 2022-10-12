@@ -90,7 +90,7 @@ The properties are described as this:
 
 #### Match Type
 
-There are five match types, and they all use identifier
+There are many match types, and they all use identifier
 in a different way.
 
 - songTitle
@@ -124,23 +124,31 @@ This match type can only be used for BMS.
 This looks for the chart SHA1 that USC uses. As expected, this
 can only be used for USC.
 
-- ddrSongHash
-
-This looks for the DDR 'song hash'. This is an identifier
-used on the e-amusement website, and references a song,
-not a chart. As such:
-This match type *necessitates* that `difficulty` be defined
-and set to a valid difficulty for DDR.
-
-This match type can only be used for DDR.
-
 - inGameID
 
 This uses the in-game-ID for this **SONG**. You, therefore,
 **MUST** specify the difficulty for this chart aswell.
 
-At the moment, this match type can only be used on `iidx`.
-This is expected to change before release.
+This is supported for the following games:
+
+- IIDX
+- Pop'n Music
+- Jubeat
+- CHUNITHM
+- GITADORA
+- maimai
+- MUSECA
+
+- sdvxInGameID
+
+This uses the in-game-ID for this SDVX song. You must specify
+the difficulty for this chart aswell.
+
+The reason SDVX gets its own special `matchType` is because this
+matchType supports `difficulty: "ANY_INF"`. This special difficulty
+means that it will check for any of `INF/GRV/HVN/VVD/XCD` for this song.
+
+This is useful for services that store all of those as the same difficulty.
 
 ## Example
 

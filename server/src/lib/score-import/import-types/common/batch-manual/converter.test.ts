@@ -1,13 +1,20 @@
 import { ConverterBatchManual, ResolveChartFromSong, ResolveMatchTypeToKTData } from "./converter";
 import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
 import deepmerge from "deepmerge";
+import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { BMSGazerChart, BMSGazerSong, Testing511Song, Testing511SPA } from "test-utils/test-data";
+import {
+	BMSGazerChart,
+	BMSGazerSong,
+	Testing511Song,
+	Testing511SPA,
+	TestingSDVXAlbidaChart,
+} from "test-utils/test-data";
 import { EscapeStringRegexp } from "utils/misc";
 import type { BatchManualContext } from "./types";
-import type { BatchManualScore, Game } from "tachi-common";
+import type { BatchManualScore, ChartDocument, Game } from "tachi-common";
 
 const baseBatchManualScore = {
 	score: 500,
@@ -98,6 +105,79 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 					logger
 				),
 			ktdWrap("Cannot find song with title INVALID_TITLE")
+		);
+
+		t.end();
+	});
+
+	t.test("Should resolve for the sdvx inGameID if matchType is sdvxInGameID", async (t) => {
+		const res = await ResolveMatchTypeToKTData(
+			{
+				matchType: "sdvxInGameID",
+				identifier: "1",
+				difficulty: "ADV",
+				lamp: "CLEAR",
+				score: 9_000_001,
+			},
+			context,
+			importType,
+			logger
+		);
+
+		t.hasStrict(
+			res,
+			{ song: { id: 1 }, chart: { data: { inGameID: 1 } } },
+			"Should return the right song and chart."
+		);
+
+		t.rejects(
+			() =>
+				ResolveMatchTypeToKTData(
+					{
+						matchType: "sdvxInGameID",
+						identifier: "9999999",
+						difficulty: "ADV",
+						lamp: "CLEAR",
+						score: 9_000_001,
+					},
+					context,
+					importType,
+					logger
+				),
+			ktdWrap("Cannot find SDVX chart with inGameID 9999999")
+		);
+
+		t.end();
+	});
+
+	t.test("Should support ANY_INF if matchType is sdvxInGameID", async (t) => {
+		await db.charts.sdvx.insert(
+			deepmerge(TestingSDVXAlbidaChart, {
+				chartID: "fake_xcd",
+				data: {
+					arcChartID: "fake222",
+				},
+				difficulty: "XCD",
+			} as ChartDocument<"sdvx:Single">)
+		);
+
+		const res = await ResolveMatchTypeToKTData(
+			{
+				matchType: "sdvxInGameID",
+				identifier: "1",
+				difficulty: "ANY_INF",
+				lamp: "CLEAR",
+				score: 9_000_001,
+			},
+			context,
+			importType,
+			logger
+		);
+
+		t.hasStrict(
+			res,
+			{ song: { id: 1 }, chart: { data: { inGameID: 1 }, difficulty: "XCD" } },
+			"Should return the right song and chart."
 		);
 
 		t.end();

@@ -1,52 +1,80 @@
 const fs = require("fs");
 
 const { Command } = require("commander");
-const { CreateChartID } = require("../util");
-const path = require("path");
+const {
+	CreateChartID,
+	ReadCollection,
+	GetFreshScoreIDGenerator,
+	WriteCollection,
+} = require("../util");
 
 const program = new Command();
-program.option("-f, --file <mxb-json>");
+program.requiredOption("-f, --file <mxb-json>");
+program.requiredOption("-v, --version <name of the version this mxb is from>");
 
 program.parse(process.argv);
 const options = program.opts();
 
-if (!options.file) {
-	throw new Error(`Please specify a file with --file.`);
-}
+const data = JSON.parse(fs.readFileSync(options.file));
 
-let data = JSON.parse(fs.readFileSync(options.file));
+const curCharts = ReadCollection("charts-popn.json");
 
-data = data.filter((e) => e !== null);
+const existingSongs = new Map(curCharts.map((e) => [e.data.inGameID, e.songID]));
+const existingCharts = new Map(curCharts.map((e) => [e.data.hashSHA256, e]));
 
 const songs = [];
 const charts = [];
 
-let songID = 1;
+const getNewSongID = GetFreshScoreIDGenerator("popn");
+
 for (const song of data) {
+	// some datapoints might be null
+	if (song === null) {
+		continue;
+	}
+
+	const index = song.music_entry;
+
 	const isUpper = song.charts.some((k) => k !== null && k.filename.startsWith("exx"));
 	const isUra = song.charts.some((k) => k !== null && k.filename.endsWith("_ura2"));
 
 	let title = isUpper ? `${song.title} (UPPER)` : song.title;
 	title = isUra ? `${title} (URA)` : title;
 
-	songs.push({
-		id: songID,
-		title,
-		artist: song.artist,
-		searchTerms: [],
-		altTitles: [],
-		data: {
-			displayVersion: null,
-			genre: song.genre,
-		},
-	});
+	let songID = existingSongs.get(index);
 
-	for (const [index, chart] of Object.entries(song.charts)) {
+	if (!songID) {
+		songID = getNewSongID();
+		songs.push({
+			id: songID,
+			title,
+			artist: song.artist,
+			searchTerms: [],
+			altTitles: [],
+			data: {
+				displayVersion: null,
+				genre: song.genre,
+				genreEN: null,
+			},
+		});
+	}
+
+	for (const chart of song.charts) {
 		if (chart === null) {
 			continue;
 		}
 
 		if (chart.difficulty.startsWith("BATTLE")) {
+			continue;
+		}
+
+		const existingChart = existingCharts.get(chart.hash);
+		if (existingChart) {
+			if (!existingChart.versions.includes(options.version)) {
+				existingChart.versions.push(options.version);
+			}
+
+			// don't add a new chart, just update versions
 			continue;
 		}
 
@@ -68,15 +96,12 @@ for (const song of data) {
 				inGameID: index,
 			},
 			tierlistInfo: {},
-			versions: ["peace"],
+			versions: [options.version],
 		});
 	}
-
-	songID++;
 }
 
-// fs.writeFileSync(path.join(__dirname, "../../collections/charts-popn.json"), JSON.stringify(charts, null, "\t"));
-fs.writeFileSync(
-	path.join(__dirname, "../../collections/songs-popn.json"),
-	JSON.stringify(songs, null, "\t")
-);
+const curSongs = ReadCollection("songs-popn.json");
+
+WriteCollection("songs-popn.json", [...curSongs, ...songs]);
+WriteCollection("charts-popn.json", [...existingCharts.values(), ...charts]);

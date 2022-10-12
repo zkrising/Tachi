@@ -388,7 +388,7 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 			};
 		case "popn:9B":
 			return {
-				hashSHA256: "?string",
+				hashSHA256: p.or("?string", ["string"]),
 				inGameID: p.isPositiveInteger,
 			};
 		case "itg:Stamina":

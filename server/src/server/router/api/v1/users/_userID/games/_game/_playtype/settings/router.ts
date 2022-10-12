@@ -5,6 +5,7 @@ import CreateLogCtx from "lib/logger/logger";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { GetGamePTConfig } from "tachi-common";
+import { PR_GAMESPECIFIC_SETTINGS } from "tachi-common/lib/schemas";
 import { FormatPrError, optNull } from "utils/prudence";
 import { GetUGPT } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
@@ -30,23 +31,7 @@ router.patch(
 
 		const gptConfig = GetGamePTConfig(game, playtype);
 
-		let gameSpecificSchema = {};
-
-		if (game === "iidx") {
-			gameSpecificSchema = {
-				display2DXTra: p.optional("boolean"),
-				bpiTarget: p.optional(p.isBoundedInteger(0, 100)),
-			};
-		} else if (game === "sdvx" || game === "usc") {
-			gameSpecificSchema = {
-				vf6Target: p.optional(p.isBetween(0, 0.5)),
-			};
-		} else if (game === "jubeat") {
-			gameSpecificSchema = {
-				// 165.1 is the max jubility.
-				jubilityTarget: p.optional(p.isBetween(0, 165.1)),
-			};
-		}
+		const gameSpecificSchema = PR_GAMESPECIFIC_SETTINGS(game);
 
 		const err = p(req.safeBody, {
 			preferredScoreAlg: p.optional(p.nullable(p.isIn(gptConfig.scoreRatingAlgs))),

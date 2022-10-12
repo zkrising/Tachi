@@ -36,6 +36,33 @@ function prSchemaFnWrap(schema: PrudenceSchema) {
 	};
 }
 
+export const PR_GAMESPECIFIC_SETTINGS = (game: Game): PrudenceSchema => {
+	switch (game) {
+		case "iidx":
+			return {
+				display2DXTra: p.optional("boolean"),
+				bpiTarget: p.optional(p.isBoundedInteger(0, 100)),
+			};
+		case "sdvx":
+		case "usc":
+			return {
+				vf6Target: p.optional(p.isBetween(0, 0.5)),
+			};
+		case "bms":
+			return {
+				displayTables: ["string"],
+			};
+		case "jubeat":
+			return {
+				// 165.1 is the max jubility.
+				jubilityTarget: p.optional(p.isBetween(0, 165.1)),
+			};
+
+		default:
+			return {};
+	}
+};
+
 const PR_GAME_STATS = (game: Game, playtype: Playtypes[Game], gptConfig: GamePTConfig) => ({
 	userID: p.isPositiveNonZeroInteger,
 	game: p.is(game),
@@ -926,12 +953,8 @@ const PRE_SCHEMAS = {
 					(self) => Array.isArray(self) && self.length <= 6
 				),
 				scoreBucket: p.isIn(null, "grade", "lamp"),
-				gameSpecific:
-					game === "iidx"
-						? {
-								display2DXTra: "boolean",
-						  }
-						: {},
+
+				gameSpecific: PR_GAMESPECIFIC_SETTINGS(game),
 			},
 		})(s);
 	},

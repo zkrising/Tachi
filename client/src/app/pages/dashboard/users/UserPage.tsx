@@ -20,6 +20,10 @@ export default function UserPage({ reqUser }: Props) {
 	return <AboutMeCard reqUser={reqUser} />;
 }
 
+function InferLinks(aboutMe: string) {
+	return aboutMe.replace(/(https?:\/\/[^\s]+)(\s)/gu, "[$1]($1)$2");
+}
+
 function AboutMeCard({ reqUser }: Props) {
 	const { user } = useContext(UserContext);
 
@@ -110,7 +114,7 @@ function AboutMeCard({ reqUser }: Props) {
 					<Divider className="mt-4 mb-4" />
 				</>
 			)}
-			<ReactMarkdown>{content}</ReactMarkdown>
+			<ReactMarkdown>{InferLinks(content)}</ReactMarkdown>
 		</Card>
 	);
 }

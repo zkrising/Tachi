@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
-const { MutateCollection, ReadCollection, CreateChartID } = require("../util");
-const logger = require("../logger");
+const { MutateCollection, ReadCollection, CreateChartID } = require("../../util");
+const logger = require("../../logger");
 
 const tableInfos = [
 	{
@@ -162,7 +162,7 @@ if (require.main === module) {
 		const charts = [];
 		const songs = [];
 		const existingMD5s = new Set(ReadCollection("charts-pms.json").map((e) => e.data.hashMD5));
-		let i = Math.max(...ReadCollection("songs-pms.json").map(s => s.id)) + 1;
+		let i = Math.max(...ReadCollection("songs-pms.json").map((s) => s.id)) + 1;
 
 		for (const tableInfo of tableInfos) {
 			// THE JSON SENT OVER THE WIRE IS INVALID!
@@ -208,11 +208,11 @@ if (require.main === module) {
 				const l = Number(d.level);
 
 				const tierlistInfo = Number.isNaN(l)
-								   ? {}
-								   : {
-									   "sgl-EC": MakeTierlistStuff(l, tableInfo.symbol),
-									   "sgl-HC": MakeTierlistStuff(l, tableInfo.symbol),
-								   };
+					? {}
+					: {
+							"sgl-EC": MakeTierlistStuff(l, tableInfo.symbol),
+							"sgl-HC": MakeTierlistStuff(l, tableInfo.symbol),
+					  };
 
 				const chart = {
 					songID: i,
@@ -247,8 +247,8 @@ if (require.main === module) {
 				);
 			}
 		}
-		MutateCollection("songs-pms.json", currentSongs => currentSongs.concat(songs));
-		MutateCollection("charts-pms.json", currentCharts => currentCharts.concat(charts));
+		MutateCollection("songs-pms.json", (currentSongs) => currentSongs.concat(songs));
+		MutateCollection("charts-pms.json", (currentCharts) => currentCharts.concat(charts));
 	})();
 }
 

@@ -1,4 +1,4 @@
-const { MutateCollection } = require("../util");
+const { MutateCollection } = require("../../util");
 
 module.exports = (idSet) =>
 	MutateCollection("charts-iidx.json", (charts) => {

@@ -6,7 +6,7 @@ const {
 	ReadCollection,
 	GetFreshScoreIDGenerator,
 	WriteCollection,
-} = require("../util");
+} = require("../../util");
 
 const program = new Command();
 program.requiredOption("-f, --file <mxb-json>");

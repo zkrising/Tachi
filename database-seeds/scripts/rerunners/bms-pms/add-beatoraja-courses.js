@@ -1,4 +1,4 @@
-const { MutateCollection } = require("../util");
+const { MutateCollection } = require("../../util");
 const fetch = require("node-fetch");
 
 const { Command } = require("commander");

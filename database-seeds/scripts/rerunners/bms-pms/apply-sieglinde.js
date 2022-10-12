@@ -1,7 +1,7 @@
 const { Command } = require("commander");
 const fs = require("fs");
 const path = require("path");
-const { MutateCollection } = require("../util");
+const { MutateCollection } = require("../../util");
 
 const program = new Command();
 program.option("-i, --input <sieglinde output/ folder>");

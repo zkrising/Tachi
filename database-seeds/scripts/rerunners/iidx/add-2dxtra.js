@@ -1,7 +1,7 @@
 const { Command } = require("commander");
 const { XMLParser } = require("fast-xml-parser");
 const fs = require("fs");
-const { MutateCollection, CreateChartID } = require("../util");
+const { MutateCollection, CreateChartID } = require("../../util");
 
 const program = new Command();
 program

@@ -6,7 +6,7 @@ const {
 	ReadCollection,
 	WriteCollection,
 	GetFreshScoreIDGenerator,
-} = require("../util");
+} = require("../../util");
 
 const program = new Command();
 program.requiredOption("-d, --db <maps.db>");

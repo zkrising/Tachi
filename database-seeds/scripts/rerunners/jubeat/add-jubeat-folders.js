@@ -1,4 +1,4 @@
-const { MutateCollection, CreateFolderID } = require("../util");
+const { MutateCollection, CreateFolderID } = require("../../util");
 
 function CreateFolder(criteria, title) {
 	const f = {

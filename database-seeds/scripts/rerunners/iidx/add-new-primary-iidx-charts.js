@@ -1,4 +1,4 @@
-const { MutateCollection, CreateChartID } = require("../util");
+const { MutateCollection, CreateChartID } = require("../../util");
 
 const inGameID = 19017;
 const tachiSongID = 1014;

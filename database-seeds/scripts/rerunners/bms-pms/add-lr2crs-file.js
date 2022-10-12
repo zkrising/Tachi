@@ -1,4 +1,4 @@
-const { MutateCollection } = require("../util");
+const { MutateCollection } = require("../../util");
 const fs = require("fs");
 const { XMLParser } = require("fast-xml-parser");
 

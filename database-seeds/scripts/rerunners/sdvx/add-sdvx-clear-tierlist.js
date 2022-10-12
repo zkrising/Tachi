@@ -1,7 +1,7 @@
 const { Command } = require("commander");
 const { parse } = require("csv-parse/sync");
 const fs = require("fs");
-const { ReadCollection, MutateCollection } = require("../util");
+const { ReadCollection, MutateCollection } = require("../../util");
 
 // The tier lists are available at
 // https://docs.google.com/spreadsheets/d/1cFltguBvPplBem-x1STHnG3k4TZzFfyNEZ-RwsQszoo/edit
@@ -55,7 +55,7 @@ const TIERS = {
 			text: "17D",
 			value: 17.3,
 		},
-		"C": {
+		C: {
 			text: "17C",
 			value: 17.4,
 		},
@@ -216,7 +216,7 @@ const MANUAL_TITLE_MAP = {
 	"しゅわスパ大作戦☆(カシオれ！くーにゃん)": "しゅわスパ大作戦☆ (カシオれ！くーにゃんリミックス)",
 	"双翼 Black Wings - SDVX Edit. -": "双翼 - Black Wings - SDVX Edit. -",
 	"VALKYRIE ASAULT": "VALKYRIE ASSAULT",
-	"SuperMiracleEmsemble": "SuperMiracleEnsemble",
+	SuperMiracleEmsemble: "SuperMiracleEnsemble",
 	"仔羊のナヴァラン・クリシェを添えて": "～仔羊のナヴァラン・クリシェを添えて～",
 
 	// 17s
@@ -246,7 +246,7 @@ const MANUAL_TITLE_MAP = {
 	"The Sampling Paradise(P*Light)": "The Sampling Paradise (P*Light Remix)",
 	"イゴモヨスのブヨブヨ・スケッチ": "イゴモヨス＝オムルのテーマによるブヨブヨ・スケッチの試み",
 	"ABSOLUTE(ismk passionate mix)": "ABSOLUTE(ismK passionate remix)",
-	"泥の分際で私だけの大切を奪おうなんて" : "泥の分際で私だけの大切を奪おうだなんて",
+	泥の分際で私だけの大切を奪おうなんて: "泥の分際で私だけの大切を奪おうだなんて",
 	"Rhapsody ⚙︎f Triumph": "Rhapsody ⚙f Triumph", // There is some weird non-printing character here fml
 
 	// 18s
@@ -337,7 +337,7 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 				// For 17, apparently they include the number of songs in each tier.
 				// e.g. "A                         曲数:54"
 				// So we cut this out.
-				tierName = tierName.split(" ")[0]
+				tierName = tierName.split(" ")[0];
 			}
 			if (tierName === "" && col > leftOffset) {
 				// This might be a double column (two columns for the same tier),

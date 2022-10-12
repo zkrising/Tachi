@@ -1443,8 +1443,8 @@ export interface UGPTSpecificPreferences {
 	"maimai:Single": Record<string, never>;
 	"jubeat:Single": { jubilityTarget: number };
 	"museca:Single": Record<string, never>;
-	"bms:7K": Record<string, never>;
-	"bms:14K": Record<string, never>;
+	"bms:7K": { displayTables: Array<string> };
+	"bms:14K": { displayTables: Array<string> };
 	"chunithm:Single": Record<string, never>;
 	"gitadora:Gita": Record<string, never>;
 	"gitadora:Dora": Record<string, never>;

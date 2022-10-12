@@ -91,8 +91,7 @@ router.patch(
 
 		if (body.gameSpecific) {
 			for (const [key, value] of Object.entries(body.gameSpecific)) {
-				// @ts-expect-error This is a very hacky way of applying changes.
-				// However, we know this to be correct, so we're just going to ignore it.
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				updateQuery[`preferences.gameSpecific.${key}`] = value;
 			}
 		}

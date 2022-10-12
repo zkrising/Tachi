@@ -1,10 +1,11 @@
 import { ChangeOpacity } from "util/color-opacity";
 import { FormatTables } from "util/misc";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
-import Icon from "components/util/Icon";
-import React from "react";
-import { BMS_TABLES, ChartDocument, COLOUR_SET } from "tachi-common";
+import Divider from "components/util/Divider";
 import Muted from "components/util/Muted";
+import useLUGPTSettings from "components/util/useLUGPTSettings";
+import React from "react";
+import { BMS_TABLES, ChartDocument, COLOUR_SET, UGPTSettings } from "tachi-common";
 import TierlistInfoPart from "./TierlistInfoPart";
 
 export default function BMSOrPMSDifficultyCell({
@@ -14,6 +15,8 @@ export default function BMSOrPMSDifficultyCell({
 	chart: ChartDocument<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard">;
 	game: "bms" | "pms";
 }) {
+	const { settings } = useLUGPTSettings() as { settings: UGPTSettings<"bms:7K" | "bms:14K"> };
+
 	const hasLevel = chart.data.tableFolders.length > 0;
 
 	const aiLevel = game === "bms" && (chart as ChartDocument<"bms:7K" | "bms:14K">).data.aiLevel;
@@ -21,13 +24,26 @@ export default function BMSOrPMSDifficultyCell({
 	let levelText = "No Rating";
 	let backgroundColour = hasLevel ? COLOUR_SET.red : COLOUR_SET.gray;
 
+	let filteredTables: Array<{ table: string; level: string }> = [];
+
 	if (hasLevel) {
-		levelText = FormatTables(chart.data.tableFolders);
+		let tables = chart.data.tableFolders;
+
+		if (settings?.preferences.gameSpecific.displayTables) {
+			filteredTables = tables.filter(
+				(e) => !settings.preferences.gameSpecific.displayTables.includes(e.table)
+			);
+			tables = tables.filter((e) =>
+				settings.preferences.gameSpecific.displayTables.includes(e.table)
+			);
+		}
+
+		levelText = FormatTables(tables);
 
 		if (game === "bms") {
 			// use bms table colour instead of just red/gray.
 			// todo: add pms table colours maybe?
-			backgroundColour = FindTableColour(chart.data.tableFolders);
+			backgroundColour = FindTableColour(tables);
 		}
 	}
 
@@ -46,18 +62,24 @@ export default function BMSOrPMSDifficultyCell({
 						</div>
 					</QuickTooltip>
 				</>
+			) : filteredTables.length > 0 ? (
+				<QuickTooltip
+					tooltipContent={
+						<div>
+							This chart also appears in these tables, but you have them set to not
+							display.
+							<Divider />
+							{FormatTables(filteredTables)}
+						</div>
+					}
+				>
+					<div style={{ textDecoration: "underline dotted" }}>{levelText}</div>
+				</QuickTooltip>
 			) : (
 				<span>{levelText}</span>
 			)}
 
 			<TierlistInfoPart chart={chart} game={game} />
-			{!chart.isPrimary && (
-				<QuickTooltip tooltipContent="This chart is an alternate, old chart.">
-					<div>
-						<Icon type="exclamation-triangle" />
-					</div>
-				</QuickTooltip>
-			)}
 		</td>
 	);
 }

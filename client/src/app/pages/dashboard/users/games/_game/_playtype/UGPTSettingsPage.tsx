@@ -13,11 +13,12 @@ import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import useQueryString from "components/util/useQueryString";
 import deepmerge from "deepmerge";
-import { useFormik } from "formik";
+import { FieldArray, useFormik } from "formik";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import {
+	BMS_TABLES,
 	FormatGame,
 	GetGameConfig,
 	GetGamePTConfig,
@@ -313,6 +314,50 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 						from it in the UI!
 						<br />
 						Set this to 0 to disable the target.
+					</Form.Text>
+				</Form.Group>
+			)}
+			{game === "bms" && (
+				<Form.Group>
+					<Form.Label>Preferred Tables</Form.Label>
+					<Row>
+						<Col xs={12}>
+							{BMS_TABLES.filter((e) => e.playtype === playtype).map((e) => (
+								<Form.Check
+									key={e.prefix}
+									checked={
+										formik.values.gameSpecific.displayTables?.includes(
+											e.prefix
+										) ?? !e.notDefault
+									}
+									label={`(${e.prefix}) ${e.name}`}
+									onChange={(event) => {
+										const base: Array<string> =
+											formik.values.gameSpecific.displayTables ??
+											BMS_TABLES.filter(
+												(e) => e.playtype === playtype && !e.notDefault
+											).map((e) => e.prefix);
+
+										if (event.target.checked) {
+											formik.setFieldValue("gameSpecific.displayTables", [
+												...base,
+												e.prefix,
+											]);
+										} else {
+											formik.setFieldValue(
+												"gameSpecific.displayTables",
+												base.filter((a) => a !== e.prefix)
+											);
+										}
+									}}
+								/>
+							))}
+						</Col>
+					</Row>
+
+					<Form.Text className="text-muted">
+						What tables do you want to display in the UI? Use this to disable tables you
+						don't really care for.
 					</Form.Text>
 				</Form.Group>
 			)}

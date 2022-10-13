@@ -30,6 +30,8 @@ function AboutMeCard({ reqUser }: Props) {
 	const [editMode, setEditMode] = useState(false);
 	const [content, setContent] = useState(reqUser.about);
 
+	useEffect(() => setContent(reqUser.about), [user]);
+
 	async function SubmitNewAboutMe() {
 		const res = await APIFetchV1(
 			`/users/${user!.id}`,

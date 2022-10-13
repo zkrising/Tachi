@@ -28,14 +28,14 @@ export default function TitleCell({
 	let center = false;
 
 	if (game === "popn" && chart) {
-		backgroundImage = `linear-gradient(to left, rgba(19, 19, 19, 0.8), rgba(19, 19, 19, 1)), url(${ToCDNURL(
+		backgroundImage = `url(${ToCDNURL(
 			`/misc/popn/banners/${(chart as any).data.inGameID}.png`
 		)})`;
 	} else if (game === "itg") {
 		const banner = (song as SongDocument<"itg">).data.banner;
 
 		if (banner) {
-			backgroundImage = `linear-gradient(to left, rgba(19, 19, 19, 0.8), rgba(19, 19, 19, 1)), url(${ToCDNURL(
+			backgroundImage = `url(${ToCDNURL(
 				`/misc/itg/banners/${encodeURIComponent(banner)}.png`
 			)})`;
 			center = true;
@@ -48,11 +48,10 @@ export default function TitleCell({
 				textAlign: "left",
 				minWidth: "140px",
 				maxWidth: "300px",
-				backgroundRepeat: "no-repeat",
-				backgroundSize: "cover",
-				backgroundImage,
+				["--banner-url" as string]: backgroundImage,
 				backgroundPosition: center ? "center" : undefined,
 			}}
+			className="banner-td"
 		>
 			{game === "popn" && (
 				<>

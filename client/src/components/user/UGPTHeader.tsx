@@ -104,7 +104,7 @@ export function UGPTBottomNav({
 			Rivals
 		</NavItem>,
 		<NavItem key="targets" to={`${baseUrl}/targets`}>
-			Targets
+			Goals & Milestones
 		</NavItem>,
 	];
 

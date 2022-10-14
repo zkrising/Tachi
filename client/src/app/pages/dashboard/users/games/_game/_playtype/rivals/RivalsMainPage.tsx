@@ -32,17 +32,25 @@ export default function RivalsMainPage({
 		<Row>
 			<Col xs={12} className="text-center">
 				<div className="btn-group">
-					<SelectLinkButton to={`${base}/rivals/challenge-board`}>
-						<Icon type="list" />
-						Rival Score Feed
+					<SelectLinkButton to={`${base}/rivals/targets`}>
+						<Icon type="bullseye" />
+						Goals & Milestones
+					</SelectLinkButton>
+					<SelectLinkButton to={`${base}/rivals/compare`}>
+						<Icon type="balance-scale-left" />
+						Compare
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/rivals`}>
-						<Icon type="users" />
-						Manage Rivals
+						<Icon type="list" />
+						Activity
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/rivals/pinned-charts`}>
+					<SelectLinkButton to={`${base}/rivals/folders`}>
 						<Icon type="thumbtack" />
-						Pinned Charts
+						Manage Folders
+					</SelectLinkButton>
+					<SelectLinkButton to={`${base}/rivals/manage`}>
+						<Icon type="users" />
+						Change Rivals
 					</SelectLinkButton>
 				</div>
 				<Divider />
@@ -50,16 +58,36 @@ export default function RivalsMainPage({
 			<Col xs={12}>
 				<Switch>
 					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/rivals">
+						activity
+					</Route>
+
+					<Route
+						exact
+						path="/dashboard/users/:userID/games/:game/:playtype/rivals/manage"
+					>
 						<RivalsOverviewPage reqUser={reqUser} game={game} playtype={playtype} />
 					</Route>
+
 					<Route
 						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/rivals/feed"
-					></Route>
+						path="/dashboard/users/:userID/games/:game/:playtype/rivals/folders"
+					>
+						folders
+					</Route>
+
 					<Route
 						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/rivals/pinned-charts"
-					></Route>
+						path="/dashboard/users/:userID/games/:game/:playtype/rivals/targets"
+					>
+						goals milestones
+					</Route>
+
+					<Route
+						exact
+						path="/dashboard/users/:userID/games/:game/:playtype/rivals/compare"
+					>
+						compare
+					</Route>
 				</Switch>
 			</Col>
 		</Row>

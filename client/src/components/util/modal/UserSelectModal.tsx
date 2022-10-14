@@ -67,7 +67,7 @@ export default function UserSelectModal({
 										<h4 className="mt-2">{user.username}</h4>
 										{excludeSet.includes(user.id) ? (
 											<Button variant="outline-secondary" disabled>
-												Already Selected
+												Already Rivalled!
 											</Button>
 										) : (
 											<Button

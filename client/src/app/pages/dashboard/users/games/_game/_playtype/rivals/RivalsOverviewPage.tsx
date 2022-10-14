@@ -10,7 +10,7 @@ import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import UserIcon from "components/util/UserIcon";
 import { UserContext } from "context/UserContext";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Col } from "react-bootstrap";
 import { Game, Playtype, PublicUserDocument } from "tachi-common";
 
@@ -79,29 +79,10 @@ function RivalsOverviewPage({
 
 	const isRequestingUser = reqUser.id === user?.id;
 
-	const [rivals, setRivals] = useState<Array<PublicUserDocument>>(initialRivals);
+	const [rivals, setRivals] = useState(initialRivals);
 	const [show, setShow] = useState(false);
 
-	useEffect(() => {
-		if (!isRequestingUser) {
-			return;
-		}
-
-		APIFetchV1(
-			`/users/${reqUser.id}/games/${game}/${playtype}/rivals`,
-			{
-				method: "PUT",
-				body: JSON.stringify({
-					rivalIDs: rivals.map((e) => e.id),
-				}),
-				headers: {
-					"Content-Type": "application/json",
-				},
-			},
-			false,
-			true
-		);
-	}, [rivals]);
+	const [currentRivals, setCurrentRivals] = useState(initialRivals);
 
 	return (
 		<>
@@ -144,12 +125,54 @@ function RivalsOverviewPage({
 							)}
 						</Col>
 
+						{/* kind of a stupid way to check whether the array has changed or not, but who cares. */}
+						{currentRivals.toString() !== rivals.toString() && (
+							<>
+								<Col xs={12}>
+									<Divider />
+								</Col>
+								<Col xs={12} className="d-flex justify-content-center">
+									<Button
+										size="lg"
+										onClick={async () => {
+											const res = await APIFetchV1(
+												`/users/${reqUser.id}/games/${game}/${playtype}/rivals`,
+												{
+													method: "PUT",
+													body: JSON.stringify({
+														rivalIDs: rivals.map((e) => e.id),
+													}),
+													headers: {
+														"Content-Type": "application/json",
+													},
+												},
+												true,
+												true
+											);
+
+											if (res.success) {
+												setCurrentRivals(rivals);
+											}
+										}}
+										variant="primary"
+									>
+										Save Changes
+									</Button>
+								</Col>
+							</>
+						)}
+
 						<UserSelectModal
 							callback={(user) => {
 								if (rivals.length >= 5) {
 									SendErrorToast(`Can't have more than 5 rivals!`);
 								} else {
 									setRivals([...rivals, user]);
+
+									// if we're now at max rivals, exit.
+									if (rivals.length + 1 >= 5) {
+										setShow(false);
+									}
 								}
 							}}
 							show={show}

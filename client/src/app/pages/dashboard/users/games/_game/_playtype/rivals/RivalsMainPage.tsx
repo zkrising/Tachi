@@ -50,7 +50,7 @@ export default function RivalsMainPage({
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/rivals/manage`}>
 						<Icon type="users" />
-						Change Rivals
+						Manage Rivals
 					</SelectLinkButton>
 				</div>
 				<Divider />

@@ -55,7 +55,7 @@ importers:
       mei-logger: ^1.0.3
       monk: 7.3.4
       node-fetch: 2.6.7
-      prudence: 0.9.6
+      prudence: 0.9.8
       seq-logging: 1.1.1
       sync-fetch: ^0.3.1
     dependencies:
@@ -77,7 +77,7 @@ importers:
       mei-logger: 1.0.3
       monk: 7.3.4
       node-fetch: 2.6.7
-      prudence: 0.9.6
+      prudence: 0.9.8
       seq-logging: 1.1.1
       sync-fetch: 0.3.1
     devDependencies:
@@ -233,7 +233,7 @@ importers:
       '@types/express-serve-static-core': 4.17.29
       '@types/mongodb': 3.6.18
       '@types/tap': ^15.0.7
-      prudence: ^0.9.8
+      prudence: 0.9.8
       tap: 15.1.6
     dependencies:
       '@types/express-serve-static-core': 4.17.29
@@ -261,7 +261,7 @@ importers:
       mei-logger: ^1.0.1
       monk: ^7.3.4
       node-fetch: 2.6.7
-      prudence: ^0.9.7
+      prudence: 0.9.8
       xml2js: ^0.4.23
     dependencies:
       '@types/lodash.get': 4.4.7
@@ -365,7 +365,7 @@ importers:
       node-html-parser: ^5.3.3
       node-mocks-http: 1.11.0
       nodemailer: 6.7.2
-      prudence: 0.9.7
+      prudence: 0.9.8
       rate-limit-redis: 2.1.0
       redis: 3.1.2
       rg-stats: ^0.3.0
@@ -430,7 +430,7 @@ importers:
       node-fetch: 2.6.7
       node-html-parser: 5.3.3
       nodemailer: 6.7.2
-      prudence: 0.9.7
+      prudence: 0.9.8
       rate-limit-redis: 2.1.0
       redis: 3.1.2
       rg-stats: 0.3.0
@@ -11678,14 +11678,6 @@ packages:
 
   /prr/1.0.1:
     resolution: {integrity: sha512-yPw4Sng1gWghHQWj0B3ZggWUm4qVbPwPFcRG8KyxiU7J2OHFSoEHKS+EZ3fv5l1t9CyCiop6l/ZYeWbrgoQejw==}
-
-  /prudence/0.9.6:
-    resolution: {integrity: sha512-kCPaLDVfVovahwd+SXlszt4y+av3VJL5HXD4II2+m8+zm6J6wt8vFU+kDFeZvaycaGJemB8VUv39hFplHbxTIw==}
-    dev: false
-
-  /prudence/0.9.7:
-    resolution: {integrity: sha512-7214GHTBThBI/PGlKWXUSJ++ca0ld54VpF4k98U1EDAFXai5mnvWbb4speVOnWkilqfN25x8biWUAj4gHNu5Og==}
-    dev: false
 
   /prudence/0.9.8:
     resolution: {integrity: sha512-my6HEhcTW3aKKjAx8j6jgUj3x5Kc71NEv3DySRXun2Zspw6Fdo5zDnbpXv/j4tyk9f9XXrpu1grWVBX4WU+1Tg==}

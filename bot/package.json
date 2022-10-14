@@ -32,7 +32,7 @@
 		"mei-logger": "^1.0.3",
 		"monk": "7.3.4",
 		"node-fetch": "2.6.7",
-		"prudence": "0.9.6",
+		"prudence": "0.9.8",
 		"seq-logging": "1.1.1",
 		"sync-fetch": "^0.3.1"
 	}

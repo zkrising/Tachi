@@ -78,7 +78,7 @@
 		"node-fetch": "2.6.7",
 		"node-html-parser": "^5.3.3",
 		"nodemailer": "6.7.2",
-		"prudence": "0.9.7",
+		"prudence": "0.9.8",
 		"rate-limit-redis": "2.1.0",
 		"redis": "3.1.2",
 		"rg-stats": "^0.3.0",

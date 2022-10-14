@@ -14,7 +14,7 @@
 			// This is necessary because -- for some unknown reason -- the AWS SDK
 			// depends on the DOM. Do people even run the AWS SDK in the browser?
 			// I hope not.
-			"DOM"
+			// "DOM"
 		],
 		"typeRoots": [
 			"@types",

@@ -39,7 +39,6 @@ router.patch(
 			preferredProfileAlg: p.optional(p.nullable(p.isIn(gptConfig.profileRatingAlgs))),
 			defaultTable: "*?string",
 
-			// This is handled with game-specific schema validation below.
 			gameSpecific: optNull(gameSpecificSchema),
 			scoreBucket: optNull(p.isIn("grade", "lamp")),
 		});

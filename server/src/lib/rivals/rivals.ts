@@ -49,6 +49,36 @@ export async function GetRivalUsers(userID: integer, game: Game, playtype: Playt
 }
 
 /**
+ * Retrieve *all* rival IDs for people on this game. Used to recalculate rival movements on charts,
+ * since that is stored and cached.
+ */
+export async function GetEveryonesRivalIDs(
+	game: Game,
+	playtype: Playtype
+): Promise<Record<number, Array<number>>> {
+	const allGameSettings = await db["game-settings"].find(
+		{
+			game,
+			playtype,
+		},
+		{
+			projection: {
+				userID: 1,
+				rivals: 1,
+			},
+		}
+	);
+
+	const lookupTable: Record<integer, Array<integer>> = {};
+
+	for (const d of allGameSettings) {
+		lookupTable[d.userID] = d.rivals;
+	}
+
+	return lookupTable;
+}
+
+/**
  * Sets an array of userIDs to be this user's rivals. Performs validation on all of the
  * rivals being players of the game, and not being duplicates. The maximum amount of rivals
  * a player can have is 5.

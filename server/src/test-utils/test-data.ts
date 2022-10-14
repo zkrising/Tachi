@@ -95,6 +95,7 @@ export const TestingIIDXSPScorePB: PBScoreDocument<"iidx:SP"> = {
 	rankingData: {
 		rank: 1,
 		outOf: 2,
+		rivalRank: null,
 	},
 	songID: 1,
 	game: "iidx",

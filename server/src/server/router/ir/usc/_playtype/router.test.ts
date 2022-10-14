@@ -132,6 +132,7 @@ const USC_SCORE_PB: PBScoreDocument = {
 	rankingData: {
 		rank: 1,
 		outOf: 2,
+		rivalRank: null,
 	},
 	songID: 1,
 	userID: 1,

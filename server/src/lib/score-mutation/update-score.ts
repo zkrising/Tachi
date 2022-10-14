@@ -64,6 +64,7 @@ export default async function UpdateScore(
 
 	logger.verbose("Received Update Score request.");
 
+	// eslint-disable-next-line require-atomic-updates
 	newScore.calculatedData = await CreateCalculatedData(
 		newScore,
 		chart,
@@ -148,13 +149,13 @@ export default async function UpdateScore(
 		chartID: newScore.chartID,
 	});
 
-	await UpdateChartRanking(newScore.chartID);
+	await UpdateChartRanking(newScore.game, newScore.playtype, newScore.chartID);
 
 	if (updateOldChart) {
 		await UpdateAllPBs([userID], {
 			chartID: oldScore.chartID,
 		});
-		await UpdateChartRanking(oldScore.chartID);
+		await UpdateChartRanking(oldScore.game, oldScore.playtype, oldScore.chartID);
 	}
 
 	const imports = await db.imports.find({

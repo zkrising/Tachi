@@ -6,9 +6,10 @@ import {
 	USCMergeFn,
 } from "./game-specific-merge";
 import db from "external/mongo/db";
+import { GetEveryonesRivalIDs, GetRivalIDs, GetRivalUsers } from "lib/rivals/rivals";
 import type { KtLogger } from "lib/logger/logger";
 import type { BulkWriteUpdateOneOperation } from "mongodb";
-import type { Game, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
+import type { Game, integer, PBScoreDocument, Playtype, ScoreDocument } from "tachi-common";
 
 export type PBScoreDocumentNoRank = Omit<PBScoreDocument, "rankingData">;
 
@@ -64,9 +65,9 @@ export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLo
 }
 
 /**
- * Updates user's rankings on a given chart.
+ * Updates rankings on a given chart.
  */
-export async function UpdateChartRanking(chartID: string) {
+export async function UpdateChartRanking(game: Game, playtype: Playtype, chartID: string) {
 	const scores = await db["personal-bests"].find(
 		{ chartID },
 		{
@@ -77,12 +78,25 @@ export async function UpdateChartRanking(chartID: string) {
 		}
 	);
 
+	const allRivals = await GetEveryonesRivalIDs(game, playtype);
+
 	const bwrite: Array<BulkWriteUpdateOneOperation<PBScoreDocument>> = [];
 
 	let rank = 0;
 
+	// what users have we saw so far? used for rivalRanking calculations
+	const seenUserIDs: Array<integer> = [];
+
 	for (const score of scores) {
 		rank++;
+
+		const thisUsersRivals = allRivals[score.userID];
+
+		let rivalRank: integer | null = null;
+
+		if (thisUsersRivals) {
+			rivalRank = thisUsersRivals.filter((e) => seenUserIDs.includes(e)).length + 1;
+		}
 
 		bwrite.push({
 			updateOne: {
@@ -92,6 +106,7 @@ export async function UpdateChartRanking(chartID: string) {
 						rankingData: {
 							rank,
 							outOf: scores.length,
+							rivalRank,
 						},
 					},
 				},

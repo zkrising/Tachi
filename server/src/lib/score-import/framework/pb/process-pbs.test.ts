@@ -16,7 +16,7 @@ t.test("#ProcessPBs", (t) => {
 		await db["personal-bests"].remove({});
 
 		// scores on 511 SPA are pre-loaded into the database
-		await ProcessPBs(1, new Set([Testing511SPA.chartID]), logger);
+		await ProcessPBs("iidx", "SP", 1, new Set([Testing511SPA.chartID]), logger);
 
 		const pbs = await db["personal-bests"].find({});
 
@@ -48,7 +48,13 @@ t.test("#ProcessPBs", (t) => {
 			}),
 		]);
 
-		await ProcessPBs(1, new Set([Testing511SPA.chartID, "test1", "test2", "test3"]), logger);
+		await ProcessPBs(
+			"iidx",
+			"SP",
+			1,
+			new Set([Testing511SPA.chartID, "test1", "test2", "test3"]),
+			logger
+		);
 
 		const pbs = await db["personal-bests"].find({});
 

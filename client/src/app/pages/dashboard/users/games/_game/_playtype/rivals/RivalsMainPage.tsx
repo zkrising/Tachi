@@ -4,10 +4,10 @@ import Icon from "components/util/Icon";
 import SelectLinkButton from "components/util/SelectLinkButton";
 import useUGPTBase from "components/util/useUGPTBase";
 import React from "react";
-import { Row, Col } from "react-bootstrap";
-import { Switch, Route } from "react-router-dom";
+import { Col, Row } from "react-bootstrap";
+import { Route, Switch } from "react-router-dom";
 import { FormatGame, Game, GetGameConfig, Playtype, PublicUserDocument } from "tachi-common";
-import RivalsOverviewPage from "./RivalsOverviewPage";
+import RivalsManagePage from "./RivalsManagePage";
 
 export default function RivalsMainPage({
 	reqUser,
@@ -65,7 +65,7 @@ export default function RivalsMainPage({
 						exact
 						path="/dashboard/users/:userID/games/:game/:playtype/rivals/manage"
 					>
-						<RivalsOverviewPage reqUser={reqUser} game={game} playtype={playtype} />
+						<RivalsManagePage reqUser={reqUser} game={game} playtype={playtype} />
 					</Route>
 
 					<Route

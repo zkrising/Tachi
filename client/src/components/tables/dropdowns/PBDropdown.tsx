@@ -15,6 +15,7 @@ import DocComponentCreator, {
 } from "./components/DocumentComponent";
 import DropdownStructure from "./components/DropdownStructure";
 import PlayHistory from "./components/PlayHistory";
+import RivalCompare from "./components/RivalCompare";
 import { GPTDropdownSettings } from "./GPTDropdownSettings";
 
 export interface ScoreDropdownProps<I extends IDStrings = IDStrings> {
@@ -35,12 +36,10 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 	userID: integer;
 	chart: ChartDocument;
 	scoreState: ScoreState;
-	defaultView?: "pb" | "scorePB" | "lampPB" | "history" | "debug";
+	defaultView?: "pb" | "scorePB" | "lampPB" | "history" | "debug" | "rivals";
 } & GamePT) {
 	const DocComponent: DocumentComponentType = (props) =>
 		DocComponentCreator({ ...props, ...GPTDropdownSettings(game, playtype) });
-
-	// const { settings } = useContext(UserSettingsContext);
 
 	const [view, setView] = useState(defaultView);
 
@@ -109,6 +108,8 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 		);
 	} else if (view === "debug") {
 		body = <DebugContent data={data} />;
+	} else if (view === "rivals") {
+		body = <RivalCompare chart={chart} game={game} />;
 	} else {
 		body = (
 			<DocComponent
@@ -144,6 +145,10 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 					<SelectButton setValue={setView} value={view} id="history">
 						<Icon type="history" />
 						Play History{histData && ` (${histData.length})`}
+					</SelectButton>
+					<SelectButton setValue={setView} value={view} id="rivals">
+						<Icon type="users" />
+						Rivals
 					</SelectButton>
 					<HasDevModeOn>
 						<SelectButton setValue={setView} value={view} id="debug">

@@ -13,8 +13,9 @@ import { UserContext } from "context/UserContext";
 import React, { useContext, useState } from "react";
 import { Button, Col } from "react-bootstrap";
 import { Game, Playtype, PublicUserDocument } from "tachi-common";
+import useLUGPTSettings from "components/util/useLUGPTSettings";
 
-export default function RivalsOverviewWrapper({
+export default function RivalsManagePage({
 	reqUser,
 	game,
 	playtype,
@@ -81,8 +82,13 @@ function RivalsOverviewPage({
 
 	const [rivals, setRivals] = useState(initialRivals);
 	const [show, setShow] = useState(false);
+	const { settings, setSettings } = useLUGPTSettings();
 
 	const [currentRivals, setCurrentRivals] = useState(initialRivals);
+
+	if (!settings) {
+		return <div>Looks like you're not signed in. How did you get to this page?</div>;
+	}
 
 	return (
 		<>
@@ -152,6 +158,10 @@ function RivalsOverviewPage({
 
 											if (res.success) {
 												setCurrentRivals(rivals);
+												setSettings({
+													...settings,
+													rivals: rivals.map((e) => e.id),
+												});
 											}
 										}}
 										variant="primary"

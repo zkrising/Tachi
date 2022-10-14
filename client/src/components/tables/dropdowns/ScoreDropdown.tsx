@@ -21,6 +21,7 @@ import DropdownStructure from "./components/DropdownStructure";
 import ManageScore from "./components/ManageScore";
 import PBCompare from "./components/PBCompare";
 import PlayHistory from "./components/PlayHistory";
+import RivalCompare from "./components/RivalCompare";
 import { GPTDropdownSettings } from "./GPTDropdownSettings";
 
 export interface ScoreState {
@@ -45,7 +46,7 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 	user: PublicUserDocument;
 	chart: ChartDocument;
 	scoreState: ScoreState;
-	defaultView?: "vsPB" | "moreInfo" | "history" | "debug" | "manage";
+	defaultView?: "vsPB" | "moreInfo" | "history" | "debug" | "manage" | "rivals";
 	thisScore: ScoreDocument;
 } & GamePT) {
 	const DocComponent: DocumentComponentType = (props) =>
@@ -106,6 +107,8 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 		body = <PBCompare data={data} DocComponent={DocComponent} scoreState={scoreState} />;
 	} else if (view === "manage") {
 		body = <ManageScore score={thisScore} />;
+	} else if (view === "rivals") {
+		body = <RivalCompare chart={chart} game={game} />;
 	}
 
 	return (
@@ -128,6 +131,12 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 						<SelectButton setValue={setView} value={view} id="manage">
 							<Icon type="trash" />
 							Manage Score
+						</SelectButton>
+					)}
+					{currentUser && (
+						<SelectButton setValue={setView} value={view} id="rivals">
+							<Icon type="users" />
+							Rivals
 						</SelectButton>
 					)}
 					<HasDevModeOn>

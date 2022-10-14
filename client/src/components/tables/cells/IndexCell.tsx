@@ -1,6 +1,7 @@
 import React from "react";
 import { integer } from "tachi-common";
 
+// gold, silver, bronze
 const COLORS = ["rgba(212,175,55,0.2)", "rgba(192,192,192,0.2)", "rgba(139,69,19,0.2)"];
 
 export default function IndexCell({ index }: { index: integer }) {

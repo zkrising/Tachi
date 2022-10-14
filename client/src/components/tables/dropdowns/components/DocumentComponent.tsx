@@ -152,3 +152,43 @@ export default function DocumentComponent({
 		</>
 	);
 }
+
+export function GraphAndJudgementDataComponent({
+	score,
+	GraphComponent = null,
+	chart,
+}: {
+	score: ScoreDocument | PBScoreDocument;
+	renderScoreInfo?: boolean;
+	showSingleScoreNote?: boolean;
+	forceScoreData?: boolean;
+	chart: ChartDocument;
+	GraphComponent?:
+		| (({
+				score,
+				chart,
+		  }: {
+				score: ScoreDocument | PBScoreDocument;
+				chart: ChartDocument;
+		  }) => JSX.Element)
+		| null;
+}) {
+	return (
+		<div className="row w-100">
+			<div className="col-9">
+				<div className="row h-100 justify-content-center">
+					{GraphComponent ? (
+						<GraphComponent chart={chart} score={score} />
+					) : (
+						<div className="d-flex align-items-center" style={{ height: "200px" }}>
+							<span className="text-muted">No graphs available :(</span>
+						</div>
+					)}
+				</div>
+			</div>
+			<div className="col-3 align-self-center">
+				<JudgementTable score={score} />
+			</div>
+		</div>
+	);
+}

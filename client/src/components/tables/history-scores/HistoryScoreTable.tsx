@@ -15,6 +15,11 @@ import TimestampCell from "../cells/TimestampCell";
 import TachiTable from "../components/TachiTable";
 import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";
 import { GetGPTCoreHeaders } from "../headers/GameHeaders";
+import DropdownRow from "../components/DropdownRow";
+import { GraphAndJudgementDataComponent } from "../dropdowns/components/DocumentComponent";
+import { GPTDropdownSettings } from "../dropdowns/GPTDropdownSettings";
+import { EmptyHeader } from "../headers/IndicatorHeader";
+import DropdownIndicatorCell from "../cells/DropdownIndicatorCell";
 
 export default function HistoryScoreTable({
 	dataset,
@@ -44,6 +49,7 @@ export default function HistoryScoreTable({
 			headers={[
 				...headers,
 				["Timestamp", "Timestamp", NumericSOV((x) => x.timeAchieved ?? 0)],
+				EmptyHeader,
 			]}
 			defaultSortMode="Timestamp"
 			defaultReverseSort
@@ -66,9 +72,19 @@ function Row({
 	chart: ChartDocument;
 }) {
 	return (
-		<tr>
+		<DropdownRow
+			nested
+			dropdown={
+				<GraphAndJudgementDataComponent
+					chart={chart}
+					score={sc}
+					{...{ ...GPTDropdownSettings(game, chart.playtype) }}
+				/>
+			}
+		>
 			<ScoreCoreCells score={sc} game={game} rating={rating as any} chart={chart} />
 			<TimestampCell time={sc.timeAchieved} service={sc.service} />
-		</tr>
+			<DropdownIndicatorCell />
+		</DropdownRow>
 	);
 }

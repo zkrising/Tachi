@@ -8,7 +8,7 @@ import { PBDataset } from "types/tables";
 import { Playtype } from "types/tachi";
 import DropdownIndicatorCell from "../cells/DropdownIndicatorCell";
 import IndexCell from "../cells/IndexCell";
-import RankingCell from "../cells/RankingCell";
+import RankingCell, { RankingViewMode } from "../cells/RankingCell";
 import TimestampCell from "../cells/TimestampCell";
 import DropdownRow from "../components/DropdownRow";
 import TachiTable, { Header } from "../components/TachiTable";
@@ -18,6 +18,7 @@ import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";
 import ChartHeader from "../headers/ChartHeader";
 import { GetGPTCoreHeaders } from "../headers/GameHeaders";
 import { EmptyHeader } from "../headers/IndicatorHeader";
+import { CreateRankingHeader } from "../headers/RankingHeader";
 import PBLeadingRows from "./PBLeadingRows";
 
 export default function PBTable<I extends IDStrings = IDStrings>({
@@ -29,6 +30,7 @@ export default function PBTable<I extends IDStrings = IDStrings>({
 	showChart = true,
 	playtype,
 	alg,
+	defaultRankingViewMode,
 }: {
 	dataset: PBDataset<I>;
 	indexCol?: boolean;
@@ -38,10 +40,14 @@ export default function PBTable<I extends IDStrings = IDStrings>({
 	playtype: Playtype;
 	game: Game;
 	alg?: ScoreCalculatedDataLookup[I];
+	defaultRankingViewMode?: RankingViewMode;
 }) {
 	const defaultRating = useScoreRatingAlg(game, playtype);
 
 	const [rating, setRating] = useState(alg ?? defaultRating);
+	const [rankingViewMode, setRankingViewMode] = useState<RankingViewMode>(
+		defaultRankingViewMode ?? "global"
+	);
 
 	const headers: Header<PBDataset<I>[0]>[] = [
 		...GetPBLeadingHeaders(
@@ -51,7 +57,7 @@ export default function PBTable<I extends IDStrings = IDStrings>({
 		),
 		EmptyHeader,
 		...GetGPTCoreHeaders<PBDataset>(game, playtype, rating, setRating, (x) => x),
-		["Site Ranking", "Site Rank", NumericSOV((x) => x.rankingData.rank)],
+		CreateRankingHeader(rankingViewMode, setRankingViewMode, (k) => k.rankingData),
 		["Last Raised", "Last Raised", NumericSOV((x) => x.timeAchieved ?? 0)],
 		EmptyHeader,
 	];
@@ -86,6 +92,7 @@ export default function PBTable<I extends IDStrings = IDStrings>({
 					rating={rating}
 					game={game}
 					playtype={playtype}
+					rankingViewMode={rankingViewMode}
 				/>
 			)}
 		/>
@@ -100,6 +107,7 @@ function Row<I extends IDStrings = IDStrings>({
 	showUser,
 	game,
 	rating,
+	rankingViewMode,
 }: {
 	pb: PBDataset<I>[0];
 	indexCol: boolean;
@@ -110,6 +118,7 @@ function Row<I extends IDStrings = IDStrings>({
 	playtype: Playtype;
 	// ts bug?
 	rating: any; // ScoreCalculatedDataLookup[I];
+	rankingViewMode: RankingViewMode;
 }) {
 	const scoreState = usePBState(pb);
 
@@ -128,7 +137,11 @@ function Row<I extends IDStrings = IDStrings>({
 			{indexCol && <IndexCell index={pb.__related.index} />}
 			<PBLeadingRows {...{ showUser, showChart, pb, scoreState }} />
 			<ScoreCoreCells score={pb} game={game} rating={rating} chart={pb.__related.chart} />
-			<RankingCell rankingData={pb.rankingData} />
+			<RankingCell
+				rankingData={pb.rankingData}
+				userID={pb.userID}
+				rankingViewMode={rankingViewMode}
+			/>
 			<TimestampCell time={pb.timeAchieved} />
 			{showPlaycount && <td>{pb.__playcount ?? 0}</td>}
 			<DropdownIndicatorCell />

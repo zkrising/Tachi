@@ -89,12 +89,13 @@ export async function UpdateChartRanking(game: Game, playtype: Playtype, chartID
 
 	for (const score of scores) {
 		rank++;
+		seenUserIDs.push(score.userID);
 
 		const thisUsersRivals = allRivals[score.userID];
 
 		let rivalRank: integer | null = null;
 
-		if (thisUsersRivals) {
+		if (thisUsersRivals && thisUsersRivals.length > 0) {
 			rivalRank = thisUsersRivals.filter((e) => seenUserIDs.includes(e)).length + 1;
 		}
 

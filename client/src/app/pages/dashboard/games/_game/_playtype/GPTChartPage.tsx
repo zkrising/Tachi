@@ -261,6 +261,7 @@ function ChartLeaderboardTable({
 
 	return (
 		<PBTable
+			defaultRankingViewMode={mode === "rivals" ? "global-no-switch" : "both-if-self"}
 			key={mode}
 			dataset={dataset}
 			game={game}

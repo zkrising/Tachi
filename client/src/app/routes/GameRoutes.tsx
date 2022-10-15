@@ -37,6 +37,7 @@ import {
 import { SongsReturn } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
+import { UGPTContextProvider } from "context/UGPTContext";
 
 export default function GameRoutes() {
 	const { game } = useParams<{ game: string }>();
@@ -66,7 +67,9 @@ export default function GameRoutes() {
 			</Route>
 
 			<Route path="/dashboard/games/:game/:playtype">
-				<GamePlaytypeRoutes game={game} />
+				<UGPTContextProvider>
+					<GamePlaytypeRoutes game={game} />
+				</UGPTContextProvider>
 			</Route>
 
 			<Route path="*">

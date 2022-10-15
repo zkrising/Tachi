@@ -204,6 +204,16 @@ export function GetValueGetter<D>(v: ValueGetterOrHybrid<D>) {
 	return v.valueGetter;
 }
 
+function GetValueInsensitive<T>(record: Record<string, T>, key: string): T | undefined {
+	for (const [recKey, value] of Object.entries(record)) {
+		if (recKey.toLowerCase() === key.toLowerCase()) {
+			return value;
+		}
+	}
+
+	return undefined;
+}
+
 export function ComposeSearchFunction<D>(
 	valueGetters: Record<string, ValueGetterOrHybrid<D>>
 ): ZTableSearchFn<D> {
@@ -237,7 +247,7 @@ export function ComposeSearchFunction<D>(
 		}
 
 		for (const directive of directives) {
-			const vgOrHybrid = valueGetters[directive.key];
+			const vgOrHybrid = GetValueInsensitive(valueGetters, directive.key);
 
 			if (!vgOrHybrid) {
 				continue;

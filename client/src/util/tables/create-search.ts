@@ -67,6 +67,7 @@ export function CreateDefaultPBSearchParams<I extends IDStrings = IDStrings>(
 		score: (x) => x.scoreData.score,
 		percent: (x) => x.scoreData.percent,
 		ranking: (x) => x.rankingData.rank,
+		rivalRanking: (x) => x.rankingData.rivalRank,
 		highlight: (x) => !!x.highlight,
 		username: (x) => x.__related.user?.username ?? null,
 		lamp: {
@@ -98,9 +99,10 @@ export function CreateDefaultFolderSearchParams<I extends IDStrings = IDStrings>
 		title: (x) => x.__related.song.title,
 		difficulty: (x) => x.difficulty,
 		level: (x) => x.levelNum,
-		score: (x) => x.__related.pb?.scoreData.score ?? -Infinity,
-		percent: (x) => x.__related.pb?.scoreData.percent ?? -Infinity,
-		ranking: (x) => x.__related.pb?.rankingData.rank ?? -Infinity,
+		score: (x) => x.__related.pb?.scoreData.score ?? null,
+		percent: (x) => x.__related.pb?.scoreData.percent ?? null,
+		ranking: (x) => x.__related.pb?.rankingData.rank ?? null,
+		rivalRanking: (x) => x.__related.pb?.rankingData.rivalRank ?? null,
 		highlight: (x) => !!x.__related.pb?.highlight,
 		played: (x) => !!x.__related.pb,
 		lamp: {

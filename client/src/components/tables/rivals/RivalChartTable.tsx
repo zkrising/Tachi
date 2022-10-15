@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { ChartDocument, Game, IDStrings, ScoreCalculatedDataLookup } from "tachi-common";
 import { RivalChartDataset } from "types/tables";
 import IndexCell from "../cells/IndexCell";
-import RankingCell from "../cells/RankingCell";
+import RankingCell, { RankingViewMode } from "../cells/RankingCell";
 import TimestampCell from "../cells/TimestampCell";
 import UserCell from "../cells/UserCell";
 import DropdownRow from "../components/DropdownRow";
@@ -13,6 +13,7 @@ import { GraphAndJudgementDataComponent } from "../dropdowns/components/Document
 import { GPTDropdownSettings } from "../dropdowns/GPTDropdownSettings";
 import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";
 import { GetGPTCoreHeaders } from "../headers/GameHeaders";
+import { CreateRankingHeader } from "../headers/RankingHeader";
 
 export default function RivalChartTable<I extends IDStrings = IDStrings>({
 	dataset,
@@ -28,6 +29,7 @@ export default function RivalChartTable<I extends IDStrings = IDStrings>({
 	const defaultRating = useScoreRatingAlg(game, playtype);
 
 	const [rating, setRating] = useState(defaultRating);
+	const [rankingViewMode, setRankingViewMode] = useState<RankingViewMode>("global");
 
 	const headers: Header<RivalChartDataset[0]>[] = [
 		["#", "#", NumericSOV((x) => x.__related.index)],
@@ -39,11 +41,11 @@ export default function RivalChartTable<I extends IDStrings = IDStrings>({
 			setRating,
 			(x) => x.__related.pb
 		),
-		[
-			"Site Ranking",
-			"Site Rank",
-			NumericSOV((x) => x.__related.pb?.rankingData.rank ?? -Infinity),
-		],
+		CreateRankingHeader(
+			rankingViewMode,
+			setRankingViewMode,
+			(k) => k.__related.pb?.rankingData
+		),
 		["Last Raised", "Last Raised", NumericSOV((x) => x.__related.pb?.timeAchieved ?? 0)],
 	];
 
@@ -55,7 +57,14 @@ export default function RivalChartTable<I extends IDStrings = IDStrings>({
 			noTopDisplayStr
 			defaultSortMode="#"
 			rowFunction={(data) => (
-				<Row chart={chart} rating={rating} data={data} key={data.id} game={game} />
+				<Row
+					chart={chart}
+					rating={rating}
+					data={data}
+					key={data.id}
+					game={game}
+					rankingViewMode={rankingViewMode}
+				/>
 			)}
 		/>
 	);
@@ -66,11 +75,13 @@ function Row<I extends IDStrings = IDStrings>({
 	rating,
 	game,
 	chart,
+	rankingViewMode,
 }: {
 	data: RivalChartDataset<I>[0];
 	game: Game;
 	rating: ScoreCalculatedDataLookup[I];
 	chart: ChartDocument;
+	rankingViewMode: RankingViewMode;
 }) {
 	const pb = data.__related.pb;
 
@@ -98,7 +109,11 @@ function Row<I extends IDStrings = IDStrings>({
 			<IndexCell index={data.__related.index} />
 			<UserCell user={data} game={game} playtype={chart.playtype} />
 			<ScoreCoreCells score={pb} game={game} rating={rating} chart={chart} />
-			<RankingCell rankingData={pb.rankingData} />
+			<RankingCell
+				rankingData={pb.rankingData}
+				userID={pb.userID}
+				rankingViewMode={rankingViewMode}
+			/>
 			<TimestampCell time={pb.timeAchieved} />
 		</DropdownRow>
 	);

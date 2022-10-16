@@ -45,10 +45,16 @@ const userSessionMiddleware = expressSession({
 	cookie: {
 		// the absence of Secure in combination with SameSite=None will cause issues on non-https
 		// instances in newer versions of chromium. there is no workaround for this.
-		secure: Environment.nodeEnv === "production" || ServerConfig.ENABLE_SERVER_HTTPS,
+		secure:
+			Environment.nodeEnv === "production" ||
+			Environment.nodeEnv === "staging" ||
+			ServerConfig.ENABLE_SERVER_HTTPS,
 
 		// Very important. Without this, we're vulnerable to CSRF!
-		sameSite: Environment.nodeEnv === "production" ? "strict" : "none",
+		sameSite:
+			Environment.nodeEnv === "production" || Environment.nodeEnv === "staging"
+				? "strict"
+				: "none",
 	},
 });
 

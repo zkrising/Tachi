@@ -119,7 +119,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 				lamp: "CLEAR",
 				score: 9_000_001,
 			},
-			context,
+			{ game: "sdvx", playtype: "Single", service: "foo", version: null },
 			importType,
 			logger
 		);
@@ -140,11 +140,11 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 						lamp: "CLEAR",
 						score: 9_000_001,
 					},
-					context,
+					{ game: "sdvx", playtype: "Single", service: "foo", version: null },
 					importType,
 					logger
 				),
-			ktdWrap("Cannot find SDVX chart with inGameID 9999999")
+			ktdWrap("Cannot find SDVX chart with inGameID 9999999", "sdvx")
 		);
 
 		t.end();
@@ -169,7 +169,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 				lamp: "CLEAR",
 				score: 9_000_001,
 			},
-			context,
+			{ game: "sdvx", playtype: "Single", service: "foo", version: null },
 			importType,
 			logger
 		);

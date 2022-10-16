@@ -1,4 +1,4 @@
-import { COLOUR_SET } from "../config/config";
+import { COLOUR_SET } from "./colour-set";
 import type { Playtypes } from "../types";
 
 export interface BMSTableInfo {

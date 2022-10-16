@@ -105,6 +105,7 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 			gameSpecific: settings!.preferences.gameSpecific as any,
 			defaultTable: settings!.preferences.defaultTable,
 			scoreBucket: settings!.preferences.scoreBucket ?? gptConfig.scoreBucket,
+			preferredRanking: settings!.preferences.preferredRanking ?? "global",
 		},
 		onSubmit: async (values) => {
 			const rj = await APIFetchV1<PublicUserDocument>(
@@ -220,6 +221,21 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 					<br />
 					Note: This will only affect defaults, such as what graph is shown in the folder
 					breakdown. You can still view all the same stats!
+				</Form.Text>
+			</Form.Group>
+			<Form.Group>
+				<Form.Label>Preferred Ranking</Form.Label>
+				<Form.Control
+					as="select"
+					id="preferredRanking"
+					value={formik.values.preferredRanking}
+					onChange={formik.handleChange}
+				>
+					<option value="global">Global Rankings</option>
+					<option value="rival">Rival Rankings</option>
+				</Form.Control>
+				<Form.Text className="text-muted">
+					What should {TachiConfig.name} default to when showing your score rankings?
 				</Form.Text>
 			</Form.Group>
 			<Form.Group>

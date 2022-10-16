@@ -186,3 +186,8 @@ export interface ChallengeSubsReturn {
 	songs: Array<SongDocument>;
 	charts: Array<ChartDocument>;
 }
+
+export interface ChartRivalsReturn {
+	rivals: Array<PublicUserDocument>;
+	pbs: Array<PBScoreDocument>;
+}

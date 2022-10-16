@@ -1,5 +1,6 @@
 import { Router } from "express";
 import db from "external/mongo/db";
+import { GetRivalUsers } from "lib/rivals/rivals";
 import { SearchSpecificGameSongsAndCharts } from "lib/search/search";
 import { AggressiveRateLimitMiddleware } from "server/middleware/rate-limiter";
 import { GetGamePTConfig } from "tachi-common";
@@ -7,7 +8,7 @@ import { GetRelevantSongsAndCharts } from "utils/db";
 import { IsValidScoreAlg } from "utils/misc";
 import { GetAdjacentAbove, GetAdjacentBelow } from "utils/queries/pbs";
 import { GetUGPT } from "utils/req-tachi-data";
-import { FilterChartsAndSongs, GetScoreIDsFromComposed } from "utils/scores";
+import { FilterChartsAndSongs, GetPBOnChart, GetScoreIDsFromComposed } from "utils/scores";
 import { GetUsersWithIDs } from "utils/user";
 
 const router: Router = Router({ mergeParams: true });
@@ -199,6 +200,33 @@ router.get("/:chartID", async (req, res) => {
 		body: {
 			pb,
 			chart,
+		},
+	});
+});
+
+/**
+ * Returns a user's PB on the given chart, and all of their rivals performances aswell.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs/:chartID/rivals
+ */
+router.get("/:chartID/rivals", async (req, res) => {
+	const { user, game, playtype } = GetUGPT(req);
+
+	const rivals = await GetRivalUsers(user.id, game, playtype);
+
+	const pbs = await db["personal-bests"].find({
+		userID: { $in: rivals.map((e) => e.id) },
+		chartID: req.params.chartID,
+	});
+
+	const usersPB = await GetPBOnChart(user.id, req.params.chartID);
+
+	return res.status(200).json({
+		success: true,
+		description: `Retrieved PBs and Rival PBs.`,
+		body: {
+			pbs: [...pbs, usersPB],
+			rivals,
 		},
 	});
 });

@@ -1,14 +1,15 @@
 import { NumericSOV, StrSOV } from "util/sorts";
 import { CreateDefaultFolderSearchParams } from "util/tables/create-search";
+import Muted from "components/util/Muted";
+import usePreferredRanking from "components/util/usePreferredRanking";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
 import { Game, IDStrings, ScoreCalculatedDataLookup } from "tachi-common";
 import { FolderDataset } from "types/tables";
 import { Playtype } from "types/tachi";
-import Muted from "components/util/Muted";
 import DifficultyCell from "../cells/DifficultyCell";
 import IndicatorsCell from "../cells/IndicatorsCell";
-import RankingCell from "../cells/RankingCell";
+import RankingCell, { RankingViewMode } from "../cells/RankingCell";
 import TimestampCell from "../cells/TimestampCell";
 import TitleCell from "../cells/TitleCell";
 import DropdownRow from "../components/DropdownRow";
@@ -19,6 +20,7 @@ import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";
 import ChartHeader from "../headers/ChartHeader";
 import { GetGPTCoreHeaders } from "../headers/GameHeaders";
 import { EmptyHeader, FolderIndicatorHeader } from "../headers/IndicatorHeader";
+import { CreateRankingHeader } from "../headers/RankingHeader";
 
 export default function FolderTable<I extends IDStrings = IDStrings>({
 	dataset,
@@ -31,7 +33,12 @@ export default function FolderTable<I extends IDStrings = IDStrings>({
 }) {
 	const defaultRating = useScoreRatingAlg(game, playtype);
 
+	const preferredRanking = usePreferredRanking();
+
 	const [rating, setRating] = useState(defaultRating);
+	const [rankingViewMode, setRankingViewMode] = useState<RankingViewMode>(
+		preferredRanking ?? "global"
+	);
 
 	const headers: Header<FolderDataset[0]>[] = [
 		ChartHeader(game, (k) => k),
@@ -45,11 +52,11 @@ export default function FolderTable<I extends IDStrings = IDStrings>({
 			setRating,
 			(x) => x.__related.pb
 		),
-		[
-			"Site Ranking",
-			"Site Rank",
-			NumericSOV((x) => x.__related.pb?.rankingData.rank ?? -Infinity),
-		],
+		CreateRankingHeader(
+			rankingViewMode,
+			setRankingViewMode,
+			(k) => k.__related.pb?.rankingData
+		),
 		["Last Raised", "Last Raised", NumericSOV((x) => x.__related.pb?.timeAchieved ?? 0)],
 	];
 
@@ -60,7 +67,13 @@ export default function FolderTable<I extends IDStrings = IDStrings>({
 			entryName="Charts"
 			searchFunctions={CreateDefaultFolderSearchParams(game, playtype)}
 			rowFunction={(data) => (
-				<Row rating={rating} data={data} key={data.chartID} game={game} />
+				<Row
+					rating={rating}
+					data={data}
+					key={data.chartID}
+					game={game}
+					rankingViewMode={rankingViewMode}
+				/>
 			)}
 		/>
 	);
@@ -70,10 +83,12 @@ function Row<I extends IDStrings = IDStrings>({
 	data,
 	rating,
 	game,
+	rankingViewMode,
 }: {
 	data: FolderDataset<I>[0];
 	game: Game;
 	rating: ScoreCalculatedDataLookup[I];
+	rankingViewMode: RankingViewMode;
 }) {
 	const score = data.__related.pb;
 
@@ -110,7 +125,11 @@ function Row<I extends IDStrings = IDStrings>({
 				<Muted>PB</Muted>
 			</td>
 			<ScoreCoreCells score={score} game={game} rating={rating} chart={data} />
-			<RankingCell rankingData={score.rankingData} />
+			<RankingCell
+				rankingData={score.rankingData}
+				userID={score.userID}
+				rankingViewMode={rankingViewMode}
+			/>
 			<TimestampCell time={score.timeAchieved} />
 		</DropdownRow>
 	);

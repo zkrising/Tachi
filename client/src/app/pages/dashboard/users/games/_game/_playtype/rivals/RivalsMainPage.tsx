@@ -4,10 +4,11 @@ import Icon from "components/util/Icon";
 import SelectLinkButton from "components/util/SelectLinkButton";
 import useUGPTBase from "components/util/useUGPTBase";
 import React from "react";
-import { Row, Col } from "react-bootstrap";
-import { Switch, Route } from "react-router-dom";
+import { Col, Row } from "react-bootstrap";
+import { Route, Switch } from "react-router-dom";
 import { FormatGame, Game, GetGameConfig, Playtype, PublicUserDocument } from "tachi-common";
-import RivalsOverviewPage from "./RivalsOverviewPage";
+import RivalsComparePage from "./RivalsComparePage";
+import RivalsManagePage from "./RivalsManagePage";
 
 export default function RivalsMainPage({
 	reqUser,
@@ -32,17 +33,25 @@ export default function RivalsMainPage({
 		<Row>
 			<Col xs={12} className="text-center">
 				<div className="btn-group">
-					<SelectLinkButton to={`${base}/rivals/challenge-board`}>
-						<Icon type="list" />
-						Rival Score Feed
+					<SelectLinkButton to={`${base}/rivals/targets`}>
+						<Icon type="bullseye" />
+						Goals & Milestones
+					</SelectLinkButton>
+					<SelectLinkButton matchIfStartsWith to={`${base}/rivals/compare`}>
+						<Icon type="balance-scale-left" />
+						Compare
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/rivals`}>
+						<Icon type="list" />
+						Activity
+					</SelectLinkButton>
+					<SelectLinkButton to={`${base}/rivals/folders`}>
+						<Icon type="thumbtack" />
+						Manage Folders
+					</SelectLinkButton>
+					<SelectLinkButton to={`${base}/rivals/manage`}>
 						<Icon type="users" />
 						Manage Rivals
-					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/rivals/pinned-charts`}>
-						<Icon type="thumbtack" />
-						Pinned Charts
 					</SelectLinkButton>
 				</div>
 				<Divider />
@@ -50,16 +59,33 @@ export default function RivalsMainPage({
 			<Col xs={12}>
 				<Switch>
 					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/rivals">
-						<RivalsOverviewPage reqUser={reqUser} game={game} playtype={playtype} />
+						activity
 					</Route>
+
 					<Route
 						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/rivals/feed"
-					></Route>
+						path="/dashboard/users/:userID/games/:game/:playtype/rivals/manage"
+					>
+						<RivalsManagePage reqUser={reqUser} game={game} playtype={playtype} />
+					</Route>
+
 					<Route
 						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/rivals/pinned-charts"
-					></Route>
+						path="/dashboard/users/:userID/games/:game/:playtype/rivals/folders"
+					>
+						folders
+					</Route>
+
+					<Route
+						exact
+						path="/dashboard/users/:userID/games/:game/:playtype/rivals/targets"
+					>
+						goals milestones
+					</Route>
+
+					<Route path="/dashboard/users/:userID/games/:game/:playtype/rivals/compare">
+						<RivalsComparePage reqUser={reqUser} game={game} playtype={playtype} />
+					</Route>
 				</Switch>
 			</Col>
 		</Row>

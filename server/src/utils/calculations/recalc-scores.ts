@@ -7,6 +7,8 @@ import { GetAndUpdateUsersGoals } from "lib/score-import/framework/goals/goals";
 import { UpdateUsersMilestones } from "lib/score-import/framework/milestones/milestones";
 import { ProcessPBs } from "lib/score-import/framework/pb/process-pbs";
 import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/user-game-stats/update-ugs";
+import { TachiConfig } from "lib/setup/config";
+import { GetGameConfig } from "tachi-common";
 import { EfficientDBIterate } from "utils/efficient-db-iterate";
 import { FormatUserDoc } from "utils/user";
 import type { Game, integer, Playtype, PublicUserDocument } from "tachi-common";
@@ -95,12 +97,27 @@ export async function UpdateAllPBs(userIDs?: Array<integer>, filter = {}) {
 	for (const user of allUsers) {
 		logger.verbose(`Finding ${FormatUserDoc(user)}'s scores.`);
 
-		const scores = await db.scores.find(deepmerge({ userID: user.id }, filter), {
-			projection: { chartID: 1 },
-		});
+		for (const game of TachiConfig.GAMES) {
+			const gameConfig = GetGameConfig(game);
 
-		logger.verbose(`PBing ${FormatUserDoc(user)}'s scores.`);
-		await ProcessPBs(user.id, new Set(scores.map((e) => e.chartID)), logger);
+			for (const playtype of gameConfig.validPlaytypes) {
+				const scores = await db.scores.find(
+					deepmerge({ userID: user.id, game, playtype }, filter),
+					{
+						projection: { chartID: 1 },
+					}
+				);
+
+				logger.verbose(`PBing ${FormatUserDoc(user)}'s scores.`);
+				await ProcessPBs(
+					game,
+					playtype,
+					user.id,
+					new Set(scores.map((e) => e.chartID)),
+					logger
+				);
+			}
+		}
 	}
 
 	logger.verbose(`Done!`);

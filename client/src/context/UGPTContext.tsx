@@ -4,7 +4,6 @@ import fetchUGPTData, { UGPTData } from "components/util/query/fetchUGPTData";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { JustChildren, SetState } from "types/react";
-import { ErrorPage } from "app/pages/ErrorPage";
 import { UserContext } from "./UserContext";
 
 /**
@@ -33,7 +32,6 @@ export const UGPTContext = createContext<{
 	setLoggedInData: () => void 0,
 
 	viewingData: null,
-
 	setViewingData: () => void 0,
 });
 
@@ -104,15 +102,6 @@ export function UGPTContextProvider({ children }: JustChildren) {
 
 	if (viewingLoading || loggedLoading) {
 		return <Loading />;
-	}
-
-	if (!viewingData) {
-		return (
-			<ErrorPage
-				statusCode={400}
-				customMessage="This user probably doesn't play this game, or something has gone wrong."
-			/>
-		);
 	}
 
 	return (

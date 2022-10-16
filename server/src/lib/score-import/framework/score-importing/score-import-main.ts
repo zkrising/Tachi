@@ -14,7 +14,7 @@ import { GetGameConfig } from "tachi-common";
 import { GetMillisecondsSince } from "utils/misc";
 import { GetUserWithID } from "utils/user";
 import type { ConverterFunction, ImportInputParser } from "../../import-types/common/types";
-import type { ScorePlaytypeMap } from "../common/types";
+import type { ChartIDPlaytypeMap, ScorePlaytypeMap } from "../common/types";
 import type { ClassHandler } from "../user-game-stats/types";
 import type { KtLogger } from "lib/logger/logger";
 import type { ScoreImportJob } from "lib/score-import/worker/types";
@@ -292,20 +292,32 @@ export async function HandlePostImportSteps(
 
 	void SetJobProgress(job, "Processing scores and updating PBs.");
 
+	const playtypes = Object.keys(scorePlaytypeMap) as Array<Playtype>;
+
 	// --- 5. PersonalBests ---
 	// We want to keep an updated reference of a users best score on a given chart.
 	// This function also handles conjoining different scores together (such as unioning best lamp and
 	// best score).
 	const pbTimeStart = process.hrtime.bigint();
 
-	await ProcessPBs(user.id, chartIDs, logger);
+	// processing PBs is a playtype-specific action. As such, we need to split chartIDs
+	// accordingly
+	const chartIDsSeparatedByPlaytype: ChartIDPlaytypeMap = {};
+
+	for (const [playtype, scores] of Object.entries(scorePlaytypeMap)) {
+		chartIDsSeparatedByPlaytype[playtype as Playtype] = new Set(scores.map((e) => e.chartID));
+	}
+
+	await Promise.all(
+		Object.entries(chartIDsSeparatedByPlaytype).map(([playtype, chartIDs]) =>
+			ProcessPBs(game, playtype as Playtype, user.id, chartIDs, logger)
+		)
+	);
 
 	const pbTime = GetMillisecondsSince(pbTimeStart);
 	const pbTimeRel = pbTime / chartIDs.size;
 
 	logger.debug(`PB Processing took ${pbTime} milliseconds (${pbTimeRel}ms/doc)`);
-
-	const playtypes = Object.keys(scorePlaytypeMap) as Array<Playtype>;
 
 	void SetJobProgress(job, "Updating profile statistics.");
 
@@ -413,7 +425,8 @@ function ParseImportInfo(importInfo: Array<ImportProcessingInfo>) {
 			chartIDs.add(info.content.score.chartID);
 
 			if (scorePlaytypeMap[info.content.score.playtype]) {
-				scorePlaytypeMap[info.content.score.playtype]!.push(info.content.score);
+				// @ts-expect-error obviously delusional typescript moment
+				scorePlaytypeMap[info.content.score.playtype].push(info.content.score);
 			} else {
 				scorePlaytypeMap[info.content.score.playtype] = [info.content.score];
 			}

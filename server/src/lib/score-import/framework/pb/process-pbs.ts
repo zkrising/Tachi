@@ -2,12 +2,14 @@ import { CreatePBDoc, UpdateChartRanking } from "./create-pb-doc";
 import db from "external/mongo/db";
 import type { PBScoreDocumentNoRank } from "./create-pb-doc";
 import type { KtLogger } from "lib/logger/logger";
-import type { integer } from "tachi-common";
+import type { Game, integer, Playtype } from "tachi-common";
 
 /**
  * Process, recalculate and update a users PBs for this set of chartIDs.
  */
 export async function ProcessPBs(
+	game: Game,
+	playtype: Playtype,
 	userID: integer,
 	chartIDs: Set<string>,
 	logger: KtLogger
@@ -58,7 +60,7 @@ export async function ProcessPBs(
 
 	// now that everything has been updated or inserted, we can refresh
 	// the chart rankings.
-	await Promise.all(pbDocs.map((e) => UpdateChartRanking(e.chartID)));
+	await Promise.all(pbDocs.map((e) => UpdateChartRanking(game, playtype, e.chartID)));
 
 	// and we're done!
 }

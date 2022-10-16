@@ -29,7 +29,11 @@ import {
 	PublicUserDocument,
 	SongDocument,
 } from "tachi-common";
-import { ChartPBLeaderboardReturn, UGPTChartLeaderboardAdjacent } from "types/api-returns";
+import {
+	ChartPBLeaderboardReturn,
+	ChartRivalsReturn,
+	UGPTChartLeaderboardAdjacent,
+} from "types/api-returns";
 import { GamePT, SetState } from "types/react";
 import { PBDataset } from "types/tables";
 
@@ -73,6 +77,7 @@ export default function GPTChartPage({
 interface ChartPBData {
 	leaderboard: ChartPBLeaderboardReturn;
 	adjacent?: UGPTChartLeaderboardAdjacent;
+	rivals?: ChartRivalsReturn;
 	playcount: integer;
 }
 
@@ -87,7 +92,7 @@ function InternalGPTChartPage({
 } & GamePT) {
 	const { user } = useContext(UserContext);
 
-	const [mode, setMode] = useState<"leaderboard" | "adjacent">("leaderboard");
+	const [mode, setMode] = useState<"leaderboard" | "adjacent" | "rivals">("leaderboard");
 
 	const { data, error } = useQuery<ChartPBData, UnsuccessfulAPIFetchResponse>(
 		["PBInfo", `${chart.chartID}`],
@@ -113,15 +118,24 @@ function InternalGPTChartPage({
 					`/users/${user.id}/games/${game}/${playtype}/pbs/${chart.chartID}/leaderboard-adjacent`
 				);
 
-				if (!nRes.success) {
-					return { leaderboard: lRes.body, playcount: pRes.body.count };
-				}
+				const rRes = await APIFetchV1<ChartRivalsReturn>(
+					`/users/${user.id}/games/${game}/${playtype}/pbs/${chart.chartID}/rivals`
+				);
 
-				return {
+				const returnValue: ChartPBData = {
 					leaderboard: lRes.body,
-					adjacent: nRes.body,
 					playcount: pRes.body.count,
 				};
+
+				if (nRes.success) {
+					returnValue.adjacent = nRes.body;
+				}
+
+				if (rRes.success) {
+					returnValue.rivals = rRes.body;
+				}
+
+				return returnValue;
 			}
 
 			return { leaderboard: lRes.body, playcount: pRes.body.count };
@@ -144,6 +158,12 @@ function InternalGPTChartPage({
 
 	if (data.adjacent) {
 		for (const user of data.adjacent.users) {
+			userMap.set(user.id, user);
+		}
+	}
+
+	if (data.rivals) {
+		for (const user of data.rivals.rivals) {
 			userMap.set(user.id, user);
 		}
 	}
@@ -173,6 +193,12 @@ function InternalGPTChartPage({
 						<Icon type="user" />
 						Your Position
 					</SelectButton>
+					{user && (
+						<SelectButton value={mode} setValue={setMode} id="rivals">
+							<Icon type="user" />
+							VS. Rivals
+						</SelectButton>
+					)}
 				</div>
 			</Col>
 			<TopShowcase data={data} user={user} userMap={userMap} />
@@ -198,22 +224,24 @@ function ChartLeaderboardTable({
 	data: ChartPBData;
 	user: PublicUserDocument | null;
 	userMap: Map<integer, PublicUserDocument>;
-	mode: "leaderboard" | "adjacent";
+	mode: "leaderboard" | "adjacent" | "rivals";
 	chart: ChartDocument;
 	song: SongDocument;
 } & GamePT) {
 	const dataset: PBDataset = useMemo(() => {
 		const ds: PBDataset = [];
 
-		let pbs = [];
+		let pbs: Array<PBScoreDocument> = [];
 		if (mode === "leaderboard") {
 			pbs = data.leaderboard.pbs;
-		} else {
+		} else if (mode === "adjacent") {
 			pbs = [
 				...data.adjacent!.adjacentAbove,
 				data.adjacent!.pb,
 				...data.adjacent!.adjacentBelow,
 			];
+		} else if (mode === "rivals") {
+			pbs = data.rivals!.pbs;
 		}
 
 		for (const pb of pbs) {
@@ -233,6 +261,7 @@ function ChartLeaderboardTable({
 
 	return (
 		<PBTable
+			defaultRankingViewMode={mode === "rivals" ? "global-no-switch" : "both-if-self"}
 			key={mode}
 			dataset={dataset}
 			game={game}

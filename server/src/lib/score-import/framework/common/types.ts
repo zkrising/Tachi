@@ -12,3 +12,4 @@ export type DryScore<I extends IDStrings = IDStrings> = Pick<
 };
 
 export type ScorePlaytypeMap = Partial<Record<Playtype, Array<ScoreDocument>>>;
+export type ChartIDPlaytypeMap = Partial<Record<Playtype, Set<string>>>;

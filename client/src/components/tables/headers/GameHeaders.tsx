@@ -10,12 +10,14 @@ import {
 	ScoreDocument,
 } from "tachi-common";
 import { SetState } from "types/react";
-import { FolderDataset, PBDataset, ScoreDataset } from "types/tables";
+import { FolderDataset, PBDataset, RivalChartDataset, ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
 import SelectableRating from "../components/SelectableRating";
 import { Header, ZTableTHProps } from "../components/TachiTable";
 
-export function GetGPTCoreHeaders<Dataset extends FolderDataset | PBDataset | ScoreDataset>(
+export function GetGPTCoreHeaders<
+	Dataset extends FolderDataset | PBDataset | ScoreDataset | RivalChartDataset
+>(
 	game: Game,
 	playtype: Playtype,
 	rating: ScoreCalculatedDataLookup[IDStrings],

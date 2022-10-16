@@ -25,7 +25,7 @@ export default function PlayHistory({
 	}
 
 	return (
-		<div className="col-12 col-lg-10">
+		<div className="col-12">
 			<HistoryScoreTable dataset={data} game={game} playtype={playtype} chart={chart} />
 		</div>
 	);

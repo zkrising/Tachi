@@ -10,11 +10,13 @@ import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import UserIcon from "components/util/UserIcon";
 import { UserContext } from "context/UserContext";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Col } from "react-bootstrap";
-import { Game, Playtype, PublicUserDocument } from "tachi-common";
+import { FormatGame, Game, GetGameConfig, Playtype, PublicUserDocument } from "tachi-common";
+import useLUGPTSettings from "components/util/useLUGPTSettings";
+import useSetSubheader from "components/layout/header/useSetSubheader";
 
-export default function RivalsOverviewWrapper({
+export default function RivalsManagePage({
 	reqUser,
 	game,
 	playtype,
@@ -23,6 +25,14 @@ export default function RivalsOverviewWrapper({
 	game: Game;
 	playtype: Playtype;
 }) {
+	const gameConfig = GetGameConfig(game);
+
+	useSetSubheader(
+		["Users", reqUser.username, "Games", gameConfig.name, playtype, "Rivals", "Manage"],
+		[reqUser, game, playtype],
+		`Managing ${reqUser.username}'s ${FormatGame(game, playtype)} Rivals`
+	);
+
 	const { data, error } = useApiQuery<PublicUserDocument[]>(
 		`/users/${reqUser.id}/games/${game}/${playtype}/rivals`
 	);
@@ -79,29 +89,15 @@ function RivalsOverviewPage({
 
 	const isRequestingUser = reqUser.id === user?.id;
 
-	const [rivals, setRivals] = useState<Array<PublicUserDocument>>(initialRivals);
+	const [rivals, setRivals] = useState(initialRivals);
 	const [show, setShow] = useState(false);
+	const { settings, setSettings } = useLUGPTSettings();
 
-	useEffect(() => {
-		if (!isRequestingUser) {
-			return;
-		}
+	const [currentRivals, setCurrentRivals] = useState(initialRivals);
 
-		APIFetchV1(
-			`/users/${reqUser.id}/games/${game}/${playtype}/rivals`,
-			{
-				method: "PUT",
-				body: JSON.stringify({
-					rivalIDs: rivals.map((e) => e.id),
-				}),
-				headers: {
-					"Content-Type": "application/json",
-				},
-			},
-			false,
-			true
-		);
-	}, [rivals]);
+	if (!settings) {
+		return <div>Looks like you're not signed in. How did you get to this page?</div>;
+	}
 
 	return (
 		<>
@@ -144,12 +140,58 @@ function RivalsOverviewPage({
 							)}
 						</Col>
 
+						{/* kind of a stupid way to check whether the array has changed or not, but who cares. */}
+						{currentRivals.toString() !== rivals.toString() && (
+							<>
+								<Col xs={12}>
+									<Divider />
+								</Col>
+								<Col xs={12} className="d-flex justify-content-center">
+									<Button
+										size="lg"
+										onClick={async () => {
+											const res = await APIFetchV1(
+												`/users/${reqUser.id}/games/${game}/${playtype}/rivals`,
+												{
+													method: "PUT",
+													body: JSON.stringify({
+														rivalIDs: rivals.map((e) => e.id),
+													}),
+													headers: {
+														"Content-Type": "application/json",
+													},
+												},
+												true,
+												true
+											);
+
+											if (res.success) {
+												setCurrentRivals(rivals);
+												setSettings({
+													...settings,
+													rivals: rivals.map((e) => e.id),
+												});
+											}
+										}}
+										variant="primary"
+									>
+										Save Changes
+									</Button>
+								</Col>
+							</>
+						)}
+
 						<UserSelectModal
 							callback={(user) => {
 								if (rivals.length >= 5) {
 									SendErrorToast(`Can't have more than 5 rivals!`);
 								} else {
 									setRivals([...rivals, user]);
+
+									// if we're now at max rivals, exit.
+									if (rivals.length + 1 >= 5) {
+										setShow(false);
+									}
 								}
 							}}
 							show={show}

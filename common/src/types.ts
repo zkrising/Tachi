@@ -1256,6 +1256,12 @@ export interface PBScoreDocument<I extends IDStrings = IDStrings> extends MongoD
 	rankingData: {
 		rank: integer;
 		outOf: integer;
+
+		// out of their rivals, what is their position on this chart?
+		// note that we don't need to store rivalOutOf, as it's pretty much a constant
+		// that can just be read from the UGPT settings.
+		// null if the user has no rivals.
+		rivalRank: integer | null;
 	};
 	userID: integer;
 	chartID: string;
@@ -1465,6 +1471,7 @@ export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDo
 		stats: Array<ShowcaseStatDetails>;
 		scoreBucket: "grade" | "lamp" | null;
 		defaultTable: string | null;
+		preferredRanking: "global" | "rival" | null;
 		gameSpecific: UGPTSpecificPreferences[I];
 	};
 	rivals: Array<integer>;

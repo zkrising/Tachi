@@ -49,3 +49,10 @@ export type UGSDataset<I extends IDStrings = IDStrings> = (UserGameStats<I> & {
 		index: integer;
 	};
 })[];
+
+export type RivalChartDataset<I extends IDStrings = IDStrings> = (PublicUserDocument & {
+	__related: {
+		pb: PBScoreDocument<I> | null;
+		index: number;
+	};
+})[];

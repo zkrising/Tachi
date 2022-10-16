@@ -1,3 +1,4 @@
+import UGPTAddPreferredRanking from "./migrations/add-preferredRanking-to-ugpt";
 import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
 import RecalcBrokenIIDXNotecounts from "./migrations/recalc-broken-iidx-notecounts";
 import RemoveIIDXBeginners from "./migrations/remove-iidx-beginners";
@@ -27,7 +28,7 @@ export const FAKE_MIGRATION: Migration = {
 const REGISTERED_MIGRATIONS: Array<Migration> =
 	Environment.nodeEnv === "test"
 		? [FAKE_MIGRATION]
-		: [UGPTRivalsMigration, RemoveMultifolderStats];
+		: [UGPTRivalsMigration, RemoveMultifolderStats, UGPTAddPreferredRanking];
 
 // only apply type-specific migrations if we're not in testing
 if (Environment.nodeEnv !== "test") {

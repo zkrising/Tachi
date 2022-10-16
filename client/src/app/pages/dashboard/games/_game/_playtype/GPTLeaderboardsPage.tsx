@@ -1,12 +1,12 @@
-import { CreateChartMap, CreateSongMap, CreateUserMap } from "util/data";
+import { CreateUserMap } from "util/data";
 import { UppercaseFirst } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
 import ClassBadge from "components/game/ClassBadge";
+import ScoreLeaderboard from "components/game/ScoreLeaderboard";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import IndexCell from "components/tables/cells/IndexCell";
 import UserCell from "components/tables/cells/UserCell";
 import TachiTable, { Header } from "components/tables/components/TachiTable";
-import PBTable from "components/tables/pbs/PBTable";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
@@ -14,13 +14,13 @@ import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
-import useScoreRatingAlg, { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
+import { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { FormatGame, GetGameConfig, GetGamePTConfig } from "tachi-common";
-import { ScoreLeaderboardReturns, UserLeaderboardReturns } from "types/api-returns";
+import { UserLeaderboardReturns } from "types/api-returns";
 import { GamePT } from "types/react";
-import { PBDataset, UGSDataset } from "types/tables";
+import { UGSDataset } from "types/tables";
 
 export default function GPTLeaderboardsPage({ game, playtype }: GamePT) {
 	useSetSubheader(
@@ -50,7 +50,11 @@ export default function GPTLeaderboardsPage({ game, playtype }: GamePT) {
 				{mode === "profile" ? (
 					<ProfileLeaderboard game={game} playtype={playtype} />
 				) : (
-					<ScoreLeaderboard game={game} playtype={playtype} />
+					<ScoreLeaderboard
+						game={game}
+						playtype={playtype}
+						url={`/games/${game}/${playtype}/score-leaderboard`}
+					/>
 				)}
 			</Col>
 		</Row>
@@ -161,81 +165,6 @@ function ProfileLeaderboard({ game, playtype }: GamePT) {
 						</td>
 					</tr>
 				)}
-			/>
-		</>
-	);
-}
-
-function ScoreLeaderboard({ game, playtype }: GamePT) {
-	const gptConfig = GetGamePTConfig(game, playtype);
-
-	const defaultAlg = useScoreRatingAlg(game, playtype);
-
-	const [alg, setAlg] = useState(defaultAlg);
-
-	const SelectComponent =
-		gptConfig.scoreRatingAlgs.length > 1 ? (
-			<Form.Control as="select" value={alg} onChange={(e) => setAlg(e.target.value as any)}>
-				{gptConfig.scoreRatingAlgs.map((e) => (
-					<option key={e} value={e}>
-						{UppercaseFirst(e)}
-					</option>
-				))}
-			</Form.Control>
-		) : null;
-
-	const { data, error } = useApiQuery<ScoreLeaderboardReturns>(
-		`/games/${game}/${playtype}/score-leaderboard?alg=${alg}`
-	);
-
-	if (error) {
-		return (
-			<>
-				{SelectComponent}
-				<ApiError error={error} />
-			</>
-		);
-	}
-
-	if (!data) {
-		return (
-			<>
-				{SelectComponent}
-				<Loading />
-			</>
-		);
-	}
-
-	const songMap = CreateSongMap(data.songs);
-	const chartMap = CreateChartMap(data.charts);
-	const userMap = CreateUserMap(data.users);
-
-	const pbDataset: PBDataset = [];
-
-	for (const [index, pb] of data.pbs.entries()) {
-		pbDataset.push({
-			...pb,
-			__related: {
-				chart: chartMap.get(pb.chartID)!,
-				song: songMap.get(pb.songID)!,
-				index,
-				user: userMap.get(pb.userID)!,
-			},
-		});
-	}
-
-	return (
-		<>
-			{SelectComponent}
-			<Divider />
-			<PBTable
-				dataset={pbDataset}
-				game={game}
-				playtype={playtype}
-				showUser
-				showChart
-				indexCol
-				alg={alg}
 			/>
 		</>
 	);

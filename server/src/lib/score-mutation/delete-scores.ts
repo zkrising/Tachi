@@ -84,14 +84,20 @@ export async function DeleteScore(
 	});
 
 	if (userHasOtherScores && attemptPBReprocess) {
-		await ProcessPBs(score.userID, new Set([score.chartID]), logger);
+		await ProcessPBs(
+			score.game,
+			score.playtype,
+			score.userID,
+			new Set([score.chartID]),
+			logger
+		);
 	} else {
 		await db["personal-bests"].remove({
 			userID: score.userID,
 			chartID: score.chartID,
 		});
 
-		await UpdateChartRanking(score.chartID);
+		await UpdateChartRanking(score.game, score.playtype, score.chartID);
 	}
 
 	await UpdateUsersGamePlaytypeStats(score.game, score.playtype, score.userID, null, logger);
@@ -186,14 +192,20 @@ export async function DeleteMultipleScores(scores: Array<ScoreDocument>, blackli
 		});
 
 		if (userHasOtherScores) {
-			await ProcessPBs(score.userID, new Set([score.chartID]), logger);
+			await ProcessPBs(
+				score.game,
+				score.playtype,
+				score.userID,
+				new Set([score.chartID]),
+				logger
+			);
 		} else {
 			await db["personal-bests"].remove({
 				userID: score.userID,
 				chartID: score.chartID,
 			});
 
-			await UpdateChartRanking(score.chartID);
+			await UpdateChartRanking(score.game, score.playtype, score.chartID);
 		}
 
 		if (blacklist) {

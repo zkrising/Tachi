@@ -17,7 +17,7 @@ export default function ARCIntegrationPage({ reqUser }: { reqUser: PublicUserDoc
 	const { data, error } = useApiQuery<{
 		iidx: ARCSavedProfileDocument | null;
 		sdvx: ARCSavedProfileDocument | null;
-	}>(`/users/${reqUser.id}/integrations/arc`, undefined, true);
+	}>(`/users/${reqUser.id}/integrations/arc`, undefined);
 
 	useEffect(() => {
 		if (data) {

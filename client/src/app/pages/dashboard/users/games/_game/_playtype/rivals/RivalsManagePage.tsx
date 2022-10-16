@@ -33,8 +33,12 @@ export default function RivalsManagePage({
 		`Managing ${reqUser.username}'s ${FormatGame(game, playtype)} Rivals`
 	);
 
+	const { settings } = useLUGPTSettings();
+
 	const { data, error } = useApiQuery<PublicUserDocument[]>(
-		`/users/${reqUser.id}/games/${game}/${playtype}/rivals`
+		`/users/${reqUser.id}/games/${game}/${playtype}/rivals`,
+		{},
+		[`fetch-rivals-${settings?.rivals.join(",")}`]
 	);
 
 	const {

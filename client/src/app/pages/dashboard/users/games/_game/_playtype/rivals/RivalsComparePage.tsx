@@ -3,6 +3,7 @@ import useSetSubheader from "components/layout/header/useSetSubheader";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import SelectLinkButton from "components/util/SelectLinkButton";
+import useLUGPTSettings from "components/util/useLUGPTSettings";
 import useUGPTBase from "components/util/useUGPTBase";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
@@ -27,6 +28,12 @@ export default function RivalsComparePage({
 	);
 
 	const base = `${useUGPTBase({ reqUser, game, playtype })}/rivals/compare`;
+
+	const { settings } = useLUGPTSettings();
+
+	if (!settings) {
+		return <div>You have no settings. How did you get here?</div>;
+	}
 
 	return (
 		<Row>
@@ -63,6 +70,7 @@ export default function RivalsComparePage({
 						<ScoreLeaderboard
 							game={game}
 							playtype={playtype}
+							refreshDeps={[`rivals-score-leaderboard-${settings.rivals.join(",")}`]}
 							url={`/users/${reqUser.id}/games/${game}/${playtype}/rivals/score-leaderboard`}
 						/>
 					</Route>

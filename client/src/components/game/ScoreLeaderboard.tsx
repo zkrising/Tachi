@@ -25,7 +25,12 @@ const USER_COLOURS = [
 	COLOUR_SET.orange,
 ];
 
-export default function ScoreLeaderboard({ game, playtype, url }: GamePT & { url: string }) {
+export default function ScoreLeaderboard({
+	game,
+	playtype,
+	url,
+	refreshDeps = [],
+}: GamePT & { url: string; refreshDeps?: Array<string> }) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const defaultAlg = useScoreRatingAlg(game, playtype);
@@ -43,7 +48,11 @@ export default function ScoreLeaderboard({ game, playtype, url }: GamePT & { url
 			</Form.Control>
 		) : null;
 
-	const { data, error } = useApiQuery<ScoreLeaderboardReturns>(`${url}?alg=${alg}`);
+	const { data, error } = useApiQuery<ScoreLeaderboardReturns>(
+		`${url}?alg=${alg}`,
+		{},
+		refreshDeps
+	);
 
 	if (error) {
 		return (

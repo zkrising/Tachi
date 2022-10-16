@@ -5,10 +5,22 @@ import { SuccessfulAPIResponse } from "tachi-common";
 export default function useApiQuery<T>(
 	url: string | string[],
 	options?: RequestInit,
-	neverCache = false
+	additionalDeps?: string[]
 ) {
+	const deps = [];
+
+	if (additionalDeps) {
+		deps.push(...additionalDeps);
+	}
+
+	if (Array.isArray(url)) {
+		deps.push(...url);
+	} else {
+		deps.push(url);
+	}
+
 	return useQuery<T, UnsuccessfulAPIFetchResponse>(
-		url,
+		deps,
 		async () => {
 			if (Array.isArray(url)) {
 				const results = await Promise.all(url.map((u) => APIFetchV1(u, options)));

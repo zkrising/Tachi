@@ -53,6 +53,7 @@ router.patch(
 			preferredSessionAlg: p.optional(p.nullable(p.isIn(gptConfig.sessionRatingAlgs))),
 			preferredProfileAlg: p.optional(p.nullable(p.isIn(gptConfig.profileRatingAlgs))),
 			defaultTable: "*?string",
+			preferredRanking: optNull(p.isIn("global", "rival")),
 
 			// This is handled with game-specific schema validation below.
 			gameSpecific: optNull(gameSpecificSchema),
@@ -102,6 +103,10 @@ router.patch(
 
 		if (body.defaultTable !== undefined) {
 			updateQuery[`preferences.defaultTable`] = body.defaultTable;
+		}
+
+		if (body.preferredRanking !== undefined) {
+			updateQuery[`preferences.preferredRanking`] = body.preferredRanking;
 		}
 
 		if (body.gameSpecific) {

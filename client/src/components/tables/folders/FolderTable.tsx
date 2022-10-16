@@ -1,12 +1,12 @@
 import { NumericSOV, StrSOV } from "util/sorts";
 import { CreateDefaultFolderSearchParams } from "util/tables/create-search";
+import Muted from "components/util/Muted";
+import usePreferredRanking from "components/util/usePreferredRanking";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
 import { Game, IDStrings, ScoreCalculatedDataLookup } from "tachi-common";
 import { FolderDataset } from "types/tables";
 import { Playtype } from "types/tachi";
-import Muted from "components/util/Muted";
-import useLUGPTSettings from "components/util/useLUGPTSettings";
 import DifficultyCell from "../cells/DifficultyCell";
 import IndicatorsCell from "../cells/IndicatorsCell";
 import RankingCell, { RankingViewMode } from "../cells/RankingCell";
@@ -33,10 +33,12 @@ export default function FolderTable<I extends IDStrings = IDStrings>({
 }) {
 	const defaultRating = useScoreRatingAlg(game, playtype);
 
-	const { settings } = useLUGPTSettings();
+	const preferredRanking = usePreferredRanking();
 
 	const [rating, setRating] = useState(defaultRating);
-	const [rankingViewMode, setRankingViewMode] = useState<RankingViewMode>("global");
+	const [rankingViewMode, setRankingViewMode] = useState<RankingViewMode>(
+		preferredRanking ?? "global"
+	);
 
 	const headers: Header<FolderDataset[0]>[] = [
 		ChartHeader(game, (k) => k),

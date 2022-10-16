@@ -40,7 +40,7 @@ export default function PBTable<I extends IDStrings = IDStrings>({
 	playtype: Playtype;
 	game: Game;
 	alg?: ScoreCalculatedDataLookup[I];
-	defaultRankingViewMode?: RankingViewMode;
+	defaultRankingViewMode?: RankingViewMode | null;
 }) {
 	const defaultRating = useScoreRatingAlg(game, playtype);
 

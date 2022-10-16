@@ -27,6 +27,7 @@ import {
 	UnsuccessfulAPIResponse,
 } from "tachi-common";
 import { GamePT, SetState } from "types/react";
+import usePreferredRanking from "components/util/usePreferredRanking";
 
 export default function ScoresPage({
 	reqUser,
@@ -177,6 +178,8 @@ function PBsOverview({
 
 	const { data, error } = useFetchPBs(url, reqUser);
 
+	const preferredRanking = usePreferredRanking();
+
 	return (
 		<div className="row">
 			<div className="col-12">
@@ -195,7 +198,8 @@ function PBsOverview({
 							showPlaycount={showPlaycount}
 							indexCol={indexCol}
 							alg={alg}
-							playtype={playtype as "SP" | "DP"}
+							playtype={playtype}
+							defaultRankingViewMode={preferredRanking}
 						/>
 					</LoadingWrapper>
 				) : (

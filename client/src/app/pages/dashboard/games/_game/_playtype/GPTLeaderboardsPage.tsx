@@ -236,6 +236,7 @@ function ScoreLeaderboard({ game, playtype }: GamePT) {
 				showChart
 				indexCol
 				alg={alg}
+				defaultRankingViewMode="both-if-self"
 			/>
 		</>
 	);

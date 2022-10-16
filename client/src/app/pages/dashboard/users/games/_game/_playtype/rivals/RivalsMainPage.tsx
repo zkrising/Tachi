@@ -7,6 +7,7 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Route, Switch } from "react-router-dom";
 import { FormatGame, Game, GetGameConfig, Playtype, PublicUserDocument } from "tachi-common";
+import RivalsComparePage from "./RivalsComparePage";
 import RivalsManagePage from "./RivalsManagePage";
 
 export default function RivalsMainPage({
@@ -36,7 +37,7 @@ export default function RivalsMainPage({
 						<Icon type="bullseye" />
 						Goals & Milestones
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/rivals/compare`}>
+					<SelectLinkButton matchIfStartsWith to={`${base}/rivals/compare`}>
 						<Icon type="balance-scale-left" />
 						Compare
 					</SelectLinkButton>
@@ -82,11 +83,8 @@ export default function RivalsMainPage({
 						goals milestones
 					</Route>
 
-					<Route
-						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/rivals/compare"
-					>
-						compare
+					<Route path="/dashboard/users/:userID/games/:game/:playtype/rivals/compare">
+						<RivalsComparePage reqUser={reqUser} game={game} playtype={playtype} />
 					</Route>
 				</Switch>
 			</Col>

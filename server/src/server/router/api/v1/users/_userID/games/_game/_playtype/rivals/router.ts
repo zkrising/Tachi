@@ -1,12 +1,17 @@
 import { RequireAuthedAsUser } from "../../../../middleware";
 import { Router } from "express";
+import db from "external/mongo/db";
 import { SetRivalsFailReasons } from "lib/constants/err-codes";
-import { GetChallengerUsers, GetRivalUsers, SetRivals } from "lib/rivals/rivals";
+import { GetChallengerUsers, GetRivalIDs, GetRivalUsers, SetRivals } from "lib/rivals/rivals";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
-import { FormatGame } from "tachi-common";
+import { FormatGame, GetGamePTConfig } from "tachi-common";
+import { GetRelevantSongsAndCharts } from "utils/db";
+import { IsString } from "utils/misc";
 import { GetUGPT } from "utils/req-tachi-data";
+import { CheckStrScoreAlg } from "utils/string-checks";
+import { GetUsersWithIDs } from "utils/user";
 import type { integer } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
@@ -94,6 +99,71 @@ router.get("/challengers", async (req, res) => {
 		success: true,
 		description: `Returned ${challengers.length} challengers.`,
 		body: challengers,
+	});
+});
+
+/**
+ * Retrieve a "score leaderboard" for this user's set of rivals.
+ *
+ * This is - effectively - the best 100 scores from this set of users on the given
+ * rating algorithm.
+ *
+ * @param alg - The score rating algorithm to sort on. Defaults to whatever the GPTConfig
+ * default is.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/rivals/score-leaderboard
+ */
+router.get("/score-leaderboard", async (req, res) => {
+	const { user, game, playtype } = GetUGPT(req);
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	let alg = gptConfig.defaultScoreRatingAlg;
+
+	if (IsString(req.query.alg)) {
+		const temp = CheckStrScoreAlg(game, playtype, req.query.alg);
+
+		if (temp === null) {
+			return res.status(400).json({
+				success: false,
+				description: `Invalid value of ${
+					req.query.alg
+				} for alg. Expected one of ${gptConfig.scoreRatingAlgs.join(", ")}`,
+			});
+		}
+
+		alg = temp;
+	}
+
+	const rivalIDs = await GetRivalIDs(user.id, game, playtype);
+	const userSet = [...rivalIDs, user.id];
+
+	const pbs = await db["personal-bests"].find(
+		{
+			game,
+			playtype,
+			userID: { $in: userSet },
+		},
+		{
+			sort: {
+				[`calculatedData.${alg}`]: -1,
+			},
+			limit: 100,
+		}
+	);
+
+	const users = await GetUsersWithIDs(pbs.map((e) => e.userID));
+
+	const { songs, charts } = await GetRelevantSongsAndCharts(pbs, game);
+
+	return res.status(200).send({
+		success: true,
+		description: `Successfully returned ${pbs.length} pbs.`,
+		body: {
+			pbs,
+			songs,
+			charts,
+			users,
+		},
 	});
 });
 

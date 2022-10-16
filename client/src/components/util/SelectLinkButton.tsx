@@ -9,15 +9,21 @@ export default function SelectLinkButton({
 	onVariant = "primary",
 	offVariant = "outline-secondary",
 	to,
+	matchIfStartsWith = false,
 }: {
 	onVariant?: ButtonVariant;
 	offVariant?: ButtonVariant;
 	to: string;
+	matchIfStartsWith?: boolean;
 } & JustChildren) {
 	return (
 		<LinkButton
 			to={to}
-			className={`btn-${DoesMatchRoute(window.location.href, to) ? onVariant : offVariant}`}
+			className={`btn-${
+				DoesMatchRoute(window.location.href, to, !matchIfStartsWith)
+					? onVariant
+					: offVariant
+			}`}
 		>
 			{children}
 		</LinkButton>

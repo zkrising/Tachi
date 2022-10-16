@@ -12,8 +12,9 @@ import UserIcon from "components/util/UserIcon";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useState } from "react";
 import { Button, Col } from "react-bootstrap";
-import { Game, Playtype, PublicUserDocument } from "tachi-common";
+import { FormatGame, Game, GetGameConfig, Playtype, PublicUserDocument } from "tachi-common";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
+import useSetSubheader from "components/layout/header/useSetSubheader";
 
 export default function RivalsManagePage({
 	reqUser,
@@ -24,6 +25,14 @@ export default function RivalsManagePage({
 	game: Game;
 	playtype: Playtype;
 }) {
+	const gameConfig = GetGameConfig(game);
+
+	useSetSubheader(
+		["Users", reqUser.username, "Games", gameConfig.name, playtype, "Rivals", "Manage"],
+		[reqUser, game, playtype],
+		`Managing ${reqUser.username}'s ${FormatGame(game, playtype)} Rivals`
+	);
+
 	const { data, error } = useApiQuery<PublicUserDocument[]>(
 		`/users/${reqUser.id}/games/${game}/${playtype}/rivals`
 	);

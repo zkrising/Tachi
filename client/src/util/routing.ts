@@ -1,6 +1,6 @@
 import { EscapeStringRegexp } from "./misc";
 
-export function DoesMatchRoute(str: string, route: string) {
+export function DoesMatchRoute(str: string, route: string, ends = true) {
 	const comps = EscapeStringRegexp(route).split("/");
 
 	let regexStr = "";
@@ -12,7 +12,11 @@ export function DoesMatchRoute(str: string, route: string) {
 		}
 	}
 
-	regexStr += "?$";
+	regexStr += "?";
+
+	if (ends) {
+		regexStr += "$";
+	}
 
 	const regex = new RegExp(regexStr, "u");
 	return !!str.match(regex);

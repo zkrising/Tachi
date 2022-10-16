@@ -5,7 +5,8 @@ import { SendSetRivalNotification } from "lib/notifications/notification-wrapper
 import { FormatGame } from "tachi-common";
 import { ArrayDiff } from "utils/misc";
 import { GetUsersWithIDs, GetUserWithIDGuaranteed } from "utils/user";
-import type { Game, integer, Playtype } from "tachi-common";
+import type { BulkWriteUpdateOneOperation } from "mongodb";
+import type { Game, integer, Playtype, PBScoreDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -138,7 +139,7 @@ export async function SetRivals(
 		newSubs.map((toUserID) => SendSetRivalNotification(toUserID, user, game, playtype))
 	);
 
-	return db["game-settings"].update(
+	await db["game-settings"].update(
 		{
 			userID,
 			game,
@@ -150,6 +151,8 @@ export async function SetRivals(
 			},
 		}
 	);
+
+	await UpdatePlayersRivalRankings(userID, game, playtype);
 }
 
 /**
@@ -215,4 +218,54 @@ export async function GetChallengerUsers(userID: integer, game: Game, playtype: 
 	const challengerIDs = await GetChallengerIDs(userID, game, playtype);
 
 	return GetUsersWithIDs(challengerIDs);
+}
+
+/**
+ * Given a UGPT, update their rival rankings.
+ *
+ * @warn Horrifically race-condition insensitive. This method for updating rankings
+ * on PBs is just absolutely horrifically misguided, and will break.
+ *
+ * As I said to blake, this is "eventually consistent", in the sense that "eventually"
+ * someone will get a score on the chart in question and it will fix itself.
+ *
+ * this sucks though.
+ */
+export async function UpdatePlayersRivalRankings(userID: integer, game: Game, playtype: Playtype) {
+	const rivalIDs = await GetRivalIDs(userID, game, playtype);
+
+	// get all of this user's chartIDs so we know what to update
+	const userPBs = (await db["personal-bests"].find(
+		{ userID, game, playtype },
+		{ projection: { chartID: 1, "scoreData.percent": 1 } }
+	)) as Array<{ chartID: string; scoreData: { percent: number } }>;
+
+	const bwrite: Array<BulkWriteUpdateOneOperation<PBScoreDocument>> = [];
+
+	await Promise.all(
+		userPBs.map(async (pb) => {
+			const rivalRank = await db["personal-bests"].count({
+				chartID: pb.chartID,
+				userID: { $in: rivalIDs },
+				"scoreData.percent": { $gt: pb.scoreData.percent },
+			});
+
+			bwrite.push({
+				updateOne: {
+					filter: { chartID: pb.chartID, userID },
+					update: {
+						$set: {
+							"rankingData.rivalRank": rivalRank,
+						},
+					},
+				},
+			});
+		})
+	);
+
+	if (bwrite.length === 0) {
+		return;
+	}
+
+	await db["personal-bests"].bulkWrite(bwrite, { ordered: false });
 }

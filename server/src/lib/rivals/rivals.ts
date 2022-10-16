@@ -244,11 +244,12 @@ export async function UpdatePlayersRivalRankings(userID: integer, game: Game, pl
 
 	await Promise.all(
 		userPBs.map(async (pb) => {
-			const rivalRank = await db["personal-bests"].count({
-				chartID: pb.chartID,
-				userID: { $in: rivalIDs },
-				"scoreData.percent": { $gt: pb.scoreData.percent },
-			});
+			const rivalRank =
+				(await db["personal-bests"].count({
+					chartID: pb.chartID,
+					userID: { $in: rivalIDs },
+					"scoreData.percent": { $gt: pb.scoreData.percent },
+				})) + 1;
 
 			bwrite.push({
 				updateOne: {

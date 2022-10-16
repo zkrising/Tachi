@@ -2,10 +2,11 @@ import useSetSubheader from "components/layout/header/useSetSubheader";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import SelectLinkButton from "components/util/SelectLinkButton";
+import useLUGPTSettings from "components/util/useLUGPTSettings";
 import useUGPTBase from "components/util/useUGPTBase";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { FormatGame, Game, GetGameConfig, Playtype, PublicUserDocument } from "tachi-common";
 import RivalsComparePage from "./RivalsComparePage";
 import RivalsManagePage from "./RivalsManagePage";
@@ -28,6 +29,12 @@ export default function RivalsMainPage({
 	);
 
 	const base = useUGPTBase({ reqUser, game, playtype });
+
+	const { settings } = useLUGPTSettings();
+
+	if (!settings) {
+		return <div>You have no settings set. How did you cause this?</div>;
+	}
 
 	return (
 		<Row>
@@ -59,7 +66,8 @@ export default function RivalsMainPage({
 			<Col xs={12}>
 				<Switch>
 					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/rivals">
-						activity
+						{settings?.rivals.length === 0 && <Redirect to={`${base}/rivals/manage`} />}
+						NOT WRITTEN YET
 					</Route>
 
 					<Route
@@ -73,14 +81,14 @@ export default function RivalsMainPage({
 						exact
 						path="/dashboard/users/:userID/games/:game/:playtype/rivals/folders"
 					>
-						folders
+						NOT IMPLEMENTED YET
 					</Route>
 
 					<Route
 						exact
 						path="/dashboard/users/:userID/games/:game/:playtype/rivals/targets"
 					>
-						goals milestones
+						NOT IMPLEMENTED YET
 					</Route>
 
 					<Route path="/dashboard/users/:userID/games/:game/:playtype/rivals/compare">

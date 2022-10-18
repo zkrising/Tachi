@@ -12707,7 +12707,11 @@
 		"title": "VEGA"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"praludium",
+			"Praludium",
+			"Pr?ludium"
+		],
 		"artist": "Yuko Takahashi",
 		"data": {
 			"displayVersion": "20",
@@ -12715,9 +12719,7 @@
 		},
 		"id": 1121,
 		"searchTerms": [
-			"praludium",
 			"Praludium",
-			"Pr?ludium"
 		],
 		"title": "Präludium"
 	},
@@ -23413,7 +23415,9 @@
 		"title": "Banger Banger Banger Banger"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"Get set， Go! feat.Kanae Asaba",
+		],
 		"artist": "MK",
 		"data": {
 			"displayVersion": "29",

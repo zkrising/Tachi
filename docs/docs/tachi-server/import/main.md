@@ -129,13 +129,13 @@ changed or not, and updates them accordingly.
 
 - Full Page: [Goals](./goals.md)
 
-### Milestones
+### Quests
 
 Checks the set of goals modified in the previous step,
-and gets the relevant milestones. This step then re-evaluates all of those milestones and
+and gets the relevant quests. This step then re-evaluates all of those quests and
 updates accordingly.
 
-- Full Page: [Milestones](./milestones.md)
+- Full Page: [Quests](./quests.md)
 
 ### Import Document
 

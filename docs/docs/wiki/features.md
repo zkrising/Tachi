@@ -89,7 +89,7 @@ That's it for sessions! As a quick summary:
 ## Goals
 
 !!! note
-	This feature goes hand-in-hand with [Milestones](#milestones).
+	This feature goes hand-in-hand with [Quests](#quests).
 
 Goals are a built-in way of setting targets for yourself.
 
@@ -187,7 +187,7 @@ That's it for goals! As a quick summary:
 
 This is nice, but there's something missing...
 
-## Milestones
+## Quests
 
 As mentioned above, Goals were designed to go hand-in-hand
 with this feature.
@@ -203,11 +203,11 @@ aiming for, or is just lazy and doesn't like setting goals?
 In general, we're bad at setting our own goals. How can
 we fix that?
 
-### What are Milestones?
+### What are Quests?
 
-Milestones are **pre-made groups of goals**. As an example,
+Quests are **pre-made groups of goals**. As an example,
 we might bundle together some goals aimed at SOUND VOLTEX
-11 dan players. You can then subscribe to that milestone,
+11 dan players. You can then subscribe to that quest,
 and all those goals will be merged with your list of goals!
 
 This solves the problem of having to set and manage *loads*
@@ -215,29 +215,29 @@ of goals on your own - since other people can come up with
 and debate good goals for your skill level, and you can
 just seamlessly integrate them with your play!
 
-### Who makes the Milestones?
+### Who makes the Quests?
 
 The community! People are free to create their own
-milestones and share them.
+quests and share them.
 
-### Why are they called Milestones?
+### Why are they called Quests?
 
-Milestones work as - well - milestones!
+Quests work as - well - quests!
 
 They're achievable, just like goals, which means the
-milestone creator can set criteria.
+quest creator can set criteria.
 
-A basic example would be counting the milestone as
+A basic example would be counting the quest as
 achieved when you've achieved *all* of the goals in that
-milestone.
+quest.
 
 More advanced options include achieving X goals inside a
-milestone, or X% of the goals inside a milestone.
+quest, or X% of the goals inside a quest.
 
 ### Summary
 
-That's all for milestones! As a quick summary:
+That's all for quests! As a quick summary:
 
-- Since milestones are achievables, you'll be automatically notified when you tick another milestone off!
-- You can also see other user's milestones and their progress.
-- Milestones reduce the pain of having to set your goals yourself!
+- Since quests are achievables, you'll be automatically notified when you tick another quest off!
+- You can also see other user's quests and their progress.
+- Quests reduce the pain of having to set your goals yourself!

@@ -5,8 +5,8 @@ import { InternalFailure } from "../common/converter-failures";
 import { CreateScoreLogger } from "../common/import-logger";
 import { GetAndUpdateUsersGoals } from "../goals/goals";
 import { CheckAndSetOngoingImportLock, UnsetOngoingImportLock } from "../import-locks/lock";
-import { UpdateUsersMilestones } from "../milestones/milestones";
 import { ProcessPBs } from "../pb/process-pbs";
+import { UpdateUsersQuests } from "../quests/quests";
 import { CreateSessions } from "../sessions/sessions";
 import { UpdateUsersGamePlaytypeStats } from "../user-game-stats/update-ugs";
 import db from "external/mongo/db";
@@ -164,7 +164,7 @@ export default async function ScoreImportMain<D, C>(
 			sessionInfo,
 			classDeltas,
 			goalInfo,
-			milestoneInfo,
+			questInfo,
 			relativeTimes,
 			absoluteTimes,
 		} = await HandlePostImportSteps(
@@ -178,7 +178,7 @@ export default async function ScoreImportMain<D, C>(
 		);
 
 		const { importParseTimeRel, pbTimeRel, sessionTimeRel } = relativeTimes;
-		const { importParseTime, sessionTime, pbTime, ugsTime, goalTime, milestoneTime } =
+		const { importParseTime, sessionTime, pbTime, ugsTime, goalTime, questTime } =
 			absoluteTimes;
 
 		void SetJobProgress(job, "Finalising Import.");
@@ -199,7 +199,7 @@ export default async function ScoreImportMain<D, C>(
 			userID: user.id,
 			classDeltas,
 			goalInfo,
-			milestoneInfo,
+			questInfo,
 			userIntent,
 		};
 
@@ -240,7 +240,7 @@ export default async function ScoreImportMain<D, C>(
 				pb: pbTime,
 				ugs: ugsTime,
 				goal: goalTime,
-				milestone: milestoneTime,
+				quest: questTime,
 			},
 		});
 
@@ -341,20 +341,20 @@ export async function HandlePostImportSteps(
 
 	logger.debug(`Goal Processing took ${goalTime} milliseconds.`);
 
-	void SetJobProgress(job, "Updating Milestones.");
+	void SetJobProgress(job, "Updating Quests.");
 
-	// --- 8. Milestones ---
-	// Evaluate and update the users milestones. This returns...
-	const milestoneTimeStart = process.hrtime.bigint();
-	const milestoneInfo = await UpdateUsersMilestones(goalInfo, game, playtypes, user.id, logger);
+	// --- 8. Quests ---
+	// Evaluate and update the users quests. This returns...
+	const questTimeStart = process.hrtime.bigint();
+	const questInfo = await UpdateUsersQuests(goalInfo, game, playtypes, user.id, logger);
 
-	const milestoneTime = GetMillisecondsSince(milestoneTimeStart);
+	const questTime = GetMillisecondsSince(questTimeStart);
 
-	logger.debug(`Milestone Processing took ${milestoneTime} milliseconds.`);
+	logger.debug(`Quest Processing took ${questTime} milliseconds.`);
 
 	return {
 		classDeltas,
-		milestoneInfo,
+		questInfo,
 		goalInfo,
 		playtypes,
 		scoreIDs,
@@ -371,7 +371,7 @@ export async function HandlePostImportSteps(
 			pbTime,
 			ugsTime,
 			goalTime,
-			milestoneTime,
+			questTime,
 		},
 	};
 }

@@ -7,9 +7,9 @@ import type {
 	GoalDocument,
 	GoalSubscriptionDocument,
 	integer,
-	MilestoneDocument,
-	MilestoneSetDocument,
-	MilestoneSubscriptionDocument,
+	QuestDocument,
+	QuestlineDocument,
+	QuestSubscriptionDocument,
 	PBScoreDocument,
 	ScoreDocument,
 } from "tachi-common";
@@ -151,14 +151,14 @@ export async function GetGoalForIDGuaranteed(goalID: string) {
 	return goal;
 }
 
-export async function GetMilestoneForIDGuaranteed(milestoneID: string) {
-	const milestone = await db.milestones.findOne({ milestoneID });
+export async function GetQuestForIDGuaranteed(questID: string) {
+	const quest = await db.quests.findOne({ questID });
 
-	if (!milestone) {
-		throw new Error(`Couldn't find milestone with ID ${milestoneID}`);
+	if (!quest) {
+		throw new Error(`Couldn't find quest with ID ${questID}`);
 	}
 
-	return milestone;
+	return quest;
 }
 
 export async function HumaniseChartID(game: Game, chartID: string) {
@@ -248,14 +248,14 @@ export async function GetRecentlyInteractedGoals(
 }
 
 /**
- * Get recently achieved goals for this query.
+ * Get recently achieved quests for this query.
  *
  * @param baseQuery - A base query, used to limit results on GPTs or UGPTs.
  * @param limit - How many recently achieved goals to search for.
- * @returns - The goals and their subs.
+ * @returns - The quests and their subs.
  */
-export async function GetRecentlyAchievedMilestones(
-	baseQuery: Omit<FilterQuery<MilestoneSubscriptionDocument>, "achieved">,
+export async function GetRecentlyAchievedQuests(
+	baseQuery: Omit<FilterQuery<QuestSubscriptionDocument>, "achieved">,
 	limit = 100
 ) {
 	const query = {
@@ -264,37 +264,37 @@ export async function GetRecentlyAchievedMilestones(
 		achieved: true,
 	};
 
-	const milestoneSubs = await db["milestone-subs"].find(query, {
+	const questSubs = await db["quest-subs"].find(query, {
 		sort: {
 			timeAchieved: -1,
 		},
 		limit,
 	});
 
-	const milestones = await db.milestones.find({
-		milestoneID: { $in: milestoneSubs.map((e) => e.milestoneID) },
+	const quests = await db.quests.find({
+		questID: { $in: questSubs.map((e) => e.questID) },
 	});
 
-	if (milestones.length !== milestoneSubs.length) {
+	if (quests.length !== questSubs.length) {
 		logger.error(
-			`Found ${milestones.length} milestones when looking for parents of ${milestoneSubs.length} subscriptions. This mismatch implies a state desync.`
+			`Found ${quests.length} quests when looking for parents of ${questSubs.length} subscriptions. This mismatch implies a state desync.`
 		);
 
-		throw new Error("Failed to fetch milestones.");
+		throw new Error("Failed to fetch quests.");
 	}
 
-	return { milestones, milestoneSubs };
+	return { quests, questSubs };
 }
 
 /**
- * Get recently interacted-with milestones for this query.
+ * Get recently interacted-with quests for this query.
  *
  * @param baseQuery - A base query, used to limit results on GPTs or UGPTs.
- * @param limit - How many recently achieved milestones to search for.
- * @returns - The milestones and their subs.
+ * @param limit - How many recently achieved quests to search for.
+ * @returns - The quests and their subs.
  */
-export async function GetRecentlyInteractedMilestones(
-	baseQuery: Omit<FilterQuery<MilestoneSubscriptionDocument>, "achieved">,
+export async function GetRecentlyInteractedQuests(
+	baseQuery: Omit<FilterQuery<QuestSubscriptionDocument>, "achieved">,
 	limit = 100
 ) {
 	const query = {
@@ -304,26 +304,26 @@ export async function GetRecentlyInteractedMilestones(
 		wasInstantlyAchieved: false,
 	};
 
-	const milestoneSubs = await db["milestone-subs"].find(query, {
+	const questSubs = await db["quest-subs"].find(query, {
 		sort: {
 			lastInteraction: -1,
 		},
 		limit,
 	});
 
-	const milestones = await db.milestones.find({
-		milestoneID: { $in: milestoneSubs.map((e) => e.milestoneID) },
+	const quests = await db.quests.find({
+		questID: { $in: questSubs.map((e) => e.questID) },
 	});
 
-	if (milestones.length !== milestoneSubs.length) {
+	if (quests.length !== questSubs.length) {
 		logger.error(
-			`Found ${milestones.length} milestones when looking for parents of ${milestoneSubs.length} subscriptions. This mismatch implies a state desync.`
+			`Found ${quests.length} quests when looking for parents of ${questSubs.length} subscriptions. This mismatch implies a state desync.`
 		);
 
-		throw new Error("Failed to fetch milestones.");
+		throw new Error("Failed to fetch quests.");
 	}
 
-	return { milestones, milestoneSubs };
+	return { quests, questSubs };
 }
 
 export async function GetMostSubscribedGoals(
@@ -374,18 +374,18 @@ export async function GetMostSubscribedGoals(
 	}));
 }
 
-export async function GetMostSubscribedMilestones(
-	query: FilterQuery<MilestoneSubscriptionDocument>,
+export async function GetMostSubscribedQuests(
+	query: FilterQuery<QuestSubscriptionDocument>,
 	limit = 100
-): Promise<Array<MilestoneDocument & { __subscriptions: integer }>> {
-	const mostSubscribedMilesones: Array<{ milestone: MilestoneDocument; subscriptions: integer }> =
-		await db["milestone-subs"].aggregate([
+): Promise<Array<QuestDocument & { __subscriptions: integer }>> {
+	const mostSubscribedMilesones: Array<{ quest: QuestDocument; subscriptions: integer }> =
+		await db["quest-subs"].aggregate([
 			{
 				$match: query,
 			},
 			{
 				$group: {
-					_id: "$milestoneID",
+					_id: "$questID",
 					subscriptions: { $sum: 1 },
 				},
 			},
@@ -399,40 +399,40 @@ export async function GetMostSubscribedMilestones(
 			},
 			{
 				$lookup: {
-					from: "milestones",
+					from: "quests",
 					localField: "_id",
-					foreignField: "milestoneID",
-					as: "milestone",
+					foreignField: "questID",
+					as: "quest",
 				},
 			},
 			{
 				$set: {
-					milestone: { $arrayElemAt: ["$milestone", 0] },
+					quest: { $arrayElemAt: ["$quest", 0] },
 				},
 			},
 			{
-				$unset: "milestone._id",
+				$unset: "quest._id",
 			},
 		]);
 
 	return mostSubscribedMilesones.map((e) => ({
 		__subscriptions: e.subscriptions,
-		...e.milestone,
+		...e.quest,
 	}));
 }
 
-export async function GetChildMilestones(milestoneSet: MilestoneSetDocument) {
-	const milestones = await db.milestones.find({
-		milestoneID: { $in: milestoneSet.milestones },
+export async function GetChildQuests(questline: QuestlineDocument) {
+	const quests = await db.quests.find({
+		questID: { $in: questline.quests },
 	});
 
-	if (milestones.length !== milestoneSet.milestones.length) {
+	if (quests.length !== questline.quests.length) {
 		logger.error(
-			`Expected to find ${milestoneSet.milestones.length} milestones in the database, but only found ${milestones.length}.`,
-			{ milestoneSet }
+			`Expected to find ${questline.quests.length} quests in the database, but only found ${quests.length}.`,
+			{ questline }
 		);
-		throw new Error(`Failed to retrieve milestone sets' children.`);
+		throw new Error(`Failed to retrieve quest sets' children.`);
 	}
 
-	return milestones;
+	return quests;
 }

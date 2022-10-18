@@ -12,10 +12,10 @@ import type {
 	UserSettings,
 	TachiAPIClientDocument,
 	GoalDocument,
-	MilestoneSubscriptionDocument,
+	QuestSubscriptionDocument,
 	GoalSubscriptionDocument,
-	MilestoneDocument,
-	MilestoneSetDocument,
+	QuestDocument,
+	QuestlineDocument,
 	integer,
 	ImportDocument,
 } from "tachi-common";
@@ -83,10 +83,10 @@ export interface TachiRequestData {
 	tableDoc?: TableDocument;
 	folderDoc?: FolderDocument;
 	goalDoc?: GoalDocument;
-	milestoneDoc?: MilestoneDocument;
+	questDoc?: QuestDocument;
 	goalSubDoc?: GoalSubscriptionDocument;
-	milestoneSubDoc?: MilestoneSubscriptionDocument;
-	milestoneSetDoc?: MilestoneSetDocument;
+	questSubDoc?: QuestSubscriptionDocument;
+	questlineDoc?: QuestlineDocument;
 	importDoc?: ImportDocument;
 
 	apiClientDoc: Omit<TachiAPIClientDocument, "clientSecret">;

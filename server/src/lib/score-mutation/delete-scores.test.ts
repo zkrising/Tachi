@@ -16,7 +16,7 @@ const mockImportDocument: ImportDocument = {
 	idStrings: [],
 	importID: "mockImportID",
 	importType: "file/batch-manual",
-	milestoneInfo: [],
+	questInfo: [],
 	scoreIDs: ["scoreid_1", "scoreid_2"],
 	timeFinished: 1000,
 	timeStarted: 0,

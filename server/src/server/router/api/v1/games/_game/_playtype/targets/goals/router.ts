@@ -1,7 +1,7 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { EvaluateGoalForUser, GetMilestonesThatContainGoal } from "lib/targets/goals";
+import { EvaluateGoalForUser, GetQuestsThatContainGoal } from "lib/targets/goals";
 import prValidate from "server/middleware/prudence-validate";
 import { FormatGame } from "tachi-common";
 import { GetMostSubscribedGoals } from "utils/db";
@@ -67,7 +67,7 @@ router.get("/:goalID", ResolveGoalID, async (req, res) => {
 
 	const users = await GetUsersWithIDs(goalSubs.map((e) => e.userID));
 
-	const parentMilestones = await GetMilestonesThatContainGoal(goal.goalID);
+	const parentQuests = await GetQuestsThatContainGoal(goal.goalID);
 
 	return res.status(200).json({
 		success: true,
@@ -76,7 +76,7 @@ router.get("/:goalID", ResolveGoalID, async (req, res) => {
 			goal,
 			goalSubs,
 			users,
-			parentMilestones,
+			parentQuests,
 		},
 	});
 });

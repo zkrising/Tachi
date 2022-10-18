@@ -1,6 +1,6 @@
 # UGPT-Target Endpoints
 
-These endpoints deal with [targets](../../api/terminology.md) for a User, Game and Playtype. These are things like subscribing to a new milestone, or reading info about progress on a specific goal.
+These endpoints deal with [targets](../../api/terminology.md) for a User, Game and Playtype. These are things like subscribing to a new quest, or reading info about progress on a specific goal.
 
 For user-specific target endpoints, such as subscriptions, see [UGPT-Target Endpoints](./ugpt-targets.md).
 
@@ -22,8 +22,8 @@ None.
 | :: | :: | :: |
 | `goalSubs` | Array&lt;GoalSubDocument&gt; | The goal subscriptions that were recently achieved by this user. |
 | `goals` | Array&lt;GoalDocument&gt; | The goal documents that were recently achieved (if any). |
-| `milestoneSubs` | Array&lt;MilestoneSubDocument&gt; | The milestone subscriptions that were recently achieved by this user. |
-| `milestone` | Array&lt;MilestoneDocument&gt; | The milestone documents that were recently achieved (if any). |
+| `questSubs` | Array&lt;QuestSubDocument&gt; | The quest subscriptions that were recently achieved by this user. |
+| `quest` | Array&lt;QuestDocument&gt; | The quest documents that were recently achieved (if any). |
 | `user` | UserDocument | The user you requested this information about. |
 
 *****
@@ -45,15 +45,15 @@ None.
 | :: | :: | :: |
 | `goalSubs` | Array&lt;GoalSubDocument&gt; | The goal subscriptions that were recently achieved by this user. |
 | `goals` | Array&lt;GoalDocument&gt; | The goal documents that were recently achieved (if any). |
-| `milestoneSubs` | Array&lt;MilestoneSubDocument&gt; | The milestone subscriptions that were recently achieved by this user. |
-| `milestone` | Array&lt;MilestoneDocument&gt; | The milestone documents that were recently achieved (if any). |
+| `questSubs` | Array&lt;QuestSubDocument&gt; | The quest subscriptions that were recently achieved by this user. |
+| `quest` | Array&lt;QuestDocument&gt; | The quest documents that were recently achieved (if any). |
 | `user` | UserDocument | The user you requested this information about. |
 
 *****
 
-## Retrieve this user's milestone subscriptions.
+## Retrieve this user's quest subscriptions.
 
-`GET /api/v1/users/:userID/games/:game/:playtype/targets/milestones`
+`GET /api/v1/users/:userID/games/:game/:playtype/targets/quests`
 
 ### Parameters
 
@@ -63,20 +63,20 @@ None.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `milestones` | Array&lt;MilestoneDocument&gt; | All of the milestones this user is subscribed to. |
-| `milestoneSubs` | Array&lt;MilestoneSubDocument&gt; | All of this user's milestone subscriptions. |
+| `quests` | Array&lt;QuestDocument&gt; | All of the quests this user is subscribed to. |
+| `questSubs` | Array&lt;QuestSubDocument&gt; | All of this user's quest subscriptions. |
 
 *****
 
-## Get a user's progress on a specific milestone they are subscribed to.
+## Get a user's progress on a specific quest they are subscribed to.
 
-`GET /api/v1/users/:userID/games/:game/:playtype/targets/milestones/:milestoneID`
+`GET /api/v1/users/:userID/games/:game/:playtype/targets/quests/:questID`
 
 !!! info
-	If you're looking to evaluate a milestone against a user, without knowing whether they're
-	subscribed to it or not, you want [GPT/Targets/Milestones/Evaluate-For](gpt-targets.md#evaluate-a-milestone-for-a-user-even-if-they-arent-subscribed-to-it).
+	If you're looking to evaluate a quest against a user, without knowing whether they're
+	subscribed to it or not, you want [GPT/Targets/Quests/Evaluate-For](gpt-targets.md#evaluate-a-quest-for-a-user-even-if-they-arent-subscribed-to-it).
 
-	This endpoint is admittedly in a very strange position, where it overlaps with that `evaluate-for` endpoint quite significantly, but this endpoint is also intended to return the user's `milestoneSub`, so I thought it best to split this into two endpoints.
+	This endpoint is admittedly in a very strange position, where it overlaps with that `evaluate-for` endpoint quite significantly, but this endpoint is also intended to return the user's `questSub`, so I thought it best to split this into two endpoints.
 
 ### Parameters
 
@@ -86,10 +86,10 @@ None.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `milestoneSub` | MilestoneSubDocument | The user's subscription to this milestone. |
-| `milestone` | MilestoneDocument | The milestone document in question. |
-| `goals` | Array&lt;GoalDocument&gt; | The goals involved in this milestone. |
-| `results` | Array&lt;EvaluatedGoalResult&gt; | The user's progress on each goal in this milestone. |
+| `questSub` | QuestSubDocument | The user's subscription to this quest. |
+| `quest` | QuestDocument | The quest document in question. |
+| `goals` | Array&lt;GoalDocument&gt; | The goals involved in this quest. |
+| `results` | Array&lt;EvaluatedGoalResult&gt; | The user's progress on each goal in this quest. |
 
 #### EvaluatedGoalResult
 
@@ -104,9 +104,9 @@ None.
 
 *****
 
-## Subscribe to a milestone.
+## Subscribe to a quest.
 
-`PUT /api/v1/users/:userID/games/:game/:playtype/targets/milestones/:milestoneID`
+`PUT /api/v1/users/:userID/games/:game/:playtype/targets/quests/:questID`
 
 ### Permissions
 
@@ -121,16 +121,16 @@ None. (All relevant info is in the URL.)
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `goals` | Array&lt;GpalDocument&gt; | The goals involved in this milestone. |
-| `milestone` | MilestoneDocument | The milestone the user just subscribed to. |
-| `goalResults` | Array&lt;EvaluatedGoalResults&gt; | The user's progress on each individual goal in this milestone. |
-| `milestoneSub` | MilestoneSubscriptionDocument | The milestone subscription this user just created |
+| `goals` | Array&lt;GpalDocument&gt; | The goals involved in this quest. |
+| `quest` | QuestDocument | The quest the user just subscribed to. |
+| `goalResults` | Array&lt;EvaluatedGoalResults&gt; | The user's progress on each individual goal in this quest. |
+| `questSub` | QuestSubscriptionDocument | The quest subscription this user just created |
 
 *****
 
-## Unsubscribe from a milestone.
+## Unsubscribe from a quest.
 
-`DELETE /api/v1/users/:userID/games/:game/:playtype/targets/milestones/:milestoneID`
+`DELETE /api/v1/users/:userID/games/:game/:playtype/targets/quests/:questID`
 
 ### Permissions
 
@@ -145,4 +145,4 @@ None.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `milestone` | MilestoneDocument | The milestone you just unsubscribed from. |
+| `quest` | QuestDocument | The quest you just unsubscribed from. |

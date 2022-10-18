@@ -583,21 +583,21 @@ const PRE_SCHEMAS = {
 		inactive: "boolean",
 	}),
 	...GAME_SCHEMAS,
-	"milestone-sets": prSchemaFnWrap({
-		setID: "string",
+	questlines: prSchemaFnWrap({
+		questlineID: "string",
 		game: p.isIn(games),
 		playtype: isValidPlaytype,
-		milestones: ["string"],
+		quests: ["string"],
 	}),
-	milestones: prSchemaFnWrap({
+	quests: prSchemaFnWrap({
 		game: p.isIn(games),
 		playtype: isValidPlaytype,
 		name: "string",
 		desc: "string",
-		milestoneID: "string",
+		questID: "string",
 		group: "?string",
 		groupINdex: p.nullable(p.isInteger),
-		milestoneData: [
+		questData: [
 			{
 				title: "string",
 				desc: "string",
@@ -628,8 +628,8 @@ const PRE_SCHEMAS = {
 		outOf: "number",
 		outOfHuman: "string",
 	}),
-	"milestone-subs": prSchemaFnWrap({
-		milestoneID: "string",
+	"quest-subs": prSchemaFnWrap({
+		questID: "string",
 		userID: p.isPositiveNonZeroInteger,
 		game: p.isIn(games),
 		playtype: isValidPlaytype,
@@ -876,9 +876,9 @@ const PRE_SCHEMAS = {
 				new: PR_GOAL_INFO,
 			},
 		],
-		milestoneInfo: [
+		questInfo: [
 			{
-				milestoneID: "string",
+				questID: "string",
 				old: { progress: p.isInteger, achieved: "boolean" },
 				new: { progress: p.isInteger, achieved: "boolean" },
 			},
@@ -1089,9 +1089,10 @@ const PRE_SCHEMAS = {
 			["import", "importParse", "session", "pb"].map((k) => [k, p.isPositive])
 		),
 		abs: Object.fromEntries(
-			["parse", "import", "importParse", "session", "pb", "ugs", "goal", "milestone"].map(
-				(k) => [k, p.isPositive]
-			)
+			["parse", "import", "importParse", "session", "pb", "ugs", "goal", "quest"].map((k) => [
+				k,
+				p.isPositive,
+			])
 		),
 	}),
 	"arc-saved-profiles": prSchemaFnWrap({
@@ -1135,7 +1136,7 @@ const PRE_SCHEMAS = {
 		sentAt: p.isPositive,
 		read: "boolean",
 		body: {
-			type: p.isIn("RIVALED_BY", "MILESTONE_CHANGED"),
+			type: p.isIn("RIVALED_BY", "QUEST_CHANGED"),
 			content: (self, parent) => {
 				const type = parent.type as NotificationBody["type"];
 
@@ -1151,9 +1152,9 @@ const PRE_SCHEMAS = {
 						break;
 					}
 
-					case "MILESTONE_CHANGED": {
+					case "QUEST_CHANGED": {
 						subSchema = {
-							milestoneID: "string",
+							questID: "string",
 						};
 						break;
 					}

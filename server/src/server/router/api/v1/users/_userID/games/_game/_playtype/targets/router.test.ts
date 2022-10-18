@@ -6,14 +6,14 @@ import ResetDBState from "test-utils/resets";
 import {
 	HC511Goal,
 	HC511UserGoal,
-	TestingIIDXSPMilestone,
-	TestingIIDXSPMilestoneSub,
+	TestingIIDXSPQuest,
+	TestingIIDXSPQuestSub,
 } from "test-utils/test-data";
 import type {
 	GoalDocument,
 	GoalSubscriptionDocument,
-	MilestoneDocument,
-	MilestoneSubscriptionDocument,
+	QuestDocument,
+	QuestSubscriptionDocument,
 } from "tachi-common";
 
 function mkGoalSub(merge: Partial<GoalSubscriptionDocument>) {
@@ -24,12 +24,12 @@ function mkGoal(merge: Partial<GoalDocument>) {
 	return dm(HC511Goal, merge);
 }
 
-function mkMilestone(merge: Partial<MilestoneDocument>) {
-	return dm(TestingIIDXSPMilestone, merge);
+function mkQuest(merge: Partial<QuestDocument>) {
+	return dm(TestingIIDXSPQuest, merge);
 }
 
-function mkMilestoneSub(merge: Partial<MilestoneSubscriptionDocument>) {
-	return dm(TestingIIDXSPMilestoneSub, merge);
+function mkQuestSub(merge: Partial<QuestSubscriptionDocument>) {
+	return dm(TestingIIDXSPQuestSub, merge);
 }
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/recently-achieved", (t) => {
@@ -57,21 +57,21 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/recently-achieve
 			}),
 		]);
 
-		await db.milestones.insert([
-			mkMilestone({}),
-			mkMilestone({
-				milestoneID: "not_achieved_milestone",
+		await db.quests.insert([
+			mkQuest({}),
+			mkQuest({
+				questID: "not_achieved_quest",
 			}),
 		]);
 
-		await db["milestone-subs"].insert([
-			mkMilestoneSub({
+		await db["quest-subs"].insert([
+			mkQuestSub({
 				achieved: true,
 				timeAchieved: 2000,
 			}),
-			mkMilestoneSub({
+			mkQuestSub({
 				achieved: false,
-				milestoneID: "not_achieved_milestone",
+				questID: "not_achieved_quest",
 			}),
 		]);
 
@@ -80,17 +80,17 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/recently-achieve
 		t.equal(res.statusCode, 200);
 
 		t.hasStrict(res.body.body, {
-			milestones: [{ milestoneID: "example_milestone_id" }],
+			quests: [{ questID: "example_quest_id" }],
 			goals: [{ goalID: "achieved_goal" }],
 			goalSubs: [{ goalID: "achieved_goal" }],
-			milestoneSubs: [{ milestoneID: "example_milestone_id" }],
+			questSubs: [{ questID: "example_quest_id" }],
 			user: { id: 1 },
 		});
 
 		t.equal(res.body.body.goals.length, 1);
-		t.equal(res.body.body.milestones.length, 1);
+		t.equal(res.body.body.quests.length, 1);
 		t.equal(res.body.body.goalSubs.length, 1);
-		t.equal(res.body.body.milestoneSubs.length, 1);
+		t.equal(res.body.body.questSubs.length, 1);
 
 		t.end();
 	});
@@ -124,22 +124,22 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/recently-raised"
 			}),
 		]);
 
-		await db.milestones.insert([
-			mkMilestone({}),
-			mkMilestone({
-				milestoneID: "not_achieved_milestone",
+		await db.quests.insert([
+			mkQuest({}),
+			mkQuest({
+				questID: "not_achieved_quest",
 			}),
 		]);
 
-		await db["milestone-subs"].insert([
-			mkMilestoneSub({
+		await db["quest-subs"].insert([
+			mkQuestSub({
 				achieved: true,
 				timeAchieved: 2000,
 			}),
-			mkMilestoneSub({
+			mkQuestSub({
 				achieved: false,
 				lastInteraction: 1000,
-				milestoneID: "not_achieved_milestone",
+				questID: "not_achieved_quest",
 			}),
 		]);
 
@@ -148,10 +148,10 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/recently-raised"
 		t.equal(res.statusCode, 200);
 
 		t.hasStrict(res.body.body, {
-			milestones: [{ milestoneID: "not_achieved_milestone" }],
+			quests: [{ questID: "not_achieved_quest" }],
 			goals: [{ goalID: "not_achieved_goal" }],
 			goalSubs: [{ goalID: "not_achieved_goal" }],
-			milestoneSubs: [{ milestoneID: "not_achieved_milestone" }],
+			questSubs: [{ questID: "not_achieved_quest" }],
 			user: { id: 1 },
 		});
 

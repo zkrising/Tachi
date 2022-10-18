@@ -8,8 +8,8 @@ t.test("#SendNotification", (t) => {
 
 	t.test("Should send a notification.", async (t) => {
 		await SendNotification("title", 1, {
-			type: "MILESTONE_CHANGED",
-			content: { milestoneID: "foo" },
+			type: "QUEST_CHANGED",
+			content: { questID: "foo" },
 		});
 
 		const dbRes = await db.notifications.findOne({
@@ -21,8 +21,8 @@ t.test("#SendNotification", (t) => {
 			title: "title",
 			read: false,
 			body: {
-				type: "MILESTONE_CHANGED",
-				content: { milestoneID: "foo" },
+				type: "QUEST_CHANGED",
+				content: { questID: "foo" },
 			},
 		});
 
@@ -37,8 +37,8 @@ t.test("#BulkSendNotification", (t) => {
 
 	t.test("Should send multiple notifications.", async (t) => {
 		await BulkSendNotification("title", [1, 2], {
-			type: "MILESTONE_CHANGED",
-			content: { milestoneID: "foo" },
+			type: "QUEST_CHANGED",
+			content: { questID: "foo" },
 		});
 
 		const dbRes = await db.notifications.findOne({
@@ -50,8 +50,8 @@ t.test("#BulkSendNotification", (t) => {
 			title: "title",
 			read: false,
 			body: {
-				type: "MILESTONE_CHANGED",
-				content: { milestoneID: "foo" },
+				type: "QUEST_CHANGED",
+				content: { questID: "foo" },
 			},
 		});
 
@@ -64,8 +64,8 @@ t.test("#BulkSendNotification", (t) => {
 			title: "title",
 			read: false,
 			body: {
-				type: "MILESTONE_CHANGED",
-				content: { milestoneID: "foo" },
+				type: "QUEST_CHANGED",
+				content: { questID: "foo" },
 			},
 		});
 

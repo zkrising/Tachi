@@ -35,9 +35,9 @@ export default function TargetsPage({ reqUser, game, playtype }: Props) {
 						<Icon type="chart-line" />
 						Overview
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/targets/milestones`}>
+					<SelectLinkButton to={`${base}/targets/quests`}>
 						<Icon type="mountain" />
-						Milestones
+						Quests
 					</SelectLinkButton>
 				</div>
 				<Divider />
@@ -52,7 +52,7 @@ export default function TargetsPage({ reqUser, game, playtype }: Props) {
 					</Route>
 					<Route
 						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/targets/milestones"
+						path="/dashboard/users/:userID/games/:game/:playtype/targets/quests"
 					>
 						nal
 					</Route>

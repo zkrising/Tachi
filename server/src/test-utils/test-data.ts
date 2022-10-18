@@ -26,8 +26,8 @@ import type {
 	GoalDocument,
 	GoalSubscriptionDocument,
 	ImportDocument,
-	MilestoneDocument,
-	MilestoneSubscriptionDocument,
+	QuestDocument,
+	QuestSubscriptionDocument,
 	NotificationDocument,
 	PBScoreDocument,
 	PublicUserDocument,
@@ -528,16 +528,16 @@ export const TestingIIDXFolderSP10: FolderDocument = {
 	inactive: false,
 };
 
-export const TestingIIDXSPMilestone: MilestoneDocument = {
+export const TestingIIDXSPQuest: QuestDocument = {
 	criteria: {
 		type: "all",
 	},
-	desc: "testing milestone",
+	desc: "testing quest",
 	game: "iidx",
 	playtype: "SP",
-	milestoneID: "example_milestone_id",
-	name: "Example Milestone",
-	milestoneData: [
+	questID: "example_quest_id",
+	name: "Example Quest",
+	questData: [
 		{
 			title: "Group1",
 			desc: "Foo",
@@ -565,27 +565,27 @@ export const TestingIIDXSPMilestone: MilestoneDocument = {
 	],
 };
 
-export const IIDXSPMilestoneGoals: Array<GoalDocument> = [
+export const IIDXSPQuestGoals: Array<GoalDocument> = [
 	dm(HC511Goal, { goalID: "eg_goal_1" }) as GoalDocument,
 	dm(HC511Goal, { goalID: "eg_goal_2", criteria: { value: 2 } }),
 	dm(HC511Goal, { goalID: "eg_goal_3", criteria: { key: "scoreData.score", value: 300 } }),
 	dm(HC511Goal, { goalID: "eg_goal_4", criteria: { key: "scoreData.score", value: 1100 } }),
 ];
 
-export const IIDXSPMilestoneGoalSubs: Array<GoalSubscriptionDocument> = [
+export const IIDXSPQuestGoalSubs: Array<GoalSubscriptionDocument> = [
 	dm(HC511UserGoal, { goalID: "eg_goal_1" }) as GoalSubscriptionDocument,
 	dm(HC511UserGoal, { goalID: "eg_goal_2" }) as GoalSubscriptionDocument,
 	dm(HC511UserGoal, { goalID: "eg_goal_3" }) as GoalSubscriptionDocument,
 	dm(HC511UserGoal, { goalID: "eg_goal_4" }) as GoalSubscriptionDocument,
 ];
 
-export const TestingIIDXSPMilestoneSub: MilestoneSubscriptionDocument = {
+export const TestingIIDXSPQuestSub: QuestSubscriptionDocument = {
 	userID: 1,
 	achieved: false,
 	game: "iidx",
 	playtype: "SP",
 	lastInteraction: null,
-	milestoneID: "example_milestone_id",
+	questID: "example_quest_id",
 	progress: 4,
 	timeAchieved: null,
 	timeSet: 1900,
@@ -762,7 +762,7 @@ export const FakeImport: ImportDocument = {
 	idStrings: ["iidx:SP"],
 	importID: "fake_import",
 	importType: "ir/direct-manual",
-	milestoneInfo: [],
+	questInfo: [],
 	playtypes: ["SP"],
 	scoreIDs: [TestingIIDXSPScore.scoreID],
 	timeFinished: 1000,
@@ -778,9 +778,9 @@ export const FakeNotification: NotificationDocument = {
 	sentAt: 1000,
 	sentTo: 1,
 	body: {
-		type: "MILESTONE_CHANGED",
+		type: "QUEST_CHANGED",
 		content: {
-			milestoneID: "a",
+			questID: "a",
 		},
 	},
 };

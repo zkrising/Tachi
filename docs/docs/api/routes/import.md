@@ -93,7 +93,7 @@ scoreData=<file data>
 	"userID": 1,
 	"classDeltas": [],
 	"goalInfo": [],
-	"milestoneInfo": [],
+	"questInfo": [],
 	"userIntent": false, // if X-User-Intent was set, this would be true.
 }
 ```

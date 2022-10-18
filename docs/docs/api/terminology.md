@@ -16,5 +16,5 @@ Refers to "User on Game + Playtype" - A user's "something" on a game and that pl
 Targets are a bucket term for things a user might set as targets to aim for. This term subsumes the following features:
 
 - Goals
-- Milestones
-- Sets
+- Quests
+- Questlines

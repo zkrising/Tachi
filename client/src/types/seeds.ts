@@ -12,8 +12,8 @@ import {
 	GoalDocumentSingle,
 	IDStrings,
 	IDStringToGame,
-	MilestoneDocument,
-	MilestoneSetDocument,
+	QuestDocument,
+	QuestlineDocument,
 	SongDocument,
 	TableDocument,
 } from "tachi-common";
@@ -64,13 +64,13 @@ export type GoalWithRelated =
 	  })
 	| GoalDocumentAny;
 
-export type MilestoneSetWithRelated = MilestoneSetDocument & {
+export type QuestlineWithRelated = QuestlineDocument & {
 	__related: {
-		milestones: Array<MilestoneDocument>;
+		quests: Array<QuestDocument>;
 	};
 };
 
-export type MilestoneWithRelated = MilestoneDocument & {
+export type QuestWithRelated = QuestDocument & {
 	__related: {
 		goals: Array<GoalDocument>;
 	};
@@ -103,8 +103,8 @@ export type DatabaseSeedsWithRelated = {
 
 	"tables.json": Array<TableWithRelated>;
 	"goals.json": Array<GoalWithRelated>;
-	"milestone-sets.json": Array<MilestoneSetWithRelated>;
-	"milestones.json": Array<MilestoneWithRelated>;
+	"questlines.json": Array<QuestlineWithRelated>;
+	"quests.json": Array<QuestWithRelated>;
 } & SongSeedsWithRelated &
 	ChartSeedsWithRelated;
 

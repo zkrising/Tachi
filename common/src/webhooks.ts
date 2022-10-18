@@ -1,6 +1,6 @@
 import type { Game, Playtypes } from ".";
 import type { GameClassSets } from "./game-classes";
-import type { GoalImportStat, IDStrings, integer, MilestoneImportStat } from "./types";
+import type { GoalImportStat, IDStrings, integer, QuestImportStat } from "./types";
 
 /**
  * An event fired when a users class improves.
@@ -35,15 +35,15 @@ export interface WebhookEventGoalAchievedV1 {
 }
 
 /**
- * An event fired when a milestone is achieved.
+ * An event fired when a quest is achieved.
  */
-export interface WebhookEventMilestoneAchievedV1 {
-	type: "milestone-achieved/v1";
+export interface WebhookEventQuestAchievedV1 {
+	type: "quest-achieved/v1";
 	content: {
 		userID: integer;
-		milestoneID: string;
-		old: MilestoneImportStat;
-		new: MilestoneImportStat;
+		questID: string;
+		old: QuestImportStat;
+		new: QuestImportStat;
 		game: Game;
 		playtype: Playtypes[Game];
 	};
@@ -65,4 +65,4 @@ export interface WebhookEventStatusV1 {
 export type WebhookEvents =
 	| WebhookEventClassUpdateV1
 	| WebhookEventGoalAchievedV1
-	| WebhookEventMilestoneAchievedV1;
+	| WebhookEventQuestAchievedV1;

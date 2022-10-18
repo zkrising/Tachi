@@ -10,12 +10,12 @@ import { TestSnapshot } from "test-utils/single-process-snapshot";
 import {
 	HC511Goal,
 	HC511UserGoal,
-	IIDXSPMilestoneGoals,
-	IIDXSPMilestoneGoalSubs,
+	IIDXSPQuestGoals,
+	IIDXSPQuestGoalSubs,
 	Testing511SPA,
 	TestingIIDXFolderSP10,
-	TestingIIDXSPMilestone,
-	TestingIIDXSPMilestoneSub,
+	TestingIIDXSPQuest,
+	TestingIIDXSPQuestSub,
 	TestingIIDXSPScore,
 	TestingIIDXSPScorePB,
 } from "test-utils/test-data";
@@ -653,7 +653,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID", 
 		t.hasStrict(res.body.body, {
 			goal: HC511Goal,
 			goalSub: HC511UserGoal,
-			milestones: [],
+			quests: [],
 			user: {
 				id: 1,
 			},
@@ -662,29 +662,29 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID", 
 		t.end();
 	});
 
-	t.test("Should return parent milestones if goal has any.", async (t) => {
-		await db.goals.insert(IIDXSPMilestoneGoals);
-		await db["goal-subs"].insert(IIDXSPMilestoneGoalSubs);
-		await db.milestones.insert(TestingIIDXSPMilestone);
+	t.test("Should return parent quests if goal has any.", async (t) => {
+		await db.goals.insert(IIDXSPQuestGoals);
+		await db["goal-subs"].insert(IIDXSPQuestGoalSubs);
+		await db.quests.insert(TestingIIDXSPQuest);
 
-		if (!IIDXSPMilestoneGoalSubs[0] || !IIDXSPMilestoneGoals[0]) {
-			throw new Error(`Expected atleast one milestone goal or sub to work with?`);
+		if (!IIDXSPQuestGoalSubs[0] || !IIDXSPQuestGoals[0]) {
+			throw new Error(`Expected atleast one quest goal or sub to work with?`);
 		}
 
 		const res = await mockApi.get(
-			`/api/v1/users/1/games/iidx/SP/targets/goals/${IIDXSPMilestoneGoalSubs[0].goalID}`
+			`/api/v1/users/1/games/iidx/SP/targets/goals/${IIDXSPQuestGoalSubs[0].goalID}`
 		);
 
 		t.equal(res.statusCode, 200);
 
-		delete IIDXSPMilestoneGoals[0]._id;
-		delete IIDXSPMilestoneGoalSubs[0]._id;
-		delete TestingIIDXSPMilestone._id;
+		delete IIDXSPQuestGoals[0]._id;
+		delete IIDXSPQuestGoalSubs[0]._id;
+		delete TestingIIDXSPQuest._id;
 
 		t.hasStrict(res.body.body, {
-			goal: IIDXSPMilestoneGoals[0],
-			goalSub: IIDXSPMilestoneGoalSubs[0],
-			milestones: [TestingIIDXSPMilestone],
+			goal: IIDXSPQuestGoals[0],
+			goalSub: IIDXSPQuestGoalSubs[0],
+			quests: [TestingIIDXSPQuest],
 			user: {
 				id: 1,
 			},
@@ -729,10 +729,10 @@ t.test("DELETE /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID
 		t.end();
 	});
 
-	t.test("Should reject a goal deletion if goal has parent milestones.", async (t) => {
-		await db.milestones.insert(TestingIIDXSPMilestone);
-		await db["milestone-subs"].insert(TestingIIDXSPMilestoneSub);
-		await db.goals.insert(IIDXSPMilestoneGoals);
+	t.test("Should reject a goal deletion if goal has parent quests.", async (t) => {
+		await db.quests.insert(TestingIIDXSPQuest);
+		await db["quest-subs"].insert(TestingIIDXSPQuestSub);
+		await db.goals.insert(IIDXSPQuestGoals);
 		await db["goal-subs"].insert(
 			dm(dupedGoalSub, { goalID: "eg_goal_1" }) as GoalSubscriptionDocument
 		);
@@ -744,7 +744,7 @@ t.test("DELETE /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID
 		t.equal(res.statusCode, 400);
 		t.equal(
 			res.body.description,
-			`This goal is part of a milestone you are subscribed to. It can only be removed by unsubscribing from the relevant milestones: '${TestingIIDXSPMilestone.name}'.`
+			`This goal is part of a quest you are subscribed to. It can only be removed by unsubscribing from the relevant quests: '${TestingIIDXSPQuest.name}'.`
 		);
 
 		const dbRes = await db["goal-subs"].findOne({

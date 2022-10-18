@@ -537,7 +537,7 @@ export interface ImportDocument extends MongoDBDocument {
 	importType: ImportTypes;
 	classDeltas: Array<ClassDelta>;
 	goalInfo: Array<GoalImportInfo>;
-	milestoneInfo: Array<MilestoneImportInfo>;
+	questInfo: Array<QuestImportInfo>;
 
 	/**
 	 * Whether the user deliberately imported this through an action (i.e. uploaded a file personally) [true]
@@ -555,7 +555,7 @@ export interface ImportTimingsDocument {
 	 * Relative times - these are the times for each section
 	 * divided by how much data they had to process.
 	 */
-	rel: Omit<ImportTimingSections, "goal" | "milestone" | "parse" | "ugs">;
+	rel: Omit<ImportTimingSections, "goal" | "parse" | "quest" | "ugs">;
 
 	/**
 	 * Absolute times - these are the times for each section.
@@ -571,7 +571,7 @@ interface ImportTimingSections {
 	pb: number;
 	ugs: number;
 	goal: number;
-	milestone: number;
+	quest: number;
 }
 
 export type GoalImportStat = Pick<
@@ -585,12 +585,12 @@ export interface GoalImportInfo {
 	new: GoalImportStat;
 }
 
-export type MilestoneImportStat = Pick<MilestoneSubscriptionDocument, "achieved" | "progress">;
+export type QuestImportStat = Pick<QuestSubscriptionDocument, "achieved" | "progress">;
 
-export interface MilestoneImportInfo {
-	milestoneID: string;
-	old: MilestoneImportStat;
-	new: MilestoneImportStat;
+export interface QuestImportInfo {
+	questID: string;
+	old: QuestImportStat;
+	new: QuestImportStat;
 }
 
 export type GoalSubscriptionDocument = MongoDBDocument & {
@@ -616,49 +616,49 @@ export type GoalSubscriptionDocument = MongoDBDocument & {
 		  }
 	);
 
-interface MilestoneGoalReference {
+interface QuestGoalReference {
 	goalID: string;
 	note?: string;
 }
 
-interface MilestoneSection {
+interface QuestSection {
 	title: string;
 	desc: string;
-	goals: Array<MilestoneGoalReference>;
+	goals: Array<QuestGoalReference>;
 }
 
-export interface MilestoneDocument extends MongoDBDocument {
+export interface QuestDocument extends MongoDBDocument {
 	game: Game;
 	playtype: Playtype;
 
 	/**
-	 * all: All goals must be achieved in order for the milestone to be complete
+	 * all: All goals must be achieved in order for the quest to be complete
 	 * abs: Goals achieved must be greater than or equal to criteria.value.
 	 * proportion: Goals achieved must be greater than or equal to criteria.value * total_goals.
 	 */
-	criteria: MilestoneAbsPropCriteria | MilestoneAllCriteria;
+	criteria: QuestAbsPropCriteria | QuestAllCriteria;
 	name: string;
 	desc: string;
-	milestoneData: Array<MilestoneSection>;
-	milestoneID: string;
+	questData: Array<QuestSection>;
+	questID: string;
 }
 
-interface MilestoneAllCriteria {
+interface QuestAllCriteria {
 	type: "all";
 }
 
-interface MilestoneAbsPropCriteria {
+interface QuestAbsPropCriteria {
 	type: "total";
 	value: number;
 }
 
-export interface MilestoneSetDocument extends MongoDBDocument {
-	setID: string;
+export interface QuestlineDocument extends MongoDBDocument {
+	questlineID: string;
 	name: string;
 	desc: string;
 	game: Game;
 	playtype: Playtype;
-	milestones: Array<string>;
+	quests: Array<string>;
 }
 
 export type UserBadges = "alpha" | "beta" | "contributor" | "dev-team" | "significant-contributor";
@@ -1001,8 +1001,8 @@ export interface FolderChartLookup extends MongoDBDocument {
 	folderID: string;
 }
 
-export type MilestoneSubscriptionDocument = MongoDBDocument & {
-	milestoneID: string;
+export type QuestSubscriptionDocument = MongoDBDocument & {
+	questID: string;
 	userID: integer;
 	game: Game;
 	playtype: Playtype;
@@ -1602,9 +1602,9 @@ export type NotificationBody =
 			};
 	  }
 	| {
-			type: "MILESTONE_CHANGED"; // Emitted when a milestone the user is subscribed to changed.
+			type: "QUEST_CHANGED"; // Emitted when a quest the user is subscribed to changed.
 			content: {
-				milestoneID: string;
+				questID: string;
 			};
 	  }
 	| {

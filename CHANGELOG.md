@@ -32,8 +32,8 @@ not generally be shown to end users.
 - [FEAT] Add an endpoint for reverting imports.
 - [FEAT] Rivals have been added.
 - [FEAT] Goals have been added.
-- [FEAT] Milestones have been added.
-- [FEAT] Milestone Sets have been added.
+- [FEAT] Quests have been added.
+- [FEAT] Questlines have been added.
 - [FEAT] ITG Stamina Support has been added.
 - [FEAT] Batch Manual imports can now pass `classes`, to hand-declare certain classes, such as IIDX Dans, WACCA Stage Ups, or similar.
 - [FEAT] Added support for an IIDX DP tierlist.
@@ -57,7 +57,7 @@ not generally be shown to end users.
 - [ENH] Showcase Stats now have the option to limit returned charts to just those you've played.
 - [ENH] WACCA Internal decimal levels are now displayed on the song page.
 - [ENH] Force Static Import now disables itself after doing one static import. This is a safety feature to prevent you from spamming your profile with pb imports.
-- [ENH] Milestones will automatically update and resync off of database-seed changes.
+- [ENH] Quests will automatically update and resync off of database-seed changes.
 - [ENH] The beatoraja IR now says how many people have played a chart on its way to de-orphaning.
 - [ENH] Server administrators can now delete other's scores.
 - [ENH] Server administrators can now revert other's imports.

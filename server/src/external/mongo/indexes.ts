@@ -46,19 +46,19 @@ const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 	"folder-chart-lookup": [index({ chartID: 1, folderID: 1 }, UNIQUE)],
 	goals: [index({ goalID: 1 }, UNIQUE), index({ game: 1, playtype: 1 }), index({ name: "text" })],
 	"goal-subs": [index({ goalID: 1, userID: 1 }, UNIQUE), index({ goalID: 1 })],
-	milestones: [
-		index({ milestoneID: 1 }, UNIQUE),
+	quests: [
+		index({ questID: 1 }, UNIQUE),
 		index({ game: 1, playtype: 1 }),
 		index({ name: "text" }),
 	],
-	"milestone-subs": [
-		index({ milestoneID: 1, userID: 1 }, UNIQUE),
+	"quest-subs": [
+		index({ questID: 1, userID: 1 }, UNIQUE),
 		index({ userID: 1, game: 1, playtype: 1 }),
 	],
-	"milestone-sets": [
-		index({ setID: 1 }, UNIQUE),
+	questlines: [
+		index({ questlineID: 1 }, UNIQUE),
 		index({ game: 1, playtype: 1 }),
-		index({ milestones: 1 }),
+		index({ quests: 1 }),
 		index({ name: "text" }),
 	],
 	imports: [index({ importID: 1 }, UNIQUE)],
@@ -180,7 +180,7 @@ export async function SetIndexesWithDB(db: IMonkManager, reset: boolean) {
 		}
 
 		for (const index of values) {
-			// @ts-expect-error Type-mismatch here. our index.fileds are just boring records. I know
+			// @ts-expect-error Type-mismatch here. our index.fields are just boring records. I know
 			// that this sucks...
 			const r = await db.get(collection).createIndex(index.fields, index.options);
 

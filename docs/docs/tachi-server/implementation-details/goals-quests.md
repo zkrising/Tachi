@@ -1,7 +1,7 @@
-# Goals, Milestones, Sets
+# Goals, Quests, Questlines
 
 This page covers pretty much everything you need to know about interacting with goals
-and milestones.
+and quests.
 
 Although these features are fairly straightforward on the surface, their implementation is a bit complex at points. We'll get to it.
 
@@ -56,54 +56,54 @@ For human representation, these values are formatted and stored in the Goal Subs
 	Goal Subscriptions are capped by the MAX_GOAL_SUBSCRIPTIONS [conf.json5](../setup/config.md) property, and defaults to 1000.
 
 !!! danger
-	Unsubscribing from goals directly is only possible if they do not have any parent milestones.
+	Unsubscribing from goals directly is only possible if they do not have any parent quests.
 	More on that below.
 
-## What is a Milestone?
+## What is a Quest?
 
-Milestones are groups of goals, defined in a structured form, with support for assigning
+Quests are groups of goals, defined in a structured form, with support for assigning
 notes next to goalIDs, and other generally useful stuff.
 
 Their purpose for users is to give them a quick way to assign a bunch of goals they might care about.
 
 For example, a dedicated user may make their own "Kaiden Checklist", and create a set of goals
 they think are useful for kaidens to aim for. Another user interested in this can just
-subscribe to that milestone, and all the goals will be managed for them.
+subscribe to that quest, and all the goals will be managed for them.
 
 ### Identification
 
-Milestones are identified by their `milestoneID`, which is a completely arbitrary string.
+Quests are identified by their `questID`, which is a completely arbitrary string.
 
-At the moment, users cannot create milestones directly, they are hard-defined by the [Database Seeds](../infrastructure/database-seeds.md).
+At the moment, users cannot create quests directly, they are hard-defined by the [Database Seeds](../infrastructure/database-seeds.md).
 
 ### Evaluating a User's Progress
 
-Similarly to goals, user's can subscribe to milestones.
+Similarly to goals, user's can subscribe to quests.
 
-Milestone subscriptions are interesting in that the `progress` factor is always an integer -- how many goals in the milestone the user has achieved, and the `outOf` factor is always an integer -- how many goals need to be achieved in the milestone for the milestone to be marked as achieved.
+Quest subscriptions are interesting in that the `progress` factor is always an integer -- how many goals in the quest the user has achieved, and the `outOf` factor is always an integer -- how many goals need to be achieved in the quest for the quest to be marked as achieved.
 
-Similarly, the `achieved` status on milestones is identical to `progress` being greater than or equal to `outOf`.
+Similarly, the `achieved` status on quests is identical to `progress` being greater than or equal to `outOf`.
 
 ### Parenting Goal Subscriptions
 
-When a milestone is subscribed to, all the goals in the milestone are also subscribed to.
+When a quest is subscribed to, all the goals in the quest are also subscribed to.
 
-When a user is subscribed to a milestone, they *must* also be subscribed to all the goals in
-that milestone. If they aren't, they've desynced with the milestone, and that's an awful
+When a user is subscribed to a quest, they *must* also be subscribed to all the goals in
+that quest. If they aren't, they've desynced with the quest, and that's an awful
 user experience.
 
-As such, Tachi keeps track of all the milestones that care about this goal subscription, and users are *prevented from unsubscribing from this goal* while any of their milestone subscriptions parent the goal.
+As such, Tachi keeps track of all the quests that care about this goal subscription, and users are *prevented from unsubscribing from this goal* while any of their quest subscriptions parent the goal.
 
 ### Instant Indirect Achievements
 
-Subscribing to a milestone *mandates* that all of the goals are assigned. It is not rare for this to mean that you subscribe to goals that are instantly achieved.
+Subscribing to a quest *mandates* that all of the goals are assigned. It is not rare for this to mean that you subscribe to goals that are instantly achieved.
 
 This is fine. If this does happen though, `wasInstantlyAchieved` is set on the goal, and no
 webhook event is emitted.
 
 ### Unsubscribing
 
-Unsubscribing from a milestone is a two-pass process. Firstly, for all `goalID`s in the milestone, the subscription document has the relevant `milestoneID` pulled from the array.
+Unsubscribing from a quest is a two-pass process. Firstly, for all `goalID`s in the quest, the subscription document has the relevant `questID` pulled from the array.
 
 The second part of the process involves unsubscribing the user from any goals that now have
 an empty array as a result of this process.
@@ -112,9 +112,9 @@ an empty array as a result of this process.
 	If this process sounds like it has race conditions, it's because it probably does.
 	Ah well.
 
-## Milestone Sets
+## Questlines
 
-Milestone sets are ordered groups of milestones. Their purpose is to group milestones together
+Questline are ordered lists of quests. Their purpose is to group quests together
 visually.
 
-Users *can not* "subscribe" to milestone sets, but they can use sets as a utility for subscribing to all the related milestones.
+Users *can not* "subscribe" to quest sets, but they can use sets as a utility for subscribing to all the related quests.

@@ -10,8 +10,8 @@ import {
 	FolderDocument,
 	Game,
 	GoalDocument,
-	MilestoneDocument,
-	MilestoneSetDocument,
+	QuestDocument,
+	QuestlineDocument,
 	SongDocument,
 	TableDocument,
 } from "tachi-common";
@@ -178,8 +178,8 @@ export function MakeDataset<K extends keyof AllDatabaseSeeds>(
 			return data["folders.json"] ?? [];
 
 		case "goals.json":
-		case "milestone-sets.json":
-		case "milestones.json":
+		case "questlines.json":
+		case "quests.json":
 			throw new Error("GOALS NOT SUPPORTED ZZZZ");
 		case "tables.json":
 			return RelateTables(data);
@@ -490,13 +490,13 @@ function GetUniqID<K extends keyof AllDatabaseSeeds>(collection: K, value: AllDa
 			const v = value as GoalDocument;
 			return v.goalID;
 		}
-		case "milestones.json": {
-			const v = value as MilestoneDocument;
-			return v.milestoneID;
+		case "quests.json": {
+			const v = value as QuestDocument;
+			return v.questID;
 		}
-		case "milestone-sets.json": {
-			const v = value as MilestoneSetDocument;
-			return v.setID;
+		case "questlines.json": {
+			const v = value as QuestlineDocument;
+			return v.questlineID;
 		}
 	}
 }

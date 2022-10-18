@@ -5,19 +5,19 @@ import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import {
 	FakeOtherUser,
-	IIDXSPMilestoneGoals,
-	IIDXSPMilestoneGoalSubs,
-	TestingIIDXSPMilestone,
+	IIDXSPQuestGoals,
+	IIDXSPQuestGoalSubs,
+	TestingIIDXSPQuest,
 } from "test-utils/test-data";
 import type { GoalDocument, GoalSubscriptionDocument } from "tachi-common";
 
 // this is my lazy sample data for these tests.
 const LoadLazySampleData = async () => {
 	await db.users.insert(FakeOtherUser);
-	await db.goals.insert(IIDXSPMilestoneGoals);
+	await db.goals.insert(IIDXSPQuestGoals);
 	await db["goal-subs"].insert([
-		...IIDXSPMilestoneGoalSubs,
-		dm(IIDXSPMilestoneGoalSubs[0]!, {
+		...IIDXSPQuestGoalSubs,
+		dm(IIDXSPQuestGoalSubs[0]!, {
 			userID: 2,
 		}),
 	] as Array<GoalSubscriptionDocument>);
@@ -32,7 +32,7 @@ t.test("GET /api/v1/games/:game/:playtype/targets/goals/popular", (t) => {
 
 		t.equal(res.statusCode, 200, "Should return 200.");
 
-		for (const goalSub of IIDXSPMilestoneGoals) {
+		for (const goalSub of IIDXSPQuestGoals) {
 			// i hate this monk 'feature'!!!
 			delete goalSub._id;
 		}
@@ -43,13 +43,13 @@ t.test("GET /api/v1/games/:game/:playtype/targets/goals/popular", (t) => {
 			(
 				[
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
-					dm(IIDXSPMilestoneGoals[0] as any, { __subscriptions: 2 }),
+					dm(IIDXSPQuestGoals[0] as any, { __subscriptions: 2 }),
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
-					dm(IIDXSPMilestoneGoals[1] as any, { __subscriptions: 1 }),
+					dm(IIDXSPQuestGoals[1] as any, { __subscriptions: 1 }),
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
-					dm(IIDXSPMilestoneGoals[2] as any, { __subscriptions: 1 }),
+					dm(IIDXSPQuestGoals[2] as any, { __subscriptions: 1 }),
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
-					dm(IIDXSPMilestoneGoals[3] as any, { __subscriptions: 1 }),
+					dm(IIDXSPQuestGoals[3] as any, { __subscriptions: 1 }),
 				] as unknown as Array<GoalDocument>
 			).sort((a, b) => a.goalID.localeCompare(b.goalID)),
 			"Should return the most subscribed goals."
@@ -75,7 +75,7 @@ t.test("GET /api/v1/games/:game/:playtype/targets/goals/:goalID", (t) => {
 	t.beforeEach(LoadLazySampleData);
 
 	t.test("Should return information about the specified goal.", async (t) => {
-		await db.milestones.insert(TestingIIDXSPMilestone);
+		await db.quests.insert(TestingIIDXSPQuest);
 
 		const res = await mockApi.get("/api/v1/games/iidx/SP/targets/goals/eg_goal_1");
 
@@ -88,7 +88,7 @@ t.test("GET /api/v1/games/:game/:playtype/targets/goals/:goalID", (t) => {
 				{ userID: 2, goalID: "eg_goal_1" },
 			],
 			users: [{ id: 1 }, { id: 2 }],
-			parentMilestones: [{ milestoneID: TestingIIDXSPMilestone.milestoneID }],
+			parentQuests: [{ questID: TestingIIDXSPQuest.questID }],
 		});
 
 		t.end();

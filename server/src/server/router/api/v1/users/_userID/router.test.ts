@@ -403,7 +403,7 @@ t.test("GET /api/v1/users/:userID/recent-imports", (t) => {
 			importID: Random20Hex(),
 			goalInfo: [],
 			idStrings: [],
-			milestoneInfo: [],
+			questInfo: [],
 			playtypes: [],
 			scoreIDs: [],
 			timeFinished,

@@ -6,8 +6,8 @@ import type {
 	BMSCourseDocument,
 	FolderDocument,
 	GoalDocument,
-	MilestoneSetDocument,
-	MilestoneDocument,
+	QuestlineDocument,
+	QuestDocument,
 	TableDocument,
 } from "../types";
 
@@ -26,8 +26,8 @@ interface OtherDBSeeds {
 	"bms-course-lookup.json": Array<BMSCourseDocument>;
 	"folders.json": Array<FolderDocument>;
 	"goals.json": Array<GoalDocument>;
-	"milestone-sets.json": Array<MilestoneSetDocument>;
-	"milestones.json": Array<MilestoneDocument>;
+	"questlines.json": Array<QuestlineDocument>;
+	"quests.json": Array<QuestDocument>;
 	"tables.json": Array<TableDocument>;
 }
 
@@ -52,8 +52,8 @@ const CURRENT_DATABASE_SEEDS: Record<keyof AllDatabaseSeeds, true> = {
 	"charts-wacca.json": true,
 	"folders.json": true,
 	"goals.json": true,
-	"milestone-sets.json": true,
-	"milestones.json": true,
+	"questlines.json": true,
+	"quests.json": true,
 	"songs-bms.json": true,
 	"songs-chunithm.json": true,
 	"songs-ddr.json": true,

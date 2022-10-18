@@ -42,7 +42,7 @@ export default function RivalsMainPage({
 				<div className="btn-group">
 					<SelectLinkButton to={`${base}/rivals/targets`}>
 						<Icon type="bullseye" />
-						Goals & Milestones
+						Goals & Quests
 					</SelectLinkButton>
 					<SelectLinkButton matchIfStartsWith to={`${base}/rivals/compare`}>
 						<Icon type="balance-scale-left" />

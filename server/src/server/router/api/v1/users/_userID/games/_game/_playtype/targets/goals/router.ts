@@ -6,8 +6,8 @@ import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import {
 	ConstructGoal,
-	GetBlockingParentMilestoneSubs,
-	GetMilestonesThatContainGoal,
+	GetBlockingParentQuestSubs,
+	GetQuestsThatContainGoal,
 	SubscribeToGoal,
 } from "lib/targets/goals";
 import p from "prudence";
@@ -16,7 +16,7 @@ import prValidate from "server/middleware/prudence-validate";
 import { GetGoalForIDGuaranteed } from "utils/db";
 import { AssignToReqTachiData, GetTachiData, GetUGPT } from "utils/req-tachi-data";
 import type { RequestHandler } from "express";
-import type { GoalDocument, MilestoneDocument } from "tachi-common";
+import type { GoalDocument, QuestDocument } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -225,7 +225,7 @@ router.get("/:goalID", GetGoalSubscription, async (req, res) => {
 
 	const goalSub = GetTachiData(req, "goalSubDoc");
 
-	const milestones: Array<MilestoneDocument> = await GetMilestonesThatContainGoal(goalSub.goalID);
+	const quests: Array<QuestDocument> = await GetQuestsThatContainGoal(goalSub.goalID);
 
 	const goal = await GetGoalForIDGuaranteed(goalSub.goalID);
 
@@ -235,7 +235,7 @@ router.get("/:goalID", GetGoalSubscription, async (req, res) => {
 		body: {
 			goal,
 			goalSub,
-			milestones,
+			quests,
 			user,
 		},
 	});
@@ -257,13 +257,13 @@ router.delete(
 
 		const goalSub = GetTachiData(req, "goalSubDoc");
 
-		const parentMilestones = await GetBlockingParentMilestoneSubs(goalSub);
+		const parentQuests = await GetBlockingParentQuestSubs(goalSub);
 
-		if (parentMilestones.length) {
+		if (parentQuests.length) {
 			return res.status(400).json({
 				success: false,
-				description: `This goal is part of a milestone you are subscribed to. It can only be removed by unsubscribing from the relevant milestones: ${parentMilestones
-					.map((e) => `'${e.milestone.name}'`)
+				description: `This goal is part of a quest you are subscribed to. It can only be removed by unsubscribing from the relevant quests: ${parentQuests
+					.map((e) => `'${e.quest.name}'`)
 					.join(", ")}.`,
 			});
 		}

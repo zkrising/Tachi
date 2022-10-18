@@ -132,7 +132,7 @@ nav:
           - "tachi-server/import/pbs.md"
           - "tachi-server/import/ugs.md"
           - "tachi-server/import/goals.md"
-          - "tachi-server/import/milestones.md"
+          - "tachi-server/import/quests.md"
           - "tachi-server/import/import-doc-time.md"
 
       - Implementation Details:
@@ -144,7 +144,7 @@ nav:
           - "tachi-server/implementation-details/esd.md"
           - "tachi-server/implementation-details/score-id.md"
           - "tachi-server/implementation-details/goal-id.md"
-          - "tachi-server/implementation-details/goals-milestones.md"
+          - "tachi-server/implementation-details/goals-quests.md"
 
   - Tachi Bot Reference:
       - "tachi-bot"

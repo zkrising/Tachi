@@ -150,7 +150,7 @@ app.post("/webhook", ValidateWebhookRequest, async (req, res) => {
 			break;
 		}
 
-		case "milestone-achieved/v1":
+		case "quest-achieved/v1":
 		default: {
 			// get around to updating in time.
 			// to define new webhooks, and the bot might not

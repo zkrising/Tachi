@@ -15,8 +15,8 @@ import type {
 	PBScoreDocument,
 	Playtype,
 	GoalSubscriptionDocument,
-	MilestoneSubscriptionDocument,
-	MilestoneDocument,
+	QuestSubscriptionDocument,
+	QuestDocument,
 } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
@@ -318,7 +318,7 @@ export async function ConstructGoal(
  * and general good stuff.
  *
  * @param cancelIfAchieved - Don't subscribe to the goal if subscribing would cause
- * the user to immediately achieve the goal. This is disabled for milestone subscriptions,
+ * the user to immediately achieve the goal. This is disabled for quest subscriptions,
  * but enabled for manual assignment.
  *
  * Returns null if the user is already subscribed to this goal.
@@ -377,56 +377,57 @@ export async function SubscribeToGoal(
 	return goalSub;
 }
 
-export function GetMilestonesThatContainGoal(goalID: string) {
-	return db.milestones.find({
-		"milestoneData.goals.goalID": goalID,
+export function GetQuestsThatContainGoal(goalID: string) {
+	return db.quests.find({
+		"questData.goals.goalID": goalID,
 	});
 }
 
 /**
  * Unsubscribing from a goal may not be legal, because the goal might be part of
- * a milestone the user is subscribed to. This function returns all milestones
- * and milestoneSubs that a goal is attached to.
+ * a quest the user is subscribed to. This function returns all quests
+ * and questSubs that a goal is attached to.
  *
  * If this query matches none, an empty array is returned.
  */
-export async function GetBlockingParentMilestoneSubs(
+export async function GetBlockingParentQuestSubs(
 	goalSub: GoalSubscriptionDocument
-): Promise<Array<MilestoneSubscriptionDocument & { milestone: MilestoneDocument }>> {
-	const blockers: Array<MilestoneSubscriptionDocument & { milestone: MilestoneDocument }> =
-		await db["milestone-subs"].aggregate([
-			{
-				// find all milestones that this user is subscribed to
-				$match: {
-					userID: goalSub.userID,
-					game: goalSub.game,
-					playtype: goalSub.playtype,
-				},
+): Promise<Array<QuestSubscriptionDocument & { quest: QuestDocument }>> {
+	const blockers: Array<QuestSubscriptionDocument & { quest: QuestDocument }> = await db[
+		"quest-subs"
+	].aggregate([
+		{
+			// find all quests that this user is subscribed to
+			$match: {
+				userID: goalSub.userID,
+				game: goalSub.game,
+				playtype: goalSub.playtype,
 			},
-			{
-				// look up the parent milestones
-				$lookup: {
-					from: "milestones",
-					localField: "milestoneID",
-					foreignField: "milestoneID",
-					as: "parentMilestoneSubs",
-				},
+		},
+		{
+			// look up the parent quests
+			$lookup: {
+				from: "quests",
+				localField: "questID",
+				foreignField: "questID",
+				as: "parentQuestSubs",
 			},
-			{
-				// then project it onto the $milestone field. This will be null
-				// if the milestone has no parent, which we hopefully won't have
-				// to consider (illegal)
-				$set: {
-					milestone: { $arrayElemAt: ["$parentMilestoneSubs", 0] },
-				},
+		},
+		{
+			// then project it onto the $quest field. This will be null
+			// if the quest has no parent, which we hopefully won't have
+			// to consider (illegal)
+			$set: {
+				quest: { $arrayElemAt: ["$parentQuestSubs", 0] },
 			},
-			{
-				// then finally, filter to only milestones that pertain to this goal.
-				$match: {
-					"milestone.milestoneData.goals.goalID": goalSub.goalID,
-				},
+		},
+		{
+			// then finally, filter to only quests that pertain to this goal.
+			$match: {
+				"quest.questData.goals.goalID": goalSub.goalID,
 			},
-		]);
+		},
+	]);
 
 	return blockers;
 }

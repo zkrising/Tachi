@@ -4,7 +4,7 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { CreateCalculatedData } from "lib/score-import/framework/calculated-data/calculated-data";
 import { GetAndUpdateUsersGoals } from "lib/score-import/framework/goals/goals";
-import { UpdateUsersMilestones } from "lib/score-import/framework/milestones/milestones";
+import { UpdateUsersQuests } from "lib/score-import/framework/quests/quests";
 import { ProcessPBs } from "lib/score-import/framework/pb/process-pbs";
 import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/user-game-stats/update-ugs";
 import { TachiConfig } from "lib/setup/config";
@@ -77,7 +77,7 @@ export async function RecalcAllScores(filter = {}) {
 
 		const goalInfo = await GetAndUpdateUsersGoals(game, userID, chartIDs, logger);
 
-		await UpdateUsersMilestones(goalInfo, game, [playtype], userID, logger);
+		await UpdateUsersQuests(goalInfo, game, [playtype], userID, logger);
 	}
 
 	logger.info(`Done!`);

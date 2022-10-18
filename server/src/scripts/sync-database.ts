@@ -9,12 +9,11 @@ import CreateLogCtx from "lib/logger/logger";
 import UpdateIsPrimaryStatus from "lib/score-mutation/update-isprimary";
 import { TachiConfig } from "lib/setup/config";
 import { RemoveStaleFolderShowcaseStats } from "lib/showcase/showcase";
-import { UpdateMilestoneSubscriptions } from "lib/targets/milestones";
+import { UpdateQuestSubscriptions } from "lib/targets/quests";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import { UpdateGameSongIDCounter } from "utils/db";
 import { InitaliseFolderChartLookup } from "utils/folder";
 import { ArrayDiff, IsSupported, WrapScriptPromise } from "utils/misc";
-import path from "path";
 import type { KtLogger } from "lib/logger/logger";
 import type { BulkWriteOperation, DeleteWriteOpResultObject } from "mongodb";
 import type { ICollection } from "monk";
@@ -24,8 +23,8 @@ import type {
 	FolderDocument,
 	Game,
 	GoalDocument,
-	MilestoneDocument,
-	MilestoneSetDocument,
+	QuestDocument,
+	QuestlineDocument,
 	SongDocument,
 	TableDocument,
 } from "tachi-common";
@@ -297,40 +296,40 @@ const syncInstructions: Array<SyncInstructions> = [
 		},
 	},
 	{
-		pattern: /^milestone-sets/u,
+		pattern: /^questlines/u,
 		handler: async (
-			milestoneSets: Array<MilestoneSetDocument>,
-			collection: ICollection<MilestoneSetDocument>,
+			questlines: Array<QuestlineDocument>,
+			collection: ICollection<QuestlineDocument>,
 			logger
 		) => {
 			// removing and updating these is fine. Users cannot subscibe to sets.
 			await GenericUpsert(
-				milestoneSets.filter((e) => IsSupported(e.game)),
+				questlines.filter((e) => IsSupported(e.game)),
 				collection,
-				"setID",
+				"questlineID",
 				logger
 			);
 		},
 	},
 	{
-		pattern: /^milestones/u,
+		pattern: /^quests/u,
 		handler: async (
-			milestones: Array<MilestoneDocument>,
-			collection: ICollection<MilestoneDocument>,
+			quests: Array<QuestDocument>,
+			collection: ICollection<QuestDocument>,
 			logger
 		) => {
 			const r = await GenericUpsert(
-				milestones.filter((e) => IsSupported(e.game)),
+				quests.filter((e) => IsSupported(e.game)),
 				collection,
-				"milestoneID",
+				"questID",
 				logger,
 				true
 			);
 
 			if (r.thingsChanged) {
-				const affectedMilestoneIDs = r.changedFields as Array<string>;
+				const affectedQuestIDs = r.changedFields as Array<string>;
 
-				await Promise.all(affectedMilestoneIDs.map((e) => UpdateMilestoneSubscriptions(e)));
+				await Promise.all(affectedQuestIDs.map((e) => UpdateQuestSubscriptions(e)));
 			}
 		},
 	},

@@ -1,10 +1,10 @@
-import { UpdateUsersMilestones } from "./milestones";
+import { UpdateUsersQuests } from "./quests";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { TestingIIDXSPMilestone } from "test-utils/test-data";
+import { TestingIIDXSPQuest } from "test-utils/test-data";
 import type { GoalImportInfo } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
@@ -17,15 +17,15 @@ function CreateMockGII(...garr: Array<[string, boolean]>) {
 	})) as unknown as Array<GoalImportInfo>;
 }
 
-t.test("#UpdateUsersMilestones", (t) => {
+t.test("#UpdateUsersQuests", (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(() => db.milestones.insert(TestingIIDXSPMilestone));
+	t.beforeEach(() => db.quests.insert(TestingIIDXSPQuest));
 	t.beforeEach(() =>
-		db["milestone-subs"].insert({
+		db["quest-subs"].insert({
 			achieved: false,
 			wasInstantlyAchieved: false,
 			game: "iidx",
-			milestoneID: TestingIIDXSPMilestone.milestoneID,
+			questID: TestingIIDXSPQuest.questID,
 			playtype: "SP",
 			progress: 0,
 			timeAchieved: null,
@@ -35,8 +35,8 @@ t.test("#UpdateUsersMilestones", (t) => {
 		})
 	);
 
-	t.test("Test with clean achieved milestone.", async (t) => {
-		const res = await UpdateUsersMilestones(
+	t.test("Test with clean achieved quest.", async (t) => {
+		const res = await UpdateUsersQuests(
 			CreateMockGII(
 				["eg_goal_1", true],
 				["eg_goal_2", true],
@@ -53,7 +53,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 			res,
 			[
 				{
-					milestoneID: "example_milestone_id",
+					questID: "example_quest_id",
 					old: {
 						progress: 0,
 						achieved: false,
@@ -64,14 +64,14 @@ t.test("#UpdateUsersMilestones", (t) => {
 					},
 				},
 			],
-			"Should correctly assert the milestone is achieved."
+			"Should correctly assert the quest is achieved."
 		);
 
 		t.end();
 	});
 
-	t.test("Test with unclean achieved milestone.", async (t) => {
-		const res = await UpdateUsersMilestones(
+	t.test("Test with unclean achieved quest.", async (t) => {
+		const res = await UpdateUsersQuests(
 			CreateMockGII(
 				["eg_goal_1", true],
 				["eg_goal_2", true],
@@ -91,7 +91,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 			res,
 			[
 				{
-					milestoneID: "example_milestone_id",
+					questID: "example_quest_id",
 					old: {
 						progress: 0,
 						achieved: false,
@@ -102,14 +102,14 @@ t.test("#UpdateUsersMilestones", (t) => {
 					},
 				},
 			],
-			"Should correctly assert the milestone is achieved."
+			"Should correctly assert the quest is achieved."
 		);
 
 		t.end();
 	});
 
-	t.test("Test with increased progress on milestone.", async (t) => {
-		const res = await UpdateUsersMilestones(
+	t.test("Test with increased progress on quest.", async (t) => {
+		const res = await UpdateUsersQuests(
 			CreateMockGII(["eg_goal_1", true], ["eg_goal_2", true]),
 			"iidx",
 			["SP"],
@@ -121,7 +121,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 			res,
 			[
 				{
-					milestoneID: "example_milestone_id",
+					questID: "example_quest_id",
 					old: {
 						progress: 0,
 						achieved: false,
@@ -132,34 +132,34 @@ t.test("#UpdateUsersMilestones", (t) => {
 					},
 				},
 			],
-			"Should correctly assert the milestone progress has increased."
+			"Should correctly assert the quest progress has increased."
 		);
 
 		t.end();
 	});
 
-	t.test("Test with no new goals on milestone.", async (t) => {
-		const res = await UpdateUsersMilestones([], "iidx", ["SP"], 1, logger);
+	t.test("Test with no new goals on quest.", async (t) => {
+		const res = await UpdateUsersQuests([], "iidx", ["SP"], 1, logger);
 
 		t.strictSame(res, [], "Should correctly return no changes.");
 
 		t.end();
 	});
 
-	t.test("Test with new goals on multiple milestones.", async (t) => {
-		delete TestingIIDXSPMilestone._id;
-		await db.milestones.insert(
+	t.test("Test with new goals on multiple quests.", async (t) => {
+		delete TestingIIDXSPQuest._id;
+		await db.quests.insert(
 			// eslint-disable-next-line lines-around-comment
 			// @ts-expect-error lol
-			deepmerge(TestingIIDXSPMilestone, {
-				milestoneID: "some_other_milestone_with_mutual_goals",
+			deepmerge(TestingIIDXSPQuest, {
+				questID: "some_other_quest_with_mutual_goals",
 			})
 		);
-		await db["milestone-subs"].insert({
+		await db["quest-subs"].insert({
 			achieved: false,
 			wasInstantlyAchieved: false,
 			game: "iidx",
-			milestoneID: "some_other_milestone_with_mutual_goals",
+			questID: "some_other_quest_with_mutual_goals",
 			playtype: "SP",
 			progress: 0,
 			timeAchieved: null,
@@ -168,7 +168,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 			userID: 1,
 		});
 
-		const res = await UpdateUsersMilestones(
+		const res = await UpdateUsersQuests(
 			CreateMockGII(
 				["eg_goal_1", true],
 				["eg_goal_2", true],
@@ -188,7 +188,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 			res,
 			[
 				{
-					milestoneID: "example_milestone_id",
+					questID: "example_quest_id",
 					old: {
 						progress: 0,
 						achieved: false,
@@ -199,7 +199,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 					},
 				},
 				{
-					milestoneID: "some_other_milestone_with_mutual_goals",
+					questID: "some_other_quest_with_mutual_goals",
 					old: {
 						progress: 0,
 						achieved: false,
@@ -210,24 +210,24 @@ t.test("#UpdateUsersMilestones", (t) => {
 					},
 				},
 			],
-			"Should correctly assert the milestones are achieved."
+			"Should correctly assert the quests are achieved."
 		);
 		t.end();
 	});
 
-	t.test("Test with multiple milestones that only some match", async (t) => {
-		delete TestingIIDXSPMilestone._id;
-		await db.milestones.insert([
+	t.test("Test with multiple quests that only some match", async (t) => {
+		delete TestingIIDXSPQuest._id;
+		await db.quests.insert([
 			// @ts-expect-error lol
-			deepmerge(TestingIIDXSPMilestone, {
-				milestoneID: "some_other_milestone_with_mutual_goals",
+			deepmerge(TestingIIDXSPQuest, {
+				questID: "some_other_quest_with_mutual_goals",
 			}),
 			deepmerge(
-				TestingIIDXSPMilestone,
+				TestingIIDXSPQuest,
 				{
-					milestoneID: "dp_milestone",
+					questID: "dp_quest",
 					playtype: "DP",
-					milestoneData: [
+					questData: [
 						{
 							goals: [{ goalID: "foobar" }],
 						},
@@ -236,12 +236,12 @@ t.test("#UpdateUsersMilestones", (t) => {
 				{ arrayMerge: (d, s) => s }
 			),
 			deepmerge(
-				TestingIIDXSPMilestone,
+				TestingIIDXSPQuest,
 				{
-					milestoneID: "other_game_milestone",
+					questID: "other_game_quest",
 					game: "museca",
 					playtype: "Single",
-					milestoneData: [
+					questData: [
 						{
 							goals: [{ goalID: "foo" }],
 						},
@@ -250,12 +250,12 @@ t.test("#UpdateUsersMilestones", (t) => {
 				{ arrayMerge: (d, s) => s }
 			),
 			deepmerge(
-				TestingIIDXSPMilestone,
+				TestingIIDXSPQuest,
 				{
-					milestoneID: "iidx_with_not_goal",
+					questID: "iidx_with_not_goal",
 					game: "iidx",
 					playtype: "SP",
-					milestoneData: [
+					questData: [
 						{
 							goals: [{ goalID: "not_real_goal_id" }],
 						},
@@ -265,12 +265,12 @@ t.test("#UpdateUsersMilestones", (t) => {
 			),
 		]);
 
-		await db["milestone-subs"].insert([
+		await db["quest-subs"].insert([
 			{
 				achieved: false,
 				wasInstantlyAchieved: false,
 				game: "iidx",
-				milestoneID: "some_other_milestone_with_mutual_goals",
+				questID: "some_other_quest_with_mutual_goals",
 				playtype: "SP",
 				progress: 0,
 				timeAchieved: null,
@@ -283,7 +283,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 				wasInstantlyAchieved: false,
 
 				game: "iidx",
-				milestoneID: "dp_milestone",
+				questID: "dp_quest",
 				playtype: "DP",
 				progress: 0,
 				timeAchieved: null,
@@ -296,7 +296,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 				wasInstantlyAchieved: false,
 
 				game: "museca",
-				milestoneID: "other_game_milestone",
+				questID: "other_game_quest",
 				playtype: "Single",
 				progress: 0,
 				timeAchieved: null,
@@ -308,7 +308,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 				achieved: false,
 				wasInstantlyAchieved: false,
 				game: "iidx",
-				milestoneID: "iidx_with_not_goal",
+				questID: "iidx_with_not_goal",
 				playtype: "SP",
 				progress: 0,
 				timeAchieved: null,
@@ -318,7 +318,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 			},
 		]);
 
-		const res = await UpdateUsersMilestones(
+		const res = await UpdateUsersQuests(
 			CreateMockGII(
 				["eg_goal_1", true],
 				["eg_goal_2", true],
@@ -338,7 +338,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 			res,
 			[
 				{
-					milestoneID: "example_milestone_id",
+					questID: "example_quest_id",
 					old: {
 						progress: 0,
 						achieved: false,
@@ -349,7 +349,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 					},
 				},
 				{
-					milestoneID: "some_other_milestone_with_mutual_goals",
+					questID: "some_other_quest_with_mutual_goals",
 					old: {
 						progress: 0,
 						achieved: false,
@@ -360,7 +360,7 @@ t.test("#UpdateUsersMilestones", (t) => {
 					},
 				},
 			],
-			"Should correctly assert the milestones are achieved."
+			"Should correctly assert the quests are achieved."
 		);
 		t.end();
 	});

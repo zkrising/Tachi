@@ -1,6 +1,7 @@
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import {
 	EXT_BISTROVER,
+	EXT_CASTHOUR,
 	EXT_HEROIC_VERSE,
 	MODEL_IIDX,
 	MODEL_IIDX_LIGHTNING,
@@ -96,6 +97,10 @@ export function SoftwareIDToVersion(model: string, logger: KtLogger) {
 					return "28-2dxtra";
 				} else if (data.rev === REV_NORMAL) {
 					return "28";
+				}
+			} else if (data.ext === EXT_CASTHOUR) {
+				if (data.rev === REV_NORMAL) {
+					return "29";
 				}
 			}
 		}

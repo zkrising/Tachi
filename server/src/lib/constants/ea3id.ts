@@ -10,5 +10,6 @@ export const REV_NORMAL = "A";
 
 export const EXT_HEROIC_VERSE = "2020092900";
 export const EXT_BISTROVER = "2021091500";
+export const EXT_CASTHOUR = "2022082400";
 
 export const MODEL_SDVX3_KONASTE = "QCV";

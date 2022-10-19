@@ -31,7 +31,7 @@ None.
 
 ## Revert an import.
 
-`POST /api/v1/import/:importID/revert`
+`POST /api/v1/imports/:importID/revert`
 
 !!! info
 	This endpoint is intended to *undo* a faulty import. For example, if you were using

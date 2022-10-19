@@ -33,7 +33,7 @@ export default async function SubmitFile(
 	);
 
 	if (res.success) {
-		setState({ state: "done", import: res.body });
+		setState({ state: "done", import: res.body, details: null });
 	} else {
 		setState({ state: "failed", error: res.description });
 	}

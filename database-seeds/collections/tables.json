@@ -867,7 +867,7 @@
 			"F4c4e2e19957c749e699c76d8a9ddbefeb78f6106d62afba870b301858262ca90"
 		],
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"tableID": "iidx-DP-28-levels",
 		"title": "beatmania IIDX (DP) (BISTROVER)"
@@ -1557,7 +1557,7 @@
 			"F5d92313eaa5777def84ebe24e9b95ae0ad98cc189e0b0edbfb719bd0769ba23e"
 		],
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"tableID": "iidx-SP-28-levels",
 		"title": "beatmania IIDX (SP) (BISTROVER)"

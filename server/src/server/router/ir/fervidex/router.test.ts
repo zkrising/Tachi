@@ -62,6 +62,8 @@ function TestHeaders(url: string, data: any) {
 			["2021091500", "Bistrover"],
 			["2020092900", "HEROIC VERSE"],
 		]) {
+	 		await InsertFakeTokenWithAllPerms("mock_token")();
+
 			const res = await mockApi
 				.post(url)
 				.set("Authorization", "Bearer mock_token")

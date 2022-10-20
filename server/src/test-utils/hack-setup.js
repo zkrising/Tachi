@@ -7,4 +7,4 @@ const path = require("path");
 const assert = require("assert");
 
 assert(process.env.NODE_ENV === "test", "NODE_ENV WAS NOT TEST, BAILING");
-execSync(`pnpm ts-node ${path.join(__dirname, "./setup.ts")}`, { stdio: "inherit" });
+execSync(`ts-node ${path.join(__dirname, "./setup.ts")}`, { stdio: "inherit" });

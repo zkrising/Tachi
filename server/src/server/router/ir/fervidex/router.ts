@@ -2,6 +2,7 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import {
 	EXT_BISTROVER,
+	EXT_CASTHOUR,
 	EXT_HEROIC_VERSE,
 	MODEL_INFINITAS_2,
 	REV_2DXBMS,
@@ -72,7 +73,7 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
 	next();
 };
 
-const supportedExts = [EXT_HEROIC_VERSE, EXT_BISTROVER];
+const supportedExts = [EXT_HEROIC_VERSE, EXT_BISTROVER, EXT_CASTHOUR];
 
 const ValidateModelHeader: RequestHandler = (req, res, next) => {
 	const swModel = req.header("X-Software-Model");

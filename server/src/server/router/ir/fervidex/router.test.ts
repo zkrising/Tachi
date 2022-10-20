@@ -49,6 +49,32 @@ function TestHeaders(url: string, data: any) {
 		t.end();
 	});
 
+	t.test("Should allow certain models", async (t) => {
+		await db["fer-settings"].remove({});
+		await db["fer-settings"].insert({
+			userID: 1,
+			cards: null,
+			forceStaticImport: false,
+		});
+
+		for (const [ext, name] of [
+			["2022082400", "CastHour"], ["2021091500", "Bistrover"], ["2020092900", "HEROIC VERSE"]
+		]) {
+			const res = await mockApi
+			.post(url)
+			.set("Authorization", "Bearer mock_token")
+
+			// CastHour
+			.set("X-Software-Model", `LDJ:J:B:A:${ext}`)
+			.set("User-Agent", "fervidex/1.3.0")
+			.send(data);
+
+		t.equal(res.body.success, true, `Should allow ${name} clients`);
+		}
+		
+		t.end()
+	});
+
 	t.test("Should reject invalid X-Software-Models", async (t) => {
 		let res = await mockApi
 			.post(url)
@@ -178,7 +204,7 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(InsertFakeTokenWithAllPerms("mock_token"));
 
-	TestHeaders("/ir/fervidex/class/submit", {});
+	TestHeaders("/ir/fervidex/class/submit", { cleared: true, course_id: 18, play_style: 0 });
 
 	t.test("Should update a users class.", async (t) => {
 		const res = await mockApi

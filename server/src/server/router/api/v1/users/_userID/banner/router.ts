@@ -20,7 +20,9 @@ const router: Router = Router({ mergeParams: true });
 /**
  * Sets a profile banner.
  *
- * @param banner - A JPG or PNG file less than 1mb.
+ * @param banner - A JPG, PNG or GIF file less than 1mb.
+ * @note although GIFs are supported, this functionality isn't documented on the site.
+ * this is kind of an easter egg.
  *
  * @name PUT /api/v1/users/:userID/banner
  */

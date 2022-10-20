@@ -4,11 +4,7 @@ import db from "external/mongo/db";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
-import {
-	EvaluateQuestProgress,
-	SubscribeToQuest,
-	UnsubscribeFromQuest,
-} from "lib/targets/quests";
+import { EvaluateQuestProgress, SubscribeToQuest, UnsubscribeFromQuest } from "lib/targets/quests";
 import { RequirePermissions } from "server/middleware/auth";
 import { AssignToReqTachiData, GetGPT, GetTachiData, GetUGPT } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
@@ -208,13 +204,10 @@ router.delete(
 		const { user } = GetUGPT(req);
 		const quest = GetTachiData(req, "questDoc");
 
-		logger.info(
-			`User ${FormatUserDoc(user)} is unsubscribing from quest '${quest.name}'.`,
-			{
-				quest,
-				user,
-			}
-		);
+		logger.info(`User ${FormatUserDoc(user)} is unsubscribing from quest '${quest.name}'.`, {
+			quest,
+			user,
+		});
 
 		await UnsubscribeFromQuest(user.id, quest.questID);
 

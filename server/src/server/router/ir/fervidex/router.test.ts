@@ -58,21 +58,23 @@ function TestHeaders(url: string, data: any) {
 		});
 
 		for (const [ext, name] of [
-			["2022082400", "CastHour"], ["2021091500", "Bistrover"], ["2020092900", "HEROIC VERSE"]
+			["2022082400", "CastHour"],
+			["2021091500", "Bistrover"],
+			["2020092900", "HEROIC VERSE"],
 		]) {
 			const res = await mockApi
-			.post(url)
-			.set("Authorization", "Bearer mock_token")
+				.post(url)
+				.set("Authorization", "Bearer mock_token")
 
-			// CastHour
-			.set("X-Software-Model", `LDJ:J:B:A:${ext}`)
-			.set("User-Agent", "fervidex/1.3.0")
-			.send(data);
+				// CastHour
+				.set("X-Software-Model", `LDJ:J:B:A:${ext}`)
+				.set("User-Agent", "fervidex/1.3.0")
+				.send(data);
 
-		t.equal(res.body.success, true, `Should allow ${name} clients`);
+			t.equal(res.body.success, true, `Should allow ${name} clients`);
 		}
-		
-		t.end()
+
+		t.end();
 	});
 
 	t.test("Should reject invalid X-Software-Models", async (t) => {

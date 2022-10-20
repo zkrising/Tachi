@@ -10,7 +10,7 @@ import {
 	FervidexStaticBase,
 	GetKTDataJSON,
 } from "test-utils/test-data";
-import { Sleep } from "utils/misc";
+import { Random20Hex, Sleep } from "utils/misc";
 import type { ChartDocument, SongDocument } from "tachi-common";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -62,11 +62,18 @@ function TestHeaders(url: string, data: any) {
 			["2021091500", "Bistrover"],
 			["2020092900", "HEROIC VERSE"],
 		]) {
-	 		await InsertFakeTokenWithAllPerms("mock_token")();
+			// unfathomably stupid race-condition protection
+			// tap *really* doesn't like tests being invoked dynamically
+			// like this (TestHeaders)
+			// so it runs them kind of in parallel
+			// even though we don't want them to do that
+			const token = `mock_token_${Random20Hex()}`;
+
+			await InsertFakeTokenWithAllPerms(token)();
 
 			const res = await mockApi
 				.post(url)
-				.set("Authorization", "Bearer mock_token")
+				.set("Authorization", `Bearer ${token}`)
 
 				// CastHour
 				.set("X-Software-Model", `LDJ:J:B:A:${ext}`)
@@ -74,6 +81,8 @@ function TestHeaders(url: string, data: any) {
 				.send(data);
 
 			t.equal(res.body.success, true, `Should allow ${name} clients`);
+
+			await db["api-tokens"].remove({ key: token });
 		}
 
 		t.end();
@@ -429,7 +438,7 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(InsertFakeTokenWithAllPerms("mock_token"));
 
-	TestHeaders("/ir/fervidex/class/submit", FervidexStaticBase);
+	TestHeaders("/ir/fervidex/profile/submit", FervidexStaticBase);
 
 	t.test("Should accept a fervidex-static body", async (t) => {
 		await db.songs.iidx.remove({});

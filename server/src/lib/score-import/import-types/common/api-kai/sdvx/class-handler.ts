@@ -13,8 +13,6 @@ export async function CreateKaiSDVXClassHandler(
 	let err: unknown;
 	const baseUrl = KaiTypeToBaseURL(kaiType);
 
-	// SP and DP dans are located in the same place,
-	// fetch once, then return a function that traverses this data.
 	try {
 		const res = await fetch(`${baseUrl}/api/sdvx/v1/player_profile`, {
 			headers: {

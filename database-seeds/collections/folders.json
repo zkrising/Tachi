@@ -22084,6 +22084,19 @@
 	{
 		"data": {
 			"level": "1",
+			"versions": "kaimei"
+		},
+		"folderID": "F1dae653d7e838a57ccbb14ee7b5b2fce52427edad023fe5892ae70e46c512881",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 1 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
 			"versions": "peace"
 		},
 		"folderID": "Fe8b4afaddf9c4f5052f034969e88da684319db2efd74c698cf4903d1a1566625",
@@ -22092,6 +22105,22 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 1 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"levelNum": {
+				"~gte": 1,
+				"~lte": 9
+			},
+			"versions": "kaimei"
+		},
+		"folderID": "F432b3d528571350d85c36e3020bed7d3214596ef2fa8253dbb50c5870aed0a9f",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 1-9 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22113,6 +22142,19 @@
 	{
 		"data": {
 			"level": "10",
+			"versions": "kaimei"
+		},
+		"folderID": "F0f11e1a4b39aeaaa7b381992c6a404e3eb5fc338f22c0e8b60446dd96f1294ed",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 10 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
 			"versions": "peace"
 		},
 		"folderID": "Febf65f4694c75e90c60461bff77c6e72ae2ba6f321b81d22c8e7ab0a6347eddb",
@@ -22121,6 +22163,22 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 10 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"levelNum": {
+				"~gte": 10,
+				"~lte": 19
+			},
+			"versions": "kaimei"
+		},
+		"folderID": "F0812a30c822139cb0844ddfd1ad6a72996aefc9fad283a84e5572be5e6143b25",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 10-19 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22142,6 +22200,19 @@
 	{
 		"data": {
 			"level": "11",
+			"versions": "kaimei"
+		},
+		"folderID": "F61fd802646e66e09f154f0cd5a77da11c499d83538b305175b636b6ba819433a",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 11 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
 			"versions": "peace"
 		},
 		"folderID": "Fc984b514fa58307f658ec3703f105891bfdb8ff35dc584290f1c7cef7453e429",
@@ -22150,6 +22221,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 11 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "kaimei"
+		},
+		"folderID": "Ff5f00baf9594072bd4ac829aedea3f6307df3bdb5e287a3add87f8d0f74afc5d",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 12 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22168,6 +22252,19 @@
 	{
 		"data": {
 			"level": "13",
+			"versions": "kaimei"
+		},
+		"folderID": "F17c6326cbbd0cfa8f4c68150cb2f858cc9c05a6397390f1f28b2105cb1265a33",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 13 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
 			"versions": "peace"
 		},
 		"folderID": "F883076b3dde512283ec4797276d9116a6140c717db213fb8d4bd6906656971cd",
@@ -22176,6 +22273,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 13 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
+			"versions": "kaimei"
+		},
+		"folderID": "Feca28607a37a26db87770557dee1fe82be209df280c0e28558b060ae6f9df803",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 14 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22194,6 +22304,19 @@
 	{
 		"data": {
 			"level": "15",
+			"versions": "kaimei"
+		},
+		"folderID": "F22619e6dd83962e6293c7a23b16be7c9a49f66b89716ae910827c30ae080feb2",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 15 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
 			"versions": "peace"
 		},
 		"folderID": "F75de7d2a9fc91f1ca8f101879b563c713cf55d194b12fb5b0b5dde1d37bea29f",
@@ -22202,6 +22325,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 15 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "16",
+			"versions": "kaimei"
+		},
+		"folderID": "F91419b1c9ac3af6c668e8ede81d3b2ec3e7f62d149e78154f71fb3d7156f6450",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 16 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22220,6 +22356,19 @@
 	{
 		"data": {
 			"level": "17",
+			"versions": "kaimei"
+		},
+		"folderID": "Fe4eb0073eb309411d3c1f9a9f51e4fd0f8735c942b076a59e35b6b5b424adf1f",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 17 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "17",
 			"versions": "peace"
 		},
 		"folderID": "Ff8571cfa8e25c313036cd44093045658d8735b2acc09a4734ae7e33ae33b1ebd",
@@ -22228,6 +22377,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 17 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "18",
+			"versions": "kaimei"
+		},
+		"folderID": "Fbdd6eca59f066ae0710b8ff96e7d3f68900849d814df13506672b035b3015520",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 18 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22246,6 +22408,19 @@
 	{
 		"data": {
 			"level": "19",
+			"versions": "kaimei"
+		},
+		"folderID": "F28d4ee9a9a3ba52245db773a56a669b974f5031905761a9c12d7f2c4034a2c9d",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 19 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "19",
 			"versions": "peace"
 		},
 		"folderID": "F64f4bfa76b6452496f47bca937c0a7942c1ab470733aa48e37e1301f33f7ac81",
@@ -22259,6 +22434,19 @@
 	{
 		"data": {
 			"level": "2",
+			"versions": "kaimei"
+		},
+		"folderID": "Fc4194e74ed372abeaab54cbe682b0c931369dfda66b8a9a7567e601447c472be",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 2 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
 			"versions": "peace"
 		},
 		"folderID": "F10d9c0c9f04c47ec2fc75f9d6608666259817f7e9ea396e12170cab433857ce4",
@@ -22267,6 +22455,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 2 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "20",
+			"versions": "kaimei"
+		},
+		"folderID": "F2b0872b14c2bc785242151d12d62cc5c76ea0795db834879d07946111f781471",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 20 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22288,6 +22489,22 @@
 				"~gte": 20,
 				"~lte": 29
 			},
+			"versions": "kaimei"
+		},
+		"folderID": "Fb93617697ed20a1feb6d6f8a5b6e192c3e9c510fa66a509095282595c4ba7ca1",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 20-29 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"levelNum": {
+				"~gte": 20,
+				"~lte": 29
+			},
 			"versions": "peace"
 		},
 		"folderID": "Fb429c7dd6ccb37a4fdab99947c9af2532ac08342bd17acfd2e62898be2488310",
@@ -22296,6 +22513,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 20-29 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "21",
+			"versions": "kaimei"
+		},
+		"folderID": "F8752d62cd659c58dab58983751b4e34c04edb8ff9b34aef48fb90884a709b669",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 21 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22314,6 +22544,19 @@
 	{
 		"data": {
 			"level": "22",
+			"versions": "kaimei"
+		},
+		"folderID": "F893f44f1288b992892fc3fba7dbaf889ab983ecd1348d65e50a8e5def34cff7d",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 22 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "22",
 			"versions": "peace"
 		},
 		"folderID": "Fe6ad94121764e2d224de023089b4113810067ffb14aa13dbc207d5b477dbb7a2",
@@ -22322,6 +22565,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 22 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "23",
+			"versions": "kaimei"
+		},
+		"folderID": "F970a7358d34084758327b813803f92dac807a70fe1709ce0a9c160c96fce8689",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 23 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22340,6 +22596,19 @@
 	{
 		"data": {
 			"level": "24",
+			"versions": "kaimei"
+		},
+		"folderID": "F93a73c88a13e27a30ab0ee44b0d2246f5b200eb2f9f76136f997ffa2553aa462",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 24 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "24",
 			"versions": "peace"
 		},
 		"folderID": "Fb75c8a98702bc0027b239ede1c44ef200fd61aa5b1cdd070eb0d88ac7bd89b48",
@@ -22348,6 +22617,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 24 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "25",
+			"versions": "kaimei"
+		},
+		"folderID": "Ff7c0ee7932747e06a620bd7cedef3e8c152907411c827f38c3e20512d761b7cf",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 25 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22366,6 +22648,19 @@
 	{
 		"data": {
 			"level": "26",
+			"versions": "kaimei"
+		},
+		"folderID": "F33a0bcb2427e76bebca8bb1dea59f69647f9a959979a05979a34b4877278624b",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 26 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "26",
 			"versions": "peace"
 		},
 		"folderID": "Fad8587ffb340090c69bb9a05c1c6dc035ec8755d7d317278e4efdf783ceb2b2f",
@@ -22374,6 +22669,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 26 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "27",
+			"versions": "kaimei"
+		},
+		"folderID": "F0d51a947cc3c4e03aece3bf2567d50c47fc549b4d7d670686e03dff46347cbf4",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 27 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22392,6 +22700,19 @@
 	{
 		"data": {
 			"level": "28",
+			"versions": "kaimei"
+		},
+		"folderID": "F2a1685f9b7b0ab392ebb45f13aee9c6150d547f888c2804df25e6c4f810fd3f7",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 28 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "28",
 			"versions": "peace"
 		},
 		"folderID": "F0b6fb63a3c5ab92b2114e14a6b60ed9c03b457cdf5b70efd1fc1c7cc1ea7bbbc",
@@ -22400,6 +22721,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 28 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "29",
+			"versions": "kaimei"
+		},
+		"folderID": "Fc98f1d18f832c8914e4c8c028cbbb3cf13622ccc645c2771dd6284af43364abb",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 29 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22418,6 +22752,19 @@
 	{
 		"data": {
 			"level": "3",
+			"versions": "kaimei"
+		},
+		"folderID": "F34cd25483db5dba518de573fdf6ab15cd064ca8951b0c0c78c0b8bd42ab45db0",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 3 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
 			"versions": "peace"
 		},
 		"folderID": "F1b4d49075953abacfc57f0bf8c3f5ab616b508eaefe6d4da90ced5a5f281d17a",
@@ -22426,6 +22773,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 3 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "30",
+			"versions": "kaimei"
+		},
+		"folderID": "F6486f668e7be8be24da029b029ce056502e87845b5e52cecdc733518998e266e",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 30 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22444,6 +22804,19 @@
 	{
 		"data": {
 			"level": "31",
+			"versions": "kaimei"
+		},
+		"folderID": "F2514591fb0509d98a530fbfe325a25bf408fccc739b4e47c30317cc848327c78",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 31 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "31",
 			"versions": "peace"
 		},
 		"folderID": "F3c5715f6595048ac14d54980b10ba9cb0ed43ca6c42e3b81c5ec7ad647309a9d",
@@ -22452,6 +22825,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 31 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "32",
+			"versions": "kaimei"
+		},
+		"folderID": "F36fc553d7aad23757645205b9dba495b03b098aaf71bc1ec33a7d49ef56fed65",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 32 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22470,6 +22856,19 @@
 	{
 		"data": {
 			"level": "33",
+			"versions": "kaimei"
+		},
+		"folderID": "F118b4e283095209578e6e40e55ddd976d070961c3a5c4b9f28e7eb9ee8cfbc1c",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 33 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "33",
 			"versions": "peace"
 		},
 		"folderID": "Fdf1271c9394a91419295534351babe28aaf609dfc98521511848df6271412d9a",
@@ -22478,6 +22877,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 33 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "34",
+			"versions": "kaimei"
+		},
+		"folderID": "F21e5707dc75c21b07d9d674d24fa5325717474a9d11489bcd55402a87fa8e4b8",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 34 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22496,6 +22908,19 @@
 	{
 		"data": {
 			"level": "35",
+			"versions": "kaimei"
+		},
+		"folderID": "Fd6af4e9beeb8235fb2e60c847e622d396ca4425021baed045bebf290ba92d51f",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 35 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "35",
 			"versions": "peace"
 		},
 		"folderID": "F106daa09f613a739e2f053b65080461c8994dfca9edeb1c4427253a515fa0a62",
@@ -22504,6 +22929,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 35 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "36",
+			"versions": "kaimei"
+		},
+		"folderID": "Fb09463053139d58ec87d5b7df565d97531368f22a638f38be13bf90e8a9fa306",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 36 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22522,6 +22960,19 @@
 	{
 		"data": {
 			"level": "37",
+			"versions": "kaimei"
+		},
+		"folderID": "F5bc62603d58922834bbdb69a4b0ee14fd9b23a72d58c3db203c78d3064e28442",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 37 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "37",
 			"versions": "peace"
 		},
 		"folderID": "F3b349c5de7e23f57690726fbbc6f287a0db7d39cc687356bee5e413c3d7b9a70",
@@ -22530,6 +22981,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 37 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "38",
+			"versions": "kaimei"
+		},
+		"folderID": "F1157602c6e4c9fe94e3be01d92ecb80a71fa5b8bd2a98ab35bdf0726a497176a",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 38 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22548,6 +23012,19 @@
 	{
 		"data": {
 			"level": "39",
+			"versions": "kaimei"
+		},
+		"folderID": "F8baa07f50f06733c8dc67dc9561ee8b18f60f4955bde8f7bfbb0df4658a9f112",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 39 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "39",
 			"versions": "peace"
 		},
 		"folderID": "Fa9ca654afb17cbf284da912a5065aec0bf865164841d57c10475c92ee8e7fe03",
@@ -22556,6 +23033,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 39 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "kaimei"
+		},
+		"folderID": "Fcc3acdd57f1921b9fa14fa67a7a2f3ad9aca1899dd22c3d5970f4216adcb2f33",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 4 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22574,6 +23064,19 @@
 	{
 		"data": {
 			"level": "40",
+			"versions": "kaimei"
+		},
+		"folderID": "F75161794feb0a757b35318559f2d940481a768897aeacd70cd53813a5a6f735c",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 40 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "40",
 			"versions": "peace"
 		},
 		"folderID": "F6e40c1facb9fc3f688dcaadd641412e941230c641389fdf61ec19311da08abe5",
@@ -22582,6 +23085,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 40 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "41",
+			"versions": "kaimei"
+		},
+		"folderID": "Fcaa2b6198bc080a99ad618c6d98c41f22482582850b9d6d9205590bcccad3527",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 41 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22600,6 +23116,19 @@
 	{
 		"data": {
 			"level": "42",
+			"versions": "kaimei"
+		},
+		"folderID": "Fc3e2a570bc13e934f3d4e5f2ff81876b73bc7eb8913ab30afa01571bd89ead11",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 42 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "42",
 			"versions": "peace"
 		},
 		"folderID": "Fcbd37a843ffc91c84fba1d1bda4362202bc48fe0beaf8af37f6424e3ad4da41f",
@@ -22608,6 +23137,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 42 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "43",
+			"versions": "kaimei"
+		},
+		"folderID": "Fa1a38915d082711fba913f58eeb80257f28d773d958a0e02982dd9c4afce0d2d",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 43 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22626,6 +23168,19 @@
 	{
 		"data": {
 			"level": "44",
+			"versions": "kaimei"
+		},
+		"folderID": "Fe76c26fee4bbce9ac332473a2ef35852351ab208f4803ee6783894470e3a54a7",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 44 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "44",
 			"versions": "peace"
 		},
 		"folderID": "Fffa1733023be51fd55b2bc03776a9c841de81691fa0ac82906d2c6c406afb6fc",
@@ -22634,6 +23189,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 44 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "45",
+			"versions": "kaimei"
+		},
+		"folderID": "F91067d7ae22988498783332ea93885f7e982887a361d85207b5579075bc8597f",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 45 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22652,6 +23220,19 @@
 	{
 		"data": {
 			"level": "46",
+			"versions": "kaimei"
+		},
+		"folderID": "F914e9aa1e871d5b2649b8fca3ee2d42a809d098848571203fc2e72b72e05626f",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 46 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "46",
 			"versions": "peace"
 		},
 		"folderID": "F151327850c76e26eeb96349723cde9eadec6eb72f7ea294c886c0623ed44b489",
@@ -22660,6 +23241,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 46 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "47",
+			"versions": "kaimei"
+		},
+		"folderID": "Fb397b4b6ce019e9504c48115d5dc6946bd994f0eb7ad86641e05d43b5c955667",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 47 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22678,6 +23272,19 @@
 	{
 		"data": {
 			"level": "48",
+			"versions": "kaimei"
+		},
+		"folderID": "F2cd5434e77082a78859ead41e0b5bae247e2bcfb207fb11a877a9d0d34f1bd48",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 48 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "48",
 			"versions": "peace"
 		},
 		"folderID": "F3bc9b6a0591d95e027ef817fbec74c671bd757ff1d706da5060a8c2c50a2e4af",
@@ -22686,6 +23293,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 48 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "49",
+			"versions": "kaimei"
+		},
+		"folderID": "F42456cc1261922631b71ef772314c33e6e46f7ef0a1945f754087170bc3fd0f1",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 49 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22704,6 +23324,19 @@
 	{
 		"data": {
 			"level": "5",
+			"versions": "kaimei"
+		},
+		"folderID": "F4d1b479322f42642b32aedf9766ef6d58f4bf7df9504b2b3746704a7a72d8243",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 5 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
 			"versions": "peace"
 		},
 		"folderID": "F918324990b7beac6bdeea309c3b4df510c6a91d166a7cc746c69697e41469652",
@@ -22712,6 +23345,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 5 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "50",
+			"versions": "kaimei"
+		},
+		"folderID": "Fa705e7e3062ccbf291f63b77cdcc478a1f86646152662aa262cd660ffa787c46",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 50 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22730,6 +23376,19 @@
 	{
 		"data": {
 			"level": "6",
+			"versions": "kaimei"
+		},
+		"folderID": "F53e178e5b50a115669c8abf704b63a81bc512a71723adb33f04443a5664089ac",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 6 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
 			"versions": "peace"
 		},
 		"folderID": "F1fe781f59fdd4aa97f6b522a39fbdc419aaba2cc3d18bf2ceff94b9c13cf40ae",
@@ -22738,6 +23397,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 6 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "kaimei"
+		},
+		"folderID": "F30ed1f9b36aac7140a64ee678bfd437f851e49302ea21eae114dd32c356094b9",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 7 (kaimei)",
 		"type": "charts"
 	},
 	{
@@ -22756,6 +23428,19 @@
 	{
 		"data": {
 			"level": "8",
+			"versions": "kaimei"
+		},
+		"folderID": "F6fc6baff173adb843554e8aa9b17124e2b6f140ba61dbe0fd80ce5ec40babb99",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 8 (kaimei)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
 			"versions": "peace"
 		},
 		"folderID": "F996675095c33dbccaac376d44b3c6a3556e5fc5c8bd6dc2a18aff6b5b168d4a3",
@@ -22764,6 +23449,19 @@
 		"playtype": "9B",
 		"searchTerms": [],
 		"title": "Level 8 (peace)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "kaimei"
+		},
+		"folderID": "Ff2f3dfcf3c0c438b10823e7fce90f7da7b41215aec21f7143140a247cb916883",
+		"game": "popn",
+		"inactive": false,
+		"playtype": "9B",
+		"searchTerms": [],
+		"title": "Level 9 (kaimei)",
 		"type": "charts"
 	},
 	{

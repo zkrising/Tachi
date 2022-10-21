@@ -31,6 +31,12 @@ for (const table of tables) {
 			success++;
 		}
 	}
+
+	if (table.folders.length !== [...new Set(table.folders)].length) {
+		console.error(chalk.red(`[ERR] | ${pretty} | Has duplicate folders.`));
+
+		fails++;
+	}
 }
 
 console.log(

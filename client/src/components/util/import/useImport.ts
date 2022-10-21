@@ -3,7 +3,8 @@ import { APIFetchV1 } from "util/api";
 import { Sleep } from "util/misc";
 import { useState } from "react";
 import { ImportDocument, integer } from "tachi-common";
-import { ImportInformation, ImportStates, NotStartedState } from "types/import";
+import { ImportStates, NotStartedState } from "types/import";
+import { ImportIDReturn } from "types/api-returns";
 
 export interface ImportDeferred {
 	url: string;
@@ -41,9 +42,7 @@ export default function useImport(url: string, options: RequestInit) {
 
 		// 200 means the import was processed on-router.
 		if (initRes.statusCode === 200) {
-			const importRes = await APIFetchV1<ImportInformation>(
-				`/imports/${initRes.body.importID}`
-			);
+			const importRes = await APIFetchV1<ImportIDReturn>(`/imports/${initRes.body.importID}`);
 
 			if (!importRes.success) {
 				setImportState({ state: "failed", error: importRes.description });
@@ -52,8 +51,7 @@ export default function useImport(url: string, options: RequestInit) {
 
 			setImportState({
 				state: "done",
-				import: (importRes.body as ImportInformation).import,
-				details: importRes.body as ImportInformation,
+				import: importRes.body.import,
 			});
 		} else if (initRes.statusCode === 202) {
 			// 202 means the import is processing. We'll have to poll the
@@ -72,11 +70,7 @@ export default function useImport(url: string, options: RequestInit) {
 						if (importState.state === "done") {
 							setImportState({ ...importState, import: pollRes.body.import });
 						} else {
-							setImportState({
-								state: "done",
-								import: pollRes.body.import,
-								details: null,
-							});
+							setImportState({ state: "done", import: pollRes.body.import });
 						}
 					} else {
 						setImportState({

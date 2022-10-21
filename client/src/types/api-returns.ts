@@ -23,6 +23,7 @@ import {
 	UserGameStatsSnapshot,
 	GoalSubscriptionDocument,
 	ChallengeSubscriptionDocument,
+	ImportDocument,
 } from "tachi-common";
 
 export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
@@ -190,4 +191,13 @@ export interface ChallengeSubsReturn {
 export interface ChartRivalsReturn {
 	rivals: Array<PublicUserDocument>;
 	pbs: Array<PBScoreDocument>;
+}
+
+export interface ImportIDReturn {
+	scores: ScoreDocument[];
+	songs: SongDocument[];
+	charts: ChartDocument[];
+	sessions: SessionDocument[];
+	import: ImportDocument;
+	user: PublicUserDocument;
 }

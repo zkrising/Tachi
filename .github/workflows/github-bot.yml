@@ -35,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./github-bot
-          file: ./Dockerfile
+          file: ./github-bot/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/tachi-gh-bot:stable,${{ secrets.DOCKER_USERNAME }}/tachi-bot:${{ env.VERSION_TAG }},
 

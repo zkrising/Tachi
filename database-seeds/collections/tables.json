@@ -2592,6 +2592,7 @@
 		"title": "Normal PMS Database"
 	},
 	{
+		"default": false,
 		"description": "All pop'n Kaimei Riddles levels individually.",
 		"folders": [
 			"F1dae653d7e838a57ccbb14ee7b5b2fce52427edad023fe5892ae70e46c512881",
@@ -2652,6 +2653,7 @@
 		"title": "Pop'n Music Kaimei Riddles All Levels"
 	},
 	{
+		"default": true,
 		"description": "All pop'n kaimei levels, with some folders joined together.",
 		"folders": [
 			"F432b3d528571350d85c36e3020bed7d3214596ef2fa8253dbb50c5870aed0a9f",
@@ -2685,7 +2687,7 @@
 		"title": "Pop'n Music Kaimei Riddles Levels"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "All pop'n peace levels, with some folders joined together.",
 		"folders": [
 			"F0eba4509733294349b3d9140e943f33c80cc545050a61f87b62ebd9980916f0a",

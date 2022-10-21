@@ -8,15 +8,12 @@ export default function UserCell({ user, game, playtype }: { user: PublicUserDoc
 	return (
 		<td
 			style={{
-				backgroundImage: user.customPfpLocation
-					? `linear-gradient(to right, rgba(19, 19, 19, 0.8), rgba(19, 19, 19, 1)), url(${ToAPIURL(
-							`/users/${user.id}/pfp`
-					  )})`
-					: undefined,
 				backgroundRepeat: "no-repeat",
 				backgroundSize: "cover",
 				backgroundPosition: "center",
+				["--image-url" as string]: `url(${ToAPIURL(`/users/${user.id}/pfp`)})`,
 			}}
+			className="fading-image-td-right"
 		>
 			<Link
 				style={{

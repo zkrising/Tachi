@@ -48,10 +48,10 @@ export default function TitleCell({
 				textAlign: "left",
 				minWidth: "140px",
 				maxWidth: "300px",
-				["--banner-url" as string]: backgroundImage,
+				["--image-url" as string]: backgroundImage,
 				backgroundPosition: center ? "center" : undefined,
 			}}
-			className="banner-td"
+			className="fading-image-td-left"
 		>
 			{game === "popn" && (
 				<>

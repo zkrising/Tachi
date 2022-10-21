@@ -72,6 +72,7 @@ MutateCollection("folders.json", (folders) => {
 
 MutateCollection("tables.json", (tables) => {
 	tables.push({
+		default: false,
 		title: `Pop'n Music ${options.version} All Levels`,
 		description: `All pop'n ${options.version} levels individually.`,
 		tableID: `popn-9B-${options.version}-alllevels`,
@@ -82,6 +83,7 @@ MutateCollection("tables.json", (tables) => {
 	});
 
 	tables.push({
+		default: false,
 		title: `Pop'n Music ${options.version} Levels`,
 		description: `All pop'n ${options.version} levels, with some folders joined together.`,
 		tableID: `popn-9B-${options.version}-levels`,

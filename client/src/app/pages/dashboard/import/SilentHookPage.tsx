@@ -1,6 +1,7 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
+import Muted from "components/util/Muted";
 import { TachiConfig } from "lib/config";
 import React from "react";
 
@@ -20,10 +21,18 @@ export default function SilentHookPage() {
 			<ol className="instructions-list">
 				<li>
 					Download <code>silent.dll</code> from{" "}
-					<ExternalLink href="https://cdn.discordapp.com/attachments/917508472625573888/938094517226192906/silent.dll">
+					<ExternalLink href="https://cdn.discordapp.com/attachments/783119769649414166/1032859092982714428/silent.dll">
 						Here
 					</ExternalLink>
 					.
+					<br />
+					<Muted>
+						The above download is for Kaimei Riddles. For Pop'n Peace, use{" "}
+						<ExternalLink href="https://cdn.discordapp.com/attachments/917508472625573888/938094517226192906/silent.dll">
+							this download
+						</ExternalLink>
+						.
+					</Muted>
 				</li>
 				<li>
 					Download <code>silent</code>'s dependencies from

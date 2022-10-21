@@ -1,6 +1,7 @@
 import { GetGameConfig, GetGamePTConfig } from "../config/config";
 import type { ChartDocument, Game, IDStrings, Playtypes, SongDocument } from "..";
 import type { Grades, integer } from "../types";
+import type { PrudenceError } from "prudence";
 
 export function FormatInt(v: number): string {
 	return v.toString();
@@ -262,4 +263,18 @@ export function CreateSongMap<G extends Game = Game>(songs: Array<SongDocument<G
 	}
 
 	return songMap;
+}
+
+/**
+ * Formats a PrudenceError into something a little more readable.
+ * @param err - The prudence error to format.
+ * @param foreword - A description of what kind of error this was. Defaults to "Error".
+ */
+export function FormatPrError(err: PrudenceError, foreword = "Error"): string {
+	const receivedText =
+		typeof err.userVal === "object" && err.userVal !== null
+			? ""
+			: ` | Received ${err.userVal} [${err.userVal === null ? "null" : typeof err.userVal}]`;
+
+	return `${foreword}: ${err.keychain} | ${err.message}${receivedText}.`;
 }

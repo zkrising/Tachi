@@ -2,8 +2,15 @@ import ImportFileInfo from "components/imports/ImportFileInfo";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import { TachiConfig } from "lib/config";
 import React, { useState } from "react";
-import { BatchManual, FormatGame, GetGameConfig, GetGamePTConfig } from "tachi-common";
-import { ImportStates, NotStartedState } from "types/import";
+import {
+	BatchManual,
+	FormatGame,
+	FormatPrError,
+	GetGameConfig,
+	GetGamePTConfig,
+} from "tachi-common";
+import p from "prudence";
+import { PR_BATCH_MANUAL } from "tachi-common/lib/schemas";
 
 export default function BatchManualPage() {
 	useSetSubheader(["Dashboard", "Import Scores", "Batch Manual"]);
@@ -30,6 +37,12 @@ export default function BatchManualPage() {
 					throw new Error(
 						`Invalid Playtype ${data.meta.playtype}. Expected any of ${gameConfig.validPlaytypes}.`
 					);
+				}
+
+				const err = p(data, PR_BATCH_MANUAL(data.meta.game, data.meta.playtype));
+
+				if (err) {
+					throw new Error(FormatPrError(err, "Invalid BATCH-MANUAL: "));
 				}
 
 				return {

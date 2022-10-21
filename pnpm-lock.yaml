@@ -132,6 +132,7 @@ importers:
       postcss-safe-parser: 4.0.1
       pretty-bytes: 5.6.0
       prop-types: 15.6.0
+      prudence: 0.9.8
       react: 17.0.2
       react-async: 10.0.1
       react-bootstrap: 1.6.1
@@ -192,6 +193,7 @@ importers:
       postcss-safe-parser: 4.0.1
       pretty-bytes: 5.6.0
       prop-types: 15.6.0
+      prudence: 0.9.8
       react: 17.0.2
       react-async: 10.0.1_react@17.0.2
       react-bootstrap: 1.6.1_alyzgwsqb3v5agqihhenzpdwfm
@@ -233,11 +235,13 @@ importers:
       '@types/express-serve-static-core': 4.17.29
       '@types/mongodb': 3.6.18
       '@types/tap': ^15.0.7
+      deepmerge: ^4.2.2
       prudence: 0.9.8
       tap: 15.1.6
     dependencies:
       '@types/express-serve-static-core': 4.17.29
       '@types/mongodb': 3.6.18
+      deepmerge: 4.2.2
       prudence: 0.9.8
     devDependencies:
       '@types/tap': 15.0.7

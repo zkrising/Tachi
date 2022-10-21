@@ -4,12 +4,16 @@ const tableMainFolders = [];
 const tableAllFolders = [];
 
 const { Command } = require("commander");
+const { GetGamePTConfig } = require("tachi-common");
+const { PrettyVersions } = require("tachi-common/config/static-config");
 
 const program = new Command();
 program.requiredOption("-v, --version <version>");
 
 program.parse(process.argv);
 const options = program.opts();
+
+const fmtVersion = PrettyVersions["popn:9B"][options.version];
 
 MutateCollection("folders.json", (folders) => {
 	for (let i = 0; i < 3; i++) {
@@ -28,7 +32,7 @@ MutateCollection("folders.json", (folders) => {
 			inactive: false,
 			playtype: "9B",
 			searchTerms: [],
-			title: `Level ${lb}-${ub} (${options.version})`,
+			title: `Level ${lb}-${ub} (${fmtVersion})`,
 			type: "charts",
 		};
 
@@ -50,7 +54,7 @@ MutateCollection("folders.json", (folders) => {
 			inactive: false,
 			playtype: "9B",
 			searchTerms: [],
-			title: `Level ${i} (${options.version})`,
+			title: `Level ${i} (${fmtVersion})`,
 			type: "charts",
 		};
 
@@ -73,8 +77,8 @@ MutateCollection("folders.json", (folders) => {
 MutateCollection("tables.json", (tables) => {
 	tables.push({
 		default: false,
-		title: `Pop'n Music ${options.version} All Levels`,
-		description: `All pop'n ${options.version} levels individually.`,
+		title: `Pop'n Music ${fmtVersion} All Levels`,
+		description: `All pop'n ${fmtVersion} levels individually.`,
 		tableID: `popn-9B-${options.version}-alllevels`,
 		playtype: "9B",
 		game: "popn",
@@ -84,8 +88,8 @@ MutateCollection("tables.json", (tables) => {
 
 	tables.push({
 		default: false,
-		title: `Pop'n Music ${options.version} Levels`,
-		description: `All pop'n ${options.version} levels, with some folders joined together.`,
+		title: `Pop'n Music ${fmtVersion} Levels`,
+		description: `All pop'n ${fmtVersion} levels, with some folders joined together.`,
 		tableID: `popn-9B-${options.version}-levels`,
 		playtype: "9B",
 		game: "popn",

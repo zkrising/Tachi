@@ -2713,7 +2713,7 @@
 			"Fa04fbc9d9954d518c11a2c72ce96cd514f2aae4fcff817193ad358c634dae58f"
 		],
 		"game": "popn",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "9B",
 		"tableID": "popn-9B-peace-levels",
 		"title": "Pop'n Music peace Levels"
@@ -2774,7 +2774,7 @@
 			"Fa04fbc9d9954d518c11a2c72ce96cd514f2aae4fcff817193ad358c634dae58f"
 		],
 		"game": "popn",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "9B",
 		"tableID": "popn-9B-peace-alllevels",
 		"title": "Pop'n Music peace Levels (All)"

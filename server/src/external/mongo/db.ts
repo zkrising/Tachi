@@ -171,6 +171,7 @@ const db = {
 	),
 
 	"fer-settings": monkDB.get<FervidexSettingsDocument>("fer-settings"),
+	"kshook-sv6c-settings": monkDB.get<KsHookSettingsDocument>("kshook-sv6c-settings"),
 	"orphan-chart-queue": monkDB.get<OrphanChart>("orphan-chart-queue"),
 	"password-reset-codes": monkDB.get<{
 		code: string;

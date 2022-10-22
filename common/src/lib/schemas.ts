@@ -997,6 +997,10 @@ const PRE_SCHEMAS = {
 		),
 		forceStaticImport: "boolean",
 	}),
+	"kshook-sv6c-settings": prSchemaFnWrap({
+		userID: p.isPositiveNonZeroInteger,
+		forceStaticImport: "boolean",
+	}),
 	users: prSchemaFnWrap({
 		username: p.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
 		usernameLowercase: (self, parent) => self === (parent.username as string).toLowerCase(),

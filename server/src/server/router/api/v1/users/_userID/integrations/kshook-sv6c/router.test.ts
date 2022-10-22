@@ -33,7 +33,7 @@ t.test("GET /api/v1/users/:userID/integrations/kshook-sv6c/settings", async (t) 
 
 		t.strictSame(res.body.body, {
 			userID: 1,
-			forceStaticImport: false,
+			forceStaticImport: true,
 		});
 
 		t.end();

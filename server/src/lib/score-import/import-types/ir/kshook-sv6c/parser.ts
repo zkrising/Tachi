@@ -6,7 +6,7 @@ import type { KsHookSV6CContext, KsHookSV6CScore } from "./types";
 import type { KtLogger } from "lib/logger/logger";
 import type { PrudenceSchema } from "prudence";
 
-const PR_KSHOOK_SV6C: PrudenceSchema = {
+export const PR_KSHOOK_SV6C: PrudenceSchema = {
 	clear: p.isIn(
 		"CLEAR_PLAYED",
 		"CLEAR_EFFECTIVE",

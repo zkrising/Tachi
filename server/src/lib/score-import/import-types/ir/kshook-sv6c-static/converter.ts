@@ -1,3 +1,4 @@
+import { SV6CConvertDifficulty, SV6CConvertLamp } from "../kshook-sv6c/converter";
 import {
 	InternalFailure,
 	KTDataNotFoundFailure,
@@ -6,16 +7,14 @@ import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/sco
 import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import type { ConverterFunction } from "../../common/types";
-import type { KsHookSV6CContext, KsHookSV6CScore } from "./types";
+import type { KsHookSV6CStaticScore } from "./types";
 import type { DryScore } from "lib/score-import/framework/common/types";
-import type { Lamps } from "tachi-common";
+import type { EmptyObject } from "utils/types";
 
-export const ConverterIRKsHookSV6C: ConverterFunction<KsHookSV6CScore, KsHookSV6CContext> = async (
-	data,
-	context,
-	importType,
-	logger
-) => {
+export const ConverterKsHookSV6CStatic: ConverterFunction<
+	KsHookSV6CStaticScore,
+	EmptyObject
+> = async (data, context, importType, logger) => {
 	const diff = SV6CConvertDifficulty(data.difficulty);
 
 	const chart = await FindSDVXChartOnInGameIDVersion(data.music_id, diff, "konaste");
@@ -40,22 +39,17 @@ export const ConverterIRKsHookSV6C: ConverterFunction<KsHookSV6CScore, KsHookSV6
 
 	const dryScore: DryScore<"sdvx:Single"> = {
 		game: "sdvx",
-		service: "kshook SV6C",
+		service: "kshook SV6C Static",
 		comment: null,
 		importType: "ir/kshook-sv6c",
-		timeAchieved: context.timeReceived,
+		timeAchieved: data.timestamp,
 		scoreData: {
 			score: data.score,
 			percent,
 			grade,
 			lamp: SV6CConvertLamp(data.clear),
-			judgements: {
-				critical: data.critical,
-				near: data.near,
-				miss: data.error,
-			},
+			judgements: {},
 			hitMeta: {
-				gauge: data.gauge / 100,
 				maxCombo: data.max_chain,
 				exScore: data.ex_score,
 			},
@@ -65,33 +59,3 @@ export const ConverterIRKsHookSV6C: ConverterFunction<KsHookSV6CScore, KsHookSV6
 
 	return { song, chart, dryScore };
 };
-
-export function SV6CConvertLamp(clear: KsHookSV6CScore["clear"]): Lamps["sdvx:Single"] {
-	if (clear === "CLEAR_PLAYED") {
-		return "FAILED";
-	} else if (clear === "CLEAR_EFFECTIVE") {
-		return "CLEAR";
-	} else if (clear === "CLEAR_EXCESSIVE") {
-		return "EXCESSIVE CLEAR";
-	} else if (clear === "CLEAR_ULTIMATE_CHAIN") {
-		return "ULTIMATE CHAIN";
-	}
-
-	return "PERFECT ULTIMATE CHAIN";
-}
-
-export function SV6CConvertDifficulty(
-	diff: KsHookSV6CScore["difficulty"]
-): "ADV" | "ANY_INF" | "EXH" | "MXM" | "NOV" {
-	if (diff === "DIFFICULTY_NOVICE") {
-		return "NOV";
-	} else if (diff === "DIFFICULTY_ADVANCED") {
-		return "ADV";
-	} else if (diff === "DIFFICULTY_EXHAUST") {
-		return "EXH";
-	} else if (diff === "DIFFICULTY_INFINITE") {
-		return "ANY_INF";
-	}
-
-	return "MXM";
-}

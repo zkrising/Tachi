@@ -11,6 +11,7 @@ import { ConverterIRBarbatos } from "./ir/barbatos/converter";
 import { ConverterIRBeatoraja } from "./ir/beatoraja/converter";
 import { ConverterIRFervidexStatic } from "./ir/fervidex-static/converter";
 import { ConverterIRFervidex } from "./ir/fervidex/converter";
+import { ConverterKsHookSV6CStatic } from "./ir/kshook-sv6c-static/converter";
 import { ConverterIRKsHookSV6C } from "./ir/kshook-sv6c/converter";
 import { ConverterLR2Hook } from "./ir/lr2hook/converter";
 import { ConverterIRUSC } from "./ir/usc/converter";
@@ -44,5 +45,6 @@ export const Converters: ConverterMap = {
 	"ir/direct-manual": ConverterBatchManual,
 	"ir/usc": ConverterIRUSC,
 	"ir/kshook-sv6c": ConverterIRKsHookSV6C,
+	"ir/kshook-sv6c-static": ConverterKsHookSV6CStatic,
 	"ir/lr2hook": ConverterLR2Hook,
 };

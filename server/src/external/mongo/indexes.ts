@@ -90,6 +90,7 @@ const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 	"user-settings": [index({ userID: 1 }, UNIQUE)],
 	"user-private-information": [index({ userID: 1 }, UNIQUE), index({ email: 1 }, UNIQUE)],
 	"fer-settings": [index({ userID: 1 }, UNIQUE)],
+	"kshook-sv6c-settings": [index({ userID: 1 }, UNIQUE)],
 	counters: [index({ counterName: 1 }, UNIQUE)],
 	"class-achievements": [index({ game: 1, playtype: 1, timeAchieved: 1 })],
 	"api-clients": [index({ clientID: 1 }, UNIQUE)],

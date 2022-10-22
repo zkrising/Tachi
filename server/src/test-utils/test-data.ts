@@ -17,6 +17,7 @@ import type {
 	BarbatosSDVX6Score,
 } from "lib/score-import/import-types/ir/barbatos/types";
 import type { FervidexScore } from "lib/score-import/import-types/ir/fervidex/types";
+import type { KsHookSV6CStaticScore } from "lib/score-import/import-types/ir/kshook-sv6c-static/types";
 import type { KsHookSV6CScore } from "lib/score-import/import-types/ir/kshook-sv6c/types";
 import type { LR2HookScore } from "lib/score-import/import-types/ir/lr2hook/types";
 import type { USCClientScore } from "server/router/ir/usc/_playtype/types";
@@ -201,6 +202,18 @@ export const TestingKsHookSV6CScore: KsHookSV6CScore = {
 	ex_score: 1334,
 	retry_count: 0,
 };
+
+export const TestingKsHookSV6CStaticScore: KsHookSV6CStaticScore = {
+	clear: "CLEAR_EXCESSIVE",
+	difficulty: "DIFFICULTY_ADVANCED",
+	grade: "GRADE_AA_PLUS",
+	max_chain: 158,
+	music_id: 1,
+	score: 9579365,
+	ex_score: 1334,
+	timestamp: 1000,
+};
+
 export const TestingBMS7KScore: ScoreDocument<"bms:7K"> = {
 	calculatedData: {
 		sieglinde: 20,

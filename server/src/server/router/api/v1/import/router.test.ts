@@ -268,6 +268,36 @@ t.test("POST /api/v1/import/file", async (t) => {
 			t.end();
 		});
 
+		t.test("Single sdvxInGameID import", async (t) => {
+			const res = await mockApi
+				.post("/api/v1/import/file")
+				.set("Cookie", cookie)
+				.attach(
+					"scoreData",
+					GetKTDataBuffer("./batch-manual/sdvx-in-game-id.json"),
+					"small-file.json"
+				)
+				.field("importType", "file/batch-manual");
+
+			t.equal(res.body.success, true, "Should be successful.");
+
+			t.equal(res.body.body.errors.length, 0, "Import Should have 0 failed scores.");
+
+			t.equal(res.body.body.scoreIDs.length, 1, "Should have 1 successful score.");
+
+			const scoreCount = await db.scores.find({
+				scoreID: { $in: res.body.body.scoreIDs },
+			});
+
+			t.equal(
+				scoreCount.length,
+				res.body.body.scoreIDs.length,
+				"All returned scoreIDs should be inserted to the DB."
+			);
+
+			t.end();
+		});
+
 		t.end();
 	});
 

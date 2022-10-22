@@ -46,6 +46,7 @@ import type {
 	UserGameStats,
 	UserGameStatsSnapshot,
 	UserSettings,
+	KsHookSettingsDocument,
 } from "tachi-common";
 import type { MigrationDocument, PrivateUserInfoDocument } from "utils/types";
 

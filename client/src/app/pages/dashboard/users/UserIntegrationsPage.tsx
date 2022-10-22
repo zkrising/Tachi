@@ -25,6 +25,7 @@ import {
 import { SetState } from "types/react";
 import ARCIntegrationPage from "./ARCIntegrationPage";
 import FervidexIntegrationPage from "./FervidexIntegrationPage";
+import KsHookSV6CIntegrationPage from "./KsHookSV6CIntegrationPage";
 
 export default function UserIntegrationsPage({ reqUser }: { reqUser: PublicUserDocument }) {
 	const [page, setPage] = useState<"services" | "api-keys" | "oauth-clients">("api-keys");
@@ -624,7 +625,9 @@ function ServicesPage({ reqUser }: { reqUser: PublicUserDocument }) {
 		);
 	}
 
-	const [page, setPage] = useState<"fervidex" | "arc" | "flo" | "eag" | "min">("fervidex");
+	const [page, setPage] = useState<"fervidex" | "kshook" | "arc" | "flo" | "eag" | "min">(
+		"fervidex"
+	);
 
 	return (
 		<Row className="text-center justify-content-center">
@@ -645,6 +648,9 @@ function ServicesPage({ reqUser }: { reqUser: PublicUserDocument }) {
 					<SelectButton value={page} setValue={setPage} id="fervidex">
 						Fervidex
 					</SelectButton>
+					<SelectButton value={page} setValue={setPage} id="kshook">
+						KsHook
+					</SelectButton>
 					<SelectButton value={page} setValue={setPage} id="arc">
 						ARC
 					</SelectButton>
@@ -662,6 +668,8 @@ function ServicesPage({ reqUser }: { reqUser: PublicUserDocument }) {
 			</Col>
 			{page === "fervidex" ? (
 				<FervidexIntegrationPage reqUser={reqUser} />
+			) : page === "kshook" ? (
+				<KsHookSV6CIntegrationPage reqUser={reqUser} />
 			) : page === "arc" ? (
 				<ARCIntegrationPage reqUser={reqUser} />
 			) : page === "flo" ? (

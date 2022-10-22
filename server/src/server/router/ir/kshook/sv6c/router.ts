@@ -99,4 +99,29 @@ router.post("/score/save", async (req, res) => {
 	return res.status(responseData.statusCode).json(responseData.body);
 });
 
+/**
+ * Imports statically from KsHook. Analogous to fervidex-static.
+ *
+ * @name POST /ir/kshook/sv6c/score/export
+ */
+router.post("/score/save", async (req, res) => {
+	const responseData = await ExpressWrappedScoreImportMain(
+		req[SYMBOL_TACHI_API_AUTH].userID!,
+		true,
+		"ir/kshook-sv6c-static",
+		[req.safeBody]
+	);
+
+	if (!responseData.body.success) {
+		// in-air rewrite description to error.
+		// @ts-expect-error Hack!
+		responseData.body.error = responseData.body.description;
+
+		// @ts-expect-error Hack!
+		delete responseData.body.description;
+	}
+
+	return res.status(responseData.statusCode).json(responseData.body);
+});
+
 export default router;

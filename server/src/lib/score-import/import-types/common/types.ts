@@ -8,6 +8,7 @@ import type { BarbatosContext, BarbatosScore, BarbatosSDVX6Score } from "../ir/b
 import type { BeatorajaContext, BeatorajaScore } from "../ir/beatoraja/types";
 import type { FervidexStaticContext, FervidexStaticScore } from "../ir/fervidex-static/types";
 import type { FervidexContext, FervidexScore } from "../ir/fervidex/types";
+import type { KsHookSV6CStaticScore } from "../ir/kshook-sv6c-static/types";
 import type { KsHookSV6CContext, KsHookSV6CScore } from "../ir/kshook-sv6c/types";
 import type { LR2HookContext, LR2HookScore } from "../ir/lr2hook/types";
 import type { IRUSCContext } from "../ir/usc/types";
@@ -42,6 +43,7 @@ export interface ImportTypeDataMap {
 	"ir/beatoraja": BeatorajaScore;
 	"ir/usc": USCClientScore;
 	"ir/kshook-sv6c": KsHookSV6CScore;
+	"ir/kshook-sv6c-static": KsHookSV6CStaticScore;
 	"ir/lr2hook": LR2HookScore;
 
 	// These aren't placeholder values - the data is yielded in a way that
@@ -70,6 +72,7 @@ export interface ImportTypeContextMap {
 	"ir/beatoraja": BeatorajaContext;
 	"ir/usc": IRUSCContext;
 	"ir/kshook-sv6c": KsHookSV6CContext;
+	"ir/kshook-sv6c-static": EmptyObject;
 	"ir/lr2hook": LR2HookContext;
 
 	"api/arc-iidx": EmptyObject;

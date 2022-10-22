@@ -16,6 +16,7 @@ import { ParseBeatorajaSingle } from "./ir/beatoraja/parser";
 import ParseDirectManual from "./ir/direct-manual/parser";
 import { ParseFervidexStatic } from "./ir/fervidex-static/parser";
 import { ParseFervidexSingle } from "./ir/fervidex/parser";
+import { ParseKsHookSV6CStatic } from "./ir/kshook-sv6c-static/parser";
 import { ParseKsHookSV6C } from "./ir/kshook-sv6c/parser";
 import { ParseLR2Hook } from "./ir/lr2hook/parser";
 import { ParseIRUSC } from "./ir/usc/parser";
@@ -43,5 +44,6 @@ export const Parsers = {
 	"ir/direct-manual": ParseDirectManual,
 	"ir/usc": ParseIRUSC,
 	"ir/kshook-sv6c": ParseKsHookSV6C,
+	"ir/kshook-sv6c-static": ParseKsHookSV6CStatic,
 	"ir/lr2hook": ParseLR2Hook,
 };

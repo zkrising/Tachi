@@ -35,8 +35,8 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: ./bot
-          file: ./bot/Dockerfile
+          context: ./
+          file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/tachi-bot:stable,${{ secrets.DOCKER_USERNAME }}/tachi-bot:${{ env.VERSION_TAG }},
 

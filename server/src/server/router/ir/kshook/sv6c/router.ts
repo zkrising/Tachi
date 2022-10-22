@@ -1,4 +1,5 @@
 import { Router } from "express";
+import db from "external/mongo/db";
 import { MODEL_SDVX3_KONASTE } from "lib/constants/ea3id";
 import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
@@ -104,9 +105,21 @@ router.post("/score/save", async (req, res) => {
  *
  * @name POST /ir/kshook/sv6c/score/export
  */
-router.post("/score/save", async (req, res) => {
+router.post("/score/export", async (req, res) => {
+	const userID = req[SYMBOL_TACHI_API_AUTH].userID!;
+
+	const settings = await db["kshook-sv6c-settings"].findOne({ userID });
+
+	if (!settings || !settings.forceStaticImport) {
+		return res.status(200).json({
+			success: true,
+			description: "Static importing is disabled. Ignoring static import request.",
+			body: {},
+		});
+	}
+
 	const responseData = await ExpressWrappedScoreImportMain(
-		req[SYMBOL_TACHI_API_AUTH].userID!,
+		userID,
 		true,
 		"ir/kshook-sv6c-static",
 		[req.safeBody]

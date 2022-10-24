@@ -17,18 +17,38 @@ const TIERS = {
 			text: "16F",
 			value: 16.0,
 		},
-		"16弱(16EとF)": {
-			text: "16E",
-			value: 16.1,
-		},
-		"16中(16CとD)": {
-			text: "16C/D",
-			value: 16.3,
-		},
-		"16強(16AとB)": {
-			text: "16A/B",
-			value: 16.5,
-		},
+		...(Object.fromEntries(
+			[
+				"16弱(16EとF) 地力　記号・A〜Z",
+				"16弱(16EとF) 地力　あ〜わ",
+				"16弱(16EとF)鍵盤・つまみ",
+			].map(key => [
+				key, {
+					text: "16E",
+					value: 16.1,
+				},
+			])
+		)),
+		...(Object.fromEntries(
+			[
+				"16中(16CとD)地力　記号・A〜Z",
+				"16中(16CとD)地力　あ〜わ",
+				"16中(16CとD)鍵盤・つまみ",
+			].map(key => [
+				key, {
+					text: "16C/D",
+					value: 16.3,
+				},
+			])
+		)),
+		...(Object.fromEntries(
+			["16強(16AとB) 地力", "16強(16AとB) 鍵盤・つまみ"].map(key => [
+				key, {
+					text: "16A/B",
+					value: 16.5,
+				},
+			])
+		)),
 		"16強+(16A以上S未満)": {
 			text: "16A+",
 			value: 16.7,
@@ -218,6 +238,7 @@ const MANUAL_TITLE_MAP = {
 	"VALKYRIE ASAULT": "VALKYRIE ASSAULT",
 	SuperMiracleEmsemble: "SuperMiracleEnsemble",
 	"仔羊のナヴァラン・クリシェを添えて": "～仔羊のナヴァラン・クリシェを添えて～",
+	"あいあむなんばーわんぱとらちゃん様": "あいあむなんばーわんパトラちゃん様", // hirigana/katakana
 
 	// 17s
 	"Emperors divide": "Emperor's Divide",
@@ -419,7 +440,7 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 				const [_, title, difficulty] = chartString.match(/^(.*?)(?:\[([A-Z]{3})\])?$/);
 				if (
 					difficulty &&
-					!["NOV", "ADV", "EXH", "MXM", "INF", "GRV", "HVN", "VVD"].includes(difficulty)
+					!["NOV", "ADV", "EXH", "MXM", "INF", "GRV", "HVN", "VVD", "XCD"].includes(difficulty)
 				) {
 					console.log(`Unknown difficulty ${difficulty} for ${title}.`);
 				}

@@ -1,0 +1,21 @@
+FROM node:16 as build
+
+WORKDIR /app
+
+COPY --chown=node:node ./github-bot /app/github-bot
+COPY --chown=node:node ./pnpm-lock.yaml /app
+COPY --chown=node:node ./.npmrc /app
+COPY --chown=node:node ./pnpm-workspace.yaml /app
+COPY --chown=node:node ./package.json /app
+COPY --chown=node:node ./tsconfig.json /app
+
+RUN npm install --silent -g pnpm@6 && groupmod -g 1003 node && chown node:node /app
+
+USER node
+WORKDIR /app/github-bot
+RUN pnpm install --silent && pnpm build && pnpm prune --silent --production && pnpm store prune --silent
+
+HEALTHCHECK --interval=15s --timeout=5s CMD curl -f http://localhost:8080 || exit 1
+
+ENV NODE_PATH=js/
+CMD ["node", "js/main.js"]

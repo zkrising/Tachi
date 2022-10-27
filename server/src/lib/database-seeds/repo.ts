@@ -217,7 +217,10 @@ export class DatabaseSeedsRepo {
  * to PullDatabaseSeeds to use a local repo instead of the configured remote.
  */
 export async function PullDatabaseSeeds(
-	fetchFromLocalPath: string | null = process.env.FORCE_LOCAL_SEEDS_PATH ?? null
+	fetchFromLocalPath: string | null = process.env.FORCE_LOCAL_SEEDS_PATH ?? null,
+	branch: string = Environment.nodeEnv === "production"
+		? `release/${VERSION_INFO.major}.${VERSION_INFO.minor}`
+		: "staging"
 ) {
 	if (fetchFromLocalPath) {
 		return new DatabaseSeedsRepo(fetchFromLocalPath);
@@ -234,11 +237,6 @@ export async function PullDatabaseSeeds(
 	await fs.rm(seedsDir, { recursive: true, force: true });
 
 	try {
-		const branch =
-			Environment.nodeEnv === "production"
-				? `release/${VERSION_INFO.major}.${VERSION_INFO.minor}`
-				: "staging";
-
 		// stderr in git clone is normal output.
 		// stdout is for errors.
 		// there were expletives below this comment, but I have removed them.

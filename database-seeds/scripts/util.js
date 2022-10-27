@@ -69,54 +69,6 @@ function EfficientInPlaceDeepmerge(ref, apply) {
 	}
 }
 
-function AddSupportForBMSTable(header, game, playtype, tableName, tableID, tableDescription) {
-	const folders = [];
-	const symbol = header.symbol;
-
-	for (const level of header.level_order) {
-		const f = {
-			title: `${symbol}${level}`,
-			playtype,
-			game,
-			searchTerms: [],
-			type: "charts",
-			data: {
-				"data¬tableFolders": {
-					"~elemMatch": {
-						level: level.toString(),
-						table: symbol,
-					},
-				},
-			},
-			inactive: false,
-		};
-
-		const folderID = CreateFolderID(f);
-
-		f.folderID = folderID;
-
-		folders.push(f);
-	}
-
-	MutateCollection("folders.json", (f) => {
-		f.push(...folders);
-		return f;
-	});
-
-	MutateCollection("tables.json", (t) => {
-		t.push({
-			folders: folders.map((e) => e.folderID),
-			game,
-			playtype,
-			inactive: false,
-			description: tableDescription,
-			title: tableName,
-			tableID: tableID,
-		});
-		return t;
-	});
-}
-
 /**
  * Given a game, reads the songs-${game}.json collection, gets the largest song ID, and
  * returns a generator that will give an unused songID when called.
@@ -137,6 +89,5 @@ module.exports = {
 	ReadCollection,
 	WriteCollection,
 	EfficientInPlaceDeepmerge,
-	AddSupportForBMSTable,
 	GetFreshScoreIDGenerator,
 };

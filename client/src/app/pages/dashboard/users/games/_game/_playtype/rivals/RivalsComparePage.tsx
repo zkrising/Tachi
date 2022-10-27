@@ -39,14 +39,16 @@ export default function RivalsComparePage({
 		<Row>
 			<Col xs={12} className="text-center">
 				<div className="btn-group">
-					<SelectLinkButton to={`${base}/top-100`}>
-						<Icon type="list" />
-						Compare Top 100s
-					</SelectLinkButton>
-					<SelectLinkButton to={base}>
+					<SelectLinkButton to={`${base}/pb-leaderboard`}>
 						<Icon type="sort-amount-up" />
 						Best PBs
 					</SelectLinkButton>
+
+					<SelectLinkButton to={base}>
+						<Icon type="list" />
+						Compare Top 100s
+					</SelectLinkButton>
+
 					<SelectLinkButton to={`${base}/folders`}>
 						<Icon type="folder-open" />
 						Folder Comparisons
@@ -58,14 +60,7 @@ export default function RivalsComparePage({
 				<Switch>
 					<Route
 						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/rivals/compare/top-100"
-					>
-						top100
-					</Route>
-
-					<Route
-						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/rivals/compare"
+						path="/dashboard/users/:userID/games/:game/:playtype/rivals/compare/pb-leaderboard"
 					>
 						<ScoreLeaderboard
 							game={game}
@@ -74,6 +69,11 @@ export default function RivalsComparePage({
 							url={`/users/${reqUser.id}/games/${game}/${playtype}/rivals/score-leaderboard`}
 						/>
 					</Route>
+
+					<Route
+						exact
+						path="/dashboard/users/:userID/games/:game/:playtype/rivals/compare"
+					></Route>
 
 					<Route
 						exact

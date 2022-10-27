@@ -1,3 +1,6 @@
+import { FolderDocument, TableDocument, BMSTableInfo } from "tachi-common";
+import { CreateFolderIDFromFolder } from "../../util";
+
 const { BMS_TABLES } = require("tachi-common");
 const logger = require("../../logger");
 const { CreateFolderID, ReadCollection, MutateCollection } = require("../../util");
@@ -6,7 +9,7 @@ const { LoadBMSTable } = require("bms-table-loader");
 const existsTables = ReadCollection("tables.json").map((e) => e.tableID);
 const existsFolders = ReadCollection("folders.json").map((e) => e.folderID);
 
-async function UpdateTable(tableInfo) {
+async function UpdateTable(tableInfo: BMSTableInfo) {
 	const tableID = `bms-${tableInfo.playtype}-${tableInfo.asciiPrefix}`;
 
 	if (existsTables.includes(tableID)) {
@@ -19,10 +22,10 @@ async function UpdateTable(tableInfo) {
 
 	const levels = table.getLevelOrder();
 
-	const folders = [];
+	const folders: Array<FolderDocument> = [];
 
 	for (const level of levels) {
-		const f = {
+		const f: Omit<FolderDocument, "folderID"> = {
 			title: `${tableInfo.prefix}${level}`,
 			playtype: tableInfo.playtype,
 			game: "bms",
@@ -39,15 +42,18 @@ async function UpdateTable(tableInfo) {
 			inactive: false,
 		};
 
-		const folderID = CreateFolderID(f);
+		const folderID = CreateFolderIDFromFolder(f);
 
-		f.folderID = folderID;
+		const realFolder = {
+			...f,
+			folderID,
+		} as FolderDocument;
 
 		if (existsFolders.includes(folderID)) {
 			continue;
 		}
 
-		folders.push(f);
+		folders.push(realFolder);
 
 		logger.info(`Inserted new folder ${tableInfo.prefix}${level}.`);
 	}
@@ -57,10 +63,11 @@ async function UpdateTable(tableInfo) {
 		return f;
 	});
 
-	MutateCollection("tables.json", (t) => {
+	MutateCollection("tables.json", (t: Array<TableDocument>) => {
 		t.push({
 			folders: folders.map((e) => e.folderID),
 			game: "bms",
+			default: false,
 			playtype: tableInfo.playtype,
 			inactive: false,
 			description: tableInfo.description,
@@ -86,9 +93,12 @@ async function UpdateTable(tableInfo) {
 		inactive: false,
 	};
 
-	const folderID = CreateFolderID(f);
+	const folderID = CreateFolderIDFromFolder(f);
 
-	f.folderID = folderID;
+	const realFolder = {
+		...f,
+		folderID,
+	} as FolderDocument;
 
 	// add this to meta table.
 	if (!existsFolders.includes(folderID)) {
@@ -101,6 +111,8 @@ async function UpdateTable(tableInfo) {
 
 			return tables;
 		});
+
+		MutateCollection("folders.json", (folders) => [...folders, realFolder]);
 	}
 
 	logger.info(`Done.`);

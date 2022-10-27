@@ -25,7 +25,7 @@ export default function ChartHeader<D>(
 	if (game === "iidx") {
 		sortFn = (k) => CascadingTierlistValue(chartGetter(k), "kt-HC", "kt-NC");
 	} else if (game === "bms" || game === "pms") {
-		sortFn = (k) => CascadingTierlistValue(chartGetter(k), "sgl-HC", "sgl-EC");
+		sortFn = (k) => CascadingTierlistValue(chartGetter(k), "sgl-EC", "sgl-HC");
 	} else if (game === "itg") {
 		return [
 			"Chart",

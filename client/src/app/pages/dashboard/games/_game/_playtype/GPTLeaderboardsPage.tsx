@@ -41,7 +41,7 @@ export default function GPTLeaderboardsPage({ game, playtype }: GamePT) {
 					</SelectButton>
 					<SelectButton id="score" value={mode} setValue={setMode}>
 						<Icon type="sort-numeric-up-alt" />
-						Score Leaderboards
+						PB Leaderboards
 					</SelectButton>
 				</div>
 			</Col>
@@ -53,7 +53,7 @@ export default function GPTLeaderboardsPage({ game, playtype }: GamePT) {
 					<ScoreLeaderboard
 						game={game}
 						playtype={playtype}
-						url={`/games/${game}/${playtype}/score-leaderboard`}
+						url={`/games/${game}/${playtype}/pb-leaderboard`}
 					/>
 				)}
 			</Col>

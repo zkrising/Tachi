@@ -103,7 +103,7 @@ router.get("/challengers", async (req, res) => {
 });
 
 /**
- * Retrieve a "score leaderboard" for this user's set of rivals.
+ * Retrieve a "PB leaderboard" for this user's set of rivals.
  *
  * This is - effectively - the best 100 scores from this set of users on the given
  * rating algorithm.
@@ -111,9 +111,9 @@ router.get("/challengers", async (req, res) => {
  * @param alg - The score rating algorithm to sort on. Defaults to whatever the GPTConfig
  * default is.
  *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/rivals/score-leaderboard
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/rivals/pb-leaderboard
  */
-router.get("/score-leaderboard", async (req, res) => {
+router.get("/pb-leaderboard", async (req, res) => {
 	const { user, game, playtype } = GetUGPT(req);
 	const gptConfig = GetGamePTConfig(game, playtype);
 

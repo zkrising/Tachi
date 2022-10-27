@@ -65,8 +65,8 @@ export default function RivalsComparePage({
 						<ScoreLeaderboard
 							game={game}
 							playtype={playtype}
-							refreshDeps={[`rivals-score-leaderboard-${settings.rivals.join(",")}`]}
-							url={`/users/${reqUser.id}/games/${game}/${playtype}/rivals/score-leaderboard`}
+							refreshDeps={[`rivals-pb-leaderboard-${settings.rivals.join(",")}`]}
+							url={`/users/${reqUser.id}/games/${game}/${playtype}/rivals/pb-leaderboard`}
 						/>
 					</Route>
 

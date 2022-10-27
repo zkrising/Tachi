@@ -36,6 +36,17 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 
 	const { percent, grade } = GenericGetGradeAndPercent("bms", data.scoreData.exScore, chart);
 
+	const gauge = ConvertGauge(data.playerData.gauge);
+	const lamp = ConvertLamp(data.scoreData.lamp);
+
+	let bp: number | null = data.scoreData.bad + data.scoreData.poor;
+
+	// lr2hook doesn't send "max" BP so to speak. If you fail really early
+	// or quit out, you can have an early fail with like, 5 BP.
+	if ((lamp === "FAILED" || lamp === "NO PLAY") && gauge === "HARD") {
+		bp = null;
+	}
+
 	const dryScore: DryScore<"bms:7K" | "bms:14K"> = {
 		game: "bms",
 		service: "LR2Hook",
@@ -46,7 +57,7 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 			score: data.scoreData.exScore,
 			percent,
 			grade,
-			lamp: ConvertLamp(data.scoreData.lamp),
+			lamp,
 			judgements: {
 				pgreat: data.scoreData.pgreat,
 				great: data.scoreData.great,
@@ -55,14 +66,14 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 				poor: data.scoreData.poor,
 			},
 			hitMeta: {
-				bp: data.scoreData.bad + data.scoreData.poor,
+				bp,
 				maxCombo: data.scoreData.maxCombo,
 				gauge: data.scoreData.hpGraph[999] ?? 0,
 				gaugeHistory: data.scoreData.hpGraph,
 			},
 		},
 		scoreMeta: {
-			gauge: ConvertGauge(data.playerData.gauge),
+			gauge,
 			random: chart.playtype === "7K" ? ConvertRandom(data.playerData.random) : null,
 			client: "LR2",
 		},

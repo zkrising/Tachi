@@ -167,7 +167,7 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		prefix: "ln",
 		asciiPrefix: "luminous",
 		playtype: "7K",
-		url: "https://luminous-api.herokuapp.com/api/charts/accept",
+		url: "https://ladymade-star.github.io/luminous/",
 		description: "The 7K Luminous Table. This is an alternative to the mainline LN tables.",
 		notDefault: true,
 		colour: COLOUR_SET.purple,

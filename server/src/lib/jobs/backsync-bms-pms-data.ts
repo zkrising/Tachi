@@ -15,7 +15,7 @@ export async function BacksyncBMSPMSSongsAndCharts() {
 		const repo = await PullDatabaseSeeds(undefined, branch);
 
 		for (const game of ["bms", "pms"] as const) {
-			logger.info(`Fetching BMS songs from DB.`);
+			logger.info(`Fetching ${game} songs from DB.`);
 
 			// did you know, this code is liable to blow up in my face and OOM one day?
 			let songs = await db.songs[game].find({});

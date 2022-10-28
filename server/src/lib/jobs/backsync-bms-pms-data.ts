@@ -30,7 +30,7 @@ export async function BacksyncBMSPMSSongsAndCharts() {
 			songs = null;
 
 			logger.info(`Fetching ${game} charts from DB.`);
-			let charts = await db.charts.bms.find({});
+			let charts = await db.charts[game].find({});
 
 			logger.info(`Found ${charts.length} bms charts.`);
 

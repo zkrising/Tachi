@@ -1,5 +1,6 @@
 import UGPTAddPreferredRanking from "./migrations/add-preferredRanking-to-ugpt";
 import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
+import FixUndefinedBMSData from "./migrations/fix-undefined-bms-data";
 import NullLR2HookFailedBPs from "./migrations/null-lr2hook-failed-bps";
 import RecalcBrokenIIDXNotecounts from "./migrations/recalc-broken-iidx-notecounts";
 import RemoveIIDXBeginners from "./migrations/remove-iidx-beginners";
@@ -45,7 +46,7 @@ if (Environment.nodeEnv !== "test") {
 
 	// bokutachi specific migrations
 	if (TachiConfig.TYPE !== "ktchi") {
-		REGISTERED_MIGRATIONS.push(NullLR2HookFailedBPs);
+		REGISTERED_MIGRATIONS.push(NullLR2HookFailedBPs, FixUndefinedBMSData);
 	}
 }
 

@@ -43,7 +43,7 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 
 	// lr2hook doesn't send "max" BP so to speak. If you fail really early
 	// or quit out, you can have an early fail with like, 5 BP.
-	if ((lamp === "FAILED" || lamp === "NO PLAY") && gauge === "HARD") {
+	if (data.scoreData.notesPlayed !== data.scoreData.notesTotal) {
 		bp = null;
 	}
 

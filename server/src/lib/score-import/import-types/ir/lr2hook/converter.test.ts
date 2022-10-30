@@ -32,7 +32,7 @@ t.test("#ConverterLR2Hook", (t) => {
 				scoreData: {
 					score: TestingLR2HookScore.scoreData.exScore,
 					hitMeta: {
-						bp: 75,
+						bp: 56,
 					},
 				},
 				game: "bms",
@@ -46,14 +46,11 @@ t.test("#ConverterLR2Hook", (t) => {
 		t.end();
 	});
 
-	t.test("Should null BP if the score was a fail with hard-gauge.", async (t) => {
+	t.test("Should null BP if the score was exited early.", async (t) => {
 		const res = await ConverterLR2Hook(
 			dmf(TestingLR2HookScore, {
-				playerData: {
-					gauge: "HARD",
-				},
 				scoreData: {
-					lamp: "FAIL",
+					notesPlayed: 10,
 				},
 			} as any),
 			{ timeReceived: 10 },

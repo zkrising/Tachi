@@ -4,7 +4,7 @@ const { Command } = require("commander");
 const {
 	CreateChartID,
 	ReadCollection,
-	GetFreshScoreIDGenerator,
+	GetFreshSongIDGenerator: GetFreshScoreIDGenerator,
 	WriteCollection,
 } = require("../../util");
 

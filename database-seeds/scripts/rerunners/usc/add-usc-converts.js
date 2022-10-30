@@ -5,7 +5,7 @@ const {
 	CreateChartID,
 	ReadCollection,
 	WriteCollection,
-	GetFreshScoreIDGenerator,
+	GetFreshSongIDGenerator,
 } = require("../../util");
 
 const program = new Command();
@@ -29,7 +29,7 @@ const folderIdToSongId = {};
 let newSongs = 0;
 let newCharts = 0;
 
-const getFreshSongID = GetFreshScoreIDGenerator("usc");
+const getFreshSongID = GetFreshSongIDGenerator("usc");
 
 // if debug is true, console log. Else, do nothing.
 const log = DEBUG ? console.log : () => undefined;

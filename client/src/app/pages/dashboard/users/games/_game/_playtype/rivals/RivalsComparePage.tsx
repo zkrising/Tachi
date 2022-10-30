@@ -9,6 +9,7 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Route, Switch } from "react-router-dom";
 import { FormatGame, Game, GetGameConfig, Playtype, PublicUserDocument } from "tachi-common";
+import RivalCompareTop100Page from "./RivalCompareTop100Page";
 
 export default function RivalsComparePage({
 	reqUser,
@@ -73,7 +74,9 @@ export default function RivalsComparePage({
 					<Route
 						exact
 						path="/dashboard/users/:userID/games/:game/:playtype/rivals/compare"
-					></Route>
+					>
+						<RivalCompareTop100Page reqUser={reqUser} game={game} playtype={playtype} />
+					</Route>
 
 					<Route
 						exact

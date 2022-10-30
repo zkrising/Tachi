@@ -10,7 +10,7 @@ import {
 import logger from "../../../logger";
 import {
 	CreateChartID,
-	GetFreshScoreIDGenerator,
+	GetFreshSongIDGenerator,
 	ReadCollection,
 	WriteCollection,
 } from "../../../util";
@@ -92,10 +92,12 @@ async function ParseIIDXMDB() {
 
 	const chartMap = new Map<integer, ChartDocument<"iidx:SP" | "iidx:DP">>();
 	const songMap = new Map<integer, SongDocument<"iidx">>();
+	const songTitleMap = new Map<string, SongDocument<"iidx">>();
 	const chartDiffMap = new Map<string, ChartDocument<"iidx:SP" | "iidx:DP">>();
 
 	for (const song of existingSongs) {
 		songMap.set(song.id, song);
+		songTitleMap.set(song.title, song);
 	}
 
 	for (const chart of existingCharts) {
@@ -119,7 +121,7 @@ async function ParseIIDXMDB() {
 		}
 	}
 
-	const getFreeScoreID = GetFreshScoreIDGenerator("iidx");
+	const getFreeSongID = GetFreshSongIDGenerator("iidx");
 
 	for (const inp of mdbCharts) {
 		if (isInBlacklist(`S${inp.songID}`)) {
@@ -127,6 +129,23 @@ async function ParseIIDXMDB() {
 				`Skipped ${inp.artist} - ${inp.title} (${inp.songID}) as it was in the blacklist.`
 			);
 			continue;
+		}
+
+		const titleAlreadyExists = songTitleMap.get(inp.title);
+
+		if (titleAlreadyExists) {
+			logger.warn(
+				`A song called '${inp.title}' already exists in songs-iidx. Is this a duplicate with a different inGameID?`
+			);
+
+			if (!options.force) {
+				logger.warn(
+					`Must be resolved manually. Use --force to blindly overwrite it anyway.`
+				);
+				continue;
+			} else {
+				logger.warn(`--force provided, adding it to the DB anyway.`);
+			}
 		}
 
 		const anySongIDMatch = chartMap.get(inp.songID);
@@ -141,7 +160,7 @@ async function ParseIIDXMDB() {
 			}
 
 			const tachiSong: SongDocument<"iidx"> = {
-				id: getFreeScoreID(),
+				id: getFreeSongID(),
 				artist: inp.artist,
 				title: inp.title,
 				data: {

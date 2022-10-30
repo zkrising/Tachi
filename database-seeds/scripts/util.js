@@ -80,7 +80,7 @@ function EfficientInPlaceDeepmerge(ref, apply) {
  *
  * Not thread safe.
  */
-function GetFreshScoreIDGenerator(game) {
+function GetFreshSongIDGenerator(game) {
 	let maxSongID = ReadCollection(`songs-${game}.json`).sort((a, b) => b.id - a.id)[0].id;
 
 	return () => ++maxSongID;
@@ -94,6 +94,6 @@ module.exports = {
 	ReadCollection,
 	WriteCollection,
 	EfficientInPlaceDeepmerge,
-	GetFreshScoreIDGenerator,
+	GetFreshSongIDGenerator,
 	CreateFolderIDFromFolder,
 };

@@ -277,7 +277,7 @@ function UserHistory({
 }: { data: UGPTHistory; reqUser: PublicUserDocument } & GamePT) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const [mode, setMode] = useState<"ranking" | "playcount" | "rating">("ranking");
+	const [mode, setMode] = useState<"ranking" | "playcount" | "rating">("rating");
 
 	const preferredRating = useProfileRatingAlg(game, playtype);
 

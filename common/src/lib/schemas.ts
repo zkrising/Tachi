@@ -340,7 +340,7 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 				notecount: p.isPositiveNonZeroInteger,
 				hashSHA256: "?string",
 				hashMD5: "?string",
-				aiLevel: "?string",
+				aiLevel: "*?string",
 				tableFolders: [
 					{
 						table: "string",

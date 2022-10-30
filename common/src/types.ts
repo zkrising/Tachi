@@ -805,7 +805,7 @@ interface CDDataPMS {
 }
 
 type CDDataBMS = CDDataPMS & {
-	aiLevel: string | null;
+	aiLevel?: string | null;
 };
 
 interface CDDataUSC {

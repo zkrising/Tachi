@@ -98,7 +98,7 @@ export function FindITGChartOnHash(hash: string) {
 export function FindBMSChartOnHash(hash: string) {
 	return db.charts.bms.findOne({
 		$or: [{ "data.hashMD5": hash }, { "data.hashSHA256": hash }],
-	}) as Promise<ChartDocument<"bms:7K" | "bms:14K">>;
+	}) as Promise<ChartDocument<"bms:7K" | "bms:14K"> | null>;
 }
 
 /**

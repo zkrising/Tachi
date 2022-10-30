@@ -190,10 +190,18 @@ export async function CreateFolderChartLookup(folder: FolderDocument, flush = fa
 
 		const ops: Array<BulkWriteOperation<FolderChartLookup>> = charts.map((c) => ({
 			updateOne: {
-				filter: c,
+				filter: {
+					chartID: c.chartID,
+					folderID: folder.folderID,
+				},
 
 				// amusing no-op
-				update: { $set: c },
+				update: {
+					$set: {
+						chartID: c.chartID,
+						folderID: folder.folderID,
+					},
+				},
 				upsert: true,
 			},
 		}));

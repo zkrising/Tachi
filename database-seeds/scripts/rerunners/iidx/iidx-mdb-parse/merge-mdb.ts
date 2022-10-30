@@ -131,28 +131,28 @@ async function ParseIIDXMDB() {
 			continue;
 		}
 
-		const titleAlreadyExists = songTitleMap.get(inp.title);
-
-		if (titleAlreadyExists) {
-			logger.warn(
-				`A song called '${inp.title}' already exists in songs-iidx. Is this a duplicate with a different inGameID?`
-			);
-
-			if (!options.force) {
-				logger.warn(
-					`Must be resolved manually. Use --force to blindly overwrite it anyway.`
-				);
-				continue;
-			} else {
-				logger.warn(`--force provided, adding it to the DB anyway.`);
-			}
-		}
-
 		const anySongIDMatch = chartMap.get(inp.songID);
 		let song: SongDocument<"iidx">;
 
 		if (!anySongIDMatch) {
 			// new song?
+
+			const titleAlreadyExists = songTitleMap.get(inp.title);
+
+			if (titleAlreadyExists) {
+				logger.warn(
+					`A song called '${inp.title}' already exists in songs-iidx (songID:${titleAlreadyExists.id}). Is this a duplicate with a different inGameID?`
+				);
+
+				if (!options.force) {
+					logger.warn(
+						`Must be resolved manually. Use --force to blindly overwrite it anyway.`
+					);
+					continue;
+				} else {
+					logger.warn(`--force provided, adding it to the DB anyway.`);
+				}
+			}
 
 			const searchTerms = [inp.genre];
 			if (inp.marquee.toLowerCase() !== inp.title.toLowerCase()) {

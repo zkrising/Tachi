@@ -187,10 +187,17 @@ export async function CreateFolderChartLookup(folder: FolderDocument, flush = fa
 			});
 		}
 
-		await db["folder-chart-lookup"].insert(
+		// we do a bulk-upsert here to avoid race conditions if multiple things try to
+		// create a folder-chart-lookup at the same time.
+		await db["folder-chart-lookup"].bulkWrite(
 			charts.map((c) => ({
-				folderID: folder.folderID,
-				chartID: c.chartID,
+				updateOne: {
+					filter: c,
+
+					// amusing no-op
+					update: { $set: c },
+					upsert: true,
+				},
 			}))
 		);
 	} catch (err) {

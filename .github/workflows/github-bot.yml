@@ -37,7 +37,7 @@ jobs:
           context: ./
           file: ./Dockerfile.ghbot
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/tachi-gh-bot:stable,${{ secrets.DOCKER_USERNAME }}/tachi-bot:${{ env.VERSION_TAG }},
+          tags: ${{ secrets.DOCKER_USERNAME }}/tachi-gh-bot:stable,${{ secrets.DOCKER_USERNAME }}/tachi-gh-bot:${{ env.VERSION_TAG }},
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

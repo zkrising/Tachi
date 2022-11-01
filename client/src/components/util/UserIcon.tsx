@@ -9,7 +9,7 @@ export default function UserIcon({
 	children,
 	game,
 	playtype,
-}: { user: PublicUserDocument } & JustChildren & Partial<GamePT>) {
+}: { user: PublicUserDocument } & Partial<JustChildren> & Partial<GamePT>) {
 	return (
 		<div className="text-center p-8">
 			<ProfilePicture user={user} />
@@ -25,7 +25,7 @@ export default function UserIcon({
 					{user.username}
 				</Link>
 			</h4>
-			<div className="d-flex justify-content-center">{children}</div>
+			{children && <div className="d-flex justify-content-center">{children}</div>}
 		</div>
 	);
 }

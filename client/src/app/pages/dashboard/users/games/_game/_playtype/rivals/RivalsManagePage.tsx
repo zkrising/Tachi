@@ -202,6 +202,7 @@ function RivalsOverviewPage({
 							setShow={setShow}
 							url={`/games/${game}/${playtype}/players`}
 							excludeSet={rivals.map((e) => e.id)}
+							excludeMsg="Already Rivaled!"
 						/>
 					</>
 				)}

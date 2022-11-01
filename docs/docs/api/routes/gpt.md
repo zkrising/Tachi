@@ -507,9 +507,9 @@ GET /api/v1/games/bms/7K/tableID/insane
 
 *****
 
-## Retrieve the score leaderboard for this Game.
+## Retrieve the PB leaderboard for this Game.
 
-`GET /api/v1/games/:game/:playtype/score-leaderboard`
+`GET /api/v1/games/:game/:playtype/pb-leaderboard`
 
 ### Parameters
 
@@ -522,7 +522,7 @@ GET /api/v1/games/bms/7K/tableID/insane
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `pbs` | Array&lt;PBDocument&gt; | The array of pbs part of the score leaderboard. |
+| `pbs` | Array&lt;PBDocument&gt; | The array of pbs part of the PB leaderboard. |
 | `songs` | Array&lt;[SongDocument](../../schemas/song.md)&gt; | The array of songs part of the PBs. |
 | `charts` | Array&lt;[ChartDocument](../../schemas/chart.md)&gt; | The array of charts part of the PBs. |
 | `users` | Array&lt;[UserDocument](../../schemas/user.md)&gt; | The array of users part of the PBs. |

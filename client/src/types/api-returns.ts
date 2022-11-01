@@ -121,6 +121,12 @@ export interface UGPTFolderReturns<I extends IDStrings = IDStrings> {
 	pbs: PBScoreDocument<I>[];
 }
 
+export interface GPTFolderReturns<I extends IDStrings = IDStrings> {
+	folder: FolderDocument;
+	songs: SongDocument<IDStringToGame[I]>[];
+	charts: ChartDocument<I>[];
+}
+
 export interface GPTStatsReturn {
 	config: GamePTConfig;
 	playerCount: integer;

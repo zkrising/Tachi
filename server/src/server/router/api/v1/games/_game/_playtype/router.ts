@@ -153,9 +153,9 @@ router.get("/leaderboard", async (req, res) => {
  * @param alg - An alternative algorithm to use instead of the gpts default.
  * @param limit - How many scores to return.
  *
- * @name GET /api/v1/games/:game/:playtype/score-leaderboard
+ * @name GET /api/v1/games/:game/:playtype/pb-leaderboard
  */
-router.get("/score-leaderboard", async (req, res) => {
+router.get("/pb-leaderboard", async (req, res) => {
 	const { game, playtype } = GetGPT(req);
 	const gptConfig = GetGamePTConfig(game, playtype);
 

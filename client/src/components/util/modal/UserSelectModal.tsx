@@ -1,10 +1,9 @@
 import { APIFetchV1 } from "util/api";
 import ProfilePicture from "components/user/ProfilePicture";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
 import { integer, PublicUserDocument } from "tachi-common";
 import { SetState } from "types/react";
-import { UserContext } from "context/UserContext";
 import DebounceSearch from "../DebounceSearch";
 import Divider from "../Divider";
 
@@ -14,12 +13,14 @@ export default function UserSelectModal({
 	setShow,
 	url = `/users`,
 	excludeSet = [],
+	excludeMsg = "N/A",
 }: {
 	show: boolean;
 	setShow: SetState<boolean>;
 	callback: (user: PublicUserDocument) => void;
 	url?: string;
 	excludeSet?: Array<integer>;
+	excludeMsg?: string;
 }) {
 	const [search, setSearch] = useState("");
 	const [users, setUsers] = useState<Array<PublicUserDocument> | null>(null);
@@ -67,7 +68,7 @@ export default function UserSelectModal({
 										<h4 className="mt-2">{user.username}</h4>
 										{excludeSet.includes(user.id) ? (
 											<Button variant="outline-secondary" disabled>
-												Already Rivalled!
+												{excludeMsg}
 											</Button>
 										) : (
 											<Button

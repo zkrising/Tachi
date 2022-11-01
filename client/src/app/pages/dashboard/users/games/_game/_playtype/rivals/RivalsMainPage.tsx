@@ -1,3 +1,4 @@
+import ScoreLeaderboard from "components/game/ScoreLeaderboard";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
@@ -8,7 +9,6 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { FormatGame, Game, GetGameConfig, Playtype, PublicUserDocument } from "tachi-common";
-import RivalsComparePage from "./RivalsComparePage";
 import RivalsManagePage from "./RivalsManagePage";
 
 export default function RivalsMainPage({
@@ -40,21 +40,17 @@ export default function RivalsMainPage({
 		<Row>
 			<Col xs={12} className="text-center">
 				<div className="btn-group">
-					<SelectLinkButton to={`${base}/rivals/targets`}>
-						<Icon type="bullseye" />
-						Goals & Quests
-					</SelectLinkButton>
-					<SelectLinkButton matchIfStartsWith to={`${base}/rivals/compare`}>
-						<Icon type="balance-scale-left" />
-						Compare
+					<SelectLinkButton to={`${base}/rivals/pb-leaderboard`}>
+						<Icon type="sort-amount-up" />
+						Rival's Bests
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/rivals`}>
 						<Icon type="list" />
 						Activity
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/rivals/folders`}>
+					<SelectLinkButton to={`${base}/rivals/tracking`}>
 						<Icon type="thumbtack" />
-						Manage Folders
+						Manage Tracked Charts
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/rivals/manage`}>
 						<Icon type="users" />
@@ -79,20 +75,14 @@ export default function RivalsMainPage({
 
 					<Route
 						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/rivals/folders"
+						path="/dashboard/users/:userID/games/:game/:playtype/rivals/pb-leaderboard"
 					>
-						NOT IMPLEMENTED YET
-					</Route>
-
-					<Route
-						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/rivals/targets"
-					>
-						NOT IMPLEMENTED YET
-					</Route>
-
-					<Route path="/dashboard/users/:userID/games/:game/:playtype/rivals/compare">
-						<RivalsComparePage reqUser={reqUser} game={game} playtype={playtype} />
+						<ScoreLeaderboard
+							game={game}
+							playtype={playtype}
+							refreshDeps={[`rivals-pb-leaderboard-${settings.rivals.join(",")}`]}
+							url={`/users/${reqUser.id}/games/${game}/${playtype}/rivals/pb-leaderboard`}
+						/>
 					</Route>
 				</Switch>
 			</Col>

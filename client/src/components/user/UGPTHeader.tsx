@@ -4,7 +4,7 @@ import NavItem from "components/nav/NavItem";
 import MiniTable from "components/tables/components/MiniTable";
 import Divider from "components/util/Divider";
 import React from "react";
-import { Game, GetGamePTConfig, PublicUserDocument } from "tachi-common";
+import { Game, PublicUserDocument } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import { Playtype } from "types/tachi";
 import ProfileBadges from "./ProfileBadges";
@@ -100,16 +100,16 @@ export function UGPTBottomNav({
 		<NavItem key="leaderboard" to={`${baseUrl}/leaderboard`}>
 			Leaderboard
 		</NavItem>,
-		<NavItem key="rivals" to={`${baseUrl}/rivals`}>
-			Rivals
-		</NavItem>,
-		<NavItem key="targets" to={`${baseUrl}/targets`}>
-			Goals & Quests
-		</NavItem>,
 	];
 
 	if (isRequestedUser) {
 		navItems.push(
+			<NavItem key="rivals" to={`${baseUrl}/rivals`}>
+				Rivals
+			</NavItem>,
+			<NavItem key="targets" to={`${baseUrl}/targets`}>
+				Goals & Quests
+			</NavItem>,
 			<NavItem key="settings" to={`${baseUrl}/settings`}>
 				Settings
 			</NavItem>

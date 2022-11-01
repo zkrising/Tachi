@@ -2,6 +2,7 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import { GetRivalUsers } from "lib/rivals/rivals";
 import { SearchSpecificGameSongsAndCharts } from "lib/search/search";
+import prValidate from "server/middleware/prudence-validate";
 import { AggressiveRateLimitMiddleware } from "server/middleware/rate-limiter";
 import { GetGamePTConfig } from "tachi-common";
 import { GetRelevantSongsAndCharts } from "utils/db";
@@ -97,7 +98,7 @@ router.get("/all", AggressiveRateLimitMiddleware, async (req, res) => {
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs/best
  */
-router.get("/best", async (req, res) => {
+router.get("/best", prValidate({ alg: "*string" }), async (req, res) => {
 	const { user, game, playtype } = GetUGPT(req);
 
 	const gptConfig = GetGamePTConfig(game, playtype);

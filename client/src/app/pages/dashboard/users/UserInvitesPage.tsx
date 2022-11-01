@@ -1,5 +1,5 @@
 import { APIFetchV1 } from "util/api";
-import { DelayedPageReload } from "util/misc";
+import { CopyToClipboard, DelayedPageReload } from "util/misc";
 import { FormatTime } from "util/time";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
@@ -12,6 +12,7 @@ import React from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { integer, InviteCodeDocument, PublicUserDocument } from "tachi-common";
+import Icon from "components/util/Icon";
 
 export default function UserInvitesPage({ reqUser }: { reqUser: PublicUserDocument }) {
 	useSetSubheader(
@@ -112,7 +113,17 @@ function InviteList({ reqUser }: { reqUser: PublicUserDocument }) {
 			{unconsumed.length ? (
 				unconsumed.map((e) => (
 					<div key={e.code}>
-						<code>{e.code}</code>
+						<code>{e.code}</code>{" "}
+						<Icon
+							type="link"
+							onClick={() => {
+								const params = new URLSearchParams({ inviteCode: e.code });
+
+								CopyToClipboard(
+									`${window.location.origin}/register?${params.toString()}`
+								);
+							}}
+						/>
 					</div>
 				))
 			) : (

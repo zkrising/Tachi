@@ -11,13 +11,14 @@ import useLUGPTSettings from "components/util/useLUGPTSettings";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FolderDocument, GetGamePTConfig, PublicUserDocument } from "tachi-common";
+import { COLOUR_SET, FolderDocument, GetGamePTConfig, PublicUserDocument } from "tachi-common";
 import { UGPTFolderReturns, UGPTStatsReturn } from "types/api-returns";
 import { GamePT } from "types/react";
 import { ComparePBsDataset } from "types/tables";
 import UserSelectModal from "components/util/modal/UserSelectModal";
 import UserIcon from "components/util/UserIcon";
 import { UserContext } from "context/UserContext";
+import MiniTable from "components/tables/components/MiniTable";
 
 export default function RivalCompareFolderPage({
 	reqUser,
@@ -41,11 +42,11 @@ export default function RivalCompareFolderPage({
 		// [settings?.rivals.join(",")]
 	);
 
-	if (!data) {
+	if (!data && !error) {
 		return <Loading />;
 	}
 
-	let suggestUsers = data;
+	let suggestUsers = data ?? [];
 
 	// if the user viewing this page is logged in and *is not*
 	// the person this page is for
@@ -57,7 +58,7 @@ export default function RivalCompareFolderPage({
 	return (
 		<div>
 			<Card header="Pick a user to compare against...">
-				{suggestUsers && (
+				{suggestUsers.length > 0 && (
 					<>
 						<Col xs={12} className="d-flex justify-content-center flex-wrap">
 							{suggestUsers.map((e) => (
@@ -90,10 +91,11 @@ export default function RivalCompareFolderPage({
 					excludeMsg="Can't pick the same user!"
 				/>
 				<Button
+					className={suggestUsers.length === 0 ? "d-flex mx-auto" : ""}
 					variant={selectedUser ? "secondary" : "primary"}
 					onClick={() => setShow(true)}
 				>
-					Pick Other User
+					Pick{suggestUsers.length > 0 ? " Other" : ""} User
 				</Button>
 			</Card>
 			{selectedUser !== null && folder !== null && (
@@ -182,10 +184,18 @@ function FolderCompare({
 			<UserCard username={withUser.username} game={game} playtype={playtype} />
 			<Col xs={12}>
 				<Divider />
+			</Col>
+			<CompareCard
+				dataset={dataset}
+				baseUsername={reqUser.username}
+				otherUsername={withUser.username}
+			/>
+			<Col xs={12}>
+				<Divider />
 				<Form.Check
 					checked={shouldIncludeNotPlayed}
 					onChange={() => setShouldIncludeNotPlayed(!shouldIncludeNotPlayed)}
-					label="Include charts you haven't both played?"
+					label="Include charts without plays?"
 				/>
 				{gptConfig.supportsESD && (
 					<Form.Check
@@ -236,6 +246,124 @@ function UserCard({ username, game, playtype }: { username: string } & GamePT) {
 					</Col>
 					<Col lg={6}>
 						{data ? <UGPTRatingsTable ugs={data.gameStats} /> : <Loading />}
+					</Col>
+				</Row>
+			</Card>
+		</Col>
+	);
+}
+
+function CompareCard({
+	dataset,
+	baseUsername,
+	otherUsername,
+}: {
+	dataset: ComparePBsDataset;
+
+	baseUsername: string;
+	otherUsername: string;
+}) {
+	// this code sucks
+	let scoreWin = 0;
+	let scoreDraw = 0;
+	let scoreLoss = 0;
+	let lampWin = 0;
+	let lampDraw = 0;
+	let lampLoss = 0;
+
+	for (const d of dataset) {
+		if (!d.compare && !d.base) {
+			scoreDraw++;
+			lampDraw++;
+			continue;
+		}
+
+		if (!d.compare) {
+			scoreWin++;
+			lampWin++;
+			continue;
+		}
+
+		if (!d.base) {
+			scoreLoss++;
+			lampLoss++;
+			continue;
+		}
+
+		if (d.base.scoreData.percent > d.compare.scoreData.percent) {
+			scoreWin++;
+		} else if (d.base.scoreData.percent < d.compare.scoreData.percent) {
+			scoreLoss++;
+		} else {
+			scoreDraw++;
+		}
+
+		if (d.base.scoreData.lampIndex > d.compare.scoreData.lampIndex) {
+			lampWin++;
+		} else if (d.base.scoreData.lampIndex < d.compare.scoreData.lampIndex) {
+			lampLoss++;
+		} else {
+			lampDraw++;
+		}
+	}
+
+	return (
+		<Col xs={12}>
+			<Card>
+				<Row>
+					<Col xs={12} lg={6}>
+						<MiniTable headers={["Score Win/Loss"]} colSpan={23}>
+							<tr>
+								<td>{baseUsername} Win</td>
+
+								<td style={{ color: COLOUR_SET.green }}>{scoreWin}</td>
+
+								<td style={{ color: COLOUR_SET.green }}>
+									{((100 * scoreWin) / dataset.length).toFixed(2)}%
+								</td>
+							</tr>
+							<tr>
+								<td>Draw</td>
+								<td style={{ color: COLOUR_SET.gold }}>{scoreDraw}</td>
+								<td style={{ color: COLOUR_SET.gold }}>
+									{((100 * scoreDraw) / dataset.length).toFixed(2)}%
+								</td>
+							</tr>
+							<tr>
+								<td>{otherUsername} Win</td>
+								<td style={{ color: COLOUR_SET.red }}>{scoreLoss}</td>
+								<td style={{ color: COLOUR_SET.red }}>
+									{((100 * scoreLoss) / dataset.length).toFixed(2)}%
+								</td>
+							</tr>
+						</MiniTable>
+					</Col>
+					<Col xs={12} lg={6}>
+						<MiniTable headers={["Lamp Win/Loss"]} colSpan={23}>
+							<tr>
+								<td>{baseUsername} Win</td>
+
+								<td style={{ color: COLOUR_SET.green }}>{lampWin}</td>
+
+								<td style={{ color: COLOUR_SET.green }}>
+									{((100 * lampWin) / dataset.length).toFixed(2)}%
+								</td>
+							</tr>
+							<tr>
+								<td>Draw</td>
+								<td style={{ color: COLOUR_SET.gold }}>{lampDraw}</td>
+								<td style={{ color: COLOUR_SET.gold }}>
+									{((100 * lampDraw) / dataset.length).toFixed(2)}%
+								</td>
+							</tr>
+							<tr>
+								<td>{otherUsername} Loss</td>
+								<td style={{ color: COLOUR_SET.red }}>{lampLoss}</td>
+								<td style={{ color: COLOUR_SET.red }}>
+									{((100 * lampLoss) / dataset.length).toFixed(2)}%
+								</td>
+							</tr>
+						</MiniTable>
 					</Col>
 				</Row>
 			</Card>

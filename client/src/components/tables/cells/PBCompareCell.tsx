@@ -35,12 +35,12 @@ export default function PBCompareCell({
 	}
 
 	let scoreRenderFn = (k: number) => k.toString();
+	let shouldShowPercent = false;
 
 	switch (game) {
 		case "chunithm":
 		case "ddr":
 		case "gitadora":
-		case "jubeat":
 		case "maimai":
 		case "usc":
 		case "sdvx":
@@ -48,10 +48,16 @@ export default function PBCompareCell({
 		case "wacca":
 		case "museca":
 			scoreRenderFn = FormatMillions;
+			shouldShowPercent = false;
+			break;
+		case "jubeat":
+			scoreRenderFn = FormatMillions;
+			shouldShowPercent = true;
 			break;
 		case "bms":
 		case "iidx":
 			scoreRenderFn = (k: number) => k.toString();
+			shouldShowPercent = true;
 			break;
 	}
 
@@ -87,8 +93,12 @@ export default function PBCompareCell({
 			{compareType === "score" ? (
 				<>
 					<strong>{(cmpScore > 0 ? "+" : "") + scoreRenderFn(cmpScore)}</strong>
-					<br />
-					<small>({fmtCmpPercent})</small>
+					{shouldShowPercent && (
+						<>
+							<br />
+							<small>({fmtCmpPercent})</small>
+						</>
+					)}
 					{esdDiff !== undefined && (
 						<>
 							<br />

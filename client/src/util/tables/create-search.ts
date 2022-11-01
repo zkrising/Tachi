@@ -1,14 +1,14 @@
 import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
 import { ValueGetterOrHybrid } from "util/ztable/search";
 import {
+	BMS_TABLES,
 	ChartDocument,
 	Game,
 	GamePTConfig,
 	GetGamePTConfig,
 	IDStrings,
-	BMS_TABLES,
 } from "tachi-common";
-import { FolderDataset, PBDataset, ScoreDataset } from "types/tables";
+import { ComparePBsDataset, FolderDataset, PBDataset, ScoreDataset } from "types/tables";
 import { Playtype } from "types/tachi";
 
 function GetBMSTableVal(chart: ChartDocument<"bms:7K" | "bms:14K">, key: string) {
@@ -83,6 +83,24 @@ export function CreateDefaultPBSearchParams<I extends IDStrings = IDStrings>(
 
 	if (game === "bms") {
 		HandleBMSNonsense(searchFunctions, playtype, (k) => k.__related.chart);
+	}
+
+	return searchFunctions;
+}
+
+export function CreatePBCompareSearchParams<I extends IDStrings = IDStrings>(
+	game: Game,
+	playtype: Playtype
+) {
+	const searchFunctions: Record<string, ValueGetterOrHybrid<ComparePBsDataset<I>[0]>> = {
+		artist: (x) => x.song.artist,
+		title: (x) => x.song.title,
+		difficulty: (x) => x.chart.difficulty,
+		level: (x) => x.chart.levelNum,
+	};
+
+	if (game === "bms") {
+		HandleBMSNonsense(searchFunctions, playtype, (k) => k);
 	}
 
 	return searchFunctions;

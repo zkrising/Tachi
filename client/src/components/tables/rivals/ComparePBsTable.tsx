@@ -1,19 +1,21 @@
 import { NumericSOV, StrSOV } from "util/sorts";
+import { CreatePBCompareSearchParams } from "util/tables/create-search";
 import React, { useState } from "react";
 import { Game, IDStrings, Playtype } from "tachi-common";
 import { ESDCompare } from "tachi-common/lib/esd";
 import { ComparePBsDataset } from "types/tables";
 import DifficultyCell from "../cells/DifficultyCell";
+import PBCompareCell from "../cells/PBCompareCell";
 import TitleCell from "../cells/TitleCell";
+import SelectableCompareType from "../components/SelectableCompareType";
 import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
 import ShortScoreCoreCells from "../game-core-cells/ShortScoreCoreCells";
 import ChartHeader from "../headers/ChartHeader";
-import PBCompareCell from "../cells/PBCompareCell";
-import SelectableCompareType from "../components/SelectableCompareType";
 
 export default function ComparePBsTable<I extends IDStrings = IDStrings>({
 	dataset,
 	game,
+	playtype,
 	baseUser,
 	compareUser,
 	shouldESD,
@@ -79,6 +81,7 @@ export default function ComparePBsTable<I extends IDStrings = IDStrings>({
 			entryName="Charts"
 			defaultReverseSort
 			defaultSortMode="Vs."
+			searchFunctions={CreatePBCompareSearchParams(game, playtype)}
 			rowFunction={(data) => (
 				<Row data={data} game={game} compareType={compareType} shouldESD={shouldESD} />
 			)}

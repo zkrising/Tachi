@@ -16,7 +16,7 @@ import { BestPBsUnion, UGPTStatsReturn } from "types/api-returns";
 import { GamePT } from "types/react";
 import { ComparePBsDataset } from "types/tables";
 
-export default function RivalCompareTop100Page({
+export default function RivalCompareBestPBsPage({
 	reqUser,
 	game,
 	playtype,
@@ -60,12 +60,12 @@ export default function RivalCompareTop100Page({
 						</option>
 					))}
 				</Form.Control>
-				<div className="form-text">Select a rival to compare your best 100 PBs with.</div>
+				<div className="form-text">Select a rival to compare against.</div>
 			</Card>
 			{selectedUser !== null && (
 				<>
 					<Divider />
-					<RivalBest100Compare
+					<RivalBestPBsCompare
 						reqUser={reqUser}
 						game={game}
 						playtype={playtype}
@@ -77,7 +77,7 @@ export default function RivalCompareTop100Page({
 	);
 }
 
-function RivalBest100Compare({
+function RivalBestPBsCompare({
 	reqUser,
 	game,
 	playtype,
@@ -87,7 +87,7 @@ function RivalBest100Compare({
 	withUser: string;
 } & GamePT) {
 	const { data, error } = useApiQuery<BestPBsUnion>(
-		`/users/${reqUser.id}/games/${game}/${playtype}/pbs/best-union?withUser=${withUser}`
+		`/users/${reqUser.id}/games/${game}/${playtype}/pbs/best-union?withUser=${withUser}&limit=250`
 	);
 
 	if (error) {

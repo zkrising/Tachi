@@ -9,7 +9,7 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Route, Switch } from "react-router-dom";
 import { FormatGame, Game, GetGameConfig, Playtype, PublicUserDocument } from "tachi-common";
-import RivalCompareTop100Page from "./RivalCompareTop100Page";
+import RivalCompareBestPBsPage from "./RivalCompareBestPBsPage";
 
 export default function RivalsComparePage({
 	reqUser,
@@ -42,12 +42,12 @@ export default function RivalsComparePage({
 				<div className="btn-group">
 					<SelectLinkButton to={`${base}/pb-leaderboard`}>
 						<Icon type="sort-amount-up" />
-						Best PBs
+						Everyone's Best PBs
 					</SelectLinkButton>
 
 					<SelectLinkButton to={base}>
 						<Icon type="list" />
-						Compare Top 100s
+						Compare PBs
 					</SelectLinkButton>
 
 					<SelectLinkButton to={`${base}/folders`}>
@@ -75,7 +75,11 @@ export default function RivalsComparePage({
 						exact
 						path="/dashboard/users/:userID/games/:game/:playtype/rivals/compare"
 					>
-						<RivalCompareTop100Page reqUser={reqUser} game={game} playtype={playtype} />
+						<RivalCompareBestPBsPage
+							reqUser={reqUser}
+							game={game}
+							playtype={playtype}
+						/>
 					</Route>
 
 					<Route

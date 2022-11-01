@@ -4,13 +4,13 @@ import { GetRivalUsers } from "lib/rivals/rivals";
 import { SearchSpecificGameSongsAndCharts } from "lib/search/search";
 import prValidate from "server/middleware/prudence-validate";
 import { AggressiveRateLimitMiddleware } from "server/middleware/rate-limiter";
-import { FormatGame, GetGamePTConfig } from "tachi-common";
+import { GetGamePTConfig } from "tachi-common";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { IsValidScoreAlg } from "utils/misc";
-import { GetAdjacentAbove, GetAdjacentBelow, GetPBsWithUserRankings } from "utils/queries/pbs";
+import { GetAdjacentAbove, GetAdjacentBelow } from "utils/queries/pbs";
 import { GetUGPT } from "utils/req-tachi-data";
 import { FilterChartsAndSongs, GetPBOnChart, GetScoreIDsFromComposed } from "utils/scores";
-import { GetUsersWithIDs, ResolveUser } from "utils/user";
+import { GetUsersWithIDs } from "utils/user";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -141,142 +141,6 @@ router.get("/best", prValidate({ alg: "*string" }), async (req, res) => {
 		},
 	});
 });
-
-/**
- * Return this user's best N personal-bests, unioned with the best 100 of another
- * player.
- *
- * This is used for comparing best-Ns with a player, so for example, if player B
- * has charts in their top N that player A doesn't, it will still fetch the PB
- * of player A for comparison reasons.
- *
- * @param alg - Specifies an override for the default algorithm
- * to sort on.
- * @param withUser - The userID to union personal bests with.
- * @param limit - How many records to retrieve. Defaults to 100, Caps at 500.
- *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/pbs/best-union
- */
-router.get(
-	"/best-union",
-	prValidate({ alg: "*string", withUser: "string", limit: "*string" }),
-	async (req, res) => {
-		const { user, game, playtype } = GetUGPT(req);
-
-		const gptConfig = GetGamePTConfig(game, playtype);
-
-		const query = req.query as {
-			alg?: string;
-			withUser: string;
-		};
-
-		const otherUser = await ResolveUser(query.withUser);
-
-		if (!otherUser) {
-			return res.status(400).json({
-				success: false,
-				description: `The user '${query.withUser}' does not exist.`,
-			});
-		}
-
-		const hasPlayed = await db["game-stats"].findOne({
-			game,
-			playtype,
-			userID: otherUser.id,
-		});
-
-		if (!hasPlayed) {
-			return res.status(400).json({
-				success: false,
-				description: `The user '${otherUser.username}' has not played ${FormatGame(
-					game,
-					playtype
-				)}.`,
-			});
-		}
-
-		if (req.query.alg !== undefined && !IsValidScoreAlg(gptConfig, req.query.alg)) {
-			return res.status(400).json({
-				success: false,
-				description: `Invalid score algorithm. Expected any of ${gptConfig.scoreRatingAlgs.join(
-					", "
-				)}`,
-			});
-		}
-
-		const alg = req.query.alg ?? gptConfig.defaultScoreRatingAlg;
-		let limit = 100;
-
-		if (req.query.limit !== undefined) {
-			const providedLimit = Number(req.query.limit);
-
-			if (!Number.isInteger(providedLimit) || providedLimit > 500 || providedLimit < 1) {
-				return res.status(400).json({
-					success: false,
-					description: `Invalid limit. Expected an integer between 1 and 500.`,
-				});
-			}
-
-			limit = providedLimit;
-		}
-
-		const options = {
-			projection: {
-				chartID: 1,
-			},
-			limit,
-			sort: {
-				[`calculatedData.${alg}`]: -1,
-			},
-		};
-
-		// lets fetch the set of chartIDs in each users bests
-		const baseUserBestChartIDs = await db["personal-bests"].find(
-			{
-				userID: user.id,
-				game,
-				playtype,
-				isPrimary: true,
-			},
-			options
-		);
-
-		const withUserBestChartIDs = await db["personal-bests"].find(
-			{
-				userID: otherUser.id,
-				game,
-				playtype,
-				isPrimary: true,
-			},
-			options
-		);
-
-		const chartIDs = [
-			...baseUserBestChartIDs.map((e) => e.chartID),
-			...withUserBestChartIDs.map((e) => e.chartID),
-		];
-
-		// then fetch both of their scores on each.
-		const baseUserPBs = await GetPBsWithUserRankings(user.id, chartIDs, alg);
-		const withUserPBs = await GetPBsWithUserRankings(otherUser.id, chartIDs, alg);
-
-		const { songs, charts } = await GetRelevantSongsAndCharts(
-			[...baseUserPBs, ...withUserPBs],
-			game
-		);
-
-		return res.status(200).json({
-			success: true,
-			description: `Retrieved the union best 100 of ${user.username} and ${otherUser.username}.`,
-			body: {
-				baseUserPBs,
-				withUserPBs,
-				songs,
-				charts,
-			},
-		});
-	}
-);
 
 /**
  * Returns a user's PB on the given chart. If the user has not played this chart, 404 is

@@ -71,10 +71,7 @@ export default function FoldersMainPage({ reqUser, game, playtype }: Props) {
 					>
 						<RecentFoldersPage {...{ reqUser, game, playtype }} />
 					</Route>
-					<Route
-						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/folders/:folderID"
-					>
+					<Route path="/dashboard/users/:userID/games/:game/:playtype/folders/:folderID">
 						<SpecificFolderPage {...{ reqUser, game, playtype }} />
 					</Route>
 				</Switch>

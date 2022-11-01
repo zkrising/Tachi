@@ -121,6 +121,12 @@ export interface UGPTFolderReturns<I extends IDStrings = IDStrings> {
 	pbs: PBScoreDocument<I>[];
 }
 
+export interface GPTFolderReturns<I extends IDStrings = IDStrings> {
+	folder: FolderDocument;
+	songs: SongDocument<IDStringToGame[I]>[];
+	charts: ChartDocument<I>[];
+}
+
 export interface GPTStatsReturn {
 	config: GamePTConfig;
 	playerCount: integer;
@@ -200,11 +206,4 @@ export interface ImportIDReturn {
 	sessions: SessionDocument[];
 	import: ImportDocument;
 	user: PublicUserDocument;
-}
-
-export interface BestPBsUnion {
-	baseUserPBs: (PBScoreDocument & { __personalRanking: integer })[];
-	withUserPBs: (PBScoreDocument & { __personalRanking: integer })[];
-	songs: SongDocument[];
-	charts: ChartDocument[];
 }

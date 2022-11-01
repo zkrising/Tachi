@@ -14,11 +14,13 @@ import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
-import SelectButton from "components/util/SelectButton";
+import ReferToUser from "components/util/ReferToUser";
+import SelectLinkButton from "components/util/SelectLinkButton";
+import useUGPTBase from "components/util/useUGPTBase";
 import { useFormik } from "formik";
 import React, { useEffect, useMemo, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Link, Route, Switch, useParams } from "react-router-dom";
 import {
 	ChartDocument,
 	ChartTierlistInfo,
@@ -36,7 +38,7 @@ import {
 import { UGPTFolderReturns } from "types/api-returns";
 import { FolderDataset } from "types/tables";
 import { Playtype } from "types/tachi";
-import ReferToUser from "components/util/ReferToUser";
+import FolderComparePage from "./FolderComparePage";
 
 interface Props {
 	reqUser: PublicUserDocument;
@@ -50,8 +52,6 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 	const { data, error } = useApiQuery<UGPTFolderReturns>(
 		`/users/${reqUser.id}/games/${game}/${playtype}/folders/${folderID}`
 	);
-
-	const [mode, setMode] = useState<"normal" | "ladder" | "timeline">("normal");
 
 	const gptConfig = GetGamePTConfig(game, playtype);
 
@@ -97,6 +97,8 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 		);
 	}, [folderDataset]);
 
+	const base = `${useUGPTBase({ reqUser, game, playtype })}/folders/${folderID}`;
+
 	if (error) {
 		return <ApiError error={error} />;
 	}
@@ -113,47 +115,63 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 			</div>
 			<div className="col-12 d-flex">
 				<div className="btn-group mx-auto">
-					<SelectButton value={mode} setValue={setMode} id="normal">
+					<SelectLinkButton to={base}>
 						<Icon type="table" />
 						Normal View
-					</SelectButton>
+					</SelectLinkButton>
 					{gptConfig.tierlists.length !== 0 &&
 						// temp: tierlist view sucks for BMS and PMS
 						game !== "bms" &&
 						game !== "pms" && (
-							<SelectButton value={mode} setValue={setMode} id="ladder">
+							<SelectLinkButton to={`${base}/tierlist`}>
 								<Icon type="sort-alpha-up" />
 								Tierlist View
-							</SelectButton>
+							</SelectLinkButton>
 						)}
-					<SelectButton value={mode} setValue={setMode} id="timeline">
+					<SelectLinkButton to={`${base}/timeline`}>
 						<Icon type="stream" />
 						Timeline View
-					</SelectButton>
+					</SelectLinkButton>
+					<SelectLinkButton to={`${base}/compare`}>
+						<Icon type="users" />
+						Compare Against User
+					</SelectLinkButton>
 				</div>
 			</div>
 			<div className="col-12">
 				<Divider />
 			</div>
 			<div className="col-12">
-				{mode === "normal" ? (
-					<FolderTable dataset={folderDataset} game={game} playtype={playtype} />
-				) : mode === "ladder" ? (
-					<TierlistBreakdown
-						folderDataset={folderDataset}
-						game={game}
-						playtype={playtype}
-						reqUser={reqUser}
-						data={data}
-					/>
-				) : (
-					<TimelineView
-						game={game}
-						playtype={playtype}
-						reqUser={reqUser}
-						folderID={folderID}
-					/>
-				)}
+				<Switch>
+					<Route exact path={base}>
+						<FolderTable dataset={folderDataset} game={game} playtype={playtype} />
+					</Route>
+					<Route exact path={`${base}/tierlist`}>
+						<TierlistBreakdown
+							folderDataset={folderDataset}
+							game={game}
+							playtype={playtype}
+							reqUser={reqUser}
+							data={data}
+						/>
+					</Route>
+					<Route exact path={`${base}/timeline`}>
+						<TimelineView
+							game={game}
+							playtype={playtype}
+							reqUser={reqUser}
+							folderID={folderID}
+						/>
+					</Route>
+					<Route exact path={`${base}/compare`}>
+						<FolderComparePage
+							game={game}
+							playtype={playtype}
+							reqUser={reqUser}
+							folder={data.folder}
+						/>
+					</Route>
+				</Switch>
 			</div>
 		</div>
 	);
@@ -163,11 +181,17 @@ function TimelineView({ game, playtype, reqUser, folderID }: Props & { folderID:
 	const gptConfig = GetGamePTConfig(game, playtype);
 	const [type, setType] = useState<"lamp" | "grade">(gptConfig.scoreBucket);
 	const [value, setValue] = useState<integer>(
-		type === "grade" ? gptConfig.grades.length - 1 : gptConfig.lamps.length - 1
+		type === "grade"
+			? gptConfig.grades.indexOf(gptConfig.clearGrade)
+			: gptConfig.lamps.indexOf(gptConfig.clearLamp)
 	);
 
 	useEffect(() => {
-		setValue(type === "grade" ? gptConfig.grades.length - 1 : gptConfig.lamps.length - 1);
+		setValue(
+			type === "grade"
+				? gptConfig.grades.indexOf(gptConfig.clearGrade)
+				: gptConfig.lamps.indexOf(gptConfig.clearLamp)
+		);
 	}, [type]);
 
 	return (

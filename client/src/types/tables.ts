@@ -58,8 +58,8 @@ export type RivalChartDataset<I extends IDStrings = IDStrings> = (PublicUserDocu
 })[];
 
 export type ComparePBsDataset<I extends IDStrings = IDStrings> = Array<{
-	base: (PBScoreDocument<I> & { __personalRanking: integer }) | null;
-	compare: (PBScoreDocument<I> & { __personalRanking: integer }) | null;
+	base: PBScoreDocument<I> | null;
+	compare: PBScoreDocument<I> | null;
 	chart: ChartDocument;
 	song: SongDocument;
 }>;

@@ -56,3 +56,10 @@ export type RivalChartDataset<I extends IDStrings = IDStrings> = (PublicUserDocu
 		index: number;
 	};
 })[];
+
+export type ComparePBsDataset<I extends IDStrings = IDStrings> = Array<{
+	base: (PBScoreDocument<I> & { __personalRanking: integer }) | null;
+	compare: (PBScoreDocument<I> & { __personalRanking: integer }) | null;
+	chart: ChartDocument;
+	song: SongDocument;
+}>;

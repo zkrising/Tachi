@@ -238,7 +238,7 @@ router.get("/best-union", prValidate({ alg: "*string", withUser: "string" }), as
 
 	// then fetch both of their scores on each.
 	const baseUserPBs = await GetPBsWithUserRankings(user.id, chartIDs, alg);
-	const withUserPBs = await GetPBsWithUserRankings(user.id, chartIDs, alg);
+	const withUserPBs = await GetPBsWithUserRankings(otherUser.id, chartIDs, alg);
 
 	const { songs, charts } = await GetRelevantSongsAndCharts(
 		[...baseUserPBs, ...withUserPBs],

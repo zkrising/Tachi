@@ -4,7 +4,7 @@ import NavItem from "components/nav/NavItem";
 import MiniTable from "components/tables/components/MiniTable";
 import Divider from "components/util/Divider";
 import React from "react";
-import { Game, GetGamePTConfig, PublicUserDocument } from "tachi-common";
+import { Game, PublicUserDocument } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import { Playtype } from "types/tachi";
 import ProfileBadges from "./ProfileBadges";

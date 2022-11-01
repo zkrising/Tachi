@@ -201,3 +201,10 @@ export interface ImportIDReturn {
 	import: ImportDocument;
 	user: PublicUserDocument;
 }
+
+export interface BestPBsUnion {
+	baseUserPBs: (PBScoreDocument & { __personalRanking: integer })[];
+	withUserPBs: (PBScoreDocument & { __personalRanking: integer })[];
+	songs: SongDocument[];
+	charts: ChartDocument[];
+}

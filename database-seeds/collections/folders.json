@@ -8521,7 +8521,7 @@
 		},
 		"folderID": "F447f9872ffc845a8252209f951f5b740f7542ddce10ad79a4e91bedabd88f2fc",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 1 (BISTROVER Omnimix)",
@@ -8551,6 +8551,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 1 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
+			"versions": "29-omni"
+		},
+		"folderID": "Fc69d42c0d7a35cf628dfefc49ecc3f15969cd7db26014fd7c11859b64d08d47e",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 1 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -8924,7 +8937,7 @@
 		},
 		"folderID": "Ff6ad61edd764c499929587d905de73ca7b9342f2737755353af15956d499f53b",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 10 (BISTROVER Omnimix)",
@@ -8954,6 +8967,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 10 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "29-omni"
+		},
+		"folderID": "F43a16ecd8da35fde4718541fd5a458c48cc06e74107fea350d17025f40e00b36",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 10 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -9327,7 +9353,7 @@
 		},
 		"folderID": "Fe432fcc5a4f05a11f66fd43987897e700f718be3f973e925bd2ce7849d5c53a1",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 11 (BISTROVER Omnimix)",
@@ -9357,6 +9383,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 11 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "29-omni"
+		},
+		"folderID": "F3ec36187d4889aa539009da648ac0bbe8d187bf1b9e70a20cffc3d325aaa95a0",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 11 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -9730,7 +9769,7 @@
 		},
 		"folderID": "Fd866771c400da15d7ff0735f9e41447d299da9eae0af931f8ce803e4f9151eb2",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 12 (BISTROVER Omnimix)",
@@ -9760,6 +9799,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 12 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "29-omni"
+		},
+		"folderID": "F56cd39e50005431e7b3f8d002b2e6f8772cf447660321bb241a9719615f158be",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 12 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -10133,7 +10185,7 @@
 		},
 		"folderID": "F112925789ec9ce1a35e28f0107b0028c3a7a10da92618f9234f5cb9aa3da8e56",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 2 (BISTROVER Omnimix)",
@@ -10163,6 +10215,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 2 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "29-omni"
+		},
+		"folderID": "Fb16cca53146da196ab23fc13b79633ddcb3f8c61d8d2dcc9082c4f1698b9c91a",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 2 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -10536,7 +10601,7 @@
 		},
 		"folderID": "Fee9097e10f16eb86292fbae4be12e33b6b112f067eda43f269193557b02bf894",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 3 (BISTROVER Omnimix)",
@@ -10566,6 +10631,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 3 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "29-omni"
+		},
+		"folderID": "F1ebe7667613e1d8215143d7d5764a97ed4931b2d546559bf6d081d7eff6380de",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 3 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -10939,7 +11017,7 @@
 		},
 		"folderID": "F248ffab95b0f7b54de48ef81fb0695644a065b4c850cce43746566a914f2d66c",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 4 (BISTROVER Omnimix)",
@@ -10969,6 +11047,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 4 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "29-omni"
+		},
+		"folderID": "Fad966633580b7a37d5f7ef0a7f536495a091a8a875a174f8c959ab092cb8fb73",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 4 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -11342,7 +11433,7 @@
 		},
 		"folderID": "F50eb1350ace30a0f5dd3d0ff7b9fdb021ec77e65292687b413ee238018cd3d57",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 5 (BISTROVER Omnimix)",
@@ -11372,6 +11463,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 5 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "29-omni"
+		},
+		"folderID": "F400947833d51c60846afd3f8b80c82e54112a1a0efd836d71d52fc74bb5d7af4",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 5 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -11745,7 +11849,7 @@
 		},
 		"folderID": "Fe612eb2d66eb2f77e6c55356c76f7d880e01fc249d6bce71b4562ab0059cb9d5",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 6 (BISTROVER Omnimix)",
@@ -11775,6 +11879,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 6 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "29-omni"
+		},
+		"folderID": "F6c4da6e56c3f7c44969885edd070776ac2fae041da74fd33b5a5e06ee1525ec3",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 6 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -12148,7 +12265,7 @@
 		},
 		"folderID": "F136651ce116059a37427edb4fbf2b0de914c7dd7d55c8cbebd8c166d1cd493fd",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 7 (BISTROVER Omnimix)",
@@ -12178,6 +12295,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 7 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "29-omni"
+		},
+		"folderID": "F6ff2668e9f28bf5a72cdd7ed27e5e6fc351e4c4039028348bd79bcf23c633e18",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 7 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -12551,7 +12681,7 @@
 		},
 		"folderID": "Fe244e55ca60ff4f634b612bb23010f440facbb6f14f68c0634af4a594c9b57ec",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 8 (BISTROVER Omnimix)",
@@ -12581,6 +12711,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 8 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "29-omni"
+		},
+		"folderID": "F1cb14427be337f8d7148b2e147af8ef50406b1a744a739757b7ef3356d756b35",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 8 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -12954,7 +13097,7 @@
 		},
 		"folderID": "Fc5af6c297a47d8c386f9b7cfe72b1b43d3acb5e943ec64edf36f7656811d0ecd",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 9 (BISTROVER Omnimix)",
@@ -12984,6 +13127,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 9 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "29-omni"
+		},
+		"folderID": "F809c601ce0a5f57d10b0eea514c370f4db42aa08a56b8d7589c2eb153626c30e",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 9 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -13357,7 +13513,7 @@
 		},
 		"folderID": "Fe131fe937e9e58b42a71a9b1a9a96ee80fb928dc4acc59e32a2ef8e9c5682488",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 1 (BISTROVER Omnimix)",
@@ -13387,6 +13543,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 1 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
+			"versions": "29-omni"
+		},
+		"folderID": "Ff603bf43256a072b981830bd0ac1dd4d3777dea026ba9b79be8b77e8abb56fa1",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 1 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -13760,7 +13929,7 @@
 		},
 		"folderID": "F3bf7193425494282e5b06b3152193dcb60d1911d356f6b7b30d9632d98e6ae7f",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 10 (BISTROVER Omnimix)",
@@ -13790,6 +13959,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 10 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "29-omni"
+		},
+		"folderID": "Fa9d604b60f3c84981ebc6d2a999206beb2d22b2eb3af1b5036d5c19b0d831c7d",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 10 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -14163,7 +14345,7 @@
 		},
 		"folderID": "Fbb65c2422f52e8bd1889cb2cee5331c09816f85b650f6e26422e2e22f14a3e43",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 11 (BISTROVER Omnimix)",
@@ -14193,6 +14375,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 11 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "29-omni"
+		},
+		"folderID": "F236f08e96932d40bbf93fa7678149fa490b641260f02b9f0418e71f74dacbf32",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 11 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -14566,7 +14761,7 @@
 		},
 		"folderID": "Fc1a389b0372564b5a776b31ea2eb0ebef233be51e66f379213f5a9467abe3aa2",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 12 (BISTROVER Omnimix)",
@@ -14596,6 +14791,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 12 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "29-omni"
+		},
+		"folderID": "Fb997c0c2ee9e2e98fd19c183ef9b8c80b9b0345a226d1824b4d544b0dada2ef0",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 12 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -14969,7 +15177,7 @@
 		},
 		"folderID": "F7203cf2e33b8c9bd57dee504c84723b1cd3a41d0f23eb9ca36f6a958a9878239",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 2 (BISTROVER Omnimix)",
@@ -14999,6 +15207,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 2 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "29-omni"
+		},
+		"folderID": "F3966599dbd3f3a1ab8d07c1cfeb6eea7e0b5f415e529e1842af80409b79dd5bd",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 2 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -15372,7 +15593,7 @@
 		},
 		"folderID": "F92a4f4b906afe8a87cc9456ce68c113282bbd7dbe747fc628943d861a2763c6d",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 3 (BISTROVER Omnimix)",
@@ -15402,6 +15623,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 3 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "29-omni"
+		},
+		"folderID": "F7b8f6a9e69fc7d525cc3dd1ff2b8752e2da599ffd91dfcf1cbdda7737a598746",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 3 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -15775,7 +16009,7 @@
 		},
 		"folderID": "F7c160c0bfc49235886a368cd79614ade877608fb62c709cc80f47fd05cfdb1d7",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 4 (BISTROVER Omnimix)",
@@ -15805,6 +16039,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 4 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "29-omni"
+		},
+		"folderID": "F575067eb26b072b322b0f412f05d6f736750bb3eac98ad197771de8015961559",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 4 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -16178,7 +16425,7 @@
 		},
 		"folderID": "Fc8db47a2ad9b339bae9d59db59a334e43f97883bb1cd33d66dc543078bbc0bac",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 5 (BISTROVER Omnimix)",
@@ -16208,6 +16455,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 5 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "29-omni"
+		},
+		"folderID": "Fdc77449105a13a79bf168378968a9fd7e4dd65016368a7224a6f2afef87a2f36",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 5 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -16581,7 +16841,7 @@
 		},
 		"folderID": "F8fa7cbe386e05b2f419d8bfe4b8d912eb72aca446dccd719f2bf0dce4e5df7cd",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 6 (BISTROVER Omnimix)",
@@ -16611,6 +16871,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 6 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "29-omni"
+		},
+		"folderID": "Fdd875f6ef90148dcc9d40e1069fcefc9c8c3f7e05a775f24e39775b556a0f87c",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 6 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -16984,7 +17257,7 @@
 		},
 		"folderID": "F466a6032adb5caf89cda1d38f027135322b4b3c19088778f323db229db0564b2",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 7 (BISTROVER Omnimix)",
@@ -17014,6 +17287,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 7 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "29-omni"
+		},
+		"folderID": "F3f39a2e11d3f88cc81c0105bbf6481eb521b2c2607ed012ebd53932b5d1d2387",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 7 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -17387,7 +17673,7 @@
 		},
 		"folderID": "F4fbdfaf8ac8f5c9bf4326296f7e44ec2039ed8e496977022f979ce148dc9ee3e",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 8 (BISTROVER Omnimix)",
@@ -17417,6 +17703,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 8 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "29-omni"
+		},
+		"folderID": "Fee5acaafb89eb9e07a2dfbfa856cf4ee2bd227a0cb08c020cd6b72d338b51ddc",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 8 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -17790,7 +18089,7 @@
 		},
 		"folderID": "Fdeeb0e98aa34b38a2873e58dea3bbcbf9c3a5529f91760512dfda646fe9fead6",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 9 (BISTROVER Omnimix)",
@@ -17820,6 +18119,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 9 (CANNON BALLERS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "29-omni"
+		},
+		"folderID": "Faee1a053f0a66e7687eebf784a22e1fd8b7c3472078af9e57d2c3af90d744d71",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 9 (CastHour Omnimix)",
 		"type": "charts"
 	},
 	{

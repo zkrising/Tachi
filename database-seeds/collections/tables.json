@@ -1007,7 +1007,7 @@
 			"Fd866771c400da15d7ff0735f9e41447d299da9eae0af931f8ce803e4f9151eb2"
 		],
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"tableID": "iidx-DP-28-omni-levels",
 		"title": "beatmania IIDX (DP) (BISTROVER Omnimix)"
@@ -1057,6 +1057,29 @@
 		"playtype": "DP",
 		"tableID": "iidx-DP-25-levels",
 		"title": "beatmania IIDX (DP) (CANNON BALLERS)"
+	},
+	{
+		"default": false,
+		"description": "Levels for beatmania IIDX (DP) in CastHour Omnimix.",
+		"folders": [
+			"Fc69d42c0d7a35cf628dfefc49ecc3f15969cd7db26014fd7c11859b64d08d47e",
+			"Fb16cca53146da196ab23fc13b79633ddcb3f8c61d8d2dcc9082c4f1698b9c91a",
+			"F1ebe7667613e1d8215143d7d5764a97ed4931b2d546559bf6d081d7eff6380de",
+			"Fad966633580b7a37d5f7ef0a7f536495a091a8a875a174f8c959ab092cb8fb73",
+			"F400947833d51c60846afd3f8b80c82e54112a1a0efd836d71d52fc74bb5d7af4",
+			"F6c4da6e56c3f7c44969885edd070776ac2fae041da74fd33b5a5e06ee1525ec3",
+			"F6ff2668e9f28bf5a72cdd7ed27e5e6fc351e4c4039028348bd79bcf23c633e18",
+			"F1cb14427be337f8d7148b2e147af8ef50406b1a744a739757b7ef3356d756b35",
+			"F809c601ce0a5f57d10b0eea514c370f4db42aa08a56b8d7589c2eb153626c30e",
+			"F43a16ecd8da35fde4718541fd5a458c48cc06e74107fea350d17025f40e00b36",
+			"F3ec36187d4889aa539009da648ac0bbe8d187bf1b9e70a20cffc3d325aaa95a0",
+			"F56cd39e50005431e7b3f8d002b2e6f8772cf447660321bb241a9719615f158be"
+		],
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"tableID": "iidx-DP-29-omni-levels",
+		"title": "beatmania IIDX (DP) (CastHour Omnimix)"
 	},
 	{
 		"default": false,
@@ -1720,7 +1743,7 @@
 			"Fc1a389b0372564b5a776b31ea2eb0ebef233be51e66f379213f5a9467abe3aa2"
 		],
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"tableID": "iidx-SP-28-omni-levels",
 		"title": "beatmania IIDX (SP) (BISTROVER Omnimix)"
@@ -1770,6 +1793,29 @@
 		"playtype": "SP",
 		"tableID": "iidx-SP-25-levels",
 		"title": "beatmania IIDX (SP) (CANNON BALLERS)"
+	},
+	{
+		"default": false,
+		"description": "Levels for beatmania IIDX (SP) in CastHour Omnimix.",
+		"folders": [
+			"Ff603bf43256a072b981830bd0ac1dd4d3777dea026ba9b79be8b77e8abb56fa1",
+			"F3966599dbd3f3a1ab8d07c1cfeb6eea7e0b5f415e529e1842af80409b79dd5bd",
+			"F7b8f6a9e69fc7d525cc3dd1ff2b8752e2da599ffd91dfcf1cbdda7737a598746",
+			"F575067eb26b072b322b0f412f05d6f736750bb3eac98ad197771de8015961559",
+			"Fdc77449105a13a79bf168378968a9fd7e4dd65016368a7224a6f2afef87a2f36",
+			"Fdd875f6ef90148dcc9d40e1069fcefc9c8c3f7e05a775f24e39775b556a0f87c",
+			"F3f39a2e11d3f88cc81c0105bbf6481eb521b2c2607ed012ebd53932b5d1d2387",
+			"Fee5acaafb89eb9e07a2dfbfa856cf4ee2bd227a0cb08c020cd6b72d338b51ddc",
+			"Faee1a053f0a66e7687eebf784a22e1fd8b7c3472078af9e57d2c3af90d744d71",
+			"Fa9d604b60f3c84981ebc6d2a999206beb2d22b2eb3af1b5036d5c19b0d831c7d",
+			"F236f08e96932d40bbf93fa7678149fa490b641260f02b9f0418e71f74dacbf32",
+			"Fb997c0c2ee9e2e98fd19c183ef9b8c80b9b0345a226d1824b4d544b0dada2ef0"
+		],
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"tableID": "iidx-SP-29-omni-levels",
+		"title": "beatmania IIDX (SP) (CastHour Omnimix)"
 	},
 	{
 		"default": false,

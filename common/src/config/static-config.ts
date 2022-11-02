@@ -99,6 +99,7 @@ const prettyIIDXVersions: Versions["iidx:SP"] = {
 	27: "HEROIC VERSE",
 	28: "BISTROVER",
 	29: "CastHour",
+	30: "Resident",
 	"10-cs": "10th Style CS",
 	"11-cs": "IIDX RED CS",
 	"12-cs": "HAPPY SKY CS",

@@ -1,9 +1,9 @@
 const { FormatGame } = require("tachi-common");
 const { MutateCollection, CreateFolderID } = require("../util");
 
-const ptFolders = {};
-
 module.exports = function AddLevelVersionFolders(name, game, playtypes, version, levels) {
+	const ptFolders = {};
+
 	MutateCollection("folders.json", (folders) => {
 		for (const level of levels) {
 			const folder = {

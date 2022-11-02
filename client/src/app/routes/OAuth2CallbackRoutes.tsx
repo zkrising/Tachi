@@ -1,4 +1,4 @@
-import { ErrorPage } from "app/pages/ErrorPage";
+import LoginPage from "app/pages/LoginPage";
 import OAuth2CallbackPage from "app/pages/OAuth2CallbackPage";
 import SplashImage from "components/layout/misc/SplashImage";
 import { UserContext } from "context/UserContext";
@@ -9,7 +9,7 @@ export default function OAuth2CallbackRoutes() {
 	const { user } = useContext(UserContext);
 
 	if (!user) {
-		return <ErrorPage statusCode={401} />;
+		return <LoginPage />;
 	}
 
 	return (

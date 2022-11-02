@@ -11,6 +11,7 @@ t.test("#ParseEamusementCSV", (t) => {
 	t.test("Valid Rootage-Type CSV", (t) => {
 		const { iterableData, hasBeginnerAndLegg, version } = IIDXCSVParse(
 			TestingIIDXEamusementCSV26,
+			"SP",
 			logger
 		);
 
@@ -24,6 +25,7 @@ t.test("#ParseEamusementCSV", (t) => {
 	t.test("Valid HV CSV", (t) => {
 		const { iterableData, hasBeginnerAndLegg, version } = IIDXCSVParse(
 			TestingIIDXEamusementCSV27,
+			"SP",
 			logger
 		);
 
@@ -44,7 +46,7 @@ t.test("#ParseEamusementCSV", (t) => {
 		const buffer = Buffer.from(`${"a,".repeat(26)}a\n${"a,".repeat(3)}a`);
 
 		t.throws(
-			() => IIDXCSVParse(buffer, logger),
+			() => IIDXCSVParse(buffer, "SP", logger),
 			new ScoreImportFatalError(400, "Row 1 has an invalid amount of cells (4, expected 27)")
 		);
 
@@ -59,7 +61,7 @@ t.test("#ParseEamusementCSV", (t) => {
 		const InvalidVersions = Buffer.from(`${headerStr}\n${row}`);
 
 		t.throws(
-			() => IIDXCSVParse(InvalidVersions, logger),
+			() => IIDXCSVParse(InvalidVersions, "SP", logger),
 			new ScoreImportFatalError(
 				400,
 				"Invalid/Unsupported Eamusement Version Name GARBAGE VERSION."
@@ -71,12 +73,17 @@ t.test("#ParseEamusementCSV", (t) => {
 
 		let { version } = IIDXCSVParse(
 			Buffer.from([headerStr, row27th, row17th].join("\n")),
+			"SP",
 			logger
 		);
 
 		t.equal(version, "27", "Should pick the largest version from the list of scores.");
 
-		({ version } = IIDXCSVParse(Buffer.from([headerStr, row17th, row27th].join("\n")), logger));
+		({ version } = IIDXCSVParse(
+			Buffer.from([headerStr, row17th, row27th].join("\n")),
+			"SP",
+			logger
+		));
 
 		// this is technically allowing invalid eam-csv, but, who cares?
 		t.equal(

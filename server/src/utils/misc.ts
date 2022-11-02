@@ -1,12 +1,19 @@
 import { ONE_MEGABYTE } from "lib/constants/filesize";
 import { ONE_HOUR } from "lib/constants/time";
 import { TachiConfig } from "lib/setup/config";
-import { GetGameConfig } from "tachi-common";
+import { GetGameConfig, GetGamePTConfig } from "tachi-common";
 import { exec } from "child_process";
 import crypto from "crypto";
 import { URL } from "url";
 import type { KtLogger } from "lib/logger/logger";
-import type { Game, GamePTConfig, integer, Playtype } from "tachi-common";
+import type {
+	Game,
+	GamePTConfig,
+	integer,
+	Playtype,
+	GPTSupportedVersions,
+	IDStrings,
+} from "tachi-common";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
 // the developer of this has migrated everything to Force ES6 style modules,
@@ -297,4 +304,15 @@ export function WrapScriptPromise(promise: Promise<unknown>, logger: KtLogger) {
  */
 export function ClassToObject(cls: unknown) {
 	return JSON.parse(JSON.stringify(cls)) as unknown;
+}
+
+export function StringIsGameVersion(
+	game: Game,
+	playtype: Playtype,
+	version: string
+): version is GPTSupportedVersions[IDStrings] {
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	// @ts-expect-error yes, we know!
+	return gptConfig.supportedVersions.includes(version);
 }

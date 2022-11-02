@@ -1,9 +1,11 @@
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
+import { GetGamePTConfig, Playtype } from "tachi-common";
+import { StringIsGameVersion } from "utils/misc";
 import { CSVParseError, NaiveCSVParse } from "utils/naive-csv-parser";
 import type { ParserFunctionReturns } from "../types";
 import type { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 import type { KtLogger } from "lib/logger/logger";
-import type { integer } from "tachi-common";
+import type { integer, GPTSupportedVersions, Playtypes } from "tachi-common";
 
 const EAM_VERSION_NAMES: Record<string, integer> = {
 	"1st&substream": 1,
@@ -94,7 +96,7 @@ export function ResolveHeaders(headers: Array<string>, logger: KtLogger) {
 	);
 }
 
-export function IIDXCSVParse(csvBuffer: Buffer, logger: KtLogger) {
+export function IIDXCSVParse(csvBuffer: Buffer, playtype: Playtypes["iidx"], logger: KtLogger) {
 	let rawHeaders: Array<string>;
 	let rawRows: Array<Array<string>>;
 
@@ -123,7 +125,6 @@ export function IIDXCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 		const title = cells[1]!.trim();
 		const timestamp = cells[rawHeaders.length - 1]!.trim();
 
-		// wtf typescript?? what's the point of enums?
 		const versionNum = EAM_VERSION_NAMES[version!];
 
 		if (versionNum === undefined) {
@@ -167,13 +168,16 @@ export function IIDXCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 		);
 	}
 
-	if (!["26", "27", "28", "29"].includes(gameVersion.toString())) {
-		throw new ScoreImportFatalError(400, `Only versions 26, 27, 28 and 29 are supported.`);
+	if (!StringIsGameVersion("iidx", playtype, gameVersion.toString())) {
+		throw new ScoreImportFatalError(
+			400,
+			`Unsupported version '${gameVersion}'. Is your CSV properly filled out?`
+		);
 	}
 
 	return {
 		iterableData,
-		version: gameVersion.toString() as "26" | "27" | "28" | "29",
+		version: gameVersion.toString() as GPTSupportedVersions["iidx:DP" | "iidx:SP"],
 		hasBeginnerAndLegg,
 	};
 }
@@ -219,7 +223,11 @@ function GenericParseEamIIDXCSV(
 		);
 	}
 
-	const { hasBeginnerAndLegg, version, iterableData } = IIDXCSVParse(fileData.buffer, logger);
+	const { hasBeginnerAndLegg, version, iterableData } = IIDXCSVParse(
+		fileData.buffer,
+		playtype,
+		logger
+	);
 
 	logger.verbose("Successfully parsed CSV.");
 

@@ -3,8 +3,6 @@ import { Router } from "express";
 import { GetFoldersFromTable, GetGradeLampDistributionForFolders } from "utils/folder";
 import { GetTachiData, GetUGPT } from "utils/req-tachi-data";
 
-// @todo maybe refactor where middleware is stored to avoid paths this ugly.
-
 const router: Router = Router({ mergeParams: true });
 
 /**

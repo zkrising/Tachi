@@ -1,5 +1,3 @@
-// @todo #118
-
 import { SIXTEEN_MEGABTYES } from "lib/constants/filesize";
 import CreateLogCtx from "lib/logger/logger";
 import multer, { MulterError } from "multer";

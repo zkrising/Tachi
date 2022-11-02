@@ -101,7 +101,7 @@ export function SoftwareIDToVersion(model: string, logger: KtLogger) {
 			} else if (data.ext === EXT_CASTHOUR) {
 				if (data.rev === REV_NORMAL) {
 					return "29";
-				} else if (data.rev === REV_2DXTRA) {
+				} else if (data.rev === REV_OMNIMIX) {
 					return "29-omni";
 				}
 			}

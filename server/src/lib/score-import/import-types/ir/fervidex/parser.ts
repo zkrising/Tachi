@@ -101,11 +101,12 @@ export function SoftwareIDToVersion(model: string, logger: KtLogger) {
 			} else if (data.ext === EXT_CASTHOUR) {
 				if (data.rev === REV_NORMAL) {
 					return "29";
+				} else if (data.rev === REV_2DXTRA) {
+					return "29-omni";
 				}
 			}
 		}
 
-		logger.warn(`Unsupported Software Model ${model}.`);
 		throw new ScoreImportFatalError(400, `Unsupported Software Model ${model}.`);
 	} catch (err) {
 		logger.warn(`Unsupported Software Model ${model}.`, { err });

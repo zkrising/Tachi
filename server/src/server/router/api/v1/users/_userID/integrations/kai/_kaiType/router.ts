@@ -149,9 +149,9 @@ router.post(
 				`Unexpected status of ${getTokenRes.status} from ${url.href} oauth2 flow.`
 			);
 
-			return res.status(500).json({
+			return res.status(getTokenRes.status < 500 ? 400 : 500).json({
 				success: false,
-				description: `A fatal error has occured, This has been reported.`,
+				description: `The server you requested returned a status of ${getTokenRes.status}. Either your request was malformed, or the server is malfunctioning.`,
 			});
 		}
 
@@ -167,7 +167,7 @@ router.post(
 
 			return res.status(500).json({
 				success: false,
-				description: `A fatal error has occured, This has been reported.`,
+				description: `Failed to parse JSON returned from this service. Is their server malfunctioning?`,
 			});
 		}
 
@@ -177,7 +177,7 @@ router.post(
 			logger.error(`Validation error in JSON return from ${url.href}.`, { err });
 			return res.status(500).json({
 				success: false,
-				description: `A fatal error has occured, This has been reported.`,
+				description: `Failed to validate JSON returned from this service. Is their server malfunctioning?`,
 			});
 		}
 

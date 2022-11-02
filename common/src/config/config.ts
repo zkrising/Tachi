@@ -392,6 +392,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"27",
 			"28",
 			"29",
+			"30",
 			"26-omni",
 			"27-omni",
 			"28-omni",

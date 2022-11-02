@@ -755,6 +755,7 @@ type SupportedIIDXVersions =
 	| "28-omni"
 	| "28"
 	| "29"
+	| "30"
 	| "bmus"
 	| "inf";
 

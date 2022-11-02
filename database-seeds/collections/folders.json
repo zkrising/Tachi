@@ -8725,6 +8725,19 @@
 	{
 		"data": {
 			"level": "1",
+			"versions": "30"
+		},
+		"folderID": "F1218170b008e056f1651d6bca37c6cf5eb0f3bc1f770c94c5a56677a3a468314",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 1 (Resident)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
 			"versions": "26-omni"
 		},
 		"folderID": "F174738197aea623b7c061abf43b373474caf980e9956141fbd6fcd1d49d4123c",
@@ -9110,6 +9123,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 10 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "30"
+		},
+		"folderID": "F8894726fd2e4bc4f453b10db1f1f640d527c97627bf5e2549a0b13655eabb0ed",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 10 (Resident)",
 		"type": "charts"
 	},
 	{
@@ -9505,6 +9531,19 @@
 	{
 		"data": {
 			"level": "11",
+			"versions": "30"
+		},
+		"folderID": "F48eaed0a62996f00c7aabe9b2830e3cc40f00dfb13584e2e795fa0d6cfafc863",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 11 (Resident)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
 			"versions": "26-omni"
 		},
 		"folderID": "F6fc2860a02c118c46f3026a062aa37bc20aefd974fd71537cf31f265d3bc421c",
@@ -9890,6 +9929,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 12 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "30"
+		},
+		"folderID": "Faada4f588a096bfae62f5dc8970cc772e93c79d52c12aad72f5da499b41db7b8",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 12 (Resident)",
 		"type": "charts"
 	},
 	{
@@ -10285,6 +10337,19 @@
 	{
 		"data": {
 			"level": "2",
+			"versions": "30"
+		},
+		"folderID": "F9b579da9bf99227878c473acb9182cc28a35402388b039b41264f55ea7e608c1",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 2 (Resident)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
 			"versions": "26-omni"
 		},
 		"folderID": "F27fb9d0e1dc57c08837b3a776b72050feb5fb5de2fe0a26acc156f0eda3380e3",
@@ -10670,6 +10735,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 3 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "30"
+		},
+		"folderID": "F8d88c9042dc5a3916febedb5319705559a13a6e51983b44177449ff2e3592166",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 3 (Resident)",
 		"type": "charts"
 	},
 	{
@@ -11065,6 +11143,19 @@
 	{
 		"data": {
 			"level": "4",
+			"versions": "30"
+		},
+		"folderID": "Ff4efa0aeb48ee072de2bb896b3f6e9afe374ff3a0d5f954390b9b446fb69a71f",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 4 (Resident)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
 			"versions": "26-omni"
 		},
 		"folderID": "F4e718a25408ced009ff041dc8f8cd64b499e7e33b5ecb3d704da27caa8b209c4",
@@ -11450,6 +11541,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 5 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "30"
+		},
+		"folderID": "Fa0fc607ab004e3db7171be042b8924d82ed53833c1f1d335ebb17e20cbf996f1",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 5 (Resident)",
 		"type": "charts"
 	},
 	{
@@ -11845,6 +11949,19 @@
 	{
 		"data": {
 			"level": "6",
+			"versions": "30"
+		},
+		"folderID": "Fc631ee868c7ae1ff52179d7d6ddc14d21afde020786b9d7e338d2dc5c351a687",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 6 (Resident)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
 			"versions": "26-omni"
 		},
 		"folderID": "F0503c8327197fb699954ec4a851c2fe1cac90669c1f2354fd3100538863c84d4",
@@ -12230,6 +12347,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 7 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "30"
+		},
+		"folderID": "F0eeb939f674588d20c9fc506a7c5cc7f7eab744cd920e0d64411a83a553c67fa",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 7 (Resident)",
 		"type": "charts"
 	},
 	{
@@ -12625,6 +12755,19 @@
 	{
 		"data": {
 			"level": "8",
+			"versions": "30"
+		},
+		"folderID": "F767970d0fdad6f2859f41b4e12a6c9061457c6dca642d717b4ff4ac104711185",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 8 (Resident)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
 			"versions": "26-omni"
 		},
 		"folderID": "Ff91c90925e87aa820d0a2d008b224c26705325ea1ee9edf97db78b6fdf538024",
@@ -13010,6 +13153,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 9 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "30"
+		},
+		"folderID": "F2195f643591e3bc90df35ae0a9938d33849a157052e15f2987159dc2b97c8549",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 9 (Resident)",
 		"type": "charts"
 	},
 	{
@@ -13405,6 +13561,19 @@
 	{
 		"data": {
 			"level": "1",
+			"versions": "30"
+		},
+		"folderID": "F59452de8dbd5280583f1a9626229b6f63c08b50dd9da07917d6bf62785f82cdc",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 1 (Resident)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
 			"versions": "26-omni"
 		},
 		"folderID": "F226f4eb9264db4034d02d7ff765fd5cfb8adda48667c3a66a1fa513b4708cb5b",
@@ -13790,6 +13959,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 10 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "30"
+		},
+		"folderID": "Ff2ab48f201a0421127d6336179e0486f5255bc6a9449dc6e590c7d5ca038ba0e",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 10 (Resident)",
 		"type": "charts"
 	},
 	{
@@ -14185,6 +14367,19 @@
 	{
 		"data": {
 			"level": "11",
+			"versions": "30"
+		},
+		"folderID": "F133264d22c30a31e04d08a1017219fd3c7c5e5d2d775547e3a659f18ac403efa",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 11 (Resident)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
 			"versions": "26-omni"
 		},
 		"folderID": "Ff9dab5c7880bcb7013b0706d6a0ae2daac5bdff8729ef082f2b5420a766d80e2",
@@ -14570,6 +14765,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 12 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "30"
+		},
+		"folderID": "Ff922056a52212d7e1be2a37a13dcbb886ba46ae34f89c981241a3d982dad834f",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 12 (Resident)",
 		"type": "charts"
 	},
 	{
@@ -14965,6 +15173,19 @@
 	{
 		"data": {
 			"level": "2",
+			"versions": "30"
+		},
+		"folderID": "F9e8974e0908c0b2aa66a633e1fd87db4cd4a49de76eaa1c1dbbcbf4b289afd3d",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 2 (Resident)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
 			"versions": "26-omni"
 		},
 		"folderID": "F327d088f5332901ac22c301e1e365ab6e34955c708e867b82e1dcd1085a87515",
@@ -15350,6 +15571,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 3 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "30"
+		},
+		"folderID": "Fb90b54a097e5752c046361381045d40e5a588ca0ba8b5bc79ec33ceef7afe9a0",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 3 (Resident)",
 		"type": "charts"
 	},
 	{
@@ -15745,6 +15979,19 @@
 	{
 		"data": {
 			"level": "4",
+			"versions": "30"
+		},
+		"folderID": "Fc551356526d26eae601714be6a43cdf13d8fedde52a648b6843cdaa2eade1f1a",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 4 (Resident)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
 			"versions": "26-omni"
 		},
 		"folderID": "F43f1d129c29c800ca753a36173c8d5a8386a915a710bf85c2ca4fc525ac8c33f",
@@ -16130,6 +16377,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 5 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "30"
+		},
+		"folderID": "F05d9f5f9cc6081e0828131fbd363fd315f58fb0626755868ed8b4ded6db76ebc",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 5 (Resident)",
 		"type": "charts"
 	},
 	{
@@ -16525,6 +16785,19 @@
 	{
 		"data": {
 			"level": "6",
+			"versions": "30"
+		},
+		"folderID": "Fdd8050f9477441aa6e231589b9dc82c5bc8afc586236759d97d1a789bc9574ec",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 6 (Resident)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
 			"versions": "26-omni"
 		},
 		"folderID": "F3190734ad9aa56b3c93d7fda1174557d18c954978d856f16e029fc1b5cb9de57",
@@ -16910,6 +17183,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 7 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "30"
+		},
+		"folderID": "Fd48754a0ba9c04d0d3059589f0a3f2dbbc9f0debe00f8fd9f96848b3bc78d768",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 7 (Resident)",
 		"type": "charts"
 	},
 	{
@@ -17305,6 +17591,19 @@
 	{
 		"data": {
 			"level": "8",
+			"versions": "30"
+		},
+		"folderID": "F1288491e824bad195bc8c14bd6d388eaacb3da26d2ab076235c5c8d662f4e4c4",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 8 (Resident)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
 			"versions": "26-omni"
 		},
 		"folderID": "F5eff49cf9dc4499a9f46f1e303cd11cea6db5c2dda8378f8f2f686d260f3b25e",
@@ -17690,6 +17989,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 9 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "30"
+		},
+		"folderID": "F96f40e5b849ecf2be1a215ccd4af4f3df9ed499bd2c5be4b998a8891177ab337",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 9 (Resident)",
 		"type": "charts"
 	},
 	{

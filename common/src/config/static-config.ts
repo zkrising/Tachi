@@ -117,6 +117,7 @@ const prettyIIDXVersions: Versions["iidx:SP"] = {
 	"9-cs": "9th Style CS",
 	"27-omni": "HEROIC VERSE Omnimix",
 	"28-omni": "BISTROVER Omnimix",
+	"29-omni": "CastHour Omnimix",
 	"27-2dxtra": "HEROIC VERSE 2dxtra",
 	"28-2dxtra": "BISTROVER 2dxtra",
 	bmus: "BEATMANIA US",

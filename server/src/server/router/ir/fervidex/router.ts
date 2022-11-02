@@ -10,6 +10,7 @@ import {
 import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
+import { SoftwareIDToVersion } from "lib/score-import/import-types/ir/fervidex/parser";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { PrudenceErrorFormatter } from "server/middleware/prudence-validate";
@@ -104,9 +105,12 @@ const ValidateModelHeader: RequestHandler = (req, res, next) => {
 			return;
 		}
 
-		if (softID.ext === undefined || !supportedExts.includes(softID.ext)) {
+		try {
+			SoftwareIDToVersion(swModel, logger);
+		} catch (err) {
 			logger.info(
-				`Rejected invalid Software Model ${softID.ext} from user ${req[SYMBOL_TACHI_API_AUTH].userID}.`
+				`Rejected invalid Software Model ${softID.ext} from user ${req[SYMBOL_TACHI_API_AUTH].userID}.`,
+				{ err }
 			);
 			return res.status(400).json({
 				success: false,

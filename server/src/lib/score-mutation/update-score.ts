@@ -47,6 +47,10 @@ export default async function UpdateScore(
 		);
 	}
 
+	// In the event that the new chart isn't under the same song as the previous one, the songID
+	// needs to update.
+	newScore.songID = chart.songID;
+
 	const oldScoreID = oldScore.scoreID;
 
 	const newScoreID = CreateScoreID(newScore.userID, newScore, newScore.chartID);

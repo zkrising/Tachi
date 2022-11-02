@@ -2,6 +2,7 @@ import UGPTAddPreferredRanking from "./migrations/add-preferredRanking-to-ugpt";
 import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
 import FixUndefinedBMSData from "./migrations/fix-undefined-bms-data";
 import JoinINFCastHourCharts from "./migrations/join-inf-casthour-charts";
+import JoinINFCastHourSongs from "./migrations/join-inf-casthour-songs";
 import NullLR2HookFailedBPs from "./migrations/null-lr2hook-failed-bps";
 import RecalcBrokenIIDXNotecounts from "./migrations/recalc-broken-iidx-notecounts";
 import RemoveIIDXBeginners from "./migrations/remove-iidx-beginners";
@@ -41,7 +42,8 @@ if (Environment.nodeEnv !== "test") {
 			RecalcBrokenIIDXNotecounts,
 			RemoveIIDXBeginners,
 			UpdateJubeatPreferredTables,
-			JoinINFCastHourCharts
+			JoinINFCastHourCharts,
+			JoinINFCastHourSongs
 		);
 	}
 

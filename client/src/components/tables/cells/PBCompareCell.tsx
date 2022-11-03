@@ -8,7 +8,6 @@ export default function PBCompareCell({
 	base,
 	compare,
 	game,
-	playtype,
 	compareType,
 	shouldESD,
 }: {

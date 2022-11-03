@@ -43,7 +43,7 @@ export const ConverterIRKsHookSV6C: ConverterFunction<KsHookSV6CScore, KsHookSV6
 		service: "kshook SV6C",
 		comment: null,
 		importType: "ir/kshook-sv6c",
-		timeAchieved: context.timeReceived,
+		timeAchieved: context.timeReceived * 1000,
 		scoreData: {
 			score: data.score,
 			percent,

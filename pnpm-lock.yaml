@@ -378,7 +378,7 @@ importers:
       prudence: 0.9.8
       rate-limit-redis: 2.1.0
       redis: 3.1.2
-      rg-stats: ^0.3.0
+      rg-stats: ^0.4.1
       rimraf: 3.0.2
       safe-json-stringify: 1.2.0
       semver: ^7.3.7
@@ -443,7 +443,7 @@ importers:
       prudence: 0.9.8
       rate-limit-redis: 2.1.0
       redis: 3.1.2
-      rg-stats: 0.3.0
+      rg-stats: 0.4.1
       rimraf: 3.0.2
       safe-json-stringify: 1.2.0
       semver: 7.3.7
@@ -5892,6 +5892,7 @@ packages:
     dependencies:
       ms: 2.1.2
       supports-color: 6.1.0
+    dev: true
 
   /decamelize/1.2.0:
     resolution: {integrity: sha512-z2S+W9X73hAUUki+N+9Za2lBlun89zigOyGrsax+KUQ6wKW4ZoWpEYBkGhQjwAjjDCkWxhY0VKEhk8wzY7F5cA==}
@@ -7418,7 +7419,7 @@ packages:
       debug:
         optional: true
     dependencies:
-      debug: 4.3.4_supports-color@6.1.0
+      debug: 4.3.4
 
   /for-in/1.0.2:
     resolution: {integrity: sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ==}
@@ -12531,8 +12532,8 @@ packages:
     resolution: {integrity: sha512-d+IFYlryQMZjMYVJgL0vIZCdUpkYhUC9vzfMHOs/HNEeM5jjlVLDyuiru4UJlc67XoqGgby2Mp6IkcFoRXz4Gw==}
     dev: false
 
-  /rg-stats/0.3.0:
-    resolution: {integrity: sha512-lsdYxRllfrdZEl+lQEVMwO16Z58ZC4qt0/XE+E+m24eFHaxIUVCb+yWl9YTzt3Zw9QAPVcgOGRB0Q1otzB0s0g==}
+  /rg-stats/0.4.1:
+    resolution: {integrity: sha512-/hourbDZlxUXvo+ATS5Opx7MxkgueS5JIsJ9GRShQ3GdEatR9lnLW2yt6wZgyi4a0tvWej2lyzA+4kBkV1SXmw==}
     dev: false
 
   /rgb-regex/1.0.1:

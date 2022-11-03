@@ -36,6 +36,7 @@ export default function PBCompareCell({
 
 	let scoreRenderFn = (k: number) => k.toString();
 	let shouldShowPercent = false;
+	let shouldPrioritisePercent = false;
 
 	switch (game) {
 		case "chunithm":
@@ -53,6 +54,7 @@ export default function PBCompareCell({
 		case "jubeat":
 			scoreRenderFn = FormatMillions;
 			shouldShowPercent = true;
+			shouldPrioritisePercent = true;
 			break;
 		case "bms":
 		case "iidx":
@@ -92,11 +94,27 @@ export default function PBCompareCell({
 		>
 			{compareType === "score" ? (
 				<>
-					<strong>{(cmpScore > 0 ? "+" : "") + scoreRenderFn(cmpScore)}</strong>
-					{shouldShowPercent && (
+					{shouldPrioritisePercent ? (
 						<>
-							<br />
-							<small>({fmtCmpPercent})</small>
+							<strong>{fmtCmpPercent}</strong>
+							{shouldShowPercent && (
+								<>
+									<br />
+									<small>
+										({(cmpScore > 0 ? "+" : "") + scoreRenderFn(cmpScore)})
+									</small>
+								</>
+							)}
+						</>
+					) : (
+						<>
+							<strong>{(cmpScore > 0 ? "+" : "") + scoreRenderFn(cmpScore)}</strong>
+							{shouldShowPercent && (
+								<>
+									<br />
+									<small>({fmtCmpPercent})</small>
+								</>
+							)}
 						</>
 					)}
 					{esdDiff !== undefined && (

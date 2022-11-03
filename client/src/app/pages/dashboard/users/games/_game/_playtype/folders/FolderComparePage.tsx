@@ -357,7 +357,7 @@ function CompareCard({
 								</td>
 							</tr>
 							<tr>
-								<td>{otherUsername} Loss</td>
+								<td>{otherUsername} Win</td>
 								<td style={{ color: COLOUR_SET.red }}>{lampLoss}</td>
 								<td style={{ color: COLOUR_SET.red }}>
 									{((100 * lampLoss) / dataset.length).toFixed(2)}%

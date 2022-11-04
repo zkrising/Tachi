@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import JSON5 from "json5";
 import p from "prudence";
 import { StaticConfig } from "tachi-common";
-import { IsNullishOrEmptyStr } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
 import fs from "fs";
 import { URL } from "url";
@@ -264,7 +263,7 @@ if (!mongoUrl) {
 
 const seqUrl = process.env.SEQ_URL ?? "";
 
-if (!seqUrl && !IsNullishOrEmptyStr(tachiServerConfig.LOGGER_CONFIG.SEQ_API_KEY)) {
+if (!seqUrl && tachiServerConfig.LOGGER_CONFIG.SEQ_API_KEY) {
 	logger.warn(
 		`No SEQ_URL specified in environment, yet LOGGER_CONFIG.SEQ_API_KEY was defined. No logs will be sent to Seq!`
 	);

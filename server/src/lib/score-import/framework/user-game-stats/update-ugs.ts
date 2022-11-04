@@ -10,6 +10,9 @@ import type { ClassHandler } from "./types";
 import type { KtLogger } from "lib/logger/logger";
 import type { ClassDelta, Game, integer, Playtype, UserGameStats } from "tachi-common";
 
+/**
+ * @param allowDowngrades - If passed, this will allow metrics to be downgraded.
+ */
 export async function UpdateUsersGamePlaytypeStats(
 	game: Game,
 	playtype: Playtype,
@@ -17,6 +20,8 @@ export async function UpdateUsersGamePlaytypeStats(
 	classHandler: ClassHandler | null,
 	logger: KtLogger
 ): Promise<Array<ClassDelta>> {
+	logger.debug(`Calculating Ratings...`);
+
 	const ratings = await CalculateRatings(game, playtype, userID, logger);
 
 	// Attempt to find a users game stats if one already exists. If one doesn't exist,

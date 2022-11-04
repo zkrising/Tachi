@@ -34,7 +34,7 @@ export function CalculateSDVXClass(
 export function SDVXVF6ToClass(vf: number, logger: KtLogger) {
 	// This is impossible, but a failsafe regardless
 	if (vf >= 24) {
-		logger.warn(`User has excessive VF5 of ${vf}. Defaulting to Imperial IV.`);
+		logger.warn(`User has excessive VF6 of ${vf}. Defaulting to Imperial IV.`);
 		return SDVXVFClasses.IMPERIAL_IV;
 	} else if (vf >= 20) {
 		// imperial i -> iv has gaps of 1

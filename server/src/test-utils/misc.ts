@@ -7,10 +7,13 @@ import {
 	HC511UserGoal,
 	TestingIIDXSPScore,
 	TestingIIDXSPScorePB,
+	TestingSDVXAlbidaChart,
+	TestingSDVXPB,
 	TestingSDVXScore,
 } from "./test-data";
 import deepmerge from "deepmerge";
 import type {
+	ChartDocument,
 	Game,
 	GoalDocument,
 	GoalSubscriptionDocument,
@@ -116,4 +119,18 @@ export function mkFakeGameStats(userID: integer, modifant: Partial<UserGameStats
 		},
 		modifant
 	);
+}
+
+export function mkFakeSDVXChart(
+	chartID: string,
+	modifant: Partial<ChartDocument<"sdvx:Single">> = {}
+) {
+	return dmf(TestingSDVXAlbidaChart, {
+		chartID,
+		...modifant,
+	});
+}
+
+export function mkFakeSDVXPB(modifant: Partial<PBScoreDocument<"sdvx:Single">> = {}) {
+	return dmf(TestingSDVXPB, modifant);
 }

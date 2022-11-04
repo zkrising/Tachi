@@ -169,6 +169,40 @@ export const TestingSDVXScore: ScoreDocument<"sdvx:Single"> = {
 	importType: "ir/direct-manual",
 };
 
+export const TestingSDVXPB: PBScoreDocument<"sdvx:Single"> = {
+	game: "sdvx",
+	playtype: "Single",
+	userID: 1,
+	scoreData: {
+		score: 786,
+		lamp: "CLEAR",
+		percent: 50,
+		grade: "C",
+		esd: 30,
+		gradeIndex: 3,
+		lampIndex: 4,
+		judgements: {},
+		hitMeta: {},
+	},
+	calculatedData: {},
+	timeAchieved: 1619454485988,
+	songID: 1,
+
+	// albida adv
+	chartID: "5088a4d0e1ee9d0cc2f625934306e45b1a60699b",
+	highlight: false,
+	isPrimary: true,
+	composedFrom: {
+		lampPB: "score_1",
+		scorePB: "score_1",
+	},
+	rankingData: {
+		outOf: 1,
+		rank: 1,
+		rivalRank: null,
+	},
+};
+
 export const TestingSDVXAlbidaChart: ChartDocument<"sdvx:Single"> = {
 	rgcID: null,
 	chartID: "5088a4d0e1ee9d0cc2f625934306e45b1a60699b",

@@ -124,7 +124,7 @@ t.test("#ProcessClassDeltas", (t) => {
 		t.end();
 	});
 
-	t.test("Should not return worse classes", async (t) => {
+	t.test("Should not return worse classes if the class isn't downgradable", async (t) => {
 		const res = await ProcessClassDeltas(
 			"iidx",
 			"SP",
@@ -135,6 +135,29 @@ t.test("#ProcessClassDeltas", (t) => {
 		);
 
 		t.strictSame(res, []);
+
+		t.end();
+	});
+
+	t.test("Should return worse classes if the class is downgradable", async (t) => {
+		const res = await ProcessClassDeltas(
+			"sdvx",
+			"Single",
+			{ vfClass: 10 },
+			{ classes: { vfClass: 9 } } as unknown as UserGameStats,
+			1,
+			logger
+		);
+
+		t.strictSame(res, [
+			{
+				game: "sdvx",
+				set: "vfClass",
+				playtype: "Single",
+				old: 10,
+				new: 9,
+			},
+		]);
 
 		t.end();
 	});

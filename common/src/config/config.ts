@@ -81,6 +81,7 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	clearLamp: Lamps[I];
 
 	classHumanisedFormat: Record<GameClassSets[I], Array<ClassInfo>>;
+	classProperties: Record<GameClassSets[I], { downgradable: boolean }>;
 
 	judgements: Array<JudgementLookup[I]>;
 
@@ -356,6 +357,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		classHumanisedFormat: {
 			dan: IIDXDans,
 		},
+		classProperties: {
+			dan: { downgradable: false },
+		},
 
 		supportsESD: true,
 		judgementWindows: [
@@ -553,6 +557,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		classHumanisedFormat: {
 			dan: IIDXDans,
 		},
+		classProperties: {
+			dan: { downgradable: false },
+		},
 
 		supportsESD: true,
 		judgementWindows: [
@@ -677,6 +684,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		classHumanisedFormat: {
 			colour: CHUNITHMColours,
 		},
+		classProperties: {
+			colour: { downgradable: true },
+		},
 
 		supportsESD: false,
 		judgements: ["jcrit", "justice", "attack", "miss"],
@@ -769,6 +779,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			dan: SDVXDans,
 			vfClass: SDVXVFClasses,
 		},
+		classProperties: {
+			dan: { downgradable: false },
+			vfClass: { downgradable: true },
+		},
 
 		supportsESD: false,
 		judgements: ["critical", "near", "miss"],
@@ -855,6 +869,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		clearLamp: "CLEAR",
 
 		classHumanisedFormat: {},
+		classProperties: {},
 
 		supportsESD: false,
 		judgements: ["critical", "near", "miss"],
@@ -939,6 +954,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		clearLamp: "CLEAR",
 
 		classHumanisedFormat: {},
+		classProperties: {},
 
 		supportsESD: false,
 		judgements: ["critical", "near", "miss"],
@@ -1010,6 +1026,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		clearLamp: "CLEAR",
 
 		classHumanisedFormat: {},
+		classProperties: {},
 
 		supportsESD: true,
 		judgementWindows: [
@@ -1122,6 +1139,12 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			lnDan: BMSLNDans,
 			scratchDan: BMSScratchDans,
 		},
+		classProperties: {
+			genocideDan: { downgradable: false },
+			stslDan: { downgradable: false },
+			lnDan: { downgradable: false },
+			scratchDan: { downgradable: false },
+		},
 
 		supportsESD: false,
 		judgements: ["pgreat", "great", "good", "bad", "poor"],
@@ -1230,6 +1253,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		classHumanisedFormat: {
 			genocideDan: BMSGenocideDans,
+		},
+		classProperties: {
+			genocideDan: { downgradable: false },
 		},
 
 		supportsESD: false,
@@ -1357,6 +1383,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		classHumanisedFormat: {
 			dan: DDRDans,
+		},
+		classProperties: {
+			dan: { downgradable: false },
 		},
 
 		supportsESD: true,
@@ -1487,6 +1516,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		classHumanisedFormat: {
 			dan: DDRDans,
 		},
+		classProperties: {
+			dan: { downgradable: false },
+		},
 
 		supportsESD: true,
 		judgementWindows: [
@@ -1585,6 +1617,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		clearLamp: "CLEAR",
 
 		classHumanisedFormat: {},
+		classProperties: {},
 
 		supportsESD: false,
 		judgements: ["perfect", "great", "good", "miss"],
@@ -1688,6 +1721,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		classHumanisedFormat: {
 			colour: GitadoraColours,
 		},
+		classProperties: {
+			colour: { downgradable: true },
+		},
 
 		supportsESD: false,
 		judgements: ["perfect", "great", "good", "ok", "miss"],
@@ -1773,6 +1809,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		classHumanisedFormat: {
 			colour: GitadoraColours,
+		},
+		classProperties: {
+			colour: { downgradable: true },
 		},
 
 		supportsESD: false,
@@ -1863,6 +1902,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			stageUp: WaccaStageUps,
 			colour: WaccaColours,
 		},
+		classProperties: {
+			stageUp: { downgradable: false },
+			colour: { downgradable: true },
+		},
 
 		supportsESD: false,
 		judgements: ["marvelous", "great", "good", "miss"],
@@ -1946,6 +1989,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		classHumanisedFormat: {
 			class: PopnClasses,
+		},
+		classProperties: {
+			class: { downgradable: true },
 		},
 
 		supportsESD: false,
@@ -2033,6 +2079,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		classHumanisedFormat: {
 			colour: JubeatColours,
+		},
+		classProperties: {
+			colour: { downgradable: true },
 		},
 
 		supportsESD: false,
@@ -2138,6 +2187,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		classHumanisedFormat: {
 			dan: PMSDans,
+		},
+		classProperties: {
+			dan: { downgradable: false },
 		},
 
 		supportsESD: false,
@@ -2247,6 +2299,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		classHumanisedFormat: {
 			dan: PMSDans,
 		},
+		classProperties: {
+			dan: { downgradable: false },
+		},
 
 		supportsESD: false,
 		judgements: ["cool", "great", "good", "bad", "poor"],
@@ -2350,6 +2405,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		clearLamp: "CLEAR",
 
 		classHumanisedFormat: {},
+		classProperties: {},
 
 		supportsESD: false,
 		judgements: ["fantastic", "excellent", "great", "decent", "wayoff", "miss"],

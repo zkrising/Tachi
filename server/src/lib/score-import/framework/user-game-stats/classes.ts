@@ -9,6 +9,7 @@ import {
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import { EmitWebhookEvent } from "lib/webhooks/webhooks";
+import { GetGamePTConfig } from "tachi-common";
 import { ReturnClassIfGreater } from "utils/class";
 import type { ClassHandler, ScoreClasses } from "./types";
 import type { KtLogger } from "lib/logger/logger";
@@ -87,7 +88,7 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
  * @param ratings - A users ratings. This is calculated in rating.ts, and passed via update-ugs.ts.
  * We request this because we need it for things like gitadora's skill divisions - We don't need to calculate our skill
  * statistic twice if we just request it be passed to us!
- * @param ImportTypeClassResolveFn - The Custom Resolve Function that certain import types may pass to us as a means
+ * @param ClassHandler - The Custom Resolve Function that certain import types may pass to us as a means
  * for retrieving information about a class. This returns the same thing as this function, and it is merged with the
  * defaults.
  */
@@ -143,6 +144,8 @@ export async function ProcessClassDeltas(
 
 	const achievementOps = [];
 
+	const gptConfig = GetGamePTConfig(game, playtype);
+
 	for (const s of Object.keys(classes)) {
 		const classSet = s as keyof GameClasses<IDStrings>;
 		const classVal = classes[classSet];
@@ -152,12 +155,19 @@ export async function ProcessClassDeltas(
 			continue;
 		}
 
+		const classConfig = gptConfig.classProperties[classSet];
+
 		try {
 			const isGreater = ReturnClassIfGreater(classSet, classVal, userGameStats);
 
-			if (isGreater === false) {
+			// if this was worse, and this class isn't downgradable (i.e. it's a dan)
+			// then don't do anything
+			if (isGreater === false && !classConfig.downgradable) {
 				continue;
 			} else {
+				// otherwise, provide this as an update.
+				// This *may* be negative in the case where the user downgraded a
+				// downgradable class (i.e. deleted scores, chart re-rates).
 				let delta: ClassDelta;
 
 				if (isGreater === null) {
@@ -178,7 +188,13 @@ export async function ProcessClassDeltas(
 					};
 				}
 
-				void EmitWebhookEvent({ type: "class-update/v1", content: { userID, ...delta } });
+				// if this wasn't a downgrade
+				if (isGreater !== false) {
+					void EmitWebhookEvent({
+						type: "class-update/v1",
+						content: { userID, ...delta },
+					});
+				}
 
 				achievementOps.push({
 					userID,

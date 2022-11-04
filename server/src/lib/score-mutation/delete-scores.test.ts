@@ -1,10 +1,15 @@
 import { DeleteScore } from "./delete-scores";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
+import { SDVXVFClasses } from "lib/constants/classes";
+import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
+import { mkFakeSDVXChart, mkFakeSDVXPB } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
-import { TestingIIDXSPScore } from "test-utils/test-data";
+import { TestingIIDXSPScore, TestingSDVXScore } from "test-utils/test-data";
 import type { ImportDocument, ScoreDocument, SessionDocument } from "tachi-common";
+
+const logger = CreateLogCtx(__filename);
 
 const mockImportDocument: ImportDocument = {
 	userID: 1,
@@ -169,6 +174,79 @@ t.test("#DeleteScore", (t) => {
 		});
 
 		t.equal(dbSession, null, "Should remove the session from the database.");
+
+		t.end();
+	});
+
+	t.test("Should update classes if the user's classes should need to change.", async (t) => {
+		await db.charts.sdvx.insert(
+			mkFakeSDVXChart("chart_1", {
+				difficulty: "EXH",
+			})
+		);
+		await db.charts.sdvx.insert(
+			mkFakeSDVXChart("chart_2", {
+				difficulty: "NOV",
+			})
+		);
+
+		const score = deepmerge<ScoreDocument>(TestingSDVXScore, {
+			scoreID: "scoreid_1",
+			scoreData: { score: 10_000_000 } as ScoreDocument["scoreData"],
+			chartID: "chart_1",
+			calculatedData: { VF6: 10 },
+		});
+		const score2 = deepmerge<ScoreDocument>(TestingSDVXScore, {
+			scoreID: "scoreid_2",
+			scoreData: { score: 9_000_000 } as ScoreDocument["scoreData"],
+			chartID: "chart_2",
+			calculatedData: { VF6: 4 },
+		});
+
+		await db.scores.insert([score, score2]);
+		await db["personal-bests"].insert([
+			mkFakeSDVXPB({
+				chartID: "chart_1",
+				calculatedData: {
+					VF6: 10,
+				},
+			}),
+			mkFakeSDVXPB({
+				chartID: "chart_2",
+				calculatedData: {
+					VF6: 4,
+				},
+			}),
+		]);
+
+		await db["game-stats"].insert({
+			userID: 1,
+			game: "sdvx",
+			playtype: "Single",
+			classes: {
+				vfClass: SDVXVFClasses.CYAN_I,
+			},
+			ratings: {
+				VF6: 14,
+			},
+		});
+
+		await DeleteScore(score);
+
+		const res = await db["game-stats"].findOne({
+			userID: 1,
+			game: "sdvx",
+			playtype: "Single",
+		});
+
+		t.hasStrict(res, {
+			classes: {
+				vfClass: SDVXVFClasses.SIENNA_II,
+			},
+			ratings: {
+				VF6: 4,
+			},
+		});
 
 		t.end();
 	});

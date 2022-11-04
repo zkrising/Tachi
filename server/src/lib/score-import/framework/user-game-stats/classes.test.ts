@@ -143,8 +143,8 @@ t.test("#ProcessClassDeltas", (t) => {
 		const res = await ProcessClassDeltas(
 			"sdvx",
 			"Single",
-			{ vfClass: 10 },
-			{ classes: { vfClass: 9 } } as unknown as UserGameStats,
+			{ vfClass: 9 },
+			{ classes: { vfClass: 10 } } as unknown as UserGameStats,
 			1,
 			logger
 		);

@@ -6,7 +6,9 @@ import { GetGamePTConfig } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingBMS7KScore, TestingIIDXSPScore } from "test-utils/test-data";
+import type { PBScoreDocumentNoRank } from "./create-pb-doc";
 import type { KtLogger } from "lib/logger/logger";
+import type { ScoreDocument } from "tachi-common";
 
 const IIDXScore = TestingIIDXSPScore;
 
@@ -188,6 +190,162 @@ t.test("#CreatePBDoc", (t) => {
 			res?.calculatedData.sieglinde,
 			500,
 			"Should select the lampPBs sieglinde and not the score PBs."
+		);
+
+		t.end();
+	});
+
+	t.test("(BMS) Should inherit BP from the best BP score.", async (t) => {
+		await db.scores.remove({});
+		await db.scores.insert([
+			TestingBMS7KScore,
+			deepmerge(TestingBMS7KScore, {
+				scoreData: {
+					lamp: "FULL COMBO",
+					lampIndex: lamps.indexOf("FULL COMBO"),
+					score: 0,
+					percent: 0,
+					hitMeta: {
+						bp: 15,
+					},
+				},
+				calculatedData: {
+					sieglinde: 500,
+				},
+				scoreID: "LAMP_PB_ID",
+			}),
+			deepmerge(TestingBMS7KScore, {
+				scoreData: {
+					hitMeta: {
+						bp: 1,
+					},
+				},
+				scoreID: "BP_PB_ID",
+			}),
+		]);
+
+		const res = (await CreatePBDoc(1, TestingBMS7KScore.chartID, logger)) as
+			| PBScoreDocumentNoRank<"bms:7K" | "bms:14K">
+			| undefined;
+
+		t.not(res, undefined, "Should actually return something.");
+
+		t.equal(
+			res?.scoreData.hitMeta.bp,
+			1,
+			"Should select the best BP's BP and not the score PBs."
+		);
+
+		t.strictSame(res?.composedFrom, {
+			lampPB: "LAMP_PB_ID",
+			scorePB: TestingBMS7KScore.scoreID,
+			other: [
+				{
+					name: "Best BP",
+					scoreID: "BP_PB_ID",
+				},
+			],
+		});
+
+		t.end();
+	});
+
+	t.test("(PMS) Should inherit BP from the best BP score.", async (t) => {
+		const pmsScore = deepmerge(TestingBMS7KScore, {
+			game: "pms",
+			playtype: "Controller",
+		}) as unknown as ScoreDocument<"pms:Controller">;
+
+		await db.scores.remove({});
+		await db.scores.insert([
+			pmsScore,
+			deepmerge(pmsScore, {
+				scoreData: {
+					lamp: "FULL COMBO",
+					lampIndex: lamps.indexOf("FULL COMBO"),
+					score: 0,
+					percent: 0,
+					hitMeta: {
+						bp: 15,
+					},
+				},
+				calculatedData: {
+					sieglinde: 500,
+				},
+				scoreID: "LAMP_PB_ID",
+			}),
+			deepmerge(pmsScore, {
+				scoreData: {
+					hitMeta: {
+						bp: 1,
+					},
+				},
+				scoreID: "BP_PB_ID",
+			}),
+		]);
+
+		const res = (await CreatePBDoc(1, TestingBMS7KScore.chartID, logger)) as
+			| PBScoreDocumentNoRank<"bms:7K" | "bms:14K">
+			| undefined;
+
+		t.not(res, undefined, "Should actually return something.");
+
+		t.equal(
+			res?.scoreData.hitMeta.bp,
+			1,
+			"Should select the best BP's BP and not the score PBs."
+		);
+
+		t.strictSame(res?.composedFrom, {
+			lampPB: "LAMP_PB_ID",
+			scorePB: TestingBMS7KScore.scoreID,
+			other: [
+				{
+					name: "Best BP",
+					scoreID: "BP_PB_ID",
+				},
+			],
+		});
+
+		t.end();
+	});
+
+	t.test("(BMS) Should inherit graph data from the best lamp.", async (t) => {
+		await db.scores.remove({});
+		await db.scores.insert([
+			TestingBMS7KScore,
+			deepmerge(TestingBMS7KScore, {
+				scoreData: {
+					lamp: "FULL COMBO",
+					lampIndex: lamps.indexOf("FULL COMBO"),
+					score: 0,
+					percent: 0,
+					hitMeta: {
+						bp: 15,
+						gauge: 12,
+						gaugeHistory: [20, 20, 21, 12],
+					},
+				},
+				calculatedData: {
+					sieglinde: 500,
+				},
+				scoreID: "LAMP_PB_ID",
+			}),
+		]);
+
+		const res = (await CreatePBDoc(1, TestingBMS7KScore.chartID, logger)) as
+			| PBScoreDocumentNoRank<"bms:7K" | "bms:14K">
+			| undefined;
+
+		t.not(res, undefined, "Should actually return something.");
+
+		t.hasStrict(
+			res?.scoreData.hitMeta,
+			{
+				gauge: 12,
+				gaugeHistory: [20, 20, 21, 12],
+			},
+			"Should select the lampPBs gauge data and not the score PBs."
 		);
 
 		t.end();

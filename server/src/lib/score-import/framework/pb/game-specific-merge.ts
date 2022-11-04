@@ -25,44 +25,7 @@ export async function IIDXMergeFn(
 
 	DeleteUndefinedProps(pbDoc.scoreData.hitMeta);
 
-	// bad+poor PB document. This is a weird, third indepdenent metric that IIDX players sometimes care about.
-	const bpPB = (await db.scores.findOne(
-		{
-			userID: scorePB.userID,
-			chartID: scorePB.chartID,
-			"scoreData.hitMeta.bp": { $exists: true },
-		},
-		{
-			sort: {
-				// bp 0 is the best BP, bp 1 is worse, so on
-				"scoreData.hitMeta.bp": 1,
-			},
-		}
-	)) as ScoreDocument<"iidx:DP" | "iidx:SP"> | null;
-
-	if (!bpPB) {
-		logger.verbose(
-			`Could not find BP PB for ${scorePB.userID} ${scorePB.chartID} in PB joining. User likely has no scores with BP defined.`,
-			{ pbDoc }
-		);
-
-		// this isn't actually an error! we just don't have to do anything.
-		return true;
-	}
-
-	// by default scorePB is chosen for hitMeta fields, so, we can skip any assignments here by returning here.
-	if (bpPB.scoreID === scorePB.scoreID) {
-		logger.debug(`Skipped merging BP PB as scorePB was also BP PB.`);
-		return true;
-	} else if (bpPB.scoreID === lampPB.scoreID) {
-		pbDoc.scoreData.hitMeta.bp = lampPB.scoreData.hitMeta.bp;
-		logger.debug(`Skipped adding BP PB as composedFrom because lampPB was also BP PB.`);
-		return true;
-	}
-
-	pbDoc.scoreData.hitMeta.bp = bpPB.scoreData.hitMeta.bp!;
-
-	pbDoc.composedFrom.other = [{ name: "Best BP", scoreID: bpPB.scoreID }];
+	await MergeBPPB(pbDoc, scorePB, lampPB, logger);
 
 	return true;
 }
@@ -78,7 +41,23 @@ export function PopnMergeFn(
 	return true;
 }
 
-export function BMSMergeFn(
+export async function BMSMergeFn(
+	pbDoc: PBScoreDocument<"bms:7K" | "bms:14K">,
+	scorePB: ScoreDocument<"bms:7K" | "bms:14K">,
+	lampPB: ScoreDocument<"bms:7K" | "bms:14K">,
+	logger: KtLogger
+) {
+	pbDoc.calculatedData.sieglinde = lampPB.calculatedData.sieglinde;
+
+	pbDoc.scoreData.hitMeta.gaugeHistory = lampPB.scoreData.hitMeta.gaugeHistory;
+	pbDoc.scoreData.hitMeta.gauge = lampPB.scoreData.hitMeta.gauge;
+
+	await MergeBPPB(pbDoc, scorePB, lampPB, logger);
+
+	return true;
+}
+
+export function PMSMergeFn(
 	pbDoc: PBScoreDocument<"bms:7K" | "bms:14K">,
 	scorePB: ScoreDocument<"bms:7K" | "bms:14K">,
 	lampPB: ScoreDocument<"bms:7K" | "bms:14K">,
@@ -167,4 +146,56 @@ export async function SDVXMergeFn(
 	}
 
 	return true;
+}
+
+/**
+ * Given typical PB-Merge information, fetch the best `bp` for this user's scores
+ * on this chart and merge it with the `pbDoc` if it's large enough.
+ *
+ * @returns NOTHING, mutates original input.
+ */
+async function MergeBPPB(
+	pbDoc: PBScoreDocument<"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP">,
+	scorePB: ScoreDocument<"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP">,
+	lampPB: ScoreDocument<"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP">,
+	logger: KtLogger
+) {
+	// bad+poor PB document. This is a weird, third indepdenent metric that IIDX players sometimes care about.
+	const bpPB = (await db.scores.findOne(
+		{
+			userID: scorePB.userID,
+			chartID: scorePB.chartID,
+			"scoreData.hitMeta.bp": { $exists: true },
+		},
+		{
+			sort: {
+				// bp 0 is the best BP, bp 1 is worse, so on
+				"scoreData.hitMeta.bp": 1,
+			},
+		}
+	)) as ScoreDocument<"iidx:DP" | "iidx:SP"> | null;
+
+	if (!bpPB) {
+		logger.verbose(
+			`Could not find BP PB for ${scorePB.userID} ${scorePB.chartID} in PB joining. User likely has no scores with BP defined.`,
+			{ pbDoc }
+		);
+
+		// this isn't actually an error! we just don't have to do anything.
+		return;
+	}
+
+	// by default scorePB is chosen for hitMeta fields, so, we can skip any assignments here by returning here.
+	if (bpPB.scoreID === scorePB.scoreID) {
+		logger.debug(`Skipped merging BP PB as scorePB was also BP PB.`);
+		return true;
+	} else if (bpPB.scoreID === lampPB.scoreID) {
+		pbDoc.scoreData.hitMeta.bp = lampPB.scoreData.hitMeta.bp;
+		logger.debug(`Skipped adding BP PB as composedFrom because lampPB was also BP PB.`);
+		return;
+	}
+
+	pbDoc.scoreData.hitMeta.bp = bpPB.scoreData.hitMeta.bp;
+
+	pbDoc.composedFrom.other = [{ name: "Best BP", scoreID: bpPB.scoreID }];
 }

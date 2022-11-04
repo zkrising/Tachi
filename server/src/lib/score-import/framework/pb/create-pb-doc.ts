@@ -1,17 +1,28 @@
 import {
 	BMSMergeFn,
 	IIDXMergeFn,
+	PMSMergeFn,
 	PopnMergeFn,
 	SDVXMergeFn,
 	USCMergeFn,
 } from "./game-specific-merge";
 import db from "external/mongo/db";
-import { GetEveryonesRivalIDs, GetRivalIDs, GetRivalUsers } from "lib/rivals/rivals";
+import { GetEveryonesRivalIDs } from "lib/rivals/rivals";
 import type { KtLogger } from "lib/logger/logger";
 import type { BulkWriteUpdateOneOperation } from "mongodb";
-import type { Game, integer, PBScoreDocument, Playtype, ScoreDocument } from "tachi-common";
+import type {
+	Game,
+	IDStrings,
+	integer,
+	PBScoreDocument,
+	Playtype,
+	ScoreDocument,
+} from "tachi-common";
 
-export type PBScoreDocumentNoRank = Omit<PBScoreDocument, "rankingData">;
+export type PBScoreDocumentNoRank<I extends IDStrings = IDStrings> = Omit<
+	PBScoreDocument<I>,
+	"rankingData"
+>;
 
 export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLogger) {
 	const scorePB = await db.scores.findOne(
@@ -200,8 +211,9 @@ function GetGameSpecificMergeFn(game: Game) {
 		case "popn":
 			return PopnMergeFn;
 		case "bms":
-		case "pms":
 			return BMSMergeFn;
+		case "pms":
+			return PMSMergeFn;
 		default:
 			return null;
 	}

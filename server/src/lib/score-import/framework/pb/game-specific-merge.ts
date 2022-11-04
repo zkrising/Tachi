@@ -57,13 +57,15 @@ export async function BMSMergeFn(
 	return true;
 }
 
-export function PMSMergeFn(
-	pbDoc: PBScoreDocument<"bms:7K" | "bms:14K">,
-	scorePB: ScoreDocument<"bms:7K" | "bms:14K">,
-	lampPB: ScoreDocument<"bms:7K" | "bms:14K">,
-	_logger: KtLogger
+export async function PMSMergeFn(
+	pbDoc: PBScoreDocument<"pms:Controller" | "pms:Keyboard">,
+	scorePB: ScoreDocument<"pms:Controller" | "pms:Keyboard">,
+	lampPB: ScoreDocument<"pms:Controller" | "pms:Keyboard">,
+	logger: KtLogger
 ) {
 	pbDoc.calculatedData.sieglinde = lampPB.calculatedData.sieglinde;
+
+	await MergeBPPB(pbDoc, scorePB, lampPB, logger);
 
 	return true;
 }
@@ -148,6 +150,14 @@ export async function SDVXMergeFn(
 	return true;
 }
 
+type IDStringsWithBP =
+	| "bms:7K"
+	| "bms:14K"
+	| "iidx:DP"
+	| "iidx:SP"
+	| "pms:Controller"
+	| "pms:Keyboard";
+
 /**
  * Given typical PB-Merge information, fetch the best `bp` for this user's scores
  * on this chart and merge it with the `pbDoc` if it's large enough.
@@ -155,9 +165,9 @@ export async function SDVXMergeFn(
  * @returns NOTHING, mutates original input.
  */
 async function MergeBPPB(
-	pbDoc: PBScoreDocument<"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP">,
-	scorePB: ScoreDocument<"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP">,
-	lampPB: ScoreDocument<"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP">,
+	pbDoc: PBScoreDocument<IDStringsWithBP>,
+	scorePB: ScoreDocument<IDStringsWithBP>,
+	lampPB: ScoreDocument<IDStringsWithBP>,
 	logger: KtLogger
 ) {
 	// bad+poor PB document. This is a weird, third indepdenent metric that IIDX players sometimes care about.

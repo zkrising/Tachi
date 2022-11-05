@@ -33,7 +33,7 @@ interface PoyashiProxyBPIInfo {
 	textage: string;
 	difficultyLevel: string;
 	dpLevel: string;
-	coef?: number | null;
+	coef?: number | string | null;
 	removed?: boolean;
 }
 
@@ -140,7 +140,9 @@ export async function UpdatePoyashiData() {
 			continue;
 		}
 
-		const newCoef = d.coef === -1 || d.coef === undefined ? null : d.coef;
+		// for some godforsaken reason, poyashi likes to store their numbers as strings
+		// ... but only sometimes.
+		const newCoef = Number(d.coef) === -1 || d.coef === undefined ? null : Number(d.coef);
 		const newKavg = Number(d.avg);
 		const newWR = Number(d.wr);
 

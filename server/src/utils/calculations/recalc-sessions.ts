@@ -19,6 +19,11 @@ export async function RecalcSessions(filter = {}) {
 			}
 		);
 
+		if (scores.length === 0) {
+			await db.sessions.remove({ sessionID: session.sessionID });
+			continue;
+		}
+
 		let c;
 
 		try {

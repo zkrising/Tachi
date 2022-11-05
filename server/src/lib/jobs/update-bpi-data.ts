@@ -1,3 +1,5 @@
+/* eslint-disable no-await-in-loop */
+import { VERSION_INFO } from "lib/constants/version";
 import { PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
@@ -164,7 +166,13 @@ export async function UpdatePoyashiData() {
 	if (updatedChartIDs.length !== 0) {
 		logger.info(`Finished applying BPI changes. Writing back.`);
 
-		await repo.CommitChangesBack(`BPI Update ${new Date().toISOString()}`);
+		for (const branch of ["staging", `release/${VERSION_INFO.major}.${VERSION_INFO.minor}`]) {
+			const commitBackRepo = await PullDatabaseSeeds(branch);
+
+			await commitBackRepo.CommitChangesBack(`BPI Update ${new Date().toISOString()}`);
+
+			await commitBackRepo.Destroy();
+		}
 
 		logger.info(`Recalcing scores.`);
 		await RecalcAllScores({

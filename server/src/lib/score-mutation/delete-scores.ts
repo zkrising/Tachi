@@ -159,30 +159,37 @@ export async function DeleteMultipleScores(scores: Array<ScoreDocument>, blackli
 		}
 	);
 
+	// remove all sessions that no longer have scores in them.
+	await db.sessions.remove({
+		sessionID: { $in: sessions.map((e) => e.sessionID) },
+		scoreInfo: { $size: 0 },
+	});
+
 	const importDoc = await db.imports.findOne({
 		scoreIDs: { $in: scoreIDs },
 	});
 
 	if (importDoc) {
-		if (importDoc.scoreIDs.length === 1) {
-			await db.imports.remove({
+		// pull all scoreIDs from this import.
+		await db.imports.update(
+			{
 				importID: importDoc.importID,
-			});
-		} else {
-			await db.imports.update(
-				{
-					importID: importDoc.importID,
+			},
+			{
+				$pull: {
+					scoreIDs: { $in: scoreIDs },
 				},
-				{
-					$pull: {
-						scoreIDs: { $in: scoreIDs },
-					},
-				},
-				{
-					multi: true,
-				}
-			);
-		}
+			},
+			{
+				multi: true,
+			}
+		);
+
+		// remove this import if no scores belong to it anymore.
+		await db.imports.remove({
+			importID: importDoc.importID,
+			scoreIDs: { $size: 0 },
+		});
 	}
 
 	for (const score of scores) {

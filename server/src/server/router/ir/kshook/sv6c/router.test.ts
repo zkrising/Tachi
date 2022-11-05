@@ -118,6 +118,16 @@ t.test("POST /ir/kshook/sv6c/score/export", (t) => {
 		t.equal(res.body.body.scoreIDs.length, 1, "Should import one score.");
 		t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
+		const dbRes = await db["kshook-sv6c-settings"].findOne({
+			userID: 1,
+		});
+
+		t.equal(
+			dbRes?.forceStaticImport,
+			false,
+			"Should reset forceStaticImport to false after used."
+		);
+
 		t.end();
 	});
 
@@ -127,14 +137,18 @@ t.test("POST /ir/kshook/sv6c/score/export", (t) => {
 		t.equal(res.status, 400, "Should return 400 for an empty object.");
 		t.type(res.body.error, "string", "Should attach an error message.");
 
-		const res2 = await validSubmit(
+		t.end();
+	});
+
+	t.test("Should disallow invalid clear types", async (t) => {
+		const res = await validSubmit(
 			deepmerge(TestingKsHookSV6CScore, {
 				clear: "INVALID_CLEAR_TYPE",
 			})
 		);
 
-		t.equal(res2.status, 400, "Should return 400 for an invalid clear type.");
-		t.type(res2.body.error, "string", "Should attach an error message.");
+		t.equal(res.status, 400, "Should return 400 for an invalid clear type.");
+		t.type(res.body.error, "string", "Should attach an error message.");
 
 		t.end();
 	});

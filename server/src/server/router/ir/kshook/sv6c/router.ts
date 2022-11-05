@@ -118,6 +118,13 @@ router.post("/score/export", async (req, res) => {
 		});
 	}
 
+	await db["kshook-sv6c-settings"].update(
+		{ userID },
+		{
+			$set: { forceStaticImport: false },
+		}
+	);
+
 	logger.info(`SV6C-static Request Received from ${userID}: `, { content: req.safeBody });
 
 	const responseData = await ExpressWrappedScoreImportMain(

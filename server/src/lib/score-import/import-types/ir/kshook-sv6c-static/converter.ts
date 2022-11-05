@@ -42,7 +42,7 @@ export const ConverterKsHookSV6CStatic: ConverterFunction<
 		service: "kshook SV6C Static",
 		comment: null,
 		importType: "ir/kshook-sv6c",
-		timeAchieved: data.timestamp,
+		timeAchieved: data.timestamp * 1000,
 		scoreData: {
 			score: data.score,
 			percent,

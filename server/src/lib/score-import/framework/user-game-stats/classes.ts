@@ -194,17 +194,17 @@ export async function ProcessClassDeltas(
 						type: "class-update/v1",
 						content: { userID, ...delta },
 					});
-				}
 
-				achievementOps.push({
-					userID,
-					classSet: delta.set,
-					classOldValue: delta.old,
-					classValue: delta.new,
-					game,
-					playtype,
-					timeAchieved: Date.now(),
-				});
+					achievementOps.push({
+						userID,
+						classSet: delta.set,
+						classOldValue: delta.old,
+						classValue: delta.new,
+						game,
+						playtype,
+						timeAchieved: Date.now(),
+					});
+				}
 
 				deltas.push(delta);
 			}

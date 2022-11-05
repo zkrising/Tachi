@@ -125,8 +125,6 @@ router.post("/score/export", async (req, res) => {
 		}
 	);
 
-	logger.info(`SV6C-static Request Received from ${userID}: `, { content: req.safeBody });
-
 	const responseData = await ExpressWrappedScoreImportMain(
 		userID,
 		true,

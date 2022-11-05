@@ -38,6 +38,7 @@ t.test("#ConverterKsHookSV6CStatic", (t) => {
 						exScore: 1334,
 					},
 				},
+				timeAchieved: TestingKsHookSV6CStaticScore.timestamp * 1000,
 				game: "sdvx",
 				importType: "ir/kshook-sv6c",
 				scoreMeta: {},

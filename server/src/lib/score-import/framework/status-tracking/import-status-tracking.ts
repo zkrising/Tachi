@@ -8,12 +8,13 @@ import type { ImportTypes } from "tachi-common";
 const logger = CreateLogCtx(__filename);
 
 /**
- * For us to save the incoming jobData, we want to pretty it up a bit into something
+ * For us to save the incoming parserArguments,
+ * we want to pretty it up a bit into something
  * actually legible for debugging reasons.
  *
  * As is typical for Tachi, we go for JSON. It's good.
  *
- * @note - Some things in our jobData (like parserArguments) might contain buffers.
+ * @note - Some things in our parserArguments might contain buffers.
  * Buffers are - by definition - stringified using `.toJSON`, which causes them to become
  * { type: "Buffer", data: [array_of_integers] }. This is frustrating to read, especially
  * while debugging, as now we need a viewer to understand the file that was provided.
@@ -24,7 +25,7 @@ const logger = CreateLogCtx(__filename);
  * like SQLite dbs, or something.
  */
 function SerialiseJobData(jobData: ScoreImportJobData<ImportTypes>): string {
-	return JSON.stringify(jobData);
+	return JSON.stringify(jobData.parserArguments);
 }
 
 /**
@@ -38,6 +39,9 @@ export async function StartTrackingImport(jobData: ScoreImportJobData<ImportType
 	await db["import-trackers"].insert({
 		type: "ONGOING",
 		importID: jobData.importID,
+		importType: jobData.importType,
+		userID: jobData.userID,
+		userIntent: jobData.userIntent,
 		timeStarted: Date.now(),
 	});
 

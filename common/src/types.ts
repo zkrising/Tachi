@@ -1649,13 +1649,21 @@ export interface ChallengeWallDocument {
 	playtype: Playtype;
 }
 
-export interface ImportTrackerOngoing {
+interface BaseImportTracker {
+	timeStarted: number;
+	importID: string;
+	userID: integer;
+	importType: ImportTypes;
+	userIntent: boolean;
+}
+
+export interface ImportTrackerOngoing extends BaseImportTracker {
 	type: "ONGOING";
 }
 
-export interface ImportTrackerFailed {
+export interface ImportTrackerFailed extends BaseImportTracker {
 	type: "FAILED";
-	error: Error;
+	error: Error & { statusCode?: number };
 }
 
 /**
@@ -1664,7 +1672,4 @@ export interface ImportTrackerFailed {
  * Successful imports are removed from the tracking database, and their existence
  * is kept track of via { @see ImportDocument }.
  */
-export type ImportTrackerDocument = MongoDBDocument & { timeStarted: number; importID: string } & (
-		| ImportTrackerFailed
-		| ImportTrackerOngoing
-	);
+export type ImportTrackerDocument = MongoDBDocument & (ImportTrackerFailed | ImportTrackerOngoing);

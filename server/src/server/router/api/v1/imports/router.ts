@@ -6,15 +6,117 @@ import { RevertImport } from "lib/imports/imports";
 import CreateLogCtx from "lib/logger/logger";
 import ScoreImportQueue, { ScoreImportQueueEvents } from "lib/score-import/worker/queue";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
+import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
+import prValidate from "server/middleware/prudence-validate";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { GetTachiData } from "utils/req-tachi-data";
-import { GetUserWithID } from "utils/user";
+import { GetUsersWithIDs, GetUserWithID } from "utils/user";
 import type { ScoreImportWorkerReturns } from "lib/score-import/worker/types";
+import type { ImportTypes } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
 const logger = CreateLogCtx(__filename);
+
+/**
+ * Query imports. Returns the 500 most recently-finished imports.
+ *
+ * @param importType - Optionally, limit the returns to only this import type.
+ * @param userIntent - Optionally, limit returns to only those with or without userIntent.
+ *
+ * @name GET /api/v1/imports
+ */
+router.get(
+	"/",
+	prValidate({
+		importType: p.optional(p.isIn(TachiConfig.IMPORT_TYPES)),
+		userIntent: p.optional(p.isIn("true", "false")),
+	}),
+	async (req, res) => {
+		const importType = req.query.importType as ImportTypes | undefined;
+
+		// all query input ends up as strings, so we need convert it into an optional
+		// boolean
+		const userIntent =
+			req.query.userIntent === undefined ? undefined : req.query.userIntent === "true";
+
+		const imports = await db.imports.find(
+			{
+				userIntent,
+				importType,
+			},
+			{
+				sort: { timeFinished: -1 },
+				limit: 500,
+			}
+		);
+
+		// mayaswell attach the users for better UI.
+		const users = await GetUsersWithIDs(imports.map((e) => e.userID));
+
+		return res.status(200).json({
+			success: true,
+			description: `Found ${imports.length} imports.`,
+			body: {
+				imports,
+				users,
+			},
+		});
+	}
+);
+
+/**
+ * Query *failed* imports. Returns the 500 most recently-finished imports.
+ *
+ * This is done by checking import-trackers for imports that ended with a thrown
+ * error. An import is considered 'failed' if ScoreImportFatalError is thrown at any
+ * point during the process, or if any unknown error is thrown.
+ *
+ * @param importType - Optionally, limit the returns to only this import type.
+ * @param userIntent - Optionally, limit returns to only those with or without userIntent.
+ *
+ * @name GET /api/v1/imports/failed
+ */
+router.get(
+	"/failed",
+	prValidate({
+		importType: p.optional(p.isIn(TachiConfig.IMPORT_TYPES)),
+		userIntent: p.optional(p.isIn("true", "false")),
+	}),
+	async (req, res) => {
+		const importType = req.query.importType as ImportTypes | undefined;
+
+		// all query input ends up as strings, so we need convert it into an optional
+		// boolean
+		const userIntent =
+			req.query.userIntent === undefined ? undefined : req.query.userIntent === "true";
+
+		const trackers = await db["import-trackers"].find(
+			{
+				type: "FAILED",
+				userIntent,
+				importType,
+			},
+			{
+				sort: { timeStarted: -1 },
+				limit: 500,
+			}
+		);
+
+		// mayaswell attach the users for better UI.
+		const users = await GetUsersWithIDs(trackers.map((e) => e.userID));
+
+		return res.status(200).json({
+			success: true,
+			description: `Found ${trackers.length} failed imports.`,
+			body: {
+				failedImports: trackers,
+				users,
+			},
+		});
+	}
+);
 
 /**
  * Retrieve an import with this ID.
@@ -142,10 +244,43 @@ router.get("/:importID/poll-status", async (req, res) => {
 	const job = await FindImportJob(req.params.importID);
 
 	if (!job) {
-		return res.status(404).json({
-			success: false,
-			description: `There is no ongoing import here.`,
+		const tracker = await db["import-trackers"].findOne({
+			importID: req.params.importID,
 		});
+
+		if (!tracker) {
+			return res.status(404).json({
+				success: false,
+				description: `There is no ongoing import here.`,
+			});
+		}
+
+		// the user has requested the status of the import before the job has even
+		// been sent to redis. This is rare, but prevents a race condition of saying
+		// that an import is not ongoing when it is.
+
+		switch (tracker.type) {
+			case "ONGOING":
+				return res.status(200).json({
+					success: true,
+					description: `Import is ongoing.`,
+					body: {
+						importStatus: "ongoing",
+						progress: 0,
+					},
+				});
+			case "FAILED":
+				return res.status(tracker.error.statusCode ?? 500).json({
+					success: false,
+					description: tracker.error.message,
+				});
+			default:
+				throw new Error(
+					// eslint-disable-next-line lines-around-comment
+					// @ts-expect-error shouldn't happen
+					`Unknown tracker type ${tracker.type}, expected ONGOING or FAILED.`
+				);
+		}
 	}
 
 	// job.isFailed() actually means a critical error has occured.

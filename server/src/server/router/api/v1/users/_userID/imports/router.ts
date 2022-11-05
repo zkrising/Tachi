@@ -1,8 +1,11 @@
 import { Router } from "express";
 import db from "external/mongo/db";
+import { TachiConfig } from "lib/setup/config";
+import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { IsNonEmptyString } from "utils/misc";
 import { GetTachiData } from "utils/req-tachi-data";
+import type { ImportTypes } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -76,5 +79,50 @@ router.get("/with-user-intent", async (req, res) => {
 		body: importsWithIntent,
 	});
 });
+
+/**
+ * Return this users 500 most recent failed imports.
+ *
+ * @param userIntent - Optionally, Whether to limit returns to only those with userIntent or without.
+ * @param importType - Optionally, Whether to limit returns to only a specific importType.
+ *
+ * @name GET /api/v1/users/:userID/imports/failed
+ */
+router.get(
+	"/failed",
+	prValidate({
+		importType: p.optional(p.isIn(TachiConfig.IMPORT_TYPES)),
+		userIntent: p.optional(p.isIn("true", "false")),
+	}),
+	async (req, res) => {
+		const userID = GetTachiData(req, "requestedUser").id;
+
+		const importType = req.query.importType as ImportTypes | undefined;
+
+		// all query input ends up as strings, so we need convert it into an optional
+		// boolean
+		const userIntent =
+			req.query.userIntent === undefined ? undefined : req.query.userIntent === "true";
+
+		const trackers = await db["import-trackers"].find(
+			{
+				type: "FAILED",
+				userIntent,
+				userID,
+				importType,
+			},
+			{
+				sort: { timeStarted: -1 },
+				limit: 500,
+			}
+		);
+
+		return res.status(200).json({
+			success: true,
+			description: `Found ${trackers.length} failed imports.`,
+			body: trackers,
+		});
+	}
+);
 
 export default router;

@@ -60,11 +60,12 @@ t.test("#DeleteScore", (t) => {
 
 	t.test("Should delete a score and everything pertaining to it", async (t) => {
 		const score = deepmerge<ScoreDocument>(TestingIIDXSPScore, { scoreID: "scoreid_1" });
+		const score2 = deepmerge<ScoreDocument>(TestingIIDXSPScore, { scoreID: "scoreid_2" });
 
 		await db.imports.insert(mockImportDocument);
 		await db.sessions.insert(mockSessionDocument);
 
-		await db.scores.insert(score);
+		await db.scores.insert([score, score2]);
 
 		// This function doesn't return anything, instead,
 		// we need to check external state.
@@ -98,7 +99,7 @@ t.test("#DeleteScore", (t) => {
 					scoreID: "scoreid_2",
 				},
 			],
-			"Should remove scoreid_1 from the importDocuments scoreIDs"
+			"Should remove scoreid_1 from the sessionDocument's scoreIDs"
 		);
 
 		t.end();

@@ -57,7 +57,6 @@ export default function UserImportsPage({ reqUser }: { reqUser: PublicUserDocume
 				</Route>
 
 				<Route path={`/dashboard/users/${reqUser.username}/imports/failed`}>
-					<div>hi</div>
 					<ViewRecentFailedImports params={params} reqUser={reqUser} />
 				</Route>
 			</Switch>

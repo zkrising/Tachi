@@ -27,6 +27,10 @@ export async function CreateKaiSDVXClassHandler(
 	}
 
 	return (game, playtype, userID, ratings, logger) => {
+		logger.info(`Got return from ${baseUrl}/api/sdvx/v1/player_profile.`, {
+			json,
+		});
+
 		if (err !== undefined) {
 			logger.error(`An error occured while updating classes for ${baseUrl}.`, { err });
 			return {};

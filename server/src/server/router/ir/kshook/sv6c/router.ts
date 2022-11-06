@@ -83,7 +83,7 @@ router.use(ValidateHeaders);
 router.post("/score/save", async (req, res) => {
 	const responseData = await ExpressWrappedScoreImportMain(
 		req[SYMBOL_TACHI_API_AUTH].userID!,
-		true,
+		false,
 		"ir/kshook-sv6c",
 		[req.safeBody]
 	);
@@ -127,7 +127,7 @@ router.post("/score/export", async (req, res) => {
 
 	const responseData = await ExpressWrappedScoreImportMain(
 		userID,
-		true,
+		false,
 		"ir/kshook-sv6c-static",
 		[req.safeBody]
 	);

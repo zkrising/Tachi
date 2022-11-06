@@ -27,6 +27,8 @@ t.test("POST /ir/kshook/sv6c/score/save", (t) => {
 		t.equal(res.body.body.scoreIDs.length, 1, "Should import one score.");
 		t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
 
+		t.equal(res.body.body.userIntent, false, "Should not have user intent.");
+
 		t.end();
 	});
 
@@ -117,6 +119,7 @@ t.test("POST /ir/kshook/sv6c/score/export", (t) => {
 		t.equal(res.body.success, true);
 		t.equal(res.body.body.scoreIDs.length, 1, "Should import one score.");
 		t.equal(res.body.body.errors.length, 0, "Should have 0 failed scores.");
+		t.equal(res.body.body.userIntent, false, "Should not have user intent.");
 
 		const dbRes = await db["kshook-sv6c-settings"].findOne({
 			userID: 1,

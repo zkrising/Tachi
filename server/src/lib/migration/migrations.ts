@@ -4,6 +4,7 @@ import FixUndefinedBMSData from "./migrations/fix-undefined-bms-data";
 import JoinINFCastHourCharts from "./migrations/join-inf-casthour-charts";
 import JoinINFCastHourSongs from "./migrations/join-inf-casthour-songs";
 import MarkFervidexAsWithoutIntent from "./migrations/mark-fervidex-as-without-intent";
+import MarkKsHookAsWithoutIntent from "./migrations/mark-kshook-as-without-intent";
 import NullLR2HookFailedBPs from "./migrations/null-lr2hook-failed-bps";
 import RecalcBrokenIIDXNotecounts from "./migrations/recalc-broken-iidx-notecounts";
 import RemoveIIDXBeginners from "./migrations/remove-iidx-beginners";
@@ -45,7 +46,8 @@ if (Environment.nodeEnv !== "test") {
 			UpdateJubeatPreferredTables,
 			JoinINFCastHourCharts,
 			JoinINFCastHourSongs,
-			MarkFervidexAsWithoutIntent
+			MarkFervidexAsWithoutIntent,
+			MarkKsHookAsWithoutIntent
 		);
 	}
 

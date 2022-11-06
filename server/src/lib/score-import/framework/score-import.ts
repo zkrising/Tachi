@@ -2,6 +2,11 @@
 import { GetInputParser } from "./common/get-input-parser";
 import ScoreImportFatalError from "./score-importing/score-import-error";
 import ScoreImportMain from "./score-importing/score-import-main";
+import {
+	EndTrackingImport,
+	MarkImportAsFailed,
+	StartTrackingImport,
+} from "./status-tracking/import-status-tracking";
 import ScoreImportQueue, { ScoreImportQueueEvents } from "../worker/queue";
 import { JOB_RETRY_COUNT } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
@@ -26,6 +31,30 @@ const logger = CreateLogCtx(__filename);
 export async function MakeScoreImport<I extends ImportTypes>(
 	jobData: ScoreImportJobData<I>
 ): Promise<ImportDocument> {
+	await StartTrackingImport(jobData);
+
+	try {
+		const importDocument = await MakeScoreImportInner(jobData);
+
+		await EndTrackingImport(jobData.importID);
+
+		return importDocument;
+	} catch (e) {
+		const err = e as Error | ScoreImportFatalError;
+
+		await MarkImportAsFailed(jobData.importID, err);
+
+		throw err;
+	}
+}
+
+/**
+ * Inner function that actually makes the score import. This is intended to be wrapped
+ * by the import-tracking code, as it's useful for errors.
+ */
+async function MakeScoreImportInner<I extends ImportTypes>(
+	jobData: ScoreImportJobData<I>
+): Promise<ImportDocument> {
 	if (ServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER && process.env.IS_JOB === undefined) {
 		let timesAttempted = 1;
 
@@ -45,6 +74,7 @@ export async function MakeScoreImport<I extends ImportTypes>(
 			)) as ScoreImportWorkerReturns;
 
 			if (data.success) {
+				await EndTrackingImport(jobData.importID);
 				return data.importDocument;
 			} else if (data.statusCode !== 409) {
 				throw new ScoreImportFatalError(data.statusCode, data.description);

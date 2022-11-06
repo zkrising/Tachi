@@ -11,3 +11,7 @@ export function GetProfilePictureURL(userID: integer, contentHash: string) {
 export function GetProfileBannerURL(userID: integer, contentHash: string) {
 	return `/users/${userID}/banner-${contentHash}`;
 }
+
+export function GetScoreImportInputURL(importID: string) {
+	return `/score-import-input/${importID}`;
+}

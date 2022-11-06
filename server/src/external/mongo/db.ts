@@ -47,6 +47,7 @@ import type {
 	UserGameStatsSnapshot,
 	UserSettings,
 	KsHookSettingsDocument,
+	ImportTrackerDocument as ImportTrackerDocument,
 } from "tachi-common";
 import type { MigrationDocument, PrivateUserInfoDocument } from "utils/types";
 
@@ -190,6 +191,7 @@ const db = {
 	questlines: monkDB.get<QuestlineDocument>("questlines"),
 	migrations: monkDB.get<MigrationDocument>("migrations"),
 	notifications: monkDB.get<NotificationDocument>("notifications"),
+	"import-trackers": monkDB.get<ImportTrackerDocument>("import-trackers"),
 };
 
 export type StaticDatabases = Exclude<keyof typeof db, "charts" | "songs">;

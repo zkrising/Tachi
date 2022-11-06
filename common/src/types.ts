@@ -1648,3 +1648,28 @@ export interface ChallengeWallDocument {
 	game: Game;
 	playtype: Playtype;
 }
+
+interface BaseImportTracker {
+	timeStarted: number;
+	importID: string;
+	userID: integer;
+	importType: ImportTypes;
+	userIntent: boolean;
+}
+
+export interface ImportTrackerOngoing extends BaseImportTracker {
+	type: "ONGOING";
+}
+
+export interface ImportTrackerFailed extends BaseImportTracker {
+	type: "FAILED";
+	error: { message: string; statusCode?: number };
+}
+
+/**
+ * Tracks the status of an import while it goes through the pipeline or if it fails.
+ *
+ * Successful imports are removed from the tracking database, and their existence
+ * is kept track of via { @see ImportDocument }.
+ */
+export type ImportTrackerDocument = MongoDBDocument & (ImportTrackerFailed | ImportTrackerOngoing);

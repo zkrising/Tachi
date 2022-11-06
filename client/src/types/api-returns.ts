@@ -1,13 +1,17 @@
 import {
 	APIPermissions,
+	ChallengeSubscriptionDocument,
 	ChartDocument,
 	ClassAchievementDocument,
 	FolderDocument,
 	GamePTConfig,
 	GoalDocument,
+	GoalSubscriptionDocument,
 	Grades,
 	IDStrings,
 	IDStringToGame,
+	ImportDocument,
+	ImportTrackerFailed,
 	integer,
 	Lamps,
 	PBScoreDocument,
@@ -21,9 +25,6 @@ import {
 	UGSRatingsLookup,
 	UserGameStats,
 	UserGameStatsSnapshot,
-	GoalSubscriptionDocument,
-	ChallengeSubscriptionDocument,
-	ImportDocument,
 } from "tachi-common";
 
 export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
@@ -206,4 +207,14 @@ export interface ImportIDReturn {
 	sessions: SessionDocument[];
 	import: ImportDocument;
 	user: PublicUserDocument;
+}
+
+export interface FailedImportsReturn {
+	failedImports: Array<ImportTrackerFailed>;
+	users: Array<PublicUserDocument>;
+}
+
+export interface ImportsReturn {
+	imports: Array<ImportDocument>;
+	users: Array<PublicUserDocument>;
 }

@@ -1,5 +1,6 @@
 import { TachiConfig } from "lib/setup/config";
 import p from "prudence";
+import { allImportTypes } from "tachi-common/config/static-config";
 import { SCHEMAS } from "tachi-common/lib/schemas";
 import type { Databases } from "./db";
 import type { PrudenceSchema } from "prudence";
@@ -79,6 +80,18 @@ export const DatabaseSchemas: Record<Databases, SchemaValidatorFunction> = {
 		// formal types for all parser data:context duos.
 		data: p.any,
 		context: p.any,
+	}),
+	"import-trackers": prSchemaify({
+		timeStarted: p.isPositive,
+		importID: "string",
+		userID: p.isPositiveInteger,
+		importType: p.isIn(allImportTypes),
+		userIntent: "boolean",
+		type: p.isIn("ONGOING", "FAILED"),
+		error: p.optional({
+			description: "string",
+			statusCode: "*number",
+		}),
 	}),
 	...SCHEMAS,
 };

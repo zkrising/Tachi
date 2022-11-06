@@ -10,10 +10,12 @@ import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { GetRelevantSongsAndCharts } from "utils/db";
+import { DeleteUndefinedProps } from "utils/misc";
 import { GetTachiData } from "utils/req-tachi-data";
 import { GetUsersWithIDs, GetUserWithID } from "utils/user";
 import type { ScoreImportWorkerReturns } from "lib/score-import/worker/types";
-import type { ImportTypes } from "tachi-common";
+import type { FilterQuery } from "mongodb";
+import type { ImportTrackerDocument, ImportTypes } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -41,16 +43,17 @@ router.get(
 		const userIntent =
 			req.query.userIntent === undefined ? undefined : req.query.userIntent === "true";
 
-		const imports = await db.imports.find(
-			{
-				userIntent,
-				importType,
-			},
-			{
-				sort: { timeFinished: -1 },
-				limit: 500,
-			}
-		);
+		const query = {
+			userIntent,
+			importType,
+		};
+
+		DeleteUndefinedProps(query);
+
+		const imports = await db.imports.find(query, {
+			sort: { timeFinished: -1 },
+			limit: 500,
+		});
 
 		// mayaswell attach the users for better UI.
 		const users = await GetUsersWithIDs(imports.map((e) => e.userID));
@@ -92,17 +95,18 @@ router.get(
 		const userIntent =
 			req.query.userIntent === undefined ? undefined : req.query.userIntent === "true";
 
-		const trackers = await db["import-trackers"].find(
-			{
-				type: "FAILED",
-				userIntent,
-				importType,
-			},
-			{
-				sort: { timeStarted: -1 },
-				limit: 500,
-			}
-		);
+		const query: FilterQuery<ImportTrackerDocument> = {
+			userIntent,
+			importType,
+			type: "FAILED",
+		};
+
+		DeleteUndefinedProps(query);
+
+		const trackers = await db["import-trackers"].find(query, {
+			sort: { timeStarted: -1 },
+			limit: 500,
+		});
 
 		// mayaswell attach the users for better UI.
 		const users = await GetUsersWithIDs(trackers.map((e) => e.userID));

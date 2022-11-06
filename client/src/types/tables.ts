@@ -2,6 +2,8 @@ import {
 	ChartDocument,
 	IDStrings,
 	IDStringToGame,
+	ImportDocument,
+	ImportTrackerFailed,
 	integer,
 	PBScoreDocument,
 	PublicUserDocument,
@@ -63,3 +65,19 @@ export type ComparePBsDataset<I extends IDStrings = IDStrings> = Array<{
 	chart: ChartDocument;
 	song: SongDocument;
 }>;
+
+export type ImportDataset = Array<
+	ImportDocument & {
+		__related: {
+			user: PublicUserDocument;
+		};
+	}
+>;
+
+export type FailedImportDataset = Array<
+	ImportTrackerFailed & {
+		__related: {
+			user: PublicUserDocument;
+		};
+	}
+>;

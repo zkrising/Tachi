@@ -35,7 +35,13 @@ interface Data {
 	user: PublicUserDocument;
 }
 
-export default function ImportInfo({ importID }: { importID: string }) {
+export default function ImportInfo({
+	importID,
+	noTopTable,
+}: {
+	importID: string;
+	noTopTable?: boolean;
+}) {
 	const { data, error } = useApiQuery<Data>(`/imports/${importID}`);
 
 	const { setUGS } = useContext(AllLUGPTStatsContext);
@@ -82,25 +88,29 @@ export default function ImportInfo({ importID }: { importID: string }) {
 
 	return (
 		<div className="row">
-			<div className="col-12">
-				<MiniTable headers={["Import Info"]} colSpan={2}>
-					<tr>
-						<td>Imported Scores</td>
-						<td>{importDoc.scoreIDs.length}</td>
-					</tr>
-					<tr>
-						<td>Created Sessions</td>
-						<td>{importDoc.createdSessions.length}</td>
-					</tr>
-					<tr>
-						<td>Errors</td>
-						<td>{importDoc.errors.length}</td>
-					</tr>
-				</MiniTable>
-			</div>
-			<div className="col-12">
-				<Divider />
-			</div>
+			{!noTopTable && (
+				<>
+					<div className="col-12">
+						<MiniTable headers={["Import Info"]} colSpan={2}>
+							<tr>
+								<td>Imported Scores</td>
+								<td>{importDoc.scoreIDs.length}</td>
+							</tr>
+							<tr>
+								<td>Created Sessions</td>
+								<td>{importDoc.createdSessions.length}</td>
+							</tr>
+							<tr>
+								<td>Errors</td>
+								<td>{importDoc.errors.length}</td>
+							</tr>
+						</MiniTable>
+					</div>
+					<div className="col-12">
+						<Divider />
+					</div>
+				</>
+			)}
 			<div className="col-12">
 				<div className="btn btn-group mb-4">
 					<SelectButton value={tab} setValue={setTab} id="scores">

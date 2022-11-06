@@ -3,9 +3,10 @@ import db from "external/mongo/db";
 import { TachiConfig } from "lib/setup/config";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
-import { IsNonEmptyString } from "utils/misc";
+import { DeleteUndefinedProps, IsNonEmptyString } from "utils/misc";
 import { GetTachiData } from "utils/req-tachi-data";
-import type { ImportTypes } from "tachi-common";
+import type { FilterQuery } from "mongodb";
+import type { ImportTrackerDocument, ImportTypes } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -104,18 +105,19 @@ router.get(
 		const userIntent =
 			req.query.userIntent === undefined ? undefined : req.query.userIntent === "true";
 
-		const trackers = await db["import-trackers"].find(
-			{
-				type: "FAILED",
-				userIntent,
-				userID,
-				importType,
-			},
-			{
-				sort: { timeStarted: -1 },
-				limit: 500,
-			}
-		);
+		const query: FilterQuery<ImportTrackerDocument> = {
+			type: "FAILED",
+			userIntent,
+			userID,
+			importType,
+		};
+
+		DeleteUndefinedProps(query);
+
+		const trackers = await db["import-trackers"].find(query, {
+			sort: { timeStarted: -1 },
+			limit: 500,
+		});
 
 		return res.status(200).json({
 			success: true,

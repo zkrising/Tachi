@@ -2,6 +2,7 @@ import db from "external/mongo/db";
 import { CDNStoreOrOverwrite } from "lib/cdn/cdn";
 import { GetScoreImportInputURL } from "lib/cdn/url-format";
 import CreateLogCtx from "lib/logger/logger";
+import type ScoreImportFatalError from "../score-importing/score-import-error";
 import type { ScoreImportJobData } from "lib/score-import/worker/types";
 import type { ImportTypes } from "tachi-common";
 
@@ -58,15 +59,18 @@ export async function StartTrackingImport(jobData: ScoreImportJobData<ImportType
 	);
 }
 
-export async function MarkImportAsFailed(importID: string, error: Error) {
+export async function MarkImportAsFailed(importID: string, error: Error | ScoreImportFatalError) {
 	await db["import-trackers"].update(
 		{
 			importID,
 		},
 		{
 			$set: {
-				error,
 				type: "FAILED",
+				error: {
+					statusCode: "statusCode" in error ? error.statusCode : undefined,
+					message: error.message,
+				},
 			},
 		}
 	);

@@ -195,14 +195,7 @@ export default function SeedsPicker({
 					<Row>
 						<Col xs={12} className="text-center">
 							<div>
-								<span style={{ fontSize: "large" }}>Repository:</span>
-								<Select
-									style={{ display: "inline", width: "unset" }}
-									className="mx-2"
-									value={repo}
-									setValue={setRepo}
-									allowNull
-								>
+								<Select name="Repository" value={repo} setValue={setRepo} allowNull>
 									{hasLocalAPI && <option value="local">Your Local Repo</option>}
 									{process.env.REACT_APP_GIT_REPO && (
 										<option value={process.env.REACT_APP_GIT_REPO}>
@@ -213,10 +206,8 @@ export default function SeedsPicker({
 							</div>
 							{branches && (
 								<div className="mt-2">
-									<span style={{ fontSize: "large" }}>Branch:</span>
 									<Select
-										style={{ display: "inline", width: "unset" }}
-										className="mx-2"
+										name="Branch"
 										value={branch}
 										setValue={setBranch}
 										allowNull
@@ -369,8 +360,8 @@ function RevSelector({
 	return (
 		<>
 			<div>
-				<span>Show changes that affect: </span>
 				<Select
+					name="Show changes that affect:"
 					value={collection}
 					setValue={setCollection}
 					unselectedName="Any Collection"

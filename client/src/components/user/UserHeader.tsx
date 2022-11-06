@@ -113,6 +113,11 @@ export function UserBottomNav({
 				Service Integrations
 			</NavItem>
 		);
+		navItems.push(
+			<NavItem key="imports" to={`${baseUrl}/imports`}>
+				Imports
+			</NavItem>
+		);
 
 		// If mandates login, assume that we also use invite codes.
 		// I'm sure we could set up an elaborate way of doing this by

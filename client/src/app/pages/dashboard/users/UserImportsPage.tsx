@@ -1,4 +1,3 @@
-import { CreateUserMap } from "util/data";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import FailedImportsTable from "components/tables/imports/FailedImportsTable";
 import ImportsTable from "components/tables/imports/ImportsTable";
@@ -8,15 +7,19 @@ import ImportViewerOptions from "components/util/import/ImportViewerOptions";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectLinkButton from "components/util/SelectLinkButton";
-import { TachiConfig } from "lib/config";
 import React, { useMemo, useState } from "react";
 import { Route, Switch } from "react-router-dom";
-import { FailedImportsReturn, ImportsReturn } from "types/api-returns";
+import { ImportDocument, ImportTrackerFailed, PublicUserDocument } from "tachi-common";
 import { FailedImportDataset, ImportDataset } from "types/tables";
 
-export default function ImportAnalysers() {
-	useSetSubheader(["Developer Utils", "Import Analyser"]);
+export default function UserImportsPage({ reqUser }: { reqUser: PublicUserDocument }) {
+	useSetSubheader(
+		["Users", reqUser.username, "Imports"],
+		[reqUser],
+		`${reqUser.username}'s Imports`
+	);
 
+	// honestly yanked straight from ImportAnalysers.tsx.
 	const [userIntent, setUserIntent] = useState<string | null>(null);
 	const [importType, setImportType] = useState<string | null>(null);
 
@@ -36,18 +39,11 @@ export default function ImportAnalysers() {
 
 	return (
 		<>
-			<h1>{TachiConfig.name} Database Management</h1>
-			<Divider />
-			<span>
-				This tool is for viewing imports that have came through to {TachiConfig.name}.
-				<br />
-				From here, if you are an administrator, you can revert successful imports, or view
-				failed imports and see why they failed and what input was given.
-			</span>
-			<Divider />
 			<div className="d-flex justify-content-center btn-group">
-				<SelectLinkButton to="/dashboard/utils/imports">Recent Imports</SelectLinkButton>
-				<SelectLinkButton to="/dashboard/utils/imports/failed">
+				<SelectLinkButton to={`/dashboard/users/${reqUser.username}/imports`}>
+					Recent Imports
+				</SelectLinkButton>
+				<SelectLinkButton to={`/dashboard/users/${reqUser.username}/imports/failed`}>
 					Recent Failed Imports
 				</SelectLinkButton>
 			</div>
@@ -56,20 +52,29 @@ export default function ImportAnalysers() {
 			<ImportViewerOptions {...{ userIntent, setUserIntent, importType, setImportType }} />
 			<Divider />
 			<Switch>
-				<Route exact path="/dashboard/utils/imports">
-					<ViewRecentImports params={params} />
+				<Route exact path={`/dashboard/users/${reqUser.username}/imports`}>
+					<ViewRecentImports params={params} reqUser={reqUser} />
 				</Route>
 
-				<Route exact path="/dashboard/utils/imports/failed">
-					<ViewRecentFailedImports params={params} />
+				<Route path={`/dashboard/users/${reqUser.username}/imports/failed`}>
+					<div>hi</div>
+					<ViewRecentFailedImports params={params} reqUser={reqUser} />
 				</Route>
 			</Switch>
 		</>
 	);
 }
 
-function ViewRecentImports({ params }: { params: URLSearchParams }) {
-	const { data, error } = useApiQuery<ImportsReturn>(`/imports?${params.toString()}`);
+function ViewRecentImports({
+	params,
+	reqUser,
+}: {
+	params: URLSearchParams;
+	reqUser: PublicUserDocument;
+}) {
+	const { data, error } = useApiQuery<Array<ImportDocument>>(
+		`/users/${reqUser.id}/imports?${params.toString()}`
+	);
 
 	if (error) {
 		return <ApiError error={error} />;
@@ -79,11 +84,9 @@ function ViewRecentImports({ params }: { params: URLSearchParams }) {
 		return <Loading />;
 	}
 
-	const userMap = CreateUserMap(data.users);
-
-	const dataset: ImportDataset = data.imports.map((e) => ({
+	const dataset: ImportDataset = data.map((e) => ({
 		__related: {
-			user: userMap.get(e.userID)!,
+			user: reqUser,
 		},
 		...e,
 	}));
@@ -91,9 +94,15 @@ function ViewRecentImports({ params }: { params: URLSearchParams }) {
 	return <ImportsTable dataset={dataset} />;
 }
 
-function ViewRecentFailedImports({ params }: { params: URLSearchParams }) {
-	const { data, error } = useApiQuery<FailedImportsReturn>(
-		`/imports/failed?${params.toString()}`
+function ViewRecentFailedImports({
+	params,
+	reqUser,
+}: {
+	params: URLSearchParams;
+	reqUser: PublicUserDocument;
+}) {
+	const { data, error } = useApiQuery<Array<ImportTrackerFailed>>(
+		`/users/${reqUser.id}/imports/failed?${params.toString()}`
 	);
 
 	if (error) {
@@ -104,11 +113,9 @@ function ViewRecentFailedImports({ params }: { params: URLSearchParams }) {
 		return <Loading />;
 	}
 
-	const userMap = CreateUserMap(data.users);
-
-	const dataset: FailedImportDataset = data.failedImports.map((e) => ({
+	const dataset: FailedImportDataset = data.map((e) => ({
 		__related: {
-			user: userMap.get(e.userID)!,
+			user: reqUser,
 		},
 		...e,
 	}));

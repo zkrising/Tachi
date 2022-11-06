@@ -29,6 +29,7 @@ import { useQuery } from "react-query";
 import { Redirect, Route, Switch, useHistory, useParams } from "react-router-dom";
 import { FormatGame, Game, GetGameConfig, PublicUserDocument, UserGameStats } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
+import UserImportsPage from "app/pages/dashboard/users/UserImportsPage";
 import ScoresPage from "../pages/dashboard/users/games/_game/_playtype/ScoresPage";
 import UserPage from "../pages/dashboard/users/UserPage";
 
@@ -128,6 +129,11 @@ function UserProfileRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
 			<Route exact path="/dashboard/users/:userID/integrations">
 				<RequireAuthAsUserParam>
 					<UserIntegrationsPage reqUser={reqUser} />
+				</RequireAuthAsUserParam>
+			</Route>
+			<Route path="/dashboard/users/:userID/imports">
+				<RequireAuthAsUserParam>
+					<UserImportsPage reqUser={reqUser} />
 				</RequireAuthAsUserParam>
 			</Route>
 			<Route exact path="/dashboard/users/:userID/invites">

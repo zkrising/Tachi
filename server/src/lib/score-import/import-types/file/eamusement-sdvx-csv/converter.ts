@@ -21,6 +21,7 @@ const DIFFICULTY_MAP: Map<string, Difficulties["sdvx:Single"]> = new Map([
 	["GRAVITY", "GRV"],
 	["HEAVENLY", "HVN"],
 	["VIVID", "VVD"],
+	["EXCEED", "XCD"],
 ]);
 
 const LAMP_MAP: Map<string, Lamps["sdvx:Single"]> = new Map([

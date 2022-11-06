@@ -9,7 +9,7 @@ const migration: Migration = {
 				importType: "ir/fervidex",
 			},
 			{
-				userIntent: false,
+				$set: { userIntent: false },
 			}
 		);
 	},

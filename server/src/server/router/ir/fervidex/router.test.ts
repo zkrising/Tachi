@@ -371,6 +371,7 @@ t.test("POST /ir/fervidex/score/submit", (t) => {
 		});
 
 		t.equal(scores, 1, "Should import 1 score.");
+		t.equal(res.body.body.userIntent, false, "Should not have user intent.");
 
 		t.end();
 	});

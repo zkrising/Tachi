@@ -267,7 +267,7 @@ router.post("/score/submit", ValidateModelHeader, async (req, res) => {
 
 	const responseData = await ExpressWrappedScoreImportMain(
 		req[SYMBOL_TACHI_API_AUTH].userID!,
-		true,
+		false,
 		"ir/fervidex",
 		[req.safeBody, headers]
 	);

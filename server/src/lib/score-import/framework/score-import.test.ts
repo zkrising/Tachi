@@ -37,26 +37,20 @@ t.test("#MakeScoreImport", (t) => {
 
 			t.strictSame(
 				cdnRes,
-				{
-					importID: "mockImportID",
-					importType: "ir/direct-manual",
-					parserArguments: [
-						{
-							meta: { game: "iidx", playtype: "SP", service: "foobar" },
-							scores: [
-								{
-									score: 500,
-									lamp: "HARD CLEAR",
-									matchType: "songTitle",
-									identifier: "5.1.1.",
-									difficulty: "ANOTHER",
-								},
-							],
-						},
-					],
-					userID: 1,
-					userIntent: true,
-				},
+				[
+					{
+						meta: { game: "iidx", playtype: "SP", service: "foobar" },
+						scores: [
+							{
+								score: 500,
+								lamp: "HARD CLEAR",
+								matchType: "songTitle",
+								identifier: "5.1.1.",
+								difficulty: "ANOTHER",
+							},
+						],
+					},
+				],
 				"Should store import-input on the CDN."
 			);
 		} catch (err) {

@@ -43,6 +43,13 @@ export const ConvertAPIArcSDVX: ConverterFunction<unknown, EmptyObject> = async 
 		throw new InvalidScoreFailure(FormatPrError(err, "Invalid ARC Score: "));
 	}
 
+	// @ts-expect-error ARC sends over _id tags in their data, which may be saved into
+	// mongoDB.
+	// Our monk driver recursively tries to convert `_id` keys into being ObjectIDs
+	// which may not be possible. As such, it will throw an error if _id exists anywhere
+	// in an object.
+	delete data._id;
+
 	// confirmed by Prudence above.
 	const score = data as ARCSDVXScore;
 

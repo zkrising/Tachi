@@ -44,7 +44,9 @@ export async function CreateKaiSDVXClassHandler(
 			json.skill_level === undefined ||
 			typeof json.skill_level !== "number"
 		) {
-			logger.info(`User has no skill_level. Not updating anything.`);
+			logger.info(`User has no/invalid skill_level. Not updating anything.`, {
+				skillLevel: json.skill_level,
+			});
 			return {};
 		}
 

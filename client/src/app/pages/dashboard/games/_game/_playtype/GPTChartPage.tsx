@@ -36,6 +36,7 @@ import {
 } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
 import { PBDataset } from "types/tables";
+import useLUGPTSettings from "components/util/useLUGPTSettings";
 
 // This component forms a wrapper around the Real GPT Chart Page
 // which handles the case where activeChart == null.
@@ -228,6 +229,8 @@ function ChartLeaderboardTable({
 	chart: ChartDocument;
 	song: SongDocument;
 } & GamePT) {
+	const { settings } = useLUGPTSettings();
+
 	const dataset: PBDataset = useMemo(() => {
 		const ds: PBDataset = [];
 
@@ -267,6 +270,7 @@ function ChartLeaderboardTable({
 			game={game}
 			playtype={playtype}
 			showChart={false}
+			alg={settings?.preferences.preferredScoreAlg ?? undefined}
 			showUser
 		/>
 	);

@@ -10,6 +10,7 @@ import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useState } from "react";
+import { Row } from "react-bootstrap";
 import {
 	APIImportTypes,
 	FileUploadImportTypes,
@@ -91,14 +92,18 @@ function InnerShowRecentImports({ user }: { user: PublicUserDocument }) {
 		<>
 			<h4>Recently Used Import Methods</h4>
 			<Divider />
-			{data
-				.filter((e) => e.importType.startsWith("file/") || e.importType.startsWith("api/"))
-				.map((e) => (
-					<ImportTypeInfoCard
-						key={e.importType}
-						importType={e.importType as FileUploadImportTypes | APIImportTypes}
-					/>
-				))}
+			<Row>
+				{data
+					.filter(
+						(e) => e.importType.startsWith("file/") || e.importType.startsWith("api/")
+					)
+					.map((e) => (
+						<ImportTypeInfoCard
+							key={e.importType}
+							importType={e.importType as FileUploadImportTypes | APIImportTypes}
+						/>
+					))}
+			</Row>
 		</>
 	);
 }

@@ -16,19 +16,21 @@ export async function ParseKaiSDVX(
 ): Promise<ParserFunctionReturns<unknown, KaiContext>> {
 	const baseUrl = KaiTypeToBaseURL(service);
 
+	const reauthFn = CreateKaiReauthFunction(service, authDoc, logger, fetch);
+
 	return {
 		iterable: TraverseKaiAPI(
 			baseUrl,
 			"/api/sdvx/v1/play_history",
 			authDoc.token,
 			logger,
-			CreateKaiReauthFunction(service, authDoc, logger, fetch),
+			reauthFn,
 			fetch
 		),
 		context: {
 			service,
 		},
-		classHandler: await CreateKaiSDVXClassHandler(service, authDoc.token, fetch),
+		classHandler: await CreateKaiSDVXClassHandler(service, authDoc.token, reauthFn, fetch),
 		game: "sdvx",
 	};
 }

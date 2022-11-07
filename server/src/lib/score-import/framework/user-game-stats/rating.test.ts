@@ -1,6 +1,8 @@
 import { CalculateRatings } from "./rating";
+import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
+import { mkFakePBIIDXSP, mkFakePBJubeat } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
 
 const logger = CreateLogCtx(__filename);
@@ -65,9 +67,19 @@ t.test("#CalculateRatings", (t) => {
 
 		t.strictSame(res, { skill: null, naiveSkill: null }, "Should return skill keys.");
 
-		const resDP = await CalculateRatings("gitadora", "Gita", 1, logger);
+		const res2 = await CalculateRatings("gitadora", "Gita", 1, logger);
 
-		t.strictSame(resDP, { skill: null, naiveSkill: null }, "Should return skill keys.");
+		t.strictSame(res2, { skill: null, naiveSkill: null }, "Should return skill keys.");
+
+		t.end();
+	});
+
+	t.test("Should calculate jubility for Jubeat", async (t) => {
+		await db["personal-bests"].insert(mkFakePBJubeat());
+
+		const res = await CalculateRatings("jubeat", "Single", 1, logger);
+
+		t.strictSame(res, { jubility: 5, naiveJubility: 5 }, "Should return jubility keys.");
 
 		t.end();
 	});

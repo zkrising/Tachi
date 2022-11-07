@@ -2,6 +2,7 @@ import db from "external/mongo/db";
 import type { KtLogger } from "lib/logger/logger";
 import type {
 	Game,
+	GPTSupportedVersions,
 	IDStrings,
 	integer,
 	PBScoreDocument,
@@ -253,8 +254,8 @@ async function CalculateGitadoraSkill(
 	).map((e) => e.id);
 
 	const [bestHotScores, bestScores] = await Promise.all([
-		GetBestRatingOnSongs(hotSongIDs, userID, game, playtype, "skill"),
-		GetBestRatingOnSongs(coldSongIDs, userID, game, playtype, "skill"),
+		GetBestRatingOnSongs(hotSongIDs, userID, game, playtype, "skill", 25),
+		GetBestRatingOnSongs(coldSongIDs, userID, game, playtype, "skill", 25),
 	]);
 
 	if (bestHotScores.length + bestScores.length === 0) {
@@ -274,8 +275,8 @@ export async function GetBestRatingOnSongs(
 	userID: integer,
 	game: Game,
 	playtype: Playtype,
-	ratingProp: "skill",
-	limit = 25
+	ratingProp: "jubility" | "skill",
+	limit: integer
 ): Promise<Array<PBScoreDocument>> {
 	const r: Array<{ doc: PBScoreDocument }> = await db["personal-bests"].aggregate([
 		{
@@ -305,6 +306,8 @@ export async function GetBestRatingOnSongs(
 	return r.map((e) => e.doc);
 }
 
+const CURRENT_JUBEAT_HOT_VERSION: GPTSupportedVersions["jubeat:Single"] = "festo";
+
 async function CalculateJubility(
 	game: Game,
 	playtype: Playtype,
@@ -312,42 +315,28 @@ async function CalculateJubility(
 	_logger: KtLogger
 ): Promise<number> {
 	const hotSongs = await db.songs.jubeat.find(
-		{ "data.displayVersion": "festo" },
+		{ "data.displayVersion": CURRENT_JUBEAT_HOT_VERSION },
 		{ projection: { id: 1 } }
 	);
 
 	const hotSongIDs = hotSongs.map((e) => e.id);
 
 	const coldSongs = await db.songs.jubeat.find(
-		{ "data.displayVersion": { $ne: "festo" } },
+		{ "data.displayVersion": { $ne: CURRENT_JUBEAT_HOT_VERSION } },
 		{ projection: { id: 1 } }
 	);
 
 	const coldSongIDs = coldSongs.map((e) => e.id);
 
 	const [bestHotScores, bestScores] = await Promise.all([
-		db["personal-bests"].find(
-			{ userID, songID: { $in: hotSongIDs } },
-			{
-				sort: { "calculatedData.jubility": -1 },
-				limit: 30,
-				projection: { "calculatedData.jubility": 1 },
-			}
-		),
-		db["personal-bests"].find(
-			{ userID, songID: { $in: coldSongIDs } },
-			{
-				sort: { "calculatedData.jubility": -1 },
-				limit: 30,
-				projection: { "calculatedData.jubility": 1 },
-			}
-		),
+		GetBestRatingOnSongs(hotSongIDs, userID, "jubeat", "Single", "jubility", 30),
+		GetBestRatingOnSongs(coldSongIDs, userID, "jubeat", "Single", "jubility", 30),
 	]);
 
 	let skill = 0;
 
-	skill = skill + bestHotScores.reduce((a, e) => a + e.calculatedData.jubility!, 0);
-	skill = skill + bestScores.reduce((a, e) => a + e.calculatedData.jubility!, 0);
+	skill = skill + bestHotScores.reduce((a, e) => a + (e.calculatedData.jubility ?? 0), 0);
+	skill = skill + bestScores.reduce((a, e) => a + (e.calculatedData.jubility ?? 0), 0);
 
 	return skill;
 }

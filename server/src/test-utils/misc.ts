@@ -7,6 +7,7 @@ import {
 	HC511UserGoal,
 	TestingIIDXSPScore,
 	TestingIIDXSPScorePB,
+	TestingJubeatPB,
 	TestingSDVXAlbidaChart,
 	TestingSDVXPB,
 	TestingSDVXScore,
@@ -94,6 +95,10 @@ export function mkFakeScoreSDVX(modifant: Partial<ScoreDocument<"sdvx:Single">> 
 
 export function mkFakePBIIDXSP(modifant: Partial<PBScoreDocument<"iidx:SP">> = {}) {
 	return dmf(TestingIIDXSPScorePB, modifant);
+}
+
+export function mkFakePBJubeat(modifant: Partial<PBScoreDocument<"jubeat:Single">> = {}) {
+	return dmf(TestingJubeatPB, modifant);
 }
 
 export function mkFakeNotification(modifant: Partial<NotificationDocument> = {}) {

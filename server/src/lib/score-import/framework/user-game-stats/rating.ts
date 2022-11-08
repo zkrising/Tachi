@@ -298,6 +298,14 @@ export async function GetBestRatingOnSongs(
 				doc: { $first: "$$ROOT" },
 			},
 		},
+
+		// for some godforsaken reason you have to sort twice. after a grouping
+		// the sort order becomes nondeterministic
+		{
+			$sort: {
+				[`doc.calculatedData.${ratingProp}`]: -1,
+			},
+		},
 		{
 			$limit: limit,
 		},
@@ -333,10 +341,10 @@ async function CalculateJubility(
 		GetBestRatingOnSongs(coldSongIDs, userID, "jubeat", "Single", "jubility", 30),
 	]);
 
-	let skill = 0;
+	let jubility = 0;
 
-	skill = skill + bestHotScores.reduce((a, e) => a + (e.calculatedData.jubility ?? 0), 0);
-	skill = skill + bestScores.reduce((a, e) => a + (e.calculatedData.jubility ?? 0), 0);
+	jubility = jubility + bestHotScores.reduce((a, e) => a + (e.calculatedData.jubility ?? 0), 0);
+	jubility = jubility + bestScores.reduce((a, e) => a + (e.calculatedData.jubility ?? 0), 0);
 
-	return skill;
+	return jubility;
 }

@@ -104,6 +104,40 @@ export const TestingIIDXSPScorePB: PBScoreDocument<"iidx:SP"> = {
 	timeAchieved: 10000,
 };
 
+export const TestingJubeatPB: PBScoreDocument<"jubeat:Single"> = {
+	chartID: "b90a319f18d1a746b330b8f4cd6f74874f664421",
+	userID: 1,
+	calculatedData: {
+		jubility: 5,
+	},
+	composedFrom: {
+		scorePB: "TESTING_SCORE_ID",
+		lampPB: "TESTING_SCORE_ID",
+	},
+	highlight: false,
+	isPrimary: true,
+	scoreData: {
+		score: 986_000,
+		percent: 94.11,
+		grade: "A",
+		gradeIndex: 7,
+		lamp: "CLEAR",
+		lampIndex: 6,
+		judgements: {},
+		hitMeta: {},
+		esd: null,
+	},
+	rankingData: {
+		rank: 1,
+		outOf: 2,
+		rivalRank: null,
+	},
+	songID: 1,
+	game: "jubeat",
+	playtype: "Single",
+	timeAchieved: 10000,
+};
+
 export const TestingIIDXSPScore: ScoreDocument<"iidx:SP"> = {
 	service: "foo (DIRECT-MANUAL)",
 	game: "iidx",

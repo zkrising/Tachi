@@ -10,9 +10,6 @@ import type { ClassHandler } from "./types";
 import type { KtLogger } from "lib/logger/logger";
 import type { ClassDelta, Game, integer, Playtype, UserGameStats } from "tachi-common";
 
-/**
- * @param allowDowngrades - If passed, this will allow metrics to be downgraded.
- */
 export async function UpdateUsersGamePlaytypeStats(
 	game: Game,
 	playtype: Playtype,

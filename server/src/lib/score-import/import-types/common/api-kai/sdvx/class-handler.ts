@@ -2,11 +2,13 @@ import { KaiTypeToBaseURL } from "../utils";
 import { SDVXDans } from "lib/constants/classes";
 import nodeFetch from "utils/fetch";
 import { IsRecord } from "utils/misc";
+import type { KaiAPIReauthFunction } from "../traverse-api";
 import type { ClassHandler } from "lib/score-import/framework/user-game-stats/types";
 
 export async function CreateKaiSDVXClassHandler(
 	kaiType: "EAG" | "FLO" | "MIN",
 	token: string,
+	reauthFn: KaiAPIReauthFunction,
 	fetch = nodeFetch
 ): Promise<ClassHandler> {
 	let json: unknown;
@@ -14,12 +16,24 @@ export async function CreateKaiSDVXClassHandler(
 	const baseUrl = KaiTypeToBaseURL(kaiType);
 
 	try {
-		const res = await fetch(`${baseUrl}/api/sdvx/v1/player_profile`, {
+		let res = await fetch(`${baseUrl}/api/sdvx/v1/player_profile`, {
 			headers: {
 				Authorization: `Bearer ${token}`,
 				"Content-Type": "application/json",
 			},
 		});
+
+		// if we failed auth wise. Try reauthing.
+		if (res.status === 401 || res.status === 403) {
+			const newToken = await reauthFn();
+
+			res = await fetch(`${baseUrl}/api/sdvx/v1/player_profile`, {
+				headers: {
+					Authorization: `Bearer ${newToken}`,
+					"Content-Type": "application/json",
+				},
+			});
+		}
 
 		json = (await res.json()) as unknown;
 	} catch (e: unknown) {

@@ -14,6 +14,10 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 	const fn = await CreateKaiIIDXClassHandler(
 		"FLO",
 		"token",
+		// eslint-disable-next-line @typescript-eslint/require-await
+		async () => {
+			throw new Error(`Unexpectedly called reauthFn?`);
+		},
 		MockJSONFetch({
 			[`${KaiTypeToBaseURL("FLO")}/api/iidx/v2/player_profile`]: {
 				_links: {},
@@ -45,6 +49,10 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 		const fn = await CreateKaiIIDXClassHandler(
 			"FLO",
 			"token",
+			// eslint-disable-next-line @typescript-eslint/require-await
+			async () => {
+				throw new Error(`Unexpectedly called reauthFn?`);
+			},
 			MockJSONFetch({
 				[`${KaiTypeToBaseURL("FLO")}/api/iidx/v2/player_profile`]: {
 					_links: {},
@@ -69,6 +77,10 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 		const fn = await CreateKaiIIDXClassHandler(
 			"FLO",
 			"token",
+			// eslint-disable-next-line @typescript-eslint/require-await
+			async () => {
+				throw new Error(`Unexpectedly called reauthFn?`);
+			},
 			MockJSONFetch({
 				[`${KaiTypeToBaseURL("FLO")}/api/iidx/v2/player_profile`]: {
 					_links: {},
@@ -93,6 +105,10 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 		const fn = await CreateKaiIIDXClassHandler(
 			"FLO",
 			"token",
+			// eslint-disable-next-line @typescript-eslint/require-await
+			async () => {
+				throw new Error(`Unexpectedly called reauthFn?`);
+			},
 			MockJSONFetch({
 				[`${KaiTypeToBaseURL("FLO")}/api/iidx/v2/player_profile`]: {
 					_links: {},
@@ -114,7 +130,15 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 	});
 
 	t.test("Should gracefully handle negative API responses", async (t) => {
-		const fn = await CreateKaiIIDXClassHandler("FLO", "token", MockBasicFetch({ status: 500 }));
+		const fn = await CreateKaiIIDXClassHandler(
+			"FLO",
+			"token",
+			// eslint-disable-next-line @typescript-eslint/require-await
+			async () => {
+				throw new Error(`Unexpectedly called reauthFn?`);
+			},
+			MockBasicFetch({ status: 500 })
+		);
 
 		const res = fn("iidx", "SP", 1, {}, logger);
 
@@ -123,10 +147,34 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 		t.end();
 	});
 
+	t.test("Should call reauthFn if statusCode is 401", async (t) => {
+		let pass = false;
+		const fn = await CreateKaiIIDXClassHandler(
+			"FLO",
+			"token",
+			// eslint-disable-next-line @typescript-eslint/require-await
+			async () => {
+				pass = true;
+				return "";
+			},
+			MockBasicFetch({ status: 401 })
+		);
+
+		fn("iidx", "SP", 1, {}, logger);
+
+		t.equal(pass, true, "Should've called the reauth fn.");
+
+		t.end();
+	});
+
 	t.test("Should ignore null dans", async (t) => {
 		const fn = await CreateKaiIIDXClassHandler(
 			"FLO",
 			"token",
+			// eslint-disable-next-line @typescript-eslint/require-await
+			async () => {
+				throw new Error(`Unexpectedly called reauthFn?`);
+			},
 			MockJSONFetch({
 				[`${KaiTypeToBaseURL("FLO")}/api/iidx/v2/player_profile`]: {
 					_links: {},
@@ -151,6 +199,10 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 		const fn = await CreateKaiIIDXClassHandler(
 			"FLO",
 			"token",
+			// eslint-disable-next-line @typescript-eslint/require-await
+			async () => {
+				throw new Error(`Unexpectedly called reauthFn?`);
+			},
 			MockJSONFetch({
 				[`${KaiTypeToBaseURL("FLO")}/api/iidx/v2/player_profile`]: {
 					_links: {},

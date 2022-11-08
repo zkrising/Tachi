@@ -84,7 +84,7 @@ function KsHookSV6CForm({
 					label="Force Static Imports"
 				/>
 				<Form.Text>
-					Import scores on game load for non-INFINITAS IIDX versions.
+					Import existing scores on game load.
 					<br />
 					<span className="text-warning">
 						Warning: You should always import from your network first. Statically

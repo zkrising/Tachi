@@ -27,7 +27,7 @@ export async function GetGPTAndUser(
 
 	try {
 		userDoc = await GetUserInfo(userID);
-	} catch (err) {
+	} catch {
 		return { error: `This user does not exist.` };
 	}
 
@@ -66,27 +66,4 @@ export function ParseDifficulty(
 	}
 
 	throw new Error(`The difficulty '${input}' was invalid for this game.`);
-}
-
-/**
- * Converts arbitrary user input into a lamp or grade for this GPT.
- */
-export function ParseTimelineTarget(game: Game, playtype: Playtype, input: string) {
-	const gptConfig = GetGamePTConfig(game, playtype);
-
-	const regex = ConvertInputIntoGenerousRegex(input);
-
-	for (const [index, grade] of Object.entries(gptConfig.grades)) {
-		if (grade.match(regex)) {
-			return { type: "grade", value: Number(index) };
-		}
-	}
-
-	for (const [index, lamp] of Object.entries(gptConfig.lamps)) {
-		if (lamp.match(regex)) {
-			return { type: "lamp", value: Number(index) };
-		}
-	}
-
-	throw new Error(`The target '${input}' was invalid for this game.`);
 }

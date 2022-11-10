@@ -15,25 +15,3 @@ export enum LoggerLayers {
 	databaseQuery = "databaseQuery",
 	apiRequests = "apiRequests",
 }
-
-export const METALLIC_MIND_SPLASHES = [
-	"because 352 people are in this server and they can see that i was looking at chokers and thigh highs",
-	"No similar commands found, either.",
-	"**You may be a victim of software counterfeiting.**\n\nTo use all Microsoft Windows® features, such as all updates\nfrom Windows Update; get all the latest updates; and receive\nproduct support, your copy of Microsoft Windows® must be\nvalidated as genuine.\n\n__Go online and resolve now__",
-	"'DROP TABLE scores;--",
-	"Ceci n'est pas un splash text",
-	"Swish swoosh pew pew",
-	"What is this, a crossover episode?",
-	"npm install humor",
-	"Unban me from Quaver",
-	"You are simply neglecting the law of large numbers.",
-	"I'm using tilt controls!",
-	"IT AIN'T NO EASY GRAB THEY GOT T",
-	"turn on RANDOM!",
-	"It's all about the CEO grindset.",
-	"you could be playing mario galaxy right now",
-	"Play ULTRAKILL.",
-	"zkldi once said: i piss my bed twice a month and that really annoys me",
-	"A point in the horizon, a melting scene from your childhood. Your mortality is showing a frantic drift towards nothing, biology doomed to an infinite recursive loop. Teeth with teeth with teeth. Take a bite. Serene scene of a coastal town, warmth of the sun. Bitter tears. Lust for power. This is where you abandoned your dreams. You are a high net worth individual, an expanding vortex of pathetic trauma. Finally a beautiful fucking nerve ape. A pure soul is born, its neurotransactions stutter into being. 30583750937509353 operations per nanosecond. Beauty eludes your porous mind.\n\nThe value of Life is negative. The balance of being is rotated by 38 degrees. The surface is full of cracks, a turgid light shines through. Fleshy primordial bodies sluggishly roll down the slope. Only you slide upwards, with a celestial step. You become beautified, a saintly figure. Your pristine idiocy reveals a safe path through the impenetrable fog of life. Your dull sword cuts through the weak tendons and membranes of the garden of corruption. Sit on the throne of contentment and ferment. Inspect the eternal blue skies of your kingdom. You come to a realization. You pick up and onion and begin peeling.\n\nOnion layer one. Onion layer two. Onion layer three ... Onion layer n^n. Aeons have passed and the onion is fully peeled. Nothing remains. It's perfect. You get lost in the point that remains where the onion used to be. Synaptic cascade, neurological catastrophe. The point becomes infinitely dense, the universe condenses into a unicellular being. It screams sin. It craves happiness. It's done with this world. It tries to commit suicide but it fails. Sad pathetic mess. You feel pity and disgust but in a way only a being of pure grace can. In your violent mercy you terminate the worldlife.",
-	"Please do not reply to or quote my posts in the future.",
-];

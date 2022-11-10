@@ -1,18 +1,12 @@
 import type {
 	APIPermissions,
 	ChartDocument,
-	FolderDocument,
 	Game,
-	Grades,
 	IDStrings,
-	IDStringToGame,
 	ImportDocument,
 	ImportTypes,
 	integer,
-	Lamps,
-	UserDocument,
 	ScoreDocument,
-	SessionDocument,
 	SongDocument,
 	UGSRatingsLookup,
 	UserGameStats,
@@ -62,26 +56,4 @@ export interface UGPTStats<I extends IDStrings = IDStrings> {
 export interface ChartQueryReturns {
 	charts: Array<ChartDocument & { __playcount: integer }>;
 	songs: Array<SongDocument>;
-}
-
-export interface UGPTFolderStat<I extends IDStrings = IDStrings> {
-	folderID: string;
-	grades: Partial<Record<Grades[I], integer>>;
-	lamps: Partial<Record<Lamps[I], integer>>;
-	chartCount: integer;
-}
-
-export interface UGPTFolderTimeline<I extends IDStrings = IDStrings> {
-	songs: Array<SongDocument<IDStringToGame[I]>>;
-	charts: Array<ChartDocument<I>>;
-	scores: Array<ScoreDocument<I>>;
-	folder: FolderDocument;
-}
-
-export interface SessionInfo {
-	session: SessionDocument;
-	songs: Array<SongDocument>;
-	charts: Array<ChartDocument>;
-	scores: Array<ScoreDocument>;
-	user: UserDocument;
 }

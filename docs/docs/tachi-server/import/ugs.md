@@ -41,7 +41,7 @@ A User Game Stats object looks like this:
 
 		// Note that instead of remembering each number
 		// for each class, they are defined as constants
-		// in src/lib/constants/classes.ts
+		// in common/src/constants/game.ts
 	}
 }
 ```

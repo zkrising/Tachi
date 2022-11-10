@@ -1,7 +1,7 @@
 import db from "./mongo";
 import { LoggerLayers } from "../data/data";
 import { CreateLayeredLogger } from "../utils/logger";
-import type { DiscordUserMapDocument, QuoteDocument } from "./documents";
+import type { DiscordUserMapDocument } from "./documents";
 import type { integer } from "tachi-common";
 
 const logger = CreateLayeredLogger(LoggerLayers.databaseQuery);
@@ -24,10 +24,4 @@ export async function GetUserIDForDiscordID(discordID: string): Promise<integer 
 	}
 
 	return user.userID;
-}
-
-export function GetQuoteWithID(quoteID: string): Promise<QuoteDocument | null> {
-	logger.verbose(`Fetching quote with quoteID: ${quoteID}.`);
-
-	return db.quotes.findOne({ quoteID });
 }

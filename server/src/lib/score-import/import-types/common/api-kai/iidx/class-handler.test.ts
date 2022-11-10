@@ -1,7 +1,7 @@
 import { CreateKaiIIDXClassHandler } from "./class-handler";
 import { KaiTypeToBaseURL } from "../utils";
-import { IIDXDans } from "lib/constants/classes";
 import CreateLogCtx from "lib/logger/logger";
+import { IIDX_DANS } from "tachi-common";
 import t from "tap";
 import { MockBasicFetch, MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
@@ -86,7 +86,7 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 					_links: {},
 					iidx_id: 12345678,
 					dj_name: "SOMEONE",
-					sp: IIDXDans.KAIDEN + 1,
+					sp: IIDX_DANS.KAIDEN + 1,
 					dp: 4,
 					access_time: "2021-08-08T18:50:40Z",
 					register_time: "2019-01-19T12:53:50Z",
@@ -114,7 +114,7 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 					_links: {},
 					iidx_id: 12345678,
 					dj_name: "SOMEONE",
-					sp: IIDXDans.KYU_7 - 1,
+					sp: IIDX_DANS.KYU_7 - 1,
 					dp: 4,
 					access_time: "2021-08-08T18:50:40Z",
 					register_time: "2019-01-19T12:53:50Z",

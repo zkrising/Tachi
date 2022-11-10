@@ -9,7 +9,7 @@ import type {
 
 export type Emittable = InteractionReplyOptions | MessageEmbed | MessagePayload | string;
 
-export type Command = (
+type Command = (
 	interaction: CommandInteraction,
 	requestingUser: DiscordUserMapDocument
 ) => Emittable | Promise<Emittable>;

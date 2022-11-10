@@ -1,6 +1,6 @@
 import { ProcessClassDeltas, UpdateUGSClasses } from "./classes";
-import { GitadoraColours } from "lib/constants/classes";
 import CreateLogCtx from "lib/logger/logger";
+import { GITADORA_COLOURS } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import type { UserGameStats } from "tachi-common";
@@ -36,7 +36,7 @@ t.test("#UpdateUGSClasses", (t) => {
 			logger
 		);
 
-		t.strictSame(res, { colour: GitadoraColours.RAINBOW });
+		t.strictSame(res, { colour: GITADORA_COLOURS.RAINBOW });
 
 		t.end();
 	});

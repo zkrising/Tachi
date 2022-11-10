@@ -6,11 +6,3 @@ export interface DiscordUserMapDocument {
 	discordID: Snowflake;
 	tachiApiToken: string;
 }
-
-export interface QuoteDocument {
-	quoteID: string;
-	text: string;
-	quotedAt: integer;
-	quotedBy: integer;
-	hits: integer;
-}

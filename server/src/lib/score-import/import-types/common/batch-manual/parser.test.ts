@@ -1,8 +1,8 @@
 import { ParseBatchManualFromObject as ParserFn } from "./parser";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import deepmerge from "deepmerge";
-import { IIDXDans } from "lib/constants/classes";
 import CreateLogCtx from "lib/logger/logger";
+import { IIDX_DANS } from "tachi-common";
 import t from "tap";
 import { EscapeStringRegexp } from "utils/misc";
 import type { BatchManual } from "tachi-common";
@@ -338,7 +338,7 @@ t.test("#ParserFn", (t) => {
 
 			t.not(res.classHandler, null);
 
-			t.strictSame(res.classHandler!("iidx", "SP", 1, {}, logger), { dan: IIDXDans.KAIDEN });
+			t.strictSame(res.classHandler!("iidx", "SP", 1, {}, logger), { dan: IIDX_DANS.KAIDEN });
 
 			t.end();
 		});

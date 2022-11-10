@@ -1,8 +1,8 @@
 import { DeleteScore } from "./delete-scores";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import { SDVXVFClasses } from "lib/constants/classes";
 import CreateLogCtx from "lib/logger/logger";
+import { SDVX_VF_CLASSES } from "tachi-common";
 import t from "tap";
 import { mkFakeSDVXChart, mkFakeSDVXPB } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
@@ -225,7 +225,7 @@ t.test("#DeleteScore", (t) => {
 			game: "sdvx",
 			playtype: "Single",
 			classes: {
-				vfClass: SDVXVFClasses.CYAN_I,
+				vfClass: SDVX_VF_CLASSES.CYAN_I,
 			},
 			ratings: {
 				VF6: 14,
@@ -242,7 +242,7 @@ t.test("#DeleteScore", (t) => {
 
 		t.hasStrict(res, {
 			classes: {
-				vfClass: SDVXVFClasses.SIENNA_II,
+				vfClass: SDVX_VF_CLASSES.SIENNA_II,
 			},
 			ratings: {
 				VF6: 4,

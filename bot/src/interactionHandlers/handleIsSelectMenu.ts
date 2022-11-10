@@ -1,10 +1,6 @@
 import { LoggerLayers } from "../data/data";
 import { GetUserInfo } from "../utils/apiRequests";
-import {
-	CreateChartScoresEmbed,
-	CreateFolderStatsEmbed,
-	CreateFolderTimelineEmbed,
-} from "../utils/embeds";
+import { CreateChartScoresEmbed } from "../utils/embeds";
 import { CreateLayeredLogger } from "../utils/logger";
 import type { DiscordUserMapDocument } from "../database/documents";
 import type { SelectMenuInteraction } from "discord.js";
@@ -46,40 +42,6 @@ export async function handleIsSelectMenu(
 				playtype,
 				interaction.values[0]!,
 				null
-			);
-
-			await interaction.update({ embeds: [embed] });
-		} else if (interaction.customId.startsWith("folder!")) {
-			const [, game, playtype, username] = /!(.*):(.*):(.*)$/u.exec(
-				interaction.customId
-			) as unknown as [string, Game, Playtype, string];
-
-			const embed = await CreateFolderStatsEmbed(
-				game,
-				playtype,
-				username,
-				interaction.values[0]!
-			);
-
-			await interaction.update({ embeds: [embed] });
-		} else if (interaction.customId.startsWith("ftl!")) {
-			const [, game, playtype, username, formatMethod, rawTarget] =
-				/!(.*):(.*):(.*):(.*):(.*)$/u.exec(interaction.customId) as unknown as [
-					string,
-					Game,
-					Playtype,
-					string,
-					"first" | "recent",
-					string
-				];
-
-			const embed = await CreateFolderTimelineEmbed(
-				game,
-				playtype,
-				username,
-				interaction.values[0]!,
-				formatMethod,
-				rawTarget
 			);
 
 			await interaction.update({ embeds: [embed] });

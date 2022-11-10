@@ -55,7 +55,7 @@ export async function RegisterSlashCommands(client: Client): Promise<void> {
 /**
  * Unregister all the commmands we have.
  */
-export async function UnregisterAllCommands(client: Client): Promise<void> {
+async function UnregisterAllCommands(client: Client): Promise<void> {
 	try {
 		logger.info("Tidying old guild slash commands.");
 		const guilds = client.guilds.cache;

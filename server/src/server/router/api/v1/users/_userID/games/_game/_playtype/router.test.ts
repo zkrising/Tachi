@@ -1,5 +1,6 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
+import { ONE_DAY } from "lib/constants/time";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
@@ -128,7 +129,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/history", (t) => {
 				playcount: 100,
 				classes: {},
 				ratings: {},
-				timestamp: 1234,
+				timestamp: Date.now() - ONE_DAY,
 			},
 		]);
 
@@ -137,6 +138,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/history", (t) => {
 		// by default, it's set to the current time. we can't
 		// test that nicely, so lets round it to the nearest 100 seconds.
 		res.body.body[0].timestamp = Math.floor(res.body.body[0].timestamp / 100_000);
+		res.body.body[1].timestamp = Math.floor(res.body.body[1].timestamp / 100_000);
 
 		t.strictSame(res.body.body, [
 			{
@@ -167,7 +169,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/history", (t) => {
 				playcount: 100,
 				classes: {},
 				ratings: {},
-				timestamp: 1234,
+				timestamp: Math.floor(Date.now() - ONE_DAY / 100_000),
 			},
 		]);
 

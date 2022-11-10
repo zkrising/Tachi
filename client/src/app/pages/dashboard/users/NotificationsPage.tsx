@@ -36,6 +36,13 @@ function NotificationsInnerPage({ user }: { user: UserDocument }) {
 		return data.filter((e) => e.read === false).length;
 	}, [data]);
 
+	// mark all notifications the user has seen as being read
+	useEffect(() => {
+		if (data) {
+			APIFetchV1(`/users/${user.id}/notifications/mark-all-read`, { method: "POST" });
+		}
+	}, [data]);
+
 	if (error) {
 		return <ApiError error={error} />;
 	}

@@ -4,7 +4,7 @@ import {
 	GoalDocument,
 	IDStrings,
 	integer,
-	PublicUserDocument,
+	UserDocument,
 	ScoreDocument,
 	SessionScoreInfo,
 	SongDocument,
@@ -24,8 +24,8 @@ export function CreateSongMap<G extends Game = Game>(songs: SongDocument<G>[]) {
 	return songMap;
 }
 
-export function CreateUserMap(users: PublicUserDocument[]) {
-	const userMap = new Map<integer, PublicUserDocument>();
+export function CreateUserMap(users: UserDocument[]) {
+	const userMap = new Map<integer, UserDocument>();
 
 	for (const user of users) {
 		userMap.set(user.id, user);

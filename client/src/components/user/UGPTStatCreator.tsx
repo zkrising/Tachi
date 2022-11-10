@@ -8,7 +8,7 @@ import {
 	FormatDifficulty,
 	Game,
 	GetGamePTConfig,
-	PublicUserDocument,
+	UserDocument,
 	ShowcaseStatDetails,
 } from "tachi-common";
 import { GamePT, SetState } from "types/react";
@@ -19,7 +19,7 @@ import Muted from "components/util/Muted";
 import { UserContext } from "context/UserContext";
 
 interface Props {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	game: Game;
 	playtype: Playtype;
 	onCreate: (stat: ShowcaseStatDetails) => void;

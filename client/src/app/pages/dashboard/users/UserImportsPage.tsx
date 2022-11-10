@@ -9,10 +9,10 @@ import useApiQuery from "components/util/query/useApiQuery";
 import SelectLinkButton from "components/util/SelectLinkButton";
 import React, { useMemo, useState } from "react";
 import { Route, Switch } from "react-router-dom";
-import { ImportDocument, ImportTrackerFailed, PublicUserDocument } from "tachi-common";
+import { ImportDocument, ImportTrackerFailed, UserDocument } from "tachi-common";
 import { FailedImportDataset, ImportDataset } from "types/tables";
 
-export default function UserImportsPage({ reqUser }: { reqUser: PublicUserDocument }) {
+export default function UserImportsPage({ reqUser }: { reqUser: UserDocument }) {
 	useSetSubheader(
 		["Users", reqUser.username, "Imports"],
 		[reqUser],
@@ -69,7 +69,7 @@ function ViewRecentImports({
 	reqUser,
 }: {
 	params: URLSearchParams;
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 }) {
 	const { data, error } = useApiQuery<Array<ImportDocument>>(
 		`/users/${reqUser.id}/imports?${params.toString()}`
@@ -98,7 +98,7 @@ function ViewRecentFailedImports({
 	reqUser,
 }: {
 	params: URLSearchParams;
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 }) {
 	const { data, error } = useApiQuery<Array<ImportTrackerFailed>>(
 		`/users/${reqUser.id}/imports/failed?${params.toString()}`

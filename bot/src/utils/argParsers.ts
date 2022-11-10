@@ -4,7 +4,7 @@ import { GetGamePTConfig } from "tachi-common";
 import type { DiscordUserMapDocument } from "../database/documents";
 import type { Emittable } from "../slashCommands/types";
 import type { CommandInteraction } from "discord.js";
-import type { Difficulties, Game, IDStrings, Playtype, PublicUserDocument } from "tachi-common";
+import type { Difficulties, Game, IDStrings, Playtype, UserDocument } from "tachi-common";
 
 /**
  * Utility parser for getting the game, playtype and requesting user, since this is
@@ -15,7 +15,7 @@ export async function GetGPTAndUser(
 	requestingUser: DiscordUserMapDocument
 ): Promise<
 	| { error: Emittable }
-	| { error: null; content: { userDoc: PublicUserDocument; game: Game; playtype: Playtype } }
+	| { error: null; content: { userDoc: UserDocument; game: Game; playtype: Playtype } }
 > {
 	const userID = interaction.options.getString("other_user") ?? requestingUser.userID.toString();
 

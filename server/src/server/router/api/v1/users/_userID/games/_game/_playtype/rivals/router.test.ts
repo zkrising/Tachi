@@ -5,7 +5,7 @@ import { mkFakeGameSettings, mkFakeUser } from "test-utils/misc";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { FakeOtherUser } from "test-utils/test-data";
-import type { PublicUserDocument } from "tachi-common";
+import type { UserDocument } from "tachi-common";
 
 const SetupRivals = async () => {
 	await db.users.insert([FakeOtherUser, mkFakeUser(3), mkFakeUser(4)]);
@@ -36,7 +36,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/rivals", (t) => {
 		t.equal(res.statusCode, 200);
 
 		t.strictSame(
-			res.body.body.map((e: PublicUserDocument) => e.id),
+			res.body.body.map((e: UserDocument) => e.id),
 			[2, 3],
 			"Should have the users rivals and no more."
 		);
@@ -178,7 +178,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/rivals/challengers", (t)
 		t.equal(res.statusCode, 200);
 
 		t.hasStrict(
-			res.body.body.map((e: PublicUserDocument) => e.id),
+			res.body.body.map((e: UserDocument) => e.id),
 			[3, 4, 5]
 		);
 

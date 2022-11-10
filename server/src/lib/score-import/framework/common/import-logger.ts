@@ -1,10 +1,10 @@
 import { rootLogger } from "lib/logger/logger";
 import { FormatUserDoc } from "utils/user";
 import type { KtLogger } from "lib/logger/logger";
-import type { ImportTypes, PublicUserDocument } from "tachi-common";
+import type { ImportTypes, UserDocument } from "tachi-common";
 
 export function CreateScoreLogger(
-	user: PublicUserDocument,
+	user: UserDocument,
 	importID: string,
 	importType: ImportTypes
 ): KtLogger {

@@ -14,7 +14,7 @@ import { useQuery } from "react-query";
 import {
 	FormatGame,
 	GetGameConfig,
-	PublicUserDocument,
+	UserDocument,
 	SessionDocument,
 	UnsuccessfulAPIResponse,
 } from "tachi-common";
@@ -25,7 +25,7 @@ export default function SessionsPage({
 	game,
 	playtype,
 }: {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 } & GamePT) {
 	const [sessionSet, setSessionSet] = useState<"recent" | "best" | "highlighted">("best");
 	const [search, setSearch] = useState("");
@@ -116,7 +116,7 @@ function SearchSessionsTable({
 	playtype,
 	reqUser,
 	baseUrl,
-}: { search: string; baseUrl: string; reqUser: PublicUserDocument } & GamePT) {
+}: { search: string; baseUrl: string; reqUser: UserDocument } & GamePT) {
 	const { data, error } = useQuery<SessionDataset, UnsuccessfulAPIResponse>(
 		`${baseUrl}?search=${search}`,
 		async () => {

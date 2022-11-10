@@ -31,7 +31,7 @@ import {
 	GPTTierlists,
 	IDStrings,
 	integer,
-	PublicUserDocument,
+	UserDocument,
 	ScoreDocument,
 	SongDocument,
 } from "tachi-common";
@@ -41,7 +41,7 @@ import { Playtype } from "types/tachi";
 import FolderComparePage from "./FolderComparePage";
 
 interface Props {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	game: Game;
 	playtype: Playtype;
 }
@@ -481,7 +481,7 @@ function TierlistInfoLadder({
 	dataMap: Map<string, FolderDataset[0]>;
 	game: Game;
 	playtype: Playtype;
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 }) {
 	const buckets: TierlistInfo[][] = useMemo(() => {
 		const buckets: TierlistInfo[][] = [];
@@ -579,7 +579,7 @@ function TierlistInfoBucketValues({
 	dataMap: Map<string, FolderDataset[0]>;
 	game: Game;
 	i: integer;
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 }) {
 	const data = dataMap.get(tierlistInfo.chartID)!;
 

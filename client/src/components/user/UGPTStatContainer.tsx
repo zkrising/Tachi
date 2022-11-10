@@ -4,12 +4,12 @@ import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
 import { useQuery } from "react-query";
-import { integer, PublicUserDocument, ShowcaseStatDetails } from "tachi-common";
+import { integer, UserDocument, ShowcaseStatDetails } from "tachi-common";
 import { UGPTPreferenceStatsReturn } from "types/api-returns";
 import { GamePT } from "types/react";
 import { StatDisplay } from "./UGPTStatShowcase";
 
-type Props = { reqUser: PublicUserDocument } & GamePT;
+type Props = { reqUser: UserDocument } & GamePT;
 
 export default function UGPTStatContainer({
 	stat,

@@ -4,7 +4,7 @@ import Icon from "components/util/Icon";
 import SelectButton from "components/util/SelectButton";
 import { useBucket } from "components/util/useBucket";
 import React, { useState } from "react";
-import { PublicUserDocument } from "tachi-common";
+import { UserDocument } from "tachi-common";
 import { GamePT } from "types/react";
 import { FolderDataset } from "types/tables";
 import FolderMinimap from "./FolderMinimap";
@@ -17,7 +17,7 @@ export default function FolderInfoHeader({
 	folderDataset,
 	folderTitle,
 }: {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	folderDataset: FolderDataset;
 	folderTitle: string;
 } & GamePT) {

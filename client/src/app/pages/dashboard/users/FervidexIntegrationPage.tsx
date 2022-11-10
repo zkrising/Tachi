@@ -6,9 +6,9 @@ import useApiQuery from "components/util/query/useApiQuery";
 import React, { useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FervidexSettingsDocument, PublicUserDocument } from "tachi-common";
+import { FervidexSettingsDocument, UserDocument } from "tachi-common";
 
-export default function FervidexIntegrationPage({ reqUser }: { reqUser: PublicUserDocument }) {
+export default function FervidexIntegrationPage({ reqUser }: { reqUser: UserDocument }) {
 	const { data: settings, error } = useApiQuery<FervidexSettingsDocument | null>(
 		`/users/${reqUser.id}/integrations/fervidex/settings`
 	);
@@ -47,7 +47,7 @@ function FervidexForm({
 	reqUser,
 	settings,
 }: {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	settings: FervidexSettingsDocument | null;
 }) {
 	const [formSettings, setFormSettings] = useState<Omit<FervidexSettingsDocument, "userID">>(

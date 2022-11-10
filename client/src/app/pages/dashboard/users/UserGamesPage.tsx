@@ -9,11 +9,11 @@ import LinkButton from "components/util/LinkButton";
 import Muted from "components/util/Muted";
 import ReferToUser from "components/util/ReferToUser";
 import React from "react";
-import { FormatGame, PublicUserDocument, UserGameStats } from "tachi-common";
+import { FormatGame, UserDocument, UserGameStats } from "tachi-common";
 import { UGSWithRankingData } from "types/api-returns";
 
 interface Props {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 }
 
 export default function UserGamesPage({ reqUser }: Props) {
@@ -54,7 +54,7 @@ export default function UserGamesPage({ reqUser }: Props) {
 	);
 }
 
-function GamesInfo({ ugs, reqUser }: { ugs: UserGameStats[]; reqUser: PublicUserDocument }) {
+function GamesInfo({ ugs, reqUser }: { ugs: UserGameStats[]; reqUser: UserDocument }) {
 	const gpts = GetSortedGPTs();
 
 	const ugsMap = new Map();

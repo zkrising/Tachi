@@ -12,7 +12,7 @@ import UserIcon from "components/util/UserIcon";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useState } from "react";
 import { Button, Col } from "react-bootstrap";
-import { FormatGame, Game, GetGameConfig, Playtype, PublicUserDocument } from "tachi-common";
+import { FormatGame, Game, GetGameConfig, Playtype, UserDocument } from "tachi-common";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 
@@ -21,7 +21,7 @@ export default function RivalsManagePage({
 	game,
 	playtype,
 }: {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	game: Game;
 	playtype: Playtype;
 }) {
@@ -35,7 +35,7 @@ export default function RivalsManagePage({
 
 	const { settings } = useLUGPTSettings();
 
-	const { data, error } = useApiQuery<PublicUserDocument[]>(
+	const { data, error } = useApiQuery<UserDocument[]>(
 		`/users/${reqUser.id}/games/${game}/${playtype}/rivals`,
 		{},
 		[`fetch-rivals-${settings?.rivals.join(",")}`]
@@ -45,7 +45,7 @@ export default function RivalsManagePage({
 		data: challengers,
 		isLoading: cIsLoading,
 		error: cError,
-	} = useApiQuery<PublicUserDocument[]>(
+	} = useApiQuery<UserDocument[]>(
 		`/users/${reqUser.id}/games/${game}/${playtype}/rivals/challengers`
 	);
 
@@ -83,11 +83,11 @@ function RivalsOverviewPage({
 	initialRivals,
 	challengers,
 }: {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	game: Game;
 	playtype: Playtype;
-	initialRivals: Array<PublicUserDocument>;
-	challengers: Array<PublicUserDocument>;
+	initialRivals: Array<UserDocument>;
+	challengers: Array<UserDocument>;
 }) {
 	const { user } = useContext(UserContext);
 

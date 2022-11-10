@@ -30,7 +30,7 @@ import {
 	GetGamePTConfig,
 	GoalDocument,
 	integer,
-	PublicUserDocument,
+	UserDocument,
 	ScoreDocument,
 	SongDocument,
 	GoalSubscriptionDocument,
@@ -75,7 +75,7 @@ export default function GPTMainPage({ game, playtype }: GamePT) {
 
 function RecentAchievedGoalsComponent({ game, playtype }: GamePT) {
 	const { data, error } = useApiQuery<{
-		users: PublicUserDocument[];
+		users: UserDocument[];
 		goals: GoalDocument[];
 		goalSubs: GoalSubscriptionDocument[];
 	}>(`/games/${game}/${playtype}/goals/recently-achieved`);
@@ -131,7 +131,7 @@ function RecentAchievedGoalsComponent({ game, playtype }: GamePT) {
 function RecentHighlightedScoresComponent({ game, playtype }: GamePT) {
 	const { data, error } = useApiQuery<{
 		scores: ScoreDocument[];
-		users: PublicUserDocument[];
+		users: UserDocument[];
 		charts: ChartDocument[];
 		songs: SongDocument[];
 	}>(`/games/${game}/${playtype}/scores/highlighted`);
@@ -194,7 +194,7 @@ function RecentClassesComponent({ game, playtype }: GamePT) {
 	// 	return <div className="text-center">Looks like nobodies got anything here... yet!</div>;
 	// }
 
-	const userMap = new Map<integer, PublicUserDocument>();
+	const userMap = new Map<integer, UserDocument>();
 
 	for (const user of data.users) {
 		userMap.set(user.id, user);
@@ -220,7 +220,7 @@ function AchievedClassRow({
 	user,
 }: {
 	classInfo: ClassAchievementDocument;
-	user: PublicUserDocument;
+	user: UserDocument;
 }) {
 	const game = classInfo.game;
 	const playtype = classInfo.playtype;

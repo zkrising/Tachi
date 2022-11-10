@@ -12,10 +12,10 @@ import { useFormik } from "formik";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
-import { PublicUserDocument, UserSettings } from "tachi-common";
+import { UserDocument, UserSettings } from "tachi-common";
 
 interface Props {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 }
 
 export default function UserSettingsPage({ reqUser }: Props) {
@@ -74,7 +74,7 @@ export default function UserSettingsPage({ reqUser }: Props) {
 	);
 }
 
-function AccountSettings({ reqUser }: { reqUser: PublicUserDocument }) {
+function AccountSettings({ reqUser }: { reqUser: UserDocument }) {
 	const formik = useFormik({
 		initialValues: {
 			"!oldPassword": "",
@@ -162,7 +162,7 @@ function AccountSettings({ reqUser }: { reqUser: PublicUserDocument }) {
 	);
 }
 
-function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
+function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 	const { settings, setSettings } = useContext(UserSettingsContext);
 
 	const formik = useFormik({
@@ -252,7 +252,7 @@ function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 	);
 }
 
-function ImageForm({ reqUser }: { reqUser: PublicUserDocument }) {
+function ImageForm({ reqUser }: { reqUser: UserDocument }) {
 	const [pfp, setPfp] = useState<File | undefined>();
 	const [banner, setBanner] = useState<File | undefined>();
 
@@ -313,7 +313,7 @@ function ImageForm({ reqUser }: { reqUser: PublicUserDocument }) {
 	);
 }
 
-function SocialMediaForm({ reqUser }: { reqUser: PublicUserDocument }) {
+function SocialMediaForm({ reqUser }: { reqUser: UserDocument }) {
 	const placeholders = {
 		discord: "Example#0000",
 		twitter: "Twitter Handle",
@@ -340,7 +340,7 @@ function SocialMediaForm({ reqUser }: { reqUser: PublicUserDocument }) {
 				valuesClone[vx] = values[vx] || null;
 			}
 
-			const rj = await APIFetchV1<PublicUserDocument>(
+			const rj = await APIFetchV1<UserDocument>(
 				"/users/me",
 				{
 					method: "PATCH",
@@ -423,7 +423,7 @@ function FileUploadController({
 }: {
 	file?: File;
 	type: "pfp" | "banner";
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 }) {
 	return (
 		<div className="d-flex mt-8">

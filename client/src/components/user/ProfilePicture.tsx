@@ -1,12 +1,12 @@
 import { ToAPIURL } from "util/api";
 import React from "react";
-import { PublicUserDocument } from "tachi-common";
+import { UserDocument } from "tachi-common";
 
 export default function ProfilePicture({
 	user,
 	src,
 }: {
-	user: PublicUserDocument | string;
+	user: UserDocument | string;
 	src?: string;
 }) {
 	if (typeof user === "string") {

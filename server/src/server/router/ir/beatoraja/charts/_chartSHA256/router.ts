@@ -5,7 +5,7 @@ import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import type { RequestHandler } from "express";
-import type { ChartDocument, integer, PBScoreDocument, PublicUserDocument } from "tachi-common";
+import type { ChartDocument, integer, PBScoreDocument, UserDocument } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -64,7 +64,7 @@ router.get("/scores", async (req, res) => {
 			},
 		}
 	);
-	const userMap = new Map<integer, PublicUserDocument>();
+	const userMap = new Map<integer, UserDocument>();
 
 	for (const user of userDocs) {
 		userMap.set(user.id, user);

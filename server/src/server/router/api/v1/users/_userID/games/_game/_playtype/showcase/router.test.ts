@@ -6,7 +6,7 @@ import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingIIDXFolderSP10, TestingIIDXSPScorePB } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
-import type { ChartDocument, PublicUserDocument } from "tachi-common";
+import type { ChartDocument, UserDocument } from "tachi-common";
 
 const SetFolders = async () => {
 	await db.folders.insert(TestingIIDXFolderSP10);
@@ -112,7 +112,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 			username: "test_acc",
 			usernameLowercase: "test_acc",
 			id: 2,
-		} as PublicUserDocument);
+		} as UserDocument);
 
 		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/showcase?projectUser=2");
 

@@ -2,7 +2,7 @@ import { APIFetchV1 } from "util/api";
 import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useEffect, useState } from "react";
-import { PublicUserDocument } from "tachi-common";
+import { UserDocument } from "tachi-common";
 import { JustChildren } from "types/react";
 import { SplashScreen } from "./SplashScreen";
 
@@ -28,7 +28,7 @@ export function LoadingScreen({ children }: JustChildren) {
 		);
 
 		Promise.all([
-			APIFetchV1<PublicUserDocument>("/users/me").then((rj) => {
+			APIFetchV1<UserDocument>("/users/me").then((rj) => {
 				if (rj.success) {
 					setUser(rj.body);
 				} else {

@@ -7,9 +7,9 @@ import ApiError from "components/util/ApiError";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import { Button, Col, Row } from "react-bootstrap";
-import { NotificationDocument, PublicUserDocument } from "tachi-common";
+import { NotificationDocument, UserDocument } from "tachi-common";
 
 export default function NotificationsPage() {
 	const { user } = useContext(UserContext);
@@ -23,7 +23,7 @@ export default function NotificationsPage() {
 	return <NotificationsInnerPage user={user} />;
 }
 
-function NotificationsInnerPage({ user }: { user: PublicUserDocument }) {
+function NotificationsInnerPage({ user }: { user: UserDocument }) {
 	const { data, error } = useApiQuery<Array<NotificationDocument>>(
 		`/users/${user.id}/notifications`
 	);

@@ -4,7 +4,7 @@ import { DatabaseSchemas } from "external/mongo/schemas";
 import t from "tap";
 import { mkFakeUser } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
-import type { PublicUserDocument } from "tachi-common";
+import type { UserDocument } from "tachi-common";
 
 t.test("#GetUserCaseInsensitive", (t) => {
 	t.beforeEach(ResetDBState);
@@ -100,7 +100,7 @@ t.test("#GetUsersWithIDs", (t) => {
 
 t.test("#FormatUserDoc", (t) => {
 	t.equal(
-		FormatUserDoc({ username: "zkldi", id: 123 } as PublicUserDocument),
+		FormatUserDoc({ username: "zkldi", id: 123 } as UserDocument),
 		"zkldi (#123)",
 		"Should format a user document into username #id format."
 	);

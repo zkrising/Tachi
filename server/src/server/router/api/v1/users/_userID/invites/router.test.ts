@@ -5,7 +5,7 @@ import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import type { InviteCodeDocument, PublicUserDocument } from "tachi-common";
+import type { InviteCodeDocument, UserDocument } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/invites", async (t) => {
 	t.beforeEach(ResetDBState);
@@ -17,7 +17,7 @@ t.test("GET /api/v1/users/:userID/invites", async (t) => {
 			id: 2,
 			username: "other_dude",
 			usernameLowercase: "other_dude",
-		} as PublicUserDocument);
+		} as UserDocument);
 
 		const res = await mockApi.get("/api/v1/users/1/invites").set("Cookie", cookie);
 

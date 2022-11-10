@@ -14,7 +14,7 @@ import type {
 	PBScoreDocument,
 	Playtype,
 	Playtypes,
-	PublicUserDocument,
+	UserDocument,
 	ScoreCalculatedDataLookup,
 	ScoreDocument,
 	SongDocument,
@@ -366,8 +366,8 @@ export function CreateSongMap<G extends Game = Game>(songs: Array<SongDocument<G
 	return songMap;
 }
 
-export function CreateUserMap(users: Array<PublicUserDocument>) {
-	const userMap = new Map<integer, PublicUserDocument>();
+export function CreateUserMap(users: Array<UserDocument>) {
+	const userMap = new Map<integer, UserDocument>();
 
 	for (const user of users) {
 		userMap.set(user.id, user);

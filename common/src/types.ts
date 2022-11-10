@@ -670,7 +670,7 @@ export enum UserAuthLevels {
 	ADMIN = 3,
 }
 
-export interface PublicUserDocument extends MongoDBDocument {
+export interface UserDocument extends MongoDBDocument {
 	username: string;
 	usernameLowercase: string;
 	id: integer;

@@ -11,7 +11,7 @@ import {
 	ChartDocument,
 	IDStrings,
 	PBScoreDocument,
-	PublicUserDocument,
+	UserDocument,
 	ScoreDocument,
 } from "tachi-common";
 import { UGPTChartPBComposition } from "types/api-returns";
@@ -43,7 +43,7 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 	thisScore,
 	defaultView = "moreInfo",
 }: {
-	user: PublicUserDocument;
+	user: UserDocument;
 	chart: ChartDocument;
 	scoreState: ScoreState;
 	defaultView?: "vsPB" | "moreInfo" | "history" | "debug" | "manage" | "rivals";

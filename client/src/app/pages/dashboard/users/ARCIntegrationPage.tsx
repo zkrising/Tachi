@@ -7,10 +7,10 @@ import useApiQuery from "components/util/query/useApiQuery";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { ARCSavedProfileDocument, PublicUserDocument } from "tachi-common";
+import { ARCSavedProfileDocument, UserDocument } from "tachi-common";
 import { SetState } from "types/react";
 
-export default function ARCIntegrationPage({ reqUser }: { reqUser: PublicUserDocument }) {
+export default function ARCIntegrationPage({ reqUser }: { reqUser: UserDocument }) {
 	const [iidxID, setIIDXID] = useState("");
 	const [sdvxID, setSDVXID] = useState("");
 

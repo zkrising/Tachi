@@ -13,11 +13,11 @@ import { useBucket } from "components/util/useBucket";
 import useUGPTBase from "components/util/useUGPTBase";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useState } from "react";
-import { FolderDocument, GetGamePTConfig, PublicUserDocument } from "tachi-common";
+import { FolderDocument, GetGamePTConfig, UserDocument } from "tachi-common";
 import { FolderStatsInfo, UGPTFolderSearch } from "types/api-returns";
 import { GamePT } from "types/react";
 
-type Props = { reqUser: PublicUserDocument } & GamePT;
+type Props = { reqUser: UserDocument } & GamePT;
 
 export default function FoldersSearch({ reqUser, game, playtype }: Props) {
 	const [search, setSearch] = useState("");

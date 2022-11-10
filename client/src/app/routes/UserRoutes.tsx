@@ -27,7 +27,7 @@ import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext, useEffect } from "react";
 import { useQuery } from "react-query";
 import { Redirect, Route, Switch, useHistory, useParams } from "react-router-dom";
-import { FormatGame, Game, GetGameConfig, PublicUserDocument, UserGameStats } from "tachi-common";
+import { FormatGame, Game, GetGameConfig, UserDocument, UserGameStats } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import UserImportsPage from "app/pages/dashboard/users/UserImportsPage";
 import ScoresPage from "../pages/dashboard/users/games/_game/_playtype/ScoresPage";
@@ -38,7 +38,7 @@ export default function UserRoutes() {
 	const { userID } = useParams<{ userID: string }>();
 	const history = useHistory();
 
-	const { data: reqUser, error } = useApiQuery<PublicUserDocument>(`/users/${params.userID}`);
+	const { data: reqUser, error } = useApiQuery<UserDocument>(`/users/${params.userID}`);
 
 	const { setBackground } = useContext(BackgroundContext);
 	useEffect(() => {
@@ -95,7 +95,7 @@ export default function UserRoutes() {
 	);
 }
 
-function UserProfileRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
+function UserProfileRoutes({ reqUser }: { reqUser: UserDocument }) {
 	const { settings } = useContext(UserSettingsContext);
 
 	return (
@@ -145,7 +145,7 @@ function UserProfileRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
 	);
 }
 
-function UserGameRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
+function UserGameRoutes({ reqUser }: { reqUser: UserDocument }) {
 	const { game } = useParams<{ game: string }>();
 
 	if (!IsSupportedGame(game)) {
@@ -180,7 +180,7 @@ function UserGameRoutes({ reqUser }: { reqUser: PublicUserDocument }) {
 	);
 }
 
-function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: PublicUserDocument; game: Game }) {
+function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: UserDocument; game: Game }) {
 	const { playtype } = useParams<{ playtype: string }>();
 
 	if (!IsSupportedPlaytype(game, playtype)) {

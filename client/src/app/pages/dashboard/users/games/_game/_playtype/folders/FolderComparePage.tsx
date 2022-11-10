@@ -11,7 +11,7 @@ import useLUGPTSettings from "components/util/useLUGPTSettings";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { COLOUR_SET, FolderDocument, GetGamePTConfig, PublicUserDocument } from "tachi-common";
+import { COLOUR_SET, FolderDocument, GetGamePTConfig, UserDocument } from "tachi-common";
 import { UGPTFolderReturns, UGPTStatsReturn } from "types/api-returns";
 import { GamePT } from "types/react";
 import { ComparePBsDataset } from "types/tables";
@@ -26,17 +26,17 @@ export default function RivalCompareFolderPage({
 	playtype,
 	folder,
 }: GamePT & {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	folder: FolderDocument;
 }) {
 	const { settings } = useLUGPTSettings();
 	const { user } = useContext(UserContext);
 
-	const [selectedUser, setSelectedUser] = useState<PublicUserDocument | null>(null);
+	const [selectedUser, setSelectedUser] = useState<UserDocument | null>(null);
 	const [show, setShow] = useState(false);
 
 	// honestly don't care if this errors or not
-	const { data, error } = useApiQuery<Array<PublicUserDocument>>(
+	const { data, error } = useApiQuery<Array<UserDocument>>(
 		`/users/${settings?.userID}/games/${game}/${playtype}/rivals`,
 		undefined
 		// [settings?.rivals.join(",")]
@@ -121,8 +121,8 @@ function FolderCompare({
 	withUser,
 	folder,
 }: {
-	reqUser: PublicUserDocument;
-	withUser: PublicUserDocument;
+	reqUser: UserDocument;
+	withUser: UserDocument;
 	folder: FolderDocument;
 } & GamePT) {
 	const gptConfig = GetGamePTConfig(game, playtype);

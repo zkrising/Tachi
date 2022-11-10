@@ -5,10 +5,10 @@ import db from "external/mongo/db";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPScore, TestingIIDXSPScorePB } from "test-utils/test-data";
-import type { PublicUserDocument, ScoreDocument, SessionDocument } from "tachi-common";
+import type { UserDocument, ScoreDocument, SessionDocument } from "tachi-common";
 
 const logger = CreateScoreLogger(
-	{ username: "test_zkldi", id: 1 } as PublicUserDocument,
+	{ username: "test_zkldi", id: 1 } as UserDocument,
 	"foo",
 	"ir/direct-manual"
 );

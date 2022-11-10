@@ -8,10 +8,10 @@ import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
-import { PublicUserDocument } from "tachi-common";
+import { UserDocument } from "tachi-common";
 
 interface Props {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 }
 
 export default function UserPage({ reqUser }: Props) {

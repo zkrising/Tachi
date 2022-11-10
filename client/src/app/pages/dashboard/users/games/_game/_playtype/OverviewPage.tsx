@@ -23,7 +23,7 @@ import {
 	FormatGame,
 	GetGameConfig,
 	GetGamePTConfig,
-	PublicUserDocument,
+	UserDocument,
 	ScoreDocument,
 	SessionDocument,
 	UserGameStats,
@@ -37,7 +37,7 @@ export default function OverviewPage({
 	reqUser,
 	game,
 	playtype,
-}: { reqUser: PublicUserDocument } & GamePT) {
+}: { reqUser: UserDocument } & GamePT) {
 	const gameConfig = GetGameConfig(game);
 	useSetSubheader(
 		["Users", reqUser.username, "Games", gameConfig.name, playtype],
@@ -54,7 +54,7 @@ export default function OverviewPage({
 	);
 }
 
-function LastSession({ reqUser, game, playtype }: { reqUser: PublicUserDocument } & GamePT) {
+function LastSession({ reqUser, game, playtype }: { reqUser: UserDocument } & GamePT) {
 	return (
 		<AsyncLoader
 			promiseFn={async () => {
@@ -170,7 +170,7 @@ function RecentSessionScoreInfo({
 }: {
 	session: SessionDocument;
 	sessionData: SessionReturns;
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 }) {
 	const { game, playtype } = session;
 
@@ -249,7 +249,7 @@ function RecentSessionScoreInfo({
 	);
 }
 
-function RankingInfo({ reqUser, game, playtype }: { reqUser: PublicUserDocument } & GamePT) {
+function RankingInfo({ reqUser, game, playtype }: { reqUser: UserDocument } & GamePT) {
 	return (
 		<AsyncLoader
 			promiseFn={async () => {
@@ -274,7 +274,7 @@ function UserHistory({
 	reqUser,
 	game,
 	playtype,
-}: { data: UGPTHistory; reqUser: PublicUserDocument } & GamePT) {
+}: { data: UGPTHistory; reqUser: UserDocument } & GamePT) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const [mode, setMode] = useState<"ranking" | "playcount" | "rating">("rating");

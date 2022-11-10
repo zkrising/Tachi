@@ -20,7 +20,7 @@ import {
 	FormatChart,
 	Game,
 	GetGamePTConfig,
-	PublicUserDocument,
+	UserDocument,
 	ShowcaseStatDetails,
 	SongDocument,
 } from "tachi-common";
@@ -34,7 +34,7 @@ export default function UGPTStatShowcase({
 	reqUser,
 	game,
 	playtype,
-}: { reqUser: PublicUserDocument } & GamePT) {
+}: { reqUser: UserDocument } & GamePT) {
 	const { ugs } = useContext(AllLUGPTStatsContext);
 	const { user } = useContext(UserContext);
 
@@ -377,7 +377,7 @@ export function StatDisplay({
 }: {
 	statData: UGPTPreferenceStatsReturn;
 	compareData?: UGPTPreferenceStatsReturn;
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 } & GamePT) {
 	const { stat, result, related } = statData;
 	const { user } = useContext(UserContext);

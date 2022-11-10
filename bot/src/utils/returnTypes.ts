@@ -10,7 +10,7 @@ import type {
 	ImportTypes,
 	integer,
 	Lamps,
-	PublicUserDocument,
+	UserDocument,
 	ScoreDocument,
 	SessionDocument,
 	SongDocument,
@@ -83,5 +83,5 @@ export interface SessionInfo {
 	songs: Array<SongDocument>;
 	charts: Array<ChartDocument>;
 	scores: Array<ScoreDocument>;
-	user: PublicUserDocument;
+	user: UserDocument;
 }

@@ -1,7 +1,7 @@
 import ProfilePicture from "components/user/ProfilePicture";
 import React from "react";
 import { Link } from "react-router-dom";
-import { PublicUserDocument } from "tachi-common";
+import { UserDocument } from "tachi-common";
 import { JustChildren, GamePT } from "types/react";
 
 export default function UserIcon({
@@ -9,7 +9,7 @@ export default function UserIcon({
 	children,
 	game,
 	playtype,
-}: { user: PublicUserDocument } & Partial<JustChildren> & Partial<GamePT>) {
+}: { user: UserDocument } & Partial<JustChildren> & Partial<GamePT>) {
 	return (
 		<div className="text-center p-8">
 			<ProfilePicture user={user} />

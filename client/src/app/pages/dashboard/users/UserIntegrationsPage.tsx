@@ -19,7 +19,7 @@ import {
 	APIPermissions,
 	APITokenDocument,
 	integer,
-	PublicUserDocument,
+	UserDocument,
 	TachiAPIClientDocument,
 } from "tachi-common";
 import { SetState } from "types/react";
@@ -27,7 +27,7 @@ import ARCIntegrationPage from "./ARCIntegrationPage";
 import FervidexIntegrationPage from "./FervidexIntegrationPage";
 import KsHookSV6CIntegrationPage from "./KsHookSV6CIntegrationPage";
 
-export default function UserIntegrationsPage({ reqUser }: { reqUser: PublicUserDocument }) {
+export default function UserIntegrationsPage({ reqUser }: { reqUser: UserDocument }) {
 	const [page, setPage] = useState<"services" | "api-keys" | "oauth-clients">("api-keys");
 
 	useSetSubheader(
@@ -616,7 +616,7 @@ function EditClientModal({
 	);
 }
 
-function ServicesPage({ reqUser }: { reqUser: PublicUserDocument }) {
+function ServicesPage({ reqUser }: { reqUser: UserDocument }) {
 	if (mode === "btchi") {
 		return (
 			<Row className="text-center">
@@ -749,7 +749,7 @@ function KAIIntegrationStatus({
 	);
 }
 
-function APIKeysPage({ reqUser }: { reqUser: PublicUserDocument }) {
+function APIKeysPage({ reqUser }: { reqUser: UserDocument }) {
 	const [apiKeys, setApiKeys] = useState<APITokenDocument[]>([]);
 	const [showModal, setShowModal] = useState(false);
 
@@ -817,7 +817,7 @@ function CreateAPIKeyModal({
 }: {
 	showModal: boolean;
 	setShowModal: SetState<boolean>;
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	apiKeys: APITokenDocument[];
 	setApiKeys: SetState<APITokenDocument[]>;
 }) {

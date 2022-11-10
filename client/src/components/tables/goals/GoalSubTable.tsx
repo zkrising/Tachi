@@ -5,7 +5,7 @@ import React from "react";
 import {
 	COLOUR_SET,
 	GoalDocument,
-	PublicUserDocument,
+	UserDocument,
 	GoalSubscriptionDocument,
 } from "tachi-common";
 import { GamePT } from "types/react";
@@ -15,7 +15,7 @@ import TachiTable, { Header } from "../components/TachiTable";
 
 export type GoalSubDataset = (GoalSubscriptionDocument & {
 	__related: {
-		user: PublicUserDocument;
+		user: UserDocument;
 		goal: GoalDocument;
 	};
 })[];

@@ -10,7 +10,7 @@ import { HandleGoalAchievedV1 } from "../webhookHandlers/goalAchieved";
 import express from "express";
 import path from "path";
 import type { Express } from "express";
-import type { APITokenDocument, PublicUserDocument, WebhookEvents } from "tachi-common";
+import type { APITokenDocument, UserDocument, WebhookEvents } from "tachi-common";
 
 export const app: Express = express();
 
@@ -85,7 +85,7 @@ app.get("/oauth/callback", async (req, res) => {
 	const discordID = req.query.context;
 	const apiToken = tokenRes.body.token!;
 
-	const whoamiRes = await TachiServerV1Get<PublicUserDocument>("/users/me", apiToken);
+	const whoamiRes = await TachiServerV1Get<UserDocument>("/users/me", apiToken);
 
 	if (!whoamiRes.success) {
 		logger.severe("Failed to request user with token we just got?", { discordID });

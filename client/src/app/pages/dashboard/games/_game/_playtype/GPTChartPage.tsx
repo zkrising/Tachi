@@ -26,7 +26,7 @@ import {
 	GetGamePTConfig,
 	integer,
 	PBScoreDocument,
-	PublicUserDocument,
+	UserDocument,
 	SongDocument,
 } from "tachi-common";
 import {
@@ -223,8 +223,8 @@ function ChartLeaderboardTable({
 	song,
 }: {
 	data: ChartPBData;
-	user: PublicUserDocument | null;
-	userMap: Map<integer, PublicUserDocument>;
+	user: UserDocument | null;
+	userMap: Map<integer, UserDocument>;
 	mode: "leaderboard" | "adjacent" | "rivals";
 	chart: ChartDocument;
 	song: SongDocument;
@@ -282,8 +282,8 @@ function TopShowcase({
 	userMap,
 }: {
 	data: ChartPBData;
-	user: PublicUserDocument | null;
-	userMap: Map<integer, PublicUserDocument>;
+	user: UserDocument | null;
+	userMap: Map<integer, UserDocument>;
 }) {
 	// We have a couple of conditions.
 	// User is #1: col-12 #1,
@@ -337,7 +337,7 @@ function PlayCard({
 	name,
 }: {
 	pb: PBScoreDocument;
-	user: PublicUserDocument;
+	user: UserDocument;
 	name: string;
 }) {
 	return (

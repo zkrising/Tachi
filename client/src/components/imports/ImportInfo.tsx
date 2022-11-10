@@ -17,7 +17,7 @@ import {
 	ChartDocument,
 	Game,
 	ImportDocument,
-	PublicUserDocument,
+	UserDocument,
 	ScoreDocument,
 	SessionDocument,
 	SongDocument,
@@ -32,7 +32,7 @@ interface Data {
 	charts: ChartDocument[];
 	songs: SongDocument[];
 	sessions: SessionDocument[];
-	user: PublicUserDocument;
+	user: UserDocument;
 }
 
 export default function ImportInfo({

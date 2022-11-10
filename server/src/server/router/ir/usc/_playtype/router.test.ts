@@ -5,7 +5,7 @@ import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState, { ResetCDN } from "test-utils/resets";
 import { GetKTDataBuffer } from "test-utils/test-data";
-import type { PBScoreDocument, PublicUserDocument, ScoreDocument } from "tachi-common";
+import type { PBScoreDocument, UserDocument, ScoreDocument } from "tachi-common";
 
 async function InsertFakeUSCAuth() {
 	await db["api-tokens"].insert({
@@ -315,7 +315,7 @@ t.test("GET /charts/:chartHash/leaderboard", (t) => {
 			id: 2,
 			username: "not_zkldi",
 			usernameLowercase: "not_zkldi",
-		} as PublicUserDocument);
+		} as UserDocument);
 
 		await db.scores.insert([
 			{
@@ -667,7 +667,7 @@ t.test("POST /scores", (t) => {
 				username: "bar",
 				usernameLowercase: "bar",
 			},
-		] as Array<PublicUserDocument>);
+		] as Array<UserDocument>);
 
 		const res = await mockApi
 			.post("/ir/usc/Controller/scores")
@@ -781,7 +781,7 @@ t.test("POST /scores", (t) => {
 				username: "baz",
 				usernameLowercase: "baz",
 			},
-		] as Array<PublicUserDocument>);
+		] as Array<UserDocument>);
 
 		const res = await mockApi
 			.post("/ir/usc/Controller/scores")

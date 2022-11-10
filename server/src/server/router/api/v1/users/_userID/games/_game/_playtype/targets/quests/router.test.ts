@@ -9,7 +9,7 @@ import {
 	TestingIIDXSPQuest,
 	TestingIIDXSPQuestSub,
 } from "test-utils/test-data";
-import type { PublicUserDocument, UserGameStats } from "tachi-common";
+import type { UserDocument, UserGameStats } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/quests", (t) => {
 	t.beforeEach(ResetDBState);
@@ -158,7 +158,7 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/targets/quests/:questID"
 			id: 2,
 			username: "fake_person",
 			usernameLowercase: "fake_person",
-		} as PublicUserDocument);
+		} as UserDocument);
 
 		await db["game-stats"].insert({
 			game: "iidx",
@@ -206,7 +206,7 @@ t.test("DELETE /api/v1/users/:userID/games/:game/:playtype/targets/quests/:quest
 			id: 2,
 			username: "fake_person",
 			usernameLowercase: "fake_person",
-		} as PublicUserDocument);
+		} as UserDocument);
 
 		await db["game-stats"].insert({
 			game: "iidx",

@@ -11,7 +11,7 @@ import { Alert, Button, Col, Form } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
 import toast from "react-hot-toast";
 import { Link, useHistory } from "react-router-dom";
-import { PublicUserDocument } from "tachi-common";
+import { UserDocument } from "tachi-common";
 import { UseFormik } from "types/react";
 
 // seconds it takes for a user to actually read the rules.
@@ -51,7 +51,7 @@ export default function RegisterPage() {
 				return;
 			}
 
-			const rj = await APIFetchV1<PublicUserDocument>(
+			const rj = await APIFetchV1<UserDocument>(
 				"/auth/register",
 				{
 					method: "POST",

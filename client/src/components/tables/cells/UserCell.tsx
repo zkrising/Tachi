@@ -1,10 +1,10 @@
 import { ToAPIURL } from "util/api";
 import React from "react";
 import { Link } from "react-router-dom";
-import { PublicUserDocument } from "tachi-common";
+import { UserDocument } from "tachi-common";
 import { GamePT } from "types/react";
 
-export default function UserCell({ user, game, playtype }: { user: PublicUserDocument } & GamePT) {
+export default function UserCell({ user, game, playtype }: { user: UserDocument } & GamePT) {
 	return (
 		<td
 			style={{

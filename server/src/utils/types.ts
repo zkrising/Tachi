@@ -4,7 +4,7 @@ import type {
 	SessionDocument,
 	ScoreDocument,
 	ChartDocument,
-	PublicUserDocument,
+	UserDocument,
 	UserGameStats,
 	Game,
 	Playtype,
@@ -41,7 +41,7 @@ declare module "express-serve-static-core" {
 }
 
 export interface TachiSessionData {
-	user: PublicUserDocument;
+	user: UserDocument;
 	settings: UserSettings;
 }
 
@@ -71,7 +71,7 @@ export interface TachiRequestData {
 
 	beatorajaChartDoc?: ChartDocument<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard">;
 
-	requestedUser?: PublicUserDocument;
+	requestedUser?: UserDocument;
 	requestedUserGameStats?: UserGameStats;
 	game?: Game;
 	playtype?: Playtype;

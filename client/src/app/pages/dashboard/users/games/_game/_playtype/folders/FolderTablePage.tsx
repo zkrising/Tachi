@@ -25,14 +25,14 @@ import {
 	Game,
 	GamePTConfig,
 	GetGamePTConfig,
-	PublicUserDocument,
+	UserDocument,
 	TableDocument,
 } from "tachi-common";
 import { FolderStatsInfo, UGPTTableReturns } from "types/api-returns";
 import { Playtype } from "types/tachi";
 
 interface Props {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	game: Game;
 	playtype: Playtype;
 }

@@ -10,12 +10,12 @@ import { UserContext } from "context/UserContext";
 import { ClientConfig } from "lib/config";
 import React, { useContext, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { PublicUserDocument } from "tachi-common";
+import { UserDocument } from "tachi-common";
 import { SetState } from "types/react";
 import ProfileBadges from "./ProfileBadges";
 import ProfilePicture from "./ProfilePicture";
 
-export function UserHeaderBody({ reqUser }: { reqUser: PublicUserDocument }) {
+export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 	function ConditionalSocialMediaRender({
 		mode,
 		href,
@@ -87,7 +87,7 @@ export function UserBottomNav({
 	reqUser,
 }: {
 	baseUrl: string;
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 }) {
 	const { user } = useContext(UserContext);
 
@@ -138,7 +138,7 @@ export function UserBottomNav({
 	);
 }
 
-function StatusComponent({ reqUser }: { reqUser: PublicUserDocument }) {
+function StatusComponent({ reqUser }: { reqUser: UserDocument }) {
 	const { user } = useContext(UserContext);
 
 	const isRequestedUser = user?.id === reqUser.id;
@@ -182,7 +182,7 @@ function ChangeStatusModal({
 }: {
 	modalShow: boolean;
 	setModalShow: SetState<boolean>;
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 }) {
 	const [status, setStatus] = useState(reqUser.status);
 	const [innerStatus, setInnerStatus] = useState(reqUser.status ?? "");

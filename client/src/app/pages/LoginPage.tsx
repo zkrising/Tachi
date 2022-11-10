@@ -11,7 +11,7 @@ import { Button, Col, Form } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
 import toast from "react-hot-toast";
 import { Link, useHistory } from "react-router-dom";
-import { PublicUserDocument } from "tachi-common";
+import { UserDocument } from "tachi-common";
 
 export default function LoginPage() {
 	useSetSubheader("Login");
@@ -51,7 +51,7 @@ export default function LoginPage() {
 				return;
 			}
 
-			const userRJ = await APIFetchV1<PublicUserDocument>("/users/me");
+			const userRJ = await APIFetchV1<UserDocument>("/users/me");
 
 			if (userRJ.statusCode === 403) {
 				setErr("You are banned.");

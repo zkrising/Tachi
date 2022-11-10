@@ -4,7 +4,7 @@ import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingIIDXSPScorePB } from "test-utils/test-data";
-import type { PBScoreDocument, PublicUserDocument } from "tachi-common";
+import type { PBScoreDocument, UserDocument } from "tachi-common";
 
 t.test("GET /api/v1/games/:game/:playtype/charts/:chartID", (t) => {
 	t.beforeEach(ResetDBState);
@@ -54,7 +54,7 @@ t.test("GET /api/v1/games/:game/:playtype/charts/:chartID/pbs", (t) => {
 			id: 2,
 			username: "foo",
 			usernameLowercase: "foo",
-		} as PublicUserDocument);
+		} as UserDocument);
 
 		const res = await mockApi.get(`/api/v1/games/iidx/SP/charts/${Testing511SPA.chartID}/pbs`);
 

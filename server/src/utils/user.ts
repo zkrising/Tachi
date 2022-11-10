@@ -9,7 +9,7 @@ import type {
 	IDStrings,
 	integer,
 	Playtype,
-	PublicUserDocument,
+	UserDocument,
 	UGSRatingsLookup,
 	UserGameStats,
 } from "tachi-common";
@@ -43,7 +43,7 @@ export async function GetUsernameFromUserID(userID: integer): Promise<string> {
  */
 export function GetUserCaseInsensitive(
 	username: string
-): Promise<FindOneResult<PublicUserDocument>> {
+): Promise<FindOneResult<UserDocument>> {
 	return db.users.findOne({
 		usernameLowercase: username.toLowerCase(),
 	});
@@ -62,7 +62,7 @@ export function GetUserPrivateInfo(userID: integer) {
 /**
  * Gets a user from their userID.
  */
-export function GetUserWithID(userID: integer): Promise<FindOneResult<PublicUserDocument>> {
+export function GetUserWithID(userID: integer): Promise<FindOneResult<UserDocument>> {
 	return db.users.findOne({
 		id: userID,
 	});
@@ -102,7 +102,7 @@ export async function GetUsersWithIDs(userIDs: Array<integer>) {
  * If the user document is not found, a severe error is logged, and this
  * function throws.
  */
-export async function GetUserWithIDGuaranteed(userID: integer): Promise<PublicUserDocument> {
+export async function GetUserWithIDGuaranteed(userID: integer): Promise<UserDocument> {
 	const userDoc = await GetUserWithID(userID);
 
 	if (!userDoc) {
@@ -135,7 +135,7 @@ export function ResolveUser(usernameOrID: string) {
 /**
  * Returns a formatted string indicating the user. This is used for logging.
  */
-export function FormatUserDoc(userdoc: PublicUserDocument) {
+export function FormatUserDoc(userdoc: UserDocument) {
 	return `${userdoc.username} (#${userdoc.id})`;
 }
 

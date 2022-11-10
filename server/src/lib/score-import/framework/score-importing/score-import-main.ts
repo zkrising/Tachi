@@ -26,7 +26,7 @@ import type {
 	ImportTypes,
 	integer,
 	Playtype,
-	PublicUserDocument,
+	UserDocument,
 } from "tachi-common";
 
 /**
@@ -257,7 +257,7 @@ export default async function ScoreImportMain<D, C>(
  */
 export async function HandlePostImportSteps(
 	importInfo: Array<ImportProcessingInfo>,
-	user: PublicUserDocument,
+	user: UserDocument,
 	importType: ImportTypes,
 	game: Game,
 	classHandler: ClassHandler | null,

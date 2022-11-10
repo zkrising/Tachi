@@ -2,7 +2,7 @@ import { APIFetchV1 } from "util/api";
 import ProfilePicture from "components/user/ProfilePicture";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
-import { integer, PublicUserDocument } from "tachi-common";
+import { integer, UserDocument } from "tachi-common";
 import { SetState } from "types/react";
 import DebounceSearch from "../DebounceSearch";
 import Divider from "../Divider";
@@ -17,13 +17,13 @@ export default function UserSelectModal({
 }: {
 	show: boolean;
 	setShow: SetState<boolean>;
-	callback: (user: PublicUserDocument) => void;
+	callback: (user: UserDocument) => void;
 	url?: string;
 	excludeSet?: Array<integer>;
 	excludeMsg?: string;
 }) {
 	const [search, setSearch] = useState("");
-	const [users, setUsers] = useState<Array<PublicUserDocument> | null>(null);
+	const [users, setUsers] = useState<Array<UserDocument> | null>(null);
 	const [errMsg, setErrMsg] = useState<string | null>(null);
 
 	useEffect(() => {
@@ -34,7 +34,7 @@ export default function UserSelectModal({
 		const searchParams = new URLSearchParams();
 		searchParams.set("search", search);
 
-		APIFetchV1<PublicUserDocument[]>(`${url}?${searchParams.toString()}`).then((res) => {
+		APIFetchV1<UserDocument[]>(`${url}?${searchParams.toString()}`).then((res) => {
 			if (res.success) {
 				setErrMsg(null);
 

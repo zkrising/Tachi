@@ -6,7 +6,7 @@ import { mkFakeGameStats, mkFakeUser } from "test-utils/misc";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { FakeOtherUser } from "test-utils/test-data";
-import type { PublicUserDocument, UserGameStats } from "tachi-common";
+import type { UserDocument, UserGameStats } from "tachi-common";
 
 t.test("GET /api/v1/games/:game/:playtype", (t) => {
 	t.test("Should return information about the game:playtype.", async (t) => {
@@ -95,7 +95,7 @@ t.test("GET /api/v1/games/:game/:playtype/leaderboard", (t) => {
 				username: "foo",
 				usernameLowercase: "foo",
 				id: 3,
-			}) as PublicUserDocument,
+			}) as UserDocument,
 		]);
 
 		const res = await mockApi.get("/api/v1/games/iidx/SP/leaderboard?alg=BPI");

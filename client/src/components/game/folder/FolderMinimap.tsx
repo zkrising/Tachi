@@ -17,7 +17,7 @@ import {
 	GamePTConfig,
 	GetGamePTConfig,
 	IIDX_LAMPS,
-	PublicUserDocument,
+	UserDocument,
 	SessionDocument,
 } from "tachi-common";
 import { GamePT } from "types/react";
@@ -25,7 +25,7 @@ import { FolderDataset } from "types/tables";
 
 type Props = {
 	folderDataset: FolderDataset;
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	view: "grade" | "lamp";
 } & GamePT;
 

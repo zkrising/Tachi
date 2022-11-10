@@ -4,7 +4,7 @@ import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import type { PublicUserDocument } from "tachi-common";
+import type { UserDocument } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/settings", (t) => {
 	t.beforeEach(ResetDBState);
@@ -125,7 +125,7 @@ t.test("PATCH /api/v1/users/:userID/settings", async (t) => {
 				id: 2,
 				username: "something_else",
 				usernameLowercase: "something_else",
-			}) as PublicUserDocument
+			}) as UserDocument
 		);
 
 		const res = await mockApi

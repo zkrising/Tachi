@@ -10,7 +10,7 @@ import {
 	GetGamePTConfig,
 	IDStrings,
 	integer,
-	PublicUserDocument,
+	UserDocument,
 	SessionCalculatedDataLookup,
 	SessionDocument,
 } from "tachi-common";
@@ -30,7 +30,7 @@ export default function GenericSessionTable({
 }: {
 	dataset: SessionDataset;
 	indexCol?: boolean;
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	game: Game;
 	playtype: Playtype;
 }) {
@@ -108,7 +108,7 @@ function Row({
 	data: SessionDataset[0];
 	// reqUser: PublicUserDocument;
 	rating: SessionCalculatedDataLookup[IDStrings];
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	indexCol?: boolean;
 }) {
 	return (

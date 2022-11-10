@@ -20,7 +20,7 @@ import {
 	GetGamePTConfig,
 	IDStrings,
 	PBScoreDocument,
-	PublicUserDocument,
+	UserDocument,
 	ScoreCalculatedDataLookup,
 	ScoreDocument,
 	SongDocument,
@@ -34,7 +34,7 @@ export default function ScoresPage({
 	game,
 	playtype,
 }: {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 } & GamePT) {
 	const gameConfig = GetGameConfig(game);
 	const gptConfig = GetGamePTConfig(game, playtype);
@@ -141,7 +141,7 @@ function AlgSelector({
 	);
 }
 
-function useFetchPBs(url: string, reqUser: PublicUserDocument) {
+function useFetchPBs(url: string, reqUser: UserDocument) {
 	const { data, error } = useQuery(url, async () => {
 		const res = await APIFetchV1<{
 			pbs: PBScoreDocument<"iidx:SP">[];
@@ -168,7 +168,7 @@ function PBsOverview({
 	url,
 	alg,
 }: {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	url: string;
 	indexCol?: boolean;
 	showPlaycount?: boolean;
@@ -214,7 +214,7 @@ function FormatData<
 	D extends PBScoreDocument | ScoreDocument,
 	I extends IDStrings = IDStrings,
 	G extends Game = Game
->(d: D[], songs: SongDocument<G>[], charts: ChartDocument<I>[], reqUser: PublicUserDocument) {
+>(d: D[], songs: SongDocument<G>[], charts: ChartDocument<I>[], reqUser: UserDocument) {
 	const songMap = new Map();
 	const chartMap = new Map();
 
@@ -239,7 +239,7 @@ function FormatData<
 	return data;
 }
 
-function useFetchScores(url: string, reqUser: PublicUserDocument) {
+function useFetchScores(url: string, reqUser: UserDocument) {
 	const { data, error } = useQuery(url, async () => {
 		const res = await APIFetchV1<{
 			scores: ScoreDocument[];
@@ -264,7 +264,7 @@ function PBsSearch({
 	search,
 	alg,
 }: {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	search: string;
 	alg?: ScoreCalculatedDataLookup[IDStrings];
 } & GamePT) {
@@ -286,7 +286,7 @@ function PBsSearch({
 	);
 }
 
-function ScoresOverview({ reqUser, game, playtype }: { reqUser: PublicUserDocument } & GamePT) {
+function ScoresOverview({ reqUser, game, playtype }: { reqUser: UserDocument } & GamePT) {
 	const [search, setSearch] = useState("");
 
 	const { data, error } = useFetchScores(
@@ -321,7 +321,7 @@ function ScoresSearch({
 	game,
 	playtype,
 	search,
-}: { reqUser: PublicUserDocument; search: string } & GamePT) {
+}: { reqUser: UserDocument; search: string } & GamePT) {
 	const { data, error } = useFetchScores(
 		`/users/${reqUser.id}/games/${game}/${playtype}/scores?search=${search}`,
 		reqUser

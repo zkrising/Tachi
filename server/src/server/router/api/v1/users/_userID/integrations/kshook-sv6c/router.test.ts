@@ -3,7 +3,7 @@ import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import type { PublicUserDocument } from "tachi-common";
+import type { UserDocument } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/integrations/kshook-sv6c/settings", async (t) => {
 	t.beforeEach(ResetDBState);
@@ -55,7 +55,7 @@ t.test("GET /api/v1/users/:userID/integrations/kshook-sv6c/settings", async (t) 
 			id: 2,
 			username: "foo",
 			usernameLowercase: "foo",
-		} as PublicUserDocument);
+		} as UserDocument);
 
 		const res3 = await mockApi
 			.get("/api/v1/users/2/integrations/kshook-sv6c/settings")

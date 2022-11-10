@@ -6,11 +6,11 @@ import useUGPTBase from "components/util/useUGPTBase";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Route, Switch } from "react-router-dom";
-import { FormatGame, GetGameConfig, PublicUserDocument } from "tachi-common";
+import { FormatGame, GetGameConfig, UserDocument } from "tachi-common";
 import { GamePT } from "types/react";
 import GoalsPage from "./GoalsPage";
 
-type Props = { reqUser: PublicUserDocument } & GamePT;
+type Props = { reqUser: UserDocument } & GamePT;
 
 export default function TargetsPage({ reqUser, game, playtype }: Props) {
 	const gameConfig = GetGameConfig(game);

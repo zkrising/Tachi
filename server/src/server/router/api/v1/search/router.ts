@@ -11,7 +11,7 @@ import { RequireBokutachi } from "server/middleware/type-require";
 import { IsString } from "utils/misc";
 import { GetAllUserRivals, GetUserPlayedGPTs } from "utils/user";
 import type { FilterQuery } from "mongodb";
-import type { FolderDocument, Game, integer, PublicUserDocument, SongDocument } from "tachi-common";
+import type { FolderDocument, Game, integer, UserDocument, SongDocument } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
 
 	const userID = req[SYMBOL_TACHI_API_AUTH].userID;
 
-	let filter: FilterQuery<FolderDocument & PublicUserDocument & SongDocument> = {};
+	let filter: FilterQuery<FolderDocument & UserDocument & SongDocument> = {};
 	let relevantGames: Array<Game> = TachiConfig.GAMES;
 
 	if (userID !== null) {
@@ -64,7 +64,7 @@ router.get("/", async (req, res) => {
 	);
 
 	// @ts-expect-error Handled below -- the field is added by the below for loop.
-	const usersWithRivalTag: Array<PublicUserDocument & { __isRival: boolean }> = users;
+	const usersWithRivalTag: Array<UserDocument & { __isRival: boolean }> = users;
 
 	let rivals: Array<integer> = [];
 

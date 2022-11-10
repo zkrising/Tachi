@@ -15,11 +15,11 @@ import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useState } from "react";
 import { Badge, Button, Col, Form, Modal, Row } from "react-bootstrap";
 import { Redirect, useParams } from "react-router-dom";
-import { GetGameConfig, PublicUserDocument, SessionDocument } from "tachi-common";
+import { GetGameConfig, UserDocument, SessionDocument } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
 
-type Props = { reqUser: PublicUserDocument } & GamePT;
+type Props = { reqUser: UserDocument } & GamePT;
 
 export default function SpecificSessionPage({ reqUser, game, playtype }: Props) {
 	const { sessionID } = useParams<{ sessionID: string }>();

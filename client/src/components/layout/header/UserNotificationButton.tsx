@@ -2,9 +2,9 @@ import Icon from "components/util/Icon";
 import useApiQuery from "components/util/query/useApiQuery";
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { NotificationDocument, PublicUserDocument } from "tachi-common";
+import { NotificationDocument, UserDocument } from "tachi-common";
 
-export function UserNotificationButton({ user }: { user: PublicUserDocument }) {
+export function UserNotificationButton({ user }: { user: UserDocument }) {
 	// don't care whether it errors or not, tbh
 	const { data } = useApiQuery<Array<NotificationDocument>>(`/users/${user.id}/notifications`);
 

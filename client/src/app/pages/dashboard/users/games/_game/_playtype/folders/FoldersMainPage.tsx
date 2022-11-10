@@ -7,14 +7,14 @@ import { UserContext } from "context/UserContext";
 import { AllLUGPTStatsContext } from "context/AllLUGPTStatsContext";
 import React, { useContext } from "react";
 import { Route, Switch } from "react-router-dom";
-import { FormatGame, GetGameConfig, PublicUserDocument } from "tachi-common";
+import { FormatGame, GetGameConfig, UserDocument } from "tachi-common";
 import { GamePT } from "types/react";
 import FolderSelectPage from "./FolderSelectPage";
 import FolderTablePage from "./FolderTablePage";
 import RecentFoldersPage from "./RecentFoldersPage";
 import SpecificFolderPage from "./SpecificFolderPage";
 
-type Props = { reqUser: PublicUserDocument } & GamePT;
+type Props = { reqUser: UserDocument } & GamePT;
 
 export default function FoldersMainPage({ reqUser, game, playtype }: Props) {
 	const gameConfig = GetGameConfig(game);

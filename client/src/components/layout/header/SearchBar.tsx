@@ -6,13 +6,13 @@ import Loading from "components/util/Loading";
 import { TachiConfig } from "lib/config";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Game, GetGameConfig, integer, PublicUserDocument, SongDocument } from "tachi-common";
+import { Game, GetGameConfig, integer, UserDocument, SongDocument } from "tachi-common";
 import { GamePT, JustChildren } from "types/react";
 import { Playtype } from "types/tachi";
 import QuickTooltip from "../misc/QuickTooltip";
 
 interface SearchReturns {
-	users?: PublicUserDocument[];
+	users?: UserDocument[];
 	songs: (SongDocument & { __textScore: number; game: Game })[];
 }
 
@@ -38,7 +38,7 @@ function GPTSearchResult({
 	playtype,
 	tabIndex,
 }: {
-	user: PublicUserDocument;
+	user: UserDocument;
 	tabIndex: integer;
 } & GamePT) {
 	const currentLoc = window.location.href.split(`games/${game}/${playtype}`)[1];

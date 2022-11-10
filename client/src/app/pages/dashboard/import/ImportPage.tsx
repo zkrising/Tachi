@@ -18,7 +18,7 @@ import {
 	GetGameConfig,
 	ImportTypes,
 	integer,
-	PublicUserDocument,
+	UserDocument,
 } from "tachi-common";
 
 export default function ImportPage() {
@@ -71,7 +71,7 @@ function ShowRecentImports() {
 	return <InnerShowRecentImports user={user} />;
 }
 
-function InnerShowRecentImports({ user }: { user: PublicUserDocument }) {
+function InnerShowRecentImports({ user }: { user: UserDocument }) {
 	const { data, error } = useApiQuery<{ importType: ImportTypes; count: integer }[]>(
 		`/users/${user.id}/recent-imports`
 	);

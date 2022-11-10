@@ -1,5 +1,5 @@
 import React from "react";
-import { PublicUserDocument, TachiAPIClientDocument } from "tachi-common";
+import { UserDocument, TachiAPIClientDocument } from "tachi-common";
 import ApiError from "./ApiError";
 import Loading from "./Loading";
 import Muted from "./Muted";
@@ -10,7 +10,7 @@ export default function OAuthMoreInfo({
 }: {
 	client: Omit<TachiAPIClientDocument, "clientSecret">;
 }) {
-	const { data, error } = useApiQuery<PublicUserDocument>(`/users/${client.author}`);
+	const { data, error } = useApiQuery<UserDocument>(`/users/${client.author}`);
 
 	if (error) {
 		return <ApiError error={error} />;

@@ -22,7 +22,7 @@ import {
 	FormatGame,
 	GetGameConfig,
 	GetGamePTConfig,
-	PublicUserDocument,
+	UserDocument,
 	ShowcaseStatDetails,
 	TableDocument,
 	UGPTSettings,
@@ -31,7 +31,7 @@ import { GamePT, SetState } from "types/react";
 import { UGPTContext } from "context/UGPTContext";
 import { ErrorPage } from "app/pages/ErrorPage";
 
-type Props = { reqUser: PublicUserDocument } & GamePT;
+type Props = { reqUser: UserDocument } & GamePT;
 
 export default function UGPTSettingsPage({ reqUser, game, playtype }: Props) {
 	const query = useQueryString();
@@ -108,7 +108,7 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 			preferredRanking: settings!.preferences.preferredRanking ?? "global",
 		},
 		onSubmit: async (values) => {
-			const rj = await APIFetchV1<PublicUserDocument>(
+			const rj = await APIFetchV1<UserDocument>(
 				`/users/${reqUser.id}/games/${game}/${playtype}/settings`,
 				{
 					method: "PATCH",

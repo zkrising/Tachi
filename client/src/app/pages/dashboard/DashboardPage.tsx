@@ -20,7 +20,7 @@ import { ColourConfig, TachiConfig } from "lib/config";
 import React, { useContext } from "react";
 import { Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { COLOUR_SET, GetGameConfig, PublicUserDocument } from "tachi-common";
+import { COLOUR_SET, GetGameConfig, UserDocument } from "tachi-common";
 import { UGSWithRankingData, UserRecentSummary } from "types/api-returns";
 import { FolderInfoComponent } from "./users/games/_game/_playtype/folders/FolderSelectPage";
 import { GameStatContainer } from "./users/UserGamesPage";
@@ -48,7 +48,7 @@ export function DashboardPage() {
 	);
 }
 
-function DashboardLoggedIn({ user }: { user: PublicUserDocument }) {
+function DashboardLoggedIn({ user }: { user: UserDocument }) {
 	return (
 		<div>
 			<span className="display-4">
@@ -64,7 +64,7 @@ function DashboardLoggedIn({ user }: { user: PublicUserDocument }) {
 	);
 }
 
-function RecentInfo({ user }: { user: PublicUserDocument }) {
+function RecentInfo({ user }: { user: UserDocument }) {
 	const { data, error } = useApiQuery<UserRecentSummary>(`/users/${user.id}/recent-summary`);
 
 	if (error) {
@@ -172,7 +172,7 @@ function RecentInfo({ user }: { user: PublicUserDocument }) {
 	);
 }
 
-function UserGameStatsInfo({ user }: { user: PublicUserDocument }) {
+function UserGameStatsInfo({ user }: { user: UserDocument }) {
 	return (
 		<div className="row">
 			<AsyncLoader
@@ -261,7 +261,7 @@ function FeatureContainer({ tagline, description }: { tagline: string; descripti
 	);
 }
 
-function DashboardLoggedInNoScores({ user }: { user: PublicUserDocument }) {
+function DashboardLoggedInNoScores({ user }: { user: UserDocument }) {
 	return (
 		<div>
 			<span className="display-4">

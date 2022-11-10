@@ -23,7 +23,7 @@ import type {
 	NotificationDocument,
 	PBScoreDocument,
 	Playtype,
-	PublicUserDocument,
+	UserDocument,
 	ScoreDocument,
 	UGPTSettings,
 	UserGameStats,
@@ -58,7 +58,7 @@ export function dmf<T extends object>(base: T, modifant: Partial<T>): T {
  *
  * @param userID - The userID this fake user should have.
  */
-export function mkFakeUser(userID: integer, modifant: Partial<PublicUserDocument> = {}) {
+export function mkFakeUser(userID: integer, modifant: Partial<UserDocument> = {}) {
 	return dmf(FakeOtherUser, {
 		id: userID,
 		username: `user${userID}`,

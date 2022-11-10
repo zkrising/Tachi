@@ -31,7 +31,7 @@ import type {
 	QuestSubscriptionDocument,
 	NotificationDocument,
 	PBScoreDocument,
-	PublicUserDocument,
+	UserDocument,
 	ScoreDocument,
 	SongDocument,
 	UGPTSettings,
@@ -798,7 +798,7 @@ export const uscScore: USCClientScore = {
 	},
 };
 
-export const FakeOtherUser: PublicUserDocument = {
+export const FakeOtherUser: UserDocument = {
 	id: 2,
 	username: "other_user",
 	about: "",

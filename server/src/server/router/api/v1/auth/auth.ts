@@ -8,7 +8,7 @@ import nodeFetch from "utils/fetch";
 import { Random20Hex } from "utils/misc";
 import { CreateURLWithParams } from "utils/url";
 import { FormatUserDoc } from "utils/user";
-import type { integer, PublicUserDocument, UserSettings } from "tachi-common";
+import type { integer, UserDocument, UserSettings } from "tachi-common";
 import type { PrivateUserInfoDocument } from "utils/types";
 
 const logger = CreateLogCtx(__filename);
@@ -43,7 +43,7 @@ export function ReinstateInvite(code: string) {
 	);
 }
 
-export async function AddNewInvite(user: PublicUserDocument) {
+export async function AddNewInvite(user: UserDocument) {
 	const code = Random20Hex();
 
 	const result = await db.invites.insert({
@@ -82,7 +82,7 @@ export async function AddNewUser(
 
 	logger.verbose(`Hashed password for ${username}.`);
 
-	const userDoc: PublicUserDocument = {
+	const userDoc: UserDocument = {
 		id: userID,
 		username,
 		usernameLowercase: username.toLowerCase(),
@@ -169,7 +169,7 @@ export async function ValidateCaptcha(
 
 export function MountAuthCookie(
 	req: Express.Request,
-	user: PublicUserDocument,
+	user: UserDocument,
 	settings: UserSettings
 ) {
 	req.session.tachi = {

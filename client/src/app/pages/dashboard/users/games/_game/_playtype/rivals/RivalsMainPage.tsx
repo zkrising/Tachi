@@ -8,7 +8,7 @@ import useUGPTBase from "components/util/useUGPTBase";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { FormatGame, Game, GetGameConfig, Playtype, PublicUserDocument } from "tachi-common";
+import { FormatGame, Game, GetGameConfig, Playtype, UserDocument } from "tachi-common";
 import RivalsManagePage from "./RivalsManagePage";
 
 export default function RivalsMainPage({
@@ -16,7 +16,7 @@ export default function RivalsMainPage({
 	game,
 	playtype,
 }: {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	game: Game;
 	playtype: Playtype;
 }) {

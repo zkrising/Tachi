@@ -32,7 +32,7 @@ import type {
 	integer,
 	PBScoreDocument,
 	Playtype,
-	PublicUserDocument,
+	UserDocument,
 	ScoreDocument,
 	SessionDocument,
 	SongDocument,
@@ -60,7 +60,7 @@ export function CreateImportEmbed(importDoc: ImportDocument) {
 		);
 }
 
-export function CreateUserEmbed(userDoc: PublicUserDocument) {
+export function CreateUserEmbed(userDoc: UserDocument) {
 	return CreateEmbed()
 		.setTitle(`${userDoc.username} (ID: ${userDoc.id})`)
 		.setThumbnail(PrependTachiUrl(`/users/${userDoc.id}/pfp`))
@@ -69,7 +69,7 @@ export function CreateUserEmbed(userDoc: PublicUserDocument) {
 		.setURL(`${BotConfig.TACHI_SERVER_LOCATION}/dashboard/users/${userDoc.username}`);
 }
 
-export function CreateGameProfileEmbed(userDoc: PublicUserDocument, ugptStats: UGPTStats) {
+export function CreateGameProfileEmbed(userDoc: UserDocument, ugptStats: UGPTStats) {
 	const { game, playtype } = ugptStats.gameStats;
 
 	const gptConfig = GetGamePTConfig(game, playtype);
@@ -126,7 +126,7 @@ export function CreateGameProfileEmbed(userDoc: PublicUserDocument, ugptStats: U
 }
 
 export async function CreateChartScoresEmbed(
-	userDoc: PublicUserDocument,
+	userDoc: UserDocument,
 	game: Game,
 	playtype: Playtype,
 	chartID: string,

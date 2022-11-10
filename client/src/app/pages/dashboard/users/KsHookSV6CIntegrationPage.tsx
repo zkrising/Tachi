@@ -6,9 +6,9 @@ import useApiQuery from "components/util/query/useApiQuery";
 import React, { useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FervidexSettingsDocument, KsHookSettingsDocument, PublicUserDocument } from "tachi-common";
+import { FervidexSettingsDocument, KsHookSettingsDocument, UserDocument } from "tachi-common";
 
-export default function KsHookSV6CIntegrationPage({ reqUser }: { reqUser: PublicUserDocument }) {
+export default function KsHookSV6CIntegrationPage({ reqUser }: { reqUser: UserDocument }) {
 	const { data: settings, error } = useApiQuery<FervidexSettingsDocument | null>(
 		`/users/${reqUser.id}/integrations/kshook-sv6c/settings`
 	);
@@ -47,7 +47,7 @@ function KsHookSV6CForm({
 	reqUser,
 	settings,
 }: {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	settings: KsHookSettingsDocument | null;
 }) {
 	const [formSettings, setFormSettings] = useState<Omit<KsHookSettingsDocument, "userID">>(

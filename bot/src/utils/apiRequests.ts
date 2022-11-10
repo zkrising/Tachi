@@ -14,7 +14,7 @@ import type {
 	integer,
 	PBScoreDocument,
 	Playtype,
-	PublicUserDocument,
+	UserDocument,
 	SessionDocument,
 	SongDocument,
 } from "tachi-common";
@@ -22,7 +22,7 @@ import type {
 const logger = CreateLayeredLogger(LoggerLayers.apiRequests);
 
 export async function GetUserInfo(userID: integer | string) {
-	const res = await TachiServerV1Get<PublicUserDocument>(`/users/${userID}`, null);
+	const res = await TachiServerV1Get<UserDocument>(`/users/${userID}`, null);
 
 	if (!res.success) {
 		throw new Error(`Failed to fetch user with userID ${userID}.`);

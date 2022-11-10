@@ -12,7 +12,7 @@ import type {
 	Game,
 	integer,
 	Playtype,
-	PublicUserDocument,
+	UserDocument,
 	SessionDocument,
 	SongDocument,
 } from "tachi-common";
@@ -134,7 +134,7 @@ export function SearchSessions(
 export function SearchUsersRegExp(search: string, matchOnline = false) {
 	const regexEsc = EscapeStringRegexp(search.toLowerCase());
 
-	const matchQuery: FilterQuery<PublicUserDocument> = {
+	const matchQuery: FilterQuery<UserDocument> = {
 		usernameLowercase: { $regex: new RegExp(regexEsc, "u") },
 	};
 

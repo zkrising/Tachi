@@ -11,10 +11,10 @@ import useApiQuery from "components/util/query/useApiQuery";
 import React from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { integer, InviteCodeDocument, PublicUserDocument } from "tachi-common";
+import { integer, InviteCodeDocument, UserDocument } from "tachi-common";
 import Icon from "components/util/Icon";
 
-export default function UserInvitesPage({ reqUser }: { reqUser: PublicUserDocument }) {
+export default function UserInvitesPage({ reqUser }: { reqUser: UserDocument }) {
 	useSetSubheader(
 		["Users", reqUser.username, "Invites"],
 		[reqUser],
@@ -86,10 +86,10 @@ export default function UserInvitesPage({ reqUser }: { reqUser: PublicUserDocume
 	);
 }
 
-function InviteList({ reqUser }: { reqUser: PublicUserDocument }) {
+function InviteList({ reqUser }: { reqUser: UserDocument }) {
 	const { data, error } = useApiQuery<{
 		invites: InviteCodeDocument[];
-		consumers: PublicUserDocument[];
+		consumers: UserDocument[];
 	}>(`/users/${reqUser.id}/invites`);
 
 	if (error) {

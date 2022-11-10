@@ -18,7 +18,7 @@ import {
 	GetGamePTConfig,
 	IDStrings,
 	integer,
-	PublicUserDocument,
+	UserDocument,
 	UGSRatingsLookup,
 	UserGameStats,
 } from "tachi-common";
@@ -35,7 +35,7 @@ export default function LeaderboardsPage({
 	reqUser,
 	game,
 	playtype,
-}: { reqUser: PublicUserDocument } & GamePT) {
+}: { reqUser: UserDocument } & GamePT) {
 	const gameConfig = GetGameConfig(game);
 	useSetSubheader(
 		["Users", reqUser.username, "Games", gameConfig.name, playtype, "Leaderboard"],
@@ -86,7 +86,7 @@ function LeaderboardsPageContent({
 	data,
 	alg,
 }: {
-	reqUser: PublicUserDocument;
+	reqUser: UserDocument;
 	data: LeaderboardsData;
 	alg: UGSRatingsLookup[IDStrings];
 	setAlg: SetState<UGSRatingsLookup[IDStrings]>;
@@ -95,7 +95,7 @@ function LeaderboardsPageContent({
 
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const userMap = new Map<integer, PublicUserDocument>();
+	const userMap = new Map<integer, UserDocument>();
 
 	for (const u of stats.users) {
 		userMap.set(u.id, u);

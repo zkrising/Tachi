@@ -3,7 +3,7 @@ import {
 	FormatGame,
 	Game,
 	Playtype,
-	PublicUserDocument,
+	UserDocument,
 	UGPTSettings,
 	UserGameStats,
 } from "tachi-common";
@@ -19,7 +19,7 @@ export interface UGPTData {
 	stats: UserGameStats;
 	game: Game;
 	playtype: Playtype;
-	user: PublicUserDocument;
+	user: UserDocument;
 }
 
 /**
@@ -60,7 +60,7 @@ export default async function fetchUGPTData(
 		);
 	}
 
-	const userRes = await APIFetchV1<PublicUserDocument>(`/users/${userID}`);
+	const userRes = await APIFetchV1<UserDocument>(`/users/${userID}`);
 
 	if (!userRes.success) {
 		throw new Error(`Failed to fetch user info for ${userID}: ${userRes.description}`);

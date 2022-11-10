@@ -15,7 +15,7 @@ import {
 	integer,
 	Lamps,
 	PBScoreDocument,
-	PublicUserDocument,
+	UserDocument,
 	ScoreDocument,
 	SessionDocument,
 	ShowcaseStatChart,
@@ -44,7 +44,7 @@ export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
 export interface UGPTLeaderboardAdjacent {
 	above: UserGameStats[];
 	below: UserGameStats[];
-	users: PublicUserDocument[];
+	users: UserDocument[];
 	thisUsersStats: UserGameStats;
 	thisUsersRanking: {
 		ranking: integer;
@@ -54,7 +54,7 @@ export interface UGPTLeaderboardAdjacent {
 
 export interface GPTLeaderboard {
 	gameStats: UserGameStats[];
-	users: PublicUserDocument[];
+	users: UserDocument[];
 }
 
 export type UGPTPreferenceStatsReturn =
@@ -79,7 +79,7 @@ export interface SessionReturns<I extends IDStrings = IDStrings> {
 	scores: ScoreDocument[];
 	songs: SongDocument<IDStringToGame[I]>[];
 	charts: ChartDocument<I>[];
-	user: PublicUserDocument;
+	user: UserDocument;
 }
 
 export interface UGPTChartPBComposition<I extends IDStrings = IDStrings> {
@@ -137,7 +137,7 @@ export interface GPTStatsReturn {
 
 export interface RecentClassesReturn {
 	classes: ClassAchievementDocument[];
-	users: PublicUserDocument[];
+	users: UserDocument[];
 }
 
 export interface SongsReturn<I extends IDStrings = IDStrings> {
@@ -146,26 +146,26 @@ export interface SongsReturn<I extends IDStrings = IDStrings> {
 }
 
 export interface ChartPBLeaderboardReturn<I extends IDStrings = IDStrings> {
-	users: PublicUserDocument[];
+	users: UserDocument[];
 	pbs: PBScoreDocument<I>[];
 }
 
 export interface UGPTChartLeaderboardAdjacent<I extends IDStrings = IDStrings> {
-	users: PublicUserDocument[];
+	users: UserDocument[];
 	pb: PBScoreDocument<I>;
 	adjacentAbove: PBScoreDocument<I>[];
 	adjacentBelow: PBScoreDocument<I>[];
 }
 
 export interface ScoreLeaderboardReturns<I extends IDStrings = IDStrings> {
-	users: PublicUserDocument[];
+	users: UserDocument[];
 	songs: SongDocument<IDStringToGame[I]>[];
 	charts: ChartDocument<I>[];
 	pbs: PBScoreDocument<I>[];
 }
 
 export interface UserLeaderboardReturns<I extends IDStrings = IDStrings> {
-	users: PublicUserDocument[];
+	users: UserDocument[];
 	gameStats: UserGameStats<I>[];
 }
 
@@ -188,7 +188,7 @@ export interface ServerStatus {
 }
 
 export interface ChallengeSubsReturn {
-	rivals: Array<PublicUserDocument>;
+	rivals: Array<UserDocument>;
 	pbs: Array<PBScoreDocument>;
 	challengeSubs: Array<ChallengeSubscriptionDocument>;
 	songs: Array<SongDocument>;
@@ -196,7 +196,7 @@ export interface ChallengeSubsReturn {
 }
 
 export interface ChartRivalsReturn {
-	rivals: Array<PublicUserDocument>;
+	rivals: Array<UserDocument>;
 	pbs: Array<PBScoreDocument>;
 }
 
@@ -206,15 +206,15 @@ export interface ImportIDReturn {
 	charts: ChartDocument[];
 	sessions: SessionDocument[];
 	import: ImportDocument;
-	user: PublicUserDocument;
+	user: UserDocument;
 }
 
 export interface FailedImportsReturn {
 	failedImports: Array<ImportTrackerFailed>;
-	users: Array<PublicUserDocument>;
+	users: Array<UserDocument>;
 }
 
 export interface ImportsReturn {
 	imports: Array<ImportDocument>;
-	users: Array<PublicUserDocument>;
+	users: Array<UserDocument>;
 }

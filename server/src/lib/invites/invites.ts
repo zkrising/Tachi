@@ -1,7 +1,7 @@
 import { ONE_MONTH } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
-import type { PublicUserDocument } from "tachi-common";
+import type { UserDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -12,7 +12,7 @@ const logger = CreateLogCtx(__filename);
  * Users get those N additional invites every month since they join.
  * This is capped at INVITE_CAP, which defaults to 100.
  */
-export function GetTotalAllowedInvites(user: PublicUserDocument) {
+export function GetTotalAllowedInvites(user: UserDocument) {
 	if (!ServerConfig.INVITE_CODE_CONFIG) {
 		logger.warn(
 			`No INVITE_CODE_CONFIG set, but tried to get total allowed invites? Returning 0.`

@@ -10,9 +10,9 @@ import { Button } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-import { PublicUserDocument } from "tachi-common";
+import { UserDocument } from "tachi-common";
 
-export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
+export function UserProfileDropdown({ user }: { user: UserDocument }) {
 	const { setUser } = useContext(UserContext);
 	const [heySplash] = useState(RFA(heySplashes));
 

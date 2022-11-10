@@ -6,7 +6,7 @@ import {
 	ImportTrackerFailed,
 	integer,
 	PBScoreDocument,
-	PublicUserDocument,
+	UserDocument,
 	ScoreDocument,
 	SongDocument,
 	UserGameStats,
@@ -17,7 +17,7 @@ export type PBDataset<I extends IDStrings = IDStrings> = (PBScoreDocument<I> & {
 		chart: ChartDocument<I>;
 		song: SongDocument<IDStringToGame[I]>;
 		index: integer;
-		user?: PublicUserDocument;
+		user?: UserDocument;
 	};
 	__playcount?: integer;
 })[];
@@ -27,7 +27,7 @@ export type ScoreDataset<I extends IDStrings = IDStrings> = (ScoreDocument<I> & 
 		chart: ChartDocument<I>;
 		song: SongDocument<IDStringToGame[I]>;
 		index: integer;
-		user: PublicUserDocument;
+		user: UserDocument;
 	};
 })[];
 
@@ -35,24 +35,24 @@ export type FolderDataset<I extends IDStrings = IDStrings> = (ChartDocument<I> &
 	__related: {
 		pb: PBScoreDocument<I> | null;
 		song: SongDocument<IDStringToGame[I]>;
-		user: PublicUserDocument;
+		user: UserDocument;
 	};
 })[];
 
 export type ChartLeaderboardDataset<I extends IDStrings = IDStrings> = (PBScoreDocument<I> & {
 	__related: {
-		user: PublicUserDocument;
+		user: UserDocument;
 	};
 })[];
 
 export type UGSDataset<I extends IDStrings = IDStrings> = (UserGameStats<I> & {
 	__related: {
-		user: PublicUserDocument;
+		user: UserDocument;
 		index: integer;
 	};
 })[];
 
-export type RivalChartDataset<I extends IDStrings = IDStrings> = (PublicUserDocument & {
+export type RivalChartDataset<I extends IDStrings = IDStrings> = (UserDocument & {
 	__related: {
 		pb: PBScoreDocument<I> | null;
 		index: number;
@@ -69,7 +69,7 @@ export type ComparePBsDataset<I extends IDStrings = IDStrings> = Array<{
 export type ImportDataset = Array<
 	ImportDocument & {
 		__related: {
-			user: PublicUserDocument;
+			user: UserDocument;
 		};
 	}
 >;
@@ -77,7 +77,7 @@ export type ImportDataset = Array<
 export type FailedImportDataset = Array<
 	ImportTrackerFailed & {
 		__related: {
-			user: PublicUserDocument;
+			user: UserDocument;
 		};
 	}
 >;

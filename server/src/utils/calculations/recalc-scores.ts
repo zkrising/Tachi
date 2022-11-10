@@ -11,7 +11,7 @@ import { TachiConfig } from "lib/setup/config";
 import { GetGameConfig } from "tachi-common";
 import { EfficientDBIterate } from "utils/efficient-db-iterate";
 import { FormatUserDoc } from "utils/user";
-import type { Game, integer, Playtype, PublicUserDocument } from "tachi-common";
+import type { Game, integer, Playtype, UserDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -84,7 +84,7 @@ export async function RecalcAllScores(filter = {}) {
 }
 
 export async function UpdateAllPBs(userIDs?: Array<integer>, filter = {}) {
-	let allUsers: Array<PublicUserDocument>;
+	let allUsers: Array<UserDocument>;
 
 	if (!userIDs) {
 		allUsers = await db.users.find({});

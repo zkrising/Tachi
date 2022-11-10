@@ -14,7 +14,7 @@ export default function Icon({
 	brand?: boolean;
 	regular?: boolean;
 	onClick?: () => void;
-	colour?: "info" | "primary" | "danger" | "warning";
+	colour?: "info" | "primary" | "danger" | "warning" | "success" | "muted";
 	style?: CSSProperties;
 }) {
 	return (

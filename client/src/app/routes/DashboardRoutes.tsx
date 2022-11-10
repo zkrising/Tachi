@@ -10,6 +10,7 @@ import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { BackgroundContext } from "context/BackgroundContext";
+import NotificationsPage from "app/pages/dashboard/users/NotificationsPage";
 import { DashboardPage } from "../pages/dashboard/DashboardPage";
 import CreditsPage from "../pages/dashboard/misc/CreditsPage";
 import GameRoutes from "./GameRoutes";
@@ -104,6 +105,10 @@ export default function DashboardRoutes() {
 
 					<Route path="/dashboard/utils">
 						<UtilRoutes />
+					</Route>
+
+					<Route path="/dashboard/notifications">
+						<NotificationsPage />
 					</Route>
 
 					<Route path="*">

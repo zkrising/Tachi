@@ -210,9 +210,7 @@ function PreferencesForm({ reqUser }: { reqUser: PublicUserDocument }) {
 					onChange={formik.handleChange}
 					label="Advanced Mode"
 				/>
-				<Form.Text>
-					Enable advanced stuff, like being able to copy a tables contents into a CSV.
-				</Form.Text>
+				<Form.Text>Enable advanced stuff.</Form.Text>
 			</Form.Group>
 			{/* <Form.Group>
 				<Form.Check

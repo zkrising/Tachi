@@ -1596,19 +1596,6 @@ interface BaseNotification {
 
 export type NotificationBody =
 	| {
-			type: "CHALLENGE_BEAT";
-			content: {
-				userID: integer;
-				challenge: ChallengeWallDocument;
-			};
-	  }
-	| {
-			type: "CHALLENGE_RECEIVED";
-			content: {
-				challenge: ChallengeWallDocument;
-			};
-	  }
-	| {
 			type: "QUEST_CHANGED"; // Emitted when a quest the user is subscribed to changed.
 			content: {
 				questID: string;
@@ -1638,15 +1625,6 @@ export interface ChallengeSubscriptionDocument {
 	userID: integer;
 	achieved: boolean;
 	achievedAt: number | null;
-}
-
-export interface ChallengeWallDocument {
-	chartID: string;
-	authorID: integer;
-	type: "lamp" | "score";
-
-	game: Game;
-	playtype: Playtype;
 }
 
 interface BaseImportTracker {

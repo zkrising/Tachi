@@ -6,10 +6,8 @@ import React, { useContext } from "react";
 import { useQuery } from "react-query";
 import { integer, UserDocument, ShowcaseStatDetails } from "tachi-common";
 import { UGPTPreferenceStatsReturn } from "types/api-returns";
-import { GamePT } from "types/react";
+import { GamePT, UGPT } from "types/react";
 import { StatDisplay } from "./UGPTStatShowcase";
-
-type Props = { reqUser: UserDocument } & GamePT;
 
 export default function UGPTStatContainer({
 	stat,
@@ -17,7 +15,7 @@ export default function UGPTStatContainer({
 	game,
 	playtype,
 	shouldFetchCompareID,
-}: { stat: ShowcaseStatDetails; shouldFetchCompareID?: integer } & Props) {
+}: { stat: ShowcaseStatDetails; shouldFetchCompareID?: integer } & UGPT) {
 	const searchParams = new URLSearchParams();
 
 	searchParams.set("mode", stat.mode);

@@ -26,7 +26,7 @@ import {
 	SongDocument,
 	UnsuccessfulAPIResponse,
 } from "tachi-common";
-import { GamePT, SetState } from "types/react";
+import { GamePT, SetState, UGPT } from "types/react";
 import usePreferredRanking from "components/util/usePreferredRanking";
 
 export default function ScoresPage({
@@ -286,7 +286,7 @@ function PBsSearch({
 	);
 }
 
-function ScoresOverview({ reqUser, game, playtype }: { reqUser: UserDocument } & GamePT) {
+function ScoresOverview({ reqUser, game, playtype }: UGPT) {
 	const [search, setSearch] = useState("");
 
 	const { data, error } = useFetchScores(

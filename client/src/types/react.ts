@@ -9,7 +9,7 @@ import {
 	FormikTouched,
 } from "formik";
 import React, { Dispatch, SetStateAction } from "react";
-import { Game, Playtypes } from "tachi-common";
+import { Game, Playtype, UserDocument } from "tachi-common";
 
 export interface JustChildren {
 	children: React.ReactNode;
@@ -87,5 +87,11 @@ export type UseFormik<Values> = {
 
 export interface GamePT {
 	game: Game;
-	playtype: Playtypes[Game];
+	playtype: Playtype;
+}
+
+export interface UGPT {
+	reqUser: UserDocument;
+	game: Game;
+	playtype: Playtype;
 }

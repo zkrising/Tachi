@@ -5,16 +5,12 @@ import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
 import { Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FolderDocument, UserDocument, RecentlyViewedFolderDocument } from "tachi-common";
+import { FolderDocument, RecentlyViewedFolderDocument } from "tachi-common";
 import { FolderStatsInfo } from "types/api-returns";
-import { GamePT } from "types/react";
+import { UGPT } from "types/react";
 import { FolderInfoComponent } from "./FolderSelectPage";
 
-export default function RecentFoldersPage({
-	reqUser,
-	game,
-	playtype,
-}: { reqUser: UserDocument } & GamePT) {
+export default function RecentFoldersPage({ reqUser, game, playtype }: UGPT) {
 	const { user } = useContext(UserContext);
 
 	if (!user) {

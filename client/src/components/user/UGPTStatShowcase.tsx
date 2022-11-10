@@ -25,16 +25,12 @@ import {
 	SongDocument,
 } from "tachi-common";
 import { UGPTPreferenceStatsReturn } from "types/api-returns";
-import { GamePT } from "types/react";
+import { GamePT, UGPT } from "types/react";
 import { Playtype } from "types/tachi";
 import UGPTStatContainer from "./UGPTStatContainer";
 import UGPTStatCreator from "./UGPTStatCreator";
 
-export default function UGPTStatShowcase({
-	reqUser,
-	game,
-	playtype,
-}: { reqUser: UserDocument } & GamePT) {
+export default function UGPTStatShowcase({ reqUser, game, playtype }: UGPT) {
 	const { ugs } = useContext(AllLUGPTStatsContext);
 	const { user } = useContext(UserContext);
 

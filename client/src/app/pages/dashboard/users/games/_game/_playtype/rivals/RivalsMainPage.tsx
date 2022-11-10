@@ -9,6 +9,7 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { FormatGame, Game, GetGameConfig, Playtype, UserDocument } from "tachi-common";
+import RivalsActivityPage from "./RivalsActivityPage";
 import RivalsManagePage from "./RivalsManagePage";
 
 export default function RivalsMainPage({
@@ -63,7 +64,7 @@ export default function RivalsMainPage({
 				<Switch>
 					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/rivals">
 						{settings?.rivals.length === 0 && <Redirect to={`${base}/rivals/manage`} />}
-						NOT WRITTEN YET
+						<RivalsActivityPage reqUser={reqUser} game={game} playtype={playtype} />
 					</Route>
 
 					<Route

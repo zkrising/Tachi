@@ -3,20 +3,18 @@ import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import SelectLinkButton from "components/util/SelectLinkButton";
 import useUGPTBase from "components/util/useUGPTBase";
-import { UserContext } from "context/UserContext";
 import { AllLUGPTStatsContext } from "context/AllLUGPTStatsContext";
+import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
 import { Route, Switch } from "react-router-dom";
-import { FormatGame, GetGameConfig, UserDocument } from "tachi-common";
-import { GamePT } from "types/react";
+import { FormatGame, GetGameConfig } from "tachi-common";
+import { UGPT } from "types/react";
 import FolderSelectPage from "./FolderSelectPage";
 import FolderTablePage from "./FolderTablePage";
 import RecentFoldersPage from "./RecentFoldersPage";
 import SpecificFolderPage from "./SpecificFolderPage";
 
-type Props = { reqUser: UserDocument } & GamePT;
-
-export default function FoldersMainPage({ reqUser, game, playtype }: Props) {
+export default function FoldersMainPage({ reqUser, game, playtype }: UGPT) {
 	const gameConfig = GetGameConfig(game);
 
 	const { user } = useContext(UserContext);

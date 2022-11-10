@@ -24,18 +24,14 @@ import {
 } from "tachi-common";
 import { GameClassSets } from "tachi-common/game-classes";
 import { GPTLeaderboard, UGPTLeaderboardAdjacent } from "types/api-returns";
-import { GamePT, SetState } from "types/react";
+import { GamePT, SetState, UGPT } from "types/react";
 
 interface LeaderboardsData {
 	stats: UGPTLeaderboardAdjacent;
 	leaderboard: GPTLeaderboard;
 }
 
-export default function LeaderboardsPage({
-	reqUser,
-	game,
-	playtype,
-}: { reqUser: UserDocument } & GamePT) {
+export default function LeaderboardsPage({ reqUser, game, playtype }: UGPT) {
 	const gameConfig = GetGameConfig(game);
 	useSetSubheader(
 		["Users", reqUser.username, "Games", gameConfig.name, playtype, "Leaderboard"],

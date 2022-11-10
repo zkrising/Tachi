@@ -29,7 +29,7 @@ import {
 	UserGameStats,
 } from "tachi-common";
 import { SessionReturns, UGPTHistory } from "types/api-returns";
-import { GamePT, SetState } from "types/react";
+import { GamePT, SetState, UGPT } from "types/react";
 import { ScoreDataset } from "types/tables";
 import SessionRaiseBreakdown from "components/sessions/SessionRaiseBreakdown";
 import useApiQuery from "components/util/query/useApiQuery";
@@ -37,11 +37,7 @@ import ApiError from "components/util/ApiError";
 import Loading from "components/util/Loading";
 import Select from "components/util/Select";
 
-export default function OverviewPage({
-	reqUser,
-	game,
-	playtype,
-}: { reqUser: UserDocument } & GamePT) {
+export default function OverviewPage({ reqUser, game, playtype }: UGPT) {
 	const gameConfig = GetGameConfig(game);
 	useSetSubheader(
 		["Users", reqUser.username, "Games", gameConfig.name, playtype],
@@ -58,7 +54,7 @@ export default function OverviewPage({
 	);
 }
 
-function LastSession({ reqUser, game, playtype }: { reqUser: UserDocument } & GamePT) {
+function LastSession({ reqUser, game, playtype }: UGPT) {
 	return (
 		<AsyncLoader
 			promiseFn={async () => {
@@ -255,7 +251,7 @@ function RecentSessionScoreInfo({
 
 type RankingDurations = "3mo" | "year";
 
-function RankingInfo({ reqUser, game, playtype }: { reqUser: UserDocument } & GamePT) {
+function RankingInfo({ reqUser, game, playtype }: UGPT) {
 	const [duration, setDuration] = useState<RankingDurations>("3mo");
 
 	const { data, error } = useApiQuery<UGPTHistory>(

@@ -15,11 +15,9 @@ import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useState } from "react";
 import { FolderDocument, GetGamePTConfig, UserDocument } from "tachi-common";
 import { FolderStatsInfo, UGPTFolderSearch } from "types/api-returns";
-import { GamePT } from "types/react";
+import { GamePT, UGPT } from "types/react";
 
-type Props = { reqUser: UserDocument } & GamePT;
-
-export default function FoldersSearch({ reqUser, game, playtype }: Props) {
+export default function FoldersSearch({ reqUser, game, playtype }: UGPT) {
 	const [search, setSearch] = useState("");
 
 	const params = useMemo(() => new URLSearchParams({ search }), [search]);
@@ -82,7 +80,7 @@ export function FolderInfoComponent({
 	playtype,
 	folderStats,
 	folder,
-}: Props & { folder: FolderDocument; folderStats: FolderStatsInfo }) {
+}: UGPT & { folder: FolderDocument; folderStats: FolderStatsInfo }) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const scoreBucket = useBucket(game, playtype);

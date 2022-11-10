@@ -4,7 +4,7 @@ import { FormatGame } from "tachi-common";
 import type { Game, integer, Playtype, PublicUserDocument } from "tachi-common";
 
 /**
- * A utility wrapper for sending the SET_RIVAL notification.
+ * A utility wrapper for sending the RIVALED_BY notification.
  *
  * @param toUserID - The user to send this notification to.
  * @param fromUser - The user who rivalled them.

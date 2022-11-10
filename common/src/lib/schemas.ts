@@ -1163,19 +1163,6 @@ const PRE_SCHEMAS = {
 						};
 						break;
 					}
-
-					case "CHALLENGE_BEAT": {
-						subSchema = {
-							userID: p.isPositiveNonZeroInteger,
-							challenge: PR_CHALLENGE,
-						};
-						break;
-					}
-
-					case "CHALLENGE_RECEIVED":
-						subSchema = {
-							challenge: PR_CHALLENGE,
-						};
 				}
 
 				const err = p(self, subSchema);

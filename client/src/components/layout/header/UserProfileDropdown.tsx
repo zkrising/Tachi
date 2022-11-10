@@ -14,7 +14,6 @@ import { PublicUserDocument } from "tachi-common";
 
 export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 	const { setUser } = useContext(UserContext);
-
 	const [heySplash] = useState(RFA(heySplashes));
 
 	return (
@@ -28,7 +27,7 @@ export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 					<span className="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1">
 						{heySplash},
 					</span>{" "}
-					<span className="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">
+					<span className="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-2">
 						{user.username}
 					</span>
 					<span className="symbol symbol-35">
@@ -37,17 +36,6 @@ export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 				</div>
 			</Dropdown.Toggle>
 			<Dropdown.Menu className="p-0 m-0 dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
-				<div className="d-flex align-items-center justify-content-between flex-wrap p-8 rounded-top">
-					<div className="symbol bg-white-o-15 mr-3">
-						<img className="hidden" src={ToAPIURL("/users/me/pfp")} />
-					</div>
-					<div className="text-white m-0 flex-grow-1 mr-3 font-size-h5">
-						{user.username}
-					</div>
-				</div>
-
-				<Divider />
-
 				<div className="navi navi-spacer-x-0 pt-5">
 					<Link
 						to={`/dashboard/users/${user.username}`}
@@ -60,6 +48,20 @@ export function UserProfileDropdown({ user }: { user: PublicUserDocument }) {
 							<div className="navi-text">
 								<div className="font-weight-bold cursor-pointer">My Profile</div>
 								<div className="text-muted">View your profile!</div>
+							</div>
+						</div>
+					</Link>
+					<Link
+						to={`/dashboard/users/${user.username}`}
+						className="navi-item px-8 cursor-pointer"
+					>
+						<div className="navi-link">
+							<div className="navi-icon mr-2">
+								<Icon type="envelope" colour="success" />
+							</div>
+							<div className="navi-text">
+								<div className="font-weight-bold cursor-pointer">Notifications</div>
+								<div className="text-muted">View your notifications!</div>
 							</div>
 						</div>
 					</Link>

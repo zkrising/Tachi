@@ -3,6 +3,7 @@ import LinkButton from "components/util/LinkButton";
 import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
 import SearchBar from "./SearchBar";
+import { UserNotificationButton } from "./UserNotificationButton";
 
 export function Topbar() {
 	const { user } = useContext(UserContext);
@@ -13,32 +14,7 @@ export function Topbar() {
 
 			{user ? (
 				<>
-					{/* commented out quick panel stuff for future */}
-					{/* <OverlayTrigger
-						placement="bottom"
-						overlay={<Tooltip id="quick-panel-tooltip">Quick panel</Tooltip>}
-					>
-						<div
-							className="topbar-item"
-							data-toggle="tooltip"
-							title="Quick panel"
-							data-placement="right"
-						>
-							<div
-								className="btn btn-icon btn-hover-transparent-white btn-lg mr-1"
-								id="kt_quick_panel_toggle"
-							>
-								<span className="svg-icon svg-icon-xl">
-									<SVG
-										src={toAbsoluteUrl(
-											"/cdn/svg/icons/Layout/Layout-4-blocks.svg"
-										)}
-									/>
-								</span>
-							</div>
-						</div>
-					</OverlayTrigger> */}
-
+					<UserNotificationButton user={user} />
 					<UserProfileDropdown user={user} />
 				</>
 			) : (

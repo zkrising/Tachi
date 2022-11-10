@@ -31,6 +31,6 @@ function NotifToURL(notif: NotificationDocument) {
 		case "QUEST_CHANGED":
 			return "/idkyet";
 		case "RIVALED_BY":
-			return `/dashboard/users/${notif.body.content.userID}/games${notif.body.content.game}/${notif.body.content.playtype}`;
+			return `/dashboard/users/${notif.body.content.userID}/games/${notif.body.content.game}/${notif.body.content.playtype}`;
 	}
 }

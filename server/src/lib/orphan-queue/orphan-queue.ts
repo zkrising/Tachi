@@ -3,6 +3,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { GetNextCounterValue } from "utils/db";
 import { DedupeArr } from "utils/misc";
 import type { FilterQuery } from "mongodb";
+import type { WithID } from "monk";
 import type {
 	ChartDocument,
 	IDStrings,
@@ -102,4 +103,45 @@ export async function HandleOrphanQueue<I extends IDStrings>(
 	);
 
 	return null;
+}
+
+/**
+ * Forcefully deorphan a song/chart if it's in the queue and matches this criteria.
+ *
+ * Useful for something like BMS-Table-Sync, where we want to load anything in a table
+ * regardless of how many people have played the chart.
+ */
+export async function DeorphanIfInQueue<I extends IDStrings>(
+	idString: I,
+	game: IDStringToGame[I],
+	orphanMatchCriteria: FilterQuery<OrphanChart<I>>
+): Promise<ChartDocument<I> | null> {
+	const orphanChart = (await db["orphan-chart-queue"].findOne(
+		{ idString, ...orphanMatchCriteria },
+		{
+			projectID: true,
+		}
+	)) as WithID<OrphanChart<I>> | null;
+
+	if (!orphanChart) {
+		return null;
+	}
+
+	const { songDoc, chartDoc } = orphanChart;
+
+	logger.info(`Song ${songDoc.title} was unorphaned forcefully.`);
+	const songID = await GetNextCounterValue(`${game}-song-id`);
+
+	logger.verbose(`${songDoc.title} has been assigned songID ${songID}.`);
+
+	songDoc.id = songID;
+	chartDoc.songID = songID;
+
+	await db.songs[game].insert(songDoc);
+	await db.charts[game].insert(chartDoc);
+	await db["orphan-chart-queue"].remove({
+		_id: orphanChart._id,
+	});
+
+	return chartDoc;
 }

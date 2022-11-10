@@ -169,7 +169,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/history", (t) => {
 				playcount: 100,
 				classes: {},
 				ratings: {},
-				timestamp: Math.floor(Date.now() - ONE_DAY / 100_000),
+				timestamp: Math.floor((Date.now() - ONE_DAY) / 100_000),
 			},
 		]);
 

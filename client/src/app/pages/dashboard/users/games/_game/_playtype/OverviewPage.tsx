@@ -29,9 +29,13 @@ import {
 	UserGameStats,
 } from "tachi-common";
 import { SessionReturns, UGPTHistory } from "types/api-returns";
-import { GamePT } from "types/react";
+import { GamePT, SetState } from "types/react";
 import { ScoreDataset } from "types/tables";
 import SessionRaiseBreakdown from "components/sessions/SessionRaiseBreakdown";
+import useApiQuery from "components/util/query/useApiQuery";
+import ApiError from "components/util/ApiError";
+import Loading from "components/util/Loading";
+import Select from "components/util/Select";
 
 export default function OverviewPage({
 	reqUser,
@@ -249,32 +253,45 @@ function RecentSessionScoreInfo({
 	);
 }
 
+type RankingDurations = "3mo" | "year";
+
 function RankingInfo({ reqUser, game, playtype }: { reqUser: UserDocument } & GamePT) {
+	const [duration, setDuration] = useState<RankingDurations>("3mo");
+
+	const { data, error } = useApiQuery<UGPTHistory>(
+		`/users/${reqUser.id}/games/${game}/${playtype}/history?duration=${duration}`
+	);
+
 	return (
-		<AsyncLoader
-			promiseFn={async () => {
-				const res = await APIFetchV1<UGPTHistory>(
-					`/users/${reqUser.id}/games/${game}/${playtype}/history`
-				);
-
-				if (!res.success) {
-					throw new Error(res.description);
-				}
-
-				return res.body;
-			}}
-		>
-			{(data) => <UserHistory {...{ data, game, playtype, reqUser }} />}
-		</AsyncLoader>
+		<Card className="mt-4" header={`${reqUser.username}'s History`}>
+			{error ? (
+				<ApiError error={error} />
+			) : data ? (
+				<UserHistory
+					duration={duration}
+					setDuration={setDuration}
+					data={data}
+					game={game}
+					playtype={playtype}
+				/>
+			) : (
+				<Loading />
+			)}
+		</Card>
 	);
 }
 
 function UserHistory({
 	data,
-	reqUser,
 	game,
 	playtype,
-}: { data: UGPTHistory; reqUser: UserDocument } & GamePT) {
+	duration,
+	setDuration,
+}: {
+	data: UGPTHistory;
+	duration: RankingDurations;
+	setDuration: SetState<RankingDurations>;
+} & GamePT) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const [mode, setMode] = useState<"ranking" | "playcount" | "rating">("rating");
@@ -309,16 +326,16 @@ function UserHistory({
 	}, [mode, rating]);
 
 	return (
-		<Card className="mt-4" header={`${reqUser.username}'s History`}>
-			<div className="row d-flex justify-content-center align-items-center mb-4">
-				{/* <div className="d-none d-md-block col-md-3 text-center">
-					<div className="mb-4">Something</div>
-					<div>
-						<span className="display-4">Todo</span>
-					</div>
-				</div> */}
-				<div className="col-12 col-md-6 offset-md-3 d-flex justify-content-center">
-					<div className="btn-group">
+		<>
+			<div className="row d-flex justify-content-center mb-4">
+				<div className="col-12 col-md-3 align-self-center text-center">
+					<Select noMarginBottom setValue={setDuration} value={duration}>
+						<option value="3mo">Past 3 Months</option>
+						<option value="year">Past Year</option>
+					</Select>
+				</div>
+				<div className="col-12 col-md-6 align-self-center">
+					<div className="btn-group d-flex justify-content-center w-100">
 						<SelectButton id="ranking" value={mode} setValue={setMode}>
 							<Icon type="trophy" />
 							Ranking
@@ -415,7 +432,7 @@ function UserHistory({
 					<RatingTimeline {...{ data, rating }} />
 				</>
 			)}
-		</Card>
+		</>
 	);
 }
 

@@ -12,20 +12,22 @@ export default function Select<T extends string | null>({
 	unselectedName = "Select...",
 	name,
 	description,
+	noMarginBottom,
 }: {
 	value: T;
 	setValue: SetState<T>;
 	children: React.ReactNode;
-	name: string;
+	name?: string;
 	allowNull?: boolean;
 	style?: React.CSSProperties;
 	className?: string;
 	unselectedName?: string;
 	description?: string;
+	noMarginBottom?: boolean;
 }) {
 	return (
-		<Form.Group>
-			<Form.Label>{name}</Form.Label>
+		<Form.Group style={{ marginBottom: noMarginBottom ? "unset" : undefined }}>
+			{name && <Form.Label>{name}</Form.Label>}
 			<Form.Control
 				style={{ width: "unset", display: "inline", ...style }}
 				className={`mx-2 ${className}`}

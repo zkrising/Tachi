@@ -10,6 +10,9 @@ import tablesRouter from "./tables/router";
 import targetsRouter from "./targets/router";
 import { Router } from "express";
 import db from "external/mongo/db";
+import { ONE_MONTH, ONE_YEAR } from "lib/constants/time";
+import p from "prudence";
+import prValidate from "server/middleware/prudence-validate";
 import { GetGamePTConfig } from "tachi-common";
 import { IsString } from "utils/misc";
 import { GetTachiData, GetUGPT } from "utils/req-tachi-data";
@@ -85,50 +88,67 @@ router.get("/", async (req, res) => {
 
 /**
  * Returns a users game-stats for the past 90 days.
+ *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/history
  */
-router.get("/history", async (req, res) => {
-	const { game, playtype, user } = GetUGPT(req);
+router.get(
+	"/history",
+	prValidate({
+		duration: p.optional(p.isIn("3mo", "year")),
+	}),
+	async (req, res) => {
+		const duration = req.query.duration as "3mo" | "year" | undefined;
 
-	const stats = GetTachiData(req, "requestedUserGameStats");
+		let time = Date.now();
 
-	const snapshots = (await db["game-stats-snapshots"].find(
-		{
-			userID: user.id,
-			game,
-			playtype,
-		},
-		{
-			sort: {
-				timestamp: -1,
-			},
-
-			// avoid sending so much garbage.
-			projection: {
-				userID: 0,
-				game: 0,
-				playtype: 0,
-			},
-			limit: 30,
+		if (duration === "year") {
+			time = time - ONE_YEAR;
+		} else {
+			time = time - ONE_MONTH * 3;
 		}
-	)) as Array<Omit<UserGameStatsSnapshot, "game" | "playtype" | "userID">>;
 
-	const currentSnapshot: Omit<UserGameStatsSnapshot, "game" | "playtype" | "userID"> = {
-		classes: stats.classes,
-		ratings: stats.ratings,
+		const { game, playtype, user } = GetUGPT(req);
 
-		// lazy, should probably be this midnight
-		timestamp: Date.now(),
-		playcount: await GetUGPTPlaycount(user.id, game, playtype),
-		rankings: await GetAllRankings(stats),
-	};
+		const stats = GetTachiData(req, "requestedUserGameStats");
 
-	return res.status(200).json({
-		success: true,
-		description: `Successfully returned history for the past ${snapshots.length} days.`,
-		body: [currentSnapshot, ...snapshots],
-	});
-});
+		const snapshots = (await db["game-stats-snapshots"].find(
+			{
+				userID: user.id,
+				game,
+				playtype,
+				timestamp: { $gte: time },
+			},
+			{
+				sort: {
+					timestamp: -1,
+				},
+
+				// avoid sending so much garbage.
+				projection: {
+					userID: 0,
+					game: 0,
+					playtype: 0,
+				},
+			}
+		)) as Array<Omit<UserGameStatsSnapshot, "game" | "playtype" | "userID">>;
+
+		const currentSnapshot: Omit<UserGameStatsSnapshot, "game" | "playtype" | "userID"> = {
+			classes: stats.classes,
+			ratings: stats.ratings,
+
+			// lazy, should probably be this midnight
+			timestamp: Date.now(),
+			playcount: await GetUGPTPlaycount(user.id, game, playtype),
+			rankings: await GetAllRankings(stats),
+		};
+
+		return res.status(200).json({
+			success: true,
+			description: `Successfully returned history for the past ${snapshots.length} days.`,
+			body: [currentSnapshot, ...snapshots],
+		});
+	}
+);
 
 /**
  * Returns the users most played charts by playcount.

@@ -1,12 +1,11 @@
 import { BotConfig } from "../config";
 import { client } from "../main";
 import { GetUGPTStats, GetUserInfo } from "../utils/apiRequests";
-import { POPN_CLASSES, SDVX_VF_CLASSES } from "../utils/constants";
 import { CreateEmbed } from "../utils/embeds";
 import { PrependTachiUrl } from "../utils/fetchTachi";
 import logger from "../utils/logger";
 import { FormatClass, GetGameChannel } from "../utils/misc";
-import { FormatGame } from "tachi-common";
+import { FormatGame, POPN_CLASSES, SDVX_VF_CLASSES } from "tachi-common";
 import type { Game, integer, Playtype, WebhookEventClassUpdateV1 } from "tachi-common";
 import type { AllClassSets } from "tachi-common/game-classes";
 
@@ -79,17 +78,6 @@ function ShouldRenderUpdate(
 ) {
 	if (game === "sdvx" && classSet === "vfClass") {
 		return [
-			// Notifying about these vfClasses is pointless, since they're
-			// very easy to just blister through.
-			// SDVXVFClasses.SIENNA_I,
-			// SDVXVFClasses.COBALT_I,
-			// SDVXVFClasses.DANDELION_I,
-			// SDVXVFClasses.CYAN_I,
-			// SDVXVFClasses.SCARLET_I,
-			// SDVX_VF_CLASSES.CORAL_I,
-			// SDVX_VF_CLASSES.ARGENTO_I,
-			// SDVX_VF_CLASSES.ELDORA_I,
-			// SDVX_VF_CLASSES.CRIMSON_I,
 			SDVX_VF_CLASSES.IMPERIAL_I,
 			SDVX_VF_CLASSES.IMPERIAL_II,
 			SDVX_VF_CLASSES.IMPERIAL_III,

@@ -213,6 +213,7 @@ const MainExpressErrorHandler: express.ErrorRequestHandler = (err, req, res, _ne
 	}
 
 	logger.error(err, req.route);
+
 	return res.status(500).json({
 		success: false,
 		description: "A fatal internal server error has occured.",

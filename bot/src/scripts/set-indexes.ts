@@ -1,7 +1,7 @@
 import { SetIndexes } from "../database/mongo";
 
 if (require.main === module) {
-	(async () => {
+	void (async () => {
 		await SetIndexes(true);
 		process.exit(0);
 	})();

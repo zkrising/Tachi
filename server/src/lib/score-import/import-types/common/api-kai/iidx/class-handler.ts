@@ -1,5 +1,5 @@
 import { KaiTypeToBaseURL } from "../utils";
-import { IIDXDans } from "lib/constants/classes";
+import { IIDX_DANS } from "tachi-common";
 import nodeFetch from "utils/fetch";
 import { IsRecord } from "utils/misc";
 import type { KaiAPIReauthFunction } from "../traverse-api";
@@ -88,16 +88,16 @@ export async function CreateKaiIIDXClassHandler(
 			return {};
 		}
 
-		if (iidxDan > IIDXDans.KAIDEN) {
+		if (iidxDan > IIDX_DANS.KAIDEN) {
 			logger.warn(
-				`${baseUrl} returned a dan of ${iidxDan}, which was greater than KAIDEN (${IIDXDans.KAIDEN}.)`
+				`${baseUrl} returned a dan of ${iidxDan}, which was greater than KAIDEN (${IIDX_DANS.KAIDEN}.)`
 			);
 			return {};
 		}
 
-		if (iidxDan < IIDXDans.KYU_7) {
+		if (iidxDan < IIDX_DANS.KYU_7) {
 			logger.warn(
-				`${baseUrl} returned a dan of ${iidxDan}, which was less than KYU_7 (${IIDXDans.KYU_7}.)`
+				`${baseUrl} returned a dan of ${iidxDan}, which was less than KYU_7 (${IIDX_DANS.KYU_7}.)`
 			);
 			return {};
 		}

@@ -1,5 +1,5 @@
 import { KaiTypeToBaseURL } from "../utils";
-import { SDVXDans } from "lib/constants/classes";
+import { SDVX_DANS } from "tachi-common";
 import nodeFetch from "utils/fetch";
 import { IsRecord } from "utils/misc";
 import type { KaiAPIReauthFunction } from "../traverse-api";
@@ -75,9 +75,9 @@ export async function CreateKaiSDVXClassHandler(
 			return {};
 		}
 
-		if (sdvxDan > SDVXDans.INF) {
+		if (sdvxDan > SDVX_DANS.INF) {
 			logger.warn(
-				`${baseUrl} returned a dan of ${sdvxDan}, which was greater than INF (${SDVXDans.INF}.)`
+				`${baseUrl} returned a dan of ${sdvxDan}, which was greater than INF (${SDVX_DANS.INF}.)`
 			);
 			return {};
 		}
@@ -88,9 +88,9 @@ export async function CreateKaiSDVXClassHandler(
 			return {};
 		}
 
-		if (sdvxDan < SDVXDans.DAN_1) {
+		if (sdvxDan < SDVX_DANS.DAN_1) {
 			logger.warn(
-				`${baseUrl} returned a dan of ${sdvxDan}, which was less than DAN_1 (${SDVXDans.DAN_1}.)`
+				`${baseUrl} returned a dan of ${sdvxDan}, which was less than DAN_1 (${SDVX_DANS.DAN_1}.)`
 			);
 			return {};
 		}

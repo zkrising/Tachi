@@ -1,5 +1,4 @@
 import { BotConfig } from "../config";
-import humaniseDuration from "humanize-duration";
 import _ from "lodash";
 import { DateTime } from "luxon";
 import { GenericFormatGradeDelta, GetGameConfig, GetGamePTConfig } from "tachi-common";
@@ -7,44 +6,18 @@ import type { Client } from "discord.js";
 import type {
 	ChartDocument,
 	Game,
-	GoalDocument,
 	Grades,
 	IDStrings,
 	integer,
 	PBScoreDocument,
 	Playtype,
 	Playtypes,
-	UserDocument,
 	ScoreCalculatedDataLookup,
 	ScoreDocument,
 	SongDocument,
-	UGSRatingsLookup,
 	GameConfig,
 } from "tachi-common";
 import type { GameClassSets } from "tachi-common/game-classes";
-
-/**
- * Random From Array - Selects a random value from an array.
- */
-export function RFA<T>(arr: Array<T>): T {
-	return arr[Math.floor(Math.random() * arr.length)] as T;
-}
-
-export function TruncateString(string: string, len = 30) {
-	if (string.length < len) {
-		return string;
-	}
-
-	return `${string.substring(0, len - 3)}...`;
-}
-
-/**
- * Checks whether a discord user has admin permissions or not. This lets them do
- * slightly more destructive things.
- */
-export function IsAdmin(discordID: string) {
-	return BotConfig.DISCORD.ADMIN_USERS.includes(discordID);
-}
 
 export function Sleep(ms: number) {
 	return new Promise<void>((resolve) => {
@@ -60,25 +33,6 @@ export function Pluralise(int: integer, str: string) {
 	}
 
 	return `${str}s`;
-}
-
-export function FormatProfileRating(
-	game: Game,
-	playtype: Playtype,
-	rating: UGSRatingsLookup[IDStrings],
-	value: number | null | undefined
-) {
-	if (value === null || value === undefined) {
-		return "No Data.";
-	}
-
-	const formatter = GetGamePTConfig(game, playtype).profileRatingAlgFormatters[rating];
-
-	if (!formatter) {
-		return value.toFixed(2);
-	}
-
-	return formatter(value);
 }
 
 export function FormatScoreRating(
@@ -135,23 +89,8 @@ export function MillisToSince(ms: number) {
 	return DateTime.fromMillis(ms).toRelative();
 }
 
-export function FormatTime(ms: number) {
-	return DateTime.fromMillis(ms).toLocaleString(DateTime.DATETIME_MED);
-}
-
 export function FormatDate(ms: number) {
 	return DateTime.fromMillis(ms).toLocaleString(DateTime.DATE_HUGE);
-}
-
-export function FormatDuration(ms: number) {
-	return humaniseDuration(ms, {
-		units: ["d", "h", "m"],
-		maxDecimalPoints: 0,
-	});
-}
-
-export function FormatTimeSmall(ms: number) {
-	return DateTime.fromMillis(ms).toLocaleString(DateTime.DATE_SHORT);
 }
 
 export function FormatClass(
@@ -251,7 +190,7 @@ export function FormatScoreData<I extends IDStrings = IDStrings>(score: ScOrPBDo
 /**
  * Util for getting a games' grade for a given percent.
  */
-export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
+function GetGradeFromPercent<I extends IDStrings = IDStrings>(
 	game: Game,
 	playtype: Playtype,
 	percent: number
@@ -276,11 +215,7 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
 	throw new Error(`Couldn't find grade for ${game}:${playtype} (${percent}%)`);
 }
 
-export function FormatIIDXEXScore(
-	exscore: integer,
-	notecount: integer,
-	playtype: Playtypes["iidx"]
-) {
+function FormatIIDXEXScore(exscore: integer, notecount: integer, playtype: Playtypes["iidx"]) {
 	const percent = (exscore * 100) / (notecount * 2);
 
 	const { closer, upper, lower } = GenericFormatGradeDelta(
@@ -346,7 +281,7 @@ export function FormatChartTierlistInfo(game: Game, chart: ChartDocument) {
 export function ConvertInputIntoGenerousRegex(input: string) {
 	const inputSafeRegex = _.escapeRegExp(input);
 
-	// for any non-ascii input, replace them with a ".?", representing maybe. This
+	// for any a-zA-Z input, replace them with a ".?", representing maybe. This
 	// is so users can say things like "Re Master" or "Remaster" for "Re:Master".
 	// It also generally gives lenience.
 	// We match based on what the string starts with case-insensitively.
@@ -355,103 +290,3 @@ export function ConvertInputIntoGenerousRegex(input: string) {
 
 	return regex;
 }
-
-export function CreateSongMap<G extends Game = Game>(songs: Array<SongDocument<G>>) {
-	const songMap = new Map<integer, SongDocument<G>>();
-
-	for (const song of songs) {
-		songMap.set(song.id, song);
-	}
-
-	return songMap;
-}
-
-export function CreateUserMap(users: Array<UserDocument>) {
-	const userMap = new Map<integer, UserDocument>();
-
-	for (const user of users) {
-		userMap.set(user.id, user);
-	}
-
-	return userMap;
-}
-
-export function CreateGoalMap(goals: Array<GoalDocument>) {
-	const goalMap = new Map<string, GoalDocument>();
-
-	for (const goal of goals) {
-		goalMap.set(goal.goalID, goal);
-	}
-
-	return goalMap;
-}
-
-export function CreateChartIDMap<T extends { chartID: string }>(arr: Array<T>): Map<string, T> {
-	const map = new Map<string, T>();
-
-	for (const t of arr) {
-		map.set(t.chartID, t);
-	}
-
-	return map;
-}
-
-export function CreateChartMap<I extends IDStrings = IDStrings>(charts: Array<ChartDocument<I>>) {
-	const chartMap = new Map<string, ChartDocument<I>>();
-
-	for (const chart of charts) {
-		chartMap.set(chart.chartID, chart);
-	}
-
-	return chartMap;
-}
-
-export function CreateScoreIDMap<I extends IDStrings = IDStrings>(scores: Array<ScoreDocument<I>>) {
-	const scoreMap = new Map<string, ScoreDocument<I>>();
-
-	for (const score of scores) {
-		scoreMap.set(score.scoreID, score);
-	}
-
-	return scoreMap;
-}
-
-/**
- * Sorts On Value numerically.
- * @returns A sorting function
- */
-export function NumericSOV<T>(getValueFn: (data: T) => number, reverse = false) {
-	if (reverse) {
-		return (a: T, b: T) => getValueFn(b) - getValueFn(a);
-	}
-
-	return (a: T, b: T) => getValueFn(a) - getValueFn(b);
-}
-
-/**
- * Sorts On Value using locale compare.
- * @returns A sorting function
- */
-export function StrSOV<T>(getValueFn: (data: T) => string) {
-	return (a: T, b: T) => getValueFn(a).localeCompare(getValueFn(b));
-}
-
-export function UniqueOnKey<T>(prop: keyof T) {
-	const seenBefore = new Set<T[keyof T]>();
-
-	return (item: T) => {
-		if (seenBefore.has(item[prop])) {
-			return false;
-		}
-
-		seenBefore.add(item[prop]);
-
-		return true;
-	};
-}
-
-export const ONE_SECOND = 1000;
-export const ONE_MINUTE = ONE_SECOND * 60;
-export const ONE_HOUR = ONE_MINUTE * 60;
-export const ONE_DAY = ONE_HOUR * 24;
-export const ONE_WEEK = ONE_DAY * 7;

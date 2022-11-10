@@ -1,14 +1,11 @@
 import { BotConfig, ProcessEnv, ServerConfig } from "./config";
-import { LoggerLayers, METALLIC_MIND_SPLASHES } from "./data/data";
+import { LoggerLayers } from "./data/data";
 import { GetUserAndTokenForDiscordID } from "./database/queries";
 import { handleIsCommand } from "./interactionHandlers/handleIsCommand";
 import { handleIsSelectMenu } from "./interactionHandlers/handleIsSelectMenu";
-
-// import { handleIsSelectMenu } from "./interactionHandlers/handleIsSelectMenu";
 import { app } from "./server/server";
 import { RegisterSlashCommands } from "./slashCommands/register";
 import { CreateLayeredLogger } from "./utils/logger";
-import { RFA, TruncateString } from "./utils/misc";
 import { VERSION_PRETTY } from "./version";
 import { Client, Intents } from "discord.js";
 import type { CommandInteraction, SelectMenuInteraction } from "discord.js";
@@ -17,15 +14,6 @@ const logger = CreateLayeredLogger(LoggerLayers.client);
 
 export const client = new Client({
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_MESSAGES],
-});
-
-client.on("messageCreate", async (message) => {
-	// KT1 Easter Egg.
-	if (message.content === "!!") {
-		await message.channel.send(
-			`Invalid Command. (${TruncateString(RFA(METALLIC_MIND_SPLASHES), 500)})`
-		);
-	}
 });
 
 client.on("interactionCreate", async (interaction) => {
@@ -68,7 +56,7 @@ We've sent you a DM with instructions on how to link your account.`,
 	});
 }
 
-(async () => {
+void (async () => {
 	try {
 		logger.info(`Booting Tachi Bot ${VERSION_PRETTY}.`);
 

@@ -1,7 +1,7 @@
 import { CreateKaiSDVXClassHandler } from "./class-handler";
 import { KaiTypeToBaseURL } from "../utils";
-import { SDVXDans } from "lib/constants/classes";
 import CreateLogCtx from "lib/logger/logger";
+import { SDVX_DANS } from "tachi-common";
 import t from "tap";
 import { MockBasicFetch, MockJSONFetch } from "test-utils/mock-fetch";
 import ResetDBState from "test-utils/resets";
@@ -84,7 +84,7 @@ t.test("#CreateKaiSDVXClassHandler", async (t) => {
 					_links: {},
 					sdvx_id: 12345678,
 					name: "SOMEONE",
-					skill_level: SDVXDans.INF + 2,
+					skill_level: SDVX_DANS.INF + 2,
 					access_time: "2019-08-26T18:22:36Z",
 					register_time: "2019-08-26T18:22:36Z",
 				},

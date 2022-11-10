@@ -1,11 +1,11 @@
 import {
 	CHUNITHM_COLOURS,
-	GitadoraColours,
+	GITADORA_COLOURS,
 	JUBEAT_COLOURS,
 	POPN_CLASSES,
-	SDVXVFClasses,
+	SDVX_VF_CLASSES,
 	WACCA_COLOURS,
-} from "lib/constants/classes";
+} from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { KtLogger } from "lib/logger/logger";
 import type { Game, integer, Playtype, ScoreCalculatedDataLookup } from "tachi-common";
@@ -35,16 +35,16 @@ export function SDVXVF6ToClass(vf: number, logger: KtLogger) {
 	// This is impossible, but a failsafe regardless
 	if (vf >= 24) {
 		logger.warn(`User has excessive VF6 of ${vf}. Defaulting to Imperial IV.`);
-		return SDVXVFClasses.IMPERIAL_IV;
+		return SDVX_VF_CLASSES.IMPERIAL_IV;
 	} else if (vf >= 20) {
 		// imperial i -> iv has gaps of 1
-		return SDVXVFClasses.IMPERIAL_I + Math.floor(vf - 20);
+		return SDVX_VF_CLASSES.IMPERIAL_I + Math.floor(vf - 20);
 	} else if (vf >= 14) {
 		// cyan i -> crimson iv has gaps of 0.25
-		return SDVXVFClasses.CYAN_I + Math.floor(4 * (vf - 14));
+		return SDVX_VF_CLASSES.CYAN_I + Math.floor(4 * (vf - 14));
 	} else if (vf >= 10) {
 		// cobalt i -> dandelion iv have gaps of 0.5
-		return SDVXVFClasses.COBALT_I + Math.floor(2 * (vf - 10));
+		return SDVX_VF_CLASSES.COBALT_I + Math.floor(2 * (vf - 10));
 	}
 
 	return Math.floor(vf / 2.5);
@@ -69,40 +69,40 @@ export function CalculateGitadoraColour(
 
 export function GitadoraSkillToColour(sk: number) {
 	if (sk >= 8500) {
-		return GitadoraColours.RAINBOW;
+		return GITADORA_COLOURS.RAINBOW;
 	} else if (sk >= 8000) {
-		return GitadoraColours.GOLD;
+		return GITADORA_COLOURS.GOLD;
 	} else if (sk >= 7500) {
-		return GitadoraColours.SILVER;
+		return GITADORA_COLOURS.SILVER;
 	} else if (sk >= 7000) {
-		return GitadoraColours.BRONZE;
+		return GITADORA_COLOURS.BRONZE;
 	} else if (sk >= 6500) {
-		return GitadoraColours.RED_GRADIENT;
+		return GITADORA_COLOURS.RED_GRADIENT;
 	} else if (sk >= 6000) {
-		return GitadoraColours.RED;
+		return GITADORA_COLOURS.RED;
 	} else if (sk >= 5500) {
-		return GitadoraColours.PURPLE_GRADIENT;
+		return GITADORA_COLOURS.PURPLE_GRADIENT;
 	} else if (sk >= 5000) {
-		return GitadoraColours.PURPLE;
+		return GITADORA_COLOURS.PURPLE;
 	} else if (sk >= 4500) {
-		return GitadoraColours.BLUE_GRADIENT;
+		return GITADORA_COLOURS.BLUE_GRADIENT;
 	} else if (sk >= 4000) {
-		return GitadoraColours.BLUE;
+		return GITADORA_COLOURS.BLUE;
 	} else if (sk >= 3500) {
-		return GitadoraColours.GREEN_GRADIENT;
+		return GITADORA_COLOURS.GREEN_GRADIENT;
 	} else if (sk >= 3000) {
-		return GitadoraColours.GREEN;
+		return GITADORA_COLOURS.GREEN;
 	} else if (sk >= 2500) {
-		return GitadoraColours.YELLOW_GRADIENT;
+		return GITADORA_COLOURS.YELLOW_GRADIENT;
 	} else if (sk >= 2000) {
-		return GitadoraColours.YELLOW;
+		return GITADORA_COLOURS.YELLOW;
 	} else if (sk >= 1500) {
-		return GitadoraColours.ORANGE_GRADIENT;
+		return GITADORA_COLOURS.ORANGE_GRADIENT;
 	} else if (sk >= 1000) {
-		return GitadoraColours.ORANGE;
+		return GITADORA_COLOURS.ORANGE;
 	}
 
-	return GitadoraColours.WHITE;
+	return GITADORA_COLOURS.WHITE;
 }
 
 export function CalculateWACCAColour(

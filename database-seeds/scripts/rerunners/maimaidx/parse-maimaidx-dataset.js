@@ -24,6 +24,7 @@ const versionMap = new Map([
 	[185, "MURASAKi PLUS"],
 	[190, "MiLK"],
 	[195, "MiLK PLUS"],
+	[199, "FiNALE"],
 	[200, "maimaiでらっくす"],
 	[205, "maimaiでらっくす PLUS"],
 	[210, "Splash"],

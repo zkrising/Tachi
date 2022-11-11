@@ -2,9 +2,9 @@ const { parse } = require("csv-parse/sync");
 const fs = require("fs");
 const fetch = require("node-fetch");
 const { Command } = require("commander");
-const { CreateChartID, ReadCollection, WriteCollection } = require("../util");
+const { CreateChartID, ReadCollection, WriteCollection } = require("../../util");
 const { decode } = require("html-entities");
-const logger = require("../logger");
+const logger = require("../../logger");
 
 const program = new Command();
 
@@ -30,6 +30,7 @@ const versionMap = new Map([
 	[215, "Splash PLUS"],
 	[220, "UNiVERSE"],
 	[225, "UNiVERSE PLUS"],
+	[230, "FESTiVAL"],
 ]);
 
 const diffNames = ["bas", "adv", "exp", "mas", "remas"];
@@ -74,7 +75,6 @@ const diffMap = new Map([
 				searchTerms,
 				altTitles,
 				data: {
-					genre: data.catcode.trim(),
 					displayVersion: versionMap.get(version),
 				},
 			});
@@ -102,7 +102,7 @@ const diffMap = new Map([
 				level: data[`dx_lev_${diff}`],
 				levelNum: lvNum,
 				isPrimary: true,
-				difficulty: diffMap.get(diff),
+				difficulty: `DX ${diffMap.get(diff)}`,
 				playtype: "Single",
 				data: {
 					isLatest,

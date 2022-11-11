@@ -211,22 +211,6 @@ type DDRGrades =
 
 type GitadoraGrades = "A" | "B" | "C" | "MAX" | "S" | "SS";
 
-type MaimaiGrades =
-	| "A"
-	| "AA"
-	| "AAA"
-	| "B"
-	| "C"
-	| "D"
-	| "E"
-	| "F"
-	| "S"
-	| "S+"
-	| "SS"
-	| "SS+"
-	| "SSS"
-	| "SSS+";
-
 export interface Grades {
 	"iidx:SP": IIDXGrades;
 	"iidx:DP": IIDXGrades;
@@ -245,6 +229,21 @@ export interface Grades {
 		| "D"
 		| "E"
 		| "F"
+		| "S"
+		| "S+"
+		| "SS"
+		| "SS+"
+		| "SSS"
+		| "SSS+";
+	"maimaidx:Single":
+		| "A"
+		| "AA"
+		| "AAA"
+		| "B"
+		| "BB"
+		| "BBB"
+		| "C"
+		| "D"
 		| "S"
 		| "S+"
 		| "SS"
@@ -349,6 +348,7 @@ export interface Difficulties {
 	"ddr:SP": "BASIC" | "BEGINNER" | "CHALLENGE" | "DIFFICULT" | "EXPERT";
 	"ddr:DP": "BASIC" | "CHALLENGE" | "DIFFICULT" | "EXPERT";
 	"maimai:Single": "Advanced" | "Basic" | "Easy" | "Expert" | "Master" | "Re:Master";
+	"maimaidx:Single": "Advanced" | "Basic" | "Expert" | "Master" | "Re:Master";
 	"jubeat:Single": "ADV" | "BSC" | "EXT" | "HARD ADV" | "HARD BSC" | "HARD EXT";
 	"museca:Single": "Green" | "Red" | "Yellow";
 	"bms:7K": "CHART";

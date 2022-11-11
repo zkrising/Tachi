@@ -37,7 +37,6 @@ export type ActivityConstraint = FilterQuery<
  * i.e. [1, 2, 3] 3, 3, 3 [4, 5, 6]
  */
 export async function GetRecentActivity(
-	// todo: is it possible to make this game agnostic?
 	game: Game,
 	query: ActivityConstraint,
 	sessions = 30,

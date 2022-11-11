@@ -71,7 +71,7 @@ export default function SessionRaiseBreakdown({
 			<div className="col-12">
 				<div className="row">
 					<div className="col-12 col-lg-6 offset-lg-3">
-						<div className="d-flex justify-content-center">
+						<div className="d-none d-lg-flex justify-content-center">
 							<div className="btn-group">
 								<SelectButton value={view} setValue={setView} id="lamps">
 									<Icon type="lightbulb" />

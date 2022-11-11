@@ -45,6 +45,7 @@ export default function Activity({
 	const [clumped, setClumped] = useState<ClumpedActivity>([]);
 	const [users, setUsers] = useState<Array<UserDocument>>([]);
 	const [shouldShowGame, setShouldShowGame] = useState(false);
+	const [exhausted, setExhausted] = useState(false);
 
 	const { data, error } = useApiQuery<ActivityReturn | RecordActivityReturn>(url);
 
@@ -53,7 +54,13 @@ export default function Activity({
 			setClumped([]);
 			setUsers([]);
 		} else {
-			setClumped(ClumpActivity(data));
+			const newActivity = ClumpActivity(data);
+
+			if (newActivity.filter((e) => e.type === "SESSION").length < 30) {
+				setExhausted(true);
+			}
+
+			setClumped(newActivity);
 			setUsers(GetUsers(data));
 
 			// show game if this is { "iidx:SP": [], "iidx:DP": [] }...
@@ -79,11 +86,18 @@ export default function Activity({
 			shouldShowGame={shouldShowGame}
 			data={clumped}
 			users={users}
+			exhausted={exhausted}
 			fetchMoreFrom={(start) => {
 				APIFetchV1<ActivityReturn | RecordActivityReturn>(`${url}?startTime=${start}`).then(
 					(r) => {
 						if (r.success) {
-							setClumped([...clumped, ...ClumpActivity(r.body)]);
+							const newActivity = ClumpActivity(r.body);
+
+							if (newActivity.filter((e) => e.type === "SESSION").length < 30) {
+								setExhausted(true);
+							}
+
+							setClumped([...clumped, ...newActivity]);
 							setUsers([...users, ...GetUsers(r.body)]);
 						}
 					}
@@ -98,11 +112,13 @@ function ActivityInner({
 	users,
 	fetchMoreFrom,
 	shouldShowGame,
+	exhausted,
 }: {
 	data: ClumpedActivity;
 	users: Array<UserDocument>;
 	fetchMoreFrom: (start: number) => void;
 	shouldShowGame: boolean;
+	exhausted: boolean;
 }) {
 	const userMap = CreateUserMap(users);
 
@@ -156,33 +172,37 @@ function ActivityInner({
 								marginRight: "2rem",
 							}}
 						>
-							<Button
-								variant="outline-primary"
-								onClick={() => {
-									let lastTimestamp;
-									const lastThing = data.at(-1)!;
+							{exhausted ? (
+								<>No more activity. This is the end of the road!</>
+							) : (
+								<Button
+									variant="outline-primary"
+									onClick={() => {
+										let lastTimestamp;
+										const lastThing = data.at(-1)!;
 
-									switch (lastThing.type) {
-										case "SCORES":
-											lastTimestamp = lastThing.scores[0]?.timeAchieved;
-											break;
-										case "CLASS_ACHIEVEMENT":
-											lastTimestamp = lastThing.timeAchieved;
-											break;
-										case "SESSION":
-											lastTimestamp = lastThing.timeStarted;
-									}
+										switch (lastThing.type) {
+											case "SCORES":
+												lastTimestamp = lastThing.scores[0]?.timeAchieved;
+												break;
+											case "CLASS_ACHIEVEMENT":
+												lastTimestamp = lastThing.timeAchieved;
+												break;
+											case "SESSION":
+												lastTimestamp = lastThing.timeStarted;
+										}
 
-									if (!lastTimestamp) {
-										alert("Failed. What?");
-										return;
-									}
+										if (!lastTimestamp) {
+											alert("Failed. What?");
+											return;
+										}
 
-									fetchMoreFrom(lastTimestamp);
-								}}
-							>
-								Load More...
-							</Button>
+										fetchMoreFrom(lastTimestamp);
+									}}
+								>
+									Load More...
+								</Button>
+							)}
 						</div>
 					</div>
 				</div>

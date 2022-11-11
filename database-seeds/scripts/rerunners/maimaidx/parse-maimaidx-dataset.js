@@ -80,25 +80,27 @@ const diffMap = new Map([
 			});
 		}
 
-		for (const diff in diffNames) {
+		diffNames.forEach((diff) => {
 			// check for existence of difficulty
-			if (data[`dx_lev_${diff}`] === null) {
-				continue;
+			if (!data[`dx_lev_${diff}`]) {
+				return;
 			}
 
 			if (existingCharts.get(`${thisSongID} ${diffMap.get(diff)}`)) {
-				continue;
+				return;
 			}
 
 			const chartID = CreateChartID();
 			const isLatest = Number(version) === 225;
+
+			const lv_num = Number(data[`dx_lev_${diff}`].replace(/\+/u, ".7"));
 
 			charts.push({
 				songID: thisSongID,
 				chartID: chartID,
 				rgcID: null,
 				level: data[`dx_lev_${diff}`],
-				level_num: 0,
+				level_num: lv_num,
 				isPrimary: true,
 				difficulty: diffMap.get(diff),
 				playtype: "Single",
@@ -106,27 +108,29 @@ const diffMap = new Map([
 					isLatest,
 				},
 			});
-		}
+		});
 
-		for (const diff in diffNames) {
+		diffNames.forEach((diff) => {
 			// check for existence of difficulty
-			if (data[`lev_${diff}`] === null) {
-				continue;
+			if (!data[`lev_${diff}`]) {
+				return;
 			}
 
 			if (existingCharts.get(`${thisSongID} ${diffMap.get(diff)}`)) {
-				continue;
+				return;
 			}
 
 			const chartID = CreateChartID();
 			const isLatest = Number(version) === 225;
+
+			const lv_num = Number(data[`lev_${diff}`].replace(/\+/u, ".7"));
 
 			charts.push({
 				songID: thisSongID,
 				chartID: chartID,
 				rgcID: null,
 				level: data[`lev_${diff}`],
-				level_num: 0,
+				level_num: lv_num,
 				isPrimary: true,
 				difficulty: diffMap.get(diff),
 				playtype: "Single",
@@ -134,7 +138,7 @@ const diffMap = new Map([
 					isLatest,
 				},
 			});
-		}
+		});
 	}
 
 	WriteCollection("charts-maimaidx.json", charts);

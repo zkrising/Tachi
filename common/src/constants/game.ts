@@ -463,3 +463,20 @@ export enum MAIMAIDX_DANS {
 
 	SHINKAIDEN = 20,
 }
+
+export enum MAIMAIDX_GRADES {
+	D = 0,
+	C = 1,
+	B = 2,
+        BB = 3,
+	BBB = 4,
+        A = 5,
+	AA = 6,
+	AAA = 7,
+	S = 8,
+	S_PLUS = 9,
+	SS = 10,
+	SS_PLUS = 11,
+	SSS = 12,
+	SSS_PLUS = 13,
+}

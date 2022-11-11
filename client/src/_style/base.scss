@@ -105,3 +105,63 @@
 		z-index: -1;
 	}
 }
+
+@include media-breakpoint-down(sm) {
+	.timeline-item {
+		margin-bottom: 1rem;
+		padding-bottom: 1rem !important;
+		position: relative;
+	}
+
+	.timeline-item:after {
+		display: block;
+		width: 100%;
+		content: '';
+		position: absolute;
+		bottom: 0;
+		border-bottom: 1px $secondary solid;
+	}
+}
+
+.timeline-content {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+
+	@include media-breakpoint-up(lg) {
+		margin-right: 2rem;
+	}
+
+
+	.timeline-content-inner {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		@include media-breakpoint-down(sm) {
+			flex-wrap: wrap;
+			flex-direction: column;
+		}
+	}
+
+	.timeline-content-title {
+		text-align: left;
+
+		@include media-breakpoint-up(lg) {
+			width: 70%;
+		}
+
+		@include media-breakpoint-down(sm) {
+			display: block;
+			align-self: start;
+		}
+	}
+
+	.timeline-content-timestamp {
+		text-align: right;
+		@include media-breakpoint-down(sm) {
+			margin-top: 1rem;
+			align-self: end;
+		}
+	}
+}

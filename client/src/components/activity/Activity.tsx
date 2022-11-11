@@ -235,7 +235,8 @@ function ScoresActivity({
 		subMessage = `a ${prettyGame}score on ${FormatChart(
 			score0.game,
 			score0.__related.song,
-			score0.__related.chart
+			score0.__related.chart,
+			true
 		)}`;
 
 		if (score0.comment) {
@@ -264,19 +265,9 @@ function ScoresActivity({
 	return (
 		<div className="timeline-item timeline-hover my-4">
 			<div className="timeline-badge bg-warning"></div>
-			<div
-				className="timeline-content d-flex"
-				style={{
-					flexDirection: "column",
-					flexWrap: "wrap",
-					marginRight: "2rem",
-				}}
-			>
-				<div
-					className="d-flex align-items-center justify-content-between"
-					onClick={() => setShow(!show)}
-				>
-					<div className="mr-3" style={{ width: "70%", textAlign: "left" }}>
+			<div className="timeline-content">
+				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
+					<div className="timeline-content-title">
 						<Icon
 							type={`chevron-${show ? "down" : "right"}`}
 							style={{
@@ -295,7 +286,7 @@ function ScoresActivity({
 						)}
 					</div>
 
-					<div style={{ textAlign: "right" }}>
+					<div className="timeline-content-timestamp">
 						{MillisToSince(data.scores[0].timeAchieved ?? 0)}
 						<br />
 						<span className="text-muted font-italic text-right">
@@ -339,19 +330,9 @@ function SessionActivity({
 	return (
 		<div className="timeline-item timeline-hover">
 			<div className={`timeline-badge bg-${data.highlight ? "warning" : "secondary"}`}></div>
-			<div
-				className="timeline-content d-flex"
-				style={{
-					flexDirection: "column",
-					flexWrap: "wrap",
-					marginRight: "2rem",
-				}}
-			>
-				<div
-					className="d-flex align-items-center justify-content-between"
-					onClick={() => setShow(!show)}
-				>
-					<div className="mr-3" style={{ width: "70%", textAlign: "left" }}>
+			<div className="timeline-content d-flex">
+				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
+					<div className="timeline-content-title">
 						<Icon
 							type={`chevron-${show ? "down" : "right"}`}
 							style={{
@@ -387,7 +368,7 @@ function SessionActivity({
 						)}
 					</div>
 
-					<div style={{ textAlign: "right" }} className="mr-1">
+					<div className="timeline-content-timestamp">
 						{MillisToSince(data.timeStarted ?? 0)}
 						<br />
 						<span className="text-muted font-italic text-right">
@@ -442,16 +423,9 @@ function ClassAchievementActivity({
 	return (
 		<div className="timeline-item timeline-hover">
 			<div className="timeline-badge bg-success"></div>
-			<div
-				className="timeline-content d-flex"
-				style={{
-					flexDirection: "column",
-					flexWrap: "wrap",
-					marginRight: "2rem",
-				}}
-			>
-				<div className="d-flex align-items-center justify-content-between">
-					<div className="mr-3" style={{ width: "70%", textAlign: "left" }}>
+			<div className="timeline-content d-flex">
+				<div className="timeline-content-inner">
+					<div className="timeline-content-title">
 						<UGPTLink reqUser={user} game={data.game} playtype={data.playtype} />{" "}
 						achieved{" "}
 						<ClassBadge
@@ -476,7 +450,7 @@ function ClassAchievementActivity({
 						)}
 					</div>
 
-					<div style={{ textAlign: "right" }} className="mr-1">
+					<div className="timeline-content-timestamp">
 						{MillisToSince(data.timeAchieved)}
 						<br />
 						<span className="text-muted font-italic text-right">

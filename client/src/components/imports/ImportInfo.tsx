@@ -24,7 +24,7 @@ import {
 	UserGameStats,
 } from "tachi-common";
 import { ScoreDataset } from "types/tables";
-import { Playtype } from "types/tachi";
+import { Playtype } from "tachi-common";
 
 interface Data {
 	import: ImportDocument;

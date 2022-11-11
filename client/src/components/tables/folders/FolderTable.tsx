@@ -6,7 +6,7 @@ import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
 import { Game, IDStrings, ScoreCalculatedDataLookup } from "tachi-common";
 import { FolderDataset } from "types/tables";
-import { Playtype } from "types/tachi";
+import { Playtype } from "tachi-common";
 import DifficultyCell from "../cells/DifficultyCell";
 import IndicatorsCell from "../cells/IndicatorsCell";
 import RankingCell, { RankingViewMode } from "../cells/RankingCell";

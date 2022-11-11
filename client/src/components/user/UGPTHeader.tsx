@@ -6,7 +6,7 @@ import Divider from "components/util/Divider";
 import React from "react";
 import { Game, UserDocument } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
-import { Playtype } from "types/tachi";
+import { Playtype } from "tachi-common";
 import ProfileBadges from "./ProfileBadges";
 import ProfilePicture from "./ProfilePicture";
 import RankingData from "./UGPTRankingData";

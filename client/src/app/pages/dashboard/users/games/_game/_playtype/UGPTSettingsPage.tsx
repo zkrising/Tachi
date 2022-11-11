@@ -1,4 +1,5 @@
 import { APIFetchV1 } from "util/api";
+import { ErrorPage } from "app/pages/ErrorPage";
 import ClassBadge from "components/game/ClassBadge";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
@@ -12,8 +13,9 @@ import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import useQueryString from "components/util/useQueryString";
+import { UGPTContext } from "context/UGPTContext";
 import deepmerge from "deepmerge";
-import { FieldArray, useFormik } from "formik";
+import { useFormik } from "formik";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
@@ -22,18 +24,14 @@ import {
 	FormatGame,
 	GetGameConfig,
 	GetGamePTConfig,
-	UserDocument,
 	ShowcaseStatDetails,
 	TableDocument,
 	UGPTSettings,
+	UserDocument,
 } from "tachi-common";
-import { GamePT, SetState } from "types/react";
-import { UGPTContext } from "context/UGPTContext";
-import { ErrorPage } from "app/pages/ErrorPage";
+import { SetState, UGPT } from "types/react";
 
-type Props = { reqUser: UserDocument } & GamePT;
-
-export default function UGPTSettingsPage({ reqUser, game, playtype }: Props) {
+export default function UGPTSettingsPage({ reqUser, game, playtype }: UGPT) {
 	const query = useQueryString();
 
 	const [page, setPage] = useState<"preferences" | "showcase">(
@@ -47,7 +45,7 @@ export default function UGPTSettingsPage({ reqUser, game, playtype }: Props) {
 		`${reqUser.username}'s ${FormatGame(game, playtype)} Settings`
 	);
 
-	const props = { reqUser, game, playtype };
+	const UGPT = { reqUser, game, playtype };
 
 	return (
 		<Card header="Settings" className="col-12 offset-lg-2 col-lg-8">
@@ -67,9 +65,9 @@ export default function UGPTSettingsPage({ reqUser, game, playtype }: Props) {
 				<div className="col-12">
 					<Divider className="mt-4 mb-4" />
 					{page === "preferences" ? (
-						<PreferencesForm {...props} />
+						<PreferencesForm {...UGPT} />
 					) : (
-						<ShowcaseForm {...props} />
+						<ShowcaseForm {...UGPT} />
 					)}
 				</div>
 			</div>
@@ -77,7 +75,7 @@ export default function UGPTSettingsPage({ reqUser, game, playtype }: Props) {
 	);
 }
 
-function PreferencesForm({ reqUser, game, playtype }: Props) {
+function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 	const { loggedInData, setLoggedInData } = useContext(UGPTContext);
 
 	if (!loggedInData) {
@@ -386,7 +384,7 @@ function PreferencesForm({ reqUser, game, playtype }: Props) {
 	);
 }
 
-function ShowcaseForm({ reqUser, game, playtype }: Props) {
+function ShowcaseForm({ reqUser, game, playtype }: UGPT) {
 	const { loggedInData, setLoggedInData } = useContext(UGPTContext);
 
 	if (!loggedInData) {
@@ -468,7 +466,7 @@ function RenderCurrentStats({
 }: {
 	stats: ShowcaseStatDetails[];
 	setStats: SetState<ShowcaseStatDetails[]>;
-} & Props) {
+} & UGPT) {
 	function RemoveStatAtIndex(index: number) {
 		setStats(stats.filter((e, i) => i !== index));
 	}

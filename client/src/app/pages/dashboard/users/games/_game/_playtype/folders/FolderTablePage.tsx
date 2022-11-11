@@ -27,9 +27,9 @@ import {
 	GetGamePTConfig,
 	UserDocument,
 	TableDocument,
+	Playtype,
 } from "tachi-common";
 import { FolderStatsInfo, UGPTTableReturns } from "types/api-returns";
-import { Playtype } from "types/tachi";
 
 interface Props {
 	reqUser: UserDocument;

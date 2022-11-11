@@ -9,6 +9,7 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { FormatGame, Game, GetGameConfig, Playtype, UserDocument } from "tachi-common";
+import RivalsActivityPage from "./RivalsActivityPage";
 import RivalsManagePage from "./RivalsManagePage";
 
 export default function RivalsMainPage({
@@ -39,14 +40,14 @@ export default function RivalsMainPage({
 	return (
 		<Row>
 			<Col xs={12} className="text-center">
-				<div className="btn-group">
+				<div className="btn-group d-flex justify-content-center">
 					<SelectLinkButton to={`${base}/rivals/pb-leaderboard`}>
 						<Icon type="sort-amount-up" />
 						Rival's Bests
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/rivals`}>
 						<Icon type="list" />
-						Activity
+						Rival Activity
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/rivals/tracking`}>
 						<Icon type="thumbtack" />
@@ -63,7 +64,7 @@ export default function RivalsMainPage({
 				<Switch>
 					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/rivals">
 						{settings?.rivals.length === 0 && <Redirect to={`${base}/rivals/manage`} />}
-						NOT WRITTEN YET
+						<RivalsActivityPage reqUser={reqUser} game={game} playtype={playtype} />
 					</Route>
 
 					<Route

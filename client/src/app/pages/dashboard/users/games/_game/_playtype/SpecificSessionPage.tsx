@@ -15,13 +15,11 @@ import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useState } from "react";
 import { Badge, Button, Col, Form, Modal, Row } from "react-bootstrap";
 import { Redirect, useParams } from "react-router-dom";
-import { GetGameConfig, UserDocument, SessionDocument } from "tachi-common";
+import { GetGameConfig, SessionDocument } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
-import { GamePT, SetState } from "types/react";
+import { SetState, UGPT } from "types/react";
 
-type Props = { reqUser: UserDocument } & GamePT;
-
-export default function SpecificSessionPage({ reqUser, game, playtype }: Props) {
+export default function SpecificSessionPage({ reqUser, game, playtype }: UGPT) {
 	const { sessionID } = useParams<{ sessionID: string }>();
 
 	const { data, error } = useApiQuery<SessionReturns>(`/sessions/${sessionID}`);
@@ -49,7 +47,7 @@ export default function SpecificSessionPage({ reqUser, game, playtype }: Props) 
 	return <SessionPage {...{ data, game, playtype, reqUser }} />;
 }
 
-function SessionPage({ data, game, playtype }: Props & { data: SessionReturns }) {
+function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) {
 	const [sessionData, setSessionData] = useState(data);
 	const { session, user, charts, scores, songs } = sessionData;
 

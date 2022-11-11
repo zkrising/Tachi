@@ -26,7 +26,7 @@ import {
 	SongDocument,
 	UnsuccessfulAPIResponse,
 } from "tachi-common";
-import { GamePT, SetState } from "types/react";
+import { GamePT, SetState, UGPT } from "types/react";
 import usePreferredRanking from "components/util/usePreferredRanking";
 
 export default function ScoresPage({
@@ -54,7 +54,7 @@ export default function ScoresPage({
 	return (
 		<div className="row">
 			<div className="col-12 text-center">
-				<div className="btn-group mb-4">
+				<div className="btn-group d-flex justify-content-center mb-4">
 					<SelectLinkButton to={`${base}/scores`}>
 						<Icon type="trophy" />
 						Best 100 PBs
@@ -286,7 +286,7 @@ function PBsSearch({
 	);
 }
 
-function ScoresOverview({ reqUser, game, playtype }: { reqUser: UserDocument } & GamePT) {
+function ScoresOverview({ reqUser, game, playtype }: UGPT) {
 	const [search, setSearch] = useState("");
 
 	const { data, error } = useFetchScores(

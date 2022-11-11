@@ -6,13 +6,11 @@ import useUGPTBase from "components/util/useUGPTBase";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Route, Switch } from "react-router-dom";
-import { FormatGame, GetGameConfig, UserDocument } from "tachi-common";
-import { GamePT } from "types/react";
+import { FormatGame, GetGameConfig } from "tachi-common";
+import { UGPT } from "types/react";
 import GoalsPage from "./GoalsPage";
 
-type Props = { reqUser: UserDocument } & GamePT;
-
-export default function TargetsPage({ reqUser, game, playtype }: Props) {
+export default function TargetsPage({ reqUser, game, playtype }: UGPT) {
 	const gameConfig = GetGameConfig(game);
 
 	useSetSubheader(
@@ -26,7 +24,7 @@ export default function TargetsPage({ reqUser, game, playtype }: Props) {
 	return (
 		<Row>
 			<Col xs={12} className="text-center">
-				<div className="btn-group">
+				<div className="btn-group d-flex justify-content-center">
 					<SelectLinkButton to={`${base}/targets/goals`}>
 						<Icon type="bullseye" />
 						Goals

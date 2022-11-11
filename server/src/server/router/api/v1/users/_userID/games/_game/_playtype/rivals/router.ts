@@ -1,6 +1,7 @@
 import { RequireAuthedAsUser } from "../../../../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
+import { CreateActivityRouteHandler } from "lib/activity/activity";
 import { SetRivalsFailReasons } from "lib/constants/err-codes";
 import { GetChallengerUsers, GetRivalIDs, GetRivalUsers, SetRivals } from "lib/rivals/rivals";
 import p from "prudence";
@@ -165,6 +166,26 @@ router.get("/pb-leaderboard", async (req, res) => {
 			users,
 		},
 	});
+});
+
+/**
+ * Retrieve activity for this user's set of rivals.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/rivals/activity
+ */
+router.get("/activity", async (req, res) => {
+	const { game, playtype, user } = GetUGPT(req);
+
+	const rivalIDs = await GetRivalIDs(user.id, game, playtype);
+
+	const route = CreateActivityRouteHandler({
+		userID: { $in: rivalIDs },
+		game,
+		playtype,
+	});
+
+	// this handles responding
+	void route(req, res);
 });
 
 export default router;

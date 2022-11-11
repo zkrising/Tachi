@@ -2,9 +2,8 @@ import { NumericSOV, StrSOV } from "util/sorts";
 import { CreateDefaultScoreSearchParams } from "util/tables/create-search";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
-import { Game, IDStrings, integer, ScoreCalculatedDataLookup } from "tachi-common";
+import { Game, IDStrings, integer, ScoreCalculatedDataLookup, Playtype } from "tachi-common";
 import { ScoreDataset } from "types/tables";
-import { Playtype } from "types/tachi";
 import DifficultyCell from "../cells/DifficultyCell";
 import IndicatorsCell from "../cells/IndicatorsCell";
 import TimestampCell from "../cells/TimestampCell";
@@ -27,6 +26,7 @@ export default function ScoreTable<I extends IDStrings = IDStrings>({
 	userCol = false,
 	game,
 	alg,
+	noTopDisplayStr,
 }: {
 	dataset: ScoreDataset<I>;
 	pageLen?: integer;
@@ -34,6 +34,7 @@ export default function ScoreTable<I extends IDStrings = IDStrings>({
 	userCol?: boolean;
 	game: Game;
 	alg?: ScoreCalculatedDataLookup[I];
+	noTopDisplayStr?: boolean;
 }) {
 	const defaultRating = useScoreRatingAlg(game, playtype);
 	const [rating, setRating] = useState(alg ?? defaultRating);
@@ -53,6 +54,7 @@ export default function ScoreTable<I extends IDStrings = IDStrings>({
 
 	return (
 		<TachiTable
+			noTopDisplayStr={noTopDisplayStr}
 			dataset={dataset}
 			pageLen={pageLen}
 			headers={headers}

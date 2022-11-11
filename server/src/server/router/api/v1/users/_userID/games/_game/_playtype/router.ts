@@ -10,6 +10,7 @@ import tablesRouter from "./tables/router";
 import targetsRouter from "./targets/router";
 import { Router } from "express";
 import db from "external/mongo/db";
+import { CreateActivityRouteHandler } from "lib/activity/activity";
 import { ONE_MONTH, ONE_YEAR } from "lib/constants/time";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
@@ -309,6 +310,24 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 			thisUsersRanking,
 		},
 	});
+});
+
+/**
+ * Retrieve activity for this user.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/activity
+ */
+router.get("/activity", (req, res) => {
+	const { game, playtype, user } = GetUGPT(req);
+
+	const route = CreateActivityRouteHandler({
+		userID: user.id,
+		game,
+		playtype,
+	});
+
+	// this handles responding
+	void route(req, res);
 });
 
 router.use("/pbs", pbsRouter);

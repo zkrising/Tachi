@@ -6,7 +6,7 @@ import { FormatGame } from "tachi-common";
 import { ArrayDiff } from "utils/misc";
 import { GetUsersWithIDs, GetUserWithIDGuaranteed } from "utils/user";
 import type { BulkWriteUpdateOneOperation } from "mongodb";
-import type { Game, integer, Playtype, PBScoreDocument } from "tachi-common";
+import type { Game, integer, PBScoreDocument, Playtype } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 

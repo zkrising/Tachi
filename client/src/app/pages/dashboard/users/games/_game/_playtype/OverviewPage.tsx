@@ -1,47 +1,27 @@
-import { APIFetchV1 } from "util/api";
-import { ONE_HOUR, ONE_MINUTE } from "util/constants/time";
-import { CreateChartMap, CreateSongMap, GetPBs } from "util/data";
+import { ClumpActivity } from "util/activity";
 import { UppercaseFirst } from "util/misc";
-import { NumericSOV } from "util/sorts";
-import { FormatDate, FormatDuration, FormatTime, MillisToSince } from "util/time";
+import { FormatDate, MillisToSince } from "util/time";
 import TimelineChart from "components/charts/TimelineChart";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
-import MiniTable from "components/tables/components/MiniTable";
-import ScoreTable from "components/tables/scores/ScoreTable";
+import Activity from "components/activity/Activity";
 import UGPTStatShowcase from "components/user/UGPTStatShowcase";
-import AsyncLoader from "components/util/AsyncLoader";
+import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
+import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
+import useApiQuery from "components/util/query/useApiQuery";
+import Select from "components/util/Select";
 import SelectButton from "components/util/SelectButton";
 import { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
 import { DateTime } from "luxon";
 import React, { useMemo, useState } from "react";
-import { Badge, Row } from "react-bootstrap";
-import {
-	FormatGame,
-	GetGameConfig,
-	GetGamePTConfig,
-	UserDocument,
-	ScoreDocument,
-	SessionDocument,
-	UserGameStats,
-} from "tachi-common";
-import { SessionReturns, UGPTHistory } from "types/api-returns";
-import { GamePT, SetState } from "types/react";
-import { ScoreDataset } from "types/tables";
-import SessionRaiseBreakdown from "components/sessions/SessionRaiseBreakdown";
-import useApiQuery from "components/util/query/useApiQuery";
-import ApiError from "components/util/ApiError";
-import Loading from "components/util/Loading";
-import Select from "components/util/Select";
+import { FormatGame, GetGameConfig, GetGamePTConfig, UserGameStats } from "tachi-common";
+import { UGPTHistory } from "types/api-returns";
+import { GamePT, SetState, UGPT } from "types/react";
 
-export default function OverviewPage({
-	reqUser,
-	game,
-	playtype,
-}: { reqUser: UserDocument } & GamePT) {
+export default function OverviewPage({ reqUser, game, playtype }: UGPT) {
 	const gameConfig = GetGameConfig(game);
 	useSetSubheader(
 		["Users", reqUser.username, "Games", gameConfig.name, playtype],
@@ -53,209 +33,25 @@ export default function OverviewPage({
 		<React.Fragment key={`${game}:${playtype}`}>
 			<UGPTStatShowcase reqUser={reqUser} game={game} playtype={playtype} />
 			<RankingInfo reqUser={reqUser} game={game} playtype={playtype} />
-			<LastSession reqUser={reqUser} game={game} playtype={playtype} />
+			<RecentActivity reqUser={reqUser} game={game} playtype={playtype} />
 		</React.Fragment>
 	);
 }
 
-function LastSession({ reqUser, game, playtype }: { reqUser: UserDocument } & GamePT) {
+function RecentActivity({ reqUser, game, playtype }: UGPT) {
 	return (
-		<AsyncLoader
-			promiseFn={async () => {
-				const res = await APIFetchV1<SessionDocument>(
-					`/users/${reqUser.id}/games/${game}/${playtype}/sessions/last`
-				);
-
-				if (res.statusCode === 404) {
-					return null;
-				}
-
-				if (!res.success) {
-					throw new Error(res.description);
-				}
-
-				const sessionDataRes = await APIFetchV1<SessionReturns>(
-					`/sessions/${res.body!.sessionID}`
-				);
-
-				if (!sessionDataRes.success) {
-					throw new Error(res.description);
-				}
-
-				return { session: res.body, sessionData: sessionDataRes.body };
-			}}
-		>
-			{(data) =>
-				data && (
-					<Card className="mt-4" header="Most Recent Session">
-						<div className="row d-flex justify-content-center">
-							<div className="col-12 text-center">
-								<h4 className="display-4">{data.session.name}</h4>
-								<span className="text-muted">{data.session.desc}</span>
-								<Divider className="mt-4 mb-8" />
-							</div>
-
-							<div className="col-12 col-lg-3 text-center">
-								<MiniTable className="mt-4" headers={["Information"]} colSpan={2}>
-									<tr>
-										<td>Started</td>
-										<td>{FormatTime(data.session.timeStarted)}</td>
-									</tr>
-									<tr>
-										{/* If session ended less than 2 hours ago, it can still be appended to. */}
-										{/* Kinda - time is a bit nonlinear wrt. importing scores, as scores don't have to have */}
-										{/* happened at the same time they were imported. */}
-										{/* that doesn't matter though - this is just a UI thing */}
-										<td>
-											{Date.now() - data.session.timeEnded < ONE_HOUR * 2
-												? "Last Score"
-												: "Ended At"}
-										</td>
-										<td>
-											{FormatTime(data.session.timeEnded)}
-											{/* if the last score was less than 10 mins ago, this session is probably still being populated */}
-											{Date.now() - data.session.timeEnded <
-												ONE_MINUTE * 10 && (
-												<>
-													<br />
-													<Badge variant="primary" className="mt-2">
-														Ongoing!
-													</Badge>
-												</>
-											)}
-										</td>
-									</tr>
-									<tr>
-										<td>Duration</td>
-										<td>
-											{FormatDuration(
-												data.session.timeEnded - data.session.timeStarted
-											)}
-										</td>
-									</tr>
-									<tr>
-										<td>Scores</td>
-										<td>{data.session.scoreInfo.length}</td>
-									</tr>
-									<tr>
-										<td>PBs</td>
-										<td>{GetPBs(data.session.scoreInfo).length}</td>
-									</tr>
-								</MiniTable>
-							</div>
-							<div className="col-12 col-lg-9">
-								<Row>
-									<SessionRaiseBreakdown
-										sessionData={data.sessionData}
-										setScores={() => void 0}
-									/>
-								</Row>
-							</div>
-							<div className="col-12">
-								<Divider />
-								<RecentSessionScoreInfo
-									session={data.session}
-									sessionData={data.sessionData}
-									reqUser={reqUser}
-								/>
-							</div>
-						</div>
-					</Card>
-				)
-			}
-		</AsyncLoader>
-	);
-}
-
-function RecentSessionScoreInfo({
-	session,
-	sessionData,
-	reqUser,
-}: {
-	session: SessionDocument;
-	sessionData: SessionReturns;
-	reqUser: UserDocument;
-}) {
-	const { game, playtype } = session;
-
-	const highlightedScores = sessionData.scores.filter((e) => e.highlight);
-
-	const [mode, setMode] = useState<"highlight" | "best" | "recent">(
-		highlightedScores.length > 0 ? "highlight" : "best"
-	);
-
-	const gptConfig = GetGamePTConfig(game, playtype);
-
-	const songMap = CreateSongMap(sessionData.songs);
-	const chartMap = CreateChartMap(sessionData.charts);
-
-	const dataset = useMemo(() => {
-		let scoreSet = sessionData.scores;
-		if (mode === "highlight") {
-			scoreSet = highlightedScores;
-		} else if (mode === "best") {
-			scoreSet.sort((a, b) =>
-				NumericSOV<ScoreDocument>(
-					(d) => d.calculatedData[gptConfig.defaultScoreRatingAlg] ?? 0
-				)(b, a)
-			);
-		} else if (mode === "recent") {
-			// sneaky hack to sort in reverse
-			scoreSet.sort((a, b) => NumericSOV<ScoreDocument>((d) => d.timeAchieved ?? 0)(b, a));
-		}
-
-		const scoreDataset: ScoreDataset = [];
-
-		for (const score of scoreSet) {
-			const chart = chartMap.get(score.chartID)!;
-
-			scoreDataset.push({
-				...score,
-				__related: {
-					chart,
-					song: songMap.get(chart.songID)!,
-					index: 0,
-					user: reqUser,
-				},
-			});
-		}
-
-		return scoreDataset;
-	}, [mode]);
-
-	return (
-		<div className="row">
-			<div className="col-12 d-flex justify-content-center">
-				<div className="btn-group">
-					<SelectButton id="highlight" value={mode} setValue={setMode}>
-						<Icon type="star" />
-						Highlights
-					</SelectButton>
-					<SelectButton id="best" value={mode} setValue={setMode}>
-						<Icon type="sort-amount-up" />
-						Best
-					</SelectButton>
-					<SelectButton id="recent" value={mode} setValue={setMode}>
-						<Icon type="history" />
-						Recent
-					</SelectButton>
-				</div>
-			</div>
-			<div className="col-12 mt-4">
-				<ScoreTable
-					dataset={dataset as any}
-					pageLen={5}
-					game={game}
-					playtype={playtype as any}
-				/>
-			</div>
+		<div className="mt-4">
+			<Activity
+				url={`/users/${reqUser.id}/games/${game}/${playtype}/activity`}
+				handleNoActivity={null}
+			/>
 		</div>
 	);
 }
 
 type RankingDurations = "3mo" | "year";
 
-function RankingInfo({ reqUser, game, playtype }: { reqUser: UserDocument } & GamePT) {
+function RankingInfo({ reqUser, game, playtype }: UGPT) {
 	const [duration, setDuration] = useState<RankingDurations>("3mo");
 
 	const { data, error } = useApiQuery<UGPTHistory>(

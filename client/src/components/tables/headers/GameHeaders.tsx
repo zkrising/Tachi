@@ -17,7 +17,7 @@ import {
 	RivalChartDataset,
 	ScoreDataset,
 } from "types/tables";
-import { Playtype } from "types/tachi";
+import { Playtype } from "tachi-common";
 import SelectableRating from "../components/SelectableRating";
 import { Header, ZTableTHProps } from "../components/TachiTable";
 

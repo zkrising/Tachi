@@ -1,5 +1,5 @@
 import { Game, GetGamePTConfig } from "tachi-common";
-import { Playtype } from "types/tachi";
+import { Playtype } from "tachi-common";
 import useLUGPTSettings from "./useLUGPTSettings";
 
 export function useBucket(game: Game, playtype: Playtype) {

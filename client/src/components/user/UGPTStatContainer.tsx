@@ -1,12 +1,10 @@
 import { APIFetchV1 } from "util/api";
 import Loading from "components/util/Loading";
-import useApiQuery from "components/util/query/useApiQuery";
-import { UserContext } from "context/UserContext";
-import React, { useContext } from "react";
+import React from "react";
 import { useQuery } from "react-query";
-import { integer, UserDocument, ShowcaseStatDetails } from "tachi-common";
+import { integer, ShowcaseStatDetails } from "tachi-common";
 import { UGPTPreferenceStatsReturn } from "types/api-returns";
-import { GamePT, UGPT } from "types/react";
+import { UGPT } from "types/react";
 import { StatDisplay } from "./UGPTStatShowcase";
 
 export default function UGPTStatContainer({

@@ -6,8 +6,8 @@ import useUGPTBase from "components/util/useUGPTBase";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Route, Switch } from "react-router-dom";
-import { FormatGame, GetGameConfig, UserDocument } from "tachi-common";
-import { GamePT, UGPT } from "types/react";
+import { FormatGame, GetGameConfig } from "tachi-common";
+import { UGPT } from "types/react";
 import GoalsPage from "./GoalsPage";
 
 export default function TargetsPage({ reqUser, game, playtype }: UGPT) {

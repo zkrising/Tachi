@@ -8,7 +8,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Game, GetGameConfig, integer, UserDocument, SongDocument } from "tachi-common";
 import { GamePT, JustChildren } from "types/react";
-import { Playtype } from "types/tachi";
+import { Playtype } from "tachi-common";
 import QuickTooltip from "../misc/QuickTooltip";
 
 interface SearchReturns {

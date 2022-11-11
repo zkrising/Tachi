@@ -37,7 +37,7 @@ import {
 } from "tachi-common";
 import { UGPTFolderReturns } from "types/api-returns";
 import { FolderDataset } from "types/tables";
-import { Playtype } from "types/tachi";
+import { Playtype } from "tachi-common";
 import FolderComparePage from "./FolderComparePage";
 
 interface Props {

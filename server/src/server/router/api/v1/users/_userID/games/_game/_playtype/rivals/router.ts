@@ -2,7 +2,14 @@ import { RequireAuthedAsUser } from "../../../../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SetRivalsFailReasons } from "lib/constants/err-codes";
-import { GetChallengerUsers, GetRivalIDs, GetRivalUsers, SetRivals } from "lib/rivals/rivals";
+import { ONE_MONTH, ONE_YEAR } from "lib/constants/time";
+import {
+	GetChallengerUsers,
+	GetRivalIDs,
+	GetRivalRecentActivity,
+	GetRivalUsers,
+	SetRivals,
+} from "lib/rivals/rivals";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
@@ -166,5 +173,45 @@ router.get("/pb-leaderboard", async (req, res) => {
 		},
 	});
 });
+
+/**
+ * Retrieve activity for this user's ste of rivals.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/rivals/activity
+ */
+router.get(
+	"/activity",
+	prValidate({ duration: p.optional(p.isIn("month", "3month", "year")) }),
+	async (req, res) => {
+		const { user, game, playtype } = GetUGPT(req);
+
+		const duration = (req.query.duration as "3month" | "month" | "year" | undefined) ?? "month";
+
+		let timespan;
+
+		switch (duration) {
+			case "month": {
+				timespan = ONE_MONTH;
+				break;
+			}
+
+			case "3month": {
+				timespan = ONE_MONTH * 3;
+				break;
+			}
+
+			case "year":
+				timespan = ONE_YEAR;
+		}
+
+		const recentActivity = await GetRivalRecentActivity(user, game, playtype, timespan);
+
+		return res.status(200).json({
+			success: true,
+			description: `Retrieved recent rival activity.`,
+			body: recentActivity,
+		});
+	}
+);
 
 export default router;

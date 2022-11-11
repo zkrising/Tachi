@@ -12,8 +12,8 @@ import {
 	ScoreCalculatedDataLookup,
 	ScoreDocument,
 	SessionDocument,
+	Playtype,
 } from "tachi-common";
-import { Playtype } from "types/tachi";
 import fjsh from "fast-json-stable-hash";
 
 export function RFA<T>(arr: T[]): T {

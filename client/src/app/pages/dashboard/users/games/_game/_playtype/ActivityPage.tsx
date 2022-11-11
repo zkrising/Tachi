@@ -7,11 +7,11 @@ import { ActivityReturn } from "types/api-returns";
 import { UGPT } from "types/react";
 import UGPTActivity from "components/user/UGPTActivity";
 
-export default function RivalsActivityPage({ reqUser, game, playtype }: UGPT) {
+export default function ActivityPage({ reqUser, game, playtype }: UGPT) {
 	const [duration, setDuration] = useState<"month" | "3month" | "year">("month");
 
 	const { data, error } = useApiQuery<ActivityReturn>(
-		`/users/${reqUser.id}/games/${game}/${playtype}/rivals/activity?duration=${duration}`
+		`/users/${reqUser.id}/games/${game}/${playtype}/activity?duration=${duration}`
 	);
 
 	if (error) {

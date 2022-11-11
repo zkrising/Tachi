@@ -218,3 +218,13 @@ export interface ImportsReturn {
 	imports: Array<ImportDocument>;
 	users: Array<UserDocument>;
 }
+
+export interface ActivityReturn {
+	recentSessions: Array<SessionDocument>;
+
+	songs: Array<SongDocument>;
+	charts: Array<ChartDocument>;
+	recentlyHighlightedScores: Array<ScoreDocument>;
+
+	users: Array<UserDocument>;
+}

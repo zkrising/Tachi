@@ -14,7 +14,7 @@ import {
 	SessionCalculatedDataLookup,
 	SessionDocument,
 } from "tachi-common";
-import { Playtype } from "types/tachi";
+import { Playtype } from "tachi-common";
 import IndexCell from "../cells/IndexCell";
 import SelectableRating from "../components/SelectableRating";
 import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";

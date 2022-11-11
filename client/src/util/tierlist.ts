@@ -1,5 +1,5 @@
 import { Game, GPTTierlists, IDStrings, IIDX_LAMPS, ScoreDocument, SDVX_LAMPS } from "tachi-common";
-import { Playtype } from "types/tachi";
+import { Playtype } from "tachi-common";
 
 type ScaleAchievedFns = {
 	[I in IDStrings]: {

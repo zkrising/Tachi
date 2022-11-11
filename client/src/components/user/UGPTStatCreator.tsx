@@ -12,7 +12,7 @@ import {
 	ShowcaseStatDetails,
 } from "tachi-common";
 import { GamePT, SetState } from "types/react";
-import { Playtype } from "types/tachi";
+import { Playtype } from "tachi-common";
 import { SongChartsSearch } from "types/api-returns";
 import DebounceSearch from "components/util/DebounceSearch";
 import Muted from "components/util/Muted";

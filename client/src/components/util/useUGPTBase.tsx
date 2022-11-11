@@ -1,6 +1,5 @@
 import { useMemo } from "react";
-import { UserDocument } from "tachi-common";
-import { GamePT, UGPT } from "types/react";
+import { UGPT } from "types/react";
 
 export default function useUGPTBase({ reqUser, game, playtype }: UGPT) {
 	return useMemo(

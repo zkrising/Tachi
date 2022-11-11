@@ -47,7 +47,7 @@ export default function RivalsMainPage({
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/rivals`}>
 						<Icon type="list" />
-						Activity
+						Rival Activity
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/rivals/tracking`}>
 						<Icon type="thumbtack" />

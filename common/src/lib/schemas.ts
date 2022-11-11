@@ -287,9 +287,6 @@ function GetSongDataForGame(game: Game): PrudenceSchema {
 			};
 		case "maimaidx":
 			return {
-				titleJP: "string",
-				artistJP: "string",
-				genre: "string",
 				displayVersion: "string",
 			};
 		case "museca":

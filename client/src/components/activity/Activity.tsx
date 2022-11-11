@@ -265,7 +265,7 @@ function SessionActivity({ data, user }: { data: ClumpedActivitySession; user: U
 
 	return (
 		<div className="timeline-item timeline-hover">
-			<div className="timeline-badge bg-secondary"></div>
+			<div className={`timeline-badge bg-${data.highlight ? "warning" : "secondary"}`}></div>
 			<div
 				className="timeline-content d-flex"
 				style={{

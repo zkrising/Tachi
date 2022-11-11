@@ -107,6 +107,8 @@ const diffMap = new Map([
 				data: {
 					isLatest,
 				},
+				tierlistInfo: {},
+				versions: ["universeplus"],
 			});
 		});
 
@@ -137,6 +139,8 @@ const diffMap = new Map([
 				data: {
 					isLatest,
 				},
+				tierlistInfo: {},
+				versions: ["universeplus"],
 			});
 		});
 	}

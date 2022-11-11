@@ -93,14 +93,14 @@ const diffMap = new Map([
 			const chartID = CreateChartID();
 			const isLatest = Number(version) === 225;
 
-			const lv_num = Number(data[`dx_lev_${diff}`].replace(/\+/u, ".7"));
+			const lvNum = Number(data[`dx_lev_${diff}`].replace(/\+/u, ".7"));
 
 			charts.push({
 				songID: thisSongID,
 				chartID: chartID,
 				rgcID: null,
 				level: data[`dx_lev_${diff}`],
-				level_num: lv_num,
+				levelNum: lvNum,
 				isPrimary: true,
 				difficulty: diffMap.get(diff),
 				playtype: "Single",
@@ -123,14 +123,14 @@ const diffMap = new Map([
 			const chartID = CreateChartID();
 			const isLatest = Number(version) === 225;
 
-			const lv_num = Number(data[`lev_${diff}`].replace(/\+/u, ".7"));
+			const lvNum = Number(data[`lev_${diff}`].replace(/\+/u, ".7"));
 
 			charts.push({
 				songID: thisSongID,
 				chartID: chartID,
 				rgcID: null,
 				level: data[`lev_${diff}`],
-				level_num: lv_num,
+				levelNum: lvNum,
 				isPrimary: true,
 				difficulty: diffMap.get(diff),
 				playtype: "Single",

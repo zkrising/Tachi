@@ -1,21 +1,19 @@
 import chartsRouter from "./charts/router";
 import foldersRouter from "./folders/router";
 import { ValidatePlaytypeFromParam } from "./middleware";
-import scoresRouter from "./scores/router";
 import songIDRouter from "./songs/_songID/router";
 import tablesRouter from "./tables/router";
 import targetsRouter from "./targets/router";
 import { Router } from "express";
 import db from "external/mongo/db";
+import { CreateActivityRouteHandler } from "lib/activity/activity";
 import { ONE_HOUR } from "lib/constants/time";
 import { SearchUsersRegExp } from "lib/search/search";
 import NodeCache from "node-cache";
-import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { FormatGame, GetGamePTConfig } from "tachi-common";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { IsString } from "utils/misc";
-import { GetClassDistribution } from "utils/queries/stats";
 import { GetGPT } from "utils/req-tachi-data";
 import {
 	CheckStrProfileAlg,
@@ -24,7 +22,7 @@ import {
 } from "utils/string-checks";
 import { GetUsersWithIDs } from "utils/user";
 import type { FindOptions } from "monk";
-import type { Game, integer, Playtype, UserGameStats, gameClasses, IDStrings } from "tachi-common";
+import type { Game, integer, Playtype, UserGameStats } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -215,88 +213,6 @@ router.get("/pb-leaderboard", async (req, res) => {
 });
 
 /**
- * Return the distribution of players for the provided class.
- *
- * @param class - This should be one of the games supported classes.
- *
- * @name GET /api/v1/games/:game/:playtype/class-distribution
- */
-router.get(
-	"/class-distribution",
-	prValidate({
-		class: "string",
-	}),
-	async (req, res) => {
-		const { game, playtype } = GetGPT(req);
-		const gptConfig = GetGamePTConfig(game, playtype);
-
-		const stat = req.query.class as string;
-
-		const supportedClasses = Object.keys(gptConfig.classHumanisedFormat);
-
-		if (!supportedClasses.includes(stat)) {
-			return res.status(400).json({
-				success: false,
-				description: `Invalid stat ${stat}. Expected any of ${supportedClasses.join(
-					", "
-				)}.`,
-			});
-		}
-
-		const distribution = await GetClassDistribution(
-			game,
-			playtype,
-			stat as gameClasses.GameClassSets[IDStrings]
-		);
-
-		return res.status(200).json({
-			success: true,
-			description: `Successfully retrieved distribution.`,
-			body: distribution,
-		});
-	}
-);
-
-/**
- * Returns recent class improvements for this GPT.
- *
- * @param limit - How many to return. Defaults to 10, caps at 50.
- *
- * @name GET /api/v1/games/:game/:playtype/recent-classes
- */
-router.get(
-	"/recent-classes",
-	prValidate({
-		limit: p.optional((self) => p.isBoundedInteger(1, 50)(Number(self))),
-	}),
-	async (req, res) => {
-		const { game, playtype } = GetGPT(req);
-
-		// validated to never be NaN by prudence.
-		const limit = req.query.limit !== undefined ? Number(req.query.limit) : 10;
-
-		const recentClasses = await db["class-achievements"].find(
-			{
-				game,
-				playtype,
-			},
-			{
-				limit,
-				sort: { timeAchieved: -1 },
-			}
-		);
-
-		const users = await GetUsersWithIDs(recentClasses.map((e) => e.userID));
-
-		return res.status(200).json({
-			success: true,
-			description: `Returned ${recentClasses.length} recent classes.`,
-			body: { classes: recentClasses, users },
-		});
-	}
-);
-
-/**
  * Search users that have played this game.
  *
  * @param search - The username to search for.
@@ -335,11 +251,27 @@ router.get(
 	}
 );
 
+/**
+ * Retrieve activity for this GPT.
+ *
+ * @name GET /api/v1/games/:game/:playtype/activity
+ */
+router.get("/activity", (req, res) => {
+	const { game, playtype } = GetGPT(req);
+
+	const route = CreateActivityRouteHandler({
+		game,
+		playtype,
+	});
+
+	// this handles responding
+	void route(req, res);
+});
+
 router.use("/charts", chartsRouter);
 router.use("/songs/:songID", songIDRouter);
 router.use("/folders", foldersRouter);
 router.use("/tables", tablesRouter);
-router.use("/scores", scoresRouter);
 router.use("/targets", targetsRouter);
 
 export default router;

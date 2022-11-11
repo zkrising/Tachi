@@ -10,7 +10,7 @@ import tablesRouter from "./tables/router";
 import targetsRouter from "./targets/router";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { GetRecentActivity } from "lib/activity/activity";
+import { CreateActivityRouteHandler } from "lib/activity/activity";
 import { ONE_MONTH, ONE_YEAR } from "lib/constants/time";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
@@ -315,32 +315,20 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 /**
  * Retrieve activity for this user.
  *
- * @param sessions - How many sessions' worth of activity do we want?
- * This is a more reliable way of fetching *atleast some* activity than say,
- * time.
- *
- * @name GET /api/v1/users/:userID/games/:game/:playtype/rivals/activity
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/activity
  */
-router.get(
-	"/activity",
-	prValidate({ sessions: p.optional((s) => p.isBoundedInteger(10, 100)(Number(s))) }),
-	async (req, res) => {
-		const { user, game, playtype } = GetUGPT(req);
+router.get("/activity", (req, res) => {
+	const { game, playtype, user } = GetUGPT(req);
 
-		const qSessions = req.query.sessions as string | undefined;
+	const route = CreateActivityRouteHandler({
+		userID: user.id,
+		game,
+		playtype,
+	});
 
-		// defaulting to 30 seems sensible.
-		const sessions = qSessions ? Number(qSessions) : 30;
-
-		const recentActivity = await GetRecentActivity([user.id], game, playtype, sessions);
-
-		return res.status(200).json({
-			success: true,
-			description: `Retrieved recent rival activity.`,
-			body: recentActivity,
-		});
-	}
-);
+	// this handles responding
+	void route(req, res);
+});
 
 router.use("/pbs", pbsRouter);
 router.use("/scores", scoresRouter);

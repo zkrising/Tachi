@@ -61,10 +61,23 @@ export function ClumpActivity(data: ActivityReturn): ClumpedActivity {
 		});
 	}
 
+	for (const ach of data.achievedClasses) {
+		clumped.push({
+			type: "CLASS_ACHIEVEMENT",
+			...ach,
+		});
+	}
+
 	return clumped.sort(
-		NumericSOV(
-			(x) => (x.type === "SESSION" ? x.timeEnded : x.scores[0]!.timeAchieved ?? -Infinity),
-			true
-		)
+		NumericSOV((x) => {
+			switch (x.type) {
+				case "SESSION":
+					return x.timeStarted;
+				case "SCORES":
+					return x.scores[0]?.timeAchieved ?? -Infinity;
+				case "CLASS_ACHIEVEMENT":
+					return x.timeAchieved;
+			}
+		}, true)
 	);
 }

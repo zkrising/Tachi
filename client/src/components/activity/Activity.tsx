@@ -2,6 +2,8 @@ import { CreateUserMap } from "util/data";
 import { NO_OP, TruncateString } from "util/misc";
 import { FormatTime, MillisToSince } from "util/time";
 import { ONE_HOUR } from "util/constants/time";
+import { ClumpActivity } from "util/activity";
+import { APIFetchV1 } from "util/api";
 import SessionRaiseBreakdown from "components/sessions/SessionRaiseBreakdown";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import ApiError from "components/util/ApiError";
@@ -11,34 +13,90 @@ import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
-import React, { useState } from "react";
-import { Col, Row } from "react-bootstrap";
-import { FormatChart, SessionDocument, UserDocument } from "tachi-common";
-import { SessionReturns } from "types/api-returns";
+import React, { useEffect, useState } from "react";
+import { Button, Col, Row } from "react-bootstrap";
+import { FormatChart, UserDocument } from "tachi-common";
+import { ActivityReturn, SessionReturns } from "types/api-returns";
 import { ScoreDataset } from "types/tables";
-import { ClumpedActivity, ClumpedActivityScores } from "types/tachi";
+import {
+	ClumpedActivity,
+	ClumpedActivityClassAchievement,
+	ClumpedActivityScores,
+	ClumpedActivitySession,
+} from "types/tachi";
+import ClassBadge from "components/game/ClassBadge";
+import { Link } from "react-router-dom";
 
 // Records activity for a group of users on a GPT. Also used for single users.
-export default function UGPTActivity({
-	data,
-	users,
+export default function Activity({
+	url,
+	handleNoActivity = (
+		<Col xs={12} className="text-center">
+			We found no activity!
+		</Col>
+	),
 }: {
-	data: ClumpedActivity;
-	users: Array<UserDocument>;
+	url: string;
+	handleNoActivity?: React.ReactNode;
 }) {
-	const userMap = CreateUserMap(users);
+	const [clumped, setClumped] = useState<ClumpedActivity>([]);
+	const [users, setUsers] = useState<Array<UserDocument>>([]);
 
-	if (data.length === 0) {
-		return (
-			<Col xs={12} className="text-center">
-				We found no activity!
-			</Col>
-		);
+	const { data, error } = useApiQuery<ActivityReturn>(url);
+
+	useEffect(() => {
+		if (!data) {
+			setClumped([]);
+			setUsers([]);
+		} else {
+			setClumped(ClumpActivity(data));
+			setUsers(data.users);
+		}
+	}, [data]);
+
+	if (error) {
+		return <ApiError error={error} />;
+	}
+
+	if (!data) {
+		return <Loading />;
+	}
+
+	if (clumped.length === 0) {
+		return <>{handleNoActivity}</>;
 	}
 
 	return (
+		<ActivityInner
+			data={clumped}
+			users={users}
+			fetchMoreFrom={(start) => {
+				APIFetchV1<ActivityReturn>(`${url}?startTime=${start}`).then((r) => {
+					if (r.success) {
+						setUsers([...users, ...r.body.users]);
+						setClumped([...clumped, ...ClumpActivity(r.body)]);
+					}
+				});
+			}}
+		/>
+	);
+}
+
+function ActivityInner({
+	data,
+	users,
+	fetchMoreFrom,
+}: {
+	data: ClumpedActivity;
+	users: Array<UserDocument>;
+	fetchMoreFrom: (start: number) => void;
+}) {
+	const userMap = CreateUserMap(users);
+
+	return (
 		<Col xs={12} className="text-center">
-			<div className="timeline timeline-2">
+			Tip: You can click on an event to learn more about it.
+			<div className="timeline timeline-2 mt-4">
 				<div className="timeline-bar"></div>
 				{data.map((e) => {
 					const user = userMap.get(e.type === "SCORES" ? e.scores[0]?.userID : e.userID);
@@ -47,11 +105,14 @@ export default function UGPTActivity({
 						return <div>This user doesn't exist? Whoops.</div>;
 					}
 
-					return e.type === "SCORES" ? (
-						<ScoresActivity data={e} user={user} />
-					) : (
-						<SessionActivity data={e} user={user} />
-					);
+					switch (e.type) {
+						case "SCORES":
+							return <ScoresActivity data={e} user={user} />;
+						case "SESSION":
+							return <SessionActivity data={e} user={user} />;
+						case "CLASS_ACHIEVEMENT":
+							return <ClassAchievementActivity data={e} user={user} />;
+					}
 				})}
 				<div className="timeline-item">
 					<div className="timeline-item">
@@ -64,7 +125,33 @@ export default function UGPTActivity({
 								marginRight: "2rem",
 							}}
 						>
-							...
+							<Button
+								variant="outline-primary"
+								onClick={() => {
+									let lastTimestamp;
+									const lastThing = data.at(-1)!;
+
+									switch (lastThing.type) {
+										case "SCORES":
+											lastTimestamp = lastThing.scores[0]?.timeAchieved;
+											break;
+										case "CLASS_ACHIEVEMENT":
+											lastTimestamp = lastThing.timeAchieved;
+											break;
+										case "SESSION":
+											lastTimestamp = lastThing.timeStarted;
+									}
+
+									if (!lastTimestamp) {
+										alert("Failed. What?");
+										return;
+									}
+
+									fetchMoreFrom(lastTimestamp);
+								}}
+							>
+								Load More...
+							</Button>
 						</div>
 					</div>
 				</div>
@@ -73,7 +160,7 @@ export default function UGPTActivity({
 	);
 }
 
-function ScoresActivity({ data, user: user }: { data: ClumpedActivityScores; user: UserDocument }) {
+function ScoresActivity({ data, user }: { data: ClumpedActivityScores; user: UserDocument }) {
 	const { game, playtype } = data.scores[0];
 
 	const [show, setShow] = useState(false);
@@ -171,13 +258,7 @@ function ScoresActivity({ data, user: user }: { data: ClumpedActivityScores; use
 	);
 }
 
-function SessionActivity({
-	data,
-	user: rival,
-}: {
-	data: { type: "SESSION" } & SessionDocument;
-	user: UserDocument;
-}) {
+function SessionActivity({ data, user }: { data: ClumpedActivitySession; user: UserDocument }) {
 	const [show, setShow] = useState(false);
 
 	const isProbablyActive = Date.now() - data.timeEnded < ONE_HOUR;
@@ -211,7 +292,7 @@ function SessionActivity({
 								fontSize: isProbablyActive ? "1.2rem" : undefined,
 							}}
 						>
-							{rival.username} {isProbablyActive ? "is having" : "had"} a session '
+							{user.username} {isProbablyActive ? "is having" : "had"} a session '
 							{data.name}' with {data.scoreInfo.length}{" "}
 							{data.scoreInfo.length === 1 ? "score" : "scores"}.
 						</span>
@@ -261,5 +342,66 @@ function SessionShower({ sessionID }: { sessionID: string }) {
 				</LinkButton>
 			</div>
 		</Row>
+	);
+}
+
+function ClassAchievementActivity({
+	data,
+	user,
+}: {
+	data: ClumpedActivityClassAchievement;
+	user: UserDocument;
+}) {
+	return (
+		<div className="timeline-item timeline-hover">
+			<div className="timeline-badge bg-success"></div>
+			<div
+				className="timeline-content d-flex"
+				style={{
+					flexDirection: "column",
+					flexWrap: "wrap",
+					marginRight: "2rem",
+				}}
+			>
+				<div className="d-flex align-items-center justify-content-between">
+					<div className="mr-3" style={{ width: "70%", textAlign: "left" }}>
+						<Link
+							to={`/dashboard/users/${user.username}/games/${data.game}/${data.playtype}`}
+							className="gentle-link"
+						>
+							{user.username}
+						</Link>{" "}
+						achieved{" "}
+						<ClassBadge
+							classSet={data.classSet}
+							game={data.game}
+							playtype={data.playtype}
+							classValue={data.classValue}
+						/>
+						{data.classOldValue !== null && (
+							<>
+								{" "}
+								(Raised from{" "}
+								<ClassBadge
+									classSet={data.classSet}
+									game={data.game}
+									playtype={data.playtype}
+									classValue={data.classOldValue}
+								/>
+								)
+							</>
+						)}
+					</div>
+
+					<div style={{ textAlign: "right" }} className="mr-1">
+						{MillisToSince(data.timeAchieved)}
+						<br />
+						<span className="text-muted font-italic text-right">
+							{FormatTime(data.timeAchieved)}
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
 	);
 }

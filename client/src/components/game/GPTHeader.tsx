@@ -7,8 +7,8 @@ export function GPTBottomNav({ baseUrl }: { baseUrl: string }) {
 	const { settings } = useContext(UserSettingsContext);
 
 	const navItems = [
-		<NavItem key="overview" to={`${baseUrl}/`}>
-			Overview
+		<NavItem key="activity" to={`${baseUrl}/`}>
+			Activity
 		</NavItem>,
 		<NavItem key="songs" to={`${baseUrl}/songs`}>
 			Songs

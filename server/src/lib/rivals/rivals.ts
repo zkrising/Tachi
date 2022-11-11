@@ -1,5 +1,4 @@
 import db from "external/mongo/db";
-import { GetRecentActivity } from "lib/activity/activity";
 import { SetRivalsFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
 import { SendSetRivalNotification } from "lib/notifications/notification-wrappers";
@@ -7,7 +6,7 @@ import { FormatGame } from "tachi-common";
 import { ArrayDiff } from "utils/misc";
 import { GetUsersWithIDs, GetUserWithIDGuaranteed } from "utils/user";
 import type { BulkWriteUpdateOneOperation } from "mongodb";
-import type { Game, integer, PBScoreDocument, Playtype, UserDocument } from "tachi-common";
+import type { Game, integer, PBScoreDocument, Playtype } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -270,15 +269,4 @@ export async function UpdatePlayersRivalRankings(userID: integer, game: Game, pl
 	}
 
 	await db["personal-bests"].bulkWrite(bwrite, { ordered: false });
-}
-
-export async function GetRivalRecentActivity(
-	user: UserDocument,
-	game: Game,
-	playtype: Playtype,
-	timespan: number
-) {
-	const rivalIDs = await GetRivalIDs(user.id, game, playtype);
-
-	return GetRecentActivity(rivalIDs, game, playtype, timespan);
 }

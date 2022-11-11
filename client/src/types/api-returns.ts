@@ -225,6 +225,7 @@ export interface ActivityReturn {
 	songs: Array<SongDocument>;
 	charts: Array<ChartDocument>;
 	recentlyHighlightedScores: Array<ScoreDocument>;
+	achievedClasses: Array<ClassAchievementDocument>;
 
 	users: Array<UserDocument>;
 }

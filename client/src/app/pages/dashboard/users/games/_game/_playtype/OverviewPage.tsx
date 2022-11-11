@@ -4,7 +4,7 @@ import { FormatDate, MillisToSince } from "util/time";
 import TimelineChart from "components/charts/TimelineChart";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
-import UGPTActivity from "components/user/UGPTActivity";
+import Activity from "components/activity/Activity";
 import UGPTStatShowcase from "components/user/UGPTStatShowcase";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
@@ -18,7 +18,7 @@ import { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
 import { DateTime } from "luxon";
 import React, { useMemo, useState } from "react";
 import { FormatGame, GetGameConfig, GetGamePTConfig, UserGameStats } from "tachi-common";
-import { ActivityReturn, UGPTHistory } from "types/api-returns";
+import { UGPTHistory } from "types/api-returns";
 import { GamePT, SetState, UGPT } from "types/react";
 
 export default function OverviewPage({ reqUser, game, playtype }: UGPT) {
@@ -39,27 +39,12 @@ export default function OverviewPage({ reqUser, game, playtype }: UGPT) {
 }
 
 function RecentActivity({ reqUser, game, playtype }: UGPT) {
-	const { data, error } = useApiQuery<ActivityReturn>(
-		`/users/${reqUser.id}/games/${game}/${playtype}/activity`
-	);
-
-	if (error) {
-		return <ApiError error={error} />;
-	}
-
-	if (!data) {
-		return <Loading />;
-	}
-
-	const joined = ClumpActivity(data);
-
-	if (joined.length === 0) {
-		return null;
-	}
-
 	return (
 		<div className="mt-4">
-			<UGPTActivity data={joined} users={data.users} />
+			<Activity
+				url={`/users/${reqUser.id}/games/${game}/${playtype}/activity`}
+				handleNoActivity={null}
+			/>
 		</div>
 	);
 }

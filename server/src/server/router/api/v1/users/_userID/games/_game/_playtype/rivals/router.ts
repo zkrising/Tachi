@@ -1,15 +1,9 @@
 import { RequireAuthedAsUser } from "../../../../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
+import { CreateActivityRouteHandler } from "lib/activity/activity";
 import { SetRivalsFailReasons } from "lib/constants/err-codes";
-import { ONE_MONTH, ONE_YEAR } from "lib/constants/time";
-import {
-	GetChallengerUsers,
-	GetRivalIDs,
-	GetRivalRecentActivity,
-	GetRivalUsers,
-	SetRivals,
-} from "lib/rivals/rivals";
+import { GetChallengerUsers, GetRivalIDs, GetRivalUsers, SetRivals } from "lib/rivals/rivals";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
@@ -177,31 +171,21 @@ router.get("/pb-leaderboard", async (req, res) => {
 /**
  * Retrieve activity for this user's set of rivals.
  *
- * @param sessions - How many sessions' worth of activity do we want?
- * This is a more reliable way of fetching *atleast some* activity than say,
- * time.
- *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/rivals/activity
  */
-router.get(
-	"/activity",
-	prValidate({ sessions: p.optional(p.isIn("month", "3month", "year")) }),
-	async (req, res) => {
-		const { user, game, playtype } = GetUGPT(req);
+router.get("/activity", async (req, res) => {
+	const { game, playtype, user } = GetUGPT(req);
 
-		const qSessions = req.query.sessions as string | undefined;
+	const rivalIDs = await GetRivalIDs(user.id, game, playtype);
 
-		// defaulting to 30 seems sensible.
-		const sessions = qSessions ? Number(qSessions) : 30;
+	const route = CreateActivityRouteHandler({
+		userID: { $in: rivalIDs },
+		game,
+		playtype,
+	});
 
-		const recentActivity = await GetRivalRecentActivity(user, game, playtype, sessions);
-
-		return res.status(200).json({
-			success: true,
-			description: `Retrieved recent rival activity.`,
-			body: recentActivity,
-		});
-	}
-);
+	// this handles responding
+	void route(req, res);
+});
 
 export default router;

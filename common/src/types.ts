@@ -348,7 +348,17 @@ export interface Difficulties {
 	"ddr:SP": "BASIC" | "BEGINNER" | "CHALLENGE" | "DIFFICULT" | "EXPERT";
 	"ddr:DP": "BASIC" | "CHALLENGE" | "DIFFICULT" | "EXPERT";
 	"maimai:Single": "Advanced" | "Basic" | "Easy" | "Expert" | "Master" | "Re:Master";
-	"maimaidx:Single": "Advanced" | "Basic" | "Expert" | "Master" | "Re:Master";
+	"maimaidx:Single":
+		| "Advanced"
+		| "Basic"
+		| "DX Advanced"
+		| "DX Basic"
+		| "DX Expert"
+		| "DX Master"
+		| "DX Re:Master"
+		| "Expert"
+		| "Master"
+		| "Re:Master";
 	"jubeat:Single": "ADV" | "BSC" | "EXT" | "HARD ADV" | "HARD BSC" | "HARD EXT";
 	"museca:Single": "Green" | "Red" | "Yellow";
 	"bms:7K": "CHART";
@@ -945,12 +955,7 @@ interface SongDocumentData {
 	iidx: { genre: string; displayVersion: string | null };
 	museca: { titleJP: string; artistJP: string; displayVersion: string };
 	maimai: { titleJP: string; artistJP: string; displayVersion: string };
-	maimaidx: {
-		titleJP: string;
-		artistJP: string;
-		genre: string;
-		displayVersion: string;
-	};
+	maimaidx: { displayVersion: string };
 	jubeat: { displayVersion: string };
 	popn: {
 		displayVersion: string | null;

@@ -1733,6 +1733,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			colour: MaimaiDXColours,
 			dan: MaimaiDXDans,
 		},
+		classProperties: {
+			colour: { downgradable: true },
+			dan: { downgradable: true },
+		},
 
 		supportsESD: false,
 		judgements: ["pcrit", "perfect", "great", "good", "miss"],

@@ -50,6 +50,7 @@
 			"popn",
 			"jubeat",
 			"pms",
+			"maimaidx",
 		],
 		IMPORT_TYPES: [
 			"file/eamusement-iidx-csv",

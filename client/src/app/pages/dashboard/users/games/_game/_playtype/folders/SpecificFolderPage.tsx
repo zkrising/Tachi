@@ -34,10 +34,10 @@ import {
 	UserDocument,
 	ScoreDocument,
 	SongDocument,
+	Playtype,
 } from "tachi-common";
 import { UGPTFolderReturns } from "types/api-returns";
 import { FolderDataset } from "types/tables";
-import { Playtype } from "tachi-common";
 import FolderComparePage from "./FolderComparePage";
 
 interface Props {

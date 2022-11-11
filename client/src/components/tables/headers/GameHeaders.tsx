@@ -8,6 +8,7 @@ import {
 	PBScoreDocument,
 	ScoreCalculatedDataLookup,
 	ScoreDocument,
+	Playtype,
 } from "tachi-common";
 import { SetState } from "types/react";
 import {
@@ -17,7 +18,6 @@ import {
 	RivalChartDataset,
 	ScoreDataset,
 } from "types/tables";
-import { Playtype } from "tachi-common";
 import SelectableRating from "../components/SelectableRating";
 import { Header, ZTableTHProps } from "../components/TachiTable";
 
@@ -105,6 +105,7 @@ export function GetGPTCoreHeaders<
 		case "wacca":
 		case "chunithm":
 		case "maimai":
+		case "maimaidx":
 		case "itg":
 			return [
 				ScoreHeader,

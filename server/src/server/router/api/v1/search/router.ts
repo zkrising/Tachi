@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
 
 	const userID = req[SYMBOL_TACHI_API_AUTH].userID;
 
-	let filter: FilterQuery<FolderDocument & UserDocument & SongDocument> = {};
+	let filter: FilterQuery<FolderDocument & SongDocument & UserDocument> = {};
 	let relevantGames: Array<Game> = TachiConfig.GAMES;
 
 	if (userID !== null) {

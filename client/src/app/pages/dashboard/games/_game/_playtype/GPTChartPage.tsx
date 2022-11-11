@@ -331,15 +331,7 @@ function TopShowcase({
 	);
 }
 
-function PlayCard({
-	pb,
-	user,
-	name,
-}: {
-	pb: PBScoreDocument;
-	user: UserDocument;
-	name: string;
-}) {
+function PlayCard({ pb, user, name }: { pb: PBScoreDocument; user: UserDocument; name: string }) {
 	return (
 		<Card header={name}>
 			<Row className="align-items-center">

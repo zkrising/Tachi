@@ -5,8 +5,8 @@ import {
 	ScoreCalculatedDataLookup,
 	SessionCalculatedDataLookup,
 	UGSRatingsLookup,
+	Playtype,
 } from "tachi-common";
-import { Playtype } from "tachi-common";
 import useLUGPTSettings from "./useLUGPTSettings";
 
 export default function useScoreRatingAlg<I extends IDStrings = IDStrings>(

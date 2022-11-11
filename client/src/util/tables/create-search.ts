@@ -7,9 +7,9 @@ import {
 	GamePTConfig,
 	GetGamePTConfig,
 	IDStrings,
+	Playtype,
 } from "tachi-common";
 import { ComparePBsDataset, FolderDataset, PBDataset, ScoreDataset } from "types/tables";
-import { Playtype } from "tachi-common";
 
 function GetBMSTableVal(chart: ChartDocument<"bms:7K" | "bms:14K">, key: string) {
 	for (const table of chart.data.tableFolders) {

@@ -41,9 +41,7 @@ export async function GetUsernameFromUserID(userID: integer): Promise<string> {
 /**
  * Gets a user based on their username case-insensitively.
  */
-export function GetUserCaseInsensitive(
-	username: string
-): Promise<FindOneResult<UserDocument>> {
+export function GetUserCaseInsensitive(username: string): Promise<FindOneResult<UserDocument>> {
 	return db.users.findOne({
 		usernameLowercase: username.toLowerCase(),
 	});

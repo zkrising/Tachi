@@ -2,12 +2,7 @@ import { ChangeOpacity } from "util/color-opacity";
 import { NumericSOV, StrSOV } from "util/sorts";
 import GentleLink from "components/util/GentleLink";
 import React from "react";
-import {
-	COLOUR_SET,
-	GoalDocument,
-	UserDocument,
-	GoalSubscriptionDocument,
-} from "tachi-common";
+import { COLOUR_SET, GoalDocument, UserDocument, GoalSubscriptionDocument } from "tachi-common";
 import { GamePT } from "types/react";
 import TimestampCell from "../cells/TimestampCell";
 import UserCell from "../cells/UserCell";

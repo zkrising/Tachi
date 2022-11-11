@@ -6,9 +6,8 @@ import Loading from "components/util/Loading";
 import { TachiConfig } from "lib/config";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Game, GetGameConfig, integer, UserDocument, SongDocument } from "tachi-common";
+import { Game, GetGameConfig, integer, UserDocument, SongDocument, Playtype } from "tachi-common";
 import { GamePT, JustChildren } from "types/react";
-import { Playtype } from "tachi-common";
 import QuickTooltip from "../misc/QuickTooltip";
 
 interface SearchReturns {

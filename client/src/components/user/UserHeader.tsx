@@ -82,13 +82,7 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 	);
 }
 
-export function UserBottomNav({
-	baseUrl,
-	reqUser,
-}: {
-	baseUrl: string;
-	reqUser: UserDocument;
-}) {
+export function UserBottomNav({ baseUrl, reqUser }: { baseUrl: string; reqUser: UserDocument }) {
 	const { user } = useContext(UserContext);
 
 	const isRequestedUser = !!(user && user.id === reqUser.id);

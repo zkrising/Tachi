@@ -23,10 +23,10 @@ import {
 	UserDocument,
 	ShowcaseStatDetails,
 	SongDocument,
+	Playtype,
 } from "tachi-common";
 import { UGPTPreferenceStatsReturn } from "types/api-returns";
 import { GamePT, UGPT } from "types/react";
-import { Playtype } from "tachi-common";
 import UGPTStatContainer from "./UGPTStatContainer";
 import UGPTStatCreator from "./UGPTStatCreator";
 

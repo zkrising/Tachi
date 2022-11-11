@@ -1,14 +1,36 @@
-import { ActivityReturn } from "types/api-returns";
+import { ActivityReturn, RecordActivityReturn } from "types/api-returns";
 import { ClumpedActivity, ClumpedActivityScores } from "types/tachi";
 import { ONE_HOUR } from "./constants/time";
 import { CreateSongMap, CreateChartMap } from "./data";
 import { NumericSOV } from "./sorts";
 
+const SORT_ACTIVITY = NumericSOV((x: ClumpedActivity[0]) => {
+	switch (x.type) {
+		case "SESSION":
+			return x.timeStarted;
+		case "SCORES":
+			return x.scores[0]?.timeAchieved ?? -Infinity;
+		case "CLASS_ACHIEVEMENT":
+			return x.timeAchieved;
+	}
+}, true);
+
 /**
  * Given recent activity data, clump it together so it's easier to work with,
  * by joining repeat-highlighted scores from the same user.
+ *
+ * This also supports multiple games, i.e. from /users/:userID/activity.
  */
-export function ClumpActivity(data: ActivityReturn): ClumpedActivity {
+export function ClumpActivity(data: ActivityReturn | RecordActivityReturn): ClumpedActivity {
+	if (!("songs" in data)) {
+		const act = [];
+		for (const activity of Object.values(data)) {
+			act.push(...ClumpActivity(activity));
+		}
+
+		return act.sort(SORT_ACTIVITY);
+	}
+
 	const songMap = CreateSongMap(data.songs);
 	const chartMap = CreateChartMap(data.charts);
 
@@ -68,16 +90,15 @@ export function ClumpActivity(data: ActivityReturn): ClumpedActivity {
 		});
 	}
 
-	return clumped.sort(
-		NumericSOV((x) => {
-			switch (x.type) {
-				case "SESSION":
-					return x.timeStarted;
-				case "SCORES":
-					return x.scores[0]?.timeAchieved ?? -Infinity;
-				case "CLASS_ACHIEVEMENT":
-					return x.timeAchieved;
-			}
-		}, true)
-	);
+	return clumped.sort(SORT_ACTIVITY);
+}
+
+export function GetUsers(data: ActivityReturn | RecordActivityReturn) {
+	if ("users" in data) {
+		return data.users;
+	}
+
+	return Object.values(data)
+		.map((e) => e.users)
+		.flat();
 }

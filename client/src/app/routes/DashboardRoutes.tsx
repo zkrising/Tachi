@@ -67,11 +67,13 @@ export default function DashboardRoutes() {
 		<Layout>
 			<DashboardErrorBoundary>
 				<Switch>
-					<Route exact path="/dashboard">
+					{/* this is the easiest (read: least sucky) way of handling */}
+					{/* these routes */}
+					<Route exact path={["/dashboard", "/dashboard/profiles"]}>
 						<DashboardPage />
 					</Route>
 
-					<Route path="/dashboard/privacy">
+					<Route exact path="/dashboard/privacy">
 						<PrivacyPolicyPage />
 					</Route>
 

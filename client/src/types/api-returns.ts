@@ -229,3 +229,5 @@ export interface ActivityReturn {
 
 	users: Array<UserDocument>;
 }
+
+export type RecordActivityReturn = Partial<Record<IDStrings, ActivityReturn>>;

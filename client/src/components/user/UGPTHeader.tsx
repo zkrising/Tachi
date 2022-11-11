@@ -4,9 +4,8 @@ import NavItem from "components/nav/NavItem";
 import MiniTable from "components/tables/components/MiniTable";
 import Divider from "components/util/Divider";
 import React from "react";
-import { Game, UserDocument } from "tachi-common";
+import { Game, UserDocument, Playtype } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
-import { Playtype } from "tachi-common";
 import ProfileBadges from "./ProfileBadges";
 import ProfilePicture from "./ProfilePicture";
 import RankingData from "./UGPTRankingData";
@@ -86,7 +85,7 @@ export function UGPTBottomNav({
 }) {
 	const navItems = [
 		<NavItem key="overview" to={`${baseUrl}/`}>
-			Overview
+			Overview & Activity
 		</NavItem>,
 		<NavItem key="scores" to={`${baseUrl}/scores`}>
 			Scores

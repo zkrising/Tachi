@@ -132,8 +132,6 @@ function SongChartRoutes({ game, playtype }: GamePT) {
 
 	const { settings } = useContext(UserSettingsContext);
 
-	const gptConfig = GetGamePTConfig(game, playtype);
-
 	const [activeChart, setActiveChart] = useState<ChartDocument | null>(null);
 
 	useEffect(() => {

@@ -11,9 +11,11 @@ import settingsRouter from "./settings/router";
 import { HashPassword, PasswordCompare, ValidatePassword } from "../../auth/auth";
 import { Router } from "express";
 import db from "external/mongo/db";
+import { GetRecentActivity } from "lib/activity/activity";
 import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { ONE_MONTH } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
+import { GetRivalIDs } from "lib/rivals/rivals";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { DeleteUndefinedProps, IsNonEmptyString, NotNullish, StripUrl } from "utils/misc";
@@ -25,7 +27,8 @@ import {
 	GetRecentSessions,
 } from "utils/queries/summary";
 import { FormatUserDoc, GetAllRankings, GetUserWithID } from "utils/user";
-import type { ImportTypes, integer, UserGameStats } from "tachi-common";
+import type { ActivityConstraint } from "lib/activity/activity";
+import type { IDStrings, ImportTypes, integer, UserGameStats } from "tachi-common";
 import type { ProfileRatingAlgs } from "utils/string-checks";
 
 const logger = CreateLogCtx(__filename);
@@ -410,6 +413,72 @@ router.get("/recent-imports", async (req, res) => {
 		body: imports.sort((a, b) => b.count - a.count),
 	});
 });
+
+/**
+ * Fetch this users recent activity, and all of their rivals for each GPT they've played.
+ *
+ * @name GET /api/v1/users/:userID/activity
+ */
+router.use(
+	"/activity",
+	prValidate({
+		startTime: "*string",
+		includeRivals: p.optional(p.isIn("true", "false")),
+	}),
+	async (req, res) => {
+		const qStartTime = req.query.startTime as string | undefined;
+
+		const includeRivals = req.query.includeRivals === "true";
+
+		const startTime = qStartTime ? Number(qStartTime) : null;
+
+		if (Number.isNaN(startTime)) {
+			return res.status(400).json({
+				success: false,
+				description: `Invalid startTime, got a non number.`,
+			});
+		}
+
+		const user = NotNullish(req[SYMBOL_TACHI_DATA]?.requestedUser);
+
+		const gpts = await db["game-stats"].find({
+			userID: user.id,
+		});
+
+		const data: Partial<Record<IDStrings, unknown>> = {};
+
+		await Promise.all(
+			gpts.map(async (e) => {
+				let userID: ActivityConstraint["userID"] = user.id;
+
+				if (includeRivals) {
+					const rivalIDs = await GetRivalIDs(user.id, e.game, e.playtype);
+
+					userID = { $in: [user.id, ...rivalIDs] };
+				}
+
+				const activity = await GetRecentActivity(
+					e.game,
+					{
+						game: e.game,
+						playtype: e.playtype,
+						userID,
+					},
+					30,
+					startTime
+				);
+
+				data[`${e.game}:${e.playtype}` as IDStrings] = activity;
+			})
+		);
+
+		return res.status(200).json({
+			success: true,
+			description: `Returned recent activity.`,
+			body: data,
+		});
+	}
+);
 
 router.use("/games/:game/:playtype", gamePTRouter);
 router.use("/pfp", pfpRouter);

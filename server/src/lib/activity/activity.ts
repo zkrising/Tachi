@@ -7,7 +7,9 @@ import type { Request, Response } from "express-serve-static-core";
 import type { FilterQuery } from "mongodb";
 import type { ClassAchievementDocument, Game, ScoreDocument, SessionDocument } from "tachi-common";
 
-type ActivityConstraint = FilterQuery<ClassAchievementDocument & ScoreDocument & SessionDocument>;
+export type ActivityConstraint = FilterQuery<
+	ClassAchievementDocument & ScoreDocument & SessionDocument
+>;
 
 /**
  * Retrieves recent activity for this group of users for this GPT.

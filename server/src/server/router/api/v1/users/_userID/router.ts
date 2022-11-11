@@ -379,6 +379,8 @@ router.post(
 
 /**
  * Get the recent import types this user has used.
+ *
+ * @name GET /api/v1/users/:userID/recent-imports
  */
 router.get("/recent-imports", async (req, res) => {
 	const user = NotNullish(req[SYMBOL_TACHI_DATA]?.requestedUser);

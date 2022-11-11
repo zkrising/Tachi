@@ -1,5 +1,4 @@
 import db from "external/mongo/db";
-import { ONE_MONTH } from "lib/constants/time";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { GetUsersWithIDs } from "utils/user";
 import type { Game, integer, Playtype } from "tachi-common";
@@ -19,10 +18,27 @@ export async function GetRecentActivity(
 	userIDs: Array<integer>,
 	game: Game,
 	playtype: Playtype,
-	timespan = ONE_MONTH
+	sessions = 30
 ) {
-	// by default, limit to only things that happened in the past 31 days.
-	const RECENT = Date.now() - timespan;
+	const recentSessions = await db.sessions.find(
+		{
+			userID: { $in: userIDs },
+			game,
+			playtype,
+		},
+		{
+			sort: {
+				timeStarted: -1,
+			},
+			limit: sessions,
+		}
+	);
+
+	// find the earliest point in the sessions we just fetched.
+	// if we found no sessions, set this to now, which means we'll fetch no highlighted
+	// scores.
+	// (it's not possible to have no sessions *and* have scores with timestamps)
+	const earliestSession = recentSessions.at(-1)?.timeStarted ?? Date.now();
 
 	const recentlyHighlightedScores = await db.scores.find(
 		{
@@ -30,7 +46,7 @@ export async function GetRecentActivity(
 			game,
 			playtype,
 			highlight: true,
-			timeAchieved: { $gte: RECENT },
+			timeAchieved: { $gte: earliestSession },
 		},
 		{
 			sort: {
@@ -40,20 +56,6 @@ export async function GetRecentActivity(
 	);
 
 	const { songs, charts } = await GetRelevantSongsAndCharts(recentlyHighlightedScores, game);
-
-	const recentSessions = await db.sessions.find(
-		{
-			userID: { $in: userIDs },
-			game,
-			playtype,
-			timeStarted: { $gte: RECENT },
-		},
-		{
-			sort: {
-				timeAchieved: -1,
-			},
-		}
-	);
 
 	const users = await GetUsersWithIDs(userIDs);
 

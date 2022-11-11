@@ -54,7 +54,7 @@ export default function ScoresPage({
 	return (
 		<div className="row">
 			<div className="col-12 text-center">
-				<div className="btn-group mb-4">
+				<div className="btn-group d-flex justify-content-center mb-4">
 					<SelectLinkButton to={`${base}/scores`}>
 						<Icon type="trophy" />
 						Best 100 PBs

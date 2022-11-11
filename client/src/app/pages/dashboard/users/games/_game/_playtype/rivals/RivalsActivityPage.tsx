@@ -8,10 +8,8 @@ import { UGPT } from "types/react";
 import UGPTActivity from "components/user/UGPTActivity";
 
 export default function RivalsActivityPage({ reqUser, game, playtype }: UGPT) {
-	const [duration, setDuration] = useState<"month" | "3month" | "year">("month");
-
 	const { data, error } = useApiQuery<ActivityReturn>(
-		`/users/${reqUser.id}/games/${game}/${playtype}/rivals/activity?duration=${duration}`
+		`/users/${reqUser.id}/games/${game}/${playtype}/rivals/activity`
 	);
 
 	if (error) {
@@ -24,12 +22,5 @@ export default function RivalsActivityPage({ reqUser, game, playtype }: UGPT) {
 
 	const joined = ClumpActivity(data);
 
-	return (
-		<UGPTActivity
-			data={joined}
-			users={data.users}
-			duration={duration}
-			setDuration={setDuration}
-		/>
-	);
+	return <UGPTActivity data={joined} users={data.users} />;
 }

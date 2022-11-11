@@ -31,7 +31,7 @@ export default function FoldersMainPage({ reqUser, game, playtype }: UGPT) {
 	return (
 		<div className="row">
 			<div className="col-12 text-center">
-				<div className="btn-group">
+				<div className="btn-group d-flex justify-content-center mb-8">
 					{user && ugs?.find((x) => x.game === game && x.playtype === playtype) && (
 						<SelectLinkButton to={`${base}/folders/recent`}>
 							<Icon type="clock" />
@@ -50,7 +50,6 @@ export default function FoldersMainPage({ reqUser, game, playtype }: UGPT) {
 						Folder Select
 					</SelectLinkButton>
 				</div>
-				<Divider />
 			</div>
 			<div className="col-12">
 				<Switch>

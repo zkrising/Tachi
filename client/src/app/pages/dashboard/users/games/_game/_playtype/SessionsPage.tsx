@@ -69,7 +69,7 @@ export default function SessionsPage({
 	return (
 		<div className="row">
 			<div className="col-12 text-center">
-				<div className="btn-group mb-4">
+				<div className="btn-group d-flex justify-content-center mb-4">
 					<SelectButton id="best" setValue={setSessionSet} value={sessionSet}>
 						<Icon type="trophy" />
 						Best Sessions

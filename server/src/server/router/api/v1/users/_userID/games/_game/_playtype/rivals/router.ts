@@ -175,36 +175,26 @@ router.get("/pb-leaderboard", async (req, res) => {
 });
 
 /**
- * Retrieve activity for this user's ste of rivals.
+ * Retrieve activity for this user's set of rivals.
+ *
+ * @param sessions - How many sessions' worth of activity do we want?
+ * This is a more reliable way of fetching *atleast some* activity than say,
+ * time.
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/rivals/activity
  */
 router.get(
 	"/activity",
-	prValidate({ duration: p.optional(p.isIn("month", "3month", "year")) }),
+	prValidate({ sessions: p.optional(p.isIn("month", "3month", "year")) }),
 	async (req, res) => {
 		const { user, game, playtype } = GetUGPT(req);
 
-		const duration = (req.query.duration as "3month" | "month" | "year" | undefined) ?? "month";
+		const qSessions = req.query.sessions as string | undefined;
 
-		let timespan;
+		// defaulting to 30 seems sensible.
+		const sessions = qSessions ? Number(qSessions) : 30;
 
-		switch (duration) {
-			case "month": {
-				timespan = ONE_MONTH;
-				break;
-			}
-
-			case "3month": {
-				timespan = ONE_MONTH * 3;
-				break;
-			}
-
-			case "year":
-				timespan = ONE_YEAR;
-		}
-
-		const recentActivity = await GetRivalRecentActivity(user, game, playtype, timespan);
+		const recentActivity = await GetRivalRecentActivity(user, game, playtype, sessions);
 
 		return res.status(200).json({
 			success: true,

@@ -40,7 +40,7 @@ export default function RivalsMainPage({
 	return (
 		<Row>
 			<Col xs={12} className="text-center">
-				<div className="btn-group">
+				<div className="btn-group d-flex justify-content-center">
 					<SelectLinkButton to={`${base}/rivals/pb-leaderboard`}>
 						<Icon type="sort-amount-up" />
 						Rival's Bests

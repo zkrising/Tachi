@@ -35,16 +35,16 @@ export async function GetRecentActivity(
 	sessions = 30,
 	startFrom: number | null = null
 ) {
-	let baseQuery = query;
+	const baseQuery = query;
 
-	if (startFrom !== null) {
-		baseQuery = {
-			...baseQuery,
-			timeStarted: { $lt: startFrom },
-		};
-	}
+	const initialSessionQuery = {
+		...baseQuery,
 
-	const recentSessions = await db.sessions.find(baseQuery, {
+		// start from anytime if startFrom is omitted, otherwise, cap at the start.
+		timeStarted: { $lt: startFrom === null ? Infinity : startFrom },
+	};
+
+	const recentSessions = await db.sessions.find(initialSessionQuery, {
 		sort: {
 			timeStarted: -1,
 		},

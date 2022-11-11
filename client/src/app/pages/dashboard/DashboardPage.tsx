@@ -17,11 +17,13 @@ import { UserContext } from "context/UserContext";
 import { AllLUGPTStatsContext } from "context/AllLUGPTStatsContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import { ColourConfig, TachiConfig } from "lib/config";
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { Alert } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import { COLOUR_SET, GetGameConfig, UserDocument } from "tachi-common";
 import { UGSWithRankingData, UserRecentSummary } from "types/api-returns";
+import { DashboardHeader } from "components/dashboard/DashboardHeader";
+import DashboardActivity from "components/dashboard/DashboardActivity";
 import { FolderInfoComponent } from "./users/games/_game/_playtype/folders/FolderSelectPage";
 import { GameStatContainer } from "./users/UserGamesPage";
 
@@ -37,29 +39,34 @@ export function DashboardPage() {
 		return <DashboardNotLoggedIn />;
 	}
 
-	return (
-		<>
-			{ugs?.length ? (
-				<DashboardLoggedIn user={user} />
-			) : (
-				<DashboardLoggedInNoScores user={user} />
-			)}
-		</>
-	);
+	if (ugs?.length === 0) {
+		return <DashboardLoggedInNoScores user={user} />;
+	}
+
+	return <DashboardLoggedIn user={user} />;
 }
 
 function DashboardLoggedIn({ user }: { user: UserDocument }) {
+	const splash = useMemo(() => RFA(heySplashes), [user]);
+
 	return (
 		<div>
 			<span className="display-4">
-				{RFA(heySplashes)}, {user.username}.
+				{splash}, {user.username}.
 			</span>
-			<Divider />
+			<div className="card mt-4">
+				<DashboardHeader />
+			</div>
 			<RecentInfo user={user} />
-			<h1>Here's all your profiles.</h1>
 			<Divider />
-
-			<UserGameStatsInfo user={user} />
+			<Switch>
+				<Route exact path="/dashboard">
+					<DashboardActivity user={user} />
+				</Route>
+				<Route exact path="/dashboard/profiles">
+					<UserGameStatsInfo user={user} />
+				</Route>
+			</Switch>
 		</div>
 	);
 }

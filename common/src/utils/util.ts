@@ -72,7 +72,12 @@ export function FormatGame(game: Game, playtype: Playtypes[Game]): string {
 	return `${gameConfig.name} (${playtype})`;
 }
 
-export function FormatChart(game: Game, song: SongDocument, chart: ChartDocument): string {
+export function FormatChart(
+	game: Game,
+	song: SongDocument,
+	chart: ChartDocument,
+	short = false
+): string {
 	if (game === "bms") {
 		const tables = (chart as ChartDocument<"bms:7K" | "bms:14K">).data.tableFolders;
 
@@ -124,19 +129,27 @@ export function FormatChart(game: Game, song: SongDocument, chart: ChartDocument
 
 	const gameConfig = GetGameConfig(game);
 
-	let playtypeStr = `${chart.playtype} `;
+	let playtypeStr = `${chart.playtype}`;
 
 	if (gameConfig.validPlaytypes.length === 1) {
 		playtypeStr = "";
 	}
 
+	const gptConfig = GetGamePTConfig(game, chart.playtype);
+
+	const diff = short ? gptConfig.shortDifficulties[chart.difficulty] : chart.difficulty;
+
+	// iidx formats things like SPA instead of SP A.
+	// this is a hack, this should be part of the gptConfig, tbh.
+	const space = game !== "iidx" ? " " : "";
+
 	// return the most recent version this chart appeared in if it
 	// is not primary.
 	if (!chart.isPrimary) {
-		return `${song.title} (${playtypeStr}${chart.difficulty} ${chart.level} ${chart.versions[0]})`;
+		return `${song.title} (${playtypeStr}${space}${diff} ${chart.level} ${chart.versions[0]})`;
 	}
 
-	return `${song.title} (${playtypeStr}${chart.difficulty} ${chart.level})`;
+	return `${song.title} (${playtypeStr}${space}${diff} ${chart.level})`;
 }
 
 export function AbsoluteGradeDelta<I extends IDStrings = IDStrings>(

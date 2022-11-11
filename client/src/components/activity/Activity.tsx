@@ -1,9 +1,10 @@
+import { ClumpActivity, GetUsers } from "util/activity";
+import { APIFetchV1 } from "util/api";
+import { ONE_HOUR } from "util/constants/time";
 import { CreateUserMap } from "util/data";
 import { NO_OP, TruncateString } from "util/misc";
 import { FormatTime, MillisToSince } from "util/time";
-import { ONE_HOUR } from "util/constants/time";
-import { ClumpActivity } from "util/activity";
-import { APIFetchV1 } from "util/api";
+import ClassBadge from "components/game/ClassBadge";
 import SessionRaiseBreakdown from "components/sessions/SessionRaiseBreakdown";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import ApiError from "components/util/ApiError";
@@ -13,10 +14,12 @@ import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
-import { FormatChart, UserDocument } from "tachi-common";
-import { ActivityReturn, SessionReturns } from "types/api-returns";
+import { Link } from "react-router-dom";
+import { FormatChart, FormatGame, UserDocument } from "tachi-common";
+import { ActivityReturn, RecordActivityReturn, SessionReturns } from "types/api-returns";
+import { UGPT } from "types/react";
 import { ScoreDataset } from "types/tables";
 import {
 	ClumpedActivity,
@@ -24,8 +27,8 @@ import {
 	ClumpedActivityScores,
 	ClumpedActivitySession,
 } from "types/tachi";
-import ClassBadge from "components/game/ClassBadge";
-import { Link } from "react-router-dom";
+import { UserContext } from "context/UserContext";
+import ReferToUser from "components/util/ReferToUser";
 
 // Records activity for a group of users on a GPT. Also used for single users.
 export default function Activity({
@@ -41,8 +44,9 @@ export default function Activity({
 }) {
 	const [clumped, setClumped] = useState<ClumpedActivity>([]);
 	const [users, setUsers] = useState<Array<UserDocument>>([]);
+	const [shouldShowGame, setShouldShowGame] = useState(false);
 
-	const { data, error } = useApiQuery<ActivityReturn>(url);
+	const { data, error } = useApiQuery<ActivityReturn | RecordActivityReturn>(url);
 
 	useEffect(() => {
 		if (!data) {
@@ -50,7 +54,11 @@ export default function Activity({
 			setUsers([]);
 		} else {
 			setClumped(ClumpActivity(data));
-			setUsers(data.users);
+			setUsers(GetUsers(data));
+
+			// show game if this is { "iidx:SP": [], "iidx:DP": [] }...
+			// to disambiguate
+			setShouldShowGame(!("users" in data));
 		}
 	}, [data]);
 
@@ -68,15 +76,18 @@ export default function Activity({
 
 	return (
 		<ActivityInner
+			shouldShowGame={shouldShowGame}
 			data={clumped}
 			users={users}
 			fetchMoreFrom={(start) => {
-				APIFetchV1<ActivityReturn>(`${url}?startTime=${start}`).then((r) => {
-					if (r.success) {
-						setUsers([...users, ...r.body.users]);
-						setClumped([...clumped, ...ClumpActivity(r.body)]);
+				APIFetchV1<ActivityReturn | RecordActivityReturn>(`${url}?startTime=${start}`).then(
+					(r) => {
+						if (r.success) {
+							setClumped([...clumped, ...ClumpActivity(r.body)]);
+							setUsers([...users, ...GetUsers(r.body)]);
+						}
 					}
-				});
+				);
 			}}
 		/>
 	);
@@ -86,10 +97,12 @@ function ActivityInner({
 	data,
 	users,
 	fetchMoreFrom,
+	shouldShowGame,
 }: {
 	data: ClumpedActivity;
 	users: Array<UserDocument>;
 	fetchMoreFrom: (start: number) => void;
+	shouldShowGame: boolean;
 }) {
 	const userMap = CreateUserMap(users);
 
@@ -107,11 +120,29 @@ function ActivityInner({
 
 					switch (e.type) {
 						case "SCORES":
-							return <ScoresActivity data={e} user={user} />;
+							return (
+								<ScoresActivity
+									shouldShowGame={shouldShowGame}
+									data={e}
+									user={user}
+								/>
+							);
 						case "SESSION":
-							return <SessionActivity data={e} user={user} />;
+							return (
+								<SessionActivity
+									shouldShowGame={shouldShowGame}
+									data={e}
+									user={user}
+								/>
+							);
 						case "CLASS_ACHIEVEMENT":
-							return <ClassAchievementActivity data={e} user={user} />;
+							return (
+								<ClassAchievementActivity
+									shouldShowGame={shouldShowGame}
+									data={e}
+									user={user}
+								/>
+							);
 					}
 				})}
 				<div className="timeline-item">
@@ -160,8 +191,18 @@ function ActivityInner({
 	);
 }
 
-function ScoresActivity({ data, user }: { data: ClumpedActivityScores; user: UserDocument }) {
+function ScoresActivity({
+	data,
+	user,
+	shouldShowGame,
+}: {
+	data: ClumpedActivityScores;
+	user: UserDocument;
+	shouldShowGame: boolean;
+}) {
 	const { game, playtype } = data.scores[0];
+
+	const prettyGame = shouldShowGame ? `${FormatGame(game, playtype)} ` : "";
 
 	const [show, setShow] = useState(false);
 
@@ -171,7 +212,7 @@ function ScoresActivity({ data, user }: { data: ClumpedActivityScores; user: Use
 	if (data.scores.length === 1) {
 		const score0 = data.scores[0];
 
-		subMessage = `a score on ${FormatChart(
+		subMessage = `a ${prettyGame}score on ${FormatChart(
 			score0.game,
 			score0.__related.song,
 			score0.__related.chart
@@ -181,11 +222,11 @@ function ScoresActivity({ data, user }: { data: ClumpedActivityScores; user: Use
 			mutedText = `"${score0.comment}"`;
 		}
 	} else {
-		subMessage = `${data.scores.length} scores`;
+		subMessage = `${data.scores.length} ${prettyGame}scores`;
 
 		mutedText = TruncateString(
 			data.scores
-				.map((e) => FormatChart(e.game, e.__related.song, e.__related.chart))
+				.map((e) => FormatChart(e.game, e.__related.song, e.__related.chart, true))
 				.join(", "),
 			100
 		);
@@ -223,7 +264,8 @@ function ScoresActivity({ data, user }: { data: ClumpedActivityScores; user: Use
 							}}
 						/>
 						<span style={{ fontSize: "1.15rem" }} className="ml-2">
-							{user.username} highlighted {subMessage}!
+							<UGPTLink reqUser={user} game={game} playtype={playtype} /> highlighted{" "}
+							{subMessage}!
 						</span>
 						{mutedText && (
 							<>
@@ -258,8 +300,19 @@ function ScoresActivity({ data, user }: { data: ClumpedActivityScores; user: Use
 	);
 }
 
-function SessionActivity({ data, user }: { data: ClumpedActivitySession; user: UserDocument }) {
+function SessionActivity({
+	data,
+	user,
+	shouldShowGame,
+}: {
+	data: ClumpedActivitySession;
+	user: UserDocument;
+	shouldShowGame: boolean;
+}) {
 	const [show, setShow] = useState(false);
+	const { user: loggedInUser } = useContext(UserContext);
+
+	const prettyGame = shouldShowGame ? `${FormatGame(data.game, data.playtype)} ` : "";
 
 	const isProbablyActive = Date.now() - data.timeEnded < ONE_HOUR;
 
@@ -292,9 +345,21 @@ function SessionActivity({ data, user }: { data: ClumpedActivitySession; user: U
 								fontSize: isProbablyActive ? "1.2rem" : undefined,
 							}}
 						>
-							{user.username} {isProbablyActive ? "is having" : "had"} a session '
-							{data.name}' with {data.scoreInfo.length}{" "}
-							{data.scoreInfo.length === 1 ? "score" : "scores"}.
+							{/* worst string formatting ever */}
+							<UGPTLink
+								reqUser={user}
+								game={data.game}
+								playtype={data.playtype}
+							/>{" "}
+							{isProbablyActive
+								? user.id === loggedInUser?.id
+									? "are having"
+									: "is having"
+								: "had"}{" "}
+							a {prettyGame}
+							session '{data.name}' with {data.scoreInfo.length}{" "}
+							{data.scoreInfo.length === 1 ? "score" : "scores"}
+							{data.highlight ? "!" : "."}
 						</span>
 						<br />
 						{data.desc && data.desc !== "This session has no description." && (
@@ -328,7 +393,7 @@ function SessionShower({ sessionID }: { sessionID: string }) {
 	}
 
 	return (
-		<Row>
+		<Row className="mt-4">
 			<SessionRaiseBreakdown sessionData={data} setScores={NO_OP} />
 			<Col xs={12}>
 				<Divider />
@@ -348,9 +413,11 @@ function SessionShower({ sessionID }: { sessionID: string }) {
 function ClassAchievementActivity({
 	data,
 	user,
+	shouldShowGame,
 }: {
 	data: ClumpedActivityClassAchievement;
 	user: UserDocument;
+	shouldShowGame: boolean;
 }) {
 	return (
 		<div className="timeline-item timeline-hover">
@@ -365,12 +432,7 @@ function ClassAchievementActivity({
 			>
 				<div className="d-flex align-items-center justify-content-between">
 					<div className="mr-3" style={{ width: "70%", textAlign: "left" }}>
-						<Link
-							to={`/dashboard/users/${user.username}/games/${data.game}/${data.playtype}`}
-							className="gentle-link"
-						>
-							{user.username}
-						</Link>{" "}
+						<UGPTLink reqUser={user} game={data.game} playtype={data.playtype} />{" "}
 						achieved{" "}
 						<ClassBadge
 							classSet={data.classSet}
@@ -378,6 +440,7 @@ function ClassAchievementActivity({
 							playtype={data.playtype}
 							classValue={data.classValue}
 						/>
+						{shouldShowGame && ` in ${FormatGame(data.game, data.playtype)}`}!
 						{data.classOldValue !== null && (
 							<>
 								{" "}
@@ -403,5 +466,22 @@ function ClassAchievementActivity({
 				</div>
 			</div>
 		</div>
+	);
+}
+
+function UGPTLink({ reqUser, game, playtype }: UGPT) {
+	// currently
+	const { user } = useContext(UserContext);
+
+	return (
+		<Link
+			to={`/dashboard/users/${reqUser.username}/games/${game}/${playtype}`}
+			className="gentle-link"
+			style={{
+				fontWeight: "bold",
+			}}
+		>
+			{user?.id === reqUser.id ? "You" : reqUser.username}
+		</Link>
 	);
 }

@@ -47,48 +47,6 @@ export default function SessionRaiseBreakdown({
 
 	const { user } = useContext(UserContext);
 
-	// todo infer default table
-	// const gptConfig = GetGamePTConfig(game, playtype);
-
-	const [chartIDs, setChartIDs] = useState<string[] | null>([]);
-	const [tableID, setTableID] = useState<string | null>(null);
-	const [tableFolders, setTableFolders] = useState<FolderDocument[]>([]);
-	const [folder, setFolder] = useState<FolderDocument | null>(null);
-	const [filter, setFilter] = useState<"folder" | "all" | "highlighted">("all");
-
-	useEffect(() => {
-		if (!tableID) {
-			return;
-		}
-
-		APIFetchV1(`/games/${game}/${playtype}/tables/${tableID}`).then((r) => {
-			if (!r.success) {
-				throw new Error(r.description);
-			}
-
-			// @ts-expect-error todo
-			setTableFolders(r.body.folders);
-			// @ts-expect-error todo
-			setFolder(r.body.folders[r.body.folders.length - 1]);
-		});
-	}, [tableID]);
-
-	useEffect(() => {
-		if (filter !== "folder" || !folder) {
-			setChartIDs(null);
-			return;
-		}
-
-		APIFetchV1(`/games/${game}/${playtype}/folders/${folder.folderID}`).then((r) => {
-			if (!r.success) {
-				throw new Error(r.description);
-			}
-
-			// @ts-expect-error todo
-			setChartIDs(r.body.charts.map((e) => e.chartID));
-		});
-	}, [folder, tableID, filter]);
-
 	const { data, error } = useQuery(`/games/${game}/${playtype}/tables`, async () => {
 		const res = await APIFetchV1<TableDocument[]>(`/games/${game}/${playtype}/tables`);
 
@@ -99,12 +57,6 @@ export default function SessionRaiseBreakdown({
 		return res.body;
 	});
 	const [view, setView] = useState<"lamps" | "both" | "grades">("both");
-
-	useEffect(() => {
-		if (tableID === null && (data?.length ?? 0) > 0) {
-			setTableID(data![0].tableID);
-		}
-	}, [data]);
 
 	if (error) {
 		return <>{(error as Error).message}</>;
@@ -138,54 +90,6 @@ export default function SessionRaiseBreakdown({
 							</div>
 						</div>
 					</div>
-
-					<div className="col-lg-3 d-none d-lg-block">
-						<select
-							className="form-control ml-auto"
-							value={filter}
-							onChange={(e) => setFilter(e.target.value as any)}
-						>
-							<option value="all">No Filter</option>
-							<option value="folder">Folder Filters</option>
-							<option value="highlighted">Highlights Only</option>
-						</select>
-					</div>
-					{filter === "folder" && (
-						<>
-							<div className="col-12">
-								<Divider className="mt-4 mb-4" />
-							</div>
-							<div className="col-6">
-								<select
-									className="form-control"
-									onChange={(e) => setTableID(e.target.value)}
-								>
-									{data.map((e) => (
-										<option key={e.tableID} value={e.tableID}>
-											{e.title}
-										</option>
-									))}
-								</select>
-							</div>
-							<div className="col-6">
-								<select
-									className="form-control"
-									value={folder?.folderID}
-									onChange={(e) =>
-										setFolder(
-											tableFolders.find((f) => f.folderID === e.target.value)!
-										)
-									}
-								>
-									{tableFolders.map((e) => (
-										<option key={e.folderID} value={e.folderID}>
-											{e.title}
-										</option>
-									))}
-								</select>
-							</div>
-						</>
-					)}
 				</div>
 
 				<Divider className="mt-4 mb-4" />
@@ -196,22 +100,18 @@ export default function SessionRaiseBreakdown({
 					</div>
 				)}
 			</div>
-			<SessionScoreStatBreakdown {...{ sessionData, chartIDs, filter, view, setScores }} />
+			<SessionScoreStatBreakdown {...{ sessionData, view, setScores }} />
 		</>
 	);
 }
 
 function SessionScoreStatBreakdown({
 	sessionData,
-	chartIDs,
-	filter,
 	view,
 	setScores,
 }: {
 	sessionData: SessionReturns;
 	setScores: SetScores;
-	chartIDs: string[] | null;
-	filter: "folder" | "all" | "highlighted";
 	view: "lamps" | "both" | "grades";
 }) {
 	const songMap = CreateSongMap(sessionData.songs);
@@ -236,12 +136,6 @@ function SessionScoreStatBreakdown({
 				continue;
 			}
 
-			if (filter === "folder" && chartIDs && !chartIDs.includes(score.chartID)) {
-				continue;
-			} else if (filter === "highlighted" && !score.highlight) {
-				continue;
-			}
-
 			if (scoreInfo.isNewScore) {
 				PartialArrayRecordAssign(newLamps, score.scoreData.lamp, { score, scoreInfo });
 				PartialArrayRecordAssign(newGrades, score.scoreData.grade, { score, scoreInfo });
@@ -260,7 +154,7 @@ function SessionScoreStatBreakdown({
 		}
 
 		return [newLamps, newGrades];
-	}, [chartIDs, filter, view]);
+	}, [view]);
 
 	const gptConfig = GetGamePTConfig(sessionData.session.game, sessionData.session.playtype);
 

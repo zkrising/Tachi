@@ -9,6 +9,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
 import { UserDocument } from "tachi-common";
+import Activity from "components/activity/Activity";
 
 interface Props {
 	reqUser: UserDocument;
@@ -17,7 +18,14 @@ interface Props {
 export default function UserPage({ reqUser }: Props) {
 	useSetSubheader(["Users", reqUser.username], [reqUser], `${reqUser.username}'s Profile`);
 
-	return <AboutMeCard reqUser={reqUser} />;
+	return (
+		<>
+			<AboutMeCard reqUser={reqUser} />
+
+			<Divider />
+			<Activity url={`/users/${reqUser.id}/activity`} />
+		</>
+	);
 }
 
 function InferLinks(aboutMe: string) {

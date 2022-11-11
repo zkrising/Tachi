@@ -7,7 +7,9 @@ import type { Request, Response } from "express-serve-static-core";
 import type { FilterQuery } from "mongodb";
 import type { ClassAchievementDocument, Game, ScoreDocument, SessionDocument } from "tachi-common";
 
-type ActivityConstraint = FilterQuery<ClassAchievementDocument & ScoreDocument & SessionDocument>;
+export type ActivityConstraint = FilterQuery<
+	ClassAchievementDocument & ScoreDocument & SessionDocument
+>;
 
 /**
  * Retrieves recent activity for this group of users for this GPT.
@@ -27,9 +29,14 @@ type ActivityConstraint = FilterQuery<ClassAchievementDocument & ScoreDocument &
  *
  * Optionally, startFrom can be passed, which will start this activity search from that
  * point in time.
+ *
+ * @bug - With the way `startFrom` works, its possible to "skip over" sessions that have
+ * the **exact** same timestamp, but didn't fall into the previous limit.
+ *
+ * for an array of imagined timestamps with sessions=3, followed by startFrom=3
+ * i.e. [1, 2, 3] 3, 3, 3 [4, 5, 6]
  */
 export async function GetRecentActivity(
-	// todo: is it possible to make this game agnostic?
 	game: Game,
 	query: ActivityConstraint,
 	sessions = 30,

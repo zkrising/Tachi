@@ -1,9 +1,9 @@
 /* eslint-disable no-await-in-loop */
 const fs = require("fs");
 const path = require("path");
-const { FindChartWithPTDFVersion, FindSongWithTitle } = require("../../finders");
-const { ApplyMutations } = require("../../mutations");
-const { ReadCollection } = require("../../util");
+const { FindChartWithPTDFVersion, FindSongWithTitle } = require("../../../finders");
+const { ApplyMutations } = require("../../../mutations");
+const { ReadCollection } = require("../../../util");
 
 const songs = ReadCollection("songs-iidx.json");
 
@@ -50,7 +50,7 @@ async function parseKr(file, mode, catVals) {
 				continue;
 			}
 
-			const chart = await FindChartWithPTDFVersion(charts, song.id, "SP", diff, "29");
+			const chart = await FindChartWithPTDFVersion(charts, song.id, "SP", diff, "30");
 
 			if (!chart) {
 				console.warn(`${song.title} ${diff} - Couldn't find chart?`);

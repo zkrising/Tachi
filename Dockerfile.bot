@@ -19,4 +19,4 @@ RUN pnpm install --silent && pnpm build && pnpm prune --silent --production && p
 HEALTHCHECK --interval=15s --timeout=5s CMD curl -f http://localhost:8080 || exit 1
 
 ENV NODE_PATH=js/
-CMD ["node", "js/main.js"]
+CMD ["pnpm", "start-no-build"]

@@ -86,6 +86,9 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 			// A list of users that are allowed to do powerful stuff.
 			ADMIN_USERS: ["string"],
 		},
+		LOGGER: {
+			SEQ_API_KEY: "*string",
+		},
 	});
 
 	if (err) {

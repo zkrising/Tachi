@@ -1,5 +1,7 @@
-get the data by going to https://iidx.insane.pe.kr/!/sp10/ and typing copy(tabledata_orig).
+get the data by going to https://iidx.insane.pe.kr/!/sp11H/ and typing copy(tabledata_orig) in browser console.
 
-parsers here handle the rest.
+paste it into "sp11N.json" and "sp11H.json"
 
-the sp8h, 9 and 10 tierlists *suck*, so, we're ignoring them.
+run node parse-iidxkr-data.js
+
+simple!

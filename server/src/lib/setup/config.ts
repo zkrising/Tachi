@@ -89,7 +89,7 @@ export interface TachiServerConfig {
 	USC_QUEUE_SIZE: integer;
 	BEATORAJA_QUEUE_SIZE: integer;
 	MAX_GOAL_SUBSCRIPTIONS: integer;
-	MAX_MILESTONE_SUBSCRIPTIONS: integer;
+	MAX_QUEST_SUBSCRIPTIONS: integer;
 	OUR_URL: string;
 	ALLOW_RUNNING_OFFLINE?: boolean;
 	INVITE_CODE_CONFIG?: {
@@ -167,7 +167,7 @@ const err = p(config, {
 	USC_QUEUE_SIZE: p.optional(p.gteInt(2)),
 	BEATORAJA_QUEUE_SIZE: p.optional(p.gteInt(2)),
 	MAX_GOAL_SUBSCRIPTIONS: p.optional(p.isPositiveInteger),
-	MAX_MILESTONE_SUBSCRIPTIONS: p.optional(p.isPositiveInteger),
+	MAX_QUEST_SUBSCRIPTIONS: p.optional(p.isPositiveInteger),
 	OUR_URL: "string",
 	INVITE_CODE_CONFIG: p.optional({
 		BATCH_SIZE: p.isPositiveInteger,
@@ -230,7 +230,7 @@ tachiServerConfig.OAUTH_CLIENT_CAP ??= 15;
 tachiServerConfig.USC_QUEUE_SIZE ??= 3;
 tachiServerConfig.BEATORAJA_QUEUE_SIZE ??= 3;
 tachiServerConfig.MAX_GOAL_SUBSCRIPTIONS ??= 1_000;
-tachiServerConfig.MAX_MILESTONE_SUBSCRIPTIONS ??= 100;
+tachiServerConfig.MAX_QUEST_SUBSCRIPTIONS ??= 100;
 tachiServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER ??= false;
 
 export const TachiConfig = tachiServerConfig.TACHI_CONFIG;

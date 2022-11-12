@@ -142,10 +142,10 @@ router.put(
 			playtype,
 		});
 
-		if (existingQuestsCount > ServerConfig.MAX_MILESTONE_SUBSCRIPTIONS) {
+		if (existingQuestsCount > ServerConfig.MAX_QUEST_SUBSCRIPTIONS) {
 			return res.status(400).json({
 				success: false,
-				description: `You already have ${ServerConfig.MAX_MILESTONE_SUBSCRIPTIONS} quests. You cannot have anymore for this game.`,
+				description: `You already have ${ServerConfig.MAX_QUEST_SUBSCRIPTIONS} quests. You cannot have anymore for this game.`,
 			});
 		}
 

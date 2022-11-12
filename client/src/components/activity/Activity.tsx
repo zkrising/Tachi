@@ -1,7 +1,7 @@
 import { ClumpActivity, GetUsers } from "util/activity";
 import { APIFetchV1 } from "util/api";
 import { ONE_HOUR } from "util/constants/time";
-import { CreateUserMap } from "util/data";
+import { CreateScoreIDMap, CreateUserMap } from "util/data";
 import { NO_OP, TruncateString } from "util/misc";
 import { FormatTime, MillisToSince } from "util/time";
 import ClassBadge from "components/game/ClassBadge";
@@ -17,7 +17,7 @@ import useApiQuery from "components/util/query/useApiQuery";
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FormatChart, FormatGame, UserDocument } from "tachi-common";
+import { FormatChart, FormatGame, GetGamePTConfig, UserDocument } from "tachi-common";
 import { ActivityReturn, RecordActivityReturn, SessionReturns } from "types/api-returns";
 import { UGPT } from "types/react";
 import { ScoreDataset } from "types/tables";
@@ -391,6 +391,47 @@ function SessionShower({ sessionID }: { sessionID: string }) {
 
 	if (!data) {
 		return <Loading />;
+	}
+
+	const scoreMap = CreateScoreIDMap(data.scores);
+
+	const gptConfig = GetGamePTConfig(data.session.game, data.session.playtype);
+
+	const raises = data.session.scoreInfo.filter((e) => {
+		const score = scoreMap.get(e.scoreID);
+
+		// shouldnt happen, but whatever
+		if (!score) {
+			return false;
+		}
+
+		if (e.isNewScore) {
+			return (
+				score.scoreData.lampIndex > gptConfig.lamps.indexOf(gptConfig.clearLamp) ||
+				score.scoreData.gradeIndex > gptConfig.grades.indexOf(gptConfig.clearGrade)
+			);
+		} else if (e.gradeDelta > 0) {
+			return score.scoreData.gradeIndex > gptConfig.grades.indexOf(gptConfig.clearGrade);
+		} else if (e.lampDelta > 0) {
+			return score.scoreData.lampIndex > gptConfig.lamps.indexOf(gptConfig.clearLamp);
+		}
+
+		return false;
+	});
+
+	if (raises.length === 0) {
+		return (
+			<Row className="mt-4">
+				<div className="d-flex w-100 justify-content-center">
+					<LinkButton
+						className="btn-outline-primary"
+						to={`/dashboard/users/${data.user.username}/games/${data.session.game}/${data.session.playtype}/sessions/${sessionID}`}
+					>
+						View Full Session
+					</LinkButton>
+				</div>
+			</Row>
+		);
 	}
 
 	return (

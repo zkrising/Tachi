@@ -330,7 +330,7 @@ function ElementStatTable({
 	if (tableContents.length === 0) {
 		return (
 			<tr>
-				<td colSpan={3}>Nothing...</td>
+				<td colSpan={3}>No Raises...</td>
 			</tr>
 		);
 	}

@@ -6,6 +6,7 @@
 	"scripts": {
 		"build": "tsc",
 		"start": "pnpm build && node -r ts-node/register -r tsconfig-paths/register js/bot/src/main.js",
+		"start-no-build": "node -r ts-node/register -r tsconfig-paths/register js/bot/src/main.js",
 		"lint": "eslint . --fix"
 	},
 	"devDependencies": {

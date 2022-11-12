@@ -34,7 +34,7 @@ export default function TargetsPage({ reqUser, game, playtype }: UGPT) {
 						Overview
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/targets/quests`}>
-						<Icon type="mountain" />
+						<Icon type="scroll" />
 						Quests
 					</SelectLinkButton>
 				</div>

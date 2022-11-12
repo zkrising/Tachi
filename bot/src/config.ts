@@ -1,5 +1,3 @@
-import { LoggerLayers } from "./data/data";
-import { CreateLayeredLogger } from "./utils/logger";
 import { IsRecord } from "./utils/predicates";
 import { FormatPrError } from "./utils/prudence";
 import { config } from "dotenv";
@@ -19,7 +17,9 @@ config();
 // Reads the bots config file from $pwd/conf.json5.
 // Validates it using prudence.
 
-const logger = CreateLayeredLogger(LoggerLayers.botConfigSetup);
+// the real logger tries to bind to discord, and is dependent on the options
+// below.
+const logger = console;
 
 export interface BotConfig {
 	TACHI_SERVER_LOCATION: string;
@@ -36,7 +36,7 @@ export interface BotConfig {
 		GAME_CHANNELS: Partial<Record<Game, string>>;
 		ADMIN_USERS: Array<string>;
 	};
-	LOGGER: {
+	LOGGER?: {
 		SEQ_API_KEY?: string;
 	};
 }
@@ -86,9 +86,9 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 			// A list of users that are allowed to do powerful stuff.
 			ADMIN_USERS: ["string"],
 		},
-		LOGGER: {
+		LOGGER: p.optional({
 			SEQ_API_KEY: "*string",
-		},
+		}),
 	});
 
 	if (err) {
@@ -153,7 +153,7 @@ function GetServerConfig() {
 	const res = fetchSync(`${BotConfig.TACHI_SERVER_LOCATION}/api/v1/config`).json();
 
 	if (!res.success) {
-		logger.crit(
+		logger.error(
 			`Failed to fetch server info from ${BotConfig.TACHI_SERVER_LOCATION}. Can't run.`
 		);
 		process.exit(1);

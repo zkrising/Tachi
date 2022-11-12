@@ -7,7 +7,7 @@ import type { SeqLogLevel } from "seq-logging";
 
 const logger = CreateLogger(`tachi-bot`, undefined, []);
 
-if (BotConfig.LOGGER.SEQ_API_KEY && ProcessEnv.seqUrl) {
+if (BotConfig.LOGGER?.SEQ_API_KEY && ProcessEnv.seqUrl) {
 	// Turns winston log levels into seq format.
 	const levelMap: Record<string, SeqLogLevel> = {
 		crit: "Fatal",

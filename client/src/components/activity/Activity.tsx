@@ -125,7 +125,7 @@ function ActivityInner({
 	return (
 		<Col xs={12} className="text-center">
 			Tip: You can click on an event to learn more about it.
-			<div className="timeline timeline-2 mt-4">
+			<div className="timeline activity-timeline timeline-2 mt-4">
 				<div className="timeline-bar"></div>
 				{data.map((e) => {
 					const user = userMap.get(e.type === "SCORES" ? e.scores[0]?.userID : e.userID);

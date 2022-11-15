@@ -98,6 +98,9 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 		// away further inside genericgetgradeandpercent or something.
 		if (game === "popn" && data.lamp === "FAILED" && percent >= 90) {
 			grade = "A";
+		} else if (game === "itg" && data.lamp === "FAILED") {
+			// a fail in ITG is **always** an F. no matter what.
+			grade = "F";
 		}
 	}
 

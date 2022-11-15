@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { ChartDocument, Game } from "tachi-common";
 import { ChartRivalsReturn } from "types/api-returns";
 import { RivalChartDataset } from "types/tables";
+import { Col } from "react-bootstrap";
 
 export default function RivalCompare({ chart, game }: { chart: ChartDocument; game: Game }) {
 	const { user: currentUser } = useContext(UserContext);
@@ -60,5 +61,9 @@ export default function RivalCompare({ chart, game }: { chart: ChartDocument; ga
 			},
 		}));
 
-	return <RivalChartTable chart={chart} game={game} dataset={rivalDataset} />;
+	return (
+		<Col xs={12}>
+			<RivalChartTable chart={chart} game={game} dataset={rivalDataset} />
+		</Col>
+	);
 }

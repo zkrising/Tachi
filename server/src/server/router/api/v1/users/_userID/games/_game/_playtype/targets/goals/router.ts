@@ -6,7 +6,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import {
 	ConstructGoal,
-	GetBlockingParentQuestSubs,
+	GetParentQuestSubs,
 	GetQuestsThatContainGoal,
 	SubscribeToGoal,
 } from "lib/targets/goals";
@@ -257,7 +257,7 @@ router.delete(
 
 		const goalSub = GetTachiData(req, "goalSubDoc");
 
-		const parentQuests = await GetBlockingParentQuestSubs(goalSub);
+		const parentQuests = await GetParentQuestSubs(goalSub);
 
 		if (parentQuests.length) {
 			return res.status(400).json({

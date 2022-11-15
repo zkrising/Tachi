@@ -5,9 +5,11 @@ import CreateLogCtx from "lib/logger/logger";
 import { BulkSendNotification } from "lib/notifications/notifications";
 import type { EvaluatedGoalReturn } from "./goals";
 import type {
+	Game,
 	GoalDocument,
 	GoalSubscriptionDocument,
 	integer,
+	Playtype,
 	QuestDocument,
 	QuestSubscriptionDocument,
 } from "tachi-common";
@@ -315,4 +317,37 @@ export async function UpdateQuestSubscriptions(questID: string) {
 	}
 
 	return subscriptionResults;
+}
+
+/**
+ * Given an array of user goal subscriptions, return all the quests this user is
+ * subscribed to that subsume these goals.
+ */
+export async function GetParentQuests(
+	userID: integer,
+	game: Game,
+	playtype: Playtype,
+	goalSubs: Array<GoalSubscriptionDocument>
+) {
+	const questSubs: Array<{ questID: string }> = await db["quest-subs"].find(
+		{
+			game,
+			playtype,
+			userID,
+		},
+		{
+			projection: {
+				questID: 1,
+			},
+		}
+	);
+
+	const questSubIDs = questSubs.map((e) => e.questID);
+
+	const quests = await db.quests.find({
+		questID: { $in: questSubIDs },
+		"quest.questData.goals.goalID": { $in: goalSubs.map((e) => e.goalID) },
+	});
+
+	return quests;
 }

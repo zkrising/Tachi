@@ -25,12 +25,6 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
 	const boundaries = gptConfig.gradeBoundaries;
 	const grades = gptConfig.grades;
 
-	if (!boundaries) {
-		throw new Error(
-			`Invalid call to GetGradeFromPercent! GPT ${game}:${playtype} does not use grade boundaries.`
-		);
-	}
-
 	// (hey, this for loop is backwards!)
 	for (let i = boundaries.length - 1; i >= 0; i--) {
 		if (percent + Number.EPSILON >= NotNullish(boundaries[i])) {

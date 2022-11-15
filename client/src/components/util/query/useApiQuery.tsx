@@ -5,7 +5,8 @@ import { SuccessfulAPIResponse } from "tachi-common";
 export default function useApiQuery<T>(
 	url: string | string[],
 	options?: RequestInit,
-	additionalDeps?: string[]
+	additionalDeps?: string[],
+	skip = false
 ) {
 	const deps = [];
 
@@ -22,6 +23,10 @@ export default function useApiQuery<T>(
 	return useQuery<T, UnsuccessfulAPIFetchResponse>(
 		deps,
 		async () => {
+			if (skip) {
+				throw new Error("Skipped");
+			}
+
 			if (Array.isArray(url)) {
 				const results = await Promise.all(url.map((u) => APIFetchV1(u, options)));
 

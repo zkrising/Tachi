@@ -5,9 +5,17 @@ import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
-import React, { useMemo, useState } from "react";
-import { ChartDocument, IDStrings, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
-import { UGPTChartPBComposition } from "types/api-returns";
+import { UserContext } from "context/UserContext";
+import React, { useContext, useMemo, useReducer, useState } from "react";
+import {
+	ChartDocument,
+	IDStrings,
+	integer,
+	PBScoreDocument,
+	ScoreDocument,
+	SongDocument,
+} from "tachi-common";
+import { GoalsOnChartReturn, UGPTChartPBComposition } from "types/api-returns";
 import { GamePT } from "types/react";
 import DocComponentCreator, {
 	DocumentComponentType,
@@ -16,6 +24,7 @@ import DocComponentCreator, {
 import DropdownStructure from "./components/DropdownStructure";
 import PlayHistory from "./components/PlayHistory";
 import RivalCompare from "./components/RivalCompare";
+import TargetInfo from "./components/TargetInfo";
 import { GPTDropdownSettings } from "./GPTDropdownSettings";
 
 export interface ScoreDropdownProps<I extends IDStrings = IDStrings> {
@@ -32,12 +41,16 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 	scoreState,
 	defaultView = "pb",
 	userID,
+	song,
 }: {
 	userID: integer;
 	chart: ChartDocument;
+	song: SongDocument;
 	scoreState: ScoreState;
-	defaultView?: "pb" | "scorePB" | "lampPB" | "history" | "debug" | "rivals";
+	defaultView?: "pb" | "scorePB" | "lampPB" | "history" | "debug" | "rivals" | "targets";
 } & GamePT) {
+	const { user: currentUser } = useContext(UserContext);
+
 	const DocComponent: DocumentComponentType = (props) =>
 		DocComponentCreator({ ...props, ...GPTDropdownSettings(game, playtype) });
 
@@ -49,6 +62,18 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 
 	const { error: histError, data: histData } = useApiQuery<ScoreDocument<I>[]>(
 		`/users/${userID}/games/${game}/${playtype}/scores/${chart.chartID}`
+	);
+
+	const [shouldRefresh, forceRefresh] = useReducer((state) => state + 1, 0);
+
+	// when a user isn't logged in, skip ever making this request.
+	const { error: targetError, data: targetData } = useApiQuery<GoalsOnChartReturn>(
+		`/users/${currentUser?.id ?? ""}/games/${game}/${playtype}/targets/on-chart/${
+			chart.chartID
+		}`,
+		undefined,
+		[shouldRefresh],
+		currentUser === null
 	);
 
 	const currentScoreDoc: ScoreDocument<I> | PBScoreDocument<I> | null = useMemo(() => {
@@ -110,6 +135,23 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 		body = <DebugContent data={data} />;
 	} else if (view === "rivals") {
 		body = <RivalCompare chart={chart} game={game} />;
+	} else if (view === "targets") {
+		if (currentUser) {
+			body = (
+				<TargetInfo
+					game={game}
+					playtype={playtype}
+					reqUser={currentUser}
+					data={targetData}
+					error={targetError}
+					chart={chart}
+					song={song}
+					onGoalSet={forceRefresh}
+				/>
+			);
+		} else {
+			body = <>not possible, shouldn't've got here.</>;
+		}
 	} else {
 		body = (
 			<DocComponent
@@ -146,6 +188,12 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 						<Icon type="history" />
 						Play History{histData && ` (${histData.length})`}
 					</SelectButton>
+					{currentUser?.id === userID && (
+						<SelectButton setValue={setView} value={view} id="targets">
+							<Icon type="scroll" />
+							Goals & Quests{targetData && ` (${targetData.goals.length})`}
+						</SelectButton>
+					)}
 					<SelectButton setValue={setView} value={view} id="rivals">
 						<Icon type="users" />
 						Rivals

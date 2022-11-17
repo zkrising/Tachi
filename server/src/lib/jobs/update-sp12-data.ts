@@ -9,6 +9,8 @@ import { WrapScriptPromise } from "utils/misc";
 import { FindChartWithPTDF } from "utils/queries/charts";
 import { FindSongOnTitle } from "utils/queries/songs";
 import type { ChartDocument, Difficulties, integer } from "tachi-common";
+import { RecalcAllScores } from "utils/calculations/recalc-scores";
+import { BacksyncCollectionToBothBranches } from "lib/database-seeds/repo";
 
 const logger = CreateLogCtx(__filename);
 
@@ -55,6 +57,8 @@ async function FetchSP12Data() {
 	const rj = unvalidatedRJ as {
 		sheets: Array<SP12Data>;
 	};
+
+	const updatedChartIDs: Array<string> = [];
 
 	for (const sh of rj.sheets) {
 		let chart: ChartDocument | null;
@@ -138,7 +142,7 @@ async function FetchSP12Data() {
 
 			val = parseFloat(val.toFixed(2));
 
-			let ktKey;
+			let ktKey: keyof ChartDocument<"iidx:SP">["tierlistInfo"];
 
 			if (key === "exh") {
 				ktKey = "kt-EXHC";
@@ -155,6 +159,20 @@ async function FetchSP12Data() {
 					? val.toFixed(2)
 					: `12${stringVal.replace(/(個人差|地力)/u, "")}`;
 
+					const idvDiff =stringVal.includes("個人差");
+
+			const existingTlInfo = chart.tierlistInfo[ktKey];
+
+			if (existingTlInfo && 
+				
+				existingTlInfo.text === text &&
+				existingTlInfo.value === val &&
+				existingTlInfo.individualDifference === idvDiff) {
+					continue;
+				}
+
+				updatedChartIDs.push(chart.chartID);
+
 			await db.charts.iidx.update(
 				{
 					chartID: chart.chartID,
@@ -164,7 +182,7 @@ async function FetchSP12Data() {
 						[`tierlistInfo.${ktKey}`]: {
 							text,
 							value: val,
-							individualDifference: stringVal.includes("個人差"),
+							individualDifference: idvDiff,
 						},
 					},
 				}
@@ -174,7 +192,20 @@ async function FetchSP12Data() {
 		}
 	}
 
-	logger.info("Done!");
+	if (updatedChartIDs.length !== 0) {
+		logger.info(`Finished applying SP12 changes. Recalcing.`);
+		logger.info("These changes will be backsynced by a separate script.")
+
+		logger.info(`Recalcing scores.`);
+		await RecalcAllScores({
+			game: "iidx",
+			chartID: { $in: updatedChartIDs },
+		});
+
+		logger.info(`Finished recalcing scores.`);
+
+		await BacksyncCollectionToBothBranches("charts-iidx", db.charts.iidx, "Update SP12 Tierlist");
+	}
 
 	process.exit(0);
 }

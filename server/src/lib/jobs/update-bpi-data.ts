@@ -164,15 +164,7 @@ export async function UpdatePoyashiData() {
 	await repo.WriteCollection("charts-iidx", iidxCharts);
 
 	if (updatedChartIDs.length !== 0) {
-		logger.info(`Finished applying BPI changes. Writing back.`);
-
-		for (const branch of ["staging", `release/${VERSION_INFO.major}.${VERSION_INFO.minor}`]) {
-			const commitBackRepo = await PullDatabaseSeeds(branch);
-
-			await commitBackRepo.CommitChangesBack(`BPI Update ${new Date().toISOString()}`);
-
-			await commitBackRepo.Destroy();
-		}
+		logger.info(`Finished applying BPI changes. These changes will be backsynced later.`);
 
 		logger.info(`Recalcing scores.`);
 		await RecalcAllScores({

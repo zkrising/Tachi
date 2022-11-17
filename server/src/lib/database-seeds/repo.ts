@@ -6,6 +6,7 @@ import fs from "fs/promises";
 import os from "os";
 import path from "path";
 import type { Game } from "tachi-common";
+import { ICollection } from "monk";
 
 const logger = CreateLogCtx(__filename);
 
@@ -267,5 +268,22 @@ export async function PullDatabaseSeeds(
 	} catch ({ err, stderr }) {
 		logger.error(`Error cloning database-seeds. ${stderr}.`);
 		throw err;
+	}
+}
+
+export async function BacksyncCollectionToBothBranches(collectionName: SeedsCollections, collection: ICollection, commitMessage: string) {
+	for (const branch of ["staging", "release/v2." + VERSION_INFO.minor]) {
+		const repo = await PullDatabaseSeeds(null, branch);
+
+		let charts = await collection.find({});
+
+		await repo.WriteCollection(collectionName, charts);
+
+		// @ts-expect-error Force node to free the memory.
+		charts = null;
+
+		await repo.CommitChangesBack(`${commitMessage} ${new Date().toISOString()}`);
+
+		await repo.Destroy();
 	}
 }

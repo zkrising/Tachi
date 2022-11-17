@@ -1,7 +1,8 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
 import { decode } from "html-entities";
-import { PullDatabaseSeeds } from "lib/database-seeds/repo";
+import { VERSION_INFO } from "lib/constants/version";
+import { BacksyncCollectionToBothBranches, PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import { parse } from "node-html-parser";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
@@ -95,18 +96,7 @@ export async function UpdateDPTiers() {
 
 		logger.info(`Recalced those scores.`);
 
-		const repo = await PullDatabaseSeeds();
-
-		let charts = await db.charts.iidx.find({});
-
-		await repo.WriteCollection("charts-iidx", charts);
-
-		// @ts-expect-error Force node to free the memory.
-		charts = null;
-
-		await repo.CommitChangesBack(`Update DP Tierlist ${new Date().toISOString()}`);
-
-		await repo.Destroy();
+		await BacksyncCollectionToBothBranches("charts-iidx", db.charts.iidx, "Update DP Tierlist");
 	}
 
 	logger.info("Done.");

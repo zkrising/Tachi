@@ -254,7 +254,7 @@ export async function ValidateGoalChartsAndCriteria(
 			const relatedChart = (await db.charts[game].findOne({
 				playtype,
 				chartID: charts.data,
-			}))! as ChartDocument<
+			})) as ChartDocument<
 				"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP" | "pms:Controller" | "pms:Keyboard"
 			>;
 
@@ -276,5 +276,11 @@ export async function ValidateGoalChartsAndCriteria(
 
 	if (charts.type === "single" && criteria.mode !== "single") {
 		throw new Error(`Criteria Mode must be 'single' if Charts Type is 'single'.`);
+	}
+
+	if (charts.type === "multi" && criteria.mode === "proportion") {
+		throw new Error(
+			`Criteria Mode must be 'single' or 'absolute' if Charts Type is 'multi'. Doesn't make sense to have proportional goals when you're capped at 5 charts.`
+		);
 	}
 }

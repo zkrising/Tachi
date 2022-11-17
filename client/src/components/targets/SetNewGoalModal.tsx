@@ -256,28 +256,25 @@ function CriteriaModePicker({
 					? "of these charts"
 					: "of charts in this folder"}
 			</CheckEdit>
-			<CheckEdit
-				type="proportion"
-				currentType={criteria.mode}
-				onChange={() => onChange("proportion", perCountNum / 100)}
-			>
-				On
-				<Form.Control
-					style={{ display: "inline", width: "unset" }}
-					className="mx-2"
-					onChange={(e) => setPerCountNum(clamp(Number(e.target.value), 0, 100))}
-					type="number"
-					min={0}
-					max={100}
-					value={perCountNum}
-				/>
-				%{" "}
-				{charts.type === "any"
-					? "of all charts"
-					: charts.type === "multi"
-					? "of these charts"
-					: "of charts in this folder"}
-			</CheckEdit>
+			{charts.type !== "multi" && (
+				<CheckEdit
+					type="proportion"
+					currentType={criteria.mode}
+					onChange={() => onChange("proportion", perCountNum / 100)}
+				>
+					On
+					<Form.Control
+						style={{ display: "inline", width: "unset" }}
+						className="mx-2"
+						onChange={(e) => setPerCountNum(clamp(Number(e.target.value), 0, 100))}
+						type="number"
+						min={0}
+						max={100}
+						value={perCountNum}
+					/>
+					% {charts.type === "any" ? "of all charts" : "of charts in this folder"}
+				</CheckEdit>
+			)}
 		</>
 	);
 }

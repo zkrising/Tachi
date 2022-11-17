@@ -24,7 +24,7 @@ export default function SilentHookPage() {
 					<ExternalLink href="https://cdn.discordapp.com/attachments/783119769649414166/1032859092982714428/silent.dll">
 						Here
 					</ExternalLink>
-					.
+					and place it in the same folder as <code>popn22.dll</code>.
 					<br />
 					<Muted>
 						The above download is for Kaimei Riddles. For Pop'n Peace, use{" "}
@@ -40,15 +40,24 @@ export default function SilentHookPage() {
 						Here.
 					</ExternalLink>
 					<br />
-					You must put these files into <code>contents/libssl-1_1.dll</code> and{" "}
-					<code>libcrypto-1_1.dll</code>.
+					Put these files in the same folder as <code>silent.dll</code> and <code>popn22.dll</code>.
 				</li>
 				<li>
-					Download your config file{" "}
+					Download your config file to the same folder{" "}
 					<ExternalLink href="/client-file-flow/CXSilentHook">here</ExternalLink>. <br />
 					<b>This file contains an API Key, which is meant to be kept secret!</b>
 				</li>
-				<li>Place both of these files inside your pop'n folder.</li>
+				<li>
+					Add <code>silent</code> to your startup script as a hook.
+					<ul class="instructions-list">
+						<li>
+							BemaniTools5: Add <code>-K silent.dll</code> to your <code>.bat</code> file.
+						</li>
+						<li>
+							SpiceTools &amp; BemaniTools4: Add <code>-k silent.dll</code> to your <code>.bat</code> file.
+						</li>
+					</ul>
+				</li>
 				<li>Your scores now automatically upload to {TachiConfig.name}!</li>
 			</ol>
 		</div>

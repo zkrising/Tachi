@@ -29,20 +29,20 @@ try {
 }
 
 const conf: TachiConfig = configRes.body;
-let colourConf;
+const colourConf = {
+	background: "#131313",
+	lightground: "#2b292b",
+	backestground: "#000000",
+	overground: "#524e52",
+	primary: "#000",
+};
 
 if (mode === "ktchi") {
-	colourConf = {
-		primary: "#e61c6e",
-	};
+	colourConf.primary = "#e61c6e";
 } else if (mode === "btchi") {
-	colourConf = {
-		primary: "#4974a5",
-	};
+	colourConf.primary = "#4974a5";
 } else if (mode === "omni") {
-	colourConf = {
-		primary: "#e61c6e",
-	};
+	colourConf.primary = "#e61c6e";
 } else {
 	throw new Error("Invalid REACT_APP_TCHIC_MODE. Expected ktchi, btchi or omni.");
 }

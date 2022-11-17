@@ -108,7 +108,7 @@ function FormatCriteria(criteria: GoalDocument["criteria"], game: Game, playtype
 		case "scoreData.percent":
 			return `Get ${FormatMaxDP(criteria.value)}% on`;
 		case "scoreData.score":
-			return `Get ${criteria.value.toLocaleString("en-GB")} on`;
+			return `Get a score of ${criteria.value.toLocaleString("en-GB")} on`;
 	}
 }
 

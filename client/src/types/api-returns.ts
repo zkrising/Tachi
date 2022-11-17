@@ -242,3 +242,11 @@ export interface GoalsOnChartReturn {
 }
 
 export type GoalsOnFolderReturn = GoalsOnChartReturn;
+
+export interface RecentlyAchievedOrRaisedTargets {
+	goals: Array<GoalDocument>;
+	quests: Array<QuestDocument>;
+	goalSubs: Array<GoalSubscriptionDocument>;
+	questSubs: Array<QuestSubscriptionDocument>;
+	user: UserDocument;
+}

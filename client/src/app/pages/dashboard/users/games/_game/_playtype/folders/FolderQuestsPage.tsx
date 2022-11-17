@@ -1,5 +1,5 @@
-import { CreateGoalMap, CreateGoalSubDataset, CreateUserMap } from "util/data";
-import { CreateQuestMap } from "util/misc";
+import { CreateGoalSubDataset, CreateUserMap } from "util/data";
+import GoalSubTable from "components/tables/goals/GoalSubTable";
 import SetNewGoalModal from "components/targets/SetNewGoalModal";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
@@ -7,10 +7,9 @@ import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import React, { useReducer, useState } from "react";
 import { Button, Col } from "react-bootstrap";
-import { FolderDocument, QuestDocument } from "tachi-common";
+import { FolderDocument } from "tachi-common";
 import { GoalsOnChartReturn, GoalsOnFolderReturn } from "types/api-returns";
 import { UGPT } from "types/react";
-import GoalSubTable from "components/tables/goals/GoalSubTable";
 
 export default function FolderQuestsPage({
 	folder,

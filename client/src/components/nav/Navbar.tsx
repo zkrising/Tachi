@@ -6,11 +6,17 @@ import Tab from "@material-ui/core/Tab";
 export default function Navbar({ children }: { children: JSX.Element[] }) {
 	const links = children
 		.filter((e) => e.props.to)
-		.map((e) =>
-			e.props.to[e.props.to.length - 1] === "/"
-				? e.props.to.substring(0, e.props.to.length - 1)
-				: e.props.to
-		);
+		.map((e) => {
+			const basePath =
+				e.props.to[e.props.to.length - 1] === "/"
+					? e.props.to.substring(0, e.props.to.length - 1)
+					: e.props.to;
+
+			if (e.props.otherMatchingPaths) {
+				return [basePath, ...e.props.otherMatchingPaths];
+			}
+			return [basePath];
+		});
 
 	const location = useLocation();
 
@@ -19,8 +25,9 @@ export default function Navbar({ children }: { children: JSX.Element[] }) {
 
 		let lidx = 0;
 		for (let i = 0; i < links.length; i++) {
-			const link = links[i];
-			if (loc.startsWith(link)) {
+			const matchingPaths = links[i];
+
+			if (matchingPaths.some((path) => loc.startsWith(path))) {
 				lidx = i;
 				// break; THIS IS DELIBERATE TO AVOID / matching everything
 			}

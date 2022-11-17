@@ -555,3 +555,11 @@ export function CreateQuestMap(quests: Array<QuestDocument>) {
 
 	return map;
 }
+
+export function ChangeAtPosition<T>(elements: T[], element: T, i: integer) {
+	return [...elements.slice(0, i), element, ...elements.slice(i + 1)];
+}
+
+export function DeleteInPosition<T>(elements: T[], i: integer) {
+	return [...elements.slice(0, i), ...elements.slice(i + 1)];
+}

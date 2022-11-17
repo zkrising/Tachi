@@ -15,6 +15,7 @@ import {
 	SongDocument,
 } from "tachi-common";
 import { GamePT, SetState, UGPT } from "types/react";
+import CheckEdit from "components/util/CheckEdit";
 
 export default function SetNewGoalModal({
 	show,
@@ -117,26 +118,7 @@ export default function SetNewGoalModal({
 	);
 }
 
-function RenderGoalChartSet({
-	charts,
-	identifier,
-}: {
-	charts: GoalDocument["charts"];
-	identifier: string;
-}) {
-	switch (charts.type) {
-		case "any":
-			return <div>Any Chart</div>;
-		case "single":
-			return <div>Selected Chart: {identifier}</div>;
-		case "folder":
-			return <div>Selected Folder: {identifier}</div>;
-		case "multi":
-			return <div>Selected Charts: {identifier}</div>;
-	}
-}
-
-function RenderGoalCriteriaPicker({
+export function RenderGoalCriteriaPicker({
 	criteria,
 	charts,
 	setCriteria,
@@ -189,13 +171,15 @@ function RenderGoalCriteriaPicker({
 					<Divider />
 					<CriteriaModePicker
 						criteria={criteria}
+						charts={charts}
 						game={game}
 						playtype={playtype}
 						onChange={(mode, countNum) => {
-							if (mode === "single" && countNum === undefined) {
+							if (mode === "single") {
 								setCriteria({
-									...criteria,
-									mode,
+									mode: "single",
+									key: criteria.key,
+									value: criteria.value,
 								});
 							} else {
 								setCriteria({
@@ -216,8 +200,10 @@ function RenderGoalCriteriaPicker({
 function CriteriaModePicker({
 	criteria,
 	onChange,
+	charts,
 }: {
 	criteria: GoalDocument["criteria"];
+	charts: GoalDocument["charts"];
 	onChange: (value: GoalDocument["criteria"]["mode"], countNum?: number) => void;
 } & GamePT) {
 	const [absCountNum, setAbsCountNum] = useState(10);
@@ -231,54 +217,50 @@ function CriteriaModePicker({
 		}
 	}, [absCountNum, perCountNum]);
 
+	if ("data" in charts && charts.data === null) {
+		return <></>;
+	}
+
 	return (
 		<>
-			<div
-				className={`my-4 ${criteria.mode !== "single" ? "text-muted" : ""}`}
-				style={{ fontWeight: criteria.mode === "single" ? "bold" : "" }}
+			<CheckEdit
+				type="single"
+				currentType={criteria.mode}
+				onChange={() => onChange("single")}
 			>
-				<Form.Check
-					type="radio"
-					style={{ display: "inline" }}
-					className="mr-4"
-					checked={criteria.mode === "single"}
-					onClick={() => onChange("single")}
-				/>{" "}
-				On any chart in this folder
-			</div>
-			<div
-				className={`my-4 ${criteria.mode !== "absolute" ? "text-muted" : ""}`}
-				style={{ fontWeight: criteria.mode === "absolute" ? "bold" : "" }}
+				{charts.type === "any"
+					? "On any chart"
+					: charts.type === "multi"
+					? "On any of these charts"
+					: "On any chart in this folder"}
+			</CheckEdit>
+			<CheckEdit
+				type="absolute"
+				currentType={criteria.mode}
+				onChange={() => onChange("absolute", Number(absCountNum))}
 			>
-				<Form.Check
-					type="radio"
-					style={{ display: "inline" }}
-					className="mr-4"
-					checked={criteria.mode === "absolute"}
-					onClick={() => onChange("absolute", Number(absCountNum))}
-				/>{" "}
 				On{" "}
 				<Form.Control
 					style={{ display: "inline", width: "unset" }}
 					className="mx-2"
 					onChange={(e) => setAbsCountNum(Number(e.target.value))}
 					type="number"
-					min={0}
+					min={2}
 					value={absCountNum}
 				/>{" "}
-				{absCountNum === 1 ? "chart" : "charts"} in this folder
-			</div>
-			<div
-				className={`my-4 ${criteria.mode !== "proportion" ? "text-muted" : ""}`}
-				style={{ fontWeight: criteria.mode === "proportion" ? "bold" : "" }}
+				{charts.type === "any"
+					? absCountNum === 1
+						? "chart"
+						: "charts"
+					: charts.type === "multi"
+					? "of these charts"
+					: "of charts in this folder"}
+			</CheckEdit>
+			<CheckEdit
+				type="proportion"
+				currentType={criteria.mode}
+				onChange={() => onChange("proportion", perCountNum / 100)}
 			>
-				<Form.Check
-					type="radio"
-					style={{ display: "inline" }}
-					className="mr-4"
-					checked={criteria.mode === "proportion"}
-					onClick={() => onChange("proportion", perCountNum / 100)}
-				/>{" "}
 				On
 				<Form.Control
 					style={{ display: "inline", width: "unset" }}
@@ -289,8 +271,13 @@ function CriteriaModePicker({
 					max={100}
 					value={perCountNum}
 				/>
-				% of charts in this folder
-			</div>
+				%{" "}
+				{charts.type === "any"
+					? "of all charts"
+					: charts.type === "multi"
+					? "of these charts"
+					: "of charts in this folder"}
+			</CheckEdit>
 		</>
 	);
 }

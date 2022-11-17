@@ -5,8 +5,8 @@ import { asyncExec } from "utils/misc";
 import fs from "fs/promises";
 import os from "os";
 import path from "path";
+import type { ICollection } from "monk";
 import type { Game } from "tachi-common";
-import { ICollection } from "monk";
 
 const logger = CreateLogCtx(__filename);
 
@@ -271,8 +271,12 @@ export async function PullDatabaseSeeds(
 	}
 }
 
-export async function BacksyncCollectionToBothBranches(collectionName: SeedsCollections, collection: ICollection, commitMessage: string) {
-	for (const branch of ["staging", "release/v2." + VERSION_INFO.minor]) {
+export async function BacksyncCollectionToBothBranches(
+	collectionName: SeedsCollections,
+	collection: ICollection,
+	commitMessage: string
+) {
+	for (const branch of ["staging", `release/2.${VERSION_INFO.minor}`]) {
 		const repo = await PullDatabaseSeeds(null, branch);
 
 		let charts = await collection.find({});

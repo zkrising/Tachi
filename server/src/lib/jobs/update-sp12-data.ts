@@ -2,15 +2,15 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable no-param-reassign */
 import db from "external/mongo/db";
+import { BacksyncCollectionToBothBranches } from "lib/database-seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import fetch from "node-fetch";
 import p from "prudence";
+import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import { WrapScriptPromise } from "utils/misc";
 import { FindChartWithPTDF } from "utils/queries/charts";
 import { FindSongOnTitle } from "utils/queries/songs";
 import type { ChartDocument, Difficulties, integer } from "tachi-common";
-import { RecalcAllScores } from "utils/calculations/recalc-scores";
-import { BacksyncCollectionToBothBranches } from "lib/database-seeds/repo";
 
 const logger = CreateLogCtx(__filename);
 
@@ -159,19 +159,20 @@ async function FetchSP12Data() {
 					? val.toFixed(2)
 					: `12${stringVal.replace(/(個人差|地力)/u, "")}`;
 
-					const idvDiff =stringVal.includes("個人差");
+			const idvDiff = stringVal.includes("個人差");
 
 			const existingTlInfo = chart.tierlistInfo[ktKey];
 
-			if (existingTlInfo && 
-				
+			if (
+				existingTlInfo &&
 				existingTlInfo.text === text &&
 				existingTlInfo.value === val &&
-				existingTlInfo.individualDifference === idvDiff) {
-					continue;
-				}
+				existingTlInfo.individualDifference === idvDiff
+			) {
+				continue;
+			}
 
-				updatedChartIDs.push(chart.chartID);
+			updatedChartIDs.push(chart.chartID);
 
 			await db.charts.iidx.update(
 				{
@@ -194,7 +195,7 @@ async function FetchSP12Data() {
 
 	if (updatedChartIDs.length !== 0) {
 		logger.info(`Finished applying SP12 changes. Recalcing.`);
-		logger.info("These changes will be backsynced by a separate script.")
+		logger.info("These changes will be backsynced by a separate script.");
 
 		logger.info(`Recalcing scores.`);
 		await RecalcAllScores({
@@ -204,7 +205,11 @@ async function FetchSP12Data() {
 
 		logger.info(`Finished recalcing scores.`);
 
-		await BacksyncCollectionToBothBranches("charts-iidx", db.charts.iidx, "Update SP12 Tierlist");
+		await BacksyncCollectionToBothBranches(
+			"charts-iidx",
+			db.charts.iidx,
+			"Update SP12 Tierlist"
+		);
 	}
 
 	process.exit(0);

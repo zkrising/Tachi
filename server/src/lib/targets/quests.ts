@@ -61,30 +61,7 @@ export async function GetGoalsInQuest(quest: QuestDocument) {
 export function CalculateQuestOutOf(quest: QuestDocument) {
 	const goalIDs = GetGoalIDsFromQuest(quest);
 
-	switch (quest.criteria.type) {
-		case "all":
-			return goalIDs.length;
-		case "total": {
-			// It's not possible according to the types, but I want to check it anyway.
-			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-			if (quest.criteria.value === null) {
-				throw new Error(
-					`Invalid quest ${quest.questID} - total and null are not compatible.`
-				);
-			}
-
-			return quest.criteria.value;
-		}
-
-		default:
-			// Typescript annoyingly complains that quest.criteria is of type never now.
-			// it's right! but if we get here, I want to log the error somehow.
-			throw new Error(
-				`Invalid quest.criteria.type of ${
-					(quest.criteria as QuestDocument["criteria"]).type
-				} -- questID ${quest.questID}`
-			);
-	}
+	return goalIDs.length;
 }
 
 type EvaluatedGoalResult = EvaluatedGoalReturn & { goalID: string };

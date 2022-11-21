@@ -63,9 +63,6 @@ export default function AddNewQuestModal({
 									playtype,
 									name: "Untitled Quest",
 									desc: "Please set a description.",
-									criteria: {
-										type: "all",
-									},
 									rawQuestData: [],
 								});
 							}}

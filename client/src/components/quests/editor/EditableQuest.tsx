@@ -1,16 +1,15 @@
 import { ChangeAtPosition, DeleteInPosition } from "util/misc";
 import Card from "components/layout/page/Card";
-import CheckEdit from "components/util/CheckEdit";
+import AddNewGoalForQuestModal from "components/targets/AddNewGoalForQuestModal";
 import Divider from "components/util/Divider";
 import EditableText from "components/util/EditableText";
 import Icon from "components/util/Icon";
 import Muted from "components/util/Muted";
-import React, { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
 import { FormatGame } from "tachi-common";
-import { RawQuestDocument, RawQuestGoal, RawQuestSection } from "types/tachi";
-import AddNewGoalForQuestModal from "components/targets/AddNewGoalForQuestModal";
 import { GamePT } from "types/react";
+import { RawQuestDocument, RawQuestGoal, RawQuestSection } from "types/tachi";
 
 export default function EditableQuest({
 	quest,
@@ -69,17 +68,6 @@ export default function EditableQuest({
 				</div>
 			}
 		>
-			<h4>Quest Requirements</h4>
-			<QuestCriteriaEditor
-				criteria={quest.criteria}
-				onChange={(criteria) =>
-					onChange({
-						...quest,
-						criteria,
-					})
-				}
-			/>
-			<Divider />
 			{quest.rawQuestData.map((e, i) => (
 				<React.Fragment key={i}>
 					<QuestSection
@@ -304,50 +292,5 @@ function InnerQuestSectionGoal({
 				/>
 			)}
 		</li>
-	);
-}
-
-function QuestCriteriaEditor({
-	criteria,
-	onChange,
-}: {
-	criteria: RawQuestDocument["criteria"];
-	onChange: (crit: RawQuestDocument["criteria"]) => void;
-}) {
-	const [value, setValue] = useState(0);
-
-	useEffect(() => {
-		if (criteria.type === "total") {
-			onChange({ type: "total", value });
-		}
-	}, [value]);
-
-	return (
-		<>
-			This quest is achieved when a user...
-			<CheckEdit
-				type="all"
-				currentType={criteria.type}
-				onChange={() => onChange({ type: "all" })}
-			>
-				Clears all goals in this quest
-			</CheckEdit>
-			<CheckEdit
-				type="total"
-				currentType={criteria.type}
-				onChange={() => onChange({ type: "total", value })}
-			>
-				Clears{" "}
-				<Form.Control
-					style={{ display: "inline", width: "unset" }}
-					className="mx-2"
-					onChange={(e) => setValue(Number(e.target.value))}
-					type="number"
-					min={0}
-					value={value}
-				/>{" "}
-				{value === 1 ? "goal" : "goals"} in this quest
-			</CheckEdit>
-		</>
 	);
 }

@@ -5,14 +5,59 @@ import AddNewQuestModal from "components/targets/AddNewQuestModal";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import { TachiConfig } from "lib/config";
-import p from "prudence";
+import p, { PrudenceSchema } from "prudence";
 import React, { useEffect, useState } from "react";
-import { Button, Col, Row } from "react-bootstrap";
-import { GetGameConfig } from "tachi-common";
+import { Alert, Button, Col, Form, Modal, Row } from "react-bootstrap";
+import { FormatPrError, GetGameConfig } from "tachi-common";
 import { PR_GOAL_SCHEMA } from "tachi-common/lib/schemas";
 import { RawQuestDocument } from "types/tachi";
+import { SetState } from "types/react";
 
 const LOCAL_QUEST_KEY = "LOCAL_QUESTS";
+
+const PR_LOCAL_QUESTS_SCHEMA: PrudenceSchema = {
+	json: [
+		{
+			game: p.isIn(TachiConfig.games),
+			playtype: (self, parent) => {
+				const gameConfig = GetGameConfig(parent.game as any);
+
+				if (!gameConfig.validPlaytypes.includes(self)) {
+					return `Invalid playtype '${self}' for ${parent.game}`;
+				}
+
+				return true;
+			},
+			name: "string",
+			desc: "string",
+			criteria: p.or(
+				{
+					type: p.is("all"),
+				},
+				{
+					type: p.is("total"),
+					value: p.isPositiveInteger,
+				}
+			),
+			rawQuestData: [
+				{
+					title: "string",
+					desc: p.optional("string"),
+					rawGoals: [
+						{
+							goal: {
+								name: "string",
+								charts: PR_GOAL_SCHEMA.charts,
+								criteria: PR_GOAL_SCHEMA.criteria,
+							},
+							note: p.optional("string"),
+						},
+					],
+				},
+			],
+		},
+	],
+};
 
 function GetLocalQuests(): Array<RawQuestDocument> {
 	try {
@@ -25,52 +70,7 @@ function GetLocalQuests(): Array<RawQuestDocument> {
 		const json = JSON.parse(data);
 
 		// check that this data is what it seems
-		const err = p(
-			{ json },
-			{
-				json: [
-					{
-						game: p.isIn(TachiConfig.games),
-						playtype: (self, parent) => {
-							const gameConfig = GetGameConfig(parent.game as any);
-
-							if (!gameConfig.validPlaytypes.includes(self)) {
-								return `Invalid playtype '${self}' for ${parent.game}`;
-							}
-
-							return true;
-						},
-						name: "string",
-						desc: "string",
-						criteria: p.or(
-							{
-								type: p.is("all"),
-							},
-							{
-								type: p.is("total"),
-								value: p.isPositiveInteger,
-							}
-						),
-						rawQuestData: [
-							{
-								title: "string",
-								desc: p.optional("string"),
-								rawGoals: [
-									{
-										goal: {
-											name: "string",
-											charts: PR_GOAL_SCHEMA.charts,
-											criteria: PR_GOAL_SCHEMA.criteria,
-										},
-										note: p.optional("string"),
-									},
-								],
-							},
-						],
-					},
-				],
-			}
-		);
+		const err = p({ json }, PR_LOCAL_QUESTS_SCHEMA);
 
 		if (err) {
 			const e = confirm(
@@ -95,6 +95,7 @@ export default function QuestEditor() {
 
 	const [quests, setQuests] = useState(GetLocalQuests());
 	const [show, setShow] = useState(false);
+	const [showImport, setShowImport] = useState(false);
 
 	useEffect(() => {
 		window.localStorage.setItem(LOCAL_QUEST_KEY, JSON.stringify(quests));
@@ -111,6 +112,28 @@ export default function QuestEditor() {
 					These can be saved to a <code>.json</code> file, and sent to an admin to be
 					considered for inclusion on the site!
 				</span>
+				<Divider />
+			</Col>
+
+			<Col xs={12}>
+				<div className="d-flex w-100 justify-content-center">
+					{quests.length > 0 && (
+						<a
+							className="btn btn-success mr-4"
+							download={`Quests-${Date.now()}.json`}
+							href={`data:text/plain;base64,${window.btoa(JSON.stringify(quests))}`}
+						>
+							Download Quests
+						</a>
+					)}
+					<div className="btn btn-info" onClick={() => setShowImport(true)}>
+						Import Quests
+					</div>
+				</div>
+				<div className="mt-4">
+					If you want these quests to be added to the site, make a post about your quests
+					in the discord!
+				</div>
 				<Divider />
 			</Col>
 			{quests.map((quest, i) => (
@@ -141,6 +164,83 @@ export default function QuestEditor() {
 				setShow={setShow}
 				onCreate={(rawQuest) => setQuests([...quests, rawQuest])}
 			/>
+			{showImport && (
+				<ImportQuestsModal
+					show={showImport}
+					setShow={setShowImport}
+					onChange={(newData) => setQuests(newData)}
+				/>
+			)}
 		</Row>
+	);
+}
+
+function ImportQuestsModal({
+	show,
+	setShow,
+	onChange,
+}: {
+	show: boolean;
+	setShow: SetState<boolean>;
+	onChange: (data: Array<RawQuestDocument>) => void;
+}) {
+	const [err, setErr] = useState<string | null>(null);
+
+	return (
+		<Modal size="xl" show={show} onHide={() => setShow(false)}>
+			<Modal.Header closeButton>
+				<Modal.Title>
+					Import <code>quests.json</code>
+				</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>
+				<Row>
+					<Col xs={12}>
+						<Alert variant="warning">
+							Uploading existing quests will replace whatever you're currently working
+							on! Make sure you've saved your existing work!
+						</Alert>
+					</Col>
+					<Col xs={12}>
+						<Form.Group>
+							<Form.Label>
+								Upload <code>quests.json</code> File
+							</Form.Label>
+							<input
+								className="form-control"
+								accept="application/json"
+								type="file"
+								multiple={false}
+								onChange={async (e) => {
+									try {
+										const file: File = e.target.files![0];
+
+										const contents = JSON.parse(await file.text());
+
+										const err = p({ json: contents }, PR_LOCAL_QUESTS_SCHEMA);
+
+										if (err) {
+											throw new Error(FormatPrError(err));
+										}
+
+										onChange(contents as RawQuestDocument[]);
+
+										setShow(false);
+									} catch (e) {
+										const err = e as Error;
+										setErr(err.message);
+									}
+								}}
+							/>
+						</Form.Group>
+					</Col>
+					{err && (
+						<Col xs={12}>
+							<span className="text-danger">Invalid file: {err}</span>
+						</Col>
+					)}
+				</Row>
+			</Modal.Body>
+		</Modal>
 	);
 }

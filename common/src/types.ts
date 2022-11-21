@@ -630,26 +630,10 @@ interface QuestSection {
 export interface QuestDocument extends MongoDBDocument {
 	game: Game;
 	playtype: Playtype;
-
-	/**
-	 * all: All goals must be achieved in order for the quest to be complete
-	 * abs: Goals achieved must be greater than or equal to criteria.value.
-	 * proportion: Goals achieved must be greater than or equal to criteria.value * total_goals.
-	 */
-	criteria: QuestAbsPropCriteria | QuestAllCriteria;
 	name: string;
 	desc: string;
 	questData: Array<QuestSection>;
 	questID: string;
-}
-
-interface QuestAllCriteria {
-	type: "all";
-}
-
-interface QuestAbsPropCriteria {
-	type: "total";
-	value: number;
 }
 
 export interface QuestlineDocument extends MongoDBDocument {

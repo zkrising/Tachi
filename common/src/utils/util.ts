@@ -143,7 +143,9 @@ export function FormatChart(
 	// this is a hack, this should be part of the gptConfig, tbh.
 	let space = "";
 
-	if (game !== "iidx" && gameConfig.validPlaytypes.length > 1 && !short) {
+	if (game === "iidx" && short) {
+		space = "";
+	} else {
 		space = " ";
 	}
 

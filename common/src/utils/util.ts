@@ -141,7 +141,11 @@ export function FormatChart(
 
 	// iidx formats things like SPA instead of SP A.
 	// this is a hack, this should be part of the gptConfig, tbh.
-	const space = !short || game !== "iidx" ? " " : "";
+	let space = "";
+
+	if (game !== "iidx" && gameConfig.validPlaytypes.length > 1 && !short) {
+		space = " ";
+	}
 
 	// return the most recent version this chart appeared in if it
 	// is not primary.

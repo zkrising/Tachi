@@ -206,8 +206,12 @@ function CriteriaModePicker({
 	charts: GoalDocument["charts"];
 	onChange: (value: GoalDocument["criteria"]["mode"], countNum?: number) => void;
 } & GamePT) {
-	const [absCountNum, setAbsCountNum] = useState(10);
-	const [perCountNum, setPerCountNum] = useState(10);
+	const [absCountNum, setAbsCountNum] = useState(
+		criteria.mode === "absolute" ? criteria.countNum : 10
+	);
+	const [perCountNum, setPerCountNum] = useState(
+		criteria.mode === "proportion" ? criteria.countNum * 100 : 10
+	);
 
 	useEffect(() => {
 		if (criteria.mode === "proportion") {

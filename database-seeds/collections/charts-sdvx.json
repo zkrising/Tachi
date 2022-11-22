@@ -118107,24 +118107,6 @@
 		]
 	},
 	{
-		"chartID": "7be164cf647f17e845427fdbc394631599b626bf",
-		"data": {
-			"arcChartID": "EF3nkXFTqhM",
-			"inGameID": 1491
-		},
-		"difficulty": "ADV",
-		"isPrimary": true,
-		"level": "11",
-		"levelNum": 11,
-		"playtype": "Single",
-		"rgcID": null,
-		"songID": 1491,
-		"tierlistInfo": {},
-		"versions": [
-			"vivid"
-		]
-	},
-	{
 		"chartID": "0f17c7f4cfb5e67f1a2ac0525882d80a2840b57f",
 		"data": {
 			"arcChartID": "FQpLTAnmdRg",

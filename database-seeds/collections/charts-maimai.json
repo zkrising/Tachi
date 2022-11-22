@@ -32490,25 +32490,6 @@
 		]
 	},
 	{
-		"chartID": "14f8eb090ee809b8bdba5a57d0290f38e457be63",
-		"data": {
-			"inGameID": 504,
-			"inGameStrID": "friendshitai",
-			"maxPercent": 100.58524173027989
-		},
-		"difficulty": "Re:Master",
-		"isPrimary": true,
-		"level": "11.5",
-		"levelNum": 11.5,
-		"playtype": "Single",
-		"rgcID": null,
-		"songID": 504,
-		"tierlistInfo": {},
-		"versions": [
-			"finale"
-		]
-	},
-	{
 		"chartID": "c74d2643750fbbcf30bffa01074f6ab3a8172ef2",
 		"data": {
 			"inGameID": 505,

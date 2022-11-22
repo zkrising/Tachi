@@ -353,7 +353,6 @@ export type Ratings = Record<Game, Record<Playtype, number>>;
 export interface BaseGoalDocument extends MongoDBDocument {
 	game: Game;
 	playtype: Playtype;
-	timeAdded: integer;
 	name: string;
 	goalID: string;
 	criteria: GoalCountCriteria | GoalSingleCriteria;
@@ -623,7 +622,7 @@ interface QuestGoalReference {
 
 interface QuestSection {
 	title: string;
-	desc: string;
+	desc?: string;
 	goals: Array<QuestGoalReference>;
 }
 

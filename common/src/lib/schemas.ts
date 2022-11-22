@@ -455,8 +455,7 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 export const PR_GOAL_SCHEMA = {
 	game: p.isIn(games),
 	playtype: isValidPlaytype,
-	timeAdded: p.isPositive,
-	title: "string",
+	name: "string",
 	goalID: "string",
 	criteria: p.or(
 		{
@@ -644,12 +643,10 @@ const PRE_SCHEMAS = {
 		name: "string",
 		desc: "string",
 		questID: "string",
-		group: "?string",
-		groupINdex: p.nullable(p.isInteger),
 		questData: [
 			{
 				title: "string",
-				desc: "string",
+				desc: "*string",
 				goals: [{ goalID: "string", note: "*string" }],
 			},
 		],

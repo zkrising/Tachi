@@ -1,1 +1,2112 @@
-[]
+[
+	{
+		"charts": {
+			"data": "66b41c0e8f23758bd7191f6e03db3ad318b698b9",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G76c0bbc3a0fe6317ca7df70dc434019649e2688b8ea837b53ab2746c50a9e6f9",
+		"name": "HARD CLEAR Feel The Beat (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "3532382e64eaa40afb7921aa61c95bbe30fc06f1",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "iidx",
+		"goalID": "G791f6d82168c328f1cc2e2969259395a5ef45e5e3a5b707741a1f4daa51b624e",
+		"name": "EX HARD CLEAR 子供の落書き帳 (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "ead53d880162aff2a9005f9cab6baba8a7fcc5d6",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G619aa77d55ea4bcc640f417c89dcececf2b27cffa668bbc3c426ca3ca7c08fd9",
+		"name": "HARD CLEAR TITANS RETURN (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": [
+				"b76eea63de2a01fd7a1a9b6d08251a006387ea8f",
+				"54c09f84b1910128ca1adc2b20f44617c54d13f4"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "Ge3dfee446e5a637cec50289cb155491867169d160df111f216c3d3c5b83983c8",
+		"name": "CLEAR either 灼熱Beach Side Bunny (SP ANOTHER 12) or 灼熱 Pt.2 Long Train Running (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "b08a82f6f2c3f1dc086507060da5c6aa52fbdbb4",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "Gcc568ff893af52f198a9a44923935316a2493a860f490daabd1f2d04b73fa611",
+		"name": "HARD CLEAR Timepiece phase II (CN Ver.) (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "0e1fbd5bfe34351cb8c4869eddebc34241ec4546",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G7b1d40f6c387b9b7f9e526be5dda00eb58e6ed3d460199a2e45b8c2c38b8e028",
+		"name": "AAA AA (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "ee20096270986182b3741f3c4167d106ed6b74c5",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.percent",
+			"mode": "single",
+			"value": 98
+		},
+		"game": "iidx",
+		"goalID": "Gc8810aee9f6a72665481caf696bc2ac4d8e18ecead4c5f7578cb42afb969a1d5",
+		"name": "Get 98% on Fly Above (SP ANOTHER 8)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "293679f8eb416ddaefff758e4b9b72cb580afd47",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.percent",
+			"mode": "single",
+			"value": 98
+		},
+		"game": "iidx",
+		"goalID": "G5deff029c3b74dda741fc9f1ca4b31b73fa4fab545e9da42b856a233753213d8",
+		"name": "Get 98% on the trigger of innocence (SP ANOTHER 9)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "751e03fdb173415dea50f56694e999ee86b9a28b",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.percent",
+			"mode": "single",
+			"value": 98
+		},
+		"game": "iidx",
+		"goalID": "G1022f0dd6ea1431dda59337a7de9fdec00299064c0ca64f8f12aab7a99448b17",
+		"name": "Get 98% on CROSSROAD ～Left Story～ (SP ANOTHER 10)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "aa3999bf49c4e3f24f66b1e0d79f9120fc4cb61c",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 8
+		},
+		"game": "iidx",
+		"goalID": "G1b3c51e5777c2b03d2217d905692cb3f9f56ba44b49737942cddaae423d6eeb0",
+		"name": "MAX- mosaic (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "e9e7b62210fae1aff51a485fd971968e846c5ccd",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G48b37635cef52936fca85eb2b67de9f59e6d2acdae03c3c3d25b56baf18339f5",
+		"name": "AAA Happy Wedding (SP ANOTHER 8)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "1dce504149aed886a1e3de31a27fe7df277dae9b",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 8
+		},
+		"game": "iidx",
+		"goalID": "G003f2d03f54c43e569459e4b7c669ba1b221970c77be995c66d2a2e0757278f8",
+		"name": "MAX- SHADE (SP ANOTHER 11)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.8,
+			"key": "scoreData.lampIndex",
+			"mode": "proportion",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G6e20c550080d65cff94a78b7a3543eebb3bb6d2cb3822a67da7a167f92098057",
+		"name": "HARD CLEAR 80% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.15,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "Gf3afc4929a494d103185095f7f9bb2853b9c20ea4de66bf3921da63e5b830712",
+		"name": "AAA 15% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "5f94fe9c3bdc18c440e7ba2dff824adaa2c9d3a9",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "G309ba94b9ef699c805703bcc1852e5662bc9cc30997f8cc8736c6e436820be5a",
+		"name": "CLEAR Chrono Diver -PENDULUMs- (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "5a8a6b9304857b2c4316ae5903fc60bfb8369270",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G08ec759ebc5f9559d3ad5a1d8e1c0079b38f40fdd46828ba93e4e9d3db1ba0fa",
+		"name": "HARD CLEAR Verflucht (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "fac63d4c66de9207490de8477161c0f7020ab04d",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "G75f05f32f219df7fd185c5042bb3ea5b7ad20e2f45399fa089674a96a210de11",
+		"name": "CLEAR ECHIDNA (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "0d10ce53e74bb3123bec65ad80bc55ebf15522c2",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G3c17272dc2855aa5ea0e0ee96bdcae1d3c940c33d6dc5cc78c78dba5ddd0622d",
+		"name": "HARD CLEAR Ganymede (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "cff493858721bb0bfc31ffcd27110f52fc67027a",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "G6cf560b08e8cd998b81de772b7ae013e8f5be079528db1fd1762c785d3a6f837",
+		"name": "CLEAR Time to Air (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "11c2e365f1c8b4b260a8b2042b656287ddff9ce3",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "Gc6a8310d512c3c0a2f56e5039350a903d2d29bc866f6c0878194f57fdec37468",
+		"name": "CLEAR Lords Of The Roundtable (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "4771e0a786f920a026227248e7baa5a4664e37b9",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G3eedf757708ac87215081499949a4bea21ed18ed0f878ca3d85dcef2234b1d60",
+		"name": "AAA snow storm (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "5e3dda64f5ab8c00855428695d6c4980818d9c8a",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G36a982fb3b53103e00000d5ae72cd968eb9b94f267e34d7fcf54abdd8ee31cfd",
+		"name": "AAA カゴノトリ～弐式～ (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "72f09e8bf2501d9e0e79e4ad033ae05684d7e6a1",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G16f38b156d78627a574d00ed8720a21bcac5d6ddd235b802e2588903ad75ce07",
+		"name": "AAA (This Is Not) The Angels (SP ANOTHER 11)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "7b1dea115384791aebc0217eb54e3a50a0f16c50",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G4a0d00f6ddb7491c0115a10411eba6a5019d3fe69c459f566a44fc0722ccddba",
+		"name": "AAA quasar (SP ANOTHER 11)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "906c67a8d37dea58b9163a020a505dc1ae877d88",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 8
+		},
+		"game": "iidx",
+		"goalID": "G35f07fcdaa2da151fc84cfaa9191f7eba8fc148e99d986f8becd937b22461478",
+		"name": "MAX- Sakura Reflection (SP ANOTHER 11)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "cd5b930ea606a039e65ef9ad91bc014d3d2004d9",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.percent",
+			"mode": "single",
+			"value": 96
+		},
+		"game": "iidx",
+		"goalID": "G2762543ba7088eff22a3b1ff6d355a02400425ac33dc82b09b687a2e2b3c33bc",
+		"name": "Get 96% on Wanna Party? (SP ANOTHER 8)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.7,
+			"key": "scoreData.lampIndex",
+			"mode": "proportion",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G29320115c04f85df9a57c16d6919b3c4d2478611348dd70a03976443ca98d4dd",
+		"name": "HARD CLEAR 70% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.05,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G104639bcdc79b84e6f198cd34cc1719d4e1b35b548a920d6312efdf8f8b88806",
+		"name": "AAA 5% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F7aaf1fe3b7bc5a346106a596e67ae2c86462c671d11c7f1db1422d8e7a421735",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.1,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G35f9e219fdf60668867508b928f48cd147ba5f5f04097bf9bf0d70993a9971fb",
+		"name": "AAA 10% of the charts in the Level 11 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "924bf011fdd8334b609b02e382123f9f5440d16d",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 3
+		},
+		"game": "iidx",
+		"goalID": "Gbacd149fd5b031dd229e87cc686ff3dccbaa6e7aad5821190aa97a4193ddfc31",
+		"name": "EASY CLEAR Mare Nectaris (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "8afd1828f839cb76d6ca05f39cdfd8ff81ae4291",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "Gba5ad7f9d804d759b0b859c2c48769abe02539c0884c21916633ea2bf6c06c5a",
+		"name": "CLEAR SAMURAI-Scramble (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "3207f18df11e80fba6d8dffd974d244870818add",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G04a620fa063f9532158db346190c943e6ac17564872f8a1b3451f100cd35f637",
+		"name": "HARD CLEAR 疾風迅雷 (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "941ea3ea41ca712be3298546f7d1ed2dfff6daee",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G928b54946d75193a1db4a561009b5a3ab7129121c347efbbea85f100094bcdd2",
+		"name": "HARD CLEAR Verflucht (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "e826dec4285f65c5fcdb2c1af11bc721cc8664eb",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "iidx",
+		"goalID": "G10f34f70a30353e7eb541e01b9667983465d78d26b0a199bf6cef9acf2374e74",
+		"name": "EX HARD CLEAR お菓子の王国 (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "30132aa340a50383128522eece24b86eb3c64c47",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G213bc0e8ac3417d2ef07b965ef099abbefa04fe413b33bda52bbc50448144cda",
+		"name": "AAA BITTER CHOCOLATE STRIKER (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "cea0eadee4ae414d91360c88f2c69c1b0e6f6681",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 8
+		},
+		"game": "iidx",
+		"goalID": "G65fd49da69245f2042f415770dbdfab2b0e4821221bb75ac9df97f507e8b1f08",
+		"name": "MAX- 千年ノ理 (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "38bd9ce59428447155842131b331a73bef16947a",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G49eaff99d808df0ce1c2ab84833e8ddb128f8f8c438ab54ad779ea9208aa2a3f",
+		"name": "AAA Blue Rain (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "f98b2075a9ecb1b6b1962718cfd508dc99b180c4",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G17f8d5932be1dc5a16beca10ec79693be87bacf4c42b01f7630ca7094ff683d8",
+		"name": "AAA Rave Cannon (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "50e49f508e3001c8d384a8b9c6a6f4e197964117",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G9b422b6264f23a43e14f58977ac26ab30feb42d22bf07641d618bfeb546092c1",
+		"name": "AAA naughty girl@Queen's Palace (SP ANOTHER 11)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "9683f55a11e42a5aa5475376814f5d3f2d2c4a28",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G1cb8a9d389dd5f0aaa7d52abb0d59121a94a565bb4ce412e8338909344f8fd79",
+		"name": "AAA L.F.O (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "7b1dea115384791aebc0217eb54e3a50a0f16c50",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 8
+		},
+		"game": "iidx",
+		"goalID": "G193426e3a621f4768504bb100e00ed684e00ddceb169799bb440c1f5dd80f820",
+		"name": "MAX- quasar (SP ANOTHER 11)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "77da55f73956c4ddb3029260648062d57edea6f1",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.percent",
+			"mode": "single",
+			"value": 99
+		},
+		"game": "iidx",
+		"goalID": "G95f683e538a1b4aa121752a55c2553a74bd30c2a06aa2d1331419f0a9a51f42a",
+		"name": "Get 99% on Sleepless days (SP ANOTHER 9)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "0781ab04ceaaa5bcd436322832af46684ddb305f",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "Gbe5d4b3e05f185b18773d276e075ba4718eb02eb2a0b73f09ab71d3fd6c1358b",
+		"name": "AAA Ganymede (SP ANOTHER 11)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 1,
+			"key": "scoreData.lampIndex",
+			"mode": "proportion",
+			"value": 3
+		},
+		"game": "iidx",
+		"goalID": "G4ed65a10684bc8281e30d72ebbfb31e0683972771778566a348ee4ddf59d1612",
+		"name": "EASY CLEAR 100% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.3,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "Ge525b8f85b5da68c09b75f58b0ab104b86c60b1f404604def89f67b52aa2a07d",
+		"name": "AAA 30% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "0b60c515b4b222d0684d4b956c1aa409db0baada",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "iidx",
+		"goalID": "G583ebbb166ada040a5ab26118d95b6d14965b10223862cc22feb18987ec3e417",
+		"name": "EX HARD CLEAR VANESSA (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "8b72cb6971dc27ed793de77e53f48234f1d1bfe7",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "iidx",
+		"goalID": "Gdf49bf791333551b698792802ae6f082dc2f2e9b8c9516e307f4f6221b0392d0",
+		"name": "EX HARD CLEAR 共鳴遊戯の華 (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "eedbf725a86ae88dcdb95db92739783bb88facb7",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "iidx",
+		"goalID": "G2f0429b33a981444cda23580a06be1f43e2136e91956ab226948d88520a80ff1",
+		"name": "EX HARD CLEAR Sigmund (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "924bf011fdd8334b609b02e382123f9f5440d16d",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G5509b5a81cefdc3e5e1f61738fd9fa4c1b02cb3eb4d974c707b7d1252a4113ad",
+		"name": "HARD CLEAR Mare Nectaris (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "b40b86ed92909dacbe3f7ecb21e92ea4d1e76c60",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G985b9802ff3b6a0d670ad92de7db3f5ac44f8f56ab5654ba79efb1f5f54fb2fc",
+		"name": "HARD CLEAR 冥 (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "626bab7cbee43b78846fa7742df3a4599e0926ce",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "Ge4b62ba8b2896c00fce77bf29ed756bf52188add5fa2bc3b0426db061a29a6c4",
+		"name": "HARD CLEAR ICARUS (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "e064e485f02479fe47bb16ff5a347ef21ae1ff3a",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G2903acfccb8f099626342e58cbf0e212aea83e0ac87c6ba8e38fdc265d2829c9",
+		"name": "AAA Red. by Full Metal Jacket (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "a350b9499abd6ba8e377419bad41c79e7a351950",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 8
+		},
+		"game": "iidx",
+		"goalID": "G3f8689001f29d808a1611c35462f62f661337b24c89443c5a92d038e479a1e68",
+		"name": "MAX- Summerlights(IIDX Edition) (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "5e3b344a6e268cd02949ea2485e96c26020e3018",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G421d5e17fd9bc4980b2e493ad2ac61e06cbea80e0fe96875bcfc508b1e3bd8a4",
+		"name": "AAA Ancient Scapes (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "6930092efae33d9f38c81c16382d1a9e99df7ac7",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G891d47c9a01ca7aac100f2a0fb74661138d0e2cfbfa7ba0da037d59b6e035a33",
+		"name": "AAA Elemental Creation (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "e93419a7db180a68db29dd3614c7aa3fd1d274ab",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 8
+		},
+		"game": "iidx",
+		"goalID": "G223f55faaf36ba721074e2b3375519562a9f8470b975324c996077a5755875d8",
+		"name": "MAX- spiral galaxy (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "93a083bf32cc05675a5b2a7fd5bdda5c8ccd7c92",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "Ga80d64b4b8cc748984f3d65f83cc8334711c47443e2abba1ea59270decdd8ab1",
+		"name": "AAA Dances with Snow Fairies (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "0e1fbd5bfe34351cb8c4869eddebc34241ec4546",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 8
+		},
+		"game": "iidx",
+		"goalID": "G17a6da212d87a3cf87efc46dd25a821ee301663172ac9e91142f5671908f377b",
+		"name": "MAX- AA (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "751e03fdb173415dea50f56694e999ee86b9a28b",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.percent",
+			"mode": "single",
+			"value": 99
+		},
+		"game": "iidx",
+		"goalID": "G3a7d606ae07db1088c19a9c70bcc8d5fe4506fd0de0ddbe694f22cb436f8d9b9",
+		"name": "Get 99% on CROSSROAD ～Left Story～ (SP ANOTHER 10)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "aba1ba5d09a6e00670cb6c13862838b95fc314bb",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.percent",
+			"mode": "single",
+			"value": 97
+		},
+		"game": "iidx",
+		"goalID": "G723c0e84bc15714335c9582dd3e7821842a89ea5f90bff055daf2a20fbbfc539",
+		"name": "Get 97% on Wanna Party? (SP LEGGENDARIA 11)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 1,
+			"key": "scoreData.lampIndex",
+			"mode": "proportion",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "Gcb184f515f8bd6b20eae7eef38efe72f09d43ec1cceebbd42ac7c37d1f766fbd",
+		"name": "HARD CLEAR 100% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.7,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G5bd7588891bccd9d03bc5f76b894316a2605a4ea32f769b1a7df35f5fdddd4e1",
+		"name": "AAA 70% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.15,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 8
+		},
+		"game": "iidx",
+		"goalID": "G3c1543f42198284cddab993ed3e89613a5e5a9545b54714829913114ecfb03b5",
+		"name": "MAX- 15% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "8a6c7c48659f0e929a3087b63e43bcee98a84305",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "iidx",
+		"goalID": "G0dd0a061b24cf543792bc6df8e072f57171a32511ac95871610f2a4aae025808",
+		"name": "EX HARD CLEAR X-DEN (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "924bf011fdd8334b609b02e382123f9f5440d16d",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "iidx",
+		"goalID": "G0ea1a66e8af507c52370a9a23b2e31a8b92e9094d87b24a13e3d0349af105e84",
+		"name": "EX HARD CLEAR Mare Nectaris (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "b40b86ed92909dacbe3f7ecb21e92ea4d1e76c60",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "iidx",
+		"goalID": "Gc1741e461b755d34e9c95e0ffb07f58404fd40926015c43e3b9eda2cdd70d252",
+		"name": "EX HARD CLEAR 冥 (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "626bab7cbee43b78846fa7742df3a4599e0926ce",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "iidx",
+		"goalID": "Gf22db09848edccdf484a8e7bc86414cdbf36e78004fb1fffe88ffe5ad10165e8",
+		"name": "EX HARD CLEAR ICARUS (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "a19082dc0aa2089b79926566019abc4c76028d89",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "Gbe7c8b7de120c68ecc4ad62ab616a7f73ad2fde574308d125a728c57680d3b3e",
+		"name": "FULL COMBO KAMAITACHI (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "b40b86ed92909dacbe3f7ecb21e92ea4d1e76c60",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.score",
+			"mode": "single",
+			"value": 3700
+		},
+		"game": "iidx",
+		"goalID": "Gde38896c606b0585e96ff21616e0a4bfadc338acf554e618d41f9a9fc33e57e4",
+		"name": "Get a score of 3,700 on 冥 (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "0e1fbd5bfe34351cb8c4869eddebc34241ec4546",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.score",
+			"mode": "single",
+			"value": 3600
+		},
+		"game": "iidx",
+		"goalID": "Gd6e61546b5957a2dddd8a67cab0f8fd81bd58e2c1a0c4580052a470821a73257",
+		"name": "Get a score of 3,600 on AA (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "b76eea63de2a01fd7a1a9b6d08251a006387ea8f",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G140d69d5f063f5c1374a89b9a2cfc230f71a4f2aac2bff34186346f89c8d4d06",
+		"name": "AAA 灼熱Beach Side Bunny (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": [
+				"b36b423792e515bd7f8d10d4bdbcf65f2a3d9451",
+				"273f633c0ace2c34bd29e19738cd076be031da8e"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "Gf5efcedc1ff4074ac7f250144ce48408beb61033baf7543f144df52ad40df2a4",
+		"name": "AAA either Thor's Hammer (SP ANOTHER 12) or DIAVOLO (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 1,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "Gac6fee7c3554f11dd40725889969648b1a26a014022c7ba52b9e34e717ba0195",
+		"name": "AAA 100% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.7,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 8
+		},
+		"game": "iidx",
+		"goalID": "G12beea1bc937115e33631e8eb71acd6926dac4b04325cf3da9115062302464f6",
+		"name": "MAX- 70% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "3b8ddcfffd0fc5abb76f0372a006abdc4a99e02e",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "iidx",
+		"goalID": "Gd770c9c0687473c3fca80f6f8f1c435e683dba30ea7f95770b6c5e53d92ff8bd",
+		"name": "EX HARD CLEAR 卑弥呼 (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "941ea3ea41ca712be3298546f7d1ed2dfff6daee",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "iidx",
+		"goalID": "G73b8d71a7b5e60f846e58af8393b6d1919240ce314894663d13415bbc43b59e4",
+		"name": "EX HARD CLEAR Verflucht (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "b76eea63de2a01fd7a1a9b6d08251a006387ea8f",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "iidx",
+		"goalID": "G53d98a6a8599562e877a14c063f6d30b58e2c5688651a738cde4c45dbbebb579",
+		"name": "EX HARD CLEAR 灼熱Beach Side Bunny (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "3207f18df11e80fba6d8dffd974d244870818add",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "iidx",
+		"goalID": "G220c1d0061f79a8b00fc173b2225f2005e754868d4de55f5d94db29692909fc8",
+		"name": "EX HARD CLEAR 疾風迅雷 (SP LEGGENDARIA 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "b40b86ed92909dacbe3f7ecb21e92ea4d1e76c60",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G1ed429454468835596b0a19fb69fcd5a7d12437672e05966d7a6c44db24517e0",
+		"name": "AAA 冥 (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "22d9639b9b72406779bfa9912f43630e59a469de",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 8
+		},
+		"game": "iidx",
+		"goalID": "G53f3e650dbba5580c114e2a48042171e91c60c0a8b7b98e7a1af8bb5ae046da6",
+		"name": "MAX- BLACK.by X-Cross Fade (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "018c7e303fe582d5cfebad605c7461d73d46a2b0",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.percent",
+			"mode": "single",
+			"value": 98
+		},
+		"game": "iidx",
+		"goalID": "Ga228c6b215dcf91af11ee4710e96e105387e29cf5e1990cd9e94a1b1bccfca6a",
+		"name": "Get 98% on LIGHTNING STRIKES (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "fec79942d6aed43d525ee9c4027394f8762ac441",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 8
+		},
+		"game": "iidx",
+		"goalID": "G8ac206ea81144d524a1e5c33e3e552beb7471b194f3308e47bbcd09e13cc5c6b",
+		"name": "MAX- Initiation (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.95,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G16de948ebb0c125d575cafc03f2a1cf66389edfe21a756a018162c5985edc51c",
+		"name": "AAA 95% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.4,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 8
+		},
+		"game": "iidx",
+		"goalID": "G542b3aa58ca288f20a3cb56ab70b8c39936c3cbb841b77a89437184c30531fdb",
+		"name": "MAX- 40% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "6d0d36165f67eac018700ac922cdc3fa0ab0fc1c",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "Gc36cd646ca44e072738eda25a9bd5dfaa96646ca7502f2f3b311beb37e81c2b6",
+		"name": "HARD CLEAR Bad Maniacs (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "9d273085a9b4612817998c4cd280f57c7f9bae10",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G6cd32322170187ad657685a13b01103248a10ac229b3468f054aaeca747dcc47",
+		"name": "HARD CLEAR MENDES (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "9ed42a76e1423d731ecbbb0ada7fdaa7a6d94b4e",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G67a054178c34bee552152d968cf05abff9af1b8e09e415570f5267303de18561",
+		"name": "HARD CLEAR quell～the seventh slave～ (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "176776e4ada0d3b289abe50be203b6ba865fa63d",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "Gd42d0e628b4c0dbd7e6ebf7410d32d16b85d95ac6e5c7d94e0deae668c4b4380",
+		"name": "HARD CLEAR 天空の夜明け (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "b0a587771ee70a2c9d78c359ceee869557554fad",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G2dd3389b4157d3a4551f43c0c45d9c519b8bc93fa927c2f3412f334bc5b19ce9",
+		"name": "HARD CLEAR HAERETICUS (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "22d9639b9b72406779bfa9912f43630e59a469de",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "Gd0e1308bde6a5945befb8ceb8f128a51bec23bc8434c8c86daf443b572c7824f",
+		"name": "CLEAR BLACK.by X-Cross Fade (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "53264cfe35cb08e68cce8a563068876ba3b70b2a",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G4b4b1166f68816a954dae2170978205ec178894f49ca17d40caaa94117e633a9",
+		"name": "HARD CLEAR Watch Out Pt.2 (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "30171e98a562966fa6b44aa4929f8385742f9365",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "iidx",
+		"goalID": "G045e652f3fd5ad8f587d43217517f5722ff428094589f3dc33e37e0c36cece39",
+		"name": "EX HARD CLEAR era (nostalmix) (SP ANOTHER 9)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "aa3999bf49c4e3f24f66b1e0d79f9120fc4cb61c",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G3868194e08fcee70f561c28e91845effac4f61eef31e7b748b00fc02f4a19c3b",
+		"name": "AAA mosaic (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "bd1d893e21dcdcd2d8aaebf90a383deb1e2c4fba",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G1d6ebdedee6185eb08a6bcbcb12a604bcad5eea5f8c585d9d26c01cd39031b13",
+		"name": "AAA Hypersonik (SP ANOTHER 10)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "6b32423ab1efcff9bed3c50a77dc54180ee82fb9",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G528446c5607084431ea70dd799d2da982faccc8e115bcf8aab20428ef9b05be3",
+		"name": "AAA PENDUAL TALISMAN (SP ANOTHER 11)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "a48168c01535bb480a7bcc57f1a1e27755df143a",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 8
+		},
+		"game": "iidx",
+		"goalID": "G7660c6abd4fb3bc2452d49df9dd9448b7270215de746f2adfa4e925b67191fd0",
+		"name": "MAX- Dazzlin' Darlin (SP ANOTHER 10)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "62da00fbfb75c282634f3a1f25d86ba7c5efd28c",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G48fb74cd7294822bf6faf102c12a319739dac3b044f5a9769f81a58bedf08814",
+		"name": "AAA Make Me Your Own (SP ANOTHER 10)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "e15e8f535c3d93a480e4f828dd244a40ad80bb14",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G489a4f93beb8c60d9754be05df3f0f334e2281064c4bb01307076ef3536c163a",
+		"name": "AAA Line 4 Ruin (SP ANOTHER 11)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.5,
+			"key": "scoreData.lampIndex",
+			"mode": "proportion",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "Ge144e1928be9ce454699d7230cecb8a97d610d2894a7f77b1c0cf7dad56c9714",
+		"name": "CLEAR 50% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F7aaf1fe3b7bc5a346106a596e67ae2c86462c671d11c7f1db1422d8e7a421735",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.05,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "Gc6fae0d887270e21c67d20fbd5db50f8c24c115effd233c687d7c59f6feff265",
+		"name": "AAA 5% of the charts in the Level 11 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F844651ec49a21e5c065b1138bbb98b1bfd9f3abd6a0dca444892993b15e8b41d",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.1,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "Gffb740d2e0344df26a4d8d3fa936e31207c290c7bfc8387e3698137ab9e0726c",
+		"name": "AAA 10% of the charts in the Level 10 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "0e1fbd5bfe34351cb8c4869eddebc34241ec4546",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "Gde97674cd535f89d1cd73293c9ae5dcf3c13ba844f614b752ee2aa43f5e1532f",
+		"name": "HARD CLEAR AA (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "54cc0d53d5ebbff81fd39d6bffa00e33a9f6208e",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G1a2ae738966c073fd83661cd44de134195eb2171b5f9a23cd9de8fdacfad1fb0",
+		"name": "HARD CLEAR Scripted Connection⇒ A mix (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "c4e2ec5aa666d32507efa443e8a573b9508806b1",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "G25c92c1f8961d5887c9c462641fee3733117cd4ff0c579887b6277da825f47f8",
+		"name": "CLEAR Dr. Chemical & Killing Machine (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": [
+				"e064e485f02479fe47bb16ff5a347ef21ae1ff3a",
+				"53264cfe35cb08e68cce8a563068876ba3b70b2a",
+				"e7b29f13bb17d14b16564a3427da8877e602e0dd",
+				"35386cc0ac41449b7cf86c96668a3be680c9efda"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "G76b421184aff629a7cc062e60c579146d0d5b4454ceeb9d7dd3e56844066d480",
+		"name": "CLEAR any one of Red. by Full Metal Jacket (SP ANOTHER 12), Watch Out Pt.2 (SP ANOTHER 12), 199024club -Re:BounceKiller- (SP ANOTHER 12) or Snake Stick (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "e51624299cdcd9d6cecee915dba09a6cf72b816f",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G5db368bcdf7c6bbf7fdc04e3afc573f4e3e0b86ec8c5b8a9545a32f9c1510659",
+		"name": "HARD CLEAR 雪月花 (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "906c67a8d37dea58b9163a020a505dc1ae877d88",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "Ga628861faaf636eaeadb4f8348719cdc7c432a1d8bc4f6bf17439565aa7fafa8",
+		"name": "AAA Sakura Reflection (SP ANOTHER 11)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "3fe9c758a2a6885c5670f3c27fde3ed16d0475fc",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G291fa5f2e28da0544a9f3a457677714a266186caf7f0eaf64162d7c551aef4fb",
+		"name": "AAA Daisuke (SP ANOTHER 10)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "bb9298962b63b31f7dd95f774a6459dd24256915",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G0b377588fa6c31472a7207123d759879f92ca047db0110c96479de2255a69350",
+		"name": "AAA NO LIMIT -オレ達に限界は無い- (SP ANOTHER 10)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "77da55f73956c4ddb3029260648062d57edea6f1",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 8
+		},
+		"game": "iidx",
+		"goalID": "G3c27708736385f0389268325675de1079dbf3e7380ac50444561c75cbede9708",
+		"name": "MAX- Sleepless days (SP ANOTHER 9)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.3,
+			"key": "scoreData.lampIndex",
+			"mode": "proportion",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "G422f6fcc8a3f73c1fbbafbd118d8df50f2bab274037b2f947c0938dab4f4db02",
+		"name": "CLEAR 30% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F7aaf1fe3b7bc5a346106a596e67ae2c86462c671d11c7f1db1422d8e7a421735",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.01,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "Gb772449aeed60af88481317d3142144cabbf2a4c60b96243299c04c5ff184d70",
+		"name": "AAA 1% of the charts in the Level 11 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F844651ec49a21e5c065b1138bbb98b1bfd9f3abd6a0dca444892993b15e8b41d",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.05,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G3c6c4f5d0ec2ea922a7b29fc017a0a7ba830f5a1e4fcc4f5be68b42d68dfc23e",
+		"name": "AAA 5% of the charts in the Level 10 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "0153200938271d4d9c3c90e2d7b826070ad32087",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "Ga9de767754b2b9320949f3a9b57b17b7fc502de57857d089f6b94b15ba13649d",
+		"name": "CLEAR The Sampling Paradise (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "9dd405f9c80df79c698adc67812716a555895c3a",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "G2dcef4cab3dfad94bc1bfff207243fa26d4c23f4453b061e9b61d5e5368bb15e",
+		"name": "CLEAR SOLID STATE SQUAD (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "f98b2075a9ecb1b6b1962718cfd508dc99b180c4",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "G8af34fa5d40b5273b77763838606c5d7c8288d1ba12ea77596783c80b22fecce",
+		"name": "CLEAR Rave Cannon (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "84fb6b1231bc87038c19b43c381f6ed9a116972a",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "G1abe46c0cd2620e78977688aea147cc06270d027e48d49a9766935141c341220",
+		"name": "CLEAR Highcharge Divolt (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "7397b54511895b6b465b3846135cfe53f7e58701",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G7b8615d1efb89539e673cc3491d6a66f883cfae44264dbeac5775e222b2b495b",
+		"name": "HARD CLEAR Venom (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "a15e518e1a033e7c0f3e69ff6bfd66475cc01a8a",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "Gc6bcbde716d58bd81f8bdb7bc2a7c33b6084ab933837ee01da3092e9c0d2900d",
+		"name": "CLEAR Broken (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "c2311194e3897ddb5745b1760d2c0141f933e683",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G02009ddce4f507f4a0135d3c82bd1c82b6f78e44bdfc55316014943451ec6f96",
+		"name": "AAA 5.1.1. (SP ANOTHER 10)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "0b2197dd1979d54e7afd890b7f768d4b3d677eac",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "Gfceaa0ce05372836f20a818fc424ad603524a844c506bb84e256e394cd693bda",
+		"name": "AAA chrono diver -fragment- (SP LEGGENDARIA 10)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "8d1335bc1a9d0e57c3a73eee3be996e9ca619067",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G72cd75373c2c1bc0260c4796c50f4250aa177f10ffda4bec09e9e95c7902dbe3",
+		"name": "AAA ¡Viva! (SP ANOTHER 10)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "a87edb68c1710d6aec654c4dfacc761daf618b5c",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "Geb3d34194c0c16417d7ef47d6852976264787bab347b8e1cd96f3c3e5a748927",
+		"name": "AAA BRIDAL FESTIVAL !!! (SP ANOTHER 9)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.15,
+			"key": "scoreData.lampIndex",
+			"mode": "proportion",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "Gc358218d7967c35ad2a76f09055426412a22bea509d0db0dae1f34b33714a051",
+		"name": "CLEAR 15% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.05,
+			"key": "scoreData.lampIndex",
+			"mode": "proportion",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G59bdcf8a9874c0209046cdf2f0d14f171249b829da7d1bfe0ed90d8a11cec1c0",
+		"name": "HARD CLEAR 5% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F844651ec49a21e5c065b1138bbb98b1bfd9f3abd6a0dca444892993b15e8b41d",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.01,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G494945da02e2718318a0884d4a940e50eedace0127820c2f61275576b84d1a0c",
+		"name": "AAA 1% of the charts in the Level 10 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "7b1dea115384791aebc0217eb54e3a50a0f16c50",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G750c6011e0dc0e95215cf2fa00c3d38fbeb46ca22b93b8558234eaf9caed6c00",
+		"name": "HARD CLEAR quasar (SP ANOTHER 11)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "950879ed0084cb67446716c944de61742a3b1bc9",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G187781b42d220c0e2cc3b2180f4f277fdee721c7372ae8ad0dcf8a4e36dfaf58",
+		"name": "HARD CLEAR Digitank System (SP ANOTHER 11)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "bfc53502d89b12fef16f929d11d7430cac055ade",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "Gd04342eac2113aee1ae97a038c2aa1a4afffdcef86f7fee7ecd15777b0293f43",
+		"name": "CLEAR SPECIAL SUMMER CAMPAIGN! (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "7244887d53a4e383f42b05dda3ac24a2d6556821",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "Ged23213f8125a89e1e4a1bd2e60616e2dc691b746d036800627c356506202c90",
+		"name": "CLEAR sakura storm (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "cea0eadee4ae414d91360c88f2c69c1b0e6f6681",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "G911dd951a0cfe755e42ceb25532fe518afed5bcb2c2db30801e09b71b8f7f356",
+		"name": "CLEAR 千年ノ理 (SP ANOTHER 12)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": [
+				"a345321491ad99adc6fe960bb8b8f27a1915b291",
+				"b10719db4cd4082b2ff37e88e76cd2695177ff55",
+				"88107d20d1df5a6d45fbed8c21079e2a1cc573b1"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "G7f42cf226c3ec4eeafedd06655ddc36ac48dc91ea18df1f73c20b4a5e694ab3f",
+		"name": "CLEAR any one of examination leave (SP ANOTHER 11), Macuilxochitl (SP ANOTHER 11) or 532nm (SP ANOTHER 11)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "1dce504149aed886a1e3de31a27fe7df277dae9b",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 5
+		},
+		"game": "iidx",
+		"goalID": "G307f2c8ae08f2807075efb9ce5cffd1f1b3cf9abddc7441731898e0c984bfd72",
+		"name": "HARD CLEAR SHADE (SP ANOTHER 11)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "0738cadf2af4cc9a012eaca8348b94e4f4e4db23",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G9228d1ffe5cff125fd444270cb54b3f137ba33dea275e1c879489770ab999059",
+		"name": "AAA Element of SPADA (SP ANOTHER 9)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "293679f8eb416ddaefff758e4b9b72cb580afd47",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G3d0655ab19d3992687fddd1b78c01a9a6711f8e15a7316e5df0f1af80b644700",
+		"name": "AAA the trigger of innocence (SP ANOTHER 9)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "1b8e0a918c49fe3a5b3422274f25dc125e0e1b39",
+			"type": "single"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "G59f31c1e5be23fd92944e3c95deaf112e3b409f1595dc01aa7621a0f203f5980",
+		"name": "AAA Sweet Clapper (SP ANOTHER 10)",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.1,
+			"key": "scoreData.lampIndex",
+			"mode": "proportion",
+			"value": 4
+		},
+		"game": "iidx",
+		"goalID": "G191ae15a484958fa1f55ac9ba087bcccfdba4eab9465223466ecbed8965369b7",
+		"name": "CLEAR 10% of the charts in the Level 12 (CastHour) folder",
+		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": "F5d3b507b2e00c793b7f7d1196195d33890556abd564beef68d08fbd4be56ae8c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.01,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 7
+		},
+		"game": "iidx",
+		"goalID": "Ga969ef50f627363db7140d98bd478af284cde9eceb5b547184eb14c8594ae84c",
+		"name": "AAA 1% of the charts in the Level 9 (CastHour) folder",
+		"playtype": "SP"
+	}
+]

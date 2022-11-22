@@ -53,6 +53,10 @@ function CreateChartID() {
 	return crypto.randomBytes(20).toString("hex");
 }
 
+function CreateQuestID() {
+	return crypto.randomBytes(20).toString("hex");
+}
+
 // this api sucks, maybe dont use it
 function CreateFolderID(query, game, playtype) {
 	return `F${fjsh.hash(Object.assign({ game, playtype }, query), "SHA256")}`;
@@ -60,6 +64,10 @@ function CreateFolderID(query, game, playtype) {
 
 function CreateFolderIDFromFolder(folder) {
 	return CreateFolderID(folder.data, folder.game, folder.playtype);
+}
+
+function CreateGoalID(charts, criteria, game, playtype) {
+	return `G${fjsh.hash({ charts, criteria, game, playtype }, "sha256")}`;
 }
 
 // quick inplace deepmerge hack
@@ -96,4 +104,6 @@ module.exports = {
 	EfficientInPlaceDeepmerge,
 	GetFreshSongIDGenerator,
 	CreateFolderIDFromFolder,
+	CreateGoalID,
+	CreateQuestID,
 };

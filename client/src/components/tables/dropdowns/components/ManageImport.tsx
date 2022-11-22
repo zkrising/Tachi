@@ -1,7 +1,8 @@
 import { APIFetchV1 } from "util/api";
 import { DelayedPageReload } from "util/misc";
-import React, { useEffect, useMemo, useReducer, useState } from "react";
-import { ImportDocument, ScoreDocument } from "tachi-common";
+import React, { useMemo, useReducer } from "react";
+import { Button } from "react-bootstrap";
+import { ImportDocument } from "tachi-common";
 
 export default function ManageImport({ importDoc }: { importDoc: ImportDocument }) {
 	const [warn, upgWarn] = useReducer((r) => r + 1, 0);
@@ -14,6 +15,8 @@ export default function ManageImport({ importDoc }: { importDoc: ImportDocument 
 			return `I'm serious. You will lose ${importDoc.scoreIDs.length} score(s). They will be gone. Are you REALLY sure you want to do this?`;
 		} else if (warn === 3) {
 			return "OK. Click me one last time, then.";
+		} else if (warn === 4) {
+			return "Reverting import...";
 		}
 
 		return "lol unknown state";
@@ -21,12 +24,15 @@ export default function ManageImport({ importDoc }: { importDoc: ImportDocument 
 
 	return (
 		<div className="d-flex w-100 justify-content-center">
-			<div
+			<Button
+				disabled={warn >= 4}
+				variant="danger"
 				className="btn btn-danger"
 				onClick={() => {
 					if (warn < 3) {
 						upgWarn();
 					} else {
+						upgWarn();
 						APIFetchV1(
 							`/imports/${importDoc.importID}/revert`,
 							{
@@ -39,7 +45,7 @@ export default function ManageImport({ importDoc }: { importDoc: ImportDocument 
 				}}
 			>
 				{message}
-			</div>
+			</Button>
 		</div>
 	);
 }

@@ -35,7 +35,7 @@ export default function ImportRoutes() {
 	return (
 		<Switch>
 			<Route exact path="/dashboard/import">
-				<ImportPage />
+				<ImportPage user={user} />
 			</Route>
 
 			<Route path="/dashboard/import/*">

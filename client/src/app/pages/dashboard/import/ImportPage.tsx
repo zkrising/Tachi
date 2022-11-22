@@ -11,6 +11,7 @@ import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useState } from "react";
 import { Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import {
 	APIImportTypes,
 	FileUploadImportTypes,
@@ -21,7 +22,7 @@ import {
 	UserDocument,
 } from "tachi-common";
 
-export default function ImportPage() {
+export default function ImportPage({ user }: { user: UserDocument }) {
 	useSetSubheader(["Import Scores"]);
 
 	const [game, setGame] = useState<Game | null>(null);
@@ -41,6 +42,9 @@ export default function ImportPage() {
 					Batch Manual
 				</ExternalLink>
 				.
+				<br />
+				Want to manage or revert an import? Go to{" "}
+				<Link to={`/dashboard/users/${user.username}/imports`}>Import Management</Link>.
 			</div>
 			<Divider />
 			<select

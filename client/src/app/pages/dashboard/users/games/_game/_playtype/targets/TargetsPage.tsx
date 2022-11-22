@@ -9,14 +9,15 @@ import { Route, Switch } from "react-router-dom";
 import { FormatGame, GetGameConfig } from "tachi-common";
 import { UGPT } from "types/react";
 import GoalsPage from "./GoalsPage";
+import TargetsSummaryPage from "./TargetsSummaryPage";
 
 export default function TargetsPage({ reqUser, game, playtype }: UGPT) {
 	const gameConfig = GetGameConfig(game);
 
 	useSetSubheader(
-		["Users", reqUser.username, "Games", gameConfig.name, playtype, "Targets"],
+		["Users", reqUser.username, "Games", gameConfig.name, playtype, "Goals & Quests"],
 		[reqUser, game, playtype],
-		`${reqUser.username}'s ${FormatGame(game, playtype)} Targets`
+		`${reqUser.username}'s ${FormatGame(game, playtype)} Goals & Quests`
 	);
 
 	const base = useUGPTBase({ reqUser, game, playtype });
@@ -34,7 +35,7 @@ export default function TargetsPage({ reqUser, game, playtype }: UGPT) {
 						Overview
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/targets/quests`}>
-						<Icon type="mountain" />
+						<Icon type="scroll" />
 						Quests
 					</SelectLinkButton>
 				</div>
@@ -42,6 +43,9 @@ export default function TargetsPage({ reqUser, game, playtype }: UGPT) {
 			</Col>
 			<Col xs={12}>
 				<Switch>
+					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/targets">
+						<TargetsSummaryPage {...{ reqUser, game, playtype }} />
+					</Route>
 					<Route
 						exact
 						path="/dashboard/users/:userID/games/:game/:playtype/targets/goals"

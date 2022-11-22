@@ -3,9 +3,8 @@ import { CreateDefaultPBSearchParams } from "util/tables/create-search";
 import { GetPBLeadingHeaders } from "util/tables/get-pb-leaders";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
-import { Game, IDStrings, ScoreCalculatedDataLookup } from "tachi-common";
+import { Game, IDStrings, ScoreCalculatedDataLookup, Playtype } from "tachi-common";
 import { PBDataset } from "types/tables";
-import { Playtype } from "tachi-common";
 import DropdownIndicatorCell from "../cells/DropdownIndicatorCell";
 import IndexCell from "../cells/IndexCell";
 import RankingCell, { RankingViewMode } from "../cells/RankingCell";
@@ -127,6 +126,7 @@ function Row<I extends IDStrings = IDStrings>({
 			dropdown={
 				<PBDropdown
 					chart={pb.__related.chart}
+					song={pb.__related.song}
 					userID={pb.userID}
 					game={pb.game}
 					playtype={pb.playtype}

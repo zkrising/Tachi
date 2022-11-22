@@ -2,7 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { JustChildren } from "types/react";
 
-export default function NavItem({ to, children }: JustChildren & { to: string }) {
+export default function NavItem({
+	to,
+	children,
+}: JustChildren & { to: string; otherMatchingPaths?: Array<string> }) {
 	return (
 		<Link to={to} className="MuiButtonBase-root MuiTab-root navbar-link" type="button">
 			<span className="MuiTab-wrapper">{children}</span>

@@ -10,6 +10,9 @@ import {
 	ScoreDocument,
 	SongDocument,
 	UserGameStats,
+	GoalSubscriptionDocument,
+	GoalDocument,
+	QuestDocument,
 } from "tachi-common";
 
 export type PBDataset<I extends IDStrings = IDStrings> = (PBScoreDocument<I> & {
@@ -81,3 +84,11 @@ export type FailedImportDataset = Array<
 		};
 	}
 >;
+
+export type GoalSubDataset = (GoalSubscriptionDocument & {
+	__related: {
+		user: UserDocument;
+		goal: GoalDocument;
+		parentQuests: Array<QuestDocument>;
+	};
+})[];

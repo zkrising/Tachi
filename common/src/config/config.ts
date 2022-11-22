@@ -23,17 +23,17 @@ import type { GPTTierlists } from "..";
 import type { ClassInfo, GameClassSets } from "../game-classes";
 import type { ESDJudgementFormat } from "../lib/esd";
 import type {
-	Playtypes,
-	Game,
 	Difficulties,
+	Game,
+	GPTSupportedVersions,
+	Grades,
 	IDStrings,
+	JudgementLookup,
+	Lamps,
+	Playtypes,
 	ScoreCalculatedDataLookup,
 	SessionCalculatedDataLookup,
 	UGSRatingsLookup,
-	Grades,
-	Lamps,
-	JudgementLookup,
-	GPTSupportedVersions,
 } from "../types";
 
 export interface GameConfig<G extends Game = Game> {
@@ -74,7 +74,7 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	grades: Array<Grades[I]>;
 	gradeColours: Record<Grades[I], string>;
 	clearGrade: Grades[I];
-	gradeBoundaries: Array<number> | null;
+	gradeBoundaries: Array<number>;
 
 	lamps: Array<Lamps[I]>;
 	lampColours: Record<Lamps[I], string>;
@@ -2066,7 +2066,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			EXC: COLOUR_SET.white,
 		},
 		clearGrade: "A",
-		gradeBoundaries: null,
+		gradeBoundaries: [0, 50, 70, 80, 85, 90, 95, 98, 100],
 
 		lamps: ["FAILED", "CLEAR", "FULL COMBO", "EXCELLENT"],
 		lampColours: {

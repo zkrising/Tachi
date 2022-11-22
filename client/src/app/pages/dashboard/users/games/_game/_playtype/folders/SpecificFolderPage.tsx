@@ -34,11 +34,12 @@ import {
 	UserDocument,
 	ScoreDocument,
 	SongDocument,
+	Playtype,
 } from "tachi-common";
 import { UGPTFolderReturns } from "types/api-returns";
 import { FolderDataset } from "types/tables";
-import { Playtype } from "tachi-common";
 import FolderComparePage from "./FolderComparePage";
+import FolderQuestsPage from "./FolderQuestsPage";
 
 interface Props {
 	reqUser: UserDocument;
@@ -114,7 +115,7 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 				<Divider />
 			</div>
 			<div className="col-12 d-flex">
-				<div className="btn-group mx-auto">
+				<div className="btn-group d-flex w-100">
 					<SelectLinkButton to={base}>
 						<Icon type="table" />
 						Normal View
@@ -135,6 +136,10 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 					<SelectLinkButton to={`${base}/compare`}>
 						<Icon type="users" />
 						Compare Against User
+					</SelectLinkButton>
+					<SelectLinkButton to={`${base}/targets`}>
+						<Icon type="scroll" />
+						Goals & Quests
 					</SelectLinkButton>
 				</div>
 			</div>
@@ -165,6 +170,14 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 					</Route>
 					<Route exact path={`${base}/compare`}>
 						<FolderComparePage
+							game={game}
+							playtype={playtype}
+							reqUser={reqUser}
+							folder={data.folder}
+						/>
+					</Route>
+					<Route exact path={`${base}/targets`}>
+						<FolderQuestsPage
 							game={game}
 							playtype={playtype}
 							reqUser={reqUser}

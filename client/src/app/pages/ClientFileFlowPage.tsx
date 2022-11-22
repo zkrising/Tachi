@@ -112,7 +112,7 @@ export default function ClientFileFlowPage() {
 								<a
 									className="btn btn-info"
 									download={data.apiKeyFilename}
-									href={`data:text/plain;base64,${window.btoa(createdKey)}`}
+									href={`data:text/plain,${encodeURIComponent(createdKey)}`}
 								>
 									Download {data.apiKeyFilename}
 								</a>

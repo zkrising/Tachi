@@ -8,7 +8,9 @@ import {
 	ScoreDocument,
 	SessionScoreInfo,
 	SongDocument,
+	QuestDocument,
 } from "tachi-common";
+import { GoalsOnChartReturn, GoalsOnFolderReturn } from "types/api-returns";
 
 export function GetPBs(scoreInfo: SessionScoreInfo[]) {
 	return scoreInfo.filter((e) => e.isNewScore === true || e.lampDelta > 0 || e.scoreDelta > 0);
@@ -82,4 +84,54 @@ export function CreateChartLink(chart: ChartDocument, game: Game) {
 	}
 
 	return `/dashboard/games/${game}/${chart.playtype}/songs/${chart.songID}/${chart.chartID}`;
+}
+
+// stolen from server
+function GetGoalIDsFromQuest(quest: QuestDocument) {
+	// this sucks - maybe a nicer way to do this, because nested
+	// maps are just ugly
+	return quest.questData.map((e) => e.goals.map((e) => e.goalID)).flat(1);
+}
+
+export function CreateGoalSubDataset(
+	data: GoalsOnChartReturn | GoalsOnFolderReturn,
+	userMap: Map<integer, UserDocument>
+) {
+	const dataset = [];
+	const goalMap = CreateGoalMap(data.goals);
+
+	for (const sub of data.goalSubs) {
+		const goal = goalMap.get(sub.goalID);
+
+		if (!goal) {
+			console.warn(
+				`No goal was sent for ${sub.userID}:${sub.goalID}, yet was a subscription?`
+			);
+			continue;
+		}
+
+		const user = userMap.get(sub.userID);
+
+		if (!user) {
+			console.warn(
+				`No user was set for ${sub.userID}:${sub.goalID}, yet was a subscription?`
+			);
+			continue;
+		}
+
+		const parentQuests = data.quests.filter((q) =>
+			GetGoalIDsFromQuest(q).includes(goal.goalID)
+		);
+
+		dataset.push({
+			...sub,
+			__related: {
+				goal,
+				user,
+				parentQuests,
+			},
+		});
+	}
+
+	return dataset;
 }

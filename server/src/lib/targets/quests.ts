@@ -5,9 +5,11 @@ import CreateLogCtx from "lib/logger/logger";
 import { BulkSendNotification } from "lib/notifications/notifications";
 import type { EvaluatedGoalReturn } from "./goals";
 import type {
+	Game,
 	GoalDocument,
 	GoalSubscriptionDocument,
 	integer,
+	Playtype,
 	QuestDocument,
 	QuestSubscriptionDocument,
 } from "tachi-common";
@@ -42,11 +44,11 @@ export async function GetGoalsInQuest(quest: QuestDocument) {
 		throw new Error(`Quest is corrupt. Not the right amount of goals in db?`);
 	}
 
+	// this shouldn't happen, but if it does it's recoverable by just ignoring it.
 	if (goalIDs.length < 2) {
-		logger.error(`Quest ${quest.name} resolves to less than 2 goals. Isn't a valid quest?`, {
+		logger.warn(`Quest ${quest.name} resolves to less than 2 goals. Isn't a valid quest?`, {
 			quest,
 		});
-		throw new Error(`Quest is corrupt. Doesn't have enough goals.`);
 	}
 
 	return goals;
@@ -59,30 +61,7 @@ export async function GetGoalsInQuest(quest: QuestDocument) {
 export function CalculateQuestOutOf(quest: QuestDocument) {
 	const goalIDs = GetGoalIDsFromQuest(quest);
 
-	switch (quest.criteria.type) {
-		case "all":
-			return goalIDs.length;
-		case "total": {
-			// It's not possible according to the types, but I want to check it anyway.
-			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-			if (quest.criteria.value === null) {
-				throw new Error(
-					`Invalid quest ${quest.questID} - total and null are not compatible.`
-				);
-			}
-
-			return quest.criteria.value;
-		}
-
-		default:
-			// Typescript annoyingly complains that quest.criteria is of type never now.
-			// it's right! but if we get here, I want to log the error somehow.
-			throw new Error(
-				`Invalid quest.criteria.type of ${
-					(quest.criteria as QuestDocument["criteria"]).type
-				} -- questID ${quest.questID}`
-			);
-	}
+	return goalIDs.length;
 }
 
 type EvaluatedGoalResult = EvaluatedGoalReturn & { goalID: string };
@@ -315,4 +294,37 @@ export async function UpdateQuestSubscriptions(questID: string) {
 	}
 
 	return subscriptionResults;
+}
+
+/**
+ * Given an array of user goal subscriptions, return all the quests this user is
+ * subscribed to that subsume these goals.
+ */
+export async function GetParentQuests(
+	userID: integer,
+	game: Game,
+	playtype: Playtype,
+	goalSubs: Array<GoalSubscriptionDocument>
+) {
+	const questSubs: Array<{ questID: string }> = await db["quest-subs"].find(
+		{
+			game,
+			playtype,
+			userID,
+		},
+		{
+			projection: {
+				questID: 1,
+			},
+		}
+	);
+
+	const questSubIDs = questSubs.map((e) => e.questID);
+
+	const quests = await db.quests.find({
+		questID: { $in: questSubIDs },
+		"quest.questData.goals.goalID": { $in: goalSubs.map((e) => e.goalID) },
+	});
+
+	return quests;
 }

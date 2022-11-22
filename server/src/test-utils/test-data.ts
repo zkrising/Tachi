@@ -610,9 +610,6 @@ export const TestingIIDXFolderSP10: FolderDocument = {
 };
 
 export const TestingIIDXSPQuest: QuestDocument = {
-	criteria: {
-		type: "all",
-	},
 	desc: "testing quest",
 	game: "iidx",
 	playtype: "SP",

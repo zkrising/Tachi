@@ -1,6 +1,5 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import { SetState } from "types/react";
 
 export default function Select<T extends string | null>({
 	value,
@@ -13,9 +12,10 @@ export default function Select<T extends string | null>({
 	name,
 	description,
 	noMarginBottom,
+	inline = false,
 }: {
 	value: T;
-	setValue: SetState<T>;
+	setValue: (value: T) => void;
 	children: React.ReactNode;
 	name?: string;
 	allowNull?: boolean;
@@ -24,9 +24,15 @@ export default function Select<T extends string | null>({
 	unselectedName?: string;
 	description?: string;
 	noMarginBottom?: boolean;
+	inline?: boolean;
 }) {
 	return (
-		<Form.Group style={{ marginBottom: noMarginBottom ? "unset" : undefined }}>
+		<Form.Group
+			style={{
+				marginBottom: noMarginBottom ? "unset" : undefined,
+				display: inline ? "inline" : undefined,
+			}}
+		>
 			{name && <Form.Label>{name}</Form.Label>}
 			<Form.Control
 				style={{ width: "unset", display: "inline", ...style }}
@@ -38,12 +44,7 @@ export default function Select<T extends string | null>({
 				{allowNull && <option value="">{unselectedName}</option>}
 				{children}
 			</Form.Control>
-			{description && (
-				<Form.Text className="text-muted">
-					This configures the default rating algorithm to display for scores. This is used
-					for things like score tables and PB tables.
-				</Form.Text>
-			)}
+			{description && <Form.Text className="text-muted">{description}</Form.Text>}
 		</Form.Group>
 	);
 }

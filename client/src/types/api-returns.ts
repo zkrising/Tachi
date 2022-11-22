@@ -25,6 +25,8 @@ import {
 	UGSRatingsLookup,
 	UserGameStats,
 	UserGameStatsSnapshot,
+	QuestDocument,
+	QuestSubscriptionDocument,
 } from "tachi-common";
 
 export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
@@ -231,3 +233,20 @@ export interface ActivityReturn {
 }
 
 export type RecordActivityReturn = Partial<Record<IDStrings, ActivityReturn>>;
+
+export interface GoalsOnChartReturn {
+	goals: Array<GoalDocument>;
+	goalSubs: Array<GoalSubscriptionDocument>;
+	quests: Array<QuestDocument>;
+	questSubs: Array<QuestSubscriptionDocument>;
+}
+
+export type GoalsOnFolderReturn = GoalsOnChartReturn;
+
+export interface RecentlyAchievedOrRaisedTargets {
+	goals: Array<GoalDocument>;
+	quests: Array<QuestDocument>;
+	goalSubs: Array<GoalSubscriptionDocument>;
+	questSubs: Array<QuestSubscriptionDocument>;
+	user: UserDocument;
+}

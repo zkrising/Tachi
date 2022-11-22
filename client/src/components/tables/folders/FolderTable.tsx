@@ -4,9 +4,8 @@ import Muted from "components/util/Muted";
 import usePreferredRanking from "components/util/usePreferredRanking";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
-import { Game, IDStrings, ScoreCalculatedDataLookup } from "tachi-common";
+import { Game, IDStrings, ScoreCalculatedDataLookup, Playtype } from "tachi-common";
 import { FolderDataset } from "types/tables";
-import { Playtype } from "tachi-common";
 import DifficultyCell from "../cells/DifficultyCell";
 import IndicatorsCell from "../cells/IndicatorsCell";
 import RankingCell, { RankingViewMode } from "../cells/RankingCell";
@@ -115,6 +114,7 @@ function Row<I extends IDStrings = IDStrings>({
 					game={game}
 					playtype={data.playtype}
 					scoreState={scoreState}
+					song={data.__related.song}
 				/>
 			}
 		>

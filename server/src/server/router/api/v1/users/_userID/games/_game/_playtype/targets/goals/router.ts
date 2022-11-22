@@ -6,7 +6,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import {
 	ConstructGoal,
-	GetBlockingParentQuestSubs,
+	GetParentQuestSubs,
 	GetQuestsThatContainGoal,
 	SubscribeToGoal,
 } from "lib/targets/goals";
@@ -115,9 +115,9 @@ router.post(
 					return (
 						(Array.isArray(self) &&
 							self.every((k) => typeof k === "string") &&
-							self.length < 5 &&
+							self.length <= 10 &&
 							self.length > 1) ||
-						"Expected an array of 2 to 5 strings in charts.data due to charts.type being 'multi'."
+						"Expected an array of 2 to 10 strings in charts.data due to charts.type being 'multi'."
 					);
 					/* istanbul ignore next */
 				} else if (parent.type === "folder") {
@@ -257,7 +257,7 @@ router.delete(
 
 		const goalSub = GetTachiData(req, "goalSubDoc");
 
-		const parentQuests = await GetBlockingParentQuestSubs(goalSub);
+		const parentQuests = await GetParentQuestSubs(goalSub);
 
 		if (parentQuests.length) {
 			return res.status(400).json({

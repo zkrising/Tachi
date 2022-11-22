@@ -38,6 +38,9 @@ import { SongsReturn } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { UGPTContextProvider } from "context/UGPTContext";
+import Icon from "components/util/Icon";
+import SelectLinkButton from "components/util/SelectLinkButton";
+import QuestsPage from "components/game/quests/QuestsPage";
 
 export default function GameRoutes() {
 	const { game } = useParams<{ game: string }>();
@@ -110,6 +113,10 @@ function GamePlaytypeRoutes({ game }: { game: Game }) {
 					<SongChartRoutes game={game} playtype={playtype} />
 				</Route>
 
+				<Route exact path="/dashboard/games/:game/:playtype/(quests|questlines)">
+					<GPTQuestRoutes game={game} playtype={playtype} />
+				</Route>
+
 				<Route exact path="/dashboard/games/:game/:playtype/leaderboards">
 					<GPTLeaderboardsPage game={game} playtype={playtype} />
 				</Route>
@@ -120,6 +127,37 @@ function GamePlaytypeRoutes({ game }: { game: Game }) {
 				<Route path="*">
 					<ErrorPage statusCode={404} />
 				</Route>
+			</Switch>
+		</>
+	);
+}
+
+function GPTQuestRoutes({ game, playtype }: GamePT) {
+	return (
+		<>
+			<div className="w-100 d-flex btn-group mb-4">
+				<SelectLinkButton to={`/dashboard/games/${game}/${playtype}/quests`}>
+					<Icon type="scroll" />
+					Find Quests
+				</SelectLinkButton>
+				<SelectLinkButton to={`/dashboard/games/${game}/${playtype}/questlines`}>
+					<Icon type="dungeon" />
+					Find Questlines
+				</SelectLinkButton>
+			</div>
+			<Switch>
+				<Route exact path="/dashboard/games/:game/:playtype/quests">
+					<QuestsPage game={game} playtype={playtype} />
+				</Route>
+
+				<Route exact path="/dashboard/games/:game/:playtype/questlines"></Route>
+
+				<Route
+					exact
+					path="/dashboard/games/:game/:playtype/quests/questlines/:questlineID"
+				></Route>
+
+				<Route exact path="/dashboard/games/:game/:playtype/quests/:questID"></Route>
 			</Switch>
 		</>
 	);

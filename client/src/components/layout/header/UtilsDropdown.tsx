@@ -7,6 +7,7 @@ export default function UtilsDropdown() {
 		<MenuDropdown name="Developer Utils">
 			<MenuLink to="/dashboard/utils/seeds" name="Seeds Management" />
 			<MenuLink to="/dashboard/utils/imports" name="Import Management" />
+			<MenuLink to="/dashboard/utils/quests" name="Quest Creator" />
 		</MenuDropdown>
 	);
 }

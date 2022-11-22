@@ -9,7 +9,7 @@ import { UserAuthLevels } from "../types";
 import deepmerge from "deepmerge";
 import p from "prudence";
 import type { GamePTConfig } from "../index";
-import type { Game, IDStrings, NotificationBody, Playtypes, Playtype } from "../types";
+import type { Game, IDStrings, NotificationBody, Playtype, Playtypes } from "../types";
 import type {
 	PrudenceSchema,
 	ValidationFunctionParentOptionsKeychain,
@@ -452,6 +452,54 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 	}
 }
 
+export const PR_GOAL_SCHEMA = {
+	game: p.isIn(games),
+	playtype: isValidPlaytype,
+	timeAdded: p.isPositive,
+	title: "string",
+	goalID: "string",
+	criteria: p.or(
+		{
+			mode: p.is("single"),
+			key: p.isIn(
+				"scoreData.percent",
+				"scoreData.lampIndex",
+				"scoreData.gradeIndex",
+				"scoreData.score"
+			),
+			value: "number",
+		},
+		{
+			mode: p.isIn("absolute", "proportion"),
+			countNum: p.isPositive,
+			key: p.isIn(
+				"scoreData.percent",
+				"scoreData.lampIndex",
+				"scoreData.gradeIndex",
+				"scoreData.score"
+			),
+			value: "number",
+		}
+	),
+	charts: p.or(
+		{
+			type: p.is("any"),
+		},
+		{
+			type: p.is("folder"),
+			data: "string",
+		},
+		{
+			type: p.is("multi"),
+			data: ["string"],
+		},
+		{
+			type: p.is("single"),
+			data: "string",
+		}
+	),
+};
+
 const PR_SONG_DOCUMENT = (game: Game): PrudenceSchema => {
 	const data = GetSongDataForGame(game);
 
@@ -605,15 +653,6 @@ const PRE_SCHEMAS = {
 				goals: [{ goalID: "string", note: "*string" }],
 			},
 		],
-		criteria: p.or(
-			{
-				type: "all",
-			},
-			{
-				type: p.isIn("absolute", "proportion"),
-				value: p.isPositive,
-			}
-		),
 	}),
 	"goal-subs": prSchemaFnWrap({
 		goalID: "string",
@@ -646,53 +685,7 @@ const PRE_SCHEMAS = {
 		folderID: "string",
 		lastViewed: "number",
 	}),
-	goals: prSchemaFnWrap({
-		game: p.isIn(games),
-		playtype: isValidPlaytype,
-		timeAdded: p.isPositive,
-		title: "string",
-		goalID: "string",
-		criteria: p.or(
-			{
-				mode: p.is("single"),
-				key: p.isIn(
-					"scoreData.percent",
-					"scoreData.lampIndex",
-					"scoreData.gradeIndex",
-					"scoreData.score"
-				),
-				value: "number",
-			},
-			{
-				mode: p.isIn("absolute", "proportion"),
-				countNum: p.isPositive,
-				key: p.isIn(
-					"scoreData.percent",
-					"scoreData.lampIndex",
-					"scoreData.gradeIndex",
-					"scoreData.score"
-				),
-				value: "number",
-			}
-		),
-		charts: p.or(
-			{
-				type: p.is("any"),
-			},
-			{
-				type: p.is("folder"),
-				data: "string",
-			},
-			{
-				type: p.is("multi"),
-				data: ["string"],
-			},
-			{
-				type: p.is("single"),
-				data: "string",
-			}
-		),
-	}),
+	goals: prSchemaFnWrap(PR_GOAL_SCHEMA),
 	scores: (self: unknown) => {
 		const { game, playtype } = extractGPT(self);
 

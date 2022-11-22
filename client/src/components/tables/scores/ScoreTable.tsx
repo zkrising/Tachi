@@ -94,6 +94,7 @@ function Row<I extends IDStrings = IDStrings>({
 			dropdown={
 				<ScoreDropdown
 					chart={sc.__related.chart}
+					song={sc.__related.song}
 					game={game}
 					playtype={playtype}
 					user={sc.__related.user}

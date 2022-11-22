@@ -13,6 +13,7 @@ import {
 	ScoreDocument,
 	SessionDocument,
 	Playtype,
+	QuestDocument,
 } from "tachi-common";
 import fjsh from "fast-json-stable-hash";
 
@@ -531,4 +532,34 @@ export function JoinJSX(elements: Array<JSX.Element>, joiner: JSX.Element): Arra
 	}
 
 	return newArray;
+}
+
+export function clamp(a: number, low: number, up: number) {
+	if (a < low) {
+		return low;
+	}
+
+	if (a > up) {
+		return up;
+	}
+
+	return a;
+}
+
+export function CreateQuestMap(quests: Array<QuestDocument>) {
+	const map = new Map<string, QuestDocument>();
+
+	for (const q of quests) {
+		map.set(q.questID, q);
+	}
+
+	return map;
+}
+
+export function ChangeAtPosition<T>(elements: T[], element: T, i: integer) {
+	return [...elements.slice(0, i), element, ...elements.slice(i + 1)];
+}
+
+export function DeleteInPosition<T>(elements: T[], i: integer) {
+	return [...elements.slice(0, i), ...elements.slice(i + 1)];
 }

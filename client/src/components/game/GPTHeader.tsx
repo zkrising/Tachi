@@ -16,6 +16,13 @@ export function GPTBottomNav({ baseUrl }: { baseUrl: string }) {
 		<NavItem key="leaderboards" to={`${baseUrl}/leaderboards`}>
 			Leaderboards
 		</NavItem>,
+		<NavItem
+			key="quests"
+			to={`${baseUrl}/quests`}
+			otherMatchingPaths={[`${baseUrl}/questline`]}
+		>
+			Quests
+		</NavItem>,
 	];
 
 	if (settings?.preferences.developerMode) {

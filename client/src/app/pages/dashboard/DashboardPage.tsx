@@ -54,11 +54,11 @@ function DashboardLoggedIn({ user }: { user: UserDocument }) {
 			<span className="display-4">
 				{splash}, {user.username}.
 			</span>
-			<div className="card mt-4">
+			<div className="card my-4">
 				<DashboardHeader />
 			</div>
-			<RecentInfo user={user} />
 			<Divider />
+			<RecentInfo user={user} />
 			<Switch>
 				<Route exact path="/dashboard">
 					<DashboardActivity user={user} />
@@ -156,7 +156,7 @@ function RecentInfo({ user }: { user: UserDocument }) {
 					<Divider />
 				</>
 			)}
-			{data.recentFolders.length !== 0 && (
+			{/* {data.recentFolders.length !== 0 && (
 				<>
 					<h1>Here's some folders you checked out recently.</h1>
 					<Divider />
@@ -174,7 +174,7 @@ function RecentInfo({ user }: { user: UserDocument }) {
 					</div>
 					<Divider />
 				</>
-			)}
+			)} */}
 		</>
 	);
 }

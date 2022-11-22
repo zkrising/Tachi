@@ -11,12 +11,12 @@ import type { FilterQuery } from "mongodb";
 import type {
 	Game,
 	GoalDocument,
+	GoalSubscriptionDocument,
 	integer,
 	PBScoreDocument,
 	Playtype,
-	GoalSubscriptionDocument,
-	QuestSubscriptionDocument,
 	QuestDocument,
+	QuestSubscriptionDocument,
 } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
@@ -96,7 +96,8 @@ export async function EvaluateGoalForUser(
 				goal.playtype,
 				goal.criteria.key,
 				goal.criteria.value,
-				null
+				null,
+				true
 			);
 
 			if (res) {
@@ -242,7 +243,8 @@ export function HumaniseGoalProgress(
 	playtype: Playtype,
 	key: GoalKeys,
 	value: number,
-	userPB: PBScoreDocument | null
+	userPB: PBScoreDocument | null,
+	isOutOf = false
 ): string {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
@@ -252,6 +254,12 @@ export function HumaniseGoalProgress(
 				throw new Error(
 					`Corrupt goal -- requested a grade of ${value}, which doesn't exist for this game.`
 				);
+			}
+
+			if (isOutOf) {
+				return `${gptConfig.grades[value]} (${gptConfig.gradeBoundaries[value]?.toFixed(
+					2
+				)}%)`;
 			}
 
 			return `${gptConfig.grades[value]} (${userPB?.scoreData.percent.toFixed(2) ?? "0"}%)`;
@@ -264,9 +272,17 @@ export function HumaniseGoalProgress(
 				);
 			}
 
+			// these games care about the BP as progress towards the goal
 			if (userPB && (game === "iidx" || game === "bms" || game === "pms")) {
 				return `${gptConfig.lamps[value]} (BP: ${
 					(userPB as PBWithBadPoor).scoreData.hitMeta.bp ?? "N/A"
+				})`;
+			}
+
+			// this game cares about where you died relative to the measures in the chart
+			if (game === "itg") {
+				return `${gptConfig.lamps[value]} (BP: ${
+					(userPB as PBScoreDocument<"itg:Stamina">).scoreData.hitMeta.diedAt ?? "N/A"
 				})`;
 			}
 
@@ -390,10 +406,10 @@ export function GetQuestsThatContainGoal(goalID: string) {
  *
  * If this query matches none, an empty array is returned.
  */
-export async function GetBlockingParentQuestSubs(
+export async function GetParentQuestSubs(
 	goalSub: GoalSubscriptionDocument
 ): Promise<Array<QuestSubscriptionDocument & { quest: QuestDocument }>> {
-	const blockers: Array<QuestSubscriptionDocument & { quest: QuestDocument }> = await db[
+	const parents: Array<QuestSubscriptionDocument & { quest: QuestDocument }> = await db[
 		"quest-subs"
 	].aggregate([
 		{
@@ -429,5 +445,131 @@ export async function GetBlockingParentQuestSubs(
 		},
 	]);
 
-	return blockers;
+	return parents;
+}
+
+/**
+ * Gets the goals the user has set for this game and playtype.
+ * Then, filters it based on the chartIDs involved in this import.
+ *
+ * This optimisation allows users to have *lots* of goals, but only ever
+ * evaluate the ones we need to.
+ *
+ * @param onlyUnachieved - optionally, pass "onlyUnachieved=true" to limit this to
+ * only goals that the user has not achieved.
+ * @param excludeAny - optionally, pass "excludeAny=true" to ignore goals that match
+ * "any" chart.
+ * @returns An array of Goals, and an array of goalSubs.
+ */
+export async function GetRelevantGoals(
+	game: Game,
+	userID: integer,
+	chartIDs: Set<string>,
+	logger: KtLogger,
+	onlyUnachieved = false,
+	excludeAny = false
+): Promise<{ goals: Array<GoalDocument>; goalSubsMap: Map<string, GoalSubscriptionDocument> }> {
+	const gsQuery: FilterQuery<GoalSubscriptionDocument> = {
+		game,
+		userID,
+	};
+
+	if (onlyUnachieved) {
+		gsQuery.achieved = false;
+	}
+
+	const goalSubs = await db["goal-subs"].find(gsQuery);
+
+	logger.verbose(`Found user has ${goalSubs.length} goals.`);
+
+	if (!goalSubs.length) {
+		return { goals: [], goalSubsMap: new Map() };
+	}
+
+	const goalIDs = goalSubs.map((e) => e.goalID);
+
+	const chartIDsArr: Array<string> = [];
+
+	for (const c of chartIDs) {
+		chartIDsArr.push(c);
+	}
+
+	const promises = [
+		// this gets the relevantGoals for direct and multi
+		db.goals.find({
+			"charts.type": { $in: ["single", "multi"] },
+			"charts.data": { $in: chartIDsArr },
+			goalID: { $in: goalIDs },
+		}),
+		GetRelevantFolderGoals(goalIDs, chartIDsArr),
+	];
+
+	if (!excludeAny) {
+		promises.push(
+			db.goals.find({
+				"charts.type": "any",
+				goalID: { $in: goalIDs },
+			})
+		);
+	}
+
+	const goals = await Promise.all(promises).then((r) => r.flat(1));
+
+	const goalSet = new Set(goals.map((e) => e.goalID));
+
+	const goalSubsMap: Map<string, GoalSubscriptionDocument> = new Map();
+
+	for (const goalSub of goalSubs) {
+		if (!goalSet.has(goalSub.goalID)) {
+			continue;
+		}
+
+		// since these are guaranteed to be unique, lets make a hot map of goalID -> goalSubDocument, so we can
+		// pull them in for post-processing and filter out the goalSubDocuments that aren't relevant.
+		goalSubsMap.set(goalSub.goalID, goalSub);
+	}
+
+	return {
+		goals,
+		goalSubsMap,
+	};
+}
+
+/**
+ * Returns the set of goals where its folder contains any member
+ * of chartIDsArr.
+ */
+export function GetRelevantFolderGoals(goalIDs: Array<string>, chartIDsArr: Array<string>) {
+	// Slightly black magic - this is kind of like doing an SQL join.
+	// it's weird to do this in mongodb, but this seems like the right
+	// way to actually handle this.
+
+	const result: Promise<Array<GoalDocument>> = db.goals.aggregate([
+		{
+			$match: {
+				"charts.type": "folder",
+				goalID: { $in: goalIDs },
+			},
+		},
+		{
+			$lookup: {
+				from: "folder-chart-lookup",
+				localField: "charts.data",
+				foreignField: "folderID",
+				as: "folderCharts",
+			},
+		},
+		{
+			$match: {
+				"folderCharts.chartID": { $in: chartIDsArr },
+			},
+		},
+		{
+			$project: {
+				folderCharts: 0,
+			},
+		},
+	]);
+
+	return result;
 }

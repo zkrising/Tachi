@@ -163,10 +163,6 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 				criteria: absModeCriteria,
 				charts: multiCharts,
 			}),
-			mkInput("Percent:Multi:Abs Case", {
-				criteria: proportionModeCriteria,
-				charts: multiCharts,
-			}),
 
 			// NOT LEGAL FOR IIDX, due to being nonsense! NEEDS SPECIFIC TESTING.
 			// mkInput("Score:Multi Case", {
@@ -191,14 +187,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 				},
 				charts: multiCharts,
 			}),
-			mkInput("LampIndex:Multi:Proportion Case", {
-				criteria: {
-					key: "scoreData.lampIndex",
-					value: IIDX_LAMPS.HARD_CLEAR,
-					...proportionModeCriteria,
-				},
-				charts: multiCharts,
-			}),
+
 			mkInput("GradeIndex:Multi Case", {
 				criteria: {
 					key: "scoreData.gradeIndex",
@@ -211,14 +200,6 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 					key: "scoreData.gradeIndex",
 					value: IIDX_GRADES.AAA,
 					...absModeCriteria,
-				},
-				charts: multiCharts,
-			}),
-			mkInput("GradeIndex:Multi:Proportion Case", {
-				criteria: {
-					key: "scoreData.gradeIndex",
-					value: IIDX_GRADES.AAA,
-					...proportionModeCriteria,
 				},
 				charts: multiCharts,
 			}),
@@ -573,6 +554,26 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 					mode: "absolute",
 					countNum: 2,
 				},
+			}),
+			mkInput("LampIndex:Multi:Proportion Case", {
+				criteria: {
+					key: "scoreData.lampIndex",
+					value: IIDX_LAMPS.HARD_CLEAR,
+					...proportionModeCriteria,
+				},
+				charts: multiCharts,
+			}),
+			mkInput("GradeIndex:Multi:Proportion Case", {
+				criteria: {
+					key: "scoreData.gradeIndex",
+					value: IIDX_GRADES.AAA,
+					...proportionModeCriteria,
+				},
+				charts: multiCharts,
+			}),
+			mkInput("Percent:Multi:Proportion Case", {
+				criteria: proportionModeCriteria,
+				charts: multiCharts,
 			}),
 		];
 

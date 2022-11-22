@@ -44,11 +44,11 @@ export async function GetGoalsInQuest(quest: QuestDocument) {
 		throw new Error(`Quest is corrupt. Not the right amount of goals in db?`);
 	}
 
+	// this shouldn't happen, but if it does it's recoverable by just ignoring it.
 	if (goalIDs.length < 2) {
-		logger.error(`Quest ${quest.name} resolves to less than 2 goals. Isn't a valid quest?`, {
+		logger.warn(`Quest ${quest.name} resolves to less than 2 goals. Isn't a valid quest?`, {
 			quest,
 		});
-		throw new Error(`Quest is corrupt. Doesn't have enough goals.`);
 	}
 
 	return goals;

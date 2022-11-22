@@ -89,9 +89,9 @@ router.post(
 					return (
 						(Array.isArray(self) &&
 							self.every((k) => typeof k === "string") &&
-							self.length < 5 &&
+							self.length <= 10 &&
 							self.length > 1) ||
-						"Expected an array of 2 to 5 strings in charts.data due to charts.type being 'multi'."
+						"Expected an array of 2 to 10 strings in charts.data due to charts.type being 'multi'."
 					);
 					/* istanbul ignore next */
 				} else if (parent.type === "folder") {

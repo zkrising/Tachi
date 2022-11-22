@@ -254,7 +254,7 @@ function CriteriaModePicker({
 						: "charts"
 					: charts.type === "multi"
 					? "of these charts"
-					: "of charts in this folder"}
+					: "charts in this folder"}
 			</CheckEdit>
 			{charts.type !== "multi" && (
 				<CheckEdit

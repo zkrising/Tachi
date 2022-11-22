@@ -9,6 +9,7 @@ import { FolderDocument, FormatChart, GetGamePTConfig, GoalDocument } from "tach
 import { SongChartsSearch } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
 import { RawQuestGoal } from "types/tachi";
+import { OptionsOrGroups, GroupBase } from "react-select";
 import { RenderGoalCriteriaPicker } from "./SetNewGoalModal";
 
 export default function AddNewGoalForQuestModal({
@@ -43,7 +44,7 @@ export default function AddNewGoalForQuestModal({
 		}
 	);
 
-	const [note, setNote] = useState("");
+	const [note, setNote] = useState(initialState?.note ?? "");
 
 	const [goalName, setGoalName] = useState("...");
 	const [goalErr, setGoalErr] = useState<string | null>(null);
@@ -117,7 +118,7 @@ export default function AddNewGoalForQuestModal({
 						{/* don't render if charts.data is null */}
 						{!("data" in charts && charts.data === null) && <Divider />}
 					</Col>
-					<Col xs={12}>
+					<Col xs={12} className="mt-4">
 						<InputGroup>
 							<InputGroup.Text>Note (optional)</InputGroup.Text>
 							<Form.Control
@@ -261,21 +262,35 @@ function ChartSelect({
 	multi = false,
 	onChange,
 }: { onChange: (data: string | string[]) => void; multi?: boolean } & GamePT) {
-	const loadFolderOptions = async (input: string) => {
-		const res = await APIFetchV1<SongChartsSearch>(
-			`/games/${game}/${playtype}/charts?search=${input}`
-		);
+	let lastTimeout: number | null = null;
 
-		if (!res.success) {
-			throw new Error(res.description);
+	const loadFolderOptions = (
+		input: string,
+		cb: (options: OptionsOrGroups<unknown, GroupBase<unknown>>) => void
+	) => {
+		if (lastTimeout !== null) {
+			clearTimeout(lastTimeout);
 		}
 
-		const songMap = CreateSongMap(res.body.songs);
+		// debounce this query to only run after 300ms of no more user input.
+		lastTimeout = window.setTimeout(async () => {
+			const res = await APIFetchV1<SongChartsSearch>(
+				`/games/${game}/${playtype}/charts?search=${input}`
+			);
 
-		return res.body.charts.map((e) => ({
-			value: e.chartID,
-			label: FormatChart(game, songMap.get(e.songID)!, e),
-		}));
+			if (!res.success) {
+				throw new Error(res.description);
+			}
+
+			const songMap = CreateSongMap(res.body.songs);
+
+			const options = res.body.charts.map((e) => ({
+				value: e.chartID,
+				label: FormatChart(game, songMap.get(e.songID)!, e),
+			}));
+
+			cb(options);
+		}, 300);
 	};
 
 	return (

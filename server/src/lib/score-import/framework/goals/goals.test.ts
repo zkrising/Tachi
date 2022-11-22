@@ -1,175 +1,18 @@
-import { GetRelevantFolderGoals, GetRelevantGoals, UpdateGoalsForUser, ProcessGoal } from "./goals";
+import { ProcessGoal, UpdateGoalsForUser } from "./goals";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import {
-	GetKTDataJSON,
-	Testing511SPA,
-	TestingIIDXSPScorePB,
 	HC511Goal,
 	HC511UserGoal,
-	TestingIIDXFolderSP10,
+	Testing511SPA,
+	TestingIIDXSPScorePB,
 } from "test-utils/test-data";
-import { CreateFolderChartLookup } from "utils/folder";
-import crypto from "crypto";
-import type {
-	ChartDocument,
-	GoalDocument,
-	GoalSubscriptionDocument,
-	SongDocument,
-} from "tachi-common";
+import type { GoalDocument, GoalSubscriptionDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
-
-t.test("#GetRelevantFolderGoals", (t) => {
-	t.beforeEach(ResetDBState);
-
-	const fakeFolderGoalDocument: GoalDocument = {
-		charts: {
-			type: "folder",
-			data: "ed9d8c734447ce67d7135c0067441a98cc81aeaf",
-		},
-		game: "iidx",
-		goalID: "fake_goal_id",
-		playtype: "SP",
-		timeAdded: 0,
-		name: "get > 1 ex score on any level 10.",
-		criteria: {
-			mode: "single",
-			value: 1,
-			key: "scoreData.score",
-		},
-	};
-
-	const notFolderGoalDocument: GoalDocument = {
-		charts: {
-			type: "folder",
-			data: "some_fake_folder_id",
-		},
-		game: "iidx",
-		goalID: "fake_bad_goal_id",
-		playtype: "SP",
-		timeAdded: 0,
-		name: "get > 1 ex score on some other folder.",
-		criteria: {
-			mode: "single",
-			value: 1,
-			key: "scoreData.score",
-		},
-	};
-
-	t.beforeEach(async () => {
-		// @ts-expect-error garbage types
-		const sp11folder = deepmerge(TestingIIDXFolderSP10, {
-			data: { level: "11" },
-			folderID: "foo",
-		});
-
-		await db.folders.insert(TestingIIDXFolderSP10);
-		await db.folders.insert(sp11folder);
-		await db.goals.insert(fakeFolderGoalDocument);
-		await db.goals.insert(notFolderGoalDocument);
-		await CreateFolderChartLookup(TestingIIDXFolderSP10, true);
-		await CreateFolderChartLookup(sp11folder, true);
-	});
-
-	t.test("Should correctly find the goals on this folder.", async (t) => {
-		const res = await GetRelevantFolderGoals(
-			["fake_goal_id", "fake_bad_goal_id"],
-			[Testing511SPA.chartID]
-		);
-
-		t.strictSame(
-			res,
-			[fakeFolderGoalDocument],
-			"Should correctly return only the 511 goal document."
-		);
-
-		t.end();
-	});
-
-	t.end();
-});
-
-t.test("#GetRelevantGoals", (t) => {
-	t.beforeEach(ResetDBState);
-	t.beforeEach(async () => {
-		// use the real data so we have enough charts loaded for this to test properly.
-		await db.songs.iidx.remove({});
-		await db.charts.iidx.remove({});
-		await db.charts.iidx.insert(
-			GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<
-				ChartDocument<"iidx:DP" | "iidx:SP">
-			>
-		);
-		await db.songs.iidx.insert(
-			GetKTDataJSON("./tachi/tachi-songs-iidx.json") as Array<SongDocument<"iidx">>
-		);
-
-		const lotsOfCharts = await db.charts.iidx.find({}, { limit: 20 });
-		const goals: Array<GoalDocument> = lotsOfCharts.map((e) => ({
-			charts: {
-				type: "single",
-				data: e.chartID,
-			},
-			game: "iidx",
-			goalID: crypto.randomBytes(20).toString("hex"),
-			playtype: "SP",
-			timeAdded: 0,
-			name: "get > 1 ex score on some other folder.",
-			criteria: {
-				mode: "single",
-				value: 1,
-				key: "scoreData.score",
-			},
-		}));
-
-		await db.goals.insert(goals);
-
-		await db["goal-subs"].insert(
-			goals.map((e) => ({
-				achieved: false,
-				wasInstantlyAchieved: false,
-				timeAchieved: null,
-				game: "iidx",
-				playtype: "SP",
-				goalID: e.goalID,
-				lastInteraction: null,
-				outOf: 5,
-				outOfHuman: "HARD CLEAR",
-				progress: null,
-				progressHuman: "NO DATA",
-				timeSet: Date.now(),
-				userID: 1,
-			}))
-		);
-	});
-
-	t.test(
-		"Should successfully filter goals to only those that are relevant to the session.",
-		async (t) => {
-			// lets pretend our session had scores on charts 0->4 and 20->25. We also only have goals on
-			// charts 1->20, so only 5 of these should resolve.
-			const ourCharts = [
-				...(await db.charts.iidx.find({}, { limit: 5 })),
-				...(await db.charts.iidx.find({}, { skip: 20, limit: 5 })),
-			];
-
-			const chartIDs = new Set(ourCharts.map((e) => e.chartID));
-
-			const res = await GetRelevantGoals("iidx", 1, chartIDs, logger);
-
-			t.equal(res.goals.length, 5, "Should correctly resolve to 5 goals.");
-			t.equal(res.goalSubsMap.size, 5, "Should also return 5 goalSubs.");
-
-			t.end();
-		}
-	);
-
-	t.end();
-});
 
 t.test("#UpdateGoalsForUser", (t) => {
 	t.beforeEach(ResetDBState);

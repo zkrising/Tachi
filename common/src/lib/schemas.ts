@@ -9,7 +9,7 @@ import { UserAuthLevels } from "../types";
 import deepmerge from "deepmerge";
 import p from "prudence";
 import type { GamePTConfig } from "../index";
-import type { Game, IDStrings, NotificationBody, Playtypes, Playtype } from "../types";
+import type { Game, IDStrings, NotificationBody, Playtype, Playtypes } from "../types";
 import type {
 	PrudenceSchema,
 	ValidationFunctionParentOptionsKeychain,
@@ -653,15 +653,6 @@ const PRE_SCHEMAS = {
 				goals: [{ goalID: "string", note: "*string" }],
 			},
 		],
-		criteria: p.or(
-			{
-				type: "all",
-			},
-			{
-				type: p.isIn("absolute", "proportion"),
-				value: p.isPositive,
-			}
-		),
 	}),
 	"goal-subs": prSchemaFnWrap({
 		goalID: "string",

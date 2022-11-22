@@ -6,12 +6,12 @@ import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import { TachiConfig } from "lib/config";
 import p, { PrudenceSchema } from "prudence";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Alert, Button, Col, Form, Modal, Row } from "react-bootstrap";
 import { FormatPrError, GetGameConfig } from "tachi-common";
 import { PR_GOAL_SCHEMA } from "tachi-common/lib/schemas";
-import { RawQuestDocument } from "types/tachi";
 import { SetState } from "types/react";
+import { RawQuestDocument } from "types/tachi";
 
 const LOCAL_QUEST_KEY = "LOCAL_QUESTS";
 
@@ -30,15 +30,6 @@ const PR_LOCAL_QUESTS_SCHEMA: PrudenceSchema = {
 			},
 			name: "string",
 			desc: "string",
-			criteria: p.or(
-				{
-					type: p.is("all"),
-				},
-				{
-					type: p.is("total"),
-					value: p.isPositiveInteger,
-				}
-			),
 			rawQuestData: [
 				{
 					title: "string",
@@ -74,7 +65,9 @@ function GetLocalQuests(): Array<RawQuestDocument> {
 
 		if (err) {
 			const e = confirm(
-				`Failed to validate your local quests: ${err.message}. DELETE ALL AND START AGAIN?`
+				`Failed to validate your local quests: ${FormatPrError(
+					err
+				)}. DELETE ALL AND START AGAIN?`
 			);
 
 			if (e) {
@@ -93,7 +86,8 @@ function GetLocalQuests(): Array<RawQuestDocument> {
 export default function QuestEditor() {
 	useSetSubheader(["Developer Utils", "Quest Creator"]);
 
-	const [quests, setQuests] = useState(GetLocalQuests());
+	const INIT_STATE = useMemo(() => GetLocalQuests(), []);
+	const [quests, setQuests] = useState(INIT_STATE);
 	const [show, setShow] = useState(false);
 	const [showImport, setShowImport] = useState(false);
 
@@ -121,7 +115,9 @@ export default function QuestEditor() {
 						<a
 							className="btn btn-success mr-4"
 							download={`Quests-${Date.now()}.json`}
-							href={`data:text/plain;base64,${window.btoa(JSON.stringify(quests))}`}
+							href={`data:application/json;charset=UTF-8,${encodeURIComponent(
+								JSON.stringify(quests)
+							)}`}
 						>
 							Download Quests
 						</a>

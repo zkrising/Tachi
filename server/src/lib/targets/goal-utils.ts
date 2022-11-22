@@ -14,7 +14,7 @@ export async function CreateGoalTitle(
 ) {
 	const formattedCriteria = FormatCriteria(criteria, game, playtype);
 
-	const datasetName = await FormatCharts(charts, game);
+	const datasetName = await FormatCharts(charts, criteria, game);
 
 	// Formatting this stuff into english is hard and excruciatingly manual.
 	switch (criteria.mode) {
@@ -23,8 +23,18 @@ export async function CreateGoalTitle(
 				case "any":
 					return `${formattedCriteria} any chart`;
 				case "single":
-				case "multi":
 					return `${formattedCriteria} ${datasetName}`;
+
+				case "multi": {
+					if (charts.data.length === 2) {
+						// CLEAR either A or B
+						return `${formattedCriteria} either ${datasetName}`;
+					}
+
+					// CLEAR any of A, B or C.
+					return `${formattedCriteria} any one of ${datasetName}`;
+				}
+
 				case "folder":
 					return `${formattedCriteria} any chart in ${datasetName}`;
 			}
@@ -35,8 +45,16 @@ export async function CreateGoalTitle(
 			switch (charts.type) {
 				case "any":
 					return `${formattedCriteria} ${criteria.countNum} charts`;
-				case "multi":
-					return `${formattedCriteria} ${criteria.countNum} of ${datasetName}`;
+				case "multi": {
+					// CLEAR all of A, B and C
+					if (criteria.countNum === charts.data.length) {
+						return `${formattedCriteria} ${datasetName}`;
+					}
+
+					// CLEAR any 2 of A, B or C
+					return `${formattedCriteria} any ${criteria.countNum} of ${datasetName}`;
+				}
+
 				case "folder":
 					return `${formattedCriteria} ${criteria.countNum} charts in ${datasetName}`;
 				case "single":
@@ -66,7 +84,11 @@ export async function CreateGoalTitle(
 	}
 }
 
-async function FormatCharts(charts: GoalDocument["charts"], game: Game) {
+async function FormatCharts(
+	charts: GoalDocument["charts"],
+	criteria: GoalDocument["criteria"],
+	game: Game
+) {
 	switch (charts.type) {
 		case "single":
 			return HumaniseChartID(game, charts.data);
@@ -76,6 +98,14 @@ async function FormatCharts(charts: GoalDocument["charts"], game: Game) {
 			const formattedTitles = await Promise.all(
 				charts.data.map((chartID) => HumaniseChartID(game, chartID))
 			);
+
+			// In the case where this is an absolute query for *all* of these charts
+			// we want it to be A, B and C
+			// instead of A, B or C
+			// for things like CLEAR A, B or C.
+			if (criteria.mode === "absolute" && criteria.countNum === charts.data.length) {
+				return HumanisedJoinArray(formattedTitles, "and");
+			}
 
 			return HumanisedJoinArray(formattedTitles);
 		}

@@ -11,7 +11,7 @@
 	"Invalid Goal: charts.data when type == any": "[charts.data] Invalid charts.data for type 'any'. Must not have any data! (Received foo)",
 	"Invalid Goal: charts.data array when type == single": "[charts.data] Expected a string in charts.data due to charts.type being 'single'.",
 	"Invalid Goal: charts.data array of identical chartIDs": "Expected charts.data to match 2 charts. Instead, it only matched 1. Are all of these chartIDs valid?",
-	"Invalid Goal: charts.data array of single chartID": "[charts.data] Expected an array of 2 to 5 strings in charts.data due to charts.type being 'multi'.",
+	"Invalid Goal: charts.data array of single chartID": "[charts.data] Expected an array of 2 to 10 strings in charts.data due to charts.type being 'multi'.",
 	"Invalid Goal: charts.data array of chartIDs that don't exist": "Expected charts.data to match 2 charts. Instead, it only matched 1. Are all of these chartIDs valid?",
 	"Invalid Goal: charts.data folder refers to folder that doesn't exist": "A folder with id fake-folder does not exist for iidx:SP.",
 	"Invalid Goal: nonsense charts.data": "A chart with id nonsense does not exist for iidx:SP.",
@@ -27,5 +27,8 @@
 	"Invalid Goal: folder-score for iidx is illegal": "Invalid key for iidx with multiple charts. Creating score goals on multiple charts where score is relative to notecount is a terrible idea, and has been disabled.",
 	"Invalid Goal: any-score for iidx is illegal": "Invalid key for iidx with multiple charts. Creating score goals on multiple charts where score is relative to notecount is a terrible idea, and has been disabled.",
 	"Invalid Goal: charts single but criteria not.": "Invalid countNum for goal with criteria.mode of 'absolute'. Expected a whole number less than the total amount of charts available and greater than 1. (Got 2, while total charts was 1.)",
-	"Invalid Goal: too big score": "Invalid value of 9000 for goal. Maximum score possible on this chart is 1572."
+	"Invalid Goal: too big score": "Invalid value of 9000 for goal. Maximum score possible on this chart is 1572.",
+	"Invalid Goal: LampIndex:Multi:Proportion Case": "Criteria Mode must be 'single' or 'absolute' if Charts Type is 'multi'. Doesn't make sense to have proportional goals when you're capped at 5 charts.",
+	"Invalid Goal: GradeIndex:Multi:Proportion Case": "Criteria Mode must be 'single' or 'absolute' if Charts Type is 'multi'. Doesn't make sense to have proportional goals when you're capped at 5 charts.",
+	"Invalid Goal: Percent:Multi:Proportion Case": "Criteria Mode must be 'single' or 'absolute' if Charts Type is 'multi'. Doesn't make sense to have proportional goals when you're capped at 5 charts."
 }

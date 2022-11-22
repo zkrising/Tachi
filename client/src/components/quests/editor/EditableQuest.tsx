@@ -1,4 +1,4 @@
-import { ChangeAtPosition, DeleteInPosition } from "util/misc";
+import { ChangeAtPosition, CopyToClipboard, DeleteInPosition } from "util/misc";
 import Card from "components/layout/page/Card";
 import AddNewGoalForQuestModal from "components/targets/AddNewGoalForQuestModal";
 import Divider from "components/util/Divider";
@@ -10,6 +10,7 @@ import { Button } from "react-bootstrap";
 import { FormatGame } from "tachi-common";
 import { GamePT } from "types/react";
 import { RawQuestDocument, RawQuestGoal, RawQuestSection } from "types/tachi";
+import QuickTooltip from "components/layout/misc/QuickTooltip";
 
 export default function EditableQuest({
 	quest,
@@ -36,7 +37,7 @@ export default function EditableQuest({
 						{(text) => (
 							<h3>
 								{text}
-								<span className="ml-2">
+								<span className="ml-2 text-hover-white">
 									<Icon type="pencil-alt" />
 								</span>
 							</h3>
@@ -55,7 +56,7 @@ export default function EditableQuest({
 						{(desc) => (
 							<div>
 								{desc}
-								<span className="ml-2">
+								<span className="ml-2 text-hover-white">
 									<Icon type="pencil-alt" />
 								</span>
 							</div>
@@ -100,7 +101,7 @@ export default function EditableQuest({
 								...quest.rawQuestData,
 								{
 									title: "Untitled Section",
-									desc: "Give this section a description.",
+									desc: "",
 									rawGoals: [],
 								},
 							],
@@ -112,17 +113,31 @@ export default function EditableQuest({
 				</Button>
 			</div>
 			<Divider />
-			<div className="d-flex w-100 justify-content-end">
-				<Button
-					variant="outline-danger"
-					onClick={() => {
-						if (confirm("Are you absolutely sure you want to delete this quest?")) {
-							onDelete();
-						}
-					}}
-				>
-					<Icon type="trash" noPad />
-				</Button>
+			<div className="d-flex w-100">
+				<div className="mr-auto">
+					<QuickTooltip tooltipContent="Copy this quest to your clipboard in a pretty format.">
+						<Button
+							variant="outline-info"
+							onClick={() => {
+								CopyToClipboard(FormatQuest(quest));
+							}}
+						>
+							<Icon type="clipboard" noPad />
+						</Button>
+					</QuickTooltip>
+				</div>
+				<div className="ml-auto">
+					<Button
+						variant="outline-danger"
+						onClick={() => {
+							if (confirm("Are you absolutely sure you want to delete this quest?")) {
+								onDelete();
+							}
+						}}
+					>
+						<Icon type="trash" noPad />
+					</Button>
+				</div>
 			</div>
 		</Card>
 	);
@@ -155,7 +170,7 @@ function QuestSection({
 				{(text) => (
 					<h5>
 						{text}
-						<span className="ml-2">
+						<span className="ml-2 text-hover-white">
 							<Icon type="pencil-alt" />
 						</span>
 					</h5>
@@ -163,17 +178,17 @@ function QuestSection({
 			</EditableText>
 			<EditableText
 				initial={section.desc}
-				onChange={(title) =>
+				onChange={(desc) =>
 					onChange({
 						...section,
-						title,
+						desc,
 					})
 				}
 			>
 				{(desc) => (
 					<div>
-						{desc}
-						<span className="ml-2">
+						{desc === "" ? <Muted>No Description...</Muted> : desc}
+						<span className="ml-2 text-hover-white">
 							<Icon type="pencil-alt" />
 						</span>
 					</div>
@@ -221,7 +236,8 @@ function QuestSection({
 						}
 					}}
 				>
-					<Icon type="times" noPad />
+					<Icon type="times" />
+					Delete Section
 				</Button>
 			</div>
 			{show && (
@@ -257,12 +273,14 @@ function InnerQuestSectionGoal({
 
 	return (
 		<li className="quest-goal">
-			<div className="w-100">
-				{rawGoal.goal.name}
+			<div className="w-100 d-flex">
+				<div className="mr-auto">{rawGoal.goal.name}</div>
 
-				<span className="float-right">
-					<Icon type="pencil-alt" onClick={() => setShow(true)} />
-					<span className="ml-2">
+				<div className="ml-auto d-flex flex-nowrap">
+					<div className="text-hover-white">
+						<Icon type="pencil-alt" onClick={() => setShow(true)} />
+					</div>
+					<div className="ml-2 text-hover-white">
 						<Icon
 							type="trash"
 							onClick={() => {
@@ -275,8 +293,8 @@ function InnerQuestSectionGoal({
 								}
 							}}
 						/>
-					</span>
-				</span>
+					</div>
+				</div>
 			</div>
 			{rawGoal.note && <Muted>{rawGoal.note}</Muted>}
 			{show && (
@@ -293,4 +311,30 @@ function InnerQuestSectionGoal({
 			)}
 		</li>
 	);
+}
+
+function FormatQuest(quest: RawQuestDocument) {
+	let str = `# QUEST: ${quest.name}
+${quest.desc}
+(Game: ${FormatGame(quest.game, quest.playtype)})`;
+
+	for (const section of quest.rawQuestData) {
+		str += `\n\n### ${section.title}`;
+
+		if (section.desc) {
+			str += `\n${section.desc}`;
+		}
+
+		str += "\n";
+
+		for (const goal of section.rawGoals) {
+			str += `\n-- ${goal.goal.name}`;
+
+			if (goal.note) {
+				str += `\n${goal.note}`;
+			}
+		}
+	}
+
+	return str;
 }

@@ -33,6 +33,9 @@ const UniqueKeys: Partial<Record<keyof typeof SCHEMAS, DuplicateKeyDecl[]>> = {
 	"bms-course-lookup": [["set", "playtype", "value"]],
 	folders: ["folderID"],
 	tables: ["tableID"],
+	questlines: ["questlineID"],
+	quests: ["questID"],
+	goals: ["goalID"],
 	...SongChartKeys,
 };
 

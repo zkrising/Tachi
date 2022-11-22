@@ -23,6 +23,9 @@ export const FormatFunctions: Partial<
 	"bms-course-lookup": (d) => d.title,
 	folders: (d) => d.title,
 	tables: (d) => d.title,
+	quests: (d) => `${d.name} (${d.questID})`,
+	questlines: (d) => `${d.name} (${d.questlineID})`,
+	goals: (d) => `${d.name} (${d.goalID})`,
 
 	"songs-bms": songFormat,
 	"songs-chunithm": songFormat,

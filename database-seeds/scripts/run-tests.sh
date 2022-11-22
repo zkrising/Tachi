@@ -2,8 +2,6 @@
 
 cd "$(dirname "$0")" || exit 1
 
-
-
 failed=()
 function onFailure() {
 	failed+=( "$?" )
@@ -11,7 +9,7 @@ function onFailure() {
 
 trap onFailure ERR
 
-tests=("collections" "id" "folder-id" "table-folders")
+tests=("collections" "id" "folder-id" "goal-id" "references")
 
 # for all tests
 for test in "${tests[@]}"

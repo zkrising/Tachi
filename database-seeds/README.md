@@ -38,6 +38,19 @@ This contains the set tables for all games.
 
 BMS Dans that should be registered by the IR.
 
+- `goals`
+
+Goals that are registered by default in tachi.
+These are likely because they're in a quest.
+
+- `quests`
+
+Quests that are registered by default in tachi.
+
+- `questlines`
+
+Groups of quests that are registered by default.
+
 ## How do I use this?
 
 Depends what you want. If you're familiar with JSON, just
@@ -54,7 +67,3 @@ You can use `server/src/scripts/sync-database` to re-synchronise whenever you wa
 
 If your change involves inserting or removing records, you **must** run `node scripts/deterministic-collection-sort.js`.
 This will ensure diffs stay somewhat sane.
-
-## I want db dumps for things like scores and users!
-
-Coming soon...

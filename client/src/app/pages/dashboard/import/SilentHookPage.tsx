@@ -40,7 +40,8 @@ export default function SilentHookPage() {
 						Here.
 					</ExternalLink>
 					<br />
-					Put these files in the same folder as <code>silent.dll</code> and <code>popn22.dll</code>.
+					Put these files in the same folder as <code>silent.dll</code> and{" "}
+					<code>popn22.dll</code>.
 				</li>
 				<li>
 					Download your config file to the same folder{" "}
@@ -49,12 +50,14 @@ export default function SilentHookPage() {
 				</li>
 				<li>
 					Add <code>silent</code> to your startup script as a hook.
-					<ul class="instructions-list">
+					<ul className="instructions-list">
 						<li>
-							BemaniTools5: Add <code>-K silent.dll</code> to your <code>.bat</code> file.
+							BemaniTools5: Add <code>-K silent.dll</code> to your <code>.bat</code>{" "}
+							file.
 						</li>
 						<li>
-							SpiceTools &amp; BemaniTools4: Add <code>-k silent.dll</code> to your <code>.bat</code> file.
+							SpiceTools &amp; BemaniTools4: Add <code>-k silent.dll</code> to your{" "}
+							<code>.bat</code> file.
 						</li>
 					</ul>
 				</li>

@@ -9,6 +9,7 @@ export function AssignToReqTachiData(req: Request, data: Partial<TachiRequestDat
 	} else {
 		req[SYMBOL_TACHI_DATA] = deepmerge(req[SYMBOL_TACHI_DATA]!, data, {
 			// don't merge arrays, replace them with the new array.
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 			arrayMerge: (a, b) => b,
 		});
 	}

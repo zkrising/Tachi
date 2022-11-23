@@ -615,12 +615,12 @@ export type GoalSubscriptionDocument = MongoDBDocument & {
 		  }
 	);
 
-interface QuestGoalReference {
+export interface QuestGoalReference {
 	goalID: string;
 	note?: string;
 }
 
-interface QuestSection {
+export interface QuestSection {
 	title: string;
 	desc?: string;
 	goals: Array<QuestGoalReference>;

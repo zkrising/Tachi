@@ -1,9 +1,9 @@
 import { MaterialThemeProvider } from "components/layout/misc/MaterialThemeProvider";
 import { LoadingScreen } from "components/layout/screens/LoadingScreen";
+import { AllLUGPTStatsContextProvider } from "context/AllLUGPTStatsContext";
 import { BannedContextProvider } from "context/BannedContext";
 import { SubheaderContextProvider } from "context/SubheaderContext";
 import { UserContextProvider } from "context/UserContext";
-import { AllLUGPTStatsContextProvider } from "context/AllLUGPTStatsContext";
 import { UserSettingsContextProvider } from "context/UserSettingsContext";
 import React from "react";
 import { Toaster } from "react-hot-toast";

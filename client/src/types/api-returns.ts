@@ -250,3 +250,13 @@ export interface RecentlyAchievedOrRaisedTargets {
 	questSubs: Array<QuestSubscriptionDocument>;
 	user: UserDocument;
 }
+
+export interface GPTQuestsReturn {
+	goals: Array<GoalDocument>;
+	quests: Array<QuestDocument>;
+}
+
+export interface UGPTTargetSubs {
+	goalSubs: Array<GoalSubscriptionDocument>;
+	questSubs: Array<QuestSubscriptionDocument>;
+}

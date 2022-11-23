@@ -21,15 +21,7 @@ export default function DeltaCell({
 
 	const { lower, upper, closer } = GenericFormatGradeDelta(game, playtype, score, percent, grade);
 
-	let close = closer;
-
-	// lovely hardcoded exception for IIDX - (MAX-)+ is always a stupid metric
-	// so always mute it.
-	if (game === "iidx" && lower.startsWith("(MAX-)+")) {
-		close = "upper";
-	}
-
-	if (close === "upper") {
+	if (closer === "upper") {
 		return (
 			<td>
 				<strong>{upper}</strong>

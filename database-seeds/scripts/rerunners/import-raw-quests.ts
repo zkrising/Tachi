@@ -9,7 +9,7 @@ program.option("-f, --file <quests.json>");
 program.parse(process.argv);
 const options = program.opts();
 
-// stolen from client/serc/types/tachi.ts
+// stolen from client/src/types/tachi.ts
 type RawQuestDocument = Omit<QuestDocument, "questData" | "questID"> & {
 	rawQuestData: Array<RawQuestSection>;
 };

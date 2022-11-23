@@ -1,7 +1,7 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SearchCollection } from "lib/search/search";
-import { EvaluateQuestProgress, GetGoalsInQuest } from "lib/targets/quests";
+import { EvaluateQuestProgress, GetGoalsInQuest, GetGoalsInQuests } from "lib/targets/quests";
 import prValidate from "server/middleware/prudence-validate";
 import { FormatGame } from "tachi-common";
 import { GetMostSubscribedQuests } from "utils/db";
@@ -52,11 +52,12 @@ router.get("/", async (req, res) => {
 	}
 
 	const quests = await SearchCollection(db.quests, req.query.search, { game, playtype }, 50);
+	const goals = await GetGoalsInQuests(quests);
 
 	return res.status(200).json({
 		success: true,
 		description: `Returned ${quests.length} quests.`,
-		body: quests,
+		body: { quests, goals },
 	});
 });
 
@@ -69,11 +70,12 @@ router.get("/popular", async (req, res) => {
 	const { game, playtype } = GetGPT(req);
 
 	const quests = await GetMostSubscribedQuests({ game, playtype });
+	const goals = await GetGoalsInQuests(quests);
 
 	return res.status(200).json({
 		success: true,
 		description: `Returned ${quests.length} popular quests.`,
-		body: quests,
+		body: { quests, goals },
 	});
 });
 

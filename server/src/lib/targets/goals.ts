@@ -3,9 +3,9 @@ import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
-import { GetGamePTConfig } from "tachi-common";
+import { FormatGame, GetCloserGradeDelta, GetGamePTConfig } from "tachi-common";
 import { GetFolderChartIDs } from "utils/folder";
-import { NotNullish } from "utils/misc";
+import { IsNullish } from "utils/misc";
 import type { KtLogger } from "lib/logger/logger";
 import type { FilterQuery } from "mongodb";
 import type {
@@ -91,13 +91,11 @@ export async function EvaluateGoalForUser(
 				| "percent"
 				| "score";
 
-			const outOfHuman = HumaniseGoalProgress(
+			const outOfHuman = HumaniseGoalOutOf(
 				goal.game,
 				goal.playtype,
 				goal.criteria.key,
-				goal.criteria.value,
-				null,
-				true
+				goal.criteria.value
 			);
 
 			if (res) {
@@ -110,14 +108,27 @@ export async function EvaluateGoalForUser(
 						goal.game,
 						goal.playtype,
 						goal.criteria.key,
-						res.scoreData[scoreDataKey],
 						res
 					),
 				};
 			}
 
-			// if we weren't successful, we have to get the users next best score and put it up here
-			// this is made infinitely easier by the existence of personal-bests.
+			// if we didn't find a PB, and this goal was only on one chart --
+			// i.e. "FULL COMBO 5.1.1.", then there can't possibly be any scores on this
+			// chart.
+			if (goal.charts.type === "single") {
+				return {
+					achieved: false,
+					outOf: goal.criteria.value,
+					progress: null,
+					outOfHuman,
+					progressHuman: "NO DATA",
+				};
+			}
+
+			// if we didn't find a PB that achieved the goal and we have multiple
+			// chartIDs to work with (i.e. AAA any chart, AAA any of A | B | C)
+			// we need to find the next-best PB.
 			const nextBestQuery: FilterQuery<PBScoreDocument> = {
 				userID,
 				game: goal.game,
@@ -132,6 +143,7 @@ export async function EvaluateGoalForUser(
 				sort: { [goal.criteria.key]: -1 },
 			});
 
+			// user has no scores on any charts in this set.
 			if (!nextBestScore) {
 				return {
 					achieved: false,
@@ -151,7 +163,6 @@ export async function EvaluateGoalForUser(
 					goal.game,
 					goal.playtype,
 					goal.criteria.key,
-					nextBestScore.scoreData[scoreDataKey],
 					nextBestScore
 				),
 			};
@@ -200,7 +211,8 @@ export async function EvaluateGoalForUser(
 			logger.warn(
 				`Invalid goal: ${goal.goalID}, unknown criteria.mode ${
 					(goal.criteria as GoalDocument["criteria"]).mode
-				}, ignoring.`
+				}, ignoring.`,
+				{ goal }
 			);
 
 			return null;
@@ -234,65 +246,140 @@ function ResolveGoalCharts(
 
 type GoalKeys = GoalDocument["criteria"]["key"];
 
-type PBWithBadPoor = PBScoreDocument<
-	"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP" | "pms:Controller" | "pms:Keyboard"
->;
-
+/**
+ * Turn a users progress (i.e. their PB on a chart where the goal is "AAA $chart")
+ * into a human-understandable string.
+ *
+ * This applies GPT-specific formatting in some cases, like appending 'bp' to
+ * IIDX lamp goals.
+ */
 export function HumaniseGoalProgress(
 	game: Game,
 	playtype: Playtype,
 	key: GoalKeys,
-	value: number,
-	userPB: PBScoreDocument | null,
-	isOutOf = false
+	userPB: PBScoreDocument
 ): string {
+	switch (key) {
+		case "scoreData.gradeIndex": {
+			// for iidx, pms and bms we expect grade deltas (rarely) formatted like
+			// AAA-1520
+			// however, for other games (namely those that run with larger numbers)
+			// we want to format this stuff like AA-172k.
+			const fmtFn =
+				game === "iidx" || game === "pms" || game === "bms"
+					? undefined
+					: (num: number) => Intl.NumberFormat("en", { notation: "compact" }).format(num);
+
+			const prettyGradeDelta = GetCloserGradeDelta(
+				game,
+				playtype,
+				userPB.scoreData.score,
+				userPB.scoreData.percent,
+				userPB.scoreData.grade,
+				fmtFn
+			);
+
+			return prettyGradeDelta;
+		}
+
+		case "scoreData.lampIndex": {
+			switch (game) {
+				case "iidx":
+				case "bms":
+				case "pms": {
+					// @ts-expect-error This is guaranteed to exist, we're going to ignore it.
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+					const maybeBP: number | null | undefined = userPB.scoreData.hitMeta.bp;
+
+					// render BP if it exists
+					if (!IsNullish(maybeBP)) {
+						return `${userPB.scoreData.lamp} (BP: ${maybeBP})`;
+					}
+
+					break;
+				}
+
+				case "itg": {
+					// @ts-expect-error This is guaranteed to exist, we're going to ignore it.
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+					const maybeDiedAt: number | null | undefined = userPB.scoreData.hitMeta.diedAt;
+
+					// render diedAt if it exists as "FAILED (Died 25% in)"
+					if (!IsNullish(maybeDiedAt)) {
+						return `${userPB.scoreData.lamp} (Died ${maybeDiedAt.toFixed(0)}% in)`;
+					}
+
+					break;
+				}
+
+				// no special logic needed for these games, just render the lamp.
+				case "chunithm":
+				case "ddr":
+				case "gitadora":
+				case "jubeat":
+				case "maimai":
+				case "museca":
+				case "popn":
+				case "sdvx":
+				case "usc":
+				case "wacca":
+			}
+
+			// otherwise, just roll on.
+			return userPB.scoreData.lamp;
+		}
+
+		case "scoreData.percent":
+			return `${userPB.scoreData.percent.toFixed(2)}%`;
+		case "scoreData.score":
+			return userPB.scoreData.score.toLocaleString();
+		default:
+			throw new Error(`Broken goal - invalid key ${key}.`);
+	}
+}
+
+/**
+ * Turn a goal's "outOf" (i.e. HARD CLEAR; AAA or score=2450) into a human-understandable
+ * string.
+ */
+export function HumaniseGoalOutOf(game: Game, playtype: Playtype, key: GoalKeys, value: number) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	switch (key) {
 		case "scoreData.gradeIndex": {
-			if (!gptConfig.grades[value]) {
+			const grade = gptConfig.grades[value];
+
+			if (!grade) {
 				throw new Error(
-					`Corrupt goal -- requested a grade of ${value}, which doesn't exist for this game.`
+					`Invalid goal: Requested a grade with index '${value}' for ${FormatGame(
+						game,
+						playtype
+					)}, yet none existed?`
 				);
 			}
 
-			if (isOutOf) {
-				return `${gptConfig.grades[value]} (${gptConfig.gradeBoundaries[value]?.toFixed(
-					2
-				)}%)`;
-			}
-
-			return `${gptConfig.grades[value]} (${userPB?.scoreData.percent.toFixed(2) ?? "0"}%)`;
+			return grade;
 		}
 
 		case "scoreData.lampIndex": {
-			if (!gptConfig.lamps[value]) {
+			const lamp = gptConfig.lamps[value];
+
+			if (!lamp) {
 				throw new Error(
-					`Corrupt goal -- requested a lamp of ${value}, which doesn't exist for this game.`
+					`Invalid goal: Requested a lamp with index '${value}' for ${FormatGame(
+						game,
+						playtype
+					)}, yet none existed?`
 				);
 			}
 
-			// these games care about the BP as progress towards the goal
-			if (userPB && (game === "iidx" || game === "bms" || game === "pms")) {
-				return `${gptConfig.lamps[value]} (BP: ${
-					(userPB as PBWithBadPoor).scoreData.hitMeta.bp ?? "N/A"
-				})`;
-			}
-
-			// this game cares about where you died relative to the measures in the chart
-			if (game === "itg") {
-				return `${gptConfig.lamps[value]} (BP: ${
-					(userPB as PBScoreDocument<"itg:Stamina">).scoreData.hitMeta.diedAt ?? "N/A"
-				})`;
-			}
-
-			return NotNullish(gptConfig.lamps[value]);
+			return lamp;
 		}
 
 		case "scoreData.percent":
 			return `${value.toFixed(2)}%`;
 		case "scoreData.score":
-			return value.toString();
+			return value.toLocaleString();
 		default:
 			throw new Error(`Broken goal - invalid key ${key}.`);
 	}

@@ -41,6 +41,7 @@ import { UGPTContextProvider } from "context/UGPTContext";
 import Icon from "components/util/Icon";
 import SelectLinkButton from "components/util/SelectLinkButton";
 import QuestsPage from "components/game/quests/QuestsPage";
+import { TargetsContextProvider } from "context/TargetsContext";
 
 export default function GameRoutes() {
 	const { game } = useParams<{ game: string }>();
@@ -71,7 +72,9 @@ export default function GameRoutes() {
 
 			<Route path="/dashboard/games/:game/:playtype">
 				<UGPTContextProvider>
-					<GamePlaytypeRoutes game={game} />
+					<TargetsContextProvider>
+						<GamePlaytypeRoutes game={game} />
+					</TargetsContextProvider>
 				</UGPTContextProvider>
 			</Route>
 

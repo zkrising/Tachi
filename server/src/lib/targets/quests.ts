@@ -55,6 +55,19 @@ export async function GetGoalsInQuest(quest: QuestDocument) {
 }
 
 /**
+ * Return all the goals inside these quests
+ */
+export async function GetGoalsInQuests(quests: Array<QuestDocument>) {
+	const goalIDs = quests.flatMap((quest) => GetGoalIDsFromQuest(quest));
+
+	const goals = await db.goals.find({
+		goalID: { $in: goalIDs },
+	});
+
+	return goals;
+}
+
+/**
  * Work out how many goals need to be achieved for this
  * quest to be considered completed.
  */

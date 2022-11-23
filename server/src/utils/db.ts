@@ -378,16 +378,26 @@ export async function GetMostSubscribedQuests(
 	query: FilterQuery<QuestSubscriptionDocument>,
 	limit = 100
 ): Promise<Array<QuestDocument & { __subscriptions: integer }>> {
-	const mostSubscribedMilesones: Array<{ quest: QuestDocument; subscriptions: integer }> =
-		await db["quest-subs"].aggregate([
+	const mostSubscribedQuests: Array<QuestDocument & { subscriptions: integer }> =
+		await db.quests.aggregate([
 			{
 				$match: query,
 			},
 			{
-				$group: {
-					_id: "$questID",
-					subscriptions: { $sum: 1 },
+				$lookup: {
+					from: "quest-subs",
+					localField: "questID",
+					foreignField: "questID",
+					as: "subs",
 				},
+			},
+			{
+				$addFields: {
+					subscriptions: { $size: "$subs" },
+				},
+			},
+			{
+				$unset: "subs",
 			},
 			{
 				$sort: {
@@ -397,27 +407,11 @@ export async function GetMostSubscribedQuests(
 			{
 				$limit: limit,
 			},
-			{
-				$lookup: {
-					from: "quests",
-					localField: "_id",
-					foreignField: "questID",
-					as: "quest",
-				},
-			},
-			{
-				$set: {
-					quest: { $arrayElemAt: ["$quest", 0] },
-				},
-			},
-			{
-				$unset: "quest._id",
-			},
 		]);
 
-	return mostSubscribedMilesones.map((e) => ({
+	return mostSubscribedQuests.map((e) => ({
+		...e,
 		__subscriptions: e.subscriptions,
-		...e.quest,
 	}));
 }
 

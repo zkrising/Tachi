@@ -59,7 +59,6 @@ export default function RivalsMainPage({
 			<Col xs={12}>
 				<Switch>
 					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/rivals">
-						{settings?.rivals.length === 0 && <Redirect to={`${base}/rivals/manage`} />}
 						<RivalsActivityPage reqUser={reqUser} game={game} playtype={playtype} />
 					</Route>
 

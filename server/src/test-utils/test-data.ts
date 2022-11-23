@@ -571,7 +571,6 @@ export const HC511Goal: GoalDocument = {
 	game: "iidx",
 	goalID: "mock_goalID",
 	playtype: "SP",
-	timeAdded: 0,
 	name: "HC 5.1.1. SPA",
 	criteria: {
 		mode: "single",

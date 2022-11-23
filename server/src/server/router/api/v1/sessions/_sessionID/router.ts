@@ -8,6 +8,7 @@ import db from "external/mongo/db";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
+import { optNull } from "utils/prudence";
 import { GetTachiData } from "utils/req-tachi-data";
 import { GetUserWithID } from "utils/user";
 
@@ -52,7 +53,7 @@ router.get("/", UpdateSessionViewcount, async (req, res) => {
 
 interface ModifiableSessionProps {
 	name?: string;
-	desc?: string;
+	desc?: string | null;
 	highlight?: boolean;
 }
 
@@ -75,7 +76,7 @@ router.patch(
 	prValidate(
 		{
 			name: p.optional(p.isBoundedString(3, 80)),
-			desc: p.optional(p.isBoundedString(3, 120)),
+			desc: optNull(p.isBoundedString(3, 120)),
 			highlight: "*boolean",
 		},
 		{},
@@ -88,7 +89,7 @@ router.patch(
 
 		const body = req.safeBody as {
 			name?: string;
-			desc?: string;
+			desc?: string | null;
 			highlight?: boolean;
 		};
 
@@ -96,7 +97,7 @@ router.patch(
 			updateExp.name = body.name;
 		}
 
-		if (body.desc) {
+		if (body.desc !== undefined) {
 			updateExp.desc = body.desc;
 		}
 

@@ -25,7 +25,6 @@ t.test("#UpdateGoalsForUser", (t) => {
 		game: "iidx",
 		goalID: "FAKE_GOAL_ID",
 		playtype: "SP",
-		timeAdded: 0,
 		name: "get > 1 ex score on some other folder.",
 		criteria: {
 			mode: "single",

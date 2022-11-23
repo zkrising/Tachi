@@ -7,7 +7,10 @@ export function AssignToReqTachiData(req: Request, data: Partial<TachiRequestDat
 	if (!req[SYMBOL_TACHI_DATA]) {
 		req[SYMBOL_TACHI_DATA] = data;
 	} else {
-		req[SYMBOL_TACHI_DATA] = deepmerge(req[SYMBOL_TACHI_DATA]!, data);
+		req[SYMBOL_TACHI_DATA] = deepmerge(req[SYMBOL_TACHI_DATA]!, data, {
+			// don't merge arrays, replace them with the new array.
+			arrayMerge: (a, b) => b,
+		});
 	}
 }
 

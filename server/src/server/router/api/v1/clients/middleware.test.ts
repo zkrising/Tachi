@@ -1,14 +1,14 @@
 import { GetClientFromID, RequireOwnershipOfClient } from "./middleware";
-import expMiddlewareMock from "express-request-mock";
 import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import t from "tap";
+import { expressRequestMock } from "test-utils/mock-request";
 import ResetDBState from "test-utils/resets";
 
 t.test("#GetClientFromID", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should assign the client to req[@@TachiData] if exists.", async (t) => {
-		const { req } = await expMiddlewareMock(GetClientFromID, {
+		const { req } = await expressRequestMock(GetClientFromID, {
 			params: {
 				clientID: "OAUTH2_CLIENT_ID",
 			},
@@ -36,7 +36,7 @@ t.test("#GetClientFromID", (t) => {
 	});
 
 	t.test("Should return 404 if client does not exist.", async (t) => {
-		const { res } = await expMiddlewareMock(GetClientFromID, {
+		const { res } = await expressRequestMock(GetClientFromID, {
 			params: {
 				clientID: "NONSENSE",
 			},
@@ -60,7 +60,7 @@ t.test("#RequireOwnershipOfClient", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should return 401 if the user has no authentication.", async (t) => {
-		const { res } = await expMiddlewareMock(RequireOwnershipOfClient, {
+		const { res } = await expressRequestMock(RequireOwnershipOfClient, {
 			safeBody: {
 				__terribleHackOauth2ClientDoc: {
 					author: 1,
@@ -76,7 +76,7 @@ t.test("#RequireOwnershipOfClient", (t) => {
 	});
 
 	t.test("Should return 403 if the user does not own this client.", async (t) => {
-		const { res } = await expMiddlewareMock(RequireOwnershipOfClient, {
+		const { res } = await expressRequestMock(RequireOwnershipOfClient, {
 			safeBody: {
 				__terribleHackOauth2ClientDoc: {
 					author: 1,
@@ -98,7 +98,7 @@ t.test("#RequireOwnershipOfClient", (t) => {
 	});
 
 	t.test("Should continue if this is their session.", async (t) => {
-		const { res } = await expMiddlewareMock(RequireOwnershipOfClient, {
+		const { res } = await expressRequestMock(RequireOwnershipOfClient, {
 			safeBody: {
 				__terribleHackOauth2ClientDoc: {
 					author: 1,

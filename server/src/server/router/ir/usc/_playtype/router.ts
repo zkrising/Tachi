@@ -11,7 +11,7 @@ import { AssertStrAsPositiveNonZeroInt } from "lib/score-import/framework/common
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
 import p from "prudence";
-import { RequirePermissions } from "server/middleware/auth";
+import { RejectIfBanned, RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
 import { FormatPrError } from "utils/prudence";
 import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
@@ -85,6 +85,9 @@ router.use((req, res, next) => {
 
 	next();
 });
+
+// since USC handrolls its own auth code, we need to also reject banned users.
+router.use(RejectIfBanned);
 
 router.use(ValidateUSCRequest);
 

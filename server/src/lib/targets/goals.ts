@@ -319,7 +319,6 @@ export async function ConstructGoal(
 	const goalDocument: GoalDocument = {
 		game,
 		playtype,
-		timeAdded: Date.now(),
 		criteria,
 		charts,
 		goalID: CreateGoalID(charts, criteria, game, playtype),

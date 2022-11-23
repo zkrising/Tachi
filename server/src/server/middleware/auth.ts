@@ -18,7 +18,30 @@ const GuestToken: APITokenDocument = {
 	fromAPIClient: null,
 };
 
-export const SetRequestPermissions: RequestHandler = CreateSetRequestPermissions("description");
+export const RejectIfBanned: RequestHandler = async (req, res, next) => {
+	// auth might not be defined.
+	const auth = req[SYMBOL_TACHI_API_AUTH] as APITokenDocument | undefined;
+
+	// this is deliberately not auth?.userID !== null, as that isn't correct.
+	// we need to ignore this if auth doesn't exist and if auth is null.
+
+	// eslint-disable-next-line @typescript-eslint/prefer-optional-chain
+	if (auth && auth.userID !== null) {
+		const isBanned = await db.users.findOne({
+			id: req[SYMBOL_TACHI_API_AUTH].userID!,
+			authLevel: UserAuthLevels.BANNED,
+		});
+
+		if (isBanned) {
+			return res.status(403).json({
+				success: false,
+				description: `You are banned from ${TachiConfig.NAME}`,
+			});
+		}
+	}
+
+	next();
+};
 
 /**
  * Sets the permissions for this request, alongside the user that is making the request.
@@ -33,74 +56,84 @@ export const SetRequestPermissions: RequestHandler = CreateSetRequestPermissions
  * token is set as the request token, with no permissions.
  *
  * This is set on req[SYMBOL_TachiAPIAuth].
+ *
+ * This returns an array -- one which calls "reject if banned" immediately afterwards
+ * as, if we've validated a user to exist, we should check if they're banned immediately
+ * afterwards.
  */
-function CreateSetRequestPermissions(errorKeyName: string): RequestHandler {
-	return async (req, res, next) => {
-		// Types here are wrong. Sometimes req.session is not set.
-		// As such, we force an assertion.
+function CreateSetRequestPermissions(errorKeyName: string): Array<RequestHandler> {
+	return [
+		async (req, res, next) => {
+			// Types here are wrong. Sometimes req.session is not set.
+			// As such, we force an assertion.
 
-		const maybeSession = req.session as (Partial<SessionData> & Session) | undefined;
+			const maybeSession = req.session as (Partial<SessionData> & Session) | undefined;
 
-		if (maybeSession?.tachi?.user.id !== undefined) {
+			if (maybeSession?.tachi?.user.id !== undefined) {
+				req[SYMBOL_TACHI_API_AUTH] = {
+					userID: maybeSession.tachi.user.id,
+					identifier: `Session-Key ${maybeSession.tachi.user.id}`,
+					token: null,
+					permissions: ALL_PERMISSIONS,
+					fromAPIClient: null,
+				};
+				next();
+				return;
+			}
+
+			const header = req.header("Authorization");
+
+			// if no auth was attempted, default to the guest token.
+			if (IsNullishOrEmptyStr(header)) {
+				req[SYMBOL_TACHI_API_AUTH] = GuestToken;
+				next();
+				return;
+			}
+
+			const { token, type } = SplitAuthorizationHeader(header);
+
+			if (type !== "Bearer") {
+				return res.status(400).json({
+					success: false,
+					[errorKeyName]: "Invalid Authorization Type - Expected Bearer.",
+				});
+			}
+
+			if (!token) {
+				return res.status(401).json({
+					success: false,
+					[errorKeyName]: "Invalid token.",
+				});
+			}
+
+			const apiTokenData = await db["api-tokens"].findOne({
+				token,
+			});
+
+			if (!apiTokenData) {
+				return res.status(401).json({
+					success: false,
+					[errorKeyName]:
+						"The provided API token does not correspond with any key in the database.",
+				});
+			}
+
 			req[SYMBOL_TACHI_API_AUTH] = {
-				userID: maybeSession.tachi.user.id,
-				identifier: `Session-Key ${maybeSession.tachi.user.id}`,
-				token: null,
-				permissions: ALL_PERMISSIONS,
-				fromAPIClient: null,
+				userID: apiTokenData.userID,
+				token,
+				permissions: apiTokenData.permissions,
+				identifier: apiTokenData.identifier,
+				fromAPIClient: apiTokenData.fromAPIClient,
 			};
+
 			next();
-			return;
-		}
-
-		const header = req.header("Authorization");
-
-		// if no auth was attempted, default to the guest token.
-		if (IsNullishOrEmptyStr(header)) {
-			req[SYMBOL_TACHI_API_AUTH] = GuestToken;
-			next();
-			return;
-		}
-
-		const { token, type } = SplitAuthorizationHeader(header);
-
-		if (type !== "Bearer") {
-			return res.status(400).json({
-				success: false,
-				[errorKeyName]: "Invalid Authorization Type - Expected Bearer.",
-			});
-		}
-
-		if (!token) {
-			return res.status(401).json({
-				success: false,
-				[errorKeyName]: "Invalid token.",
-			});
-		}
-
-		const apiTokenData = await db["api-tokens"].findOne({
-			token,
-		});
-
-		if (!apiTokenData) {
-			return res.status(401).json({
-				success: false,
-				[errorKeyName]:
-					"The provided API token does not correspond with any key in the database.",
-			});
-		}
-
-		req[SYMBOL_TACHI_API_AUTH] = {
-			userID: apiTokenData.userID,
-			token,
-			permissions: apiTokenData.permissions,
-			identifier: apiTokenData.identifier,
-			fromAPIClient: apiTokenData.fromAPIClient,
-		};
-
-		next();
-	};
+		},
+		RejectIfBanned,
+	];
 }
+
+export const SetRequestPermissions: Array<RequestHandler> =
+	CreateSetRequestPermissions("description");
 
 /**
  * An identical implementation of SetRequestPermissions, but returns
@@ -108,7 +141,7 @@ function CreateSetRequestPermissions(errorKeyName: string): RequestHandler {
  *
  * @see SetRequestPermissions
  */
-export const SetFervidexStyleRequestPermissions: RequestHandler =
+export const SetFervidexStyleRequestPermissions: Array<RequestHandler> =
 	CreateSetRequestPermissions("error");
 
 /**
@@ -193,21 +226,3 @@ const CreateRequireNotGuest =
 export const RequireNotGuest: RequestHandler = CreateRequireNotGuest("description");
 
 export const FervidexStyleRequireNotGuest: RequestHandler = CreateRequireNotGuest("error");
-
-export const RejectIfBanned: RequestHandler = async (req, res, next) => {
-	if (req[SYMBOL_TACHI_API_AUTH].userID !== null) {
-		const isBanned = await db.users.findOne({
-			id: req[SYMBOL_TACHI_API_AUTH].userID!,
-			authLevel: UserAuthLevels.BANNED,
-		});
-
-		if (isBanned) {
-			return res.status(403).json({
-				success: false,
-				description: `You are banned from ${TachiConfig.NAME}`,
-			});
-		}
-	}
-
-	next();
-};

@@ -1,10 +1,10 @@
 import { SetRequestPermissions } from "./auth";
-import expMiddlewareMock from "express-request-mock";
 import db from "external/mongo/db";
 import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import { ALL_PERMISSIONS } from "tachi-common";
 import t from "tap";
 import mockApi from "test-utils/mock-api";
+import { expressRequestMock } from "test-utils/mock-request";
 import ResetDBState from "test-utils/resets";
 
 t.test("#SetRequestPermissions", (t) => {
@@ -21,7 +21,7 @@ t.test("#SetRequestPermissions", (t) => {
 			fromAPIClient: null,
 		});
 
-		const { req } = await expMiddlewareMock(SetRequestPermissions, {
+		const { req } = await expressRequestMock(SetRequestPermissions, {
 			headers: {
 				authorization: "Bearer mock_token",
 			},
@@ -41,7 +41,7 @@ t.test("#SetRequestPermissions", (t) => {
 	});
 
 	t.test("Should assign guest APIKey information if no auth present", async (t) => {
-		const { req } = await expMiddlewareMock(SetRequestPermissions);
+		const { req } = await expressRequestMock(SetRequestPermissions);
 
 		t.strictSame(req[SYMBOL_TACHI_API_AUTH], {
 			userID: null,
@@ -55,7 +55,7 @@ t.test("#SetRequestPermissions", (t) => {
 	});
 
 	t.test("Should return 400 if auth type is not Bearer", async (t) => {
-		const { res } = await expMiddlewareMock(SetRequestPermissions, {
+		const { res } = await expressRequestMock(SetRequestPermissions, {
 			headers: {
 				authorization: "Basic Foo",
 			},
@@ -70,7 +70,7 @@ t.test("#SetRequestPermissions", (t) => {
 	});
 
 	t.test("Should return 401 if no token is present", async (t) => {
-		const { res } = await expMiddlewareMock(SetRequestPermissions, {
+		const { res } = await expressRequestMock(SetRequestPermissions, {
 			headers: {
 				authorization: "Bearer ",
 			},
@@ -85,7 +85,7 @@ t.test("#SetRequestPermissions", (t) => {
 	});
 
 	t.test("Should return 401 if token is unknown", async (t) => {
-		const { res } = await expMiddlewareMock(SetRequestPermissions, {
+		const { res } = await expressRequestMock(SetRequestPermissions, {
 			headers: {
 				authorization: "Bearer unknown_token",
 			},
@@ -103,7 +103,7 @@ t.test("#SetRequestPermissions", (t) => {
 	});
 
 	t.test("Should assign a Session-Key if user authenticates with cookie.", async (t) => {
-		const { req } = await expMiddlewareMock(SetRequestPermissions, {
+		const { req } = await expressRequestMock(SetRequestPermissions, {
 			session: {
 				tachi: {
 					user: await db.users.findOne({ id: 1 }),

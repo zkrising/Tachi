@@ -1,7 +1,7 @@
 import { CDNDelete, CDNRedirect, CDNRetrieve, CDNStoreOrOverwrite } from "./cdn";
-import expressRequestMock from "express-request-mock";
 import { Environment, ServerConfig } from "lib/setup/config";
 import t from "tap";
+import { expressRequestMock } from "test-utils/mock-request";
 import fs from "fs";
 import path from "path";
 

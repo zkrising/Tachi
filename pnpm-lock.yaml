@@ -360,7 +360,6 @@ importers:
       express: 4.17.2
       express-async-errors: 3.1.1
       express-rate-limit: 5.5.1
-      express-request-mock: 3.1.0
       express-session: 1.17.2
       fast-json-stable-hash: 1.0.3
       fast-xml-parser: 4.0.2
@@ -459,7 +458,6 @@ importers:
     devDependencies:
       '@types/supertest': 2.0.11
       '@types/tap': 15.0.5
-      express-request-mock: 3.1.0
       glob: 7.2.3
       node-mocks-http: 1.11.0
       supertest: 6.2.2
@@ -6031,6 +6029,7 @@ packages:
     dependencies:
       ms: 2.1.2
       supports-color: 6.1.0
+    dev: true
 
   /decamelize/1.2.0:
     resolution: {integrity: sha512-z2S+W9X73hAUUki+N+9Za2lBlun89zigOyGrsax+KUQ6wKW4ZoWpEYBkGhQjwAjjDCkWxhY0VKEhk8wzY7F5cA==}
@@ -7087,13 +7086,6 @@ packages:
     resolution: {integrity: sha512-MTjE2eIbHv5DyfuFz4zLYWxpqVhEhkTiwFGuB74Q9CSou2WHO52nlE5y3Zlg6SIsiYUIPj6ifFxnkPz6O3sIUg==}
     dev: false
 
-  /express-request-mock/3.1.0:
-    resolution: {integrity: sha512-Ep1uuqCRUc2nTjwAeaVuviDGPCOU2xIhyVHQoN6+xDc9ANJJY42auiAO0guJTvnyyHY/8Q3/hZWEjHf1eo6hSQ==}
-    engines: {node: '>= 12.0.0'}
-    dependencies:
-      node-mocks-http: 1.11.0
-    dev: true
-
   /express-session/1.17.2:
     resolution: {integrity: sha512-mPcYcLA0lvh7D4Oqr5aNJFMtBMKPLl++OKKxkHzZ0U0oDq1rpKBnkR5f5vCHR26VeArlTOEF9td4x5IjICksRQ==}
     engines: {node: '>= 0.8.0'}
@@ -7560,7 +7552,7 @@ packages:
       debug:
         optional: true
     dependencies:
-      debug: 4.3.4_supports-color@6.1.0
+      debug: 4.3.4
 
   /for-in/1.0.2:
     resolution: {integrity: sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ==}

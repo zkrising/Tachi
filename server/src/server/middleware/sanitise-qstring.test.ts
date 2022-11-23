@@ -1,10 +1,10 @@
 import SanitiseQString from "./sanitise-qstring";
-import expMiddlewareMock from "express-request-mock";
 import t from "tap";
+import { expressRequestMock } from "test-utils/mock-request";
 
 t.test("#SanitiseQString", (t) => {
 	t.test("Should allow GET requests with valid data.", async (t) => {
-		const { res } = await expMiddlewareMock(SanitiseQString, {
+		const { res } = await expressRequestMock(SanitiseQString, {
 			method: "GET",
 			query: {
 				foo: "bar",
@@ -17,7 +17,7 @@ t.test("#SanitiseQString", (t) => {
 	});
 
 	t.test("Should disallow GET requests with nested data.", async (t) => {
-		const { res } = await expMiddlewareMock(SanitiseQString, {
+		const { res } = await expressRequestMock(SanitiseQString, {
 			method: "GET",
 			query: {
 				foo: {

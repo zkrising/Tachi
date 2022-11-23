@@ -1,13 +1,13 @@
 import prValidate from "./prudence-validate";
-import expMiddlewareMock from "express-request-mock";
 import Prudence from "prudence";
 import t from "tap";
+import { expressRequestMock } from "test-utils/mock-request";
 
 t.test("#PrudenceMiddleware", (t) => {
 	const mw = prValidate({ foo: Prudence.regex(/^baz$/u) }, { foo: "example error message" });
 
 	t.test("Should return 400 on invalid prudence validation", async (t) => {
-		const { res } = await expMiddlewareMock(mw, {
+		const { res } = await expressRequestMock(mw, {
 			query: {
 				foo: "bar",
 			},
@@ -27,7 +27,7 @@ t.test("#PrudenceMiddleware", (t) => {
 	});
 
 	t.test("Should return 'nothing' instead of undefined for missing fields", async (t) => {
-		const { res } = await expMiddlewareMock(mw, {
+		const { res } = await expressRequestMock(mw, {
 			query: {},
 		});
 
@@ -45,7 +45,7 @@ t.test("#PrudenceMiddleware", (t) => {
 	});
 
 	t.test("Should allow valid prudence data.", async (t) => {
-		const { res } = await expMiddlewareMock(mw, {
+		const { res } = await expressRequestMock(mw, {
 			query: {
 				foo: "baz",
 			},
@@ -60,7 +60,7 @@ t.test("#PrudenceMiddleware", (t) => {
 	});
 
 	t.test("Should allow valid bodies on non-GET requests", async (t) => {
-		const { res } = await expMiddlewareMock(mw, {
+		const { res } = await expressRequestMock(mw, {
 			method: "POST",
 			body: {
 				foo: "baz",
@@ -76,7 +76,7 @@ t.test("#PrudenceMiddleware", (t) => {
 	});
 
 	t.test("Should return 400 on invalid prudence validation for non-GET requests", async (t) => {
-		const { res } = await expMiddlewareMock(mw, {
+		const { res } = await expressRequestMock(mw, {
 			method: "POST",
 			body: {
 				foo: "bar",
@@ -104,7 +104,7 @@ t.test("#PrudenceMiddleware", (t) => {
 	t.test(
 		"Should not return the contents of the error message if the field starts with !",
 		async (t) => {
-			const { res } = await expMiddlewareMock(mwWithPassword, {
+			const { res } = await expressRequestMock(mwWithPassword, {
 				query: {
 					"!password": 123,
 				},
@@ -127,7 +127,7 @@ t.test("#PrudenceMiddleware", (t) => {
 	t.test(
 		"Should not return the contents of the error message if the field starts with ! and is undefined.",
 		async (t) => {
-			const { res } = await expMiddlewareMock(mwWithPassword, {
+			const { res } = await expressRequestMock(mwWithPassword, {
 				query: {
 					"!password": undefined,
 				},

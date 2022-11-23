@@ -1,10 +1,10 @@
 import { ValidateIRClientVersion } from "./auth";
-import expMiddlewareMock from "express-request-mock";
 import t from "tap";
+import { expressRequestMock } from "test-utils/mock-request";
 
 t.test("#ValidateIRClientVersion", (t) => {
 	t.test("Should reject clients that are not supported", async (t) => {
-		const { res } = await expMiddlewareMock(ValidateIRClientVersion, {
+		const { res } = await expressRequestMock(ValidateIRClientVersion, {
 			headers: {
 				"X-TachiIR-Version": "1.2.0",
 			},
@@ -20,7 +20,7 @@ t.test("#ValidateIRClientVersion", (t) => {
 	});
 
 	t.test("Should reject no client header", async (t) => {
-		const { res } = await expMiddlewareMock(ValidateIRClientVersion, {});
+		const { res } = await expressRequestMock(ValidateIRClientVersion, {});
 
 		const json = res._getJSONData();
 
@@ -32,7 +32,7 @@ t.test("#ValidateIRClientVersion", (t) => {
 	});
 
 	t.test("Should accept 2.0.0", async (t) => {
-		const { res } = await expMiddlewareMock(ValidateIRClientVersion, {
+		const { res } = await expressRequestMock(ValidateIRClientVersion, {
 			headers: {
 				"X-TachiIR-Version": "v2.0.0",
 			},

@@ -1,23 +1,22 @@
 import { APIFetchV1 } from "util/api";
 import { CreateChartMap, CreateScoreIDMap, CreateSongMap } from "util/data";
-import { DelayedPageReload } from "util/misc";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import SessionOverview from "components/sessions/SessionOverview";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
-import FormInput from "components/util/FormInput";
+import EditableText from "components/util/EditableText";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useState } from "react";
-import { Badge, Button, Col, Form, Modal, Row } from "react-bootstrap";
+import { Badge, Button, Col, Row } from "react-bootstrap";
 import { Redirect, useParams } from "react-router-dom";
-import { GetGameConfig, SessionDocument } from "tachi-common";
+import { GetGameConfig } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
-import { SetState, UGPT } from "types/react";
+import { UGPT } from "types/react";
 
 export default function SpecificSessionPage({ reqUser, game, playtype }: UGPT) {
 	const { sessionID } = useParams<{ sessionID: string }>();
@@ -107,13 +106,83 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 	}, [sessionData]);
 
 	const [highlight, setHighlight] = useState(session.highlight);
-	const [showEditModal, setShowEditModal] = useState(false);
+
+	const updateSession = () => {
+		APIFetchV1(
+			`/sessions/${session.sessionID}`,
+			{
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					name: sessionData.session.name,
+					desc: sessionData.session.desc,
+					highlight: sessionData.session.highlight,
+				}),
+			},
+			true,
+			true
+		);
+	};
 
 	return (
 		<Row className="justify-content-center">
 			<Col xs={12} className="text-center">
-				<h1>{session.name}</h1>
-				<h4 className="text-muted mb-4">{session.desc}</h4>
+				<div
+					className="d-flex flex-wrap justify-content-center align-items-center"
+					style={{ flexDirection: "column" }}
+				>
+					<EditableText
+						initial={session.name}
+						onChange={(name) => {
+							setSessionData({
+								...sessionData,
+								session: {
+									...sessionData.session,
+									name,
+								},
+							});
+
+							updateSession();
+						}}
+					>
+						{(text) => (
+							<div className="mb-4">
+								<span className="display-4">{text}</span>
+								<span className="ml-2 text-hover-white">
+									<Icon type="pencil-alt" />
+								</span>
+							</div>
+						)}
+					</EditableText>
+
+					<EditableText
+						initial={session.desc ?? "No Description..."}
+						onChange={(desc) => {
+							setSessionData({
+								...sessionData,
+								session: {
+									...sessionData.session,
+									desc,
+								},
+							});
+
+							updateSession();
+						}}
+					>
+						{(text) => (
+							<div className="mb-4">
+								<span className="text-muted mb-4">{text}</span>
+
+								<span className="ml-2 text-hover-white">
+									<Icon type="pencil-alt" />
+								</span>
+							</div>
+						)}
+					</EditableText>
+				</div>
+
 				<Badge variant="secondary">
 					<span
 						style={{
@@ -140,13 +209,6 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 				<Divider className="mt-8 mb-4" />
 				{user.id === loggedInUser?.id && (
 					<>
-						<Button
-							variant="outline-info"
-							onClick={() => setShowEditModal(true)}
-							className="mr-4"
-						>
-							Edit Session
-						</Button>
 						{highlight ? (
 							<Button
 								variant="outline-danger"
@@ -228,67 +290,6 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 					/>
 				</Col>
 			)}
-			{showEditModal && (
-				<EditModal session={session} show={showEditModal} setShow={setShowEditModal} />
-			)}
 		</Row>
-	);
-}
-
-function EditModal({
-	session,
-	show,
-	setShow,
-}: {
-	session: SessionDocument;
-	show: boolean;
-	setShow: SetState<boolean>;
-}) {
-	const [name, setName] = useState(session.name);
-	const [desc, setDesc] = useState(session.desc ?? "");
-
-	return (
-		<Modal show={show} onHide={() => setShow(false)}>
-			<Modal.Header closeButton>
-				<Modal.Title>Edit Comment</Modal.Title>
-			</Modal.Header>
-			<Modal.Body>
-				<Form
-					onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
-						e.preventDefault();
-
-						const r = await APIFetchV1(
-							`/sessions/${session.sessionID}`,
-							{
-								method: "PATCH",
-								headers: {
-									"Content-Type": "application/json",
-								},
-								body: JSON.stringify({
-									name,
-									desc: desc.length === 0 ? null : desc,
-								}),
-							},
-							true,
-							true
-						);
-
-						if (r.success) {
-							DelayedPageReload();
-						}
-					}}
-				>
-					<FormInput fieldName="Session Name" value={name} setValue={setName} />
-					<Divider />
-					<FormInput
-						fieldName="Session Description"
-						value={desc ?? "No Description..."}
-						setValue={setDesc as SetState<string>}
-					/>
-					<Divider />
-					<Button type="submit">Submit</Button>
-				</Form>
-			</Modal.Body>
-		</Modal>
 	);
 }

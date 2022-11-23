@@ -49,10 +49,6 @@ export default function RivalsMainPage({
 						<Icon type="list" />
 						Rival Activity
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/rivals/tracking`}>
-						<Icon type="thumbtack" />
-						Manage Tracked Charts
-					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/rivals/manage`}>
 						<Icon type="users" />
 						Manage Rivals

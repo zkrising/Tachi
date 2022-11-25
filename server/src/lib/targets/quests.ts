@@ -333,11 +333,7 @@ export async function UpdateQuestSubscriptions(questID: string) {
 export async function UnsubscribeFromQuest(
 	questSub: QuestSubscriptionDocument,
 	quest: QuestDocument
-
-	// preventStandaloneRemoval: boolean
 ) {
-	// todo questline subs maybe
-
 	const goalIDs = GetGoalIDsFromQuest(quest);
 
 	// remove the quest sub
@@ -356,9 +352,6 @@ export async function UnsubscribeFromQuest(
 	// not a problem, we weren't meant to unsubscribe from it.
 	await Promise.all(goalSubs.map((e) => UnsubscribeFromGoal(e, true)));
 }
-
-// todo
-// export async function GetQuestDependencies() {}
 
 /**
  * Given an array of user goal subscriptions, return all the quests this user is
@@ -391,4 +384,34 @@ export async function GetParentQuests(
 	});
 
 	return quests;
+}
+
+/**
+ * Find all quests not in any questlines.
+ */
+export async function FindStandaloneQuests(game: Game, playtype: Playtype) {
+	const res: Array<QuestDocument> = await db.quests.aggregate([
+		{
+			$match: {
+				game,
+				playtype,
+			},
+		},
+		{
+			$lookup: {
+				from: "questlines",
+				localField: "questID",
+				foreignField: "quests",
+				as: "parentQuestlines",
+			},
+		},
+		{
+			$match: {
+				// is an empty array
+				"parentQuestlines.0": { $exists: false },
+			},
+		},
+	]);
+
+	return res;
 }

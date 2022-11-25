@@ -98,10 +98,6 @@ function InternalGPTChartPage({
 } & GamePT) {
 	const { user } = useContext(UserContext);
 
-	const [mode, setMode] = useState<"leaderboard" | "adjacent" | "rivals" | "targets">(
-		"leaderboard"
-	);
-
 	const { data, error } = useQuery<ChartPBData, UnsuccessfulAPIFetchResponse>(
 		["PBInfo", `${chart.chartID}`],
 		async () => {
@@ -219,7 +215,7 @@ function InternalGPTChartPage({
 						<ChartTargetInfo {...{ chart, game, playtype, song, user: user! }} />
 					</Route>
 
-					<Route path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty">
+					<Route exact path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty">
 						<ChartLeaderboardTable
 							{...{
 								data,
@@ -229,7 +225,43 @@ function InternalGPTChartPage({
 								userMap,
 								chart,
 								song,
-								mode: mode as any,
+								mode: "leaderboard",
+							}}
+						/>
+					</Route>
+
+					<Route
+						exact
+						path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty/me"
+					>
+						<ChartLeaderboardTable
+							{...{
+								data,
+								game,
+								playtype,
+								user,
+								userMap,
+								chart,
+								song,
+								mode: "adjacent",
+							}}
+						/>
+					</Route>
+
+					<Route
+						exact
+						path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty/rivals"
+					>
+						<ChartLeaderboardTable
+							{...{
+								data,
+								game,
+								playtype,
+								user,
+								userMap,
+								chart,
+								song,
+								mode: "rivals",
 							}}
 						/>
 					</Route>

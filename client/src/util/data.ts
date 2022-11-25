@@ -87,7 +87,7 @@ export function CreateChartLink(chart: ChartDocument, game: Game) {
 }
 
 // stolen from server
-function GetGoalIDsFromQuest(quest: QuestDocument) {
+export function GetGoalIDsFromQuest(quest: QuestDocument) {
 	// this sucks - maybe a nicer way to do this, because nested
 	// maps are just ugly
 	return quest.questData.map((e) => e.goals.map((e) => e.goalID)).flat(1);

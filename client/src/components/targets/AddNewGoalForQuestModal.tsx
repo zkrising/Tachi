@@ -1,5 +1,6 @@
 import { APIFetchV1 } from "util/api";
 import { CreateSongMap } from "util/data";
+import { StrSOV } from "util/sorts";
 import AsyncSelect from "components/util/AsyncSelect";
 import Divider from "components/util/Divider";
 import Select from "components/util/Select";
@@ -18,12 +19,14 @@ export default function AddNewGoalForQuestModal({
 	game,
 	playtype,
 	onCreate,
+	noNote = false,
 	initialState,
 }: {
 	show: boolean;
 	setShow: SetState<boolean>;
 	onCreate: (rawGoal: RawQuestGoal) => void;
 	initialState?: RawQuestGoal;
+	noNote?: boolean;
 } & GamePT) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
@@ -121,19 +124,21 @@ export default function AddNewGoalForQuestModal({
 						{/* don't render if charts.data is null */}
 						{!("data" in charts && charts.data === null) && <Divider />}
 					</Col>
-					<Col xs={12} className="mt-4">
-						<InputGroup>
-							<InputGroup.Text>Note (optional)</InputGroup.Text>
-							<Form.Control
-								value={note}
-								onChange={(e) => setNote(e.target.value)}
-								placeholder="Optionally, set a note about this goal. Is it particularly noteworthy in this quest?"
-							/>
-						</InputGroup>
+					{!noNote && (
+						<Col xs={12} className="mt-4">
+							<InputGroup>
+								<InputGroup.Text>Note (optional)</InputGroup.Text>
+								<Form.Control
+									value={note}
+									onChange={(e) => setNote(e.target.value)}
+									placeholder="Optionally, set a note about this goal. Is it particularly noteworthy in this quest?"
+								/>
+							</InputGroup>
 
-						<Divider />
-					</Col>
-					<Col xs={12} className="w-100 d-flex justify-content-center">
+							<Divider />
+						</Col>
+					)}
+					<Col xs={12} className="w-100 mt-4 d-flex justify-content-center">
 						<Button
 							variant="primary"
 							onClick={async () => {
@@ -165,7 +170,10 @@ export default function AddNewGoalForQuestModal({
 									setShow(false);
 								}
 							}}
-							disabled={criteria.mode === "absolute" && criteria.countNum <= 1}
+							disabled={
+								(criteria.mode === "absolute" && criteria.countNum <= 1) ||
+								goalName === "..."
+							}
 						>
 							Add Goal
 						</Button>
@@ -203,6 +211,12 @@ function RenderGoalChartPicker({
 		[type, data]
 	);
 
+	useEffect(() => {
+		setData(null);
+
+		onChange({ type, data: null as any });
+	}, [type]);
+
 	return (
 		<>
 			<div>
@@ -228,19 +242,34 @@ function RenderGoalChartPicker({
 }
 
 function FolderSelect({ game, playtype, onChange }: { onChange: (data: string) => void } & GamePT) {
-	const loadFolderOptions = async (input: string) => {
-		const res = await APIFetchV1<Array<FolderDocument>>(
-			`/games/${game}/${playtype}/folders?search=${input}`
-		);
+	let lastTimeout: number | null = null;
 
-		if (!res.success) {
-			throw new Error(res.description);
+	const loadFolderOptions = (
+		input: string,
+		cb: (options: OptionsOrGroups<unknown, GroupBase<unknown>>) => void
+	) => {
+		if (lastTimeout !== null) {
+			clearTimeout(lastTimeout);
 		}
 
-		return res.body.map((e) => ({
-			value: e.folderID,
-			label: e.title,
-		}));
+		// debounce this query to only run after 300ms of no more user input.
+		lastTimeout = window.setTimeout(async () => {
+			const res = await APIFetchV1<Array<FolderDocument>>(
+				`/games/${game}/${playtype}/folders?search=${input}`
+			);
+			if (!res.success) {
+				throw new Error(res.description);
+			}
+
+			const options = res.body.map((e) => ({
+				value: e.folderID,
+				label: e.title,
+			}));
+
+			options.sort(StrSOV((x) => x.label));
+
+			cb(options);
+		}, 300);
 	};
 
 	return (
@@ -261,7 +290,7 @@ function ChartSelect({
 }: { onChange: (data: string | string[]) => void; multi?: boolean } & GamePT) {
 	let lastTimeout: number | null = null;
 
-	const loadFolderOptions = (
+	const loadChartOptions = (
 		input: string,
 		cb: (options: OptionsOrGroups<unknown, GroupBase<unknown>>) => void
 	) => {
@@ -286,13 +315,15 @@ function ChartSelect({
 				label: FormatChart(game, songMap.get(e.songID)!, e),
 			}));
 
+			options.sort(StrSOV((x) => x.label));
+
 			cb(options);
 		}, 300);
 	};
 
 	return (
 		<AsyncSelect
-			loadOptions={loadFolderOptions}
+			loadOptions={loadChartOptions}
 			placeholder="Search for a chart..."
 			isMulti={multi}
 			onChange={(data) =>

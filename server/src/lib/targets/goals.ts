@@ -3,7 +3,7 @@ import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
-import { FormatGame, GetCloserGradeDelta, GetGamePTConfig } from "tachi-common";
+import { FormatGame, GenericFormatGradeDelta, GetGamePTConfig } from "tachi-common";
 import { GetFolderChartIDs } from "utils/folder";
 import { IsNullish } from "utils/misc";
 import type { KtLogger } from "lib/logger/logger";
@@ -98,27 +98,14 @@ export async function EvaluateGoalForUser(
 						goal.game,
 						goal.playtype,
 						goal.criteria.key,
+						goal.criteria.value,
 						res
 					),
 				};
 			}
 
-			// if we didn't find a PB, and this goal was only on one chart --
-			// i.e. "FULL COMBO 5.1.1.", then there can't possibly be any scores on this
-			// chart.
-			if (goal.charts.type === "single") {
-				return {
-					achieved: false,
-					outOf: goal.criteria.value,
-					progress: null,
-					outOfHuman,
-					progressHuman: "NO DATA",
-				};
-			}
-
-			// if we didn't find a PB that achieved the goal and we have multiple
-			// chartIDs to work with (i.e. AAA any chart, AAA any of A | B | C)
-			// we need to find the next-best PB.
+			// if we didn't find a PB that achieved the goal immediately
+			// fetch the next best thing.
 			const nextBestQuery: FilterQuery<PBScoreDocument> = {
 				userID,
 				game: goal.game,
@@ -150,6 +137,7 @@ export async function EvaluateGoalForUser(
 					goal.game,
 					goal.playtype,
 					goal.criteria.key,
+					goal.criteria.value,
 					nextBestScore
 				),
 			};
@@ -230,6 +218,7 @@ export function HumaniseGoalProgress(
 	game: Game,
 	playtype: Playtype,
 	key: GoalKeys,
+	goalValue: integer,
 	userPB: PBScoreDocument
 ): string {
 	switch (key) {
@@ -243,7 +232,18 @@ export function HumaniseGoalProgress(
 					? undefined
 					: (num: number) => Intl.NumberFormat("en", { notation: "compact" }).format(num);
 
-			const prettyGradeDelta = GetCloserGradeDelta(
+			const goalGrade = GetGamePTConfig(game, playtype).grades[goalValue];
+
+			if (!goalGrade) {
+				throw new Error(
+					`Invalid Goal -- Tried to get a grade with index '${goalValue}', but no such grade exists for ${FormatGame(
+						game,
+						playtype
+					)}`
+				);
+			}
+
+			const { lower, upper, closer } = GenericFormatGradeDelta(
 				game,
 				playtype,
 				userPB.scoreData.score,
@@ -252,7 +252,20 @@ export function HumaniseGoalProgress(
 				fmtFn
 			);
 
-			return prettyGradeDelta;
+			// If this goal is, say, AAA $chart, and the user's deltas are AA+40, AAA-100
+			// instead of picking the one with less delta from the grade (AA+40)
+			// pick the one closest to the target grade.
+			// Because sometimes this function wraps the grade operand in brackets
+			// (see (MAX-)-50), we need a regexp for this.
+			// eslint-disable-next-line @typescript-eslint/prefer-optional-chain
+			if (upper && new RegExp(`\\(?${goalGrade}`, "u").exec(upper)) {
+				return upper;
+			}
+
+			// for some reason, our TS compiler disagrees that this is non-nullable.
+			// but my IDE thinks it is. Who knows.
+			// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+			return closer === "lower" ? lower : upper!;
 		}
 
 		case "scoreData.lampIndex": {

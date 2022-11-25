@@ -91,7 +91,7 @@ export default function GoalSubInfo({ dataset }: { dataset: GoalSubDataset } & G
 					</div>
 				)}
 				{folderGoals.length === 0 && directGoals.length === 0 && (
-					<div>You've got no goals related to this chart.</div>
+					<div className="text-center">You've got no goals here!</div>
 				)}
 			</Col>
 		</>

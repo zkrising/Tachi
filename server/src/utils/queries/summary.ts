@@ -54,6 +54,7 @@ export async function GetGoalSummary(userID: integer) {
 
 	const achievedGoals = await db["goal-subs"].find({
 		timeAchieved: { $gte: time },
+		wasInstantlyAchieved: false,
 		userID,
 	});
 

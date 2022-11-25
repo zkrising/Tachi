@@ -27,6 +27,7 @@ import {
 	UserGameStatsSnapshot,
 	QuestDocument,
 	QuestSubscriptionDocument,
+	QuestlineDocument,
 } from "tachi-common";
 
 export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
@@ -260,4 +261,10 @@ export interface GPTQuestsReturn {
 export interface UGPTTargetSubs {
 	goalSubs: Array<GoalSubscriptionDocument>;
 	questSubs: Array<QuestSubscriptionDocument>;
+}
+
+export interface QuestlineReturn {
+	questline: QuestlineDocument;
+	quests: Array<QuestDocument>;
+	goals: Array<GoalDocument>;
 }

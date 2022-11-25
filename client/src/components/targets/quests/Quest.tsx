@@ -1,35 +1,38 @@
 import { APIFetchV1 } from "util/api";
 import { FormatTime } from "util/time";
 import { HumanisedJoinArray } from "util/misc";
+import { GetGoalIDsFromQuest } from "util/data";
 import Card from "components/layout/page/Card";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Muted from "components/util/Muted";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useState } from "react";
-import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import {
-	FormatGame,
-	GoalDocument,
-	GoalSubscriptionDocument,
-	QuestDocument,
-	QuestSection,
-} from "tachi-common";
+import { Badge, Button } from "react-bootstrap";
+import { FormatGame, GoalDocument, QuestDocument, QuestSection } from "tachi-common";
 import { GamePT } from "types/react";
 import { TargetsContext } from "context/TargetsContext";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
+import GoalLink from "components/util/GoalLink";
 
 export default function Quest({
 	quest,
 	goals,
+	collapsible = false,
 }: {
 	quest: QuestDocument;
 	goals: Map<string, GoalDocument>;
+	collapsible?: boolean;
 }) {
 	const { user } = useContext(UserContext);
 	const { questSubs, reloadTargets } = useContext(TargetsContext);
 	const [subscribing, setSubscribing] = useState(false);
+
+	const questSub = questSubs.get(quest.questID);
+	const goalsInQuests = GetGoalIDsFromQuest(quest).length;
+
+	// if this is collapsable, show it conditionally. otherwise, always show it.
+	const [show, setShow] = useState(!collapsible);
 
 	return (
 		<Card
@@ -41,92 +44,111 @@ export default function Quest({
 					<div className="mt-4">
 						<Muted>Game: {FormatGame(quest.game, quest.playtype)}</Muted>
 					</div>
+
+					{questSub && (
+						<div className="w-100 mt-4">
+							<h4>
+								Progress:{" "}
+								{questSub.achieved ? (
+									<Badge variant="success">COMPLETE!</Badge>
+								) : (
+									<span>
+										<span className="text-danger">{questSub.progress}</span>
+										<Muted>/{goalsInQuests}</Muted>
+									</span>
+								)}
+							</h4>
+						</div>
+					)}
+
+					<div className="d-flex w-100 mt-4">
+						{user &&
+							(questSub ? (
+								<Button
+									variant="outline-danger"
+									className="ml-auto"
+									onClick={async () => {
+										setSubscribing(true);
+
+										await APIFetchV1(
+											`/users/${user.id}/games/${quest.game}/${quest.playtype}/targets/quests/${quest.questID}`,
+											{
+												method: "DELETE",
+											},
+											true,
+											true
+										);
+										await reloadTargets();
+
+										setSubscribing(false);
+									}}
+									disabled={subscribing}
+								>
+									{subscribing ? (
+										"Unsubscribing..."
+									) : (
+										<>
+											<Icon type="trash" />
+											Unsubscribe
+										</>
+									)}
+								</Button>
+							) : (
+								<Button
+									variant="outline-success"
+									className="ml-auto"
+									onClick={async () => {
+										setSubscribing(true);
+
+										await APIFetchV1(
+											`/users/${user.id}/games/${quest.game}/${quest.playtype}/targets/quests/${quest.questID}`,
+											{
+												method: "PUT",
+											},
+											true,
+											true
+										);
+										await reloadTargets();
+
+										setSubscribing(false);
+									}}
+									disabled={subscribing}
+								>
+									{subscribing ? (
+										"Subscribing..."
+									) : (
+										<>
+											<Icon type="scroll" />
+											Subscribe to Quest
+										</>
+									)}
+								</Button>
+							))}
+					</div>
 				</div>
 			}
 		>
-			{quest.questData.map((e, i) => (
-				<React.Fragment key={i}>
-					<QuestSectionComponent
-						game={quest.game}
-						playtype={quest.playtype}
-						section={e}
-						goals={goals}
-					/>
-					<Divider />
-				</React.Fragment>
-			))}
-			<div className="w-100 d-flex mt-8 align-items-center">
-				<div>
-					<Link
-						className="mr-auto"
-						to={`/dashboard/games/${quest.game}/${quest.playtype}/quests/${quest.questID}`}
-					>
-						View More Info
-					</Link>
+			{show &&
+				quest.questData.map((e, i) => (
+					<React.Fragment key={i}>
+						<QuestSectionComponent
+							game={quest.game}
+							playtype={quest.playtype}
+							section={e}
+							goals={goals}
+						/>
+						<Divider />
+					</React.Fragment>
+				))}
+
+			{collapsible && (
+				<div
+					className="d-flex w-100 justify-content-center text-hover-white"
+					onClick={() => setShow(!show)}
+				>
+					<Icon type={`chevron-${show ? "up" : "down"}`} />
 				</div>
-				{user &&
-					(questSubs.has(quest.questID) ? (
-						<Button
-							variant="outline-danger"
-							className="ml-auto"
-							onClick={async () => {
-								setSubscribing(true);
-
-								await APIFetchV1(
-									`/users/${user.id}/games/${quest.game}/${quest.playtype}/targets/quests/${quest.questID}`,
-									{
-										method: "DELETE",
-									},
-									true,
-									true
-								);
-								await reloadTargets();
-
-								setSubscribing(false);
-							}}
-							disabled={subscribing}
-						>
-							{subscribing ? (
-								"Unsubscribing..."
-							) : (
-								<>
-									<Icon type="trash" />
-									Unsubscribe
-								</>
-							)}
-						</Button>
-					) : (
-						<Button
-							variant="outline-success"
-							className="ml-auto"
-							onClick={async () => {
-								setSubscribing(true);
-
-								await APIFetchV1(
-									`/users/${user.id}/games/${quest.game}/${quest.playtype}/targets/quests/${quest.questID}`,
-									{
-										method: "PUT",
-									},
-									true,
-									true
-								);
-								await reloadTargets();
-
-								setSubscribing(false);
-							}}
-							disabled={subscribing}
-						>
-							{subscribing ? (
-								"Subscribing..."
-							) : (
-								<>
-									<Icon type="scroll" />
-									Subscribe to Quest
-								</>
-							)}
-						</Button>
-					))}
-			</div>
+			)}
 		</Card>
 	);
 }
@@ -180,7 +202,6 @@ export function InnerQuestSectionGoal({
 }) {
 	const { goalSubs } = useContext(TargetsContext);
 
-	const { game, playtype } = goal;
 	const goalSub = goalSubs.get(goal.goalID);
 
 	if (!goalSub) {
@@ -194,12 +215,7 @@ export function InnerQuestSectionGoal({
 						/>
 					</div>
 
-					<Link
-						className="gentle-link ml-2"
-						to={`/dashboard/games/${game}/${playtype}/goals/${goal.goalID}`}
-					>
-						{goal.name}
-					</Link>
+					<GoalLink goal={goal} />
 				</div>
 				{note && <Muted>{note}</Muted>}
 			</>
@@ -237,12 +253,7 @@ export function InnerQuestSectionGoal({
 					</div>
 				</QuickTooltip>
 
-				<Link
-					className="gentle-link ml-2"
-					to={`/dashboard/games/${game}/${playtype}/goals/${goal.goalID}`}
-				>
-					{goal.name}
-				</Link>
+				<GoalLink goal={goal} />
 
 				{!goalSub.achieved && (
 					<div className="ml-auto text-danger">

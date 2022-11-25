@@ -14,6 +14,7 @@ import {
 	SessionDocument,
 	Playtype,
 	QuestDocument,
+	QuestSubscriptionDocument,
 } from "tachi-common";
 import fjsh from "fast-json-stable-hash";
 
@@ -550,6 +551,16 @@ export function CreateQuestMap(quests: Array<QuestDocument>) {
 	const map = new Map<string, QuestDocument>();
 
 	for (const q of quests) {
+		map.set(q.questID, q);
+	}
+
+	return map;
+}
+
+export function CreateQuestSubMap(questSubs: Array<QuestSubscriptionDocument>) {
+	const map = new Map<string, QuestSubscriptionDocument>();
+
+	for (const q of questSubs) {
 		map.set(q.questID, q);
 	}
 

@@ -421,11 +421,10 @@ export async function GetChildQuests(questline: QuestlineDocument) {
 	});
 
 	if (quests.length !== questline.quests.length) {
-		logger.error(
+		logger.warn(
 			`Expected to find ${questline.quests.length} quests in the database, but only found ${quests.length}.`,
 			{ questline }
 		);
-		throw new Error(`Failed to retrieve quest sets' children.`);
 	}
 
 	return quests;

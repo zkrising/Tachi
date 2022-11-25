@@ -1,6 +1,6 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import { SearchCollection } from "lib/search/search";
+import { FindStandaloneQuests, GetGoalsInQuests } from "lib/targets/quests";
 import { GetChildQuests } from "utils/db";
 import { IsString } from "utils/misc";
 import { AssignToReqTachiData, GetGPT, GetTachiData } from "utils/req-tachi-data";
@@ -12,57 +12,46 @@ const ResolveQuestlineID: RequestHandler = async (req, res, next) => {
 	const { game, playtype } = GetGPT(req);
 	const questlineID = req.params.questlineID;
 
-	const set = await db.questlines.findOne({
+	const questline = await db.questlines.findOne({
 		questlineID,
 		game,
 		playtype,
 	});
 
-	if (!set) {
+	if (!questline) {
 		return res.status(404).json({
 			success: false,
-			description: `A quest set with ID ${questlineID} doesn't exist.`,
+			description: `A questline with ID ${questlineID} doesn't exist.`,
 		});
 	}
 
-	AssignToReqTachiData(req, { questlineDoc: set });
+	AssignToReqTachiData(req, { questlineDoc: questline });
 
 	next();
 };
 
 /**
- * Search quest sets.
- *
- * @param search - The quest set to search for.
+ * Retrieve all questlines for this GPT. Also, return any standalone quests.
  *
  * @name GET /api/v1/games/:game/:playtype/targets/questlines
  */
 router.get("/", async (req, res) => {
 	const { game, playtype } = GetGPT(req);
 
-	if (!IsString(req.query.search)) {
-		return res.status(400).json({
-			success: false,
-			description: `Invalid value for search.`,
-		});
-	}
+	const questlines = await db.questlines.find({ game, playtype });
 
-	const questlines = await SearchCollection(
-		db.questlines,
-		req.query.search,
-		{ game, playtype },
-		50
-	);
+	const standalone = await FindStandaloneQuests(game, playtype);
+	const standaloneGoals = await GetGoalsInQuests(standalone);
 
 	return res.status(200).json({
 		success: true,
 		description: `Returned ${questlines.length} quest sets.`,
-		body: questlines,
+		body: { questlines, standalone, standaloneGoals },
 	});
 });
 
 /**
- * Retrieve a specific quest set.
+ * Retrieve a specific questline.
  *
  * @name GET /api/v1/games/:game/:playtype/targets/questlines/:questlineID
  */
@@ -71,12 +60,15 @@ router.get("/:questlineID", ResolveQuestlineID, async (req, res) => {
 
 	const quests = await GetChildQuests(questline);
 
+	const goals = await GetGoalsInQuests(quests);
+
 	return res.status(200).json({
 		success: true,
 		description: `Retrieved quest set '${questline.name}'.`,
 		body: {
 			quests,
 			questline,
+			goals,
 		},
 	});
 });

@@ -1,1 +1,21 @@
-[]
+[
+	{
+		"desc": "These are the official quests for IIDX SP. These aim to be generally useful, and don't focus too much on specific skills.",
+		"game": "iidx",
+		"name": "Kamaitachi Official IIDX SP Questline",
+		"playtype": "SP",
+		"questlineID": "kt-official-iidx-SP",
+		"quests": [
+			"7f01dd4bb78537a37f0d06456c9153f960b1ab1c",
+			"b8c80d5d5f2bc84c59ccd3bbb7fb063839c4ca08",
+			"b4d52224375a7d9010c1171a89aa10038383b1ae",
+			"ad98165639ea879151d7ef8799aaf3d196bee6b5",
+			"eff21aac99bdc4429ed6ea2ddfbe3435d09c30dc",
+			"dec92ca49bae7fd805102c8836e09680b64971f0",
+			"4cc3b3465fdd02f1c2e0e63344eec0d07c2eed7c",
+			"fba16fe77f11905a39f5f2134b28dad2d149c18f",
+			"fc3c2836e30cab42c8604ede7436b8e2f92f2a13",
+			"496b195a80a46156627c14d36aa939dc9d67b36f"
+		]
+	}
+]

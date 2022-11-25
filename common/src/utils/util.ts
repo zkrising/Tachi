@@ -1,6 +1,6 @@
 import { GetGameConfig, GetGamePTConfig } from "../config/config";
 import type { ChartDocument, Game, IDStrings, Playtypes, SongDocument } from "..";
-import type { Grades, integer, Lamps, PBScoreDocument } from "../types";
+import type { Grades, integer, PBScoreDocument } from "../types";
 import type { PrudenceError } from "prudence";
 
 export function FormatInt(v: number): string {

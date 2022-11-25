@@ -58,7 +58,7 @@ export default function SetNewGoalModal({
 
 	const identifier =
 		"folderID" in preData
-			? `The '${preData.title}' folder`
+			? `the '${preData.title}' folder`
 			: FormatChart(game, preData.song, preData.chart);
 
 	return (

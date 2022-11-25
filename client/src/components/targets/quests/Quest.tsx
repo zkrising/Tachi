@@ -267,13 +267,13 @@ export function InnerQuestSectionGoal({
 function FormatGoalDependencies({ deps, isStandalone }: { deps: string[]; isStandalone: boolean }) {
 	let str;
 	if (isStandalone && deps.length === 0) {
-		str = `Assigned standalone.`;
+		str = `You set this goal directly.`;
 	} else if (isStandalone && deps.length > 0) {
-		str = `Assigned standalone and from ${HumanisedJoinArray(deps, "and")}`;
+		str = `You set this goal, but it's also in ${HumanisedJoinArray(deps, "and")}.`;
 	} else if (deps.length === 0) {
 		return null;
 	} else {
-		str = `From ${HumanisedJoinArray(deps, "and")}`;
+		str = `From ${HumanisedJoinArray(deps, "and")}.`;
 	}
 
 	return <Muted>{str}</Muted>;

@@ -39,9 +39,12 @@ export default function AddNewGoalForQuestModal({
 	);
 
 	const [charts, setCharts] = useState<GoalDocument["charts"]>(
-		initialState?.goal.charts ?? {
-			type: "any",
-		}
+		initialState?.goal.charts ??
+			({
+				type: "single",
+				// dw
+				data: null,
+			} as any)
 	);
 
 	const [note, setNote] = useState(initialState?.note ?? "");
@@ -188,27 +191,23 @@ function RenderGoalChartPicker({
 	// however, due to the code, these will always be in sync.
 	const [data, setData] = useState<any>("data" in charts ? charts.data : null);
 
-	useEffect(() => {
-		if (type === "any") {
-			onChange({ type: "any" });
-			return;
-		}
+	useEffect(
+		() =>
+			// THIS MIGHT SET DATA AS NULL
+			// THIS IS DELIBERATE, AS WE WANT TO REPRESENT THE PARTIAL STATE WHERE THE USER
+			// HAS SELECTED SOME TYPE, BUT NOT PICKED A FOLDER/CHART YET.
 
-		// THIS MIGHT SET DATA AS NULL
-		// THIS IS DELIBERATE, AS WE WANT TO REPRESENT THE PARTIAL STATE WHERE THE USER
-		// HAS SELECTED SOME TYPE, BUT NOT PICKED A FOLDER/CHART YET.
-
-		// SERIOUSLY. THIS IS SET AS NULL SOMETIMES AND THE TYPESYSTEM DOES NOT REPRESENT
-		// THAT FACT.
-		return onChange({ type, data });
-	}, [type, data]);
+			// SERIOUSLY. THIS IS SET AS NULL SOMETIMES AND THE TYPESYSTEM DOES NOT REPRESENT
+			// THAT FACT.
+			onChange({ type, data }),
+		[type, data]
+	);
 
 	return (
 		<>
 			<div>
 				On{" "}
 				<Select inline value={type} setValue={setType}>
-					<option value="any">Any Chart</option>
 					<option value="folder">A Folder</option>
 					<option value="single">A Specific Chart</option>
 					<option value="multi">Specific Charts</option>
@@ -216,9 +215,7 @@ function RenderGoalChartPicker({
 			</div>
 
 			<div className="mt-4 ">
-				{type === "any" ? (
-					<></>
-				) : type === "folder" ? (
+				{type === "folder" ? (
 					<FolderSelect game={game} playtype={playtype} onChange={setData} />
 				) : type === "single" ? (
 					<ChartSelect game={game} playtype={playtype} onChange={setData} />

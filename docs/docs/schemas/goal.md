@@ -85,12 +85,6 @@ interface GoalDocumentFolder extends BaseGoalDocument {
 		data: string;
 	};
 }
-
-interface GoalDocumentAny extends BaseGoalDocument {
-	charts: {
-		type: "any";
-	};
-}
 ```
 
 For single and multi, the data field is a chartID, or an

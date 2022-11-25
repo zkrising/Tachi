@@ -50,7 +50,7 @@ export default function TargetsPage({ reqUser, game, playtype }: UGPT) {
 						exact
 						path="/dashboard/users/:userID/games/:game/:playtype/targets/goals"
 					>
-						<GoalsPage />
+						<GoalsPage {...{ reqUser, game, playtype }} />
 					</Route>
 					<Route
 						exact

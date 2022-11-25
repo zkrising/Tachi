@@ -408,20 +408,7 @@ export interface GoalDocumentFolder extends BaseGoalDocument {
 	};
 }
 
-/**
- * Goal Document - Any. A goal document whos set of charts is not bound.
- */
-export interface GoalDocumentAny extends BaseGoalDocument {
-	charts: {
-		type: "any";
-	};
-}
-
-export type GoalDocument =
-	| GoalDocumentAny
-	| GoalDocumentFolder
-	| GoalDocumentMulti
-	| GoalDocumentSingle;
+export type GoalDocument = GoalDocumentFolder | GoalDocumentMulti | GoalDocumentSingle;
 
 interface BaseInviteCodeDocument extends MongoDBDocument {
 	createdBy: integer;

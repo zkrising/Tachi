@@ -242,6 +242,7 @@ export interface GoalsOnChartReturn {
 }
 
 export type GoalsOnFolderReturn = GoalsOnChartReturn;
+export type AllUGPTGoalsReturn = GoalsOnChartReturn;
 
 export interface RecentlyAchievedOrRaisedTargets {
 	goals: Array<GoalDocument>;

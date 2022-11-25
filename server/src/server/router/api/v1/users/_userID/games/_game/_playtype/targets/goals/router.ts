@@ -6,11 +6,11 @@ import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import {
 	ConstructGoal,
-	GetQuestSubsWhichDependOnThisGoalSub,
 	GetQuestsThatContainGoal,
 	SubscribeToGoal,
 	UnsubscribeFromGoal,
 } from "lib/targets/goals";
+import { GetParentQuests } from "lib/targets/quests";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
@@ -41,12 +41,23 @@ router.get("/", async (req, res) => {
 		goalID: { $in: goalSubs.map((e) => e.goalID) },
 	});
 
+	const allQuests = await GetParentQuests(user.id, game, playtype, goalSubs);
+
+	const questSubs = await db["quest-subs"].find({ userID: user.id, game, playtype });
+
+	const questSubIDs = questSubs.map((e) => e.questID);
+
+	// filter parent quests to only those that this user is subscribed to
+	const quests = allQuests.filter((quest) => questSubIDs.includes(quest.questID));
+
 	return res.status(200).json({
 		success: true,
 		description: `Retrieved ${goalSubs.length} goal(s).`,
 		body: {
 			goals,
 			goalSubs,
+			quests,
+			questSubs,
 		},
 	});
 });
@@ -64,10 +75,10 @@ type GoalCreationBody = Pick<GoalDocument, "charts" | "criteria">;
  * @param criteria.countNum - For abs/proportion mode. Atleast N scores must achieve the
  * key:value condition.
  *
- * @param charts.type - "single", "multi", "folder" or "any".
- * @param charts.data - If *not* "any", an identifier for the set of charts must be
+ * @param charts.type - "single", "multi" or "folder".
+ * @param charts.data - an identifier for the set of charts must be
  * supplied here. For single, this is a chartID. For multi, this is an array of chartIDs.
- * For folder, this is a folderID. For any, no data should be supplied.
+ * For folder, this is a folderID.
  *
  * @name POST /api/v1/users/:userID/games/:game/:playtype/targets/goals/add-goal
  */
@@ -100,14 +111,9 @@ router.post(
 			},
 		},
 		charts: {
-			type: p.isIn("single", "multi", "folder", "any"),
+			type: p.isIn("single", "multi", "folder"),
 			data: (self, parent) => {
-				if (parent.type === "any") {
-					return (
-						self === undefined ||
-						"Invalid charts.data for type 'any'. Must not have any data!"
-					);
-				} else if (parent.type === "single") {
+				if (parent.type === "single") {
 					return (
 						typeof self === "string" ||
 						"Expected a string in charts.data due to charts.type being 'single'."

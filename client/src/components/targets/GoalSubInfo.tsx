@@ -1,4 +1,6 @@
+import { NumericSOV } from "util/sorts";
 import Divider from "components/util/Divider";
+import Select from "components/util/Select";
 import React, { useMemo, useState } from "react";
 import { Col, Form } from "react-bootstrap";
 import { GamePT } from "types/react";
@@ -6,13 +8,36 @@ import { GoalSubDataset } from "types/tables";
 import { InnerQuestSectionGoal } from "./quests/Quest";
 
 export default function GoalSubInfo({ dataset }: { dataset: GoalSubDataset } & GamePT) {
-	const [hideAchieved, setHideAchieved] = useState(false);
+	const [show, setShow] = useState<"all" | "achieved" | "unachieved">("all");
 
 	const { directGoals, folderGoals } = useMemo(() => {
-		let baseDataset = dataset;
+		let baseDataset = dataset.slice(0).sort(
+			NumericSOV((x) => {
+				// sink achieved things below goals in progress
+				if (x.achieved) {
+					return -100;
+				}
 
-		if (hideAchieved) {
-			baseDataset = baseDataset.filter((e) => e.achieved === false);
+				// sink no-progress slightly above that
+				if (x.progress === null) {
+					return -99;
+				}
+
+				// since this is always ostensibly positive, the magic numbers -99 and
+				// -100 should be fine.
+				return x.progress / x.outOf;
+			}, true)
+		);
+
+		switch (show) {
+			case "all":
+				break;
+			case "achieved":
+				baseDataset = baseDataset.filter((e) => e.achieved === true);
+				break;
+			case "unachieved":
+				baseDataset = baseDataset.filter((e) => e.achieved === false);
+				break;
 		}
 
 		return {
@@ -23,18 +48,18 @@ export default function GoalSubInfo({ dataset }: { dataset: GoalSubDataset } & G
 			),
 			folderGoals: baseDataset.filter((e) => e.__related.goal.charts.type === "folder"),
 		};
-	}, [hideAchieved]);
+	}, [show]);
 
 	return (
 		<>
 			<Col xs={12}>
 				<div className="pl-6">
 					<div className="d-flex w-100 justify-content-start">
-						<Form.Check
-							onChange={() => setHideAchieved(!hideAchieved)}
-							checked={hideAchieved}
-							label="Hide Achieved Goals"
-						/>
+						<Select value={show} setValue={setShow} name="What goals should we show?">
+							<option value="all">All</option>
+							<option value="unachieved">Unachieved</option>
+							<option value="achieved">Achieved</option>
+						</Select>
 					</div>
 				</div>
 				<Divider />

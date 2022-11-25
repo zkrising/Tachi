@@ -20,8 +20,6 @@ export async function CreateGoalTitle(
 	switch (criteria.mode) {
 		case "single":
 			switch (charts.type) {
-				case "any":
-					return `${formattedCriteria} any chart`;
 				case "single":
 					return `${formattedCriteria} ${datasetName}`;
 
@@ -43,8 +41,6 @@ export async function CreateGoalTitle(
 		// eslint-disable-next-line no-fallthrough
 		case "absolute":
 			switch (charts.type) {
-				case "any":
-					return `${formattedCriteria} ${criteria.countNum} charts`;
 				case "multi": {
 					// CLEAR all of A, B and C
 					if (criteria.countNum === charts.data.length) {
@@ -69,8 +65,6 @@ export async function CreateGoalTitle(
 			const propFormat = FormatMaxDP(criteria.countNum * 100);
 
 			switch (charts.type) {
-				case "any":
-					return `${formattedCriteria} ${propFormat}% of all charts`;
 				case "multi":
 					return `${formattedCriteria} ${propFormat}% of ${datasetName}`;
 				case "folder":
@@ -116,8 +110,6 @@ async function FormatCharts(
 			return `the ${folder.title} folder`;
 		}
 
-		case "any":
-			return null;
 		default:
 			throw new Error(
 				`Invalid goal charts.type -- got ${
@@ -212,11 +204,6 @@ export async function ValidateGoalChartsAndCriteria(
 			}
 
 			chartCount = multiCharts.length;
-			break;
-		}
-
-		case "any": {
-			chartCount = await db.charts[game].count({ playtype });
 			break;
 		}
 

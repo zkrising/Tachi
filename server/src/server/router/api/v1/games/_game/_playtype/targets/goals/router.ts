@@ -73,14 +73,9 @@ router.post(
 			},
 		},
 		charts: {
-			type: p.isIn("single", "multi", "folder", "any"),
+			type: p.isIn("single", "multi", "folder"),
 			data: (self, parent) => {
-				if (parent.type === "any") {
-					return (
-						self === undefined ||
-						"Invalid charts.data for type 'any'. Must not have any data!"
-					);
-				} else if (parent.type === "single") {
+				if (parent.type === "single") {
 					return (
 						typeof self === "string" ||
 						"Expected a string in charts.data due to charts.type being 'single'."

@@ -115,11 +115,6 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 		data: [Testing511SPA.chartID, "another_chart"],
 	};
 
-	const anyCharts = {
-		type: "any",
-		data: undefined,
-	};
-
 	const folderCharts = {
 		type: "folder",
 		data: TestingIIDXFolderSP10.folderID,
@@ -202,72 +197,6 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 					...absModeCriteria,
 				},
 				charts: multiCharts,
-			}),
-			mkInput("Percent:Any Case", {
-				charts: anyCharts,
-			}),
-			mkInput("Percent:Any:Abs Case", {
-				criteria: absModeCriteria,
-				charts: anyCharts,
-			}),
-			mkInput("Percent:Any:Proportion Case", {
-				criteria: proportionModeCriteria,
-				charts: anyCharts,
-			}),
-
-			// also illegal in iidx, bms and pms.
-			// mkInput("Score:Any Case", {
-			// 	criteria: {
-			// 		key: "scoreData.score",
-			// 		value: 1000,
-			// 	},
-			// 	charts: anyCharts,
-			// }),
-			mkInput("LampIndex:Any Case", {
-				criteria: {
-					key: "scoreData.lampIndex",
-					value: IIDX_LAMPS.HARD_CLEAR,
-				},
-				charts: anyCharts,
-			}),
-			mkInput("LampIndex:Any:Abs Case", {
-				criteria: {
-					key: "scoreData.lampIndex",
-					value: IIDX_LAMPS.HARD_CLEAR,
-					...absModeCriteria,
-				},
-				charts: anyCharts,
-			}),
-			mkInput("LampIndex:Any:Proportion Case", {
-				criteria: {
-					key: "scoreData.lampIndex",
-					value: IIDX_LAMPS.HARD_CLEAR,
-					...proportionModeCriteria,
-				},
-				charts: anyCharts,
-			}),
-			mkInput("GradeIndex:Any Case", {
-				criteria: {
-					key: "scoreData.gradeIndex",
-					value: IIDX_GRADES.AAA,
-				},
-				charts: anyCharts,
-			}),
-			mkInput("GradeIndex:Any:Abs Case", {
-				criteria: {
-					key: "scoreData.gradeIndex",
-					value: IIDX_GRADES.AAA,
-					...absModeCriteria,
-				},
-				charts: anyCharts,
-			}),
-			mkInput("GradeIndex:Any:Proportion Case", {
-				criteria: {
-					key: "scoreData.gradeIndex",
-					value: IIDX_GRADES.AAA,
-					...proportionModeCriteria,
-				},
-				charts: anyCharts,
 			}),
 			mkInput("Percent:Folder Case", {
 				charts: folderCharts,
@@ -487,12 +416,6 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 					type: "nonsense",
 				},
 			}),
-			mkInput("charts.data when type == any", {
-				charts: {
-					type: "any",
-					data: "foo",
-				},
-			}),
 			mkInput("charts.data array when type == single", {
 				charts: {
 					type: "single",
@@ -541,13 +464,6 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 					value: 1000,
 				},
 				charts: folderCharts,
-			}),
-			mkInput("any-score for iidx is illegal", {
-				criteria: {
-					key: "scoreData.score",
-					value: 1000,
-				},
-				charts: anyCharts,
 			}),
 			mkInput("charts single but criteria not.", {
 				criteria: {

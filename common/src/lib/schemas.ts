@@ -482,9 +482,6 @@ export const PR_GOAL_SCHEMA = {
 	),
 	charts: p.or(
 		{
-			type: p.is("any"),
-		},
-		{
 			type: p.is("folder"),
 			data: "string",
 		},

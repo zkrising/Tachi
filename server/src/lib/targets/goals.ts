@@ -58,13 +58,6 @@ export async function EvaluateGoalForUser(
 	// goal involves.
 	const chartIDs = await ResolveGoalCharts(goal);
 
-	if (chartIDs === undefined) {
-		logger.error(
-			`Invalid goal ${goal.goalID} - has nonsense chartsType of ${goal.charts.type}, ignoring.`
-		);
-		return null;
-	}
-
 	// lets configure a "base" query for our requests.
 	const scoreQuery: FilterQuery<PBScoreDocument> = {
 		userID,
@@ -74,11 +67,8 @@ export async function EvaluateGoalForUser(
 		// normally, this would be a VERY WORRYING line of code, but goal.criteria.key is guaranteed to be
 		// within a specific set of fields.
 		[goal.criteria.key]: { $gte: goal.criteria.value },
+		chartID: { $in: chartIDs },
 	};
-
-	if (chartIDs) {
-		scoreQuery.chartID = { $in: chartIDs };
-	}
 
 	switch (goal.criteria.mode) {
 		case "single": {
@@ -133,11 +123,8 @@ export async function EvaluateGoalForUser(
 				userID,
 				game: goal.game,
 				playtype: goal.playtype,
+				chartID: { $in: chartIDs },
 			};
-
-			if (chartIDs) {
-				nextBestQuery.chartID = { $in: chartIDs };
-			}
 
 			const nextBestScore = await db["personal-bests"].findOne(nextBestQuery, {
 				sort: { [goal.criteria.key]: -1 },
@@ -179,17 +166,7 @@ export async function EvaluateGoalForUser(
 				// proportion -> Proportional mode, the value
 				// is a multiplier for the amount of charts
 				// available -- i.e. 0.1 * charts.
-
-				let totalChartCount;
-
-				if (chartIDs === null) {
-					// edge case: proportion goals on "any"
-					// charts (i.e. clear 20% of charts) need to
-					// know how many charts the game has!
-					totalChartCount = await db.charts[goal.game].count({ playtype: goal.playtype });
-				} else {
-					totalChartCount = chartIDs.length;
-				}
+				const totalChartCount = chartIDs.length;
 
 				count = Math.floor(goal.criteria.countNum * totalChartCount);
 			}
@@ -223,11 +200,9 @@ export async function EvaluateGoalForUser(
 /**
  * Resolves the set of charts involved with this goal.
  *
- * @returns An array of chartIDs, except if the goal chart type is "any", in which case, it returns null.
+ * @returns An array of chartIDs.
  */
-function ResolveGoalCharts(
-	goal: GoalDocument
-): Array<string> | Promise<Array<string>> | null | undefined {
+function ResolveGoalCharts(goal: GoalDocument): Array<string> | Promise<Array<string>> {
 	switch (goal.charts.type) {
 		case "single":
 			return [goal.charts.data];
@@ -235,8 +210,6 @@ function ResolveGoalCharts(
 			return goal.charts.data;
 		case "folder":
 			return GetFolderChartIDs(goal.charts.data);
-		case "any":
-			return null;
 		default:
 			// @ts-expect-error This can't happen normally, but if it does, I want to
 			// handle it properly.
@@ -687,8 +660,6 @@ export async function UnsubscribeFromOrphanedGoalSubs(
  *
  * @param onlyUnachieved - optionally, pass "onlyUnachieved=true" to limit this to
  * only goals that the user has not achieved.
- * @param excludeAny - optionally, pass "excludeAny=true" to ignore goals that match
- * "any" chart.
  * @returns An array of Goals, and an array of goalSubs.
  */
 export async function GetRelevantGoals(
@@ -696,8 +667,7 @@ export async function GetRelevantGoals(
 	userID: integer,
 	chartIDs: Set<string>,
 	logger: KtLogger,
-	onlyUnachieved = false,
-	excludeAny = false
+	onlyUnachieved = false
 ): Promise<{ goals: Array<GoalDocument>; goalSubsMap: Map<string, GoalSubscriptionDocument> }> {
 	const gsQuery: FilterQuery<GoalSubscriptionDocument> = {
 		game,
@@ -733,15 +703,6 @@ export async function GetRelevantGoals(
 		}),
 		GetRelevantFolderGoals(goalIDs, chartIDsArr),
 	];
-
-	if (!excludeAny) {
-		promises.push(
-			db.goals.find({
-				"charts.type": "any",
-				goalID: { $in: goalIDs },
-			})
-		);
-	}
 
 	const goals = await Promise.all(promises).then((r) => r.flat(1));
 

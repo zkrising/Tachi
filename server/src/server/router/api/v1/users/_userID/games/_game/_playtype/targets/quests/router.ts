@@ -209,7 +209,19 @@ router.delete(
 			user,
 		});
 
-		await UnsubscribeFromQuest(user.id, quest.questID);
+		const questSub = await db["quest-subs"].findOne({
+			userID: user.id,
+			questID: quest.questID,
+		});
+
+		if (!questSub) {
+			return res.status(409).json({
+				success: false,
+				description: `Can't unsubscribe from a quest you were never subscribed to.`,
+			});
+		}
+
+		await UnsubscribeFromQuest(questSub, quest);
 
 		return res.status(200).json({
 			success: true,

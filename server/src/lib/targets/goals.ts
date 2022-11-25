@@ -419,16 +419,17 @@ export async function ConstructGoal(
  * Subscribes a user to the provided goal document. Handles deduping goals naturally
  * and general good stuff.
  *
- * @param cancelIfAchieved - Don't subscribe to the goal if subscribing would cause
- * the user to immediately achieve the goal. This is disabled for quest subscriptions,
- * but enabled for manual assignment.
+ * @param isStandaloneAssigment - is this a "standalone assignment?", as in, not a
+ * consequence of a quest assignment. Standalone assignments are not allowed to be
+ * instantly-achieved. if they are, it will fail with
+ * SubscribeFailReasons.ALREADY_ACHIEVED.
  *
  * Returns null if the user is already subscribed to this goal.
  */
 export async function SubscribeToGoal(
 	userID: integer,
 	goalDocument: GoalDocument,
-	cancelIfAchieved = true
+	isStandaloneAssignment: boolean
 ) {
 	const goalExists = await db.goals.findOne({ goalID: goalDocument.goalID });
 
@@ -443,7 +444,34 @@ export async function SubscribeToGoal(
 	});
 
 	if (userAlreadySubscribed) {
-		return SubscribeFailReasons.ALREADY_SUBSCRIBED;
+		// A quest trying to assign an already subscribed goal should know that.
+		// (not that it cares)
+		if (!isStandaloneAssignment) {
+			return SubscribeFailReasons.ALREADY_SUBSCRIBED;
+		}
+
+		// if the user was already standalone-subscribed, ignore another standalone
+		// assignment.
+		if (userAlreadySubscribed.wasAssignedStandalone) {
+			return SubscribeFailReasons.ALREADY_SUBSCRIBED;
+		}
+
+		// otherwise, this is a standalone assignment to a goal that was already assigned
+		// as a consequence of a quest. Mark it as standalone
+		await db["goal-subs"].update(
+			{
+				userID,
+				goalID: goalDocument.goalID,
+			},
+			{
+				$set: {
+					wasAssignedStandalone: true,
+				},
+			}
+		);
+
+		// return this goal sub document, it's fast!
+		return { ...userAlreadySubscribed, wasAssignedStandalone: true };
 	}
 
 	const result = await EvaluateGoalForUser(goalDocument, userID, logger);
@@ -452,7 +480,9 @@ export async function SubscribeToGoal(
 		throw new Error(`Couldn't evaluate goal? See previous logs.`);
 	}
 
-	if (result.achieved && cancelIfAchieved) {
+	// standalone assignments shouldn't be allowed to assign instantly-achieved
+	// goals
+	if (result.achieved && isStandaloneAssignment) {
 		return SubscribeFailReasons.ALREADY_ACHIEVED;
 	}
 
@@ -466,12 +496,12 @@ export async function SubscribeToGoal(
 		userID,
 		lastInteraction: null,
 		timeAchieved: result.achieved ? Date.now() : null,
-		timeSet: Date.now(),
 		game: goalDocument.game,
 		playtype: goalDocument.playtype,
 		goalID: goalDocument.goalID,
 		achieved: result.achieved,
 		wasInstantlyAchieved: result.achieved,
+		wasAssignedStandalone: isStandaloneAssignment,
 	};
 
 	await db["goal-subs"].insert(goalSub);
@@ -492,10 +522,10 @@ export function GetQuestsThatContainGoal(goalID: string) {
  *
  * If this query matches none, an empty array is returned.
  */
-export async function GetParentQuestSubs(
+export async function GetQuestSubsWhichDependOnThisGoalSub(
 	goalSub: GoalSubscriptionDocument
 ): Promise<Array<QuestSubscriptionDocument & { quest: QuestDocument }>> {
-	const parents: Array<QuestSubscriptionDocument & { quest: QuestDocument }> = await db[
+	const dependencies: Array<QuestSubscriptionDocument & { quest: QuestDocument }> = await db[
 		"quest-subs"
 	].aggregate([
 		{
@@ -531,7 +561,121 @@ export async function GetParentQuestSubs(
 		},
 	]);
 
-	return parents;
+	return dependencies;
+}
+
+/**
+ * Given a goalSub, unsubscribe from it.
+ *
+ * On success, this will return null. On failure, this will return a failure reason.
+ * For example, if this goalSub has parent quests involved that prevent its removal, it
+ * will return those as an array.
+ *
+ * @param preventStandaloneRemoval - Some goalsubs might be marked as "standalone". These
+ * goals have been explicitly and deliberately assigned by the user, and should therefore
+ * only be explicitly un-assigned.
+ */
+export async function UnsubscribeFromGoal(
+	goalSub: GoalSubscriptionDocument,
+	preventStandaloneRemoval: boolean
+) {
+	const dependencies = await GetGoalDependencies(goalSub);
+
+	switch (dependencies.reason) {
+		case "HAS_QUEST_DEPENDENCIES":
+			// never remove a goalSub if it has quests depending on it
+			return dependencies;
+
+		case "WAS_STANDALONE": {
+			// only prevent standalone removal if we're told to
+			if (preventStandaloneRemoval) {
+				return dependencies;
+			}
+
+			break;
+		}
+
+		// no handling necessary, orphaned goals should never happen.
+		case "WAS_ORPHAN":
+	}
+
+	// if we have no reason to prevent the removal, remove it.
+	await db["goal-subs"].remove({
+		userID: goalSub.userID,
+		goalID: goalSub.goalID,
+	});
+
+	return null;
+}
+
+/**
+ * Get the reason why a goal was assigned to a user.
+ * This is either "WAS_STANDALONE" -- the user assigned this goal directly and deliberately
+ * or "HAS_QUEST_DEPENDENCIES" -- the user was assigned this goal as the consequence
+ * of a quest subscription.
+ *
+ * Failing that, the goal will return "WAS_ORPHAN", there's no reason this goal
+ * should be subscribed to the user -- it's safe to remove for any reason.
+ */
+export async function GetGoalDependencies(goalSub: GoalSubscriptionDocument) {
+	const parentQuests = await GetQuestSubsWhichDependOnThisGoalSub(goalSub);
+
+	if (parentQuests.length) {
+		return {
+			reason: "HAS_QUEST_DEPENDENCIES",
+			parentQuests,
+		} as const;
+	}
+
+	if (goalSub.wasAssignedStandalone) {
+		return {
+			reason: "WAS_STANDALONE",
+		} as const;
+	}
+
+	return { reason: "WAS_ORPHAN" } as const;
+}
+
+/**
+ * For a given UGPT, unsubscribe from all their goals that no longer have any parent,
+ * for example, a quest was removed, now they are left with some stranded goals that we
+ * don't want to keep around.
+ */
+export async function UnsubscribeFromOrphanedGoalSubs(
+	userID: integer,
+	game: Game,
+	playtype: Playtype
+) {
+	const goalSubs = await db["goal-subs"].find({ game, playtype, userID });
+
+	const maybeToRemove = await Promise.all(
+		goalSubs.map(async (goalSub) => {
+			const deps = await GetGoalDependencies(goalSub);
+
+			if (deps.reason === "WAS_ORPHAN") {
+				return goalSub.goalID;
+			}
+
+			return null;
+		})
+	);
+
+	// impressive that ts can't resolve this without a cast
+	const toRemove = maybeToRemove.filter((e) => e !== null) as Array<string>;
+
+	if (toRemove.length > 0) {
+		logger.info(
+			`Removing ${toRemove.length} goals from user ${userID} on ${FormatGame(
+				game,
+				playtype
+			)} as they were orphanned.`
+		);
+
+		await db["goal-subs"].remove({
+			userID,
+			goalID: { $in: toRemove },
+		});
+	}
 }
 
 /**

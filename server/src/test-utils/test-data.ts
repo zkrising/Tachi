@@ -591,8 +591,8 @@ export const HC511UserGoal: GoalSubscriptionDocument = {
 	outOfHuman: "HARD CLEAR",
 	progress: null,
 	progressHuman: "NO DATA",
-	timeSet: 0,
 	userID: 1,
+	wasAssignedStandalone: false,
 };
 
 export const TestingIIDXFolderSP10: FolderDocument = {
@@ -665,8 +665,8 @@ export const TestingIIDXSPQuestSub: QuestSubscriptionDocument = {
 	questID: "example_quest_id",
 	progress: 4,
 	timeAchieved: null,
-	timeSet: 1900,
 	wasInstantlyAchieved: false,
+	wasAssignedStandalone: false,
 };
 
 let KTDATA_CACHE:

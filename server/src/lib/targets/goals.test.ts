@@ -432,8 +432,8 @@ t.test("#GetRelevantGoals", (t) => {
 				outOfHuman: "HARD CLEAR",
 				progress: null,
 				progressHuman: "NO DATA",
-				timeSet: Date.now(),
 				userID: 1,
+				wasAssignedStandalone: false,
 			}))
 		);
 	});

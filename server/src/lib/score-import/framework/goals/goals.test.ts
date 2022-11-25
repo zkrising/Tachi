@@ -45,7 +45,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 		progress: 0,
 		progressHuman: "0",
 		timeAchieved: null,
-		timeSet: 0,
+		wasAssignedStandalone: false,
 		userID: 1,
 	};
 
@@ -257,8 +257,8 @@ t.test("#ProcessGoal", (t) => {
 			progress: 6,
 			progressHuman: "EX HARD CLEAR",
 			timeAchieved: 1000,
-			timeSet: 1000,
 			wasInstantlyAchieved: true,
+			wasAssignedStandalone: false,
 			userID: 1,
 		};
 

@@ -13,7 +13,7 @@ import { Col, Form, Row } from "react-bootstrap";
 import { FormatGame, GetGameConfig, QuestDocument } from "tachi-common";
 import { GamePT } from "types/react";
 import { GPTQuestsReturn } from "types/api-returns";
-import Quest from "components/quests/Quest";
+import Quest from "components/targets/quests/Quest";
 
 export default function QuestsPage({ game, playtype }: GamePT) {
 	useSetSubheader(

@@ -74,13 +74,13 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 
 	const [shouldRefresh, forceRefresh] = useReducer((state) => state + 1, 0);
 
-	// when a user isn't logged in, skip ever making this request.
 	const { error: targetError, data: targetData } = useApiQuery<GoalsOnChartReturn>(
 		`/users/${currentUser?.id ?? ""}/games/${game}/${playtype}/targets/on-chart/${
 			chart.chartID
 		}`,
 		undefined,
 		[shouldRefresh],
+		// when a user isn't logged in, skip ever making this request.
 		currentUser === null
 	);
 

@@ -6,9 +6,10 @@ import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
 import {
 	ConstructGoal,
-	GetParentQuestSubs,
+	GetQuestSubsWhichDependOnThisGoalSub,
 	GetQuestsThatContainGoal,
 	SubscribeToGoal,
+	UnsubscribeFromGoal,
 } from "lib/targets/goals";
 import p from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
@@ -166,7 +167,7 @@ router.post(
 			});
 		}
 
-		const goalSub = await SubscribeToGoal(user.id, goal);
+		const goalSub = await SubscribeToGoal(user.id, goal, true);
 
 		if (goalSub === SubscribeFailReasons.ALREADY_SUBSCRIBED) {
 			return res.status(409).json({
@@ -252,28 +253,28 @@ router.delete(
 	GetGoalSubscription,
 	RequirePermissions("manage_targets"),
 	async (req, res) => {
-		const goalID = req.params.goalID;
-		const { user, game, playtype } = GetUGPT(req);
-
 		const goalSub = GetTachiData(req, "goalSubDoc");
 
-		const parentQuests = await GetParentQuestSubs(goalSub);
+		const fail = await UnsubscribeFromGoal(goalSub, true);
 
-		if (parentQuests.length) {
-			return res.status(400).json({
-				success: false,
-				description: `This goal is part of a quest you are subscribed to. It can only be removed by unsubscribing from the relevant quests: ${parentQuests
-					.map((e) => `'${e.quest.name}'`)
-					.join(", ")}.`,
-			});
+		if (fail) {
+			switch (fail.reason) {
+				case "WAS_STANDALONE":
+					// can't happen. mightaswell handle it though.
+					return res.status(400).json({
+						success: false,
+						description: `This goal was assigned by you and can't be removed as a consequence of another action.`,
+					});
+
+				case "HAS_QUEST_DEPENDENCIES":
+					return res.status(400).json({
+						success: false,
+						description: `This goal is part of a quest you are subscribed to. It can only be removed by unsubscribing from the relevant quests: ${fail.parentQuests
+							.map((e) => `'${e.quest.name}'`)
+							.join(", ")}.`,
+					});
+			}
 		}
-
-		await db["goal-subs"].remove({
-			userID: user.id,
-			goalID,
-			game,
-			playtype,
-		});
 
 		return res.status(200).json({
 			success: true,

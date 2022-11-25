@@ -30,8 +30,8 @@ t.test("#UpdateUsersQuests", (t) => {
 			progress: 0,
 			timeAchieved: null,
 			lastInteraction: null,
-			timeSet: 0,
 			userID: 1,
+			wasAssignedStandalone: false,
 		})
 	);
 
@@ -164,8 +164,8 @@ t.test("#UpdateUsersQuests", (t) => {
 			progress: 0,
 			timeAchieved: null,
 			lastInteraction: null,
-			timeSet: 0,
 			userID: 1,
+			wasAssignedStandalone: false,
 		});
 
 		const res = await UpdateUsersQuests(
@@ -275,8 +275,8 @@ t.test("#UpdateUsersQuests", (t) => {
 				progress: 0,
 				timeAchieved: null,
 				lastInteraction: null,
-				timeSet: 0,
 				userID: 1,
+				wasAssignedStandalone: false,
 			},
 			{
 				achieved: false,
@@ -288,8 +288,8 @@ t.test("#UpdateUsersQuests", (t) => {
 				progress: 0,
 				timeAchieved: null,
 				lastInteraction: null,
-				timeSet: 0,
 				userID: 1,
+				wasAssignedStandalone: false,
 			},
 			{
 				achieved: false,
@@ -301,8 +301,8 @@ t.test("#UpdateUsersQuests", (t) => {
 				progress: 0,
 				timeAchieved: null,
 				lastInteraction: null,
-				timeSet: 0,
 				userID: 1,
+				wasAssignedStandalone: false,
 			},
 			{
 				achieved: false,
@@ -313,8 +313,8 @@ t.test("#UpdateUsersQuests", (t) => {
 				progress: 0,
 				timeAchieved: null,
 				lastInteraction: null,
-				timeSet: 0,
 				userID: 1,
+				wasAssignedStandalone: false,
 			},
 		]);
 

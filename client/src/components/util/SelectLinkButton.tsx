@@ -10,14 +10,17 @@ export default function SelectLinkButton({
 	offVariant = "outline-secondary",
 	to,
 	matchIfStartsWith = false,
+	disabled = false,
 }: {
 	onVariant?: ButtonVariant;
 	offVariant?: ButtonVariant;
 	to: string;
 	matchIfStartsWith?: boolean;
+	disabled?: boolean;
 } & JustChildren) {
 	return (
 		<LinkButton
+			disabled={disabled}
 			to={to}
 			className={`btn-${
 				DoesMatchRoute(window.location.href, to, !matchIfStartsWith)

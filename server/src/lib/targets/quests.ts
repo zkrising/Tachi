@@ -1,4 +1,9 @@
-import { EvaluateGoalForUser, SubscribeToGoal } from "./goals";
+import {
+	EvaluateGoalForUser,
+	SubscribeToGoal,
+	UnsubscribeFromGoal,
+	UnsubscribeFromOrphanedGoalSubs,
+} from "./goals";
 import db from "external/mongo/db";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
@@ -112,14 +117,38 @@ export async function EvaluateQuestProgress(userID: integer, quest: QuestDocumen
 	const goalResults: Array<EvaluatedGoalResult> = await Promise.all(
 		goals.map(async (goal) => {
 			if (isSubscribedToQuest) {
-				const goalSub = goalSubMap.get(goal.goalID);
+				let goalSub = goalSubMap.get(goal.goalID);
 
 				if (!goalSub) {
-					logger.error(
-						`User ${userID} has a corrupt subscription to quest '${quest.name}', They do not have all the goals in this quest assigned.`
+					// shouldn't happen. Let's just correct the user silently.
+
+					logger.warn(
+						`User ${userID} has a corrupt subscription to quest '${quest.name}', They do not have all the goals in this quest assigned. Automatically subscribing them to the new goal.`
 					);
 
-					throw new Error(`User has corrupt subscription to quest. Cannot calculate.`);
+					const newGoalSub = await SubscribeToGoal(userID, goal, false);
+
+					if (newGoalSub === SubscribeFailReasons.ALREADY_SUBSCRIBED) {
+						logger.error(
+							`User ${userID} wasn't subscribed to a goal (${goal.goalID}), but subscription failed because they were already subscribed. This should never happen.`
+						);
+						throw new Error(
+							`Quest subscription was corrupt and we failed to subscribe the user to the missing goal.`
+						);
+					}
+
+					if (newGoalSub === SubscribeFailReasons.ALREADY_ACHIEVED) {
+						// lol, wut
+						logger.error(
+							`Impossible via typesystem: attempted resubscription for user ${userID} on goal ${goal.goalID}, was rejected for being already achieved. Not possible, as we allow already achieved goals here.`
+						);
+
+						throw new Error(
+							`Quest subscription was corrupt and we failed to subscribe the user to the missing goal.`
+						);
+					}
+
+					goalSub = newGoalSub;
 				}
 
 				return {
@@ -178,18 +207,18 @@ interface QuestSubscriptionReturns {
  * Subscribes the given user to a provided quest. If the user is already subscribed,
  * null is returned.
  *
- * @param cancelIfAchieved - Don't subscribe to the quest if subscribing would cause
+ * @param denyInstantAchievement - Don't subscribe to the quest if subscribing would cause
  * the user to immediately achieve it.
  */
 export async function SubscribeToQuest(
 	userID: integer,
 	quest: QuestDocument,
-	cancelIfAchieved: false
+	denyInstantAchievement: false
 ): Promise<QuestSubscriptionReturns | SubscribeFailReasons.ALREADY_SUBSCRIBED>;
 export async function SubscribeToQuest(
 	userID: integer,
 	quest: QuestDocument,
-	cancelIfAchieved = true
+	denyInstantAchievement = true
 ): Promise<
 	| QuestSubscriptionReturns
 	| SubscribeFailReasons.ALREADY_ACHIEVED
@@ -206,7 +235,7 @@ export async function SubscribeToQuest(
 
 	const result = await EvaluateQuestProgress(userID, quest);
 
-	if (result.achieved && cancelIfAchieved) {
+	if (result.achieved && denyInstantAchievement) {
 		return SubscribeFailReasons.ALREADY_ACHIEVED;
 	}
 
@@ -217,7 +246,6 @@ export async function SubscribeToQuest(
 		userID,
 		questID: quest.questID,
 		wasInstantlyAchieved: result.achieved,
-		timeSet: Date.now(),
 		game: quest.game,
 		playtype: quest.playtype,
 		achieved: result.achieved,
@@ -238,13 +266,6 @@ export async function SubscribeToQuest(
 	return { questSub, goals: result.goals, goalResults: result.goalResults };
 }
 
-export async function UnsubscribeFromQuest(userID: integer, questID: string) {
-	await db["quest-subs"].remove({
-		userID,
-		questID,
-	});
-}
-
 /**
  * Given a questID, update all of its subscriptions to potentially subscribe to any
  * new goals added to it.
@@ -261,53 +282,83 @@ export async function UpdateQuestSubscriptions(questID: string) {
 
 	const maybeQuest = await db.quests.findOne({ questID });
 
+	// if the quest was deleted, we have to take a more manual approach.
 	if (!maybeQuest) {
-		logger.info(
-			`Quest ${questID} has been deleted. Unsubscribing ${subscriptions.length} users.`
+		// first, remove all subs to this quest
+		await db["quest-subs"].remove({
+			questID,
+		});
+
+		// then, this presents us with an interesting problem.
+		// We can't actually know what goals this user was subscribed to as a result
+		// of this quest, because said quest no longer exists.
+
+		// To mitigate this, we just prune all goalsubs that no longer have any
+		// dependencies
+		await Promise.all(
+			subscriptions.map((e) => UnsubscribeFromOrphanedGoalSubs(e.userID, e.game, e.playtype))
 		);
 
-		return Promise.all(subscriptions.map((e) => UnsubscribeFromQuest(e.userID, e.questID)));
+		logger.info(
+			`Quest ${questID} has been deleted. Unsubscribed ${subscriptions.length} users.`
+		);
+
+		return;
 	}
 
-	const goals = await GetGoalsInQuest(maybeQuest);
+	// the easiest way to do this? unsubscribe all users from the quest, then subscribe
+	// them all again.
+	await Promise.all(subscriptions.map((e) => UnsubscribeFromQuest(e, maybeQuest)));
 
-	const goalSubscriptionPromises = [];
+	await Promise.all(subscriptions.map((e) => SubscribeToQuest(e.userID, maybeQuest, false)));
 
-	for (const sub of subscriptions) {
-		for (const goal of goals) {
-			// attempt to subscribe to all goals in this quest.
-			// even if they're already subscribed, it's not a problem -- will just fail fast.
-			const goalSubPromise = SubscribeToGoal(sub.userID, goal, false);
-
-			goalSubscriptionPromises.push(goalSubPromise);
+	await BulkSendNotification(
+		`The quest '${maybeQuest.name}' has received an update.`,
+		subscriptions.map((e) => e.userID),
+		{
+			type: "QUEST_CHANGED",
+			content: {
+				questID,
+			},
 		}
-	}
-
-	const subscriptionResults = await Promise.all(goalSubscriptionPromises);
-
-	const newStuff = subscriptionResults.filter(
-		(e) => e !== SubscribeFailReasons.ALREADY_SUBSCRIBED
-	).length;
-
-	if (newStuff !== 0) {
-		logger.info(
-			`Updating subscriptions for '${maybeQuest.name}' resulted in ${newStuff} updates.`
-		);
-
-		await BulkSendNotification(
-			`The quest '${maybeQuest.name}' has changed, You have been automatically subscribed to some new goals.`,
-			subscriptions.map((e) => e.userID),
-			{
-				type: "QUEST_CHANGED",
-				content: {
-					questID,
-				},
-			}
-		);
-	}
-
-	return subscriptionResults;
+	);
 }
+
+/**
+ * Unsubscribe from a quest. This will also unsubscribe the user from any goals they're
+ * subscribed to as a result.
+ *
+ * Returns nothing.
+ */
+export async function UnsubscribeFromQuest(
+	questSub: QuestSubscriptionDocument,
+	quest: QuestDocument
+
+	// preventStandaloneRemoval: boolean
+) {
+	// todo questline subs maybe
+
+	const goalIDs = GetGoalIDsFromQuest(quest);
+
+	// remove the quest sub
+	// (preventing HAS_QUEST_DEPENDENCIES when this is the quest we're removing anyway)
+	await db["quest-subs"].remove({
+		questID: questSub.questID,
+		userID: questSub.userID,
+	});
+
+	const goalSubs = await db["goal-subs"].find({
+		userID: questSub.userID,
+		goalID: { $in: goalIDs },
+	});
+
+	// unsub the user from all goals we can. If we can't unsub from a goal, that's
+	// not a problem, we weren't meant to unsubscribe from it.
+	await Promise.all(goalSubs.map((e) => UnsubscribeFromGoal(e, true)));
+}
+
+// todo
+// export async function GetQuestDependencies() {}
 
 /**
  * Given an array of user goal subscriptions, return all the quests this user is
@@ -336,7 +387,7 @@ export async function GetParentQuests(
 
 	const quests = await db.quests.find({
 		questID: { $in: questSubIDs },
-		"quest.questData.goals.goalID": { $in: goalSubs.map((e) => e.goalID) },
+		"questData.goals.goalID": { $in: goalSubs.map((e) => e.goalID) },
 	});
 
 	return quests;

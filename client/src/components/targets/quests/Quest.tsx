@@ -1,5 +1,6 @@
 import { APIFetchV1 } from "util/api";
 import { FormatTime } from "util/time";
+import { HumanisedJoinArray } from "util/misc";
 import Card from "components/layout/page/Card";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
@@ -168,7 +169,15 @@ function QuestSectionComponent({
 	);
 }
 
-function InnerQuestSectionGoal({ goal, note }: { goal: GoalDocument; note?: string }) {
+export function InnerQuestSectionGoal({
+	goal,
+	note,
+	dependencies,
+}: {
+	goal: GoalDocument;
+	note?: string;
+	dependencies?: string[];
+}) {
 	const { goalSubs } = useContext(TargetsContext);
 
 	const { game, playtype } = goal;
@@ -242,7 +251,30 @@ function InnerQuestSectionGoal({ goal, note }: { goal: GoalDocument; note?: stri
 					</div>
 				)}
 			</div>
-			{note && <Muted>{note}</Muted>}
+			<div>
+				{note && <Muted>{note}</Muted>}
+				{dependencies && (
+					<FormatGoalDependencies
+						isStandalone={goalSub.wasAssignedStandalone}
+						deps={dependencies}
+					/>
+				)}
+			</div>
 		</>
 	);
+}
+
+function FormatGoalDependencies({ deps, isStandalone }: { deps: string[]; isStandalone: boolean }) {
+	let str;
+	if (isStandalone && deps.length === 0) {
+		str = `Assigned standalone.`;
+	} else if (isStandalone && deps.length > 0) {
+		str = `Assigned standalone and from ${HumanisedJoinArray(deps, "and")}`;
+	} else if (deps.length === 0) {
+		return null;
+	} else {
+		str = `From ${HumanisedJoinArray(deps, "and")}`;
+	}
+
+	return <Muted>{str}</Muted>;
 }

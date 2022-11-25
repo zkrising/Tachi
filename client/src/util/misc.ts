@@ -563,3 +563,11 @@ export function ChangeAtPosition<T>(elements: T[], element: T, i: integer) {
 export function DeleteInPosition<T>(elements: T[], i: integer) {
 	return [...elements.slice(0, i), ...elements.slice(i + 1)];
 }
+
+export function HumanisedJoinArray(arr: Array<string>, lastJoiner = "or") {
+	if (arr.length === 1) {
+		return arr[0];
+	}
+
+	return `${arr.slice(0, arr.length - 1).join(", ")} ${lastJoiner} ${arr[arr.length - 1]!}`;
+}

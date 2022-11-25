@@ -8,14 +8,21 @@ export default function LinkButton({
 	children,
 	style,
 	onClick,
+	disabled = false,
 }: {
 	to: string;
 	className?: string;
 	style?: CSSProperties;
 	onClick?: () => void;
+	disabled?: boolean;
 } & JustChildren) {
 	return (
-		<Link onClick={onClick} to={to} className={`btn ${className}`} style={style}>
+		<Link
+			onClick={onClick}
+			to={to}
+			className={`btn ${disabled ? "disabled" : ""} ${className}`}
+			style={style}
+		>
 			{children}
 		</Link>
 	);

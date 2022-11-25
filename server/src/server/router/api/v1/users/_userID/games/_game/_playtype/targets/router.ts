@@ -99,6 +99,7 @@ router.get("/on-chart/:chartID", async (req, res) => {
 		user.id,
 		new Set([chartID]),
 		logger,
+		false,
 		true
 	);
 

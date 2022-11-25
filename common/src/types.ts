@@ -597,13 +597,16 @@ export type GoalSubscriptionDocument = MongoDBDocument & {
 	userID: integer;
 	game: Game;
 	playtype: Playtype;
-	timeSet: integer;
 	lastInteraction: integer | null;
 	progress: number | null;
 	progressHuman: string;
 	outOf: number;
 	outOfHuman: string;
 	wasInstantlyAchieved: boolean;
+
+	// Was this goal assigned "standalone"? I.e. a user explicitly subscribed to this.
+	// instead of it being a result of a quest subscription.
+	wasAssignedStandalone: boolean;
 } & (
 		| {
 				achieved: false;
@@ -990,10 +993,13 @@ export type QuestSubscriptionDocument = MongoDBDocument & {
 	userID: integer;
 	game: Game;
 	playtype: Playtype;
-	timeSet: integer;
 	progress: integer;
 	lastInteraction: integer | null;
 	wasInstantlyAchieved: boolean;
+
+	// Was this quest assigned "standalone"? I.e. a user explicitly subscribed to this -
+	// instead of it being a result of a questline subscription.
+	wasAssignedStandalone: boolean;
 } & (
 		| {
 				achieved: false;

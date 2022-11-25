@@ -225,7 +225,7 @@ function SongChartRoutes({ game, playtype }: GamePT) {
 					/>
 				</Route>
 
-				<Route exact path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty">
+				<Route path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty">
 					<GPTChartPage
 						game={game}
 						playtype={playtype}

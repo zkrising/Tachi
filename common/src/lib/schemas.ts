@@ -633,6 +633,8 @@ const PRE_SCHEMAS = {
 		game: p.isIn(games),
 		playtype: isValidPlaytype,
 		quests: ["string"],
+		name: "string",
+		desc: "string",
 	}),
 	quests: prSchemaFnWrap({
 		game: p.isIn(games),

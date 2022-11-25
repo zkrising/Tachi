@@ -55,6 +55,8 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/goals", (t) => {
 		t.strictSame(res.body.body, {
 			goals: [HC511Goal],
 			goalSubs: [HC511UserGoal],
+			quests: [],
+			questSubs: [],
 		});
 
 		t.end();

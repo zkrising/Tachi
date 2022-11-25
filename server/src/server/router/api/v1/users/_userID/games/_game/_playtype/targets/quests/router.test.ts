@@ -4,6 +4,7 @@ import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import {
+	HC511Goal,
 	IIDXSPQuestGoals,
 	IIDXSPQuestGoalSubs,
 	TestingIIDXSPQuest,
@@ -17,15 +18,21 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/quests", (t) => 
 	t.test("Should return all quest subscriptions.", async (t) => {
 		await db.quests.insert(TestingIIDXSPQuest);
 		await db["quest-subs"].insert(TestingIIDXSPQuestSub);
+		await db.goals.insert(IIDXSPQuestGoals);
 
 		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/targets/quests");
 
 		delete TestingIIDXSPQuest._id;
 		delete TestingIIDXSPQuestSub._id;
 
+		for (const goal of IIDXSPQuestGoals) {
+			delete goal._id;
+		}
+
 		t.strictSame(res.body.body, {
 			quests: [TestingIIDXSPQuest],
 			questSubs: [TestingIIDXSPQuestSub],
+			goals: IIDXSPQuestGoals,
 		});
 
 		t.end();

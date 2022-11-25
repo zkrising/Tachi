@@ -2,15 +2,13 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { CreateGoalTitle, ValidateGoalChartsAndCriteria } from "lib/targets/goal-utils";
-import { EvaluateGoalForUser, GetQuestsThatContainGoal } from "lib/targets/goals";
+import { GetQuestsThatContainGoal } from "lib/targets/goals";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
-import { FormatGame } from "tachi-common";
 import { GetMostSubscribedGoals } from "utils/db";
 import { AssignToReqTachiData, GetGPT, GetTachiData } from "utils/req-tachi-data";
-import { GetUsersWithIDs, ResolveUser } from "utils/user";
+import { GetUsersWithIDs } from "utils/user";
 import type { RequestHandler } from "express";
-import type { EvaluatedGoalReturn } from "lib/targets/goals";
 import type { GoalDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
@@ -180,88 +178,5 @@ router.get("/:goalID", ResolveGoalID, async (req, res) => {
 		},
 	});
 });
-
-/**
- * Evaluates a goal upon a user, even if they aren't subscribed to it.
- *
- * @param userID - The userID to evaluate this goal against. Must be a player of this GPT.
- *
- * @name GET /api/v1/games/:game/:playtype/targets/goals/:goalID/evaluate-for
- */
-router.get(
-	"/:goalID/evaluate-for",
-	ResolveGoalID,
-	prValidate({
-		userID: "string",
-	}),
-	async (req, res) => {
-		const { game, playtype } = GetGPT(req);
-
-		const userID = req.query.userID as string;
-
-		const user = await ResolveUser(userID);
-
-		if (!user) {
-			return res.status(404).json({
-				success: false,
-				description: `The user ${userID} does not exist.`,
-			});
-		}
-
-		const hasPlayed = await db["game-stats"].findOne({
-			game,
-			playtype,
-			userID: user.id,
-		});
-
-		if (!hasPlayed) {
-			return res.status(400).json({
-				success: false,
-				description: `The user ${user.username} hasn't played ${FormatGame(
-					game,
-					playtype
-				)}.`,
-			});
-		}
-
-		const goal = GetTachiData(req, "goalDoc");
-		const goalID = goal.goalID;
-
-		const goalSub = await db["goal-subs"].findOne({
-			userID: user.id,
-			goalID,
-		});
-
-		let goalResults: EvaluatedGoalReturn;
-
-		// shortcut evaluation by using the user goal
-
-		if (goalSub) {
-			goalResults = {
-				achieved: goalSub.achieved,
-				outOf: goalSub.outOf,
-				outOfHuman: goalSub.outOfHuman,
-				progress: goalSub.progress,
-				progressHuman: goalSub.progressHuman,
-			};
-		} else {
-			const results = await EvaluateGoalForUser(goal, user.id, logger);
-
-			if (!results) {
-				throw new Error(
-					`Failed to evaluate goal ${goal.name} (${goal.goalID}) for user ${user.id}. More information above.`
-				);
-			}
-
-			goalResults = results;
-		}
-
-		return res.status(200).json({
-			success: true,
-			description: `Evaluated ${goal.name} for ${user.username}.`,
-			body: goalResults,
-		});
-	}
-);
 
 export default router;

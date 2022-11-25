@@ -45,7 +45,7 @@ router.get("/", async (req, res) => {
 
 	return res.status(200).json({
 		success: true,
-		description: `Returned ${questlines.length} quest sets.`,
+		description: `Returned ${questlines.length} questlines.`,
 		body: { questlines, standalone, standaloneGoals },
 	});
 });
@@ -64,7 +64,7 @@ router.get("/:questlineID", ResolveQuestlineID, async (req, res) => {
 
 	return res.status(200).json({
 		success: true,
-		description: `Retrieved quest set '${questline.name}'.`,
+		description: `Retrieved questline '${questline.name}'.`,
 		body: {
 			quests,
 			questline,

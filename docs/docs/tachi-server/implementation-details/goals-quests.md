@@ -117,4 +117,4 @@ an empty array as a result of this process.
 Questline are ordered lists of quests. Their purpose is to group quests together
 visually.
 
-Users *can not* "subscribe" to quest sets, but they can use sets as a utility for subscribing to all the related quests.
+Users *can not* "subscribe" to questlines, but they can use questlines as a utility for subscribing to all the related quests.

@@ -7,7 +7,7 @@
 	"Invalid Goal: single with countNum": "[criteria.countNum] Invalid countNum for mode 'single'. Must not have one! (Received 123)",
 	"Invalid Goal: nonsense mode": "[criteria.mode] Expected any of single, absolute, proportion. (Received nonsense)",
 	"Invalid Goal: abs with countNum but charts.type == single": "Invalid countNum for goal with criteria.mode of 'absolute'. Expected a whole number less than the total amount of charts available and greater than 1. (Got 1, while total charts was 1.)",
-	"Invalid Goal: nonsense charts.type": "[charts.type] Expected any of single, multi, folder, any. (Received nonsense)",
+	"Invalid Goal: nonsense charts.type": "[charts.type] Expected any of single, multi, folder. (Received nonsense)",
 	"Invalid Goal: charts.data when type == any": "[charts.data] Invalid charts.data for type 'any'. Must not have any data! (Received foo)",
 	"Invalid Goal: charts.data array when type == single": "[charts.data] Expected a string in charts.data due to charts.type being 'single'.",
 	"Invalid Goal: charts.data array of identical chartIDs": "Expected charts.data to match 2 charts. Instead, it only matched 1. Are all of these chartIDs valid?",

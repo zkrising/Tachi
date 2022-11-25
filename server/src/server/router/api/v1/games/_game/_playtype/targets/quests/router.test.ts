@@ -9,7 +9,6 @@ import {
 	IIDXSPQuestGoalSubs,
 	TestingIIDXSPQuest,
 	TestingIIDXSPQuestSub,
-	TestingIIDXSPScorePB,
 } from "test-utils/test-data";
 import type { QuestDocument, QuestlineDocument, QuestSubscriptionDocument } from "tachi-common";
 
@@ -38,7 +37,9 @@ t.test("GET /api/v1/games/:game/:playtype/targets/quests", (t) => {
 		t.equal(res.statusCode, 200);
 
 		t.hasStrict(
-			(res.body.body as Array<QuestDocument>).sort((a, b) => a.name.localeCompare(b.name)),
+			(res.body.body.quests as Array<QuestDocument>).sort((a, b) =>
+				a.name.localeCompare(b.name)
+			),
 			[{ questID: "similar_name" }, { questID: "name" }]
 		);
 
@@ -64,29 +65,6 @@ const LoadLazySampleData = async () => {
 		}),
 	] as Array<QuestSubscriptionDocument>);
 };
-
-t.test("GET /api/v1/games/:game/:playtype/targets/quests/popular", (t) => {
-	t.beforeEach(ResetDBState);
-	t.beforeEach(LoadLazySampleData);
-
-	t.test("Should return the most subscribed quests for this GPT.", async (t) => {
-		const res = await mockApi.get("/api/v1/games/iidx/SP/targets/quests/popular");
-
-		t.equal(res.statusCode, 200);
-
-		t.hasStrict(
-			(res.body.body as Array<QuestDocument>).sort((a, b) => a.name.localeCompare(b.name)),
-			[
-				{ questID: TestingIIDXSPQuest.questID, __subscriptions: 2 },
-				{ questID: "other_quest", __subscriptions: 1 },
-			]
-		);
-
-		t.end();
-	});
-
-	t.end();
-});
 
 t.test("GET /api/v1/games/:game/:playtype/targets/quests/:questID", (t) => {
 	t.beforeEach(ResetDBState);
@@ -137,124 +115,6 @@ t.test("GET /api/v1/games/:game/:playtype/targets/quests/:questID", (t) => {
 		);
 
 		t.equal(res.statusCode, 404);
-
-		t.end();
-	});
-
-	t.end();
-});
-
-t.test("GET /api/v1/games/:game/:playtype/targets/quests/:questID/evaluate-for", (t) => {
-	t.beforeEach(ResetDBState);
-	t.beforeEach(LoadLazySampleData);
-
-	t.test("Should evaluate a quest for a user.", async (t) => {
-		// remove all quest subs -- the user isn't properly
-		// subscribed to this quest due to test mocking.
-		// this will force a live calc.
-		await db["quest-subs"].remove({});
-
-		await db["personal-bests"].insert(TestingIIDXSPScorePB);
-
-		const res = await mockApi.get(
-			`/api/v1/games/iidx/SP/targets/quests/${TestingIIDXSPQuest.questID}/evaluate-for?userID=1`
-		);
-
-		t.equal(res.statusCode, 200);
-
-		t.hasStrict(res.body.body, {
-			goals: [
-				{
-					goalID: "eg_goal_1",
-				},
-				{
-					goalID: "eg_goal_2",
-				},
-				{
-					goalID: "eg_goal_3",
-				},
-				{
-					goalID: "eg_goal_4",
-				},
-			],
-			goalResults: [
-				{
-					achieved: true,
-					progress: 6,
-					outOf: 5,
-					progressHuman: "EX HARD CLEAR (BP: 2)",
-					outOfHuman: "HARD CLEAR",
-					goalID: "eg_goal_1",
-				},
-				{
-					achieved: true,
-					progress: 6,
-					outOf: 2,
-					progressHuman: "EX HARD CLEAR (BP: 2)",
-					outOfHuman: "ASSIST CLEAR",
-					goalID: "eg_goal_2",
-				},
-				{
-					achieved: true,
-					progress: 1479,
-					outOf: 300,
-					outOfHuman: "300",
-					progressHuman: "1479",
-					goalID: "eg_goal_3",
-				},
-				{
-					achieved: true,
-					progress: 1479,
-					outOf: 1100,
-					outOfHuman: "1100",
-					progressHuman: "1479",
-					goalID: "eg_goal_4",
-				},
-			],
-			achieved: true,
-			progress: 4,
-			outOf: 4,
-		});
-
-		t.end();
-	});
-
-	t.test("Should return 404 if the requested quest doesn't exist.", async (t) => {
-		const res = await mockApi.get(
-			"/api/v1/games/iidx/SP/targets/quests/fake_quest/evaluate-for?userID=1"
-		);
-
-		t.equal(res.statusCode, 404);
-
-		t.end();
-	});
-
-	t.test("Should return 404 if the quest exists but for a different GPT.", async (t) => {
-		const res = await mockApi.get(
-			`/api/v1/games/iidx/DP/targets/quests/${TestingIIDXSPQuest.questID}/evaluate-for?userID=1`
-		);
-
-		t.equal(res.statusCode, 404);
-
-		t.end();
-	});
-
-	t.test("Should return 404 if the requested user doesn't exist.", async (t) => {
-		const res = await mockApi.get(
-			`/api/v1/games/iidx/SP/targets/quests/${TestingIIDXSPQuest.questID}/evaluate-for?userID=3`
-		);
-
-		t.equal(res.statusCode, 404);
-
-		t.end();
-	});
-
-	t.test("Should return 400 if the requested user hasn't played this gpt.", async (t) => {
-		const res = await mockApi.get(
-			`/api/v1/games/iidx/SP/targets/quests/${TestingIIDXSPQuest.questID}/evaluate-for?userID=2`
-		);
-
-		t.equal(res.statusCode, 400);
 
 		t.end();
 	});

@@ -666,7 +666,6 @@ export const TestingIIDXSPQuestSub: QuestSubscriptionDocument = {
 	progress: 4,
 	timeAchieved: null,
 	wasInstantlyAchieved: false,
-	wasAssignedStandalone: false,
 };
 
 let KTDATA_CACHE:

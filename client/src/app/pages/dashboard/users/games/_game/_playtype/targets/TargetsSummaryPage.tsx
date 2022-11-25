@@ -24,9 +24,5 @@ export default function TargetsSummaryPage({ game, playtype, reqUser }: UGPT) {
 
 	const [achieved, raised] = data;
 
-	return (
-		<div>
-			<DebugContent data={data} />
-		</div>
-	);
+	return <div>yeah i haven't done this yet</div>;
 }

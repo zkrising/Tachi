@@ -7,7 +7,7 @@ import { TestingIIDXSPQuest } from "test-utils/test-data";
 import type { QuestDocument, QuestlineDocument } from "tachi-common";
 
 const TestingIIDXSPQuestline: QuestlineDocument = {
-	name: "Testing Quest Set",
+	name: "Testing Questline",
 	desc: "foo",
 	game: "iidx",
 	quests: [TestingIIDXSPQuest.questID, "other_quest"],
@@ -22,7 +22,7 @@ t.test("GET /api/v1/games/:game/:playtype/targets/questlines", (t) => {
 		return dm(TestingIIDXSPQuestline, merge) as QuestlineDocument;
 	}
 
-	t.test("Should search the loaded quest sets for this game.", async (t) => {
+	t.test("Should return all questlines for this game.", async (t) => {
 		await db.questlines.insert([
 			mkSet({ name: "Testing Set", questlineID: "name" }),
 			mkSet({ name: "Testing Other Set", questlineID: "similar_name" }),
@@ -35,22 +35,18 @@ t.test("GET /api/v1/games/:game/:playtype/targets/questlines", (t) => {
 			mkSet({ playtype: "DP", questlineID: "matching name but different playtype" }),
 		]);
 
-		const res = await mockApi.get("/api/v1/games/iidx/SP/targets/questlines?search=Testing");
-
-		t.hasStrict(
-			(res.body.body as Array<QuestlineDocument>).sort((a, b) =>
-				a.name.localeCompare(b.name)
-			),
-			[{ questlineID: "similar_name" }, { questlineID: "name" }]
-		);
-
-		t.end();
-	});
-
-	t.test("Should mandate a search field.", async (t) => {
 		const res = await mockApi.get("/api/v1/games/iidx/SP/targets/questlines");
 
-		t.equal(res.statusCode, 400);
+		t.hasStrict(
+			(res.body.body.questlines as Array<QuestlineDocument>).sort((a, b) =>
+				a.name.localeCompare(b.name)
+			),
+			[
+				{ questlineID: "radically_different_name" },
+				{ questlineID: "similar_name" },
+				{ questlineID: "name" },
+			]
+		);
 
 		t.end();
 	});
@@ -68,7 +64,7 @@ t.test("GET /api/v1/games/:game/:playtype/targets/questlines/:questlineID", (t) 
 		]);
 	});
 
-	t.test("Should return the quest set and its quests.", async (t) => {
+	t.test("Should return the questline and its quests.", async (t) => {
 		const res = await mockApi.get("/api/v1/games/iidx/SP/targets/questlines/quest_set");
 
 		t.equal(res.statusCode, 200, "Should return 200.");
@@ -87,7 +83,7 @@ t.test("GET /api/v1/games/:game/:playtype/targets/questlines/:questlineID", (t) 
 		t.end();
 	});
 
-	t.test("Should return 404 if the quest set doesn't exist.", async (t) => {
+	t.test("Should return 404 if the questline doesn't exist.", async (t) => {
 		const res = await mockApi.get("/api/v1/games/iidx/SP/targets/questlines/foobar");
 
 		t.equal(res.statusCode, 404);

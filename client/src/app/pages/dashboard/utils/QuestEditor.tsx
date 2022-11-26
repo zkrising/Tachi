@@ -1,6 +1,6 @@
 import { ChangeAtPosition, DeleteInPosition } from "util/misc";
 import useSetSubheader from "components/layout/header/useSetSubheader";
-import EditableQuest from "components/quests/editor/EditableQuest";
+import EditableQuest from "components/targets/quests/editor/EditableQuest";
 import AddNewQuestModal from "components/targets/AddNewQuestModal";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";

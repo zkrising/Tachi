@@ -99,7 +99,7 @@ router.get("/on-chart/:chartID", async (req, res) => {
 		user.id,
 		new Set([chartID]),
 		logger,
-		true
+		false
 	);
 
 	const goalSubs = [...goalSubsMap.values()];
@@ -189,6 +189,26 @@ router.get("/on-folder/:folderID", async (req, res) => {
 			quests,
 			questSubs,
 		},
+	});
+});
+
+/**
+ * Retrieve all of this user's target subscriptions.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/targets/all-subs
+ */
+router.get("/all-subs", async (req, res) => {
+	const { user, game, playtype } = GetUGPT(req);
+
+	const [goalSubs, questSubs] = await Promise.all([
+		db["goal-subs"].find({ userID: user.id, game, playtype }),
+		db["quest-subs"].find({ userID: user.id, game, playtype }),
+	]);
+
+	return res.status(200).json({
+		success: true,
+		description: `Returned all target subscriptions.`,
+		body: { goalSubs, questSubs },
 	});
 });
 

@@ -82,13 +82,7 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 	);
 }
 
-export function UserBottomNav({
-	baseUrl,
-	reqUser,
-}: {
-	baseUrl: string;
-	reqUser: UserDocument;
-}) {
+export function UserBottomNav({ baseUrl, reqUser }: { baseUrl: string; reqUser: UserDocument }) {
 	const { user } = useContext(UserContext);
 
 	const isRequestedUser = !!(user && user.id === reqUser.id);
@@ -222,7 +216,7 @@ function ChangeStatusModal({
 							<input
 								className="form-control form-control-lg"
 								type="text"
-								placeholder={status ?? "This score was great!"}
+								placeholder={status ?? "I'm gaming..."}
 								value={innerStatus}
 								onChange={(e) => setInnerStatus(e.target.value)}
 							/>

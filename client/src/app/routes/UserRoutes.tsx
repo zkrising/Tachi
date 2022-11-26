@@ -30,6 +30,7 @@ import { Redirect, Route, Switch, useHistory, useParams } from "react-router-dom
 import { FormatGame, Game, GetGameConfig, UserDocument, UserGameStats } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import UserImportsPage from "app/pages/dashboard/users/UserImportsPage";
+import { TargetsContextProvider } from "context/TargetsContext";
 import ScoresPage from "../pages/dashboard/users/games/_game/_playtype/ScoresPage";
 import UserPage from "../pages/dashboard/users/UserPage";
 
@@ -173,7 +174,9 @@ function UserGameRoutes({ reqUser }: { reqUser: UserDocument }) {
 
 			<Route path="/dashboard/users/:userID/games/:game/:playtype">
 				<UGPTContextProvider>
-					<UserGamePlaytypeRoutes reqUser={reqUser} game={game} />
+					<TargetsContextProvider>
+						<UserGamePlaytypeRoutes reqUser={reqUser} game={game} />
+					</TargetsContextProvider>
 				</UGPTContextProvider>
 			</Route>
 		</Switch>

@@ -1,5 +1,5 @@
 import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
-import { CreateUserMap } from "util/data";
+import { CreateChartLink, CreateUserMap } from "util/data";
 import { SelectRightChart } from "util/misc";
 import { MillisToSince } from "util/time";
 import useSetSubheader from "components/layout/header/useSetSubheader";
@@ -13,12 +13,11 @@ import ApiError from "components/util/ApiError";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
-import SelectButton from "components/util/SelectButton";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useQuery } from "react-query";
-import { Link, useParams } from "react-router-dom";
+import { Link, Route, Switch, useParams } from "react-router-dom";
 import {
 	ChartDocument,
 	FormatDifficulty,
@@ -32,11 +31,17 @@ import {
 import {
 	ChartPBLeaderboardReturn,
 	ChartRivalsReturn,
+	GoalsOnChartReturn,
 	UGPTChartLeaderboardAdjacent,
 } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
 import { PBDataset } from "types/tables";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
+import TargetInfo from "components/tables/dropdowns/components/TargetInfo";
+import useApiQuery from "components/util/query/useApiQuery";
+import Divider from "components/util/Divider";
+import { TargetsContext } from "context/TargetsContext";
+import SelectLinkButton from "components/util/SelectLinkButton";
 
 // This component forms a wrapper around the Real GPT Chart Page
 // which handles the case where activeChart == null.
@@ -92,8 +97,6 @@ function InternalGPTChartPage({
 	chart: ChartDocument;
 } & GamePT) {
 	const { user } = useContext(UserContext);
-
-	const [mode, setMode] = useState<"leaderboard" | "adjacent" | "rivals">("leaderboard");
 
 	const { data, error } = useQuery<ChartPBData, UnsuccessfulAPIFetchResponse>(
 		["PBInfo", `${chart.chartID}`],
@@ -174,41 +177,141 @@ function InternalGPTChartPage({
 		userMap.set(user.id, user);
 	}
 
+	const base = CreateChartLink(chart, game);
+
 	return (
 		<Row>
-			<Col xs={12} className="text-center mb-2">
-				<h4 className="display-4">Leaderboard</h4>
-			</Col>
-			<Col xs={12} className="d-flex justify-content-center mb-8">
-				<div className="btn-group">
-					<SelectButton value={mode} setValue={setMode} id="leaderboard">
+			<Col xs={12} className="d-flex mb-8">
+				<div className="btn-group w-100">
+					<SelectLinkButton to={base}>
 						<Icon type="trophy" />
 						Best 100
-					</SelectButton>
-					<SelectButton
-						value={mode}
-						setValue={setMode}
-						id="adjacent"
-						disabled={!data.adjacent}
-					>
+					</SelectLinkButton>
+					<SelectLinkButton to={`${base}/me`} disabled={!data.adjacent}>
 						<Icon type="user" />
 						Your Position
-					</SelectButton>
+					</SelectLinkButton>
 					{user && (
-						<SelectButton value={mode} setValue={setMode} id="rivals">
-							<Icon type="user" />
-							VS. Rivals
-						</SelectButton>
+						<>
+							<SelectLinkButton to={`${base}/rivals`} disabled={!data.adjacent}>
+								<Icon type="users" />
+								Vs. Rivals
+							</SelectLinkButton>
+							<SelectLinkButton to={`${base}/targets`}>
+								<Icon type="scroll" />
+								Goals & Quests
+							</SelectLinkButton>
+						</>
 					)}
 				</div>
 			</Col>
 			<TopShowcase data={data} user={user} userMap={userMap} />
 			<Col xs={12} className="mt-4">
-				<ChartLeaderboardTable
-					{...{ data, game, playtype, user, userMap, chart, song, mode }}
-				/>
+				<Switch>
+					<Route
+						exact
+						path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty/targets"
+					>
+						<ChartTargetInfo {...{ chart, game, playtype, song, user: user! }} />
+					</Route>
+
+					<Route exact path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty">
+						<ChartLeaderboardTable
+							{...{
+								data,
+								game,
+								playtype,
+								user,
+								userMap,
+								chart,
+								song,
+								mode: "leaderboard",
+							}}
+						/>
+					</Route>
+
+					<Route
+						exact
+						path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty/me"
+					>
+						<ChartLeaderboardTable
+							{...{
+								data,
+								game,
+								playtype,
+								user,
+								userMap,
+								chart,
+								song,
+								mode: "adjacent",
+							}}
+						/>
+					</Route>
+
+					<Route
+						exact
+						path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty/rivals"
+					>
+						<ChartLeaderboardTable
+							{...{
+								data,
+								game,
+								playtype,
+								user,
+								userMap,
+								chart,
+								song,
+								mode: "rivals",
+							}}
+						/>
+					</Route>
+				</Switch>
 			</Col>
 		</Row>
+	);
+}
+
+function ChartTargetInfo({
+	user,
+	game,
+	playtype,
+	chart,
+	song,
+}: {
+	user: UserDocument;
+	chart: ChartDocument;
+	song: SongDocument;
+} & GamePT) {
+	const { reloadTargets } = useContext(TargetsContext);
+	const [shouldReload, setShouldReload] = useState(0);
+
+	const { error, data } = useApiQuery<GoalsOnChartReturn>(
+		`/users/${user.id ?? ""}/games/${game}/${playtype}/targets/on-chart/${chart.chartID}`,
+		undefined,
+		// force a reload of this data when the user adds a new goal
+		[shouldReload.toString()]
+	);
+
+	return (
+		<Col xs={12} className="text-center">
+			<Divider />
+			<TargetInfo
+				{...{
+					chart,
+					data,
+					error,
+					game,
+					playtype,
+					reqUser: user,
+					song,
+					onGoalSet: () => {
+						// reload local query, then reload global targets.
+						setShouldReload(shouldReload + 1);
+						reloadTargets();
+					},
+				}}
+			/>
+		</Col>
 	);
 }
 
@@ -325,21 +428,13 @@ function TopShowcase({
 				<PlayCard name="Best Play" pb={bestPlay} user={bestUser} />
 			</Col>
 			<Col xs={12} lg={6}>
-				<PlayCard name="Your Score" pb={thisUsersPlay} user={user!} />
+				<PlayCard name="Your PB" pb={thisUsersPlay} user={user!} />
 			</Col>
 		</>
 	);
 }
 
-function PlayCard({
-	pb,
-	user,
-	name,
-}: {
-	pb: PBScoreDocument;
-	user: UserDocument;
-	name: string;
-}) {
+function PlayCard({ pb, user, name }: { pb: PBScoreDocument; user: UserDocument; name: string }) {
 	return (
 		<Card header={name}>
 			<Row className="align-items-center">

@@ -8,7 +8,9 @@ export default function ApiError({ error }: { error: UnsuccessfulAPIFetchRespons
 	return (
 		<div>
 			An error has occurred
-			{settings?.preferences.developerMode ? ` (${error.description})` : ""}
+			{settings?.preferences.developerMode
+				? ` (${error.description ?? "Failed to reach server."})`
+				: ""}
 		</div>
 	);
 }

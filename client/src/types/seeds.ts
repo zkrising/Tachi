@@ -6,7 +6,6 @@ import {
 	Game,
 	GameToIDStrings,
 	GoalDocument,
-	GoalDocumentAny,
 	GoalDocumentFolder,
 	GoalDocumentMulti,
 	GoalDocumentSingle,
@@ -61,8 +60,7 @@ export type GoalWithRelated =
 			__related: {
 				folder: FolderDocument;
 			};
-	  })
-	| GoalDocumentAny;
+	  });
 
 export type QuestlineWithRelated = QuestlineDocument & {
 	__related: {

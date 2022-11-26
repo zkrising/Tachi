@@ -1,6 +1,6 @@
 import { GetGameConfig, GetGamePTConfig } from "../config/config";
 import type { ChartDocument, Game, IDStrings, Playtypes, SongDocument } from "..";
-import type { Grades, integer } from "../types";
+import type { Grades, integer, PBScoreDocument } from "../types";
 import type { PrudenceError } from "prudence";
 
 export function FormatInt(v: number): string {
@@ -167,10 +167,6 @@ export function AbsoluteGradeDelta<I extends IDStrings = IDStrings>(
 ): number {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	if (!gptConfig.gradeBoundaries) {
-		return 0;
-	}
-
 	const maxScore = Math.round(score * (100 / percent));
 
 	const gradeIndex =
@@ -225,18 +221,26 @@ function WrapGrade(grade: string) {
 	return grade;
 }
 
+type FormatGradeDeltaReturns =
+	| {
+			lower: string;
+			upper: string;
+			closer: "upper";
+	  }
+	| {
+			lower: string;
+			upper?: string;
+			closer: "lower";
+	  };
+
 export function GenericFormatGradeDelta<I extends IDStrings = IDStrings>(
 	game: Game,
 	playtype: Playtypes[Game],
 	score: number,
 	percent: number,
 	grade: Grades[I],
-	formatNumFn: (n: number) => number = (s) => s
-): {
-	lower: string;
-	upper?: string;
-	closer: "lower" | "upper";
-} {
+	formatNumFn: (n: number) => string = (s) => s.toString()
+): FormatGradeDeltaReturns {
 	const upper = RelativeGradeDelta(game, playtype, score, percent, grade, 1);
 	const lower = AbsoluteGradeDelta(game, playtype, score, percent, grade);
 
@@ -251,11 +255,47 @@ export function GenericFormatGradeDelta<I extends IDStrings = IDStrings>(
 
 	const formatUpper = `${WrapGrade(upper.grade)}${formatNumFn(upper.delta)}`;
 
+	// are we closer to the lower bound, or the upper one?
+	let closer: "lower" | "upper" = upper.delta + lower < 0 ? "lower" : "upper";
+
+	// lovely hardcoded exception for IIDX - (MAX-)+ is always a stupid metric
+	// so always mute it.
+	if (game === "iidx" && formatLower.startsWith("(MAX-)+")) {
+		closer = "upper";
+	}
+
 	return {
 		lower: formatLower,
 		upper: formatUpper,
-		closer: upper.delta + lower < 0 ? "lower" : "upper",
+		closer,
 	};
+}
+
+export function GetCloserGradeDelta<I extends IDStrings = IDStrings>(
+	game: Game,
+	playtype: Playtypes[Game],
+	score: number,
+	percent: number,
+	grade: Grades[I],
+	formatNumFn: (n: number) => string = (s) => s.toString()
+): string {
+	const { lower, upper, closer } = GenericFormatGradeDelta(
+		game,
+		playtype,
+		score,
+		percent,
+		grade,
+		formatNumFn
+	);
+
+	if (closer === "upper") {
+		// this type assertion is unecessary in theory, but in practice older versions
+		// of TS aren't happy with it.
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+		return upper as string;
+	}
+
+	return lower;
 }
 
 export function FormatSieglindeBMS(sgl: number): string {
@@ -296,4 +336,67 @@ export function FormatPrError(err: PrudenceError, foreword = "Error"): string {
 			: ` | Received ${err.userVal} [${err.userVal === null ? "null" : typeof err.userVal}]`;
 
 	return `${foreword}: ${err.keychain} | ${err.message}${receivedText}.`;
+}
+
+// games that have funny relative grades, basically.
+type IIDXBMSGPTs = "bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP" | "pms:Controller" | "pms:Keyboard";
+export function IIDXBMSGradeGoalFormatter(pb: PBScoreDocument<IIDXBMSGPTs>) {
+	const { closer, lower, upper } = GenericFormatGradeDelta(
+		pb.game,
+		pb.playtype,
+		pb.scoreData.score,
+		pb.scoreData.percent,
+		pb.scoreData.grade
+	);
+
+	// if upper doesn't exist, we have to return lower (this is a MAX)
+	// or something.
+	if (!upper) {
+		return lower;
+	}
+
+	// if the upper bound is relevant to the grade we're looking for
+	// i.e. the goal is to AAA a chart and the user has AA+20/AAA-100
+	// prefer AAA-100 instead of AA+20.
+	if (upper.startsWith(`${pb.scoreData.grade}-`)) {
+		return upper;
+	}
+
+	// otherwise, return whichever is closer.
+	return closer === "lower" ? lower : upper;
+}
+
+export function GradeGoalFormatter(pb: PBScoreDocument) {
+	const { closer, lower, upper } = GenericFormatGradeDelta(
+		pb.game,
+		pb.playtype,
+		pb.scoreData.score,
+		pb.scoreData.percent,
+		pb.scoreData.grade
+	);
+
+	// if upper doesn't exist, we have to return lower (this is a MAX)
+	// or something.
+	if (!upper) {
+		return lower;
+	}
+
+	// if the upper bound is relevant to the grade we're looking for
+	// i.e. the goal is to AAA a chart and the user has AA+20/AAA-100
+	// prefer AAA-100 instead of AA+20.
+	if (upper.startsWith(`${pb.scoreData.grade}-`)) {
+		return upper;
+	}
+
+	// otherwise, return whichever is closer.
+	return closer === "lower" ? lower : upper;
+}
+
+// For games with 'BP', show that next to the clear.
+export function IIDXBMSLampGoalFormatter(pb: PBScoreDocument<IIDXBMSGPTs>) {
+	if (typeof pb.scoreData.hitMeta.bp === "number") {
+		return `${pb.scoreData.lamp} (BP: ${pb.scoreData.hitMeta.bp})`;
+	}
+
+	return pb.scoreData.lamp;
 }

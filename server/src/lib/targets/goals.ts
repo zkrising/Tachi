@@ -3,9 +3,9 @@ import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
-import { GetGamePTConfig } from "tachi-common";
+import { FormatGame, GenericFormatGradeDelta, GetGamePTConfig } from "tachi-common";
 import { GetFolderChartIDs } from "utils/folder";
-import { NotNullish } from "utils/misc";
+import { IsNullish } from "utils/misc";
 import type { KtLogger } from "lib/logger/logger";
 import type { FilterQuery } from "mongodb";
 import type {
@@ -58,13 +58,6 @@ export async function EvaluateGoalForUser(
 	// goal involves.
 	const chartIDs = await ResolveGoalCharts(goal);
 
-	if (chartIDs === undefined) {
-		logger.error(
-			`Invalid goal ${goal.goalID} - has nonsense chartsType of ${goal.charts.type}, ignoring.`
-		);
-		return null;
-	}
-
 	// lets configure a "base" query for our requests.
 	const scoreQuery: FilterQuery<PBScoreDocument> = {
 		userID,
@@ -74,11 +67,8 @@ export async function EvaluateGoalForUser(
 		// normally, this would be a VERY WORRYING line of code, but goal.criteria.key is guaranteed to be
 		// within a specific set of fields.
 		[goal.criteria.key]: { $gte: goal.criteria.value },
+		chartID: { $in: chartIDs },
 	};
-
-	if (chartIDs) {
-		scoreQuery.chartID = { $in: chartIDs };
-	}
 
 	switch (goal.criteria.mode) {
 		case "single": {
@@ -91,13 +81,11 @@ export async function EvaluateGoalForUser(
 				| "percent"
 				| "score";
 
-			const outOfHuman = HumaniseGoalProgress(
+			const outOfHuman = HumaniseGoalOutOf(
 				goal.game,
 				goal.playtype,
 				goal.criteria.key,
-				goal.criteria.value,
-				null,
-				true
+				goal.criteria.value
 			);
 
 			if (res) {
@@ -110,28 +98,26 @@ export async function EvaluateGoalForUser(
 						goal.game,
 						goal.playtype,
 						goal.criteria.key,
-						res.scoreData[scoreDataKey],
+						goal.criteria.value,
 						res
 					),
 				};
 			}
 
-			// if we weren't successful, we have to get the users next best score and put it up here
-			// this is made infinitely easier by the existence of personal-bests.
+			// if we didn't find a PB that achieved the goal immediately
+			// fetch the next best thing.
 			const nextBestQuery: FilterQuery<PBScoreDocument> = {
 				userID,
 				game: goal.game,
 				playtype: goal.playtype,
+				chartID: { $in: chartIDs },
 			};
-
-			if (chartIDs) {
-				nextBestQuery.chartID = { $in: chartIDs };
-			}
 
 			const nextBestScore = await db["personal-bests"].findOne(nextBestQuery, {
 				sort: { [goal.criteria.key]: -1 },
 			});
 
+			// user has no scores on any charts in this set.
 			if (!nextBestScore) {
 				return {
 					achieved: false,
@@ -151,7 +137,7 @@ export async function EvaluateGoalForUser(
 					goal.game,
 					goal.playtype,
 					goal.criteria.key,
-					nextBestScore.scoreData[scoreDataKey],
+					goal.criteria.value,
 					nextBestScore
 				),
 			};
@@ -168,17 +154,7 @@ export async function EvaluateGoalForUser(
 				// proportion -> Proportional mode, the value
 				// is a multiplier for the amount of charts
 				// available -- i.e. 0.1 * charts.
-
-				let totalChartCount;
-
-				if (chartIDs === null) {
-					// edge case: proportion goals on "any"
-					// charts (i.e. clear 20% of charts) need to
-					// know how many charts the game has!
-					totalChartCount = await db.charts[goal.game].count({ playtype: goal.playtype });
-				} else {
-					totalChartCount = chartIDs.length;
-				}
+				const totalChartCount = chartIDs.length;
 
 				count = Math.floor(goal.criteria.countNum * totalChartCount);
 			}
@@ -200,7 +176,8 @@ export async function EvaluateGoalForUser(
 			logger.warn(
 				`Invalid goal: ${goal.goalID}, unknown criteria.mode ${
 					(goal.criteria as GoalDocument["criteria"]).mode
-				}, ignoring.`
+				}, ignoring.`,
+				{ goal }
 			);
 
 			return null;
@@ -211,11 +188,9 @@ export async function EvaluateGoalForUser(
 /**
  * Resolves the set of charts involved with this goal.
  *
- * @returns An array of chartIDs, except if the goal chart type is "any", in which case, it returns null.
+ * @returns An array of chartIDs.
  */
-function ResolveGoalCharts(
-	goal: GoalDocument
-): Array<string> | Promise<Array<string>> | null | undefined {
+function ResolveGoalCharts(goal: GoalDocument): Array<string> | Promise<Array<string>> {
 	switch (goal.charts.type) {
 		case "single":
 			return [goal.charts.data];
@@ -223,8 +198,6 @@ function ResolveGoalCharts(
 			return goal.charts.data;
 		case "folder":
 			return GetFolderChartIDs(goal.charts.data);
-		case "any":
-			return null;
 		default:
 			// @ts-expect-error This can't happen normally, but if it does, I want to
 			// handle it properly.
@@ -234,65 +207,165 @@ function ResolveGoalCharts(
 
 type GoalKeys = GoalDocument["criteria"]["key"];
 
-type PBWithBadPoor = PBScoreDocument<
-	"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP" | "pms:Controller" | "pms:Keyboard"
->;
-
+/**
+ * Turn a users progress (i.e. their PB on a chart where the goal is "AAA $chart")
+ * into a human-understandable string.
+ *
+ * This applies GPT-specific formatting in some cases, like appending 'bp' to
+ * IIDX lamp goals.
+ */
 export function HumaniseGoalProgress(
 	game: Game,
 	playtype: Playtype,
 	key: GoalKeys,
-	value: number,
-	userPB: PBScoreDocument | null,
-	isOutOf = false
+	goalValue: integer,
+	userPB: PBScoreDocument
 ): string {
+	switch (key) {
+		case "scoreData.gradeIndex": {
+			// for iidx, pms and bms we expect grade deltas (rarely) formatted like
+			// AAA-1520
+			// however, for other games (namely those that run with larger numbers)
+			// we want to format this stuff like AA-172k.
+			const fmtFn =
+				game === "iidx" || game === "pms" || game === "bms"
+					? undefined
+					: (num: number) => Intl.NumberFormat("en", { notation: "compact" }).format(num);
+
+			const goalGrade = GetGamePTConfig(game, playtype).grades[goalValue];
+
+			if (!goalGrade) {
+				throw new Error(
+					`Invalid Goal -- Tried to get a grade with index '${goalValue}', but no such grade exists for ${FormatGame(
+						game,
+						playtype
+					)}`
+				);
+			}
+
+			const { lower, upper, closer } = GenericFormatGradeDelta(
+				game,
+				playtype,
+				userPB.scoreData.score,
+				userPB.scoreData.percent,
+				userPB.scoreData.grade,
+				fmtFn
+			);
+
+			// If this goal is, say, AAA $chart, and the user's deltas are AA+40, AAA-100
+			// instead of picking the one with less delta from the grade (AA+40)
+			// pick the one closest to the target grade.
+			// Because sometimes this function wraps the grade operand in brackets
+			// (see (MAX-)-50), we need a regexp for this.
+			// eslint-disable-next-line @typescript-eslint/prefer-optional-chain
+			if (upper && new RegExp(`\\(?${goalGrade}`, "u").exec(upper)) {
+				return upper;
+			}
+
+			// for some reason, our TS compiler disagrees that this is non-nullable.
+			// but my IDE thinks it is. Who knows.
+			// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+			return closer === "lower" ? lower : upper!;
+		}
+
+		case "scoreData.lampIndex": {
+			switch (game) {
+				case "iidx":
+				case "bms":
+				case "pms": {
+					// @ts-expect-error This is guaranteed to exist, we're going to ignore it.
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+					const maybeBP: number | null | undefined = userPB.scoreData.hitMeta.bp;
+
+					// render BP if it exists
+					if (!IsNullish(maybeBP)) {
+						return `${userPB.scoreData.lamp} (BP: ${maybeBP})`;
+					}
+
+					break;
+				}
+
+				case "itg": {
+					// @ts-expect-error This is guaranteed to exist, we're going to ignore it.
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+					const maybeDiedAt: number | null | undefined = userPB.scoreData.hitMeta.diedAt;
+
+					// render diedAt if it exists as "FAILED (Died 25% in)"
+					if (!IsNullish(maybeDiedAt)) {
+						return `${userPB.scoreData.lamp} (Died ${maybeDiedAt.toFixed(0)}% in)`;
+					}
+
+					break;
+				}
+
+				// no special logic needed for these games, just render the lamp.
+				case "chunithm":
+				case "ddr":
+				case "gitadora":
+				case "jubeat":
+				case "maimai":
+				case "museca":
+				case "popn":
+				case "sdvx":
+				case "usc":
+				case "wacca":
+			}
+
+			// otherwise, just roll on.
+			return userPB.scoreData.lamp;
+		}
+
+		case "scoreData.percent":
+			return `${userPB.scoreData.percent.toFixed(2)}%`;
+		case "scoreData.score":
+			return userPB.scoreData.score.toLocaleString();
+		default:
+			throw new Error(`Broken goal - invalid key ${key}.`);
+	}
+}
+
+/**
+ * Turn a goal's "outOf" (i.e. HARD CLEAR; AAA or score=2450) into a human-understandable
+ * string.
+ */
+export function HumaniseGoalOutOf(game: Game, playtype: Playtype, key: GoalKeys, value: number) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	switch (key) {
 		case "scoreData.gradeIndex": {
-			if (!gptConfig.grades[value]) {
+			const grade = gptConfig.grades[value];
+
+			if (!grade) {
 				throw new Error(
-					`Corrupt goal -- requested a grade of ${value}, which doesn't exist for this game.`
+					`Invalid goal: Requested a grade with index '${value}' for ${FormatGame(
+						game,
+						playtype
+					)}, yet none existed?`
 				);
 			}
 
-			if (isOutOf) {
-				return `${gptConfig.grades[value]} (${gptConfig.gradeBoundaries[value]?.toFixed(
-					2
-				)}%)`;
-			}
-
-			return `${gptConfig.grades[value]} (${userPB?.scoreData.percent.toFixed(2) ?? "0"}%)`;
+			return grade;
 		}
 
 		case "scoreData.lampIndex": {
-			if (!gptConfig.lamps[value]) {
+			const lamp = gptConfig.lamps[value];
+
+			if (!lamp) {
 				throw new Error(
-					`Corrupt goal -- requested a lamp of ${value}, which doesn't exist for this game.`
+					`Invalid goal: Requested a lamp with index '${value}' for ${FormatGame(
+						game,
+						playtype
+					)}, yet none existed?`
 				);
 			}
 
-			// these games care about the BP as progress towards the goal
-			if (userPB && (game === "iidx" || game === "bms" || game === "pms")) {
-				return `${gptConfig.lamps[value]} (BP: ${
-					(userPB as PBWithBadPoor).scoreData.hitMeta.bp ?? "N/A"
-				})`;
-			}
-
-			// this game cares about where you died relative to the measures in the chart
-			if (game === "itg") {
-				return `${gptConfig.lamps[value]} (BP: ${
-					(userPB as PBScoreDocument<"itg:Stamina">).scoreData.hitMeta.diedAt ?? "N/A"
-				})`;
-			}
-
-			return NotNullish(gptConfig.lamps[value]);
+			return lamp;
 		}
 
 		case "scoreData.percent":
 			return `${value.toFixed(2)}%`;
 		case "scoreData.score":
-			return value.toString();
+			return value.toLocaleString();
 		default:
 			throw new Error(`Broken goal - invalid key ${key}.`);
 	}
@@ -332,16 +405,17 @@ export async function ConstructGoal(
  * Subscribes a user to the provided goal document. Handles deduping goals naturally
  * and general good stuff.
  *
- * @param cancelIfAchieved - Don't subscribe to the goal if subscribing would cause
- * the user to immediately achieve the goal. This is disabled for quest subscriptions,
- * but enabled for manual assignment.
+ * @param isStandaloneAssigment - is this a "standalone assignment?", as in, not a
+ * consequence of a quest assignment. Standalone assignments are not allowed to be
+ * instantly-achieved. if they are, it will fail with
+ * SubscribeFailReasons.ALREADY_ACHIEVED.
  *
  * Returns null if the user is already subscribed to this goal.
  */
 export async function SubscribeToGoal(
 	userID: integer,
 	goalDocument: GoalDocument,
-	cancelIfAchieved = true
+	isStandaloneAssignment: boolean
 ) {
 	const goalExists = await db.goals.findOne({ goalID: goalDocument.goalID });
 
@@ -356,7 +430,34 @@ export async function SubscribeToGoal(
 	});
 
 	if (userAlreadySubscribed) {
-		return SubscribeFailReasons.ALREADY_SUBSCRIBED;
+		// A quest trying to assign an already subscribed goal should know that.
+		// (not that it cares)
+		if (!isStandaloneAssignment) {
+			return SubscribeFailReasons.ALREADY_SUBSCRIBED;
+		}
+
+		// if the user was already standalone-subscribed, ignore another standalone
+		// assignment.
+		if (userAlreadySubscribed.wasAssignedStandalone) {
+			return SubscribeFailReasons.ALREADY_SUBSCRIBED;
+		}
+
+		// otherwise, this is a standalone assignment to a goal that was already assigned
+		// as a consequence of a quest. Mark it as standalone
+		await db["goal-subs"].update(
+			{
+				userID,
+				goalID: goalDocument.goalID,
+			},
+			{
+				$set: {
+					wasAssignedStandalone: true,
+				},
+			}
+		);
+
+		// return this goal sub document, it's fast!
+		return { ...userAlreadySubscribed, wasAssignedStandalone: true };
 	}
 
 	const result = await EvaluateGoalForUser(goalDocument, userID, logger);
@@ -365,7 +466,9 @@ export async function SubscribeToGoal(
 		throw new Error(`Couldn't evaluate goal? See previous logs.`);
 	}
 
-	if (result.achieved && cancelIfAchieved) {
+	// standalone assignments shouldn't be allowed to assign instantly-achieved
+	// goals
+	if (result.achieved && isStandaloneAssignment) {
 		return SubscribeFailReasons.ALREADY_ACHIEVED;
 	}
 
@@ -379,12 +482,12 @@ export async function SubscribeToGoal(
 		userID,
 		lastInteraction: null,
 		timeAchieved: result.achieved ? Date.now() : null,
-		timeSet: Date.now(),
 		game: goalDocument.game,
 		playtype: goalDocument.playtype,
 		goalID: goalDocument.goalID,
 		achieved: result.achieved,
 		wasInstantlyAchieved: result.achieved,
+		wasAssignedStandalone: isStandaloneAssignment,
 	};
 
 	await db["goal-subs"].insert(goalSub);
@@ -405,10 +508,10 @@ export function GetQuestsThatContainGoal(goalID: string) {
  *
  * If this query matches none, an empty array is returned.
  */
-export async function GetParentQuestSubs(
+export async function GetQuestSubsWhichDependOnThisGoalSub(
 	goalSub: GoalSubscriptionDocument
 ): Promise<Array<QuestSubscriptionDocument & { quest: QuestDocument }>> {
-	const parents: Array<QuestSubscriptionDocument & { quest: QuestDocument }> = await db[
+	const dependencies: Array<QuestSubscriptionDocument & { quest: QuestDocument }> = await db[
 		"quest-subs"
 	].aggregate([
 		{
@@ -444,7 +547,121 @@ export async function GetParentQuestSubs(
 		},
 	]);
 
-	return parents;
+	return dependencies;
+}
+
+/**
+ * Given a goalSub, unsubscribe from it.
+ *
+ * On success, this will return null. On failure, this will return a failure reason.
+ * For example, if this goalSub has parent quests involved that prevent its removal, it
+ * will return those as an array.
+ *
+ * @param preventStandaloneRemoval - Some goalsubs might be marked as "standalone". These
+ * goals have been explicitly and deliberately assigned by the user, and should therefore
+ * only be explicitly un-assigned.
+ */
+export async function UnsubscribeFromGoal(
+	goalSub: GoalSubscriptionDocument,
+	preventStandaloneRemoval: boolean
+) {
+	const dependencies = await GetGoalDependencies(goalSub);
+
+	switch (dependencies.reason) {
+		case "HAS_QUEST_DEPENDENCIES":
+			// never remove a goalSub if it has quests depending on it
+			return dependencies;
+
+		case "WAS_STANDALONE": {
+			// only prevent standalone removal if we're told to
+			if (preventStandaloneRemoval) {
+				return dependencies;
+			}
+
+			break;
+		}
+
+		// no handling necessary, orphaned goals should never happen.
+		case "WAS_ORPHAN":
+	}
+
+	// if we have no reason to prevent the removal, remove it.
+	await db["goal-subs"].remove({
+		userID: goalSub.userID,
+		goalID: goalSub.goalID,
+	});
+
+	return null;
+}
+
+/**
+ * Get the reason why a goal was assigned to a user.
+ * This is either "WAS_STANDALONE" -- the user assigned this goal directly and deliberately
+ * or "HAS_QUEST_DEPENDENCIES" -- the user was assigned this goal as the consequence
+ * of a quest subscription.
+ *
+ * Failing that, the goal will return "WAS_ORPHAN", there's no reason this goal
+ * should be subscribed to the user -- it's safe to remove for any reason.
+ */
+export async function GetGoalDependencies(goalSub: GoalSubscriptionDocument) {
+	const parentQuests = await GetQuestSubsWhichDependOnThisGoalSub(goalSub);
+
+	if (parentQuests.length) {
+		return {
+			reason: "HAS_QUEST_DEPENDENCIES",
+			parentQuests,
+		} as const;
+	}
+
+	if (goalSub.wasAssignedStandalone) {
+		return {
+			reason: "WAS_STANDALONE",
+		} as const;
+	}
+
+	return { reason: "WAS_ORPHAN" } as const;
+}
+
+/**
+ * For a given UGPT, unsubscribe from all their goals that no longer have any parent,
+ * for example, a quest was removed, now they are left with some stranded goals that we
+ * don't want to keep around.
+ */
+export async function UnsubscribeFromOrphanedGoalSubs(
+	userID: integer,
+	game: Game,
+	playtype: Playtype
+) {
+	const goalSubs = await db["goal-subs"].find({ game, playtype, userID });
+
+	const maybeToRemove = await Promise.all(
+		goalSubs.map(async (goalSub) => {
+			const deps = await GetGoalDependencies(goalSub);
+
+			if (deps.reason === "WAS_ORPHAN") {
+				return goalSub.goalID;
+			}
+
+			return null;
+		})
+	);
+
+	// impressive that ts can't resolve this without a cast
+	const toRemove = maybeToRemove.filter((e) => e !== null) as Array<string>;
+
+	if (toRemove.length > 0) {
+		logger.info(
+			`Removing ${toRemove.length} goals from user ${userID} on ${FormatGame(
+				game,
+				playtype
+			)} as they were orphanned.`
+		);
+
+		await db["goal-subs"].remove({
+			userID,
+			goalID: { $in: toRemove },
+		});
+	}
 }
 
 /**
@@ -456,8 +673,6 @@ export async function GetParentQuestSubs(
  *
  * @param onlyUnachieved - optionally, pass "onlyUnachieved=true" to limit this to
  * only goals that the user has not achieved.
- * @param excludeAny - optionally, pass "excludeAny=true" to ignore goals that match
- * "any" chart.
  * @returns An array of Goals, and an array of goalSubs.
  */
 export async function GetRelevantGoals(
@@ -465,8 +680,7 @@ export async function GetRelevantGoals(
 	userID: integer,
 	chartIDs: Set<string>,
 	logger: KtLogger,
-	onlyUnachieved = false,
-	excludeAny = false
+	onlyUnachieved = false
 ): Promise<{ goals: Array<GoalDocument>; goalSubsMap: Map<string, GoalSubscriptionDocument> }> {
 	const gsQuery: FilterQuery<GoalSubscriptionDocument> = {
 		game,
@@ -502,15 +716,6 @@ export async function GetRelevantGoals(
 		}),
 		GetRelevantFolderGoals(goalIDs, chartIDsArr),
 	];
-
-	if (!excludeAny) {
-		promises.push(
-			db.goals.find({
-				"charts.type": "any",
-				goalID: { $in: goalIDs },
-			})
-		);
-	}
 
 	const goals = await Promise.all(promises).then((r) => r.flat(1));
 

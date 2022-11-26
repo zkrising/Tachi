@@ -8,8 +8,8 @@ import { Col, Row } from "react-bootstrap";
 import { Route, Switch } from "react-router-dom";
 import { FormatGame, GetGameConfig } from "tachi-common";
 import { UGPT } from "types/react";
-import GoalsPage from "./GoalsPage";
-import TargetsSummaryPage from "./TargetsSummaryPage";
+import UGPTGoalsPage from "./UGPTGoalsPage";
+import UGPTQuestsPage from "./UGPTQuestsPage";
 
 export default function TargetsPage({ reqUser, game, playtype }: UGPT) {
 	const gameConfig = GetGameConfig(game);
@@ -26,37 +26,27 @@ export default function TargetsPage({ reqUser, game, playtype }: UGPT) {
 		<Row>
 			<Col xs={12} className="text-center">
 				<div className="btn-group d-flex justify-content-center">
+					<SelectLinkButton to={`${base}/targets`}>
+						<Icon type="scroll" />
+						Quests
+					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/targets/goals`}>
 						<Icon type="bullseye" />
 						Goals
-					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/targets`}>
-						<Icon type="chart-line" />
-						Overview
-					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/targets/quests`}>
-						<Icon type="scroll" />
-						Quests
 					</SelectLinkButton>
 				</div>
 				<Divider />
 			</Col>
 			<Col xs={12}>
 				<Switch>
-					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/targets">
-						<TargetsSummaryPage {...{ reqUser, game, playtype }} />
-					</Route>
 					<Route
 						exact
 						path="/dashboard/users/:userID/games/:game/:playtype/targets/goals"
 					>
-						<GoalsPage />
+						<UGPTGoalsPage {...{ reqUser, game, playtype }} />
 					</Route>
-					<Route
-						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/targets/quests"
-					>
-						nal
+					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/targets">
+						<UGPTQuestsPage {...{ reqUser, game, playtype }} />
 					</Route>
 				</Switch>
 			</Col>

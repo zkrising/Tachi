@@ -58,7 +58,7 @@ export default function SetNewGoalModal({
 
 	const identifier =
 		"folderID" in preData
-			? `The '${preData.title}' folder`
+			? `the '${preData.title}' folder`
 			: FormatChart(game, preData.song, preData.chart);
 
 	return (
@@ -232,11 +232,7 @@ function CriteriaModePicker({
 				currentType={criteria.mode}
 				onChange={() => onChange("single")}
 			>
-				{charts.type === "any"
-					? "On any chart"
-					: charts.type === "multi"
-					? "On any of these charts"
-					: "On any chart in this folder"}
+				{charts.type === "multi" ? "On any of these charts" : "On any chart in this folder"}
 			</CheckEdit>
 			<CheckEdit
 				type="absolute"
@@ -252,13 +248,7 @@ function CriteriaModePicker({
 					min={2}
 					value={absCountNum}
 				/>{" "}
-				{charts.type === "any"
-					? absCountNum === 1
-						? "chart"
-						: "charts"
-					: charts.type === "multi"
-					? "of these charts"
-					: "charts in this folder"}
+				{charts.type === "multi" ? "of these charts" : "charts in this folder"}
 			</CheckEdit>
 			{charts.type !== "multi" && (
 				<CheckEdit
@@ -276,7 +266,7 @@ function CriteriaModePicker({
 						max={100}
 						value={perCountNum}
 					/>
-					% {charts.type === "any" ? "of all charts" : "of charts in this folder"}
+					% of charts in this folder
 				</CheckEdit>
 			)}
 		</>

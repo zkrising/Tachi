@@ -408,20 +408,7 @@ export interface GoalDocumentFolder extends BaseGoalDocument {
 	};
 }
 
-/**
- * Goal Document - Any. A goal document whos set of charts is not bound.
- */
-export interface GoalDocumentAny extends BaseGoalDocument {
-	charts: {
-		type: "any";
-	};
-}
-
-export type GoalDocument =
-	| GoalDocumentAny
-	| GoalDocumentFolder
-	| GoalDocumentMulti
-	| GoalDocumentSingle;
+export type GoalDocument = GoalDocumentFolder | GoalDocumentMulti | GoalDocumentSingle;
 
 interface BaseInviteCodeDocument extends MongoDBDocument {
 	createdBy: integer;
@@ -597,13 +584,16 @@ export type GoalSubscriptionDocument = MongoDBDocument & {
 	userID: integer;
 	game: Game;
 	playtype: Playtype;
-	timeSet: integer;
 	lastInteraction: integer | null;
 	progress: number | null;
 	progressHuman: string;
 	outOf: number;
 	outOfHuman: string;
 	wasInstantlyAchieved: boolean;
+
+	// Was this goal assigned "standalone"? I.e. a user explicitly subscribed to this.
+	// instead of it being a result of a quest subscription.
+	wasAssignedStandalone: boolean;
 } & (
 		| {
 				achieved: false;
@@ -615,12 +605,12 @@ export type GoalSubscriptionDocument = MongoDBDocument & {
 		  }
 	);
 
-interface QuestGoalReference {
+export interface QuestGoalReference {
 	goalID: string;
 	note?: string;
 }
 
-interface QuestSection {
+export interface QuestSection {
 	title: string;
 	desc?: string;
 	goals: Array<QuestGoalReference>;
@@ -990,7 +980,6 @@ export type QuestSubscriptionDocument = MongoDBDocument & {
 	userID: integer;
 	game: Game;
 	playtype: Playtype;
-	timeSet: integer;
 	progress: integer;
 	lastInteraction: integer | null;
 	wasInstantlyAchieved: boolean;

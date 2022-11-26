@@ -38,9 +38,10 @@ import { SongsReturn } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { UGPTContextProvider } from "context/UGPTContext";
-import Icon from "components/util/Icon";
-import SelectLinkButton from "components/util/SelectLinkButton";
-import QuestsPage from "components/game/quests/QuestsPage";
+import { TargetsContextProvider } from "context/TargetsContext";
+import QuestlinePage from "components/game/targets/QuestlinePage";
+import QuestsPage from "components/game/targets/QuestsPage";
+import ChartRedirector from "app/pages/dashboard/games/_game/_playtype/ChartRedirector";
 
 export default function GameRoutes() {
 	const { game } = useParams<{ game: string }>();
@@ -71,7 +72,9 @@ export default function GameRoutes() {
 
 			<Route path="/dashboard/games/:game/:playtype">
 				<UGPTContextProvider>
-					<GamePlaytypeRoutes game={game} />
+					<TargetsContextProvider>
+						<GamePlaytypeRoutes game={game} />
+					</TargetsContextProvider>
 				</UGPTContextProvider>
 			</Route>
 
@@ -105,6 +108,14 @@ function GamePlaytypeRoutes({ game }: { game: Game }) {
 					<GPTMainPage game={game} playtype={playtype} />
 				</Route>
 
+				<Route exact path="/dashboard/games/:game/:playtype/charts">
+					<Redirect to={`/dashboard/games/${game}/${playtype}/songs`} />
+				</Route>
+
+				<Route exact path="/dashboard/games/:game/:playtype/charts/:chartID">
+					<ChartRedirector game={game} playtype={playtype} />
+				</Route>
+
 				<Route exact path="/dashboard/games/:game/:playtype/songs">
 					<GPTSongsPage game={game} playtype={playtype} />
 				</Route>
@@ -113,7 +124,7 @@ function GamePlaytypeRoutes({ game }: { game: Game }) {
 					<SongChartRoutes game={game} playtype={playtype} />
 				</Route>
 
-				<Route exact path="/dashboard/games/:game/:playtype/(quests|questlines)">
+				<Route path="/dashboard/games/:game/:playtype/(quests|questlines|goals)">
 					<GPTQuestRoutes game={game} playtype={playtype} />
 				</Route>
 
@@ -135,29 +146,24 @@ function GamePlaytypeRoutes({ game }: { game: Game }) {
 function GPTQuestRoutes({ game, playtype }: GamePT) {
 	return (
 		<>
-			<div className="w-100 d-flex btn-group mb-4">
-				<SelectLinkButton to={`/dashboard/games/${game}/${playtype}/quests`}>
-					<Icon type="scroll" />
-					Find Quests
-				</SelectLinkButton>
-				<SelectLinkButton to={`/dashboard/games/${game}/${playtype}/questlines`}>
-					<Icon type="dungeon" />
-					Find Questlines
-				</SelectLinkButton>
-			</div>
 			<Switch>
 				<Route exact path="/dashboard/games/:game/:playtype/quests">
 					<QuestsPage game={game} playtype={playtype} />
 				</Route>
 
-				<Route exact path="/dashboard/games/:game/:playtype/questlines"></Route>
+				<Route exact path="/dashboard/games/:game/:playtype/questlines">
+					<Redirect to={`/dashboard/games/${game}/${playtype}/quests`} />
+				</Route>
 
-				<Route
-					exact
-					path="/dashboard/games/:game/:playtype/quests/questlines/:questlineID"
-				></Route>
+				<Route exact path="/dashboard/games/:game/:playtype/questlines/:questlineID">
+					<QuestlinePage game={game} playtype={playtype} />
+				</Route>
 
 				<Route exact path="/dashboard/games/:game/:playtype/quests/:questID"></Route>
+
+				<Route exact path="/dashboard/games/:game/:playtype/goals">
+					<Redirect to={`/dashboard/games/${game}/${playtype}/quests`} />
+				</Route>
 			</Switch>
 		</>
 	);
@@ -222,7 +228,7 @@ function SongChartRoutes({ game, playtype }: GamePT) {
 					/>
 				</Route>
 
-				<Route exact path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty">
+				<Route path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty">
 					<GPTChartPage
 						game={game}
 						playtype={playtype}

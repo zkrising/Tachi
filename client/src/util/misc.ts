@@ -14,6 +14,7 @@ import {
 	SessionDocument,
 	Playtype,
 	QuestDocument,
+	QuestSubscriptionDocument,
 } from "tachi-common";
 import fjsh from "fast-json-stable-hash";
 
@@ -556,10 +557,28 @@ export function CreateQuestMap(quests: Array<QuestDocument>) {
 	return map;
 }
 
+export function CreateQuestSubMap(questSubs: Array<QuestSubscriptionDocument>) {
+	const map = new Map<string, QuestSubscriptionDocument>();
+
+	for (const q of questSubs) {
+		map.set(q.questID, q);
+	}
+
+	return map;
+}
+
 export function ChangeAtPosition<T>(elements: T[], element: T, i: integer) {
 	return [...elements.slice(0, i), element, ...elements.slice(i + 1)];
 }
 
 export function DeleteInPosition<T>(elements: T[], i: integer) {
 	return [...elements.slice(0, i), ...elements.slice(i + 1)];
+}
+
+export function HumanisedJoinArray(arr: Array<string>, lastJoiner = "or") {
+	if (arr.length === 1) {
+		return arr[0];
+	}
+
+	return `${arr.slice(0, arr.length - 1).join(", ")} ${lastJoiner} ${arr[arr.length - 1]!}`;
 }

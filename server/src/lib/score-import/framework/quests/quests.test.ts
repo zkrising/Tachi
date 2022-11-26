@@ -30,7 +30,6 @@ t.test("#UpdateUsersQuests", (t) => {
 			progress: 0,
 			timeAchieved: null,
 			lastInteraction: null,
-			timeSet: 0,
 			userID: 1,
 		})
 	);
@@ -164,7 +163,6 @@ t.test("#UpdateUsersQuests", (t) => {
 			progress: 0,
 			timeAchieved: null,
 			lastInteraction: null,
-			timeSet: 0,
 			userID: 1,
 		});
 
@@ -275,7 +273,6 @@ t.test("#UpdateUsersQuests", (t) => {
 				progress: 0,
 				timeAchieved: null,
 				lastInteraction: null,
-				timeSet: 0,
 				userID: 1,
 			},
 			{
@@ -288,7 +285,6 @@ t.test("#UpdateUsersQuests", (t) => {
 				progress: 0,
 				timeAchieved: null,
 				lastInteraction: null,
-				timeSet: 0,
 				userID: 1,
 			},
 			{
@@ -301,7 +297,6 @@ t.test("#UpdateUsersQuests", (t) => {
 				progress: 0,
 				timeAchieved: null,
 				lastInteraction: null,
-				timeSet: 0,
 				userID: 1,
 			},
 			{
@@ -313,7 +308,6 @@ t.test("#UpdateUsersQuests", (t) => {
 				progress: 0,
 				timeAchieved: null,
 				lastInteraction: null,
-				timeSet: 0,
 				userID: 1,
 			},
 		]);

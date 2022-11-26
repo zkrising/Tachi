@@ -482,9 +482,6 @@ export const PR_GOAL_SCHEMA = {
 	),
 	charts: p.or(
 		{
-			type: p.is("any"),
-		},
-		{
 			type: p.is("folder"),
 			data: "string",
 		},
@@ -636,6 +633,8 @@ const PRE_SCHEMAS = {
 		game: p.isIn(games),
 		playtype: isValidPlaytype,
 		quests: ["string"],
+		name: "string",
+		desc: "string",
 	}),
 	quests: prSchemaFnWrap({
 		game: p.isIn(games),
@@ -657,7 +656,6 @@ const PRE_SCHEMAS = {
 		game: p.isIn(games),
 		playtype: isValidPlaytype,
 		achieved: "boolean",
-		timeSet: p.isPositive,
 		timeAchieved: p.nullable(p.isPositive),
 		lastInteraction: p.nullable(p.isPositive),
 		progress: "?number",
@@ -670,7 +668,6 @@ const PRE_SCHEMAS = {
 		userID: p.isPositiveNonZeroInteger,
 		game: p.isIn(games),
 		playtype: isValidPlaytype,
-		timeSet: p.isPositive,
 		achieved: "boolean",
 		timeAchieved: p.nullable(p.isPositive),
 		progress: p.isInteger,

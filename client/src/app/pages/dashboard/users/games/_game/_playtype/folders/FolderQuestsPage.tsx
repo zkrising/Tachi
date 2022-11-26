@@ -1,15 +1,16 @@
 import { CreateGoalSubDataset, CreateUserMap } from "util/data";
-import GoalSubTable from "components/tables/goals/GoalSubTable";
 import SetNewGoalModal from "components/targets/SetNewGoalModal";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
-import React, { useReducer, useState } from "react";
+import React, { useContext, useReducer, useState } from "react";
 import { Button, Col } from "react-bootstrap";
 import { FolderDocument } from "tachi-common";
 import { GoalsOnChartReturn, GoalsOnFolderReturn } from "types/api-returns";
 import { UGPT } from "types/react";
+import GoalSubInfo from "components/targets/GoalSubInfo";
+import { TargetsContext } from "context/TargetsContext";
 
 export default function FolderQuestsPage({
 	folder,
@@ -20,6 +21,7 @@ export default function FolderQuestsPage({
 	folder: FolderDocument;
 } & UGPT) {
 	const [refresh, forceRefresh] = useReducer((x) => x + 1, 0);
+	const { reloadTargets } = useContext(TargetsContext);
 
 	const { data, error } = useApiQuery<GoalsOnChartReturn>(
 		`/users/${reqUser.id}/games/${game}/${playtype}/targets/on-folder/${folder.folderID}`,
@@ -48,7 +50,10 @@ export default function FolderQuestsPage({
 				<SetNewGoalModal
 					{...{ game, playtype, reqUser, show, setShow }}
 					preData={folder}
-					onNewGoalSet={forceRefresh}
+					onNewGoalSet={() => {
+						forceRefresh();
+						reloadTargets();
+					}}
 				/>
 			)}
 		</div>
@@ -68,7 +73,7 @@ function FolderQuestsInner({
 	const userMap = CreateUserMap([reqUser]);
 
 	return (
-		<GoalSubTable
+		<GoalSubInfo
 			dataset={CreateGoalSubDataset(data, userMap)}
 			game={game}
 			playtype={playtype}

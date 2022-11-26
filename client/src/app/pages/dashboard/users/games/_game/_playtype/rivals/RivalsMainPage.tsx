@@ -49,10 +49,6 @@ export default function RivalsMainPage({
 						<Icon type="list" />
 						Rival Activity
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/rivals/tracking`}>
-						<Icon type="thumbtack" />
-						Manage Tracked Charts
-					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/rivals/manage`}>
 						<Icon type="users" />
 						Manage Rivals
@@ -63,7 +59,6 @@ export default function RivalsMainPage({
 			<Col xs={12}>
 				<Switch>
 					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/rivals">
-						{settings?.rivals.length === 0 && <Redirect to={`${base}/rivals/manage`} />}
 						<RivalsActivityPage reqUser={reqUser} game={game} playtype={playtype} />
 					</Route>
 

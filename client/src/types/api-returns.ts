@@ -27,6 +27,7 @@ import {
 	UserGameStatsSnapshot,
 	QuestDocument,
 	QuestSubscriptionDocument,
+	QuestlineDocument,
 } from "tachi-common";
 
 export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
@@ -242,6 +243,7 @@ export interface GoalsOnChartReturn {
 }
 
 export type GoalsOnFolderReturn = GoalsOnChartReturn;
+export type AllUGPTGoalsReturn = GoalsOnChartReturn;
 
 export interface RecentlyAchievedOrRaisedTargets {
 	goals: Array<GoalDocument>;
@@ -249,4 +251,20 @@ export interface RecentlyAchievedOrRaisedTargets {
 	goalSubs: Array<GoalSubscriptionDocument>;
 	questSubs: Array<QuestSubscriptionDocument>;
 	user: UserDocument;
+}
+
+export interface GPTQuestsReturn {
+	goals: Array<GoalDocument>;
+	quests: Array<QuestDocument>;
+}
+
+export interface UGPTTargetSubs {
+	goalSubs: Array<GoalSubscriptionDocument>;
+	questSubs: Array<QuestSubscriptionDocument>;
+}
+
+export interface QuestlineReturn {
+	questline: QuestlineDocument;
+	quests: Array<QuestDocument>;
+	goals: Array<GoalDocument>;
 }

@@ -8,8 +8,10 @@ import React, { useState } from "react";
 import { Button, Col } from "react-bootstrap";
 import { GoalsOnChartReturn } from "types/api-returns";
 import { UGPT } from "types/react";
-import { ChartDocument, SongDocument } from "tachi-common";
-import GoalSubTable from "components/tables/goals/GoalSubTable";
+import { ChartDocument, FormatChart, SongDocument } from "tachi-common";
+import Icon from "components/util/Icon";
+import GoalSubInfo from "components/targets/GoalSubInfo";
+import DebugContent from "components/util/DebugContent";
 
 export default function TargetInfo({
 	data,
@@ -39,19 +41,21 @@ export default function TargetInfo({
 
 	const userMap = CreateUserMap([reqUser]);
 
+	const dataset = CreateGoalSubDataset(data, userMap);
+
 	return (
 		<div className="w-100">
 			<Col xs={12}>
-				<GoalSubTable
-					small
-					dataset={CreateGoalSubDataset(data, userMap)}
-					game={game}
-					playtype={playtype}
-				/>
+				<h1>Your Goals on {FormatChart(game, song, chart)}</h1>
+				<Divider />
+			</Col>
+			<Col xs={12}>
+				<GoalSubInfo dataset={dataset} game={game} playtype={playtype} />
 			</Col>
 
 			<Divider />
 			<Button variant="outline-success" onClick={() => setShow(true)}>
+				<Icon type="bullseye" />
 				Set New Goal
 			</Button>
 			<SetNewGoalModal

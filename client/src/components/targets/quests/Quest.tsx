@@ -9,7 +9,13 @@ import Muted from "components/util/Muted";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useState } from "react";
 import { Badge, Button } from "react-bootstrap";
-import { FormatGame, GoalDocument, QuestDocument, QuestSection } from "tachi-common";
+import {
+	FormatGame,
+	GoalDocument,
+	GoalSubscriptionDocument,
+	QuestDocument,
+	QuestSection,
+} from "tachi-common";
 import { GamePT } from "types/react";
 import { TargetsContext } from "context/TargetsContext";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
@@ -195,14 +201,16 @@ export function InnerQuestSectionGoal({
 	goal,
 	note,
 	dependencies,
+	goalSubOverride,
 }: {
 	goal: GoalDocument;
 	note?: string;
 	dependencies?: string[];
+	goalSubOverride?: GoalSubscriptionDocument;
 }) {
 	const { goalSubs } = useContext(TargetsContext);
 
-	const goalSub = goalSubs.get(goal.goalID);
+	const goalSub = goalSubOverride ?? goalSubs.get(goal.goalID);
 
 	if (!goalSub) {
 		return (

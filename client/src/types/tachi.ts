@@ -25,11 +25,10 @@ export type ClumpedActivityClassAchievement = {
 } & ClassAchievementDocument;
 
 export type ClumpedActivityGoalAchievement = {
-	type: "GOAL_ACHIEVEMENT";
+	type: "GOAL_ACHIEVEMENTS";
 	// redundant, but convenient.
 	userID: integer;
-	sub: GoalSubscriptionDocument;
-	goal: GoalDocument;
+	goals: Array<GoalSubscriptionDocument & { __related: { goal: GoalDocument } }>;
 };
 
 export type ClumpedActivityQuestAchievement = {

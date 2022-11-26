@@ -9,7 +9,6 @@ import SessionRaiseBreakdown from "components/sessions/SessionRaiseBreakdown";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
-import GoalLink from "components/util/GoalLink";
 import Icon from "components/util/Icon";
 import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
@@ -31,6 +30,7 @@ import {
 	ClumpedActivityScores,
 	ClumpedActivitySession,
 } from "types/tachi";
+import { InnerQuestSectionGoal } from "components/targets/quests/Quest";
 
 // Records activity for a group of users on a GPT. Also used for single users.
 export default function Activity({
@@ -161,7 +161,7 @@ function ActivityInner({
 									user={user}
 								/>
 							);
-						case "GOAL_ACHIEVEMENT":
+						case "GOAL_ACHIEVEMENTS":
 							return (
 								<GoalActivity
 									shouldShowGame={shouldShowGame}
@@ -209,9 +209,11 @@ function ActivityInner({
 											case "SESSION":
 												lastTimestamp = lastThing.timeStarted;
 												break;
-											case "GOAL_ACHIEVEMENT":
+											case "GOAL_ACHIEVEMENTS":
+												lastTimestamp = lastThing.goals[0]?.timeAchieved;
+												break;
 											case "QUEST_ACHIEVEMENT":
-												lastTimestamp = lastThing.sub.timeAchieved!;
+												lastTimestamp = lastThing.sub.timeAchieved;
 										}
 
 										if (!lastTimestamp) {
@@ -342,31 +344,74 @@ function GoalActivity({
 	user: UserDocument;
 	shouldShowGame: boolean;
 }) {
-	const { game, playtype } = data.goal;
+	const { game, playtype } = data.goals[0];
 
-	const prettyGame = shouldShowGame ? FormatGame(game, playtype) : "";
+	const prettyGame = shouldShowGame ? `${FormatGame(game, playtype)} ` : "";
+
+	const [show, setShow] = useState(false);
+
+	let subMessage;
+	let mutedText: string | null | undefined;
+
+	if (data.goals.length === 1) {
+		const goal0 = data.goals[0];
+
+		subMessage = `${goal0.__related.goal.name}${
+			shouldShowGame ? `in ${FormatGame(game, playtype)}` : ""
+		}!`;
+	} else {
+		subMessage = `${data.goals.length} ${prettyGame}goals`;
+
+		mutedText = TruncateString(data.goals.map((e) => e.__related.goal.name).join(", "), 100);
+	}
 
 	return (
 		<div className="timeline-item timeline-hover my-4">
 			<div className="timeline-badge bg-warning"></div>
 			<div className="timeline-content">
-				<div className="timeline-content-inner">
+				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
 					<div className="timeline-content-title">
-						<span style={{ fontSize: "1.15rem" }}>
+						<Icon
+							type={`chevron-${show ? "down" : "right"}`}
+							style={{
+								fontSize: "0.75rem",
+							}}
+						/>
+						<span style={{ fontSize: "1.15rem" }} className="ml-2">
 							<UGPTLink reqUser={user} game={game} playtype={playtype} /> achieved{" "}
-							<GoalLink noPad goal={data.goal} />
-							{prettyGame && ` in ${prettyGame}`}!
+							{subMessage}!
 						</span>
+						{mutedText && (
+							<>
+								<br />
+								<Muted>{mutedText}</Muted>
+							</>
+						)}
 					</div>
 
 					<div className="timeline-content-timestamp">
-						{MillisToSince(data.sub.timeAchieved ?? 0)}
+						{MillisToSince(data.goals[0]?.timeAchieved ?? 0)}
 						<br />
 						<span className="text-muted font-italic text-right">
-							{FormatTime(data.sub.timeAchieved ?? 0)}
+							{FormatTime(data.goals[0]?.timeAchieved ?? 0)}
 						</span>
 					</div>
 				</div>
+
+				{show && (
+					<>
+						<Divider />
+						<div className="pl-4">
+							{data.goals.map((e) => (
+								<InnerQuestSectionGoal
+									goal={e.__related.goal}
+									goalSubOverride={e}
+									key={e.goalID}
+								/>
+							))}
+						</div>
+					</>
+				)}
 			</div>
 		</div>
 	);

@@ -1,5 +1,9 @@
 import { ActivityReturn, RecordActivityReturn } from "types/api-returns";
-import { ClumpedActivity, ClumpedActivityScores } from "types/tachi";
+import {
+	ClumpedActivity,
+	ClumpedActivityGoalAchievement,
+	ClumpedActivityScores,
+} from "types/tachi";
 import { ONE_HOUR } from "./constants/time";
 import { CreateSongMap, CreateChartMap, CreateGoalMap } from "./data";
 import { CreateQuestMap } from "./misc";
@@ -13,7 +17,8 @@ const SORT_ACTIVITY = NumericSOV((x: ClumpedActivity[0]) => {
 			return x.scores[0]?.timeAchieved ?? -Infinity;
 		case "CLASS_ACHIEVEMENT":
 			return x.timeAchieved;
-		case "GOAL_ACHIEVEMENT":
+		case "GOAL_ACHIEVEMENTS":
+			return x.goals[0]?.timeAchieved ?? -Infinity;
 		case "QUEST_ACHIEVEMENT":
 			return x.sub.timeAchieved ?? -Infinity;
 	}
@@ -95,22 +100,44 @@ export function ClumpActivity(data: ActivityReturn | RecordActivityReturn): Clum
 	}
 
 	const goalMap = CreateGoalMap(data.goals);
-	for (const sub of data.goalSubs) {
+
+	let goalClump: ClumpedActivityGoalAchievement["goals"] = [];
+	// reset last clumps. I realise this is super copypasta, but we'll live.
+	curUserID = null;
+	lastTime = null;
+
+	for (const sub of data.goalSubs
+		.slice(0)
+		.sort(NumericSOV((x) => x.timeAchieved ?? -Infinity, true))) {
 		const goal = goalMap.get(sub.goalID);
 
 		if (!goal) {
-			console.warn(
-				`Couldn't find parent goal for recently-achieved-sub '${sub.goalID}. Skipping.'`
-			);
+			console.warn(`Failed to resolve goal ${sub.goalID}. Skipping.`);
 			continue;
 		}
 
-		clumped.push({
-			type: "GOAL_ACHIEVEMENT",
-			userID: sub.userID,
-			sub,
-			goal,
+		if (
+			(curUserID !== sub.userID && curUserID !== null) ||
+			(lastTime !== null && lastTime - (sub.timeAchieved ?? 0) > ONE_HOUR * 8)
+		) {
+			clumped.push({ type: "GOAL_ACHIEVEMENTS", userID: sub.userID, goals: goalClump });
+
+			goalClump = [];
+		}
+
+		curUserID = sub.userID;
+		lastTime = sub.timeAchieved;
+
+		goalClump.push({
+			...sub,
+			__related: {
+				goal,
+			},
 		});
+	}
+
+	if (goalClump.length !== 0) {
+		clumped.push({ type: "GOAL_ACHIEVEMENTS", userID: goalClump[0].userID, goals: goalClump });
 	}
 
 	const questMap = CreateQuestMap(data.quests);

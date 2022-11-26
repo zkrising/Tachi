@@ -297,7 +297,7 @@ export async function ValidateGoalChartsAndCriteria(
 
 	if (charts.type === "multi" && criteria.mode === "proportion") {
 		throw new Error(
-			`Criteria Mode must be 'single' or 'absolute' if Charts Type is 'multi'. Doesn't make sense to have proportional goals when you're capped at 5 charts.`
+			`Criteria Mode must be 'single' or 'absolute' if Charts Type is 'multi'. Doesn't make sense to have proportional goals when you're capped at 10 charts.`
 		);
 	}
 }

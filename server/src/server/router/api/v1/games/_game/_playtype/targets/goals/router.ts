@@ -46,60 +46,65 @@ router.get("/popular", async (req, res) => {
  */
 router.post(
 	"/format",
-	prValidate({
-		criteria: {
-			key: p.isIn(
-				"scoreData.percent",
-				"scoreData.lampIndex",
-				"scoreData.gradeIndex",
-				"scoreData.score"
-			),
+	prValidate(
+		{
+			criteria: {
+				key: p.isIn(
+					"scoreData.percent",
+					"scoreData.lampIndex",
+					"scoreData.gradeIndex",
+					"scoreData.score"
+				),
 
-			// we do proper validation on this later.
-			value: p.gte(0),
-			mode: p.isIn("single", "absolute", "proportion"),
-			countNum: (self, parent) => {
-				if (parent.mode === "single") {
-					return (
-						self === undefined ||
-						"Invalid countNum for mode 'single'. Must not have one!"
-					);
-				}
+				// we do proper validation on this later.
+				value: p.gte(0),
+				mode: p.isIn("single", "absolute", "proportion"),
+				countNum: (self, parent) => {
+					if (parent.mode === "single") {
+						return (
+							self === undefined ||
+							"Invalid countNum for mode 'single'. Must not have one!"
+						);
+					}
 
-				// proper validation later.
-				return p.gte(0)(self);
+					// proper validation later.
+					return p.gte(0)(self);
+				},
 			},
-		},
-		charts: {
-			type: p.isIn("single", "multi", "folder"),
-			data: (self, parent) => {
-				if (parent.type === "single") {
-					return (
-						typeof self === "string" ||
-						"Expected a string in charts.data due to charts.type being 'single'."
-					);
-				} else if (parent.type === "multi") {
-					return (
-						(Array.isArray(self) &&
-							self.every((k) => typeof k === "string") &&
-							self.length <= 10 &&
-							self.length > 1) ||
-						"Expected an array of 2 to 10 strings in charts.data due to charts.type being 'multi'."
-					);
+			charts: {
+				type: p.isIn("single", "multi", "folder"),
+				data: (self, parent) => {
+					if (parent.type === "single") {
+						return (
+							typeof self === "string" ||
+							"Expected a string in charts.data due to charts.type being 'single'."
+						);
+					} else if (parent.type === "multi") {
+						return (
+							(Array.isArray(self) &&
+								self.every((k) => typeof k === "string") &&
+								self.length <= 10 &&
+								self.length > 1) ||
+							"Expected an array of 2 to 10 strings in charts.data due to charts.type being 'multi'."
+						);
+						/* istanbul ignore next */
+					} else if (parent.type === "folder") {
+						return (
+							typeof self === "string" ||
+							"Expected a string in charts.data due to charts.type being 'folder'."
+						);
+					}
+
+					// impossible to reach, so doesn't count for coverage.
 					/* istanbul ignore next */
-				} else if (parent.type === "folder") {
-					return (
-						typeof self === "string" ||
-						"Expected a string in charts.data due to charts.type being 'folder'."
-					);
-				}
-
-				// impossible to reach, so doesn't count for coverage.
-				/* istanbul ignore next */
-				return "Unknown charts.type.";
+					return "Unknown charts.type.";
+				},
 			},
 		},
-	}),
+		undefined,
+		undefined,
+		"verbose"
+	),
 	async (req, res) => {
 		const { game, playtype } = GetGPT(req);
 

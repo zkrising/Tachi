@@ -36,7 +36,7 @@ import type {
 	Lamps,
 	JudgementLookup,
 	GPTSupportedVersions,
-} from "../types";	
+} from "../types";
 
 export interface GameConfig<G extends Game = Game> {
 	internalName: string;

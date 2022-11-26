@@ -1,20 +1,20 @@
 import Icon from "components/util/Icon";
 import useApiQuery from "components/util/query/useApiQuery";
-import React, { useMemo } from "react";
+import { NotificationsContext } from "context/NotificationsContext";
+import React, { useContext, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { NotificationDocument, UserDocument } from "tachi-common";
 
 export function UserNotificationButton({ user }: { user: UserDocument }) {
-	// don't care whether it errors or not, tbh
-	const { data } = useApiQuery<Array<NotificationDocument>>(`/users/${user.id}/notifications`);
+	const { notifications } = useContext(NotificationsContext);
 
 	const unread = useMemo(() => {
-		if (!data) {
+		if (!notifications) {
 			return 0;
 		}
 
-		return data.filter((e) => e.read === false).length;
-	}, [data]);
+		return notifications.filter((e) => e.read === false).length;
+	}, [notifications]);
 
 	return (
 		<div className="topbar-item">

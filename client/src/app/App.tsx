@@ -2,6 +2,7 @@ import { MaterialThemeProvider } from "components/layout/misc/MaterialThemeProvi
 import { LoadingScreen } from "components/layout/screens/LoadingScreen";
 import { AllLUGPTStatsContextProvider } from "context/AllLUGPTStatsContext";
 import { BannedContextProvider } from "context/BannedContext";
+import { NotificationsContextProvider } from "context/NotificationsContext";
 import { SubheaderContextProvider } from "context/SubheaderContext";
 import { UserContextProvider } from "context/UserContext";
 import { UserSettingsContextProvider } from "context/UserSettingsContext";
@@ -21,20 +22,22 @@ export default function App({ basename }: { basename: string }) {
 			<QueryClientProvider client={queryClient}>
 				<BannedContextProvider>
 					<UserContextProvider>
-						<UserSettingsContextProvider>
-							<AllLUGPTStatsContextProvider>
-								<LoadingScreen>
-									<BrowserRouter basename={basename}>
-										<MaterialThemeProvider>
-											<Toaster />
-											<SubheaderContextProvider>
-												<Routes />
-											</SubheaderContextProvider>
-										</MaterialThemeProvider>
-									</BrowserRouter>
-								</LoadingScreen>
-							</AllLUGPTStatsContextProvider>
-						</UserSettingsContextProvider>
+						<NotificationsContextProvider>
+							<UserSettingsContextProvider>
+								<AllLUGPTStatsContextProvider>
+									<LoadingScreen>
+										<BrowserRouter basename={basename}>
+											<MaterialThemeProvider>
+												<Toaster />
+												<SubheaderContextProvider>
+													<Routes />
+												</SubheaderContextProvider>
+											</MaterialThemeProvider>
+										</BrowserRouter>
+									</LoadingScreen>
+								</AllLUGPTStatsContextProvider>
+							</UserSettingsContextProvider>
+						</NotificationsContextProvider>
 					</UserContextProvider>
 				</BannedContextProvider>
 			</QueryClientProvider>

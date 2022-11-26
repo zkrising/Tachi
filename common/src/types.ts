@@ -1571,6 +1571,8 @@ export type NotificationBody =
 			type: "QUEST_CHANGED"; // Emitted when a quest the user is subscribed to changed.
 			content: {
 				questID: string;
+				game: Game;
+				playtype: Playtype;
 			};
 	  }
 	| {
@@ -1580,6 +1582,11 @@ export type NotificationBody =
 				game: Game;
 				playtype: Playtype;
 			};
+	  }
+	| {
+			type: "SITE_ANNOUNCEMENT"; // Emitted as a site announcement
+			// eslint-disable-next-line @typescript-eslint/ban-types
+			content: {};
 	  };
 
 export type NotificationDocument = BaseNotification & {

@@ -3,13 +3,12 @@ import { ErrorPage } from "app/pages/ErrorPage";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import NotificationRow from "components/notifications/NotificationRow";
 import MiniTable from "components/tables/components/MiniTable";
-import ApiError from "components/util/ApiError";
 import Loading from "components/util/Loading";
-import useApiQuery from "components/util/query/useApiQuery";
+import { NotificationsContext } from "context/NotificationsContext";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useMemo } from "react";
 import { Button, Col, Row } from "react-bootstrap";
-import { NotificationDocument, UserDocument } from "tachi-common";
+import { UserDocument } from "tachi-common";
 
 export default function NotificationsPage() {
 	const { user } = useContext(UserContext);
@@ -24,34 +23,31 @@ export default function NotificationsPage() {
 }
 
 function NotificationsInnerPage({ user }: { user: UserDocument }) {
-	const { data, error } = useApiQuery<Array<NotificationDocument>>(
-		`/users/${user.id}/notifications`
-	);
+	const { notifications, reload } = useContext(NotificationsContext);
 
 	const unread = useMemo(() => {
-		if (!data) {
+		if (!notifications) {
 			return 0;
 		}
 
-		return data.filter((e) => e.read === false).length;
-	}, [data]);
+		return notifications.filter((e) => e.read === false).length;
+	}, [notifications]);
 
-	// mark all notifications the user has seen as being read
+	// mark all notifications the user has seen as being read, this runs on mount
+	// and never again
 	useEffect(() => {
-		if (data) {
-			APIFetchV1(`/users/${user.id}/notifications/mark-all-read`, { method: "POST" });
+		if (notifications) {
+			APIFetchV1(`/users/${user.id}/notifications/mark-all-read`, { method: "POST" }).then(
+				() => reload()
+			);
 		}
-	}, [data]);
+	}, []);
 
-	if (error) {
-		return <ApiError error={error} />;
-	}
-
-	if (!data) {
+	if (!notifications) {
 		return <Loading />;
 	}
 
-	if (data.length === 0) {
+	if (notifications.length === 0) {
 		return (
 			<div className="d-flex w-100 justify-content-center">
 				<div>You've got no mail!</div>
@@ -63,7 +59,7 @@ function NotificationsInnerPage({ user }: { user: UserDocument }) {
 		<Row>
 			<Col xs={12}>
 				<MiniTable headers={["Read"]}>
-					{data.map((e) => (
+					{notifications.map((e) => (
 						<NotificationRow notif={e} key={e.notifID} />
 					))}
 				</MiniTable>
@@ -74,9 +70,11 @@ function NotificationsInnerPage({ user }: { user: UserDocument }) {
 					<div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
 						<Button
 							onClick={async () => {
-								await APIFetchV1(`/users/${user.id}/delete-all`, {
+								await APIFetchV1(`/users/${user.id}/notifications/delete-all`, {
 									method: "POST",
 								});
+
+								reload();
 							}}
 							variant="outline-danger"
 						>
@@ -84,7 +82,7 @@ function NotificationsInnerPage({ user }: { user: UserDocument }) {
 						</Button>
 					</div>
 					<div style={{ flex: 1, textAlign: "right" }}>
-						{data.length} Notifications.
+						{notifications.length} Notifications.
 						{unread > 0 && (
 							<>
 								{" "}

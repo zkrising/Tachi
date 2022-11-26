@@ -319,6 +319,8 @@ export async function UpdateQuestSubscriptions(questID: string) {
 			type: "QUEST_CHANGED",
 			content: {
 				questID,
+				game: maybeQuest.game,
+				playtype: maybeQuest.playtype,
 			},
 		}
 	);

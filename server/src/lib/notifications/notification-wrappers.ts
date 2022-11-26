@@ -1,4 +1,4 @@
-import { SendNotification } from "./notifications";
+import { BulkSendNotification, SendNotification } from "./notifications";
 import db from "external/mongo/db";
 import { FormatGame } from "tachi-common";
 import type { Game, integer, Playtype, UserDocument } from "tachi-common";
@@ -43,4 +43,28 @@ export async function SendSetRivalNotification(
 			},
 		}
 	);
+}
+
+export async function SendSiteAnnouncementNotification(
+	title: string,
+	maybeGame?: Game,
+	maybePlaytype?: Playtype
+) {
+	let toUserIDs = [];
+
+	if (maybeGame && maybePlaytype) {
+		toUserIDs = (
+			await db["game-stats"].find(
+				{ game: maybeGame, playtype: maybePlaytype },
+				{ projection: { userID: 1 } }
+			)
+		).map((e) => e.userID);
+	} else {
+		toUserIDs = (await db.users.find({}, { projection: { id: 1 } })).map((e) => e.id);
+	}
+
+	return BulkSendNotification(title, toUserIDs, {
+		type: "SITE_ANNOUNCEMENT",
+		content: {},
+	});
 }

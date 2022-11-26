@@ -4,6 +4,7 @@ import db from "external/mongo/db";
 import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import { ONE_MINUTE } from "lib/constants/time";
 import CreateLogCtx, { ChangeRootLogLevel, GetLogLevel } from "lib/logger/logger";
+import { SendSiteAnnouncementNotification } from "lib/notifications/notification-wrappers";
 import { DeleteMultipleScores, DeleteScore } from "lib/score-mutation/delete-scores";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
 import p from "prudence";
@@ -299,5 +300,47 @@ router.post("/recalc", async (req, res) => {
 		},
 	});
 });
+
+/**
+ * Send an announcement to the site.
+ *
+ * @name POST /api/v1/admin/announcement
+ */
+router.post(
+	"/announcement",
+	prValidate({
+		game: p.optional(p.isIn(TachiConfig.GAMES)),
+		playtype: "*string",
+		title: "string",
+	}),
+	async (req, res) => {
+		const { game, playtype, title } = req.safeBody as {
+			game?: Game;
+			playtype?: string;
+			title: string;
+		};
+
+		let maybePlaytype: Playtype | undefined;
+
+		if (game && playtype) {
+			if (!IsValidPlaytype(game, playtype)) {
+				return res.status(400).json({
+					success: false,
+					description: `Invalid playtype '${playtype}' for game '${game}'.`,
+				});
+			}
+
+			maybePlaytype = playtype;
+		}
+
+		await SendSiteAnnouncementNotification(title, game, maybePlaytype);
+
+		return res.status(200).json({
+			success: true,
+			description: `Sent notification '${title}'.`,
+			body: {},
+		});
+	}
+);
 
 export default router;

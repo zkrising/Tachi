@@ -82310,7 +82310,7 @@
     {
         "chartID": "1e37b3741382da9d7d5ebd146e1a6096bddc533b",
         "data": {
-            "inGameID": 80000037,
+            "inGameID": [80000037,50000020],
             "isHardMode": false
         },
         "difficulty": "ADV",
@@ -82322,6 +82322,7 @@
         "songID": 633,
         "tierlistInfo": {},
         "versions": [
+			"saucer",
             "clan",
             "festo"
         ]
@@ -82329,7 +82330,7 @@
     {
         "chartID": "8a0b8d94a2f17b30d0c9b489243a63bc0cdd5b73",
         "data": {
-            "inGameID": 80000037,
+            "inGameID": [80000037,50000020],
             "isHardMode": false
         },
         "difficulty": "BSC",
@@ -82341,6 +82342,7 @@
         "songID": 633,
         "tierlistInfo": {},
         "versions": [
+			"saucer",
             "clan",
             "festo"
         ]
@@ -82348,7 +82350,7 @@
     {
         "chartID": "307d0469a53a53c34a3c56f28b8777cd09f569dc",
         "data": {
-            "inGameID": 80000037,
+            "inGameID": [80000037,50000020],
             "isHardMode": false
         },
         "difficulty": "EXT",
@@ -82360,6 +82362,7 @@
         "songID": 633,
         "tierlistInfo": {},
         "versions": [
+			"saucer",
             "clan",
             "festo"
         ]
@@ -82367,7 +82370,7 @@
     {
         "chartID": "3755728219afe210be1d7f0d5b4889aa42b8dd37",
         "data": {
-            "inGameID": 80000037,
+            "inGameID": [80000037,50000020],
             "isHardMode": true
         },
         "difficulty": "HARD ADV",
@@ -82379,6 +82382,7 @@
         "songID": 633,
         "tierlistInfo": {},
         "versions": [
+			"saucer",
             "clan",
             "festo"
         ]
@@ -82386,7 +82390,7 @@
     {
         "chartID": "b0ce88f28df4f995873f415dcfe65d1ae4bb709a",
         "data": {
-            "inGameID": 80000037,
+            "inGameID": [80000037,50000020],
             "isHardMode": true
         },
         "difficulty": "HARD BSC",
@@ -82398,6 +82402,7 @@
         "songID": 633,
         "tierlistInfo": {},
         "versions": [
+			"saucer",
             "clan",
             "festo"
         ]
@@ -82405,7 +82410,7 @@
     {
         "chartID": "e12c53405140e30feffd77a10ee2c058c794ca41",
         "data": {
-            "inGameID": 80000037,
+            "inGameID": [80000037,50000020],
             "isHardMode": true
         },
         "difficulty": "HARD EXT",
@@ -82417,6 +82422,7 @@
         "songID": 633,
         "tierlistInfo": {},
         "versions": [
+			"saucer",
             "clan",
             "festo"
         ]
@@ -160218,114 +160224,6 @@
         "playtype": "Single",
         "rgcID": null,
         "songID": 1367,
-        "tierlistInfo": {},
-        "versions": [
-            "saucer"
-        ]
-    },
-    {
-        "chartID": "ff42bf80005c2282b7d2734c73fec7fcef82dc34",
-        "data": {
-            "inGameID": 50000020,
-            "isHardMode": false
-        },
-        "difficulty": "ADV",
-        "isPrimary": true,
-        "level": "7",
-        "levelNum": 7,
-        "playtype": "Single",
-        "rgcID": null,
-        "songID": 1368,
-        "tierlistInfo": {},
-        "versions": [
-            "saucer"
-        ]
-    },
-    {
-        "chartID": "5aea9c5ef3e49d3221835ec6b8268854efc24998",
-        "data": {
-            "inGameID": 50000020,
-            "isHardMode": false
-        },
-        "difficulty": "BSC",
-        "isPrimary": true,
-        "level": "3",
-        "levelNum": 3,
-        "playtype": "Single",
-        "rgcID": null,
-        "songID": 1368,
-        "tierlistInfo": {},
-        "versions": [
-            "saucer"
-        ]
-    },
-    {
-        "chartID": "d0e1958043f546015e49218b6f14a125c2e8b4c7",
-        "data": {
-            "inGameID": 50000020,
-            "isHardMode": false
-        },
-        "difficulty": "EXT",
-        "isPrimary": true,
-        "level": "9",
-        "levelNum": 9,
-        "playtype": "Single",
-        "rgcID": null,
-        "songID": 1368,
-        "tierlistInfo": {},
-        "versions": [
-            "saucer"
-        ]
-    },
-    {
-        "chartID": "a40f63f5e2635c028260f8e81b9c7f1dcb582fd6",
-        "data": {
-            "inGameID": 50000020,
-            "isHardMode": true
-        },
-        "difficulty": "HARD ADV",
-        "isPrimary": true,
-        "level": "7",
-        "levelNum": 7,
-        "playtype": "Single",
-        "rgcID": null,
-        "songID": 1368,
-        "tierlistInfo": {},
-        "versions": [
-            "saucer"
-        ]
-    },
-    {
-        "chartID": "78bed81d2d1db4ada599f10356ccbd36d2177c1d",
-        "data": {
-            "inGameID": 50000020,
-            "isHardMode": true
-        },
-        "difficulty": "HARD BSC",
-        "isPrimary": true,
-        "level": "3",
-        "levelNum": 3,
-        "playtype": "Single",
-        "rgcID": null,
-        "songID": 1368,
-        "tierlistInfo": {},
-        "versions": [
-            "saucer"
-        ]
-    },
-    {
-        "chartID": "0570b96250f8e886f556024a2e704d9af1886ccf",
-        "data": {
-            "inGameID": 50000020,
-            "isHardMode": true
-        },
-        "difficulty": "HARD EXT",
-        "isPrimary": true,
-        "level": "9",
-        "levelNum": 9,
-        "playtype": "Single",
-        "rgcID": null,
-        "songID": 1368,
         "tierlistInfo": {},
         "versions": [
             "saucer"

@@ -1,7 +1,8 @@
 import { ActivityReturn, RecordActivityReturn } from "types/api-returns";
 import { ClumpedActivity, ClumpedActivityScores } from "types/tachi";
 import { ONE_HOUR } from "./constants/time";
-import { CreateSongMap, CreateChartMap } from "./data";
+import { CreateSongMap, CreateChartMap, CreateGoalMap } from "./data";
+import { CreateQuestMap } from "./misc";
 import { NumericSOV } from "./sorts";
 
 const SORT_ACTIVITY = NumericSOV((x: ClumpedActivity[0]) => {
@@ -12,6 +13,9 @@ const SORT_ACTIVITY = NumericSOV((x: ClumpedActivity[0]) => {
 			return x.scores[0]?.timeAchieved ?? -Infinity;
 		case "CLASS_ACHIEVEMENT":
 			return x.timeAchieved;
+		case "GOAL_ACHIEVEMENT":
+		case "QUEST_ACHIEVEMENT":
+			return x.sub.timeAchieved ?? -Infinity;
 	}
 }, true);
 
@@ -87,6 +91,45 @@ export function ClumpActivity(data: ActivityReturn | RecordActivityReturn): Clum
 		clumped.push({
 			type: "CLASS_ACHIEVEMENT",
 			...ach,
+		});
+	}
+
+	const goalMap = CreateGoalMap(data.goals);
+	for (const sub of data.goalSubs) {
+		const goal = goalMap.get(sub.goalID);
+
+		if (!goal) {
+			console.warn(
+				`Couldn't find parent goal for recently-achieved-sub '${sub.goalID}. Skipping.'`
+			);
+			continue;
+		}
+
+		clumped.push({
+			type: "GOAL_ACHIEVEMENT",
+			userID: sub.userID,
+			sub,
+			goal,
+		});
+	}
+
+	const questMap = CreateQuestMap(data.quests);
+
+	for (const sub of data.questSubs) {
+		const quest = questMap.get(sub.questID);
+
+		if (!quest) {
+			console.warn(
+				`Couldn't find parent quest for recently-achieved-sub '${sub.questID}. Skipping.'`
+			);
+			continue;
+		}
+
+		clumped.push({
+			type: "QUEST_ACHIEVEMENT",
+			userID: sub.userID,
+			sub,
+			quest,
 		});
 	}
 

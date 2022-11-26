@@ -2,7 +2,10 @@ import {
 	ChartDocument,
 	ClassAchievementDocument,
 	GoalDocument,
+	GoalSubscriptionDocument,
+	integer,
 	QuestDocument,
+	QuestSubscriptionDocument,
 	ScoreDocument,
 	SessionDocument,
 	SongDocument,
@@ -21,8 +24,27 @@ export type ClumpedActivityClassAchievement = {
 	type: "CLASS_ACHIEVEMENT";
 } & ClassAchievementDocument;
 
+export type ClumpedActivityGoalAchievement = {
+	type: "GOAL_ACHIEVEMENT";
+	// redundant, but convenient.
+	userID: integer;
+	sub: GoalSubscriptionDocument;
+	goal: GoalDocument;
+};
+
+export type ClumpedActivityQuestAchievement = {
+	type: "QUEST_ACHIEVEMENT";
+	userID: integer;
+	sub: QuestSubscriptionDocument;
+	quest: QuestDocument;
+};
+
 export type ClumpedActivity = Array<
-	ClumpedActivitySession | ClumpedActivityScores | ClumpedActivityClassAchievement
+	| ClumpedActivitySession
+	| ClumpedActivityScores
+	| ClumpedActivityClassAchievement
+	| ClumpedActivityQuestAchievement
+	| ClumpedActivityGoalAchievement
 >;
 
 /**

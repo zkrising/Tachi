@@ -3,16 +3,18 @@ import { Link } from "react-router-dom";
 import { GoalDocument } from "tachi-common";
 import useLUGPTSettings from "./useLUGPTSettings";
 
-export default function GoalLink({ goal }: { goal: GoalDocument }) {
+export default function GoalLink({ goal, noPad }: { goal: GoalDocument; noPad?: boolean }) {
 	const { settings } = useLUGPTSettings();
+
+	const pad = noPad ? "" : "ml-2";
 
 	switch (goal.charts.type) {
 		case "multi":
-			return <span className="ml-2">{goal.name}</span>;
+			return <span className={pad}>{goal.name}</span>;
 		case "single":
 			return (
 				<Link
-					className="gentle-link ml-2"
+					className={`gentle-link ${pad}`}
 					to={`/dashboard/games/${goal.game}/${goal.playtype}/charts/${goal.charts.data}`}
 				>
 					{goal.name}
@@ -21,11 +23,11 @@ export default function GoalLink({ goal }: { goal: GoalDocument }) {
 
 		case "folder":
 			if (!settings) {
-				return <span className="ml-2">{goal.name}</span>;
+				return <span className={pad}>{goal.name}</span>;
 			}
 			return (
 				<Link
-					className="gentle-link ml-2"
+					className={`gentle-link ${pad}`}
 					to={`/dashboard/users/${settings.userID}/games/${goal.game}/${goal.playtype}/folders/${goal.charts.data}`}
 				>
 					{goal.name}

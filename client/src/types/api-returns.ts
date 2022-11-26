@@ -230,6 +230,13 @@ export interface ActivityReturn {
 	recentlyHighlightedScores: Array<ScoreDocument>;
 	achievedClasses: Array<ClassAchievementDocument>;
 
+	goals: Array<GoalDocument>;
+	quests: Array<QuestDocument>;
+
+	// recently achieved goal/quest subs
+	goalSubs: Array<GoalSubscriptionDocument>;
+	questSubs: Array<QuestSubscriptionDocument>;
+
 	users: Array<UserDocument>;
 }
 

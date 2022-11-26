@@ -1,8 +1,10 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import { GetAndUpdateUsersGoals } from "lib/score-import/framework/goals/goals";
 import { UpdateChartRanking } from "lib/score-import/framework/pb/create-pb-doc";
 import { ProcessPBs } from "lib/score-import/framework/pb/process-pbs";
+import { UpdateUsersQuests } from "lib/score-import/framework/quests/quests";
 import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/user-game-stats/update-ugs";
 import { RecalcSessions } from "utils/calculations/recalc-sessions";
 import type { Game, Playtype, ScoreDocument } from "tachi-common";
@@ -126,6 +128,7 @@ export async function DeleteMultipleScores(scores: Array<ScoreDocument>, blackli
 	logger.info(`Received request to delete ${scores.length} (Blacklist: ${blacklist}).`);
 
 	const scoreIDs = scores.map((e) => e.scoreID);
+	const chartIDs = scores.map((e) => e.chartID);
 
 	await db.scores.remove({
 		scoreID: { $in: scoreIDs },
@@ -243,6 +246,17 @@ export async function DeleteMultipleScores(scores: Array<ScoreDocument>, blackli
 		const [game, playtype, strUserID] = ugpt.split("-") as [Game, Playtype, string];
 
 		const userID = Number(strUserID);
+
+		const pertinentChartIDs = scores
+			.filter((e) => e.game === game && e.playtype === playtype && e.userID === userID)
+			.map((e) => e.chartID);
+
+		// if this user has any scores, update their goals.
+		if (pertinentChartIDs.length > 0) {
+			const goalInfo = await GetAndUpdateUsersGoals(game, userID, new Set(chartIDs), logger);
+
+			await UpdateUsersQuests(goalInfo, game, [playtype], userID, logger);
+		}
 
 		await UpdateUsersGamePlaytypeStats(game, playtype, userID, null, logger);
 	}

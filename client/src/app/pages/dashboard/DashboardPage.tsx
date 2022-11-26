@@ -24,6 +24,7 @@ import { COLOUR_SET, GetGameConfig, UserDocument } from "tachi-common";
 import { UGSWithRankingData, UserRecentSummary } from "types/api-returns";
 import { DashboardHeader } from "components/dashboard/DashboardHeader";
 import DashboardActivity from "components/dashboard/DashboardActivity";
+import GoalLink from "components/util/GoalLink";
 import { FolderInfoComponent } from "./users/games/_game/_playtype/folders/FolderSelectPage";
 import { GameStatContainer } from "./users/UserGamesPage";
 
@@ -142,14 +143,19 @@ function RecentInfo({ user }: { user: UserDocument }) {
 						<Divider />
 						<div className="text-white">
 							<ul>
-								{data.recentAchievedGoals.map((e) => (
-									<GentleLink
-										to={`/dashboard/games/${e.game}/${e.playtype}/targets/goals/${e.goalID}`}
-										key={e.goalID}
-									>
-										<li>{goalMap.get(e.goalID)?.name}</li>
-									</GentleLink>
-								))}
+								{data.recentAchievedGoals.map((e) => {
+									const goal = goalMap.get(e.goalID);
+
+									if (!goal) {
+										return <span>whoops, couldn't find this goal.</span>;
+									}
+
+									return (
+										<li key={e.goalID}>
+											<GoalLink goal={goal} />
+										</li>
+									);
+								})}
 							</ul>
 						</div>
 					</Alert>

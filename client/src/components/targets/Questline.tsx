@@ -127,9 +127,9 @@ export function InnerQuestInfo({ quest }: { quest: QuestDocument }) {
 				<QuickTooltip
 					tooltipContent={
 						questSub.achieved
-							? `Achieved on ${FormatTime(questSub.timeAchieved)}`
+							? `Achieved on ${FormatTime(questSub.timeAchieved ?? 0)}`
 							: questSub.lastInteraction
-							? `Last raised on ${FormatTime(questSub.lastInteraction)}`
+							? `Last raised on ${FormatTime(questSub.lastInteraction ?? 0)}`
 							: `Freshly Assigned!`
 					}
 				>

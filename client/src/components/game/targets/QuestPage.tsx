@@ -27,7 +27,7 @@ export default function QuestPage({ game, playtype }: GamePT) {
 			"Quests",
 			data ? data.quest.name : "Loading...",
 		],
-		[game, playtype],
+		[game, playtype, data],
 		data ? data.quest.name : "Loading..."
 	);
 

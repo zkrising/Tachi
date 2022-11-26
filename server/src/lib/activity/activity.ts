@@ -1,5 +1,9 @@
 import db from "external/mongo/db";
-import { GetRelevantSongsAndCharts } from "utils/db";
+import {
+	GetRecentlyAchievedGoals,
+	GetRecentlyAchievedQuests,
+	GetRelevantSongsAndCharts,
+} from "utils/db";
 import { DedupeArr } from "utils/misc";
 import { GetGPT } from "utils/req-tachi-data";
 import { GetUsersWithIDs } from "utils/user";
@@ -18,8 +22,6 @@ export type ActivityConstraint = FilterQuery<
  * - Recent Sessions
  * - Recent Highlighted Scores
  * - Achieved Classes
- *
- * It will support:
  * - Recently achieved goals
  * - Recently achieved quests
  *
@@ -71,30 +73,41 @@ export async function GetRecentActivity(
 					$gte: earliestSession,
 			  };
 
-	const achievedClasses = await db["class-achievements"].find(
-		{
-			...baseQuery,
-			timeAchieved: timeConstraint,
-		},
-		{
-			sort: {
-				timeAchieved: -1,
+	const [
+		// yeah, i hate doing stuff like this in parallel. It's really easy to get
+		// wrong, but this code is hit so frequently that I'd be insane not to take
+		// the performance win of parallelism in queries.
+		achievedClasses,
+		recentlyHighlightedScores,
+		{ goals, goalSubs },
+		{ quests, questSubs },
+	] = await Promise.all([
+		db["class-achievements"].find(
+			{
+				...baseQuery,
+				timeAchieved: timeConstraint,
 			},
-		}
-	);
-
-	const recentlyHighlightedScores = await db.scores.find(
-		{
-			...baseQuery,
-			highlight: true,
-			timeAchieved: timeConstraint,
-		},
-		{
-			sort: {
-				timeAchieved: -1,
+			{
+				sort: {
+					timeAchieved: -1,
+				},
+			}
+		),
+		db.scores.find(
+			{
+				...baseQuery,
+				highlight: true,
+				timeAchieved: timeConstraint,
 			},
-		}
-	);
+			{
+				sort: {
+					timeAchieved: -1,
+				},
+			}
+		),
+		GetRecentlyAchievedGoals({ ...baseQuery, timeAchieved: timeConstraint }, 0),
+		GetRecentlyAchievedQuests({ ...baseQuery, timeAchieved: timeConstraint }, 0),
+	]);
 
 	const { songs, charts } = await GetRelevantSongsAndCharts(recentlyHighlightedScores, game);
 
@@ -102,6 +115,8 @@ export async function GetRecentActivity(
 		...recentSessions.map((e) => e.userID),
 		...recentlyHighlightedScores.map((e) => e.userID),
 		...achievedClasses.map((e) => e.userID),
+		...goalSubs.map((e) => e.userID),
+		...questSubs.map((e) => e.userID),
 	]);
 
 	const users = await GetUsersWithIDs(userIDs);
@@ -113,6 +128,10 @@ export async function GetRecentActivity(
 		charts,
 		achievedClasses,
 		users,
+		goals,
+		goalSubs,
+		quests,
+		questSubs,
 	};
 }
 

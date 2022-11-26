@@ -9,11 +9,13 @@ import SessionRaiseBreakdown from "components/sessions/SessionRaiseBreakdown";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
+import GoalLink from "components/util/GoalLink";
 import Icon from "components/util/Icon";
 import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
+import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -24,11 +26,11 @@ import { ScoreDataset } from "types/tables";
 import {
 	ClumpedActivity,
 	ClumpedActivityClassAchievement,
+	ClumpedActivityGoalAchievement,
+	ClumpedActivityQuestAchievement,
 	ClumpedActivityScores,
 	ClumpedActivitySession,
 } from "types/tachi";
-import { UserContext } from "context/UserContext";
-import ReferToUser from "components/util/ReferToUser";
 
 // Records activity for a group of users on a GPT. Also used for single users.
 export default function Activity({
@@ -159,6 +161,22 @@ function ActivityInner({
 									user={user}
 								/>
 							);
+						case "GOAL_ACHIEVEMENT":
+							return (
+								<GoalActivity
+									shouldShowGame={shouldShowGame}
+									data={e}
+									user={user}
+								/>
+							);
+						case "QUEST_ACHIEVEMENT":
+							return (
+								<QuestActivity
+									shouldShowGame={shouldShowGame}
+									data={e}
+									user={user}
+								/>
+							);
 					}
 				})}
 				<div className="timeline-item">
@@ -190,6 +208,10 @@ function ActivityInner({
 												break;
 											case "SESSION":
 												lastTimestamp = lastThing.timeStarted;
+												break;
+											case "GOAL_ACHIEVEMENT":
+											case "QUEST_ACHIEVEMENT":
+												lastTimestamp = lastThing.sub.timeAchieved!;
 										}
 
 										if (!lastTimestamp) {
@@ -306,6 +328,96 @@ function ScoresActivity({
 						/>
 					</>
 				)}
+			</div>
+		</div>
+	);
+}
+
+function GoalActivity({
+	data,
+	user,
+	shouldShowGame,
+}: {
+	data: ClumpedActivityGoalAchievement;
+	user: UserDocument;
+	shouldShowGame: boolean;
+}) {
+	const { game, playtype } = data.goal;
+
+	const prettyGame = shouldShowGame ? FormatGame(game, playtype) : "";
+
+	return (
+		<div className="timeline-item timeline-hover my-4">
+			<div className="timeline-badge bg-warning"></div>
+			<div className="timeline-content">
+				<div className="timeline-content-inner">
+					<div className="timeline-content-title">
+						<span style={{ fontSize: "1.15rem" }}>
+							<UGPTLink reqUser={user} game={game} playtype={playtype} /> achieved{" "}
+							<GoalLink noPad goal={data.goal} />
+							{prettyGame && ` in ${prettyGame}`}!
+						</span>
+					</div>
+
+					<div className="timeline-content-timestamp">
+						{MillisToSince(data.sub.timeAchieved ?? 0)}
+						<br />
+						<span className="text-muted font-italic text-right">
+							{FormatTime(data.sub.timeAchieved ?? 0)}
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+function QuestActivity({
+	data,
+	user,
+	shouldShowGame,
+}: {
+	data: ClumpedActivityQuestAchievement;
+	user: UserDocument;
+	shouldShowGame: boolean;
+}) {
+	const { game, playtype } = data.quest;
+
+	const prettyGame = shouldShowGame ? FormatGame(game, playtype) : "";
+
+	return (
+		<div className="timeline-item timeline-hover my-4">
+			<div className="timeline-badge bg-warning"></div>
+			<div className="timeline-content">
+				<div className="timeline-content-inner">
+					<div className="timeline-content-title">
+						<span style={{ fontSize: "1.15rem" }}>
+							<UGPTLink reqUser={user} game={game} playtype={playtype} /> completed
+							the{" "}
+							<Link
+								className="gentle-link"
+								to={`/dashboard/games/${game}/${playtype}/quests/${data.quest.questID}`}
+							>
+								{data.quest.name}
+							</Link>{" "}
+							quest{prettyGame && ` in ${prettyGame}`}!
+						</span>
+						{prettyGame && (
+							<>
+								<br />
+								<Muted>{prettyGame}</Muted>
+							</>
+						)}
+					</div>
+
+					<div className="timeline-content-timestamp">
+						{MillisToSince(data.sub.timeAchieved ?? 0)}
+						<br />
+						<span className="text-muted font-italic text-right">
+							{FormatTime(data.sub.timeAchieved ?? 0)}
+						</span>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

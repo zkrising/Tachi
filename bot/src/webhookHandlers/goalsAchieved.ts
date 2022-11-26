@@ -38,7 +38,7 @@ export async function HandleGoalAchievedV1(
 
 	const shouldShowPlaytype = gameConfig.validPlaytypes.length !== 1;
 
-	const embed = CreateEmbed()
+	const embed = CreateEmbed(userDoc.id)
 		.setTitle(
 			`${userDoc.username} just achieved ${event.goals.length} ${Pluralise(
 				event.goals.length,

@@ -29,5 +29,5 @@ The current Events are:
 | Type | Description |
 | :: | :: |
 | `class-update/v1` | Fires whenever a user has had a class update positively, such as going from 9th Dan to 10th Dan. |
-<!-- | `goal-achieved/v1` | Fires whenever a user has achieved a goal. |
-| `quest-achieved/v1` | Fires whenever a user has achieved a quest. | -->
+| `goal-achieved/v1` | Fires whenever a user has achieved a goal. |
+| `quest-achieved/v1` | Fires whenever a user has achieved a quest. |

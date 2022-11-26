@@ -12,6 +12,7 @@ import type {
 	integer,
 	PBScoreDocument,
 	Playtype,
+	QuestDocument,
 	SongDocument,
 	UserDocument,
 } from "tachi-common";
@@ -49,6 +50,19 @@ export async function GetGoalWithID(goalID: string, game: Game, playtype: Playty
 
 	if (!res.success) {
 		throw new Error(`Failed to fetch goal with ID ${goalID}. '${res.description}'.`);
+	}
+
+	return res.body;
+}
+
+export async function GetQuestWithID(questID: string, game: Game, playtype: Playtype) {
+	const res = await TachiServerV1Get<QuestDocument>(
+		`/games/${game}/${playtype}/targets/quests/${questID}`,
+		null
+	);
+
+	if (!res.success) {
+		throw new Error(`Failed to fetch goal with ID ${questID}. '${res.description}'.`);
 	}
 
 	return res.body;

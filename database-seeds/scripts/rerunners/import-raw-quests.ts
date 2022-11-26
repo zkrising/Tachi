@@ -88,6 +88,9 @@ MutateCollection("goals.json", (goals) => {
 			continue;
 		}
 
+		// don't allow duplicates in incoming goals, either.
+		goalIDs.add(goal.goalID);
+
 		goals.push(goal);
 	}
 

@@ -41,10 +41,11 @@ export default function RivalsMainPage({
 		<Row>
 			<Col xs={12} className="text-center">
 				<div className="btn-group d-flex justify-content-center">
-					<SelectLinkButton to={`${base}/rivals/pb-leaderboard`}>
+					{/* this ui sucks and i don't like it. come up with something better? */}
+					{/* <SelectLinkButton to={`${base}/rivals/pb-leaderboard`}>
 						<Icon type="sort-amount-up" />
 						Rival's Bests
-					</SelectLinkButton>
+					</SelectLinkButton> */}
 					<SelectLinkButton to={`${base}/rivals`}>
 						<Icon type="list" />
 						Rival Activity

@@ -1,4 +1,3 @@
-import { APIFetchV1 } from "util/api";
 import { LoadCommit } from "util/seeds";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import SeedsPicker from "components/seeds/SeedsPicker";
@@ -11,7 +10,7 @@ import SelectButton from "components/util/SelectButton";
 import { TachiConfig } from "lib/config";
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { GitCommit, Revision } from "types/git";
+import { Revision } from "types/git";
 
 export default function SeedsViewer() {
 	useSetSubheader(["Developer Utils", "Database Seeds Management"]);

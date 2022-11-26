@@ -20,10 +20,13 @@ import {
 	BMSCourseWithRelated,
 	ChartWithRelated,
 	DiffSeedsCollection as SeedsDiff,
+	QuestlineWithRelated,
+	QuestWithRelated,
 	TableWithRelated,
 } from "types/seeds";
 import { APIFetchV1 } from "./api";
-import { Dedupe, JSONAttributeDiff, JSONCompare } from "./misc";
+import { CreateGoalMap, GetGoalIDsFromQuest } from "./data";
+import { CreateQuestMap, Dedupe, JSONAttributeDiff, JSONCompare } from "./misc";
 import { ValueGetterOrHybrid } from "./ztable/search";
 
 /**
@@ -178,9 +181,11 @@ export function MakeDataset<K extends keyof AllDatabaseSeeds>(
 			return data["folders.json"] ?? [];
 
 		case "goals.json":
+			return data["goals.json"] ?? [];
 		case "questlines.json":
+			return RelateQuestlines(data);
 		case "quests.json":
-			throw new Error("GOALS NOT SUPPORTED ZZZZ");
+			return RelateQuests(data);
 		case "tables.json":
 			return RelateTables(data);
 	}
@@ -197,9 +202,7 @@ function RelateBMSCourses(data: Partial<AllDatabaseSeeds>): BMSCourseWithRelated
 	const bmsCharts = data["charts-bms.json"];
 
 	if (!bmsSongs || !bmsCharts) {
-		throw new Error(
-			`Couldn't find songs-bms/charts-bms, but tried to render bms-course-lookup. Not possible?`
-		);
+		return [];
 	}
 
 	const songMap = CreateSongMap(bmsSongs);
@@ -259,6 +262,40 @@ function RelateTables(data: Partial<AllDatabaseSeeds>): TableWithRelated[] {
 			// then when the table renderer goes to render its folders, it will get
 			// undefined anyway.
 			folders: Object.fromEntries(e.folders.map((e) => [e, folderMap.get(e)])),
+		},
+	}));
+}
+
+function RelateQuestlines(data: Partial<AllDatabaseSeeds>): QuestlineWithRelated[] {
+	const base = data["questlines.json"];
+
+	if (!base) {
+		return [];
+	}
+
+	const questMap = CreateQuestMap(data["quests.json"] ?? []);
+
+	return base.map((e) => ({
+		...e,
+		__related: {
+			quests: Object.fromEntries(e.quests.map((e) => [e, questMap.get(e)])),
+		},
+	}));
+}
+
+function RelateQuests(data: Partial<AllDatabaseSeeds>): QuestWithRelated[] {
+	const base = data["quests.json"];
+
+	if (!base) {
+		return [];
+	}
+
+	const goalMap = CreateGoalMap(data["goals.json"] ?? []);
+
+	return base.map((e) => ({
+		...e,
+		__related: {
+			goals: Object.fromEntries(GetGoalIDsFromQuest(e).map((e) => [e, goalMap.get(e)])),
 		},
 	}));
 }

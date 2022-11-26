@@ -25,6 +25,13 @@ import { SeedsTableCells, SeedsTableHeaders, SeedsTableSearchFns } from "./Seeds
 import { SeedsFolderCells, SeedsFolderHeaders, SeedsFolderSearchFns } from "./SeedsFolderTable";
 import { MakeSeedsChartsControls } from "./SeedsChartsTable";
 import { MakeSeedsSongsControls } from "./SeedsSongsTable";
+import { SeedsGoalCells, SeedsGoalSearchFns, SeedsGoalsHeaders } from "./SeedsGoalsTable";
+import { SeedsQuestCells, SeedsQuestSearchFns, SeedsQuestsHeaders } from "./SeedsQuestTable";
+import {
+	SeedsQuestlineCells,
+	SeedsQuestlineHeaders,
+	SeedsQuestlineSearchFns,
+} from "./SeedsQuestlineTable";
 
 export default function SeedsTable({
 	data,
@@ -256,6 +263,27 @@ function GetTableControls(file: keyof AllDatabaseSeeds) {
 			headers: SeedsFolderHeaders,
 			searchFns: SeedsFolderSearchFns,
 			entryName: "Folders",
+		};
+	} else if (file === "goals.json") {
+		return {
+			Cells: SeedsGoalCells,
+			headers: SeedsGoalsHeaders,
+			searchFns: SeedsGoalSearchFns,
+			entryName: "Goals",
+		};
+	} else if (file === "quests.json") {
+		return {
+			Cells: SeedsQuestCells,
+			headers: SeedsQuestsHeaders,
+			searchFns: SeedsQuestSearchFns,
+			entryName: "Quests",
+		};
+	} else if (file === "questlines.json") {
+		return {
+			Cells: SeedsQuestlineCells,
+			headers: SeedsQuestlineHeaders,
+			searchFns: SeedsQuestlineSearchFns,
+			entryName: "Questlines",
 		};
 	}
 

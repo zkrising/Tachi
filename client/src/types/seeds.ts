@@ -43,34 +43,19 @@ export type TableWithRelated = TableDocument & {
 	};
 };
 
-export type GoalWithRelated =
-	| (GoalDocumentSingle & {
-			__related: {
-				chart: ChartDocument;
-				song: SongDocument;
-			};
-	  })
-	| (GoalDocumentMulti & {
-			__related: {
-				charts: Array<ChartDocument>;
-				songs: Array<SongDocument>;
-			};
-	  })
-	| (GoalDocumentFolder & {
-			__related: {
-				folder: FolderDocument;
-			};
-	  });
-
 export type QuestlineWithRelated = QuestlineDocument & {
 	__related: {
-		quests: Array<QuestDocument>;
+		quests: {
+			[questID: string]: QuestDocument | undefined;
+		};
 	};
 };
 
 export type QuestWithRelated = QuestDocument & {
 	__related: {
-		goals: Array<GoalDocument>;
+		goals: {
+			[goalID: string]: GoalDocument | undefined;
+		};
 	};
 };
 
@@ -100,7 +85,7 @@ export type DatabaseSeedsWithRelated = {
 	"folders.json": Array<FolderDocument>;
 
 	"tables.json": Array<TableWithRelated>;
-	"goals.json": Array<GoalWithRelated>;
+	"goals.json": Array<GoalDocument>;
 	"questlines.json": Array<QuestlineWithRelated>;
 	"quests.json": Array<QuestWithRelated>;
 } & SongSeedsWithRelated &

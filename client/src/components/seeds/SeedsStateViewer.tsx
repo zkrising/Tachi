@@ -107,7 +107,7 @@ function SeedsDiffParentState({
 			// loading...
 			setParentData(null);
 
-			const data = await LoadSeeds(baseRev.repo, baseRev.c.parents[0].sha);
+			const data = await LoadSeeds(baseRev.repo, baseRev.c.parents[0].sha.trim());
 
 			setParentData(data);
 		})();

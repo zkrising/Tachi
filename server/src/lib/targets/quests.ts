@@ -97,6 +97,7 @@ export async function EvaluateQuestProgress(userID: integer, quest: QuestDocumen
 
 	const isSubscribedToQuest = await db["quest-subs"].findOne({
 		questID: quest.questID,
+		userID,
 	});
 
 	// If the user is subscribed the quest, we don't need to calculate

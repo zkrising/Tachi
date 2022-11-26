@@ -22,12 +22,19 @@ import type {
 	Playtype,
 	ScoreDocument,
 	UserDocument,
+	integer,
 } from "tachi-common";
 
-export function CreateEmbed() {
-	return new MessageEmbed()
+export function CreateEmbed(userID?: integer) {
+	const embed = new MessageEmbed()
 		.setColor(ServerConfig.type === "ktchi" ? "#e61c6e" : "#527acc")
 		.setTimestamp();
+
+	if (userID !== undefined) {
+		embed.setThumbnail(PrependTachiUrl(`/users/${userID}/pfp`));
+	}
+
+	return embed;
 }
 
 export function CreateImportEmbed(importDoc: ImportDocument) {

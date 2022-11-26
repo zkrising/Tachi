@@ -6,8 +6,9 @@ import { TachiServerV1Request, RequestTypes, TachiServerV1Get } from "../utils/f
 import { CreateLayeredLogger } from "../utils/logger";
 import { VERSION_PRETTY } from "../version";
 import { HandleClassUpdateV1 } from "../webhookHandlers/classUpdate";
-import { HandleGoalAchievedV1 } from "../webhookHandlers/goalAchieved";
+import { HandleGoalAchievedV1 } from "../webhookHandlers/goalsAchieved";
 import express from "express";
+import { HandleQuestAchievedV1 } from "webhookHandlers/questAchieved";
 import path from "path";
 import type { Express } from "express";
 import type { APITokenDocument, UserDocument, WebhookEvents } from "tachi-common";
@@ -150,7 +151,11 @@ app.post("/webhook", ValidateWebhookRequest, async (req, res) => {
 			break;
 		}
 
-		case "quest-achieved/v1":
+		case "quest-achieved/v1": {
+			statusCode = await HandleQuestAchievedV1(webhookEvent.content);
+			break;
+		}
+
 		default: {
 			// get around to updating in time.
 			// to define new webhooks, and the bot might not

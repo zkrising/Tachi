@@ -1,5 +1,4 @@
 import { APIFetchV1 } from "util/api";
-import { FORMATTED_VERSION } from "util/constants/version";
 import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import { BannedContext } from "context/BannedContext";

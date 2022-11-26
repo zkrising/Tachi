@@ -2108,5 +2108,1611 @@
 		"goalID": "Ga969ef50f627363db7140d98bd478af284cde9eceb5b547184eb14c8594ae84c",
 		"name": "AAA 1% of the charts in the Level 9 (CastHour) folder",
 		"playtype": "SP"
+	},
+	{
+		"charts": {
+			"data": [
+				"b1203df0a538d7e9e0bd14c37a98acfe91ff70dc",
+				"2d0727e9a2bea503a4b235f5658d8f18ada6f413",
+				"3ec880dc108a0dad9f23fc4ddb5817478d0924c1",
+				"3678b67f108e769241767d2e07053ba1b25fc3cf"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 9
+		},
+		"game": "sdvx",
+		"goalID": "G271d4390d64f30671e0b86894d3a8425836f2ce481e45807a1362fc0aa28cac6",
+		"name": "S any one of Paradission (ADV 12), Decoy (ADV 12), NEO GRAVITY (ADV 12) or Celestial stinger (ADV 12)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F366713bbe56a09b513e571c86c97dcb71455c770f700611099e5d69974b04a01",
+			"type": "folder"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 9
+		},
+		"game": "sdvx",
+		"goalID": "G184ea1ffcd1e6fc52f2a75fc83bbf297a9442fa05d9f973687737edf5fa785c3",
+		"name": "S any chart in the Level 13 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F21e35fbe0718c2db51ab633ae43d53945012fb86f740ef81a2d4ba75b425d384",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 3,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 8
+		},
+		"game": "sdvx",
+		"goalID": "Gc89a36d13896b7906bde2e9c408ed6368753ed05ae1ec8d7c25ecade01285fe1",
+		"name": "AAA+ 3 charts in the Level 14 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"e6cdd57b0fe40ce2e5c3355f632c40a39793a0db",
+				"1dd2ac700d91c78e6faaa09d9b9726bb1c239348",
+				"19e8a6b9e8746c625f7e8109e17480edea36dacd"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "G2b16bab5fa5dce8f8891b560cc3bf1cf2d73f87da4b9b947cff842f7f20f5c4a",
+		"name": "AAA any one of The First Step (EXH 14), EGOISM -Rebuild- (EXH 14) or Still Lonesome (EXH 14)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Fb6d41e93c52dd1cf72b05a8fbfa979ecb88fe9c6675180e2d8cbd2d5a6e9476c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 5,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "G18293c39309989fa5f8d8994380e56ac7d55eb639136a4865999dfb1d223f531",
+		"name": "AAA 5 charts in the Level 15 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Fb6d41e93c52dd1cf72b05a8fbfa979ecb88fe9c6675180e2d8cbd2d5a6e9476c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 20,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 6
+		},
+		"game": "sdvx",
+		"goalID": "G4cb0c7225eac2ff049e396d4039f399dd469670738396321730fd632bedb2a25",
+		"name": "AA+ 20 charts in the Level 15 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Fb6d41e93c52dd1cf72b05a8fbfa979ecb88fe9c6675180e2d8cbd2d5a6e9476c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 10,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 2
+		},
+		"game": "sdvx",
+		"goalID": "G11becf1f2a1d088758578f1509c5f5a56b86236f8c1d094f1be195132fd62ce9",
+		"name": "EXCESSIVE CLEAR 10 charts in the Level 15 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Fb6d41e93c52dd1cf72b05a8fbfa979ecb88fe9c6675180e2d8cbd2d5a6e9476c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 30,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "G5a8499f9d70dcacee4c32215beb3644d31b83311b7bd939ec075eabb32ea6ab1",
+		"name": "CLEAR 30 charts in the Level 15 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Fbfa65f45a9f5436a5dbc55a7f90d116b50ac748d5e881b56451ed4b40531a53a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 10,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "G5289b69daae8be45a51a3a8b09e1d8f61bef704dee30184a0f5754d878dc600f",
+		"name": "CLEAR 10 charts in the Level 16 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"5db205288187fac8a2b41e9c51b6f6294a66b4d1",
+				"a7cbe0a9e50ec9c026a7b3e77f6db943993a281e",
+				"c72d53152552b453cd6566399f75dfee8b5c4456"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "G71816d31d4cbd1b75e3581daeb3cf51276c253f8b75b734086796524ddec5c72",
+		"name": "CLEAR any one of 孤独の番人 (EXH 16), 爆なな☆てすとロイヤー (EXH 16) or ポメグラネイト (EXH 16)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F366713bbe56a09b513e571c86c97dcb71455c770f700611099e5d69974b04a01",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 3,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 3
+		},
+		"game": "sdvx",
+		"goalID": "Gfbbafc14a53453d928cc5bb227e5a6cc732938e88a4cbfa2ae0c347336c68789",
+		"name": "ULTIMATE CHAIN 3 charts in the Level 13 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F21e35fbe0718c2db51ab633ae43d53945012fb86f740ef81a2d4ba75b425d384",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 3,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 9
+		},
+		"game": "sdvx",
+		"goalID": "G6f5fc1daa754917e403b38208e3ecc8b1f9775664bcb07b4a64c2d47e4e67812",
+		"name": "S 3 charts in the Level 14 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Fb6d41e93c52dd1cf72b05a8fbfa979ecb88fe9c6675180e2d8cbd2d5a6e9476c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 4,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 8
+		},
+		"game": "sdvx",
+		"goalID": "G5949f3373d323b3e64e79fa685a203c683f17ed0b409172feac81cc5541d37b9",
+		"name": "AAA+ 4 charts in the Level 15 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"e8f68fff897924a8e24cb2d9b1f808a40b7550fe",
+				"1dbf9967abd36259de44a22dbbf2436008ff0813",
+				"87315643cf50d4d4fa6d9db91737b0cb4a7b142d"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "G36c2a831d81ad956bb2eaa4dd051ffbc51011d4cbe3c4cfe2b11a2105738868b",
+		"name": "AAA any one of ARROW RAIN (EXH 16), GAMBOL (dfk SLC rmx) (INF 16) or Juggler's Maddness (EXH 16)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Fbfa65f45a9f5436a5dbc55a7f90d116b50ac748d5e881b56451ed4b40531a53a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 5,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "G7cfbf6a9f0b899c5a703aed8e9223b95e75153be29599d75b80c73dbb1efa65a",
+		"name": "AAA 5 charts in the Level 16 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"55c7e6b036bd64460374db77c35c2fb21dca1bd6",
+				"55864ff29e0cb630e156fe27a743990db3ae50ad"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "sdvx",
+		"goalID": "Gbdd845dad0fb0c507281e22b190a4e76076562364fe07bf5757481e79eb6ac64",
+		"name": "AA+ either VALKYRIE ASSAULT (EXH 16) or choux à la crème (EXH 16)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Fbfa65f45a9f5436a5dbc55a7f90d116b50ac748d5e881b56451ed4b40531a53a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 40,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "G100581786718516bd7b937b0373c95776ecf701abb076019e8b7792c12142d04",
+		"name": "CLEAR 40 charts in the Level 16 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Fbfa65f45a9f5436a5dbc55a7f90d116b50ac748d5e881b56451ed4b40531a53a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 15,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 2
+		},
+		"game": "sdvx",
+		"goalID": "Gf74996d91ef6aea4b337dd983550b550d96b1ccf167b8562300bd1efe9ae1ca1",
+		"name": "EXCESSIVE CLEAR 15 charts in the Level 16 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 5,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "G2b807722b07ace90a20a29d1a3c5899bf133f61823dd65f1a0250fe15e7287ee",
+		"name": "CLEAR 5 charts in the Level 17 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"33a9f54ec49c172f6f4fd0168bd37c8710ca5beb",
+				"f226a410dbba28fd587c131e45728640a9bfb4f4",
+				"88d24c5a0d2a813517672d9c7e92465147f51f1f",
+				"4274fa3f33790fab5d3e21634f608d0484b9782a",
+				"c4d76339c2e651d79be5689576768e42d8747690"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "G733c4bf4a9e2241afe1929e625c08f306ec508ed08f9e994335757fae4aec30c",
+		"name": "CLEAR any one of D1g1t1ze b0dy (MXM 17), 逆さま♥シンデレラパレード (MXM 17), AXION (MXM 17), The Sampling Paradise (P*Light Remix) (EXH 17) or 黎明スケッチブック (MXM 17)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F21e35fbe0718c2db51ab633ae43d53945012fb86f740ef81a2d4ba75b425d384",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 4,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 3
+		},
+		"game": "sdvx",
+		"goalID": "G60857b09bb58dc91ba68c873599efa5b92460aedb13fd6b79828dc991f7e02d5",
+		"name": "ULTIMATE CHAIN 4 charts in the Level 14 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Fb6d41e93c52dd1cf72b05a8fbfa979ecb88fe9c6675180e2d8cbd2d5a6e9476c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 4,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 9
+		},
+		"game": "sdvx",
+		"goalID": "G05d50af796f628c7afec029815534a5e09f350c255314f3efec6cd2858af99ed",
+		"name": "S 4 charts in the Level 15 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Fbfa65f45a9f5436a5dbc55a7f90d116b50ac748d5e881b56451ed4b40531a53a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 4,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 8
+		},
+		"game": "sdvx",
+		"goalID": "G07e27542b8ee26210465d9f68c49b00023b0abaf2975df6292b2c3d2a06ed59a",
+		"name": "AAA+ 4 charts in the Level 16 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"69e71c20bb03725e2f988712cb7fd184d92bb50c",
+				"6fbac4d38c0dcf19ffabeeb7ef7c1d9bb1e34019",
+				"0e0c5d7bd5deff9419e6ec8c3bc65e684a895065",
+				"022b18c73e4dd394c1b58e3280193f752876115e"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "G263e6c21077b20abbd22e662c6244f1c2886852700d071810237e72999077b1a",
+		"name": "AAA any one of Glorious Journey (EXH 16), Jack-the-Ripper◆ (EXH 16), 最終鬼畜妹フランドール・S (EXH 16) or KHAMEN BREAK (EXH 16)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 5,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "Ga2c9f4f675a355402e790a0c2e7b9fb772efb670bc5973eaf9c31c6c1813331d",
+		"name": "AAA 5 charts in the Level 17 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"5af67282a0b8aced73ca895caff14cc6b2ad7f16",
+				"2f3c1811d226b774d717b69eac77aea0b2369a70",
+				"215966819017f8105db82f6cb28d0648dd7e4246"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "sdvx",
+		"goalID": "G3cc15abad9b2a86a271a3c722e6456c4ac6abc1bdb16316146a68a5475847a7c",
+		"name": "AA+ any one of GERBERA-For Finalists- (EXH 17), JOMANDA (EXH 17) or Destroy (GRV 17)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 50,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "Gfc5da752660fdf9df87459e0f2aa5113a4900db9f59e01d8fe92fce497376383",
+		"name": "CLEAR 50 charts in the Level 17 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 20,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 2
+		},
+		"game": "sdvx",
+		"goalID": "G1ea58441b53fbf90c0b86c447eba2c8c392f8085ed2e43097a57a151682ddb80",
+		"name": "EXCESSIVE CLEAR 20 charts in the Level 17 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+			"type": "folder"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "G24cebc3adb4e92ee001614a809f1144fe389842042b42d0b5eac46db71980831",
+		"name": "CLEAR any chart in the Level 18 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"048577a83a2c39b9d4a5982614031fa46cbf1cbf",
+				"d2242273430d85a453e399c18f528de50d304c80",
+				"ecbd5e8c5216154865d2312a0db2c9b83a0d3012",
+				"9db5ed1dad4bbf44a2af4ad2522c071f6acd7369",
+				"cb6d52909b50ae3737fc0cb3d6b2fe434b626f08"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "Gc34655886e506f579406f61ccb07ec5ad0b799762cd01a4af38a6ec9f6893810",
+		"name": "CLEAR any one of Booths of Fighters (EXH 17), Nofram (EXH 17), ULTRA B+K (MXM 17), Innocent Azure (MXM 18) or 狂水一華 (MXM 18)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Fb6d41e93c52dd1cf72b05a8fbfa979ecb88fe9c6675180e2d8cbd2d5a6e9476c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 5,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 3
+		},
+		"game": "sdvx",
+		"goalID": "G33ded5af5870c54b96cd3155f02728794320798bde500396e6772968a126ca08",
+		"name": "ULTIMATE CHAIN 5 charts in the Level 15 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Fbfa65f45a9f5436a5dbc55a7f90d116b50ac748d5e881b56451ed4b40531a53a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 5,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 9
+		},
+		"game": "sdvx",
+		"goalID": "G1bf5d830191ff744e0c8984f3a673b0a9c02ab30843ee9f6a6b7a1077b02969a",
+		"name": "S 5 charts in the Level 16 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 5,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 8
+		},
+		"game": "sdvx",
+		"goalID": "Ga5c819595707077f7141b1483bfcf062e558f1feaf31d2d7806f3b4f0d4dbca6",
+		"name": "AAA+ 5 charts in the Level 17 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"cf3900c96082ce1559917a0940d575c1bbc4fcaf",
+				"fd20f61ab4bd3cf590b9a3a29f9394e3395ecaf1",
+				"d2954f11da65ac7c7bf77edfdfd3dc37ae187f1a"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "G968a7084f7227c9fa2d10dbf3c5bed31b73eca9016bfa2a708dd8fd2842a5981",
+		"name": "AAA any one of CENSORED!! (EXH 17), UROBØROS (EXH 17) or Into The Madness (MXM 17)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 20,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "G171a6839b58cc266f7673e8d7f316953bd45aa6e8421dea5c0cdce02c901c8f3",
+		"name": "AAA 20 charts in the Level 17 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"e31c3490b55cd980c893c433d551a2781b280bf2",
+				"0b68b53d241af59b286bad84e0c1fea35450460c",
+				"349b13af7948b6394b5379d6404f54888ae70fea"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "sdvx",
+		"goalID": "G5f944f48349fa09f16bf46bb8aa1cb07584d3fcad1f02e605ccf4afd225c1c20",
+		"name": "AA+ any one of She Turns Me On (GRV 18), Enchanté (MXM 18) or KIMIDORI Streak!! (MXM 18)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 50,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 6
+		},
+		"game": "sdvx",
+		"goalID": "Gff4891fc3cdf19bf4fec4d74481b7c725a9312997ee9a53056b7e592189ae42f",
+		"name": "AA+ 50 charts in the Level 17 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 40,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 2
+		},
+		"game": "sdvx",
+		"goalID": "Gd08066e42ecea0a1215d4ba7ffb8c5daf72c0e99d87fe383772f916e6a77ae9e",
+		"name": "EXCESSIVE CLEAR 40 charts in the Level 17 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 80,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "G1f860fa2f2e92049520bfd441bc0f08b5801ce7b1b6b1ca01a28cfadd8da0c78",
+		"name": "CLEAR 80 charts in the Level 17 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 10,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "Gfcf2f85010b6320e3383f83939b4473cea5f6063ee7517e9905bb4e66c0e62e4",
+		"name": "CLEAR 10 charts in the Level 18 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Fbfa65f45a9f5436a5dbc55a7f90d116b50ac748d5e881b56451ed4b40531a53a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 5,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 3
+		},
+		"game": "sdvx",
+		"goalID": "G3bd8de94764ab165bf24d16e7dc7bbdc3d1f939883984b1bc4839a2e014151f6",
+		"name": "ULTIMATE CHAIN 5 charts in the Level 16 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 15,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 9
+		},
+		"game": "sdvx",
+		"goalID": "G54aaa8bb1d60eb0e469beeaab0e71d54f813ba55c23fbe3a5c3d99103850ef7c",
+		"name": "S 15 charts in the Level 17 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 40,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 8
+		},
+		"game": "sdvx",
+		"goalID": "Geff19a1a9f55dea94de62fb29fc3e96d66aed8647ac662459b90f798196bd611",
+		"name": "AAA+ 40 charts in the Level 17 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"906d6444ab6302d282c56bf16e709a73efd9483a",
+				"c3c452c08dc98349d19f421444dbe865aa9c884d",
+				"b41288563f0533827c58046c5dc5c677524e7d71"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "Gf124ecfef78422642bd95b61a530db99d98f3ba25d864bc0cd8de8a086a38d5e",
+		"name": "AAA any one of HE4VEN ～天国へようこそ～ (EXH 17), TOXIC VIBRATION (EXH 17) or False Cross (EXH 17)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 15,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "Ga87c29932df081afa2bffb7312692b478c89d9db32506766089f8f33b208fd69",
+		"name": "AAA 15 charts in the Level 18 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"32b5f9069c910e14fa4742fbfbbf8b6c044b8381",
+				"56c22baf5fdd4f77bd0547ae7d30d836a40bf1bb",
+				"892be9aed05113dc72040416192aa607de392f12"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "sdvx",
+		"goalID": "G261cbaac72b27bef60d20759a26f19125d52a2e630aebccbfb52298df8061dde",
+		"name": "AA+ any one of XROSS THE XOUL (GRV 18), Re：End of a Dream (MXM 18) or ΩVERSOUL (MXM 18)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"3e59ddf0d47a21c952e3060a8a55c652e5b4e849",
+				"77e581a8ca57f6677c4655640241b3e828b7e2b3",
+				"1875c09d07fdb06c7d0e9f209e7f041b7cef0b25"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "sdvx",
+		"goalID": "Gf05fe822c52f691531f9d1fe956452765a8394962cf3ceb2b235232178ea7fea",
+		"name": "AA+ any one of Fin.ArcDeaR (MXM 19), Got more raves？ (HVN 19) or 極圏 (HVN 19)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 90,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "G3e32f03b9e6818125707ef11ecc01f2e26eae053c579b8e3511679667dc333fa",
+		"name": "CLEAR 90 charts in the Level 18 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 30,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 2
+		},
+		"game": "sdvx",
+		"goalID": "G4dc55811baaa8bbeb3730d58c4a9cec2ca3fed3c63632da4e287449650a23500",
+		"name": "EXCESSIVE CLEAR 30 charts in the Level 18 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Ff75e405b41ca512993548d6cfca8b6ee2310234b2a7c5fe9f93638abc3e49fb1",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 7,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "G3f2c275b422b689fb69941442c68b32902f45627c46421e0582a1dd0fead8dd6",
+		"name": "CLEAR 7 charts in the Level 19 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"23bee4f62dd8c4c260e8479df4068457c9d78622",
+				"6cd2d65dee0fc683b63f2ce8cfea0d4072e87c4d",
+				"5d2b4c981b3d58d521db951390273f221c9c4ea8",
+				"54a980cf285ffc90f409fa2bb88f8a5adaaf48fa"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "G98b315872332237f8c118db65786c8e856bfcc861365fa6f1b81bf3008c1e633",
+		"name": "CLEAR any one of НУМЛ (MXM 18), ムーニャポヨポヨスッポコニャーゴ (VVD 18), MeteorA (MXM 18) or SuperMiracleEnsemble (MXM 18)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Fbfa65f45a9f5436a5dbc55a7f90d116b50ac748d5e881b56451ed4b40531a53a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 15,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 3
+		},
+		"game": "sdvx",
+		"goalID": "G73904adae3cb9653118aeee9e934f93bee2a5a83fe7402b7515a9e2a58b3a6d9",
+		"name": "ULTIMATE CHAIN 15 charts in the Level 16 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 15,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 9
+		},
+		"game": "sdvx",
+		"goalID": "G54aaa8bb1d60eb0e469beeaab0e71d54f813ba55c23fbe3a5c3d99103850ef7c",
+		"name": "S 15 charts in the Level 17 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"8e81441df561f80b94cbd35fd31a00ef6bcf56a4",
+				"8694be55c683329116c3d4a268c49a2d6f710039",
+				"2a723e1c6f89210d2f9d492338a44725fc3d1d55"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 8
+		},
+		"game": "sdvx",
+		"goalID": "G60927cc8f675e716e2118267923a113d5ddfc4f234fddd8644cc6ab50c9ba7ed",
+		"name": "AAA+ any one of Poison AND÷OR Affection (MXM 17), DIABLOSIS::Nāga (EXH 17) or MilK (MXM 17)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 30,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "Gf9e71513a14d709e3b9010b45b7c28f3cc0d614833177d7029030014c6b92a03",
+		"name": "AAA 30 charts in the Level 18 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 15,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 8
+		},
+		"game": "sdvx",
+		"goalID": "G884bb498a7b46ce35a39e00e2ec9346ce1841b0fc8838e301817a9159538e671",
+		"name": "AAA+ 15 charts in the Level 18 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"29b4bab6647e12580dbda8c5f0f0368926f8f055",
+				"a48487c183029ecf4e471194e09545371a8989cf",
+				"3236410d1422e3e6cea8f834c6acb6719dc5b8a9"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "G810e80a924cf33492d5b7df6c983dd9e3e2fe1ee3f2c44f11da944d77606e557",
+		"name": "AAA any one of REVOLVER (EXH 18), Demise Quartet (EXH 18) or Wish upon Twin Stars (GRV 18)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"404645d474cd207942ffa0a9395370448ece6379",
+				"89056ceb94e7217495922b0e58b2e57aba82b5db",
+				"789d45a0a13552fc0ffd46bdb3f61e570253ee7a"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "sdvx",
+		"goalID": "G62c41f96bc49bf01f98696c347ff4fe17584c6df96c5c86e94387a4793bce7d2",
+		"name": "AA+ any one of Idola (HVN 18), Xevel (MXM 18) or Venomous Firefly (MXM 18)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 75,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 2
+		},
+		"game": "sdvx",
+		"goalID": "Gf7485a30d069d8febafbf3216ea773156fe0a2ecabb53e88ab5f2741f3872b73",
+		"name": "EXCESSIVE CLEAR 75 charts in the Level 18 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Ff75e405b41ca512993548d6cfca8b6ee2310234b2a7c5fe9f93638abc3e49fb1",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 35,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "G9f3fff33eb827d010056bd5fb75b0318372f89ad0362cd41c5c6ade45317be15",
+		"name": "CLEAR 35 charts in the Level 19 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Ff75e405b41ca512993548d6cfca8b6ee2310234b2a7c5fe9f93638abc3e49fb1",
+			"type": "folder"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 2
+		},
+		"game": "sdvx",
+		"goalID": "G4867587c1d5ddcea2c1808ef09c0b077926e7f51c4c1955d0dde08d029fec0f9",
+		"name": "EXCESSIVE CLEAR any chart in the Level 19 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F587912aa1af1c26daf085428f3f3ae420cbe905775782f9e2506108d3ff03a5a",
+			"type": "folder"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "Gb5ebf4c0bbc015bd94a12eb2b3a9c40ed3142edb7607b27d1be5773aa169f732",
+		"name": "CLEAR any chart in the Level 20 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 10,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 3
+		},
+		"game": "sdvx",
+		"goalID": "G4364548521fb56cf0fe76568816ee077eb44a9a1bc2e95977df049985650c644",
+		"name": "ULTIMATE CHAIN 10 charts in the Level 17 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 15,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 9
+		},
+		"game": "sdvx",
+		"goalID": "G9184c803e43d110e9a5673f05ac623caf7df78a89bde2b2cd539a9c77dfd4201",
+		"name": "S 15 charts in the Level 18 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 50,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 8
+		},
+		"game": "sdvx",
+		"goalID": "Gd0cea5d035fc7da74268a23a94028e140c7e35338d928e55b312e86f82dba0e1",
+		"name": "AAA+ 50 charts in the Level 18 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 100,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "G7973891091fb2c5eb2bf4683a479245a966b6d7b1e5d97ef5dc8f186c37e0c26",
+		"name": "AAA 100 charts in the Level 18 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"17804f7fd79f77a439eefe9f78553bba4fc70c7e",
+				"9b195eec44424a241c40d72aca1a5b72d4a25760",
+				"9608e9b97734cdc18ef970f3c36378efa3209389"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "G3d169b3a2791503896575ba053e5d9fe7d723f08aeb7ed3705559fb9ab908167",
+		"name": "AAA any one of ANGER of the GOD (MXM 19), A Lasting Promise (MXM 19) or Elemental Creation (MXM 19)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"fb14854eae90e56739e5eb8188f42dc40983203a",
+				"abd8c85a798a42499db64b0951d5baddda6229c8",
+				"bb89bffccc6a07439441d58a13f2262933c2d4f3",
+				"6d230651c8baa198781a59d162b7b3ca293308a1"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 6
+		},
+		"game": "sdvx",
+		"goalID": "G7062346c0472727790fbc1d5ebe7540001804dc4a13fb400764d9a31441a18cc",
+		"name": "AA+ any one of OUTERHEΛVEN (MXM 19), For UltraPlayers (HVN 19), Bangin' Burst (GRV 19) or Dyscontrolled Galaxy (MXM 19)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F587912aa1af1c26daf085428f3f3ae420cbe905775782f9e2506108d3ff03a5a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 2,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 6
+		},
+		"game": "sdvx",
+		"goalID": "G6f42b766a23f3ce0259350a555c7858f62ed4d6a8563fafbb65b58cfd55f7965",
+		"name": "AA+ 2 charts in the Level 20 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"d3a0355c54bfbe7cedb61807def2552578922502",
+				"f35b6c7a1c66450ff2b4d28d34863d6372471e85",
+				"dc66d62fd45ab6d4f49bb80e7f80214a32830714",
+				"6cd2d65dee0fc683b63f2ce8cfea0d4072e87c4d",
+				"23a140b3a02df862cd037f1ccbce0993a5775a50"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"countNum": 5,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "Gcdc2767f9ff44cb0d13ab7649dc65891003c38ae4e1e7b944a7d932cf7250a43",
+		"name": "CLEAR KAC 2012 ULTIMATE MEDLEY -HISTORIA SOUND VOLTEX- ( GRV 18), Unleashed Redness ( MXM 18), Verflucht ( MXM 18), ムーニャポヨポヨスッポコニャーゴ ( VVD 18) and Joyeuse ( VVD 18)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.4,
+			"key": "scoreData.lampIndex",
+			"mode": "proportion",
+			"value": 2
+		},
+		"game": "sdvx",
+		"goalID": "G7b02937d9c4bf153a1f3265b218e7520a198f413e81cd57614f3fd02877b38a0",
+		"name": "EXCESSIVE CLEAR 40% of the charts in the Level 18 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Ff75e405b41ca512993548d6cfca8b6ee2310234b2a7c5fe9f93638abc3e49fb1",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 7,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 2
+		},
+		"game": "sdvx",
+		"goalID": "G1fd44ea2b7ded02283912dbdcb0fe6d2c144d2e0a230cf835e75b8b5877ea969",
+		"name": "EXCESSIVE CLEAR 7 charts in the Level 19 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"398c3d11f704b00e0b58adefcb94dd4913efd2cb",
+				"c5ab692c15d506f75f862c72279fe2e635e6bcb8"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "Gd3696f8b974b2172b0f8e4ba2d6b8e66fa34ef03572e0c401287f542e224d11d",
+		"name": "CLEAR either Xronièr (MXM 20) or I (MXM 20)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 5,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 3
+		},
+		"game": "sdvx",
+		"goalID": "Ge2c019a114cef996705ef629b24b47ac54415aaa4354d03ea572cc030bf5057d",
+		"name": "ULTIMATE CHAIN 5 charts in the Level 18 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 50,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 9
+		},
+		"game": "sdvx",
+		"goalID": "G3c6ece30d786bdd97409f40102b09ec732128577ce790c1c5c1c08a0e013d408",
+		"name": "S 50 charts in the Level 18 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"582580eaee4239b53b6e0fb9afae841105af0d22",
+				"fdc62614b45e260f9060bf8a650e799558ad5984",
+				"3eab57430f2f3e524fc19b23c6a1ade73afa928e"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 8
+		},
+		"game": "sdvx",
+		"goalID": "Gbcb340aa06216d7fb1aba6ce647fa09ae926ca8711a78c6da70924dc4ab275fa",
+		"name": "AAA+ any one of Juggler's Maddness (MXM 18), ARROW RAIN (MXM 18) or BEAST BASS BOMB (MXM 18)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"6c509b82109b09f7468710576992f211fbfda149",
+				"590c969321f2df3302fa089822b6f30ff1996e00",
+				"5b1d8a964b378fa2dac29aba5d0e2aeddf159cdb",
+				"27d0c0a80b69e90cdd55fc4b251cb35785d69a99"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"countNum": 2,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "Gaeff6540c22892af0262e176eca2971ed14a0aabead3b70048fff694e914a620",
+		"name": "AAA any 2 of V ( MXM 18), Macuilxochitl (Latin Jazz Mix) ( MXM 18), pique ( MXM 18) or †渚の小悪魔ラヴリィ～レイディオ† ( MXM 18)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Ff75e405b41ca512993548d6cfca8b6ee2310234b2a7c5fe9f93638abc3e49fb1",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 5,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 8
+		},
+		"game": "sdvx",
+		"goalID": "G52bba685ffc7267c219d1480a6e3bd7f18bbe16fe4363628e751dc8f3af885b2",
+		"name": "AAA+ 5 charts in the Level 19 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Ff75e405b41ca512993548d6cfca8b6ee2310234b2a7c5fe9f93638abc3e49fb1",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 25,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "G4e019538908ed274d6766f0c7706b3318b319f66b3bcb6cd6788171b6ce76941",
+		"name": "AAA 25 charts in the Level 19 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"2600985c774e0863099b3fd2639202f658abf713",
+				"6cd2d65dee0fc683b63f2ce8cfea0d4072e87c4d",
+				"77020504ed3869737d82e71bc027e3e553599077",
+				"14fee79c579be39f6a542d368a119e3a419642bf",
+				"c98a63cf50af10a88a7d964f3449af8aac4950ba"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"countNum": 4,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 2
+		},
+		"game": "sdvx",
+		"goalID": "G0f4e92033f57a61352d845c5459b0bd552913f42a79d360b3c34051f7a3e4ba3",
+		"name": "EXCESSIVE CLEAR any 4 of * Erm, could it be a Spatiotemporal ShockWAVE Syndrome...? ( EXH 18), ムーニャポヨポヨスッポコニャーゴ ( VVD 18), croiX ( INF 18), 神話に芽吹く ( MXM 18) or 準備運動 ( MXM 18)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"5fbb00173534ae249a38b9b39628687f8d7a9a3c",
+				"bb89bffccc6a07439441d58a13f2262933c2d4f3",
+				"8b795ebee16fc9fa7ad3122b069ef1594817bf96"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 2
+		},
+		"game": "sdvx",
+		"goalID": "G145e88ceaa02efae9c44dc6078989833c57459ed9a8710bb71510175b434d5d6",
+		"name": "EXCESSIVE CLEAR any one of 色を喪った街 (MXM 19), Bangin' Burst (GRV 19) or Awakening (MXM 19)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Ff75e405b41ca512993548d6cfca8b6ee2310234b2a7c5fe9f93638abc3e49fb1",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 1,
+			"key": "scoreData.lampIndex",
+			"mode": "proportion",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "Ge32c9176ed1688eb7ac5abe62660da61bfad96b0f9463adb04dd4f2c97e7732c",
+		"name": "CLEAR 100% of the charts in the Level 19 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Ff75e405b41ca512993548d6cfca8b6ee2310234b2a7c5fe9f93638abc3e49fb1",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 35,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 2
+		},
+		"game": "sdvx",
+		"goalID": "Geef0553ac2985bb01105d5b44650ce67275d9a98acecc352b17b7d757aba4e23",
+		"name": "EXCESSIVE CLEAR 35 charts in the Level 19 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F32e3ab1ab5258d702efa6bb7690194d6abc9cad66e21daeceaa5c58a7fa4c41c",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 25,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 3
+		},
+		"game": "sdvx",
+		"goalID": "Gc52a80c1ba1d9f70016828d698700667fd1b45f8c8a21882f2fdc36f2646b821",
+		"name": "ULTIMATE CHAIN 25 charts in the Level 18 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Ff75e405b41ca512993548d6cfca8b6ee2310234b2a7c5fe9f93638abc3e49fb1",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 10,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 9
+		},
+		"game": "sdvx",
+		"goalID": "G97866f3a443e3295071328b50dcf0b94a9645245713569667bfad423d1f87c9f",
+		"name": "S 10 charts in the Level 19 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Ff75e405b41ca512993548d6cfca8b6ee2310234b2a7c5fe9f93638abc3e49fb1",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.5,
+			"key": "scoreData.gradeIndex",
+			"mode": "proportion",
+			"value": 8
+		},
+		"game": "sdvx",
+		"goalID": "Ga519587a44df907a515dd309318d51613570a30b911084d69a6315f98d01178d",
+		"name": "AAA+ 50% of the charts in the Level 19 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"af2a885efa9fc6c0caf213262f096d3cb3c487e1",
+				"45b3bb92fce693be1dc0ce5835006ad7bc244321",
+				"6e46c458f855c11f758b20b896d24d7b45f41868"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 8
+		},
+		"game": "sdvx",
+		"goalID": "G8f56c7d898a018814ad9d36926c392dd9f3aa66e88b051f9476b171b18f2aeca",
+		"name": "AAA+ any one of VALKYRIE ASSAULT (MXM 19), セイレーン ～悲壮の竪琴～ (MXM 19) or TENKAICHI ULTIMATE BOSSRUSH MEDLEY (MXM 19)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"420447bc8ce601af5ab2eaf1f3c0d64b7353f3c9",
+				"c84e8adac03850de691b856d075520db36fee105",
+				"1fcd897e6833349b05d27e2086fc1e256641b445"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.gradeIndex",
+			"mode": "single",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "G1f6fb97010973b1bd7c66cc742619fffbfd397ef95e9da330e6ed0619c09e730",
+		"name": "AAA any one of FLügeL《Λrp:ΣggyØ》 (GRV 19), Failnaught (MXM 19) or 飄える翼追い掛けて (MXM 19)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F587912aa1af1c26daf085428f3f3ae420cbe905775782f9e2506108d3ff03a5a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 4,
+			"key": "scoreData.gradeIndex",
+			"mode": "absolute",
+			"value": 7
+		},
+		"game": "sdvx",
+		"goalID": "Ge245ddd26b77145d4796bca8e2dea813363f2b69746bed6658d012ea7544bca2",
+		"name": "AAA 4 charts in the Level 20 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"23a140b3a02df862cd037f1ccbce0993a5775a50",
+				"a7753c0b40e19a1912d6370d43496a07aae66cdf",
+				"1bd95abdd8543c1a4f441127ead5a3ce3cb61559",
+				"98bf510b894a8d31add4c49b301f390054cf1e5d"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"countNum": 4,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 2
+		},
+		"game": "sdvx",
+		"goalID": "Gae3dcd7b027e341d36086b147dce93114200c1baf9f39605b2e0196d60b71f6f",
+		"name": "EXCESSIVE CLEAR Joyeuse ( VVD 18), ツマミ戦隊 タテレンジャー ( MXM 18), 超越してしまった彼女と其を生み落した理由 ( HVN 18) and Re：Elemental Creation ( MXM 18)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "Ff75e405b41ca512993548d6cfca8b6ee2310234b2a7c5fe9f93638abc3e49fb1",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 0.8,
+			"key": "scoreData.lampIndex",
+			"mode": "proportion",
+			"value": 2
+		},
+		"game": "sdvx",
+		"goalID": "G6a209504139cdf4545621a722c850299961bf7f8b976796cd347f5f9a2de63ce",
+		"name": "EXCESSIVE CLEAR 80% of the charts in the Level 19 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": [
+				"74fe233dc115ca82383933f9a35b3b4508674cfc",
+				"0026f55427c41d987f5b2277d85165fcfbcfef14",
+				"9fbebbf8b0d8e1aa5232e8e4717f8877e18b73dd"
+			],
+			"type": "multi"
+		},
+		"criteria": {
+			"key": "scoreData.lampIndex",
+			"mode": "single",
+			"value": 2
+		},
+		"game": "sdvx",
+		"goalID": "G4443f1f386e81c97e5073e9e563c8e30def5a69ec9850c4bfdba6a64f3715d24",
+		"name": "EXCESSIVE CLEAR any one of Xroniàl Xéro (MXM 19), 777 (MXM 19) or Ghost Family Living In Graveyard (MXM 19)",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F587912aa1af1c26daf085428f3f3ae420cbe905775782f9e2506108d3ff03a5a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 4,
+			"key": "scoreData.lampIndex",
+			"mode": "absolute",
+			"value": 2
+		},
+		"game": "sdvx",
+		"goalID": "Gd0dd5e61e4768495f22130007090e7d5ae1a50583bc5e9b9e23aa200c1409425",
+		"name": "EXCESSIVE CLEAR 4 charts in the Level 20 (EXCEED GEAR) folder",
+		"playtype": "Single"
+	},
+	{
+		"charts": {
+			"data": "F587912aa1af1c26daf085428f3f3ae420cbe905775782f9e2506108d3ff03a5a",
+			"type": "folder"
+		},
+		"criteria": {
+			"countNum": 1,
+			"key": "scoreData.lampIndex",
+			"mode": "proportion",
+			"value": 1
+		},
+		"game": "sdvx",
+		"goalID": "G41a96f1f1e227c4bf09b1e6338220e7939cbf62cfb8513a0b8695cabeb573a99",
+		"name": "CLEAR 100% of the charts in the Level 20 (EXCEED GEAR) folder",
+		"playtype": "Single"
 	}
 ]

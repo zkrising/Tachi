@@ -122,7 +122,7 @@ export default function EditableQuest({
 								CopyToClipboard(FormatQuest(quest));
 							}}
 						>
-							<Icon type="clipboard" noPad />
+							Copy To Clipboard
 						</Button>
 					</QuickTooltip>
 				</div>

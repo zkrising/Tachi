@@ -112,15 +112,27 @@ export default function QuestEditor() {
 			<Col xs={12}>
 				<div className="d-flex w-100 justify-content-center">
 					{quests.length > 0 && (
-						<a
-							className="btn btn-success mr-4"
-							download={`Quests-${Date.now()}.json`}
-							href={`data:application/json;charset=UTF-8,${encodeURIComponent(
-								JSON.stringify(quests)
-							)}`}
-						>
-							Download Quests
-						</a>
+						<>
+							<a
+								className="btn btn-success mr-4"
+								download={`Quests-${Date.now()}.json`}
+								href={`data:application/json;charset=UTF-8,${encodeURIComponent(
+									JSON.stringify(quests)
+								)}`}
+							>
+								Download Quests
+							</a>
+							<div
+								className="btn btn-danger mr-4"
+								onClick={() => {
+									if (confirm("Are you sure you want to start from scratch?")) {
+										setQuests([]);
+									}
+								}}
+							>
+								Start Again
+							</div>
+						</>
 					)}
 					<div className="btn btn-info" onClick={() => setShowImport(true)}>
 						Import Quests

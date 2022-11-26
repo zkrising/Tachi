@@ -1,6 +1,6 @@
 {
 	"name": "tachi-sieglinde",
-	"version": "0.1.0",
+	"version": "0.1.0-see-project-root",
 	"description": "",
 	"main": "index.js",
 	"scripts": {

@@ -1,6 +1,6 @@
 {
 	"name": "tachi-github-bot",
-	"version": "2.0.0",
+	"version": "0.1.0-see-project-root",
 	"private": true,
 	"description": "A GitHub bot for listening to Tachi's GitHub Repo.",
 	"author": "zkldi",

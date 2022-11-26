@@ -1,6 +1,6 @@
 {
 	"name": "tachi-client",
-	"version": "0.1.0-this-thing-doesnt-use-versions-see-server",
+	"version": "0.1.0-see-project-root",
 	"private": true,
 	"license": "AGPL3",
 	"scripts": {

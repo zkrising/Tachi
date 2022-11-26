@@ -1,6 +1,7 @@
 {
 	"name": "tachi-database-seeds-scripts",
-	"version": "0.1.0",
+	"version": "0.1.0-see-project-root",
+	"private": true,
 	"description": "Scripts for dealing with tachi-database-seeds.",
 	"main": "",
 	"scripts": {

@@ -42,6 +42,7 @@ import { TargetsContextProvider } from "context/TargetsContext";
 import QuestlinePage from "components/game/targets/QuestlinePage";
 import QuestsPage from "components/game/targets/QuestsPage";
 import ChartRedirector from "app/pages/dashboard/games/_game/_playtype/ChartRedirector";
+import QuestPage from "components/game/targets/QuestPage";
 
 export default function GameRoutes() {
 	const { game } = useParams<{ game: string }>();
@@ -159,7 +160,9 @@ function GPTQuestRoutes({ game, playtype }: GamePT) {
 					<QuestlinePage game={game} playtype={playtype} />
 				</Route>
 
-				<Route exact path="/dashboard/games/:game/:playtype/quests/:questID"></Route>
+				<Route exact path="/dashboard/games/:game/:playtype/quests/:questID">
+					<QuestPage game={game} playtype={playtype} />
+				</Route>
 
 				<Route exact path="/dashboard/games/:game/:playtype/goals">
 					<Redirect to={`/dashboard/games/${game}/${playtype}/quests`} />

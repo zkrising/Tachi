@@ -268,3 +268,11 @@ export interface QuestlineReturn {
 	quests: Array<QuestDocument>;
 	goals: Array<GoalDocument>;
 }
+
+export interface QuestReturn {
+	quest: QuestDocument;
+	questSubs: Array<QuestSubscriptionDocument>;
+	users: Array<UserDocument>;
+	goals: Array<GoalDocument>;
+	parentQuestlines: Array<QuestlineDocument>;
+}

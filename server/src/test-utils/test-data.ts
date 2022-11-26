@@ -857,6 +857,8 @@ export const FakeNotification: NotificationDocument = {
 		type: "QUEST_CHANGED",
 		content: {
 			questID: "a",
+			game: "iidx",
+			playtype: "SP",
 		},
 	},
 };

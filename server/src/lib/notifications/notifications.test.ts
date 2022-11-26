@@ -9,7 +9,7 @@ t.test("#SendNotification", (t) => {
 	t.test("Should send a notification.", async (t) => {
 		await SendNotification("title", 1, {
 			type: "QUEST_CHANGED",
-			content: { questID: "foo" },
+			content: { questID: "foo", game: "iidx", playtype: "SP" },
 		});
 
 		const dbRes = await db.notifications.findOne({
@@ -38,7 +38,7 @@ t.test("#BulkSendNotification", (t) => {
 	t.test("Should send multiple notifications.", async (t) => {
 		await BulkSendNotification("title", [1, 2], {
 			type: "QUEST_CHANGED",
-			content: { questID: "foo" },
+			content: { questID: "foo", game: "iidx", playtype: "SP" },
 		});
 
 		const dbRes = await db.notifications.findOne({

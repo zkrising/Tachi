@@ -450,7 +450,7 @@ export enum MAIMAIDX_DANS {
 	DAN_9 = 8,
 	DAN_10 = 9,
 
-	SHINDAN_1 = 10,
+	SHINSHODAN = 10,
 	SHINDAN_2 = 11,
 	SHINDAN_3 = 12,
 	SHINDAN_4 = 13,

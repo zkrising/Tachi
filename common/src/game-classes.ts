@@ -341,7 +341,7 @@ export const MaimaiDXDans = [
 	mouseoverVariant("DAN_9", "九段", "9th Dan", "warning"),
 	mouseoverVariant("DAN_10", "十段", "10th Dan", "warning"),
 
-	mouseoverCSS("SHINDAN_1", "真初段", "1st Shindan", "purple"),
+	mouseoverCSS("SHINDAN_1", "真初段", "Shinshodan", "purple"),
 	mouseoverCSS("SHINDAN_2", "真二段", "2nd Shindan", "purple"),
 	mouseoverCSS("SHINDAN_3", "真三段", "3rd Shindan", "purple"),
 	mouseoverCSS("SHINDAN_4", "真四段", "4th Shindan", "purple"),

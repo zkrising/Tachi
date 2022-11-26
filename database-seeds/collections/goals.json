@@ -2807,22 +2807,6 @@
 			"type": "folder"
 		},
 		"criteria": {
-			"countNum": 15,
-			"key": "scoreData.gradeIndex",
-			"mode": "absolute",
-			"value": 9
-		},
-		"game": "sdvx",
-		"goalID": "G54aaa8bb1d60eb0e469beeaab0e71d54f813ba55c23fbe3a5c3d99103850ef7c",
-		"name": "S 15 charts in the Level 17 (EXCEED GEAR) folder",
-		"playtype": "Single"
-	},
-	{
-		"charts": {
-			"data": "F1d4d6156ad27065d590bb0efdce48df95e9cf088157a97e391cf89032653c799",
-			"type": "folder"
-		},
-		"criteria": {
 			"countNum": 40,
 			"key": "scoreData.gradeIndex",
 			"mode": "absolute",
@@ -3295,7 +3279,7 @@
 		},
 		"game": "sdvx",
 		"goalID": "Gcdc2767f9ff44cb0d13ab7649dc65891003c38ae4e1e7b944a7d932cf7250a43",
-		"name": "CLEAR KAC 2012 ULTIMATE MEDLEY -HISTORIA SOUND VOLTEX- ( GRV 18), Unleashed Redness ( MXM 18), Verflucht ( MXM 18), ムーニャポヨポヨスッポコニャーゴ ( VVD 18) and Joyeuse ( VVD 18)",
+		"name": "CLEAR KAC 2012 ULTIMATE MEDLEY -HISTORIA SOUND VOLTEX- (GRV 18), Unleashed Redness (MXM 18), Verflucht (MXM 18), ムーニャポヨポヨスッポコニャーゴ (VVD 18) and Joyeuse (VVD 18)",
 		"playtype": "Single"
 	},
 	{
@@ -3417,7 +3401,7 @@
 		},
 		"game": "sdvx",
 		"goalID": "Gaeff6540c22892af0262e176eca2971ed14a0aabead3b70048fff694e914a620",
-		"name": "AAA any 2 of V ( MXM 18), Macuilxochitl (Latin Jazz Mix) ( MXM 18), pique ( MXM 18) or †渚の小悪魔ラヴリィ～レイディオ† ( MXM 18)",
+		"name": "AAA any 2 of V (MXM 18), Macuilxochitl (Latin Jazz Mix) (MXM 18), pique (MXM 18) or †渚の小悪魔ラヴリィ～レイディオ† (MXM 18)",
 		"playtype": "Single"
 	},
 	{
@@ -3471,7 +3455,7 @@
 		},
 		"game": "sdvx",
 		"goalID": "G0f4e92033f57a61352d845c5459b0bd552913f42a79d360b3c34051f7a3e4ba3",
-		"name": "EXCESSIVE CLEAR any 4 of * Erm, could it be a Spatiotemporal ShockWAVE Syndrome...? ( EXH 18), ムーニャポヨポヨスッポコニャーゴ ( VVD 18), croiX ( INF 18), 神話に芽吹く ( MXM 18) or 準備運動 ( MXM 18)",
+		"name": "EXCESSIVE CLEAR any 4 of * Erm, could it be a Spatiotemporal ShockWAVE Syndrome...? (EXH 18), ムーニャポヨポヨスッポコニャーゴ (VVD 18), croiX (INF 18), 神話に芽吹く (MXM 18) or 準備運動 (MXM 18)",
 		"playtype": "Single"
 	},
 	{
@@ -3645,7 +3629,7 @@
 		},
 		"game": "sdvx",
 		"goalID": "Gae3dcd7b027e341d36086b147dce93114200c1baf9f39605b2e0196d60b71f6f",
-		"name": "EXCESSIVE CLEAR Joyeuse ( VVD 18), ツマミ戦隊 タテレンジャー ( MXM 18), 超越してしまった彼女と其を生み落した理由 ( HVN 18) and Re：Elemental Creation ( MXM 18)",
+		"name": "EXCESSIVE CLEAR Joyeuse (VVD 18), ツマミ戦隊 タテレンジャー (MXM 18), 超越してしまった彼女と其を生み落した理由 (HVN 18) and Re：Elemental Creation (MXM 18)",
 		"playtype": "Single"
 	},
 	{

@@ -1,6 +1,6 @@
 {
 	"name": "tachi-bot",
-	"version": "0.1.0-see-project-root",
+	"version": "2.2.0",
 	"private": true,
 	"main": "js/bot/src/main.js",
 	"license": "MIT",

@@ -2,37 +2,32 @@
 # It does not spin up mongodb instances or redis instances, which the server
 # does need to boot. You should consider using docker-compose for this.
 
-FROM node:16-alpine as build
-WORKDIR /app
-
+FROM node:16-alpine as base
 ARG COMMIT_HASH
 ENV COMMIT_HASH=${COMMIT_HASH}
 
-# Git 2.22 is the default in node:16
-# This is over 4 years old. We need a later one to be able to do sparse checkouts.
-RUN echo deb http://deb.debian.org/debian buster-backports main | tee /etc/apt/sources.list.d/buster-backports.list && \
-	apt update && \
-	apt install -y -t buster-backports git
+RUN npm install --silent -g pnpm
+RUN apk add --no-cache 
 
-COPY --chown=node:node ./server /app/server
-COPY --chown=node:node ./common /app/common
-COPY --chown=node:node ./pnpm-lock.yaml /app
-COPY --chown=node:node ./.npmrc /app
-COPY --chown=node:node ./pnpm-workspace.yaml /app
-COPY --chown=node:node ./package.json /app
-COPY --chown=node:node ./tsconfig.json /app
-RUN npm install --silent -g pnpm@7 && groupmod -g 1003 node && chown node:node /app 
-USER node
+FROM base AS build
+WORKDIR /app
+
+COPY pnpm-lock.yaml .
+
+RUN pnpm fetch
+
+COPY . .
+
+RUN pnpm install -r --offline --silent
+
 WORKDIR /app/server
-RUN pnpm install --silent && pnpm build && pnpm prune --silent --production && pnpm store prune --silent
 
-# no. I have absolutely no idea why either. This is a PNPM bug.
-# For some reason, if we don't reinstall our dependencies after the pruning,
-# none of the dependencies for "common/" get saved, resulting in a noncompile.
-# Amusingly, this command outputs exactly
-# +1 package installed
-# but mentions no new installed packages.
-RUN pnpm install --production
+RUN pnpm build
+
+FROM base AS app
+WORKDIR /app/server
+COPY --from=build /app /app
+
 HEALTHCHECK --interval=15s --timeout=5s CMD curl -f http://localhost:8080/api/v1/status || exit 1
 ENV NODE_PATH=js/
 CMD ["pnpm", "start-no-build"]

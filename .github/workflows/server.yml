@@ -27,27 +27,25 @@ jobs:
       NODE_ENV: "test"
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Install Node.js 16
-        uses: actions/setup-node@v2
+      - uses: pnpm/action-setup@v2
         with:
-          node-version: 16.x
+          version: latest
 
-      - name: Install PNPM
-        uses: pnpm/action-setup@v2.0.1
+      - uses: actions/setup-node@v3
         with:
-          version: 6.0.2
-
-      - name: Install Dependencies
-        run: pnpm i
+          node-version: 16
+          cache: pnpm
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
         # configure external dbs
       - uses: supercharge/mongodb-github-action@1.4.1
       - uses: supercharge/redis-github-action@1.1.0
 
-      - name: Run Tests
+      - name: Run tests
         run: pnpm test
         env:
           NODE_ENV: "test"
@@ -55,13 +53,13 @@ jobs:
           MONGO_URL: "127.0.0.1"
           REDIS_URL: "127.0.0.1"
 
-      - name: Lint Code
+      - name: Lint code
         run: pnpm lint
 
-      - name: Typecheck Code
+      - name: Typecheck code
         run: pnpm typecheck
 
-      - name: Upload Coverage
+      - name: Upload coverage
         if: always()
         run: |
           pnpm install -g codecov
@@ -75,10 +73,10 @@ jobs:
     if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Docker Hub login
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
@@ -98,18 +96,21 @@ jobs:
         run: 'echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV'
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
 
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
+          context: ./
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/tachi-server:${{ env.BRANCH_TAG }},${{ secrets.DOCKER_USERNAME }}/tachi-server:${{ env.VERSION_TAG }}
+          file: ./Dockerfile.server
           build-args: |
             COMMIT_HASH=${{ env.SHORT_SHA }}
-          context: ./
-          file: ./Dockerfile.server
-          push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/tachi-server:${{ env.BRANCH_TAG }},${{ secrets.DOCKER_USERNAME }}/tachi-server:${{ env.VERSION_TAG }},
+          cache-from: type=gha,scope=$GITHUB_REF_NAME-server
+          cache-to: type=gha,mode=max,scope=$GITHUB_REF_NAME-server
+          
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

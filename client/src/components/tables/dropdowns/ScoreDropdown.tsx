@@ -166,7 +166,7 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 							Goals & Quests{targetData && ` (${targetData.goals.length})`}
 						</SelectButton>
 					)}
-					{currentUser?.id === user.id && settings?.preferences.deletableScores && (
+					{currentUser?.id === user.id && (
 						<SelectButton setValue={setView} value={view} id="manage">
 							<Icon type="trash" />
 							Manage Score

@@ -50,7 +50,7 @@ export default function ImportDropdown({ data }: { data: ImportDataset[0] }) {
 						<Icon type="database" />
 						Input
 					</SelectButton>
-					{currentUser?.id === data.userID && settings?.preferences.deletableScores && (
+					{currentUser?.id === data.userID && (
 						<SelectButton setValue={setView} value={view} id="manage">
 							<Icon type="trash" />
 							Manage Import

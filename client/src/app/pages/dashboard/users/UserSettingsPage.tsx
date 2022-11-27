@@ -222,7 +222,7 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 				/>
 				<Form.Text>Hide your last seen status.</Form.Text>
 			</Form.Group> */}
-			<Form.Group>
+			{/* <Form.Group>
 				<Form.Check
 					type="checkbox"
 					id="deletableScores"
@@ -234,7 +234,7 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 					Enables the option to delete scores. Turn this off if the thought of deleting a
 					score gives you anxiety.
 				</Form.Text>
-			</Form.Group>
+			</Form.Group> */}
 			<Form.Group>
 				<Form.Check
 					type="checkbox"

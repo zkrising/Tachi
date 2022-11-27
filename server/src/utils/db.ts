@@ -196,14 +196,6 @@ export async function GetRecentlyAchievedGoals(
 		goalID: { $in: goalSubs.map((e) => e.goalID) },
 	});
 
-	if (goals.length !== goalSubs.length) {
-		logger.error(
-			`Found ${goals.length} goals when looking for parents of ${goalSubs.length} subscriptions. This mismatch implies a state desync.`
-		);
-
-		throw new Error("Failed to fetch goals.");
-	}
-
 	return { goals, goalSubs };
 }
 
@@ -236,14 +228,6 @@ export async function GetRecentlyInteractedGoals(
 		goalID: { $in: goalSubs.map((e) => e.goalID) },
 	});
 
-	if (goals.length !== goalSubs.length) {
-		logger.error(
-			`Found ${goals.length} goals when looking for parents of ${goalSubs.length} subscriptions. This mismatch implies a state desync.`
-		);
-
-		throw new Error("Failed to fetch goals.");
-	}
-
 	return { goals, goalSubs };
 }
 
@@ -274,14 +258,6 @@ export async function GetRecentlyAchievedQuests(
 	const quests = await db.quests.find({
 		questID: { $in: questSubs.map((e) => e.questID) },
 	});
-
-	if (quests.length !== questSubs.length) {
-		logger.error(
-			`Found ${quests.length} quests when looking for parents of ${questSubs.length} subscriptions. This mismatch implies a state desync.`
-		);
-
-		throw new Error("Failed to fetch quests.");
-	}
 
 	return { quests, questSubs };
 }
@@ -314,14 +290,6 @@ export async function GetRecentlyInteractedQuests(
 	const quests = await db.quests.find({
 		questID: { $in: questSubs.map((e) => e.questID) },
 	});
-
-	if (quests.length !== questSubs.length) {
-		logger.error(
-			`Found ${quests.length} quests when looking for parents of ${questSubs.length} subscriptions. This mismatch implies a state desync.`
-		);
-
-		throw new Error("Failed to fetch quests.");
-	}
 
 	return { quests, questSubs };
 }

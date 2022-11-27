@@ -51,7 +51,7 @@ export async function UpdateUsersQuests(
 
 			const bwriteOp: BulkWriteUpdateOneOperation<QuestSubscriptionDocument> = {
 				updateOne: {
-					filter: { questID: quest.questID },
+					filter: { questID: quest.questID, userID },
 					update: {
 						$set: {
 							achieved,

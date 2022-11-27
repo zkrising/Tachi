@@ -153,7 +153,7 @@ function FolderCompare({
 
 		const songMap = CreateSongMap(baseData.songs);
 
-		let ds: ComparePBsDataset = [...baseData.charts, ...compareData.charts].map((chart) => ({
+		let ds: ComparePBsDataset = baseData.charts.map((chart) => ({
 			chart,
 			base: basePBLookup.get(chart.chartID) ?? null,
 			compare: comparePBLookup.get(chart.chartID) ?? null,

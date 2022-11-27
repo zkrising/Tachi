@@ -12,4 +12,7 @@ export const EXT_HEROIC_VERSE = "2020092900";
 export const EXT_BISTROVER = "2021091500";
 export const EXT_CASTHOUR = "2022082400";
 
+// first datecode of many, probably
+export const EXT_RESIDENT = ["2022103100"];
+
 export const MODEL_SDVX3_KONASTE = "QCV";

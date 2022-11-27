@@ -1,12 +1,6 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import {
-	EXT_BISTROVER,
-	EXT_CASTHOUR,
-	EXT_HEROIC_VERSE,
-	MODEL_INFINITAS_2,
-	REV_2DXBMS,
-} from "lib/constants/ea3id";
+import { MODEL_INFINITAS_2, REV_2DXBMS } from "lib/constants/ea3id";
 import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
@@ -73,8 +67,6 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
 
 	next();
 };
-
-const supportedExts = [EXT_HEROIC_VERSE, EXT_BISTROVER, EXT_CASTHOUR];
 
 const ValidateModelHeader: RequestHandler = (req, res, next) => {
 	const swModel = req.header("X-Software-Model");

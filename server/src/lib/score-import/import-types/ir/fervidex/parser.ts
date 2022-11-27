@@ -3,6 +3,7 @@ import {
 	EXT_BISTROVER,
 	EXT_CASTHOUR,
 	EXT_HEROIC_VERSE,
+	EXT_RESIDENT,
 	MODEL_IIDX,
 	MODEL_IIDX_LIGHTNING,
 	MODEL_INFINITAS_2,
@@ -17,6 +18,7 @@ import type { ParserFunctionReturns } from "../../common/types";
 import type { FerHeaders as FervidexHeaders, FervidexContext, FervidexScore } from "./types";
 import type { KtLogger } from "lib/logger/logger";
 import type { PrudenceSchema, ValidSchemaValue } from "prudence";
+import type { GPTSupportedVersions } from "tachi-common";
 
 const PR_FERVIDEX: PrudenceSchema = {
 	chart: p.isIn("spb", "spn", "dpn", "sph", "dph", "spa", "dpa", "spl", "dpl"),
@@ -73,7 +75,10 @@ const PR_FERVIDEX: PrudenceSchema = {
  * Converts a string of the form LDJ:X:X:X:2020092900 into a game version.
  * I don't really understand the software model format, so this is lazy.
  */
-export function SoftwareIDToVersion(model: string, logger: KtLogger) {
+export function SoftwareIDToVersion(
+	model: string,
+	logger: KtLogger
+): GPTSupportedVersions["iidx:DP" | "iidx:SP"] {
 	try {
 		const data = ParseEA3SoftID(model);
 
@@ -103,6 +108,10 @@ export function SoftwareIDToVersion(model: string, logger: KtLogger) {
 					return "29";
 				} else if (data.rev === REV_OMNIMIX) {
 					return "29-omni";
+				}
+			} else if (EXT_RESIDENT.includes(data.ext)) {
+				if (data.rev === REV_NORMAL) {
+					return "30";
 				}
 			}
 		}

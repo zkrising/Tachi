@@ -11,23 +11,23 @@ RUN apk add --no-cache
 
 FROM base AS build
 WORKDIR /app
-
 COPY pnpm-lock.yaml .
 
 RUN pnpm fetch
 
 COPY . .
 
-RUN pnpm install -r --offline --silent
+RUN pnpm --filter ./common --filter ./server --filter . install --prefer-offline
 
-WORKDIR /app/server
-
-RUN pnpm build
+RUN pnpm --filter ./common --filter ./server build
 
 FROM base AS app
-WORKDIR /app/server
-COPY --from=build /app /app
+WORKDIR /app
+COPY --from=build /app/node_modules /app/node_modules
+COPY --from=build /app/server /app/server
+COPY --from=build /app/common /app/common
+COPY --from=build /app/package.json /app/package.json
 
 HEALTHCHECK --interval=15s --timeout=5s CMD curl -f http://localhost:8080/api/v1/status || exit 1
-ENV NODE_PATH=js/
-CMD ["pnpm", "start-no-build"]
+ENV NODE_PATH=/app/server/js
+CMD ["node", "/app/server/js/main.js"]

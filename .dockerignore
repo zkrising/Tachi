@@ -1,2 +1,6 @@
-**/.git
+.git
+node_modules
+.tsbuildinfo
 **/node_modules
+**/.tsbuildinfo
+database-seeds

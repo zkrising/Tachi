@@ -18,7 +18,7 @@ importers:
       eslint-plugin-cadence: 0.0.4
       tap: 15.0.9
       ts-node: 10.0.0
-      tsconfig-paths: 3.12.0
+      tsc-alias: 1.7.1
       typescript: 4.6.3
     devDependencies:
       '@types/node': 16.11.7
@@ -29,7 +29,7 @@ importers:
       eslint-plugin-cadence: 0.0.4_qt5lczejmvvdmrtns7px3uxl6e
       tap: 15.0.9_brhf6n5slbghal4nq2ewuwl5ie
       ts-node: 10.0.0_yebhed3ekczgx3zz6hdxw3kxou
-      tsconfig-paths: 3.12.0
+      tsc-alias: 1.7.1
       typescript: 4.6.3
 
   bot:
@@ -389,6 +389,7 @@ importers:
       semver: ^7.3.7
       seq-logging: 1.1.1
       supertest: 6.2.2
+      tachi-common: workspace:../common
       tap: 15.1.6
       ts-node: 10.0.0
       tsconfig-paths: 3.12.0
@@ -453,6 +454,7 @@ importers:
       safe-json-stringify: 1.2.0
       semver: 7.3.7
       seq-logging: 1.1.1
+      tachi-common: link:../common
       ts-node: 10.0.0_eyk5xebzzzbswsv7f7bz54zw5q
       tsconfig-paths: 3.12.0
       typescript: 4.5.5
@@ -5372,7 +5374,6 @@ packages:
   /commander/9.0.0:
     resolution: {integrity: sha512-JJfP2saEKbQqvW+FI93OYUB4ByV5cizMpFMiiJI8xDbBvQvSkIk0VvQdn1CZ8mqAO8Loq2h0gYTYtDFUZUeERw==}
     engines: {node: ^12.20.0 || >=14}
-    dev: false
 
   /commist/1.1.0:
     resolution: {integrity: sha512-rraC8NXWOEjhADbZe9QBNzLAN5Q3fsTPQtBV+fEVj6xKIgDgNiEVE6ZNfHpZOqfQ21YUzfVNUXLOEZquYvQPPg==}
@@ -10198,6 +10199,11 @@ packages:
     dev: false
     optional: true
 
+  /mylas/2.1.13:
+    resolution: {integrity: sha512-+MrqnJRtxdF+xngFfUUkIMQrUUL0KsxbADUkn23Z/4ibGg192Q+z+CQyiYwvWTsYjJygmMR8+w3ZDa98Zh6ESg==}
+    engines: {node: '>=12.0.0'}
+    dev: true
+
   /nan/2.16.0:
     resolution: {integrity: sha512-UdAqHyFngu7TfQKsCBgAA6pWDkT8MAO7d0jyOecVhN5354xbLqdn8mV9Tat9gepAupm0bt2DbeaSC8vS52MuFA==}
     requiresBuild: true
@@ -11032,6 +11038,12 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       find-up: 2.1.0
+    dev: true
+
+  /plimit-lit/1.5.0:
+    resolution: {integrity: sha512-Eb/MqCb1Iv/ok4m1FqIXqvUKPISufcjZ605hl3KM/n8GaX8zfhtgdLwZU3vKjuHGh2O9Rjog/bHTq8ofIShdng==}
+    dependencies:
+      queue-lit: 1.5.0
     dev: true
 
   /pnp-webpack-plugin/1.5.0_typescript@4.3.5:
@@ -11937,6 +11949,10 @@ packages:
 
   /querystringify/2.2.0:
     resolution: {integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==}
+    dev: true
+
+  /queue-lit/1.5.0:
+    resolution: {integrity: sha512-IslToJ4eiCEE9xwMzq3viOO5nH8sUWUCwoElrhNMozzr9IIt2qqvB4I+uHu/zJTQVqc9R5DFwok4ijNK1pU3fA==}
     dev: true
 
   /queue-microtask/1.2.3:
@@ -14134,6 +14150,18 @@ packages:
     dependencies:
       typescript: 4.3.5
 
+  /tsc-alias/1.7.1:
+    resolution: {integrity: sha512-P4+0i+OB0hX17Ca+U6EJ4WZZ+OSupqW32VJ34N7g7+Ch+bwSx1AqYOvDdIVYEKymBh3dfG0t1qxbxPlBbtB1lQ==}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      commander: 9.0.0
+      globby: 11.1.0
+      mylas: 2.1.13
+      normalize-path: 3.0.0
+      plimit-lit: 1.5.0
+    dev: true
+
   /tsconfig-paths-webpack-plugin/3.5.2:
     resolution: {integrity: sha512-EhnfjHbzm5IYI9YPNVIxx1moxMI4bpHD2e0zTXeDNQcwjjRaGepP7IhTHJkyDBG0CAOoxRfe7jCG630Ou+C6Pw==}
     dependencies:
@@ -14149,6 +14177,7 @@ packages:
       json5: 1.0.1
       minimist: 1.2.6
       strip-bom: 3.0.0
+    dev: false
 
   /tsconfig-paths/3.14.1:
     resolution: {integrity: sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ==}

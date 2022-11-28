@@ -2,7 +2,10 @@
 	"name": "tachi-server",
 	"version": "0.1.0-see-project-root",
 	"description": "A score tracking server.",
-	"main": "js/server/src/main.js",
+	"main": "./js/main.js",
+	"files": [
+		"/js"
+	],
 	"private": true,
 	"scripts": {
 		"test": "tap",
@@ -12,8 +15,8 @@
 		"typecheck": "tsc --project tsconfig.build.json --noEmit",
 		"lint": "eslint ./src --ext .ts --fix",
 		"start": "pnpm build && pnpm start-no-build",
-		"start-no-build": "node -r ts-node/register -r tsconfig-paths/register js/server/src/main.js",
-		"runscoreworker": "node -r ts-node/register -r tsconfig-paths/register js/server/src/lib/score-import/worker/worker.js",
+		"start-no-build": "node js/server/main.js",
+		"runscoreworker": "node js/server/lib/score-import/worker/worker.js",
 		"sync-database": "ts-node src/scripts/sync-database",
 		"sync-database-local": "ts-node src/scripts/sync-database --localPath '../database-seeds/collections'",
 		"recalc-everything": "ts-node src/scripts/state-sync/sync-state.ts"
@@ -90,7 +93,8 @@
 		"typescript": "4.5.5",
 		"winston": "3.5.1",
 		"winston-daily-rotate-file": "4.6.0",
-		"winston-transport": "4.5.0"
+		"winston-transport": "4.5.0",
+		"tachi-common": "workspace:../common"
 	},
 	"nyc": {
 		"reporter": [

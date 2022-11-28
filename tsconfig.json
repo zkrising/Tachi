@@ -10,6 +10,20 @@
 		"allowJs": false,
 		"esModuleInterop": true,
 		"noUncheckedIndexedAccess": true,
-		"sourceMap": true
+		"sourceMap": true,
+		"rootDir": ".",
+		"composite": true,
+		"tsBuildInfoFile": ".tsbuildinfo"
 	},
+	"files": [],
+	"references": [
+		{
+			"path": "./common",
+			"prepend": true
+		},
+		{
+			"path": "./server",
+			"prepend": true
+		}
+	]
 }

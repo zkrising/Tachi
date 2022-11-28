@@ -39,7 +39,7 @@ jobs:
           cache: pnpm
       
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm --filter ./common --filter ./server --filter . install --frozen-lockfile
 
         # configure external dbs
       - uses: supercharge/mongodb-github-action@1.4.1

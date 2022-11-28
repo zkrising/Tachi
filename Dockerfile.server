@@ -17,9 +17,9 @@ RUN pnpm fetch
 
 COPY . .
 
-RUN pnpm --filter ./common --filter ./server --filter . install --prefer-offline
+RUN pnpm --filter ./common --filter ./server --filter . install --prefer-offline --silent
 
-RUN pnpm --filter ./common --filter ./server build
+RUN pnpm --filter ./common --filter ./server build --silent
 
 FROM base AS app
 WORKDIR /app

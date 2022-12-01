@@ -12,7 +12,7 @@
 		"snap": "TAP_SNAPSHOT=1 tap",
 		"watchtest": "tap --watch",
 		"build": "tsc -b tsconfig.build.json",
-		"typecheck": "tsc -b tsconfig.build.json --noEmit",
+		"typecheck": "tsc tsconfig.build.json --noEmit",
 		"lint": "eslint ./src --ext .ts --fix",
 		"start": "pnpm build && pnpm start-no-build",
 		"start-no-build": "node js/server/main.js",

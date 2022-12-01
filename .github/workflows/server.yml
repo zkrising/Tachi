@@ -20,9 +20,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./server
     env:
       NODE_ENV: "test"
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
@@ -39,14 +36,14 @@ jobs:
           cache: pnpm
       
       - name: Install dependencies
-        run: pnpm --filter tachi-server... --filter . install --frozen-lockfile
+        run: pnpm --filter tachi-server... --filter . install 
 
         # configure external dbs
       - uses: supercharge/mongodb-github-action@1.4.1
       - uses: supercharge/redis-github-action@1.1.0
 
       - name: Run tests
-        run: pnpm test
+        run: pnpm --filter tachi-server test
         env:
           NODE_ENV: "test"
           PORT: 8080

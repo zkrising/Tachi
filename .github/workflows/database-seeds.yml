@@ -20,28 +20,24 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./database-seeds/scripts
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install Node.js 16
-        uses: actions/setup-node@v2
+      - uses: pnpm/action-setup@v2
         with:
-          node-version: 16.x
+          version: latest
 
-      - name: Install PNPM
-        uses: pnpm/action-setup@v2.0.1
+      - uses: actions/setup-node@v3
         with:
-          version: 6.0.2
-
-      - name: Install Dependencies
-        run: pnpm i
+          node-version: 16
+          cache: pnpm
+      
+      - name: Install dependencies
+        run: pnpm --filter tachi-database-seeds... --filter . install 
 
       - name: Run Tests
-        run: pnpm test
+        run: pnpm --filter tachi-database-seeds test
         env:
           NODE_ENV: "test"
 
@@ -49,9 +45,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test]
     if: github.event_name == 'push'
-    defaults:
-      run:
-        working-directory: ./database-seeds/scripts
     steps:
       - name: Sync Staging Database
         if: github.ref == 'refs/heads/staging'

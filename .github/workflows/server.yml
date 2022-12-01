@@ -51,10 +51,10 @@ jobs:
           REDIS_URL: "127.0.0.1"
 
       - name: Lint code
-        run: pnpm lint
+        run: pnpm --filter tachi-server lint
 
       - name: Typecheck code
-        run: pnpm typecheck
+        run: pnpm --filter tachi-server typecheck
 
       - name: Upload coverage
         if: always()

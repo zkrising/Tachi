@@ -1,22 +1,27 @@
-FROM node:16 as build
+# This dockerfile spins up an instance of tachi-server and *tachi-server* alone.
+# It does not spin up mongodb instances or redis instances, which the server
+# does need to boot. You should consider using docker-compose for this.
 
+FROM node:16-alpine as base
+RUN npm install --silent -g pnpm
+
+FROM base AS build
 WORKDIR /app
 
-COPY --chown=node:node ./bot /app/bot
-COPY --chown=node:node ./common /app/common
-COPY --chown=node:node ./pnpm-lock.yaml /app
-COPY --chown=node:node ./.npmrc /app
-COPY --chown=node:node ./pnpm-workspace.yaml /app
-COPY --chown=node:node ./package.json /app
-COPY --chown=node:node ./tsconfig.json /app
+COPY pnpm-lock.yaml .
 
-RUN npm install --silent -g pnpm@6 && groupmod -g 1003 node && chown node:node /app
+RUN pnpm fetch
 
-USER node
+COPY bot ./bot
+COPY common ./common
+COPY *.json *.yaml ./
+
+RUN pnpm --filter tachi-bot... --filter . install --offline --silent
+RUN pnpm --filter tachi-bot... -r build
+
+FROM base AS app
+COPY --from=build /app /app
 WORKDIR /app/bot
-RUN pnpm install --silent && pnpm build && pnpm prune --silent --production && pnpm store prune --silent
-
-HEALTHCHECK --interval=15s --timeout=5s CMD curl -f http://localhost:8080 || exit 1
 
 ENV NODE_PATH=js/
-CMD ["pnpm", "start-no-build"]
+CMD ["node", "js/main.js"]

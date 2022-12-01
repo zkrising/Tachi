@@ -1,8 +1,9 @@
 {
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
+		"rootDir": "src",
 		"baseUrl": "src",
-		"outDir": "./js",
+		"outDir": "js",
 		"lib": [
 			"ES2019"
 		],
@@ -17,7 +18,9 @@
 			"tachi-common/*": [
 				"../../common/src/*"
 			]
-		}
+		},
+		"composite": true,
+		"tsBuildInfoFile": ".tsbuildinfo"
 	},
 	"ts-node": {
 		"require": [
@@ -29,5 +32,10 @@
 	],
 	"exclude": [
 		"node_modules",
+	],
+	"references": [
+		{
+			"path": "../common"
+		}
 	]
 }

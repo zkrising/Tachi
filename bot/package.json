@@ -5,7 +5,7 @@
 	"main": "js/bot/src/main.js",
 	"license": "MIT",
 	"scripts": {
-		"build": "tsc",
+		"build": "tsc -b",
 		"start": "pnpm build && node -r ts-node/register -r tsconfig-paths/register js/bot/src/main.js",
 		"start-no-build": "node -r ts-node/register -r tsconfig-paths/register js/bot/src/main.js",
 		"lint": "eslint . --fix"
@@ -38,6 +38,7 @@
 		"prudence": "0.9.8",
 		"seq-logging": "1.1.1",
 		"sync-fetch": "^0.3.1",
+		"tachi-common": "workspace:../common",
 		"typescript": "4.5.5",
 		"ts-node": "10.0.0",
 		"tsconfig-paths": "3.12.0"

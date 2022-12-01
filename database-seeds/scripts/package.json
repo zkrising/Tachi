@@ -5,6 +5,7 @@
 	"description": "Scripts for dealing with tachi-database-seeds.",
 	"main": "",
 	"scripts": {
+		"build": "tsc -b",
 		"test": "./run-tests.sh",
 		"sort": "node deterministic-collection-sort.js"
 	},
@@ -29,6 +30,7 @@
 		"monk": "^7.3.4",
 		"node-fetch": "2.6.7",
 		"prudence": "0.9.8",
+		"tachi-common": "workspace:../../common",
 		"xml2js": "^0.4.23"
 	}
 }

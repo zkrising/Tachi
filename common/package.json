@@ -9,9 +9,9 @@
 	},
 	"scripts": {
 		"test": "tap",
-		"build": "tsc",
-		"install": "tsc",
-		"prepublish": "tsc",
+		"build": "tsc -b",
+		"install": "tsc -b",
+		"prepublish": "tsc -b",
 		"lint": "eslint . --ext .ts --fix"
 	},
 	"author": "zkldi",

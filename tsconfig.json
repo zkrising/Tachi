@@ -18,12 +18,22 @@
 	"files": [],
 	"references": [
 		{
-			"path": "./common",
-			"prepend": true
+			"path": "./common"
 		},
 		{
-			"path": "./server",
-			"prepend": true
+			"path": "./server"
+		},
+		{
+			"path": "./bot"
+		},
+		{
+			"path": "./client"
+		},
+		{
+			"path": "./sieglinde"
+		},
+		{
+			"path": "./database-seeds/scripts"
 		}
 	]
 }

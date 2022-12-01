@@ -34,7 +34,7 @@
 // 	6.070885183, // 25
 // ];
 
-import { GetBaseline } from "../util";
+import { GetBaseline } from "../../util";
 import type { BMSTablesDataset } from "types";
 
 export type EcConstants = Array<{

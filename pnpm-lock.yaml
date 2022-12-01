@@ -456,7 +456,6 @@ importers:
       seq-logging: 1.1.1
       tachi-common: link:../common
       ts-node: 10.0.0_eyk5xebzzzbswsv7f7bz54zw5q
-      tsconfig-paths: 3.12.0
       typescript: 4.5.5
       winston: 3.5.1
       winston-daily-rotate-file: 4.6.0_winston@3.5.1
@@ -468,6 +467,7 @@ importers:
       node-mocks-http: 1.11.0
       supertest: 6.2.2
       tap: 15.1.6_beks75j6uapyr6v7hoxdw666hu
+      tsconfig-paths: 3.12.0
 
   sieglinde:
     specifiers:
@@ -6034,6 +6034,7 @@ packages:
     dependencies:
       ms: 2.1.2
       supports-color: 6.1.0
+    dev: true
 
   /decamelize/1.2.0:
     resolution: {integrity: sha512-z2S+W9X73hAUUki+N+9Za2lBlun89zigOyGrsax+KUQ6wKW4ZoWpEYBkGhQjwAjjDCkWxhY0VKEhk8wzY7F5cA==}
@@ -7556,7 +7557,7 @@ packages:
       debug:
         optional: true
     dependencies:
-      debug: 4.3.4_supports-color@6.1.0
+      debug: 4.3.4
 
   /for-in/1.0.2:
     resolution: {integrity: sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ==}
@@ -14177,7 +14178,6 @@ packages:
       json5: 1.0.1
       minimist: 1.2.6
       strip-bom: 3.0.0
-    dev: false
 
   /tsconfig-paths/3.14.1:
     resolution: {integrity: sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ==}

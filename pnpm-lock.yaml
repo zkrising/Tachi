@@ -59,6 +59,7 @@ importers:
       prudence: 0.9.8
       seq-logging: 1.1.1
       sync-fetch: ^0.3.1
+      tachi-common: workspace:../common
       ts-node: 10.0.0
       tsconfig-paths: 3.12.0
       typescript: 4.5.5
@@ -83,6 +84,7 @@ importers:
       prudence: 0.9.8
       seq-logging: 1.1.1
       sync-fetch: 0.3.1
+      tachi-common: link:../common
       ts-node: 10.0.0_typescript@4.5.5
       tsconfig-paths: 3.12.0
       typescript: 4.5.5
@@ -277,6 +279,7 @@ importers:
       monk: ^7.3.4
       node-fetch: 2.6.7
       prudence: 0.9.8
+      tachi-common: workspace:../../common
       xml2js: ^0.4.23
     dependencies:
       '@types/lodash.get': 4.4.7
@@ -297,6 +300,7 @@ importers:
       monk: 7.3.4
       node-fetch: 2.6.7
       prudence: 0.9.8
+      tachi-common: link:../../common
       xml2js: 0.4.23
 
   github-bot:
@@ -476,6 +480,7 @@ importers:
       fast-xml-parser: ^4.0.0-beta.2
       mei-logger: ^1.0.1
       node-fetch: 2.6.7
+      tachi-common: workspace:../common
       winston: 3.5.1
     dependencies:
       '@types/node-fetch': 2.5.12
@@ -483,6 +488,7 @@ importers:
       fast-xml-parser: 4.0.2
       mei-logger: 1.0.3
       node-fetch: 2.6.7
+      tachi-common: link:../common
       winston: 3.5.1
 
 packages:
@@ -6034,7 +6040,6 @@ packages:
     dependencies:
       ms: 2.1.2
       supports-color: 6.1.0
-    dev: true
 
   /decamelize/1.2.0:
     resolution: {integrity: sha512-z2S+W9X73hAUUki+N+9Za2lBlun89zigOyGrsax+KUQ6wKW4ZoWpEYBkGhQjwAjjDCkWxhY0VKEhk8wzY7F5cA==}
@@ -7557,7 +7562,7 @@ packages:
       debug:
         optional: true
     dependencies:
-      debug: 4.3.4
+      debug: 4.3.4_supports-color@6.1.0
 
   /for-in/1.0.2:
     resolution: {integrity: sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ==}

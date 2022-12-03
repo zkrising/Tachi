@@ -1,7 +1,9 @@
 {
 	"compilerOptions": {
 		"target": "esnext",
-		"outDir": "./dist/",
+		"rootDir": "src",
+		"baseUrl": "src",
+		"outDir": "dist",
 		"strictNullChecks": true,
 		"moduleResolution": "node",
 		"allowJs": true,
@@ -9,7 +11,6 @@
 		"strict": true,
 		"esModuleInterop": true,
 		"jsx": "react",
-		"baseUrl": "src",
 		"paths": {
 			"tachi-common": [
 				"../../common/src"
@@ -40,11 +41,18 @@
 		"allowSyntheticDefaultImports": true,
 		"allowUnusedLabels": true,
 		"resolveJsonModule": true,
+		"composite": true,
+		"tsBuildInfoFile": ".tsbuildinfo"
 	},
 	"include": [
 		"src"
 	],
 	"exclude": [
 		"node_modules"
-	]
+	],
+	"references": [
+		{
+			"path": "../common"
+		}
+	],
 }

@@ -2,18 +2,21 @@
 	"name": "tachi-server",
 	"version": "0.1.0-see-project-root",
 	"description": "A score tracking server.",
-	"main": "js/server/src/main.js",
+	"main": "./js/main.js",
+	"files": [
+		"/js"
+	],
 	"private": true,
 	"scripts": {
 		"test": "tap",
 		"snap": "TAP_SNAPSHOT=1 tap",
 		"watchtest": "tap --watch",
-		"build": "tsc --project tsconfig.build.json",
+		"build": "tsc -b tsconfig.build.json",
 		"typecheck": "tsc --project tsconfig.build.json --noEmit",
 		"lint": "eslint ./src --ext .ts --fix",
 		"start": "pnpm build && pnpm start-no-build",
-		"start-no-build": "node -r ts-node/register -r tsconfig-paths/register js/server/src/main.js",
-		"runscoreworker": "node -r ts-node/register -r tsconfig-paths/register js/server/src/lib/score-import/worker/worker.js",
+		"start-no-build": "NODE_PATH=js/ node js/main.js",
+		"runscoreworker": "NODE_PATH=js/ node js/lib/score-import/worker/worker.js",
 		"sync-database": "ts-node src/scripts/sync-database",
 		"sync-database-local": "ts-node src/scripts/sync-database --localPath '../database-seeds/collections'",
 		"recalc-everything": "ts-node src/scripts/state-sync/sync-state.ts"
@@ -26,7 +29,8 @@
 		"glob": "^7.2.0",
 		"node-mocks-http": "1.11.0",
 		"supertest": "6.2.2",
-		"tap": "15.1.6"
+		"tap": "15.1.6",
+		"tsconfig-paths": "3.12.0"
 	},
 	"dependencies": {
 		"@aws-sdk/client-s3": "3.49.0",
@@ -86,7 +90,7 @@
 		"semver": "^7.3.7",
 		"seq-logging": "1.1.1",
 		"ts-node": "10.0.0",
-		"tsconfig-paths": "3.12.0",
+		"tachi-common": "workspace:../common",
 		"typescript": "4.5.5",
 		"winston": "3.5.1",
 		"winston-daily-rotate-file": "4.6.0",

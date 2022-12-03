@@ -5,8 +5,8 @@
 	"description": "A GitHub bot for listening to Tachi's GitHub Repo.",
 	"author": "zkldi",
 	"scripts": {
-		"build": "tsc",
-		"start": "tsc && node js/main.js"
+		"build": "tsc -b ",
+		"start": "tsc -b && node js/main.js"
 	},
 	"dependencies": {
 		"@octokit/webhooks": "10.1.5",

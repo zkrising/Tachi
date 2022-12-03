@@ -2,14 +2,16 @@
 	"name": "tachi-common",
 	"version": "2.2.0",
 	"description": "Common Types & Utilities for Tachi",
-	"main": "js/index.js",
-	"files": [
-		"js/**/*"
-	],
+	"main": "./js/index.js",
+	"exports": {
+		".": "./js/index.js",
+		"./*": "./js/*.js"
+	},
 	"scripts": {
 		"test": "tap",
-		"build": "tsc",
-		"prepublish": "tsc",
+		"build": "tsc -b",
+		"install": "tsc -b",
+		"prepublish": "tsc -b",
 		"lint": "eslint . --ext .ts --fix"
 	},
 	"author": "zkldi",

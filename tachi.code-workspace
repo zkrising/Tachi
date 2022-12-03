@@ -21,6 +21,10 @@
 			"name": "tachi-bot"
 		},
 		{
+			"path": "github-bot",
+			"name": "tachi-github-bot"
+		},
+		{
 			"path": "database-seeds",
 			"name": "tachi-database-seeds"
 		},

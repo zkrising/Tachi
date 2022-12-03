@@ -1,8 +1,9 @@
 {
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
+		"rootDir": "src",
 		"baseUrl": "src",
-		"outDir": "./js",
+		"outDir": "js",
 		"lib": [
 			"DOM" // hack workaround. URLSearchParams must be imported, yet
 			// discordJS carelessly uses it without being imported
@@ -20,6 +21,8 @@
 				"../../common/src/*"
 			]
 		},
+		"composite": true,
+		"tsBuildInfoFile": ".tsbuildinfo"
 	},
 	"include": [
 		"src/**/*"
@@ -27,5 +30,10 @@
 	"exclude": [
 		"node_modules",
 		"**/*.test.ts"
-	]
+	],
+	"references": [
+		{
+			"path": "../common"
+		}
+	],
 }

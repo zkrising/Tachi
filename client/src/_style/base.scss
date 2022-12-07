@@ -1,3 +1,7 @@
+// Bootstrap
+@import "variables.bootstrap";
+@import "~bootstrap/scss/_mixins.scss";
+
 .example-highlight > pre {
 	background: none transparent !important;
 	margin: 0 !important;

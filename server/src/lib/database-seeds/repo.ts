@@ -43,10 +43,19 @@ export class DatabaseSeedsRepo {
 	}
 
 	/**
+	 * Pull any seeds changes in this repository.
+	 */
+	pull() {
+		this.logger.info(`Pulling updates.`);
+		return asyncExec(`git pull`);
+	}
+
+	/**
 	 * Switch this repository to a new branch. This operation may
 	 * fail if there are uncommitted changes.
 	 */
 	switchBranch(newBranch: string) {
+		this.logger.info(`Switching to '${newBranch}'...`);
 		return asyncExec(`git switch '${newBranch}'`, this.baseDir);
 	}
 
@@ -234,7 +243,10 @@ export async function PullDatabaseSeeds(
 	if (fetchFromLocalPath) {
 		const local = new DatabaseSeedsRepo(fetchFromLocalPath);
 
+		// make sure we're on the right branch
+		// and up to date.
 		await local.switchBranch(branch);
+		await local.pull();
 
 		return local;
 	}
@@ -289,7 +301,7 @@ export async function BacksyncCollectionToBothBranches(
 	commitMessage: string
 ) {
 	for (const branch of ["staging", `release/2.${VERSION_INFO.minor}`]) {
-		const repo = await PullDatabaseSeeds(null, branch);
+		const repo = await PullDatabaseSeeds(undefined, branch);
 
 		let charts = await collection.find({});
 

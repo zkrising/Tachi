@@ -42,6 +42,14 @@ export class DatabaseSeedsRepo {
 		this.shouldDestroy = shouldDestroy;
 	}
 
+	/**
+	 * Switch this repository to a new branch. This operation may
+	 * fail if there are uncommitted changes.
+	 */
+	switchBranch(newBranch: string) {
+		return asyncExec(`git switch '${newBranch}'`, this.baseDir);
+	}
+
 	private CollectionNameToPath(collectionName: SeedsCollections) {
 		return path.join(this.baseDir, `${collectionName}.json`);
 	}
@@ -224,7 +232,11 @@ export async function PullDatabaseSeeds(
 		: "staging"
 ) {
 	if (fetchFromLocalPath) {
-		return new DatabaseSeedsRepo(fetchFromLocalPath);
+		const local = new DatabaseSeedsRepo(fetchFromLocalPath);
+
+		await local.switchBranch(branch);
+
+		return local;
 	}
 
 	if (!ServerConfig.SEEDS_CONFIG) {

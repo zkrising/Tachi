@@ -6,6 +6,7 @@ import { SetIndexes } from "external/mongo/indexes";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
 import rimraf from "rimraf";
+import { ClearTestingRateLimitCache } from "server/middleware/rate-limiter";
 import fs from "fs";
 import path from "path";
 import type { StaticDatabases } from "external/mongo/db";
@@ -72,6 +73,8 @@ function GetAndCache(
 let CACHE_FILENAMES: Array<string> | undefined;
 
 export default async function ResetDBState() {
+	ClearTestingRateLimitCache();
+
 	let files;
 
 	if (CACHE_FILENAMES) {

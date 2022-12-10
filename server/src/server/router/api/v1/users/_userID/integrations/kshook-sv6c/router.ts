@@ -26,7 +26,7 @@ router.get("/settings", async (req, res) => {
 
 	return res.status(200).json({
 		success: true,
-		description: `Retrieved Fervidex settings.`,
+		description: `Retrieved KsHook (S6VC) settings.`,
 		body: settingsDoc ?? null,
 	});
 });

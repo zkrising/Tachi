@@ -55,10 +55,10 @@ export const NormalRateLimitMiddleware = rateLimit(
 
 // 15 requests every 10 minutes.
 export const AggressiveRateLimitMiddleware = rateLimit(
-	CreateRateLimitOptions(10, "Aggressive", ONE_MINUTE * 10)
+	CreateRateLimitOptions(15, "Aggressive", ONE_MINUTE * 10)
 );
 
-// 2 requests every 20 minutes.
+// 2 requests every 5 minutes.
 export const HyperAggressiveRateLimitMiddleware = rateLimit(
 	CreateRateLimitOptions(2, "HyAgressive", ONE_MINUTE * 5)
 );

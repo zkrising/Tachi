@@ -3,12 +3,7 @@ import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import type {
-	ChartDocument,
-	PBScoreDocument,
-	UserDocument,
-	ScoreDocument,
-} from "tachi-common";
+import type { ChartDocument, PBScoreDocument, UserDocument, ScoreDocument } from "tachi-common";
 
 const mockScorePB: PBScoreDocument<"usc:Controller" | "usc:Keyboard"> = {
 	chartID: "USC_CHART_ID",

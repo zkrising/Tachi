@@ -167,11 +167,7 @@ export async function ValidateCaptcha(
 	return gcr.success;
 }
 
-export function MountAuthCookie(
-	req: Express.Request,
-	user: UserDocument,
-	settings: UserSettings
-) {
+export function MountAuthCookie(req: Express.Request, user: UserDocument, settings: UserSettings) {
 	req.session.tachi = {
 		user,
 		settings,

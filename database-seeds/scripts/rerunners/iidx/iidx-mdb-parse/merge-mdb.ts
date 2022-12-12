@@ -48,11 +48,11 @@ const options = program.opts() as {
 
 const iidxConfig = GetGamePTConfig("iidx", "SP");
 
-if (!iidxConfig.supportedVersions.includes(options.version)) {
+if (!iidxConfig.orderedSupportedVersions.includes(options.version)) {
 	throw new Error(
 		`Invalid version of '${
 			options.version
-		}'. Expected any of ${iidxConfig.supportedVersions.join(
+		}'. Expected any of ${iidxConfig.orderedSupportedVersions.join(
 			", "
 		)}. If you're adding a new version, go update common/src/config.ts.`
 	);

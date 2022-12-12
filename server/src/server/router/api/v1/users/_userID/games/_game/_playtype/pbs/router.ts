@@ -222,11 +222,15 @@ router.get("/:chartID/rivals", async (req, res) => {
 
 	const usersPB = await GetPBOnChart(user.id, req.params.chartID);
 
+	if (usersPB) {
+		pbs.push(usersPB);
+	}
+
 	return res.status(200).json({
 		success: true,
 		description: `Retrieved PBs and Rival PBs.`,
 		body: {
-			pbs: [...pbs, usersPB],
+			pbs,
 			rivals,
 		},
 	});

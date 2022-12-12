@@ -742,7 +742,16 @@ export interface GPTSupportedVersions {
 	"ddr:SP": "a20";
 	"ddr:DP": "a20";
 	"maimai:Single": "finale";
-	"jubeat:Single": "clan" | "festo" | "qubell";
+	"jubeat:Single":
+		| "clan"
+		| "copious"
+		| "festo"
+		| "jubeat"
+		| "knit"
+		| "prop"
+		| "qubell"
+		| "ripples"
+		| "saucer";
 	"museca:Single": "1.5-b" | "1.5";
 	"bms:7K": never;
 	"bms:14K": never;
@@ -803,7 +812,7 @@ interface ChartDocumentData {
 		inGameID: number;
 		inGameStrID: string;
 	};
-	"jubeat:Single": { inGameID: integer; isHardMode: boolean };
+	"jubeat:Single": { inGameID: Array<integer> | integer; isHardMode: boolean };
 	"museca:Single": { inGameID: integer };
 	"bms:7K": CDDataBMS;
 	"bms:14K": CDDataBMS;

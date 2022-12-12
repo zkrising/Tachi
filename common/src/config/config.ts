@@ -85,7 +85,7 @@ interface BaseGamePTConfig<I extends IDStrings> {
 
 	scoreBucket: "grade" | "lamp";
 
-	supportedVersions: Array<GPTSupportedVersions[I]>;
+	orderedSupportedVersions: Array<GPTSupportedVersions[I]>;
 
 	tierlists: Array<GPTTierlists[I]>;
 	tierlistDescriptions: Record<GPTTierlists[I], string>;
@@ -369,7 +369,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "lamp",
 
-		supportedVersions: [
+		orderedSupportedVersions: [
 			"3-cs",
 			"4-cs",
 			"5-cs",
@@ -569,7 +569,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "lamp",
 
-		supportedVersions: [
+		orderedSupportedVersions: [
 			"3-cs",
 			"4-cs",
 			"5-cs",
@@ -691,7 +691,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		supportedVersions: ["paradiselost"],
+		orderedSupportedVersions: ["paradiselost"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -787,7 +787,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		supportedVersions: ["booth", "inf", "gw", "heaven", "vivid", "exceed", "konaste"],
+		orderedSupportedVersions: ["booth", "inf", "gw", "heaven", "vivid", "exceed", "konaste"],
 
 		tierlists: ["clear"],
 		tierlistDescriptions: {
@@ -874,7 +874,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		supportedVersions: [],
+		orderedSupportedVersions: [],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -959,7 +959,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		supportedVersions: [],
+		orderedSupportedVersions: [],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -1035,7 +1035,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		supportedVersions: ["1.5", "1.5-b"],
+		orderedSupportedVersions: ["1.5", "1.5-b"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -1149,7 +1149,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "lamp",
 
-		supportedVersions: [],
+		orderedSupportedVersions: [],
 
 		tierlists: ["sgl-EC", "sgl-HC"],
 		tierlistDescriptions: {
@@ -1261,7 +1261,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "lamp",
 
-		supportedVersions: [],
+		orderedSupportedVersions: [],
 
 		tierlists: ["sgl-EC", "sgl-HC"],
 		tierlistDescriptions: {
@@ -1398,7 +1398,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "lamp",
 
-		supportedVersions: ["a20"],
+		orderedSupportedVersions: ["a20"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -1530,7 +1530,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "lamp",
 
-		supportedVersions: ["a20"],
+		orderedSupportedVersions: ["a20"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -1622,7 +1622,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		supportedVersions: ["finale"],
+		orderedSupportedVersions: ["finale"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -1728,7 +1728,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		supportedVersions: ["nextage"],
+		orderedSupportedVersions: ["nextage"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -1817,7 +1817,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		supportedVersions: ["nextage"],
+		orderedSupportedVersions: ["nextage"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -1910,7 +1910,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		supportedVersions: ["reverse"],
+		orderedSupportedVersions: ["reverse"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -1997,7 +1997,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "lamp",
 
-		supportedVersions: ["peace", "kaimei"],
+		orderedSupportedVersions: ["peace", "kaimei"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -2087,7 +2087,17 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		supportedVersions: ["qubell", "clan", "festo"],
+		orderedSupportedVersions: [
+			"jubeat",
+			"ripples",
+			"knit",
+			"copious",
+			"saucer",
+			"prop",
+			"qubell",
+			"clan",
+			"festo",
+		],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -2195,7 +2205,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "lamp",
 
-		supportedVersions: [],
+		orderedSupportedVersions: [],
 
 		tierlists: ["sgl-EC", "sgl-HC"],
 		tierlistDescriptions: {
@@ -2306,7 +2316,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "lamp",
 
-		supportedVersions: [],
+		orderedSupportedVersions: [],
 
 		tierlists: ["sgl-EC", "sgl-HC"],
 		tierlistDescriptions: {
@@ -2410,7 +2420,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "lamp",
 
-		supportedVersions: [],
+		orderedSupportedVersions: [],
 
 		tierlists: [],
 		tierlistDescriptions: {},

@@ -350,7 +350,7 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 			};
 		case "jubeat:Single":
 			return {
-				inGameID: p.isPositiveInteger,
+				inGameID: p.or(p.isPositiveInteger, [p.isPositiveInteger]),
 				isHardMode: "boolean",
 			};
 		case "chunithm:Single":
@@ -532,7 +532,7 @@ const PR_CHART_DOCUMENT = (game: Game) => (self: unknown) => {
 				p.optional({ text: "string", value: "number", individualDifference: "*boolean" }),
 			])
 		),
-		versions: [p.isIn(gptConfig.supportedVersions)],
+		versions: [p.isIn(gptConfig.orderedSupportedVersions)],
 	})(self);
 };
 

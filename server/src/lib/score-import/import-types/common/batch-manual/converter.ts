@@ -344,11 +344,11 @@ export async function ResolveMatchTypeToKTData(
 			const diff = data.difficulty as Difficulties["sdvx:Single"] | "ANY_INF";
 
 			if (context.version) {
-				if (!config.supportedVersions.includes(context.version)) {
+				if (!config.orderedSupportedVersions.includes(context.version)) {
 					throw new InvalidScoreFailure(
 						`Unsupported version ${
 							context.version
-						}. Expected any of ${config.supportedVersions.join(", ")}.`
+						}. Expected any of ${config.orderedSupportedVersions.join(", ")}.`
 					);
 				}
 

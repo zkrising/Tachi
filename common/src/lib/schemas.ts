@@ -350,7 +350,7 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 			};
 		case "jubeat:Single":
 			return {
-				inGameID: p.isPositiveInteger,
+				inGameID: p.or(p.isPositiveInteger, [p.isPositiveInteger]),
 				isHardMode: "boolean",
 			};
 		case "chunithm:Single":

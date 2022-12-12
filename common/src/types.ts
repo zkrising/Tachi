@@ -803,7 +803,7 @@ interface ChartDocumentData {
 		inGameID: number;
 		inGameStrID: string;
 	};
-	"jubeat:Single": { inGameID: integer; isHardMode: boolean };
+	"jubeat:Single": { inGameID: Array<integer> | integer; isHardMode: boolean };
 	"museca:Single": { inGameID: integer };
 	"bms:7K": CDDataBMS;
 	"bms:14K": CDDataBMS;

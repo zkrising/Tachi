@@ -532,7 +532,7 @@ const PR_CHART_DOCUMENT = (game: Game) => (self: unknown) => {
 				p.optional({ text: "string", value: "number", individualDifference: "*boolean" }),
 			])
 		),
-		versions: [p.isIn(gptConfig.supportedVersions)],
+		versions: [p.isIn(gptConfig.orderedSupportedVersions)],
 	})(self);
 };
 

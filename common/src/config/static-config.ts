@@ -1,3 +1,4 @@
+import { GetGameConfig } from "..";
 import type {
 	FileUploadImportTypes,
 	IRImportTypes,
@@ -6,6 +7,7 @@ import type {
 	Game,
 	IDStrings,
 	GPTSupportedVersions,
+	Playtype,
 } from "..";
 
 export const fileImportTypes: Array<FileUploadImportTypes> = [
@@ -84,7 +86,7 @@ export const allSupportedGames: Array<Game> = [
 
 export type Versions = {
 	[I in IDStrings]: {
-		[K in GPTSupportedVersions[I]]: string;
+		[K in GPTSupportedVersions[I]]: string | null;
 	};
 };
 
@@ -132,7 +134,8 @@ const prettyGitadoraVersions: Versions["gitadora:Dora"] = {
 	nextage: "NEX+AGE",
 };
 
-export const PrettyVersions: Versions = {
+// WHEN YOU UPDATE THIS, **MAKE SURE** YOU UPDATE CONFIG.TS ACCORDINGLY.
+const PrettyVersions: Versions = {
 	"iidx:SP": prettyIIDXVersions,
 	"iidx:DP": prettyIIDXVersions,
 	"popn:9B": { peace: "peace", kaimei: "Kaimei Riddles" },
@@ -170,8 +173,32 @@ export const PrettyVersions: Versions = {
 		festo: "festo",
 		clan: "clan",
 		qubell: "qubell",
+		saucer: "saucer",
+		prop: "prop",
+		copious: "copious",
+		knit: "knit",
+		ripples: "ripples",
+		jubeat: null, // no name
 	},
 	"pms:Controller": {},
 	"pms:Keyboard": {},
 	"itg:Stamina": {},
 };
+
+export function PrettyFormatVersion<I extends IDStrings>(
+	idString: I,
+	version: GPTSupportedVersions[I]
+) {
+	// lol
+	const [game] = idString.split(":") as [Game, Playtype];
+
+	const ver = PrettyVersions[idString][version];
+
+	const gameConfig = GetGameConfig(game);
+
+	if (ver === null) {
+		return gameConfig.name;
+	}
+
+	return `${gameConfig.name} (${ver})`;
+}

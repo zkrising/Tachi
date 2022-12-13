@@ -137,7 +137,9 @@ export function FormatChart(
 
 	const gptConfig = GetGamePTConfig(game, chart.playtype);
 
-	const diff = short ? gptConfig.shortDifficulties[chart.difficulty] : chart.difficulty;
+	const diff = short
+		? gptConfig.shortDifficulties[chart.difficulty] ?? chart.difficulty
+		: chart.difficulty;
 
 	// iidx formats things like SPA instead of SP A.
 	// this is a hack, this should be part of the gptConfig, tbh.

@@ -27,7 +27,13 @@ export default function KAIIntegrationPage({ clientID, hash, kaiType, redirectUr
 	useSetSubheader(["Import Scores", `${gameConfig.name} Sync (${kaiType})`]);
 
 	if (!clientID) {
-		return <div>Sorry, this service isn't supported here, apparantly.</div>;
+		return (
+			<div>
+				Sorry, this service isn't supported here.
+				{process.env.REACT_APP_IS_LOCAL_DEV &&
+					` You haven't set REACT_APP_${kaiType}_CLIENT_ID in your .env file.`}
+			</div>
+		);
 	}
 
 	const { user } = useContext(UserContext);

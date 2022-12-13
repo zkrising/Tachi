@@ -14,9 +14,11 @@ import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import AddNewGoalForQuestModal from "components/targets/AddNewGoalForQuestModal";
 import { TargetsContext } from "context/TargetsContext";
+import DeleteGoalsModal from "components/targets/DeleteGoalsModal";
 
 export default function UGPTGoalsPage({ reqUser, game, playtype }: UGPT) {
 	const [show, setShow] = useState(false);
+	const [showDelete, setShowDelete] = useState(false);
 	const { reloadTargets } = useContext(TargetsContext);
 	const [refresh, refetchGoals] = useReducer((x) => x + 1, 0);
 
@@ -49,6 +51,15 @@ export default function UGPTGoalsPage({ reqUser, game, playtype }: UGPT) {
 				>
 					<Icon type="bullseye" />
 					Add New Goal
+				</Button>
+				<Button
+					variant="outline-danger"
+					size="lg"
+					className="mb-4 w-100"
+					onClick={() => setShowDelete(true)}
+				>
+					<Icon type="trash" />
+					Delete Goals
 				</Button>
 				<div>
 					Looking for goal recommendations?{" "}
@@ -83,6 +94,27 @@ export default function UGPTGoalsPage({ reqUser, game, playtype }: UGPT) {
 						);
 
 						refetchGoals();
+						reloadTargets();
+					}}
+				/>
+			)}
+			{showDelete && (
+				<DeleteGoalsModal
+					show={showDelete}
+					setShow={setShowDelete}
+					dataset={dataset}
+					onDelete={async (goalID) => {
+						const res = await APIFetchV1(
+							`/users/${reqUser.id}/games/${game}/${playtype}/targets/goals/${goalID}`,
+							{
+								method: "DELETE",
+							},
+							true,
+							true
+						);
+
+						refetchGoals();
+
 						reloadTargets();
 					}}
 				/>

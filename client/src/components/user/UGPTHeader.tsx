@@ -1,11 +1,17 @@
 import { MillisToSince } from "util/time";
+import { APIFetchV1 } from "util/api";
+import { HumaniseError } from "util/humanise-error";
+import { SendErrorToast, SendSuccessToast } from "util/toaster";
 import Navbar from "components/nav/Navbar";
 import NavItem from "components/nav/NavItem";
 import MiniTable from "components/tables/components/MiniTable";
 import Divider from "components/util/Divider";
-import React from "react";
-import { Game, UserDocument, Playtype } from "tachi-common";
+import React, { useContext } from "react";
+import { Button } from "react-bootstrap";
+import { Game, Playtype, UserDocument } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
+import { UserContext } from "context/UserContext";
+import useLUGPTSettings from "components/util/useLUGPTSettings";
 import ProfileBadges from "./ProfileBadges";
 import ProfilePicture from "./ProfilePicture";
 import RankingData from "./UGPTRankingData";
@@ -22,6 +28,8 @@ export function UGPTHeaderBody({
 	playtype: Playtype;
 	stats: UGPTStatsReturn;
 }) {
+	const { settings, setSettings } = useLUGPTSettings();
+
 	return (
 		<>
 			<div className="col-12 col-lg-3">
@@ -72,6 +80,79 @@ export function UGPTHeaderBody({
 					userID={reqUser.id}
 				/>
 			</div>
+			{/* if someone is logged in and they aren't the user they're viewing */}
+			{/* give them the option to add them as a rival */}
+			{settings && reqUser.id !== settings.userID && (
+				<div className="col-12 w-100 d-flex justify-content-center mt-8">
+					{settings.rivals.includes(reqUser.id) ? (
+						<Button
+							variant="outline-danger"
+							onClick={async () => {
+								const newRivals = settings.rivals.filter((e) => e !== reqUser.id);
+
+								const res = await APIFetchV1(
+									`/users/${settings.userID}/games/${game}/${playtype}/rivals`,
+									{
+										method: "PUT",
+										body: JSON.stringify({
+											rivalIDs: newRivals,
+										}),
+										headers: {
+											"Content-Type": "application/json",
+										},
+									}
+								);
+
+								if (res.success) {
+									SendSuccessToast(
+										`Removed ${reqUser.username} from your rivals.`
+									);
+									setSettings({
+										...settings,
+										rivals: newRivals,
+									});
+								} else {
+									SendErrorToast(HumaniseError(res.description));
+								}
+							}}
+						>
+							Remove as Rival
+						</Button>
+					) : (
+						<Button
+							variant="outline-success"
+							onClick={async () => {
+								const newRivals = [...settings.rivals, reqUser.id];
+
+								const res = await APIFetchV1(
+									`/users/${settings.userID}/games/${game}/${playtype}/rivals`,
+									{
+										method: "PUT",
+										body: JSON.stringify({
+											rivalIDs: newRivals,
+										}),
+										headers: {
+											"Content-Type": "application/json",
+										},
+									}
+								);
+
+								if (res.success) {
+									SendSuccessToast(`Added ${reqUser.username} to your rivals!`);
+									setSettings({
+										...settings,
+										rivals: newRivals,
+									});
+								} else {
+									SendErrorToast(HumaniseError(res.description));
+								}
+							}}
+						>
+							Add as Rival
+						</Button>
+					)}
+				</div>
+			)}
 		</>
 	);
 }

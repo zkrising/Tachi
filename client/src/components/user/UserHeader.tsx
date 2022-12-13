@@ -98,11 +98,6 @@ export function UserBottomNav({ baseUrl, reqUser }: { baseUrl: string; reqUser: 
 
 	if (isRequestedUser) {
 		navItems.push(
-			<NavItem key="settings" to={`${baseUrl}/settings`}>
-				Profile Settings
-			</NavItem>
-		);
-		navItems.push(
 			<NavItem key="integrations" to={`${baseUrl}/integrations`}>
 				Service Integrations
 			</NavItem>
@@ -123,6 +118,12 @@ export function UserBottomNav({ baseUrl, reqUser }: { baseUrl: string; reqUser: 
 				</NavItem>
 			);
 		}
+
+		navItems.push(
+			<NavItem key="settings" to={`${baseUrl}/settings`}>
+				Profile Settings
+			</NavItem>
+		);
 	}
 
 	return (

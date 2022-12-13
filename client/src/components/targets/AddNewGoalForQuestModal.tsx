@@ -211,7 +211,18 @@ function RenderGoalChartPicker({
 		[type, data]
 	);
 
+	const [isFirstRender, setIsFirstRender] = useState(true);
+
 	useEffect(() => {
+		// DON'T RUN THIS HOOK ON FIRST RENDER
+		// this should reset the selected folder/charts when the type is changed
+		// but on the first render, we're potentially inheriting from initial state
+		// so don't immediately wipe it!
+		if (isFirstRender) {
+			setIsFirstRender(false);
+			return;
+		}
+
 		setData(null);
 
 		onChange({ type, data: null as any });

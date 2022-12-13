@@ -104,7 +104,7 @@ export default function UGPTGoalsPage({ reqUser, game, playtype }: UGPT) {
 					setShow={setShowDelete}
 					dataset={dataset}
 					onDelete={async (goalID) => {
-						const res = await APIFetchV1(
+						await APIFetchV1(
 							`/users/${reqUser.id}/games/${game}/${playtype}/targets/goals/${goalID}`,
 							{
 								method: "DELETE",

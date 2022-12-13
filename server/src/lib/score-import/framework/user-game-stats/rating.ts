@@ -275,7 +275,7 @@ export async function GetBestRatingOnSongs(
 	userID: integer,
 	game: Game,
 	playtype: Playtype,
-	ratingProp: "jubility" | "skill",
+	ratingProp: "skill",
 	limit: integer
 ): Promise<Array<PBScoreDocument>> {
 	const r: Array<{ doc: PBScoreDocument }> = await db["personal-bests"].aggregate([
@@ -314,6 +314,90 @@ export async function GetBestRatingOnSongs(
 	return r.map((e) => e.doc);
 }
 
+async function GetBestJubilityOnSongs(
+	songIDs: Array<integer>,
+	userID: integer,
+	game: Game,
+	playtype: Playtype,
+	limit: integer
+): Promise<Array<PBScoreDocument>> {
+	const r: Array<{ doc: PBScoreDocument }> = await db["personal-bests"].aggregate([
+		{
+			$match: {
+				game,
+				playtype,
+				userID,
+				songID: { $in: songIDs },
+			},
+		},
+		{
+			// we need to do stuff dependent on the chart difficulty,
+			// so we need the chart difficulty
+			$lookup: {
+				from: "charts-jubeat",
+				localField: "chartID",
+				foreignField: "chartID",
+				as: "chart",
+			},
+		},
+		{
+			// "chart" is an array unless we unwind it.
+			$unwind: {
+				path: "$chart",
+			},
+		},
+		{
+			// sort on jubility (so we get the best score)
+			$sort: {
+				[`calculatedData.jubility`]: -1,
+			},
+		},
+		{
+			$group: {
+				_id: {
+					songID: "$songID",
+
+					// Jubility is unique upon songID + difficulty. However, you
+					// cannot have a PB on both a HARD BSC and a BSC counted for
+					// jubility. This query is awkward. Sorry!
+					difficulty: {
+						$switch: {
+							branches: [
+								{
+									case: { $in: ["$difficulty", ["HARD BSC", "BSC"]] },
+									then: "BSC",
+								},
+								{
+									case: { $in: ["$difficulty", ["HARD ADV", "ADV"]] },
+									then: "ADV",
+								},
+								{
+									case: { $in: ["$difficulty", ["HARD EXT", "EXT"]] },
+									then: "EXT",
+								},
+							],
+						},
+					},
+				},
+				doc: { $first: "$$ROOT" },
+			},
+		},
+
+		// for some godforsaken reason you have to sort twice. after a grouping
+		// the sort order becomes nondeterministic
+		{
+			$sort: {
+				[`doc.calculatedData.jubility`]: -1,
+			},
+		},
+		{
+			$limit: limit,
+		},
+	]);
+
+	return r.map((e) => e.doc);
+}
+
 const CURRENT_JUBEAT_HOT_VERSION: GPTSupportedVersions["jubeat:Single"] = "festo";
 
 async function CalculateJubility(
@@ -337,8 +421,8 @@ async function CalculateJubility(
 	const coldSongIDs = coldSongs.map((e) => e.id);
 
 	const [bestHotScores, bestScores] = await Promise.all([
-		GetBestRatingOnSongs(hotSongIDs, userID, "jubeat", "Single", "jubility", 30),
-		GetBestRatingOnSongs(coldSongIDs, userID, "jubeat", "Single", "jubility", 30),
+		GetBestJubilityOnSongs(hotSongIDs, userID, "jubeat", "Single", 30),
+		GetBestJubilityOnSongs(coldSongIDs, userID, "jubeat", "Single", 30),
 	]);
 
 	let jubility = 0;

@@ -109,6 +109,11 @@ export function PrettyFormatGameVersion<I extends IDStrings>(
 	// lol
 	const [game] = idString.split(":") as [Game, Playtype];
 
+	// @ts-expect-error TEMPORARY HACK.
+	// For some reason, this doesn't compile, even though my IDE says it's perfectly fine
+	// i mean, this code also compiled like, 4 minutes ago. I have no idea why it's not compiling
+	// now
+	// Type 'GPTSupportedVersions[I]' cannot be used to index type 'Versions[I]'.
 	const ver = PrettyVersions[idString][version];
 
 	const gameConfig = GetGameConfig(game);

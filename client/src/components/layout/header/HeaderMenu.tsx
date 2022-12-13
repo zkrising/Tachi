@@ -11,6 +11,9 @@ import { Link } from "react-router-dom";
 import { FormatGame, GetGameConfig, UserGameStats } from "tachi-common";
 import { SetState } from "types/react";
 import { UserSettingsContext } from "context/UserSettingsContext";
+import { Button } from "react-bootstrap";
+import Icon from "components/util/Icon";
+import toast from "react-hot-toast";
 import AllGames from "./AllGames";
 import ImportScoresLink from "./ImportScoresLink";
 import MenuDropdown from "./MenuDropdown";
@@ -25,7 +28,7 @@ export function HeaderMenu({
 	mobileShow: boolean;
 	setMobileShow: SetState<boolean>;
 }) {
-	const { user } = useContext(UserContext);
+	const { user, setUser } = useContext(UserContext);
 	const { ugs, setUGS } = useContext(AllLUGPTStatsContext);
 	const { settings } = useContext(UserSettingsContext);
 
@@ -97,41 +100,77 @@ export function HeaderMenu({
 			ref={ref}
 			id="kt_header_menu_wrapper"
 		>
-			<div
-				id="kt_header_menu"
-				className="header-menu header-menu-left header-menu-mobile header-menu-layout-default header-menu-root-arrow"
-			>
-				<div className="d-lg-none">
-					<Link to="/">
-						<img
-							src={ToCDNURL("/logos/logo-wordmark.png")}
-							width="100%"
-							className="px-10 mt-4"
-						/>
-					</Link>
+			<div className="d-flex h-100" style={{ flexDirection: "column" }}>
+				<div
+					id="kt_header_menu"
+					className="header-menu header-menu-left header-menu-mobile header-menu-layout-default header-menu-root-arrow"
+				>
+					<div className="d-lg-none">
+						<Link to="/">
+							<img
+								src={ToCDNURL("/logos/logo-wordmark.png")}
+								width="100%"
+								className="px-10 mt-4"
+							/>
+						</Link>
 
-					<div className="mt-4">
+						<div className="mt-4">
+							<Divider />
+						</div>
+					</div>
+					<ul className="menu-nav">
+						<li className="menu-item d-block d-lg-none">
+							<div className="d-flex w-100 mb-8 px-4">
+								<SearchBar />
+							</div>
+							<Divider />
+						</li>
+
+						{user && ugs && ugs.length !== 0 && (
+							<MenuDropdown name="Your Profiles">{userProfileLinks}</MenuDropdown>
+						)}
+
+						<AllGames />
+
+						{user && <ImportScoresLink />}
+
+						{settings?.preferences.developerMode && <UtilsDropdown />}
+					</ul>
+				</div>
+				<div
+					className="d-flex d-lg-none"
+					style={{ paddingLeft: "30px", marginBottom: "2rem", flex: "1 1 auto" }}
+				>
+					<div>
 						<Divider />
 					</div>
+					<Button
+						style={{ alignSelf: "flex-end" }}
+						variant="outline-danger"
+						onClick={async () => {
+							if (confirm("Are you sure you want to sign out?")) {
+								const rj = await APIFetchV1("/auth/logout", {
+									method: "POST",
+								});
+
+								if (rj.success) {
+									toast.success("Logged out.");
+									setTimeout(() => {
+										setUser(null);
+										localStorage.removeItem("isLoggedIn");
+										// This has to be the case.
+										// Otherwise, react just ruins its own
+										// state. I hate react state.
+										window.location.href = "/";
+									}, 500);
+								}
+							}
+						}}
+					>
+						<Icon type="sign-out-alt" />
+						Sign Out
+					</Button>
 				</div>
-				<ul className="menu-nav">
-					<li className="menu-item d-block d-lg-none">
-						<div className="d-flex w-100 mb-8 px-4">
-							<SearchBar />
-						</div>
-						<Divider />
-					</li>
-
-					{user && ugs && ugs.length !== 0 && (
-						<MenuDropdown name="Your Profiles">{userProfileLinks}</MenuDropdown>
-					)}
-
-					<AllGames />
-
-					{user && <ImportScoresLink />}
-
-					{settings?.preferences.developerMode && <UtilsDropdown />}
-				</ul>
 			</div>
 		</div>
 	);

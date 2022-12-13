@@ -18,7 +18,7 @@ import deepmerge from "deepmerge";
 import { useFormik } from "formik";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import {
 	BMS_TABLES,
 	FormatGame,
@@ -30,11 +30,12 @@ import {
 	UserDocument,
 } from "tachi-common";
 import { SetState, UGPT } from "types/react";
+import { Link } from "react-router-dom";
 
 export default function UGPTSettingsPage({ reqUser, game, playtype }: UGPT) {
 	const query = useQueryString();
 
-	const [page, setPage] = useState<"preferences" | "showcase">(
+	const [page, setPage] = useState<"preferences" | "showcase" | "manage">(
 		query.get("showcase") ? "showcase" : "preferences"
 	);
 	const gameConfig = GetGameConfig(game);
@@ -60,14 +61,20 @@ export default function UGPTSettingsPage({ reqUser, game, playtype }: UGPT) {
 							<Icon type="bars" />
 							Showcase Stats
 						</SelectButton>
+						<SelectButton value={page} setValue={setPage} id="manage">
+							<Icon type="eraser" />
+							Manage Account
+						</SelectButton>
 					</div>
 				</div>
 				<div className="col-12">
 					<Divider className="mt-4 mb-4" />
 					{page === "preferences" ? (
 						<PreferencesForm {...UGPT} />
-					) : (
+					) : page === "showcase" ? (
 						<ShowcaseForm {...UGPT} />
+					) : (
+						<ManageAccount {...UGPT} />
 					)}
 				</div>
 			</div>
@@ -554,4 +561,96 @@ function ToVolforceClass(vf: number) {
 	}
 
 	return Math.floor(vf / 2.5);
+}
+
+function ManageAccount({ reqUser, game, playtype }: UGPT) {
+	const [password, setPassword] = useState("");
+	const [deleting, setDeleting] = useState(false);
+
+	return (
+		<Row>
+			<Col xs={12}>
+				<h4>Delete Score</h4>
+				If you have an invalid score, you can delete it by going to that score and clicking
+				"Manage Score".
+			</Col>
+			<Col xs={12} className="mt-8">
+				<h4>Undo Import</h4>
+				If you messed up an import, you can undo it by going to{" "}
+				<Link to={`/dashboard/users/${reqUser.username}/imports`}>
+					your imports page
+				</Link>{" "}
+				and click "Manage Import".
+			</Col>
+			<Col xs={12} className="mt-8">
+				<h3>Completely Wipe Profile</h3>
+				If you've <i>really</i> messed up, you can wipe your entire profile for{" "}
+				{FormatGame(game, playtype)}.
+				<br />
+				<Alert variant="warning" style={{ fontSize: "1.5rem" }} className="mt-4">
+					It is very important to know that this is <b>NOT REVERSIBLE.</b> Wiping your
+					profile will <b>COMPLETELY DELETE</b> all of your {FormatGame(game, playtype)}{" "}
+					scores from our server. We will not be able to retrieve them.
+				</Alert>
+				<br />
+				<Form.Group>
+					<Form.Label>Confirm Password</Form.Label>
+					<Form.Control
+						type="password"
+						autoComplete="off"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+					/>
+				</Form.Group>
+				<Button
+					disabled={deleting}
+					variant="outline-danger"
+					onClick={async () => {
+						if (
+							confirm(
+								`You are really about to delete all of your ${FormatGame(
+									game,
+									playtype
+								)} scores. This is your last chance to turn back.`
+							)
+						) {
+							setDeleting(true);
+
+							const res = await APIFetchV1(
+								`/users/${reqUser.id}/games/${game}/${playtype}`,
+								{
+									method: "DELETE",
+									body: JSON.stringify({ "!password": password }),
+									headers: {
+										"Content-Type": "application/json",
+									},
+								},
+								true,
+								true
+							);
+
+							setDeleting(false);
+
+							if (res.success) {
+								// bye!
+								window.location.href = "/";
+							}
+						}
+					}}
+				>
+					Yes, I want to delete my {FormatGame(game, playtype)} account.
+				</Button>
+				{deleting && (
+					<>
+						<Divider />
+						<Loading />
+						<div className="mt-4 text-center">
+							This operation can take up to 5 minutes. The UI may time out. Please be
+							patient.
+						</div>
+					</>
+				)}
+			</Col>
+		</Row>
+	);
 }

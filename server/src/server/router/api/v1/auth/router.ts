@@ -122,7 +122,7 @@ router.post(
 
 		if (!passwordMatch) {
 			logger.verbose("Invalid password provided.");
-			return res.status(401).json({
+			return res.status(403).json({
 				success: false,
 				description: `Invalid password.`,
 			});

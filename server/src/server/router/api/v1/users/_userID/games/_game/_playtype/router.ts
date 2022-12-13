@@ -8,23 +8,31 @@ import settingsRouter from "./settings/router";
 import showcaseRouter from "./showcase/router";
 import tablesRouter from "./tables/router";
 import targetsRouter from "./targets/router";
+import { RequireAuthedAsUser, RequireSelfRequestFromUser } from "../../../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { CreateActivityRouteHandler } from "lib/activity/activity";
 import { ONE_MONTH, ONE_YEAR } from "lib/constants/time";
+import CreateLogCtx from "lib/logger/logger";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
-import { GetGamePTConfig } from "tachi-common";
+import { PasswordCompare, ValidatePassword } from "server/router/api/v1/auth/auth";
+import { FormatGame, GetGamePTConfig } from "tachi-common";
 import { IsString } from "utils/misc";
 import { GetTachiData, GetUGPT } from "utils/req-tachi-data";
+import DestroyUserGamePlaytypeData from "utils/reset-state/destroy-ugpt";
 import { CheckStrProfileAlg } from "utils/string-checks";
 import {
+	FormatUserDoc,
 	GetAllRankings,
 	GetUGPTPlaycount,
+	GetUserPrivateInfo,
 	GetUsersRankingAndOutOf,
 	GetUsersWithIDs,
 } from "utils/user";
 import type { integer, PBScoreDocument, UserGameStatsSnapshot } from "tachi-common";
+
+const logger = CreateLogCtx(__filename);
 
 const router: Router = Router({ mergeParams: true });
 
@@ -332,6 +340,68 @@ router.get("/activity", (req, res) => {
 	// this handles responding
 	void route(req, res);
 });
+
+/**
+ * Completely wipe this profile.
+ * Requires a self-request from this user, and also checks that the user knows their
+ * password. This is one of the most bolted down endpoints in the site, for obvious
+ * reasons.
+ *
+ * @param !password - This user's password.
+ *
+ * @name DELETE /api/v1/users/:userID/games/:game/:playtype
+ */
+router.delete(
+	"/",
+	RequireSelfRequestFromUser,
+	RequireAuthedAsUser,
+	prValidate({
+		"!password": ValidatePassword,
+	}),
+	async (req, res) => {
+		const { user, game, playtype } = GetUGPT(req);
+		const body = req.safeBody as {
+			"!password": string;
+		};
+
+		logger.info(
+			`Recieved request to delete UGPT ${FormatUserDoc(user)} ${FormatGame(game, playtype)}`
+		);
+
+		const privateInfo = await GetUserPrivateInfo(user.id);
+
+		if (!privateInfo) {
+			logger.severe(
+				`State desync for user ${FormatUserDoc(
+					user
+				)}. This user has no password/email information?`,
+				{ user }
+			);
+
+			return res.status(500).json({
+				success: false,
+				description: `An internal server error has occured.`,
+			});
+		}
+
+		const passwordMatch = await PasswordCompare(body["!password"], privateInfo.password);
+
+		if (!passwordMatch) {
+			return res.status(403).json({
+				success: false,
+				description: `Invalid password.`,
+			});
+		}
+
+		await DestroyUserGamePlaytypeData(user.id, game, playtype);
+
+		return res.status(200).json({
+			success: true,
+			description: `Destroyed profile.`,
+			body: {},
+		});
+	}
+);
 
 router.use("/pbs", pbsRouter);
 router.use("/scores", scoresRouter);

@@ -1,4 +1,5 @@
 import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
+import { UserAuthLevels } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import { ResolveUser } from "utils/user";
@@ -53,6 +54,12 @@ export const GetUserFromParam: RequestHandler = async (req, res, next) => {
  */
 export const RequireAuthedAsUser: RequestHandler = (req, res, next) => {
 	const user = GetTachiData(req, "requestedUser");
+
+	// admins can do whatever.
+	if (user.authLevel === UserAuthLevels.ADMIN) {
+		next();
+		return;
+	}
 
 	if (req[SYMBOL_TACHI_API_AUTH].userID === null) {
 		return res.status(401).json({

@@ -44,7 +44,9 @@ export default function LoginPage() {
 				false
 			);
 
-			recaptchaRef.current.reset();
+			if (recaptchaRef.current) {
+				recaptchaRef.current.reset();
+			}
 
 			if (!rj.success) {
 				setErr(HumaniseError(rj.description));
@@ -114,16 +116,15 @@ export default function LoginPage() {
 						{err}
 					</Form.Group>
 
-					<ReCAPTCHA
-						ref={recaptchaRef}
-						sitekey={
-							process.env.REACT_APP_RECAPTCHA_KEY ??
-							"6LdI2swUAAAAAArkM0ZQi4SnttilqgAwsJSFw3PX"
-						}
-						onChange={(v) => {
-							formik.setFieldValue("captcha", v);
-						}}
-					/>
+					{process.env.REACT_APP_RECAPTCHA_KEY && (
+						<ReCAPTCHA
+							ref={recaptchaRef}
+							sitekey={process.env.REACT_APP_RECAPTCHA_KEY}
+							onChange={(v) => {
+								formik.setFieldValue("captcha", v);
+							}}
+						/>
+					)}
 
 					<Form.Group className="justify-content-center d-flex pt-4">
 						<span

@@ -242,7 +242,7 @@ export async function GetRecentlyAchievedQuests(
 	baseQuery: Omit<FilterQuery<QuestSubscriptionDocument>, "achieved">,
 	limit = 100
 ) {
-	const query = {
+	const query: FilterQuery<QuestSubscriptionDocument> = {
 		...baseQuery,
 		wasInstantlyAchieved: false,
 		achieved: true,

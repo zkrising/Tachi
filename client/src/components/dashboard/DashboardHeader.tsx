@@ -10,6 +10,9 @@ export function DashboardHeader() {
 		<NavItem key="profiles" to="/dashboard/profiles">
 			Your Profiles
 		</NavItem>,
+		<NavItem key="profiles" to="/dashboard/global-activity">
+			Global Activity
+		</NavItem>,
 	];
 
 	return (

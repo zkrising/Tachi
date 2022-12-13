@@ -25,6 +25,7 @@ import { UGSWithRankingData, UserRecentSummary } from "types/api-returns";
 import { DashboardHeader } from "components/dashboard/DashboardHeader";
 import DashboardActivity from "components/dashboard/DashboardActivity";
 import GoalLink from "components/util/GoalLink";
+import Activity from "components/activity/Activity";
 import { FolderInfoComponent } from "./users/games/_game/_playtype/folders/FolderSelectPage";
 import { GameStatContainer } from "./users/UserGamesPage";
 
@@ -66,6 +67,9 @@ function DashboardLoggedIn({ user }: { user: UserDocument }) {
 				</Route>
 				<Route exact path="/dashboard/profiles">
 					<UserGameStatsInfo user={user} />
+				</Route>
+				<Route exact path="/dashboard/global-activity">
+					<Activity url="/activity" />
 				</Route>
 			</Switch>
 		</div>

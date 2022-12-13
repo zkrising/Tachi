@@ -1,3 +1,4 @@
+import activityRouter from "./activity/router";
 import adminRouter from "./admin/router";
 import authRouter from "./auth/router";
 import clientsRouter from "./clients/router";
@@ -25,6 +26,7 @@ router.use("/auth", authRouter);
 router.use(NormalRateLimitMiddleware);
 
 router.use("/admin", adminRouter);
+router.use("/activity", activityRouter);
 router.use("/status", statusRouter);
 router.use("/import", importRouter);
 router.use("/imports", importsRouter);

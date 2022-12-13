@@ -69,7 +69,10 @@ export default function DashboardRoutes() {
 				<Switch>
 					{/* this is the easiest (read: least sucky) way of handling */}
 					{/* these routes */}
-					<Route exact path={["/dashboard", "/dashboard/profiles"]}>
+					<Route
+						exact
+						path={["/dashboard", "/dashboard/profiles", "/dashboard/global-activity"]}
+					>
 						<DashboardPage />
 					</Route>
 

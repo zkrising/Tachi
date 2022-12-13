@@ -9,7 +9,21 @@ import { GetGPT } from "utils/req-tachi-data";
 import { GetUsersWithIDs } from "utils/user";
 import type { Request, Response } from "express-serve-static-core";
 import type { FilterQuery } from "mongodb";
-import type { ClassAchievementDocument, Game, ScoreDocument, SessionDocument } from "tachi-common";
+import type {
+	ChartDocument,
+	ClassAchievementDocument,
+	Game,
+	GoalDocument,
+	GoalSubscriptionDocument,
+	IDStrings,
+	Playtype,
+	QuestDocument,
+	QuestSubscriptionDocument,
+	ScoreDocument,
+	SessionDocument,
+	SongDocument,
+	UserDocument,
+} from "tachi-common";
 
 export type ActivityConstraint = FilterQuery<
 	ClassAchievementDocument & ScoreDocument & SessionDocument
@@ -43,7 +57,18 @@ export async function GetRecentActivity(
 	query: ActivityConstraint,
 	sessions = 30,
 	startFrom: number | null = null
-) {
+): Promise<{
+	recentSessions: Array<SessionDocument>;
+	recentlyHighlightedScores: Array<ScoreDocument>;
+	songs: Array<SongDocument>;
+	charts: Array<ChartDocument>;
+	achievedClasses: Array<ClassAchievementDocument>;
+	users: Array<UserDocument>;
+	goals: Array<GoalDocument>;
+	goalSubs: Array<GoalSubscriptionDocument>;
+	quests: Array<QuestDocument>;
+	questSubs: Array<QuestSubscriptionDocument>;
+}> {
 	const baseQuery = query;
 
 	const initialSessionQuery = {
@@ -133,6 +158,69 @@ export async function GetRecentActivity(
 		quests,
 		questSubs,
 	};
+}
+
+/**
+ * @see {GetRecentActivity}, but for multiple games. Works pretty much as expected.
+ *
+ * @param gpts - An array of Game+Playtype combos to fetch from.
+ */
+export async function GetRecentActivityForMultipleGames(
+	gpts: Array<{ game: Game; playtype: Playtype; query: ActivityConstraint }>,
+	sessions = 30,
+	startFrom: number | null = null
+) {
+	// { "iidx:SP": {recentSessions: ..., ...} }
+	const data: Partial<Record<IDStrings, Awaited<ReturnType<typeof GetRecentActivity>>>> = {};
+
+	await Promise.all(
+		gpts.map(async ({ game, playtype }) => {
+			const activity = await GetRecentActivity(
+				game,
+				{
+					game,
+					playtype,
+				},
+				sessions,
+				startFrom
+			);
+
+			data[`${game}:${playtype}` as IDStrings] = activity;
+		})
+	);
+
+	// depressingly, we have to discard most of this data for sorting reasons
+	// because not all sessions are guaranteed to be in the same order
+	// it's possible for, say, a really old jubeat session to push the "oldest session"
+	// very far back, resulting in us skipping over data.
+
+	const flatPointer = Object.entries(data) as Array<
+		[IDStrings, { recentSessions: Array<SessionDocument> }]
+	>;
+
+	// sort all games data to find the Nth session (where we should set our cutoff).
+	const sessionTimes = flatPointer
+		.flatMap((e) => e[1].recentSessions.map((e) => e.timeEnded))
+		.sort((a, b) => b - a);
+
+	const stop = sessionTimes[sessions] ?? -Infinity;
+
+	for (const value of Object.values(data)) {
+		// remove all data that happened before the stop point.
+		value.achievedClasses = value.achievedClasses.filter((e) => e.timeAchieved > stop);
+		value.goalSubs = value.goalSubs.filter(
+			(e) => e.timeAchieved !== null && e.timeAchieved > stop
+		);
+		value.questSubs = value.questSubs.filter(
+			(e) => e.timeAchieved !== null && e.timeAchieved > stop
+		);
+		value.recentSessions = value.recentSessions.filter((e) => e.timeEnded > stop);
+		value.recentlyHighlightedScores = value.recentlyHighlightedScores.filter(
+			(e) => e.timeAchieved !== null && e.timeAchieved > stop
+		);
+	}
+
+	return data;
 }
 
 /**

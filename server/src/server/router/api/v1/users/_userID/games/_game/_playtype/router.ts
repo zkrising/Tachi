@@ -315,6 +315,9 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 /**
  * Retrieve activity for this user.
  *
+ * @param session - See CreateActivityRouteHandler
+ * @param startTime - See CreateActivityRouteHandler
+ *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/activity
  */
 router.get("/activity", (req, res) => {

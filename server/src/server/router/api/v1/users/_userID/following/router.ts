@@ -54,7 +54,8 @@ router.get("/", async (req, res) => {
  */
 router.post(
 	"/add",
-	RequireSelfRequestFromUser.prValidate({ userID: p.isPositiveInteger }),
+	RequireSelfRequestFromUser,
+	prValidate({ userID: p.isPositiveInteger }),
 	async (req, res) => {
 		const user = GetUser(req);
 

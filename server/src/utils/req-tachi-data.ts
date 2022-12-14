@@ -37,6 +37,12 @@ export function GetTachiData<T extends keyof TachiRequestData>(
 	return value as unknown as Exclude<TachiRequestData[T], undefined>;
 }
 
+export function GetUser(req: Request) {
+	const user = GetTachiData(req, "requestedUser");
+
+	return user;
+}
+
 export function GetUGPT(req: Request) {
 	const user = GetTachiData(req, "requestedUser");
 	const game = GetTachiData(req, "game");

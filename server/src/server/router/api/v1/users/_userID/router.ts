@@ -12,13 +12,12 @@ import { HashPassword, PasswordCompare, ValidatePassword } from "../../auth/auth
 import { Router } from "express";
 import db from "external/mongo/db";
 import { GetRecentActivity } from "lib/activity/activity";
-import { SYMBOL_TACHI_DATA } from "lib/constants/tachi";
 import { ONE_MONTH } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { GetRivalIDs } from "lib/rivals/rivals";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
-import { DeleteUndefinedProps, IsNonEmptyString, NotNullish, StripUrl } from "utils/misc";
+import { DeleteUndefinedProps, IsNonEmptyString, StripUrl } from "utils/misc";
 import { optNullFluffStrField } from "utils/prudence";
 import {
 	GetGoalSummary,
@@ -26,6 +25,7 @@ import {
 	GetRecentPlaycount,
 	GetRecentSessions,
 } from "utils/queries/summary";
+import { GetUser } from "utils/req-tachi-data";
 import { FormatUserDoc, GetAllRankings, GetUserWithID } from "utils/user";
 import type { ActivityConstraint } from "lib/activity/activity";
 import type { IDStrings, ImportTypes, integer, UserGameStats } from "tachi-common";
@@ -42,7 +42,7 @@ router.use(GetUserFromParam);
  * @name GET /api/v1/users/:userID
  */
 router.get("/", (req, res) => {
-	const user = NotNullish(req[SYMBOL_TACHI_DATA]?.requestedUser);
+	const user = GetUser(req);
 
 	return res.status(200).json({
 		success: true,
@@ -90,7 +90,7 @@ router.patch(
 		twitch: optNullFluffStrField,
 	}),
 	async (req, res) => {
-		const user = NotNullish(req[SYMBOL_TACHI_DATA]?.requestedUser);
+		const user = GetUser(req);
 
 		const body = req.safeBody as UserPatchBody;
 
@@ -207,7 +207,7 @@ router.patch(
  * @name GET /api/v1/users/:userID/game-stats
  */
 router.get("/game-stats", async (req, res) => {
-	const user = NotNullish(req[SYMBOL_TACHI_DATA]?.requestedUser);
+	const user = GetUser(req);
 
 	// a user has played a game if and only if they have stats for it.
 	const stats: Array<
@@ -240,7 +240,7 @@ router.get("/game-stats", async (req, res) => {
  * @name GET /api/v1/users/:userID/recent-summary
  */
 router.get("/recent-summary", async (req, res) => {
-	const user = NotNullish(req[SYMBOL_TACHI_DATA]?.requestedUser);
+	const user = GetUser(req);
 
 	const [
 		recentPlaycount,
@@ -276,7 +276,7 @@ router.get("/recent-summary", async (req, res) => {
  * @name GET /api/v1/users/:userID/is-email-verified
  */
 router.get("/is-email-verified", RequireSelfRequestFromUser, async (req, res) => {
-	const user = NotNullish(req[SYMBOL_TACHI_DATA]?.requestedUser);
+	const user = GetUser(req);
 
 	const verifyInfo = await db["verify-email-codes"].findOne({
 		userID: user.id,
@@ -386,7 +386,7 @@ router.post(
  * @name GET /api/v1/users/:userID/recent-imports
  */
 router.get("/recent-imports", async (req, res) => {
-	const user = NotNullish(req[SYMBOL_TACHI_DATA]?.requestedUser);
+	const user = GetUser(req);
 
 	const recentImports: Array<{ _id: ImportTypes; count: integer }> = await db.imports.aggregate([
 		{
@@ -439,7 +439,7 @@ router.use(
 			});
 		}
 
-		const user = NotNullish(req[SYMBOL_TACHI_DATA]?.requestedUser);
+		const user = GetUser(req);
 
 		const gpts = await db["game-stats"].find({
 			userID: user.id,

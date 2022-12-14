@@ -1,3 +1,4 @@
+import UserFriendsMigration from "./migrations/add-friends-to-users";
 import UGPTAddPreferredRanking from "./migrations/add-preferredRanking-to-ugpt";
 import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
 import FixUndefinedBMSData from "./migrations/fix-undefined-bms-data";
@@ -34,7 +35,12 @@ export const FAKE_MIGRATION: Migration = {
 const REGISTERED_MIGRATIONS: Array<Migration> =
 	Environment.nodeEnv === "test"
 		? [FAKE_MIGRATION]
-		: [UGPTRivalsMigration, RemoveMultifolderStats, UGPTAddPreferredRanking];
+		: [
+				UGPTRivalsMigration,
+				RemoveMultifolderStats,
+				UGPTAddPreferredRanking,
+				UserFriendsMigration,
+		  ];
 
 // only apply type-specific migrations if we're not in testing
 if (Environment.nodeEnv !== "test") {

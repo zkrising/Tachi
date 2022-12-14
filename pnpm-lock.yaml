@@ -280,12 +280,14 @@ importers:
       glob: ^7.2.0
       html-entities: ^2.3.2
       iconv-lite: ^0.6.3
+      install: ^0.13.0
       lodash.get: ^4.4.2
       mei-logger: ^1.0.1
       monk: ^7.3.4
       node-fetch: 2.6.7
       prudence: 0.9.8
       tachi-common: workspace:../../common
+      tsconfig-paths: 3.12.0
       xml2js: ^0.4.23
     dependencies:
       '@types/lodash.get': 4.4.7
@@ -302,6 +304,7 @@ importers:
       glob: 7.2.3
       html-entities: 2.3.3
       iconv-lite: 0.6.3
+      install: 0.13.0
       lodash.get: 4.4.2
       mei-logger: 1.0.3
       monk: 7.3.4
@@ -309,6 +312,8 @@ importers:
       prudence: 0.9.8
       tachi-common: link:../../common
       xml2js: 0.4.23
+    devDependencies:
+      tsconfig-paths: 3.12.0
 
   github-bot:
     specifiers:
@@ -8548,6 +8553,11 @@ packages:
       strip-ansi: 5.2.0
       through: 2.3.8
     dev: true
+
+  /install/0.13.0:
+    resolution: {integrity: sha512-zDml/jzr2PKU9I8J/xyZBQn8rPCAY//UOYNmR01XwNwyfhEWObo2SWfSl1+0tm1u6PhxLwDnfsT/6jB7OUxqFA==}
+    engines: {node: '>= 0.10'}
+    dev: false
 
   /internal-ip/4.3.0:
     resolution: {integrity: sha512-S1zBo1D6zcsyuC6PMmY5+55YMILQ9av8lotMx447Bq6SAgo/sDK6y6uUKmuYhW7eacnIhFfsPmCNYdDzsnnDCg==}

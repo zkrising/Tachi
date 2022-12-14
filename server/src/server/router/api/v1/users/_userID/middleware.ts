@@ -2,8 +2,11 @@ import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import { UserAuthLevels } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
-import { ResolveUser } from "utils/user";
+import { GetUserWithID, ResolveUser } from "utils/user";
 import type { RequestHandler } from "express";
+import CreateLogCtx from "lib/logger/logger";
+
+const logger = CreateLogCtx(__filename);
 
 export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 	if (!req.params.userID) {
@@ -52,14 +55,9 @@ export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 /**
  * Require the user making this request to also be the user in the :userID param.
  */
-export const RequireAuthedAsUser: RequestHandler = (req, res, next) => {
+export const RequireAuthedAsUser: RequestHandler = async (req, res, next) => {
 	const user = GetTachiData(req, "requestedUser");
 
-	// admins can do whatever.
-	if (user.authLevel === UserAuthLevels.ADMIN) {
-		next();
-		return;
-	}
 
 	if (req[SYMBOL_TACHI_API_AUTH].userID === null) {
 		return res.status(401).json({
@@ -67,6 +65,23 @@ export const RequireAuthedAsUser: RequestHandler = (req, res, next) => {
 			description: `Authentication is required for this endpoint.`,
 		});
 	}
+
+	const requestingUser = await GetUserWithID(req[SYMBOL_TACHI_API_AUTH].userID);
+
+	if (!requestingUser) {
+		logger.severe(`${req[SYMBOL_TACHI_API_AUTH].userID} is signed in as someone who does not exist.`);
+		return res.status(500).json({
+			success: false,
+			description: `You are signed in as someone who does not exist.`
+		});
+	}
+
+	// admins can do whatever.
+	if (requestingUser.authLevel === UserAuthLevels.ADMIN) {
+		next();
+		return;
+	}
+
 
 	if (req[SYMBOL_TACHI_API_AUTH].userID !== user.id) {
 		return res.status(403).json({

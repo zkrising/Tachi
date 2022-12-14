@@ -3,6 +3,7 @@ import db from "external/mongo/db";
 import { ONE_MINUTE } from "lib/constants/time";
 import { ChangeRootLogLevel, GetLogLevel } from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
+import { UserAuthLevels } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
@@ -14,11 +15,25 @@ import type { ScoreDocument } from "tachi-common";
 const LOG_LEVEL = ServerConfig.LOGGER_CONFIG.LOG_LEVEL;
 
 t.test("POST /api/v1/admin/change-log-level", async (t) => {
-	t.beforeEach(() => {
+	t.beforeEach(async () => {
 		ChangeRootLogLevel(LOG_LEVEL);
+		await db.users.update({ id: 1 }, { $set: { authLevel: UserAuthLevels.ADMIN } });
 	});
 
 	const auth = await CreateFakeAuthCookie(mockApi);
+
+	t.test("Should require an admin authlevel", async (t) => {
+		await db.users.update({ id: 1 }, { $set: { authLevel: UserAuthLevels.USER } });
+
+		const res = await mockApi.post("/api/v1/admin/change-log-level").set("Cookie", auth).send({
+			noReset: true,
+			logLevel: "crit",
+		});
+
+		t.equal(res.statusCode, 403);
+
+		t.end();
+	});
 
 	t.test("Should change the log level on the server.", async (t) => {
 		const res = await mockApi.post("/api/v1/admin/change-log-level").set("Cookie", auth).send({
@@ -66,29 +81,53 @@ t.test("POST /api/v1/admin/change-log-level", async (t) => {
 
 t.test("POST /api/v1/admin/delete-score", async (t) => {
 	t.beforeEach(ResetDBState);
+	t.beforeEach(async () => {
+		await db.users.update({ id: 1 }, { $set: { authLevel: UserAuthLevels.ADMIN } });
+	});
 
 	const auth = await CreateFakeAuthCookie(mockApi);
 
-	await db.scores.insert(
-		deepmerge<ScoreDocument>(TestingIIDXSPScore, {
-			scoreID: "deleteme",
-		})
-	);
+	t.test("Should require an admin authlevel", async (t) => {
+		await db.users.update({ id: 1 }, { $set: { authLevel: UserAuthLevels.USER } });
 
-	const res = await mockApi
-		.post("/api/v1/admin/delete-score")
-		.set({
-			Cookie: auth,
-		})
-		.send({
-			scoreID: "deleteme",
-		});
+		const res = await mockApi
+			.post("/api/v1/admin/delete-score")
+			.set({
+				Cookie: auth,
+			})
+			.send({
+				scoreID: "deleteme",
+			});
 
-	t.equal(res.statusCode, 200);
+		t.equal(res.statusCode, 403);
 
-	const dbScore = await db.scores.findOne({ scoreID: "deleteme" });
+		t.end();
+	});
 
-	t.equal(dbScore, null, "Should remove the score from the database.");
+	t.test("Should delete another user's score.", async (t) => {
+		await db.scores.insert(
+			deepmerge<ScoreDocument>(TestingIIDXSPScore, {
+				scoreID: "deleteme",
+			})
+		);
+
+		const res = await mockApi
+			.post("/api/v1/admin/delete-score")
+			.set({
+				Cookie: auth,
+			})
+			.send({
+				scoreID: "deleteme",
+			});
+
+		t.equal(res.statusCode, 200);
+
+		const dbScore = await db.scores.findOne({ scoreID: "deleteme" });
+
+		t.equal(dbScore, null, "Should remove the score from the database.");
+
+		t.end();
+	});
 
 	t.end();
 });

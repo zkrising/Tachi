@@ -364,15 +364,15 @@ async function GetBestJubilityOnSongs(
 						$switch: {
 							branches: [
 								{
-									case: { $in: ["$difficulty", ["HARD BSC", "BSC"]] },
+									case: { $in: ["$chart.difficulty", ["HARD BSC", "BSC"]] },
 									then: "BSC",
 								},
 								{
-									case: { $in: ["$difficulty", ["HARD ADV", "ADV"]] },
+									case: { $in: ["$chart.difficulty", ["HARD ADV", "ADV"]] },
 									then: "ADV",
 								},
 								{
-									case: { $in: ["$difficulty", ["HARD EXT", "EXT"]] },
+									case: { $in: ["$chart.difficulty", ["HARD EXT", "EXT"]] },
 									then: "EXT",
 								},
 							],

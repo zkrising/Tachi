@@ -4,6 +4,7 @@ import t from "tap";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import type { UGPTSettings } from "tachi-common";
+import { mkFakeUser } from "test-utils/misc";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 	t.beforeEach(ResetDBState);
@@ -315,6 +316,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 	});
 
 	t.test("Requires the user to be authed as the requested user.", async (t) => {
+		await db.users.insert(mkFakeUser(2));
 		await db["api-tokens"].insert({
 			userID: 2,
 			identifier: "api_token",

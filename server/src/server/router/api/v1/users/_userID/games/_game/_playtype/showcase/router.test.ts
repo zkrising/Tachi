@@ -7,6 +7,7 @@ import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingIIDXFolderSP10, TestingIIDXSPScorePB } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
 import type { ChartDocument, UserDocument } from "tachi-common";
+import { mkFakeUser } from "test-utils/misc";
 
 const SetFolders = async () => {
 	await db.folders.insert(TestingIIDXFolderSP10);
@@ -276,6 +277,7 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 	);
 
 	t.test("Requires the user to be authed as the requested user.", async (t) => {
+		await db.users.insert(mkFakeUser(2));
 		await db["api-tokens"].insert({
 			userID: 2,
 			identifier: "alt_token",

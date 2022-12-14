@@ -56,14 +56,14 @@ t.test("POST /api/v1/auth/login", (t) => {
 		t.end();
 	});
 
-	t.test("Should return 401 if password invalid", async (t) => {
+	t.test("Should return 403 if password invalid", async (t) => {
 		const res = await mockApi.post("/api/v1/auth/login").send({
 			username: "test_zkldi",
 			"!password": "invalid_password",
 			captcha: "foo",
 		});
 
-		t.equal(res.status, 401);
+		t.equal(res.status, 403);
 
 		t.end();
 	});

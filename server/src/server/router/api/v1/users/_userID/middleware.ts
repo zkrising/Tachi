@@ -58,18 +58,18 @@ export const GetUserFromParam: RequestHandler = async (req, res, next) => {
 export const RequireAuthedAsUser: RequestHandler = async (req, res, next) => {
 	const user = GetTachiData(req, "requestedUser");
 
-
-	if (req[SYMBOL_TACHI_API_AUTH].userID === null) {
+	const requestingUserID = req[SYMBOL_TACHI_API_AUTH].userID;
+	if (requestingUserID === null) {
 		return res.status(401).json({
 			success: false,
 			description: `Authentication is required for this endpoint.`,
 		});
 	}
 
-	const requestingUser = await GetUserWithID(req[SYMBOL_TACHI_API_AUTH].userID);
+	const requestingUser = await GetUserWithID(requestingUserID);
 
 	if (!requestingUser) {
-		logger.severe(`${req[SYMBOL_TACHI_API_AUTH].userID} is signed in as someone who does not exist.`);
+		logger.severe(`${requestingUserID} is signed in as someone who does not exist.`);
 		return res.status(500).json({
 			success: false,
 			description: `You are signed in as someone who does not exist.`
@@ -83,7 +83,7 @@ export const RequireAuthedAsUser: RequestHandler = async (req, res, next) => {
 	}
 
 
-	if (req[SYMBOL_TACHI_API_AUTH].userID !== user.id) {
+	if (requestingUserID !== user.id) {
 		return res.status(403).json({
 			success: false,
 			description: "You are not authorised as this user.",

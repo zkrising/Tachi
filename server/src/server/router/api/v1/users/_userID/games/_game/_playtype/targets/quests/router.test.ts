@@ -4,7 +4,6 @@ import { CreateFakeAuthCookie } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import {
-	HC511Goal,
 	IIDXSPQuestGoals,
 	IIDXSPQuestGoalSubs,
 	TestingIIDXSPQuest,
@@ -14,9 +13,9 @@ import type { UserDocument, UserGameStats } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/quests", (t) => {
 	t.beforeEach(ResetDBState);
+	t.beforeEach(() => db.quests.insert(TestingIIDXSPQuest));
 
 	t.test("Should return all quest subscriptions.", async (t) => {
-		await db.quests.insert(TestingIIDXSPQuest);
 		await db["quest-subs"].insert(TestingIIDXSPQuestSub);
 		await db.goals.insert(IIDXSPQuestGoals);
 
@@ -39,7 +38,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/quests", (t) => 
 	});
 
 	t.test("Should panic if quest subs are parentless.", async (t) => {
-		// await db.quests.insert(TestingIIDXSPQuest);
+		await db.quests.remove({ questID: TestingIIDXSPQuest.questID });
 		await db["quest-subs"].insert(TestingIIDXSPQuestSub);
 
 		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/targets/quests");
@@ -54,9 +53,9 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/quests", (t) => 
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/quests/:questID", (t) => {
 	t.beforeEach(ResetDBState);
+	t.beforeEach(() => db.quests.insert(TestingIIDXSPQuest));
 
 	t.test("Should return the user's specific quest sub.", async (t) => {
-		await db.quests.insert(TestingIIDXSPQuest);
 		await db["quest-subs"].insert(TestingIIDXSPQuestSub);
 
 		await db.goals.insert(IIDXSPQuestGoals);
@@ -92,7 +91,9 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/quests/:questID"
 	});
 
 	t.test("Should return 404 if the user is not subscribed to this quest.", async (t) => {
-		const res = await mockApi.get(`/api/v1/users/1/games/iidx/SP/targets/quests/fake_quest`);
+		const res = await mockApi.get(
+			`/api/v1/users/1/games/iidx/SP/targets/quests/${TestingIIDXSPQuest.questID}`
+		);
 
 		t.equal(res.statusCode, 404);
 
@@ -104,6 +105,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/quests/:questID"
 
 t.test("PUT /api/v1/users/:userID/games/:game/:playtype/targets/quests/:questID", async (t) => {
 	t.beforeEach(ResetDBState);
+	t.beforeEach(() => db.quests.insert(TestingIIDXSPQuest));
 
 	const cookie = await CreateFakeAuthCookie(mockApi);
 
@@ -118,7 +120,6 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/targets/quests/:questID"
 	});
 
 	t.test("Should return 409 if user is already subscribed to this quest.", async (t) => {
-		await db.quests.insert(TestingIIDXSPQuest);
 		await db["quest-subs"].insert(TestingIIDXSPQuestSub);
 
 		const res = await mockApi
@@ -131,7 +132,6 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/targets/quests/:questID"
 	});
 
 	t.test("Should subscribe to a quest.", async (t) => {
-		await db.quests.insert(TestingIIDXSPQuest);
 		await db.goals.insert(IIDXSPQuestGoals);
 
 		const res = await mockApi
@@ -151,7 +151,9 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/targets/quests/:questID"
 	});
 
 	t.test("Should return 401 if the user is not authed.", async (t) => {
-		const res = await mockApi.put(`/api/v1/users/1/games/iidx/SP/targets/quests/fake_quest`);
+		const res = await mockApi.put(
+			`/api/v1/users/1/games/iidx/SP/targets/quests/${TestingIIDXSPQuest.questID}`
+		);
 
 		t.equal(res.statusCode, 401);
 
@@ -174,7 +176,7 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/targets/quests/:questID"
 		} as UserGameStats);
 
 		const res = await mockApi
-			.put(`/api/v1/users/2/games/iidx/SP/targets/quests/fake_quest`)
+			.put(`/api/v1/users/2/games/iidx/SP/targets/quests/${TestingIIDXSPQuest.questID}`)
 			.set("Cookie", cookie);
 
 		t.equal(res.statusCode, 403);
@@ -186,20 +188,25 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/targets/quests/:questID"
 });
 
 t.test("DELETE /api/v1/users/:userID/games/:game/:playtype/targets/quests/:questID", async (t) => {
+	t.beforeEach(ResetDBState);
+	t.beforeEach(() => db.quests.insert(TestingIIDXSPQuest));
+
 	const cookie = await CreateFakeAuthCookie(mockApi);
 
-	t.test("Should return 404 if the user is not subscribed to this quest.", async (t) => {
+	t.test("Should return 409 if the user is not subscribed to this quest.", async (t) => {
 		const res = await mockApi
-			.delete(`/api/v1/users/1/games/iidx/SP/targets/quests/fake_quest`)
+			.delete(`/api/v1/users/1/games/iidx/SP/targets/quests/${TestingIIDXSPQuest.questID}`)
 			.set("Cookie", cookie);
 
-		t.equal(res.statusCode, 404);
+		t.equal(res.statusCode, 409);
 
 		t.end();
 	});
 
 	t.test("Should return 401 if the user is not authed.", async (t) => {
-		const res = await mockApi.delete(`/api/v1/users/1/games/iidx/SP/targets/quests/fake_quest`);
+		const res = await mockApi.delete(
+			`/api/v1/users/1/games/iidx/SP/targets/quests/${TestingIIDXSPQuest.questID}`
+		);
 
 		t.equal(res.statusCode, 401);
 
@@ -222,7 +229,7 @@ t.test("DELETE /api/v1/users/:userID/games/:game/:playtype/targets/quests/:quest
 		} as UserGameStats);
 
 		const res = await mockApi
-			.delete(`/api/v1/users/2/games/iidx/SP/targets/quests/fake_quest`)
+			.delete(`/api/v1/users/2/games/iidx/SP/targets/quests/${TestingIIDXSPQuest.questID}`)
 			.set("Cookie", cookie);
 
 		t.equal(res.statusCode, 403);
@@ -231,7 +238,6 @@ t.test("DELETE /api/v1/users/:userID/games/:game/:playtype/targets/quests/:quest
 	});
 
 	t.test("Should unsubscribe from a quest.", async (t) => {
-		await db.quests.insert(TestingIIDXSPQuest);
 		await db["quest-subs"].insert(TestingIIDXSPQuestSub);
 
 		const res = await mockApi

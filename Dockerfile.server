@@ -16,11 +16,12 @@ COPY pnpm-lock.yaml .
 
 RUN pnpm fetch
 
-COPY server /app/server
-COPY common /app/common
+COPY server ./server
+COPY common ./common
+COPY patches ./patches
 COPY *.json *.yaml ./
 
-RUN pnpm --filter tachi-server... --filter . install --offline --silent
+RUN pnpm --filter tachi-server... --filter . install --offline
 RUN pnpm --filter tachi-server... -r build
 
 FROM base AS app

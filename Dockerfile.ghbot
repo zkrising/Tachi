@@ -10,6 +10,7 @@ RUN pnpm fetch
 
 COPY github-bot ./github-bot
 COPY common ./common
+COPY patches ./patches
 COPY *.json *.yaml ./
 
 RUN pnpm --filter tachi-github-bot... --filter . install --offline --silent

@@ -41,8 +41,6 @@ export function RedisPub<T extends RedisIPCChannels>(channel: T, data: RedisIPCD
 
 export function RedisSub<T extends RedisIPCChannels>(channel: T, callback: RedisSubCallback<T>) {
 	if (SubCallbacks[channel]) {
-		// @ts-expect-error It's complaining that the T in channel might be a different T to the T in callback
-		// this is obviously nonsense.
 		SubCallbacks[channel]!.push(callback);
 		logger.debug(`Pushed callback ${callback.name} to channel ${channel}.`);
 	} else {

@@ -11,7 +11,8 @@
 			// I hope not.
 			"DOM"
 		],
-		"baseUrl": "src",
+		"rootDir": ".",
+		"baseUrl": ".",
 		"outDir": "./js",
 		// USE TS-NODE!
 		"noEmit": true,

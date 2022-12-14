@@ -74,8 +74,8 @@
 		],
 	},
 	LOGGER_CONFIG: {
-		FILE: false,
-		CONSOLE: true,
+		FILE: true,
+		CONSOLE: false,
 		LOG_LEVEL: "info",
 	},
 }

@@ -180,8 +180,11 @@ async function LoadClients(clients: DefaultClients) {
 	});
 
 	if (!firstAdmin) {
-		logger.error(
-			`There are no admins on this instance of tachi-server. We cannot create default API Clients!`
+		logger.warn(
+			`There are no admins on this instance of tachi-server. We cannot create default API Clients!
+Chances are, you're seeing this message because you just bootstrapped Tachi.
+You'll need to set a user's authLevel to ${UserAuthLevels.ADMIN}.
+If you have no users, go create an account using the frontend, then run pnpm make-user-admin 1.`
 		);
 		return;
 	}

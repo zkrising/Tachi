@@ -12,7 +12,8 @@
 		"sync-database": "pnpm --filter ./server sync-database",
 		"sync-database-local": "pnpm --filter ./server sync-database-local",
 		"start-score-import-worker": "pnpm --filter ./server runscoreworker",
-		"start-docs": "cd docs/ && mkdocs serve"
+		"start-docs": "cd docs/ && mkdocs serve",
+		"make-user-admin": "pnpm --filter ./server make-user-admin $@"
 	},
 	"repository": {
 		"type": "git",

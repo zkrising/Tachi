@@ -19,7 +19,8 @@
 		"runscoreworker": "NODE_PATH=js/ node js/lib/score-import/worker/worker.js",
 		"sync-database": "ts-node src/scripts/sync-database",
 		"sync-database-local": "ts-node src/scripts/sync-database --localPath '../database-seeds/collections'",
-		"recalc-everything": "ts-node src/scripts/state-sync/sync-state.ts"
+		"recalc-everything": "ts-node src/scripts/state-sync/sync-state.ts",
+		"make-user-admin": "ts-node src/scripts/make-user-admin.ts $@"
 	},
 	"author": "zkldi",
 	"license": "AGPL3",

@@ -1,4 +1,4 @@
-import UserFriendsMigration from "./migrations/add-friends-to-users";
+import UserFollowersMigration from "./migrations/add-following-to-users";
 import UGPTAddPreferredRanking from "./migrations/add-preferredRanking-to-ugpt";
 import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
 import FixUndefinedBMSData from "./migrations/fix-undefined-bms-data";
@@ -39,7 +39,7 @@ const REGISTERED_MIGRATIONS: Array<Migration> =
 				UGPTRivalsMigration,
 				RemoveMultifolderStats,
 				UGPTAddPreferredRanking,
-				UserFriendsMigration,
+				UserFollowersMigration,
 		  ];
 
 // only apply type-specific migrations if we're not in testing

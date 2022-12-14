@@ -121,6 +121,7 @@ export function InsertDefaultUserSettings(userID: integer) {
 	logger.verbose(`Inserting default settings for ${userID}.`);
 	const userSettings: UserSettings = {
 		userID,
+		following: [],
 		preferences: DEFAULT_USER_SETTINGS,
 	};
 

@@ -1508,7 +1508,7 @@ export interface BatchManual<I extends IDStrings = IDStrings> {
 
 export interface UserSettings {
 	userID: integer;
-	friends: Array<integer>;
+	following: Array<integer>;
 	preferences: {
 		invisible: boolean;
 		developerMode: boolean;

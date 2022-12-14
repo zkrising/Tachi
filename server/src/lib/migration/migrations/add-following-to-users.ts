@@ -2,13 +2,13 @@ import db from "external/mongo/db";
 import type { Migration } from "utils/types";
 
 const migration: Migration = {
-	id: "add-friends-to-users",
+	id: "add-following-to-users",
 	up: async () => {
 		await db["user-settings"].update(
 			{},
 			{
 				$set: {
-					friends: [],
+					following: [],
 				},
 			},
 			{ multi: true }
@@ -18,7 +18,7 @@ const migration: Migration = {
 		await db["user-settings"].update(
 			{},
 			{
-				$unset: { friends: 1 },
+				$unset: { following: 1 },
 			},
 			{ multi: true }
 		);

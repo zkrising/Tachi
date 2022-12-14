@@ -1,5 +1,6 @@
 import apiTokensRouter from "./api-tokens/router";
 import bannerRouter from "./banner/router";
+import followingRouter from "./following/router";
 import gamePTRouter from "./games/_game/_playtype/router";
 import importsRouter from "./imports/router";
 import integrationsRouter from "./integrations/router";
@@ -489,5 +490,6 @@ router.use("/api-tokens", apiTokensRouter);
 router.use("/invites", invitesRouter);
 router.use("/imports", importsRouter);
 router.use("/notifications", notifsRouter);
+router.use("/following", followingRouter);
 
 export default router;

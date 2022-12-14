@@ -18,7 +18,6 @@ import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import {
 	ChartDocument,
-	FolderDocument,
 	Game,
 	GamePTConfig,
 	GetGamePTConfig,
@@ -38,9 +37,11 @@ type SetScores = (scores: ScoreDocument[]) => void;
 export default function SessionRaiseBreakdown({
 	sessionData,
 	setScores,
+	noHeader,
 }: {
 	sessionData: SessionReturns;
-	setScores: SetScores;
+	setScores?: SetScores;
+	noHeader?: boolean;
 }) {
 	const game = sessionData.session.game;
 	const playtype = sessionData.session.playtype;
@@ -68,38 +69,40 @@ export default function SessionRaiseBreakdown({
 
 	return (
 		<>
-			<div className="col-12">
-				<div className="row">
-					<div className="col-12 col-lg-6 offset-lg-3">
-						<div className="d-none d-lg-flex justify-content-center">
-							<div className="btn-group">
-								<SelectButton value={view} setValue={setView} id="lamps">
-									<Icon type="lightbulb" />
-									Lamps Only
-								</SelectButton>
+			{!noHeader && (
+				<div className="col-12">
+					<div className="row">
+						<div className="col-12 col-lg-6 offset-lg-3">
+							<div className="d-none d-lg-flex justify-content-center">
+								<div className="btn-group">
+									<SelectButton value={view} setValue={setView} id="lamps">
+										<Icon type="lightbulb" />
+										Lamps Only
+									</SelectButton>
 
-								<SelectButton value={view} setValue={setView} id="both">
-									<Icon type="bolt" />
-									Both
-								</SelectButton>
+									<SelectButton value={view} setValue={setView} id="both">
+										<Icon type="bolt" />
+										Both
+									</SelectButton>
 
-								<SelectButton value={view} setValue={setView} id="grades">
-									<Icon type="sort-alpha-up" />
-									Grades Only
-								</SelectButton>
+									<SelectButton value={view} setValue={setView} id="grades">
+										<Icon type="sort-alpha-up" />
+										Grades Only
+									</SelectButton>
+								</div>
 							</div>
 						</div>
 					</div>
+
+					<Divider className="mt-4 mb-4" />
+
+					{user?.id === sessionData.user.id && (
+						<div className="d-lg-block d-none mb-4">
+							Tip: You can click on scores to highlight/add comments!
+						</div>
+					)}
 				</div>
-
-				<Divider className="mt-4 mb-4" />
-
-				{user?.id === sessionData.user.id && (
-					<div className="d-lg-block d-none mb-4">
-						Tip: You can click on scores to highlight/add comments!
-					</div>
-				)}
-			</div>
+			)}
 			<SessionScoreStatBreakdown {...{ sessionData, view, setScores }} />
 		</>
 	);
@@ -111,7 +114,7 @@ function SessionScoreStatBreakdown({
 	setScores,
 }: {
 	sessionData: SessionReturns;
-	setScores: SetScores;
+	setScores?: SetScores;
 	view: "lamps" | "both" | "grades";
 }) {
 	const songMap = CreateSongMap(sessionData.songs);
@@ -248,7 +251,7 @@ function ElementStatTable({
 	setScores,
 }: {
 	type: "lamp" | "grade";
-	setScores: SetScores;
+	setScores?: SetScores;
 	scores: ScoreDocument[];
 	counts: Record<string, { score: ScoreDocument; scoreInfo: SessionScoreInfo }[]>;
 	gptConfig: GamePTConfig;
@@ -359,7 +362,7 @@ function BreakdownChartContents({
 	gptConfig: GamePTConfig;
 	type: "lamp" | "grade";
 	scores: Array<ScoreDocument>;
-	setScores: SetScores;
+	setScores?: SetScores;
 }) {
 	const modifyScore = useMemo(
 		() =>
@@ -403,6 +406,10 @@ function BreakdownChartContents({
 	useEffect(() => {
 		if (firstRun) {
 			setFirstRun(false);
+			return;
+		}
+
+		if (!setScores) {
 			return;
 		}
 
@@ -459,14 +466,15 @@ function BreakdownChartContents({
 	return (
 		<>
 			<TitleCell noArtist chart={chart} game={game} song={song} comment={comment} />
-			{score.userID === user?.id && (
-				<CommentHighlightManager
-					highlight={highlight}
-					setHighlight={setHighlight}
-					comment={comment}
-					setComment={setComment}
-				/>
-			)}
+			<CommentHighlightManager
+				highlight={highlight}
+				setHighlight={setHighlight}
+				comment={comment}
+				setComment={setComment}
+				// is the user looking at this session
+				// and scores are settable
+				isEditable={score.userID === user?.id && !!setScores}
+			/>
 			<DifficultyCell alwaysShort chart={chart} game={game} />
 		</>
 	);
@@ -482,11 +490,13 @@ function CommentHighlightManager({
 	setHighlight,
 	comment,
 	setComment,
+	isEditable,
 }: {
 	highlight: boolean;
 	setHighlight: (hl: boolean) => void;
 	comment: string | null;
 	setComment: (cm: string | null) => void;
+	isEditable: boolean;
 }) {
 	const [showCommentModal, setShowCommentModal] = useState(false);
 
@@ -501,30 +511,46 @@ function CommentHighlightManager({
 					setShowCommentModal(false);
 				}}
 			/>
-			<span className="breakdown-hover-highlight-button">
-				<Icon
-					onClick={() => setShowCommentModal(true)}
-					type="comment"
-					regular
-					style={{ paddingTop: "0.1rem", paddingRight: "0.33rem" }}
-				/>
-			</span>
-			{highlight ? (
-				<Icon
-					onClick={() => setHighlight(false)}
-					colour="warning"
-					type="star"
-					style={{ paddingTop: "0.1rem", paddingRight: "0.33rem" }}
-				/>
-			) : (
+			{isEditable && (
 				<span className="breakdown-hover-highlight-button">
 					<Icon
-						onClick={() => setHighlight(true)}
-						type="star"
+						onClick={() => setShowCommentModal(true)}
+						type="comment"
 						regular
-						style={{ paddingTop: "0.1rem" }}
+						style={{ paddingTop: "0.1rem", paddingRight: "0.33rem" }}
 					/>
 				</span>
+			)}
+
+			{isEditable ? (
+				// editable, highlighted
+				highlight ? (
+					<Icon
+						onClick={() => setHighlight(false)}
+						colour="warning"
+						type="star"
+						style={{ paddingTop: "0.1rem", paddingRight: "0.33rem" }}
+					/>
+				) : (
+					// editable, not highlighted
+					<span className="breakdown-hover-highlight-button">
+						<Icon
+							onClick={() => setHighlight(true)}
+							type="star"
+							regular
+							style={{ paddingTop: "0.1rem" }}
+						/>
+					</span>
+				)
+			) : (
+				// non-editable, highlighted
+				highlight && (
+					<Icon
+						colour="warning"
+						type="star"
+						style={{ paddingTop: "0.1rem", paddingRight: "0.33rem" }}
+					/>
+				)
 			)}
 		</td>
 	);

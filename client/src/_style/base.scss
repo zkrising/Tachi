@@ -176,3 +176,8 @@
 .quest-anchor {
 	scroll-margin-top: 100px;
 }
+
+.tooltip-max > .tooltip-inner {
+	width: 100%;
+	max-width: unset !important;
+}

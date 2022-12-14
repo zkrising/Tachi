@@ -148,4 +148,38 @@ router.get("/last", async (req, res) => {
 	});
 });
 
+/**
+ * Returns all sessions, but with unecessary properties removed so as to reduce
+ * bandwidth. This is used for the calendar view in tachi-client, hence the name.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/sessions/calendar
+ */
+router.get("/calendar", async (req, res) => {
+	const { user, game, playtype } = GetUGPT(req);
+
+	const sessions = await db.sessions.find(
+		{
+			userID: user.id,
+			game,
+			playtype,
+		},
+		{
+			projection: {
+				sessionID: 1,
+				name: 1,
+				desc: 1,
+				highlight: 1,
+				timeStarted: 1,
+				timeEnded: 1,
+			},
+		}
+	);
+
+	return res.status(200).json({
+		success: true,
+		description: `Found ${sessions.length} events.`,
+		body: sessions,
+	});
+});
+
 export default router;

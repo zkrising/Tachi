@@ -104,6 +104,9 @@ importers:
     specifiers:
       '@babel/core': 7.1.0
       '@fortawesome/fontawesome-free': 5.13.0
+      '@fullcalendar/core': ^6.0.0
+      '@fullcalendar/daygrid': ^6.0.0
+      '@fullcalendar/react': ^6.0.0
       '@material-ui/core': 4.9.14
       '@nivo/bar': 0.79.1
       '@nivo/core': 0.79.0
@@ -176,6 +179,9 @@ importers:
     dependencies:
       '@babel/core': 7.1.0
       '@fortawesome/fontawesome-free': 5.13.0
+      '@fullcalendar/core': 6.0.0
+      '@fullcalendar/daygrid': 6.0.0_@fullcalendar+core@6.0.0
+      '@fullcalendar/react': 6.0.0_zrxklzt7nn5cnxon3u5fowe7em
       '@material-ui/core': 4.9.14_i7f3p6afjediy36a6jchbe2d6m
       '@nivo/bar': 0.79.1_5stqffqmdnwrwvjsdzhku43lom
       '@nivo/core': 0.79.0_tw5bvpk7hfmbr5wwtjv2wgziou
@@ -2770,6 +2776,32 @@ packages:
   /@fortawesome/fontawesome-free/5.13.0:
     resolution: {integrity: sha512-xKOeQEl5O47GPZYIMToj6uuA2syyFlq9EMSl2ui0uytjY9xbe8XS0pexNWmxrdcCyNGyDmLyYw5FtKsalBUeOg==}
     engines: {node: '>=6'}
+    dev: false
+
+  /@fullcalendar/core/6.0.0:
+    resolution: {integrity: sha512-0lseac4/yJQhT9QjPGlqwEsZsoD0kKjuUI9KNUWMXqBPcK7Gk1pXJyP2Np7k9aqU5yLF7+pKp7fYR4YPiy++ew==}
+    dependencies:
+      preact: 10.11.3
+    dev: false
+
+  /@fullcalendar/daygrid/6.0.0_@fullcalendar+core@6.0.0:
+    resolution: {integrity: sha512-Lzv1saFduDR9amaC1zeHFb+iBBqGF7Gu+j5O6zTSZarCCWlrc9lgTN7sB6VAQE2XIFfz8s9EzK3UYd/goaKMpA==}
+    peerDependencies:
+      '@fullcalendar/core': ~6.0.0
+    dependencies:
+      '@fullcalendar/core': 6.0.0
+    dev: false
+
+  /@fullcalendar/react/6.0.0_zrxklzt7nn5cnxon3u5fowe7em:
+    resolution: {integrity: sha512-uxICTGtFclJigItsB4kH8xUHeV8KRKpAJpV2YFDBocN4KH/Xn+y/NnO5nl9YjRTYRSbi8YOAZtdVfvoU3nYPDA==}
+    peerDependencies:
+      '@fullcalendar/core': ~6.0.0
+      react: ^16.7.0 || ^17 || ^18
+      react-dom: ^16.7.0 || ^17 || ^18
+    dependencies:
+      '@fullcalendar/core': 6.0.0
+      react: 17.0.2
+      react-dom: 16.12.0_react@17.0.2
     dev: false
 
   /@httptoolkit/websocket-stream/6.0.1:
@@ -11814,6 +11846,10 @@ packages:
     dependencies:
       picocolors: 0.2.1
       source-map: 0.6.1
+    dev: false
+
+  /preact/10.11.3:
+    resolution: {integrity: sha512-eY93IVpod/zG3uMF22Unl8h9KkrcKIRs2EGar8hwLZZDU1lkjph303V9HZBwufh2s736U6VXuhD109LYqPoffg==}
     dev: false
 
   /prebuild-install/7.1.1:

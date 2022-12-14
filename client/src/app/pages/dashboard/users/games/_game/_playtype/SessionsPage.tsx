@@ -18,15 +18,11 @@ import {
 	SessionDocument,
 	UnsuccessfulAPIResponse,
 } from "tachi-common";
-import { GamePT } from "types/react";
+import { GamePT, UGPT } from "types/react";
+import SessionCalendar from "components/sessions/SessionCalendar";
+import Divider from "components/util/Divider";
 
-export default function SessionsPage({
-	reqUser,
-	game,
-	playtype,
-}: {
-	reqUser: UserDocument;
-} & GamePT) {
+export default function SessionsPage({ reqUser, game, playtype }: UGPT) {
 	const [sessionSet, setSessionSet] = useState<"recent" | "best" | "highlighted">("best");
 	const [search, setSearch] = useState("");
 
@@ -68,6 +64,10 @@ export default function SessionsPage({
 
 	return (
 		<div className="row">
+			<div className="col-12">
+				<SessionCalendar {...{ reqUser, game, playtype }} />
+				<Divider />
+			</div>
 			<div className="col-12 text-center">
 				<div className="btn-group d-flex justify-content-center mb-4">
 					<SelectButton id="best" setValue={setSessionSet} value={sessionSet}>

@@ -23,10 +23,10 @@ import {
 	UserDocument,
 	ShowcaseStatDetails,
 	SongDocument,
+	Playtype,
 } from "tachi-common";
 import { UGPTPreferenceStatsReturn } from "types/api-returns";
 import { GamePT, UGPT } from "types/react";
-import { Playtype } from "tachi-common";
 import UGPTStatContainer from "./UGPTStatContainer";
 import UGPTStatCreator from "./UGPTStatCreator";
 
@@ -291,11 +291,17 @@ function StatDelta({
 		colour = "danger";
 	}
 
+	let delta = null;
+
+	// don't bother highlighting grade/lamp deltas, since they're kinda meaningless
+	if (property === "percent" || property === "score" || property === "playcount") {
+		delta = ` (${v2 > v1 ? `+${d}` : v2 === v1 ? `±${d}` : d})`;
+	}
+
 	return (
 		<div className={`mt-2 text-${colour}`}>
-			<span>
-				You: {formattedV2} ({v2 > v1 ? `+${d}` : v2 === v1 ? `±${d}` : d})
-			</span>
+			<span>You: {formattedV2}</span>
+			{delta}
 		</div>
 	);
 }

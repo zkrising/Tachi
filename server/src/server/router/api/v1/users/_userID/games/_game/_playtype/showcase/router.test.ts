@@ -2,12 +2,12 @@ import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import { IIDX_GRADES, IIDX_LAMPS } from "tachi-common";
 import t from "tap";
+import { mkFakeUser } from "test-utils/misc";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingIIDXFolderSP10, TestingIIDXSPScorePB } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
 import type { ChartDocument, UserDocument } from "tachi-common";
-import { mkFakeUser } from "test-utils/misc";
 
 const SetFolders = async () => {
 	await db.folders.insert(TestingIIDXFolderSP10);

@@ -1,12 +1,12 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { UserAuthLevels } from "tachi-common";
-import { WrapScriptPromise } from "utils/misc"
+import { WrapScriptPromise } from "utils/misc";
 import { FormatUserDoc, ResolveUser } from "utils/user";
 
-const userID = process.argv[2]
+const userID = process.argv[2];
 
-const logger = CreateLogCtx(__filename)
+const logger = CreateLogCtx(__filename);
 
 async function MakeUserAdmin(userID: string) {
 	const user = await ResolveUser(userID);
@@ -16,13 +16,16 @@ async function MakeUserAdmin(userID: string) {
 		throw new Error(`No such user '${userID}' exists.`);
 	}
 
-	await db.users.update({
-		id: user.id
-	}, {
-		$set: {
-			authLevel: UserAuthLevels.ADMIN
+	await db.users.update(
+		{
+			id: user.id,
+		},
+		{
+			$set: {
+				authLevel: UserAuthLevels.ADMIN,
+			},
 		}
-	})
+	);
 
 	logger.info(`Made ${FormatUserDoc(user)} an administrator.`);
 }

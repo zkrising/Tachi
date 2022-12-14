@@ -1,10 +1,10 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
 import t from "tap";
+import { mkFakeUser } from "test-utils/misc";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import type { UGPTSettings } from "tachi-common";
-import { mkFakeUser } from "test-utils/misc";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 	t.beforeEach(ResetDBState);

@@ -12,6 +12,7 @@ import React, { useContext, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { UserDocument } from "tachi-common";
 import { SetState } from "types/react";
+import FollowUserButton from "components/util/FollowUserButton";
 import ProfileBadges from "./ProfileBadges";
 import ProfilePicture from "./ProfilePicture";
 
@@ -39,6 +40,8 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 			</li>
 		);
 	}
+
+	const { user: loggedInUser } = useContext(UserContext);
 
 	return (
 		<>
@@ -78,6 +81,14 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 					</li>
 				</ul>
 			</div>
+			{loggedInUser && reqUser.id !== loggedInUser.id && (
+				<div className="col-12 mt-8">
+					<Divider />
+					<div className="d-flex w-100 justify-content-center ">
+						<FollowUserButton userToFollow={reqUser} />
+					</div>
+				</div>
+			)}
 		</>
 	);
 }

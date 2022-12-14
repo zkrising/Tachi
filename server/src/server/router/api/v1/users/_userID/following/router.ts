@@ -1,6 +1,7 @@
 import { Router } from "express";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import { ServerConfig } from "lib/setup/config";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { GetUser } from "utils/req-tachi-data";
@@ -55,6 +56,13 @@ router.post("/add", prValidate({ userID: p.isPositiveInteger }), async (req, res
 
 	const { userID: toFollow } = req.safeBody as { userID: integer };
 
+	if (user.id === toFollow) {
+		return res.status(400).json({
+			success: false,
+			description: `Can't follow yourself. Bit self-indulgent!`,
+		});
+	}
+
 	const settings = await db["user-settings"].findOne({ userID: user.id });
 
 	if (!settings) {
@@ -70,6 +78,13 @@ router.post("/add", prValidate({ userID: p.isPositiveInteger }), async (req, res
 		return res.status(409).json({
 			success: false,
 			description: `You are already following this user.`,
+		});
+	}
+
+	if (settings.following.length >= ServerConfig.MAX_FOLLOWING_AMOUNT) {
+		return res.status(400).json({
+			success: false,
+			description: `You are following too many people. The max is ${ServerConfig.MAX_FOLLOWING_AMOUNT}.`,
 		});
 	}
 

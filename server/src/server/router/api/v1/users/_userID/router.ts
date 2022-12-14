@@ -425,11 +425,13 @@ router.use(
 	prValidate({
 		startTime: "*string",
 		includeRivals: p.optional(p.isIn("true", "false")),
+		includeFollowers: p.optional(p.isIn("true", "false")),
 	}),
 	async (req, res) => {
 		const qStartTime = req.query.startTime as string | undefined;
 
 		const includeRivals = req.query.includeRivals === "true";
+		const includeFollowers = req.query.includeFollowers === "true";
 
 		const startTime = qStartTime ? Number(qStartTime) : null;
 
@@ -448,14 +450,30 @@ router.use(
 
 		const data: Partial<Record<IDStrings, unknown>> = {};
 
+		const settings = await db["user-settings"].findOne({ userID: user.id });
+
+		if (!settings) {
+			logger.error(`User ${FormatUserDoc(user)} doesn't have any settings?`);
+			return res.status(500).json({
+				success: false,
+				description: `This user has no settings.`,
+			});
+		}
+
 		await Promise.all(
 			gpts.map(async (e) => {
-				let userID: ActivityConstraint["userID"] = user.id;
+				const userIDs: Array<integer> = [user.id];
 
 				if (includeRivals) {
 					const rivalIDs = await GetRivalIDs(user.id, e.game, e.playtype);
 
-					userID = { $in: [user.id, ...rivalIDs] };
+					userIDs.push(...rivalIDs);
+				}
+
+				// n.b. it is intentional behaviour that you only get updates for
+				// people you follow on games you play.
+				if (includeFollowers) {
+					userIDs.push(...settings.following);
 				}
 
 				const activity = await GetRecentActivity(
@@ -463,7 +481,7 @@ router.use(
 					{
 						game: e.game,
 						playtype: e.playtype,
-						userID,
+						userID: { $in: userIDs },
 					},
 					30,
 					startTime

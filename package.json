@@ -47,6 +47,9 @@
 			"@types/bson": "1.0.11",
 			"@types/node": "16.11.7",
 			"@types/express-serve-static-core": "4.17.29"
+		},
+		"patchedDependencies": {
+			"browserslist@4.21.4": "patches/browserslist@4.21.4.patch"
 		}
 	}
 }

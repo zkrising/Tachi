@@ -99,7 +99,7 @@ export default function SessionCard({ sessionID }: { sessionID: string }) {
 								setHighlight(!highlight);
 							}
 						}}
-						variant={highlight ? "warning" : "outline-warning"}
+						variant={highlight ? "outline-danger" : "outline-warning"}
 					>
 						<Icon type="star" />
 						{highlight ? "Remove as Highlight" : "Highlight this session!"}

@@ -24,7 +24,47 @@ try {
 		throw new Error(`Failed to fetch config -- ${configRes.description}.`);
 	}
 } catch (err) {
-	alert(`Fatal Error: Site is (probably) down. Sorry. (${(err as Error).message})`);
+	document.write(`
+	<style>
+		.box {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100vw;
+			height: 100vh;
+			flex-direction: column;
+			text-align: center;
+		}
+
+		ul {
+			text-align: left;
+		}
+	</style>
+	<div class="box">
+		<h1>Failed to connect!</h1>
+		<div>Welp. Looks like we're down. Sorry about that.</div>
+		<div>Chances are, this is just a temporary outage and will be fixed soon.</div>
+		<div style="font-size: 1.25rem; margin-top: 1rem; margin-bottom: 1rem;">
+			Please be patient, <a href="https://github.com/TNG-dev/Tachi">Tachi is maintained by a very small team.</a>
+		</div>
+		<div>An error message can be found in the console. (<code>Ctrl-Shift-K</code>)</div>
+		${
+			process.env.REACT_APP_IS_LOCAL_DEV
+				? `
+			<hr />
+			<div><b>You're in local development mode.</b>
+			<ul>
+				<li>Have you accepted the HTTPS certificates for <a href="${ToAPIURL(
+					"/"
+				)}">the server?</a>. If not, the site won't load.</li>
+				<li>Failing that, have you made sure to start the server with <code>pnpm start-server</code>?</li>
+			</ul>
+		`
+				: ""
+		}
+	</div>
+	`);
+	// alert(`Fatal Error: Site is (probably) down. Sorry. (${(err as Error).message})`);
 	throw new Error(`Site is (probably) down. Sorry. (${(err as Error).message})`);
 }
 

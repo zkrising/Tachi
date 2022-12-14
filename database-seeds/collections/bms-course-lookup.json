@@ -154,6 +154,97 @@
 		"value": 21
 	},
 	{
+		"md5sums": "71bc274a1042e15361058fc79dda3745ea2807ec3ef16bb50dba561ea8e5cb29fa736e9530e3c7170c570efd03b69b07de22bde8f104e132afdc15ac65c14021",
+		"playtype": "14K",
+		"set": "stslDan",
+		"title": "DPSatellite Skill Analyzer sl0",
+		"value": 0
+	},
+	{
+		"md5sums": "bc9f6970a45fa7fdefd7c2265b132651ffbe7d2200a82384f2d3a29c003a24e2dff6930e3435fe6552d4670c689d2270d02c8e12c4678a01566f42937444eb79",
+		"playtype": "14K",
+		"set": "stslDan",
+		"title": "DPSatellite Skill Analyzer sl1",
+		"value": 1
+	},
+	{
+		"md5sums": "81ed3f5c9df93ce4e98a623052a526ac2981f0481ec485193832293599820e19dfecee0e19120dcdc4f92271699016faa52cd28568ed5d56a571362f94a35007",
+		"playtype": "14K",
+		"set": "stslDan",
+		"title": "DPSatellite Skill Analyzer sl2",
+		"value": 2
+	},
+	{
+		"md5sums": "fdc6f8e3e78e78f45e763ef20ef848a65c1c97a00af7b108e2a53afecba82cc34b09fc33f71a32e2c6bbc7602048ab21386b1e2c965fd5feb15e82e6cced53ca",
+		"playtype": "14K",
+		"set": "stslDan",
+		"title": "DPSatellite Skill Analyzer sl3",
+		"value": 3
+	},
+	{
+		"md5sums": "aee587970d848afb5259956b8f184d2cce7d6db9389dea40079e947f2d83a2c5adaba76dca4f2d8eb5518f79d6a0dbd37413baf27804bd657cb0e8aea502ba7c",
+		"playtype": "14K",
+		"set": "stslDan",
+		"title": "DPSatellite Skill Analyzer sl4",
+		"value": 4
+	},
+	{
+		"md5sums": "637302837e71bae8d1e6528eb146448109d1c8ce11ca00865862fd4a94d0025099662346a80bd6fdb7c777aba68e9bd85a71ac30e80907739a14741a8c26ca5d",
+		"playtype": "14K",
+		"set": "stslDan",
+		"title": "DPSatellite Skill Analyzer sl5",
+		"value": 5
+	},
+	{
+		"md5sums": "0927a8e429d04fb821bd166947c8bcd1cc2151f6ba99e25ee52cf2fb2899c2ebf4c22271fa6556baa900d799df05371cbea9dcaf2cf21b7bfbce7da243b1a68b",
+		"playtype": "14K",
+		"set": "stslDan",
+		"title": "DPSatellite Skill Analyzer sl6",
+		"value": 6
+	},
+	{
+		"md5sums": "f7498e0befb9d2e581871430d9670ecc8060e0d74d653ee380c684caae0656b0c00887580bcdb3dd9dd594f2eef5c63d8b64dfa0cfcc8bf659f8f863e9dea811",
+		"playtype": "14K",
+		"set": "stslDan",
+		"title": "DPSatellite Skill Analyzer sl7",
+		"value": 7
+	},
+	{
+		"md5sums": "d73cdd6d5d1897e2d3052b74263b528397120ea69565c29f8acae5551caa6d0b5ad08be587d9d42971084fc701df069309ddc29dfc8ac70ceba82c7755efd84f",
+		"playtype": "14K",
+		"set": "stslDan",
+		"title": "DPSatellite Skill Analyzer sl8",
+		"value": 8
+	},
+	{
+		"md5sums": "3d03c5f1f609206bd51d852ebe5b4b748a03405fa7a6a3b0f93880e81ccc3f463af95ce4ad9e59bcdd001bd151225200de1b0b31e2a9a2d5eef92f2395f13c26",
+		"playtype": "14K",
+		"set": "stslDan",
+		"title": "DPSatellite Skill Analyzer sl9",
+		"value": 9
+	},
+	{
+		"md5sums": "61296a55d89ae86f957873df1cd011f167717946ae51422ad272a230f39c76ebbadd87bc03a1b5657c4f9061e3bbd0838dfba7248b732cf93d0bb5cf0e91878b",
+		"playtype": "14K",
+		"set": "stslDan",
+		"title": "DPSatellite Skill Analyzer sl10",
+		"value": 10
+	},
+	{
+		"md5sums": "ad27797ac54d934ad13ee1dcafdd329df11ba440f47e6485789b507d7ca5b450c11998a30371142374cd158c995d9de337cc734cb35cc8f74fa0f36d2ae0e916",
+		"playtype": "14K",
+		"set": "stslDan",
+		"title": "DPSatellite Skill Analyzer sl11",
+		"value": 11
+	},
+	{
+		"md5sums": "6f9b11e0ff8d347672bbd8e715f04ccdcfb9622768f5b5415e6a82169266eacfa3ed09fedd0af81df96743f8671fccd40b1234798d2da9bbde81c1eaf6111005",
+		"playtype": "14K",
+		"set": "stslDan",
+		"title": "DPSatellite Skill Analyzer sl12",
+		"value": 12
+	},
+	{
 		"md5sums": "ae11930223a8f24e91633f1a7864e1ebcb661ee05c67990012bfd12703ba656c328dbf235f3b6cb2791e71bfb62951f87c6ca04aa14d07b2c081f4dd35432844",
 		"playtype": "7K",
 		"set": "genocideDan",

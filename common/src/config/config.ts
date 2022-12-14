@@ -1,5 +1,6 @@
 import { COLOUR_SET } from "../constants/colour-set";
 import {
+	BMSDPSlDans,
 	BMSGenocideDans,
 	BMSLNDans,
 	BMSScratchDans,
@@ -1251,9 +1252,11 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		classHumanisedFormat: {
 			genocideDan: BMSGenocideDans,
+			stslDan: BMSDPSlDans,
 		},
 		classProperties: {
 			genocideDan: { downgradable: false },
+			stslDan: { downgradable: false },
 		},
 
 		supportsESD: false,

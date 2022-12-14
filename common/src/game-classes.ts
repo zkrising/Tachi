@@ -136,6 +136,22 @@ export const BMSStSlDans: Array<ClassInfo> = [
 	mouseoverCSS("ST11", "st11", "Stella 11"),
 ];
 
+export const BMSDPSlDans: Array<ClassInfo> = [
+	mouseoverCSS("SL0", "sl0", "Satellite 0"),
+	mouseoverCSS("SL1", "sl1", "Satellite 1"),
+	mouseoverCSS("SL2", "sl2", "Satellite 2"),
+	mouseoverCSS("SL3", "sl3", "Satellite 3"),
+	mouseoverCSS("SL4", "sl4", "Satellite 4"),
+	mouseoverCSS("SL5", "sl5", "Satellite 5"),
+	mouseoverCSS("SL6", "sl6", "Satellite 6"),
+	mouseoverCSS("SL7", "sl7", "Satellite 7"),
+	mouseoverCSS("SL8", "sl8", "Satellite 8"),
+	mouseoverCSS("SL9", "sl9", "Satellite 9"),
+	mouseoverCSS("SL10", "sl10", "Satellite 10"),
+	mouseoverCSS("SL11", "sl11", "Satellite 11"),
+	mouseoverCSS("SL12", "sl12", "Satellite 12"),
+];
+
 export const BMSLNDans: Array<ClassInfo> = [
 	mouseoverCSS("DAN_1", "◆1", "LN 1st Dan", "lightblue"),
 	mouseoverCSS("DAN_2", "◆2", "LN 2nd Dan", "lightblue"),
@@ -342,7 +358,7 @@ export interface GameClassSets {
 	"jubeat:Single": "colour";
 	"museca:Single": never;
 	"bms:7K": "genocideDan" | "lnDan" | "scratchDan" | "stslDan";
-	"bms:14K": "genocideDan";
+	"bms:14K": "genocideDan" | "stslDan";
 	"chunithm:Single": "colour";
 	"gitadora:Gita": "colour";
 	"gitadora:Dora": "colour";

@@ -1,6 +1,15 @@
 import { SEARCH_DIRECTIVES } from "util/constants/search-directives";
 import { ZTableSearchFn } from "components/util/table/useZTable";
 
+// This file sucks. Don't even attempt to understand it. Luckily, it works and
+// never needs any extending, but should you want to change something here,
+// it would genuinely be faster to just completely rewrite it.
+// This is a parser that handles things like
+// title:"FREEDOM DIVE" level:>12
+// etc.
+// This was written before I knew anything about how to implement a lexer or parser.
+// Apologies.
+
 export interface SearchDirective {
 	key: string;
 	option: string | null;

@@ -46,6 +46,14 @@ export class DatabaseSeedsRepo {
 	 * Pull any seeds changes in this repository.
 	 */
 	pull() {
+		if (Environment.nodeEnv === "dev") {
+			// prevent an awful interaction where a user edits stuff on their disk
+			// and tries to run pnpm sync-database-local
+			// but it fails because pull can't rebase with changes.
+			this.logger.warn(`Not pulling any updates to seeds as we're in local dev.`);
+			return;
+		}
+
 		this.logger.info(`Pulling updates.`);
 		return asyncExec(`git pull`);
 	}

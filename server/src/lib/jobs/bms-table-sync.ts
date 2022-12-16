@@ -68,7 +68,7 @@ async function HandleTableRemovals(tableJSON: Array<BMSTableEntry>, prefix: stri
 		},
 		{
 			$pull: {
-				"data.tableFolders.table": prefix,
+				"data.tableFolders": { table: prefix },
 			},
 		}
 	);

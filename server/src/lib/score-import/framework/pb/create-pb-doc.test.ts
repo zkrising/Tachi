@@ -143,12 +143,13 @@ t.test("#CreatePBDoc", (t) => {
 	});
 
 	t.test("Should bail safely if no score exists when one should", async (t) => {
-		// a work of genius
+		// a work of genius <- zkldi, june 2021
+		// a work of stupidity <- zkldi, after this broke, in december 2022.
 		const fakeLogger = {
-			severe: () => (severeCalled = true),
+			warn: () => (warnCalled = true),
 		} as unknown as KtLogger;
 
-		let severeCalled = false;
+		let warnCalled = false;
 
 		await db.scores.remove({});
 
@@ -156,7 +157,7 @@ t.test("#CreatePBDoc", (t) => {
 
 		t.equal(res, undefined, "Should return nothing (and emit a warning)");
 
-		t.equal(severeCalled, true, "Severe logging should have been called.");
+		t.equal(warnCalled, true, "Warn logging should have been called.");
 
 		t.end();
 	});

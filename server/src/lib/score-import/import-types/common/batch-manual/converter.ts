@@ -10,6 +10,7 @@ import {
 } from "../../../framework/common/string-asserts";
 import db from "external/mongo/db";
 import { GetGamePTConfig } from "tachi-common";
+import { RoundToNDecimalPlaces } from "utils/misc";
 import {
 	FindBMSChartOnHash,
 	FindChartWithPTDF,
@@ -88,7 +89,8 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 			);
 		}
 
-		percent = data.percent;
+		// jubeat music rate is forcibly round to 1dp. Funny.
+		percent = RoundToNDecimalPlaces(data.percent, 1);
 
 		grade = JubeatGetGrade(data.score);
 	} else {

@@ -17,6 +17,9 @@ import { Redirect, useParams } from "react-router-dom";
 import { GetGameConfig } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
 import { UGPT } from "types/react";
+import DebugContent from "components/util/DebugContent";
+import { UserSettingsContext } from "context/UserSettingsContext";
+import Card from "components/layout/page/Card";
 
 export default function SpecificSessionPage({ reqUser, game, playtype }: UGPT) {
 	const { sessionID } = useParams<{ sessionID: string }>();
@@ -47,6 +50,7 @@ export default function SpecificSessionPage({ reqUser, game, playtype }: UGPT) {
 }
 
 function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) {
+	const { settings } = useContext(UserSettingsContext);
 	const [sessionData, setSessionData] = useState(data);
 	const { session, user, charts, scores, songs } = sessionData;
 
@@ -288,6 +292,14 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 						game={session.game}
 						playtype={session.playtype}
 					/>
+				</Col>
+			)}
+			{settings?.preferences.developerMode && (
+				<Col xs={12}>
+					<Divider />
+					<Card header="Debug Content">
+						<DebugContent data={sessionData} />
+					</Card>
 				</Col>
 			)}
 		</Row>

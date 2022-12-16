@@ -9,7 +9,7 @@ import {
 import db from "external/mongo/db";
 import { GetEveryonesRivalIDs } from "lib/rivals/rivals";
 import type { KtLogger } from "lib/logger/logger";
-import type { BulkWriteUpdateOneOperation } from "mongodb";
+import type { BulkWriteUpdateOneOperation, FilterQuery } from "mongodb";
 import type {
 	Game,
 	IDStrings,
@@ -24,21 +24,39 @@ export type PBScoreDocumentNoRank<I extends IDStrings = IDStrings> = Omit<
 	"rankingData"
 >;
 
-export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLogger) {
-	const scorePB = await db.scores.findOne(
-		{
-			userID,
-			chartID,
+/**
+ * Create a PB document for this user on this chart. Optionally, provide an "As Of"
+ * timestamp to constrain the generated PB to only one before the provided time.
+ */
+export async function CreatePBDoc(
+	userID: integer,
+	chartID: string,
+	logger: KtLogger,
+	asOfTimestamp?: number
+) {
+	const query: FilterQuery<ScoreDocument> = {
+		userID,
+		chartID,
+	};
+
+	if (asOfTimestamp !== undefined) {
+		query.timeAchieved = { $lt: asOfTimestamp };
+	}
+
+	const scorePB = await db.scores.findOne(query, {
+		sort: {
+			"scoreData.percent": -1,
 		},
-		{
-			sort: {
-				"scoreData.percent": -1,
-			},
-		}
-	);
+	});
 
 	if (!scorePB) {
-		logger.severe(
+		if (asOfTimestamp !== undefined) {
+			// if we were constraining the PB on a timestamp, this is likely to happen.
+			// ignore it.
+			return;
+		}
+
+		logger.warn(
 			`User ${userID} has no scores on chart, but a PB was attempted to be created?`,
 			{
 				chartID,
@@ -48,23 +66,17 @@ export async function CreatePBDoc(userID: integer, chartID: string, logger: KtLo
 		return;
 	}
 
-	const lampPB = (await db.scores.findOne(
-		{
-			userID,
-			chartID,
+	const lampPB = (await db.scores.findOne(query, {
+		sort: {
+			"scoreData.lampIndex": -1,
 		},
-		{
-			sort: {
-				"scoreData.lampIndex": -1,
-			},
-		}
-	)) as ScoreDocument;
+	})) as ScoreDocument;
 
 	// ^ guaranteed to not be null, as this always resolves
 	// to atleast one score (and we got ScorePB above, so we know there's
 	// atleast one).
 
-	const pbDoc = await MergeScoreLampIntoPB(userID, scorePB, lampPB, logger);
+	const pbDoc = await MergeScoreLampIntoPB(userID, scorePB, lampPB, logger, asOfTimestamp);
 
 	if (!pbDoc) {
 		return;
@@ -139,7 +151,8 @@ async function MergeScoreLampIntoPB(
 	userID: integer,
 	scorePB: ScoreDocument,
 	lampPB: ScoreDocument,
-	logger: KtLogger
+	logger: KtLogger,
+	asOfTimestamp?: number
 ): Promise<PBScoreDocumentNoRank | undefined> {
 	// @hack
 	// since time cannot be negative, this is a rough hack
@@ -187,7 +200,7 @@ async function MergeScoreLampIntoPB(
 	if (GameSpecificMergeFn) {
 		// @ts-expect-error Yeah, this call sucks. It correctly warns us that scorePB and lampPB
 		// might've diverged, but we know they haven't.
-		const success = await GameSpecificMergeFn(pbDoc, scorePB, lampPB, logger);
+		const success = await GameSpecificMergeFn(pbDoc, scorePB, lampPB, logger, asOfTimestamp);
 
 		// If the mergeFn returns false, this means something has gone
 		// rather wrong. We just return undefined here, which in turn

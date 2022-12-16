@@ -2,8 +2,10 @@
 import db from "external/mongo/db";
 import { rootLogger } from "lib/logger/logger";
 import { CreateCalculatedData } from "lib/score-import/framework/calculated-data/calculated-data";
-import { UpdateChartRanking } from "lib/score-import/framework/pb/create-pb-doc";
+import { CreatePBDoc, UpdateChartRanking } from "lib/score-import/framework/pb/create-pb-doc";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
+import { CreateSessionCalcData } from "lib/score-import/framework/sessions/calculated-data";
+import { ProcessScoreIntoSessionScoreInfo } from "lib/score-import/framework/sessions/sessions";
 import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 import { FormatUserDoc, GetUserWithID } from "utils/user";
 import type { KtLogger } from "lib/logger/logger";
@@ -108,37 +110,65 @@ export default async function UpdateScore(
 		"scoreInfo.scoreID": oldScoreID,
 	});
 
+	// another session already has the new score? (i.e. migrating to an already
+	// existing score?)
+	const existsElsewhere = await db.sessions.findOne({
+		"scoreInfo.scoreID": newScoreID,
+	});
+
 	logger.verbose(`Updating ${sessions.length} sessions.`);
 
 	// For every session that interacts with this score ID (there should only ever be one)
 	for (const session of sessions) {
+		const newScoreInfoArr = [];
+
 		// Go over all the scoreInfo and alter the ones that involve this scoreID.
 		for (const scoreInfo of session.scoreInfo) {
+			let newScoreInfo = scoreInfo;
+
 			// If this scoreInfo needs to be changed
 			if (scoreInfo.scoreID === oldScoreID) {
-				scoreInfo.scoreID = newScoreID;
-
-				// If there's any cached grade/lamp diffs, we need to update them.
-				if (!scoreInfo.isNewScore) {
-					const gradeDiff = oldScore.scoreData.gradeIndex - newScore.scoreData.gradeIndex;
-					const lampDiff = oldScore.scoreData.lampIndex - newScore.scoreData.lampIndex;
-					const percentDiff = oldScore.scoreData.percent - newScore.scoreData.percent;
-					const scoreDiff = oldScore.scoreData.score - newScore.scoreData.score;
-
-					scoreInfo.gradeDelta = scoreInfo.gradeDelta - gradeDiff;
-					scoreInfo.lampDelta = scoreInfo.lampDelta - lampDiff;
-					scoreInfo.scoreDelta = scoreInfo.scoreDelta - scoreDiff;
-					scoreInfo.percentDelta = scoreInfo.percentDelta - percentDiff;
+				if (existsElsewhere) {
+					// skip this, as this score already belongs to another session.
+					continue;
 				}
+
+				if (newScore.timeAchieved === null) {
+					// this shouldn't be in a session anymore.
+					continue;
+				}
+
+				newScoreInfo.scoreID = newScoreID;
+
+				// update scoreInfo
+				const pbAsOfThen = await CreatePBDoc(
+					newScore.userID,
+					newScore.chartID,
+					logger,
+					newScore.timeAchieved
+				);
+
+				// @ts-expect-error we don't need the ranking data props. ignore this
+				// err, it's nonsense.
+				newScoreInfo = ProcessScoreIntoSessionScoreInfo(newScore, pbAsOfThen ?? null);
 			}
+
+			newScoreInfoArr.push(newScoreInfo);
 		}
+
+		const scores = await db.scores.find({
+			scoreID: { $in: newScoreInfoArr.map((e) => e.scoreID) },
+		});
+
+		// update calculated data too.
+		const newCalcData = CreateSessionCalcData(session.game, session.playtype, scores);
 
 		await db.sessions.update(
 			{
 				sessionID: session.sessionID,
 			},
 			{
-				$set: { scoreInfo: session.scoreInfo },
+				$set: { scoreInfo: session.scoreInfo, calculatedData: newCalcData },
 			}
 		);
 	}

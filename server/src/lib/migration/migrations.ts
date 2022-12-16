@@ -4,6 +4,7 @@ import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
 import FixUndefinedBMSData from "./migrations/fix-undefined-bms-data";
 import JoinINFCastHourCharts from "./migrations/join-inf-casthour-charts";
 import JoinINFCastHourSongs from "./migrations/join-inf-casthour-songs";
+import JubeatMusicRate1DP from "./migrations/jubeat-musicrate-1dp";
 import MarkFervidexAsWithoutIntent from "./migrations/mark-fervidex-as-without-intent";
 import MarkKsHookAsWithoutIntent from "./migrations/mark-kshook-as-without-intent";
 import NullLR2HookFailedBPs from "./migrations/null-lr2hook-failed-bps";
@@ -53,7 +54,8 @@ if (Environment.nodeEnv !== "test") {
 			JoinINFCastHourCharts,
 			JoinINFCastHourSongs,
 			MarkFervidexAsWithoutIntent,
-			MarkKsHookAsWithoutIntent
+			MarkKsHookAsWithoutIntent,
+			JubeatMusicRate1DP
 		);
 	}
 

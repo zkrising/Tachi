@@ -51,7 +51,7 @@ export async function CreateSessions(
  * Compares a score and the previous PB the user had and returns the difference
  * as a SessionScoreInfo object.
  */
-function ProcessScoreIntoSessionScoreInfo(
+export function ProcessScoreIntoSessionScoreInfo(
 	score: ScoreDocument,
 	previousPB: PBScoreDocument | undefined
 ): SessionScoreInfo {

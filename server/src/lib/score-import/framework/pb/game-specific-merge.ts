@@ -5,13 +5,15 @@ import { Volforce } from "rg-stats";
 import { DeleteUndefinedProps } from "utils/misc";
 import { FindChartWithChartID } from "utils/queries/charts";
 import type { KtLogger } from "lib/logger/logger";
+import type { FilterQuery } from "mongodb";
 import type { PBScoreDocument, ScoreDocument } from "tachi-common";
 
 export async function IIDXMergeFn(
 	pbDoc: PBScoreDocument<"iidx:DP" | "iidx:SP">,
 	scorePB: ScoreDocument<"iidx:DP" | "iidx:SP">,
 	lampPB: ScoreDocument<"iidx:DP" | "iidx:SP">,
-	logger: KtLogger
+	logger: KtLogger,
+	asOfTimestamp?: number
 ): Promise<boolean> {
 	// lampRating needs to be updated.
 	pbDoc.calculatedData.ktLampRating = lampPB.calculatedData.ktLampRating;
@@ -25,7 +27,7 @@ export async function IIDXMergeFn(
 
 	DeleteUndefinedProps(pbDoc.scoreData.hitMeta);
 
-	await MergeBPPB(pbDoc, scorePB, lampPB, logger);
+	await MergeBPPB(pbDoc, scorePB, lampPB, logger, asOfTimestamp);
 
 	return true;
 }
@@ -45,14 +47,15 @@ export async function BMSMergeFn(
 	pbDoc: PBScoreDocument<"bms:7K" | "bms:14K">,
 	scorePB: ScoreDocument<"bms:7K" | "bms:14K">,
 	lampPB: ScoreDocument<"bms:7K" | "bms:14K">,
-	logger: KtLogger
+	logger: KtLogger,
+	asOfTimestamp?: number
 ) {
 	pbDoc.calculatedData.sieglinde = lampPB.calculatedData.sieglinde;
 
 	pbDoc.scoreData.hitMeta.gaugeHistory = lampPB.scoreData.hitMeta.gaugeHistory;
 	pbDoc.scoreData.hitMeta.gauge = lampPB.scoreData.hitMeta.gauge;
 
-	await MergeBPPB(pbDoc, scorePB, lampPB, logger);
+	await MergeBPPB(pbDoc, scorePB, lampPB, logger, asOfTimestamp);
 
 	return true;
 }
@@ -61,11 +64,12 @@ export async function PMSMergeFn(
 	pbDoc: PBScoreDocument<"pms:Controller" | "pms:Keyboard">,
 	scorePB: ScoreDocument<"pms:Controller" | "pms:Keyboard">,
 	lampPB: ScoreDocument<"pms:Controller" | "pms:Keyboard">,
-	logger: KtLogger
+	logger: KtLogger,
+	asOfTimestamp?: number
 ) {
 	pbDoc.calculatedData.sieglinde = lampPB.calculatedData.sieglinde;
 
-	await MergeBPPB(pbDoc, scorePB, lampPB, logger);
+	await MergeBPPB(pbDoc, scorePB, lampPB, logger, asOfTimestamp);
 
 	return true;
 }
@@ -108,7 +112,8 @@ export async function SDVXMergeFn(
 	pbDoc: PBScoreDocument<"sdvx:Single">,
 	scorePB: ScoreDocument<"sdvx:Single">,
 	lampPB: ScoreDocument<"sdvx:Single">,
-	logger: KtLogger
+	logger: KtLogger,
+	asOfTimestamp?: number
 ): Promise<boolean> {
 	// @optimisable
 	// This is a re-fetch, but it's difficult to pass the chart all
@@ -126,18 +131,21 @@ export async function SDVXMergeFn(
 		chart.levelNum
 	);
 
+	const query: FilterQuery<ScoreDocument> = {
+		chartID: pbDoc.chartID,
+		"scoreData.hitMeta.exScore": { $type: "number" },
+	};
+
+	if (asOfTimestamp !== undefined) {
+		query.timeAchieved = { $lt: asOfTimestamp };
+	}
+
 	// find the users score with the highest exScore
-	const bestExScore = (await db.scores.findOne(
-		{
-			chartID: pbDoc.chartID,
-			"scoreData.hitMeta.exScore": { $type: "number" },
+	const bestExScore = (await db.scores.findOne(query, {
+		sort: {
+			"scoreData.hitMeta.exScore": -1,
 		},
-		{
-			sort: {
-				"scoreData.hitMeta.exScore": -1,
-			},
-		}
-	)) as ScoreDocument<"sdvx:Single"> | null;
+	})) as ScoreDocument<"sdvx:Single"> | null;
 
 	if (!bestExScore) {
 		pbDoc.scoreData.hitMeta.exScore = undefined;
@@ -168,22 +176,26 @@ async function MergeBPPB(
 	pbDoc: PBScoreDocument<IDStringsWithBP>,
 	scorePB: ScoreDocument<IDStringsWithBP>,
 	lampPB: ScoreDocument<IDStringsWithBP>,
-	logger: KtLogger
+	logger: KtLogger,
+	asOfTimestamp: number | undefined
 ) {
 	// bad+poor PB document. This is a weird, third indepdenent metric that IIDX players sometimes care about.
-	const bpPB = (await db.scores.findOne(
-		{
-			userID: scorePB.userID,
-			chartID: scorePB.chartID,
-			"scoreData.hitMeta.bp": { $exists: true },
+	const query: FilterQuery<ScoreDocument> = {
+		userID: scorePB.userID,
+		chartID: scorePB.chartID,
+		"scoreData.hitMeta.bp": { $exists: true },
+	};
+
+	if (asOfTimestamp !== undefined) {
+		query.timeAchieved = { $lt: asOfTimestamp };
+	}
+
+	const bpPB = (await db.scores.findOne(query, {
+		sort: {
+			// bp 0 is the best BP, bp 1 is worse, so on
+			"scoreData.hitMeta.bp": 1,
 		},
-		{
-			sort: {
-				// bp 0 is the best BP, bp 1 is worse, so on
-				"scoreData.hitMeta.bp": 1,
-			},
-		}
-	)) as ScoreDocument<"iidx:DP" | "iidx:SP"> | null;
+	})) as ScoreDocument<"iidx:DP" | "iidx:SP"> | null;
 
 	if (!bpPB) {
 		logger.verbose(

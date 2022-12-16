@@ -1,26 +1,26 @@
 import { ChangeOpacity } from "util/color-opacity";
 import { CreateChartLink, CreateChartMap, CreateSongMap } from "util/data";
-import { NumericSOV, StrSOV } from "util/sorts";
-import { APIFetchV1 } from "util/api";
 import { JoinJSX } from "util/misc";
+import { NumericSOV } from "util/sorts";
 import Card from "components/layout/page/Card";
-import DifficultyCell from "components/tables/cells/DifficultyCell";
-import TitleCell from "components/tables/cells/TitleCell";
+import DropdownIndicatorCell from "components/tables/cells/DropdownIndicatorCell";
+import DropdownRow from "components/tables/components/DropdownRow";
 import MiniTable from "components/tables/components/MiniTable";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
+import Select from "components/util/Select";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
 import _ from "lodash";
+import NaturalCompare from "natural-compare";
 import React, { useEffect, useMemo, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
 	ChartDocument,
 	FormatChart,
-	FormatGame,
 	Game,
 	GamePTConfig,
 	GetGamePTConfig,
@@ -29,8 +29,6 @@ import {
 	TableDocument,
 } from "tachi-common";
 import { SessionFolderRaises, SessionReturns } from "types/api-returns";
-import DropdownRow from "components/tables/components/DropdownRow";
-import DropdownIndicatorCell from "components/tables/cells/DropdownIndicatorCell";
 
 export default function SessionFolderRaiseBreakdown({
 	sessionData,
@@ -44,65 +42,37 @@ export default function SessionFolderRaiseBreakdown({
 	const playtype = sessionData.session.playtype;
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const [folderFilter, setFolderFilter] = useState<"LOADING" | "NO_FILTER" | Array<string>>(
-		"LOADING"
-	);
-
-	useEffect(() => {
-		// this game probably has multiple tables that should be filtered
-		// tables in a game like IIDX are redundant to show together: nobody
-		// cares that they got +5 in omnimix and +5 in non-omnimix and +5 in n-0.
-		// but in BMS, cross table playing is very common.
-		// as such, we try and guess whether tables are significant or not
-		// dependent on how many supported versions this game has.
-		if (gptConfig.orderedSupportedVersions.length > 1) {
-			APIFetchV1<Array<TableDocument>>(`/games/${game}/${playtype}/tables`).then((res) => {
-				if (!res.success) {
-					console.error(
-						`Failed to fetch folders for ${FormatGame(
-							game,
-							playtype
-						)}. Defaulting to hiding all folders.`
-					);
-					return setFolderFilter([]);
-				}
-
-				if (settings?.preferences.defaultTable) {
-					const preferredTable = res.body.find(
-						(e) => e.tableID === settings.preferences.defaultTable
-					);
-
-					if (!preferredTable) {
-						// user has an invalid preferred table. silently ignore this.
-					} else {
-						return setFolderFilter(preferredTable.folders);
-					}
-				}
-
-				const defaultTable = res.body.find((e) => e.default);
-
-				if (!defaultTable) {
-					console.error(
-						`Found no default table for ${FormatGame(
-							game,
-							playtype
-						)}? Defaulting to hiding all folders.`
-					);
-					// no default table? What?
-					// filter out all folders, i guess.
-					return setFolderFilter([]);
-				}
-
-				setFolderFilter(defaultTable.folders);
-			});
-		} else {
-			setFolderFilter("NO_FILTER");
-		}
-	}, [gptConfig, settings]);
+	const [selectedTable, setSelectedTable] = useState<"LOADING" | null | TableDocument>("LOADING");
+	const [shouldLimit, setShouldLimit] = useState(true);
 
 	const { data, error } = useApiQuery<Array<SessionFolderRaises>>(
 		`/sessions/${sessionData.session.sessionID}/folder-raises`
 	);
+
+	const { data: tableData, error: tableError } = useApiQuery<Array<TableDocument>>(
+		`/games/${game}/${playtype}/tables`
+	);
+
+	useEffect(() => {
+		if (!tableData) {
+			return;
+		}
+
+		let defaultTable;
+		if (settings?.preferences.defaultTable) {
+			defaultTable = tableData.find((e) => e.tableID === settings.preferences.defaultTable);
+		} else {
+			defaultTable = tableData.find((e) => e.default);
+		}
+
+		if (!defaultTable) {
+			console.error(`Failed to find default table. Allowing all folders.`);
+			setSelectedTable(null);
+			return;
+		}
+
+		setSelectedTable(defaultTable);
+	}, [tableData, settings]);
 
 	const folders = useMemo(() => {
 		if (!data) {
@@ -116,21 +86,29 @@ export default function SessionFolderRaiseBreakdown({
 		);
 
 		// sort alphabetically
-		folders.sort(StrSOV((x) => x.title));
+		folders.sort((a, b) => NaturalCompare(b.title, a.title));
 
 		// hide certain folders
-		if (Array.isArray(folderFilter)) {
-			folders = folders.filter((e) => folderFilter.includes(e.folderID));
+		if (selectedTable && selectedTable !== "LOADING") {
+			folders = folders.filter((e) => selectedTable.folders.includes(e.folderID));
 		}
 
 		return folders;
-	}, [data, folderFilter]);
+	}, [data, selectedTable]);
 
 	if (error) {
 		return <ApiError error={error} />;
 	}
 
+	if (tableError) {
+		return <ApiError error={tableError} />;
+	}
+
 	if (!data) {
+		return <Loading />;
+	}
+
+	if (!tableData) {
 		return <Loading />;
 	}
 
@@ -139,8 +117,19 @@ export default function SessionFolderRaiseBreakdown({
 
 	const preferredScoreBucket = settings?.preferences.scoreBucket ?? gptConfig.scoreBucket;
 
-	if (folderFilter === "LOADING") {
+	if (selectedTable === "LOADING") {
 		return <Loading />;
+	}
+
+	const allFolders = data.map((e) => e.folder);
+
+	const filteredTables = tableData
+		// disgusting filter: check if this table has any overlap with any
+		// relevant folders. If not, don't show it.
+		.filter((t) => allFolders.find((e) => t.folders.includes(e.folderID)));
+
+	if (filteredTables.length === 0) {
+		return null;
 	}
 
 	return (
@@ -149,8 +138,22 @@ export default function SessionFolderRaiseBreakdown({
 
 			<h1 className="w-100 text-center">Folder Raises</h1>
 
+			<div className="w-100">
+				<Select
+					name="Table"
+					value={selectedTable?.tableID ?? null}
+					setValue={(t) => setSelectedTable(tableData.find((e) => e.tableID === t)!)}
+				>
+					{filteredTables.map((e) => (
+						<option key={e.tableID} value={e.tableID}>
+							{e.title}
+						</option>
+					))}
+				</Select>
+			</div>
+
 			<Row>
-				{folders.map((folder, i) => (
+				{folders.slice(0, shouldLimit ? 6 : Infinity).map((folder, i) => (
 					<Col key={i} xs={12} lg={6} xl={4}>
 						<Card
 							className="my-4"
@@ -184,6 +187,17 @@ export default function SessionFolderRaiseBreakdown({
 					</Col>
 				))}
 			</Row>
+			{shouldLimit && folders.length > 6 && (
+				<Row>
+					<div
+						className="w-100 text-center text-hover-primary"
+						onClick={() => setShouldLimit(false)}
+					>
+						{folders.length - 6} {folders.length > 6 + 1 ? "folders" : "folder"} hidden.
+						View more?
+					</div>
+				</Row>
+			)}
 		</Col>
 	);
 }

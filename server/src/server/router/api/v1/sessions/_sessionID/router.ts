@@ -97,7 +97,7 @@ router.get("/folder-raises", async (req, res) => {
 		.map((e) => e.scoreID);
 
 	// create lookup tables for a scoreID to its delta. We use this later to find out
-	// what the "original" score was.
+	// what the "original" score's grade or lamp was prior to this raise.
 	const gradeDeltas: Record<string, integer> = {};
 	const lampDeltas: Record<string, integer> = {};
 
@@ -250,16 +250,21 @@ router.get("/folder-raises", async (req, res) => {
 					// If this is less than the clearGradeIndex, use that instead.
 
 					// note: we add one to this because .slice is inclusive,
-					// so if we have a HARD CLEAR (i=6) with a raise of one, minusing one
-					// will take us to CLEAR (i=4), and the inclusivity will result in us
-					// slicing ["CLEAR", "HARD CLEAR"]
-					//          (i=5),    (i=6)
-					// but this wasn't a new clear, this was only a new hard clear.
+					// so if we have a EX HARD CLEAR (i=7) with a raise of two,
+					// minusing two will take us to CLEAR (i=5), and the
+					// inclusivity will result in us
+					// slicing ["CLEAR", "HARD CLEAR", "EX HARD CLEAR"]
+					//          (i=5),    (i=6)          (i=7)
+					// but this wasn't a new clear! this was only a new HARD CLEAR
+					// and EX HARD CLEAR, so
+					// we want ["HARD CLEAR", "EX HARD CLEAR"].
 					const originalGradeIndex =
 						gradeRaise.scoreData.gradeIndex -
 						(gradeDeltas[gradeRaise.scoreID] ?? Infinity) +
 						1;
 
+					// lowerbound the original grade at the minimum-relevant grade
+					// for this game.
 					const minimumGrade = Math.max(clearGradeIndex, originalGradeIndex);
 
 					for (const grade of gptConfig.grades.slice(

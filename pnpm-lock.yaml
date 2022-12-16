@@ -116,6 +116,7 @@ importers:
       '@types/humanize-duration': 3.25.1
       '@types/lodash': 4.14.172
       '@types/luxon': 1.27.1
+      '@types/natural-compare': ^1.4.1
       '@types/react': 17.0.13
       '@types/react-dom': 17.0.8
       '@types/react-google-recaptcha': 2.1.2
@@ -143,6 +144,7 @@ importers:
       luxon: 2.0.1
       mini-css-extract-plugin: 0.8.0
       nanoid: 3.1.23
+      natural-compare: ^1.4.0
       optimize-css-assets-webpack-plugin: 5.0.3
       pnp-webpack-plugin: 1.5.0
       postcss-flexbugs-fixes: 4.1.0
@@ -190,6 +192,7 @@ importers:
       '@nivo/line': 0.79.1_5stqffqmdnwrwvjsdzhku43lom
       '@nivo/tooltip': 0.79.0_luaztmiz7d4ymhvojycjdxbyp4
       '@types/lodash': 4.14.172
+      '@types/natural-compare': 1.4.1
       '@types/react-google-recaptcha': 2.1.2
       babel-loader: 8.0.6_an7gomucoylkzbop6zlfipgzje
       babel-preset-react-app: 9.1.2
@@ -210,6 +213,7 @@ importers:
       luxon: 2.0.1
       mini-css-extract-plugin: 0.8.0_webpack@4.41.0
       nanoid: 3.1.23
+      natural-compare: 1.4.0
       optimize-css-assets-webpack-plugin: 5.0.3_webpack@4.41.0
       pnp-webpack-plugin: 1.5.0_typescript@4.6.3
       postcss-flexbugs-fixes: 4.1.0
@@ -3594,6 +3598,10 @@ packages:
     resolution: {integrity: sha512-/SNsDidUFCvqqcWDwxv2feww/yqhNeTRL5CVoL3jU4Goc4kKEL10T7Eye65ZqPNi4HRx8sAEX59pV1aEH7drNA==}
     dependencies:
       '@types/express': 4.17.13
+    dev: false
+
+  /@types/natural-compare/1.4.1:
+    resolution: {integrity: sha512-9dr4UakpvN0QUvwNefk9+o14Sr1pPPIDWkgCxPkHcg3kyjtc9eKK1ng6dZ23vRwByloCqXYtZ1T5nJxkk3Ib3A==}
     dev: false
 
   /@types/node-fetch/2.5.12:
@@ -10395,7 +10403,6 @@ packages:
 
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
-    dev: true
 
   /ncp/2.0.0:
     resolution: {integrity: sha512-zIdGUrPRFTUELUvr3Gmc7KZ2Sw/h1PiVM0Af/oHB6zgnV1ikqSfRk+TOufi79aHYCW3NiOXmr1BP5nWbzojLaA==}

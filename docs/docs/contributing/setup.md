@@ -237,7 +237,14 @@ To check everything's gone soundly, run `pnpm start-server` and `pnpm start-clie
 	to stop the server or client.
 
 You should then be able to navigate to https://127.0.0.1:8080, accept the certificates,
-and view the client on https://127.0.0.1:3000.
+and view the client on http://127.0.0.1:3000.
+
+!!! warning
+	You **MUST** accept the certificates on https://127.0.0.1:8080. The client **will not** start otherwise.
+
+!!! help
+	If you're getting an `SSL_RX_RECORD_TOO_LONG` error, you're trying to access the client
+	via https. The client is served over HTTP - use http://127.0.0.1:3000.
 
 ## 7. Editor Plugins
 

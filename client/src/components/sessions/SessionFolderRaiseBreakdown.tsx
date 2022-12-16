@@ -138,19 +138,21 @@ export default function SessionFolderRaiseBreakdown({
 
 			<h1 className="w-100 text-center">Folder Raises</h1>
 
-			<div className="w-100">
-				<Select
-					name="Table"
-					value={selectedTable?.tableID ?? null}
-					setValue={(t) => setSelectedTable(tableData.find((e) => e.tableID === t)!)}
-				>
-					{filteredTables.map((e) => (
-						<option key={e.tableID} value={e.tableID}>
-							{e.title}
-						</option>
-					))}
-				</Select>
-			</div>
+			{filteredTables.length > 1 && (
+				<div className="w-100">
+					<Select
+						name="Table"
+						value={selectedTable?.tableID ?? null}
+						setValue={(t) => setSelectedTable(tableData.find((e) => e.tableID === t)!)}
+					>
+						{filteredTables.map((e) => (
+							<option key={e.tableID} value={e.tableID}>
+								{e.title}
+							</option>
+						))}
+					</Select>
+				</div>
+			)}
 
 			<Row>
 				{folders.slice(0, shouldLimit ? 6 : Infinity).map((folder, i) => (

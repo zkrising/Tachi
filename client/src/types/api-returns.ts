@@ -283,3 +283,20 @@ export interface QuestReturn {
 	goals: Array<GoalDocument>;
 	parentQuestlines: Array<QuestlineDocument>;
 }
+
+export type SessionFolderRaises = {
+	folder: FolderDocument;
+	raisedCharts: Array<string>; // Array<chartID>;
+	previousCount: integer; // how many AAAs/HARD CLEARs/whatevers was on this
+	// folder before this session?
+	totalCharts: integer;
+} & (
+	| {
+			type: "grade";
+			value: Grades[IDStrings];
+	  }
+	| {
+			type: "lamp";
+			value: Lamps[IDStrings];
+	  }
+);

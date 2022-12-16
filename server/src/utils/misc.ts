@@ -320,3 +320,20 @@ export function StringIsGameVersion(
 	// @ts-expect-error yes, we know!
 	return gptConfig.orderedSupportedVersions.includes(version);
 }
+
+/**
+ * Adds this value to the set at this key if this key exists. If this key doesn't,
+ * make a new set under that key and assign it there.
+ */
+export function AddToSetInRecord<T extends string, V>(
+	key: T,
+	obj: Partial<Record<T, Set<V>>>,
+	toAdd: V
+) {
+	if (obj[key] !== undefined) {
+		// @ts-expect-error definitely exists.
+		obj[key].add(toAdd);
+	} else {
+		obj[key] = new Set([toAdd]);
+	}
+}

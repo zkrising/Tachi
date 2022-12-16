@@ -8,12 +8,14 @@ export default function QuickTooltip({
 	wide,
 	style,
 	max,
+	delay = 40,
 }: {
 	tooltipContent: React.ReactChild;
 	wide?: boolean;
 	max?: boolean;
 	style?: CSSProperties;
 	children: JSX.Element;
+	delay?: number;
 }) {
 	const [show, setShow] = useState(false);
 	const [mousedOver, setMousedOver] = useState(false);
@@ -22,6 +24,7 @@ export default function QuickTooltip({
 		<OverlayTrigger
 			placement="top"
 			show={show || mousedOver}
+			delay={delay}
 			overlay={
 				<Tooltip
 					style={style}

@@ -479,7 +479,7 @@
 		"title": "Satellite"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "The 7K Sara 3 table.",
 		"folders": [
 			"F0b1c75d6731d9834c6f90509c7fcfd9b62b8cd97aef310e332455fd724eb840d",
@@ -990,7 +990,7 @@
 		"title": "beatmania IIDX (DP) (BEATMANIA US)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for beatmania IIDX (DP) in BISTROVER Omnimix.",
 		"folders": [
 			"F447f9872ffc845a8252209f951f5b740f7542ddce10ad79a4e91bedabd88f2fc",
@@ -1082,7 +1082,7 @@
 		"title": "beatmania IIDX (DP) (CastHour Omnimix)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for beatmania IIDX (DP) in CastHour.",
 		"folders": [
 			"F72f522ea790115f463f08d9f3c3d24ab95e6baa3edabd510b4f11c4a67139e16",
@@ -1726,7 +1726,7 @@
 		"title": "beatmania IIDX (SP) (BEATMANIA US)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for beatmania IIDX (SP) in BISTROVER Omnimix.",
 		"folders": [
 			"Fe131fe937e9e58b42a71a9b1a9a96ee80fb928dc4acc59e32a2ef8e9c5682488",
@@ -1818,7 +1818,7 @@
 		"title": "beatmania IIDX (SP) (CastHour Omnimix)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for beatmania IIDX (SP) in CastHour.",
 		"folders": [
 			"F10e3e0e7c0bcbd4dcbb49a1086184d6949fe7a213ecbd6bf1ed7001f2b98a98b",

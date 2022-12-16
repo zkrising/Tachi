@@ -42,6 +42,7 @@ export default function SessionCalendar({ game, playtype, reqUser }: UGPT) {
 			events={data.map(convertSession)}
 			eventContent={(e) => (
 				<QuickTooltip
+					delay={100}
 					max
 					tooltipContent={
 						<SessionTooltip

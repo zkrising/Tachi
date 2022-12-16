@@ -9,14 +9,14 @@ function onFailure() {
 
 trap onFailure ERR
 
-tests=("collections" "id" "folder-id" "goal-id" "references")
+tests=(test/**.test.ts)
 
 # for all tests
 for test in "${tests[@]}"
 do
 	# Output stderr and stdout to the terminal, but only save stderr to a file
 	# Isn't bash wonderful?
-	ts-node "test/$test.test.ts" 2> >(tee failed-tests.log >&2)
+	ts-node "$test" 2> >(tee failed-tests.log >&2)
 done
 
 # if more than 0 commands failed

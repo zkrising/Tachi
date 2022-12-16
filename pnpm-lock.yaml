@@ -114,6 +114,7 @@ importers:
       '@nivo/tooltip': 0.79.0
       '@types/history': 4.7.11
       '@types/humanize-duration': 3.25.1
+      '@types/lodash': 4.14.172
       '@types/luxon': 1.27.1
       '@types/react': 17.0.13
       '@types/react-dom': 17.0.8
@@ -138,6 +139,7 @@ importers:
       humanize-duration: 3.27.0
       is-wsl: 1.1.0
       json-2-csv: 3.14.4
+      lodash: 4.17.21
       luxon: 2.0.1
       mini-css-extract-plugin: 0.8.0
       nanoid: 3.1.23
@@ -187,6 +189,7 @@ importers:
       '@nivo/core': 0.79.0_tw5bvpk7hfmbr5wwtjv2wgziou
       '@nivo/line': 0.79.1_5stqffqmdnwrwvjsdzhku43lom
       '@nivo/tooltip': 0.79.0_luaztmiz7d4ymhvojycjdxbyp4
+      '@types/lodash': 4.14.172
       '@types/react-google-recaptcha': 2.1.2
       babel-loader: 8.0.6_an7gomucoylkzbop6zlfipgzje
       babel-preset-react-app: 9.1.2
@@ -203,6 +206,7 @@ importers:
       html-webpack-plugin: 4.5.2_webpack@4.41.0
       humanize-duration: 3.27.0
       json-2-csv: 3.14.4
+      lodash: 4.17.21
       luxon: 2.0.1
       mini-css-extract-plugin: 0.8.0_webpack@4.41.0
       nanoid: 3.1.23

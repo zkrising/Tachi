@@ -1,8 +1,10 @@
+import { GetFolderForIDGuaranteed } from "./db";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
+import { FormatGame, GetGamePTConfig } from "tachi-common";
 import type { BulkWriteOperation, FilterQuery } from "mongodb";
 import type {
 	ChartDocument,
@@ -345,4 +347,92 @@ export async function GetRecentlyViewedFolders(userID: integer, game: Game, play
 	});
 
 	return { views, folders };
+}
+
+/**
+ * Long function name. Wew.
+ *
+ * Get the grade and lamp distribution for a user on a folder before the given time.
+ * So for example, you want to know how many AAAs/HARD CLEARs a user had on a folder
+ * before Jan 1st 2022.
+ *
+ * This is used to calculate folder raises.
+ */
+export async function GetGradeLampDistributionForFolderAsOf(
+	userID: integer,
+	folderID: string,
+	beforeTime: number
+) {
+	const chartIDs = await GetFolderChartIDs(folderID);
+	const folder = await GetFolderForIDGuaranteed(folderID);
+
+	const bestGradeLampIndexes: Array<{ _id: string; gradeIndex: integer; lampIndex: integer }> =
+		await db.scores.aggregate([
+			{
+				$match: {
+					chartID: { $in: chartIDs },
+					userID,
+					timeAdded: { $lt: beforeTime },
+				},
+			},
+			{
+				$group: {
+					_id: "$chartID",
+					gradeIndex: { $max: "$scoreData.gradeIndex" },
+					lampIndex: { $max: "$scoreData.lampIndex" },
+				},
+			},
+		]);
+
+	const { game, playtype } = folder;
+
+	const gradeDist: Partial<Record<Grades[IDStrings], integer>> = {};
+	const lampDist: Partial<Record<Lamps[IDStrings], integer>> = {};
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	for (const score of bestGradeLampIndexes) {
+		const grade = gptConfig.grades[score.gradeIndex];
+		const lamp = gptConfig.lamps[score.lampIndex];
+
+		if (!grade) {
+			logger.warn(
+				`Failed to resolve gradeIndex '${score.gradeIndex}' for ${FormatGame(
+					game,
+					playtype
+				)}.`
+			);
+			continue;
+		}
+
+		if (!lamp) {
+			logger.warn(
+				`Failed to resolve lampIndex '${score.lampIndex}' for ${FormatGame(
+					game,
+					playtype
+				)}.`
+			);
+			continue;
+		}
+
+		if (gradeDist[grade] !== undefined) {
+			// @ts-expect-error object is definitely not undefined
+			gradeDist[grade]++;
+		} else {
+			gradeDist[grade] = 1;
+		}
+
+		if (lampDist[lamp] !== undefined) {
+			// @ts-expect-error object is definitely not undefined
+			lampDist[lamp]++;
+		} else {
+			lampDist[lamp] = 1;
+		}
+	}
+
+	return {
+		gradeDist,
+		lampDist,
+		chartIDs,
+		folder,
+	};
 }

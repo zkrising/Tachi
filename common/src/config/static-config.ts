@@ -50,10 +50,12 @@ export const allIDStrings: Array<IDStrings> = [
 	"bms:14K",
 	"bms:7K",
 	"chunithm:Single",
-	"ddr:DP",
-	"ddr:SP",
-	"gitadora:Dora",
-	"gitadora:Gita",
+
+	// "ddr:DP",
+	// "ddr:SP",
+	// "gitadora:Dora",
+	// "gitadora:Gita", <- none of these are actually supported
+
 	"iidx:DP",
 	"maimai:Single",
 	"museca:Single",

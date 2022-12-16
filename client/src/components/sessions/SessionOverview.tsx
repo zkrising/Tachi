@@ -10,6 +10,7 @@ import { SessionReturns } from "types/api-returns";
 import { ScoreDataset } from "types/tables";
 import { SetState } from "types/react";
 import SessionRaiseBreakdown from "./SessionRaiseBreakdown";
+import SessionFolderRaiseBreakdown from "./SessionFolderRaiseBreakdown";
 
 export default function SessionOverview({
 	sessionData,
@@ -37,6 +38,7 @@ export default function SessionOverview({
 				value={FormatDuration(session.timeEnded - session.timeStarted)}
 			/>
 			<StatThing md12 name="Highlights" value={scores.filter((e) => e.highlight).length} />
+			<SessionFolderRaiseBreakdown sessionData={sessionData} />
 			<Col xs={12}>
 				<Divider />
 

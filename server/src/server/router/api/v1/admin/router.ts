@@ -208,7 +208,6 @@ router.post(
 		const ugpt = await db["game-stats"].findOne({
 			userID,
 			game,
-
 			playtype,
 		});
 

@@ -11,6 +11,7 @@ import NullLR2HookFailedBPs from "./migrations/null-lr2hook-failed-bps";
 import RecalcBrokenIIDXNotecounts from "./migrations/recalc-broken-iidx-notecounts";
 import RemoveIIDXBeginners from "./migrations/remove-iidx-beginners";
 import RemoveMultifolderStats from "./migrations/remove-multifolder-stats";
+import RemoveRandom from "./migrations/remove-random";
 import UpdateJubeatPreferredTables from "./migrations/update-jubeat-preferred-tables";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
@@ -61,7 +62,7 @@ if (Environment.nodeEnv !== "test") {
 
 	// bokutachi specific migrations
 	if (TachiConfig.TYPE !== "ktchi") {
-		REGISTERED_MIGRATIONS.push(NullLR2HookFailedBPs, FixUndefinedBMSData);
+		REGISTERED_MIGRATIONS.push(NullLR2HookFailedBPs, FixUndefinedBMSData, RemoveRandom);
 	}
 }
 

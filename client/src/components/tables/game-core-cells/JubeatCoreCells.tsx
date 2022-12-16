@@ -2,8 +2,8 @@ import React from "react";
 import { PBScoreDocument, ScoreDocument } from "tachi-common";
 import JubeatJudgementCell from "../cells/JubeatJudgementCell";
 import JubeatScoreCell from "../cells/JubeatScoreCell";
+import JubilityCell from "../cells/JubilityCell";
 import LampCell from "../cells/LampCell";
-import RatingCell from "../cells/RatingCell";
 
 export default function JubeatCoreCells({
 	sc,
@@ -17,7 +17,7 @@ export default function JubeatCoreCells({
 			<JubeatScoreCell sc={sc} />
 			<JubeatJudgementCell score={sc} />
 			<LampCell score={sc} />
-			<RatingCell score={sc} rating={rating} />
+			<JubilityCell score={sc} />
 		</>
 	);
 }

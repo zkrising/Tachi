@@ -17,7 +17,11 @@ export async function EfficientDBIterate<T, R>(
 	while (true) {
 		logger.info(`Running on ${i} - ${i + bucketSize} documents.`);
 		// eslint-disable-next-line no-await-in-loop
-		const docs = await collection.find(filter, { limit: bucketSize, skip: i });
+		const docs = await collection.find(filter, {
+			sort: { _id: 1 },
+			limit: bucketSize,
+			skip: i,
+		});
 
 		if (docs.length === 0) {
 			break;

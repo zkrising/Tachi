@@ -24,6 +24,7 @@ export async function EfficientDBIterate<T, R>(
 		});
 
 		if (docs.length === 0) {
+			logger.info(`Ended documents at ${i}.`);
 			break;
 		}
 

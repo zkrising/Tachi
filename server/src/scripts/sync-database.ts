@@ -107,7 +107,7 @@ async function GenericUpsert<T extends Record<string, any>>(
 				},
 			});
 
-			changedFields.push(field);
+			changedFields.push(document[field]);
 		}
 
 		// free some memory.

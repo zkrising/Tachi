@@ -269,10 +269,14 @@ function FolderRaiseRender({
 					<strong style={{ fontSize: "1.25rem" }}>{newTotal}</strong>
 					<Muted>/{folderRaiseInfo.totalCharts}</Muted>
 				</div>
-				{folderRaiseInfo.totalCharts - newTotal < 10 && (
-					<div className="w-100 mt-1 text-warning">
-						{folderRaiseInfo.totalCharts - newTotal} to go!
-					</div>
+				{folderRaiseInfo.totalCharts - newTotal === 0 ? (
+					<div className="w-100 mt-1 text-success">Folder Complete!</div>
+				) : (
+					folderRaiseInfo.totalCharts - newTotal < 10 && (
+						<div className="w-100 mt-1 text-warning">
+							{folderRaiseInfo.totalCharts - newTotal} to go!
+						</div>
+					)
 				)}
 			</td>
 			<td>

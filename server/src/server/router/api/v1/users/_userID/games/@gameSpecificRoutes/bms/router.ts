@@ -45,7 +45,7 @@ const FindCustomBMSTable: RequestHandler = (req, res, next) => {
 /**
  * Return some HTML for this custom table.
  *
- * @note Since this is the GPT route, trying to fetch user specific custom tables
+ * @note Since this is the UGPT route, trying to fetch GPT custom tables
  * will result in a 404. This applies for all subsequent :tableUrlName routes.
  *
  * @name GET /api/v1/users/:userID/games/bms/:playtype/custom-tables/:tableUrlName

@@ -1,12 +1,15 @@
 import CreateLogCtx from "lib/logger/logger";
-import { ServerConfig } from "lib/setup/config";
+import { GetRivalUsers } from "lib/rivals/rivals";
+import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { CreateSongMap } from "tachi-common";
+import { GetRelevantSongsAndCharts } from "utils/db";
 import {
 	GetFolderCharts,
 	GetFolderNamesInOrder,
 	GetFoldersFromTable,
 	GetTableForIDGuaranteed,
 } from "utils/folder";
+import { GetRecentUGPTScores } from "utils/queries/scores";
 import path from "path";
 import type { BMSTableEntry, BMSTableHead } from "bms-table-loader";
 import type { Request, Response } from "express-serve-static-core";
@@ -14,6 +17,7 @@ import type {
 	ChartDocument,
 	FolderDocument,
 	Playtypes,
+	SongDocument,
 	TableDocument,
 	integer,
 } from "tachi-common";
@@ -22,6 +26,33 @@ const logger = CreateLogCtx(__filename);
 
 // Instead of just supporting existing tables, Tachi should also be able
 // to emit its own, custom BMS tables. These may be dynamic.
+
+function AppendAndConvertChartsToBMSBody(
+	body: Array<BMSTableEntry>,
+	charts: Array<ChartDocument<"bms:7K" | "bms:14K">>,
+	songMap: Map<integer, SongDocument>,
+	level: string
+) {
+	for (const chart of charts) {
+		const song = songMap.get(chart.songID);
+
+		// if we've got metadata to add...
+		if (song) {
+			body.push({
+				level,
+				title: song.title,
+				artist: song.artist,
+				md5: chart.data.hashMD5,
+			});
+		} else {
+			logger.warn(`BMS Chart md5=${chart.data.hashMD5} has no parent song.`);
+			body.push({
+				level,
+				md5: chart.data.hashMD5,
+			});
+		}
+	}
+}
 
 /**
  * Convert a table in Tachi into a bms header.json and body.json.
@@ -59,32 +90,16 @@ export async function TachiTableToBMSTableJSON(
 		const charts = data.charts as Array<ChartDocument<"bms:7K">>;
 		const songMap = CreateSongMap(data.songs);
 
-		for (const chart of charts) {
-			const song = songMap.get(chart.songID);
-
-			// if we've got metadata to add...
-			if (song) {
-				body.push({
-					level: folder.title,
-					title: song.title,
-					artist: song.artist,
-					md5: chart.data.hashMD5,
-				});
-			} else {
-				logger.warn(`BMS Chart md5=${chart.data.hashMD5} has no parent song.`);
-				body.push({
-					level: folder.title,
-					md5: chart.data.hashMD5,
-				});
-			}
-		}
+		AppendAndConvertChartsToBMSBody(body, charts, songMap, folder.title);
 	}
 
 	return body;
 }
 
 export type TachiBMSTable = {
-	playtype: Playtypes["bms"];
+	playtype: Playtypes["bms"] | null; // what playtype is this for? If null, this table
+	// is for all playtypes.
+
 	urlName: string; // what do we call this in the url?
 	tableName: string; // what should it be called in-game?
 	symbol: string; // what symbol should this table have?
@@ -93,13 +108,16 @@ export type TachiBMSTable = {
 			forSpecificUser: true; // if this table is user-dependent
 			// like, say, their rivals scores or something.
 			// then the callbacks need to recieve that info.
-			getLevelOrder: (userID: integer) => Promise<Array<string> | undefined>;
-			getBody: (userID: integer) => Promise<Array<BMSTableEntry>>;
+			getLevelOrder: (
+				userID: integer,
+				playtype: Playtypes["bms"]
+			) => Promise<Array<string> | undefined>;
+			getBody: (userID: integer, playtype: Playtypes["bms"]) => Promise<Array<BMSTableEntry>>;
 	  }
 	| {
 			forSpecificUser?: false;
-			getLevelOrder: () => Promise<Array<string> | undefined>;
-			getBody: () => Promise<Array<BMSTableEntry>>;
+			getLevelOrder: (playtype: Playtypes["bms"]) => Promise<Array<string> | undefined>;
+			getBody: (playtype: Playtypes["bms"]) => Promise<Array<BMSTableEntry>>;
 	  }
 );
 
@@ -136,6 +154,14 @@ function GetUserID(req: Request) {
 	throw new Error(`No userID in params here. Is this route mounted in the right place?`);
 }
 
+function GetPlaytype(req: Request) {
+	if ("playtype" in req.params) {
+		return req.params.playtype as Playtypes["bms"];
+	}
+
+	throw new Error(`No playtype in params here. Is this route mounted in the right place?`);
+}
+
 /**
  * Handle a request for a bms table. This endpoint should return "HTML" with the caveat
  * that atleast one of the lines should refer to a "bmstable" meta header.
@@ -170,15 +196,16 @@ export async function HandleBMSTableHeaderRequest(
 	try {
 		let levelOrder;
 		let dataUrl;
+		const playtype = GetPlaytype(req);
 
 		if (bmsTable.forSpecificUser === true) {
 			const userID = GetUserID(req);
 
 			dataUrl = BMSTableToAbsoluteURL(bmsTable, "body", userID);
 
-			levelOrder = await bmsTable.getLevelOrder(userID);
+			levelOrder = await bmsTable.getLevelOrder(userID, playtype);
 		} else {
-			levelOrder = await bmsTable.getLevelOrder();
+			levelOrder = await bmsTable.getLevelOrder(playtype);
 			dataUrl = BMSTableToAbsoluteURL(bmsTable, "body", null);
 		}
 
@@ -207,12 +234,14 @@ export async function HandleBMSTableBodyRequest(
 	try {
 		let body;
 
+		const playtype = GetPlaytype(req);
+
 		if (bmsTable.forSpecificUser === true) {
 			const userID = GetUserID(req);
 
-			body = await bmsTable.getBody(userID);
+			body = await bmsTable.getBody(userID, playtype);
 		} else {
-			body = await bmsTable.getBody();
+			body = await bmsTable.getBody(playtype);
 		}
 
 		return res.status(200).send(body);
@@ -261,6 +290,71 @@ export const CUSTOM_TACHI_BMS_TABLES: Array<TachiBMSTable> = [
 			const table = await GetTableForIDGuaranteed("bms-7K-sgl-HC");
 
 			return GetFolderNamesInOrder(table);
+		},
+	},
+
+	{
+		urlName: "rival-info",
+		playtype: null,
+		symbol: "Rival",
+		tableName: `${TachiConfig.NAME} Rival Stats`,
+		forSpecificUser: true,
+		async getBody(userID, playtype) {
+			const rivals = await GetRivalUsers(userID, "bms", playtype);
+
+			const body: Array<BMSTableEntry> = [];
+
+			const promises = [];
+
+			for (const rival of rivals) {
+				promises.push(async () => {
+					const scores = await GetRecentUGPTScores(rival.id, "bms", playtype);
+
+					const data = await GetRelevantSongsAndCharts(scores, "bms");
+					const charts = data.charts as unknown as Array<
+						ChartDocument<"bms:7K" | "bms:14K">
+					>;
+
+					const songMap = CreateSongMap(data.songs);
+
+					AppendAndConvertChartsToBMSBody(
+						body,
+						charts,
+						songMap,
+						`${rival.username} Recent Plays`
+					);
+				});
+
+				promises.push(async () => {
+					const scores = await GetRecentUGPTScores(rival.id, "bms", playtype);
+
+					const data = await GetRelevantSongsAndCharts(scores, "bms");
+					const charts = data.charts as unknown as Array<
+						ChartDocument<"bms:7K" | "bms:14K">
+					>;
+
+					const songMap = CreateSongMap(data.songs);
+
+					AppendAndConvertChartsToBMSBody(
+						body,
+						charts,
+						songMap,
+						`${rival.username} Recent Highlights`
+					);
+				});
+			}
+
+			await Promise.all(promises);
+
+			return body;
+		},
+		async getLevelOrder(userID, playtype) {
+			const rivals = await GetRivalUsers(userID, "bms", playtype);
+
+			return rivals.flatMap((rival) => [
+				`${rival.username} Recent Plays`,
+				`${rival.username} Recent Highlights`,
+			]);
 		},
 	},
 ];

@@ -1,3 +1,4 @@
+import type { TachiBMSTable } from "lib/game-specific/custom-bms-tables";
 import type {
 	FolderDocument,
 	TableDocument,
@@ -88,6 +89,8 @@ export interface TachiRequestData {
 	questSubDoc?: QuestSubscriptionDocument;
 	questlineDoc?: QuestlineDocument;
 	importDoc?: ImportDocument;
+
+	customBMSTable?: TachiBMSTable;
 
 	apiClientDoc: Omit<TachiAPIClientDocument, "clientSecret">;
 }

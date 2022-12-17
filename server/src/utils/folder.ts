@@ -262,6 +262,39 @@ export async function GetFoldersFromTable(table: TableDocument) {
 	return folders;
 }
 
+/**
+ * Get the names of all the folders in a Tachi Table in-order.
+ */
+export async function GetFolderNamesInOrder(table: TableDocument): Promise<Array<string>> {
+	const folders = await GetFoldersFromTable(table);
+
+	// we have to iterate over these folders in the order the table document says
+	// to
+	// as bms tables are somewhat sensitive to being placed in the correct order.
+	const folderMap = new Map<string, FolderDocument>();
+
+	for (const folder of folders) {
+		folderMap.set(folder.folderID, folder);
+	}
+
+	const orderedNames = [];
+
+	for (const folderID of table.folders) {
+		const folder = folderMap.get(folderID);
+
+		if (!folder) {
+			logger.warn(
+				`Table '${table.title}' refers to folder '${folderID}', but no such folder exists? Ignoring.`
+			);
+			continue;
+		}
+
+		orderedNames.push(folder.title);
+	}
+
+	return orderedNames;
+}
+
 export async function GetPBsOnFolder(userID: integer, folder: FolderDocument) {
 	const { charts, songs } = await GetFolderCharts(folder, {}, true);
 
@@ -435,4 +468,14 @@ export async function GetGradeLampDistributionForFolderAsOf(
 		chartIDs,
 		folder,
 	};
+}
+
+export async function GetTableForIDGuaranteed(tableID: string): Promise<TableDocument> {
+	const table = await db.tables.findOne({ tableID });
+
+	if (!table) {
+		throw new Error(`Couldn't find table with ID '${tableID}'.`);
+	}
+
+	return table;
 }

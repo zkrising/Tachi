@@ -1,6 +1,7 @@
 import apiTokensRouter from "./api-tokens/router";
 import bannerRouter from "./banner/router";
 import followingRouter from "./following/router";
+import gameSpecificRouter from "./games/@gameSpecificRoutes/router";
 import gamePTRouter from "./games/_game/_playtype/router";
 import importsRouter from "./imports/router";
 import integrationsRouter from "./integrations/router";
@@ -499,6 +500,7 @@ router.use(
 	}
 );
 
+router.use("/games", gameSpecificRouter);
 router.use("/games/:game/:playtype", gamePTRouter);
 router.use("/pfp", pfpRouter);
 router.use("/banner", bannerRouter);

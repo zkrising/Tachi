@@ -33,12 +33,12 @@ function mkOutput(modifant: any = {}): DryScore<"sdvx:Single"> {
 		game: "sdvx",
 		importType: "api/cg-dev-sdvx",
 		timeAchieved: 1559805262000,
-		service: "dev",
+		service: "CG Dev",
 		scoreData: {
 			grade: "A+",
 			percent: 91.23,
 			score: 9_123_000,
-			lamp: "EXCESSIVE CLEAR",
+			lamp: "CLEAR",
 			judgements: {
 				critical: 100,
 				near: 50,
@@ -54,7 +54,7 @@ function mkOutput(modifant: any = {}): DryScore<"sdvx:Single"> {
 
 t.test("#ConverterAPICGSDVX", (t) => {
 	const context: CGContext = {
-		service: "dev",
+		service: "CG Dev",
 		userID: 1,
 	};
 

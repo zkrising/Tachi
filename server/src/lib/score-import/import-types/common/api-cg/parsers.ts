@@ -42,7 +42,7 @@ const PR_CG_SDVX = {
 	internalId: p.isPositiveInteger,
 	difficulty: p.isPositiveInteger,
 	version: p.isPositiveInteger,
-	score: p.isBoundedInteger(0, 1_000_000),
+	score: p.isBoundedInteger(0, 10_000_000),
 	exScore: p.isPositiveInteger,
 	clearType: p.isPositiveInteger,
 

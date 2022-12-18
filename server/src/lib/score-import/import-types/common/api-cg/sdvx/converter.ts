@@ -1,3 +1,4 @@
+import { FormatCGService } from "../util";
 import {
 	InternalFailure,
 	InvalidScoreFailure,
@@ -52,7 +53,7 @@ export const ConverterAPICGSDVX: ConverterFunction<CGSDVXScore, CGContext> = asy
 		game: "sdvx",
 		importType,
 		timeAchieved,
-		service: context.service,
+		service: FormatCGService(context.service),
 		scoreData: {
 			grade,
 			percent,
@@ -118,27 +119,27 @@ function ConvertCGSDVXLamp(
 	clearType: number
 ): Lamps["sdvx:Single"] {
 	switch (clearType) {
-		case 0:
-			return "FAILED";
 		case 1:
+			return "FAILED";
+		case 2:
 			return "CLEAR";
 	}
 
 	// this version doesn't have excessive clears, so the ints are off by one.
 	if (version === "booth") {
 		switch (clearType) {
-			case 2:
-				return "ULTIMATE CHAIN";
 			case 3:
+				return "ULTIMATE CHAIN";
+			case 4:
 				return "PERFECT ULTIMATE CHAIN";
 		}
 	} else {
 		switch (clearType) {
-			case 2:
-				return "EXCESSIVE CLEAR";
 			case 3:
-				return "ULTIMATE CHAIN";
+				return "EXCESSIVE CLEAR";
 			case 4:
+				return "ULTIMATE CHAIN";
+			case 5:
 				return "PERFECT ULTIMATE CHAIN";
 		}
 	}

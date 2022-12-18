@@ -31,7 +31,7 @@ function mkOutput(modifant: any = {}): DryScore<"popn:9B"> {
 		game: "popn",
 		importType: "api/cg-dev-popn",
 		timeAchieved: 1559805262000,
-		service: "dev",
+		service: "CG Dev",
 		scoreData: {
 			grade: "A",
 			percent: 87,
@@ -55,7 +55,7 @@ function mkOutput(modifant: any = {}): DryScore<"popn:9B"> {
 
 t.test("#ConverterAPICGPopn", (t) => {
 	const context: CGContext = {
-		service: "dev",
+		service: "CG Dev",
 		userID: 1,
 	};
 

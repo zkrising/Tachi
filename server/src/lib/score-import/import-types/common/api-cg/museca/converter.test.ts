@@ -32,7 +32,7 @@ function mkOutput(modifant: any = {}): DryScore<"museca:Single"> {
 		game: "museca",
 		importType: "api/cg-dev-museca",
 		timeAchieved: 1559805262000,
-		service: "dev",
+		service: "CG Dev",
 		scoreData: {
 			grade: "優",
 			percent: 91.2,
@@ -53,7 +53,7 @@ function mkOutput(modifant: any = {}): DryScore<"museca:Single"> {
 
 t.test("#ConverterAPICGMuseca", (t) => {
 	const context: CGContext = {
-		service: "dev",
+		service: "CG Dev",
 		userID: 1,
 	};
 

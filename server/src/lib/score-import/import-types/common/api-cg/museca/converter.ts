@@ -1,3 +1,4 @@
+import { FormatCGService } from "../util";
 import {
 	InternalFailure,
 	InvalidScoreFailure,
@@ -59,7 +60,7 @@ export const ConverterAPICGMuseca: ConverterFunction<CGMusecaScore, CGContext> =
 		game: "museca",
 		importType,
 		timeAchieved,
-		service: context.service,
+		service: FormatCGService(context.service),
 		scoreData: {
 			grade,
 			percent,

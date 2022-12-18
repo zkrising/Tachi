@@ -1,3 +1,4 @@
+import { FormatCGService } from "../util";
 import {
 	InternalFailure,
 	InvalidScoreFailure,
@@ -74,7 +75,7 @@ export const ConverterAPICGPopn: ConverterFunction<CGPopnScore, CGContext> = asy
 		game: "popn",
 		importType,
 		timeAchieved,
-		service: context.service,
+		service: FormatCGService(context.service),
 		scoreData: {
 			grade,
 			percent,

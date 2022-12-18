@@ -1,4 +1,4 @@
-import type { CGSupportedGames } from "./types";
+import type { CGServices, CGSupportedGames } from "./types";
 import type { Game } from "tachi-common";
 
 export function CGGameToTachiGame(cgGame: CGSupportedGames): Game {
@@ -11,4 +11,8 @@ export function CGGameToTachiGame(cgGame: CGSupportedGames): Game {
 		case "sdvx":
 			return cgGame;
 	}
+}
+
+export function FormatCGService(cgService: CGServices) {
+	return cgService === "dev" ? "CG Dev" : "CG";
 }

@@ -37,7 +37,7 @@ export default function RivalCompare({ chart, game }: { chart: ChartDocument; ga
 
 	if (data.rivals.length === 0) {
 		return (
-			<div className="text-center">
+			<div className="w-100 text-center">
 				You have no rivals set!
 				<br />
 				Why not <Link to={`${base}/rivals/manage`}>set some?</Link>

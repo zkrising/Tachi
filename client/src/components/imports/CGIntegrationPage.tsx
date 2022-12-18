@@ -149,11 +149,7 @@ function CGImporter({
 			<Divider />
 			<div>
 				Play on {cgName} a lot? You can synchronise your scores straight from the discord by
-				typing{" "}
-				<code>
-					/sync {cgType === "dev" ? "CG-DEV" : "CG"} {game}
-				</code>
-				!
+				typing <code>/sync</code>!
 			</div>
 			<Divider />
 			<ImportStateRenderer state={importState} />

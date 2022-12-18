@@ -10,31 +10,33 @@ import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
-import SelectButton from "components/util/SelectButton";
+import SelectLinkButton from "components/util/SelectLinkButton";
 import { mode, TachiConfig } from "lib/config";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { Alert, Button, Col, Form, Modal, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import {
 	APIPermissions,
 	APITokenDocument,
 	integer,
 	UserDocument,
 	TachiAPIClientDocument,
+	CGCardInfo,
 } from "tachi-common";
 import { SetState } from "types/react";
+import { CGNeedsIntegrate } from "components/imports/CGIntegrationPage";
 import ARCIntegrationPage from "./ARCIntegrationPage";
 import FervidexIntegrationPage from "./FervidexIntegrationPage";
 import KsHookSV6CIntegrationPage from "./KsHookSV6CIntegrationPage";
 
 export default function UserIntegrationsPage({ reqUser }: { reqUser: UserDocument }) {
-	const [page, setPage] = useState<"services" | "api-keys" | "oauth-clients">("api-keys");
-
 	useSetSubheader(
 		["Users", reqUser.username, "Integrations"],
 		[reqUser],
 		`${reqUser.username}'s Integrations`
 	);
+
+	const baseUrl = `/dashboard/users/${reqUser.username}/integrations`;
 
 	return (
 		<Card header="Integrations" className="col-12 offset-lg-2 col-lg-8">
@@ -42,30 +44,34 @@ export default function UserIntegrationsPage({ reqUser }: { reqUser: UserDocumen
 				<Col xs={12}>
 					<div className="btn-group d-flex justify-content-center">
 						{mode !== "btchi" && (
-							<SelectButton value={page} setValue={setPage} id="services">
+							<SelectLinkButton to={`${baseUrl}/services`}>
 								<Icon type="network-wired" />
 								Service Configuration
-							</SelectButton>
+							</SelectLinkButton>
 						)}
-						<SelectButton value={page} setValue={setPage} id="api-keys">
+						<SelectLinkButton to={`${baseUrl}`}>
 							<Icon type="key" />
 							API Keys
-						</SelectButton>
-						<SelectButton value={page} setValue={setPage} id="oauth-clients">
+						</SelectLinkButton>
+						<SelectLinkButton to={`${baseUrl}/oauth-clients`}>
 							<Icon type="robot" />
 							My API Clients
-						</SelectButton>
+						</SelectLinkButton>
 					</div>
 					<Divider />
 				</Col>
 				<Col xs={12}>
-					{page === "services" ? (
-						<ServicesPage reqUser={reqUser} />
-					) : page === "api-keys" ? (
-						<APIKeysPage reqUser={reqUser} />
-					) : (
-						<OAuthClientPage />
-					)}
+					<Switch>
+						<Route exact path={baseUrl}>
+							<APIKeysPage reqUser={reqUser} />
+						</Route>
+						<Route path={`${baseUrl}/services`}>
+							<ServicesPage reqUser={reqUser} />
+						</Route>
+						<Route path={`${baseUrl}/oauth-clients`}>
+							<OAuthClientPage />
+						</Route>
+					</Switch>
 				</Col>
 			</Row>
 		</Card>
@@ -625,9 +631,7 @@ function ServicesPage({ reqUser }: { reqUser: UserDocument }) {
 		);
 	}
 
-	const [page, setPage] = useState<"fervidex" | "kshook" | "arc" | "flo" | "eag" | "min">(
-		"fervidex"
-	);
+	const baseUrl = `/dashboard/users/${reqUser.username}/integrations/services`;
 
 	return (
 		<Row className="text-center justify-content-center">
@@ -645,40 +649,43 @@ function ServicesPage({ reqUser }: { reqUser: UserDocument }) {
 			</Col>
 			<Col xs={12}>
 				<div className="btn-group">
-					<SelectButton value={page} setValue={setPage} id="fervidex">
-						Fervidex
-					</SelectButton>
-					<SelectButton value={page} setValue={setPage} id="kshook">
-						KsHook
-					</SelectButton>
-					<SelectButton value={page} setValue={setPage} id="arc">
-						ARC
-					</SelectButton>
-					<SelectButton value={page} setValue={setPage} id="flo">
-						FLO
-					</SelectButton>
-					<SelectButton value={page} setValue={setPage} id="eag">
-						EAG
-					</SelectButton>
-					<SelectButton value={page} setValue={setPage} id="min">
-						MIN
-					</SelectButton>
+					<SelectLinkButton to={`${baseUrl}/fervidex`}>Fervidex</SelectLinkButton>
+					<SelectLinkButton to={`${baseUrl}/cg`}>CG</SelectLinkButton>
+					<SelectLinkButton to={`${baseUrl}/cg-dev`}>CG Dev</SelectLinkButton>
+					<SelectLinkButton to={`${baseUrl}/kshook`}>KsHook</SelectLinkButton>
+					<SelectLinkButton to={`${baseUrl}/arc`}>ARC</SelectLinkButton>
+					<SelectLinkButton to={`${baseUrl}/flo`}>FLO</SelectLinkButton>
+					<SelectLinkButton to={`${baseUrl}/eag`}>EAG</SelectLinkButton>
+					<SelectLinkButton to={`${baseUrl}/min`}>MIN</SelectLinkButton>
 				</div>
 				<Divider />
 			</Col>
-			{page === "fervidex" ? (
-				<FervidexIntegrationPage reqUser={reqUser} />
-			) : page === "kshook" ? (
-				<KsHookSV6CIntegrationPage reqUser={reqUser} />
-			) : page === "arc" ? (
-				<ARCIntegrationPage reqUser={reqUser} />
-			) : page === "flo" ? (
-				<KAIIntegrationStatus userID={reqUser.id} kaiType="flo" />
-			) : page === "eag" ? (
-				<KAIIntegrationStatus userID={reqUser.id} kaiType="eag" />
-			) : (
-				<KAIIntegrationStatus userID={reqUser.id} kaiType="min" />
-			)}
+			<Switch>
+				<Route exact path={`${baseUrl}/fervidex`}>
+					<FervidexIntegrationPage reqUser={reqUser} />
+				</Route>
+				<Route exact path={`${baseUrl}/cg`}>
+					<CGIntegrationInfo key="cg" userID={reqUser.id} cgType="prod" />
+				</Route>
+				<Route exact path={`${baseUrl}/cg-dev`}>
+					<CGIntegrationInfo key="cg" userID={reqUser.id} cgType="dev" />
+				</Route>
+				<Route exact path={`${baseUrl}/kshook`}>
+					<KsHookSV6CIntegrationPage reqUser={reqUser} />
+				</Route>
+				<Route exact path={`${baseUrl}/arc`}>
+					<ARCIntegrationPage reqUser={reqUser} />
+				</Route>
+				<Route exact path={`${baseUrl}/flo`}>
+					<KAIIntegrationStatus userID={reqUser.id} kaiType="flo" />
+				</Route>
+				<Route exact path={`${baseUrl}/eag`}>
+					<KAIIntegrationStatus userID={reqUser.id} kaiType="eag" />
+				</Route>
+				<Route exact path={`${baseUrl}/min`}>
+					<KAIIntegrationStatus userID={reqUser.id} kaiType="min" />
+				</Route>
+			</Switch>
 		</Row>
 	);
 }
@@ -946,5 +953,50 @@ function APIKeyRow({
 				{sure ? "Are you really sure?" : "Delete Key"}
 			</Button>
 		</div>
+	);
+}
+
+function CGIntegrationInfo({ cgType, userID }: { cgType: "dev" | "prod"; userID: integer }) {
+	const [reload, shouldReloadCardInfo] = useReducer((x) => x + 1, 0);
+
+	const { data, error } = useApiQuery<CGCardInfo | null>(
+		`/users/${userID}/integrations/cg/${cgType}`,
+		undefined,
+		[reload]
+	);
+
+	if (error) {
+		return <ApiError error={error} />;
+	}
+
+	// null is a valid response for this call, so be explicit with going to loading
+	if (data === undefined) {
+		return <Loading />;
+	}
+
+	return (
+		<CGNeedsIntegrate
+			cgType={cgType}
+			onSubmit={async (cardID, pin) => {
+				const res = await APIFetchV1(
+					`/users/${userID}/integrations/cg/${cgType}`,
+					{
+						method: "PUT",
+						body: JSON.stringify({ cardID, pin }),
+						headers: {
+							"Content-Type": "application/json",
+						},
+					},
+					true,
+					true
+				);
+
+				if (res.success) {
+					shouldReloadCardInfo();
+				}
+			}}
+			initialCardID={data?.cardID ?? undefined}
+			initialPin={data?.pin ?? undefined}
+		/>
 	);
 }

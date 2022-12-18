@@ -30,19 +30,10 @@ router.get("/", ValidateCGType, RequireSelfRequestFromUser, async (req, res) => 
 	const user = GetTachiData(req, "requestedUser");
 	const cgType = req.params.cgType as "dev" | "prod";
 
-	const cardInfo = await db["cg-card-info"].findOne(
-		{
-			userID: user.id,
-			service: cgType,
-		},
-		{
-			projection: {
-				// i mean, it's not a security thing really but nobody needs
-				// to see this.
-				pin: 0,
-			},
-		}
-	);
+	const cardInfo = await db["cg-card-info"].findOne({
+		userID: user.id,
+		service: cgType,
+	});
 
 	if (!cardInfo) {
 		return res.status(200).json({

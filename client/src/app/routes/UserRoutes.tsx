@@ -127,7 +127,7 @@ function UserProfileRoutes({ reqUser }: { reqUser: UserDocument }) {
 					<UserSettingsPage reqUser={reqUser} />
 				</RequireAuthAsUserParam>
 			</Route>
-			<Route exact path="/dashboard/users/:userID/integrations">
+			<Route path="/dashboard/users/:userID/integrations">
 				<RequireAuthAsUserParam>
 					<UserIntegrationsPage reqUser={reqUser} />
 				</RequireAuthAsUserParam>

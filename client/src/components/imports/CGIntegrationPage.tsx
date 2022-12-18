@@ -11,6 +11,8 @@ import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useReducer, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { APIImportTypes, CGCardInfo, GetGameConfig } from "tachi-common";
+import { SetState } from "types/react";
+import Icon from "components/util/Icon";
 import ImportStateRenderer from "./ImportStateRenderer";
 
 interface Props {
@@ -23,6 +25,7 @@ export default function CGIntegrationPage({ cgType, game }: Props) {
 	const cgName = cgType === "dev" ? "CG Dev" : "CG";
 
 	const [reload, shouldReloadCardInfo] = useReducer((x) => x + 1, 0);
+	const [showEdit, setShowEdit] = useState(false);
 
 	useSetSubheader(["Import Scores", `${gameConfig.name} Sync (${cgName})`]);
 
@@ -47,36 +50,60 @@ export default function CGIntegrationPage({ cgType, game }: Props) {
 		return <Loading />;
 	}
 
-	if (data) {
-		return <CGImporter cgType={cgType} game={game} cardID={data.cardID} />;
-	} else {
-		return (
-			<CGNeedsIntegrate
-				cgType={cgType}
-				onSubmit={async (cardID, pin) => {
-					const res = await APIFetchV1(
-						`/users/${user.id}/integrations/cg/${cgType}`,
-						{
-							method: "PUT",
-							body: JSON.stringify({ cardID, pin }),
-							headers: {
-								"Content-Type": "application/json",
-							},
-						},
-						true,
-						true
-					);
+	return (
+		<>
+			{(showEdit || !data) && (
+				<>
+					<CGNeedsIntegrate
+						cgType={cgType}
+						onSubmit={async (cardID, pin) => {
+							const res = await APIFetchV1(
+								`/users/${user.id}/integrations/cg/${cgType}`,
+								{
+									method: "PUT",
+									body: JSON.stringify({ cardID, pin }),
+									headers: {
+										"Content-Type": "application/json",
+									},
+								},
+								true,
+								true
+							);
 
-					if (res.success) {
-						shouldReloadCardInfo();
-					}
-				}}
-			/>
-		);
-	}
+							if (res.success) {
+								shouldReloadCardInfo();
+							}
+						}}
+						initialCardID={data?.cardID ?? undefined}
+						initialPin={data?.pin ?? undefined}
+					/>
+					<Divider />
+				</>
+			)}
+			{data && (
+				<CGImporter
+					cgType={cgType}
+					game={game}
+					cardID={data.cardID}
+					setShowEdit={setShowEdit}
+					showEdit={showEdit}
+				/>
+			)}
+		</>
+	);
 }
 
-function CGImporter({ cgType, game, cardID }: Pick<Props, "cgType" | "game"> & { cardID: string }) {
+function CGImporter({
+	cgType,
+	game,
+	cardID,
+	showEdit,
+	setShowEdit,
+}: Pick<Props, "cgType" | "game"> & {
+	cardID: string;
+	showEdit: boolean;
+	setShowEdit: SetState<boolean>;
+}) {
 	const importType: APIImportTypes = `api/cg-${cgType}-${game}`;
 	const cgName = cgType === "dev" ? "CG Dev" : "CG";
 
@@ -94,7 +121,13 @@ function CGImporter({ cgType, game, cardID }: Pick<Props, "cgType" | "game"> & {
 		<div>
 			<h2 className="text-center mb-4">
 				Importing scores from {cgName} card{" "}
-				<code>{cardID.match(/.{1,4}/gu)?.join(" ")}</code>.
+				<code>{cardID.match(/.{1,4}/gu)?.join(" ")}</code>{" "}
+				<Icon
+					onClick={() => setShowEdit(!showEdit)}
+					type={showEdit ? "times" : "pencil-alt"}
+					noPad
+				/>
+				.
 			</h2>
 			<Divider />
 			<div className="d-flex w-100 justify-content-center">
@@ -128,16 +161,20 @@ function CGImporter({ cgType, game, cardID }: Pick<Props, "cgType" | "game"> & {
 	);
 }
 
-function CGNeedsIntegrate({
+export function CGNeedsIntegrate({
 	cgType,
+	initialCardID,
+	initialPin,
 	onSubmit,
 }: Pick<Props, "cgType"> & {
 	onSubmit: (cardID: string, pin: string) => Promise<void>;
+	initialCardID?: string;
+	initialPin?: string;
 }) {
 	const cgName = cgType === "dev" ? "CG Dev" : "CG";
 
-	const [cardID, setCardID] = useState("");
-	const [pin, setPin] = useState("");
+	const [cardID, setCardID] = useState(initialCardID ?? "");
+	const [pin, setPin] = useState(initialPin ?? "");
 
 	// strip any whitespace the user feels like entering
 	const realCardID = useMemo(() => cardID.replace(/\s+/gu, ""), [cardID]);
@@ -154,42 +191,37 @@ function CGNeedsIntegrate({
 
 	return (
 		<div>
-			<h3 className="text-center mb-4">We need to know what card you use on {cgName}!</h3>
+			<h3 className="text-center mb-4">Set your {cgName} card.</h3>
 
-			<Row>
-				<Col xs={12} lg={8} className="offset-lg-2">
-					<FormInput fieldName="Card ID" setValue={setCardID} value={cardID} />
-					<Form.Label>
-						This is the card ID that's displayed in game. It should be 16 characters
-						long.
-						<br />
-						{cardID.length > 0 && !/^[a-zA-Z0-9]{16}$/u.exec(realCardID) ? (
-							<span className="text-danger">
-								Invalid Card ID. This should be 16 alphanumeric characters.
-							</span>
-						) : (
-							cardID.length > 0 && <span className="text-success">Looking good!</span>
-						)}
-					</Form.Label>
-					<br />
-					<FormInput fieldName="PIN" setValue={setPin} value={pin} />
-					<Form.Label>What PIN do you use to card in to {cgName}?</Form.Label>
-					<br />
+			<FormInput fieldName="Card ID" setValue={setCardID} value={cardID} />
+			<Form.Label>
+				This is the card ID that's displayed in game. It should be 16 characters long.
+				<br />
+				{cardID.length > 0 && !/^[a-zA-Z0-9]{16}$/u.exec(realCardID) ? (
+					<span className="text-danger">
+						Invalid Card ID. This should be 16 alphanumeric characters.
+					</span>
+				) : (
+					cardID.length > 0 && <span className="text-success">Looking good!</span>
+				)}
+			</Form.Label>
+			<br />
+			<FormInput fieldName="PIN" setValue={setPin} value={pin} type="password" />
+			<Form.Label>What PIN do you use to card in to {cgName}?</Form.Label>
+			<br />
 
-					{pin.length > 0 && !/^[0-9]{4}$/u.exec(pin) ? (
-						<span className="text-danger">Invalid PIN. This should be 4 digits.</span>
-					) : (
-						pin.length > 0 && <span className="text-success">Looking good!</span>
-					)}
+			{pin.length > 0 && !/^[0-9]{4}$/u.exec(pin) ? (
+				<span className="text-danger">Invalid PIN. This should be 4 digits.</span>
+			) : (
+				pin.length > 0 && <span className="text-success">Looking good!</span>
+			)}
 
-					<Divider />
-					<div className="w-100 d-flex justify-content-center">
-						<Button disabled={shouldDisable} onClick={() => onSubmit(realCardID, pin)}>
-							Submit Card ID
-						</Button>
-					</div>
-				</Col>
-			</Row>
+			<Divider />
+			<div className="w-100 d-flex justify-content-center">
+				<Button disabled={shouldDisable} onClick={() => onSubmit(realCardID, pin)}>
+					Submit Card ID
+				</Button>
+			</div>
 		</div>
 	);
 }

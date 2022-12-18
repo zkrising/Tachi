@@ -1,7 +1,7 @@
 import { InternalFailure, InvalidScoreFailure } from "./converter-failures";
 import CreateLogCtx from "lib/logger/logger";
 import { ESDCore, GetGamePTConfig } from "tachi-common";
-import { IsNullish, NotNullish } from "utils/misc";
+import { FloorToNDP, IsNullish, NotNullish } from "utils/misc";
 import type {
 	ChartDocument,
 	Game,
@@ -9,6 +9,8 @@ import type {
 	Grades,
 	IDStrings,
 	Playtype,
+	Lamps,
+	integer,
 } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
@@ -46,7 +48,7 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
 }
 
 /**
- * A Generic function for calculating a percent from a given score on
+ * A generic function for calculating a percent from a given score on
  * a given game.
  */
 export function GenericCalculatePercent(game: Game, score: number, chart?: ChartDocument): number {
@@ -93,6 +95,7 @@ export function GenericCalculatePercent(game: Game, score: number, chart?: Chart
 		}
 
 		case "jubeat":
+			throw new Error(`Cannot calculate percent for jubeat. Music Rate must be provided.`);
 		case "gitadora":
 		case "itg":
 			return score;
@@ -183,6 +186,22 @@ export function JubeatGetGrade(score: number): Grades["jubeat:Single"] {
 	return "E";
 }
 
+export function JubeatGetMusicRate(
+	perfect: integer,
+	great: integer,
+	good: integer,
+	poor: integer,
+	miss: integer,
+	chartMaxCombo: integer,
+	hardMode: boolean
+) {
+	const multiplier = hardMode ? 120 : 100;
+
+	const rawMusicRate = ((perfect + 0.2 * great + 0.05 * good) / chartMaxCombo) * multiplier;
+
+	return FloorToNDP(rawMusicRate, 1);
+}
+
 /**
  * Calculates the ESD for a given game + percent combo. This function returns
  * null if the game does not support support ESD.
@@ -217,4 +236,35 @@ export function ParseDateFromString(str: string | null | undefined): number | nu
 	}
 
 	return date;
+}
+
+/**
+ * Turn a museca score into its lamp. Note that we disagree with the game on what
+ * constitutes a clear -- instead, 800k is marked as the minimum point for a clear.
+ *
+ * Museca actually handles clears differently with a bunch of grafica nonsense,
+ * but nobody actually cares about it, so...
+ */
+export function MusecaGetLamp(score: integer, missCount: integer): Lamps["museca:Single"] {
+	if (score === 1_000_000) {
+		return "PERFECT CONNECT ALL";
+	} else if (missCount === 0) {
+		return "CONNECT ALL";
+	} else if (score >= 800_000) {
+		return "CLEAR";
+	}
+
+	return "FAILED";
+}
+
+export function JubeatGetLamp(score: integer, missCount: integer): Lamps["jubeat:Single"] {
+	if (score === 1_000_000) {
+		return "EXCELLENT";
+	} else if (missCount === 0) {
+		return "FULL COMBO";
+	} else if (score >= 700_000) {
+		return "CLEAR";
+	}
+
+	return "FAILED";
 }

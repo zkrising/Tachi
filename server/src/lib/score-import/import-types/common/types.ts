@@ -12,6 +12,13 @@ import type { KsHookSV6CStaticScore } from "../ir/kshook-sv6c-static/types";
 import type { KsHookSV6CContext, KsHookSV6CScore } from "../ir/kshook-sv6c/types";
 import type { LR2HookContext, LR2HookScore } from "../ir/lr2hook/types";
 import type { IRUSCContext } from "../ir/usc/types";
+import type {
+	CGContext,
+	CGJubeatScore,
+	CGMusecaScore,
+	CGPopnScore,
+	CGSDVXScore,
+} from "./api-cg/types";
 import type { KaiContext } from "./api-kai/types";
 import type { BatchManualContext } from "./batch-manual/types";
 import type { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./eamusement-iidx-csv/types";
@@ -55,6 +62,18 @@ export interface ImportTypeDataMap {
 	"api/min-sdvx": unknown;
 	"api/eag-iidx": unknown;
 	"api/eag-sdvx": unknown;
+
+	"api/cg-dev-sdvx": CGSDVXScore;
+	"api/cg-dev-museca": CGMusecaScore;
+	"api/cg-dev-popn": CGPopnScore;
+
+	// temporarily disabled as no musicRate is provided.
+	// "api/cg-dev-jubeat": CGJubeatScore;
+	// "api/cg-prod-jubeat": CGJubeatScore;
+
+	"api/cg-prod-sdvx": CGSDVXScore;
+	"api/cg-prod-museca": CGMusecaScore;
+	"api/cg-prod-popn": CGPopnScore;
 }
 
 export interface ImportTypeContextMap {
@@ -82,6 +101,15 @@ export interface ImportTypeContextMap {
 	"api/min-sdvx": KaiContext;
 	"api/eag-iidx": KaiContext;
 	"api/eag-sdvx": KaiContext;
+
+	"api/cg-dev-jubeat": CGContext;
+	"api/cg-dev-sdvx": CGContext;
+	"api/cg-dev-museca": CGContext;
+	"api/cg-dev-popn": CGContext;
+	"api/cg-prod-jubeat": CGContext;
+	"api/cg-prod-sdvx": CGContext;
+	"api/cg-prod-museca": CGContext;
+	"api/cg-prod-popn": CGContext;
 }
 
 export interface OrphanScoreDocument<T extends ImportTypes = ImportTypes> extends MongoDBDocument {
@@ -123,4 +151,4 @@ export interface ParserFunctionReturns<D, C> {
 
 export type ParserFunction<D, C, A extends Array<unknown>> = (
 	...args: A
-) => ParserFunctionReturns<D, C>;
+) => ParserFunctionReturns<D, C> | Promise<ParserFunctionReturns<D, C>>;

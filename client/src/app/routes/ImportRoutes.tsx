@@ -24,6 +24,7 @@ import { mode } from "lib/config";
 import React, { useContext } from "react";
 import Switch from "react-bootstrap/esm/Switch";
 import { Link, Redirect, Route } from "react-router-dom";
+import CGIntegrationPage from "components/imports/CGIntegrationPage";
 
 export default function ImportRoutes() {
 	const { user } = useContext(UserContext);
@@ -170,6 +171,25 @@ export default function ImportRoutes() {
 									kaiType="EAG"
 									game="sdvx"
 								/>
+							</Route>
+							<Route exact path="/dashboard/import/cg-dev-sdvx">
+								<CGIntegrationPage cgType="dev" game="sdvx" />
+							</Route>
+							<Route exact path="/dashboard/import/cg-dev-popn">
+								<CGIntegrationPage cgType="dev" game="popn" />
+							</Route>
+							<Route exact path="/dashboard/import/cg-dev-museca">
+								<CGIntegrationPage cgType="dev" game="museca" />
+							</Route>
+
+							<Route exact path="/dashboard/import/cg-prod-sdvx">
+								<CGIntegrationPage cgType="prod" game="sdvx" />
+							</Route>
+							<Route exact path="/dashboard/import/cg-prod-popn">
+								<CGIntegrationPage cgType="prod" game="popn" />
+							</Route>
+							<Route exact path="/dashboard/import/cg-prod-museca">
+								<CGIntegrationPage cgType="prod" game="museca" />
 							</Route>
 
 							<Route exact path="/dashboard/import/wacca-site">

@@ -8,12 +8,14 @@ export default function FormInput({
 	setValue,
 	placeholder,
 	as,
+	type,
 }: {
 	fieldName: string;
 	value: string;
 	setValue: SetState<string>;
 	placeholder?: string;
 	as?: ElementType;
+	type?: string;
 }) {
 	return (
 		<InputGroup>
@@ -25,6 +27,7 @@ export default function FormInput({
 				placeholder={placeholder}
 				value={value}
 				onChange={(e) => setValue(e.target.value)}
+				type={type}
 			/>
 		</InputGroup>
 	);

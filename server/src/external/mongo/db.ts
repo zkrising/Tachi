@@ -48,6 +48,7 @@ import type {
 	UserSettings,
 	KsHookSettingsDocument,
 	ImportTrackerDocument as ImportTrackerDocument,
+	CGCardInfo,
 } from "tachi-common";
 import type { MigrationDocument, PrivateUserInfoDocument } from "utils/types";
 
@@ -153,6 +154,8 @@ const db = {
 	counters: monkDB.get<CounterDocument>("counters"),
 	"game-stats": monkDB.get<UserGameStats>("game-stats"),
 	"kai-auth-tokens": monkDB.get<KaiAuthDocument>("kai-auth-tokens"),
+	"cg-card-info": monkDB.get<CGCardInfo>("cg-card-info"),
+
 	"bms-course-lookup": monkDB.get<BMSCourseDocument>("bms-course-lookup"),
 	"api-tokens": monkDB.get<APITokenDocument>("api-tokens"),
 	"orphan-scores": monkDB.get<OrphanScoreDocument>("orphan-scores"),

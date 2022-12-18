@@ -79,10 +79,10 @@ export async function* TraverseKaiAPI(
 				},
 			});
 		} catch (err) {
-			logger.error(`received invalid response from ${url}.`, { err });
+			logger.error(`Received invalid response from ${url}.`, { err });
 			throw new ScoreImportFatalError(
 				500,
-				`received invalid response from their API. Are they down?`
+				`Received invalid response from their API. Are they down?`
 			);
 		}
 

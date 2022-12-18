@@ -1,4 +1,9 @@
-import { GenericCalculatePercent, GetGradeFromPercent, ValidatePercent } from "./score-utils";
+import {
+	GenericCalculatePercent,
+	GetGradeFromPercent,
+	JubeatGetMusicRate,
+	ValidatePercent,
+} from "./score-utils";
 import t from "tap";
 import { isApproximately } from "test-utils/asserts";
 import { Testing511SPA } from "test-utils/test-data";
@@ -140,6 +145,23 @@ t.test("#ValidatePercent", (t) => {
 		{
 			message: /expected a number less than 120/u,
 		}
+	);
+
+	t.end();
+});
+
+t.test("#JubeatGetMusicRate", (t) => {
+	t.equal(
+		JubeatGetMusicRate(423, 136, 41, 14, 5, 619, false),
+		73.0,
+		"Should correctly calculate jubeat music rate."
+	);
+	t.equal(JubeatGetMusicRate(418, 158, 90, 54, 92, 818, false), 73.0);
+
+	t.equal(
+		JubeatGetMusicRate(423, 136, 41, 14, 5, 619, true),
+		73.0 * 1.2,
+		"Should correctly calculate hard mode jubeat music rate."
 	);
 
 	t.end();

@@ -51,6 +51,11 @@ export interface OAuth2Info {
 	REDIRECT_URI: string;
 }
 
+export interface CGConfig {
+	API_KEY: string;
+	URL: string;
+}
+
 export interface TachiServerConfig {
 	MONGO_DATABASE_NAME: string;
 	CAPTCHA_SECRET_KEY: string;
@@ -59,6 +64,10 @@ export interface TachiServerConfig {
 	EAG_API_URL?: string;
 	MIN_API_URL?: string;
 	ARC_API_URL?: string;
+
+	CG_DEV_CONFIG?: CGConfig;
+	CG_PROD_CONFIG?: CGConfig;
+
 	FLO_OAUTH2_INFO?: OAuth2Info;
 	EAG_OAUTH2_INFO?: OAuth2Info;
 	MIN_OAUTH2_INFO?: OAuth2Info;
@@ -136,6 +145,11 @@ const isValidOauth2 = p.optional({
 	REDIRECT_URI: "string",
 });
 
+const isValidCGConfig = p.optional({
+	API_KEY: "string",
+	URL: "string",
+});
+
 const err = p(config, {
 	MONGO_DATABASE_NAME: "string",
 	CAPTCHA_SECRET_KEY: "string",
@@ -144,6 +158,10 @@ const err = p(config, {
 	EAG_API_URL: p.optional(isValidURL),
 	MIN_API_URL: p.optional(isValidURL),
 	ARC_API_URL: p.optional(isValidURL),
+
+	CG_DEV_CONFIG: isValidCGConfig,
+	CG_PROD_CONFIG: isValidCGConfig,
+
 	FLO_OAUTH2_INFO: isValidOauth2,
 	EAG_OAUTH2_INFO: isValidOauth2,
 	MIN_OAUTH2_INFO: isValidOauth2,

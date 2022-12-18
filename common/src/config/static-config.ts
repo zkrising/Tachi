@@ -37,6 +37,12 @@ export const apiImportTypes: Array<APIImportTypes> = [
 	"api/flo-iidx",
 	"api/flo-sdvx",
 	"api/min-sdvx",
+	"api/cg-dev-museca",
+	"api/cg-dev-popn",
+	"api/cg-dev-sdvx",
+	"api/cg-prod-museca",
+	"api/cg-prod-popn",
+	"api/cg-prod-sdvx",
 ];
 
 export const allImportTypes: Array<ImportTypes> = [

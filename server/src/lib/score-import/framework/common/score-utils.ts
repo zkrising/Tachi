@@ -186,22 +186,6 @@ export function JubeatGetGrade(score: number): Grades["jubeat:Single"] {
 	return "E";
 }
 
-export function JubeatGetMusicRate(
-	perfect: integer,
-	great: integer,
-	good: integer,
-	poor: integer,
-	miss: integer,
-	chartMaxCombo: integer,
-	hardMode: boolean
-) {
-	const multiplier = hardMode ? 120 : 100;
-
-	const rawMusicRate = ((perfect + 0.2 * great + 0.05 * good) / chartMaxCombo) * multiplier;
-
-	return FloorToNDP(rawMusicRate, 1);
-}
-
 /**
  * Calculates the ESD for a given game + percent combo. This function returns
  * null if the game does not support support ESD.

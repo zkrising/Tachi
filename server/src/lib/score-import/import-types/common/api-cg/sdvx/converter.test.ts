@@ -81,19 +81,19 @@ t.test("#ConverterAPICGSDVX", (t) => {
 	});
 
 	t.test("Lamps", async (t) => {
-		t.hasStrict(await convert({ clearType: 0 }), {
+		t.hasStrict(await convert({ clearType: 1 }), {
 			dryScore: mkOutput({ scoreData: { lamp: "FAILED" } }),
 		});
-		t.hasStrict(await convert({ clearType: 1 }), {
+		t.hasStrict(await convert({ clearType: 2 }), {
 			dryScore: mkOutput({ scoreData: { lamp: "CLEAR" } }),
 		});
-		t.hasStrict(await convert({ clearType: 2 }), {
+		t.hasStrict(await convert({ clearType: 3 }), {
 			dryScore: mkOutput({ scoreData: { lamp: "EXCESSIVE CLEAR" } }),
 		});
-		t.hasStrict(await convert({ clearType: 3 }), {
+		t.hasStrict(await convert({ clearType: 4 }), {
 			dryScore: mkOutput({ scoreData: { lamp: "ULTIMATE CHAIN" } }),
 		});
-		t.hasStrict(await convert({ clearType: 4 }), {
+		t.hasStrict(await convert({ clearType: 5 }), {
 			dryScore: mkOutput({ scoreData: { lamp: "PERFECT ULTIMATE CHAIN" } }),
 		});
 

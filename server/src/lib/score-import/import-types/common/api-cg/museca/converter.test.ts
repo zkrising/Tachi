@@ -53,7 +53,7 @@ function mkOutput(modifant: any = {}): DryScore<"museca:Single"> {
 
 t.test("#ConverterAPICGMuseca", (t) => {
 	const context: CGContext = {
-		service: "CG Dev",
+		service: "dev",
 		userID: 1,
 	};
 

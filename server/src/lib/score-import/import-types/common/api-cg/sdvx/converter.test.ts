@@ -54,7 +54,7 @@ function mkOutput(modifant: any = {}): DryScore<"sdvx:Single"> {
 
 t.test("#ConverterAPICGSDVX", (t) => {
 	const context: CGContext = {
-		service: "CG Dev",
+		service: "dev",
 		userID: 1,
 	};
 

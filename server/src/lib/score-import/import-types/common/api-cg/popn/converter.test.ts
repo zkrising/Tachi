@@ -55,7 +55,7 @@ function mkOutput(modifant: any = {}): DryScore<"popn:9B"> {
 
 t.test("#ConverterAPICGPopn", (t) => {
 	const context: CGContext = {
-		service: "CG Dev",
+		service: "dev",
 		userID: 1,
 	};
 

@@ -7,7 +7,7 @@ ARG COMMIT_HASH
 ENV COMMIT_HASH=${COMMIT_HASH}
 
 RUN npm install --silent -g pnpm
-RUN apk add --no-cache 
+RUN apk add --no-cache git curl
 
 FROM base AS build
 WORKDIR /app

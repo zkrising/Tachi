@@ -1,5 +1,6 @@
 import { ConverterAPICGMuseca } from "./converter";
 import CreateLogCtx from "lib/logger/logger";
+import { ParseDateFromString } from "lib/score-import/framework/common/score-utils";
 import t from "tap";
 import { dmf } from "test-utils/misc";
 import type { CGContext, CGMusecaScore } from "../types";
@@ -31,7 +32,10 @@ function mkOutput(modifant: any = {}): DryScore<"museca:Single"> {
 		comment: null,
 		game: "museca",
 		importType: "api/cg-dev-museca",
-		timeAchieved: 1559805262000,
+
+		// we handle it like this because -- with no timezone info
+		// this will fail in CI; it has a different timezone there!
+		timeAchieved: ParseDateFromString("2019-06-06 08:14:22"),
 		service: "CG Dev",
 		scoreData: {
 			grade: "優",

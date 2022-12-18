@@ -969,22 +969,22 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		idString: "museca:Single",
 		percentMax: 100,
 
-		defaultScoreRatingAlg: "ktRating",
-		defaultSessionRatingAlg: "ktRating",
-		defaultProfileRatingAlg: "ktRating",
+		defaultScoreRatingAlg: "curatorSkill",
+		defaultSessionRatingAlg: "curatorSkill",
+		defaultProfileRatingAlg: "curatorSkill",
 
-		scoreRatingAlgs: ["ktRating"],
-		sessionRatingAlgs: ["ktRating"],
-		profileRatingAlgs: ["ktRating"],
+		scoreRatingAlgs: ["curatorSkill"],
+		sessionRatingAlgs: ["curatorSkill"],
+		profileRatingAlgs: ["curatorSkill"],
 
 		scoreRatingAlgDescriptions: {
-			ktRating: "A custom rating system that combines score and the chart level.",
+			curatorSkill: "A custom rating system that combines score and the chart level.",
 		},
 		profileRatingAlgDescriptions: {
-			ktRating: "The average of your best 20 ktRatings.",
+			curatorSkill: "The sum of your best 20 ktRatings.",
 		},
 		sessionRatingAlgDescriptions: {
-			ktRating: "The average of your best 10 ktRatings this session.",
+			curatorSkill: "The average of your best 10 curator skills this session.",
 		},
 
 		scoreRatingAlgFormatters: {},

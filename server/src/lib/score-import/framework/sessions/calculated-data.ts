@@ -86,7 +86,7 @@ function GetGPTSessionCalcDataFn(game: Game, playtype: Playtype): SessionCalcDat
 			});
 		case "museca:Single":
 			return (scd) => ({
-				naiveRating: AvgBest10Map(scd, "rating"),
+				curatorSkill: AvgBest10Map(scd, "curatorSkill"),
 			});
 		case "gitadora:Dora":
 		case "gitadora:Gita":

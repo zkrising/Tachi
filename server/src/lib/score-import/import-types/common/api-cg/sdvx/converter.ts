@@ -42,7 +42,7 @@ export const ConverterAPICGSDVX: ConverterFunction<CGSDVXScore, CGContext> = asy
 		throw new InternalFailure(`Song-Chart desync with song ID ${chart.songID} (sdvx).`);
 	}
 
-	const lamp = ConvertCGSDVXLamp(version, data.clearType);
+	const lamp = ConvertCGSDVXLamp(data.clearType);
 
 	const { percent, grade } = GenericGetGradeAndPercent("sdvx", data.score, chart);
 
@@ -114,37 +114,19 @@ function ConvertVersion(ver: number): GPTSupportedVersions["sdvx:Single"] {
  * Convert CG's clearType enum into a Tachi lamp. Note that what numbers mean what are
  * dependent on what version of the game we're listening for.
  */
-function ConvertCGSDVXLamp(
-	version: GPTSupportedVersions["sdvx:Single"],
-	clearType: number
-): Lamps["sdvx:Single"] {
+function ConvertCGSDVXLamp(clearType: number): Lamps["sdvx:Single"] {
 	switch (clearType) {
 		case 1:
 			return "FAILED";
 		case 2:
 			return "CLEAR";
+		case 3:
+			return "EXCESSIVE CLEAR";
+		case 4:
+			return "ULTIMATE CHAIN";
+		case 5:
+			return "PERFECT ULTIMATE CHAIN";
 	}
 
-	// this version doesn't have excessive clears, so the ints are off by one.
-	if (version === "booth") {
-		switch (clearType) {
-			case 3:
-				return "ULTIMATE CHAIN";
-			case 4:
-				return "PERFECT ULTIMATE CHAIN";
-		}
-	} else {
-		switch (clearType) {
-			case 3:
-				return "EXCESSIVE CLEAR";
-			case 4:
-				return "ULTIMATE CHAIN";
-			case 5:
-				return "PERFECT ULTIMATE CHAIN";
-		}
-	}
-
-	throw new InvalidScoreFailure(
-		`Invalid lamp of ${clearType} for ${version} - Could not convert.`
-	);
+	throw new InvalidScoreFailure(`Invalid lamp of ${clearType} - Could not convert.`);
 }

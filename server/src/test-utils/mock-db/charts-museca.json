@@ -1,0 +1,20 @@
+[
+	{
+		"chartID": "70b80da02a2037d556026b412c386b2fd1e57dbd",
+		"data": {
+			"inGameID": 1
+		},
+		"difficulty": "Green",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1,
+		"tierlistInfo": {},
+		"versions": [
+			"1.5",
+			"1.5-b"
+		]
+	}
+]

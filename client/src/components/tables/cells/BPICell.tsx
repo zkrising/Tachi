@@ -99,8 +99,6 @@ export default function BPICell({
 							chart.data.bpiCoefficient === -1
 								? 1.175
 								: chart.data.bpiCoefficient}
-							<br />
-							Tip: Click on your score to see more advanced BPI info.
 						</Muted>
 					</>
 				}

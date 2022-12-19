@@ -134,10 +134,6 @@ function GetGPTRatingFunction(game: Game, playtype: Playtype): RatingFunction {
 			return async (g, p, u) => ({
 				curatorSkill: await LazySumN("curatorSkill", 20)(g, p, u),
 			});
-		case "maimai:Single":
-			return async (g, p, u) => ({
-				ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
-			});
 		case "wacca:Single":
 			return async (g, p, u, l) => ({
 				naiveRate: await LazySumN("rate", 50)(g, p, u),

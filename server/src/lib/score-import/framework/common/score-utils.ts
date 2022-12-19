@@ -62,10 +62,6 @@ export function GenericCalculatePercent(game: Game, score: number, chart?: Chart
 			return (score / 10_000_000) * 100;
 		case "popn":
 			return (score / 100_000) * 100;
-		case "maimai":
-			// score in maimai is actually just your percent, since nobody cares about
-			// money score.
-			return score;
 		case "bms":
 		case "pms":
 		case "iidx": {
@@ -109,8 +105,6 @@ export function GenericCalculatePercent(game: Game, score: number, chart?: Chart
 /**
  * Helper utility for validating percents on a game. This throws an InvalidScoreFailure if the percent is
  * invalid, and returns void on success.
- *
- * This exists to support maimai, as it has a dynamic "max percent".
  */
 export function ValidatePercent(
 	game: Game,
@@ -118,23 +112,12 @@ export function ValidatePercent(
 	percent: number,
 	chart: ChartDocument
 ) {
-	// i love needing a helper function for *ONE* game.
-	if (game === "maimai") {
-		const mmChart = chart as ChartDocument<"maimai:Single">;
+	const gptConfig = GetGamePTConfig(game, playtype);
 
-		if (percent > mmChart.data.maxPercent) {
-			throw new InvalidScoreFailure(
-				`Invalid percent - expected a number less than ${mmChart.data.maxPercent}.`
-			);
-		}
-	} else {
-		const gptConfig = GetGamePTConfig(game, playtype);
-
-		if (percent > gptConfig.percentMax) {
-			throw new InvalidScoreFailure(
-				`Invalid percent of ${percent} - expected a value less than ${gptConfig.percentMax}% (${chart.songID} ${chart.playtype} ${chart.difficulty}).`
-			);
-		}
+	if (percent > gptConfig.percentMax) {
+		throw new InvalidScoreFailure(
+			`Invalid percent of ${percent} - expected a value less than ${gptConfig.percentMax}% (${chart.songID} ${chart.playtype} ${chart.difficulty}).`
+		);
 	}
 
 	if (percent < 0) {

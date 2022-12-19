@@ -51,7 +51,6 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
 		Gita: CalculateGitadoraColour,
 		Dora: CalculateGitadoraColour,
 	},
-	maimai: null,
 	museca: null,
 	popn: {
 		"9B": CalculatePopnClass,

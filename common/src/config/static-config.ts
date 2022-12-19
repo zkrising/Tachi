@@ -61,7 +61,6 @@ export const allIDStrings: Array<IDStrings> = [
 	// "gitadora:Gita", <- none of these are actually supported
 
 	"iidx:DP",
-	"maimai:Single",
 	"museca:Single",
 	"sdvx:Single",
 	"usc:Controller",
@@ -76,7 +75,6 @@ export const allIDStrings: Array<IDStrings> = [
 export const allSupportedGames: Array<Game> = [
 	"iidx",
 	"museca",
-	"maimai",
 	"jubeat",
 	"popn",
 	"sdvx",

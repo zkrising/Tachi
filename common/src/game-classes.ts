@@ -338,7 +338,6 @@ export interface GameClassSets {
 	"sdvx:Single": "dan" | "vfClass";
 	"usc:Keyboard": never;
 	"usc:Controller": never;
-	"maimai:Single": never;
 	"jubeat:Single": "colour";
 	"museca:Single": never;
 	"bms:7K": "genocideDan" | "lnDan" | "scratchDan" | "stslDan";

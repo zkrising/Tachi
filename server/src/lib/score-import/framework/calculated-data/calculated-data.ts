@@ -1,8 +1,6 @@
 import {
 	CalculateKTLampRatingIIDXDP,
 	CalculateKTLampRatingIIDXSP,
-	CalculateKTRating,
-	CalculateMFCP,
 	CalculateSieglinde,
 } from "./stats";
 import {
@@ -58,7 +56,6 @@ const CalculatedDataFunctions: CalculatedDataFunctionsType = {
 	"popn:9B": CalculateDataPopn,
 	"museca:Single": CalculateDataMuseca,
 	"chunithm:Single": CalculateDataCHUNITHM,
-	"maimai:Single": () => ({ ktRating: null }),
 	"gitadora:Gita": CalculateDataGitadora,
 	"gitadora:Dora": CalculateDataGitadora,
 	"bms:7K": CalculateDataPMSorBMS,

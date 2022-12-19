@@ -145,12 +145,6 @@ const GAME_CONFIGS: GameConfigs = {
 		internalName: "jubeat",
 		validPlaytypes: ["Single"],
 	},
-	maimai: {
-		defaultPlaytype: "Single",
-		name: "maimai",
-		internalName: "maimai",
-		validPlaytypes: ["Single"],
-	},
 	popn: {
 		defaultPlaytype: "9B",
 		name: "pop'n music",
@@ -974,7 +968,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			curatorSkill: "A custom rating system that combines score and the chart level.",
 		},
 		profileRatingAlgDescriptions: {
-			curatorSkill: "The sum of your best 20 ktRatings.",
+			curatorSkill: "The sum of your best 20 Curator Skills.",
 		},
 		sessionRatingAlgDescriptions: {
 			curatorSkill: "The average of your best 10 curator skills this session.",
@@ -1270,98 +1264,6 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"sgl-EC": "Sieglinde Easy Clear ratings.",
 			"sgl-HC": "Sieglinde Hard Clear ratings.",
 		},
-	},
-	"maimai:Single": {
-		idString: "maimai:Single",
-
-		percentMax: Infinity, // doesn't apply to this game -- too difficult to make this field nullable though
-
-		defaultScoreRatingAlg: "ktRating",
-		defaultSessionRatingAlg: "ktRating",
-		defaultProfileRatingAlg: "ktRating",
-
-		scoreRatingAlgs: ["ktRating"],
-		sessionRatingAlgs: ["ktRating"],
-		profileRatingAlgs: ["ktRating"],
-
-		scoreRatingAlgDescriptions: {
-			ktRating: "TODO REMOVE ME",
-		},
-		profileRatingAlgDescriptions: {
-			ktRating: "TODO REMOVE ME",
-		},
-		sessionRatingAlgDescriptions: {
-			ktRating: "TODO REMOVE ME",
-		},
-
-		scoreRatingAlgFormatters: {},
-		profileRatingAlgFormatters: {},
-		sessionRatingAlgFormatters: {},
-
-		difficulties: ["Easy", "Basic", "Advanced", "Expert", "Master", "Re:Master"],
-		shortDifficulties: {
-			Easy: "e",
-			Basic: "B",
-			Advanced: "A",
-			Expert: "E",
-			Master: "M",
-			"Re:Master": "Re",
-		},
-		defaultDifficulty: "Master",
-		difficultyColours: {
-			Easy: COLOUR_SET.blue,
-			Basic: COLOUR_SET.green,
-			Advanced: COLOUR_SET.orange,
-			Expert: COLOUR_SET.red,
-			Master: COLOUR_SET.purple,
-			"Re:Master": COLOUR_SET.white,
-		},
-
-		grades: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "S", "S+", "SS", "SS+", "SSS", "SSS+"],
-		gradeColours: {
-			F: COLOUR_SET.gray,
-			E: COLOUR_SET.red,
-			D: COLOUR_SET.maroon,
-			C: COLOUR_SET.purple,
-			B: COLOUR_SET.paleGreen,
-			A: COLOUR_SET.green,
-			AA: COLOUR_SET.paleBlue,
-			AAA: COLOUR_SET.blue,
-			S: COLOUR_SET.gold,
-			"S+": COLOUR_SET.vibrantYellow,
-			SS: COLOUR_SET.paleOrange,
-			"SS+": COLOUR_SET.orange,
-			SSS: COLOUR_SET.teal,
-			"SSS+": COLOUR_SET.white,
-		},
-		clearGrade: "A",
-
-		// @hack Maimai's top grade depends on the chart's maximum percent
-		// we just set it at percentMax, but it's not technically correct
-		gradeBoundaries: [0, 10, 20, 40, 60, 80, 90, 94, 97, 98, 99, 99.5, 100, Infinity],
-
-		lamps: ["FAILED", "CLEAR", "FULL COMBO", "ALL PERFECT", "ALL PERFECT+"],
-		lampColours: {
-			FAILED: COLOUR_SET.red,
-			CLEAR: COLOUR_SET.green,
-			"FULL COMBO": COLOUR_SET.blue,
-			"ALL PERFECT": COLOUR_SET.gold,
-			"ALL PERFECT+": COLOUR_SET.teal,
-		},
-		clearLamp: "CLEAR",
-
-		classHumanisedFormat: {},
-		classProperties: {},
-
-		supportsESD: false,
-		judgements: ["perfect", "great", "good", "miss"],
-
-		scoreBucket: "grade",
-
-		orderedSupportedVersions: ["finale"],
-
-		tierlists: [],
-		tierlistDescriptions: {},
 	},
 	"gitadora:Gita": {
 		idString: "gitadora:Gita",

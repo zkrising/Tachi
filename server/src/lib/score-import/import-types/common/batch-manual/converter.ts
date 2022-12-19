@@ -347,7 +347,6 @@ export async function ResolveMatchTypeToKTData(
 				"jubeat",
 				"chunithm",
 				"gitadora",
-				"maimai",
 				"museca",
 			];
 

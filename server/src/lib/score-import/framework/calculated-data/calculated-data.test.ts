@@ -165,28 +165,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 		t.end();
 	});
 
-	t.test("maimai:Single", async (t) => {
-		const res = await CalculateDataForGamePT(
-			"maimai",
-			"Single",
-			Testing511SPA,
-			TestingIIDXSPDryScore,
-			null,
-			logger
-		);
-
-		prAssert(
-			t,
-			res,
-			{
-				ktRating: "?number",
-			},
-			"Response should contain nulled keys for maimai:Single"
-		);
-
-		t.end();
-	});
-
 	t.test("museca:Single", async (t) => {
 		const res = await CalculateDataForGamePT(
 			"museca",

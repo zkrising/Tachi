@@ -68,9 +68,6 @@ t.test("#GenericCalculatePercent", (t) => {
 	f("popn", 50_000, 50);
 	f("popn", 0, 0);
 
-	f("maimai", 10, 10);
-	f("maimai", 101.12, 101.12);
-
 	for (const game of ["usc", "sdvx"] as const) {
 		f(game, 10_000_000, 100);
 		f(game, 5_000_000, 50);
@@ -115,32 +112,6 @@ t.test("#ValidatePercent", (t) => {
 			ValidatePercent("iidx", playtype, 101, Testing511SPA);
 		});
 	}
-
-	const m = (maxPercent: number) => ({ data: { maxPercent } } as ChartDocument);
-
-	t.doesNotThrow(() => {
-		ValidatePercent("maimai", "Single", 90, m(100));
-	});
-	t.doesNotThrow(() => {
-		ValidatePercent("maimai", "Single", 100, m(100));
-	});
-	t.doesNotThrow(() => {
-		ValidatePercent("maimai", "Single", 0, m(100));
-	});
-	t.doesNotThrow(() => {
-		ValidatePercent("maimai", "Single", 110, m(120));
-	});
-	t.doesNotThrow(() => {
-		ValidatePercent("maimai", "Single", 120, m(120));
-	});
-	t.throws(
-		() => {
-			ValidatePercent("maimai", "Single", 130, m(120));
-		},
-		{
-			message: /expected a number less than 120/u,
-		}
-	);
 
 	t.end();
 });

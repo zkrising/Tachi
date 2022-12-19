@@ -302,7 +302,6 @@ export function HumaniseGoalProgress(
 				case "chunithm":
 				case "gitadora":
 				case "jubeat":
-				case "maimai":
 				case "museca":
 				case "popn":
 				case "sdvx":

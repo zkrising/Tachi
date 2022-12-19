@@ -59,9 +59,6 @@ export const PrettyVersions: Versions = {
 	},
 	"gitadora:Gita": prettyGitadoraVersions,
 	"gitadora:Dora": prettyGitadoraVersions,
-	"maimai:Single": {
-		finale: "FiNALE",
-	},
 	"museca:Single": {
 		1.5: "1 + 1/2",
 		"1.5-b": "1 + 1/2 Rev. B",

@@ -43,10 +43,6 @@ const prettyIIDXVersions: Versions["iidx:SP"] = {
 	inf: "INFINITAS",
 };
 
-const prettyDDRVersions: Versions["ddr:SP"] = {
-	a20: "A20",
-};
-
 const prettyGitadoraVersions: Versions["gitadora:Dora"] = {
 	nextage: "NEX+AGE",
 };
@@ -61,13 +57,8 @@ export const PrettyVersions: Versions = {
 	"chunithm:Single": {
 		paradiselost: "Paradise Lost",
 	},
-	"ddr:SP": prettyDDRVersions,
-	"ddr:DP": prettyDDRVersions,
 	"gitadora:Gita": prettyGitadoraVersions,
 	"gitadora:Dora": prettyGitadoraVersions,
-	"maimai:Single": {
-		finale: "FiNALE",
-	},
 	"museca:Single": {
 		1.5: "1 + 1/2",
 		"1.5-b": "1 + 1/2 Rev. B",

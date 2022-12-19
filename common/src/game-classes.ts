@@ -247,20 +247,6 @@ export const SDVXVFClasses: Array<ClassInfo> = [
 	noMouseoverCSS("IMPERIAL_IV", "Imperial IV"),
 ];
 
-export const DDRDans = [
-	mouseoverVariant("DAN_1", "初段", "1st Dan", "info"),
-	mouseoverVariant("DAN_2", "二段", "2nd Dan", "info"),
-	mouseoverVariant("DAN_3", "三段", "3rd Dan", "info"),
-	mouseoverVariant("DAN_4", "四段", "4th Dan", "info"),
-	mouseoverVariant("DAN_5", "五段", "5th Dan", "info"),
-	mouseoverVariant("DAN_6", "六段", "6th Dan", "info"),
-	mouseoverVariant("DAN_7", "七段", "7th Dan", "info"),
-	mouseoverVariant("DAN_8", "八段", "8th Dan", "info"),
-	mouseoverVariant("DAN_9", "九段", "9th Dan", "danger"),
-	mouseoverVariant("DAN_10", "十段", "10th Dan", "danger"),
-	mouseoverVariant("KAIDEN", "皆伝", "Kaiden", "warning"),
-];
-
 export const CHUNITHMColours = [
 	mouseoverVariant("BLUE", "青", "Blue", "info"),
 	mouseoverCSS("GREEN", "緑", "Green", "green"),
@@ -352,9 +338,6 @@ export interface GameClassSets {
 	"sdvx:Single": "dan" | "vfClass";
 	"usc:Keyboard": never;
 	"usc:Controller": never;
-	"ddr:SP": "dan";
-	"ddr:DP": "dan";
-	"maimai:Single": never;
 	"jubeat:Single": "colour";
 	"museca:Single": never;
 	"bms:7K": "genocideDan" | "lnDan" | "scratchDan" | "stslDan";

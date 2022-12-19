@@ -47,10 +47,6 @@ export function FormatDifficultyShort(chart: ChartDocument, game: Game): string 
 
 	const shortDiff = gptConfig.shortDifficulties[chart.difficulty] ?? chart.difficulty;
 
-	if (game === "ddr") {
-		return `${shortDiff}${chart.playtype}`;
-	}
-
 	if (gameConfig.validPlaytypes.length === 1 || game === "gitadora") {
 		return `${shortDiff} ${chart.level}`;
 	}

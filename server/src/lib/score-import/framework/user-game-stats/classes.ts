@@ -47,12 +47,10 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
 	chunithm: {
 		Single: CalculateChunithmColour,
 	},
-	ddr: null,
 	gitadora: {
 		Gita: CalculateGitadoraColour,
 		Dora: CalculateGitadoraColour,
 	},
-	maimai: null,
 	museca: null,
 	popn: {
 		"9B": CalculatePopnClass,

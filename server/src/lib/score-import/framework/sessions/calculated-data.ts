@@ -100,12 +100,6 @@ function GetGPTSessionCalcDataFn(game: Game, playtype: Playtype): SessionCalcDat
 			return (scd) => ({
 				sieglinde: AvgBest10Map(scd, "sieglinde"),
 			});
-		case "ddr:SP":
-		case "ddr:DP":
-			return (scd) => ({
-				MFCP: SumAll(scd, "MFCP"),
-				ktRating: AvgBest10Map(scd, "ktRating"),
-			});
 		case "jubeat:Single":
 			return (scd) => ({
 				jubility: AvgBest10Map(scd, "jubility"),
@@ -118,8 +112,6 @@ function GetGPTSessionCalcDataFn(game: Game, playtype: Playtype): SessionCalcDat
 			return (scd) => ({
 				naiveRating: AvgBest10Map(scd, "rating"),
 			});
-		case "maimai:Single":
-			return () => ({});
 		case "itg:Stamina":
 			return (scd) => ({
 				blockRating: AvgBestNMap(scd, "blockRating", 5),

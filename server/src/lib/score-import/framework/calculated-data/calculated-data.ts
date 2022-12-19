@@ -1,8 +1,6 @@
 import {
 	CalculateKTLampRatingIIDXDP,
 	CalculateKTLampRatingIIDXSP,
-	CalculateKTRating,
-	CalculateMFCP,
 	CalculateSieglinde,
 } from "./stats";
 import {
@@ -58,13 +56,10 @@ const CalculatedDataFunctions: CalculatedDataFunctionsType = {
 	"popn:9B": CalculateDataPopn,
 	"museca:Single": CalculateDataMuseca,
 	"chunithm:Single": CalculateDataCHUNITHM,
-	"maimai:Single": () => ({ ktRating: null }),
 	"gitadora:Gita": CalculateDataGitadora,
 	"gitadora:Dora": CalculateDataGitadora,
 	"bms:7K": CalculateDataPMSorBMS,
 	"bms:14K": CalculateDataPMSorBMS,
-	"ddr:SP": CalculateDataDDR,
-	"ddr:DP": CalculateDataDDR,
 	"usc:Controller": CalculateDataSDVXorUSC,
 	"usc:Keyboard": CalculateDataSDVXorUSC,
 	"wacca:Single": CalculateDataWACCA,
@@ -192,17 +187,6 @@ function CalculateDataGitadora(
 ): CalculatedData<"gitadora:Dora" | "gitadora:Gita"> {
 	return {
 		skill: GITADORASkill.calculate(dryScore.scoreData.percent, chart.levelNum),
-	};
-}
-
-function CalculateDataDDR(
-	dryScore: DryScore,
-	chart: ChartDocument,
-	logger: KtLogger
-): CalculatedData<"ddr:DP" | "ddr:SP"> {
-	return {
-		MFCP: CalculateMFCP(dryScore, chart, logger),
-		ktRating: CalculateKTRating(dryScore, "ddr", chart.playtype, chart, logger),
 	};
 }
 

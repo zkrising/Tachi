@@ -279,12 +279,6 @@ function GetSongDataForGame(game: Game): PrudenceSchema {
 			return {
 				displayVersion: "string",
 			};
-		case "maimai":
-			return {
-				titleJP: "string",
-				artistJP: "string",
-				displayVersion: "string",
-			};
 		case "museca":
 			return {
 				titleJP: "string",
@@ -327,7 +321,6 @@ function GetSongDataForGame(game: Game): PrudenceSchema {
 			};
 		case "usc":
 		case "gitadora":
-		case "ddr":
 			return {};
 	}
 }
@@ -368,12 +361,6 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 				kaidenAverage: "?number",
 				worldRecord: "?number",
 				bpiCoefficient: "?number",
-			};
-		case "maimai:Single":
-			return {
-				maxPercent: p.gt(0),
-				inGameID: p.isPositiveInteger,
-				inGameStrID: "string",
 			};
 		case "museca:Single":
 			return {
@@ -446,8 +433,6 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 			};
 		case "gitadora:Dora":
 		case "gitadora:Gita":
-		case "ddr:SP":
-		case "ddr:DP":
 			return {};
 	}
 }
@@ -1306,7 +1291,6 @@ const PR_BATCH_MANUAL_SCORE = (game: Game, playtype: Playtype): PrudenceSchema =
 		lamp: p.isIn(gptConfig.lamps),
 		matchType: p.isIn(
 			"songTitle",
-			"ddrSongHash",
 			"tachiSongID",
 			"bmsChartHash",
 			"itgChartHash",

@@ -42,14 +42,6 @@ export enum DDR_LAMPS {
 	MARVELOUS_FULL_COMBO = 6,
 }
 
-export enum MAIMAI_LAMPS {
-	FAILED = 0,
-	CLEAR = 1,
-	FULL_COMBO = 2,
-	ALL_PERFECT = 3,
-	ALL_PERFECT_PLUS = 4,
-}
-
 export enum GITADORA_LAMPS {
 	FAILED = 0,
 	CLEAR = 1,
@@ -143,23 +135,6 @@ export enum DDR_GRADES {
 	AA = 12,
 	AA_PLUS = 13,
 	AAA = 14,
-}
-
-export enum MAIMAI_GRADES {
-	F = 0,
-	E = 1,
-	D = 2,
-	C = 3,
-	B = 4,
-	A = 5,
-	AA = 6,
-	AAA = 7,
-	S = 8,
-	S_PLUS = 9,
-	SS = 10,
-	SS_PLUS = 11,
-	SSS = 12,
-	SSS_PLUS = 13,
 }
 
 export enum GITADORA_GRADES {

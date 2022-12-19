@@ -16,7 +16,7 @@ const SongChartKeys: Record<`${"song" | "chart"}s-${Game}`, DuplicateKeyDecl[]> 
 
 for (const game of allSupportedGames) {
 	// temporary hack
-	if (game === "ddr" || game === "gitadora") {
+	if (game === "gitadora") {
 		continue;
 	}
 

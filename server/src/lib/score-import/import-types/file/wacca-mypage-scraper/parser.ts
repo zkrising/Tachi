@@ -66,7 +66,10 @@ export function ParseMyPageScraperRecordsCsv(
 
 		if (err) {
 			// TODO: add some context so we don't get things like just "Expected string."
-			throw new ScoreImportFatalError(400, `Malformed CSV, invalid column(s) (${err.keychain}: ${err.userVal}): ${err.message}`);
+			throw new ScoreImportFatalError(
+				400,
+				`Malformed CSV, invalid column(s) (${err.keychain}: ${err.userVal}): ${err.message}`
+			);
 		}
 	}
 

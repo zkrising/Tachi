@@ -22,6 +22,7 @@ import type {
 import type { KaiContext } from "./api-kai/types";
 import type { BatchManualContext } from "./batch-manual/types";
 import type { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./eamusement-iidx-csv/types";
+import type { MyPageRecordsParsedPB } from "./types";
 import type { KtLogger } from "lib/logger/logger";
 import type { USCClientScore } from "server/router/ir/usc/_playtype/types";
 import type {
@@ -42,6 +43,8 @@ export interface ImportTypeDataMap {
 	"file/solid-state-squad": S3Score;
 	"file/mer-iidx": MerScore;
 	"file/pli-iidx-csv": IIDXEamusementCSVData;
+	"file/mypagescraper-records-csv": MyPageRecordsParsedPB;
+	"file/mypagescraper-player-csv": never;
 
 	"ir/direct-manual": BatchManualScore;
 	"ir/barbatos": BarbatosScore | BarbatosSDVX6Score;
@@ -81,6 +84,8 @@ export interface ImportTypeContextMap {
 	"file/solid-state-squad": EmptyObject;
 	"file/mer-iidx": EmptyObject;
 	"file/pli-iidx-csv": IIDXEamusementCSVContext;
+	"file/mypagescraper-records-csv": EmptyObject;
+	"file/mypagescraper-player-csv": EmptyObject;
 
 	"ir/direct-manual": BatchManualContext;
 	"ir/barbatos": BarbatosContext;

@@ -415,6 +415,17 @@ export const TestingAlbidaADV: ChartDocument<"sdvx:Single"> = {
 	tierlistInfo: {},
 };
 
+export const TestingSDVXAlbidaSong: SongDocument<"sdvx"> = {
+	title: "ALBIDA Powerless Mix",
+	artist: "無力P",
+	id: 1,
+	altTitles: [],
+	searchTerms: ["albida_muryoku", "ｱﾙﾋﾞﾀﾞﾊﾟﾜｰﾚｽﾐｯｸｽ"],
+	data: {
+		displayVersion: "booth",
+	},
+};
+
 export const BMSGazerChart: ChartDocument<"bms:7K"> = {
 	songID: 27339,
 	chartID: "88eb6cc5683e2740cbd07f588a5f3db1db8d467b",
@@ -470,17 +481,6 @@ export const CHUNITHMBBKKChart: ChartDocument<"chunithm:Single"> = {
 	versions: ["paradiselost"],
 };
 
-export const TestingSDVXAlbidaSong: SongDocument<"sdvx"> = {
-	title: "ALBIDA Powerless Mix",
-	artist: "無力P",
-	id: 1,
-	altTitles: [],
-	searchTerms: ["albida_muryoku", "ｱﾙﾋﾞﾀﾞﾊﾟﾜｰﾚｽﾐｯｸｽ"],
-	data: {
-		displayVersion: "booth",
-	},
-};
-
 export const TestingDoraChart: ChartDocument<"gitadora:Dora"> = {
 	songID: 0,
 	chartID: "29f0bfab357ba54e3fd0176fb3cbc578c9ec8df5",
@@ -495,6 +495,36 @@ export const TestingDoraChart: ChartDocument<"gitadora:Dora"> = {
 	rgcID: null,
 	tierlistInfo: {},
 	versions: ["konaste"],
+};
+
+export const TestingWaccaPupaExp: ChartDocument<"wacca:Single"> = {
+	songID: 77,
+	chartID: "2abcf2da86f3d968dbe07695ab7ebf6b79cb0841",
+	difficulty: "EXPERT",
+	playtype: "Single",
+	levelNum: 13.7,
+	level: "13+",
+	data: {
+		isHot: false,
+	},
+	isPrimary: true,
+	rgcID: null,
+	tierlistInfo: {},
+	versions: ["reverse"],
+};
+
+export const TestingWaccaPupaSong: SongDocument<"wacca"> = {
+	id: 77,
+	title: "PUPA",
+	artist: "モリモリあつし",
+	data: {
+		artistJP: "モリモリアツシ",
+		displayVersion: "lilyr",
+		genre: "バラエティ",
+		titleJP: "ピューパ",
+	},
+	searchTerms: [],
+	altTitles: [],
 };
 
 export const TestingSDVXSingleDryScore: DryScore<"sdvx:Single"> = {

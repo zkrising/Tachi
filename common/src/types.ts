@@ -1212,7 +1212,9 @@ export type FileUploadImportTypes =
 	| "file/eamusement-sdvx-csv"
 	| "file/mer-iidx"
 	| "file/pli-iidx-csv"
-	| "file/solid-state-squad";
+	| "file/solid-state-squad"
+	| "file/mypagescraper-records-csv"
+	| "file/mypagescraper-player-csv" ;
 
 export type APIImportTypes =
 	| "api/eag-iidx"

@@ -352,3 +352,11 @@ export function AddToSetInRecord<T extends string, V>(
 		obj[key] = new Set([toAdd]);
 	}
 }
+
+// This function can be used in places where we need a function that takes never
+// as a parameter (for instance, an iterator over Array<never>). Such a function
+// cannot ever be called. See lib/score-import/import-types/converters.ts for an
+// example.
+export function Never(_: never): never {
+	throw new Error("Unreachable");
+}

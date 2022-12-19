@@ -7,7 +7,8 @@
 			"es2015",
 			"es2017"
 		],
-		"outDir": "js/"
+		"outDir": "js/",
+		"rootDir": "src"
 	},
 	"include": [
 		"src/"

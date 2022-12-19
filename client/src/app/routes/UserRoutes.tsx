@@ -32,6 +32,7 @@ import { UGPTStatsReturn } from "types/api-returns";
 import UserImportsPage from "app/pages/dashboard/users/UserImportsPage";
 import { TargetsContextProvider } from "context/TargetsContext";
 import ToolsPage from "app/pages/dashboard/users/games/_game/_playtype/tools/ToolsPage";
+import InsightsPage from "app/pages/dashboard/users/games/_game/_playtype/insights/InsightsPage";
 import ScoresPage from "../pages/dashboard/users/games/_game/_playtype/ScoresPage";
 import UserPage from "../pages/dashboard/users/UserPage";
 
@@ -266,6 +267,9 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: UserDocument; game
 				</Route>
 				<Route path="/u/:userID/games/:game/:playtype/tools">
 					<ToolsPage reqUser={reqUser} game={game} playtype={playtype} />
+				</Route>
+				<Route path="/u/:userID/games/:game/:playtype/insights">
+					<InsightsPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
 				<RequireAuthAsUserParam>
 					<Route exact path="/u/:userID/games/:game/:playtype/settings">

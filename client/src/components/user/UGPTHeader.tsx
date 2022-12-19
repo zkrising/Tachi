@@ -10,11 +10,10 @@ import React, { useContext } from "react";
 import { Button } from "react-bootstrap";
 import { Game, Playtype, UserDocument } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
-import { UserContext } from "context/UserContext";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import FollowUserButton from "components/util/FollowUserButton";
-import { GetGPTTools } from "components/tools/Tools";
+import { GetGPTInsights, GetGPTTools } from "components/tools-insights/ToolsAndInsights";
 import ProfileBadges from "./ProfileBadges";
 import ProfilePicture from "./ProfilePicture";
 import RankingData from "./UGPTRankingData";
@@ -201,10 +200,21 @@ export function UGPTBottomNav({
 		<NavItem key="sessions" to={`${baseUrl}/sessions`}>
 			Sessions
 		</NavItem>,
+	];
+
+	if (GetGPTInsights(game, playtype).length > 0) {
+		navItems.push(
+			<NavItem key="insights" to={`${baseUrl}/insights`}>
+				Insights
+			</NavItem>
+		);
+	}
+
+	navItems.push(
 		<NavItem key="leaderboard" to={`${baseUrl}/leaderboard`}>
 			Leaderboard
-		</NavItem>,
-	];
+		</NavItem>
+	);
 
 	if (isRequestedUser) {
 		navItems.push(

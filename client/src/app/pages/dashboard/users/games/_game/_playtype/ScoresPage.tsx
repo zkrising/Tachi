@@ -144,9 +144,9 @@ function AlgSelector({
 function useFetchPBs(url: string, reqUser: UserDocument) {
 	const { data, error } = useQuery(url, async () => {
 		const res = await APIFetchV1<{
-			pbs: PBScoreDocument<"iidx:SP">[];
-			charts: ChartDocument<"iidx:SP">[];
-			songs: SongDocument<"iidx">[];
+			pbs: PBScoreDocument[];
+			charts: ChartDocument[];
+			songs: SongDocument[];
 		}>(url);
 
 		if (!res.success) {

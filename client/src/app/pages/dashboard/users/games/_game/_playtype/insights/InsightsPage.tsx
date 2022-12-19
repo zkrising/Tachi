@@ -1,6 +1,6 @@
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
-import { GetGPTTools } from "components/tools-insights/ToolsAndInsights";
+import { GetGPTInsights } from "components/tools-insights/ToolsAndInsights";
 import Divider from "components/util/Divider";
 import LinkButton from "components/util/LinkButton";
 import React from "react";
@@ -9,20 +9,20 @@ import { Link, Route, Switch } from "react-router-dom";
 import { FormatGame, GetGameConfig } from "tachi-common";
 import { UGPT } from "types/react";
 
-export default function ToolsPage({ reqUser, game, playtype }: UGPT) {
+export default function InsightsPage({ reqUser, game, playtype }: UGPT) {
 	const gameConfig = GetGameConfig(game);
 	useSetSubheader(
-		["Users", reqUser.username, "Games", gameConfig.name, playtype, "Tools"],
+		["Users", reqUser.username, "Games", gameConfig.name, playtype, "Insights"],
 		[reqUser, game, playtype],
-		`${reqUser.username}'s ${FormatGame(game, playtype)} Tools`
+		`${reqUser.username}'s ${FormatGame(game, playtype)} Insights`
 	);
 
-	const tools = GetGPTTools(game, playtype);
+	const insights = GetGPTInsights(game, playtype);
 
-	if (tools.length === 0) {
+	if (insights.length === 0) {
 		return (
 			<div className="text-center w-100">
-				{FormatGame(game, playtype)} has no tools. How'd you get here!
+				{FormatGame(game, playtype)} has no insights. How'd you get here!
 			</div>
 		);
 	}
@@ -30,21 +30,21 @@ export default function ToolsPage({ reqUser, game, playtype }: UGPT) {
 	return (
 		<Row>
 			<Switch>
-				{tools.map((tool) => (
+				{insights.map((tool) => (
 					<Route
 						key={tool.urlPath}
 						exact
-						path={`/u/:userID/games/:game/:playtype/tools/${tool.urlPath}`}
+						path={`/u/:userID/games/:game/:playtype/insights/${tool.urlPath}`}
 					>
 						<Col xs={12} className="mt-4">
 							<Card
 								header={tool.name}
 								footer={
 									<Link
-										to={`/u/${reqUser.username}/games/${game}/${playtype}/tools`}
+										to={`/u/${reqUser.username}/games/${game}/${playtype}/insights`}
 										className="text-muted text-hover-white"
 									>
-										&lt; Back to all tools...
+										&lt; Back to all insights...
 									</Link>
 								}
 							>
@@ -56,15 +56,15 @@ export default function ToolsPage({ reqUser, game, playtype }: UGPT) {
 					</Route>
 				))}
 
-				<Route exact path="/u/:userID/games/:game/:playtype/tools/">
-					{tools.map((tool) => (
+				<Route exact path="/u/:userID/games/:game/:playtype/insights/">
+					{insights.map((tool) => (
 						<Col key={tool.urlPath} xs={12} className="my-4" lg={6}>
 							<Card
 								header={tool.name}
 								footer={
 									<div className="d-flex w-100 justify-content-end">
-										<LinkButton to={`tools/${tool.urlPath}`}>
-											Use Tool
+										<LinkButton to={`insights/${tool.urlPath}`}>
+											View
 										</LinkButton>
 									</div>
 								}

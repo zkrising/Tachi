@@ -8,7 +8,7 @@ import { TachiConfig } from "lib/config";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { UGPT } from "types/react";
-import { GPTTool } from "types/ugpt";
+import { GPTToolOrInsight } from "types/ugpt";
 import Icon from "components/util/Icon";
 import Divider from "components/util/Divider";
 
@@ -76,7 +76,7 @@ function Component({ game, playtype, reqUser }: UGPT) {
 	);
 }
 
-export const IIDXPlaylistsTool: GPTTool = {
+export const IIDXPlaylistsTool: GPTToolOrInsight = {
 	name: `${TachiConfig.name} IIDX Playlists`,
 	urlPath: "custom-tables",
 	description: `${TachiConfig.name} has its own IIDX playlists that you can use in-game via playlister!`,

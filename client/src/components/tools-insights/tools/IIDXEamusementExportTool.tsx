@@ -8,7 +8,7 @@ import { TachiConfig } from "lib/config";
 import React from "react";
 import { Alert, Button, Col, Row } from "react-bootstrap";
 import { UGPT } from "types/react";
-import { GPTTool } from "types/ugpt";
+import { GPTToolOrInsight } from "types/ugpt";
 
 function Component({ game, playtype, reqUser }: UGPT) {
 	const { data, error } = useApiQuery<string>(
@@ -60,7 +60,7 @@ function Component({ game, playtype, reqUser }: UGPT) {
 	);
 }
 
-export const IIDXEamusementExportTool: GPTTool = {
+export const IIDXEamusementExportTool: GPTToolOrInsight = {
 	name: `e-amusement CSV Export`,
 	urlPath: "eam-csv-export",
 	description: `Export your ${TachiConfig.name} scores into e-amusement format.`,

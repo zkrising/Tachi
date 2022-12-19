@@ -390,12 +390,7 @@ async function GetBestJubilityOnSongs(
 
 const CURRENT_JUBEAT_HOT_VERSION: GPTSupportedVersions["jubeat:Single"] = "festo";
 
-async function CalculateJubility(
-	game: Game,
-	playtype: Playtype,
-	userID: integer,
-	_logger: KtLogger
-): Promise<number> {
+export async function GetPBsForJubility(userID: integer) {
 	const hotSongs = await db.songs.jubeat.find(
 		{ "data.displayVersion": CURRENT_JUBEAT_HOT_VERSION },
 		{ projection: { id: 1 } }
@@ -414,6 +409,17 @@ async function CalculateJubility(
 		GetBestJubilityOnSongs(hotSongIDs, userID, "jubeat", "Single", 30),
 		GetBestJubilityOnSongs(coldSongIDs, userID, "jubeat", "Single", 30),
 	]);
+
+	return { bestHotScores, bestScores };
+}
+
+async function CalculateJubility(
+	game: Game,
+	playtype: Playtype,
+	userID: integer,
+	_logger: KtLogger
+): Promise<number> {
+	const { bestHotScores, bestScores } = await GetPBsForJubility(userID);
 
 	let jubility = 0;
 

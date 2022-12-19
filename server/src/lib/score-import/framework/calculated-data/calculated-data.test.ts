@@ -247,7 +247,7 @@ t.test("#CalculateDataForGamePT", (t) => {
 			t,
 			res,
 			{
-				ktRating: "?number",
+				curatorSkill: "?number",
 			},
 			"Response should contain nulled keys for museca:Single"
 		);

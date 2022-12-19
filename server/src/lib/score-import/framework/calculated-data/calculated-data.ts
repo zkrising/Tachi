@@ -14,6 +14,7 @@ import {
 	Volforce,
 	WACCARate,
 	ITGHighestUnbroken,
+	CuratorSkill,
 } from "rg-stats";
 import { GetGamePTConfig } from "tachi-common";
 import { IsNullish } from "utils/misc";
@@ -155,10 +156,10 @@ function CalculateDataSDVXorUSC(
 function CalculateDataMuseca(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	logger: KtLogger
+	_logger: KtLogger
 ): CalculatedData<"museca:Single"> {
 	return {
-		ktRating: CalculateKTRating(dryScore, "museca", "Single", chart, logger),
+		curatorSkill: CuratorSkill.calculate(dryScore.scoreData.score, chart.levelNum),
 	};
 }
 

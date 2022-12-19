@@ -454,7 +454,7 @@ export interface SessionCalculatedDataLookup {
 	"ddr:DP": "ktRating" | "MFCP";
 	"maimai:Single": "ktRating";
 	"jubeat:Single": "jubility";
-	"museca:Single": "ktRating";
+	"museca:Single": "curatorSkill";
 	"bms:7K": "sieglinde";
 	"bms:14K": "sieglinde";
 	"chunithm:Single": "naiveRating";
@@ -677,7 +677,7 @@ export interface UGSRatingsLookup {
 	"ddr:DP": "ktRating" | "MFCP";
 	"maimai:Single": "ktRating";
 	"jubeat:Single": "jubility" | "naiveJubility";
-	"museca:Single": "ktRating";
+	"museca:Single": "curatorSkill";
 	"bms:7K": "sieglinde";
 	"bms:14K": "sieglinde";
 	"chunithm:Single": "naiveRating";
@@ -1183,7 +1183,7 @@ export interface ScoreCalculatedDataLookup {
 	"ddr:DP": "ktRating" | "MFCP";
 	"maimai:Single": "ktRating";
 	"jubeat:Single": "jubility";
-	"museca:Single": "ktRating";
+	"museca:Single": "curatorSkill";
 	"bms:7K": "sieglinde";
 	"bms:14K": "sieglinde";
 	"chunithm:Single": "rating";

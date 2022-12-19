@@ -14,6 +14,8 @@ function ParseEnvVars() {
 			PORT: (self) =>
 				p.isPositiveInteger(Number(self)) === true ||
 				"Should be a string representing a whole integer port.",
+			CLIENT_SECRET: "string",
+			CLIENT_ID: "string",
 		},
 		{},
 		{ allowExcessKeys: true }
@@ -28,6 +30,8 @@ function ParseEnvVars() {
 		webhookSecret: process.env.WEBHOOK_SECRET!,
 		port: process.env.PORT!,
 		privateKey: Buffer.from(process.env.BASE64_PRIVATE_KEY!, "base64").toString("utf-8"),
+		clientID: process.env.CLIENT_ID,
+		clientSecret: process.env.CLIENT_SECRET,
 	};
 }
 

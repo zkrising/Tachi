@@ -11,6 +11,10 @@ const app = new App({
 	webhooks: {
 		secret: ProcessEnv.webhookSecret,
 	},
+	oauth: {
+		clientId: ProcessEnv.clientID,
+		clientSecret: ProcessEnv.clientSecret,
+	},
 });
 
 /**

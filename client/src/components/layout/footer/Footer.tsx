@@ -51,7 +51,6 @@ export function Footer() {
 						<ExternalLink
 							href="https://docs.bokutachi.xyz/wiki/rules"
 							className="nav-link px-3"
-							onClick={() => window.scrollTo(0, 0)}
 						>
 							Rules
 						</ExternalLink>

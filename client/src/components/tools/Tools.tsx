@@ -1,7 +1,7 @@
 import { Game, GetIDString, IDStrings, Playtype } from "tachi-common";
-import { UGPT } from "types/react";
 import { GPTTool } from "types/ugpt";
 import { BMSCustomTablesTool } from "./BMSCustomTablesTool";
+import { IIDXEamusementExportTool } from "./IIDXEamusementExportTool";
 
 // A tool is something that users can use, like exporting to a specific format
 // or having things integrate with the game in a neat way.
@@ -15,8 +15,8 @@ const GPT_TOOLS: Record<IDStrings, Array<GPTTool>> = {
 	"chunithm:Single": [],
 	"gitadora:Dora": [],
 	"gitadora:Gita": [],
-	"iidx:DP": [],
-	"iidx:SP": [],
+	"iidx:DP": [IIDXEamusementExportTool],
+	"iidx:SP": [IIDXEamusementExportTool],
 	"itg:Stamina": [],
 	"jubeat:Single": [],
 	"museca:Single": [],

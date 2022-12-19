@@ -1,6 +1,6 @@
 const TableValueGetters: Record<
 	"Insane" | "Insane2" | "Normal" | "Normal2" | "Overjoy" | "Satellite" | "Stella",
-	(x: string) => number | null
+	(x: number | string) => number | null
 > = {
 	Insane: (c) => {
 		const n = Number(c);

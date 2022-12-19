@@ -4,13 +4,13 @@ const path = require("path");
 const { MutateCollection } = require("../../util");
 
 const program = new Command();
-program.option("-i, --input <sieglinde output/ folder>");
+program.option("-i, --input <sieglinde output/folder>");
 
 program.parse(process.argv);
 const options = program.opts();
 
 if (!options.input) {
-	throw new Error(`Missing --input.`);
+	options.input = "../../../../sieglinde/src/output/";
 }
 
 const APPLICATION_ORDER = [
@@ -81,10 +81,12 @@ for (const tableName of APPLICATION_ORDER) {
 					maybeSgl.hcStr = maybeSgl.ecStr;
 				}
 
-				// overjoy hc data is screwed, disable it for now.
+				// all overjoy data is screwed, disable it for now.
 				if (maybeSgl.baseLevel.startsWith("★★")) {
 					maybeSgl.hc = 0;
 					maybeSgl.hcStr += "?";
+					maybeSgl.ec = 0;
+					maybeSgl.ecStr += "?";
 				}
 
 				// sl12 data is screwed, neuter it.

@@ -28,11 +28,7 @@ function mkSeedDiffViewMsg(repo: string, sha: string, compareRepo: string, compa
 		compareSHA,
 	});
 
-	return `Beep Boop! This change affects \`database-seeds/collections\`. We have a dedicated diff-viewer for this part of the codebase, which makes it easier to view changes.
-
-*****
-
-[View Seeds Diff](https://bokutachi.xyz/utils/seeds?${params.toString()}
+	return `[View Seeds Diff](https://bokutachi.xyz/dashboard/utils/seeds?${params.toString()}
 `;
 }
 
@@ -47,20 +43,27 @@ app.webhooks.on(
 			`https://api.github.com/repos/TNG-dev/Tachi/pulls/${body.number}/files`
 		).then((r) => r.json())) as Array<{ filename: string }>;
 
+		console.log(`Files Changed: ${filesChanged.map((e) => e.filename).join(", ")}`);
+
 		// if any file modified in this pr is a collection
 		if (filesChanged.some((k) => k.filename.startsWith("database-seeds/collections"))) {
 			// post a link to the diff viewer in the PR comments.
-			await octokit.request("POST /repos/{owner}/{repo}/issues/{issue_number}/comments", {
-				owner: body.repository.owner.login,
-				repo: body.repository.name,
-				issue_number: body.pull_request.number,
-				body: mkSeedDiffViewMsg(
-					body.pull_request.head.repo.url,
-					body.pull_request.head.sha,
-					body.pull_request.base.repo.url,
-					body.pull_request.base.sha
-				),
-			});
+			const res = await octokit.request(
+				"POST /repos/{owner}/{repo}/issues/{issue_number}/comments",
+				{
+					owner: body.repository.owner.login,
+					repo: body.repository.name,
+					issue_number: body.pull_request.number,
+					body: mkSeedDiffViewMsg(
+						body.pull_request.head.repo.url,
+						body.pull_request.head.sha,
+						body.pull_request.base.repo.url,
+						body.pull_request.base.sha
+					),
+				}
+			);
+
+			console.dir(res);
 		}
 	}
 );

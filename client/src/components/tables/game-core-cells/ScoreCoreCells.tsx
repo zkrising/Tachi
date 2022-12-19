@@ -49,8 +49,6 @@ export default function ScoreCoreCells({
 				chart={chart as ChartDocument<"sdvx:Single" | "usc:Controller" | "usc:Keyboard">}
 			/>
 		);
-	} else if (game === "maimai") {
-		return <GenericCoreCells showScore={false} sc={sc} rating={rating} />;
 	} else if (game === "museca") {
 		return <MusecaCoreCells sc={sc} rating={rating} />;
 	} else if (game === "wacca") {
@@ -61,8 +59,6 @@ export default function ScoreCoreCells({
 		return <JubeatCoreCells sc={sc} rating={rating} />;
 	} else if (game === "chunithm") {
 		return <CHUNITHMCoreCells sc={sc} rating={rating} />;
-	} else if (game === "ddr") {
-		return <GenericCoreCells sc={sc} rating={rating} />;
 	} else if (game === "gitadora") {
 		return <GenericCoreCells sc={sc} rating={rating} />;
 	} else if (game === "pms") {

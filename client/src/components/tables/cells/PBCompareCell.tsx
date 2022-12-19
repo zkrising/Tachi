@@ -39,9 +39,7 @@ export default function PBCompareCell({
 
 	switch (game) {
 		case "chunithm":
-		case "ddr":
 		case "gitadora":
-		case "maimai":
 		case "usc":
 		case "sdvx":
 		case "popn":

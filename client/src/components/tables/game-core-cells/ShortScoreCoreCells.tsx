@@ -41,20 +41,12 @@ export default function ShortScoreCoreCells({
 		game === "museca" ||
 		game === "wacca" ||
 		game === "chunithm" ||
-		game === "ddr" ||
 		game === "gitadora"
 	) {
 		return (
 			<>
 				<MillionsScoreCell score={sc} />
 				<SDVXLampCell score={sc} />
-			</>
-		);
-	} else if (game === "maimai") {
-		return (
-			<>
-				<ScoreCell score={sc} />
-				<LampCell score={sc} />
 			</>
 		);
 	} else if (game === "jubeat") {

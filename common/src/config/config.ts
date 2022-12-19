@@ -28,6 +28,7 @@ import type {
 	IDStrings,
 	JudgementLookup,
 	Lamps,
+	Playtype,
 	Playtypes,
 	ScoreCalculatedDataLookup,
 	SessionCalculatedDataLookup,
@@ -2084,4 +2085,8 @@ export function GetGamePTConfig<I extends IDStrings = IDStrings>(
 	const idString = `${game}:${playtype}` as IDStrings;
 
 	return GAME_PT_CONFIGS[idString] as unknown as GamePTConfig<I>;
+}
+
+export function GetIDString(game: Game, playtype: Playtype): IDStrings {
+	return `${game}:${playtype}` as IDStrings;
 }

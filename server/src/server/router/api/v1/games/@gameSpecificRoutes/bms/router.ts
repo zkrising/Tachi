@@ -7,6 +7,7 @@ import {
 } from "lib/game-specific/custom-bms-tables";
 import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import type { RequestHandler } from "express";
+import type { TachiBMSTable } from "lib/game-specific/custom-bms-tables";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -41,6 +42,35 @@ const FindCustomBMSTable: RequestHandler = (req, res, next) => {
 
 	next();
 };
+
+/**
+ * List all custom BMS tables this instance of Tachi is emitting.
+ *
+ * @name GET /api/v1/games/bms/:playtype/custom-tables
+ */
+router.get("/:playtype/custom-tables", (req, res) => {
+	const tables: Array<
+		Pick<TachiBMSTable, "description" | "forSpecificUser" | "symbol" | "tableName" | "urlName">
+	> = [];
+
+	for (const table of CUSTOM_TACHI_BMS_TABLES.filter(
+		(e) => e.playtype === req.params.playtype || e.playtype === null
+	)) {
+		tables.push({
+			forSpecificUser: table.forSpecificUser,
+			urlName: table.urlName,
+			tableName: table.tableName,
+			symbol: table.symbol,
+			description: table.description,
+		});
+	}
+
+	return res.status(200).json({
+		success: true,
+		description: `Found ${tables.length} custom table(s).`,
+		body: tables,
+	});
+});
 
 /**
  * Return some HTML for this custom table.

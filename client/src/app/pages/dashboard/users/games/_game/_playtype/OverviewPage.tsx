@@ -126,6 +126,8 @@ function UserHistory({
 			<div className="row d-flex justify-content-center mb-4">
 				<div className="col-12 col-md-3 align-self-center text-center">
 					<Select noMarginBottom setValue={setDuration} value={duration}>
+						<option value="week">Past Week</option>
+						<option value="month">Past Month</option>
 						<option value="3mo">Past 3 Months</option>
 						<option value="year">Past Year</option>
 					</Select>

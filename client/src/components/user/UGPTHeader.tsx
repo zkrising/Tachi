@@ -14,6 +14,7 @@ import { UserContext } from "context/UserContext";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import FollowUserButton from "components/util/FollowUserButton";
+import { GetGPTTools } from "components/tools/Tools";
 import ProfileBadges from "./ProfileBadges";
 import ProfilePicture from "./ProfilePicture";
 import RankingData from "./UGPTRankingData";
@@ -179,9 +180,13 @@ export function UGPTHeaderBody({
 export function UGPTBottomNav({
 	baseUrl,
 	isRequestedUser,
+	game,
+	playtype,
 }: {
 	baseUrl: string;
 	isRequestedUser: boolean;
+	game: Game;
+	playtype: Playtype;
 }) {
 	const navItems = [
 		<NavItem key="overview" to={`${baseUrl}/`}>
@@ -208,7 +213,20 @@ export function UGPTBottomNav({
 			</NavItem>,
 			<NavItem key="targets" to={`${baseUrl}/targets`}>
 				Goals & Quests
-			</NavItem>,
+			</NavItem>
+		);
+
+		const tools = GetGPTTools(game, playtype);
+
+		if (tools.length > 0) {
+			navItems.push(
+				<NavItem key="targets" to={`${baseUrl}/tools`}>
+					Tools
+				</NavItem>
+			);
+		}
+
+		navItems.push(
 			<NavItem key="settings" to={`${baseUrl}/settings`}>
 				Settings
 			</NavItem>

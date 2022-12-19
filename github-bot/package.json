@@ -9,9 +9,7 @@
 		"start": "tsc -b && node js/main.js"
 	},
 	"dependencies": {
-		"@octokit/webhooks": "10.1.5",
-		"@types/body-parser": "^1.19.2",
-		"body-parser": "^1.20.0",
+		"@octokit/app": "^13.1.0",
 		"dotenv": "16.0.0",
 		"express": "4.17.2",
 		"node-fetch": "2.6.7",

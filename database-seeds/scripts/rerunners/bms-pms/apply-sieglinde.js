@@ -81,10 +81,12 @@ for (const tableName of APPLICATION_ORDER) {
 					maybeSgl.hcStr = maybeSgl.ecStr;
 				}
 
-				// overjoy hc data is screwed, disable it for now.
+				// all overjoy data is screwed, disable it for now.
 				if (maybeSgl.baseLevel.startsWith("★★")) {
 					maybeSgl.hc = 0;
 					maybeSgl.hcStr += "?";
+					maybeSgl.ec = 0;
+					maybeSgl.ecStr += "?";
 				}
 
 				// sl12 data is screwed, neuter it.

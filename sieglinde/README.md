@@ -15,5 +15,5 @@ our goals.
 
 ```
 pnpm install
-pnpm run
+pnpm calc-v1
 ```

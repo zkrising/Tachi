@@ -135,7 +135,7 @@ export default async function SieglindeV1Calc(tableInfo: TableRes): Promise<Arra
 
 		return {
 			md5: chart.md5,
-			title: chart.title,
+			title: "title" in chart ? String(chart.title) : "",
 			baseLevel: GetFString(tableInfo.table, chart),
 
 			ec: ecVal,

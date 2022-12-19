@@ -12,6 +12,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"@types/node-fetch": "2",
+		"bms-table-loader": "^1.0.1",
 		"commander": "^8.3.0",
 		"fast-xml-parser": "^4.0.0-beta.2",
 		"mei-logger": "^1.0.1",

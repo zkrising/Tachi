@@ -8,7 +8,8 @@ import TableValueGetters from "./lookups";
 import { XMLParser } from "fast-xml-parser";
 import fetch from "node-fetch";
 import { writeFile, readFile } from "fs/promises";
-import type { BMSTableChart, BMSTablesDataset } from "./types";
+import type { BMSTablesDataset } from "./types";
+import type { BMSTableEntry } from "bms-table-loader";
 
 const parser = new XMLParser();
 
@@ -26,11 +27,12 @@ export async function FetchScoresForMD5(md5: string) {
 			`http://dream-pro.info/~lavalse/LR2IR/2/getrankingxml.cgi?songmd5=${md5}&id=1`
 		).then((r) => r.text());
 
-		const data = parser.parse(scores).ranking.score;
+		let data = parser.parse(scores).ranking.score;
 
+		// in the event this thing has only one score
+		// it won't be an array due to xml parsing. patch this by hand.
 		if (!Array.isArray(data)) {
-			logger.error(`Got rate limited for ${md5}!`, { data });
-			throw new Error(`Got rate limited on ${md5}.`);
+			data = [data];
 		}
 
 		// xml sucks
@@ -86,13 +88,13 @@ export function GetSigmoidalValue(x: number) {
 	return 0.5 * (1 + Math.sin(x * Math.PI - Math.PI / 2));
 }
 
-export function GetBaseline(table: BMSTablesDataset, level: string): number | null {
+export function GetBaseline(table: BMSTablesDataset, level: number | string): number | null {
 	// @ts-expect-error don't care it's exhaustive
 	return TableValueGetters[table.name](level);
 }
 
-export function GetFString(table: BMSTablesDataset, chart: BMSTableChart) {
-	return table.prefix + chart.level;
+export function GetFString(table: BMSTablesDataset, chart: BMSTableEntry) {
+	return table.prefix + chart.level.toString();
 }
 
 export function Sleep(ms: number) {

@@ -1,11 +1,10 @@
 import { Router } from "express";
 import db from "external/mongo/db";
+import { CUSTOM_TACHI_IIDX_PLAYLISTS } from "lib/game-specific/iidx-playlists";
 import { EAM_VERSION_NAMES } from "lib/score-import/import-types/common/eamusement-iidx-csv/parser";
-import {
-	AggressiveRateLimitMiddleware,
-	HyperAggressiveRateLimitMiddleware,
-} from "server/middleware/rate-limiter";
+import { AggressiveRateLimitMiddleware } from "server/middleware/rate-limiter";
 import { GetUser } from "utils/req-tachi-data";
+import type { TachiIIDXPlaylist } from "lib/game-specific/iidx-playlists";
 import type {
 	ChartDocument,
 	Grades,
@@ -183,6 +182,39 @@ router.get("/:playtype/eamusement-csv", AggressiveRateLimitMiddleware, async (re
 		description: `Created e-amusement CSV.`,
 		body: rows.join("\n"),
 	});
+});
+
+/**
+ * Retrieve this playlist.
+ *
+ * @name GET /api/v1/users/:userID/games/iidx/:playtype/playlists/:playlistID
+ */
+router.get("/:playtype/playlists/:playlistID", async (req, res) => {
+	const user = GetUser(req);
+
+	const playlist: TachiIIDXPlaylist | undefined = CUSTOM_TACHI_IIDX_PLAYLISTS.find(
+		(e) =>
+			(e.playtype === null || e.playtype === req.params.playtype) &&
+			e.urlName === req.params.playlistID
+	);
+
+	if (!playlist) {
+		return res.status(404).json({
+			success: false,
+			description: `No such playlist '${req.params.playlistID}' exists for '${req.params.playtype}'.`,
+		});
+	}
+
+	if (playlist.forSpecificUser !== true) {
+		return res.status(404).json({
+			success: false,
+			description: `This playlist is not for a specific user. Use the /games/:game endpoint instead.`,
+		});
+	}
+
+	const body = await playlist.getPlaylists(user.id, req.params.playtype as "DP" | "SP");
+
+	return res.status(200).json(body);
 });
 
 export default router;

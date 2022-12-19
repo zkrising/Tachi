@@ -987,9 +987,15 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			curatorSkill: "The average of your best 10 curator skills this session.",
 		},
 
-		scoreRatingAlgFormatters: {},
-		profileRatingAlgFormatters: {},
-		sessionRatingAlgFormatters: {},
+		scoreRatingAlgFormatters: {
+			curatorSkill: (v) => v.toFixed(0),
+		},
+		profileRatingAlgFormatters: {
+			curatorSkill: (v) => v.toFixed(0),
+		},
+		sessionRatingAlgFormatters: {
+			curatorSkill: (v) => v.toFixed(0),
+		},
 
 		difficulties: ["Green", "Yellow", "Red"],
 		shortDifficulties: { Green: "G", Yellow: "Y", Red: "R" },

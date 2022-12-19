@@ -15,6 +15,7 @@ import {
 	Playtype,
 	QuestDocument,
 	QuestSubscriptionDocument,
+	SessionCalculatedDataLookup,
 } from "tachi-common";
 import fjsh from "fast-json-stable-hash";
 
@@ -68,6 +69,25 @@ export function FormatGPTRating(
 
 	if (gptConfig.scoreRatingAlgFormatters[key]) {
 		return gptConfig.scoreRatingAlgFormatters[key]!(value);
+	}
+
+	return value.toFixed(2);
+}
+
+export function FormatGPTSessionRating(
+	game: Game,
+	playtype: Playtype,
+	key: SessionCalculatedDataLookup[IDStrings],
+	value: number | null | undefined
+) {
+	if (value === null || value === undefined) {
+		return "No Data.";
+	}
+
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	if (gptConfig.sessionRatingAlgFormatters[key]) {
+		return gptConfig.sessionRatingAlgFormatters[key]!(value);
 	}
 
 	return value.toFixed(2);

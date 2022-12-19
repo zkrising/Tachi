@@ -1,5 +1,5 @@
 import { GetPBs } from "util/data";
-import { UppercaseFirst } from "util/misc";
+import { FormatGPTSessionRating, UppercaseFirst } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { FormatDuration, FormatTime, MillisToSince } from "util/time";
 import { useSessionRatingAlg } from "components/util/useScoreRatingAlg";
@@ -13,8 +13,8 @@ import {
 	UserDocument,
 	SessionCalculatedDataLookup,
 	SessionDocument,
+	Playtype,
 } from "tachi-common";
-import { Playtype } from "tachi-common";
 import IndexCell from "../cells/IndexCell";
 import SelectableRating from "../components/SelectableRating";
 import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
@@ -90,7 +90,7 @@ export default function GenericSessionTable({
 					reqUser={reqUser}
 					data={s}
 					key={s.sessionID}
-					rating={alg}
+					ratingAlg={alg}
 					indexCol={indexCol}
 				/>
 			)}
@@ -100,14 +100,14 @@ export default function GenericSessionTable({
 
 function Row({
 	data,
-	rating,
+	ratingAlg,
 	reqUser,
 	indexCol = false,
 }: // reqUser,
 {
 	data: SessionDataset[0];
 	// reqUser: PublicUserDocument;
-	rating: SessionCalculatedDataLookup[IDStrings];
+	ratingAlg: SessionCalculatedDataLookup[IDStrings];
 	reqUser: UserDocument;
 	indexCol?: boolean;
 }) {
@@ -130,7 +130,12 @@ function Row({
 				<small className="text-muted">PBs: {GetPBs(data.scoreInfo).length}</small>
 			</td>
 			<td>
-				{data.calculatedData[rating] ? data.calculatedData[rating]?.toFixed(2) : "No Data."}
+				{FormatGPTSessionRating(
+					data.game,
+					data.playtype,
+					ratingAlg,
+					data.calculatedData[ratingAlg]
+				)}
 			</td>
 			<td>{FormatDuration(data.timeEnded - data.timeStarted)}</td>
 			<td>

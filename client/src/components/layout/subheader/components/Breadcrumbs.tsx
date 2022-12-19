@@ -5,8 +5,7 @@ export function Breadcrumbs({ items }: { items: string[] }) {
 	const url = location.pathname;
 
 	// we also need to remove the first param, as it is an empty string
-	// and the second param, as dashboard is implicitly handled.
-	const parts = url.split("/").slice(2);
+	const parts = url.split("/").slice(1);
 
 	return (
 		<div className="align-items-center font-weight-bold my-2 d-flex">

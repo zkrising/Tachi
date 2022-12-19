@@ -85,7 +85,7 @@ export function HeaderMenu({
 					<MenuLink
 						key={`${e.game}:${e.playtype}`}
 						name={FormatGame(e.game, e.playtype)}
-						to={`/dashboard/users/${user.username}/games/${e.game}/${e.playtype}`}
+						to={`/u/${user.username}/games/${e.game}/${e.playtype}`}
 					/>
 				);
 			}

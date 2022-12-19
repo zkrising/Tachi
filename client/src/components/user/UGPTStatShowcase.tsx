@@ -56,7 +56,7 @@ export default function UGPTStatShowcase({ reqUser, game, playtype }: UGPT) {
 							userIsReqUser ? (
 								<CardNavButton
 									type="edit"
-									to={`/dashboard/users/${
+									to={`/u/${
 										user!.username
 									}/games/${game}/${playtype}/settings?showcase=yea`}
 									hoverText="Modify your statistics showcase."
@@ -208,7 +208,7 @@ export default function UGPTStatShowcase({ reqUser, game, playtype }: UGPT) {
 										<div className="col-12 mt-2 text-center">
 											Why not{" "}
 											<Link
-												to={`/dashboard/users/${
+												to={`/u/${
 													user!.username
 												}/games/${game}/${playtype}/settings`}
 											>
@@ -426,7 +426,7 @@ export function StatDisplay({
 				<>
 					<Link
 						className="gentle-link"
-						to={`/dashboard/users/${reqUser.id}/games/${game}/${playtype}/folders/${folder.folderID}`}
+						to={`/u/${reqUser.id}/games/${game}/${playtype}/folders/${folder.folderID}`}
 					>
 						<h4>{headerStr}</h4>
 					</Link>

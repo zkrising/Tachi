@@ -54,7 +54,7 @@ export default function ChartInfoFormat({
 							{user && ugs ? (
 								<Link
 									className="gentle-link"
-									to={`/dashboard/users/${user.username}/games/${game}/${playtype}/folders/${e.folderID}`}
+									to={`/u/${user.username}/games/${game}/${playtype}/folders/${e.folderID}`}
 								>
 									{e.title}
 								</Link>

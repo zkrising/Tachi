@@ -58,20 +58,20 @@ export default function GameRoutes() {
 
 	return (
 		<Switch>
-			<Route exact path="/dashboard/games/:game">
+			<Route exact path="/games/:game">
 				{gameConfig.validPlaytypes.length === 1 ? (
-					<Redirect to={`/dashboard/games/${game}/${gameConfig.validPlaytypes[0]}`} />
+					<Redirect to={`/games/${game}/${gameConfig.validPlaytypes[0]}`} />
 				) : (
 					<PlaytypeSelect
 						subheaderCrumbs={["Games", gameConfig.name]}
 						subheaderTitle={`${gameConfig.name} Playtype Select`}
-						base={`/dashboard/games/${game}`}
+						base={`/games/${game}`}
 						game={game}
 					/>
 				)}
 			</Route>
 
-			<Route path="/dashboard/games/:game/:playtype">
+			<Route path="/games/:game/:playtype">
 				<UGPTContextProvider>
 					<TargetsContextProvider>
 						<GamePlaytypeRoutes game={game} />
@@ -101,38 +101,38 @@ function GamePlaytypeRoutes({ game }: { game: Game }) {
 	return (
 		<>
 			<div className="card">
-				<GPTBottomNav baseUrl={`/dashboard/games/${game}/${playtype}`} />
+				<GPTBottomNav baseUrl={`/games/${game}/${playtype}`} />
 			</div>
 			<Divider />
 			<Switch>
-				<Route exact path="/dashboard/games/:game/:playtype">
+				<Route exact path="/games/:game/:playtype">
 					<GPTMainPage game={game} playtype={playtype} />
 				</Route>
 
-				<Route exact path="/dashboard/games/:game/:playtype/charts">
-					<Redirect to={`/dashboard/games/${game}/${playtype}/songs`} />
+				<Route exact path="/games/:game/:playtype/charts">
+					<Redirect to={`/games/${game}/${playtype}/songs`} />
 				</Route>
 
-				<Route exact path="/dashboard/games/:game/:playtype/charts/:chartID">
+				<Route exact path="/games/:game/:playtype/charts/:chartID">
 					<ChartRedirector game={game} playtype={playtype} />
 				</Route>
 
-				<Route exact path="/dashboard/games/:game/:playtype/songs">
+				<Route exact path="/games/:game/:playtype/songs">
 					<GPTSongsPage game={game} playtype={playtype} />
 				</Route>
 
-				<Route path="/dashboard/games/:game/:playtype/songs/:songID">
+				<Route path="/games/:game/:playtype/songs/:songID">
 					<SongChartRoutes game={game} playtype={playtype} />
 				</Route>
 
-				<Route path="/dashboard/games/:game/:playtype/(quests|questlines|goals)">
+				<Route path="/games/:game/:playtype/(quests|questlines|goals)">
 					<GPTQuestRoutes game={game} playtype={playtype} />
 				</Route>
 
-				<Route exact path="/dashboard/games/:game/:playtype/leaderboards">
+				<Route exact path="/games/:game/:playtype/leaderboards">
 					<GPTLeaderboardsPage game={game} playtype={playtype} />
 				</Route>
-				<Route exact path="/dashboard/games/:game/:playtype/dev-info">
+				<Route exact path="/games/:game/:playtype/dev-info">
 					<GPTDevInfo game={game} playtype={playtype} />
 				</Route>
 
@@ -148,24 +148,24 @@ function GPTQuestRoutes({ game, playtype }: GamePT) {
 	return (
 		<>
 			<Switch>
-				<Route exact path="/dashboard/games/:game/:playtype/quests">
+				<Route exact path="/games/:game/:playtype/quests">
 					<QuestsPage game={game} playtype={playtype} />
 				</Route>
 
-				<Route exact path="/dashboard/games/:game/:playtype/questlines">
-					<Redirect to={`/dashboard/games/${game}/${playtype}/quests`} />
+				<Route exact path="/games/:game/:playtype/questlines">
+					<Redirect to={`/games/${game}/${playtype}/quests`} />
 				</Route>
 
-				<Route exact path="/dashboard/games/:game/:playtype/questlines/:questlineID">
+				<Route exact path="/games/:game/:playtype/questlines/:questlineID">
 					<QuestlinePage game={game} playtype={playtype} />
 				</Route>
 
-				<Route exact path="/dashboard/games/:game/:playtype/quests/:questID">
+				<Route exact path="/games/:game/:playtype/quests/:questID">
 					<QuestPage game={game} playtype={playtype} />
 				</Route>
 
-				<Route exact path="/dashboard/games/:game/:playtype/goals">
-					<Redirect to={`/dashboard/games/${game}/${playtype}/quests`} />
+				<Route exact path="/games/:game/:playtype/goals">
+					<Redirect to={`/games/${game}/${playtype}/quests`} />
 				</Route>
 			</Switch>
 		</>
@@ -203,11 +203,7 @@ function SongChartRoutes({ game, playtype }: GamePT) {
 	}
 
 	if (data.charts.every((c) => c.playtype !== playtype)) {
-		return (
-			<Redirect
-				to={`/dashboard/games/${game}/${data.charts[0].playtype}/songs/${data.song.id}`}
-			/>
-		);
+		return <Redirect to={`/games/${game}/${data.charts[0].playtype}/songs/${data.song.id}`} />;
 	}
 
 	return (
@@ -221,17 +217,17 @@ function SongChartRoutes({ game, playtype }: GamePT) {
 			/>
 			<Divider />
 			<Switch>
-				<Route exact path="/dashboard/games/:game/:playtype/songs/:songID">
+				<Route exact path="/games/:game/:playtype/songs/:songID">
 					{/* Select the hardest chart for this. */}
 					<Redirect
-						to={`/dashboard/games/${game}/${playtype}/songs/${data.song.id}/${
+						to={`/games/${game}/${playtype}/songs/${data.song.id}/${
 							data.charts.slice(0).sort(NumericSOV((x) => x.levelNum, true))[0]
 								.difficulty
 						}`}
 					/>
 				</Route>
 
-				<Route path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty">
+				<Route path="/games/:game/:playtype/songs/:songID/:difficulty">
 					<GPTChartPage
 						game={game}
 						playtype={playtype}

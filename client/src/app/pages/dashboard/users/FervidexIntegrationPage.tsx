@@ -33,7 +33,7 @@ export default function FervidexIntegrationPage({ reqUser }: { reqUser: UserDocu
 			</Col>
 			<Col xs={12} className="mt-4">
 				Instructions on how to setup fervidex can be found{" "}
-				<Link to="/dashboard/import/fervidex">here</Link>.
+				<Link to="/import/fervidex">here</Link>.
 				<Divider />
 			</Col>
 			<Col xs={12} className="mt-4">

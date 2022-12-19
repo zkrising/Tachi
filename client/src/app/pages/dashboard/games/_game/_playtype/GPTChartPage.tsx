@@ -208,14 +208,11 @@ function InternalGPTChartPage({
 			<TopShowcase data={data} user={user} userMap={userMap} />
 			<Col xs={12} className="mt-4">
 				<Switch>
-					<Route
-						exact
-						path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty/targets"
-					>
+					<Route exact path="/games/:game/:playtype/songs/:songID/:difficulty/targets">
 						<ChartTargetInfo {...{ chart, game, playtype, song, user: user! }} />
 					</Route>
 
-					<Route exact path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty">
+					<Route exact path="/games/:game/:playtype/songs/:songID/:difficulty">
 						<ChartLeaderboardTable
 							{...{
 								data,
@@ -230,10 +227,7 @@ function InternalGPTChartPage({
 						/>
 					</Route>
 
-					<Route
-						exact
-						path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty/me"
-					>
+					<Route exact path="/games/:game/:playtype/songs/:songID/:difficulty/me">
 						<ChartLeaderboardTable
 							{...{
 								data,
@@ -248,10 +242,7 @@ function InternalGPTChartPage({
 						/>
 					</Route>
 
-					<Route
-						exact
-						path="/dashboard/games/:game/:playtype/songs/:songID/:difficulty/rivals"
-					>
+					<Route exact path="/games/:game/:playtype/songs/:songID/:difficulty/rivals">
 						<ChartLeaderboardTable
 							{...{
 								data,
@@ -445,7 +436,7 @@ function PlayCard({ pb, user, name }: { pb: PBScoreDocument; user: UserDocument;
 					<h4>
 						<Link
 							className="gentle-link"
-							to={`/dashboard/users/${user.username}/games/${pb.game}/${pb.playtype}`}
+							to={`/u/${user.username}/games/${pb.game}/${pb.playtype}`}
 						>
 							{user.username}
 						</Link>

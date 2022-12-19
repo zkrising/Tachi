@@ -11,7 +11,7 @@ export default function SupportMePage() {
 		<div style={{ fontSize: "1.15rem" }}>
 			<p>
 				{TachiConfig.name} is a passion project, and developed by{" "}
-				<Link to="/dashboard/credits">people like you</Link>.
+				<Link to="/credits">people like you</Link>.
 			</p>
 			<p>
 				If you want to support {TachiConfig.name} development, you can donate to my{" "}

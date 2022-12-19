@@ -441,7 +441,7 @@ function QuestActivity({
 							the{" "}
 							<Link
 								className="gentle-link"
-								to={`/dashboard/games/${game}/${playtype}/quests/${data.quest.questID}`}
+								to={`/games/${game}/${playtype}/quests/${data.quest.questID}`}
 							>
 								{data.quest.name}
 							</Link>{" "}
@@ -584,7 +584,7 @@ function SessionShower({ sessionID }: { sessionID: string }) {
 					<div>
 						<LinkButton
 							className="btn-outline-primary"
-							to={`/dashboard/users/${data.user.username}/games/${data.session.game}/${data.session.playtype}/sessions/${sessionID}`}
+							to={`/u/${data.user.username}/games/${data.session.game}/${data.session.playtype}/sessions/${sessionID}`}
 						>
 							View Full Session
 						</LinkButton>
@@ -603,7 +603,7 @@ function SessionShower({ sessionID }: { sessionID: string }) {
 			<div className="d-flex w-100 justify-content-center">
 				<LinkButton
 					className="btn-outline-primary"
-					to={`/dashboard/users/${data.user.username}/games/${data.session.game}/${data.session.playtype}/sessions/${sessionID}`}
+					to={`/u/${data.user.username}/games/${data.session.game}/${data.session.playtype}/sessions/${sessionID}`}
 				>
 					View Full Session
 				</LinkButton>
@@ -670,7 +670,7 @@ function UGPTLink({ reqUser, game, playtype }: UGPT) {
 
 	return (
 		<Link
-			to={`/dashboard/users/${reqUser.username}/games/${game}/${playtype}`}
+			to={`/u/${reqUser.username}/games/${game}/${playtype}`}
 			className="gentle-link"
 			style={{
 				fontWeight: "bold",

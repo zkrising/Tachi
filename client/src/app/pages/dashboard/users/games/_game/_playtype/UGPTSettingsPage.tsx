@@ -577,10 +577,8 @@ function ManageAccount({ reqUser, game, playtype }: UGPT) {
 			<Col xs={12} className="mt-8">
 				<h4>Undo Import</h4>
 				If you messed up an import, you can undo it by going to{" "}
-				<Link to={`/dashboard/users/${reqUser.username}/imports`}>
-					your imports page
-				</Link>{" "}
-				and click "Manage Import".
+				<Link to={`/u/${reqUser.username}/imports`}>your imports page</Link> and click
+				"Manage Import".
 			</Col>
 			<Col xs={12} className="mt-8">
 				<h3>Completely Wipe Profile</h3>

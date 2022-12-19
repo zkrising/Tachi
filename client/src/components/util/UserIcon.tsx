@@ -18,8 +18,8 @@ export default function UserIcon({
 					className="gentle-link"
 					to={
 						game && playtype
-							? `/dashboard/users/${user.username}/games/${game}/${playtype}`
-							: `/dashboard/users/${user.username}`
+							? `/u/${user.username}/games/${game}/${playtype}`
+							: `/u/${user.username}`
 					}
 				>
 					{user.username}

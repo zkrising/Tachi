@@ -35,41 +35,41 @@ export default function ImportRoutes() {
 
 	return (
 		<Switch>
-			<Route exact path="/dashboard/import">
+			<Route exact path="/import">
 				<ImportPage user={user} />
 			</Route>
 
-			<Route path="/dashboard/import/*">
+			<Route path="/import/*">
 				<div>
-					<Link to="/dashboard/import">Go back to all import methods.</Link>
+					<Link to="/import">Go back to all import methods.</Link>
 					<Divider />
 				</div>
 				<Switch>
-					<Route exact path="/dashboard/import/batch-manual">
+					<Route exact path="/import/batch-manual">
 						<BatchManualPage />
 					</Route>
 
 					{mode !== "ktchi" && (
 						<>
-							<Route exact path="/dashboard/import/lr2oraja-ir">
+							<Route exact path="/import/lr2oraja-ir">
 								<BeatorajaIRPage game="bms" />
 							</Route>
-							<Route exact path="/dashboard/import/beatoraja-ir-pms">
+							<Route exact path="/import/beatoraja-ir-pms">
 								<BeatorajaIRPage game="pms" />
 							</Route>
-							<Route exact path="/dashboard/import/lr2hook">
+							<Route exact path="/import/lr2hook">
 								<LR2HookPage />
 							</Route>
-							<Route exact path="/dashboard/import/usc-ir">
+							<Route exact path="/import/usc-ir">
 								<USCIRPage />
 							</Route>
-							<Route exact path="/dashboard/import/usc-db">
+							<Route exact path="/import/usc-db">
 								<USCDBPage />
 							</Route>
-							<Route exact path="/dashboard/import/lr2-db">
+							<Route exact path="/import/lr2-db">
 								<LR2DBPage />
 							</Route>
-							<Route exact path="/dashboard/import/lr2oraja-db">
+							<Route exact path="/import/lr2oraja-db">
 								<LR2orajaDBPage />
 							</Route>
 						</>
@@ -77,57 +77,57 @@ export default function ImportRoutes() {
 
 					{mode !== "btchi" && (
 						<>
-							<Route exact path="/dashboard/import/iidx-eam-csv">
+							<Route exact path="/import/iidx-eam-csv">
 								<IIDXEamCSVPage
 									name="IIDX e-amusement CSV"
 									importType="file/eamusement-iidx-csv"
 								/>
 							</Route>
-							<Route exact path="/dashboard/import/iidx-pli-csv">
+							<Route exact path="/import/iidx-pli-csv">
 								<IIDXEamCSVPage
 									name="IIDX PLI CSV"
 									importType="file/pli-iidx-csv"
 								/>
 							</Route>
-							<Route exact path="/dashboard/import/sdvx-eam-csv">
+							<Route exact path="/import/sdvx-eam-csv">
 								<SDVXEamCSVPage
 									name="SDVX e-amusement CSV"
 									importType="file/eamusement-sdvx-csv"
 								/>
 							</Route>
-							<Route exact path="/dashboard/import/iidx-mer">
+							<Route exact path="/import/iidx-mer">
 								<MerJSONPage />
 							</Route>
-							<Route exact path="/dashboard/import/sss-xml">
+							<Route exact path="/import/sss-xml">
 								<SSSXMLPage />
 							</Route>
 
-							<Route exact path="/dashboard/import/fervidex">
+							<Route exact path="/import/fervidex">
 								<FervidexPage />
 							</Route>
-							<Route exact path="/dashboard/import/barbatos">
+							<Route exact path="/import/barbatos">
 								<BarbatosPage />
 							</Route>
-							<Route exact path="/dashboard/import/ks-hook">
+							<Route exact path="/import/ks-hook">
 								<KsHookPage />
 							</Route>
-							<Route exact path="/dashboard/import/silent-hook">
+							<Route exact path="/import/silent-hook">
 								<SilentHookPage />
 							</Route>
 
-							<Route exact path="/dashboard/import/chunitachi">
+							<Route exact path="/import/chunitachi">
 								<ChunitachiPage />
 							</Route>
 
-							<Route exact path="/dashboard/import/iidx-arc">
+							<Route exact path="/import/iidx-arc">
 								<ARCImportPage game="iidx" />
 							</Route>
 
-							<Route exact path="/dashboard/import/sdvx-arc">
+							<Route exact path="/import/sdvx-arc">
 								<ARCImportPage game="sdvx" />
 							</Route>
 
-							<Route exact path="/dashboard/import/iidx-flo">
+							<Route exact path="/import/iidx-flo">
 								<KAIIntegrationPage
 									hash="6f64b82107cea90aa4c51a33705cd57c1883c8cdc22a634730ca461a431744b3"
 									clientID={process.env.REACT_APP_FLO_CLIENT_ID ?? ""}
@@ -136,7 +136,7 @@ export default function ImportRoutes() {
 									game="iidx"
 								/>
 							</Route>
-							<Route exact path="/dashboard/import/iidx-eag">
+							<Route exact path="/import/iidx-eag">
 								<KAIIntegrationPage
 									hash="0451a33ffc7f8b0c089450d842efb8b7099e22a2df2251ae4e6d9ec1b3cb4a5f"
 									clientID={process.env.REACT_APP_EAG_CLIENT_ID ?? ""}
@@ -145,7 +145,7 @@ export default function ImportRoutes() {
 									game="iidx"
 								/>
 							</Route>
-							<Route exact path="/dashboard/import/sdvx-min">
+							<Route exact path="/import/sdvx-min">
 								<KAIIntegrationPage
 									hash="5885d4123b6db3f0127111a587ea6549f533a178dc2e198d31f98bed4ffd0cad"
 									clientID={process.env.REACT_APP_MIN_CLIENT_ID ?? ""}
@@ -154,7 +154,7 @@ export default function ImportRoutes() {
 									game="sdvx"
 								/>
 							</Route>
-							<Route exact path="/dashboard/import/sdvx-flo">
+							<Route exact path="/import/sdvx-flo">
 								<KAIIntegrationPage
 									hash="6f64b82107cea90aa4c51a33705cd57c1883c8cdc22a634730ca461a431744b3"
 									clientID={process.env.REACT_APP_FLO_CLIENT_ID ?? ""}
@@ -163,7 +163,7 @@ export default function ImportRoutes() {
 									game="sdvx"
 								/>
 							</Route>
-							<Route exact path="/dashboard/import/sdvx-eag">
+							<Route exact path="/import/sdvx-eag">
 								<KAIIntegrationPage
 									hash="0451a33ffc7f8b0c089450d842efb8b7099e22a2df2251ae4e6d9ec1b3cb4a5f"
 									clientID={process.env.REACT_APP_EAG_CLIENT_ID ?? ""}
@@ -172,27 +172,27 @@ export default function ImportRoutes() {
 									game="sdvx"
 								/>
 							</Route>
-							<Route exact path="/dashboard/import/cg-dev-sdvx">
+							<Route exact path="/import/cg-dev-sdvx">
 								<CGIntegrationPage cgType="dev" game="sdvx" />
 							</Route>
-							<Route exact path="/dashboard/import/cg-dev-popn">
+							<Route exact path="/import/cg-dev-popn">
 								<CGIntegrationPage cgType="dev" game="popn" />
 							</Route>
-							<Route exact path="/dashboard/import/cg-dev-museca">
+							<Route exact path="/import/cg-dev-museca">
 								<CGIntegrationPage cgType="dev" game="museca" />
 							</Route>
 
-							<Route exact path="/dashboard/import/cg-prod-sdvx">
+							<Route exact path="/import/cg-prod-sdvx">
 								<CGIntegrationPage cgType="prod" game="sdvx" />
 							</Route>
-							<Route exact path="/dashboard/import/cg-prod-popn">
+							<Route exact path="/import/cg-prod-popn">
 								<CGIntegrationPage cgType="prod" game="popn" />
 							</Route>
-							<Route exact path="/dashboard/import/cg-prod-museca">
+							<Route exact path="/import/cg-prod-museca">
 								<CGIntegrationPage cgType="prod" game="museca" />
 							</Route>
 
-							<Route exact path="/dashboard/import/wacca-site">
+							<Route exact path="/import/wacca-site">
 								<WACCASiteImportPage />
 							</Route>
 						</>

@@ -64,9 +64,7 @@ export default function Questline({
 
 			{!quests && (
 				<div className="d-flex w-100 justify-content-end">
-					<LinkButton
-						to={`/dashboard/games/${game}/${playtype}/questlines/${questline.questlineID}`}
-					>
+					<LinkButton to={`/games/${game}/${playtype}/questlines/${questline.questlineID}`}>
 						View Quests
 					</LinkButton>
 				</div>

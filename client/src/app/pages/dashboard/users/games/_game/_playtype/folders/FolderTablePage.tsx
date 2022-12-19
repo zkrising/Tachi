@@ -220,7 +220,7 @@ function TableFolderTable({
 					<td>{data.stats.chartCount}</td>
 					<td>
 						<LinkButton
-							to={`/dashboard/users/${reqUser.username}/games/${game}/${playtype}/folders/${data.folder.folderID}`}
+							to={`/u/${reqUser.username}/games/${game}/${playtype}/folders/${data.folder.folderID}`}
 							onClick={() => {
 								if (user?.id === reqUser.id) {
 									APIFetchV1(

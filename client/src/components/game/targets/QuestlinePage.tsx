@@ -48,9 +48,7 @@ export default function QuestlinePage({ game, playtype }: GamePT) {
 	return (
 		<Row>
 			<Col xs={12}>
-				<Link to={`/dashboard/games/${game}/${playtype}/quests`}>
-					Go back to all questlines...
-				</Link>
+				<Link to={`/games/${game}/${playtype}/quests`}>Go back to all questlines...</Link>
 				<Divider />
 				<Questline questline={data.questline} quests={questMap} />
 				<Divider />

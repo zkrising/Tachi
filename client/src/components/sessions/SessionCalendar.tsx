@@ -58,7 +58,7 @@ export default function SessionCalendar({ game, playtype, reqUser }: UGPT) {
 				>
 					<Link
 						className="w-100"
-						to={`/dashboard/users/${reqUser.username}/games/${game}/${playtype}/sessions/${e.event.extendedProps.sessionID}`}
+						to={`/u/${reqUser.username}/games/${game}/${playtype}/sessions/${e.event.extendedProps.sessionID}`}
 					>
 						<div
 							className="rounded m-1"
@@ -123,7 +123,7 @@ function SessionTooltip({ sessionID, game, playtype, reqUser }: { sessionID: str
 			<div className="w-100 text-center">
 				<Divider />
 				<LinkButton
-					to={`/dashboard/users/${reqUser.username}/games/${game}/${playtype}/sessions/${sessionID}`}
+					to={`/u/${reqUser.username}/games/${game}/${playtype}/sessions/${sessionID}`}
 				>
 					View Session
 				</LinkButton>

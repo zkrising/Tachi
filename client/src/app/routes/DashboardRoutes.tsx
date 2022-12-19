@@ -17,6 +17,7 @@ import GameRoutes from "./GameRoutes";
 import ImportRoutes from "./ImportRoutes";
 import UserRoutes from "./UserRoutes";
 import UtilRoutes from "./UtilRoutes";
+import { RedirectLegacyUserRoutes } from "./RedirectLegacyRoutes";
 
 export default function DashboardRoutes() {
 	const { user } = useContext(UserContext);
@@ -69,50 +70,52 @@ export default function DashboardRoutes() {
 				<Switch>
 					{/* this is the easiest (read: least sucky) way of handling */}
 					{/* these routes */}
-					<Route
-						exact
-						path={["/dashboard", "/dashboard/profiles", "/dashboard/global-activity"]}
-					>
+					<Route exact path={["/", "/profiles", "/global-activity"]}>
 						<DashboardPage />
 					</Route>
 
-					<Route exact path="/dashboard/privacy">
+					<Route exact path="/privacy">
 						<PrivacyPolicyPage />
 					</Route>
 
-					<Route exact path="/dashboard/credits">
+					<Route exact path="/credits">
 						<CreditsPage />
 					</Route>
 
-					<Route exact path="/dashboard/support">
+					<Route exact path="/support">
 						<SupportMePage />
 					</Route>
 
-					<Route exact path="/dashboard/users">
-						<Redirect to="/dashboard" />
+					{/* this used to be called /dashboard/users/username, now it's called /u/username */}
+					<Route path="/users">
+						<RedirectLegacyUserRoutes />
 					</Route>
 
-					<Route exact path="/dashboard/games">
-						<Redirect to="/dashboard" />
+					<Route exact path="/u">
+						<Redirect to="/" />
 					</Route>
 
-					<Route path="/dashboard/users/:userID">
+					<Route exact path="/g">
+						<Redirect to="/" />
+					</Route>
+
+					<Route path="/u/:userID">
 						<UserRoutes />
 					</Route>
 
-					<Route path="/dashboard/games/:game">
+					<Route path="/games/:game">
 						<GameRoutes />
 					</Route>
 
-					<Route path="/dashboard/import">
+					<Route path="/import">
 						<ImportRoutes />
 					</Route>
 
-					<Route path="/dashboard/utils">
+					<Route path="/utils">
 						<UtilRoutes />
 					</Route>
 
-					<Route path="/dashboard/notifications">
+					<Route path="/notifications">
 						<NotificationsPage />
 					</Route>
 

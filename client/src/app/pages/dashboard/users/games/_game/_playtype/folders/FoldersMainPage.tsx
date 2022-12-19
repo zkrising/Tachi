@@ -53,22 +53,22 @@ export default function FoldersMainPage({ reqUser, game, playtype }: UGPT) {
 			</div>
 			<div className="col-12">
 				<Switch>
-					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/folders">
+					<Route exact path="/u/:userID/games/:game/:playtype/folders">
 						<FolderTablePage {...{ reqUser, game, playtype }} />
 					</Route>
 					<Route
 						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/folders/search"
+						path="/u/:userID/games/:game/:playtype/folders/search"
 					>
 						<FolderSelectPage {...{ reqUser, game, playtype }} />
 					</Route>
 					<Route
 						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/folders/recent"
+						path="/u/:userID/games/:game/:playtype/folders/recent"
 					>
 						<RecentFoldersPage {...{ reqUser, game, playtype }} />
 					</Route>
-					<Route path="/dashboard/users/:userID/games/:game/:playtype/folders/:folderID">
+					<Route path="/u/:userID/games/:game/:playtype/folders/:folderID">
 						<SpecificFolderPage {...{ reqUser, game, playtype }} />
 					</Route>
 				</Switch>

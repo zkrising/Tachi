@@ -16,6 +16,7 @@ import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import ClientFileFlowRoutes from "./ClientFileFlowRoutes";
 import DashboardRoutes from "./DashboardRoutes";
 import OAuth2CallbackRoutes from "./OAuth2CallbackRoutes";
+import RedirectLegacyRoutes from "./RedirectLegacyRoutes";
 
 /**
  * Core Routes for Tachi-Client.
@@ -29,12 +30,9 @@ export function Routes() {
 	return (
 		<ErrorBoundary>
 			<Switch>
-				<Route exact path="/">
-					{!user && ClientConfig.MANDATE_LOGIN ? (
-						<LoginPage />
-					) : (
-						<Redirect to="/dashboard" />
-					)}
+				{/* redirects for legacy urls */}
+				<Route path="/dashboard">
+					<RedirectLegacyRoutes />
 				</Route>
 
 				<Route path="/michael">
@@ -43,10 +41,6 @@ export function Routes() {
 
 				<Route path="/verify-email">
 					<VerifyEmailPage />
-				</Route>
-
-				<Route path="/dashboard">
-					{!user && ClientConfig.MANDATE_LOGIN ? <LoginPage /> : <DashboardRoutes />}
 				</Route>
 
 				<Route path="/oauth2-callback">
@@ -61,20 +55,20 @@ export function Routes() {
 				</Route>
 
 				<Route exact path="/login">
-					{user ? <Redirect to="/dashboard" /> : <LoginPage />}
+					{user ? <Redirect to="/" /> : <LoginPage />}
 				</Route>
 				<Route exact path="/register">
-					{user ? <Redirect to="/dashboard" /> : <RegisterPage />}
+					{user ? <Redirect to="/" /> : <RegisterPage />}
 				</Route>
 				<Route exact path="/forgot-password">
-					{user ? <Redirect to="/dashboard" /> : <ForgotPasswordPage />}
+					{user ? <Redirect to="/" /> : <ForgotPasswordPage />}
 				</Route>
 				<Route exact path="/reset-password">
-					{user ? <Redirect to="/dashboard" /> : <ResetPasswordPage />}
+					{user ? <Redirect to="/" /> : <ResetPasswordPage />}
 				</Route>
 				<Route exact path="/screwed">
 					{user ? (
-						<Redirect to="/dashboard" />
+						<Redirect to="/" />
 					) : (
 						<CenterPage>
 							<MainPageTitleContainer
@@ -93,7 +87,7 @@ export function Routes() {
 				</Route>
 
 				<Route path="*">
-					<ErrorPage statusCode={404} />
+					{!user && ClientConfig.MANDATE_LOGIN ? <LoginPage /> : <DashboardRoutes />}
 				</Route>
 			</Switch>
 		</ErrorBoundary>

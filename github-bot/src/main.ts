@@ -47,7 +47,7 @@ function mkSeedDiffViewMsg(repo: string, sha: string, compareRepo: string, compa
 
 *****
 
-[View Seeds Diff](https://bokutachi.xyz/dashboard/utils/seeds?${params.toString()}
+[View Seeds Diff](https://bokutachi.xyz/utils/seeds?${params.toString()}
 `;
 }
 

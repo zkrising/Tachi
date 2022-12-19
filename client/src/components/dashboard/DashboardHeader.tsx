@@ -4,13 +4,13 @@ import React from "react";
 
 export function DashboardHeader() {
 	const navItems = [
-		<NavItem key="activity" to="/dashboard">
+		<NavItem key="activity" to="/">
 			Activity
 		</NavItem>,
-		<NavItem key="profiles" to="/dashboard/profiles">
+		<NavItem key="profiles" to="/profiles">
 			Your Profiles
 		</NavItem>,
-		<NavItem key="profiles" to="/dashboard/global-activity">
+		<NavItem key="profiles" to="/global-activity">
 			Global Activity
 		</NavItem>,
 	];

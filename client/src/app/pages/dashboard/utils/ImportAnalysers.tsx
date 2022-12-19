@@ -46,8 +46,8 @@ export default function ImportAnalysers() {
 			</span>
 			<Divider />
 			<div className="d-flex justify-content-center btn-group">
-				<SelectLinkButton to="/dashboard/utils/imports">Recent Imports</SelectLinkButton>
-				<SelectLinkButton to="/dashboard/utils/imports/failed">
+				<SelectLinkButton to="/utils/imports">Recent Imports</SelectLinkButton>
+				<SelectLinkButton to="/utils/imports/failed">
 					Recent Failed Imports
 				</SelectLinkButton>
 			</div>
@@ -56,11 +56,11 @@ export default function ImportAnalysers() {
 			<ImportViewerOptions {...{ userIntent, setUserIntent, importType, setImportType }} />
 			<Divider />
 			<Switch>
-				<Route exact path="/dashboard/utils/imports">
+				<Route exact path="/utils/imports">
 					<ViewRecentImports params={params} />
 				</Route>
 
-				<Route exact path="/dashboard/utils/imports/failed">
+				<Route exact path="/utils/imports/failed">
 					<ViewRecentFailedImports params={params} />
 				</Route>
 			</Switch>

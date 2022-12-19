@@ -46,9 +46,7 @@ export default function QuestPage({ game, playtype }: GamePT) {
 	return (
 		<div>
 			<Col xs={12}>
-				<Link to={`/dashboard/games/${game}/${playtype}/quests`}>
-					Go back to all quests...
-				</Link>
+				<Link to={`/games/${game}/${playtype}/quests`}>Go back to all quests...</Link>
 				<Divider />
 				<Quest goals={goalMap} quest={quest} />
 			</Col>

@@ -44,7 +44,7 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 				.
 				<br />
 				Want to manage or revert an import? Go to{" "}
-				<Link to={`/dashboard/users/${user.username}/imports`}>Import Management</Link>.
+				<Link to={`/u/${user.username}/imports`}>Import Management</Link>.
 			</div>
 			<Divider />
 			<select
@@ -496,10 +496,7 @@ function ImportInfoCard({
 }) {
 	return (
 		<div className="col-12 col-lg-6 mb-4">
-			<Card
-				header={name}
-				footer={<LinkButton to={`/dashboard/import/${href}`}>Use this!</LinkButton>}
-			>
+			<Card header={name} footer={<LinkButton to={`/import/${href}`}>Use this!</LinkButton>}>
 				<div style={{ fontSize: "1.5rem" }}>{desc}</div>
 				{moreInfo && (
 					<>

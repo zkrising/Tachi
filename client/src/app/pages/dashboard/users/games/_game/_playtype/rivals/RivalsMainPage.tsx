@@ -59,20 +59,20 @@ export default function RivalsMainPage({
 			</Col>
 			<Col xs={12}>
 				<Switch>
-					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/rivals">
+					<Route exact path="/u/:userID/games/:game/:playtype/rivals">
 						<RivalsActivityPage reqUser={reqUser} game={game} playtype={playtype} />
 					</Route>
 
 					<Route
 						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/rivals/manage"
+						path="/u/:userID/games/:game/:playtype/rivals/manage"
 					>
 						<RivalsManagePage reqUser={reqUser} game={game} playtype={playtype} />
 					</Route>
 
 					<Route
 						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/rivals/pb-leaderboard"
+						path="/u/:userID/games/:game/:playtype/rivals/pb-leaderboard"
 					>
 						<ScoreLeaderboard
 							game={game}

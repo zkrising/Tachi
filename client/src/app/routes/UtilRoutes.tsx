@@ -7,15 +7,15 @@ import { Route, Switch } from "react-router-dom";
 export default function UtilRoutes() {
 	return (
 		<Switch>
-			<Route exact path="/dashboard/utils/seeds">
+			<Route exact path="/utils/seeds">
 				<SeedsViewer />
 			</Route>
 
-			<Route path="/dashboard/utils/imports">
+			<Route path="/utils/imports">
 				<ImportAnalysers />
 			</Route>
 
-			<Route exact path="/dashboard/utils/quests">
+			<Route exact path="/utils/quests">
 				<QuestEditor />
 			</Route>
 		</Switch>

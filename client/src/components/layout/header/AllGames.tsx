@@ -15,7 +15,7 @@ export default function AllGames() {
 				<MenuLink
 					key={`${game}:${playtype}`}
 					name={FormatGame(game, playtype)}
-					to={`/dashboard/games/${game}/${playtype}`}
+					to={`/games/${game}/${playtype}`}
 				/>
 			);
 		}

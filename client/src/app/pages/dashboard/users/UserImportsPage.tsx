@@ -40,10 +40,10 @@ export default function UserImportsPage({ reqUser }: { reqUser: UserDocument }) 
 	return (
 		<>
 			<div className="d-flex justify-content-center btn-group">
-				<SelectLinkButton to={`/dashboard/users/${reqUser.username}/imports`}>
+				<SelectLinkButton to={`/u/${reqUser.username}/imports`}>
 					Recent Imports
 				</SelectLinkButton>
-				<SelectLinkButton to={`/dashboard/users/${reqUser.username}/imports/failed`}>
+				<SelectLinkButton to={`/u/${reqUser.username}/imports/failed`}>
 					Recent Failed Imports
 				</SelectLinkButton>
 			</div>
@@ -52,11 +52,11 @@ export default function UserImportsPage({ reqUser }: { reqUser: UserDocument }) 
 			<ImportViewerOptions {...{ userIntent, setUserIntent, importType, setImportType }} />
 			<Divider />
 			<Switch>
-				<Route exact path={`/dashboard/users/${reqUser.username}/imports`}>
+				<Route exact path={`/u/${reqUser.username}/imports`}>
 					<ViewRecentImports params={params} reqUser={reqUser} />
 				</Route>
 
-				<Route path={`/dashboard/users/${reqUser.username}/imports/failed`}>
+				<Route path={`/u/${reqUser.username}/imports/failed`}>
 					<ViewRecentFailedImports params={params} reqUser={reqUser} />
 				</Route>
 			</Switch>

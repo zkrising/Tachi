@@ -38,7 +38,7 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 			<Dropdown.Menu className="p-0 m-0 dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
 				<div className="navi navi-spacer-x-0 pt-5">
 					<Link
-						to={`/dashboard/users/${user.username}`}
+						to={`/u/${user.username}`}
 						className="navi-item px-8 cursor-pointer"
 					>
 						<div className="navi-link">
@@ -52,7 +52,7 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 						</div>
 					</Link>
 					<Link
-						to={`/dashboard/users/${user.username}`}
+						to={`/u/${user.username}`}
 						className="navi-item px-8 cursor-pointer"
 					>
 						<div className="navi-link">
@@ -66,7 +66,7 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 						</div>
 					</Link>
 					<Link
-						to={`/dashboard/users/${user.username}/settings`}
+						to={`/u/${user.username}/settings`}
 						className="navi-item px-8 cursor-pointer"
 					>
 						<div className="navi-link">
@@ -84,7 +84,7 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 						</div>
 					</Link>
 					<Link
-						to={`/dashboard/users/${user.username}/integrations`}
+						to={`/u/${user.username}/integrations`}
 						className="navi-item px-8 cursor-pointer"
 					>
 						<div className="navi-link">

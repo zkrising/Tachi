@@ -51,7 +51,7 @@ export default function ARCImportPage({ game }: { game: "sdvx" | "iidx" }) {
 				<br />
 				<h4>
 					Please go to the{" "}
-					<Link to={`/dashboard/users/${user.id}/integrations`}>
+					<Link to={`/u/${user.id}/integrations`}>
 						Service Settings for ARC
 					</Link>
 					, and link your account.
@@ -84,11 +84,11 @@ export default function ARCImportPage({ game }: { game: "sdvx" | "iidx" }) {
 			<Alert variant="warning">
 				Play on ARC a lot? Please consider setting up{" "}
 				{game === "iidx" ? (
-					<Link style={{ color: "purple" }} to="/dashboard/import/fervidex">
+					<Link style={{ color: "purple" }} to="/import/fervidex">
 						Fervidex
 					</Link>
 				) : (
-					<Link style={{ color: "purple" }} to="/dashboard/import/barbatos">
+					<Link style={{ color: "purple" }} to="/import/barbatos">
 						Barbatos
 					</Link>
 				)}{" "}

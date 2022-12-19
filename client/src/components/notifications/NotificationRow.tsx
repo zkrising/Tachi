@@ -31,10 +31,10 @@ function NotifToURL(notif: NotificationDocument) {
 		case "QUEST_CHANGED": {
 			const { game, playtype, questID } = notif.body.content;
 
-			return `/dashboard/games/${game}/${playtype}/quests/${questID}`;
+			return `/games/${game}/${playtype}/quests/${questID}`;
 		}
 		case "RIVALED_BY":
-			return `/dashboard/users/${notif.body.content.userID}/games/${notif.body.content.game}/${notif.body.content.playtype}`;
+			return `/u/${notif.body.content.userID}/games/${notif.body.content.game}/${notif.body.content.playtype}`;
 		case "SITE_ANNOUNCEMENT":
 			return `#`;
 	}

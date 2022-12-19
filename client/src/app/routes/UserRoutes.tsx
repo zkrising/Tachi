@@ -66,7 +66,7 @@ export default function UserRoutes() {
 
 	// redirect to the users actual name.
 	if (userID.match(/^[0-9]+$/u)) {
-		const split = history.location.pathname.match(/^(\/dashboard\/users)\/([0-9]+)(.*)$/u);
+		const split = history.location.pathname.match(/^(\/u)\/([0-9]+)(.*)$/u);
 
 		if (!split) {
 			return (
@@ -84,9 +84,9 @@ export default function UserRoutes() {
 
 	return (
 		<Switch>
-			<Route path="/dashboard/users/:userID">
+			<Route path="/u/:userID">
 				<Switch>
-					<Route path="/dashboard/users/:userID/games/:game">
+					<Route path="/u/:userID/games/:game">
 						<UserGameRoutes reqUser={reqUser} />
 					</Route>
 					<UserProfileRoutes reqUser={reqUser} />
@@ -107,37 +107,32 @@ function UserProfileRoutes({ reqUser }: { reqUser: UserDocument }) {
 						? `${reqUser.username} (UID: ${reqUser.id})`
 						: `${reqUser.username}'s Profile`
 				}
-				footer={
-					<UserBottomNav
-						reqUser={reqUser}
-						baseUrl={`/dashboard/users/${reqUser.username}`}
-					/>
-				}
+				footer={<UserBottomNav reqUser={reqUser} baseUrl={`/u/${reqUser.username}`} />}
 			>
 				<UserHeaderBody reqUser={reqUser} />
 			</LayoutHeaderContainer>
-			<Route exact path="/dashboard/users/:userID">
+			<Route exact path="/u/:userID">
 				<UserPage reqUser={reqUser} />
 			</Route>
-			<Route exact path="/dashboard/users/:userID/games">
+			<Route exact path="/u/:userID/games">
 				<UserGamesPage reqUser={reqUser} />
 			</Route>
-			<Route exact path="/dashboard/users/:userID/settings">
+			<Route exact path="/u/:userID/settings">
 				<RequireAuthAsUserParam>
 					<UserSettingsPage reqUser={reqUser} />
 				</RequireAuthAsUserParam>
 			</Route>
-			<Route path="/dashboard/users/:userID/integrations">
+			<Route path="/u/:userID/integrations">
 				<RequireAuthAsUserParam>
 					<UserIntegrationsPage reqUser={reqUser} />
 				</RequireAuthAsUserParam>
 			</Route>
-			<Route path="/dashboard/users/:userID/imports">
+			<Route path="/u/:userID/imports">
 				<RequireAuthAsUserParam>
 					<UserImportsPage reqUser={reqUser} />
 				</RequireAuthAsUserParam>
 			</Route>
-			<Route exact path="/dashboard/users/:userID/invites">
+			<Route exact path="/u/:userID/invites">
 				<RequireAuthAsUserParam>
 					<UserInvitesPage reqUser={reqUser} />
 				</RequireAuthAsUserParam>
@@ -157,22 +152,22 @@ function UserGameRoutes({ reqUser }: { reqUser: UserDocument }) {
 
 	return (
 		<Switch>
-			<Route exact path="/dashboard/users/:userID/games/:game">
+			<Route exact path="/u/:userID/games/:game">
 				{gameConfig.validPlaytypes.length === 1 ? (
 					<Redirect
-						to={`/dashboard/users/${reqUser.username}/games/${game}/${gameConfig.validPlaytypes[0]}`}
+						to={`/u/${reqUser.username}/games/${game}/${gameConfig.validPlaytypes[0]}`}
 					/>
 				) : (
 					<PlaytypeSelect
 						subheaderCrumbs={["Users", reqUser.username, "Games", gameConfig.name]}
 						subheaderTitle={`${reqUser.username} ${gameConfig.name} Playtype Select`}
-						base={`/dashboard/users/${reqUser.username}/games/${game}`}
+						base={`/u/${reqUser.username}/games/${game}`}
 						game={game}
 					/>
 				)}
 			</Route>
 
-			<Route path="/dashboard/users/:userID/games/:game/:playtype">
+			<Route path="/u/:userID/games/:game/:playtype">
 				<UGPTContextProvider>
 					<TargetsContextProvider>
 						<UserGamePlaytypeRoutes reqUser={reqUser} game={game} />
@@ -235,39 +230,39 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: UserDocument; game
 				footer={
 					<UGPTBottomNav
 						isRequestedUser={reqUser.id === user?.id}
-						baseUrl={`/dashboard/users/${reqUser.username}/games/${game}/${playtype}`}
+						baseUrl={`/u/${reqUser.username}/games/${game}/${playtype}`}
 					/>
 				}
 			>
 				<UGPTHeaderBody reqUser={reqUser} game={game} playtype={playtype} stats={stats} />
 			</LayoutHeaderContainer>
 			<Switch>
-				<Route exact path="/dashboard/users/:userID/games/:game/:playtype">
+				<Route exact path="/u/:userID/games/:game/:playtype">
 					<OverviewPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
-				<Route path="/dashboard/users/:userID/games/:game/:playtype/scores">
+				<Route path="/u/:userID/games/:game/:playtype/scores">
 					<ScoresPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
-				<Route path="/dashboard/users/:userID/games/:game/:playtype/folders">
+				<Route path="/u/:userID/games/:game/:playtype/folders">
 					<FoldersMainPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
-				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/sessions">
+				<Route exact path="/u/:userID/games/:game/:playtype/sessions">
 					<SessionsPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
-				<Route path="/dashboard/users/:userID/games/:game/:playtype/sessions/:sessionID">
+				<Route path="/u/:userID/games/:game/:playtype/sessions/:sessionID">
 					<SpecificSessionPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
-				<Route path="/dashboard/users/:userID/games/:game/:playtype/rivals">
+				<Route path="/u/:userID/games/:game/:playtype/rivals">
 					<RivalsMainPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
-				<Route path="/dashboard/users/:userID/games/:game/:playtype/targets">
+				<Route path="/u/:userID/games/:game/:playtype/targets">
 					<TargetsPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
-				<Route exact path="/dashboard/users/:userID/games/:game/:playtype/leaderboard">
+				<Route exact path="/u/:userID/games/:game/:playtype/leaderboard">
 					<LeaderboardsPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
 				<RequireAuthAsUserParam>
-					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/settings">
+					<Route exact path="/u/:userID/games/:game/:playtype/settings">
 						<UGPTSettingsPage reqUser={reqUser} game={game} playtype={playtype} />
 					</Route>
 				</RequireAuthAsUserParam>

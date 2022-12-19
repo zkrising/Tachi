@@ -62,13 +62,13 @@ function DashboardLoggedIn({ user }: { user: UserDocument }) {
 			<Divider />
 			<RecentInfo user={user} />
 			<Switch>
-				<Route exact path="/dashboard">
+				<Route exact path="/">
 					<DashboardActivity user={user} />
 				</Route>
-				<Route exact path="/dashboard/profiles">
+				<Route exact path="/profiles">
 					<UserGameStatsInfo user={user} />
 				</Route>
-				<Route exact path="/dashboard/global-activity">
+				<Route exact path="/global-activity">
 					<Activity url="/activity" />
 				</Route>
 			</Switch>
@@ -291,7 +291,7 @@ function DashboardLoggedInNoScores({ user }: { user: UserDocument }) {
 				<br />
 				You'll get a profile for that game, and a position on the leaderboards!
 			</h4>
-			<LinkButton className="btn-outline-primary" to="/dashboard/import">
+			<LinkButton className="btn-outline-primary" to="/import">
 				Import some scores!
 			</LinkButton>
 		</div>

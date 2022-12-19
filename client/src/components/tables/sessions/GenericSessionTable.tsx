@@ -116,7 +116,7 @@ function Row({
 			{indexCol && <IndexCell index={data.__related.index} />}
 			<td style={{ minWidth: "140px" }}>
 				<Link
-					to={`/dashboard/users/${reqUser.username}/games/${data.game}/${data.playtype}/sessions/${data.sessionID}`}
+					to={`/u/${reqUser.username}/games/${data.game}/${data.playtype}/sessions/${data.sessionID}`}
 					className="gentle-link"
 				>
 					{data.name}

@@ -52,7 +52,7 @@ export async function HandleClassUpdateV1(
 	const embed = CreateEmbed()
 		.setTitle(`${userDoc.username} just achieved ${newClass} in ${FormatGame(game, playtype)}!`)
 		.setURL(
-			`${BotConfig.TACHI_SERVER_LOCATION}/dashboard/users/${userDoc.username}/games/${game}/${playtype}`
+			`${BotConfig.TACHI_SERVER_LOCATION}/users/${userDoc.username}/games/${game}/${playtype}`
 		)
 		.setThumbnail(PrependTachiUrl(`/users/${userDoc.id}/pfp`));
 

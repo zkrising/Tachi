@@ -238,7 +238,7 @@ function UserCard({ username, game, playtype }: { username: string } & GamePT) {
 						<h4>
 							<Link
 								className="gentle-link"
-								to={`/dashboard/users/${username}/games/${game}/${playtype}`}
+								to={`/u/${username}/games/${game}/${playtype}`}
 							>
 								{username}
 							</Link>

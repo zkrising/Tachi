@@ -104,7 +104,7 @@ export default function ARCIntegrationPage({ reqUser }: { reqUser: UserDocument 
 					Submit Settings
 				</Button>
 				<Divider />
-				After setting this, go to <Link to="/dashboard/import">Import Scores</Link>!
+				After setting this, go to <Link to="/import">Import Scores</Link>!
 			</Col>
 		</>
 	);

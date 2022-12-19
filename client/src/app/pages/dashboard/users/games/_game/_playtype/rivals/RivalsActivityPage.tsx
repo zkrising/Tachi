@@ -15,7 +15,7 @@ export default function RivalsActivityPage({ reqUser, game, playtype }: UGPT) {
 		return (
 			<div className="text-center">
 				You have no rivals set.{" "}
-				<Link to={`/dashboard/users/${reqUser.id}/games/${game}/${playtype}/rivals/manage`}>
+				<Link to={`/u/${reqUser.id}/games/${game}/${playtype}/rivals/manage`}>
 					Go set some!
 				</Link>
 			</div>

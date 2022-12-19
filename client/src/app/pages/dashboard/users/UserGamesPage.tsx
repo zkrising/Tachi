@@ -85,9 +85,7 @@ export function GameStatContainer({ ugs, reqUser }: { ugs: UGSWithRankingData } 
 				className="mb-4"
 				footer={
 					<div className="d-flex justify-content-end">
-						<LinkButton
-							to={`/dashboard/users/${reqUser.username}/games/${ugs.game}/${ugs.playtype}`}
-						>
+						<LinkButton to={`/u/${reqUser.username}/games/${ugs.game}/${ugs.playtype}`}>
 							View Game Profile
 						</LinkButton>
 					</div>

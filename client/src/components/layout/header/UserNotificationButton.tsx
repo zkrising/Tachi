@@ -18,7 +18,7 @@ export function UserNotificationButton({ user }: { user: UserDocument }) {
 
 	return (
 		<div className="topbar-item">
-			<Link to={"/dashboard/notifications"}>
+			<Link to="/notifications">
 				<div
 					className="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1"
 					id="kt_quick_notifications_toggle"

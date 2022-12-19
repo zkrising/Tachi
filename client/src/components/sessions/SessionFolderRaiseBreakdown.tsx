@@ -163,7 +163,7 @@ export default function SessionFolderRaiseBreakdown({
 								<h3 className="text-center w-100">
 									<Link
 										className="gentle-link"
-										to={`/dashboard/users/${reqUser.username}/games/${game}/${playtype}/folders/${folder.folderID}`}
+										to={`/u/${reqUser.username}/games/${game}/${playtype}/folders/${folder.folderID}`}
 									>
 										{folder.title}
 									</Link>

@@ -14,8 +14,8 @@ export default function USCDBPage() {
 			<Divider />
 			<Muted>
 				This method is intended for syncing up with existing scores. For new scores, you
-				should set up the <Link to="/dashboard/import/usc-ir">USC IR</Link>, for automatic
-				score uploading.
+				should set up the <Link to="/import/usc-ir">USC IR</Link>, for automatic score
+				uploading.
 			</Muted>
 			<br />
 			<Muted>

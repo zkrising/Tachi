@@ -35,7 +35,7 @@ export default function RecentFoldersPage({ reqUser, game, playtype }: UGPT) {
 		return (
 			<div className="text-center">
 				Looks like you've not recently interacted with any folders.{" "}
-				<Link to={`/dashboard/users/${user.username}/games/${game}/${playtype}/folders`}>
+				<Link to={`/u/${user.username}/games/${game}/${playtype}/folders`}>
 					Go do that!
 				</Link>
 			</div>

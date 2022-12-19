@@ -15,8 +15,8 @@ export default function LR2orajaDBPage() {
 			<Divider />
 			<Muted>
 				This method is intended for syncing up with existing scores. For new scores, you
-				should set up the <Link to="/dashboard/import/beatoraja-ir">LR2oraja IR</Link>, for
-				automatic score uploading.
+				should set up the <Link to="/import/beatoraja-ir">LR2oraja IR</Link>, for automatic
+				score uploading.
 			</Muted>
 			<br />
 			<Muted>

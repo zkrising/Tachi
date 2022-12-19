@@ -15,7 +15,7 @@ export default function GoalLink({ goal, noPad }: { goal: GoalDocument; noPad?: 
 			return (
 				<Link
 					className={`gentle-link ${pad}`}
-					to={`/dashboard/games/${goal.game}/${goal.playtype}/charts/${goal.charts.data}`}
+					to={`/games/${goal.game}/${goal.playtype}/charts/${goal.charts.data}`}
 				>
 					{goal.name}
 				</Link>
@@ -28,7 +28,7 @@ export default function GoalLink({ goal, noPad }: { goal: GoalDocument; noPad?: 
 			return (
 				<Link
 					className={`gentle-link ${pad}`}
-					to={`/dashboard/users/${settings.userID}/games/${goal.game}/${goal.playtype}/folders/${goal.charts.data}`}
+					to={`/u/${settings.userID}/games/${goal.game}/${goal.playtype}/folders/${goal.charts.data}`}
 				>
 					{goal.name}
 				</Link>

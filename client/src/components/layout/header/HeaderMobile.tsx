@@ -35,7 +35,7 @@ export function HeaderMobile({
 								className="btn btn-icon btn-hover-transparent-white p-0 ml-3"
 								id="kt_header_mobile_topbar_toggle"
 							>
-								<Link to={`/dashboard/users/${user.username}`}>
+								<Link to={`/u/${user.username}`}>
 									<div className="px-4">
 										<img
 											className="rounded"

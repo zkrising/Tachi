@@ -40,7 +40,7 @@ function Row({ data }: { data: FailedImportDataset[0] }) {
 			<td>
 				<Link
 					className="gentle-link"
-					to={`/dashboard/users/${data.__related.user.username}`}
+					to={`/u/${data.__related.user.username}`}
 				>
 					{data.__related.user.username}
 				</Link>

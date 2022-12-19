@@ -5,9 +5,9 @@ import MenuLink from "./MenuLink";
 export default function UtilsDropdown() {
 	return (
 		<MenuDropdown name="Developer Utils">
-			<MenuLink to="/dashboard/utils/seeds" name="Seeds Management" />
-			<MenuLink to="/dashboard/utils/imports" name="Import Management" />
-			<MenuLink to="/dashboard/utils/quests" name="Quest Creator" />
+			<MenuLink to="/utils/seeds" name="Seeds Management" />
+			<MenuLink to="/utils/imports" name="Import Management" />
+			<MenuLink to="/utils/quests" name="Quest Creator" />
 		</MenuDropdown>
 	);
 }

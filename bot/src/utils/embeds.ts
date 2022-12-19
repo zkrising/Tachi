@@ -49,7 +49,7 @@ export function CreateImportEmbed(importDoc: ImportDocument) {
 		.addField("Errors", importDoc.errors.length.toString(), true)
 		.addField(
 			"Your Profile",
-			`${BotConfig.TACHI_SERVER_LOCATION}/dashboard/users/${importDoc.userID}/games/${importDoc.game}`
+			`${BotConfig.TACHI_SERVER_LOCATION}/u/${importDoc.userID}/games/${importDoc.game}`
 		);
 }
 
@@ -59,7 +59,7 @@ export function CreateUserEmbed(userDoc: UserDocument) {
 		.setThumbnail(PrependTachiUrl(`/users/${userDoc.id}/pfp`))
 		.setDescription(userDoc.status ?? "No status...")
 		.addField("Join Date", FormatDate(userDoc.joinDate))
-		.setURL(`${BotConfig.TACHI_SERVER_LOCATION}/dashboard/users/${userDoc.username}`);
+		.setURL(`${BotConfig.TACHI_SERVER_LOCATION}/u/${userDoc.username}`);
 }
 
 export async function CreateChartScoresEmbed(

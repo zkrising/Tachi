@@ -10,7 +10,7 @@ export function Breadcrumbs({ items }: { items: string[] }) {
 
 	return (
 		<div className="align-items-center font-weight-bold my-2 d-flex">
-			<Link className="opacity-75 hover-opacity-100" to="/dashboard">
+			<Link className="opacity-75 hover-opacity-100" to="/">
 				<i className="flaticon2-shelter text-white icon-1x" />
 			</Link>
 			{items.map((name, index) => (
@@ -18,7 +18,7 @@ export function Breadcrumbs({ items }: { items: string[] }) {
 					<span className="label label-dot label-sm bg-white opacity-75 mx-3" />
 					<Link
 						className="text-white text-hover-white opacity-75 hover-opacity-100"
-						to={`/dashboard/${parts.slice(0, index + 1).join("/")}`}
+						to={`/${parts.slice(0, index + 1).join("/")}`}
 					>
 						{name}
 					</Link>

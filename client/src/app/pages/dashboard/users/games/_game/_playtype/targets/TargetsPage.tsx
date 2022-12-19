@@ -41,11 +41,11 @@ export default function TargetsPage({ reqUser, game, playtype }: UGPT) {
 				<Switch>
 					<Route
 						exact
-						path="/dashboard/users/:userID/games/:game/:playtype/targets/goals"
+						path="/u/:userID/games/:game/:playtype/targets/goals"
 					>
 						<UGPTGoalsPage {...{ reqUser, game, playtype }} />
 					</Route>
-					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/targets">
+					<Route exact path="/u/:userID/games/:game/:playtype/targets">
 						<UGPTQuestsPage {...{ reqUser, game, playtype }} />
 					</Route>
 				</Switch>

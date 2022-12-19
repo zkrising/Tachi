@@ -123,9 +123,7 @@ function LeaderboardsPageContent({
 				</td>
 				<td>
 					<GentleLink
-						to={`/dashboard/users/${
-							userMap.get(s.userID)!.username
-						}/games/${game}/${playtype}`}
+						to={`/u/${userMap.get(s.userID)!.username}/games/${game}/${playtype}`}
 					>
 						{userMap.get(s.userID)?.username}
 					</GentleLink>
@@ -159,10 +157,7 @@ function LeaderboardsPageContent({
 		<Card
 			header={"Leaderboard"}
 			footer={
-				<Link
-					to={`/dashboard/games/${game}/${playtype}/leaderboards`}
-					className="float-right"
-				>
+				<Link to={`/games/${game}/${playtype}/leaderboards`} className="float-right">
 					View Global Leaderboards
 				</Link>
 			}

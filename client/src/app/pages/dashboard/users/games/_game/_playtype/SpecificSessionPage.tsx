@@ -41,7 +41,7 @@ export default function SpecificSessionPage({ reqUser, game, playtype }: UGPT) {
 	) {
 		return (
 			<Redirect
-				to={`/dashboard/users/${data.user.username}/games/${data.session.game}/${data.session.playtype}/sessions/${sessionID}`}
+				to={`/u/${data.user.username}/games/${data.session.game}/${data.session.playtype}/sessions/${sessionID}`}
 			/>
 		);
 	}

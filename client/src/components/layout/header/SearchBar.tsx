@@ -6,9 +6,8 @@ import Loading from "components/util/Loading";
 import { TachiConfig } from "lib/config";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Game, GetGameConfig, integer, UserDocument, SongDocument } from "tachi-common";
+import { Game, GetGameConfig, integer, UserDocument, SongDocument, Playtype } from "tachi-common";
 import { GamePT, JustChildren } from "types/react";
-import { Playtype } from "tachi-common";
 import QuickTooltip from "../misc/QuickTooltip";
 
 interface SearchReturns {
@@ -46,11 +45,11 @@ function GPTSearchResult({
 	return (
 		<div className="d-flex flex-column ml-3 mt-2 mb-2">
 			<strong>
-				<Link to={`/dashboard/users/${user.username}`}>{user.username}</Link>
+				<Link to={`/u/${user.username}`}>{user.username}</Link>
 				<Link
 					className="float-right gentle-link mr-4"
 					tabIndex={tabIndex}
-					to={`/dashboard/users/${user.username}/games/${game}/${playtype}${currentLoc}`}
+					to={`/u/${user.username}/games/${game}/${playtype}${currentLoc}`}
 					style={{
 						fontWeight: "lighter",
 					}}
@@ -114,11 +113,7 @@ function SearchResults({ results }: { results: SearchReturns }) {
 									user={u}
 								/>
 							) : (
-								<SearchResult
-									key={u.id}
-									link={`/dashboard/users/${u.username}`}
-									tabIndex={0}
-								>
+								<SearchResult key={u.id} link={`/u/${u.username}`} tabIndex={0}>
 									<strong>{u.username}</strong>
 									<span className="font-size-sm font-weight-bold text-muted">
 										{u.status}
@@ -141,7 +136,7 @@ function SearchResults({ results }: { results: SearchReturns }) {
 						{results.songs.map((s) => (
 							<SearchResult
 								key={s.id + s.game}
-								link={`/dashboard/games/${s.game}/${
+								link={`/games/${s.game}/${
 									GetGameConfig(s.game).validPlaytypes.includes(
 										playtype as Playtype
 									)

@@ -36,7 +36,7 @@ export default function UserIntegrationsPage({ reqUser }: { reqUser: UserDocumen
 		`${reqUser.username}'s Integrations`
 	);
 
-	const baseUrl = `/dashboard/users/${reqUser.username}/integrations`;
+	const baseUrl = `/u/${reqUser.username}/integrations`;
 
 	return (
 		<Card header="Integrations" className="col-12 offset-lg-2 col-lg-8">
@@ -631,7 +631,7 @@ function ServicesPage({ reqUser }: { reqUser: UserDocument }) {
 		);
 	}
 
-	const baseUrl = `/dashboard/users/${reqUser.username}/integrations/services`;
+	const baseUrl = `/u/${reqUser.username}/integrations/services`;
 
 	return (
 		<Row className="text-center justify-content-center">
@@ -747,7 +747,7 @@ function KAIIntegrationStatus({
 				) : (
 					<h4>
 						You should authenticate yourself by going to{" "}
-						<Link to="/dashboard/import">Import Scores</Link> for the thing you want to
+						<Link to="/import">Import Scores</Link> for the thing you want to
 						import for!
 					</h4>
 				)}

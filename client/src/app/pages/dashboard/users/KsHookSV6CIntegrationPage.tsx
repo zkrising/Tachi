@@ -32,7 +32,7 @@ export default function KsHookSV6CIntegrationPage({ reqUser }: { reqUser: UserDo
 			</Col>
 			<Col xs={12} className="mt-4">
 				Instructions on how to setup the KsHook can be found{" "}
-				<Link to="/dashboard/import/kshook">here</Link>.
+				<Link to="/import/kshook">here</Link>.
 				<Divider />
 			</Col>
 			<Col xs={12} className="mt-4">

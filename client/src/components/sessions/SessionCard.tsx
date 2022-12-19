@@ -105,7 +105,7 @@ export default function SessionCard({ sessionID }: { sessionID: string }) {
 						{highlight ? "Remove as Highlight" : "Highlight this session!"}
 					</Button>
 					<LinkButton
-						to={`/dashboard/users/${sessionUser.username}/games/${session.game}/${session.playtype}/sessions/${session.sessionID}`}
+						to={`/u/${sessionUser.username}/games/${session.game}/${session.playtype}/sessions/${session.sessionID}`}
 						className="ml-4 btn-primary"
 					>
 						View Session
@@ -124,7 +124,7 @@ function SessionOverview({ session, username }: { session: SessionDocument; user
 			<div className="col-12 col-lg-4">
 				<div className="d-flex justify-content-center align-self-center">
 					<LinkButton
-						to={`/dashboard/users/${username}/games/${session.game}/${session.playtype}/sessions/${session.sessionID}`}
+						to={`/u/${username}/games/${session.game}/${session.playtype}/sessions/${session.sessionID}`}
 						className="btn-primary"
 					>
 						View Session

@@ -42,21 +42,21 @@ export function Footer() {
 
 					<div className="nav nav-dark order-1 order-md-2 justify-content-center">
 						<Link
-							to="/dashboard/support"
+							to="/support"
 							className="nav-link px-3"
 							onClick={() => window.scrollTo(0, 0)}
 						>
 							Support
 						</Link>
 						<Link
-							to="/dashboard/privacy"
+							to="/privacy"
 							className="nav-link px-3"
 							onClick={() => window.scrollTo(0, 0)}
 						>
 							GDPR
 						</Link>
 						<Link
-							to="/dashboard/credits"
+							to="/credits"
 							className="nav-link px-3"
 							onClick={() => window.scrollTo(0, 0)}
 						>

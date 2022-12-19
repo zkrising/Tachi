@@ -135,7 +135,7 @@ function InviteList({ reqUser }: { reqUser: UserDocument }) {
 					consumed.map((e) => (
 						<div key={e.code}>
 							Invited{" "}
-							<Link to={`/dashboard/users/${e.consumedBy}`}>
+							<Link to={`/u/${e.consumedBy}`}>
 								{data.consumers.find((u) => u.id === e.consumedBy)?.username ??
 									"Unknown"}
 							</Link>{" "}

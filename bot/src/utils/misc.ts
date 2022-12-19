@@ -144,12 +144,12 @@ export function GetGameChannel(client: Client, game: Game) {
  */
 export function CreateChartLink(chart: ChartDocument, game: Game) {
 	if (chart.isPrimary) {
-		return `${BotConfig.TACHI_SERVER_LOCATION}/dashboard/games/${game}/${
-			chart.playtype
-		}/songs/${chart.songID}/${encodeURIComponent(chart.difficulty)}`;
+		return `${BotConfig.TACHI_SERVER_LOCATION}/games/${game}/${chart.playtype}/songs/${
+			chart.songID
+		}/${encodeURIComponent(chart.difficulty)}`;
 	}
 
-	return `${BotConfig.TACHI_SERVER_LOCATION}/dashboard/games/${game}/${chart.playtype}/songs/${chart.songID}/${chart.chartID}`;
+	return `${BotConfig.TACHI_SERVER_LOCATION}/games/${game}/${chart.playtype}/songs/${chart.songID}/${chart.chartID}`;
 }
 
 type ScOrPBDoc<I extends IDStrings> = PBScoreDocument<I> | ScoreDocument<I>;

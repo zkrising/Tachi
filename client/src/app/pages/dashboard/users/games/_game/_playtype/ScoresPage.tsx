@@ -75,7 +75,7 @@ export default function ScoresPage({
 			</div>
 			<div className="col-12 mt-4">
 				<Switch>
-					<Route exact path="/dashboard/users/:userID/games/:game/:playtype/scores">
+					<Route exact path="/u/:userID/games/:game/:playtype/scores">
 						<>
 							{gptConfig.scoreRatingAlgs.length > 1 && (
 								<AlgSelector {...{ alg, setAlg, gptConfig }} />
@@ -86,10 +86,10 @@ export default function ScoresPage({
 							/>
 						</>
 					</Route>
-					<Route path="/dashboard/users/:userID/games/:game/:playtype/scores/history">
+					<Route path="/u/:userID/games/:game/:playtype/scores/history">
 						<ScoresOverview {...{ reqUser, game, playtype }} />
 					</Route>
-					<Route path="/dashboard/users/:userID/games/:game/:playtype/scores/all">
+					<Route path="/u/:userID/games/:game/:playtype/scores/all">
 						<PBsOverview
 							url={`/users/${reqUser.id}/games/${game}/${playtype}/pbs/all`}
 							reqUser={reqUser}
@@ -98,7 +98,7 @@ export default function ScoresPage({
 							indexCol={false}
 						/>
 					</Route>
-					<Route path="/dashboard/users/:userID/games/:game/:playtype/scores/most-played">
+					<Route path="/u/:userID/games/:game/:playtype/scores/most-played">
 						<PBsOverview
 							url={`/users/${reqUser.id}/games/${game}/${playtype}/most-played`}
 							reqUser={reqUser}

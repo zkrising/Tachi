@@ -42,27 +42,20 @@ app.webhooks.on(
 			`https://api.github.com/repos/TNG-dev/Tachi/pulls/${body.number}/files`
 		).then((r) => r.json())) as Array<{ filename: string }>;
 
-		console.log(`Files Changed: ${filesChanged.map((e) => e.filename).join(", ")}`);
-
 		// if any file modified in this pr is a collection
 		if (filesChanged.some((k) => k.filename.startsWith("database-seeds/collections"))) {
 			// post a link to the diff viewer in the PR comments.
-			const res = await octokit.request(
-				"POST /repos/{owner}/{repo}/issues/{issue_number}/comments",
-				{
-					owner: body.repository.owner.login,
-					repo: body.repository.name,
-					issue_number: body.pull_request.number,
-					body: mkSeedDiffViewMsg(
-						body.pull_request.head.repo.url,
-						body.pull_request.head.sha,
-						body.pull_request.base.repo.url,
-						body.pull_request.base.sha
-					),
-				}
-			);
-
-			console.dir(res);
+			await octokit.request("POST /repos/{owner}/{repo}/issues/{issue_number}/comments", {
+				owner: body.repository.owner.login,
+				repo: body.repository.name,
+				issue_number: body.pull_request.number,
+				body: mkSeedDiffViewMsg(
+					body.pull_request.head.repo.url,
+					body.pull_request.head.sha,
+					body.pull_request.base.repo.url,
+					body.pull_request.base.sha
+				),
+			});
 		}
 	}
 );

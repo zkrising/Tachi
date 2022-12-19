@@ -579,13 +579,16 @@ function SessionShower({ sessionID }: { sessionID: string }) {
 	if (raises.length === 0) {
 		return (
 			<Row className="mt-4">
-				<div className="d-flex w-100 justify-content-center">
-					<LinkButton
-						className="btn-outline-primary"
-						to={`/dashboard/users/${data.user.username}/games/${data.session.game}/${data.session.playtype}/sessions/${sessionID}`}
-					>
-						View Full Session
-					</LinkButton>
+				<div className="d-flex w-100 justify-content-center flex-column">
+					<div className="mb-4">This session had no raises.</div>
+					<div>
+						<LinkButton
+							className="btn-outline-primary"
+							to={`/dashboard/users/${data.user.username}/games/${data.session.game}/${data.session.playtype}/sessions/${sessionID}`}
+						>
+							View Full Session
+						</LinkButton>
+					</div>
 				</div>
 			</Row>
 		);

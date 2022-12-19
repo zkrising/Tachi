@@ -143,52 +143,6 @@ t.test("#CalculateDataForGamePT", (t) => {
 		t.end();
 	});
 
-	t.test("DDR:SP", async (t) => {
-		const res = await CalculateDataForGamePT(
-			"ddr",
-			"SP",
-			Testing511SPA,
-			TestingIIDXSPDryScore,
-			null,
-			logger
-		);
-
-		prAssert(
-			t,
-			res,
-			{
-				MFCP: p.nullable(p.isPositiveInteger),
-				ktRating: "?number",
-			},
-			"Response should contain keys for DDR:SP"
-		);
-
-		t.end();
-	});
-
-	t.test("DDR:DP", async (t) => {
-		const res = await CalculateDataForGamePT(
-			"ddr",
-			"DP",
-			Testing511SPA,
-			TestingIIDXSPDryScore,
-			null,
-			logger
-		);
-
-		prAssert(
-			t,
-			res,
-			{
-				MFCP: "null",
-				ktRating: "?number",
-			},
-			"Response should contain nulled keys for DDR:DP"
-		);
-
-		t.end();
-	});
-
 	t.test("chunithm:Single", async (t) => {
 		const res = await CalculateDataForGamePT(
 			"chunithm",

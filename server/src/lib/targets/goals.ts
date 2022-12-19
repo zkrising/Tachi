@@ -300,7 +300,6 @@ export function HumaniseGoalProgress(
 
 				// no special logic needed for these games, just render the lamp.
 				case "chunithm":
-				case "ddr":
 				case "gitadora":
 				case "jubeat":
 				case "maimai":

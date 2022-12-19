@@ -53,7 +53,6 @@ export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
  */
 export function GenericCalculatePercent(game: Game, score: number, chart?: ChartDocument): number {
 	switch (game) {
-		case "ddr":
 		case "museca":
 		case "chunithm":
 		case "wacca":

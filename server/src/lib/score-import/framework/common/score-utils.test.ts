@@ -79,7 +79,7 @@ t.test("#GenericCalculatePercent", (t) => {
 		f(game, 0, 0);
 	}
 
-	for (const game of ["ddr", "museca", "chunithm", "wacca"] as const) {
+	for (const game of ["museca", "chunithm", "wacca"] as const) {
 		f(game, 1_000_000, 100);
 		f(game, 500_000, 50);
 		f(game, 993_121, 99.3121);

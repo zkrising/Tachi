@@ -345,67 +345,6 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 		t.end();
 	});
 
-	t.test("Should reject if ddrSongHash is called without game = ddr", (t) => {
-		t.rejects(
-			ResolveMatchTypeToKTData(
-				deepmerge(baseBatchManualScore, {
-					matchType: "ddrSongHash",
-					playtype: "SP",
-					difficulty: "DIFFICULT",
-				}),
-				context,
-				importType,
-				logger
-			),
-			new InvalidScoreFailure("Cannot use ddrSongHash lookup on iidx.")
-		);
-
-		t.end();
-	});
-
-	t.test("Should resolve for the ddr songHash if the matchType is ddrSongHash", async (t) => {
-		const PUTY_ID = "DQlQ1DlPbq900oqdOo8l0d6I1lIOl99l";
-
-		const res = await ResolveMatchTypeToKTData(
-			deepmerge(baseBatchManualScore, {
-				matchType: "ddrSongHash",
-				identifier: PUTY_ID,
-				playtype: "SP",
-				difficulty: "DIFFICULT",
-			}),
-			deepmerge(context, { game: "ddr" }),
-			importType,
-			logger
-		);
-
-		t.hasStrict(
-			res,
-			{
-				song: { id: 10 },
-				chart: { chartID: "48024d36bbe76c9fed09c3ffdc19412925d1efd3" },
-			},
-			"Should return the right song and chart."
-		);
-
-		t.rejects(
-			() =>
-				ResolveMatchTypeToKTData(
-					deepmerge(baseBatchManualScore, {
-						matchType: "ddrSongHash",
-						identifier: "Bad_ID",
-						playtype: "SP",
-						difficulty: "EXPERT",
-					}),
-					deepmerge(context, { game: "ddr" }),
-					importType,
-					logger
-				),
-			ktdWrap("Cannot find chart for songHash", "ddr")
-		);
-
-		t.end();
-	});
-
 	t.test("Should trigger failsave if invalid matchType is provided.", (t) => {
 		t.rejects(
 			() =>

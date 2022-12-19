@@ -1,5 +1,12 @@
-import { Game, GPTTierlists, IDStrings, IIDX_LAMPS, ScoreDocument, SDVX_LAMPS } from "tachi-common";
-import { Playtype } from "tachi-common";
+import {
+	Game,
+	GPTTierlists,
+	IDStrings,
+	IIDX_LAMPS,
+	ScoreDocument,
+	SDVX_LAMPS,
+	Playtype,
+} from "tachi-common";
 
 type ScaleAchievedFns = {
 	[I in IDStrings]: {
@@ -25,8 +32,6 @@ const ScaleNameAchievedFns: ScaleAchievedFns = {
 		"sgl-HC": (k) => k.scoreData.lampIndex >= IIDX_LAMPS.HARD_CLEAR,
 	},
 	"chunithm:Single": {},
-	"ddr:DP": {},
-	"ddr:SP": {},
 	"gitadora:Dora": {},
 	"gitadora:Gita": {},
 	"iidx:DP": {

@@ -50,18 +50,6 @@ t.test("#CalculateRatings", (t) => {
 		t.end();
 	});
 
-	t.test("Should return MFCP for DDR", async (t) => {
-		const res = await CalculateRatings("ddr", "SP", 1, logger);
-
-		t.strictSame(res, { MFCP: null, ktRating: null }, "Should return MFCP keys.");
-
-		const resDP = await CalculateRatings("ddr", "DP", 1, logger);
-
-		t.strictSame(resDP, { MFCP: null, ktRating: null }, "Should return MFCP keys.");
-
-		t.end();
-	});
-
 	t.test("Should return skill for Gitadora", async (t) => {
 		const res = await CalculateRatings("gitadora", "Dora", 1, logger);
 

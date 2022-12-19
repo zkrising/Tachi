@@ -109,12 +109,6 @@ function GetGPTRatingFunction(game: Game, playtype: Playtype): RatingFunction {
 			return async (g, p, u) => ({
 				VF6: await LazySumN("VF6", 50)(g, p, u),
 			});
-		case "ddr:SP":
-		case "ddr:DP":
-			return async (g, p, u) => ({
-				MFCP: await LazySumAll("MFCP")(g, p, u),
-				ktRating: await LazyMeanN("ktRating", 20)(g, p, u),
-			});
 		case "gitadora:Dora":
 		case "gitadora:Gita":
 			return async (g, p, u, l) => ({

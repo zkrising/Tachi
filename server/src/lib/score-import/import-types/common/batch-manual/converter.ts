@@ -10,12 +10,11 @@ import {
 } from "../../../framework/common/string-asserts";
 import db from "external/mongo/db";
 import { GetGamePTConfig } from "tachi-common";
-import { FloorToNDP, RoundToNDecimalPlaces } from "utils/misc";
+import { FloorToNDP } from "utils/misc";
 import {
 	FindBMSChartOnHash,
 	FindChartWithPTDF,
 	FindChartWithPTDFVersion,
-	FindDDRChartOnSongHash,
 	FindITGChartOnHash,
 	FindSDVXChartOnInGameID,
 	FindSDVXChartOnInGameIDVersion,
@@ -28,12 +27,12 @@ import type { KtLogger } from "lib/logger/logger";
 import type {
 	BatchManualScore,
 	ChartDocument,
+	Difficulties,
+	GPTSupportedVersions,
 	Grades,
 	IDStrings,
 	ImportTypes,
 	SongDocument,
-	Difficulties,
-	GPTSupportedVersions,
 } from "tachi-common";
 
 /**
@@ -211,47 +210,6 @@ export async function ResolveMatchTypeToKTData(
 			return { song, chart };
 		}
 
-		case "ddrSongHash": {
-			if (game !== "ddr") {
-				throw new InvalidScoreFailure(`Cannot use ddrSongHash lookup on ${game}.`);
-			}
-
-			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-			if (!data.difficulty) {
-				throw new InvalidScoreFailure(
-					`Missing 'difficulty' field, but is needed for ddrSongHash lookup.`
-				);
-			}
-
-			const difficulty = AssertStrAsDifficulty(data.difficulty, game, context.playtype);
-
-			const chart = await FindDDRChartOnSongHash(
-				data.identifier,
-				context.playtype,
-				difficulty
-			);
-
-			if (!chart) {
-				throw new KTDataNotFoundFailure(
-					`Cannot find chart for songHash ${data.identifier} (${context.playtype} ${difficulty}).`,
-					importType,
-					data,
-					context
-				);
-			}
-
-			const song = await FindSongOnID(game, chart.songID);
-
-			if (!song) {
-				logger.severe(`DDR songID ${chart.songID} has charts but no parent song.`);
-				throw new InternalFailure(
-					`DDR songID ${chart.songID} has charts but no parent song.`
-				);
-			}
-
-			return { song, chart };
-		}
-
 		case "popnChartHash": {
 			if (game !== "popn") {
 				throw new InvalidScoreFailure(`Cannot use popnChartHash lookup on ${game}.`);
@@ -386,7 +344,6 @@ export async function ResolveMatchTypeToKTData(
 			const gamesWithInGameIDSupport = [
 				"iidx",
 				"popn",
-				"ddr",
 				"jubeat",
 				"chunithm",
 				"gitadora",
@@ -406,12 +363,7 @@ export async function ResolveMatchTypeToKTData(
 				);
 			}
 
-			let identifier: number | string = data.identifier;
-
-			// ddr uses weird strings as IDs instead of numbers
-			if (game !== "ddr") {
-				identifier = Number(data.identifier);
-			}
+			const identifier = data.identifier;
 
 			const difficulty = AssertStrAsDifficulty(data.difficulty, game, context.playtype);
 

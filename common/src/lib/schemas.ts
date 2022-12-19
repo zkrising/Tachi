@@ -327,7 +327,6 @@ function GetSongDataForGame(game: Game): PrudenceSchema {
 			};
 		case "usc":
 		case "gitadora":
-		case "ddr":
 			return {};
 	}
 }
@@ -446,8 +445,6 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 			};
 		case "gitadora:Dora":
 		case "gitadora:Gita":
-		case "ddr:SP":
-		case "ddr:DP":
 			return {};
 	}
 }
@@ -1306,7 +1303,6 @@ const PR_BATCH_MANUAL_SCORE = (game: Game, playtype: Playtype): PrudenceSchema =
 		lamp: p.isIn(gptConfig.lamps),
 		matchType: p.isIn(
 			"songTitle",
-			"ddrSongHash",
 			"tachiSongID",
 			"bmsChartHash",
 			"itgChartHash",

@@ -63,8 +63,6 @@ const CalculatedDataFunctions: CalculatedDataFunctionsType = {
 	"gitadora:Dora": CalculateDataGitadora,
 	"bms:7K": CalculateDataPMSorBMS,
 	"bms:14K": CalculateDataPMSorBMS,
-	"ddr:SP": CalculateDataDDR,
-	"ddr:DP": CalculateDataDDR,
 	"usc:Controller": CalculateDataSDVXorUSC,
 	"usc:Keyboard": CalculateDataSDVXorUSC,
 	"wacca:Single": CalculateDataWACCA,
@@ -192,17 +190,6 @@ function CalculateDataGitadora(
 ): CalculatedData<"gitadora:Dora" | "gitadora:Gita"> {
 	return {
 		skill: GITADORASkill.calculate(dryScore.scoreData.percent, chart.levelNum),
-	};
-}
-
-function CalculateDataDDR(
-	dryScore: DryScore,
-	chart: ChartDocument,
-	logger: KtLogger
-): CalculatedData<"ddr:DP" | "ddr:SP"> {
-	return {
-		MFCP: CalculateMFCP(dryScore, chart, logger),
-		ktRating: CalculateKTRating(dryScore, "ddr", chart.playtype, chart, logger),
 	};
 }
 

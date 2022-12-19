@@ -5,7 +5,6 @@ const scales: Record<Game, number> = {
 	bms: 2,
 	pms: 2,
 	chunithm: 5,
-	ddr: 1,
 	gitadora: 1,
 	maimai: 1,
 	museca: 5,

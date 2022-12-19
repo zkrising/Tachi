@@ -1,10 +1,9 @@
-import { CalculateKTLampRatingIIDXDP, CalculateKTLampRatingIIDXSP, CalculateMFCP } from "./stats";
+import { CalculateKTLampRatingIIDXDP, CalculateKTLampRatingIIDXSP } from "./stats";
 import deepmerge from "deepmerge";
-import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import { Testing511SPA, TestingIIDXSPDryScore } from "test-utils/test-data";
 import type { DryScore } from "../common/types";
-import type { ChartDocument, Difficulties, Lamps, ScoreDocument } from "tachi-common";
+import type { ChartDocument, Lamps } from "tachi-common";
 
 t.test("#CalculateKTLampRatingIIDXSP", (t) => {
 	function c(
@@ -158,120 +157,6 @@ t.test("#CalculateKTLampRatingIIDXDP", (t) => {
 		CalculateKTLampRatingIIDXDP(s("FAILED"), c(null)),
 		0,
 		"Should return 0 if the chart has no tierlist data and was failed."
-	);
-
-	t.end();
-});
-
-const logger = CreateLogCtx(__filename);
-
-t.test("#CalculateMFCP", (t) => {
-	function TestMFCP(
-		lamp: Lamps["ddr:DP" | "ddr:SP"],
-		levelNum: number,
-		difficulty: Difficulties["ddr:DP" | "ddr:SP"]
-	) {
-		return CalculateMFCP(
-			{
-				scoreData: {
-					lamp,
-				},
-			} as ScoreDocument,
-			{
-				difficulty,
-				levelNum,
-			} as ChartDocument,
-			logger
-		);
-	}
-
-	t.equal(TestMFCP("FAILED", 10, "EXPERT"), null, "Should return null for non-mfcs");
-
-	t.equal(
-		TestMFCP("MARVELOUS FULL COMBO", 10, "BASIC"),
-		null,
-		"Should reject charts on BASIC difficulty."
-	);
-
-	t.equal(
-		TestMFCP("MARVELOUS FULL COMBO", 10, "BEGINNER"),
-		null,
-		"Should reject charts on BEGINNER difficulty."
-	);
-
-	t.test("Should return null for charts with level less than 8", (t) => {
-		for (let i = 1; i <= 7; i++) {
-			t.equal(
-				TestMFCP("MARVELOUS FULL COMBO", i, "EXPERT"),
-				null,
-				`Should return null for charts with level ${i}`
-			);
-		}
-
-		t.end();
-	});
-
-	t.equal(
-		TestMFCP("MARVELOUS FULL COMBO", 8, "EXPERT"),
-		1,
-		"Should return 1 for charts with level 8"
-	);
-	t.equal(
-		TestMFCP("MARVELOUS FULL COMBO", 9, "EXPERT"),
-		1,
-		"Should return 1 for charts with level 9"
-	);
-	t.equal(
-		TestMFCP("MARVELOUS FULL COMBO", 10, "EXPERT"),
-		1,
-		"Should return 1 for charts with level 10"
-	);
-
-	t.equal(
-		TestMFCP("MARVELOUS FULL COMBO", 11, "EXPERT"),
-		2,
-		"Should return 2 for charts with level 11"
-	);
-	t.equal(
-		TestMFCP("MARVELOUS FULL COMBO", 12, "EXPERT"),
-		2,
-		"Should return 2 for charts with level 12"
-	);
-
-	t.equal(
-		TestMFCP("MARVELOUS FULL COMBO", 13, "EXPERT"),
-		4,
-		"Should return 4 for charts with level 13"
-	);
-
-	t.equal(
-		TestMFCP("MARVELOUS FULL COMBO", 14, "EXPERT"),
-		8,
-		"Should return 8 for charts with level 14"
-	);
-
-	t.equal(
-		TestMFCP("MARVELOUS FULL COMBO", 15, "EXPERT"),
-		15,
-		"Should return 15 for charts with level 15"
-	);
-
-	t.test("Should return 25 for charts with level 16-20", (t) => {
-		for (let i = 16; i <= 20; i++) {
-			t.equal(
-				TestMFCP("MARVELOUS FULL COMBO", i, "EXPERT"),
-				25,
-				`Should return 25 for charts with level ${i}`
-			);
-		}
-
-		t.end();
-	});
-
-	t.equal(
-		TestMFCP("MARVELOUS FULL COMBO", NaN, "EXPERT"),
-		null,
-		"Invalid level triggers failsafe."
 	);
 
 	t.end();

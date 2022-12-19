@@ -17,3 +17,7 @@ our goals.
 pnpm install
 pnpm calc-v1
 ```
+
+## Synchronising with seeds
+
+Run `ts-node database-seeds/scripts/rerunners/bms-pms/apply-sieglinde`.

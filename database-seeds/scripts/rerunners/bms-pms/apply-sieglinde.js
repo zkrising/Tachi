@@ -4,13 +4,13 @@ const path = require("path");
 const { MutateCollection } = require("../../util");
 
 const program = new Command();
-program.option("-i, --input <sieglinde output/ folder>");
+program.option("-i, --input <sieglinde output/folder>");
 
 program.parse(process.argv);
 const options = program.opts();
 
 if (!options.input) {
-	throw new Error(`Missing --input.`);
+	options.input = "../../../../sieglinde/src/output/";
 }
 
 const APPLICATION_ORDER = [

@@ -73,7 +73,9 @@ export default function BMSOrPMSDifficultyCell({
 						</div>
 					}
 				>
-					<div style={{ textDecoration: "underline dotted" }}>{levelText}</div>
+					<div style={{ textDecoration: "underline dotted" }}>
+						{levelText || "Rating Hidden"}
+					</div>
 				</QuickTooltip>
 			) : (
 				<span>{levelText}</span>

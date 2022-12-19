@@ -19,10 +19,12 @@ export default function DifficultyCell({
 	game,
 	chart,
 	alwaysShort,
+	noTierlist,
 }: {
 	game: Game;
 	chart: ChartDocument;
 	alwaysShort?: boolean;
+	noTierlist?: boolean;
 }) {
 	const gptConfig = GetGamePTConfig(game, chart.playtype);
 
@@ -68,7 +70,7 @@ export default function DifficultyCell({
 					</div>
 				</QuickTooltip>
 			)}
-			{Object.keys(chart.tierlistInfo).length > 0 && (
+			{!noTierlist && Object.keys(chart.tierlistInfo).length > 0 && (
 				<TierlistInfoPart chart={chart} game={game} />
 			)}
 			{!chart.isPrimary && (

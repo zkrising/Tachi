@@ -1,9 +1,10 @@
 import { ONE_DAY } from "util/constants/time";
 import { CreateChartIDMap, CreateChartLink, CreateSongMap } from "util/data";
-import { DistinctArr, NO_OP } from "util/misc";
+import { ChangeAtPosition, DistinctArr, NO_OP } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { GetScaleAchievedFn } from "util/tierlist";
 import { FormatDate, FormatTime } from "util/time";
+import { ChangeOpacity } from "util/color-opacity";
 import FolderInfoHeader from "components/game/folder/FolderInfoHeader";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Card from "components/layout/page/Card";
@@ -35,9 +36,12 @@ import {
 	ScoreDocument,
 	SongDocument,
 	Playtype,
+	COLOUR_SET,
 } from "tachi-common";
 import { UGPTFolderReturns } from "types/api-returns";
 import { FolderDataset } from "types/tables";
+import MiniTable from "components/tables/components/MiniTable";
+import DifficultyCell from "components/tables/cells/DifficultyCell";
 import FolderComparePage from "./FolderComparePage";
 import FolderQuestsPage from "./FolderQuestsPage";
 
@@ -562,20 +566,58 @@ function TierlistInfoLadder({
 							)
 						</Col>
 
-						{bucket.map((tierlistInfo, i) => (
-							<TierlistInfoBucketValues
-								tierlistInfo={tierlistInfo}
-								key={`${tierlistInfo.chartID}-${tierlistInfo.key}`}
-								game={game}
-								dataMap={dataMap}
-								bucket={bucket}
-								i={i}
-								reqUser={reqUser}
-							/>
-						))}
+						<TierlistBucket {...{ bucket, dataMap, game, playtype, reqUser }} />
 					</React.Fragment>
 				))}
 		</Row>
+	);
+}
+
+function TierlistBucket({
+	bucket,
+	dataMap,
+	game,
+	reqUser,
+}: {
+	dataMap: Map<string, FolderDataset[0]>;
+	game: Game;
+	playtype: Playtype;
+	reqUser: UserDocument;
+	bucket: TierlistInfo[];
+}) {
+	// xs view is tabular
+	if (window.screen.width <= 576) {
+		return (
+			<MiniTable>
+				{bucket.map((tierlistInfo, i) => (
+					<TierlistInfoBucketValues
+						tierlistInfo={tierlistInfo}
+						key={`${tierlistInfo.chartID}-${tierlistInfo.key}`}
+						game={game}
+						dataMap={dataMap}
+						bucket={bucket}
+						i={i}
+						reqUser={reqUser}
+					/>
+				))}
+			</MiniTable>
+		);
+	}
+
+	return (
+		<>
+			{bucket.map((tierlistInfo, i) => (
+				<TierlistInfoBucketValues
+					tierlistInfo={tierlistInfo}
+					key={`${tierlistInfo.chartID}-${tierlistInfo.key}`}
+					game={game}
+					dataMap={dataMap}
+					bucket={bucket}
+					i={i}
+					reqUser={reqUser}
+				/>
+			))}
+		</>
 	);
 }
 
@@ -612,14 +654,38 @@ function TierlistInfoBucketValues({
 			statusClass = "";
 	}
 
+	// xs view
+	if (window.screen.width <= 576) {
+		return (
+			<tr>
+				<DifficultyCell game={game} chart={data} alwaysShort noTierlist />
+				<td className="text-left">
+					<Link className="gentle-link" to={CreateChartLink(data, game)}>
+						{data.__related.song.title}
+					</Link>{" "}
+					<br />
+					<div>
+						{tierlistInfo.key} ({tierlistInfo.data.text})
+						{tierlistInfo.data.individualDifference && (
+							<span className="ml-1">
+								<Icon type="balance-scale-left" />
+							</span>
+						)}
+					</div>
+				</td>
+				<TierlistInfoCell tierlistInfo={tierlistInfo} />
+			</tr>
+		);
+	}
+
 	return (
 		<>
 			{lastKey && lastKey.key !== tierlistInfo.key && <Col xl={12} className="my-2" />}
 			<Col
 				className={`ladder-element ${
 					i % 12 < 6 ? "ladder-element-dark" : ""
-				} ladder-element-${statusClass}`}
-				xs={6}
+				} ladder-element-${statusClass} d-none d-sm-block`}
+				xs={12}
 				sm={6}
 				md={4}
 				lg={3}
@@ -655,6 +721,35 @@ function TierlistInfoBucketValues({
 				</Muted>
 			</Col>
 		</>
+	);
+}
+
+function TierlistInfoCell({ tierlistInfo }: { tierlistInfo: TierlistInfo }) {
+	let colour;
+	let text;
+
+	if (
+		tierlistInfo.achieved === AchievedStatuses.NOT_PLAYED ||
+		tierlistInfo.achieved === AchievedStatuses.FAILED
+	) {
+		colour = COLOUR_SET.red;
+		text = "✗";
+	} else {
+		colour = COLOUR_SET.green;
+		text = "✓";
+	}
+
+	return (
+		<td
+			style={{
+				backgroundColor: ChangeOpacity(colour, 0.2),
+				width: "60px",
+				minWidth: "60px",
+				maxWidth: "60px",
+			}}
+		>
+			{text}
+		</td>
 	);
 }
 

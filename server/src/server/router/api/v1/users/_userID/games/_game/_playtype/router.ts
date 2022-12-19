@@ -12,7 +12,7 @@ import { RequireAuthedAsUser, RequireSelfRequestFromUser } from "../../../middle
 import { Router } from "express";
 import db from "external/mongo/db";
 import { CreateActivityRouteHandler } from "lib/activity/activity";
-import { ONE_MONTH, ONE_YEAR } from "lib/constants/time";
+import { ONE_MONTH, ONE_WEEK, ONE_YEAR } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import p from "prudence";
 import prValidate from "server/middleware/prudence-validate";
@@ -103,17 +103,33 @@ router.get("/", async (req, res) => {
 router.get(
 	"/history",
 	prValidate({
-		duration: p.optional(p.isIn("3mo", "year")),
+		duration: p.optional(p.isIn("week", "month", "3mo", "year")),
 	}),
 	async (req, res) => {
-		const duration = req.query.duration as "3mo" | "year" | undefined;
+		const duration = req.query.duration as "3mo" | "month" | "week" | "year" | undefined;
 
 		let time = Date.now();
 
-		if (duration === "year") {
-			time = time - ONE_YEAR;
-		} else {
-			time = time - ONE_MONTH * 3;
+		switch (duration) {
+			case "year": {
+				time = time - ONE_YEAR;
+				break;
+			}
+
+			// if the user doesn't define anything, default to 3month
+			case "3mo":
+			case undefined: {
+				time = time - ONE_MONTH * 3;
+				break;
+			}
+
+			case "month": {
+				time = time - ONE_MONTH;
+				break;
+			}
+
+			case "week":
+				time = time - ONE_WEEK;
 		}
 
 		const { game, playtype, user } = GetUGPT(req);

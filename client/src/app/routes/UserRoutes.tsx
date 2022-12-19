@@ -31,6 +31,7 @@ import { FormatGame, Game, GetGameConfig, UserDocument, UserGameStats } from "ta
 import { UGPTStatsReturn } from "types/api-returns";
 import UserImportsPage from "app/pages/dashboard/users/UserImportsPage";
 import { TargetsContextProvider } from "context/TargetsContext";
+import ToolsPage from "app/pages/dashboard/users/games/_game/_playtype/tools/ToolsPage";
 import ScoresPage from "../pages/dashboard/users/games/_game/_playtype/ScoresPage";
 import UserPage from "../pages/dashboard/users/UserPage";
 
@@ -64,9 +65,9 @@ export default function UserRoutes() {
 		return null;
 	}
 
-	// redirect to the users actual name.
-	if (userID.match(/^[0-9]+$/u)) {
-		const split = history.location.pathname.match(/^(\/u)\/([0-9]+)(.*)$/u);
+	// redirect to the users actual name if using a user ID or "me"
+	if (userID.match(/^([0-9]+|me)$/u)) {
+		const split = history.location.pathname.match(/^(\/u)\/([0-9]+|me)(.*)$/u);
 
 		if (!split) {
 			return (
@@ -229,6 +230,8 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: UserDocument; game
 				header={`${reqUser.username}'s ${FormatGame(game, playtype)} Profile`}
 				footer={
 					<UGPTBottomNav
+						game={game}
+						playtype={playtype}
 						isRequestedUser={reqUser.id === user?.id}
 						baseUrl={`/u/${reqUser.username}/games/${game}/${playtype}`}
 					/>
@@ -260,6 +263,9 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: UserDocument; game
 				</Route>
 				<Route exact path="/u/:userID/games/:game/:playtype/leaderboard">
 					<LeaderboardsPage reqUser={reqUser} game={game} playtype={playtype} />
+				</Route>
+				<Route path="/u/:userID/games/:game/:playtype/tools">
+					<ToolsPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
 				<RequireAuthAsUserParam>
 					<Route exact path="/u/:userID/games/:game/:playtype/settings">

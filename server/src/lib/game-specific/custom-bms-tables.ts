@@ -103,6 +103,7 @@ export type TachiBMSTable = {
 	urlName: string; // what do we call this in the url?
 	tableName: string; // what should it be called in-game?
 	symbol: string; // what symbol should this table have?
+	description: string;
 } & (
 	| {
 			forSpecificUser: true; // if this table is user-dependent
@@ -265,6 +266,8 @@ export const CUSTOM_TACHI_BMS_TABLES: Array<TachiBMSTable> = [
 		playtype: "7K",
 		symbol: "sgl-",
 		tableName: "Sieglinde EC",
+		description:
+			"Folders for the 'Sieglinde' rating algorithm. These are rough estimates of how hard it is to EASY CLEAR a given chart.",
 		async getBody() {
 			const table = await GetTableForIDGuaranteed("bms-7K-sgl-EC");
 
@@ -281,6 +284,8 @@ export const CUSTOM_TACHI_BMS_TABLES: Array<TachiBMSTable> = [
 		playtype: "7K",
 		symbol: "sgl-",
 		tableName: "Sieglinde HC",
+		description:
+			"Folders for the 'Sieglinde' rating algorithm. These are rough estimates of how hard it is to HARD CLEAR a given chart.",
 		async getBody() {
 			const table = await GetTableForIDGuaranteed("bms-7K-sgl-HC");
 
@@ -299,6 +304,7 @@ export const CUSTOM_TACHI_BMS_TABLES: Array<TachiBMSTable> = [
 		symbol: "Rival",
 		tableName: `${TachiConfig.NAME} Rival Stats`,
 		forSpecificUser: true,
+		description: `Folders for your rivals on ${TachiConfig.NAME}. This includes things like their recent highlights and plays.`,
 		async getBody(userID, playtype) {
 			const rivals = await GetRivalUsers(userID, "bms", playtype);
 

@@ -3,10 +3,12 @@
 // for certain games.
 
 import bmsRouter from "./bms/router";
+import iidxRouter from "./iidx/router";
 import { Router } from "express";
 
 const router: Router = Router({ mergeParams: true });
 
 router.use("/bms", bmsRouter);
+router.use("/iidx", iidxRouter);
 
 export default router;

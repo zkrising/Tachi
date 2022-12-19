@@ -322,6 +322,16 @@ export function CreateSongMap<G extends Game = Game>(songs: Array<SongDocument<G
 	return songMap;
 }
 
+export function CreateChartMap<I extends IDStrings = IDStrings>(charts: Array<ChartDocument<I>>) {
+	const chartMap = new Map<string, ChartDocument<I>>();
+
+	for (const chart of charts) {
+		chartMap.set(chart.chartID, chart);
+	}
+
+	return chartMap;
+}
+
 /**
  * Formats a PrudenceError into something a little more readable.
  * @param err - The prudence error to format.

@@ -5,6 +5,16 @@ import { ParseEagSDVX } from "./api/eag-sdvx/parser";
 import { ParseFloIIDX } from "./api/flo-iidx/parser";
 import { ParseFloSDVX } from "./api/flo-sdvx/parser";
 import { ParseMinSDVX } from "./api/min-sdvx/parser";
+import {
+	ParseCGDevJubeat,
+	ParseCGDevMuseca,
+	ParseCGDevPopn,
+	ParseCGDevSDVX,
+	ParseCGProdJubeat,
+	ParseCGProdMuseca,
+	ParseCGProdPopn,
+	ParseCGProdSDVX,
+} from "./common/api-cg/parsers";
 import ParseBatchManual from "./file/batch-manual/parser";
 import ParseEamusementIIDXCSV from "./file/eamusement-iidx-csv/parser";
 import ParseEamusementSDVXCSV from "./file/eamusement-sdvx-csv/parser";
@@ -37,6 +47,18 @@ export const Parsers = {
 	"api/arc-iidx": ParseArcIIDX,
 	"api/arc-sdvx": ParseArcSDVX,
 
+	"api/cg-dev-sdvx": ParseCGDevSDVX,
+	"api/cg-dev-popn": ParseCGDevPopn,
+	"api/cg-dev-museca": ParseCGDevMuseca,
+	"api/cg-prod-sdvx": ParseCGProdSDVX,
+
+	// temporarily disabled as no musicRate is provided.
+	// "api/cg-dev-jubeat": ParseCGDevJubeat,
+	// "api/cg-prod-jubeat": ParseCGProdJubeat,
+
+	"api/cg-prod-popn": ParseCGProdPopn,
+	"api/cg-prod-museca": ParseCGProdMuseca,
+
 	"ir/barbatos": ParseBarbatosSingle,
 	"ir/beatoraja": ParseBeatorajaSingle,
 	"ir/fervidex": ParseFervidexSingle,
@@ -46,4 +68,6 @@ export const Parsers = {
 	"ir/kshook-sv6c": ParseKsHookSV6C,
 	"ir/kshook-sv6c-static": ParseKsHookSV6CStatic,
 	"ir/lr2hook": ParseLR2Hook,
-};
+}; /* satisfies Record<ImportTypes, ParserFunction<any, any, any>>; */
+// ^ not supported in our current version of TS, but undoubtedly useful for
+// this kind of work.

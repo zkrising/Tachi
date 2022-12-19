@@ -582,3 +582,15 @@ export function HumanisedJoinArray(arr: Array<string>, lastJoiner = "or") {
 
 	return `${arr.slice(0, arr.length - 1).join(", ")} ${lastJoiner} ${arr[arr.length - 1]!}`;
 }
+
+export function isCardIDValid(cardID: string) {
+	if (cardID.startsWith("E004")) {
+		return false;
+	}
+
+	if (cardID[0] === "C") {
+		return cardID.length === 13;
+	}
+
+	return cardID.length === 16;
+}

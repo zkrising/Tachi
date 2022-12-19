@@ -1282,7 +1282,12 @@ export type APIImportTypes =
 	| "api/eag-sdvx"
 	| "api/flo-iidx"
 	| "api/flo-sdvx"
-	| "api/min-sdvx";
+	| "api/min-sdvx"
+
+	// cg has dev and prod supported
+	// with four games.
+	// this typescript feature for stringliteral expansion is kinda neat.
+	| `api/cg-${"dev" | "prod"}-${"museca" | "popn" | "sdvx"}`;
 
 export type IRImportTypes =
 	| "ir/barbatos"
@@ -1361,6 +1366,15 @@ export interface KaiAuthDocument {
 	token: string;
 	refreshToken: string;
 	service: "EAG" | "FLO" | "MIN";
+}
+
+export interface CGCardInfo {
+	userID: integer;
+	service: "dev" | "prod";
+	cardID: string;
+
+	// are we gonna do maths on it? no. it's a string. don't bother me.
+	pin: string;
 }
 
 /**

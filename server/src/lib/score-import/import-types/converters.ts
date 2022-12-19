@@ -1,5 +1,8 @@
 import { ConvertAPIArcIIDX } from "./api/arc-iidx/converter";
 import { ConvertAPIArcSDVX } from "./api/arc-sdvx/converter";
+import { ConverterAPICGMuseca } from "./common/api-cg/museca/converter";
+import { ConverterAPICGPopn } from "./common/api-cg/popn/converter";
+import { ConverterAPICGSDVX } from "./common/api-cg/sdvx/converter";
 import { ConvertAPIKaiIIDX } from "./common/api-kai/iidx/converter";
 import { ConvertAPIKaiSDVX } from "./common/api-kai/sdvx/converter";
 import { ConverterBatchManual } from "./common/batch-manual/converter";
@@ -47,4 +50,14 @@ export const Converters: ConverterMap = {
 	"ir/kshook-sv6c": ConverterIRKsHookSV6C,
 	"ir/kshook-sv6c-static": ConverterKsHookSV6CStatic,
 	"ir/lr2hook": ConverterLR2Hook,
+
+	"api/cg-dev-sdvx": ConverterAPICGSDVX,
+	"api/cg-dev-museca": ConverterAPICGMuseca,
+	"api/cg-dev-popn": ConverterAPICGPopn,
+	"api/cg-prod-sdvx": ConverterAPICGSDVX,
+	"api/cg-prod-museca": ConverterAPICGMuseca,
+	"api/cg-prod-popn": ConverterAPICGPopn,
+
+	// "api/cg-dev-jubeat": ConverterAPICGJubeat,
+	// "api/cg-prod-jubeat": ConverterAPICGJubeat,
 };

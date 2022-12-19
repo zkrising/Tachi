@@ -105,11 +105,7 @@ function KAIImporter({ kaiType, game }: Pick<Props, "kaiType" | "game">) {
 			<Divider />
 			<div>
 				Play on {kaiType} a lot? You can synchronise your scores straight from the discord
-				by typing{" "}
-				<code>
-					/sync {kaiType} {game}
-				</code>
-				!
+				by typing <code>/sync</code>!
 			</div>
 			<Divider />
 			<ImportStateRenderer state={importState} />

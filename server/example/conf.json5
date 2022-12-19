@@ -68,6 +68,12 @@
 			"api/flo-iidx",
 			"api/flo-sdvx",
 			"api/min-sdvx",
+			"api/cg-dev-sdvx",
+			"api/cg-dev-popn",
+			"api/cg-dev-museca",
+			"api/cg-prod-sdvx",
+			"api/cg-prod-popn",
+			"api/cg-prod-museca",
 		],
 	},
 	LOGGER_CONFIG: {

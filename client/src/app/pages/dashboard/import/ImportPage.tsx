@@ -133,7 +133,6 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			<ImportTypeInfoCard key="api/flo-iidx" importType="api/flo-iidx" />,
 			<ImportTypeInfoCard key="api/eag-iidx" importType="api/eag-iidx" />,
 			<ImportTypeInfoCard key="api/arc-iidx" importType="api/arc-iidx" />,
-			// <ImportTypeInfoCard key="file/mer-iidx" importType="file/mer-iidx" />,
 			<ImportTypeInfoCard key="file/solid-state-squad" importType="file/solid-state-squad" />,
 			<ImportTypeInfoCard key="file/pli-iidx-csv" importType="file/pli-iidx-csv" />
 		);
@@ -159,6 +158,8 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			/>,
 			<ImportTypeInfoCard key="api/flo-sdvx" importType="api/flo-sdvx" />,
 			<ImportTypeInfoCard key="api/eag-sdvx" importType="api/eag-sdvx" />,
+			<ImportTypeInfoCard key="api/cg-dev-sdvx" importType="api/cg-dev-sdvx" />,
+			<ImportTypeInfoCard key="api/cg-prod-sdvx" importType="api/cg-prod-sdvx" />,
 			<ImportTypeInfoCard key="api/min-sdvx" importType="api/min-sdvx" />,
 			<ImportTypeInfoCard key="api/arc-sdvx" importType="api/arc-sdvx" />
 		);
@@ -228,7 +229,9 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc={`Automatically upload Pop'n scores to ${TachiConfig.name}!`}
 				moreInfo="Yep, it's that simple."
 				key="Silent Hook"
-			/>
+			/>,
+			<ImportTypeInfoCard key="api/cg-dev-popn" importType="api/cg-dev-popn" />,
+			<ImportTypeInfoCard key="api/cg-prod-popn" importType="api/cg-prod-popn" />
 		);
 	} else if (game === "pms") {
 		Content.unshift(
@@ -249,7 +252,17 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				key="WACCA Site Importer"
 			/>
 		);
-	}
+	} else if (game === "museca") {
+		Content.unshift(
+			<ImportTypeInfoCard key="api/cg-dev-museca" importType="api/cg-dev-museca" />,
+			<ImportTypeInfoCard key="api/cg-prod-museca" importType="api/cg-prod-museca" />
+		);
+	} // else if (game === "jubeat") {
+	// 	Content.unshift(
+	// 		<ImportTypeInfoCard key="api/cg-dev-jubeat" importType="api/cg-dev-jubeat" />,
+	// 		<ImportTypeInfoCard key="api/cg-prod-jubeat" importType="api/cg-prod-jubeat" />
+	// 	);
+	// }
 
 	return (
 		<>
@@ -265,7 +278,7 @@ function ImportTypeInfoCard({
 	importType,
 }: {
 	importType: FileUploadImportTypes | APIImportTypes;
-}) {
+}): JSX.Element {
 	switch (importType) {
 		case "api/arc-sdvx":
 			return (
@@ -274,7 +287,7 @@ function ImportTypeInfoCard({
 					href="sdvx-arc"
 					desc="Pull your SDVX scores from the ARC Network."
 					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons. ARC has a serious problem where it only stores one score per chart. This results in broken timestamps, and technically false score imports. I highly recommend using Barbatos instead, and only importing this once to synchronise things up."
-					key="ARC Integration"
+					key="sdvx-arc"
 				/>
 			);
 		case "api/arc-iidx":
@@ -284,7 +297,7 @@ function ImportTypeInfoCard({
 					href="iidx-arc"
 					desc="Pull your IIDX scores from the ARC Network."
 					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons. ARC has a serious problem where it only stores one score per chart. This results in broken timestamps, and technically false score imports. I highly recommend using Fervidex instead, and only importing this once to synchronise things up."
-					key="ARC Integration"
+					key="iidx-arc"
 				/>
 			);
 		case "api/eag-iidx":
@@ -294,7 +307,7 @@ function ImportTypeInfoCard({
 					href="iidx-eag"
 					desc="Pull your IIDX scores from the EAG Network."
 					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
-					key="EAG Integration"
+					key="iidx-eag"
 				/>
 			);
 		case "api/flo-iidx":
@@ -304,7 +317,7 @@ function ImportTypeInfoCard({
 					href="iidx-flo"
 					desc="Pull your IIDX scores from the FLO Network."
 					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
-					key="FLO Integration"
+					key="iidx-flo"
 				/>
 			);
 		case "api/flo-sdvx":
@@ -314,7 +327,7 @@ function ImportTypeInfoCard({
 					href="sdvx-flo"
 					desc="Pull your SDVX scores from the FLO Network."
 					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
-					key="FLO Integration"
+					key="sdvx-flo"
 				/>
 			);
 		case "api/eag-sdvx":
@@ -324,7 +337,7 @@ function ImportTypeInfoCard({
 					href="sdvx-eag"
 					desc="Pull your SDVX scores from the EAG Network."
 					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
-					key="EAG Integration"
+					key="sdvx-eag"
 				/>
 			);
 		case "api/min-sdvx":
@@ -334,7 +347,61 @@ function ImportTypeInfoCard({
 					href="sdvx-min"
 					desc="Pull your SDVX scores from the MIN Network."
 					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
-					key="MIN Integration"
+					key="sdvx-min"
+				/>
+			);
+		case "api/cg-dev-sdvx":
+			return (
+				<ImportInfoCard
+					name="CG Dev Integration"
+					href="cg-dev-sdvx"
+					desc="Pull your SDVX scores from the CG Dev Network."
+					key="cg-dev-sdvx"
+				/>
+			);
+		case "api/cg-prod-sdvx":
+			return (
+				<ImportInfoCard
+					name="CG Prod Integration"
+					href="cg-prod-sdvx"
+					desc="Pull your SDVX scores from the CG Network."
+					key="cg-prod-sdvx"
+				/>
+			);
+		case "api/cg-dev-popn":
+			return (
+				<ImportInfoCard
+					name="CG Dev Integration"
+					href="cg-dev-popn"
+					desc="Pull your pop'n music scores from the CG Dev Network."
+					key="cg-dev-popn"
+				/>
+			);
+		case "api/cg-prod-popn":
+			return (
+				<ImportInfoCard
+					name="CG Prod Integration"
+					href="cg-prod-popn"
+					desc="Pull your pop'n music scores from the CG Network."
+					key="cg-prod-popn"
+				/>
+			);
+		case "api/cg-dev-museca":
+			return (
+				<ImportInfoCard
+					name="CG Dev Integration"
+					href="cg-dev-museca"
+					desc="Pull your MUSECA scores from the CG Dev Network."
+					key="cg-dev-museca"
+				/>
+			);
+		case "api/cg-prod-museca":
+			return (
+				<ImportInfoCard
+					name="CG Prod Integration"
+					href="cg-prod-museca"
+					desc="Pull your MUSECA scores from the CG Network."
+					key="cg-prod-museca"
 				/>
 			);
 		case "file/eamusement-iidx-csv":
@@ -404,6 +471,14 @@ function ImportTypeInfoCard({
 					moreInfo="Note: This network is currently not being developed on. I highly recommend switching to anything else. I highly recommend using Fervidex instead, and just using this once to sync things up."
 					key="PLI .csv"
 				/>
+			);
+		default:
+			// For some reason, the webpack tschecker thinks
+			// that the above switch isn't exhaustive. However, it is.
+			return (
+				<>
+					Err: Unknown importType <code>{importType}</code>
+				</>
 			);
 	}
 }

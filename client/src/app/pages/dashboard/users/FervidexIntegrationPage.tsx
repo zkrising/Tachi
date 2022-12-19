@@ -1,4 +1,5 @@
 import { APIFetchV1 } from "util/api";
+import { isCardIDValid } from "util/misc";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
@@ -168,16 +169,4 @@ function FervidexForm({
 			</div>
 		</form>
 	);
-}
-
-function isCardIDValid(cardID: string) {
-	if (cardID.startsWith("E004")) {
-		return false;
-	}
-
-	if (cardID[0] === "C") {
-		return cardID.length === 13;
-	}
-
-	return cardID.length === 16;
 }

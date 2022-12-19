@@ -28,8 +28,7 @@ function mkSeedDiffViewMsg(repo: string, sha: string, compareRepo: string, compa
 		compareSHA,
 	});
 
-	return `[View Seeds Diff](https://bokutachi.xyz/dashboard/utils/seeds?${params.toString()}
-`;
+	return `\nA commit has changed the database-seeds. [View the seeds diff here.](https://bokutachi.xyz/dashboard/utils/seeds?${params.toString()}`;
 }
 
 function ConvertGitHubURL(url: string) {

@@ -32,7 +32,7 @@ function mkSeedDiffViewMsg(repo: string, sha: string, compareRepo: string, compa
 }
 
 function ConvertGitHubURL(url: string) {
-	return url.replace("https://api.github.com/", "GitHub:");
+	return url.replace("https://api.github.com/repos", "GitHub:");
 }
 
 app.webhooks.on(

@@ -44,7 +44,7 @@ const prettyIIDXVersions: Versions["iidx:SP"] = {
 };
 
 const prettyGitadoraVersions: Versions["gitadora:Dora"] = {
-	nextage: "NEX+AGE",
+	konaste: "Konaste",
 };
 
 // WHEN YOU UPDATE THIS, **MAKE SURE** YOU UPDATE CONFIG.TS ACCORDINGLY.

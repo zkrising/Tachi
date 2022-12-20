@@ -1367,7 +1367,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		orderedSupportedVersions: ["nextage"],
+		orderedSupportedVersions: ["konaste"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -1456,7 +1456,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		orderedSupportedVersions: ["nextage"],
+		orderedSupportedVersions: ["konaste"],
 
 		tierlists: [],
 		tierlistDescriptions: {},

@@ -319,8 +319,11 @@ function GetSongDataForGame(game: Game): PrudenceSchema {
 				subtitle: "string",
 				banner: "?string",
 			};
-		case "usc":
 		case "gitadora":
+			return {
+				isHot: "boolean",
+			};
+		case "usc":
 			return {};
 	}
 }
@@ -433,7 +436,9 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 			};
 		case "gitadora:Dora":
 		case "gitadora:Gita":
-			return {};
+			return {
+				inGameID: p.isPositiveInteger,
+			};
 	}
 }
 
@@ -508,6 +513,8 @@ const PR_CHART_DOCUMENT = (game: Game) => (self: unknown) => {
 		level: "string",
 		levelNum: "number",
 		isPrimary: "boolean",
+
+		// temp hack
 		difficulty: game === "itg" ? "string" : p.isIn(gptConfig.difficulties),
 		playtype: p.is(playtype),
 		data,

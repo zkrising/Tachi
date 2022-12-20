@@ -10,11 +10,10 @@ import React, { useContext } from "react";
 import { Button } from "react-bootstrap";
 import { Game, Playtype, UserDocument } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
-import { UserContext } from "context/UserContext";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import FollowUserButton from "components/util/FollowUserButton";
-import { GetGPTTools } from "components/tools/Tools";
+import { GetGPTUtilsName } from "components/gpt-utils/GPTUtils";
 import ProfileBadges from "./ProfileBadges";
 import ProfilePicture from "./ProfilePicture";
 import RankingData from "./UGPTRankingData";
@@ -201,10 +200,17 @@ export function UGPTBottomNav({
 		<NavItem key="sessions" to={`${baseUrl}/sessions`}>
 			Sessions
 		</NavItem>,
-		<NavItem key="leaderboard" to={`${baseUrl}/leaderboard`}>
-			Leaderboard
-		</NavItem>,
 	];
+
+	const utilsName = GetGPTUtilsName(game, playtype, isRequestedUser);
+
+	if (utilsName) {
+		navItems.push(
+			<NavItem key="targets" to={`${baseUrl}/utils`}>
+				{utilsName}
+			</NavItem>
+		);
+	}
 
 	if (isRequestedUser) {
 		navItems.push(
@@ -215,17 +221,15 @@ export function UGPTBottomNav({
 				Goals & Quests
 			</NavItem>
 		);
+	}
 
-		const tools = GetGPTTools(game, playtype);
+	navItems.push(
+		<NavItem key="leaderboard" to={`${baseUrl}/leaderboard`}>
+			Leaderboard
+		</NavItem>
+	);
 
-		if (tools.length > 0) {
-			navItems.push(
-				<NavItem key="targets" to={`${baseUrl}/tools`}>
-					Tools
-				</NavItem>
-			);
-		}
-
+	if (isRequestedUser) {
 		navItems.push(
 			<NavItem key="settings" to={`${baseUrl}/settings`}>
 				Settings

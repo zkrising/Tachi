@@ -78,12 +78,12 @@ export function CreateScoreIDMap<I extends IDStrings = IDStrings>(scores: ScoreD
 
 export function CreateChartLink(chart: ChartDocument, game: Game) {
 	if (chart.isPrimary) {
-		return `/dashboard/games/${game}/${chart.playtype}/songs/${
-			chart.songID
-		}/${encodeURIComponent(chart.difficulty)}`;
+		return `/games/${game}/${chart.playtype}/songs/${chart.songID}/${encodeURIComponent(
+			chart.difficulty
+		)}`;
 	}
 
-	return `/dashboard/games/${game}/${chart.playtype}/songs/${chart.songID}/${chart.chartID}`;
+	return `/games/${game}/${chart.playtype}/songs/${chart.songID}/${chart.chartID}`;
 }
 
 // stolen from server

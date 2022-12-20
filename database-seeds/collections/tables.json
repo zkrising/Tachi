@@ -721,6 +721,46 @@
 		"title": "CHUNITHM (Paradise Lost)"
 	},
 	{
+		"default": true,
+		"description": "Level Folders for GITADORA Konaste.",
+		"folders": [
+			"F51276613093a33e5858793284022c3514a2e402769aed7260076683ec63bccea",
+			"F3161065b423a044ee6950a3bc8872d2ff7e858e05bf14b01e44c308468e7defa",
+			"F9fbc6bcc469d9f741d916b2b4c5840189aaf464a8c69d4ee7cb77cd96237bd8a",
+			"Ffd1e81ca17e822727b4f63abab16e257cba9b1a27e0a8b6765d363c08fb2f166",
+			"Ff1e23fc275efcfa08f37ddb9b579897ec033d6842af28ced0a6dd87fb633615c",
+			"F8cfaf98334e1cfa34238333f2e1f9650000e2a774149a87d947e70051fb0acd6",
+			"Ff72a7ec1c93040daca8131f68227b309371b53bb31a7730278a7ce18563f5e38",
+			"Fea135dbef613bf7ea3e53343116fd4e694ac316af2d65ad7fa413a46f7be0a96",
+			"F92e94473a5fd5450b5befd7b77418ae149c8337fe01c69d6d3db2a21a4a1619c"
+		],
+		"game": "gitadora",
+		"inactive": false,
+		"playtype": "Dora",
+		"tableID": "gitadora-Dora-lv-konaste",
+		"title": "Level Folders (Konaste)"
+	},
+	{
+		"default": true,
+		"description": "Level Folders for GITADORA Konaste.",
+		"folders": [
+			"F5accd8797d64cef8d0d64b1616b9a092c371c6173fc68345487abb222a47280e",
+			"Ff26a07293133250cdb715311a560539f21418a703a3ac59dfe852f2bac02b22c",
+			"F4eddce850aca8acfc8917836ca4d90e7b4a15c8003f078e0b7664524cc63d778",
+			"Fe8da57325f70ab4e67272178050528e6313b1f406507299668c08ebc7f445006",
+			"F3509609965d8e9a2748f0eb5b33067469fe1c2d1350fb49f17460aa4391392d0",
+			"F0e51f3659cc351ee853eb449d2d2afcdb1a5a6dc09b0d92952045046cb876ee6",
+			"Fc47f117e8c6d0b43eb9c29f6af8c0168f753cf9108042c9f765321dada588512",
+			"F4eca59d8a99e9934664929554db7366cd8eb87b96833b6725c3347b1a29a17ec",
+			"F92bb22f2a0a118e9e6504de98a27e801227eb2f8909c00f09b9f0225983cda70"
+		],
+		"game": "gitadora",
+		"inactive": false,
+		"playtype": "Gita",
+		"tableID": "gitadora-Gita-lv-konaste",
+		"title": "Level Folders (Konaste)"
+	},
+	{
 		"default": false,
 		"description": "Levels for beatmania IIDX (DP) in 10th Style CS.",
 		"folders": [

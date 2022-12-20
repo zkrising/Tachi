@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { NotificationDocument } from "tachi-common";
 
 export default function NotificationRow({ notif }: { notif: NotificationDocument }) {
+	const url = NotifToURL(notif);
+
 	return (
 		<tr>
 			<td>
@@ -16,9 +18,13 @@ export default function NotificationRow({ notif }: { notif: NotificationDocument
 			</td>
 			<td>
 				<strong>
-					<Link className="gentle-link" to={NotifToURL(notif)}>
-						{notif.title}
-					</Link>
+					{url ? (
+						<Link className="gentle-link" to={url}>
+							{notif.title}
+						</Link>
+					) : (
+						notif.title
+					)}
 				</strong>
 			</td>
 			<TimestampCell time={notif.sentAt} />
@@ -36,6 +42,6 @@ function NotifToURL(notif: NotificationDocument) {
 		case "RIVALED_BY":
 			return `/u/${notif.body.content.userID}/games/${notif.body.content.game}/${notif.body.content.playtype}`;
 		case "SITE_ANNOUNCEMENT":
-			return `#`;
+			return null;
 	}
 }

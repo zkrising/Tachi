@@ -72426,7 +72426,8 @@
 		"versions": [
 			"heaven",
 			"vivid",
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -72446,7 +72447,8 @@
 		"versions": [
 			"heaven",
 			"vivid",
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -72472,7 +72474,8 @@
 		"versions": [
 			"heaven",
 			"vivid",
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -72492,7 +72495,8 @@
 		"versions": [
 			"heaven",
 			"vivid",
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -119351,7 +119355,8 @@
 		"songID": 1512,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -119369,7 +119374,8 @@
 		"songID": 1512,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -119393,7 +119399,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -119411,7 +119418,8 @@
 		"songID": 1512,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -119429,7 +119437,8 @@
 		"songID": 1513,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -119447,7 +119456,8 @@
 		"songID": 1513,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -119471,7 +119481,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -119489,7 +119500,8 @@
 		"songID": 1513,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -120381,7 +120393,8 @@
 		"songID": 1524,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -120399,7 +120412,8 @@
 		"songID": 1524,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -120423,7 +120437,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -120441,7 +120456,8 @@
 		"songID": 1524,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -120721,7 +120737,8 @@
 		"songID": 1528,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -120745,7 +120762,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -120769,7 +120787,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -120787,7 +120806,8 @@
 		"songID": 1528,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -121659,7 +121679,8 @@
 		"songID": 1539,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -121677,7 +121698,8 @@
 		"songID": 1539,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -121701,7 +121723,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -121719,7 +121742,8 @@
 		"songID": 1539,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -129626,7 +129650,8 @@
 		"tierlistInfo": {},
 		"versions": [
 			"vivid",
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -129651,7 +129676,8 @@
 		},
 		"versions": [
 			"vivid",
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -129676,7 +129702,8 @@
 		},
 		"versions": [
 			"vivid",
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -129695,7 +129722,8 @@
 		"tierlistInfo": {},
 		"versions": [
 			"vivid",
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -132875,6 +132903,78 @@
 		]
 	},
 	{
+		"chartID": "80fa270100922d1b40cfa53a53cde1cccc32898a",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1676
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1676,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "8ae8ec6231987e6f41a5c12bff1e9525ad6cf582",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1676
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "16",
+		"levelNum": 16,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1676,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "edc0596cbbcdccb1144b57b7448f4f83709f7807",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1676
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "18",
+		"levelNum": 18,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1676,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "bbc2ee75e8c7046e4c3ff71628889d61a6d73444",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1676
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1676,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
 		"chartID": "4bf94d29262e7d005d8c4d5f374c04dc7c3b40da",
 		"data": {
 			"arcChartID": null,
@@ -132889,7 +132989,8 @@
 		"songID": 1677,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -132907,7 +133008,8 @@
 		"songID": 1677,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -132931,7 +133033,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -132949,7 +133052,80 @@
 		"songID": 1677,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
+		]
+	},
+	{
+		"chartID": "fa16cc5e531cabd69e4be8417aa08635877ace56",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1678
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1678,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "46f4257613d8514ad83acdd15236e18a3d30e40e",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1678
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "16",
+		"levelNum": 16,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1678,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "80c175942cccfd01f825508105d9cbc7056eddb8",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1678
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "19",
+		"levelNum": 19,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1678,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "60ff9bba863db5e73b9de23e2d2c0af8386fb169",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1678
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1678,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
 		]
 	},
 	{
@@ -132967,7 +133143,8 @@
 		"songID": 1679,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -132985,7 +133162,8 @@
 		"songID": 1679,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133009,7 +133187,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133027,7 +133206,80 @@
 		"songID": 1679,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
+		]
+	},
+	{
+		"chartID": "7ba27c59f05dac51cc071cb3606d762a50d15d4e",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1680
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1680,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "b510ff6d9f1de229011738daf1abf3908e47d8fe",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1680
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "16",
+		"levelNum": 16,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1680,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "1f1c6d98f5d0c73eddcb7842a9092b73dbdd8e19",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1680
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "18",
+		"levelNum": 18,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1680,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "78b07a1e65f073f4f3c3d72640510afe46a2c075",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1680
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1680,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
 		]
 	},
 	{
@@ -133295,6 +133547,78 @@
 		]
 	},
 	{
+		"chartID": "67daa0652b817d422a5e2e6205e3cc0f0a0eb50b",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1684
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1684,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "1387e2499d1ced7b1698a7ac17f3ee0efbe1db70",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1684
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "16",
+		"levelNum": 16,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1684,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "7bbde6a35804278956a9290bdbd4a4402a63c933",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1684
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "18",
+		"levelNum": 18,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1684,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "3b2f11c5f4ecf8c36c94dd92e7fdf551c2fc1b48",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1684
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1684,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
 		"chartID": "a9c314bb20e2180ed438483bc11dffd6d16fbf9e",
 		"data": {
 			"arcChartID": null,
@@ -133309,7 +133633,8 @@
 		"songID": 1685,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133327,7 +133652,8 @@
 		"songID": 1685,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133351,7 +133677,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133369,7 +133696,8 @@
 		"songID": 1685,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133547,7 +133875,8 @@
 		"songID": 1689,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133571,7 +133900,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133595,7 +133925,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133613,7 +133944,8 @@
 		"songID": 1689,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133631,7 +133963,8 @@
 		"songID": 1690,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133649,7 +133982,8 @@
 		"songID": 1690,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133673,7 +134007,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133691,7 +134026,8 @@
 		"songID": 1690,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133709,7 +134045,8 @@
 		"songID": 1692,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133727,7 +134064,8 @@
 		"songID": 1692,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133751,7 +134089,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133769,7 +134108,80 @@
 		"songID": 1692,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
+		]
+	},
+	{
+		"chartID": "f1168ddd94150e8a26e6277d0fadd367b5849bb3",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1693
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1693,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "642cdcd6fe7c69875c6790b8c63fb33d381b757f",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1693
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "15",
+		"levelNum": 15,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1693,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "18bda71a762b8a879f3523801d40752317935dad",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1693
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "18",
+		"levelNum": 18,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1693,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "e53fafe2408177bec6fe3b8d83e155bda066b13c",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1693
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1693,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
 		]
 	},
 	{
@@ -133869,7 +134281,8 @@
 		"songID": 1695,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133893,7 +134306,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133917,7 +134331,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133935,7 +134350,8 @@
 		"songID": 1695,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133953,7 +134369,8 @@
 		"songID": 1696,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -133977,7 +134394,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134001,7 +134419,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134019,7 +134438,8 @@
 		"songID": 1696,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134203,7 +134623,8 @@
 		"songID": 1699,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134227,7 +134648,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134251,7 +134673,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134269,7 +134692,8 @@
 		"songID": 1699,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134365,7 +134789,8 @@
 		"songID": 1701,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134389,7 +134814,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134413,7 +134839,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134431,7 +134858,8 @@
 		"songID": 1701,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134449,7 +134877,8 @@
 		"songID": 1702,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134473,7 +134902,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134497,7 +134927,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134515,7 +134946,8 @@
 		"songID": 1702,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134533,7 +134965,8 @@
 		"songID": 1703,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134557,7 +134990,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134581,7 +135015,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134599,7 +135034,8 @@
 		"songID": 1703,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134705,7 +135141,8 @@
 		"songID": 1705,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134729,7 +135166,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134753,7 +135191,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134771,7 +135210,8 @@
 		"songID": 1705,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134789,7 +135229,8 @@
 		"songID": 1707,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134807,7 +135248,8 @@
 		"songID": 1707,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134831,7 +135273,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134849,7 +135292,8 @@
 		"songID": 1707,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134867,7 +135311,8 @@
 		"songID": 1708,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134891,7 +135336,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134915,7 +135361,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134933,7 +135380,8 @@
 		"songID": 1708,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134951,7 +135399,8 @@
 		"songID": 1710,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134975,7 +135424,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -134999,7 +135449,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -135017,7 +135468,8 @@
 		"songID": 1710,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -135715,7 +136167,8 @@
 		"songID": 1719,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -135733,7 +136186,8 @@
 		"songID": 1719,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -135757,7 +136211,8 @@
 			}
 		},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -135775,7 +136230,8 @@
 		"songID": 1719,
 		"tierlistInfo": {},
 		"versions": [
-			"exceed"
+			"exceed",
+			"konaste"
 		]
 	},
 	{
@@ -144412,6 +144868,78 @@
 		"playtype": "Single",
 		"rgcID": null,
 		"songID": 1886,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "0fa34e20d51804954b8cf86e4706d7e70a3b0e55",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1902
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "15",
+		"levelNum": 15,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1902,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "65153e9ab35685c2bc5d52910564d75aeee9bc38",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1902
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "18",
+		"levelNum": 18,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1902,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "5f41fffac1e9ea008dc0bf516871cde6e76743d1",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1902
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "20",
+		"levelNum": 20,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1902,
+		"tierlistInfo": {},
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "841125d891cc61f2bdf08108788d23d1924db9b7",
+		"data": {
+			"arcChartID": null,
+			"inGameID": 1902
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1902,
 		"tierlistInfo": {},
 		"versions": [
 			"konaste"

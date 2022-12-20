@@ -1,6 +1,5 @@
 import { CopyToClipboard } from "util/misc";
 import ApiError from "components/util/ApiError";
-import DebugContent from "components/util/DebugContent";
 import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
@@ -8,7 +7,7 @@ import { TachiConfig } from "lib/config";
 import React from "react";
 import { Alert, Button, Col, Row } from "react-bootstrap";
 import { UGPT } from "types/react";
-import { GPTToolOrInsight } from "types/ugpt";
+import { GPTUtility } from "types/ugpt";
 
 function Component({ game, playtype, reqUser }: UGPT) {
 	const { data, error } = useApiQuery<string>(
@@ -60,9 +59,10 @@ function Component({ game, playtype, reqUser }: UGPT) {
 	);
 }
 
-export const IIDXEamusementExportTool: GPTToolOrInsight = {
+export const IIDXEamusementExportTool: GPTUtility = {
 	name: `e-amusement CSV Export`,
 	urlPath: "eam-csv-export",
 	description: `Export your ${TachiConfig.name} scores into e-amusement format.`,
 	component: Component,
+	personalUseOnly: true,
 };

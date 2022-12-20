@@ -1,19 +1,20 @@
 import { APIFetchV1, APIFetchV1Return, ToAPIURL } from "util/api";
 import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
+import { ErrorPage } from "app/pages/ErrorPage";
 import PlaytypeSelect from "app/pages/dashboard/games/_game/PlaytypeSelect";
-import FoldersMainPage from "app/pages/dashboard/users/games/_game/_playtype/folders/FoldersMainPage";
-import LeaderboardsPage from "app/pages/dashboard/users/games/_game/_playtype/LeaderboardsPage";
-import OverviewPage from "app/pages/dashboard/users/games/_game/_playtype/OverviewPage";
-import RivalsMainPage from "app/pages/dashboard/users/games/_game/_playtype/rivals/RivalsMainPage";
-import SessionsPage from "app/pages/dashboard/users/games/_game/_playtype/SessionsPage";
-import SpecificSessionPage from "app/pages/dashboard/users/games/_game/_playtype/SpecificSessionPage";
-import TargetsPage from "app/pages/dashboard/users/games/_game/_playtype/targets/TargetsPage";
-import UGPTSettingsPage from "app/pages/dashboard/users/games/_game/_playtype/UGPTSettingsPage";
 import UserGamesPage from "app/pages/dashboard/users/UserGamesPage";
+import UserImportsPage from "app/pages/dashboard/users/UserImportsPage";
 import UserIntegrationsPage from "app/pages/dashboard/users/UserIntegrationsPage";
 import UserInvitesPage from "app/pages/dashboard/users/UserInvitesPage";
 import UserSettingsPage from "app/pages/dashboard/users/UserSettingsPage";
-import { ErrorPage } from "app/pages/ErrorPage";
+import LeaderboardsPage from "app/pages/dashboard/users/games/_game/_playtype/LeaderboardsPage";
+import OverviewPage from "app/pages/dashboard/users/games/_game/_playtype/OverviewPage";
+import SessionsPage from "app/pages/dashboard/users/games/_game/_playtype/SessionsPage";
+import SpecificSessionPage from "app/pages/dashboard/users/games/_game/_playtype/SpecificSessionPage";
+import UGPTSettingsPage from "app/pages/dashboard/users/games/_game/_playtype/UGPTSettingsPage";
+import FoldersMainPage from "app/pages/dashboard/users/games/_game/_playtype/folders/FoldersMainPage";
+import RivalsMainPage from "app/pages/dashboard/users/games/_game/_playtype/rivals/RivalsMainPage";
+import TargetsPage from "app/pages/dashboard/users/games/_game/_playtype/targets/TargetsPage";
 import RequireAuthAsUserParam from "components/auth/RequireAuthAsUserParam";
 import LayoutHeaderContainer from "components/layout/LayoutHeaderContainer";
 import { UGPTBottomNav, UGPTHeaderBody } from "components/user/UGPTHeader";
@@ -21,6 +22,7 @@ import { UserBottomNav, UserHeaderBody } from "components/user/UserHeader";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import { BackgroundContext } from "context/BackgroundContext";
+import { TargetsContextProvider } from "context/TargetsContext";
 import { UGPTContextProvider } from "context/UGPTContext";
 import { UserContext } from "context/UserContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
@@ -29,12 +31,9 @@ import { useQuery } from "react-query";
 import { Redirect, Route, Switch, useHistory, useParams } from "react-router-dom";
 import { FormatGame, Game, GetGameConfig, UserDocument, UserGameStats } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
-import UserImportsPage from "app/pages/dashboard/users/UserImportsPage";
-import { TargetsContextProvider } from "context/TargetsContext";
-import ToolsPage from "app/pages/dashboard/users/games/_game/_playtype/tools/ToolsPage";
-import InsightsPage from "app/pages/dashboard/users/games/_game/_playtype/insights/InsightsPage";
-import ScoresPage from "../pages/dashboard/users/games/_game/_playtype/ScoresPage";
+import UGPTUtilsPage from "app/pages/dashboard/users/games/_game/_playtype/utils/UGPTUtilsPage";
 import UserPage from "../pages/dashboard/users/UserPage";
+import ScoresPage from "../pages/dashboard/users/games/_game/_playtype/ScoresPage";
 
 export default function UserRoutes() {
 	const params = useParams<{ userID: string }>();
@@ -265,11 +264,8 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: UserDocument; game
 				<Route exact path="/u/:userID/games/:game/:playtype/leaderboard">
 					<LeaderboardsPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
-				<Route path="/u/:userID/games/:game/:playtype/tools">
-					<ToolsPage reqUser={reqUser} game={game} playtype={playtype} />
-				</Route>
-				<Route path="/u/:userID/games/:game/:playtype/insights">
-					<InsightsPage reqUser={reqUser} game={game} playtype={playtype} />
+				<Route path="/u/:userID/games/:game/:playtype/utils">
+					<UGPTUtilsPage reqUser={reqUser} game={game} playtype={playtype} />
 				</Route>
 				<RequireAuthAsUserParam>
 					<Route exact path="/u/:userID/games/:game/:playtype/settings">

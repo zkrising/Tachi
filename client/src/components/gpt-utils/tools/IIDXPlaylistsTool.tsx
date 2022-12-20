@@ -1,5 +1,4 @@
 import { ToAPIURL } from "util/api";
-import { CopyToClipboard } from "util/misc";
 import Card from "components/layout/page/Card";
 import ApiError from "components/util/ApiError";
 import Loading from "components/util/Loading";
@@ -8,9 +7,7 @@ import { TachiConfig } from "lib/config";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { UGPT } from "types/react";
-import { GPTToolOrInsight } from "types/ugpt";
-import Icon from "components/util/Icon";
-import Divider from "components/util/Divider";
+import { GPTUtility } from "types/ugpt";
 
 function Component({ game, playtype, reqUser }: UGPT) {
 	const { data, error } = useApiQuery<
@@ -76,9 +73,10 @@ function Component({ game, playtype, reqUser }: UGPT) {
 	);
 }
 
-export const IIDXPlaylistsTool: GPTToolOrInsight = {
+export const IIDXPlaylistsTool: GPTUtility = {
 	name: `${TachiConfig.name} IIDX Playlists`,
-	urlPath: "custom-tables",
+	urlPath: "playlists",
 	description: `${TachiConfig.name} has its own IIDX playlists that you can use in-game via playlister!`,
 	component: Component,
+	personalUseOnly: true,
 };

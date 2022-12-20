@@ -13,7 +13,7 @@ import { UGPTStatsReturn } from "types/api-returns";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import FollowUserButton from "components/util/FollowUserButton";
-import { GetGPTInsights, GetGPTTools } from "components/tools-insights/ToolsAndInsights";
+import { GetGPTUtilsName } from "components/gpt-utils/GPTUtils";
 import ProfileBadges from "./ProfileBadges";
 import ProfilePicture from "./ProfilePicture";
 import RankingData from "./UGPTRankingData";
@@ -202,10 +202,23 @@ export function UGPTBottomNav({
 		</NavItem>,
 	];
 
-	if (GetGPTInsights(game, playtype).length > 0) {
+	const utilsName = GetGPTUtilsName(game, playtype, isRequestedUser);
+
+	if (utilsName) {
 		navItems.push(
-			<NavItem key="insights" to={`${baseUrl}/insights`}>
-				Insights
+			<NavItem key="targets" to={`${baseUrl}/utils`}>
+				{utilsName}
+			</NavItem>
+		);
+	}
+
+	if (isRequestedUser) {
+		navItems.push(
+			<NavItem key="rivals" to={`${baseUrl}/rivals`}>
+				Rivals
+			</NavItem>,
+			<NavItem key="targets" to={`${baseUrl}/targets`}>
+				Goals & Quests
 			</NavItem>
 		);
 	}
@@ -217,25 +230,6 @@ export function UGPTBottomNav({
 	);
 
 	if (isRequestedUser) {
-		navItems.push(
-			<NavItem key="rivals" to={`${baseUrl}/rivals`}>
-				Rivals
-			</NavItem>,
-			<NavItem key="targets" to={`${baseUrl}/targets`}>
-				Goals & Quests
-			</NavItem>
-		);
-
-		const tools = GetGPTTools(game, playtype);
-
-		if (tools.length > 0) {
-			navItems.push(
-				<NavItem key="targets" to={`${baseUrl}/tools`}>
-					Tools
-				</NavItem>
-			);
-		}
-
 		navItems.push(
 			<NavItem key="settings" to={`${baseUrl}/settings`}>
 				Settings

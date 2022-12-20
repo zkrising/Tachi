@@ -12,7 +12,7 @@ import { Col, Row } from "react-bootstrap";
 import { ChartDocument, CreateSongMap, PBScoreDocument, SongDocument } from "tachi-common";
 import { UGPT } from "types/react";
 import { PBDataset } from "types/tables";
-import { GPTToolOrInsight } from "types/ugpt";
+import { GPTUtility } from "types/ugpt";
 
 function Component({ game, playtype, reqUser }: UGPT) {
 	const { data, error } = useApiQuery<{
@@ -115,7 +115,7 @@ function Component({ game, playtype, reqUser }: UGPT) {
 	);
 }
 
-export const JubilityBreakdownInsight: GPTToolOrInsight = {
+export const JubilityBreakdownInsight: GPTUtility = {
 	name: "Jubility Breakdown",
 	urlPath: "jubility",
 	description: `See what PBs are going into profile jubility!`,

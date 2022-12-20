@@ -8,7 +8,7 @@ import { TachiConfig } from "lib/config";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { UGPT } from "types/react";
-import { GPTToolOrInsight } from "types/ugpt";
+import { GPTUtility } from "types/ugpt";
 import Icon from "components/util/Icon";
 import Divider from "components/util/Divider";
 
@@ -66,9 +66,10 @@ function Component({ game, playtype, reqUser }: UGPT) {
 	);
 }
 
-export const BMSCustomTablesTool: GPTToolOrInsight = {
+export const BMSCustomTablesTool: GPTUtility = {
 	name: `${TachiConfig.name} BMS Tables`,
 	urlPath: "custom-tables",
 	description: `${TachiConfig.name} has its own BMS tables that you can use in-game!`,
 	component: Component,
+	personalUseOnly: true,
 };

@@ -16,7 +16,7 @@ import type { Game, integer, Playtype, UserDocument } from "tachi-common";
 const logger = CreateLogCtx(__filename);
 
 export async function RecalcAllScores(filter = {}) {
-	logger.info(`Recalcing All Scores.`);
+	logger.info(`Recalcing Scores.`, { filter });
 
 	const modifiedUsers = new Set<string>();
 	const modifiedUserIDs = new Set<integer>();

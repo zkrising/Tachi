@@ -1,13 +1,10 @@
-import { GetGameConfig } from "..";
 import type {
-	FileUploadImportTypes,
-	IRImportTypes,
 	APIImportTypes,
-	ImportTypes,
+	FileUploadImportTypes,
 	Game,
 	IDStrings,
-	GPTSupportedVersions,
-	Playtype,
+	IRImportTypes,
+	ImportTypes,
 } from "..";
 
 export const fileImportTypes: Array<FileUploadImportTypes> = [
@@ -56,10 +53,8 @@ export const allIDStrings: Array<IDStrings> = [
 	"bms:14K",
 	"bms:7K",
 	"chunithm:Single",
-
-	// "gitadora:Dora",
-	// "gitadora:Gita", <- none of these are actually supported
-
+	"gitadora:Dora",
+	"gitadora:Gita",
 	"iidx:DP",
 	"museca:Single",
 	"sdvx:Single",

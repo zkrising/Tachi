@@ -10,8 +10,6 @@ t.test("#GetGameConfig", (t) => {
 	}
 });
 
-// i have no idea why this one doesn't need t.end()
-// and this one does
 t.test("#GetGamePTConfig", (t) => {
 	for (const game of allSupportedGames) {
 		const gameConfig = GetGameConfig(game);
@@ -24,10 +22,6 @@ t.test("#GetGamePTConfig", (t) => {
 				`${game}:${playtype}`,
 				`Should return the right GamePTConfig (${game} ${playtype})`
 			);
-
-			if (conf.gradeBoundaries === null) {
-				continue;
-			}
 
 			t.equal(
 				conf.gradeBoundaries.length,

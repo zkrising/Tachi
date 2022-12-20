@@ -82,7 +82,8 @@ function SearchSongsTable({ game, playtype, search }: { search: string } & GameP
 		<>
 			{search === "" && (
 				<div className="w-100 text-center">
-					Displaying the most played charts for {FormatGame(game, playtype)}
+					<h4>Displaying the most played charts for {FormatGame(game, playtype)}</h4>
+					<Divider />
 				</div>
 			)}
 			<TachiTable

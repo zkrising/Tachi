@@ -684,8 +684,8 @@ export interface GPTSupportedVersions {
 	"bms:7K": never;
 	"bms:14K": never;
 	"chunithm:Single": "paradiselost";
-	"gitadora:Gita": "nextage";
-	"gitadora:Dora": "nextage";
+	"gitadora:Gita": "konaste";
+	"gitadora:Dora": "konaste";
 	"wacca:Single": "reverse";
 	"pms:Controller": never;
 	"pms:Keyboard": never;

@@ -26,28 +26,9 @@ export const FormatFunctions: Partial<
 	quests: (d) => `${d.name} (${d.questID})`,
 	questlines: (d) => `${d.name} (${d.questlineID})`,
 	goals: (d) => `${d.name} (${d.goalID})`,
-
-	"songs-bms": songFormat,
-	"songs-chunithm": songFormat,
-	"songs-iidx": songFormat,
-	"songs-jubeat": songFormat,
-	"songs-museca": songFormat,
-	"songs-pms": songFormat,
-	"songs-popn": songFormat,
-	"songs-sdvx": songFormat,
-	"songs-usc": songFormat,
-	"songs-wacca": songFormat,
-	"songs-itg": songFormat,
-
-	"charts-bms": chartFormat,
-	"charts-chunithm": chartFormat,
-	"charts-iidx": chartFormat,
-	"charts-jubeat": chartFormat,
-	"charts-museca": chartFormat,
-	"charts-pms": chartFormat,
-	"charts-popn": chartFormat,
-	"charts-sdvx": chartFormat,
-	"charts-usc": chartFormat,
-	"charts-wacca": chartFormat,
-	"charts-itg": chartFormat,
 };
+
+for (const game of allSupportedGames) {
+	FormatFunctions[`songs-${game}`] = songFormat;
+	FormatFunctions[`charts-${game}`] = chartFormat;
+}

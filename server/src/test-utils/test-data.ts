@@ -497,7 +497,7 @@ export const TestingDoraChart: ChartDocument<"gitadora:Dora"> = {
 	isPrimary: true,
 	rgcID: null,
 	tierlistInfo: {},
-	versions: ["nextage"],
+	versions: ["konaste"],
 };
 
 export const TestingSDVXSingleDryScore: DryScore<"sdvx:Single"> = {

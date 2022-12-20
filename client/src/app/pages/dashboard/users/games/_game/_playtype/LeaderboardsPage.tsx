@@ -19,7 +19,7 @@ import {
 	IDStrings,
 	integer,
 	UserDocument,
-	UGSRatingsLookup,
+	ProfileRatingLookup,
 	UserGameStats,
 } from "tachi-common";
 import { GameClassSets } from "tachi-common/game-classes";
@@ -84,8 +84,8 @@ function LeaderboardsPageContent({
 }: {
 	reqUser: UserDocument;
 	data: LeaderboardsData;
-	alg: UGSRatingsLookup[IDStrings];
-	setAlg: SetState<UGSRatingsLookup[IDStrings]>;
+	alg: ProfileRatingLookup[IDStrings];
+	setAlg: SetState<ProfileRatingLookup[IDStrings]>;
 } & GamePT) {
 	const { stats, leaderboard } = data;
 

@@ -4,7 +4,7 @@ import type { Grades, integer, PBScoreDocument } from "../types";
 import type { PrudenceError } from "prudence";
 
 export function FormatInt(v: number): string {
-	return v.toString();
+	return Math.floor(v).toFixed(0);
 }
 
 export function FormatDifficulty(chart: ChartDocument, game: Game): string {
@@ -20,6 +20,15 @@ export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 		const itgChart = chart as ChartDocument<"itg:Stamina">;
 
 		return `${itgChart.data.difficultyTag} ${itgChart.level}`;
+	}
+
+	if (game === "gitadora") {
+		const gptConfig = GetGamePTConfig(game, chart.playtype);
+
+		const shortDiff = gptConfig.shortDifficulties[chart.difficulty] ?? chart.difficulty;
+
+		// gitadora should always use short diffs. they just look better.
+		return `${shortDiff} ${chart.level}`;
 	}
 
 	const gameConfig = GetGameConfig(game);

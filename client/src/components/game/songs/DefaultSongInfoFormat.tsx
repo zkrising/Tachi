@@ -21,6 +21,7 @@ export default function DefaultSongChartInfoFormat({
 					<h5>({FormatDifficulty(chart, game)})</h5>
 					<h6>
 						<DisplayLevelNum
+							game={game}
 							level={chart.level}
 							levelNum={chart.levelNum}
 							prefix="Internal Level: "

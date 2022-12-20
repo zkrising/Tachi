@@ -18,6 +18,7 @@ import PMSCoreCells from "./PMSCoreCells";
 import PopnCoreCells from "./PopnCoreCells";
 import SDVXScoreCoreCells from "./SDVXCoreCells";
 import WACCACoreCells from "./WACCACoreCells";
+import GitadoraCoreCells from "./GitadoraCoreCells";
 
 export default function ScoreCoreCells({
 	game,
@@ -32,40 +33,42 @@ export default function ScoreCoreCells({
 }) {
 	const sc = score as any; // lazy hack
 
-	if (game === "iidx") {
-		return (
-			<IIDXCoreCells
-				rating={rating as ScoreCalculatedDataLookup["iidx:SP" | "iidx:DP"]}
-				chart={chart as ChartDocument<"iidx:SP" | "iidx:DP">}
-				sc={sc}
-			/>
-		);
-	} else if (game === "bms") {
-		return <BMSCoreCells sc={sc} rating={rating} />;
-	} else if (game === "sdvx" || game === "usc") {
-		return (
-			<SDVXScoreCoreCells
-				sc={sc}
-				chart={chart as ChartDocument<"sdvx:Single" | "usc:Controller" | "usc:Keyboard">}
-			/>
-		);
-	} else if (game === "museca") {
-		return <MusecaCoreCells sc={sc} rating={rating} />;
-	} else if (game === "wacca") {
-		return <WACCACoreCells sc={sc} rating={rating} />;
-	} else if (game === "popn") {
-		return <PopnCoreCells sc={sc} rating={rating} />;
-	} else if (game === "jubeat") {
-		return <JubeatCoreCells sc={sc} rating={rating} />;
-	} else if (game === "chunithm") {
-		return <CHUNITHMCoreCells sc={sc} rating={rating} />;
-	} else if (game === "gitadora") {
-		return <GenericCoreCells sc={sc} rating={rating} />;
-	} else if (game === "pms") {
-		return <PMSCoreCells sc={sc} rating={rating} />;
-	} else if (game === "itg") {
-		return <ITGCoreCells sc={sc} rating={rating} />;
+	switch (game) {
+		case "iidx":
+			return (
+				<IIDXCoreCells
+					rating={rating as ScoreCalculatedDataLookup["iidx:SP" | "iidx:DP"]}
+					chart={chart as ChartDocument<"iidx:SP" | "iidx:DP">}
+					sc={sc}
+				/>
+			);
+		case "bms":
+			return <BMSCoreCells sc={sc} rating={rating} />;
+		case "sdvx":
+		case "usc":
+			return (
+				<SDVXScoreCoreCells
+					sc={sc}
+					chart={
+						chart as ChartDocument<"sdvx:Single" | "usc:Controller" | "usc:Keyboard">
+					}
+				/>
+			);
+		case "museca":
+			return <MusecaCoreCells sc={sc} rating={rating} />;
+		case "wacca":
+			return <WACCACoreCells sc={sc} rating={rating} />;
+		case "popn":
+			return <PopnCoreCells sc={sc} rating={rating} />;
+		case "jubeat":
+			return <JubeatCoreCells sc={sc} rating={rating} />;
+		case "chunithm":
+			return <CHUNITHMCoreCells sc={sc} rating={rating} />;
+		case "gitadora":
+			return <GitadoraCoreCells sc={sc} rating={rating} />;
+		case "pms":
+			return <PMSCoreCells sc={sc} rating={rating} />;
+		case "itg":
+			return <ITGCoreCells sc={sc} rating={rating} />;
 	}
-
-	return <GenericCoreCells sc={sc} rating={rating} />;
 }

@@ -8,7 +8,7 @@ import {
 	GetGamePTConfig,
 	IDStrings,
 	ScoreCalculatedDataLookup,
-	UGSRatingsLookup,
+	ProfileRatingLookup,
 	UserGameStats,
 } from "tachi-common";
 import { GameClassSets } from "tachi-common/game-classes";
@@ -16,7 +16,7 @@ import { GameClassSets } from "tachi-common/game-classes";
 export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 	const gptConfig = GetGamePTConfig(ugs.game, ugs.playtype);
 
-	const ratings = Object.entries(ugs.ratings) as [UGSRatingsLookup[IDStrings], number][];
+	const ratings = Object.entries(ugs.ratings) as [ProfileRatingLookup[IDStrings], number][];
 
 	return (
 		<MiniTable className="table-sm text-center" headers={["Player Stats"]} colSpan={2}>

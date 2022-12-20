@@ -91,6 +91,9 @@ export function GenericCalculatePercent(game: Game, score: number, chart?: Chart
 
 		case "jubeat":
 			throw new Error(`Cannot calculate percent for jubeat. Music Rate must be provided.`);
+
+		// gitadora's score is just a percent
+		// this is a hack: we need a refactor for this.
 		case "gitadora":
 		case "itg":
 			return score;

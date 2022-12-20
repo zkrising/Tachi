@@ -8,7 +8,7 @@ import type {
 	integer,
 	ScoreDocument,
 	SongDocument,
-	UGSRatingsLookup,
+	ProfileRatingLookup,
 	UserGameStats,
 } from "tachi-common";
 
@@ -50,7 +50,7 @@ export interface UGPTStats<I extends IDStrings = IDStrings> {
 	firstScore: ScoreDocument;
 	mostRecentScore: ScoreDocument;
 	totalScores: integer;
-	rankingData: Record<UGSRatingsLookup[I], { ranking: integer; outOf: integer }>;
+	rankingData: Record<ProfileRatingLookup[I], { ranking: integer; outOf: integer }>;
 }
 
 export interface ChartQueryReturns {

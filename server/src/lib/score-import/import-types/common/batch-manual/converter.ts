@@ -362,7 +362,7 @@ export async function ResolveMatchTypeToKTData(
 				);
 			}
 
-			const identifier = data.identifier;
+			const identifier = Number(data.identifier);
 
 			const difficulty = AssertStrAsDifficulty(data.difficulty, game, context.playtype);
 

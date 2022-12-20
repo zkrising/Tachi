@@ -22,7 +22,7 @@ import {
 	ShowcaseStatFolder,
 	SongDocument,
 	TableDocument,
-	UGSRatingsLookup,
+	ProfileRatingLookup,
 	UserGameStats,
 	UserGameStatsSnapshot,
 	QuestDocument,
@@ -36,7 +36,7 @@ export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
 	mostRecentScore: ScoreDocument<I>;
 	totalScores: number;
 	rankingData: Record<
-		UGSRatingsLookup[I],
+		ProfileRatingLookup[I],
 		{
 			ranking: integer;
 			outOf: integer;
@@ -92,7 +92,7 @@ export interface UGPTChartPBComposition<I extends IDStrings = IDStrings> {
 }
 
 export type UGSWithRankingData<I extends IDStrings = IDStrings> = UserGameStats<I> & {
-	__rankingData: Record<UGSRatingsLookup[I], { outOf: number; ranking: number }>;
+	__rankingData: Record<ProfileRatingLookup[I], { outOf: number; ranking: number }>;
 };
 
 export interface SongChartsSearch<I extends IDStrings = IDStrings> {

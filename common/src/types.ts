@@ -600,7 +600,7 @@ export interface UserDocument extends MongoDBDocument {
 	authLevel: UserAuthLevels;
 }
 
-export interface UGSRatingsLookup {
+export interface ProfileRatingLookup {
 	"iidx:SP": "BPI" | "ktLampRating";
 	"iidx:DP": "BPI" | "ktLampRating";
 	"popn:9B": "naiveClassPoints";
@@ -624,7 +624,7 @@ export interface UserGameStats<I extends IDStrings = IDStrings> extends MongoDBD
 	userID: integer;
 	game: IDStringToGame[I];
 	playtype: IDStringToPlaytype[I];
-	ratings: Partial<Record<UGSRatingsLookup[I], number | null>>;
+	ratings: Partial<Record<ProfileRatingLookup[I], number | null>>;
 	classes: Partial<GameClasses<I>>;
 }
 
@@ -1359,7 +1359,7 @@ export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDo
 	preferences: {
 		preferredScoreAlg: ScoreCalculatedDataLookup[I] | null;
 		preferredSessionAlg: SessionCalculatedDataLookup[I] | null;
-		preferredProfileAlg: UGSRatingsLookup[I] | null;
+		preferredProfileAlg: ProfileRatingLookup[I] | null;
 		stats: Array<ShowcaseStatDetails>;
 		scoreBucket: "grade" | "lamp" | null;
 		defaultTable: string | null;
@@ -1372,7 +1372,7 @@ export interface UGPTSettings<I extends IDStrings = IDStrings> extends MongoDBDo
 export interface UserGameStatsSnapshot<I extends IDStrings = IDStrings>
 	extends MongoDBDocument,
 		UserGameStats<I> {
-	rankings: Record<UGSRatingsLookup[I], { ranking: integer | null; outOf: integer }>;
+	rankings: Record<ProfileRatingLookup[I], { ranking: integer | null; outOf: integer }>;
 	playcount: integer;
 	timestamp: integer;
 }

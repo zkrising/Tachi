@@ -2,7 +2,7 @@ import { UppercaseFirst } from "util/misc";
 import { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
 import React from "react";
 import { Link } from "react-router-dom";
-import { IDStrings, integer, UGSRatingsLookup } from "tachi-common";
+import { IDStrings, integer, ProfileRatingLookup } from "tachi-common";
 import { GamePT } from "types/react";
 
 export default function RankingData({
@@ -11,7 +11,7 @@ export default function RankingData({
 	userID,
 	playtype,
 }: {
-	rankingData: Record<UGSRatingsLookup[IDStrings], { ranking: number; outOf: integer }>;
+	rankingData: Record<ProfileRatingLookup[IDStrings], { ranking: number; outOf: integer }>;
 	userID: integer;
 } & GamePT) {
 	const alg = useProfileRatingAlg(game, playtype);
@@ -19,7 +19,7 @@ export default function RankingData({
 	const extendData = [];
 
 	for (const k in rankingData) {
-		const key = k as UGSRatingsLookup[IDStrings];
+		const key = k as ProfileRatingLookup[IDStrings];
 
 		if (key !== alg) {
 			extendData.push(

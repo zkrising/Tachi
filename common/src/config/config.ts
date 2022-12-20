@@ -16,23 +16,23 @@ import {
 	WaccaColours,
 	WaccaStageUps,
 } from "../game-classes";
-import { FormatInt, FormatSieglindeBMS, FormatSieglindePMS } from "../utils/util";
+import { FormatSieglindeBMS, FormatSieglindePMS } from "../utils/util";
 import type { GPTTierlists } from "..";
 import type { ClassInfo, GameClassSets } from "../game-classes";
 import type { ESDJudgementFormat } from "../lib/esd";
 import type {
 	Difficulties,
-	Game,
 	GPTSupportedVersions,
+	Game,
 	Grades,
 	IDStrings,
 	JudgementLookup,
 	Lamps,
 	Playtype,
 	Playtypes,
+	ProfileRatingLookup,
 	ScoreCalculatedDataLookup,
 	SessionCalculatedDataLookup,
-	UGSRatingsLookup,
 } from "../types";
 
 export interface GameConfig<G extends Game = Game> {
@@ -49,21 +49,21 @@ interface BaseGamePTConfig<I extends IDStrings> {
 
 	defaultScoreRatingAlg: ScoreCalculatedDataLookup[I];
 	defaultSessionRatingAlg: SessionCalculatedDataLookup[I];
-	defaultProfileRatingAlg: UGSRatingsLookup[I];
+	defaultProfileRatingAlg: ProfileRatingLookup[I];
 
 	scoreRatingAlgs: Array<ScoreCalculatedDataLookup[I]>;
 	sessionRatingAlgs: Array<SessionCalculatedDataLookup[I]>;
-	profileRatingAlgs: Array<UGSRatingsLookup[I]>;
+	profileRatingAlgs: Array<ProfileRatingLookup[I]>;
 
 	scoreRatingAlgDescriptions: Record<ScoreCalculatedDataLookup[I], string>;
 	sessionRatingAlgDescriptions: Record<SessionCalculatedDataLookup[I], string>;
-	profileRatingAlgDescriptions: Record<UGSRatingsLookup[I], string>;
+	profileRatingAlgDescriptions: Record<ProfileRatingLookup[I], string>;
 
 	scoreRatingAlgFormatters: Partial<Record<ScoreCalculatedDataLookup[I], (v: number) => string>>;
 	sessionRatingAlgFormatters: Partial<
 		Record<SessionCalculatedDataLookup[I], (v: number) => string>
 	>;
-	profileRatingAlgFormatters: Partial<Record<UGSRatingsLookup[I], (v: number) => string>>;
+	profileRatingAlgFormatters: Partial<Record<ProfileRatingLookup[I], (v: number) => string>>;
 
 	difficulties: Array<Difficulties[I]>;
 	shortDifficulties: Partial<Record<Difficulties[I], string>>;
@@ -1291,16 +1291,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			skill: "The average of your best 10 skill ratings this session.",
 		},
 
-		scoreRatingAlgFormatters: {
-			skill: FormatInt,
-		},
-		profileRatingAlgFormatters: {
-			skill: FormatInt,
-			naiveSkill: FormatInt,
-		},
-		sessionRatingAlgFormatters: {
-			skill: FormatInt,
-		},
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
 
 		difficulties: [
 			"BASIC",
@@ -1330,7 +1323,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			MASTER: COLOUR_SET.purple,
 			"BASS BASIC": COLOUR_SET.vibrantBlue,
 			"BASS ADVANCED": COLOUR_SET.vibrantOrange,
-			"BASS EXTREME": "todo", // colourset vibrant red
+			"BASS EXTREME": COLOUR_SET.vibrantRed,
 			"BASS MASTER": COLOUR_SET.vibrantPurple,
 		},
 
@@ -1397,16 +1390,9 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			skill: "The average of your best 10 skill ratings this session.",
 		},
 
-		scoreRatingAlgFormatters: {
-			skill: FormatInt,
-		},
-		profileRatingAlgFormatters: {
-			skill: FormatInt,
-			naiveSkill: FormatInt,
-		},
-		sessionRatingAlgFormatters: {
-			skill: FormatInt,
-		},
+		scoreRatingAlgFormatters: {},
+		profileRatingAlgFormatters: {},
+		sessionRatingAlgFormatters: {},
 
 		difficulties: ["BASIC", "ADVANCED", "EXTREME", "MASTER"],
 		shortDifficulties: {

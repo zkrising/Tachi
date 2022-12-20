@@ -10,7 +10,7 @@ import type {
 	integer,
 	Playtype,
 	UserDocument,
-	UGSRatingsLookup,
+	ProfileRatingLookup,
 	UserGameStats,
 } from "tachi-common";
 
@@ -192,7 +192,7 @@ export async function GetAllRankings(stats: UserGameStats) {
 
 export async function GetUsersRankingAndOutOf(
 	stats: UserGameStats,
-	alg?: UGSRatingsLookup[IDStrings]
+	alg?: ProfileRatingLookup[IDStrings]
 ) {
 	const gptConfig = GetGamePTConfig(stats.game, stats.playtype);
 

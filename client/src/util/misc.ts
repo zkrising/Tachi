@@ -16,6 +16,7 @@ import {
 	QuestDocument,
 	QuestSubscriptionDocument,
 	SessionCalculatedDataLookup,
+	ProfileRatingLookup,
 } from "tachi-common";
 import fjsh from "fast-json-stable-hash";
 
@@ -69,6 +70,25 @@ export function FormatGPTRating(
 
 	if (gptConfig.scoreRatingAlgFormatters[key]) {
 		return gptConfig.scoreRatingAlgFormatters[key]!(value);
+	}
+
+	return value.toFixed(2);
+}
+
+export function FormatGPTProfileRating(
+	game: Game,
+	playtype: Playtype,
+	key: ProfileRatingLookup[IDStrings],
+	value: number | null
+) {
+	if (value === null) {
+		return "No Data.";
+	}
+
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	if (gptConfig.profileRatingAlgFormatters[key]) {
+		return gptConfig.profileRatingAlgFormatters[key]!(value);
 	}
 
 	return value.toFixed(2);

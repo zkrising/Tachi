@@ -80,7 +80,7 @@ export const GitadoraColours: Array<ClassInfo> = [
 	mouseoverCSS("GOLD", "金", "Gold", "gold"),
 
 	// @todo #11 Come up with CSS for Gitadora's rainbow icon.
-	mouseoverCSS("RAINBOW", "虹", "Rainbow", "todo"),
+	mouseoverCSS("RAINBOW", "虹", "Rainbow", ""),
 ];
 
 export const BMSGenocideDans: Array<ClassInfo> = [

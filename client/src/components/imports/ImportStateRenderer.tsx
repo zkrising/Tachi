@@ -3,6 +3,7 @@ import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
 import React from "react";
 import { ImportStates } from "types/import";
+import ManageImport from "components/tables/dropdowns/components/ManageImport";
 import ImportInfo from "./ImportInfo";
 
 export default function ImportStateRenderer({ state: s }: { state: ImportStates }) {
@@ -35,6 +36,11 @@ export default function ImportStateRenderer({ state: s }: { state: ImportStates 
 							Your import was successful!
 							<Divider />
 							<ImportInfo importID={s.import.importID} />
+							<Divider />
+							<div>
+								<h4>Messed up?</h4>
+								<ManageImport importDoc={s.import} />
+							</div>
 						</>
 					) : (
 						<>

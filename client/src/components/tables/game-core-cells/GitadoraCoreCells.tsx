@@ -1,21 +1,23 @@
 import React from "react";
 import { PBScoreDocument, ScoreDocument } from "tachi-common";
-import ITGJudgementCell from "../cells/ITGJudgementCell";
+import GitadoraJudgementCell from "../cells/GitadoraJudgementCell";
 import LampCell from "../cells/LampCell";
 import RatingCell from "../cells/RatingCell";
 import ScoreCell from "../cells/ScoreCell";
 
-export default function ITGCoreCells({
+export default function GitadoraCoreCells({
 	sc,
 	rating,
 }: {
-	sc: ScoreDocument<"itg:Stamina"> | PBScoreDocument<"itg:Stamina">;
+	sc:
+		| ScoreDocument<"gitadora:Gita" | "gitadora:Dora">
+		| PBScoreDocument<"gitadora:Gita" | "gitadora:Dora">;
 	rating: keyof ScoreDocument["calculatedData"];
 }) {
 	return (
 		<>
 			<ScoreCell showScore={false} score={sc} />
-			<ITGJudgementCell score={sc} />
+			<GitadoraJudgementCell score={sc} />
 			<LampCell score={sc} />
 			<RatingCell score={sc} rating={rating} />
 		</>

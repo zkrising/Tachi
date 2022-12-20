@@ -54,6 +54,7 @@ export default function DifficultyCell({
 			style={{
 				backgroundColor: ChangeOpacity(gptConfig.difficultyColours[chart.difficulty]!, 0.2),
 				minWidth: "80px",
+				maxWidth: "100px",
 			}}
 		>
 			{!alwaysShort && (
@@ -62,7 +63,7 @@ export default function DifficultyCell({
 			<div className={!alwaysShort ? "d-lg-none" : ""}>
 				{FormatDifficultyShort(chart, game)}
 			</div>
-			<DisplayLevelNum level={chart.level} levelNum={chart.levelNum} />
+			<DisplayLevelNum game={game} level={chart.level} levelNum={chart.levelNum} />
 			{"isHot" in chart.data && chart.data.isHot && (
 				<QuickTooltip tooltipContent="This chart is from the latest version of the game!">
 					<div>
@@ -88,14 +89,21 @@ export function DisplayLevelNum({
 	level,
 	levelNum,
 	prefix,
+	game,
 }: {
 	levelNum: number;
 	level: string;
 	prefix?: string;
+	game: Game;
 }) {
 	// Don't display levelnum if its identical to the level, the decimal places in the
 	// level end with .0, or the levelNum itself is 0.
 	if (levelNum.toString() === level || level.endsWith(".0") || levelNum === 0) {
+		return null;
+	}
+
+	// or if it's gitadora
+	if (game === "gitadora") {
 		return null;
 	}
 

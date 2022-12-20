@@ -2,7 +2,7 @@ const { Command } = require("commander");
 const { XMLParser } = require("fast-xml-parser");
 const Encoding = require("encoding-japanese");
 const fs = require("fs");
-const { CreateChartID, ReadCollection, WriteCollection } = require("../util");
+const { CreateChartID, ReadCollection, WriteCollection } = require("../../util");
 
 const VERSIONS = {
 	1: "booth",

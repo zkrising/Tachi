@@ -7890,7 +7890,7 @@
 		"inactive": false,
 		"playtype": "Dora",
 		"searchTerms": [],
-		"title": "Level 1 (Konaste)",
+		"title": "Level 1.00 - 1.99 (Konaste)",
 		"type": "charts"
 	},
 	{
@@ -7906,7 +7906,7 @@
 		"inactive": false,
 		"playtype": "Dora",
 		"searchTerms": [],
-		"title": "Level 2 (Konaste)",
+		"title": "Level 2.00 - 2.99 (Konaste)",
 		"type": "charts"
 	},
 	{
@@ -7922,7 +7922,7 @@
 		"inactive": false,
 		"playtype": "Dora",
 		"searchTerms": [],
-		"title": "Level 3 (Konaste)",
+		"title": "Level 3.00 - 3.99 (Konaste)",
 		"type": "charts"
 	},
 	{
@@ -7938,87 +7938,167 @@
 		"inactive": false,
 		"playtype": "Dora",
 		"searchTerms": [],
-		"title": "Level 4 (Konaste)",
+		"title": "Level 4.00 - 4.99 (Konaste)",
 		"type": "charts"
 	},
 	{
 		"data": {
 			"levelNum": {
 				"~gte": 5,
-				"~lt": 6
+				"~lt": 5.5
 			},
 			"versions": "konaste"
 		},
-		"folderID": "F825874544a7b5eac58c3657cec55a007797c6be18b4e939b4fa65f7280610bd4",
+		"folderID": "Fc61f81691c5540d62696983d535aa3c0b63cf9dbdfadf4959756e495d50a7e28",
 		"game": "gitadora",
 		"inactive": false,
 		"playtype": "Dora",
 		"searchTerms": [],
-		"title": "Level 5 (Konaste)",
+		"title": "Level 5.00 - 5.49 (Konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"levelNum": {
+				"~gte": 5.5,
+				"~lt": 6
+			},
+			"versions": "konaste"
+		},
+		"folderID": "Fc700f8d613f0e631653cf251eecc9d5b3d3458be748d87817db94d168e6e8b9d",
+		"game": "gitadora",
+		"inactive": false,
+		"playtype": "Dora",
+		"searchTerms": [],
+		"title": "Level 5.50 - 5.99 (Konaste)",
 		"type": "charts"
 	},
 	{
 		"data": {
 			"levelNum": {
 				"~gte": 6,
-				"~lt": 7
+				"~lt": 6.5
 			},
 			"versions": "konaste"
 		},
-		"folderID": "F448450bffa81a9c01082294fa87226ba3735034c062a2a624b5f285fe4264fb6",
+		"folderID": "Fe865db6c07d6850f70ba70182a19337e97f4bc73a9589754a311c31670eb9439",
 		"game": "gitadora",
 		"inactive": false,
 		"playtype": "Dora",
 		"searchTerms": [],
-		"title": "Level 6 (Konaste)",
+		"title": "Level 6.00 - 6.49 (Konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"levelNum": {
+				"~gte": 6.5,
+				"~lt": 7
+			},
+			"versions": "konaste"
+		},
+		"folderID": "Fdd24da097c2ebe2cdee8f96aeea4cac7695908a68aa3cd8ba1c98d20a8d84998",
+		"game": "gitadora",
+		"inactive": false,
+		"playtype": "Dora",
+		"searchTerms": [],
+		"title": "Level 6.50 - 6.99 (Konaste)",
 		"type": "charts"
 	},
 	{
 		"data": {
 			"levelNum": {
 				"~gte": 7,
-				"~lt": 8
+				"~lt": 7.5
 			},
 			"versions": "konaste"
 		},
-		"folderID": "Fc13f12a9a98984e0e0018b2bb4002f18b4573890ff828a09aaa0b175d9201b08",
+		"folderID": "Fa8a1004ef6dafa4cc5b39d6b51177a4057f7a6c5960a1ddb1a9dd422f41c50f9",
 		"game": "gitadora",
 		"inactive": false,
 		"playtype": "Dora",
 		"searchTerms": [],
-		"title": "Level 7 (Konaste)",
+		"title": "Level 7.00 - 7.49 (Konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"levelNum": {
+				"~gte": 7.5,
+				"~lt": 8
+			},
+			"versions": "konaste"
+		},
+		"folderID": "Fe24216fcc0eddceae24d345e1fccbcc59d71e40b27f9e94bffabd601be3decfa",
+		"game": "gitadora",
+		"inactive": false,
+		"playtype": "Dora",
+		"searchTerms": [],
+		"title": "Level 7.50 - 7.99 (Konaste)",
 		"type": "charts"
 	},
 	{
 		"data": {
 			"levelNum": {
 				"~gte": 8,
-				"~lt": 9
+				"~lt": 8.5
 			},
 			"versions": "konaste"
 		},
-		"folderID": "F65e6621a0664cd75c4cfdbc6fe04661522f2f542009bd2a02a0af01f549be907",
+		"folderID": "F72b7fe3ed49dc96f6b8a722419718ae7e35c260b5f998d203d9ae986ba96818a",
 		"game": "gitadora",
 		"inactive": false,
 		"playtype": "Dora",
 		"searchTerms": [],
-		"title": "Level 8 (Konaste)",
+		"title": "Level 8.00 - 8.49 (Konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"levelNum": {
+				"~gte": 8.5,
+				"~lt": 9
+			},
+			"versions": "konaste"
+		},
+		"folderID": "Fe0141df3e77fcedfce71210dabf3712f9907e03863f1705f1c2ab758c33fa8d4",
+		"game": "gitadora",
+		"inactive": false,
+		"playtype": "Dora",
+		"searchTerms": [],
+		"title": "Level 8.50 - 8.99 (Konaste)",
 		"type": "charts"
 	},
 	{
 		"data": {
 			"levelNum": {
 				"~gte": 9,
-				"~lt": 10
+				"~lt": 9.5
 			},
 			"versions": "konaste"
 		},
-		"folderID": "Ff0568db58ee023518606774bb7c46903949999ecfafe876b37b9d9839b67459d",
+		"folderID": "F4ffaaa71b34eceba275424d18733c8051c86c6d7127f129f3f835bc6447047ef",
 		"game": "gitadora",
 		"inactive": false,
 		"playtype": "Dora",
 		"searchTerms": [],
-		"title": "Level 9 (Konaste)",
+		"title": "Level 9.00 - 9.49 (Konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"levelNum": {
+				"~gte": 9.5,
+				"~lt": 10
+			},
+			"versions": "konaste"
+		},
+		"folderID": "Ff9aef6754daed011432d88cd72f6e627516a70fbe78c5a58ad52532172ceed79",
+		"game": "gitadora",
+		"inactive": false,
+		"playtype": "Dora",
+		"searchTerms": [],
+		"title": "Level 9.50 - 9.99 (Konaste)",
 		"type": "charts"
 	},
 	{
@@ -8089,80 +8169,160 @@
 		"data": {
 			"levelNum": {
 				"~gte": 5,
-				"~lt": 6
+				"~lt": 5.5
 			},
 			"versions": "konaste"
 		},
-		"folderID": "F7bb8028175369a4c36a3c49cc0205aa42d7d07ba2405bc3bdcfcf8f8f450b8bc",
+		"folderID": "F95293ad6bb0c71b0f8890823876c4d6f72a5f07272bbfddf0d2df28a8e7c13ff",
 		"game": "gitadora",
 		"inactive": false,
 		"playtype": "Gita",
 		"searchTerms": [],
-		"title": "Level 5.00 - 5.99 (Konaste)",
+		"title": "Level 5.00 - 5.49 (Konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"levelNum": {
+				"~gte": 5.5,
+				"~lt": 6
+			},
+			"versions": "konaste"
+		},
+		"folderID": "F95e944c14c2bde5f8930a0285a88e045740a5ca72447b824f7039ae6cfa370bc",
+		"game": "gitadora",
+		"inactive": false,
+		"playtype": "Gita",
+		"searchTerms": [],
+		"title": "Level 5.50 - 5.99 (Konaste)",
 		"type": "charts"
 	},
 	{
 		"data": {
 			"levelNum": {
 				"~gte": 6,
-				"~lt": 7
+				"~lt": 6.5
 			},
 			"versions": "konaste"
 		},
-		"folderID": "Fe5c00ecda799a5259cb7c4a5d0415d9fcfca4e7e8f4d3903ebb0be34e591c897",
+		"folderID": "Fbb466321f00c0a7dee81acc115d57b929c2953f2c797f0ba3b98bda7ec3ef8be",
 		"game": "gitadora",
 		"inactive": false,
 		"playtype": "Gita",
 		"searchTerms": [],
-		"title": "Level 6.00 - 6.99 (Konaste)",
+		"title": "Level 6.00 - 6.49 (Konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"levelNum": {
+				"~gte": 6.5,
+				"~lt": 7
+			},
+			"versions": "konaste"
+		},
+		"folderID": "F4a34a7a86ab683e9b2cce4c98acb20110a57ba65068fa8ac36b1d8c6a3c92e6b",
+		"game": "gitadora",
+		"inactive": false,
+		"playtype": "Gita",
+		"searchTerms": [],
+		"title": "Level 6.50 - 6.99 (Konaste)",
 		"type": "charts"
 	},
 	{
 		"data": {
 			"levelNum": {
 				"~gte": 7,
-				"~lt": 8
+				"~lt": 7.5
 			},
 			"versions": "konaste"
 		},
-		"folderID": "F8febc616f4b0c1c7858181e7fc99002f5ff8f4be5581647c56b443d24238ab73",
+		"folderID": "F951abc7b7e185117b645b0dc7e158815e0bb95da77dc4bded8b518befb29970f",
 		"game": "gitadora",
 		"inactive": false,
 		"playtype": "Gita",
 		"searchTerms": [],
-		"title": "Level 7.00 - 7.99 (Konaste)",
+		"title": "Level 7.00 - 7.49 (Konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"levelNum": {
+				"~gte": 7.5,
+				"~lt": 8
+			},
+			"versions": "konaste"
+		},
+		"folderID": "F639ce185ea10e7d56068d3c62f27b14a7ce9100b0aaf0772eeeb79706a87d6f2",
+		"game": "gitadora",
+		"inactive": false,
+		"playtype": "Gita",
+		"searchTerms": [],
+		"title": "Level 7.50 - 7.99 (Konaste)",
 		"type": "charts"
 	},
 	{
 		"data": {
 			"levelNum": {
 				"~gte": 8,
-				"~lt": 9
+				"~lt": 8.5
 			},
 			"versions": "konaste"
 		},
-		"folderID": "F6260eb9e9d9e3c4fbcc8cf289f382753c8dd993f96f305618a7b027f2d4be28d",
+		"folderID": "F715966c07fb1626f7f133c8c5528be795a11c39911e944f87ddb778720fc0fdd",
 		"game": "gitadora",
 		"inactive": false,
 		"playtype": "Gita",
 		"searchTerms": [],
-		"title": "Level 8.00 - 8.99 (Konaste)",
+		"title": "Level 8.00 - 8.49 (Konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"levelNum": {
+				"~gte": 8.5,
+				"~lt": 9
+			},
+			"versions": "konaste"
+		},
+		"folderID": "F516642e75e9460efa133ed2ca6173af2cfe9417408aaea5e0753eac498b47992",
+		"game": "gitadora",
+		"inactive": false,
+		"playtype": "Gita",
+		"searchTerms": [],
+		"title": "Level 8.50 - 8.99 (Konaste)",
 		"type": "charts"
 	},
 	{
 		"data": {
 			"levelNum": {
 				"~gte": 9,
-				"~lt": 10
+				"~lt": 9.5
 			},
 			"versions": "konaste"
 		},
-		"folderID": "F39a097d2e1f9ae31b84944b2a77001ea029816b7baf4effc36fbe7e0f23d8696",
+		"folderID": "F5a55f818a08b50a3bcacf16c53d0f0eda0ebbc5db3d6b15f7836c8077919b330",
 		"game": "gitadora",
 		"inactive": false,
 		"playtype": "Gita",
 		"searchTerms": [],
-		"title": "Level 9.00 - 9.99 (Konaste)",
+		"title": "Level 9.00 - 9.49 (Konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"levelNum": {
+				"~gte": 9.5,
+				"~lt": 10
+			},
+			"versions": "konaste"
+		},
+		"folderID": "Fad86e6fe8eb8b5c569383faa1830204420ef794bfbeb8410e8d2a707b9b1e864",
+		"game": "gitadora",
+		"inactive": false,
+		"playtype": "Gita",
+		"searchTerms": [],
+		"title": "Level 9.50 - 9.99 (Konaste)",
 		"type": "charts"
 	},
 	{

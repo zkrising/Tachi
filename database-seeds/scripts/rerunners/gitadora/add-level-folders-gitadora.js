@@ -26,20 +26,50 @@ const versionPretty = PrettyVersions["gitadora:Gita"][version];
 const gitaFolders = [];
 const doraFolders = [];
 
-for (const level of [1, 2, 3, 4, 5, 6, 7, 8, 9]) {
+for (const level of [1, 2, 3, 4]) {
 	const gitaFolder = CreateFolder(
-		{ levelNum: { $gte: level, $lt: level + 1 }, versions: version },
+		{ levelNum: { "~gte": level, "~lt": level + 1 }, versions: version },
 		"Gita",
 		`Level ${level}.00 - ${level}.99 (${versionPretty})`
 	);
 	const doraFolder = CreateFolder(
-		{ levelNum: { $gte: level, $lt: level + 1 }, versions: version },
+		{ levelNum: { "~gte": level, "~lt": level + 1 }, versions: version },
 		"Dora",
-		`Level ${level} (${versionPretty})`
+		`Level ${level}.00 - ${level}.99 (${versionPretty})`
 	);
 
 	gitaFolders.push(gitaFolder);
 	doraFolders.push(doraFolder);
+}
+
+for (const level of [5, 6, 7, 8, 9]) {
+	const gitaFolder = CreateFolder(
+		{ levelNum: { "~gte": level, "~lt": level + 0.5 }, versions: version },
+		"Gita",
+		`Level ${level}.00 - ${level}.49 (${versionPretty})`
+	);
+	const doraFolder = CreateFolder(
+		{ levelNum: { "~gte": level, "~lt": level + 0.5 }, versions: version },
+		"Dora",
+		`Level ${level}.00 - ${level}.49 (${versionPretty})`
+	);
+
+	const gitaFolder2 = CreateFolder(
+		{ levelNum: { "~gte": level + 0.5, "~lt": level + 1 }, versions: version },
+		"Gita",
+		`Level ${level}.50 - ${level}.99 (${versionPretty})`
+	);
+	const doraFolder2 = CreateFolder(
+		{ levelNum: { "~gte": level + 0.5, "~lt": level + 1 }, versions: version },
+		"Dora",
+		`Level ${level}.50 - ${level}.99 (${versionPretty})`
+	);
+
+	gitaFolders.push(gitaFolder);
+	gitaFolders.push(gitaFolder2);
+
+	doraFolders.push(doraFolder);
+	doraFolders.push(doraFolder2);
 }
 
 MutateCollection("folders.json", (folders) => {

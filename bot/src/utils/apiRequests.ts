@@ -43,7 +43,7 @@ export async function GetUGPTStats(userID: integer | string, game: Game, playtyp
 }
 
 export async function GetGoalWithID(goalID: string, game: Game, playtype: Playtype) {
-	const res = await TachiServerV1Get<GoalDocument>(
+	const res = await TachiServerV1Get<{ goal: GoalDocument }>(
 		`/games/${game}/${playtype}/targets/goals/${goalID}`,
 		null
 	);
@@ -52,20 +52,20 @@ export async function GetGoalWithID(goalID: string, game: Game, playtype: Playty
 		throw new Error(`Failed to fetch goal with ID ${goalID}. '${res.description}'.`);
 	}
 
-	return res.body;
+	return res.body.goal;
 }
 
 export async function GetQuestWithID(questID: string, game: Game, playtype: Playtype) {
-	const res = await TachiServerV1Get<QuestDocument>(
+	const res = await TachiServerV1Get<{ quest: QuestDocument }>(
 		`/games/${game}/${playtype}/targets/quests/${questID}`,
 		null
 	);
 
 	if (!res.success) {
-		throw new Error(`Failed to fetch goal with ID ${questID}. '${res.description}'.`);
+		throw new Error(`Failed to fetch quest with ID ${questID}. '${res.description}'.`);
 	}
 
-	return res.body;
+	return res.body.quest;
 }
 
 export async function GetChartInfoForUser(

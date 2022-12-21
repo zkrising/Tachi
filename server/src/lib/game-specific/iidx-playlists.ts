@@ -100,6 +100,7 @@ export const CUSTOM_TACHI_IIDX_PLAYLISTS: Array<TachiIIDXPlaylist> = [
 
 			const charts = (await db.charts.iidx.find({
 				"data.kaidenAverage": { $ne: null },
+				playtype,
 			})) as Array<ChartDocument<"iidx:DP" | "iidx:SP">>;
 
 			const entries = [];

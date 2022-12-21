@@ -48,23 +48,31 @@ export default function RecentFoldersPage({ reqUser, game, playtype }: UGPT) {
 		dataset.push({
 			view: recent,
 			// Is it really O(n^2) if the input is capped at 4?
-			folder: data.folders.find((x) => x.folderID === recent.folderID)!,
-			stats: data.stats.find((x) => x.folderID === recent.folderID)!,
+			folder: data.folders.find((x) => x.folderID === recent.folderID),
+			stats: data.stats.find((x) => x.folderID === recent.folderID),
 		});
 	}
 
 	return (
 		<Row>
-			{dataset.map((e) => (
-				<FolderInfoComponent
-					key={e.folder.folderID}
-					reqUser={reqUser}
-					folder={e.folder}
-					folderStats={e.stats}
-					game={game}
-					playtype={playtype}
-				/>
-			))}
+			{dataset.map((e) => {
+				if (e.folder === undefined || e.stats === undefined) {
+					return (
+						<>Failed to load folder {e.view.folderID}. This is a bug. Report this!</>
+					);
+				}
+
+				return (
+					<FolderInfoComponent
+						key={e.folder.folderID}
+						reqUser={reqUser}
+						folder={e.folder}
+						folderStats={e.stats}
+						game={game}
+						playtype={playtype}
+					/>
+				);
+			})}
 		</Row>
 	);
 }

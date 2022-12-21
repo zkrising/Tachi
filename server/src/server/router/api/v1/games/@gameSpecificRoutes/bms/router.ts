@@ -24,7 +24,7 @@ const FindCustomBMSTable: RequestHandler = (req, res, next) => {
 		});
 	}
 
-	if (customTable.playtype !== playtype) {
+	if (customTable.playtype && customTable.playtype !== playtype) {
 		return res.status(404).json({
 			success: false,
 			description: `The table '${tableUrlName}' exists, but is for ${customTable.playtype}, not ${playtype}.`,

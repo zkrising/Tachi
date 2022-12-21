@@ -36,7 +36,7 @@ export default function ImportAnalysers() {
 
 	return (
 		<>
-			<h1>{TachiConfig.name} Database Management</h1>
+			<h1>{TachiConfig.name} Imports</h1>
 			<Divider />
 			<span>
 				This tool is for viewing imports that have came through to {TachiConfig.name}.

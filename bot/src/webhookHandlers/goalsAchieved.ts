@@ -43,7 +43,7 @@ export async function HandleGoalAchievedV1(
 			`${userDoc.username} just achieved ${event.goals.length} ${Pluralise(
 				event.goals.length,
 				"goal"
-			)}`
+			)}!`
 		)
 		.addFields(
 			event.goals.map((e) => {

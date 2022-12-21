@@ -30,7 +30,7 @@ export async function HandleQuestAchievedV1(
 	const shouldShowPlaytype = gameConfig.validPlaytypes.length > 1 ? ` (${playtype})` : "";
 
 	const embed = CreateEmbed(userDoc.id).setTitle(
-		`${userDoc.username} just completed ${quest.name}${shouldShowPlaytype}!`
+		`${userDoc.username} just completed the ${quest.name}${shouldShowPlaytype} quest!`
 	);
 
 	await channel.send({ embeds: [embed] });

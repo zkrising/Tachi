@@ -2,6 +2,7 @@ import db from "external/mongo/db";
 import { SetRivalsFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
 import { SendSetRivalNotification } from "lib/notifications/notification-wrappers";
+import { ServerConfig } from "lib/setup/config";
 import { FormatGame } from "tachi-common";
 import { ArrayDiff } from "utils/misc";
 import { GetUsersWithIDs, GetUserWithIDGuaranteed } from "utils/user";
@@ -82,7 +83,7 @@ export async function GetEveryonesRivalIDs(
 /**
  * Sets an array of userIDs to be this user's rivals. Performs validation on all of the
  * rivals being players of the game, and not being duplicates. The maximum amount of rivals
- * a player can have is 5.
+ * a player can have is ServerConfig.MAX_RIVALS (defaults to 5).
  */
 export async function SetRivals(
 	userID: integer,
@@ -90,7 +91,7 @@ export async function SetRivals(
 	playtype: Playtype,
 	newRivals: Array<integer>
 ) {
-	if (newRivals.length > 5) {
+	if (newRivals.length > ServerConfig.MAX_RIVALS) {
 		return SetRivalsFailReasons.TOO_MANY;
 	}
 

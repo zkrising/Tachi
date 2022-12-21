@@ -279,7 +279,7 @@ function ImportTypeInfoCard({
 }: {
 	importType: FileUploadImportTypes | APIImportTypes;
 }): JSX.Element | null {
-	if (!TachiConfig.importTypes.includes(importType)) 
+	if (!TachiConfig.importTypes.includes(importType)) {
 		return null;
 	}
 

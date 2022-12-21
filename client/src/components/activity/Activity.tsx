@@ -447,12 +447,6 @@ function QuestActivity({
 							</Link>{" "}
 							quest{prettyGame && ` in ${prettyGame}`}!
 						</span>
-						{prettyGame && (
-							<>
-								<br />
-								<Muted>{prettyGame}</Muted>
-							</>
-						)}
 					</div>
 
 					<div className="timeline-content-timestamp">

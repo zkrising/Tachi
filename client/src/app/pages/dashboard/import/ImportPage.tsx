@@ -278,7 +278,11 @@ function ImportTypeInfoCard({
 	importType,
 }: {
 	importType: FileUploadImportTypes | APIImportTypes;
-}): JSX.Element {
+}): JSX.Element | null {
+	if (!TachiConfig.importTypes.includes(importType)) 
+		return null;
+	}
+
 	switch (importType) {
 		case "api/arc-sdvx":
 			return (

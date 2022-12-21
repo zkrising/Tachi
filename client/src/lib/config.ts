@@ -34,6 +34,7 @@ try {
 			height: 100vh;
 			flex-direction: column;
 			text-align: center;
+			position: absolute;
 		}
 
 		ul {

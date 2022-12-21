@@ -357,7 +357,7 @@ function GoalActivity({
 		const goal0 = data.goals[0];
 
 		subMessage = `${goal0.__related.goal.name}${
-			shouldShowGame ? `in ${FormatGame(game, playtype)}` : ""
+			shouldShowGame ? ` in ${FormatGame(game, playtype)}` : ""
 		}!`;
 	} else {
 		subMessage = `${data.goals.length} ${prettyGame}goals`;

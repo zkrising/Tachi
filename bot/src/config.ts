@@ -35,6 +35,7 @@ export interface BotConfig {
 		SERVER_ID: string;
 		GAME_CHANNELS: Partial<Record<Game, string>>;
 		ADMIN_USERS: Array<string>;
+		APPROVED_ROLE?: string;
 	};
 	LOGGER?: {
 		SEQ_API_KEY?: string;
@@ -85,6 +86,11 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 
 			// A list of users that are allowed to do powerful stuff.
 			ADMIN_USERS: ["string"],
+
+			// when users are authenticated with the bot, this role will be assigned
+			// to them.
+			// if this is not set, no role will be assigned.
+			APPROVED_ROLE: "*string",
 		},
 		LOGGER: p.optional({
 			SEQ_API_KEY: "*string",

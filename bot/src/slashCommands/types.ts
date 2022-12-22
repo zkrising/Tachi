@@ -12,7 +12,7 @@ export type Emittable = InteractionReplyOptions | MessageEmbed | MessagePayload 
 type Command = (
 	interaction: CommandInteraction,
 	requestingUser: DiscordUserMapDocument
-) => Emittable | Promise<Emittable>;
+) => Emittable | Promise<Emittable | null>;
 
 export interface SlashCommand {
 	info: {

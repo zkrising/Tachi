@@ -247,7 +247,6 @@ export const TestingSDVXAlbidaChart: ChartDocument<"sdvx:Single"> = {
 	level: "10",
 	data: {
 		inGameID: 1,
-		arcChartID: "EOZ7FixCDpv",
 	},
 	isPrimary: true,
 	versions: ["booth", "inf", "gw", "heaven", "vivid", "exceed", "konaste"],
@@ -365,7 +364,6 @@ export const Testing511SPA: ChartDocument<"iidx:SP"> = {
 	data: {
 		inGameID: 1000,
 		notecount: 786,
-		arcChartID: "CYjwAuz7Yq9",
 		"2dxtraSet": null,
 		hashSHA256: null,
 		bpiCoefficient: null,
@@ -411,7 +409,6 @@ export const TestingAlbidaADV: ChartDocument<"sdvx:Single"> = {
 	level: "10",
 	data: {
 		inGameID: 1,
-		arcChartID: "EOZ7FixCDpv",
 	},
 	isPrimary: true,
 	versions: ["booth", "inf", "gw", "heaven", "vivid", "exceed", "konaste"],

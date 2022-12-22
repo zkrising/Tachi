@@ -82,7 +82,6 @@ function ParseAixChart(d: AixData, c: AixChart, diff: ChartStrings, songID: inte
 			notecount: c.note_count,
 			inGameID: d.entry_id,
 			"2dxtraSet": null,
-			arcChartID: null,
 			bpiCoefficient: null,
 			hashSHA256: null,
 			kaidenAverage: null,

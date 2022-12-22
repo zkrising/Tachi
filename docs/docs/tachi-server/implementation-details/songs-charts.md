@@ -61,7 +61,6 @@ chart, `songID` refers to the above song document:
 	"data": {
 		"inGameID": 1000,
 		"notecount": 786,
-		"arcChartID": "CYjwAuz7Yq9"
 	},
 	"isPrimary": true,
 	"versions": [
@@ -116,8 +115,7 @@ For example:
 	},
 	"data": {
 		"inGameID": 1000,
-		"notecount": 433,
-		"arcChartID": "foobar"
+		"notecount": 433
 	},
 	"isPrimary": false,
 	"versions": [

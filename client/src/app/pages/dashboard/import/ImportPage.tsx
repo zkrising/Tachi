@@ -132,7 +132,6 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			/>,
 			<ImportTypeInfoCard key="api/flo-iidx" importType="api/flo-iidx" />,
 			<ImportTypeInfoCard key="api/eag-iidx" importType="api/eag-iidx" />,
-			<ImportTypeInfoCard key="api/arc-iidx" importType="api/arc-iidx" />,
 			<ImportTypeInfoCard key="file/solid-state-squad" importType="file/solid-state-squad" />,
 			<ImportTypeInfoCard key="file/pli-iidx-csv" importType="file/pli-iidx-csv" />
 		);
@@ -160,8 +159,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			<ImportTypeInfoCard key="api/eag-sdvx" importType="api/eag-sdvx" />,
 			<ImportTypeInfoCard key="api/cg-dev-sdvx" importType="api/cg-dev-sdvx" />,
 			<ImportTypeInfoCard key="api/cg-prod-sdvx" importType="api/cg-prod-sdvx" />,
-			<ImportTypeInfoCard key="api/min-sdvx" importType="api/min-sdvx" />,
-			<ImportTypeInfoCard key="api/arc-sdvx" importType="api/arc-sdvx" />
+			<ImportTypeInfoCard key="api/min-sdvx" importType="api/min-sdvx" />
 		);
 	} else if (game === "chunithm") {
 		Content.unshift(
@@ -284,26 +282,6 @@ function ImportTypeInfoCard({
 	}
 
 	switch (importType) {
-		case "api/arc-sdvx":
-			return (
-				<ImportInfoCard
-					name="ARC Integration"
-					href="sdvx-arc"
-					desc="Pull your SDVX scores from the ARC Network."
-					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons. ARC has a serious problem where it only stores one score per chart. This results in broken timestamps, and technically false score imports. I highly recommend using Barbatos instead, and only importing this once to synchronise things up."
-					key="sdvx-arc"
-				/>
-			);
-		case "api/arc-iidx":
-			return (
-				<ImportInfoCard
-					name="ARC Integration"
-					href="iidx-arc"
-					desc="Pull your IIDX scores from the ARC Network."
-					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons. ARC has a serious problem where it only stores one score per chart. This results in broken timestamps, and technically false score imports. I highly recommend using Fervidex instead, and only importing this once to synchronise things up."
-					key="iidx-arc"
-				/>
-			);
 		case "api/eag-iidx":
 			return (
 				<ImportInfoCard

@@ -7,7 +7,6 @@
 	FLO_API_URL: "https://flo.example.com",
 	EAG_API_URL: "https://eag.example.com",
 	MIN_API_URL: "https://min.example.com",
-	ARC_API_URL: "https://arc.example.com",
 	FLO_OAUTH2_INFO: {
 		CLIENT_ID: "DUMMY_CLIENT_ID",
 		CLIENT_SECRET: "DUMMY_CLIENT_SECRET",
@@ -62,8 +61,6 @@
 			"ir/beatoraja",
 			"ir/usc",
 			"ir/kshook-sv6c",
-			"api/arc-iidx",
-			"api/arc-sdvx",
 			"api/eag-iidx",
 			"api/eag-sdvx",
 			"api/flo-iidx",

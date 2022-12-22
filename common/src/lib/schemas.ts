@@ -358,7 +358,6 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 			return {
 				notecount: p.isPositiveNonZeroInteger,
 				inGameID: p.or(p.isPositiveNonZeroInteger, [p.isPositiveNonZeroInteger]),
-				arcChartID: "?string",
 				hashSHA256: "?string",
 				"2dxtraSet": "?string",
 				kaidenAverage: "?number",
@@ -372,7 +371,6 @@ function GetChartDataForGPT(idString: IDStrings): PrudenceSchema {
 		case "sdvx:Single":
 			return {
 				inGameID: p.isPositiveInteger,
-				arcChartID: "?string",
 			};
 		case "usc:Controller":
 		case "usc:Keyboard":
@@ -1078,11 +1076,6 @@ const PRE_SCHEMAS = {
 				p.isPositive,
 			])
 		),
-	}),
-	"arc-saved-profiles": prSchemaFnWrap({
-		userID: p.isPositiveNonZeroInteger,
-		accountID: "string",
-		forImportType: p.isIn("api/arc-iidx", "api/arc-sdvx"),
 	}),
 	invites: prSchemaFnWrap({
 		createdBy: p.isPositiveInteger,

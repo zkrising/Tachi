@@ -177,7 +177,7 @@ t.test("#ConverterIRFervidex", (t) => {
 		const Testing511DPA = deepmerge(Testing511SPA, {
 			playtype: "DP",
 			chartID: "dp_test",
-			data: { arcChartID: "dp_test" },
+			data: {},
 		});
 
 		await db.charts.iidx.insert(Testing511DPA);

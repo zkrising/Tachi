@@ -8,8 +8,7 @@
 		"levelNum": 10,
 		"level": "10",
 		"data": {
-			"inGameID": 1,
-			"arcChartID": "EOZ7FixCDpv"
+			"inGameID": 1
 		},
 		"isPrimary": true,
 		"versions": [

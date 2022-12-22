@@ -90,7 +90,6 @@ Since the chart document is inherited from by every GPT, some fields have differ
 type IIDXChartData = {
 	notecount: integer;
 	inGameID: integer | integer[];
-	arcChartID: string | null;
 	hashSHA256: string | null;
 	"2dxtraSet": string | null;
 }
@@ -100,7 +99,6 @@ type IIDXChartData = {
 | :: | :: |
 | `notecount` | The amount of notes in this chart. |
 | `inGameID` | The ID used in game. For charts that have multiple in game IDs, this is an array with all of them. |
-| `arcChartID` | ARC's chartID for this chart. Null if t his is not known. |
 | `hashSHA256` | A SHA256 checksum of the chart data. This is used for 2DXTra to identify charts, and is null for non-2dxtra implementations. |
 | `2dxtraSet` | What 2dxtra set this chart belongs to, such as Kichiku, Kiraku or something else. This is null if the chart is part of the normal game. |
 
@@ -145,14 +143,12 @@ The supported versions for this game are as follows:
 ```ts
 interface SDVXChartData {
 	inGameID: integer;
-	arcChartID: string | null;
 }
 ```
 
 | Property | Description |
 | :: | :: |
 | `inGameID` | The integer ID used in game for this chart. |
-| `arcChartID` | ARC's chart ID for this chart. If not known, this is null. |
 
 #### Tierlists
 

@@ -214,17 +214,13 @@ t.test("#EvaluateGoalForUser", (t) => {
 					songID: 123,
 					level: "9",
 					chartID: "not_sp10",
-					data: {
-						arcChartID: Random20Hex(),
-					},
+					data: {},
 				}),
 				deepmerge(Testing511SPA, {
 					songID: 124,
 					level: "10",
 					chartID: "other_sp10",
-					data: {
-						arcChartID: Random20Hex(),
-					},
+					data: {},
 				}),
 			]);
 

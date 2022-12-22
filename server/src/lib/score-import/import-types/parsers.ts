@@ -1,5 +1,3 @@
-import { ParseArcIIDX } from "./api/arc-iidx/parser";
-import { ParseArcSDVX } from "./api/arc-sdvx/parser";
 import { ParseEagIIDX } from "./api/eag-iidx/parser";
 import { ParseEagSDVX } from "./api/eag-sdvx/parser";
 import { ParseFloIIDX } from "./api/flo-iidx/parser";
@@ -44,8 +42,6 @@ export const Parsers = {
 	"api/flo-iidx": ParseFloIIDX,
 	"api/flo-sdvx": ParseFloSDVX,
 	"api/min-sdvx": ParseMinSDVX,
-	"api/arc-iidx": ParseArcIIDX,
-	"api/arc-sdvx": ParseArcSDVX,
 
 	"api/cg-dev-sdvx": ParseCGDevSDVX,
 	"api/cg-dev-popn": ParseCGDevPopn,

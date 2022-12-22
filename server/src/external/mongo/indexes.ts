@@ -99,10 +99,6 @@ const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 	"class-achievements": [index({ game: 1, playtype: 1, timeAchieved: 1 })],
 	"api-clients": [index({ clientID: 1 }, UNIQUE)],
 	"charts-iidx": [
-		index(
-			{ "data.arcChartID": 1 },
-			{ unique: true, partialFilterExpression: { "data.arcChartID": { $type: "string" } } }
-		),
 		index({ "data.hashSHA256": 1 }),
 		index({ "data.inGameID": 1, playtype: 1, difficulty: 1 }),
 	],
@@ -120,7 +116,6 @@ const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 		index({ "data.hashMD5": 1, playtype: 1 }, UNIQUE),
 	],
 	"import-locks": [index({ userID: 1 }, UNIQUE)],
-	"arc-saved-profiles": [index({ userID: 1, forImportType: 1 }, UNIQUE)],
 	"score-blacklist": [index({ scoreID: 1 }, UNIQUE)],
 	migrations: [index({ migrationID: 1 }, UNIQUE)],
 	notifications: [index({ notifID: 1 }, UNIQUE), index({ sentTo: 1, sentAt: 1 })],

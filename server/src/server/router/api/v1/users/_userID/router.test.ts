@@ -415,11 +415,11 @@ t.test("GET /api/v1/users/:userID/recent-imports", (t) => {
 
 	t.test("Should work cross game and ignore imports without userIntent.", async (t) => {
 		await db.imports.insert([
-			mkImport("iidx", "api/arc-iidx", Date.now() - ONE_DAY, true),
-			mkImport("iidx", "api/arc-iidx", Date.now() - ONE_DAY, true),
-			mkImport("sdvx", "api/arc-sdvx", Date.now() - ONE_DAY, false),
-			mkImport("iidx", "api/arc-iidx", Date.now() - ONE_DAY, false),
-			mkImport("sdvx", "api/arc-sdvx", Date.now() - ONE_DAY, true),
+			mkImport("iidx", "api/flo-iidx", Date.now() - ONE_DAY, true),
+			mkImport("iidx", "api/flo-iidx", Date.now() - ONE_DAY, true),
+			mkImport("sdvx", "api/flo-sdvx", Date.now() - ONE_DAY, false),
+			mkImport("iidx", "api/flo-iidx", Date.now() - ONE_DAY, false),
+			mkImport("sdvx", "api/flo-sdvx", Date.now() - ONE_DAY, true),
 		]);
 
 		const res = await mockApi.get("/api/v1/users/1/recent-imports");
@@ -428,11 +428,11 @@ t.test("GET /api/v1/users/:userID/recent-imports", (t) => {
 
 		t.strictSame(res.body.body, [
 			{
-				importType: "api/arc-iidx",
+				importType: "api/flo-iidx",
 				count: 2,
 			},
 			{
-				importType: "api/arc-sdvx",
+				importType: "api/flo-sdvx",
 				count: 1,
 			},
 		]);
@@ -442,13 +442,13 @@ t.test("GET /api/v1/users/:userID/recent-imports", (t) => {
 
 	t.test("Should ignore imports that were too long ago.", async (t) => {
 		await db.imports.insert([
-			mkImport("iidx", "api/arc-iidx", Date.now() - ONE_DAY, true),
+			mkImport("iidx", "api/flo-iidx", Date.now() - ONE_DAY, true),
 			mkImport("iidx", "ir/fervidex", Date.now() - ONE_YEAR, true),
 			mkImport("iidx", "ir/fervidex", Date.now() - ONE_YEAR, true),
 			mkImport("iidx", "ir/fervidex", Date.now() - ONE_YEAR, true),
 			mkImport("iidx", "ir/fervidex", Date.now() - ONE_YEAR, true),
-			mkImport("sdvx", "api/arc-sdvx", Date.now() - ONE_DAY, true),
-			mkImport("sdvx", "api/arc-sdvx", Date.now() - ONE_DAY, true),
+			mkImport("sdvx", "api/flo-sdvx", Date.now() - ONE_DAY, true),
+			mkImport("sdvx", "api/flo-sdvx", Date.now() - ONE_DAY, true),
 		]);
 
 		const res = await mockApi.get("/api/v1/users/1/recent-imports");
@@ -457,11 +457,11 @@ t.test("GET /api/v1/users/:userID/recent-imports", (t) => {
 
 		t.strictSame(res.body.body, [
 			{
-				importType: "api/arc-sdvx",
+				importType: "api/flo-sdvx",
 				count: 2,
 			},
 			{
-				importType: "api/arc-iidx",
+				importType: "api/flo-iidx",
 				count: 1,
 			},
 		]);

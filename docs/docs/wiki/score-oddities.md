@@ -30,23 +30,6 @@ And there's no longer any way to determine the score was auto scratched!
 Beatoraja and LR2 only store the left hand random. They completely ignore
 the right hand one and never store or send it anywhere.
 
-## ARC PB Only
-
-ARC only exports the users best scores for an individual chart. This means
-you can't access individual scores properly, and Tachi has to just assume that
-they were valid individual scores. This means that...
-
-```
-If you get
-EASY CLEAR, 88%
-and then
-HARD CLEAR, 30%
-
-ARC will send
-HARD CLEAR, 88%
-and Tachi will have to assume that is a single score.
-```
-
 ## E-Amusement IIDX Resets (0EX Lamps)
 
 E-Amusement resets scores for IIDX every version. This would be fine under a normal interpretation of 'resets score', but the emphasis here is on the word *score*, not *reset*.
@@ -102,6 +85,6 @@ There is no way to distinguish between a user getting a score twice, and a user 
 
 You can't check the score timestamp. Games like LR2 do not store timestamps, games like E-Amusement lie about their timestamps and generally clobber them. PLI infamously lied about almost all their timestamps to hide what players were playing, etc.
 
-Similarly, scores are sometimes duplicated across services -- someone might import their ARC scores to PLI using their integration. Those timestamps also get clobbered.
+Similarly, scores are sometimes duplicated across services -- someone might import their FLO scores to EAG using their integration. Those timestamps also get clobbered.
 
 It is safer to be right all the time on deduplication and sacrifice this case.

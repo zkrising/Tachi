@@ -16,7 +16,6 @@ import SSSXMLPage from "app/pages/dashboard/import/SSSXMLPage";
 import USCDBPage from "app/pages/dashboard/import/USCDBPage";
 import USCIRPage from "app/pages/dashboard/import/USCIRPage";
 import WACCASiteImportPage from "app/pages/dashboard/import/WACCASiteImportPage";
-import ARCImportPage from "components/imports/ARCImportPage";
 import KAIIntegrationPage from "components/imports/KAIIntegrationPage";
 import Divider from "components/util/Divider";
 import { UserContext } from "context/UserContext";
@@ -117,14 +116,6 @@ export default function ImportRoutes() {
 
 							<Route exact path="/import/chunitachi">
 								<ChunitachiPage />
-							</Route>
-
-							<Route exact path="/import/iidx-arc">
-								<ARCImportPage game="iidx" />
-							</Route>
-
-							<Route exact path="/import/sdvx-arc">
-								<ARCImportPage game="sdvx" />
 							</Route>
 
 							<Route exact path="/import/iidx-flo">

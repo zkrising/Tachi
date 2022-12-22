@@ -37,6 +37,13 @@ export async function handleIsCommand(
 					await interaction[method]({ embeds: [response] });
 				} else if (response !== null) {
 					await interaction[method](response);
+				} else {
+					await interaction.reply({
+						data: {
+							content: "Done!",
+						},
+						ephemeral: true,
+					});
 				}
 			} catch (err) {
 				logger.error(`An error occured while executing a command.`, { command, err });

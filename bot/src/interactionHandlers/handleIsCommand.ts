@@ -39,9 +39,7 @@ export async function handleIsCommand(
 					await interaction[method](response);
 				} else {
 					await interaction.reply({
-						data: {
-							content: "Done!",
-						},
+						content: "Done!",
 						ephemeral: true,
 					});
 				}

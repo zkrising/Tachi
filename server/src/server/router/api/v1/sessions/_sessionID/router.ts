@@ -216,7 +216,11 @@ router.get("/folder-raises", async (req, res) => {
 	await Promise.all(
 		folders.map(async (folder) => {
 			// what was the grade and lamp distribution on this folder before the session?
-			const { chartIDs, gradeDist, lampDist } = await GetGradeLampDistributionForFolderAsOf(
+			const {
+				chartIDs,
+				cumulativeGradeDist: gradeDist,
+				cumulativeLampDist: lampDist,
+			} = await GetGradeLampDistributionForFolderAsOf(
 				session.userID,
 				folder.folderID,
 				session.timeStarted

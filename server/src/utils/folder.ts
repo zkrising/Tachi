@@ -420,7 +420,10 @@ export async function GetGradeLampDistributionForFolderAsOf(
 	const { game, playtype } = folder;
 
 	const gradeDist: Partial<Record<Grades[IDStrings], integer>> = {};
+	const cumulativeGradeDist: Partial<Record<Grades[IDStrings], integer>> = {};
+
 	const lampDist: Partial<Record<Lamps[IDStrings], integer>> = {};
+	const cumulativeLampDist: Partial<Record<Lamps[IDStrings], integer>> = {};
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	for (const score of bestGradeLampIndexes) {
@@ -460,11 +463,54 @@ export async function GetGradeLampDistributionForFolderAsOf(
 		} else {
 			lampDist[lamp] = 1;
 		}
+
+		// we also want to count this cumulatively, i.e. a HARD CLEAR
+		// also counts as an EASY CLEAR, etc.
+		for (let i = 0; i <= score.lampIndex; i++) {
+			const lamp = gptConfig.lamps[i];
+
+			if (!lamp) {
+				logger.warn(
+					`Failed to resolve lampIndex '${score.lampIndex}' for ${FormatGame(
+						game,
+						playtype
+					)}.`
+				);
+				continue;
+			}
+
+			if (cumulativeLampDist[lamp] !== undefined) {
+				// @ts-expect-error object is definitely not undefined
+				cumulativeLampDist[lamp]++;
+			} else {
+				cumulativeLampDist[lamp] = 1;
+			}
+		}
+
+		for (let i = 0; i <= score.gradeIndex; i++) {
+			const grade = gptConfig.grades[i];
+
+			if (!grade) {
+				logger.warn(
+					`Failed to resolve gradeIndex '${i}' for ${FormatGame(game, playtype)}.`
+				);
+				continue;
+			}
+
+			if (cumulativeGradeDist[grade] !== undefined) {
+				// @ts-expect-error object is definitely not undefined
+				cumulativeGradeDist[grade]++;
+			} else {
+				cumulativeGradeDist[grade] = 1;
+			}
+		}
 	}
 
 	return {
 		gradeDist,
 		lampDist,
+		cumulativeGradeDist,
+		cumulativeLampDist,
 		chartIDs,
 		folder,
 	};

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Copy a user from a remote Tachi instance and import it locally.
+# This script is intended for users who have MongoDB access to said remote Tachi instance.
 
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
 	echo "Usage 'snap-remote-ugpt.sh <userID> <game> <playtype>"

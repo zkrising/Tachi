@@ -7,7 +7,6 @@ import { UserContext } from "context/UserContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext, useState } from "react";
 import { Col } from "react-bootstrap";
-import { UserAuthLevels } from "tachi-common";
 import { ImportDataset } from "types/tables";
 import DropdownStructure from "./components/DropdownStructure";
 import ImportInputViewer from "./components/ImportInputViewer";

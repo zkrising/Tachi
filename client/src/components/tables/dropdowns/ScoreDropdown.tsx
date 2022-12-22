@@ -2,8 +2,8 @@ import DebugContent from "components/util/DebugContent";
 import HasDevModeOn from "components/util/HasDevModeOn";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
-import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
+import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext, useReducer, useState } from "react";
@@ -11,12 +11,13 @@ import {
 	ChartDocument,
 	IDStrings,
 	PBScoreDocument,
-	UserDocument,
 	ScoreDocument,
 	SongDocument,
+	UserDocument,
 } from "tachi-common";
 import { GoalsOnChartReturn, UGPTChartPBComposition } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
+import { GPTDropdownSettings } from "./GPTDropdownSettings";
 import DocComponentCreator, { DocumentComponentType } from "./components/DocumentComponent";
 import DropdownStructure from "./components/DropdownStructure";
 import ManageScore from "./components/ManageScore";
@@ -24,7 +25,6 @@ import PBCompare from "./components/PBCompare";
 import PlayHistory from "./components/PlayHistory";
 import RivalCompare from "./components/RivalCompare";
 import TargetInfo from "./components/TargetInfo";
-import { GPTDropdownSettings } from "./GPTDropdownSettings";
 
 export interface ScoreState {
 	highlight: boolean;

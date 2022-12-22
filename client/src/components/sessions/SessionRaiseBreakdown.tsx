@@ -23,12 +23,12 @@ import {
 	GetGamePTConfig,
 	Grades,
 	IDStrings,
-	integer,
 	Lamps,
 	ScoreDocument,
 	SessionScoreInfo,
 	SongDocument,
 	TableDocument,
+	integer,
 } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
 

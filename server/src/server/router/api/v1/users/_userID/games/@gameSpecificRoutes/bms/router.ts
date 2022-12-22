@@ -5,6 +5,7 @@ import {
 	HandleBMSTableHTMLRequest,
 	HandleBMSTableHeaderRequest,
 } from "lib/game-specific/custom-bms-tables";
+import { ValidatePlaytypeFromParamFor } from "server/router/api/v1/games/_game/_playtype/middleware";
 import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import type { RequestHandler } from "express";
 
@@ -50,35 +51,50 @@ const FindCustomBMSTable: RequestHandler = (req, res, next) => {
  *
  * @name GET /api/v1/users/:userID/games/bms/:playtype/custom-tables/:tableUrlName
  */
-router.get("/:playtype/custom-tables/:tableUrlName", FindCustomBMSTable, (req, res) => {
-	const customTable = GetTachiData(req, "customBMSTable");
+router.get(
+	"/:playtype/custom-tables/:tableUrlName",
+	ValidatePlaytypeFromParamFor("bms"),
+	FindCustomBMSTable,
+	(req, res) => {
+		const customTable = GetTachiData(req, "customBMSTable");
 
-	// This handles returning a response for us.
-	return HandleBMSTableHTMLRequest(customTable, req, res);
-});
+		// This handles returning a response for us.
+		return HandleBMSTableHTMLRequest(customTable, req, res);
+	}
+);
 
 /**
  * Return the header.json for this custom table.
  *
  * @name GET /api/v1/users/:userID/games/bms/:playtype/custom-tables/:tableUrlName/header.json
  */
-router.get("/:playtype/custom-tables/:tableUrlName/header.json", FindCustomBMSTable, (req, res) => {
-	const customTable = GetTachiData(req, "customBMSTable");
+router.get(
+	"/:playtype/custom-tables/:tableUrlName/header.json",
+	ValidatePlaytypeFromParamFor("bms"),
+	FindCustomBMSTable,
+	(req, res) => {
+		const customTable = GetTachiData(req, "customBMSTable");
 
-	// This handles returning a response for us.
-	return HandleBMSTableHeaderRequest(customTable, req, res);
-});
+		// This handles returning a response for us.
+		return HandleBMSTableHeaderRequest(customTable, req, res);
+	}
+);
 
 /**
  * Return the body.json for this custom table.
  *
  * @name GET /api/v1/users/:userID/games/bms/:playtype/custom-tables/:tableUrlName/body.json
  */
-router.get("/:playtype/custom-tables/:tableUrlName/body.json", FindCustomBMSTable, (req, res) => {
-	const customTable = GetTachiData(req, "customBMSTable");
+router.get(
+	"/:playtype/custom-tables/:tableUrlName/body.json",
+	ValidatePlaytypeFromParamFor("bms"),
+	FindCustomBMSTable,
+	(req, res) => {
+		const customTable = GetTachiData(req, "customBMSTable");
 
-	// This handles returning a response for us.
-	return HandleBMSTableBodyRequest(customTable, req, res);
-});
+		// This handles returning a response for us.
+		return HandleBMSTableBodyRequest(customTable, req, res);
+	}
+);
 
 export default router;

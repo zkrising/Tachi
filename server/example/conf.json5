@@ -19,7 +19,7 @@
 		REDIRECT_URI: "https://example.com",
 	},
 	ARC_AUTH_TOKEN: "unused",
-	OUR_URL: "http://127.0.0.1:8080/",
+	OUR_URL: "https://127.0.0.1:8080/",
 	CLIENT_DEV_SERVER: "http://127.0.0.1:3000",
 	ENABLE_SERVER_HTTPS: true,
 	OPTIONS_ALWAYS_SUCCEEDS: true,

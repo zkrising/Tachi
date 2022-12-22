@@ -1,7 +1,7 @@
 import { GetGameConfig } from "tachi-common";
 import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import type { RequestHandler } from "express";
-import type { Playtype } from "tachi-common";
+import type { Playtype, Game } from "tachi-common";
 
 export const ValidatePlaytypeFromParam: RequestHandler = (req, res, next) => {
 	const game = GetTachiData(req, "game");
@@ -19,3 +19,20 @@ export const ValidatePlaytypeFromParam: RequestHandler = (req, res, next) => {
 
 	next();
 };
+
+export const ValidatePlaytypeFromParamFor =
+	(game: Game): RequestHandler =>
+	(req, res, next) => {
+		const gameConfig = GetGameConfig(game);
+
+		if (!gameConfig.validPlaytypes.includes(req.params.playtype as Playtype)) {
+			return res.status(400).json({
+				success: false,
+				description: `The playtype ${req.params.playtype} is not supported.`,
+			});
+		}
+
+		AssignToReqTachiData(req, { playtype: req.params.playtype as Playtype });
+
+		next();
+	};

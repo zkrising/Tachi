@@ -1,3 +1,4 @@
+import fjsh from "fast-json-stable-hash";
 import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 import {
@@ -8,17 +9,16 @@ import {
 	GetGamePTConfig,
 	Grades,
 	IDStrings,
-	integer,
-	ScoreCalculatedDataLookup,
-	ScoreDocument,
-	SessionDocument,
 	Playtype,
+	ProfileRatingLookup,
 	QuestDocument,
 	QuestSubscriptionDocument,
+	ScoreCalculatedDataLookup,
+	ScoreDocument,
 	SessionCalculatedDataLookup,
-	ProfileRatingLookup,
+	SessionDocument,
+	integer,
 } from "tachi-common";
-import fjsh from "fast-json-stable-hash";
 
 export function RFA<T>(arr: T[]): T {
 	return arr[Math.floor(Math.random() * arr.length)];

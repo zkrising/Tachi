@@ -13,8 +13,8 @@ import Icon from "components/util/Icon";
 import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
-import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
+import useApiQuery from "components/util/query/useApiQuery";
 import { useBucket } from "components/util/useBucket";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { UserContext } from "context/UserContext";
@@ -25,9 +25,9 @@ import {
 	Game,
 	GamePTConfig,
 	GetGamePTConfig,
-	UserDocument,
-	TableDocument,
 	Playtype,
+	TableDocument,
+	UserDocument,
 } from "tachi-common";
 import { FolderStatsInfo, UGPTTableReturns } from "types/api-returns";
 

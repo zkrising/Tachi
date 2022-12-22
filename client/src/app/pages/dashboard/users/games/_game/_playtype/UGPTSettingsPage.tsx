@@ -10,8 +10,8 @@ import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
-import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
+import useApiQuery from "components/util/query/useApiQuery";
 import useQueryString from "components/util/useQueryString";
 import { UGPTContext } from "context/UGPTContext";
 import deepmerge from "deepmerge";
@@ -19,6 +19,7 @@ import { useFormik } from "formik";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useEffect, useState } from "react";
 import { Alert, Button, Col, Form, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import {
 	BMS_TABLES,
 	FormatGame,
@@ -30,7 +31,6 @@ import {
 	UserDocument,
 } from "tachi-common";
 import { SetState, UGPT } from "types/react";
-import { Link } from "react-router-dom";
 
 export default function UGPTSettingsPage({ reqUser, game, playtype }: UGPT) {
 	const query = useQueryString();

@@ -63,17 +63,11 @@ export default function RivalsMainPage({
 						<RivalsActivityPage reqUser={reqUser} game={game} playtype={playtype} />
 					</Route>
 
-					<Route
-						exact
-						path="/u/:userID/games/:game/:playtype/rivals/manage"
-					>
+					<Route exact path="/u/:userID/games/:game/:playtype/rivals/manage">
 						<RivalsManagePage reqUser={reqUser} game={game} playtype={playtype} />
 					</Route>
 
-					<Route
-						exact
-						path="/u/:userID/games/:game/:playtype/rivals/pb-leaderboard"
-					>
+					<Route exact path="/u/:userID/games/:game/:playtype/rivals/pb-leaderboard">
 						<ScoreLeaderboard
 							game={game}
 							playtype={playtype}

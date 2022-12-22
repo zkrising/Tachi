@@ -312,16 +312,20 @@ function ChartSelect({
 		// debounce this query to only run after 300ms of no more user input.
 		lastTimeout = window.setTimeout(async () => {
 			const res = await APIFetchV1<SongChartsSearch>(
-				`/games/${game}/${playtype}/charts?search=${input}`
+				`/games/${game}/${playtype}/charts?search=${encodeURIComponent(input)}`
 			);
 
-			if (!res.success) {
+			const res2 = await APIFetchV1<SongChartsSearch>(
+				`/search/chart-hash?search=${encodeURIComponent(input)}`
+			);
+
+			if (!res.success || !res2.success) {
 				throw new Error(res.description);
 			}
 
-			const songMap = CreateSongMap(res.body.songs);
+			const songMap = CreateSongMap([...res.body.songs, ...res2.body.songs]);
 
-			const options = res.body.charts.map((e) => ({
+			const options = [...res.body.charts, ...res2.body.charts].map((e) => ({
 				value: e.chartID,
 				label: FormatChart(game, songMap.get(e.songID)!, e),
 			}));

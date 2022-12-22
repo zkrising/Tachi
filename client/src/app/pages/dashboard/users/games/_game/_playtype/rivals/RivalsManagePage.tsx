@@ -13,7 +13,15 @@ import UserIcon from "components/util/UserIcon";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useState } from "react";
 import { Alert, Button, Col } from "react-bootstrap";
-import { COLOUR_SET, FormatGame, Game, GetGameConfig, Playtype, UserDocument } from "tachi-common";
+import {
+	COLOUR_SET,
+	FormatGame,
+	Game,
+	GetGameConfig,
+	Playtype,
+	UserDocument,
+	integer,
+} from "tachi-common";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 
@@ -100,6 +108,16 @@ function RivalsOverviewPage({
 
 	const [currentRivals, setCurrentRivals] = useState(initialRivals);
 
+	const { data: MAX_RIVALS, error } = useApiQuery<integer>("/config/max-rivals");
+
+	if (error) {
+		return <ApiError error={error} />;
+	}
+
+	if (!MAX_RIVALS) {
+		return <Loading />;
+	}
+
 	if (!settings) {
 		return <div>Looks like you're not signed in. How did you get to this page?</div>;
 	}
@@ -184,7 +202,7 @@ function RivalsOverviewPage({
 							<Divider />
 						</Col>
 						<Col xs={12} className="d-flex justify-content-center">
-							{rivals.length >= 5 ? (
+							{rivals.length >= MAX_RIVALS ? (
 								<Button variant="secondary" disabled>
 									Maximum Rivals Reached :(
 								</Button>
@@ -198,13 +216,13 @@ function RivalsOverviewPage({
 
 						<UserSelectModal
 							callback={(user) => {
-								if (rivals.length >= 5) {
-									SendErrorToast(`Can't have more than 5 rivals!`);
+								if (rivals.length >= MAX_RIVALS) {
+									SendErrorToast(`Can't have more than ${MAX_RIVALS} rivals!`);
 								} else {
 									setRivals([...rivals, user]);
 
 									// if we're now at max rivals, exit.
-									if (rivals.length + 1 >= 5) {
+									if (rivals.length + 1 >= MAX_RIVALS) {
 										setShow(false);
 									}
 								}
@@ -243,7 +261,7 @@ function RivalsOverviewPage({
 						<UserIcon key={e.id} user={e} game={game} playtype={playtype}>
 							{isRequestingUser &&
 								!rivals.map((e) => e.id).includes(e.id) &&
-								(rivals.length < 5 ? (
+								(rivals.length < MAX_RIVALS ? (
 									<Button
 										variant="outline-success"
 										onClick={() => setRivals([...rivals, e])}

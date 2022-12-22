@@ -136,7 +136,7 @@ export function BMSTableToAbsoluteURL(
 	return (
 		ServerConfig.OUR_URL +
 		path.join(
-			"api/v1/",
+			"/api/v1/",
 
 			// if this is a user-specific table, splice /users/$userID into this url.
 			// (otherwise, don't do anything)

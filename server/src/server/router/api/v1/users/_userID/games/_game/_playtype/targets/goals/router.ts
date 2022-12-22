@@ -261,7 +261,7 @@ router.delete(
 	async (req, res) => {
 		const goalSub = GetTachiData(req, "goalSubDoc");
 
-		const fail = await UnsubscribeFromGoal(goalSub, true);
+		const fail = await UnsubscribeFromGoal(goalSub, false);
 
 		if (fail) {
 			switch (fail.reason) {

@@ -27,13 +27,20 @@ const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 		index({ scoreID: 1 }, UNIQUE),
 		index({ chartID: 1, userID: 1 }),
 		index({ userID: 1, game: 1, playtype: 1 }),
+
+		// activity
+		index({ game: 1, playtype: 1, highlight: 1, timeAchieved: 1 }),
 	],
 	"personal-bests": [
 		index({ chartID: 1, userID: 1 }, UNIQUE),
 		index({ chartID: 1, "scoreData.percent": 1 }),
 		index({ userID: 1, game: 1, playtype: 1 }),
+
+		// activity
+		index({ game: 1, playtype: 1, timeAchieved: 1 }),
 	],
 	sessions: [
+		index({ game: 1, playtype: 1, timeStarted: 1 }),
 		index({ userID: 1, game: 1, playtype: 1, timeStarted: 1, timeEnded: 1 }),
 
 		// Optimises score modification, since sessions need to be repointed.

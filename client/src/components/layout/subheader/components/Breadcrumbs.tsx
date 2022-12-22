@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import { GetGameConfig } from "tachi-common";
 
 export function Breadcrumbs({ items }: { items: string[] }) {
 	const url = location.pathname;
@@ -12,17 +13,28 @@ export function Breadcrumbs({ items }: { items: string[] }) {
 			<Link className="opacity-75 hover-opacity-100" to="/">
 				<i className="flaticon2-shelter text-white icon-1x" />
 			</Link>
-			{items.map((name, index) => (
-				<Fragment key={index}>
-					<span className="label label-dot label-sm bg-white opacity-75 mx-3" />
-					<Link
-						className="text-white text-hover-white opacity-75 hover-opacity-100"
-						to={`/${parts.slice(0, index + 1).join("/")}`}
-					>
-						{name}
-					</Link>
-				</Fragment>
-			))}
+			{items.map((name, index) => {
+				// Skip playtype in the breadcrumbs if the game only has one playtype.
+				// @hack
+				// this only works if the game has one playtype called "Single".
+				// Some games (like pop'n) have one playtype, but it's called
+				// 9B. They'll just have to cope.
+				if (items[index - 2] === "Games" && name === "Single") {
+					return;
+				}
+
+				return (
+					<Fragment key={index}>
+						<span className="label label-dot label-sm bg-white opacity-75 mx-3" />
+						<Link
+							className="text-white text-hover-white opacity-75 hover-opacity-100"
+							to={`/${parts.slice(0, index + 1).join("/")}`}
+						>
+							{name}
+						</Link>
+					</Fragment>
+				);
+			})}
 		</div>
 	);
 }

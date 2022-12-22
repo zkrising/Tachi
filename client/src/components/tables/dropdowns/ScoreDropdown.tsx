@@ -166,16 +166,16 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 							Goals & Quests{targetData && ` (${targetData.goals.length})`}
 						</SelectButton>
 					)}
-					{currentUser?.id === user.id && (
-						<SelectButton setValue={setView} value={view} id="manage">
-							<Icon type="trash" />
-							Manage Score
-						</SelectButton>
-					)}
 					{currentUser && (
 						<SelectButton setValue={setView} value={view} id="rivals">
 							<Icon type="users" />
 							Rivals
+						</SelectButton>
+					)}
+					{currentUser?.id === user.id && (
+						<SelectButton setValue={setView} value={view} id="manage">
+							<Icon type="trash" />
+							Delete Score
 						</SelectButton>
 					)}
 					<HasDevModeOn>

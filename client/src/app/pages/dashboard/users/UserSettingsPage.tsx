@@ -259,8 +259,8 @@ function ImageForm({ reqUser }: { reqUser: UserDocument }) {
 	return (
 		<div>
 			<Alert variant="danger">
-				Remember Rule 6! Do not set inappropriate stuff as your avatar/banner. If you have
-				to ask, the answer is probably no.
+				Do not set inappropriate stuff as your avatar/banner. If you have to ask, the answer
+				is probably no.
 			</Alert>
 			<Form.Group>
 				<Form.Label>Profile Picture</Form.Label>

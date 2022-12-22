@@ -211,38 +211,37 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 				</Form.Group>
 			)}
 			<Form.Group>
-				<Form.Label>Preferred Score Info</Form.Label>
+				<Form.Label>Preferred Folder Info</Form.Label>
 				<Form.Control
 					as="select"
 					id="scoreBucket"
 					value={formik.values.scoreBucket}
 					onChange={formik.handleChange}
 				>
-					<option value="grade">Score</option>
-					<option value="lamp">Lamp</option>
+					<option value="grade">Grades</option>
+					<option value="lamp">Lamps</option>
 				</Form.Control>
 				<Form.Text className="text-muted">
-					What should {TachiConfig.name} prefer to show you about scores?
-					<br />
-					Note: This will only affect defaults, such as what graph is shown in the folder
-					breakdown. You can still view all the same stats!
+					What should {TachiConfig.name} default to showing you about folders?
 				</Form.Text>
 			</Form.Group>
-			<Form.Group>
-				<Form.Label>Preferred Ranking</Form.Label>
-				<Form.Control
-					as="select"
-					id="preferredRanking"
-					value={formik.values.preferredRanking}
-					onChange={formik.handleChange}
-				>
-					<option value="global">Global Rankings</option>
-					<option value="rival">Rival Rankings</option>
-				</Form.Control>
-				<Form.Text className="text-muted">
-					What should {TachiConfig.name} default to when showing your score rankings?
-				</Form.Text>
-			</Form.Group>
+			{settings.rivals.length !== 0 && (
+				<Form.Group>
+					<Form.Label>Preferred Ranking</Form.Label>
+					<Form.Control
+						as="select"
+						id="preferredRanking"
+						value={formik.values.preferredRanking}
+						onChange={formik.handleChange}
+					>
+						<option value="global">Global Rankings</option>
+						<option value="rival">Rival Rankings</option>
+					</Form.Control>
+					<Form.Text className="text-muted">
+						What should {TachiConfig.name} default to when showing your score rankings?
+					</Form.Text>
+				</Form.Group>
+			)}
 			<Form.Group>
 				<Form.Label>Preferred Table</Form.Label>
 				<Form.Control
@@ -262,7 +261,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 					))}
 				</Form.Control>
 				<Form.Text className="text-muted">
-					What folders would you like to see when you go to the folders page by default?
+					What folders would you like to see by default?
 				</Form.Text>
 			</Form.Group>
 			{game === "iidx" && (
@@ -572,13 +571,13 @@ function ManageAccount({ reqUser, game, playtype }: UGPT) {
 			<Col xs={12}>
 				<h4>Delete Score</h4>
 				If you have an invalid score, you can delete it by going to that score and clicking
-				"Manage Score".
+				"Delete Score".
 			</Col>
 			<Col xs={12} className="mt-8">
 				<h4>Undo Import</h4>
 				If you messed up an import, you can undo it by going to{" "}
 				<Link to={`/u/${reqUser.username}/imports`}>your imports page</Link> and click
-				"Manage Import".
+				"Revert Import".
 			</Col>
 			<Col xs={12} className="mt-8">
 				<h3>Completely Wipe Profile</h3>

@@ -88,9 +88,7 @@ function KsHookSV6CForm({
 					<br />
 					<span className="text-warning">
 						Warning: You should always import from your network first. Statically
-						imported scores have the bare minimum data (Lamp + EX Score + BP), but due
-						to score de-duplication rules, future network imports cannot append more
-						data (Timestamps, Graphs, etc.) to these scores.
+						imported scores have the bare minimum data (No timestamps!).
 					</span>
 				</Form.Text>
 			</Form.Group>

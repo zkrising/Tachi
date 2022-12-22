@@ -53,7 +53,7 @@ export default function ImportDropdown({ data }: { data: ImportDataset[0] }) {
 					{currentUser?.id === data.userID && (
 						<SelectButton setValue={setView} value={view} id="manage">
 							<Icon type="trash" />
-							Manage Import
+							Revert Import
 						</SelectButton>
 					)}
 					<HasDevModeOn>

@@ -190,7 +190,20 @@ const err = p(config, {
 	MAX_QUEST_SUBSCRIPTIONS: p.optional(p.isPositiveInteger),
 	MAX_FOLLOWING_AMOUNT: p.optional(p.isPositiveInteger),
 	MAX_RIVALS: p.optional(p.isPositiveInteger),
-	OUR_URL: "string",
+	OUR_URL: (self) => {
+		if (typeof self !== "string") {
+			return "Expected a string.";
+		}
+
+		if (self.endsWith("/")) {
+			return `OUR_URL should not end with a trailing slash. Use ${self.substring(
+				0,
+				self.length - 1
+			)} instead.`;
+		}
+
+		return true;
+	},
 	INVITE_CODE_CONFIG: p.optional({
 		BATCH_SIZE: p.isPositiveInteger,
 		INVITE_CAP: p.isPositiveInteger,

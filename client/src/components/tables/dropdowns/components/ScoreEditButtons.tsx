@@ -3,12 +3,9 @@ import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Game, ScoreDocument } from "tachi-common";
-import { Button, Modal, Form } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
+import { ScoreDocument } from "tachi-common";
 import { SetState } from "types/react";
-import LinkButton from "components/util/LinkButton";
-import ExternalLink from "components/util/ExternalLink";
-import ImgScoreButton from "./ImgScoreButton";
 
 export default function ScoreEditButtons({
 	score,
@@ -95,8 +92,6 @@ export default function ScoreEditButtons({
 						)}
 					</>
 				)}
-
-				<ImgScoreButton score={score} />
 			</div>
 			<CommentModal
 				show={show}

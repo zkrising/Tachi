@@ -8,6 +8,7 @@ import { VERSION_PRETTY } from "../version";
 import { HandleClassUpdateV1 } from "../webhookHandlers/classUpdate";
 import { HandleGoalAchievedV1 } from "../webhookHandlers/goalsAchieved";
 import express from "express";
+import { client } from "main";
 import { HandleQuestAchievedV1 } from "webhookHandlers/questAchieved";
 import path from "path";
 import type { Express } from "express";

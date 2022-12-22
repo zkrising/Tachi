@@ -16,6 +16,16 @@ export const client = new Client({
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_MESSAGES],
 });
 
+client.on("guildMemberAdd", async (member) => {
+	if (BotConfig.DISCORD.APPROVED_ROLE) {
+		const dmChannel = await member.createDM();
+
+		await dmChannel.send(
+			`Hello! If you already have an account in ${ServerConfig.name}, run \`/letmein\` in #limbo to be let in. Otherwise, ask for an invite in #limbo.`
+		);
+	}
+});
+
 client.on("interactionCreate", async (interaction) => {
 	try {
 		if (!interaction.isSelectMenu() && !interaction.isCommand()) {

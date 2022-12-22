@@ -202,7 +202,7 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 				/>
 				<Form.Text>Enable debug information and other useful debugging buttons.</Form.Text>
 			</Form.Group>
-			<Form.Group>
+			{/* <Form.Group>
 				<Form.Check
 					type="checkbox"
 					id="advancedMode"
@@ -211,7 +211,7 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 					label="Advanced Mode"
 				/>
 				<Form.Text>Enable advanced stuff.</Form.Text>
-			</Form.Group>
+			</Form.Group> */}
 			{/* <Form.Group>
 				<Form.Check
 					type="checkbox"

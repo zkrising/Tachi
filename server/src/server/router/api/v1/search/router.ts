@@ -95,7 +95,7 @@ router.get("/", async (req, res) => {
  *
  * @note This matches MD5 and SHA256 for BMS/PMS, and SHA1 for USC.
  */
-router.get("/chart-hash", RequireBokutachi, async (req, res) => {
+router.get("/chart-hash", async (req, res) => {
 	if (!IsString(req.query.search)) {
 		return res.status(400).json({
 			success: false,
@@ -107,7 +107,7 @@ router.get("/chart-hash", RequireBokutachi, async (req, res) => {
 
 	return res.status(200).json({
 		success: true,
-		description: `Searched BMS, PMS and USC for ${req.query.search}.`,
+		description: `Searched for chart hash ${req.query.search}.`,
 		body: {
 			songs,
 			charts,

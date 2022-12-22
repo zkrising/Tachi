@@ -35,7 +35,7 @@ export async function handleIsCommand(
 
 				if (response instanceof MessageEmbed) {
 					await interaction[method]({ embeds: [response] });
-				} else {
+				} else if (response !== null) {
 					await interaction[method](response);
 				}
 			} catch (err) {

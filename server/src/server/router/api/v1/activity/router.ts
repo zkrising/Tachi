@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { GetRecentActivityForMultipleGames } from "lib/activity/activity";
+import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { GetGameConfig } from "tachi-common";
 import { allSupportedGames } from "tachi-common/config/static-config";
 
@@ -27,7 +28,7 @@ router.get("/", async (req, res) => {
 
 	const gpts = [];
 
-	for (const game of allSupportedGames) {
+	for (const game of TachiConfig.GAMES) {
 		const playtypes = GetGameConfig(game).validPlaytypes;
 
 		for (const playtype of playtypes) {

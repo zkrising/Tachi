@@ -31,14 +31,10 @@ t.test("GET /api/v1/config/beatoraja-queue-size", async (t) => {
 	t.end();
 });
 
-t.test("GET /api/v1/config/usc-queue-size", async (t) => {
-	const res = await mockApi.get("/api/v1/config/usc-queue-size");
+t.test("GET /api/v1/config/max-rivals", async (t) => {
+	const res = await mockApi.get("/api/v1/config/max-rivals");
 
-	t.equal(
-		res.body.body,
-		ServerConfig.USC_QUEUE_SIZE,
-		"Should return integer equal to USC_QUEUE_SIZE."
-	);
+	t.equal(res.body.body, ServerConfig.MAX_RIVALS, "Should return integer equal to MAX_RIVALS.");
 
 	t.end();
 });

@@ -37,15 +37,15 @@ router.get("/beatoraja-queue-size", RequireBokutachi, (req, res) =>
 );
 
 /**
- * Returns the value of the USC_QUEUE_SIZE.
+ * Returns the maximum amount of rivals a user can have on this instance.
  *
- * @name GET /api/v1/config/usc-queue-size
+ * @name GET /api/v1/config/max-rivals
  */
-router.get("/usc-queue-size", RequireBokutachi, (req, res) =>
+router.get("/max-rivals", (req, res) =>
 	res.status(200).json({
 		success: true,
-		description: `Returned USC_QUEUE_SIZE.`,
-		body: ServerConfig.USC_QUEUE_SIZE,
+		description: `Returned MAX_RIVALS.`,
+		body: ServerConfig.MAX_RIVALS,
 	})
 );
 

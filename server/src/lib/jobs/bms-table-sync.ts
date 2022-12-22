@@ -161,8 +161,12 @@ export async function UpdateTable(tableInfo: BMSTableInfo) {
 
 export async function SyncBMSTables() {
 	for (const table of BMS_TABLES) {
-		// eslint-disable-next-line no-await-in-loop
-		await UpdateTable(table);
+		try {
+			// eslint-disable-next-line no-await-in-loop
+			await UpdateTable(table);
+		} catch (err) {
+			logger.error(`Failed to update table ${table.name} (${table.url}).`, { err });
+		}
 	}
 
 	logger.info(`Re-initialising folder-chart-lookup, since changes may have been made.`);

@@ -1,7 +1,27 @@
 import { PerformScoreImport } from "../../utils/apiRequests";
 import { CreateImportEmbed } from "../../utils/embeds";
 import { SlashCommandBuilder } from "@discordjs/builders";
+import { ServerConfig } from "config";
 import type { SlashCommand } from "../types";
+
+const choices: Array<[string, string]> = (
+	[
+		["FLO IIDX", "api/flo-iidx"],
+		["FLO SDVX", "api/flo-sdvx"],
+		["EAG IIDX", "api/eag-iidx"],
+		["EAG SDVX", "api/eag-sdvx"],
+		["MIN SDVX", "api/min-sdvx"],
+		["CG DEV SDVX", "api/cg-dev-sdvx"],
+		["CG DEV MUSECA", "api/cg-dev-museca"],
+		["CG DEV Pop'n", "api/cg-dev-popn"],
+		["CG SDVX", "api/cg-prod-sdvx"],
+		["CG MUSECA", "api/cg-prod-museca"],
+		["CG Pop'n", "api/cg-prod-popn"],
+	] as Array<[string, string]>
+)
+
+	// @ts-expect-error god i hate the includes signature
+	.filter((e) => ServerConfig.importTypes.includes(e[1]));
 
 const command: SlashCommand = {
 	info: new SlashCommandBuilder()
@@ -12,21 +32,7 @@ const command: SlashCommand = {
 				.setName("service")
 				.setRequired(true)
 				.setDescription("The service to synchronise scores with.")
-				.addChoices([
-					["FLO IIDX", "api/flo-iidx"],
-					["FLO SDVX", "api/flo-sdvx"],
-					["EAG IIDX", "api/eag-iidx"],
-					["EAG SDVX", "api/eag-sdvx"],
-					["MIN SDVX", "api/min-sdvx"],
-					["ARC IIDX", "api/arc-iidx"],
-					["ARC SDVX", "api/arc-sdvx"],
-					["CG DEV SDVX", "api/cg-dev-sdvx"],
-					["CG DEV MUSECA", "api/cg-dev-museca"],
-					["CG DEV Pop'n", "api/cg-dev-popn"],
-					["CG SDVX", "api/cg-prod-sdvx"],
-					["CG MUSECA", "api/cg-prod-museca"],
-					["CG Pop'n", "api/cg-prod-popn"],
-				])
+				.addChoices(choices)
 		)
 		.toJSON(),
 	exec: async (interaction, requestingUser) => {

@@ -27,8 +27,6 @@ export const irImportTypes: Array<IRImportTypes> = [
 ];
 
 export const apiImportTypes: Array<APIImportTypes> = [
-	"api/arc-iidx",
-	"api/arc-sdvx",
 	"api/eag-iidx",
 	"api/eag-sdvx",
 	"api/flo-iidx",

@@ -101,7 +101,6 @@ for (const music of xmlData.mdb.music) {
 				level: levelNum.toString(),
 				data: {
 					inGameID: id,
-					arcChartID: null,
 				},
 				isPrimary: true,
 				versions: ["konaste"],

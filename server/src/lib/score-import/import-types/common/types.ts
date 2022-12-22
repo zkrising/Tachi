@@ -55,8 +55,6 @@ export interface ImportTypeDataMap {
 
 	// These aren't placeholder values - the data is yielded in a way that
 	// the value of these is legitimately unknown at convert time.
-	"api/arc-iidx": unknown;
-	"api/arc-sdvx": unknown;
 	"api/flo-iidx": unknown;
 	"api/flo-sdvx": unknown;
 	"api/min-sdvx": unknown;
@@ -94,8 +92,6 @@ export interface ImportTypeContextMap {
 	"ir/kshook-sv6c-static": EmptyObject;
 	"ir/lr2hook": LR2HookContext;
 
-	"api/arc-iidx": EmptyObject;
-	"api/arc-sdvx": EmptyObject;
 	"api/flo-iidx": KaiContext;
 	"api/flo-sdvx": KaiContext;
 	"api/min-sdvx": KaiContext;

@@ -244,7 +244,6 @@ async function ParseIIDXMDB() {
 					versions: [options.version],
 					data: {
 						inGameID: inp.songID,
-						arcChartID: null,
 						notecount,
 						hashSHA256: null,
 						"2dxtraSet": null,

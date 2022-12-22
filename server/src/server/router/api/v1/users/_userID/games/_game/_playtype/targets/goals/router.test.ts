@@ -32,9 +32,7 @@ const dupedGoalSub = dm({}, HC511UserGoal);
 const anotherFakeChart = dm(Testing511SPA, {
 	chartID: "another_chart",
 	difficulty: "HYPER",
-	data: {
-		arcChartID: null,
-	},
+	data: {},
 }) as ChartDocument;
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/goals", (t) => {

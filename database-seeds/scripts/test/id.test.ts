@@ -39,8 +39,6 @@ const UniqueKeys: Partial<Record<keyof typeof SCHEMAS, DuplicateKeyDecl[]>> = {
 	...SongChartKeys,
 };
 
-UniqueKeys["charts-iidx"]!.push("data.arcChartID");
-
 UniqueKeys["charts-usc"]!.push(["data.hashSHA1", "playtype"]);
 
 UniqueKeys["charts-popn"]!.push("data.hashSHA256");
@@ -142,13 +140,7 @@ for (const [collection, uniqueIDs] of Object.entries(UniqueKeys)) {
 			for (const { value, humanisedValue } of values) {
 				// Null is special -- we're allowed duplicates of null for some
 				// keys.
-				if (
-					set.has(value) &&
-					// value is not null, and uniqueID isn't data.arcChartID
-					// this is because there may be dupes on data.arcChartID: null.
-					// sparse index, zzz.
-					!(uniqueID === "data.arcChartID" && humanisedValue === "null")
-				) {
+				if (set.has(value)) {
 					console.error(
 						chalk.red(
 							`[ERR] ${collectionName} | ${pretty} | Is duplicate on ${uniqueID}:${humanisedValue}.`

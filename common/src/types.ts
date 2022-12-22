@@ -695,7 +695,6 @@ export interface GPTSupportedVersions {
 interface CDDataIIDXSP {
 	notecount: integer;
 	inGameID: Array<integer> | integer;
-	arcChartID: string | null;
 	hashSHA256: string | null;
 	"2dxtraSet": string | null;
 	kaidenAverage: integer | null;
@@ -725,7 +724,7 @@ interface ChartDocumentData {
 	"iidx:SP": CDDataIIDXSP;
 	"iidx:DP": CDDataIIDXSP;
 	"popn:9B": { hashSHA256: Array<string> | string | null; inGameID: integer };
-	"sdvx:Single": { inGameID: integer; arcChartID: string | null };
+	"sdvx:Single": { inGameID: integer };
 	"usc:Keyboard": CDDataUSC;
 	"usc:Controller": CDDataUSC;
 	"jubeat:Single": { inGameID: Array<integer> | integer; isHardMode: boolean };
@@ -1174,8 +1173,6 @@ export type FileUploadImportTypes =
 	| "file/solid-state-squad";
 
 export type APIImportTypes =
-	| "api/arc-iidx"
-	| "api/arc-sdvx"
 	| "api/eag-iidx"
 	| "api/eag-sdvx"
 	| "api/flo-iidx"
@@ -1375,12 +1372,6 @@ export interface UserGameStatsSnapshot<I extends IDStrings = IDStrings>
 	rankings: Record<ProfileRatingLookup[I], { ranking: integer | null; outOf: integer }>;
 	playcount: integer;
 	timestamp: integer;
-}
-
-export interface ARCSavedProfileDocument extends MongoDBDocument {
-	userID: integer;
-	accountID: string;
-	forImportType: "api/arc-iidx" | "api/arc-sdvx";
 }
 
 export type BatchManualScore<I extends IDStrings = IDStrings> = {

@@ -154,9 +154,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 		await db.charts.sdvx.insert(
 			deepmerge(TestingSDVXAlbidaChart, {
 				chartID: "fake_xcd",
-				data: {
-					arcChartID: "fake222",
-				},
+				data: {},
 				difficulty: "XCD",
 			} as ChartDocument<"sdvx:Single">)
 		);

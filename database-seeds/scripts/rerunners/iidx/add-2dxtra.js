@@ -114,7 +114,6 @@ MutateCollection("charts-iidx.json", (charts) => {
 				chartID: CreateChartID(),
 				data: {
 					"2dxtraSet": options.name,
-					arcChartID: null,
 					hashSHA256: data.hash,
 					inGameID: data.id,
 					notecount: data.notes,

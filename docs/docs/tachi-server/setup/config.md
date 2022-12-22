@@ -25,7 +25,6 @@ the main benefits for us are as follows:
 	FLO_API_URL: "https://flo.example.com",
 	EAG_API_URL: "https://eag.example.com",
 	MIN_API_URL: "https://min.example.com",
-	ARC_API_URL: "https://arc.example.com",
 	FLO_OAUTH2_INFO: {
 		CLIENT_ID: "DUMMY_CLIENT_ID",
 		CLIENT_SECRET: "DUMMY_CLIENT_SECRET",
@@ -78,8 +77,6 @@ the main benefits for us are as follows:
 			"ir/beatoraja",
 			"ir/usc",
 			"ir/kshook-sv3c",
-			"api/arc-iidx",
-			"api/arc-sdvx",
 			"api/eag-iidx",
 			"api/eag-sdvx",
 			"api/flo-iidx",
@@ -135,11 +132,11 @@ This key is used to encrypt Session Cookies.
 	You can generate secure random strings with something 
 	like [KeePass](https://keepass.info/).
 
-### FLO_API_URL, EAG_API_URL, MIN_API_URL, and ARC_API_URL
+### FLO_API_URL, EAG_API_URL, MIN_API_URL
 
 - Type: String
 
-The URL for the `FLO, EAG, MIN or ARC` services. This is used for integration
+The URL for the `FLO, EAG or MIN` services. This is used for integration
 with the Kamaitachi version of Tachi.
 
 ### FLO/MIN/EAG_OAUTH2_INFO
@@ -161,12 +158,6 @@ If present, these define our OAuth2 Client data for interacting with these servi
 	The server will throw a fatal error if you have OAUTH2_INFO set for one service, but not an API_URL.
 
 	Maybe a better solution would be to have the API_URL inside the OAUTH2_INFO. Ah well.
-
-### ARC_AUTH_TOKEN
-
-- Type: String
-
-We use an ARC session token in order to pull scores from `ARC`. The session token is stored here.
 
 ### ENABLE_SERVER_HTTPS
 

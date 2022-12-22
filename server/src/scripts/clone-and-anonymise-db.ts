@@ -80,7 +80,6 @@ async function AnonymiseDB(nsTo: string) {
 		"password-reset-codes",
 		"api-tokens",
 		"kai-auth-tokens",
-		"arc-saved-profiles",
 	]) {
 		// eslint-disable-next-line no-await-in-loop
 		const r3 = await clonedDB.get("collection").remove({});

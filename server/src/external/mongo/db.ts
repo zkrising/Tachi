@@ -12,7 +12,6 @@ import type { OrphanScoreDocument } from "lib/score-import/import-types/common/t
 import type { TMiddleware, ICollection } from "monk";
 import type {
 	APITokenDocument,
-	ARCSavedProfileDocument,
 	BMSCourseDocument,
 	ChartDocument,
 	ClassAchievementDocument,
@@ -165,7 +164,6 @@ const db = {
 	"game-settings": monkDB.get<UGPTSettings>("game-settings"),
 	"game-stats-snapshots": monkDB.get<UserGameStatsSnapshot>("game-stats-snapshots"),
 	"session-view-cache": monkDB.get<SessionViewDocument>("session-view-cache"),
-	"arc-saved-profiles": monkDB.get<ARCSavedProfileDocument>("arc-saved-profiles"),
 	"user-settings": monkDB.get<UserSettings>("user-settings"),
 	"user-private-information": monkDB.get<PrivateUserInfoDocument>("user-private-information"),
 	"api-clients": monkDB.get<TachiAPIClientDocument>("api-clients"),

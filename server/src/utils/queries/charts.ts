@@ -233,12 +233,6 @@ export function FindChartOnSHA256Playtype(game: Game, hash: string, playtype: Pl
 	});
 }
 
-export function FindChartOnARCID(game: "iidx" | "jubeat" | "sdvx", arcID: string) {
-	return db.charts[game].findOne({
-		"data.arcChartID": arcID,
-	});
-}
-
 /**
  * Returns the N most popular charts for this game + playtype.
  * Popularity is determined by how many scores match in the score

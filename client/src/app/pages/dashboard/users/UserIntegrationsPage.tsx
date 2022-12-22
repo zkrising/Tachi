@@ -25,7 +25,6 @@ import {
 } from "tachi-common";
 import { SetState } from "types/react";
 import { CGNeedsIntegrate } from "components/imports/CGIntegrationPage";
-import ARCIntegrationPage from "./ARCIntegrationPage";
 import FervidexIntegrationPage from "./FervidexIntegrationPage";
 import KsHookSV6CIntegrationPage from "./KsHookSV6CIntegrationPage";
 
@@ -653,7 +652,6 @@ function ServicesPage({ reqUser }: { reqUser: UserDocument }) {
 					<SelectLinkButton to={`${baseUrl}/cg`}>CG</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/cg-dev`}>CG Dev</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/kshook`}>KsHook</SelectLinkButton>
-					<SelectLinkButton to={`${baseUrl}/arc`}>ARC</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/flo`}>FLO</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/eag`}>EAG</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/min`}>MIN</SelectLinkButton>
@@ -672,9 +670,6 @@ function ServicesPage({ reqUser }: { reqUser: UserDocument }) {
 				</Route>
 				<Route exact path={`${baseUrl}/kshook`}>
 					<KsHookSV6CIntegrationPage reqUser={reqUser} />
-				</Route>
-				<Route exact path={`${baseUrl}/arc`}>
-					<ARCIntegrationPage reqUser={reqUser} />
 				</Route>
 				<Route exact path={`${baseUrl}/flo`}>
 					<KAIIntegrationStatus userID={reqUser.id} kaiType="flo" />
@@ -747,8 +742,8 @@ function KAIIntegrationStatus({
 				) : (
 					<h4>
 						You should authenticate yourself by going to{" "}
-						<Link to="/import">Import Scores</Link> for the thing you want to
-						import for!
+						<Link to="/import">Import Scores</Link> for the thing you want to import
+						for!
 					</h4>
 				)}
 			</div>

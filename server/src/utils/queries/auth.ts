@@ -31,25 +31,3 @@ export async function GetKaiAuthGuaranteed(
 
 	return authDoc;
 }
-
-export function GetArcAuth(userID: integer, forImportType: "api/arc-iidx" | "api/arc-sdvx") {
-	return db["arc-saved-profiles"].findOne({
-		userID,
-		forImportType,
-	});
-}
-
-export async function GetArcAuthGuaranteed(
-	userID: integer,
-	forImportType: "api/arc-iidx" | "api/arc-sdvx",
-	logger: KtLogger
-) {
-	const authDoc = await GetArcAuth(userID, forImportType);
-
-	if (!authDoc) {
-		logger.error(`No authentication was stored for ${forImportType}.`);
-		throw new ScoreImportFatalError(401, `No authentication was stored for ${forImportType}.`);
-	}
-
-	return authDoc;
-}

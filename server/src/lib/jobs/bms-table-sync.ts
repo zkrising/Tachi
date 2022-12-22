@@ -7,6 +7,7 @@ import { BMS_TABLES } from "tachi-common";
 import { InitaliseFolderChartLookup } from "utils/folder";
 import { FormatBMSTables } from "utils/misc";
 import type { BMSTableEntry } from "bms-table-loader";
+import type { FilterQuery } from "mongodb";
 import type { BMSTableInfo, ChartDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
@@ -18,40 +19,42 @@ const logger = CreateLogCtx(__filename);
  * to go from the sl12 folder to st0 -- which is a cross-table
  * change.
  */
-async function HandleTableRemovals(tableJSON: Array<BMSTableEntry>, prefix: string) {
+async function HandleTableRemovals(tableEntries: Array<BMSTableEntry>, prefix: string) {
 	// There are two ways to approach this, we could wipe the table
 	// and then just apply the update. That is easy enough, but
 	// leaves us in a temporary* invalid state for a while.
 
-	// *unless this script  crashes, in which case it's
+	// *unless this script crashes, in which case it's
 	// no longer temporary
-
-	// garbage cast:
-	// @todo, make these collections actually return the type they
-	// should.
-	const existingMD5s = (await db.charts.bms.find(
-		{
-			"data.tableFolders.table": prefix,
-		},
-		{
-			projection: {
-				"data.hashMD5": 1,
-			},
-		}
-	)) as unknown as Array<ChartDocument<"bms:7K" | "bms:14K">>;
+	const existingCharts = (await db.charts.bms.find({
+		"data.tableFolders.table": prefix,
+	})) as unknown as Array<ChartDocument<"bms:7K" | "bms:14K">>;
 
 	// As such, the easiest way to handle this is to disjoint
 	// the current md5s in the table against the md5s in the new
 	// table. If the existing md5set doesn't exist in the new
 	// table, we need to pull it.
 
-	const newTableMD5s = new Set(...tableJSON.map((e) => e.md5));
+	const newTableMD5s = new Set();
+	const newTableSHA256s = new Set();
+
+	for (const entry of tableEntries) {
+		switch (entry.checksum.type) {
+			case "md5": {
+				newTableMD5s.add(entry.checksum.value);
+				break;
+			}
+
+			case "sha256":
+				newTableSHA256s.add(entry.checksum.value);
+		}
+	}
 
 	const toRemove: Array<string> = [];
 
-	for (const md5 of existingMD5s.map((e) => e.data.hashMD5)) {
-		if (!newTableMD5s.has(md5)) {
-			toRemove.push(md5);
+	for (const chart of existingCharts) {
+		if (!newTableMD5s.has(chart.data.hashMD5) && !newTableSHA256s.has(chart.data.hashSHA256)) {
+			toRemove.push(chart.chartID);
 		}
 	}
 
@@ -61,10 +64,11 @@ async function HandleTableRemovals(tableJSON: Array<BMSTableEntry>, prefix: stri
 
 	logger.info(`Removing ${toRemove} chart(s) from ${prefix}.`);
 
-	// pull this md5's table info
+	// remove this table info from all of the charts that no longer
+	// exist in the table.
 	await db.charts.bms.update(
 		{
-			"data.hashMD5": { $in: toRemove },
+			chartID: { $in: toRemove },
 		},
 		{
 			$pull: {
@@ -75,20 +79,25 @@ async function HandleTableRemovals(tableJSON: Array<BMSTableEntry>, prefix: stri
 }
 
 async function ImportTableLevels(
-	tableJSON: Array<BMSTableEntry>,
+	tableEntries: Array<BMSTableEntry>,
 	prefix: string,
 	playtype: "7K" | "14K"
 ) {
 	let failures = 0;
 	let success = 0;
-	const total = tableJSON.length;
+	const total = tableEntries.length;
 
 	logger.info(`Handling removals for ${prefix}...`);
-	await HandleTableRemovals(tableJSON, prefix);
+	await HandleTableRemovals(tableEntries, prefix);
+
+	const md5s = tableEntries.filter((e) => e.checksum.type === "md5").map((e) => e.checksum.value);
+	const sha256s = tableEntries
+		.filter((e) => e.checksum.type === "md5")
+		.map((e) => e.checksum.value);
 
 	await db.charts.bms.update(
 		{
-			"data.hashMD5": { $in: tableJSON.map((e) => e.md5) },
+			"data.hashMD5": { $in: md5s },
 		},
 		{
 			$pull: {
@@ -97,21 +106,57 @@ async function ImportTableLevels(
 		}
 	);
 
-	for (const td of tableJSON) {
-		let chart = (await db.charts.bms.findOne({ "data.hashMD5": td.md5 })) as ChartDocument<
+	await db.charts.bms.update(
+		{
+			"data.hashSHA256": { $in: sha256s },
+		},
+		{
+			$pull: {
+				"tableFolders.table": prefix,
+			},
+		}
+	);
+
+	for (const td of tableEntries) {
+		let query: FilterQuery<ChartDocument>;
+
+		switch (td.checksum.type) {
+			case "md5": {
+				query = { "data.hashMD5": td.checksum.value };
+				break;
+			}
+
+			case "sha256": {
+				query = { "data.hashSHA256": td.checksum.value };
+				break;
+			}
+		}
+
+		let chart = (await db.charts.bms.findOne(query)) as ChartDocument<
 			"bms:7K" | "bms:14K"
 		> | null;
 
 		if (!chart) {
 			// didn't find it in the DB?
 			// try and find it in the BMS orphan-queue
-			chart = await DeorphanIfInQueue(`bms:${playtype}`, "bms", {
-				"chartDoc.data.hashMD5": td.md5,
-			});
+
+			switch (td.checksum.type) {
+				case "md5": {
+					chart = await DeorphanIfInQueue(`bms:${playtype}`, "bms", {
+						"chartDoc.data.hashMD5": td.checksum.value,
+					});
+					break;
+				}
+
+				case "sha256":
+					chart = await DeorphanIfInQueue(`bms:${playtype}`, "bms", {
+						"chartDoc.data.hashSHA256": td.checksum.value,
+					});
+			}
 
 			if (!chart) {
 				logger.warn(
-					`No chart exists in table for ${td.md5} Possible title: ${td.title} ${prefix}${td.level}`
+					`No chart exists in table for (${td.checksum.type}=${td.checksum.value} Possible title: ${td.content.title} ${prefix}${td.content.level}`
 				);
 				failures++;
 				continue;
@@ -120,7 +165,7 @@ async function ImportTableLevels(
 
 		const tableFolders = chart.data.tableFolders.filter((e) => e.table !== prefix);
 
-		tableFolders.push({ table: prefix, level: td.level.toString() });
+		tableFolders.push({ table: prefix, level: td.content.level.toString() });
 
 		await db.charts.bms.update(
 			{

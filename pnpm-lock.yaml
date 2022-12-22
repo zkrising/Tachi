@@ -285,7 +285,7 @@ importers:
       '@types/lodash.get': ^4.4.7
       '@types/node': 16.11.7
       better-sqlite3: ^7.5.0
-      bms-table-loader: ^1.0.1
+      bms-table-loader: 2.0.0
       chalk: '4'
       commander: ^8.2.0
       csv-parse: ^5.0.3
@@ -308,7 +308,7 @@ importers:
       '@types/lodash.get': 4.4.7
       '@types/node': 16.11.7
       better-sqlite3: 7.6.1
-      bms-table-loader: 1.0.1
+      bms-table-loader: 2.0.0
       chalk: 4.1.2
       commander: 8.3.0
       csv-parse: 5.0.4
@@ -380,7 +380,7 @@ importers:
       '@types/tap': 15.0.5
       '@valuabletouch/winston-seq': 1.3.0
       bcryptjs: 2.4.3
-      bms-table-loader: 1.0.1
+      bms-table-loader: 2.0.0
       bullmq: 1.68.4
       bunyan: 1.8.15
       commander: 9.0.0
@@ -448,7 +448,7 @@ importers:
       '@types/semver': 7.3.10
       '@valuabletouch/winston-seq': 1.3.0
       bcryptjs: 2.4.3
-      bms-table-loader: 1.0.1
+      bms-table-loader: 2.0.0
       bullmq: 1.68.4
       bunyan: 1.8.15
       commander: 9.0.0
@@ -498,7 +498,7 @@ importers:
   sieglinde:
     specifiers:
       '@types/node-fetch': '2'
-      bms-table-loader: ^1.0.1
+      bms-table-loader: 2.0.0
       commander: ^8.3.0
       fast-xml-parser: ^4.0.0-beta.2
       mei-logger: ^1.0.1
@@ -507,7 +507,7 @@ importers:
       winston: 3.5.1
     dependencies:
       '@types/node-fetch': 2.5.12
-      bms-table-loader: 1.0.1
+      bms-table-loader: 2.0.0
       commander: 8.3.0
       fast-xml-parser: 4.0.2
       mei-logger: 1.0.3
@@ -4842,8 +4842,8 @@ packages:
   /bluebird/3.7.2:
     resolution: {integrity: sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==}
 
-  /bms-table-loader/1.0.1:
-    resolution: {integrity: sha512-4UtqyeTPcEaHDl+9eeFzU3nf87Lj7uR7SRYzUjHgiXbIZVRj/exrK1g9d/6JFhti87ohnZPp5z31iX/MN5/nxg==}
+  /bms-table-loader/2.0.0:
+    resolution: {integrity: sha512-CFCwo6FLVPeDTL64/xhqAVA1dTim3Qm0nbT9nGtDTEMvlLjW83bE8IswUPzX8SSE+k4UCjJ9vgLveuaQ5KbWHQ==}
     dependencies:
       node-fetch: 2.6.2
       zod: 3.19.1

@@ -58,7 +58,7 @@
 		"@types/semver": "^7.3.9",
 		"@valuabletouch/winston-seq": "1.3.0",
 		"bcryptjs": "2.4.3",
-		"bms-table-loader": "1.0.1",
+		"bms-table-loader": "2.0.0",
 		"bullmq": "1.68.4",
 		"bunyan": "1.8.15",
 		"commander": "9.0.0",

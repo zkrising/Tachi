@@ -12,7 +12,7 @@ import {
 import { GetRecentUGPTScores } from "utils/queries/scores";
 import { GetUser } from "utils/req-tachi-data";
 import path from "path";
-import type { BMSTableEntry, BMSTableHead } from "bms-table-loader";
+import type { BMSTableHead, RawBMSTableEntry } from "bms-table-loader";
 import type { Request, Response } from "express-serve-static-core";
 import type {
 	ChartDocument,
@@ -29,7 +29,7 @@ const logger = CreateLogCtx(__filename);
 // to emit its own, custom BMS tables. These may be dynamic.
 
 function AppendAndConvertChartsToBMSBody(
-	body: Array<BMSTableEntry>,
+	body: Array<RawBMSTableEntry>,
 	charts: Array<ChartDocument<"bms:7K" | "bms:14K">>,
 	songMap: Map<integer, SongDocument>,
 	level: string
@@ -60,8 +60,8 @@ function AppendAndConvertChartsToBMSBody(
  */
 export async function TachiTableToBMSTableJSON(
 	table: TableDocument
-): Promise<Array<BMSTableEntry>> {
-	const body: Array<BMSTableEntry> = [];
+): Promise<Array<RawBMSTableEntry>> {
+	const body: Array<RawBMSTableEntry> = [];
 
 	const folders = await GetFoldersFromTable(table);
 
@@ -114,12 +114,15 @@ export type TachiBMSTable = {
 				userID: integer,
 				playtype: Playtypes["bms"]
 			) => Promise<Array<string> | undefined>;
-			getBody: (userID: integer, playtype: Playtypes["bms"]) => Promise<Array<BMSTableEntry>>;
+			getBody: (
+				userID: integer,
+				playtype: Playtypes["bms"]
+			) => Promise<Array<RawBMSTableEntry>>;
 	  }
 	| {
 			forSpecificUser?: false;
 			getLevelOrder: (playtype: Playtypes["bms"]) => Promise<Array<string> | undefined>;
-			getBody: (playtype: Playtypes["bms"]) => Promise<Array<BMSTableEntry>>;
+			getBody: (playtype: Playtypes["bms"]) => Promise<Array<RawBMSTableEntry>>;
 	  }
 );
 
@@ -313,7 +316,7 @@ export const CUSTOM_TACHI_BMS_TABLES: Array<TachiBMSTable> = [
 		async getBody(userID, playtype) {
 			const rivals = await GetRivalUsers(userID, "bms", playtype);
 
-			const body: Array<BMSTableEntry> = [];
+			const body: Array<RawBMSTableEntry> = [];
 
 			const promises = [];
 

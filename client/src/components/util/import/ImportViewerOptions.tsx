@@ -19,7 +19,7 @@ export default function ImportViewerOptions({
 		<>
 			<Card header="Options">
 				<Select
-					name="Made with intent (i.e. not by an automated hook or IR)"
+					name="Made with user intent (i.e. not an automatic upload by an IR or hook)"
 					allowNull
 					unselectedName="Either"
 					setValue={setUserIntent}

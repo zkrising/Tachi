@@ -17,7 +17,12 @@ export default function SelectableRanking({
 } & ZTableTHProps) {
 	const { settings } = useLUGPTSettings();
 
-	if (rankingViewMode === "both-if-self" || rankingViewMode === "global-no-switch" || !settings) {
+	if (
+		rankingViewMode === "both-if-self" ||
+		rankingViewMode === "global-no-switch" ||
+		!settings ||
+		settings.rivals.length === 0
+	) {
 		return (
 			<SortableTH
 				changeSort={changeSort}

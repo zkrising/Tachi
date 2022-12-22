@@ -36,9 +36,6 @@ Other configuration variables are as follows:
 # Stop react from launching a browser when you run pnpm start.
 BROWSER="none"
 
-# Where IMGScores should be generated from.
-REACT_APP_IMGSCORE_URL=""
-
 # KAI API Client IDs.
 REACT_APP_EAG_CLIENT_ID=""
 REACT_APP_MIN_CLIENT_ID=""

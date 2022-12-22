@@ -384,10 +384,6 @@ function SocialMediaForm({ reqUser }: { reqUser: UserDocument }) {
 					placeholder={placeholders.twitch}
 					onChange={formik.handleChange}
 				/>
-				<Form.Text className="text-muted">
-					If you are streaming a game supported by {TachiConfig.name}, your stream may
-					appear on that games page!
-				</Form.Text>
 			</Form.Group>
 			<div className="row justify-content-center">
 				<Button type="submit" variant="success">

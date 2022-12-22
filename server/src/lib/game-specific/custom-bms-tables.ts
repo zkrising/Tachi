@@ -10,6 +10,7 @@ import {
 	GetTableForIDGuaranteed,
 } from "utils/folder";
 import { GetRecentUGPTScores } from "utils/queries/scores";
+import { GetUser } from "utils/req-tachi-data";
 import path from "path";
 import type { BMSTableEntry, BMSTableHead } from "bms-table-loader";
 import type { Request, Response } from "express-serve-static-core";
@@ -128,19 +129,20 @@ export type TachiBMSTable = {
  */
 export function BMSTableToAbsoluteURL(
 	bmsTable: TachiBMSTable,
+	playtype: Playtypes["bms"],
 	headerOrBody: "body" | "header",
 	userID: number | null
 ) {
 	return (
 		ServerConfig.OUR_URL +
 		path.join(
-			"/api/v1/",
+			"api/v1/",
 
 			// if this is a user-specific table, splice /users/$userID into this url.
 			// (otherwise, don't do anything)
-			bmsTable.forSpecificUser === true ? `/users/${userID}` : "",
+			bmsTable.forSpecificUser === true ? `users/${userID}` : "",
 
-			`games/bms/${bmsTable.playtype}/custom-tables/`,
+			`games/bms/${playtype}/custom-tables/`,
 			bmsTable.urlName,
 			`${headerOrBody}.json`
 		)
@@ -149,7 +151,9 @@ export function BMSTableToAbsoluteURL(
 
 function GetUserID(req: Request) {
 	if ("userID" in req.params) {
-		return Number(req.params.userID);
+		const user = GetUser(req);
+
+		return user.id;
 	}
 
 	throw new Error(`No userID in params here. Is this route mounted in the right place?`);
@@ -169,13 +173,14 @@ function GetPlaytype(req: Request) {
  */
 export function HandleBMSTableHTMLRequest(bmsTable: TachiBMSTable, req: Request, res: Response) {
 	let absURL;
+	const playtype = GetPlaytype(req);
 
 	if (bmsTable.forSpecificUser === true) {
 		const userID = GetUserID(req);
 
-		absURL = BMSTableToAbsoluteURL(bmsTable, "header", userID);
+		absURL = BMSTableToAbsoluteURL(bmsTable, playtype, "header", userID);
 	} else {
-		absURL = BMSTableToAbsoluteURL(bmsTable, "header", null);
+		absURL = BMSTableToAbsoluteURL(bmsTable, playtype, "header", null);
 	}
 
 	return res.status(200).send(`<html>
@@ -202,12 +207,12 @@ export async function HandleBMSTableHeaderRequest(
 		if (bmsTable.forSpecificUser === true) {
 			const userID = GetUserID(req);
 
-			dataUrl = BMSTableToAbsoluteURL(bmsTable, "body", userID);
+			dataUrl = BMSTableToAbsoluteURL(bmsTable, playtype, "body", userID);
 
 			levelOrder = await bmsTable.getLevelOrder(userID, playtype);
 		} else {
 			levelOrder = await bmsTable.getLevelOrder(playtype);
-			dataUrl = BMSTableToAbsoluteURL(bmsTable, "body", null);
+			dataUrl = BMSTableToAbsoluteURL(bmsTable, playtype, "body", null);
 		}
 
 		const header: BMSTableHead = {
@@ -313,41 +318,45 @@ export const CUSTOM_TACHI_BMS_TABLES: Array<TachiBMSTable> = [
 			const promises = [];
 
 			for (const rival of rivals) {
-				promises.push(async () => {
-					const scores = await GetRecentUGPTScores(rival.id, "bms", playtype);
+				promises.push(
+					(async () => {
+						const scores = await GetRecentUGPTScores(rival.id, "bms", playtype);
 
-					const data = await GetRelevantSongsAndCharts(scores, "bms");
-					const charts = data.charts as unknown as Array<
-						ChartDocument<"bms:7K" | "bms:14K">
-					>;
+						const data = await GetRelevantSongsAndCharts(scores, "bms");
+						const charts = data.charts as unknown as Array<
+							ChartDocument<"bms:7K" | "bms:14K">
+						>;
 
-					const songMap = CreateSongMap(data.songs);
+						const songMap = CreateSongMap(data.songs);
 
-					AppendAndConvertChartsToBMSBody(
-						body,
-						charts,
-						songMap,
-						`${rival.username} Recent Plays`
-					);
-				});
+						AppendAndConvertChartsToBMSBody(
+							body,
+							charts,
+							songMap,
+							`${rival.username} Recent Plays`
+						);
+					})()
+				);
 
-				promises.push(async () => {
-					const scores = await GetRecentUGPTScores(rival.id, "bms", playtype);
+				promises.push(
+					(async () => {
+						const scores = await GetRecentUGPTScores(rival.id, "bms", playtype);
 
-					const data = await GetRelevantSongsAndCharts(scores, "bms");
-					const charts = data.charts as unknown as Array<
-						ChartDocument<"bms:7K" | "bms:14K">
-					>;
+						const data = await GetRelevantSongsAndCharts(scores, "bms");
+						const charts = data.charts as unknown as Array<
+							ChartDocument<"bms:7K" | "bms:14K">
+						>;
 
-					const songMap = CreateSongMap(data.songs);
+						const songMap = CreateSongMap(data.songs);
 
-					AppendAndConvertChartsToBMSBody(
-						body,
-						charts,
-						songMap,
-						`${rival.username} Recent Highlights`
-					);
-				});
+						AppendAndConvertChartsToBMSBody(
+							body,
+							charts,
+							songMap,
+							`${rival.username} Recent Highlights`
+						);
+					})()
+				);
 			}
 
 			await Promise.all(promises);

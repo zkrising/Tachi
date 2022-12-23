@@ -1,3 +1,4 @@
+import { FormatSieglindeBMS, FormatSieglindePMS } from "./internal-utils";
 import { COLOUR_SET } from "../constants/colour-set";
 import {
 	BMSDPSlDans,
@@ -16,7 +17,6 @@ import {
 	WaccaColours,
 	WaccaStageUps,
 } from "../game-classes";
-import { FormatSieglindeBMS, FormatSieglindePMS } from "../utils/util";
 import type { GPTTierlists } from "..";
 import type { ClassInfo, GameClassSets } from "../game-classes";
 import type { ESDJudgementFormat } from "../lib/esd";

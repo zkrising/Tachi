@@ -305,22 +305,6 @@ export function GetCloserGradeDelta<I extends IDStrings = IDStrings>(
 	return lower;
 }
 
-export function FormatSieglindeBMS(sgl: number): string {
-	if (sgl < 13) {
-		return `☆${sgl.toFixed(2)}`;
-	}
-
-	return `★${(sgl - 12).toFixed(2)}`;
-}
-
-export function FormatSieglindePMS(sgl: number): string {
-	if (sgl < 13) {
-		return `○${sgl.toFixed(2)}`;
-	}
-
-	return `●${(sgl - 12).toFixed(2)}`;
-}
-
 export function CreateSongMap<G extends Game = Game>(songs: Array<SongDocument<G>>) {
 	const songMap = new Map<integer, SongDocument<G>>();
 

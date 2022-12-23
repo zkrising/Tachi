@@ -79,7 +79,8 @@ export default defineConfig(() => {
 		},
 		build: {
 			assetsDir: "static",
-			outDir: "build",
+			// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+			outDir: process.env.BUILD_OUT_DIR || "build",
 		},
 	};
 });

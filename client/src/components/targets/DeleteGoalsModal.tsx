@@ -29,7 +29,11 @@ export default function DeleteGoalsModal({
 			</Modal.Header>
 			<Modal.Body>
 				<Row>
-					{deletableGoals.length === 0 && <div>You have no deletable goals.</div>}
+					{deletableGoals.length === 0 && (
+						<Col xs={12} className="text-center">
+							You have no deletable goals.
+						</Col>
+					)}
 					{sorted.map((e) => (
 						<Col xs={12} lg={8} key={e.goalID} className="offset-lg-2 my-2">
 							<div className="d-flex">

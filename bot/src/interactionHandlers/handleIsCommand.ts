@@ -27,6 +27,8 @@ export async function handleIsCommand(
 		}
 
 		if (command) {
+			await interaction.deferReply();
+
 			logger.verbose(`Running ${command.info.name} interaction.`);
 			try {
 				const response = await command.exec(interaction, requestingUser);
@@ -49,7 +51,7 @@ export async function handleIsCommand(
 				const method = interaction.replied ? "followUp" : "reply";
 
 				interaction[method](
-					`An error has occured while executing this command. This has been reported.`
+					"An error has occured while executing this command. This has been reported."
 				);
 			}
 		}

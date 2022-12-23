@@ -6,11 +6,6 @@ overrides:
   '@types/node': 16.11.7
   '@types/express-serve-static-core': 4.17.29
 
-patchedDependencies:
-  browserslist@4.21.4:
-    hash: 3sk7x5xyu7mtmw3sdh5izkeejy
-    path: patches/browserslist@4.21.4.patch
-
 importers:
 
   .:
@@ -1426,7 +1421,7 @@ packages:
       '@babel/compat-data': 7.20.5
       '@babel/core': 7.20.7
       '@babel/helper-validator-option': 7.18.6
-      browserslist: 4.21.4_3sk7x5xyu7mtmw3sdh5izkeejy
+      browserslist: 4.21.4
       lru-cache: 5.1.1
       semver: 6.3.0
     dev: true
@@ -3835,7 +3830,7 @@ packages:
       update-browserslist-db: 1.0.4_browserslist@4.21.1
     dev: true
 
-  /browserslist/4.21.4_3sk7x5xyu7mtmw3sdh5izkeejy:
+  /browserslist/4.21.4:
     resolution: {integrity: sha512-CBHJJdDmgjl3daYjN5Cp5kbTf1mUhZoS+beLklHIvkOWscs83YAhLlF3Wsh/lciQYAcbBJgTOD44VtG31ZM4Hw==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
@@ -3845,7 +3840,6 @@ packages:
       node-releases: 2.0.8
       update-browserslist-db: 1.0.10_browserslist@4.21.4
     dev: true
-    patched: true
 
   /bson/1.1.6:
     resolution: {integrity: sha512-EvVNVeGo4tHxwi8L6bPj3y3itEvStdwvvlojVxxbyYfoaxJ6keLgrTuKdyfEAszFK+H3olzBuafE0yoh0D1gdg==}
@@ -9878,7 +9872,7 @@ packages:
     peerDependencies:
       browserslist: '>= 4.21.0'
     dependencies:
-      browserslist: 4.21.4_3sk7x5xyu7mtmw3sdh5izkeejy
+      browserslist: 4.21.4
       escalade: 3.1.1
       picocolors: 1.0.0
     dev: true

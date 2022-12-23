@@ -1,20 +1,22 @@
 import { APIFetchV1 } from "util/api";
+import { ChangeOpacity } from "util/color-opacity";
+import { CreateGoalMap } from "util/data";
 import { RFA } from "util/misc";
 import { NumericSOV } from "util/sorts";
 import { heySplashes } from "util/splashes";
-import { ChangeOpacity } from "util/color-opacity";
-import { CreateGoalMap } from "util/data";
+import Activity from "components/activity/Activity";
+import DashboardActivity from "components/dashboard/DashboardActivity";
+import { DashboardHeader } from "components/dashboard/DashboardHeader";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import SessionCard from "components/sessions/SessionCard";
 import ApiError from "components/util/ApiError";
 import AsyncLoader from "components/util/AsyncLoader";
 import Divider from "components/util/Divider";
-import GentleLink from "components/util/GentleLink";
+import GoalLink from "components/util/GoalLink";
 import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
-import { AllLUGPTStatsContext } from "context/AllLUGPTStatsContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import { ColourConfig, TachiConfig } from "lib/config";
 import React, { useContext, useMemo } from "react";
@@ -22,27 +24,17 @@ import { Alert } from "react-bootstrap";
 import { Link, Route, Switch } from "react-router-dom";
 import { COLOUR_SET, GetGameConfig, UserDocument } from "tachi-common";
 import { UGSWithRankingData, UserRecentSummary } from "types/api-returns";
-import { DashboardHeader } from "components/dashboard/DashboardHeader";
-import DashboardActivity from "components/dashboard/DashboardActivity";
-import GoalLink from "components/util/GoalLink";
-import Activity from "components/activity/Activity";
-import { FolderInfoComponent } from "./users/games/_game/_playtype/folders/FolderSelectPage";
 import { GameStatContainer } from "./users/UserGamesPage";
 
 export function DashboardPage() {
 	const { settings } = useContext(UserSettingsContext);
 
-	useSetSubheader("Dashboard", [settings]);
+	useSetSubheader("Home", [settings]);
 
 	const { user } = useContext(UserContext);
-	const { ugs } = useContext(AllLUGPTStatsContext);
 
 	if (!user) {
 		return <DashboardNotLoggedIn />;
-	}
-
-	if (ugs?.length === 0) {
-		return <DashboardLoggedInNoScores user={user} />;
 	}
 
 	return <DashboardLoggedIn user={user} />;
@@ -274,26 +266,6 @@ function FeatureContainer({ tagline, description }: { tagline: string; descripti
 				<h1 className="display-4">{tagline}</h1>
 				<span>{description}</span>
 			</div>
-		</div>
-	);
-}
-
-function DashboardLoggedInNoScores({ user }: { user: UserDocument }) {
-	return (
-		<div>
-			<span className="display-4">
-				Welcome to {TachiConfig.name}, {user.username}!
-			</span>
-			<h4 className="mt-4">It looks like you have no scores. Let's get you set up!</h4>
-			<Divider />
-			<h4 style={{ lineHeight: 2 }}>
-				Once you've got some scores imported, we'll analyse your scores.
-				<br />
-				You'll get a profile for that game, and a position on the leaderboards!
-			</h4>
-			<LinkButton className="btn-outline-primary" to="/import">
-				Import some scores!
-			</LinkButton>
 		</div>
 	);
 }

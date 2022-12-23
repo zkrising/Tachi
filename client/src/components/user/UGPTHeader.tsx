@@ -8,12 +8,15 @@ import MiniTable from "components/tables/components/MiniTable";
 import Divider from "components/util/Divider";
 import React, { useContext } from "react";
 import { Button } from "react-bootstrap";
-import { Game, Playtype, UserDocument } from "tachi-common";
+import { Game, Playtype, UserDocument, integer } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import FollowUserButton from "components/util/FollowUserButton";
 import { GetGPTUtilsName } from "components/gpt-utils/GPTUtils";
+import ApiError from "components/util/ApiError";
+import Loading from "components/util/Loading";
+import useApiQuery from "components/util/query/useApiQuery";
 import ProfileBadges from "./ProfileBadges";
 import ProfilePicture from "./ProfilePicture";
 import RankingData from "./UGPTRankingData";
@@ -32,6 +35,16 @@ export function UGPTHeaderBody({
 }) {
 	const { settings, setSettings } = useLUGPTSettings();
 	const { settings: userSettings } = useContext(UserSettingsContext);
+
+	const { data: MAX_RIVALS, error } = useApiQuery<integer>("/config/max-rivals");
+
+	if (error) {
+		return <ApiError error={error} />;
+	}
+
+	if (!MAX_RIVALS) {
+		return <Loading />;
+	}
 
 	return (
 		<>
@@ -135,6 +148,7 @@ export function UGPTHeaderBody({
 							) : (
 								<Button
 									variant="outline-success"
+									disabled={settings.rivals.length >= MAX_RIVALS}
 									onClick={async () => {
 										const newRivals = [...settings.rivals, reqUser.id];
 
@@ -164,7 +178,9 @@ export function UGPTHeaderBody({
 										}
 									}}
 								>
-									Add as Rival
+									{settings.rivals.length >= MAX_RIVALS
+										? "At max rivals!"
+										: "Add as rival"}
 								</Button>
 							)}
 						</>

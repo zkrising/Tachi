@@ -3,10 +3,10 @@ import { Game, ImportTypes } from "tachi-common";
 // @ts-expect-error No types available...
 import syncFetch from "sync-fetch";
 
-export const mode = process.env.REACT_APP_TCHIC_MODE;
+export const mode = process.env.VITE_TCHIC_MODE;
 
 if (!mode) {
-	throw new Error("No REACT_APP_TCHIC_MODE set in Process Environment, refusing to boot.");
+	throw new Error("No VITE_TCHIC_MODE set in Process Environment, refusing to boot.");
 }
 
 export interface TachiConfig {
@@ -50,7 +50,7 @@ try {
 		</div>
 		<div>An error message can be found in the console. (<code>Ctrl-Shift-K</code>)</div>
 		${
-			process.env.REACT_APP_IS_LOCAL_DEV
+			process.env.VITE_IS_LOCAL_DEV
 				? `
 			<hr />
 			<div><b>You're in local development mode.</b>
@@ -85,12 +85,11 @@ if (mode === "ktchi") {
 } else if (mode === "omni") {
 	colourConf.primary = "#e61c6e";
 } else {
-	throw new Error("Invalid REACT_APP_TCHIC_MODE. Expected ktchi, btchi or omni.");
+	throw new Error("Invalid VITE_TCHIC_MODE. Expected ktchi, btchi or omni.");
 }
 
 export const TachiConfig = conf;
 export const ColourConfig = colourConf;
 export const ClientConfig = {
-	MANDATE_LOGIN:
-		process.env.REACT_APP_TCHIC_MODE === "ktchi" || process.env.REACT_APP_MANDATE_LOGIN,
+	MANDATE_LOGIN: process.env.VITE_TCHIC_MODE === "ktchi" || process.env.VITE_MANDATE_LOGIN,
 };

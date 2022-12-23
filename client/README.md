@@ -37,21 +37,21 @@ Other configuration variables are as follows:
 BROWSER="none"
 
 # KAI API Client IDs.
-REACT_APP_EAG_CLIENT_ID=""
-REACT_APP_MIN_CLIENT_ID=""
-REACT_APP_FLO_CLIENT_ID=""
+VITE_EAG_CLIENT_ID=""
+VITE_MIN_CLIENT_ID=""
+VITE_FLO_CLIENT_ID=""
 
 # How long users should have to read the rules for, in seconds.
 # Defaults to 30, but useful to lower for localdev.
-REACT_APP_RULES_READ_TIME=30
+VITE_RULES_READ_TIME=30
 
 # Whether to require login to view the site.
-REACT_APP_MANDATE_LOGIN=true
+VITE_MANDATE_LOGIN=true
 
 # What git repo to read from by default in the seeds viewer.
-REACT_APP_GIT_REPO=""
+VITE_GIT_REPO=""
 
 # What client mode to use. Should be btchi, ktchi or omni.
 # This affects some things, like what buttons should appear in certain places.
-REACT_APP_TCHIC_MODE="omni"
+VITE_TCHIC_MODE="omni"
 ```

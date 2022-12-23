@@ -15,7 +15,7 @@ import { UserDocument } from "tachi-common";
 import { UseFormik } from "types/react";
 
 // seconds it takes for a user to actually read the rules.
-const RULES_READ_TIME = Number(process.env.REACT_APP_RULES_READ_TIME) || 30;
+const RULES_READ_TIME = Number(process.env.VITE_RULES_READ_TIME) || 30;
 
 export default function RegisterPage() {
 	useSetSubheader("Register");
@@ -272,7 +272,7 @@ function RegisterForm({
 			<ReCAPTCHA
 				ref={recaptchaRef}
 				sitekey={
-					process.env.REACT_APP_RECAPTCHA_KEY ??
+					process.env.VITE_RECAPTCHA_KEY ??
 					"6LdI2swUAAAAAArkM0ZQi4SnttilqgAwsJSFw3PX"
 				}
 				onChange={(v) => {

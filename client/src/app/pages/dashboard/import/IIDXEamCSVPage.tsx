@@ -19,12 +19,12 @@ export default function IIDXEamCSVPage({
 			importType={importType}
 			name={name}
 			parseFunction={ParseFunction}
-			MoreDataForm={MoreDataForm}
+			MoreDataForm={MoreDataFormComponent}
 		/>
 	);
 }
 
-const MoreDataForm: MoreDataForm = ({ setFulfilled, setInfo }) => {
+const MoreDataFormComponent: MoreDataForm = ({ setFulfilled, setInfo }) => {
 	const [state, setState] = useState<Record<string, string>>({});
 
 	useEffect(() => {

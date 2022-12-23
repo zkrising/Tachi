@@ -68,9 +68,9 @@ export function Footer() {
 						>
 							Credits
 						</Link>
-						{process.env.REACT_APP_DISCORD && (
+						{process.env.VITE_DISCORD && (
 							<a
-								href={process.env.REACT_APP_DISCORD}
+								href={process.env.VITE_DISCORD}
 								target="_blank"
 								rel="noopener noreferrer"
 								className="nav-link px-3"

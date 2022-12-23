@@ -1,14 +1,23 @@
+import { Tab } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-import { JustChildren } from "types/react";
 
 export default function NavItem({
 	to,
 	children,
-}: JustChildren & { to: string; otherMatchingPaths?: Array<string> }) {
+}: {
+	to: string;
+	otherMatchingPaths?: Array<string>;
+	children: string;
+}) {
 	return (
-		<Link to={to} className="MuiButtonBase-root MuiTab-root navbar-link" type="button">
-			<span className="MuiTab-wrapper">{children}</span>
-		</Link>
+		// @ts-expect-error Faulty types from MUI. The to={to} here is necessary
+		// and works perfectly fine, but the MUI types disagree that it exists.
+		<Tab
+			label={<span className="mx-4">{children}</span>}
+			LinkComponent={Link}
+			to={to}
+			style={{ opacity: 1 }}
+		/>
 	);
 }

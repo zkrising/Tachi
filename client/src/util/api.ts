@@ -7,11 +7,11 @@ const BASE_OPTIONS = {
 };
 
 // eslint-disable-next-line no-undef
-const BASE_URL = process.env.REACT_APP_SERVER_URL ?? "";
-const CDN_URL = process.env.REACT_APP_CDN_URL;
+const BASE_URL = process.env.VITE_SERVER_URL ?? "";
+const CDN_URL = process.env.VITE_CDN_URL;
 
 if (!CDN_URL) {
-	throw new Error(`Cannot run -- no REACT_APP_CDN_URL provided?`);
+	throw new Error(`Cannot run -- no VITE_CDN_URL provided?`);
 }
 
 export function ToAPIURL(url: string) {

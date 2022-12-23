@@ -7,7 +7,7 @@ import { allIDStrings, allImportTypes, allSupportedGames } from "../config/stati
 import { ALL_PERMISSIONS } from "../constants/permissions";
 import { UserAuthLevels } from "../types";
 import deepmerge from "deepmerge";
-import p from "prudence";
+import { p } from "prudence";
 import type { GamePTConfig } from "../config/config";
 import type { Game, IDStrings, NotificationBody, Playtype, Playtypes } from "../types";
 import type {

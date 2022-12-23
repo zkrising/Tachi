@@ -5,7 +5,7 @@ import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { SoftwareIDToVersion } from "lib/score-import/import-types/ir/fervidex/parser";
-import p from "prudence";
+import { p } from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { PrudenceErrorFormatter } from "server/middleware/prudence-validate";
 import { UpdateClassIfGreater } from "utils/class";

@@ -6,7 +6,7 @@ import { RevertImport } from "lib/imports/imports";
 import CreateLogCtx from "lib/logger/logger";
 import ScoreImportQueue, { ScoreImportQueueEvents } from "lib/score-import/worker/queue";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
-import p from "prudence";
+import { p } from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { GetRelevantSongsAndCharts } from "utils/db";

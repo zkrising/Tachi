@@ -1,5 +1,5 @@
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import p from "prudence";
+import { p } from "prudence";
 import { FormatPrError } from "utils/prudence";
 import type { ParserFunctionReturns } from "../../common/types";
 import type { BeatorajaChart, BeatorajaContext, BeatorajaScore } from "./types";

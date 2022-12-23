@@ -20,7 +20,7 @@
 		"@types/express-serve-static-core": "4.17.29",
 		"@types/mongodb": "3.6.18",
 		"deepmerge": "^4.2.2",
-		"prudence": "0.9.8"
+		"prudence": "0.10.0"
 	},
 	"devDependencies": {
 		"@types/tap": "^15.0.7",

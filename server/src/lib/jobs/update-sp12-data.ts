@@ -5,7 +5,7 @@ import db from "external/mongo/db";
 import { BacksyncCollectionToBothBranches } from "lib/database-seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import fetch from "node-fetch";
-import p from "prudence";
+import { p } from "prudence";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import { WrapScriptPromise } from "utils/misc";
 import { FindChartWithPTDF } from "utils/queries/charts";

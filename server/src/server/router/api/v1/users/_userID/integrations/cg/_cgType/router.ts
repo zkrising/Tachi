@@ -1,7 +1,7 @@
 import { RequireSelfRequestFromUser } from "../../../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import p from "prudence";
+import { p } from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { GetTachiData } from "utils/req-tachi-data";
 import type { RequestHandler } from "express-serve-static-core";

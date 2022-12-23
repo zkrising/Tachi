@@ -5,7 +5,7 @@ import {
 } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import p from "prudence";
+import { p } from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { GetGamePTConfig } from "tachi-common";

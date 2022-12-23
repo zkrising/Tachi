@@ -1,6 +1,6 @@
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import { ServerConfig } from "lib/setup/config";
-import p from "prudence";
+import { p } from "prudence";
 import nodeFetch from "utils/fetch";
 import { URLSearchParams } from "url";
 import type { CGErrorResponse, CGScoresResponse, CGServices, CGSupportedGames } from "./types";

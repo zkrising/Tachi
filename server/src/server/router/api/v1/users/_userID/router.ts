@@ -26,7 +26,7 @@ import { GetRecentActivity } from "lib/activity/activity";
 import { ONE_MONTH } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { GetRivalIDs } from "lib/rivals/rivals";
-import p from "prudence";
+import { p } from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { DeleteUndefinedProps, IsNonEmptyString, StripUrl } from "utils/misc";
 import { optNullFluffStrField } from "utils/prudence";

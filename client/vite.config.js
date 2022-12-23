@@ -70,6 +70,9 @@ export default defineConfig(() => {
 		server: {
 			port: 3000,
 		},
+		preview: {
+			port: 3000,
+		},
 		css: {
 			preprocessorOptions: {
 				scss: {
@@ -81,6 +84,7 @@ export default defineConfig(() => {
 			assetsDir: "static",
 			// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
 			outDir: process.env.BUILD_OUT_DIR || "build",
+			sourcemap: true,
 		},
 	};
 });

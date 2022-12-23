@@ -7,7 +7,7 @@ import {
 	GenericGetGradeAndPercent,
 	ParseDateFromString,
 } from "../../../../framework/common/score-utils";
-import p from "prudence";
+import { p } from "prudence";
 import { FormatPrError } from "utils/prudence";
 import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";

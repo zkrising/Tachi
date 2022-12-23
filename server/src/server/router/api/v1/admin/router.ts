@@ -7,7 +7,7 @@ import CreateLogCtx, { ChangeRootLogLevel, GetLogLevel } from "lib/logger/logger
 import { SendSiteAnnouncementNotification } from "lib/notifications/notification-wrappers";
 import { DeleteMultipleScores, DeleteScore } from "lib/score-mutation/delete-scores";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
-import p from "prudence";
+import { p } from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { UserAuthLevels } from "tachi-common";
 import { RecalcAllScores, UpdateAllPBs } from "utils/calculations/recalc-scores";

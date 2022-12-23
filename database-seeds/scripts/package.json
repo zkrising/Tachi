@@ -33,7 +33,7 @@
 		"mei-logger": "^1.0.1",
 		"monk": "^7.3.4",
 		"node-fetch": "2.6.7",
-		"prudence": "0.9.8",
+		"prudence": "0.10.0",
 		"tachi-common": "workspace:../../common",
 		"xml2js": "^0.4.23"
 	}

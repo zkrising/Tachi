@@ -2,7 +2,7 @@
 // barrel file for re-exporting env variables.
 import dotenv from "dotenv";
 import JSON5 from "json5";
-import p from "prudence";
+import { p } from "prudence";
 import { StaticConfig } from "tachi-common";
 import { FormatPrError } from "utils/prudence";
 import fs from "fs";

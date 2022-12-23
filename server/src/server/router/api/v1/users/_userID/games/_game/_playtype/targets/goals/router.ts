@@ -11,7 +11,7 @@ import {
 	UnsubscribeFromGoal,
 } from "lib/targets/goals";
 import { GetParentQuests } from "lib/targets/quests";
-import p from "prudence";
+import { p } from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { GetGoalForIDGuaranteed } from "utils/db";

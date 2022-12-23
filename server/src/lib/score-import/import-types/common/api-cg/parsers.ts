@@ -3,7 +3,7 @@ import { CGGameToTachiGame } from "./util";
 import db from "external/mongo/db";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import fetch from "node-fetch";
-import p from "prudence";
+import { p } from "prudence";
 import { FormatPrError } from "tachi-common";
 import type { ParserFunctionReturns } from "../types";
 import type {

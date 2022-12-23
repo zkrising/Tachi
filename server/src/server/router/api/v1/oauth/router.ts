@@ -1,6 +1,6 @@
 import { Router } from "express";
 import db from "external/mongo/db";
-import p from "prudence";
+import { p } from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { Random20Hex } from "utils/misc";
 

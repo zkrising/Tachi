@@ -1,7 +1,7 @@
 import { GetKaiTypeClientCredentials, KaiTypeToBaseURL } from "./utils";
 import db from "external/mongo/db";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
-import p from "prudence";
+import { p } from "prudence";
 import nodeFetch from "utils/fetch";
 import { CreateURLWithParams } from "utils/url";
 import type { KtLogger } from "lib/logger/logger";

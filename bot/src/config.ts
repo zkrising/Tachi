@@ -3,7 +3,7 @@ import { FormatPrError } from "./utils/prudence";
 import { config } from "dotenv";
 import JSON5 from "json5";
 // eslint-disable-next-line import/order
-import p from "prudence";
+import { p } from "prudence";
 
 // @ts-expect-error No types available...
 import fetchSync from "sync-fetch";

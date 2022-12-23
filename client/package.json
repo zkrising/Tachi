@@ -7,7 +7,7 @@
 		"start": "vite",
 		"build": "vite build",
 		"lint": "eslint src --fix",
-		"preview": "vite preview"
+		"preview": "vite build && vite preview"
 	},
 	"browserslist": {
 		"production": [
@@ -54,7 +54,7 @@
 		"natural-compare": "^1.4.0",
 		"pretty-bytes": "5.6.0",
 		"prop-types": "15.6.0",
-		"prudence": "0.9.8",
+		"prudence": "0.10.0",
 		"react": "17.0.2",
 		"react-async": "10.0.1",
 		"react-bootstrap": "1.6.1",

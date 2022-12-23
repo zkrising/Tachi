@@ -5,7 +5,7 @@ import AddNewQuestModal from "components/targets/AddNewQuestModal";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import { TachiConfig } from "lib/config";
-import p, { PrudenceSchema } from "prudence";
+import { PrudenceSchema, p } from "prudence";
 import React, { useEffect, useMemo, useState } from "react";
 import { Alert, Button, Col, Form, Modal, Row } from "react-bootstrap";
 import { FormatPrError, GetGameConfig } from "tachi-common";

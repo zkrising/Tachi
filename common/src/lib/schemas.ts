@@ -2,13 +2,13 @@
 // their name in the database to the object they schemaify.
 // The schemas themselves are wrapped in functions that throw on error.
 
+import { GetGameConfig, GetGamePTConfig } from "../config/config";
 import { allIDStrings, allImportTypes, allSupportedGames } from "../config/static-config";
 import { ALL_PERMISSIONS } from "../constants/permissions";
-import { GetGameConfig, GetGamePTConfig } from "../index";
 import { UserAuthLevels } from "../types";
 import deepmerge from "deepmerge";
 import p from "prudence";
-import type { GamePTConfig } from "../index";
+import type { GamePTConfig } from "../config/config";
 import type { Game, IDStrings, NotificationBody, Playtype, Playtypes } from "../types";
 import type {
 	PrudenceSchema,
@@ -1133,6 +1133,11 @@ const PRE_SCHEMAS = {
 						subSchema = {
 							questID: "string",
 						};
+						break;
+					}
+
+					case "SITE_ANNOUNCEMENT": {
+						subSchema = {};
 						break;
 					}
 				}

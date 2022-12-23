@@ -2,7 +2,7 @@ import { CreateFerStaticClassHandler } from "./class-handler";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { SoftwareIDToVersion } from "../fervidex/parser";
-import p from "prudence";
+import { p } from "prudence";
 import { IsRecord } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
 import type { ParserFunctionReturns } from "../../common/types";

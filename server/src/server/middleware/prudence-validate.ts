@@ -1,5 +1,5 @@
 import CreateLogCtx from "lib/logger/logger";
-import Prudence from "prudence";
+import { p } from "prudence";
 import type { RequestHandler } from "express-serve-static-core";
 import type {
 	ErrorMessages,
@@ -68,6 +68,6 @@ const prValidate = (
 	errorMessage?: ErrorMessages,
 	options?: Partial<PrudenceOptions>,
 	level: TachiLogLevels = "info"
-): RequestHandler => Prudence.CurryMiddleware(API_ERROR_HANDLERS[level])(s, errorMessage, options);
+): RequestHandler => p.CurryMiddleware(API_ERROR_HANDLERS[level])(s, errorMessage, options);
 
 export default prValidate;

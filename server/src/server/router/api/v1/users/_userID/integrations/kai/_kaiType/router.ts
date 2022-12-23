@@ -7,7 +7,7 @@ import {
 	GetKaiTypeClientCredentials,
 	KaiTypeToBaseURL,
 } from "lib/score-import/import-types/common/api-kai/utils";
-import p from "prudence";
+import { p } from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { RequireKamaitachi } from "server/middleware/type-require";
 import fetch from "utils/fetch";

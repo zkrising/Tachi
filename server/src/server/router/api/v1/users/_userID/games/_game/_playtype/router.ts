@@ -14,7 +14,7 @@ import db from "external/mongo/db";
 import { CreateActivityRouteHandler } from "lib/activity/activity";
 import { ONE_MONTH, ONE_WEEK, ONE_YEAR } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
-import p from "prudence";
+import { p } from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { PasswordCompare, ValidatePassword } from "server/router/api/v1/auth/auth";
 import { FormatGame, GetGamePTConfig } from "tachi-common";

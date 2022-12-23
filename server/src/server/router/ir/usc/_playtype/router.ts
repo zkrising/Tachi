@@ -10,7 +10,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { AssertStrAsPositiveNonZeroInt } from "lib/score-import/framework/common/string-asserts";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
-import p from "prudence";
+import { p } from "prudence";
 import { RejectIfBanned, RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
 import { FormatPrError } from "utils/prudence";

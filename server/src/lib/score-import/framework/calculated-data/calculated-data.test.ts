@@ -1,6 +1,6 @@
 import { CalculateDataForGamePT, CreateCalculatedData } from "./calculated-data";
 import CreateLogCtx from "lib/logger/logger";
-import p from "prudence";
+import { p } from "prudence";
 import t from "tap";
 import { prAssert } from "test-utils/asserts";
 import {

@@ -1,10 +1,10 @@
 import prValidate from "./prudence-validate";
-import Prudence from "prudence";
+import { p } from "prudence";
 import t from "tap";
 import { expressRequestMock } from "test-utils/mock-request";
 
 t.test("#PrudenceMiddleware", (t) => {
-	const mw = prValidate({ foo: Prudence.regex(/^baz$/u) }, { foo: "example error message" });
+	const mw = prValidate({ foo: p.regex(/^baz$/u) }, { foo: "example error message" });
 
 	t.test("Should return 400 on invalid prudence validation", async (t) => {
 		const { res } = await expressRequestMock(mw, {

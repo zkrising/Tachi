@@ -7,7 +7,7 @@ import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/expres
 import { ReprocessOrphan } from "lib/score-import/framework/orphans/orphans";
 import { MakeScoreImport } from "lib/score-import/framework/score-import";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
-import Prudence from "prudence";
+import { p } from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
 import prValidate from "server/middleware/prudence-validate";
@@ -45,7 +45,7 @@ router.post(
 	ParseMultipartScoredata,
 	prValidate(
 		{
-			importType: Prudence.isIn(fileImportTypes),
+			importType: p.isIn(fileImportTypes),
 		},
 		{},
 		{ allowExcessKeys: true }
@@ -108,7 +108,7 @@ router.post(
 	RequirePermissions("submit_score"),
 	prValidate(
 		{
-			importType: Prudence.isIn(apiImportTypes),
+			importType: p.isIn(apiImportTypes),
 		},
 		{},
 		{ allowExcessKeys: true }

@@ -1,5 +1,5 @@
 import { config } from "dotenv";
-import p from "prudence";
+import { p } from "prudence";
 
 // init dotenv
 config();

@@ -6,7 +6,7 @@ import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
 import CreateLogCtx from "lib/logger/logger";
 import { ExpressWrappedScoreImportMain } from "lib/score-import/framework/express-wrapper";
 import { ServerConfig } from "lib/setup/config";
-import p from "prudence";
+import { p } from "prudence";
 import { RequireNotGuest } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { UpdateClassIfGreater } from "utils/class";

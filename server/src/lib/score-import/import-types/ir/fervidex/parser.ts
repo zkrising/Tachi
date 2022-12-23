@@ -11,7 +11,7 @@ import {
 	REV_NORMAL,
 	REV_OMNIMIX,
 } from "lib/constants/ea3id";
-import p from "prudence";
+import { p } from "prudence";
 import { ParseEA3SoftID } from "utils/ea3id";
 import { FormatPrError, optNull } from "utils/prudence";
 import type { ParserFunctionReturns } from "../../common/types";

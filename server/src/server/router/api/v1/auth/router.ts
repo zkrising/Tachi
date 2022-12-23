@@ -14,7 +14,7 @@ import { SendEmail } from "lib/email/client";
 import { EmailFormatResetPassword, EmailFormatVerifyEmail } from "lib/email/formats";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
-import Prudence from "prudence";
+import { p } from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import {
 	AggressiveRateLimitMiddleware,
@@ -48,7 +48,7 @@ router.post(
 	AggressiveRateLimitMiddleware,
 	prValidate(
 		{
-			username: Prudence.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
+			username: p.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
 			"!password": ValidatePassword,
 			captcha: "string",
 		},
@@ -168,9 +168,9 @@ router.post(
 	AggressiveRateLimitMiddleware,
 	prValidate(
 		{
-			username: Prudence.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
+			username: p.regex(/^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u),
 			"!password": ValidatePassword,
-			email: Prudence.regex(LAZY_EMAIL_REGEX),
+			email: p.regex(LAZY_EMAIL_REGEX),
 			inviteCode: "*string",
 			captcha: "string",
 		},

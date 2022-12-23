@@ -4,7 +4,7 @@ import db from "external/mongo/db";
 import { CreateActivityRouteHandler } from "lib/activity/activity";
 import { SetRivalsFailReasons } from "lib/constants/err-codes";
 import { GetChallengerUsers, GetRivalIDs, GetRivalUsers, SetRivals } from "lib/rivals/rivals";
-import p from "prudence";
+import { p } from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
 import { FormatGame, GetGamePTConfig } from "tachi-common";

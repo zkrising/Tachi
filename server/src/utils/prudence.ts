@@ -1,4 +1,4 @@
-import p from "prudence";
+import { p } from "prudence";
 import type { PrudenceError, ValidSchemaValue } from "prudence";
 
 export function FormatPrError(err: PrudenceError, foreword = "Error") {

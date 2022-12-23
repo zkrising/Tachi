@@ -1,6 +1,6 @@
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { XMLParser } from "fast-xml-parser";
-import p from "prudence";
+import { p } from "prudence";
 import { FormatPrError } from "utils/prudence";
 import type { ParserFunctionReturns } from "../../common/types";
 import type { S3Score } from "./types";

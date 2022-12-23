@@ -56,7 +56,7 @@ importers:
       mei-logger: ^1.0.3
       monk: 7.3.4
       node-fetch: 2.6.7
-      prudence: 0.9.8
+      prudence: 0.10.0
       seq-logging: 1.1.1
       sync-fetch: ^0.3.1
       tachi-common: workspace:../common
@@ -81,7 +81,7 @@ importers:
       mei-logger: 1.0.3
       monk: 7.3.4
       node-fetch: 2.6.7
-      prudence: 0.9.8
+      prudence: 0.10.0
       seq-logging: 1.1.1
       sync-fetch: 0.3.1
       tachi-common: link:../common
@@ -134,7 +134,7 @@ importers:
       natural-compare: ^1.4.0
       pretty-bytes: 5.6.0
       prop-types: 15.6.0
-      prudence: 0.9.8
+      prudence: 0.10.0
       react: 17.0.2
       react-async: 10.0.1
       react-bootstrap: 1.6.1
@@ -181,7 +181,7 @@ importers:
       natural-compare: 1.4.0
       pretty-bytes: 5.6.0
       prop-types: 15.6.0
-      prudence: 0.9.8
+      prudence: 0.10.0
       react: 17.0.2
       react-async: 10.0.1_react@17.0.2
       react-bootstrap: 1.6.1_sfoxds7t5ydpegc3knd667wn6m
@@ -214,13 +214,13 @@ importers:
       '@types/mongodb': 3.6.18
       '@types/tap': ^15.0.7
       deepmerge: ^4.2.2
-      prudence: 0.9.8
+      prudence: 0.10.0
       tap: 15.1.6
     dependencies:
       '@types/express-serve-static-core': 4.17.29
       '@types/mongodb': 3.6.18
       deepmerge: 4.2.2
-      prudence: 0.9.8
+      prudence: 0.10.0
     devDependencies:
       '@types/tap': 15.0.7
       tap: 15.1.6
@@ -245,7 +245,7 @@ importers:
       mei-logger: ^1.0.1
       monk: ^7.3.4
       node-fetch: 2.6.7
-      prudence: 0.9.8
+      prudence: 0.10.0
       tachi-common: workspace:../../common
       tsconfig-paths: 3.12.0
       xml2js: ^0.4.23
@@ -268,7 +268,7 @@ importers:
       mei-logger: 1.0.3
       monk: 7.3.4
       node-fetch: 2.6.7
-      prudence: 0.9.8
+      prudence: 0.10.0
       tachi-common: link:../../common
       xml2js: 0.4.23
     devDependencies:
@@ -283,14 +283,14 @@ importers:
       dotenv: 16.0.0
       express: 4.17.2
       node-fetch: 2.6.7
-      prudence: 0.9.8
+      prudence: 0.10.0
       typescript: 4.6.3
     dependencies:
       '@octokit/app': 13.1.0
       dotenv: 16.0.0
       express: 4.17.2
       node-fetch: 2.6.7
-      prudence: 0.9.8
+      prudence: 0.10.0
     devDependencies:
       '@types/express': 4.17.13
       '@types/node': 16.11.7
@@ -351,7 +351,7 @@ importers:
       node-html-parser: ^5.3.3
       node-mocks-http: 1.11.0
       nodemailer: 6.7.2
-      prudence: 0.9.8
+      prudence: 0.10.0
       rate-limit-redis: 2.1.0
       redis: 3.1.2
       rg-stats: ^0.5.0
@@ -417,7 +417,7 @@ importers:
       node-fetch: 2.6.7
       node-html-parser: 5.3.3
       nodemailer: 6.7.2
-      prudence: 0.9.8
+      prudence: 0.10.0
       rate-limit-redis: 2.1.0
       redis: 3.1.2
       rg-stats: 0.5.0
@@ -8115,8 +8115,8 @@ packages:
       ipaddr.js: 1.9.1
     dev: false
 
-  /prudence/0.9.8:
-    resolution: {integrity: sha512-my6HEhcTW3aKKjAx8j6jgUj3x5Kc71NEv3DySRXun2Zspw6Fdo5zDnbpXv/j4tyk9f9XXrpu1grWVBX4WU+1Tg==}
+  /prudence/0.10.0:
+    resolution: {integrity: sha512-QPyNYQR4tx+9xp+GuceW55MWeZIC/nNT3qWUmU8eij0FmO90x3L08oY9bJiIW1weB7mvH63JBra1cY+GH70YKw==}
     dev: false
 
   /psl/1.8.0:

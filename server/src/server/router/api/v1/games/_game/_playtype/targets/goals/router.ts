@@ -3,7 +3,7 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { CreateGoalTitle, ValidateGoalChartsAndCriteria } from "lib/targets/goal-utils";
 import { GetQuestsThatContainGoal } from "lib/targets/goals";
-import p from "prudence";
+import { p } from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { GetMostSubscribedGoals } from "utils/db";
 import { AssignToReqTachiData, GetGPT, GetTachiData } from "utils/req-tachi-data";

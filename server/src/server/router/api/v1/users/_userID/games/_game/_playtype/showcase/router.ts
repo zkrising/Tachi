@@ -3,7 +3,7 @@ import db from "external/mongo/db";
 import { EvaluateShowcaseStat } from "lib/showcase/evaluator";
 import { GetRelatedStatDocuments } from "lib/showcase/get-related";
 import { EvaluateUsersStatsShowcase } from "lib/showcase/get-stats";
-import p from "prudence";
+import { p } from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { RequireAuthedAsUser } from "server/router/api/v1/users/_userID/middleware";
 import { FormatGame, GetGamePTConfig } from "tachi-common";

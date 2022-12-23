@@ -1,6 +1,6 @@
 import { PR_KSHOOK_SV6C } from "../kshook-sv6c/parser";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
-import p from "prudence";
+import { p } from "prudence";
 import { FormatPrError } from "utils/prudence";
 import type { ParserFunctionReturns } from "../../common/types";
 import type { KsHookSV6CStaticBody, KsHookSV6CStaticScore } from "./types";

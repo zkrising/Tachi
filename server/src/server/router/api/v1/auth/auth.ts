@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
-import p from "prudence";
+import { p } from "prudence";
 import { UserAuthLevels } from "tachi-common";
 import nodeFetch from "utils/fetch";
 import { Random20Hex } from "utils/misc";

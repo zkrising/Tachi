@@ -2,7 +2,7 @@ import { RequireSelfRequestFromUser } from "../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import p from "prudence";
+import { p } from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { ALL_PERMISSIONS } from "tachi-common";
 import { Random20Hex } from "utils/misc";

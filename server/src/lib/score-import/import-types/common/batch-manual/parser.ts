@@ -1,7 +1,7 @@
 import { CreateBatchManualClassHandler } from "./class-handler";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { TachiConfig } from "lib/setup/config";
-import p from "prudence";
+import { p } from "prudence";
 import { GetGameConfig } from "tachi-common";
 import { PR_BATCH_MANUAL } from "tachi-common/lib/schemas";
 import { IsRecord, IsValidGame, IsValidPlaytype } from "utils/misc";

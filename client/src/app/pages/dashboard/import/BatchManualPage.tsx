@@ -9,7 +9,7 @@ import {
 	GetGameConfig,
 	GetGamePTConfig,
 } from "tachi-common";
-import p from "prudence";
+import { p } from "prudence";
 import { PR_BATCH_MANUAL } from "tachi-common/lib/schemas";
 
 export default function BatchManualPage() {

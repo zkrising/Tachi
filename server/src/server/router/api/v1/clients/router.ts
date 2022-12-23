@@ -3,7 +3,7 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { ServerConfig } from "lib/setup/config";
-import p from "prudence";
+import { p } from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { ALL_PERMISSIONS, UserAuthLevels } from "tachi-common";
 import { DedupeArr, DeleteUndefinedProps, IsValidURL, Random20Hex } from "utils/misc";

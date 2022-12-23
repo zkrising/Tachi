@@ -1,4 +1,4 @@
-import Prudence from "prudence";
+import { p } from "prudence";
 import type { PrudenceSchema } from "prudence";
 
 export function isApproximately(
@@ -27,7 +27,7 @@ export function prAssert(
 	schema: PrudenceSchema,
 	message = "Unnamed Prudence Assertion"
 ) {
-	const err = Prudence(obj, schema);
+	const err = p(obj, schema);
 
 	if (err) {
 		return t.fail(message, err);

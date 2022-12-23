@@ -1,7 +1,6 @@
-import { Tabs } from "@material-ui/core";
+import Tabs from "@mui/material/Tabs";
 import React, { useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import Tab from "@material-ui/core/Tab";
 
 export default function Navbar({ children }: { children: JSX.Element[] }) {
 	const links = children
@@ -37,21 +36,15 @@ export default function Navbar({ children }: { children: JSX.Element[] }) {
 	}, [location]);
 
 	return (
-		<>
-			{/* Comical hack - MUI only injects the right css if it detects this element. */}
-			<div className="d-none">
-				<Tab />
-			</div>
-			<ul
-				className="nav flex-nowrap d-flex w-100"
-				style={{
-					justifyContent: "space-evenly",
-				}}
-			>
-				<Tabs variant="scrollable" scrollButtons="auto" value={value}>
-					{children}
-				</Tabs>
-			</ul>
-		</>
+		<Tabs
+			sx={{
+				width: "100%",
+			}}
+			variant="scrollable"
+			scrollButtons="auto"
+			value={value}
+		>
+			{children}
+		</Tabs>
 	);
 }

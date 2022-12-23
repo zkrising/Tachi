@@ -197,9 +197,9 @@ export default function SeedsPicker({
 							<div>
 								<Select name="Repository" value={repo} setValue={setRepo} allowNull>
 									{hasLocalAPI && <option value="local">Your Local Repo</option>}
-									{process.env.REACT_APP_GIT_REPO && (
-										<option value={process.env.REACT_APP_GIT_REPO}>
-											{process.env.REACT_APP_GIT_REPO}
+									{process.env.VITE_GIT_REPO && (
+										<option value={process.env.VITE_GIT_REPO}>
+											{process.env.VITE_GIT_REPO}
 										</option>
 									)}
 								</Select>
@@ -387,7 +387,7 @@ function RevSelector({
 			<div className="timeline timeline-2">
 				<div className="timeline-bar"></div>
 				{filteredRevs.map((r) => (
-					<Revision
+					<RevisionComponent
 						tags={shaBranchLookup[r.sha] ?? []}
 						key={r.sha}
 						rev={r}
@@ -399,7 +399,7 @@ function RevSelector({
 	);
 }
 
-function Revision({
+function RevisionComponent({
 	rev,
 	tags = [],
 	onSelect: onSelect,

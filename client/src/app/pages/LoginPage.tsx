@@ -116,10 +116,10 @@ export default function LoginPage() {
 						{err}
 					</Form.Group>
 
-					{process.env.REACT_APP_RECAPTCHA_KEY && (
+					{process.env.VITE_RECAPTCHA_KEY && (
 						<ReCAPTCHA
 							ref={recaptchaRef}
-							sitekey={process.env.REACT_APP_RECAPTCHA_KEY}
+							sitekey={process.env.VITE_RECAPTCHA_KEY}
 							onChange={(v) => {
 								formik.setFieldValue("captcha", v);
 							}}

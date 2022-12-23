@@ -121,7 +121,7 @@ export default function ImportRoutes() {
 							<Route exact path="/import/iidx-flo">
 								<KAIIntegrationPage
 									hash="6f64b82107cea90aa4c51a33705cd57c1883c8cdc22a634730ca461a431744b3"
-									clientID={process.env.REACT_APP_FLO_CLIENT_ID ?? ""}
+									clientID={process.env.VITE_FLO_CLIENT_ID ?? ""}
 									redirectUri={`${window.location.origin}/oauth2-callback/flo`}
 									kaiType="FLO"
 									game="iidx"
@@ -130,7 +130,7 @@ export default function ImportRoutes() {
 							<Route exact path="/import/iidx-eag">
 								<KAIIntegrationPage
 									hash="0451a33ffc7f8b0c089450d842efb8b7099e22a2df2251ae4e6d9ec1b3cb4a5f"
-									clientID={process.env.REACT_APP_EAG_CLIENT_ID ?? ""}
+									clientID={process.env.VITE_EAG_CLIENT_ID ?? ""}
 									redirectUri={`${window.location.origin}/oauth2-callback/eag`}
 									kaiType="EAG"
 									game="iidx"
@@ -139,7 +139,7 @@ export default function ImportRoutes() {
 							<Route exact path="/import/sdvx-min">
 								<KAIIntegrationPage
 									hash="5885d4123b6db3f0127111a587ea6549f533a178dc2e198d31f98bed4ffd0cad"
-									clientID={process.env.REACT_APP_MIN_CLIENT_ID ?? ""}
+									clientID={process.env.VITE_MIN_CLIENT_ID ?? ""}
 									redirectUri={`${window.location.origin}/oauth2-callback/min`}
 									kaiType="MIN"
 									game="sdvx"
@@ -148,7 +148,7 @@ export default function ImportRoutes() {
 							<Route exact path="/import/sdvx-flo">
 								<KAIIntegrationPage
 									hash="6f64b82107cea90aa4c51a33705cd57c1883c8cdc22a634730ca461a431744b3"
-									clientID={process.env.REACT_APP_FLO_CLIENT_ID ?? ""}
+									clientID={process.env.VITE_FLO_CLIENT_ID ?? ""}
 									redirectUri={`${window.location.origin}/oauth2-callback/flo`}
 									kaiType="FLO"
 									game="sdvx"
@@ -157,7 +157,7 @@ export default function ImportRoutes() {
 							<Route exact path="/import/sdvx-eag">
 								<KAIIntegrationPage
 									hash="0451a33ffc7f8b0c089450d842efb8b7099e22a2df2251ae4e6d9ec1b3cb4a5f"
-									clientID={process.env.REACT_APP_EAG_CLIENT_ID ?? ""}
+									clientID={process.env.VITE_EAG_CLIENT_ID ?? ""}
 									redirectUri={`${window.location.origin}/oauth2-callback/eag`}
 									kaiType="EAG"
 									game="sdvx"

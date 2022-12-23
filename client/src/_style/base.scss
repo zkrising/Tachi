@@ -1,5 +1,5 @@
 // Bootstrap
-@import "~bootstrap/scss/_mixins.scss";
+@import "bootstrap-scss/_mixins.scss";
 @import "variables.demo";
 @import "variables.bootstrap";
 
@@ -181,3 +181,11 @@
 	width: 100%;
 	max-width: unset !important;
 }
+
+@include media-breakpoint-up(lg) {
+	.MuiTabs-flexContainer {
+		width: 100%;
+		justify-content: space-around
+	}
+}
+

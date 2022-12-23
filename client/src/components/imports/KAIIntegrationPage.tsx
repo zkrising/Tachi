@@ -30,8 +30,8 @@ export default function KAIIntegrationPage({ clientID, hash, kaiType, redirectUr
 		return (
 			<div>
 				Sorry, this service isn't supported here.
-				{process.env.REACT_APP_IS_LOCAL_DEV &&
-					` You haven't set REACT_APP_${kaiType}_CLIENT_ID in your .env file.`}
+				{process.env.VITE_IS_LOCAL_DEV &&
+					` You haven't set VITE_${kaiType}_CLIENT_ID in your .env file.`}
 			</div>
 		);
 	}

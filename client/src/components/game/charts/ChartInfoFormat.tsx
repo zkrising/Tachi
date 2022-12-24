@@ -78,7 +78,7 @@ export default function ChartInfoFormat({
 								<td>{e}</td>
 								<td>
 									{chart.tierlistInfo[e]!.text}{" "}
-									<Muted>({chart.tierlistInfo[e]!.value})</Muted>
+									<Muted>({chart.tierlistInfo[e]!.value.toFixed(2)})</Muted>
 									{chart.tierlistInfo[e]!.individualDifference && (
 										<>
 											<br />

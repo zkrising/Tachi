@@ -9,18 +9,11 @@
 	},
 	"plugins": [
 		"@typescript-eslint",
-		"import",
-		"react"
-	],
+		"import"],
 	"ignorePatterns": [
 		"**/*.js",
 		"react-app-env.d.ts"
 	],
-	"settings": {
-		"react": {
-			"version": "detect"
-		}
-	},
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"sourceType": "module",
@@ -28,7 +21,6 @@
 	},
 	"extends": [
 		"eslint:recommended",
-		"plugin:react/recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:prettier/recommended",
 		"plugin:import/typescript",
@@ -58,21 +50,10 @@
 			}
 		],
 		"@typescript-eslint/explicit-function-return-type": "off",
-		"react/no-unescaped-entities": [
-			"error",
-			{
-				"forbid": [
-					">",
-					"}"
-				]
-			}
-		],
-		"react/display-name": "off",
 		"import/order": "error",
 		"import/no-unresolved": "off",
 		"import/named": "off",
 		"import/no-named-as-default": "off",
-		"react/prop-types": "off",
 		"require-await": "warn",
 		"no-await-in-loop": "warn",
 		"no-unused-labels": "error",

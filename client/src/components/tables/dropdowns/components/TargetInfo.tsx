@@ -46,7 +46,7 @@ export default function TargetInfo({
 	return (
 		<div className="w-100">
 			<Col xs={12}>
-				<h1>Your Goals on {FormatChart(game, song, chart)}</h1>
+				<h1>Your Goals involving {FormatChart(game, song, chart)}</h1>
 				<Divider />
 			</Col>
 			<Col xs={12}>

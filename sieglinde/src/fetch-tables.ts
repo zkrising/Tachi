@@ -4,19 +4,21 @@ import TableValueGetters from "lookups";
 import { BMS_TABLES } from "tachi-common";
 import type { BMSTablesDataset } from "./types";
 import type { BMSTableEntryMD5 } from "bms-table-loader";
-
-// only 7k supported atm
-const registeredTables: Array<BMSTablesDataset> = BMS_TABLES.filter((e) => e.playtype === "7K");
+import type { Playtypes } from "tachi-common";
 
 export interface TableRes {
 	table: BMSTablesDataset;
 	charts: Array<BMSTableEntryMD5>;
 }
 
-export default async function GetTableData(): Promise<Array<TableRes>> {
+export default async function GetTableData(
+	forPlaytype: Playtypes["bms"]
+): Promise<Array<TableRes>> {
 	const out = [];
 
-	for (const table of registeredTables.filter((e) => e.name in TableValueGetters)) {
+	for (const table of BMS_TABLES.filter(
+		(e) => e.name in TableValueGetters && e.playtype === forPlaytype
+	)) {
 		const bmsTable = await LoadBMSTable(table.url);
 
 		out.push({

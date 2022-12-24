@@ -21,6 +21,8 @@ const APPLICATION_ORDER = [
 	"Stella",
 	"Normal",
 	"Insane",
+	"DP Insane",
+	"DP Normal",
 ];
 
 function fmtSgl(sgl) {

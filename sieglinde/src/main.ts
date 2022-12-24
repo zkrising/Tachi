@@ -1,9 +1,17 @@
 import GetTableData from "./fetch-tables";
 import logger from "./logger";
 import SieglindeV1Calc from "calc/v1-jiminp";
+import { Command } from "commander";
 import fs from "fs";
 import path from "path";
 import type { CalcReturns } from "types";
+
+const program = new Command();
+
+program.requiredOption("-p, --playtype <7K or 14K>");
+
+program.parse(process.argv);
+const options = program.opts();
 
 if (require.main !== module) {
 	logger.error(`The script main.ts must be invoked directly!`);
@@ -15,7 +23,7 @@ void (async () => {
 
 	fs.mkdirSync(`${__dirname}/cache`, { recursive: true });
 
-	const tableInfo = await GetTableData();
+	const tableInfo = await GetTableData(options.playtype as "7K" | "14K");
 
 	logger.info(`Starting...`);
 

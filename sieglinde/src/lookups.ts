@@ -1,5 +1,13 @@
 const TableValueGetters: Record<
-	"Insane" | "Insane2" | "Normal" | "Normal2" | "Overjoy" | "Satellite" | "Stella",
+	| "DP Insane"
+	| "DP Normal"
+	| "Insane"
+	| "Insane2"
+	| "Normal"
+	| "Normal2"
+	| "Overjoy"
+	| "Satellite"
+	| "Stella",
 	(x: number | string) => number | null
 > = {
 	Insane: (c) => {
@@ -12,6 +20,29 @@ const TableValueGetters: Record<
 		return n + 12;
 	},
 	Insane2: (c) => {
+		const n = Number(c);
+
+		if (Number.isNaN(n)) {
+			return null;
+		}
+
+		return n + 12;
+	},
+	"DP Normal": (c) => {
+		// delta 99 is a real folder
+		if (c === "99") {
+			return null;
+		}
+
+		const n = Number(c);
+
+		if (Number.isNaN(n)) {
+			return null;
+		}
+
+		return n;
+	},
+	"DP Insane": (c) => {
 		const n = Number(c);
 
 		if (Number.isNaN(n)) {

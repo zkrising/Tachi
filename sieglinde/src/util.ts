@@ -9,7 +9,7 @@ import { XMLParser } from "fast-xml-parser";
 import fetch from "node-fetch";
 import { writeFile, readFile } from "fs/promises";
 import type { BMSTablesDataset } from "./types";
-import type { BMSTableEntry } from "bms-table-loader";
+import type { BMSTableEntry, BMSTableEntryMD5 } from "bms-table-loader";
 
 const parser = new XMLParser();
 
@@ -93,7 +93,7 @@ export function GetBaseline(table: BMSTablesDataset, level: number | string): nu
 	return TableValueGetters[table.name](level);
 }
 
-export function GetFString(table: BMSTablesDataset, chart: BMSTableEntry) {
+export function GetFString(table: BMSTablesDataset, chart: BMSTableEntryMD5) {
 	return table.prefix + chart.level.toString();
 }
 

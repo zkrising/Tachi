@@ -1,8 +1,9 @@
 import GetTableData from "../fetch-tables";
 import { ChunkifyPromiseAll, GetScoresForMD5 } from "../util";
+import type { Playtypes } from "tachi-common";
 
-export default async function FetchAllTableScores() {
-	const tableInfo = await GetTableData();
+export default async function FetchAllTableScores(playtype: Playtypes["bms"]) {
+	const tableInfo = await GetTableData(playtype);
 
 	const promises = [];
 
@@ -16,5 +17,6 @@ export default async function FetchAllTableScores() {
 }
 
 if (require.main === module) {
-	void FetchAllTableScores();
+	void FetchAllTableScores("7K");
+	void FetchAllTableScores("14K");
 }

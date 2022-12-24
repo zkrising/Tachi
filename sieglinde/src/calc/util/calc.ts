@@ -237,7 +237,7 @@ export class DifficultyComputer {
 		logger.info("Writing regression info...");
 
 		fs.writeFileSync(
-			path.join(__dirname, `../cache/v1-calc-regressions/${tag}.json`),
+			path.join(__dirname, `../../cache/v1-calc-regressions/${tag}.json`),
 			JSON.stringify({
 				songDifficulty: mapToObj(this.songDifficulty),
 				userSkill: mapToObj(this.userSkill),

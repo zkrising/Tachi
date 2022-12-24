@@ -1,6 +1,7 @@
 import react from "@vitejs/plugin-react";
 import { config } from "dotenv";
 import { defineConfig } from "vite";
+import { createHtmlPlugin } from "vite-plugin-html";
 import fs from "fs";
 import path from "path";
 
@@ -66,7 +67,17 @@ export default defineConfig(() => {
 		define: {
 			"process.env": process.env,
 		},
-		plugins: [react()],
+		plugins: [
+			react(),
+			createHtmlPlugin({
+				inject: {
+					data: {
+						VITE_CDN_URL: process.env.VITE_CDN_URL,
+						TACHI_NAME: process.env.TACHI_NAME ?? "Tachi",
+					},
+				},
+			}),
+		],
 		server: {
 			port: 3000,
 		},

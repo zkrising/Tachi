@@ -67,7 +67,8 @@
 		"react-select": "^5.6.1",
 		"rg-stats": "^0.2.0",
 		"sync-fetch": "^0.3.1",
-		"tachi-common": "workspace:../common"
+		"tachi-common": "workspace:../common",
+		"vite-plugin-html": "^3.2.0"
 	},
 	"devDependencies": {
 		"@types/history": "4.7.11",

@@ -1401,7 +1401,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		scoreBucket: "grade",
 
-		supportedVersions: ["universeplus"],
+		orderedSupportedVersions: ["universeplus"],
 
 		tierlists: [],
 		tierlistDescriptions: {},

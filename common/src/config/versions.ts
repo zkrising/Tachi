@@ -91,6 +91,9 @@ export const PrettyVersions: Versions = {
 	"pms:Controller": {},
 	"pms:Keyboard": {},
 	"itg:Stamina": {},
+	"maimaidx:Single": {
+		universeplus: "UNiVERSE PLUS",
+	},
 };
 
 export function PrettyFormatGameVersion<I extends IDStrings>(

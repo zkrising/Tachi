@@ -1,8 +1,15 @@
-import { EvaluateGoalForUser, GetRelevantFolderGoals, GetRelevantGoals, HumaniseGoalProgress } from "./goals";
+import {
+	EvaluateGoalForUser,
+	GetRelevantFolderGoals,
+	GetRelevantGoals,
+	HumaniseGoalProgress,
+} from "./goals";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import { IIDX_GRADES } from "tachi-common";
 import t from "tap";
+import { mkFakePBIIDXSP } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
 import {
 	GetKTDataJSON,
@@ -12,10 +19,8 @@ import {
 	TestingIIDXSPScorePB,
 } from "test-utils/test-data";
 import { CreateFolderChartLookup } from "utils/folder";
-import { Random20Hex } from "utils/misc";
 import crypto from "crypto";
-import { ChartDocument, GoalDocument, IIDX_GRADES, SongDocument } from "tachi-common";
-import { mkFakePBIIDXSP } from "test-utils/misc";
+import type { ChartDocument, GoalDocument, SongDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -302,19 +307,28 @@ t.test("#EvaluateGoalForUser", (t) => {
 
 t.test("#HumaniseGoalProgress", (t) => {
 	t.test("Should prefer AAA- over AA+ for AAA goals", (t) => {
-		t.equal(HumaniseGoalProgress("iidx", "SP", "scoreData.gradeIndex", IIDX_GRADES.AAA, mkFakePBIIDXSP({
-			// @ts-expect-error faulty deepmerge types
-			scoreData: {
-				score: 1230,
-				grade: "AA",
-				percent: 78.89
-			}
-		})), "AAA-156")
-		
-		t.end()
+		t.equal(
+			HumaniseGoalProgress(
+				"iidx",
+				"SP",
+				"scoreData.gradeIndex",
+				IIDX_GRADES.AAA,
+				mkFakePBIIDXSP({
+					// @ts-expect-error faulty deepmerge types
+					scoreData: {
+						score: 1230,
+						grade: "AA",
+						percent: 78.89,
+					},
+				})
+			),
+			"AAA-156"
+		);
+
+		t.end();
 	});
 
-	t.end()
+	t.end();
 });
 
 t.test("#GetRelevantFolderGoals", (t) => {

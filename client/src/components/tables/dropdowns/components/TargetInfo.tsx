@@ -11,7 +11,6 @@ import { UGPT } from "types/react";
 import { ChartDocument, FormatChart, SongDocument } from "tachi-common";
 import Icon from "components/util/Icon";
 import GoalSubInfo from "components/targets/GoalSubInfo";
-import DebugContent from "components/util/DebugContent";
 
 export default function TargetInfo({
 	data,

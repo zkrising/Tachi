@@ -8,9 +8,9 @@ import {
 	integer,
 	ScoreCalculatedDataLookup,
 	ScoreDocument,
+	Playtype,
 } from "tachi-common";
 import { ScoreDataset } from "types/tables";
-import { Playtype } from "tachi-common";
 import TimestampCell from "../cells/TimestampCell";
 import TachiTable from "../components/TachiTable";
 import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";

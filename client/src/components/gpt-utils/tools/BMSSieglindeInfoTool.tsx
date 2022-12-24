@@ -1,23 +1,20 @@
-import { ToAPIURL } from "util/api";
-import { CopyToClipboard } from "util/misc";
 import { CreateSongMap } from "util/data";
 import { NumericSOV, StrSOV } from "util/sorts";
-import Card from "components/layout/page/Card";
+import BMSOrPMSDifficultyCell from "components/tables/cells/BMSOrPMSDifficultyCell";
+import TitleCell from "components/tables/cells/TitleCell";
+import TachiTable from "components/tables/components/TachiTable";
+import ChartHeader from "components/tables/headers/ChartHeader";
 import ApiError from "components/util/ApiError";
+import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import { TachiConfig } from "lib/config";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
+import { BMS_TABLES, ChartDocument, SongDocument } from "tachi-common";
+import { FormatSieglindeBMS } from "tachi-common/config/internal-utils";
 import { UGPT } from "types/react";
 import { GPTUtility } from "types/ugpt";
-import Divider from "components/util/Divider";
-import { BMS_TABLES, ChartDocument, SongDocument } from "tachi-common";
-import TachiTable from "components/tables/components/TachiTable";
-import BMSOrPMSDifficultyCell from "components/tables/cells/BMSOrPMSDifficultyCell";
-import TitleCell from "components/tables/cells/TitleCell";
-import ChartHeader from "components/tables/headers/ChartHeader";
-import { FormatSieglindeBMS } from "tachi-common/config/internal-utils";
 
 type DatasetElement = ChartDocument<"bms:7K" | "bms:14K"> & { __related: { song: SongDocument } };
 

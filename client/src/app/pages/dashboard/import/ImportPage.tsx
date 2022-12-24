@@ -88,7 +88,11 @@ function InnerShowRecentImports({ user }: { user: UserDocument }) {
 		return <Loading />;
 	}
 
-	if (data.length === 0) {
+	const filteredData = data.filter(
+		(e) => e.importType.startsWith("file/") || e.importType.startsWith("api/")
+	);
+
+	if (filteredData.length === 0) {
 		return null;
 	}
 
@@ -97,16 +101,12 @@ function InnerShowRecentImports({ user }: { user: UserDocument }) {
 			<h4>Recently Used Import Methods</h4>
 			<Divider />
 			<Row>
-				{data
-					.filter(
-						(e) => e.importType.startsWith("file/") || e.importType.startsWith("api/")
-					)
-					.map((e) => (
-						<ImportTypeInfoCard
-							key={e.importType}
-							importType={e.importType as FileUploadImportTypes | APIImportTypes}
-						/>
-					))}
+				{filteredData.map((e) => (
+					<ImportTypeInfoCard
+						key={e.importType}
+						importType={e.importType as FileUploadImportTypes | APIImportTypes}
+					/>
+				))}
 			</Row>
 		</>
 	);

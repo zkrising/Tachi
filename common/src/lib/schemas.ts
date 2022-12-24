@@ -1296,8 +1296,14 @@ const PR_HIT_META = (game: Game): PrudenceSchema => {
 const PR_BATCH_MANUAL_SCORE = (game: Game, playtype: Playtype): PrudenceSchema => {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const scoreChecker =
-		game === "itg" || game === "gitadora" ? p.isBetween(0, 100) : p.isPositiveInteger;
+	let scoreChecker: ValidSchemaValue = p.isPositiveInteger;
+
+	// DISGUSTING TEMPORARY HACK. NEEDS REFACTOR
+	if (game === "itg" || game === "gitadora") {
+		scoreChecker = p.isBetween(0, 100);
+	} else if (game === "maimaidx") {
+		scoreChecker = p.isBetween(0, 101);
+	}
 
 	return {
 		score: scoreChecker,

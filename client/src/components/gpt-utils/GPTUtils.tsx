@@ -4,11 +4,12 @@ import { BMSCustomTablesTool } from "./tools/BMSCustomTablesTool";
 import { IIDXEamusementExportTool } from "./tools/IIDXEamusementExportTool";
 import { IIDXPlaylistsTool } from "./tools/IIDXPlaylistsTool";
 import { JubilityBreakdownInsight } from "./insights/JubilityBreakdownInsight";
+import { BMSSieglindeInfoTool } from "./tools/BMSSieglindeInfoTool";
 
 // What utils does each game support?
 const GPT_UTILS: Record<IDStrings, Array<GPTUtility>> = {
-	"bms:7K": [BMSCustomTablesTool],
-	"bms:14K": [BMSCustomTablesTool],
+	"bms:7K": [BMSCustomTablesTool, BMSSieglindeInfoTool],
+	"bms:14K": [BMSCustomTablesTool, BMSSieglindeInfoTool],
 	"chunithm:Single": [],
 	"gitadora:Dora": [],
 	"gitadora:Gita": [],

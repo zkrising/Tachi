@@ -1,5 +1,6 @@
 import { ValidatePlaytypeFromParamFor } from "../../_game/_playtype/middleware";
 import { Router } from "express";
+import db from "external/mongo/db";
 import {
 	CUSTOM_TACHI_BMS_TABLES,
 	HandleBMSTableBodyRequest,
@@ -9,6 +10,7 @@ import {
 import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import type { RequestHandler } from "express";
 import type { TachiBMSTable } from "lib/game-specific/custom-bms-tables";
+import type { Playtypes } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -126,5 +128,33 @@ router.get(
 		return HandleBMSTableBodyRequest(customTable, req, res);
 	}
 );
+
+/**
+ * Return *all* the charts that have defined sieglinde values for this game.
+ *
+ * @name GET /api/v1/games/bms/:playtype/sieglinde-charts
+ */
+router.get("/:playtype/sieglinde-charts", ValidatePlaytypeFromParamFor("bms"), async (req, res) => {
+	const playtype = req.params.playtype as Playtypes["bms"];
+
+	const charts = await db.charts.bms.find({
+		playtype,
+		$or: [
+			{ "tierlistInfo.sgl-EC.value": { $gt: 0 } },
+			{ "tierlistInfo.sgl-HC.value": { $gt: 0 } },
+		],
+	});
+
+	const songs = await db.songs.bms.find({ id: { $in: charts.map((e) => e.songID) } });
+
+	return res.status(200).json({
+		success: true,
+		description: `Found ${charts.length} chart(s).`,
+		body: {
+			songs,
+			charts,
+		},
+	});
+});
 
 export default router;

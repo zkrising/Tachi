@@ -142,9 +142,22 @@ export async function ProcessGoal(
 		};
 	}
 
+	let newTimeAchieved = null;
+
+	if (newData.achieved) {
+		// if this goal was just achieved
+		if (goalSub.timeAchieved === null) {
+			newTimeAchieved = Date.now();
+		} else {
+			// keep the old timestamp
+			newTimeAchieved = goalSub.timeAchieved;
+		}
+	}
+	// otherwise if this goal wasn't achieved then the timeAchieved is always null
+
 	const setData = {
 		...newData,
-		timeAchieved: newData.achieved ? Date.now() : null,
+		timeAchieved: newTimeAchieved,
 
 		// we're guaranteed that this works, because things
 		// that haven't changed return nothing instead of

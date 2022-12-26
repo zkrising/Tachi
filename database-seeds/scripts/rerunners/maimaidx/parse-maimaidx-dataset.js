@@ -1,12 +1,5 @@
-const { parse } = require("csv-parse/sync");
-const fs = require("fs");
 const fetch = require("node-fetch");
-const { Command } = require("commander");
 const { CreateChartID, ReadCollection, WriteCollection } = require("../../util");
-const { decode } = require("html-entities");
-const logger = require("../../logger");
-
-const program = new Command();
 
 const DATA_URL = "https://maimai.sega.jp/data/maimai_songs.json";
 

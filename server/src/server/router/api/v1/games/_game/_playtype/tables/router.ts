@@ -1,12 +1,16 @@
 import { GetTableFromParam } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
+import CreateLogCtx from "lib/logger/logger";
+import { FormatGame } from "tachi-common";
 import { GetFoldersFromTable } from "utils/folder";
 import { GetGPT, GetTachiData } from "utils/req-tachi-data";
 import type { FilterQuery } from "mongodb";
 import type { TableDocument } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
+
+const logger = CreateLogCtx(__filename);
 
 /**
  * Return all the tables for this game.
@@ -25,6 +29,19 @@ router.get("/", async (req, res) => {
 	}
 
 	const tables = await db.tables.find(query);
+
+	if (tables.length === 0) {
+		logger.error(
+			`The game ${FormatGame(
+				game,
+				playtype
+			)} has no tables. This renders table support for the game broken!`
+		);
+		return res.status(500).json({
+			success: false,
+			description: "This game has no tables.",
+		});
+	}
 
 	return res.status(200).json({
 		success: true,

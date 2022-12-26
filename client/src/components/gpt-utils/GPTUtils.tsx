@@ -25,6 +25,7 @@ const GPT_UTILS: Record<IDStrings, Array<GPTUtility>> = {
 	"usc:Controller": [],
 	"usc:Keyboard": [],
 	"wacca:Single": [],
+	"maimaidx:Single": [],
 };
 
 export function GetGPTUtils(game: Game, playtype: Playtype) {

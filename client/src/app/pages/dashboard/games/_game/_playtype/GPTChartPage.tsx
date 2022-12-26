@@ -58,7 +58,8 @@ export default function GPTChartPage({
 	setActiveChart: SetState<ChartDocument | null>;
 	allCharts: ChartDocument[];
 } & GamePT) {
-	const { difficulty } = useParams<{ difficulty: string }>();
+	const { difficulty: d } = useParams<{ difficulty: string }>();
+	const difficulty = decodeURIComponent(d);
 
 	const gptConfig = GetGamePTConfig(game, playtype);
 

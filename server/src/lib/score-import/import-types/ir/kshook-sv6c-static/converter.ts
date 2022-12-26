@@ -1,7 +1,7 @@
 import { SV6CConvertDifficulty, SV6CConvertLamp } from "../kshook-sv6c/converter";
 import {
 	InternalFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
 import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
@@ -20,7 +20,7 @@ export const ConverterKsHookSV6CStatic: ConverterFunction<
 	const chart = await FindSDVXChartOnInGameIDVersion(data.music_id, diff, "konaste");
 
 	if (!chart) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find chart with songID ${data.music_id} (${diff} for Konaste).`,
 			importType,
 			data,

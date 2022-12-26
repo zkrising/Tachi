@@ -313,7 +313,7 @@ router.post("/scores", RequirePermissions("submit_score"), async (req, res) => {
 
 	// If the import failed, AND the import failure WAS NOT that the chart didnt exist
 	// report that error instead.
-	if (importDoc.errors[0] && importDoc.errors[0].type !== "KTDataNotFound") {
+	if (importDoc.errors[0] && importDoc.errors[0].type !== "SongOrChartNotFound") {
 		logger.info(`USC Import Failed ${importDoc.errors[0].message}`, {
 			importDoc,
 			userID,

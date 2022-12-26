@@ -1,7 +1,7 @@
 import {
 	InternalFailure,
 	InvalidScoreFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 } from "../../../../framework/common/converter-failures";
 import {
 	GenericGetGradeAndPercent,
@@ -235,7 +235,7 @@ export const ConvertAPIKaiIIDX: ConverterFunction<unknown, KaiContext> = async (
 	);
 
 	if (!chart) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find chart with songID ${musicID} (${playtype} ${score.difficulty} - Version ${score.version_played})`,
 			importType,
 			data,

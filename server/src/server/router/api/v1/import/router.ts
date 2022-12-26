@@ -60,7 +60,7 @@ router.post(
 
 		const importType = req.safeBody.importType as FileUploadImportTypes;
 
-		const userIntent = !!req.header("X-User-Intent");
+		const userIntent = req.header("X-User-Intent")?.toLowerCase() === "true";
 
 		if (ServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER) {
 			const importID = Random20Hex();
@@ -120,7 +120,7 @@ router.post(
 
 		const userID = req[SYMBOL_TACHI_API_AUTH].userID!;
 
-		const userIntent = !!req.header("X-User-Intent");
+		const userIntent = req.header("X-User-Intent")?.toLowerCase() === "true";
 
 		if (ServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER) {
 			const job: ScoreImportJobData<APIImportTypes> = {

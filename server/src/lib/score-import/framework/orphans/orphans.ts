@@ -111,7 +111,7 @@ export async function ReprocessOrphan(
 
 	if ("failureType" in res) {
 		// If the data still can't be found, we do nothing about it.
-		if (res.failureType === "KTDataNotFound") {
+		if (res.failureType === "SongOrChartNotFound") {
 			logger.debug(`Unorphaning ${orphan.orphanID} failed. (${res.message})`);
 			return false;
 		} else if (res.failureType === "Internal") {

@@ -1,7 +1,7 @@
 import {
 	InternalFailure,
 	InvalidScoreFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import db from "external/mongo/db";
@@ -108,7 +108,7 @@ async function HandleOrphanChartProcess(
 	// If chart wasn't unorphaned as a result of this request
 	// orphan this score and return ktdnf
 	if (!chart) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`This chart (${context.chart.artist} - ${context.chart.title}) is orphaned.`,
 			"ir/beatoraja",
 			data,

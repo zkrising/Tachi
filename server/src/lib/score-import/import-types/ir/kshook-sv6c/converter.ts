@@ -1,6 +1,6 @@
 import {
 	InternalFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
 import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
@@ -21,7 +21,7 @@ export const ConverterIRKsHookSV6C: ConverterFunction<KsHookSV6CScore, KsHookSV6
 	const chart = await FindSDVXChartOnInGameIDVersion(data.music_id, diff, "konaste");
 
 	if (!chart) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find chart with songID ${data.music_id} (${diff} for Konaste).`,
 			importType,
 			data,

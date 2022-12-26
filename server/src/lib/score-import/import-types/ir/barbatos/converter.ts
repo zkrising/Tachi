@@ -1,6 +1,6 @@
 import {
 	InternalFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
@@ -42,7 +42,7 @@ export const ConverterIRBarbatos: ConverterFunction<
 	const chart = await FindSDVXChartOnInGameIDVersion(data.song_id, difficulty, context.version);
 
 	if (!chart) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find chart with songID ${data.song_id} (${difficulty})`,
 			importType,
 			data,

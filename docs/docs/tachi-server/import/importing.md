@@ -28,7 +28,7 @@ As a rough outline:
 	// whether this import worked or not
 	success: boolean; 
 	// ScoreImported implies success: true, and all others imply success: false.
-	type: "ScoreImported" | "KTDataNotFound" // ... and more;
+	type: "ScoreImported" | "SongOrChartNotFound" // ... and more;
 	// An error message.
 	message: String | null;
 	// Some errors return some data about the error, or things like scoreImported returns the score that was imported.

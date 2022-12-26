@@ -1,6 +1,6 @@
 import {
 	InternalFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import {
 	GenericGetGradeAndPercent,
@@ -33,7 +33,7 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
 	const chart = await FindIIDXChartOnInGameID(data.music_id, playtype, data.diff_type);
 
 	if (!chart) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find chart with musicID ${data.music_id} (${playtype} ${data.diff_type}.)`,
 			importType,
 			data,

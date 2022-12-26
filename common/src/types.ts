@@ -781,8 +781,8 @@ interface ChartDocumentData {
 	"pms:Controller": CDDataPMS;
 	"pms:Keyboard": CDDataPMS;
 	"itg:Stamina": {
-		chartHash: string;
-		difficultyTag: "Beginner" | "Challenge" | "Easy" | "Hard" | "Medium";
+		hashGSV3: string;
+		difficultyTag: "Beginner" | "Challenge" | "Easy" | "Edit" | "Hard" | "Medium";
 		breakdown: {
 			detailed: string;
 			partiallySimplified: string;
@@ -790,13 +790,6 @@ interface ChartDocumentData {
 			total: string;
 			npsPerMeasure: Array<number>;
 			notesPerMeasure: Array<number>;
-		};
-		tech: {
-			crossovers: integer;
-			jacks: integer;
-			brackets: integer;
-			footswitches: integer;
-			sideswitches: integer;
 		};
 		length: number;
 		charter: string;
@@ -1246,9 +1239,9 @@ export type IRImportTypes =
 
 export type ImportTypes = APIImportTypes | FileUploadImportTypes | IRImportTypes;
 
-export interface ImportProcessInfoKTDataNotFound {
+export interface ImportProcessInfoSongOrChartNotFound {
 	success: false;
-	type: "KTDataNotFound";
+	type: "SongOrChartNotFound";
 	message: string;
 	content: {
 		data: unknown;
@@ -1292,9 +1285,9 @@ export interface ImportProcessInfoInternalError {
 export type ImportProcessingInfo<I extends IDStrings = IDStrings> =
 	| ImportProcessInfoInternalError
 	| ImportProcessInfoInvalidDatapoint
-	| ImportProcessInfoKTDataNotFound
 	| ImportProcessInfoOrphanExists
-	| ImportProcessInfoScoreImported<I>;
+	| ImportProcessInfoScoreImported<I>
+	| ImportProcessInfoSongOrChartNotFound;
 
 export interface ImportStatistics {
 	scoreCount: integer;
@@ -1424,6 +1417,14 @@ export interface UserGameStatsSnapshot<I extends IDStrings = IDStrings>
 	timestamp: integer;
 }
 
+// These MatchTypes don't need `difficulty` set in the batch manual.
+type MatchTypesNoDifficulty = "bmsChartHash" | "itgChartHash" | "popnChartHash" | "uscChartHash";
+
+// These MatchTypes need `difficulty` set in the batch manual.
+type MatchTypesWithDifficulty = "inGameID" | "sdvxInGameID" | "songTitle" | "tachiSongID";
+
+export type MatchTypes = MatchTypesNoDifficulty | MatchTypesWithDifficulty;
+
 export type BatchManualScore<I extends IDStrings = IDStrings> = {
 	score: number;
 	lamp: Lamps[I];
@@ -1436,11 +1437,11 @@ export type BatchManualScore<I extends IDStrings = IDStrings> = {
 	scoreMeta?: Partial<ScoreMetaLookup[I]>;
 } & (
 	| {
-			matchType: "bmsChartHash" | "itgChartHash" | "popnChartHash" | "uscChartHash";
+			matchType: MatchTypesNoDifficulty;
 			difficulty?: undefined; // hack to stop ts from screaming when this is accessed sometimes
 	  }
 	| {
-			matchType: "inGameID" | "sdvxInGameID" | "songTitle" | "tachiSongID";
+			matchType: MatchTypesWithDifficulty;
 			difficulty: Difficulties[I];
 	  }
 );

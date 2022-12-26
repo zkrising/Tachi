@@ -3,7 +3,7 @@
 import type { ImportTypeContextMap, ImportTypeDataMap } from "../../import-types/common/types";
 import type { ImportTypes } from "tachi-common";
 
-export type FailureTypes = "Internal" | "InvalidScore" | "KTDataNotFound" | "SkipScore";
+export type FailureTypes = "Internal" | "InvalidScore" | "SongOrChartNotFound" | "SkipScore";
 
 export class ConverterFailure extends Error {
 	message: string;
@@ -35,11 +35,11 @@ export class SkipScoreFailure extends ConverterFailure {
 }
 
 /**
- * KTDataNotFoundError - We could not find the song or chart this score
+ * SongOrChartNotFoundError - We could not find the song or chart this score
  * belongs to. The identifier used to try and match this chart is stored here.
  * Alongside any other fields used in the query.
  */
-export class KTDataNotFoundFailure<T extends ImportTypes> extends ConverterFailure {
+export class SongOrChartNotFoundFailure<T extends ImportTypes> extends ConverterFailure {
 	data: ImportTypeDataMap[T];
 	converterContext: ImportTypeContextMap[T];
 	importType: T;
@@ -50,7 +50,7 @@ export class KTDataNotFoundFailure<T extends ImportTypes> extends ConverterFailu
 		data: ImportTypeDataMap[T],
 		context: ImportTypeContextMap[T]
 	) {
-		super(message, "KTDataNotFound");
+		super(message, "SongOrChartNotFound");
 
 		this.importType = importType;
 		this.data = data;

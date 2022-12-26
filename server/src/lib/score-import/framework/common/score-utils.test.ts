@@ -2,7 +2,7 @@ import { GenericCalculatePercent, GetGradeFromPercent, ValidatePercent } from ".
 import t from "tap";
 import { isApproximately } from "test-utils/asserts";
 import { Testing511SPA } from "test-utils/test-data";
-import type { ChartDocument, Game } from "tachi-common";
+import type { Game } from "tachi-common";
 
 t.test("#GetGradeForPercent", (t) => {
 	t.equal(
@@ -83,9 +83,6 @@ t.test("#GenericCalculatePercent", (t) => {
 		f(game, 1_000, 0.1);
 	}
 
-	t.throws(() => GenericCalculatePercent("unknown_game" as Game, 100), {
-		message: /Invalid game/u,
-	});
 	t.throws(() => GenericCalculatePercent("iidx", 100), {
 		message: /No Chart passed/u,
 	});

@@ -1,3 +1,4 @@
+/* eslint-disable lines-around-comment */
 import { FormatSieglindeBMS, FormatSieglindePMS } from "./internal-utils";
 import { COLOUR_SET } from "../constants/colour-set";
 import {
@@ -83,7 +84,28 @@ interface BaseGamePTConfig<I extends IDStrings> {
 	clearLamp: Lamps[I];
 
 	classHumanisedFormat: Record<GameClassSets[I], Array<ClassInfo>>;
-	classProperties: Record<GameClassSets[I], { downgradable: boolean }>;
+	classProperties: Record<
+		GameClassSets[I],
+		{
+			/**
+			 * If a worse thing comes in for this, should this metric go down?
+			 * I.e. if a user is 4th dan and they submit 3rd dan, should it go
+			 * down to 3rd dan? (Hopefully not). This makes the most sense for
+			 * metrics like "colour" in games, which are a function of some profile
+			 * skill. If said profile skill goes down, it should reflect in that
+			 * colour.
+			 */
+			downgradable: boolean;
+
+			/**
+			 * Can this class be sent in `batchManual.classes`? This only makes sense
+			 * for classes that aren't a function of existing state, so things like
+			 * submitting dan rank makes sense, but submitting things like "Colour"
+			 * makes no sense (as it's a function of profile skill).
+			 */
+			canBeBatchManualSubmitted: boolean;
+		}
+	>;
 
 	judgements: Array<JudgementLookup[I]>;
 
@@ -361,7 +383,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			dan: IIDXDans,
 		},
 		classProperties: {
-			dan: { downgradable: false },
+			dan: { downgradable: false, canBeBatchManualSubmitted: true },
 		},
 
 		supportsESD: true,
@@ -563,7 +585,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			dan: IIDXDans,
 		},
 		classProperties: {
-			dan: { downgradable: false },
+			dan: { downgradable: false, canBeBatchManualSubmitted: true },
 		},
 
 		supportsESD: true,
@@ -691,7 +713,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			colour: CHUNITHMColours,
 		},
 		classProperties: {
-			colour: { downgradable: true },
+			colour: { downgradable: true, canBeBatchManualSubmitted: false },
 		},
 
 		supportsESD: false,
@@ -788,8 +810,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			vfClass: SDVXVFClasses,
 		},
 		classProperties: {
-			dan: { downgradable: false },
-			vfClass: { downgradable: true },
+			dan: { downgradable: false, canBeBatchManualSubmitted: true },
+			vfClass: { downgradable: true, canBeBatchManualSubmitted: false },
 		},
 
 		supportsESD: false,
@@ -1162,10 +1184,10 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			scratchDan: BMSScratchDans,
 		},
 		classProperties: {
-			genocideDan: { downgradable: false },
-			stslDan: { downgradable: false },
-			lnDan: { downgradable: false },
-			scratchDan: { downgradable: false },
+			genocideDan: { downgradable: false, canBeBatchManualSubmitted: true },
+			stslDan: { downgradable: false, canBeBatchManualSubmitted: true },
+			lnDan: { downgradable: false, canBeBatchManualSubmitted: true },
+			scratchDan: { downgradable: false, canBeBatchManualSubmitted: true },
 		},
 
 		supportsESD: false,
@@ -1280,8 +1302,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			stslDan: BMSDPSlDans,
 		},
 		classProperties: {
-			genocideDan: { downgradable: false },
-			stslDan: { downgradable: false },
+			genocideDan: { downgradable: false, canBeBatchManualSubmitted: true },
+			stslDan: { downgradable: false, canBeBatchManualSubmitted: true },
 		},
 
 		supportsESD: false,
@@ -1417,8 +1439,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			dan: MaimaiDXDans,
 		},
 		classProperties: {
-			colour: { downgradable: true },
-			dan: { downgradable: true },
+			colour: { downgradable: true, canBeBatchManualSubmitted: false },
+			dan: { downgradable: false, canBeBatchManualSubmitted: true },
 		},
 
 		supportsESD: false,
@@ -1519,7 +1541,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			colour: GitadoraColours,
 		},
 		classProperties: {
-			colour: { downgradable: true },
+			colour: { downgradable: true, canBeBatchManualSubmitted: false },
 		},
 
 		supportsESD: false,
@@ -1603,7 +1625,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			colour: GitadoraColours,
 		},
 		classProperties: {
-			colour: { downgradable: true },
+			colour: { downgradable: true, canBeBatchManualSubmitted: false },
 		},
 
 		supportsESD: false,
@@ -1697,8 +1719,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			colour: WaccaColours,
 		},
 		classProperties: {
-			stageUp: { downgradable: false },
-			colour: { downgradable: true },
+			stageUp: { downgradable: false, canBeBatchManualSubmitted: true },
+			colour: { downgradable: true, canBeBatchManualSubmitted: false },
 		},
 
 		supportsESD: false,
@@ -1787,7 +1809,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			class: PopnClasses,
 		},
 		classProperties: {
-			class: { downgradable: true },
+			class: { downgradable: true, canBeBatchManualSubmitted: false },
 		},
 
 		supportsESD: false,
@@ -1879,7 +1901,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			colour: JubeatColours,
 		},
 		classProperties: {
-			colour: { downgradable: true },
+			colour: { downgradable: true, canBeBatchManualSubmitted: false },
 		},
 
 		supportsESD: false,
@@ -1999,7 +2021,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			dan: PMSDans,
 		},
 		classProperties: {
-			dan: { downgradable: false },
+			dan: { downgradable: false, canBeBatchManualSubmitted: true },
 		},
 
 		supportsESD: false,
@@ -2112,7 +2134,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			dan: PMSDans,
 		},
 		classProperties: {
-			dan: { downgradable: false },
+			dan: { downgradable: false, canBeBatchManualSubmitted: true },
 		},
 
 		supportsESD: false,

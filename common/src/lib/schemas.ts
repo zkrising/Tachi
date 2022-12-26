@@ -9,6 +9,7 @@ import { UserAuthLevels } from "../types";
 import deepmerge from "deepmerge";
 import { p } from "prudence";
 import type { GamePTConfig } from "../config/config";
+import type { AllClassSets } from "../game-classes";
 import type { Game, IDStrings, NotificationBody, Playtype, Playtypes } from "../types";
 import type {
 	PrudenceSchema,
@@ -1358,31 +1359,24 @@ const PR_BATCH_MANUAL_SCORE = (game: Game, playtype: Playtype): PrudenceSchema =
 	};
 };
 
-// both iidx sp and dp share dans.
-const IIDXStringDans = GetGamePTConfig("iidx", "SP").classHumanisedFormat.dan.map((e) => e.id);
-const SDVXStringDans = GetGamePTConfig("sdvx", "Single").classHumanisedFormat.dan.map((e) => e.id);
-const WaccaStringStageUps = GetGamePTConfig("wacca", "Single").classHumanisedFormat.stageUp.map(
-	(e) => e.id
-);
+const PR_BATCH_MANUAL_CLASSES = (game: Game, playtype: Playtype): PrudenceSchema => {
+	const config = GetGamePTConfig(game, playtype);
 
-const PR_BATCH_MANUAL_CLASSES = (game: Game): PrudenceSchema => {
-	// This can be implemented for any non-static class (i.e. dans).
-	switch (game) {
-		case "iidx":
-			return {
-				dan: optNull(p.isIn(IIDXStringDans)),
-			};
-		case "sdvx":
-			return {
-				dan: optNull(p.isIn(SDVXStringDans)),
-			};
-		case "wacca":
-			return {
-				stageUp: optNull(p.isIn(WaccaStringStageUps)),
-			};
-		default:
-			return {};
+	const schema: PrudenceSchema = {};
+
+	// for all classes this GPT supports
+	// if `canBeBatchManualSubmitted` is true, allow it to be batchManualSubmitted.
+	for (const [s, v] of Object.entries(config.classHumanisedFormat)) {
+		const set = s as AllClassSets;
+
+		const classProperties = config.classProperties[set];
+
+		if (classProperties.canBeBatchManualSubmitted) {
+			schema[set] = optNull(p.isIn(v.map((e) => e.id)));
+		}
 	}
+
+	return schema;
 };
 
 export const PR_BATCH_MANUAL = (game: Game, playtype: Playtype): PrudenceSchema => ({
@@ -1393,5 +1387,5 @@ export const PR_BATCH_MANUAL = (game: Game, playtype: Playtype): PrudenceSchema 
 		version: "*?string",
 	},
 	scores: [PR_BATCH_MANUAL_SCORE(game, playtype)],
-	classes: optNull(PR_BATCH_MANUAL_CLASSES(game)),
+	classes: optNull(PR_BATCH_MANUAL_CLASSES(game, playtype)),
 });

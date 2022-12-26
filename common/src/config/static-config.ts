@@ -14,6 +14,8 @@ export const fileImportTypes: Array<FileUploadImportTypes> = [
 	"file/solid-state-squad",
 	"file/mer-iidx",
 	"file/pli-iidx-csv",
+	"file/mypagescraper-records-csv",
+	"file/mypagescraper-player-csv",
 ];
 
 export const irImportTypes: Array<IRImportTypes> = [

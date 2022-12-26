@@ -4,6 +4,7 @@ import type { ClassHandler } from "../../framework/user-game-stats/types";
 import type { SDVXEamusementCSVData } from "../file/eamusement-sdvx-csv/types";
 import type { MerScore } from "../file/mer-iidx/types";
 import type { S3Score } from "../file/solid-state-squad/types";
+import type { MyPageRecordsParsedPB } from "../file/wacca-mypage-scraper/types";
 import type { BarbatosContext, BarbatosScore, BarbatosSDVX6Score } from "../ir/barbatos/types";
 import type { BeatorajaContext, BeatorajaScore } from "../ir/beatoraja/types";
 import type { FervidexStaticContext, FervidexStaticScore } from "../ir/fervidex-static/types";
@@ -22,7 +23,6 @@ import type {
 import type { KaiContext } from "./api-kai/types";
 import type { BatchManualContext } from "./batch-manual/types";
 import type { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./eamusement-iidx-csv/types";
-import type { MyPageRecordsParsedPB } from "./types";
 import type { KtLogger } from "lib/logger/logger";
 import type { USCClientScore } from "server/router/ir/usc/_playtype/types";
 import type {

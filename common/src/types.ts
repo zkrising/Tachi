@@ -1214,7 +1214,7 @@ export type FileUploadImportTypes =
 	| "file/pli-iidx-csv"
 	| "file/solid-state-squad"
 	| "file/mypagescraper-records-csv"
-	| "file/mypagescraper-player-csv" ;
+	| "file/mypagescraper-player-csv";
 
 export type APIImportTypes =
 	| "api/eag-iidx"

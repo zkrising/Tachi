@@ -30,6 +30,7 @@ import type {
 	IDStrings,
 	JudgementLookup,
 	Lamps,
+	MatchTypes,
 	Playtype,
 	Playtypes,
 	ProfileRatingLookup,
@@ -92,6 +93,13 @@ interface BaseGamePTConfig<I extends IDStrings> {
 
 	tierlists: Array<GPTTierlists[I]>;
 	tierlistDescriptions: Record<GPTTierlists[I], string>;
+
+	/**
+	 * What "matchTypes" should this game support for batch-manual imports? This
+	 * allows us to disable things like "songTitle" resolutions for games like BMS,
+	 * where song titles are absolutely not guaranteed to be unique.
+	 */
+	supportedMatchTypes: Array<MatchTypes>;
 }
 
 interface GamePTConfigWithESD<I extends IDStrings> extends BaseGamePTConfig<I> {
@@ -411,6 +419,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"kt-EXHC":
 				"The EX-HARD Clear tiers for Kamaitachi. These are adapted from multiple sources.",
 		},
+
+		supportedMatchTypes: ["inGameID", "tachiSongID", "songTitle"],
 	},
 	"iidx:DP": {
 		idString: "iidx:DP",
@@ -606,6 +616,7 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		tierlistDescriptions: {
 			"dp-tier": "The unofficial DP tiers, taken from https://zasa.sakura.ne.jp/dp/run.php.",
 		},
+		supportedMatchTypes: ["inGameID", "tachiSongID", "songTitle"],
 	},
 	"chunithm:Single": {
 		idString: "chunithm:Single",
@@ -692,6 +703,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		tierlists: [],
 		tierlistDescriptions: {},
+
+		supportedMatchTypes: ["inGameID", "songTitle", "tachiSongID"],
 	},
 	"sdvx:Single": {
 		idString: "sdvx:Single",
@@ -790,6 +803,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 		tierlistDescriptions: {
 			clear: "Clearing values taken from the unofficial SDVX spreadsheet tierlists.",
 		},
+
+		supportedMatchTypes: ["sdvxInGameID", "songTitle", "tachiSongID"],
 	},
 	"usc:Controller": {
 		idString: "usc:Controller",
@@ -875,6 +890,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		tierlists: [],
 		tierlistDescriptions: {},
+
+		supportedMatchTypes: ["uscChartHash", "tachiSongID"],
 	},
 	"usc:Keyboard": {
 		idString: "usc:Keyboard",
@@ -960,6 +977,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		tierlists: [],
 		tierlistDescriptions: {},
+
+		supportedMatchTypes: ["uscChartHash", "tachiSongID"],
 	},
 	"museca:Single": {
 		idString: "museca:Single",
@@ -1042,6 +1061,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		tierlists: [],
 		tierlistDescriptions: {},
+
+		supportedMatchTypes: ["songTitle", "tachiSongID", "inGameID"],
 	},
 	"bms:7K": {
 		idString: "bms:7K",
@@ -1159,6 +1180,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"sgl-EC": "Sieglinde Easy Clear ratings.",
 			"sgl-HC": "Sieglinde Hard Clear ratings.",
 		},
+
+		supportedMatchTypes: ["bmsChartHash", "tachiSongID"],
 	},
 	"bms:14K": {
 		idString: "bms:14K",
@@ -1273,6 +1296,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"sgl-EC": "Sieglinde Easy Clear ratings.",
 			"sgl-HC": "Sieglinde Hard Clear ratings.",
 		},
+
+		supportedMatchTypes: ["bmsChartHash", "tachiSongID"],
 	},
 	"maimaidx:Single": {
 		idString: "maimaidx:Single",
@@ -1405,6 +1430,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		tierlists: [],
 		tierlistDescriptions: {},
+
+		supportedMatchTypes: ["songTitle", "tachiSongID"],
 	},
 	"gitadora:Gita": {
 		idString: "gitadora:Gita",
@@ -1504,6 +1531,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		tierlists: [],
 		tierlistDescriptions: {},
+
+		supportedMatchTypes: ["inGameID", "songTitle", "tachiSongID"],
 	},
 	"gitadora:Dora": {
 		idString: "gitadora:Dora",
@@ -1586,6 +1615,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		tierlists: [],
 		tierlistDescriptions: {},
+
+		supportedMatchTypes: ["inGameID", "songTitle", "tachiSongID"],
 	},
 	"wacca:Single": {
 		idString: "wacca:Single",
@@ -1679,6 +1710,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		tierlists: [],
 		tierlistDescriptions: {},
+
+		supportedMatchTypes: ["songTitle", "tachiSongID"],
 	},
 	"popn:9B": {
 		idString: "popn:9B",
@@ -1766,6 +1799,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		tierlists: [],
 		tierlistDescriptions: {},
+
+		supportedMatchTypes: ["inGameID", "tachiSongID", "popnChartHash"],
 	},
 	"jubeat:Single": {
 		idString: "jubeat:Single",
@@ -1866,6 +1901,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		tierlists: [],
 		tierlistDescriptions: {},
+
+		supportedMatchTypes: ["inGameID", "tachiSongID"],
 	},
 	"pms:Controller": {
 		idString: "pms:Controller",
@@ -1977,6 +2014,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"sgl-EC": "Sieglinde Easy Clear ratings.",
 			"sgl-HC": "Sieglinde Hard Clear ratings.",
 		},
+
+		supportedMatchTypes: ["bmsChartHash", "tachiSongID"],
 	},
 	"pms:Keyboard": {
 		idString: "pms:Keyboard",
@@ -2088,6 +2127,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			"sgl-EC": "Sieglinde Easy Clear ratings.",
 			"sgl-HC": "Sieglinde Hard Clear ratings.",
 		},
+
+		supportedMatchTypes: ["bmsChartHash", "tachiSongID"],
 	},
 	"itg:Stamina": {
 		idString: "itg:Stamina",
@@ -2189,6 +2230,8 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 
 		tierlists: [],
 		tierlistDescriptions: {},
+
+		supportedMatchTypes: ["itgChartHash", "tachiSongID"],
 	},
 };
 

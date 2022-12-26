@@ -20,7 +20,7 @@ aren't an error.
 When this is thrown, the score is skipped, and nothing is
 imported.
 
-## KTDataNotFoundFailure
+## SongOrChartNotFoundFailure
 
 !!! bug
 	KTData means 'Kamaitachi Data', but this applies to

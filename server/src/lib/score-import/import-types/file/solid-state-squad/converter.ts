@@ -1,6 +1,6 @@
 import {
 	InvalidScoreFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 	SkipScoreFailure,
 } from "../../../framework/common/converter-failures";
 import {
@@ -117,7 +117,7 @@ export const ConvertFileS3: ConverterFunction<S3Score, EmptyObject> = async (
 	const song = await FindSongOnTitleInsensitive("iidx", data.songname);
 
 	if (!song) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find song with title ${data.songname}`,
 			importType,
 			data,
@@ -131,7 +131,7 @@ export const ConvertFileS3: ConverterFunction<S3Score, EmptyObject> = async (
 	const chart = await FindChartWithPTDFVersion("iidx", song.id, playtype, difficulty, version);
 
 	if (!chart) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find chart ${data.songname} (${playtype} ${difficulty} version (${version}))`,
 			importType,
 			data,

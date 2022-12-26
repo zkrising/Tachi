@@ -105,7 +105,7 @@ t.test("#ConvertAPIKaiIIDX", (t) => {
 		t.end();
 	});
 
-	t.test("Should throw KTDataNotFound on unknown chart", (t) => {
+	t.test("Should throw SongOrChartNotFound on unknown chart", (t) => {
 		t.rejects(
 			() =>
 				ConvertAPIKaiIIDX(

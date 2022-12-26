@@ -1,4 +1,8 @@
-import { ConverterBatchManual, ResolveChartFromSong, ResolveMatchTypeToKTData } from "./converter";
+import {
+	ConverterBatchManual,
+	ResolveChartFromSong,
+	ResolveMatchTypeToTachiData,
+} from "./converter";
 import { InvalidScoreFailure } from "../../../framework/common/converter-failures";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
@@ -46,11 +50,11 @@ const logger = CreateLogCtx(__filename);
 
 const importType = "file/batch-manual" as const;
 
-t.test("#ResolveMatchTypeToKTData", (t) => {
+t.test("#ResolveMatchTypeToTachiData", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should resolve for the songID if the matchType is songID", async (t) => {
-		const res = await ResolveMatchTypeToKTData(
+		const res = await ResolveMatchTypeToTachiData(
 			baseBatchManualScore,
 			context,
 			importType,
@@ -65,7 +69,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 
 		t.rejects(
 			() =>
-				ResolveMatchTypeToKTData(
+				ResolveMatchTypeToTachiData(
 					// eslint-disable-next-line lines-around-comment
 					// @ts-expect-error bad
 					deepmerge(baseBatchManualScore, { identifier: "90000" }),
@@ -80,7 +84,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 	});
 
 	t.test("Should resolve for the song title if the matchType is songTitle", async (t) => {
-		const res = await ResolveMatchTypeToKTData(
+		const res = await ResolveMatchTypeToTachiData(
 			deepmerge(baseBatchManualScore, { matchType: "songTitle", identifier: "5.1.1." }),
 			context,
 			importType,
@@ -95,7 +99,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 
 		t.rejects(
 			() =>
-				ResolveMatchTypeToKTData(
+				ResolveMatchTypeToTachiData(
 					deepmerge(baseBatchManualScore, {
 						matchType: "songTitle",
 						identifier: "INVALID_TITLE",
@@ -111,7 +115,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 	});
 
 	t.test("Should resolve for the sdvx inGameID if matchType is sdvxInGameID", async (t) => {
-		const res = await ResolveMatchTypeToKTData(
+		const res = await ResolveMatchTypeToTachiData(
 			{
 				matchType: "sdvxInGameID",
 				identifier: "1",
@@ -132,7 +136,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 
 		t.rejects(
 			() =>
-				ResolveMatchTypeToKTData(
+				ResolveMatchTypeToTachiData(
 					{
 						matchType: "sdvxInGameID",
 						identifier: "9999999",
@@ -159,7 +163,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 			} as ChartDocument<"sdvx:Single">)
 		);
 
-		const res = await ResolveMatchTypeToKTData(
+		const res = await ResolveMatchTypeToTachiData(
 			{
 				matchType: "sdvxInGameID",
 				identifier: "1",
@@ -187,7 +191,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 
 		const bmsContext: BatchManualContext = deepmerge(context, { game: "bms", playtype: "7K" });
 
-		const resMD5 = await ResolveMatchTypeToKTData(
+		const resMD5 = await ResolveMatchTypeToTachiData(
 			deepmerge(baseBatchManualScore, {
 				matchType: "bmsChartHash",
 				identifier: GAZER17MD5,
@@ -203,7 +207,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 			"Should return the right song and chart."
 		);
 
-		const resSHA256 = await ResolveMatchTypeToKTData(
+		const resSHA256 = await ResolveMatchTypeToTachiData(
 			deepmerge(baseBatchManualScore, {
 				matchType: "bmsChartHash",
 				identifier: GAZER17SHA256,
@@ -221,7 +225,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 
 		t.rejects(
 			() =>
-				ResolveMatchTypeToKTData(
+				ResolveMatchTypeToTachiData(
 					deepmerge(baseBatchManualScore, {
 						matchType: "bmsChartHash",
 						identifier: "bad_hash",
@@ -244,7 +248,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 			playtype: "9B",
 		});
 
-		const res = await ResolveMatchTypeToKTData(
+		const res = await ResolveMatchTypeToTachiData(
 			deepmerge(baseBatchManualScore, {
 				matchType: "popnChartHash",
 				identifier: chartHash,
@@ -274,7 +278,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 		const chartHash = "2c26d666fa7c907e85115dbb279c267c14a263d47b2d46a93f99eae49d779119";
 
 		t.rejects(() =>
-			ResolveMatchTypeToKTData(
+			ResolveMatchTypeToTachiData(
 				deepmerge(baseBatchManualScore, {
 					matchType: "popnChartHash",
 					identifier: chartHash,
@@ -296,7 +300,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 			playtype: "Controller",
 		});
 
-		const res = await ResolveMatchTypeToKTData(
+		const res = await ResolveMatchTypeToTachiData(
 			deepmerge(baseBatchManualScore, {
 				matchType: "uscChartHash",
 				identifier: chartHash,
@@ -328,7 +332,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 
 		t.rejects(
 			() =>
-				ResolveMatchTypeToKTData(
+				ResolveMatchTypeToTachiData(
 					deepmerge(baseBatchManualScore, {
 						matchType: "uscChartHash",
 						identifier: chartHash,
@@ -346,7 +350,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 	t.test("Should trigger failsave if invalid matchType is provided.", (t) => {
 		t.rejects(
 			() =>
-				ResolveMatchTypeToKTData(
+				ResolveMatchTypeToTachiData(
 					deepmerge(baseBatchManualScore, {
 						matchType: "BAD_MATCHTYPE",
 					}),
@@ -354,7 +358,7 @@ t.test("#ResolveMatchTypeToKTData", (t) => {
 					importType,
 					logger
 				),
-			new InvalidScoreFailure(`Invalid matchType BAD_MATCHTYPE`)
+			new InvalidScoreFailure(`Cannot use matchType BAD_MATCHTYPE for beatmania IIDX (SP)`)
 		);
 
 		t.end();

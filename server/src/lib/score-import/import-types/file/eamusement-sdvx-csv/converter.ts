@@ -1,6 +1,6 @@
 import {
 	InvalidScoreFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
 import { AssertStrAsPositiveInt } from "lib/score-import/framework/common/string-asserts";
@@ -41,7 +41,7 @@ const ConvertEamSDVXCSV: ConverterFunction<SDVXEamusementCSVData, EmptyObject> =
 	const song = await FindSongOnTitle("sdvx", data.title);
 
 	if (!song) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find song for ${data.title}.`,
 			importType,
 			data,
@@ -61,7 +61,7 @@ const ConvertEamSDVXCSV: ConverterFunction<SDVXEamusementCSVData, EmptyObject> =
 	const chart = await FindChartWithPTDF("sdvx", song.id, "Single", difficulty);
 
 	if (!chart) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find chart for ${humanisedChartTitle}.`,
 			importType,
 			data,

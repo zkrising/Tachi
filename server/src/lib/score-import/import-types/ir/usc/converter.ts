@@ -1,7 +1,7 @@
 import {
 	InternalFailure,
 	InvalidScoreFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import db from "external/mongo/db";
@@ -100,7 +100,7 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 	});
 
 	if (!chartDoc) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Chart ${context.chartHash} is not on the IR.`,
 			"ir/usc",
 			data,

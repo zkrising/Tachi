@@ -95,7 +95,7 @@ t.test("#ConverterLR2Hook", (t) => {
 					"ir/lr2hook",
 					logger
 				),
-			"Should throw a KTDataNotFoundError if chart can't be found."
+			"Should throw a SongOrChartNotFoundError if chart can't be found."
 		);
 
 		t.end();

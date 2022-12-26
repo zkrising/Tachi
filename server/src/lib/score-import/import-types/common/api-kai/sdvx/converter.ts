@@ -1,7 +1,7 @@
 import {
 	InternalFailure,
 	InvalidScoreFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 } from "../../../../framework/common/converter-failures";
 import {
 	GenericGetGradeAndPercent,
@@ -53,7 +53,7 @@ export const ConvertAPIKaiSDVX: ConverterFunction<unknown, KaiContext> = async (
 	const chart = await FindSDVXChartOnInGameIDVersion(score.music_id, difficulty, version);
 
 	if (!chart) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find chart with songID ${score.music_id} (${difficulty} - Version ${version})`,
 			importType,
 			data,

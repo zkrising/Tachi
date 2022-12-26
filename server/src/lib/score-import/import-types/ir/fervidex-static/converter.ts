@@ -1,6 +1,6 @@
 import {
 	InternalFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { FERVIDEX_LAMP_LOOKUP, SplitFervidexChartRef } from "../fervidex/converter";
@@ -26,7 +26,7 @@ export const ConverterIRFervidexStatic: ConverterFunction<
 	);
 
 	if (!chart) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find chart with songID ${data.song_id} (${playtype} ${difficulty} Version ${context.version})`,
 			importType,
 			data,

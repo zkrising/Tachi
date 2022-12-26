@@ -1,7 +1,7 @@
 import {
 	InternalFailure,
 	InvalidScoreFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent, JubeatGetGrade } from "../../../framework/common/score-utils";
 import {
@@ -9,7 +9,7 @@ import {
 	AssertStrAsPositiveInt,
 } from "../../../framework/common/string-asserts";
 import db from "external/mongo/db";
-import { GetGamePTConfig } from "tachi-common";
+import { FormatGame, GetGamePTConfig } from "tachi-common";
 import { FloorToNDP } from "utils/misc";
 import {
 	FindBMSChartOnHash,
@@ -49,7 +49,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 ) => {
 	const game = context.game;
 
-	const { song, chart } = await ResolveMatchTypeToKTData(data, context, importType, logger);
+	const { song, chart } = await ResolveMatchTypeToTachiData(data, context, importType, logger);
 
 	// yet another temporary hack, jubeat's percent is not a function of score,
 	// it's actually an entirely separate metric. We need to support this, so we'll
@@ -139,24 +139,38 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 	};
 };
 
-export async function ResolveMatchTypeToKTData(
+export async function ResolveMatchTypeToTachiData(
 	data: BatchManualScore,
 	context: BatchManualContext,
 	importType: ImportTypes,
 	logger: KtLogger
 ): Promise<{ song: SongDocument; chart: ChartDocument }> {
-	const game = context.game;
+	const { game, playtype } = context;
+
+	const config = GetGamePTConfig(game, playtype);
+
+	if (!config.supportedMatchTypes.includes(data.matchType)) {
+		// special, more helpful error message
+		if (game === "sdvx" && data.matchType === "inGameID") {
+			throw new InvalidScoreFailure(
+				`Cannot use matchType ${data.matchType} for ${FormatGame(
+					game,
+					playtype
+				)}. Use 'sdvxInGameID' instead.`
+			);
+		}
+
+		throw new InvalidScoreFailure(
+			`Cannot use matchType ${data.matchType} for ${FormatGame(game, playtype)}`
+		);
+	}
 
 	switch (data.matchType) {
 		case "bmsChartHash": {
-			if (game !== "bms") {
-				throw new InvalidScoreFailure(`Cannot use bmsChartHash lookup on ${game}.`);
-			}
-
 			const chart = await FindBMSChartOnHash(data.identifier);
 
 			if (!chart) {
-				throw new KTDataNotFoundFailure(
+				throw new SongOrChartNotFoundFailure(
 					`Cannot find chart for hash ${data.identifier}.`,
 					importType,
 					data,
@@ -183,14 +197,10 @@ export async function ResolveMatchTypeToKTData(
 		}
 
 		case "itgChartHash": {
-			if (game !== "itg") {
-				throw new InvalidScoreFailure(`Cannot use itgChartHash lookup on ${game}.`);
-			}
-
 			const chart = await FindITGChartOnHash(data.identifier);
 
 			if (!chart) {
-				throw new KTDataNotFoundFailure(
+				throw new SongOrChartNotFoundFailure(
 					`Cannot find chart for itgChartHash ${data.identifier}.`,
 					importType,
 					data,
@@ -211,17 +221,13 @@ export async function ResolveMatchTypeToKTData(
 		}
 
 		case "popnChartHash": {
-			if (game !== "popn") {
-				throw new InvalidScoreFailure(`Cannot use popnChartHash lookup on ${game}.`);
-			}
-
 			const chart = await db.charts.popn.findOne({
 				playtype: context.playtype,
 				"data.hashSHA256": data.identifier,
 			});
 
 			if (!chart) {
-				throw new KTDataNotFoundFailure(
+				throw new SongOrChartNotFoundFailure(
 					`Cannot find chart for popnChartHash ${data.identifier} (${context.playtype}).`,
 					importType,
 					data,
@@ -250,7 +256,7 @@ export async function ResolveMatchTypeToKTData(
 			const song = await FindSongOnID(game, songID);
 
 			if (!song) {
-				throw new KTDataNotFoundFailure(
+				throw new SongOrChartNotFoundFailure(
 					`Cannot find song with songID ${data.identifier}.`,
 					importType,
 					data,
@@ -267,7 +273,7 @@ export async function ResolveMatchTypeToKTData(
 			const song = await FindSongOnTitleInsensitive(game, data.identifier);
 
 			if (!song) {
-				throw new KTDataNotFoundFailure(
+				throw new SongOrChartNotFoundFailure(
 					`Cannot find song with title ${data.identifier}.`,
 					importType,
 					data,
@@ -281,12 +287,6 @@ export async function ResolveMatchTypeToKTData(
 		}
 
 		case "sdvxInGameID": {
-			if (game !== "sdvx") {
-				throw new InvalidScoreFailure(
-					`A matchType of sdvxInGameID is only supported by SDVX.`
-				);
-			}
-
 			let chart: ChartDocument | null;
 
 			const identifier = Number(data.identifier);
@@ -322,7 +322,7 @@ export async function ResolveMatchTypeToKTData(
 			}
 
 			if (!chart) {
-				throw new KTDataNotFoundFailure(
+				throw new SongOrChartNotFoundFailure(
 					`Cannot find SDVX chart with inGameID ${identifier}, difficulty ${diff} and version ${context.version}.`,
 					importType,
 					data,
@@ -341,27 +341,6 @@ export async function ResolveMatchTypeToKTData(
 		}
 
 		case "inGameID": {
-			const gamesWithInGameIDSupport = [
-				"iidx",
-				"popn",
-				"jubeat",
-				"chunithm",
-				"gitadora",
-				"museca",
-			];
-
-			if (game === "sdvx") {
-				throw new InvalidScoreFailure(
-					`Cannot use inGameID as a matchType for SDVX. Use matchType: 'sdvxInGameID' instead.`
-				);
-			}
-
-			if (!gamesWithInGameIDSupport.includes(game)) {
-				throw new InvalidScoreFailure(
-					`Cannot use inGameID on game ${game}. The game may not have a concept of an in game ID, or support just might not exist yet.`
-				);
-			}
-
 			const identifier = Number(data.identifier);
 
 			const difficulty = AssertStrAsDifficulty(data.difficulty, game, context.playtype);
@@ -384,7 +363,7 @@ export async function ResolveMatchTypeToKTData(
 			}
 
 			if (!chart) {
-				throw new KTDataNotFoundFailure(
+				throw new SongOrChartNotFoundFailure(
 					`Cannot find chart for inGameID ${data.identifier} (${context.playtype}).`,
 					importType,
 					data,
@@ -413,7 +392,7 @@ export async function ResolveMatchTypeToKTData(
 			});
 
 			if (!chart) {
-				throw new KTDataNotFoundFailure(
+				throw new SongOrChartNotFoundFailure(
 					`Cannot find chart with hash ${data.identifier}.`,
 					importType,
 					data,
@@ -475,7 +454,7 @@ export async function ResolveChartFromSong(
 	}
 
 	if (!chart) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Cannot find chart for ${song.title} (${context.playtype} ${difficulty})`,
 			importType,
 			data,

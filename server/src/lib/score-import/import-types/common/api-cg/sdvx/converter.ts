@@ -2,7 +2,7 @@ import { FormatCGService } from "../util";
 import {
 	InternalFailure,
 	InvalidScoreFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
 import {
 	GenericGetGradeAndPercent,
@@ -27,7 +27,7 @@ export const ConverterAPICGSDVX: ConverterFunction<CGSDVXScore, CGContext> = asy
 	const chart = await FindSDVXChartOnInGameIDVersion(data.internalId, difficulty, version);
 
 	if (!chart) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find chart with songID ${data.internalId} (${difficulty} - Version ${version})`,
 			importType,
 			data,

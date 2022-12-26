@@ -22236,6 +22236,305 @@
 	{
 		"data": {
 			"level": "1",
+			"versions": "universeplus"
+		},
+		"folderID": "F0fbdcae40c32aa7cd9a3cbb94ca1682e9e64f2c92c637be1c650e2572492f675",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "universeplus"
+		},
+		"folderID": "F7a4d2b540e5d572644a558738ac11f8520d3b70fee2479443b7c92b72c61cc46",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10+",
+			"versions": "universeplus"
+		},
+		"folderID": "F25f7c9177235d7b06c8f250900b21119091163ae5babeef6162a87cc8bc417fe",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10+ (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "universeplus"
+		},
+		"folderID": "F6219546c53513f346a871326397951b48fd9153fed40d64d9c02cdc1dc437357",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11+",
+			"versions": "universeplus"
+		},
+		"folderID": "F27e9c507738e00794a33f624159b83594022ab7cb1bfb8054a3eb6a85b4f6139",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11+ (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "universeplus"
+		},
+		"folderID": "F85014701324320462539482506091a04b72652869bc1b2d92c451c109813d9c8",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12+",
+			"versions": "universeplus"
+		},
+		"folderID": "F2a3afb7dd7647eb9f1860e7e2111905d48f0093eeb2f11cca2d27478cd1e0d34",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12+ (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
+			"versions": "universeplus"
+		},
+		"folderID": "F883e52817a416cc64d0f01a735631e119fd6aded15b35421b560cf3159a10174",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13+",
+			"versions": "universeplus"
+		},
+		"folderID": "Feb10967956ffc1a5c2169a17b09ba870de30cd88ba0c4f8c396db2b44137681d",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13+ (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
+			"versions": "universeplus"
+		},
+		"folderID": "Fa266a4d4f139a3a02c42f4fd1c1d1be8f2bfb9db98e5aac3b14b71e7058417f8",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14+",
+			"versions": "universeplus"
+		},
+		"folderID": "F6dde73f8db05437924a9eb79f8fde8d89c37650f6af7b0590e417929830997b2",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14+ (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
+			"versions": "universeplus"
+		},
+		"folderID": "F45bb90e158a0cbc0a3f5bea07751c7b5fb20aec64b338f37653583d9e9bf933c",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "universeplus"
+		},
+		"folderID": "F9af30d260328061478226ddf10ad43180bc5ffb55702dfed107cd59deaa6fb0f",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "universeplus"
+		},
+		"folderID": "Ff6b33cc832a17f7b8e7ef273b611e59280798c941cad7af8d83347cdead9ecf3",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "universeplus"
+		},
+		"folderID": "F243e4b306bd8bea068d1ff5eeebb9a0e220616e83a5f3ae303f9cb6826e481c0",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "universeplus"
+		},
+		"folderID": "F9f5017470109cb3915406a9a61584f0356d176f928479054dec79d828300025e",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "universeplus"
+		},
+		"folderID": "Fd041168c6965fddfca8dccd7f00d2f3afaa07c1275a1f73d2ad8bb4e636b540b",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "universeplus"
+		},
+		"folderID": "Fd49059e2a6cbc98387396f25de5c338af91dea470a60d1fe00ebf9f0e4d9fb05",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7+",
+			"versions": "universeplus"
+		},
+		"folderID": "F98d1103245906fa743cc0823938681806c1d9779d2c30bf15e3e6b7813baa302",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7+ (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "universeplus"
+		},
+		"folderID": "F402f329188a03ec04ecf4494d11b88c4d2865b3f2ff169f7c1221759ba9ca051",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8+",
+			"versions": "universeplus"
+		},
+		"folderID": "Fa34a7464ac08a40b3d31f4cf7d30f89768e3cad6a4a0907e2cc3a5ddcca4fa76",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8+ (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "universeplus"
+		},
+		"folderID": "F48dbb374e10aa45cab57c9e45c7199b86b808d6ae0802515171d7df2a8b71c9e",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9+",
+			"versions": "universeplus"
+		},
+		"folderID": "Fbfd07d6eeaf655262a15efbbef3a7d014b69ae6d19ed555c2c62f603fed43e4c",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9+ (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
 			"versions": "1.5-b"
 		},
 		"folderID": "Fa6dd05737a2f54494e81b1fd59b4a6b8885f7cfc673dba6f62797db7135c5993",

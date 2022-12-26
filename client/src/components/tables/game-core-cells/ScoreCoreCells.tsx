@@ -9,7 +9,6 @@ import {
 } from "tachi-common";
 import BMSCoreCells from "./BMSCoreCells";
 import CHUNITHMCoreCells from "./CHUNITHMCoreCells";
-import GenericCoreCells from "./GenericCoreCells";
 import IIDXCoreCells from "./IIDXCoreCells";
 import ITGCoreCells from "./ITGCoreCells";
 import JubeatCoreCells from "./JubeatCoreCells";
@@ -19,6 +18,7 @@ import PopnCoreCells from "./PopnCoreCells";
 import SDVXScoreCoreCells from "./SDVXCoreCells";
 import WACCACoreCells from "./WACCACoreCells";
 import GitadoraCoreCells from "./GitadoraCoreCells";
+import MaimaiDXCoreCells from "./MaimaiDXCoreCells";
 
 export default function ScoreCoreCells({
 	game,
@@ -30,7 +30,7 @@ export default function ScoreCoreCells({
 	chart: ChartDocument;
 	rating: ScoreCalculatedDataLookup[IDStrings];
 	game: Game;
-}) {
+}): React.ReactChild {
 	const sc = score as any; // lazy hack
 
 	switch (game) {
@@ -70,5 +70,7 @@ export default function ScoreCoreCells({
 			return <PMSCoreCells sc={sc} rating={rating} />;
 		case "itg":
 			return <ITGCoreCells sc={sc} rating={rating} />;
+		case "maimaidx":
+			return <MaimaiDXCoreCells sc={sc} rating={rating} />;
 	}
 }

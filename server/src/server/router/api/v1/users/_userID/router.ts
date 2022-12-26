@@ -1,13 +1,3 @@
-import {
-	GetGoalSummary,
-	GetRecentPlaycount,
-	GetRecentSessions,
-	GetRecentlyViewedFoldersAnyGPT,
-} from "utils/queries/summary";
-import { GetUser } from "utils/req-tachi-data";
-import type { ProfileRatingAlgs } from "utils/string-checks";
-import { FormatUserDoc, GetAllRankings, GetUserWithID } from "utils/user";
-import { HashPassword, PasswordCompare, ValidatePassword } from "../../auth/auth";
 import apiTokensRouter from "./api-tokens/router";
 import bannerRouter from "./banner/router";
 import followingRouter from "./following/router";
@@ -20,6 +10,7 @@ import { GetUserFromParam, RequireSelfRequestFromUser } from "./middleware";
 import notifsRouter from "./notifications/router";
 import pfpRouter from "./pfp/router";
 import settingsRouter from "./settings/router";
+import { HashPassword, PasswordCompare, ValidatePassword } from "../../auth/auth";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { GetRecentActivity } from "lib/activity/activity";
@@ -30,7 +21,16 @@ import { p } from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { DeleteUndefinedProps, IsNonEmptyString, StripUrl } from "utils/misc";
 import { optNullFluffStrField } from "utils/prudence";
+import {
+	GetGoalSummary,
+	GetRecentPlaycount,
+	GetRecentSessions,
+	GetRecentlyViewedFoldersAnyGPT,
+} from "utils/queries/summary";
+import { GetUser } from "utils/req-tachi-data";
+import { FormatUserDoc, GetAllRankings, GetUserWithID } from "utils/user";
 import type { IDStrings, ImportTypes, UserGameStats, integer } from "tachi-common";
+import type { ProfileRatingAlgs } from "utils/string-checks";
 
 const logger = CreateLogCtx(__filename);
 

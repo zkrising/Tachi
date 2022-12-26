@@ -2753,7 +2753,7 @@
 		"title": "Level Folders (saucer)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for maimai DX in UNiVERSE PLUS.",
 		"folders": [
 			"F0fbdcae40c32aa7cd9a3cbb94ca1682e9e64f2c92c637be1c650e2572492f675",

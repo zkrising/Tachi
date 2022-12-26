@@ -278,38 +278,42 @@ function SongInfoHeader({
 			)
 		);
 
-	let ImageCell = null;
+	const [ImageCell, setImageCell] = useState<JSX.Element | null>(null);
 
-	if (game === "popn") {
-		ImageCell = (
-			<img
-				src={ToCDNURL(
-					`/misc/popn/banners/${
-						(charts[0] as ChartDocument<"popn:9B">).data.inGameID
-					}.png`
-				)}
-				className="w-100"
-			/>
-		);
-	} else if (game === "itg") {
-		const banner = (song as SongDocument<"itg">).data.banner;
-
-		if (banner) {
-			ImageCell = (
+	useEffect(() => {
+		if (game === "popn") {
+			setImageCell(
 				<img
-					src={ToCDNURL(`/misc/itg/banners/${encodeURIComponent(banner)}.png`)}
+					src={ToCDNURL(
+						`/misc/popn/banners/${
+							(charts[0] as ChartDocument<"popn:9B">).data.inGameID
+						}.png`
+					)}
+					className="w-100"
+				/>
+			);
+		} else if (game === "itg") {
+			const banner = (song as SongDocument<"itg">).data.banner;
+
+			if (banner) {
+				setImageCell(
+					<img
+						src={ToCDNURL(`/misc/itg/banners/${encodeURIComponent(banner)}.png`)}
+						className="w-100"
+					/>
+				);
+			}
+		} else if ("displayVersion" in song.data) {
+			setImageCell(
+				<img
+					// on error just hide this tbh
+					onError={() => setImageCell(null)}
+					src={ToCDNURL(`/game-icons/${game}/${song.data.displayVersion}`)}
 					className="w-100"
 				/>
 			);
 		}
-	} else if ("displayVersion" in song.data) {
-		ImageCell = (
-			<img
-				src={ToCDNURL(`/game-icons/${game}/${song.data.displayVersion}`)}
-				className="w-100"
-			/>
-		);
-	}
+	}, [game, song]);
 
 	return (
 		<Card header="Song Info">

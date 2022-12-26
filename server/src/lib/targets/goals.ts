@@ -307,6 +307,7 @@ export function HumaniseGoalProgress(
 				case "sdvx":
 				case "usc":
 				case "wacca":
+				case "maimaidx":
 			}
 
 			// otherwise, just roll on.

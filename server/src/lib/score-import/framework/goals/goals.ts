@@ -153,6 +153,7 @@ export async function ProcessGoal(
 			newTimeAchieved = goalSub.timeAchieved;
 		}
 	}
+
 	// otherwise if this goal wasn't achieved then the timeAchieved is always null
 
 	const setData = {

@@ -395,6 +395,9 @@ router.get("/recent-imports", async (req, res) => {
 				userID: user.id,
 				timeFinished: { $gt: Date.now() - ONE_MONTH },
 				userIntent: true,
+				importType: {
+					$nin: ["file/mypagescraper-records-csv", "file/mypagescraper-player-csv"],
+				},
 			},
 		},
 		{

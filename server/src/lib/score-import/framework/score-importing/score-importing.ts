@@ -7,7 +7,7 @@ import db from "external/mongo/db";
 import { AppendLogCtx } from "lib/logger/logger";
 import { ClassToObject } from "utils/misc";
 import type { ConverterFnSuccessReturn, ConverterFunction } from "../../import-types/common/types";
-import type { ConverterFailure, KTDataNotFoundFailure } from "../common/converter-failures";
+import type { ConverterFailure, SongOrChartNotFoundFailure } from "../common/converter-failures";
 import type { DryScore } from "../common/types";
 import type { KtLogger } from "lib/logger/logger";
 import type { ScoreImportJob } from "lib/score-import/worker/types";
@@ -147,10 +147,10 @@ export async function ImportIterableDatapoint<D, C>(
 		// questionable bugs with respect to maintaining prototype chains.
 		// Even though it's uglier, we instead use a stringly-typed union.
 		switch (err.failureType) {
-			case "KTDataNotFound": {
-				const dnfErr = err as KTDataNotFoundFailure<ImportTypes>;
+			case "SongOrChartNotFound": {
+				const dnfErr = err as SongOrChartNotFoundFailure<ImportTypes>;
 
-				logger.info(`KTDataNotFoundFailure: ${dnfErr.message}`, {
+				logger.info(`SongOrChartNotFoundFailure: ${dnfErr.message}`, {
 					err: ClassToObject(dnfErr),
 					hideFromConsole: ["cfnReturn"],
 				});
@@ -173,7 +173,7 @@ export async function ImportIterableDatapoint<D, C>(
 					});
 					return {
 						success: false,
-						type: "KTDataNotFound",
+						type: "SongOrChartNotFound",
 						message: dnfErr.message,
 						content: {
 							context: dnfErr.converterContext,

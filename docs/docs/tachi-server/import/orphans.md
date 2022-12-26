@@ -1,6 +1,6 @@
 # Orphan Scores
 
-KTDataNotFoundFailures state that we don't have the data
+SongOrChartNotFoundFailures state that we don't have the data
 to understand what chart/song this score is for.
 
 However, that doesn't necessarily imply we won't have that
@@ -19,7 +19,7 @@ Orphaned scores store the `data` and `context` from the parser.
 When unorphaning is attempted, the Converter Function is
 called with that data and context.
 
-If it results in a KTDataNotFoundFailure, we do nothing.
+If it results in a SongOrChartNotFoundFailure, we do nothing.
 
 If it results in a success, we have a new DryScore we can import.
 

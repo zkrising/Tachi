@@ -1,6 +1,6 @@
 import {
 	InternalFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
 import { FindBMSChartOnHash } from "utils/queries/charts";
@@ -19,7 +19,7 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 	const chart = await FindBMSChartOnHash(data.md5);
 
 	if (!chart) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find chart with md5 ${data.md5}.`,
 			importType,
 			data,

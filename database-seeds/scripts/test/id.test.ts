@@ -15,11 +15,6 @@ type DuplicateKeyDecl = string | string[];
 const SongChartKeys: Record<`${"song" | "chart"}s-${Game}`, DuplicateKeyDecl[]> = {};
 
 for (const game of allSupportedGames) {
-	// temporary hack
-	if (game === "gitadora") {
-		continue;
-	}
-
 	SongChartKeys[`songs-${game}`] = ["id"];
 	SongChartKeys[`charts-${game}`] = [
 		"chartID",

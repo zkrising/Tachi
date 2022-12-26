@@ -90,7 +90,7 @@ t.test("#ConvertEamSDVXCSV", (t) => {
 		t.end();
 	});
 
-	t.test("Should throw KTDataNotFound on unknown song", (t) => {
+	t.test("Should throw SongOrChartNotFound on unknown song", (t) => {
 		t.rejects(() => conv({ title: "INVALID SONG" }), {
 			message: /Could not find song for INVALID SONG\./u,
 		});
@@ -98,7 +98,7 @@ t.test("#ConvertEamSDVXCSV", (t) => {
 		t.end();
 	});
 
-	t.test("Should throw KTDataNotFound on unknown chart", (t) => {
+	t.test("Should throw SongOrChartNotFound on unknown chart", (t) => {
 		t.rejects(() => conv({ difficulty: "VIVID" }), {
 			message: /Could not find chart for ALBIDA Powerless Mix \[VVD\]\./u,
 		});

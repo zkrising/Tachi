@@ -129,7 +129,7 @@ t.test("#ConverterIRBarbatos", (t) => {
 		t.end();
 	});
 
-	t.test("Should throw KTDataNotFound if chart not found.", (t) => {
+	t.test("Should throw SongOrChartNotFound if chart not found.", (t) => {
 		t.rejects(
 			() =>
 				ConverterIRBarbatos(

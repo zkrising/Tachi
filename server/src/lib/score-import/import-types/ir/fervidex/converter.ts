@@ -1,7 +1,7 @@
 import {
 	InternalFailure,
 	InvalidScoreFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { IsNullishOrEmptyStr } from "utils/misc";
@@ -164,7 +164,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 	}
 
 	if (!chart) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find chart with songID ${data.entry_id} (${playtype} ${difficulty} [${context.version}])`,
 			importType,
 			data,

@@ -42,10 +42,10 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
 		const type = importRes.body.body.errors[0].type;
 		const errMsg = importRes.body.body.errors[0].message;
 
-		// If the error type is KTDataNotFound, then we **know** that
+		// If the error type is SongOrChartNotFound, then we **know** that
 		// the chart and score values were atleast typed correctly
 		// and can afford to make this assertion.
-		if (type === "KTDataNotFound") {
+		if (type === "SongOrChartNotFound") {
 			const { chart } = req.safeBody as { chart: BeatorajaChart };
 
 			const orphanInfo: { userIDs: Array<integer> } | null = await db[
@@ -58,7 +58,7 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
 			);
 
 			if (!orphanInfo) {
-				logger.warn(`Chart '${chart.sha256}' got KTDataNotFound, but was not orphaned?`, {
+				logger.warn(`Chart '${chart.sha256}' got SongOrChartNotFound, but was not orphaned?`, {
 					body: req.safeBody as unknown,
 				});
 

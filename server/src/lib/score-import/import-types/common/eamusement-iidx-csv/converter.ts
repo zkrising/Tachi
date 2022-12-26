@@ -1,6 +1,6 @@
 import {
 	InvalidScoreFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 	SkipScoreFailure,
 } from "../../../framework/common/converter-failures";
 import {
@@ -62,7 +62,7 @@ const ConvertEamIIDXCSV: ConverterFunction<
 	const tachiSong = await FindSongOnTitle("iidx", data.title);
 
 	if (!tachiSong) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find song for ${data.title}.`,
 			importType,
 			data,
@@ -85,7 +85,7 @@ const ConvertEamIIDXCSV: ConverterFunction<
 	)) as ChartDocument<"iidx:DP" | "iidx:SP"> | null;
 
 	if (!tachiChart) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find chart for ${HUMANISED_CHART_TITLE}`,
 			"file/eamusement-iidx-csv",
 			data,

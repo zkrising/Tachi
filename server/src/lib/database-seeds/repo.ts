@@ -208,7 +208,7 @@ export class DatabaseSeedsRepo {
 
 			await asyncExec(`git add .`, this.baseDir);
 			const { stdout: commitOut } = await asyncExec(
-				`git commit -am "${commitMsg}"`,
+				`git commit -am "automated: ${commitMsg}"`,
 				this.baseDir
 			);
 

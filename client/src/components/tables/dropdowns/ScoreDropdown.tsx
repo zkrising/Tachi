@@ -17,6 +17,7 @@ import {
 } from "tachi-common";
 import { GoalsOnChartReturn, UGPTChartPBComposition } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
+import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { GPTDropdownSettings } from "./GPTDropdownSettings";
 import DocComponentCreator, { DocumentComponentType } from "./components/DocumentComponent";
 import DropdownStructure from "./components/DropdownStructure";
@@ -62,7 +63,7 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 
 	const [view, setView] = useState(defaultView);
 	const { user: currentUser } = useContext(UserContext);
-	const { settings } = useContext(UserSettingsContext);
+	const { settings } = useLUGPTSettings();
 
 	const { data, error } = useApiQuery<UGPTChartPBComposition<I>>(
 		`/users/${user.id}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`
@@ -166,7 +167,7 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 							Goals & Quests{targetData && ` (${targetData.goals.length})`}
 						</SelectButton>
 					)}
-					{currentUser && (
+					{currentUser?.id === user.id && settings?.rivals && (
 						<SelectButton setValue={setView} value={view} id="rivals">
 							<Icon type="users" />
 							Rivals

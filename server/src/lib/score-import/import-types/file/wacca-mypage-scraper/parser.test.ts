@@ -132,7 +132,7 @@ t.test("#ParseMyPageScraperPlayerCSV", (t) => {
 
 		// There's no good way to test that the classHandler got a valid
 		// MyPagePlayerStage, so we just call it to see.
-		t.strictSame(classHandler("wacca", "Single", 0, {}, logger), {
+		t.strictSame(classHandler!("wacca", "Single", 0, {}, logger), {
 			stageUp: WACCA_STAGEUPS.XII,
 		});
 

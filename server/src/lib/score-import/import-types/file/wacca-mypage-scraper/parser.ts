@@ -1,6 +1,6 @@
 import { CreateMyPageScraperClassHandler } from "./class-handler";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { parse, CSVError } from "csv-parse/sync";
+import { parse, CsvError as CSVError } from "csv-parse/sync";
 import { p } from "prudence";
 import type { ParserFunctionReturns } from "../../common/types";
 import type { MyPageRecordsRawCSVRecord, MyPageRecordsParsedPB } from "./types";

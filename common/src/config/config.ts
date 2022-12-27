@@ -1,5 +1,5 @@
 /* eslint-disable lines-around-comment */
-import { FormatSieglindeBMS, FormatSieglindePMS } from "./internal-utils";
+import { FormatSieglindeBMS, FormatSieglindePMS, FormatMaimaiDXRating } from "./internal-utils";
 import { COLOUR_SET } from "../constants/colour-set";
 import {
 	BMSDPSlDans,
@@ -1345,9 +1345,16 @@ const GAME_PT_CONFIGS: GamePTConfigs = {
 			rate: "The average of your best 10 ratings this session.",
 		},
 
-		scoreRatingAlgFormatters: {},
-		profileRatingAlgFormatters: {},
-		sessionRatingAlgFormatters: {},
+		scoreRatingAlgFormatters: {
+			rate: FormatMaimaiDXRating,
+		},
+		profileRatingAlgFormatters: {
+			naiveRate: FormatMaimaiDXRating,
+			rate: FormatMaimaiDXRating,
+		},
+		sessionRatingAlgFormatters: {
+			rate: FormatMaimaiDXRating,
+		},
 
 		difficulties: [
 			"Basic",

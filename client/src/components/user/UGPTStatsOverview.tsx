@@ -1,4 +1,4 @@
-import { FormatGPTRating, UppercaseFirst } from "util/misc";
+import { FormatGPTProfileRating, FormatGPTRating, UppercaseFirst } from "util/misc";
 import ClassBadge from "components/game/ClassBadge";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import MiniTable from "components/tables/components/MiniTable";
@@ -67,14 +67,7 @@ export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 								</div>
 							</QuickTooltip>
 						</td>
-						<td>
-							{FormatGPTRating(
-								ugs.game,
-								ugs.playtype,
-								k as ScoreCalculatedDataLookup[IDStrings],
-								v
-							)}
-						</td>
+						<td>{FormatGPTProfileRating(ugs.game, ugs.playtype, k as any, v)}</td>
 					</tr>
 				))}
 			</>

@@ -27,11 +27,23 @@ export default function ClassBadge<I extends IDStrings = IDStrings>({
 
 	let badgeComponent;
 	if (data.variant) {
-		badgeComponent = <Badge variant={data.variant}>{data.display}</Badge>;
+		badgeComponent = (
+			<Badge className="mx-2" variant={data.variant}>
+				{data.display}
+			</Badge>
+		);
 	} else if (data.css) {
-		badgeComponent = <Badge style={data.css}>{data.display}</Badge>;
+		badgeComponent = (
+			<Badge className="mx-2" style={data.css}>
+				{data.display}
+			</Badge>
+		);
 	} else {
-		badgeComponent = <Badge variant="secondary">{data.display}</Badge>;
+		badgeComponent = (
+			<Badge className="mx-2" variant="secondary">
+				{data.display}
+			</Badge>
+		);
 	}
 
 	if (data.mouseover && showSetOnHover) {

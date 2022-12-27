@@ -1,4 +1,4 @@
-import { ParseMyPageScraperRecordsCsv, ParseMyPageScraperPlayerCsv } from "./parser";
+import { ParseMyPageScraperRecordsCSV, ParseMyPageScraperPlayerCSV } from "./parser";
 import CreateLogCtx from "lib/logger/logger";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import { WACCA_STAGEUPS } from "tachi-common/constants/game";
@@ -13,7 +13,7 @@ t.test("#ParseMyPageScraperRecordsCSV", (t) => {
 	t.test("Valid CSV", (t) => {
 		// This example file is cg505's actual records dump.
 		const file = MockMulterFile(TestingWaccaMyPageScraperRecordsCSV, "records.csv");
-		const { iterable, game } = ParseMyPageScraperRecordsCsv(file, {}, logger);
+		const { iterable, game } = ParseMyPageScraperRecordsCSV(file, {}, logger);
 
 		t.equal(game, "wacca");
 
@@ -35,7 +35,7 @@ t.test("#ParseMyPageScraperRecordsCSV", (t) => {
 
 		const file = MockMulterFile(buffer, "records.csv");
 
-		const { iterable, game } = ParseMyPageScraperRecordsCsv(file, {}, logger);
+		const { iterable, game } = ParseMyPageScraperRecordsCSV(file, {}, logger);
 
 		t.equal(game, "wacca");
 
@@ -62,7 +62,7 @@ t.test("#ParseMyPageScraperRecordsCSV", (t) => {
 		const file = MockMulterFile(buffer, "records.csv");
 
 		t.throws(
-			() => ParseMyPageScraperRecordsCsv(file, {}, logger),
+			() => ParseMyPageScraperRecordsCSV(file, {}, logger),
 			new ScoreImportFatalError(
 				400,
 				"Failed to parse CSV: Invalid Record Length: columns length is 8, got 7 on line 2"
@@ -81,7 +81,7 @@ t.test("#ParseMyPageScraperRecordsCSV", (t) => {
 		const file = MockMulterFile(buffer, "records.csv");
 
 		t.throws(
-			() => ParseMyPageScraperRecordsCsv(file, {}, logger),
+			() => ParseMyPageScraperRecordsCSV(file, {}, logger),
 			new ScoreImportFatalError(
 				400,
 				"Malformed CSV, invalid column(s) (music_title: undefined): Expected string."
@@ -100,7 +100,7 @@ t.test("#ParseMyPageScraperRecordsCSV", (t) => {
 		const file = MockMulterFile(buffer, "records.csv");
 
 		t.throws(
-			() => ParseMyPageScraperRecordsCsv(file, {}, logger),
+			() => ParseMyPageScraperRecordsCSV(file, {}, logger),
 			new ScoreImportFatalError(
 				400,
 				"Malformed CSV, invalid column(s) (music_achieves: undefined): Expected string."
@@ -122,7 +122,7 @@ t.test("#ParseMyPageScraperPlayerCSV", (t) => {
 
 		const file = MockMulterFile(buffer, "player.csv");
 
-		const { iterable, game, classHandler } = ParseMyPageScraperPlayerCsv(file, {}, logger);
+		const { iterable, game, classHandler } = ParseMyPageScraperPlayerCSV(file, {}, logger);
 
 		t.equal(game, "wacca");
 
@@ -132,7 +132,7 @@ t.test("#ParseMyPageScraperPlayerCSV", (t) => {
 
 		// There's no good way to test that the classHandler got a valid
 		// MyPagePlayerStage, so we just call it to see.
-		t.strictSame(classHandler!("wacca", "Single", 0, {}, logger), {
+		t.strictSame(classHandler("wacca", "Single", 0, {}, logger), {
 			stageUp: WACCA_STAGEUPS.XII,
 		});
 
@@ -148,7 +148,7 @@ t.test("#ParseMyPageScraperPlayerCSV", (t) => {
 		const file = MockMulterFile(buffer, "player.csv");
 
 		t.throws(
-			() => ParseMyPageScraperPlayerCsv(file, {}, logger),
+			() => ParseMyPageScraperPlayerCSV(file, {}, logger),
 			new ScoreImportFatalError(
 				400,
 				"Failed to parse CSV: Invalid Record Length: columns length is 9, got 8 on line 2"
@@ -167,7 +167,7 @@ t.test("#ParseMyPageScraperPlayerCSV", (t) => {
 		const file = MockMulterFile(buffer, "player.csv");
 
 		t.throws(
-			() => ParseMyPageScraperPlayerCsv(file, {}, logger),
+			() => ParseMyPageScraperPlayerCSV(file, {}, logger),
 			new ScoreImportFatalError(400, "Malformed CSV: no player_stage column.")
 		);
 
@@ -181,7 +181,7 @@ t.test("#ParseMyPageScraperPlayerCSV", (t) => {
 		const file = MockMulterFile(buffer, "player.csv");
 
 		t.throws(
-			() => ParseMyPageScraperPlayerCsv(file, {}, logger),
+			() => ParseMyPageScraperPlayerCSV(file, {}, logger),
 			new ScoreImportFatalError(400, "Malformed player_stage entry.")
 		);
 

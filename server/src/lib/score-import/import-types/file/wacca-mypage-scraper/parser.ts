@@ -1,14 +1,14 @@
 import { CreateMyPageScraperClassHandler } from "./class-handler";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { parse, CsvError } from "csv-parse/sync";
+import { parse, CSVError } from "csv-parse/sync";
 import { p } from "prudence";
 import type { ParserFunctionReturns } from "../../common/types";
-import type { MyPageRecordsRawCsvRecord, MyPageRecordsParsedPB } from "./types";
+import type { MyPageRecordsRawCSVRecord, MyPageRecordsParsedPB } from "./types";
 import type { KtLogger } from "lib/logger/logger";
 import type { PrudenceSchema } from "prudence";
 import type { EmptyObject } from "utils/types";
 
-// This should match MyPageRecordsRawCsvRecord.
+// This should match MyPageRecordsRawCSVRecord.
 const RECORDS_CSV_SCHEMA: PrudenceSchema = {
 	music_id: "string",
 	music_title: "string",
@@ -19,7 +19,7 @@ const RECORDS_CSV_SCHEMA: PrudenceSchema = {
 
 const ARRAY_REGEX = /\[(.+?),(.+?),(.+?)(?:,(.+?))?\]/u;
 
-function parseCsvArray(csvString: string): Array<string> {
+function parseCSVArray(csvString: string): Array<string> {
 	const matches = ARRAY_REGEX.exec(csvString);
 
 	if (matches === null) {
@@ -44,24 +44,24 @@ function parseCsvArray(csvString: string): Array<string> {
 	return ret;
 }
 
-export function ParseMyPageScraperRecordsCsv(
+export function ParseMyPageScraperRecordsCSV(
 	fileData: Express.Multer.File,
 	_body: Record<string, unknown>,
 	_logger: KtLogger
 ): ParserFunctionReturns<MyPageRecordsParsedPB, EmptyObject> {
-	let rawCsvRecords: Array<unknown>;
+	let rawCSVRecords: Array<unknown>;
 
 	try {
-		rawCsvRecords = parse(fileData.buffer, { columns: true }) as Array<unknown>;
+		rawCSVRecords = parse(fileData.buffer, { columns: true }) as Array<unknown>;
 	} catch (err) {
-		if (err instanceof CsvError) {
+		if (err instanceof CSVError) {
 			throw new ScoreImportFatalError(400, `Failed to parse CSV: ${err.message}`);
 		}
 
 		throw err;
 	}
 
-	for (const rawRecord of rawCsvRecords) {
+	for (const rawRecord of rawCSVRecords) {
 		const err = p(rawRecord, RECORDS_CSV_SCHEMA, {}, { allowExcessKeys: true });
 
 		if (err) {
@@ -73,14 +73,14 @@ export function ParseMyPageScraperRecordsCsv(
 		}
 	}
 
-	const csvRecords = rawCsvRecords as Array<MyPageRecordsRawCsvRecord>;
+	const csvRecords = rawCSVRecords as Array<MyPageRecordsRawCSVRecord>;
 
 	const iterable: Array<MyPageRecordsParsedPB> = [];
 
 	for (const csvRecord of csvRecords) {
-		const levels = parseCsvArray(csvRecord.music_levels);
-		const scores = parseCsvArray(csvRecord.music_scores);
-		const lamps = parseCsvArray(csvRecord.music_achieves);
+		const levels = parseCSVArray(csvRecord.music_levels);
+		const scores = parseCSVArray(csvRecord.music_scores);
+		const lamps = parseCSVArray(csvRecord.music_achieves);
 
 		for (const [diffIndex, level] of levels.entries()) {
 			if (level === "0") {
@@ -114,7 +114,7 @@ export function ParseMyPageScraperRecordsCsv(
 	};
 }
 
-export function ParseMyPageScraperPlayerCsv(
+export function ParseMyPageScraperPlayerCSV(
 	fileData: Express.Multer.File,
 	_body: Record<string, unknown>,
 	_logger: KtLogger
@@ -124,7 +124,7 @@ export function ParseMyPageScraperPlayerCsv(
 	try {
 		csvRecords = parse(fileData.buffer, { columns: true }) as Array<Record<string, string>>;
 	} catch (err) {
-		if (err instanceof CsvError) {
+		if (err instanceof CSVError) {
 			throw new ScoreImportFatalError(400, `Failed to parse CSV: ${err.message}`);
 		}
 

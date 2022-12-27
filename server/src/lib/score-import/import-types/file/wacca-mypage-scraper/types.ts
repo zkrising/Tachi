@@ -1,4 +1,4 @@
-export interface MyPageRecordsRawCsvRecord {
+export interface MyPageRecordsRawCSVRecord {
 	// eslint-disable-next-line lines-around-comment -- https://github.com/TNG-dev/Tachi/pull/673#discussion_r965947793
 	// These are snake case in the CSV. The first line of the CSV is:
 	// music_id,music_title,music_artist,music_genre,music_levels,music_play_counts,music_scores,music_achieves

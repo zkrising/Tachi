@@ -20,8 +20,8 @@ import { ParseMerIIDX } from "./file/mer-iidx/parser";
 import ParsePLIIIDXCSV from "./file/pli-iidx-csv/parser";
 import { ParseSolidStateXML } from "./file/solid-state-squad/parser";
 import {
-	ParseMyPageScraperRecordsCsv,
-	ParseMyPageScraperPlayerCsv,
+	ParseMyPageScraperRecordsCSV,
+	ParseMyPageScraperPlayerCSV,
 } from "./file/wacca-mypage-scraper/parser";
 import { ParseBarbatosSingle } from "./ir/barbatos/parser";
 import { ParseBeatorajaSingle } from "./ir/beatoraja/parser";
@@ -40,8 +40,8 @@ export const Parsers = {
 	"file/pli-iidx-csv": ParsePLIIIDXCSV,
 	"file/eamusement-iidx-csv": ParseEamusementIIDXCSV,
 	"file/eamusement-sdvx-csv": ParseEamusementSDVXCSV,
-	"file/mypagescraper-records-csv": ParseMyPageScraperRecordsCsv,
-	"file/mypagescraper-player-csv": ParseMyPageScraperPlayerCsv,
+	"file/mypagescraper-records-csv": ParseMyPageScraperRecordsCSV,
+	"file/mypagescraper-player-csv": ParseMyPageScraperPlayerCSV,
 
 	"api/eag-iidx": ParseEagIIDX,
 	"api/eag-sdvx": ParseEagSDVX,

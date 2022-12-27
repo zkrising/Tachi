@@ -18,5 +18,5 @@ export function FormatSieglindePMS(sgl: number): string {
 }
 
 export function FormatMaimaiDXRating(rating: number): string {
-	return `${rating.toFixed(0)}`;
+	return rating.toFixed(0);
 }

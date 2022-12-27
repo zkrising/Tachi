@@ -91,7 +91,7 @@ export function ParseMyPageScraperRecordsCsv(
 			const score = Number(scores[diffIndex]);
 
 			if (score === 0) {
-				// This inidcates no play, let's not create a PB.
+				// This indicates, no play, let's not create a PB.
 				continue;
 			}
 

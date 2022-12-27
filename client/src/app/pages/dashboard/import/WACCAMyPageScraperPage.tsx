@@ -16,11 +16,10 @@ function RecordsParseFunction(data: string) {
 	}
 
 	return {
-		// not sure why we need this since we're expected to throw if it's invalid?
 		valid: true,
 		info: {
 			// Note: Most other file import types provide a number of scores. It
-			// doesn't make senes for this import type since we always expect
+			// doesn't make sense for this import type since we always expect
 			// all the songs to be present - the only indicator for an unplayed
 			// song/chart is that the score is 0, so to provide this would would
 			// need to basically parse the whole file anyway.

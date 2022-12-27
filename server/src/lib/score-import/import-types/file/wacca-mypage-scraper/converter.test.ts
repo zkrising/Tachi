@@ -19,7 +19,7 @@ const parsedScore: MyPageRecordsParsedPB = {
 };
 
 t.test("#ConvertMyPageScraperRecordsCSV", (t) => {
-	t.before(ResetDBState);
+	t.beforeEach(ResetDBState);
 
 	function conv(g: Partial<MyPageRecordsParsedPB> = {}) {
 		return ConvertMyPageScraperRecordsCSV(
@@ -81,4 +81,6 @@ t.test("#ConvertMyPageScraperRecordsCSV", (t) => {
 
 		t.end();
 	});
+
+	t.end();
 });

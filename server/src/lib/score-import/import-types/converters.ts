@@ -33,6 +33,10 @@ export const Converters: ConverterMap = {
 	"file/eamusement-iidx-csv": ConvertEamIIDXCSV,
 	"file/eamusement-sdvx-csv": ConvertEamSDVXCSV,
 	"file/mypagescraper-records-csv": ConvertMyPageScraperRecordsCSV,
+
+	// interestingly, this import method **only** has a class handler, since it's just
+	// a CSV that indicates what class you are. Interesting edge case, but we're guaranteed
+	// to have an empty array here, so this will never get called.
 	"file/mypagescraper-player-csv": Never,
 
 	"api/eag-iidx": ConvertAPIKaiIIDX,

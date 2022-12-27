@@ -244,10 +244,11 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 	} else if (game === "wacca") {
 		Content.unshift(
 			<ImportInfoCard
-				name="WACCA Site Importer"
-				href="wacca-site"
-				desc="Scrape your scores from the WACCA website."
-				key="WACCA Site Importer"
+				name="WaccaMyPageScraper"
+				href="wacca-mypage-scraper"
+				desc="Use your data from WaccaMyPageScraper."
+				moreInfo="If you saved your play data from MyPage using XezolesS's WaccaMyPageScraper project, you can import it here."
+				key="WACCA MyPage Scraper"
 			/>
 		);
 	} else if (game === "museca") {
@@ -454,6 +455,10 @@ function ImportTypeInfoCard({
 					key="PLI .csv"
 				/>
 			);
+		case "file/mypagescraper-records-csv":
+		case "file/mypagescraper-player-csv":
+			// We only expect people to use these import types once ever, so don't recommend them.
+			return <></>;
 		default:
 			// For some reason, the webpack tschecker thinks
 			// that the above switch isn't exhaustive. However, it is.

@@ -15,7 +15,7 @@ import SilentHookPage from "app/pages/dashboard/import/SilentHookPage";
 import SSSXMLPage from "app/pages/dashboard/import/SSSXMLPage";
 import USCDBPage from "app/pages/dashboard/import/USCDBPage";
 import USCIRPage from "app/pages/dashboard/import/USCIRPage";
-import WACCASiteImportPage from "app/pages/dashboard/import/WACCASiteImportPage";
+import WACCAMyPageScraperPage from "app/pages/dashboard/import/WACCAMyPageScraperPage";
 import KAIIntegrationPage from "components/imports/KAIIntegrationPage";
 import Divider from "components/util/Divider";
 import { UserContext } from "context/UserContext";
@@ -183,8 +183,8 @@ export default function ImportRoutes() {
 								<CGIntegrationPage cgType="prod" game="museca" />
 							</Route>
 
-							<Route exact path="/import/wacca-site">
-								<WACCASiteImportPage />
+							<Route exact path="/import/wacca-mypage-scraper">
+								<WACCAMyPageScraperPage />
 							</Route>
 						</>
 					)}

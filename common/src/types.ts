@@ -1211,6 +1211,8 @@ export type FileUploadImportTypes =
 	| "file/eamusement-iidx-csv"
 	| "file/eamusement-sdvx-csv"
 	| "file/mer-iidx"
+	| "file/mypagescraper-player-csv"
+	| "file/mypagescraper-records-csv"
 	| "file/pli-iidx-csv"
 	| "file/solid-state-squad";
 

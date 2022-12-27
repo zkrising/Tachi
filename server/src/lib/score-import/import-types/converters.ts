@@ -8,6 +8,7 @@ import ConvertEamIIDXCSV from "./common/eamusement-iidx-csv/converter";
 import ConvertEamSDVXCSV from "./file/eamusement-sdvx-csv/converter";
 import { ConvertFileMerIIDX } from "./file/mer-iidx/converter";
 import { ConvertFileS3 } from "./file/solid-state-squad/converter";
+import ConvertMyPageScraperRecordsCSV from "./file/wacca-mypage-scraper/converter";
 import { ConverterIRBarbatos } from "./ir/barbatos/converter";
 import { ConverterIRBeatoraja } from "./ir/beatoraja/converter";
 import { ConverterIRFervidexStatic } from "./ir/fervidex-static/converter";
@@ -16,6 +17,7 @@ import { ConverterKsHookSV6CStatic } from "./ir/kshook-sv6c-static/converter";
 import { ConverterIRKsHookSV6C } from "./ir/kshook-sv6c/converter";
 import { ConverterLR2Hook } from "./ir/lr2hook/converter";
 import { ConverterIRUSC } from "./ir/usc/converter";
+import { Never } from "utils/misc";
 import type { ConverterFunction, ImportTypeContextMap, ImportTypeDataMap } from "./common/types";
 import type { ImportTypes } from "tachi-common";
 
@@ -30,6 +32,12 @@ export const Converters: ConverterMap = {
 	"file/pli-iidx-csv": ConvertEamIIDXCSV,
 	"file/eamusement-iidx-csv": ConvertEamIIDXCSV,
 	"file/eamusement-sdvx-csv": ConvertEamSDVXCSV,
+	"file/mypagescraper-records-csv": ConvertMyPageScraperRecordsCSV,
+
+	// interestingly, this import method **only** has a class handler, since it's just
+	// a CSV that indicates what class you are. Interesting edge case, but we're guaranteed
+	// to have an empty array here, so this will never get called.
+	"file/mypagescraper-player-csv": Never,
 
 	"api/eag-iidx": ConvertAPIKaiIIDX,
 	"api/eag-sdvx": ConvertAPIKaiSDVX,

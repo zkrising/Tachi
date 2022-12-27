@@ -200,7 +200,7 @@ export function SelectRightChart(
 	} else if (gptConfig.idString === "itg:Stamina") {
 		for (const chart of charts) {
 			if (
-				(chart as ChartDocument<"itg:Stamina">).data.chartHash === chartID &&
+				(chart as ChartDocument<"itg:Stamina">).data.hashGSV3 === chartID &&
 				chart.isPrimary
 			) {
 				return chart;

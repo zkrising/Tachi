@@ -49,7 +49,7 @@ try {
 		<div style="font-size: 1.25rem; margin-top: 1rem; margin-bottom: 1rem;">
 			Please be patient, <a href="https://github.com/TNG-dev/Tachi">Tachi is maintained by a very small team.</a>
 		</div>
-		<div>An error message can be found in the console. (<code>Ctrl-Shift-K</code>)</div>
+		<div>An error message can be found in the console. (<code>Ctrl-Shift-I</code>)</div>
 		${
 			process.env.VITE_IS_LOCAL_DEV
 				? `

@@ -1,7 +1,7 @@
 // Before we run anything, set a global to indicate to the code that
 // we're running as a server, and not as a job runner or score worker.
 import db from "external/mongo/db";
-import { SetIndexesIfNoneSet } from "external/mongo/indexes";
+import { UpdateIndexes } from "external/mongo/indexes";
 import { InitSequenceDocs } from "external/mongo/sequence-docs";
 import { LoadDefaultClients } from "lib/builtin-clients/builtin-clients";
 import { VERSION_PRETTY } from "lib/constants/version";
@@ -31,7 +31,7 @@ logger.info(`Loading sequence documents...`, { bootInfo: true });
 
 async function RunOnInit() {
 	await InitSequenceDocs();
-	await SetIndexesIfNoneSet();
+	await UpdateIndexes(db, false);
 
 	await ApplyUnappliedMigrations();
 

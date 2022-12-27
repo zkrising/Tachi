@@ -1,5 +1,4 @@
 /* eslint-disable no-await-in-loop */
-import db, { monkDB } from "./db";
 import { ONE_DAY } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
@@ -22,6 +21,9 @@ function index(fields: Record<string, unknown>, options?: IndexOptions) {
 
 const UNIQUE = { unique: true };
 
+// NOTE: INDEXES REMOVED FROM HERE WILL **NOT** AUTOMATICALLY UPDATE.
+// YOU NEED TO RUN src/scripts/set-indexes.ts --reset TO REMOVE INDEXES.
+// (indexes added will automatically apply on tachi-server boot, though).
 const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 	scores: [
 		index({ scoreID: 1 }, UNIQUE),
@@ -164,7 +166,7 @@ for (const game of TachiConfig.GAMES) {
 	}
 }
 
-export async function SetIndexesWithDB(db: IMonkManager, reset: boolean) {
+export async function UpdateIndexes(db: IMonkManager, reset: boolean) {
 	const collections = (await db.listCollections()).map((e) => e.name);
 
 	for (const [collection, values] of Object.entries(indexes)) {
@@ -183,11 +185,17 @@ export async function SetIndexesWithDB(db: IMonkManager, reset: boolean) {
 		}
 
 		for (const index of values) {
-			// @ts-expect-error Type-mismatch here. our index.fields are just boring records. I know
-			// that this sucks...
-			const r = await db.get(collection).createIndex(index.fields, index.options);
+			try {
+				// @ts-expect-error Type-mismatch here. our index.fields are just boring records. I know
+				// that this sucks...
+				const r = await db.get(collection).createIndex(index.fields, index.options);
 
-			logger.debug(r);
+				logger.debug(r);
+			} catch (err) {
+				logger.debug(err);
+
+				// index already exists.
+			}
 		}
 	}
 
@@ -197,35 +205,7 @@ export async function SetIndexesWithDB(db: IMonkManager, reset: boolean) {
 export async function SetIndexes(mongoUrl: string, reset: boolean) {
 	const monkDb = monk(mongoUrl);
 
-	await SetIndexesWithDB(monkDb, reset);
+	await UpdateIndexes(monkDb, reset);
 
 	await monkDb.close();
-}
-
-export function SetIndexesIfNoneSet() {
-	// If no indexes are set, then we need to load mongo indexes.
-	return db.users
-		.indexes()
-		.then((r) => {
-			// If there's only one index on users
-			// that means that only _id has indexes.
-			// This means that there are likely to be no indexes
-			// configured in the database.
-			if (Object.keys(r).length === 1) {
-				logger.info(
-					`No indexes on users, First-time Tachi-Server startup assumed. Running SetIndexes.`
-				);
-				return SetIndexesWithDB(monkDB, true);
-			}
-		})
-		.catch((err: unknown) => {
-			logger.info(
-				`Error in finding users collection. First time startup likely. Running SetIndexes.`,
-				{ err }
-			);
-			return SetIndexesWithDB(monkDB, true);
-		})
-		.catch((err: unknown) => {
-			logger.error(`Failed to set indexes on assumed first-time-setup?`, { err });
-		});
 }

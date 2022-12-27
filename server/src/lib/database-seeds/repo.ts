@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import { VERSION_INFO } from "lib/constants/version";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";

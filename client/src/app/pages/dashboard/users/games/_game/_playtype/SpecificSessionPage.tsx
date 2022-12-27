@@ -1,25 +1,25 @@
 import { APIFetchV1 } from "util/api";
 import { CreateChartMap, CreateScoreIDMap, CreateSongMap } from "util/data";
 import useSetSubheader from "components/layout/header/useSetSubheader";
+import Card from "components/layout/page/Card";
 import SessionOverview from "components/sessions/SessionOverview";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import ApiError from "components/util/ApiError";
+import DebugContent from "components/util/DebugContent";
 import Divider from "components/util/Divider";
 import EditableText from "components/util/EditableText";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
-import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
+import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
+import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext, useMemo, useState } from "react";
 import { Badge, Button, Col, Row } from "react-bootstrap";
 import { Redirect, useParams } from "react-router-dom";
 import { GetGameConfig } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
 import { UGPT } from "types/react";
-import DebugContent from "components/util/DebugContent";
-import { UserSettingsContext } from "context/UserSettingsContext";
-import Card from "components/layout/page/Card";
 
 export default function SpecificSessionPage({ reqUser, game, playtype }: UGPT) {
 	const { sessionID } = useParams<{ sessionID: string }>();
@@ -111,9 +111,9 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 
 	const [highlight, setHighlight] = useState(session.highlight);
 
-	const updateSession = () => {
+	const updateSession = (sessionData: SessionReturns) => {
 		APIFetchV1(
-			`/sessions/${session.sessionID}`,
+			`/sessions/${sessionData.session.sessionID}`,
 			{
 				method: "PATCH",
 				headers: {
@@ -140,15 +140,17 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 					<EditableText
 						initial={session.name}
 						onChange={(name) => {
-							setSessionData({
+							const newSession: SessionReturns = {
 								...sessionData,
 								session: {
 									...sessionData.session,
 									name,
 								},
-							});
+							};
 
-							updateSession();
+							setSessionData(newSession);
+
+							updateSession(newSession);
 						}}
 					>
 						{(text) => (
@@ -164,15 +166,17 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 					<EditableText
 						initial={session.desc ?? "No Description..."}
 						onChange={(desc) => {
-							setSessionData({
+							const newSession: SessionReturns = {
 								...sessionData,
 								session: {
 									...sessionData.session,
 									desc,
 								},
-							});
+							};
 
-							updateSession();
+							setSessionData(newSession);
+
+							updateSession(newSession);
 						}}
 					>
 						{(text) => (

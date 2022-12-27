@@ -19,7 +19,13 @@ export default function DeltaCell({
 		return <td>N/A</td>;
 	}
 
-	const { lower, upper, closer } = GenericFormatGradeDelta(game, playtype, score, percent, grade);
+	// eslint-disable-next-line prefer-const
+	let { lower, upper, closer } = GenericFormatGradeDelta(game, playtype, score, percent, grade);
+
+	// (max-)+20 is a stupid statistic. hard override it.
+	if ((game === "iidx" || game === "bms" || game === "pms") && lower.startsWith("(MAX-)+")) {
+		closer = "upper";
+	}
 
 	if (closer === "upper") {
 		return (

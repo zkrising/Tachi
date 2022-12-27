@@ -1,7 +1,7 @@
 import {
 	InternalFailure,
 	InvalidScoreFailure,
-	KTDataNotFoundFailure,
+	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
 import { FindChartWithPTDF } from "utils/queries/charts";
@@ -30,7 +30,7 @@ const ConvertMyPageScraperRecordsCSV: ConverterFunction<
 	const song = await FindSongOnTitle("wacca", data.songTitle);
 
 	if (song === null) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find song for ${data.songTitle}.`,
 			importType,
 			data,
@@ -49,7 +49,7 @@ const ConvertMyPageScraperRecordsCSV: ConverterFunction<
 	const chart = await FindChartWithPTDF("wacca", song.id, "Single", difficulty);
 
 	if (chart === null) {
-		throw new KTDataNotFoundFailure(
+		throw new SongOrChartNotFoundFailure(
 			`Could not find chart for ${humanisedChartTitle}.`,
 			importType,
 			data,

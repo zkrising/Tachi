@@ -1,5 +1,5 @@
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
-import { WACCA_STAGEUPS } from "lib/constants/classes";
+import { WACCA_STAGEUPS } from "tachi-common";
 import type { ClassHandler } from "../../../framework/user-game-stats/types";
 import type { MyPagePlayerStage } from "./types";
 

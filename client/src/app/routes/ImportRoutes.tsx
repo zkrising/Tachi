@@ -183,7 +183,7 @@ export default function ImportRoutes() {
 								<CGIntegrationPage cgType="prod" game="museca" />
 							</Route>
 
-							<Route exact path="/dashboard/import/wacca-mypage-scraper">
+							<Route exact path="/import/wacca-mypage-scraper">
 								<WACCAMyPageScraperPage />
 							</Route>
 						</>

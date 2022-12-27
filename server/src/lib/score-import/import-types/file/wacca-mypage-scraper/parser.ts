@@ -1,7 +1,7 @@
 import { CreateMyPageScraperClassHandler } from "./class-handler";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { parse, CsvError } from "csv-parse/sync";
-import p from "prudence";
+import { p } from "prudence";
 import type { ParserFunctionReturns } from "../../common/types";
 import type { MyPageRecordsRawCsvRecord, MyPageRecordsParsedPB } from "./types";
 import type { KtLogger } from "lib/logger/logger";

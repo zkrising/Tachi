@@ -96,10 +96,6 @@ const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 	"api-tokens": [index({ token: 1 }, UNIQUE), index({ userID: 1 })],
 	tables: [index({ tableID: 1, game: 1, playtype: 1 }, UNIQUE)],
 	"game-stats-snapshots": [index({ timestamp: 1, userID: 1, game: 1, playtype: 1 }, UNIQUE)],
-	"session-view-cache": [
-		index({ sessionID: 1, ip: 1 }, UNIQUE),
-		index({ timestamp: 1 }, { expireAfterSeconds: ONE_DAY / 1000 }),
-	],
 	"user-settings": [index({ userID: 1 }, UNIQUE)],
 	"user-private-information": [index({ userID: 1 }, UNIQUE), index({ email: 1 }, UNIQUE)],
 	"fer-settings": [index({ userID: 1 }, UNIQUE)],

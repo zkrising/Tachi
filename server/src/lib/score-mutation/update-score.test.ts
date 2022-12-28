@@ -48,7 +48,6 @@ const mockSessionDocument: SessionDocument = {
 	timeEnded: 1000,
 	timeInserted: 0,
 	timeStarted: 0,
-	views: 0,
 };
 
 t.test("#UpdateScore", (t) => {

@@ -456,13 +456,6 @@ export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoD
 	timeStarted: integer;
 	calculatedData: Partial<Record<SessionCalculatedDataLookup[I], number | null>>;
 	highlight: boolean;
-	views: integer;
-}
-
-export interface SessionViewDocument extends MongoDBDocument {
-	sessionID: string;
-	ip: string;
-	timestamp: number;
 }
 
 interface ImportErrContent {

@@ -1,8 +1,4 @@
-import {
-	GetSessionFromParam,
-	RequireOwnershipOfSession,
-	UpdateSessionViewcount,
-} from "./middleware";
+import { GetSessionFromParam, RequireOwnershipOfSession } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { p } from "prudence";
@@ -32,7 +28,7 @@ router.use(GetSessionFromParam);
  *
  * @name GET /api/v1/sessions/:sessionID
  */
-router.get("/", UpdateSessionViewcount, async (req, res) => {
+router.get("/", async (req, res) => {
 	const session = GetTachiData(req, "sessionDoc");
 
 	const scores = await db.scores.find({

@@ -190,18 +190,6 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 						)}
 					</EditableText>
 				</div>
-
-				<Badge variant="secondary">
-					<span
-						style={{
-							lineHeight: "15px",
-							verticalAlign: "middle",
-						}}
-					>
-						<Icon type="eye" style={{ verticalAlign: "middle" }} /> Views:{" "}
-						{session.views}
-					</span>
-				</Badge>
 				{session.highlight && (
 					<Badge
 						style={{

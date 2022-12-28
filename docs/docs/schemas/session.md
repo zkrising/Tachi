@@ -19,7 +19,6 @@ interface SessionDocument {
 	timeEnded: integer;
 	calculatedData: Partial<Record<__GPTSpecific, number | null>>;
 	highlight: boolean;
-	views: integer;
 }
 ```
 

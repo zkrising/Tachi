@@ -443,7 +443,7 @@ export interface SessionCalculatedDataLookup {
 export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
 	userID: integer;
 	sessionID: string;
-	scoreInfo: Array<SessionScoreInfo>;
+	scoreIDs: Array<string>;
 	name: string;
 	desc: string | null;
 	game: Game;

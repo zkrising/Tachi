@@ -14,14 +14,14 @@ t.test("#GetScoresFromSession", async (t) => {
 
 	t.equal(
 		scores.length,
-		exampleSession!.scoreInfo.length,
+		exampleSession!.scoreIDs.length,
 		"Should return the same amount of scores as the session."
 	);
 
-	for (let i = 0; i < exampleSession!.scoreInfo.length; i++) {
+	for (let i = 0; i < exampleSession!.scoreIDs.length; i++) {
 		t.equal(
 			scores[i]!.scoreID,
-			exampleSession!.scoreInfo[i]!.scoreID,
+			exampleSession!.scoreIDs[i]!.scoreID,
 			"Should return the scores requested."
 		);
 	}

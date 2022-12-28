@@ -19,9 +19,11 @@ import {
 	IIDX_LAMPS,
 	UserDocument,
 	SessionDocument,
+	SessionScoreInfo,
 } from "tachi-common";
 import { GamePT } from "types/react";
 import { FolderDataset } from "types/tables";
+import { SessionReturns } from "types/api-returns";
 
 type Props = {
 	folderDataset: FolderDataset;
@@ -30,9 +32,10 @@ type Props = {
 } & GamePT;
 
 export default function FolderMinimap(props: Props) {
-	const { data, isLoading, error } = useApiQuery<SessionDocument>(
-		`/users/${props.reqUser.id}/games/${props.game}/${props.playtype}/sessions/last`
-	);
+	const { data, isLoading, error } = useApiQuery<{
+		session: SessionDocument;
+		scoreInfo: Array<SessionScoreInfo>;
+	}>(`/users/${props.reqUser.id}/games/${props.game}/${props.playtype}/sessions/last`);
 
 	const session = useMemo(() => {
 		if (error && error.statusCode === 404) {
@@ -70,7 +73,9 @@ function FolderMinimapMain({
 	folderDataset,
 	view,
 	recentSession,
-}: Props & { recentSession: SessionDocument | null }) {
+}: Props & {
+	recentSession: { session: SessionDocument; scoreInfo: Array<SessionScoreInfo> } | null;
+}) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const [sortAlg, setSortAlg] = useState(view === "grade" ? "score" : "lamp");
@@ -102,8 +107,9 @@ function FolderMinimapMain({
 		[getterFn, folderDataset, sortAlg]
 	);
 
+	// For the switchboard chart, display a raise icon on stuff the user has recently played.
 	const recentlyTouched = useMemo(() => {
-		if (!recentSession || Date.now() - recentSession.timeEnded > ONE_WEEK) {
+		if (!recentSession || Date.now() - recentSession.session.timeEnded > ONE_WEEK) {
 			return [];
 		}
 

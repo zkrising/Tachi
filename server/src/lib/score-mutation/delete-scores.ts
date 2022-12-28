@@ -31,7 +31,7 @@ export async function DeleteScore(
 	for (const session of sessions) {
 		// If a session only has one score, then pulling it should kill
 		// the session.
-		if (session.scoreInfo.length === 1) {
+		if (session.scoreIDs.length === 1) {
 			// eslint-disable-next-line no-await-in-loop
 			await db.sessions.remove({
 				sessionID: session.sessionID,
@@ -141,7 +141,7 @@ export async function DeleteMultipleScores(scores: Array<ScoreDocument>, blackli
 	for (const session of sessions) {
 		// If a session only has one score, then pulling it should kill
 		// the session.
-		if (session.scoreInfo.length === 1) {
+		if (session.scoreIDs.length === 1) {
 			// eslint-disable-next-line no-await-in-loop
 			await db.sessions.remove({
 				sessionID: session.sessionID,

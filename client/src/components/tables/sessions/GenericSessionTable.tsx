@@ -14,12 +14,15 @@ import {
 	SessionCalculatedDataLookup,
 	SessionDocument,
 	Playtype,
+	SessionScoreInfo,
 } from "tachi-common";
 import IndexCell from "../cells/IndexCell";
 import SelectableRating from "../components/SelectableRating";
 import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
 
-export type SessionDataset = (SessionDocument & { __related: { index: integer } })[];
+export type SessionDataset = (SessionDocument & {
+	__related: { index: integer; scoreInfo: Array<SessionScoreInfo> };
+})[];
 
 export default function GenericSessionTable({
 	dataset,
@@ -42,7 +45,7 @@ export default function GenericSessionTable({
 
 	const headers: Header<SessionDataset[0]>[] = [
 		["Name", "Name", StrSOV((x) => x.name)],
-		["Scores", "Scores", NumericSOV((x) => x.scoreInfo.length)],
+		["Scores", "Scores", NumericSOV((x) => x.scoreIDs.length)],
 		[UppercaseFirst(alg), UppercaseFirst(alg), NumericSOV((x) => x.calculatedData[alg] ?? 0)],
 		["Duration", "Dur.", NumericSOV((x) => x.timeEnded - x.timeStarted)],
 		["Timestamp", "Timestamp", NumericSOV((x) => x.timeStarted)],
@@ -78,9 +81,7 @@ export default function GenericSessionTable({
 			entryName="Sessions"
 			searchFunctions={{
 				name: (x) => x.name,
-				scores: (x) => x.scoreInfo.length,
-				pbs: (x) => GetPBs(x.scoreInfo).length,
-				pbRate: (x) => GetPBs(x.scoreInfo).length / x.scoreInfo.length,
+				scores: (x) => x.scoreIDs.length,
 				duration: (x) => (x.timeEnded - x.timeStarted) / (1000 * 60),
 				timestamp: (x) => x.timeStarted,
 				[alg]: (x) => x.calculatedData[alg] ?? 0,
@@ -125,9 +126,9 @@ function Row({
 				<small className="text-muted">{data.desc}</small>
 			</td>
 			<td>
-				{data.scoreInfo.length}
+				{data.scoreIDs.length}
 				<br />
-				<small className="text-muted">PBs: {GetPBs(data.scoreInfo).length}</small>
+				<small className="text-muted">PBs: {GetPBs(data.__related.scoreInfo).length}</small>
 			</td>
 			<td>
 				{FormatGPTSessionRating(

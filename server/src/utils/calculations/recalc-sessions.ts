@@ -13,7 +13,7 @@ export async function RecalcSessions(filter = {}) {
 
 	for (const session of allSessions) {
 		const scores = await db.scores.find(
-			{ scoreID: { $in: session.scoreInfo.map((e) => e.scoreID) } },
+			{ scoreID: { $in: session.scoreIDs } },
 			{
 				projection: { calculatedData: 1 },
 			}

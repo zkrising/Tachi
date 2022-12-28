@@ -509,8 +509,8 @@ function SessionActivity({
 									: "is having"
 								: "had"}{" "}
 							a {prettyGame}
-							session '{data.name}' with {data.scoreInfo.length}{" "}
-							{data.scoreInfo.length === 1 ? "score" : "scores"}
+							session '{data.name}' with {data.scoreIDs.length}{" "}
+							{data.scoreIDs.length === 1 ? "score" : "scores"}
 							{data.highlight ? "!" : "."}
 						</span>
 						<br />
@@ -548,7 +548,7 @@ function SessionShower({ sessionID }: { sessionID: string }) {
 
 	const gptConfig = GetGamePTConfig(data.session.game, data.session.playtype);
 
-	const raises = data.session.scoreInfo.filter((e) => {
+	const raises = data.scoreInfo.filter((e) => {
 		const score = scoreMap.get(e.scoreID);
 
 		// shouldnt happen, but whatever

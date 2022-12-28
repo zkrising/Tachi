@@ -10,6 +10,10 @@ export function AssertStrAsDifficulty(
 	const validDifficulties = GetGamePTConfig(game, playtype).difficulties;
 
 	if (!validDifficulties.includes(strVal)) {
+		if (game === "chunithm" && strVal === "WORLD'S END") {
+			throw new InvalidScoreFailure("WORLD'S END is not supported. Sorry.");
+		}
+
 		throw new InvalidScoreFailure(
 			`Invalid Difficulty for ${game} ${playtype} - Expected any of ${validDifficulties.join(
 				", "

@@ -33,21 +33,26 @@
 		"eslint": "8.18.0",
 		"eslint-plugin-cadence": "0.0.4",
 		"tap": "15.0.9",
-		"ts-node": "10.0.0",
+		"ts-node": "10.9.1",
 		"tsc-alias": "1.7.1",
-		"typescript": "4.6.3"
+		"typescript": "4.9.4"
 	},
 	"peerDependencies": {
 		"@types/bson": "1.0.11",
-		"@types/mongodb": "3.6.18",
+		"@types/mongodb": "3.6.20",
 		"@types/node": "16.11.7"
 	},
 	"pnpm": {
 		"overrides": {
-			"@types/mongodb": "3.6.18",
+			"@types/mongodb": "3.6.20",
 			"@types/bson": "1.0.11",
 			"@types/node": "16.11.7",
 			"@types/express-serve-static-core": "4.17.29"
+		},
+		"patchedDependencies": {
+			"@types/mongodb@3.6.20": "patches/@types__mongodb@3.6.20.patch",
+			"browserslist@4.21.4": "patches/browserslist@4.21.4.patch",
+			"monk@7.3.4": "patches/monk@7.3.4.patch"
 		}
 	}
 }

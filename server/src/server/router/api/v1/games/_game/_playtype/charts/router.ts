@@ -93,7 +93,7 @@ router.get("/", async (req, res) => {
 			);
 		} else {
 			const iidxSettings = (await db["game-settings"].findOne({
-				userID: req[SYMBOL_TACHI_API_AUTH].userID!,
+				userID: req[SYMBOL_TACHI_API_AUTH].userID,
 				game,
 				playtype,
 			})) as UGPTSettings<"iidx:DP" | "iidx:SP"> | null;

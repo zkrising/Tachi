@@ -210,7 +210,7 @@ export async function GetRecentlyInteractedGoals(
 	baseQuery: Omit<FilterQuery<GoalSubscriptionDocument>, "achieved">,
 	limit = 100
 ) {
-	const query = {
+	const query: FilterQuery<GoalSubscriptionDocument> = {
 		...baseQuery,
 		wasInstantlyAchieved: false,
 		achieved: false,
@@ -273,7 +273,7 @@ export async function GetRecentlyInteractedQuests(
 	baseQuery: Omit<FilterQuery<QuestSubscriptionDocument>, "achieved">,
 	limit = 100
 ) {
-	const query = {
+	const query: FilterQuery<QuestSubscriptionDocument> = {
 		...baseQuery,
 		lastInteraction: { $ne: null },
 		achieved: false,

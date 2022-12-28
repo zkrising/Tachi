@@ -58,9 +58,12 @@ router.post("/submit-score", RequireNotGuest, async (req, res) => {
 			);
 
 			if (!orphanInfo) {
-				logger.warn(`Chart '${chart.sha256}' got SongOrChartNotFound, but was not orphaned?`, {
-					body: req.safeBody as unknown,
-				});
+				logger.warn(
+					`Chart '${chart.sha256}' got SongOrChartNotFound, but was not orphaned?`,
+					{
+						body: req.safeBody as unknown,
+					}
+				);
 
 				return res.status(400).json({
 					success: false,

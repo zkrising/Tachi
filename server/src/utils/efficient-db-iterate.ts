@@ -4,7 +4,7 @@ import type { ICollection, IObjectID } from "monk";
 
 const logger = CreateLogCtx(__filename);
 
-export async function EfficientDBIterate<T, R>(
+export async function EfficientDBIterate<T extends object, R>(
 	collection: ICollection<T>,
 	callbackFn: (c: T) => Promise<R> | R,
 	saveOp: (c: Array<R>) => Promise<void>,

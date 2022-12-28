@@ -13,15 +13,15 @@ FROM base AS build
 WORKDIR /app
 
 COPY pnpm-lock.yaml .
+COPY patches ./patches
 
 RUN pnpm fetch
 
 COPY server ./server
 COPY common ./common
-COPY patches ./patches
 COPY *.json *.yaml ./
 
-RUN pnpm --filter tachi-server... --filter . install --offline
+RUN pnpm --filter tachi-server... --filter . install --offline --frozen-lockfile
 RUN pnpm --filter tachi-server... -r build
 
 FROM base AS app

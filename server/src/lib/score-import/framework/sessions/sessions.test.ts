@@ -5,7 +5,7 @@ import db from "external/mongo/db";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPScore, TestingIIDXSPScorePB } from "test-utils/test-data";
-import type { UserDocument, ScoreDocument, SessionDocument } from "tachi-common";
+import type { ScoreDocument, SessionDocument, UserDocument } from "tachi-common";
 
 const logger = CreateScoreLogger(
 	{ username: "test_zkldi", id: 1 } as UserDocument,
@@ -51,12 +51,7 @@ t.test("#CreateSessions", (t) => {
 			game: "iidx",
 			playtype: "SP",
 			highlight: false,
-			scoreInfo: [
-				{
-					scoreID: "TESTING_SCORE_ID",
-					isNewScore: true,
-				},
-			],
+			scoreIDs: ["TESTING_SCORE_ID"],
 
 			// timeInserted: 1622289329729,
 			timeStarted: 1619454485988,
@@ -139,23 +134,11 @@ t.test("#LoadScoresIntoSessions", (t) => {
 
 		t.equal(sessions.length, 1);
 
-		t.strictSame(sessions[0]?.scoreInfo, [
-			{
-				scoreID: "SCORE_ID_1",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_2",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_3",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_4",
-				isNewScore: true,
-			},
+		t.strictSame(sessions[0]?.scoreIDs, [
+			"SCORE_ID_1",
+			"SCORE_ID_2",
+			"SCORE_ID_3",
+			"SCORE_ID_4",
 		]);
 
 		t.end();
@@ -185,27 +168,12 @@ t.test("#LoadScoresIntoSessions", (t) => {
 
 		t.equal(sessions.length, 1);
 
-		t.strictSame(sessions[0]?.scoreInfo, [
-			{
-				scoreID: "SCORE_ID_2",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_4",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_1",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_6",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_3",
-				isNewScore: true,
-			},
+		t.strictSame(sessions[0]?.scoreIDs, [
+			"SCORE_ID_2",
+			"SCORE_ID_4",
+			"SCORE_ID_1",
+			"SCORE_ID_6",
+			"SCORE_ID_3",
 		]);
 
 		t.end();
@@ -248,34 +216,8 @@ t.test("#LoadScoresIntoSessions", (t) => {
 
 		t.equal(sessions.length, 2);
 
-		t.strictSame(sessions[0]?.scoreInfo, [
-			{
-				scoreID: "SCORE_ID_1",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_2",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_3",
-				isNewScore: true,
-			},
-		]);
-		t.strictSame(sessions[1]?.scoreInfo, [
-			{
-				scoreID: "SCORE_ID_4",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_5",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_6",
-				isNewScore: true,
-			},
-		]);
+		t.strictSame(sessions[0]?.scoreIDs, ["SCORE_ID_1", "SCORE_ID_2", "SCORE_ID_3"]);
+		t.strictSame(sessions[1]?.scoreIDs, ["SCORE_ID_4", "SCORE_ID_5", "SCORE_ID_6"]);
 
 		t.end();
 	});
@@ -289,12 +231,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 			importType: "ir/direct-manual",
 			timeStarted: start,
 			timeEnded: start,
-			scoreInfo: [
-				{
-					scoreID: "EXAMPLE_SCORE_ID",
-					isNewScore: true,
-				},
-			],
+			scoreIDs: ["EXAMPLE_SCORE_ID"],
 		} as SessionDocument);
 
 		const res = await LoadScoresIntoSessions(
@@ -319,23 +256,11 @@ t.test("#LoadScoresIntoSessions", (t) => {
 
 		t.equal(sessions.length, 1);
 
-		t.strictSame(sessions[0]?.scoreInfo, [
-			{
-				scoreID: "EXAMPLE_SCORE_ID",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_1",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_2",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_3",
-				isNewScore: true,
-			},
+		t.strictSame(sessions[0]?.scoreIDs, [
+			"EXAMPLE_SCORE_ID",
+			"SCORE_ID_1",
+			"SCORE_ID_2",
+			"SCORE_ID_3",
 		]);
 
 		t.equal(sessions[0]?.timeEnded, start + 2000);
@@ -352,12 +277,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 			importType: "ir/direct-manual",
 			timeStarted: start,
 			timeEnded: start,
-			scoreInfo: [
-				{
-					scoreID: "EXAMPLE_SCORE_ID",
-					isNewScore: true,
-				},
-			],
+			scoreIDs: ["EXAMPLE_SCORE_ID"],
 		} as SessionDocument);
 
 		const res = await LoadScoresIntoSessions(
@@ -382,23 +302,11 @@ t.test("#LoadScoresIntoSessions", (t) => {
 
 		t.equal(sessions.length, 1);
 
-		t.strictSame(sessions[0]?.scoreInfo, [
-			{
-				scoreID: "EXAMPLE_SCORE_ID",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_3",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_2",
-				isNewScore: true,
-			},
-			{
-				scoreID: "SCORE_ID_1",
-				isNewScore: true,
-			},
+		t.strictSame(sessions[0]?.scoreIDs, [
+			"EXAMPLE_SCORE_ID",
+			"SCORE_ID_3",
+			"SCORE_ID_2",
+			"SCORE_ID_1",
 		]);
 
 		t.equal(sessions[0]?.timeStarted, start - 2000);
@@ -429,16 +337,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 
 		t.equal(sessions.length, 1);
 
-		t.strictSame(sessions[0]?.scoreInfo, [
-			{
-				scoreID: "TESTING_SCORE_ID",
-				isNewScore: false,
-				gradeDelta: -4,
-				lampDelta: -2,
-				percentDelta: -44.08396946564885,
-				scoreDelta: -693,
-			},
-		]);
+		t.strictSame(sessions[0]?.scoreIDs, ["TESTING_SCORE_ID"]);
 
 		t.end();
 	});

@@ -133,7 +133,7 @@ function SessionScoreStatBreakdown({
 		const isBestGradeThisSession = new Map();
 		const isBestLampThisSession = new Map();
 
-		for (const scoreInfo of sessionData.session.scoreInfo) {
+		for (const scoreInfo of sessionData.scoreInfo) {
 			const score = scoreMap.get(scoreInfo.scoreID);
 
 			if (!score) {
@@ -158,7 +158,7 @@ function SessionScoreStatBreakdown({
 			}
 		}
 
-		for (const scoreInfo of sessionData.session.scoreInfo) {
+		for (const scoreInfo of sessionData.scoreInfo) {
 			const score = scoreMap.get(scoreInfo.scoreID);
 
 			if (!score) {

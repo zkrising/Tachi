@@ -443,7 +443,7 @@ export interface SessionCalculatedDataLookup {
 export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoDBDocument {
 	userID: integer;
 	sessionID: string;
-	scoreInfo: Array<SessionScoreInfo>;
+	scoreIDs: Array<string>;
 	name: string;
 	desc: string | null;
 	game: Game;
@@ -456,13 +456,6 @@ export interface SessionDocument<I extends IDStrings = IDStrings> extends MongoD
 	timeStarted: integer;
 	calculatedData: Partial<Record<SessionCalculatedDataLookup[I], number | null>>;
 	highlight: boolean;
-	views: integer;
-}
-
-export interface SessionViewDocument extends MongoDBDocument {
-	sessionID: string;
-	ip: string;
-	timestamp: number;
 }
 
 interface ImportErrContent {

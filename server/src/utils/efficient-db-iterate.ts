@@ -1,12 +1,12 @@
 /* eslint-disable no-await-in-loop */
 import CreateLogCtx from "lib/logger/logger";
-import type { ICollection } from "monk";
+import type { ICollection, IObjectID } from "monk";
 
 const logger = CreateLogCtx(__filename);
 
 export async function EfficientDBIterate<T, R>(
 	collection: ICollection<T>,
-	callbackFn: (c: T) => Promise<R>,
+	callbackFn: (c: T) => Promise<R> | R,
 	saveOp: (c: Array<R>) => Promise<void>,
 	// eslint-disable-next-line @typescript-eslint/ban-types
 	filter: object = {},
@@ -14,13 +14,23 @@ export async function EfficientDBIterate<T, R>(
 ) {
 	let i = 0;
 
+	let lastID: IObjectID | null = null;
+
 	while (true) {
 		logger.info(`Running on ${i} - ${i + bucketSize} documents.`);
 		// eslint-disable-next-line no-await-in-loop
-		const docs = await collection.find(filter, {
+		const newFilter: any = { ...filter };
+
+		if (lastID) {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			newFilter._id = { $gt: lastID };
+		}
+
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+		const docs = await collection.find(newFilter, {
 			sort: { _id: 1 },
 			limit: bucketSize,
-			skip: i,
+			projectID: true,
 		});
 
 		if (docs.length === 0) {
@@ -31,6 +41,9 @@ export async function EfficientDBIterate<T, R>(
 		const rDocs = await Promise.all(docs.map(callbackFn));
 
 		i = i + bucketSize;
+
+		// update lastID by taking the last document's ID.
+		lastID = docs.at(-1)?._id ?? null;
 
 		await saveOp(rDocs);
 	}

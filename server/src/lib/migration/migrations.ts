@@ -13,6 +13,8 @@ import RecalcBrokenIIDXNotecounts from "./migrations/recalc-broken-iidx-notecoun
 import RemoveIIDXBeginners from "./migrations/remove-iidx-beginners";
 import RemoveMultifolderStats from "./migrations/remove-multifolder-stats";
 import RemoveRandom from "./migrations/remove-random";
+import RemoveSessionViews from "./migrations/remove-session-views";
+import SessionsToScoreIDs from "./migrations/sessions-to-scoreIDs";
 import UpdateJubeatPreferredTables from "./migrations/update-jubeat-preferred-tables";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
@@ -43,6 +45,8 @@ const REGISTERED_MIGRATIONS: Array<Migration> =
 				RemoveMultifolderStats,
 				UGPTAddPreferredRanking,
 				UserFollowersMigration,
+				RemoveSessionViews,
+				SessionsToScoreIDs,
 		  ];
 
 // only apply type-specific migrations if we're not in testing

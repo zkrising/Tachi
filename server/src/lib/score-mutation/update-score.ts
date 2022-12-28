@@ -2,10 +2,9 @@
 import db from "external/mongo/db";
 import { rootLogger } from "lib/logger/logger";
 import { CreateCalculatedData } from "lib/score-import/framework/calculated-data/calculated-data";
-import { CreatePBDoc, UpdateChartRanking } from "lib/score-import/framework/pb/create-pb-doc";
+import { UpdateChartRanking } from "lib/score-import/framework/pb/create-pb-doc";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
 import { CreateSessionCalcData } from "lib/score-import/framework/sessions/calculated-data";
-import { ProcessScoreIntoSessionScoreInfo } from "lib/score-import/framework/sessions/sessions";
 import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 import { FormatUserDoc, GetUserWithID } from "utils/user";
 import type { KtLogger } from "lib/logger/logger";
@@ -107,27 +106,24 @@ export default async function UpdateScore(
 	}
 
 	const sessions = await db.sessions.find({
-		"scoreInfo.scoreID": oldScoreID,
+		scoreIDs: oldScoreID,
 	});
 
 	// another session already has the new score? (i.e. migrating to an already
 	// existing score?)
 	const existsElsewhere = await db.sessions.findOne({
-		"scoreInfo.scoreID": newScoreID,
+		scoreIDs: newScoreID,
 	});
 
 	logger.verbose(`Updating ${sessions.length} sessions.`);
 
 	// For every session that interacts with this score ID (there should only ever be one)
 	for (const session of sessions) {
-		const newScoreInfoArr = [];
+		const newScoreIDs = [];
 
-		// Go over all the scoreInfo and alter the ones that involve this scoreID.
-		for (const scoreInfo of session.scoreInfo) {
-			let newScoreInfo = scoreInfo;
-
-			// If this scoreInfo needs to be changed
-			if (scoreInfo.scoreID === oldScoreID) {
+		// Go over all the scoreIDs and alter the ones that involve this scoreID.
+		for (const scoreID of session.scoreIDs) {
+			if (scoreID === oldScoreID) {
 				if (existsElsewhere) {
 					// skip this, as this score already belongs to another session.
 					continue;
@@ -138,26 +134,14 @@ export default async function UpdateScore(
 					continue;
 				}
 
-				newScoreInfo.scoreID = newScoreID;
-
-				// update scoreInfo
-				const pbAsOfThen = await CreatePBDoc(
-					newScore.userID,
-					newScore.chartID,
-					logger,
-					newScore.timeAchieved
-				);
-
-				// @ts-expect-error we don't need the ranking data props. ignore this
-				// err, it's nonsense.
-				newScoreInfo = ProcessScoreIntoSessionScoreInfo(newScore, pbAsOfThen ?? null);
+				newScoreIDs.push(newScoreID);
+			} else {
+				newScoreIDs.push(scoreID);
 			}
-
-			newScoreInfoArr.push(newScoreInfo);
 		}
 
 		const scores = await db.scores.find({
-			scoreID: { $in: newScoreInfoArr.map((e) => e.scoreID) },
+			scoreID: { $in: newScoreIDs },
 		});
 
 		// update calculated data too.
@@ -168,7 +152,7 @@ export default async function UpdateScore(
 				sessionID: session.sessionID,
 			},
 			{
-				$set: { scoreInfo: session.scoreInfo, calculatedData: newCalcData },
+				$set: { scoreIDs: newScoreIDs, calculatedData: newCalcData },
 			}
 		);
 	}

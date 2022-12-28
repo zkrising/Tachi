@@ -8,12 +8,7 @@
 		"game": "iidx",
 		"playtype": "SP",
 		"highlight": false,
-		"scoreInfo": [
-			{
-				"scoreID": "TESTING_SCORE_ID",
-				"isNewScore": true
-			}
-		],
+		"scoreIDs": ["TESTING_SCORE_ID"],
 		"timeInserted": 1619454485988,
 		"timeStarted": 1608346320000,
 		"timeEnded": 1608369300000,

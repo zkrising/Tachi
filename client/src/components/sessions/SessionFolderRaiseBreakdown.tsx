@@ -170,7 +170,7 @@ export default function SessionFolderRaiseBreakdown({
 								</h3>
 							}
 						>
-							<MiniTable headers={["New Grades/Lamps"]} colSpan={100}>
+							<MiniTable headers={["New Grades/Lamps (Cumulative)"]} colSpan={100}>
 								{data
 									.filter((e) => e.folder.folderID === folder.folderID)
 									.sort(SortRaisesNicely(gptConfig, preferredScoreBucket))

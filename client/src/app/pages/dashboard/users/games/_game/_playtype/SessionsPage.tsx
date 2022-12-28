@@ -17,6 +17,7 @@ import {
 	UserDocument,
 	SessionDocument,
 	UnsuccessfulAPIResponse,
+	SessionScoreInfo,
 } from "tachi-common";
 import { GamePT, UGPT } from "types/react";
 import SessionCalendar from "components/sessions/SessionCalendar";
@@ -41,7 +42,9 @@ export default function SessionsPage({ reqUser, game, playtype }: UGPT) {
 	const { data, error } = useQuery<SessionDataset, UnsuccessfulAPIResponse>(
 		`${baseUrl}/${sessionSet}`,
 		async () => {
-			const res = await APIFetchV1<SessionDocument[]>(`${baseUrl}/${sessionSet}`);
+			const res = await APIFetchV1<
+				(SessionDocument & { __scoreInfo: Array<SessionScoreInfo> })[]
+			>(`${baseUrl}/${sessionSet}`);
 
 			if (!res.success) {
 				throw res;
@@ -57,6 +60,7 @@ export default function SessionsPage({ reqUser, game, playtype }: UGPT) {
 					...e,
 					__related: {
 						index: i,
+						scoreInfo: e.__scoreInfo,
 					},
 				}));
 		}

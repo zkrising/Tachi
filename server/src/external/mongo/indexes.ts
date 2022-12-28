@@ -1,5 +1,4 @@
 /* eslint-disable no-await-in-loop */
-import { ONE_DAY } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
 import monk from "monk";
@@ -42,12 +41,13 @@ const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 		index({ game: 1, playtype: 1, timeAchieved: 1 }),
 	],
 	sessions: [
+		index({ sessionID: 1 }, UNIQUE),
 		index({ game: 1, playtype: 1, timeStarted: 1 }),
 		index({ userID: 1, game: 1, playtype: 1, timeStarted: 1, timeEnded: 1 }),
 
 		// Optimises score modification, since sessions need to be repointed.
 		// also, just generally useful.
-		index({ "scoreInfo.scoreID": 1 }),
+		index({ scoreIDs: 1 }),
 		index({ name: "text" }),
 	],
 	"game-stats": [index({ userID: 1, game: 1, playtype: 1 }, UNIQUE)],
@@ -96,10 +96,6 @@ const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 	"api-tokens": [index({ token: 1 }, UNIQUE), index({ userID: 1 })],
 	tables: [index({ tableID: 1, game: 1, playtype: 1 }, UNIQUE)],
 	"game-stats-snapshots": [index({ timestamp: 1, userID: 1, game: 1, playtype: 1 }, UNIQUE)],
-	"session-view-cache": [
-		index({ sessionID: 1, ip: 1 }, UNIQUE),
-		index({ timestamp: 1 }, { expireAfterSeconds: ONE_DAY / 1000 }),
-	],
 	"user-settings": [index({ userID: 1 }, UNIQUE)],
 	"user-private-information": [index({ userID: 1 }, UNIQUE), index({ email: 1 }, UNIQUE)],
 	"fer-settings": [index({ userID: 1 }, UNIQUE)],
@@ -134,7 +130,8 @@ const indexes: Partial<Record<Databases, Array<Index>>> = staticIndexes;
 
 for (const game of TachiConfig.GAMES) {
 	if (indexes[`charts-${game}` as Databases]) {
-		indexes[`charts-${game}` as Databases]!.push(
+		// @ts-expect-error this is obviously fine
+		indexes[`charts-${game}` as Databases].push(
 			index({ chartID: 1 }, UNIQUE),
 			index(
 				{ songID: 1, difficulty: 1, playtype: 1, isPrimary: 1 },
@@ -153,7 +150,8 @@ for (const game of TachiConfig.GAMES) {
 	}
 
 	if (indexes[`songs-${game}` as Databases]) {
-		indexes[`songs-${game}` as Databases]!.push(
+		// @ts-expect-error this is obviously fine
+		indexes[`songs-${game}` as Databases].push(
 			index({ id: 1 }, UNIQUE),
 			index({ title: "text", artist: "text", altTitles: "text", searchTerms: "text" })
 		);

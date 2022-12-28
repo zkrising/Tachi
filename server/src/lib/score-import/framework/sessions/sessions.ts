@@ -1,10 +1,12 @@
 import { CreateSessionCalcData } from "./calculated-data";
 import { GenerateRandomSessionName } from "./name-generation";
+import { CreatePBDoc } from "../pb/create-pb-doc";
 import db from "external/mongo/db";
-import { AppendLogCtx } from "lib/logger/logger";
+import CreateLogCtx, { AppendLogCtx } from "lib/logger/logger";
 import { GetScoresFromSession } from "utils/session";
 import crypto from "crypto";
 import type { ScorePlaytypeMap } from "../common/types";
+import type { PBScoreDocumentNoRank } from "../pb/create-pb-doc";
 import type { KtLogger } from "lib/logger/logger";
 import type {
 	Game,
@@ -51,9 +53,9 @@ export async function CreateSessions(
  * Compares a score and the previous PB the user had and returns the difference
  * as a SessionScoreInfo object.
  */
-export function ProcessScoreIntoSessionScoreInfo(
+function ScoreToSessionScoreInfo(
 	score: ScoreDocument,
-	previousPB: PBScoreDocument | undefined
+	previousPB: PBScoreDocumentNoRank | undefined
 ): SessionScoreInfo {
 	if (!previousPB) {
 		return {
@@ -72,13 +74,41 @@ export function ProcessScoreIntoSessionScoreInfo(
 	};
 }
 
+/**
+ * Return info about how this session's scores stack up against the owner's PBs at the
+ * time.
+ */
+export async function GetSessionScoreInfo(
+	session: SessionDocument
+): Promise<Array<SessionScoreInfo>> {
+	const logger = CreateLogCtx(`Session ${session.sessionID} Score Info`);
+
+	const scores = await db.scores.find({
+		scoreID: { $in: session.scoreIDs },
+	});
+
+	const promises = [];
+
+	for (const score of scores) {
+		promises.push(
+			CreatePBDoc(session.userID, score.chartID, logger, session.timeStarted).then((pb) =>
+				ScoreToSessionScoreInfo(score, pb)
+			)
+		);
+	}
+
+	const scoreInfo = await Promise.all(promises);
+
+	return scoreInfo;
+}
+
 export function CreateSessionID() {
 	return `Q${crypto.randomBytes(20).toString("hex")}`;
 }
 
 function UpdateExistingSession(
 	existingSession: SessionDocument,
-	newInfo: Array<SessionScoreInfo>,
+	newScoreIDs: Array<string>,
 	oldScores: Array<ScoreDocument>,
 	newScores: Array<ScoreDocument>
 ) {
@@ -91,7 +121,7 @@ function UpdateExistingSession(
 	);
 
 	existingSession.calculatedData = calculatedData;
-	existingSession.scoreInfo = [...existingSession.scoreInfo, ...newInfo];
+	existingSession.scoreIDs = [...existingSession.scoreIDs, ...newScoreIDs];
 
 	if (newScores[0]!.timeAchieved! < existingSession.timeStarted) {
 		existingSession.timeStarted = newScores[0]!.timeAchieved!;
@@ -107,7 +137,7 @@ function UpdateExistingSession(
 function CreateSession(
 	userID: integer,
 	importType: ImportTypes,
-	groupInfo: Array<SessionScoreInfo>,
+	scoreIDs: Array<string>,
 	groupScores: Array<ScoreDocument>,
 	game: Game,
 	playtype: Playtype
@@ -125,12 +155,11 @@ function CreateSession(
 		game,
 		playtype,
 		highlight: false,
-		scoreInfo: groupInfo,
+		scoreIDs,
 		timeInserted: Date.now(),
 		timeStarted: groupScores[0]!.timeAchieved!,
 		timeEnded: groupScores[groupScores.length - 1]!.timeAchieved!,
 		calculatedData,
-		views: 0,
 	};
 }
 
@@ -203,27 +232,10 @@ export async function LoadScoresIntoSessions(
 		const startOfGroup = groupScores[0]!.timeAchieved!;
 		const endOfGroup = groupScores[groupScores.length - 1]!.timeAchieved!;
 
-		// A bug exists here where if a session is created
-		// backwards in time, this will grab your PBs
-		// from the future.
-		// this is marked as wontfix under #179
-		const pbs = await db["personal-bests"].find({
-			chartID: { $in: groupScores.map((e) => e.chartID) },
-			userID,
-		});
-
-		const pbMap: Map<string, PBScoreDocument> = new Map();
-
-		for (const pb of pbs) {
-			pbMap.set(pb.chartID, pb);
-		}
-
-		const groupInfo = groupScores.map((e) =>
-			ProcessScoreIntoSessionScoreInfo(e, pbMap.get(e.chartID))
-		);
+		const scoreIDs = groupScores.map((e) => e.scoreID);
 
 		// Find any sessions with +/-2hrs of this group. This is rather exhaustive, and could result in some issues
-		// if this query returns more than one session. We should account for that by smushing sessions together.
+		// if this query returns more than one session. We could account for that by smushing sessions together.
 		// This is not possible however, so this is now just a known tachi oddity.
 		const nearbySession = await db.sessions.findOne({
 			userID,
@@ -245,7 +257,7 @@ export async function LoadScoresIntoSessions(
 
 			const oldScores = await GetScoresFromSession(nearbySession);
 
-			const session = UpdateExistingSession(nearbySession, groupInfo, oldScores, groupScores);
+			const session = UpdateExistingSession(nearbySession, scoreIDs, oldScores, groupScores);
 
 			infoReturn = { sessionID: session.sessionID, type: "Appended" };
 
@@ -265,7 +277,7 @@ export async function LoadScoresIntoSessions(
 			const session = CreateSession(
 				userID,
 				importType,
-				groupInfo,
+				scoreIDs,
 				groupScores,
 				game,
 				playtype

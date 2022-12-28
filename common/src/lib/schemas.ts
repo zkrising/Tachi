@@ -801,26 +801,10 @@ const PRE_SCHEMAS = {
 			timeEnded: p.isPositiveInteger,
 			timeStarted: p.isPositiveInteger,
 			highlight: "boolean",
-			views: p.isInteger,
 			calculatedData: Object.fromEntries(
 				gptConfig.sessionRatingAlgs.map((k) => [k, "*?number"])
 			),
-			scoreInfo: [
-				p.or(
-					{
-						scoreID: "string",
-						isNewScore: p.is(true),
-					},
-					{
-						scoreID: "string",
-						isNewScore: p.is(false),
-						scoreDelta: "number",
-						gradeDelta: p.isInteger,
-						lampDelta: p.isInteger,
-						percentDelta: "number",
-					}
-				),
-			],
+			scoreIDs: ["string"],
 		})(self);
 	},
 	imports: prSchemaFnWrap({
@@ -1030,11 +1014,6 @@ const PRE_SCHEMAS = {
 			return true;
 		},
 		fromOAuth2Client: "*string",
-	}),
-	"session-view-cache": prSchemaFnWrap({
-		sessionID: "string",
-		ip: "string",
-		timestamp: p.isPositive,
 	}),
 	"user-private-information": prSchemaFnWrap({
 		userID: p.isPositiveNonZeroInteger,

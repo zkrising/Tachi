@@ -82,10 +82,18 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/best", (t) => {
 				game: "iidx",
 				playtype: "SP",
 				userID: 1,
+				scoreIDs: [],
 				calculatedData: {
 					ktLampRating: i,
 				},
-			} as SessionDocument);
+				desc: null,
+				name: i.toString(),
+				highlight: false,
+				importType: "file/batch-manual",
+				timeEnded: 0,
+				timeInserted: 0,
+				timeStarted: 0,
+			});
 		}
 
 		await db.sessions.remove({});
@@ -120,11 +128,19 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/best", (t) => {
 					game: "iidx",
 					playtype: "SP",
 					userID: 1,
+					scoreIDs: [],
 					calculatedData: {
 						ktLampRating: 200 - i,
 						BPI: i,
 					},
-				} as SessionDocument);
+					desc: null,
+					name: i.toString(),
+					highlight: false,
+					importType: "file/batch-manual",
+					timeEnded: 0,
+					timeInserted: 0,
+					timeStarted: 0,
+				});
 			}
 
 			await db.sessions.remove({});
@@ -164,6 +180,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/highlighted", (
 			game: "iidx",
 			playtype: "SP",
 			sessionID: "highlighted_id",
+			scoreIDs: [""],
 		} as SessionDocument);
 
 		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/sessions/highlighted");
@@ -190,6 +207,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/recent", (t) =>
 				playtype: "SP",
 				sessionID: "recent_id1",
 				timeEnded: 1,
+				scoreIDs: [""],
 			},
 			{
 				highlight: false,
@@ -198,6 +216,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/recent", (t) =>
 				playtype: "SP",
 				sessionID: "recent_id2",
 				timeEnded: 3,
+				scoreIDs: [""],
 			},
 			{
 				highlight: false,
@@ -206,6 +225,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/sessions/recent", (t) =>
 				playtype: "SP",
 				sessionID: "recent_id3",
 				timeEnded: 2,
+				scoreIDs: [""],
 			},
 		] as Array<SessionDocument>);
 

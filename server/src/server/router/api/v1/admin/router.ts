@@ -288,7 +288,7 @@ router.post("/recalc", async (req, res) => {
 	).map((e) => e.scoreID);
 
 	await RecalcSessions({
-		"scoreInfo.scoreID": { $in: scoreIDs },
+		scoreIDs: { $in: scoreIDs },
 	});
 
 	return res.status(200).json({

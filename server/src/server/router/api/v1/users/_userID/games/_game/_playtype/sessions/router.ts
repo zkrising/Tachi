@@ -1,9 +1,11 @@
 import { Router } from "express";
 import db from "external/mongo/db";
+import { GetSessionScoreInfo } from "lib/score-import/framework/sessions/sessions";
 import { SearchSessions } from "lib/search/search";
 import { GetGamePTConfig } from "tachi-common";
 import { GetUGPT } from "utils/req-tachi-data";
 import { CheckStrSessionAlg } from "utils/string-checks";
+import type { SessionDocument, SessionScoreInfo } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -74,10 +76,28 @@ router.get("/best", async (req, res) => {
 		}
 	);
 
+	const sessionsWithScoreInfo: Array<SessionDocument & { __scoreInfo: Array<SessionScoreInfo> }> =
+		[];
+
+	await Promise.all(
+		sessions.map((session) =>
+			GetSessionScoreInfo(session).then((r) => {
+				sessionsWithScoreInfo.push({
+					...session,
+					__scoreInfo: r,
+				});
+			})
+		)
+	);
+
+	sessionsWithScoreInfo.sort(
+		(a, b) => (b.calculatedData[alg] ?? -Infinity) - (a.calculatedData[alg] ?? -Infinity)
+	);
+
 	return res.status(200).json({
 		success: true,
 		description: `Retrieved ${sessions.length} sessions.`,
-		body: sessions,
+		body: sessionsWithScoreInfo,
 	});
 });
 
@@ -94,10 +114,24 @@ router.get("/highlighted", async (req, res) => {
 		{ sort: { timeEnded: -1 }, limit: 100 }
 	);
 
+	const sessionsWithScoreInfo: Array<SessionDocument & { __scoreInfo: Array<SessionScoreInfo> }> =
+		[];
+
+	await Promise.all(
+		sessions.map((session) =>
+			GetSessionScoreInfo(session).then((r) => {
+				sessionsWithScoreInfo.push({
+					...session,
+					__scoreInfo: r,
+				});
+			})
+		)
+	);
+
 	return res.status(200).json({
 		success: true,
 		description: `Returned ${sessions.length} sessions.`,
-		body: sessions,
+		body: sessionsWithScoreInfo,
 	});
 });
 
@@ -114,10 +148,26 @@ router.get("/recent", async (req, res) => {
 		{ sort: { timeEnded: -1 }, limit: 100 }
 	);
 
+	const sessionsWithScoreInfo: Array<SessionDocument & { __scoreInfo: Array<SessionScoreInfo> }> =
+		[];
+
+	await Promise.all(
+		sessions.map((session) =>
+			GetSessionScoreInfo(session).then((r) => {
+				sessionsWithScoreInfo.push({
+					...session,
+					__scoreInfo: r,
+				});
+			})
+		)
+	);
+
+	sessionsWithScoreInfo.sort((a, b) => b.timeEnded - a.timeEnded);
+
 	return res.status(200).json({
 		success: true,
 		description: `Returned ${sessions.length} sessions.`,
-		body: sessions,
+		body: sessionsWithScoreInfo,
 	});
 });
 
@@ -141,10 +191,15 @@ router.get("/last", async (req, res) => {
 		});
 	}
 
+	const scoreInfo = await GetSessionScoreInfo(session);
+
 	return res.status(200).json({
 		success: true,
 		description: `Returned a session.`,
-		body: session,
+		body: {
+			session,
+			scoreInfo,
+		},
 	});
 });
 

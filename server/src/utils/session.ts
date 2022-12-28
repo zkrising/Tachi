@@ -7,7 +7,7 @@ import type { ScoreDocument, SessionDocument } from "tachi-common";
  */
 export function GetScoresFromSession(session: SessionDocument) {
 	return db.scores.find({
-		scoreID: { $in: session.scoreInfo.map((e) => e.scoreID) },
+		scoreID: { $in: session.scoreIDs },
 	});
 }
 
@@ -17,6 +17,6 @@ export function GetScoresFromSession(session: SessionDocument) {
  */
 export function GetSessionFromScore(score: ScoreDocument) {
 	return db.sessions.findOne({
-		"scoreInfo.scoreID": score.scoreID,
+		scoreIDs: score.scoreID,
 	});
 }

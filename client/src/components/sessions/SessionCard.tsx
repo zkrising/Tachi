@@ -119,7 +119,7 @@ export default function SessionCard({ sessionID }: { sessionID: string }) {
 function SessionOverview({ session, username }: { session: SessionDocument; username: string }) {
 	return (
 		<div className="row">
-			<StatIcon name="Scores" value={session.scoreInfo.length} />
+			<StatIcon name="Scores" value={session.scoreIDs.length} />
 
 			<div className="col-12 col-lg-4">
 				<div className="d-flex justify-content-center align-self-center">

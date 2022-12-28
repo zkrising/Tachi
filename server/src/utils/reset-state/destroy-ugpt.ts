@@ -49,25 +49,6 @@ export default async function DestroyUserGamePlaytypeData(
 		chartID: { $in: chartIDs },
 	});
 
-	const sessionIDs = (
-		await db.sessions.find(
-			{
-				userID,
-				game,
-				playtype,
-			},
-			{
-				projection: {
-					sessionID: 1,
-				},
-			}
-		)
-	).map((e) => e.sessionID);
-
-	await db["session-view-cache"].remove({
-		sessionID: { $in: sessionIDs },
-	});
-
 	await db.sessions.remove({
 		userID,
 		game,

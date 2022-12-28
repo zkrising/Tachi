@@ -79,11 +79,11 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 	const scoreDataset = useMemo(() => {
 		const d = [];
 
-		for (const scoreInfo of session.scoreInfo) {
-			const score = scoreMap.get(scoreInfo.scoreID);
+		for (const sci of data.scoreInfo) {
+			const score = scoreMap.get(sci.scoreID);
 
 			if (!score) {
-				console.error(`No score for scoreID ${scoreInfo.scoreID}, but one was in session?`);
+				console.error(`No score for scoreID ${sci.scoreID}, but one was in session?`);
 				continue;
 			}
 
@@ -190,18 +190,6 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 						)}
 					</EditableText>
 				</div>
-
-				<Badge variant="secondary">
-					<span
-						style={{
-							lineHeight: "15px",
-							verticalAlign: "middle",
-						}}
-					>
-						<Icon type="eye" style={{ verticalAlign: "middle" }} /> Views:{" "}
-						{session.views}
-					</span>
-				</Badge>
 				{session.highlight && (
 					<Badge
 						style={{

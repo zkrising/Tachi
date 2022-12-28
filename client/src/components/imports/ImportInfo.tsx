@@ -195,7 +195,7 @@ function SessionTab({ data }: { data: Data }) {
 						</Link>
 					</td>
 					<td>{r.info.type}</td>
-					<td>{r.session.scoreInfo.length}</td>
+					<td>{r.session.scoreIDs.length}</td>
 				</tr>
 			)}
 		/>

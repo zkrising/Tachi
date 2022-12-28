@@ -34,21 +34,11 @@ const mockSessionDocument: SessionDocument = {
 	highlight: false,
 	importType: "file/batch-manual",
 	name: "",
-	scoreInfo: [
-		{
-			isNewScore: true,
-			scoreID: "TESTING_SCORE_ID",
-		},
-		{
-			isNewScore: true,
-			scoreID: "scoreid_2",
-		},
-	],
+	scoreIDs: ["TESTING_SCORE_ID", "scoreid_2"],
 	sessionID: "mockSessionID",
 	timeEnded: 1000,
 	timeInserted: 0,
 	timeStarted: 0,
-	views: 0,
 };
 
 t.test("#UpdateScore", (t) => {
@@ -105,17 +95,8 @@ t.test("#UpdateScore", (t) => {
 		});
 
 		t.strictSame(
-			dbSession?.scoreInfo,
-			[
-				{
-					isNewScore: true,
-					scoreID: newScoreID,
-				},
-				{
-					isNewScore: true,
-					scoreID: "scoreid_2",
-				},
-			],
+			dbSession?.scoreIDs,
+			[newScoreID, "scoreid_2"],
 			"Should update TESTING_SCORE_ID to the new hash."
 		);
 

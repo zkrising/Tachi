@@ -1,10 +1,7 @@
-import {
-	GetSessionFromParam,
-	RequireOwnershipOfSession,
-	UpdateSessionViewcount,
-} from "./middleware";
+import { GetSessionFromParam, RequireOwnershipOfSession } from "./middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
+import { GetSessionScoreInfo } from "lib/score-import/framework/sessions/sessions";
 import { p } from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
@@ -15,11 +12,11 @@ import { optNull } from "utils/prudence";
 import { GetTachiData } from "utils/req-tachi-data";
 import { GetUserWithID } from "utils/user";
 import type {
-	ScoreDocument,
+	FolderDocument,
 	Grades,
 	IDStrings,
-	FolderDocument,
 	Lamps,
+	ScoreDocument,
 	integer,
 } from "tachi-common";
 
@@ -32,14 +29,14 @@ router.use(GetSessionFromParam);
  *
  * @name GET /api/v1/sessions/:sessionID
  */
-router.get("/", UpdateSessionViewcount, async (req, res) => {
+router.get("/", async (req, res) => {
 	const session = GetTachiData(req, "sessionDoc");
 
 	const scores = await db.scores.find({
-		scoreID: { $in: session.scoreInfo.map((e) => e.scoreID) },
+		scoreID: { $in: session.scoreIDs },
 	});
 
-	const [songs, charts, user] = await Promise.all([
+	const [songs, charts, user, scoreInfo] = await Promise.all([
 		db.songs[session.game].find({
 			id: { $in: scores.map((e) => e.songID) },
 		}),
@@ -47,6 +44,7 @@ router.get("/", UpdateSessionViewcount, async (req, res) => {
 			chartID: { $in: scores.map((e) => e.chartID) },
 		}),
 		GetUserWithID(session.userID),
+		GetSessionScoreInfo(session),
 	]);
 
 	return res.status(200).json({
@@ -58,6 +56,7 @@ router.get("/", UpdateSessionViewcount, async (req, res) => {
 			charts,
 			scores,
 			user,
+			scoreInfo,
 		},
 	});
 });
@@ -82,17 +81,19 @@ router.get("/folder-raises", async (req, res) => {
 
 	const { clearLamp, clearGrade } = gptConfig;
 
+	const scoreInfo = await GetSessionScoreInfo(session);
+
 	// nobody cares about raises on folders below these grades. For IIDX, this is
 	// EASY CLEAR and A grade. For more info, see common/src/config.ts
 	const clearLampIndex = gptConfig.lamps.indexOf(clearLamp);
 	const clearGradeIndex = gptConfig.grades.indexOf(clearGrade);
 
 	// things that are definitely raises
-	const newScoreIDs = session.scoreInfo.filter((e) => e.isNewScore).map((e) => e.scoreID);
-	const gradeRaiseIDs = session.scoreInfo
+	const newScoreIDs = scoreInfo.filter((e) => e.isNewScore).map((e) => e.scoreID);
+	const gradeRaiseIDs = scoreInfo
 		.filter((e) => !e.isNewScore && e.gradeDelta > 0)
 		.map((e) => e.scoreID);
-	const lampRaiseIDs = session.scoreInfo
+	const lampRaiseIDs = scoreInfo
 		.filter((e) => !e.isNewScore && e.lampDelta > 0)
 		.map((e) => e.scoreID);
 
@@ -101,17 +102,17 @@ router.get("/folder-raises", async (req, res) => {
 	const gradeDeltas: Record<string, integer> = {};
 	const lampDeltas: Record<string, integer> = {};
 
-	for (const scoreInfo of session.scoreInfo) {
-		if (scoreInfo.isNewScore) {
+	for (const sci of scoreInfo) {
+		if (sci.isNewScore) {
 			continue;
 		}
 
-		if (scoreInfo.gradeDelta > 0) {
-			gradeDeltas[scoreInfo.scoreID] = scoreInfo.gradeDelta;
+		if (sci.gradeDelta > 0) {
+			gradeDeltas[sci.scoreID] = sci.gradeDelta;
 		}
 
-		if (scoreInfo.lampDelta > 0) {
-			lampDeltas[scoreInfo.scoreID] = scoreInfo.lampDelta;
+		if (sci.lampDelta > 0) {
+			lampDeltas[sci.scoreID] = sci.lampDelta;
 		}
 	}
 

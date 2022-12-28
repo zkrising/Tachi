@@ -28,6 +28,7 @@ import {
 	QuestDocument,
 	QuestSubscriptionDocument,
 	QuestlineDocument,
+	SessionScoreInfo,
 } from "tachi-common";
 
 export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
@@ -80,6 +81,7 @@ export type UGPTHistory = Omit<UserGameStatsSnapshot, "userID" | "game" | "playt
 export interface SessionReturns<I extends IDStrings = IDStrings> {
 	session: SessionDocument;
 	scores: ScoreDocument[];
+	scoreInfo: Array<SessionScoreInfo>;
 	songs: SongDocument<IDStringToGame[I]>[];
 	charts: ChartDocument<I>[];
 	user: UserDocument;

@@ -32,7 +32,7 @@ export default function SessionOverview({
 
 	return (
 		<>
-			<StatThing name="Scores" value={session.scoreInfo.length} />
+			<StatThing name="Scores" value={session.scoreIDs.length} />
 			<StatThing
 				name="Duration"
 				value={FormatDuration(session.timeEnded - session.timeStarted)}

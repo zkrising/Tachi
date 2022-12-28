@@ -27,7 +27,7 @@ const logger = CreateLogCtx(__filename);
  * @param existingMatch - An existing $match query to further filter results
  * by.
  */
-export function SearchCollection<T>(
+export function SearchCollection<T extends object>(
 	collection: ICollection<T>,
 	search: string,
 	existingMatch: FilterQuery<T> = {},

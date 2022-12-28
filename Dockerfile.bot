@@ -5,12 +5,12 @@ FROM base AS build
 WORKDIR /app
 
 COPY pnpm-lock.yaml .
+COPY patches ./patches
 
 RUN pnpm fetch
 
 COPY bot ./bot
 COPY common ./common
-COPY patches ./patches
 COPY *.json *.yaml ./
 
 RUN pnpm --filter tachi-bot... --filter . install --offline --silent

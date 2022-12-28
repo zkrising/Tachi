@@ -18,7 +18,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"@types/express-serve-static-core": "4.17.29",
-		"@types/mongodb": "3.6.18",
+		"@types/mongodb": "3.6.20",
 		"deepmerge": "^4.2.2",
 		"prudence": "0.10.0"
 	},

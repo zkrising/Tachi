@@ -5,6 +5,7 @@ FROM base AS build
 WORKDIR /app
 
 COPY pnpm-lock.yaml .
+COPY patches ./patches
 
 RUN pnpm fetch
 

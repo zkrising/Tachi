@@ -106,13 +106,13 @@ export default async function UpdateScore(
 	}
 
 	const sessions = await db.sessions.find({
-		"scoreInfo.scoreID": oldScoreID,
+		scoreIDs: oldScoreID,
 	});
 
 	// another session already has the new score? (i.e. migrating to an already
 	// existing score?)
 	const existsElsewhere = await db.sessions.findOne({
-		"scoreInfo.scoreID": newScoreID,
+		scoreIDs: newScoreID,
 	});
 
 	logger.verbose(`Updating ${sessions.length} sessions.`);
@@ -121,7 +121,7 @@ export default async function UpdateScore(
 	for (const session of sessions) {
 		const newScoreIDs = [];
 
-		// Go over all the scoreInfo and alter the ones that involve this scoreID.
+		// Go over all the scoreIDs and alter the ones that involve this scoreID.
 		for (const scoreID of session.scoreIDs) {
 			if (scoreID === oldScoreID) {
 				if (existsElsewhere) {
@@ -133,9 +133,11 @@ export default async function UpdateScore(
 					// this shouldn't be in a session anymore.
 					continue;
 				}
-			}
 
-			newScoreIDs.push(scoreID);
+				newScoreIDs.push(newScoreID);
+			} else {
+				newScoreIDs.push(scoreID);
+			}
 		}
 
 		const scores = await db.scores.find({

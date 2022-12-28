@@ -17,6 +17,6 @@ export function GetScoresFromSession(session: SessionDocument) {
  */
 export function GetSessionFromScore(score: ScoreDocument) {
 	return db.sessions.findOne({
-		"scoreInfo.scoreID": score.scoreID,
+		scoreIDs: score.scoreID,
 	});
 }

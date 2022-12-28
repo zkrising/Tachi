@@ -90,6 +90,10 @@ router.get("/best", async (req, res) => {
 		)
 	);
 
+	sessionsWithScoreInfo.sort(
+		(a, b) => (b.calculatedData[alg] ?? -Infinity) - (a.calculatedData[alg] ?? -Infinity)
+	);
+
 	return res.status(200).json({
 		success: true,
 		description: `Retrieved ${sessions.length} sessions.`,
@@ -157,6 +161,8 @@ router.get("/recent", async (req, res) => {
 			})
 		)
 	);
+
+	sessionsWithScoreInfo.sort((a, b) => b.timeEnded - a.timeEnded);
 
 	return res.status(200).json({
 		success: true,

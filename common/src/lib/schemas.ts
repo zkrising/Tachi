@@ -804,22 +804,7 @@ const PRE_SCHEMAS = {
 			calculatedData: Object.fromEntries(
 				gptConfig.sessionRatingAlgs.map((k) => [k, "*?number"])
 			),
-			scoreInfo: [
-				p.or(
-					{
-						scoreID: "string",
-						isNewScore: p.is(true),
-					},
-					{
-						scoreID: "string",
-						isNewScore: p.is(false),
-						scoreDelta: "number",
-						gradeDelta: p.isInteger,
-						lampDelta: p.isInteger,
-						percentDelta: "number",
-					}
-				),
-			],
+			scoreIDs: ["string"],
 		})(self);
 	},
 	imports: prSchemaFnWrap({

@@ -38,16 +38,7 @@ const mockSessionDocument: SessionDocument = {
 	highlight: false,
 	importType: "file/batch-manual",
 	name: "",
-	scoreInfo: [
-		{
-			isNewScore: true,
-			scoreID: "scoreid_1",
-		},
-		{
-			isNewScore: true,
-			scoreID: "scoreid_2",
-		},
-	],
+	scoreIDs: ["scoreid_1", "scoreid_2"],
 	sessionID: "mockSessionID",
 	timeEnded: 1000,
 	timeInserted: 0,
@@ -91,13 +82,8 @@ t.test("#DeleteScore", (t) => {
 		});
 
 		t.strictSame(
-			dbSession?.scoreInfo,
-			[
-				{
-					isNewScore: true,
-					scoreID: "scoreid_2",
-				},
-			],
+			dbSession?.scoreIDs,
+			["scoreid_2"],
 			"Should remove scoreid_1 from the sessionDocument's scoreIDs"
 		);
 
@@ -140,12 +126,7 @@ t.test("#DeleteScore", (t) => {
 			deepmerge<SessionDocument>(
 				mockSessionDocument,
 				{
-					scoreInfo: [
-						{
-							isNewScore: true,
-							scoreID: "scoreid_1",
-						},
-					],
+					scoreIDs: ["scoreid_1"],
 				},
 				{
 					arrayMerge: (a, b) => b,

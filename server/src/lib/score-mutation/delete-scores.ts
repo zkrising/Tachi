@@ -25,7 +25,7 @@ export async function DeleteScore(
 	});
 
 	const sessions = await db.sessions.find({
-		"scoreInfo.scoreID": score.scoreID,
+		scoreIDs: score.scoreID,
 	});
 
 	for (const session of sessions) {
@@ -45,9 +45,7 @@ export async function DeleteScore(
 		},
 		{
 			$pull: {
-				scoreInfo: {
-					scoreID: score.scoreID,
-				},
+				scoreIDs: score.scoreID,
 			},
 		},
 		{
@@ -135,7 +133,7 @@ export async function DeleteMultipleScores(scores: Array<ScoreDocument>, blackli
 	});
 
 	const sessions = await db.sessions.find({
-		"scoreInfo.scoreID": { $in: scoreIDs },
+		scoreIDs: { $in: scoreIDs },
 	});
 
 	for (const session of sessions) {
@@ -155,9 +153,7 @@ export async function DeleteMultipleScores(scores: Array<ScoreDocument>, blackli
 		},
 		{
 			$pull: {
-				scoreInfo: {
-					scoreID: { $in: scoreIDs },
-				},
+				scoreIDs: { $in: scoreIDs },
 			},
 		},
 		{
@@ -168,7 +164,7 @@ export async function DeleteMultipleScores(scores: Array<ScoreDocument>, blackli
 	// remove all sessions that no longer have scores in them.
 	await db.sessions.remove({
 		sessionID: { $in: sessions.map((e) => e.sessionID) },
-		scoreInfo: { $size: 0 },
+		scoreIDs: { $size: 0 },
 	});
 
 	await RecalcSessions({ sessionID: { $in: sessions.map((e) => e.sessionID) } });

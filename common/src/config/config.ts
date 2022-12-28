@@ -19,9 +19,9 @@ import {
 	WaccaStageUps,
 	MaimaiDXColours,
 	MaimaiDXDans,
-} from "../game-classes";
+} from "./game-classes";
 import type { GPTTierlists } from "..";
-import type { ClassInfo, GameClassSets } from "../game-classes";
+import type { ClassInfo, GameClassSets } from "./game-classes";
 import type { ESDJudgementFormat } from "../lib/esd";
 import type {
 	Difficulties,

@@ -9,7 +9,7 @@ import { UserAuthLevels } from "../types";
 import deepmerge from "deepmerge";
 import { p } from "prudence";
 import type { GamePTConfig } from "../config/config";
-import type { AllClassSets } from "../game-classes";
+import type { AllClassSets } from "../config/game-classes";
 import type { Game, IDStrings, NotificationBody, Playtype, Playtypes } from "../types";
 import type {
 	PrudenceSchema,

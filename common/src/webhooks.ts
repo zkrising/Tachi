@@ -1,5 +1,5 @@
 import type { Game, Playtypes } from ".";
-import type { GameClassSets } from "./game-classes";
+import type { GameClassSets } from "./config/game-classes";
 import type { GoalImportStat, IDStrings, integer, QuestImportStat } from "./types";
 
 /**

@@ -1,8 +1,8 @@
 // Classes refer to things like dans.
 // Not the JS construct.
 
-import { COLOUR_SET } from "./constants/colour-set";
-import type { IDStrings, integer } from "./types";
+import { COLOUR_SET } from "../constants/colour-set";
+import type { GPTStrings, integer } from "../types";
 
 export interface ClassInfo {
 	display: string;
@@ -376,30 +376,3 @@ export const MaimaiDXColours = [
 	// come up with color for dx's rainbow
 	noMouseoverCSS("RAINBOW", "Rainbow", "todo"),
 ];
-
-export interface GameClassSets {
-	"iidx:SP": "dan";
-	"iidx:DP": "dan";
-	"popn:9B": "class";
-	"sdvx:Single": "dan" | "vfClass";
-	"usc:Keyboard": never;
-	"usc:Controller": never;
-	"maimaidx:Single": "colour" | "dan";
-	"jubeat:Single": "colour";
-	"museca:Single": never;
-	"bms:7K": "genocideDan" | "lnDan" | "scratchDan" | "stslDan";
-	"bms:14K": "genocideDan" | "stslDan";
-	"chunithm:Single": "colour";
-	"gitadora:Gita": "colour";
-	"gitadora:Dora": "colour";
-	"wacca:Single": "colour" | "stageUp";
-	"pms:Controller": "dan";
-	"pms:Keyboard": "dan";
-	"itg:Stamina": never;
-}
-
-export type AllClassSets = GameClassSets[IDStrings];
-
-export type GameClasses<I extends IDStrings> = {
-	[K in GameClassSets[I]]: integer;
-};

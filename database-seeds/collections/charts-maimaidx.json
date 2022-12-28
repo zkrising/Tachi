@@ -1980,6 +1980,74 @@
 		]
 	},
 	{
+		"chartID": "6ec0e67258f2e63581b4fa4ea74d218ae07afdd9",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 31,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "98b6476f9666926957a53ca0b07a4f981a82cd50",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 31,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "84998c5a2e6a86df1493b9a881b8bb6b2917ec25",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "10+",
+		"levelNum": 10.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 31,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "b463dc1f681cae7980ca1692b7e9df71b2850143",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "14+",
+		"levelNum": 14.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 31,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
 		"chartID": "5936f2c7edcf01cbb568feb2a4c3da9c5c657855",
 		"data": {
 			"isLatest": false
@@ -26910,6 +26978,74 @@
 		]
 	},
 	{
+		"chartID": "e00683960e7ab647e3ba2d27585e622e39a46386",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "8",
+		"levelNum": 8,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 408,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "dd2a3bd1c4eedc7abde72b70f756883966ac637b",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 408,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "bc1f349aa8bad0c072781b491202e774e15408d8",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "11+",
+		"levelNum": 11.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 408,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "8ff1e63530d87e8d67bd7460ab00cbb26016f270",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 408,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
 		"chartID": "eed5a8f7d5f363bcd2197623a50b7feaf0f9c469",
 		"data": {
 			"isLatest": false
@@ -50895,6 +51031,40 @@
 		]
 	},
 	{
+		"chartID": "d7c7537beb5f259e3754b1133a2483f403e18c78",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "Advanced",
+		"isPrimary": true,
+		"level": "8",
+		"levelNum": 8,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 787,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "fe68ed7c79d5f451d6b689f0671cb31127f6244e",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "Basic",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 787,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
 		"chartID": "c86740f2d89f8cb54d53085910439be79840efcf",
 		"data": {
 			"isLatest": false
@@ -50950,6 +51120,40 @@
 		"levelNum": 14.7,
 		"playtype": "Single",
 		"songID": 787,
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "5c42add964c5e48fc2979a86e33c38677f51d984",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "Expert",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 787,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "a1e73e7bdfefec3f931f736056864cad4167412f",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "Master",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 787,
+		"tierlistInfo": {},
 		"versions": [
 			"universeplus"
 		]
@@ -65110,6 +65314,958 @@
 		"levelNum": 12.7,
 		"playtype": "Single",
 		"songID": 1019,
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "c6fbbc77491639d18562ca3756040fd68c504ef1",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1020,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "33d19492ce4ad86abd6333afd82d3c099e906515",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1020,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "3c50fbc8e1de6bcfd86975fd2b31ef6b1696e4d6",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1020,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "15553bb01dc71a3ab46e729c77e7af25ba29bb96",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1020,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "e44d53a4c96e46ee2bc1fed5dd4249106038ca22",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1021,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "19032876d5c30b14b77b88ea66ecf1d1b13a9224",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1021,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "6dc646e965b8e94f09b35f276205bbad00325ea3",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "11",
+		"levelNum": 11,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1021,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "04195f89a7e2dec09aab28f5220849665e54510c",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1021,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "5d83046111885daaa31112e8ce75c358aacb1da8",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1022,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "f001c04644a79625cb8f05edc82cc3f71a1cb079",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "4",
+		"levelNum": 4,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1022,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "b01f9b956b2977fa4e0313c7f4309377bece7c0c",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "10+",
+		"levelNum": 10.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1022,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "b58b3a4e83de95839d07ef0fc5232cf822448dc5",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1022,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "d4bdd492e49e7e6e3b4cdef0f3259eb6c29520d3",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1023,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "69ed95ae6670d59c8bccf6b5cebeaffa0187fddb",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1023,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "5d2645e402edd0af3172e1c65728689006789ed9",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1023,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "0e23943e58a87f16f562e733d6b88273b0906806",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1023,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "1800c45e76ae5210a9ab73ed7e835a010668f874",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "8",
+		"levelNum": 8,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1024,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "7eb990302a775d63fe5d1d6b18caf2a6e5b7784a",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1024,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "6d9c056a6de5cd0bb61c03e58b899a307dc57e22",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1024,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "f327fa06bbe0fe24a717472e9b8210a0cb5ce310",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1024,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "88fe1a27c79d0df8b872ef2e640beee28d0b26df",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1025,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "2f2b403a384f64cfb17d24688c242579262e6e8c",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1025,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "4f8a5782c2b5829921c9258ec44e1281f0a62d75",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "9+",
+		"levelNum": 9.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1025,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "9b26b3147c55f8ba5c84be23148fde7bc15b78cb",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1025,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "40c62ae150a6488025253c1b5859f850a2245eac",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1026,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "bb2bb3636d6c8452fcf0468a5ca7be0089363bc8",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "4",
+		"levelNum": 4,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1026,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "9f0a96135d5c61b567cdc65f56b91897986f5180",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1026,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "5146d03cf532a8d0deced89506f14a7eec6a3b9b",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1026,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "0b7baec8001e4a73d5cada9825de8faaf6a5f612",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1027,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "89a3f37b8d56e7b8a26c6b777b829949e6bb088d",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "4",
+		"levelNum": 4,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1027,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "f361f0ef0a5a0df0ff177a032413ce63a12d5a9b",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "10+",
+		"levelNum": 10.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1027,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "c5398b0579450b9316da4900ab61ca9432c02cc7",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1027,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "0c72b567e9170658b1e4cfbe50ee9a9be98996ed",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "8",
+		"levelNum": 8,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1028,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "78a828751d3ab8cca49b6bffed132953f6bc2bbd",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1028,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "98155a4622c3575135725045b5e5a26d3c1c1fc3",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "11+",
+		"levelNum": 11.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1028,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "da9615bda5c82e038efc6bbcbc934799e39b2a92",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1028,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "af2b2e9795389fcb129c2b58f1cbac08dbcbb66c",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1029,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "402ee574e9a4dbdc336aeba39f6e62772573fed8",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1029,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "6ac128c1340c012f541636db515b6242d728415d",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "9+",
+		"levelNum": 9.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1029,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "7e6da3b3bf6b75bbb731c9f9a29acde01c0e21f3",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1029,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "3dddd542a385a6d6fbbc24c2b6435cdb8cf2220c",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "8+",
+		"levelNum": 8.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1030,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "d6dba650676335436ad81d723d9afcfdfccbc54c",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1030,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "a0862d70273f0e142409c27e1f2162e459055335",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1030,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "d3833492117b86e619ababda464b863874fa1875",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1030,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "00622c95291c835887b75237a28d42bb4d41f9e7",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1031,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "e72338eb8d7b471218111aa2a0d568056db519b1",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1031,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "d3949ff7e1abf8632c4e94a96a49250cc3794078",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "10+",
+		"levelNum": 10.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1031,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "3e501adc2fa7a2ee8fc70e342ee1a8578c90c712",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1031,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "c5a1ebfdc94e743c6565546aedf78f69bc8bc6ae",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1032,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "e67b78dddb9c0d0d6fd136018a77bb6597881be4",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1032,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "f28015917bd9e9286d666f621baac7798d0f3437",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1032,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "3adebf45c3fa8a1a172f4bb7649722145a9de95b",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1032,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "ad1125e20f306f0ae9c2c2da6becddc1ac25993d",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "8",
+		"levelNum": 8,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1033,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "fd9f6ca76e75ccefea0c34c99f90a9a9dc5bdb6e",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1033,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "07dc76678aea93ae82cb723f4de4b0946b18bf22",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "11+",
+		"levelNum": 11.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1033,
+		"tierlistInfo": {},
+		"versions": [
+			"universeplus"
+		]
+	},
+	{
+		"chartID": "7d850c38412376bccd3002496bfda9439617dc7b",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.7,
+		"playtype": "Single",
+		"rgcID": null,
+		"songID": 1033,
+		"tierlistInfo": {},
 		"versions": [
 			"universeplus"
 		]

@@ -1,5 +1,4 @@
 /* eslint-disable no-await-in-loop */
-import { ONE_DAY } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
 import monk from "monk";
@@ -130,7 +129,8 @@ const indexes: Partial<Record<Databases, Array<Index>>> = staticIndexes;
 
 for (const game of TachiConfig.GAMES) {
 	if (indexes[`charts-${game}` as Databases]) {
-		indexes[`charts-${game}` as Databases]!.push(
+		// @ts-expect-error this is obviously fine
+		indexes[`charts-${game}` as Databases].push(
 			index({ chartID: 1 }, UNIQUE),
 			index(
 				{ songID: 1, difficulty: 1, playtype: 1, isPrimary: 1 },
@@ -149,7 +149,8 @@ for (const game of TachiConfig.GAMES) {
 	}
 
 	if (indexes[`songs-${game}` as Databases]) {
-		indexes[`songs-${game}` as Databases]!.push(
+		// @ts-expect-error this is obviously fine
+		indexes[`songs-${game}` as Databases].push(
 			index({ id: 1 }, UNIQUE),
 			index({ title: "text", artist: "text", altTitles: "text", searchTerms: "text" })
 		);

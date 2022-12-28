@@ -28,7 +28,7 @@ export const CreateMulterSingleUploadMiddleware = (
 						"File provided was too large, corrupt, or provided in the wrong field.",
 				});
 			} else if (err !== undefined && err !== null) {
-				logger.error(`Unknown file import error: ${err}`, { err });
+				logger.error(`Unknown file import error.`, { err });
 
 				return res.status(500).json({
 					success: false,

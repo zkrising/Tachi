@@ -4605,7 +4605,7 @@
 		"difficulty": "Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.6,
 		"playtype": "Single",
 		"songID": 70,
 		"versions": [
@@ -13620,7 +13620,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.6,
 		"playtype": "Single",
 		"songID": 199,
 		"versions": [
@@ -14910,7 +14910,7 @@
 		"difficulty": "Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.6,
 		"playtype": "Single",
 		"songID": 220,
 		"versions": [
@@ -15600,7 +15600,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.6,
 		"playtype": "Single",
 		"songID": 231,
 		"versions": [
@@ -19380,7 +19380,7 @@
 		"difficulty": "Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.6,
 		"playtype": "Single",
 		"songID": 290,
 		"versions": [
@@ -24735,7 +24735,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.6,
 		"playtype": "Single",
 		"songID": 374,
 		"versions": [
@@ -39233,7 +39233,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.6,
 		"playtype": "Single",
 		"songID": 593,
 		"versions": [
@@ -40418,7 +40418,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.6,
 		"playtype": "Single",
 		"songID": 611,
 		"versions": [
@@ -56026,7 +56026,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.6,
 		"playtype": "Single",
 		"songID": 867,
 		"versions": [
@@ -57586,7 +57586,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.6,
 		"playtype": "Single",
 		"songID": 892,
 		"versions": [

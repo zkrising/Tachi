@@ -82,13 +82,13 @@ export function CloseRedisPubSub() {
 	return new Promise<void>((resolve, reject) => {
 		PubClient.quit((err: unknown) => {
 			if (err !== null && err !== undefined) {
-				logger.crit(`PubClient QUIT error: ${err}`, { err });
+				logger.crit(`PubClient QUIT error`, { err });
 				reject(err);
 			}
 
 			SubClient.quit((err: unknown) => {
 				if (err !== null && err !== undefined) {
-					logger.crit(`SubClient QUIT error: ${err}`, { err });
+					logger.crit(`SubClient QUIT error`, { err });
 					reject(err);
 				}
 

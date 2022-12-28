@@ -30,7 +30,7 @@ const RequireAdminLevel: RequestHandler = async (req, res, next) => {
 		});
 	}
 
-	const userDoc = await GetUserWithID(req[SYMBOL_TACHI_API_AUTH].userID!);
+	const userDoc = await GetUserWithID(req[SYMBOL_TACHI_API_AUTH].userID);
 
 	if (!userDoc) {
 		logger.severe(

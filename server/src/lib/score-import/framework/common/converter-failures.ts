@@ -3,7 +3,7 @@
 import type { ImportTypeContextMap, ImportTypeDataMap } from "../../import-types/common/types";
 import type { ImportTypes } from "tachi-common";
 
-export type FailureTypes = "Internal" | "InvalidScore" | "SongOrChartNotFound" | "SkipScore";
+export type FailureTypes = "Internal" | "InvalidScore" | "SkipScore" | "SongOrChartNotFound";
 
 export class ConverterFailure extends Error {
 	message: string;

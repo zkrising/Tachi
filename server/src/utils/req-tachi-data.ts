@@ -25,7 +25,7 @@ export function GetTachiData<T extends keyof TachiRequestData>(
 		);
 	}
 
-	const value = req[SYMBOL_TACHI_DATA]?.[key];
+	const value = req[SYMBOL_TACHI_DATA][key];
 
 	if (value === undefined) {
 		throw new Error(

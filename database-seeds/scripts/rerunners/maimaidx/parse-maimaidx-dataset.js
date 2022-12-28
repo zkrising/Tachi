@@ -80,7 +80,7 @@ const diffMap = new Map([
 				return;
 			}
 
-			if (existingCharts.get(`${thisSongID} ${diffMap.get(diff)}`)) {
+			if (existingCharts.get(`${thisSongID} DX ${diffMap.get(diff)}`)) {
 				return;
 			}
 

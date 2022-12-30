@@ -1,5 +1,5 @@
 import { CalculateESD, ESDCompare, PercentCompare } from "./esd";
-import { GetGamePTConfig } from "../config/config";
+import { GetGamePTConfig } from "../config/old-config";
 import t from "tap";
 
 function approx(t: Tap.Test, given: number, recieved: number, acc = 0.01) {

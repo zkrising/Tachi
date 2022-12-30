@@ -1,4 +1,4 @@
-import { GetGameConfig } from "./config";
+import { GetGameConfig } from "./old-config";
 import type { IDStrings, GPTSupportedVersions, Game, Playtype } from "../types";
 
 export type Versions = {

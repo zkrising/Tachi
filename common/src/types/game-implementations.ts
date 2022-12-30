@@ -1,60 +1,6 @@
 import type { integer } from "../types";
 
 /**
- * What game + playtypes does Tachi support? We typically shorten this concept
- * to a "GPT", or Game+Playtype.
- *
- * The keys on the left are the games Tachi supports. The value of those keys
- * are the playtypes that game has.
- *
- * A playtype is a way of splitting a game up into sub, completely separate games.
- * A good example is the difference between IIDX SP and IIDX DP. Although they share
- * songs and a *lot* of logic, they should be completely separate when it comes to
- * storing scores and user profiles.
- *
- * For games that don't really have a meaningful concept of "playtypes", "Single"
- * is the go-to.
- */
-export interface Playtypes {
-	iidx: "DP" | "SP";
-	popn: "9B";
-	sdvx: "Single";
-	usc: "Controller" | "Keyboard";
-	maimaidx: "Single";
-	jubeat: "Single";
-	museca: "Single";
-	chunithm: "Single";
-	bms: "7K" | "14K";
-	gitadora: "Dora" | "Gita";
-	wacca: "Single";
-	pms: "Controller" | "Keyboard";
-	itg: "Stamina";
-}
-
-/**
- * All supported games by Tachi.
- */
-export type Game = keyof Playtypes;
-
-/**
- * Expresses any playtype (for any game). Alias for Playtypes[Game].
- */
-export type Playtype = Playtypes[Game];
-
-/**
- * GPTStrings are an internal (ish) identifier used to identify Game + Playtype combos.
- *
- * These are used in places where we want to switch over all supported game + playtype
- * combos.
- *
- * The below type magic automatically creates all combinations like iidx:SP, iidx:DP...
- * using the `Playtypes` thing above.
- */
-export type GPTStrings = keyof {
-	[G in Game as `${G}:${Playtypes[G]}`]: never;
-};
-
-/**
  * Utility index type. Given an GPTString [I], return its playtype.
  */
 export interface GPTStringToPlaytype {
@@ -680,14 +626,12 @@ type IIDXAdditionalMetrics = BASE_ADDITIONAL_METRICS & {
 	bp: integer | null;
 	gauge: number | null;
 	gaugeHistory: Array<number | null> | null;
-	scoreHistory: Array<number> | null;
 	comboBreak: integer | null;
-	gsm: {
-		EASY: Array<number | null>;
-		NORMAL: Array<number | null>;
-		HARD: Array<number | null>;
-		EX_HARD: Array<number | null>;
-	} | null;
+
+	gsmEASY: Array<number | null> | null;
+	gsmNORMAL: Array<number | null> | null;
+	gsmHARD: Array<number | null> | null;
+	gsmEX_HARD: Array<number | null> | null;
 };
 
 type BMSJudgePermutations = `${"e" | "l"}${"bd" | "gd" | "gr" | "pg" | "pr"}`;
@@ -849,9 +793,3 @@ export interface GameClassSets {
 	"pms:Keyboard": "dan";
 	"itg:Stamina": never;
 }
-
-export type AllClassSets = GameClassSets[GPTStrings];
-
-export type GameClasses<GPT extends GPTStrings> = {
-	[K in GameClassSets[GPT]]: integer;
-};

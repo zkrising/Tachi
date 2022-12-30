@@ -1,5 +1,5 @@
-import { GetGameConfig, GetGamePTConfig } from "./config";
-import { allSupportedGames } from "./static-config";
+import { GetGameConfig, GetGamePTConfig } from "./old-config";
+import { allSupportedGames } from "../constants/import-types";
 import t from "tap";
 
 t.test("#GetGameConfig", (t) => {

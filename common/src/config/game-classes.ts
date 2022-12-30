@@ -1,8 +1,4 @@
-// Classes refer to things like dans.
-// Not the JS construct.
-
 import { COLOUR_SET } from "../constants/colour-set";
-import type { GPTStrings, integer } from "../types";
 
 export interface ClassInfo {
 	display: string;

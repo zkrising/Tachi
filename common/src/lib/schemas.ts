@@ -2,13 +2,13 @@
 // their name in the database to the object they schemaify.
 // The schemas themselves are wrapped in functions that throw on error.
 
-import { GetGameConfig, GetGamePTConfig } from "../config/config";
-import { allIDStrings, allImportTypes, allSupportedGames } from "../config/static-config";
+import { GetGameConfig, GetGamePTConfig } from "../config/old-config";
+import { allIDStrings, allImportTypes, allSupportedGames } from "../constants/import-types";
 import { ALL_PERMISSIONS } from "../constants/permissions";
 import { UserAuthLevels } from "../types";
 import deepmerge from "deepmerge";
 import { p } from "prudence";
-import type { GamePTConfig } from "../config/config";
+import type { GamePTConfig } from "../config/old-config";
 import type { AllClassSets } from "../config/game-classes";
 import type { Game, IDStrings, NotificationBody, Playtype, Playtypes } from "../types";
 import type {

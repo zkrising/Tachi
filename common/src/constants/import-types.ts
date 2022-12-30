@@ -1,11 +1,9 @@
 import type {
 	APIImportTypes,
 	FileUploadImportTypes,
-	Game,
-	IDStrings,
 	IRImportTypes,
 	ImportTypes,
-} from "..";
+} from "../types/import-types";
 
 export const fileImportTypes: Array<FileUploadImportTypes> = [
 	"file/eamusement-iidx-csv",
@@ -46,40 +44,4 @@ export const allImportTypes: Array<ImportTypes> = [
 	...fileImportTypes,
 	...irImportTypes,
 	...apiImportTypes,
-];
-
-export const allIDStrings: Array<IDStrings> = [
-	"iidx:SP",
-	"bms:14K",
-	"bms:7K",
-	"chunithm:Single",
-	"gitadora:Dora",
-	"gitadora:Gita",
-	"iidx:DP",
-	"maimaidx:Single",
-	"museca:Single",
-	"sdvx:Single",
-	"usc:Controller",
-	"usc:Keyboard",
-	"wacca:Single",
-	"pms:Controller",
-	"pms:Keyboard",
-	"jubeat:Single",
-	"itg:Stamina",
-];
-
-export const allSupportedGames: Array<Game> = [
-	"iidx",
-	"museca",
-	"maimaidx",
-	"jubeat",
-	"popn",
-	"sdvx",
-	"bms",
-	"chunithm",
-	"gitadora",
-	"usc",
-	"wacca",
-	"pms",
-	"itg",
 ];

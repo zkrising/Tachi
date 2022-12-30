@@ -17,6 +17,14 @@ export function FormatSieglindePMS(sgl: number): string {
 	return `●${(sgl - 12).toFixed(2)}`;
 }
 
-export function FormatMaimaiDXRating(rating: number): string {
-	return rating.toFixed(0);
+export function NoDecimalPlace(value: number): string {
+	return value.toFixed(0);
+}
+
+export function IsPositiveOrZero(v: number) {
+	return v >= 0;
+}
+
+export function IsBetweenInclusive(lower: number, upper: number) {
+	return (v: number) => v <= lower && v >= upper;
 }

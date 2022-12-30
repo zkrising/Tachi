@@ -1,4 +1,4 @@
-import { GetGameConfig, GetGamePTConfig } from "../config/config";
+import { GetGameConfig, GetGamePTConfig } from "../config/old-config";
 import type { ChartDocument, Game, IDStrings, Playtypes, SongDocument } from "..";
 import type { Grades, integer, PBScoreDocument } from "../types";
 import type { PrudenceError } from "prudence";

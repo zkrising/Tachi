@@ -28,10 +28,10 @@
 	"devDependencies": {
 		"@types/node": "16.11.7",
 		"@types/tap": "15.0.3",
-		"@typescript-eslint/eslint-plugin": "5.22.0",
-		"@typescript-eslint/parser": "5.22.0",
+		"@typescript-eslint/eslint-plugin": "5.47.1",
+		"@typescript-eslint/parser": "5.47.1",
 		"eslint": "8.18.0",
-		"eslint-plugin-cadence": "0.0.4",
+		"eslint-plugin-cadence": "0.1.0",
 		"tap": "15.0.9",
 		"ts-node": "10.9.1",
 		"tsc-alias": "1.7.1",

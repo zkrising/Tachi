@@ -1,6 +1,5 @@
 import type { AllClassSets, GameClasses } from "../config/game-classes";
 import type { UserAuthLevels, integer } from "../types";
-import type { APIPermissions } from "./api";
 import type {
 	Game,
 	Playtype,
@@ -22,7 +21,8 @@ import type {
 	AdditionalMetrics,
 	ScoreMeta,
 	ScoreRatingAlgorithms,
-} from "./game-implementations";
+} from "./_TOREMOVE-game-implementations";
+import type { APIPermissions } from "./api";
 import type { ImportTypes } from "./import-types";
 import type { BaseNotification, NotificationBody } from "./notifications";
 import type { FilterQuery } from "mongodb";

@@ -18,7 +18,7 @@ import type { ScoreMetric } from "../../types/metrics";
  * I can't think of a realistic case where a game might not have a concept of "maxCombo"
  * as that necessitates that you either can't miss, or can't hit.
  */
-export const DEFAULT_ADDITIONAL_METRICS = {
+export const FAST_SLOW_MAXCOMBO = {
 	fast: { type: "INTEGER" },
 	slow: { type: "INTEGER" },
 	maxCombo: { type: "INTEGER" },

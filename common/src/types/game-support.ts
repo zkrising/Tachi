@@ -1,22 +1,113 @@
-import type {
-	RatingAlgorithmConfig,
-	ClassConfig,
-	DifficultyConfig,
-	TierlistConfig,
-} from "./_TEMPNAME-game-config-inner";
-import type { MatchTypes } from "./batch-manual";
-import type { ScoreMetric } from "./metrics";
+import type { GAME_CONFIGS, GAME_PT_CONFIGS } from "../config/config";
+import type { FixedDifficulties } from "./_TEMPNAME-game-config-inner";
+import type { ExtractMetrics } from "./metrics";
+import type { ExtractArrayElementType } from "./utils";
 
 /**
- * This is **NOT** intended for external use.
- *
- * What's the "mold" for a GPT config? All GPT configs *must* satisfy this interface,
- * but aren't necessarily this type (they will be more specific.)
- *
- * @see {GamePTConfig} for the intended-to-use type. This is an *outline* for a GPT
- * config, and has significantly less typesafety.
+ * All the games Tachi supports.
  */
-export type INTERNAL_GPT_CONFIG = Readonly<{
+export type Game = keyof typeof GAME_CONFIGS;
+
+/**
+ * What game + playtypes does Tachi support? We typically shorten this concept
+ * to a "GPT", or Game+Playtype.
+ *
+ * The keys on the left are the games Tachi supports. The value of those keys
+ * are the playtypes that game has.
+ *
+ * A playtype is a way of splitting a game up into sub, completely separate games.
+ * A good example is the difference between IIDX SP and IIDX DP. Although they share
+ * songs and a *lot* of logic, they should be completely separate when it comes to
+ * storing scores and user profiles.
+ *
+ * For games that don't really have a meaningful concept of "playtypes", "Single"
+ * is the go-to.
+ */
+export type Playtypes = {
+	[G in Game]: typeof GAME_CONFIGS[G]["validPlaytypes"][number];
+};
+
+/**
+ * Expresses any playtype (for any game). Alias for Playtypes[Game].
+ */
+export type Playtype = Playtypes[Game];
+
+/**
+ * Configuration for the given game. This declares things like its user-facing name,
+ * internal ID, defaultPlaytype and what playtypes it supports.
+ */
+export interface GameConfig<G extends Game = Game> {
+	readonly internalName: G;
+	readonly name: string;
+	readonly defaultPlaytype: Playtypes[G];
+	readonly validPlaytypes: ReadonlyArray<Playtypes[G]>;
+}
+
+/**
+ * GPTStrings are an internal (ish) identifier used to identify Game + Playtype combos.
+ *
+ * These are used in places where we want to switch over all supported game + playtype
+ * combos.
+ *
+ * The below type magic automatically creates all combinations like iidx:SP, iidx:DP...
+ * using the `Playtypes` thing above.
+ */
+export type GPTString = keyof {
+	[G in Game as `${G}:${Playtypes[G]}`]: never;
+};
+
+export type GameToGPTStrings = {
+	[G in Game]: `${G}:${Playtypes[G]}`;
+};
+
+// GPT String lookup types
+// ********** TODO MAKE THIS COMMENT SUCK LESS ^^ ************
+
+export type Difficulties = {
+	// If this game has fixed difficulties, infer what they are
+	// otherwise, difficulties are an arbitrary string
+	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["difficultyConfig"] extends FixedDifficulties<
+		infer D
+	>
+		? D
+		: string;
+};
+
+export type DifficultyConfigs = {
+	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["difficultyConfig"];
+};
+
+export type Judgements = {
+	[G in GPTString]: ExtractArrayElementType<typeof GAME_PT_CONFIGS[G]["orderedJudgements"]>;
+};
+
+export type ScoreRatingAlgorithms = {
+	[G in GPTString]: keyof typeof GAME_PT_CONFIGS[G]["scoreRatingAlgs"];
+};
+
+export type SessionRatingAlgorithms = {
+	[G in GPTString]: keyof typeof GAME_PT_CONFIGS[G]["sessionRatingAlgs"];
+};
+
+export type ProfileRatingAlgorithms = {
+	[G in GPTString]: keyof typeof GAME_PT_CONFIGS[G]["profileRatingAlgs"];
+};
+
+export type ScoreMetrics = {
+	[G in GPTString]: ExtractMetrics<typeof GAME_PT_CONFIGS[G]["derivedMetrics"]> &
+		ExtractMetrics<typeof GAME_PT_CONFIGS[G]["providedMetrics"]>;
+};
+
+const m: ScoreMetrics["iidx:SP"] = {};
+
+/**
+ * Configuration for a GPT. This declares *almost everything* about how this game is
+ * implemented in Tachi, such as what metrics it supports, how it handles chart
+ * difficulties, etc.
+ *
+ * To get a GamePTConfig for a given Game + Playtype, @see {GetGamePTConfig}
+ */
+export interface GamePTConfig<GPT extends GPTString = GPTString> {
 	/**
 	 * What metrics **must** be provided in order for this score to be usable by
 	 * Tachi?
@@ -160,7 +251,7 @@ export type INTERNAL_GPT_CONFIG = Readonly<{
 	 * allowing any string (as long as its unique.)
 	 *
 	 */
-	difficultyConfig: DifficultyConfig;
+	difficultyConfig: DifficultyConfigs[GPT];
 
 	/**
 	 * What judgements does this GPT have? These are typically timing-window names.
@@ -207,17 +298,4 @@ export type INTERNAL_GPT_CONFIG = Readonly<{
 	 * where song titles are absolutely not guaranteed to be unique.
 	 */
 	supportedMatchTypes: ReadonlyArray<MatchTypes>;
-}>;
-
-/**
- * A game config *must* satisfy this, but we don't export this kind of game config.
- *
- * Think of this like a "mold" for a game config, it's gotta be shaped like this,
- * but interacting with the mold is a little too malleable for the rest of the
- * codebase. @see {GameConfig} for the exported version.
- */
-export type INTERNAL_GAME_CONFIG<PT extends string = string> = Readonly<{
-	name: string;
-	validPlaytypes: ReadonlyArray<PT>;
-	defaultPlaytype: PT;
-}>;
+}

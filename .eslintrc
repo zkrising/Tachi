@@ -10,6 +10,15 @@
 	"overrides": [
 		{
 			"files": [
+				"**/*.ts"
+			],
+			"rules": {
+				// broken
+				"lines-around-comment": "off"
+			}
+		},
+		{
+			"files": [
 				"**/*.test.ts"
 			],
 			"rules": {

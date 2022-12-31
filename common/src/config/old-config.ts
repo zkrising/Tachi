@@ -1,5 +1,5 @@
 /* eslint-disable lines-around-comment */
-import { FormatSieglindeBMS, FormatSieglindePMS, FormatMaimaiDXRating } from "./internal-utils";
+import { FormatSieglindeBMS, FormatSieglindePMS, FormatMaimaiDXRating } from "./config-utils";
 import { COLOUR_SET } from "../constants/colour-set";
 import type { GPTTierlists } from "..";
 import type { ClassInfo } from "./game-classes";
@@ -72,11 +72,11 @@ interface BaseGamePTConfig<I extends IDStrings> {
 		}
 	>;
 
-	judgements: Array<JudgementLookup[I]>;
+	orderedJudgements: Array<JudgementLookup[I]>;
 
 	scoreBucket: "grade" | "lamp";
 
-	orderedSupportedVersions: Array<GPTSupportedVersions[I]>;
+	supportedVersions: Array<GPTSupportedVersions[I]>;
 
 	tierlists: Array<GPTTierlists[I]>;
 	tierlistDescriptions: Record<GPTTierlists[I], string>;
@@ -229,11 +229,11 @@ const GAME_PT_CONFIGS = {
 			},
 		},
 
-		judgements: ["pgreat", "great", "good", "bad", "poor"],
+		orderedJudgements: ["pgreat", "great", "good", "bad", "poor"],
 
 		scoreBucket: "lamp",
 
-		orderedSupportedVersions: [
+		supportedVersions: [
 			"3-cs",
 			"4-cs",
 			"5-cs",
@@ -432,11 +432,11 @@ const GAME_PT_CONFIGS = {
 			{ name: "GREAT", msBorder: 33.333, value: 1 },
 			{ name: "GOOD", msBorder: 116.667, value: 0 },
 		],
-		judgements: ["pgreat", "great", "good", "bad", "poor"],
+		orderedJudgements: ["pgreat", "great", "good", "bad", "poor"],
 
 		scoreBucket: "lamp",
 
-		orderedSupportedVersions: [
+		supportedVersions: [
 			"3-cs",
 			"4-cs",
 			"5-cs",
@@ -555,11 +555,11 @@ const GAME_PT_CONFIGS = {
 		},
 
 		supportsESD: false,
-		judgements: ["jcrit", "justice", "attack", "miss"],
+		orderedJudgements: ["jcrit", "justice", "attack", "miss"],
 
 		scoreBucket: "grade",
 
-		orderedSupportedVersions: ["paradiselost"],
+		supportedVersions: ["paradiselost"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -659,11 +659,11 @@ const GAME_PT_CONFIGS = {
 		},
 
 		supportsESD: false,
-		judgements: ["critical", "near", "miss"],
+		orderedJudgements: ["critical", "near", "miss"],
 
 		scoreBucket: "grade",
 
-		orderedSupportedVersions: ["booth", "inf", "gw", "heaven", "vivid", "exceed", "konaste"],
+		supportedVersions: ["booth", "inf", "gw", "heaven", "vivid", "exceed", "konaste"],
 
 		tierlists: ["clear"],
 		tierlistDescriptions: {
@@ -754,11 +754,11 @@ const GAME_PT_CONFIGS = {
 		classProperties: {},
 
 		supportsESD: false,
-		judgements: ["critical", "near", "miss"],
+		orderedJudgements: ["critical", "near", "miss"],
 
 		scoreBucket: "grade",
 
-		orderedSupportedVersions: [],
+		supportedVersions: [],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -847,11 +847,11 @@ const GAME_PT_CONFIGS = {
 		classProperties: {},
 
 		supportsESD: false,
-		judgements: ["critical", "near", "miss"],
+		orderedJudgements: ["critical", "near", "miss"],
 
 		scoreBucket: "grade",
 
-		orderedSupportedVersions: [],
+		supportedVersions: [],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -931,11 +931,11 @@ const GAME_PT_CONFIGS = {
 			{ name: "CRITICAL", msBorder: 33.333, value: 2 },
 			{ name: "NEAR", msBorder: 66.667, value: 1 },
 		],
-		judgements: ["critical", "near", "miss"],
+		orderedJudgements: ["critical", "near", "miss"],
 
 		scoreBucket: "grade",
 
-		orderedSupportedVersions: ["1.5", "1.5-b"],
+		supportedVersions: ["1.5", "1.5-b"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -1047,11 +1047,11 @@ const GAME_PT_CONFIGS = {
 		},
 
 		supportsESD: false,
-		judgements: ["pgreat", "great", "good", "bad", "poor"],
+		orderedJudgements: ["pgreat", "great", "good", "bad", "poor"],
 
 		scoreBucket: "lamp",
 
-		orderedSupportedVersions: [],
+		supportedVersions: [],
 
 		tierlists: ["sgl-EC", "sgl-HC"],
 		tierlistDescriptions: {
@@ -1163,11 +1163,11 @@ const GAME_PT_CONFIGS = {
 		},
 
 		supportsESD: false,
-		judgements: ["pgreat", "great", "good", "bad", "poor"],
+		orderedJudgements: ["pgreat", "great", "good", "bad", "poor"],
 
 		scoreBucket: "lamp",
 
-		orderedSupportedVersions: [],
+		supportedVersions: [],
 
 		tierlists: ["sgl-EC", "sgl-HC"],
 		tierlistDescriptions: {
@@ -1314,11 +1314,11 @@ const GAME_PT_CONFIGS = {
 		},
 
 		supportsESD: false,
-		judgements: ["pcrit", "perfect", "great", "good", "miss"],
+		orderedJudgements: ["pcrit", "perfect", "great", "good", "miss"],
 
 		scoreBucket: "grade",
 
-		orderedSupportedVersions: ["universeplus"],
+		supportedVersions: ["universeplus"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -1415,11 +1415,11 @@ const GAME_PT_CONFIGS = {
 		},
 
 		supportsESD: false,
-		judgements: ["perfect", "great", "good", "ok", "miss"],
+		orderedJudgements: ["perfect", "great", "good", "ok", "miss"],
 
 		scoreBucket: "grade",
 
-		orderedSupportedVersions: ["konaste"],
+		supportedVersions: ["konaste"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -1499,11 +1499,11 @@ const GAME_PT_CONFIGS = {
 		},
 
 		supportsESD: false,
-		judgements: ["perfect", "great", "good", "ok", "miss"],
+		orderedJudgements: ["perfect", "great", "good", "ok", "miss"],
 
 		scoreBucket: "grade",
 
-		orderedSupportedVersions: ["konaste"],
+		supportedVersions: ["konaste"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -1608,11 +1608,11 @@ const GAME_PT_CONFIGS = {
 		},
 
 		supportsESD: false,
-		judgements: ["marvelous", "great", "good", "miss"],
+		orderedJudgements: ["marvelous", "great", "good", "miss"],
 
 		scoreBucket: "grade",
 
-		orderedSupportedVersions: ["reverse"],
+		supportedVersions: ["reverse"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -1697,11 +1697,11 @@ const GAME_PT_CONFIGS = {
 		},
 
 		supportsESD: false,
-		judgements: ["cool", "great", "good", "bad"],
+		orderedJudgements: ["cool", "great", "good", "bad"],
 
 		scoreBucket: "lamp",
 
-		orderedSupportedVersions: ["peace", "kaimei"],
+		supportedVersions: ["peace", "kaimei"],
 
 		tierlists: [],
 		tierlistDescriptions: {},
@@ -1789,11 +1789,11 @@ const GAME_PT_CONFIGS = {
 		},
 
 		supportsESD: false,
-		judgements: ["perfect", "great", "good", "poor", "miss"],
+		orderedJudgements: ["perfect", "great", "good", "poor", "miss"],
 
 		scoreBucket: "grade",
 
-		orderedSupportedVersions: [
+		supportedVersions: [
 			"jubeat",
 			"ripples",
 			"knit",
@@ -1909,11 +1909,11 @@ const GAME_PT_CONFIGS = {
 		},
 
 		supportsESD: false,
-		judgements: ["cool", "great", "good", "bad", "poor"],
+		orderedJudgements: ["cool", "great", "good", "bad", "poor"],
 
 		scoreBucket: "lamp",
 
-		orderedSupportedVersions: [],
+		supportedVersions: [],
 
 		tierlists: ["sgl-EC", "sgl-HC"],
 		tierlistDescriptions: {
@@ -2022,11 +2022,11 @@ const GAME_PT_CONFIGS = {
 		},
 
 		supportsESD: false,
-		judgements: ["cool", "great", "good", "bad", "poor"],
+		orderedJudgements: ["cool", "great", "good", "bad", "poor"],
 
 		scoreBucket: "lamp",
 
-		orderedSupportedVersions: [],
+		supportedVersions: [],
 
 		tierlists: ["sgl-EC", "sgl-HC"],
 		tierlistDescriptions: {
@@ -2128,11 +2128,11 @@ const GAME_PT_CONFIGS = {
 		classProperties: {},
 
 		supportsESD: false,
-		judgements: ["fantastic", "excellent", "great", "decent", "wayoff", "miss"],
+		orderedJudgements: ["fantastic", "excellent", "great", "decent", "wayoff", "miss"],
 
 		scoreBucket: "lamp",
 
-		orderedSupportedVersions: [],
+		supportedVersions: [],
 
 		tierlists: [],
 		tierlistDescriptions: {},

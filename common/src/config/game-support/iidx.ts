@@ -1,5 +1,5 @@
-import { COLOUR_SET } from "../../constants/colour-set";
-import { IIDXDans } from "../game-classes";
+import { FAST_SLOW_MAXCOMBO } from "./_common";
+import { ClassValue } from "../config-utils";
 import type {
 	INTERNAL_GAME_CONFIG,
 	INTERNAL_GPT_CONFIG as INTERNAL_GPT_CONFIG,
@@ -11,12 +11,33 @@ export const IIDX_CONF = {
 	validPlaytypes: ["SP", "DP"],
 } as const satisfies INTERNAL_GAME_CONFIG;
 
+export const IIDXDans = [
+	ClassValue("KYU_7", "七級", "7th Kyu"),
+	ClassValue("KYU_6", "六級", "6th Kyu"),
+	ClassValue("KYU_5", "五級", "5th Kyu"),
+	ClassValue("KYU_4", "四級", "4th Kyu"),
+	ClassValue("KYU_3", "三級", "3rd Kyu"),
+	ClassValue("KYU_2", "二級", "2nd Kyu"),
+	ClassValue("KYU_1", "一級", "1st Kyu"),
+	ClassValue("DAN_1", "初段", "1st Dan"),
+	ClassValue("DAN_2", "二段", "2nd Dan"),
+	ClassValue("DAN_3", "三段", "3rd Dan"),
+	ClassValue("DAN_4", "四段", "4th Dan"),
+	ClassValue("DAN_5", "五段", "5th Dan"),
+	ClassValue("DAN_6", "六段", "6th Dan"),
+	ClassValue("DAN_7", "七段", "7th Dan"),
+	ClassValue("DAN_8", "八段", "8th Dan"),
+	ClassValue("DAN_9", "九段", "9th Dan"),
+	ClassValue("DAN_10", "十段", "10th Dan"),
+	ClassValue("CHUUDEN", "中伝", "Chuuden"),
+	ClassValue("KAIDEN", "皆伝", "Kaiden"),
+];
+
 export const IIDX_SP_CONF = {
-	mandatoryMetrics: {
+	providedMetrics: {
 		score: { type: "INTEGER" },
 		lamp: {
 			type: "ENUM",
-			minimumRelevantValue: "CLEAR",
 			values: [
 				"NO PLAY",
 				"FAILED",
@@ -27,6 +48,7 @@ export const IIDX_SP_CONF = {
 				"EX HARD CLEAR",
 				"FULL COMBO",
 			],
+			minimumRelevantValue: "EASY CLEAR",
 		},
 	},
 
@@ -36,14 +58,17 @@ export const IIDX_SP_CONF = {
 		},
 		grade: {
 			type: "ENUM",
-			minimumRelevantValue: "A",
 			values: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
+			minimumRelevantValue: "A",
 		},
 	},
 
-	primaryMetric: "percent",
+	defaultMetric: "percent",
+	preferredDefaultEnum: "lamp",
 
 	additionalMetrics: {
+		...FAST_SLOW_MAXCOMBO,
+
 		bp: { type: "INTEGER" },
 		gauge: { type: "DECIMAL" },
 		comboBreak: { type: "INTEGER" },
@@ -122,37 +147,16 @@ export const IIDX_SP_CONF = {
 			"Kiraku LEGGENDARIA": "L (Kr.)",
 		},
 		defaultDifficulty: "ANOTHER",
-		difficultyColours: {
-			NORMAL: COLOUR_SET.blue,
-			HYPER: COLOUR_SET.orange,
-			ANOTHER: COLOUR_SET.red,
-			LEGGENDARIA: COLOUR_SET.purple,
-			"All Scratch NORMAL": COLOUR_SET.blue,
-			"All Scratch HYPER": COLOUR_SET.orange,
-			"All Scratch ANOTHER": COLOUR_SET.red,
-			"All Scratch LEGGENDARIA": COLOUR_SET.purple,
-			"Kichiku NORMAL": COLOUR_SET.blue,
-			"Kichiku HYPER": COLOUR_SET.orange,
-			"Kichiku ANOTHER": COLOUR_SET.red,
-			"Kichiku LEGGENDARIA": COLOUR_SET.purple,
-			"Kiraku NORMAL": COLOUR_SET.blue,
-			"Kiraku HYPER": COLOUR_SET.orange,
-			"Kiraku ANOTHER": COLOUR_SET.red,
-			"Kiraku LEGGENDARIA": COLOUR_SET.purple,
-		},
 	},
 
 	supportedClasses: {
 		dan: {
-			downgradable: false,
-			canBeBatchManualSubmitted: true,
+			type: "PROVIDED",
 			values: IIDXDans,
 		},
 	},
 
 	orderedJudgements: ["pgreat", "great", "good", "bad", "poor"],
-
-	scoreBucket: "lamp",
 
 	supportedVersions: [
 		"3rd Style CS",
@@ -208,10 +212,6 @@ export const IIDX_SP_CONF = {
 	supportedMatchTypes: ["inGameID", "tachiSongID", "songTitle"],
 } as const satisfies INTERNAL_GPT_CONFIG;
 
-/**
- * IIDX's DP configuration. This is almost identical to the IIDX SP configuration, but
- * with different tierlists marked as supported.
- */
 export const IIDX_DP_CONF = {
 	...IIDX_SP_CONF,
 

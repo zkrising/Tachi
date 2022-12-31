@@ -1,6 +1,6 @@
-import { DEFAULT_ADDITIONAL_METRICS } from "./_common";
+import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { COLOUR_SET } from "../../constants/colour-set";
-import { NoDecimalPlace } from "../internal-utils";
+import { NoDecimalPlace } from "../config-utils";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
 
 export const MUSECA_CONF = {
@@ -9,13 +9,13 @@ export const MUSECA_CONF = {
 	validPlaytypes: ["Single"],
 } as const satisfies INTERNAL_GAME_CONFIG;
 
-export const MUSECA_GPT_CONF = {
-	mandatoryMetrics: {
+export const MUSECA_SINGLE_CONF = {
+	providedMetrics: {
 		score: { type: "INTEGER" },
 		lamp: {
 			type: "ENUM",
-			minimumRelevantValue: "CLEAR",
 			values: ["FAILED", "CLEAR", "CONNECT ALL", "PERFECT CONNECT ALL"],
+			minimumRelevantValue: "CLEAR",
 		},
 	},
 
@@ -25,7 +25,7 @@ export const MUSECA_GPT_CONF = {
 
 			// MUSECA uses kanji for its grades. This is kinda inconvenient to read.
 			// Ah well!
-			orderedGrades: ["没", "拙", "凡", "佳", "良", "優", "秀", "傑", "傑G"],
+			values: ["没", "拙", "凡", "佳", "良", "優", "秀", "傑", "傑G"],
 
 			// This is equal to 900K.
 			// In my opinion (zkldi) this is a little too low for this
@@ -34,9 +34,10 @@ export const MUSECA_GPT_CONF = {
 		},
 	},
 
-	additionalMetrics: {
-		...DEFAULT_ADDITIONAL_METRICS,
-	},
+	defaultMetric: "score",
+	preferredDefaultEnum: "grade",
+
+	additionalMetrics: FAST_SLOW_MAXCOMBO,
 
 	scoreRatingAlgs: {
 		curatorSkill: {
@@ -73,25 +74,9 @@ export const MUSECA_GPT_CONF = {
 		},
 	},
 
-	orderedGrades: ["没", "拙", "凡", "佳", "良", "優", "秀", "傑", "傑G"],
-	gradeColours: {
-		没: COLOUR_SET.gray,
-		拙: COLOUR_SET.maroon,
-		凡: COLOUR_SET.red,
-		佳: COLOUR_SET.paleGreen,
-		良: COLOUR_SET.paleBlue,
-		優: COLOUR_SET.green,
-		秀: COLOUR_SET.blue,
-		傑: COLOUR_SET.teal,
-		傑G: COLOUR_SET.gold,
-	},
-	minimumRelevantGrade: "良",
-
 	supportedClasses: {},
 
 	orderedJudgements: ["critical", "near", "miss"],
-
-	scoreBucket: "grade",
 
 	supportedVersions: ["1 + 1/2", "1 + 1/2 Rev. B"],
 

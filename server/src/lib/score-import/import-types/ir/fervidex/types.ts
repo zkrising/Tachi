@@ -59,11 +59,15 @@ export interface FervidexScore {
 		HARD: Array<number | null>;
 		EX_HARD: Array<number | null>;
 	} | null;
+
+	duplicate?: boolean;
+	highlight?: boolean;
 }
 
 export interface FervidexContext {
 	version: GPTSupportedVersions["iidx:DP" | "iidx:SP"];
 	timeReceived: number;
+	userID: integer;
 }
 
 export interface FerHeaders {

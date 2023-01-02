@@ -4,6 +4,8 @@ import {
 	SongOrChartNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
+import db from "external/mongo/db";
+import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
 import { IsNullishOrEmptyStr } from "utils/misc";
 import { FindIIDXChartOnInGameIDVersion, FindIIDXChartWith2DXtraHash } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
@@ -240,6 +242,18 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 			range: TachifyRange(data.option?.range),
 		},
 	};
+
+	// When [9] is pressed on the keypad in game, Fervidex will send the score (again)
+	// marked as a duplicate, but with highlight set. As such, we should highlight
+	// the score this is for.
+	if (data.highlight === true) {
+		const scoreID = CreateScoreID(context.userID, dryScore, chart.chartID);
+
+		await db.scores.update({ scoreID }, { $set: { highlight: true } });
+
+		// now, just continue on with the regular import process. We already handle
+		// discarding duplicates, so this shouldn't matter.
+	}
 
 	return { song, chart, dryScore };
 };

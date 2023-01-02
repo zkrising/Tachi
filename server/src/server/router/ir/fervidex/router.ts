@@ -261,7 +261,7 @@ router.post("/score/submit", ValidateModelHeader, async (req, res) => {
 		req[SYMBOL_TACHI_API_AUTH].userID!,
 		false,
 		"ir/fervidex",
-		[req.safeBody, headers]
+		[req.safeBody, headers, req[SYMBOL_TACHI_API_AUTH].userID!]
 	);
 
 	if (!responseData.body.success) {

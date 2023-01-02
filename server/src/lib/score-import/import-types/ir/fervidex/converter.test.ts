@@ -10,9 +10,11 @@ import { InternalFailure } from "../../../framework/common/converter-failures";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
 import t from "tap";
+import { mkFakeScoreIIDXSP } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
-import { Testing511Song, Testing511SPA } from "test-utils/test-data";
+import { Testing511Song, Testing511SPA, TestingIIDXSPDryScore } from "test-utils/test-data";
 import type { FervidexScore } from "./types";
 
 const logger = CreateLogCtx(__filename);
@@ -153,7 +155,7 @@ t.test("#ConverterIRFervidex", (t) => {
 	t.test("Should convert a valid fervidex score into a dry score.", async (t) => {
 		const res = await ConverterIRFervidex(
 			baseFervidexScore,
-			{ version: "27", timeReceived: 10 },
+			{ version: "27", timeReceived: 10, userID: 1 },
 			"ir/fervidex",
 			logger
 		);
@@ -187,7 +189,7 @@ t.test("#ConverterIRFervidex", (t) => {
 
 		const res = await ConverterIRFervidex(
 			deepmerge(baseFervidexScore, { option: { style_2p: "R_RANDOM" }, chart: "dpa" }),
-			{ version: "27", timeReceived: 10 },
+			{ version: "27", timeReceived: 10, userID: 1 },
 			"ir/fervidex",
 			logger
 		);
@@ -210,7 +212,7 @@ t.test("#ConverterIRFervidex", (t) => {
 	t.test("Should null BP if the user died pre-emptively.", async (t) => {
 		const res = await ConverterIRFervidex(
 			deepmerge(baseFervidexScore, { dead: { measure: 1, note: 10 } }),
-			{ version: "27", timeReceived: 10 },
+			{ version: "27", timeReceived: 10, userID: 1 },
 			"ir/fervidex",
 			logger
 		);
@@ -232,7 +234,7 @@ t.test("#ConverterIRFervidex", (t) => {
 		t.rejects(
 			ConverterIRFervidex(
 				deepmerge(baseFervidexScore, { chart: "spl" }),
-				{ version: "27", timeReceived: 10 },
+				{ version: "27", timeReceived: 10, userID: 1 },
 				"ir/fervidex",
 				logger
 			),
@@ -249,7 +251,7 @@ t.test("#ConverterIRFervidex", (t) => {
 		t.rejects(
 			ConverterIRFervidex(
 				baseFervidexScore,
-				{ version: "27", timeReceived: 10 },
+				{ version: "27", timeReceived: 10, userID: 1 },
 				"ir/fervidex",
 				logger
 			),
@@ -291,10 +293,10 @@ t.test("#ConverterIRFervidex", (t) => {
 		t.end();
 	});
 
-	t.test("Should convert undeflow gauge to null.", async (t) => {
+	t.test("Should convert underflow gauge to null.", async (t) => {
 		const res = await ConverterIRFervidex(
 			deepmerge(baseFervidexScore, { gauge: [10, 5, 249, 248] }) as FervidexScore,
-			{ version: "27", timeReceived: 10 },
+			{ version: "27", timeReceived: 10, userID: 1 },
 			"ir/fervidex",
 			logger
 		);
@@ -310,6 +312,44 @@ t.test("#ConverterIRFervidex", (t) => {
 			},
 			"Should return a dry score."
 		);
+
+		t.end();
+	});
+
+	t.test("Should highlight existing scores.", async (t) => {
+		const fakeScore = mkFakeScoreIIDXSP({
+			scoreID: CreateScoreID(
+				1,
+				TestingIIDXSPDryScore,
+				"c2311194e3897ddb5745b1760d2c0141f933e683"
+			),
+			highlight: false,
+		});
+
+		// add a score with an existing scoreID that is not highlighted.
+		await db.scores.insert(fakeScore);
+
+		t.equal(fakeScore.highlight, false, "The score should not be highlighted.");
+
+		// this should mutate the state of the score in the DB.
+		const res = await ConverterIRFervidex(
+			deepmerge(baseFervidexScore, {
+				ex_score: TestingIIDXSPDryScore.scoreData.score,
+				clear_type: 4,
+				chart: "spa",
+				entry_id: 1000,
+
+				// highlight an existing score
+				highlight: true,
+			}),
+			{ version: "27", timeReceived: 10, userID: 1 },
+			"ir/fervidex",
+			logger
+		);
+
+		const dbRes = await db.scores.findOne({ scoreID: fakeScore.scoreID });
+
+		t.equal(dbRes?.highlight, true, "The score should now be highlighted.");
 
 		t.end();
 	});

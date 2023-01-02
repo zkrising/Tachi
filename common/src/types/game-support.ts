@@ -1,6 +1,6 @@
 import type { GAME_CONFIGS, GAME_PT_CONFIGS } from "../config/config";
 import type { FixedDifficulties } from "./_TEMPNAME-game-config-inner";
-import type { ExtractMetrics } from "./metrics";
+import type { ExtractEnumMetricNames, ExtractMetrics } from "./metrics";
 import type { ExtractArrayElementType } from "./utils";
 
 /**
@@ -93,12 +93,30 @@ export type ProfileRatingAlgorithms = {
 	[G in GPTString]: keyof typeof GAME_PT_CONFIGS[G]["profileRatingAlgs"];
 };
 
-export type ScoreMetrics = {
+export type ProvidedMetrics = {
+	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["providedMetrics"];
+};
+
+export type DerivedMetrics = {
+	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["derivedMetrics"];
+};
+
+export type AdditionalMetrics = {
+	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["additionalMetrics"];
+};
+
+/**
+ * What metrics are available on a score for this GPT? This includes derivedMetrics
+ * and providedMetrics.
+ */
+export type ExtractedScoreMetrics = {
 	[G in GPTString]: ExtractMetrics<typeof GAME_PT_CONFIGS[G]["derivedMetrics"]> &
 		ExtractMetrics<typeof GAME_PT_CONFIGS[G]["providedMetrics"]>;
 };
 
-const m: ScoreMetrics["iidx:SP"] = {};
+export type ExtractedAdditionalMetrics = {
+	[G in GPTString]: ExtractMetrics<typeof GAME_PT_CONFIGS[G]["additionalMetrics"]>;
+};
 
 /**
  * Configuration for a GPT. This declares *almost everything* about how this game is
@@ -115,7 +133,7 @@ export interface GamePTConfig<GPT extends GPTString = GPTString> {
 	 * This is intended for things like Score, Lamp, etc. Things that quite fundamentally
 	 * *are* the metrics of the score.
 	 */
-	providedMetrics: Record<string, ScoreMetric>;
+	providedMetrics: ProvidedMetrics[GPT];
 
 	/**
 	 * What metrics do we want to exist on score documents, but don't need to be
@@ -137,7 +155,7 @@ export interface GamePTConfig<GPT extends GPTString = GPTString> {
 	 * Another good example would be "Grade" for most games, as a grade is often just
 	 * cutoffs applied on score values.
 	 */
-	derivedMetrics: Record<string, ScoreMetric>;
+	derivedMetrics: DerivedMetrics[GPT];
 
 	/**
 	 * What's the default metric for this GPT?
@@ -146,7 +164,7 @@ export interface GamePTConfig<GPT extends GPTString = GPTString> {
 	 *
 	 * @note This **MUST** be one of the mandatory or derived keys.
 	 */
-	defaultMetric: string;
+	defaultMetric: keyof DerivedMetrics[GPT] | keyof ProvidedMetrics[GPT];
 
 	/**
 	 * What's the preferred default enum for this GPT?
@@ -156,7 +174,7 @@ export interface GamePTConfig<GPT extends GPTString = GPTString> {
 	 *
 	 * @note This **MUST** be one of the mandatory or derived keys.
 	 */
-	preferredDefaultEnum: string;
+	preferredDefaultEnum: ExtractEnumMetricNames<DerivedMetrics[GPT] & ProvidedMetrics[GPT]>;
 
 	/**
 	 * What metrics *can* we store about scores, but don't necessarily *need*?
@@ -299,3 +317,8 @@ export interface GamePTConfig<GPT extends GPTString = GPTString> {
 	 */
 	supportedMatchTypes: ReadonlyArray<MatchTypes>;
 }
+
+const gptConf: ExtractEnumMetricNames<DerivedMetrics["iidx:SP"]> = {
+	lamp: "a",
+	asdf: 213,
+};

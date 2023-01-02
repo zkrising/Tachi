@@ -1,4 +1,5 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
+import { ExtractMetrics } from "../../types/metrics";
 import { ClassValue } from "../config-utils";
 import type {
 	INTERNAL_GAME_CONFIG,

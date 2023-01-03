@@ -23,12 +23,12 @@ import {
 	GetGamePTConfig,
 	Grades,
 	IDStrings,
+	integer,
 	Lamps,
 	ScoreDocument,
 	SessionScoreInfo,
 	SongDocument,
 	TableDocument,
-	integer,
 } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
 
@@ -129,10 +129,6 @@ function SessionScoreStatBreakdown({
 			Record<Grades[IDStrings], { score: ScoreDocument; scoreInfo: SessionScoreInfo }[]>
 		> = {};
 
-		// dedupe grades/lamps for repeat plays
-		const isBestGradeThisSession = new Map();
-		const isBestLampThisSession = new Map();
-
 		for (const scoreInfo of sessionData.scoreInfo) {
 			const score = scoreMap.get(scoreInfo.scoreID);
 
@@ -142,52 +138,16 @@ function SessionScoreStatBreakdown({
 				);
 				continue;
 			}
-
-			const g = isBestGradeThisSession.get(score.chartID);
-			const l = isBestLampThisSession.get(score.chartID);
-
-			// if we haven't saw this chart before
-			// or the score we have saw for this chart before had a worse grade
-			if (!g || (g.scoreData.gradeIndex && g < score.scoreData.gradeIndex)) {
-				isBestGradeThisSession.set(score.chartID, score);
-			}
-
-			// same but for lamp
-			if (!l || (l.scoreData.lampIndex && l < score.scoreData.lampIndex)) {
-				isBestLampThisSession.set(score.chartID, score);
-			}
-		}
-
-		for (const scoreInfo of sessionData.scoreInfo) {
-			const score = scoreMap.get(scoreInfo.scoreID);
-
-			if (!score) {
-				console.error(
-					`Session score info contains scoreID ${scoreInfo.scoreID}, but no score exists?`
-				);
-				continue;
-			}
-
-			const wasBestLamp = isBestLampThisSession.get(score.chartID)?.scoreID === score.scoreID;
-			const wasBestGrade =
-				isBestGradeThisSession.get(score.chartID)?.scoreID === score.scoreID;
 
 			if (scoreInfo.isNewScore) {
-				if (wasBestLamp) {
-					PartialArrayRecordAssign(newLamps, score.scoreData.lamp, { score, scoreInfo });
-				}
-				if (wasBestGrade) {
-					PartialArrayRecordAssign(newGrades, score.scoreData.grade, {
-						score,
-						scoreInfo,
-					});
-				}
+				PartialArrayRecordAssign(newLamps, score.scoreData.lamp, { score, scoreInfo });
+				PartialArrayRecordAssign(newGrades, score.scoreData.grade, { score, scoreInfo });
 			} else {
-				if (scoreInfo.lampDelta > 0 && wasBestLamp) {
+				if (scoreInfo.lampDelta > 0) {
 					PartialArrayRecordAssign(newLamps, score.scoreData.lamp, { score, scoreInfo });
 				}
 
-				if (scoreInfo.gradeDelta > 0 && wasBestLamp) {
+				if (scoreInfo.gradeDelta > 0) {
 					PartialArrayRecordAssign(newGrades, score.scoreData.grade, {
 						score,
 						scoreInfo,

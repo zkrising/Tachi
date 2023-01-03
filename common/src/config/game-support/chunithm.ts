@@ -90,7 +90,7 @@ export const CHUNITHM_SINGLE_CONF = {
 
 	orderedJudgements: ["jcrit", "justice", "attack", "miss"],
 
-	supportedVersions: ["paradiselost"],
+	chartSets: ["Paradise Lost"],
 
 	supportedTierlists: {},
 

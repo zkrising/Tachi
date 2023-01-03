@@ -67,18 +67,13 @@ export const MUSECA_SINGLE_CONF = {
 		difficultyOrder: ["Green", "Yellow", "Red"],
 		difficultyShorthand: { Green: "G", Yellow: "Y", Red: "R" },
 		defaultDifficulty: "Red",
-		difficultyColours: {
-			Green: COLOUR_SET.green,
-			Yellow: COLOUR_SET.vibrantYellow,
-			Red: COLOUR_SET.red,
-		},
 	},
 
 	supportedClasses: {},
 
 	orderedJudgements: ["critical", "near", "miss"],
 
-	supportedVersions: ["1 + 1/2", "1 + 1/2 Rev. B"],
+	chartSets: ["1 + 1/2", "1 + 1/2 Rev. B"],
 
 	supportedTierlists: {},
 

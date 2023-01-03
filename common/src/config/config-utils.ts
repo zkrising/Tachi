@@ -2,7 +2,7 @@
  * Utilities *specifically* for game/gpt configuration.
  */
 import type { integer } from "../types";
-import type { ClassInfo } from "../types/_TEMPNAME-game-config-inner";
+import type { ClassInfo } from "../types/game-config";
 
 export function NoDecimalPlace(value: number): string {
 	return value.toFixed(0);

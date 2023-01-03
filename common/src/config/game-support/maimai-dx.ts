@@ -155,7 +155,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 
 	orderedJudgements: ["pcrit", "perfect", "great", "good", "miss"],
 
-	supportedVersions: ["universeplus"],
+	chartSets: ["universeplus"],
 
 	supportedTierlists: {},
 

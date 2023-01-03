@@ -1,6 +1,10 @@
 /* eslint-disable lines-around-comment */
-import { FormatSieglindeBMS, FormatSieglindePMS, FormatMaimaiDXRating } from "./config-utils";
 import { COLOUR_SET } from "../constants/colour-set";
+import {
+	FormatSieglindeBMS,
+	FormatSieglindePMS,
+	FormatMaimaiDXRating,
+} from "./config-utils";
 import type { GPTTierlists } from "..";
 import type { ClassInfo } from "./game-classes";
 

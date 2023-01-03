@@ -78,7 +78,7 @@ export const USC_CONTROLLER_CONF = {
 
 	orderedJudgements: ["critical", "near", "miss"],
 
-	supportedVersions: [],
+	chartSets: [],
 
 	supportedTierlists: {},
 

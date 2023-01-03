@@ -1,5 +1,6 @@
 import type { GAME_CONFIGS, GAME_PT_CONFIGS } from "../config/config";
-import type { FixedDifficulties } from "./_TEMPNAME-game-config-inner";
+import type { MatchTypes } from "./batch-manual";
+import type { ClassConfig, FixedDifficulties, RatingAlgorithmConfig } from "./game-config";
 import type { ExtractEnumMetricNames, ExtractMetrics } from "./metrics";
 import type { ExtractArrayElementType } from "./utils";
 
@@ -79,6 +80,10 @@ export type DifficultyConfigs = {
 
 export type Judgements = {
 	[G in GPTString]: ExtractArrayElementType<typeof GAME_PT_CONFIGS[G]["orderedJudgements"]>;
+};
+
+export type ChartSets = {
+	[G in GPTString]: ExtractArrayElementType<typeof GAME_PT_CONFIGS[G]["chartSets"]>;
 };
 
 export type ScoreRatingAlgorithms = {
@@ -186,7 +191,7 @@ export interface GamePTConfig<GPT extends GPTString = GPTString> {
 	 * The idea of additionalMetrics allow us to store useful metrics about scores
 	 * without necessitating that they exist on arrival. Incredibly convenient.
 	 */
-	additionalMetrics: Record<string, ScoreMetric>;
+	additionalMetrics: AdditionalMetrics[GPT];
 
 	/**
 	 * What rating algorithms may a score have attached onto it for this GPT?
@@ -195,7 +200,7 @@ export interface GamePTConfig<GPT extends GPTString = GPTString> {
 	 * server config. By defining them here, the typesystem will enforce that you
 	 * implement them elsewhere.
 	 */
-	scoreRatingAlgs: Record<string, RatingAlgorithmConfig>;
+	scoreRatingAlgs: Record<ScoreRatingAlgorithms[GPT], RatingAlgorithmConfig>;
 
 	/**
 	 * What rating algorithms may a session have attached onto it for this GPT?
@@ -204,7 +209,7 @@ export interface GamePTConfig<GPT extends GPTString = GPTString> {
 	 * server config. By defining them here, the typesystem will enforce that you
 	 * implement them elsewhere.
 	 */
-	sessionRatingAlgs: Record<string, RatingAlgorithmConfig>;
+	sessionRatingAlgs: Record<SessionRatingAlgorithms[GPT], RatingAlgorithmConfig>;
 
 	/**
 	 * What rating algorithms may a profile have attached onto it for this GPT?
@@ -224,7 +229,7 @@ export interface GamePTConfig<GPT extends GPTString = GPTString> {
 	 * server config. By defining them here, the typesystem will enforce that you
 	 * implement them elsewhere.
 	 */
-	profileRatingAlgs: Record<string, RatingAlgorithmConfig>;
+	profileRatingAlgs: Record<ProfileRatingAlgorithms[GPT], RatingAlgorithmConfig>;
 
 	/**
 	 * What classes may a profile have attached onto it for this GPT?
@@ -242,21 +247,21 @@ export interface GamePTConfig<GPT extends GPTString = GPTString> {
 	 *
 	 * @note This should be one of the keys in scoreRatingAlgs.
 	 */
-	defaultScoreRatingAlg: string;
+	defaultScoreRatingAlg: ScoreRatingAlgorithms[GPT];
 
 	/**
 	 * What's the default session rating algorithm for this GPT?
 	 *
 	 * @note This should be one of the keys in sessionRatingAlgs.
 	 */
-	defaultSessionRatingAlg: string;
+	defaultSessionRatingAlg: SessionRatingAlgorithms[GPT];
 
 	/**
 	 * What's the default profile rating algorithm for this GPT1?
 	 *
 	 * @note This should be one of the keys in sessionRatingAlgs.
 	 */
-	defaultProfileRatingAlg: string;
+	defaultProfileRatingAlg: ProfileRatingAlgorithms[GPT];
 
 	/**
 	 * How does this GPT handle difficulties?
@@ -276,39 +281,27 @@ export interface GamePTConfig<GPT extends GPTString = GPTString> {
 	 *
 	 * These should be ordered from **best to worst**.
 	 */
-	orderedJudgements: ReadonlyArray<string>;
+	orderedJudgements: ReadonlyArray<Judgements[GPT]>;
 
 	/**
-	 * What versions do we support for this GPT?
+	 * What sets of charts do we have for this GPT?
 	 *
-	 * Versions are the way tachi disambiguates cases (typically in arcade games) where
+	 * Chart Sets are the way tachi disambiguates cases (typically in arcade games) where
 	 * a chart is modified.
 	 * For example, Rising in the Sun
 	 * (https://remywiki.com/Rising_in_the_Sun(original_mix))
-	 * was removed in IIDX 21 ("spada"), and revived in IIDX 27 with entirely different
+	 * was removed in IIDX 21, and revived in IIDX 27 with entirely different
 	 * charts. Although these charts are completely different,
 	 * they use the same song and difficulty
 	 * so Rising in the Sun SP ANOTHER could mean two things!.
 	 *
-	 * We need to handle these cases, so we disambiguate by attaching "versions" onto
-	 * every chart. These "versions" indicate what sets of chart states they appeared in
-	 * for this GPT. Then, when a score is coming in, it can indicate what version this
-	 * score was from. That way, we can make sure they resolve to the right chart.
+	 * We need to handle these cases, so we disambiguate by attaching "chart sets" onto
+	 * every chart. These "chart sets" indicate what sets of chart states they
+	 * appeared in for this GPT. Then, when a score is coming in, it can indicate what
+	 * chartSet this score was on. That way, we can make sure they resolve to the right
+	 * chart.
 	 */
-	supportedVersions: ReadonlyArray<string>;
-
-	/**
-	 * What tierlists does this GPT have?
-	 *
-	 * Tierlists are a way of attaching custom rating values onto a chart.
-	 * Unlike "chart.data", which may be overloaded with anything, defined tierlists
-	 * *must* fit a known schema, allowing the UI to visually render any tierlists
-	 * defined here.
-	 *
-	 * This feature is a bit redundant given "chart.data", and should be further
-	 * investigated. My bad.
-	 */
-	supportedTierlists: Record<string, TierlistConfig>;
+	chartSets: ReadonlyArray<ChartSets[GPT]>;
 
 	/**
 	 * What "matchTypes" should this game support for batch-manual imports? This
@@ -317,8 +310,3 @@ export interface GamePTConfig<GPT extends GPTString = GPTString> {
 	 */
 	supportedMatchTypes: ReadonlyArray<MatchTypes>;
 }
-
-const gptConf: ExtractEnumMetricNames<DerivedMetrics["iidx:SP"]> = {
-	lamp: "a",
-	asdf: 213,
-};

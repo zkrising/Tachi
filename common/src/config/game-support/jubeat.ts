@@ -86,14 +86,14 @@ export const JUBEAT_SINGLE_CONF = {
 
 	orderedJudgements: ["perfect", "great", "good", "poor", "miss"],
 
-	supportedVersions: [
+	chartSets: [
 		"jubeat",
 		"ripples",
 		"knit",
 		"copious",
 		"saucer",
 		"prop",
-		"qubell",
+		"Qubell",
 		"clan",
 		"festo",
 	],

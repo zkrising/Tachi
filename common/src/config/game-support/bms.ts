@@ -162,7 +162,19 @@ export const BMS_7K_CONF = {
 
 	additionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
-		// TODO
+		bp: { type: "INTEGER" },
+		gauge: { type: "DECIMAL" },
+		gaugeHistory: { type: "GRAPH" },
+		epg: { type: "INTEGER" },
+		egr: { type: "INTEGER" },
+		egd: { type: "INTEGER" },
+		ebd: { type: "INTEGER" },
+		epr: { type: "INTEGER" }, //
+		lpg: { type: "INTEGER" },
+		lgr: { type: "INTEGER" },
+		lgd: { type: "INTEGER" },
+		lbd: { type: "INTEGER" },
+		lpr: { type: "INTEGER" },
 	},
 
 	scoreRatingAlgs: {
@@ -218,7 +230,7 @@ export const BMS_7K_CONF = {
 
 	orderedJudgements: ["pgreat", "great", "good", "bad", "poor"],
 
-	supportedVersions: [],
+	chartSets: [],
 
 	supportedTierlists: {
 		"sgl-EC": { description: "Sieglinde Easy Clear ratings." },

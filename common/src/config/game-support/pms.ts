@@ -112,7 +112,7 @@ export const PMS_CONTROLLER_CONF = {
 
 	orderedJudgements: ["cool", "great", "good", "bad", "poor"],
 
-	supportedVersions: [],
+	chartSets: [],
 
 	supportedTierlists: {
 		"sgl-EC": { description: "Sieglinde Easy Clear ratings." },

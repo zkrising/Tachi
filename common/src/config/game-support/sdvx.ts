@@ -145,7 +145,7 @@ export const SDVX_SINGLE_CONF = {
 
 	orderedJudgements: ["critical", "near", "miss"],
 
-	supportedVersions: [
+	chartSets: [
 		"BOOTH",
 		"infinite infection",
 		"GRAVITY WARS",

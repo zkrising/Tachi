@@ -102,7 +102,7 @@ export const GITADORA_GITA_CONF = {
 
 	orderedJudgements: ["perfect", "great", "good", "ok", "miss"],
 
-	supportedVersions: ["Konaste"],
+	chartSets: ["Konaste"],
 
 	supportedTierlists: {},
 

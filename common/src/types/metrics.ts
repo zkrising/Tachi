@@ -69,13 +69,9 @@ export type ExtractMetricType<M extends ScoreMetric> = M extends DecimalScoreMet
  * ExtractEnumMetricNames<{ score: { type: "INTEGER" } }, grade: { type: "ENUM" ... }>
  * would return a type of "grade"
  */
-export type ExtractEnumMetricNames<R extends Record<string, ScoreMetric>> = Omit<
-	R,
-	keyof {
-		//                                             vvvv this is stupid
-		[K in keyof R]: R[K] extends EnumScoreMetric ? never : K;
-	}
->;
+export type ExtractEnumMetricNames<R extends Record<string, ScoreMetric>> = {
+	[K in keyof R]: R[K] extends EnumScoreMetric ? K : never;
+}[keyof R];
 
 type PossibleMetrics = ExtractMetricType<ScoreMetric>;
 

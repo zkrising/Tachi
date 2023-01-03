@@ -123,7 +123,7 @@ export const WACCA_SINGLE_CONF = {
 
 	orderedJudgements: ["marvelous", "great", "good", "miss"],
 
-	supportedVersions: ["REVERSE"],
+	chartSets: ["REVERSE"],
 
 	supportedTierlists: {},
 

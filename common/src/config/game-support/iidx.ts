@@ -1,10 +1,9 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
-import { ExtractMetrics } from "../../types/metrics";
-import { ClassValue } from "../config-utils";
-import type {
+import {
 	INTERNAL_GAME_CONFIG,
-	INTERNAL_GPT_CONFIG as INTERNAL_GPT_CONFIG,
+	INTERNAL_GPT_CONFIG,
 } from "../../types/internals";
+import { ClassValue } from "../config-utils";
 
 export const IIDX_CONF = {
 	defaultPlaytype: "SP",
@@ -159,7 +158,7 @@ export const IIDX_SP_CONF = {
 
 	orderedJudgements: ["pgreat", "great", "good", "bad", "poor"],
 
-	supportedVersions: [
+	chartSets: [
 		"3rd Style CS",
 		"4th Style CS",
 		"5th Style CS",

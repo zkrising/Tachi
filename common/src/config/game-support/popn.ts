@@ -110,7 +110,7 @@ export const POPN_9B_CONF = {
 
 	orderedJudgements: ["cool", "great", "good", "bad"],
 
-	supportedVersions: ["peace", "kaimei"],
+	chartSets: ["peace", "Kaimei Riddles"],
 
 	supportedTierlists: {},
 

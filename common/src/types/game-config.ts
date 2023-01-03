@@ -1,3 +1,6 @@
+// Types related to game configuration. These are used by our `internal` game config
+// types
+
 export interface RatingAlgorithmConfig {
 	/**
 	 * Write a short descrption for this rating algorithm.
@@ -10,14 +13,6 @@ export interface RatingAlgorithmConfig {
 	 * for this algorithm.
 	 */
 	formatter?: (value: number) => string;
-}
-
-export interface TierlistConfig {
-	/**
-	 * Write a short description explaining what this tierlist is and what the values
-	 * generally mean.
-	 */
-	description: string;
 }
 
 export interface ClassInfo {

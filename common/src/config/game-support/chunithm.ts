@@ -1,11 +1,16 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
-import { ClassValue } from "../config-utils";
+import { ClassValue, zodNonNegativeInt } from "../config-utils";
+import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
 
 export const CHUNITHM_CONF = {
 	defaultPlaytype: "Single",
 	name: "CHUNITHM",
 	validPlaytypes: ["Single"],
+	songData: {
+		genre: z.string(),
+		displayVersion: z.string(),
+	},
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 export const CHUNITHMColours = [
@@ -92,7 +97,9 @@ export const CHUNITHM_SINGLE_CONF = {
 
 	chartSets: ["Paradise Lost"],
 
-	supportedTierlists: {},
+	chartData: {
+		inGameID: zodNonNegativeInt,
+	},
 
 	supportedMatchTypes: ["inGameID", "songTitle", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

@@ -329,7 +329,6 @@ export interface ChartTierlistInfo {
 
 export interface ChartDocument<GPT extends GPTStrings = GPTStrings> {
 	chartID: string;
-	rgcID: string | null; // ID to perform backbeat lookup in future.
 	songID: integer;
 	level: string;
 	levelNum: number;
@@ -337,8 +336,7 @@ export interface ChartDocument<GPT extends GPTStrings = GPTStrings> {
 	difficulty: Difficulties[GPT];
 	playtype: GPTStringToPlaytype[GPT];
 	data: ChartData[GPT];
-	tierlistInfo: Partial<Record<SupportedTierlists[GPT], ChartTierlistInfo>>;
-	versions: Array<SupportedVersions[GPT]>;
+	chartSets: Array<SupportedVersions[GPT]>;
 }
 
 export interface SongDocument<G extends Game = Game> {

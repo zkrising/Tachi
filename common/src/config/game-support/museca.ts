@@ -1,12 +1,17 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
-import { COLOUR_SET } from "../../constants/colour-set";
-import { NoDecimalPlace } from "../config-utils";
+import { NoDecimalPlace, zodNonNegativeInt } from "../config-utils";
+import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
 
 export const MUSECA_CONF = {
 	defaultPlaytype: "Single",
 	name: "MÚSECA",
 	validPlaytypes: ["Single"],
+	songData: {
+		titleJP: z.string(),
+		artistJP: z.string(),
+		displayVersion: z.string(),
+	},
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 export const MUSECA_SINGLE_CONF = {
@@ -75,7 +80,7 @@ export const MUSECA_SINGLE_CONF = {
 
 	chartSets: ["1 + 1/2", "1 + 1/2 Rev. B"],
 
-	supportedTierlists: {},
+	chartData: { inGameID: zodNonNegativeInt },
 
 	supportedMatchTypes: ["songTitle", "tachiSongID", "inGameID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

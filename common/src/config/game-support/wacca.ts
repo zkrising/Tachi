@@ -1,11 +1,18 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue } from "../config-utils";
+import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
 
 export const WACCA_CONF = {
 	defaultPlaytype: "Single",
 	name: "WACCA",
 	validPlaytypes: ["Single"],
+	songData: {
+		titleJP: z.string(),
+		artistJP: z.string(),
+		genre: z.string(),
+		displayVersion: z.nullable(z.string()),
+	},
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 export const WaccaStageUps = [
@@ -125,7 +132,9 @@ export const WACCA_SINGLE_CONF = {
 
 	chartSets: ["REVERSE"],
 
-	supportedTierlists: {},
+	chartData: {
+		isHot: z.boolean(),
+	},
 
 	supportedMatchTypes: ["songTitle", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

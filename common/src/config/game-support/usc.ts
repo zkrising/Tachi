@@ -1,11 +1,13 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ToDecimalPlaces } from "../config-utils";
+import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
 
 export const USC_CONF = {
 	defaultPlaytype: "Controller",
 	name: "USC",
 	validPlaytypes: ["Controller", "Keyboard"],
+	songData: {},
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 export const USC_CONTROLLER_CONF = {
@@ -80,7 +82,17 @@ export const USC_CONTROLLER_CONF = {
 
 	chartSets: [],
 
-	supportedTierlists: {},
+	chartData: {
+		hashSHA1: z.union([z.array(z.string()), z.string()]),
+		isOfficial: z.boolean(),
+		effector: z.string(),
+		tableFolders: z.array(
+			z.object({
+				table: z.string(),
+				level: z.string(),
+			})
+		),
+	},
 
 	supportedMatchTypes: ["uscChartHash", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

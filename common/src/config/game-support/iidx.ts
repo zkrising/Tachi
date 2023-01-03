@@ -1,14 +1,16 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
-import {
-	INTERNAL_GAME_CONFIG,
-	INTERNAL_GPT_CONFIG,
-} from "../../types/internals";
-import { ClassValue } from "../config-utils";
+import { ClassValue, zodNonNegativeInt, zodTierlistData } from "../config-utils";
+import { z } from "zod";
+import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
 
 export const IIDX_CONF = {
 	defaultPlaytype: "SP",
 	name: "beatmania IIDX",
 	validPlaytypes: ["SP", "DP"],
+	songData: {
+		genre: z.string(),
+		displayVersion: z.nullable(z.string()),
+	},
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 export const IIDXDans = [
@@ -32,6 +34,16 @@ export const IIDXDans = [
 	ClassValue("CHUUDEN", "中伝", "Chuuden"),
 	ClassValue("KAIDEN", "皆伝", "Kaiden"),
 ];
+
+const BASE_IIDX_CHART_DATA = {
+	notecount: zodNonNegativeInt,
+	inGameID: z.union([z.array(z.number().int()), z.number().int()]),
+	hashSHA256: z.string().nullable(),
+	"2dxtraSet": z.string().nullable(),
+	kaidenAverage: z.number().int().positive().nullable(),
+	worldRecord: z.number().int().positive().nullable(),
+	bpiCoefficient: z.number().positive().nullable(),
+};
 
 export const IIDX_SP_CONF = {
 	providedMetrics: {
@@ -194,19 +206,11 @@ export const IIDX_SP_CONF = {
 		"INFINITAS",
 	],
 
-	supportedTierlists: {
-		"kt-NC": {
-			description:
-				"The Normal Clear tiers for Kamaitachi. These are adapted from multiple sources.",
-		},
-		"kt-HC": {
-			description:
-				"The Hard Clear tiers for Kamaitachi. These are adapted from multiple sources.",
-		},
-		"kt-EXHC": {
-			description:
-				"The EX-HARD Clear tiers for Kamaitachi. These are adapted from multiple sources.",
-		},
+	chartData: {
+		...BASE_IIDX_CHART_DATA,
+		ncTier: zodTierlistData(),
+		hcTier: zodTierlistData(),
+		exhcTier: zodTierlistData(),
 	},
 
 	supportedMatchTypes: ["inGameID", "tachiSongID", "songTitle"],
@@ -215,10 +219,9 @@ export const IIDX_SP_CONF = {
 export const IIDX_DP_CONF = {
 	...IIDX_SP_CONF,
 
-	supportedTierlists: {
-		"dp-tier": {
-			description:
-				"The unofficial DP tiers, taken from https://zasa.sakura.ne.jp/dp/run.php.",
-		},
+	chartData: {
+		...BASE_IIDX_CHART_DATA,
+
+		dpTier: zodTierlistData(),
 	},
 } as const satisfies INTERNAL_GPT_CONFIG;

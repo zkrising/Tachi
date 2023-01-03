@@ -1,11 +1,15 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
-import { ClassValue } from "../config-utils";
+import { ClassValue, zodNonNegativeInt } from "../config-utils";
+import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
 
 export const JUBEAT_CONF = {
 	defaultPlaytype: "Single",
 	name: "jubeat",
 	validPlaytypes: ["Single"],
+	songData: {
+		displayVersion: z.string(),
+	},
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 const JubeatColours = [
@@ -98,7 +102,9 @@ export const JUBEAT_SINGLE_CONF = {
 		"festo",
 	],
 
-	supportedTierlists: {},
+	chartData: {
+		inGameID: z.union([z.array(zodNonNegativeInt), zodNonNegativeInt]),
+	},
 
 	supportedMatchTypes: ["inGameID", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

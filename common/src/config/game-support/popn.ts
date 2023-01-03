@@ -1,11 +1,17 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
-import { ClassValue } from "../config-utils";
+import { ClassValue, zodNonNegativeInt } from "../config-utils";
+import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
 
 export const POPN_CONF = {
 	defaultPlaytype: "9B",
 	name: "pop'n music",
 	validPlaytypes: ["9B"],
+	songData: {
+		displayVersion: z.nullable(z.string()),
+		genre: z.string(),
+		genreEN: z.nullable(z.string()),
+	},
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 const PopnClasses = [
@@ -112,7 +118,11 @@ export const POPN_9B_CONF = {
 
 	chartSets: ["peace", "Kaimei Riddles"],
 
-	supportedTierlists: {},
+	chartData: {
+		// Array<string> | string | null
+		hashSHA256: z.union([z.array(z.string()), z.string(), z.null()]),
+		inGameID: zodNonNegativeInt,
+	},
 
 	supportedMatchTypes: ["inGameID", "tachiSongID", "popnChartHash"],
 } as const satisfies INTERNAL_GPT_CONFIG;

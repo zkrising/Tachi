@@ -368,46 +368,6 @@ type SupportedIIDXVersions =
 	| "bmus"
 	| "inf";
 
-/**
- * What "versions" does this GPT support?
- *
- * Versions are a series of strings that may be attached onto charts as part of their
- * `versions` array. These are used to resolve problems like when a chart is changed
- * between versions.
- *
- * These are also typically used to construct folders for the GPT, allowing things like
- * INFINITAS players to see only the charts they're able to play.
- */
-export interface SupportedVersions {
-	"iidx:SP": SupportedIIDXVersions;
-	"iidx:DP": SupportedIIDXVersions;
-	"popn:9B": "kaimei" | "peace";
-	"sdvx:Single": "booth" | "exceed" | "gw" | "heaven" | "inf" | "konaste" | "vivid";
-	"usc:Controller": never;
-	"usc:Keyboard": never;
-	"jubeat:Single":
-		| "clan"
-		| "copious"
-		| "festo"
-		| "jubeat"
-		| "knit"
-		| "prop"
-		| "qubell"
-		| "ripples"
-		| "saucer";
-	"maimaidx:Single": "universeplus";
-	"museca:Single": "1.5-b" | "1.5";
-	"bms:7K": never;
-	"bms:14K": never;
-	"chunithm:Single": "paradiselost";
-	"gitadora:Gita": "konaste";
-	"gitadora:Dora": "konaste";
-	"wacca:Single": "reverse";
-	"pms:Controller": never;
-	"pms:Keyboard": never;
-	"itg:Stamina": never;
-}
-
 interface ChartDataIIDX {
 	notecount: integer;
 	inGameID: Array<integer> | integer;
@@ -462,7 +422,7 @@ export interface ChartData {
 	"pms:Controller": ChartDataPMS;
 	"pms:Keyboard": ChartDataPMS;
 	"itg:Stamina": {
-		hashGSV3: string;
+		hashGSv3: string;
 		difficultyTag: "Beginner" | "Challenge" | "Easy" | "Edit" | "Hard" | "Medium";
 		breakdown: {
 			detailed: string;

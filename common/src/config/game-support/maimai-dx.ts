@@ -1,11 +1,15 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue, NoDecimalPlace } from "../config-utils";
+import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
 
 export const MAIMAI_DX_CONF = {
 	defaultPlaytype: "Single",
 	name: "maimai DX",
 	validPlaytypes: ["Single"],
+	songData: {
+		displayVersion: z.string(),
+	},
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 const MaimaiDXDans = [
@@ -155,9 +159,11 @@ export const MAIMAI_DX_SINGLE_CONF = {
 
 	orderedJudgements: ["pcrit", "perfect", "great", "good", "miss"],
 
-	chartSets: ["universeplus"],
+	chartSets: ["UNiVERSE PLUS"],
 
-	supportedTierlists: {},
+	chartData: {
+		isLatest: z.boolean(),
+	},
 
 	supportedMatchTypes: ["songTitle", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

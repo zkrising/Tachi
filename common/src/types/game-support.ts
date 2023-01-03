@@ -3,6 +3,7 @@ import type { MatchTypes } from "./batch-manual";
 import type { ClassConfig, FixedDifficulties, RatingAlgorithmConfig } from "./game-config";
 import type { ExtractEnumMetricNames, ExtractMetrics } from "./metrics";
 import type { ExtractArrayElementType } from "./utils";
+import type { z } from "zod";
 
 /**
  * All the games Tachi supports.
@@ -33,6 +34,10 @@ export type Playtypes = {
  */
 export type Playtype = Playtypes[Game];
 
+export type SongDocumentData = {
+	[G in Game]: z.infer<typeof GAME_CONFIGS[G]["songData"]>;
+};
+
 /**
  * Configuration for the given game. This declares things like its user-facing name,
  * internal ID, defaultPlaytype and what playtypes it supports.
@@ -42,6 +47,12 @@ export interface GameConfig<G extends Game = Game> {
 	readonly name: string;
 	readonly defaultPlaytype: Playtypes[G];
 	readonly validPlaytypes: ReadonlyArray<Playtypes[G]>;
+
+	/**
+	 * Song documents get their own game-specific record that they use for whatever
+	 * they want. IIDX song documents store genres, etc.
+	 */
+	readonly songData: SongDocumentData[G];
 }
 
 /**
@@ -108,6 +119,10 @@ export type DerivedMetrics = {
 
 export type AdditionalMetrics = {
 	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["additionalMetrics"];
+};
+
+export type ChartDocumentData = {
+	[G in GPTString]: z.infer<typeof GAME_PT_CONFIGS[G]["chartData"]>;
 };
 
 /**
@@ -302,6 +317,13 @@ export interface GamePTConfig<GPT extends GPTString = GPTString> {
 	 * chart.
 	 */
 	chartSets: ReadonlyArray<ChartSets[GPT]>;
+
+	/**
+	 * Chart documents get their own GPT-specific record that they use for whatever
+	 * they want. IIDX documents store BPI information like kaiden averages, BMS
+	 * charts store sha256/md5 hashes, etc.
+	 */
+	chartData: ChartDocumentData[GPT];
 
 	/**
 	 * What "matchTypes" should this game support for batch-manual imports? This

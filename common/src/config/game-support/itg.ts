@@ -1,10 +1,12 @@
-import { NoDecimalPlace } from "../config-utils";
+import { NoDecimalPlace, zodNonNegativeInt } from "../config-utils";
+import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
 
 export const ITG_CONF = {
 	defaultPlaytype: "Stamina",
 	name: "ITG",
 	validPlaytypes: ["Stamina"],
+	songData: { subtitle: z.string(), originalPack: z.string() },
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 export const ITG_STAMINA_CONF = {
@@ -94,7 +96,25 @@ export const ITG_STAMINA_CONF = {
 
 	chartSets: [],
 
-	supportedTierlists: {},
+	chartData: {
+		hashGSv3: z.string(),
+		difficultyTag: z.enum(["Beginner", "Easy", "Medium", "Hard", "Expert", "Edit"] as const),
+		length: z.number().positive(),
+		charter: z.string(),
+
+		// What BPM tier should this chart appear in?
+		primaryBPM: z.number(),
+
+		breakdown: z.object({
+			detailed: z.string(),
+			partiallySimplified: z.string(),
+			simplified: z.string(),
+			total: z.string(),
+		}),
+
+		npsPerMeasure: z.array(zodNonNegativeInt),
+		notesPerMeasure: z.array(zodNonNegativeInt),
+	},
 
 	supportedMatchTypes: ["itgChartHash", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

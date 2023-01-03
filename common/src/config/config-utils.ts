@@ -1,6 +1,7 @@
 /**
  * Utilities *specifically* for game/gpt configuration.
  */
+import { z } from "zod";
 import type { integer } from "../types";
 import type { ClassInfo } from "../types/game-config";
 
@@ -27,3 +28,16 @@ export function ToDecimalPlaces(dp: integer) {
 export function ClassValue(id: string, display: string, hoverText?: string): ClassInfo {
 	return { id, display, hoverText };
 }
+
+export function zodTierlistData() {
+	return z.nullable(
+		z.object({
+			value: z.number(),
+			text: z.string(),
+			individualDifference: z.boolean(),
+		})
+	);
+}
+
+export const zodInt = z.number().int();
+export const zodNonNegativeInt = z.number().int().nonnegative();

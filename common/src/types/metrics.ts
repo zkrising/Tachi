@@ -1,6 +1,6 @@
-import type { GPTStrings } from "../config/config";
 import type { integer } from "../types";
 import type { ChartDocument } from "./documents";
+import type { GPTString } from "./game-support";
 
 /**
  * A metric for a score that's a floating point number.
@@ -45,6 +45,11 @@ export type ScoreMetric =
 	| GraphScoreMetric
 	| IntegerScoreMetric;
 
+export interface EnumValue<S extends string> {
+	string: S;
+	index: integer; // technically incorrect, but whatever
+}
+
 /**
  * Given a Metric Type, turn it into its evaluated form. An IntegerScoreMetric
  * becomes an integer, etc.
@@ -54,10 +59,7 @@ export type ExtractMetricType<M extends ScoreMetric> = M extends DecimalScoreMet
 	: M extends IntegerScoreMetric
 	? integer
 	: M extends EnumScoreMetric
-	? {
-			string: M["values"][number];
-			index: integer; // technically incorrect, but whatever
-	  }
+	? EnumValue<M["values"][number]>
 	: M extends GraphScoreMetric
 	? Array<number>
 	: never;
@@ -88,29 +90,29 @@ export type ExtractMetrics<R extends Record<string, ScoreMetric>> = {
 
 export type MetricDeriver<
 	M extends Record<string, PossibleMetrics>,
-	GPT extends GPTStrings,
+	GPT extends GPTString,
 	V extends PossibleMetrics
 > = (mandatoryMetrics: M, chart: ChartDocument<GPT>) => V;
 
 export type DerivedDecimalScoreMetric<
 	M extends Record<string, PossibleMetrics>,
-	GPT extends GPTStrings
+	GPT extends GPTString
 > = DecimalScoreMetric & { deriver: MetricDeriver<M, GPT, number> };
 
 export type DerivedIntegerScoreMetric<
 	M extends Record<string, PossibleMetrics>,
-	GPT extends GPTStrings
+	GPT extends GPTString
 > = IntegerScoreMetric & { deriver: MetricDeriver<M, GPT, integer> };
 
 export type DerivedEnumScoreMetric<
 	M extends Record<string, PossibleMetrics>,
-	GPT extends GPTStrings,
+	GPT extends GPTString,
 	E extends string = string
-> = EnumScoreMetric<E> & { deriver: MetricDeriver<M, GPT, E> };
+> = EnumScoreMetric<E> & { deriver: MetricDeriver<M, GPT, EnumValue<E>> };
 
 export type DerivedGraphScoreMetric<
 	M extends Record<string, PossibleMetrics>,
-	GPT extends GPTStrings
+	GPT extends GPTString
 > = GraphScoreMetric & { deriver: MetricDeriver<M, GPT, Array<number>> };
 
 /**
@@ -119,10 +121,10 @@ export type DerivedGraphScoreMetric<
  */
 export type DerivedScoreMetric<
 	M extends Record<string, PossibleMetrics>,
-	GPT extends GPTStrings,
-	E extends string = string
+	GPT extends GPTString,
+	Enum extends string = string
 > =
 	| DerivedDecimalScoreMetric<M, GPT>
-	| DerivedEnumScoreMetric<M, GPT, E>
+	| DerivedEnumScoreMetric<M, GPT, Enum>
 	| DerivedGraphScoreMetric<M, GPT>
 	| DerivedIntegerScoreMetric<M, GPT>;

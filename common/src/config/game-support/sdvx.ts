@@ -1,10 +1,14 @@
-import { ClassValue, ToDecimalPlaces } from "../config-utils";
+import { ClassValue, ToDecimalPlaces, zodNonNegativeInt, zodTierlistData } from "../config-utils";
+import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
 
 export const SDVX_CONF = {
 	defaultPlaytype: "Single",
 	name: "SOUND VOLTEX",
 	validPlaytypes: ["Single"],
+	songData: {
+		displayVersion: z.string(),
+	},
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 const SDVXDans = [
@@ -155,10 +159,9 @@ export const SDVX_SINGLE_CONF = {
 		"Konaste",
 	],
 
-	supportedTierlists: {
-		clear: {
-			description: "Clearing values taken from the unofficial SDVX spreadsheet tierlists.",
-		},
+	chartData: {
+		inGameID: zodNonNegativeInt,
+		clearTier: zodTierlistData(),
 	},
 
 	supportedMatchTypes: ["sdvxInGameID", "songTitle", "tachiSongID"],

@@ -231,11 +231,13 @@ importers:
       deepmerge: ^4.2.2
       prudence: 0.10.0
       tap: 15.1.6
+      zod: ^3.20.2
     dependencies:
       '@types/express-serve-static-core': 4.17.29
       '@types/mongodb': 3.6.20_fmazw77vmtotccsa6gb66mxijq
       deepmerge: 4.2.2
       prudence: 0.10.0
+      zod: 3.20.2
     devDependencies:
       '@types/tap': 15.0.7
       tap: 15.1.6
@@ -10606,4 +10608,8 @@ packages:
 
   /zod/3.19.1:
     resolution: {integrity: sha512-LYjZsEDhCdYET9ikFu6dVPGp2YH9DegXjdJToSzD9rO6fy4qiRYFoyEYwps88OseJlPyl2NOe2iJuhEhL7IpEA==}
+    dev: false
+
+  /zod/3.20.2:
+    resolution: {integrity: sha512-1MzNQdAvO+54H+EaK5YpyEy0T+Ejo/7YLHS93G3RnYWh5gaotGHwGeN/ZO687qEDU2y4CdStQYXVHIgrUl5UVQ==}
     dev: false

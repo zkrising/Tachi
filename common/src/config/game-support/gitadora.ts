@@ -1,6 +1,17 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue } from "../config-utils";
+import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
+
+export const GITADORA_CONF = {
+	defaultPlaytype: "Dora",
+	name: "GITADORA",
+	validPlaytypes: ["Gita", "Dora"],
+	songData: {
+		isHot: z.boolean(),
+		displayVersion: z.string(),
+	},
+} as const satisfies INTERNAL_GAME_CONFIG;
 
 const GitadoraColours = [
 	ClassValue("WHITE", "白", "White"),
@@ -21,12 +32,6 @@ const GitadoraColours = [
 	ClassValue("GOLD", "金", "Gold"),
 	ClassValue("RAINBOW", "虹", "Rainbow"),
 ];
-
-export const GITADORA_CONF = {
-	defaultPlaytype: "Dora",
-	name: "GITADORA",
-	validPlaytypes: ["Gita", "Dora"],
-} as const satisfies INTERNAL_GAME_CONFIG;
 
 export const GITADORA_GITA_CONF = {
 	providedMetrics: {
@@ -104,7 +109,9 @@ export const GITADORA_GITA_CONF = {
 
 	chartSets: ["Konaste"],
 
-	supportedTierlists: {},
+	chartData: {
+		inGameID: z.number().int(),
+	},
 
 	supportedMatchTypes: ["inGameID", "songTitle", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

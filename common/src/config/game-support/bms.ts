@@ -1,11 +1,18 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
-import { ClassValue } from "../config-utils";
+import { ClassValue, zodNonNegativeInt } from "../config-utils";
+import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
 
 export const BMS_CONF = {
 	defaultPlaytype: "7K",
 	name: "BMS",
 	validPlaytypes: ["7K", "14K"],
+	songData: {
+		genre: z.nullable(z.string()),
+		subtitle: z.nullable(z.string()),
+		subartist: z.nullable(z.string()),
+		tableString: z.nullable(z.string()),
+	},
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 function FormatSieglindeBMS(sgl: number): string {
@@ -232,9 +239,13 @@ export const BMS_7K_CONF = {
 
 	chartSets: [],
 
-	supportedTierlists: {
-		"sgl-EC": { description: "Sieglinde Easy Clear ratings." },
-		"sgl-HC": { description: "Sieglinde Hard Clear ratings." },
+	chartData: {
+		notecount: zodNonNegativeInt,
+		hashMD5: z.string(),
+		hashSHA256: z.string(),
+		tableFolders: z.array(z.object({ table: z.string(), level: z.string() })),
+		sglEC: z.number().nullable(),
+		sglHC: z.number().nullable(),
 	},
 
 	supportedMatchTypes: ["bmsChartHash", "tachiSongID"],

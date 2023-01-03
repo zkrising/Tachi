@@ -1,11 +1,18 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
-import { ClassValue } from "../config-utils";
+import { ClassValue, zodNonNegativeInt } from "../config-utils";
+import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
 
 export const PMS_CONF = {
 	defaultPlaytype: "Controller",
 	name: "PMS",
 	validPlaytypes: ["Controller", "Keyboard"],
+	songData: {
+		genre: z.nullable(z.string()),
+		subtitle: z.nullable(z.string()),
+		subartist: z.nullable(z.string()),
+		tableString: z.nullable(z.string()),
+	},
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 const PMSDans = [
@@ -114,9 +121,13 @@ export const PMS_CONTROLLER_CONF = {
 
 	chartSets: [],
 
-	supportedTierlists: {
-		"sgl-EC": { description: "Sieglinde Easy Clear ratings." },
-		"sgl-HC": { description: "Sieglinde Hard Clear ratings." },
+	chartData: {
+		notecount: zodNonNegativeInt,
+		hashMD5: z.string(),
+		hashSHA256: z.string(),
+		tableFolders: z.array(z.object({ table: z.string(), level: z.string() })),
+		sglEC: z.number().nullable(),
+		sglHC: z.number().nullable(),
 	},
 
 	supportedMatchTypes: ["bmsChartHash", "tachiSongID"],

@@ -42,7 +42,7 @@ export function CalculateKTLampRatingIIDXDP(dryScore: DryScore, chart: ChartDocu
 
 	const lampIndex = gptConfig.lamps.indexOf(lamp);
 
-	if (lampIndex >= IIDX_LAMPS.CLEAR) {
+	if (lampIndex >= IIDX_LAMPS.EASY_CLEAR) {
 		return tierlistValue;
 	}
 

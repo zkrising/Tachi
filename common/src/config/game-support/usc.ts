@@ -1,7 +1,7 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ToDecimalPlaces } from "../config-utils";
 import { z } from "zod";
-import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
+import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 
 export const USC_CONF = {
 	defaultPlaytype: "Controller",
@@ -76,7 +76,7 @@ export const USC_CONTROLLER_CONF = {
 		defaultDifficulty: "EXH",
 	},
 
-	supportedClasses: {},
+	classes: {},
 
 	orderedJudgements: ["critical", "near", "miss"],
 
@@ -101,6 +101,6 @@ export const USC_CONTROLLER_CONF = {
 	}),
 
 	supportedMatchTypes: ["uscChartHash", "tachiSongID"],
-} as const satisfies INTERNAL_GPT_CONFIG;
+} as const satisfies GamePTConfig;
 
 export const USC_KEYBOARD_CONF = USC_CONTROLLER_CONF;

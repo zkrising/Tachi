@@ -1,7 +1,7 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { NoDecimalPlace, zodNonNegativeInt } from "../config-utils";
 import { z } from "zod";
-import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
+import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 
 export const MUSECA_CONF = {
 	defaultPlaytype: "Single",
@@ -74,7 +74,7 @@ export const MUSECA_SINGLE_CONF = {
 		defaultDifficulty: "Red",
 	},
 
-	supportedClasses: {},
+	classes: {},
 
 	orderedJudgements: ["critical", "near", "miss"],
 
@@ -87,4 +87,4 @@ export const MUSECA_SINGLE_CONF = {
 	scoreMeta: z.strictObject({}),
 
 	supportedMatchTypes: ["songTitle", "tachiSongID", "inGameID"],
-} as const satisfies INTERNAL_GPT_CONFIG;
+} as const satisfies GamePTConfig;

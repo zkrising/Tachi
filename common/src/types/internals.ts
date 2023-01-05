@@ -1,13 +1,11 @@
 import type { MatchTypes } from "./batch-manual";
-import type { ClassConfig, DifficultyConfig, RatingAlgorithmConfig } from "./game-config";
+import type { ClassConfig, DifficultyConfig, RatingAlgorithmConfig } from "./game-config-utils";
 import type { ScoreMetric } from "./metrics";
-import type { AnyZodObject, ZodRawShape } from "zod";
+import type { AnyZodObject } from "zod";
 
 /**
- * This is **NOT** intended for external use.
- *
  * What's the "mold" for a GPT config? All GPT configs *must* satisfy this interface,
- * but aren't necessarily this type (they will be more specific.)
+ * but aren't necessarily this type.
  *
  * @see {GamePTConfig} for the intended-to-use type. This is an *outline* for a GPT
  * config, and has significantly less typesafety.
@@ -15,7 +13,7 @@ import type { AnyZodObject, ZodRawShape } from "zod";
  * Documentation for this type can be found in `game-support.ts`, which has the
  * GamePTConfig type, which actually has documentation.
  */
-export type INTERNAL_GPT_CONFIG = Readonly<{
+export type GamePTConfig = Readonly<{
 	providedMetrics: Record<string, ScoreMetric>;
 
 	derivedMetrics: Record<string, ScoreMetric>;
@@ -34,7 +32,7 @@ export type INTERNAL_GPT_CONFIG = Readonly<{
 	defaultSessionRatingAlg: string;
 	defaultProfileRatingAlg: string;
 
-	supportedClasses: Record<string, ClassConfig>;
+	classes: Record<string, ClassConfig>;
 
 	difficultyConfig: DifficultyConfig;
 

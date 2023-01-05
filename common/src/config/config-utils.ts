@@ -3,7 +3,7 @@
  */
 import { z } from "zod";
 import type { integer } from "../types";
-import type { ClassInfo } from "../types/game-config";
+import type { ClassInfo } from "../types/game-config-utils";
 
 export function NoDecimalPlace(value: number): string {
 	return value.toFixed(0);
@@ -25,7 +25,11 @@ export function ToDecimalPlaces(dp: integer) {
  * text? This is useful for things like IIDX Dans, where the expected display strings
  * are kanji.
  */
-export function ClassValue(id: string, display: string, hoverText?: string): ClassInfo {
+export function ClassValue<V extends string>(
+	id: V,
+	display: string,
+	hoverText?: string
+): ClassInfo<V> {
 	return { id, display, hoverText };
 }
 

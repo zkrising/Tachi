@@ -1,7 +1,7 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { z } from "zod";
-import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
+import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 
 export const BMS_CONF = {
 	defaultPlaytype: "7K",
@@ -230,7 +230,7 @@ export const BMS_7K_CONF = {
 		defaultDifficulty: "CHART",
 	},
 
-	supportedClasses: {
+	classes: {
 		genocideDan: { type: "PROVIDED", values: BMSGenocideDans },
 		stslDan: { type: "PROVIDED", values: BMSStSlDans },
 		lnDan: { type: "PROVIDED", values: BMSLNDans },
@@ -262,11 +262,11 @@ export const BMS_7K_CONF = {
 	}),
 
 	supportedMatchTypes: ["bmsChartHash", "tachiSongID"],
-} as const satisfies INTERNAL_GPT_CONFIG;
+} as const satisfies GamePTConfig;
 
 export const BMS_14K_CONF = {
 	...BMS_7K_CONF,
-	supportedClasses: {
+	classes: {
 		genocideDan: { type: "PROVIDED", values: BMSGenocideDans },
 		stslDan: { type: "PROVIDED", values: BMSDPSlDans },
 	},
@@ -277,4 +277,4 @@ export const BMS_14K_CONF = {
 		client: z.enum(["lr2oraja", "LR2"]).optional(),
 		gauge: z.enum(["EASY", "NORMAL", "HARD", "EX-HARD"]).optional(),
 	}),
-} as const satisfies INTERNAL_GPT_CONFIG;
+} as const satisfies GamePTConfig;

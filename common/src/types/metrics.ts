@@ -1,6 +1,6 @@
 import type { integer } from "../types";
 import type { ChartDocument } from "./documents";
-import type { GPTString } from "./game-support";
+import type { GPTString } from "./game-config";
 
 /**
  * A metric for a score that's a floating point number.

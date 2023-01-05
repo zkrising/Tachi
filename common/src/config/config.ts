@@ -15,13 +15,15 @@ import { USC_CONF, USC_CONTROLLER_CONF, USC_KEYBOARD_CONF } from "./game-support
 import { WACCA_CONF, WACCA_SINGLE_CONF } from "./game-support/wacca";
 import type {
 	GPTString,
+	GPTStringToGame,
+	GPTStringToPlaytype,
 	Game,
 	GameConfig,
-	GamePTConfig,
 	Playtype,
 	Playtypes,
-} from "../types/game-support";
-import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../types/internals";
+	SpecificGamePTConfig,
+} from "../types/game-config";
+import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../types/internals";
 
 /**
  * All game configurations that Tachi supports.
@@ -83,20 +85,29 @@ export const GAME_PT_CONFIGS = {
 	"usc:Controller": USC_CONTROLLER_CONF,
 	"usc:Keyboard": USC_KEYBOARD_CONF,
 	"itg:Stamina": ITG_STAMINA_CONF,
-} as const satisfies Record<GPTString, INTERNAL_GPT_CONFIG>;
+} as const satisfies Record<GPTString, GamePTConfig>;
 
 /**
- * Returns the configuration for this Game + Playtype.
- * Optionally, a generic parameter - GPTString - can be passed
- * to indicate what GPTString this configuration is for.
+ * Returns the configuration for this Game + Playtype. The type here is expanded to
+ * its most generic form, for easiest interaction.
  */
-export function GetGamePTConfig<GPT extends GPTString = GPTString>(
-	game: Game,
-	playtype: Playtypes[Game]
-): GamePTConfig<GPT> {
+export function GetGamePTConfig(game: Game, playtype: Playtypes[Game]): GamePTConfig {
 	const gptString = GetGPTString(game, playtype);
 
-	return GAME_PT_CONFIGS[gptString] as unknown as GamePTConfig<GPT>;
+	return GAME_PT_CONFIGS[gptString];
+}
+
+/**
+ * Returns the configuration for this specific Game + Playtype. This type is narrowed
+ * down to its least generic form, and is instead for gpt-specific use cases.
+ */
+export function GetSpecificGPTConfig<GPT extends GPTString>(
+	game: GPTStringToGame[GPT],
+	playtype: GPTStringToPlaytype[GPT]
+) {
+	const gptString = GetGPTString(game, playtype);
+
+	return GAME_PT_CONFIGS[gptString] as unknown as SpecificGamePTConfig<GPT>;
 }
 
 export const allSupportedGames = Object.keys(GAME_CONFIGS) as Array<Game>;

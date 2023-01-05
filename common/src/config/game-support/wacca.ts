@@ -1,7 +1,7 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue } from "../config-utils";
 import { z } from "zod";
-import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
+import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 
 export const WACCA_CONF = {
 	defaultPlaytype: "Single",
@@ -117,7 +117,7 @@ export const WACCA_SINGLE_CONF = {
 		defaultDifficulty: "EXPERT",
 	},
 
-	supportedClasses: {
+	classes: {
 		stageUp: {
 			type: "PROVIDED",
 			values: WaccaStageUps,
@@ -140,4 +140,4 @@ export const WACCA_SINGLE_CONF = {
 	scoreMeta: z.strictObject({ mirror: z.boolean().optional() }),
 
 	supportedMatchTypes: ["songTitle", "tachiSongID"],
-} as const satisfies INTERNAL_GPT_CONFIG;
+} as const satisfies GamePTConfig;

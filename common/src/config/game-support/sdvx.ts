@@ -1,6 +1,6 @@
 import { ClassValue, ToDecimalPlaces, zodNonNegativeInt, zodTierlistData } from "../config-utils";
 import { z } from "zod";
-import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
+import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 
 export const SDVX_CONF = {
 	defaultPlaytype: "Single",
@@ -136,7 +136,7 @@ export const SDVX_SINGLE_CONF = {
 		defaultDifficulty: "EXH",
 	},
 
-	supportedClasses: {
+	classes: {
 		dan: {
 			type: "PROVIDED",
 			values: SDVXDans,
@@ -168,4 +168,4 @@ export const SDVX_SINGLE_CONF = {
 	scoreMeta: z.strictObject({}),
 
 	supportedMatchTypes: ["sdvxInGameID", "songTitle", "tachiSongID"],
-} as const satisfies INTERNAL_GPT_CONFIG;
+} as const satisfies GamePTConfig;

@@ -1,7 +1,7 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { z } from "zod";
-import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
+import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 
 export const JUBEAT_CONF = {
 	defaultPlaytype: "Single",
@@ -84,7 +84,7 @@ export const JUBEAT_SINGLE_CONF = {
 		defaultDifficulty: "EXT",
 	},
 
-	supportedClasses: {
+	classes: {
 		colour: { type: "DERIVED", values: JubeatColours },
 	},
 
@@ -111,4 +111,4 @@ export const JUBEAT_SINGLE_CONF = {
 	scoreMeta: z.strictObject({}),
 
 	supportedMatchTypes: ["inGameID", "tachiSongID"],
-} as const satisfies INTERNAL_GPT_CONFIG;
+} as const satisfies GamePTConfig;

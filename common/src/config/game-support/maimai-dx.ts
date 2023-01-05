@@ -1,7 +1,7 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue, NoDecimalPlace } from "../config-utils";
 import { z } from "zod";
-import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
+import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 
 export const MAIMAI_DX_CONF = {
 	defaultPlaytype: "Single",
@@ -146,7 +146,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 		defaultDifficulty: "Master",
 	},
 
-	supportedClasses: {
+	classes: {
 		colour: {
 			type: "DERIVED",
 			values: MaimaiDXColours,
@@ -169,4 +169,4 @@ export const MAIMAI_DX_SINGLE_CONF = {
 	scoreMeta: z.strictObject({}),
 
 	supportedMatchTypes: ["songTitle", "tachiSongID"],
-} as const satisfies INTERNAL_GPT_CONFIG;
+} as const satisfies GamePTConfig;

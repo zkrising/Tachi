@@ -1,7 +1,7 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { z } from "zod";
-import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
+import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 
 export const POPN_CONF = {
 	defaultPlaytype: "9B",
@@ -107,7 +107,7 @@ export const POPN_9B_CONF = {
 		defaultDifficulty: "EX",
 	},
 
-	supportedClasses: {
+	classes: {
 		class: {
 			type: "DERIVED",
 			values: PopnClasses,
@@ -135,4 +135,4 @@ export const POPN_9B_CONF = {
 	preferences: z.strictObject({}),
 
 	supportedMatchTypes: ["inGameID", "tachiSongID", "popnChartHash"],
-} as const satisfies INTERNAL_GPT_CONFIG;
+} as const satisfies GamePTConfig;

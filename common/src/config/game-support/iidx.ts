@@ -1,7 +1,7 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue, zodNonNegativeInt, zodTierlistData } from "../config-utils";
 import { z } from "zod";
-import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
+import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 
 export const IIDX_CONF = {
 	defaultPlaytype: "SP",
@@ -163,7 +163,7 @@ export const IIDX_SP_CONF = {
 		defaultDifficulty: "ANOTHER",
 	},
 
-	supportedClasses: {
+	classes: {
 		dan: {
 			type: "PROVIDED",
 			values: IIDXDans,
@@ -228,7 +228,7 @@ export const IIDX_SP_CONF = {
 	}),
 
 	supportedMatchTypes: ["inGameID", "tachiSongID", "songTitle"],
-} as const satisfies INTERNAL_GPT_CONFIG;
+} as const satisfies GamePTConfig;
 
 export const IIDX_DP_CONF = {
 	...IIDX_SP_CONF,
@@ -245,4 +245,4 @@ export const IIDX_DP_CONF = {
 		range: z.enum(["NONE", "HIDDEN+", "SUDDEN+", "LIFT", "LIFT SUD+", "SUD+ HID+"]).optional(),
 		gauge: z.enum(["ASSISTED EASY", "EASY", "NORMAL", "HARD", "EX-HARD"]).optional(),
 	}),
-} as const satisfies INTERNAL_GPT_CONFIG;
+} as const satisfies GamePTConfig;

@@ -1,3 +1,17 @@
+import type { integer } from "../types";
+import type {
+	AdditionalMetrics,
+	ChartSets,
+	Difficulties,
+	ExtractedClasses,
+	GPTString,
+	GPTStringToGame,
+	GPTStringToPlaytype,
+	Judgements,
+	ProvidedMetrics,
+	ScoreMeta,
+} from "./game-config";
+import type { ExtractMetrics } from "./metrics";
 
 // These MatchTypes don't need `difficulty` set in the batch manual.
 type MatchTypesNoDifficulty = "bmsChartHash" | "itgChartHash" | "popnChartHash" | "uscChartHash";
@@ -7,34 +21,39 @@ type MatchTypesWithDifficulty = "inGameID" | "sdvxInGameID" | "songTitle" | "tac
 
 export type MatchTypes = MatchTypesNoDifficulty | MatchTypesWithDifficulty;
 
-export type BatchManualScore<I extends IDStrings = IDStrings> = {
-	score: number;
-	lamp: Lamps[I];
-	percent?: number;
+export type BatchManualScore<GPT extends GPTString = GPTString> = ExtractMetrics<
+	ProvidedMetrics[GPT]
+> & {
 	identifier: string;
 	comment?: string | null;
-	judgements?: Record<JudgementLookup[I], integer>;
+	judgements?: Record<Judgements[GPT], integer>;
 	timeAchieved?: number | null;
-	hitMeta?: Partial<HitMetaLookup[I]>;
-	scoreMeta?: Partial<ScoreMetaLookup[I]>;
+	additionalMetrics?: Partial<ExtractMetrics<AdditionalMetrics[GPT]>>;
+	scoreMeta?: Partial<ScoreMeta[GPT]>;
 } & (
-	| {
-			matchType: MatchTypesNoDifficulty;
-			difficulty?: undefined; // hack to stop ts from screaming when this is accessed sometimes
-	  }
-	| {
-			matchType: MatchTypesWithDifficulty;
-			difficulty: Difficulties[I];
-	  }
-);
+		| {
+				matchType: MatchTypesNoDifficulty;
+				difficulty?: undefined; // hack to stop ts from screaming when this is accessed sometimes
+		  }
+		| {
+				matchType: MatchTypesWithDifficulty;
+				difficulty: Difficulties[GPT];
+		  }
+	);
 
-export interface BatchManual<I extends IDStrings = IDStrings> {
+export interface BatchManual<GPT extends GPTString = GPTString> {
 	meta: {
-		game: IDStringToGame[I];
-		playtype: IDStringToPlaytype[I];
+		game: GPTStringToGame[GPT];
+		playtype: GPTStringToPlaytype[GPT];
 		service: string;
-		version?: GPTSupportedVersions[I];
+
+		chartSet?: ChartSets[GPT];
+
+		/**
+		 * @deprecated Use `meta.chartSet` instead. This is an alias for `meta.chartSet`.
+		 */
+		version?: ChartSets[GPT];
 	};
-	scores: Array<BatchManualScore<I>>;
-	classes?: Record<GameClassSets[I], string> | null;
+	scores: Array<BatchManualScore<GPT>>;
+	classes?: ExtractedClasses[GPT] | null;
 }

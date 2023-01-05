@@ -1,7 +1,7 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { z } from "zod";
-import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
+import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 
 export const GITADORA_CONF = {
 	defaultPlaytype: "Dora",
@@ -101,7 +101,7 @@ export const GITADORA_GITA_CONF = {
 		defaultDifficulty: "EXTREME",
 	},
 
-	supportedClasses: {
+	classes: {
 		colour: { type: "DERIVED", values: GitadoraColours },
 	},
 
@@ -118,7 +118,7 @@ export const GITADORA_GITA_CONF = {
 	scoreMeta: z.strictObject({}),
 
 	supportedMatchTypes: ["inGameID", "songTitle", "tachiSongID"],
-} as const satisfies INTERNAL_GPT_CONFIG;
+} as const satisfies GamePTConfig;
 
 export const GITADORA_DORA_CONF = {
 	...GITADORA_GITA_CONF,
@@ -134,4 +134,4 @@ export const GITADORA_DORA_CONF = {
 		},
 		defaultDifficulty: "EXTREME",
 	},
-} as const satisfies INTERNAL_GPT_CONFIG;
+} as const satisfies GamePTConfig;

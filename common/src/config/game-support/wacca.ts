@@ -7,12 +7,12 @@ export const WACCA_CONF = {
 	defaultPlaytype: "Single",
 	name: "WACCA",
 	validPlaytypes: ["Single"],
-	songData: {
+	songData: z.strictObject({
 		titleJP: z.string(),
 		artistJP: z.string(),
 		genre: z.string(),
 		displayVersion: z.nullable(z.string()),
-	},
+	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 export const WaccaStageUps = [
@@ -132,9 +132,12 @@ export const WACCA_SINGLE_CONF = {
 
 	chartSets: ["REVERSE"],
 
-	chartData: {
+	chartData: z.strictObject({
 		isHot: z.boolean(),
-	},
+	}),
+
+	preferences: z.strictObject({}),
+	scoreMeta: z.strictObject({ mirror: z.boolean().optional() }),
 
 	supportedMatchTypes: ["songTitle", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

@@ -1,27 +1,4 @@
-import type { AllClassSets, GameClasses } from "../config/game-classes";
 import type { UserAuthLevels, integer } from "../types";
-import type {
-	Game,
-	Playtype,
-	Playtypes,
-	Difficulties,
-	Lamps,
-	Grades,
-	UGPTSpecificPreferences,
-	SessionRatingAlgorithms,
-	GPTStrings,
-	ProfileRatingAlgorithms,
-	GPTStringToPlaytype,
-	GPTStringToGame,
-	ChartData,
-	SupportedTierlists,
-	SupportedVersions,
-	SongData,
-	Judgements,
-	AdditionalMetrics,
-	ScoreMeta,
-	ScoreRatingAlgorithms,
-} from "./_TOREMOVE-game-implementations";
 import type { APIPermissions } from "./api";
 import type { ImportTypes } from "./import-types";
 import type { BaseNotification, NotificationBody } from "./notifications";

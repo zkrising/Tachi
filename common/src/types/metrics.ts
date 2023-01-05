@@ -67,9 +67,19 @@ export type ExtractMetricType<M extends ScoreMetric> = M extends DecimalScoreMet
 /**
  * Extract all the names of enum types from this record of score metrics.
  *
+ * This is used for enforcing the "default enum" for a GPT. All games have to have
+ * a default, preferred enum, for things like folder raises and graphs.
+ *
+ * For most games, this will be "grade" or "lamp". However, we need a typesafe way
+ * of checking that this metric is an enum.
+ *
+ * Please ignore how magical this type is. I'm sorry. You aren't expected to understand
+ * this.
+ *
  * @example
- * ExtractEnumMetricNames<{ score: { type: "INTEGER" } }, grade: { type: "ENUM" ... }>
- * would return a type of "grade"
+ * ExtractEnumMetricNames<{ score: { type: "INTEGER" } }, grade: { type: "ENUM" ... },
+ *  lamp: { type: "ENUM", ... }>
+ * would return a type of "grade" | "lamp"
  */
 export type ExtractEnumMetricNames<R extends Record<string, ScoreMetric>> = {
 	[K in keyof R]: R[K] extends EnumScoreMetric ? K : never;
@@ -78,7 +88,7 @@ export type ExtractEnumMetricNames<R extends Record<string, ScoreMetric>> = {
 type PossibleMetrics = ExtractMetricType<ScoreMetric>;
 
 /**
- * Turn a record of ScoreMetrics into their actual representative values.
+ * Turn a record of ScoreMetrics into their actual literal values.
  *
  * @example ExtractMetrics<{ score: IntegerScoreMetric; lamp: EnumScoreMetric<"FAILED"|"CLEAR"> }>
  * will equal

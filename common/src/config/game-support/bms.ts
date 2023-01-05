@@ -7,12 +7,12 @@ export const BMS_CONF = {
 	defaultPlaytype: "7K",
 	name: "BMS",
 	validPlaytypes: ["7K", "14K"],
-	songData: {
+	songData: z.strictObject({
 		genre: z.nullable(z.string()),
 		subtitle: z.nullable(z.string()),
 		subartist: z.nullable(z.string()),
 		tableString: z.nullable(z.string()),
-	},
+	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 function FormatSieglindeBMS(sgl: number): string {
@@ -130,6 +130,8 @@ export const BMSScratchDans = [
 	ClassValue("KAIDEN", "皆伝", "Scratch Kaiden"),
 ];
 
+const RANDOM_SCHEMA = z.enum(["MIRROR", "NONRAN", "R-RANDOM", "RANDOM", "S-RANDOM"]);
+
 export const BMS_7K_CONF = {
 	providedMetrics: {
 		score: { type: "INTEGER" },
@@ -239,14 +241,25 @@ export const BMS_7K_CONF = {
 
 	chartSets: [],
 
-	chartData: {
+	chartData: z.strictObject({
 		notecount: zodNonNegativeInt,
 		hashMD5: z.string(),
 		hashSHA256: z.string(),
-		tableFolders: z.array(z.object({ table: z.string(), level: z.string() })),
+		tableFolders: z.array(z.strictObject({ table: z.string(), level: z.string() })),
 		sglEC: z.number().nullable(),
 		sglHC: z.number().nullable(),
-	},
+	}),
+
+	preferences: z.strictObject({
+		displayTables: z.array(z.string()),
+	}),
+
+	scoreMeta: z.strictObject({
+		random: RANDOM_SCHEMA.optional(),
+		inputDevice: z.enum(["BM_CONTROLLER", "KEYBOARD"]).optional(),
+		client: z.enum(["lr2oraja", "LR2"]).optional(),
+		gauge: z.enum(["EASY", "NORMAL", "HARD", "EX-HARD"]).optional(),
+	}),
 
 	supportedMatchTypes: ["bmsChartHash", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;
@@ -257,4 +270,11 @@ export const BMS_14K_CONF = {
 		genocideDan: { type: "PROVIDED", values: BMSGenocideDans },
 		stslDan: { type: "PROVIDED", values: BMSDPSlDans },
 	},
+
+	scoreMeta: z.strictObject({
+		random: z.tuple([RANDOM_SCHEMA, RANDOM_SCHEMA]).optional(),
+		inputDevice: z.enum(["BM_CONTROLLER", "KEYBOARD"]).optional(),
+		client: z.enum(["lr2oraja", "LR2"]).optional(),
+		gauge: z.enum(["EASY", "NORMAL", "HARD", "EX-HARD"]).optional(),
+	}),
 } as const satisfies INTERNAL_GPT_CONFIG;

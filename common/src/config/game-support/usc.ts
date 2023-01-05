@@ -7,7 +7,7 @@ export const USC_CONF = {
 	defaultPlaytype: "Controller",
 	name: "USC",
 	validPlaytypes: ["Controller", "Keyboard"],
-	songData: {},
+	songData: z.strictObject({}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 export const USC_CONTROLLER_CONF = {
@@ -82,17 +82,23 @@ export const USC_CONTROLLER_CONF = {
 
 	chartSets: [],
 
-	chartData: {
+	chartData: z.strictObject({
 		hashSHA1: z.union([z.array(z.string()), z.string()]),
 		isOfficial: z.boolean(),
 		effector: z.string(),
 		tableFolders: z.array(
-			z.object({
+			z.strictObject({
 				table: z.string(),
 				level: z.string(),
 			})
 		),
-	},
+	}),
+
+	preferences: z.strictObject({ vf6Target: z.number() }),
+	scoreMeta: z.strictObject({
+		noteMod: z.enum(["MIR-RAN", "MIRROR", "NORMAL", "RANDOM"]).optional(),
+		gaugeMod: z.enum(["NORMAL", "HARD", "PERMISSIVE"]).optional(),
+	}),
 
 	supportedMatchTypes: ["uscChartHash", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

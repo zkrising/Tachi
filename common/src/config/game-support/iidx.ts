@@ -7,10 +7,10 @@ export const IIDX_CONF = {
 	defaultPlaytype: "SP",
 	name: "beatmania IIDX",
 	validPlaytypes: ["SP", "DP"],
-	songData: {
+	songData: z.strictObject({
 		genre: z.string(),
 		displayVersion: z.nullable(z.string()),
-	},
+	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 export const IIDXDans = [
@@ -44,6 +44,8 @@ const BASE_IIDX_CHART_DATA = {
 	worldRecord: z.number().int().positive().nullable(),
 	bpiCoefficient: z.number().positive().nullable(),
 };
+
+const RANDOM_SCHEMA = z.enum(["NONRAN", "MIRROR", "R-RANDOM", "RANDOM", "S-RANDOM"]);
 
 export const IIDX_SP_CONF = {
 	providedMetrics: {
@@ -206,12 +208,24 @@ export const IIDX_SP_CONF = {
 		"INFINITAS",
 	],
 
-	chartData: {
+	chartData: z.strictObject({
 		...BASE_IIDX_CHART_DATA,
-		ncTier: zodTierlistData(),
-		hcTier: zodTierlistData(),
-		exhcTier: zodTierlistData(),
-	},
+		ncTier: zodTierlistData,
+		hcTier: zodTierlistData,
+		exhcTier: zodTierlistData,
+	}),
+
+	preferences: z.strictObject({
+		display2DXTra: z.boolean(),
+		bpiTarget: z.number(),
+	}),
+
+	scoreMeta: z.strictObject({
+		random: RANDOM_SCHEMA.optional(),
+		assist: z.enum(["AUTO SCRATCH", "LEGACY NOTE", "NO ASSIST", "FULL ASSIST"]).optional(),
+		range: z.enum(["NONE", "HIDDEN+", "SUDDEN+", "LIFT", "LIFT SUD+", "SUD+ HID+"]).optional(),
+		gauge: z.enum(["ASSISTED EASY", "EASY", "NORMAL", "HARD", "EX-HARD"]).optional(),
+	}),
 
 	supportedMatchTypes: ["inGameID", "tachiSongID", "songTitle"],
 } as const satisfies INTERNAL_GPT_CONFIG;
@@ -219,9 +233,16 @@ export const IIDX_SP_CONF = {
 export const IIDX_DP_CONF = {
 	...IIDX_SP_CONF,
 
-	chartData: {
+	chartData: z.strictObject({
 		...BASE_IIDX_CHART_DATA,
 
-		dpTier: zodTierlistData(),
-	},
+		dpTier: zodTierlistData,
+	}),
+
+	scoreMeta: z.strictObject({
+		random: z.tuple([RANDOM_SCHEMA, RANDOM_SCHEMA]).optional(),
+		assist: z.enum(["AUTO SCRATCH", "LEGACY NOTE", "NO ASSIST", "FULL ASSIST"]).optional(),
+		range: z.enum(["NONE", "HIDDEN+", "SUDDEN+", "LIFT", "LIFT SUD+", "SUD+ HID+"]).optional(),
+		gauge: z.enum(["ASSISTED EASY", "EASY", "NORMAL", "HARD", "EX-HARD"]).optional(),
+	}),
 } as const satisfies INTERNAL_GPT_CONFIG;

@@ -7,11 +7,11 @@ export const MUSECA_CONF = {
 	defaultPlaytype: "Single",
 	name: "MÚSECA",
 	validPlaytypes: ["Single"],
-	songData: {
+	songData: z.strictObject({
 		titleJP: z.string(),
 		artistJP: z.string(),
 		displayVersion: z.string(),
-	},
+	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 export const MUSECA_SINGLE_CONF = {
@@ -80,7 +80,11 @@ export const MUSECA_SINGLE_CONF = {
 
 	chartSets: ["1 + 1/2", "1 + 1/2 Rev. B"],
 
-	chartData: { inGameID: zodNonNegativeInt },
+	chartData: z.strictObject({ inGameID: zodNonNegativeInt }),
+
+	preferences: z.strictObject({}),
+
+	scoreMeta: z.strictObject({}),
 
 	supportedMatchTypes: ["songTitle", "tachiSongID", "inGameID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

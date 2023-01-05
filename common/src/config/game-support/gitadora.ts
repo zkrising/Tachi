@@ -1,5 +1,5 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
-import { ClassValue } from "../config-utils";
+import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GPT_CONFIG } from "../../types/internals";
 
@@ -7,10 +7,10 @@ export const GITADORA_CONF = {
 	defaultPlaytype: "Dora",
 	name: "GITADORA",
 	validPlaytypes: ["Gita", "Dora"],
-	songData: {
+	songData: z.strictObject({
 		isHot: z.boolean(),
 		displayVersion: z.string(),
-	},
+	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 const GitadoraColours = [
@@ -109,9 +109,13 @@ export const GITADORA_GITA_CONF = {
 
 	chartSets: ["Konaste"],
 
-	chartData: {
-		inGameID: z.number().int(),
-	},
+	chartData: z.strictObject({
+		inGameID: zodNonNegativeInt,
+	}),
+
+	preferences: z.strictObject({}),
+
+	scoreMeta: z.strictObject({}),
 
 	supportedMatchTypes: ["inGameID", "songTitle", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

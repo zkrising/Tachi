@@ -7,11 +7,11 @@ export const POPN_CONF = {
 	defaultPlaytype: "9B",
 	name: "pop'n music",
 	validPlaytypes: ["9B"],
-	songData: {
+	songData: z.strictObject({
 		displayVersion: z.nullable(z.string()),
 		genre: z.string(),
 		genreEN: z.nullable(z.string()),
-	},
+	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 const PopnClasses = [
@@ -118,11 +118,21 @@ export const POPN_9B_CONF = {
 
 	chartSets: ["peace", "Kaimei Riddles"],
 
-	chartData: {
+	chartData: z.strictObject({
 		// Array<string> | string | null
 		hashSHA256: z.union([z.array(z.string()), z.string(), z.null()]),
 		inGameID: zodNonNegativeInt,
-	},
+	}),
+
+	scoreMeta: z.strictObject({
+		hiSpeed: z.number().optional(),
+		hidden: z.number().optional(),
+		sudden: z.number().optional(),
+		random: z.enum(["MIRROR", "NONRAN", "RANDOM", "S-RANDOM"]).optional(),
+		gauge: z.enum(["EASY", "NORMAL", "HARD", "DANGER"]).optional(),
+	}),
+
+	preferences: z.strictObject({}),
 
 	supportedMatchTypes: ["inGameID", "tachiSongID", "popnChartHash"],
 } as const satisfies INTERNAL_GPT_CONFIG;

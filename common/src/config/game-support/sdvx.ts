@@ -6,9 +6,9 @@ export const SDVX_CONF = {
 	defaultPlaytype: "Single",
 	name: "SOUND VOLTEX",
 	validPlaytypes: ["Single"],
-	songData: {
+	songData: z.strictObject({
 		displayVersion: z.string(),
-	},
+	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 const SDVXDans = [
@@ -159,10 +159,13 @@ export const SDVX_SINGLE_CONF = {
 		"Konaste",
 	],
 
-	chartData: {
+	chartData: z.strictObject({
 		inGameID: zodNonNegativeInt,
-		clearTier: zodTierlistData(),
-	},
+		clearTier: zodTierlistData,
+	}),
+
+	preferences: z.strictObject({ vf6Target: z.number() }),
+	scoreMeta: z.strictObject({}),
 
 	supportedMatchTypes: ["sdvxInGameID", "songTitle", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

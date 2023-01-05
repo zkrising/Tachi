@@ -7,12 +7,12 @@ export const PMS_CONF = {
 	defaultPlaytype: "Controller",
 	name: "PMS",
 	validPlaytypes: ["Controller", "Keyboard"],
-	songData: {
+	songData: z.strictObject({
 		genre: z.nullable(z.string()),
 		subtitle: z.nullable(z.string()),
 		subartist: z.nullable(z.string()),
 		tableString: z.nullable(z.string()),
-	},
+	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 const PMSDans = [
@@ -121,14 +121,21 @@ export const PMS_CONTROLLER_CONF = {
 
 	chartSets: [],
 
-	chartData: {
+	chartData: z.strictObject({
 		notecount: zodNonNegativeInt,
 		hashMD5: z.string(),
 		hashSHA256: z.string(),
-		tableFolders: z.array(z.object({ table: z.string(), level: z.string() })),
+		tableFolders: z.array(z.strictObject({ table: z.string(), level: z.string() })),
 		sglEC: z.number().nullable(),
 		sglHC: z.number().nullable(),
-	},
+	}),
+
+	preferences: z.strictObject({}),
+	scoreMeta: z.strictObject({
+		random: z.enum(["MIRROR", "NONRAN", "R-RANDOM", "RANDOM", "S-RANDOM"]).optional(),
+		client: z.enum(["beatoraja"]).optional(),
+		gauge: z.enum(["EASY", "NORMAL", "HARD", "EX-HARD"]).optional(),
+	}),
 
 	supportedMatchTypes: ["bmsChartHash", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

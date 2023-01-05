@@ -29,15 +29,13 @@ export function ClassValue(id: string, display: string, hoverText?: string): Cla
 	return { id, display, hoverText };
 }
 
-export function zodTierlistData() {
-	return z.nullable(
-		z.object({
-			value: z.number(),
-			text: z.string(),
-			individualDifference: z.boolean(),
-		})
-	);
-}
+export const zodTierlistData = z.nullable(
+	z.strictObject({
+		value: z.number(),
+		text: z.string(),
+		individualDifference: z.boolean(),
+	})
+);
 
 export const zodInt = z.number().int();
 export const zodNonNegativeInt = z.number().int().nonnegative();

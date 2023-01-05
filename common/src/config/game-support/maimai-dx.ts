@@ -7,9 +7,9 @@ export const MAIMAI_DX_CONF = {
 	defaultPlaytype: "Single",
 	name: "maimai DX",
 	validPlaytypes: ["Single"],
-	songData: {
+	songData: z.strictObject({
 		displayVersion: z.string(),
-	},
+	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 const MaimaiDXDans = [
@@ -161,9 +161,12 @@ export const MAIMAI_DX_SINGLE_CONF = {
 
 	chartSets: ["UNiVERSE PLUS"],
 
-	chartData: {
+	chartData: z.strictObject({
 		isLatest: z.boolean(),
-	},
+	}),
+
+	preferences: z.strictObject({}),
+	scoreMeta: z.strictObject({}),
 
 	supportedMatchTypes: ["songTitle", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

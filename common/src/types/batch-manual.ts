@@ -1,16 +1,3 @@
-import type { GameClassSets } from "../config/game-classes";
-import type {
-	IDStrings,
-	Lamps,
-	JudgementLookup,
-	integer,
-	HitMetaLookup,
-	ScoreMetaLookup,
-	Difficulties,
-	IDStringToGame,
-	IDStringToPlaytype,
-	GPTSupportedVersions,
-} from "../types";
 
 // These MatchTypes don't need `difficulty` set in the batch manual.
 type MatchTypesNoDifficulty = "bmsChartHash" | "itgChartHash" | "popnChartHash" | "uscChartHash";

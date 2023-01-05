@@ -23,8 +23,9 @@ export interface ClassInfo {
 
 interface BaseClassConfig {
 	/**
-	 * What are the possible values for this class field? This should be in
-	 * ascending order.
+	 * What are the possible values for this class field?
+	 *
+	 * @note This should be in ascending order.
 	 */
 	values: Array<ClassInfo>;
 }
@@ -61,30 +62,27 @@ export interface DerivedClassConfig extends BaseClassConfig {
 
 export type ClassConfig = DerivedClassConfig | ProvidedClassConfig;
 
+/**
+ * This game's difficulty names are arbitrary (unique) strings. This makes sense
+ * for a lot of home games, where a song may have any number of difficulties
+ * attached onto it that we want to care for (think osu!).
+ */
 export interface DynamicDifficulties {
-	/**
-	 * This game's difficulty names are arbitrary (unique) strings. This makes sense
-	 * for a lot of home games, where a song may have any number of difficulties
-	 * attached onto it that we want to care for (think osu!).
-	 */
 	type: "DYNAMIC";
 }
 
+/**
+ * The amount of difficulties that may belong to a song is a fixed possible set.
+ *
+ * For example, if the game only ever supports Easy, Normal and Hard difficulties
+ * this would be static.
+ *
+ * If the game was more like osu!, where a song can have arbitrary unique strings
+ * as difficulty names, you want DynamicDifficulties instead.
+ */
 export interface FixedDifficulties<Difficulty extends string> {
-	/**
-	 * The amount of difficulties that may belong to a song is a fixed possible set.
-	 *
-	 * For example, if the game only ever supports Easy, Normal and Hard difficulties
-	 * this would be static.
-	 *
-	 * If the game was more like osu!, where a song can have arbitrary unique strings
-	 * as difficulty names, you want "DYNAMIC" instead.
-	 */
 	type: "FIXED";
 
-	/**
-	 * What order should these difficulties appear in?
-	 */
 	difficultyOrder: ReadonlyArray<Difficulty>;
 
 	/**
@@ -95,15 +93,6 @@ export interface FixedDifficulties<Difficulty extends string> {
 	 */
 	difficultyShorthand: Partial<Record<Difficulty, string>>;
 
-	/**
-	 * When you click on a song with no difficulty, what should it default to?
-	 *
-	 * @note If the song doesn't have this difficulty, it will pick in an
-	 * undefined order.
-	 *
-	 * i.e. the default difficulty is "ANOTHER" and the song has no "ANOTHER" available,
-	 * then it will just pick something at random that still belongs to that chart.
-	 */
 	defaultDifficulty: Difficulty;
 }
 

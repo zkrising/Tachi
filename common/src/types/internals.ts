@@ -1,7 +1,7 @@
 import type { MatchTypes } from "./batch-manual";
 import type { ClassConfig, DifficultyConfig, RatingAlgorithmConfig } from "./game-config";
 import type { ScoreMetric } from "./metrics";
-import type { ZodRawShape } from "zod";
+import type { AnyZodObject, ZodRawShape } from "zod";
 
 /**
  * This is **NOT** intended for external use.
@@ -30,11 +30,11 @@ export type INTERNAL_GPT_CONFIG = Readonly<{
 	sessionRatingAlgs: Record<string, RatingAlgorithmConfig>;
 	profileRatingAlgs: Record<string, RatingAlgorithmConfig>;
 
-	supportedClasses: Record<string, ClassConfig>;
-
 	defaultScoreRatingAlg: string;
 	defaultSessionRatingAlg: string;
 	defaultProfileRatingAlg: string;
+
+	supportedClasses: Record<string, ClassConfig>;
 
 	difficultyConfig: DifficultyConfig;
 
@@ -44,7 +44,9 @@ export type INTERNAL_GPT_CONFIG = Readonly<{
 
 	supportedMatchTypes: ReadonlyArray<MatchTypes>;
 
-	chartData: ZodRawShape;
+	preferences: AnyZodObject;
+	chartData: AnyZodObject;
+	scoreMeta: AnyZodObject;
 }>;
 
 /**
@@ -58,5 +60,5 @@ export type INTERNAL_GAME_CONFIG<PT extends string = string> = Readonly<{
 	name: string;
 	validPlaytypes: ReadonlyArray<PT>;
 	defaultPlaytype: PT;
-	songData: ZodRawShape;
+	songData: AnyZodObject;
 }>;

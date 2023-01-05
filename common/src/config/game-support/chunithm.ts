@@ -7,10 +7,10 @@ export const CHUNITHM_CONF = {
 	defaultPlaytype: "Single",
 	name: "CHUNITHM",
 	validPlaytypes: ["Single"],
-	songData: {
+	songData: z.strictObject({
 		genre: z.string(),
 		displayVersion: z.string(),
-	},
+	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 export const CHUNITHMColours = [
@@ -97,9 +97,13 @@ export const CHUNITHM_SINGLE_CONF = {
 
 	chartSets: ["Paradise Lost"],
 
-	chartData: {
+	chartData: z.strictObject({
 		inGameID: zodNonNegativeInt,
-	},
+	}),
+
+	preferences: z.strictObject({}),
+
+	scoreMeta: z.strictObject({}),
 
 	supportedMatchTypes: ["inGameID", "songTitle", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

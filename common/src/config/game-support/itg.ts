@@ -6,7 +6,10 @@ export const ITG_CONF = {
 	defaultPlaytype: "Stamina",
 	name: "ITG",
 	validPlaytypes: ["Stamina"],
-	songData: { subtitle: z.string(), originalPack: z.string() },
+	songData: z.strictObject({
+		subtitle: z.string(),
+		originalPack: z.string(),
+	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 export const ITG_STAMINA_CONF = {
@@ -96,16 +99,20 @@ export const ITG_STAMINA_CONF = {
 
 	chartSets: [],
 
-	chartData: {
+	chartData: z.strictObject({
 		hashGSv3: z.string(),
 		difficultyTag: z.enum(["Beginner", "Easy", "Medium", "Hard", "Expert", "Edit"] as const),
 		length: z.number().positive(),
 		charter: z.string(),
 
-		// What BPM tier should this chart appear in?
-		primaryBPM: z.number(),
+		// Pick one BPM to represent this chart. If that doesn't make any sense
+		// (i.e. chart has significant bpm changes)
+		// this should be null.
+		// Note that for some charts with BPM changes, Archi typically picks a common
+		// BPM to place it at. Not sure if that's automatable.
+		primaryBPM: z.number().nullable(),
 
-		breakdown: z.object({
+		breakdown: z.strictObject({
 			detailed: z.string(),
 			partiallySimplified: z.string(),
 			simplified: z.string(),
@@ -114,7 +121,11 @@ export const ITG_STAMINA_CONF = {
 
 		npsPerMeasure: z.array(zodNonNegativeInt),
 		notesPerMeasure: z.array(zodNonNegativeInt),
-	},
+	}),
+
+	preferences: z.strictObject({}),
+
+	scoreMeta: z.strictObject({}),
 
 	supportedMatchTypes: ["itgChartHash", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

@@ -7,9 +7,9 @@ export const JUBEAT_CONF = {
 	defaultPlaytype: "Single",
 	name: "jubeat",
 	validPlaytypes: ["Single"],
-	songData: {
+	songData: z.strictObject({
 		displayVersion: z.string(),
-	},
+	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 const JubeatColours = [
@@ -102,9 +102,13 @@ export const JUBEAT_SINGLE_CONF = {
 		"festo",
 	],
 
-	chartData: {
+	chartData: z.strictObject({
 		inGameID: z.union([z.array(zodNonNegativeInt), zodNonNegativeInt]),
-	},
+	}),
+
+	preferences: z.strictObject({ jubilityTarget: z.number() }),
+
+	scoreMeta: z.strictObject({}),
 
 	supportedMatchTypes: ["inGameID", "tachiSongID"],
 } as const satisfies INTERNAL_GPT_CONFIG;

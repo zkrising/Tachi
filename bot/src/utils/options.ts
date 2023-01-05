@@ -11,7 +11,7 @@ const GPTChoices: Array<[string, string]> = [];
 for (const game of ServerConfig.games) {
 	const gameConfig = GetGameConfig(game);
 
-	for (const playtype of gameConfig.validPlaytypes) {
+	for (const playtype of gameConfig.playtypes) {
 		GPTChoices.push([FormatGame(game, playtype), `${game}:${playtype}`]);
 	}
 }

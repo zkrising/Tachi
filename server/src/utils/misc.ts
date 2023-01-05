@@ -79,7 +79,7 @@ export function IsValidGame(str: string): str is Game {
 }
 
 export function IsValidPlaytype(game: Game, str: string): str is Playtype {
-	return GetGameConfig(game).validPlaytypes.includes(str as Playtype);
+	return GetGameConfig(game).playtypes.includes(str as Playtype);
 }
 
 export function IsValidScoreAlg(

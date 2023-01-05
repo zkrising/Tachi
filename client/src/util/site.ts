@@ -5,7 +5,7 @@ export function GetSortedGPTs() {
 	const arr = [];
 	for (const game of TachiConfig.games) {
 		const gameConfig = GetGameConfig(game);
-		for (const playtype of gameConfig.validPlaytypes) {
+		for (const playtype of gameConfig.playtypes) {
 			arr.push({ game, playtype });
 		}
 	}

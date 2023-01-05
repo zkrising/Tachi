@@ -1,8 +1,6 @@
 export * from "./types";
 
-export * from "./config/old-config";
-export * as gameClasses from "./config/game-classes";
-export * as ESDCore from "./lib/esd";
+export * from "./config/config";
 export * as StaticConfig from "./constants/import-types";
 export * from "./utils/util";
 export * from "./webhooks";

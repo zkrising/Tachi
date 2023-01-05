@@ -392,7 +392,7 @@ async function UpdateUsersGameStats(
 	// Instead of using the provided playtypes, run the classHandler on all
 	// playtypes. This should only happen if a classHandler is provided, and is
 	// a hack fix for things like #480.
-	const allPlaytypes = GetGameConfig(game).validPlaytypes;
+	const allPlaytypes = GetGameConfig(game).playtypes;
 
 	const playtypes = classHandler ? allPlaytypes : modifiedPlaytypes;
 

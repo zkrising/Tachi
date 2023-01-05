@@ -12,9 +12,9 @@ export enum UserAuthLevels {
 	ADMIN = 3,
 }
 
-// export * from "./types/api";
-// export * from "./types/batch-manual";
-// export * from "./types/documents";
-// export * from "./types/game-implementations";
-// export * from "./types/import-types";
-// export * from "./types/notifications";
+export * from "./types/api";
+export * from "./types/batch-manual";
+export * from "./types/documents";
+export * from "./types/game-config";
+export * from "./types/import-types";
+export * from "./types/notifications";

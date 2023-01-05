@@ -6,7 +6,7 @@ import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 export const USC_CONF = {
 	defaultPlaytype: "Controller",
 	name: "USC",
-	validPlaytypes: ["Controller", "Keyboard"],
+	playtypes: ["Controller", "Keyboard"],
 	songData: z.strictObject({}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 

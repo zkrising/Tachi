@@ -1,4 +1,26 @@
-import type { UserAuthLevels, integer } from "../types";
+import type {
+	ChartDocumentData,
+	ChartSets,
+	Classes,
+	Difficulties,
+	ExtractedAdditionalMetrics,
+	ExtractedScoreMetrics,
+	GPTString,
+	GPTStringToGame,
+	GPTStringToPlaytype,
+	Game,
+	Judgements,
+	Playtype,
+	Playtypes,
+	Preferences,
+	ProfileRatingAlgorithms,
+	ScoreMeta,
+	ScoreRatingAlgorithms,
+	SessionRatingAlgorithms,
+	SongDocumentData,
+	UserAuthLevels,
+	integer,
+} from "../types";
 import type { APIPermissions } from "./api";
 import type { ImportTypes } from "./import-types";
 import type { BaseNotification, NotificationBody } from "./notifications";
@@ -112,7 +134,7 @@ interface SessionScoreNewInfo {
 
 export type SessionScoreInfo = SessionScoreNewInfo | SessionScorePBInfo;
 
-export interface SessionDocument<GPT extends GPTStrings = GPTStrings> {
+export interface SessionDocument<GPT extends GPTString = GPTString> {
 	userID: integer;
 	sessionID: string;
 	scoreIDs: Array<string>;
@@ -140,8 +162,8 @@ export interface ImportDocument {
 	timeStarted: number;
 	timeFinished: number;
 
-	// Contains an array of GPTStrings, which dictates what (game:playtype)s were involved in this import.
-	gptStrings: Array<GPTStrings>;
+	// Contains an array of GPTString, which dictates what (game:playtype)s were involved in this import.
+	GPTString: Array<GPTString>;
 	importID: string;
 	scoreIDs: Array<string>;
 	game: Game;
@@ -290,12 +312,12 @@ export interface UserDocument {
 	authLevel: UserAuthLevels;
 }
 
-export interface UserGameStats<GPT extends GPTStrings = GPTStrings> {
+export interface UserGameStats<GPT extends GPTString = GPTString> {
 	userID: integer;
 	game: GPTStringToGame[GPT];
 	playtype: GPTStringToPlaytype[GPT];
 	ratings: Partial<Record<ProfileRatingAlgorithms[GPT], number | null>>;
-	classes: Partial<GameClasses<GPT>>;
+	classes: Partial<Classes[GPT]>;
 }
 
 export interface ChartTierlistInfo {
@@ -304,7 +326,7 @@ export interface ChartTierlistInfo {
 	individualDifference?: boolean;
 }
 
-export interface ChartDocument<GPT extends GPTStrings = GPTStrings> {
+export interface ChartDocument<GPT extends GPTString = GPTString> {
 	chartID: string;
 	songID: integer;
 	level: string;
@@ -312,8 +334,8 @@ export interface ChartDocument<GPT extends GPTStrings = GPTStrings> {
 	isPrimary: boolean;
 	difficulty: Difficulties[GPT];
 	playtype: GPTStringToPlaytype[GPT];
-	data: ChartData[GPT];
-	chartSets: Array<SupportedVersions[GPT]>;
+	data: ChartDocumentData[GPT];
+	chartSets: Array<ChartSets[GPT]>;
 }
 
 export interface SongDocument<G extends Game = Game> {
@@ -322,7 +344,7 @@ export interface SongDocument<G extends Game = Game> {
 	artist: string;
 	searchTerms: Array<string>;
 	altTitles: Array<string>;
-	data: SongData[G];
+	data: SongDocumentData[G];
 }
 
 export interface TableDocument {
@@ -391,22 +413,17 @@ export type QuestSubscriptionDocument = {
 	  }
 );
 
-export interface ScoreDocument<GPT extends GPTStrings = GPTStrings> {
+export type ScoreData<GPT extends GPTString = GPTString> = ExtractedScoreMetrics[GPT] & {
+	judgements: Partial<Record<Judgements[GPT], integer | null>>;
+	additionalMetrics: Partial<ExtractedAdditionalMetrics[GPT]>;
+};
+
+export interface ScoreDocument<GPT extends GPTString = GPTString> {
 	service: string;
 	game: GPTStringToGame[GPT];
 	playtype: GPTStringToPlaytype[GPT];
 	userID: integer;
-	scoreData: {
-		score: number;
-		lamp: Lamps[GPT];
-		percent: number;
-		grade: Grades[GPT];
-		lampIndex: integer;
-		gradeIndex: integer;
-		esd: number | null;
-		judgements: Partial<Record<Judgements[GPT], integer | null>>;
-		additionalMetrics: Partial<AdditionalMetrics[GPT]>;
-	};
+	scoreData: ScoreData<GPT>;
 	scoreMeta: Partial<ScoreMeta[GPT]>;
 	calculatedData: Partial<Record<ScoreRatingAlgorithms[GPT], number | null>>;
 	timeAchieved: integer | null;
@@ -425,7 +442,7 @@ export interface PBScoreComposedReference {
 	scoreID: string;
 }
 
-export interface PBScoreDocument<GPT extends GPTStrings = GPTStrings> {
+export interface PBScoreDocument<GPT extends GPTString = GPTString> {
 	composedFrom: {
 		scorePB: string;
 		lampPB: string;
@@ -449,17 +466,7 @@ export interface PBScoreDocument<GPT extends GPTStrings = GPTStrings> {
 	highlight: boolean;
 	isPrimary: boolean;
 	timeAchieved: number | null;
-	scoreData: {
-		score: number;
-		lamp: Lamps[GPT];
-		percent: number;
-		grade: Grades[GPT];
-		lampIndex: integer;
-		gradeIndex: integer;
-		esd: number | null;
-		judgements: Partial<Record<Judgements[GPT], integer | null>>;
-		additionalMetrics: Partial<AdditionalMetrics[GPT]>;
-	};
+	scoreData: ScoreData<GPT>;
 	calculatedData: Partial<Record<ScoreRatingAlgorithms[GPT], number | null>>;
 }
 
@@ -479,7 +486,7 @@ export interface ImportProcessInfoInvalidDatapoint {
 	content: Record<string, never>;
 }
 
-export interface ImportProcessInfoScoreImported<GPT extends GPTStrings = GPTStrings> {
+export interface ImportProcessInfoScoreImported<GPT extends GPTString = GPTString> {
 	success: true;
 	type: "ScoreImported";
 	message: string;
@@ -500,13 +507,14 @@ export interface ImportProcessInfoSongOrChartNotFound {
 	type: "SongOrChartNotFound";
 	message: string;
 	content: {
+		// these are too complex to type. Not bothering.
 		data: unknown;
-		context: unknown; // @TODO Type these properly.
+		context: unknown;
 		orphanID: string;
 	};
 }
 
-export type ImportProcessingInfo<GPT extends GPTStrings = GPTStrings> =
+export type ImportProcessingInfo<GPT extends GPTString = GPTString> =
 	| ImportProcessInfoInternalError
 	| ImportProcessInfoInvalidDatapoint
 	| ImportProcessInfoOrphanExists
@@ -582,7 +590,7 @@ export interface ShowcaseStatChart {
 	property: "grade" | "lamp" | "percent" | "playcount" | "score";
 }
 
-export interface UGPTSettingsDocument<GPT extends GPTStrings = GPTStrings> {
+export interface UGPTSettingsDocument<GPT extends GPTString = GPTString> {
 	userID: integer;
 	game: GPTStringToGame[GPT];
 	playtype: GPTStringToPlaytype[GPT];
@@ -594,12 +602,12 @@ export interface UGPTSettingsDocument<GPT extends GPTStrings = GPTStrings> {
 		scoreBucket: "grade" | "lamp" | null;
 		defaultTable: string | null;
 		preferredRanking: "global" | "rival" | null;
-		gameSpecific: UGPTSpecificPreferences[GPT];
+		gameSpecific: Preferences[GPT];
 	};
 	rivals: Array<integer>;
 }
 
-export interface UserGameStatsSnapshotDocument<GPT extends GPTStrings = GPTStrings>
+export interface UserGameStatsSnapshotDocument<GPT extends GPTString = GPTString>
 	extends UserGameStats<GPT> {
 	rankings: Record<ProfileRatingAlgorithms[GPT], { ranking: integer | null; outOf: integer }>;
 	playcount: integer;
@@ -641,7 +649,7 @@ export interface KsHookSettingsDocument {
 	forceStaticImport: boolean;
 }
 
-export interface OrphanChartDocument<GPT extends GPTStrings = GPTStrings> {
+export interface OrphanChartDocument<GPT extends GPTString = GPTString> {
 	gptString: GPT;
 	chartDoc: ChartDocument<GPT>;
 	songDoc: SongDocument<GPTStringToGame[GPT]>;
@@ -650,16 +658,16 @@ export interface OrphanChartDocument<GPT extends GPTStrings = GPTStrings> {
 
 export interface ClassDelta {
 	game: Game;
-	set: AllClassSets;
+	set: Classes[GPTString];
 	playtype: Playtype;
 	old: integer | null;
 	new: integer;
 }
 
-export interface ClassAchievementDocument<GPT extends GPTStrings = GPTStrings> {
+export interface ClassAchievementDocument<GPT extends GPTString = GPTString> {
 	game: GPTStringToGame[GPT];
 	playtype: GPTStringToPlaytype[GPT];
-	classSet: AllClassSets;
+	classSet: Classes[GPT];
 	classOldValue: integer | null;
 	classValue: integer;
 	timeAchieved: number;

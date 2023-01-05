@@ -5,7 +5,7 @@ import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 export const SDVX_CONF = {
 	defaultPlaytype: "Single",
 	name: "SOUND VOLTEX",
-	validPlaytypes: ["Single"],
+	playtypes: ["Single"],
 	songData: z.strictObject({
 		displayVersion: z.string(),
 	}),

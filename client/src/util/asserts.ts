@@ -18,7 +18,7 @@ export function IsSupportedPlaytype<G extends Game = Game>(
 ): str is Playtypes[G] {
 	const gameConfig = GetGameConfig(game);
 
-	return gameConfig.validPlaytypes.includes(str as unknown as Playtypes[G]);
+	return gameConfig.playtypes.includes(str as unknown as Playtypes[G]);
 }
 
 export function IsScore<I extends IDStrings>(

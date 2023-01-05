@@ -5,7 +5,7 @@ import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 export const ITG_CONF = {
 	defaultPlaytype: "Stamina",
 	name: "ITG",
-	validPlaytypes: ["Stamina"],
+	playtypes: ["Stamina"],
 	songData: z.strictObject({
 		subtitle: z.string(),
 		originalPack: z.string(),

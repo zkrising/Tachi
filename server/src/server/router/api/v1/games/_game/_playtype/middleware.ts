@@ -8,7 +8,7 @@ export const ValidatePlaytypeFromParam: RequestHandler = (req, res, next) => {
 
 	const gameConfig = GetGameConfig(game);
 
-	if (!gameConfig.validPlaytypes.includes(req.params.playtype as Playtype)) {
+	if (!gameConfig.playtypes.includes(req.params.playtype as Playtype)) {
 		return res.status(400).json({
 			success: false,
 			description: `The playtype ${req.params.playtype} is not supported.`,
@@ -25,7 +25,7 @@ export const ValidatePlaytypeFromParamFor =
 	(req, res, next) => {
 		const gameConfig = GetGameConfig(game);
 
-		if (!gameConfig.validPlaytypes.includes(req.params.playtype as Playtype)) {
+		if (!gameConfig.playtypes.includes(req.params.playtype as Playtype)) {
 			return res.status(400).json({
 				success: false,
 				description: `The playtype ${req.params.playtype} is not supported.`,

@@ -6,7 +6,7 @@ import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 export const CHUNITHM_CONF = {
 	defaultPlaytype: "Single",
 	name: "CHUNITHM",
-	validPlaytypes: ["Single"],
+	playtypes: ["Single"],
 	songData: z.strictObject({
 		genre: z.string(),
 		displayVersion: z.string(),

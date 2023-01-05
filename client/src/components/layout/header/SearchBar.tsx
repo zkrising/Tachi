@@ -137,9 +137,7 @@ function SearchResults({ results }: { results: SearchReturns }) {
 							<SearchResult
 								key={s.id + s.game}
 								link={`/games/${s.game}/${
-									GetGameConfig(s.game).validPlaytypes.includes(
-										playtype as Playtype
-									)
+									GetGameConfig(s.game).playtypes.includes(playtype as Playtype)
 										? playtype
 										: GetGameConfig(s.game).defaultPlaytype
 								}/songs/${s.id}`}

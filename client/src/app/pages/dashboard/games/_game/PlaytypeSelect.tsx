@@ -29,7 +29,7 @@ export default function PlaytypeSelect({
 				</div>
 				<div className="card-footer">
 					<div className="d-flex justify-content-center btn-group">
-						{gameConfig.validPlaytypes.map((pt) => (
+						{gameConfig.playtypes.map((pt) => (
 							<Link
 								key={pt}
 								className="btn btn-outline-primary float-right"

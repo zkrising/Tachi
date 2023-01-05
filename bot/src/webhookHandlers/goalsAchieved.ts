@@ -36,7 +36,7 @@ export async function HandleGoalAchievedV1(
 
 	const gameConfig = GetGameConfig(game);
 
-	const shouldShowPlaytype = gameConfig.validPlaytypes.length !== 1;
+	const shouldShowPlaytype = gameConfig.playtypes.length !== 1;
 
 	const embed = CreateEmbed(userDoc.id)
 		.setTitle(

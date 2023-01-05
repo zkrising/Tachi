@@ -6,7 +6,7 @@ import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 export const IIDX_CONF = {
 	defaultPlaytype: "SP",
 	name: "beatmania IIDX",
-	validPlaytypes: ["SP", "DP"],
+	playtypes: ["SP", "DP"],
 	songData: z.strictObject({
 		genre: z.string(),
 		displayVersion: z.nullable(z.string()),

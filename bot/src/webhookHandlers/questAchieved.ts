@@ -27,7 +27,7 @@ export async function HandleQuestAchievedV1(
 	const quest = await GetQuestWithID(event.questID, game, playtype);
 
 	const gameConfig = GetGameConfig(game);
-	const shouldShowPlaytype = gameConfig.validPlaytypes.length > 1 ? ` (${playtype})` : "";
+	const shouldShowPlaytype = gameConfig.playtypes.length > 1 ? ` (${playtype})` : "";
 
 	const embed = CreateEmbed(userDoc.id).setTitle(
 		`${userDoc.username} just completed the ${quest.name}${shouldShowPlaytype} quest!`

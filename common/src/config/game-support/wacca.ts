@@ -6,7 +6,7 @@ import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 export const WACCA_CONF = {
 	defaultPlaytype: "Single",
 	name: "WACCA",
-	validPlaytypes: ["Single"],
+	playtypes: ["Single"],
 	songData: z.strictObject({
 		titleJP: z.string(),
 		artistJP: z.string(),

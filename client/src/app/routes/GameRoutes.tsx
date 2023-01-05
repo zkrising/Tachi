@@ -59,8 +59,8 @@ export default function GameRoutes() {
 	return (
 		<Switch>
 			<Route exact path="/games/:game">
-				{gameConfig.validPlaytypes.length === 1 ? (
-					<Redirect to={`/games/${game}/${gameConfig.validPlaytypes[0]}`} />
+				{gameConfig.playtypes.length === 1 ? (
+					<Redirect to={`/games/${game}/${gameConfig.playtypes[0]}`} />
 				) : (
 					<PlaytypeSelect
 						subheaderCrumbs={["Games", gameConfig.name]}

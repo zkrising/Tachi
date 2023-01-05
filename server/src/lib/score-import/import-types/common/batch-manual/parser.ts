@@ -71,7 +71,7 @@ export function ParseBatchManualFromObject(
 	if (!(typeof maybePlaytype === "string" && IsValidPlaytype(game, maybePlaytype))) {
 		throw new ScoreImportFatalError(
 			400,
-			`Invalid playtype '${maybePlaytype}' - expected any of ${gameConfig.validPlaytypes.join(
+			`Invalid playtype '${maybePlaytype}' - expected any of ${gameConfig.playtypes.join(
 				", "
 			)}.`
 		);

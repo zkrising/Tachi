@@ -6,7 +6,7 @@ import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 export const MAIMAI_DX_CONF = {
 	defaultPlaytype: "Single",
 	name: "maimai DX",
-	validPlaytypes: ["Single"],
+	playtypes: ["Single"],
 	songData: z.strictObject({
 		displayVersion: z.string(),
 	}),

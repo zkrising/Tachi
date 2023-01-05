@@ -6,7 +6,7 @@ import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 export const BMS_CONF = {
 	defaultPlaytype: "7K",
 	name: "BMS",
-	validPlaytypes: ["7K", "14K"],
+	playtypes: ["7K", "14K"],
 	songData: z.strictObject({
 		genre: z.nullable(z.string()),
 		subtitle: z.nullable(z.string()),
@@ -178,7 +178,7 @@ export const BMS_7K_CONF = {
 		egr: { type: "INTEGER" },
 		egd: { type: "INTEGER" },
 		ebd: { type: "INTEGER" },
-		epr: { type: "INTEGER" }, //
+		epr: { type: "INTEGER" },
 		lpg: { type: "INTEGER" },
 		lgr: { type: "INTEGER" },
 		lgd: { type: "INTEGER" },

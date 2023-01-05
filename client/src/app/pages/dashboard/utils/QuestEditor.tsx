@@ -22,7 +22,7 @@ const PR_LOCAL_QUESTS_SCHEMA: PrudenceSchema = {
 			playtype: (self, parent) => {
 				const gameConfig = GetGameConfig(parent.game as any);
 
-				if (!gameConfig.validPlaytypes.includes(self)) {
+				if (!gameConfig.playtypes.includes(self)) {
 					return `Invalid playtype '${self}' for ${parent.game}`;
 				}
 

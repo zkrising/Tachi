@@ -1,6 +1,16 @@
-import { GetGameConfig, GetGamePTConfig } from "../config/old-config";
-import type { ChartDocument, Game, IDStrings, Playtypes, SongDocument } from "..";
-import type { Grades, integer, PBScoreDocument } from "../types";
+import { GetGameConfig, GetGamePTConfig, GetSpecificGPTConfig } from "../config/config";
+import type {
+	integer,
+	PBScoreDocument,
+	ChartDocument,
+	Game,
+	Playtypes,
+	SongDocument,
+	GameToGPTStrings,
+	SpecificGamePTConfig,
+	GPTString,
+	GPTStrings,
+} from "../types";
 import type { PrudenceError } from "prudence";
 
 export function FormatInt(v: number): string {
@@ -23,9 +33,21 @@ export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 	}
 
 	if (game === "gitadora") {
-		const gptConfig = GetGamePTConfig(game, chart.playtype);
+		const ch = chart as ChartDocument<GPTStrings["gitadora"]>;
 
-		const shortDiff = gptConfig.shortDifficulties[chart.difficulty] ?? chart.difficulty;
+		const gptConfig = GetSpecificGPTConfig<GPTStrings["gitadora"]>(
+			game,
+			chart.playtype as Playtypes["gitadora"]
+		);
+
+		// @ts-expect-error maybe this new config format was a mistake.
+		// it's complaining that since the dora config doesn't have shorthand for
+		// "BASS BASIC", this assignment may fail.
+		// it's technically correct, but in the worst way, since this isn't
+		// actually possible.
+		// todo: come up with something better.
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+		const shortDiff = gptConfig.difficultyConfig.difficultyShorthand[ch.difficulty];
 
 		// gitadora should always use short diffs. they just look better.
 		return `${shortDiff} ${chart.level}`;
@@ -33,7 +55,7 @@ export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 
 	const gameConfig = GetGameConfig(game);
 
-	if (gameConfig.validPlaytypes.length > 1) {
+	if (gameConfig.playtypes.length > 1) {
 		return `${chart.playtype} ${chart.difficulty} ${chart.level}`;
 	}
 
@@ -54,9 +76,15 @@ export function FormatDifficultyShort(chart: ChartDocument, game: Game): string 
 		return `S${itgChart.data.difficultyTag} ${chart.level}`;
 	}
 
-	const shortDiff = gptConfig.shortDifficulties[chart.difficulty] ?? chart.difficulty;
+	if (gptConfig.difficultyConfig.type === "DYNAMIC") {
+		// TODO cap string length
+		return `${chart.difficulty} ${chart.level}`;
+	}
 
-	if (gameConfig.validPlaytypes.length === 1 || game === "gitadora") {
+	const shortDiff =
+		gptConfig.difficultyConfig.difficultyShorthand[chart.difficulty] ?? chart.difficulty;
+
+	if (gameConfig.playtypes.length === 1 || game === "gitadora") {
 		return `${shortDiff} ${chart.level}`;
 	}
 
@@ -70,7 +98,7 @@ export function FormatDifficultyShort(chart: ChartDocument, game: Game): string 
 export function FormatGame(game: Game, playtype: Playtypes[Game]): string {
 	const gameConfig = GetGameConfig(game);
 
-	if (gameConfig.validPlaytypes.length === 1) {
+	if (gameConfig.playtypes.length === 1) {
 		return gameConfig.name;
 	}
 
@@ -84,7 +112,7 @@ export function FormatChart(
 	short = false
 ): string {
 	if (game === "bms") {
-		const tables = (chart as ChartDocument<"bms:7K" | "bms:14K">).data.tableFolders;
+		const tables = (chart as ChartDocument<GPTStrings["bms"]>).data.tableFolders;
 
 		const bmsSong = song as SongDocument<"bms">;
 
@@ -104,7 +132,7 @@ export function FormatChart(
 
 		return `${realTitle} (${tables.map((e) => `${e.table}${e.level}`).join(", ")})`;
 	} else if (game === "usc") {
-		const uscChart = chart as ChartDocument<"usc:Controller" | "usc:Keyboard">;
+		const uscChart = chart as ChartDocument<GPTStrings["usc"]>;
 
 		// If this chart isn't an official, render it differently
 		if (!uscChart.data.isOfficial) {
@@ -136,15 +164,19 @@ export function FormatChart(
 
 	let playtypeStr = `${chart.playtype}`;
 
-	if (gameConfig.validPlaytypes.length === 1) {
+	if (gameConfig.playtypes.length === 1) {
 		playtypeStr = "";
 	}
 
 	const gptConfig = GetGamePTConfig(game, chart.playtype);
 
-	const diff = short
-		? gptConfig.shortDifficulties[chart.difficulty] ?? chart.difficulty
-		: chart.difficulty;
+	let diff: string;
+
+	if (gptConfig.difficultyConfig.type === "DYNAMIC") {
+		diff = chart.difficulty;
+	} else {
+		diff = gptConfig.difficultyConfig.difficultyShorthand[chart.difficulty] ?? chart.difficulty;
+	}
 
 	// iidx formats things like SPA instead of SP A.
 	// this is a hack, this should be part of the gptConfig, tbh.
@@ -156,16 +188,16 @@ export function FormatChart(
 		space = " ";
 	}
 
-	// return the most recent version this chart appeared in if it
+	// return the most recent chartSet this chart appeared in if it
 	// is not primary.
 	if (!chart.isPrimary) {
-		return `${song.title} (${playtypeStr}${space}${diff} ${chart.level} ${chart.versions[0]})`;
+		return `${song.title} (${playtypeStr}${space}${diff} ${chart.level} ${chart.chartSets[0]})`;
 	}
 
 	return `${song.title} (${playtypeStr}${space}${diff} ${chart.level})`;
 }
 
-export function AbsoluteGradeDelta<I extends IDStrings = IDStrings>(
+export function AbsoluteGradeDelta<I extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtypes[Game],
 	score: number,
@@ -190,12 +222,12 @@ export function AbsoluteGradeDelta<I extends IDStrings = IDStrings>(
 	return score - gradeScore;
 }
 
-export function RelativeGradeDelta<I extends IDStrings = IDStrings>(
+export function RelativeGradeDelta<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtypes[Game],
 	score: number,
 	percent: number,
-	grade: Grades[I],
+	grade: Grades[GPT],
 	relativeIndex: integer
 ): { grade: string; delta: number } | null {
 	const gptConfig = GetGamePTConfig(game, playtype);
@@ -240,7 +272,7 @@ type FormatGradeDeltaReturns =
 			closer: "lower";
 	  };
 
-export function GenericFormatGradeDelta<I extends IDStrings = IDStrings>(
+export function GenericFormatGradeDelta<I extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtypes[Game],
 	score: number,
@@ -278,7 +310,7 @@ export function GenericFormatGradeDelta<I extends IDStrings = IDStrings>(
 	};
 }
 
-export function GetCloserGradeDelta<I extends IDStrings = IDStrings>(
+export function GetCloserGradeDelta<I extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtypes[Game],
 	score: number,
@@ -315,7 +347,7 @@ export function CreateSongMap<G extends Game = Game>(songs: Array<SongDocument<G
 	return songMap;
 }
 
-export function CreateChartMap<I extends IDStrings = IDStrings>(charts: Array<ChartDocument<I>>) {
+export function CreateChartMap<I extends GPTString = GPTString>(charts: Array<ChartDocument<I>>) {
 	const chartMap = new Map<string, ChartDocument<I>>();
 
 	for (const chart of charts) {
@@ -395,8 +427,8 @@ export function GradeGoalFormatter(pb: PBScoreDocument) {
 
 // For games with 'BP', show that next to the clear.
 export function IIDXBMSLampGoalFormatter(pb: PBScoreDocument<IIDXBMSGPTs>) {
-	if (typeof pb.scoreData.hitMeta.bp === "number") {
-		return `${pb.scoreData.lamp} (BP: ${pb.scoreData.hitMeta.bp})`;
+	if (typeof pb.scoreData.additionalMetrics.bp === "number") {
+		return `${pb.scoreData.lamp.string} (BP: ${pb.scoreData.additionalMetrics.bp})`;
 	}
 
 	return pb.scoreData.lamp;

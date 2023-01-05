@@ -6,7 +6,7 @@ import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 export const PMS_CONF = {
 	defaultPlaytype: "Controller",
 	name: "PMS",
-	validPlaytypes: ["Controller", "Keyboard"],
+	playtypes: ["Controller", "Keyboard"],
 	songData: z.strictObject({
 		genre: z.nullable(z.string()),
 		subtitle: z.nullable(z.string()),
@@ -78,7 +78,19 @@ export const PMS_CONTROLLER_CONF = {
 
 	additionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
-		// TODO
+		bp: { type: "INTEGER" },
+		gauge: { type: "DECIMAL" },
+		gaugeHistory: { type: "GRAPH" },
+		epg: { type: "INTEGER" },
+		egr: { type: "INTEGER" },
+		egd: { type: "INTEGER" },
+		ebd: { type: "INTEGER" },
+		epr: { type: "INTEGER" },
+		lpg: { type: "INTEGER" },
+		lgr: { type: "INTEGER" },
+		lgd: { type: "INTEGER" },
+		lbd: { type: "INTEGER" },
+		lpr: { type: "INTEGER" },
 	},
 
 	scoreRatingAlgs: {

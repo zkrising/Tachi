@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
 	const gpts = [];
 
 	for (const game of TachiConfig.GAMES) {
-		const playtypes = GetGameConfig(game).validPlaytypes;
+		const playtypes = GetGameConfig(game).playtypes;
 
 		for (const playtype of playtypes) {
 			gpts.push({ game, playtype, query: {} });

@@ -2,15 +2,15 @@
 // their name in the database to the object they schemaify.
 // The schemas themselves are wrapped in functions that throw on error.
 
-import { GetGameConfig, GetGamePTConfig } from "../config/old-config";
-import { allIDStrings, allImportTypes, allSupportedGames } from "../constants/import-types";
+import { GetGameConfig, allSupportedGames, GetGamePTConfig, allGPTStrings } from "../config/config";
+import { allImportTypes } from "../constants/import-types";
 import { ALL_PERMISSIONS } from "../constants/permissions";
 import { UserAuthLevels } from "../types";
 import deepmerge from "deepmerge";
 import { p } from "prudence";
-import type { GamePTConfig } from "../config/old-config";
-import type { AllClassSets } from "../config/game-classes";
-import type { Game, IDStrings, NotificationBody, Playtype, Playtypes } from "../types";
+import type { Game, Playtypes, Playtype } from "../types/game-config";
+import type { GamePTConfig } from "../types/internals";
+import type { NotificationBody } from "../types/notifications";
 import type {
 	PrudenceSchema,
 	ValidationFunctionParentOptionsKeychain,
@@ -219,7 +219,7 @@ const GetScoreMeta = (game: Game, playtype: Playtypes[Game]): PrudenceSchema => 
 };
 
 function IsValidPlaytype(game: Game, str: string): str is Playtypes[Game] {
-	return GetGameConfig(game).validPlaytypes.includes(str as Playtypes[Game]);
+	return GetGameConfig(game).playtypes.includes(str as Playtypes[Game]);
 }
 
 function IsValidGame(str: string): str is Game {
@@ -238,7 +238,7 @@ const getPlaytype = (game: Game, self: unknown): Playtypes[Game] => {
 	const playtype = s.playtype as string;
 
 	if (!IsValidPlaytype(game, playtype)) {
-		throw new Error(`Expected any of ${gameConfig.validPlaytypes.join(", ")}`);
+		throw new Error(`Expected any of ${gameConfig.playtypes.join(", ")}`);
 	}
 
 	return playtype;
@@ -811,13 +811,13 @@ const PRE_SCHEMAS = {
 		userID: p.isPositiveNonZeroInteger,
 		timeStarted: p.isPositive,
 		timeFinished: p.isPositive,
-		idStrings: [p.isIn(allIDStrings)],
+		idStrings: [p.isIn(allGPTStrings)],
 		importID: "string",
 		scoreIDs: ["string"],
 		game: p.isIn(games),
 
 		// @ts-expect-error We've asserted this is definitely a game.
-		playtypes: [(self) => p.isIn(GetGameConfig(self.game).validPlaytypes)(self)],
+		playtypes: [(self) => p.isIn(GetGameConfig(self.game).playtypes)(self)],
 		errors: [
 			{
 				type: "string",
@@ -1024,7 +1024,7 @@ const PRE_SCHEMAS = {
 		const { game } = extractGPTIDString(self);
 
 		return prSchemaFnWrap({
-			idString: p.isIn(allIDStrings),
+			idString: p.isIn(allGPTStrings),
 			chartDoc: PR_CHART_DOCUMENT(game),
 			songDoc: PR_SONG_DOCUMENT(game),
 			userIDs: [p.isPositiveNonZeroInteger],

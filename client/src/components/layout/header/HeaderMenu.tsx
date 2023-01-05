@@ -74,7 +74,7 @@ export function HeaderMenu({
 		}
 
 		for (const game of TachiConfig.games) {
-			for (const playtype of GetGameConfig(game).validPlaytypes) {
+			for (const playtype of GetGameConfig(game).playtypes) {
 				const e = ugsMap.get(`${game}:${playtype}`);
 
 				if (!e) {

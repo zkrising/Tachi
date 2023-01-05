@@ -6,7 +6,7 @@ import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
 export const JUBEAT_CONF = {
 	defaultPlaytype: "Single",
 	name: "jubeat",
-	validPlaytypes: ["Single"],
+	playtypes: ["Single"],
 	songData: z.strictObject({
 		displayVersion: z.string(),
 	}),

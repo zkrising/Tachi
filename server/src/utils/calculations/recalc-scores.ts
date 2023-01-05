@@ -100,7 +100,7 @@ export async function UpdateAllPBs(userIDs?: Array<integer>, filter = {}) {
 		for (const game of TachiConfig.GAMES) {
 			const gameConfig = GetGameConfig(game);
 
-			for (const playtype of gameConfig.validPlaytypes) {
+			for (const playtype of gameConfig.playtypes) {
 				const scores = await db.scores.find(
 					deepmerge({ userID: user.id, game, playtype }, filter),
 					{

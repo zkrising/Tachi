@@ -36,7 +36,7 @@ export default function AddNewQuestModal({
 							{TachiConfig.games.flatMap((game) => {
 								const gameConfig = GetGameConfig(game);
 
-								return gameConfig.validPlaytypes.map((playtype) => (
+								return gameConfig.playtypes.map((playtype) => (
 									<option
 										key={`${game}:${playtype}`}
 										value={`${game}:${playtype}`}

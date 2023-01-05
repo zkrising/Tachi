@@ -7,7 +7,7 @@ import type {
 } from "./game-config-utils";
 import type { ExtractEnumMetricNames, ExtractMetrics } from "./metrics";
 import type { ExtractArrayElementType } from "./utils";
-import type { z } from "zod";
+import type { AnyZodObject, z } from "zod";
 
 /**
  * All the games Tachi supports.
@@ -30,7 +30,7 @@ export type Game = keyof typeof GAME_CONFIGS;
  * is the go-to.
  */
 export type Playtypes = {
-	[G in Game]: typeof GAME_CONFIGS[G]["validPlaytypes"][number];
+	[G in Game]: typeof GAME_CONFIGS[G]["playtypes"][number];
 };
 
 /**
@@ -49,13 +49,13 @@ export type SongDocumentData = {
 export interface GameConfig<G extends Game = Game> {
 	readonly name: string;
 	readonly defaultPlaytype: Playtypes[G];
-	readonly validPlaytypes: ReadonlyArray<Playtypes[G]>;
+	readonly playtypes: ReadonlyArray<Playtypes[G]>;
 
 	/**
 	 * Song documents get their own game-specific record that they use for whatever
 	 * they want. IIDX song documents store genres, etc.
 	 */
-	readonly songData: SongDocumentData[G];
+	readonly songData: AnyZodObject;
 }
 
 /**
@@ -71,7 +71,7 @@ export type GPTString = keyof {
 	[G in Game as `${G}:${Playtypes[G]}`]: never;
 };
 
-export type GameToGPTStrings = {
+export type GPTStrings = {
 	[G in Game]: `${G}:${Playtypes[G]}`;
 };
 
@@ -145,7 +145,7 @@ export type ExtractedClasses = {
 };
 
 export type Classes = {
-	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["classes"];
+	[G in GPTString]: keyof typeof GAME_PT_CONFIGS[G]["classes"];
 };
 
 export type ChartDocumentData = {
@@ -357,13 +357,16 @@ export interface SpecificGamePTConfig<GPT extends GPTString> {
 	 * Chart documents get their own GPT-specific record that they use for whatever
 	 * they want. IIDX documents store BPI information like kaiden averages, BMS
 	 * charts store sha256/md5 hashes, etc.
+	 *
+	 * This is a zod schema that can be used to validate that input.
 	 */
-	chartData: ChartDocumentData[GPT];
+	chartData: AnyZodObject;
 
 	/**
-	 * What game-specific user-settings exist for this GPT?
+	 * This is a zod schema that can be used to validate provided GPT-specific
+	 * preferences.
 	 */
-	preferences: Preferences[GPT];
+	preferences: AnyZodObject;
 
 	/**
 	 * What game-specific metadata should be stored on scores for this GPT?
@@ -371,7 +374,7 @@ export interface SpecificGamePTConfig<GPT extends GPTString> {
 	 * These are for things like what options were used (RANDOM, MIRROR etc.)
 	 * and don't exist on PBs.
 	 */
-	scoreMeta: ScoreMeta[GPT];
+	scoreMeta: AnyZodObject;
 
 	/**
 	 * What "matchTypes" should this game support for batch-manual imports? This

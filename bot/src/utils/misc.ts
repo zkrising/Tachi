@@ -70,7 +70,7 @@ export function ParseGPT(str: string) {
 	// this is an interesting way of game checking noah
 	const gameConfig = GetGameConfig(game) as GameConfig | undefined;
 
-	if (!gameConfig || !gameConfig.validPlaytypes.includes(playtype)) {
+	if (!gameConfig || !gameConfig.playtypes.includes(playtype)) {
 		throw new Error(`Invalid GPT Combination '${str}'.`);
 	}
 

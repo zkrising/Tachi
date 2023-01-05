@@ -76,7 +76,7 @@ export const WACCA_SINGLE_CONF = {
 		},
 	},
 
-	additionalMetrics: {
+	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
 	},
 

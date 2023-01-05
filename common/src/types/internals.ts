@@ -22,7 +22,7 @@ export type GamePTConfig = Readonly<{
 
 	preferredDefaultEnum: string;
 
-	additionalMetrics: Record<string, ScoreMetric>;
+	optionalMetrics: Record<string, ScoreMetric>;
 
 	scoreRatingAlgs: Record<string, RatingAlgorithmConfig>;
 	sessionRatingAlgs: Record<string, RatingAlgorithmConfig>;

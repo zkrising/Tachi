@@ -49,7 +49,7 @@ export const ITG_STAMINA_CONF = {
 		finalPercent: { type: "DECIMAL" },
 	},
 
-	additionalMetrics: {
+	optionalMetrics: {
 		lifebarHistory: { type: "GRAPH" },
 	},
 

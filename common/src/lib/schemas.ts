@@ -391,7 +391,7 @@ const PRE_SCHEMAS = {
 					gptConfig.orderedJudgements.map((j) => [j, optNull(p.isInteger)])
 				),
 
-				optional: PR_METRICS(gptConfig.additionalMetrics, true),
+				optional: PR_METRICS(gptConfig.optionalMetrics, true),
 			},
 
 			scoreMeta: PrudenceZodShim(gptConfig.scoreMeta),
@@ -431,7 +431,7 @@ const PRE_SCHEMAS = {
 				judgements: Object.fromEntries(
 					gptConfig.orderedJudgements.map((j) => [j, optNull(p.isInteger)])
 				),
-				optional: PR_METRICS(gptConfig.additionalMetrics, true),
+				optional: PR_METRICS(gptConfig.optionalMetrics, true),
 			},
 			calculatedData: Object.fromEntries(
 				Object.keys(gptConfig.scoreRatingAlgs).map((a) => [a, "*?number"])
@@ -848,7 +848,7 @@ const PR_BATCH_MANUAL_SCORE = (game: Game, playtype: Playtype): PrudenceSchema =
 
 			return true;
 		}),
-		additionalMetrics: optNull(PR_METRICS(gptConfig.additionalMetrics, true)),
+		additionalMetrics: optNull(PR_METRICS(gptConfig.optionalMetrics, true)),
 		scoreMeta: optNull(PrudenceZodShim(gptConfig.scoreMeta)),
 	};
 };

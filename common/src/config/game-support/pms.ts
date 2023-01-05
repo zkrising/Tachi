@@ -76,7 +76,7 @@ export const PMS_CONTROLLER_CONF = {
 	defaultMetric: "percent",
 	preferredDefaultEnum: "lamp",
 
-	additionalMetrics: {
+	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
 		bp: { type: "INTEGER" },
 		gauge: { type: "DECIMAL" },

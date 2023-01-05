@@ -37,7 +37,7 @@ export const USC_CONTROLLER_CONF = {
 	defaultMetric: "score",
 	preferredDefaultEnum: "grade",
 
-	additionalMetrics: {
+	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
 	},
 

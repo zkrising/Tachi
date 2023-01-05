@@ -67,7 +67,7 @@ export const POPN_9B_CONF = {
 	defaultMetric: "score",
 	preferredDefaultEnum: "lamp",
 
-	additionalMetrics: {
+	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
 		gauge: { type: "INTEGER" },
 	},

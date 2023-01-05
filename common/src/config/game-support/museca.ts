@@ -42,7 +42,7 @@ export const MUSECA_SINGLE_CONF = {
 	defaultMetric: "score",
 	preferredDefaultEnum: "grade",
 
-	additionalMetrics: FAST_SLOW_MAXCOMBO,
+	optionalMetrics: FAST_SLOW_MAXCOMBO,
 
 	scoreRatingAlgs: {
 		curatorSkill: {

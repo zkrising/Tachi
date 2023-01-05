@@ -47,7 +47,7 @@ export const CHUNITHM_SINGLE_CONF = {
 	defaultMetric: "score",
 	preferredDefaultEnum: "grade",
 
-	additionalMetrics: {
+	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
 	},
 

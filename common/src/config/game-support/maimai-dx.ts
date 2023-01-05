@@ -90,7 +90,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 	defaultMetric: "percent",
 	preferredDefaultEnum: "grade",
 
-	additionalMetrics: FAST_SLOW_MAXCOMBO,
+	optionalMetrics: FAST_SLOW_MAXCOMBO,
 
 	scoreRatingAlgs: {
 		rate: { description: "Rating as it's implemented in game.", formatter: NoDecimalPlace },

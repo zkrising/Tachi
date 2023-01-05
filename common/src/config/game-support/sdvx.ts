@@ -96,7 +96,7 @@ export const SDVX_SINGLE_CONF = {
 	defaultMetric: "score",
 	preferredDefaultEnum: "grade",
 
-	additionalMetrics: {
+	optionalMetrics: {
 		exScore: { type: "INTEGER" },
 		gauge: { type: "DECIMAL" },
 	},

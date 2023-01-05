@@ -135,7 +135,7 @@ export type DerivedMetrics = {
 };
 
 export type AdditionalMetrics = {
-	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["additionalMetrics"];
+	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["optionalMetrics"];
 };
 
 export type ExtractedClasses = {
@@ -168,7 +168,7 @@ export type ExtractedScoreMetrics = {
 };
 
 export type ExtractedAdditionalMetrics = {
-	[G in GPTString]: ExtractMetrics<typeof GAME_PT_CONFIGS[G]["additionalMetrics"]>;
+	[G in GPTString]: ExtractMetrics<typeof GAME_PT_CONFIGS[G]["optionalMetrics"]>;
 };
 
 /**

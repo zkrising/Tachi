@@ -80,7 +80,7 @@ export const IIDX_SP_CONF = {
 	defaultMetric: "percent",
 	preferredDefaultEnum: "lamp",
 
-	additionalMetrics: {
+	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
 
 		bp: { type: "INTEGER" },

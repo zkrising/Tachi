@@ -54,7 +54,7 @@ export const GITADORA_GITA_CONF = {
 	defaultMetric: "percent",
 	preferredDefaultEnum: "grade",
 
-	additionalMetrics: {
+	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
 	},
 

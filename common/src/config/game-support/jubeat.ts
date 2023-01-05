@@ -47,7 +47,7 @@ export const JUBEAT_SINGLE_CONF = {
 	defaultMetric: "musicRate",
 	preferredDefaultEnum: "grade",
 
-	additionalMetrics: {
+	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
 	},
 

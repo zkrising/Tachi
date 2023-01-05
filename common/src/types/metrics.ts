@@ -2,6 +2,19 @@ import type { integer } from "../types";
 import type { ChartDocument } from "./documents";
 import type { GPTString } from "./game-config";
 
+export type DecimalMetricValidator<GPT extends GPTString> = (
+	metric: number,
+	chart: ChartDocument<GPT>
+) => string | true;
+export type IntegerMetricValidator<GPT extends GPTString> = (
+	metric: integer,
+	chart: ChartDocument<GPT>
+) => string | true;
+export type GraphMetricValidator<GPT extends GPTString> = (
+	metric: Array<number>,
+	chart: ChartDocument<GPT>
+) => string | true;
+
 /**
  * A metric for a score that's a floating point number.
  */

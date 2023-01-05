@@ -70,10 +70,10 @@ export const JUBEAT_SINGLE_CONF = {
 	defaultSessionRatingAlg: "jubility",
 	defaultProfileRatingAlg: "jubility",
 
-	difficultyConfig: {
+	difficulties: {
 		type: "FIXED",
-		difficultyOrder: ["BSC", "ADV", "EXT", "HARD BSC", "HARD ADV", "HARD EXT"],
-		difficultyShorthand: {
+		order: ["BSC", "ADV", "EXT", "HARD BSC", "HARD ADV", "HARD EXT"],
+		shorthand: {
 			BSC: "BSC",
 			ADV: "ADV",
 			EXT: "EXT",
@@ -81,7 +81,7 @@ export const JUBEAT_SINGLE_CONF = {
 			"HARD ADV": "H. ADV",
 			"HARD EXT": "H. EXT",
 		},
-		defaultDifficulty: "EXT",
+		default: "EXT",
 	},
 
 	classes: {
@@ -90,7 +90,7 @@ export const JUBEAT_SINGLE_CONF = {
 
 	orderedJudgements: ["perfect", "great", "good", "poor", "miss"],
 
-	chartSets: [
+	versions: [
 		"jubeat",
 		"ripples",
 		"knit",

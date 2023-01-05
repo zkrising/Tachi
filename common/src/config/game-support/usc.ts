@@ -69,18 +69,18 @@ export const USC_CONTROLLER_CONF = {
 	defaultSessionRatingAlg: "ProfileVF6",
 	defaultProfileRatingAlg: "VF6",
 
-	difficultyConfig: {
+	difficulties: {
 		type: "FIXED",
-		difficultyOrder: ["NOV", "ADV", "EXH", "INF"],
-		difficultyShorthand: {}, // they're all already short enough.
-		defaultDifficulty: "EXH",
+		order: ["NOV", "ADV", "EXH", "INF"],
+		shorthand: {}, // they're all already short enough.
+		default: "EXH",
 	},
 
 	classes: {},
 
 	orderedJudgements: ["critical", "near", "miss"],
 
-	chartSets: [],
+	versions: [],
 
 	chartData: z.strictObject({
 		hashSHA1: z.union([z.array(z.string()), z.string()]),

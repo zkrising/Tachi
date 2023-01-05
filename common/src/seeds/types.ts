@@ -2,7 +2,6 @@ import { allSupportedGames } from "../config/config";
 import type {
 	Game,
 	ChartDocument,
-	GameToGPTStrings,
 	SongDocument,
 	BMSCourseDocument,
 	FolderDocument,
@@ -10,13 +9,14 @@ import type {
 	QuestlineDocument,
 	QuestDocument,
 	TableDocument,
+	GPTStrings,
 } from "../types";
 
 // lazy, but kinda cool macros.
 // note that TS won't let you do this multiple times within an object
 // so, we have to join them ourselves. Ah well, not that bad.
 type ChartDBSeeds = {
-	[G in Game as `charts-${G}.json`]: Array<ChartDocument<GameToGPTStrings[G]>>;
+	[G in Game as `charts-${G}.json`]: Array<ChartDocument<GPTStrings[G]>>;
 };
 
 type SongDBSeeds = {

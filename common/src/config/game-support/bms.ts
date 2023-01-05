@@ -221,13 +221,13 @@ export const BMS_7K_CONF = {
 	// with no possible method for determining what "song" a chart belongs to.
 	// As such, the only correct method left is to assert that every bit of song
 	// metadata is just its own thing.
-	difficultyConfig: {
+	difficulties: {
 		type: "FIXED",
 		// "CHART" isn't a very creative name, but this is in a similar vein to how
 		// games with no playtypes use the value "Single".
-		difficultyOrder: ["CHART"],
-		difficultyShorthand: {},
-		defaultDifficulty: "CHART",
+		order: ["CHART"],
+		shorthand: {},
+		default: "CHART",
 	},
 
 	classes: {
@@ -239,7 +239,7 @@ export const BMS_7K_CONF = {
 
 	orderedJudgements: ["pgreat", "great", "good", "bad", "poor"],
 
-	chartSets: [],
+	versions: [],
 
 	chartData: z.strictObject({
 		notecount: zodNonNegativeInt,

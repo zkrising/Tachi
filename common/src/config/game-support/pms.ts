@@ -118,11 +118,11 @@ export const PMS_CONTROLLER_CONF = {
 	defaultProfileRatingAlg: "sieglinde",
 
 	// See `bms.ts` for an explanation of why this is like this.
-	difficultyConfig: {
+	difficulties: {
 		type: "FIXED",
-		difficultyOrder: ["CHART"],
-		difficultyShorthand: {},
-		defaultDifficulty: "CHART",
+		order: ["CHART"],
+		shorthand: {},
+		default: "CHART",
 	},
 
 	classes: {
@@ -131,7 +131,7 @@ export const PMS_CONTROLLER_CONF = {
 
 	orderedJudgements: ["cool", "great", "good", "bad", "poor"],
 
-	chartSets: [],
+	versions: [],
 
 	chartData: z.strictObject({
 		notecount: zodNonNegativeInt,

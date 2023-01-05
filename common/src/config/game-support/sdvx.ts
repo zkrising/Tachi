@@ -129,11 +129,11 @@ export const SDVX_SINGLE_CONF = {
 	defaultSessionRatingAlg: "ProfileVF6",
 	defaultProfileRatingAlg: "VF6",
 
-	difficultyConfig: {
+	difficulties: {
 		type: "FIXED",
-		difficultyOrder: ["NOV", "ADV", "EXH", "INF", "GRV", "HVN", "VVD", "XCD", "MXM"],
-		difficultyShorthand: {}, // they're all already short enough
-		defaultDifficulty: "EXH",
+		order: ["NOV", "ADV", "EXH", "INF", "GRV", "HVN", "VVD", "XCD", "MXM"],
+		shorthand: {}, // they're all already short enough
+		default: "EXH",
 	},
 
 	classes: {
@@ -149,7 +149,7 @@ export const SDVX_SINGLE_CONF = {
 
 	orderedJudgements: ["critical", "near", "miss"],
 
-	chartSets: [
+	versions: [
 		"BOOTH",
 		"infinite infection",
 		"GRAVITY WARS",

@@ -34,11 +34,11 @@ export type GamePTConfig = Readonly<{
 
 	classes: Record<string, ClassConfig>;
 
-	difficultyConfig: DifficultyConfig;
+	difficulties: DifficultyConfig;
 
 	orderedJudgements: ReadonlyArray<string>;
 
-	chartSets: ReadonlyArray<string>;
+	versions: ReadonlyArray<string>;
 
 	supportedMatchTypes: ReadonlyArray<MatchTypes>;
 

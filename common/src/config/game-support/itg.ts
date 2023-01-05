@@ -89,7 +89,7 @@ export const ITG_STAMINA_CONF = {
 	defaultSessionRatingAlg: "blockRating",
 	defaultProfileRatingAlg: "highestBlock",
 
-	difficultyConfig: {
+	difficulties: {
 		type: "DYNAMIC",
 	},
 
@@ -97,7 +97,7 @@ export const ITG_STAMINA_CONF = {
 
 	orderedJudgements: ["15ms", "fantastic", "excellent", "great", "decent", "wayoff", "miss"],
 
-	chartSets: [],
+	versions: [],
 
 	chartData: z.strictObject({
 		hashGSv3: z.string(),

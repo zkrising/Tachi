@@ -117,9 +117,9 @@ export const MAIMAI_DX_SINGLE_CONF = {
 	defaultSessionRatingAlg: "rate",
 	defaultProfileRatingAlg: "naiveRate",
 
-	difficultyConfig: {
+	difficulties: {
 		type: "FIXED",
-		difficultyOrder: [
+		order: [
 			"Basic",
 			"Advanced",
 			"Expert",
@@ -131,7 +131,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 			"DX Master",
 			"DX Re:Master",
 		],
-		difficultyShorthand: {
+		shorthand: {
 			Basic: "BAS",
 			Advanced: "ADV",
 			Expert: "EXP",
@@ -143,7 +143,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 			"DX Master": "DX MAS",
 			"DX Re:Master": "DX Re:MAS",
 		},
-		defaultDifficulty: "Master",
+		default: "Master",
 	},
 
 	classes: {
@@ -159,7 +159,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 
 	orderedJudgements: ["pcrit", "perfect", "great", "good", "miss"],
 
-	chartSets: ["UNiVERSE PLUS"],
+	versions: ["UNiVERSE PLUS"],
 
 	chartData: z.strictObject({
 		isLatest: z.boolean(),

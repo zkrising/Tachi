@@ -1,6 +1,8 @@
 // Types related to game configuration. These are used by our `internal` game config
 // types
 
+import type { integer } from "../types";
+
 export interface RatingAlgorithmConfig {
 	/**
 	 * Write a short descrption for this rating algorithm.
@@ -97,7 +99,7 @@ export interface DynamicDifficulties {
 export interface FixedDifficulties<Difficulty extends string> {
 	type: "FIXED";
 
-	difficultyOrder: ReadonlyArray<Difficulty>;
+	order: ReadonlyArray<Difficulty>;
 
 	/**
 	 * For mobile view (and certain pages where things are generally smaller)
@@ -105,9 +107,9 @@ export interface FixedDifficulties<Difficulty extends string> {
 	 *
 	 * For example, in IIDX "ANOTHER" is generally shortened to "A".
 	 */
-	difficultyShorthand: Partial<Record<Difficulty, string>>;
+	shorthand: Partial<Record<Difficulty, string>>;
 
-	defaultDifficulty: Difficulty;
+	default: Difficulty;
 }
 
 export type DifficultyConfig<D extends string = string> =

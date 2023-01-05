@@ -122,9 +122,9 @@ export const IIDX_SP_CONF = {
 		BPI: { description: `An average of the best 10 BPIs this session.` },
 	},
 
-	difficultyConfig: {
+	difficulties: {
 		type: "FIXED",
-		difficultyOrder: [
+		order: [
 			"NORMAL",
 			"HYPER",
 			"ANOTHER",
@@ -142,7 +142,7 @@ export const IIDX_SP_CONF = {
 			"Kiraku ANOTHER",
 			"Kiraku LEGGENDARIA",
 		],
-		difficultyShorthand: {
+		shorthand: {
 			NORMAL: "N",
 			HYPER: "H",
 			ANOTHER: "A",
@@ -160,7 +160,7 @@ export const IIDX_SP_CONF = {
 			"Kiraku ANOTHER": "A (Kr.)",
 			"Kiraku LEGGENDARIA": "L (Kr.)",
 		},
-		defaultDifficulty: "ANOTHER",
+		default: "ANOTHER",
 	},
 
 	classes: {
@@ -172,7 +172,7 @@ export const IIDX_SP_CONF = {
 
 	orderedJudgements: ["pgreat", "great", "good", "bad", "poor"],
 
-	chartSets: [
+	versions: [
 		"3rd Style CS",
 		"4th Style CS",
 		"5th Style CS",

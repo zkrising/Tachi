@@ -97,23 +97,21 @@ export type GPTStringToPlaytype = {
 export type Difficulties = {
 	// If this game has fixed difficulties, infer what they are
 	// otherwise, difficulties are an arbitrary string
-	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["difficultyConfig"] extends FixedDifficulties<
-		infer D
-	>
+	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["difficulties"] extends FixedDifficulties<infer D>
 		? D
 		: string;
 };
 
 export type DifficultyConfigs = {
-	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["difficultyConfig"];
+	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["difficulties"];
 };
 
 export type Judgements = {
 	[G in GPTString]: ExtractArrayElementType<typeof GAME_PT_CONFIGS[G]["orderedJudgements"]>;
 };
 
-export type ChartSets = {
-	[G in GPTString]: ExtractArrayElementType<typeof GAME_PT_CONFIGS[G]["chartSets"]>;
+export type Versions = {
+	[G in GPTString]: ExtractArrayElementType<typeof GAME_PT_CONFIGS[G]["versions"]>;
 };
 
 export type ScoreRatingAlgorithms = {
@@ -324,7 +322,7 @@ export interface SpecificGamePTConfig<GPT extends GPTString> {
 	 * allowing any string (as long as its unique.)
 	 *
 	 */
-	difficultyConfig: DifficultyConfigs[GPT];
+	difficulties: DifficultyConfigs[GPT];
 
 	/**
 	 * What judgements does this GPT have? These are typically timing-window names.
@@ -334,9 +332,9 @@ export interface SpecificGamePTConfig<GPT extends GPTString> {
 	orderedJudgements: ReadonlyArray<Judgements[GPT]>;
 
 	/**
-	 * What sets of charts do we have for this GPT?
+	 * What versions do we support for this GPT?
 	 *
-	 * Chart Sets are the way tachi disambiguates cases (typically in arcade games) where
+	 * Version are the way tachi disambiguates cases (typically in arcade games) where
 	 * a chart is modified.
 	 * For example, Rising in the Sun
 	 * (https://remywiki.com/Rising_in_the_Sun(original_mix))
@@ -348,10 +346,10 @@ export interface SpecificGamePTConfig<GPT extends GPTString> {
 	 * We need to handle these cases, so we disambiguate by attaching "chart sets" onto
 	 * every chart. These "chart sets" indicate what sets of chart states they
 	 * appeared in for this GPT. Then, when a score is coming in, it can indicate what
-	 * chartSet this score was on. That way, we can make sure they resolve to the right
+	 * version this score was on. That way, we can make sure they resolve to the right
 	 * chart.
 	 */
-	chartSets: ReadonlyArray<ChartSets[GPT]>;
+	versions: ReadonlyArray<Versions[GPT]>;
 
 	/**
 	 * Chart documents get their own GPT-specific record that they use for whatever

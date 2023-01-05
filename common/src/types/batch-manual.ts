@@ -1,7 +1,7 @@
 import type { integer } from "../types";
 import type {
 	AdditionalMetrics,
-	ChartSets,
+	Versions,
 	Difficulties,
 	ExtractedClasses,
 	GPTString,
@@ -47,12 +47,7 @@ export interface BatchManual<GPT extends GPTString = GPTString> {
 		playtype: GPTStringToPlaytype[GPT];
 		service: string;
 
-		chartSet?: ChartSets[GPT];
-
-		/**
-		 * @deprecated Use `meta.chartSet` instead. This is an alias for `meta.chartSet`.
-		 */
-		version?: ChartSets[GPT];
+		version?: Versions[GPT];
 	};
 	scores: Array<BatchManualScore<GPT>>;
 	classes?: ExtractedClasses[GPT] | null;

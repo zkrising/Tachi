@@ -2,8 +2,6 @@ import { GetGameConfig, GetGamePTConfig, allSupportedGames } from "./config";
 import t from "tap";
 
 t.test("#GetGameConfig", (t) => {
-	t.plan(allSupportedGames.length);
-
 	for (const game of allSupportedGames) {
 		// i don't feel *that* strongly about this restriction, but game IDs *definitely*
 		// can't have things like `:` in them.
@@ -17,6 +15,8 @@ t.test("#GetGameConfig", (t) => {
 			"Default playtype should be in the array of playtypes."
 		);
 	}
+
+	t.end();
 });
 
 t.test("#GetGamePTConfig", (t) => {
@@ -43,11 +43,9 @@ t.test("#GetGamePTConfig", (t) => {
 				"The default profile rating alg should have an implementation."
 			);
 
-			if (conf.difficultyConfig.type === "FIXED") {
+			if (conf.difficulties.type === "FIXED") {
 				t.ok(
-					conf.difficultyConfig.difficultyOrder.includes(
-						conf.difficultyConfig.defaultDifficulty
-					),
+					conf.difficulties.order.includes(conf.difficulties.default),
 					"The default difficulty should be part of difficultyOrder."
 				);
 			}

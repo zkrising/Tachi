@@ -105,16 +105,16 @@ export const WACCA_SINGLE_CONF = {
 	defaultProfileRatingAlg: "naiveRate",
 	defaultSessionRatingAlg: "rate",
 
-	difficultyConfig: {
+	difficulties: {
 		type: "FIXED",
-		difficultyOrder: ["NORMAL", "HARD", "EXPERT", "INFERNO"],
-		difficultyShorthand: {
+		order: ["NORMAL", "HARD", "EXPERT", "INFERNO"],
+		shorthand: {
 			NORMAL: "NRM",
 			HARD: "HRD",
 			EXPERT: "EXP",
 			INFERNO: "INF",
 		},
-		defaultDifficulty: "EXPERT",
+		default: "EXPERT",
 	},
 
 	classes: {
@@ -130,7 +130,7 @@ export const WACCA_SINGLE_CONF = {
 
 	orderedJudgements: ["marvelous", "great", "good", "miss"],
 
-	chartSets: ["REVERSE"],
+	versions: ["REVERSE"],
 
 	chartData: z.strictObject({
 		isHot: z.boolean(),

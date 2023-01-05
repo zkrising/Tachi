@@ -1,6 +1,6 @@
 import type {
 	ChartDocumentData,
-	ChartSets,
+	Versions,
 	Classes,
 	Difficulties,
 	ExtractedAdditionalMetrics,
@@ -335,7 +335,7 @@ export interface ChartDocument<GPT extends GPTString = GPTString> {
 	difficulty: Difficulties[GPT];
 	playtype: GPTStringToPlaytype[GPT];
 	data: ChartDocumentData[GPT];
-	chartSets: Array<ChartSets[GPT]>;
+	versions: Array<Versions[GPT]>;
 }
 
 export interface SongDocument<G extends Game = Game> {

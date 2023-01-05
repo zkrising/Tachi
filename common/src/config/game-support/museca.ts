@@ -67,18 +67,18 @@ export const MUSECA_SINGLE_CONF = {
 	defaultSessionRatingAlg: "curatorSkill",
 	defaultProfileRatingAlg: "curatorSkill",
 
-	difficultyConfig: {
+	difficulties: {
 		type: "FIXED",
-		difficultyOrder: ["Green", "Yellow", "Red"],
-		difficultyShorthand: { Green: "G", Yellow: "Y", Red: "R" },
-		defaultDifficulty: "Red",
+		order: ["Green", "Yellow", "Red"],
+		shorthand: { Green: "G", Yellow: "Y", Red: "R" },
+		default: "Red",
 	},
 
 	classes: {},
 
 	orderedJudgements: ["critical", "near", "miss"],
 
-	chartSets: ["1 + 1/2", "1 + 1/2 Rev. B"],
+	versions: ["1 + 1/2", "1 + 1/2 Rev. B"],
 
 	chartData: z.strictObject({ inGameID: zodNonNegativeInt }),
 

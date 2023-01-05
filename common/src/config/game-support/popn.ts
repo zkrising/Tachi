@@ -95,16 +95,16 @@ export const POPN_9B_CONF = {
 	defaultSessionRatingAlg: "classPoints",
 	defaultProfileRatingAlg: "naiveClassPoints",
 
-	difficultyConfig: {
+	difficulties: {
 		type: "FIXED",
-		difficultyOrder: ["Easy", "Normal", "Hyper", "EX"],
-		difficultyShorthand: {
+		order: ["Easy", "Normal", "Hyper", "EX"],
+		shorthand: {
 			Easy: "E",
 			Normal: "N",
 			Hyper: "H",
 			EX: "EX",
 		},
-		defaultDifficulty: "EX",
+		default: "EX",
 	},
 
 	classes: {
@@ -116,7 +116,7 @@ export const POPN_9B_CONF = {
 
 	orderedJudgements: ["cool", "great", "good", "bad"],
 
-	chartSets: ["peace", "Kaimei Riddles"],
+	versions: ["peace", "Kaimei Riddles"],
 
 	chartData: z.strictObject({
 		// Array<string> | string | null

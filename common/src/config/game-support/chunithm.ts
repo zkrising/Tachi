@@ -74,16 +74,16 @@ export const CHUNITHM_SINGLE_CONF = {
 	// This game technically has a dynamic set of difficulties, with a chart being
 	// able to have as many WORLD'S END charts as it likes. However, this is a little
 	// awkward to implement, and I can't be bothered. Sorry!
-	difficultyConfig: {
+	difficulties: {
 		type: "FIXED",
-		difficultyOrder: ["BASIC", "ADVANCED", "EXPERT", "MASTER"],
-		difficultyShorthand: {
+		order: ["BASIC", "ADVANCED", "EXPERT", "MASTER"],
+		shorthand: {
 			BASIC: "B",
 			ADVANCED: "A",
 			EXPERT: "E",
 			MASTER: "M",
 		},
-		defaultDifficulty: "MASTER",
+		default: "MASTER",
 	},
 
 	classes: {
@@ -95,7 +95,7 @@ export const CHUNITHM_SINGLE_CONF = {
 
 	orderedJudgements: ["jcrit", "justice", "attack", "miss"],
 
-	chartSets: ["Paradise Lost"],
+	versions: ["Paradise Lost"],
 
 	chartData: z.strictObject({
 		inGameID: zodNonNegativeInt,

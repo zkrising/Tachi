@@ -1,6 +1,6 @@
 import { TachiConfig } from "lib/setup/config";
 import { p } from "prudence";
-import { allImportTypes } from "tachi-common/config/static-config";
+import { allImportTypes } from "tachi-common/constants/import-types";
 import { SCHEMAS } from "tachi-common/lib/schemas";
 import type { Databases } from "./db";
 import type { PrudenceSchema } from "prudence";

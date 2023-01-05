@@ -76,9 +76,9 @@ export const GITADORA_GITA_CONF = {
 	defaultSessionRatingAlg: "skill",
 	defaultProfileRatingAlg: "skill",
 
-	difficultyConfig: {
+	difficulties: {
 		type: "FIXED",
-		difficultyOrder: [
+		order: [
 			"BASIC",
 			"ADVANCED",
 			"EXTREME",
@@ -88,7 +88,7 @@ export const GITADORA_GITA_CONF = {
 			"BASS EXTREME",
 			"BASS MASTER",
 		],
-		difficultyShorthand: {
+		shorthand: {
 			BASIC: "G-BSC",
 			ADVANCED: "G-ADV",
 			EXTREME: "G-EXT",
@@ -98,7 +98,7 @@ export const GITADORA_GITA_CONF = {
 			"BASS EXTREME": "B-EXT",
 			"BASS MASTER": "B-MAS",
 		},
-		defaultDifficulty: "EXTREME",
+		default: "EXTREME",
 	},
 
 	classes: {
@@ -107,7 +107,7 @@ export const GITADORA_GITA_CONF = {
 
 	orderedJudgements: ["perfect", "great", "good", "ok", "miss"],
 
-	chartSets: ["Konaste"],
+	versions: ["Konaste"],
 
 	chartData: z.strictObject({
 		inGameID: zodNonNegativeInt,
@@ -123,15 +123,15 @@ export const GITADORA_GITA_CONF = {
 export const GITADORA_DORA_CONF = {
 	...GITADORA_GITA_CONF,
 
-	difficultyConfig: {
+	difficulties: {
 		type: "FIXED",
-		difficultyOrder: ["BASIC", "ADVANCED", "EXTREME", "MASTER"],
-		difficultyShorthand: {
+		order: ["BASIC", "ADVANCED", "EXTREME", "MASTER"],
+		shorthand: {
 			BASIC: "D-BSC",
 			ADVANCED: "D-ADV",
 			EXTREME: "D-EXT",
 			MASTER: "D-MAS",
 		},
-		defaultDifficulty: "EXTREME",
+		default: "EXTREME",
 	},
 } as const satisfies GamePTConfig;

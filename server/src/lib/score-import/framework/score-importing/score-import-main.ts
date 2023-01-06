@@ -8,14 +8,14 @@ import { CheckAndSetOngoingImportLock, UnsetOngoingImportLock } from "../import-
 import { ProcessPBs } from "../pb/process-pbs";
 import { UpdateUsersQuests } from "../quests/quests";
 import { CreateSessions } from "../sessions/sessions";
-import { UpdateUsersGamePlaytypeStats } from "../user-game-stats/update-ugs";
+import { UpdateUsersGamePlaytypeStats } from "../profile-calculated-data/update-ugs";
 import db from "external/mongo/db";
 import { GetGameConfig } from "tachi-common";
 import { GetMillisecondsSince } from "utils/misc";
 import { GetUserWithID } from "utils/user";
 import type { ConverterFunction, ImportInputParser } from "../../import-types/common/types";
 import type { ChartIDPlaytypeMap, ScorePlaytypeMap } from "../common/types";
-import type { ClassHandler } from "../user-game-stats/types";
+import type { ClassHandler } from "../profile-calculated-data/types";
 import type { KtLogger } from "lib/logger/logger";
 import type { ScoreImportJob } from "lib/score-import/worker/types";
 import type {

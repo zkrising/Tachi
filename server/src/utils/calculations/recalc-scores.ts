@@ -2,11 +2,11 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { CreateCalculatedData } from "lib/score-import/framework/calculated-data/calculated-data";
+import { CreateCalculatedData } from "lib/score-import/framework/score-calculated-data/calculated-data";
 import { GetAndUpdateUsersGoals } from "lib/score-import/framework/goals/goals";
 import { ProcessPBs } from "lib/score-import/framework/pb/process-pbs";
 import { UpdateUsersQuests } from "lib/score-import/framework/quests/quests";
-import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/user-game-stats/update-ugs";
+import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/profile-calculated-data/update-ugs";
 import { TachiConfig } from "lib/setup/config";
 import { GetGameConfig } from "tachi-common";
 import { EfficientDBIterate } from "utils/efficient-db-iterate";

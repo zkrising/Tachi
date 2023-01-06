@@ -7,31 +7,11 @@ import type {
 	integer,
 	PBScoreDocument,
 	Playtype,
-	ScoreCalculatedDataLookup,
 	UserGameStats,
+	ScoreRatingAlgorithms,
 } from "tachi-common";
 
-type CustomCalcNames = ScoreCalculatedDataLookup[GPTString];
-
-function LazySumAll(key: CustomCalcNames) {
-	return async (game: Game, playtype: Playtype, userID: integer) => {
-		const sc = await db["personal-bests"].find({
-			game,
-			playtype,
-			userID,
-			isPrimary: true,
-			[`calculatedData.${key}`]: { $type: "number" },
-		});
-
-		if (sc.length === 0) {
-			return null;
-		}
-
-		const result = sc.reduce((a, e) => a + e.calculatedData[key]!, 0);
-
-		return result;
-	};
-}
+type CustomCalcNames = ScoreRatingAlgorithms[GPTString];
 
 /**
  * Curries a function that returns the sum of N best ratings on `key`.
@@ -153,8 +133,7 @@ function GetGPTRatingFunction(game: Game, playtype: Playtype): RatingFunction {
 			// HighestX is equivalent to summing 1.
 			return async (g, p, u) => ({
 				highestBlock: await LazySumN("blockRating", 1, true)(g, p, u),
-				highest32: await LazySumN("highest32", 1, true)(g, p, u),
-				highest256: await LazySumN("highest256", 1, true)(g, p, u),
+				highest32: await LazySumN("fastest32", 1, true)(g, p, u),
 			});
 	}
 }

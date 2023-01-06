@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
 import { rootLogger } from "lib/logger/logger";
-import { CreateCalculatedData } from "lib/score-import/framework/calculated-data/calculated-data";
+import { CreateCalculatedData } from "lib/score-import/framework/score-calculated-data/calculated-data";
 import { UpdateChartRanking } from "lib/score-import/framework/pb/create-pb-doc";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
 import { CreateSessionCalcData } from "lib/score-import/framework/sessions/calculated-data";

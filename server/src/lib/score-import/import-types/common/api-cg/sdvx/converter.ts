@@ -4,16 +4,14 @@ import {
 	InvalidScoreFailure,
 	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
-import {
-	GenericGetGradeAndPercent,
-	ParseDateFromString,
-} from "lib/score-import/framework/common/score-utils";
+import { ParseDateFromString } from "lib/score-import/framework/common/score-utils";
 import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import type { ConverterFunction } from "../../types";
 import type { CGContext, CGSDVXScore } from "../types";
 import type { DryScore } from "lib/score-import/framework/common/types";
-import type { Versions, Lamps } from "tachi-common";
+import type { Versions } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 
 export const ConverterAPICGSDVX: ConverterFunction<CGSDVXScore, CGContext> = async (
 	data,
@@ -44,8 +42,6 @@ export const ConverterAPICGSDVX: ConverterFunction<CGSDVXScore, CGContext> = asy
 
 	const lamp = ConvertCGSDVXLamp(data.clearType);
 
-	const { percent, grade } = GenericGetGradeAndPercent("sdvx", data.score, chart);
-
 	const timeAchieved = ParseDateFromString(data.dateTime);
 
 	const dryScore: DryScore<"sdvx:Single"> = {
@@ -55,8 +51,6 @@ export const ConverterAPICGSDVX: ConverterFunction<CGSDVXScore, CGContext> = asy
 		timeAchieved,
 		service: FormatCGService(context.service),
 		scoreData: {
-			grade,
-			percent,
 			score: data.score,
 			lamp,
 			judgements: {
@@ -94,17 +88,17 @@ function ConvertDifficulty(diff: number) {
 function ConvertVersion(ver: number): Versions["sdvx:Single"] {
 	switch (ver) {
 		case 1:
-			return "booth";
+			return "BOOTH";
 		case 2:
-			return "inf";
+			return "infinite infection";
 		case 3:
-			return "gw";
+			return "GRAVITY WARS";
 		case 4:
-			return "heaven";
+			return "HEAVENLY HAVEN";
 		case 5:
-			return "vivid";
+			return "VIVID WAVE";
 		case 6:
-			return "exceed";
+			return "EXCEED GEAR";
 	}
 
 	throw new InvalidScoreFailure(`Unknown Game Version ${ver}.`);

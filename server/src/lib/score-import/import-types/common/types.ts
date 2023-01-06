@@ -1,6 +1,6 @@
 import type { ConverterFailure } from "../../framework/common/converter-failures";
 import type { DryScore } from "../../framework/common/types";
-import type { ClassHandler } from "../../framework/user-game-stats/types";
+import type { ClassHandler } from "../../framework/profile-calculated-data/types";
 import type { SDVXEamusementCSVData } from "../file/eamusement-sdvx-csv/types";
 import type { MerScore } from "../file/mer-iidx/types";
 import type { S3Score } from "../file/solid-state-squad/types";

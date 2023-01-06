@@ -1,4 +1,4 @@
-import type { ClassHandler } from "../../../framework/user-game-stats/types";
+import type { ClassHandler } from "../../../framework/profile-calculated-data/types";
 import type { integer } from "tachi-common";
 
 export function CreateFerStaticClassHandler(body: Record<string, unknown>): ClassHandler {

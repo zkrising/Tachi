@@ -1,6 +1,6 @@
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { WACCA_STAGEUPS } from "tachi-common";
-import type { ClassHandler } from "../../../framework/user-game-stats/types";
+import type { ClassHandler } from "../../../framework/profile-calculated-data/types";
 import type { MyPagePlayerStage } from "./types";
 
 const STAGES: Record<number, number> = {

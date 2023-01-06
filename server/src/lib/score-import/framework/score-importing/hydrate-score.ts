@@ -1,4 +1,4 @@
-import { CreateCalculatedData } from "../calculated-data/calculated-data";
+import { CreateCalculatedData } from "../score-calculated-data/calculated-data";
 import { CreateFullScoreData } from "../derivers/derivers";
 import { GetGPTString } from "tachi-common";
 import type { DryScore } from "../common/types";

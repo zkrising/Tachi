@@ -22,8 +22,8 @@ import type {
 	Playtype,
 	Playtypes,
 	UserGameStats,
+	Classes,
 } from "tachi-common";
-import type { GameClasses } from "tachi-common/game-classes";
 
 type ClassHandlerMap = {
 	[G in Game]:
@@ -149,7 +149,7 @@ export async function ProcessClassDeltas(
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	for (const s of Object.keys(classes)) {
-		const classSet = s as keyof GameClasses<GPTString>;
+		const classSet = s as Classes[GPTString];
 		const classVal = classes[classSet];
 
 		if (classVal === undefined) {
@@ -157,14 +157,14 @@ export async function ProcessClassDeltas(
 			continue;
 		}
 
-		const classConfig = gptConfig.classProperties[classSet];
+		const classConfig = gptConfig.classes[classSet]!;
 
 		try {
 			const isGreater = ReturnClassIfGreater(classSet, classVal, userGameStats);
 
-			// if this was worse, and this class isn't downgradable (i.e. it's a dan)
+			// if this was worse, and this class isn't DERIVED (i.e. it's a dan)
 			// then don't do anything
-			if (isGreater === false && !classConfig.downgradable) {
+			if (isGreater === false && classConfig.type !== "DERIVED") {
 				continue;
 			} else {
 				// otherwise, provide this as an update.

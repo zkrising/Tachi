@@ -3,7 +3,7 @@ import { IIDX_DANS } from "tachi-common";
 import nodeFetch from "utils/fetch";
 import { IsRecord } from "utils/misc";
 import type { KaiAPIReauthFunction } from "../traverse-api";
-import type { ClassHandler } from "lib/score-import/framework/user-game-stats/types";
+import type { ClassHandler } from "lib/score-import/framework/profile-calculated-data/types";
 
 export async function CreateKaiIIDXClassHandler(
 	kaiType: "EAG" | "FLO",

@@ -45,7 +45,7 @@ if (require.main !== module) {
  */
 export const worker = new Worker(
 	ScoreImportQueue.name,
-	async <I extends ImportTypes>(job: ScoreImportJob<GPT>) => {
+	async <I extends ImportTypes>(job: ScoreImportJob<I>) => {
 		const user = await GetUserWithID(job.data.userID);
 
 		if (!user) {
@@ -76,7 +76,7 @@ export const worker = new Worker(
 			}
 		}
 
-		job.data.parserArguments = processedArgs as ScoreImportJobData<GPT>["parserArguments"];
+		job.data.parserArguments = processedArgs as ScoreImportJobData<I>["parserArguments"];
 
 		// Create a logger that we can pass around for context.
 		// This helps us debug what score import did what!

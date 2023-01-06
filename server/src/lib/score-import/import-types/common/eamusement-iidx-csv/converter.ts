@@ -15,7 +15,7 @@ import type { ConverterFunction } from "../types";
 import type { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 import type { ChartDocument, Lamps } from "tachi-common";
 
-const EAMUSEMENT_LAMP_RESOLVER: Map<string, Lamps["iidx:DP" | "iidx:SP"]> = new Map([
+const EAMUSEMENT_LAMP_RESOLVER: Map<string, GetEnumValue<"iidx:DP" | "iidx:SP", "lamp">> = new Map([
 	["NO PLAY", "NO PLAY"],
 	["FAILED", "FAILED"],
 	["FULLCOMBO CLEAR", "FULL COMBO"],
@@ -147,7 +147,7 @@ const ConvertEamIIDXCSV: ConverterFunction<
 				pgreat,
 				great,
 			},
-			hitMeta: {},
+			optional: {},
 			percent,
 			grade,
 		},

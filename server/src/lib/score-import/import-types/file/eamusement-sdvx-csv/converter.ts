@@ -24,7 +24,7 @@ const DIFFICULTY_MAP: Map<string, Difficulties["sdvx:Single"]> = new Map([
 	["EXCEED", "XCD"],
 ]);
 
-const LAMP_MAP: Map<string, Lamps["sdvx:Single"]> = new Map([
+const LAMP_MAP: Map<string, GetEnumValue<"sdvx:Single", "lamp">> = new Map([
 	["PLAYED", "FAILED"],
 	["COMPLETE", "CLEAR"],
 	["EXCESSIVE COMPLETE", "EXCESSIVE CLEAR"],
@@ -122,7 +122,7 @@ const ConvertEamSDVXCSV: ConverterFunction<SDVXEamusementCSVData, EmptyObject> =
 			percent,
 			grade,
 			judgements: {},
-			hitMeta: {
+			optional: {
 				exScore,
 			},
 		},

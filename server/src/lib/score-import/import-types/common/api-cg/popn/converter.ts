@@ -87,7 +87,7 @@ export const ConverterAPICGPopn: ConverterFunction<CGPopnScore, CGContext> = asy
 				good: data.goodCount,
 				bad: data.badCount,
 			},
-			hitMeta: {
+			optional: {
 				specificClearType,
 			},
 		},
@@ -123,7 +123,7 @@ function ConvertVersion(ver: number): GPTSupportedVersions["popn:9B"] {
 	throw new InvalidScoreFailure(`Unknown/Unsupported Game Version ${ver}.`);
 }
 
-function GetLamp(clearFlag: integer): Lamps["popn:9B"] {
+function GetLamp(clearFlag: integer): GetEnumValue<"popn:9B", "lamp"> {
 	if (clearFlag === 11) {
 		return "PERFECT";
 	} else if (clearFlag >= 8) {

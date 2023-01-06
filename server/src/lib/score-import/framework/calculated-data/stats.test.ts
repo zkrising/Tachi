@@ -40,7 +40,7 @@ t.test("#CalculateKTLampRatingIIDXSP", (t) => {
 		};
 	}
 
-	function s(lamp: Lamps["iidx:DP" | "iidx:SP"]): DryScore<"iidx:DP" | "iidx:SP"> {
+	function s(lamp: GetEnumValue<"iidx:DP" | "iidx:SP", "lamp">): DryScore<"iidx:DP" | "iidx:SP"> {
 		return deepmerge(TestingIIDXSPDryScore, {
 			scoreData: {
 				lamp,
@@ -127,7 +127,7 @@ t.test("#CalculateKTLampRatingIIDXDP", (t) => {
 		} as unknown as ChartDocument<"iidx:DP">;
 	}
 
-	function s(lamp: Lamps["iidx:DP" | "iidx:SP"]): DryScore<"iidx:DP" | "iidx:SP"> {
+	function s(lamp: GetEnumValue<"iidx:DP" | "iidx:SP", "lamp">): DryScore<"iidx:DP" | "iidx:SP"> {
 		return deepmerge(TestingIIDXSPDryScore, {
 			scoreData: {
 				lamp,

@@ -90,7 +90,7 @@ export const ConvertAPIKaiSDVX: ConverterFunction<unknown, KaiContext> = async (
 				near: score.near,
 				miss: score.error,
 			},
-			hitMeta: {
+			optional: {
 				fast: score.early,
 				slow: score.late,
 				gauge: score.gauge_rate,
@@ -139,7 +139,7 @@ export function ConvertVersion(ver: number) {
 	throw new InvalidScoreFailure(`Unknown Game Version ${ver}.`);
 }
 
-export function ResolveKaiLamp(clear: number): Lamps["sdvx:Single"] {
+export function ResolveKaiLamp(clear: number): GetEnumValue<"sdvx:Single", "lamp"> {
 	switch (clear) {
 		case 1:
 			return "FAILED";

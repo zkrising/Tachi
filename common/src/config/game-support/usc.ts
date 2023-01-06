@@ -39,6 +39,7 @@ export const USC_CONTROLLER_CONF = {
 
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
+		gauge: { type: "DECIMAL" },
 	},
 
 	scoreRatingAlgs: {

@@ -254,10 +254,10 @@ export const BMS_7K_CONF = {
 	}),
 
 	scoreMeta: z.strictObject({
-		random: RANDOM_SCHEMA.optional(),
-		inputDevice: z.enum(["BM_CONTROLLER", "KEYBOARD"]).optional(),
-		client: z.enum(["lr2oraja", "LR2"]).optional(),
-		gauge: z.enum(["EASY", "NORMAL", "HARD", "EX-HARD"]).optional(),
+		random: RANDOM_SCHEMA.optional().nullable(),
+		inputDevice: z.enum(["BM_CONTROLLER", "KEYBOARD"]).optional().nullable(),
+		client: z.enum(["lr2oraja", "LR2"]).optional().nullable(),
+		gauge: z.enum(["EASY", "NORMAL", "HARD", "EX-HARD"]).optional().nullable(),
 	}),
 
 	supportedMatchTypes: ["bmsChartHash", "tachiSongID"],
@@ -271,9 +271,9 @@ export const BMS_14K_CONF = {
 	},
 
 	scoreMeta: z.strictObject({
-		random: z.tuple([RANDOM_SCHEMA, RANDOM_SCHEMA]).optional(),
-		inputDevice: z.enum(["BM_CONTROLLER", "KEYBOARD"]).optional(),
-		client: z.enum(["lr2oraja", "LR2"]).optional(),
-		gauge: z.enum(["EASY", "NORMAL", "HARD", "EX-HARD"]).optional(),
+		random: z.tuple([RANDOM_SCHEMA, RANDOM_SCHEMA]).optional().nullable(),
+		inputDevice: z.enum(["BM_CONTROLLER", "KEYBOARD"]).optional().nullable(),
+		client: z.enum(["lr2oraja", "LR2"]).optional().nullable(),
+		gauge: z.enum(["EASY", "NORMAL", "HARD", "EX-HARD"]).optional().nullable(),
 	}),
 } as const satisfies GamePTConfig;

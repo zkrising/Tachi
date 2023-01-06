@@ -1,6 +1,6 @@
 import type { integer } from "../types";
 import type {
-	OptionalMetrics,
+	ConfOptionalMetrics,
 	Versions,
 	Difficulties,
 	ExtractedClasses,
@@ -8,7 +8,7 @@ import type {
 	GPTStringToGame,
 	GPTStringToPlaytype,
 	Judgements,
-	ProvidedMetrics,
+	ConfProvidedMetrics,
 	ScoreMeta,
 } from "./game-config";
 import type { ExtractMetrics } from "./metrics";
@@ -22,13 +22,13 @@ type MatchTypesWithDifficulty = "inGameID" | "sdvxInGameID" | "songTitle" | "tac
 export type MatchTypes = MatchTypesNoDifficulty | MatchTypesWithDifficulty;
 
 export type BatchManualScore<GPT extends GPTString = GPTString> = ExtractMetrics<
-	ProvidedMetrics[GPT]
+	ConfProvidedMetrics[GPT]
 > & {
 	identifier: string;
 	comment?: string | null;
 	judgements?: Record<Judgements[GPT], integer>;
 	timeAchieved?: number | null;
-	additionalMetrics?: Partial<ExtractMetrics<OptionalMetrics[GPT]>>;
+	additionalMetrics?: Partial<ExtractMetrics<ConfOptionalMetrics[GPT]>>;
 	scoreMeta?: Partial<ScoreMeta[GPT]>;
 } & (
 		| {

@@ -48,7 +48,7 @@ function mkOutput(modifant: any = {}): DryScore<"sdvx:Single"> {
 				near: 50,
 				miss: 10,
 			},
-			hitMeta: {},
+			optional: {},
 		},
 		scoreMeta: {},
 	};

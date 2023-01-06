@@ -56,7 +56,7 @@ t.test("#ConvertAPIKaiSDVX", (t) => {
 						near: 112,
 						miss: 78,
 					},
-					hitMeta: {
+					optional: {
 						fast: 70,
 						slow: 42,
 						gauge: 90.01,

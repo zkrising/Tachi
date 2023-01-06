@@ -1,5 +1,5 @@
 import type { GPTStrings } from "../types/game-config";
-import type { ExtractEnumValues } from "../types/metrics";
+import type { GetEnumValue } from "../types/metrics";
 
 export interface GradeBoundary<G extends string> {
 	name: G;
@@ -33,7 +33,7 @@ type IIDXLikes = GPTStrings["bms" | "iidx" | "pms"];
  * (100*7) / 9 = 77
  * that said, making grade boundaries into ninths was a sick joke.
  */
-export const IIDXLIKE_GBOUNDARIES = MakeGrades<ExtractEnumValues<IIDXLikes, "grade">>({
+export const IIDXLIKE_GBOUNDARIES = MakeGrades<GetEnumValue<IIDXLikes, "grade">>({
 	F: 0,
 	E: (100 * 2) / 9,
 	D: (100 * 3) / 9,
@@ -46,7 +46,7 @@ export const IIDXLIKE_GBOUNDARIES = MakeGrades<ExtractEnumValues<IIDXLikes, "gra
 	MAX: (100 * 9) / 9,
 });
 
-export const CHUNITHM_GBOUNDARIES = MakeGrades<ExtractEnumValues<"chunithm:Single", "grade">>({
+export const CHUNITHM_GBOUNDARIES = MakeGrades<GetEnumValue<"chunithm:Single", "grade">>({
 	D: 0,
 	C: 500_000,
 	B: 600_000,
@@ -60,7 +60,7 @@ export const CHUNITHM_GBOUNDARIES = MakeGrades<ExtractEnumValues<"chunithm:Singl
 	SSS: 1_007_500,
 });
 
-export const WACCA_GBOUNDARIES = MakeGrades<ExtractEnumValues<"wacca:Single", "grade">>({
+export const WACCA_GBOUNDARIES = MakeGrades<GetEnumValue<"wacca:Single", "grade">>({
 	D: 0,
 	C: 1, // LOL
 	B: 300_100,
@@ -76,7 +76,7 @@ export const WACCA_GBOUNDARIES = MakeGrades<ExtractEnumValues<"wacca:Single", "g
 	MASTER: 1_000_000,
 });
 
-export const JUBEAT_GBOUNDARIES = MakeGrades<ExtractEnumValues<"jubeat:Single", "grade">>({
+export const JUBEAT_GBOUNDARIES = MakeGrades<GetEnumValue<"jubeat:Single", "grade">>({
 	E: 0,
 	D: 500_000,
 	C: 700_000,
@@ -88,7 +88,7 @@ export const JUBEAT_GBOUNDARIES = MakeGrades<ExtractEnumValues<"jubeat:Single", 
 	EXC: 1_000_000,
 });
 
-export const ITG_GBOUNDARIES = MakeGrades<ExtractEnumValues<"itg:Stamina", "grade">>({
+export const ITG_GBOUNDARIES = MakeGrades<GetEnumValue<"itg:Stamina", "grade">>({
 	// cannot be achieved. This can only be attained if the player failed the chart.
 	F: -Infinity,
 	D: -400, // The lowest score you can get in ITG is -400%. Scores "can" go negative.
@@ -105,7 +105,7 @@ export const ITG_GBOUNDARIES = MakeGrades<ExtractEnumValues<"itg:Stamina", "grad
 	"★★★★": 100,
 });
 
-export const GITADORA_GBOUNDARIES = MakeGrades<ExtractEnumValues<GPTStrings["gitadora"], "grade">>({
+export const GITADORA_GBOUNDARIES = MakeGrades<GetEnumValue<GPTStrings["gitadora"], "grade">>({
 	C: 0,
 	B: 63,
 	A: 73,
@@ -114,7 +114,7 @@ export const GITADORA_GBOUNDARIES = MakeGrades<ExtractEnumValues<GPTStrings["git
 	MAX: 100,
 });
 
-export const MUSECA_GBOUNDARIES = MakeGrades<ExtractEnumValues<"museca:Single", "grade">>({
+export const MUSECA_GBOUNDARIES = MakeGrades<GetEnumValue<"museca:Single", "grade">>({
 	没: 0,
 	拙: 600_000,
 	凡: 700_000,
@@ -126,7 +126,7 @@ export const MUSECA_GBOUNDARIES = MakeGrades<ExtractEnumValues<"museca:Single", 
 	傑G: 1_000_000,
 });
 
-export const MAIMAIDX_GBOUNDARIES = MakeGrades<ExtractEnumValues<"maimaidx:Single", "grade">>({
+export const MAIMAIDX_GBOUNDARIES = MakeGrades<GetEnumValue<"maimaidx:Single", "grade">>({
 	D: 0,
 	C: 10,
 	B: 20,
@@ -143,7 +143,7 @@ export const MAIMAIDX_GBOUNDARIES = MakeGrades<ExtractEnumValues<"maimaidx:Singl
 	"SSS+": 100.5,
 });
 
-export const POPN_GBOUNDARIES = MakeGrades<ExtractEnumValues<"popn:9B", "grade">>({
+export const POPN_GBOUNDARIES = MakeGrades<GetEnumValue<"popn:9B", "grade">>({
 	E: 0,
 	D: 50_000,
 	C: 62_000,
@@ -156,7 +156,7 @@ export const POPN_GBOUNDARIES = MakeGrades<ExtractEnumValues<"popn:9B", "grade">
 
 type SDVXLikes = GPTStrings["sdvx" | "usc"];
 
-export const SDVXLIKE_GBOUNDARIES = MakeGrades<ExtractEnumValues<SDVXLikes, "grade">>({
+export const SDVXLIKE_GBOUNDARIES = MakeGrades<GetEnumValue<SDVXLikes, "grade">>({
 	D: 0,
 	C: 7_000_000,
 	B: 8_000_000,

@@ -33,7 +33,7 @@ t.test("#ConverterKsHookSV6CStatic", (t) => {
 					grade: "AA+",
 					lamp: "EXCESSIVE CLEAR",
 					judgements: {},
-					hitMeta: {
+					optional: {
 						maxCombo: 158,
 						exScore: 1334,
 					},

@@ -72,13 +72,13 @@ export const ConverterIRBarbatos: ConverterFunction<
 			score: data.score,
 			percent,
 			grade,
-			lamp: LAMP_LOOKUP[data.clear_type] as Lamps["sdvx:Single"],
+			lamp: LAMP_LOOKUP[data.clear_type] as GetEnumValue<"sdvx:Single", "lamp">,
 			judgements: {
 				critical,
 				near,
 				miss,
 			},
-			hitMeta: {
+			optional: {
 				fast,
 				slow,
 				gauge: data.percent,

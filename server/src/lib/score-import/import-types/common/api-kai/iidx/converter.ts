@@ -29,7 +29,7 @@ const PR_KAI_IIDX_SCORE = {
 	timestamp: "string",
 };
 
-function ResolveKaiLamp(lamp: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7): Lamps["iidx:DP" | "iidx:SP"] {
+function ResolveKaiLamp(lamp: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7): GetEnumValue<"iidx:DP" | "iidx:SP", "lamp"> {
 	switch (lamp) {
 		case 0:
 			return "NO PLAY";
@@ -268,7 +268,7 @@ export const ConvertAPIKaiIIDX: ConverterFunction<unknown, KaiContext> = async (
 			score: score.ex_score,
 			lamp,
 			judgements: {},
-			hitMeta: {
+			optional: {
 				fast: score.fast_count,
 				slow: score.slow_count,
 				bp: score.miss_count === -1 || score.miss_count === null ? null : score.miss_count,

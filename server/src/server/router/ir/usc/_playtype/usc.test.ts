@@ -31,7 +31,7 @@ const mockScorePB: PBScoreDocument<"usc:Controller" | "usc:Keyboard"> = {
 			critical: 100,
 			miss: 15,
 		},
-		hitMeta: {},
+		optional: {},
 		lamp: "EXCESSIVE CLEAR",
 		lampIndex: 3,
 		percent: 95,

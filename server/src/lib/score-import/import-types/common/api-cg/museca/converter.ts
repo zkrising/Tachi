@@ -71,7 +71,7 @@ export const ConverterAPICGMuseca: ConverterFunction<CGMusecaScore, CGContext> =
 				near: data.near,
 				miss: data.error,
 			},
-			hitMeta: {
+			optional: {
 				maxCombo: data.maxChain,
 			},
 		},

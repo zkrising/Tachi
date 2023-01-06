@@ -64,7 +64,7 @@ export const ConverterAPICGSDVX: ConverterFunction<CGSDVXScore, CGContext> = asy
 				near: data.near,
 				miss: data.error,
 			},
-			hitMeta: {
+			optional: {
 				maxCombo: data.maxChain,
 			},
 		},
@@ -114,7 +114,7 @@ function ConvertVersion(ver: number): GPTSupportedVersions["sdvx:Single"] {
  * Convert CG's clearType enum into a Tachi lamp. Note that what numbers mean what are
  * dependent on what version of the game we're listening for.
  */
-function ConvertCGSDVXLamp(clearType: number): Lamps["sdvx:Single"] {
+function ConvertCGSDVXLamp(clearType: number): GetEnumValue<"sdvx:Single", "lamp"> {
 	switch (clearType) {
 		case 1:
 			return "FAILED";

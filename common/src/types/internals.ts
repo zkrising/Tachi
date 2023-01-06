@@ -1,6 +1,6 @@
 import type { MatchTypes } from "./batch-manual";
 import type { ClassConfig, DifficultyConfig, RatingAlgorithmConfig } from "./game-config-utils";
-import type { ScoreMetric } from "./metrics";
+import type { ConfScoreMetric } from "./metrics";
 import type { AnyZodObject } from "zod";
 
 /**
@@ -14,15 +14,15 @@ import type { AnyZodObject } from "zod";
  * GamePTConfig type, which actually has documentation.
  */
 export type GamePTConfig = Readonly<{
-	providedMetrics: Record<string, ScoreMetric>;
+	providedMetrics: Record<string, ConfScoreMetric>;
 
-	derivedMetrics: Record<string, ScoreMetric>;
+	derivedMetrics: Record<string, ConfScoreMetric>;
 
 	defaultMetric: string;
 
 	preferredDefaultEnum: string;
 
-	optionalMetrics: Record<string, ScoreMetric>;
+	optionalMetrics: Record<string, ConfScoreMetric>;
 
 	scoreRatingAlgs: Record<string, RatingAlgorithmConfig>;
 	sessionRatingAlgs: Record<string, RatingAlgorithmConfig>;

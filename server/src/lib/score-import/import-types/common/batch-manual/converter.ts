@@ -127,7 +127,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 			grade,
 			percent,
 			judgements: data.judgements ?? {},
-			hitMeta: data.hitMeta ?? {},
+			optional: data.hitMeta ?? {},
 		},
 		scoreMeta: data.scoreMeta ?? {},
 	};

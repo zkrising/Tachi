@@ -3,8 +3,7 @@ import type {
 	Versions,
 	Classes,
 	Difficulties,
-	ExtractedOptionalMetrics as ExtractedOptionalMetrics,
-	ExtractedScoreMetrics,
+	ConfOptionalMetrics as ConfOptionalMetrics,
 	GPTString,
 	GPTStringToGame,
 	GPTStringToPlaytype,
@@ -20,6 +19,8 @@ import type {
 	SongDocumentData,
 	UserAuthLevels,
 	integer,
+	DerivedMetrics,
+	ProvidedMetrics,
 } from "../types";
 import type { APIPermissions } from "./api";
 import type { ImportTypes } from "./import-types";
@@ -413,10 +414,11 @@ export type QuestSubscriptionDocument = {
 	  }
 );
 
-export type ScoreData<GPT extends GPTString = GPTString> = ExtractedScoreMetrics[GPT] & {
-	judgements: Partial<Record<Judgements[GPT], integer | null>>;
-	optional: Partial<ExtractedOptionalMetrics[GPT]>;
-};
+export type ScoreData<GPT extends GPTString = GPTString> = DerivedMetrics[GPT] &
+	ProvidedMetrics[GPT] & {
+		judgements: Partial<Record<Judgements[GPT], integer | null>>;
+		optional: Partial<ConfOptionalMetrics[GPT]>;
+	};
 
 export interface ScoreDocument<GPT extends GPTString = GPTString> {
 	service: string;

@@ -2,13 +2,13 @@ import {
 	InternalFailure,
 	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
-import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
 import { FindBMSChartOnHash } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import type { ConverterFunction } from "../../common/types";
 import type { LR2HookContext, LR2HookScore } from "./types";
 import type { DryScore } from "lib/score-import/framework/common/types";
-import type { Lamps, ScoreDocument } from "tachi-common";
+import type { ScoreDocument } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 
 export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> = async (
 	data,
@@ -34,8 +34,6 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 		throw new InternalFailure(`Song ${chart.songID} (bms) has no parent song?`);
 	}
 
-	const { percent, grade } = GenericGetGradeAndPercent("bms", data.scoreData.exScore, chart);
-
 	const gauge = ConvertGauge(data.playerData.gauge);
 	const lamp = ConvertLamp(data.scoreData.lamp);
 
@@ -55,8 +53,6 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 		timeAchieved: context.timeReceived,
 		scoreData: {
 			score: data.scoreData.exScore,
-			percent,
-			grade,
 			lamp,
 			judgements: {
 				pgreat: data.scoreData.pgreat,
@@ -65,7 +61,7 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 				bad: data.scoreData.bad,
 				poor: data.scoreData.poor,
 			},
-			hitMeta: {
+			optional: {
 				bp,
 				maxCombo: data.scoreData.maxCombo,
 				gauge: data.scoreData.hpGraph[999] ?? 0,
@@ -113,7 +109,9 @@ function ConvertRandom(
 	}
 }
 
-function ConvertLamp(lamp: LR2HookScore["scoreData"]["lamp"]): Lamps["bms:7K" | "bms:14K"] {
+function ConvertLamp(
+	lamp: LR2HookScore["scoreData"]["lamp"]
+): GetEnumValue<"bms:7K" | "bms:14K", "lamp"> {
 	switch (lamp) {
 		case "EASY":
 			return "EASY CLEAR";

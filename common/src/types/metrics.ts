@@ -1,6 +1,11 @@
 import type { integer } from "../types";
 import type { ChartDocument } from "./documents";
-import type { OptionalMetrics, DerivedMetrics, GPTString, ProvidedMetrics } from "./game-config";
+import type {
+	ConfOptionalMetrics,
+	ConfDerivedMetrics,
+	GPTString,
+	ConfProvidedMetrics,
+} from "./game-config";
 
 export type DecimalMetricValidator<GPT extends GPTString> = (
 	metric: number,
@@ -18,14 +23,14 @@ export type GraphMetricValidator<GPT extends GPTString> = (
 /**
  * A metric for a score that's a floating point number.
  */
-export interface DecimalScoreMetric {
+export interface ConfDecimalScoreMetric {
 	type: "DECIMAL";
 }
 
 /**
  * A metric for a score that's an integer.
  */
-export interface IntegerScoreMetric {
+export interface ConfIntegerScoreMetric {
 	type: "INTEGER";
 }
 
@@ -35,7 +40,7 @@ export interface IntegerScoreMetric {
  * This is intended for use for things like clearTypes/lamps/grades. It may be
  * used for anything where a metric is in a known, ordered set of strings.
  */
-export interface EnumScoreMetric<V extends string> {
+export interface ConfEnumScoreMetric<V extends string> {
 	type: "ENUM";
 	values: ReadonlyArray<V>;
 
@@ -48,32 +53,36 @@ export interface EnumScoreMetric<V extends string> {
  *
  * This is intended for use by graphs and other equivalent things.
  */
-export interface GraphScoreMetric {
+export interface ConfGraphScoreMetric {
 	type: "GRAPH";
 }
 
-export type ScoreMetric =
-	| DecimalScoreMetric
-	| EnumScoreMetric<string>
-	| GraphScoreMetric
-	| IntegerScoreMetric;
+export type ConfScoreMetric =
+	| ConfDecimalScoreMetric
+	| ConfEnumScoreMetric<string>
+	| ConfGraphScoreMetric
+	| ConfIntegerScoreMetric;
 
+/**
+ * When we store and interact with enum values, we want them to be both strings
+ * and integers.
+ */
 export interface EnumValue<S extends string> {
 	string: S;
-	index: integer; // technically incorrect, but whatever
+	index: integer;
 }
 
 /**
  * Given a Metric Type, turn it into its evaluated form. An IntegerScoreMetric
  * becomes an integer, etc.
  */
-export type ExtractMetricType<M extends ScoreMetric> = M extends DecimalScoreMetric
+export type ExtractMetricType<M extends ConfScoreMetric> = M extends ConfDecimalScoreMetric
 	? number
-	: M extends IntegerScoreMetric
+	: M extends ConfIntegerScoreMetric
 	? integer
-	: M extends EnumScoreMetric<infer V>
+	: M extends ConfEnumScoreMetric<infer V>
 	? EnumValue<V>
-	: M extends GraphScoreMetric
+	: M extends ConfGraphScoreMetric
 	? Array<number>
 	: never;
 
@@ -94,22 +103,27 @@ export type ExtractMetricType<M extends ScoreMetric> = M extends DecimalScoreMet
  *  lamp: { type: "ENUM", ... }>
  * would return a type of "grade" | "lamp"
  */
-export type ExtractEnumMetricNames<R extends Record<string, ScoreMetric>> = {
-	[K in keyof R]: R[K] extends EnumScoreMetric<infer _> ? K : never;
+export type ExtractEnumMetricNames<R extends Record<string, ConfScoreMetric>> = {
+	[K in keyof R]: R[K] extends ConfEnumScoreMetric<infer _> ? K : never;
 }[keyof R];
 
-export type ExtractEnumValues<
-	GPT extends GPTString,
-	MetricName extends ExtractEnumMetricNames<
-		DerivedMetrics[GPT] & OptionalMetrics[GPT] & ProvidedMetrics[GPT]
-	>
-> = (DerivedMetrics[GPT] &
-	OptionalMetrics[GPT] &
-	ProvidedMetrics[GPT])[MetricName] extends EnumScoreMetric<infer EnumValues>
-	? EnumValues
-	: never;
+export type AllMetrics = {
+	[GPT in GPTString]: ConfDerivedMetrics[GPT] &
+		ConfOptionalMetrics[GPT] &
+		ConfProvidedMetrics[GPT];
+};
 
-type PossibleMetrics = ExtractMetricType<ScoreMetric>;
+/**
+ * Get the string values that can be part of this enum.
+ *
+ * @usage GetEnumValue<"iidx:SP", "lamp"> = "FAILED" | "ASSIST CLEAR" | "EASY CLEAR" ...
+ */
+export type GetEnumValue<
+	GPT extends GPTString,
+	MetricName extends ExtractEnumMetricNames<AllMetrics[GPT]>
+> = AllMetrics[GPT][MetricName] extends ConfEnumScoreMetric<infer EnumValues> ? EnumValues : never;
+
+type PossibleMetrics = ExtractMetricType<ConfScoreMetric>;
 
 /**
  * Turn a record of ScoreMetrics into their actual literal values.
@@ -118,7 +132,7 @@ type PossibleMetrics = ExtractMetricType<ScoreMetric>;
  * will equal
  * { score: integer; lamp: "FAILED" | "CLEAR" }
  */
-export type ExtractMetrics<R extends Record<string, ScoreMetric>> = {
+export type ExtractMetrics<R extends Record<string, ConfScoreMetric>> = {
 	[K in keyof R]: ExtractMetricType<R[K]>;
 };
 
@@ -137,12 +151,12 @@ export type MetricDeriver<
  * a chart for this GPT.
  */
 export type ScoreMetricDeriver<
-	M extends ScoreMetric,
+	M extends ConfScoreMetric,
 	GPT extends GPTString
-> = M extends GraphScoreMetric
-	? MetricDeriver<ExtractMetrics<ProvidedMetrics[GPT]>, GPT, Array<number>>
-	: M extends EnumScoreMetric<infer V>
-	? MetricDeriver<ExtractMetrics<ProvidedMetrics[GPT]>, GPT, V>
-	: M extends IntegerScoreMetric
-	? MetricDeriver<ExtractMetrics<ProvidedMetrics[GPT]>, GPT, integer>
-	: MetricDeriver<ExtractMetrics<ProvidedMetrics[GPT]>, GPT, number>;
+> = M extends ConfGraphScoreMetric
+	? MetricDeriver<ExtractMetrics<ConfProvidedMetrics[GPT]>, GPT, Array<number>>
+	: M extends ConfEnumScoreMetric<infer V>
+	? MetricDeriver<ExtractMetrics<ConfProvidedMetrics[GPT]>, GPT, V>
+	: M extends ConfIntegerScoreMetric
+	? MetricDeriver<ExtractMetrics<ConfProvidedMetrics[GPT]>, GPT, integer>
+	: MetricDeriver<ExtractMetrics<ConfProvidedMetrics[GPT]>, GPT, number>;

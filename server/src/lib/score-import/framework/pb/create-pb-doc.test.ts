@@ -45,7 +45,7 @@ t.test("#CreatePBDoc", (t) => {
 			judgements: IIDXScore.scoreData.judgements,
 			lamp: "FULL COMBO",
 			lampIndex: lamps.indexOf("FULL COMBO"),
-			hitMeta: { bp: 1 },
+			optional: { bp: 1 },
 		},
 		calculatedData: {
 			ktLampRating: 12,
@@ -64,7 +64,7 @@ t.test("#CreatePBDoc", (t) => {
 						lampIndex: lamps.indexOf("FULL COMBO"),
 						score: 0,
 						percent: 0,
-						hitMeta: {
+						optional: {
 							bp: 15,
 						},
 					},
@@ -79,7 +79,7 @@ t.test("#CreatePBDoc", (t) => {
 						lampIndex: lamps.indexOf("CLEAR"),
 						score: 1,
 						percent: 1,
-						hitMeta: {
+						optional: {
 							bp: 5,
 						},
 					},
@@ -101,7 +101,7 @@ t.test("#CreatePBDoc", (t) => {
 						other: [{ name: "Best BP", scoreID: "BP_PB_ID" }],
 					},
 					scoreData: {
-						hitMeta: {
+						optional: {
 							bp: 5,
 						},
 					},
@@ -120,7 +120,7 @@ t.test("#CreatePBDoc", (t) => {
 				lampIndex: lamps.indexOf("FULL COMBO"),
 				score: 0,
 				percent: 0,
-				hitMeta: {
+				optional: {
 					bp: 1,
 				},
 			},
@@ -172,7 +172,7 @@ t.test("#CreatePBDoc", (t) => {
 					lampIndex: lamps.indexOf("FULL COMBO"),
 					score: 0,
 					percent: 0,
-					hitMeta: {
+					optional: {
 						bp: 15,
 					},
 				},
@@ -206,7 +206,7 @@ t.test("#CreatePBDoc", (t) => {
 					lampIndex: lamps.indexOf("FULL COMBO"),
 					score: 0,
 					percent: 0,
-					hitMeta: {
+					optional: {
 						bp: 15,
 					},
 				},
@@ -217,7 +217,7 @@ t.test("#CreatePBDoc", (t) => {
 			}),
 			deepmerge(TestingBMS7KScore, {
 				scoreData: {
-					hitMeta: {
+					optional: {
 						bp: 1,
 					},
 				},
@@ -266,7 +266,7 @@ t.test("#CreatePBDoc", (t) => {
 					lampIndex: lamps.indexOf("FULL COMBO"),
 					score: 0,
 					percent: 0,
-					hitMeta: {
+					optional: {
 						bp: 15,
 					},
 				},
@@ -277,7 +277,7 @@ t.test("#CreatePBDoc", (t) => {
 			}),
 			deepmerge(pmsScore, {
 				scoreData: {
-					hitMeta: {
+					optional: {
 						bp: 1,
 					},
 				},
@@ -321,7 +321,7 @@ t.test("#CreatePBDoc", (t) => {
 					lampIndex: lamps.indexOf("FULL COMBO"),
 					score: 0,
 					percent: 0,
-					hitMeta: {
+					optional: {
 						bp: 15,
 						gauge: 12,
 						gaugeHistory: [20, 20, 21, 12],

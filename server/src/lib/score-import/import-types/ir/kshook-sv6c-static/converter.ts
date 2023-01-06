@@ -49,7 +49,7 @@ export const ConverterKsHookSV6CStatic: ConverterFunction<
 			grade,
 			lamp: SV6CConvertLamp(data.clear),
 			judgements: {},
-			hitMeta: {
+			optional: {
 				maxCombo: data.max_chain,
 				exScore: data.ex_score,
 			},

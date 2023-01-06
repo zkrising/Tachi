@@ -44,7 +44,7 @@ t.test("#ConvertEamSDVXCSV", (t) => {
 					// percent: 93.10699, floating point
 					grade: "AA",
 					judgements: {},
-					hitMeta: {},
+					optional: {},
 				},
 			},
 		});
@@ -72,7 +72,7 @@ t.test("#ConvertEamSDVXCSV", (t) => {
 					// percent: 93.10699, floating point
 					grade: "AA",
 					judgements: {},
-					hitMeta: {
+					optional: {
 						exScore: 5730,
 					},
 				},

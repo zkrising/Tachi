@@ -47,7 +47,7 @@ function mkOutput(modifant: any = {}): DryScore<"museca:Single"> {
 				near: 50,
 				miss: 10,
 			},
-			hitMeta: {},
+			optional: {},
 		},
 		scoreMeta: {},
 	};

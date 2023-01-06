@@ -209,7 +209,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 			score: data.ex_score,
 			percent,
 			grade,
-			lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type] as Lamps["iidx:DP" | "iidx:SP"],
+			lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type] as GetEnumValue<"iidx:DP" | "iidx:SP", "lamp">,
 			judgements: {
 				pgreat: data.pgreat,
 				great: data.great,
@@ -217,7 +217,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 				bad: data.bad,
 				poor: data.poor,
 			},
-			hitMeta: {
+			optional: {
 				fast: data.fast,
 				slow: data.slow,
 				maxCombo: null,

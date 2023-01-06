@@ -179,7 +179,7 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 
 	const { grade, percent } = GenericGetGradeAndPercent(game, data.exscore, chart);
 
-	const hitMeta: DryScore<
+	const optional: DryScore<
 		"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard"
 	>["scoreData"]["hitMeta"] = {
 		bp: data.minbp === -1 ? null : data.minbp,

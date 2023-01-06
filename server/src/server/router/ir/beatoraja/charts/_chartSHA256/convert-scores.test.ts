@@ -12,7 +12,7 @@ const pbScore = {
 	scoreData: {
 		lampIndex: 4,
 		score: 1234,
-		hitMeta: {},
+		optional: {},
 	},
 	playtype: "7K",
 	scoreMeta: {},

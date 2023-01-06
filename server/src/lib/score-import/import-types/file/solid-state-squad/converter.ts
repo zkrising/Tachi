@@ -43,7 +43,7 @@ export function ParseDifficulty(diff: S3Score["diff"]): {
 	}
 }
 
-export function ResolveS3Lamp(data: S3Score): Lamps["iidx:DP" | "iidx:SP"] {
+export function ResolveS3Lamp(data: S3Score): GetEnumValue<"iidx:DP" | "iidx:SP", "lamp"> {
 	switch (data.cleartype) {
 		case "played":
 			return "FAILED";
@@ -168,7 +168,7 @@ export const ConvertFileS3: ConverterFunction<S3Score, EmptyObject> = async (
 			score: data.exscore,
 			lamp,
 			judgements,
-			hitMeta: {},
+			optional: {},
 		},
 		scoreMeta: {},
 		timeAchieved,

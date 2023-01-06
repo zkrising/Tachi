@@ -142,7 +142,7 @@ function CalculateDataSDVXorUSC(
 
 	const VF6 = Volforce.calculateVF6(
 		dryScore.scoreData.score,
-		dryScore.scoreData.lamp as Lamps["sdvx:Single"],
+		dryScore.scoreData.lamp as GetEnumValue<"sdvx:Single", "lamp">,
 		chart.levelNum
 	);
 

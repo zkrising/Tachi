@@ -26,8 +26,8 @@ import type { GPTDerivers } from "./types";
 import type {
 	GPTString,
 	ChartDocument,
-	ProvidedMetrics,
-	DerivedMetrics,
+	ConfProvidedMetrics,
+	ConfDerivedMetrics,
 	ScoreData,
 } from "tachi-common";
 import type { MetricDeriver } from "tachi-common/types/metrics";
@@ -139,12 +139,12 @@ const GPT_DERIVERS: AllGPTDerivers = {
  */
 function DeriveMetrics<GPT extends GPTString>(
 	gpt: GPTString,
-	metrics: ProvidedMetrics[GPT],
+	metrics: ConfProvidedMetrics[GPT],
 	chart: ChartDocument<GPT>
 ) {
 	const deriverImplementation: Record<
 		string,
-		MetricDeriver<ProvidedMetrics[GPT], GPT>
+		MetricDeriver<ConfProvidedMetrics[GPT], GPT>
 	> = GPT_DERIVERS[gpt];
 
 	const derivedMetrics: Record<string, DerivedMetricValue> = {};
@@ -183,7 +183,7 @@ function DeriveMetrics<GPT extends GPTString>(
 		}
 	}
 
-	return derivedMetrics as DerivedMetrics[GPT];
+	return derivedMetrics as ConfDerivedMetrics[GPT];
 }
 
 /**

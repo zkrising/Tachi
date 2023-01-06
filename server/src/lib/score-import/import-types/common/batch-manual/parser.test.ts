@@ -258,7 +258,7 @@ t.test("#ParserFn", (t) => {
 
 		t.test("Valid HitMeta", (t) => {
 			const res = ParserFn(
-				dm({ hitMeta: { bp: 10, gauge: 100, gaugeHistory: null, comboBreak: 7 } }),
+				dm({ optional: { bp: 10, gauge: 100, gaugeHistory: null, comboBreak: 7 } }),
 				"file/batch-manual",
 				logger
 			);
@@ -278,7 +278,7 @@ t.test("#ParserFn", (t) => {
 						matchType: "tachiSongID",
 						identifier: "123",
 						difficulty: "ANOTHER",
-						hitMeta: {
+						optional: {
 							bp: 10,
 							gauge: 100,
 							gaugeHistory: null,
@@ -513,11 +513,11 @@ t.test("#ParserFn", (t) => {
 
 		t.test("Invalid HitMeta", (t) => {
 			const fn = () =>
-				ParserFn(dm({ hitMeta: { not_key: 123 } }), "file/batch-manual", logger);
+				ParserFn(dm({ optional: { not_key: 123 } }), "file/batch-manual", logger);
 
 			t.throws(fn, mockErr("scores[0].hitMeta | Unexpected"));
 
-			const fn2 = () => ParserFn(dm({ hitMeta: { bp: -1 } }), "file/batch-manual", logger);
+			const fn2 = () => ParserFn(dm({ optional: { bp: -1 } }), "file/batch-manual", logger);
 
 			t.throws(fn2, mockErr("scores[0].hitMeta.bp | Expected a positive integer"));
 

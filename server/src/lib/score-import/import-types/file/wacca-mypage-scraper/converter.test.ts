@@ -50,7 +50,7 @@ t.test("#ConvertMyPageScraperRecordsCSV", (t) => {
 					percent: 99.6827, // floating point
 					grade: "SSS+",
 					judgements: {},
-					hitMeta: {},
+					optional: {},
 				},
 			},
 		});

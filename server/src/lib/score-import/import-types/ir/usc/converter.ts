@@ -3,7 +3,6 @@ import {
 	InvalidScoreFailure,
 	SongOrChartNotFoundFailure,
 } from "../../../framework/common/converter-failures";
-import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import db from "external/mongo/db";
 import {
 	USC_DEFAULT_HOLD,
@@ -17,7 +16,7 @@ import type { DryScore } from "../../../framework/common/types";
 import type { ConverterFunction } from "../../common/types";
 import type { IRUSCContext } from "./types";
 import type { USCClientScore } from "server/router/ir/usc/_playtype/types";
-import type { Lamps } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 
 /**
  * Interprets the "note mod" used based on the USC score.
@@ -37,7 +36,9 @@ export function DeriveNoteMod(data: USCClientScore): "MIR-RAN" | "MIRROR" | "NOR
 /**
  * Determines the lamp of a USC score.
  */
-export function DeriveLamp(scoreDoc: USCClientScore): Lamps["usc:Controller" | "usc:Keyboard"] {
+export function DeriveLamp(
+	scoreDoc: USCClientScore
+): GetEnumValue<"usc:Controller" | "usc:Keyboard", "lamp"> {
 	if (scoreDoc.score === 10_000_000) {
 		return "PERFECT ULTIMATE CHAIN";
 	} else if (scoreDoc.error === 0) {
@@ -115,7 +116,7 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 		throw new InternalFailure(`Song-Chart desync on USCIR ${chartDoc.songID}.`);
 	}
 
-	const { grade, percent } = GenericGetGradeAndPercent("usc", data.score, chartDoc);
+	const lamp = DeriveLamp(data);
 
 	const dryScore: DryScore<"usc:Controller" | "usc:Keyboard"> = {
 		comment: null,
@@ -124,16 +125,14 @@ export const ConverterIRUSC: ConverterFunction<USCClientScore, IRUSCContext> = a
 		timeAchieved: context.timeReceived,
 		service: "USC-IR",
 		scoreData: {
-			grade,
-			percent,
 			score: data.score,
-			lamp: DeriveLamp(data),
+			lamp,
 			judgements: {
 				critical: data.crit,
 				near: data.near,
 				miss: data.error,
 			},
-			hitMeta: {
+			optional: {
 				gauge: data.gauge,
 				fast: data.early,
 				slow: data.late,

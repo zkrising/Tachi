@@ -48,7 +48,7 @@ t.test("#ConvertAPIKaiIIDX", (t) => {
 					score: 1570,
 					lamp: "HARD CLEAR",
 					judgements: {},
-					hitMeta: {
+					optional: {
 						fast: null,
 						slow: null,
 						bp: 24,
@@ -92,7 +92,7 @@ t.test("#ConvertAPIKaiIIDX", (t) => {
 					score: 1570,
 					lamp: "HARD CLEAR",
 					judgements: {},
-					hitMeta: {
+					optional: {
 						fast: null,
 						slow: null,
 						bp: 24,

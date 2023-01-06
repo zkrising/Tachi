@@ -146,7 +146,7 @@ export function GenericGetGradeAndPercent<G extends Game>(
 	return { percent, grade };
 }
 
-export function JubeatGetGrade(score: number): Grades["jubeat:Single"] {
+export function JubeatGetGrade(score: number): GetEnumValue<"jubeat:Single", "grade"> {
 	if (score === 1_000_000) {
 		return "EXC";
 	} else if (score >= 980_000) {
@@ -211,7 +211,7 @@ export function ParseDateFromString(str: string | null | undefined): number | nu
  * Museca actually handles clears differently with a bunch of grafica nonsense,
  * but nobody actually cares about it, so...
  */
-export function MusecaGetLamp(score: integer, missCount: integer): Lamps["museca:Single"] {
+export function MusecaGetLamp(score: integer, missCount: integer): GetEnumValue<"museca:Single", "lamp"> {
 	if (score === 1_000_000) {
 		return "PERFECT CONNECT ALL";
 	} else if (missCount === 0) {
@@ -223,7 +223,7 @@ export function MusecaGetLamp(score: integer, missCount: integer): Lamps["museca
 	return "FAILED";
 }
 
-export function JubeatGetLamp(score: integer, missCount: integer): Lamps["jubeat:Single"] {
+export function JubeatGetLamp(score: integer, missCount: integer): GetEnumValue<"jubeat:Single", "lamp"> {
 	if (score === 1_000_000) {
 		return "EXCELLENT";
 	} else if (missCount === 0) {

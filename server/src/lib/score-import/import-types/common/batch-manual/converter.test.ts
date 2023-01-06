@@ -485,7 +485,7 @@ t.test("#ConverterFn", (t) => {
 
 					// percent: 31.5, -- ish, FPA is hard.
 					judgements: {},
-					hitMeta: {},
+					optional: {},
 				},
 				scoreMeta: {},
 			},
@@ -522,7 +522,7 @@ t.test("#ConverterFn", (t) => {
 					score: 99_000,
 					grade: "A",
 					judgements: {},
-					hitMeta: {},
+					optional: {},
 				},
 				scoreMeta: {},
 			},
@@ -559,7 +559,7 @@ t.test("#ConverterFn", (t) => {
 					score: 90_000,
 					grade: "A",
 					judgements: {},
-					hitMeta: {},
+					optional: {},
 				},
 				scoreMeta: {},
 			},
@@ -600,7 +600,7 @@ t.test("#ConverterFn", (t) => {
 					grade: "S",
 					percent: 10,
 					judgements: {},
-					hitMeta: {},
+					optional: {},
 				},
 				scoreMeta: {},
 			},
@@ -704,7 +704,7 @@ t.test("#ConverterFn", (t) => {
 
 					// percent: 31.5, -- ish, FPA is hard.
 					judgements: {},
-					hitMeta: {},
+					optional: {},
 				},
 				scoreMeta: {},
 			},

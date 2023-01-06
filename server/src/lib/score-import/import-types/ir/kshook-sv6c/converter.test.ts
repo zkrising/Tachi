@@ -37,7 +37,7 @@ t.test("#ConverterIRKsHookSV6C", (t) => {
 						near: 46,
 						miss: 30,
 					},
-					hitMeta: {
+					optional: {
 						maxCombo: 158,
 						exScore: 1334,
 					},

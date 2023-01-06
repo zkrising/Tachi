@@ -47,7 +47,7 @@ function mkOutput(modifant: any = {}): DryScore<"popn:9B"> {
 				good: 25,
 				bad: 50,
 			},
-			hitMeta: {
+			optional: {
 				specificClearType: "clearCircle",
 			},
 		},
@@ -98,7 +98,7 @@ t.test("#ConverterAPICGPopn", (t) => {
 					grade: "A",
 					score: 98_000,
 					percent: 98,
-					hitMeta: {
+					optional: {
 						specificClearType: "failedCircle",
 					},
 				},

@@ -14,7 +14,7 @@ import type { EmptyObject } from "utils/types";
 
 const DIFFICULTIES: Array<Difficulties["wacca:Single"]> = ["NORMAL", "HARD", "EXPERT", "INFERNO"];
 
-const LAMPS: Record<number, Lamps["wacca:Single"]> = {
+const LAMPS: Record<number, GetEnumValue<"wacca:Single", "lamp">> = {
 	0: "FAILED",
 	1: "CLEAR",
 	2: "MISSLESS",
@@ -105,7 +105,7 @@ const ConvertMyPageScraperRecordsCSV: ConverterFunction<
 			percent,
 			grade,
 			judgements: {},
-			hitMeta: {},
+			optional: {},
 		},
 	};
 

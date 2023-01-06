@@ -30,7 +30,7 @@ t.test("GET /ir/beatoraja/charts/:chartSHA256/scores", (t) => {
 			scoreData: {
 				lampIndex: 4,
 				score: 1234,
-				hitMeta: {},
+				optional: {},
 			},
 			scoreMeta: {},
 			chartID: GAZER_CHARTID,

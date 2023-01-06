@@ -43,7 +43,7 @@ export const ConverterIRFervidexStatic: ConverterFunction<
 
 	const { percent, grade } = GenericGetGradeAndPercent("iidx", data.ex_score, chart);
 
-	const hitMeta: { bp?: number | null } = {};
+	const optional: { bp?: number | null } = {};
 
 	if (data.miss_count !== undefined) {
 		hitMeta.bp = data.miss_count === -1 ? null : data.miss_count;
@@ -59,7 +59,7 @@ export const ConverterIRFervidexStatic: ConverterFunction<
 			score: data.ex_score,
 			percent,
 			grade,
-			lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type] as Lamps["iidx:DP" | "iidx:SP"],
+			lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type] as GetEnumValue<"iidx:DP" | "iidx:SP", "lamp">,
 			judgements: {},
 			hitMeta,
 		},

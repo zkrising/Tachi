@@ -10,7 +10,7 @@ import { PrudenceZodShim } from "../utils/util";
 import { p } from "prudence";
 import type { Game, Playtype, Playtypes } from "../types/game-config";
 import type { GamePTConfig } from "../types/internals";
-import type { ScoreMetric } from "../types/metrics";
+import type { ConfScoreMetric } from "../types/metrics";
 import type { NotificationBody } from "../types/notifications";
 import type {
 	PrudenceSchema,
@@ -853,7 +853,7 @@ const PR_BATCH_MANUAL_SCORE = (game: Game, playtype: Playtype): PrudenceSchema =
 	};
 };
 
-function PR_METRIC(metric: ScoreMetric): ValidSchemaValue {
+function PR_METRIC(metric: ConfScoreMetric): ValidSchemaValue {
 	switch (metric.type) {
 		case "DECIMAL":
 			return "number";
@@ -869,7 +869,7 @@ function PR_METRIC(metric: ScoreMetric): ValidSchemaValue {
 	}
 }
 
-function PR_METRICS(metrics: Record<string, ScoreMetric>, shouldAllBeOptNull?: boolean) {
+function PR_METRICS(metrics: Record<string, ConfScoreMetric>, shouldAllBeOptNull?: boolean) {
 	const schema: PrudenceSchema = {};
 
 	for (const [key, value] of Object.entries(metrics)) {

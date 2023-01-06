@@ -164,7 +164,7 @@ const USC_SCORE_PB: PBScoreDocument = {
 			near: 30,
 			miss: 10,
 		},
-		hitMeta: {
+		optional: {
 			gauge: 50,
 			fast: 50,
 			slow: 20,

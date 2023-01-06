@@ -67,7 +67,7 @@ t.test("#ConverterIRBarbatos", (t) => {
 						near: 50,
 						miss: 5,
 					},
-					hitMeta: {
+					optional: {
 						fast: 40,
 						slow: 10,
 						gauge: 90,
@@ -112,7 +112,7 @@ t.test("#ConverterIRBarbatos", (t) => {
 						near: 2,
 						miss: 17,
 					},
-					hitMeta: {
+					optional: {
 						fast: 6,
 						slow: 9,
 						gauge: 90,

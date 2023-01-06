@@ -14,7 +14,7 @@ import type { MerScore } from "./types";
 import type { Lamps } from "tachi-common";
 import type { EmptyObject } from "utils/types";
 
-function ConvertMERLamp(lamp: MerScore["clear_type"]): Lamps["iidx:DP" | "iidx:SP"] {
+function ConvertMERLamp(lamp: MerScore["clear_type"]): GetEnumValue<"iidx:DP" | "iidx:SP", "lamp"> {
 	if (lamp === "FULLCOMBO CLEAR") {
 		return "FULL COMBO";
 	}
@@ -65,7 +65,7 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
 			grade,
 			lamp,
 			judgements: {},
-			hitMeta: {
+			optional: {
 				bp: data.miss_count === -1 ? null : data.miss_count,
 			},
 		},

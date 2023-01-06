@@ -54,7 +54,7 @@ export const ConverterIRKsHookSV6C: ConverterFunction<KsHookSV6CScore, KsHookSV6
 				near: data.near,
 				miss: data.error,
 			},
-			hitMeta: {
+			optional: {
 				gauge: data.gauge / 100,
 				maxCombo: data.max_chain,
 				exScore: data.ex_score,
@@ -66,7 +66,7 @@ export const ConverterIRKsHookSV6C: ConverterFunction<KsHookSV6CScore, KsHookSV6
 	return { song, chart, dryScore };
 };
 
-export function SV6CConvertLamp(clear: KsHookSV6CScore["clear"]): Lamps["sdvx:Single"] {
+export function SV6CConvertLamp(clear: KsHookSV6CScore["clear"]): GetEnumValue<"sdvx:Single", "lamp"> {
 	if (clear === "CLEAR_PLAYED") {
 		return "FAILED";
 	} else if (clear === "CLEAR_EFFECTIVE") {

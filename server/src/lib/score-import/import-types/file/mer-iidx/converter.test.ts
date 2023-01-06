@@ -51,7 +51,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
 						grade: "B",
 						lamp: "CLEAR",
 						judgements: {},
-						hitMeta: {
+						optional: {
 							bp: 21,
 						},
 					},
@@ -86,7 +86,7 @@ t.test("#ConvertFileMerIIDX", (t) => {
 						grade: "B",
 						lamp: "CLEAR",
 						judgements: {},
-						hitMeta: {
+						optional: {
 							bp: 21,
 						},
 					},

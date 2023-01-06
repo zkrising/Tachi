@@ -130,7 +130,7 @@ const baseDryScore = {
 			bad: 0,
 			poor: 6,
 		},
-		hitMeta: {
+		optional: {
 			fast: 0,
 			slow: 0,
 			maxCombo: null,
@@ -222,7 +222,7 @@ t.test("#ConverterIRFervidex", (t) => {
 			{
 				song: Testing511Song,
 				chart: Testing511SPA,
-				dryScore: deepmerge(baseDryScore, { scoreData: { hitMeta: { bp: null } } }),
+				dryScore: deepmerge(baseDryScore, { scoreData: { optional: { bp: null } } }),
 			},
 			"Should return a dry score."
 		);
@@ -307,7 +307,7 @@ t.test("#ConverterIRFervidex", (t) => {
 				song: Testing511Song,
 				chart: Testing511SPA,
 				dryScore: deepmerge(baseDryScore, {
-					scoreData: { hitMeta: { gauge: null, gaugeHistory: [10, 5, null, null] } },
+					scoreData: { optional: { gauge: null, gaugeHistory: [10, 5, null, null] } },
 				}),
 			},
 			"Should return a dry score."

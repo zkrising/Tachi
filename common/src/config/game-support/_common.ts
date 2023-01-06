@@ -2,7 +2,7 @@
  * Common stuff for that all games might want to inherit.
  */
 
-import type { ScoreMetric } from "../../types/metrics";
+import type { ConfScoreMetric } from "../../types/metrics";
 
 /**
  * A lot of games have a concept of timing windows and "missing". This means that
@@ -22,4 +22,4 @@ export const FAST_SLOW_MAXCOMBO = {
 	fast: { type: "INTEGER" },
 	slow: { type: "INTEGER" },
 	maxCombo: { type: "INTEGER" },
-} as const satisfies Record<string, ScoreMetric>;
+} as const satisfies Record<string, ConfScoreMetric>;

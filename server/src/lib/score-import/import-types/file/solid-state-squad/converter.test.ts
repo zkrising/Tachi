@@ -45,7 +45,7 @@ t.test("#ConvertFileS3", (t) => {
 				bad: 0,
 				poor: 4,
 			},
-			hitMeta: {},
+			optional: {},
 		},
 		scoreMeta: {},
 

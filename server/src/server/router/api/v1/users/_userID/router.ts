@@ -29,8 +29,13 @@ import {
 } from "utils/queries/summary";
 import { GetUser } from "utils/req-tachi-data";
 import { FormatUserDoc, GetAllRankings, GetUserWithID } from "utils/user";
-import type { GPTString, ImportTypes, UserGameStats, integer } from "tachi-common";
-import type { ProfileRatingAlgs } from "utils/string-checks";
+import type {
+	AnyProfileRatingAlg,
+	GPTString,
+	ImportTypes,
+	UserGameStats,
+	integer,
+} from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -213,7 +218,7 @@ router.get("/game-stats", async (req, res) => {
 	// a user has played a game if and only if they have stats for it.
 	const stats: Array<
 		UserGameStats & {
-			__rankingData?: Record<ProfileRatingAlgs, { outOf: number; ranking: number }>;
+			__rankingData?: Record<AnyProfileRatingAlg, { outOf: number; ranking: number }>;
 		}
 	> = await db["game-stats"].find({ userID: user.id });
 

@@ -42,9 +42,9 @@ function GetAndCache(
 	let collection: ICollection;
 
 	if (filename.startsWith("songs-")) {
-		collection = db.songs[filename.split("-")[1] as Game];
+		collection = db.anySongs[filename.split("-")[1] as Game];
 	} else if (filename.startsWith("charts-")) {
-		collection = db.charts[filename.split("-")[1] as Game];
+		collection = db.anyCharts[filename.split("-")[1] as Game];
 	} else if (filename in db) {
 		collection = db[filename as StaticDatabases];
 	} else {

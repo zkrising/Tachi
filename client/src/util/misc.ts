@@ -197,7 +197,7 @@ export function SelectRightChart(
 				return chart;
 			}
 		}
-	} else if (gptConfig.idString === "itg:Stamina") {
+	} else if (gptConfig.gptString === "itg:Stamina") {
 		for (const chart of charts) {
 			if (
 				(chart as ChartDocument<"itg:Stamina">).data.hashGSV3 === chartID &&
@@ -315,7 +315,7 @@ export function FormatSessionRating(
 	return formatter(value);
 }
 
-export function GetGradeFromPercent<I extends GPTString = GPTString>(
+export function GetGradeFromPercent<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype,
 	percent: number

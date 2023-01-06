@@ -10,7 +10,7 @@ import {
 	GoalDocumentMulti,
 	GoalDocumentSingle,
 	GPTString,
-	IDStringToGame,
+	GPTStringToGame,
 	QuestDocument,
 	QuestlineDocument,
 	SongDocument,
@@ -61,7 +61,7 @@ export type QuestWithRelated = QuestDocument & {
 
 export type ChartWithRelated<T extends GPTString = GPTString> = ChartDocument<T> & {
 	__related: {
-		song: SongDocument<IDStringToGame[T]> | undefined;
+		song: SongDocument<GPTStringToGame[T]> | undefined;
 	};
 };
 

@@ -1,6 +1,6 @@
 import { Game, GetGamePTConfig, Grades, GPTString, integer, Playtypes } from "tachi-common";
 
-export function AbsoluteGradeDelta<I extends GPTString = GPTString>(
+export function AbsoluteGradeDelta<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtypes[Game],
 	score: number,
@@ -23,7 +23,7 @@ export function AbsoluteGradeDelta<I extends GPTString = GPTString>(
 	return score - gradeScore;
 }
 
-export function RelativeGradeDelta<I extends GPTString = GPTString>(
+export function RelativeGradeDelta<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtypes[Game],
 	score: number,
@@ -53,7 +53,7 @@ function WrapGrade(grade: string) {
 	return grade;
 }
 
-export function GenericFormatGradeDelta<I extends GPTString = GPTString>(
+export function GenericFormatGradeDelta<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtypes[Game],
 	score: number,

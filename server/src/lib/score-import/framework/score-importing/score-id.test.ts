@@ -44,7 +44,7 @@ t.test("#CreateScoreID", (t) => {
 		scoreData: {
 			percent: TestingIIDXSPDryScore.scoreData.percent,
 			score: TestingIIDXSPDryScore.scoreData.score,
-			grade: TestingIIDXSPDryScore.scoreData.grade,
+			grade: TestingIIDXSPDryScore.scoreData.grade.string,
 			lamp: TestingIIDXSPDryScore.scoreData.lamp,
 		},
 	};
@@ -82,7 +82,7 @@ t.test("#CreateScoreID", (t) => {
 	);
 
 	minimalScore.scoreData.lamp = TestingIIDXSPDryScore.scoreData.lamp;
-	minimalScore.scoreData.grade = "F";
+	minimalScore.scoreData.grade.string = "F";
 
 	t.not(
 		scoreID,

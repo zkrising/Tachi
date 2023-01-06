@@ -30,7 +30,13 @@ import {
 	GetUsersRankingAndOutOf,
 	GetUsersWithIDs,
 } from "utils/user";
-import type { integer, PBScoreDocument, UserGameStatsSnapshotDocument } from "tachi-common";
+import type {
+	integer,
+	PBScoreDocument,
+	UserGameStatsSnapshotDocument,
+	GPTString,
+	ProfileRatingAlgorithms,
+} from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -260,7 +266,7 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	let alg = gptConfig.defaultProfileRatingAlg;
+	let alg = gptConfig.defaultProfileRatingAlg as ProfileRatingAlgorithms[GPTString];
 
 	if (IsString(req.query.alg)) {
 		const temp = CheckStrProfileAlg(game, playtype, req.query.alg);
@@ -270,7 +276,7 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 				success: false,
 				description: `Invalid value of ${
 					req.query.alg
-				} for alg. Expected one of ${gptConfig.profileRatingAlgs.join(", ")}`,
+				} for alg. Expected one of ${Object.keys(gptConfig.profileRatingAlgs).join(", ")}`,
 			});
 		}
 

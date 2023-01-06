@@ -7,9 +7,9 @@ import type { WithID } from "monk";
 import type {
 	ChartDocument,
 	GPTString,
-	IDStringToGame,
+	GPTStringToGame,
 	integer,
-	OrphanChart,
+	OrphanChartDocument,
 	SongDocument,
 } from "tachi-common";
 
@@ -27,12 +27,12 @@ const logger = CreateLogCtx(__filename);
  * If the chart has been seen before, and has >= N unique players who have
  * played it, unorphan the chart, and return it.
  */
-export async function HandleOrphanQueue<I extends GPTString>(
-	idString: I,
-	game: IDStringToGame[I],
+export async function HandleOrphanQueue<GPT extends GPTString>(
+	gptString: I,
+	game: GPTStringToGame[I],
 	chartDoc: ChartDocument<I>,
-	songDoc: SongDocument<IDStringToGame[I]>,
-	orphanMatchCriteria: FilterQuery<OrphanChart<I>>,
+	songDoc: SongDocument<GPTStringToGame[I]>,
+	orphanMatchCriteria: FilterQuery<OrphanChartDocument<I>>,
 	queueSize: integer,
 	userID: integer,
 	chartName: string
@@ -40,7 +40,7 @@ export async function HandleOrphanQueue<I extends GPTString>(
 	logger.debug(`Received orphanqueue request for ${chartName}.`);
 
 	const orphanChart = await db["orphan-chart-queue"].findOne(
-		{ idString, ...orphanMatchCriteria },
+		{ gptString, ...orphanMatchCriteria },
 		{
 			projectID: true,
 		}
@@ -50,7 +50,7 @@ export async function HandleOrphanQueue<I extends GPTString>(
 		logger.verbose(`Received unknown chart ${chartName}, orphaning.`);
 
 		await db["orphan-chart-queue"].insert({
-			idString,
+			gptString,
 			chartDoc,
 			songDoc,
 			userIDs: [userID],
@@ -111,13 +111,13 @@ export async function HandleOrphanQueue<I extends GPTString>(
  * Useful for something like BMS-Table-Sync, where we want to load anything in a table
  * regardless of how many people have played the chart.
  */
-export async function DeorphanIfInQueue<I extends GPTString>(
-	idString: I,
-	game: IDStringToGame[I],
-	orphanMatchCriteria: FilterQuery<OrphanChart<I>>
+export async function DeorphanIfInQueue<GPT extends GPTString>(
+	gptString: I,
+	game: GPTStringToGame[I],
+	orphanMatchCriteria: FilterQuery<OrphanChartDocument<I>>
 ): Promise<ChartDocument<I> | null> {
 	const orphanChart = await db["orphan-chart-queue"].findOne(
-		{ idString, ...orphanMatchCriteria },
+		{ gptString, ...orphanMatchCriteria },
 		{
 			projectID: true,
 		}

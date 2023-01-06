@@ -55,7 +55,9 @@ router.get("/best", async (req, res) => {
 				success: false,
 				description: `Invalid algorithm '${
 					req.query.alg
-				}' provided. Expected any of ${gptConfig.sessionRatingAlgs.join(", ")}.`,
+				}' provided. Expected any of ${Object.keys(gptConfig.sessionRatingAlgs).join(
+					", "
+				)}.`,
 			});
 		}
 

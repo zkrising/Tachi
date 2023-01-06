@@ -9,7 +9,7 @@ import {
 	GoalSubscriptionDocument,
 	Grades,
 	GPTString,
-	IDStringToGame,
+	GPTStringToGame,
 	ImportDocument,
 	ImportTrackerFailed,
 	integer,
@@ -31,7 +31,7 @@ import {
 	SessionScoreInfo,
 } from "tachi-common";
 
-export interface UGPTStatsReturn<I extends GPTString = GPTString> {
+export interface UGPTStatsReturn<GPT extends GPTString = GPTString> {
 	gameStats: UserGameStats;
 	firstScore: ScoreDocument<I>;
 	mostRecentScore: ScoreDocument<I>;
@@ -78,31 +78,31 @@ export type UGPTPreferenceStatsReturn =
 
 export type UGPTHistory = Omit<UserGameStatsSnapshotDocument, "userID" | "game" | "playtype">[];
 
-export interface SessionReturns<I extends GPTString = GPTString> {
+export interface SessionReturns<GPT extends GPTString = GPTString> {
 	session: SessionDocument;
 	scores: ScoreDocument[];
 	scoreInfo: Array<SessionScoreInfo>;
-	songs: SongDocument<IDStringToGame[I]>[];
+	songs: SongDocument<GPTStringToGame[I]>[];
 	charts: ChartDocument<I>[];
 	user: UserDocument;
 }
 
-export interface UGPTChartPBComposition<I extends GPTString = GPTString> {
+export interface UGPTChartPBComposition<GPT extends GPTString = GPTString> {
 	scores: ScoreDocument<I>[];
 	chart: ChartDocument<I>;
 	pb: PBScoreDocument<I>;
 }
 
-export type UGSWithRankingData<I extends GPTString = GPTString> = UserGameStats<I> & {
+export type UGSWithRankingData<GPT extends GPTString = GPTString> = UserGameStats<I> & {
 	__rankingData: Record<ProfileRatingLookup[I], { outOf: number; ranking: number }>;
 };
 
-export interface SongChartsSearch<I extends GPTString = GPTString> {
-	songs: SongDocument<IDStringToGame[I]>[];
+export interface SongChartsSearch<GPT extends GPTString = GPTString> {
+	songs: SongDocument<GPTStringToGame[I]>[];
 	charts: ChartDocument<I>[];
 }
 
-export interface FolderStatsInfo<I extends GPTString = GPTString> {
+export interface FolderStatsInfo<GPT extends GPTString = GPTString> {
 	grades: Record<Grades[I], integer>;
 	lamps: Record<Lamps[I], integer>;
 	folderID: string;
@@ -120,16 +120,16 @@ export interface UGPTTableReturns {
 	table: TableDocument;
 }
 
-export interface UGPTFolderReturns<I extends GPTString = GPTString> {
+export interface UGPTFolderReturns<GPT extends GPTString = GPTString> {
 	folder: FolderDocument;
-	songs: SongDocument<IDStringToGame[I]>[];
+	songs: SongDocument<GPTStringToGame[I]>[];
 	charts: ChartDocument<I>[];
 	pbs: PBScoreDocument<I>[];
 }
 
-export interface GPTFolderReturns<I extends GPTString = GPTString> {
+export interface GPTFolderReturns<GPT extends GPTString = GPTString> {
 	folder: FolderDocument;
-	songs: SongDocument<IDStringToGame[I]>[];
+	songs: SongDocument<GPTStringToGame[I]>[];
 	charts: ChartDocument<I>[];
 }
 
@@ -145,31 +145,31 @@ export interface RecentClassesReturn {
 	users: UserDocument[];
 }
 
-export interface SongsReturn<I extends GPTString = GPTString> {
-	song: SongDocument<IDStringToGame[I]>;
+export interface SongsReturn<GPT extends GPTString = GPTString> {
+	song: SongDocument<GPTStringToGame[I]>;
 	charts: ChartDocument<I>[];
 }
 
-export interface ChartPBLeaderboardReturn<I extends GPTString = GPTString> {
+export interface ChartPBLeaderboardReturn<GPT extends GPTString = GPTString> {
 	users: UserDocument[];
 	pbs: PBScoreDocument<I>[];
 }
 
-export interface UGPTChartLeaderboardAdjacent<I extends GPTString = GPTString> {
+export interface UGPTChartLeaderboardAdjacent<GPT extends GPTString = GPTString> {
 	users: UserDocument[];
 	pb: PBScoreDocument<I>;
 	adjacentAbove: PBScoreDocument<I>[];
 	adjacentBelow: PBScoreDocument<I>[];
 }
 
-export interface ScoreLeaderboardReturns<I extends GPTString = GPTString> {
+export interface ScoreLeaderboardReturns<GPT extends GPTString = GPTString> {
 	users: UserDocument[];
-	songs: SongDocument<IDStringToGame[I]>[];
+	songs: SongDocument<GPTStringToGame[I]>[];
 	charts: ChartDocument<I>[];
 	pbs: PBScoreDocument<I>[];
 }
 
-export interface UserLeaderboardReturns<I extends GPTString = GPTString> {
+export interface UserLeaderboardReturns<GPT extends GPTString = GPTString> {
 	users: UserDocument[];
 	gameStats: UserGameStats<I>[];
 }

@@ -126,6 +126,10 @@ export type ProfileRatingAlgorithms = {
 	[G in GPTString]: keyof typeof GAME_PT_CONFIGS[G]["profileRatingAlgs"];
 };
 
+export type AnyScoreRatingAlg = ScoreRatingAlgorithms[GPTString];
+export type AnySessionRatingAlg = SessionRatingAlgorithms[GPTString];
+export type AnyProfileRatingAlg = ProfileRatingAlgorithms[GPTString];
+
 export type ConfProvidedMetrics = {
 	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["providedMetrics"];
 };

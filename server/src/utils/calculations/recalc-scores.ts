@@ -25,7 +25,7 @@ export async function RecalcAllScores(filter = {}) {
 	await EfficientDBIterate(
 		db.scores,
 		async (c) => {
-			const chart = await db.charts[c.game].findOne({ chartID: c.chartID });
+			const chart = await db.anyCharts[c.game].findOne({ chartID: c.chartID });
 
 			if (!chart) {
 				logger.error(`Can't find chartID ${c.chartID} ${c.scoreID} (${c.game})`, {

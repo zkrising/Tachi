@@ -23,7 +23,7 @@ export function FindChartWithChartID(game: Game, chartID: string) {
 export function FindChartWithPTDF<
 	G extends Game = Game,
 	P extends Playtypes[G] = Playtypes[G],
-	I extends GPTString = GPTString
+	GPT extends GPTString = GPTString
 >(game: G, songID: integer, playtype: P, difficulty: Difficulties[I]) {
 	return db.anyCharts[game].findOne({
 		songID,
@@ -40,7 +40,7 @@ export function FindChartWithPTDF<
 export function FindChartWithPTDFVersion<
 	G extends Game = Game,
 	P extends Playtypes[G] = Playtypes[G],
-	I extends GPTString = GPTString
+	GPT extends GPTString = GPTString
 >(game: G, songID: integer, playtype: P, difficulty: Difficulties[I], version: Versions[I]) {
 	return db.anyCharts[game].findOne({
 		songID,
@@ -126,7 +126,7 @@ export function FindIIDXChartOnInGameIDVersion(
 /**
  * Find a chart on its in-game-ID, playtype, difficulty and version.
  */
-export function FindChartOnInGameIDVersion<I extends GPTString = GPTString>(
+export function FindChartOnInGameIDVersion<GPT extends GPTString = GPTString>(
 	game: Game,
 	inGameID: number,
 	playtype: Playtype,

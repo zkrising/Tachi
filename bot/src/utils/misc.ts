@@ -152,14 +152,14 @@ export function CreateChartLink(chart: ChartDocument, game: Game) {
 	return `${BotConfig.TACHI_SERVER_LOCATION}/games/${game}/${chart.playtype}/songs/${chart.songID}/${chart.chartID}`;
 }
 
-type ScOrPBDoc<I extends GPTString> = PBScoreDocument<I> | ScoreDocument<I>;
+type ScOrPBDoc<GPT extends GPTString> = PBScoreDocument<I> | ScoreDocument<I>;
 
-export function FormatScoreData<I extends GPTString = GPTString>(score: ScOrPBDoc<I>) {
+export function FormatScoreData<GPT extends GPTString = GPTString>(score: ScOrPBDoc<I>) {
 	const game = score.game;
 
 	let lampStr: string = score.scoreData.lamp;
 	let scoreStr = `${score.scoreData.score.toLocaleString()} (${
-		score.scoreData.grade
+		score.scoreData.grade.string
 	}, ${score.scoreData.percent.toFixed(2)}%)`;
 
 	if (game === "iidx" || game === "bms" || game === "pms") {
@@ -176,7 +176,7 @@ export function FormatScoreData<I extends GPTString = GPTString>(score: ScOrPBDo
 			score.playtype,
 			score.scoreData.score,
 			score.scoreData.percent,
-			score.scoreData.grade
+			score.scoreData.grade.string
 		);
 
 		scoreStr = `${closer === "lower" ? lower : upper} (${
@@ -190,7 +190,7 @@ export function FormatScoreData<I extends GPTString = GPTString>(score: ScOrPBDo
 /**
  * Util for getting a games' grade for a given percent.
  */
-function GetGradeFromPercent<I extends GPTString = GPTString>(
+function GetGradeFromPercent<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype,
 	percent: number
@@ -229,7 +229,7 @@ function FormatIIDXEXScore(exscore: integer, notecount: integer, playtype: Playt
 	return `${closer === "lower" ? lower : upper} (${exscore}, ${percent.toFixed(2)}%)`;
 }
 
-export function GetChartPertinentInfo<I extends GPTString>(game: Game, chart: ChartDocument<I>) {
+export function GetChartPertinentInfo<GPT extends GPTString>(game: Game, chart: ChartDocument<I>) {
 	if (game === "iidx") {
 		const ch = chart as ChartDocument<"iidx:DP" | "iidx:SP">;
 

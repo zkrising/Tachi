@@ -118,7 +118,7 @@ async function ImportTableLevels(
 	);
 
 	for (const td of tableEntries) {
-		let query: FilterQuery<ChartDocument>;
+		let query: FilterQuery<ChartDocument<"bms:7K" | "bms:14K">>;
 
 		switch (td.checksum.type) {
 			case "md5": {
@@ -132,9 +132,7 @@ async function ImportTableLevels(
 			}
 		}
 
-		let chart = (await db.charts.bms.findOne(query)) as ChartDocument<
-			"bms:7K" | "bms:14K"
-		> | null;
+		let chart: ChartDocument<"bms:7K" | "bms:14K"> | null = await db.charts.bms.findOne(query);
 
 		if (!chart) {
 			// didn't find it in the DB?

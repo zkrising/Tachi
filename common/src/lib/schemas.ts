@@ -64,20 +64,20 @@ const extractGPTIDString = (self: unknown) => {
 
 	const s = self as Record<string, unknown>;
 
-	if (typeof s.idString !== "string") {
-		throw new Error(`Expected a string where self.idString is. Got ${s.idString}`);
+	if (typeof s.gptString !== "string") {
+		throw new Error(`Expected a string where self.gptString is. Got ${s.gptString}`);
 	}
 
 	// if there's no ":" in the string, this returns only one element.
-	const [game, playtype] = s.idString.split(":") as [string, string | undefined];
+	const [game, playtype] = s.gptString.split(":") as [string, string | undefined];
 
 	if (!IsValidGame(game)) {
-		throw new Error(`Expected valid game -- got ${game} from idString ${s.idString}.`);
+		throw new Error(`Expected valid game -- got ${game} from gptString ${s.gptString}.`);
 	}
 
 	// Playtype might be undefined in the case where the string contains no colon.
 	if (playtype === undefined || !IsValidPlaytype(game, playtype)) {
-		throw new Error(`Expected valid playtype -- got ${playtype} from idString ${s.idString}.`);
+		throw new Error(`Expected valid playtype -- got ${playtype} from gptString ${s.gptString}.`);
 	}
 
 	return { game, playtype };
@@ -475,7 +475,7 @@ const PRE_SCHEMAS = {
 		userID: p.isPositiveNonZeroInteger,
 		timeStarted: p.isPositive,
 		timeFinished: p.isPositive,
-		idStrings: [p.isIn(allGPTStrings)],
+		gptStrings: [p.isIn(allGPTStrings)],
 		importID: "string",
 		scoreIDs: ["string"],
 		game: p.isIn(games),
@@ -688,7 +688,7 @@ const PRE_SCHEMAS = {
 		const { game } = extractGPTIDString(self);
 
 		return prSchemaFnWrap({
-			idString: p.isIn(allGPTStrings),
+			gptString: p.isIn(allGPTStrings),
 			chartDoc: PR_CHART_DOCUMENT(game),
 			songDoc: PR_SONG_DOCUMENT(game),
 			userIDs: [p.isPositiveNonZeroInteger],

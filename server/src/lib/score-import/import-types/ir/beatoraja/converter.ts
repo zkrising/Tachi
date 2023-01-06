@@ -64,7 +64,7 @@ async function HandleOrphanChartProcess(
 			"chartDoc.data.hashSHA256": context.chart.sha256,
 		};
 
-		const idString = context.chart.mode === "BEAT_7K" ? "bms:7K" : "bms:14K";
+		const gptString = context.chart.mode === "BEAT_7K" ? "bms:7K" : "bms:14K";
 
 		const { chartDoc, songDoc } = ConvertBeatorajaChartToTachi(
 			context.chart,
@@ -72,7 +72,7 @@ async function HandleOrphanChartProcess(
 		);
 
 		chart = await HandleOrphanQueue(
-			idString,
+			gptString,
 			"bms",
 			chartDoc,
 			songDoc,
@@ -89,12 +89,12 @@ async function HandleOrphanChartProcess(
 			playtype,
 		};
 
-		const idString = playtype === "Controller" ? "pms:Controller" : "pms:Keyboard";
+		const gptString = playtype === "Controller" ? "pms:Controller" : "pms:Keyboard";
 
 		const { chartDoc, songDoc } = ConvertBeatorajaChartToTachi(context.chart, playtype);
 
 		chart = await HandleOrphanQueue(
-			idString,
+			gptString,
 			"pms",
 			chartDoc,
 			songDoc,

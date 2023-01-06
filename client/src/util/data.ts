@@ -56,7 +56,7 @@ export function CreateChartIDMap<T extends { chartID: string }>(arr: T[]): Map<s
 	return map;
 }
 
-export function CreateChartMap<I extends GPTString = GPTString>(charts: ChartDocument<I>[]) {
+export function CreateChartMap<GPT extends GPTString = GPTString>(charts: ChartDocument<I>[]) {
 	const chartMap = new Map<string, ChartDocument<I>>();
 
 	for (const chart of charts) {
@@ -66,7 +66,7 @@ export function CreateChartMap<I extends GPTString = GPTString>(charts: ChartDoc
 	return chartMap;
 }
 
-export function CreateScoreIDMap<I extends GPTString = GPTString>(scores: ScoreDocument<I>[]) {
+export function CreateScoreIDMap<GPT extends GPTString = GPTString>(scores: ScoreDocument<I>[]) {
 	const scoreMap = new Map<string, ScoreDocument<I>>();
 
 	for (const score of scores) {

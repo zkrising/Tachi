@@ -866,7 +866,7 @@ export const FakeImport: ImportDocument = {
 	errors: [],
 	game: "iidx",
 	goalInfo: [],
-	idStrings: ["iidx:SP"],
+	gptStrings: ["iidx:SP"],
 	importID: "fake_import",
 	importType: "ir/direct-manual",
 	questInfo: [],

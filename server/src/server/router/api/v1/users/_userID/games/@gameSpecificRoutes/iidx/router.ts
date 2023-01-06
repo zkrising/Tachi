@@ -8,13 +8,12 @@ import { GetUser } from "utils/req-tachi-data";
 import type { TachiIIDXPlaylist } from "lib/game-specific/iidx-playlists";
 import type {
 	ChartDocument,
-	Grades,
-	Lamps,
 	PBScoreDocument,
 	Playtypes,
 	SongDocument,
 	integer,
 } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -90,7 +89,7 @@ router.get(
 		// get all relevant charts
 		const charts = await db.charts.iidx.find({
 			songID: { $in: pbData.map((e) => e.song.id) },
-			difficulty: { $in: ["BEGINNER", "NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"] },
+			difficulty: { $in: ["NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"] },
 		});
 
 		// get a lookup table for songID + difficulty -> chart.
@@ -144,8 +143,8 @@ router.get(
 						pb.scoreData.judgements.pgreat?.toString() ?? "0", // pgreat
 						pb.scoreData.judgements.great?.toString() ?? "0", // great
 						pb.scoreData.optional.bp?.toString() ?? "0", // BP
-						ConvertEamLamp(pb.scoreData.lamp), // lamp
-						ConvertEamGrade(pb.scoreData.grade) // grade
+						ConvertEamLamp(pb.scoreData.lamp.string), // lamp
+						ConvertEamGrade(pb.scoreData.grade.string) // grade
 					);
 
 					if (pb.timeAchieved !== null && lastPlayed < pb.timeAchieved) {

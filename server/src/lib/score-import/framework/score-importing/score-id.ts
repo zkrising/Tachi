@@ -19,7 +19,7 @@ function HashScoreIDString(scoreIDString: string) {
  */
 export function CreateScoreID(userID: integer, dryScore: DryScore, chartID: string) {
 	const hash = HashScoreIDString(
-		`${userID}|${chartID}|${dryScore.scoreData.lamp}|${dryScore.scoreData.grade}|${dryScore.scoreData.score}|${dryScore.scoreData.percent}`
+		`${userID}|${chartID}|${dryScore.scoreData.lamp}|${dryScore.scoreData.grade.string}|${dryScore.scoreData.score}|${dryScore.scoreData.percent}`
 	);
 
 	return `R${hash}`;

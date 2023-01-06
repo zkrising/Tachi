@@ -45,7 +45,7 @@ export async function ResolveFolderToCharts(
 
 	switch (folder.type) {
 		case "static": {
-			charts = await db.charts[folder.game].find(
+			charts = await db.anyCharts[folder.game].find(
 				deepmerge(filter, {
 					// Specifying playtype is mandatory, don't want to catch other charts.
 					playtype: folder.playtype,
@@ -56,9 +56,9 @@ export async function ResolveFolderToCharts(
 		}
 
 		case "songs": {
-			songs = await db.songs[folder.game].find(folder.data);
+			songs = await db.anySongs[folder.game].find(folder.data);
 
-			charts = await db.charts[folder.game].find(
+			charts = await db.anyCharts[folder.game].find(
 				deepmerge(filter, {
 					playtype: folder.playtype,
 					songID: { $in: songs.map((e) => e.id) },
@@ -77,7 +77,7 @@ export async function ResolveFolderToCharts(
 
 			const fx = deepmerge.all([filter, { playtype: folder.playtype }, folderDataTransposed]);
 
-			charts = await db.charts[folder.game].find(fx);
+			charts = await db.anyCharts[folder.game].find(fx);
 			break;
 		}
 
@@ -98,7 +98,7 @@ export async function ResolveFolderToCharts(
 			return { songs, charts };
 		}
 
-		songs = await db.songs[folder.game].find({
+		songs = await db.anySongs[folder.game].find({
 			id: { $in: charts.map((e) => e.songID) },
 		});
 
@@ -150,12 +150,12 @@ export async function GetFolderCharts(
 ): Promise<{ songs?: Array<SongDocument>; charts: Array<ChartDocument> }> {
 	const chartIDs = await GetFolderChartIDs(folder.folderID);
 
-	const charts = await db.charts[folder.game].find(
+	const charts = await db.anyCharts[folder.game].find(
 		deepmerge.all([{ playtype: folder.playtype }, { chartID: { $in: chartIDs } }, filter])
 	);
 
 	if (getSongs) {
-		const songs = await db.songs[folder.game].find({
+		const songs = await db.anySongs[folder.game].find({
 			id: { $in: charts.map((e) => e.songID) },
 		});
 
@@ -324,10 +324,10 @@ export function CalculateGradeDistribution(pbs: Array<PBScoreDocument>) {
 	const gradeDist: Partial<Record<Grades[GPTString], integer>> = {};
 
 	for (const pb of pbs) {
-		if (gradeDist[pb.scoreData.grade] !== undefined) {
-			gradeDist[pb.scoreData.grade]!++;
+		if (gradeDist[pb.scoreData.grade.string] !== undefined) {
+			gradeDist[pb.scoreData.grade.string]!++;
 		} else {
-			gradeDist[pb.scoreData.grade] = 1;
+			gradeDist[pb.scoreData.grade.string] = 1;
 		}
 	}
 

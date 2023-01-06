@@ -3,7 +3,6 @@ import {
 	InternalFailure,
 	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
-import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
 import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import type { ConverterFunction } from "../../common/types";
@@ -17,7 +16,7 @@ export const ConverterKsHookSV6CStatic: ConverterFunction<
 > = async (data, context, importType, logger) => {
 	const diff = SV6CConvertDifficulty(data.difficulty);
 
-	const chart = await FindSDVXChartOnInGameIDVersion(data.music_id, diff, "konaste");
+	const chart = await FindSDVXChartOnInGameIDVersion(data.music_id, diff, "Konaste");
 
 	if (!chart) {
 		throw new SongOrChartNotFoundFailure(
@@ -35,8 +34,6 @@ export const ConverterKsHookSV6CStatic: ConverterFunction<
 		throw new InternalFailure(`Song ${chart.songID} (sdvx) has no parent song?`);
 	}
 
-	const { percent, grade } = GenericGetGradeAndPercent("sdvx", data.score, chart);
-
 	const dryScore: DryScore<"sdvx:Single"> = {
 		game: "sdvx",
 		service: "kshook SV6C Static",
@@ -45,8 +42,6 @@ export const ConverterKsHookSV6CStatic: ConverterFunction<
 		timeAchieved: data.timestamp * 1000,
 		scoreData: {
 			score: data.score,
-			percent,
-			grade,
 			lamp: SV6CConvertLamp(data.clear),
 			judgements: {},
 			optional: {

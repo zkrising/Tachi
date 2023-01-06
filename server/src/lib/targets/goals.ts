@@ -248,7 +248,7 @@ export function HumaniseGoalProgress(
 				playtype,
 				userPB.scoreData.score,
 				userPB.scoreData.percent,
-				userPB.scoreData.grade,
+				userPB.scoreData.grade.string,
 				fmtFn
 			);
 

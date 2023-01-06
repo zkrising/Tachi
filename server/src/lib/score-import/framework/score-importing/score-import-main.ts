@@ -187,7 +187,7 @@ export default async function ScoreImportMain<D, C>(
 		// Create and Save an import document to the database, and finish everything up!
 		const ImportDocument: ImportDocument = {
 			importType,
-			idStrings: playtypes.map((e) => `${game}:${e}`) as Array<GPTString>,
+			gptStrings: playtypes.map((e) => `${game}:${e}`) as Array<GPTString>,
 			scoreIDs,
 			playtypes,
 			game,

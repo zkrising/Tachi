@@ -21,7 +21,7 @@ function GetBMSTableVal(chart: ChartDocument<"bms:7K" | "bms:14K">, key: string)
 	return null;
 }
 
-export function CreateDefaultScoreSearchParams<I extends GPTString = GPTString>(
+export function CreateDefaultScoreSearchParams<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype
 ) {
@@ -36,11 +36,11 @@ export function CreateDefaultScoreSearchParams<I extends GPTString = GPTString>(
 		percent: (x) => x.scoreData.percent,
 		highlight: (x) => !!x.highlight,
 		lamp: {
-			valueGetter: (x) => [x.scoreData.lamp, x.scoreData.lampIndex],
+			valueGetter: (x) => [x.scoreData.lamp, x.scoreData.lamp.index],
 			strToNum: HumanFriendlyStrToLampIndex(game, playtype),
 		},
 		grade: {
-			valueGetter: (x) => [x.scoreData.grade, x.scoreData.gradeIndex],
+			valueGetter: (x) => [x.scoreData.grade.string, x.scoreData.grade.string],
 			strToNum: HumanFriendlyStrToGradeIndex(game, playtype),
 		},
 		...CreateCalcDataSearchFns(gptConfig),
@@ -53,7 +53,7 @@ export function CreateDefaultScoreSearchParams<I extends GPTString = GPTString>(
 	return searchFunctions;
 }
 
-export function CreateDefaultPBSearchParams<I extends GPTString = GPTString>(
+export function CreateDefaultPBSearchParams<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype
 ) {
@@ -71,11 +71,11 @@ export function CreateDefaultPBSearchParams<I extends GPTString = GPTString>(
 		highlight: (x) => !!x.highlight,
 		username: (x) => x.__related.user?.username ?? null,
 		lamp: {
-			valueGetter: (x) => [x.scoreData.lamp, x.scoreData.lampIndex],
+			valueGetter: (x) => [x.scoreData.lamp, x.scoreData.lamp.index],
 			strToNum: HumanFriendlyStrToLampIndex(game, playtype),
 		},
 		grade: {
-			valueGetter: (x) => [x.scoreData.grade, x.scoreData.gradeIndex],
+			valueGetter: (x) => [x.scoreData.grade.string, x.scoreData.grade.string],
 			strToNum: HumanFriendlyStrToGradeIndex(game, playtype),
 		},
 		...CreateCalcDataSearchFns(gptConfig),
@@ -88,7 +88,7 @@ export function CreateDefaultPBSearchParams<I extends GPTString = GPTString>(
 	return searchFunctions;
 }
 
-export function CreatePBCompareSearchParams<I extends GPTString = GPTString>(
+export function CreatePBCompareSearchParams<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype
 ) {
@@ -106,7 +106,7 @@ export function CreatePBCompareSearchParams<I extends GPTString = GPTString>(
 	return searchFunctions;
 }
 
-export function CreateDefaultFolderSearchParams<I extends GPTString = GPTString>(
+export function CreateDefaultFolderSearchParams<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype
 ) {
@@ -126,14 +126,14 @@ export function CreateDefaultFolderSearchParams<I extends GPTString = GPTString>
 		lamp: {
 			valueGetter: (x) =>
 				x.__related.pb
-					? [x.__related.pb.scoreData.lamp, x.__related.pb.scoreData.lampIndex]
+					? [x.__related.pb.scoreData.lamp, x.__related.pb.scoreData.lamp.index]
 					: null,
 			strToNum: HumanFriendlyStrToLampIndex(game, playtype),
 		},
 		grade: {
 			valueGetter: (x) =>
 				x.__related.pb
-					? [x.__related.pb.scoreData.grade, x.__related.pb.scoreData.gradeIndex]
+					? [x.__related.pb.scoreData.grade.string, x.__related.pb.scoreData.grade.string]
 					: null,
 			strToNum: HumanFriendlyStrToGradeIndex(game, playtype),
 		},

@@ -87,7 +87,7 @@ export async function CalculateDataForGamePT<G extends Game>(
 	return CalculatedDataFunctions[`${game}:${playtype}` as GPTString](dryScore, chart, logger);
 }
 
-type CalculatedData<I extends GPTString> = Required<ScoreDocument<I>["calculatedData"]>;
+type CalculatedData<GPT extends GPTString> = Required<ScoreDocument<I>["calculatedData"]>;
 
 function CalculateDataIIDX(
 	dryScore: DryScore,

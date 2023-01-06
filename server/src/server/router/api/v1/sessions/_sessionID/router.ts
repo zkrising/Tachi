@@ -11,14 +11,7 @@ import { AddToSetInRecord } from "utils/misc";
 import { optNull } from "utils/prudence";
 import { GetTachiData } from "utils/req-tachi-data";
 import { GetUserWithID } from "utils/user";
-import type {
-	FolderDocument,
-	Grades,
-	GPTString,
-	Lamps,
-	ScoreDocument,
-	integer,
-} from "tachi-common";
+import type { FolderDocument, GPTString, ScoreDocument, integer } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -37,10 +30,10 @@ router.get("/", async (req, res) => {
 	});
 
 	const [songs, charts, user, scoreInfo] = await Promise.all([
-		db.songs[session.game].find({
+		db.anySongs[session.game].find({
 			id: { $in: scores.map((e) => e.songID) },
 		}),
-		db.charts[session.game].find({
+		db.anyCharts[session.game].find({
 			chartID: { $in: scores.map((e) => e.chartID) },
 		}),
 		GetUserWithID(session.userID),
@@ -166,14 +159,14 @@ router.get("/folder-raises", async (req, res) => {
 	// new scores may also be grade raises
 	for (const score of [...gradeRaises, ...newRaises]) {
 		// skip things that aren't good enough
-		if (score.scoreData.gradeIndex < clearGradeIndex) {
+		if (score.scoreData.grade.string < clearGradeIndex) {
 			continue;
 		}
 
 		const exists = gradeRaiseMap.get(score.chartID);
 
 		if (exists) {
-			if (exists.scoreData.gradeIndex < score.scoreData.gradeIndex) {
+			if (exists.scoreData.grade.string < score.scoreData.grade.string) {
 				// this one is more important
 				gradeRaiseMap.set(score.chartID, score);
 			}
@@ -187,14 +180,14 @@ router.get("/folder-raises", async (req, res) => {
 
 	for (const score of [...lampRaises, ...newRaises]) {
 		// skip things that aren't good enough
-		if (score.scoreData.lampIndex < clearLampIndex) {
+		if (score.scoreData.lamp.index < clearLampIndex) {
 			continue;
 		}
 
 		const exists = lampRaiseMap.get(score.chartID);
 
 		if (exists) {
-			if (exists.scoreData.lampIndex < score.scoreData.lampIndex) {
+			if (exists.scoreData.lamp.index < score.scoreData.lamp.index) {
 				// this one is more important
 				lampRaiseMap.set(score.chartID, score);
 			}
@@ -264,7 +257,7 @@ router.get("/folder-raises", async (req, res) => {
 					// and EX HARD CLEAR, so
 					// we want ["HARD CLEAR", "EX HARD CLEAR"].
 					const originalGradeIndex =
-						gradeRaise.scoreData.gradeIndex -
+						gradeRaise.scoreData.grade.string -
 						(gradeDeltas[gradeRaise.scoreID] ?? Infinity) +
 						1;
 
@@ -274,7 +267,7 @@ router.get("/folder-raises", async (req, res) => {
 
 					for (const grade of gptConfig.grades.slice(
 						minimumGrade,
-						gradeRaise.scoreData.gradeIndex + 1
+						gradeRaise.scoreData.grade.string + 1
 					)) {
 						AddToSetInRecord(grade, raiseGradeDist, gradeRaise.chartID);
 					}
@@ -283,7 +276,7 @@ router.get("/folder-raises", async (req, res) => {
 				if (lampRaise) {
 					// see previous gradeRaise handler for explanation
 					const originalLampIndex =
-						lampRaise.scoreData.lampIndex -
+						lampRaise.scoreData.lamp.index -
 						(lampDeltas[lampRaise.scoreID] ?? Infinity) +
 						1;
 
@@ -291,7 +284,7 @@ router.get("/folder-raises", async (req, res) => {
 
 					for (const lamp of gptConfig.lamps.slice(
 						minimumLamp,
-						lampRaise.scoreData.lampIndex + 1
+						lampRaise.scoreData.lamp.index + 1
 					)) {
 						AddToSetInRecord(lamp, raiseLampDist, lampRaise.chartID);
 					}
@@ -320,8 +313,6 @@ router.get("/folder-raises", async (req, res) => {
 				raiseInfo.push({
 					folder,
 
-					// @ts-expect-error this is definitely a valid retrieval. be quiet.
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 					previousCount: lampDist[lamp] ?? 0,
 
 					raisedCharts: Array.from(raisedCharts),

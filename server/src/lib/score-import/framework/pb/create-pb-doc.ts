@@ -19,7 +19,7 @@ import type {
 	ScoreDocument,
 } from "tachi-common";
 
-export type PBScoreDocumentNoRank<I extends GPTString = GPTString> = Omit<
+export type PBScoreDocumentNoRank<GPT extends GPTString = GPTString> = Omit<
 	PBScoreDocument<I>,
 	"rankingData"
 >;
@@ -183,10 +183,10 @@ async function MergeScoreLampIntoPB(
 			score: scorePB.scoreData.score,
 			percent: scorePB.scoreData.percent,
 			esd: scorePB.scoreData.esd,
-			grade: scorePB.scoreData.grade,
-			gradeIndex: scorePB.scoreData.gradeIndex,
+			grade: scorePB.scoreData.grade.string,
+			gradeIndex: scorePB.scoreData.grade.string,
 			lamp: lampPB.scoreData.lamp,
-			lampIndex: lampPB.scoreData.lampIndex,
+			lampIndex: lampPB.scoreData.lamp.index,
 			judgements: scorePB.scoreData.judgements,
 
 			// this will probably be overrode by game-specific fns

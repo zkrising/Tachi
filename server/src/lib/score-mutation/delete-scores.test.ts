@@ -18,7 +18,7 @@ const mockImportDocument: ImportDocument = {
 	createdSessions: [],
 	errors: [],
 	goalInfo: [],
-	idStrings: [],
+	gptStrings: [],
 	importID: "mockImportID",
 	importType: "file/batch-manual",
 	questInfo: [],

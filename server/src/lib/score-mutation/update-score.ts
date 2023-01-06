@@ -35,7 +35,7 @@ export default async function UpdateScore(
 
 	const chartID = newScore.chartID;
 
-	const chart = await db.charts[oldScore.game].findOne({
+	const chart = await db.anyCharts[oldScore.game].findOne({
 		chartID,
 	});
 

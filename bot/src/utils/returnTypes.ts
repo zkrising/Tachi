@@ -45,7 +45,7 @@ export type ImportPollStatus =
 			};
 	  };
 
-export interface UGPTStats<I extends GPTString = GPTString> {
+export interface UGPTStats<GPT extends GPTString = GPTString> {
 	gameStats: UserGameStats;
 	firstScore: ScoreDocument;
 	mostRecentScore: ScoreDocument;

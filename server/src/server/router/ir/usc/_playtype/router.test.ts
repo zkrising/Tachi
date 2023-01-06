@@ -811,7 +811,7 @@ t.test("POST /scores", (t) => {
 
 		const orphanData = await db["orphan-chart-queue"].findOne({
 			"chartDoc.data.hashSHA1": "NEW_CHART",
-			idString: "usc:Controller",
+			gptString: "usc:Controller",
 		});
 
 		t.strictSame(orphanData?.userIDs, [1, 2]);
@@ -831,7 +831,7 @@ t.test("POST /scores", (t) => {
 
 		const orphanData2 = await db["orphan-chart-queue"].findOne({
 			"chartDoc.data.hashSHA1": "NEW_CHART",
-			idString: "usc:Controller",
+			gptString: "usc:Controller",
 		});
 
 		t.strictSame(
@@ -855,7 +855,7 @@ t.test("POST /scores", (t) => {
 
 		const orphanData3 = await db["orphan-chart-queue"].findOne({
 			"chartDoc.data.hashSHA1": "NEW_CHART",
-			idString: "usc:Controller",
+			gptString: "usc:Controller",
 		});
 
 		t.equal(orphanData3, null, "Should have removed the orphan chart from the database.");

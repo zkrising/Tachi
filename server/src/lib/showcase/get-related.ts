@@ -7,14 +7,14 @@ const logger = CreateLogCtx(__filename);
 export async function GetRelatedStatDocuments(stat: ShowcaseStatDetails, game: Game) {
 	switch (stat.mode) {
 		case "chart": {
-			const chart = await db.charts[game].findOne({ chartID: stat.chartID });
+			const chart = await db.anyCharts[game].findOne({ chartID: stat.chartID });
 
 			if (!chart) {
 				logger.error(`This stat refers to a chart that does not exist?`, { stat });
 				throw new Error(`Stat refers to a chart that does not exist? ${stat.chartID}.`);
 			}
 
-			const song = await db.songs[game].findOne({ id: chart.songID });
+			const song = await db.anySongs[game].findOne({ id: chart.songID });
 
 			if (!song) {
 				logger.severe(`Song-Chart Mismatch - ${chart.songID}.`, { chart });

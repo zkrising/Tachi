@@ -6,7 +6,7 @@ import { SearchSpecificGameSongs } from "lib/search/search";
 import { IsString } from "utils/misc";
 import { FindChartsOnPopularity } from "utils/queries/charts";
 import { GetGPT } from "utils/req-tachi-data";
-import type { ChartDocument, integer, UGPTSettings } from "tachi-common";
+import type { ChartDocument, integer, UGPTSettingsDocument } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -75,7 +75,7 @@ router.get("/", async (req, res) => {
 	// @optimisable
 	// could use songIDs from above instead of refetching
 	// but this is not very expensive.
-	const songs = await db.songs[game].find({
+	const songs = await db.anySongs[game].find({
 		id: { $in: charts.map((e) => e.songID) },
 	});
 

@@ -14,7 +14,15 @@
 			],
 			"rules": {
 				// broken
-				"lines-around-comment": "off"
+				"lines-around-comment": "off",
+
+				// TENPORARILY OFF AS THEY'RE BROKEN.
+				"@typescript-eslint/no-unsafe-assignment": "off",
+				"@typescript-eslint/no-unsafe-return": "off",
+				"@typescript-eslint/no-unsafe-argument": "off",
+				"@typescript-eslint/no-unsafe-member-access": "off",
+				"@typescript-eslint/no-unsafe-property-computation": "off",
+				"@typescript-eslint/no-unsafe-call": "off"
 			}
 		},
 		{

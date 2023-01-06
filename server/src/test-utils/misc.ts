@@ -25,7 +25,7 @@ import type {
 	Playtype,
 	UserDocument,
 	ScoreDocument,
-	UGPTSettings,
+	UGPTSettingsDocument,
 	UserGameStats,
 } from "tachi-common";
 
@@ -71,7 +71,7 @@ export function mkFakeGameSettings(
 	userID: integer,
 	game: Game,
 	playtype: Playtype,
-	modifant: Partial<UGPTSettings> = {}
+	modifant: Partial<UGPTSettingsDocument> = {}
 ) {
 	return dmf(FakeGameSettings, {
 		userID,

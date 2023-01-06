@@ -5,7 +5,7 @@ import { TachiConfig } from "lib/setup/config";
 export default async function UpdateIsPrimaryStatus() {
 	for (const game of TachiConfig.GAMES) {
 		const chartIDs = (
-			await db.charts[game].find({
+			await db.anyCharts[game].find({
 				isPrimary: false,
 			})
 		).map((e) => e.chartID);

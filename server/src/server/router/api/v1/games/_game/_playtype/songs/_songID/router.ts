@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 	const song = GetTachiData(req, "songDoc");
 	const { game, playtype } = GetGPT(req);
 
-	const charts = await db.charts[game].find({
+	const charts = await db.anyCharts[game].find({
 		songID: song.id,
 		playtype,
 	});

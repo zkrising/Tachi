@@ -9,7 +9,7 @@ import { PR_GAMESPECIFIC_SETTINGS } from "tachi-common/lib/schemas";
 import { FormatPrError, optNull } from "utils/prudence";
 import { GetUGPT } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
-import type { UGPTSettings } from "tachi-common";
+import type { UGPTSettingsDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -51,7 +51,7 @@ router.patch(
 			});
 		}
 
-		const body = req.safeBody as Partial<UGPTSettings["preferences"]>;
+		const body = req.safeBody as Partial<UGPTSettingsDocument["preferences"]>;
 
 		if (typeof body.defaultTable === "string") {
 			const table = await db.tables.findOne({

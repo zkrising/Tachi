@@ -1,8 +1,6 @@
 // Types related to game configuration. These are used by our `internal` game config
 // types
 
-import type { integer } from "../types";
-
 export interface RatingAlgorithmConfig {
 	/**
 	 * Write a short descrption for this rating algorithm.

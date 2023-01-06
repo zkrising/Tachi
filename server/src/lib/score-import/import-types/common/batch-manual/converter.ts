@@ -330,7 +330,7 @@ export async function ResolveMatchTypeToTachiData(
 				);
 			}
 
-			const song = await db.songs[game].findOne({ id: chart.songID });
+			const song = await db.anySongs[game].findOne({ id: chart.songID });
 
 			if (!song) {
 				logger.severe(`Song-Chart desync on ${chart.songID}.`);
@@ -348,14 +348,14 @@ export async function ResolveMatchTypeToTachiData(
 			let chart;
 
 			if (context.version) {
-				chart = await db.charts[game].findOne({
+				chart = await db.anyCharts[game].findOne({
 					"data.inGameID": identifier,
 					playtype: context.playtype,
 					difficulty,
 					versions: context.version,
 				});
 			} else {
-				chart = await db.charts[game].findOne({
+				chart = await db.anyCharts[game].findOne({
 					"data.inGameID": identifier,
 					playtype: context.playtype,
 					difficulty,
@@ -371,7 +371,7 @@ export async function ResolveMatchTypeToTachiData(
 				);
 			}
 
-			const song = await db.songs[game].findOne({ id: chart.songID });
+			const song = await db.anySongs[game].findOne({ id: chart.songID });
 
 			if (!song) {
 				logger.severe(`Song-Chart desync on ${chart.songID}.`);
@@ -400,7 +400,7 @@ export async function ResolveMatchTypeToTachiData(
 				);
 			}
 
-			const song = await db.songs[game].findOne({ id: chart.songID });
+			const song = await db.anySongs[game].findOne({ id: chart.songID });
 
 			if (!song) {
 				logger.severe(`Song-Chart desync on ${chart.songID}.`);

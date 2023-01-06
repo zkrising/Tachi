@@ -75,7 +75,7 @@ export function SearchSpecificGameSongs(
 	search: string,
 	limit = 100
 ): Promise<Array<SongSearchReturn>> {
-	return SearchCollection(db.songs[game], search, {}, limit);
+	return SearchCollection(db.anySongs[game], search, {}, limit);
 }
 
 export async function SearchSpecificGameSongsAndCharts(
@@ -94,7 +94,7 @@ export async function SearchSpecificGameSongsAndCharts(
 		chartQuery.playtype = playtype;
 	}
 
-	const charts = (await db.charts[game].find(chartQuery)) as Array<ChartDocument>;
+	const charts = (await db.anyCharts[game].find(chartQuery)) as Array<ChartDocument>;
 
 	return { songs, charts };
 }

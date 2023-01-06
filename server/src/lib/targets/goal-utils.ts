@@ -153,7 +153,7 @@ export async function ValidateGoalChartsAndCriteria(
 
 	switch (charts.type) {
 		case "single": {
-			const chart = await db.charts[game].findOne({
+			const chart = await db.anyCharts[game].findOne({
 				playtype,
 				chartID: charts.data,
 			});
@@ -192,7 +192,7 @@ export async function ValidateGoalChartsAndCriteria(
 				);
 			}
 
-			const multiCharts = await db.charts[game].find({
+			const multiCharts = await db.anyCharts[game].find({
 				playtype,
 				chartID: { $in: charts.data },
 			});
@@ -268,7 +268,7 @@ export async function ValidateGoalChartsAndCriteria(
 				);
 			}
 
-			const relatedChart = (await db.charts[game].findOne({
+			const relatedChart = (await db.anyCharts[game].findOne({
 				playtype,
 				chartID: charts.data,
 			})) as ChartDocument<

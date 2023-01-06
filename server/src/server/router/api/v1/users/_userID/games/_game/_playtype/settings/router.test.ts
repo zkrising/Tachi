@@ -4,7 +4,7 @@ import t from "tap";
 import { mkFakeUser } from "test-utils/misc";
 import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
-import type { UGPTSettings } from "tachi-common";
+import type { UGPTSettingsDocument } from "tachi-common";
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 	t.beforeEach(ResetDBState);

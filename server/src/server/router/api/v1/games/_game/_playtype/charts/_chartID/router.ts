@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
 	const chart = GetTachiData(req, "chartDoc");
 	const game = GetTachiData(req, "game");
 
-	const song = await db.songs[game].findOne({
+	const song = await db.anySongs[game].findOne({
 		id: chart.songID,
 	});
 

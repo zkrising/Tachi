@@ -216,8 +216,8 @@ router.get("/most-played", async (req, res) => {
 	const songIDs = mostPlayed.map((e) => e.songID);
 
 	const [songs, charts, pbs] = await Promise.all([
-		await db.songs[game].find({ id: { $in: songIDs } }),
-		await db.charts[game].find({ chartID: { $in: chartIDs } }),
+		await db.anySongs[game].find({ id: { $in: songIDs } }),
+		await db.anyCharts[game].find({ chartID: { $in: chartIDs } }),
 		await db["personal-bests"].find({ chartID: { $in: chartIDs }, userID: user.id }),
 	]);
 

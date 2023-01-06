@@ -106,9 +106,9 @@ router.get("/best", prValidate({ alg: "*string" }), async (req, res) => {
 	if (req.query.alg !== undefined && !IsValidScoreAlg(gptConfig, req.query.alg)) {
 		return res.status(400).json({
 			success: false,
-			description: `Invalid score algorithm. Expected any of ${gptConfig.scoreRatingAlgs.join(
-				", "
-			)}`,
+			description: `Invalid score algorithm. Expected any of ${Object.keys(
+				gptConfig.scoreRatingAlgs
+			).join(", ")}`,
 		});
 	}
 
@@ -153,7 +153,7 @@ router.get("/best", prValidate({ alg: "*string" }), async (req, res) => {
 router.get("/:chartID", async (req, res) => {
 	const { user, game, playtype } = GetUGPT(req);
 
-	const chart = await db.charts[game].findOne({
+	const chart = await db.anyCharts[game].findOne({
 		chartID: req.params.chartID,
 		playtype,
 	});
@@ -245,7 +245,7 @@ router.get("/:chartID/rivals", async (req, res) => {
 router.get("/:chartID/leaderboard-adjacent", async (req, res) => {
 	const { user, game, playtype } = GetUGPT(req);
 
-	const chart = await db.charts[game].findOne({
+	const chart = await db.anyCharts[game].findOne({
 		chartID: req.params.chartID,
 		playtype,
 	});

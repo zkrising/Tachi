@@ -79,8 +79,8 @@ export async function HandleOrphanQueue<I extends GPTString>(
 		songDoc.id = songID;
 		chartDoc.songID = songID;
 
-		await db.songs[game].insert(songDoc);
-		await db.charts[game].insert(chartDoc);
+		await db.anySongs[game].insert(songDoc);
+		await db.anyCharts[game].insert(chartDoc);
 		await db["orphan-chart-queue"].remove({
 			_id: orphanChart._id,
 		});
@@ -137,8 +137,8 @@ export async function DeorphanIfInQueue<I extends GPTString>(
 	songDoc.id = songID;
 	chartDoc.songID = songID;
 
-	await db.songs[game].insert(songDoc);
-	await db.charts[game].insert(chartDoc);
+	await db.anySongs[game].insert(songDoc);
+	await db.anyCharts[game].insert(chartDoc);
 	await db["orphan-chart-queue"].remove({
 		_id: orphanChart._id,
 	});

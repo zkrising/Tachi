@@ -85,7 +85,7 @@ router.get("/on-chart/:chartID", async (req, res) => {
 
 	const chartID = req.params.chartID;
 
-	const chart = await db.charts[game].findOne({ chartID, playtype });
+	const chart = await db.anyCharts[game].findOne({ chartID, playtype });
 
 	if (!chart) {
 		return res.status(404).json({

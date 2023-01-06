@@ -126,7 +126,7 @@ router.get("/custom", async (req, res) => {
 			});
 		}
 
-		const chart = await db.charts[game].findOne({ chartID: req.query.chartID as string });
+		const chart = await db.anyCharts[game].findOne({ chartID: req.query.chartID as string });
 
 		if (!chart || chart.playtype !== playtype) {
 			return res.status(400).json({
@@ -250,7 +250,7 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 
 		if (stat.mode === "chart") {
 			// eslint-disable-next-line no-await-in-loop
-			const chart = await db.charts[game].findOne({ chartID: stat.chartID });
+			const chart = await db.anyCharts[game].findOne({ chartID: stat.chartID });
 
 			if (!chart || chart.playtype !== playtype) {
 				return res.status(400).json({

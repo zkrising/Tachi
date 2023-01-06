@@ -79,7 +79,9 @@ export function IsValidScoreAlg(
 	gptConfig: GamePTConfig,
 	str: unknown
 ): str is GamePTConfig["scoreRatingAlgs"][0] {
-	return gptConfig.scoreRatingAlgs.includes(str as GamePTConfig["scoreRatingAlgs"][0]);
+	return Object.keys(gptConfig.scoreRatingAlgs).includes(
+		str as GamePTConfig["scoreRatingAlgs"][0]
+	);
 }
 
 export function IsString(val: unknown): val is string {

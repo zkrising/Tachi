@@ -6,7 +6,7 @@ import { ONE_MINUTE } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
 import monk from "monk";
-import { allSupportedGames } from "tachi-common/config/static-config";
+import { allSupportedGames } from "tachi-common";
 import { GetMillisecondsSince } from "utils/misc";
 import type { OrphanScoreDocument } from "lib/score-import/import-types/common/types";
 import type { TMiddleware, ICollection } from "monk";
@@ -31,7 +31,7 @@ import type {
 	QuestlineDocument,
 	QuestSubscriptionDocument,
 	NotificationDocument,
-	OrphanChart,
+	OrphanChartDocument,
 	PBScoreDocument,
 	UserDocument,
 	RecentlyViewedFolderDocument,
@@ -40,13 +40,14 @@ import type {
 	SongDocument,
 	TableDocument,
 	TachiAPIClientDocument,
-	UGPTSettings,
+	UGPTSettingsDocument,
 	UserGameStats,
 	UserGameStatsSnapshotDocument,
-	UserSettings,
+	UserSettingsDocument,
 	KsHookSettingsDocument,
 	ImportTrackerDocument as ImportTrackerDocument,
 	CGCardInfo,
+	GPTStrings,
 } from "tachi-common";
 import type { MigrationDocument, PrivateUserInfoDocument } from "utils/types";
 
@@ -125,17 +126,26 @@ export async function CloseMongoConnection() {
 // Force cast it out.
 const songs = Object.fromEntries(
 	allSupportedGames.map((e) => [e, monkDB.get<SongDocument>(`songs-${e}`)])
-) as unknown as Record<Game, ICollection<SongDocument>>;
+) as unknown as {
+	[G in Game]: ICollection<SongDocument<G>>;
+};
 
 const charts = Object.fromEntries(
 	allSupportedGames.map((e) => [e, monkDB.get<ChartDocument>(`charts-${e}`)])
-) as unknown as Record<Game, ICollection<ChartDocument>>;
+) as unknown as {
+	[G in Game]: ICollection<ChartDocument<GPTStrings[G]>>;
+};
 
 const db = {
 	// i have to handwrite this out for TS... :(
 	// dont worry, it was all macro'd.
 	songs,
 	charts,
+
+	// intended for when you want to query arbitrary chart/song documents.
+	anyCharts: charts as Record<Game, ICollection<ChartDocument>>,
+	anySongs: songs as Record<Game, ICollection<SongDocument>>,
+
 	scores: monkDB.get<ScoreDocument>("scores"),
 	"personal-bests": monkDB.get<PBScoreDocument>("personal-bests"),
 	folders: monkDB.get<FolderDocument>("folders"),
@@ -160,9 +170,9 @@ const db = {
 	"import-locks": monkDB.get<{ userID: integer; locked: boolean }>("import-locks"),
 	tables: monkDB.get<TableDocument>("tables"),
 	"invite-locks": monkDB.get<{ userID: integer; locked: boolean }>("invite-locks"),
-	"game-settings": monkDB.get<UGPTSettings>("game-settings"),
+	"game-settings": monkDB.get<UGPTSettingsDocument>("game-settings"),
 	"game-stats-snapshots": monkDB.get<UserGameStatsSnapshotDocument>("game-stats-snapshots"),
-	"user-settings": monkDB.get<UserSettings>("user-settings"),
+	"user-settings": monkDB.get<UserSettingsDocument>("user-settings"),
 	"user-private-information": monkDB.get<PrivateUserInfoDocument>("user-private-information"),
 	"api-clients": monkDB.get<TachiAPIClientDocument>("api-clients"),
 
@@ -173,7 +183,7 @@ const db = {
 
 	"fer-settings": monkDB.get<FervidexSettingsDocument>("fer-settings"),
 	"kshook-sv6c-settings": monkDB.get<KsHookSettingsDocument>("kshook-sv6c-settings"),
-	"orphan-chart-queue": monkDB.get<OrphanChart>("orphan-chart-queue"),
+	"orphan-chart-queue": monkDB.get<OrphanChartDocument>("orphan-chart-queue"),
 	"password-reset-codes": monkDB.get<{
 		code: string;
 		userID: integer;

@@ -12,7 +12,7 @@ import type {
 } from "tachi-common";
 
 export function FindChartWithChartID(game: Game, chartID: string) {
-	return db.charts[game].findOne({ chartID });
+	return db.anyCharts[game].findOne({ chartID });
 }
 
 /**
@@ -25,7 +25,7 @@ export function FindChartWithPTDF<
 	P extends Playtypes[G] = Playtypes[G],
 	I extends GPTString = GPTString
 >(game: G, songID: integer, playtype: P, difficulty: Difficulties[I]) {
-	return db.charts[game].findOne({
+	return db.anyCharts[game].findOne({
 		songID,
 		playtype,
 		difficulty,
@@ -42,7 +42,7 @@ export function FindChartWithPTDFVersion<
 	P extends Playtypes[G] = Playtypes[G],
 	I extends GPTString = GPTString
 >(game: G, songID: integer, playtype: P, difficulty: Difficulties[I], version: Versions[I]) {
-	return db.charts[game].findOne({
+	return db.anyCharts[game].findOne({
 		songID,
 		playtype,
 		difficulty,
@@ -79,7 +79,7 @@ export function FindChartOnInGameID(
 		throw new Error(`Cannot call FindChartOnInGameID for game ${game}.`);
 	}
 
-	return db.charts[game].findOne({
+	return db.anyCharts[game].findOne({
 		"data.inGameID": inGameID,
 		playtype,
 		difficulty,
@@ -133,7 +133,7 @@ export function FindChartOnInGameIDVersion<I extends GPTString = GPTString>(
 	difficulty: Difficulties[I],
 	version: Versions[I]
 ) {
-	return db.charts[game].findOne({
+	return db.anyCharts[game].findOne({
 		"data.inGameID": inGameID,
 		versions: version,
 		playtype,
@@ -211,7 +211,7 @@ export function FindChartOnSHA256(game: Game, hash: string) {
 		throw new Error(`Cannot call FindChartOnSHA256 for game ${game}.`);
 	}
 
-	return db.charts[game].findOne({
+	return db.anyCharts[game].findOne({
 		"data.hashSHA256": hash,
 	});
 }
@@ -221,7 +221,7 @@ export function FindChartOnSHA256Playtype(game: Game, hash: string, playtype: Pl
 		throw new Error(`Cannot call FindChartOnSHA256 for game ${game}.`);
 	}
 
-	return db.charts[game].findOne({
+	return db.anyCharts[game].findOne({
 		"data.hashSHA256": hash,
 		playtype,
 	});
@@ -256,7 +256,7 @@ export async function FindChartsOnPopularity(
 	// magnitude faster.
 	// Not entirely sure why, but $lookup is incredibly inefficient,
 	// and you should just avoid it.
-	const charts = (await db.charts[game].find(matchQuery)) as unknown as Array<
+	const charts = (await db.anyCharts[game].find(matchQuery)) as unknown as Array<
 		ChartDocument & {
 			__playcount: integer;
 		}

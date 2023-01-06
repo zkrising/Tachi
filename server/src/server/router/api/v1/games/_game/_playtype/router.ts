@@ -46,7 +46,7 @@ async function GetGameStats(
 				game,
 				playtype,
 			}),
-			db.charts[game].count({ playtype }),
+			db.anyCharts[game].count({ playtype }),
 		]);
 
 		gptStatCache.set(`${game}:${playtype}`, { scoreCount, playerCount, chartCount }, ONE_HOUR);

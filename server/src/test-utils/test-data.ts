@@ -34,7 +34,7 @@ import type {
 	UserDocument,
 	ScoreDocument,
 	SongDocument,
-	UGPTSettings,
+	UGPTSettingsDocument,
 } from "tachi-common";
 
 const file = (name: string) => path.join(__dirname, "/test-data", name);
@@ -840,7 +840,7 @@ export const FakeOtherUser: UserDocument = {
 	usernameLowercase: "other_user",
 };
 
-export const FakeGameSettings: UGPTSettings = {
+export const FakeGameSettings: UGPTSettingsDocument = {
 	game: "iidx",
 	playtype: "SP",
 	preferences: {

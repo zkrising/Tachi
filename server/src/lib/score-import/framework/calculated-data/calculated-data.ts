@@ -24,7 +24,6 @@ import type { ChartDocument, Game, GPTString, Lamps, Playtypes, ScoreDocument } 
 export async function CreateCalculatedData(
 	dryScore: DryScore,
 	chart: ChartDocument,
-	esd: number | null,
 	logger: KtLogger
 ): Promise<ScoreDocument["calculatedData"]> {
 	const game = dryScore.game;

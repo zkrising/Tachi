@@ -1,6 +1,6 @@
 import type { integer } from "../types";
 import type {
-	AdditionalMetrics,
+	OptionalMetrics,
 	Versions,
 	Difficulties,
 	ExtractedClasses,
@@ -28,7 +28,7 @@ export type BatchManualScore<GPT extends GPTString = GPTString> = ExtractMetrics
 	comment?: string | null;
 	judgements?: Record<Judgements[GPT], integer>;
 	timeAchieved?: number | null;
-	additionalMetrics?: Partial<ExtractMetrics<AdditionalMetrics[GPT]>>;
+	additionalMetrics?: Partial<ExtractMetrics<OptionalMetrics[GPT]>>;
 	scoreMeta?: Partial<ScoreMeta[GPT]>;
 } & (
 		| {

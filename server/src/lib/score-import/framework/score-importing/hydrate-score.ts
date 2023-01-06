@@ -1,6 +1,6 @@
 import { CreateCalculatedData } from "../calculated-data/calculated-data";
-import { CalculateESDForGame } from "../common/score-utils";
-import { GetGamePTConfig } from "tachi-common";
+import { CreateFullScoreData } from "../derivers/derivers";
+import { GetGPTString } from "tachi-common";
 import type { DryScore } from "../common/types";
 import type { KtLogger } from "lib/logger/logger";
 import type { ChartDocument, integer, ScoreDocument, SongDocument } from "tachi-common";
@@ -18,32 +18,17 @@ export async function HydrateScore(
 	scoreID: string,
 	logger: KtLogger
 ): Promise<ScoreDocument> {
-	const esd = CalculateESDForGame(
-		dryScore.game,
-		chart.playtype,
-		dryScore.scoreData.percent / 100
-	);
+	const gpt = GetGPTString(dryScore.game, chart.playtype);
 
-	const calculatedData = await CreateCalculatedData(dryScore, chart, esd, logger);
+	const scoreData = CreateFullScoreData(gpt, dryScore.scoreData, chart);
 
-	const gptConfig = GetGamePTConfig(dryScore.game, chart.playtype);
-
-	// Fill out the rest of the fields we want for scoreData
-	const scoreData = {
-		lampIndex: gptConfig.lamps.indexOf(dryScore.scoreData.lamp),
-		gradeIndex: gptConfig.grades.indexOf(dryScore.scoreData.grade),
-		esd,
-		...dryScoreData,
-	};
+	const calculatedData = await CreateCalculatedData(dryScore, chart, logger);
 
 	const score: ScoreDocument = {
 		...dryScore,
 
-		// then push our score data.
-		scoreData: {
-			...dryScore.scoreData,
-			...derivedMetrics,
-		},
+		// then push our new score data.
+		scoreData,
 
 		// everything below this point is sane
 		highlight: false,

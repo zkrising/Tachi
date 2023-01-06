@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 // ^ ts eslint currently gets very confused about the complexity on show here
@@ -6,9 +9,11 @@
 import { GetGrade } from "./common-utils";
 import { IIDXLIKE_DERIVERS } from "./games/iidx-like";
 import { SDVXLIKE_DERIVERS } from "./games/sdvx-like";
+import { InternalFailure } from "../common/converter-failures";
 import {
 	CHUNITHM_GBOUNDARIES,
 	GITADORA_GBOUNDARIES,
+	GetGPTConfig,
 	ITG_GBOUNDARIES,
 	JUBEAT_GBOUNDARIES,
 	MAIMAIDX_GBOUNDARIES,
@@ -16,8 +21,16 @@ import {
 	POPN_GBOUNDARIES,
 	WACCA_GBOUNDARIES,
 } from "tachi-common";
+import type { DryScore } from "../common/types";
 import type { GPTDerivers } from "./types";
-import type { GPTString } from "tachi-common";
+import type {
+	GPTString,
+	ChartDocument,
+	ProvidedMetrics,
+	DerivedMetrics,
+	ScoreData,
+} from "tachi-common";
+import type { MetricDeriver } from "tachi-common/types/metrics";
 
 type AllGPTDerivers = {
 	[GPT in GPTString]: GPTDerivers<GPT>;
@@ -26,7 +39,7 @@ type AllGPTDerivers = {
 /**
  * How do we derive the "derivedMetrics" for each game?
  */
-export const GPT_DERIVERS: AllGPTDerivers = {
+const GPT_DERIVERS: AllGPTDerivers = {
 	// these games quite literally *all* work the same way.
 	"bms:14K": IIDXLIKE_DERIVERS,
 	"bms:7K": IIDXLIKE_DERIVERS,
@@ -119,3 +132,74 @@ export const GPT_DERIVERS: AllGPTDerivers = {
 		},
 	},
 };
+
+/**
+ * Given the providedMetrics and chart this score is on, derive the rest of the metrics
+ * we want to store.
+ */
+function DeriveMetrics<GPT extends GPTString>(
+	gpt: GPTString,
+	metrics: ProvidedMetrics[GPT],
+	chart: ChartDocument<GPT>
+) {
+	const deriverImplementation: Record<
+		string,
+		MetricDeriver<ProvidedMetrics[GPT], GPT>
+	> = GPT_DERIVERS[gpt];
+
+	const derivedMetrics: Record<string, DerivedMetricValue> = {};
+
+	const gptConfig = GetGPTConfig(gpt);
+
+	for (const [key, fn] of Object.entries(deriverImplementation)) {
+		const metricConfig = gptConfig.derivedMetrics[key];
+
+		if (!metricConfig) {
+			throw new InternalFailure(
+				`${gpt} has a deriver defined for '${key}', but no such field exists in the config?`
+			);
+		}
+
+		const value = fn(metrics, chart);
+
+		// enum values on scores are stored as { string, index }. One is convenient
+		// for sorting and stuff in the DB, the other is convenient to know what
+		// actually is what. Integers only sucks.
+		if (metricConfig.type === "ENUM") {
+			const index = metricConfig.values.indexOf(value);
+
+			if (index === -1) {
+				throw new InternalFailure(
+					`Failed to get the index for ENUM ${gpt} '${key}' for value ${value}. This should never happen!`
+				);
+			}
+
+			derivedMetrics[key] = {
+				string: value,
+				index,
+			};
+		} else {
+			derivedMetrics[key] = value;
+		}
+	}
+
+	return derivedMetrics as DerivedMetrics[GPT];
+}
+
+/**
+ * Return a full piece of scoreData.
+ */
+export function CreateFullScoreData<GPT extends GPTString>(
+	gpt: GPTString,
+	dryScoreData: DryScore["scoreData"],
+	chart: ChartDocument<GPT>
+) {
+	const derivedMetrics = DeriveMetrics(gpt, dryScoreData, chart);
+
+	const scoreData: ScoreData = {
+		...dryScoreData,
+		derivedMetrics,
+	};
+
+	return scoreData;
+}

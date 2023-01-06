@@ -3,7 +3,7 @@ import type {
 	Versions,
 	Classes,
 	Difficulties,
-	ExtractedAdditionalMetrics,
+	ExtractedOptionalMetrics as ExtractedOptionalMetrics,
 	ExtractedScoreMetrics,
 	GPTString,
 	GPTStringToGame,
@@ -415,7 +415,7 @@ export type QuestSubscriptionDocument = {
 
 export type ScoreData<GPT extends GPTString = GPTString> = ExtractedScoreMetrics[GPT] & {
 	judgements: Partial<Record<Judgements[GPT], integer | null>>;
-	additionalMetrics: Partial<ExtractedAdditionalMetrics[GPT]>;
+	optional: Partial<ExtractedOptionalMetrics[GPT]>;
 };
 
 export interface ScoreDocument<GPT extends GPTString = GPTString> {

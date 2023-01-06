@@ -1,6 +1,6 @@
 import type { integer } from "../types";
 import type { ChartDocument } from "./documents";
-import type { AdditionalMetrics, DerivedMetrics, GPTString, ProvidedMetrics } from "./game-config";
+import type { OptionalMetrics, DerivedMetrics, GPTString, ProvidedMetrics } from "./game-config";
 
 export type DecimalMetricValidator<GPT extends GPTString> = (
 	metric: number,
@@ -101,10 +101,10 @@ export type ExtractEnumMetricNames<R extends Record<string, ScoreMetric>> = {
 export type ExtractEnumValues<
 	GPT extends GPTString,
 	MetricName extends ExtractEnumMetricNames<
-		AdditionalMetrics[GPT] & DerivedMetrics[GPT] & ProvidedMetrics[GPT]
+		DerivedMetrics[GPT] & OptionalMetrics[GPT] & ProvidedMetrics[GPT]
 	>
-> = (AdditionalMetrics[GPT] &
-	DerivedMetrics[GPT] &
+> = (DerivedMetrics[GPT] &
+	OptionalMetrics[GPT] &
 	ProvidedMetrics[GPT])[MetricName] extends EnumScoreMetric<infer EnumValues>
 	? EnumValues
 	: never;
@@ -122,12 +122,14 @@ export type ExtractMetrics<R extends Record<string, ScoreMetric>> = {
 	[K in keyof R]: ExtractMetricType<R[K]>;
 };
 
+export type DerivedMetricValue = Array<number> | integer | number | string;
+
 export type MetricDeriver<
 	M extends Record<string, PossibleMetrics>,
 	GPT extends GPTString,
 	// possible return values
 	// from a derived fn
-	V extends Array<number> | integer | number | string
+	V extends DerivedMetricValue = DerivedMetricValue
 > = (mandatoryMetrics: M, chart: ChartDocument<GPT>) => V;
 
 /**

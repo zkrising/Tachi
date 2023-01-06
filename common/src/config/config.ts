@@ -97,6 +97,10 @@ export function GetGamePTConfig(game: Game, playtype: Playtypes[Game]): GamePTCo
 	return GAME_PT_CONFIGS[gptString];
 }
 
+export function GetGPTConfig(gptString: GPTString): GamePTConfig {
+	return GAME_PT_CONFIGS[gptString];
+}
+
 /**
  * Returns the configuration for this specific Game + Playtype. This type is narrowed
  * down to its least generic form, and is instead for gpt-specific use cases.

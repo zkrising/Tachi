@@ -195,8 +195,8 @@ export function FormatChart(
 
 // For games with 'BP', show that next to the clear.
 export function IIDXBMSLampGoalFormatter(pb: PBScoreDocument<GPTStrings["bms" | "iidx" | "pms"]>) {
-	if (typeof pb.scoreData.additionalMetrics.bp === "number") {
-		return `${pb.scoreData.lamp.string} (BP: ${pb.scoreData.additionalMetrics.bp})`;
+	if (typeof pb.scoreData.optional.bp === "number") {
+		return `${pb.scoreData.lamp.string} (BP: ${pb.scoreData.optional.bp})`;
 	}
 
 	return pb.scoreData.lamp;

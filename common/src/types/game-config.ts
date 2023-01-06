@@ -134,7 +134,7 @@ export type DerivedMetrics = {
 	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["derivedMetrics"];
 };
 
-export type AdditionalMetrics = {
+export type OptionalMetrics = {
 	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["optionalMetrics"];
 };
 
@@ -167,7 +167,7 @@ export type ExtractedScoreMetrics = {
 		ExtractMetrics<typeof GAME_PT_CONFIGS[G]["providedMetrics"]>;
 };
 
-export type ExtractedAdditionalMetrics = {
+export type ExtractedOptionalMetrics = {
 	[G in GPTString]: ExtractMetrics<typeof GAME_PT_CONFIGS[G]["optionalMetrics"]>;
 };
 
@@ -239,7 +239,7 @@ export interface SpecificGamePTConfig<GPT extends GPTString> {
 	 * The idea of additionalMetrics allow us to store useful metrics about scores
 	 * without necessitating that they exist on arrival. Incredibly convenient.
 	 */
-	additionalMetrics: AdditionalMetrics[GPT];
+	additionalMetrics: OptionalMetrics[GPT];
 
 	/**
 	 * What rating algorithms may a score have attached onto it for this GPT?

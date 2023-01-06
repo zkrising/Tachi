@@ -1,5 +1,4 @@
 /* eslint-disable no-await-in-loop */
-import { VERSION_INFO } from "lib/constants/version";
 import { PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
@@ -7,7 +6,7 @@ import fetch from "utils/fetch";
 import type {
 	ChartDocument,
 	Difficulties,
-	GPTSupportedVersions,
+	Versions,
 	integer,
 	Playtypes,
 	SongDocument,
@@ -82,7 +81,7 @@ export async function UpdatePoyashiData() {
 		songID: integer,
 		playtype: Playtypes["iidx"],
 		diff: Difficulties["iidx:DP" | "iidx:SP"],
-		version: GPTSupportedVersions["iidx:DP" | "iidx:SP"]
+		version: Versions["iidx:DP" | "iidx:SP"]
 	) {
 		for (const chart of iidxCharts) {
 			if (
@@ -119,7 +118,7 @@ export async function UpdatePoyashiData() {
 		}
 
 		// current poyashi version is 29
-		const tachiChart = FindChartWithPTDFVersion(tachiSong.id, playtype, diff, "29");
+		const tachiChart = FindChartWithPTDFVersion(tachiSong.id, playtype, diff, "CastHour");
 
 		if (!tachiChart) {
 			logger.warn(

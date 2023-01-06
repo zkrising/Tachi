@@ -1,4 +1,4 @@
-import type { GPTSupportedVersions, integer } from "tachi-common";
+import type { Versions, integer } from "tachi-common";
 
 export interface FervidexScore {
 	chart: `${"dp" | "sp"}${"a" | "b" | "h" | "l" | "n"}`;
@@ -65,7 +65,7 @@ export interface FervidexScore {
 }
 
 export interface FervidexContext {
-	version: GPTSupportedVersions["iidx:DP" | "iidx:SP"];
+	version: Versions["iidx:DP" | "iidx:SP"];
 	timeReceived: number;
 	userID: integer;
 }

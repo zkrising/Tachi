@@ -61,7 +61,7 @@ async function FetchSP12Data() {
 	const updatedChartIDs: Array<string> = [];
 
 	for (const sh of rj.sheets) {
-		let chart: ChartDocument | null;
+		let chart: ChartDocument<"iidx:SP"> | null;
 
 		try {
 			chart = await HumanisedTitleLookup(sh.title);
@@ -142,26 +142,26 @@ async function FetchSP12Data() {
 
 			val = parseFloat(val.toFixed(2));
 
-			let ktKey: keyof ChartDocument<"iidx:SP">["tierlistInfo"];
+			let ktKey: "exhcTier" | "hcTier" | "ncTier";
 
 			if (key === "exh") {
-				ktKey = "kt-EXHC";
+				ktKey = "exhcTier";
 			} else if (key === "hard") {
-				ktKey = "kt-HC";
+				ktKey = "hcTier";
 			} else {
-				ktKey = "kt-NC";
+				ktKey = "ncTier";
 			}
 
 			// If EXH, just save the string version as 12.xx
 			// Else, use the A/S+ thing that people are used to.
 			const text =
-				ktKey === "kt-EXHC"
+				ktKey === "exhcTier"
 					? val.toFixed(2)
 					: `12${stringVal.replace(/(個人差|地力)/u, "")}`;
 
 			const idvDiff = stringVal.includes("個人差");
 
-			const existingTlInfo = chart.tierlistInfo[ktKey];
+			const existingTlInfo = chart.data[ktKey];
 
 			if (
 				existingTlInfo &&
@@ -180,7 +180,7 @@ async function FetchSP12Data() {
 				},
 				{
 					$set: {
-						[`tierlistInfo.${ktKey}`]: {
+						[`data.${ktKey}`]: {
 							text,
 							value: val,
 							individualDifference: idvDiff,
@@ -254,7 +254,7 @@ async function HumanisedTitleLookup(originalTitle: string) {
 		);
 	}
 
-	return chart;
+	return chart as ChartDocument<"iidx:SP">;
 }
 
 if (require.main === module) {

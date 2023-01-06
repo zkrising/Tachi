@@ -2,7 +2,7 @@ import db from "external/mongo/db";
 import type { KtLogger } from "lib/logger/logger";
 import type {
 	Game,
-	GPTSupportedVersions,
+	Versions,
 	GPTString,
 	integer,
 	PBScoreDocument,
@@ -456,7 +456,7 @@ async function GetBestJubilityOnSongs(
 	return r.map((e) => e.doc);
 }
 
-const CURRENT_JUBEAT_HOT_VERSION: GPTSupportedVersions["jubeat:Single"] = "festo";
+const CURRENT_JUBEAT_HOT_VERSION: Versions["jubeat:Single"] = "festo";
 
 export async function GetPBsForJubility(userID: integer) {
 	const hotSongs = await db.songs.jubeat.find(

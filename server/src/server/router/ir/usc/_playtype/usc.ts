@@ -4,12 +4,19 @@ import CreateLogCtx from "lib/logger/logger";
 import { MStoS } from "utils/misc";
 import { GetPBOnChart, GetServerRecordOnChart } from "utils/scores";
 import type { USCServerScore } from "./types";
-import type { ChartDocument, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
+import type {
+	ChartDocument,
+	GPTStrings,
+	integer,
+	PBScoreDocument,
+	ScoreDocument,
+} from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 
 const logger = CreateLogCtx(__filename);
 
 export const TACHI_LAMP_TO_USC: Record<
-	PBScoreDocument<"usc:Controller" | "usc:Keyboard">["scoreData"]["lamp"],
+	GetEnumValue<GPTStrings["usc"], "lamp">,
 	USCServerScore["lamp"]
 > = {
 	// we don't do NO PLAY, so its not handled.

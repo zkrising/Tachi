@@ -14,7 +14,7 @@ import { FindSongOnID } from "utils/queries/songs";
 import type { ConverterFunction } from "../../types";
 import type { CGContext, CGMusecaScore } from "../types";
 import type { DryScore } from "lib/score-import/framework/common/types";
-import type { Difficulties, GPTSupportedVersions } from "tachi-common";
+import type { Difficulties, Versions } from "tachi-common";
 
 export const ConverterAPICGMuseca: ConverterFunction<CGMusecaScore, CGContext> = async (
 	data,
@@ -94,7 +94,7 @@ function ConvertDifficulty(diff: number): Difficulties["museca:Single"] {
 	throw new InvalidScoreFailure(`Invalid difficulty of ${diff} - Could not convert.`);
 }
 
-function ConvertVersion(ver: number): GPTSupportedVersions["museca:Single"] {
+function ConvertVersion(ver: number): Versions["museca:Single"] {
 	switch (ver) {
 		case 1:
 			return "1.5-b";

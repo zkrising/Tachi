@@ -116,12 +116,12 @@ export async function DeorphanIfInQueue<I extends GPTString>(
 	game: IDStringToGame[I],
 	orphanMatchCriteria: FilterQuery<OrphanChart<I>>
 ): Promise<ChartDocument<I> | null> {
-	const orphanChart = (await db["orphan-chart-queue"].findOne(
+	const orphanChart = await db["orphan-chart-queue"].findOne(
 		{ idString, ...orphanMatchCriteria },
 		{
 			projectID: true,
 		}
-	)) as WithID<OrphanChart<I>> | null;
+	);
 
 	if (!orphanChart) {
 		return null;

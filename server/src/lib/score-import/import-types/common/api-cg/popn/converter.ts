@@ -13,13 +13,7 @@ import { FindSongOnID } from "utils/queries/songs";
 import type { ConverterFunction } from "../../types";
 import type { CGContext, CGPopnScore } from "../types";
 import type { DryScore } from "lib/score-import/framework/common/types";
-import type {
-	Difficulties,
-	GPTSupportedVersions,
-	HitMetaLookup,
-	Lamps,
-	integer,
-} from "tachi-common";
+import type { Difficulties, Versions, HitMetaLookup, Lamps, integer } from "tachi-common";
 
 export const ConverterAPICGPopn: ConverterFunction<CGPopnScore, CGContext> = async (
 	data,
@@ -112,7 +106,7 @@ function ConvertDifficulty(diff: number): Difficulties["popn:9B"] {
 	throw new InvalidScoreFailure(`Invalid difficulty of ${diff} - Could not convert.`);
 }
 
-function ConvertVersion(ver: number): GPTSupportedVersions["popn:9B"] {
+function ConvertVersion(ver: number): Versions["popn:9B"] {
 	switch (ver) {
 		case 26:
 			return "kaimei";

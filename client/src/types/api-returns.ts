@@ -24,7 +24,7 @@ import {
 	TableDocument,
 	ProfileRatingLookup,
 	UserGameStats,
-	UserGameStatsSnapshot,
+	UserGameStatsSnapshotDocument,
 	QuestDocument,
 	QuestSubscriptionDocument,
 	QuestlineDocument,
@@ -76,7 +76,7 @@ export type UGPTPreferenceStatsReturn =
 			related: { folder: FolderDocument };
 	  };
 
-export type UGPTHistory = Omit<UserGameStatsSnapshot, "userID" | "game" | "playtype">[];
+export type UGPTHistory = Omit<UserGameStatsSnapshotDocument, "userID" | "game" | "playtype">[];
 
 export interface SessionReturns<I extends GPTString = GPTString> {
 	session: SessionDocument;

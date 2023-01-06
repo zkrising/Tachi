@@ -5,7 +5,7 @@ import { CSVParseError, NaiveCSVParse } from "utils/naive-csv-parser";
 import type { ParserFunctionReturns } from "../types";
 import type { EamusementScoreData, IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
 import type { KtLogger } from "lib/logger/logger";
-import type { integer, GPTSupportedVersions, Playtypes } from "tachi-common";
+import type { integer, Versions, Playtypes } from "tachi-common";
 
 export enum EAM_VERSION_NAMES {
 	"1st&substream" = 1,
@@ -178,7 +178,7 @@ export function IIDXCSVParse(csvBuffer: Buffer, playtype: Playtypes["iidx"], log
 
 	return {
 		iterableData,
-		version: gameVersion.toString() as GPTSupportedVersions["iidx:DP" | "iidx:SP"],
+		version: gameVersion.toString() as Versions["iidx:DP" | "iidx:SP"],
 		hasBeginnerAndLegg,
 	};
 }

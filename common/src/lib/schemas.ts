@@ -866,6 +866,9 @@ function PR_METRIC(metric: ConfScoreMetric): ValidSchemaValue {
 
 		case "ENUM":
 			return p.isIn(metric.values);
+
+		case "NULLABLE_GRAPH":
+			return ["?number"];
 	}
 }
 

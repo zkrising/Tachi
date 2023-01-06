@@ -1,26 +1,26 @@
 import type {
 	ChartDocumentData,
-	Versions,
 	Classes,
+	DerivedMetrics,
 	Difficulties,
-	ConfOptionalMetrics as ConfOptionalMetrics,
 	GPTString,
 	GPTStringToGame,
 	GPTStringToPlaytype,
 	Game,
 	Judgements,
+	OptionalMetrics,
 	Playtype,
 	Playtypes,
 	Preferences,
 	ProfileRatingAlgorithms,
+	ProvidedMetrics,
 	ScoreMeta,
 	ScoreRatingAlgorithms,
 	SessionRatingAlgorithms,
 	SongDocumentData,
 	UserAuthLevels,
+	Versions,
 	integer,
-	DerivedMetrics,
-	ProvidedMetrics,
 } from "../types";
 import type { APIPermissions } from "./api";
 import type { ImportTypes } from "./import-types";
@@ -417,7 +417,7 @@ export type QuestSubscriptionDocument = {
 export type ScoreData<GPT extends GPTString = GPTString> = DerivedMetrics[GPT] &
 	ProvidedMetrics[GPT] & {
 		judgements: Partial<Record<Judgements[GPT], integer | null>>;
-		optional: Partial<ConfOptionalMetrics[GPT]>;
+		optional: Partial<OptionalMetrics[GPT]>;
 	};
 
 export interface ScoreDocument<GPT extends GPTString = GPTString> {

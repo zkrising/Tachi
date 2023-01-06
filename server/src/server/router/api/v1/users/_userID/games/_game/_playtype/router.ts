@@ -30,7 +30,7 @@ import {
 	GetUsersRankingAndOutOf,
 	GetUsersWithIDs,
 } from "utils/user";
-import type { integer, PBScoreDocument, UserGameStatsSnapshot } from "tachi-common";
+import type { integer, PBScoreDocument, UserGameStatsSnapshotDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -155,17 +155,18 @@ router.get(
 					playtype: 0,
 				},
 			}
-		)) as Array<Omit<UserGameStatsSnapshot, "game" | "playtype" | "userID">>;
+		)) as Array<Omit<UserGameStatsSnapshotDocument, "game" | "playtype" | "userID">>;
 
-		const currentSnapshot: Omit<UserGameStatsSnapshot, "game" | "playtype" | "userID"> = {
-			classes: stats.classes,
-			ratings: stats.ratings,
+		const currentSnapshot: Omit<UserGameStatsSnapshotDocument, "game" | "playtype" | "userID"> =
+			{
+				classes: stats.classes,
+				ratings: stats.ratings,
 
-			// lazy, should probably be this midnight
-			timestamp: Date.now(),
-			playcount: await GetUGPTPlaycount(user.id, game, playtype),
-			rankings: await GetAllRankings(stats),
-		};
+				// lazy, should probably be this midnight
+				timestamp: Date.now(),
+				playcount: await GetUGPTPlaycount(user.id, game, playtype),
+				rankings: await GetAllRankings(stats),
+			};
 
 		return res.status(200).json({
 			success: true,

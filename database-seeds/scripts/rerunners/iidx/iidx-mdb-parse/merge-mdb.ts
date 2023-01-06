@@ -3,7 +3,7 @@ import {
 	ChartDocument,
 	Difficulties,
 	GetGamePTConfig,
-	GPTSupportedVersions,
+	Versions,
 	integer,
 	SongDocument,
 } from "tachi-common";
@@ -38,7 +38,7 @@ program
 
 program.parse(process.argv);
 const options = program.opts() as {
-	version: GPTSupportedVersions["iidx:SP"];
+	version: Versions["iidx:SP"];
 	index: "0" | "1";
 	basedir: string;
 	omni: boolean;

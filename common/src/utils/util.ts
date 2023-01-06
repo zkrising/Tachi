@@ -7,7 +7,7 @@ import type {
 	Playtypes,
 	SongDocument,
 } from "../types";
-import type { PrudenceSchema, ValidSchemaValue } from "prudence";
+import type { PrudenceError, ValidSchemaValue } from "prudence";
 import type { AnyZodObject } from "zod";
 
 export function FormatInt(v: number): string {
@@ -43,7 +43,7 @@ export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 		// it's technically correct, but in the worst way, since this isn't
 		// actually possible.
 		// todo: come up with something better.
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
 		const shortDiff = gptConfig.difficulties.difficultyShorthand[ch.difficulty];
 
 		// gitadora should always use short diffs. they just look better.
@@ -215,4 +215,18 @@ export function PrudenceZodShim(zodSchema: AnyZodObject): ValidSchemaValue {
 
 		return res.error.message;
 	};
+}
+
+/**
+ * Formats a PrudenceError into something a little more readable.
+ * @param err - The prudence error to format.
+ * @param foreword - A description of what kind of error this was. Defaults to "Error".
+ */
+export function FormatPrError(err: PrudenceError, foreword = "Error"): string {
+	const receivedText =
+		typeof err.userVal === "object" && err.userVal !== null
+			? ""
+			: ` | Received ${err.userVal} [${err.userVal === null ? "null" : typeof err.userVal}]`;
+
+	return `${foreword}: ${err.keychain} | ${err.message}${receivedText}.`;
 }

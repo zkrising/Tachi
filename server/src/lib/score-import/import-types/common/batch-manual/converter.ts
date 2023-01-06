@@ -28,7 +28,7 @@ import type {
 	BatchManualScore,
 	ChartDocument,
 	Difficulties,
-	GPTSupportedVersions,
+	Versions,
 	Grades,
 	GPTString,
 	ImportTypes,
@@ -315,7 +315,7 @@ export async function ResolveMatchTypeToTachiData(
 				chart = await FindSDVXChartOnInGameIDVersion(
 					identifier,
 					diff,
-					context.version as GPTSupportedVersions["sdvx:Single"]
+					context.version as Versions["sdvx:Single"]
 				);
 			} else {
 				chart = await FindSDVXChartOnInGameID(identifier, diff);

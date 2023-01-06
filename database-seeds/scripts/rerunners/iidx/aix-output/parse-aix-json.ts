@@ -1,6 +1,13 @@
 import { readdirSync, readFileSync } from "fs";
 import { join } from "path";
-import { ChartDocument, Difficulties, integer, Playtypes, SongDocument } from "tachi-common";
+import {
+	ChartDocument,
+	Difficulties,
+	GPTStrings,
+	integer,
+	Playtypes,
+	SongDocument,
+} from "tachi-common";
 import { CreateChartID, GetFreshScoreIDGenerator, MutateCollection } from "../../util";
 
 interface AixChart {
@@ -22,7 +29,7 @@ interface AixData {
 }
 
 function ConvertAixStuff(d: AixData, songID: integer) {
-	const searchTerms = [];
+	const searchTerms: Array<string> = [];
 
 	if (d.title !== d.title_ascii) {
 		searchTerms.push(d.title_ascii);
@@ -40,7 +47,7 @@ function ConvertAixStuff(d: AixData, songID: integer) {
 		id: songID,
 	};
 
-	const charts = [];
+	const charts: Array<ChartDocument<GPTStrings["iidx"]>> = [];
 	for (const [diff, c] of Object.entries(d.charts)) {
 		// wonderful ts oddity
 		charts.push(ParseAixChart(d, c, diff as ChartStrings, songID));
@@ -76,27 +83,57 @@ function SplitAixDiff(diff: ChartStrings): {
 function ParseAixChart(d: AixData, c: AixChart, diff: ChartStrings, songID: integer) {
 	const { difficulty, playtype } = SplitAixDiff(diff);
 
-	const chart: ChartDocument<"iidx:SP" | "iidx:DP"> = {
-		chartID: CreateChartID(),
-		data: {
-			notecount: c.note_count,
-			inGameID: d.entry_id,
-			"2dxtraSet": null,
-			bpiCoefficient: null,
-			hashSHA256: null,
-			kaidenAverage: null,
-			worldRecord: null,
-		},
-		difficulty,
-		playtype,
-		isPrimary: true,
-		level: c.rating.toString(),
-		levelNum: c.rating,
-		rgcID: null,
-		songID,
-		tierlistInfo: {},
-		versions: ["inf"],
-	};
+	let chart: ChartDocument<GPTStrings["iidx"]>;
+
+	if (playtype === "SP") {
+		const temp: ChartDocument<"iidx:SP"> = {
+			chartID: CreateChartID(),
+			data: {
+				notecount: c.note_count,
+				inGameID: d.entry_id,
+				"2dxtraSet": null,
+				bpiCoefficient: null,
+				hashSHA256: null,
+				kaidenAverage: null,
+				worldRecord: null,
+				exhcTier: null,
+				hcTier: null,
+				ncTier: null,
+			},
+			difficulty,
+			playtype,
+			isPrimary: true,
+			level: c.rating.toString(),
+			levelNum: c.rating,
+			songID,
+			versions: ["INFINITAS"],
+		};
+
+		chart = temp;
+	} else {
+		const temp: ChartDocument<"iidx:DP"> = {
+			chartID: CreateChartID(),
+			data: {
+				notecount: c.note_count,
+				inGameID: d.entry_id,
+				"2dxtraSet": null,
+				bpiCoefficient: null,
+				hashSHA256: null,
+				kaidenAverage: null,
+				worldRecord: null,
+				dpTier: null,
+			},
+			difficulty,
+			playtype,
+			isPrimary: true,
+			level: c.rating.toString(),
+			levelNum: c.rating,
+			songID,
+			versions: ["INFINITAS"],
+		};
+
+		chart = temp;
+	}
 
 	return chart;
 }
@@ -106,8 +143,8 @@ if (require.main === module) {
 
 	const getSongID = GetFreshScoreIDGenerator("iidx");
 
-	const newSongs = [];
-	const newCharts = [];
+	const newSongs: Array<SongDocument<"iidx">> = [];
+	const newCharts: Array<ChartDocument<GPTStrings["iidx"]>> = [];
 	for (const file of files) {
 		if (file.endsWith(".json")) {
 			const songID = getSongID();

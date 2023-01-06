@@ -6,14 +6,7 @@ import { exec } from "child_process";
 import crypto from "crypto";
 import { URL } from "url";
 import type { KtLogger } from "lib/logger/logger";
-import type {
-	Game,
-	GamePTConfig,
-	integer,
-	Playtype,
-	GPTSupportedVersions,
-	GPTString,
-} from "tachi-common";
+import type { Game, GamePTConfig, integer, Playtype, Versions, GPTString } from "tachi-common";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
 // the developer of this has migrated everything to Force ES6 style modules,
@@ -329,7 +322,7 @@ export function StringIsGameVersion(
 	game: Game,
 	playtype: Playtype,
 	version: string
-): version is GPTSupportedVersions[GPTString] {
+): version is Versions[GPTString] {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	// @ts-expect-error yes, we know!

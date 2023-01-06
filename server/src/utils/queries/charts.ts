@@ -4,7 +4,7 @@ import type {
 	ChartDocument,
 	Difficulties,
 	Game,
-	GPTSupportedVersions,
+	Versions,
 	GPTString,
 	integer,
 	Playtype,
@@ -41,13 +41,7 @@ export function FindChartWithPTDFVersion<
 	G extends Game = Game,
 	P extends Playtypes[G] = Playtypes[G],
 	I extends GPTString = GPTString
->(
-	game: G,
-	songID: integer,
-	playtype: P,
-	difficulty: Difficulties[I],
-	version: GPTSupportedVersions[I]
-) {
+>(game: G, songID: integer, playtype: P, difficulty: Difficulties[I], version: Versions[I]) {
 	return db.charts[game].findOne({
 		songID,
 		playtype,
@@ -118,7 +112,7 @@ export function FindIIDXChartOnInGameIDVersion(
 	inGameID: number,
 	playtype: Playtype,
 	difficulty: Difficulties[GPTString],
-	version: GPTSupportedVersions[GPTString]
+	version: Versions[GPTString]
 ) {
 	return db.charts.iidx.findOne({
 		"data.inGameID": inGameID,
@@ -137,7 +131,7 @@ export function FindChartOnInGameIDVersion<I extends GPTString = GPTString>(
 	inGameID: number,
 	playtype: Playtype,
 	difficulty: Difficulties[I],
-	version: GPTSupportedVersions[I]
+	version: Versions[I]
 ) {
 	return db.charts[game].findOne({
 		"data.inGameID": inGameID,
@@ -181,7 +175,7 @@ export function FindSDVXChartOnInGameID(
 export function FindSDVXChartOnInGameIDVersion(
 	inGameID: number,
 	difficulty: Difficulties["sdvx:Single"] | "ANY_INF",
-	version: GPTSupportedVersions["sdvx:Single"]
+	version: Versions["sdvx:Single"]
 ) {
 	const diffQuery =
 		difficulty === "ANY_INF"
@@ -198,7 +192,7 @@ export function FindSDVXChartOnInGameIDVersion(
 export function FindSDVXChartOnDFVersion(
 	songID: integer,
 	difficulty: Difficulties["sdvx:Single"] | "ANY_INF",
-	version: GPTSupportedVersions["sdvx:Single"]
+	version: Versions["sdvx:Single"]
 ) {
 	const diffQuery =
 		difficulty === "ANY_INF"

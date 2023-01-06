@@ -13,7 +13,7 @@ import { FindSongOnID } from "utils/queries/songs";
 import type { ConverterFunction } from "../../types";
 import type { CGContext, CGSDVXScore } from "../types";
 import type { DryScore } from "lib/score-import/framework/common/types";
-import type { GPTSupportedVersions, Lamps } from "tachi-common";
+import type { Versions, Lamps } from "tachi-common";
 
 export const ConverterAPICGSDVX: ConverterFunction<CGSDVXScore, CGContext> = async (
 	data,
@@ -91,7 +91,7 @@ function ConvertDifficulty(diff: number) {
 	throw new InvalidScoreFailure(`Invalid difficulty of ${diff} - Could not convert.`);
 }
 
-function ConvertVersion(ver: number): GPTSupportedVersions["sdvx:Single"] {
+function ConvertVersion(ver: number): Versions["sdvx:Single"] {
 	switch (ver) {
 		case 1:
 			return "booth";

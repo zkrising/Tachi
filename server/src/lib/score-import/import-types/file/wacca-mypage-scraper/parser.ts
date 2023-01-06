@@ -54,6 +54,7 @@ export function ParseMyPageScraperRecordsCSV(
 	try {
 		rawCSVRecords = parse(fileData.buffer, { columns: true }) as Array<unknown>;
 	} catch (err) {
+		// eslint-disable-next-line cadence/no-instanceof
 		if (err instanceof CSVError) {
 			throw new ScoreImportFatalError(400, `Failed to parse CSV: ${err.message}`);
 		}
@@ -124,6 +125,7 @@ export function ParseMyPageScraperPlayerCSV(
 	try {
 		csvRecords = parse(fileData.buffer, { columns: true }) as Array<Record<string, string>>;
 	} catch (err) {
+		// eslint-disable-next-line cadence/no-instanceof
 		if (err instanceof CSVError) {
 			throw new ScoreImportFatalError(400, `Failed to parse CSV: ${err.message}`);
 		}

@@ -92,11 +92,11 @@ router.get("/", async (req, res) => {
 				(e) => (e as ChartDocument<"iidx:DP" | "iidx:SP">).data["2dxtraSet"] === null
 			);
 		} else {
-			const iidxSettings = (await db["game-settings"].findOne({
+			const iidxSettings = await db["game-settings"].findOne({
 				userID: req[SYMBOL_TACHI_API_AUTH].userID,
 				game,
 				playtype,
-			})) as UGPTSettings<"iidx:DP" | "iidx:SP"> | null;
+			});
 
 			if (!iidxSettings || !iidxSettings.preferences.gameSpecific.display2DXTra) {
 				charts = charts.filter(

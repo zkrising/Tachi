@@ -29,7 +29,9 @@ const PR_KAI_IIDX_SCORE = {
 	timestamp: "string",
 };
 
-function ResolveKaiLamp(lamp: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7): GetEnumValue<"iidx:DP" | "iidx:SP", "lamp"> {
+function ResolveKaiLamp(
+	lamp: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+): GetEnumValue<"iidx:DP" | "iidx:SP", "lamp"> {
 	switch (lamp) {
 		case 0:
 			return "NO PLAY";

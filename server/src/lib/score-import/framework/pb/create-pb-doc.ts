@@ -20,7 +20,7 @@ import type {
 } from "tachi-common";
 
 export type PBScoreDocumentNoRank<GPT extends GPTString = GPTString> = Omit<
-	PBScoreDocument<I>,
+	PBScoreDocument<GPT>,
 	"rankingData"
 >;
 

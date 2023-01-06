@@ -5,7 +5,7 @@ export function AbsoluteGradeDelta<GPT extends GPTString = GPTString>(
 	playtype: Playtypes[Game],
 	score: number,
 	percent: number,
-	gradeOrIndex: Grades[I] | integer
+	gradeOrIndex: Grades[GPT] | integer
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
@@ -28,7 +28,7 @@ export function RelativeGradeDelta<GPT extends GPTString = GPTString>(
 	playtype: Playtypes[Game],
 	score: number,
 	percent: number,
-	grade: Grades[I],
+	grade: Grades[GPT],
 	relativeIndex: integer
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
@@ -58,7 +58,7 @@ export function GenericFormatGradeDelta<GPT extends GPTString = GPTString>(
 	playtype: Playtypes[Game],
 	score: number,
 	percent: number,
-	grade: Grades[I],
+	grade: Grades[GPT],
 	formatNumFn: (n: number) => number = (s) => s
 ): {
 	lower: string;

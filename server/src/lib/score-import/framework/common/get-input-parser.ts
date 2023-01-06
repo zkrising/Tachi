@@ -8,7 +8,7 @@ import type {
 import type { ScoreImportJobData } from "lib/score-import/worker/types";
 import type { ImportTypes } from "tachi-common";
 
-export function GetInputParser<I extends ImportTypes>(jobData: ScoreImportJobData<I>) {
+export function GetInputParser<I extends ImportTypes>(jobData: ScoreImportJobData<GPT>) {
 	// Retrieve the set parser function for this import type.
 	const ParserFunction = Parsers[jobData.importType];
 
@@ -20,7 +20,7 @@ export function GetInputParser<I extends ImportTypes>(jobData: ScoreImportJobDat
 		// achieve the dynamic passing we need to, so lets just override
 		// it here.
 		ParserFunction(...jobData.parserArguments, logger) as Promise<
-			ParserFunctionReturns<ImportTypeDataMap[I], ImportTypeContextMap[I]>
+			ParserFunctionReturns<ImportTypeDataMap[GPT], ImportTypeContextMap[GPT]>
 		>;
 
 	return InputParser;

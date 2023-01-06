@@ -105,13 +105,8 @@ export function GetGPTConfig(gptString: GPTString): GamePTConfig {
  * Returns the configuration for this specific Game + Playtype. This type is narrowed
  * down to its least generic form, and is instead for gpt-specific use cases.
  */
-export function GetSpecificGPTConfig<GPT extends GPTString>(
-	game: GPTStringToGame[GPT],
-	playtype: GPTStringToPlaytype[GPT]
-) {
-	const gptString = GetGPTString(game, playtype);
-
-	return GAME_PT_CONFIGS[gptString] as unknown as SpecificGamePTConfig<GPT>;
+export function GetSpecificGPTConfig<GPT extends GPTString>(gpt: GPTString) {
+	return GAME_PT_CONFIGS[gpt] as unknown as SpecificGamePTConfig<GPT>;
 }
 
 export const allSupportedGames = Object.keys(GAME_CONFIGS) as Array<Game>;

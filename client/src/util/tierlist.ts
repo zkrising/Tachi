@@ -10,7 +10,7 @@ import {
 
 type ScaleAchievedFns = {
 	[I in GPTString]: {
-		[K in GPTTierlists[I]]: ((k: ScoreDocument<I>) => boolean) | null;
+		[K in GPTTierlists[GPT]]: ((k: ScoreDocument<GPT>) => boolean) | null;
 	};
 };
 

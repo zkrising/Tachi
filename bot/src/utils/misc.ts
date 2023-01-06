@@ -152,9 +152,9 @@ export function CreateChartLink(chart: ChartDocument, game: Game) {
 	return `${BotConfig.TACHI_SERVER_LOCATION}/games/${game}/${chart.playtype}/songs/${chart.songID}/${chart.chartID}`;
 }
 
-type ScOrPBDoc<GPT extends GPTString> = PBScoreDocument<I> | ScoreDocument<I>;
+type ScOrPBDoc<GPT extends GPTString> = PBScoreDocument<GPT> | ScoreDocument<GPT>;
 
-export function FormatScoreData<GPT extends GPTString = GPTString>(score: ScOrPBDoc<I>) {
+export function FormatScoreData<GPT extends GPTString = GPTString>(score: ScOrPBDoc<GPT>) {
 	const game = score.game;
 
 	let lampStr: string = score.scoreData.lamp;
@@ -194,7 +194,7 @@ function GetGradeFromPercent<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype,
 	percent: number
-): Grades[I] {
+): Grades[GPT] {
 	const gptConfig = GetGamePTConfig(game, playtype);
 	const boundaries = gptConfig.gradeBoundaries;
 	const grades = gptConfig.grades;
@@ -208,7 +208,7 @@ function GetGradeFromPercent<GPT extends GPTString = GPTString>(
 	// (hey, this for loop is backwards!)
 	for (let i = boundaries.length; i >= 0; i--) {
 		if (percent + Number.EPSILON >= boundaries[i]!) {
-			return grades[i] as Grades[I];
+			return grades[i] as Grades[GPT];
 		}
 	}
 
@@ -229,7 +229,7 @@ function FormatIIDXEXScore(exscore: integer, notecount: integer, playtype: Playt
 	return `${closer === "lower" ? lower : upper} (${exscore}, ${percent.toFixed(2)}%)`;
 }
 
-export function GetChartPertinentInfo<GPT extends GPTString>(game: Game, chart: ChartDocument<I>) {
+export function GetChartPertinentInfo<GPT extends GPTString>(game: Game, chart: ChartDocument<GPT>) {
 	if (game === "iidx") {
 		const ch = chart as ChartDocument<"iidx:DP" | "iidx:SP">;
 

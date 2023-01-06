@@ -33,11 +33,11 @@ import {
 
 export interface UGPTStatsReturn<GPT extends GPTString = GPTString> {
 	gameStats: UserGameStats;
-	firstScore: ScoreDocument<I>;
-	mostRecentScore: ScoreDocument<I>;
+	firstScore: ScoreDocument<GPT>;
+	mostRecentScore: ScoreDocument<GPT>;
 	totalScores: number;
 	rankingData: Record<
-		ProfileRatingLookup[I],
+		ProfileRatingLookup[GPT],
 		{
 			ranking: integer;
 			outOf: integer;
@@ -82,29 +82,29 @@ export interface SessionReturns<GPT extends GPTString = GPTString> {
 	session: SessionDocument;
 	scores: ScoreDocument[];
 	scoreInfo: Array<SessionScoreInfo>;
-	songs: SongDocument<GPTStringToGame[I]>[];
-	charts: ChartDocument<I>[];
+	songs: SongDocument<GPTStringToGame[GPT]>[];
+	charts: ChartDocument<GPT>[];
 	user: UserDocument;
 }
 
 export interface UGPTChartPBComposition<GPT extends GPTString = GPTString> {
-	scores: ScoreDocument<I>[];
-	chart: ChartDocument<I>;
-	pb: PBScoreDocument<I>;
+	scores: ScoreDocument<GPT>[];
+	chart: ChartDocument<GPT>;
+	pb: PBScoreDocument<GPT>;
 }
 
-export type UGSWithRankingData<GPT extends GPTString = GPTString> = UserGameStats<I> & {
-	__rankingData: Record<ProfileRatingLookup[I], { outOf: number; ranking: number }>;
+export type UGSWithRankingData<GPT extends GPTString = GPTString> = UserGameStats<GPT> & {
+	__rankingData: Record<ProfileRatingLookup[GPT], { outOf: number; ranking: number }>;
 };
 
 export interface SongChartsSearch<GPT extends GPTString = GPTString> {
-	songs: SongDocument<GPTStringToGame[I]>[];
-	charts: ChartDocument<I>[];
+	songs: SongDocument<GPTStringToGame[GPT]>[];
+	charts: ChartDocument<GPT>[];
 }
 
 export interface FolderStatsInfo<GPT extends GPTString = GPTString> {
-	grades: Record<Grades[I], integer>;
-	lamps: Record<Lamps[I], integer>;
+	grades: Record<Grades[GPT], integer>;
+	lamps: Record<Lamps[GPT], integer>;
 	folderID: string;
 	chartCount: integer;
 }
@@ -122,15 +122,15 @@ export interface UGPTTableReturns {
 
 export interface UGPTFolderReturns<GPT extends GPTString = GPTString> {
 	folder: FolderDocument;
-	songs: SongDocument<GPTStringToGame[I]>[];
-	charts: ChartDocument<I>[];
-	pbs: PBScoreDocument<I>[];
+	songs: SongDocument<GPTStringToGame[GPT]>[];
+	charts: ChartDocument<GPT>[];
+	pbs: PBScoreDocument<GPT>[];
 }
 
 export interface GPTFolderReturns<GPT extends GPTString = GPTString> {
 	folder: FolderDocument;
-	songs: SongDocument<GPTStringToGame[I]>[];
-	charts: ChartDocument<I>[];
+	songs: SongDocument<GPTStringToGame[GPT]>[];
+	charts: ChartDocument<GPT>[];
 }
 
 export interface GPTStatsReturn {
@@ -146,32 +146,32 @@ export interface RecentClassesReturn {
 }
 
 export interface SongsReturn<GPT extends GPTString = GPTString> {
-	song: SongDocument<GPTStringToGame[I]>;
-	charts: ChartDocument<I>[];
+	song: SongDocument<GPTStringToGame[GPT]>;
+	charts: ChartDocument<GPT>[];
 }
 
 export interface ChartPBLeaderboardReturn<GPT extends GPTString = GPTString> {
 	users: UserDocument[];
-	pbs: PBScoreDocument<I>[];
+	pbs: PBScoreDocument<GPT>[];
 }
 
 export interface UGPTChartLeaderboardAdjacent<GPT extends GPTString = GPTString> {
 	users: UserDocument[];
-	pb: PBScoreDocument<I>;
-	adjacentAbove: PBScoreDocument<I>[];
-	adjacentBelow: PBScoreDocument<I>[];
+	pb: PBScoreDocument<GPT>;
+	adjacentAbove: PBScoreDocument<GPT>[];
+	adjacentBelow: PBScoreDocument<GPT>[];
 }
 
 export interface ScoreLeaderboardReturns<GPT extends GPTString = GPTString> {
 	users: UserDocument[];
-	songs: SongDocument<GPTStringToGame[I]>[];
-	charts: ChartDocument<I>[];
-	pbs: PBScoreDocument<I>[];
+	songs: SongDocument<GPTStringToGame[GPT]>[];
+	charts: ChartDocument<GPT>[];
+	pbs: PBScoreDocument<GPT>[];
 }
 
 export interface UserLeaderboardReturns<GPT extends GPTString = GPTString> {
 	users: UserDocument[];
-	gameStats: UserGameStats<I>[];
+	gameStats: UserGameStats<GPT>[];
 }
 
 export interface UserRecentSummary {

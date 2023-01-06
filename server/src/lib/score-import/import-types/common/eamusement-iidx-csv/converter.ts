@@ -3,17 +3,15 @@ import {
 	SongOrChartNotFoundFailure,
 	SkipScoreFailure,
 } from "../../../framework/common/converter-failures";
-import {
-	GenericGetGradeAndPercent,
-	ParseDateFromString,
-} from "../../../framework/common/score-utils";
+import { ParseDateFromString } from "../../../framework/common/score-utils";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
 import { FindChartWithPTDFVersion } from "utils/queries/charts";
 import { FindSongOnTitle } from "utils/queries/songs";
 import type { DryScore } from "../../../framework/common/types";
 import type { ConverterFunction } from "../types";
 import type { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./types";
-import type { ChartDocument, Lamps } from "tachi-common";
+import type { ChartDocument } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 
 const EAMUSEMENT_LAMP_RESOLVER: Map<string, GetEnumValue<"iidx:DP" | "iidx:SP", "lamp">> = new Map([
 	["NO PLAY", "NO PLAY"],
@@ -131,8 +129,6 @@ const ConvertEamIIDXCSV: ConverterFunction<
 		);
 	}
 
-	const { percent, grade } = GenericGetGradeAndPercent("iidx", exscore, tachiChart);
-
 	const timestamp = ParseDateFromString(data.timestamp);
 
 	const dryScore: DryScore<"iidx:DP" | "iidx:SP"> = {
@@ -148,8 +144,6 @@ const ConvertEamIIDXCSV: ConverterFunction<
 				great,
 			},
 			optional: {},
-			percent,
-			grade,
 		},
 		scoreMeta: {},
 
@@ -175,7 +169,6 @@ const ConvertEamIIDXCSV: ConverterFunction<
 		logger.info(`Skipped assigning BP for score. Had unexpected value of ${eamScore.bp}.`);
 	}
 
-	// ts thinks tachiSong might be null. It's not, though!
 	return { chart: tachiChart, dryScore, song: tachiSong };
 };
 

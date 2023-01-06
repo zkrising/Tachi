@@ -1,5 +1,6 @@
 import {
 	InternalFailure,
+	SkipScoreFailure,
 	SongOrChartNotFoundFailure,
 } from "../../../framework/common/converter-failures";
 import { ParseDateFromString } from "../../../framework/common/score-utils";
@@ -26,6 +27,10 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
 	logger
 ) => {
 	const playtype = data.play_type === "SINGLE" ? "SP" : "DP";
+
+	if (data.diff_type === "BEGINNER") {
+		throw new SkipScoreFailure(`BEGINNER scores are not supported.`);
+	}
 
 	const chart = await FindIIDXChartOnInGameID(data.music_id, playtype, data.diff_type);
 

@@ -1,4 +1,9 @@
-import { GetGameConfig, GetGamePTConfig, GetSpecificGPTConfig } from "../config/config";
+import {
+	GetGPTString,
+	GetGameConfig,
+	GetGamePTConfig,
+	GetSpecificGPTConfig,
+} from "../config/config";
 import type {
 	ChartDocument,
 	GPTStrings,
@@ -33,8 +38,7 @@ export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 		const ch = chart as ChartDocument<GPTStrings["gitadora"]>;
 
 		const gptConfig = GetSpecificGPTConfig<GPTStrings["gitadora"]>(
-			game,
-			chart.playtype as Playtypes["gitadora"]
+			GetGPTString(game, chart.playtype) as GPTStrings["gitadora"]
 		);
 
 		// @ts-expect-error maybe this new config format was a mistake.

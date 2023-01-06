@@ -3,7 +3,6 @@ import CreateLogCtx from "lib/logger/logger";
 import { GetNextCounterValue } from "utils/db";
 import { DedupeArr } from "utils/misc";
 import type { FilterQuery } from "mongodb";
-import type { WithID } from "monk";
 import type {
 	ChartDocument,
 	GPTString,
@@ -28,11 +27,11 @@ const logger = CreateLogCtx(__filename);
  * played it, unorphan the chart, and return it.
  */
 export async function HandleOrphanQueue<GPT extends GPTString>(
-	gptString: I,
-	game: GPTStringToGame[I],
-	chartDoc: ChartDocument<I>,
-	songDoc: SongDocument<GPTStringToGame[I]>,
-	orphanMatchCriteria: FilterQuery<OrphanChartDocument<I>>,
+	gptString: GPT,
+	game: GPTStringToGame[GPT],
+	chartDoc: ChartDocument<GPT>,
+	songDoc: SongDocument<GPTStringToGame[GPT]>,
+	orphanMatchCriteria: FilterQuery<OrphanChartDocument<GPT>>,
 	queueSize: integer,
 	userID: integer,
 	chartName: string
@@ -81,11 +80,12 @@ export async function HandleOrphanQueue<GPT extends GPTString>(
 
 		await db.anySongs[game].insert(songDoc);
 		await db.anyCharts[game].insert(chartDoc);
+
 		await db["orphan-chart-queue"].remove({
 			_id: orphanChart._id,
 		});
 
-		return chartDoc as ChartDocument<I>;
+		return chartDoc as ChartDocument<GPT>;
 	}
 
 	// otherwise, update the state of this orphan.
@@ -112,10 +112,10 @@ export async function HandleOrphanQueue<GPT extends GPTString>(
  * regardless of how many people have played the chart.
  */
 export async function DeorphanIfInQueue<GPT extends GPTString>(
-	gptString: I,
-	game: GPTStringToGame[I],
-	orphanMatchCriteria: FilterQuery<OrphanChartDocument<I>>
-): Promise<ChartDocument<I> | null> {
+	gptString: GPT,
+	game: GPTStringToGame[GPT],
+	orphanMatchCriteria: FilterQuery<OrphanChartDocument<GPT>>
+): Promise<ChartDocument<GPT> | null> {
 	const orphanChart = await db["orphan-chart-queue"].findOne(
 		{ gptString, ...orphanMatchCriteria },
 		{
@@ -143,5 +143,5 @@ export async function DeorphanIfInQueue<GPT extends GPTString>(
 		_id: orphanChart._id,
 	});
 
-	return chartDoc;
+	return chartDoc as ChartDocument<GPT>;
 }

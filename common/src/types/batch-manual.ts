@@ -12,6 +12,7 @@ import type {
 	ScoreMeta,
 } from "./game-config";
 import type { ExtractMetrics } from "./metrics";
+import type { AllFieldsNullableOptional } from "./utils";
 
 // These MatchTypes don't need `difficulty` set in the batch manual.
 type MatchTypesNoDifficulty = "bmsChartHash" | "itgChartHash" | "popnChartHash" | "uscChartHash";
@@ -28,7 +29,7 @@ export type BatchManualScore<GPT extends GPTString = GPTString> = ExtractMetrics
 	comment?: string | null;
 	judgements?: Record<Judgements[GPT], integer>;
 	timeAchieved?: number | null;
-	additionalMetrics?: Partial<ExtractMetrics<ConfOptionalMetrics[GPT]>>;
+	optional?: AllFieldsNullableOptional<ExtractMetrics<ConfOptionalMetrics[GPT]>>;
 	scoreMeta?: Partial<ScoreMeta[GPT]>;
 } & (
 		| {

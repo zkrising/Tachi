@@ -27,7 +27,7 @@ export function CreateDefaultScoreSearchParams<GPT extends GPTString = GPTString
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const searchFunctions: Record<string, ValueGetterOrHybrid<ScoreDataset<I>[0]>> = {
+	const searchFunctions: Record<string, ValueGetterOrHybrid<ScoreDataset<GPT>[0]>> = {
 		artist: (x) => x.__related.song.artist,
 		title: (x) => x.__related.song.title,
 		difficulty: (x) => x.__related.chart.difficulty,
@@ -59,7 +59,7 @@ export function CreateDefaultPBSearchParams<GPT extends GPTString = GPTString>(
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const searchFunctions: Record<string, ValueGetterOrHybrid<PBDataset<I>[0]>> = {
+	const searchFunctions: Record<string, ValueGetterOrHybrid<PBDataset<GPT>[0]>> = {
 		artist: (x) => x.__related.song.artist,
 		title: (x) => x.__related.song.title,
 		difficulty: (x) => x.__related.chart.difficulty,
@@ -92,7 +92,7 @@ export function CreatePBCompareSearchParams<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype
 ) {
-	const searchFunctions: Record<string, ValueGetterOrHybrid<ComparePBsDataset<I>[0]>> = {
+	const searchFunctions: Record<string, ValueGetterOrHybrid<ComparePBsDataset<GPT>[0]>> = {
 		artist: (x) => x.song.artist,
 		title: (x) => x.song.title,
 		difficulty: (x) => x.chart.difficulty,
@@ -112,7 +112,7 @@ export function CreateDefaultFolderSearchParams<GPT extends GPTString = GPTStrin
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const searchFunctions: Record<string, ValueGetterOrHybrid<FolderDataset<I>[0]>> = {
+	const searchFunctions: Record<string, ValueGetterOrHybrid<FolderDataset<GPT>[0]>> = {
 		artist: (x) => x.__related.song.artist,
 		title: (x) => x.__related.song.title,
 		difficulty: (x) => x.difficulty,

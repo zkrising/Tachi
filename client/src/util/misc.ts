@@ -319,7 +319,7 @@ export function GetGradeFromPercent<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype,
 	percent: number
-): Grades[I] {
+): Grades[GPT] {
 	const gptConfig = GetGamePTConfig(game, playtype);
 	const boundaries = gptConfig.gradeBoundaries;
 	const grades = gptConfig.grades;
@@ -333,7 +333,7 @@ export function GetGradeFromPercent<GPT extends GPTString = GPTString>(
 	// (hey, this for loop is backwards!)
 	for (let i = boundaries.length; i >= 0; i--) {
 		if (percent >= boundaries[i]) {
-			return grades[i] as Grades[I];
+			return grades[i] as Grades[GPT];
 		}
 	}
 

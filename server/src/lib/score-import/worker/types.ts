@@ -16,7 +16,7 @@ type RemoveLast<T extends Array<unknown>> = T extends [...infer RemoveLast, unkn
 // "ir/usc".
 // And then, using RemoveLast, we can remove that logger argument we don't
 // want to provide.
-export type ParserArguments<I extends ImportTypes> = RemoveLast<Parameters<typeof Parsers[I]>>;
+export type ParserArguments<I extends ImportTypes> = RemoveLast<Parameters<typeof Parsers[GPT]>>;
 
 // Depending on how you look at it, this is either beautiful
 // TypeScript power, or brutal TypeScript abuse...
@@ -33,10 +33,10 @@ export interface ScoreImportJobData<I extends ImportTypes> {
 	// from different sources! As such, we need to pass the parser
 	// arguments in an array, and then it can be respreaded into
 	// the parser by the import code.
-	parserArguments: ParserArguments<I>;
+	parserArguments: ParserArguments<GPT>;
 }
 
-export type ScoreImportJob<I extends ImportTypes = ImportTypes> = Job<ScoreImportJobData<I>>;
+export type ScoreImportJob<I extends ImportTypes = ImportTypes> = Job<ScoreImportJobData<GPT>>;
 
 export interface ScoreImportProgress {
 	description: string;

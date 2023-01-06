@@ -8,6 +8,7 @@ import type {
 	OptionalMetrics,
 } from "tachi-common";
 import type { EnumValue } from "tachi-common/types/metrics";
+import type { Mutable } from "utils/types";
 
 /**
  * For dry scores, we don't want to make converters fill out enum values as
@@ -16,12 +17,12 @@ import type { EnumValue } from "tachi-common/types/metrics";
  *
  * The index part can *always* be derived. This function turns
  */
-type ExtractEnumValues<TMetrics extends Record<string, unknown>> = {
+export type ExtractEnumValues<TMetrics extends Record<string, unknown>> = {
 	[K in keyof TMetrics]: TMetrics[K] extends EnumValue<infer V> ? V : TMetrics[K];
 };
 
 type DryScoreData<GPT extends GPTString> = ExtractEnumValues<ProvidedMetrics[GPT]> & {
-	optional: ExtractEnumValues<OptionalMetrics[GPT]>;
+	optional: Mutable<ExtractEnumValues<OptionalMetrics[GPT]>>;
 	judgements: Partial<Record<Judgements[GPT], integer | null>>;
 };
 

@@ -50,7 +50,7 @@ export interface UGPTStats<GPT extends GPTString = GPTString> {
 	firstScore: ScoreDocument;
 	mostRecentScore: ScoreDocument;
 	totalScores: integer;
-	rankingData: Record<ProfileRatingLookup[I], { ranking: integer; outOf: integer }>;
+	rankingData: Record<ProfileRatingLookup[GPT], { ranking: integer; outOf: integer }>;
 }
 
 export interface ChartQueryReturns {

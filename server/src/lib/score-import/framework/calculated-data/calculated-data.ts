@@ -43,10 +43,10 @@ export async function CreateCalculatedData(
 
 type CalculatedDataFunctionsType = {
 	[I in GPTString]: (
-		dryScore: DryScore<I>,
-		chart: ChartDocument<I>,
+		dryScore: DryScore<GPT>,
+		chart: ChartDocument<GPT>,
 		logger: KtLogger
-	) => Promise<ScoreDocument<I>["calculatedData"]> | ScoreDocument<I>["calculatedData"];
+	) => Promise<ScoreDocument<GPT>["calculatedData"]> | ScoreDocument<GPT>["calculatedData"];
 };
 
 const CalculatedDataFunctions: CalculatedDataFunctionsType = {
@@ -87,7 +87,7 @@ export async function CalculateDataForGamePT<G extends Game>(
 	return CalculatedDataFunctions[`${game}:${playtype}` as GPTString](dryScore, chart, logger);
 }
 
-type CalculatedData<GPT extends GPTString> = Required<ScoreDocument<I>["calculatedData"]>;
+type CalculatedData<GPT extends GPTString> = Required<ScoreDocument<GPT>["calculatedData"]>;
 
 function CalculateDataIIDX(
 	dryScore: DryScore,

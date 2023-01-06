@@ -27,7 +27,7 @@ export async function ExpressWrappedScoreImportMain<I extends ImportTypes>(
 	userID: integer,
 	userIntent: boolean,
 	importType: I,
-	parserArguments: ParserArguments<I>
+	parserArguments: ParserArguments<GPT>
 ): Promise<WrappedAPIResponse> {
 	const importID = Random20Hex();
 

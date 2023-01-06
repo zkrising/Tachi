@@ -29,7 +29,7 @@ const logger = CreateLogCtx(__filename);
  * the client, make it poll /api/v1/ongoing-imports/:importID.
  */
 export async function MakeScoreImport<I extends ImportTypes>(
-	jobData: ScoreImportJobData<I>
+	jobData: ScoreImportJobData<GPT>
 ): Promise<ImportDocument> {
 	await StartTrackingImport(jobData);
 
@@ -53,7 +53,7 @@ export async function MakeScoreImport<I extends ImportTypes>(
  * by the import-tracking code, as it's useful for errors.
  */
 async function MakeScoreImportInner<I extends ImportTypes>(
-	jobData: ScoreImportJobData<I>
+	jobData: ScoreImportJobData<GPT>
 ): Promise<ImportDocument> {
 	if (ServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER && process.env.IS_JOB === undefined) {
 		let timesAttempted = 1;

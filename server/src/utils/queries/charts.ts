@@ -24,7 +24,7 @@ export function FindChartWithPTDF<
 	G extends Game = Game,
 	P extends Playtypes[G] = Playtypes[G],
 	GPT extends GPTString = GPTString
->(game: G, songID: integer, playtype: P, difficulty: Difficulties[I]) {
+>(game: G, songID: integer, playtype: P, difficulty: Difficulties[GPT]) {
 	return db.anyCharts[game].findOne({
 		songID,
 		playtype,
@@ -41,7 +41,7 @@ export function FindChartWithPTDFVersion<
 	G extends Game = Game,
 	P extends Playtypes[G] = Playtypes[G],
 	GPT extends GPTString = GPTString
->(game: G, songID: integer, playtype: P, difficulty: Difficulties[I], version: Versions[I]) {
+>(game: G, songID: integer, playtype: P, difficulty: Difficulties[GPT], version: Versions[GPT]) {
 	return db.anyCharts[game].findOne({
 		songID,
 		playtype,
@@ -92,8 +92,8 @@ export function FindChartOnInGameID(
  */
 export function FindIIDXChartOnInGameID(
 	inGameID: number,
-	playtype: Playtype,
-	difficulty: Difficulties[GPTString]
+	playtype: Playtypes["iidx"],
+	difficulty: Difficulties["iidx:DP" | "iidx:SP"]
 ) {
 	return db.charts.iidx.findOne({
 		"data.inGameID": inGameID,
@@ -110,9 +110,9 @@ export function FindIIDXChartOnInGameID(
  */
 export function FindIIDXChartOnInGameIDVersion(
 	inGameID: number,
-	playtype: Playtype,
-	difficulty: Difficulties[GPTString],
-	version: Versions[GPTString]
+	playtype: Playtypes["iidx"],
+	difficulty: Difficulties["iidx:DP" | "iidx:SP"],
+	version: Versions["iidx:DP" | "iidx:SP"]
 ) {
 	return db.charts.iidx.findOne({
 		"data.inGameID": inGameID,
@@ -130,8 +130,8 @@ export function FindChartOnInGameIDVersion<GPT extends GPTString = GPTString>(
 	game: Game,
 	inGameID: number,
 	playtype: Playtype,
-	difficulty: Difficulties[I],
-	version: Versions[I]
+	difficulty: Difficulties[GPT],
+	version: Versions[GPT]
 ) {
 	return db.anyCharts[game].findOne({
 		"data.inGameID": inGameID,

@@ -328,7 +328,7 @@ export function StringIsGameVersion(
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	// @ts-expect-error yes, we know!
-	return gptConfig.orderedSupportedVersions.includes(version);
+	return gptConfig.versions.includes(version);
 }
 
 /**

@@ -22,8 +22,8 @@ export function IsSupportedPlaytype<G extends Game = Game>(
 }
 
 export function IsScore<GPT extends GPTString>(
-	pbOrScore: PBScoreDocument<I> | ScoreDocument<I>
-): pbOrScore is ScoreDocument<I> {
+	pbOrScore: PBScoreDocument<GPT> | ScoreDocument<GPT>
+): pbOrScore is ScoreDocument<GPT> {
 	// @ts-expect-error thats the test...
 	return !!pbOrScore.scoreMeta;
 }

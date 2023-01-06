@@ -88,14 +88,16 @@ export const IIDX_SP_CONF = {
 		comboBreak: { type: "INTEGER" },
 
 		// The players history for the gauge type they were playing on.
-		gaugeHistory: { type: "GRAPH" },
+		// this may fall into "NULL" if the user fails.
+		gaugeHistory: { type: "NULLABLE_GRAPH" },
+		scoreHistory: { type: "NULLABLE_GRAPH" },
 
 		// if "GSM" is enabled (via fervidex.dll) then all graphs
 		// are sent. we should store all of them.
-		gsmEasy: { type: "GRAPH" },
-		gsmNormal: { type: "GRAPH" },
-		gsmHard: { type: "GRAPH" },
-		gsmEXHard: { type: "GRAPH" },
+		gsmEasy: { type: "NULLABLE_GRAPH" },
+		gsmNormal: { type: "NULLABLE_GRAPH" },
+		gsmHard: { type: "NULLABLE_GRAPH" },
+		gsmEXHard: { type: "NULLABLE_GRAPH" },
 	},
 
 	defaultScoreRatingAlg: "ktLampRating",

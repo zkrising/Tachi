@@ -190,7 +190,7 @@ async function MergeScoreLampIntoPB(
 			judgements: scorePB.scoreData.judgements,
 
 			// this will probably be overrode by game-specific fns
-			optional: scorePB.scoreData.hitMeta,
+			optional: scorePB.scoreData.optional,
 		},
 		calculatedData: scorePB.calculatedData,
 	};

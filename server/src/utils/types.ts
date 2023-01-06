@@ -120,3 +120,6 @@ export type MigrationDocument = {
 			status: "pending";
 	  }
 );
+
+// https://www.designcise.com/web/tutorial/how-to-change-readonly-properties-to-be-writable-in-typescript
+export type Mutable<T> = { -readonly [K in keyof T]: T[K] };

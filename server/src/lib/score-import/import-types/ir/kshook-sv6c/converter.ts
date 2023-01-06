@@ -2,13 +2,12 @@ import {
 	InternalFailure,
 	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
-import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
 import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import type { ConverterFunction } from "../../common/types";
 import type { KsHookSV6CContext, KsHookSV6CScore } from "./types";
 import type { DryScore } from "lib/score-import/framework/common/types";
-import type { Lamps } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 
 export const ConverterIRKsHookSV6C: ConverterFunction<KsHookSV6CScore, KsHookSV6CContext> = async (
 	data,
@@ -36,8 +35,6 @@ export const ConverterIRKsHookSV6C: ConverterFunction<KsHookSV6CScore, KsHookSV6
 		throw new InternalFailure(`Song ${chart.songID} (sdvx) has no parent song?`);
 	}
 
-	const { percent, grade } = GenericGetGradeAndPercent("sdvx", data.score, chart);
-
 	const dryScore: DryScore<"sdvx:Single"> = {
 		game: "sdvx",
 		service: "kshook SV6C",
@@ -46,8 +43,6 @@ export const ConverterIRKsHookSV6C: ConverterFunction<KsHookSV6CScore, KsHookSV6
 		timeAchieved: context.timeReceived,
 		scoreData: {
 			score: data.score,
-			percent,
-			grade,
 			lamp: SV6CConvertLamp(data.clear),
 			judgements: {
 				critical: data.critical,
@@ -66,7 +61,9 @@ export const ConverterIRKsHookSV6C: ConverterFunction<KsHookSV6CScore, KsHookSV6
 	return { song, chart, dryScore };
 };
 
-export function SV6CConvertLamp(clear: KsHookSV6CScore["clear"]): GetEnumValue<"sdvx:Single", "lamp"> {
+export function SV6CConvertLamp(
+	clear: KsHookSV6CScore["clear"]
+): GetEnumValue<"sdvx:Single", "lamp"> {
 	if (clear === "CLEAR_PLAYED") {
 		return "FAILED";
 	} else if (clear === "CLEAR_EFFECTIVE") {

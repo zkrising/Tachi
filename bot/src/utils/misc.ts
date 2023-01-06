@@ -167,7 +167,7 @@ export function FormatScoreData<I extends GPTString = GPTString>(score: ScOrPBDo
 			score as ScOrPBDoc<
 				"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP" | "pms:Controller" | "pms:Keyboard"
 			>
-		).scoreData.hitMeta.bp;
+		).scoreData.optional.bp;
 
 		lampStr = `${score.scoreData.lamp} (BP: ${bp ?? "No Data"})`;
 

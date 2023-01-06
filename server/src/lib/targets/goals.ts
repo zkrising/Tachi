@@ -275,7 +275,7 @@ export function HumaniseGoalProgress(
 				case "pms": {
 					// @ts-expect-error This is guaranteed to exist, we're going to ignore it.
 					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-					const maybeBP: number | null | undefined = userPB.scoreData.hitMeta.bp;
+					const maybeBP: number | null | undefined = userPB.scoreData.optional.bp;
 
 					// render BP if it exists
 					if (!IsNullish(maybeBP)) {
@@ -288,7 +288,7 @@ export function HumaniseGoalProgress(
 				case "itg": {
 					// @ts-expect-error This is guaranteed to exist, we're going to ignore it.
 					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-					const maybeDiedAt: number | null | undefined = userPB.scoreData.hitMeta.diedAt;
+					const maybeDiedAt: number | null | undefined = userPB.scoreData.optional.diedAt;
 
 					// render diedAt if it exists as "FAILED (Died 25% in)"
 					if (!IsNullish(maybeDiedAt)) {

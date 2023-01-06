@@ -166,7 +166,7 @@ const ConvertEamIIDXCSV: ConverterFunction<
 			);
 		}
 
-		dryScore.scoreData.hitMeta.bp = numBP;
+		dryScore.scoreData.optional.bp = numBP;
 	} else if (eamScore.bp === "---") {
 		logger.debug(
 			`Skipped assigning BP for score as it had expected null value of ${eamScore.bp}.`

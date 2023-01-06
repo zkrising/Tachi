@@ -247,6 +247,7 @@ export const BMS_7K_CONF = {
 		tableFolders: z.array(z.strictObject({ table: z.string(), level: z.string() })),
 		sglEC: z.number().nullable(),
 		sglHC: z.number().nullable(),
+		aiLevel: z.string().nullable(),
 	}),
 
 	preferences: z.strictObject({

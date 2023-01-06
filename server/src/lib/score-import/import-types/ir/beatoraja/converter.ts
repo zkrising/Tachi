@@ -3,7 +3,6 @@ import {
 	InvalidScoreFailure,
 	SongOrChartNotFoundFailure,
 } from "../../../framework/common/converter-failures";
-import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import db from "external/mongo/db";
 import { HandleOrphanQueue } from "lib/orphan-queue/orphan-queue";
 import { ReprocessOrphan } from "lib/score-import/framework/orphans/orphans";
@@ -17,6 +16,7 @@ import type { ConverterFunction } from "../../common/types";
 import type { BeatorajaChart, BeatorajaContext, BeatorajaScore } from "./types";
 import type { KtLogger } from "lib/logger/logger";
 import type { ChartDocument, SongDocument, Playtypes } from "tachi-common";
+import type { Mutable } from "utils/types";
 
 const LAMP_LOOKUP = {
 	NoPlay: "NO PLAY",
@@ -177,11 +177,9 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 		throw new InternalFailure(`Song-Chart Desync with ${game} ${chart.chartID}.`);
 	}
 
-	const { grade, percent } = GenericGetGradeAndPercent(game, data.exscore, chart);
-
-	const optional: DryScore<
-		"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard"
-	>["scoreData"]["hitMeta"] = {
+	const optional: Mutable<
+		DryScore<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard">["scoreData"]["optional"]
+	> = {
 		bp: data.minbp === -1 ? null : data.minbp,
 		gauge: data.gauge === -1 ? null : data.gauge,
 	};
@@ -198,11 +196,11 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 		"epr",
 		"lpr",
 	] as const) {
-		hitMeta[k] = data[k];
+		optional[k] = data[k];
 	}
 
-	hitMeta.epr = hitMeta.epr! + data.ems;
-	hitMeta.lpr = hitMeta.lpr! + data.lms;
+	optional.epr = (optional.epr ?? 0) + (data.ems ?? 0);
+	optional.lpr = (optional.lpr ?? 0) + (data.lms ?? 0);
 
 	const judgements = {
 		[game === "pms" ? "cool" : "pgreat"]: data.epg + data.lpg,
@@ -212,8 +210,8 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 		poor: data.epr + data.lpr + data.ems + data.lms,
 	};
 
-	hitMeta.fast = (["ebd", "egr", "epg", "epr", "ems"] as const).reduce((a, e) => a + data[e], 0);
-	hitMeta.slow = (["lbd", "lgr", "lpg", "lpr", "lms"] as const).reduce((a, e) => a + data[e], 0);
+	optional.fast = (["ebd", "egr", "epg", "epr", "ems"] as const).reduce((a, e) => a + data[e], 0);
+	optional.slow = (["lbd", "lgr", "lpg", "lpr", "lms"] as const).reduce((a, e) => a + data[e], 0);
 
 	let random = null;
 
@@ -230,17 +228,21 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 		game,
 		importType,
 		scoreData: {
-			grade,
-			percent,
 			score: data.exscore,
 			lamp,
-			hitMeta,
+			optional,
 			judgements,
 		},
 		scoreMeta: {
 			client: context.client,
 			inputDevice: data.deviceType,
-			random,
+
+			// silly hack
+			// it's complaining that this might be assigned for 14k
+			// but it's not because of the conditions under which this is assigned.
+			// sorry!
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+			random: random as any,
 		},
 		timeAchieved: context.timeReceived,
 		service: "Beatoraja IR",
@@ -257,15 +259,16 @@ function ConvertBeatorajaChartToTachi(chart: BeatorajaChart, playtype: Playtypes
 		level: "?",
 		levelNum: 0,
 		playtype,
-		rgcID: null,
 		songID: 0,
 		versions: [],
-		tierlistInfo: {},
 		data: {
 			hashMD5: chart.md5,
 			hashSHA256: chart.sha256,
 			notecount: chart.notes,
 			tableFolders: [],
+			aiLevel: null,
+			sglEC: null,
+			sglHC: null,
 		},
 	};
 

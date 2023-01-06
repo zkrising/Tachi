@@ -515,11 +515,11 @@ t.test("#ParserFn", (t) => {
 			const fn = () =>
 				ParserFn(dm({ optional: { not_key: 123 } }), "file/batch-manual", logger);
 
-			t.throws(fn, mockErr("scores[0].hitMeta | Unexpected"));
+			t.throws(fn, mockErr("scores[0].optional | Unexpected"));
 
 			const fn2 = () => ParserFn(dm({ optional: { bp: -1 } }), "file/batch-manual", logger);
 
-			t.throws(fn2, mockErr("scores[0].hitMeta.bp | Expected a positive integer"));
+			t.throws(fn2, mockErr("scores[0].optional.bp | Expected a positive integer"));
 
 			t.end();
 		});

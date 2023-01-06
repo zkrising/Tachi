@@ -234,7 +234,7 @@ function CalculateDataITGStamina(
 	chart: ChartDocument<"itg:Stamina">
 ): CalculatedData<"itg:Stamina"> {
 	// If the user failed -- and we don't know when, return null for everything.
-	if (dryScore.scoreData.lamp === "FAILED" && IsNullish(dryScore.scoreData.hitMeta.diedAt)) {
+	if (dryScore.scoreData.lamp === "FAILED" && IsNullish(dryScore.scoreData.optional.diedAt)) {
 		return {
 			blockRating: null,
 			highest32: null,
@@ -245,14 +245,14 @@ function CalculateDataITGStamina(
 	let h32 = ITGHighestUnbroken.calculateFromNPSPerMeasure(
 		chart.data.breakdown.npsPerMeasure,
 		chart.data.breakdown.notesPerMeasure,
-		dryScore.scoreData.hitMeta.diedAt,
+		dryScore.scoreData.optional.diedAt,
 		32
 	);
 
 	let h256 = ITGHighestUnbroken.calculateFromNPSPerMeasure(
 		chart.data.breakdown.npsPerMeasure,
 		chart.data.breakdown.notesPerMeasure,
-		dryScore.scoreData.hitMeta.diedAt,
+		dryScore.scoreData.optional.diedAt,
 		256
 	);
 

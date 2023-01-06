@@ -232,7 +232,7 @@ t.test("#CreatePBDoc", (t) => {
 		t.not(res, undefined, "Should actually return something.");
 
 		t.equal(
-			res?.scoreData.hitMeta.bp,
+			res?.scoreData.optional.bp,
 			1,
 			"Should select the best BP's BP and not the score PBs."
 		);
@@ -292,7 +292,7 @@ t.test("#CreatePBDoc", (t) => {
 		t.not(res, undefined, "Should actually return something.");
 
 		t.equal(
-			res?.scoreData.hitMeta.bp,
+			res?.scoreData.optional.bp,
 			1,
 			"Should select the best BP's BP and not the score PBs."
 		);
@@ -341,7 +341,7 @@ t.test("#CreatePBDoc", (t) => {
 		t.not(res, undefined, "Should actually return something.");
 
 		t.hasStrict(
-			res?.scoreData.hitMeta,
+			res?.scoreData.optional,
 			{
 				gauge: 12,
 				gaugeHistory: [20, 20, 21, 12],

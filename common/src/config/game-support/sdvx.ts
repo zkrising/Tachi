@@ -1,3 +1,4 @@
+import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue, ToDecimalPlaces, zodNonNegativeInt, zodTierlistData } from "../config-utils";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
@@ -97,6 +98,7 @@ export const SDVX_SINGLE_CONF = {
 	preferredDefaultEnum: "grade",
 
 	optionalMetrics: {
+		...FAST_SLOW_MAXCOMBO,
 		exScore: { type: "INTEGER" },
 		gauge: { type: "DECIMAL" },
 	},

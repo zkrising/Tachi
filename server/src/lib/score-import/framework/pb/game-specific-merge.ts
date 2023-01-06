@@ -19,13 +19,13 @@ export async function IIDXMergeFn(
 	pbDoc.calculatedData.ktLampRating = lampPB.calculatedData.ktLampRating;
 
 	// Update lamp related iidx-specific info from the lampPB.
-	pbDoc.scoreData.hitMeta.gsm = lampPB.scoreData.hitMeta.gsm;
-	pbDoc.scoreData.hitMeta.gauge = lampPB.scoreData.hitMeta.gauge;
-	pbDoc.scoreData.hitMeta.gaugeHistory = lampPB.scoreData.hitMeta.gaugeHistory;
+	pbDoc.scoreData.optional.gsm = lampPB.scoreData.optional.gsm;
+	pbDoc.scoreData.optional.gauge = lampPB.scoreData.optional.gauge;
+	pbDoc.scoreData.optional.gaugeHistory = lampPB.scoreData.optional.gaugeHistory;
 
-	pbDoc.scoreData.hitMeta.comboBreak = lampPB.scoreData.hitMeta.comboBreak;
+	pbDoc.scoreData.optional.comboBreak = lampPB.scoreData.optional.comboBreak;
 
-	DeleteUndefinedProps(pbDoc.scoreData.hitMeta);
+	DeleteUndefinedProps(pbDoc.scoreData.optional);
 
 	await MergeBPPB(pbDoc, scorePB, lampPB, logger, asOfTimestamp);
 
@@ -38,7 +38,7 @@ export function PopnMergeFn(
 	lampPB: ScoreDocument<"popn:9B">,
 	_logger: KtLogger
 ) {
-	pbDoc.scoreData.hitMeta.specificClearType = lampPB.scoreData.hitMeta.specificClearType;
+	pbDoc.scoreData.optional.specificClearType = lampPB.scoreData.optional.specificClearType;
 
 	return true;
 }
@@ -52,8 +52,8 @@ export async function BMSMergeFn(
 ) {
 	pbDoc.calculatedData.sieglinde = lampPB.calculatedData.sieglinde;
 
-	pbDoc.scoreData.hitMeta.gaugeHistory = lampPB.scoreData.hitMeta.gaugeHistory;
-	pbDoc.scoreData.hitMeta.gauge = lampPB.scoreData.hitMeta.gauge;
+	pbDoc.scoreData.optional.gaugeHistory = lampPB.scoreData.optional.gaugeHistory;
+	pbDoc.scoreData.optional.gauge = lampPB.scoreData.optional.gauge;
 
 	await MergeBPPB(pbDoc, scorePB, lampPB, logger, asOfTimestamp);
 
@@ -133,7 +133,7 @@ export async function SDVXMergeFn(
 
 	const query: FilterQuery<ScoreDocument> = {
 		chartID: pbDoc.chartID,
-		"scoreData.hitMeta.exScore": { $type: "number" },
+		"scoreData.optional.exScore": { $type: "number" },
 	};
 
 	if (asOfTimestamp !== undefined) {
@@ -143,14 +143,14 @@ export async function SDVXMergeFn(
 	// find the users score with the highest exScore
 	const bestExScore = (await db.scores.findOne(query, {
 		sort: {
-			"scoreData.hitMeta.exScore": -1,
+			"scoreData.optional.exScore": -1,
 		},
 	})) as ScoreDocument<"sdvx:Single"> | null;
 
 	if (!bestExScore) {
-		pbDoc.scoreData.hitMeta.exScore = undefined;
+		pbDoc.scoreData.optional.exScore = undefined;
 	} else {
-		pbDoc.scoreData.hitMeta.exScore = bestExScore.scoreData.hitMeta.exScore;
+		pbDoc.scoreData.optional.exScore = bestExScore.scoreData.optional.exScore;
 
 		pbDoc.composedFrom.other = [{ name: "exScorePB", scoreID: bestExScore.scoreID }];
 	}
@@ -183,7 +183,7 @@ async function MergeBPPB(
 	const query: FilterQuery<ScoreDocument> = {
 		userID: scorePB.userID,
 		chartID: scorePB.chartID,
-		"scoreData.hitMeta.bp": { $exists: true },
+		"scoreData.optional.bp": { $exists: true },
 	};
 
 	if (asOfTimestamp !== undefined) {
@@ -193,7 +193,7 @@ async function MergeBPPB(
 	const bpPB = (await db.scores.findOne(query, {
 		sort: {
 			// bp 0 is the best BP, bp 1 is worse, so on
-			"scoreData.hitMeta.bp": 1,
+			"scoreData.optional.bp": 1,
 		},
 	})) as ScoreDocument<"iidx:DP" | "iidx:SP"> | null;
 
@@ -207,17 +207,17 @@ async function MergeBPPB(
 		return;
 	}
 
-	// by default scorePB is chosen for hitMeta fields, so, we can skip any assignments here by returning here.
+	// by default scorePB is chosen for optional fields, so, we can skip any assignments here by returning here.
 	if (bpPB.scoreID === scorePB.scoreID) {
 		logger.debug(`Skipped merging BP PB as scorePB was also BP PB.`);
 		return true;
 	} else if (bpPB.scoreID === lampPB.scoreID) {
-		pbDoc.scoreData.hitMeta.bp = lampPB.scoreData.hitMeta.bp;
+		pbDoc.scoreData.optional.bp = lampPB.scoreData.optional.bp;
 		logger.debug(`Skipped adding BP PB as composedFrom because lampPB was also BP PB.`);
 		return;
 	}
 
-	pbDoc.scoreData.hitMeta.bp = bpPB.scoreData.hitMeta.bp;
+	pbDoc.scoreData.optional.bp = bpPB.scoreData.optional.bp;
 
 	pbDoc.composedFrom.other = [{ name: "Best BP", scoreID: bpPB.scoreID }];
 }

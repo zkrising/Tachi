@@ -2,14 +2,14 @@ import {
 	InvalidScoreFailure,
 	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
-import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
 import { AssertStrAsPositiveInt } from "lib/score-import/framework/common/string-asserts";
 import { FindChartWithPTDF } from "utils/queries/charts";
 import { FindSongOnTitle } from "utils/queries/songs";
 import type { ConverterFunction } from "../../common/types";
 import type { SDVXEamusementCSVData } from "./types";
 import type { DryScore } from "lib/score-import/framework/common/types";
-import type { Difficulties, Lamps } from "tachi-common";
+import type { Difficulties } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 import type { EmptyObject } from "utils/types";
 
 const DIFFICULTY_MAP: Map<string, Difficulties["sdvx:Single"]> = new Map([
@@ -105,8 +105,6 @@ const ConvertEamSDVXCSV: ConverterFunction<SDVXEamusementCSVData, EmptyObject> =
 		throw new InvalidScoreFailure(`${humanisedChartTitle} - Invalid lamp of ${data.lamp}.`);
 	}
 
-	const { percent, grade } = GenericGetGradeAndPercent("sdvx", score, chart);
-
 	const dryScore: DryScore<"sdvx:Single"> = {
 		service: "e-amusement",
 		game: "sdvx",
@@ -119,8 +117,6 @@ const ConvertEamSDVXCSV: ConverterFunction<SDVXEamusementCSVData, EmptyObject> =
 		scoreData: {
 			score,
 			lamp,
-			percent,
-			grade,
 			judgements: {},
 			optional: {
 				exScore,

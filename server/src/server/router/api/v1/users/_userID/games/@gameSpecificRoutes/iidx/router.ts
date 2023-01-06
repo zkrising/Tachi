@@ -143,7 +143,7 @@ router.get(
 						pb.scoreData.score.toString(), // ex
 						pb.scoreData.judgements.pgreat?.toString() ?? "0", // pgreat
 						pb.scoreData.judgements.great?.toString() ?? "0", // great
-						pb.scoreData.hitMeta.bp?.toString() ?? "0", // BP
+						pb.scoreData.optional.bp?.toString() ?? "0", // BP
 						ConvertEamLamp(pb.scoreData.lamp), // lamp
 						ConvertEamGrade(pb.scoreData.grade) // grade
 					);

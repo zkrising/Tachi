@@ -20,16 +20,10 @@ export type GraphMetricValidator<GPT extends GPTString> = (
 	chart: ChartDocument<GPT>
 ) => string | true;
 
-/**
- * A metric for a score that's a floating point number.
- */
 export interface ConfDecimalScoreMetric {
 	type: "DECIMAL";
 }
 
-/**
- * A metric for a score that's an integer.
- */
 export interface ConfIntegerScoreMetric {
 	type: "INTEGER";
 }
@@ -49,19 +43,25 @@ export interface ConfEnumScoreMetric<V extends string> {
 }
 
 /**
- * A metric for a score that represents an array of numbers.
- *
- * This is intended for use by graphs and other equivalent things.
+ * Corresponds to Array<number>
  */
 export interface ConfGraphScoreMetric {
 	type: "GRAPH";
+}
+
+/**
+ * Corresponds to Array<number | null>.
+ */
+export interface ConfNullableGraphScoreMetric {
+	type: "NULLABLE_GRAPH";
 }
 
 export type ConfScoreMetric =
 	| ConfDecimalScoreMetric
 	| ConfEnumScoreMetric<string>
 	| ConfGraphScoreMetric
-	| ConfIntegerScoreMetric;
+	| ConfIntegerScoreMetric
+	| ConfNullableGraphScoreMetric;
 
 /**
  * When we store and interact with enum values, we want them to be both strings
@@ -84,6 +84,8 @@ export type ExtractMetricType<M extends ConfScoreMetric> = M extends ConfDecimal
 	? EnumValue<V>
 	: M extends ConfGraphScoreMetric
 	? Array<number>
+	: M extends ConfNullableGraphScoreMetric
+	? Array<number | null>
 	: never;
 
 /**
@@ -136,7 +138,7 @@ export type ExtractMetrics<R extends Record<string, ConfScoreMetric>> = {
 	[K in keyof R]: ExtractMetricType<R[K]>;
 };
 
-export type DerivedMetricValue = Array<number> | integer | number | string;
+export type DerivedMetricValue = Array<number | null> | Array<number> | integer | number | string;
 
 export type MetricDeriver<
 	M extends Record<string, PossibleMetrics>,
@@ -150,13 +152,17 @@ export type MetricDeriver<
  * A function that will derive this metric, given a function of other metrics and
  * a chart for this GPT.
  */
-export type ScoreMetricDeriver<
-	M extends ConfScoreMetric,
-	GPT extends GPTString
-> = M extends ConfGraphScoreMetric
-	? MetricDeriver<ExtractMetrics<ConfProvidedMetrics[GPT]>, GPT, Array<number>>
-	: M extends ConfEnumScoreMetric<infer V>
-	? MetricDeriver<ExtractMetrics<ConfProvidedMetrics[GPT]>, GPT, V>
-	: M extends ConfIntegerScoreMetric
-	? MetricDeriver<ExtractMetrics<ConfProvidedMetrics[GPT]>, GPT, integer>
-	: MetricDeriver<ExtractMetrics<ConfProvidedMetrics[GPT]>, GPT, number>;
+export type ScoreMetricDeriver<M extends ConfScoreMetric, GPT extends GPTString> =
+	// graph score metrics correspond to Array<number>
+	M extends ConfGraphScoreMetric
+		? MetricDeriver<ExtractMetrics<ConfProvidedMetrics[GPT]>, GPT, Array<number>>
+		: // nullable graphs correspond to Array<number | null>
+		M extends ConfNullableGraphScoreMetric
+		? MetricDeriver<ExtractMetrics<ConfProvidedMetrics[GPT]>, GPT, Array<number | null>>
+		: // enums correspond to their string unions ("FAILED"|"CLEAR")
+		M extends ConfEnumScoreMetric<infer V>
+		? MetricDeriver<ExtractMetrics<ConfProvidedMetrics[GPT]>, GPT, V>
+		: // the other two are obvious
+		M extends ConfIntegerScoreMetric
+		? MetricDeriver<ExtractMetrics<ConfProvidedMetrics[GPT]>, GPT, integer>
+		: MetricDeriver<ExtractMetrics<ConfProvidedMetrics[GPT]>, GPT, number>;

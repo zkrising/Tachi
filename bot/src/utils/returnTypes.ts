@@ -2,7 +2,7 @@ import type {
 	APIPermissions,
 	ChartDocument,
 	Game,
-	IDStrings,
+	GPTString,
 	ImportDocument,
 	ImportTypes,
 	integer,
@@ -45,7 +45,7 @@ export type ImportPollStatus =
 			};
 	  };
 
-export interface UGPTStats<I extends IDStrings = IDStrings> {
+export interface UGPTStats<I extends GPTString = GPTString> {
 	gameStats: UserGameStats;
 	firstScore: ScoreDocument;
 	mostRecentScore: ScoreDocument;

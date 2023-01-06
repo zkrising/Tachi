@@ -24,7 +24,7 @@ export const ITG_STAMINA_CONF = {
 
 		lamp: {
 			type: "ENUM",
-			values: ["FAILED", "CLEAR", "FULL COMBO", "FULL EXCELLENT COMBO", "QUAD", "QUINT"],
+			values: ["FAILED", "CLEAR", "FULL COMBO", "FULL EXCELLENT COMBO", "QUAD"],
 			minimumRelevantValue: "FAILED", // lol, maybe this is stupid.
 		},
 	},
@@ -32,7 +32,7 @@ export const ITG_STAMINA_CONF = {
 	derivedMetrics: {
 		grade: {
 			type: "ENUM",
-			values: ["D", "C", "B", "A", "S", "★", "★★", "★★★", "★★★★", "★★★★★"],
+			values: ["F", "D", "C", "B", "A", "S", "★", "★★", "★★★", "★★★★"],
 			minimumRelevantValue: "A",
 		},
 

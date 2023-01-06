@@ -12,7 +12,7 @@ import type {
 	integer,
 	Playtype,
 	GPTSupportedVersions,
-	IDStrings,
+	GPTString,
 } from "tachi-common";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
@@ -329,7 +329,7 @@ export function StringIsGameVersion(
 	game: Game,
 	playtype: Playtype,
 	version: string
-): version is GPTSupportedVersions[IDStrings] {
+): version is GPTSupportedVersions[GPTString] {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	// @ts-expect-error yes, we know!

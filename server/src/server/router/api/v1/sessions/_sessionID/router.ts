@@ -14,7 +14,7 @@ import { GetUserWithID } from "utils/user";
 import type {
 	FolderDocument,
 	Grades,
-	IDStrings,
+	GPTString,
 	Lamps,
 	ScoreDocument,
 	integer,
@@ -209,7 +209,7 @@ router.get("/folder-raises", async (req, res) => {
 		previousCount: integer; // how many AAAs/HARD CLEARs/whatevers was on this
 		// folder before this session?
 		type: "grade" | "lamp";
-		value: Grades[IDStrings] | Lamps[IDStrings]; // this type is technically
+		value: Grades[GPTString] | Lamps[GPTString]; // this type is technically
 		// incorrect but who cares
 		totalCharts: integer;
 	}> = [];
@@ -235,8 +235,8 @@ router.get("/folder-raises", async (req, res) => {
 			// we store a Set of chartIDs instead, so
 			// AAA: ["chart1","chart2", ...] with size 5.
 			// This is so we can display *what* charts were raised in the UI.
-			const raiseGradeDist: Partial<Record<Grades[IDStrings], Set<string>>> = {};
-			const raiseLampDist: Partial<Record<Lamps[IDStrings], Set<string>>> = {};
+			const raiseGradeDist: Partial<Record<Grades[GPTString], Set<string>>> = {};
+			const raiseLampDist: Partial<Record<Lamps[GPTString], Set<string>>> = {};
 
 			// for all charts in this folder
 			for (const chartID of chartIDs) {
@@ -311,7 +311,7 @@ router.get("/folder-raises", async (req, res) => {
 
 					raisedCharts: Array.from(raisedCharts),
 					type: "grade",
-					value: grade as Grades[IDStrings],
+					value: grade as Grades[GPTString],
 					totalCharts: chartIDs.length,
 				});
 			}
@@ -326,7 +326,7 @@ router.get("/folder-raises", async (req, res) => {
 
 					raisedCharts: Array.from(raisedCharts),
 					type: "lamp",
-					value: lamp as Lamps[IDStrings],
+					value: lamp as Lamps[GPTString],
 					totalCharts: chartIDs.length,
 				});
 			}

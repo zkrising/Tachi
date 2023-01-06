@@ -1,10 +1,10 @@
-import type { IDStrings, Playtype, ScoreDocument } from "tachi-common";
+import type { GPTString, Playtype, ScoreDocument } from "tachi-common";
 
 /**
  * An intermediate score format that will be filled out by
  * HydrateScore.
  */
-export type DryScore<I extends IDStrings = IDStrings> = Pick<
+export type DryScore<I extends GPTString = GPTString> = Pick<
 	ScoreDocument<I>,
 	"comment" | "game" | "importType" | "scoreMeta" | "service" | "timeAchieved"
 > & {

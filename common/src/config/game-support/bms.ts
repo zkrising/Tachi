@@ -136,12 +136,6 @@ export const BMS_7K_CONF = {
 	providedMetrics: {
 		score: { type: "INTEGER" },
 
-		// if #RANDOM is to ever be supported, the user's percent would become
-		// a *mandatory* metric, as a chart's notecount can be completely unknown.
-		// #RANDOM is not supported (other painful reasons), but this should be done
-		// anyway.
-		percent: { type: "DECIMAL" },
-
 		lamp: {
 			type: "ENUM",
 			values: [
@@ -164,6 +158,11 @@ export const BMS_7K_CONF = {
 			values: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
 			minimumRelevantValue: "A",
 		},
+
+		// if #RANDOM is to ever be supported, the user's percent would become
+		// a *mandatory* metric, as a chart's notecount can be completely unknown.
+		// However, supporting #RANDOM is an awful pain, so I don't really care.
+		percent: { type: "DECIMAL" },
 	},
 
 	defaultMetric: "percent",

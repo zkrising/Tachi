@@ -19,7 +19,7 @@ import { GetGamePTConfig } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { DryScore } from "../common/types";
 import type { KtLogger } from "lib/logger/logger";
-import type { ChartDocument, Game, IDStrings, Lamps, Playtypes, ScoreDocument } from "tachi-common";
+import type { ChartDocument, Game, GPTString, Lamps, Playtypes, ScoreDocument } from "tachi-common";
 
 export async function CreateCalculatedData(
 	dryScore: DryScore,
@@ -43,7 +43,7 @@ export async function CreateCalculatedData(
 }
 
 type CalculatedDataFunctionsType = {
-	[I in IDStrings]: (
+	[I in GPTString]: (
 		dryScore: DryScore<I>,
 		chart: ChartDocument<I>,
 		logger: KtLogger
@@ -85,10 +85,10 @@ export async function CalculateDataForGamePT<G extends Game>(
 	logger: KtLogger
 ): Promise<ScoreDocument["calculatedData"]> {
 	// @ts-expect-error too many minor complains here...
-	return CalculatedDataFunctions[`${game}:${playtype}` as IDStrings](dryScore, chart, logger);
+	return CalculatedDataFunctions[`${game}:${playtype}` as GPTString](dryScore, chart, logger);
 }
 
-type CalculatedData<I extends IDStrings> = Required<ScoreDocument<I>["calculatedData"]>;
+type CalculatedData<I extends GPTString> = Required<ScoreDocument<I>["calculatedData"]>;
 
 function CalculateDataIIDX(
 	dryScore: DryScore,

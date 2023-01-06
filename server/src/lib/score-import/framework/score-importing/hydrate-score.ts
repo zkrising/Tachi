@@ -26,8 +26,6 @@ export async function HydrateScore(
 
 	const calculatedData = await CreateCalculatedData(dryScore, chart, esd, logger);
 
-	const { scoreData: dryScoreData, ...rest } = dryScore;
-
 	const gptConfig = GetGamePTConfig(dryScore.game, chart.playtype);
 
 	// Fill out the rest of the fields we want for scoreData
@@ -39,11 +37,13 @@ export async function HydrateScore(
 	};
 
 	const score: ScoreDocument = {
-		// extract all of the non-scoreData props from a dry score and push them here
-		...rest,
+		...dryScore,
 
 		// then push our score data.
-		scoreData,
+		scoreData: {
+			...dryScore.scoreData,
+			...derivedMetrics,
+		},
 
 		// everything below this point is sane
 		highlight: false,

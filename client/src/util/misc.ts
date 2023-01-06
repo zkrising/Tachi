@@ -8,7 +8,7 @@ import {
 	GamePTConfig,
 	GetGamePTConfig,
 	Grades,
-	IDStrings,
+	GPTString,
 	Playtype,
 	ProfileRatingLookup,
 	QuestDocument,
@@ -59,7 +59,7 @@ export function FormatTables(tables: { table: string; level: string }[]) {
 export function FormatGPTRating(
 	game: Game,
 	playtype: Playtype,
-	key: ScoreCalculatedDataLookup[IDStrings],
+	key: ScoreCalculatedDataLookup[GPTString],
 	value: number | null
 ) {
 	if (value === null) {
@@ -78,7 +78,7 @@ export function FormatGPTRating(
 export function FormatGPTProfileRating(
 	game: Game,
 	playtype: Playtype,
-	key: ProfileRatingLookup[IDStrings],
+	key: ProfileRatingLookup[GPTString],
 	value: number | null
 ) {
 	if (value === null) {
@@ -97,7 +97,7 @@ export function FormatGPTProfileRating(
 export function FormatGPTSessionRating(
 	game: Game,
 	playtype: Playtype,
-	key: SessionCalculatedDataLookup[IDStrings],
+	key: SessionCalculatedDataLookup[GPTString],
 	value: number | null | undefined
 ) {
 	if (value === null || value === undefined) {
@@ -315,7 +315,7 @@ export function FormatSessionRating(
 	return formatter(value);
 }
 
-export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
+export function GetGradeFromPercent<I extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype,
 	percent: number

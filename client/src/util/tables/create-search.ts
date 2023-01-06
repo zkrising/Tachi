@@ -6,7 +6,7 @@ import {
 	Game,
 	GamePTConfig,
 	GetGamePTConfig,
-	IDStrings,
+	GPTString,
 	Playtype,
 } from "tachi-common";
 import { ComparePBsDataset, FolderDataset, PBDataset, ScoreDataset } from "types/tables";
@@ -21,7 +21,7 @@ function GetBMSTableVal(chart: ChartDocument<"bms:7K" | "bms:14K">, key: string)
 	return null;
 }
 
-export function CreateDefaultScoreSearchParams<I extends IDStrings = IDStrings>(
+export function CreateDefaultScoreSearchParams<I extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype
 ) {
@@ -53,7 +53,7 @@ export function CreateDefaultScoreSearchParams<I extends IDStrings = IDStrings>(
 	return searchFunctions;
 }
 
-export function CreateDefaultPBSearchParams<I extends IDStrings = IDStrings>(
+export function CreateDefaultPBSearchParams<I extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype
 ) {
@@ -88,7 +88,7 @@ export function CreateDefaultPBSearchParams<I extends IDStrings = IDStrings>(
 	return searchFunctions;
 }
 
-export function CreatePBCompareSearchParams<I extends IDStrings = IDStrings>(
+export function CreatePBCompareSearchParams<I extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype
 ) {
@@ -106,7 +106,7 @@ export function CreatePBCompareSearchParams<I extends IDStrings = IDStrings>(
 	return searchFunctions;
 }
 
-export function CreateDefaultFolderSearchParams<I extends IDStrings = IDStrings>(
+export function CreateDefaultFolderSearchParams<I extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype
 ) {

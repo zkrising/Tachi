@@ -20,7 +20,7 @@ import type { KtLogger } from "lib/logger/logger";
 import type { ScoreImportJob } from "lib/score-import/worker/types";
 import type {
 	Game,
-	IDStrings,
+	GPTString,
 	ImportDocument,
 	ImportProcessingInfo,
 	ImportTypes,
@@ -187,7 +187,7 @@ export default async function ScoreImportMain<D, C>(
 		// Create and Save an import document to the database, and finish everything up!
 		const ImportDocument: ImportDocument = {
 			importType,
-			idStrings: playtypes.map((e) => `${game}:${e}`) as Array<IDStrings>,
+			idStrings: playtypes.map((e) => `${game}:${e}`) as Array<GPTString>,
 			scoreIDs,
 			playtypes,
 			game,

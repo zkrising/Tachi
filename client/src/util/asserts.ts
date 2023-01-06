@@ -2,7 +2,7 @@ import { TachiConfig } from "lib/config";
 import {
 	Game,
 	GetGameConfig,
-	IDStrings,
+	GPTString,
 	PBScoreDocument,
 	Playtypes,
 	ScoreDocument,
@@ -21,7 +21,7 @@ export function IsSupportedPlaytype<G extends Game = Game>(
 	return gameConfig.playtypes.includes(str as unknown as Playtypes[G]);
 }
 
-export function IsScore<I extends IDStrings>(
+export function IsScore<I extends GPTString>(
 	pbOrScore: PBScoreDocument<I> | ScoreDocument<I>
 ): pbOrScore is ScoreDocument<I> {
 	// @ts-expect-error thats the test...

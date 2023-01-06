@@ -12,7 +12,7 @@ import type {
 	FolderDocument,
 	Game,
 	Grades,
-	IDStrings,
+	GPTString,
 	integer,
 	Lamps,
 	PBScoreDocument,
@@ -307,7 +307,7 @@ export async function GetPBsOnFolder(userID: integer, folder: FolderDocument) {
 }
 
 export function CalculateLampDistribution(pbs: Array<PBScoreDocument>) {
-	const lampDist: Partial<Record<Lamps[IDStrings], integer>> = {};
+	const lampDist: Partial<Record<Lamps[GPTString], integer>> = {};
 
 	for (const pb of pbs) {
 		if (lampDist[pb.scoreData.lamp] !== undefined) {
@@ -321,7 +321,7 @@ export function CalculateLampDistribution(pbs: Array<PBScoreDocument>) {
 }
 
 export function CalculateGradeDistribution(pbs: Array<PBScoreDocument>) {
-	const gradeDist: Partial<Record<Grades[IDStrings], integer>> = {};
+	const gradeDist: Partial<Record<Grades[GPTString], integer>> = {};
 
 	for (const pb of pbs) {
 		if (gradeDist[pb.scoreData.grade] !== undefined) {
@@ -419,11 +419,11 @@ export async function GetGradeLampDistributionForFolderAsOf(
 
 	const { game, playtype } = folder;
 
-	const gradeDist: Partial<Record<Grades[IDStrings], integer>> = {};
-	const cumulativeGradeDist: Partial<Record<Grades[IDStrings], integer>> = {};
+	const gradeDist: Partial<Record<Grades[GPTString], integer>> = {};
+	const cumulativeGradeDist: Partial<Record<Grades[GPTString], integer>> = {};
 
-	const lampDist: Partial<Record<Lamps[IDStrings], integer>> = {};
-	const cumulativeLampDist: Partial<Record<Lamps[IDStrings], integer>> = {};
+	const lampDist: Partial<Record<Lamps[GPTString], integer>> = {};
+	const cumulativeLampDist: Partial<Record<Lamps[GPTString], integer>> = {};
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	for (const score of bestGradeLampIndexes) {

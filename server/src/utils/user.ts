@@ -6,7 +6,7 @@ import type { FindOneResult } from "monk";
 import type {
 	APITokenDocument,
 	Game,
-	IDStrings,
+	GPTString,
 	integer,
 	Playtype,
 	UserDocument,
@@ -192,7 +192,7 @@ export async function GetAllRankings(stats: UserGameStats) {
 
 export async function GetUsersRankingAndOutOf(
 	stats: UserGameStats,
-	alg?: ProfileRatingLookup[IDStrings]
+	alg?: ProfileRatingLookup[GPTString]
 ) {
 	const gptConfig = GetGamePTConfig(stats.game, stats.playtype);
 

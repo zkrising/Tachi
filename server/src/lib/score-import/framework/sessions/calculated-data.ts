@@ -1,6 +1,6 @@
 import type {
 	Game,
-	IDStrings,
+	GPTString,
 	integer,
 	Playtype,
 	ScoreDocument,
@@ -58,10 +58,10 @@ function AvgBestNMap(
 
 type SessionCalcDataFn = (
 	scd: Array<ScoreCalculatedDataOnly>
-) => Partial<Record<SessionCalculatedDataLookup[IDStrings], number | null>>;
+) => Partial<Record<SessionCalculatedDataLookup[GPTString], number | null>>;
 
 function GetGPTSessionCalcDataFn(game: Game, playtype: Playtype): SessionCalcDataFn {
-	switch (`${game}:${playtype}` as IDStrings) {
+	switch (`${game}:${playtype}` as GPTString) {
 		case "iidx:SP":
 		case "iidx:DP":
 			return (scd) => ({

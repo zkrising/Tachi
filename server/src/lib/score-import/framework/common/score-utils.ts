@@ -5,9 +5,9 @@ import { IsNullish, NotNullish } from "utils/misc";
 import type {
 	ChartDocument,
 	Game,
-	GameToIDStrings,
+	GameToGPTString,
 	Grades,
-	IDStrings,
+	GPTString,
 	Playtype,
 	Lamps,
 	integer,
@@ -18,7 +18,7 @@ const logger = CreateLogCtx(__filename);
 /**
  * Util for getting a games' grade for a given percent.
  */
-export function GetGradeFromPercent<I extends IDStrings = IDStrings>(
+export function GetGradeFromPercent<I extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype,
 	percent: number
@@ -136,12 +136,12 @@ export function GenericGetGradeAndPercent<G extends Game>(
 	game: G,
 	score: number,
 	chart: ChartDocument
-): { percent: number; grade: Grades[GameToIDStrings[G]] } {
+): { percent: number; grade: Grades[GameToGPTString[G]] } {
 	const percent = GenericCalculatePercent(game, score, chart);
 
 	ValidatePercent(game, chart.playtype, percent, chart);
 
-	const grade: Grades[GameToIDStrings[G]] = GetGradeFromPercent(game, chart.playtype, percent);
+	const grade: Grades[GameToGPTString[G]] = GetGradeFromPercent(game, chart.playtype, percent);
 
 	return { percent, grade };
 }

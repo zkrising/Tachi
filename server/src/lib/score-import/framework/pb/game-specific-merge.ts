@@ -158,7 +158,7 @@ export async function SDVXMergeFn(
 	return true;
 }
 
-type IDStringsWithBP =
+type GPTStringWithBP =
 	| "bms:7K"
 	| "bms:14K"
 	| "iidx:DP"
@@ -173,9 +173,9 @@ type IDStringsWithBP =
  * @returns NOTHING, mutates original input.
  */
 async function MergeBPPB(
-	pbDoc: PBScoreDocument<IDStringsWithBP>,
-	scorePB: ScoreDocument<IDStringsWithBP>,
-	lampPB: ScoreDocument<IDStringsWithBP>,
+	pbDoc: PBScoreDocument<GPTStringWithBP>,
+	scorePB: ScoreDocument<GPTStringWithBP>,
+	lampPB: ScoreDocument<GPTStringWithBP>,
 	logger: KtLogger,
 	asOfTimestamp: number | undefined
 ) {

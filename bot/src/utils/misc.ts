@@ -7,7 +7,7 @@ import type {
 	ChartDocument,
 	Game,
 	Grades,
-	IDStrings,
+	GPTString,
 	integer,
 	PBScoreDocument,
 	Playtype,
@@ -38,7 +38,7 @@ export function Pluralise(int: integer, str: string) {
 export function FormatScoreRating(
 	game: Game,
 	playtype: Playtype,
-	rating: ScoreCalculatedDataLookup[IDStrings],
+	rating: ScoreCalculatedDataLookup[GPTString],
 	value: number | null | undefined
 ) {
 	if (value === null || value === undefined) {
@@ -96,7 +96,7 @@ export function FormatDate(ms: number) {
 export function FormatClass(
 	game: Game,
 	playtype: Playtype,
-	classSet: GameClassSets[IDStrings],
+	classSet: GameClassSets[GPTString],
 	classValue: integer
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
@@ -152,9 +152,9 @@ export function CreateChartLink(chart: ChartDocument, game: Game) {
 	return `${BotConfig.TACHI_SERVER_LOCATION}/games/${game}/${chart.playtype}/songs/${chart.songID}/${chart.chartID}`;
 }
 
-type ScOrPBDoc<I extends IDStrings> = PBScoreDocument<I> | ScoreDocument<I>;
+type ScOrPBDoc<I extends GPTString> = PBScoreDocument<I> | ScoreDocument<I>;
 
-export function FormatScoreData<I extends IDStrings = IDStrings>(score: ScOrPBDoc<I>) {
+export function FormatScoreData<I extends GPTString = GPTString>(score: ScOrPBDoc<I>) {
 	const game = score.game;
 
 	let lampStr: string = score.scoreData.lamp;
@@ -190,7 +190,7 @@ export function FormatScoreData<I extends IDStrings = IDStrings>(score: ScOrPBDo
 /**
  * Util for getting a games' grade for a given percent.
  */
-function GetGradeFromPercent<I extends IDStrings = IDStrings>(
+function GetGradeFromPercent<I extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype,
 	percent: number
@@ -229,7 +229,7 @@ function FormatIIDXEXScore(exscore: integer, notecount: integer, playtype: Playt
 	return `${closer === "lower" ? lower : upper} (${exscore}, ${percent.toFixed(2)}%)`;
 }
 
-export function GetChartPertinentInfo<I extends IDStrings>(game: Game, chart: ChartDocument<I>) {
+export function GetChartPertinentInfo<I extends GPTString>(game: Game, chart: ChartDocument<I>) {
 	if (game === "iidx") {
 		const ch = chart as ChartDocument<"iidx:DP" | "iidx:SP">;
 

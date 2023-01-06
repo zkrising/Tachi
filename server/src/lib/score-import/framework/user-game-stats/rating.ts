@@ -3,7 +3,7 @@ import type { KtLogger } from "lib/logger/logger";
 import type {
 	Game,
 	GPTSupportedVersions,
-	IDStrings,
+	GPTString,
 	integer,
 	PBScoreDocument,
 	Playtype,
@@ -11,7 +11,7 @@ import type {
 	UserGameStats,
 } from "tachi-common";
 
-type CustomCalcNames = ScoreCalculatedDataLookup[IDStrings];
+type CustomCalcNames = ScoreCalculatedDataLookup[GPTString];
 
 function LazySumAll(key: CustomCalcNames) {
 	return async (game: Game, playtype: Playtype, userID: integer) => {
@@ -96,7 +96,7 @@ type RatingFunction = (
 ) => Promise<UserGameStats["ratings"]>;
 
 function GetGPTRatingFunction(game: Game, playtype: Playtype): RatingFunction {
-	switch (`${game}:${playtype}` as IDStrings) {
+	switch (`${game}:${playtype}` as GPTString) {
 		case "iidx:SP":
 		case "iidx:DP":
 			return async (g, p, u) => ({

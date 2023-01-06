@@ -7,7 +7,7 @@ import { MessageActionRow, MessageSelectMenu, Util } from "discord.js";
 import { FormatChart } from "tachi-common";
 import type { ChartQueryReturns } from "../../utils/returnTypes";
 import type { SlashCommand } from "../types";
-import type { Difficulties, IDStrings, integer, SongDocument } from "tachi-common";
+import type { Difficulties, GPTString, integer, SongDocument } from "tachi-common";
 
 const command: SlashCommand = {
 	info: new SlashCommandBuilder()
@@ -34,7 +34,7 @@ const command: SlashCommand = {
 
 		const { userDoc, game, playtype } = gptUserInfo.content;
 
-		let difficulty: Difficulties[IDStrings] | null;
+		let difficulty: Difficulties[GPTString] | null;
 
 		try {
 			difficulty = ParseDifficulty(

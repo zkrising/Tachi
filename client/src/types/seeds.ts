@@ -4,12 +4,12 @@ import {
 	ChartDocument,
 	FolderDocument,
 	Game,
-	GameToIDStrings,
+	GameToGPTString,
 	GoalDocument,
 	GoalDocumentFolder,
 	GoalDocumentMulti,
 	GoalDocumentSingle,
-	IDStrings,
+	GPTString,
 	IDStringToGame,
 	QuestDocument,
 	QuestlineDocument,
@@ -59,7 +59,7 @@ export type QuestWithRelated = QuestDocument & {
 	};
 };
 
-export type ChartWithRelated<T extends IDStrings = IDStrings> = ChartDocument<T> & {
+export type ChartWithRelated<T extends GPTString = GPTString> = ChartDocument<T> & {
 	__related: {
 		song: SongDocument<IDStringToGame[T]> | undefined;
 	};
@@ -70,7 +70,7 @@ type SongSeedsWithRelated = {
 };
 
 type ChartSeedsWithRelated = {
-	[G in Game as `charts-${G}.json`]: Array<ChartWithRelated<GameToIDStrings[G]>>;
+	[G in Game as `charts-${G}.json`]: Array<ChartWithRelated<GameToGPTString[G]>>;
 };
 
 /**

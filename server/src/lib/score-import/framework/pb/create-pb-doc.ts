@@ -12,14 +12,14 @@ import type { KtLogger } from "lib/logger/logger";
 import type { BulkWriteUpdateOneOperation, FilterQuery } from "mongodb";
 import type {
 	Game,
-	IDStrings,
+	GPTString,
 	integer,
 	PBScoreDocument,
 	Playtype,
 	ScoreDocument,
 } from "tachi-common";
 
-export type PBScoreDocumentNoRank<I extends IDStrings = IDStrings> = Omit<
+export type PBScoreDocumentNoRank<I extends GPTString = GPTString> = Omit<
 	PBScoreDocument<I>,
 	"rankingData"
 >;

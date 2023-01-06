@@ -30,7 +30,7 @@ import type {
 	Difficulties,
 	GPTSupportedVersions,
 	Grades,
-	IDStrings,
+	GPTString,
 	ImportTypes,
 	SongDocument,
 } from "tachi-common";
@@ -56,7 +56,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 	// run like this.
 
 	let percent: number;
-	let grade: Grades[IDStrings];
+	let grade: Grades[GPTString];
 
 	if (game === "jubeat") {
 		if (data.percent === undefined) {

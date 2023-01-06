@@ -17,7 +17,7 @@ import type { KtLogger } from "lib/logger/logger";
 import type {
 	ClassDelta,
 	Game,
-	IDStrings,
+	GPTString,
 	integer,
 	Playtype,
 	Playtypes,
@@ -149,7 +149,7 @@ export async function ProcessClassDeltas(
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	for (const s of Object.keys(classes)) {
-		const classSet = s as keyof GameClasses<IDStrings>;
+		const classSet = s as keyof GameClasses<GPTString>;
 		const classVal = classes[classSet];
 
 		if (classVal === undefined) {

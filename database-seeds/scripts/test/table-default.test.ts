@@ -1,6 +1,6 @@
 import chalk from "chalk";
 import { FormatGame, TableDocument } from "tachi-common";
-import { allIDStrings } from "tachi-common/config/static-config";
+import { allGPTString } from "tachi-common/config/static-config";
 import { ReadCollection } from "../util";
 
 const idStringMap = {};
@@ -38,7 +38,7 @@ for (const t of tables) {
 	}
 }
 
-for (const idString of allIDStrings) {
+for (const idString of allGPTString) {
 	if (!idStringMap[idString]) {
 		console.log(chalk.red(`[TABLE-DEFAULT] There is no default table for ${idString}.`));
 		errs += 1;

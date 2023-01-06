@@ -1,7 +1,7 @@
 import {
 	Game,
 	GPTTierlists,
-	IDStrings,
+	GPTString,
 	IIDX_LAMPS,
 	ScoreDocument,
 	SDVX_LAMPS,
@@ -9,7 +9,7 @@ import {
 } from "tachi-common";
 
 type ScaleAchievedFns = {
-	[I in IDStrings]: {
+	[I in GPTString]: {
 		[K in GPTTierlists[I]]: ((k: ScoreDocument<I>) => boolean) | null;
 	};
 };
@@ -60,9 +60,9 @@ const ScaleNameAchievedFns: ScaleAchievedFns = {
 export function GetScaleAchievedFn(
 	game: Game,
 	playtype: Playtype,
-	tierlist: GPTTierlists[IDStrings]
+	tierlist: GPTTierlists[GPTString]
 ) {
-	const scl = ScaleNameAchievedFns[`${game}:${playtype}` as IDStrings];
+	const scl = ScaleNameAchievedFns[`${game}:${playtype}` as GPTString];
 
 	if (!scl) {
 		throw new Error(`Invalid game + pt combination ${game}:${playtype}. Can't find scale.`);

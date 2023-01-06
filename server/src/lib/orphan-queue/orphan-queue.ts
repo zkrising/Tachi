@@ -6,7 +6,7 @@ import type { FilterQuery } from "mongodb";
 import type { WithID } from "monk";
 import type {
 	ChartDocument,
-	IDStrings,
+	GPTString,
 	IDStringToGame,
 	integer,
 	OrphanChart,
@@ -27,7 +27,7 @@ const logger = CreateLogCtx(__filename);
  * If the chart has been seen before, and has >= N unique players who have
  * played it, unorphan the chart, and return it.
  */
-export async function HandleOrphanQueue<I extends IDStrings>(
+export async function HandleOrphanQueue<I extends GPTString>(
 	idString: I,
 	game: IDStringToGame[I],
 	chartDoc: ChartDocument<I>,
@@ -111,7 +111,7 @@ export async function HandleOrphanQueue<I extends IDStrings>(
  * Useful for something like BMS-Table-Sync, where we want to load anything in a table
  * regardless of how many people have played the chart.
  */
-export async function DeorphanIfInQueue<I extends IDStrings>(
+export async function DeorphanIfInQueue<I extends GPTString>(
 	idString: I,
 	game: IDStringToGame[I],
 	orphanMatchCriteria: FilterQuery<OrphanChart<I>>

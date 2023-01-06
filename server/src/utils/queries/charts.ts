@@ -5,7 +5,7 @@ import type {
 	Difficulties,
 	Game,
 	GPTSupportedVersions,
-	IDStrings,
+	GPTString,
 	integer,
 	Playtype,
 	Playtypes,
@@ -23,7 +23,7 @@ export function FindChartWithChartID(game: Game, chartID: string) {
 export function FindChartWithPTDF<
 	G extends Game = Game,
 	P extends Playtypes[G] = Playtypes[G],
-	I extends IDStrings = IDStrings
+	I extends GPTString = GPTString
 >(game: G, songID: integer, playtype: P, difficulty: Difficulties[I]) {
 	return db.charts[game].findOne({
 		songID,
@@ -40,7 +40,7 @@ export function FindChartWithPTDF<
 export function FindChartWithPTDFVersion<
 	G extends Game = Game,
 	P extends Playtypes[G] = Playtypes[G],
-	I extends IDStrings = IDStrings
+	I extends GPTString = GPTString
 >(
 	game: G,
 	songID: integer,
@@ -79,7 +79,7 @@ export function FindChartOnInGameID(
 	game: Game,
 	inGameID: number,
 	playtype: Playtype,
-	difficulty: Difficulties[IDStrings]
+	difficulty: Difficulties[GPTString]
 ) {
 	if (game === "bms" || game === "usc") {
 		throw new Error(`Cannot call FindChartOnInGameID for game ${game}.`);
@@ -99,7 +99,7 @@ export function FindChartOnInGameID(
 export function FindIIDXChartOnInGameID(
 	inGameID: number,
 	playtype: Playtype,
-	difficulty: Difficulties[IDStrings]
+	difficulty: Difficulties[GPTString]
 ) {
 	return db.charts.iidx.findOne({
 		"data.inGameID": inGameID,
@@ -117,8 +117,8 @@ export function FindIIDXChartOnInGameID(
 export function FindIIDXChartOnInGameIDVersion(
 	inGameID: number,
 	playtype: Playtype,
-	difficulty: Difficulties[IDStrings],
-	version: GPTSupportedVersions[IDStrings]
+	difficulty: Difficulties[GPTString],
+	version: GPTSupportedVersions[GPTString]
 ) {
 	return db.charts.iidx.findOne({
 		"data.inGameID": inGameID,
@@ -132,7 +132,7 @@ export function FindIIDXChartOnInGameIDVersion(
 /**
  * Find a chart on its in-game-ID, playtype, difficulty and version.
  */
-export function FindChartOnInGameIDVersion<I extends IDStrings = IDStrings>(
+export function FindChartOnInGameIDVersion<I extends GPTString = GPTString>(
 	game: Game,
 	inGameID: number,
 	playtype: Playtype,

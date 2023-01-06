@@ -1,6 +1,6 @@
 import type { integer } from "../types";
 import type { ChartDocument } from "./documents";
-import type { GPTString } from "./game-config";
+import type { AdditionalMetrics, DerivedMetrics, GPTString, ProvidedMetrics } from "./game-config";
 
 export type DecimalMetricValidator<GPT extends GPTString> = (
 	metric: number,
@@ -35,7 +35,7 @@ export interface IntegerScoreMetric {
  * This is intended for use for things like clearTypes/lamps/grades. It may be
  * used for anything where a metric is in a known, ordered set of strings.
  */
-export interface EnumScoreMetric<V extends string = string> {
+export interface EnumScoreMetric<V extends string> {
 	type: "ENUM";
 	values: ReadonlyArray<V>;
 
@@ -54,7 +54,7 @@ export interface GraphScoreMetric {
 
 export type ScoreMetric =
 	| DecimalScoreMetric
-	| EnumScoreMetric
+	| EnumScoreMetric<string>
 	| GraphScoreMetric
 	| IntegerScoreMetric;
 
@@ -71,8 +71,8 @@ export type ExtractMetricType<M extends ScoreMetric> = M extends DecimalScoreMet
 	? number
 	: M extends IntegerScoreMetric
 	? integer
-	: M extends EnumScoreMetric
-	? EnumValue<M["values"][number]>
+	: M extends EnumScoreMetric<infer V>
+	? EnumValue<V>
 	: M extends GraphScoreMetric
 	? Array<number>
 	: never;
@@ -95,8 +95,19 @@ export type ExtractMetricType<M extends ScoreMetric> = M extends DecimalScoreMet
  * would return a type of "grade" | "lamp"
  */
 export type ExtractEnumMetricNames<R extends Record<string, ScoreMetric>> = {
-	[K in keyof R]: R[K] extends EnumScoreMetric ? K : never;
+	[K in keyof R]: R[K] extends EnumScoreMetric<infer _> ? K : never;
 }[keyof R];
+
+export type ExtractEnumValues<
+	GPT extends GPTString,
+	MetricName extends ExtractEnumMetricNames<
+		AdditionalMetrics[GPT] & DerivedMetrics[GPT] & ProvidedMetrics[GPT]
+	>
+> = (AdditionalMetrics[GPT] &
+	DerivedMetrics[GPT] &
+	ProvidedMetrics[GPT])[MetricName] extends EnumScoreMetric<infer EnumValues>
+	? EnumValues
+	: never;
 
 type PossibleMetrics = ExtractMetricType<ScoreMetric>;
 
@@ -114,40 +125,22 @@ export type ExtractMetrics<R extends Record<string, ScoreMetric>> = {
 export type MetricDeriver<
 	M extends Record<string, PossibleMetrics>,
 	GPT extends GPTString,
-	V extends PossibleMetrics
+	// possible return values
+	// from a derived fn
+	V extends Array<number> | integer | number | string
 > = (mandatoryMetrics: M, chart: ChartDocument<GPT>) => V;
 
-export type DerivedDecimalScoreMetric<
-	M extends Record<string, PossibleMetrics>,
-	GPT extends GPTString
-> = DecimalScoreMetric & { deriver: MetricDeriver<M, GPT, number> };
-
-export type DerivedIntegerScoreMetric<
-	M extends Record<string, PossibleMetrics>,
-	GPT extends GPTString
-> = IntegerScoreMetric & { deriver: MetricDeriver<M, GPT, integer> };
-
-export type DerivedEnumScoreMetric<
-	M extends Record<string, PossibleMetrics>,
-	GPT extends GPTString,
-	E extends string = string
-> = EnumScoreMetric<E> & { deriver: MetricDeriver<M, GPT, EnumValue<E>> };
-
-export type DerivedGraphScoreMetric<
-	M extends Record<string, PossibleMetrics>,
-	GPT extends GPTString
-> = GraphScoreMetric & { deriver: MetricDeriver<M, GPT, Array<number>> };
-
 /**
- * A score metric with a "deriver" function that creates it from mandatoryScoreMetrics
- * and a chart document.
+ * A function that will derive this metric, given a function of other metrics and
+ * a chart for this GPT.
  */
-export type DerivedScoreMetric<
-	M extends Record<string, PossibleMetrics>,
-	GPT extends GPTString,
-	Enum extends string = string
-> =
-	| DerivedDecimalScoreMetric<M, GPT>
-	| DerivedEnumScoreMetric<M, GPT, Enum>
-	| DerivedGraphScoreMetric<M, GPT>
-	| DerivedIntegerScoreMetric<M, GPT>;
+export type ScoreMetricDeriver<
+	M extends ScoreMetric,
+	GPT extends GPTString
+> = M extends GraphScoreMetric
+	? MetricDeriver<ExtractMetrics<ProvidedMetrics[GPT]>, GPT, Array<number>>
+	: M extends EnumScoreMetric<infer V>
+	? MetricDeriver<ExtractMetrics<ProvidedMetrics[GPT]>, GPT, V>
+	: M extends IntegerScoreMetric
+	? MetricDeriver<ExtractMetrics<ProvidedMetrics[GPT]>, GPT, integer>
+	: MetricDeriver<ExtractMetrics<ProvidedMetrics[GPT]>, GPT, number>;

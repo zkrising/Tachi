@@ -29,7 +29,7 @@ import {
 } from "utils/queries/summary";
 import { GetUser } from "utils/req-tachi-data";
 import { FormatUserDoc, GetAllRankings, GetUserWithID } from "utils/user";
-import type { IDStrings, ImportTypes, UserGameStats, integer } from "tachi-common";
+import type { GPTString, ImportTypes, UserGameStats, integer } from "tachi-common";
 import type { ProfileRatingAlgs } from "utils/string-checks";
 
 const logger = CreateLogCtx(__filename);
@@ -451,7 +451,7 @@ router.use(
 			userID: user.id,
 		});
 
-		const data: Partial<Record<IDStrings, unknown>> = {};
+		const data: Partial<Record<GPTString, unknown>> = {};
 
 		const settings = await db["user-settings"].findOne({ userID: user.id });
 
@@ -490,7 +490,7 @@ router.use(
 					startTime
 				);
 
-				data[`${e.game}:${e.playtype}` as IDStrings] = activity;
+				data[`${e.game}:${e.playtype}` as GPTString] = activity;
 			})
 		);
 

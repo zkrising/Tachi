@@ -1,6 +1,6 @@
 import {
 	ChartDocument,
-	IDStrings,
+	GPTString,
 	IDStringToGame,
 	ImportDocument,
 	ImportTrackerFailed,
@@ -15,7 +15,7 @@ import {
 	QuestDocument,
 } from "tachi-common";
 
-export type PBDataset<I extends IDStrings = IDStrings> = (PBScoreDocument<I> & {
+export type PBDataset<I extends GPTString = GPTString> = (PBScoreDocument<I> & {
 	__related: {
 		chart: ChartDocument<I>;
 		song: SongDocument<IDStringToGame[I]>;
@@ -25,7 +25,7 @@ export type PBDataset<I extends IDStrings = IDStrings> = (PBScoreDocument<I> & {
 	__playcount?: integer;
 })[];
 
-export type ScoreDataset<I extends IDStrings = IDStrings> = (ScoreDocument<I> & {
+export type ScoreDataset<I extends GPTString = GPTString> = (ScoreDocument<I> & {
 	__related: {
 		chart: ChartDocument<I>;
 		song: SongDocument<IDStringToGame[I]>;
@@ -34,7 +34,7 @@ export type ScoreDataset<I extends IDStrings = IDStrings> = (ScoreDocument<I> & 
 	};
 })[];
 
-export type FolderDataset<I extends IDStrings = IDStrings> = (ChartDocument<I> & {
+export type FolderDataset<I extends GPTString = GPTString> = (ChartDocument<I> & {
 	__related: {
 		pb: PBScoreDocument<I> | null;
 		song: SongDocument<IDStringToGame[I]>;
@@ -42,27 +42,27 @@ export type FolderDataset<I extends IDStrings = IDStrings> = (ChartDocument<I> &
 	};
 })[];
 
-export type ChartLeaderboardDataset<I extends IDStrings = IDStrings> = (PBScoreDocument<I> & {
+export type ChartLeaderboardDataset<I extends GPTString = GPTString> = (PBScoreDocument<I> & {
 	__related: {
 		user: UserDocument;
 	};
 })[];
 
-export type UGSDataset<I extends IDStrings = IDStrings> = (UserGameStats<I> & {
+export type UGSDataset<I extends GPTString = GPTString> = (UserGameStats<I> & {
 	__related: {
 		user: UserDocument;
 		index: integer;
 	};
 })[];
 
-export type RivalChartDataset<I extends IDStrings = IDStrings> = (UserDocument & {
+export type RivalChartDataset<I extends GPTString = GPTString> = (UserDocument & {
 	__related: {
 		pb: PBScoreDocument<I> | null;
 		index: number;
 	};
 })[];
 
-export type ComparePBsDataset<I extends IDStrings = IDStrings> = Array<{
+export type ComparePBsDataset<I extends GPTString = GPTString> = Array<{
 	base: PBScoreDocument<I> | null;
 	compare: PBScoreDocument<I> | null;
 	chart: ChartDocument;

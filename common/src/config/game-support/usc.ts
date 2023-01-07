@@ -49,10 +49,6 @@ export const USC_CONTROLLER_CONF = {
 		},
 	},
 	sessionRatingAlgs: {
-		VF6: {
-			description: "The average of your best 10 VF6s this session.",
-			formatter: ToDecimalPlaces(3),
-		},
 		ProfileVF6: {
 			description:
 				"The average of your best 10 VF6s this session, multiplied to be on the same scale as profile VOLFORCE.",

@@ -1,5 +1,5 @@
-import { CreateSessionCalcData } from "./calculated-data";
 import { GenerateRandomSessionName } from "./name-generation";
+import { CreateSessionCalcData } from "../calculated-data/session";
 import { CreatePBDoc } from "../pb/create-pb-doc";
 import db from "external/mongo/db";
 import CreateLogCtx, { AppendLogCtx } from "lib/logger/logger";
@@ -12,7 +12,6 @@ import type {
 	Game,
 	ImportTypes,
 	integer,
-	PBScoreDocument,
 	Playtype,
 	ScoreDocument,
 	SessionDocument,

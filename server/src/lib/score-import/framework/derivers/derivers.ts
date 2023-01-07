@@ -94,13 +94,11 @@ const GPT_DERIVERS: AllGPTDerivers = {
 		grade: ({ score, clearMedal }) => {
 			const gradeString = GetGrade(POPN_GBOUNDARIES, score);
 
+			// lol double-calc
+			const lamp = PopnClearMedalToLamp(clearMedal);
+
 			// grades are kneecapped at "A" if you failed.
-			if (
-				score >= 90_000 &&
-				(clearMedal === "failedCircle" ||
-					clearMedal === "failedDiamond" ||
-					clearMedal === "failedStar")
-			) {
+			if (score >= 90_000 && lamp === "FAILED") {
 				return "A";
 			}
 
@@ -160,16 +158,17 @@ function DeriveMetrics<GPT extends GPTString>(
  * Return a full piece of scoreData.
  */
 export function CreateFullScoreData<GPT extends GPTString>(
-	gpt: GPTString,
-	dryScoreData: DryScore["scoreData"],
+	gpt: GPT,
+	dryScoreData: DryScore<GPT>["scoreData"],
 	chart: ChartDocument<GPT>
 ) {
 	const derivedMetrics = DeriveMetrics(gpt, dryScoreData, chart);
 
-	const scoreData: ScoreData = {
+	const scoreData = {
 		...dryScoreData,
-		derivedMetrics,
-	};
+		...derivedMetrics,
+	} as unknown as ScoreData<GPT>;
+	// ^ hacky force-cast because these types are *really* unstable.
 
 	return scoreData;
 }

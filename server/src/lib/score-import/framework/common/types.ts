@@ -1,5 +1,4 @@
 import type {
-	ProvidedMetrics,
 	GPTString,
 	Judgements,
 	Playtype,

@@ -1,4 +1,5 @@
 import type { GAME_CONFIGS, GAME_PT_CONFIGS } from "../config/config";
+import type { integer } from "../types";
 import type { MatchTypes } from "./batch-manual";
 import type {
 	ExtractClassValues,
@@ -148,6 +149,10 @@ export type ExtractedClasses = {
 
 export type Classes = {
 	[G in GPTString]: keyof typeof GAME_PT_CONFIGS[G]["classes"];
+};
+
+export type ClassRecords<G extends GPTString> = {
+	[C in Classes[G]]: integer;
 };
 
 export type ChartDocumentData = {

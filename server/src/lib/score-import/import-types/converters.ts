@@ -22,7 +22,7 @@ import type { ConverterFunction, ImportTypeContextMap, ImportTypeDataMap } from 
 import type { ImportTypes } from "tachi-common";
 
 export type ConverterMap = {
-	[I in ImportTypes]: ConverterFunction<ImportTypeDataMap[GPT], ImportTypeContextMap[GPT]>;
+	[I in ImportTypes]: ConverterFunction<ImportTypeDataMap[I], ImportTypeContextMap[I]>;
 };
 
 export const Converters: ConverterMap = {

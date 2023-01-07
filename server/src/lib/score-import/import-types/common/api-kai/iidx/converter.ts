@@ -1,12 +1,10 @@
 import {
 	InternalFailure,
 	InvalidScoreFailure,
+	SkipScoreFailure,
 	SongOrChartNotFoundFailure,
 } from "../../../../framework/common/converter-failures";
-import {
-	GenericGetGradeAndPercent,
-	ParseDateFromString,
-} from "../../../../framework/common/score-utils";
+import { ParseDateFromString } from "../../../../framework/common/score-utils";
 import { p } from "prudence";
 import { FormatPrError } from "utils/prudence";
 import { FindIIDXChartOnInGameIDVersion } from "utils/queries/charts";
@@ -14,7 +12,8 @@ import { FindSongOnID } from "utils/queries/songs";
 import type { DryScore } from "../../../../framework/common/types";
 import type { ConverterFunction } from "../../types";
 import type { KaiContext, KaiIIDXScore } from "../types";
-import type { integer, Lamps } from "tachi-common";
+import type { Versions, integer } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 
 const PR_KAI_IIDX_SCORE = {
 	music_id: p.isPositiveInteger,
@@ -212,11 +211,7 @@ export const ConvertAPIKaiIIDX: ConverterFunction<unknown, KaiContext> = async (
 
 	const playtype = score.play_style === "SINGLE" ? "SP" : "DP";
 
-	const version = score.version_played.toString();
-
-	if (!["20", "21", "22", "23", "24", "25", "26", "27", "28", "29"].includes(version)) {
-		throw new InvalidScoreFailure(`Unsupported version ${score.version_played}.`);
-	}
+	const version = ConvertVersion(score.version_played);
 
 	let musicID = score.music_id;
 
@@ -227,13 +222,15 @@ export const ConvertAPIKaiIIDX: ConverterFunction<unknown, KaiContext> = async (
 		score.difficulty = "LEGGENDARIA";
 	}
 
+	if (score.difficulty === "BEGINNER") {
+		throw new SkipScoreFailure(`We don't support BEGINNER charts. Sorry!`);
+	}
+
 	const chart = await FindIIDXChartOnInGameIDVersion(
 		musicID,
 		playtype,
 		score.difficulty,
-
-		// they send integers like 25, 27 - this will convert to our versions.
-		version as "20" | "21" | "22" | "23" | "24" | "25" | "26" | "27" | "28" | "29"
+		version
 	);
 
 	if (!chart) {
@@ -254,8 +251,6 @@ export const ConvertAPIKaiIIDX: ConverterFunction<unknown, KaiContext> = async (
 
 	const lamp = ResolveKaiLamp(score.lamp);
 
-	const { percent, grade } = GenericGetGradeAndPercent("iidx", score.ex_score, chart);
-
 	const timeAchieved = ParseDateFromString(score.timestamp);
 
 	const dryScore: DryScore<"iidx:DP" | "iidx:SP"> = {
@@ -265,8 +260,6 @@ export const ConvertAPIKaiIIDX: ConverterFunction<unknown, KaiContext> = async (
 		timeAchieved,
 		service: context.service,
 		scoreData: {
-			grade,
-			percent,
 			score: score.ex_score,
 			lamp,
 			judgements: {},
@@ -281,3 +274,32 @@ export const ConvertAPIKaiIIDX: ConverterFunction<unknown, KaiContext> = async (
 
 	return { song, chart, dryScore };
 };
+
+function ConvertVersion(version: integer): Versions["iidx:DP" | "iidx:SP"] {
+	switch (version) {
+		case 20:
+			return "tricoro";
+		case 21:
+			return "SPADA";
+		case 22:
+			return "PENDUAL";
+		case 23:
+			return "copula";
+		case 24:
+			return "SINOBUZ";
+		case 25:
+			return "CANNON BALLERS";
+		case 26:
+			return "ROOTAGE";
+		case 27:
+			return "HEROIC VERSE";
+		case 28:
+			return "BISTROVER";
+		case 29:
+			return "CastHour";
+		case 30:
+			return "Resident";
+	}
+
+	throw new InvalidScoreFailure(`Unsupported version ${version}.`);
+}

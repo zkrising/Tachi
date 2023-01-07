@@ -10,7 +10,7 @@ import {
 import { IsNullish } from "utils/misc";
 import type { KtLogger } from "lib/logger/logger";
 import type { Game, integer, Playtype, ScoreCalculatedDataLookup } from "tachi-common";
-import type { GameClasses } from "tachi-common/game-classes";
+import type { ClassRecords } from "tachi-common/game-classes";
 
 export function CalculateSDVXClass(
 	game: Game,
@@ -18,7 +18,7 @@ export function CalculateSDVXClass(
 	userID: integer,
 	ratings: Partial<Record<ScoreCalculatedDataLookup["sdvx:Single"], number>>,
 	logger: KtLogger
-): Partial<GameClasses<"sdvx:Single">> {
+): Partial<ClassRecords<"sdvx:Single">> {
 	if (ratings.VF6 === undefined) {
 		return {};
 	}
@@ -56,7 +56,7 @@ export function CalculateGitadoraColour(
 	playtype: Playtype,
 	userID: integer,
 	ratings: Record<string, number | null>
-): Partial<GameClasses<"gitadora:Dora" | "gitadora:Gita">> {
+): Partial<ClassRecords<"gitadora:Dora" | "gitadora:Gita">> {
 	if (IsNullish(ratings.skill)) {
 		return {};
 	}

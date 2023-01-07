@@ -1,40 +1,38 @@
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import { GetGamePTConfig } from "tachi-common";
-import { NotNullish } from "utils/misc";
 import type { ClassHandler } from "lib/score-import/framework/profile-calculated-data/types";
-import type { GamePTConfig, GPTString } from "tachi-common";
-import type { GameClasses, GameClassSets } from "tachi-common/game-classes";
+import type { GamePTConfig, GPTString, ClassRecords, Classes } from "tachi-common";
 
 // Note: This is tested by batch-manuals parser.test.ts.
 export function CreateBatchManualClassHandler(
-	classes: Record<GameClassSets[GPTString], string>
+	classes: Partial<Record<Classes[GPTString], string | null>>
 ): ClassHandler {
 	return (game, playtype, userID, ratings, logger) => {
 		const gptConfig = GetGamePTConfig(game, playtype);
 
-		const newObj: Partial<GameClasses<GPTString>> = {};
+		const newObj: Partial<ClassRecords<GPTString>> = {};
 
 		for (const [s, classID] of Object.entries(classes)) {
-			const set = s as GameClassSets[GPTString];
+			if (classID === null) {
+				continue;
+			}
+
+			const set = s as Classes[GPTString];
 
 			const index = ClassIDToIndex(gptConfig, set, classID);
 
 			if (index === null) {
 				logger.warn(
-					`User passed invalid class of ${classID} for set ${set}. Expected any of ${gptConfig.classHumanisedFormat[
+					`User passed invalid class of ${classID} for set ${set}. Expected any of ${gptConfig.classes[
 						set
-					]
-						.map((e) => e.id)
-						.join(", ")}`
+					]!.values.map((e) => e.id).join(", ")}`
 				);
 
 				throw new ScoreImportFatalError(
 					400,
-					`Invalid class of ${classID} for set ${set}. Expected any of ${gptConfig.classHumanisedFormat[
+					`Invalid class of ${classID} for set ${set}. Expected any of ${gptConfig.classes[
 						set
-					]
-						.map((e) => e.id)
-						.join(", ")}`
+					]!.values.map((e) => e.id).join(", ")}`
 				);
 			}
 
@@ -51,22 +49,14 @@ export function CreateBatchManualClassHandler(
  * Returns null if the classID doesn't exist.
  * @returns
  */
-function ClassIDToIndex(
-	gptConfig: GamePTConfig,
-	classSet: GameClassSets[GPTString],
-	classID: string
-) {
-	const classes = gptConfig.classHumanisedFormat[classSet];
+function ClassIDToIndex(gptConfig: GamePTConfig, classSet: Classes[GPTString], classID: string) {
+	const classes = gptConfig.classes[classSet]!;
 
-	for (let i = 0; i < classes.length; i++) {
-		const classInfo = NotNullish(classes[i]);
+	const index = classes.values.map((e) => e.id).indexOf(classID);
 
-		// Object.entries on an array returns [string, T], counterintuitively.
-		// Ah well. We'll just iterate over it like this.
-		if (classInfo.id === classID) {
-			return i;
-		}
+	if (index === -1) {
+		return null;
 	}
 
-	return null;
+	return index;
 }

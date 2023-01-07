@@ -61,7 +61,7 @@ router.get("/", async (req, res) => {
 	const skip = 0;
 	const limit = 100;
 
-	let charts = await FindChartsOnPopularity(
+	let charts = (await FindChartsOnPopularity(
 		game,
 		playtype,
 
@@ -70,7 +70,7 @@ router.get("/", async (req, res) => {
 		skip,
 		limit,
 		"personal-bests"
-	);
+	)) as Array<ChartDocument>;
 
 	// @optimisable
 	// could use songIDs from above instead of refetching
@@ -92,13 +92,13 @@ router.get("/", async (req, res) => {
 				(e) => (e as ChartDocument<"iidx:DP" | "iidx:SP">).data["2dxtraSet"] === null
 			);
 		} else {
-			const iidxSettings = await db["game-settings"].findOne({
+			const iidxSettings = (await db["game-settings"].findOne({
 				userID: req[SYMBOL_TACHI_API_AUTH].userID,
 				game,
 				playtype,
-			});
+			})) as UGPTSettingsDocument<"iidx:DP" | "iidx:SP"> | null;
 
-			if (!iidxSettings || !iidxSettings.preferences.gameSpecific.display2DXTra) {
+			if (!iidxSettings?.preferences.gameSpecific.display2DXTra) {
 				charts = charts.filter(
 					(e) => (e as ChartDocument<"iidx:DP" | "iidx:SP">).data["2dxtraSet"] === null
 				);

@@ -5,7 +5,7 @@ import { SearchSessions } from "lib/search/search";
 import { GetGamePTConfig } from "tachi-common";
 import { GetUGPT } from "utils/req-tachi-data";
 import { CheckStrSessionAlg } from "utils/string-checks";
-import type { SessionDocument, SessionScoreInfo } from "tachi-common";
+import type { SessionDocument, SessionScoreInfo, AnySessionRatingAlg } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -45,7 +45,7 @@ router.get("/best", async (req, res) => {
 
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	let alg = gptConfig.defaultSessionRatingAlg;
+	let alg = gptConfig.defaultSessionRatingAlg as AnySessionRatingAlg;
 
 	if (typeof req.query.alg === "string") {
 		const userAlg = CheckStrSessionAlg(game, playtype, req.query.alg);

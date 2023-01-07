@@ -69,7 +69,10 @@ export function ParseBarbatosSingle(
 	}
 
 	return {
-		context: { timeReceived: Date.now(), version: "ex_score" in body ? "exceed" : "vivid" },
+		context: {
+			timeReceived: Date.now(),
+			version: "ex_score" in body ? "EXCEED GEAR" : "VIVID WAVE",
+		},
 		game: "sdvx",
 		iterable: [body] as unknown as Array<BarbatosScore | BarbatosSDVX6Score>,
 		classHandler: null,

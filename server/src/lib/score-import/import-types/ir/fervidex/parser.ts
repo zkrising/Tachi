@@ -86,35 +86,35 @@ export function SoftwareIDToVersion(
 		const data = ParseEA3SoftID(model);
 
 		if (data.model === MODEL_INFINITAS_2) {
-			return "inf";
+			return "INFINITAS";
 		} else if (data.model === MODEL_IIDX || data.model === MODEL_IIDX_LIGHTNING) {
 			// pretty icky yandere-dev tier if statements, but hey
 			// that's just how it works...
 			if (data.ext === EXT_HEROIC_VERSE) {
 				if (data.rev === REV_OMNIMIX) {
-					return "27-omni";
+					return "HEROIC VERSE Omnimix";
 				} else if (data.rev === REV_2DXTRA) {
-					return "27-2dxtra";
+					return "HEROIC VERSE 2dxtra";
 				} else if (data.rev === REV_NORMAL) {
-					return "27";
+					return "HEROIC VERSE";
 				}
 			} else if (data.ext === EXT_BISTROVER) {
 				if (data.rev === REV_OMNIMIX) {
-					return "28-omni";
+					return "BISTROVER Omnimix";
 				} else if (data.rev === REV_2DXTRA) {
-					return "28-2dxtra";
+					return "BISTROVER 2dxtra";
 				} else if (data.rev === REV_NORMAL) {
-					return "28";
+					return "BISTROVER";
 				}
 			} else if (data.ext === EXT_CASTHOUR) {
 				if (data.rev === REV_NORMAL) {
-					return "29";
+					return "CastHour";
 				} else if (data.rev === REV_OMNIMIX) {
-					return "29-omni";
+					return "CastHour Omnimix";
 				}
 			} else if (EXT_RESIDENT.includes(data.ext)) {
 				if (data.rev === REV_NORMAL) {
-					return "30";
+					return "Resident";
 				}
 			}
 		}

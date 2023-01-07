@@ -1,7 +1,8 @@
-import { GetGamePTConfig, IIDX_LAMPS } from "tachi-common";
+import { GPTString, GetGamePTConfig, IIDX_LAMPS } from "tachi-common";
 import type { DryScore } from "../common/types";
 import type { KtLogger } from "lib/logger/logger";
-import type { ChartDocument, Game, integer, Playtype } from "tachi-common";
+import type { ChartDocument, Game, integer, Playtype, GPTStrings } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 
 export function CalculateKTLampRatingIIDXSP(dryScore: DryScore, chart: ChartDocument<"iidx:SP">) {
 	const ncValue = chart.tierlistInfo["kt-NC"]?.value ?? 0;
@@ -71,14 +72,21 @@ function LampRatingNoTierlistInfo(
 	return 0;
 }
 
-export function CalculateSieglinde(chart: ChartDocument, lampIndex: integer) {
-	const ecValue = chart.tierlistInfo["sgl-EC"]?.value ?? 0;
-	const hcValue = chart.tierlistInfo["sgl-HC"]?.value ?? 0;
+export function CalculateSieglinde(
+	chart: ChartDocument<GPTStrings["bms" | "pms"]>,
+	lamp: GetEnumValue<GPTStrings["bms" | "pms"], "lamp">
+) {
+	const ecValue = chart.data.sglEC ?? 0;
+	const hcValue = chart.data.sglHC ?? 0;
 
-	if (lampIndex >= IIDX_LAMPS.HARD_CLEAR) {
-		return Math.max(hcValue, ecValue);
-	} else if (lampIndex >= IIDX_LAMPS.EASY_CLEAR) {
-		return ecValue;
+	switch (lamp) {
+		case "FULL COMBO":
+		case "EX HARD CLEAR":
+		case "HARD CLEAR":
+			return Math.max(hcValue, ecValue);
+		case "CLEAR":
+		case "EASY CLEAR":
+			return ecValue;
 	}
 
 	return 0;

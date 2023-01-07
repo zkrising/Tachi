@@ -17,7 +17,7 @@ import type {
 	SongDocument,
 	GameConfig,
 } from "tachi-common";
-import type { GameClassSets } from "tachi-common/game-classes";
+import type { Classes } from "tachi-common/game-classes";
 
 export function Sleep(ms: number) {
 	return new Promise<void>((resolve) => {
@@ -96,7 +96,7 @@ export function FormatDate(ms: number) {
 export function FormatClass(
 	game: Game,
 	playtype: Playtype,
-	classSet: GameClassSets[GPTString],
+	classSet: Classes[GPTString],
 	classValue: integer
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);

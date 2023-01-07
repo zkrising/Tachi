@@ -111,7 +111,7 @@ router.get("/leaderboard", async (req, res) => {
 				success: false,
 				description: `Invalid value of ${
 					req.query.alg
-				} for alg. Expected one of ${gptConfig.profileRatingAlgs.join(", ")}`,
+				} for alg. Expected one of ${Object.keys(gptConfig.profileRatingAlgs).join(", ")}`,
 			});
 		}
 
@@ -176,7 +176,7 @@ router.get("/pb-leaderboard", async (req, res) => {
 				success: false,
 				description: `Invalid value of ${
 					req.query.alg
-				} for alg. Expected one of ${gptConfig.profileRatingAlgs.join(", ")}`,
+				} for alg. Expected one of ${Object.keys(gptConfig.profileRatingAlgs).join(", ")}`,
 			});
 		}
 

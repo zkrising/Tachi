@@ -3,7 +3,7 @@ import { CreateGameSettings } from "lib/game-settings/create-game-settings";
 import CreateLogCtx from "lib/logger/logger";
 import { EmitWebhookEvent } from "lib/webhooks/webhooks";
 import type { Game, GPTString, integer, Playtype, UserGameStats } from "tachi-common";
-import type { GameClassSets } from "tachi-common/game-classes";
+import type { Classes } from "tachi-common/game-classes";
 
 const logger = CreateLogCtx(__filename);
 
@@ -13,7 +13,7 @@ const logger = CreateLogCtx(__filename);
  * to compare to, and FALSE if it is worse or equal.
  */
 export function ReturnClassIfGreater(
-	classSet: GameClassSets[GPTString],
+	classSet: Classes[GPTString],
 	classVal: integer,
 	userGameStats?: UserGameStats | null
 ) {
@@ -36,7 +36,7 @@ export async function UpdateClassIfGreater(
 	userID: integer,
 	game: Game,
 	playtype: Playtype,
-	classSet: GameClassSets[GPTString],
+	classSet: Classes[GPTString],
 	classVal: integer
 ) {
 	const userGameStats = await db["game-stats"].findOne({ userID, game, playtype });

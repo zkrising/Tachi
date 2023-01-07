@@ -19,7 +19,16 @@ import { GetGamePTConfig } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { DryScore } from "../common/types";
 import type { KtLogger } from "lib/logger/logger";
-import type { ChartDocument, Game, GPTString, Lamps, Playtypes, ScoreDocument } from "tachi-common";
+import type {
+	ChartDocument,
+	Game,
+	GPTString,
+	Playtypes,
+	ScoreDocument,
+	GPTStrings,
+	SpecificGamePTConfig,
+} from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 
 export async function CreateCalculatedData(
 	dryScore: DryScore,
@@ -29,20 +38,13 @@ export async function CreateCalculatedData(
 	const game = dryScore.game;
 	const playtype = chart.playtype;
 
-	const calculatedData = await CalculateDataForGamePT(
-		game,
-		playtype,
-		chart,
-		dryScore,
-		esd,
-		logger
-	);
+	const calculatedData = await CalculateDataForGamePT(game, playtype, chart, dryScore, logger);
 
 	return calculatedData;
 }
 
 type CalculatedDataFunctionsType = {
-	[I in GPTString]: (
+	[GPT in GPTString]: (
 		dryScore: DryScore<GPT>,
 		chart: ChartDocument<GPT>,
 		logger: KtLogger
@@ -77,20 +79,20 @@ export async function CalculateDataForGamePT<G extends Game>(
 	playtype: Playtypes[G],
 	chart: ChartDocument,
 	dryScore: DryScore,
-
-	// ESD gets specially passed through because it's not part of the DryScore, but
-	// can be used for statistics anyway.
-	esd: number | null,
 	logger: KtLogger
 ): Promise<ScoreDocument["calculatedData"]> {
-	// @ts-expect-error too many minor complains here...
-	return CalculatedDataFunctions[`${game}:${playtype}` as GPTString](dryScore, chart, logger);
+	return CalculatedDataFunctions[`${game}:${playtype}` as GPTString](
+		// temporary ugly hacks
+		dryScore as any,
+		chart as any,
+		logger
+	);
 }
 
 type CalculatedData<GPT extends GPTString> = Required<ScoreDocument<GPT>["calculatedData"]>;
 
 function CalculateDataIIDX(
-	dryScore: DryScore,
+	dryScore: DryScore<"iidx:DP" | "iidx:SP">,
 	chart: ChartDocument<"iidx:DP" | "iidx:SP">,
 	logger: KtLogger
 ): CalculatedData<"iidx:SP"> {
@@ -128,7 +130,7 @@ function CalculateDataIIDX(
 }
 
 function CalculateDataSDVXorUSC(
-	dryScore: DryScore,
+	dryScore: DryScore<GPTStrings["sdvx" | "usc"]>,
 	chart: ChartDocument,
 	_logger: KtLogger
 ): CalculatedData<"sdvx:Single" | "usc:Controller" | "usc:Keyboard"> {
@@ -150,7 +152,7 @@ function CalculateDataSDVXorUSC(
 }
 
 function CalculateDataMuseca(
-	dryScore: DryScore,
+	dryScore: DryScore<"museca:Single">,
 	chart: ChartDocument,
 	_logger: KtLogger
 ): CalculatedData<"museca:Single"> {
@@ -160,21 +162,21 @@ function CalculateDataMuseca(
 }
 
 function CalculateDataJubeat(
-	dryScore: DryScore,
+	dryScore: DryScore<"jubeat:Single">,
 	chart: ChartDocument,
 	_logger: KtLogger
 ): CalculatedData<"jubeat:Single"> {
 	return {
 		jubility: Jubility.calculate(
 			dryScore.scoreData.score,
-			dryScore.scoreData.percent,
+			dryScore.scoreData.musicRate,
 			chart.levelNum
 		),
 	};
 }
 
 function CalculateDataCHUNITHM(
-	dryScore: DryScore,
+	dryScore: DryScore<"chunithm:Single">,
 	chart: ChartDocument
 ): CalculatedData<"chunithm:Single"> {
 	return {
@@ -183,7 +185,7 @@ function CalculateDataCHUNITHM(
 }
 
 function CalculateDataGitadora(
-	dryScore: DryScore,
+	dryScore: DryScore<"gitadora:Dora" | "gitadora:Gita">,
 	chart: ChartDocument
 ): CalculatedData<"gitadora:Dora" | "gitadora:Gita"> {
 	return {
@@ -192,16 +194,12 @@ function CalculateDataGitadora(
 }
 
 export function CalculateDataPMSorBMS(
-	dryScore: DryScore,
-	chart: ChartDocument,
+	dryScore: DryScore<GPTStrings["bms" | "pms"]>,
+	chart: ChartDocument<GPTStrings["bms" | "pms"]>,
 	_logger: KtLogger
 ): CalculatedData<"pms:Controller" | "pms:Keyboard"> {
-	const gptConfig = GetGamePTConfig(dryScore.game, chart.playtype);
-
-	const lampIndex = gptConfig.lamps.indexOf(dryScore.scoreData.lamp);
-
 	return {
-		sieglinde: CalculateSieglinde(chart, lampIndex),
+		sieglinde: CalculateSieglinde(chart, dryScore.scoreData.lamp),
 	};
 }
 

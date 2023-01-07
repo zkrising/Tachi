@@ -7,15 +7,20 @@ export function AssertStrAsDifficulty(
 	game: Game,
 	playtype: Playtype
 ): Difficulties[GPTString] {
-	const validDifficulties = GetGamePTConfig(game, playtype).difficulties;
+	const diffConf = GetGamePTConfig(game, playtype).difficulties;
 
-	if (!validDifficulties.includes(strVal)) {
+	if (diffConf.type === "DYNAMIC") {
+		// lol
+		return strVal;
+	}
+
+	if (!diffConf.order.includes(strVal)) {
 		if (game === "chunithm" && strVal === "WORLD'S END") {
 			throw new InvalidScoreFailure("WORLD'S END is not supported. Sorry.");
 		}
 
 		throw new InvalidScoreFailure(
-			`Invalid Difficulty for ${game} ${playtype} - Expected any of ${validDifficulties.join(
+			`Invalid Difficulty for ${game} ${playtype} - Expected any of ${diffConf.order.join(
 				", "
 			)} (Got ${strVal})`
 		);

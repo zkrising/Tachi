@@ -8,6 +8,7 @@
 
 import { GetGrade } from "./common-utils";
 import { IIDXLIKE_DERIVERS } from "./games/iidx-like";
+import { PopnClearMedalToLamp } from "./games/popn";
 import { SDVXLIKE_DERIVERS } from "./games/sdvx-like";
 import { InternalFailure } from "../common/converter-failures";
 import {
@@ -21,16 +22,10 @@ import {
 	POPN_GBOUNDARIES,
 	WACCA_GBOUNDARIES,
 } from "tachi-common";
-import type { DryScore } from "../common/types";
+import type { DryScore, DryScoreData } from "../common/types";
 import type { GPTDerivers } from "./types";
-import type {
-	GPTString,
-	ChartDocument,
-	ConfProvidedMetrics,
-	ConfDerivedMetrics,
-	ScoreData,
-} from "tachi-common";
-import type { MetricDeriver } from "tachi-common/types/metrics";
+import type { ChartDocument, DerivedMetrics, GPTString, ScoreData } from "tachi-common";
+import type { MetricValue } from "tachi-common/types/metrics";
 
 type AllGPTDerivers = {
 	[GPT in GPTString]: GPTDerivers<GPT>;
@@ -74,14 +69,14 @@ const GPT_DERIVERS: AllGPTDerivers = {
 			// don't check if metrics.survivedPercent === 100, as due to floating
 			// point inaccuracies, it's possible to have a 100% fail
 			// (on extremely long charts, for example)
-			if (metrics.lamp.string === "FAILED") {
+			if (metrics.lamp === "FAILED") {
 				return metrics.survivedPercent;
 			}
 
 			return 100 + metrics.scorePercent;
 		},
 		grade: ({ scorePercent, lamp }) => {
-			if (lamp.string === "FAILED") {
+			if (lamp === "FAILED") {
 				return "F";
 			}
 
@@ -95,35 +90,16 @@ const GPT_DERIVERS: AllGPTDerivers = {
 		grade: ({ score }) => GetGrade(MUSECA_GBOUNDARIES, score),
 	},
 	"popn:9B": {
-		lamp: ({ clearMedal }) => {
-			switch (clearMedal.string) {
-				case "perfect":
-					return "PERFECT";
-				case "fullComboCircle":
-				case "fullComboDiamond":
-				case "fullComboStar":
-					return "FULL COMBO";
-				case "clearCircle":
-				case "clearDiamond":
-				case "clearStar":
-					return "CLEAR";
-				case "easyClear":
-					return "EASY CLEAR";
-				case "failedCircle":
-				case "failedDiamond":
-				case "failedStar":
-					return "FAILED";
-			}
-		},
+		lamp: ({ clearMedal }) => PopnClearMedalToLamp(clearMedal),
 		grade: ({ score, clearMedal }) => {
 			const gradeString = GetGrade(POPN_GBOUNDARIES, score);
-
-			const c = clearMedal.string;
 
 			// grades are kneecapped at "A" if you failed.
 			if (
 				score >= 90_000 &&
-				(c === "failedCircle" || c === "failedDiamond" || c === "failedStar")
+				(clearMedal === "failedCircle" ||
+					clearMedal === "failedDiamond" ||
+					clearMedal === "failedStar")
 			) {
 				return "A";
 			}
@@ -138,16 +114,13 @@ const GPT_DERIVERS: AllGPTDerivers = {
  * we want to store.
  */
 function DeriveMetrics<GPT extends GPTString>(
-	gpt: GPTString,
-	metrics: ConfProvidedMetrics[GPT],
+	gpt: GPT,
+	metrics: DryScoreData<GPT>,
 	chart: ChartDocument<GPT>
 ) {
-	const deriverImplementation: Record<
-		string,
-		MetricDeriver<ConfProvidedMetrics[GPT], GPT>
-	> = GPT_DERIVERS[gpt];
+	const deriverImplementation: GPTDerivers<GPT> = GPT_DERIVERS[gpt];
 
-	const derivedMetrics: Record<string, DerivedMetricValue> = {};
+	const derivedMetrics: Record<string, MetricValue> = {};
 
 	const gptConfig = GetGPTConfig(gpt);
 
@@ -162,15 +135,12 @@ function DeriveMetrics<GPT extends GPTString>(
 
 		const value = fn(metrics, chart);
 
-		// enum values on scores are stored as { string, index }. One is convenient
-		// for sorting and stuff in the DB, the other is convenient to know what
-		// actually is what. Integers only sucks.
 		if (metricConfig.type === "ENUM") {
 			const index = metricConfig.values.indexOf(value);
 
 			if (index === -1) {
 				throw new InternalFailure(
-					`Failed to get the index for ENUM ${gpt} '${key}' for value ${value}. This should never happen!`
+					`Tried to turn a ${key} enum value of ${value} into an index, got -1?`
 				);
 			}
 
@@ -183,7 +153,7 @@ function DeriveMetrics<GPT extends GPTString>(
 		}
 	}
 
-	return derivedMetrics as ConfDerivedMetrics[GPT];
+	return derivedMetrics as DerivedMetrics[GPT];
 }
 
 /**

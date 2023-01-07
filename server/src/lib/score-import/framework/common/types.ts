@@ -6,8 +6,9 @@ import type {
 	ScoreDocument,
 	integer,
 	OptionalMetrics,
+	ConfProvidedMetrics,
 } from "tachi-common";
-import type { EnumValue } from "tachi-common/types/metrics";
+import type { DryExtractMetrics, EnumValue } from "tachi-common/types/metrics";
 import type { Mutable } from "utils/types";
 
 /**
@@ -21,7 +22,7 @@ export type ExtractEnumValues<TMetrics extends Record<string, unknown>> = {
 	[K in keyof TMetrics]: TMetrics[K] extends EnumValue<infer V> ? V : TMetrics[K];
 };
 
-type DryScoreData<GPT extends GPTString> = ExtractEnumValues<ProvidedMetrics[GPT]> & {
+export type DryScoreData<GPT extends GPTString> = DryExtractMetrics<ConfProvidedMetrics[GPT]> & {
 	optional: Mutable<ExtractEnumValues<OptionalMetrics[GPT]>>;
 	judgements: Partial<Record<Judgements[GPT], integer | null>>;
 };

@@ -266,6 +266,7 @@ export const BMS_7K_CONF = {
 
 export const BMS_14K_CONF = {
 	...BMS_7K_CONF,
+
 	classes: {
 		genocideDan: { type: "PROVIDED", values: BMSGenocideDans },
 		stslDan: { type: "PROVIDED", values: BMSDPSlDans },

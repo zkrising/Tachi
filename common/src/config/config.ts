@@ -15,15 +15,15 @@ import { USC_CONF, USC_CONTROLLER_CONF, USC_KEYBOARD_CONF } from "./game-support
 import { WACCA_CONF, WACCA_SINGLE_CONF } from "./game-support/wacca";
 import type {
 	GPTString,
-	GPTStringToGame,
-	GPTStringToPlaytype,
 	Game,
 	GameConfig,
+	GamePTConfig,
 	Playtype,
 	Playtypes,
-	SpecificGamePTConfig,
+	ProvidedMetrics,
 } from "../types/game-config";
-import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../types/internals";
+import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../types/internals";
+import type { ConfScoreMetric } from "../types/metrics";
 
 /**
  * All game configurations that Tachi supports.
@@ -85,7 +85,7 @@ export const GAME_PT_CONFIGS = {
 	"usc:Controller": USC_CONTROLLER_CONF,
 	"usc:Keyboard": USC_KEYBOARD_CONF,
 	"itg:Stamina": ITG_STAMINA_CONF,
-} as const satisfies Record<GPTString, GamePTConfig>;
+} as const satisfies Record<GPTString, INTERNAL_GAME_PT_CONFIG>;
 
 /**
  * Returns the configuration for this Game + Playtype. The type here is expanded to
@@ -94,20 +94,33 @@ export const GAME_PT_CONFIGS = {
 export function GetGamePTConfig(game: Game, playtype: Playtypes[Game]): GamePTConfig {
 	const gptString = GetGPTString(game, playtype);
 
-	return GAME_PT_CONFIGS[gptString];
+	return GAME_PT_CONFIGS[gptString] as unknown as GamePTConfig;
 }
 
 export function GetGPTConfig(gptString: GPTString): GamePTConfig {
-	return GAME_PT_CONFIGS[gptString];
+	return GAME_PT_CONFIGS[gptString] as unknown as GamePTConfig;
 }
 
 /**
  * Returns the configuration for this specific Game + Playtype. This type is narrowed
  * down to its least generic form, and is instead for gpt-specific use cases.
  */
-export function GetSpecificGPTConfig<GPT extends GPTString>(gpt: GPTString) {
-	return GAME_PT_CONFIGS[gpt] as unknown as SpecificGamePTConfig<GPT>;
+export function GetSpecificGPTConfig<GPT extends GPTString>(gpt: GPT) {
+	return GAME_PT_CONFIGS[gpt];
 }
 
 export const allSupportedGames = Object.keys(GAME_CONFIGS) as Array<Game>;
 export const allGPTStrings = Object.keys(GAME_PT_CONFIGS) as Array<GPTString>;
+
+export function GetScoreMetrics(gptConfig: GamePTConfig, type?: ConfScoreMetric["type"]) {
+	let metrics = [
+		...Object.entries(gptConfig.providedMetrics),
+		...Object.entries(gptConfig.derivedMetrics),
+	];
+
+	if (type) {
+		metrics = metrics.filter(([_key, conf]) => conf.type === type);
+	}
+
+	return metrics.map((e) => e[0]);
+}

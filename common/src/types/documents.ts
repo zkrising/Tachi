@@ -438,7 +438,10 @@ export type QuestSubscriptionDocument = {
 export type ScoreData<GPT extends GPTString = GPTString> = DerivedMetrics[GPT] &
 	ProvidedMetrics[GPT] & {
 		judgements: Partial<Record<Judgements[GPT], integer | null>>;
-		optional: Partial<OptionalMetrics[GPT]>;
+		optional: Partial<OptionalMetrics[GPT]> & {
+			enumIndexes: OptionalEnumIndexes<GPT>;
+		};
+		enumIndexes: ScoreEnumIndexes<GPT>;
 	};
 
 export interface ScoreDocument<GPT extends GPTString = GPTString> {

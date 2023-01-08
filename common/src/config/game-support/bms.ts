@@ -1,7 +1,7 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { z } from "zod";
-import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
+import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const BMS_CONF = {
 	defaultPlaytype: "7K",
@@ -262,7 +262,7 @@ export const BMS_7K_CONF = {
 	}),
 
 	supportedMatchTypes: ["bmsChartHash", "tachiSongID"],
-} as const satisfies GamePTConfig;
+} as const satisfies INTERNAL_GAME_PT_CONFIG;
 
 export const BMS_14K_CONF = {
 	...BMS_7K_CONF,
@@ -278,4 +278,4 @@ export const BMS_14K_CONF = {
 		client: z.enum(["lr2oraja", "LR2"]).optional().nullable(),
 		gauge: z.enum(["EASY", "NORMAL", "HARD", "EX-HARD"]).optional().nullable(),
 	}),
-} as const satisfies GamePTConfig;
+} as const satisfies INTERNAL_GAME_PT_CONFIG;

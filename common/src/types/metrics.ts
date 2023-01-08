@@ -77,41 +77,10 @@ export type ConfScoreMetric =
 	| ConfNullableGraphScoreMetric;
 
 /**
- * When we store and interact with enum values, we want them to be both strings
- * and integers.
- *
- * This is used by score documents that are stored in the DB.
- */
-export interface EnumValue<S extends string> {
-	string: S;
-	index: integer;
-}
-
-/**
  * Given a Metric Type, turn it into its evaluated form. An IntegerScoreMetric
- * becomes an integer and an enum becomes an EnumValue.
+ * becomes an integer and an enum becomes a string union, etc.
  */
 export type ExtractMetricValue<M extends ConfScoreMetric> = M extends ConfDecimalScoreMetric
-	? number
-	: M extends ConfIntegerScoreMetric
-	? integer
-	: M extends ConfEnumScoreMetric<infer V>
-	? EnumValue<V>
-	: M extends ConfGraphScoreMetric
-	? Array<number>
-	: M extends ConfNullableGraphScoreMetric
-	? Array<number | null>
-	: never;
-
-/**
- * Given a Metric Type, turn it into its evaluated form with the caveat that
- * enums become strings instead of EnumValue<string>.
- *
- * This is used on the intermediate score importing step, where ENUM metrics aren't
- * fully realised. We'd be working with { lamp: "FAILED" } instead of
- * { lamp: { string: "FAILED", index: 1 }}.
- */
-export type DryExtractMetricType<M extends ConfScoreMetric> = M extends ConfDecimalScoreMetric
 	? number
 	: M extends ConfIntegerScoreMetric
 	? integer
@@ -176,19 +145,6 @@ export type ExtractMetrics<R extends Record<string, ConfScoreMetric>> = {
 	[K in keyof R]: ExtractMetricValue<R[K]>;
 };
 
-/**
- * Turn a record of score metrics in to their "dry" values. These are used by dry
- * scores and consist of one change:
- *
- * Enums would normally be { string: "FAILED" | ..., index: number }. In dry extraction
- * they are extracted to just "FAILED" | ...
- *
- * This is because dry scores don't fill out these values.
- */
-export type DryExtractMetrics<R extends Record<string, ConfScoreMetric>> = {
-	[K in keyof R]: DryExtractMetricType<R[K]>;
-};
-
 // We want some signatures for implementing metric "derivers".
 // This complex type nonsense effectively gives us a typesafe form for:
 // MetricDeriver<"iidx:SP", number>
@@ -203,7 +159,7 @@ export type MetricDeriver<
 	// possible return values
 	// from a derived fn
 	V extends DerivedMetricValue = DerivedMetricValue
-> = (mandatoryMetrics: DryExtractMetrics<ConfProvidedMetrics[GPT]>, chart: ChartDocument<GPT>) => V;
+> = (mandatoryMetrics: ExtractMetrics<ConfProvidedMetrics[GPT]>, chart: ChartDocument<GPT>) => V;
 
 /**
  * A function that will derive this metric, given a function of other metrics and

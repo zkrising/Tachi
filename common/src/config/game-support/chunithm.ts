@@ -1,7 +1,7 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { z } from "zod";
-import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
+import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const CHUNITHM_CONF = {
 	defaultPlaytype: "Single",
@@ -106,4 +106,4 @@ export const CHUNITHM_SINGLE_CONF = {
 	scoreMeta: z.strictObject({}),
 
 	supportedMatchTypes: ["inGameID", "songTitle", "tachiSongID"],
-} as const satisfies GamePTConfig;
+} as const satisfies INTERNAL_GAME_PT_CONFIG;

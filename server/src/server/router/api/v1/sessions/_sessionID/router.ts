@@ -159,14 +159,14 @@ router.get("/folder-raises", async (req, res) => {
 	// new scores may also be grade raises
 	for (const score of [...gradeRaises, ...newRaises]) {
 		// skip things that aren't good enough
-		if (score.scoreData.grade.string < clearGradeIndex) {
+		if (score.scoreData.grade < clearGradeIndex) {
 			continue;
 		}
 
 		const exists = gradeRaiseMap.get(score.chartID);
 
 		if (exists) {
-			if (exists.scoreData.grade.string < score.scoreData.grade.string) {
+			if (exists.scoreData.grade < score.scoreData.grade) {
 				// this one is more important
 				gradeRaiseMap.set(score.chartID, score);
 			}
@@ -257,7 +257,7 @@ router.get("/folder-raises", async (req, res) => {
 					// and EX HARD CLEAR, so
 					// we want ["HARD CLEAR", "EX HARD CLEAR"].
 					const originalGradeIndex =
-						gradeRaise.scoreData.grade.string -
+						gradeRaise.scoreData.grade -
 						(gradeDeltas[gradeRaise.scoreID] ?? Infinity) +
 						1;
 
@@ -267,7 +267,7 @@ router.get("/folder-raises", async (req, res) => {
 
 					for (const grade of gptConfig.grades.slice(
 						minimumGrade,
-						gradeRaise.scoreData.grade.string + 1
+						gradeRaise.scoreData.grade + 1
 					)) {
 						AddToSetInRecord(grade, raiseGradeDist, gradeRaise.chartID);
 					}

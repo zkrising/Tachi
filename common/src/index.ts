@@ -3,8 +3,6 @@ export * from "./types";
 export * from "./config/config";
 export * as StaticConfig from "./constants/import-types";
 
-export type { GamePTConfig } from "./types/internals";
-
 export * from "./utils/util";
 export * from "./webhooks";
 export * from "./constants/game";

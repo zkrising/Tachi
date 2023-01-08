@@ -1,10 +1,12 @@
 import type { GAME_CONFIGS, GAME_PT_CONFIGS } from "../config/config";
+import type { integer } from "../types";
 import type { MatchTypes } from "./batch-manual";
 import type {
 	ExtractClassValues,
 	FixedDifficulties,
 	RatingAlgorithmConfig,
 } from "./game-config-utils";
+import type { INTERNAL_GAME_PT_CONFIG } from "./internals";
 import type { ExtractEnumMetricNames, ExtractMetrics } from "./metrics";
 import type { AllFieldsNullableOptional, ExtractArrayElementType } from "./utils";
 import type { AnyZodObject, z } from "zod";
@@ -178,10 +180,45 @@ export type DerivedMetrics = {
 	[G in GPTString]: ExtractMetrics<typeof GAME_PT_CONFIGS[G]["derivedMetrics"]>;
 };
 
+/**
+ * Top level metrics on a score.
+ */
+export type ScoreMetrics = {
+	[G in GPTString]: DerivedMetrics[G] & ProvidedMetrics[G];
+};
+
 export type OptionalMetrics = {
 	[G in GPTString]: AllFieldsNullableOptional<
 		ExtractMetrics<typeof GAME_PT_CONFIGS[G]["optionalMetrics"]>
 	>;
+};
+
+/**
+ * Alongside strings, we want to store integers to represent the integer value
+ * of enums.
+ */
+export type ScoreEnumIndexes<GPT extends GPTString> = Record<
+	ExtractEnumMetricNames<ConfDerivedMetrics[GPT] & ConfProvidedMetrics[GPT]>,
+	integer
+>;
+
+/**
+ * Same as ScoreEnumIndexes but for the optional properties on a score.
+ */
+export type OptionalEnumIndexes<GPT extends GPTString> = Record<
+	ExtractEnumMetricNames<ConfOptionalMetrics[GPT]>,
+	integer
+>;
+
+/**
+ * A generic GamePTConfig. This type is significantly less specific than the
+ * "SpecificGamePTConfig", which only really works as a type if you know *what*
+ * GamePTConfig you're working with.
+ */
+export type GamePTConfig = INTERNAL_GAME_PT_CONFIG & {
+	defaultScoreRatingAlg: ScoreRatingAlgorithms[GPTString];
+	defaultSessionRatingAlg: SessionRatingAlgorithms[GPTString];
+	defaultProfileRatingAlg: ProfileRatingAlgorithms[GPTString];
 };
 
 /**

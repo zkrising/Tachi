@@ -80,7 +80,7 @@ export async function TachiScoreToServerScore(
 		near: tachiScore.scoreData.judgements.near ?? 0,
 		error: tachiScore.scoreData.judgements.miss ?? 0,
 		ranking: tachiScore.rankingData.rank,
-		lamp: TACHI_LAMP_TO_USC[tachiScore.scoreData.lamp.string],
+		lamp: TACHI_LAMP_TO_USC[tachiScore.scoreData.lamp],
 		username: userDoc.username,
 		noteMod: scorePB.scoreMeta.noteMod ?? "NORMAL",
 		gaugeMod: scorePB.scoreMeta.gaugeMod ?? "NORMAL",

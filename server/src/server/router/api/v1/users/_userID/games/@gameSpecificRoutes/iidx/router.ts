@@ -143,8 +143,8 @@ router.get(
 						pb.scoreData.judgements.pgreat?.toString() ?? "0", // pgreat
 						pb.scoreData.judgements.great?.toString() ?? "0", // great
 						pb.scoreData.optional.bp?.toString() ?? "0", // BP
-						ConvertEamLamp(pb.scoreData.lamp.string), // lamp
-						ConvertEamGrade(pb.scoreData.grade.string) // grade
+						ConvertEamLamp(pb.scoreData.lamp), // lamp
+						ConvertEamGrade(pb.scoreData.grade) // grade
 					);
 
 					if (pb.timeAchieved !== null && lastPlayed < pb.timeAchieved) {

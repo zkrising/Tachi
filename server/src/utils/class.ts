@@ -17,7 +17,7 @@ export function ReturnClassIfGreater(
 	classSet: Classes[GPTString],
 	classVal: string,
 	userGameStats?: UserGameStats | null
-) {
+): boolean | null {
 	const gptConfig = GetGPTConfig(gptString);
 
 	const classInfo = gptConfig.classes[classSet];
@@ -43,6 +43,14 @@ export function ReturnClassIfGreater(
 	const previousClassIndex = ClassToIndex(gptString, classSet, prevClass);
 	const newClassIndex = ClassToIndex(gptString, classSet, classVal);
 
+	if (previousClassIndex === null && newClassIndex === null) {
+		return null;
+	} else if (newClassIndex === null) {
+		return null;
+	} else if (previousClassIndex === null) {
+		return true;
+	}
+
 	return newClassIndex > previousClassIndex;
 }
 
@@ -53,18 +61,18 @@ export function ClassToIndex(gptString: GPTString, classSet: Classes[GPTString],
 
 	if (!classInfo) {
 		logger.warn(
-			`Invalid ClassToIndex call. Attempted to index set '${classSet}' on ${gptString}. No such class is defined for this game. Returning -1.`
+			`Invalid ClassToIndex call. Attempted to index set '${classSet}' on ${gptString}. No such class is defined for this game. Returning null.`
 		);
-
-		return -1;
+		return null;
 	}
 
 	const v = classInfo.values.map((e) => e.id).indexOf(classVal);
 
 	if (v === -1) {
 		logger.warn(
-			`Attempted to index a class that doesn't exist: ${classVal} on ${classSet} (${gptString}). Returning -1.`
+			`Attempted to index a class that doesn't exist: ${classVal} on ${classSet} (${gptString}). Returning null.`
 		);
+		return null;
 	}
 
 	return v;

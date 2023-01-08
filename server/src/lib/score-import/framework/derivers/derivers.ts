@@ -15,6 +15,7 @@ import {
 	CHUNITHM_GBOUNDARIES,
 	GITADORA_GBOUNDARIES,
 	GetGPTConfig,
+	GetScoreMetrics,
 	ITG_GBOUNDARIES,
 	JUBEAT_GBOUNDARIES,
 	MAIMAIDX_GBOUNDARIES,
@@ -24,7 +25,8 @@ import {
 } from "tachi-common";
 import type { DryScore, DryScoreData } from "../common/types";
 import type { GPTDerivers } from "./types";
-import type { ChartDocument, DerivedMetrics, GPTString, ScoreData } from "tachi-common";
+import type { KtLogger } from "lib/logger/logger";
+import type { ChartDocument, DerivedMetrics, GPTString, ScoreData, integer } from "tachi-common";
 import type { MetricValue } from "tachi-common/types/metrics";
 
 type AllGPTDerivers = {
@@ -133,25 +135,72 @@ function DeriveMetrics<GPT extends GPTString>(
 
 		const value = fn(metrics, chart);
 
-		if (metricConfig.type === "ENUM") {
-			const index = metricConfig.values.indexOf(value);
-
-			if (index === -1) {
-				throw new InternalFailure(
-					`Tried to turn a ${key} enum value of ${value} into an index, got -1?`
-				);
-			}
-
-			derivedMetrics[key] = {
-				string: value,
-				index,
-			};
-		} else {
-			derivedMetrics[key] = value;
-		}
+		derivedMetrics[key] = value;
 	}
 
 	return derivedMetrics as DerivedMetrics[GPT];
+}
+
+export function CreateEnumIndexes<GPT extends GPTString>(gpt: GPT, metrics: any, logger: KtLogger) {
+	const gptConfig = GetGPTConfig(gpt);
+
+	const indexes: Record<string, integer> = {};
+	const optionalIndexes: Record<string, integer> = {};
+
+	for (const [key, conf] of [
+		...Object.entries(gptConfig.providedMetrics),
+		...Object.entries(gptConfig.derivedMetrics),
+	]) {
+		if (conf.type !== "ENUM") {
+			continue;
+		}
+
+		const index = conf.values.indexOf(metrics[key]);
+
+		if (index === -1) {
+			logger.error(
+				`Got an invalid enum value of ${metrics[key]} for ${gpt} ${key} on DryScore. Can't add indexes?`,
+				{ metrics, key, conf }
+			);
+
+			throw new InternalFailure(
+				`Got an invalid enum value of ${metrics[key]} for ${gpt} ${key} on DryScore. Can't add indexes?`
+			);
+		}
+
+		indexes[key] = index;
+	}
+
+	for (const [key, conf] of [
+		...Object.entries(gptConfig.providedMetrics),
+		...Object.entries(gptConfig.derivedMetrics),
+	]) {
+		if (conf.type !== "ENUM") {
+			continue;
+		}
+
+		// skip undefined metrics
+		if (!metrics.optional[key]) {
+			continue;
+		}
+
+		const index = conf.values.indexOf(metrics.optional[key]);
+
+		if (index === -1) {
+			logger.error(
+				`Got an invalid enum value of ${metrics.optional[key]} for ${gpt} optional.${key} on DryScore. Can't add indexes?`,
+				{ metrics, key, conf }
+			);
+
+			throw new InternalFailure(
+				`Got an invalid enum value of ${metrics.optional[key]} for ${gpt} optional.${key} on DryScore. Can't add indexes?`
+			);
+		}
+
+		indexes[key] = index;
+	}
+
+	return { indexes, optionalIndexes };
 }
 
 /**
@@ -160,7 +209,8 @@ function DeriveMetrics<GPT extends GPTString>(
 export function CreateFullScoreData<GPT extends GPTString>(
 	gpt: GPT,
 	dryScoreData: DryScore<GPT>["scoreData"],
-	chart: ChartDocument<GPT>
+	chart: ChartDocument<GPT>,
+	logger: KtLogger
 ) {
 	const derivedMetrics = DeriveMetrics(gpt, dryScoreData, chart);
 
@@ -169,6 +219,13 @@ export function CreateFullScoreData<GPT extends GPTString>(
 		...derivedMetrics,
 	} as unknown as ScoreData<GPT>;
 	// ^ hacky force-cast because these types are *really* unstable.
+
+	const { indexes, optionalIndexes } = CreateEnumIndexes(gpt, scoreData, logger);
+
+	// again, silly hacks aorund typesafety here because to be honest
+	// this stuff is more generic than TS really should ever have to implement.
+	scoreData.enumIndexes = indexes;
+	scoreData.optional.enumIndexes = optionalIndexes;
 
 	return scoreData;
 }

@@ -9,7 +9,7 @@ import { UserAuthLevels } from "../types";
 import { PrudenceZodShim } from "../utils/util";
 import { p } from "prudence";
 import type { Game, Playtype, Playtypes } from "../types/game-config";
-import type { GamePTConfig } from "../types/internals";
+import type { INTERNAL_GAME_PT_CONFIG } from "../types/internals";
 import type { ConfScoreMetric } from "../types/metrics";
 import type { NotificationBody } from "../types/notifications";
 import type {
@@ -39,7 +39,7 @@ function prSchemaFnWrap(schema: PrudenceSchema) {
 	};
 }
 
-const PR_GAME_STATS = (game: Game, playtype: Playtypes[Game], gptConfig: GamePTConfig) => ({
+const PR_GAME_STATS = (game: Game, playtype: Playtypes[Game], gptConfig: INTERNAL_GAME_PT_CONFIG) => ({
 	userID: p.isPositiveNonZeroInteger,
 	game: p.is(game),
 	playtype: p.is(playtype),

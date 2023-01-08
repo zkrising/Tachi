@@ -1,6 +1,6 @@
 import { NoDecimalPlace, zodNonNegativeInt } from "../config-utils";
 import { z } from "zod";
-import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
+import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const ITG_CONF = {
 	defaultPlaytype: "Stamina",
@@ -128,4 +128,4 @@ export const ITG_STAMINA_CONF = {
 	scoreMeta: z.strictObject({}),
 
 	supportedMatchTypes: ["itgChartHash", "tachiSongID"],
-} as const satisfies GamePTConfig;
+} as const satisfies INTERNAL_GAME_PT_CONFIG;

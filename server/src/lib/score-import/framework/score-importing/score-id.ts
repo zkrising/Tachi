@@ -1,7 +1,8 @@
 import db from "external/mongo/db";
+import { GetGPTConfig } from "tachi-common";
 import crypto from "crypto";
 import type { DryScore } from "../common/types";
-import type { integer } from "tachi-common";
+import type { integer, GPTString, ProvidedMetrics } from "tachi-common";
 
 /**
  * Performs sha256 hashing on the input data.
@@ -17,12 +18,25 @@ function HashScoreIDString(scoreIDString: string) {
  * This is used to deduplicate repeated scores.
  * @returns @see HashScoreIDString - prefixed with R.
  */
-export function CreateScoreID(userID: integer, dryScore: DryScore, chartID: string) {
-	const hash = HashScoreIDString(
-		`${userID}|${chartID}|${dryScore.scoreData.lamp}|${dryScore.scoreData.grade.string}|${dryScore.scoreData.score}|${dryScore.scoreData.percent}`
-	);
+export function CreateScoreID(
+	gptString: GPTString,
+	userID: integer,
+	dryScore: DryScore,
+	chartID: string
+) {
+	const elements = [userID, chartID];
 
-	return `R${hash}`;
+	const gptConfig = GetGPTConfig(gptString);
+
+	for (const m of Object.keys(gptConfig.providedMetrics)) {
+		const metric = m as keyof ProvidedMetrics[GPTString];
+
+		elements.push(dryScore.scoreData[metric]);
+	}
+
+	const hash = HashScoreIDString(elements.join("\0"));
+
+	return `T${hash}`;
 }
 
 export function GetWithScoreID(scoreID: string) {

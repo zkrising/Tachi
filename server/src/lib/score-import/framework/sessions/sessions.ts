@@ -66,7 +66,7 @@ function ScoreToSessionScoreInfo(
 	return {
 		scoreID: score.scoreID,
 		isNewScore: false,
-		gradeDelta: score.scoreData.grade.string - previousPB.scoreData.grade.string,
+		gradeDelta: score.scoreData.grade - previousPB.scoreData.grade,
 		lampDelta: score.scoreData.lamp.index - previousPB.scoreData.lamp.index,
 		percentDelta: score.scoreData.percent - previousPB.scoreData.percent,
 		scoreDelta: score.scoreData.score - previousPB.scoreData.score,

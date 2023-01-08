@@ -3,7 +3,7 @@ import { IIDX_DANS } from "tachi-common";
 import nodeFetch from "utils/fetch";
 import { IsRecord } from "utils/misc";
 import type { KaiAPIReauthFunction } from "../traverse-api";
-import type { ClassProvider } from "lib/score-import/framework/profile-calculated-data/types";
+import type { ClassProvider } from "lib/score-import/framework/calculated-data/types";
 
 export async function CreateKaiIIDXClassProvider(
 	kaiType: "EAG" | "FLO",
@@ -48,7 +48,7 @@ export async function CreateKaiIIDXClassProvider(
 		err = e;
 	}
 
-	return (game, playtype, userID, ratings, logger) => {
+	return (gptString, userID, ratings, logger) => {
 		if (err !== undefined) {
 			logger.error(`An error occured while updating classes for ${baseUrl}.`, { err });
 			return {};
@@ -63,12 +63,12 @@ export async function CreateKaiIIDXClassProvider(
 
 		let maybeIIDXDan: unknown;
 
-		if (playtype === "SP") {
+		if (gptString === "iidx:SP") {
 			maybeIIDXDan = json.sp;
-		} else if (playtype === "DP") {
+		} else if (gptString === "iidx:DP") {
 			maybeIIDXDan = json.dp;
 		} else {
-			logger.warn(`KAIIIDXClassUpdater called with invalid playtype of ${playtype}.`);
+			logger.warn(`KAIIIDXClassUpdater called with invalid gptString of ${gptString}.`);
 			return {};
 		}
 
@@ -77,7 +77,7 @@ export async function CreateKaiIIDXClassProvider(
 			maybeIIDXDan === undefined ||
 			typeof maybeIIDXDan !== "number"
 		) {
-			logger.info(`User has no ${playtype} dan. Not updating anything.`);
+			logger.info(`User has no ${gptString} dan. Not updating anything.`);
 			return {};
 		}
 

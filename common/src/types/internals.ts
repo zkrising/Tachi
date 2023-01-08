@@ -13,7 +13,7 @@ import type { AnyZodObject } from "zod";
  * Documentation for this type can be found in `game-support.ts`, which has the
  * GamePTConfig type, which actually has documentation.
  */
-export type GamePTConfig = Readonly<{
+export type INTERNAL_GAME_PT_CONFIG = Readonly<{
 	providedMetrics: Record<string, ConfScoreMetric>;
 
 	derivedMetrics: Record<string, ConfScoreMetric>;

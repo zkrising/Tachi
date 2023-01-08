@@ -5,6 +5,7 @@ import { IsConverterFailure } from "../common/converter-failures";
 import { OrphanScore } from "../orphans/orphans";
 import db from "external/mongo/db";
 import { AppendLogCtx } from "lib/logger/logger";
+import { GetGPTString } from "tachi-common";
 import { ClassToObject } from "utils/misc";
 import type { ConverterFnSuccessReturn, ConverterFunction } from "../../import-types/common/types";
 import type { ConverterFailure, SongOrChartNotFoundFailure } from "../common/converter-failures";
@@ -16,9 +17,9 @@ import type {
 	Game,
 	ImportProcessingInfo,
 	ImportTypes,
-	integer,
 	ScoreDocument,
 	SongDocument,
+	integer,
 } from "tachi-common";
 
 /**
@@ -296,7 +297,9 @@ async function HydrateAndInsertScore(
 	importLogger: KtLogger,
 	force = false
 ): Promise<ScoreDocument | null> {
-	const scoreID = CreateScoreID(userID, dryScore, chart.chartID);
+	const gptString = GetGPTString(dryScore.game, chart.playtype);
+
+	const scoreID = CreateScoreID(gptString, userID, dryScore, chart.chartID);
 
 	// sub-context the logger so the below logs are more accurate
 	const logger = AppendLogCtx(scoreID, importLogger);
@@ -331,7 +334,7 @@ async function HydrateAndInsertScore(
 		return null;
 	}
 
-	const score = await HydrateScore(userID, dryScore, chart, song, scoreID, logger);
+	const score = HydrateScore(userID, dryScore, chart, song, scoreID, logger);
 
 	let res;
 

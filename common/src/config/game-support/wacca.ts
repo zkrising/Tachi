@@ -1,7 +1,7 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue } from "../config-utils";
 import { z } from "zod";
-import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
+import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const WACCA_CONF = {
 	defaultPlaytype: "Single",
@@ -140,4 +140,4 @@ export const WACCA_SINGLE_CONF = {
 	scoreMeta: z.strictObject({ mirror: z.boolean().optional() }),
 
 	supportedMatchTypes: ["songTitle", "tachiSongID"],
-} as const satisfies GamePTConfig;
+} as const satisfies INTERNAL_GAME_PT_CONFIG;

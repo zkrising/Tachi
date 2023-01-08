@@ -10,7 +10,7 @@ import type {
 	ScoreDocument,
 	ScoreRatingAlgorithms,
 	SessionRatingAlgorithms,
-	UserGameStats,
+	SpecificUserGameStats,
 	integer,
 } from "tachi-common";
 import type { DerivedClassConfig, ProvidedClassConfig } from "tachi-common/types/game-config-utils";
@@ -46,7 +46,7 @@ export type GPTProfileCalculators = {
 };
 
 export type ClassDeriver<GPT extends GPTString, V extends string> = (
-	profileRatings: UserGameStats<GPT>["ratings"]
+	profileRatings: SpecificUserGameStats<GPT>["ratings"]
 ) => V | null;
 
 // absolutely stupid magic.

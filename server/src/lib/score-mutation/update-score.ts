@@ -1,10 +1,10 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
 import { rootLogger } from "lib/logger/logger";
-import { CreateCalculatedData } from "lib/score-import/framework/score-calculated-data/calculated-data";
+import { CreateScoreCalcData } from "lib/score-import/framework/calculated-data/score";
 import { UpdateChartRanking } from "lib/score-import/framework/pb/create-pb-doc";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
-import { CreateSessionCalcData } from "lib/score-import/framework/sessions/calculated-data";
+import { GetGPTString } from "tachi-common";
 import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 import { FormatUserDoc, GetUserWithID } from "utils/user";
 import type { KtLogger } from "lib/logger/logger";
@@ -54,7 +54,12 @@ export default async function UpdateScore(
 
 	const oldScoreID = oldScore.scoreID;
 
-	const newScoreID = CreateScoreID(newScore.userID, newScore, newScore.chartID);
+	const newScoreID = CreateScoreID(
+		GetGPTString(newScore.game, newScore.playtype),
+		newScore.userID,
+		newScore,
+		newScore.chartID
+	);
 
 	// We need to change *so* many references to score IDs, and recalculate *so*
 	// much stored state. Obviously, changing a scoreID is an exceptional circumstance
@@ -70,22 +75,18 @@ export default async function UpdateScore(
 	logger.verbose("Received Update Score request.");
 
 	// eslint-disable-next-line require-atomic-updates
-	newScore.calculatedData = await CreateCalculatedData(
-		newScore,
-		chart,
-		newScore.scoreData.esd,
-		logger
-	);
+	newScore.calculatedData = CreateScoreCalcData(newScore, chart);
 
 	try {
 		// Having _id defined will cause this to throw, causing it to not apply
 		// the update.
+		// @ts-expect-error this shouldn't happen according to types.
 		if (newScore._id) {
 			logger.warn(
 				`Passed a score with _id to UpdateScore. This property should not be set. Deleting this property and continuing anyway.`
 			);
 
-			// This property shouldn't be defined.
+			// @ts-expect-error this shouldn't happen according to types.
 			delete newScore._id;
 		}
 

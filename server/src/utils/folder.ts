@@ -11,10 +11,8 @@ import type {
 	FolderChartLookup,
 	FolderDocument,
 	Game,
-	Grades,
 	GPTString,
 	integer,
-	Lamps,
 	PBScoreDocument,
 	Playtype,
 	SongDocument,
@@ -324,10 +322,10 @@ export function CalculateGradeDistribution(pbs: Array<PBScoreDocument>) {
 	const gradeDist: Partial<Record<Grades[GPTString], integer>> = {};
 
 	for (const pb of pbs) {
-		if (gradeDist[pb.scoreData.grade.string] !== undefined) {
-			gradeDist[pb.scoreData.grade.string]!++;
+		if (gradeDist[pb.scoreData.grade] !== undefined) {
+			gradeDist[pb.scoreData.grade]!++;
 		} else {
-			gradeDist[pb.scoreData.grade.string] = 1;
+			gradeDist[pb.scoreData.grade] = 1;
 		}
 	}
 

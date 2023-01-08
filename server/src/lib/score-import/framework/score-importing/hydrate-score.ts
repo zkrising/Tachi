@@ -1,28 +1,28 @@
-import { CreateCalculatedData } from "../score-calculated-data/calculated-data";
+import { CreateScoreCalcData } from "../calculated-data/score";
 import { CreateFullScoreData } from "../derivers/derivers";
 import { GetGPTString } from "tachi-common";
 import type { DryScore } from "../common/types";
 import type { KtLogger } from "lib/logger/logger";
-import type { ChartDocument, integer, ScoreDocument, SongDocument } from "tachi-common";
+import type { ChartDocument, ScoreDocument, SongDocument, integer } from "tachi-common";
 
 /**
  * Takes an "intermediate" score and appends the rest of the data it needs.
  * @param dryScore The intermediate score to make into a real score.
  * @param userID The userID this score is for.
  */
-export async function HydrateScore(
+export function HydrateScore(
 	userID: integer,
 	dryScore: DryScore,
 	chart: ChartDocument,
 	song: SongDocument,
 	scoreID: string,
 	logger: KtLogger
-): Promise<ScoreDocument> {
+): ScoreDocument {
 	const gpt = GetGPTString(dryScore.game, chart.playtype);
 
-	const scoreData = CreateFullScoreData(gpt, dryScore.scoreData, chart);
+	const scoreData = CreateFullScoreData(gpt, dryScore.scoreData, chart, logger);
 
-	const calculatedData = await CreateCalculatedData(dryScore, chart, logger);
+	const calculatedData = CreateScoreCalcData(dryScore, chart);
 
 	const score: ScoreDocument = {
 		...dryScore,

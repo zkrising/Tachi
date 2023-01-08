@@ -66,6 +66,6 @@ export default function ParseEamusementSDVXCSV(
 		iterable,
 		context: {},
 		game: "sdvx",
-		classHandler: null,
+		classProvider: null,
 	};
 }

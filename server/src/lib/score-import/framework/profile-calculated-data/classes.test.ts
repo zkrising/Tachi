@@ -1,4 +1,4 @@
-import { ProcessClassDeltas, UpdateUGSClasses } from "./classes";
+import { ProcessClassDeltas, CalculateUGPTClasses } from "./classes";
 import CreateLogCtx from "lib/logger/logger";
 import { GITADORA_COLOURS } from "tachi-common";
 import t from "tap";
@@ -9,7 +9,7 @@ const logger = CreateLogCtx(__filename);
 
 t.test("#UpdateUGSClasses", (t) => {
 	t.test("Should produce an empty object by default", async (t) => {
-		const res = await UpdateUGSClasses("iidx", "SP", 1, {}, null, logger);
+		const res = await CalculateUGPTClasses("iidx", "SP", 1, {}, null, logger);
 
 		t.strictSame(res, {});
 
@@ -17,7 +17,7 @@ t.test("#UpdateUGSClasses", (t) => {
 	});
 
 	t.test("Should call and merge the ClassHandler", async (t) => {
-		const res = await UpdateUGSClasses("iidx", "SP", 1, {}, () => ({ dan: 2 }), logger);
+		const res = await CalculateUGPTClasses("iidx", "SP", 1, {}, () => ({ dan: 2 }), logger);
 
 		t.strictSame(res, { dan: 2 });
 
@@ -25,7 +25,7 @@ t.test("#UpdateUGSClasses", (t) => {
 	});
 
 	t.test("Should call static handlers if there is one", async (t) => {
-		const res = await UpdateUGSClasses(
+		const res = await CalculateUGPTClasses(
 			"gitadora",
 			"Dora",
 			1,

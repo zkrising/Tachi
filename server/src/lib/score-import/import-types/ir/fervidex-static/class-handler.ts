@@ -1,17 +1,17 @@
-import type { ClassHandler } from "../../../framework/profile-calculated-data/types";
+import type { ClassProvider } from "lib/score-import/framework/calculated-data/types";
 import type { integer } from "tachi-common";
 
-export function CreateFerStaticClassHandler(body: Record<string, unknown>): ClassHandler {
-	return (game, playtype, userID, ratings, logger) => {
+export function CreateFerStaticClassProvider(body: Record<string, unknown>): ClassProvider {
+	return (gptString, userID, ratings, logger) => {
 		let index;
 
-		if (playtype === "SP") {
+		if (gptString === "iidx:SP") {
 			index = body.sp_dan;
-		} else if (playtype === "DP") {
+		} else if (gptString === "iidx:DP") {
 			index = body.dp_dan;
 		} else {
 			logger.warn(
-				`Invalid playtype ${playtype} passed to FerStaticClassHandler. Attempting to continue.`
+				`Invalid gptString ${gptString} passed to FerStaticClassProvider. Attempting to continue.`
 			);
 			return;
 		}
@@ -21,7 +21,7 @@ export function CreateFerStaticClassHandler(body: Record<string, unknown>): Clas
 		}
 
 		if (!Number.isInteger(index)) {
-			logger.info(`received invalid fer-static class of ${index} (${playtype}).`, { body });
+			logger.info(`received invalid fer-static class of ${index} (${gptString}).`, { body });
 			return;
 		}
 

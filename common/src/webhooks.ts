@@ -9,8 +9,8 @@ export interface WebhookEventClassUpdateV1 {
 	content: {
 		userID: integer;
 		set: Classes[GPTString];
-		old: integer | null;
-		new: integer;
+		old: string | null;
+		new: string;
 		game: Game;
 		playtype: Playtypes[Game];
 	};

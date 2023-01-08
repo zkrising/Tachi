@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/profile-calculated-data/update-ugs";
+import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/ugpt-stats/update-ugpt-stats";
 import { WrapScriptPromise } from "utils/misc";
 import { FormatUserDoc } from "utils/user";
 import type { Game, Playtype, ScoreDocument } from "tachi-common";

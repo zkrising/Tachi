@@ -2,7 +2,7 @@
 
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/profile-calculated-data/update-ugs";
+import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/ugpt-stats/update-ugpt-stats";
 import { FormatUserDoc } from "utils/user";
 
 const logger = CreateLogCtx(__filename);

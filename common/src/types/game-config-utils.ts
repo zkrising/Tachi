@@ -21,13 +21,13 @@ export interface ClassInfo<ClassID extends string> {
 	hoverText?: string;
 }
 
-interface BaseClassConfig {
+interface BaseClassConfig<V extends string> {
 	/**
 	 * What are the possible values for this class field?
 	 *
 	 * @note This should be in ascending order.
 	 */
-	values: Array<ClassInfo<string>>;
+	values: Array<ClassInfo<V>>;
 }
 
 /**
@@ -42,7 +42,7 @@ interface BaseClassConfig {
  * the user is 3rd dan when they've cleared 5th dan in the past, this value will not go
  * back down at any point.
  */
-export interface ProvidedClassConfig extends BaseClassConfig {
+export interface ProvidedClassConfig<V extends string = string> extends BaseClassConfig<V> {
 	type: "PROVIDED";
 }
 
@@ -56,7 +56,7 @@ export interface ProvidedClassConfig extends BaseClassConfig {
  * @note "DERIVED" classes are always downgradable, as they are a function of state
  * and might go down at any time for any reason.
  */
-export interface DerivedClassConfig extends BaseClassConfig {
+export interface DerivedClassConfig<V extends string = string> extends BaseClassConfig<V> {
 	type: "DERIVED";
 }
 

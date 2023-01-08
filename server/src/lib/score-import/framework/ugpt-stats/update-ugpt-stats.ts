@@ -1,12 +1,8 @@
-// "rating" refers to a user's profile statistics, as in their "rating" on a game.
-// Some games have dedicated methods to calculate statistics like these, other games do not.
-// That's about all there is to it!
-
-import { ProcessClassDeltas, UpdateUGSClasses } from "./classes";
-import { CalculateRatings } from "./rating";
+import { CalculateProfileRatings } from "../calculated-data/profile";
+import { CalculateUGPTClasses, ProcessClassDeltas } from "../profile-calculated-data/classes";
 import db from "external/mongo/db";
 import { CreateGameSettings } from "lib/game-settings/create-game-settings";
-import type { ClassHandler } from "./types";
+import type { ClassProvider } from "../calculated-data/types";
 import type { KtLogger } from "lib/logger/logger";
 import type { ClassDelta, Game, integer, Playtype, UserGameStats } from "tachi-common";
 
@@ -14,12 +10,12 @@ export async function UpdateUsersGamePlaytypeStats(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
-	classHandler: ClassHandler | null,
+	classProvider: ClassProvider | null,
 	logger: KtLogger
 ): Promise<Array<ClassDelta>> {
 	logger.debug(`Calculating Ratings...`);
 
-	const ratings = await CalculateRatings(game, playtype, userID, logger);
+	const ratings = await CalculateProfileRatings(game, playtype, userID);
 
 	// Attempt to find a users game stats if one already exists. If one doesn't exist,
 	// this is this players first import for this game!
@@ -31,7 +27,14 @@ export async function UpdateUsersGamePlaytypeStats(
 
 	logger.debug(`Calculating UGSClasses...`);
 
-	const classes = await UpdateUGSClasses(game, playtype, userID, ratings, classHandler, logger);
+	const classes = await CalculateUGPTClasses(
+		game,
+		playtype,
+		userID,
+		ratings,
+		classProvider,
+		logger
+	);
 
 	logger.debug(`Finished Calculating UGSClasses`);
 
@@ -44,7 +47,7 @@ export async function UpdateUsersGamePlaytypeStats(
 	if (userGameStats) {
 		logger.debug(`Updated player gamestats for ${game} (${playtype})`);
 
-		const updateClasses: Record<string, number> = {};
+		const updateClasses: Record<string, string> = {};
 
 		for (const delta of deltas) {
 			updateClasses[`classes.${delta.set}`] = delta.new;

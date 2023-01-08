@@ -1,77 +1,22 @@
-import {
-	CalculateChunithmColour,
-	CalculateGitadoraColour,
-	CalculateJubeatColour,
-	CalculatePopnClass,
-	CalculateSDVXClass,
-	CalculateWACCAColour,
-	CalculateMaimaiDXColour,
-} from "./builtin-class-handlers";
+import { CalculateDerivedClasses } from "../calculated-data/profile-classes";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import { EmitWebhookEvent } from "lib/webhooks/webhooks";
-import { GetGamePTConfig } from "tachi-common";
+import { GetGPTString, GetGamePTConfig } from "tachi-common";
 import { ReturnClassIfGreater } from "utils/class";
-import type { ClassHandler, ScoreClasses } from "./types";
+import type { ClassProvider } from "../calculated-data/types";
 import type { KtLogger } from "lib/logger/logger";
 import type {
 	ClassDelta,
-	Game,
-	GPTString,
-	integer,
-	Playtype,
-	Playtypes,
-	UserGameStats,
 	Classes,
+	GPTString,
+	Game,
+	Playtype,
+	UserGameStats,
+	integer,
+	ExtractedClasses,
+	AnyClasses,
 } from "tachi-common";
-
-type ClassHandlerMap = {
-	[G in Game]:
-		| {
-				[P in Playtypes[G]]: ClassHandler;
-		  }
-		| null;
-};
-
-/**
- * Describes the static class handlers for a game, I.E. ones that are
- * always meant to be called when new scores are found.
- *
- * These can be calculated without any external (i.e. user/api-provided) data.
- *
- * A good example of this would be, say, jubeat's colours - the boundaries depend entirely
- * on your profile skill level, which is known at the time this function is called.
- */
-const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
-	iidx: null,
-	bms: null,
-	chunithm: {
-		Single: CalculateChunithmColour,
-	},
-	gitadora: {
-		Gita: CalculateGitadoraColour,
-		Dora: CalculateGitadoraColour,
-	},
-	maimaidx: {
-		Single: CalculateMaimaiDXColour,
-	},
-	museca: null,
-	popn: {
-		"9B": CalculatePopnClass,
-	},
-	sdvx: {
-		Single: CalculateSDVXClass,
-	},
-	usc: null,
-	wacca: {
-		Single: CalculateWACCAColour,
-	},
-	jubeat: {
-		Single: CalculateJubeatColour,
-	},
-	pms: null,
-	itg: null,
-};
 
 /**
  * Calculates a User's Game Stats Classes. This function is rather complex, because the reality is rather complex.
@@ -90,36 +35,28 @@ const STATIC_CLASS_HANDLERS: ClassHandlerMap = {
  * @param ratings - A users ratings. This is calculated in rating.ts, and passed via update-ugs.ts.
  * We request this because we need it for things like gitadora's skill divisions - We don't need to calculate our skill
  * statistic twice if we just request it be passed to us!
- * @param ClassHandler - The Custom Resolve Function that certain import types may pass to us as a means
- * for retrieving information about a class. This returns the same thing as this function, and it is merged with the
+ * @param ClassProvider - The Custom Resolve Function that certain import types may pass to us as a means
+ * for providing information about a class. This returns the same thing as this function, and it is merged with the
  * defaults.
  */
-export async function UpdateUGSClasses(
+export async function CalculateUGPTClasses(
 	game: Game,
 	playtype: Playtype,
 	userID: integer,
 	ratings: Record<string, number | null>,
-	ClassHandler: ClassHandler | null,
+	ClassProvider: ClassProvider | null,
 	logger: KtLogger
-): Promise<ScoreClasses> {
-	let classes: ScoreClasses = {};
+): Promise<ExtractedClasses[GPTString]> {
+	const gptString = GetGPTString(game, playtype);
 
-	// @ts-expect-error This one sucks - I need to look into a better way of representing these types
-	if (STATIC_CLASS_HANDLERS[game]?.[playtype] !== undefined) {
-		// @ts-expect-error see above
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-		classes = await STATIC_CLASS_HANDLERS[game][playtype](
-			game,
-			playtype,
-			userID,
-			ratings,
-			logger
-		);
-	}
+	// Derive all classes first.
+	let classes = CalculateDerivedClasses(gptString, ratings);
 
-	if (ClassHandler) {
+	// If this import method is providing us classes, merge those with the
+	// other classes we have.
+	if (ClassProvider) {
 		logger.debug(`Calling custom class handler.`);
-		const customClasses = (await ClassHandler(game, playtype, userID, ratings, logger)) ?? {};
+		const customClasses = (await ClassProvider(gptString, userID, ratings, logger)) ?? {};
 
 		classes = deepmerge(customClasses, classes);
 	}
@@ -131,17 +68,24 @@ export async function UpdateUGSClasses(
  * Calculates the class "deltas" for this users classes.
  * This is for calculating scenarios where a users class has improved (i.e. they have gone from 9th dan to 10th dan).
  *
+ * If a class is provided, we don't want to potentially downgrade users. I.e.
+ * if a user clears 7th dan while they're 10th dan, we don't want to downgrade them.
+ *
+ * For derived classes however, downgrading is fine.
+ *
  * Knowing this information allows us to attach it onto the import, and also emit things on webhooks.
- * This function emits webhook events and inserts classachieved documents into the DB!**
+ * This function emits webhook events and inserts classachieved documents into the DB!
  */
 export async function ProcessClassDeltas(
 	game: Game,
 	playtype: Playtype,
-	classes: ScoreClasses,
+	classes: AnyClasses,
 	userGameStats: UserGameStats | null,
 	userID: integer,
 	logger: KtLogger
 ): Promise<Array<ClassDelta>> {
+	const gptString = GetGPTString(game, playtype);
+
 	const deltas: Array<ClassDelta> = [];
 
 	const achievementOps = [];
@@ -152,7 +96,7 @@ export async function ProcessClassDeltas(
 		const classSet = s as Classes[GPTString];
 		const classVal = classes[classSet];
 
-		if (classVal === undefined) {
+		if (classVal === undefined || classVal === null) {
 			logger.debug(`Skipped deltaing-class ${classSet}.`);
 			continue;
 		}
@@ -160,11 +104,11 @@ export async function ProcessClassDeltas(
 		const classConfig = gptConfig.classes[classSet]!;
 
 		try {
-			const isGreater = ReturnClassIfGreater(classSet, classVal, userGameStats);
+			const isGreater = ReturnClassIfGreater(gptString, classSet, classVal, userGameStats);
 
-			// if this was worse, and this class isn't DERIVED (i.e. it's a dan)
+			// if this was worse, and this class is PROVIDED (i.e. it's a dan)
 			// then don't do anything
-			if (isGreater === false && classConfig.type !== "DERIVED") {
+			if (isGreater === false && classConfig.type === "PROVIDED") {
 				continue;
 			} else {
 				// otherwise, provide this as an update.

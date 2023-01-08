@@ -1,4 +1,4 @@
-import { UpdateUsersGamePlaytypeStats } from "./update-ugs";
+import { UpdateUsersGamePlaytypeStats } from "./update-ugpt-stats";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";

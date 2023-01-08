@@ -75,6 +75,6 @@ export function ParseBarbatosSingle(
 		},
 		game: "sdvx",
 		iterable: [body] as unknown as Array<BarbatosScore | BarbatosSDVX6Score>,
-		classHandler: null,
+		classProvider: null,
 	};
 }

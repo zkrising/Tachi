@@ -1,10 +1,9 @@
 import db from "external/mongo/db";
-import { GenericCalculatePercent } from "lib/score-import/framework/common/score-utils";
-import { FormatGame, GetGamePTConfig } from "tachi-common";
+import { FormatGame, GetGamePTConfig, GetSpecificGPTConfig } from "tachi-common";
 import { GetFolderForIDGuaranteed, HumaniseChartID } from "utils/db";
 import { GetFolderChartIDs } from "utils/folder";
 import { FormatMaxDP, HumanisedJoinArray } from "utils/misc";
-import type { ChartDocument, Game, GoalDocument, Playtype } from "tachi-common";
+import type { ChartDocument, Game, GoalDocument, Playtype, GPTString } from "tachi-common";
 
 export async function CreateGoalTitle(
 	charts: GoalDocument["charts"],
@@ -119,8 +118,19 @@ async function FormatCharts(
 	}
 }
 
-function FormatCriteria(criteria: GoalDocument["criteria"], game: Game, playtype: Playtype) {
-	const gptConfig = GetGamePTConfig(game, playtype);
+function FormatCriteria<GPT extends GPTString>(
+	criteria: GoalDocument<GPT>["criteria"],
+	gptString: GPT
+) {
+	const gptConfig = GetSpecificGPTConfig(gptString);
+
+	switch (criteria.key) {
+		case "":
+			break;
+
+		default:
+			break;
+	}
 
 	switch (criteria.key) {
 		case "scoreData.gradeIndex":

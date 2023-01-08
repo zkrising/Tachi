@@ -45,7 +45,7 @@ t.test("#ParseFervidexStatic", (t) => {
 			game: "iidx",
 		});
 
-		t.type(res.classHandler, "function", "Should have a function ready for class handling");
+		t.type(res.classProvider, "function", "Should have a function ready for class handling");
 
 		t.end();
 	});
@@ -65,7 +65,7 @@ t.test("#ParseFervidexStatic", (t) => {
 		});
 
 		t.type(
-			res.classHandler,
+			res.classProvider,
 			"function",
 			"Should have a function ready for class handling, regardless of shouldImportScores being false"
 		);

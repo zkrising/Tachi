@@ -1,4 +1,4 @@
-import { CreateBatchManualClassHandler } from "./class-handler";
+import { CreateBatchManualClassProvider } from "./class-handler";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { TachiConfig } from "lib/setup/config";
 import { p } from "prudence";
@@ -104,8 +104,8 @@ export function ParseBatchManualFromObject(
 
 		// if classes are provided, use those as a class handler. Otherwise, we
 		// don't care.
-		classHandler: batchManual.classes
-			? CreateBatchManualClassHandler(batchManual.classes)
+		classProvider: batchManual.classes
+			? CreateBatchManualClassProvider(batchManual.classes)
 			: null,
 	};
 }

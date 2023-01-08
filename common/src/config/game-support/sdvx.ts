@@ -27,7 +27,7 @@ const SDVXDans = [
 	ClassValue("INF", "LV.INF", "Inf. Dan"),
 ];
 
-const SDVXVFClasses = [
+export const SDVXVFClasses = [
 	ClassValue("SIENNA_I", "Sienna I", "0 - 2.499VF"),
 	ClassValue("SIENNA_II", "Sienna II", "2.5 - 4.999VF"),
 	ClassValue("SIENNA_III", "Sienna III", "5.0 - 7.499VF"),

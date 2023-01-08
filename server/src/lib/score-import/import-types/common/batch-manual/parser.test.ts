@@ -336,9 +336,9 @@ t.test("#ParserFn", (t) => {
 				logger
 			);
 
-			t.not(res.classHandler, null);
+			t.not(res.classProvider, null);
 
-			t.strictSame(res.classHandler!("iidx", "SP", 1, {}, logger), { dan: IIDX_DANS.KAIDEN });
+			t.strictSame(res.classProvider!("iidx", "SP", 1, {}, logger), { dan: IIDX_DANS.KAIDEN });
 
 			t.end();
 		});
@@ -354,7 +354,7 @@ t.test("#ParserFn", (t) => {
 				logger
 			);
 
-			t.equal(res.classHandler, null);
+			t.equal(res.classProvider, null);
 
 			t.end();
 		});

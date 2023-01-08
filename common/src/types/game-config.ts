@@ -1,5 +1,4 @@
 import type { GAME_CONFIGS, GAME_PT_CONFIGS } from "../config/config";
-import type { integer } from "../types";
 import type { MatchTypes } from "./batch-manual";
 import type {
 	ExtractClassValues,
@@ -147,12 +146,16 @@ export type ExtractedClasses = {
 	[G in GPTString]: ExtractClassValues<typeof GAME_PT_CONFIGS[G]["classes"]>;
 };
 
+export type AnyClasses = {
+	[C in Classes[GPTString]]?: string | null;
+};
+
 export type Classes = {
 	[G in GPTString]: keyof typeof GAME_PT_CONFIGS[G]["classes"];
 };
 
-export type ClassRecords<G extends GPTString> = {
-	[C in Classes[G]]: integer;
+export type ClassConfigs = {
+	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["classes"];
 };
 
 export type ChartDocumentData = {
@@ -300,7 +303,7 @@ export interface SpecificGamePTConfig<GPT extends GPTString> {
 	 * or they may be provided by score imports, such as "dans", which cannot be
 	 * derived from a player's scores or profile ratings.
 	 */
-	classes: Classes[GPT];
+	classes: ClassConfigs[GPT];
 
 	/**
 	 * What's the default score rating algorithm for this GPT?

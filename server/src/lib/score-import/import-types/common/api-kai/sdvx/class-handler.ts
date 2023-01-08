@@ -3,14 +3,14 @@ import { SDVX_DANS } from "tachi-common";
 import nodeFetch from "utils/fetch";
 import { IsRecord } from "utils/misc";
 import type { KaiAPIReauthFunction } from "../traverse-api";
-import type { ClassHandler } from "lib/score-import/framework/profile-calculated-data/types";
+import type { ClassProvider } from "lib/score-import/framework/profile-calculated-data/types";
 
-export async function CreateKaiSDVXClassHandler(
+export async function CreateKaiSDVXClassProvider(
 	kaiType: "EAG" | "FLO" | "MIN",
 	token: string,
 	reauthFn: KaiAPIReauthFunction,
 	fetch = nodeFetch
-): Promise<ClassHandler> {
+): Promise<ClassProvider> {
 	let json: unknown;
 	let err: unknown;
 	const baseUrl = KaiTypeToBaseURL(kaiType);

@@ -1,4 +1,4 @@
-import { CreateKaiIIDXClassHandler } from "./class-handler";
+import { CreateKaiIIDXClassProvider } from "./class-handler";
 import { CreateKaiReauthFunction } from "../reauth";
 import { TraverseKaiAPI } from "../traverse-api";
 import { KaiTypeToBaseURL } from "../utils";
@@ -30,7 +30,7 @@ export async function ParseKaiIIDX(
 		context: {
 			service,
 		},
-		classHandler: await CreateKaiIIDXClassHandler(service, authDoc.token, reauthFn, fetch),
+		classProvider: await CreateKaiIIDXClassProvider(service, authDoc.token, reauthFn, fetch),
 		game: "iidx",
 	};
 }

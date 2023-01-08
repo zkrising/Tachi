@@ -1,6 +1,6 @@
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { WACCA_STAGEUPS } from "tachi-common";
-import type { ClassHandler } from "../../../framework/profile-calculated-data/types";
+import type { ClassProvider } from "../../../framework/ugpt-stats/types";
 import type { MyPagePlayerStage } from "./types";
 
 const STAGES: Record<number, number> = {
@@ -38,7 +38,7 @@ const STAGE_NAMES: Record<number, string> = {
 	14: "XIV",
 };
 
-export function CreateMyPageScraperClassHandler(stage: MyPagePlayerStage): ClassHandler {
+export function CreateMyPageScraperClassProvider(stage: MyPagePlayerStage): ClassProvider {
 	return (_game, _playtype, _userID, _ratings, logger) => {
 		const stageName = STAGE_NAMES[stage.id];
 

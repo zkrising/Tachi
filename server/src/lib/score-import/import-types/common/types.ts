@@ -1,6 +1,5 @@
 import type { ConverterFailure } from "../../framework/common/converter-failures";
 import type { DryScore } from "../../framework/common/types";
-import type { ClassHandler } from "../../framework/profile-calculated-data/types";
 import type { SDVXEamusementCSVData } from "../file/eamusement-sdvx-csv/types";
 import type { MerScore } from "../file/mer-iidx/types";
 import type { S3Score } from "../file/solid-state-squad/types";
@@ -13,17 +12,12 @@ import type { KsHookSV6CStaticScore } from "../ir/kshook-sv6c-static/types";
 import type { KsHookSV6CContext, KsHookSV6CScore } from "../ir/kshook-sv6c/types";
 import type { LR2HookContext, LR2HookScore } from "../ir/lr2hook/types";
 import type { IRUSCContext } from "../ir/usc/types";
-import type {
-	CGContext,
-	CGJubeatScore,
-	CGMusecaScore,
-	CGPopnScore,
-	CGSDVXScore,
-} from "./api-cg/types";
+import type { CGContext, CGMusecaScore, CGPopnScore, CGSDVXScore } from "./api-cg/types";
 import type { KaiContext } from "./api-kai/types";
 import type { BatchManualContext } from "./batch-manual/types";
 import type { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./eamusement-iidx-csv/types";
 import type { KtLogger } from "lib/logger/logger";
+import type { ClassProvider } from "lib/score-import/framework/calculated-data/types";
 import type { USCClientScore } from "server/router/ir/usc/_playtype/types";
 import type {
 	BatchManualScore,
@@ -31,7 +25,6 @@ import type {
 	Game,
 	ImportTypes,
 	integer,
-	MongoDBDocument,
 	SongDocument,
 } from "tachi-common";
 import type { EmptyObject } from "utils/types";
@@ -113,7 +106,7 @@ export interface ImportTypeContextMap {
 	"api/cg-prod-popn": CGContext;
 }
 
-export interface OrphanScoreDocument<T extends ImportTypes = ImportTypes> extends MongoDBDocument {
+export interface OrphanScoreDocument<T extends ImportTypes = ImportTypes> {
 	importType: T;
 	data: ImportTypeDataMap[T];
 	context: ImportTypeContextMap[T];
@@ -147,7 +140,7 @@ export interface ParserFunctionReturns<D, C> {
 	iterable: AsyncIterable<D> | Iterable<D>;
 	context: C;
 	game: Game;
-	classHandler: ClassHandler | null;
+	classProvider: ClassProvider | null;
 }
 
 export type ParserFunction<D, C, A extends Array<unknown>> = (

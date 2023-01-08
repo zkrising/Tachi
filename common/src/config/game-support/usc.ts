@@ -1,4 +1,5 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
+import { SDVXVFClasses } from "./sdvx";
 import { ToDecimalPlaces } from "../config-utils";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, GamePTConfig } from "../../types/internals";
@@ -73,7 +74,12 @@ export const USC_CONTROLLER_CONF = {
 		default: "EXH",
 	},
 
-	classes: {},
+	classes: {
+		vfClass: {
+			type: "DERIVED",
+			values: SDVXVFClasses,
+		},
+	},
 
 	orderedJudgements: ["critical", "near", "miss"],
 

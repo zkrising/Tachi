@@ -1,4 +1,4 @@
-import { CreateMyPageScraperClassHandler } from "./class-handler";
+import { CreateMyPageScraperClassProvider } from "./class-handler";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { parse, CsvError as CSVError } from "csv-parse/sync";
 import { p } from "prudence";
@@ -111,7 +111,7 @@ export function ParseMyPageScraperRecordsCSV(
 		iterable,
 		context: {},
 		game: "wacca",
-		classHandler: null,
+		classProvider: null,
 	};
 }
 
@@ -169,6 +169,6 @@ export function ParseMyPageScraperPlayerCSV(
 		iterable: [],
 		context: {},
 		game: "wacca",
-		classHandler: CreateMyPageScraperClassHandler(stage),
+		classProvider: CreateMyPageScraperClassProvider(stage),
 	};
 }

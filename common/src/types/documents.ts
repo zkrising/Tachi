@@ -1,11 +1,14 @@
 import type {
+	AnyClasses,
 	ChartDocumentData,
 	Classes,
 	DerivedMetrics,
 	Difficulties,
+	ExtractedClasses,
 	GPTString,
 	GPTStringToGame,
 	GPTStringToPlaytype,
+	GPTStrings,
 	Game,
 	Judgements,
 	OptionalMetrics,
@@ -42,20 +45,20 @@ export interface ChartFolderLookupDocument {
 	folderID: string;
 }
 
-export interface BaseGoalDocument {
+export interface BaseGoalDocument<GPT extends GPTString> {
 	game: Game;
 	playtype: Playtype;
 	name: string;
 	goalID: string;
-	criteria: GoalCountCriteria | GoalSingleCriteria;
+	criteria: GoalCountCriteria<GPT> | GoalSingleCriteria<GPT>;
 }
 
-interface GoalCriteria {
-	key: "scoreData.gradeIndex" | "scoreData.lampIndex" | "scoreData.percent" | "scoreData.score";
+interface GoalCriteria<GPT extends GPTString> {
+	key: keyof DerivedMetrics[GPT] | keyof ProvidedMetrics[GPT];
 	value: number;
 }
 
-export interface GoalSingleCriteria extends GoalCriteria {
+export interface GoalSingleCriteria<GPT extends GPTString> extends GoalCriteria<GPT> {
 	mode: "single";
 }
 
@@ -63,7 +66,7 @@ export interface GoalSingleCriteria extends GoalCriteria {
  * Criteria for a score to match this criteria - this is a "count" mode, which means that
  * atleast N scores have to match this criteria. This is for things like folders.
  */
-export interface GoalCountCriteria extends GoalCriteria {
+export interface GoalCountCriteria<GPT extends GPTString> extends GoalCriteria<GPT> {
 	mode: "absolute" | "proportion";
 	countNum: number;
 }
@@ -71,7 +74,8 @@ export interface GoalCountCriteria extends GoalCriteria {
 /**
  * Goal Document - Single. A goal document that is only for one specific chart.
  */
-export interface GoalDocumentSingle extends BaseGoalDocument {
+export interface GoalDocumentSingle<GPT extends GPTString = GPTString>
+	extends BaseGoalDocument<GPT> {
 	charts: {
 		type: "single";
 		data: string;
@@ -82,7 +86,8 @@ export interface GoalDocumentSingle extends BaseGoalDocument {
  * Goal Document - Multi. A goal document whos set of charts is the array of
  * chartIDs inside "charts".
  */
-export interface GoalDocumentMulti extends BaseGoalDocument {
+export interface GoalDocumentMulti<GPT extends GPTString = GPTString>
+	extends BaseGoalDocument<GPT> {
 	charts: {
 		type: "multi";
 		data: Array<string>;
@@ -93,14 +98,18 @@ export interface GoalDocumentMulti extends BaseGoalDocument {
  * Goal Document - Folder. A goal document whos set of charts is derived from
  * the folderID inside "charts".
  */
-export interface GoalDocumentFolder extends BaseGoalDocument {
+export interface GoalDocumentFolder<GPT extends GPTString = GPTString>
+	extends BaseGoalDocument<GPT> {
 	charts: {
 		type: "folder";
 		data: string;
 	};
 }
 
-export type GoalDocument = GoalDocumentFolder | GoalDocumentMulti | GoalDocumentSingle;
+export type GoalDocument<GPT extends GPTString = GPTString> =
+	| GoalDocumentFolder<GPT>
+	| GoalDocumentMulti<GPT>
+	| GoalDocumentSingle<GPT>;
 
 interface BaseInviteCodeDocument {
 	createdBy: integer;
@@ -164,7 +173,7 @@ export interface ImportDocument {
 	timeFinished: number;
 
 	// Contains an array of GPTString, which dictates what (game:playtype)s were involved in this import.
-	GPTString: Array<GPTString>;
+	gptStrings: Array<GPTString>;
 	importID: string;
 	scoreIDs: Array<string>;
 	game: Game;
@@ -313,12 +322,24 @@ export interface UserDocument {
 	authLevel: UserAuthLevels;
 }
 
-export interface UserGameStats<GPT extends GPTString = GPTString> {
+export interface SpecificUserGameStats<GPT extends GPTString> {
 	userID: integer;
 	game: GPTStringToGame[GPT];
 	playtype: GPTStringToPlaytype[GPT];
 	ratings: Partial<Record<ProfileRatingAlgorithms[GPT], number | null>>;
-	classes: Partial<Classes[GPT]>;
+	classes: Partial<ExtractedClasses[GPT]>;
+}
+
+/**
+ * GPT agnostic stats for a game. This type is easier to work with than the
+ * specificUserGameStats one for general cases.
+ */
+export interface UserGameStats {
+	userID: integer;
+	game: Game;
+	playtype: Playtype;
+	ratings: Partial<Record<ProfileRatingAlgorithms[GPTString], number | null>>;
+	classes: AnyClasses;
 }
 
 export interface ChartTierlistInfo {
@@ -548,15 +569,19 @@ export interface CGCardInfo {
 	pin: string;
 }
 
+interface BMSCourseInner<GPT extends GPTStrings["bms"], Set extends keyof ExtractedClasses[GPT]> {
+	set: Set;
+	playtype: GPTStringToPlaytype[GPT];
+	value: ExtractedClasses[GPT][Set];
+}
+
 /**
  * Used to resolve beatoraja IR courses.
  */
-export interface BMSCourseDocument {
+export interface BMSCourseDocument
+	extends BMSCourseInner<GPTStrings["bms"], keyof ExtractedClasses[GPTStrings["bms"]]> {
 	title: string;
 	md5sums: string;
-	set: "genocideDan" | "lnDan" | "scratchDan" | "stslDan";
-	playtype: "7K" | "14K";
-	value: integer;
 }
 
 /**
@@ -610,7 +635,7 @@ export interface UGPTSettingsDocument<GPT extends GPTString = GPTString> {
 }
 
 export interface UserGameStatsSnapshotDocument<GPT extends GPTString = GPTString>
-	extends UserGameStats<GPT> {
+	extends SpecificUserGameStats<GPT> {
 	rankings: Record<ProfileRatingAlgorithms[GPT], { ranking: integer | null; outOf: integer }>;
 	playcount: integer;
 	timestamp: integer;
@@ -662,16 +687,16 @@ export interface ClassDelta {
 	game: Game;
 	set: Classes[GPTString];
 	playtype: Playtype;
-	old: integer | null;
-	new: integer;
+	old: string | null;
+	new: string;
 }
 
 export interface ClassAchievementDocument<GPT extends GPTString = GPTString> {
 	game: GPTStringToGame[GPT];
 	playtype: GPTStringToPlaytype[GPT];
 	classSet: Classes[GPT];
-	classOldValue: integer | null;
-	classValue: integer;
+	classOldValue: string | null;
+	classValue: string;
 	timeAchieved: number;
 	userID: integer;
 }

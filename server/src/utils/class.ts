@@ -2,8 +2,8 @@ import db from "external/mongo/db";
 import { CreateGameSettings } from "lib/game-settings/create-game-settings";
 import CreateLogCtx from "lib/logger/logger";
 import { EmitWebhookEvent } from "lib/webhooks/webhooks";
-import type { Game, GPTString, integer, Playtype, UserGameStats } from "tachi-common";
-import type { Classes } from "tachi-common/game-classes";
+import { GetGPTConfig, GetGPTString } from "tachi-common";
+import type { Game, GPTString, integer, Playtype, UserGameStats, Classes } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -13,15 +13,61 @@ const logger = CreateLogCtx(__filename);
  * to compare to, and FALSE if it is worse or equal.
  */
 export function ReturnClassIfGreater(
+	gptString: GPTString,
 	classSet: Classes[GPTString],
-	classVal: integer,
+	classVal: string,
 	userGameStats?: UserGameStats | null
 ) {
-	if (!userGameStats || userGameStats.classes[classSet] === undefined) {
+	const gptConfig = GetGPTConfig(gptString);
+
+	const classInfo = gptConfig.classes[classSet];
+
+	if (!classInfo) {
+		logger.warn(
+			`Invalid ReturnClassIfGreater call. Attempted to index set '${classSet}' on ${gptString}. No such class is defined for this game.`
+		);
+
 		return null;
 	}
 
-	return classVal > userGameStats.classes[classSet]!;
+	if (!userGameStats) {
+		return null;
+	}
+
+	const prevClass: string | null | undefined = userGameStats.classes[classSet];
+
+	if (prevClass === null || prevClass === undefined) {
+		return null;
+	}
+
+	const previousClassIndex = ClassToIndex(gptString, classSet, prevClass);
+	const newClassIndex = ClassToIndex(gptString, classSet, classVal);
+
+	return newClassIndex > previousClassIndex;
+}
+
+export function ClassToIndex(gptString: GPTString, classSet: Classes[GPTString], classVal: string) {
+	const gptConfig = GetGPTConfig(gptString);
+
+	const classInfo = gptConfig.classes[classSet];
+
+	if (!classInfo) {
+		logger.warn(
+			`Invalid ClassToIndex call. Attempted to index set '${classSet}' on ${gptString}. No such class is defined for this game. Returning -1.`
+		);
+
+		return -1;
+	}
+
+	const v = classInfo.values.map((e) => e.id).indexOf(classVal);
+
+	if (v === -1) {
+		logger.warn(
+			`Attempted to index a class that doesn't exist: ${classVal} on ${classSet} (${gptString}). Returning -1.`
+		);
+	}
+
+	return v;
 }
 
 /**
@@ -37,10 +83,12 @@ export async function UpdateClassIfGreater(
 	game: Game,
 	playtype: Playtype,
 	classSet: Classes[GPTString],
-	classVal: integer
+	classVal: string
 ) {
+	const gptString = GetGPTString(game, playtype);
+
 	const userGameStats = await db["game-stats"].findOne({ userID, game, playtype });
-	const isGreater = ReturnClassIfGreater(classSet, classVal, userGameStats);
+	const isGreater = ReturnClassIfGreater(gptString, classSet, classVal, userGameStats);
 
 	if (isGreater === false) {
 		return false;

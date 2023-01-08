@@ -245,7 +245,7 @@ function GenericParseEamIIDXCSV(
 		iterable: iterableData,
 		context,
 		game: "iidx",
-		classHandler: null,
+		classProvider: null,
 	};
 }
 

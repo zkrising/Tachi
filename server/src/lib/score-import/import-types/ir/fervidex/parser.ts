@@ -150,6 +150,6 @@ export function ParseFervidexSingle(
 		context: { version, timeReceived: Date.now(), userID },
 		game: "iidx",
 		iterable: [score],
-		classHandler: null,
+		classProvider: null,
 	};
 }

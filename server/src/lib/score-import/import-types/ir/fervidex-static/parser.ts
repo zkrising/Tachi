@@ -1,4 +1,4 @@
-import { CreateFerStaticClassHandler } from "./class-handler";
+import { CreateFerStaticClassProvider } from "./class-handler";
 import { AssertStrAsPositiveInt } from "../../../framework/common/string-asserts";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { SoftwareIDToVersion } from "../fervidex/parser";
@@ -22,7 +22,7 @@ export function ParseFervidexStatic(
 	logger: KtLogger
 ): ParserFunctionReturns<FervidexStaticScore, FervidexStaticContext> {
 	const version = SoftwareIDToVersion(headers.model, logger);
-	const classHandler = CreateFerStaticClassHandler(body);
+	const classProvider = CreateFerStaticClassProvider(body);
 
 	// if we shouldn't import scores, just sync up dans.
 	if (!headers.shouldImportScores) {
@@ -30,7 +30,7 @@ export function ParseFervidexStatic(
 			context: { version },
 			game: "iidx",
 			iterable: [],
-			classHandler,
+			classProvider,
 		};
 	}
 
@@ -90,6 +90,6 @@ export function ParseFervidexStatic(
 		context: { version },
 		game: "iidx",
 		iterable: scores,
-		classHandler,
+		classProvider,
 	};
 }

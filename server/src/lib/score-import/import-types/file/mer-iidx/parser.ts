@@ -53,7 +53,7 @@ export function ParseMerIIDX(
 	}
 
 	return {
-		classHandler: null,
+		classProvider: null,
 		context: {},
 		iterable: jsonData as Array<MerScore>,
 		game: "iidx",

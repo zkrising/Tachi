@@ -1,12 +1,12 @@
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import { GetGamePTConfig } from "tachi-common";
-import type { ClassHandler } from "lib/score-import/framework/profile-calculated-data/types";
+import type { ClassProvider } from "lib/score-import/framework/profile-calculated-data/types";
 import type { GamePTConfig, GPTString, ClassRecords, Classes } from "tachi-common";
 
 // Note: This is tested by batch-manuals parser.test.ts.
-export function CreateBatchManualClassHandler(
+export function CreateBatchManualClassProvider(
 	classes: Partial<Record<Classes[GPTString], string | null>>
-): ClassHandler {
+): ClassProvider {
 	return (game, playtype, userID, ratings, logger) => {
 		const gptConfig = GetGamePTConfig(game, playtype);
 

@@ -1,4 +1,4 @@
-import { CreateKaiIIDXClassHandler } from "./class-handler";
+import { CreateKaiIIDXClassProvider } from "./class-handler";
 import { KaiTypeToBaseURL } from "../utils";
 import CreateLogCtx from "lib/logger/logger";
 import { IIDX_DANS } from "tachi-common";
@@ -8,10 +8,10 @@ import ResetDBState from "test-utils/resets";
 
 const logger = CreateLogCtx(__filename);
 
-t.test("#CreateKaiIIDXClassHandler", async (t) => {
+t.test("#CreateKaiIIDXClassProvider", async (t) => {
 	t.beforeEach(ResetDBState);
 
-	const fn = await CreateKaiIIDXClassHandler(
+	const fn = await CreateKaiIIDXClassProvider(
 		"FLO",
 		"token",
 		// eslint-disable-next-line @typescript-eslint/require-await
@@ -46,7 +46,7 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 	});
 
 	t.test("Should return nothing if dan is not a number", async (t) => {
-		const fn = await CreateKaiIIDXClassHandler(
+		const fn = await CreateKaiIIDXClassProvider(
 			"FLO",
 			"token",
 			// eslint-disable-next-line @typescript-eslint/require-await
@@ -74,7 +74,7 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 	});
 
 	t.test("Should return nothing if dan is too great", async (t) => {
-		const fn = await CreateKaiIIDXClassHandler(
+		const fn = await CreateKaiIIDXClassProvider(
 			"FLO",
 			"token",
 			// eslint-disable-next-line @typescript-eslint/require-await
@@ -102,7 +102,7 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 	});
 
 	t.test("Should return nothing if dan is negative", async (t) => {
-		const fn = await CreateKaiIIDXClassHandler(
+		const fn = await CreateKaiIIDXClassProvider(
 			"FLO",
 			"token",
 			// eslint-disable-next-line @typescript-eslint/require-await
@@ -130,7 +130,7 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 	});
 
 	t.test("Should gracefully handle negative API responses", async (t) => {
-		const fn = await CreateKaiIIDXClassHandler(
+		const fn = await CreateKaiIIDXClassProvider(
 			"FLO",
 			"token",
 			// eslint-disable-next-line @typescript-eslint/require-await
@@ -149,7 +149,7 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 
 	t.test("Should call reauthFn if statusCode is 401", async (t) => {
 		let pass = false;
-		const fn = await CreateKaiIIDXClassHandler(
+		const fn = await CreateKaiIIDXClassProvider(
 			"FLO",
 			"token",
 			// eslint-disable-next-line @typescript-eslint/require-await
@@ -168,7 +168,7 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 	});
 
 	t.test("Should ignore null dans", async (t) => {
-		const fn = await CreateKaiIIDXClassHandler(
+		const fn = await CreateKaiIIDXClassProvider(
 			"FLO",
 			"token",
 			// eslint-disable-next-line @typescript-eslint/require-await
@@ -196,7 +196,7 @@ t.test("#CreateKaiIIDXClassHandler", async (t) => {
 	});
 
 	t.test("Should handle invalid playtypes", async (t) => {
-		const fn = await CreateKaiIIDXClassHandler(
+		const fn = await CreateKaiIIDXClassProvider(
 			"FLO",
 			"token",
 			// eslint-disable-next-line @typescript-eslint/require-await

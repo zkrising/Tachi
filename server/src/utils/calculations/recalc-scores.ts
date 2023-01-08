@@ -6,7 +6,7 @@ import { CreateCalculatedData } from "lib/score-import/framework/score-calculate
 import { GetAndUpdateUsersGoals } from "lib/score-import/framework/goals/goals";
 import { ProcessPBs } from "lib/score-import/framework/pb/process-pbs";
 import { UpdateUsersQuests } from "lib/score-import/framework/quests/quests";
-import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/profile-calculated-data/update-ugs";
+import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/ugpt-stats/update-ugpt-stats";
 import { TachiConfig } from "lib/setup/config";
 import { GetGameConfig } from "tachi-common";
 import { EfficientDBIterate } from "utils/efficient-db-iterate";

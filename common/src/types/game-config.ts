@@ -205,9 +205,8 @@ export type ScoreEnumIndexes<GPT extends GPTString> = Record<
 /**
  * Same as ScoreEnumIndexes but for the optional properties on a score.
  */
-export type OptionalEnumIndexes<GPT extends GPTString> = Record<
-	ExtractEnumMetricNames<ConfOptionalMetrics[GPT]>,
-	integer
+export type OptionalEnumIndexes<GPT extends GPTString> = Partial<
+	Record<ExtractEnumMetricNames<ConfOptionalMetrics[GPT]>, integer>
 >;
 
 /**

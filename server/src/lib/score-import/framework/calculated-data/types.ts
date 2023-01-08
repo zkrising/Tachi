@@ -47,7 +47,7 @@ export type GPTProfileCalculators = {
 
 export type ClassDeriver<GPT extends GPTString, V extends string> = (
 	profileRatings: SpecificUserGameStats<GPT>["ratings"]
-) => V | null;
+) => V | null | undefined;
 
 // absolutely stupid magic.
 

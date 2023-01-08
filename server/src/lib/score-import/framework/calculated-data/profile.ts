@@ -326,7 +326,7 @@ async function GetBestJubilityOnSongs(
 
 const CURRENT_JUBEAT_HOT_VERSION: Versions["jubeat:Single"] = "festo";
 
-async function GetPBsForJubility(userID: integer) {
+export async function GetPBsForJubility(userID: integer) {
 	const hotSongs = await db.songs.jubeat.find(
 		{ "data.displayVersion": CURRENT_JUBEAT_HOT_VERSION },
 		{ projection: { id: 1 } }

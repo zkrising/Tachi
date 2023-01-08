@@ -19,7 +19,11 @@ export async function IIDXMergeFn(
 	pbDoc.calculatedData.ktLampRating = lampPB.calculatedData.ktLampRating;
 
 	// Update lamp related iidx-specific info from the lampPB.
-	pbDoc.scoreData.optional.gsm = lampPB.scoreData.optional.gsm;
+	pbDoc.scoreData.optional.gsmEasy = lampPB.scoreData.optional.gsmEasy;
+	pbDoc.scoreData.optional.gsmNormal = lampPB.scoreData.optional.gsmNormal;
+	pbDoc.scoreData.optional.gsmHard = lampPB.scoreData.optional.gsmHard;
+	pbDoc.scoreData.optional.gsmEXHard = lampPB.scoreData.optional.gsmEXHard;
+
 	pbDoc.scoreData.optional.gauge = lampPB.scoreData.optional.gauge;
 	pbDoc.scoreData.optional.gaugeHistory = lampPB.scoreData.optional.gaugeHistory;
 

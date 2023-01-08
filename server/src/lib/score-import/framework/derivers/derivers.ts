@@ -15,7 +15,6 @@ import {
 	CHUNITHM_GBOUNDARIES,
 	GITADORA_GBOUNDARIES,
 	GetGPTConfig,
-	GetScoreMetrics,
 	ITG_GBOUNDARIES,
 	JUBEAT_GBOUNDARIES,
 	MAIMAIDX_GBOUNDARIES,
@@ -26,7 +25,15 @@ import {
 import type { DryScore, DryScoreData } from "../common/types";
 import type { GPTDerivers } from "./types";
 import type { KtLogger } from "lib/logger/logger";
-import type { ChartDocument, DerivedMetrics, GPTString, ScoreData, integer } from "tachi-common";
+import type {
+	ChartDocument,
+	DerivedMetrics,
+	GPTString,
+	ScoreData,
+	integer,
+	OptionalEnumIndexes,
+	ScoreEnumIndexes,
+} from "tachi-common";
 import type { MetricValue } from "tachi-common/types/metrics";
 
 type AllGPTDerivers = {
@@ -200,7 +207,10 @@ export function CreateEnumIndexes<GPT extends GPTString>(gpt: GPT, metrics: any,
 		indexes[key] = index;
 	}
 
-	return { indexes, optionalIndexes };
+	return {
+		indexes: indexes as ScoreEnumIndexes<GPT>,
+		optionalIndexes: optionalIndexes as OptionalEnumIndexes<GPT>,
+	};
 }
 
 /**

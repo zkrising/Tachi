@@ -2,7 +2,7 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { CreateCalculatedData } from "lib/score-import/framework/score-calculated-data/calculated-data";
+import { CreateScoreCalcData } from "lib/score-import/framework/calculated-data/score";
 import { GetAndUpdateUsersGoals } from "lib/score-import/framework/goals/goals";
 import { ProcessPBs } from "lib/score-import/framework/pb/process-pbs";
 import { UpdateUsersQuests } from "lib/score-import/framework/quests/quests";
@@ -40,7 +40,7 @@ export async function RecalcAllScores(filter = {}) {
 			modifiedUsers.add(`${c.game}-${c.playtype}-${c.userID}`);
 			modifiedUserIDs.add(c.userID);
 
-			const calculatedData = await CreateCalculatedData(c, chart, c.scoreData.esd, logger);
+			const calculatedData = CreateScoreCalcData(c, chart);
 
 			return { scoreID: c.scoreID, calculatedData };
 		},

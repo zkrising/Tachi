@@ -10,7 +10,7 @@ import type {
 	Game,
 	Playtype,
 	SongDocument,
-	UserSettings,
+	UserSettingsDocument,
 	TachiAPIClientDocument,
 	GoalDocument,
 	QuestSubscriptionDocument,
@@ -43,7 +43,7 @@ declare module "express-serve-static-core" {
 
 export interface TachiSessionData {
 	user: UserDocument;
-	settings: UserSettings;
+	settings: UserSettingsDocument;
 }
 
 export interface TachiAPIFailResponse {

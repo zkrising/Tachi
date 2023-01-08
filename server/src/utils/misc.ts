@@ -79,9 +79,8 @@ export function IsValidScoreAlg(
 	gptConfig: GamePTConfig,
 	str: unknown
 ): str is GamePTConfig["scoreRatingAlgs"][0] {
-	return Object.keys(gptConfig.scoreRatingAlgs).includes(
-		str as GamePTConfig["scoreRatingAlgs"][0]
-	);
+	// @ts-expect-error i hate this feature
+	return Object.keys(gptConfig.scoreRatingAlgs).includes(str);
 }
 
 export function IsString(val: unknown): val is string {
@@ -327,7 +326,6 @@ export function StringIsGameVersion(
 ): version is Versions[GPTString] {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	// @ts-expect-error yes, we know!
 	return gptConfig.versions.includes(version);
 }
 

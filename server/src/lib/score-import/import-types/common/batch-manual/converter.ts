@@ -19,7 +19,7 @@ import {
 	FindSDVXChartOnInGameIDVersion,
 } from "utils/queries/charts";
 import { FindSongOnID, FindSongOnTitleInsensitive } from "utils/queries/songs";
-import type { DryScore, ExtractEnumValues } from "../../../framework/common/types";
+import type { DryScore } from "../../../framework/common/types";
 import type { ConverterFunction } from "../types";
 import type { BatchManualContext } from "./types";
 import type { KtLogger } from "lib/logger/logger";
@@ -60,7 +60,7 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 
 	// create the metrics for this score.
 	// @ts-expect-error this is filled out in a second, promise!
-	const metrics: ExtractEnumValues<ProvidedMetrics[GPTString]> = {};
+	const metrics: ProvidedMetrics[GPTString] = {};
 
 	const config = GetGamePTConfig(game, playtype);
 

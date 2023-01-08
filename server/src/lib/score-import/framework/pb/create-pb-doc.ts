@@ -212,22 +212,3 @@ async function MergeScoreLampIntoPB(
 
 	return pbDoc;
 }
-
-function GetGameSpecificMergeFn(game: Game) {
-	switch (game) {
-		case "iidx":
-			return IIDXMergeFn;
-		case "usc":
-			return USCMergeFn;
-		case "sdvx":
-			return SDVXMergeFn;
-		case "popn":
-			return PopnMergeFn;
-		case "bms":
-			return BMSMergeFn;
-		case "pms":
-			return PMSMergeFn;
-		default:
-			return null;
-	}
-}

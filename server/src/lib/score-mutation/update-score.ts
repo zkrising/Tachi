@@ -2,6 +2,7 @@
 import db from "external/mongo/db";
 import { rootLogger } from "lib/logger/logger";
 import { CreateScoreCalcData } from "lib/score-import/framework/calculated-data/score";
+import { CreateSessionCalcData } from "lib/score-import/framework/calculated-data/session";
 import { UpdateChartRanking } from "lib/score-import/framework/pb/create-pb-doc";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
 import { GetGPTString } from "tachi-common";

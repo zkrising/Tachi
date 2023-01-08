@@ -1,4 +1,5 @@
 import { GetGrade } from "../common-utils";
+import { SDVXLIKE_GBOUNDARIES } from "tachi-common";
 import type { GPTDerivers } from "../types";
 import type { GPTStrings } from "tachi-common";
 

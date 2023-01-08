@@ -1,8 +1,7 @@
 import { Router } from "express";
 import { GetRecentActivityForMultipleGames } from "lib/activity/activity";
-import { ServerConfig, TachiConfig } from "lib/setup/config";
+import { TachiConfig } from "lib/setup/config";
 import { GetGameConfig } from "tachi-common";
-import { allSupportedGames } from "tachi-common/config/static-config";
 
 const router: Router = Router({ mergeParams: true });
 

@@ -57,7 +57,7 @@ export function TachiScoreDataToBeatorajaFormat(
 		sha256,
 		player: username,
 		playcount,
-		clear: LAMP_TO_BEATORAJA[scoreData.lamp.index] ?? 0,
+		clear: LAMP_TO_BEATORAJA[scoreData.enumIndexes.lamp] ?? 0,
 		date: pbScore.timeAchieved ?? 0,
 		maxcombo: scoreData.optional.maxCombo ?? 0,
 		gauge: scoreData.optional.gauge ?? 0,

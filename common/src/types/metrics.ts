@@ -142,7 +142,7 @@ export type GetEnumValue<
  * { score: integer; lamp: { string: "FAILED" | "CLEAR "..., index: number } }
  */
 export type ExtractMetrics<R extends Record<string, ConfScoreMetric>> = {
-	[K in keyof R]: ExtractMetricValue<R[K]>;
+	-readonly [K in keyof R]: ExtractMetricValue<R[K]>;
 };
 
 // We want some signatures for implementing metric "derivers".

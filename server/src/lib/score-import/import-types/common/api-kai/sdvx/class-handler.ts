@@ -3,7 +3,7 @@ import { SDVX_DANS } from "tachi-common";
 import nodeFetch from "utils/fetch";
 import { IsRecord } from "utils/misc";
 import type { KaiAPIReauthFunction } from "../traverse-api";
-import type { ClassProvider } from "lib/score-import/framework/profile-calculated-data/types";
+import type { ClassProvider } from "lib/score-import/framework/calculated-data/types";
 
 export async function CreateKaiSDVXClassProvider(
 	kaiType: "EAG" | "FLO" | "MIN",
@@ -40,7 +40,7 @@ export async function CreateKaiSDVXClassProvider(
 		err = e;
 	}
 
-	return (game, playtype, userID, ratings, logger) => {
+	return (gptString, userID, ratings, logger) => {
 		logger.info(`Got return from ${baseUrl}/api/sdvx/v1/player_profile.`, {
 			json,
 		});

@@ -1,8 +1,8 @@
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
-import { GetGPTConfig, GetGamePTConfig } from "tachi-common";
+import { GetGPTConfig } from "tachi-common";
 import { ClassToIndex } from "utils/class";
 import type { ClassProvider } from "lib/score-import/framework/calculated-data/types";
-import type { GamePTConfig, GPTString, ClassRecords, Classes } from "tachi-common";
+import type { Classes, GPTString } from "tachi-common";
 
 // Note: This is tested by batch-manuals parser.test.ts.
 export function CreateBatchManualClassProvider(
@@ -11,7 +11,7 @@ export function CreateBatchManualClassProvider(
 	return (gptString, userID, ratings, logger) => {
 		const gptConfig = GetGPTConfig(gptString);
 
-		const newObj: Partial<ClassRecords<GPTString>> = {};
+		const newObj: Partial<Record<Classes[GPTString], string | null>> = {};
 
 		for (const [s, classID] of Object.entries(classes)) {
 			if (classID === null) {
@@ -37,7 +37,7 @@ export function CreateBatchManualClassProvider(
 				);
 			}
 
-			newObj[set] = index;
+			newObj[set] = classID;
 		}
 
 		return newObj;

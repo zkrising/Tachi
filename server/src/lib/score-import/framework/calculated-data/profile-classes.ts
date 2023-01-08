@@ -1,7 +1,13 @@
+import { IsNullish } from "utils/misc";
 import type { ClassDeriver, GPTClassDerivers } from "./types";
-import type { ExtractedClasses, GPTString, UserGameStats } from "tachi-common";
+import type {
+	ExtractedClasses,
+	GPTString,
+	SpecificUserGameStats,
+	UserGameStats,
+} from "tachi-common";
 
-function VF6ToClass(vf: number): UserGameStats<"sdvx:Single">["classes"]["vfClass"] {
+function VF6ToClass(vf: number): SpecificUserGameStats<"sdvx:Single">["classes"]["vfClass"] {
 	// jesus christ man
 	if (vf >= 23) {
 		return "IMPERIAL_IV";
@@ -139,7 +145,7 @@ export const CLASS_DERIVERS: GPTClassDerivers = {
 		colour: (ratings) => {
 			const rating = ratings.naiveRating;
 
-			if (rating === null) {
+			if (IsNullish(rating)) {
 				return null;
 			}
 
@@ -168,7 +174,7 @@ export const CLASS_DERIVERS: GPTClassDerivers = {
 	},
 	"gitadora:Dora": {
 		colour: (ratings) => {
-			if (ratings.skill === null) {
+			if (IsNullish(ratings.skill)) {
 				return null;
 			}
 
@@ -177,7 +183,7 @@ export const CLASS_DERIVERS: GPTClassDerivers = {
 	},
 	"gitadora:Gita": {
 		colour: (ratings) => {
-			if (ratings.skill === null) {
+			if (IsNullish(ratings.skill)) {
 				return null;
 			}
 
@@ -189,7 +195,7 @@ export const CLASS_DERIVERS: GPTClassDerivers = {
 		colour: (ratings) => {
 			const jubility = ratings.jubility;
 
-			if (jubility === null) {
+			if (IsNullish(jubility)) {
 				return null;
 			}
 
@@ -220,7 +226,7 @@ export const CLASS_DERIVERS: GPTClassDerivers = {
 		colour: (ratings) => {
 			const rate = ratings.rate;
 
-			if (rate === null) {
+			if (IsNullish(rate)) {
 				return null;
 			}
 
@@ -254,7 +260,7 @@ export const CLASS_DERIVERS: GPTClassDerivers = {
 		class: (ratings) => {
 			const points = ratings.naiveClassPoints;
 
-			if (points === null) {
+			if (IsNullish(points)) {
 				return null;
 			}
 
@@ -281,7 +287,7 @@ export const CLASS_DERIVERS: GPTClassDerivers = {
 		vfClass: (ratings) => {
 			const vf6 = ratings.VF6;
 
-			if (vf6 === null) {
+			if (IsNullish(vf6)) {
 				return null;
 			}
 
@@ -292,7 +298,7 @@ export const CLASS_DERIVERS: GPTClassDerivers = {
 		vfClass: (ratings) => {
 			const vf6 = ratings.VF6;
 
-			if (vf6 === null) {
+			if (IsNullish(vf6)) {
 				return null;
 			}
 
@@ -303,7 +309,7 @@ export const CLASS_DERIVERS: GPTClassDerivers = {
 		vfClass: (ratings) => {
 			const vf6 = ratings.VF6;
 
-			if (vf6 === null) {
+			if (IsNullish(vf6)) {
 				return null;
 			}
 
@@ -315,7 +321,7 @@ export const CLASS_DERIVERS: GPTClassDerivers = {
 		colour: (ratings) => {
 			const rate = ratings.rate;
 
-			if (rate === null) {
+			if (IsNullish(rate)) {
 				return null;
 			}
 
@@ -344,7 +350,7 @@ export const CLASS_DERIVERS: GPTClassDerivers = {
 
 export function CalculateDerivedClasses<GPT extends GPTString>(
 	gptString: GPT,
-	profileRatings: UserGameStats<GPT>["ratings"]
+	profileRatings: UserGameStats["ratings"]
 ) {
 	const derivedClasses: Record<string, string> = {};
 

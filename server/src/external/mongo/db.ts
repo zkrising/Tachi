@@ -203,7 +203,10 @@ const db = {
 	"import-trackers": monkDB.get<ImportTrackerDocument>("import-trackers"),
 };
 
-export type StaticDatabases = Exclude<keyof typeof db, "charts" | "songs">;
+export type StaticDatabases = Exclude<
+	keyof typeof db,
+	"anyCharts" | "anySongs" | "charts" | "songs"
+>;
 
 export type Databases = StaticDatabases | `charts-${Game}` | `songs-${Game}`;
 

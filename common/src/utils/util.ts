@@ -11,6 +11,7 @@ import type {
 	PBScoreDocument,
 	Playtypes,
 	SongDocument,
+	integer,
 } from "../types";
 import type { PrudenceError, ValidSchemaValue } from "prudence";
 import type { AnyZodObject } from "zod";
@@ -233,4 +234,14 @@ export function FormatPrError(err: PrudenceError, foreword = "Error"): string {
 			: ` | Received ${err.userVal} [${err.userVal === null ? "null" : typeof err.userVal}]`;
 
 	return `${foreword}: ${err.keychain} | ${err.message}${receivedText}.`;
+}
+
+export function CreateSongMap<G extends Game = Game>(songs: Array<SongDocument<G>>) {
+	const songMap = new Map<integer, SongDocument<G>>();
+
+	for (const song of songs) {
+		songMap.set(song.id, song);
+	}
+
+	return songMap;
 }

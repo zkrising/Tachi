@@ -1,11 +1,14 @@
-import { IIDXLIKE_DERIVERS, IIDXLIKE_VALIDATORS, SDVXLIKE_DERIVERS } from "./games/_common";
+import { BMS_14K_IMPL, BMS_7K_IMPL, PMS_CONTROLLER_IMPL, PMS_KEYBOARD_IMPL } from "./games/bms-pms";
 import { CHUNITHM_IMPL } from "./games/chunithm";
 import { GITADORA_DORA_IMPL, GITADORA_GITA_IMPL } from "./games/gitadora";
+import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
 import { ITG_STAMINA_IMPL } from "./games/itg";
 import { JUBEAT_IMPL } from "./games/jubeat";
 import { MAIMAIDX_IMPL } from "./games/maimaidx";
 import { MUSECA_IMPL } from "./games/museca";
 import { POPN_9B_IMPL } from "./games/popn";
+import { SDVX_IMPL } from "./games/sdvx";
+import { USC_CONTROLLER_IMPL, USC_KEYBOARD_IMPL } from "./games/usc";
 import { WACCA_IMPL } from "./games/wacca";
 import type { GPTImplementations } from "./types";
 
@@ -18,31 +21,12 @@ import type { GPTImplementations } from "./types";
  * Basically, anything that can't be done in the common config, specific to the server.
  */
 export const GPT_SERVER_IMPLEMENTATIONS: GPTImplementations = {
-	"bms:14K": {
-		derivers: IIDXLIKE_DERIVERS,
-		validators: IIDXLIKE_VALIDATORS,
-	},
-	"bms:7K": {
-		derivers: IIDXLIKE_DERIVERS,
-		validators: IIDXLIKE_VALIDATORS,
-	},
-	"pms:Controller": {
-		derivers: IIDXLIKE_DERIVERS,
-		validators: IIDXLIKE_VALIDATORS,
-	},
-	"pms:Keyboard": {
-		derivers: IIDXLIKE_DERIVERS,
-		validators: IIDXLIKE_VALIDATORS,
-	},
-	"iidx:SP": {
-		derivers: IIDXLIKE_DERIVERS,
-		validators: IIDXLIKE_VALIDATORS,
-	},
-	"iidx:DP": {
-		derivers: IIDXLIKE_DERIVERS,
-		validators: IIDXLIKE_VALIDATORS,
-	},
-
+	"bms:14K": BMS_14K_IMPL,
+	"bms:7K": BMS_7K_IMPL,
+	"pms:Controller": PMS_CONTROLLER_IMPL,
+	"pms:Keyboard": PMS_KEYBOARD_IMPL,
+	"iidx:SP": IIDX_SP_IMPL,
+	"iidx:DP": IIDX_DP_IMPL,
 	"wacca:Single": WACCA_IMPL,
 	"chunithm:Single": CHUNITHM_IMPL,
 	"gitadora:Dora": GITADORA_DORA_IMPL,
@@ -52,16 +36,7 @@ export const GPT_SERVER_IMPLEMENTATIONS: GPTImplementations = {
 	"maimaidx:Single": MAIMAIDX_IMPL,
 	"museca:Single": MUSECA_IMPL,
 	"popn:9B": POPN_9B_IMPL,
-	"sdvx:Single": {
-		derivers: SDVXLIKE_DERIVERS,
-		validators: {
-			exScore: (exScore, chart) => {
-				// gotta figure this out somehow?
-				throw new Error(`Unimplemented.`);
-			},
-		},
-	},
-
-	"usc:Controller": { derivers: SDVXLIKE_DERIVERS, validators: {} },
-	"usc:Keyboard": { derivers: SDVXLIKE_DERIVERS, validators: {} },
+	"usc:Controller": USC_CONTROLLER_IMPL,
+	"usc:Keyboard": USC_KEYBOARD_IMPL,
+	"sdvx:Single": SDVX_IMPL,
 };

@@ -1,5 +1,9 @@
 import { GetGrade } from "./_common";
+import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
+import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
+import { PopnClassPoints } from "rg-stats";
 import { POPN_GBOUNDARIES } from "tachi-common";
+import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 import type { GetEnumValue } from "tachi-common/types/metrics";
 
@@ -42,6 +46,45 @@ export const POPN_9B_IMPL: GPTServerImplementation<"popn:9B"> = {
 			}
 
 			return gradeString;
+		},
+	},
+	scoreCalcs: {
+		classPoints: (scoreData, chart) =>
+			PopnClassPoints.calculate(
+				scoreData.score,
+				PopnClearMedalToLamp(scoreData.clearMedal),
+				chart.levelNum
+			),
+	},
+	sessionCalcs: { classPoints: SessionAvgBest10For("classPoints") },
+	profileCalcs: {
+		naiveClassPoints: ProfileSumBestN("classPoints", 20),
+	},
+	classDerivers: {
+		class: (ratings) => {
+			const points = ratings.naiveClassPoints;
+
+			if (IsNullish(points)) {
+				return null;
+			}
+
+			if (points < 21) {
+				return "KITTY";
+			} else if (points < 34) {
+				return "STUDENT";
+			} else if (points < 46) {
+				return "DELINQUENT";
+			} else if (points < 59) {
+				return "DETECTIVE";
+			} else if (points < 68) {
+				return "IDOL";
+			} else if (points < 79) {
+				return "GENERAL";
+			} else if (points < 91) {
+				return "HERMIT";
+			}
+
+			return "GOD";
 		},
 	},
 };

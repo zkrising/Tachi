@@ -465,17 +465,13 @@ export interface ScoreDocument<GPT extends GPTString = GPTString> {
 	importType: ImportTypes | null;
 }
 
-export interface PBScoreComposedReference {
+export interface PBReference {
 	name: string;
 	scoreID: string;
 }
 
 export interface PBScoreDocument<GPT extends GPTString = GPTString> {
-	composedFrom: {
-		scorePB: string;
-		lampPB: string;
-		other?: Array<PBScoreComposedReference>;
-	};
+	composedFrom: Array<PBReference>;
 	rankingData: {
 		rank: integer;
 		outOf: integer;

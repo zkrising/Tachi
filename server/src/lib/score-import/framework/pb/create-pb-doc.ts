@@ -1,22 +1,17 @@
-import {
-	BMSMergeFn,
-	IIDXMergeFn,
-	PMSMergeFn,
-	PopnMergeFn,
-	SDVXMergeFn,
-	USCMergeFn,
-} from "./game-specific-merge";
+import { GPT_PB_MERGE_FNS } from "./mergers/mergers";
+import { CreateEnumIndexes } from "../derivers/derivers";
 import db from "external/mongo/db";
 import { GetEveryonesRivalIDs } from "lib/rivals/rivals";
+import { GetGPTConfig } from "tachi-common";
 import type { KtLogger } from "lib/logger/logger";
 import type { BulkWriteUpdateOneOperation, FilterQuery } from "mongodb";
 import type {
-	Game,
 	GPTString,
-	integer,
+	Game,
 	PBScoreDocument,
 	Playtype,
 	ScoreDocument,
+	integer,
 } from "tachi-common";
 
 export type PBScoreDocumentNoRank<GPT extends GPTString = GPTString> = Omit<
@@ -29,6 +24,7 @@ export type PBScoreDocumentNoRank<GPT extends GPTString = GPTString> = Omit<
  * timestamp to constrain the generated PB to only one before the provided time.
  */
 export async function CreatePBDoc(
+	gpt: GPTString,
 	userID: integer,
 	chartID: string,
 	logger: KtLogger,
@@ -43,13 +39,15 @@ export async function CreatePBDoc(
 		query.timeAchieved = { $lt: asOfTimestamp };
 	}
 
-	const scorePB = await db.scores.findOne(query, {
+	const gptConfig = GetGPTConfig(gpt);
+
+	const defaultMetricPB = await db.scores.findOne(query, {
 		sort: {
-			"scoreData.percent": -1,
+			[`scoreData.${gptConfig.defaultMetric}`]: -1,
 		},
 	});
 
-	if (!scorePB) {
+	if (!defaultMetricPB) {
 		if (asOfTimestamp !== undefined) {
 			// if we were constraining the PB on a timestamp, this is likely to happen.
 			// ignore it.
@@ -66,21 +64,44 @@ export async function CreatePBDoc(
 		return;
 	}
 
-	const lampPB = (await db.scores.findOne(query, {
-		sort: {
-			"scoreData.lampIndex": -1,
-		},
-	})) as ScoreDocument;
+	const pbDoc: PBScoreDocumentNoRank = {
+		composedFrom: [INITIAL_REFERENCE],
+		chartID: defaultMetricPB.chartID,
+		userID,
+		songID: defaultMetricPB.songID,
+		highlight: defaultMetricPB.highlight,
+		timeAchieved: defaultMetricPB.timeAchieved,
+		game: defaultMetricPB.game,
+		playtype: defaultMetricPB.playtype,
+		isPrimary: defaultMetricPB.isPrimary,
+		scoreData: defaultMetricPB.scoreData,
+		calculatedData: defaultMetricPB.calculatedData,
+	};
 
-	// ^ guaranteed to not be null, as this always resolves
-	// to atleast one score (and we got ScorePB above, so we know there's
-	// atleast one).
+	const mergeFunctions = GPT_PB_MERGE_FNS[gpt];
 
-	const pbDoc = await MergeScoreLampIntoPB(userID, scorePB, lampPB, logger, asOfTimestamp);
+	for (const mergeFn of mergeFunctions) {
+		// these must happen in sync.
+		// eslint-disable-next-line no-await-in-loop
+		const ref = await mergeFn(
+			userID,
+			defaultMetricPB.chartID,
+			asOfTimestamp ?? null,
+			// silly cast because of potential GPT incompatibilities.
+			// sorry!
+			pbDoc as any
+		);
 
-	if (!pbDoc) {
-		return;
+		if (ref) {
+			pbDoc.composedFrom.push(ref);
+		}
 	}
+
+	// update any enum indexes that
+	const { indexes, optionalIndexes } = CreateEnumIndexes(gpt, pbDoc.scoreData, logger);
+
+	pbDoc.scoreData.enumIndexes = indexes;
+	pbDoc.scoreData.optional.enumIndexes = optionalIndexes;
 
 	// finally, return our full pbDoc, that does NOT have the ranking props.
 	// (We will add those later)
@@ -145,70 +166,4 @@ export async function UpdateChartRanking(game: Game, playtype: Playtype, chartID
 	}
 
 	await db["personal-bests"].bulkWrite(bwrite, { ordered: false });
-}
-
-async function MergeScoreLampIntoPB(
-	userID: integer,
-	scorePB: ScoreDocument,
-	lampPB: ScoreDocument,
-	logger: KtLogger,
-	asOfTimestamp?: number
-): Promise<PBScoreDocumentNoRank | undefined> {
-	// @hack
-	// since time cannot be negative, this is a rough hack
-	// to resolve nullable timeAchieveds without hitting NaN.
-	let timeAchieved: number | null = Math.max(
-		scorePB.timeAchieved ?? -1,
-		lampPB.timeAchieved ?? -1
-	);
-
-	if (timeAchieved === -1) {
-		timeAchieved = null;
-	}
-
-	const pbDoc: PBScoreDocumentNoRank = {
-		composedFrom: {
-			scorePB: scorePB.scoreID,
-			lampPB: lampPB.scoreID,
-		},
-		chartID: scorePB.chartID,
-		userID,
-		songID: scorePB.songID,
-		highlight: scorePB.highlight || lampPB.highlight,
-		timeAchieved,
-		game: scorePB.game,
-		playtype: scorePB.playtype,
-		isPrimary: scorePB.isPrimary,
-		scoreData: {
-			score: scorePB.scoreData.score,
-			percent: scorePB.scoreData.percent,
-			esd: scorePB.scoreData.esd,
-			grade: scorePB.scoreData.grade,
-			gradeIndex: scorePB.scoreData.grade,
-			lamp: lampPB.scoreData.lamp,
-			lampIndex: lampPB.scoreData.lamp.index,
-			judgements: scorePB.scoreData.judgements,
-
-			// this will probably be overrode by game-specific fns
-			optional: scorePB.scoreData.optional,
-		},
-		calculatedData: scorePB.calculatedData,
-	};
-
-	const GameSpecificMergeFn = GetGameSpecificMergeFn(scorePB.game);
-
-	if (GameSpecificMergeFn) {
-		// @ts-expect-error Yeah, this call sucks. It correctly warns us that scorePB and lampPB
-		// might've diverged, but we know they haven't.
-		const success = await GameSpecificMergeFn(pbDoc, scorePB, lampPB, logger, asOfTimestamp);
-
-		// If the mergeFn returns false, this means something has gone
-		// rather wrong. We just return undefined here, which in turn
-		// tells our calling code to skip this PB entirely.
-		if (!success) {
-			return;
-		}
-	}
-
-	return pbDoc;
 }

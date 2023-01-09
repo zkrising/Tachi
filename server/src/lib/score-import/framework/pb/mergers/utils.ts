@@ -1,29 +1,15 @@
 import db from "external/mongo/db";
+import type { PBMergeFunction } from "./types";
+import type { FilterQuery } from "mongodb";
 import type {
-	ConfDerivedMetrics,
-	ConfOptionalMetrics,
-	ConfProvidedMetrics,
 	GPTString,
+	ConfDerivedMetrics,
+	ConfProvidedMetrics,
 	PBScoreDocument,
 	ScoreDocument,
-	integer,
+	ConfOptionalMetrics,
 } from "tachi-common";
 import type { ExtractEnumMetricNames } from "tachi-common/types/metrics";
-
-/**
- * A PBMergeFunction just gets the user for this score and the chart its on.
- * They are expected to mutate the existingPB to add/change whatever
- * properties they feel like should be merged.
- */
-export type PBMergeFunction<GPT extends GPTString> = (
-	userID: integer,
-	chartID: string,
-	existingPB: PBScoreDocument<GPT>
-) => Promise<void>;
-
-type GPTPBMergeFNs = {
-	[GPT in GPTString]: Array<PBMergeFunction<GPT>>;
-};
 
 // insane typemagic to get mongodb-safe names for this GPT's metrics.
 type MetricKeys<GPT extends GPTString> = Exclude<
@@ -44,21 +30,41 @@ type MetricKeys<GPT extends GPTString> = Exclude<
 	| `optional.${ExtractEnumMetricNames<ConfOptionalMetrics[GPT]>}`
 >;
 
+export function HandleAsOf(
+	query: FilterQuery<ScoreDocument>,
+	asOfTimestamp: number | null
+): FilterQuery<ScoreDocument> {
+	if (asOfTimestamp === null) {
+		return query;
+	}
+
+	return {
+		...query,
+		timeAchieved: { $lt: asOfTimestamp },
+	};
+}
+
 /**
  * Utility for making a PB merge function. In short, get the best score this user has
  * on this chart for the stated metric, then run the applicator if a score was found.
+ *
+ * @note Don't worry about updating enumIndexes. Those are updated for you.
  */
-function CreatePBMergeFor<GPT extends GPTString>(
+export function CreatePBMergeFor<GPT extends GPTString>(
 	metric: MetricKeys<GPT>,
+	name: string,
 	applicator: (base: PBScoreDocument<GPT>, score: ScoreDocument<GPT>) => void
 ): PBMergeFunction<GPT> {
-	return async (userID, chartID, base) => {
+	return async (userID, chartID, asOfTimestamp, base) => {
 		const bestScoreFor = (await db.scores.findOne(
-			{
-				userID,
-				chartID,
-				[`scoreData.${metric as string}`]: { $exists: true },
-			},
+			HandleAsOf(
+				{
+					userID,
+					chartID,
+					[`scoreData.${metric as string}`]: { $exists: true },
+				},
+				asOfTimestamp
+			),
 			{
 				sort: {
 					[`scoreData.${metric as string}`]: -1,
@@ -67,29 +73,29 @@ function CreatePBMergeFor<GPT extends GPTString>(
 		)) as ScoreDocument<GPT> | null;
 
 		if (bestScoreFor === null) {
-			return;
+			return null;
 		}
 
 		applicator(base, bestScoreFor);
+
+		// also gotta apply this
+		// if bestScoreFor is a highlight, base becomes a highlight.
+		// this operator is equivalent to = base.highlight || bestScoreFor.highlight
+		// and now that i've had to write that out
+		// i wonder if it was worth the lack of clarity.
+		base.highlight ||= bestScoreFor.highlight;
+
+		// if this timestamp is newer than the most recent one
+		if (
+			bestScoreFor.timeAchieved !== null &&
+			bestScoreFor.timeAchieved > (base.timeAchieved ?? -Infinity)
+		) {
+			base.timeAchieved = bestScoreFor.timeAchieved;
+		}
+
+		return {
+			name,
+			scoreID: bestScoreFor.scoreID,
+		};
 	};
 }
-
-const GPT_PB_MERGE_FNS: GPTPBMergeFNs = {
-	"iidx:SP": [
-		CreatePBMergeFor("enumIndexes.lamp", (base, lamp) => {
-			// lampRating needs to be updated.
-			base.calculatedData.ktLampRating = lamp.calculatedData.ktLampRating;
-
-			// Update lamp related iidx-specific info from the lampPB.
-			base.scoreData.optional.gsmEasy = lamp.scoreData.optional.gsmEasy;
-			base.scoreData.optional.gsmNormal = lamp.scoreData.optional.gsmNormal;
-			base.scoreData.optional.gsmHard = lamp.scoreData.optional.gsmHard;
-			base.scoreData.optional.gsmEXHard = lamp.scoreData.optional.gsmEXHard;
-
-			base.scoreData.optional.gauge = lamp.scoreData.optional.gauge;
-			base.scoreData.optional.gaugeHistory = lamp.scoreData.optional.gaugeHistory;
-
-			base.scoreData.optional.comboBreak = lamp.scoreData.optional.comboBreak;
-		}),
-	],
-};

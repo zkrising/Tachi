@@ -79,7 +79,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 
 	const baseInput = {
 		criteria: {
-			key: "scoreData.percent",
+			key: [`scoreData.${gptConfig.defaultMetric}`],
 			value: 80,
 			mode: "single",
 		},

@@ -3,7 +3,7 @@ import { SetRivalsFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
 import { SendSetRivalNotification } from "lib/notifications/notification-wrappers";
 import { ServerConfig } from "lib/setup/config";
-import { FormatGame } from "tachi-common";
+import { FormatGame, GetGamePTConfig } from "tachi-common";
 import { ArrayDiff } from "utils/misc";
 import { GetUsersWithIDs, GetUserWithIDGuaranteed } from "utils/user";
 import type { BulkWriteUpdateOneOperation } from "mongodb";
@@ -233,12 +233,14 @@ export async function GetChallengerUsers(userID: integer, game: Game, playtype: 
  * this sucks though.
  */
 export async function UpdatePlayersRivalRankings(userID: integer, game: Game, playtype: Playtype) {
+	const gptConfig = GetGamePTConfig(game, playtype);
+
 	const rivalIDs = await GetRivalIDs(userID, game, playtype);
 
 	// get all of this user's chartIDs so we know what to update
 	const userPBs = (await db["personal-bests"].find(
 		{ userID, game, playtype },
-		{ projection: { chartID: 1, "scoreData.percent": 1 } }
+		{ projection: { chartID: 1, [`scoreData.${gptConfig.defaultMetric}`]: 1 } }
 	)) as Array<{ chartID: string; scoreData: { percent: number } }>;
 
 	const bwrite: Array<BulkWriteUpdateOneOperation<PBScoreDocument>> = [];
@@ -249,7 +251,7 @@ export async function UpdatePlayersRivalRankings(userID: integer, game: Game, pl
 				(await db["personal-bests"].count({
 					chartID: pb.chartID,
 					userID: { $in: rivalIDs },
-					"scoreData.percent": { $gt: pb.scoreData.percent },
+					[`scoreData.${gptConfig.defaultMetric}`]: { $gt: pb.scoreData.percent },
 				})) + 1;
 
 			bwrite.push({

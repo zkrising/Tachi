@@ -1,4 +1,5 @@
 import { NoDecimalPlace, zodNonNegativeInt } from "../config-utils";
+import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
@@ -14,13 +15,13 @@ export const ITG_CONF = {
 
 export const ITG_STAMINA_CONF = {
 	providedMetrics: {
-		scorePercent: { type: "DECIMAL" },
+		scorePercent: { type: "DECIMAL", validate: p.isBetween(0, 100) },
 
 		// How far through the chart did they get?
 		// 100 means they cleared.
 		// 50 means they got halfway through.
 		// 0 means they died instantly etc.
-		survivedPercent: { type: "DECIMAL" },
+		survivedPercent: { type: "DECIMAL", validate: p.isBetween(0, 100) },
 
 		lamp: {
 			type: "ENUM",
@@ -46,11 +47,14 @@ export const ITG_STAMINA_CONF = {
 		// #1  CLEARED with 30%        (130)
 		// #2  FAILED 95% in with 30%  (95)
 		// #3  FAILED 40% in with 70%  (40)
-		finalPercent: { type: "DECIMAL" },
+		//
+		// NOTE that in our ITG implementation we don't allow for negative percents
+		// as it breaks this silly metric. Also negative percents are stupid.
+		finalPercent: { type: "DECIMAL", validate: p.isBetween(0, 200) },
 	},
 
 	optionalMetrics: {
-		lifebarHistory: { type: "GRAPH" },
+		lifebarHistory: { type: "GRAPH", validate: p.isBetween(0, 100) },
 	},
 
 	defaultMetric: "finalPercent",

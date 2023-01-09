@@ -1,5 +1,6 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue, ToDecimalPlaces, zodNonNegativeInt, zodTierlistData } from "../config-utils";
+import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
@@ -72,7 +73,7 @@ export const SDVXVFClasses = [
 
 export const SDVX_SINGLE_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER" },
+		score: { type: "INTEGER", validate: p.isBetween(0, 10_000_000) },
 		lamp: {
 			type: "ENUM",
 			values: [
@@ -99,8 +100,8 @@ export const SDVX_SINGLE_CONF = {
 
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
-		exScore: { type: "INTEGER" },
-		gauge: { type: "DECIMAL" },
+		exScore: { type: "INTEGER", chartDependentMax: true },
+		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100) },
 	},
 
 	scoreRatingAlgs: {

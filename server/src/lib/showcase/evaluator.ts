@@ -79,7 +79,7 @@ function PropToMongoProp(prop: "grade" | "lamp" | "percent" | "score") {
 		case "grade":
 			return "scoreData.gradeIndex";
 		case "percent":
-			return "scoreData.percent";
+			return [`scoreData.${gptConfig.defaultMetric}`];
 	}
 }
 

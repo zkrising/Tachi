@@ -1,5 +1,6 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue, zodNonNegativeInt } from "../config-utils";
+import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
@@ -35,7 +36,7 @@ const GitadoraColours = [
 
 export const GITADORA_GITA_CONF = {
 	providedMetrics: {
-		percent: { type: "DECIMAL" },
+		percent: { type: "DECIMAL", validate: p.isBetween(0, 100) },
 		lamp: {
 			type: "ENUM",
 			values: ["FAILED", "CLEAR", "FULL COMBO", "EXCELLENT"],

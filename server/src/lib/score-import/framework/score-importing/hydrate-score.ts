@@ -1,5 +1,5 @@
 import { CreateScoreCalcData } from "../calculated-data/score";
-import { CreateFullScoreData } from "../derivers/derivers";
+import { CreateFullScoreData } from "./derivers";
 import { GetGPTString } from "tachi-common";
 import type { DryScore } from "../common/types";
 import type { KtLogger } from "lib/logger/logger";

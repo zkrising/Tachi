@@ -34,7 +34,7 @@ const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 	],
 	"personal-bests": [
 		index({ chartID: 1, userID: 1 }, UNIQUE),
-		index({ chartID: 1, "scoreData.percent": 1 }),
+		index({ chartID: 1, [`scoreData.${gptConfig.defaultMetric}`]: 1 }),
 		index({ userID: 1, game: 1, playtype: 1 }),
 
 		// activity

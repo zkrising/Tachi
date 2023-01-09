@@ -1,5 +1,6 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue } from "../config-utils";
+import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
@@ -46,7 +47,7 @@ export const WaccaColours = [
 
 export const WACCA_SINGLE_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER" },
+		score: { type: "INTEGER", validate: p.isBetween(0, 1_000_000) },
 		lamp: {
 			type: "ENUM",
 			values: ["FAILED", "CLEAR", "MISSLESS", "FULL COMBO", "ALL MARVELOUS"],

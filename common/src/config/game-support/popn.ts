@@ -1,5 +1,6 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue, zodNonNegativeInt } from "../config-utils";
+import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
@@ -27,7 +28,7 @@ const PopnClasses = [
 
 export const POPN_9B_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER" },
+		score: { type: "INTEGER", validate: p.isBetween(0, 100_000) },
 		clearMedal: {
 			type: "ENUM",
 			values: [
@@ -69,7 +70,7 @@ export const POPN_9B_CONF = {
 
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
-		gauge: { type: "INTEGER" },
+		gauge: { type: "INTEGER", validate: p.isBetween(0, 100) },
 	},
 
 	scoreRatingAlgs: {

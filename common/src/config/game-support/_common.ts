@@ -2,6 +2,7 @@
  * Common stuff for that all games might want to inherit.
  */
 
+import { p } from "prudence";
 import type { ConfScoreMetric } from "../../types/metrics";
 
 /**
@@ -19,7 +20,7 @@ import type { ConfScoreMetric } from "../../types/metrics";
  * as that necessitates that you either can't miss, or can't hit.
  */
 export const FAST_SLOW_MAXCOMBO = {
-	fast: { type: "INTEGER" },
-	slow: { type: "INTEGER" },
-	maxCombo: { type: "INTEGER" },
+	fast: { type: "INTEGER", validate: p.isPositiveInteger },
+	slow: { type: "INTEGER", validate: p.isPositiveInteger },
+	maxCombo: { type: "INTEGER", validate: p.isPositiveInteger },
 } as const satisfies Record<string, ConfScoreMetric>;

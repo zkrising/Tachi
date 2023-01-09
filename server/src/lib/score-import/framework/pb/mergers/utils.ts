@@ -1,13 +1,13 @@
 import db from "external/mongo/db";
+import type { PBScoreDocumentNoRank } from "../create-pb-doc";
 import type { PBMergeFunction } from "./types";
 import type { FilterQuery } from "mongodb";
 import type {
-	GPTString,
 	ConfDerivedMetrics,
-	ConfProvidedMetrics,
-	PBScoreDocument,
-	ScoreDocument,
 	ConfOptionalMetrics,
+	ConfProvidedMetrics,
+	GPTString,
+	ScoreDocument,
 } from "tachi-common";
 import type { ExtractEnumMetricNames } from "tachi-common/types/metrics";
 
@@ -48,12 +48,12 @@ export function HandleAsOf(
  * Utility for making a PB merge function. In short, get the best score this user has
  * on this chart for the stated metric, then run the applicator if a score was found.
  *
- * @note Don't worry about updating enumIndexes. Those are updated for you.
+ * @note Don't worry about updating enumIndexes. Those are updated for you,.
  */
 export function CreatePBMergeFor<GPT extends GPTString>(
 	metric: MetricKeys<GPT>,
 	name: string,
-	applicator: (base: PBScoreDocument<GPT>, score: ScoreDocument<GPT>) => void
+	applicator: (base: PBScoreDocumentNoRank<GPT>, score: ScoreDocument<GPT>) => void
 ): PBMergeFunction<GPT> {
 	return async (userID, chartID, asOfTimestamp, base) => {
 		const bestScoreFor = (await db.scores.findOne(

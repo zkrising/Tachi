@@ -1,5 +1,6 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { ClassValue, zodNonNegativeInt, zodTierlistData } from "../config-utils";
+import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
@@ -49,7 +50,7 @@ const RANDOM_SCHEMA = z.enum(["NONRAN", "MIRROR", "R-RANDOM", "RANDOM", "S-RANDO
 
 export const IIDX_SP_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER" },
+		score: { type: "INTEGER", chartDependentMax: true },
 		lamp: {
 			type: "ENUM",
 			values: [
@@ -69,6 +70,7 @@ export const IIDX_SP_CONF = {
 	derivedMetrics: {
 		percent: {
 			type: "DECIMAL",
+			validate: p.isBetween(0, 100),
 		},
 		grade: {
 			type: "ENUM",
@@ -83,21 +85,21 @@ export const IIDX_SP_CONF = {
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
 
-		bp: { type: "INTEGER" },
-		gauge: { type: "DECIMAL" },
-		comboBreak: { type: "INTEGER" },
+		bp: { type: "INTEGER", validate: p.isPositive },
+		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100) },
+		comboBreak: { type: "INTEGER", validate: p.isPositive },
 
 		// The players history for the gauge type they were playing on.
 		// this may fall into "NULL" if the user fails.
-		gaugeHistory: { type: "NULLABLE_GRAPH" },
-		scoreHistory: { type: "NULLABLE_GRAPH" },
+		gaugeHistory: { type: "NULLABLE_GRAPH", validate: p.isBetween(0, 100) },
+		scoreHistory: { type: "NULLABLE_GRAPH", validate: p.isBetween(0, 100) },
 
 		// if "GSM" is enabled (via fervidex.dll) then all graphs
 		// are sent. we should store all of them.
-		gsmEasy: { type: "NULLABLE_GRAPH" },
-		gsmNormal: { type: "NULLABLE_GRAPH" },
-		gsmHard: { type: "NULLABLE_GRAPH" },
-		gsmEXHard: { type: "NULLABLE_GRAPH" },
+		gsmEasy: { type: "NULLABLE_GRAPH", validate: p.isBetween(0, 100) },
+		gsmNormal: { type: "NULLABLE_GRAPH", validate: p.isBetween(0, 100) },
+		gsmHard: { type: "NULLABLE_GRAPH", validate: p.isBetween(0, 100) },
+		gsmEXHard: { type: "NULLABLE_GRAPH", validate: p.isBetween(0, 100) },
 	},
 
 	defaultScoreRatingAlg: "ktLampRating",

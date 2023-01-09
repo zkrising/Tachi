@@ -471,7 +471,8 @@ export interface PBReference {
 }
 
 export interface PBScoreDocument<GPT extends GPTString = GPTString> {
-	composedFrom: Array<PBReference>;
+	// guaranteed to atleast have one element.
+	composedFrom: [PBReference, ...Array<PBReference>];
 	rankingData: {
 		rank: integer;
 		outOf: integer;

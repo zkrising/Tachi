@@ -6,6 +6,8 @@ import type { GPTString, PBReference, integer } from "tachi-common";
  * They are expected to mutate the existingPB to add/change whatever
  * properties they feel like should be merged.
  *
+ * @note Don't worry about updating enumIndexes. Those are updated for you.
+ *
  * They should then return some information (a name and a scoreID) to indicate
  * what this PB is composed of.
  */

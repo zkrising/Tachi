@@ -1,4 +1,4 @@
-import type { DryScore } from "../common/types";
+import type { DryScoreData } from "../common/types";
 import type { KtLogger } from "lib/logger/logger";
 import type {
 	ChartDocument,
@@ -16,7 +16,7 @@ import type {
 import type { DerivedClassConfig, ProvidedClassConfig } from "tachi-common/types/game-config-utils";
 
 export type ScoreCalculator<GPT extends GPTString> = (
-	dryScore: DryScore<GPT>,
+	scoreData: DryScoreData<GPT>,
 	chart: ChartDocument<GPT>
 ) => number | null;
 

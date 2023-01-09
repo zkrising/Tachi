@@ -20,26 +20,47 @@ import type {
 // - Additional: They **may** exist. We want to store them if they exist, but don't
 // mandate their existence (i.e. fast/slow/maxCombo)
 
-export type DecimalMetricValidator<GPT extends GPTString> = (
-	metric: number,
-	chart: ChartDocument<GPT>
-) => string | true;
-export type IntegerMetricValidator<GPT extends GPTString> = (
-	metric: integer,
-	chart: ChartDocument<GPT>
-) => string | true;
-export type GraphMetricValidator<GPT extends GPTString> = (
-	metric: Array<number>,
-	chart: ChartDocument<GPT>
-) => string | true;
-
-export interface ConfDecimalScoreMetric {
+interface ConfDecimalScoreMetricNormal {
 	type: "DECIMAL";
+
+	validate: (v: number) => string | true;
 }
 
-export interface ConfIntegerScoreMetric {
+interface ConfIntegerScoreMetricNormal {
 	type: "INTEGER";
+
+	validate: (v: number) => string | true;
 }
+
+interface ConfDecimalScoreMetricChartDependent {
+	type: "DECIMAL";
+
+	/**
+	 * Is the maximum/minimum value of this metric chart dependent?
+	 *
+	 * @example: IIDX's EX Score is upperbounded at 2x the chart's notecount.
+	 */
+	chartDependentMax: true;
+}
+
+interface ConfIntegerScoreMetricChartDependent {
+	type: "INTEGER";
+
+	/**
+	 * Is the maximum/minimum value of this metric chart dependent?
+	 *
+	 * @example: IIDX's EX Score is upperbounded at 2x the chart's notecount.
+	 */
+	chartDependentMax: true;
+}
+
+export type ConfDecimalScoreMetric =
+	| ConfDecimalScoreMetricChartDependent
+	| ConfDecimalScoreMetricNormal;
+
+export type ConfIntegerScoreMetric =
+	| ConfIntegerScoreMetricChartDependent
+	| ConfIntegerScoreMetricNormal;
 
 /**
  * A metric for a score that represents an enum.
@@ -60,6 +81,9 @@ export interface ConfEnumScoreMetric<V extends string> {
  */
 export interface ConfGraphScoreMetric {
 	type: "GRAPH";
+
+	validate: (v: number) => string | true;
+	size?: (v: number) => string | true;
 }
 
 /**
@@ -67,6 +91,9 @@ export interface ConfGraphScoreMetric {
  */
 export interface ConfNullableGraphScoreMetric {
 	type: "NULLABLE_GRAPH";
+
+	validate: (v: number) => string | true;
+	size?: (v: number) => string | true;
 }
 
 export type ConfScoreMetric =
@@ -116,7 +143,7 @@ export type ExtractEnumMetricNames<R extends Record<string, ConfScoreMetric>> = 
 /**
  * What are all the metrics available for this GPT?
  */
-export type AllMetrics = {
+export type AllConfMetrics = {
 	[GPT in GPTString]: ConfDerivedMetrics[GPT] &
 		ConfOptionalMetrics[GPT] &
 		ConfProvidedMetrics[GPT];
@@ -129,8 +156,10 @@ export type AllMetrics = {
  */
 export type GetEnumValue<
 	GPT extends GPTString,
-	MetricName extends ExtractEnumMetricNames<AllMetrics[GPT]>
-> = AllMetrics[GPT][MetricName] extends ConfEnumScoreMetric<infer EnumValues> ? EnumValues : never;
+	MetricName extends ExtractEnumMetricNames<AllConfMetrics[GPT]>
+> = AllConfMetrics[GPT][MetricName] extends ConfEnumScoreMetric<infer EnumValues>
+	? EnumValues
+	: never;
 
 /**
  * Turn a record of ConfigScoreMetrics into their actual literal values.

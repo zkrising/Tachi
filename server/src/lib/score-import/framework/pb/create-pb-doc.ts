@@ -1,8 +1,9 @@
-import { GPT_PB_MERGE_FNS } from "./mergers/mergers";
-import { CreateEnumIndexes } from "../derivers/derivers";
+import { GPT_PB_DEFAULT_REF_NAMES, GPT_PB_MERGE_FNS } from "./mergers/mergers";
+import { CreateScoreCalcData } from "../calculated-data/score";
+import { CreateEnumIndexes } from "../score-importing/derivers";
 import db from "external/mongo/db";
 import { GetEveryonesRivalIDs } from "lib/rivals/rivals";
-import { GetGPTConfig } from "tachi-common";
+import { GetGPTConfig, GetGamePTConfig } from "tachi-common";
 import type { KtLogger } from "lib/logger/logger";
 import type { BulkWriteUpdateOneOperation, FilterQuery } from "mongodb";
 import type {
@@ -12,6 +13,7 @@ import type {
 	Playtype,
 	ScoreDocument,
 	integer,
+	ChartDocument,
 } from "tachi-common";
 
 export type PBScoreDocumentNoRank<GPT extends GPTString = GPTString> = Omit<
@@ -26,10 +28,12 @@ export type PBScoreDocumentNoRank<GPT extends GPTString = GPTString> = Omit<
 export async function CreatePBDoc(
 	gpt: GPTString,
 	userID: integer,
-	chartID: string,
+	chart: ChartDocument,
 	logger: KtLogger,
 	asOfTimestamp?: number
 ) {
+	const chartID = chart.chartID;
+
 	const query: FilterQuery<ScoreDocument> = {
 		userID,
 		chartID,
@@ -65,7 +69,12 @@ export async function CreatePBDoc(
 	}
 
 	const pbDoc: PBScoreDocumentNoRank = {
-		composedFrom: [INITIAL_REFERENCE],
+		composedFrom: [
+			{
+				name: GPT_PB_DEFAULT_REF_NAMES[gpt],
+				scoreID: defaultMetricPB.scoreID,
+			},
+		],
 		chartID: defaultMetricPB.chartID,
 		userID,
 		songID: defaultMetricPB.songID,
@@ -97,11 +106,14 @@ export async function CreatePBDoc(
 		}
 	}
 
-	// update any enum indexes that
+	// update any enum indexes that might've been altered
 	const { indexes, optionalIndexes } = CreateEnumIndexes(gpt, pbDoc.scoreData, logger);
 
 	pbDoc.scoreData.enumIndexes = indexes;
 	pbDoc.scoreData.optional.enumIndexes = optionalIndexes;
+
+	// Recalc info about this score (incase things have changed).
+	pbDoc.calculatedData = CreateScoreCalcData(pbDoc.game, pbDoc.scoreData, chart);
 
 	// finally, return our full pbDoc, that does NOT have the ranking props.
 	// (We will add those later)
@@ -112,11 +124,13 @@ export async function CreatePBDoc(
  * Updates rankings on a given chart.
  */
 export async function UpdateChartRanking(game: Game, playtype: Playtype, chartID: string) {
+	const gptConfig = GetGamePTConfig(game, playtype);
+
 	const scores = await db["personal-bests"].find(
 		{ chartID },
 		{
 			sort: {
-				"scoreData.percent": -1,
+				[`scoreData.${gptConfig.defaultMetric}`]: -1,
 				timeAchieved: 1,
 			},
 		}

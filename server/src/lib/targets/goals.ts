@@ -314,7 +314,7 @@ export function HumaniseGoalProgress(
 			return userPB.scoreData.lamp;
 		}
 
-		case "scoreData.percent":
+		case [`scoreData.${gptConfig.defaultMetric}`]:
 			return `${userPB.scoreData.percent.toFixed(2)}%`;
 		case "scoreData.score":
 			return userPB.scoreData.score.toLocaleString();
@@ -361,7 +361,7 @@ export function HumaniseGoalOutOf(game: Game, playtype: Playtype, key: GoalKeys,
 			return lamp;
 		}
 
-		case "scoreData.percent":
+		case [`scoreData.${gptConfig.defaultMetric}`]:
 			return `${value.toFixed(2)}%`;
 		case "scoreData.score":
 			return value.toLocaleString();

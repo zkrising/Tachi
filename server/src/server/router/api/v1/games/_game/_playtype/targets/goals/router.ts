@@ -50,7 +50,7 @@ router.post(
 		{
 			criteria: {
 				key: p.isIn(
-					"scoreData.percent",
+					[`scoreData.${gptConfig.defaultMetric}`],
 					"scoreData.lampIndex",
 					"scoreData.gradeIndex",
 					"scoreData.score"

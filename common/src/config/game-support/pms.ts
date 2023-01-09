@@ -41,7 +41,7 @@ function FormatSieglindePMS(sgl: number): string {
 
 export const PMS_CONTROLLER_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER" },
+		score: { type: "INTEGER", chartDependentMax: true },
 
 		lamp: {
 			type: "ENUM",

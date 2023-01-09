@@ -59,17 +59,19 @@ export async function TachiScoreToServerScore(
 		);
 	}
 
+	const firstScoreID = tachiScore.composedFrom[0].scoreID;
+
 	const scorePB = (await db.scores.findOne({
-		scoreID: tachiScore.composedFrom.scorePB,
+		scoreID: firstScoreID,
 	})) as ScoreDocument<"usc:Controller" | "usc:Keyboard"> | null;
 
 	if (!scorePB) {
 		logger.severe(
-			`Score ${tachiScore.composedFrom.scorePB} does not exist, but is referenced in ${tachiScore.userID}'s PBDoc on ${tachiScore.chartID}?`
+			`Score ${firstScoreID} does not exist, but is referenced in ${tachiScore.userID}'s PBDoc on ${tachiScore.chartID}?`
 		);
 
 		throw new Error(
-			`Score ${tachiScore.composedFrom.scorePB} does not exist, but is referenced in ${tachiScore.userID}'s PBDoc on ${tachiScore.chartID}?`
+			`Score ${firstScoreID} does not exist, but is referenced in ${tachiScore.userID}'s PBDoc on ${tachiScore.chartID}?`
 		);
 	}
 
@@ -191,7 +193,9 @@ export async function CreatePOSTScoresResponseBody(
 		score,
 		serverRecord,
 		isServerRecord: scorePB.userID === ktServerRecord.userID,
-		isPB: scorePB.composedFrom.scorePB === scoreID,
+		// it's a pb if the score is equal to what the user has as their best.
+		// lamps notwithstanding.
+		isPB: scorePB.scoreData.score === score.score,
 		sendReplay: originalScore.scoreID,
 		adjacentAbove,
 		adjacentBelow,

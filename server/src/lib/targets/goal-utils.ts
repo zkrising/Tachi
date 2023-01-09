@@ -137,7 +137,7 @@ function FormatCriteria<GPT extends GPTString>(
 			return gptConfig.grades[criteria.value];
 		case "scoreData.lampIndex":
 			return gptConfig.lamps[criteria.value];
-		case "scoreData.percent":
+		case [`scoreData.${gptConfig.defaultMetric}`]:
 			return `Get ${FormatMaxDP(criteria.value)}% on`;
 		case "scoreData.score":
 			return `Get a score of ${criteria.value.toLocaleString("en-GB")} on`;
@@ -250,55 +250,44 @@ export async function ValidateGoalChartsAndCriteria(
 	// checking whether the key and value make sense
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	if (criteria.key === "scoreData.gradeIndex" && !gptConfig.grades[criteria.value]) {
-		throw new Error(
-			`Invalid value of ${criteria.value} for grade goal. No such grade exists at that index.`
-		);
-	} else if (criteria.key === "scoreData.lampIndex" && !gptConfig.lamps[criteria.value]) {
-		throw new Error(
-			`Invalid value of ${criteria.value} for lamp goal. No such lamp exists at that index.`
-		);
-	} else if (
-		criteria.key === "scoreData.percent" &&
-		(criteria.value <= 0 || criteria.value > gptConfig.percentMax)
-	) {
-		throw new Error(
-			`Invalid value of ${criteria.value} for percent goal. Percents must be between 0 and ${gptConfig.percentMax}.`
-		);
-	} else if (criteria.key === "scoreData.score") {
-		if (criteria.value < 0) {
-			throw new Error(`Invalid score value for goal. Can't be negative.`);
-		}
+	const config =
+		gptConfig.providedMetrics[criteria.key] ?? gptConfig.derivedMetrics[criteria.key];
 
-		// troublemaker games where score is relative to notecount
-		if (game === "iidx" || game === "bms" || game === "pms") {
-			if (charts.type !== "single") {
+	if (!config) {
+		throw new Error(
+			`Invalid criteria.key for ${FormatGame(game, playtype)} (Got ${criteria.key}).`
+		);
+	}
+
+	switch (config.type) {
+		case "DECIMAL":
+		case "INTEGER": {
+			if (config.chartDependentMax && charts.type !== "single") {
 				throw new Error(
-					`Invalid key for ${game} with multiple charts. Creating score goals on multiple charts where score is relative to notecount is a terrible idea, and has been disabled.`
+					`Creating ${criteria.key} goals on multiple charts where the maximum value is relative to the chart is a terrible idea, and has been disabled.`
 				);
 			}
 
-			const relatedChart = (await db.anyCharts[game].findOne({
-				playtype,
-				chartID: charts.data,
-			})) as ChartDocument<
-				"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP" | "pms:Controller" | "pms:Keyboard"
-			>;
+			// TODO VALIDATORS
 
-			const notecount = relatedChart.data.notecount;
+			break;
+		}
 
-			if (criteria.value > notecount * 2) {
+		case "ENUM": {
+			if (!config.values[criteria.value]) {
 				throw new Error(
-					`Invalid value of ${
-						criteria.value
-					} for goal. Maximum score possible on this chart is ${notecount * 2}.`
+					`Invalid value of ${criteria.value} for ${criteria.key} goal. No such ${criteria.key} exists at that index.`
 				);
 			}
-		} else if (GenericCalculatePercent(game, criteria.value) >= gptConfig.percentMax) {
-			throw new Error(
-				`Score of ${criteria.value} is too large for ${FormatGame(game, playtype)}.`
-			);
+
+			// TODO VALIDATORS
+
+			break;
 		}
+
+		case "GRAPH":
+		case "NULLABLE_GRAPH":
+			throw new Error(`Cannot set a goal on ${criteria.key} as it's a graph metric.`);
 	}
 
 	if (charts.type === "single" && criteria.mode !== "single") {

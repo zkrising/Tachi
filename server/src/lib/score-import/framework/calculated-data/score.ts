@@ -12,18 +12,18 @@ import {
 	WACCARate,
 } from "rg-stats";
 import { GetGPTString } from "tachi-common";
-import type { DryScore } from "../common/types";
+import type { DryScoreData } from "../common/types";
 import type { ScoreCalculator, GPTScoreCalculators } from "./types";
-import type { ChartDocument, GPTString, GPTStrings } from "tachi-common";
+import type { ChartDocument, GPTString, GPTStrings, Game } from "tachi-common";
 
-const SkillCalc: ScoreCalculator<"gitadora:Dora" | "gitadora:Gita"> = (dryScore, chart) =>
-	GITADORASkill.calculate(dryScore.scoreData.percent, chart.levelNum);
+const SkillCalc: ScoreCalculator<"gitadora:Dora" | "gitadora:Gita"> = (scoreData, chart) =>
+	GITADORASkill.calculate(scoreData.percent, chart.levelNum);
 
-const SGLCalc: ScoreCalculator<GPTStrings["bms" | "pms"]> = (dryScore, chart) => {
+const SGLCalc: ScoreCalculator<GPTStrings["bms" | "pms"]> = (scoreData, chart) => {
 	const ecValue = chart.data.sglEC ?? 0;
 	const hcValue = chart.data.sglHC ?? 0;
 
-	switch (dryScore.scoreData.lamp) {
+	switch (scoreData.lamp) {
 		case "FULL COMBO":
 		case "EX HARD CLEAR":
 		case "HARD CLEAR":
@@ -36,16 +36,16 @@ const SGLCalc: ScoreCalculator<GPTStrings["bms" | "pms"]> = (dryScore, chart) =>
 	}
 };
 
-const VF6Calc: ScoreCalculator<GPTStrings["sdvx" | "usc"]> = (dryScore, chart) =>
-	Volforce.calculateVF6(dryScore.scoreData.score, dryScore.scoreData.lamp, chart.levelNum);
+const VF6Calc: ScoreCalculator<GPTStrings["sdvx" | "usc"]> = (scoreData, chart) =>
+	Volforce.calculateVF6(scoreData.score, scoreData.lamp, chart.levelNum);
 
-const BPICalc: ScoreCalculator<GPTStrings["iidx"]> = (dryScore, chart) => {
+const BPICalc: ScoreCalculator<GPTStrings["iidx"]> = (scoreData, chart) => {
 	if (chart.data.kaidenAverage === null || chart.data.worldRecord === null) {
 		return null;
 	}
 
 	return PoyashiBPI.calculate(
-		dryScore.scoreData.score,
+		scoreData.score,
 		chart.data.kaidenAverage,
 		chart.data.worldRecord,
 		chart.data.notecount * 2,
@@ -62,7 +62,7 @@ const BPICalc: ScoreCalculator<GPTStrings["iidx"]> = (dryScore, chart) => {
 export const SCORE_CALCULATORS: GPTScoreCalculators = {
 	"iidx:SP": {
 		BPI: BPICalc,
-		ktLampRating: (dryScore, chart) => {
+		ktLampRating: (scoreData, chart) => {
 			// if chart has no ncValue, use the rating of the chart instead.
 			const ncValue = chart.data.ncTier?.value ?? chart.levelNum;
 
@@ -72,7 +72,7 @@ export const SCORE_CALCULATORS: GPTScoreCalculators = {
 			const hcValue = Math.max(chart.data.hcTier?.value ?? 0, ncValue);
 			const exhcValue = Math.max(chart.data.exhcTier?.value ?? 0, hcValue);
 
-			switch (dryScore.scoreData.lamp) {
+			switch (scoreData.lamp) {
 				case "FULL COMBO":
 				case "EX HARD CLEAR":
 					return exhcValue;
@@ -87,11 +87,11 @@ export const SCORE_CALCULATORS: GPTScoreCalculators = {
 	},
 	"iidx:DP": {
 		BPI: BPICalc,
-		ktLampRating: (dryScore, chart) => {
+		ktLampRating: (scoreData, chart) => {
 			// if chart has no tier, use the rating of the chart instead.
 			const ecValue = chart.data.dpTier?.value ?? chart.levelNum;
 
-			switch (dryScore.scoreData.lamp) {
+			switch (scoreData.lamp) {
 				case "FULL COMBO":
 				case "EX HARD CLEAR":
 				case "HARD CLEAR":
@@ -117,38 +117,31 @@ export const SCORE_CALCULATORS: GPTScoreCalculators = {
 	"usc:Keyboard": { VF6: VF6Calc },
 
 	"maimaidx:Single": {
-		rate: (dryScore, chart) =>
-			MaimaiDXRate.calculate(dryScore.scoreData.percent, chart.levelNum),
+		rate: (scoreData, chart) => MaimaiDXRate.calculate(scoreData.percent, chart.levelNum),
 	},
 	"museca:Single": {
-		curatorSkill: (dryScore, chart) =>
-			CuratorSkill.calculate(dryScore.scoreData.score, chart.levelNum),
+		curatorSkill: (scoreData, chart) => CuratorSkill.calculate(scoreData.score, chart.levelNum),
 	},
 	"chunithm:Single": {
-		rating: (dryScore, chart) =>
-			CHUNITHMRating.calculate(dryScore.scoreData.score, chart.levelNum),
+		rating: (scoreData, chart) => CHUNITHMRating.calculate(scoreData.score, chart.levelNum),
 	},
 	"jubeat:Single": {
-		jubility: (dryScore, chart) =>
-			Jubility.calculate(
-				dryScore.scoreData.score,
-				dryScore.scoreData.musicRate,
-				chart.levelNum
-			),
+		jubility: (scoreData, chart) =>
+			Jubility.calculate(scoreData.score, scoreData.musicRate, chart.levelNum),
 	},
 
 	"itg:Stamina": {
-		blockRating: (dryScore, chart) => {
-			if (dryScore.scoreData.lamp === "FAILED") {
+		blockRating: (scoreData, chart) => {
+			if (scoreData.lamp === "FAILED") {
 				return null;
 			}
 
 			return chart.levelNum;
 		},
-		fastest32: (dryScore, chart) => {
+		fastest32: (scoreData, chart) => {
 			const diedAtMeasure =
-				dryScore.scoreData.lamp === "FAILED"
-					? (dryScore.scoreData.survivedPercent / 100) * chart.data.notesPerMeasure.length
+				scoreData.lamp === "FAILED"
+					? (scoreData.survivedPercent / 100) * chart.data.notesPerMeasure.length
 					: null;
 
 			const fastest32 = ITGHighestUnbroken.calculateFromNPSPerMeasure(
@@ -176,17 +169,17 @@ export const SCORE_CALCULATORS: GPTScoreCalculators = {
 	},
 
 	"popn:9B": {
-		classPoints: (dryScore, chart) =>
+		classPoints: (scoreData, chart) =>
 			PopnClassPoints.calculate(
-				dryScore.scoreData.score,
-				PopnClearMedalToLamp(dryScore.scoreData.clearMedal),
+				scoreData.score,
+				PopnClearMedalToLamp(scoreData.clearMedal),
 				chart.levelNum
 			),
 	},
 	"sdvx:Single": { VF6: VF6Calc },
 
 	"wacca:Single": {
-		rate: (dryScore, chart) => WACCARate.calculate(dryScore.scoreData.score, chart.levelNum),
+		rate: (scoreData, chart) => WACCARate.calculate(scoreData.score, chart.levelNum),
 	},
 };
 
@@ -195,15 +188,16 @@ export const SCORE_CALCULATORS: GPTScoreCalculators = {
  * @param scores - All of the scores in this session.
  */
 export function CreateScoreCalcData<GPT extends GPTString>(
-	dryScore: DryScore<GPT>,
+	game: Game,
+	dryScoreData: DryScoreData<GPT>,
 	chart: ChartDocument<GPT>
 ) {
-	const gptString = GetGPTString(dryScore.game, chart.playtype);
+	const gptString = GetGPTString(game, chart.playtype);
 
 	const calcData: Record<string, number | null> = {};
 
 	for (const [key, fn] of Object.entries(SCORE_CALCULATORS[gptString])) {
-		calcData[key] = fn(dryScore, chart);
+		calcData[key] = fn(dryScoreData, chart);
 	}
 
 	return calcData;

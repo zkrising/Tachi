@@ -1,6 +1,7 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { SDVXVFClasses } from "./sdvx";
 import { ToDecimalPlaces } from "../config-utils";
+import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
@@ -13,7 +14,7 @@ export const USC_CONF = {
 
 export const USC_CONTROLLER_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER" },
+		score: { type: "INTEGER", validate: p.isBetween(0, 10_000_000) },
 		lamp: {
 			type: "ENUM",
 			values: [
@@ -40,7 +41,7 @@ export const USC_CONTROLLER_CONF = {
 
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
-		gauge: { type: "DECIMAL" },
+		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100) },
 	},
 
 	scoreRatingAlgs: {

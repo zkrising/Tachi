@@ -1,5 +1,6 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { NoDecimalPlace, zodNonNegativeInt } from "../config-utils";
+import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
@@ -16,7 +17,7 @@ export const MUSECA_CONF = {
 
 export const MUSECA_SINGLE_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER" },
+		score: { type: "INTEGER", validate: p.isBetween(0, 1_000_000) },
 		lamp: {
 			type: "ENUM",
 			values: ["FAILED", "CLEAR", "CONNECT ALL", "PERFECT CONNECT ALL"],

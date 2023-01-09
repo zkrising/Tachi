@@ -3,7 +3,7 @@ import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
-import { FormatGame, GenericFormatGradeDelta, GetGamePTConfig } from "tachi-common";
+import { FormatGame, GetGamePTConfig } from "tachi-common";
 import { GetFolderChartIDs } from "utils/folder";
 import { IsNullish } from "utils/misc";
 import type { KtLogger } from "lib/logger/logger";

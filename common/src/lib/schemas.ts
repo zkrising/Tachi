@@ -39,7 +39,11 @@ function prSchemaFnWrap(schema: PrudenceSchema) {
 	};
 }
 
-const PR_GAME_STATS = (game: Game, playtype: Playtypes[Game], gptConfig: INTERNAL_GAME_PT_CONFIG) => ({
+const PR_GAME_STATS = (
+	game: Game,
+	playtype: Playtypes[Game],
+	gptConfig: INTERNAL_GAME_PT_CONFIG
+) => ({
 	userID: p.isPositiveNonZeroInteger,
 	game: p.is(game),
 	playtype: p.is(playtype),
@@ -77,7 +81,9 @@ const extractGPTIDString = (self: unknown) => {
 
 	// Playtype might be undefined in the case where the string contains no colon.
 	if (playtype === undefined || !IsValidPlaytype(game, playtype)) {
-		throw new Error(`Expected valid playtype -- got ${playtype} from gptString ${s.gptString}.`);
+		throw new Error(
+			`Expected valid playtype -- got ${playtype} from gptString ${s.gptString}.`
+		);
 	}
 
 	return { game, playtype };
@@ -652,7 +658,6 @@ const PRE_SCHEMAS = {
 		status: p.nullable(p.isBoundedString(3, 140)),
 		customPfpLocation: "?string",
 		customBannerLocation: "?string",
-		clan: p.nullable(p.isBoundedString(2, 4)),
 		lastSeen: p.isPositiveInteger,
 		badges: [p.isIn("beta", "alpha", "devTeam")],
 		authLevel: p.isBoundedInteger(UserAuthLevels.BANNED, UserAuthLevels.ADMIN),

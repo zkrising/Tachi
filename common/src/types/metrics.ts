@@ -24,12 +24,18 @@ interface ConfDecimalScoreMetricNormal {
 	type: "DECIMAL";
 
 	validate: (v: number) => string | true;
+
+	// This exists to allow DecimalScoreMetric.chartDependentMax.
+	chartDependentMax?: never;
 }
 
 interface ConfIntegerScoreMetricNormal {
 	type: "INTEGER";
 
 	validate: (v: number) => string | true;
+
+	// see above
+	chartDependentMax?: never;
 }
 
 interface ConfDecimalScoreMetricChartDependent {

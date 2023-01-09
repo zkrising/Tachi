@@ -20,7 +20,6 @@ import type {
 	GamePTConfig,
 	Playtype,
 	Playtypes,
-	ProvidedMetrics,
 } from "../types/game-config";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../types/internals";
 import type { ConfScoreMetric } from "../types/metrics";

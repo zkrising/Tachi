@@ -4,8 +4,7 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { p } from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
-import { GetGamePTConfig } from "tachi-common";
-import { PR_GAMESPECIFIC_SETTINGS } from "tachi-common/lib/schemas";
+import { GetGamePTConfig, PrudenceZodShim } from "tachi-common";
 import { FormatPrError, optNull } from "utils/prudence";
 import { GetUGPT } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
@@ -31,7 +30,7 @@ router.patch(
 
 		const gptConfig = GetGamePTConfig(game, playtype);
 
-		const gameSpecificSchema = PR_GAMESPECIFIC_SETTINGS(game);
+		const gameSpecificSchema = PrudenceZodShim(gptConfig.preferences);
 
 		const err = p(req.safeBody, {
 			preferredScoreAlg: p.optional(p.nullable(p.isIn(gptConfig.scoreRatingAlgs))),

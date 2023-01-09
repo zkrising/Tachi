@@ -1,14 +1,14 @@
 import bcrypt from "bcryptjs";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { Environment, ServerConfig } from "lib/setup/config";
+import { ServerConfig } from "lib/setup/config";
 import { p } from "prudence";
 import { UserAuthLevels } from "tachi-common";
 import nodeFetch from "utils/fetch";
 import { Random20Hex } from "utils/misc";
 import { CreateURLWithParams } from "utils/url";
 import { FormatUserDoc } from "utils/user";
-import type { integer, UserDocument, UserSettings } from "tachi-common";
+import type { integer, UserDocument, UserSettingsDocument } from "tachi-common";
 import type { PrivateUserInfoDocument } from "utils/types";
 
 const logger = CreateLogCtx(__filename);
@@ -60,7 +60,7 @@ export async function AddNewInvite(user: UserDocument) {
 	return result;
 }
 
-export const DEFAULT_USER_SETTINGS: UserSettings["preferences"] = {
+export const DEFAULT_USER_SETTINGS: UserSettingsDocument["preferences"] = {
 	developerMode: false,
 	advancedMode: false,
 	invisible: false,
@@ -87,7 +87,6 @@ export async function AddNewUser(
 		username,
 		usernameLowercase: username.toLowerCase(),
 		about: "I'm a fairly nondescript person.",
-		clan: null,
 		socialMedia: {},
 		status: null,
 		customBannerLocation: null,
@@ -119,13 +118,13 @@ export function InsertPrivateUserInfo(userID: integer, hashedPassword: string, e
 
 export function InsertDefaultUserSettings(userID: integer) {
 	logger.verbose(`Inserting default settings for ${userID}.`);
-	const userSettings: UserSettings = {
+	const UserSettingsDocument: UserSettingsDocument = {
 		userID,
 		following: [],
 		preferences: DEFAULT_USER_SETTINGS,
 	};
 
-	return db["user-settings"].insert(userSettings);
+	return db["user-settings"].insert(UserSettingsDocument);
 }
 
 export async function ValidateCaptcha(
@@ -168,7 +167,11 @@ export async function ValidateCaptcha(
 	return gcr.success;
 }
 
-export function MountAuthCookie(req: Express.Request, user: UserDocument, settings: UserSettings) {
+export function MountAuthCookie(
+	req: Express.Request,
+	user: UserDocument,
+	settings: UserSettingsDocument
+) {
 	req.session.tachi = {
 		user,
 		settings,

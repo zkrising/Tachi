@@ -1,5 +1,7 @@
 import { CreatePBDoc, UpdateChartRanking } from "./create-pb-doc";
 import db from "external/mongo/db";
+import { GetGPTString } from "tachi-common";
+import { GetChartForIDGuaranteed } from "utils/db";
 import type { PBScoreDocumentNoRank } from "./create-pb-doc";
 import type { KtLogger } from "lib/logger/logger";
 import type { Game, integer, Playtype } from "tachi-common";
@@ -18,10 +20,16 @@ export async function ProcessPBs(
 		return;
 	}
 
+	const gpt = GetGPTString(game, playtype);
+
 	const promises = [];
 
 	for (const chartID of chartIDs) {
-		promises.push(CreatePBDoc(userID, chartID, logger));
+		promises.push(
+			GetChartForIDGuaranteed(game, chartID).then((chart) =>
+				CreatePBDoc(gpt, userID, chart, logger)
+			)
+		);
 	}
 
 	const pbDocsReturn = await Promise.all(promises);
@@ -49,7 +57,18 @@ export async function ProcessPBs(
 		pbDocs.map((e) => ({
 			updateOne: {
 				filter: { chartID: e.chartID, userID: e.userID },
-				update: { $set: e },
+				update: {
+					$set: {
+						...e,
+
+						// stub out ranking data with some invalid nonsense.
+						rankingData: {
+							outOf: 0,
+							rank: 0,
+							rivalRank: null,
+						},
+					},
+				},
 				upsert: true,
 			},
 		})),

@@ -10,6 +10,7 @@ import type { DryScore } from "../../../framework/common/types";
 import type { ConverterFunction } from "../../common/types";
 import type { S3Score } from "./types";
 import type { Difficulties, Playtypes, Versions } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 import type { EmptyObject } from "utils/types";
 
 export function ParseDifficulty(diff: S3Score["diff"]): {

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { GetPBsForJubility } from "lib/score-import/framework/calculated-data/profile";
+import { GetPBsForJubility } from "game-implementations/games/jubeat";
 import { GetRelevantSongsAndCharts } from "utils/db";
 import { GetUser } from "utils/req-tachi-data";
 

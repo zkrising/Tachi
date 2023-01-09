@@ -76,7 +76,7 @@ export default async function UpdateScore(
 	logger.verbose("Received Update Score request.");
 
 	// eslint-disable-next-line require-atomic-updates
-	newScore.calculatedData = CreateScoreCalcData(newScore, chart);
+	newScore.calculatedData = CreateScoreCalcData(newScore.game, newScore.scoreData, chart);
 
 	try {
 		// Having _id defined will cause this to throw, causing it to not apply

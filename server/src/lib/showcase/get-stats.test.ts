@@ -31,13 +31,13 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 					{
 						folderID: TestingIIDXFolderSP10.folderID,
 						mode: "folder",
-						property: "lamp",
+						metric: "lamp",
 						gte: IIDX_LAMPS.HARD_CLEAR,
 					},
 					{
 						chartID: Testing511SPA.chartID,
 						mode: "chart",
-						property: "score",
+						metric: "score",
 					},
 				],
 				gameSpecific: {

@@ -319,7 +319,6 @@ export interface UserDocument {
 	status: string | null;
 	customPfpLocation: string | null;
 	customBannerLocation: string | null;
-	clan: string | null; // todo
 	badges: Array<UserBadges>;
 	authLevel: UserAuthLevels;
 }
@@ -609,14 +608,20 @@ export type ShowcaseStatDetails = ShowcaseStatChart | ShowcaseStatFolder;
 export interface ShowcaseStatFolder {
 	mode: "folder";
 	folderID: string;
-	property: "grade" | "lamp" | "percent" | "score";
+
+	// should be a valid metric for the showcase this game is for
+	// this is not checked by the typesystem though. sorry!
+	metric: string;
 	gte: number;
 }
 
 export interface ShowcaseStatChart {
 	mode: "chart";
 	chartID: string;
-	property: "grade" | "lamp" | "percent" | "playcount" | "score";
+
+	// should be a valid metric for the showcase this game is for
+	// this is not checked by the typesystem though. sorry!
+	metric: string;
 }
 
 export interface UGPTSettingsDocument<GPT extends GPTString = GPTString> {

@@ -266,7 +266,7 @@ function StatDelta({
 	v1: number;
 	v2?: number;
 	mode: "folder" | "chart";
-	property: UGPTPreferenceStatsReturn["stat"]["property"];
+	property: UGPTPreferenceStatsReturn["stat"]["metric"];
 	game: Game;
 	playtype: Playtype;
 }) {
@@ -397,15 +397,15 @@ export function StatDisplay({
 						<h4>{FormatChart(game, song, chart)}</h4>
 					</Link>
 					<h4>
-						{UppercaseFirst(stat.property)}:{" "}
-						{FormatPropertyGTE(game, playtype, stat.property, result.value)}
+						{UppercaseFirst(stat.metric)}:{" "}
+						{FormatPropertyGTE(game, playtype, stat.metric, result.value)}
 					</h4>
 					{user && user.id !== reqUser.id && (
 						<StatDelta
 							v1={statData.result.value}
 							v2={compareData?.result.value}
 							mode={stat.mode}
-							property={stat.property}
+							property={stat.metric}
 							game={game}
 							playtype={playtype}
 						/>
@@ -431,8 +431,8 @@ export function StatDisplay({
 						<h4>{headerStr}</h4>
 					</Link>
 					<h5>
-						{UppercaseFirst(stat.property)} &gt;={" "}
-						{FormatPropertyGTE(game, playtype, stat.property, stat.gte)}
+						{UppercaseFirst(stat.metric)} &gt;={" "}
+						{FormatPropertyGTE(game, playtype, stat.metric, stat.gte)}
 					</h5>
 					<h4>
 						{result.value}
@@ -447,7 +447,7 @@ export function StatDisplay({
 							v1={statData.result.value}
 							v2={compareData?.result.value}
 							mode={stat.mode}
-							property={stat.property}
+							property={stat.metric}
 							game={game}
 							playtype={playtype}
 						/>

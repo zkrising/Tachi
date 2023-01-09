@@ -6,7 +6,7 @@ import { EvaluateUsersStatsShowcase } from "lib/showcase/get-stats";
 import { p } from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { RequireAuthedAsUser } from "server/router/api/v1/users/_userID/middleware";
-import { FormatGame, GetGamePTConfig } from "tachi-common";
+import { FormatGame, GetGPTString, GetGamePTConfig } from "tachi-common";
 import { IsRecord } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
 import { GetUGPT } from "utils/req-tachi-data";
@@ -103,7 +103,7 @@ router.get("/custom", async (req, res) => {
 
 		stat = {
 			mode: "folder",
-			property: req.query.property as "grade" | "lamp" | "percent" | "score",
+			metric: req.query.property as "grade" | "lamp" | "percent" | "score",
 			folderID,
 			gte: Number(req.query.gte),
 		};
@@ -137,7 +137,7 @@ router.get("/custom", async (req, res) => {
 
 		stat = {
 			mode: "chart",
-			property: req.query.property as "grade" | "lamp" | "percent" | "playcount" | "score",
+			metric: req.query.property as "grade" | "lamp" | "percent" | "playcount" | "score",
 			chartID: req.query.chartID as string,
 		};
 	} else {
@@ -147,7 +147,9 @@ router.get("/custom", async (req, res) => {
 		});
 	}
 
-	const result = await EvaluateShowcaseStat(stat, user.id);
+	const gpt = GetGPTString(game, playtype);
+
+	const result = await EvaluateShowcaseStat(gpt, stat, user.id);
 
 	const related = await GetRelatedStatDocuments(stat, game);
 

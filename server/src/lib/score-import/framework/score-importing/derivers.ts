@@ -2,7 +2,7 @@ import { InternalFailure } from "../common/converter-failures";
 import { GPT_SERVER_IMPLEMENTATIONS } from "game-implementations/game-implementations";
 import { GetGPTConfig } from "tachi-common";
 import type { DryScore, DryScoreData } from "../common/types";
-import type { GPTDerivers } from "./types";
+import type { GPTDerivers } from "game-implementations/types";
 import type { KtLogger } from "lib/logger/logger";
 import type {
 	ChartDocument,

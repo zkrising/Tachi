@@ -1,13 +1,16 @@
 import db from "external/mongo/db";
+import { GetGPTConfig } from "tachi-common";
 import { GetFolderChartIDs } from "utils/folder";
 import type {
-	integer,
-	ShowcaseStatDetails,
+	GPTString,
 	ShowcaseStatChart,
+	ShowcaseStatDetails,
 	ShowcaseStatFolder,
+	integer,
 } from "tachi-common";
 
 export function EvaluateShowcaseStat(
+	gpt: GPTString,
 	details: ShowcaseStatDetails,
 	userID: integer
 ): Promise<{
@@ -16,9 +19,9 @@ export function EvaluateShowcaseStat(
 }> {
 	switch (details.mode) {
 		case "chart":
-			return EvaluateShowcaseChartStat(details, userID);
+			return EvaluateShowcaseChartStat(gpt, details, userID);
 		case "folder":
-			return EvaluateShowcaseFolderStat(details, userID);
+			return EvaluateShowcaseFolderStat(gpt, details, userID);
 
 		default:
 			// @ts-expect-error This should never happen anyway -- this ignore ignores a 'never' result.
@@ -26,13 +29,17 @@ export function EvaluateShowcaseStat(
 	}
 }
 
-async function EvaluateShowcaseChartStat(details: ShowcaseStatChart, userID: integer) {
+async function EvaluateShowcaseChartStat(
+	gpt: GPTString,
+	details: ShowcaseStatChart,
+	userID: integer
+) {
 	// requires special handling
-	if (details.property === "playcount") {
+	if (details.metric === "playcount") {
 		return { value: await db.scores.count({ chartID: details.chartID, userID }) };
 	}
 
-	const mongoProp = PropToMongoProp(details.property);
+	const mongoProp = PropToMongoProp(gpt, details.metric);
 
 	const pb = await db["personal-bests"].findOne(
 		{ chartID: details.chartID, userID },
@@ -43,12 +50,30 @@ async function EvaluateShowcaseChartStat(details: ShowcaseStatChart, userID: int
 		return { value: null };
 	}
 
-	const scProp = PropToScoreDataProp(details.property);
+	const metric = details.metric;
 
-	return { value: pb.scoreData[scProp] };
+	const gptConfig = GetGPTConfig(gpt);
+
+	const scoreMetricConfig = gptConfig.providedMetrics[metric] ?? gptConfig.derivedMetrics[metric];
+
+	if (!scoreMetricConfig) {
+		throw new Error(`Invalid metric of ${metric} passed for game ${gpt}.`);
+	}
+
+	if (scoreMetricConfig.type === "ENUM") {
+		// @ts-expect-error guaranteed to be correct
+		return { value: pb.scoreData.enumIndexes[metric] };
+	}
+
+	// @ts-expect-error guaranteed to be correct
+	return { value: pb.scoreData[metric] };
 }
 
-async function EvaluateShowcaseFolderStat(details: ShowcaseStatFolder, userID: integer) {
+async function EvaluateShowcaseFolderStat(
+	gpt: GPTString,
+	details: ShowcaseStatFolder,
+	userID: integer
+) {
 	let chartIDs;
 
 	if (Array.isArray(details.folderID)) {
@@ -57,7 +82,7 @@ async function EvaluateShowcaseFolderStat(details: ShowcaseStatFolder, userID: i
 		chartIDs = await GetFolderChartIDs(details.folderID);
 	}
 
-	const mongoProp = PropToMongoProp(details.property);
+	const mongoProp = PropToMongoProp(gpt, details.metric);
 
 	const value = await db["personal-bests"].count({
 		userID,
@@ -70,28 +95,18 @@ async function EvaluateShowcaseFolderStat(details: ShowcaseStatFolder, userID: i
 	return { value, outOf: chartIDs.length };
 }
 
-function PropToMongoProp(prop: "grade" | "lamp" | "percent" | "score") {
-	switch (prop) {
-		case "score":
-			return "scoreData.score";
-		case "lamp":
-			return "scoreData.lampIndex";
-		case "grade":
-			return "scoreData.gradeIndex";
-		case "percent":
-			return [`scoreData.${gptConfig.defaultMetric}`];
-	}
-}
+function PropToMongoProp(gpt: GPTString, metric: string) {
+	const gptConfig = GetGPTConfig(gpt);
 
-function PropToScoreDataProp(prop: "grade" | "lamp" | "percent" | "score") {
-	switch (prop) {
-		case "score":
-			return "score";
-		case "lamp":
-			return "lampIndex";
-		case "grade":
-			return "gradeIndex";
-		case "percent":
-			return "percent";
+	const scoreMetricConfig = gptConfig.providedMetrics[metric] ?? gptConfig.derivedMetrics[metric];
+
+	if (!scoreMetricConfig) {
+		throw new Error(`Invalid metric of ${metric} passed for game ${gpt}.`);
 	}
+
+	if (scoreMetricConfig.type === "ENUM") {
+		return `scoreData.enumIndexes.${metric}`;
+	}
+
+	return `scoreData.${metric}`;
 }

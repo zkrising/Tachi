@@ -830,7 +830,6 @@ export const FakeOtherUser: UserDocument = {
 	about: "",
 	authLevel: 0,
 	badges: [],
-	clan: null,
 	customBannerLocation: null,
 	customPfpLocation: null,
 	joinDate: 0,

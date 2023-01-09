@@ -40,7 +40,7 @@ export async function RecalcAllScores(filter = {}) {
 			modifiedUsers.add(`${c.game}-${c.playtype}-${c.userID}`);
 			modifiedUserIDs.add(c.userID);
 
-			const calculatedData = CreateScoreCalcData(c, chart);
+			const calculatedData = CreateScoreCalcData(c.game, c.scoreData, chart);
 
 			return { scoreID: c.scoreID, calculatedData };
 		},

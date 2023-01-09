@@ -18,19 +18,19 @@ t.test("#RemoveStaleFolderShowcaseStats", (t) => {
 						{
 							mode: "chart",
 							chartID: "foo",
-							property: "grade",
+							metric: "grade",
 						},
 						{
 							mode: "folder",
 							folderID: "REMOVED_FOLDER",
 							gte: 1,
-							property: "lamp",
+							metric: "lamp",
 						},
 						{
 							mode: "folder",
 							folderID: "NORMAL_FOLDER",
 							gte: 1,
-							property: "lamp",
+							metric: "lamp",
 						},
 					],
 				},
@@ -42,13 +42,13 @@ t.test("#RemoveStaleFolderShowcaseStats", (t) => {
 						{
 							mode: "chart",
 							chartID: "foo",
-							property: "grade",
+							metric: "grade",
 						},
 						{
 							mode: "folder",
 							folderID: "REMOVED_FOLDER",
 							gte: 1,
-							property: "lamp",
+							metric: "lamp",
 						},
 					],
 				},

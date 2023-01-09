@@ -30,13 +30,13 @@ const SetFolders = async () => {
 				{
 					folderID: TestingIIDXFolderSP10.folderID,
 					mode: "folder",
-					property: "lamp",
+					metric: "lamp",
 					gte: IIDX_LAMPS.HARD_CLEAR,
 				},
 				{
 					chartID: Testing511SPA.chartID,
 					mode: "chart",
-					property: "score",
+					metric: "score",
 				},
 			],
 			gameSpecific: {
@@ -96,7 +96,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 					{
 						mode: "folder",
 						folderID: TestingIIDXFolderSP10.folderID,
-						property: "score",
+						metric: "score",
 						gte: 1480,
 					},
 				],

@@ -1,5 +1,5 @@
 import db from "external/mongo/db";
-import { FormatGame, GetGamePTConfig, GetSpecificGPTConfig } from "tachi-common";
+import { FormatGame, GetGPTString, GetGamePTConfig, GetSpecificGPTConfig } from "tachi-common";
 import { GetFolderForIDGuaranteed, HumaniseChartID } from "utils/db";
 import { GetFolderChartIDs } from "utils/folder";
 import { FormatMaxDP, HumanisedJoinArray } from "utils/misc";
@@ -11,7 +11,9 @@ export async function CreateGoalTitle(
 	game: Game,
 	playtype: Playtype
 ) {
-	const formattedCriteria = FormatCriteria(criteria, game, playtype);
+	const gptString = GetGPTString(game, playtype);
+
+	const formattedCriteria = FormatCriteria(criteria, gptString);
 
 	const datasetName = await FormatCharts(charts, criteria, game);
 

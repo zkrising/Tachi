@@ -48,13 +48,13 @@ export default function UGPTStatCreator({
 			if (values.mode === "chart") {
 				stat = {
 					mode: "chart",
-					property: values.property as ShowcaseStatDetails["property"],
+					metric: values.property as ShowcaseStatDetails["metric"],
 					chartID: values.chartID ?? "",
 				};
 			} else if (values.mode === "folder") {
 				stat = {
 					mode: "folder",
-					property: values.property as "lamp" | "score" | "percent" | "grade",
+					metric: values.property as "lamp" | "score" | "percent" | "grade",
 					folderID: values.folderID ?? "",
 					gte,
 				};

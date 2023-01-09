@@ -43,11 +43,7 @@ export function FilterChartsAndSongs(
 }
 
 export function GetScoreIDsFromComposed(pb: PBScoreDocument) {
-	const arr = [pb.composedFrom.lampPB, pb.composedFrom.scorePB];
-
-	if (pb.composedFrom.other) {
-		arr.push(...pb.composedFrom.other.map((e) => e.scoreID));
-	}
+	const arr = pb.composedFrom.map((e) => e.scoreID);
 
 	return DedupeArr(arr);
 }

@@ -171,7 +171,7 @@ There's a remarkably easy way to do this, using GitHub's `gh` tool.
 
 === "Debian, Ubuntu, WSL Ubuntu"
 	```sh
-	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 23F3D4EA75716059
 	sudo apt-add-repository https://cli.github.com/packages
 	sudo apt update
 	sudo apt install gh

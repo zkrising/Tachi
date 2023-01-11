@@ -111,13 +111,18 @@ export function GetSpecificGPTConfig<GPT extends GPTString>(gpt: GPT) {
 export const allSupportedGames = Object.keys(GAME_CONFIGS) as Array<Game>;
 export const allGPTStrings = Object.keys(GAME_PT_CONFIGS) as Array<GPTString>;
 
-export function GetScoreMetrics(gptConfig: GamePTConfig, type?: ConfScoreMetric["type"]) {
+export function GetScoreMetrics(
+	gptConfig: GamePTConfig,
+	type?: Array<ConfScoreMetric["type"]> | ConfScoreMetric["type"]
+) {
 	let metrics = [
 		...Object.entries(gptConfig.providedMetrics),
 		...Object.entries(gptConfig.derivedMetrics),
 	];
 
-	if (type) {
+	if (Array.isArray(type)) {
+		metrics = metrics.filter(([_key, conf]) => type.includes(conf.type));
+	} else if (type) {
 		metrics = metrics.filter(([_key, conf]) => conf.type === type);
 	}
 

@@ -6,7 +6,7 @@ import { EvaluateUsersStatsShowcase } from "lib/showcase/get-stats";
 import { p } from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { RequireAuthedAsUser } from "server/router/api/v1/users/_userID/middleware";
-import { FormatGame, GetGPTString, GetGamePTConfig } from "tachi-common";
+import { FormatGame, GetGPTString, GetGamePTConfig, GetScoreMetrics } from "tachi-common";
 import { IsRecord } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
 import { GetUGPT } from "utils/req-tachi-data";
@@ -186,6 +186,8 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 
 	const stats = req.safeBody as Array<unknown>;
 
+	const availableMetrics = GetScoreMetrics(gptConfig, ["DECIMAL", "ENUM", "INTEGER"]);
+
 	for (const unvalidatedStat of stats) {
 		let err;
 
@@ -200,7 +202,7 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 			err = p(unvalidatedStat, {
 				chartID: "string",
 				mode: p.is("chart"),
-				property: p.isIn("grade", "lamp", "score", "percent", "playcount"),
+				property: p.isIn(availableMetrics),
 			});
 		} else if (unvalidatedStat.mode === "folder") {
 			err = p(unvalidatedStat, {
@@ -214,24 +216,40 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 					return false;
 				},
 				mode: p.is("folder"),
-				property: p.isIn("grade", "lamp", "score", "percent"),
+				property: p.isIn(availableMetrics),
 
 				gte: (self, parent) => {
 					if (typeof self !== "number") {
 						return "Expected a number.";
 					}
 
-					if (parent.property === "grade") {
-						return !!gptConfig.grades[self];
-					} else if (parent.property === "lamp") {
-						return !!gptConfig.lamps[self];
-					} else if (parent.property === "score") {
-						return p.isPositive(self);
-					} else if (parent.property === "percent") {
-						return p.isBetween(0, gptConfig.percentMax)(self);
+					if (typeof parent.property !== "string") {
+						return `Expected parent.property to be a string.`;
 					}
 
-					return `Invalid property of ${parent.property}`;
+					const conf =
+						gptConfig.providedMetrics[parent.property] ??
+						gptConfig.derivedMetrics[parent.property];
+
+					if (!conf) {
+						return `Invalid property ${
+							parent.property
+						}, Expected any of ${availableMetrics.join(", ")}.`;
+					}
+
+					if (conf.type === "ENUM") {
+						return p.isBoundedInteger(0, conf.values.length - 1)(self);
+					}
+
+					if (conf.type === "GRAPH" || conf.type === "NULLABLE_GRAPH") {
+						return "Cannot set a showcase stat for this metric.";
+					}
+
+					if (conf.chartDependentMax) {
+						return `Cannot set a folder showcase goal for this metric as it is chart dependent.`;
+					}
+
+					return conf.validate(self);
 				},
 			});
 		} else {

@@ -113,19 +113,20 @@ export type Judgements = {
 };
 
 export type Versions = {
-	[G in GPTString]: ExtractArrayElementType<typeof GAME_PT_CONFIGS[G]["versions"]>;
+	// https://stackoverflow.com/questions/51808160/keyof-inferring-string-number-when-key-is-only-a-string
+	[G in GPTString]: string & keyof typeof GAME_PT_CONFIGS[G]["versions"];
 };
 
 export type ScoreRatingAlgorithms = {
-	[G in GPTString]: keyof typeof GAME_PT_CONFIGS[G]["scoreRatingAlgs"];
+	[G in GPTString]: string & keyof typeof GAME_PT_CONFIGS[G]["scoreRatingAlgs"];
 };
 
 export type SessionRatingAlgorithms = {
-	[G in GPTString]: keyof typeof GAME_PT_CONFIGS[G]["sessionRatingAlgs"];
+	[G in GPTString]: string & keyof typeof GAME_PT_CONFIGS[G]["sessionRatingAlgs"];
 };
 
 export type ProfileRatingAlgorithms = {
-	[G in GPTString]: keyof typeof GAME_PT_CONFIGS[G]["profileRatingAlgs"];
+	[G in GPTString]: string & keyof typeof GAME_PT_CONFIGS[G]["profileRatingAlgs"];
 };
 
 export type AnyScoreRatingAlg = ScoreRatingAlgorithms[GPTString];
@@ -389,6 +390,9 @@ export interface SpecificGamePTConfig<GPT extends GPTString> {
 	/**
 	 * What versions do we support for this GPT?
 	 *
+	 * The keys are the version names, and the values are a humanised, prettified
+	 * form for them.
+	 *
 	 * Version are the way tachi disambiguates cases (typically in arcade games) where
 	 * a chart is modified.
 	 * For example, Rising in the Sun
@@ -404,7 +408,7 @@ export interface SpecificGamePTConfig<GPT extends GPTString> {
 	 * version this score was on. That way, we can make sure they resolve to the right
 	 * chart.
 	 */
-	versions: ReadonlyArray<Versions[GPT]>;
+	versions: Record<Versions[GPT], string>;
 
 	/**
 	 * Chart documents get their own GPT-specific record that they use for whatever

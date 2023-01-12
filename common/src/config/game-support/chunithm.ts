@@ -96,7 +96,9 @@ export const CHUNITHM_SINGLE_CONF = {
 
 	orderedJudgements: ["jcrit", "justice", "attack", "miss"],
 
-	versions: ["Paradise Lost"],
+	versions: {
+		paradiselost: "Paradise Lost",
+	},
 
 	chartData: z.strictObject({
 		inGameID: zodNonNegativeInt,

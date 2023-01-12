@@ -127,7 +127,7 @@ export async function EvaluateGoalForUser(
 				outOf: goal.criteria.value,
 				outOfHuman,
 				// @ts-expect-error completely ok, as it'll definitely be on these props.
-				progress: nextBestScore.scoreData[scoreDataKey],
+				progress: nextBestScore.scoreData[goal.criteria.key],
 				progressHuman: HumaniseGoalProgress(
 					gptString,
 					goal.criteria.key,

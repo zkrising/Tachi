@@ -78,8 +78,6 @@ t.test("GET /api/v1/games/:game/:playtype/charts/:chartID/playcount", (t) => {
 	t.test("Should return the total playcount on this chart.", async (t) => {
 		const pbs: Array<PBScoreDocument> = [];
 
-		delete TestingIIDXSPScorePB._id;
-
 		for (let i = 1; i <= 132; i++) {
 			pbs.push(deepmerge(TestingIIDXSPScorePB, { userID: i }) as PBScoreDocument);
 		}

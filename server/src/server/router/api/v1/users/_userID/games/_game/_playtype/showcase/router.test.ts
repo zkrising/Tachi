@@ -218,7 +218,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom", (t) =>
 		await db.charts.iidx.insert({
 			chartID: "testing_dp_chart",
 			playtype: "DP",
-		} as ChartDocument);
+		} as ChartDocument<"iidx:DP">);
 
 		const res2 = await mockApi.get(
 			`/api/v1/users/1/games/iidx/SP/showcase/custom?mode=chart&property=grade&chartID=testing_dp_chart`
@@ -377,7 +377,7 @@ t.test("PUT /api/v1/users/:userID/games/:game/:playtype/showcase", (t) => {
 		await db.charts.iidx.insert({
 			chartID: "testing_dp_chart",
 			playtype: "DP",
-		} as ChartDocument);
+		} as ChartDocument<"iidx:DP">);
 
 		const res2 = await mockApi
 			.put("/api/v1/users/1/games/iidx/SP/showcase")

@@ -38,8 +38,6 @@ function mkOutput(modifant: any = {}): DryScore<"museca:Single"> {
 		timeAchieved: ParseDateFromString("2019-06-06 08:14:22"),
 		service: "CG Dev",
 		scoreData: {
-			grade: "優",
-			percent: 91.2,
 			score: 912_000,
 			lamp: "CLEAR",
 			judgements: {

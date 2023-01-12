@@ -118,7 +118,7 @@ export async function UpdatePoyashiData() {
 		}
 
 		// current poyashi version is 29
-		const tachiChart = FindChartWithPTDFVersion(tachiSong.id, playtype, diff, "CastHour");
+		const tachiChart = FindChartWithPTDFVersion(tachiSong.id, playtype, diff, "29");
 
 		if (!tachiChart) {
 			logger.warn(

@@ -21,13 +21,6 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/quests", (t) => 
 
 		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/targets/quests");
 
-		delete TestingIIDXSPQuest._id;
-		delete TestingIIDXSPQuestSub._id;
-
-		for (const goal of IIDXSPQuestGoals) {
-			delete goal._id;
-		}
-
 		t.strictSame(res.body.body, {
 			quests: [TestingIIDXSPQuest],
 			questSubs: [TestingIIDXSPQuestSub],
@@ -64,14 +57,6 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/quests/:questID"
 		const res = await mockApi.get(
 			`/api/v1/users/1/games/iidx/SP/targets/quests/${TestingIIDXSPQuest.questID}`
 		);
-
-		// i hate the fact that monk just adds this to objects! terrible.
-		delete TestingIIDXSPQuest._id;
-		delete TestingIIDXSPQuestSub._id;
-
-		for (const goal of IIDXSPQuestGoals) {
-			delete goal._id;
-		}
 
 		t.strictSame(res.body.body, {
 			quest: TestingIIDXSPQuest,
@@ -246,7 +231,6 @@ t.test("DELETE /api/v1/users/:userID/games/:game/:playtype/targets/quests/:quest
 
 		t.equal(res.statusCode, 200);
 
-		delete TestingIIDXSPQuest._id;
 		t.strictSame(res.body.body.quest, TestingIIDXSPQuest);
 
 		const dbRes = await db["quest-subs"].findOne({

@@ -70,22 +70,22 @@ export function ResolveS3Lamp(data: S3Score): GetEnumValue<"iidx:DP" | "iidx:SP"
 }
 
 const S3_VERSION_CONV: Record<string, Versions["iidx:SP"]> = {
-	"3rd": "3rd Style CS",
-	"4th": "4th Style CS",
-	"5th": "5th Style CS",
-	"6th": "6th Style CS",
-	"7th": "7th Style CS",
-	"8th": "8th Style CS",
-	"9th": "9th Style CS",
-	"10th": "10th Style CS",
-	red: "IIDX RED CS",
-	hs: "HAPPY SKY CS",
-	dd: "DISTORTED CS",
-	gold: "GOLD CS",
-	djt: "DJ TROOPERS CS",
-	emp: "EMPRESS CS",
-	pb: "EMPRESS CS",
-	us: "BEATMANIA US",
+	"3rd": "3-cs",
+	"4th": "4-cs",
+	"5th": "5-cs",
+	"6th": "6-cs",
+	"7th": "7-cs",
+	"8th": "8-cs",
+	"9th": "9-cs",
+	"10th": "10-cs",
+	red: "11-cs",
+	hs: "12-cs",
+	dd: "13-cs",
+	gold: "14-cs",
+	djt: "15-cs",
+	emp: "16-cs",
+	pb: "16-cs",
+	us: "bmus",
 };
 
 function ConvertVersion(joinedStyles: string) {

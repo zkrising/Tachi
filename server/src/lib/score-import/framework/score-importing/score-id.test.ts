@@ -1,8 +1,9 @@
 import { CreateScoreID, GetWithScoreID } from "./score-id";
 import t from "tap";
+import { dmf } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
 import { Testing511SPA, TestingIIDXSPDryScore } from "test-utils/test-data";
-import type { ScoreDocument } from "tachi-common";
+import type { DryScoreData } from "../common/types";
 
 t.test("#GetWithScoreID", async (t) => {
 	await ResetDBState();
@@ -19,75 +20,59 @@ t.test("#GetWithScoreID", async (t) => {
 });
 
 t.test("#CreateScoreID", (t) => {
-	const scoreID = CreateScoreID(1, TestingIIDXSPDryScore, Testing511SPA.chartID);
+	const scoreID = CreateScoreID("iidx:SP", 1, TestingIIDXSPDryScore, Testing511SPA.chartID);
 
 	t.match(
 		scoreID,
-		/^R[0-9a-f]{40}/u,
-		"Should return an R followed by 40 characters of lowercase hex as scoreID."
+		/^T[0-9a-f]{40}/u,
+		"Should return an T followed by 40 characters of lowercase hex as scoreID."
 	);
 
 	t.not(
 		scoreID,
-		CreateScoreID(2, TestingIIDXSPDryScore, Testing511SPA.chartID),
+		CreateScoreID("iidx:SP", 2, TestingIIDXSPDryScore, Testing511SPA.chartID),
 		"Hash should be affected by userID."
 	);
 
 	t.equal(
 		scoreID,
-		CreateScoreID(1, TestingIIDXSPDryScore, Testing511SPA.chartID),
+		CreateScoreID("iidx:SP", 1, TestingIIDXSPDryScore, Testing511SPA.chartID),
 		"ScoreIDs should be consistently generatable"
 	);
 
-	// duplicate score
-	const minimalScore = {
-		scoreData: {
-			percent: TestingIIDXSPDryScore.scoreData.percent,
-			score: TestingIIDXSPDryScore.scoreData.score,
-			grade: TestingIIDXSPDryScore.scoreData.grade,
-			lamp: TestingIIDXSPDryScore.scoreData.lamp,
-		},
-	};
-
 	t.equal(
 		scoreID,
-		CreateScoreID(1, minimalScore as ScoreDocument, Testing511SPA.chartID),
-		"ScoreIDs should only be affected by score, percent, grade and lamp."
+		CreateScoreID(
+			"iidx:SP",
+			1,
+			dmf(TestingIIDXSPDryScore, {
+				scoreData: {
+					optional: {
+						bp: 293,
+					},
+					judgements: {
+						bad: 129,
+					},
+				} as DryScoreData<"iidx:SP">,
+			}),
+			Testing511SPA.chartID
+		),
+		"ScoreIDs should only be affected by score metrics."
 	);
-
-	minimalScore.scoreData.percent = 0;
 
 	t.not(
 		scoreID,
-		CreateScoreID(1, minimalScore as ScoreDocument, Testing511SPA.chartID),
-		"ScoreIDs should not produce the same value if percent is different."
-	);
-
-	minimalScore.scoreData.percent = TestingIIDXSPDryScore.scoreData.percent;
-	minimalScore.scoreData.score = 0;
-
-	t.not(
-		scoreID,
-		CreateScoreID(1, minimalScore as ScoreDocument, Testing511SPA.chartID),
-		"ScoreIDs should not produce the same value if score is different."
-	);
-
-	minimalScore.scoreData.score = TestingIIDXSPDryScore.scoreData.score;
-	minimalScore.scoreData.lamp = "ASSIST CLEAR";
-
-	t.not(
-		scoreID,
-		CreateScoreID(1, minimalScore as ScoreDocument, Testing511SPA.chartID),
-		"ScoreIDs should not produce the same value if lamp is different."
-	);
-
-	minimalScore.scoreData.lamp = TestingIIDXSPDryScore.scoreData.lamp;
-	minimalScore.scoreData.grade = "F";
-
-	t.not(
-		scoreID,
-		CreateScoreID(1, minimalScore as ScoreDocument, Testing511SPA.chartID),
-		"ScoreIDs should not produce the same value if grade is different."
+		CreateScoreID(
+			"iidx:SP",
+			1,
+			dmf(TestingIIDXSPDryScore, {
+				scoreData: {
+					score: 0,
+				} as DryScoreData<"iidx:SP">,
+			}),
+			Testing511SPA.chartID
+		),
+		"ScoreIDs should not produce the same value if a provided metric is different."
 	);
 
 	t.end();

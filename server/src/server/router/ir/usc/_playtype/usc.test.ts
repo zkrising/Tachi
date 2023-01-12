@@ -24,7 +24,6 @@ const mockScorePB: PBScoreDocument<"usc:Controller" | "usc:Keyboard"> = {
 		rivalRank: null,
 	},
 	scoreData: {
-		esd: null,
 		grade: "AAA+",
 		gradeIndex: 7,
 		judgements: {

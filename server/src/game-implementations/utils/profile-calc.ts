@@ -32,12 +32,10 @@ function CalcN<GPT extends GPTString>(
 				playtype,
 				userID,
 				isPrimary: true,
-				// @ts-expect-error what? this can't be a symbol.
 				[`calculatedData.${key}`]: { $type: "number" },
 			},
 			{
 				limit: n,
-				// @ts-expect-error what? this can't be a symbol.
 				sort: { [`calculatedData.${key}`]: -1 },
 			}
 		);

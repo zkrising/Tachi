@@ -16,7 +16,7 @@ export const ConverterKsHookSV6CStatic: ConverterFunction<
 > = async (data, context, importType, logger) => {
 	const diff = SV6CConvertDifficulty(data.difficulty);
 
-	const chart = await FindSDVXChartOnInGameIDVersion(data.music_id, diff, "Konaste");
+	const chart = await FindSDVXChartOnInGameIDVersion(data.music_id, diff, "konaste");
 
 	if (!chart) {
 		throw new SongOrChartNotFoundFailure(

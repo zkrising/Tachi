@@ -38,7 +38,7 @@ export type INTERNAL_GAME_PT_CONFIG = Readonly<{
 
 	orderedJudgements: ReadonlyArray<string>;
 
-	versions: ReadonlyArray<string>;
+	versions: Record<string, string>;
 
 	supportedMatchTypes: ReadonlyArray<MatchTypes>;
 

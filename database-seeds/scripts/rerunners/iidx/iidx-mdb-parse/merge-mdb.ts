@@ -236,7 +236,7 @@ async function ParseIIDXMDB() {
 					levelNum: level,
 					isPrimary: true,
 					playtype: diffName.split("-")[0] as "SP" | "DP",
-					rgcID: null,
+					
 					songID: song.id,
 					tierlistInfo: {},
 					versions: [options.version],

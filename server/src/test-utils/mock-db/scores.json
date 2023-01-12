@@ -10,14 +10,15 @@
 			"lamp": "HARD CLEAR",
 			"percent": 50,
 			"grade": "C",
-			"esd": 30,
-			"gradeIndex": 3,
-			"lampIndex": 4,
 			"judgements": {
 				"pgreat": 50,
 				"great": 10
 			},
-			"hitMeta": {}
+			"enumIndexes": {
+				"grade": 3,
+				"lamp": 4
+			},
+			"optional": {}
 		},
 		"scoreMeta": {},
 		"calculatedData": {

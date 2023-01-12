@@ -569,7 +569,7 @@ t.test("#ConverterFn", (t) => {
 	});
 
 	const baseJubeatScore: BatchManualScore = {
-		percent: 10,
+		musicRate: 10,
 		score: 920_000,
 		identifier: "1",
 		lamp: "CLEAR",
@@ -613,7 +613,7 @@ t.test("#ConverterFn", (t) => {
 		t.rejects(
 			() =>
 				ConverterBatchManual(
-					deepmerge(baseJubeatScore, { percent: undefined }),
+					deepmerge(baseJubeatScore, { musicRate: undefined }),
 					{ game: "jubeat", service: "foo", playtype: "Single", version: null },
 					importType,
 					logger
@@ -630,7 +630,7 @@ t.test("#ConverterFn", (t) => {
 			t.rejects(
 				() =>
 					ConverterBatchManual(
-						deepmerge(baseJubeatScore, { percent: 0.1, score: 100_000 } as Partial<
+						deepmerge(baseJubeatScore, { musicRate: 0.1, score: 100_000 } as Partial<
 							BatchManualScore<"jubeat:Single">
 						>),
 						{ game: "jubeat", service: "foo", playtype: "Single", version: null },

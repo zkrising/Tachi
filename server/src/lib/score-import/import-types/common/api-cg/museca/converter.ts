@@ -89,7 +89,7 @@ function ConvertDifficulty(diff: number): Difficulties["museca:Single"] {
 function ConvertVersion(ver: number): Versions["museca:Single"] {
 	switch (ver) {
 		case 1:
-			return "1 + 1/2 Rev. B";
+			return "1.5-b";
 	}
 
 	throw new InvalidScoreFailure(`Unknown/Unsupported Game Version ${ver}.`);

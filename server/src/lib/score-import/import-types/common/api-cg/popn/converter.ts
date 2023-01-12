@@ -91,7 +91,7 @@ function ConvertDifficulty(diff: number): Difficulties["popn:9B"] {
 function ConvertVersion(ver: number): Versions["popn:9B"] {
 	switch (ver) {
 		case 26:
-			return "Kaimei Riddles";
+			return "kaimei";
 		case 25:
 			return "peace";
 	}

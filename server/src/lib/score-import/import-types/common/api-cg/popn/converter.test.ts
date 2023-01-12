@@ -37,19 +37,15 @@ function mkOutput(modifant: any = {}): DryScore<"popn:9B"> {
 		timeAchieved: ParseDateFromString("2019-06-06 08:14:22"),
 		service: "CG Dev",
 		scoreData: {
-			grade: "A",
-			percent: 87,
+			clearMedal: "clearCircle",
 			score: 87000,
-			lamp: "CLEAR",
 			judgements: {
 				cool: 100,
 				great: 15,
 				good: 25,
 				bad: 50,
 			},
-			optional: {
-				specificClearType: "clearCircle",
-			},
+			optional: {},
 		},
 		scoreMeta: {},
 	};

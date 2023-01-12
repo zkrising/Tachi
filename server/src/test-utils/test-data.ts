@@ -50,8 +50,6 @@ export const TestingIIDXSPDryScore: DryScore<"iidx:SP"> = {
 	scoreData: {
 		score: 786,
 		lamp: "CLEAR",
-		percent: 50,
-		grade: "C",
 		judgements: {
 			pgreat: 50,
 			great: 10,
@@ -71,26 +69,25 @@ export const TestingIIDXSPScorePB: PBScoreDocument<"iidx:SP"> = {
 		ktLampRating: 0,
 		BPI: 10.1,
 	},
-	composedFrom: {
-		scorePB: "TESTING_SCORE_ID",
-		lampPB: "TESTING_SCORE_ID",
-	},
+	composedFrom: [{ name: "Best Score", scoreID: "TESTING_SCORE_ID" }],
 	highlight: false,
 	isPrimary: true,
 	scoreData: {
 		score: 1479,
 		percent: 94.08396946564885,
-		esd: 10.64453125,
 		grade: "AAA",
-		gradeIndex: 7,
 		lamp: "EX HARD CLEAR",
-		lampIndex: 6,
+		enumIndexes: {
+			grade: 7,
+			lamp: 6,
+		},
 		judgements: {
 			pgreat: 697,
 			great: 85,
 		},
 		optional: {
 			bp: 2,
+			enumIndexes: {},
 		},
 	},
 	rankingData: {
@@ -110,22 +107,22 @@ export const TestingJubeatPB: PBScoreDocument<"jubeat:Single"> = {
 	calculatedData: {
 		jubility: 5,
 	},
-	composedFrom: {
-		scorePB: "TESTING_SCORE_ID",
-		lampPB: "TESTING_SCORE_ID",
-	},
+	composedFrom: [{ name: "Best Score", scoreID: "TESTING_SCORE_ID" }],
 	highlight: false,
 	isPrimary: true,
 	scoreData: {
 		score: 986_000,
-		percent: 94.11,
+		musicRate: 94.11,
 		grade: "A",
-		gradeIndex: 7,
 		lamp: "CLEAR",
-		lampIndex: 6,
+		enumIndexes: {
+			grade: 7,
+			lamp: 6,
+		},
 		judgements: {},
-		optional: {},
-		esd: null,
+		optional: {
+			enumIndexes: {},
+		},
 	},
 	rankingData: {
 		rank: 1,
@@ -148,14 +145,17 @@ export const TestingIIDXSPScore: ScoreDocument<"iidx:SP"> = {
 		lamp: "CLEAR",
 		percent: 50,
 		grade: "C",
-		esd: 30,
-		gradeIndex: 3,
-		lampIndex: 4,
+		enumIndexes: {
+			grade: 3,
+			lamp: 4,
+		},
 		judgements: {
 			pgreat: 50,
 			great: 10,
 		},
-		optional: {},
+		optional: {
+			enumIndexes: {},
+		},
 	},
 	scoreMeta: {},
 	calculatedData: {
@@ -180,13 +180,15 @@ export const TestingSDVXScore: ScoreDocument<"sdvx:Single"> = {
 	scoreData: {
 		score: 786,
 		lamp: "CLEAR",
-		percent: 50,
 		grade: "C",
-		esd: 30,
-		gradeIndex: 3,
-		lampIndex: 4,
+		enumIndexes: {
+			grade: 3,
+			lamp: 4,
+		},
 		judgements: {},
-		optional: {},
+		optional: {
+			enumIndexes: {},
+		},
 	},
 	scoreMeta: {},
 	calculatedData: {},
@@ -210,13 +212,15 @@ export const TestingSDVXPB: PBScoreDocument<"sdvx:Single"> = {
 	scoreData: {
 		score: 786,
 		lamp: "CLEAR",
-		percent: 50,
 		grade: "C",
-		esd: 30,
-		gradeIndex: 3,
-		lampIndex: 4,
+		enumIndexes: {
+			grade: 3,
+			lamp: 4,
+		},
 		judgements: {},
-		optional: {},
+		optional: {
+			enumIndexes: {},
+		},
 	},
 	calculatedData: {},
 	timeAchieved: 1619454485988,
@@ -226,10 +230,7 @@ export const TestingSDVXPB: PBScoreDocument<"sdvx:Single"> = {
 	chartID: "5088a4d0e1ee9d0cc2f625934306e45b1a60699b",
 	highlight: false,
 	isPrimary: true,
-	composedFrom: {
-		lampPB: "score_1",
-		scorePB: "score_1",
-	},
+	composedFrom: [{ name: "Best Score", scoreID: "score_1 " }],
 	rankingData: {
 		outOf: 1,
 		rank: 1,
@@ -238,7 +239,6 @@ export const TestingSDVXPB: PBScoreDocument<"sdvx:Single"> = {
 };
 
 export const TestingSDVXAlbidaChart: ChartDocument<"sdvx:Single"> = {
-	rgcID: null,
 	chartID: "5088a4d0e1ee9d0cc2f625934306e45b1a60699b",
 	difficulty: "ADV",
 	songID: 1,
@@ -247,10 +247,10 @@ export const TestingSDVXAlbidaChart: ChartDocument<"sdvx:Single"> = {
 	level: "10",
 	data: {
 		inGameID: 1,
+		clearTier: null,
 	},
 	isPrimary: true,
 	versions: ["booth", "inf", "gw", "heaven", "vivid", "exceed", "konaste"],
-	tierlistInfo: {},
 };
 
 export const TestingKsHookSV6CScore: KsHookSV6CScore = {
@@ -294,15 +294,18 @@ export const TestingBMS7KScore: ScoreDocument<"bms:7K"> = {
 	isPrimary: true,
 	playtype: "7K",
 	scoreData: {
-		esd: null,
 		grade: "A",
-		gradeIndex: 5,
-		optional: {},
 		judgements: {},
 		lamp: "HARD CLEAR",
-		lampIndex: 4,
 		percent: 40,
 		score: 1030,
+		enumIndexes: {
+			lamp: 4,
+			grade: 5,
+		},
+		optional: {
+			enumIndexes: {},
+		},
 	},
 	scoreID: "test_bms_score",
 	scoreMeta: {},
@@ -338,7 +341,6 @@ export const TestingLR2HookScore: LR2HookScore = {
 
 export const TestingJubeatChart: ChartDocument<"jubeat:Single"> = {
 	chartID: "b90a319f18d1a746b330b8f4cd6f74874f664421",
-	rgcID: null,
 	songID: 1,
 	level: "6",
 	levelNum: 6,
@@ -347,14 +349,11 @@ export const TestingJubeatChart: ChartDocument<"jubeat:Single"> = {
 	playtype: "Single",
 	data: {
 		inGameID: 10000001,
-		isHardMode: false,
 	},
-	tierlistInfo: {},
 	versions: ["festo"],
 };
 
 export const Testing511SPA: ChartDocument<"iidx:SP"> = {
-	rgcID: null,
 	chartID: "c2311194e3897ddb5745b1760d2c0141f933e683",
 	difficulty: "ANOTHER",
 	songID: 1,
@@ -369,8 +368,10 @@ export const Testing511SPA: ChartDocument<"iidx:SP"> = {
 		bpiCoefficient: null,
 		kaidenAverage: null,
 		worldRecord: null,
+		exhcTier: null,
+		hcTier: null,
+		ncTier: null,
 	},
-	tierlistInfo: {},
 	isPrimary: true,
 	versions: [
 		"27-omni",
@@ -400,7 +401,6 @@ export const Testing511Song: SongDocument<"iidx"> = {
 };
 
 export const TestingAlbidaADV: ChartDocument<"sdvx:Single"> = {
-	rgcID: null,
 	chartID: "5088a4d0e1ee9d0cc2f625934306e45b1a60699b",
 	difficulty: "ADV",
 	songID: 1,
@@ -409,10 +409,10 @@ export const TestingAlbidaADV: ChartDocument<"sdvx:Single"> = {
 	level: "10",
 	data: {
 		inGameID: 1,
+		clearTier: null,
 	},
 	isPrimary: true,
 	versions: ["booth", "inf", "gw", "heaven", "vivid", "exceed", "konaste"],
-	tierlistInfo: {},
 };
 
 export const TestingSDVXAlbidaSong: SongDocument<"sdvx"> = {
@@ -429,7 +429,6 @@ export const TestingSDVXAlbidaSong: SongDocument<"sdvx"> = {
 export const BMSGazerChart: ChartDocument<"bms:7K"> = {
 	songID: 27339,
 	chartID: "88eb6cc5683e2740cbd07f588a5f3db1db8d467b",
-	rgcID: null,
 	data: {
 		aiLevel: "0",
 		notecount: 2256,
@@ -441,6 +440,8 @@ export const BMSGazerChart: ChartDocument<"bms:7K"> = {
 				table: "★",
 			},
 		],
+		sglEC: null,
+		sglHC: null,
 	},
 	level: "?",
 	levelNum: 0,
@@ -448,7 +449,6 @@ export const BMSGazerChart: ChartDocument<"bms:7K"> = {
 	playtype: "7K",
 	isPrimary: true,
 	versions: [],
-	tierlistInfo: {},
 };
 
 export const BMSGazerSong: SongDocument<"bms"> = {
@@ -466,7 +466,6 @@ export const BMSGazerSong: SongDocument<"bms"> = {
 };
 
 export const CHUNITHMBBKKChart: ChartDocument<"chunithm:Single"> = {
-	rgcID: null,
 	chartID: "192b96bdb6150f80ba6412ce02df1249e16c0cb0",
 	difficulty: "BASIC",
 	songID: 3,
@@ -476,7 +475,6 @@ export const CHUNITHMBBKKChart: ChartDocument<"chunithm:Single"> = {
 	data: {
 		inGameID: 3,
 	},
-	tierlistInfo: {},
 	isPrimary: true,
 	versions: ["paradiselost"],
 };
@@ -492,8 +490,6 @@ export const TestingDoraChart: ChartDocument<"gitadora:Dora"> = {
 		inGameID: 0,
 	},
 	isPrimary: true,
-	rgcID: null,
-	tierlistInfo: {},
 	versions: ["konaste"],
 };
 
@@ -508,8 +504,6 @@ export const TestingWaccaPupaExp: ChartDocument<"wacca:Single"> = {
 		isHot: false,
 	},
 	isPrimary: true,
-	rgcID: null,
-	tierlistInfo: {},
 	versions: ["reverse"],
 };
 
@@ -533,8 +527,6 @@ export const TestingSDVXSingleDryScore: DryScore<"sdvx:Single"> = {
 	scoreData: {
 		score: 9_500_000,
 		lamp: "EXCESSIVE CLEAR",
-		percent: 95,
-		grade: "AA+",
 		judgements: {},
 		optional: {},
 	},
@@ -548,10 +540,8 @@ export const TestingGITADORADoraDryScore: DryScore<"gitadora:Dora"> = {
 	service: "fake-service",
 	game: "gitadora",
 	scoreData: {
-		score: 70.76,
 		lamp: "CLEAR",
 		percent: 70.76,
-		grade: "B",
 		judgements: {},
 		optional: {},
 	},
@@ -606,7 +596,7 @@ export const HC511Goal: GoalDocument = {
 	criteria: {
 		mode: "single",
 		value: 5,
-		key: "scoreData.lampIndex",
+		key: "lamp",
 	},
 };
 
@@ -676,8 +666,8 @@ export const TestingIIDXSPQuest: QuestDocument = {
 export const IIDXSPQuestGoals: Array<GoalDocument> = [
 	dm(HC511Goal, { goalID: "eg_goal_1" }) as GoalDocument,
 	dm(HC511Goal, { goalID: "eg_goal_2", criteria: { value: 2 } }),
-	dm(HC511Goal, { goalID: "eg_goal_3", criteria: { key: "scoreData.score", value: 300 } }),
-	dm(HC511Goal, { goalID: "eg_goal_4", criteria: { key: "scoreData.score", value: 1100 } }),
+	dm(HC511Goal, { goalID: "eg_goal_3", criteria: { key: "score", value: 300 } }),
+	dm(HC511Goal, { goalID: "eg_goal_4", criteria: { key: "score", value: 1100 } }),
 ];
 
 export const IIDXSPQuestGoalSubs: Array<GoalSubscriptionDocument> = [
@@ -780,7 +770,6 @@ export const MockBarbatosSDVX6Score: BarbatosSDVX6Score = {
 };
 
 export const uscChart: ChartDocument<"usc:Controller" | "usc:Keyboard"> = {
-	rgcID: null,
 	chartID: "USC_CHART_ID",
 	difficulty: "NOV",
 	songID: 1,
@@ -793,7 +782,6 @@ export const uscChart: ChartDocument<"usc:Controller" | "usc:Keyboard"> = {
 		effector: "foo",
 		tableFolders: [],
 	},
-	tierlistInfo: {},
 	isPrimary: true,
 	versions: [],
 };

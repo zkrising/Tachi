@@ -117,17 +117,17 @@ export function ConvertDifficulty(diff: number) {
 export function ConvertVersion(ver: number): Versions["sdvx:Single"] {
 	switch (ver) {
 		case 1:
-			return "BOOTH";
+			return "booth";
 		case 2:
-			return "infinite infection";
+			return "inf";
 		case 3:
-			return "GRAVITY WARS";
+			return "gw";
 		case 4:
-			return "HEAVENLY HAVEN";
+			return "heaven";
 		case 5:
-			return "VIVID WAVE";
+			return "vivid";
 		case 6:
-			return "EXCEED GEAR";
+			return "exceed";
 	}
 
 	throw new InvalidScoreFailure(`Unknown Game Version ${ver}.`);

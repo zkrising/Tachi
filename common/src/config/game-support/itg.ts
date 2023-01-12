@@ -101,7 +101,7 @@ export const ITG_STAMINA_CONF = {
 
 	orderedJudgements: ["15ms", "fantastic", "excellent", "great", "decent", "wayoff", "miss"],
 
-	versions: [],
+	versions: {},
 
 	chartData: z.strictObject({
 		hashGSv3: z.string(),

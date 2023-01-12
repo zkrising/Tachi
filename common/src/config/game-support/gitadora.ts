@@ -108,7 +108,9 @@ export const GITADORA_GITA_CONF = {
 
 	orderedJudgements: ["perfect", "great", "good", "ok", "miss"],
 
-	versions: ["Konaste"],
+	versions: {
+		konaste: "Konaste",
+	},
 
 	chartData: z.strictObject({
 		inGameID: zodNonNegativeInt,

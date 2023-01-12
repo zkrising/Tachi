@@ -1,3 +1,4 @@
+import { IIDXDans } from "tachi-common/config/game-support/iidx";
 import type { ClassProvider } from "lib/score-import/framework/calculated-data/types";
 import type { integer } from "tachi-common";
 
@@ -25,15 +26,15 @@ export function CreateFerStaticClassProvider(body: Record<string, unknown>): Cla
 			return;
 		}
 
-		const intIndex = index as integer;
+		const dan = IIDXDans[index as integer];
 
-		if (intIndex < 0 || intIndex > 18) {
+		if (!dan) {
 			logger.warn(`Invalid fer-static class of ${index}. Skipping.`);
 			return;
 		}
 
 		return {
-			dan: intIndex,
+			dan,
 		};
 	};
 }

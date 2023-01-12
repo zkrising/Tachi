@@ -10,21 +10,14 @@
 					"table": "P●",
 					"level": "1"
 				}
-			]
+			],
+			"sglEC": 46,
+			"sglHC": 46
 		},
 		"level": "?",
 		"levelNum": 0,
 		"playtype": "Controller",
-		"rgcID": null,
 		"songID": 1,
-		"tierlistInfo": {
-			"sgl-EC": {
-				"value": 46
-			},
-			"sgl-HC": {
-				"value": 46
-			}
-		},
 		"versions": []
 	},
 	{
@@ -38,21 +31,14 @@
 					"table": "P●",
 					"level": "1"
 				}
-			]
+			],
+			"sglEC": 46,
+			"sglHC": 46
 		},
 		"level": "?",
 		"levelNum": 0,
 		"playtype": "Keyboard",
-		"rgcID": null,
 		"songID": 1,
-		"tierlistInfo": {
-			"sgl-EC": {
-				"value": 46
-			},
-			"sgl-HC": {
-				"value": 46
-			}
-		},
 		"versions": []
 	}
 ]

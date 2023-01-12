@@ -122,7 +122,11 @@ t.test("#ParseMyPageScraperPlayerCSV", (t) => {
 
 		const file = MockMulterFile(buffer, "player.csv");
 
-		const { iterable, game, classProvider: classProvider } = ParseMyPageScraperPlayerCSV(file, {}, logger);
+		const {
+			iterable,
+			game,
+			classProvider: classProvider,
+		} = ParseMyPageScraperPlayerCSV(file, {}, logger);
 
 		t.equal(game, "wacca");
 
@@ -132,7 +136,7 @@ t.test("#ParseMyPageScraperPlayerCSV", (t) => {
 
 		// There's no good way to test that the classProvider got a valid
 		// MyPagePlayerStage, so we just call it to see.
-		t.strictSame(classProvider!("wacca", "Single", 0, {}, logger), {
+		t.strictSame(classProvider!("wacca:Single", 0, {}, logger), {
 			stageUp: WACCA_STAGEUPS.XII,
 		});
 

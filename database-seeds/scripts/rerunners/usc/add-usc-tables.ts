@@ -201,10 +201,10 @@ for (const tableFile of options.charts) {
 					// So it doesn't give VF. (Consider changing this.)
 					levelNum: 0,
 					playtype,
-					rgcID: null,
+					
 					songID,
 					tierlistInfo: {},
-					versions: [],
+					versions: {},
 				});
 			}
 		}

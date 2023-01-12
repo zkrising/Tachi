@@ -201,11 +201,11 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 					"Should only update the mutated properties."
 				);
 
-				const data = await db["game-settings"].findOne({
+				const data = (await db["game-settings"].findOne({
 					userID: 1,
 					game: "iidx",
 					playtype: "SP",
-				});
+				})) as UGPTSettingsDocument<"iidx:SP"> | undefined;
 
 				t.equal(data?.preferences.gameSpecific.bpiTarget, target);
 

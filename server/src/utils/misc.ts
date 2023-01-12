@@ -326,7 +326,7 @@ export function StringIsGameVersion(
 ): version is Versions[GPTString] {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	return gptConfig.versions.includes(version);
+	return Object.keys(gptConfig.versions).includes(version);
 }
 
 /**

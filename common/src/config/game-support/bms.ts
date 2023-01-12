@@ -239,7 +239,7 @@ export const BMS_7K_CONF = {
 
 	orderedJudgements: ["pgreat", "great", "good", "bad", "poor"],
 
-	versions: [],
+	versions: {},
 
 	chartData: z.strictObject({
 		notecount: zodNonNegativeInt,

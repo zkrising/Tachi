@@ -11,7 +11,7 @@ import {
 	GetKTDataJSON,
 } from "test-utils/test-data";
 import { Random20Hex, Sleep } from "utils/misc";
-import type { ChartDocument, SongDocument } from "tachi-common";
+import type { ChartDocument, GPTStrings, SongDocument } from "tachi-common";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function TestHeaders(url: string, data: any) {
@@ -444,11 +444,13 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 	t.test("Should accept a fervidex-static body", async (t) => {
 		await db.songs.iidx.remove({});
 		await db.songs.iidx.insert(
-			GetKTDataJSON("./tachi/tachi-songs-iidx.json") as Array<SongDocument>
+			GetKTDataJSON("./tachi/tachi-songs-iidx.json") as Array<SongDocument<"iidx">>
 		);
 		await db.charts.iidx.remove({});
 		await db.charts.iidx.insert(
-			GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<ChartDocument>
+			GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<
+				ChartDocument<GPTStrings["iidx"]>
+			>
 		);
 
 		const res = await mockApi
@@ -483,14 +485,15 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 	});
 
 	t.test("Should allow requests from non INF2 if forceStaticImport is true.", async (t) => {
-		await db["fer-settings"].update({ userID: 1 }, { $set: { forceStaticImport: true } });
 		await db.songs.iidx.remove({});
 		await db.songs.iidx.insert(
-			GetKTDataJSON("./tachi/tachi-songs-iidx.json") as Array<SongDocument>
+			GetKTDataJSON("./tachi/tachi-songs-iidx.json") as Array<SongDocument<"iidx">>
 		);
 		await db.charts.iidx.remove({});
 		await db.charts.iidx.insert(
-			GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<ChartDocument>
+			GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<
+				ChartDocument<GPTStrings["iidx"]>
+			>
 		);
 
 		const res = await mockApi

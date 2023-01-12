@@ -278,27 +278,27 @@ export const ConvertAPIKaiIIDX: ConverterFunction<unknown, KaiContext> = async (
 function ConvertVersion(version: integer): Versions["iidx:DP" | "iidx:SP"] {
 	switch (version) {
 		case 20:
-			return "tricoro";
+			return "20";
 		case 21:
-			return "SPADA";
+			return "21";
 		case 22:
-			return "PENDUAL";
+			return "22";
 		case 23:
-			return "copula";
+			return "23";
 		case 24:
-			return "SINOBUZ";
+			return "24";
 		case 25:
-			return "CANNON BALLERS";
+			return "25";
 		case 26:
-			return "ROOTAGE";
+			return "26";
 		case 27:
-			return "HEROIC VERSE";
+			return "27";
 		case 28:
-			return "BISTROVER";
+			return "28";
 		case 29:
-			return "CastHour";
+			return "29";
 		case 30:
-			return "Resident";
+			return "30";
 	}
 
 	throw new InvalidScoreFailure(`Unsupported version ${version}.`);

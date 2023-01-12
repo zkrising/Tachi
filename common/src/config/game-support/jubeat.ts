@@ -91,7 +91,17 @@ export const JUBEAT_SINGLE_CONF = {
 
 	orderedJudgements: ["perfect", "great", "good", "poor", "miss"],
 
-	versions: ["jubeat", "ripples", "knit", "copious", "saucer", "prop", "Qubell", "clan", "festo"],
+	versions: {
+		jubeat: "jubeat",
+		ripples: "ripples",
+		knit: "knit",
+		copious: "copious",
+		saucer: "saucer",
+		prop: "prop",
+		qubell: "Qubell",
+		clan: "clan",
+		festo: "festo",
+	},
 
 	chartData: z.strictObject({
 		inGameID: z.union([z.array(zodNonNegativeInt), zodNonNegativeInt]),

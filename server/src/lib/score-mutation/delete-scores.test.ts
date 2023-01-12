@@ -205,7 +205,7 @@ t.test("#DeleteScore", (t) => {
 			game: "sdvx",
 			playtype: "Single",
 			classes: {
-				vfClass: SDVX_VF_CLASSES.CYAN_I,
+				vfClass: "CYAN_I",
 			},
 			ratings: {
 				VF6: 14,

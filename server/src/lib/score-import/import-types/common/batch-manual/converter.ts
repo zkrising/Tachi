@@ -275,11 +275,11 @@ export async function ResolveMatchTypeToTachiData(
 			const diff = data.difficulty as Difficulties["sdvx:Single"] | "ANY_INF";
 
 			if (context.version) {
-				if (!config.versions.includes(context.version)) {
+				if (!Object.keys(config.versions).includes(context.version)) {
 					throw new InvalidScoreFailure(
-						`Unsupported version ${
-							context.version
-						}. Expected any of ${config.versions.join(", ")}.`
+						`Unsupported version ${context.version}. Expected any of ${Object.keys(
+							config.versions
+						).join(", ")}.`
 					);
 				}
 

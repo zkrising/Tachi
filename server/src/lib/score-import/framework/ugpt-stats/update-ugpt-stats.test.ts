@@ -13,7 +13,6 @@ const logger = CreateLogCtx(__filename);
 t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(async () => {
-		delete TestingIIDXSPScorePB._id;
 		await db["personal-bests"].insert(TestingIIDXSPScorePB);
 	});
 
@@ -116,7 +115,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 			"iidx",
 			"SP",
 			1,
-			() => ({ dan: 18 }),
+			() => ({ dan: "KAIDEN" }),
 			logger
 		);
 
@@ -128,7 +127,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 					set: "dan",
 					playtype: "SP",
 					old: null,
-					new: 18,
+					new: "KAIDEN",
 				},
 			],
 			"Should return the class delta"
@@ -144,7 +143,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 				userID: 1,
 				ratings: { ktLampRating: 0 },
 				classes: {
-					dan: 18,
+					dan: "KAIDEN",
 				},
 			},
 			"Should update the game-stats object"
@@ -162,7 +161,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 			userID: 1,
 			ratings: { ktLampRating: 0 },
 			classes: {
-				dan: 17,
+				dan: "CHUUDEN",
 			},
 		});
 
@@ -170,7 +169,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 			"iidx",
 			"SP",
 			1,
-			() => ({ dan: 18 }),
+			() => ({ dan: "KAIDEN" }),
 			logger
 		);
 
@@ -181,8 +180,8 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 					game: "iidx",
 					set: "dan",
 					playtype: "SP",
-					old: 17,
-					new: 18,
+					old: "CHUUDEN",
+					new: "KAIDEN",
 				},
 			],
 			"Should return the updated class delta"
@@ -198,7 +197,7 @@ t.test("#UpdateUsersGamePlaytypeStats", (t) => {
 				userID: 1,
 				ratings: { ktLampRating: 0 },
 				classes: {
-					dan: 18,
+					dan: "KAIDEN",
 				},
 			},
 			"Should update the game-stats object"

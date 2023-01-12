@@ -2,10 +2,15 @@ import { CreatePBDoc } from "./create-pb-doc";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { GetGamePTConfig } from "tachi-common";
+import { IIDX_GRADES, IIDX_LAMPS } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { Testing511SPA, TestingBMS7KScore, TestingIIDXSPScore } from "test-utils/test-data";
+import {
+	BMSGazerChart,
+	Testing511SPA,
+	TestingBMS7KScore,
+	TestingIIDXSPScore,
+} from "test-utils/test-data";
 import type { PBScoreDocumentNoRank } from "./create-pb-doc";
 import type { KtLogger } from "lib/logger/logger";
 import type { ScoreDocument } from "tachi-common";
@@ -13,8 +18,6 @@ import type { ScoreDocument } from "tachi-common";
 const IIDXScore = TestingIIDXSPScore;
 
 const logger = CreateLogCtx(__filename);
-
-const lamps = GetGamePTConfig("iidx", "SP").lamps;
 
 t.test("#CreatePBDoc", (t) => {
 	t.beforeEach(ResetDBState);
@@ -32,20 +35,21 @@ t.test("#CreatePBDoc", (t) => {
 		timeAchieved: 1619454485988,
 		game: "iidx",
 		playtype: "SP",
-		composedFrom: {
-			scorePB: IIDXScore.scoreID,
-			lampPB: "LAMP_PB_ID",
-		},
+		composedFrom: [
+			{ name: "Best Score", scoreID: IIDXScore.scoreID },
+			{ name: "Best Lamp", scoreID: "LAMP_PB_ID" },
+		],
 		scoreData: {
 			score: IIDXScore.scoreData.score,
 			percent: IIDXScore.scoreData.percent,
-			esd: IIDXScore.scoreData.esd,
 			grade: IIDXScore.scoreData.grade,
-			gradeIndex: IIDXScore.scoreData.grade,
 			judgements: IIDXScore.scoreData.judgements,
 			lamp: "FULL COMBO",
-			lampIndex: lamps.indexOf("FULL COMBO"),
-			optional: { bp: 1 },
+			enumIndexes: {
+				lamp: IIDX_LAMPS.FULL_COMBO,
+				grade: IIDX_GRADES.C,
+			},
+			optional: { bp: 1, enumIndexes: {} },
 		},
 		calculatedData: {
 			ktLampRating: 12,
@@ -61,11 +65,13 @@ t.test("#CreatePBDoc", (t) => {
 				deepmerge(IIDXScore, {
 					scoreData: {
 						lamp: "FULL COMBO",
-						lampIndex: lamps.indexOf("FULL COMBO"),
 						score: 0,
 						percent: 0,
 						optional: {
 							bp: 15,
+						},
+						enumIndexes: {
+							lamp: IIDX_LAMPS.FULL_COMBO,
 						},
 					},
 					calculatedData: {
@@ -76,11 +82,13 @@ t.test("#CreatePBDoc", (t) => {
 				deepmerge(IIDXScore, {
 					scoreData: {
 						lamp: "CLEAR",
-						lampIndex: lamps.indexOf("CLEAR"),
 						score: 1,
 						percent: 1,
 						optional: {
 							bp: 5,
+						},
+						enumIndexes: {
+							lamp: IIDX_LAMPS.CLEAR,
 						},
 					},
 					calculatedData: {
@@ -90,7 +98,7 @@ t.test("#CreatePBDoc", (t) => {
 				}),
 			]);
 
-			const res = await CreatePBDoc(1, chartID, logger);
+			const res = await CreatePBDoc("iidx:SP", 1, Testing511SPA, logger);
 
 			t.not(res, undefined, "Should actually return something.");
 
@@ -117,11 +125,13 @@ t.test("#CreatePBDoc", (t) => {
 		const d = deepmerge(IIDXScore, {
 			scoreData: {
 				lamp: "FULL COMBO",
-				lampIndex: lamps.indexOf("FULL COMBO"),
 				score: 0,
 				percent: 0,
 				optional: {
 					bp: 1,
+				},
+				enumIndexes: {
+					lamp: IIDX_LAMPS.FULL_COMBO,
 				},
 			},
 			calculatedData: {
@@ -133,7 +143,7 @@ t.test("#CreatePBDoc", (t) => {
 		await db.scores.remove({});
 		await db.scores.insert([IIDXScore, d]);
 
-		const res = await CreatePBDoc(1, chartID, logger);
+		const res = await CreatePBDoc("iidx:SP", 1, Testing511SPA, logger);
 
 		t.not(res, undefined, "Should actually return something.");
 
@@ -153,7 +163,7 @@ t.test("#CreatePBDoc", (t) => {
 
 		await db.scores.remove({});
 
-		const res = await CreatePBDoc(1, chartID, fakeLogger);
+		const res = await CreatePBDoc("iidx:SP", 1, Testing511SPA, fakeLogger);
 
 		t.equal(res, undefined, "Should return nothing (and emit a warning)");
 
@@ -169,11 +179,13 @@ t.test("#CreatePBDoc", (t) => {
 			deepmerge(TestingBMS7KScore, {
 				scoreData: {
 					lamp: "FULL COMBO",
-					lampIndex: lamps.indexOf("FULL COMBO"),
 					score: 0,
 					percent: 0,
 					optional: {
 						bp: 15,
+					},
+					enumIndexes: {
+						lamp: IIDX_LAMPS.FULL_COMBO,
 					},
 				},
 				calculatedData: {
@@ -183,7 +195,7 @@ t.test("#CreatePBDoc", (t) => {
 			}),
 		]);
 
-		const res = await CreatePBDoc(1, TestingBMS7KScore.chartID, logger);
+		const res = await CreatePBDoc("bms:7K", 1, BMSGazerChart, logger);
 
 		t.not(res, undefined, "Should actually return something.");
 
@@ -203,11 +215,13 @@ t.test("#CreatePBDoc", (t) => {
 			deepmerge(TestingBMS7KScore, {
 				scoreData: {
 					lamp: "FULL COMBO",
-					lampIndex: lamps.indexOf("FULL COMBO"),
 					score: 0,
 					percent: 0,
 					optional: {
 						bp: 15,
+					},
+					enumIndexes: {
+						lamp: IIDX_LAMPS.FULL_COMBO,
 					},
 				},
 				calculatedData: {
@@ -225,7 +239,7 @@ t.test("#CreatePBDoc", (t) => {
 			}),
 		]);
 
-		const res = (await CreatePBDoc(1, TestingBMS7KScore.chartID, logger)) as
+		const res = (await CreatePBDoc("bms:7K", 1, BMSGazerChart, logger)) as
 			| PBScoreDocumentNoRank<"bms:7K" | "bms:14K">
 			| undefined;
 
@@ -263,11 +277,13 @@ t.test("#CreatePBDoc", (t) => {
 			deepmerge(pmsScore, {
 				scoreData: {
 					lamp: "FULL COMBO",
-					lampIndex: lamps.indexOf("FULL COMBO"),
 					score: 0,
 					percent: 0,
 					optional: {
 						bp: 15,
+					},
+					enumIndexes: {
+						lamp: IIDX_LAMPS.FULL_COMBO,
 					},
 				},
 				calculatedData: {
@@ -285,8 +301,8 @@ t.test("#CreatePBDoc", (t) => {
 			}),
 		]);
 
-		const res = (await CreatePBDoc(1, TestingBMS7KScore.chartID, logger)) as
-			| PBScoreDocumentNoRank<"bms:7K" | "bms:14K">
+		const res = (await CreatePBDoc("pms:Controller", 1, BMSGazerChart, logger)) as
+			| PBScoreDocumentNoRank<"pms:Controller">
 			| undefined;
 
 		t.not(res, undefined, "Should actually return something.");
@@ -318,13 +334,15 @@ t.test("#CreatePBDoc", (t) => {
 			deepmerge(TestingBMS7KScore, {
 				scoreData: {
 					lamp: "FULL COMBO",
-					lampIndex: lamps.indexOf("FULL COMBO"),
 					score: 0,
 					percent: 0,
 					optional: {
 						bp: 15,
 						gauge: 12,
 						gaugeHistory: [20, 20, 21, 12],
+					},
+					enumIndexes: {
+						lamp: IIDX_LAMPS.FULL_COMBO,
 					},
 				},
 				calculatedData: {
@@ -334,7 +352,7 @@ t.test("#CreatePBDoc", (t) => {
 			}),
 		]);
 
-		const res = (await CreatePBDoc(1, TestingBMS7KScore.chartID, logger)) as
+		const res = (await CreatePBDoc("bms:7K", 1, BMSGazerChart, logger)) as
 			| PBScoreDocumentNoRank<"bms:7K" | "bms:14K">
 			| undefined;
 

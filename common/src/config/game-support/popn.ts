@@ -117,7 +117,10 @@ export const POPN_9B_CONF = {
 
 	orderedJudgements: ["cool", "great", "good", "bad"],
 
-	versions: ["peace", "Kaimei Riddles"],
+	versions: {
+		peace: "peace",
+		kaimei: "Kaimei Riddles",
+	},
 
 	chartData: z.strictObject({
 		// Array<string> | string | null

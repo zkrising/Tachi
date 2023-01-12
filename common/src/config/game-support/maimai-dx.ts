@@ -160,7 +160,9 @@ export const MAIMAI_DX_SINGLE_CONF = {
 
 	orderedJudgements: ["pcrit", "perfect", "great", "good", "miss"],
 
-	versions: ["UNiVERSE PLUS"],
+	versions: {
+		universeplus: "UNiVERSE PLUS",
+	},
 
 	chartData: z.strictObject({
 		isLatest: z.boolean(),

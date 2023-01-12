@@ -184,9 +184,6 @@ t.test("#ConverterIRFervidex", (t) => {
 
 		await db.charts.iidx.insert(Testing511DPA);
 
-		// @ts-expect-error apparantly this prop isnt optional. but i'm sure it is.
-		delete Testing511DPA._id;
-
 		const res = await ConverterIRFervidex(
 			deepmerge(baseFervidexScore, { option: { style_2p: "R_RANDOM" }, chart: "dpa" }),
 			{ version: "27", timeReceived: 10, userID: 1 },

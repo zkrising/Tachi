@@ -19,10 +19,6 @@ function cfile(data: S3Score) {
 
 t.test("#ConvertFileS3", (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(() => {
-		// @ts-expect-error hacky just-incase.
-		delete MockParsedS3Score._id;
-	});
 
 	function mfile(merge: Partial<S3Score>) {
 		return cfile(deepmerge(MockParsedS3Score, merge));

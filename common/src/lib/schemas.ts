@@ -167,23 +167,13 @@ export const PR_GOAL_SCHEMA = {
 	criteria: p.or(
 		{
 			mode: p.is("single"),
-			key: p.isIn(
-				"scoreData.percent",
-				"scoreData.lampIndex",
-				"scoreData.gradeIndex",
-				"scoreData.score"
-			),
+			key: "string",
 			value: "number",
 		},
 		{
 			mode: p.isIn("absolute", "proportion"),
 			countNum: p.isPositive,
-			key: p.isIn(
-				"scoreData.percent",
-				"scoreData.lampIndex",
-				"scoreData.gradeIndex",
-				"scoreData.score"
-			),
+			key: "string",
 			value: "number",
 		}
 	),

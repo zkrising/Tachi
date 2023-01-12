@@ -131,7 +131,7 @@ export const PMS_CONTROLLER_CONF = {
 
 	orderedJudgements: ["cool", "great", "good", "bad", "poor"],
 
-	versions: [],
+	versions: {},
 
 	chartData: z.strictObject({
 		notecount: zodNonNegativeInt,

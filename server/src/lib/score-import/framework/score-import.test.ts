@@ -26,8 +26,6 @@ t.test("#MakeScoreImport", (t) => {
 			{ projection: { _id: 0 } }
 		);
 
-		delete res._id;
-
 		t.strictSame(res, dbRes, "Import in the database should match the import returned");
 
 		try {

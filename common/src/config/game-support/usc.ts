@@ -84,7 +84,7 @@ export const USC_CONTROLLER_CONF = {
 
 	orderedJudgements: ["critical", "near", "miss"],
 
-	versions: [],
+	versions: {},
 
 	chartData: z.strictObject({
 		hashSHA1: z.union([z.array(z.string()), z.string()]),

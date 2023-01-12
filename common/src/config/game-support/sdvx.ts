@@ -148,15 +148,15 @@ export const SDVX_SINGLE_CONF = {
 
 	orderedJudgements: ["critical", "near", "miss"],
 
-	versions: [
-		"BOOTH",
-		"infinite infection",
-		"GRAVITY WARS",
-		"HEAVENLY HAVEN",
-		"VIVID WAVE",
-		"EXCEED GEAR",
-		"Konaste",
-	],
+	versions: {
+		booth: "BOOTH",
+		inf: "infinite infection",
+		gw: "GRAVITY WARS",
+		heaven: "HEAVENLY HAVEN",
+		vivid: "VIVID WAVE",
+		exceed: "EXCEED GEAR",
+		konaste: "Konaste",
+	},
 
 	chartData: z.strictObject({
 		inGameID: zodNonNegativeInt,

@@ -79,7 +79,10 @@ export const MUSECA_SINGLE_CONF = {
 
 	orderedJudgements: ["critical", "near", "miss"],
 
-	versions: ["1 + 1/2", "1 + 1/2 Rev. B"],
+	versions: {
+		"1.5": "1 + 1/2",
+		"1.5-b": "1 + 1/2 Rev. B",
+	},
 
 	chartData: z.strictObject({ inGameID: zodNonNegativeInt }),
 

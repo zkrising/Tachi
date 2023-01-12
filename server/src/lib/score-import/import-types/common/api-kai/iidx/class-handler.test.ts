@@ -38,7 +38,7 @@ t.test("#CreateKaiIIDXClassProvider", async (t) => {
 	});
 
 	t.test("Should call the provided URL with the authentication token", (t) => {
-		const res = fn("iidx", "SP", 1, {}, logger);
+		const res = fn("iidx:SP", 1, {}, logger);
 
 		t.strictSame(res, { dan: 18 });
 
@@ -66,7 +66,7 @@ t.test("#CreateKaiIIDXClassProvider", async (t) => {
 			})
 		);
 
-		const res = fn("iidx", "SP", 1, {}, logger);
+		const res = fn("iidx:SP", 1, {}, logger);
 
 		t.strictSame(res, {});
 
@@ -94,7 +94,7 @@ t.test("#CreateKaiIIDXClassProvider", async (t) => {
 			})
 		);
 
-		const res = fn("iidx", "SP", 1, {}, logger);
+		const res = fn("iidx:SP", 1, {}, logger);
 
 		t.strictSame(res, {});
 
@@ -122,7 +122,7 @@ t.test("#CreateKaiIIDXClassProvider", async (t) => {
 			})
 		);
 
-		const res = fn("iidx", "SP", 1, {}, logger);
+		const res = fn("iidx:SP", 1, {}, logger);
 
 		t.strictSame(res, {});
 
@@ -140,7 +140,7 @@ t.test("#CreateKaiIIDXClassProvider", async (t) => {
 			MockBasicFetch({ status: 500 })
 		);
 
-		const res = fn("iidx", "SP", 1, {}, logger);
+		const res = fn("iidx:SP", 1, {}, logger);
 
 		t.strictSame(res, {});
 
@@ -160,7 +160,7 @@ t.test("#CreateKaiIIDXClassProvider", async (t) => {
 			MockBasicFetch({ status: 401 })
 		);
 
-		fn("iidx", "SP", 1, {}, logger);
+		fn("iidx:SP", 1, {}, logger);
 
 		t.equal(pass, true, "Should've called the reauth fn.");
 
@@ -188,7 +188,7 @@ t.test("#CreateKaiIIDXClassProvider", async (t) => {
 			})
 		);
 
-		const res = fn("iidx", "DP", 1, {}, logger);
+		const res = fn("iidx:DP", 1, {}, logger);
 
 		t.strictSame(res, {});
 
@@ -216,7 +216,7 @@ t.test("#CreateKaiIIDXClassProvider", async (t) => {
 			})
 		);
 
-		const res = fn("iidx", "14K", 1, {}, logger);
+		const res = fn("bms:14K", 1, {}, logger);
 
 		t.strictSame(res, {});
 

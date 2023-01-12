@@ -59,7 +59,7 @@ export async function UpdateDPTiers() {
 
 				const result = await db.charts.iidx.update(
 					{
-						versions: "CastHour",
+						versions: "29",
 						playtype: "DP",
 						songID: song.id,
 						difficulty,

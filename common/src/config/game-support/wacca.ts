@@ -131,7 +131,9 @@ export const WACCA_SINGLE_CONF = {
 
 	orderedJudgements: ["marvelous", "great", "good", "miss"],
 
-	versions: ["REVERSE"],
+	versions: {
+		reverse: "REVERSE",
+	},
 
 	chartData: z.strictObject({
 		isHot: z.boolean(),

@@ -338,7 +338,7 @@ t.test("#ParserFn", (t) => {
 
 			t.not(res.classProvider, null);
 
-			t.strictSame(res.classProvider!("iidx", "SP", 1, {}, logger), { dan: IIDX_DANS.KAIDEN });
+			t.strictSame(res.classProvider!("iidx:SP", 1, {}, logger), { dan: IIDX_DANS.KAIDEN });
 
 			t.end();
 		});

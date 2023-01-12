@@ -152,7 +152,6 @@ const USC_SCORE_PB: PBScoreDocument = {
 		score: 9_000_000,
 		percent: 90,
 		grade: "A+",
-		esd: null,
 		lamp: "EXCESSIVE CLEAR",
 		lampIndex: 2,
 

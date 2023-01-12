@@ -45,17 +45,11 @@ t.test("#UpdateScore", (t) => {
 	t.beforeEach(ResetDBState);
 
 	t.test("Should update a score and everything pertaining to it", async (t) => {
-		// n.b. this must be here!! otherwise we get nonsense errors due to _id bson
-		// errors.
-		delete TestingIIDXSPScore._id;
-
 		const score = deepmerge<ScoreDocument>(TestingIIDXSPScore, {
 			scoreData: { score: 1020 },
 		} as ScoreDocument);
 
-		delete score._id;
-
-		const newScoreID = CreateScoreID(score.userID, score, score.chartID);
+		const newScoreID = CreateScoreID("iidx:SP", score.userID, score, score.chartID);
 
 		await db.imports.insert(mockImportDocument);
 		await db.sessions.insert(mockSessionDocument);

@@ -1,4 +1,4 @@
-import { GetGrade, GoalFmtScore } from "./_common";
+import { GetGrade, GoalFmtScore, GradeGoalFormatter } from "./_common";
 import { ProfileAvgBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { CHUNITHMRating } from "rg-stats";
@@ -51,17 +51,14 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 		score: GoalFmtScore,
 	},
 	goalProgressFormatters: {
-		grade: (pb, gradeIndex) => {
-			return GoalGradeDeltaFmt(
-				grades,
-				pb.scoreData.score,
-				pb.scoreData.percent,
+		grade: (pb, gradeIndex) =>
+			GradeGoalFormatter(
+				CHUNITHM_GBOUNDARIES,
 				pb.scoreData.grade,
-				gradeIndex,
-				// 4519 -> "4519". Don't add commas or anything.
-				(v) => v.toString()
-			);
-		},
+				pb.scoreData.score,
+				CHUNITHM_GBOUNDARIES[gradeIndex]!.name
+			),
+
 		lamp: (pb) => pb.scoreData.lamp,
 		score: (pb) => FmtNum(pb.scoreData.score),
 	},

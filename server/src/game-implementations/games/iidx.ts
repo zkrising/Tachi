@@ -1,8 +1,14 @@
-import { GoalFmtPercent, GoalFmtScore, IIDXLIKE_DERIVERS, IIDXLIKE_VALIDATORS } from "./_common";
+import {
+	GoalFmtPercent,
+	GoalFmtScore,
+	GradeGoalFormatter,
+	IIDXLIKE_DERIVERS,
+	IIDXLIKE_VALIDATORS,
+} from "./_common";
 import { ProfileAvgBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { PoyashiBPI } from "rg-stats";
-import { IIDX_SP_CONF } from "tachi-common/config/game-support/iidx";
+import { IIDXLIKE_GBOUNDARIES } from "tachi-common";
 import type {
 	GPTGoalCriteriaFormatters,
 	GPTGoalProgressFormatters,
@@ -40,7 +46,7 @@ const IIDX_GOAL_FMT: GPTGoalCriteriaFormatters<"iidx:DP" | "iidx:SP"> = {
 	score: GoalFmtScore,
 };
 
-const IIDX_GOAL_PG_FMT: GPTGoalProgressFormatters<"iidx:DP" | "iidx:DP"> = {
+const IIDX_GOAL_PG_FMT: GPTGoalProgressFormatters<"iidx:DP" | "iidx:SP"> = {
 	percent: (pb) => `${pb.scoreData.percent.toFixed(2)}%`,
 
 	// 4519 -> "4519". Don't add commas or anything.
@@ -54,19 +60,16 @@ const IIDX_GOAL_PG_FMT: GPTGoalProgressFormatters<"iidx:DP" | "iidx:DP"> = {
 
 		return pb.scoreData.lamp;
 	},
-	grade: (pb, gradeIndex) => {
-		const grades = IIDX_SP_CONF.derivedMetrics.grade.values;
-
-		return GoalGradeDeltaFmt(
-			grades,
-			pb.scoreData.score,
-			pb.scoreData.percent,
+	grade: (pb, gradeIndex, chart) =>
+		GradeGoalFormatter(
+			IIDXLIKE_GBOUNDARIES,
 			pb.scoreData.grade,
-			gradeIndex,
-			// 4519 -> "4519". Don't add commas or anything.
-			(v) => v.toString()
-		);
-	},
+			pb.scoreData.percent,
+			IIDXLIKE_GBOUNDARIES[gradeIndex]!.name,
+
+			// use notecount to turn the percent deltas into whole ex-scores.
+			(v) => Math.floor(v * chart.data.notecount * 2).toFixed(0)
+		),
 };
 
 export const IIDX_SP_IMPL: GPTServerImplementation<"iidx:SP"> = {

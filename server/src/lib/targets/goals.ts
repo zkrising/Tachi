@@ -1,9 +1,10 @@
 import { CreateGoalTitle as CreateGoalName, ValidateGoalChartsAndCriteria } from "./goal-utils";
 import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
+import { GPT_SERVER_IMPLEMENTATIONS } from "game-implementations/game-implementations";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
-import { FormatGame, GetGamePTConfig } from "tachi-common";
+import { FormatGame, GetGPTString, GetGamePTConfig } from "tachi-common";
 import { GetFolderChartIDs } from "utils/folder";
 import { IsNullish } from "utils/misc";
 import type { KtLogger } from "lib/logger/logger";
@@ -324,7 +325,7 @@ export function HumaniseGoalProgress(
  * string.
  */
 export function HumaniseGoalOutOf(game: Game, playtype: Playtype, key: GoalKeys, value: number) {
-	const gptConfig = GetGamePTConfig(game, playtype);
+	const gptImpl = GPT_SERVER_IMPLEMENTATIONS[GetGPTString(game, playtype)];
 
 	switch (key) {
 		case "scoreData.gradeIndex": {

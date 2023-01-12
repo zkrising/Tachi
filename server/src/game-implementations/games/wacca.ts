@@ -1,4 +1,4 @@
-import { GetGrade, GoalFmtScore } from "./_common";
+import { GetGrade, GoalFmtScore, GradeGoalFormatter } from "./_common";
 import db from "external/mongo/db";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
@@ -114,5 +114,12 @@ export const WACCA_IMPL: GPTServerImplementation<"wacca:Single"> = {
 	goalProgressFormatters: {
 		score: (pb) => FmtNum(pb.scoreData.score),
 		lamp: (pb) => pb.scoreData.lamp,
+		grade: (pb, gradeIndex) =>
+			GradeGoalFormatter(
+				WACCA_GBOUNDARIES,
+				pb.scoreData.grade,
+				pb.scoreData.score,
+				WACCA_GBOUNDARIES[gradeIndex]!.name
+			),
 	},
 };

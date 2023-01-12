@@ -1,4 +1,4 @@
-import { GetGrade, GoalFmtPercent } from "./_common";
+import { GetGrade, GoalFmtPercent, GradeGoalFormatter } from "./_common";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBestNFor } from "game-implementations/utils/session-calc";
 import { ITGHighestUnbroken } from "rg-stats";
@@ -105,5 +105,13 @@ export const ITG_STAMINA_IMPL: GPTServerImplementation<"itg:Stamina"> = {
 
 			return `${pb.scoreData.lamp} with ${pb.scoreData.scorePercent.toFixed(2)}%`;
 		},
+		grade: (pb, gradeIndex) =>
+			GradeGoalFormatter(
+				ITG_GBOUNDARIES,
+				pb.scoreData.grade,
+				pb.scoreData.scorePercent,
+				ITG_GBOUNDARIES[gradeIndex]!.name,
+				(v) => `${v.toFixed(2)}%`
+			),
 	},
 };

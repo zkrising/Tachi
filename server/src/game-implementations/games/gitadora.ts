@@ -1,4 +1,4 @@
-import { GetGrade, GoalFmtPercent } from "./_common";
+import { GetGrade, GoalFmtPercent, GradeGoalFormatter } from "./_common";
 import db from "external/mongo/db";
 import { GetBestRatingOnSongs, ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
@@ -96,6 +96,14 @@ const GITADORA_IMPL: GPTServerImplementation<"gitadora:Dora" | "gitadora:Gita"> 
 	goalProgressFormatters: {
 		lamp: (pb) => pb.scoreData.lamp,
 		percent: (pb) => `${pb.scoreData.percent.toFixed(2)}%`,
+		grade: (pb, gradeIndex) =>
+			GradeGoalFormatter(
+				GITADORA_GBOUNDARIES,
+				pb.scoreData.grade,
+				pb.scoreData.percent,
+				GITADORA_GBOUNDARIES[gradeIndex]!.name,
+				(v) => `${v.toFixed(2)}%`
+			),
 	},
 };
 

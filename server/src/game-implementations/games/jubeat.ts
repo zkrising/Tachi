@@ -1,4 +1,4 @@
-import { GetGrade, GoalFmtPercent, GoalFmtScore } from "./_common";
+import { GetGrade, GoalFmtPercent, GoalFmtScore, GradeGoalFormatter } from "./_common";
 import db from "external/mongo/db";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
@@ -196,5 +196,12 @@ export const JUBEAT_IMPL: GPTServerImplementation<"jubeat:Single"> = {
 		score: (pb) => FmtNum(pb.scoreData.score),
 		musicRate: (pb) => `${pb.scoreData.musicRate.toFixed(1)}%`,
 		lamp: (pb) => pb.scoreData.lamp,
+		grade: (pb, gradeIndex) =>
+			GradeGoalFormatter(
+				JUBEAT_GBOUNDARIES,
+				pb.scoreData.grade,
+				pb.scoreData.score,
+				JUBEAT_GBOUNDARIES[gradeIndex]!.name
+			),
 	},
 };

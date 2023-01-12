@@ -1,14 +1,14 @@
 import {
 	GoalFmtPercent,
 	GoalFmtScore,
-	GoalGradeDeltaFmt,
+	GradeGoalFormatter,
 	IIDXLIKE_DERIVERS,
 	IIDXLIKE_VALIDATORS,
 	SGLCalc,
 } from "./_common";
 import { ProfileAvgBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
-import { BMS_7K_CONF } from "tachi-common/config/game-support/bms";
+import { IIDXLIKE_GBOUNDARIES } from "tachi-common";
 import type { GPTServerImplementation } from "game-implementations/types";
 import type { GPTStrings } from "tachi-common";
 
@@ -40,19 +40,15 @@ const BMS_IMPL: GPTServerImplementation<GPTStrings["bms" | "pms"]> = {
 
 			return pb.scoreData.lamp;
 		},
-		grade: (pb, gradeIndex) => {
-			const grades = BMS_7K_CONF.derivedMetrics.grade.values;
-
-			return GoalGradeDeltaFmt(
-				grades,
-				pb.scoreData.score,
-				pb.scoreData.percent,
+		grade: (pb, goalValue) =>
+			GradeGoalFormatter(
+				IIDXLIKE_GBOUNDARIES,
 				pb.scoreData.grade,
-				gradeIndex,
-				// 4519 -> "4519". Don't add commas or anything.
-				(v) => v.toString()
-			);
-		},
+				pb.scoreData.percent,
+				IIDXLIKE_GBOUNDARIES[goalValue]!.name,
+				// use notecount to turn the percent deltas into whole ex-scores.
+				(v) => Math.floor((v / 100) * pb.scoreData.score).toFixed(0)
+			),
 	},
 };
 

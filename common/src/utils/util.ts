@@ -10,7 +10,6 @@ import type {
 	GPTString,
 	GPTStrings,
 	Game,
-	PBScoreDocument,
 	Playtypes,
 	SongDocument,
 	integer,
@@ -215,8 +214,18 @@ export function PrudenceZodShim(zodSchema: AnyZodObject): ValidSchemaValue {
 	};
 }
 
-export function FmtNum(num: number) {
+/**
+ * Formats a number (14100) into "14K".
+ */
+export function FmtNumCompact(num: number) {
 	return Intl.NumberFormat("en", { notation: "compact" }).format(num);
+}
+
+/**
+ * Formats a number (14100) into "14,100"
+ */
+export function FmtNum(num: number) {
+	return num.toLocaleString();
 }
 
 function WrapGrade(grade: string) {
@@ -266,7 +275,7 @@ export function GetGradeDeltas<G extends string>(
 	gradeBoundaries: Array<GradeBoundary<G>>,
 	scoreGrade: G,
 	scoreValue: number,
-	formatNumFn = FmtNum
+	formatNumFn = FmtNumCompact
 ) {
 	const scoreGradeBoundary = gradeBoundaries.find((e) => e.name === scoreGrade);
 
@@ -314,7 +323,7 @@ export function GetCloserGradeDelta<G extends string>(
 	gradeBoundaries: Array<GradeBoundary<G>>,
 	scoreGrade: G,
 	scoreValue: number,
-	formatNumFn = FmtNum
+	formatNumFn = FmtNumCompact
 ): string {
 	const { lower, upper, closer } = GetGradeDeltas(
 		gradeBoundaries,
@@ -367,30 +376,4 @@ export function FormatPrError(err: PrudenceError, foreword = "Error"): string {
 			: ` | Received ${err.userVal} [${err.userVal === null ? "null" : typeof err.userVal}]`;
 
 	return `${foreword}: ${err.keychain} | ${err.message}${receivedText}.`;
-}
-
-export function GradeGoalFormatter(pb: PBScoreDocument) {
-	const { closer, lower, upper } = GenericFormatGradeDelta(
-		pb.game,
-		pb.playtype,
-		pb.scoreData.score,
-		pb.scoreData.percent,
-		pb.scoreData.grade
-	);
-
-	// if upper doesn't exist, we have to return lower (this is a MAX)
-	// or something.
-	if (!upper) {
-		return lower;
-	}
-
-	// if the upper bound is relevant to the grade we're looking for
-	// i.e. the goal is to AAA a chart and the user has AA+20/AAA-100
-	// prefer AAA-100 instead of AA+20.
-	if (upper.startsWith(`${pb.scoreData.grade}-`)) {
-		return upper;
-	}
-
-	// otherwise, return whichever is closer.
-	return closer === "lower" ? lower : upper;
 }

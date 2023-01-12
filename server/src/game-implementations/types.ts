@@ -132,6 +132,8 @@ export type GPTGoalCriteriaFormatters<GPT extends GPTString> = {
 /**
  * Given a user's PB and the value of the goal, return a string representing this
  * user's progress through this goal.
+ *
+ * This only applies to "single" goals, i.e. goals on a single chart.
  */
 export type GoalProgressFormatter<GPT extends GPTString> = (
 	pb: PBScoreDocument<GPT>,

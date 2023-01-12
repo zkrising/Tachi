@@ -1,8 +1,8 @@
-import { GetGrade, GoalFmtScore } from "./_common";
+import { GetGrade, GoalFmtScore, GradeGoalFormatter } from "./_common";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { PopnClassPoints } from "rg-stats";
-import { FmtNum, POPN_GBOUNDARIES } from "tachi-common";
+import { FmtNum, FmtNumCompact, POPN_GBOUNDARIES } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 import type { GetEnumValue } from "tachi-common/types/metrics";
@@ -94,5 +94,12 @@ export const POPN_9B_IMPL: GPTServerImplementation<"popn:9B"> = {
 		score: (pb) => FmtNum(pb.scoreData.score),
 		clearMedal: (pb) => pb.scoreData.clearMedal,
 		lamp: (pb) => pb.scoreData.lamp,
+		grade: (pb, gradeIndex) =>
+			GradeGoalFormatter(
+				POPN_GBOUNDARIES,
+				pb.scoreData.grade,
+				pb.scoreData.score,
+				POPN_GBOUNDARIES[gradeIndex]!.name
+			),
 	},
 };

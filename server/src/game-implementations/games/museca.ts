@@ -1,4 +1,4 @@
-import { GetGrade, GoalFmtScore } from "./_common";
+import { GetGrade, GoalFmtScore, GradeGoalFormatter } from "./_common";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { CuratorSkill } from "rg-stats";
@@ -24,5 +24,12 @@ export const MUSECA_IMPL: GPTServerImplementation<"museca:Single"> = {
 	goalProgressFormatters: {
 		score: (pb) => FmtNum(pb.scoreData.score),
 		lamp: (pb) => pb.scoreData.lamp,
+		grade: (pb, gradeIndex) =>
+			GradeGoalFormatter(
+				MUSECA_GBOUNDARIES,
+				pb.scoreData.grade,
+				pb.scoreData.score,
+				MUSECA_GBOUNDARIES[gradeIndex]!.name
+			),
 	},
 };

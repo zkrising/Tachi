@@ -60,7 +60,7 @@ const IIDX_GOAL_PG_FMT: GPTGoalProgressFormatters<"iidx:DP" | "iidx:SP"> = {
 
 		return pb.scoreData.lamp;
 	},
-	grade: (pb, gradeIndex, chart) =>
+	grade: (pb, gradeIndex) =>
 		GradeGoalFormatter(
 			IIDXLIKE_GBOUNDARIES,
 			pb.scoreData.grade,
@@ -68,7 +68,13 @@ const IIDX_GOAL_PG_FMT: GPTGoalProgressFormatters<"iidx:DP" | "iidx:SP"> = {
 			IIDXLIKE_GBOUNDARIES[gradeIndex]!.name,
 
 			// use notecount to turn the percent deltas into whole ex-scores.
-			(v) => Math.floor(v * chart.data.notecount * 2).toFixed(0)
+			(deltaPercent) => {
+				const chartNotecount = Math.floor(
+					pb.scoreData.score / (pb.scoreData.percent / 100)
+				);
+
+				return (deltaPercent * (chartNotecount * 2)).toFixed(0);
+			}
 		),
 };
 

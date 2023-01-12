@@ -110,10 +110,6 @@ export type GPTDerivers<GPT extends GPTString> = {
  * Format a goal into a string. If a function is provided, it's called with this goals
  * criteria value, so a goal of "get 3600 on $CHART" would recieve 3600 as its
  * argument.
- *
- * Optionally, undefined can be returned to signify this failed somehow.
- * This is convenient for things like enum lookups which never fail in practice
- * but the typesystem thinks they might be undefined.
  */
 export type GoalCriteriaFormatter = (num: number) => string;
 

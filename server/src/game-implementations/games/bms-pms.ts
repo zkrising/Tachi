@@ -47,7 +47,13 @@ const BMS_IMPL: GPTServerImplementation<GPTStrings["bms" | "pms"]> = {
 				pb.scoreData.percent,
 				IIDXLIKE_GBOUNDARIES[goalValue]!.name,
 				// use notecount to turn the percent deltas into whole ex-scores.
-				(v) => Math.floor((v / 100) * pb.scoreData.score).toFixed(0)
+				(deltaPercent) => {
+					const chartNotecount = Math.floor(
+						pb.scoreData.score / (pb.scoreData.percent / 100)
+					);
+
+					return (deltaPercent * (chartNotecount * 2)).toFixed(0);
+				}
 			),
 	},
 };

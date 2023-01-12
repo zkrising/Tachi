@@ -2,7 +2,7 @@ import folderIDRouter from "./_folderID/router";
 import { Router } from "express";
 import db from "external/mongo/db";
 import { SearchCollection } from "lib/search/search";
-import { GetGradeLampDistributionForFolders, GetRecentlyViewedFolders } from "utils/folder";
+import { GetEnumDistForFolders, GetRecentlyViewedFolders } from "utils/folder";
 import { IsString } from "utils/misc";
 import { GetUGPT } from "utils/req-tachi-data";
 
@@ -42,7 +42,7 @@ router.get("/", async (req, res) => {
 		20
 	);
 
-	const stats = await GetGradeLampDistributionForFolders(user.id, folders);
+	const stats = await GetEnumDistForFolders(user.id, folders);
 
 	return res.status(200).json({
 		success: true,
@@ -67,7 +67,7 @@ router.get("/recent", async (req, res) => {
 
 	const { views, folders } = await GetRecentlyViewedFolders(user.id, game, playtype);
 
-	const stats = await GetGradeLampDistributionForFolders(user.id, folders);
+	const stats = await GetEnumDistForFolders(user.id, folders);
 
 	return res.status(200).json({
 		success: true,

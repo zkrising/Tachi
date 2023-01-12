@@ -2,7 +2,10 @@ import { GenerateRandomSessionName } from "./name-generation";
 import { CreateSessionCalcData } from "../calculated-data/session";
 import { CreatePBDoc } from "../pb/create-pb-doc";
 import db from "external/mongo/db";
+import { ONE_HOUR } from "lib/constants/time";
 import CreateLogCtx, { AppendLogCtx } from "lib/logger/logger";
+import { GetGPTString, GetGamePTConfig, GetScoreMetricConf, GetScoreMetrics } from "tachi-common";
+import { GetChartForIDGuaranteed } from "utils/db";
 import { GetScoresFromSession } from "utils/session";
 import crypto from "crypto";
 import type { ScorePlaytypeMap } from "../common/types";
@@ -19,7 +22,7 @@ import type {
 	SessionScoreInfo,
 } from "tachi-common";
 
-const TWO_HOURS = 1000 * 60 * 60 * 2;
+const TWO_HOURS = ONE_HOUR * 2;
 
 export async function CreateSessions(
 	userID: integer,
@@ -63,13 +66,29 @@ function ScoreToSessionScoreInfo(
 		};
 	}
 
+	const gptConfig = GetGamePTConfig(score.game, score.playtype);
+
+	const deltas: Record<string, number> = {};
+
+	const scoreMetrics = GetScoreMetrics(gptConfig, ["DECIMAL", "ENUM", "INTEGER"]);
+
+	for (const metric of scoreMetrics) {
+		const conf = GetScoreMetricConf(gptConfig, metric)!;
+
+		if (conf.type === "ENUM") {
+			deltas[metric] =
+				// @ts-expect-error shush
+				score.scoreData.enumIndexes[metric] - previousPB.scoreData.enumIndexes[metric];
+		} else {
+			// @ts-expect-error shush
+			deltas[metric] = score.scoreData[metric] - previousPB.scoreData[metric];
+		}
+	}
+
 	return {
 		scoreID: score.scoreID,
 		isNewScore: false,
-		gradeDelta: score.scoreData.grade - previousPB.scoreData.grade,
-		lampDelta: score.scoreData.lamp.index - previousPB.scoreData.lamp.index,
-		percentDelta: score.scoreData.percent - previousPB.scoreData.percent,
-		scoreDelta: score.scoreData.score - previousPB.scoreData.score,
+		deltas,
 	};
 }
 
@@ -86,12 +105,16 @@ export async function GetSessionScoreInfo(
 		scoreID: { $in: session.scoreIDs },
 	});
 
+	const gptString = GetGPTString(session.game, session.playtype);
+
 	const promises = [];
 
 	for (const score of scores) {
 		promises.push(
-			CreatePBDoc(session.userID, score.chartID, logger, session.timeStarted).then((pb) =>
-				ScoreToSessionScoreInfo(score, pb)
+			GetChartForIDGuaranteed(score.game, score.chartID).then((chart) =>
+				CreatePBDoc(gptString, session.userID, chart, logger, session.timeStarted).then(
+					(pb) => ScoreToSessionScoreInfo(score, pb)
+				)
 			)
 		);
 	}

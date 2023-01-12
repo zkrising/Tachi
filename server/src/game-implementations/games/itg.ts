@@ -1,8 +1,9 @@
-import { GetGrade } from "./_common";
+import { GetGrade, GoalFmtPercent } from "./_common";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBestNFor } from "game-implementations/utils/session-calc";
 import { ITGHighestUnbroken } from "rg-stats";
 import { ITG_GBOUNDARIES } from "tachi-common";
+import { FormatMaxDP } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 
 export const ITG_STAMINA_IMPL: GPTServerImplementation<"itg:Stamina"> = {
@@ -72,4 +73,37 @@ export const ITG_STAMINA_IMPL: GPTServerImplementation<"itg:Stamina"> = {
 		fastest32: ProfileSumBestN("fastest32", 1, true),
 	},
 	classDerivers: {},
+	goalCriteriaFormatters: {
+		survivedPercent: (val) => `Survive ${FormatMaxDP(val)}% through`,
+
+		// maybe this whole metric is silly. help.
+		finalPercent: (val) => {
+			if (val === 100) {
+				return "CLEAR";
+			} else if (val < 100) {
+				return `Survive ${FormatMaxDP(val)}% through`;
+			}
+
+			return `CLEAR, and get ${FormatMaxDP(val)}% on`;
+		},
+		scorePercent: GoalFmtPercent,
+	},
+	goalProgressFormatters: {
+		lamp: (pb) => {
+			if (pb.scoreData.lamp === "FAILED") {
+				return `Died ${pb.scoreData.survivedPercent.toFixed(2)}% in`;
+			}
+
+			return pb.scoreData.lamp;
+		},
+		scorePercent: (pb) => `${pb.scoreData.scorePercent.toFixed(2)}%`,
+		survivedPercent: (pb) => `${pb.scoreData.survivedPercent.toFixed(2)}%`,
+		finalPercent: (pb) => {
+			if (pb.scoreData.finalPercent < 100) {
+				return `Died ${pb.scoreData.survivedPercent.toFixed(2)}% in`;
+			}
+
+			return `${pb.scoreData.lamp} with ${pb.scoreData.scorePercent.toFixed(2)}%`;
+		},
+	},
 };

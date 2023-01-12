@@ -4,8 +4,10 @@ import {
 	GetGamePTConfig,
 	GetSpecificGPTConfig,
 } from "../config/config";
+import type { GradeBoundary } from "../constants/grade-boundaries";
 import type {
 	ChartDocument,
+	GPTString,
 	GPTStrings,
 	Game,
 	PBScoreDocument,
@@ -198,15 +200,6 @@ export function FormatChart(
 	return `${song.title} (${playtypeStr}${space}${diff} ${chart.level})`;
 }
 
-// For games with 'BP', show that next to the clear.
-export function IIDXBMSLampGoalFormatter(pb: PBScoreDocument<GPTStrings["bms" | "iidx" | "pms"]>) {
-	if (typeof pb.scoreData.optional.bp === "number") {
-		return `${pb.scoreData.lamp} (BP: ${pb.scoreData.optional.bp})`;
-	}
-
-	return pb.scoreData.lamp;
-}
-
 /**
  * Run a zod schema inside prudence.
  */
@@ -220,6 +213,146 @@ export function PrudenceZodShim(zodSchema: AnyZodObject): ValidSchemaValue {
 
 		return res.error.message;
 	};
+}
+
+export function FmtNum(num: number) {
+	return Intl.NumberFormat("en", { notation: "compact" }).format(num);
+}
+
+function WrapGrade(grade: string) {
+	if (grade.endsWith("-") || grade.endsWith("+")) {
+		return `(${grade})`;
+	}
+
+	return grade;
+}
+
+type FormatGradeDeltaReturns =
+	| {
+			lower: string;
+			upper: string;
+			closer: "upper";
+	  }
+	| {
+			lower: string;
+			upper?: string;
+			closer: "lower";
+	  };
+
+function RelativeGradeDelta<G extends string>(
+	gradeBoundaries: Array<GradeBoundary<G>>,
+	scoreGrade: G,
+	scoreValue: number,
+	relativeIndex: number
+) {
+	const gradeBoundary =
+		gradeBoundaries[gradeBoundaries.findIndex((e) => e.name === scoreGrade) + relativeIndex];
+
+	if (!gradeBoundary) {
+		return null;
+	}
+
+	return AbsoluteGradeDelta(gradeBoundary, scoreValue);
+}
+
+function AbsoluteGradeDelta<G extends string>(gradeBoundary: GradeBoundary<G>, scoreValue: number) {
+	return {
+		grade: gradeBoundary.name,
+		delta: gradeBoundary.lowerBound - scoreValue,
+	};
+}
+
+export function GetGradeDeltas<G extends string>(
+	gradeBoundaries: Array<GradeBoundary<G>>,
+	scoreGrade: G,
+	scoreValue: number,
+	formatNumFn = FmtNum
+) {
+	const scoreGradeBoundary = gradeBoundaries.find((e) => e.name === scoreGrade);
+
+	if (!scoreGradeBoundary) {
+		throw new Error(
+			`Passed a scoreGrade of ${scoreGrade} but no such boundary exists in ${gradeBoundaries
+				.map((e) => e.name)
+				.join(", ")}`
+		);
+	}
+
+	const upper = RelativeGradeDelta(gradeBoundaries, scoreGrade, scoreValue, 1);
+	const lower = AbsoluteGradeDelta(scoreGradeBoundary, scoreValue);
+
+	const formatLower = `${WrapGrade(lower.grade)}+${formatNumFn(lower.delta)}`;
+
+	// there might be *no* grade above this one, in this case lower obviously wins.
+	if (!upper) {
+		return {
+			lower: formatLower,
+			closer: "lower",
+		};
+	}
+
+	// this will automatically have a - separating the two.
+	const formatUpper = `${WrapGrade(upper.grade)}${formatNumFn(upper.delta)}`;
+
+	// are we closer to the lower bound, or the upper one?
+	let closer: "lower" | "upper" = upper.delta + lower.delta < 0 ? "lower" : "upper";
+
+	// lovely hardcoded exception for IIDXLikes - (MAX-)+ is always a stupid metric
+	// so always mute it.
+	if (formatLower.startsWith("(MAX-)+")) {
+		closer = "upper";
+	}
+
+	return {
+		lower: formatLower,
+		upper: formatUpper,
+		closer,
+	};
+}
+
+export function GetCloserGradeDelta<G extends string>(
+	gradeBoundaries: Array<GradeBoundary<G>>,
+	scoreGrade: G,
+	scoreValue: number,
+	formatNumFn = FmtNum
+): string {
+	const { lower, upper, closer } = GetGradeDeltas(
+		gradeBoundaries,
+		scoreGrade,
+		scoreValue,
+		formatNumFn
+	);
+
+	if (closer === "upper") {
+		// this type assertion is unecessary in theory, but in practice older versions
+		// of TS aren't happy with it.
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+		return upper!;
+	}
+
+	return lower;
+}
+
+export function CreateSongMap<G extends Game = Game>(songs: Array<SongDocument<G>>) {
+	const songMap = new Map<integer, SongDocument<G>>();
+
+	for (const song of songs) {
+		songMap.set(song.id, song);
+	}
+
+	return songMap;
+}
+
+export function CreateChartMap<GPT extends GPTString = GPTString>(
+	charts: Array<ChartDocument<GPT>>
+) {
+	const chartMap = new Map<string, ChartDocument<GPT>>();
+
+	for (const chart of charts) {
+		chartMap.set(chart.chartID, chart);
+	}
+
+	return chartMap;
 }
 
 /**
@@ -236,12 +369,28 @@ export function FormatPrError(err: PrudenceError, foreword = "Error"): string {
 	return `${foreword}: ${err.keychain} | ${err.message}${receivedText}.`;
 }
 
-export function CreateSongMap<G extends Game = Game>(songs: Array<SongDocument<G>>) {
-	const songMap = new Map<integer, SongDocument<G>>();
+export function GradeGoalFormatter(pb: PBScoreDocument) {
+	const { closer, lower, upper } = GenericFormatGradeDelta(
+		pb.game,
+		pb.playtype,
+		pb.scoreData.score,
+		pb.scoreData.percent,
+		pb.scoreData.grade
+	);
 
-	for (const song of songs) {
-		songMap.set(song.id, song);
+	// if upper doesn't exist, we have to return lower (this is a MAX)
+	// or something.
+	if (!upper) {
+		return lower;
 	}
 
-	return songMap;
+	// if the upper bound is relevant to the grade we're looking for
+	// i.e. the goal is to AAA a chart and the user has AA+20/AAA-100
+	// prefer AAA-100 instead of AA+20.
+	if (upper.startsWith(`${pb.scoreData.grade}-`)) {
+		return upper;
+	}
+
+	// otherwise, return whichever is closer.
+	return closer === "lower" ? lower : upper;
 }

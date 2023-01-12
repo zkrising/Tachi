@@ -1,9 +1,17 @@
 import db from "external/mongo/db";
-import { FormatGame, GetGPTString, GetGamePTConfig, GetSpecificGPTConfig } from "tachi-common";
+import { GPT_SERVER_IMPLEMENTATIONS } from "game-implementations/game-implementations";
+import {
+	FormatGame,
+	GetGPTConfig,
+	GetGPTString,
+	GetScoreMetricConf,
+	GetSpecificGPTConfig,
+} from "tachi-common";
 import { GetFolderForIDGuaranteed, HumaniseChartID } from "utils/db";
 import { GetFolderChartIDs } from "utils/folder";
 import { FormatMaxDP, HumanisedJoinArray } from "utils/misc";
-import type { ChartDocument, Game, GoalDocument, Playtype, GPTString } from "tachi-common";
+import type { GoalCriteriaFormatter } from "game-implementations/types";
+import type { GPTString, Game, GoalDocument, Playtype } from "tachi-common";
 
 export async function CreateGoalTitle(
 	charts: GoalDocument["charts"],
@@ -126,24 +134,31 @@ function FormatCriteria<GPT extends GPTString>(
 ) {
 	const gptConfig = GetSpecificGPTConfig(gptString);
 
-	switch (criteria.key) {
-		case "":
-			break;
+	const conf = GetScoreMetricConf(gptConfig, criteria.key);
 
-		default:
-			break;
+	if (!conf) {
+		throw new Error(`Invalid goal criteria with key ${criteria.key}. No config exists?`);
 	}
 
-	switch (criteria.key) {
-		case "scoreData.gradeIndex":
-			return gptConfig.grades[criteria.value];
-		case "scoreData.lampIndex":
-			return gptConfig.lamps[criteria.value];
-		case [`scoreData.${gptConfig.defaultMetric}`]:
-			return `Get ${FormatMaxDP(criteria.value)}% on`;
-		case "scoreData.score":
-			return `Get a score of ${criteria.value.toLocaleString("en-GB")} on`;
+	if (conf.type === "ENUM") {
+		const v = conf.values[criteria.value];
+
+		if (v === undefined) {
+			throw new Error(`Invalid criteria value '${criteria.value}'.`);
+		}
+	} else if (conf.type === "DECIMAL" || conf.type === "INTEGER") {
+		const fmt: GoalCriteriaFormatter | undefined =
+			// @ts-expect-error it still thinks criteria.key might be a symbol.
+			GPT_SERVER_IMPLEMENTATIONS[gptString].goalCriteriaFormatters[criteria.key];
+
+		if (!fmt) {
+			throw new Error(`No formatter defined for ${criteria.key}, yet one must exist?`);
+		}
+
+		return fmt(criteria.value);
 	}
+
+	throw new Error(`Cannot set a goal for ${criteria.key} as it is of type ${conf.type}.`);
 }
 
 /**
@@ -249,17 +264,20 @@ export async function ValidateGoalChartsAndCriteria(
 		);
 	}
 
-	// checking whether the key and value make sense
-	const gptConfig = GetGamePTConfig(game, playtype);
+	const gptString = GetGPTString(game, playtype);
 
-	const config =
-		gptConfig.providedMetrics[criteria.key] ?? gptConfig.derivedMetrics[criteria.key];
+	// checking whether the key and value make sense
+	const gptConfig = GetGPTConfig(gptString);
+
+	const config = GetScoreMetricConf(gptConfig, criteria.key);
 
 	if (!config) {
 		throw new Error(
 			`Invalid criteria.key for ${FormatGame(game, playtype)} (Got ${criteria.key}).`
 		);
 	}
+
+	const gptImpl = GPT_SERVER_IMPLEMENTATIONS[gptString];
 
 	switch (config.type) {
 		case "DECIMAL":
@@ -270,7 +288,20 @@ export async function ValidateGoalChartsAndCriteria(
 				);
 			}
 
-			// TODO VALIDATORS
+			let validateFn: (v: number) => string | true;
+
+			if (config.chartDependentMax) {
+				// @ts-expect-error this is fine leave me alone
+				validateFn = gptImpl.validators[criteria.key]!;
+			} else {
+				validateFn = config.validate;
+			}
+
+			const err = validateFn(criteria.value);
+
+			if (err !== true) {
+				throw new Error(`Invalid value ${criteria.value} for ${criteria.key}, ${err}.`);
+			}
 
 			break;
 		}
@@ -281,8 +312,6 @@ export async function ValidateGoalChartsAndCriteria(
 					`Invalid value of ${criteria.value} for ${criteria.key} goal. No such ${criteria.key} exists at that index.`
 				);
 			}
-
-			// TODO VALIDATORS
 
 			break;
 		}

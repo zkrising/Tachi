@@ -144,6 +144,10 @@ export type ConfOptionalMetrics = {
 	[G in GPTString]: typeof GAME_PT_CONFIGS[G]["optionalMetrics"];
 };
 
+export type ConfScoreMetrics = {
+	[G in GPTString]: ConfDerivedMetrics[G] & ConfProvidedMetrics[G];
+};
+
 export type ExtractedClasses = {
 	[G in GPTString]: ExtractClassValues<typeof GAME_PT_CONFIGS[G]["classes"]>;
 };

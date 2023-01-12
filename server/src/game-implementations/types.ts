@@ -1,12 +1,13 @@
-import { ProvidedClassConfig } from "tachi-common/types/game-config-utils";
 import type { DryScoreData } from "lib/score-import/framework/common/types";
 import type {
 	ChartDocument,
 	ClassConfigs,
 	ConfDerivedMetrics,
+	ConfScoreMetrics,
 	GPTString,
 	GPTStringToGame,
 	GPTStringToPlaytype,
+	PBScoreDocument,
 	ProfileRatingAlgorithms,
 	ScoreDocument,
 	ScoreRatingAlgorithms,
@@ -15,7 +16,11 @@ import type {
 	integer,
 } from "tachi-common";
 import type { DerivedClassConfig } from "tachi-common/types/game-config-utils";
-import type { AllConfMetrics, ScoreMetricDeriver } from "tachi-common/types/metrics";
+import type {
+	AllConfMetrics,
+	ConfEnumScoreMetric,
+	ScoreMetricDeriver,
+} from "tachi-common/types/metrics";
 
 /**
  * Validate this chart-specific metric. This should return a string representing an
@@ -101,6 +106,42 @@ export type GPTDerivers<GPT extends GPTString> = {
 	[K in keyof ConfDerivedMetrics[GPT]]: ScoreMetricDeriver<ConfDerivedMetrics[GPT][K], GPT>;
 };
 
+/**
+ * Format a goal into a string. If a function is provided, it's called with this goals
+ * criteria value, so a goal of "get 3600 on $CHART" would recieve 3600 as its
+ * argument.
+ *
+ * Optionally, undefined can be returned to signify this failed somehow.
+ * This is convenient for things like enum lookups which never fail in practice
+ * but the typesystem thinks they might be undefined.
+ */
+export type GoalCriteriaFormatter = (num: number) => string;
+
+/**
+ * A record of all non-enum metrics that need formatters. Enums *always* get formatted
+ * into their string formats.
+ */
+export type GPTGoalCriteriaFormatters<GPT extends GPTString> = {
+	[K in keyof ConfScoreMetrics[GPT] as ConfScoreMetrics[GPT][K] extends ConfEnumScoreMetric<
+		infer _
+	>
+		? never
+		: K]: GoalCriteriaFormatter;
+};
+
+/**
+ * Given a user's PB and the value of the goal, return a string representing this
+ * user's progress through this goal.
+ */
+export type GoalProgressFormatter<GPT extends GPTString> = (
+	pb: PBScoreDocument<GPT>,
+	goalValue: integer
+) => string;
+
+export type GPTGoalProgressFormatters<GPT extends GPTString> = {
+	[K in keyof ConfScoreMetrics[GPT]]: GoalProgressFormatter<GPT>;
+};
+
 export interface GPTServerImplementation<GPT extends GPTString> {
 	validators: GPTMetricValidators<GPT>;
 	derivers: GPTDerivers<GPT>;
@@ -108,6 +149,8 @@ export interface GPTServerImplementation<GPT extends GPTString> {
 	sessionCalcs: GPTSessionCalculators<GPT>;
 	profileCalcs: GPTProfileCalculators<GPT>;
 	classDerivers: GPTClassDerivers<GPT>;
+	goalCriteriaFormatters: GPTGoalCriteriaFormatters<GPT>;
+	goalProgressFormatters: GPTGoalProgressFormatters<GPT>;
 }
 
 export type GPTImplementations = {

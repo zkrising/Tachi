@@ -1,8 +1,8 @@
-import { GetGrade } from "./_common";
+import { GetGrade, GoalFmtScore } from "./_common";
 import { ProfileAvgBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { CHUNITHMRating } from "rg-stats";
-import { CHUNITHM_GBOUNDARIES } from "tachi-common";
+import { CHUNITHM_GBOUNDARIES, FmtNum } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 
@@ -46,5 +46,23 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 
 			return "BLUE";
 		},
+	},
+	goalCriteriaFormatters: {
+		score: GoalFmtScore,
+	},
+	goalProgressFormatters: {
+		grade: (pb, gradeIndex) => {
+			return GoalGradeDeltaFmt(
+				grades,
+				pb.scoreData.score,
+				pb.scoreData.percent,
+				pb.scoreData.grade,
+				gradeIndex,
+				// 4519 -> "4519". Don't add commas or anything.
+				(v) => v.toString()
+			);
+		},
+		lamp: (pb) => pb.scoreData.lamp,
+		score: (pb) => FmtNum(pb.scoreData.score),
 	},
 };

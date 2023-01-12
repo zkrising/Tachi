@@ -56,7 +56,13 @@ export interface BaseGoalDocument<GPT extends GPTString> {
 }
 
 interface GoalCriteria<GPT extends GPTString> {
-	key: keyof DerivedMetrics[GPT] | keyof ProvidedMetrics[GPT];
+	// vvv this basically doesn't work as it starts thinking this might be a symbol
+	// causing a myriad of annoying errors.
+	// key: keyof DerivedMetrics[GPT] | keyof ProvidedMetrics[GPT];
+
+	// doing this silly hack instead.
+	key: string;
+
 	value: number;
 }
 
@@ -133,10 +139,9 @@ export interface SessionInfoReturn {
 interface SessionScorePBInfo {
 	scoreID: string;
 	isNewScore: false;
-	scoreDelta: number;
-	gradeDelta: integer;
-	lampDelta: integer;
-	percentDelta: number;
+
+	// metric -> difference between previous PB.
+	deltas: Record<string, number>;
 }
 
 interface SessionScoreNewInfo {

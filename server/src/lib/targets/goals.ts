@@ -66,7 +66,7 @@ export async function EvaluateGoalForUser(
 
 		// normally, this would be a VERY WORRYING line of code, but goal.criteria.key is guaranteed to be
 		// within a specific set of fields.
-		[goal.criteria.key]: { $gte: goal.criteria.value },
+		[`scoreData.${goal.criteria.key}`]: { $gte: goal.criteria.value },
 		chartID: { $in: chartIDs },
 	};
 
@@ -75,11 +75,7 @@ export async function EvaluateGoalForUser(
 			const res = await db["personal-bests"].findOne(scoreQuery);
 
 			// hack, but guaranteed to work.
-			const scoreDataKey = goal.criteria.key.split(".")[1] as
-				| "gradeIndex"
-				| "lampIndex"
-				| "percent"
-				| "score";
+			const scoreDataKey = goal.criteria.key;
 
 			const outOfHuman = HumaniseGoalOutOf(
 				goal.game,

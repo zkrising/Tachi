@@ -1,4 +1,4 @@
-import { GetGrade } from "./_common";
+import { GetGrade, GoalFmtPercent } from "./_common";
 import db from "external/mongo/db";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
@@ -111,5 +111,12 @@ export const MAIMAIDX_IMPL: GPTServerImplementation<"maimaidx:Single"> = {
 
 			return "WHITE";
 		},
+	},
+	goalCriteriaFormatters: {
+		percent: GoalFmtPercent,
+	},
+	goalProgressFormatters: {
+		percent: (pb) => `${pb.scoreData.percent.toFixed(2)}%`,
+		lamp: (pb) => pb.scoreData.lamp,
 	},
 };

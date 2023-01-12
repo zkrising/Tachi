@@ -13,6 +13,7 @@ import { POPN_9B_CONF, POPN_CONF } from "./game-support/popn";
 import { SDVX_CONF, SDVX_SINGLE_CONF } from "./game-support/sdvx";
 import { USC_CONF, USC_CONTROLLER_CONF, USC_KEYBOARD_CONF } from "./game-support/usc";
 import { WACCA_CONF, WACCA_SINGLE_CONF } from "./game-support/wacca";
+import { p } from "prudence";
 import type {
 	GPTString,
 	Game,
@@ -22,7 +23,7 @@ import type {
 	Playtypes,
 } from "../types/game-config";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../types/internals";
-import type { ConfScoreMetric } from "../types/metrics";
+import type { ConfEnumScoreMetric, ConfScoreMetric } from "../types/metrics";
 
 /**
  * All game configurations that Tachi supports.
@@ -127,4 +128,57 @@ export function GetScoreMetrics(
 	}
 
 	return metrics.map((e) => e[0]);
+}
+
+export function GetScoreEnumConfs(gptConfig: GamePTConfig) {
+	const scoreMetrics = {
+		...gptConfig.providedMetrics,
+		...gptConfig.derivedMetrics,
+	};
+
+	const enumMetrics: Record<string, ConfEnumScoreMetric<string>> = {};
+
+	for (const [key, value] of Object.entries(scoreMetrics)) {
+		if (value.type === "ENUM") {
+			enumMetrics[key] = value;
+		}
+	}
+
+	return enumMetrics;
+}
+
+/**
+ * Given a name for a metric and a value, check whether its sensible for
+ * this game or not.
+ *
+ * @returns A string on failure, true on success.
+ *
+ * @note GRAPH and NULLABLE_GRAPH types are never valid here.
+ */
+export function ValidateMetric(gptConfig: GamePTConfig, metricName: string, metricValue: number) {
+	const scoreMetrics = GetScoreMetrics(gptConfig, ["DECIMAL", "INTEGER", "ENUM"]);
+
+	const conf = gptConfig.providedMetrics[metricName] ?? gptConfig.derivedMetrics[metricName];
+
+	if (!conf || !scoreMetrics.includes(metricName)) {
+		return `Invalid metric ${metricName}, Expected any of ${scoreMetrics.join(", ")}.`;
+	}
+
+	if (conf.type === "ENUM") {
+		return p.isBoundedInteger(0, conf.values.length - 1)(metricValue);
+	}
+
+	if (conf.type === "GRAPH" || conf.type === "NULLABLE_GRAPH") {
+		return "Cannot validate a graph or nullable graph metric.";
+	}
+
+	if (conf.chartDependentMax) {
+		return `This metric is chart dependent and not appropriate to check in this context.`;
+	}
+
+	return conf.validate(metricValue);
+}
+
+export function GetScoreMetricConf(gptConfig: GamePTConfig, metric: string) {
+	return gptConfig.providedMetrics[metric] ?? gptConfig.derivedMetrics[metric];
 }

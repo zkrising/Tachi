@@ -2,12 +2,14 @@ import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { InternalFailure } from "lib/score-import/framework/common/converter-failures";
 import { Volforce } from "rg-stats";
-import { IIDXLIKE_GBOUNDARIES, SDVXLIKE_GBOUNDARIES } from "tachi-common";
-import { IsNullish } from "utils/misc";
+import { FmtNum, IIDXLIKE_GBOUNDARIES, SDVXLIKE_GBOUNDARIES } from "tachi-common";
+import { FormatMaxDP, IsNullish } from "utils/misc";
 import type {
 	ChartSpecificMetricValidator,
 	GPTClassDerivers,
 	GPTDerivers,
+	GPTGoalCriteriaFormatters,
+	GPTGoalProgressFormatters,
 	GPTMetricValidators,
 	GPTProfileCalculators,
 	GPTScoreCalculators,
@@ -192,6 +194,15 @@ export const SDVXLIKE_CLASS_DERIVERS: GPTClassDerivers<SDVXLikes> = {
 	},
 };
 
+export const SDVXLIKE_GOAL_FMT: GPTGoalCriteriaFormatters<SDVXLikes> = {
+	score: GoalFmtScore,
+};
+
+export const SDVXLIKE_GOAL_PG_FMT: GPTGoalProgressFormatters<SDVXLikes> = {
+	score: (pb) => FmtNum(pb.scoreData.score),
+	lamp: (pb) => pb.scoreData.lamp,
+};
+
 export const SGLCalc: ScoreCalculator<GPTStrings["bms" | "pms"]> = (scoreData, chart) => {
 	const ecValue = chart.data.sglEC ?? 0;
 	const hcValue = chart.data.sglHC ?? 0;
@@ -208,3 +219,44 @@ export const SGLCalc: ScoreCalculator<GPTStrings["bms" | "pms"]> = (scoreData, c
 			return 0;
 	}
 };
+
+export function GoalFmtPercent(val: number) {
+	return `Get ${FormatMaxDP(val)}% on`;
+}
+
+export function GoalFmtScore(val: number) {
+	return `Get a score of ${val.toLocaleString("en-GB")} on`;
+}
+
+export function GoalGradeDeltaFmt(
+	grades: ReadonlyArray<string>,
+	score: integer,
+	percent: number,
+	grade: string,
+	gradeIndex: number,
+	// optionally, declare how the numeric part of the grade delta should be formatted.
+	fmtFn: (n: number) => string = FmtNum
+) {
+	const goalGrade = grades[gradeIndex];
+
+	if (!goalGrade) {
+		throw new Error(`Tried to format ${gradeIndex}, but no such BMS 7K grade existed?`);
+	}
+
+	const { lower, upper, closer } = GenericFormatGradeDelta(grades, score, percent, grade, fmtFn);
+
+	// If this goal is, say, AAA $chart, and the user's deltas are AA+40, AAA-100
+	// instead of picking the one with less delta from the grade (AA+40)
+	// pick the one closest to the target grade.
+	// Because sometimes this function wraps the grade operand in brackets
+	// (see (MAX-)-50), we need a regexp for this.
+	// eslint-disable-next-line @typescript-eslint/prefer-optional-chain
+	if (upper && new RegExp(`\\(?${goalGrade}`, "u").exec(upper)) {
+		return upper;
+	}
+
+	// for some reason, our TS compiler disagrees that this is non-nullable.
+	// but my IDE thinks it is. Who knows.
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+	return closer === "lower" ? lower : upper!;
+}

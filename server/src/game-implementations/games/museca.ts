@@ -1,8 +1,8 @@
-import { GetGrade } from "./_common";
+import { GetGrade, GoalFmtScore } from "./_common";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { CuratorSkill } from "rg-stats";
-import { MUSECA_GBOUNDARIES } from "tachi-common";
+import { FmtNum, MUSECA_GBOUNDARIES } from "tachi-common";
 import type { GPTServerImplementation } from "game-implementations/types";
 
 export const MUSECA_IMPL: GPTServerImplementation<"museca:Single"> = {
@@ -18,4 +18,11 @@ export const MUSECA_IMPL: GPTServerImplementation<"museca:Single"> = {
 		curatorSkill: ProfileSumBestN("curatorSkill", 20),
 	},
 	classDerivers: {},
+	goalCriteriaFormatters: {
+		score: GoalFmtScore,
+	},
+	goalProgressFormatters: {
+		score: (pb) => FmtNum(pb.scoreData.score),
+		lamp: (pb) => pb.scoreData.lamp,
+	},
 };

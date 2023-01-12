@@ -1,5 +1,5 @@
 import db from "external/mongo/db";
-import { GetGradeLampDistributionForFolders } from "utils/folder";
+import { GetEnumDistForFolders } from "utils/folder";
 import { GetTimeXHoursAgo } from "utils/misc";
 import type { integer } from "tachi-common";
 
@@ -41,7 +41,7 @@ export async function GetRecentlyViewedFoldersAnyGPT(userID: integer) {
 		folderID: { $in: views.map((e) => e.folderID) },
 	});
 
-	const stats = await GetGradeLampDistributionForFolders(userID, folders);
+	const stats = await GetEnumDistForFolders(userID, folders);
 
 	// TODO: Sort recently viewed folders based on how recently viewed
 	// they were.

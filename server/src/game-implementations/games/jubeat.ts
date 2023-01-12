@@ -1,10 +1,10 @@
-import { GetGrade } from "./_common";
+import { GetGrade, GoalFmtPercent, GoalFmtScore } from "./_common";
 import db from "external/mongo/db";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { p } from "prudence";
 import { Jubility } from "rg-stats";
-import { JUBEAT_GBOUNDARIES } from "tachi-common";
+import { FmtNum, JUBEAT_GBOUNDARIES } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 import type { Game, PBScoreDocument, Playtype, Versions, integer } from "tachi-common";
@@ -187,5 +187,14 @@ export const JUBEAT_IMPL: GPTServerImplementation<"jubeat:Single"> = {
 
 			return "BLACK";
 		},
+	},
+	goalCriteriaFormatters: {
+		musicRate: GoalFmtPercent,
+		score: GoalFmtScore,
+	},
+	goalProgressFormatters: {
+		score: (pb) => FmtNum(pb.scoreData.score),
+		musicRate: (pb) => `${pb.scoreData.musicRate.toFixed(1)}%`,
+		lamp: (pb) => pb.scoreData.lamp,
 	},
 };

@@ -1,9 +1,9 @@
-import { GetGrade } from "./_common";
+import { GetGrade, GoalFmtScore } from "./_common";
 import db from "external/mongo/db";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { WACCARate } from "rg-stats";
-import { WACCA_GBOUNDARIES } from "tachi-common";
+import { FmtNum, WACCA_GBOUNDARIES } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 import type { Game, Playtype, integer } from "tachi-common";
@@ -107,5 +107,12 @@ export const WACCA_IMPL: GPTServerImplementation<"wacca:Single"> = {
 
 			return "ASH";
 		},
+	},
+	goalCriteriaFormatters: {
+		score: GoalFmtScore,
+	},
+	goalProgressFormatters: {
+		score: (pb) => FmtNum(pb.scoreData.score),
+		lamp: (pb) => pb.scoreData.lamp,
 	},
 };

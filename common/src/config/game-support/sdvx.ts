@@ -13,7 +13,7 @@ export const SDVX_CONF = {
 	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
-const SDVXDans = [
+export const SDVXDans = [
 	ClassValue("DAN_1", "LV.01", "1st Dan"),
 	ClassValue("DAN_2", "LV.02", "2nd Dan"),
 	ClassValue("DAN_3", "LV.03", "3rd Dan"),

@@ -8,6 +8,7 @@ export function CreateFerStaticClassProvider(body: Record<string, unknown>): Cla
 
 		if (gptString === "iidx:SP") {
 			index = body.sp_dan;
+			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 		} else if (gptString === "iidx:DP") {
 			index = body.dp_dan;
 		} else {
@@ -34,7 +35,7 @@ export function CreateFerStaticClassProvider(body: Record<string, unknown>): Cla
 		}
 
 		return {
-			dan,
+			dan: dan.id,
 		};
 	};
 }

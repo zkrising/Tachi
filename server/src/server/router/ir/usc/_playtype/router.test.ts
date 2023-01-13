@@ -127,7 +127,7 @@ t.test("GET /ir/usc/Controller/charts/:chartHash", (t) => {
 	t.end();
 });
 
-const USC_SCORE_PB: PBScoreDocument = {
+const USC_SCORE_PB: PBScoreDocument<"usc:Controller"> = {
 	chartID: "USC_CHART_ID",
 	rankingData: {
 		rank: 1,
@@ -140,23 +140,24 @@ const USC_SCORE_PB: PBScoreDocument = {
 	playtype: "Controller",
 	game: "usc",
 	highlight: false,
-	composedFrom: {
-		scorePB: "usc_score_pb",
-		lampPB: "bar",
-	},
+	composedFrom: [
+		{ name: "Best Score", scoreID: "usc_score_pb" },
+		{ name: "Best Lamp", scoreID: "bar" },
+	],
 	calculatedData: {
 		VF6: null,
 	},
 	isPrimary: true,
 	scoreData: {
 		score: 9_000_000,
-		percent: 90,
 		grade: "A+",
 		lamp: "EXCESSIVE CLEAR",
-		lampIndex: 2,
 
-		// idk, lazy
-		gradeIndex: 4,
+		enumIndexes: {
+			// are these even correct? lazy.
+			lamp: 2,
+			grade: 4,
+		},
 
 		judgements: {
 			critical: 50,
@@ -167,6 +168,7 @@ const USC_SCORE_PB: PBScoreDocument = {
 			gauge: 50,
 			fast: 50,
 			slow: 20,
+			enumIndexes: {},
 		},
 	},
 };
@@ -303,7 +305,6 @@ t.test("GET /charts/:chartHash/leaderboard", (t) => {
 				userID: 2,
 				scoreData: {
 					score: 8_000_000,
-					percent: 80,
 				},
 				rankingData: { rank: 2 },
 				composedFrom: { scorePB: "other_usc_score_pb" },
@@ -570,7 +571,6 @@ t.test("POST /scores", (t) => {
 		t.hasStrict(dbScore, {
 			scoreData: {
 				score: 9_000_000,
-				percent: 90,
 				lamp: "FAILED",
 			},
 			scoreMeta: {
@@ -727,7 +727,6 @@ t.test("POST /scores", (t) => {
 		t.hasStrict(score, {
 			scoreData: {
 				score: 9_000_000,
-				percent: 90,
 				lamp: "FAILED",
 			},
 			scoreMeta: {
@@ -867,7 +866,6 @@ t.test("POST /scores", (t) => {
 		t.hasStrict(score, {
 			scoreData: {
 				score: 9_000_000,
-				percent: 90,
 				lamp: "FAILED",
 			},
 			scoreMeta: {

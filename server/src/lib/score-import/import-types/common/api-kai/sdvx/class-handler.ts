@@ -1,5 +1,6 @@
 import { KaiTypeToBaseURL } from "../utils";
 import { SDVX_DANS } from "tachi-common";
+import { SDVXDans } from "tachi-common/config/game-support/sdvx";
 import nodeFetch from "utils/fetch";
 import { IsRecord } from "utils/misc";
 import type { KaiAPIReauthFunction } from "../traverse-api";
@@ -95,8 +96,17 @@ export async function CreateKaiSDVXClassProvider(
 			return {};
 		}
 
+		const value = SDVXDans[sdvxDan];
+
+		if (!value) {
+			logger.warn(
+				`${baseUrl} returned a dan of ${sdvxDan}, which has no corresponding value.`
+			);
+			return {};
+		}
+
 		return {
-			dan: sdvxDan,
+			dan: value.id,
 		};
 	};
 }

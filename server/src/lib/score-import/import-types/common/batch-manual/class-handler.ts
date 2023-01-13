@@ -11,7 +11,7 @@ export function CreateBatchManualClassProvider(
 	return (gptString, userID, ratings, logger) => {
 		const gptConfig = GetGPTConfig(gptString);
 
-		const newObj: Partial<Record<Classes[GPTString], string | null>> = {};
+		const newObj: Partial<Record<Classes[GPTString], string>> = {};
 
 		for (const [s, classID] of Object.entries(classes)) {
 			if (classID === null) {

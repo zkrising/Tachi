@@ -17,9 +17,16 @@ t.test("#CalculateUGPTClasses", (t) => {
 	});
 
 	t.test("Should call and merge the ClassHandler", async (t) => {
-		const res = await CalculateUGPTClasses("iidx", "SP", 1, {}, () => ({ dan: 2 }), logger);
+		const res = await CalculateUGPTClasses(
+			"iidx",
+			"SP",
+			1,
+			{},
+			() => ({ dan: "DAN_2" }),
+			logger
+		);
 
-		t.strictSame(res, { dan: 2 });
+		t.strictSame(res, { dan: "DAN_2" });
 
 		t.end();
 	});
@@ -36,7 +43,7 @@ t.test("#CalculateUGPTClasses", (t) => {
 			logger
 		);
 
-		t.strictSame(res, { colour: GITADORA_COLOURS.RAINBOW });
+		t.strictSame(res, { colour: "RAINBOW" });
 
 		t.end();
 	});

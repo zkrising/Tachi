@@ -1,5 +1,6 @@
 import { KaiTypeToBaseURL } from "../utils";
 import { IIDX_DANS } from "tachi-common";
+import { IIDXDans } from "tachi-common/config/game-support/iidx";
 import nodeFetch from "utils/fetch";
 import { IsRecord } from "utils/misc";
 import type { KaiAPIReauthFunction } from "../traverse-api";
@@ -102,8 +103,17 @@ export async function CreateKaiIIDXClassProvider(
 			return {};
 		}
 
+		const value = IIDXDans[iidxDan];
+
+		if (!value) {
+			logger.warn(
+				`${baseUrl} returned a dan of ${iidxDan}, which has no corresponding value.`
+			);
+			return {};
+		}
+
 		return {
-			dan: iidxDan,
+			dan: value.id,
 		};
 	};
 }

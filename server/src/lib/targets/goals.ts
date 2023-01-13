@@ -19,6 +19,7 @@ import type {
 	QuestDocument,
 	QuestSubscriptionDocument,
 	GPTString,
+	ScoreData,
 } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
@@ -73,6 +74,14 @@ export async function EvaluateGoalForUser(
 	};
 
 	const gptString = GetGPTString(goal.game, goal.playtype);
+	const gptConfig = GetGPTConfig(gptString);
+	const scoreConf = GetScoreMetricConf(gptConfig, goal.criteria.key);
+
+	if (!scoreConf) {
+		throw new Error(
+			`Invalid goal.criteria.key, got '${goal.criteria.key}', but no config exists for this metric for ${gptString}.`
+		);
+	}
 
 	switch (goal.criteria.mode) {
 		case "single": {
@@ -82,12 +91,18 @@ export async function EvaluateGoalForUser(
 
 			const outOfHuman = HumaniseGoalOutOf(gptString, goal.criteria.key, goal.criteria.value);
 
+			const key = goal.criteria.key;
+
 			if (res) {
 				return {
 					achieved: true,
 					outOf: goal.criteria.value,
-					// @ts-expect-error completely ok, as it'll definitely be on these props.
-					progress: res.scoreData[goal.criteria.key],
+					progress:
+						scoreConf.type === "ENUM"
+							? // @ts-expect-error this is always correct but the typesystem is rightfully concerned
+							  res.scoreData.enumIndexes[key]
+							: // @ts-expect-error see above
+							  res.scoreData[key],
 					outOfHuman,
 					progressHuman: HumaniseGoalProgress(
 						gptString,
@@ -126,8 +141,12 @@ export async function EvaluateGoalForUser(
 				achieved: false,
 				outOf: goal.criteria.value,
 				outOfHuman,
-				// @ts-expect-error completely ok, as it'll definitely be on these props.
-				progress: nextBestScore.scoreData[goal.criteria.key],
+				progress:
+					scoreConf.type === "ENUM"
+						? // @ts-expect-error this is always correct but the typesystem is rightfully concerned
+						  nextBestScore.scoreData.enumIndexes[key]
+						: // @ts-expect-error see above
+						  nextBestScore.scoreData[key],
 				progressHuman: HumaniseGoalProgress(
 					gptString,
 					goal.criteria.key,

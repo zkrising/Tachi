@@ -78,6 +78,10 @@ export class InternalFailure extends ConverterFailure {
 	}
 }
 
-export function IsConverterFailure(err: ConverterFailure | Error): err is ConverterFailure {
+export function IsConverterFailure(err: unknown): err is ConverterFailure {
+	if (err === null || typeof err !== "object") {
+		return false;
+	}
+
 	return "failureType" in err;
 }

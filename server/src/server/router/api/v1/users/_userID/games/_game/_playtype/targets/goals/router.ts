@@ -156,13 +156,15 @@ router.post(
 
 		const validCriteria = [
 			...Object.keys(gptConfig.providedMetrics),
-			Object.keys(gptConfig.derivedMetrics),
+			...Object.keys(gptConfig.derivedMetrics),
 		];
 
 		if (!validCriteria.includes(req.body.criteria.key)) {
 			return res.status(400).json({
 				success: false,
-				description: `Invalid criteria, expected any of ${validCriteria.join(", ")}.`,
+				description: `Invalid criteria '${
+					req.body.criteria.key
+				}', expected any of ${validCriteria.join(", ")}.`,
 			});
 		}
 

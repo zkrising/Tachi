@@ -166,7 +166,70 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 			t.equal(res.body.success, false, "Should not be successful");
 			t.match(
 				res.body.description,
-				/Invalid BATCH-MANUAL: scores\[0\].score \| Expected a positive integer. \| Received 123\.5/iu
+				/Invalid BATCH-MANUAL: scores\[0\].score \| Expected an integer. \| Received 123\.5/iu
+			);
+
+			t.end();
+		});
+
+		t.test("Should apply chart specific validators for scores.", async (t) => {
+			const bmScore: BatchManualScore = {
+				identifier: "1",
+				lamp: "CLEAR",
+				matchType: "tachiSongID",
+				difficulty: "ANOTHER",
+				// greater than the max possible score on this chart
+				score: 9000,
+			};
+
+			const res = await mockApi
+				.post("/ir/direct-manual/import")
+				.set("Authorization", `Bearer mock_token`)
+				.send(deepmerge(baseBatchManual, { scores: [bmScore] }));
+
+			t.equal(res.body.success, true, "Should be successful but with one failed score");
+			t.strictSame(
+				res.body.body.errors,
+				[
+					{
+						type: "InvalidDatapoint",
+						message: `Got 1 error when validating score:
+Invalid value for score, EX Score cannot be greater than 1572 for this chart. Got 9000.`,
+					},
+				],
+				"Should have one failed score."
+			);
+
+			t.end();
+		});
+
+		t.test("Should reject negative values for jubeat scores.", async (t) => {
+			const bmScore: BatchManualScore = {
+				identifier: "1",
+				lamp: "CLEAR",
+				matchType: "tachiSongID",
+				difficulty: "EXT",
+				score: -100,
+				musicRate: 50,
+			};
+
+			const res = await mockApi
+				.post("/ir/direct-manual/import")
+				.set("Authorization", `Bearer mock_token`)
+				.send(
+					deepmerge(baseBatchManual, {
+						scores: [bmScore],
+						meta: {
+							game: "jubeat",
+							playtype: "Single",
+						},
+					})
+				);
+
+			t.equal(res.body.success, false, "Should not be successful");
+			t.match(
+				res.body.description,
+				"Invalid BATCH-MANUAL: scores[0].score | Expected a number between 0 and 1000000. | Received -100 [type: number]."
 			);
 
 			t.end();

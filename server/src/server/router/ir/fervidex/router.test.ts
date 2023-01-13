@@ -233,7 +233,7 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 
 		const ugs = await db["game-stats"].findOne({ userID: 1, game: "iidx", playtype: "SP" });
 
-		t.equal(ugs?.classes.dan, 18);
+		t.equal(ugs?.classes.dan, "KAIDEN");
 
 		const recentAchievement = await db["class-achievements"].findOne({
 			userID: 1,
@@ -267,7 +267,7 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 
 		const ugs = await db["game-stats"].findOne({ userID: 1, game: "iidx", playtype: "DP" });
 
-		t.equal(ugs?.classes.dan, 17);
+		t.equal(ugs?.classes.dan, "CHUUDEN");
 
 		t.end();
 	});
@@ -479,7 +479,7 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 			playtype: "SP",
 		});
 
-		t.equal(ugs!.classes.dan, 15, "Should successfully update dan to 9th.");
+		t.equal(ugs!.classes.dan, "DAN_9", "Should successfully update dan to 9th.");
 
 		t.end();
 	});
@@ -520,7 +520,7 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 			playtype: "SP",
 		});
 
-		t.equal(ugs!.classes.dan, 15, "Should successfully update dan to 9th.");
+		t.equal(ugs!.classes.dan, "DAN_9", "Should successfully update dan to 9th.");
 
 		const dbRes = await db["fer-settings"].findOne({ userID: 1 });
 

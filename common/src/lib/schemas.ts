@@ -403,11 +403,7 @@ const PRE_SCHEMAS = {
 		const gptConfig = GetGamePTConfig(game, playtype);
 
 		return prSchemaFnWrap({
-			composedFrom: {
-				scorePB: "string",
-				lampPB: "string",
-				other: p.optional([{ name: "string", scoreID: "string" }]),
-			},
+			composedFrom: [{ name: "string", scoreID: "string" }],
 			rankingData: {
 				rank: p.isPositiveNonZeroInteger,
 				outOf: p.isPositiveNonZeroInteger,
@@ -423,6 +419,8 @@ const PRE_SCHEMAS = {
 			scoreData: {
 				...PR_METRICS(gptConfig.providedMetrics),
 				...PR_METRICS(gptConfig.derivedMetrics),
+
+				// TODO ENUMINDEXES
 
 				judgements: Object.fromEntries(
 					gptConfig.orderedJudgements.map((j) => [j, optNull(p.isInteger)])
@@ -871,10 +869,19 @@ function PR_METRICS(metrics: Record<string, ConfScoreMetric>, shouldAllBeOptNull
 	const schema: PrudenceSchema = {};
 
 	for (const [key, value] of Object.entries(metrics)) {
+		let prValidator = PR_METRIC(value);
+
+		if ("validate" in value) {
+			prValidator = p.and(
+				prValidator,
+				(self) => typeof self === "number" && value.validate(self)
+			);
+		}
+
 		if (shouldAllBeOptNull === true) {
-			schema[key] = optNull(PR_METRIC(value));
+			schema[key] = optNull(prValidator);
 		} else {
-			schema[key] = PR_METRIC(value);
+			schema[key] = prValidator;
 		}
 	}
 

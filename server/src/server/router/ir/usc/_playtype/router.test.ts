@@ -307,7 +307,7 @@ t.test("GET /charts/:chartHash/leaderboard", (t) => {
 					score: 8_000_000,
 				},
 				rankingData: { rank: 2 },
-				composedFrom: { scorePB: "other_usc_score_pb" },
+				composedFrom: [{ name: "Best Score", scoreID: "other_usc_score_pb" }],
 			}),
 		]);
 

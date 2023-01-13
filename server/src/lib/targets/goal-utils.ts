@@ -10,7 +10,10 @@ import {
 import { GetFolderForIDGuaranteed, HumaniseChartID } from "utils/db";
 import { GetFolderChartIDs } from "utils/folder";
 import { FormatMaxDP, HumanisedJoinArray } from "utils/misc";
-import type { GoalCriteriaFormatter } from "game-implementations/types";
+import type {
+	ChartSpecificMetricValidator,
+	GoalCriteriaFormatter,
+} from "game-implementations/types";
 import type { GPTString, Game, GoalDocument, Playtype } from "tachi-common";
 
 export async function CreateGoalTitle(
@@ -146,6 +149,8 @@ function FormatCriteria<GPT extends GPTString>(
 		if (v === undefined) {
 			throw new Error(`Invalid criteria value '${criteria.value}'.`);
 		}
+
+		return v;
 	} else if (conf.type === "DECIMAL" || conf.type === "INTEGER") {
 		const fmt: GoalCriteriaFormatter | undefined =
 			// @ts-expect-error it still thinks criteria.key might be a symbol.
@@ -288,19 +293,29 @@ export async function ValidateGoalChartsAndCriteria(
 				);
 			}
 
-			let validateFn: (v: number) => string | true;
+			let err;
 
 			if (config.chartDependentMax) {
+				const chart = await db.anyCharts[game].findOne({
+					playtype,
+					// guaranteed by previous if statement
+					chartID: charts.data as string,
+				});
+
+				if (!chart) {
+					throw new Error(
+						`Chart ${charts.data} was removed from the database while a goal was being validated on it?`
+					);
+				}
+
 				// @ts-expect-error this is fine leave me alone
-				validateFn = gptImpl.validators[criteria.key]!;
+				err = gptImpl.validators[criteria.key](criteria.value, chart);
 			} else {
-				validateFn = config.validate;
+				err = config.validate(criteria.value);
 			}
 
-			const err = validateFn(criteria.value);
-
 			if (err !== true) {
-				throw new Error(`Invalid value ${criteria.value} for ${criteria.key}, ${err}.`);
+				throw new Error(`Invalid value ${criteria.value} for ${criteria.key}, ${err}`);
 			}
 
 			break;

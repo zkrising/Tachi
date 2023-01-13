@@ -314,11 +314,13 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 					value: -1,
 				},
 			}),
-			mkInput("percent of 0 is a non-goal", {
-				criteria: {
-					value: 0,
-				},
-			}),
+			// as stupid as it is, it technically "is" a goal, as it's a valid
+			// value for percent.
+			// mkInput("percent of 0 is a non-goal", {
+			// 	criteria: {
+			// 		value: 0,
+			// 	},
+			// }),
 			mkInput("percent greater than 100", {
 				criteria: {
 					value: 100.1,
@@ -328,6 +330,12 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 				criteria: {
 					key: "grade",
 					value: IIDX_GRADES.MAX + 1,
+				},
+			}),
+			mkInput("string enum", {
+				criteria: {
+					key: "grade",
+					value: IIDX_GRADES.MAX.toString(),
 				},
 			}),
 			mkInput("invalid grade", {

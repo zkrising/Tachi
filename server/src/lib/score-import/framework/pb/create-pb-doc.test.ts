@@ -105,9 +105,8 @@ t.test("#CreatePBDoc", (t) => {
 			t.strictSame(
 				res,
 				deepmerge(ExamplePBDoc, {
-					composedFrom: {
-						other: [{ name: "Best BP", scoreID: "BP_PB_ID" }],
-					},
+					composedFrom: [{ name: "Best BP", scoreID: "BP_PB_ID" }],
+
 					scoreData: {
 						optional: {
 							bp: 5,
@@ -251,16 +250,11 @@ t.test("#CreatePBDoc", (t) => {
 			"Should select the best BP's BP and not the score PBs."
 		);
 
-		t.strictSame(res?.composedFrom, {
-			lampPB: "LAMP_PB_ID",
-			scorePB: TestingBMS7KScore.scoreID,
-			other: [
-				{
-					name: "Best BP",
-					scoreID: "BP_PB_ID",
-				},
-			],
-		});
+		t.strictSame(res?.composedFrom, [
+			{ name: "Best Score", scoreID: TestingBMS7KScore.scoreID },
+			{ name: "Best Lamp", scoreID: "LAMP_PB_ID" },
+			{ name: "Best BP", scoreID: "BP_PB_ID" },
+		]);
 
 		t.end();
 	});
@@ -313,16 +307,11 @@ t.test("#CreatePBDoc", (t) => {
 			"Should select the best BP's BP and not the score PBs."
 		);
 
-		t.strictSame(res?.composedFrom, {
-			lampPB: "LAMP_PB_ID",
-			scorePB: TestingBMS7KScore.scoreID,
-			other: [
-				{
-					name: "Best BP",
-					scoreID: "BP_PB_ID",
-				},
-			],
-		});
+		t.strictSame(res?.composedFrom, [
+			{ name: "Best Score", scoreID: TestingBMS7KScore.scoreID },
+			{ name: "Best Lamp", scoreID: "LAMP_PB_ID" },
+			{ name: "Best BP", scoreID: "BP_PB_ID" },
+		]);
 
 		t.end();
 	});

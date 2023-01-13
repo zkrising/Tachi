@@ -47,7 +47,8 @@
 			"@types/mongodb": "3.6.20",
 			"@types/bson": "1.0.11",
 			"@types/node": "16.11.7",
-			"@types/express-serve-static-core": "4.17.29"
+			"@types/express-serve-static-core": "4.17.29",
+			"ts-node": "10.9.1"
 		},
 		"patchedDependencies": {
 			"@types/mongodb@3.6.20": "patches/@types__mongodb@3.6.20.patch",

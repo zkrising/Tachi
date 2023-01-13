@@ -53,7 +53,6 @@ t.test("#UpdateGoalsForUser", (t) => {
 		await db.goals.insert(baseGoalDocument);
 
 		await db["goal-subs"].insert(baseGoalSubscriptionDocument);
-
 		await db["personal-bests"].insert(TestingIIDXSPScorePB);
 
 		const ugMap = new Map([["FAKE_GOAL_ID", baseGoalSubscriptionDocument]]);

@@ -67,6 +67,10 @@ const dbtime = process.hrtime.bigint();
 // inside githubs test runners.
 export const monkDB = monk(`${Environment.mongoUrl}/${dbName}`, {
 	serverSelectionTimeoutMS: ONE_MINUTE * 2,
+
+	// in local dev, don't **ever** add _id onto objects you're inserting
+	// in production, this might have a performance hit.
+	forceServerObjectId: Environment.nodeEnv === "test",
 });
 
 /* istanbul ignore next */

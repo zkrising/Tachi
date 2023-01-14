@@ -423,11 +423,69 @@ t.test("POST /ir/fervidex/score/submit", (t) => {
 			.post("/ir/fervidex/score/submit")
 			.set("User-Agent", "fervidex/1.3.0")
 			.set("Authorization", "Bearer mock_token")
+			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
 			.send({});
 
 		t.equal(res.body.success, false, "Should not be successful");
 
 		t.type(res.body.error, "string", "Should have an error prop that is a string.");
+
+		t.end();
+	});
+
+	t.test("Should reject an invalid exscore", async (t) => {
+		const res = await mockApi
+			.post("/ir/fervidex/score/submit")
+			.set("User-Agent", "fervidex/1.3.0")
+			.set("Authorization", "Bearer mock_token")
+			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
+			.send(
+				deepmerge(FervidexBaseScore, {
+					ex_score: 9999,
+				})
+			);
+
+		t.equal(res.statusCode, 200, "Should pass validation.");
+
+		await Sleep(2000);
+
+		const imp = await db.imports.findOne({
+			importID: res.body.body.importID,
+		});
+
+		t.strictSame(imp?.errors, [
+			{
+				type: "InvalidDatapoint",
+				message: `Got 1 error when validating score:
+Invalid value for score, EX Score cannot be greater than 1572 for this chart. Got 9999.`,
+			},
+		]);
+
+		t.end();
+	});
+
+	t.test("Should reject an invalid gauge", async (t) => {
+		const res = await mockApi
+			.post("/ir/fervidex/score/submit")
+			.set("User-Agent", "fervidex/1.3.0")
+			.set("Authorization", "Bearer mock_token")
+			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
+			.send(deepmerge(FervidexBaseScore, { gauge: [150] }));
+
+		t.equal(res.statusCode, 200, "Should pass validation.");
+
+		await Sleep(2000);
+
+		const imp = await db.imports.findOne({
+			importID: res.body.body.importID,
+		});
+
+		t.strictSame(imp?.errors, [
+			{
+				type: "InvalidDatapoint",
+				message: "Invalid value of gauge 150.",
+			},
+		]);
 
 		t.end();
 	});
@@ -494,6 +552,13 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 			GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<
 				ChartDocument<GPTStrings["iidx"]>
 			>
+		);
+
+		await db["fer-settings"].update(
+			{ userID: 1 },
+			{
+				$set: { forceStaticImport: true },
+			}
 		);
 
 		const res = await mockApi

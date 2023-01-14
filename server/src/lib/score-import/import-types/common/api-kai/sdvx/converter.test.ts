@@ -46,9 +46,6 @@ t.test("#ConvertAPIKaiSDVX", (t) => {
 				timeAchieved: 1598792891000,
 				service: "FLO",
 				scoreData: {
-					grade: "AA",
-
-					// percent: 93.10699, floating point
 					score: 9310699,
 					lamp: "CLEAR",
 					judgements: {

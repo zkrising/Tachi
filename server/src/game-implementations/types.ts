@@ -1,4 +1,5 @@
 import type { DryScoreData } from "lib/score-import/framework/common/types";
+import type { PBScoreDocumentNoRank } from "lib/score-import/framework/pb/create-pb-doc";
 import type {
 	ChartDocument,
 	ClassConfigs,
@@ -7,6 +8,7 @@ import type {
 	GPTString,
 	GPTStringToGame,
 	GPTStringToPlaytype,
+	PBReference,
 	PBScoreDocument,
 	ProfileRatingAlgorithms,
 	ScoreDocument,
@@ -87,6 +89,23 @@ export type GPTClassDerivers<GPT extends GPTString> = {
 };
 
 /**
+ * A PBMergeFunction just gets the user for this score and the chart its on.
+ * They are expected to mutate the existingPB to add/change whatever
+ * properties they feel like should be merged.
+ *
+ * @note Don't worry about updating enumIndexes. Those are updated for you.
+ *
+ * They should then return some information (a name and a scoreID) to indicate
+ * what this PB is composed of.
+ */
+export type PBMergeFunction<GPT extends GPTString> = (
+	userID: integer,
+	chartID: string,
+	asOfTimestamp: number | null,
+	existingPB: PBScoreDocumentNoRank<GPT>
+) => Promise<PBReference | null>;
+
+/**
  * The only metrics that need validators are those that have `chartDependentMax` set.
  * Otherwise, a validator is built into the ConfScoreMetric.
  */
@@ -117,7 +136,7 @@ export type GoalCriteriaFormatter = (num: number) => string;
  * A record of all non-enum metrics that need formatters. Enums *always* get formatted
  * into their string formats.
  */
-export type GPTGoalCriteriaFormatters<GPT extends GPTString> = {
+export type GPTGoalFormatters<GPT extends GPTString> = {
 	[K in keyof ConfScoreMetrics[GPT] as ConfScoreMetrics[GPT][K] extends ConfEnumScoreMetric<
 		infer _
 	>
@@ -147,8 +166,20 @@ export interface GPTServerImplementation<GPT extends GPTString> {
 	sessionCalcs: GPTSessionCalculators<GPT>;
 	profileCalcs: GPTProfileCalculators<GPT>;
 	classDerivers: GPTClassDerivers<GPT>;
-	goalCriteriaFormatters: GPTGoalCriteriaFormatters<GPT>;
+	goalCriteriaFormatters: GPTGoalFormatters<GPT>;
+	goalOutOfFormatters: GPTGoalFormatters<GPT>;
 	goalProgressFormatters: GPTGoalProgressFormatters<GPT>;
+
+	/**
+	 * How should we mutate PBs (to join best lamps, lowest BPs, etc.) for this GPT?
+	 */
+	pbMergeFunctions: Array<PBMergeFunction<GPT>>;
+
+	/**
+	 * A PB is always initialised with the best score for this game's default
+	 * metric. What should that be called?
+	 */
+	defaultMergeRefName: string;
 }
 
 export type GPTImplementations = {

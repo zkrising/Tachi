@@ -222,7 +222,7 @@ t.test("#DeleteScore", (t) => {
 
 		t.hasStrict(res, {
 			classes: {
-				vfClass: SDVX_VF_CLASSES.SIENNA_II,
+				vfClass: "SIENNA_II",
 			},
 			ratings: {
 				VF6: 4,

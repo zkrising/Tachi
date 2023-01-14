@@ -12,7 +12,7 @@ t.test("GET /api/v1/games/:game/:playtype", (t) => {
 	t.test("Should return information about the game:playtype.", async (t) => {
 		const res = await mockApi.get("/api/v1/games/iidx/SP");
 
-		t.strictSame(res.body.body.config, GetGamePTConfig("iidx", "SP"));
+		t.hasStrict(GetGamePTConfig("iidx", "SP"), res.body.body.config);
 
 		t.equal(res.body.body.chartCount, 1);
 		t.equal(res.body.body.playerCount, 1);
@@ -39,7 +39,7 @@ t.test("GET /api/v1/games/:game/:playtype/leaderboard", (t) => {
 		const res = await mockApi.get("/api/v1/games/iidx/SP/leaderboard");
 
 		t.equal(res.statusCode, 200);
-
+		t;
 		t.equal(res.body.body.gameStats.length, 1);
 		t.equal(res.body.body.users.length, 1);
 

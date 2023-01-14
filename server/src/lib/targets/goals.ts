@@ -60,19 +60,6 @@ export async function EvaluateGoalForUser(
 	// First, we need to resolve the set of charts this
 	// goal involves.
 	const chartIDs = await ResolveGoalCharts(goal);
-
-	// lets configure a "base" query for our requests.
-	const scoreQuery: FilterQuery<PBScoreDocument> = {
-		userID,
-		game: goal.game,
-		playtype: goal.playtype,
-
-		// normally, this would be a VERY WORRYING line of code, but goal.criteria.key is guaranteed to be
-		// within a specific set of fields.
-		[`scoreData.${goal.criteria.key}`]: { $gte: goal.criteria.value },
-		chartID: { $in: chartIDs },
-	};
-
 	const gptString = GetGPTString(goal.game, goal.playtype);
 	const gptConfig = GetGPTConfig(gptString);
 	const scoreConf = GetScoreMetricConf(gptConfig, goal.criteria.key);
@@ -83,15 +70,31 @@ export async function EvaluateGoalForUser(
 		);
 	}
 
+	let scoreDataKey;
+
+	if (scoreConf.type === "ENUM") {
+		scoreDataKey = `scoreData.enumIndexes.${goal.criteria.key}`;
+	} else {
+		scoreDataKey = `scoreData.${goal.criteria.key}`;
+	}
+
+	// lets configure a "base" query for our requests.
+	const scoreQuery: FilterQuery<PBScoreDocument> = {
+		userID,
+		game: goal.game,
+		playtype: goal.playtype,
+
+		// normally, this would be a VERY WORRYING line of code, but goal.criteria.key is guaranteed to be
+		// within a specific set of fields.
+		[scoreDataKey]: { $gte: goal.criteria.value },
+		chartID: { $in: chartIDs },
+	};
+
 	switch (goal.criteria.mode) {
 		case "single": {
 			const res = await db["personal-bests"].findOne(scoreQuery);
 
-			// hack, but guaranteed to work.
-
 			const outOfHuman = HumaniseGoalOutOf(gptString, goal.criteria.key, goal.criteria.value);
-
-			const key = goal.criteria.key;
 
 			if (res) {
 				return {
@@ -100,9 +103,9 @@ export async function EvaluateGoalForUser(
 					progress:
 						scoreConf.type === "ENUM"
 							? // @ts-expect-error this is always correct but the typesystem is rightfully concerned
-							  res.scoreData.enumIndexes[key]
+							  res.scoreData.enumIndexes[goal.criteria.key]
 							: // @ts-expect-error see above
-							  res.scoreData[key],
+							  res.scoreData[goal.criteria.key],
 					outOfHuman,
 					progressHuman: HumaniseGoalProgress(
 						gptString,
@@ -123,7 +126,7 @@ export async function EvaluateGoalForUser(
 			};
 
 			const nextBestScore = await db["personal-bests"].findOne(nextBestQuery, {
-				sort: { [goal.criteria.key]: -1 },
+				sort: { [scoreDataKey]: -1 },
 			});
 
 			// user has no scores on any charts in this set.
@@ -144,9 +147,9 @@ export async function EvaluateGoalForUser(
 				progress:
 					scoreConf.type === "ENUM"
 						? // @ts-expect-error this is always correct but the typesystem is rightfully concerned
-						  nextBestScore.scoreData.enumIndexes[key]
+						  nextBestScore.scoreData.enumIndexes[goal.criteria.key]
 						: // @ts-expect-error see above
-						  nextBestScore.scoreData[key],
+						  nextBestScore.scoreData[goal.criteria.key],
 				progressHuman: HumaniseGoalProgress(
 					gptString,
 					goal.criteria.key,
@@ -277,7 +280,7 @@ export function HumaniseGoalOutOf(gptString: GPTString, key: GoalKeys, value: nu
 	const gptImpl = GPT_SERVER_IMPLEMENTATIONS[gptString];
 
 	// @ts-expect-error yeah this is technically unsafe, whatever
-	const fmt: GoalCriteriaFormatter | undefined = gptImpl.goalCriteriaFormatters[key];
+	const fmt: GoalCriteriaFormatter | undefined = gptImpl.goalOutOfFormatters[key];
 
 	if (!fmt) {
 		throw new Error(
@@ -660,12 +663,12 @@ export async function GetRelevantGoals(
  * Returns the set of goals where its folder contains any member
  * of chartIDsArr.
  */
-export function GetRelevantFolderGoals(goalIDs: Array<string>, chartIDsArr: Array<string>) {
+export async function GetRelevantFolderGoals(goalIDs: Array<string>, chartIDsArr: Array<string>) {
 	// Slightly black magic - this is kind of like doing an SQL join.
 	// it's weird to do this in mongodb, but this seems like the right
 	// way to actually handle this.
 
-	const result: Promise<Array<GoalDocument>> = db.goals.aggregate([
+	const result: Array<GoalDocument> = await db.goals.aggregate([
 		{
 			$match: {
 				"charts.type": "folder",
@@ -688,6 +691,7 @@ export function GetRelevantFolderGoals(goalIDs: Array<string>, chartIDsArr: Arra
 		{
 			$project: {
 				folderCharts: 0,
+				_id: 0,
 			},
 		},
 	]);

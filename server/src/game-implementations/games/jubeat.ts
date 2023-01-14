@@ -1,5 +1,13 @@
-import { GetGrade, GoalFmtPercent, GoalFmtScore, GradeGoalFormatter } from "./_common";
+import {
+	GetGrade,
+	GoalFmtPercent,
+	GoalFmtScore,
+	GoalOutOfFmtPercent,
+	GoalOutOfFmtScore,
+	GradeGoalFormatter,
+} from "./_common";
 import db from "external/mongo/db";
+import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { p } from "prudence";
@@ -204,4 +212,20 @@ export const JUBEAT_IMPL: GPTServerImplementation<"jubeat:Single"> = {
 				JUBEAT_GBOUNDARIES[gradeIndex]!.name
 			),
 	},
+	goalOutOfFormatters: {
+		musicRate: GoalOutOfFmtPercent,
+		score: GoalOutOfFmtScore,
+	},
+
+	// musicRate is the default prop
+	// but we want the user's best score to count aswell.
+	pbMergeFunctions: [
+		CreatePBMergeFor("largest", "enumIndexes.lamp", "Best Lamp", (base, score) => {
+			base.scoreData.lamp = score.scoreData.lamp;
+		}),
+		CreatePBMergeFor("largest", "score", "Best Score", (base, score) => {
+			base.scoreData.score = score.scoreData.score;
+		}),
+	],
+	defaultMergeRefName: "Best Music Rate",
 };

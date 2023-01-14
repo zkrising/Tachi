@@ -19,6 +19,12 @@ t.test("#GetGameConfig", (t) => {
 	t.end();
 });
 
+const BANNED_METRIC_NAMES = [
+	"enumIndexes", // haha
+	"optional", // used for optional metrics
+	"playcount", // used by showcase stats
+];
+
 t.test("#GetGamePTConfig", (t) => {
 	for (const game of allSupportedGames) {
 		const gameConfig = GetGameConfig(game);
@@ -48,6 +54,14 @@ t.test("#GetGamePTConfig", (t) => {
 					conf.difficulties.order.includes(conf.difficulties.default),
 					"The default difficulty should be part of difficultyOrder."
 				);
+			}
+
+			for (const metric of Object.keys(conf.scoreRatingAlgs)) {
+				if (BANNED_METRIC_NAMES.includes(metric)) {
+					t.fail(`Cannot have a metric called ${metric}. This is a banned metric name.`);
+				}
+
+				t.match(/^[a-zA-Z][a-zA-Z0-9]+$/u, metric, `Should be alphanumeric.`);
 			}
 		}
 	}

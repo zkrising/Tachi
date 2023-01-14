@@ -80,7 +80,10 @@ export const ConverterBatchManual: ConverterFunction<BatchManualScore, BatchManu
 		scoreData: {
 			...metrics,
 			judgements: data.judgements ?? {},
-			optional: data.optional ?? {},
+
+			// if hitMeta is provided and optional is not provided, use hitMeta.
+			// this is for compatibility with old import methods.
+			optional: data.optional ?? data.hitMeta ?? {},
 		},
 		scoreMeta: data.scoreMeta ?? {},
 	};

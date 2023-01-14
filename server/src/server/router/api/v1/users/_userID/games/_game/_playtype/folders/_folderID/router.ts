@@ -108,8 +108,8 @@ router.post("/viewed", RequireSelfRequestFromUser, async (req, res) => {
 router.get(
 	"/timeline",
 	prValidate({
-		criteriaName: "string",
-		crtiteriaValue: "string",
+		criteriaType: "string",
+		criteriaValue: "string",
 	}),
 	async (req, res) => {
 		const { user, game, playtype } = GetUGPT(req);
@@ -117,19 +117,28 @@ router.get(
 		const folder = GetTachiData(req, "folderDoc");
 		const gptConfig = GetGamePTConfig(game, playtype);
 
-		const criteriaValue = ParseStrPositiveInt(req.query.criteriaValue);
+		// as asserted by prudence.
+		const metric = req.query.criteriaType as string;
 
-		const { songs, charts } = await GetFolderCharts(folder, {}, true);
+		const conf = GetScoreMetricConf(gptConfig, metric);
 
-		if (criteriaValue === null) {
+		if (!conf || conf.type !== "ENUM") {
 			return res.status(400).json({
 				success: false,
-				description: `Invalid value for criteriaValue.`,
+				description: `Invalid metric '${metric}' passed. Expected an ENUM for this game.`,
 			});
 		}
 
-		// as asserted by prudence.
-		const metric = req.query.criteriaName as string;
+		const criteriaValue = conf.values.indexOf(req.query.criteriaValue as string);
+
+		if (criteriaValue === -1) {
+			return res.status(400).json({
+				success: false,
+				description: `Invalid criteriaValue of ${req.query.criteriaValue} for ${metric}.`,
+			});
+		}
+
+		const { songs, charts } = await GetFolderCharts(folder, {}, true);
 
 		const err = ValidateMetric(gptConfig, metric, criteriaValue);
 
@@ -147,13 +156,11 @@ router.get(
 			chartID: { $in: charts.map((e) => e.chartID) },
 		};
 
-		const conf = GetScoreMetricConf(gptConfig, metric);
-
 		if (!conf) {
 			// not possible?
 			return res.status(500).json({
 				success: false,
-				description: `Invalid criteria ${req.query.criteriaName}.`,
+				description: `Invalid criteria ${req.query.criteriaType}.`,
 			});
 		}
 

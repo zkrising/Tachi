@@ -1,4 +1,5 @@
-import { GetGrade, GoalFmtScore, GradeGoalFormatter } from "./_common";
+import { GetGrade, GoalFmtScore, GoalOutOfFmtScore, GradeGoalFormatter } from "./_common";
+import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { PopnClassPoints } from "rg-stats";
@@ -102,4 +103,15 @@ export const POPN_9B_IMPL: GPTServerImplementation<"popn:9B"> = {
 				POPN_GBOUNDARIES[gradeIndex]!.name
 			),
 	},
+	goalOutOfFormatters: {
+		score: GoalOutOfFmtScore,
+	},
+	pbMergeFunctions: [
+		CreatePBMergeFor("largest", "enumIndexes.clearMedal", "Best Clear", (base, score) => {
+			base.scoreData.clearMedal = score.scoreData.clearMedal;
+			// these are directly related. pluck both.
+			base.scoreData.lamp = score.scoreData.lamp;
+		}),
+	],
+	defaultMergeRefName: "Best Score",
 };

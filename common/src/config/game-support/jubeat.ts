@@ -107,7 +107,7 @@ export const JUBEAT_SINGLE_CONF = {
 		inGameID: z.union([z.array(zodNonNegativeInt), zodNonNegativeInt]),
 	}),
 
-	preferences: z.strictObject({ jubilityTarget: z.number() }),
+	preferences: z.strictObject({ jubilityTarget: z.number().optional().nullable() }),
 
 	scoreMeta: z.strictObject({}),
 

@@ -14,7 +14,8 @@ export function MakeGrades<G extends string>(rec: Record<G, number>) {
 		out.push({ name: name as G, lowerBound: lowerBound as number });
 	}
 
-	out.sort((a, b) => b.lowerBound - a.lowerBound);
+	// sort ascendingly
+	out.sort((a, b) => a.lowerBound - b.lowerBound);
 
 	return out;
 }

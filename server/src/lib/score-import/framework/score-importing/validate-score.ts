@@ -69,7 +69,7 @@ function ValidateMetrics(
 	for (const [metric, conf] of Object.entries(metrics)) {
 		const scoreVal: any = valueGetter(score, metric);
 
-		if (optional && scoreVal === undefined) {
+		if (optional && (scoreVal === undefined || scoreVal === null)) {
 			continue;
 		}
 

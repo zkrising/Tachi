@@ -256,7 +256,7 @@ t.test("#ParserFn", (t) => {
 			t.end();
 		});
 
-		t.test("Valid HitMeta", (t) => {
+		t.test("Valid Optional", (t) => {
 			const res = ParserFn(
 				dm({ optional: { bp: 10, gauge: 100, gaugeHistory: null, comboBreak: 7 } }),
 				"file/batch-manual",
@@ -338,7 +338,7 @@ t.test("#ParserFn", (t) => {
 
 			t.not(res.classProvider, null);
 
-			t.strictSame(res.classProvider!("iidx:SP", 1, {}, logger), { dan: IIDX_DANS.KAIDEN });
+			t.strictSame(res.classProvider!("iidx:SP", 1, {}, logger), { dan: "KAIDEN" });
 
 			t.end();
 		});
@@ -402,7 +402,7 @@ t.test("#ParserFn", (t) => {
 				fn,
 				new ScoreImportFatalError(
 					400,
-					"Invalid BATCH-MANUAL: scores[0].score | Expected a positive integer. | Received 123 [type: string]."
+					"Invalid BATCH-MANUAL: scores[0].score | Expected an integer. | Received 123 [type: string]."
 				)
 			);
 
@@ -511,15 +511,24 @@ t.test("#ParserFn", (t) => {
 			t.end();
 		});
 
-		t.test("Invalid HitMeta", (t) => {
+		t.test("Invalid optional", (t) => {
 			const fn = () =>
+				ParserFn(dm({ hitMeta: { not_key: 123 } }), "file/batch-manual", logger);
+
+			t.throws(fn, mockErr("scores[0].hitMeta | Unexpected"));
+
+			const fn2 = () => ParserFn(dm({ hitMeta: { bp: -1 } }), "file/batch-manual", logger);
+
+			t.throws(fn2, mockErr("scores[0].hitMeta.bp"));
+
+			const fn3 = () =>
 				ParserFn(dm({ optional: { not_key: 123 } }), "file/batch-manual", logger);
 
-			t.throws(fn, mockErr("scores[0].optional | Unexpected"));
+			t.throws(fn3, mockErr("scores[0].optional | Unexpected"));
 
-			const fn2 = () => ParserFn(dm({ optional: { bp: -1 } }), "file/batch-manual", logger);
+			const fn4 = () => ParserFn(dm({ optional: { bp: -1 } }), "file/batch-manual", logger);
 
-			t.throws(fn2, mockErr("scores[0].optional.bp | Expected a positive integer"));
+			t.throws(fn4, mockErr("scores[0].optional.bp"));
 
 			t.end();
 		});

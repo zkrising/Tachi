@@ -841,7 +841,8 @@ const PR_BATCH_MANUAL_SCORE = (game: Game, playtype: Playtype): PrudenceSchema =
 
 			return true;
 		}),
-		additionalMetrics: optNull(PR_METRICS(gptConfig.optionalMetrics, true)),
+		optional: optNull(PR_METRICS(gptConfig.optionalMetrics, true)),
+		hitMeta: optNull(PR_METRICS(gptConfig.optionalMetrics, true)),
 		scoreMeta: optNull(PrudenceZodShim(gptConfig.scoreMeta)),
 	};
 };
@@ -897,7 +898,7 @@ const PR_BATCH_MANUAL_CLASSES = (game: Game, playtype: Playtype): PrudenceSchema
 	// if `canBeBatchManualSubmitted` is true, allow it to be batchManualSubmitted.
 	for (const [s, v] of Object.entries(config.classes)) {
 		if (v.type === "PROVIDED") {
-			schema[s] = optNull(p.isIn(v.values));
+			schema[s] = optNull(p.isIn(v.values.map((e) => e.id)));
 		}
 	}
 

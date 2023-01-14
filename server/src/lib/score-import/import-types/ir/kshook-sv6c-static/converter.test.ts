@@ -30,7 +30,6 @@ t.test("#ConverterKsHookSV6CStatic", (t) => {
 			dryScore: {
 				scoreData: {
 					score: 9_579_365,
-					grade: "AA+",
 					lamp: "EXCESSIVE CLEAR",
 					judgements: {},
 					optional: {

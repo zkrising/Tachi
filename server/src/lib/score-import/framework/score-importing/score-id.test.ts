@@ -77,3 +77,15 @@ t.test("#CreateScoreID", (t) => {
 
 	t.end();
 });
+
+t.test("#ScoreID Canary", (t) => {
+	const scoreID = CreateScoreID("iidx:SP", 1, TestingIIDXSPDryScore, Testing511SPA.chartID);
+
+	t.equal(
+		scoreID,
+		"T5da661101a371a32caa57df7f5b43225ba45b273ded5d925da0e64ba6653a9d8",
+		"ScoreID **SHOULD BE DETERMINISTIC**. A change to the ScoreID algorithm is **a major breaking change.**"
+	);
+
+	t.end();
+});

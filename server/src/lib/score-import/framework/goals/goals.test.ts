@@ -71,7 +71,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 				},
 				new: {
 					progress: 1479,
-					progressHuman: "1,479",
+					progressHuman: "1479",
 					outOf: 1,
 					outOfHuman: "1",
 					achieved: true,
@@ -85,7 +85,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 			r,
 			{
 				progress: 1479,
-				progressHuman: "1,479",
+				progressHuman: "1479",
 				outOf: 1,
 				outOfHuman: "1",
 				achieved: true,

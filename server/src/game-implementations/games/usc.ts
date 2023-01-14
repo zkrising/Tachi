@@ -6,6 +6,9 @@ import {
 	SDVXLIKE_CLASS_DERIVERS,
 	SDVXLIKE_GOAL_FMT,
 	SDVXLIKE_GOAL_PG_FMT,
+	SDVXLIKE_GOAL_OO_FMT,
+	SDVXLIKE_DEFAULT_MERGE_NAME,
+	SDVXLIKE_PB_MERGERS,
 } from "./_common";
 import type { GPTServerImplementation } from "game-implementations/types";
 import type { GPTStrings } from "tachi-common";
@@ -19,6 +22,9 @@ const USC_IMPL: GPTServerImplementation<GPTStrings["usc"]> = {
 	classDerivers: SDVXLIKE_CLASS_DERIVERS,
 	goalCriteriaFormatters: SDVXLIKE_GOAL_FMT,
 	goalProgressFormatters: SDVXLIKE_GOAL_PG_FMT,
+	goalOutOfFormatters: SDVXLIKE_GOAL_OO_FMT,
+	pbMergeFunctions: SDVXLIKE_PB_MERGERS,
+	defaultMergeRefName: SDVXLIKE_DEFAULT_MERGE_NAME,
 };
 
 export const USC_KEYBOARD_IMPL: GPTServerImplementation<"usc:Keyboard"> = USC_IMPL;

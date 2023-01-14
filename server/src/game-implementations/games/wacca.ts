@@ -1,5 +1,6 @@
-import { GetGrade, GoalFmtScore, GradeGoalFormatter } from "./_common";
+import { GetGrade, GoalFmtScore, GoalOutOfFmtScore, GradeGoalFormatter } from "./_common";
 import db from "external/mongo/db";
+import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { WACCARate } from "rg-stats";
@@ -122,4 +123,13 @@ export const WACCA_IMPL: GPTServerImplementation<"wacca:Single"> = {
 				WACCA_GBOUNDARIES[gradeIndex]!.name
 			),
 	},
+	goalOutOfFormatters: {
+		score: GoalOutOfFmtScore,
+	},
+	pbMergeFunctions: [
+		CreatePBMergeFor("largest", "enumIndexes.lamp", "Best Lamp", (base, score) => {
+			base.scoreData.lamp = score.scoreData.lamp;
+		}),
+	],
+	defaultMergeRefName: "Best Score",
 };

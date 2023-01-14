@@ -1,18 +1,21 @@
 import {
 	GoalFmtPercent,
 	GoalFmtScore,
+	GoalOutOfFmtPercent,
 	GradeGoalFormatter,
 	IIDXLIKE_DERIVERS,
 	IIDXLIKE_VALIDATORS,
 } from "./_common";
+import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileAvgBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { PoyashiBPI } from "rg-stats";
 import { IIDXLIKE_GBOUNDARIES } from "tachi-common";
 import type {
-	GPTGoalCriteriaFormatters,
+	GPTGoalFormatters,
 	GPTGoalProgressFormatters,
 	GPTServerImplementation,
+	PBMergeFunction,
 	ScoreCalculator,
 } from "game-implementations/types";
 import type { GPTStrings } from "tachi-common";
@@ -41,9 +44,35 @@ const IIDX_PROFILE_CALCS: GPTServerImplementation<"iidx:DP" | "iidx:SP">["profil
 	ktLampRating: ProfileAvgBestN("ktLampRating", 20),
 };
 
-const IIDX_GOAL_FMT: GPTGoalCriteriaFormatters<"iidx:DP" | "iidx:SP"> = {
+const IIDX_MERGERS: Array<PBMergeFunction<GPTStrings["iidx"]>> = [
+	CreatePBMergeFor("largest", "enumIndexes.lamp", "Best Lamp", (base, lamp) => {
+		base.scoreData.lamp = lamp.scoreData.lamp;
+
+		// Update lamp related iidx-specific info from the lampPB.
+		base.scoreData.optional.gsmEasy = lamp.scoreData.optional.gsmEasy;
+		base.scoreData.optional.gsmNormal = lamp.scoreData.optional.gsmNormal;
+		base.scoreData.optional.gsmHard = lamp.scoreData.optional.gsmHard;
+		base.scoreData.optional.gsmEXHard = lamp.scoreData.optional.gsmEXHard;
+
+		base.scoreData.optional.gauge = lamp.scoreData.optional.gauge;
+		base.scoreData.optional.gaugeHistory = lamp.scoreData.optional.gaugeHistory;
+
+		base.scoreData.optional.comboBreak = lamp.scoreData.optional.comboBreak;
+	}),
+	CreatePBMergeFor("smallest", "optional.bp", "Lowest BP", (base, bp) => {
+		base.scoreData.optional.bp = bp.scoreData.optional.bp;
+	}),
+];
+
+const IIDX_GOAL_FMT: GPTGoalFormatters<"iidx:DP" | "iidx:SP"> = {
 	percent: GoalFmtPercent,
 	score: GoalFmtScore,
+};
+
+const IIDX_GOAL_OO_FMT: GPTGoalFormatters<"iidx:DP" | "iidx:SP"> = {
+	percent: GoalOutOfFmtPercent,
+	// don't insert commas or anything.
+	score: (m) => m.toString(),
 };
 
 const IIDX_GOAL_PG_FMT: GPTGoalProgressFormatters<"iidx:DP" | "iidx:SP"> = {
@@ -69,11 +98,9 @@ const IIDX_GOAL_PG_FMT: GPTGoalProgressFormatters<"iidx:DP" | "iidx:SP"> = {
 
 			// use notecount to turn the percent deltas into whole ex-scores.
 			(deltaPercent) => {
-				const chartNotecount = Math.floor(
-					pb.scoreData.score / (pb.scoreData.percent / 100)
-				);
+				const max = Math.floor(pb.scoreData.score / (pb.scoreData.percent / 100));
 
-				return (deltaPercent * (chartNotecount * 2)).toFixed(0);
+				return ((deltaPercent / 100) * max).toFixed(0);
 			}
 		),
 };
@@ -111,6 +138,9 @@ export const IIDX_SP_IMPL: GPTServerImplementation<"iidx:SP"> = {
 	classDerivers: {},
 	goalCriteriaFormatters: IIDX_GOAL_FMT,
 	goalProgressFormatters: IIDX_GOAL_PG_FMT,
+	goalOutOfFormatters: IIDX_GOAL_OO_FMT,
+	pbMergeFunctions: IIDX_MERGERS,
+	defaultMergeRefName: "Best Score",
 };
 
 export const IIDX_DP_IMPL: GPTServerImplementation<"iidx:DP"> = {
@@ -139,4 +169,7 @@ export const IIDX_DP_IMPL: GPTServerImplementation<"iidx:DP"> = {
 	classDerivers: {},
 	goalCriteriaFormatters: IIDX_GOAL_FMT,
 	goalProgressFormatters: IIDX_GOAL_PG_FMT,
+	goalOutOfFormatters: IIDX_GOAL_OO_FMT,
+	pbMergeFunctions: IIDX_MERGERS,
+	defaultMergeRefName: "Best Score",
 };

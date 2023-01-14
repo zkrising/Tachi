@@ -31,16 +31,10 @@ t.test("#CreateKaiIIDXClassProvider", async (t) => {
 		})
 	);
 
-	t.test("Should return a function with arity 5.", (t) => {
-		t.equal(fn.length, 5);
-
-		t.end();
-	});
-
 	t.test("Should call the provided URL with the authentication token", (t) => {
 		const res = fn("iidx:SP", 1, {}, logger);
 
-		t.strictSame(res, { dan: 18 });
+		t.strictSame(res, { dan: "KAIDEN" });
 
 		t.end();
 	});

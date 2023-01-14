@@ -220,8 +220,8 @@ export const IIDX_SP_CONF = {
 	}),
 
 	preferences: z.strictObject({
-		display2DXTra: z.boolean(),
-		bpiTarget: z.number(),
+		display2DXTra: z.boolean().optional().nullable(),
+		bpiTarget: z.number().lte(100).gte(-15).optional().nullable(),
 	}),
 
 	scoreMeta: z.strictObject({

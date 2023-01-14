@@ -1,16 +1,32 @@
 import {
 	GoalFmtPercent,
 	GoalFmtScore,
+	GoalOutOfFmtPercent,
 	GradeGoalFormatter,
 	IIDXLIKE_DERIVERS,
 	IIDXLIKE_VALIDATORS,
 	SGLCalc,
 } from "./_common";
+import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileAvgBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { IIDXLIKE_GBOUNDARIES } from "tachi-common";
-import type { GPTServerImplementation } from "game-implementations/types";
+import type { GPTServerImplementation, PBMergeFunction } from "game-implementations/types";
 import type { GPTStrings } from "tachi-common";
+
+const BMS_PMS_MERGERS: Array<PBMergeFunction<GPTStrings["bms" | "pms"]>> = [
+	CreatePBMergeFor("largest", "enumIndexes.lamp", "Best Lamp", (base, lamp) => {
+		base.scoreData.lamp = lamp.scoreData.lamp;
+
+		// technically these don't exist on PMS scores but since undefined is a
+		// legal value for these properties it works out.
+		base.scoreData.optional.gauge = lamp.scoreData.optional.gauge;
+		base.scoreData.optional.gaugeHistory = lamp.scoreData.optional.gaugeHistory;
+	}),
+	CreatePBMergeFor("smallest", "optional.bp", "Lowest BP", (base, bp) => {
+		base.scoreData.optional.bp = bp.scoreData.optional.bp;
+	}),
+];
 
 // bms and pms currently have *identical*
 // implementations. Nice.
@@ -56,6 +72,13 @@ const BMS_IMPL: GPTServerImplementation<GPTStrings["bms" | "pms"]> = {
 				}
 			),
 	},
+	goalOutOfFormatters: {
+		percent: GoalOutOfFmtPercent,
+		// don't insert commas or anything.
+		score: (m) => m.toString(),
+	},
+	pbMergeFunctions: BMS_PMS_MERGERS,
+	defaultMergeRefName: "Best Score",
 };
 
 export const BMS_14K_IMPL: GPTServerImplementation<"bms:14K"> = BMS_IMPL;

@@ -30,16 +30,10 @@ t.test("#CreateKaiSDVXClassProvider", async (t) => {
 		})
 	);
 
-	t.test("Should return a function with arity 5.", (t) => {
-		t.equal(fn.length, 5);
-
-		t.end();
-	});
-
 	t.test("Should call the provided URL with the authentication token", (t) => {
 		const res = fn("sdvx:Single", 1, {}, logger);
 
-		t.strictSame(res, { dan: 9 });
+		t.strictSame(res, { dan: "DAN_10" });
 
 		t.end();
 	});

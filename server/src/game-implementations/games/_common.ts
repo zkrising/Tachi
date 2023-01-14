@@ -1,3 +1,4 @@
+import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { InternalFailure } from "lib/score-import/framework/common/converter-failures";
@@ -14,12 +15,13 @@ import type {
 	ChartSpecificMetricValidator,
 	GPTClassDerivers,
 	GPTDerivers,
-	GPTGoalCriteriaFormatters,
+	GPTGoalFormatters,
 	GPTGoalProgressFormatters,
 	GPTMetricValidators,
 	GPTProfileCalculators,
 	GPTScoreCalculators,
 	GPTSessionCalculators,
+	PBMergeFunction,
 	ScoreCalculator,
 } from "game-implementations/types";
 import type { GPTStrings, GradeBoundary, integer, SpecificUserGameStats } from "tachi-common";
@@ -200,8 +202,12 @@ export const SDVXLIKE_CLASS_DERIVERS: GPTClassDerivers<SDVXLikes> = {
 	},
 };
 
-export const SDVXLIKE_GOAL_FMT: GPTGoalCriteriaFormatters<SDVXLikes> = {
+export const SDVXLIKE_GOAL_FMT: GPTGoalFormatters<SDVXLikes> = {
 	score: GoalFmtScore,
+};
+
+export const SDVXLIKE_GOAL_OO_FMT: GPTGoalFormatters<SDVXLikes> = {
+	score: GoalOutOfFmtScore,
 };
 
 export const SDVXLIKE_GOAL_PG_FMT: GPTGoalProgressFormatters<SDVXLikes> = {
@@ -215,6 +221,14 @@ export const SDVXLIKE_GOAL_PG_FMT: GPTGoalProgressFormatters<SDVXLikes> = {
 			SDVXLIKE_GBOUNDARIES[goalValue]!.name
 		),
 };
+
+export const SDVXLIKE_PB_MERGERS: Array<PBMergeFunction<SDVXLikes>> = [
+	CreatePBMergeFor("largest", "enumIndexes.lamp", "Best Lamp", (base, score) => {
+		base.scoreData.lamp = score.scoreData.lamp;
+	}),
+];
+
+export const SDVXLIKE_DEFAULT_MERGE_NAME = "Best Score";
 
 export const SGLCalc: ScoreCalculator<GPTStrings["bms" | "pms"]> = (scoreData, chart) => {
 	const ecValue = chart.data.sglEC ?? 0;
@@ -239,6 +253,14 @@ export function GoalFmtPercent(val: number) {
 
 export function GoalFmtScore(val: number) {
 	return `Get a score of ${val.toLocaleString("en-GB")} on`;
+}
+
+export function GoalOutOfFmtPercent(val: number) {
+	return `${FormatMaxDP(val)}%`;
+}
+
+export function GoalOutOfFmtScore(val: number) {
+	return val.toLocaleString("en-GB");
 }
 
 /**
@@ -270,7 +292,7 @@ export function GradeGoalFormatter<G extends string>(
 	// if the upper bound is relevant to the grade we're looking for
 	// i.e. the goal is to AAA a chart and the user has AA+20/AAA-100
 	// prefer AAA-100 instead of AA+20.
-	if (upper.startsWith(`${goalGrade}-`)) {
+	if (new RegExp(`^\\(?${goalGrade}\\)?-`, "u").exec(upper)) {
 		return upper;
 	}
 

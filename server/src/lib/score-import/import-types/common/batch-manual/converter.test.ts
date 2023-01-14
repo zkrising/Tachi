@@ -8,6 +8,7 @@ import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
+import { dmf } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
 import {
 	BMSGazerChart,
@@ -25,7 +26,6 @@ const baseBatchManualScore = {
 	lamp: "HARD CLEAR" as const,
 	matchType: "tachiSongID" as const,
 	identifier: "1",
-	playtype: "SP" as const,
 	difficulty: "ANOTHER" as const,
 };
 
@@ -414,9 +414,7 @@ t.test("#ResolveChartFromSong", (t) => {
 					{ game: "iidx", service: "foo", playtype: "SP", version: null },
 					importType
 				),
-			new InvalidScoreFailure(
-				`Invalid Difficulty for iidx SP - Expected any of BEGINNER, NORMAL, HYPER, ANOTHER, LEGGENDARIA`
-			)
+			/Invalid Difficulty for iidx SP/u
 		);
 
 		t.end();
@@ -481,9 +479,6 @@ t.test("#ConverterFn", (t) => {
 				scoreData: {
 					lamp: "HARD CLEAR",
 					score: 500,
-					grade: "E",
-
-					// percent: 31.5, -- ish, FPA is hard.
 					judgements: {},
 					optional: {},
 				},
@@ -494,35 +489,34 @@ t.test("#ConverterFn", (t) => {
 		t.end();
 	});
 
-	t.test("Should cap pop'n grades at A if they failed.", async (t) => {
+	t.test("Should mount optionals", async (t) => {
 		const res = await ConverterBatchManual(
-			{
-				score: 99_000,
-				lamp: "FAILED",
-				difficulty: "Easy",
-				matchType: "tachiSongID",
-				identifier: "1",
-			},
-			{ game: "popn", service: "foo", playtype: "9B", version: null },
+			dmf(baseBatchManualScore as any, {
+				optional: {
+					bp: 123,
+				},
+			}),
+			{ game: "iidx", service: "foo", playtype: "SP", version: null },
 			importType,
 			logger
 		);
 
 		t.hasStrict(res, {
-			chart: { songID: 1, difficulty: "Easy" },
+			chart: Testing511SPA,
 			song: { id: 1 },
 			dryScore: {
-				game: "popn",
+				game: "iidx",
 				service: "foo (BATCH-MANUAL)",
 				comment: null,
 				importType: "file/batch-manual",
 				timeAchieved: null,
 				scoreData: {
-					lamp: "FAILED",
-					score: 99_000,
-					grade: "A",
+					lamp: "HARD CLEAR",
+					score: 500,
 					judgements: {},
-					optional: {},
+					optional: {
+						bp: 123,
+					},
 				},
 				scoreMeta: {},
 			},
@@ -531,34 +525,71 @@ t.test("#ConverterFn", (t) => {
 		t.end();
 	});
 
-	t.test("Should cap pop'n grades at A if they bordered AA.", async (t) => {
+	t.test("Should mount hitMeta as optionals", async (t) => {
 		const res = await ConverterBatchManual(
-			{
-				score: 90_000,
-				lamp: "FAILED",
-				difficulty: "Easy",
-				matchType: "tachiSongID",
-				identifier: "1",
-			},
-			{ game: "popn", service: "foo", playtype: "9B", version: null },
+			dmf(baseBatchManualScore as any, {
+				hitMeta: {
+					bp: 123,
+				},
+			}),
+			{ game: "iidx", service: "foo", playtype: "SP", version: null },
 			importType,
 			logger
 		);
 
 		t.hasStrict(res, {
-			chart: { songID: 1, difficulty: "Easy" },
+			chart: Testing511SPA,
 			song: { id: 1 },
 			dryScore: {
-				game: "popn",
+				game: "iidx",
 				service: "foo (BATCH-MANUAL)",
 				comment: null,
 				importType: "file/batch-manual",
 				timeAchieved: null,
 				scoreData: {
-					lamp: "FAILED",
-					score: 90_000,
-					grade: "A",
+					lamp: "HARD CLEAR",
+					score: 500,
 					judgements: {},
+					optional: {
+						bp: 123,
+					},
+				},
+				scoreMeta: {},
+			},
+		});
+
+		t.end();
+	});
+
+	t.test("Should mount judgements", async (t) => {
+		const res = await ConverterBatchManual(
+			dmf(baseBatchManualScore as any, {
+				judgements: {
+					pgreat: 13,
+					great: 3,
+				},
+			}),
+			{ game: "iidx", service: "foo", playtype: "SP", version: null },
+			importType,
+			logger
+		);
+
+		t.hasStrict(res, {
+			chart: Testing511SPA,
+			song: { id: 1 },
+			dryScore: {
+				game: "iidx",
+				service: "foo (BATCH-MANUAL)",
+				comment: null,
+				importType: "file/batch-manual",
+				timeAchieved: null,
+				scoreData: {
+					lamp: "HARD CLEAR",
+					score: 500,
+					judgements: {
+						pgreat: 13,
+						great: 3,
+					},
 					optional: {},
 				},
 				scoreMeta: {},
@@ -595,87 +626,14 @@ t.test("#ConverterFn", (t) => {
 				importType: "file/batch-manual",
 				timeAchieved: null,
 				scoreData: {
-					lamp: "CLEAR",
 					score: 920_000,
-					grade: "S",
-					percent: 10,
+					musicRate: 10,
 					judgements: {},
 					optional: {},
 				},
 				scoreMeta: {},
 			},
 		});
-
-		t.end();
-	});
-
-	t.test("Should throw if the percent parameter is not given for jubeat", (t) => {
-		t.rejects(
-			() =>
-				ConverterBatchManual(
-					deepmerge(baseJubeatScore, { musicRate: undefined }),
-					{ game: "jubeat", service: "foo", playtype: "Single", version: null },
-					importType,
-					logger
-				),
-			{ message: /The percent field must be filled out/u }
-		);
-
-		t.end();
-	});
-
-	t.test(
-		"Should throw if the percent parameter is too small for jubeat when the score is reasonably high",
-		(t) => {
-			t.rejects(
-				() =>
-					ConverterBatchManual(
-						deepmerge(baseJubeatScore, { musicRate: 0.1, score: 100_000 } as Partial<
-							BatchManualScore<"jubeat:Single">
-						>),
-						{ game: "jubeat", service: "foo", playtype: "Single", version: null },
-						importType,
-						logger
-					),
-				{
-					message:
-						"The percent you passed for this jubeat score was less than 1, but the score was above 100k. This is not possible. Have you sent percent as a number between 0 and 1?",
-				}
-			);
-
-			t.end();
-		}
-	);
-
-	t.test(
-		"Should throw if the percent parameter is over 100 but the chart is not hard mode (for jubeat)",
-		(t) => {
-			t.rejects(
-				() =>
-					ConverterBatchManual(
-						deepmerge<BatchManualScore>(baseJubeatScore, { percent: 110 }),
-						{ game: "jubeat", service: "foo", playtype: "Single", version: null },
-						importType,
-						logger
-					),
-				{ message: /The percent field must be <= 100 for normal mode./u }
-			);
-
-			t.end();
-		}
-	);
-
-	t.test("Should throw if the score parameter is invalid for jubeat", (t) => {
-		t.rejects(
-			() =>
-				ConverterBatchManual(
-					deepmerge<BatchManualScore>(baseJubeatScore, { score: 2_000_000 }),
-					{ game: "jubeat", service: "foo", playtype: "Single", version: null },
-					importType,
-					logger
-				),
-			{ message: /The score field must be a positive integer/u }
-		);
 
 		t.end();
 	});
@@ -700,32 +658,12 @@ t.test("#ConverterFn", (t) => {
 				scoreData: {
 					lamp: "HARD CLEAR",
 					score: 500,
-					grade: "E",
-
-					// percent: 31.5, -- ish, FPA is hard.
 					judgements: {},
 					optional: {},
 				},
 				scoreMeta: {},
 			},
 		});
-
-		t.end();
-	});
-
-	t.test("Should reject a score with > 100%", (t) => {
-		t.rejects(
-			() =>
-				ConverterBatchManual(
-					// eslint-disable-next-line lines-around-comment
-					// @ts-expect-error broken deepmerge
-					deepmerge(baseBatchManualScore, { score: 2000 }),
-					{ game: "iidx", service: "foo", playtype: "SP", version: null },
-					importType,
-					logger
-				),
-			{ message: /Invalid percent/u }
-		);
 
 		t.end();
 	});

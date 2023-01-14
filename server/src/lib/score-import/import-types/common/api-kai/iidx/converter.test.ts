@@ -42,9 +42,6 @@ t.test("#ConvertAPIKaiIIDX", (t) => {
 				timeAchieved: 1604171450000,
 				service: "FLO",
 				scoreData: {
-					grade: "MAX-",
-
-					// percent: 99.87277353689568 floating point,
 					score: 1570,
 					lamp: "HARD CLEAR",
 					judgements: {},
@@ -88,7 +85,6 @@ t.test("#ConvertAPIKaiIIDX", (t) => {
 				timeAchieved: 1604171450000,
 				service: "FLO",
 				scoreData: {
-					grade: "C",
 					score: 1570,
 					lamp: "HARD CLEAR",
 					judgements: {},

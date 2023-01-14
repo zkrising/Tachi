@@ -1,4 +1,5 @@
-import { GetGrade, GoalFmtScore, GradeGoalFormatter } from "./_common";
+import { GetGrade, GoalFmtScore, GoalOutOfFmtScore, GradeGoalFormatter } from "./_common";
+import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileAvgBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { CHUNITHMRating } from "rg-stats";
@@ -62,4 +63,13 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 		lamp: (pb) => pb.scoreData.lamp,
 		score: (pb) => FmtNum(pb.scoreData.score),
 	},
+	goalOutOfFormatters: {
+		score: GoalOutOfFmtScore,
+	},
+	pbMergeFunctions: [
+		CreatePBMergeFor("largest", "enumIndexes.lamp", "Best Lamp", (base, score) => {
+			base.scoreData.lamp = score.scoreData.lamp;
+		}),
+	],
+	defaultMergeRefName: "Best Score",
 };

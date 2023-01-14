@@ -98,7 +98,7 @@ export const USC_CONTROLLER_CONF = {
 		),
 	}),
 
-	preferences: z.strictObject({ vf6Target: z.number() }),
+	preferences: z.strictObject({ vf6Target: z.number().optional().nullable() }),
 	scoreMeta: z.strictObject({
 		noteMod: z.enum(["MIR-RAN", "MIRROR", "NORMAL", "RANDOM"]).optional(),
 		gaugeMod: z.enum(["NORMAL", "HARD", "PERMISSIVE"]).optional(),

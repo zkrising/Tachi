@@ -30,6 +30,9 @@ t.test("#EvaluateGoalForUser", (t) => {
 	t.test("Should correctly evaluate against single goals.", (t) => {
 		t.beforeEach(async () => {
 			await db["personal-bests"].insert(TestingIIDXSPScorePB);
+
+			// @ts-expect-error why does mongodb feel like mutating our documents!
+			delete TestingIIDXSPScorePB._id;
 		});
 
 		t.test("Should correctly evaluate goals if user succeeds.", async (t) => {
@@ -310,13 +313,13 @@ t.test("#HumaniseGoalProgress", (t) => {
 				mkFakePBIIDXSP({
 					// @ts-expect-error faulty deepmerge types
 					scoreData: {
-						score: 1230,
+						score: 1865,
 						grade: "AA",
-						percent: 78.89,
+						percent: 79.97,
 					},
 				})
 			),
-			"AAA-156"
+			"AAA-208"
 		);
 
 		t.end();

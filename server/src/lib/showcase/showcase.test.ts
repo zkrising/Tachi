@@ -68,20 +68,20 @@ t.test("#RemoveStaleFolderShowcaseStats", (t) => {
 					{
 						mode: "chart",
 						chartID: "foo",
-						property: "grade",
+						metric: "grade",
 					},
 					{
 						mode: "folder",
 						folderID: "NORMAL_FOLDER",
 						gte: 1,
-						property: "lamp",
+						metric: "lamp",
 					},
 				],
 				[
 					{
 						mode: "chart",
 						chartID: "foo",
-						property: "grade",
+						metric: "grade",
 					},
 				],
 			]

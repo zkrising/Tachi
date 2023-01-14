@@ -1,5 +1,6 @@
-import { GetGrade, GoalFmtPercent, GradeGoalFormatter } from "./_common";
+import { GetGrade, GoalFmtPercent, GoalOutOfFmtPercent, GradeGoalFormatter } from "./_common";
 import db from "external/mongo/db";
+import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { GetBestRatingOnSongs, ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { GITADORASkill } from "rg-stats";
@@ -105,6 +106,15 @@ const GITADORA_IMPL: GPTServerImplementation<"gitadora:Dora" | "gitadora:Gita"> 
 				(v) => `${v.toFixed(2)}%`
 			),
 	},
+	goalOutOfFormatters: {
+		percent: GoalOutOfFmtPercent,
+	},
+	pbMergeFunctions: [
+		CreatePBMergeFor("largest", "enumIndexes.lamp", "Best Lamp", (base, score) => {
+			base.scoreData.lamp = score.scoreData.lamp;
+		}),
+	],
+	defaultMergeRefName: "Best Percent",
 };
 
 export const GITADORA_GITA_IMPL: GPTServerImplementation<"gitadora:Gita"> = GITADORA_IMPL;

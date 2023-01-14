@@ -33,9 +33,15 @@ router.patch(
 		const gameSpecificSchema = PrudenceZodShim(gptConfig.preferences);
 
 		const err = p(req.safeBody, {
-			preferredScoreAlg: p.optional(p.nullable(p.isIn(gptConfig.scoreRatingAlgs))),
-			preferredSessionAlg: p.optional(p.nullable(p.isIn(gptConfig.sessionRatingAlgs))),
-			preferredProfileAlg: p.optional(p.nullable(p.isIn(gptConfig.profileRatingAlgs))),
+			preferredScoreAlg: p.optional(
+				p.nullable(p.isIn(Object.keys(gptConfig.scoreRatingAlgs)))
+			),
+			preferredSessionAlg: p.optional(
+				p.nullable(p.isIn(Object.keys(gptConfig.sessionRatingAlgs)))
+			),
+			preferredProfileAlg: p.optional(
+				p.nullable(p.isIn(Object.keys(gptConfig.profileRatingAlgs)))
+			),
 			defaultTable: "*?string",
 			preferredRanking: optNull(p.isIn("global", "rival")),
 

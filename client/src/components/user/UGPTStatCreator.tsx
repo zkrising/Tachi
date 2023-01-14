@@ -38,7 +38,7 @@ export default function UGPTStatCreator({
 	const formik = useFormik({
 		initialValues: {
 			mode: "chart",
-			property: "lamp",
+			metric: "lamp",
 			folderID: undefined,
 			chartID: undefined,
 		},
@@ -69,7 +69,7 @@ export default function UGPTStatCreator({
 
 	useEffect(() => {
 		if (formik.values.mode === "folder" && formik.values.property === "playcount") {
-			formik.setValues({ ...formik.values, property: "lamp" });
+			formik.setValues({ ...formik.values, metric: "lamp" });
 		}
 	}, [formik.values.mode]);
 

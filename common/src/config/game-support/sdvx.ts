@@ -163,7 +163,7 @@ export const SDVX_SINGLE_CONF = {
 		clearTier: zodTierlistData,
 	}),
 
-	preferences: z.strictObject({ vf6Target: z.number() }),
+	preferences: z.strictObject({ vf6Target: z.number().optional().nullable() }),
 	scoreMeta: z.strictObject({}),
 
 	supportedMatchTypes: ["sdvxInGameID", "songTitle", "tachiSongID"],

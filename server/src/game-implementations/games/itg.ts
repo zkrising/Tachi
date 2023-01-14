@@ -1,4 +1,5 @@
 import { GetGrade, GoalFmtPercent, GradeGoalFormatter } from "./_common";
+import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBestNFor } from "game-implementations/utils/session-calc";
 import { ITGHighestUnbroken } from "rg-stats";
@@ -114,4 +115,25 @@ export const ITG_STAMINA_IMPL: GPTServerImplementation<"itg:Stamina"> = {
 				(v) => `${v.toFixed(2)}%`
 			),
 	},
+	goalOutOfFormatters: {
+		survivedPercent: (num) => `${FormatMaxDP(num)}%`,
+		scorePercent: (num) => `${FormatMaxDP(num)}%`,
+		finalPercent: (num) => {
+			if (num >= 100) {
+				return `CLEAR with ${FormatMaxDP(num - 100)}%`;
+			}
+
+			return `${FormatMaxDP(num)}%`;
+		},
+	},
+	pbMergeFunctions: [
+		// we'll pluck the best lamp, but this game has a pretty interesting concept
+		// for merging PBs. This is probably fine.
+		CreatePBMergeFor("largest", "enumIndexes.lamp", "Best Lamp", (base, score) => {
+			base.scoreData.lamp = score.scoreData.lamp;
+		}),
+	],
+
+	// this name sucks, what should we do instead? TODO.
+	defaultMergeRefName: "Best Result",
 };

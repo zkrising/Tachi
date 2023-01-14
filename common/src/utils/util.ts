@@ -252,6 +252,7 @@ function RelativeGradeDelta<G extends string>(
 	gradeBoundaries: Array<GradeBoundary<G>>,
 	scoreGrade: G,
 	scoreValue: number,
+	// Positive number means higher grade, etc.
 	relativeIndex: number
 ) {
 	const gradeBoundary =
@@ -267,7 +268,7 @@ function RelativeGradeDelta<G extends string>(
 function AbsoluteGradeDelta<G extends string>(gradeBoundary: GradeBoundary<G>, scoreValue: number) {
 	return {
 		grade: gradeBoundary.name,
-		delta: gradeBoundary.lowerBound - scoreValue,
+		delta: scoreValue - gradeBoundary.lowerBound,
 	};
 }
 

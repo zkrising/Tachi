@@ -252,7 +252,7 @@ export const BMS_7K_CONF = {
 	}),
 
 	preferences: z.strictObject({
-		displayTables: z.array(z.string()),
+		displayTables: z.array(z.string()).optional().nullable(),
 	}),
 
 	scoreMeta: z.strictObject({

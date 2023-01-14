@@ -1,4 +1,5 @@
-import { GetGrade, GoalFmtScore, GradeGoalFormatter } from "./_common";
+import { GetGrade, GoalFmtScore, GoalOutOfFmtScore, GradeGoalFormatter } from "./_common";
+import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { CuratorSkill } from "rg-stats";
@@ -32,4 +33,13 @@ export const MUSECA_IMPL: GPTServerImplementation<"museca:Single"> = {
 				MUSECA_GBOUNDARIES[gradeIndex]!.name
 			),
 	},
+	goalOutOfFormatters: {
+		score: GoalOutOfFmtScore,
+	},
+	pbMergeFunctions: [
+		CreatePBMergeFor("largest", "enumIndexes.lamp", "Best Lamp", (base, score) => {
+			base.scoreData.lamp = score.scoreData.lamp;
+		}),
+	],
+	defaultMergeRefName: "Best Score",
 };

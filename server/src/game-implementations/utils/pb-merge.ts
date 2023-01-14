@@ -1,6 +1,6 @@
 import db from "external/mongo/db";
-import type { PBScoreDocumentNoRank } from "../create-pb-doc";
-import type { PBMergeFunction } from "./types";
+import type { PBMergeFunction } from "game-implementations/types";
+import type { PBScoreDocumentNoRank } from "lib/score-import/framework/pb/create-pb-doc";
 import type { FilterQuery } from "mongodb";
 import type {
 	ConfDerivedMetrics,
@@ -48,9 +48,12 @@ export function HandleAsOf(
  * Utility for making a PB merge function. In short, get the best score this user has
  * on this chart for the stated metric, then run the applicator if a score was found.
  *
+ * @param direction - Whether to pick the largest value or smallest value for this metric.
+ *
  * @note Don't worry about updating enumIndexes. Those are updated for you,.
  */
 export function CreatePBMergeFor<GPT extends GPTString>(
+	direction: "largest" | "smallest",
 	metric: MetricKeys<GPT>,
 	name: string,
 	applicator: (base: PBScoreDocumentNoRank<GPT>, score: ScoreDocument<GPT>) => void
@@ -67,7 +70,7 @@ export function CreatePBMergeFor<GPT extends GPTString>(
 			),
 			{
 				sort: {
-					[`scoreData.${metric as string}`]: -1,
+					[`scoreData.${metric as string}`]: direction === "largest" ? -1 : 1,
 				},
 			}
 		)) as ScoreDocument<GPT> | null;

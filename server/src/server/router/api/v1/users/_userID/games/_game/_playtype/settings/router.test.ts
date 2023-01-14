@@ -164,7 +164,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 			});
 		});
 
-		for (const target of [0, 10, 15, 100]) {
+		for (const target of [0, 10, 15, 17.5, 100]) {
 			t.test(`Should be able to update the BPI target to ${target}`, async (t) => {
 				const res = await mockApi
 					.patch("/api/v1/users/1/games/iidx/SP/settings")
@@ -213,28 +213,13 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 			});
 		}
 
-		t.test("Should reject float BPI targets.", async (t) => {
+		t.test("Should reject BPI targets < -15", async (t) => {
 			const res = await mockApi
 				.patch("/api/v1/users/1/games/iidx/SP/settings")
 				.set("Authorization", "Bearer api_token")
 				.send({
 					gameSpecific: {
-						bpiTarget: 10.5,
-					},
-				});
-
-			t.equal(res.statusCode, 400);
-
-			t.end();
-		});
-
-		t.test("Should reject negative BPI targets", async (t) => {
-			const res = await mockApi
-				.patch("/api/v1/users/1/games/iidx/SP/settings")
-				.set("Authorization", "Bearer api_token")
-				.send({
-					gameSpecific: {
-						bpiTarget: -10,
+						bpiTarget: -20,
 					},
 				});
 

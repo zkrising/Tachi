@@ -27,8 +27,9 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/tables/:tableID", (t) =>
 		t.equal(res.body.body.folders[0].folderID, "testing_folder");
 		t.equal(res.body.body.table.tableID, "mock_table");
 		t.equal(res.body.body.stats.length, 1);
-		t.equal(res.body.body.stats[0].lamps["EX HARD CLEAR"], 1);
-		t.equal(res.body.body.stats[0].grades.AAA, 1);
+
+		t.equal(res.body.body.stats[0].lamp["EX HARD CLEAR"], 1);
+		t.equal(res.body.body.stats[0].grade.AAA, 1);
 
 		t.end();
 	});

@@ -30,7 +30,6 @@ t.test("#ConverterIRKsHookSV6C", (t) => {
 			dryScore: {
 				scoreData: {
 					score: 9_579_365,
-					grade: "AA+",
 					lamp: "EXCESSIVE CLEAR",
 					judgements: {
 						critical: 1184,

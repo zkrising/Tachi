@@ -1,9 +1,10 @@
-import { GPT_PB_DEFAULT_REF_NAMES, GPT_PB_MERGE_FNS } from "./mergers/mergers";
 import { CreateScoreCalcData } from "../calculated-data/score";
 import { CreateEnumIndexes } from "../score-importing/derivers";
 import db from "external/mongo/db";
+import { GPT_SERVER_IMPLEMENTATIONS } from "game-implementations/game-implementations";
 import { GetEveryonesRivalIDs } from "lib/rivals/rivals";
 import { GetGPTConfig, GetGamePTConfig } from "tachi-common";
+import { DeleteUndefinedProps } from "utils/misc";
 import type { KtLogger } from "lib/logger/logger";
 import type { BulkWriteUpdateOneOperation, FilterQuery } from "mongodb";
 import type {
@@ -68,10 +69,12 @@ export async function CreatePBDoc(
 		return;
 	}
 
+	const gptImpl = GPT_SERVER_IMPLEMENTATIONS[gpt];
+
 	const pbDoc: PBScoreDocumentNoRank = {
 		composedFrom: [
 			{
-				name: GPT_PB_DEFAULT_REF_NAMES[gpt],
+				name: gptImpl.defaultMergeRefName,
 				scoreID: defaultMetricPB.scoreID,
 			},
 		],
@@ -87,9 +90,7 @@ export async function CreatePBDoc(
 		calculatedData: defaultMetricPB.calculatedData,
 	};
 
-	const mergeFunctions = GPT_PB_MERGE_FNS[gpt];
-
-	for (const mergeFn of mergeFunctions) {
+	for (const mergeFn of gptImpl.pbMergeFunctions) {
 		// these must happen in sync.
 		// eslint-disable-next-line no-await-in-loop
 		const ref = await mergeFn(
@@ -101,10 +102,14 @@ export async function CreatePBDoc(
 			pbDoc as any
 		);
 
-		if (ref) {
+		// if there's a reference to add AND we haven't seen this scoreID before.
+		if (ref && !pbDoc.composedFrom.map((e) => e.scoreID).includes(ref.scoreID)) {
 			pbDoc.composedFrom.push(ref);
 		}
 	}
+
+	// clear up any nonsense
+	DeleteUndefinedProps(pbDoc.scoreData.optional);
 
 	// update any enum indexes that might've been altered
 	const { indexes, optionalIndexes } = CreateEnumIndexes(gpt, pbDoc.scoreData, logger);

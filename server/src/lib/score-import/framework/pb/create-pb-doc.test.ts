@@ -52,12 +52,13 @@ t.test("#CreatePBDoc", (t) => {
 			optional: { bp: 1, enumIndexes: {} },
 		},
 		calculatedData: {
-			ktLampRating: 12,
+			BPI: null,
+			ktLampRating: 10,
 		},
 	};
 
 	t.test(
-		"(IIDX) Should use the GameSpecificMergeFN to also join the BP PB if necessary.",
+		"(IIDX) Should use the Server Impl Merge FNs to also join the BP PB if necessary.",
 		async (t) => {
 			await db.scores.remove({});
 			await db.scores.insert([
@@ -74,9 +75,6 @@ t.test("#CreatePBDoc", (t) => {
 							lamp: IIDX_LAMPS.FULL_COMBO,
 						},
 					},
-					calculatedData: {
-						ktLampRating: 12,
-					},
 					scoreID: "LAMP_PB_ID",
 				}),
 				deepmerge(IIDXScore, {
@@ -91,9 +89,6 @@ t.test("#CreatePBDoc", (t) => {
 							lamp: IIDX_LAMPS.CLEAR,
 						},
 					},
-					calculatedData: {
-						ktLampRating: 10,
-					},
 					scoreID: "BP_PB_ID",
 				}),
 			]);
@@ -105,7 +100,7 @@ t.test("#CreatePBDoc", (t) => {
 			t.strictSame(
 				res,
 				deepmerge(ExamplePBDoc, {
-					composedFrom: [{ name: "Best BP", scoreID: "BP_PB_ID" }],
+					composedFrom: [{ name: "Lowest BP", scoreID: "BP_PB_ID" }],
 
 					scoreData: {
 						optional: {
@@ -171,42 +166,6 @@ t.test("#CreatePBDoc", (t) => {
 		t.end();
 	});
 
-	t.test("(BMS) Should inherit sieglinde from the higher rated score.", async (t) => {
-		await db.scores.remove({});
-		await db.scores.insert([
-			TestingBMS7KScore,
-			deepmerge(TestingBMS7KScore, {
-				scoreData: {
-					lamp: "FULL COMBO",
-					score: 0,
-					percent: 0,
-					optional: {
-						bp: 15,
-					},
-					enumIndexes: {
-						lamp: IIDX_LAMPS.FULL_COMBO,
-					},
-				},
-				calculatedData: {
-					sieglinde: 500,
-				},
-				scoreID: "LAMP_PB_ID",
-			}),
-		]);
-
-		const res = await CreatePBDoc("bms:7K", 1, BMSGazerChart, logger);
-
-		t.not(res, undefined, "Should actually return something.");
-
-		t.equal(
-			res?.calculatedData.sieglinde,
-			500,
-			"Should select the lampPBs sieglinde and not the score PBs."
-		);
-
-		t.end();
-	});
-
 	t.test("(BMS) Should inherit BP from the best BP score.", async (t) => {
 		await db.scores.remove({});
 		await db.scores.insert([
@@ -253,64 +212,7 @@ t.test("#CreatePBDoc", (t) => {
 		t.strictSame(res?.composedFrom, [
 			{ name: "Best Score", scoreID: TestingBMS7KScore.scoreID },
 			{ name: "Best Lamp", scoreID: "LAMP_PB_ID" },
-			{ name: "Best BP", scoreID: "BP_PB_ID" },
-		]);
-
-		t.end();
-	});
-
-	t.test("(PMS) Should inherit BP from the best BP score.", async (t) => {
-		const pmsScore = deepmerge(TestingBMS7KScore, {
-			game: "pms",
-			playtype: "Controller",
-		}) as unknown as ScoreDocument<"pms:Controller">;
-
-		await db.scores.remove({});
-		await db.scores.insert([
-			pmsScore,
-			deepmerge(pmsScore, {
-				scoreData: {
-					lamp: "FULL COMBO",
-					score: 0,
-					percent: 0,
-					optional: {
-						bp: 15,
-					},
-					enumIndexes: {
-						lamp: IIDX_LAMPS.FULL_COMBO,
-					},
-				},
-				calculatedData: {
-					sieglinde: 500,
-				},
-				scoreID: "LAMP_PB_ID",
-			}),
-			deepmerge(pmsScore, {
-				scoreData: {
-					optional: {
-						bp: 1,
-					},
-				},
-				scoreID: "BP_PB_ID",
-			}),
-		]);
-
-		const res = (await CreatePBDoc("pms:Controller", 1, BMSGazerChart, logger)) as
-			| PBScoreDocumentNoRank<"pms:Controller">
-			| undefined;
-
-		t.not(res, undefined, "Should actually return something.");
-
-		t.equal(
-			res?.scoreData.optional.bp,
-			1,
-			"Should select the best BP's BP and not the score PBs."
-		);
-
-		t.strictSame(res?.composedFrom, [
-			{ name: "Best Score", scoreID: TestingBMS7KScore.scoreID },
-			{ name: "Best Lamp", scoreID: "LAMP_PB_ID" },
-			{ name: "Best BP", scoreID: "BP_PB_ID" },
+			{ name: "Lowest BP", scoreID: "BP_PB_ID" },
 		]);
 
 		t.end();

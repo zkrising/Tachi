@@ -6,7 +6,11 @@ import {
 	TachifyRandom,
 	TachifyRange,
 } from "./converter";
-import { InternalFailure } from "../../../framework/common/converter-failures";
+import {
+	InternalFailure,
+	InvalidScoreFailure,
+	SkipScoreFailure,
+} from "../../../framework/common/converter-failures";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
@@ -20,7 +24,6 @@ import type { FervidexScore } from "./types";
 const logger = CreateLogCtx(__filename);
 
 t.test("#SplitFervidexChartRef", (t) => {
-	t.strictSame(SplitFervidexChartRef("spb"), { playtype: "SP", difficulty: "BEGINNER" });
 	t.strictSame(SplitFervidexChartRef("spn"), { playtype: "SP", difficulty: "NORMAL" });
 	t.strictSame(SplitFervidexChartRef("sph"), { playtype: "SP", difficulty: "HYPER" });
 	t.strictSame(SplitFervidexChartRef("spa"), { playtype: "SP", difficulty: "ANOTHER" });
@@ -33,6 +36,11 @@ t.test("#SplitFervidexChartRef", (t) => {
 	t.throws(
 		() => SplitFervidexChartRef("INVALID" as "spn"),
 		new InternalFailure(`Invalid fervidex difficulty of INVALID`)
+	);
+
+	t.throws(
+		() => SplitFervidexChartRef("spb"),
+		new SkipScoreFailure(`BEGINNER charts are not supported.`)
 	);
 
 	t.end();
@@ -120,8 +128,6 @@ const baseDryScore = {
 	importType: "ir/fervidex",
 	scoreData: {
 		score: 68,
-		percent: 4.325699745547074,
-		grade: "F",
 		lamp: "FAILED",
 		judgements: {
 			pgreat: 34,
@@ -253,38 +259,6 @@ t.test("#ConverterIRFervidex", (t) => {
 				logger
 			),
 			/Song 1 \(iidx\) has no parent song/giu
-		);
-
-		t.end();
-	});
-
-	t.test("Should throw invalid score on percent > 100.", (t) => {
-		t.rejects(
-			ConverterIRFervidex(
-				// eslint-disable-next-line lines-around-comment
-				// @ts-expect-error eternally broken deepmerge
-				deepmerge(baseFervidexScore, { ex_score: 9999 }),
-				{ version: "27" },
-				"ir/fervidex",
-				logger
-			),
-			/Invalid percent/giu
-		);
-
-		t.end();
-	});
-
-	t.test("Should throw invalid score on gauge > 100.", (t) => {
-		t.rejects(
-			ConverterIRFervidex(
-				// eslint-disable-next-line lines-around-comment
-				// @ts-expect-error eternally broken deepmerge
-				deepmerge(baseFervidexScore, { gauge: [150] }),
-				{ version: "27" },
-				"ir/fervidex",
-				logger
-			),
-			/Invalid value of gauge 150./giu
 		);
 
 		t.end();

@@ -53,24 +53,29 @@ router.get("/", async (req, res) => {
  * Evalulate a custom stat on this user.
  *
  * @param mode - "folder" or "chart"
- * @param property - "grade" | "lamp" | "score" | "percent" and "playcount" if mode is chart.
+ * @param metric - "any score metric for this game (i.e. non-optional).
+ * Also, "playcount" if mode is chart.
  * @param chartID - If mode is "chart" this must contain the chartID the stat is referencing.
  * @param folderID - If mode is "folder" this must contain the folderID the stat is referencing.
- * @param gte - If mode is "folder" this must contain the value the property must be greater than.
+ * @param gte - If mode is "folder" this must contain the value the metric must be greater than.
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom
  */
 router.get("/custom", async (req, res) => {
 	const { user, game, playtype } = GetUGPT(req);
 
+	const gptConfig = GetGamePTConfig(game, playtype);
+
 	let stat: ShowcaseStatDetails;
+
+	const availableMetrics = GetScoreMetrics(gptConfig, ["DECIMAL", "ENUM", "INTEGER"]);
 
 	if (req.query.mode === "folder") {
 		const err = p(
 			req.query,
 			{
 				mode: p.is("folder"),
-				property: p.isIn("grade", "lamp", "score", "percent"),
+				metric: p.isIn(availableMetrics),
 				folderID: "string",
 
 				// lazy regex for matching strings that look like numbers
@@ -103,7 +108,7 @@ router.get("/custom", async (req, res) => {
 
 		stat = {
 			mode: "folder",
-			metric: req.query.property as "grade" | "lamp" | "percent" | "score",
+			metric: req.query.metric as string,
 			folderID,
 			gte: Number(req.query.gte),
 		};
@@ -112,7 +117,7 @@ router.get("/custom", async (req, res) => {
 			req.query,
 			{
 				mode: p.is("chart"),
-				property: p.isIn("grade", "lamp", "score", "percent", "playcount"),
+				metric: p.isIn(...availableMetrics, "playcount"),
 				chartID: "string",
 			},
 			{},
@@ -137,7 +142,7 @@ router.get("/custom", async (req, res) => {
 
 		stat = {
 			mode: "chart",
-			metric: req.query.property as "grade" | "lamp" | "percent" | "playcount" | "score",
+			metric: req.query.metric as string,
 			chartID: req.query.chartID as string,
 		};
 	} else {
@@ -202,7 +207,7 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 			err = p(unvalidatedStat, {
 				chartID: "string",
 				mode: p.is("chart"),
-				property: p.isIn(availableMetrics),
+				metric: p.isIn(...availableMetrics, "playcount"),
 			});
 		} else if (unvalidatedStat.mode === "folder") {
 			err = p(unvalidatedStat, {
@@ -216,24 +221,24 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 					return false;
 				},
 				mode: p.is("folder"),
-				property: p.isIn(availableMetrics),
+				metric: p.isIn(availableMetrics),
 
 				gte: (self, parent) => {
 					if (typeof self !== "number") {
 						return "Expected a number.";
 					}
 
-					if (typeof parent.property !== "string") {
-						return `Expected parent.property to be a string.`;
+					if (typeof parent.metric !== "string") {
+						return `Expected parent.metric to be a string.`;
 					}
 
 					const conf =
-						gptConfig.providedMetrics[parent.property] ??
-						gptConfig.derivedMetrics[parent.property];
+						gptConfig.providedMetrics[parent.metric] ??
+						gptConfig.derivedMetrics[parent.metric];
 
 					if (!conf) {
-						return `Invalid property ${
-							parent.property
+						return `Invalid metric ${
+							parent.metric
 						}, Expected any of ${availableMetrics.join(", ")}.`;
 					}
 

@@ -30,6 +30,11 @@ export type BatchManualScore<GPT extends GPTString = GPTString> = ExtractMetrics
 	judgements?: Record<Judgements[GPT], integer>;
 	timeAchieved?: number | null;
 	optional?: AllFieldsNullableOptional<ExtractMetrics<ConfOptionalMetrics[GPT]>>;
+
+	/**
+	 * @deprecated Use `optional` instead.
+	 */
+	hitMeta?: AllFieldsNullableOptional<ExtractMetrics<ConfOptionalMetrics[GPT]>>;
 	scoreMeta?: Partial<ScoreMeta[GPT]>;
 } & (
 		| {
@@ -47,7 +52,6 @@ export interface BatchManual<GPT extends GPTString = GPTString> {
 		game: GPTStringToGame[GPT];
 		playtype: GPTStringToPlaytype[GPT];
 		service: string;
-
 		version?: Versions[GPT];
 	};
 	scores: Array<BatchManualScore<GPT>>;

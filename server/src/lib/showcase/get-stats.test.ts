@@ -112,7 +112,7 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 			{
 				stat: { folderID: TestingIIDXFolderSP10.folderID },
 				result: {
-					value: 0,
+					value: 1,
 					outOf: 1,
 				},
 			},

@@ -229,7 +229,7 @@ const PR_CHART_DOCUMENT = (game: Game) => (self: unknown) => {
 
 		data: PrudenceZodShim(gptConfig.chartData),
 
-		versions: [p.isIn(gptConfig.versions)],
+		versions: [p.isIn(Object.keys(gptConfig.versions))],
 	})(self);
 };
 

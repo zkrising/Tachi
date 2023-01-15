@@ -11,7 +11,6 @@ export const GITADORA_CONF = {
 	playtypes: ["Gita", "Dora"],
 	songData: z.strictObject({
 		isHot: z.boolean(),
-		displayVersion: z.string(),
 	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 

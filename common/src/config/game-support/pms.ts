@@ -139,8 +139,8 @@ export const PMS_CONTROLLER_CONF = {
 		hashMD5: z.string(),
 		hashSHA256: z.string(),
 		tableFolders: z.array(z.strictObject({ table: z.string(), level: z.string() })),
-		sglEC: z.number().nullable(),
-		sglHC: z.number().nullable(),
+		sglEC: z.number().nullable().optional(),
+		sglHC: z.number().nullable().optional(),
 	}),
 
 	preferences: z.strictObject({}),

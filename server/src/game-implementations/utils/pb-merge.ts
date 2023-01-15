@@ -15,18 +15,13 @@ import type { ExtractEnumMetricNames } from "tachi-common/types/metrics";
 type MetricKeys<GPT extends GPTString> = Exclude<
 	| keyof ConfDerivedMetrics[GPT]
 	| keyof ConfProvidedMetrics[GPT]
-	// @ts-expect-error For some unfathomable reason, typescript thinks that
-	// this keyof Record<string, T> might be a symbol for some reason. Who knows.
 	| `enumIndexes.${ExtractEnumMetricNames<ConfDerivedMetrics[GPT] & ConfProvidedMetrics[GPT]>}`
-	// @ts-expect-error see above
-	| `optional.${keyof ConfOptionalMetrics[GPT]}`
-	// @ts-expect-error see above
+	| `optional.${string & keyof ConfOptionalMetrics[GPT]}`
 	| `optional.enumIndexes.${ExtractEnumMetricNames<ConfOptionalMetrics[GPT]>}`,
 	// --- exclude these ---
 	// Don't allow bare enums, you should use `enumIndexes.ENUMNAME` instead, as those
 	// can be sorted on.
 	| ExtractEnumMetricNames<ConfDerivedMetrics[GPT] & ConfProvidedMetrics[GPT]>
-	// @ts-expect-error see above
 	| `optional.${ExtractEnumMetricNames<ConfOptionalMetrics[GPT]>}`
 >;
 

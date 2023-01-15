@@ -1,5 +1,4 @@
 import {
-	GetGrade,
 	GoalFmtPercent,
 	GoalFmtScore,
 	GoalOutOfFmtPercent,
@@ -12,7 +11,7 @@ import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { p } from "prudence";
 import { Jubility } from "rg-stats";
-import { FmtNum, JUBEAT_GBOUNDARIES } from "tachi-common";
+import { FmtNum, GetGrade, JUBEAT_GBOUNDARIES } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 import type { Game, PBScoreDocument, Playtype, Versions, integer } from "tachi-common";

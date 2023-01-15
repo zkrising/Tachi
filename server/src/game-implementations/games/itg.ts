@@ -1,9 +1,9 @@
-import { GetGrade, GoalFmtPercent, GradeGoalFormatter } from "./_common";
+import { GoalFmtPercent, GradeGoalFormatter } from "./_common";
 import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBestNFor } from "game-implementations/utils/session-calc";
 import { ITGHighestUnbroken } from "rg-stats";
-import { ITG_GBOUNDARIES } from "tachi-common";
+import { GetGrade, ITG_GBOUNDARIES } from "tachi-common";
 import { FormatMaxDP } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 

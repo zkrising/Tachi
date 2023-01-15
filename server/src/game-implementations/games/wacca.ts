@@ -1,10 +1,10 @@
-import { GetGrade, GoalFmtScore, GoalOutOfFmtScore, GradeGoalFormatter } from "./_common";
+import { GoalFmtScore, GoalOutOfFmtScore, GradeGoalFormatter } from "./_common";
 import db from "external/mongo/db";
 import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { WACCARate } from "rg-stats";
-import { FmtNum, WACCA_GBOUNDARIES } from "tachi-common";
+import { FmtNum, GetGrade, WACCA_GBOUNDARIES } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 import type { Game, Playtype, integer } from "tachi-common";

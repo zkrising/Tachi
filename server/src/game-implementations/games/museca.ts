@@ -1,9 +1,9 @@
-import { GetGrade, GoalFmtScore, GoalOutOfFmtScore, GradeGoalFormatter } from "./_common";
+import { GoalFmtScore, GoalOutOfFmtScore, GradeGoalFormatter } from "./_common";
 import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { CuratorSkill } from "rg-stats";
-import { FmtNum, MUSECA_GBOUNDARIES } from "tachi-common";
+import { FmtNum, GetGrade, MUSECA_GBOUNDARIES } from "tachi-common";
 import type { GPTServerImplementation } from "game-implementations/types";
 
 export const MUSECA_IMPL: GPTServerImplementation<"museca:Single"> = {

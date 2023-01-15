@@ -1,9 +1,9 @@
-import { GetGrade, GoalFmtScore, GoalOutOfFmtScore, GradeGoalFormatter } from "./_common";
+import { GoalFmtScore, GoalOutOfFmtScore, GradeGoalFormatter } from "./_common";
 import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileAvgBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { CHUNITHMRating } from "rg-stats";
-import { CHUNITHM_GBOUNDARIES, FmtNum } from "tachi-common";
+import { CHUNITHM_GBOUNDARIES, FmtNum, GetGrade } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 

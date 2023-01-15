@@ -8,8 +8,8 @@ import {
 	MatchTypes,
 	Playtype,
 	SongDocument,
+	allSupportedGames,
 } from "tachi-common";
-import { allSupportedGames } from "tachi-common/config/static-config";
 import { ReadCollection } from "../util";
 
 // check that a given matchType works for a given game.

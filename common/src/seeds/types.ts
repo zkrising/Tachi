@@ -44,14 +44,12 @@ const CURRENT_DATABASE_SEEDS: Record<keyof OtherDBSeeds, true> = {
 	"tables.json": true,
 };
 
-for (const game of allSupportedGames) {
-	// @ts-expect-error define all games' seeds on the object.
-	CURRENT_DATABASE_SEEDS[`songs-${game}`] = true;
+const moreOnes: Array<string> = [];
 
-	// @ts-expect-error define all games' seeds on the object.
-	CURRENT_DATABASE_SEEDS[`charts-${game}`] = true;
+for (const game of allSupportedGames) {
+	moreOnes.push(`songs-${game}`, `charts-${game}`);
 }
 
-export const DatabaseSeedNames = Object.keys(CURRENT_DATABASE_SEEDS) as Array<
+export const DatabaseSeedNames = [...Object.keys(CURRENT_DATABASE_SEEDS), ...moreOnes] as Array<
 	keyof AllDatabaseSeeds
 >;

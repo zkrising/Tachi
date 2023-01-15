@@ -33,13 +33,15 @@ export function ClassValue<V extends string>(
 	return { id, display, hoverText };
 }
 
-export const zodTierlistData = z.nullable(
-	z.strictObject({
-		value: z.number(),
-		text: z.string(),
-		individualDifference: z.boolean(),
-	})
-);
+export const zodTierlistData = z
+	.nullable(
+		z.strictObject({
+			value: z.number(),
+			text: z.string(),
+			individualDifference: z.boolean(),
+		})
+	)
+	.optional();
 
 export const zodInt = z.number().int();
 export const zodNonNegativeInt = z.number().int().nonnegative();

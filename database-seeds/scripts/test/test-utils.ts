@@ -1,7 +1,6 @@
-import { Game } from "tachi-common";
-import { allSupportedGames } from "tachi-common/config/static-config";
-import { SCHEMAS } from "tachi-common/lib/schemas";
+import { Game, allSupportedGames } from "tachi-common";
 import { ReadCollection } from "../util";
+import { SCHEMAS } from "tachi-common/lib/schemas";
 
 const songMap = {};
 

@@ -1,9 +1,10 @@
 import chalk from "chalk";
 import fs from "fs";
 import path from "path";
-import { SCHEMAS } from "tachi-common/lib/schemas";
 import { ReadCollection } from "../util";
 import { FormatFunctions } from "./test-utils";
+import { SCHEMAS } from "tachi-common/lib/schemas";
+import { Game } from "tachi-common";
 
 function FormatPrError(err, foreword = "Error") {
 	const receivedText =
@@ -28,7 +29,7 @@ for (const collection of collections) {
 	let fails = 0;
 
 	const collectionName = `${collection}.json`;
-	const formatFn = FormatFunctions[collection];
+	const formatFn = FormatFunctions[collection] ?? ((v) => JSON.stringify(v));
 
 	const data = ReadCollection(collectionName, true);
 
@@ -48,7 +49,7 @@ for (const collection of collections) {
 
 	for (const d of data) {
 		// Will throw if formatFn is undefined -- that's a test failure in my book.
-		const pretty = formatFn(d, game);
+		const pretty = formatFn(d, game as Game);
 
 		try {
 			validator(d);

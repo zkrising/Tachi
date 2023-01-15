@@ -41,7 +41,6 @@ export default function RatingSystemPart({ chart, game }: { chart: ChartDocument
 										<td>{e}</td>
 										<td>
 											{strV} <Muted>({numV.toFixed(2)})</Muted>
-											{/* @ts-expect-error utterly silly types */}
 											{e.idvDifference(chart) && (
 												<>
 													<br />

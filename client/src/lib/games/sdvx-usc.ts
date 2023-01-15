@@ -1,7 +1,7 @@
 import { NumericSOV } from "util/sorts";
 import { GPTClientImplementation } from "lib/types";
 import { COLOUR_SET, GPTStrings } from "tachi-common";
-import { CreateRatingSys } from "./_util";
+import { CreateRatingSys, bg, bgc } from "./_util";
 
 const SDVXLIKE_ENUM_COLOURS: GPTClientImplementation<GPTStrings["usc" | "sdvx"]>["enumColours"] = {
 	grade: {
@@ -39,6 +39,64 @@ export const SDVX_IMPL: GPTClientImplementation<"sdvx:Single"> = {
 		XCD: COLOUR_SET.blue,
 		MXM: COLOUR_SET.white,
 	},
+	classColours: {
+		dan: {
+			DAN_1: bg(COLOUR_SET.red),
+			DAN_2: bg(COLOUR_SET.paleBlue),
+			DAN_3: bgc("gold", "black"),
+			DAN_4: bg("gray"),
+			DAN_5: bgc(COLOUR_SET.teal, "black"),
+			DAN_6: bg("blue"),
+			DAN_7: bgc(COLOUR_SET.vibrantPink, "black"),
+			DAN_8: bgc("pink", "black"),
+			DAN_9: bgc("white", "black"),
+			DAN_10: "warning",
+			DAN_11: "danger",
+			INF: bgc("purple", "gold"),
+		},
+		vfClass: {
+			SIENNA_I: bg(COLOUR_SET.red),
+			SIENNA_II: bg(COLOUR_SET.red),
+			SIENNA_III: bg(COLOUR_SET.red),
+			SIENNA_IV: bg(COLOUR_SET.red),
+			COBALT_I: bg(COLOUR_SET.paleBlue),
+			COBALT_II: bg(COLOUR_SET.paleBlue),
+			COBALT_III: bg(COLOUR_SET.paleBlue),
+			COBALT_IV: bg(COLOUR_SET.paleBlue),
+			DANDELION_I: bgc(COLOUR_SET.gold, "black"),
+			DANDELION_II: bgc(COLOUR_SET.gold, "black"),
+			DANDELION_III: bgc(COLOUR_SET.gold, "black"),
+			DANDELION_IV: bgc(COLOUR_SET.gold, "black"),
+			CYAN_I: bgc(COLOUR_SET.teal, "black"),
+			CYAN_II: bgc(COLOUR_SET.teal, "black"),
+			CYAN_III: bgc(COLOUR_SET.teal, "black"),
+			CYAN_IV: bgc(COLOUR_SET.teal, "black"),
+			SCARLET_I: bgc(COLOUR_SET.vibrantPink, "black"),
+			SCARLET_II: bgc(COLOUR_SET.vibrantPink, "black"),
+			SCARLET_III: bgc(COLOUR_SET.vibrantPink, "black"),
+			SCARLET_IV: bgc(COLOUR_SET.vibrantPink, "black"),
+			CORAL_I: bgc(COLOUR_SET.pink, "black"),
+			CORAL_II: bgc(COLOUR_SET.pink, "black"),
+			CORAL_III: bgc(COLOUR_SET.pink, "black"),
+			CORAL_IV: bgc(COLOUR_SET.pink, "black"),
+			ARGENTO_I: bgc(COLOUR_SET.white, "black"),
+			ARGENTO_II: bgc(COLOUR_SET.white, "black"),
+			ARGENTO_III: bgc(COLOUR_SET.white, "black"),
+			ARGENTO_IV: bgc(COLOUR_SET.white, "black"),
+			ELDORA_I: "warning",
+			ELDORA_II: "warning",
+			ELDORA_III: "warning",
+			ELDORA_IV: "warning",
+			CRIMSON_I: bg(COLOUR_SET.vibrantRed),
+			CRIMSON_II: bg(COLOUR_SET.vibrantRed),
+			CRIMSON_III: bg(COLOUR_SET.vibrantRed),
+			CRIMSON_IV: bg(COLOUR_SET.vibrantRed),
+			IMPERIAL_I: bg(COLOUR_SET.vibrantPurple),
+			IMPERIAL_II: bg(COLOUR_SET.vibrantPurple),
+			IMPERIAL_III: bg(COLOUR_SET.vibrantPurple),
+			IMPERIAL_IV: bg(COLOUR_SET.vibrantPurple),
+		},
+	},
 	ratingSystems: [
 		CreateRatingSys(
 			"Tierlist",
@@ -68,4 +126,7 @@ export const USC_IMPL: GPTClientImplementation<GPTStrings["usc"]> = {
 		["Near - Miss", "Nr. Ms.", NumericSOV((x) => x?.scoreData.score)],
 		["Lamp", "Lamp", NumericSOV((x) => x?.scoreData.enumIndexes.lamp)],
 	],
+	classColours: {
+		vfClass: SDVX_IMPL.classColours.vfClass,
+	},
 };

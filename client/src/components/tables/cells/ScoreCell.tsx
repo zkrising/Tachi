@@ -9,7 +9,7 @@ export default function ScoreCell({
 	percent,
 	scoreRenderFn,
 }: {
-	score: integer;
+	score?: integer;
 	percent: number;
 	grade: string;
 	colour: string;
@@ -26,8 +26,14 @@ export default function ScoreCell({
 			<br />
 			{`${percent.toFixed(2)}%`}
 
-			<br />
-			<small className="text-muted">[{scoreRenderFn ? scoreRenderFn(score) : score}]</small>
+			{score !== undefined && (
+				<>
+					<br />
+					<small className="text-muted">
+						[{scoreRenderFn ? scoreRenderFn(score) : score}]
+					</small>
+				</>
+			)}
 		</td>
 	);
 }

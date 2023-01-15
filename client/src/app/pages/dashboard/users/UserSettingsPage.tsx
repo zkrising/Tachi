@@ -9,16 +9,15 @@ import Muted from "components/util/Muted";
 import SelectButton from "components/util/SelectButton";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import { useFormik } from "formik";
-import { TachiConfig } from "lib/config";
 import React, { useContext, useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
-import { UserDocument, UserSettings } from "tachi-common";
+import { UserDocument, UserSettingsDocument } from "tachi-common";
 
 interface Props {
 	reqUser: UserDocument;
 }
 
-export default function UserSettingsPage({ reqUser }: Props) {
+export default function UserSettingsDocumentPage({ reqUser }: Props) {
 	useSetSubheader(
 		["Users", reqUser.username, "Settings"],
 		[reqUser],
@@ -82,7 +81,7 @@ function AccountSettings({ reqUser }: { reqUser: UserDocument }) {
 			confPass: "",
 		},
 		onSubmit: async (values) => {
-			const r = await APIFetchV1<UserSettings>(
+			const r = await APIFetchV1<UserSettingsDocument>(
 				`/users/${reqUser.id}/change-password`,
 				{
 					method: "POST",
@@ -174,7 +173,7 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 			deletableScores: settings?.preferences.deletableScores ?? false,
 		},
 		onSubmit: async (values) => {
-			const res = await APIFetchV1<UserSettings>(
+			const res = await APIFetchV1<UserSettingsDocument>(
 				`/users/${reqUser.id}/settings`,
 				{
 					method: "PATCH",

@@ -7,7 +7,7 @@ import useUGPTBase from "components/util/useUGPTBase";
 import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { ChartDocument, Game } from "tachi-common";
+import { ChartDocument, Game, GetGamePTConfig } from "tachi-common";
 import { ChartRivalsReturn } from "types/api-returns";
 import { RivalChartDataset } from "types/tables";
 import { Col } from "react-bootstrap";
@@ -45,6 +45,8 @@ export default function RivalCompare({ chart, game }: { chart: ChartDocument; ga
 		);
 	}
 
+	const gptConfig = GetGamePTConfig(game, playtype);
+
 	const rivalDataset: RivalChartDataset = [...data.rivals, currentUser]
 		.map((u) => ({
 			...u,
@@ -52,7 +54,10 @@ export default function RivalCompare({ chart, game }: { chart: ChartDocument; ga
 				pb: data.pbs.find((p) => p.userID === u.id) ?? null,
 			},
 		}))
-		.sort(NumericSOV((x) => x.__related.pb?.scoreData.percent ?? -Infinity, true))
+		.sort(
+			// @ts-expect-error this access is obviously legal
+			NumericSOV((x) => x.__related.pb?.scoreData[gptConfig.defaultMetric] ?? -Infinity, true)
+		)
 		.map((e, index) => ({
 			...e,
 			__related: {

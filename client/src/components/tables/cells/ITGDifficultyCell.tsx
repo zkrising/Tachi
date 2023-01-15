@@ -2,18 +2,25 @@ import { ChangeOpacity } from "util/color-opacity";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Muted from "components/util/Muted";
 import React from "react";
-import { ChartDocument, COLOUR_SET, GetGamePTConfig } from "tachi-common";
+import { ChartDocument, COLOUR_SET } from "tachi-common";
 import MiniTable from "../components/MiniTable";
 import RatingSystemPart from "./RatingSystemPart";
 
-export default function ITGDifficultyCell({ chart }: { chart: ChartDocument<"itg:Stamina"> }) {
-	const gptConfig = GetGamePTConfig("itg", "Stamina");
+const COLOUR_LOOKUP = {
+	Beginner: COLOUR_SET.paleBlue,
+	Easy: COLOUR_SET.green,
+	Medium: COLOUR_SET.vibrantYellow,
+	Hard: COLOUR_SET.red,
+	Expert: COLOUR_SET.pink,
+	Edit: COLOUR_SET.gray,
+};
 
+export default function ITGDifficultyCell({ chart }: { chart: ChartDocument<"itg:Stamina"> }) {
 	return (
 		<td
 			style={{
 				backgroundColor: ChangeOpacity(
-					gptConfig.difficultyColours[chart.data.difficultyTag] ?? COLOUR_SET.gray,
+					COLOUR_LOOKUP[chart.data.difficultyTag] ?? COLOUR_SET.gray,
 					0.2
 				),
 				minWidth: "80px",
@@ -40,8 +47,8 @@ export default function ITGDifficultyCell({ chart }: { chart: ChartDocument<"itg
 			>
 				<div>
 					<span>
-						{chart.data.difficultyTag}: {chart.level} [{chart.data.displayBPM.toFixed()}
-						]
+						{chart.data.difficultyTag}: {chart.level} [
+						{chart.data.primaryBPM?.toFixed() ?? "???"}]
 					</span>
 					<br />
 					<Muted>{chart.data.charter}</Muted>

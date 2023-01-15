@@ -15,7 +15,11 @@ export default function MaimaiDXCoreCells({
 }) {
 	return (
 		<>
-			<ScoreCell showScore={false} score={sc} />
+			<ScoreCell
+				colour={GetEnumColour(sc, "grade")}
+				grade={sc.scoreData.grade}
+				percent={sc.scoreData.percent}
+			/>
 			<MaimaiDXJudgementCell score={sc} />
 			<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
 			<RatingCell score={sc} rating={rating} />

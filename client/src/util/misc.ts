@@ -128,7 +128,7 @@ export function EscapeStringRegexp(string: string) {
 	return string.replace(/[|\\{}()[\]^$+*?.]/gu, "\\$&").replace(/-/gu, "\\x2d");
 }
 
-export function Reverse<T>(arr: T[]): T[] {
+export function Reverse<T>(arr: readonly T[]): T[] {
 	return arr.slice(0).reverse();
 }
 

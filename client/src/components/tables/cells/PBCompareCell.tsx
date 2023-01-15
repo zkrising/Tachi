@@ -1,4 +1,3 @@
-import { FormatMillions } from "util/misc";
 import React from "react";
 import { COLOUR_SET, Game, PBScoreDocument, Playtype } from "tachi-common";
 import { ConfScoreMetric } from "tachi-common/types/metrics";
@@ -34,41 +33,6 @@ export default function PBCompareCell({
 		status = cmp(base.scoreData[metric], compare.scoreData[metric]);
 	}
 
-	let scoreRenderFn = (k: number) => k.toString();
-	let shouldShowPercent = false;
-	let shouldPrioritisePercent = false;
-
-	switch (game) {
-		case "chunithm":
-		case "gitadora":
-		case "usc":
-		case "sdvx":
-		case "popn":
-		case "wacca":
-		case "museca":
-			scoreRenderFn = FormatMillions;
-			shouldShowPercent = false;
-			break;
-		case "jubeat":
-			scoreRenderFn = FormatMillions;
-			shouldShowPercent = true;
-			shouldPrioritisePercent = true;
-			break;
-		case "bms":
-		case "iidx":
-			scoreRenderFn = (k: number) => k.toString();
-			shouldShowPercent = true;
-			break;
-	}
-
-	const fmtCmpPercent = fmtNum(
-		(base?.scoreData.percent ?? 0) - (compare?.scoreData.percent ?? 0),
-		2,
-		"%"
-	);
-	const cmpScore = (base?.scoreData.score ?? 0) - (compare?.scoreData.score ?? 0);
-	const cmpLamp = (base?.scoreData.lampIndex ?? 0) - (compare?.scoreData.lampIndex ?? 0);
-
 	return (
 		<td
 			style={{
@@ -83,33 +47,18 @@ export default function PBCompareCell({
 			}}
 		>
 			{metricConf.type === "ENUM" ? (
-				<></>
+				// @ts-expect-error this access is fine
+				<>{base.scoreData[metric]}</>
 			) : (
-				<>
-					{shouldPrioritisePercent ? (
-						<>
-							<strong>{fmtCmpPercent}</strong>
-							{shouldShowPercent && (
-								<>
-									<br />
-									<small>
-										({(cmpScore > 0 ? "+" : "") + scoreRenderFn(cmpScore)})
-									</small>
-								</>
-							)}
-						</>
-					) : (
-						<>
-							<strong>{(cmpScore > 0 ? "+" : "") + scoreRenderFn(cmpScore)}</strong>
-							{shouldShowPercent && (
-								<>
-									<br />
-									<small>({fmtCmpPercent})</small>
-								</>
-							)}
-						</>
-					)}
-				</>
+				metricConf.type === "DECIMAL" ||
+				(metricConf.type === "INTEGER" && (
+					<strong>
+						{/* @ts-expect-error this is fine */}
+						{(base.scoreData[metric] > 0 ? "+" : "") +
+							//  @ts-expect-error this is fine
+							metricConf.formatter(base.scoreData[metric])}
+					</strong>
+				))
 			)}
 		</td>
 	);

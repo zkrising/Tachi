@@ -1,6 +1,6 @@
 import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
 import { ChangeOpacity } from "util/color-opacity";
-import { UppercaseFirst } from "util/misc";
+import { FormatGPTProfileRating, IsNotNullish, UppercaseFirst } from "util/misc";
 import ClassBadge from "components/game/ClassBadge";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
@@ -21,8 +21,8 @@ import {
 	UserDocument,
 	ProfileRatingAlgorithms,
 	UserGameStats,
+	Classes,
 } from "tachi-common";
-import { GameClassSets } from "tachi-common/game-classes";
 import { GPTLeaderboard, UGPTLeaderboardAdjacent } from "types/api-returns";
 import { GamePT, SetState, UGPT } from "types/react";
 
@@ -129,24 +129,25 @@ function LeaderboardsPageContent({
 					</GentleLink>
 				</td>
 				<td>
-					{s.ratings[alg]
-						? gptConfig.profileRatingAlgFormatters[alg]
-							? gptConfig.profileRatingAlgFormatters[alg]!(s.ratings[alg]!)
-							: s.ratings[alg]!.toFixed(2)
+					{IsNotNullish(s.ratings[alg])
+						? FormatGPTProfileRating(game, playtype, alg, s.ratings[alg]!)
 						: "No Data."}
 				</td>
 				{/* temp */}
 				<td>
 					{Object.entries(s.classes).length
-						? Object.entries(s.classes).map(([k, v]) => (
-								<ClassBadge
-									key={`${k}:${v}`}
-									classValue={v}
-									classSet={k as GameClassSets[GPTString]}
-									game={game}
-									playtype={playtype}
-								/>
-						  ))
+						? Object.entries(s.classes).map(
+								([k, v]) =>
+									v && (
+										<ClassBadge
+											key={`${k}:${v}`}
+											classValue={v}
+											classSet={k as Classes[GPTString]}
+											game={game}
+											playtype={playtype}
+										/>
+									)
+						  )
 						: "No Classes"}
 				</td>
 			</tr>

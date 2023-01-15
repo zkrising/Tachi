@@ -1,6 +1,6 @@
 import { NumericSOV } from "util/sorts";
 import { GPTClientImplementation } from "lib/types";
-import { COLOUR_SET, GPTString, GPTStrings } from "tachi-common";
+import { COLOUR_SET, GPTStrings } from "tachi-common";
 import { bg, bgc } from "./_util";
 
 const GITADORA_ENUM_COLOURS: GPTClientImplementation<

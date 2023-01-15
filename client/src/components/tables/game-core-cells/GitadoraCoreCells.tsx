@@ -17,7 +17,11 @@ export default function GitadoraCoreCells({
 }) {
 	return (
 		<>
-			<ScoreCell showScore={false} score={sc} />
+			<ScoreCell
+				colour={GetEnumColour(sc, "grade")}
+				grade={sc.scoreData.grade}
+				percent={sc.scoreData.percent}
+			/>
 			<GitadoraJudgementCell score={sc} />
 			<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
 			<RatingCell score={sc} rating={rating} />

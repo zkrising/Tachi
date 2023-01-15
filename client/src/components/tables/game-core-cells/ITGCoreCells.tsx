@@ -15,7 +15,11 @@ export default function ITGCoreCells({
 }) {
 	return (
 		<>
-			<ScoreCell showScore={false} score={sc} />
+			<ScoreCell
+				colour={GetEnumColour(sc, "grade")}
+				grade={sc.scoreData.grade}
+				percent={sc.scoreData.scorePercent}
+			/>
 			<ITGJudgementCell score={sc} />
 			<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
 			<RatingCell score={sc} rating={rating} />

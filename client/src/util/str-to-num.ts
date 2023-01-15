@@ -9,7 +9,7 @@ export function HumanFriendlyStrToEnumIndex(
 
 	const conf = GetScoreMetricConf(gptConfig, enumMetric);
 
-	if (conf.type !== "ENUM") {
+	if (conf?.type !== "ENUM") {
 		return () => 0; // wut
 	}
 

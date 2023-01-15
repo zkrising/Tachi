@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
 import { ChartDocument, PBScoreDocument, ScoreDocument } from "tachi-common";
 
-type LampTypes = "NORMAL" | "EASY" | "HARD" | "EX_HARD";
+type LampTypes = "Normal" | "Easy" | "Hard" | "EXHard";
 
 export function BMSGraphsComponent({
 	score,
@@ -34,34 +34,34 @@ export function BMSGraphsComponent({
 			<div className="col-12 d-flex justify-content-center">
 				<Nav variant="pills">
 					<SelectNav
-						id="EASY"
+						id="Easy"
 						value={lamp}
 						setValue={setLamp}
-						disabled={shouldDisable("EASY")}
+						disabled={shouldDisable("Easy")}
 					>
 						Easy
 					</SelectNav>
 					<SelectNav
-						id="NORMAL"
+						id="Normal"
 						value={lamp}
 						setValue={setLamp}
-						disabled={shouldDisable("NORMAL")}
+						disabled={shouldDisable("Normal")}
 					>
 						Groove
 					</SelectNav>
 					<SelectNav
-						id="HARD"
+						id="Hard"
 						value={lamp}
 						setValue={setLamp}
-						disabled={shouldDisable("HARD")}
+						disabled={shouldDisable("Hard")}
 					>
 						Hard
 					</SelectNav>
 					<SelectNav
-						id="EX_HARD"
+						id="EXHard"
 						value={lamp}
 						setValue={setLamp}
-						disabled={shouldDisable("EX_HARD")}
+						disabled={shouldDisable("EXHard")}
 					>
 						Ex Hard
 					</SelectNav>
@@ -108,32 +108,34 @@ function LampToKey(
 	if (IsScore(score) && score.scoreMeta.gauge) {
 		switch (score.scoreMeta.gauge) {
 			case "EASY":
+				return "Easy";
 			case "NORMAL":
+				return "Normal";
 			case "HARD":
-				return score.scoreMeta.gauge;
+				return "Hard";
 			case "EX-HARD":
-				return "EX_HARD";
+				return "EXHard";
 		}
 	}
 
 	if (lamp === "CLEAR") {
-		return "NORMAL";
+		return "Normal";
 	} else if (lamp === "EASY CLEAR") {
-		return "EASY";
+		return "Easy";
 	} else if (lamp === "HARD CLEAR") {
-		return "HARD";
+		return "Hard";
 	} else if (lamp === "EX HARD CLEAR") {
-		return "EX_HARD";
+		return "EXHard";
 	} else if (lamp === "FULL COMBO") {
 		// @hack - attempt to guess what gauge they used?
 		if ((score.scoreData.optional.gaugeHistory?.[0] ?? 0) > 22) {
-			return "EX_HARD";
+			return "EXHard";
 		}
-		return "NORMAL";
+		return "Normal";
 	} else if (lamp === "NO PLAY") {
 		// dan gauge looks like this
-		return "HARD";
+		return "Hard";
 	}
 
-	return "NORMAL";
+	return "Normal";
 }

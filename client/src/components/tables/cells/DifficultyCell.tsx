@@ -8,8 +8,10 @@ import {
 	FormatDifficulty,
 	FormatDifficultyShort,
 	Game,
+	GetGPTString,
 	GetGamePTConfig,
 } from "tachi-common";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import BMSOrPMSDifficultyCell from "./BMSOrPMSDifficultyCell";
 import RatingSystemPart from "./RatingSystemPart";
 import USCDifficultyCell from "./USCDifficultyCell";
@@ -49,10 +51,13 @@ export default function DifficultyCell({
 		return <ITGDifficultyCell chart={chart as ChartDocument<"itg:Stamina">} />;
 	}
 
+	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, chart.playtype)];
+
 	return (
 		<td
 			style={{
-				backgroundColor: ChangeOpacity(gptConfig.difficultyColours[chart.difficulty]!, 0.2),
+				// @ts-expect-error yawn
+				backgroundColor: ChangeOpacity(gptImpl.difficultyColours[chart.difficulty]!, 0.2),
 				minWidth: "80px",
 				maxWidth: "100px",
 			}}
@@ -72,7 +77,7 @@ export default function DifficultyCell({
 					</div>
 				</QuickTooltip>
 			)}
-			{!noTierlist && Object.keys(chart.tierlistInfo).length > 0 && (
+			{!noTierlist && gptImpl.ratingSystems.length > 0 && (
 				<RatingSystemPart chart={chart} game={game} />
 			)}
 			{!chart.isPrimary && (

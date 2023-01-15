@@ -3,9 +3,9 @@ import { NumericSOV } from "util/sorts";
 import { GPTClientImplementation } from "lib/types";
 import { COLOUR_SET, GPTStrings } from "tachi-common";
 import { FormatSieglindeBMS } from "tachi-common/config/game-support/bms";
-import { CreateRatingSys } from "./_util";
+import { CreateRatingSys, bg } from "./_util";
 
-const BMS_PMS_IMPL: GPTClientImplementation<GPTStrings["bms" | "pms"]> = {
+const BASE_IMPL: GPTClientImplementation<GPTStrings["bms" | "pms"]> = {
 	difficultyColours: {
 		CHART: COLOUR_SET.gray, // lol
 	},
@@ -55,4 +55,137 @@ const BMS_PMS_IMPL: GPTClientImplementation<GPTStrings["bms" | "pms"]> = {
 	],
 };
 
-export const;
+export const BMS_7K_IMPL: GPTClientImplementation<"bms:7K"> = {
+	...BASE_IMPL,
+	classColours: {
+		genocideDan: {
+			NORMAL_1: bg("lightblue"),
+			NORMAL_2: bg("lightblue"),
+			NORMAL_3: bg("lightblue"),
+			NORMAL_4: bg("lightblue"),
+			NORMAL_5: bg("lightblue"),
+			NORMAL_6: bg("lightblue"),
+			NORMAL_7: bg("lightblue"),
+			NORMAL_8: bg("lightblue"),
+			NORMAL_9: bg("lightred"),
+			NORMAL_10: bg("lightred"),
+			INSANE_1: "info",
+			INSANE_2: "info",
+			INSANE_3: "info",
+			INSANE_4: "info",
+			INSANE_5: "info",
+			INSANE_6: "info",
+			INSANE_7: "info",
+			INSANE_8: "info",
+			INSANE_9: bg("red"),
+			INSANE_10: bg("red"),
+			INSANE_KAIDEN: bg("teal"),
+			OVERJOY: bg("purple"),
+		},
+		lnDan: {
+			DAN_1: bg("lightblue"),
+			DAN_2: bg("lightblue"),
+			DAN_3: bg("lightblue"),
+			DAN_4: bg("lightblue"),
+			DAN_5: bg("lightblue"),
+			DAN_6: bg("lightblue"),
+			DAN_7: bg("lightblue"),
+			DAN_8: bg("lightblue"),
+			DAN_9: bg("lightred"),
+			DAN_10: bg("lightred"),
+			KAIDEN: bg("teal"),
+			OVERJOY: bg("purple"),
+			UDON: bg("gold"),
+		},
+		scratchDan: {
+			KYU_7: bg("green"),
+			KYU_6: bg("green"),
+			KYU_5: bg("green"),
+			KYU_4: bg("green"),
+			KYU_3: bg("green"),
+			KYU_2: bg("green"),
+			KYU_1: bg("green"),
+			DAN_1: "info",
+			DAN_2: "info",
+			DAN_3: "info",
+			DAN_4: "info",
+			DAN_5: "info",
+			DAN_6: "info",
+			DAN_7: "info",
+			DAN_8: "info",
+			DAN_9: "danger",
+			DAN_10: "danger",
+			KAIDEN: "warning",
+		},
+		stslDan: {
+			SL0: null,
+			SL1: null,
+			SL2: null,
+			SL3: null,
+			SL4: null,
+			SL5: null,
+			SL6: null,
+			SL7: null,
+			SL8: null,
+			SL9: null,
+			SL10: null,
+			SL11: null,
+			SL12: null,
+			ST0: null,
+			ST1: null,
+			ST2: null,
+			ST3: null,
+			ST4: null,
+			ST5: null,
+			ST6: null,
+			ST7: null,
+			ST8: null,
+			ST9: null,
+			ST10: null,
+			ST11: null,
+		},
+	},
+};
+
+export const BMS_14K_IMPL: GPTClientImplementation<"bms:14K"> = {
+	...BASE_IMPL,
+	classColours: {
+		genocideDan: BMS_7K_IMPL.classColours.genocideDan,
+		stslDan: {
+			SL0: null,
+			SL1: null,
+			SL2: null,
+			SL3: null,
+			SL4: null,
+			SL5: null,
+			SL6: null,
+			SL7: null,
+			SL8: null,
+			SL9: null,
+			SL10: null,
+			SL11: null,
+			SL12: null,
+		},
+	},
+};
+
+export const PMS_IMPL: GPTClientImplementation<GPTStrings["pms"]> = {
+	...BASE_IMPL,
+	classColours: {
+		dan: {
+			INSANE_1: "info",
+			INSANE_2: "info",
+			INSANE_3: "info",
+			INSANE_4: "info",
+			INSANE_5: "info",
+			INSANE_6: "info",
+			INSANE_7: "info",
+			INSANE_8: "info",
+			INSANE_9: bg("red"),
+			INSANE_10: bg("red"),
+			INSANE_KAIDEN: bg("teal"),
+			OVERJOY: bg("purple"),
+			UNDEFINED: "warning",
+		},
+	},
+};

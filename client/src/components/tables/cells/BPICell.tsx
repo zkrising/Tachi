@@ -154,15 +154,7 @@ function FormatAverage(score: integer, playtype: "SP" | "DP", notecount: integer
 				score={score}
 			/>
 		),
-		delta: (
-			<DeltaCell
-				game="iidx"
-				playtype={playtype}
-				score={score}
-				percent={percent}
-				grade={grade}
-			/>
-		),
+		delta: <DeltaCell value={percent} grade={grade} gradeBoundaries={IIDXLIKE_GBOUNDARIES} />,
 	};
 }
 

@@ -8,8 +8,8 @@ import PBCompareCell from "../cells/PBCompareCell";
 import TitleCell from "../cells/TitleCell";
 import SelectableCompareType from "../components/SelectableCompareType";
 import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
-import ShortScoreCoreCells from "../game-core-cells/ShortScoreCoreCells";
 import ChartHeader from "../headers/ChartHeader";
+import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";
 
 export default function ComparePBsTable({
 	dataset,
@@ -103,7 +103,7 @@ function Row({ data, game, metric }: { data: ComparePBsDataset[0]; game: Game; m
 			<DifficultyCell chart={data.chart} game={game} alwaysShort />
 			<TitleCell game={game} song={data.song} chart={data.chart} />
 			{data.base ? (
-				<ShortScoreCoreCells score={data.base} game={game} chart={data.chart} />
+				<ScoreCoreCells score={data.base} game={game} chart={data.chart} />
 			) : (
 				<td colSpan={2}>Not Played</td>
 			)}
@@ -116,7 +116,7 @@ function Row({ data, game, metric }: { data: ComparePBsDataset[0]; game: Game; m
 				metric={metric}
 			/>
 			{data.compare ? (
-				<ShortScoreCoreCells score={data.compare} game={game} chart={data.chart} />
+				<ScoreCoreCells score={data.compare} game={game} chart={data.chart} />
 			) : (
 				<td colSpan={2}>Not Played</td>
 			)}

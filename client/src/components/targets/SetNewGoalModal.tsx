@@ -10,12 +10,14 @@ import {
 	FormatChart,
 	Game,
 	GetGamePTConfig,
+	GetScoreMetricConf,
 	GoalDocument,
 	Playtype,
 	SongDocument,
 } from "tachi-common";
 import { GamePT, SetState, UGPT } from "types/react";
 import CheckEdit from "components/util/CheckEdit";
+import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
 
 export default function SetNewGoalModal({
 	show,
@@ -32,14 +34,15 @@ export default function SetNewGoalModal({
 	preData: { chart: ChartDocument; song: SongDocument } | FolderDocument;
 } & UGPT) {
 	const gptConfig = GetGamePTConfig(game, playtype);
+	const conf = GetScoreMetricConf(
+		gptConfig,
+		gptConfig.preferredDefaultEnum
+	) as ConfEnumScoreMetric<string>;
 
 	const [criteria, setCriteria] = useState<GoalDocument["criteria"]>({
 		mode: "single",
-		key: gptConfig.preferredDefaultEnum === "grade" ? "scoreData.gradeIndex" : "scoreData.lampIndex",
-		value:
-			gptConfig.preferredDefaultEnum === "grade"
-				? gptConfig.grades.indexOf(gptConfig.clearGrade)
-				: gptConfig.lamps.indexOf(gptConfig.clearLamp),
+		key: gptConfig.preferredDefaultEnum,
+		value: conf.values.indexOf(conf.minimumRelevantValue),
 	});
 
 	const charts = useMemo<GoalDocument["charts"]>(
@@ -283,20 +286,18 @@ function CriteriaValuePicker({
 	onChange: (value: GoalDocument["criteria"]["value"]) => void;
 } & GamePT) {
 	const gptConfig = GetGamePTConfig(game, playtype);
+	const conf = GetScoreMetricConf(gptConfig, criteria.key);
 
-	switch (criteria.key) {
-		case "scoreData.score":
-			return (
-				<Form.Control
-					style={{ display: "inline", width: "unset" }}
-					className="mx-2"
-					onChange={(e) => onChange(Number(e.target.value))}
-					type="number"
-					min={0}
-					value={criteria.value}
-				/>
-			);
-		case "scoreData.percent":
+	if (!conf) {
+		return <>ENOCONF {criteria.key}</>;
+	}
+
+	switch (conf.type) {
+		case "NULLABLE_GRAPH":
+		case "GRAPH":
+			return <>Cannot set goals for graph metrics.</>;
+		case "DECIMAL":
+		case "INTEGER":
 			return (
 				<Form.Control
 					style={{ display: "inline", width: "unset" }}
@@ -305,36 +306,22 @@ function CriteriaValuePicker({
 					type="number"
 					value={criteria.value}
 					min={0}
-					max={gptConfig.percentMax}
 				/>
 			);
-		case "scoreData.gradeIndex":
+		case "ENUM":
 			return (
 				<Select
 					inline
 					value={criteria.value.toString()}
 					setValue={(v) => onChange(Number(v))}
 				>
-					{gptConfig.grades.map((e, i) => (
-						<option key={i} value={i}>
-							{e}
-						</option>
-					))}
-				</Select>
-			);
-
-		case "scoreData.lampIndex":
-			return (
-				<Select
-					inline
-					value={criteria.value.toString()}
-					setValue={(v) => onChange(Number(v))}
-				>
-					{gptConfig.lamps.map((e, i) => (
-						<option key={i} value={i}>
-							{e}
-						</option>
-					))}
+					{conf.values
+						.slice(conf.values.indexOf(conf.minimumRelevantValue))
+						.map((e, i) => (
+							<option key={i} value={i}>
+								{e}
+							</option>
+						))}
 				</Select>
 			);
 	}
@@ -342,12 +329,16 @@ function CriteriaValuePicker({
 
 function getBaseKeyValue(game: Game, playtype: Playtype, key: GoalDocument["criteria"]["key"]) {
 	const gptConfig = GetGamePTConfig(game, playtype);
+	const conf = GetScoreMetricConf(gptConfig, key);
 
-	switch (key) {
-		case "scoreData.gradeIndex":
-			return gptConfig.grades.indexOf(gptConfig.clearGrade);
-		case "scoreData.lampIndex":
-			return gptConfig.lamps.indexOf(gptConfig.clearLamp);
+	if (!conf) {
+		// SHOULD NEVER HAPPEN!
+		return 0;
+	}
+
+	switch (conf.type) {
+		case "ENUM":
+			return conf.values.indexOf(conf.minimumRelevantValue);
 		default:
 			return 0;
 	}

@@ -1,5 +1,13 @@
 import React from "react";
-import { ChartDocument, PBScoreDocument, ScoreRatingAlgorithms, ScoreDocument } from "tachi-common";
+import {
+	ChartDocument,
+	PBScoreDocument,
+	ScoreRatingAlgorithms,
+	ScoreDocument,
+	IIDXLIKE_GBOUNDARIES,
+	GetGPTString,
+} from "tachi-common";
+import { GPT_CLIENT_IMPLEMENTATIONS, GetEnumColour } from "lib/game-implementations";
 import BPICell from "../cells/BPICell";
 import DeltaCell from "../cells/DeltaCell";
 import IIDXLampCell from "../cells/IIDXLampCell";
@@ -17,12 +25,15 @@ export default function IIDXCoreCells({
 }) {
 	return (
 		<>
-			<ScoreCell score={sc} />
-			<DeltaCell
-				game="iidx"
-				playtype={sc.playtype}
-				score={sc.scoreData.score}
+			<ScoreCell
+				colour={GetEnumColour(sc, "grade")}
+				grade={sc.scoreData.grade}
 				percent={sc.scoreData.percent}
+				score={sc.scoreData.score}
+			/>
+			<DeltaCell
+				gradeBoundaries={IIDXLIKE_GBOUNDARIES}
+				value={sc.scoreData.percent}
 				grade={sc.scoreData.grade}
 			/>
 			<IIDXLampCell sc={sc} chart={chart} />

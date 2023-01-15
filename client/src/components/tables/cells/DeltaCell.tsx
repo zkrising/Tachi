@@ -1,29 +1,24 @@
-import { GenericFormatGradeDelta } from "util/grade-deltas";
 import React from "react";
-import { Game, Grades, GPTString, Playtypes } from "tachi-common";
+import { GetGradeDeltas, GradeBoundary } from "tachi-common";
 
 export default function DeltaCell({
-	game,
-	playtype,
-	score,
-	percent,
+	value,
 	grade,
+	gradeBoundaries,
 }: {
-	game: Game;
-	playtype: Playtypes[Game];
-	score: number;
-	percent: number;
-	grade: Grades[GPTString];
+	value: number;
+	grade: string;
+	gradeBoundaries: Array<GradeBoundary<string>>;
 }) {
-	if (score === 0) {
+	if (value === 0) {
 		return <td>N/A</td>;
 	}
 
 	// eslint-disable-next-line prefer-const
-	let { lower, upper, closer } = GenericFormatGradeDelta(game, playtype, score, percent, grade);
+	let { lower, upper, closer } = GetGradeDeltas(gradeBoundaries, grade, value);
 
 	// (max-)+20 is a stupid statistic. hard override it.
-	if ((game === "iidx" || game === "bms" || game === "pms") && lower.startsWith("(MAX-)+")) {
+	if (lower.startsWith("(MAX-)+")) {
 		closer = "upper";
 	}
 

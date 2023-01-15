@@ -7,15 +7,17 @@ import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import LinkButton from "components/util/LinkButton";
 import Loading from "components/util/Loading";
-import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
+import useApiQuery from "components/util/query/useApiQuery";
 import { useBucket } from "components/util/useBucket";
 import useUGPTBase from "components/util/useUGPTBase";
 import { UserContext } from "context/UserContext";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import React, { useContext, useMemo, useState } from "react";
-import { FolderDocument, GetGamePTConfig, UserDocument } from "tachi-common";
+import { FolderDocument, GetGPTString, GetGamePTConfig, GetScoreMetricConf } from "tachi-common";
+import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
 import { FolderStatsInfo, UGPTFolderSearch } from "types/api-returns";
-import { GamePT, UGPT } from "types/react";
+import { UGPT } from "types/react";
 
 export default function FoldersSearch({ reqUser, game, playtype }: UGPT) {
 	const [search, setSearch] = useState("");
@@ -82,34 +84,27 @@ export function FolderInfoComponent({
 	folder,
 }: UGPT & { folder: FolderDocument; folderStats: FolderStatsInfo }) {
 	const gptConfig = GetGamePTConfig(game, playtype);
+	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, playtype)];
 
 	const preferredDefaultEnum = useBucket(game, playtype);
 
-	const [elements, setElements] = useState<"grade" | "lamp">(preferredDefaultEnum);
+	const [metric, setMetric] = useState<string>(preferredDefaultEnum);
 
 	const base = useUGPTBase({ reqUser, game, playtype });
 
 	const dataset = useMemo(() => {
-		if (elements === "grade") {
-			return (
-				<DistributionTable
-					colours={gptConfig.gradeColours}
-					keys={Reverse(gptConfig.grades)}
-					values={folderStats.grades}
-					max={folderStats.chartCount}
-				/>
-			);
-		}
+		const conf = GetScoreMetricConf(gptConfig, metric) as ConfEnumScoreMetric<string>;
 
 		return (
 			<DistributionTable
-				colours={gptConfig.lampColours}
-				keys={Reverse(gptConfig.lamps)}
-				values={folderStats.lamps}
+				// @ts-expect-error hack yeah sorry
+				colours={gptImpl.enumColours[metric]}
+				keys={Reverse(conf.values)}
+				values={folderStats.stats[metric]}
 				max={folderStats.chartCount}
 			/>
 		);
-	}, [elements]);
+	}, [metric]);
 
 	const { user } = useContext(UserContext);
 
@@ -139,11 +134,11 @@ export function FolderInfoComponent({
 				<div className="row text-center">
 					<div className="col-12">
 						<div className="btn-group">
-							<SelectButton value={elements} setValue={setElements} id="grade">
+							<SelectButton value={metric} setValue={setMetric} id="grade">
 								<Icon type="sort-alpha-up" />
 								Grades
 							</SelectButton>
-							<SelectButton value={elements} setValue={setElements} id="lamp">
+							<SelectButton value={metric} setValue={setMetric} id="lamp">
 								<Icon type="lightbulb" />
 								Lamps
 							</SelectButton>

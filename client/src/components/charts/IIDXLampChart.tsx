@@ -4,19 +4,19 @@ import { COLOUR_SET } from "tachi-common";
 import ChartTooltip from "./ChartTooltip";
 
 const yAxes = {
-	EASY: [22, 60, 80, 100],
-	NORMAL: [22, 60, 80, 100],
-	HARD: [30, 50, 100],
+	Easy: [22, 60, 80, 100],
+	Normal: [22, 60, 80, 100],
+	Hard: [30, 50, 100],
 	DAN_GAUGE: [30, 50, 100],
-	EX_HARD: [30, 50, 100],
+	EXHard: [30, 50, 100],
 };
 
 const colours = {
 	DAN_GAUGE: COLOUR_SET.gray,
-	EASY: [COLOUR_SET.green, COLOUR_SET.vibrantRed],
-	NORMAL: [COLOUR_SET.blue, COLOUR_SET.vibrantRed],
-	HARD: COLOUR_SET.vibrantRed,
-	EX_HARD: COLOUR_SET.gold,
+	Easy: [COLOUR_SET.green, COLOUR_SET.vibrantRed],
+	Normal: [COLOUR_SET.blue, COLOUR_SET.vibrantRed],
+	Hard: COLOUR_SET.vibrantRed,
+	EXHard: COLOUR_SET.gold,
 };
 
 export default function IIDXLampChart({
@@ -34,11 +34,11 @@ export default function IIDXLampChart({
 	height?: number | string;
 	data: Serie[];
 	usePercentXAxis?: boolean;
-	type: "DAN_GAUGE" | "EASY" | "NORMAL" | "HARD" | "EX_HARD";
+	type: "DAN_GAUGE" | "Normal" | "Easy" | "Hard" | "EXHard";
 } & ResponsiveLine["props"]) {
 	let realData = [];
 
-	if (type === "HARD" || type === "EX_HARD" || type === "DAN_GAUGE") {
+	if (type === "Hard" || type === "EXHard" || type === "DAN_GAUGE") {
 		realData = data;
 	} else {
 		const failSet = [];

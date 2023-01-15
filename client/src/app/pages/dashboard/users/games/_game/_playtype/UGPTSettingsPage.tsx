@@ -318,15 +318,6 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 						<Col xs={12} lg={3} className="my-auto">
 							Expected Profile VF6{" "}
 							{((formik.values.gameSpecific.vf6Target ?? 0) * 50).toFixed(2)}
-							<br />
-							<ClassBadge
-								game="sdvx"
-								playtype="Single"
-								classSet="vfClass"
-								classValue={ToVolforceClass(
-									(formik.values.gameSpecific.vf6Target ?? 0) * 50
-								)}
-							/>
 						</Col>
 					</Row>
 
@@ -500,67 +491,6 @@ function RenderCurrentStats({
 			))}
 		</>
 	);
-}
-
-// Straight up stolen from tachi-server.
-enum SDVXVFClasses {
-	SIENNA_I,
-	SIENNA_II,
-	SIENNA_III,
-	SIENNA_IV,
-	COBALT_I,
-	COBALT_II,
-	COBALT_III,
-	COBALT_IV,
-	DANDELION_I,
-	DANDELION_II,
-	DANDELION_III,
-	DANDELION_IV,
-	CYAN_I,
-	CYAN_II,
-	CYAN_III,
-	CYAN_IV,
-	SCARLET_I,
-	SCARLET_II,
-	SCARLET_III,
-	SCARLET_IV,
-	CORAL_I,
-	CORAL_II,
-	CORAL_III,
-	CORAL_IV,
-	ARGENTO_I,
-	ARGENTO_II,
-	ARGENTO_III,
-	ARGENTO_IV,
-	ELDORA_I,
-	ELDORA_II,
-	ELDORA_III,
-	ELDORA_IV,
-	CRIMSON_I,
-	CRIMSON_II,
-	CRIMSON_III,
-	CRIMSON_IV,
-	IMPERIAL_I,
-	IMPERIAL_II,
-	IMPERIAL_III,
-	IMPERIAL_IV,
-}
-
-function ToVolforceClass(vf: number) {
-	if (vf >= 24) {
-		return SDVXVFClasses.IMPERIAL_IV;
-	} else if (vf >= 20) {
-		// imperial i -> iv has gaps of 1
-		return SDVXVFClasses.IMPERIAL_I + Math.floor(vf - 20);
-	} else if (vf >= 14) {
-		// cyan i -> crimson iv has gaps of 0.25
-		return SDVXVFClasses.CYAN_I + Math.floor(4 * (vf - 14));
-	} else if (vf >= 10) {
-		// cobalt i -> dandelion iv have gaps of 0.5
-		return SDVXVFClasses.COBALT_I + Math.floor(2 * (vf - 10));
-	}
-
-	return Math.floor(vf / 2.5);
 }
 
 function ManageAccount({ reqUser, game, playtype }: UGPT) {

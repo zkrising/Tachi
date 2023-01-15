@@ -2,8 +2,10 @@ import { ChangeOpacity } from "util/color-opacity";
 import { FormatTables } from "util/misc";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
+import { GPTClientImplementation } from "lib/types";
 import React from "react";
-import { ChartDocument, COLOUR_SET, GetGamePTConfig } from "tachi-common";
+import { COLOUR_SET, ChartDocument } from "tachi-common";
 import RatingSystemPart from "./RatingSystemPart";
 
 export default function USCDifficultyCell({
@@ -15,10 +17,12 @@ export default function USCDifficultyCell({
 		? `${chart.difficulty} ${chart.level}`
 		: FormatTables(chart.data.tableFolders);
 
-	const gptConfig = GetGamePTConfig("usc", chart.playtype);
+	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[
+		`usc:${chart.playtype}`
+	] as GPTClientImplementation<"usc:Controller">;
 
 	const bgColour = ChangeOpacity(
-		chart.data.isOfficial ? gptConfig.difficultyColours[chart.difficulty]! : COLOUR_SET.teal,
+		chart.data.isOfficial ? gptImpl.difficultyColours[chart.difficulty]! : COLOUR_SET.teal,
 		0.2
 	);
 

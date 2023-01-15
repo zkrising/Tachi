@@ -4,7 +4,7 @@ import { GITADORA_DORA_IMPL, GITADORA_GITA_IMPL } from "./games/gitadora";
 import { SDVX_IMPL, USC_IMPL } from "./games/sdvx-usc";
 import { GPTClientImplementation } from "./types";
 import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
-import { BMS_PMS_IMPL } from "./games/bms-pms";
+import { BMS_14K_IMPL, BMS_7K_IMPL, PMS_IMPL } from "./games/bms-pms";
 import { bg, bgc } from "./games/_util";
 
 type GPTClientImplementations = {
@@ -397,10 +397,10 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 	},
 	"gitadora:Dora": GITADORA_DORA_IMPL,
 	"gitadora:Gita": GITADORA_GITA_IMPL,
-	"bms:14K": BMS_PMS_IMPL,
-	"bms:7K": BMS_PMS_IMPL,
-	"pms:Controller": BMS_PMS_IMPL,
-	"pms:Keyboard": BMS_PMS_IMPL,
+	"bms:14K": BMS_14K_IMPL,
+	"bms:7K": BMS_7K_IMPL,
+	"pms:Controller": PMS_IMPL,
+	"pms:Keyboard": PMS_IMPL,
 	"sdvx:Single": SDVX_IMPL,
 	"usc:Controller": USC_IMPL,
 	"usc:Keyboard": USC_IMPL,

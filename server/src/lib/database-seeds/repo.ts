@@ -254,7 +254,10 @@ export async function PullDatabaseSeeds(
 
 		// make sure we're on the right branch
 		// and up to date.
-		await local.switchBranch(branch);
+		if (Environment.nodeEnv !== "dev") {
+			await local.switchBranch(branch);
+		}
+
 		await local.pull();
 
 		return local;

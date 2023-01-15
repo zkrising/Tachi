@@ -4,12 +4,18 @@ import { rootLogger } from "lib/logger/logger";
 import { CreateScoreCalcData } from "lib/score-import/framework/calculated-data/score";
 import { CreateSessionCalcData } from "lib/score-import/framework/calculated-data/session";
 import { UpdateChartRanking } from "lib/score-import/framework/pb/create-pb-doc";
+import { CreateFullScoreData } from "lib/score-import/framework/score-importing/derivers";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
 import { GetGPTString } from "tachi-common";
 import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 import { FormatUserDoc, GetUserWithID } from "utils/user";
 import type { KtLogger } from "lib/logger/logger";
-import type { ScoreDocument } from "tachi-common";
+import type { DryScoreData } from "lib/score-import/framework/common/types";
+import type { ScoreDocument, GPTString } from "tachi-common";
+
+type NewScore =
+	| ScoreDocument
+	| (Omit<ScoreDocument, "scoreData"> & { scoreData: DryScoreData<GPTString> });
 
 /**
  * Updates a score from oldScore to newScore, applying all necessary state
@@ -19,7 +25,7 @@ import type { ScoreDocument } from "tachi-common";
  */
 export default async function UpdateScore(
 	oldScore: ScoreDocument,
-	newScore: ScoreDocument,
+	newScore: NewScore,
 	updateOldChart = true
 ) {
 	const userID = oldScore.userID;
@@ -75,6 +81,11 @@ export default async function UpdateScore(
 
 	logger.verbose("Received Update Score request.");
 
+	const gpt = GetGPTString(newScore.game, newScore.playtype);
+
+	// rehydrate this scoredata, incase we got passed a new score thats dry
+	newScore.scoreData = CreateFullScoreData(gpt, newScore.scoreData, chart, logger);
+
 	// eslint-disable-next-line require-atomic-updates
 	newScore.calculatedData = CreateScoreCalcData(newScore.game, newScore.scoreData, chart);
 
@@ -95,7 +106,7 @@ export default async function UpdateScore(
 			{
 				scoreID: oldScoreID,
 			},
-			{ $set: newScore }
+			{ $set: newScore as ScoreDocument }
 		);
 	} catch (err) {
 		logger.error(err);

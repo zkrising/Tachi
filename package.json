@@ -11,6 +11,7 @@
 		"test-dbseeds": "pnpm --filter ./database-seeds/scripts test",
 		"sync-database": "pnpm --filter ./server sync-database",
 		"sync-database-local": "pnpm --filter ./server sync-database-local",
+		"validate-database": "pnpm --filter ./server validate-database",
 		"start-score-import-worker": "pnpm --filter ./server runscoreworker",
 		"start-docs": "cd docs/ && mkdocs serve",
 		"make-user-admin": "pnpm --filter ./server make-user-admin $@"

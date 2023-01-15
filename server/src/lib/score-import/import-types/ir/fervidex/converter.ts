@@ -6,6 +6,7 @@ import {
 } from "../../../framework/common/converter-failures";
 import db from "external/mongo/db";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
+import { GetGPTString } from "tachi-common";
 import { IsNullishOrEmptyStr } from "utils/misc";
 import { FindIIDXChartOnInGameIDVersion, FindIIDXChartWith2DXtraHash } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
@@ -242,7 +243,12 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 	// marked as a duplicate, but with highlight set. As such, we should highlight
 	// the score this is for.
 	if (data.highlight === true) {
-		const scoreID = CreateScoreID(context.userID, dryScore, chart.chartID);
+		const scoreID = CreateScoreID(
+			GetGPTString("iidx", chart.playtype),
+			context.userID,
+			dryScore,
+			chart.chartID
+		);
 
 		await db.scores.update({ scoreID }, { $set: { highlight: true } });
 

@@ -95,7 +95,7 @@ export const DatabaseSchemas: Record<Databases, SchemaValidatorFunction> = {
 		userIntent: "boolean",
 		type: p.isIn("ONGOING", "FAILED"),
 		error: p.optional({
-			description: "string",
+			message: "string",
 			statusCode: "*number",
 		}),
 	}),

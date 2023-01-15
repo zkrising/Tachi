@@ -20,7 +20,8 @@
 		"sync-database": "ts-node src/scripts/sync-database",
 		"sync-database-local": "ts-node src/scripts/sync-database --localPath '../database-seeds/collections'",
 		"recalc-everything": "ts-node src/scripts/state-sync/sync-state.ts",
-		"make-user-admin": "ts-node src/scripts/make-user-admin.ts $@"
+		"make-user-admin": "ts-node src/scripts/make-user-admin.ts $@",
+		"validate-database": "ts-node src/scripts/validate-database"
 	},
 	"author": "zkldi",
 	"license": "AGPL3",

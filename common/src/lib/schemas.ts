@@ -2,7 +2,13 @@
 // their name in the database to the object they schemaify.
 // The schemas themselves are wrapped in functions that throw on error.
 
-import { GetGameConfig, GetGamePTConfig, allGPTStrings, allSupportedGames } from "../config/config";
+import {
+	GetGameConfig,
+	GetGamePTConfig,
+	GetScoreMetrics,
+	allGPTStrings,
+	allSupportedGames,
+} from "../config/config";
 import { allImportTypes } from "../constants/import-types";
 import { ALL_PERMISSIONS } from "../constants/permissions";
 import { UserAuthLevels } from "../types";
@@ -159,38 +165,52 @@ const isValidPlaytype = (self: unknown, parent: Record<string, unknown>) => {
 	return true;
 };
 
-export const PR_GOAL_SCHEMA = {
-	game: p.isIn(games),
-	playtype: isValidPlaytype,
-	name: "string",
-	goalID: "string",
-	criteria: p.or(
-		{
-			mode: p.is("single"),
-			key: "string",
-			value: "number",
-		},
-		{
-			mode: p.isIn("absolute", "proportion"),
-			countNum: p.isPositive,
-			key: "string",
-			value: "number",
-		}
-	),
-	charts: p.or(
-		{
-			type: p.is("folder"),
-			data: "string",
-		},
-		{
-			type: p.is("multi"),
-			data: ["string"],
-		},
-		{
-			type: p.is("single"),
-			data: "string",
-		}
-	),
+export const PR_GOAL_SCHEMA = (self: unknown) => {
+	const { game, playtype } = extractGPT(self);
+
+	return prSchemaFnWrap({
+		game: p.isIn(games),
+		playtype: isValidPlaytype,
+		name: "string",
+		goalID: "string",
+		criteria: p.or(
+			{
+				mode: p.is("single"),
+				key: (self) => {
+					const gptConfig = GetGamePTConfig(game, playtype);
+					const metrics = GetScoreMetrics(gptConfig);
+
+					return p.isIn(metrics)(self);
+				},
+				value: "number",
+			},
+			{
+				mode: p.isIn("absolute", "proportion"),
+				countNum: p.isPositive,
+				key: (self) => {
+					const gptConfig = GetGamePTConfig(game, playtype);
+					const metrics = GetScoreMetrics(gptConfig);
+
+					return p.isIn(metrics)(self);
+				},
+				value: "number",
+			}
+		),
+		charts: p.or(
+			{
+				type: p.is("folder"),
+				data: "string",
+			},
+			{
+				type: p.is("multi"),
+				data: ["string"],
+			},
+			{
+				type: p.is("single"),
+				data: "string",
+			}
+		),
+	})(self);
 };
 
 const PR_SONG_DOCUMENT = (game: Game): PrudenceSchema => {
@@ -342,6 +362,8 @@ const PRE_SCHEMAS = {
 		progressHuman: "string",
 		outOf: "number",
 		outOfHuman: "string",
+		wasInstantlyAchieved: "boolean",
+		wasAssignedStandalone: "boolean",
 	}),
 	"quest-subs": prSchemaFnWrap({
 		questID: "string",
@@ -359,7 +381,7 @@ const PRE_SCHEMAS = {
 		folderID: "string",
 		lastViewed: "number",
 	}),
-	goals: prSchemaFnWrap(PR_GOAL_SCHEMA),
+	goals: PR_GOAL_SCHEMA,
 	scores: (self: unknown) => {
 		const { game, playtype } = extractGPT(self);
 
@@ -434,6 +456,7 @@ const PRE_SCHEMAS = {
 	},
 	"user-settings": prSchemaFnWrap({
 		userID: p.isPositiveNonZeroInteger,
+		following: [p.isPositiveNonZeroInteger],
 		preferences: {
 			invisible: "boolean",
 			developerMode: "boolean",
@@ -557,10 +580,11 @@ const PRE_SCHEMAS = {
 			userID: p.isPositiveNonZeroInteger,
 			game: p.is(game),
 			playtype: p.is(playtype),
+			rivals: [p.isPositiveNonZeroInteger],
 			preferences: {
-				preferredScoreAlg: p.nullable(p.isIn(gptConfig.scoreRatingAlgs)),
-				preferredSessionAlg: p.nullable(p.isIn(gptConfig.sessionRatingAlgs)),
-				preferredProfileAlg: p.nullable(p.isIn(gptConfig.profileRatingAlgs)),
+				preferredScoreAlg: p.nullable(p.isIn(Object.keys(gptConfig.scoreRatingAlgs))),
+				preferredSessionAlg: p.nullable(p.isIn(Object.keys(gptConfig.sessionRatingAlgs))),
+				preferredProfileAlg: p.nullable(p.isIn(Object.keys(gptConfig.profileRatingAlgs))),
 
 				// ouch
 				stats: p.and(
@@ -582,6 +606,8 @@ const PRE_SCHEMAS = {
 					(self) => Array.isArray(self) && self.length <= 6
 				),
 				preferredDefaultEnum: p.isIn(null, "grade", "lamp"),
+				defaultTable: p.nullable("string"),
+				preferredRanking: p.isIn("global", "rival", null),
 
 				gameSpecific: PrudenceZodShim(gptConfig.preferences),
 			},
@@ -647,7 +673,7 @@ const PRE_SCHEMAS = {
 		customPfpLocation: "?string",
 		customBannerLocation: "?string",
 		lastSeen: p.isPositiveInteger,
-		badges: [p.isIn("beta", "alpha", "devTeam")],
+		badges: [p.isIn("beta", "alpha", "dev-team")],
 		authLevel: p.isBoundedInteger(UserAuthLevels.BANNED, UserAuthLevels.ADMIN),
 	}),
 	"api-tokens": prSchemaFnWrap({

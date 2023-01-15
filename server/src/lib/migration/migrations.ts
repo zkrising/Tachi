@@ -14,6 +14,8 @@ import RemoveRandom from "./migrations/remove-random";
 import RemoveSessionViews from "./migrations/remove-session-views";
 import SessionsToScoreIDs from "./migrations/sessions-to-scoreIDs";
 import UpdateJubeatPreferredTables from "./migrations/update-jubeat-preferred-tables";
+import V3PropsMigration from "./migrations/v3-props";
+import V3ScoresMigration from "./migrations/v3-scores";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, TachiConfig } from "lib/setup/config";
@@ -45,6 +47,8 @@ const REGISTERED_MIGRATIONS: Array<Migration> =
 				UserFollowersMigration,
 				RemoveSessionViews,
 				SessionsToScoreIDs,
+				V3PropsMigration,
+				V3ScoresMigration,
 		  ];
 
 // only apply type-specific migrations if we're not in testing

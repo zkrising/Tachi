@@ -698,3 +698,43 @@ export async function GetRelevantFolderGoals(goalIDs: Array<string>, chartIDsArr
 
 	return result;
 }
+
+/**
+ * Rarely, some sort of change might happen where a goal needs to be edited.
+ *
+ * This happens if the goal schema changes, but that really is quite rare.
+ */
+export async function EditGoal(oldGoal: GoalDocument, newGoal: GoalDocument) {
+	const newGoalID = CreateGoalID(
+		newGoal.charts,
+		newGoal.criteria,
+		newGoal.game,
+		newGoal.playtype
+	);
+
+	await db["goal-subs"].update(
+		{
+			goalID: oldGoal.goalID,
+		},
+		{
+			$set: { goalID: newGoalID },
+		}
+	);
+
+	await db.goals.remove({ goalID: oldGoal.goalID });
+
+	// eslint-disable-next-line require-atomic-updates
+	newGoal.goalID = newGoalID;
+	// eslint-disable-next-line require-atomic-updates
+	newGoal.name = await CreateGoalName(
+		newGoal.charts,
+		newGoal.criteria,
+		newGoal.game,
+		newGoal.playtype
+	);
+	try {
+		await db.goals.insert(newGoal);
+	} catch (err) {
+		logger.info(`Goal ${newGoal.name} already existed.`);
+	}
+}

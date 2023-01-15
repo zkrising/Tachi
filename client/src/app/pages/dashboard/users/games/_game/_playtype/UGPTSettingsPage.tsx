@@ -27,7 +27,7 @@ import {
 	GetGamePTConfig,
 	ShowcaseStatDetails,
 	TableDocument,
-	UGPTSettings,
+	UGPTSettingsDocument,
 	UserDocument,
 } from "tachi-common";
 import { SetState, UGPT } from "types/react";
@@ -109,7 +109,8 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			gameSpecific: settings!.preferences.gameSpecific as any,
 			defaultTable: settings!.preferences.defaultTable,
-			scoreBucket: settings!.preferences.scoreBucket ?? gptConfig.scoreBucket,
+			preferredDefaultEnum:
+				settings!.preferences.preferredDefaultEnum ?? gptConfig.preferredDefaultEnum,
 			preferredRanking: settings!.preferences.preferredRanking ?? "global",
 		},
 		onSubmit: async (values) => {
@@ -129,7 +130,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 			if (rj.success) {
 				setLoggedInData({
 					...loggedInData,
-					settings: deepmerge(settings as UGPTSettings, { preferences: values }),
+					settings: deepmerge(settings as UGPTSettingsDocument, { preferences: values }),
 				});
 			}
 		},
@@ -153,7 +154,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 
 	return (
 		<Form onSubmit={formik.handleSubmit}>
-			{gptConfig.scoreRatingAlgs.length > 1 && (
+			{Object.keys(gptConfig.scoreRatingAlgs).length > 1 && (
 				<Form.Group>
 					<Form.Label>Preferred Score Algorithm</Form.Label>
 					<Form.Control
@@ -162,7 +163,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 						value={formik.values.preferredScoreAlg}
 						onChange={formik.handleChange}
 					>
-						{gptConfig.scoreRatingAlgs.map((e) => (
+						{Object.keys(gptConfig.scoreRatingAlgs).map((e) => (
 							<option key={e}>{e}</option>
 						))}
 					</Form.Control>
@@ -172,7 +173,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 					</Form.Text>
 				</Form.Group>
 			)}
-			{gptConfig.sessionRatingAlgs.length > 1 && (
+			{Object.keys(gptConfig.sessionRatingAlgs).length > 1 && (
 				<Form.Group>
 					<Form.Label>Preferred Session Algorithm</Form.Label>
 					<Form.Control
@@ -181,7 +182,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 						value={formik.values.preferredSessionAlg}
 						onChange={formik.handleChange}
 					>
-						{gptConfig.sessionRatingAlgs.map((e) => (
+						{Object.keys(gptConfig.sessionRatingAlgs).map((e) => (
 							<option key={e}>{e}</option>
 						))}
 					</Form.Control>
@@ -191,7 +192,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 					</Form.Text>
 				</Form.Group>
 			)}
-			{gptConfig.profileRatingAlgs.length > 1 && (
+			{Object.keys(gptConfig.profileRatingAlgs).length > 1 && (
 				<Form.Group>
 					<Form.Label>Preferred Profile Algorithm</Form.Label>
 					<Form.Control
@@ -200,7 +201,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 						value={formik.values.preferredProfileAlg}
 						onChange={formik.handleChange}
 					>
-						{gptConfig.profileRatingAlgs.map((e) => (
+						{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
 							<option key={e}>{e}</option>
 						))}
 					</Form.Control>
@@ -214,8 +215,8 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 				<Form.Label>Preferred Folder Info</Form.Label>
 				<Form.Control
 					as="select"
-					id="scoreBucket"
-					value={formik.values.scoreBucket}
+					id="preferredDefaultEnum"
+					value={formik.values.preferredDefaultEnum}
 					onChange={formik.handleChange}
 				>
 					<option value="grade">Grades</option>
@@ -408,7 +409,7 @@ function ShowcaseForm({ reqUser, game, playtype }: UGPT) {
 	const [show, setShow] = useState(false);
 
 	const SaveChanges = async () => {
-		const r = await APIFetchV1<UGPTSettings>(
+		const r = await APIFetchV1<UGPTSettingsDocument>(
 			`/users/${reqUser.id}/games/${game}/${playtype}/showcase`,
 			{
 				method: "PUT",

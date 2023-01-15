@@ -115,7 +115,8 @@ export default function SessionFolderRaiseBreakdown({
 	const chartMap = CreateChartMap(sessionData.charts);
 	const songMap = CreateSongMap(sessionData.songs);
 
-	const preferredScoreBucket = settings?.preferences.scoreBucket ?? gptConfig.scoreBucket;
+	const preferredScoreBucket =
+		settings?.preferences.preferredDefaultEnum ?? gptConfig.preferredDefaultEnum;
 
 	if (selectedTable === "LOADING") {
 		return <Loading />;

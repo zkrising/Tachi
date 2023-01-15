@@ -1,47 +1,35 @@
 import { ONE_DAY } from "util/constants/time";
 import { CreateChartIDMap, CreateChartLink, CreateSongMap } from "util/data";
-import { DistinctArr, NO_OP } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
-import { GetScaleAchievedFn } from "util/tierlist";
 import { FormatDate, FormatTime } from "util/time";
-import { ChangeOpacity } from "util/color-opacity";
 import FolderInfoHeader from "components/game/folder/FolderInfoHeader";
-import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Card from "components/layout/page/Card";
 import FolderTable from "components/tables/folders/FolderTable";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
-import Muted from "components/util/Muted";
-import useApiQuery from "components/util/query/useApiQuery";
-import ReferToUser from "components/util/ReferToUser";
 import SelectLinkButton from "components/util/SelectLinkButton";
+import useApiQuery from "components/util/query/useApiQuery";
 import useUGPTBase from "components/util/useUGPTBase";
-import { useFormik } from "formik";
 import React, { useEffect, useMemo, useState } from "react";
-import { Col, Form, Row } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { Link, Route, Switch, useParams } from "react-router-dom";
 import {
 	ChartDocument,
-	ChartTierlistInfo,
 	FormatDifficulty,
-	FormatDifficultyShort,
 	Game,
 	GetGamePTConfig,
-	GPTTierlists,
-	IDStrings,
-	integer,
-	UserDocument,
+	GetScoreEnumConfs,
+	Playtype,
 	ScoreDocument,
 	SongDocument,
-	Playtype,
-	COLOUR_SET,
+	UserDocument,
+	integer,
 } from "tachi-common";
 import { UGPTFolderReturns } from "types/api-returns";
 import { FolderDataset } from "types/tables";
-import MiniTable from "components/tables/components/MiniTable";
-import DifficultyCell from "components/tables/cells/DifficultyCell";
+import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
 import FolderComparePage from "./FolderComparePage";
 import FolderQuestsPage from "./FolderQuestsPage";
 
@@ -57,8 +45,6 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 	const { data, error } = useApiQuery<UGPTFolderReturns>(
 		`/users/${reqUser.id}/games/${game}/${playtype}/folders/${folderID}`
 	);
-
-	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const folderDataset = useMemo(() => {
 		if (!data) {
@@ -124,15 +110,6 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 						<Icon type="table" />
 						Normal View
 					</SelectLinkButton>
-					{gptConfig.tierlists.length !== 0 &&
-						// temp: tierlist view sucks for BMS and PMS
-						game !== "bms" &&
-						game !== "pms" && (
-							<SelectLinkButton to={`${base}/tierlist`}>
-								<Icon type="sort-alpha-up" />
-								Tierlist View
-							</SelectLinkButton>
-						)}
 					<SelectLinkButton to={`${base}/timeline`}>
 						<Icon type="stream" />
 						Timeline View
@@ -154,15 +131,6 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 				<Switch>
 					<Route exact path={base}>
 						<FolderTable dataset={folderDataset} game={game} playtype={playtype} />
-					</Route>
-					<Route exact path={`${base}/tierlist`}>
-						<TierlistBreakdown
-							folderDataset={folderDataset}
-							game={game}
-							playtype={playtype}
-							reqUser={reqUser}
-							data={data}
-						/>
 					</Route>
 					<Route exact path={`${base}/timeline`}>
 						<TimelineView
@@ -196,20 +164,17 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 
 function TimelineView({ game, playtype, reqUser, folderID }: Props & { folderID: string }) {
 	const gptConfig = GetGamePTConfig(game, playtype);
-	const [type, setType] = useState<"lamp" | "grade">(gptConfig.scoreBucket);
-	const [value, setValue] = useState<integer>(
-		type === "grade"
-			? gptConfig.grades.indexOf(gptConfig.clearGrade)
-			: gptConfig.lamps.indexOf(gptConfig.clearLamp)
-	);
+	const enumConfs = GetScoreEnumConfs(gptConfig);
+
+	const [selectedEnum, setSelectedEnum] = useState<string>(gptConfig.preferredDefaultEnum);
+	const [enumConf, setEnumConf] = useState<ConfEnumScoreMetric<string>>(enumConfs[selectedEnum]!);
+
+	const [value, setValue] = useState<string>(enumConf.minimumRelevantValue);
 
 	useEffect(() => {
-		setValue(
-			type === "grade"
-				? gptConfig.grades.indexOf(gptConfig.clearGrade)
-				: gptConfig.lamps.indexOf(gptConfig.clearLamp)
-		);
-	}, [type]);
+		setValue(enumConfs[selectedEnum]!.minimumRelevantValue);
+		setEnumConf(enumConfs[selectedEnum]!);
+	}, [selectedEnum]);
 
 	return (
 		<>
@@ -225,36 +190,33 @@ function TimelineView({ game, playtype, reqUser, folderID }: Props & { folderID:
 					<div className="col-12 col-lg-6">
 						<Form.Control
 							as="select"
-							value={type}
-							onChange={(e) => setType(e.target.value as "grade" | "lamp")}
+							value={selectedEnum}
+							onChange={(e) => setSelectedEnum(e.target.value)}
 						>
-							<option value="grade">Grades</option>
-							<option value="lamp">Lamps</option>
+							{Object.keys(enumConfs).map((e) => (
+								<option key={e}>{e}</option>
+							))}
 						</Form.Control>
 					</div>
 					<div className="col-12 col-lg-6">
 						<Form.Control
 							as="select"
 							value={value}
-							onChange={(e) => setValue(Number(e.target.value))}
+							onChange={(e) => setValue(e.target.value)}
 						>
-							{type === "grade"
-								? gptConfig.grades.map((e, i) => (
-										<option key={e} value={i}>
-											{e}
-										</option>
-								  ))
-								: gptConfig.lamps.map((e, i) => (
-										<option key={e} value={i}>
-											{e}
-										</option>
-								  ))}
+							{enumConf.values
+								.slice(enumConf.values.indexOf(enumConf.minimumRelevantValue))
+								.map((e) => (
+									<option key={e}>{e}</option>
+								))}
 						</Form.Control>
 					</div>
 				</div>
 			</Card>
 			<Divider />
-			<TimelineMain {...{ reqUser, game, playtype, folderID, type, value }} />
+			<TimelineMain
+				{...{ reqUser, game, playtype, folderID, enumMetric: selectedEnum, value }}
+			/>
 		</>
 	);
 }
@@ -264,19 +226,19 @@ function TimelineMain({
 	game,
 	playtype,
 	folderID,
-	type,
+	enumMetric: enumMetric,
 	value,
 }: Props & {
 	folderID: string;
-	type: "grade" | "lamp";
-	value: integer;
+	enumMetric: string;
+	value: string;
 }) {
 	const { data, error } = useApiQuery<{
 		scores: ScoreDocument[];
 		songs: SongDocument[];
 		charts: ChartDocument[];
 	}>(
-		`/users/${reqUser.id}/games/${game}/${playtype}/folders/${folderID}/timeline?criteriaValue=${value}&criteriaType=${type}`
+		`/users/${reqUser.id}/games/${game}/${playtype}/folders/${folderID}/timeline?criteriaValue=${value}&criteriaType=${enumMetric}`
 	);
 
 	if (error) {
@@ -410,421 +372,4 @@ function TimelineElement({
 			</div>
 		</div>
 	);
-}
-
-type InfoProps = Props & {
-	folderDataset: FolderDataset;
-	data: UGPTFolderReturns;
-};
-
-function TierlistBreakdown({ game, folderDataset, playtype, reqUser }: InfoProps) {
-	const gptConfig = GetGamePTConfig(game, playtype);
-
-	const formik = useFormik({
-		initialValues: {
-			__hideAchieved: false,
-			...Object.fromEntries(gptConfig.tierlists.map((e) => [e, true])),
-		} as { __hideAchieved: boolean } & Partial<Record<GPTTierlists[IDStrings], true>>,
-		onSubmit: NO_OP,
-	});
-
-	const tierlistInfo = useMemo(
-		() => FolderDatasetToTierlistInfo(folderDataset, game, playtype, formik.values),
-		[formik.values]
-	);
-
-	const dataMap = CreateChartIDMap(folderDataset);
-
-	return (
-		<Row>
-			<Col xs={12}>
-				<Card header="Tierlist View Configuration">
-					<span>Here you can select what tierlist blocks to show!</span>
-					<Divider />
-					{gptConfig.tierlists.length > 1 &&
-						gptConfig.tierlists.map((e) => (
-							<>
-								<Form.Check
-									key={e}
-									type="checkbox"
-									id={e}
-									checked={formik.values[e]}
-									onChange={formik.handleChange}
-									label={e}
-								/>
-								<Form.Text>{gptConfig.tierlistDescriptions[e]}</Form.Text>
-							</>
-						))}
-
-					<Form.Check
-						type="checkbox"
-						id="__hideAchieved"
-						checked={formik.values.__hideAchieved}
-						onChange={formik.handleChange}
-						label="Hide Achieved"
-					/>
-					<Form.Text>Hide achieved elements of the tierlist.</Form.Text>
-				</Card>
-			</Col>
-			<Col xs={12}>
-				<Divider />
-			</Col>
-			<Col xs={12}>
-				<TierlistInfoLadder
-					tierlistInfo={tierlistInfo}
-					dataMap={dataMap}
-					game={game}
-					playtype={playtype}
-					reqUser={reqUser}
-				/>
-			</Col>
-		</Row>
-	);
-}
-
-const NO_TIERLIST_DATA_VALUE = {
-	text: "No Tierlist Info",
-	value: 0,
-};
-
-function TierlistInfoLadder({
-	tierlistInfo,
-	dataMap,
-	game,
-	playtype,
-	reqUser,
-}: {
-	tierlistInfo: NullableTierlistInfo[];
-	dataMap: Map<string, FolderDataset[0]>;
-	game: Game;
-	playtype: Playtype;
-	reqUser: UserDocument;
-}) {
-	const buckets: TierlistInfo[][] = useMemo(() => {
-		const buckets: TierlistInfo[][] = [];
-		let currentBucket: TierlistInfo[] = [];
-		const noDataBucket: TierlistInfo[] = [];
-
-		let lastValue;
-		for (const tl of tierlistInfo) {
-			if (tl.data === null) {
-				noDataBucket.push({
-					achieved: tl.achieved,
-					chartID: tl.chartID,
-					data: NO_TIERLIST_DATA_VALUE,
-					key: tl.key,
-				});
-				continue;
-			}
-
-			// no longer nullable
-			const tlx = tl as TierlistInfo;
-
-			if (lastValue && tlx.data.value !== lastValue) {
-				buckets.push(currentBucket);
-				currentBucket = [tlx];
-			} else {
-				currentBucket.push(tlx);
-			}
-			lastValue = tlx.data.value;
-		}
-
-		if (currentBucket.length) {
-			buckets.push(currentBucket);
-		}
-
-		buckets.push(noDataBucket);
-
-		return buckets;
-	}, [tierlistInfo]);
-
-	const gptConfig = GetGamePTConfig(game, playtype);
-
-	for (const bucket of buckets) {
-		bucket.sort(NumericSOV((x) => gptConfig.tierlists.indexOf(x.key), true));
-	}
-
-	if (tierlistInfo.length === 0) {
-		return <Row className="justify-content-center">Got no tierlist data to show you!</Row>;
-	}
-
-	return (
-		<Row className="text-center">
-			{buckets
-				.filter((e) => e.length > 0)
-				.map((bucket, i) => (
-					<React.Fragment key={i}>
-						<Col className="ladder-header" xs={12}>
-							{bucket[0].data!.value} (
-							{DistinctArr(
-								bucket.map((e) =>
-									gptConfig.tierlists.length === 1
-										? e.data.text
-										: `${e.key}: ${e.data.text}`
-								)
-							).join(", ")}
-							)
-						</Col>
-
-						<TierlistBucket {...{ bucket, dataMap, game, playtype, reqUser }} />
-					</React.Fragment>
-				))}
-		</Row>
-	);
-}
-
-function TierlistBucket({
-	bucket,
-	dataMap,
-	game,
-	reqUser,
-}: {
-	dataMap: Map<string, FolderDataset[0]>;
-	game: Game;
-	playtype: Playtype;
-	reqUser: UserDocument;
-	bucket: TierlistInfo[];
-}) {
-	// xs view is tabular
-	if (window.screen.width <= 576) {
-		return (
-			<MiniTable>
-				{bucket.map((tierlistInfo, i) => (
-					<TierlistInfoBucketValues
-						tierlistInfo={tierlistInfo}
-						key={`${tierlistInfo.chartID}-${tierlistInfo.key}`}
-						game={game}
-						dataMap={dataMap}
-						bucket={bucket}
-						i={i}
-						reqUser={reqUser}
-					/>
-				))}
-			</MiniTable>
-		);
-	}
-
-	return (
-		<>
-			{bucket.map((tierlistInfo, i) => (
-				<TierlistInfoBucketValues
-					tierlistInfo={tierlistInfo}
-					key={`${tierlistInfo.chartID}-${tierlistInfo.key}`}
-					game={game}
-					dataMap={dataMap}
-					bucket={bucket}
-					i={i}
-					reqUser={reqUser}
-				/>
-			))}
-		</>
-	);
-}
-
-function TierlistInfoBucketValues({
-	tierlistInfo,
-	game,
-	dataMap,
-	bucket,
-	i,
-	reqUser,
-}: {
-	tierlistInfo: TierlistInfo;
-	bucket: TierlistInfo[];
-	dataMap: Map<string, FolderDataset[0]>;
-	game: Game;
-	i: integer;
-	reqUser: UserDocument;
-}) {
-	const data = dataMap.get(tierlistInfo.chartID)!;
-
-	const lastKey = bucket[i - 1];
-
-	let statusClass;
-
-	switch (tierlistInfo.achieved) {
-		case AchievedStatuses.ACHIEVED:
-			statusClass = "achieved";
-			break;
-		case AchievedStatuses.FAILED:
-			statusClass = "unachieved";
-			break;
-		case AchievedStatuses.NOT_PLAYED:
-		case AchievedStatuses.SCORE_BASED:
-			statusClass = "";
-	}
-
-	// xs view
-	if (window.screen.width <= 576) {
-		return (
-			<tr>
-				<DifficultyCell game={game} chart={data} alwaysShort noTierlist />
-				<td className="text-left">
-					<Link className="gentle-link" to={CreateChartLink(data, game)}>
-						{data.__related.song.title}
-					</Link>{" "}
-					<br />
-					<div>
-						{tierlistInfo.key} ({tierlistInfo.data.text})
-						{tierlistInfo.data.individualDifference && (
-							<span className="ml-1">
-								<Icon type="balance-scale-left" />
-							</span>
-						)}
-					</div>
-				</td>
-				<TierlistInfoCell tierlistInfo={tierlistInfo} />
-			</tr>
-		);
-	}
-
-	return (
-		<>
-			{lastKey && lastKey.key !== tierlistInfo.key && <Col xl={12} className="my-2" />}
-			<Col
-				className={`ladder-element ${
-					i % 12 < 6 ? "ladder-element-dark" : ""
-				} ladder-element-${statusClass} d-none d-sm-block`}
-				xs={12}
-				sm={6}
-				md={4}
-				lg={3}
-				xl={2}
-			>
-				<Link className="gentle-link" to={CreateChartLink(data, game)}>
-					{data.__related.song.title}
-				</Link>{" "}
-				{FormatDifficultyShort(data, game)}
-				<Divider className="my-2" />
-				{tierlistInfo.key} ({tierlistInfo.data.text})
-				{tierlistInfo.data.individualDifference && (
-					<>
-						<br />
-
-						<div className="mt-1">
-							<QuickTooltip tooltipContent="Individual Difference - The difficulty of this varies massively between people!">
-								<span>
-									<Icon type="balance-scale-left" />
-								</span>
-							</QuickTooltip>
-						</div>
-					</>
-				)}
-				<Divider className="my-2" />
-				<Muted>
-					<ReferToUser reqUser={reqUser} />{" "}
-					{tierlistInfo.achieved === AchievedStatuses.NOT_PLAYED
-						? "Not Played"
-						: tierlistInfo.achieved === AchievedStatuses.SCORE_BASED
-						? data.__related.pb!.scoreData.grade
-						: data.__related.pb!.scoreData.lamp}
-				</Muted>
-			</Col>
-		</>
-	);
-}
-
-function TierlistInfoCell({ tierlistInfo }: { tierlistInfo: TierlistInfo }) {
-	let colour;
-	let text;
-
-	if (
-		tierlistInfo.achieved === AchievedStatuses.NOT_PLAYED ||
-		tierlistInfo.achieved === AchievedStatuses.FAILED
-	) {
-		colour = COLOUR_SET.red;
-		text = "✗";
-	} else {
-		colour = COLOUR_SET.green;
-		text = "✓";
-	}
-
-	return (
-		<td
-			style={{
-				backgroundColor: ChangeOpacity(colour, 0.2),
-				width: "60px",
-				minWidth: "60px",
-				maxWidth: "60px",
-			}}
-		>
-			{text}
-		</td>
-	);
-}
-
-interface NullableTierlistInfo {
-	chartID: string;
-	key: GPTTierlists[IDStrings];
-	data: ChartTierlistInfo | null;
-	achieved: AchievedStatuses;
-}
-
-interface TierlistInfo {
-	chartID: string;
-	key: GPTTierlists[IDStrings];
-	data: ChartTierlistInfo;
-	achieved: AchievedStatuses;
-}
-
-enum AchievedStatuses {
-	NOT_PLAYED,
-	FAILED,
-	ACHIEVED,
-	SCORE_BASED,
-}
-
-function FolderDatasetToTierlistInfo(
-	folderDataset: FolderDataset,
-	game: Game,
-	playtype: Playtype,
-	options: Partial<Record<GPTTierlists[IDStrings], boolean>> & { __hideAchieved: boolean }
-) {
-	const tierlistInfo: NullableTierlistInfo[] = [];
-
-	const tierlistKeys: GPTTierlists[IDStrings][] = [];
-
-	for (const k in options) {
-		if (k === "__hideAchieved") {
-			continue;
-		}
-
-		const key = k as GPTTierlists[IDStrings];
-		if (options[key]) {
-			tierlistKeys.push(key);
-		}
-	}
-
-	for (const data of folderDataset) {
-		for (const key of tierlistKeys) {
-			let achieved: AchievedStatuses;
-
-			if (!data.__related.pb) {
-				achieved = AchievedStatuses.NOT_PLAYED;
-			} else {
-				const fn = GetScaleAchievedFn(game, playtype, key);
-
-				if (fn) {
-					achieved = fn(data.__related.pb)
-						? AchievedStatuses.ACHIEVED
-						: AchievedStatuses.FAILED;
-				} else {
-					achieved = AchievedStatuses.SCORE_BASED;
-				}
-			}
-
-			if (options.__hideAchieved && achieved === AchievedStatuses.ACHIEVED) {
-				continue;
-			}
-
-			tierlistInfo.push({
-				chartID: data.chartID,
-				key,
-				data: data.tierlistInfo[key] ?? null,
-				achieved,
-			});
-		}
-	}
-
-	return tierlistInfo.sort(NumericSOV((x) => (x.data ? x.data.value : -Infinity), true));
 }

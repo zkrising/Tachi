@@ -1,4 +1,5 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
+import { FmtNum, FmtPercent, FmtScoreNoCommas } from "../../utils/util";
 import { ClassValue, zodNonNegativeInt, zodTierlistData } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
@@ -50,7 +51,7 @@ const RANDOM_SCHEMA = z.enum(["NONRAN", "MIRROR", "R-RANDOM", "RANDOM", "S-RANDO
 
 export const IIDX_SP_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", chartDependentMax: true },
+		score: { type: "INTEGER", chartDependentMax: true, formatter: FmtScoreNoCommas },
 		lamp: {
 			type: "ENUM",
 			values: [
@@ -71,6 +72,7 @@ export const IIDX_SP_CONF = {
 		percent: {
 			type: "DECIMAL",
 			validate: p.isBetween(0, 100),
+			formatter: FmtPercent,
 		},
 		grade: {
 			type: "ENUM",
@@ -85,9 +87,9 @@ export const IIDX_SP_CONF = {
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
 
-		bp: { type: "INTEGER", validate: p.isPositive },
-		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100) },
-		comboBreak: { type: "INTEGER", validate: p.isPositive },
+		bp: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
+		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
+		comboBreak: { type: "INTEGER", validate: p.isPositive, formatter: FmtNum },
 
 		// The players history for the gauge type they were playing on.
 		// this may fall into "NULL" if the user fails.

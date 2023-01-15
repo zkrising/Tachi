@@ -1,4 +1,5 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
+import { FmtScoreNoCommas, FmtPercent } from "../../utils/util";
 import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
@@ -42,7 +43,7 @@ function FormatSieglindePMS(sgl: number): string {
 
 export const PMS_CONTROLLER_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", chartDependentMax: true },
+		score: { type: "INTEGER", chartDependentMax: true, formatter: FmtScoreNoCommas },
 
 		lamp: {
 			type: "ENUM",
@@ -70,7 +71,7 @@ export const PMS_CONTROLLER_CONF = {
 		// if #RANDOM is to ever be supported, the user's percent would become
 		// a *mandatory* metric, as a chart's notecount can be completely unknown.
 		// However, supporting #RANDOM is an awful pain, so I don't really care.
-		percent: { type: "DECIMAL", validate: p.isBetween(0, 100) },
+		percent: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
 	},
 
 	defaultMetric: "percent",
@@ -78,19 +79,19 @@ export const PMS_CONTROLLER_CONF = {
 
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
-		bp: { type: "INTEGER", validate: p.isPositive },
-		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100) },
+		bp: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
+		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
 		gaugeHistory: { type: "GRAPH", validate: p.isBetween(0, 100) },
-		epg: { type: "INTEGER", validate: p.isPositive },
-		egr: { type: "INTEGER", validate: p.isPositive },
-		egd: { type: "INTEGER", validate: p.isPositive },
-		ebd: { type: "INTEGER", validate: p.isPositive },
-		epr: { type: "INTEGER", validate: p.isPositive },
-		lpg: { type: "INTEGER", validate: p.isPositive },
-		lgr: { type: "INTEGER", validate: p.isPositive },
-		lgd: { type: "INTEGER", validate: p.isPositive },
-		lbd: { type: "INTEGER", validate: p.isPositive },
-		lpr: { type: "INTEGER", validate: p.isPositive },
+		epg: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
+		egr: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
+		egd: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
+		ebd: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
+		epr: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
+		lpg: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
+		lgr: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
+		lgd: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
+		lbd: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
+		lpr: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
 	},
 
 	scoreRatingAlgs: {

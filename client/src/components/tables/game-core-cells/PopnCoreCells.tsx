@@ -1,5 +1,6 @@
 import React from "react";
 import { PBScoreDocument, ScoreDocument } from "tachi-common";
+import { GetEnumColour } from "lib/game-implementations";
 import MillionsScoreCell from "../cells/MillionsScoreCell";
 import PopnJudgementCell from "../cells/PopnJudgementCell";
 import PopnLampCell from "../cells/PopnLampCell";
@@ -14,7 +15,11 @@ export default function PopnCoreCells({
 }) {
 	return (
 		<>
-			<MillionsScoreCell score={sc} />
+			<MillionsScoreCell
+				score={sc.scoreData.score}
+				grade={sc.scoreData.grade}
+				colour={GetEnumColour(sc, "grade")}
+			/>
 			<PopnJudgementCell score={sc} />
 			<PopnLampCell score={sc} />
 			<RatingCell score={sc} rating={rating} />

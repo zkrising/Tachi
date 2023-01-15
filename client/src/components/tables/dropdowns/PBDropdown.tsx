@@ -9,7 +9,7 @@ import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useReducer, useState } from "react";
 import {
 	ChartDocument,
-	IDStrings,
+	GPTString,
 	integer,
 	PBScoreDocument,
 	ScoreDocument,
@@ -27,14 +27,14 @@ import RivalCompare from "./components/RivalCompare";
 import TargetInfo from "./components/TargetInfo";
 import { GPTDropdownSettings } from "./GPTDropdownSettings";
 
-export interface ScoreDropdownProps<I extends IDStrings = IDStrings> {
-	score: ScoreDocument<I> | PBScoreDocument<I>;
+export interface ScoreDropdownProps {
+	score: ScoreDocument | PBScoreDocument;
 	scoreState: ScoreState;
-	pbData: UGPTChartPBComposition<I>;
-	chart: ChartDocument<I>;
+	pbData: UGPTChartPBComposition;
+	chart: ChartDocument;
 }
 
-export default function PBDropdown<I extends IDStrings = IDStrings>({
+export default function PBDropdown({
 	game,
 	playtype,
 	chart,
@@ -47,7 +47,7 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 	chart: ChartDocument;
 	song: SongDocument;
 	scoreState: ScoreState;
-	defaultView?: "pb" | "scorePB" | "lampPB" | "history" | "debug" | "rivals" | "targets";
+	defaultView?: "pb" | `otherPB::${string}` | "history" | "debug" | "rivals" | "targets";
 } & GamePT) {
 	const { user: currentUser } = useContext(UserContext);
 
@@ -56,11 +56,11 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 
 	const [view, setView] = useState(defaultView);
 
-	const { data, error } = useApiQuery<UGPTChartPBComposition<I>>(
+	const { data, error } = useApiQuery<UGPTChartPBComposition>(
 		`/users/${userID}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`
 	);
 
-	const { error: histError, data: histData } = useApiQuery<ScoreDocument<I>[]>(
+	const { error: histError, data: histData } = useApiQuery<ScoreDocument[]>(
 		`/users/${userID}/games/${game}/${playtype}/scores/${chart.chartID}`
 	);
 
@@ -76,32 +76,28 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 		currentUser === null
 	);
 
-	const currentScoreDoc: ScoreDocument<I> | PBScoreDocument<I> | null = useMemo(() => {
+	const currentScoreDoc: ScoreDocument | PBScoreDocument | null = useMemo(() => {
 		if (!data) {
 			// dont worry about this null, it never gets below the rquery checks
 			return null;
 		}
 
 		if (view === "pb") {
-			if (data.pb.composedFrom.lampPB === data.pb.composedFrom.scorePB) {
+			if (data.pb.composedFrom.length === 1) {
 				// scores have more information than PBs.
 				// In this case, the PB is only composed of one score,
 				// so we should default to this instead.
-				return data.scores.filter((e) => e.scoreID === data.pb.composedFrom.lampPB)[0];
+				return data.scores.find((e) => e.scoreID === data.pb.composedFrom[0]!.scoreID)!;
 			}
+
 			return data.pb;
+		} else if (view.startsWith("otherPB::")) {
+			const scoreID = view.split("otherPB::")[1];
+
+			return data.scores.filter((e) => e.scoreID === scoreID)[0];
 		}
 
-		const idMap = {
-			scorePB: data.pb.composedFrom.scorePB,
-			lampPB: data.pb.composedFrom.lampPB,
-			...Object.fromEntries(
-				(data.pb.composedFrom.other ?? []).map((e) => [e.name, e.scoreID])
-			),
-		};
-
-		// @ts-expect-error awful
-		return data.scores.filter((e) => e.scoreID === idMap[view])[0];
+		return null;
 	}, [view, data]);
 
 	if (error) {
@@ -116,8 +112,7 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 		);
 	}
 
-	// @TODO this doesn't support alternate PBs.
-	const isComposedFromSingleScore = data.pb.composedFrom.lampPB === data.pb.composedFrom.scorePB;
+	const isComposedFromSingleScore = data.pb.composedFrom.length === 1;
 
 	let body;
 
@@ -174,14 +169,16 @@ export default function PBDropdown<I extends IDStrings = IDStrings>({
 					</SelectButton>
 					{!isComposedFromSingleScore && (
 						<>
-							<SelectButton setValue={setView} value={view} id="scorePB">
-								<Icon type="star-half-alt" />
-								Best Score
-							</SelectButton>
-							<SelectButton setValue={setView} value={view} id="lampPB">
-								<Icon type="lightbulb" />
-								Best Lamp
-							</SelectButton>
+							{data.pb.composedFrom.map((e) => (
+								<SelectButton
+									setValue={setView}
+									value={view}
+									id={`otherPB::${e.scoreID}`}
+								>
+									<Icon type="star-half-alt" />
+									{e.name}
+								</SelectButton>
+							))}
 						</>
 					)}
 					<SelectButton setValue={setView} value={view} id="history">

@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
 import {
 	Game,
 	GetGamePTConfig,
-	IDStrings,
+	GPTString,
 	integer,
 	UserDocument,
-	SessionCalculatedDataLookup,
+	SessionRatingAlgorithms,
 	SessionDocument,
 	Playtype,
 	SessionScoreInfo,
@@ -41,7 +41,7 @@ export default function GenericSessionTable({
 
 	const defaultRating = useSessionRatingAlg(game, playtype);
 
-	const [alg, setAlg] = useState<SessionCalculatedDataLookup[IDStrings]>(defaultRating);
+	const [alg, setAlg] = useState<SessionRatingAlgorithms[GPTString]>(defaultRating);
 
 	const headers: Header<SessionDataset[0]>[] = [
 		["Name", "Name", StrSOV((x) => x.name)],
@@ -51,7 +51,7 @@ export default function GenericSessionTable({
 		["Timestamp", "Timestamp", NumericSOV((x) => x.timeStarted)],
 	];
 
-	if (gptConfig.sessionRatingAlgs.length > 1) {
+	if (Object.keys(gptConfig.sessionRatingAlgs).length > 1) {
 		headers[2] = [
 			"Rating",
 			"Rating",
@@ -108,7 +108,7 @@ function Row({
 {
 	data: SessionDataset[0];
 	// reqUser: PublicUserDocument;
-	ratingAlg: SessionCalculatedDataLookup[IDStrings];
+	ratingAlg: SessionRatingAlgorithms[GPTString];
 	reqUser: UserDocument;
 	indexCol?: boolean;
 }) {

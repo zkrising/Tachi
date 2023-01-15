@@ -1,4 +1,5 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
+import { FmtNum, FmtPercent } from "../../utils/util";
 import { ClassValue, ToDecimalPlaces, zodNonNegativeInt, zodTierlistData } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
@@ -73,7 +74,7 @@ export const SDVXVFClasses = [
 
 export const SDVX_SINGLE_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", validate: p.isBetween(0, 10_000_000) },
+		score: { type: "INTEGER", validate: p.isBetween(0, 10_000_000), formatter: FmtNum },
 		lamp: {
 			type: "ENUM",
 			values: [
@@ -100,8 +101,8 @@ export const SDVX_SINGLE_CONF = {
 
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
-		exScore: { type: "INTEGER", chartDependentMax: true },
-		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100) },
+		exScore: { type: "INTEGER", chartDependentMax: true, formatter: FmtNum },
+		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
 	},
 
 	scoreRatingAlgs: {

@@ -17,7 +17,7 @@ import SelectButton from "components/util/SelectButton";
 import { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
-import { FormatGame, GetGameConfig, GetGamePTConfig } from "tachi-common";
+import { AnyProfileRatingAlg, FormatGame, GetGameConfig, GetGamePTConfig } from "tachi-common";
 import { UserLeaderboardReturns } from "types/api-returns";
 import { GamePT } from "types/react";
 import { UGSDataset } from "types/tables";
@@ -69,9 +69,9 @@ function ProfileLeaderboard({ game, playtype }: GamePT) {
 	const [alg, setAlg] = useState(defaultAlg);
 
 	const SelectComponent =
-		gptConfig.profileRatingAlgs.length > 1 ? (
+		Object.keys(gptConfig.profileRatingAlgs).length > 1 ? (
 			<Form.Control as="select" value={alg} onChange={(e) => setAlg(e.target.value as any)}>
-				{gptConfig.profileRatingAlgs.map((e) => (
+				{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
 					<option key={e} value={e}>
 						{UppercaseFirst(e)}
 					</option>
@@ -125,7 +125,7 @@ function ProfileLeaderboard({ game, playtype }: GamePT) {
 				headers={[
 					["Ranking", "Rank", NumericSOV((x) => x.__related.index)],
 					["User", "User", StrSOV((x) => x.__related.user.username)],
-					...gptConfig.profileRatingAlgs.map(
+					...(Object.keys(gptConfig.profileRatingAlgs) as Array<AnyProfileRatingAlg>).map(
 						(e) =>
 							[
 								UppercaseFirst(e),
@@ -139,11 +139,13 @@ function ProfileLeaderboard({ game, playtype }: GamePT) {
 					<tr>
 						<IndexCell index={r.__related.index} />
 						<UserCell game={game} playtype={playtype} user={r.__related.user} />
-						{gptConfig.profileRatingAlgs.map((e) => (
+						{(
+							Object.keys(gptConfig.profileRatingAlgs) as Array<AnyProfileRatingAlg>
+						).map((e) => (
 							<td key={e}>
 								{r.ratings[e]
-									? gptConfig.profileRatingAlgFormatters[e]
-										? gptConfig.profileRatingAlgFormatters[e]!(r.ratings[e]!)
+									? gptConfig.profileRatingAlgs[e].formatter
+										? gptConfig.profileRatingAlgs[e].formatter!(r.ratings[e]!)
 										: r.ratings[e]!.toFixed(2)
 									: "No Data."}
 							</td>
@@ -152,15 +154,18 @@ function ProfileLeaderboard({ game, playtype }: GamePT) {
 							{Object.keys(r.classes).length === 0 ? (
 								<Muted>None</Muted>
 							) : (
-								Object.entries(r.classes).map(([k, v]) => (
-									<ClassBadge
-										key={k}
-										classSet={k as keyof typeof r.classes}
-										game={game}
-										playtype={playtype}
-										classValue={v}
-									/>
-								))
+								Object.entries(r.classes).map(
+									([k, v]) =>
+										v && (
+											<ClassBadge
+												key={k}
+												classSet={k as keyof typeof r.classes}
+												game={game}
+												playtype={playtype}
+												classValue={v}
+											/>
+										)
+								)
 							)}
 						</td>
 					</tr>

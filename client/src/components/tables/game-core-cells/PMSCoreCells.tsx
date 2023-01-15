@@ -1,5 +1,5 @@
 import React from "react";
-import { IDStrings, PBScoreDocument, ScoreCalculatedDataLookup, ScoreDocument } from "tachi-common";
+import { GPTString, PBScoreDocument, ScoreRatingAlgorithms, ScoreDocument } from "tachi-common";
 import BMSOrPMSLampCell from "../cells/BMSOrPMSLampCell";
 import DeltaCell from "../cells/DeltaCell";
 import RatingCell from "../cells/RatingCell";
@@ -12,7 +12,7 @@ export default function PMSCoreCells({
 	sc:
 		| PBScoreDocument<"pms:Controller" | "pms:Keyboard">
 		| ScoreDocument<"pms:Controller" | "pms:Keyboard">;
-	rating: ScoreCalculatedDataLookup[IDStrings];
+	rating: ScoreRatingAlgorithms[GPTString];
 }) {
 	return (
 		<>

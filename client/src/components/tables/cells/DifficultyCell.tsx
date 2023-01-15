@@ -11,7 +11,7 @@ import {
 	GetGamePTConfig,
 } from "tachi-common";
 import BMSOrPMSDifficultyCell from "./BMSOrPMSDifficultyCell";
-import TierlistInfoPart from "./TierlistInfoPart";
+import RatingSystemPart from "./RatingSystemPart";
 import USCDifficultyCell from "./USCDifficultyCell";
 import ITGDifficultyCell from "./ITGDifficultyCell";
 
@@ -73,7 +73,7 @@ export default function DifficultyCell({
 				</QuickTooltip>
 			)}
 			{!noTierlist && Object.keys(chart.tierlistInfo).length > 0 && (
-				<TierlistInfoPart chart={chart} game={game} />
+				<RatingSystemPart chart={chart} game={game} />
 			)}
 			{!chart.isPrimary && (
 				<QuickTooltip tooltipContent="This chart is an alternate, old chart.">

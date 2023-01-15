@@ -1,5 +1,6 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { SDVXVFClasses } from "./sdvx";
+import { FmtNum, FmtPercent } from "../../utils/util";
 import { ToDecimalPlaces } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
@@ -14,7 +15,7 @@ export const USC_CONF = {
 
 export const USC_CONTROLLER_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", validate: p.isBetween(0, 10_000_000) },
+		score: { type: "INTEGER", validate: p.isBetween(0, 10_000_000), formatter: FmtNum },
 		lamp: {
 			type: "ENUM",
 			values: [
@@ -41,7 +42,7 @@ export const USC_CONTROLLER_CONF = {
 
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
-		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100) },
+		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
 	},
 
 	scoreRatingAlgs: {

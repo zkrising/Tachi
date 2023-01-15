@@ -1,4 +1,5 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
+import { FmtNum, FmtPercent } from "../../utils/util";
 import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
@@ -28,8 +29,8 @@ const JubeatColours = [
 
 export const JUBEAT_SINGLE_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", validate: p.isBetween(0, 1_000_000) },
-		musicRate: { type: "DECIMAL", chartDependentMax: true },
+		score: { type: "INTEGER", validate: p.isBetween(0, 1_000_000), formatter: FmtNum },
+		musicRate: { type: "DECIMAL", chartDependentMax: true, formatter: FmtPercent },
 		lamp: {
 			type: "ENUM",
 			values: ["FAILED", "CLEAR", "FULL COMBO", "EXCELLENT"],

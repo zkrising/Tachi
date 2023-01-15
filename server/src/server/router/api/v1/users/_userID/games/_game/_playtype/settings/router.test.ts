@@ -21,7 +21,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 				preferredSessionAlg: null,
 				preferredProfileAlg: null,
 				preferredRanking: null,
-				scoreBucket: null,
+				preferredDefaultEnum: null,
 				defaultTable: null,
 				stats: [],
 				gameSpecific: {
@@ -69,7 +69,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 					preferredScoreAlg: "ktLampRating",
 					preferredSessionAlg: null,
 					preferredProfileAlg: null,
-					scoreBucket: null,
+					preferredDefaultEnum: null,
 					preferredRanking: null,
 					defaultTable: null,
 					stats: [],
@@ -127,7 +127,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 					preferredSessionAlg: null,
 					preferredProfileAlg: null,
 					preferredRanking: null,
-					scoreBucket: null,
+					preferredDefaultEnum: null,
 					defaultTable: null,
 					stats: [],
 					gameSpecific: {
@@ -188,7 +188,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 							preferredSessionAlg: null,
 							preferredProfileAlg: null,
 							preferredRanking: null,
-							scoreBucket: null,
+							preferredDefaultEnum: null,
 							defaultTable: null,
 							stats: [],
 							gameSpecific: {
@@ -380,7 +380,7 @@ t.test("PATCH /api/v1/users/:userID/games/:game/:playtype/settings", (t) => {
 					preferredSessionAlg: null,
 					preferredProfileAlg: null,
 					preferredRanking: null,
-					scoreBucket: null,
+					preferredDefaultEnum: null,
 					defaultTable: "mock_table",
 					stats: [],
 					gameSpecific: {

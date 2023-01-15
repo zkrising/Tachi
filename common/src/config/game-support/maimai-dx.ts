@@ -1,4 +1,5 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
+import { FmtPercent } from "../../utils/util";
 import { ClassValue, NoDecimalPlace } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
@@ -57,7 +58,7 @@ const MaimaiDXColours = [
 
 export const MAIMAI_DX_SINGLE_CONF = {
 	providedMetrics: {
-		percent: { type: "DECIMAL", validate: p.isBetween(0, 101) },
+		percent: { type: "DECIMAL", validate: p.isBetween(0, 101), formatter: FmtPercent },
 		lamp: {
 			type: "ENUM",
 			values: ["FAILED", "CLEAR", "FULL COMBO", "FULL COMBO+", "ALL PERFECT", "ALL PERFECT+"],

@@ -48,7 +48,7 @@ export type ChartLeaderboardDataset<GPT extends GPTString = GPTString> = (PBScor
 	};
 })[];
 
-export type UGSDataset<GPT extends GPTString = GPTString> = (UserGameStats<GPT> & {
+export type UGSDataset = (UserGameStats & {
 	__related: {
 		user: UserDocument;
 		index: integer;

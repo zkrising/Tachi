@@ -4,7 +4,7 @@ import Muted from "components/util/Muted";
 import React from "react";
 import { ChartDocument, COLOUR_SET, GetGamePTConfig } from "tachi-common";
 import MiniTable from "../components/MiniTable";
-import TierlistInfoPart from "./TierlistInfoPart";
+import RatingSystemPart from "./RatingSystemPart";
 
 export default function ITGDifficultyCell({ chart }: { chart: ChartDocument<"itg:Stamina"> }) {
 	const gptConfig = GetGamePTConfig("itg", "Stamina");
@@ -45,7 +45,7 @@ export default function ITGDifficultyCell({ chart }: { chart: ChartDocument<"itg
 					</span>
 					<br />
 					<Muted>{chart.data.charter}</Muted>
-					<TierlistInfoPart chart={chart} game="itg" />
+					<RatingSystemPart chart={chart} game="itg" />
 				</div>
 			</QuickTooltip>
 		</td>

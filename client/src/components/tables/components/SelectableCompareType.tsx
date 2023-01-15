@@ -3,20 +3,20 @@ import { SetState } from "types/react";
 import { ZTableTHProps } from "./TachiTable";
 
 export default function SelectableCompareType({
-	compareType,
-	setCompareType,
+	metric,
+	setMetric,
 	changeSort,
 	currentSortMode,
 	reverseSort,
 }: {
-	compareType: "score" | "lamp";
-	setCompareType: SetState<"score" | "lamp">;
+	metric: string;
+	setMetric: SetState<string>;
 } & ZTableTHProps) {
 	return (
 		<th>
 			<select
-				onChange={(v) => setCompareType(v.target.value as "score" | "lamp")}
-				value={compareType}
+				onChange={(v) => setMetric(v.target.value)}
+				value={metric}
 				style={{
 					backgroundColor: "#131313",
 					border: "none",

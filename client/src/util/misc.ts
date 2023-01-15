@@ -3,20 +3,16 @@ import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 import {
 	APIPermissions,
+	AnyProfileRatingAlg,
+	AnySessionRatingAlg,
 	ChartDocument,
 	Game,
 	GamePTConfig,
 	GetGamePTConfig,
-	Grades,
-	GPTString,
 	Playtype,
-	ProfileRatingLookup,
 	QuestDocument,
 	QuestSubscriptionDocument,
-	ScoreCalculatedDataLookup,
 	ScoreDocument,
-	SessionCalculatedDataLookup,
-	SessionDocument,
 	integer,
 } from "tachi-common";
 
@@ -56,29 +52,10 @@ export function FormatTables(tables: { table: string; level: string }[]) {
 	return tables.map((e) => `${e.table}${e.level}`).join(", ");
 }
 
-export function FormatGPTRating(
-	game: Game,
-	playtype: Playtype,
-	key: ScoreCalculatedDataLookup[GPTString],
-	value: number | null
-) {
-	if (value === null) {
-		return "No Data.";
-	}
-
-	const gptConfig = GetGamePTConfig(game, playtype);
-
-	if (gptConfig.scoreRatingAlgFormatters[key]) {
-		return gptConfig.scoreRatingAlgFormatters[key]!(value);
-	}
-
-	return value.toFixed(2);
-}
-
 export function FormatGPTProfileRating(
 	game: Game,
 	playtype: Playtype,
-	key: ProfileRatingLookup[GPTString],
+	key: AnyProfileRatingAlg,
 	value: number | null
 ) {
 	if (value === null) {
@@ -87,8 +64,8 @@ export function FormatGPTProfileRating(
 
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	if (gptConfig.profileRatingAlgFormatters[key]) {
-		return gptConfig.profileRatingAlgFormatters[key]!(value);
+	if (gptConfig.profileRatingAlgs[key].formatter) {
+		return gptConfig.profileRatingAlgs[key].formatter!(value);
 	}
 
 	return value.toFixed(2);
@@ -97,7 +74,7 @@ export function FormatGPTProfileRating(
 export function FormatGPTSessionRating(
 	game: Game,
 	playtype: Playtype,
-	key: SessionCalculatedDataLookup[GPTString],
+	key: AnySessionRatingAlg,
 	value: number | null | undefined
 ) {
 	if (value === null || value === undefined) {
@@ -106,8 +83,8 @@ export function FormatGPTSessionRating(
 
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	if (gptConfig.sessionRatingAlgFormatters[key]) {
-		return gptConfig.sessionRatingAlgFormatters[key]!(value);
+	if (gptConfig.sessionRatingAlgs[key].formatter) {
+		return gptConfig.sessionRatingAlgs[key].formatter!(value);
 	}
 
 	return value.toFixed(2);
@@ -191,27 +168,14 @@ export function SelectRightChart(
 	chartID: string,
 	charts: ChartDocument[]
 ) {
-	if (gptConfig.difficulties.includes(chartID as any)) {
-		for (const chart of charts) {
-			if (chart.difficulty === chartID && chart.isPrimary) {
-				return chart;
-			}
+	// try matching difficulty names, if it's not any of those, it's probably a chartID.
+	for (const chart of charts) {
+		if (chart.difficulty === chartID && chart.isPrimary) {
+			return chart;
 		}
-	} else if (gptConfig.gptString === "itg:Stamina") {
-		for (const chart of charts) {
-			if (
-				(chart as ChartDocument<"itg:Stamina">).data.hashGSV3 === chartID &&
-				chart.isPrimary
-			) {
-				return chart;
-			}
-		}
-	} else {
-		// else, its a chart ID.
-		for (const chart of charts) {
-			if (chartID === chart.chartID) {
-				return chart;
-			}
+
+		if (chartID === chart.chartID) {
+			return chart;
 		}
 	}
 
@@ -287,7 +251,7 @@ export function FormatScoreRating(
 		return "No Data.";
 	}
 
-	const formatter = GetGamePTConfig(game, playtype).scoreRatingAlgFormatters[rating];
+	const formatter = GetGamePTConfig(game, playtype).scoreRatingAlgs[rating].formatter;
 
 	if (!formatter) {
 		return value.toFixed(2);
@@ -299,45 +263,20 @@ export function FormatScoreRating(
 export function FormatSessionRating(
 	game: Game,
 	playtype: Playtype,
-	rating: keyof SessionDocument["calculatedData"],
+	rating: AnySessionRatingAlg,
 	value: number | null | undefined
 ) {
 	if (value === null || value === undefined) {
 		return "No Data.";
 	}
 
-	const formatter = GetGamePTConfig(game, playtype).sessionRatingAlgFormatters[rating];
+	const formatter = GetGamePTConfig(game, playtype).sessionRatingAlgs[rating].formatter;
 
 	if (!formatter) {
 		return value.toFixed(2);
 	}
 
 	return formatter(value);
-}
-
-export function GetGradeFromPercent<GPT extends GPTString = GPTString>(
-	game: Game,
-	playtype: Playtype,
-	percent: number
-): Grades[GPT] {
-	const gptConfig = GetGamePTConfig(game, playtype);
-	const boundaries = gptConfig.gradeBoundaries;
-	const grades = gptConfig.grades;
-
-	if (!boundaries) {
-		throw new Error(
-			`Invalid call to GetGradeFromPercent! GPT ${game}:${playtype} does not use grade boundaries.`
-		);
-	}
-
-	// (hey, this for loop is backwards!)
-	for (let i = boundaries.length; i >= 0; i--) {
-		if (percent >= boundaries[i]) {
-			return grades[i] as Grades[GPT];
-		}
-	}
-
-	throw new Error(`Could not resolve grade for percent ${percent} on game ${game}`);
 }
 
 export function ConditionalLeadingSpace(maybeStr: string | null) {

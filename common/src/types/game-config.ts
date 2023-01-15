@@ -158,7 +158,7 @@ export type AnyClasses = {
 };
 
 export type Classes = {
-	[G in GPTString]: keyof typeof GAME_PT_CONFIGS[G]["classes"];
+	[G in GPTString]: string & keyof typeof GAME_PT_CONFIGS[G]["classes"];
 };
 
 export type ClassConfigs = {

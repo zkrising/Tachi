@@ -24,6 +24,7 @@ import {
 	ShowcaseStatDetails,
 	SongDocument,
 	Playtype,
+	GetScoreMetricConf,
 } from "tachi-common";
 import { UGPTPreferenceStatsReturn } from "types/api-returns";
 import { GamePT, UGPT } from "types/react";
@@ -259,14 +260,14 @@ function StatDelta({
 	v1,
 	v2,
 	mode,
-	property,
+	metric: property,
 	game,
 	playtype,
 }: {
 	v1: number;
 	v2?: number;
 	mode: "folder" | "chart";
-	property: UGPTPreferenceStatsReturn["stat"]["metric"];
+	metric: string;
 	game: Game;
 	playtype: Playtype;
 }) {
@@ -276,11 +277,8 @@ function StatDelta({
 		v2 = 0;
 	}
 
-	let d: string | number = v2 - v1;
 	const formattedV2 = FormatValue(game, playtype, mode, property, v2);
-	if (property === "percent") {
-		d = `${d.toFixed(2)}%`;
-	}
+	const d = FormatValue(game, playtype, mode, property, v2 - v1);
 
 	let colour;
 	if (v2 === v1) {
@@ -310,7 +308,7 @@ export function FormatValue(
 	game: Game,
 	playtype: Playtype,
 	mode: "folder" | "chart",
-	prop: "grade" | "lamp" | "score" | "percent" | "playcount",
+	metric: string,
 	value: number
 ) {
 	if (mode === "folder") {
@@ -318,40 +316,19 @@ export function FormatValue(
 	}
 
 	const gptConfig = GetGamePTConfig(game, playtype);
+	const conf = GetScoreMetricConf(gptConfig, metric);
 
-	if (prop === "percent") {
-		return `${value.toFixed(2)}%`;
-	} else if (prop === "grade") {
-		return gptConfig.grades[value];
-	} else if (prop === "lamp") {
-		return gptConfig.lamps[value];
+	if (!conf) {
+		return "UNKNOWN METRIC";
+	}
+
+	if (conf.type === "ENUM") {
+		return conf.values[value];
+	} else if (conf.type === "DECIMAL" || conf.type === "INTEGER") {
+		return conf.formatter(value);
 	}
 
 	return value;
-}
-
-export function FormatPropertyGTE(
-	game: Game,
-	playtype: Playtype,
-	prop: "grade" | "lamp" | "score" | "percent" | "playcount",
-	gte: number
-) {
-	const gptConfig = GetGamePTConfig(game, playtype);
-
-	if (gte === null) {
-		return "NO DATA";
-	}
-
-	if (prop === "grade") {
-		return gptConfig.grades[gte];
-	} else if (prop === "lamp") {
-		return gptConfig.lamps[gte];
-	} else if (prop === "score" || prop === "playcount") {
-		return gte;
-	}
-	// else if (prop === "percent") {
-	return gte.toFixed(2);
-	// }
 }
 
 export function GetStatName(
@@ -398,14 +375,14 @@ export function StatDisplay({
 					</Link>
 					<h4>
 						{UppercaseFirst(stat.metric)}:{" "}
-						{FormatPropertyGTE(game, playtype, stat.metric, result.value)}
+						{FormatValue(game, playtype, stat.mode, stat.metric, result.value)}
 					</h4>
 					{user && user.id !== reqUser.id && (
 						<StatDelta
 							v1={statData.result.value}
 							v2={compareData?.result.value}
 							mode={stat.mode}
-							property={stat.metric}
+							metric={stat.metric}
 							game={game}
 							playtype={playtype}
 						/>
@@ -432,7 +409,7 @@ export function StatDisplay({
 					</Link>
 					<h5>
 						{UppercaseFirst(stat.metric)} &gt;={" "}
-						{FormatPropertyGTE(game, playtype, stat.metric, stat.gte)}
+						{FormatValue(game, playtype, stat.mode, stat.metric, stat.gte)}
 					</h5>
 					<h4>
 						{result.value}
@@ -447,7 +424,7 @@ export function StatDisplay({
 							v1={statData.result.value}
 							v2={compareData?.result.value}
 							mode={stat.mode}
-							property={stat.metric}
+							metric={stat.metric}
 							game={game}
 							playtype={playtype}
 						/>

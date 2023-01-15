@@ -1,34 +1,35 @@
 import { ChangeOpacity } from "util/color-opacity";
+import { ONE_WEEK } from "util/constants/time";
 import { CreateChartLink } from "util/data";
 import { NumericSOV } from "util/sorts";
-import { ONE_WEEK } from "util/constants/time";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
+import ScoreCoreCells from "components/tables/game-core-cells/ScoreCoreCells";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
-import React, { useEffect, useMemo, useState } from "react";
-import { Form } from "react-bootstrap";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import {
-	ChartDocument,
 	FormatChart,
 	Game,
 	GamePTConfig,
+	GetGPTString,
 	GetGamePTConfig,
+	GetScoreMetricConf,
 	IIDX_LAMPS,
-	UserDocument,
 	SessionDocument,
 	SessionScoreInfo,
+	UserDocument,
 } from "tachi-common";
 import { GamePT } from "types/react";
 import { FolderDataset } from "types/tables";
-import { SessionReturns } from "types/api-returns";
 
 type Props = {
 	folderDataset: FolderDataset;
 	reqUser: UserDocument;
-	view: "grade" | "lamp";
+	enumMetric: string;
 } & GamePT;
 
 export default function FolderMinimap(props: Props) {
@@ -61,7 +62,7 @@ export default function FolderMinimap(props: Props) {
 				<FolderMinimapMain {...props} recentSession={session} />
 			</div>
 			<div className="d-block d-lg-none">
-				Sadly, Switchboard view doesn't work very well on mobile at the moment.
+				Sadly, Switchboard view doesn't work on mobile at the moment.
 			</div>
 		</>
 	);
@@ -71,40 +72,32 @@ function FolderMinimapMain({
 	game,
 	playtype,
 	folderDataset,
-	view,
+	enumMetric,
 	recentSession,
 }: Props & {
 	recentSession: { session: SessionDocument; scoreInfo: Array<SessionScoreInfo> } | null;
 }) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const [sortAlg, setSortAlg] = useState(view === "grade" ? "score" : "lamp");
-
-	useEffect(() => {
-		if (view === "grade") {
-			setSortAlg("score");
-		} else {
-			setSortAlg("lamp");
-		}
-	}, [view]);
-
 	const getterFn = useMemo<(f: FolderDataset[0]) => number | undefined>(() => {
-		if (sortAlg === "score") {
-			return (c) => c.__related.pb?.scoreData.percent;
-		} else if (sortAlg === "lamp") {
-			return (c) => c.__related.pb?.scoreData.lampIndex;
-		} else if (sortAlg.startsWith("tierlist:")) {
-			const v = sortAlg.split("tierlist:")[1];
+		const conf = GetScoreMetricConf(gptConfig, enumMetric);
 
-			return (c) => c.tierlistInfo[v as keyof ChartDocument["tierlistInfo"]]?.value;
+		if (!conf) {
+			return () => 0; // wut
 		}
 
-		return () => 0;
-	}, [sortAlg]);
+		if (conf.type === "ENUM") {
+			// @ts-expect-error insane dynamic access
+			return (c) => c.__related.pb?.scoreData.enumIndexes[enumMetric];
+		}
+
+		// @ts-expect-error insane dynamic access
+		return (c) => c.__related.pb?.scoreData[enumMetric];
+	}, [enumMetric]);
 
 	const sortedDataset = useMemo(
 		() => folderDataset.slice(0).sort(NumericSOV((a) => getterFn(a) ?? -Infinity, true)),
-		[getterFn, folderDataset, sortAlg]
+		[getterFn, folderDataset, enumMetric]
 	);
 
 	// For the switchboard chart, display a raise icon on stuff the user has recently played.
@@ -114,7 +107,19 @@ function FolderMinimapMain({
 		}
 
 		return recentSession.scoreInfo
-			.filter((e) => e.isNewScore || e.gradeDelta > 0 || e.lampDelta > 0)
+			.filter((e) => {
+				if (e.isNewScore) {
+					return true;
+				}
+
+				for (const v of Object.values(e.deltas)) {
+					if (v >= 0) {
+						return true;
+					}
+				}
+
+				return false;
+			})
 			.map((e) => e.scoreID);
 	}, [recentSession]);
 
@@ -127,37 +132,20 @@ function FolderMinimapMain({
 							key={d.chartID}
 							data={d}
 							gptConfig={gptConfig}
-							view={view}
+							enumMetric={enumMetric}
 							game={game}
 							wasRecent={
 								(d.__related.pb &&
-									recentlyTouched.some(
-										(scoreID) =>
-											d.__related.pb!.composedFrom.scorePB === scoreID ||
-											d.__related.pb!.composedFrom.lampPB === scoreID
+									recentlyTouched.some((scoreID) =>
+										d.__related.pb!.composedFrom.find(
+											(e) => e.scoreID === scoreID
+										)
 									)) ??
 								false
 							}
 						/>
 					))}
 				</div>
-				<Divider />
-				<Form.Group>
-					<Form.Label>Sorting switchboard on:</Form.Label>
-					<Form.Control
-						as="select"
-						value={sortAlg}
-						onChange={(e) => setSortAlg(e.target.value)}
-					>
-						{view === "grade" && <option value="score">Your Score</option>}
-						{view === "lamp" && <option value="lamp">Your Lamp</option>}
-						{gptConfig.tierlists.map((e) => (
-							<option key={`tierlist:${e}`} value={`tierlist:${e}`}>
-								Tierlist: {e}
-							</option>
-						))}
-					</Form.Control>
-				</Form.Group>
 			</div>
 		</div>
 	);
@@ -166,16 +154,18 @@ function FolderMinimapMain({
 function MinimapElement({
 	data,
 	gptConfig,
-	view,
+	enumMetric,
 	game,
 	wasRecent,
 }: {
 	data: FolderDataset[0];
-	view: "grade" | "lamp";
+	enumMetric: string;
 	gptConfig: GamePTConfig;
 	game: Game;
 	wasRecent: boolean;
 }) {
+	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, data.playtype)];
+
 	let icon = "level-up-alt";
 
 	// if this user recently cleared mare nectaris
@@ -183,7 +173,8 @@ function MinimapElement({
 	if (
 		data.chartID === "924bf011fdd8334b609b02e382123f9f5440d16d" &&
 		data.__related.pb &&
-		data.__related.pb?.scoreData.lampIndex >= IIDX_LAMPS.EASY_CLEAR
+		// @ts-expect-error the above chartID guarantees mare nectaris
+		data.__related.pb?.scoreData.enumIndexes.lamp >= IIDX_LAMPS.EASY_CLEAR
 	) {
 		icon = "hand-middle-finger";
 	}
@@ -194,8 +185,8 @@ function MinimapElement({
 		}
 
 		// @ts-expect-error unhinged dynamic access (i dont care)
-		return gptConfig[`${view}Colours`][data.__related.pb.scoreData[view]];
-	}, [data.__related.pb, gptConfig, view]);
+		return gptImpl.enumColours[enumMetric][data.__related.pb.scoreData[enumMetric]];
+	}, [data.__related.pb, gptConfig, enumMetric]);
 
 	return (
 		<QuickTooltip
@@ -209,17 +200,10 @@ function MinimapElement({
 							<br />
 						</>
 					)}
-					<span>{data.__related.pb?.scoreData.lamp ?? "Not Played"}</span>
-					{data.__related.pb && (
-						<>
-							<br />
-							{data.__related.pb.scoreData.grade}
-							<br />
-							<span>
-								{data.__related.pb.scoreData.score} (
-								{data.__related.pb.scoreData.percent.toFixed(2)}%)
-							</span>
-						</>
+					{data.__related.pb ? (
+						<ScoreCoreCells chart={data} game={game} score={data.__related.pb} />
+					) : (
+						<span>Not Played</span>
 					)}
 				</div>
 			}

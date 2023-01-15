@@ -1,11 +1,11 @@
 import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
-import { InternalFailure } from "lib/score-import/framework/common/converter-failures";
 import { Volforce } from "rg-stats";
 import {
 	FmtNum,
 	FmtNumCompact,
+	GetGrade,
 	GetGradeDeltas,
 	IIDXLIKE_GBOUNDARIES,
 	SDVXLIKE_GBOUNDARIES,
@@ -25,22 +25,6 @@ import type {
 	ScoreCalculator,
 } from "game-implementations/types";
 import type { GPTStrings, GradeBoundary, integer, SpecificUserGameStats } from "tachi-common";
-
-/**
- * Util for getting a games' grade for a given score.
- */
-export function GetGrade<G extends string>(grades: Array<GradeBoundary<G>>, score: number): G {
-	// sort grades going downwards in their boundaries.
-	const descendingGrades = grades.slice(0).sort((a, b) => b.lowerBound - a.lowerBound);
-
-	for (const { name, lowerBound } of descendingGrades) {
-		if (score >= lowerBound) {
-			return name;
-		}
-	}
-
-	throw new InternalFailure(`Could not resolve grade for score ${score}.`);
-}
 
 export const EX_SCORE_CHECK: ChartSpecificMetricValidator<IIDXLikes> = (exScore, chart) => {
 	if (exScore < 0) {

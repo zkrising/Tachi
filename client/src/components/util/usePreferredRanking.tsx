@@ -1,8 +1,8 @@
-import { UGPTSettings } from "tachi-common";
+import { UGPTSettingsDocument } from "tachi-common";
 import useLUGPTSettings from "./useLUGPTSettings";
 
 export default function usePreferredRanking():
-	| UGPTSettings["preferences"]["preferredRanking"]
+	| UGPTSettingsDocument["preferences"]["preferredRanking"]
 	| null {
 	const { settings } = useLUGPTSettings();
 

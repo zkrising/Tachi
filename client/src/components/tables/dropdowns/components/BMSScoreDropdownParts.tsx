@@ -13,7 +13,7 @@ export function BMSGraphsComponent({
 	score: ScoreDocument<"bms:7K" | "bms:14K"> | PBScoreDocument<"bms:7K" | "bms:14K">;
 	chart: ChartDocument<"bms:7K" | "bms:14K">;
 }) {
-	const gaugeHistory = score.scoreData.hitMeta.gaugeHistory;
+	const gaugeHistory = score.scoreData.optional.gaugeHistory;
 
 	const [lamp, setLamp] = useState<LampTypes>(LampToKey(score));
 
@@ -126,7 +126,7 @@ function LampToKey(
 		return "EX_HARD";
 	} else if (lamp === "FULL COMBO") {
 		// @hack - attempt to guess what gauge they used?
-		if ((score.scoreData.hitMeta.gaugeHistory?.[0] ?? 0) > 22) {
+		if ((score.scoreData.optional.gaugeHistory?.[0] ?? 0) > 22) {
 			return "EX_HARD";
 		}
 		return "NORMAL";

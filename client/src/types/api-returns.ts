@@ -7,13 +7,11 @@ import {
 	GamePTConfig,
 	GoalDocument,
 	GoalSubscriptionDocument,
-	Grades,
 	GPTString,
 	GPTStringToGame,
 	ImportDocument,
 	ImportTrackerFailed,
 	integer,
-	Lamps,
 	PBScoreDocument,
 	UserDocument,
 	ScoreDocument,
@@ -22,13 +20,13 @@ import {
 	ShowcaseStatFolder,
 	SongDocument,
 	TableDocument,
-	ProfileRatingLookup,
 	UserGameStats,
 	UserGameStatsSnapshotDocument,
 	QuestDocument,
 	QuestSubscriptionDocument,
 	QuestlineDocument,
 	SessionScoreInfo,
+	ProfileRatingAlgorithms,
 } from "tachi-common";
 
 export interface UGPTStatsReturn<GPT extends GPTString = GPTString> {
@@ -37,7 +35,7 @@ export interface UGPTStatsReturn<GPT extends GPTString = GPTString> {
 	mostRecentScore: ScoreDocument<GPT>;
 	totalScores: number;
 	rankingData: Record<
-		ProfileRatingLookup[GPT],
+		ProfileRatingAlgorithms[GPT],
 		{
 			ranking: integer;
 			outOf: integer;
@@ -93,8 +91,8 @@ export interface UGPTChartPBComposition<GPT extends GPTString = GPTString> {
 	pb: PBScoreDocument<GPT>;
 }
 
-export type UGSWithRankingData<GPT extends GPTString = GPTString> = UserGameStats<GPT> & {
-	__rankingData: Record<ProfileRatingLookup[GPT], { outOf: number; ranking: number }>;
+export type UGSWithRankingData<GPT extends GPTString = GPTString> = UserGameStats & {
+	__rankingData: Record<ProfileRatingAlgorithms[GPT], { outOf: number; ranking: number }>;
 };
 
 export interface SongChartsSearch<GPT extends GPTString = GPTString> {
@@ -102,9 +100,8 @@ export interface SongChartsSearch<GPT extends GPTString = GPTString> {
 	charts: ChartDocument<GPT>[];
 }
 
-export interface FolderStatsInfo<GPT extends GPTString = GPTString> {
-	grades: Record<Grades[GPT], integer>;
-	lamps: Record<Lamps[GPT], integer>;
+export interface FolderStatsInfo {
+	stats: Record<string, Record<string, integer>>;
 	folderID: string;
 	chartCount: integer;
 }
@@ -169,9 +166,9 @@ export interface ScoreLeaderboardReturns<GPT extends GPTString = GPTString> {
 	pbs: PBScoreDocument<GPT>[];
 }
 
-export interface UserLeaderboardReturns<GPT extends GPTString = GPTString> {
+export interface UserLeaderboardReturns {
 	users: UserDocument[];
-	gameStats: UserGameStats<GPT>[];
+	gameStats: UserGameStats[];
 }
 
 export interface UserRecentSummary {
@@ -292,13 +289,6 @@ export type SessionFolderRaises = {
 	previousCount: integer; // how many AAAs/HARD CLEARs/whatevers was on this
 	// folder before this session?
 	totalCharts: integer;
-} & (
-	| {
-			type: "grade";
-			value: Grades[GPTString];
-	  }
-	| {
-			type: "lamp";
-			value: Lamps[GPTString];
-	  }
-);
+	type: string;
+	value: string;
+};

@@ -1,6 +1,6 @@
 import { APIFetchV1 } from "util/api";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { UserSettings } from "tachi-common";
+import { UserSettingsDocument } from "tachi-common";
 import { JustChildren, SetState } from "types/react";
 import { UserContext } from "./UserContext";
 
@@ -8,14 +8,14 @@ import { UserContext } from "./UserContext";
  * Contains the current user's settings.
  */
 export const UserSettingsContext = createContext<{
-	settings: UserSettings | null;
-	setSettings: SetState<UserSettings | null>;
+	settings: UserSettingsDocument | null;
+	setSettings: SetState<UserSettingsDocument | null>;
 }>({ settings: null, setSettings: () => void 0 });
 
 UserSettingsContext.displayName = "UserSettingsContext";
 
 export function UserSettingsContextProvider({ children }: JustChildren) {
-	const [settings, setSettings] = useState<UserSettings | null>(null);
+	const [settings, setSettings] = useState<UserSettingsDocument | null>(null);
 
 	const { user } = useContext(UserContext);
 
@@ -25,7 +25,7 @@ export function UserSettingsContextProvider({ children }: JustChildren) {
 		}
 
 		(async () => {
-			const res = await APIFetchV1<UserSettings>(`/users/${user.id}/settings`);
+			const res = await APIFetchV1<UserSettingsDocument>(`/users/${user.id}/settings`);
 
 			if (res.success) {
 				setSettings(res.body);

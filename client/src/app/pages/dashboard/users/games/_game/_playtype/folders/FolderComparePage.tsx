@@ -125,8 +125,6 @@ function FolderCompare({
 	withUser: UserDocument;
 	folder: FolderDocument;
 } & GamePT) {
-	const gptConfig = GetGamePTConfig(game, playtype);
-
 	const { data: baseData, error: baseError } = useApiQuery<UGPTFolderReturns>(
 		`/users/${reqUser.id}/games/${game}/${playtype}/folders/${folder.folderID}`
 	);
@@ -136,11 +134,6 @@ function FolderCompare({
 	);
 
 	const [shouldIncludeNotPlayed, setShouldIncludeNotPlayed] = useState(false);
-	const [shouldESD, setShouldESD] = useState(gptConfig.supportsESD);
-
-	useEffect(() => {
-		setShouldESD(gptConfig.supportsESD);
-	}, [gptConfig]);
 
 	const dataset = useMemo(() => {
 		// i *LOVE* the rules of hooks! they're so convenient!
@@ -197,13 +190,6 @@ function FolderCompare({
 					onChange={() => setShouldIncludeNotPlayed(!shouldIncludeNotPlayed)}
 					label="Include charts without plays?"
 				/>
-				{gptConfig.supportsESD && (
-					<Form.Check
-						checked={shouldESD}
-						onChange={() => setShouldESD(!shouldESD)}
-						label="Sort score differences intelligently? (i.e. Treat the difference between 70% and 71% as smaller than the difference between 99% and 100%)"
-					/>
-				)}
 				<Divider />
 			</Col>
 			<ComparePBsTable
@@ -211,7 +197,6 @@ function FolderCompare({
 				compareUser={withUser.username}
 				dataset={dataset}
 				game={game}
-				shouldESD={shouldESD}
 				playtype={playtype}
 			/>
 		</Row>

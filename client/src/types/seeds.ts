@@ -4,7 +4,7 @@ import {
 	ChartDocument,
 	FolderDocument,
 	Game,
-	GameToGPTString,
+	GPTStrings,
 	GoalDocument,
 	GoalDocumentFolder,
 	GoalDocumentMulti,
@@ -70,7 +70,7 @@ type SongSeedsWithRelated = {
 };
 
 type ChartSeedsWithRelated = {
-	[G in Game as `charts-${G}.json`]: Array<ChartWithRelated<GameToGPTString[G]>>;
+	[G in Game as `charts-${G}.json`]: Array<ChartWithRelated<GPTStrings[G]>>;
 };
 
 /**

@@ -16,10 +16,10 @@ import {
 	FormatGame,
 	GetGameConfig,
 	GetGamePTConfig,
-	IDStrings,
+	GPTString,
 	integer,
 	UserDocument,
-	ProfileRatingLookup,
+	ProfileRatingAlgorithms,
 	UserGameStats,
 } from "tachi-common";
 import { GameClassSets } from "tachi-common/game-classes";
@@ -84,8 +84,8 @@ function LeaderboardsPageContent({
 }: {
 	reqUser: UserDocument;
 	data: LeaderboardsData;
-	alg: ProfileRatingLookup[IDStrings];
-	setAlg: SetState<ProfileRatingLookup[IDStrings]>;
+	alg: ProfileRatingAlgorithms[GPTString];
+	setAlg: SetState<ProfileRatingAlgorithms[GPTString]>;
 } & GamePT) {
 	const { stats, leaderboard } = data;
 
@@ -142,7 +142,7 @@ function LeaderboardsPageContent({
 								<ClassBadge
 									key={`${k}:${v}`}
 									classValue={v}
-									classSet={k as GameClassSets[IDStrings]}
+									classSet={k as GameClassSets[GPTString]}
 									game={game}
 									playtype={playtype}
 								/>

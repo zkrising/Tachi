@@ -1,55 +1,55 @@
 import {
 	Game,
 	GetGamePTConfig,
-	IDStrings,
-	ScoreCalculatedDataLookup,
-	SessionCalculatedDataLookup,
-	ProfileRatingLookup,
+	GPTString,
 	Playtype,
+	ProfileRatingAlgorithms,
+	ScoreRatingAlgorithms,
+	SessionRatingAlgorithms,
 } from "tachi-common";
 import useLUGPTSettings from "./useLUGPTSettings";
 
-export default function useScoreRatingAlg<I extends IDStrings = IDStrings>(
+export default function useScoreRatingAlg<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype
-): ScoreCalculatedDataLookup[I] {
+): ScoreRatingAlgorithms[GPT] {
 	const { settings } = useLUGPTSettings();
 
 	if (!settings?.preferences.preferredScoreAlg) {
 		const gptConfig = GetGamePTConfig(game, playtype);
 
-		return gptConfig.defaultScoreRatingAlg as ScoreCalculatedDataLookup[I];
+		return gptConfig.defaultScoreRatingAlg as ScoreRatingAlgorithms[GPT];
 	}
 
-	return settings.preferences.preferredScoreAlg as ScoreCalculatedDataLookup[I];
+	return settings.preferences.preferredScoreAlg as ScoreRatingAlgorithms[GPT];
 }
 
-export function useSessionRatingAlg<I extends IDStrings = IDStrings>(
+export function useSessionRatingAlg<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype
-): SessionCalculatedDataLookup[I] {
+): SessionRatingAlgorithms[GPT] {
 	const { settings } = useLUGPTSettings();
 
 	if (!settings?.preferences.preferredSessionAlg) {
 		const gptConfig = GetGamePTConfig(game, playtype);
 
-		return gptConfig.defaultSessionRatingAlg as SessionCalculatedDataLookup[I];
+		return gptConfig.defaultSessionRatingAlg as SessionRatingAlgorithms[GPT];
 	}
 
-	return settings.preferences.preferredSessionAlg as SessionCalculatedDataLookup[I];
+	return settings.preferences.preferredSessionAlg as SessionRatingAlgorithms[GPT];
 }
 
-export function useProfileRatingAlg<I extends IDStrings = IDStrings>(
+export function useProfileRatingAlg<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype
-): ProfileRatingLookup[I] {
+): ProfileRatingAlgorithms[GPT] {
 	const { settings } = useLUGPTSettings();
 
 	if (!settings?.preferences.preferredProfileAlg) {
 		const gptConfig = GetGamePTConfig(game, playtype);
 
-		return gptConfig.defaultProfileRatingAlg as ProfileRatingLookup[I];
+		return gptConfig.defaultProfileRatingAlg as ProfileRatingAlgorithms[GPT];
 	}
 
-	return settings.preferences.preferredProfileAlg as ProfileRatingLookup[I];
+	return settings.preferences.preferredProfileAlg as ProfileRatingAlgorithms[GPT];
 }

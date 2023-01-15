@@ -1,4 +1,5 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
+import { FmtNum, FmtPercent } from "../../utils/util";
 import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
@@ -28,7 +29,7 @@ const PopnClasses = [
 
 export const POPN_9B_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", validate: p.isBetween(0, 100_000) },
+		score: { type: "INTEGER", validate: p.isBetween(0, 100_000), formatter: FmtNum },
 		clearMedal: {
 			type: "ENUM",
 			values: [
@@ -70,7 +71,7 @@ export const POPN_9B_CONF = {
 
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
-		gauge: { type: "INTEGER", validate: p.isBetween(0, 100) },
+		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
 	},
 
 	scoreRatingAlgs: {

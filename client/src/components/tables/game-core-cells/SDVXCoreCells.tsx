@@ -1,5 +1,6 @@
 import React from "react";
 import { ChartDocument, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { GetEnumColour } from "lib/game-implementations";
 import MillionsScoreCell from "../cells/MillionsScoreCell";
 import SDVXJudgementCell from "../cells/SDVXJudgementCell";
 import SDVXLampCell from "../cells/SDVXLampCell";
@@ -14,7 +15,11 @@ export default function SDVXScoreCoreCells({
 }) {
 	return (
 		<>
-			<MillionsScoreCell score={sc} />
+			<MillionsScoreCell
+				score={sc.scoreData.score}
+				grade={sc.scoreData.grade}
+				colour={GetEnumColour(sc, "grade")}
+			/>
 			<SDVXJudgementCell score={sc} />
 			<SDVXLampCell score={sc} />
 			<VF6Cell score={sc} chart={chart} />

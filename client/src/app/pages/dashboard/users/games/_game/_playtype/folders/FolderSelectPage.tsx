@@ -83,9 +83,9 @@ export function FolderInfoComponent({
 }: UGPT & { folder: FolderDocument; folderStats: FolderStatsInfo }) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const scoreBucket = useBucket(game, playtype);
+	const preferredDefaultEnum = useBucket(game, playtype);
 
-	const [elements, setElements] = useState<"grade" | "lamp">(scoreBucket);
+	const [elements, setElements] = useState<"grade" | "lamp">(preferredDefaultEnum);
 
 	const base = useUGPTBase({ reqUser, game, playtype });
 

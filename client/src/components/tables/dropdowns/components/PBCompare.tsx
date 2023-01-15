@@ -1,21 +1,21 @@
 import React from "react";
-import { ScoreDocument, PBScoreDocument, IDStrings, ChartDocument } from "tachi-common";
+import { ScoreDocument, PBScoreDocument, GPTString, ChartDocument } from "tachi-common";
 import { UGPTChartPBComposition } from "types/api-returns";
 import { ScoreState } from "../ScoreDropdown";
 
-export default function PBCompare<I extends IDStrings>({
+export default function PBCompare({
 	data,
 	scoreState,
 	DocComponent,
 }: {
-	data: UGPTChartPBComposition<I>;
+	data: UGPTChartPBComposition;
 	scoreState: ScoreState;
 	DocComponent: (props: {
-		score: ScoreDocument<I> | PBScoreDocument<I>;
+		score: ScoreDocument | PBScoreDocument;
 		scoreState: ScoreState;
 		pbData: UGPTChartPBComposition;
 		forceScoreData: boolean;
-		chart: ChartDocument<I>;
+		chart: ChartDocument;
 	}) => JSX.Element;
 }) {
 	return (

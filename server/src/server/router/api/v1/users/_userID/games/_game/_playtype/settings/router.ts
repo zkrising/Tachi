@@ -46,7 +46,7 @@ router.patch(
 			preferredRanking: optNull(p.isIn("global", "rival")),
 
 			gameSpecific: optNull(gameSpecificSchema),
-			scoreBucket: optNull(p.isIn("grade", "lamp")),
+			preferredDefaultEnum: optNull(p.isIn("grade", "lamp")),
 		});
 
 		if (err) {
@@ -86,8 +86,8 @@ router.patch(
 			}
 		}
 
-		if (body.scoreBucket !== undefined) {
-			updateQuery[`preferences.scoreBucket`] = body.scoreBucket;
+		if (body.preferredDefaultEnum !== undefined) {
+			updateQuery[`preferences.preferredDefaultEnum`] = body.preferredDefaultEnum;
 		}
 
 		if (body.defaultTable !== undefined) {

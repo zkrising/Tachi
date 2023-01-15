@@ -24,7 +24,7 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 				preferredProfileAlg: null,
 				preferredScoreAlg: null,
 				preferredSessionAlg: null,
-				scoreBucket: null,
+				preferredDefaultEnum: null,
 				defaultTable: null,
 				preferredRanking: null,
 				stats: [

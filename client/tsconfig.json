@@ -49,7 +49,7 @@
 		// kept around to keep eslint happy, otherwise it won't try and lint the file
 		// note that this technically results in an error because this file isn't in
 		// `rootDir`. However, I don't care.
-		"vite.config.js"
+		// "vite.config.js"
 	],
 	"exclude": [
 		"node_modules"

@@ -1,7 +1,7 @@
 import { StrSOV } from "util/sorts";
 import { SearchFunctions } from "util/ztable/search";
 import React from "react";
-import { FormatChart } from "tachi-common";
+import { FormatChart, GetBMSCourseIndex } from "tachi-common";
 import { BMSCourseWithRelated, CellsRenderFN } from "types/seeds";
 import { Header } from "../components/TachiTable";
 
@@ -16,7 +16,7 @@ export const SeedsBMSCourseLookupHeaders: Header<BMSCourseWithRelated>[] = [
 			const b2 = `${b.playtype} ${b.set}`;
 
 			if (a2 === b2) {
-				return a.value - b.value;
+				return GetBMSCourseIndex(a) - GetBMSCourseIndex(b);
 			}
 
 			return a2.localeCompare(b2);

@@ -1,4 +1,5 @@
 import QuickTooltip from "components/layout/misc/QuickTooltip";
+import RatingSystemPart from "components/tables/cells/RatingSystemPart";
 import MiniTable from "components/tables/components/MiniTable";
 import ApiError from "components/util/ApiError";
 import ExternalLink from "components/util/ExternalLink";
@@ -6,12 +7,13 @@ import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
-import { UserContext } from "context/UserContext";
 import { AllLUGPTStatsContext } from "context/AllLUGPTStatsContext";
+import { UserContext } from "context/UserContext";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import React, { useContext } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { ChartDocument, FolderDocument, Game, GetGamePTConfig } from "tachi-common";
+import { ChartDocument, FolderDocument, Game, GetGPTString } from "tachi-common";
 import { GamePT } from "types/react";
 
 export default function ChartInfoFormat({
@@ -19,9 +21,9 @@ export default function ChartInfoFormat({
 	game,
 	playtype,
 }: { chart: ChartDocument } & GamePT) {
-	const gptConfig = GetGamePTConfig(game, playtype);
+	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, playtype)];
 
-	const withTierlists = gptConfig.tierlists.filter((e) => chart.tierlistInfo[e]);
+	const ratingSystems = gptImpl.ratingSystems;
 
 	const { data, error } = useApiQuery<FolderDocument[]>(
 		`/games/${game}/${playtype}/charts/${chart.chartID}/folders`
@@ -71,27 +73,44 @@ export default function ChartInfoFormat({
 				<ChartInfoMiddle chart={chart} game={game} />
 			</Col>
 			<Col xs={12} lg={3}>
-				{withTierlists.length !== 0 ? (
-					<MiniTable headers={["Tierlist Info"]} colSpan={2}>
-						{withTierlists.map((e) => (
-							<tr key={e}>
-								<td>{e}</td>
-								<td>
-									{chart.tierlistInfo[e]!.text}{" "}
-									<Muted>({chart.tierlistInfo[e]!.value.toFixed(2)})</Muted>
-									{chart.tierlistInfo[e]!.individualDifference && (
-										<>
-											<br />
-											<QuickTooltip tooltipContent="Individual Difference - The difficulty of this varies massively between people!">
-												<span>
-													<Icon type="balance-scale-left" />
-												</span>
-											</QuickTooltip>
-										</>
-									)}
-								</td>
-							</tr>
-						))}
+				<RatingSystemPart chart={chart} game={game} />
+				{ratingSystems.length !== 0 ? (
+					<MiniTable headers={["Ratings"]} colSpan={2}>
+						{ratingSystems.map((e) => {
+							// @ts-expect-error bad types
+							const strV = e.toString(chart);
+							// @ts-expect-error bad types
+							const numV = e.toNumber(chart);
+
+							if (
+								strV === null ||
+								strV === undefined ||
+								numV === null ||
+								numV === undefined
+							) {
+								return null;
+							}
+
+							return (
+								<tr key={e.name}>
+									<td>{e}</td>
+									<td>
+										{strV} <Muted>({numV.toFixed(2)})</Muted>
+										{/* @ts-expect-error utterly silly types */}
+										{e.idvDifference(chart) && (
+											<>
+												<br />
+												<QuickTooltip tooltipContent="Individual Difference - The difficulty of this varies massively between people!">
+													<span>
+														<Icon type="balance-scale-left" />
+													</span>
+												</QuickTooltip>
+											</>
+										)}
+									</td>
+								</tr>
+							);
+						})}
 					</MiniTable>
 				) : (
 					<Muted>No tierlist info.</Muted>

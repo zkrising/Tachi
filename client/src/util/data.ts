@@ -13,7 +13,19 @@ import {
 import { GoalsOnChartReturn, GoalsOnFolderReturn } from "types/api-returns";
 
 export function GetPBs(scoreInfo: SessionScoreInfo[]) {
-	return scoreInfo.filter((e) => e.isNewScore === true || e.lampDelta > 0 || e.scoreDelta > 0);
+	return scoreInfo.filter((e) => {
+		if (e.isNewScore) {
+			return true;
+		}
+
+		for (const v of Object.values(e.deltas)) {
+			if (v >= 0) {
+				return true;
+			}
+		}
+
+		return false;
+	});
 }
 
 export function CreateSongMap<G extends Game = Game>(songs: SongDocument<G>[]) {

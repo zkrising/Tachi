@@ -7,7 +7,8 @@
 		"start": "vite",
 		"build": "vite build",
 		"lint": "eslint src --fix",
-		"preview": "vite build && vite preview"
+		"preview": "vite build && vite preview",
+		"typecheck": "tsc -b"
 	},
 	"browserslist": {
 		"production": [

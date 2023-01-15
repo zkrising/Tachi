@@ -35,9 +35,9 @@ export default function SetNewGoalModal({
 
 	const [criteria, setCriteria] = useState<GoalDocument["criteria"]>({
 		mode: "single",
-		key: gptConfig.scoreBucket === "grade" ? "scoreData.gradeIndex" : "scoreData.lampIndex",
+		key: gptConfig.preferredDefaultEnum === "grade" ? "scoreData.gradeIndex" : "scoreData.lampIndex",
 		value:
-			gptConfig.scoreBucket === "grade"
+			gptConfig.preferredDefaultEnum === "grade"
 				? gptConfig.grades.indexOf(gptConfig.clearGrade)
 				: gptConfig.lamps.indexOf(gptConfig.clearLamp),
 	});

@@ -12,9 +12,9 @@ import { TachiConfig } from "lib/config";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { BMS_TABLES, ChartDocument, SongDocument } from "tachi-common";
-import { FormatSieglindeBMS } from "tachi-common/config/internal-utils";
 import { UGPT } from "types/react";
 import { GPTUtility } from "types/ugpt";
+import { FormatSieglindeBMS } from "tachi-common/config/game-support/bms";
 
 type DatasetElement = ChartDocument<"bms:7K" | "bms:14K"> & { __related: { song: SongDocument } };
 
@@ -76,20 +76,20 @@ function Component({ game, playtype, reqUser }: UGPT) {
 						[
 							"EASY CLEAR Sieglinde",
 							"EC sgl.",
-							NumericSOV((x) => x.tierlistInfo["sgl-EC"]?.value ?? -Infinity),
+							NumericSOV((x) => x.data.sglEC ?? -Infinity),
 						],
 						[
 							"HARD CLEAR Sieglinde",
 							"EC sgl.",
-							NumericSOV((x) => x.tierlistInfo["sgl-HC"]?.value ?? -Infinity),
+							NumericSOV((x) => x.data.sglHC ?? -Infinity),
 						],
 					]}
 					rowFunction={(d) => (
 						<tr>
 							<BMSOrPMSDifficultyCell chart={d} game="bms" />
 							<TitleCell song={d.__related.song} game="bms" chart={d} />
-							<td>{FormatSieglindeBMS(d.tierlistInfo["sgl-EC"]?.value ?? 0)}</td>
-							<td>{FormatSieglindeBMS(d.tierlistInfo["sgl-HC"]?.value ?? 0)}</td>
+							<td>{FormatSieglindeBMS(d.data.sglEC ?? 0)}</td>
+							<td>{FormatSieglindeBMS(d.data.sglHC ?? 0)}</td>
 						</tr>
 					)}
 					defaultSortMode="EASY CLEAR Sieglinde"

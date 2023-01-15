@@ -2,11 +2,13 @@ import React from "react";
 import {
 	ChartDocument,
 	Game,
-	IDStrings,
+	GPTString,
 	PBScoreDocument,
-	ScoreCalculatedDataLookup,
+	ScoreRatingAlgorithms,
 	ScoreDocument,
+	AnyScoreRatingAlg,
 } from "tachi-common";
+import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import BMSCoreCells from "./BMSCoreCells";
 import CHUNITHMCoreCells from "./CHUNITHMCoreCells";
 import IIDXCoreCells from "./IIDXCoreCells";
@@ -28,22 +30,28 @@ export default function ScoreCoreCells({
 }: {
 	score: ScoreDocument | PBScoreDocument;
 	chart: ChartDocument;
-	rating: ScoreCalculatedDataLookup[IDStrings];
+	rating?: AnyScoreRatingAlg;
 	game: Game;
-}): React.ReactChild {
+}): JSX.Element {
+	const [defaultRating] = useScoreRatingAlg(game, chart.playtype);
+
+	// fallback to this users preferred rating if none provided.
+	// @ts-expect-error whateverr
+	const rt: AnyScoreRatingAlg = rating ?? defaultRating;
+
 	const sc = score as any; // lazy hack
 
 	switch (game) {
 		case "iidx":
 			return (
 				<IIDXCoreCells
-					rating={rating as ScoreCalculatedDataLookup["iidx:SP" | "iidx:DP"]}
+					rating={rt as ScoreRatingAlgorithms["iidx:SP" | "iidx:DP"]}
 					chart={chart as ChartDocument<"iidx:SP" | "iidx:DP">}
 					sc={sc}
 				/>
 			);
 		case "bms":
-			return <BMSCoreCells sc={sc} rating={rating} />;
+			return <BMSCoreCells sc={sc} rating={rt} />;
 		case "sdvx":
 		case "usc":
 			return (
@@ -55,22 +63,22 @@ export default function ScoreCoreCells({
 				/>
 			);
 		case "museca":
-			return <MusecaCoreCells sc={sc} rating={rating} />;
+			return <MusecaCoreCells sc={sc} rating={rt} />;
 		case "wacca":
-			return <WACCACoreCells sc={sc} rating={rating} />;
+			return <WACCACoreCells sc={sc} rating={rt} />;
 		case "popn":
-			return <PopnCoreCells sc={sc} rating={rating} />;
+			return <PopnCoreCells sc={sc} rating={rt} />;
 		case "jubeat":
-			return <JubeatCoreCells sc={sc} rating={rating} />;
+			return <JubeatCoreCells sc={sc} rating={rt} />;
 		case "chunithm":
-			return <CHUNITHMCoreCells sc={sc} rating={rating} />;
+			return <CHUNITHMCoreCells sc={sc} rating={rt} />;
 		case "gitadora":
-			return <GitadoraCoreCells sc={sc} rating={rating} />;
+			return <GitadoraCoreCells sc={sc} rating={rt} />;
 		case "pms":
-			return <PMSCoreCells sc={sc} rating={rating} />;
+			return <PMSCoreCells sc={sc} rating={rt} />;
 		case "itg":
-			return <ITGCoreCells sc={sc} rating={rating} />;
+			return <ITGCoreCells sc={sc} rating={rt} />;
 		case "maimaidx":
-			return <MaimaiDXCoreCells sc={sc} rating={rating} />;
+			return <MaimaiDXCoreCells sc={sc} rating={rt} />;
 	}
 }

@@ -20,6 +20,7 @@ import {
 	SongDocument,
 } from "tachi-common";
 import { GamePT } from "types/react";
+import { CascadingRatingValue } from "components/tables/headers/ChartHeader";
 
 export default function GPTSongsPage({ game, playtype }: GamePT) {
 	useSetSubheader(
@@ -90,19 +91,7 @@ function SearchSongsTable({ game, playtype, search }: { search: string } & GameP
 				entryName="Charts"
 				dataset={dataset}
 				headers={[
-					[
-						"Chart",
-						"Chart",
-						NumericSOV((chart) => {
-							for (const tierlist of gptConfig.tierlists) {
-								if (chart.tierlistInfo[tierlist]) {
-									return chart.tierlistInfo[tierlist]!.value;
-								}
-							}
-
-							return chart.levelNum;
-						}),
-					],
+					["Chart", "Chart", (a, b) => CascadingRatingValue(game, a, b)],
 					["Song Title", "Song", StrSOV((x) => x.__related.song.title)],
 					["Playcount", "Playcount", NumericSOV((x) => x.__playcount)],
 				]}

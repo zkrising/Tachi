@@ -1,22 +1,21 @@
 import { FormatMillions } from "util/misc";
 import React from "react";
 import { COLOUR_SET, Game, PBScoreDocument, Playtype } from "tachi-common";
-import { ESDCompare } from "tachi-common/lib/esd";
-import Muted from "components/util/Muted";
+import { ConfScoreMetric } from "tachi-common/types/metrics";
 
 export default function PBCompareCell({
 	base,
 	compare,
 	game,
-	compareType,
-	shouldESD,
+	metricConf,
+	metric,
 }: {
 	base: PBScoreDocument | null;
 	compare: PBScoreDocument | null;
 	game: Game;
 	playtype: Playtype;
-	compareType: "score" | "lamp";
-	shouldESD: boolean;
+	metricConf: ConfScoreMetric;
+	metric: string;
 }) {
 	let status: "win" | "draw" | "lose";
 
@@ -27,10 +26,12 @@ export default function PBCompareCell({
 		status = "lose";
 	} else if (!compare) {
 		status = "win";
-	} else if (compareType === "score") {
-		status = cmp(base.scoreData.score, compare.scoreData.score);
+	} else if (metricConf.type === "ENUM") {
+		// @ts-expect-error yeah this index will work sorry
+		status = cmp(base.scoreData.enumIndexes[metric], compare.scoreData.enumIndexes[metric]);
 	} else {
-		status = cmp(base.scoreData.lampIndex, compare.scoreData.lampIndex);
+		// @ts-expect-error yeah this index will work sorry
+		status = cmp(base.scoreData[metric], compare.scoreData[metric]);
 	}
 
 	let scoreRenderFn = (k: number) => k.toString();
@@ -68,14 +69,6 @@ export default function PBCompareCell({
 	const cmpScore = (base?.scoreData.score ?? 0) - (compare?.scoreData.score ?? 0);
 	const cmpLamp = (base?.scoreData.lampIndex ?? 0) - (compare?.scoreData.lampIndex ?? 0);
 
-	let esdDiff;
-
-	if (shouldESD) {
-		if (base?.scoreData.esd && compare?.scoreData.esd) {
-			esdDiff = ESDCompare(compare.scoreData.esd, base.scoreData.esd);
-		}
-	}
-
 	return (
 		<td
 			style={{
@@ -89,7 +82,9 @@ export default function PBCompareCell({
 				borderRight: "1px black double",
 			}}
 		>
-			{compareType === "score" ? (
+			{metricConf.type === "ENUM" ? (
+				<></>
+			) : (
 				<>
 					{shouldPrioritisePercent ? (
 						<>
@@ -114,22 +109,6 @@ export default function PBCompareCell({
 							)}
 						</>
 					)}
-					{esdDiff !== undefined && (
-						<>
-							<br />
-							{esdDiff.toFixed(2) === "0.00" ? (
-								<Muted>Negligable Difference</Muted>
-							) : (
-								<Muted>
-									Relative: {(esdDiff > 0 ? "+" : "") + esdDiff.toFixed(2)}
-								</Muted>
-							)}
-						</>
-					)}
-				</>
-			) : (
-				<>
-					<strong>{(cmpLamp > 0 ? "+" : "") + cmpLamp}</strong>
 				</>
 			)}
 		</td>

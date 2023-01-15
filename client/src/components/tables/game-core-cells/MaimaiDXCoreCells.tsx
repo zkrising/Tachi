@@ -1,5 +1,6 @@
 import React from "react";
 import { PBScoreDocument, ScoreDocument } from "tachi-common";
+import { GetEnumColour } from "lib/game-implementations";
 import LampCell from "../cells/LampCell";
 import RatingCell from "../cells/RatingCell";
 import ScoreCell from "../cells/ScoreCell";
@@ -16,7 +17,7 @@ export default function MaimaiDXCoreCells({
 		<>
 			<ScoreCell showScore={false} score={sc} />
 			<MaimaiDXJudgementCell score={sc} />
-			<LampCell score={sc} />
+			<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
 			<RatingCell score={sc} rating={rating} />
 		</>
 	);

@@ -1,46 +1,32 @@
-import { Game, GetGamePTConfig, Playtypes } from "tachi-common";
+import { Game, GetGamePTConfig, GetScoreMetricConf, Playtypes } from "tachi-common";
 
-export function HumanFriendlyStrToGradeIndex(game: Game, playtype: Playtypes[Game]) {
+export function HumanFriendlyStrToEnumIndex(
+	game: Game,
+	playtype: Playtypes[Game],
+	enumMetric: string
+) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const lowerGrades = gptConfig.grades.map((e) => e.toLowerCase());
+	const conf = GetScoreMetricConf(gptConfig, enumMetric);
+
+	if (conf.type !== "ENUM") {
+		return () => 0; // wut
+	}
+
+	const lowerValues = conf.values.map((e) => e.toLowerCase());
 
 	return (str: string) => {
 		const lowerStr = str.toLowerCase();
 		let partialMatch: number | null = null;
 
-		for (let i = 0; i < gptConfig.grades.length; i++) {
-			const grade = lowerGrades[i];
+		for (let i = 0; i < conf.values.length; i++) {
+			const value = lowerValues[i];
 
-			if (grade === lowerStr) {
+			if (value === lowerStr) {
 				return i;
 			}
 
-			if (grade.startsWith(lowerStr) && partialMatch === null) {
-				partialMatch = i;
-			}
-		}
-
-		return partialMatch;
-	};
-}
-
-export function HumanFriendlyStrToLampIndex(game: Game, playtype: Playtypes[Game]) {
-	const gptConfig = GetGamePTConfig(game, playtype);
-	const lowerLamps = gptConfig.lamps.map((e) => e.toLowerCase());
-
-	return (str: string) => {
-		const lowerStr = str.toLowerCase();
-		let partialMatch: number | null = null;
-
-		for (let i = 0; i < gptConfig.lamps.length; i++) {
-			const lamp = lowerLamps[i];
-
-			if (lamp === lowerStr) {
-				return i;
-			}
-
-			if (lamp.startsWith(lowerStr) && partialMatch === null) {
+			if (value.startsWith(lowerStr) && partialMatch === null) {
 				partialMatch = i;
 			}
 		}

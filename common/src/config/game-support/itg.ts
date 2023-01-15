@@ -1,3 +1,4 @@
+import { FmtPercent } from "../../utils/util";
 import { NoDecimalPlace, zodNonNegativeInt } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
@@ -15,13 +16,13 @@ export const ITG_CONF = {
 
 export const ITG_STAMINA_CONF = {
 	providedMetrics: {
-		scorePercent: { type: "DECIMAL", validate: p.isBetween(0, 100) },
+		scorePercent: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
 
 		// How far through the chart did they get?
 		// 100 means they cleared.
 		// 50 means they got halfway through.
 		// 0 means they died instantly etc.
-		survivedPercent: { type: "DECIMAL", validate: p.isBetween(0, 100) },
+		survivedPercent: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
 
 		lamp: {
 			type: "ENUM",
@@ -50,7 +51,17 @@ export const ITG_STAMINA_CONF = {
 		//
 		// NOTE that in our ITG implementation we don't allow for negative percents
 		// as it breaks this silly metric. Also negative percents are stupid.
-		finalPercent: { type: "DECIMAL", validate: p.isBetween(0, 200) },
+		finalPercent: {
+			type: "DECIMAL",
+			validate: p.isBetween(0, 200),
+			formatter: (v) => {
+				if (v < 100) {
+					return `Died ${v.toFixed(2)}% in`;
+				}
+
+				return `Cleared with ${(v - 100).toFixed(2)}%`;
+			},
+		},
 	},
 
 	optionalMetrics: {

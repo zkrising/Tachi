@@ -4,7 +4,7 @@ import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
 import React from "react";
 import { ChartDocument, COLOUR_SET, GetGamePTConfig } from "tachi-common";
-import TierlistInfoPart from "./TierlistInfoPart";
+import RatingSystemPart from "./RatingSystemPart";
 
 export default function USCDifficultyCell({
 	chart,
@@ -29,7 +29,7 @@ export default function USCDifficultyCell({
 			}}
 		>
 			<span>{levelText}</span>
-			<TierlistInfoPart chart={chart} game="usc" />
+			<RatingSystemPart chart={chart} game="usc" />
 			{!chart.isPrimary && (
 				<QuickTooltip tooltipContent="This chart is an alternate, old chart.">
 					<div>

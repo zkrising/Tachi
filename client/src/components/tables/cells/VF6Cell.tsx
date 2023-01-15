@@ -3,9 +3,15 @@ import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
 import { Volforce } from "rg-stats";
-import { ChartDocument, GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
+import {
+	ChartDocument,
+	GetGPTString,
+	GetSpecificGPTConfig,
+	PBScoreDocument,
+	ScoreDocument,
+} from "tachi-common";
 
-type VF6IDStrings = "sdvx:Single" | "usc:Keyboard" | "usc:Controller";
+type VF6GPTString = "sdvx:Single" | "usc:Keyboard" | "usc:Controller";
 
 const SHORT_LAMPS = {
 	CLEAR: "CLR",
@@ -17,11 +23,11 @@ export default function VF6Cell({
 	score,
 	chart,
 }: {
-	score: ScoreDocument<VF6IDStrings> | PBScoreDocument<VF6IDStrings>;
-	chart: ChartDocument<VF6IDStrings>;
+	score: ScoreDocument<VF6GPTString> | PBScoreDocument<VF6GPTString>;
+	chart: ChartDocument<VF6GPTString>;
 }) {
 	const { user } = useContext(UserContext);
-	const { settings } = useLUGPTSettings<VF6IDStrings>();
+	const { settings } = useLUGPTSettings<VF6GPTString>();
 
 	if (IsNullish(score.calculatedData.VF6)) {
 		return <td>N/A</td>;
@@ -29,13 +35,18 @@ export default function VF6Cell({
 
 	const vf6Target = settings?.preferences.gameSpecific.vf6Target;
 
-	const gptConfig = GetGamePTConfig(score.game, score.playtype);
+	const gptConfig = GetSpecificGPTConfig<VF6GPTString>(
+		GetGPTString(score.game, score.playtype) as VF6GPTString
+	);
 
 	const targets: Record<string, number | null> = {};
 
 	if (vf6Target && score.userID === user?.id) {
 		for (const lamp of ["CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN"] as const) {
-			if (score.scoreData.lampIndex <= gptConfig.lamps.indexOf(lamp)) {
+			if (
+				score.scoreData.enumIndexes.lamp <=
+				gptConfig.providedMetrics.lamp.values.indexOf(lamp)
+			) {
 				const expectedScore = InverseVF6(vf6Target, lamp, chart.levelNum);
 
 				if (expectedScore === null) {

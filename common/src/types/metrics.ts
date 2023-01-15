@@ -22,6 +22,7 @@ import type {
 
 interface ConfDecimalScoreMetricNormal {
 	type: "DECIMAL";
+	formatter: (v: number) => string;
 
 	validate: (v: number) => string | true;
 
@@ -31,6 +32,7 @@ interface ConfDecimalScoreMetricNormal {
 
 interface ConfIntegerScoreMetricNormal {
 	type: "INTEGER";
+	formatter: (v: number) => string;
 
 	validate: (v: number) => string | true;
 
@@ -40,6 +42,7 @@ interface ConfIntegerScoreMetricNormal {
 
 interface ConfDecimalScoreMetricChartDependent {
 	type: "DECIMAL";
+	formatter: (v: number) => string;
 
 	/**
 	 * Is the maximum/minimum value of this metric chart dependent?
@@ -51,6 +54,7 @@ interface ConfDecimalScoreMetricChartDependent {
 
 interface ConfIntegerScoreMetricChartDependent {
 	type: "INTEGER";
+	formatter: (v: number) => string;
 
 	/**
 	 * Is the maximum/minimum value of this metric chart dependent?
@@ -143,7 +147,7 @@ export type ExtractMetricValue<M extends ConfScoreMetric> = M extends ConfDecima
  * would return a type of "grade" | "lamp"
  */
 export type ExtractEnumMetricNames<R extends Record<string, ConfScoreMetric>> = {
-	[K in keyof R]: R[K] extends ConfEnumScoreMetric<infer _> ? K : never;
+	[K in keyof R]: R[K] extends ConfEnumScoreMetric<infer _> ? K & string : never;
 }[keyof R];
 
 /**

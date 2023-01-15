@@ -1,10 +1,5 @@
 import React from "react";
-import {
-	ChartDocument,
-	PBScoreDocument,
-	ScoreCalculatedDataLookup,
-	ScoreDocument,
-} from "tachi-common";
+import { ChartDocument, PBScoreDocument, ScoreRatingAlgorithms, ScoreDocument } from "tachi-common";
 import BPICell from "../cells/BPICell";
 import DeltaCell from "../cells/DeltaCell";
 import IIDXLampCell from "../cells/IIDXLampCell";
@@ -17,7 +12,7 @@ export default function IIDXCoreCells({
 	chart,
 }: {
 	sc: PBScoreDocument<"iidx:SP" | "iidx:DP"> | ScoreDocument<"iidx:SP" | "iidx:DP">;
-	rating: ScoreCalculatedDataLookup["iidx:SP" | "iidx:DP"];
+	rating: ScoreRatingAlgorithms["iidx:SP" | "iidx:DP"];
 	chart: ChartDocument<"iidx:SP" | "iidx:DP">;
 }) {
 	return (

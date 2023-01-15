@@ -1,13 +1,13 @@
 import { UGPTContext } from "context/UGPTContext";
 import { useContext } from "react";
-import { IDStrings, UGPTSettings } from "tachi-common";
+import { GPTString, UGPTSettingsDocument } from "tachi-common";
 
-export default function useLUGPTSettings<I extends IDStrings>() {
+export default function useLUGPTSettings<GPT extends GPTString>() {
 	const { loggedInData, setLoggedInData } = useContext(UGPTContext);
 
-	const settings = (loggedInData?.settings ?? null) as UGPTSettings<I> | null;
+	const settings = (loggedInData?.settings ?? null) as UGPTSettingsDocument<GPT> | null;
 
-	const setSettings = (newSettings: UGPTSettings<I>) => {
+	const setSettings = (newSettings: UGPTSettingsDocument<GPT>) => {
 		if (!loggedInData) {
 			throw new Error(`Tried to set settings while nobody was logged in?`);
 		}

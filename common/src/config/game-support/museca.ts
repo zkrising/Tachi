@@ -1,4 +1,5 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
+import { FmtNum } from "../../utils/util";
 import { NoDecimalPlace, zodNonNegativeInt } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
@@ -17,7 +18,7 @@ export const MUSECA_CONF = {
 
 export const MUSECA_SINGLE_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", validate: p.isBetween(0, 1_000_000) },
+		score: { type: "INTEGER", validate: p.isBetween(0, 1_000_000), formatter: FmtNum },
 		lamp: {
 			type: "ENUM",
 			values: ["FAILED", "CLEAR", "CONNECT ALL", "PERFECT CONNECT ALL"],

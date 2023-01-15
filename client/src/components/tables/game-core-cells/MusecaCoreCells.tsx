@@ -1,5 +1,6 @@
 import React from "react";
-import { IDStrings, PBScoreDocument, ScoreCalculatedDataLookup, ScoreDocument } from "tachi-common";
+import { GPTString, PBScoreDocument, ScoreRatingAlgorithms, ScoreDocument } from "tachi-common";
+import { GetEnumColour } from "lib/game-implementations";
 import LampCell from "../cells/LampCell";
 import MillionsScoreCell from "../cells/MillionsScoreCell";
 import MusecaJudgementCell from "../cells/MusecaJudgementCell";
@@ -10,13 +11,17 @@ export default function MusecaCoreCells({
 	rating,
 }: {
 	sc: ScoreDocument<"museca:Single"> | PBScoreDocument<"museca:Single">;
-	rating: ScoreCalculatedDataLookup[IDStrings];
+	rating: ScoreRatingAlgorithms[GPTString];
 }) {
 	return (
 		<>
-			<MillionsScoreCell score={sc} />
+			<MillionsScoreCell
+				score={sc.scoreData.score}
+				grade={sc.scoreData.grade}
+				colour={GetEnumColour(sc, "grade")}
+			/>
 			<MusecaJudgementCell score={sc} />
-			<LampCell score={sc} />
+			<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
 			<RatingCell score={sc} rating={rating} />
 		</>
 	);

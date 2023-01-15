@@ -638,7 +638,7 @@ export interface UGPTSettingsDocument<GPT extends GPTString = GPTString> {
 		preferredSessionAlg: SessionRatingAlgorithms[GPT] | null;
 		preferredProfileAlg: ProfileRatingAlgorithms[GPT] | null;
 		stats: Array<ShowcaseStatDetails>;
-		scoreBucket: "grade" | "lamp" | null;
+		preferredDefaultEnum: string | null;
 		defaultTable: string | null;
 		preferredRanking: "global" | "rival" | null;
 		gameSpecific: Preferences[GPT];

@@ -9,18 +9,21 @@ export default function JudgementTable({ score }: { score: ScoreDocument | PBSco
 
 	return (
 		<MiniTable className="text-center table-sm" headers={["Judgements"]} colSpan={2}>
-			{gptConfig.judgements.map((j) => (
+			{gptConfig.orderedJudgements.map((j) => (
 				<tr key={j}>
 					<td>{j.toUpperCase()}</td>
+					{/* @ts-expect-error fine access */}
 					<td>{score.scoreData.judgements[j] ?? "No Data."}</td>
 				</tr>
 			))}
 			<tr>
 				<td style={{ backgroundColor: ChangeOpacity(COLOUR_SET.red, 0.2) }}>
-					Slow: {score.scoreData.hitMeta.slow ?? "Unknown"}
+					{/* @ts-expect-error it might exist */}
+					Slow: {score.scoreData.optional.slow ?? "Unknown"}
 				</td>
 				<td style={{ backgroundColor: ChangeOpacity(COLOUR_SET.paleBlue, 0.2) }}>
-					Fast: {score.scoreData.hitMeta.fast ?? "Unknown"}
+					{/* @ts-expect-error it might exist */}
+					Fast: {score.scoreData.optional.fast ?? "Unknown"}
 				</td>
 			</tr>
 		</MiniTable>

@@ -21,8 +21,8 @@ export default function FolderInfoHeader({
 	folderDataset: FolderDataset;
 	folderTitle: string;
 } & GamePT) {
-	const scoreBucket = useBucket(game, playtype);
-	const [view, setView] = useState<"grade" | "lamp">(scoreBucket);
+	const preferredDefaultEnum = useBucket(game, playtype);
+	const [view, setView] = useState<"grade" | "lamp">(preferredDefaultEnum);
 	const [breakdownInfo, setBreakdownInfo] = useState<"graph" | "switchboard">("switchboard");
 
 	return (
@@ -66,7 +66,7 @@ export default function FolderInfoHeader({
 					game={game}
 					playtype={playtype}
 					folderDataset={folderDataset}
-					view={view}
+					enumMetric={view}
 				/>
 			)}
 		</Card>

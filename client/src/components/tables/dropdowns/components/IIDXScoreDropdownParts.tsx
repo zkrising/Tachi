@@ -43,9 +43,9 @@ export function IIDXGraphsComponent({
 
 	let gaugeStatus: "none" | "single" | "gsm" = "none";
 
-	if (score.scoreData.hitMeta.gsm) {
+	if (score.scoreData.optional.gsm) {
 		gaugeStatus = "gsm";
-	} else if (score.scoreData.hitMeta.gaugeHistory) {
+	} else if (score.scoreData.optional.gaugeHistory) {
 		gaugeStatus = "single";
 	}
 
@@ -113,9 +113,9 @@ export function IIDXGraphsComponent({
 			</div>
 			<div className="col-12">
 				{gaugeStatus === "gsm" && lamp !== "DAN_GAUGE" ? (
-					<GraphComponent type={lamp} values={score.scoreData.hitMeta.gsm![lamp]} />
+					<GraphComponent type={lamp} values={score.scoreData.optional.gsm![lamp]} />
 				) : gaugeStatus === "single" ? (
-					<GraphComponent type={lamp} values={score.scoreData.hitMeta.gaugeHistory!} />
+					<GraphComponent type={lamp} values={score.scoreData.optional.gaugeHistory!} />
 				) : (
 					<div
 						className="d-flex align-items-center justify-content-center"
@@ -177,7 +177,7 @@ function LampToKey(
 		return "EX_HARD";
 	} else if (lamp === "FULL COMBO") {
 		// @hack - attempt to guess what gauge they used?
-		if ((score.scoreData.hitMeta.gaugeHistory?.[0] ?? 0) > 22) {
+		if ((score.scoreData.optional.gaugeHistory?.[0] ?? 0) > 22) {
 			return "EX_HARD";
 		}
 		return "NORMAL";

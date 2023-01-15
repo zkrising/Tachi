@@ -6,6 +6,7 @@ import {
 } from "../config/config";
 import type { GradeBoundary } from "../constants/grade-boundaries";
 import type {
+	BMSCourseDocument,
 	ChartDocument,
 	GPTString,
 	GPTStrings,
@@ -228,6 +229,17 @@ export function FmtNum(num: number) {
 	return num.toLocaleString();
 }
 
+export function FmtPercent(v: number, dp = 2) {
+	return `${v.toFixed(dp)}%`;
+}
+
+/**
+ * Turns a number of 12834 into "12834" instead of "12,834".
+ */
+export function FmtScoreNoCommas(v: number) {
+	return v.toString();
+}
+
 function WrapGrade(grade: string) {
 	if (grade.endsWith("-") || grade.endsWith("+")) {
 		return `(${grade})`;
@@ -235,18 +247,6 @@ function WrapGrade(grade: string) {
 
 	return grade;
 }
-
-type FormatGradeDeltaReturns =
-	| {
-			lower: string;
-			upper: string;
-			closer: "upper";
-	  }
-	| {
-			lower: string;
-			upper?: string;
-			closer: "lower";
-	  };
 
 function RelativeGradeDelta<G extends string>(
 	gradeBoundaries: Array<GradeBoundary<G>>,
@@ -377,4 +377,34 @@ export function FormatPrError(err: PrudenceError, foreword = "Error"): string {
 			: ` | Received ${err.userVal} [${err.userVal === null ? "null" : typeof err.userVal}]`;
 
 	return `${foreword}: ${err.keychain} | ${err.message}${receivedText}.`;
+}
+
+export function GetBMSCourseIndex(course: BMSCourseDocument) {
+	const gptConf = GetGamePTConfig("bms", course.playtype);
+
+	const cls = gptConf.classes[course.set];
+
+	if (!cls) {
+		throw new Error(
+			`Invalid BMSCourse set of ${course.set}. No classes are defined for this set.`
+		);
+	}
+
+	return cls.values.findIndex((e) => e.id === course.value);
+}
+
+/**
+ * Util for getting a games' grade for a given score.
+ */
+export function GetGrade<G extends string>(grades: Array<GradeBoundary<G>>, score: number): G {
+	// sort grades going downwards in their boundaries.
+	const descendingGrades = grades.slice(0).sort((a, b) => b.lowerBound - a.lowerBound);
+
+	for (const { name, lowerBound } of descendingGrades) {
+		if (score >= lowerBound) {
+			return name;
+		}
+	}
+
+	throw new Error(`Could not resolve grade for score ${score}.`);
 }

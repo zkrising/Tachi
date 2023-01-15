@@ -581,7 +581,7 @@ const PRE_SCHEMAS = {
 					],
 					(self) => Array.isArray(self) && self.length <= 6
 				),
-				scoreBucket: p.isIn(null, "grade", "lamp"),
+				preferredDefaultEnum: p.isIn(null, "grade", "lamp"),
 
 				gameSpecific: PrudenceZodShim(gptConfig.preferences),
 			},

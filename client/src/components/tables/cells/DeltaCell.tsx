@@ -1,6 +1,6 @@
 import { GenericFormatGradeDelta } from "util/grade-deltas";
 import React from "react";
-import { Game, Grades, IDStrings, Playtypes } from "tachi-common";
+import { Game, Grades, GPTString, Playtypes } from "tachi-common";
 
 export default function DeltaCell({
 	game,
@@ -13,7 +13,7 @@ export default function DeltaCell({
 	playtype: Playtypes[Game];
 	score: number;
 	percent: number;
-	grade: Grades[IDStrings];
+	grade: Grades[GPTString];
 }) {
 	if (score === 0) {
 		return <td>N/A</td>;

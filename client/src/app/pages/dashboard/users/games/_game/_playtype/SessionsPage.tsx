@@ -135,7 +135,7 @@ function SearchSessionsTable({
 				__related: {
 					index: i,
 				},
-			}));
+			})) as SessionDataset;
 		}
 	);
 

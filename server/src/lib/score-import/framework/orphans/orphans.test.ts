@@ -133,7 +133,7 @@ t.test("#ReprocessOrphan", (t) => {
 				success: true,
 				type: "ScoreImported",
 				message:
-					"Imported score Td27fe9eae3db974d43179cf1dcb32c41c7b84b46be8162269518e0e999236d92.",
+					"Imported score Tecc9141bfbc12fcc1ead785c13c4cf15a5c8a04d8d431e208ffe8c9d0df2080d.",
 				content: {
 					score: {
 						game: "iidx",
@@ -153,7 +153,7 @@ t.test("#ReprocessOrphan", (t) => {
 						songID: 1,
 						chartID: "c2311194e3897ddb5745b1760d2c0141f933e683",
 						scoreID:
-							"Td27fe9eae3db974d43179cf1dcb32c41c7b84b46be8162269518e0e999236d92",
+							"Tecc9141bfbc12fcc1ead785c13c4cf15a5c8a04d8d431e208ffe8c9d0df2080d.",
 						playtype: "SP",
 						isPrimary: true,
 					},

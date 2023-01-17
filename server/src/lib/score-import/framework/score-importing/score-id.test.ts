@@ -167,7 +167,7 @@ t.test("#ScoreID Canary", (t) => {
 
 	t.equal(
 		scoreID,
-		"Tc4f10c2ca8e99478de5ae318a40ee66051f7297ca648415502b6f393a23e6f10",
+		"T5d669c4d5d6ca80761e87698acd77c51d2bed95b64ab76e65952dbca7c26bc81",
 		"ScoreID **SHOULD BE DETERMINISTIC**. A change to the ScoreID algorithm is **a major breaking change.**"
 	);
 

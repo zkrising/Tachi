@@ -23,6 +23,8 @@ const BANNED_METRIC_NAMES = [
 	"enumIndexes", // haha
 	"optional", // used for optional metrics
 	"playcount", // used by showcase stats
+	"scoreID",
+	"userID",
 ];
 
 t.test("#GetGamePTConfig", (t) => {

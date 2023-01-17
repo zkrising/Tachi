@@ -4,7 +4,7 @@ import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBestNFor } from "game-implementations/utils/session-calc";
 import { ITGHighestUnbroken } from "rg-stats";
 import { GetGrade, ITG_GBOUNDARIES } from "tachi-common";
-import { FormatMaxDP } from "utils/misc";
+import { NumToDP } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 
 export const ITG_STAMINA_IMPL: GPTServerImplementation<"itg:Stamina"> = {
@@ -75,17 +75,17 @@ export const ITG_STAMINA_IMPL: GPTServerImplementation<"itg:Stamina"> = {
 	},
 	classDerivers: {},
 	goalCriteriaFormatters: {
-		survivedPercent: (val) => `Survive ${FormatMaxDP(val)}% through`,
+		survivedPercent: (val) => `Survive ${NumToDP(val)}% through`,
 
 		// maybe this whole metric is silly. help.
 		finalPercent: (val) => {
 			if (val === 100) {
 				return "CLEAR";
 			} else if (val < 100) {
-				return `Survive ${FormatMaxDP(val)}% through`;
+				return `Survive ${NumToDP(val)}% through`;
 			}
 
-			return `CLEAR, and get ${FormatMaxDP(val)}% on`;
+			return `CLEAR, and get ${NumToDP(val)}% on`;
 		},
 		scorePercent: GoalFmtPercent,
 	},
@@ -116,14 +116,14 @@ export const ITG_STAMINA_IMPL: GPTServerImplementation<"itg:Stamina"> = {
 			),
 	},
 	goalOutOfFormatters: {
-		survivedPercent: (num) => `${FormatMaxDP(num)}%`,
-		scorePercent: (num) => `${FormatMaxDP(num)}%`,
+		survivedPercent: (num) => `${NumToDP(num)}%`,
+		scorePercent: (num) => `${NumToDP(num)}%`,
 		finalPercent: (num) => {
 			if (num >= 100) {
-				return `CLEAR with ${FormatMaxDP(num - 100)}%`;
+				return `CLEAR with ${NumToDP(num - 100)}%`;
 			}
 
-			return `${FormatMaxDP(num)}%`;
+			return `${NumToDP(num)}%`;
 		},
 	},
 	pbMergeFunctions: [

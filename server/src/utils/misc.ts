@@ -232,8 +232,8 @@ export function HumanisedJoinArray(arr: Array<string>, lastJoiner = "or") {
 	return `${arr.slice(0, arr.length - 1).join(", ")} ${lastJoiner} ${arr[arr.length - 1]!}`;
 }
 
-export function FormatMaxDP(num: number, points = 2) {
-	return parseFloat(num.toFixed(points)).toString();
+export function NumToDP(num: number, points = 2) {
+	return num.toFixed(points);
 }
 
 /**

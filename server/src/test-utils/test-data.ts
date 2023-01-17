@@ -353,6 +353,63 @@ export const TestingJubeatChart: ChartDocument<"jubeat:Single"> = {
 	versions: ["festo"],
 };
 
+export const TestingGitadoraChart: ChartDocument<"gitadora:Dora" | "gitadora:Gita"> = {
+	chartID: "bf62dd6c78afaf6b4f95cce70b5b08af193c0c57",
+	data: {
+		inGameID: 0,
+	},
+	difficulty: "ADVANCED",
+	isPrimary: true,
+	level: "4.75",
+	levelNum: 4.75,
+	playtype: "Dora",
+	songID: 0,
+	versions: ["konaste"],
+};
+
+export const TestingMaimaiDXChart: ChartDocument<"maimaidx:Single"> = {
+	chartID: "fbde73d543f93cbad9ec67052a7165700c5c8df6",
+	data: {
+		isLatest: false,
+	},
+	difficulty: "Advanced",
+	isPrimary: true,
+	level: "7",
+	levelNum: 7,
+	playtype: "Single",
+	songID: 1,
+	versions: ["universeplus"],
+};
+
+export const TestingMusecaChart: ChartDocument<"museca:Single"> = {
+	chartID: "4f3a7bf907f7be54a0c531dd9077e58fd7b6bb9c",
+	data: {
+		inGameID: 1,
+	},
+	difficulty: "Red",
+	isPrimary: true,
+	level: "13",
+	levelNum: 13,
+	playtype: "Single",
+	songID: 1,
+	versions: ["1.5", "1.5-b"],
+};
+
+export const TestingPopnChart: ChartDocument<"popn:9B"> = {
+	chartID: "7489166ddfb6ec780249823d5bda255611fbc528",
+	data: {
+		hashSHA256: "83287260cb32c5c54b06b76967ba8620dd3735063959d9fbaf2cffc0dba8a049",
+		inGameID: 0,
+	},
+	difficulty: "EX",
+	isPrimary: true,
+	level: "38",
+	levelNum: 38,
+	playtype: "9B",
+	songID: 1,
+	versions: ["peace", "kaimei"],
+};
+
 export const Testing511SPA: ChartDocument<"iidx:SP"> = {
 	chartID: "c2311194e3897ddb5745b1760d2c0141f933e683",
 	difficulty: "ANOTHER",
@@ -769,7 +826,7 @@ export const MockBarbatosSDVX6Score: BarbatosSDVX6Score = {
 	vol_error: 15,
 };
 
-export const uscChart: ChartDocument<"usc:Controller" | "usc:Keyboard"> = {
+export const TestingUSCChart: ChartDocument<"usc:Controller" | "usc:Keyboard"> = {
 	chartID: "USC_CHART_ID",
 	difficulty: "NOV",
 	songID: 1,

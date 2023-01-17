@@ -4,7 +4,7 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { uscChart, uscScore } from "test-utils/test-data";
+import { TestingUSCChart, uscScore } from "test-utils/test-data";
 import type { USCClientScore } from "server/router/ir/usc/_playtype/types";
 
 const logger = CreateLogCtx(__filename);
@@ -80,7 +80,7 @@ t.test("#DeriveNoteMod", (t) => {
 const dm = (p: Partial<USCClientScore>) =>
 	ConverterIRUSC(
 		d(uscScore, p),
-		{ chartHash: uscChart.data.hashSHA1 as string, playtype: "Controller", timeReceived: 10 },
+		{ chartHash: TestingUSCChart.data.hashSHA1 as string, playtype: "Controller", timeReceived: 10 },
 		"ir/usc",
 		logger
 	);
@@ -96,7 +96,7 @@ t.test("#ConverterIRUSC", (t) => {
 				id: 1,
 			},
 			chart: {
-				chartID: uscChart.chartID,
+				chartID: TestingUSCChart.chartID,
 			},
 			dryScore: {},
 		});

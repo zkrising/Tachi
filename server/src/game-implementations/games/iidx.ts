@@ -66,7 +66,9 @@ const IIDX_MERGERS: Array<PBMergeFunction<GPTStrings["iidx"]>> = [
 
 const IIDX_GOAL_FMT: GPTGoalFormatters<"iidx:DP" | "iidx:SP"> = {
 	percent: GoalFmtPercent,
-	score: GoalFmtScore,
+
+	// don't want commas
+	score: (v) => `Get a score of ${v} on`,
 };
 
 const IIDX_GOAL_OO_FMT: GPTGoalFormatters<"iidx:DP" | "iidx:SP"> = {
@@ -100,7 +102,9 @@ const IIDX_GOAL_PG_FMT: GPTGoalProgressFormatters<"iidx:DP" | "iidx:SP"> = {
 			(deltaPercent) => {
 				const max = Math.floor(pb.scoreData.score / (pb.scoreData.percent / 100));
 
-				return ((deltaPercent / 100) * max).toFixed(0);
+				const v = (deltaPercent / 100) * max;
+
+				return Math.floor(v).toFixed(0);
 			}
 		),
 };

@@ -9,7 +9,7 @@ import {
 } from "tachi-common";
 import { GetFolderForIDGuaranteed, HumaniseChartID } from "utils/db";
 import { GetFolderChartIDs } from "utils/folder";
-import { FormatMaxDP, HumanisedJoinArray } from "utils/misc";
+import { NumToDP, HumanisedJoinArray } from "utils/misc";
 import type {
 	ChartSpecificMetricValidator,
 	GoalCriteriaFormatter,
@@ -74,7 +74,7 @@ export async function CreateGoalTitle(
 		// See above about switch exhaustivity
 		// eslint-disable-next-line no-fallthrough
 		case "proportion": {
-			const propFormat = FormatMaxDP(criteria.countNum * 100);
+			const propFormat = NumToDP(criteria.countNum * 100);
 
 			switch (charts.type) {
 				case "multi":

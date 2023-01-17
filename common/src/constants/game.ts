@@ -85,6 +85,17 @@ export enum CHUNITHM_GRADES {
 	SSS = 10,
 }
 
+export enum JUBEAT_GRADES {
+	E = 0,
+	D = 1,
+	C = 2,
+	B = 3,
+	A = 4,
+	S = 5,
+	SS = 6,
+	SSS = 7,
+}
+
 export enum SDVX_GRADES {
 	D = 0,
 	C = 1,

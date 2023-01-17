@@ -311,7 +311,6 @@ t.test("#HumaniseGoalProgress", (t) => {
 				"grade",
 				IIDX_GRADES.AAA,
 				mkFakePBIIDXSP({
-					// @ts-expect-error faulty deepmerge types
 					scoreData: {
 						score: 1865,
 						grade: "AA",

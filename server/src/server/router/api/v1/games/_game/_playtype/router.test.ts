@@ -39,7 +39,6 @@ t.test("GET /api/v1/games/:game/:playtype/leaderboard", (t) => {
 		const res = await mockApi.get("/api/v1/games/iidx/SP/leaderboard");
 
 		t.equal(res.statusCode, 200);
-		t;
 		t.equal(res.body.body.gameStats.length, 1);
 		t.equal(res.body.body.users.length, 1);
 

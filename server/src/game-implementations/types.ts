@@ -166,8 +166,32 @@ export interface GPTServerImplementation<GPT extends GPTString> {
 	sessionCalcs: GPTSessionCalculators<GPT>;
 	profileCalcs: GPTProfileCalculators<GPT>;
 	classDerivers: GPTClassDerivers<GPT>;
+
+	/**
+	 * When creating a goal, how should we format the title?
+	 *
+	 * Get a score of 1234 on 5.1.1 SP ANOTHER
+	 * ^^^^^^^^^^^^^^^^^^^^^^
+	 * this bit
+	 */
 	goalCriteriaFormatters: GPTGoalFormatters<GPT>;
+
+	/**
+	 * How should we format the "outOf" part of a goal?
+	 *
+	 * HARD CLEAR/FULL COMBO
+	 *             ^^^^^^^^
+	 *              this bit
+	 */
 	goalOutOfFormatters: GPTGoalFormatters<GPT>;
+
+	/**
+	 * How should we format the progress on a goal?
+	 *
+	 * HARD CLEAR/FULL COMBO
+	 *  ^^^^^^^^
+	 *   this bit
+	 */
 	goalProgressFormatters: GPTGoalProgressFormatters<GPT>;
 
 	/**

@@ -27,7 +27,10 @@ import type {
 	ScoreDocument,
 	UGPTSettingsDocument,
 	UserGameStats,
+	GPTString,
+	ScoreData,
 } from "tachi-common";
+import type { DeepPartial } from "utils/types";
 
 /**
  * Async Generator To Array
@@ -45,7 +48,8 @@ export async function agta(ag: AsyncIterable<unknown> | Iterable<unknown>) {
 /**
  * Deep-modify an object. This is a wrapper around deepmerge that returns proper types.
  */
-export function dmf<T extends object>(base: T, modifant: Partial<T>): T {
+export function dmf<T extends object>(base: T, modifant: DeepPartial<T>): T {
+	// @ts-expect-error LOLDEEPMERGETYPES
 	return deepmerge(base, modifant, {
 		// The new array should replace the former one, instead of joining them together.
 		arrayMerge: (originalArray, newArray) => newArray as Array<unknown>,
@@ -58,7 +62,7 @@ export function dmf<T extends object>(base: T, modifant: Partial<T>): T {
  *
  * @param userID - The userID this fake user should have.
  */
-export function mkFakeUser(userID: integer, modifant: Partial<UserDocument> = {}) {
+export function mkFakeUser(userID: integer, modifant: DeepPartial<UserDocument> = {}) {
 	return dmf(FakeOtherUser, {
 		id: userID,
 		username: `user${userID}`,
@@ -71,7 +75,7 @@ export function mkFakeGameSettings(
 	userID: integer,
 	game: Game,
 	playtype: Playtype,
-	modifant: Partial<UGPTSettingsDocument> = {}
+	modifant: DeepPartial<UGPTSettingsDocument> = {}
 ) {
 	return dmf(FakeGameSettings, {
 		userID,
@@ -81,39 +85,42 @@ export function mkFakeGameSettings(
 	});
 }
 
-export function mkFakeImport(modifant: Partial<ImportDocument> = {}) {
+export function mkFakeImport(modifant: DeepPartial<ImportDocument> = {}) {
 	return dmf(FakeImport, modifant);
 }
 
-export function mkFakeScoreIIDXSP(modifant: Partial<ScoreDocument<"iidx:SP">> = {}) {
+export function mkFakeScoreIIDXSP(modifant: DeepPartial<ScoreDocument<"iidx:SP">> = {}) {
 	return dmf(TestingIIDXSPScore, modifant);
 }
 
-export function mkFakeScoreSDVX(modifant: Partial<ScoreDocument<"sdvx:Single">> = {}) {
+export function mkFakeScoreSDVX(modifant: DeepPartial<ScoreDocument<"sdvx:Single">> = {}) {
 	return dmf(TestingSDVXScore, modifant);
 }
 
-export function mkFakePBIIDXSP(modifant: Partial<PBScoreDocument<"iidx:SP">> = {}) {
+export function mkFakePBIIDXSP(modifant: DeepPartial<PBScoreDocument<"iidx:SP">> = {}) {
 	return dmf(TestingIIDXSPScorePB, modifant);
 }
 
-export function mkFakePBJubeat(modifant: Partial<PBScoreDocument<"jubeat:Single">> = {}) {
+export function mkFakePBJubeat(modifant: DeepPartial<PBScoreDocument<"jubeat:Single">> = {}) {
 	return dmf(TestingJubeatPB, modifant);
 }
 
-export function mkFakeNotification(modifant: Partial<NotificationDocument> = {}) {
+export function mkFakeNotification(modifant: DeepPartial<NotificationDocument> = {}) {
 	return dmf(FakeNotification, modifant);
 }
 
-export function mkFakeGoal(modifant: Partial<GoalDocument> = {}) {
+export function mkFakeGoal(modifant: DeepPartial<GoalDocument> = {}) {
 	return dmf(HC511Goal, modifant);
 }
 
-export function mkFakeGoalSub(modifant: Partial<GoalSubscriptionDocument> = {}) {
+export function mkFakeGoalSub(modifant: DeepPartial<GoalSubscriptionDocument> = {}) {
 	return dmf(HC511UserGoal, modifant);
 }
 
-export function mkFakeGameStats(userID: integer, modifant: Partial<UserGameStats> = {}) {
+export function mkFakeGameStats(
+	userID: integer,
+	modifant: DeepPartial<UserGameStats> = {}
+): UserGameStats {
 	return dmf(
 		{
 			userID,
@@ -122,13 +129,14 @@ export function mkFakeGameStats(userID: integer, modifant: Partial<UserGameStats
 			classes: {},
 			ratings: {},
 		},
+		// @ts-expect-error idk lol types
 		modifant
 	);
 }
 
 export function mkFakeSDVXChart(
 	chartID: string,
-	modifant: Partial<ChartDocument<"sdvx:Single">> = {}
+	modifant: DeepPartial<ChartDocument<"sdvx:Single">> = {}
 ) {
 	return dmf(TestingSDVXAlbidaChart, {
 		chartID,
@@ -136,6 +144,55 @@ export function mkFakeSDVXChart(
 	});
 }
 
-export function mkFakeSDVXPB(modifant: Partial<PBScoreDocument<"sdvx:Single">> = {}) {
+export function mkFakeSDVXPB(modifant: DeepPartial<PBScoreDocument<"sdvx:Single">> = {}) {
 	return dmf(TestingSDVXPB, modifant);
+}
+
+export function mkMockPB<GPT extends GPTString>(
+	game: Game,
+	playtype: Playtype,
+	chart: ChartDocument<GPT>,
+	scoreData: ScoreData<GPT>
+): PBScoreDocument<GPT> {
+	return {
+		userID: 1,
+		composedFrom: [{ name: "Best Percent", scoreID: `TEST_${game}:${playtype}_SCORE` }],
+		game,
+		playtype,
+		highlight: false,
+		isPrimary: true,
+		rankingData: { outOf: 1, rank: 1, rivalRank: null },
+		songID: chart.songID,
+		chartID: chart.chartID,
+		calculatedData: {},
+		scoreData,
+		timeAchieved: null,
+	};
+}
+
+export function mkMockScore<GPT extends GPTString>(
+	game: Game,
+	playtype: Playtype,
+	chart: ChartDocument<GPT>,
+	scoreData: ScoreData<GPT>
+): ScoreDocument<GPT> {
+	// @ts-expect-error whatever lol
+	return {
+		userID: 1,
+		game,
+		playtype,
+		highlight: false,
+		isPrimary: true,
+		songID: chart.songID,
+		chartID: chart.chartID,
+		calculatedData: {},
+		scoreData,
+		timeAchieved: null,
+		comment: null,
+		importType: null,
+		scoreID: `TEST_${game}:${playtype}_SCORE`,
+		scoreMeta: {},
+		service: "TESTING",
+		timeAdded: 1,
+	};
 }

@@ -40,7 +40,7 @@ const BMS_IMPL: GPTServerImplementation<GPTStrings["bms" | "pms"]> = {
 	classDerivers: {},
 	goalCriteriaFormatters: {
 		percent: GoalFmtPercent,
-		score: GoalFmtScore,
+		score: (v) => `Get a score of ${v} on`,
 	},
 	goalProgressFormatters: {
 		percent: (pb) => `${pb.scoreData.percent.toFixed(2)}%`,

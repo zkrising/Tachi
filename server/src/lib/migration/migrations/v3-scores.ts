@@ -1,8 +1,9 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import { DeleteMultipleScores } from "lib/score-mutation/delete-scores";
 import UpdateScore from "lib/score-mutation/update-score";
 import { RecalcGameProfiles } from "scripts/state-sync/recalc-game-profiles";
-import { GetGPTString } from "tachi-common";
+import { GetGPTString, allSupportedGames } from "tachi-common";
 import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 import { RecalcSessions } from "utils/calculations/recalc-sessions";
 import { EfficientDBIterate } from "utils/efficient-db-iterate";
@@ -38,10 +39,10 @@ const IIDX_MV: ScoreMover<GPTStrings["iidx"]> = (old) => ({
 		maxCombo: old.hitMeta.maxCombo,
 		gauge: old.hitMeta.gauge,
 		gaugeHistory: old.hitMeta.gaugeHistory,
-		gsmEasy: old.hitMeta.gsm.EASY,
-		gsmNormal: old.hitMeta.gsm.NORMAL,
-		gsmHard: old.hitMeta.gsm.HARD,
-		gsmEXHard: old.hitMeta.gsm.EX_HARD,
+		gsmEasy: old.hitMeta.gsm?.EASY,
+		gsmNormal: old.hitMeta.gsm?.NORMAL,
+		gsmHard: old.hitMeta.gsm?.HARD,
+		gsmEXHard: old.hitMeta.gsm?.EX_HARD,
 	},
 });
 
@@ -133,31 +134,106 @@ const migration: Migration = {
 		// welp. here we go
 		// we need to do a **mass** score migration
 
+		for (const game of allSupportedGames) {
+			logger.info(`Removing dangling scores for ${game}...`);
+
+			const allChartIDs = (
+				await db.anyCharts[game].find(
+					{},
+					{
+						projection: { chartID: 1 },
+					}
+				)
+			).map((e) => e.chartID);
+
+			await DeleteMultipleScores(
+				await db.scores.find({
+					game,
+					chartID: { $nin: allChartIDs },
+				})
+			);
+		}
+
+		await DeleteMultipleScores(await db.scores.find({ game: "itg" }));
+		await DeleteMultipleScores(
+			await db.scores.find({
+				game: "popn",
+				"scoreData.hitMeta": { $exists: true },
+				$or: [
+					{ "scoreData.hitMeta.specificClearType": { $exists: false } },
+					{ "scoreData.hitMeta.specificClearType": null },
+				],
+			})
+		);
+
 		logger.info(`Starting score migration...`);
+
+		const count = await db.scores.count({
+			"scoreData.enumIndexes": { $exists: false },
+		});
+
+		logger.info(`Migrating ${count} scores.`);
+
+		const failedScores = [];
 
 		await EfficientDBIterate(
 			db.scores,
 			async (score) => {
-				await UpdateScore(score, {
-					...score,
-					scoreData: scoreMovers[GetGPTString(score.game, score.playtype)](
-						score.scoreData as unknown as OldScoreData
-					),
-				});
+				// @ts-expect-error just incase
+				delete score._id;
+
+				try {
+					await UpdateScore(
+						score,
+						{
+							...score,
+							scoreData: scoreMovers[GetGPTString(score.game, score.playtype)](
+								score.scoreData as unknown as OldScoreData
+							),
+						},
+						undefined,
+						true // skipUpdatingPBs because we'll do it after
+						// all scores are guaranteeably correct.
+					);
+				} catch (err) {
+					logger.warn(err);
+					logger.warn("Continuing through the error.");
+
+					failedScores.push(score.scoreID);
+				}
 			},
 			// no-op
 			// eslint-disable-next-line @typescript-eslint/require-await
 			async () => void 0,
 			{
 				"scoreData.enumIndexes": { $exists: false },
-			}
+			},
+			1000
 		);
 
+		if (failedScores.length > 0) {
+			throw new Error(
+				`${failedScores.length} failed to be migrated. Resolve these manually, please.`
+			);
+		}
+
 		logger.info(`Reconstructing PBs...`);
-		await UpdateAllPBs();
+		// await UpdateAllPBs();n
 
 		logger.info(`Re-calcing Game Profiles...`);
 		await RecalcGameProfiles();
+
+		// somehow these sessions got corrupted, my bad.
+		const corruptSessionsSomehow = await db.sessions.find({
+			scoreIDs: { $type: "string" },
+		});
+
+		for (const ses of corruptSessionsSomehow) {
+			await db.sessions.update(
+				{ sessionID: ses.sessionID },
+				{ $set: { scoreIDs: [ses.scoreIDs as unknown as string] } }
+			);
+		}
 
 		logger.info(`Re-calcing Sessions...`);
 		await RecalcSessions();

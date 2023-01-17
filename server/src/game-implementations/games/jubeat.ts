@@ -196,7 +196,7 @@ export const JUBEAT_IMPL: GPTServerImplementation<"jubeat:Single"> = {
 		},
 	},
 	goalCriteriaFormatters: {
-		musicRate: GoalFmtPercent,
+		musicRate: (v) => `Get a music rate of ${v.toFixed(1)}% on`,
 		score: GoalFmtScore,
 	},
 	goalProgressFormatters: {
@@ -212,7 +212,7 @@ export const JUBEAT_IMPL: GPTServerImplementation<"jubeat:Single"> = {
 			),
 	},
 	goalOutOfFormatters: {
-		musicRate: GoalOutOfFmtPercent,
+		musicRate: (v) => `${v.toFixed(1)}%`,
 		score: GoalOutOfFmtScore,
 	},
 

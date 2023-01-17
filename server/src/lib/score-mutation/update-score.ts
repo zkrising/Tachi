@@ -26,7 +26,8 @@ type NewScore =
 export default async function UpdateScore(
 	oldScore: ScoreDocument,
 	newScore: NewScore,
-	updateOldChart = true
+	updateOldChart = true,
+	skipUpdatingPBs = false
 ) {
 	const userID = oldScore.userID;
 	const user = await GetUserWithID(userID);
@@ -170,23 +171,25 @@ export default async function UpdateScore(
 		);
 	}
 
-	logger.verbose(`Updating PBs.`);
+	if (!skipUpdatingPBs) {
+		logger.verbose(`Updating PBs.`);
 
-	// Update the PBs to reference properly.
-	// We run updateAllPbs on just the modified chart -- the reason
-	// for this is to update ranking info incase that might fall out of
-	// sync as a result.
-	await UpdateAllPBs([userID], {
-		chartID: newScore.chartID,
-	});
-
-	await UpdateChartRanking(newScore.game, newScore.playtype, newScore.chartID);
-
-	if (updateOldChart) {
+		// Update the PBs to reference properly.
+		// We run updateAllPbs on just the modified chart -- the reason
+		// for this is to update ranking info incase that might fall out of
+		// sync as a result.
 		await UpdateAllPBs([userID], {
-			chartID: oldScore.chartID,
+			chartID: newScore.chartID,
 		});
-		await UpdateChartRanking(oldScore.game, oldScore.playtype, oldScore.chartID);
+
+		await UpdateChartRanking(newScore.game, newScore.playtype, newScore.chartID);
+
+		if (updateOldChart) {
+			await UpdateAllPBs([userID], {
+				chartID: oldScore.chartID,
+			});
+			await UpdateChartRanking(oldScore.game, oldScore.playtype, oldScore.chartID);
+		}
 	}
 
 	const imports = await db.imports.find({

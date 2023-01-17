@@ -31,5 +31,21 @@
 	"Invalid Goal: LampIndex:Multi:Proportion Case": "Criteria Mode must be 'single' or 'absolute' if Charts Type is 'multi'. Doesn't make sense to have proportional goals when you're capped at 10 charts.",
 	"Invalid Goal: GradeIndex:Multi:Proportion Case": "Criteria Mode must be 'single' or 'absolute' if Charts Type is 'multi'. Doesn't make sense to have proportional goals when you're capped at 10 charts.",
 	"Invalid Goal: Percent:Multi:Proportion Case": "Criteria Mode must be 'single' or 'absolute' if Charts Type is 'multi'. Doesn't make sense to have proportional goals when you're capped at 10 charts.",
-	"Invalid Goal: string enum": "[criteria.value] Expected number to be greater than or equal to 0. (Received 9)"
+	"Invalid Goal: string enum": "[criteria.value] Expected number to be greater than or equal to 0. (Received 9)",
+	"Jubeat Music Rate Validator: negative": "Expected a number between 0 and 100.",
+	"Jubeat Music Rate Validator: too big": "Expected a number between 0 and 100.",
+	"Jubeat Music Rate Validator: too big (hard)": "Expected a number between 0 and 120.",
+	"EX Score Validator SP: negative": "EX Score cannot be negative. Got -1.",
+	"EX Score Validator SP: excessive": "EX Score cannot be greater than 1572 for this chart. Got 1573.",
+	"EX Score Validator DP: negative": "EX Score cannot be negative. Got -1.",
+	"EX Score Validator DP: excessive": "EX Score cannot be greater than 1572 for this chart. Got 1573.",
+	"EX Score Validator SDVX: negative": "EX Score must be non-negative. Got -1",
+	"EX Score Validator 7K: negative": "EX Score cannot be negative. Got -1.",
+	"EX Score Validator 7K: excessive": "EX Score cannot be greater than 4512 for this chart. Got 4513.",
+	"EX Score Validator 14K: negative": "EX Score cannot be negative. Got -1.",
+	"EX Score Validator 14K: excessive": "EX Score cannot be greater than 4512 for this chart. Got 4513.",
+	"EX Score Validator Controller: negative": "EX Score cannot be negative. Got -1.",
+	"EX Score Validator Controller: excessive": "EX Score cannot be greater than 4512 for this chart. Got 4513.",
+	"EX Score Validator Keyboard: negative": "EX Score cannot be negative. Got -1.",
+	"EX Score Validator Keyboard: excessive": "EX Score cannot be greater than 4512 for this chart. Got 4513."
 }

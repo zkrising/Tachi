@@ -10,7 +10,7 @@ import {
 	IIDXLIKE_GBOUNDARIES,
 	SDVXLIKE_GBOUNDARIES,
 } from "tachi-common";
-import { FormatMaxDP, IsNullish } from "utils/misc";
+import { NumToDP, IsNullish } from "utils/misc";
 import type {
 	ChartSpecificMetricValidator,
 	GPTClassDerivers,
@@ -41,7 +41,7 @@ export const EX_SCORE_CHECK: ChartSpecificMetricValidator<IIDXLikes> = (exScore,
 };
 
 function calculateIIDXLikePercent(exScore: integer, notecount: integer) {
-	return exScore / (notecount * 2);
+	return (100 * exScore) / (notecount * 2);
 }
 
 type IIDXLikes = GPTStrings["bms" | "iidx" | "pms"];
@@ -83,7 +83,7 @@ export function VF6ToClass(vf: number): SpecificUserGameStats<"sdvx:Single">["cl
 		return "IMPERIAL_I";
 	} else if (vf >= 19.75) {
 		return "CRIMSON_IV";
-	} else if (vf > 19.5) {
+	} else if (vf >= 19.5) {
 		return "CRIMSON_III";
 	} else if (vf >= 19.25) {
 		return "CRIMSON_II";
@@ -232,7 +232,7 @@ export const SGLCalc: ScoreCalculator<GPTStrings["bms" | "pms"]> = (scoreData, c
 };
 
 export function GoalFmtPercent(val: number) {
-	return `Get ${FormatMaxDP(val)}% on`;
+	return `Get ${NumToDP(val)}% on`;
 }
 
 export function GoalFmtScore(val: number) {
@@ -240,7 +240,7 @@ export function GoalFmtScore(val: number) {
 }
 
 export function GoalOutOfFmtPercent(val: number) {
-	return `${FormatMaxDP(val)}%`;
+	return `${NumToDP(val)}%`;
 }
 
 export function GoalOutOfFmtScore(val: number) {

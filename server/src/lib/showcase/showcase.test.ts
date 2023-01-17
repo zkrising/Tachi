@@ -10,9 +10,6 @@ t.test("#RemoveStaleFolderShowcaseStats", (t) => {
 		await db["game-settings"].remove({});
 		await db["game-settings"].insert([
 			mkFakeGameSettings(1, "iidx", "SP", {
-				// @todo Make `mk` test functions deeply partial.
-				// @ts-expect-error DeepPartial modifications to mkFakeGameSettings
-				// is not currently possible.
 				preferences: {
 					stats: [
 						{
@@ -36,7 +33,6 @@ t.test("#RemoveStaleFolderShowcaseStats", (t) => {
 				},
 			}),
 			mkFakeGameSettings(2, "iidx", "SP", {
-				// @ts-expect-error see above
 				preferences: {
 					stats: [
 						{

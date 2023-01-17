@@ -6,11 +6,7 @@ import {
 	TachifyRandom,
 	TachifyRange,
 } from "./converter";
-import {
-	InternalFailure,
-	InvalidScoreFailure,
-	SkipScoreFailure,
-} from "../../../framework/common/converter-failures";
+import { InternalFailure, SkipScoreFailure } from "../../../framework/common/converter-failures";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
@@ -18,7 +14,7 @@ import { CreateScoreID } from "lib/score-import/framework/score-importing/score-
 import t from "tap";
 import { mkFakeScoreIIDXSP } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
-import { Testing511Song, Testing511SPA, TestingIIDXSPDryScore } from "test-utils/test-data";
+import { Testing511SPA, Testing511Song, TestingIIDXSPDryScore } from "test-utils/test-data";
 import type { FervidexScore } from "./types";
 
 const logger = CreateLogCtx(__filename);
@@ -290,6 +286,7 @@ t.test("#ConverterIRFervidex", (t) => {
 	t.test("Should highlight existing scores.", async (t) => {
 		const fakeScore = mkFakeScoreIIDXSP({
 			scoreID: CreateScoreID(
+				"iidx:SP",
 				1,
 				TestingIIDXSPDryScore,
 				"c2311194e3897ddb5745b1760d2c0141f933e683"

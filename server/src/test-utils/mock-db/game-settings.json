@@ -7,7 +7,7 @@
 			"preferredScoreAlg": null,
 			"preferredSessionAlg": null,
 			"preferredProfileAlg": null,
-			"scoreBucket": null,
+			"preferredDefaultEnum": null,
 			"defaultTable": null,
 			"preferredRanking": null,
 			"stats": [],

@@ -2,7 +2,11 @@ import { CreateScoreID, GetWithScoreID } from "./score-id";
 import t from "tap";
 import { dmf } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
-import { Testing511SPA, TestingIIDXSPDryScore } from "test-utils/test-data";
+import {
+	Testing511SPA,
+	TestingIIDXSPDryScore,
+	TestingSDVXSingleDryScore,
+} from "test-utils/test-data";
 import type { DryScoreData } from "../common/types";
 
 t.test("#GetWithScoreID", async (t) => {
@@ -75,6 +79,86 @@ t.test("#CreateScoreID", (t) => {
 		"ScoreIDs should not produce the same value if a provided metric is different."
 	);
 
+	const sdvxScoreID = CreateScoreID(
+		"sdvx:Single",
+		1,
+		TestingSDVXSingleDryScore,
+		Testing511SPA.chartID
+	);
+
+	t.not(
+		sdvxScoreID,
+		CreateScoreID(
+			"sdvx:Single",
+			1,
+			dmf(TestingSDVXSingleDryScore, {
+				scoreData: { optional: { exScore: 1 } },
+			}),
+			Testing511SPA.chartID
+		),
+		"Hash should be affected by specific optionalMetrics."
+	);
+
+	t.not(
+		CreateScoreID(
+			"sdvx:Single",
+			1,
+			dmf(TestingSDVXSingleDryScore, {
+				scoreData: { optional: { exScore: 1 } },
+			}),
+			Testing511SPA.chartID
+		),
+		CreateScoreID(
+			"sdvx:Single",
+			1,
+			dmf(TestingSDVXSingleDryScore, {
+				scoreData: { optional: { exScore: 100 } },
+			}),
+			Testing511SPA.chartID
+		),
+		"Hash should be affected by specific optionalMetrics."
+	);
+
+	t.equal(
+		CreateScoreID(
+			"sdvx:Single",
+			1,
+			dmf(TestingSDVXSingleDryScore, {
+				scoreData: { optional: { exScore: 1, fast: 18 } },
+			}),
+			Testing511SPA.chartID
+		),
+		CreateScoreID(
+			"sdvx:Single",
+			1,
+			dmf(TestingSDVXSingleDryScore, {
+				scoreData: { optional: { exScore: 1 } },
+			}),
+			Testing511SPA.chartID
+		),
+		"Hash should not be affected by irrelevant optionalMetrics."
+	);
+
+	t.equal(
+		CreateScoreID(
+			"sdvx:Single",
+			1,
+			dmf(TestingSDVXSingleDryScore, {
+				scoreData: { optional: { exScore: undefined } },
+			}),
+			Testing511SPA.chartID
+		),
+		CreateScoreID(
+			"sdvx:Single",
+			1,
+			dmf(TestingSDVXSingleDryScore, {
+				scoreData: { optional: { exScore: null } },
+			}),
+			Testing511SPA.chartID
+		),
+		"Null and Undefined should be the same for optional metrics"
+	);
+
 	t.end();
 });
 
@@ -83,7 +167,7 @@ t.test("#ScoreID Canary", (t) => {
 
 	t.equal(
 		scoreID,
-		"T5da661101a371a32caa57df7f5b43225ba45b273ded5d925da0e64ba6653a9d8",
+		"Tc4f10c2ca8e99478de5ae318a40ee66051f7297ca648415502b6f393a23e6f10",
 		"ScoreID **SHOULD BE DETERMINISTIC**. A change to the ScoreID algorithm is **a major breaking change.**"
 	);
 

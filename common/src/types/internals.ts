@@ -22,7 +22,20 @@ export type INTERNAL_GAME_PT_CONFIG = Readonly<{
 
 	preferredDefaultEnum: string;
 
-	optionalMetrics: Record<string, ConfScoreMetric>;
+	optionalMetrics: Record<
+		string,
+		ConfScoreMetric & {
+			/**
+			 * Should this optional metric be part of a score's unique
+			 * identifier?
+			 *
+			 * This should be used for extreme cases, like when a game introduces
+			 * a new scoring system that still needs to be optional, but players
+			 * don't want to be clobbered.
+			 */
+			partOfScoreID?: boolean;
+		}
+	>;
 
 	scoreRatingAlgs: Record<string, RatingAlgorithmConfig>;
 	sessionRatingAlgs: Record<string, RatingAlgorithmConfig>;

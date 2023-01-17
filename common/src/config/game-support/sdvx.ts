@@ -101,7 +101,15 @@ export const SDVX_SINGLE_CONF = {
 
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
-		exScore: { type: "INTEGER", chartDependentMax: true, formatter: FmtNum },
+		exScore: {
+			type: "INTEGER",
+			chartDependentMax: true,
+			formatter: FmtNum,
+
+			// We want to track the best EXScore a user gets, but it is an optional
+			// metric.N
+			partOfScoreID: true,
+		},
 		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
 	},
 

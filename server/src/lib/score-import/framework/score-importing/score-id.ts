@@ -2,7 +2,7 @@ import db from "external/mongo/db";
 import { GetGPTConfig } from "tachi-common";
 import crypto from "crypto";
 import type { DryScore } from "../common/types";
-import type { integer, GPTString, ProvidedMetrics } from "tachi-common";
+import type { integer, GPTString, ProvidedMetrics, OptionalMetrics } from "tachi-common";
 
 /**
  * Performs sha256 hashing on the input data.
@@ -11,6 +11,10 @@ import type { integer, GPTString, ProvidedMetrics } from "tachi-common";
  */
 function HashScoreIDString(scoreIDString: string) {
 	return crypto.createHash("sha256").update(scoreIDString).digest("hex");
+}
+
+function SortKeysAlphabetically(a: string, b: string) {
+	return a.localeCompare(b, "en-GB");
 }
 
 /**
@@ -28,10 +32,27 @@ export function CreateScoreID(
 
 	const gptConfig = GetGPTConfig(gptString);
 
-	for (const m of Object.keys(gptConfig.providedMetrics)) {
+	// @warn
+	// we need to sort these metric keys deterministically instead
+	// of relying on any sort of object-insertion order
+	// as that would throw the checksum out of sync.
+	for (const m of Object.keys(gptConfig.providedMetrics).sort(SortKeysAlphabetically)) {
 		const metric = m as keyof ProvidedMetrics[GPTString];
 
 		elements.push(dryScore.scoreData[metric]);
+	}
+
+	// Also include optional metrics in the checksum if they should be
+	// part of the scoreID.
+	for (const [m, conf] of Object.entries(gptConfig.optionalMetrics).sort((a, b) =>
+		SortKeysAlphabetically(a[0], b[0])
+	)) {
+		const metric = m as keyof OptionalMetrics[GPTString];
+
+		if (conf.partOfScoreID) {
+			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+			elements.push(dryScore.scoreData.optional[metric] ?? null);
+		}
 	}
 
 	const hash = HashScoreIDString(elements.join("\0"));

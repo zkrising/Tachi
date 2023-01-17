@@ -28,13 +28,11 @@ import type { GPTStrings, GradeBoundary, integer, SpecificUserGameStats } from "
 
 export const EX_SCORE_CHECK: ChartSpecificMetricValidator<IIDXLikes> = (exScore, chart) => {
 	if (exScore < 0) {
-		return `EX Score cannot be negative. Got ${exScore}.`;
+		return `EX Score cannot be negative.`;
 	}
 
 	if (exScore > chart.data.notecount * 2) {
-		return `EX Score cannot be greater than ${
-			chart.data.notecount * 2
-		} for this chart. Got ${exScore}.`;
+		return `EX Score cannot be greater than ${chart.data.notecount * 2} for this chart.`;
 	}
 
 	return true;

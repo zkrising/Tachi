@@ -108,7 +108,7 @@ function ValidateMetrics(
 				}
 
 				if (typeof err === "string") {
-					errs.push(`Invalid value for ${metric}, ${err}`);
+					errs.push(`Invalid value for ${metric}, ${err} Got ${scoreVal}.`);
 				}
 
 				break;

@@ -193,8 +193,9 @@ t.test("POST /ir/direct-manual/import", async (t) => {
 				[
 					{
 						type: "InvalidDatapoint",
-						message: `Got 1 error when validating score:
-Invalid value for score, EX Score cannot be greater than 1572 for this chart. Got 9000.`,
+						message: `Got 2 errors when validating score:
+Invalid value for score, EX Score cannot be greater than 1572 for this chart. Got 9000.
+Invalid value for percent, Expected a number between 0 and 100. Got 572.5190839694657.`,
 					},
 				],
 				"Should have one failed score."

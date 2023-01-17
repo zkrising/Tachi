@@ -412,6 +412,10 @@ t.test("IIDX Implementation", (t) => {
 						scoreID: "lowestBP",
 						scoreData: { optional: { bp: 1 } },
 					}),
+					mkFakeScoreIIDXSP({
+						scoreID: "nullBP",
+						scoreData: { optional: { bp: null } },
+					}),
 				]);
 
 				t.hasStrict(await CreatePBDoc(gptStr, 1, Testing511SPA, logger), {

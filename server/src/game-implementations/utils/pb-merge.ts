@@ -59,7 +59,7 @@ export function CreatePBMergeFor<GPT extends GPTString>(
 				{
 					userID,
 					chartID,
-					[`scoreData.${metric as string}`]: { $exists: true },
+					[`scoreData.${metric as string}`]: { $type: "number" },
 				},
 				asOfTimestamp
 			),

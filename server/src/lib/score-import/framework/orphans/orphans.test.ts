@@ -153,7 +153,7 @@ t.test("#ReprocessOrphan", (t) => {
 						songID: 1,
 						chartID: "c2311194e3897ddb5745b1760d2c0141f933e683",
 						scoreID:
-							"Tecc9141bfbc12fcc1ead785c13c4cf15a5c8a04d8d431e208ffe8c9d0df2080d.",
+							"Tecc9141bfbc12fcc1ead785c13c4cf15a5c8a04d8d431e208ffe8c9d0df2080d",
 						playtype: "SP",
 						isPrimary: true,
 					},

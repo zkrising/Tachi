@@ -311,7 +311,7 @@ export function FormatValue(
 	metric: string,
 	value: number
 ) {
-	if (mode === "folder") {
+	if (mode === "chart" && metric === "playcount") {
 		return value;
 	}
 
@@ -371,7 +371,7 @@ export function StatDisplay({
 			>
 				<>
 					<Link className="gentle-link" to={CreateChartLink(chart, game)}>
-						<h4>{FormatChart(game, song, chart)}</h4>
+						<h4>{FormatChart(game, song, chart, true)}</h4>
 					</Link>
 					<h4>
 						{UppercaseFirst(stat.metric)}:{" "}

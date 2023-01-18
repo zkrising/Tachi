@@ -1,6 +1,6 @@
 import { APIFetchV1 } from "util/api";
+import { UppercaseFirst } from "util/misc";
 import { ErrorPage } from "app/pages/ErrorPage";
-import ClassBadge from "components/game/ClassBadge";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import UGPTStatContainer from "components/user/UGPTStatContainer";
@@ -25,6 +25,7 @@ import {
 	FormatGame,
 	GetGameConfig,
 	GetGamePTConfig,
+	GetScoreMetrics,
 	ShowcaseStatDetails,
 	TableDocument,
 	UGPTSettingsDocument,
@@ -219,8 +220,9 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 					value={formik.values.preferredDefaultEnum}
 					onChange={formik.handleChange}
 				>
-					<option value="grade">Grades</option>
-					<option value="lamp">Lamps</option>
+					{GetScoreMetrics(gptConfig, "ENUM").map((e) => (
+						<option value={e}>{UppercaseFirst(e)}</option>
+					))}
 				</Form.Control>
 				<Form.Text className="text-muted">
 					What should {TachiConfig.name} default to showing you about folders?

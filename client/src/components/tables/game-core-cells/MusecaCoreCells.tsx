@@ -9,9 +9,11 @@ import RatingCell from "../cells/RatingCell";
 export default function MusecaCoreCells({
 	sc,
 	rating,
+	short,
 }: {
 	sc: ScoreDocument<"museca:Single"> | PBScoreDocument<"museca:Single">;
 	rating: ScoreRatingAlgorithms[GPTString];
+	short: boolean;
 }) {
 	return (
 		<>
@@ -22,7 +24,7 @@ export default function MusecaCoreCells({
 			/>
 			<MusecaJudgementCell score={sc} />
 			<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
-			<RatingCell score={sc} rating={rating} />
+			{!short && <RatingCell score={sc} rating={rating} />}
 		</>
 	);
 }

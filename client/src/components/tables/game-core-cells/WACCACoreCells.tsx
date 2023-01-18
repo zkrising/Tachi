@@ -9,9 +9,11 @@ import WaccaJudgementCell from "../cells/WACCAJudgementCell";
 export default function WACCACoreCells({
 	sc,
 	rating,
+	short,
 }: {
 	sc: ScoreDocument<"wacca:Single"> | PBScoreDocument<"wacca:Single">;
 	rating: keyof ScoreDocument["calculatedData"];
+	short: boolean;
 }) {
 	return (
 		<>
@@ -22,7 +24,7 @@ export default function WACCACoreCells({
 			/>
 			<WaccaJudgementCell score={sc} />
 			<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
-			<RatingCell score={sc} rating={rating} />
+			{!short && <RatingCell score={sc} rating={rating} />}
 		</>
 	);
 }

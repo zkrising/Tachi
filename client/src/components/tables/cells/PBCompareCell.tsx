@@ -5,7 +5,6 @@ import { ConfScoreMetric } from "tachi-common/types/metrics";
 export default function PBCompareCell({
 	base,
 	compare,
-	game,
 	metricConf,
 	metric,
 }: {
@@ -18,6 +17,8 @@ export default function PBCompareCell({
 }) {
 	let status: "win" | "draw" | "lose";
 
+	let delta: number | null = null;
+
 	// wut?
 	if (!base && !compare) {
 		status = "draw";
@@ -28,9 +29,13 @@ export default function PBCompareCell({
 	} else if (metricConf.type === "ENUM") {
 		// @ts-expect-error yeah this index will work sorry
 		status = cmp(base.scoreData.enumIndexes[metric], compare.scoreData.enumIndexes[metric]);
+		// @ts-expect-error yeah this index will work sorry
+		delta = base.scoreData.enumIndexes[metric] - compare.scoreData.enumIndexes[metric];
 	} else {
 		// @ts-expect-error yeah this index will work sorry
 		status = cmp(base.scoreData[metric], compare.scoreData[metric]);
+		// @ts-expect-error yeah this index will work sorry
+		delta = base.scoreData[metric] - compare.scoreData[metric];
 	}
 
 	return (
@@ -47,18 +52,19 @@ export default function PBCompareCell({
 			}}
 		>
 			{metricConf.type === "ENUM" ? (
-				// @ts-expect-error this access is fine
-				<>{base.scoreData[metric]}</>
+				<>
+					{/* @ts-expect-error this is fine */}
+					{(delta > 0 ? "+" : "") + delta}
+				</>
 			) : (
-				metricConf.type === "DECIMAL" ||
-				(metricConf.type === "INTEGER" && (
+				(metricConf.type === "DECIMAL" || metricConf.type === "INTEGER") && (
 					<strong>
 						{/* @ts-expect-error this is fine */}
-						{(base.scoreData[metric] > 0 ? "+" : "") +
+						{(delta > 0 ? "+" : "") +
 							//  @ts-expect-error this is fine
-							metricConf.formatter(base.scoreData[metric])}
+							metricConf.formatter(delta)}
 					</strong>
-				))
+				)
 			)}
 		</td>
 	);

@@ -457,8 +457,8 @@ function PlayCard({
 					<span className="text-muted">/{pb.rankingData.outOf}</span>
 				</Col>
 				<Col lg={6}>
-					<MiniTable headers={["PB Info"]}>
-						<ScoreCoreCells game={pb.game} chart={chart} score={pb} />
+					<MiniTable headers={["PB Info"]} colSpan={100}>
+						<ScoreCoreCells short game={pb.game} chart={chart} score={pb} />
 					</MiniTable>
 					<div className="text-center">
 						<Muted>

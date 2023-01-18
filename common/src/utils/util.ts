@@ -177,8 +177,10 @@ export function FormatChart(
 
 	if (gptConfig.difficulties.type === "DYNAMIC") {
 		diff = chart.difficulty;
-	} else {
+	} else if (short) {
 		diff = gptConfig.difficulties.shorthand[chart.difficulty] ?? chart.difficulty;
+	} else {
+		diff = chart.difficulty;
 	}
 
 	// iidx formats things like SPA instead of SP A.

@@ -9,9 +9,11 @@ import MaimaiDXJudgementCell from "../cells/MaimaiDXJudgementCell";
 export default function MaimaiDXCoreCells({
 	sc,
 	rating,
+	short,
 }: {
 	sc: ScoreDocument<"maimaidx:Single"> | PBScoreDocument<"maimaidx:Single">;
 	rating: keyof ScoreDocument["calculatedData"];
+	short: boolean;
 }) {
 	return (
 		<>
@@ -22,7 +24,7 @@ export default function MaimaiDXCoreCells({
 			/>
 			<MaimaiDXJudgementCell score={sc} />
 			<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
-			<RatingCell score={sc} rating={rating} />
+			{!short && <RatingCell score={sc} rating={rating} />}
 		</>
 	);
 }

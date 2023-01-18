@@ -721,6 +721,37 @@ export async function EditGoal(oldGoal: GoalDocument, newGoal: GoalDocument) {
 		}
 	);
 
+	// update any dangling quest references
+	const quests = await GetQuestsThatContainGoal(oldGoal.goalID);
+
+	for (const quest of quests) {
+		const newQuestData: QuestDocument["questData"] = [];
+
+		for (const qd of quest.questData) {
+			const goals = [];
+
+			for (const goal of qd.goals) {
+				if (goal.goalID === oldGoal.goalID) {
+					goals.push({ ...goal, goalID: newGoal.goalID });
+				} else {
+					goals.push(goal);
+				}
+			}
+
+			newQuestData.push({
+				...qd,
+				goals,
+			});
+		}
+
+		await db.quests.update(
+			{ questID: quest.questID },
+			{
+				$set: { questData: newQuestData },
+			}
+		);
+	}
+
 	await db.goals.remove({ goalID: oldGoal.goalID });
 
 	// eslint-disable-next-line require-atomic-updates

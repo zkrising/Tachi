@@ -38,7 +38,7 @@ export default function RatingSystemPart({ chart, game }: { chart: ChartDocument
 
 								return (
 									<tr key={e.name}>
-										<td>{e}</td>
+										<td>{e.name}</td>
 										<td>
 											{strV} <Muted>({numV.toFixed(2)})</Muted>
 											{e.idvDifference(chart) && (

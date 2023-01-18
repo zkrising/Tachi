@@ -9,9 +9,11 @@ import VF6Cell from "../cells/VF6Cell";
 export default function SDVXScoreCoreCells({
 	sc,
 	chart,
+	short,
 }: {
 	sc: ScoreDocument<"sdvx:Single"> | PBScoreDocument<"sdvx:Single">;
 	chart: ChartDocument<"sdvx:Single" | "usc:Controller" | "usc:Keyboard">;
+	short: boolean;
 }) {
 	return (
 		<>
@@ -22,7 +24,7 @@ export default function SDVXScoreCoreCells({
 			/>
 			<SDVXJudgementCell score={sc} />
 			<SDVXLampCell score={sc} />
-			<VF6Cell score={sc} chart={chart} />
+			{!short && <VF6Cell score={sc} chart={chart} />}
 		</>
 	);
 }

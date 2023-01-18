@@ -1,7 +1,7 @@
 import { APIFetchV1 } from "util/api";
 import { DEFAULT_BAR_PROPS } from "util/charts";
 import { ChangeOpacity } from "util/color-opacity";
-import { Reverse } from "util/misc";
+import { Reverse, UppercaseFirst } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { ResponsiveBar } from "@nivo/bar";
 import { BarChartTooltip } from "components/charts/ChartTooltip";
@@ -27,6 +27,7 @@ import {
 	GetGPTString,
 	GetGamePTConfig,
 	GetScoreMetricConf,
+	GetScoreMetrics,
 	Playtype,
 	TableDocument,
 	UserDocument,
@@ -34,6 +35,7 @@ import {
 import { FolderStatsInfo, UGPTTableReturns } from "types/api-returns";
 import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
+import DebugContent from "components/util/DebugContent";
 
 interface Props {
 	reqUser: UserDocument;
@@ -276,12 +278,11 @@ function TableBarChart({
 			};
 
 			// this is a series of stupid hacks and i dont really care.
-			// @ts-expect-error hack!
-			for (const key in data.stats[enumMetric]) {
+			for (const key in data.stats.stats[enumMetric]) {
 				// @ts-expect-error stupid key stuff
-				realData[key] = (100 * data.stats[enumMetric][key]) / data.stats.chartCount;
+				realData[key] = (100 * data.stats.stats[enumMetric][key]) / data.stats.chartCount;
 				// @ts-expect-error stupid key stuff
-				realData[`${key}-count`] = data.stats[enumMetric][key];
+				realData[`${key}-count`] = data.stats.stats[enumMetric][key];
 			}
 
 			arr.push({
@@ -301,14 +302,13 @@ function TableBarChart({
 			<div className="row">
 				<div className="col-12 d-flex justify-content-center">
 					<div className="btn-group">
-						<SelectButton value={enumMetric} setValue={setEnumMetric} id="grades">
-							<Icon type="sort-alpha-up" />
-							Grades
-						</SelectButton>
-						<SelectButton value={enumMetric} setValue={setEnumMetric} id="lamps">
-							<Icon type="lightbulb" />
-							Lamps
-						</SelectButton>
+						{GetScoreMetrics(gptConfig, "ENUM").map((e) => (
+							<SelectButton value={enumMetric} setValue={setEnumMetric} id={e}>
+								{/* @ts-expect-error this access is legal zzz */}
+								<Icon type={gptImpl.enumIcons[e]} />
+								{UppercaseFirst(e)}s
+							</SelectButton>
+						))}
 					</div>
 				</div>
 				<div className="col-12">
@@ -321,26 +321,14 @@ function TableBarChart({
 							height: dataset.length * 40,
 						}}
 					>
-						{/* This hack is necessary because otherwise
-						nivo gets caught in a render loop
-						and dies */}
-						{enumMetric === "grades" ? (
-							<OverviewBarChart
-								key="grade"
-								gptConfig={gptConfig}
-								mode={enumMetric}
-								dataset={dataset}
-								colours={colours}
-							/>
-						) : (
-							<OverviewBarChart
-								key="lamp"
-								gptConfig={gptConfig}
-								mode={enumMetric}
-								dataset={dataset}
-								colours={colours}
-							/>
-						)}
+						<OverviewBarChart
+							// This hack is necessary because otherwise nivo gets caught in a render loop and dies
+							key={enumMetric}
+							gptConfig={gptConfig}
+							mode={enumMetric}
+							dataset={dataset}
+							colours={colours}
+						/>
 					</div>
 				</div>
 			</div>

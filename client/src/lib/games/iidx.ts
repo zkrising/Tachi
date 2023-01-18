@@ -80,6 +80,10 @@ const IIDX_COLOURS: GPTClientImplementation<"iidx:SP" | "iidx:DP">["classColours
 export const IIDX_SP_IMPL: GPTClientImplementation<"iidx:SP"> = {
 	difficultyColours: IIDX_DIFF_COLOURS,
 	enumColours: IIDX_ENUM_COLOURS,
+	enumIcons: {
+		grade: "sort-alpha-up",
+		lamp: "lightbulb",
+	},
 	ratingSystems: [
 		CreateRatingSys(
 			"NC Tier",
@@ -110,6 +114,10 @@ export const IIDX_SP_IMPL: GPTClientImplementation<"iidx:SP"> = {
 export const IIDX_DP_IMPL: GPTClientImplementation<"iidx:DP"> = {
 	difficultyColours: IIDX_DIFF_COLOURS,
 	enumColours: IIDX_ENUM_COLOURS,
+	enumIcons: {
+		grade: "sort-alpha-up",
+		lamp: "lightbulb",
+	},
 	ratingSystems: [
 		CreateRatingSys(
 			"DP Tier",

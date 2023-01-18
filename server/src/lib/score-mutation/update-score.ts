@@ -21,13 +21,17 @@ type NewScore =
  * Updates a score from oldScore to newScore, applying all necessary state
  * changes on the way.
  *
+ * @param dangerouslySkipUpdatingRefs - Skip updating session/import pointers to this
+ * scoreID.
+ *
  * @note You don't need to recalc the scoreID for newScore, it's done for you.
  */
 export default async function UpdateScore(
 	oldScore: ScoreDocument,
 	newScore: NewScore,
 	updateOldChart = true,
-	skipUpdatingPBs = false
+	skipUpdatingPBs = false,
+	dangerouslySkipUpdatingRefs = false
 ) {
 	const userID = oldScore.userID;
 	const user = await GetUserWithID(userID);
@@ -117,6 +121,16 @@ export default async function UpdateScore(
 		await db.scores.remove({
 			scoreID: oldScoreID,
 		});
+	}
+
+	if (oldScoreID === newScoreID) {
+		logger.verbose(`Done updating score.`);
+		return;
+	}
+
+	if (dangerouslySkipUpdatingRefs) {
+		logger.verbose(`Done updating score.`);
+		return;
 	}
 
 	const sessions = await db.sessions.find({

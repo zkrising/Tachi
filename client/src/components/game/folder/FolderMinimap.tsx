@@ -25,6 +25,7 @@ import {
 } from "tachi-common";
 import { GamePT } from "types/react";
 import { FolderDataset } from "types/tables";
+import MiniTable from "components/tables/components/MiniTable";
 
 type Props = {
 	folderDataset: FolderDataset;
@@ -168,6 +169,7 @@ function MinimapElement({
 
 	let icon = "level-up-alt";
 
+	// @easteregg
 	// if this user recently cleared mare nectaris
 	// give them a pleasant treat
 	if (
@@ -190,8 +192,9 @@ function MinimapElement({
 
 	return (
 		<QuickTooltip
+			max
 			tooltipContent={
-				<div>
+				<div className="w-100">
 					<span>{FormatChart(game, data.__related.song, data)}</span>
 					<Divider />
 					{wasRecent && (
@@ -201,7 +204,16 @@ function MinimapElement({
 						</>
 					)}
 					{data.__related.pb ? (
-						<ScoreCoreCells chart={data} game={game} score={data.__related.pb} />
+						<div className="w-100">
+							<MiniTable>
+								<ScoreCoreCells
+									short
+									chart={data}
+									game={game}
+									score={data.__related.pb}
+								/>
+							</MiniTable>
+						</div>
 					) : (
 						<span>Not Played</span>
 					)}

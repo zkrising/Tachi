@@ -16,18 +16,18 @@ export interface SearchDirective {
 	value: string;
 }
 
-type DirectiveModes = "$" | ">" | ">=" | "<" | "<=" | "~" | "!";
+type DirectiveModes = "==" | ">" | ">=" | "<" | "<=" | "~=" | "!=" | "=";
 
 export interface Directive {
 	key: string;
-	// :$ - EXACT
-	// :! - NOT
-	// :> - GREATER THAN
-	// :>= - GREATER THAN OR EQ
-	// :< - LESS THAN
-	// :<= - LESS THAN OR EQ
-	// :~ - REGEXP
-	mode: DirectiveModes | null;
+	// == - EXACT
+	// != - NOT
+	// > - GREATER THAN
+	// >= - GREATER THAN OR EQ
+	// < - LESS THAN
+	// <= - LESS THAN OR EQ
+	// ~= - REGEXP
+	mode: DirectiveModes;
 	value: string;
 }
 
@@ -39,7 +39,9 @@ export interface Directive {
 // VALUE = /("(?:\\"|[^"])+"|[^ ]+)/ - Parses the value.
 
 export function ParseDirectives(search: string): Directive[] {
-	const parsedSearch = search.matchAll(/([^ ]+):(>=|<=|!|\$|>|<|~)?("(?:\\"|[^"])+"|[^ ]+)/gu);
+	const parsedSearch = search.matchAll(
+		/([^ ]+)\s*(>=|<=|!=|==|>|<|~=|=)\s*("(?:\\"|[^"])+"|[^ ]+)/gu
+	);
 
 	const searchDirectives = [];
 	for (const ps of parsedSearch) {
@@ -60,7 +62,7 @@ export function ParseDirectives(search: string): Directive[] {
 
 		searchDirectives.push({
 			key: key.toLowerCase(),
-			mode: (mode || null) as Directive["mode"],
+			mode: mode as Directive["mode"],
 			value: v,
 		});
 	}
@@ -70,11 +72,11 @@ export function ParseDirectives(search: string): Directive[] {
 
 type MatchFn = (searchValue: string, dataValue: string | number) => boolean;
 
-const Matchers: Record<DirectiveModes, MatchFn> = {
+const Matchers: Record<Exclude<DirectiveModes, "=">, MatchFn> = {
 	// Exact: Make sure this string is exactly the data value.
-	$: (sv, dv) => sv === dv.toString(),
+	"==": (sv, dv) => sv === dv.toString(),
 	// Not: this value is not equal to the provided value. Case insensitive.
-	"!": (sv, dv) => sv.toLowerCase() !== dv.toString().toLowerCase(),
+	"!=": (sv, dv) => sv.toLowerCase() !== dv.toString().toLowerCase(),
 	// LT, LTE, GT, GTE: If the data value is a number, compare numerically. If the data value is a string
 	// compare alphabetically.
 	// equality for alphabetical is implemented as .startsWith case insensitively.
@@ -107,7 +109,7 @@ const Matchers: Record<DirectiveModes, MatchFn> = {
 		return dv.localeCompare(sv) > 0 || dv.toLowerCase().startsWith(sv.toLowerCase());
 	},
 	// Regex: run the contents of value as if it were a regex. Lol.
-	"~": (sv, dv) =>
+	"~=": (sv, dv) =>
 		!!(Array.isArray(dv) ? dv[0] : dv).toString().match(new RegExp(sv, "u"))?.length,
 };
 
@@ -165,7 +167,7 @@ function DirectiveMatch(
 		return BooleanMatch(directive.value, dataValue);
 	}
 
-	if (!directive.mode) {
+	if (directive.mode === "=") {
 		return NeutralMatch(directive.value, GetStrData(dataValue));
 	}
 

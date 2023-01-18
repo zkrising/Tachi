@@ -18,6 +18,10 @@ export type GPTEnumColours<GPT extends GPTString> = {
 	[M in ExtractEnumMetricNames<ConfScoreMetrics[GPT]>]: Record<GetEnumValue<GPT, M>, string>;
 };
 
+export type GPTEnumIcons<GPT extends GPTString> = {
+	[M in ExtractEnumMetricNames<ConfScoreMetrics[GPT]>]: string;
+};
+
 export type GPTDifficultyColours<GPT extends GPTString> = Record<Difficulties[GPT], string>;
 
 /**
@@ -61,6 +65,12 @@ export type GPTClassColours<GPT extends GPTString> = {
 
 export interface GPTClientImplementation<GPT extends GPTString = GPTString> {
 	enumColours: GPTEnumColours<GPT>;
+
+	/**
+	 * Fontawesome Icons to use next to enum names.
+	 */
+	enumIcons: GPTEnumIcons<GPT>;
+
 	difficultyColours: GPTDifficultyColours<GPT>;
 	classColours: GPTClassColours<GPT>;
 

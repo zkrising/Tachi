@@ -9,9 +9,11 @@ import RatingCell from "../cells/RatingCell";
 export default function CHUNITHMCoreCells({
 	sc,
 	rating,
+	short,
 }: {
 	sc: ScoreDocument<"chunithm:Single"> | PBScoreDocument<"chunithm:Single">;
 	rating: keyof ScoreDocument["calculatedData"];
+	short: boolean;
 }) {
 	return (
 		<>
@@ -22,7 +24,7 @@ export default function CHUNITHMCoreCells({
 			/>
 			<CHUNITHMJudgementCell score={sc} />
 			<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
-			<RatingCell score={sc} rating={rating} />
+			{!short && <RatingCell score={sc} rating={rating} />}
 		</>
 	);
 }

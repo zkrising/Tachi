@@ -9,9 +9,11 @@ import ScoreCell from "../cells/ScoreCell";
 export default function ITGCoreCells({
 	sc,
 	rating,
+	short,
 }: {
 	sc: ScoreDocument<"itg:Stamina"> | PBScoreDocument<"itg:Stamina">;
 	rating: keyof ScoreDocument["calculatedData"];
+	short: boolean;
 }) {
 	return (
 		<>
@@ -22,7 +24,7 @@ export default function ITGCoreCells({
 			/>
 			<ITGJudgementCell score={sc} />
 			<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
-			<RatingCell score={sc} rating={rating} />
+			{!short && <RatingCell score={sc} rating={rating} />}
 		</>
 	);
 }

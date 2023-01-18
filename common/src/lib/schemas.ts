@@ -477,7 +477,6 @@ const PRE_SCHEMAS = {
 			desc: "?string",
 			game: p.is(game),
 			playtype: isValidPlaytype,
-			importType: p.nullable(p.isIn(allImportTypes)),
 			timeInserted: p.isPositiveInteger,
 			timeEnded: p.isPositiveInteger,
 			timeStarted: p.isPositiveInteger,

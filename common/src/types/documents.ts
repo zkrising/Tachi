@@ -160,8 +160,6 @@ export interface SessionDocument<GPT extends GPTString = GPTString> {
 	game: Game;
 	playtype: Playtype;
 
-	// This field is allowed to be null for compatibility with kamaitachi1 sessions, where import types didn't exist.
-	importType: ImportTypes | null;
 	timeInserted: integer;
 	timeEnded: integer;
 	timeStarted: integer;

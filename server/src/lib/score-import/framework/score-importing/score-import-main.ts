@@ -283,7 +283,7 @@ export async function HandlePostImportSteps(
 	// We create (or update existing) sessions here. This uses the aforementioned parsed import info
 	// to determine what goes where.
 	const sessionTimeStart = process.hrtime.bigint();
-	const sessionInfo = await CreateSessions(user.id, importType, game, scorePlaytypeMap, logger);
+	const sessionInfo = await CreateSessions(user.id, game, scorePlaytypeMap, logger);
 
 	const sessionTime = GetMillisecondsSince(sessionTimeStart);
 	const sessionTimeRel = sessionTime / sessionInfo.length;

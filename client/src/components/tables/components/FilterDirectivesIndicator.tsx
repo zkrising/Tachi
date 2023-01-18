@@ -83,7 +83,7 @@ export default function FilterDirectivesIndicator<D>({
 						<a href="https://docs.bokutachi.xyz/wiki/filter-directives/">here</a>
 						.<br />
 						The quick explanation is that you can use directives like{" "}
-						<code>Title:conflict Score:&gt;=100</code> to perform advanced filters!
+						<code>Title=conflict Score&gt;=100</code> to perform advanced filters!
 					</p>
 					<Divider className="mb-4" />
 

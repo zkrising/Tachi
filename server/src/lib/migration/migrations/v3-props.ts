@@ -122,6 +122,39 @@ const migration: Migration = {
 			{ multi: true }
 		);
 
+		const settings = await db["game-settings"].find({});
+
+		for (const set of settings) {
+			const newStats = [];
+
+			for (const stat of set.preferences.stats) {
+				if ("property" in stat) {
+					newStats.push({
+						...stat,
+						metric: stat.property,
+					});
+				} else {
+					newStats.push(stat);
+				}
+			}
+
+			for (const stat of newStats) {
+				// @ts-expect-error we're renaming the prop
+				delete stat.property;
+			}
+
+			await db["game-settings"].update(
+				{
+					userID: set.userID,
+					game: set.game,
+					playtype: set.playtype,
+				},
+				{
+					$set: { "preferences.stats": newStats },
+				}
+			);
+		}
+
 		await db.goals.update({}, { $unset: { timeAdded: 1 } }, { multi: true });
 
 		const r = await db.goals.find({ "charts.type": "any" });

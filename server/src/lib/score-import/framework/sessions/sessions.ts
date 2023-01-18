@@ -13,7 +13,6 @@ import type { PBScoreDocumentNoRank } from "../pb/create-pb-doc";
 import type { KtLogger } from "lib/logger/logger";
 import type {
 	Game,
-	ImportTypes,
 	integer,
 	Playtype,
 	ScoreDocument,
@@ -26,7 +25,6 @@ const TWO_HOURS = ONE_HOUR * 2;
 
 export async function CreateSessions(
 	userID: integer,
-	importType: ImportTypes,
 	game: Game,
 	scorePtMap: ScorePlaytypeMap,
 	logger: KtLogger
@@ -37,7 +35,6 @@ export async function CreateSessions(
 	for (const [playtype, scores] of Object.entries(scorePtMap)) {
 		const sessionInfo = await LoadScoresIntoSessions(
 			userID,
-			importType,
 			scores,
 			game,
 			playtype as Playtype,
@@ -158,7 +155,6 @@ function UpdateExistingSession(
 
 function CreateSession(
 	userID: integer,
-	importType: ImportTypes,
 	scoreIDs: Array<string>,
 	groupScores: Array<ScoreDocument>,
 	game: Game,
@@ -170,7 +166,6 @@ function CreateSession(
 
 	return {
 		userID,
-		importType,
 		name,
 		sessionID: CreateSessionID(),
 		desc: null,
@@ -187,7 +182,6 @@ function CreateSession(
 
 export async function LoadScoresIntoSessions(
 	userID: integer,
-	importType: ImportTypes,
 	importScores: Array<ScoreDocument>,
 	game: Game,
 	playtype: Playtype,
@@ -263,7 +257,6 @@ export async function LoadScoresIntoSessions(
 			userID,
 			game,
 			playtype,
-			importType,
 			$or: [
 				{ timeStarted: { $gte: startOfGroup - TWO_HOURS, $lt: endOfGroup + TWO_HOURS } },
 				{ timeEnded: { $gte: startOfGroup - TWO_HOURS, $lt: endOfGroup + TWO_HOURS } },
@@ -296,14 +289,7 @@ export async function LoadScoresIntoSessions(
 				`Creating new session for ${userID} (${game} ${playtype}) around ${startOfGroup} ${endOfGroup}.`
 			);
 
-			const session = CreateSession(
-				userID,
-				importType,
-				scoreIDs,
-				groupScores,
-				game,
-				playtype
-			);
+			const session = CreateSession(userID, scoreIDs, groupScores, game, playtype);
 
 			infoReturn = { sessionID: session.sessionID, type: "Created" };
 			await db.sessions.insert(session);

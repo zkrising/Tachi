@@ -1,3 +1,4 @@
+import { IsNotNullish } from "util/misc";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import RatingSystemPart from "components/tables/cells/RatingSystemPart";
 import MiniTable from "components/tables/components/MiniTable";
@@ -73,8 +74,8 @@ export default function ChartInfoFormat({
 				<ChartInfoMiddle chart={chart} game={game} />
 			</Col>
 			<Col xs={12} lg={3}>
-				<RatingSystemPart chart={chart} game={game} />
-				{ratingSystems.length !== 0 ? (
+				{ratingSystems.length !== 0 &&
+				ratingSystems.some((k) => IsNotNullish(k.toString(chart as any))) ? (
 					<MiniTable headers={["Ratings"]} colSpan={2}>
 						{ratingSystems.map((e) => {
 							// @ts-expect-error bad types
@@ -93,7 +94,7 @@ export default function ChartInfoFormat({
 
 							return (
 								<tr key={e.name}>
-									<td>{e}</td>
+									<td>{e.name}</td>
 									<td>
 										{strV} <Muted>({numV.toFixed(2)})</Muted>
 										{/* @ts-expect-error utterly silly types */}

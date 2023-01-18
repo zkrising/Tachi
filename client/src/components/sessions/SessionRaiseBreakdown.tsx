@@ -1,7 +1,7 @@
 import { APIFetchV1 } from "util/api";
 import { ChangeOpacity } from "util/color-opacity";
 import { CreateChartMap, CreateScoreIDMap, CreateSongMap } from "util/data";
-import { PartialArrayRecordAssign, UppercaseFirst } from "util/misc";
+import { PartialArrayRecordAssign, Reverse, UppercaseFirst } from "util/misc";
 import DifficultyCell from "components/tables/cells/DifficultyCell";
 import TitleCell from "components/tables/cells/TitleCell";
 import MiniTable from "components/tables/components/MiniTable";
@@ -34,6 +34,8 @@ import {
 } from "tachi-common";
 import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
 import { SessionReturns } from "types/api-returns";
+import { cloneDeep } from "lodash";
+import DebugContent from "components/util/DebugContent";
 
 type SetScores = (scores: ScoreDocument[]) => void;
 
@@ -175,7 +177,12 @@ function SessionScoreStatBreakdown({
 	return (
 		<>
 			{view === null ? (
-				<div className="d-flex w-100">
+				<div
+					className="d-flex w-100"
+					style={{
+						gap: "20px",
+					}}
+				>
 					{enumMetrics.map((metric) => (
 						<div style={{ flex: 1 }}>
 							<MiniTable
@@ -188,7 +195,6 @@ function SessionScoreStatBreakdown({
 								<ElementStatTable
 									scores={sessionData.scores}
 									setScores={setScores}
-									fullSize
 									chartMap={chartMap}
 									songMap={songMap}
 									counts={newEnums[metric]!}
@@ -258,7 +264,7 @@ function ElementStatTable({
 		const colours = gptImpl.enumColours[metric];
 
 		const tableContents = [];
-		for (const element of relevantElements) {
+		for (const element of Reverse(relevantElements)) {
 			if (!counts[element] || !counts[element].length) {
 				continue;
 			}
@@ -407,16 +413,26 @@ function BreakdownChartContents({
 	}
 
 	if (fullSize) {
-		let preScoreCell = <td>No Play</td>;
+		let preScoreCell = <td colSpan={3}>No Play</td>;
 
 		if (!scoreInfo.isNewScore) {
-			const newScoreData = score.scoreData;
+			const newScoreData = cloneDeep(score.scoreData);
 
 			for (const [k, d] of Object.entries(scoreInfo.deltas)) {
-				// @ts-expect-error ugh
+				// @ts-expect-error it'll be an enum
 				if (typeof score.scoreData[k] === "string") {
-					// @ts-expect-error ugh
-					newScoreData.enumIndexes[k] = score.scoreData.enumIndexes[k] - d;
+					const enumConf = GetScoreMetricConf(
+						gptConfig,
+						k
+					) as ConfEnumScoreMetric<string>;
+
+					// @ts-expect-error alter the enum
+					const newIndex = score.scoreData.enumIndexes[k] - d;
+
+					// @ts-expect-error alter the enum
+					newScoreData.enumIndexes[k] = newIndex;
+					// @ts-expect-error alter the enum
+					newScoreData[k] = enumConf.values[newIndex] ?? "UNKNOWN ENUM ??";
 				} else {
 					// @ts-expect-error ugh
 					newScoreData[k] = score.scoreData[k] - d;
@@ -427,17 +443,17 @@ function BreakdownChartContents({
 				scoreData: newScoreData,
 			}) as ScoreDocument;
 
-			preScoreCell = <ScoreCoreCells chart={chart} game={game} score={mockScore} />;
+			preScoreCell = <ScoreCoreCells short chart={chart} game={game} score={mockScore} />;
 		}
 
 		if (score) {
 			return (
 				<>
 					<TitleCell chart={chart} game={game} song={song} />
-					<DifficultyCell chart={chart} game={game} />
+					<DifficultyCell alwaysShort chart={chart} game={game} />
 					{preScoreCell}
 					<td>⟶</td>
-					<ScoreCoreCells chart={chart} game={game} score={score} />
+					<ScoreCoreCells short chart={chart} game={game} score={score} />
 				</>
 			);
 		}

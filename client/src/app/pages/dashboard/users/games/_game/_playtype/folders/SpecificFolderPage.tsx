@@ -1,10 +1,16 @@
 import { ONE_DAY } from "util/constants/time";
-import { CreateChartIDMap, CreateChartLink, CreateSongMap } from "util/data";
+import { CreateChartIDMap, CreateSongMap } from "util/data";
+import { UppercaseFirst } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
-import { FormatDate, FormatTime } from "util/time";
+import { FormatDate } from "util/time";
 import FolderInfoHeader from "components/game/folder/FolderInfoHeader";
 import Card from "components/layout/page/Card";
+import DifficultyCell from "components/tables/cells/DifficultyCell";
+import TimestampCell from "components/tables/cells/TimestampCell";
+import TitleCell from "components/tables/cells/TitleCell";
+import MiniTable from "components/tables/components/MiniTable";
 import FolderTable from "components/tables/folders/FolderTable";
+import ScoreCoreCells from "components/tables/game-core-cells/ScoreCoreCells";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
@@ -14,10 +20,9 @@ import useApiQuery from "components/util/query/useApiQuery";
 import useUGPTBase from "components/util/useUGPTBase";
 import React, { useEffect, useMemo, useState } from "react";
 import { Form } from "react-bootstrap";
-import { Link, Route, Switch, useParams } from "react-router-dom";
+import { Route, Switch, useParams } from "react-router-dom";
 import {
 	ChartDocument,
-	FormatDifficulty,
 	Game,
 	GetGamePTConfig,
 	GetScoreEnumConfs,
@@ -27,9 +32,9 @@ import {
 	UserDocument,
 	integer,
 } from "tachi-common";
+import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
 import { UGPTFolderReturns } from "types/api-returns";
 import { FolderDataset } from "types/tables";
-import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
 import FolderComparePage from "./FolderComparePage";
 import FolderQuestsPage from "./FolderQuestsPage";
 
@@ -194,7 +199,9 @@ function TimelineView({ game, playtype, reqUser, folderID }: Props & { folderID:
 							onChange={(e) => setSelectedEnum(e.target.value)}
 						>
 							{Object.keys(enumConfs).map((e) => (
-								<option key={e}>{e}</option>
+								<option key={e} value={e}>
+									{UppercaseFirst(e)}
+								</option>
 							))}
 						</Form.Control>
 					</div>
@@ -349,25 +356,33 @@ function TimelineElement({
 		<div className="timeline-item">
 			<span className="timeline-badge bg-primary"></span>
 			<div className="timeline-content d-flex align-items-center justify-content-between">
-				<span className="mr-3" style={{ fontSize: "1.15rem" }}>
-					<b>#{index}</b>:{" "}
-					<Link
-						to={CreateChartLink(scoreData.__related.chart, scoreData.game)}
-						className="gentle-link"
-					>
-						{scoreData.__related.song.title}{" "}
-						{FormatDifficulty(scoreData.__related.chart, scoreData.game)}
-					</Link>
-					{Date.now() - scoreData.timeAdded < ONE_DAY && (
-						<span className="ml-2 label label-inline label-primary font-weight-bolder">
-							NEW!
-						</span>
-					)}
-				</span>
-				<span className="text-muted font-italic text-right">
-					{scoreData.timeAchieved === null
-						? "Unknown Time"
-						: FormatTime(scoreData.timeAchieved)}
+				<span className="mr-3 w-100" style={{ fontSize: "1.15rem" }}>
+					<MiniTable>
+						<td>
+							<b>#{index}</b>
+							{Date.now() - scoreData.timeAdded < ONE_DAY && (
+								<span className="ml-2 label label-inline label-primary font-weight-bolder">
+									NEW!
+								</span>
+							)}
+						</td>
+						<DifficultyCell
+							alwaysShort
+							game={scoreData.game}
+							chart={scoreData.__related.chart}
+						/>
+						<TitleCell
+							game={scoreData.game}
+							chart={scoreData.__related.chart}
+							song={scoreData.__related.song}
+						/>
+						<ScoreCoreCells
+							game={scoreData.game}
+							chart={scoreData.__related.chart}
+							score={scoreData}
+						/>
+						<TimestampCell time={scoreData.timeAchieved} />
+					</MiniTable>
 				</span>
 			</div>
 		</div>

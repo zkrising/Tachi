@@ -9,11 +9,13 @@ import ScoreCell from "../cells/ScoreCell";
 export default function GitadoraCoreCells({
 	sc,
 	rating,
+	short,
 }: {
 	sc:
 		| ScoreDocument<"gitadora:Gita" | "gitadora:Dora">
 		| PBScoreDocument<"gitadora:Gita" | "gitadora:Dora">;
 	rating: keyof ScoreDocument["calculatedData"];
+	short: boolean;
 }) {
 	return (
 		<>
@@ -24,7 +26,7 @@ export default function GitadoraCoreCells({
 			/>
 			<GitadoraJudgementCell score={sc} />
 			<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
-			<RatingCell score={sc} rating={rating} />
+			{!short && <RatingCell score={sc} rating={rating} />}
 		</>
 	);
 }

@@ -8,16 +8,18 @@ import LampCell from "../cells/LampCell";
 
 export default function JubeatCoreCells({
 	sc,
+	short,
 }: {
 	sc: ScoreDocument<"jubeat:Single"> | PBScoreDocument<"jubeat:Single">;
 	rating: keyof ScoreDocument["calculatedData"];
+	short: boolean;
 }) {
 	return (
 		<>
 			<JubeatScoreCell sc={sc} />
 			<JubeatJudgementCell score={sc} />
 			<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
-			<JubilityCell score={sc} />
+			{!short && <JubilityCell score={sc} />}
 		</>
 	);
 }

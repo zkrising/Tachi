@@ -35,7 +35,7 @@ export default function ComparePBsTable({
 	const headers: Header<ComparePBsDataset[0]>[] = [
 		ChartHeader(game, (d) => d.chart),
 		["Song", "Song", StrSOV((x) => x.song.title)],
-		["", "", () => 1, () => <td colSpan={2}>{baseUser}</td>],
+		["", "", () => 1, () => <td colSpan={3}>{baseUser}</td>],
 		[
 			"Vs.",
 			"Vs.",
@@ -74,12 +74,16 @@ export default function ComparePBsTable({
 				<SelectableCompareType
 					key={metric}
 					metric={metric}
-					setMetric={setMetric}
+					setMetric={(e) => {
+						setMetric(e);
+						thProps.changeSort("Vs.");
+					}}
+					gptConfig={gptConfig}
 					{...thProps}
 				/>
 			),
 		],
-		["", "", () => 1, () => <td colSpan={2}>{compareUser}</td>],
+		["", "", () => 1, () => <td colSpan={3}>{compareUser}</td>],
 	];
 
 	return (
@@ -103,9 +107,9 @@ function Row({ data, game, metric }: { data: ComparePBsDataset[0]; game: Game; m
 			<DifficultyCell chart={data.chart} game={game} alwaysShort />
 			<TitleCell game={game} song={data.song} chart={data.chart} />
 			{data.base ? (
-				<ScoreCoreCells score={data.base} game={game} chart={data.chart} />
+				<ScoreCoreCells short score={data.base} game={game} chart={data.chart} />
 			) : (
-				<td colSpan={2}>Not Played</td>
+				<td colSpan={3}>Not Played</td>
 			)}
 			<PBCompareCell
 				base={data.base}
@@ -116,9 +120,9 @@ function Row({ data, game, metric }: { data: ComparePBsDataset[0]; game: Game; m
 				metric={metric}
 			/>
 			{data.compare ? (
-				<ScoreCoreCells score={data.compare} game={game} chart={data.chart} />
+				<ScoreCoreCells short score={data.compare} game={game} chart={data.chart} />
 			) : (
-				<td colSpan={2}>Not Played</td>
+				<td colSpan={3}>Not Played</td>
 			)}
 		</tr>
 	);

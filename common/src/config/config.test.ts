@@ -25,6 +25,10 @@ const BANNED_METRIC_NAMES = [
 	"playcount", // used by showcase stats
 	"scoreID",
 	"userID",
+
+	// lazily hacked onto folder stat metrics
+	"folderID",
+	"chartCount",
 ];
 
 t.test("#GetGamePTConfig", (t) => {

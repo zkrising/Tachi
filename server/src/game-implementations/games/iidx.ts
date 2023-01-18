@@ -1,6 +1,5 @@
 import {
 	GoalFmtPercent,
-	GoalFmtScore,
 	GoalOutOfFmtPercent,
 	GradeGoalFormatter,
 	IIDXLIKE_DERIVERS,

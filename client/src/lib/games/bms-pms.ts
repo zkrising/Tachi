@@ -9,6 +9,10 @@ const BASE_IMPL: GPTClientImplementation<GPTStrings["bms" | "pms"]> = {
 	difficultyColours: {
 		CHART: COLOUR_SET.gray, // lol
 	},
+	enumIcons: {
+		grade: "sort-alpha-up",
+		lamp: "lightbulb",
+	},
 	enumColours: {
 		grade: {
 			F: COLOUR_SET.gray,

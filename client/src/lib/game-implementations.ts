@@ -11,10 +11,16 @@ type GPTClientImplementations = {
 	[GPT in GPTString]: GPTClientImplementation<GPT>;
 };
 
+const defaultEnumIcons = {
+	grade: "sort-alpha-up",
+	lamp: "lightbulb",
+} as const;
+
 export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 	"iidx:SP": IIDX_SP_IMPL,
 	"iidx:DP": IIDX_DP_IMPL,
 	"chunithm:Single": {
+		enumIcons: defaultEnumIcons,
 		classColours: {
 			colour: {
 				BLUE: "info",
@@ -65,6 +71,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		],
 	},
 	"jubeat:Single": {
+		enumIcons: defaultEnumIcons,
 		enumColours: {
 			lamp: {
 				FAILED: COLOUR_SET.red,
@@ -114,6 +121,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		],
 	},
 	"maimaidx:Single": {
+		enumIcons: defaultEnumIcons,
 		enumColours: {
 			lamp: {
 				FAILED: COLOUR_SET.red,
@@ -204,6 +212,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		],
 	},
 	"museca:Single": {
+		enumIcons: defaultEnumIcons,
 		enumColours: {
 			grade: {
 				没: COLOUR_SET.gray,
@@ -238,6 +247,11 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		],
 	},
 	"popn:9B": {
+		enumIcons: {
+			grade: "sort-alpha-up",
+			lamp: "lightbulb",
+			clearMedal: "medal",
+		},
 		enumColours: {
 			grade: {
 				E: COLOUR_SET.gray,
@@ -296,6 +310,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		],
 	},
 	"wacca:Single": {
+		enumIcons: defaultEnumIcons,
 		enumColours: {
 			grade: {
 				D: COLOUR_SET.gray,
@@ -363,6 +378,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		],
 	},
 	"itg:Stamina": {
+		enumIcons: defaultEnumIcons,
 		enumColours: {
 			grade: {
 				F: COLOUR_SET.gray,

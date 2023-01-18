@@ -28,6 +28,10 @@ const SDVXLIKE_ENUM_COLOURS: GPTClientImplementation<GPTStrings["usc" | "sdvx"]>
 
 export const SDVX_IMPL: GPTClientImplementation<"sdvx:Single"> = {
 	enumColours: SDVXLIKE_ENUM_COLOURS,
+	enumIcons: {
+		grade: "sort-alpha-up",
+		lamp: "lightbulb",
+	},
 	difficultyColours: {
 		NOV: COLOUR_SET.purple,
 		ADV: COLOUR_SET.vibrantYellow,
@@ -114,6 +118,10 @@ export const SDVX_IMPL: GPTClientImplementation<"sdvx:Single"> = {
 };
 export const USC_IMPL: GPTClientImplementation<GPTStrings["usc"]> = {
 	enumColours: SDVXLIKE_ENUM_COLOURS,
+	enumIcons: {
+		grade: "sort-alpha-up",
+		lamp: "lightbulb",
+	},
 	difficultyColours: {
 		NOV: COLOUR_SET.purple,
 		ADV: COLOUR_SET.vibrantYellow,

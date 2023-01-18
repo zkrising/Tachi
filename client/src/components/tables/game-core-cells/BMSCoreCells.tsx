@@ -16,9 +16,11 @@ import ScoreCell from "../cells/ScoreCell";
 export default function BMSCoreCells({
 	sc,
 	rating,
+	short,
 }: {
 	sc: PBScoreDocument<"bms:7K" | "bms:14K"> | ScoreDocument<"bms:7K" | "bms:14K">;
 	rating: ScoreRatingAlgorithms[GPTString];
+	short: boolean;
 }) {
 	return (
 		<>
@@ -36,9 +38,16 @@ export default function BMSCoreCells({
 				gradeBoundaries={IIDXLIKE_GBOUNDARIES}
 				value={sc.scoreData.percent}
 				grade={sc.scoreData.grade}
+				formatNumFn={(deltaPercent) => {
+					const max = Math.floor(sc.scoreData.score / (sc.scoreData.percent / 100));
+
+					const v = (deltaPercent / 100) * max;
+
+					return Math.floor(v).toFixed(0);
+				}}
 			/>
 			<BMSOrPMSLampCell score={sc} />
-			<RatingCell score={sc} rating={rating} />
+			{!short && <RatingCell score={sc} rating={rating} />}
 		</>
 	);
 }

@@ -1,13 +1,12 @@
+import { GetEnumColour } from "lib/game-implementations";
 import React from "react";
 import {
 	GPTString,
-	PBScoreDocument,
-	ScoreRatingAlgorithms,
-	ScoreDocument,
 	IIDXLIKE_GBOUNDARIES,
-	GetGPTString,
+	PBScoreDocument,
+	ScoreDocument,
+	ScoreRatingAlgorithms,
 } from "tachi-common";
-import { GPT_CLIENT_IMPLEMENTATIONS, GetEnumColour } from "lib/game-implementations";
 import BMSOrPMSLampCell from "../cells/BMSOrPMSLampCell";
 import DeltaCell from "../cells/DeltaCell";
 import RatingCell from "../cells/RatingCell";
@@ -16,11 +15,13 @@ import ScoreCell from "../cells/ScoreCell";
 export default function PMSCoreCells({
 	sc,
 	rating,
+	short,
 }: {
 	sc:
 		| PBScoreDocument<"pms:Controller" | "pms:Keyboard">
 		| ScoreDocument<"pms:Controller" | "pms:Keyboard">;
 	rating: ScoreRatingAlgorithms[GPTString];
+	short: boolean;
 }) {
 	return (
 		<>
@@ -34,9 +35,16 @@ export default function PMSCoreCells({
 				gradeBoundaries={IIDXLIKE_GBOUNDARIES}
 				value={sc.scoreData.percent}
 				grade={sc.scoreData.grade}
+				formatNumFn={(deltaPercent) => {
+					const max = Math.floor(sc.scoreData.score / (sc.scoreData.percent / 100));
+
+					const v = (deltaPercent / 100) * max;
+
+					return Math.floor(v).toFixed(0);
+				}}
 			/>
 			<BMSOrPMSLampCell score={sc} />
-			<RatingCell score={sc} rating={rating} />
+			{!short && <RatingCell score={sc} rating={rating} />}
 		</>
 	);
 }

@@ -18,10 +18,12 @@ export default function IIDXCoreCells({
 	sc,
 	rating,
 	chart,
+	short,
 }: {
 	sc: PBScoreDocument<"iidx:SP" | "iidx:DP"> | ScoreDocument<"iidx:SP" | "iidx:DP">;
 	rating: ScoreRatingAlgorithms["iidx:SP" | "iidx:DP"];
 	chart: ChartDocument<"iidx:SP" | "iidx:DP">;
+	short: boolean;
 }) {
 	return (
 		<>
@@ -35,12 +37,23 @@ export default function IIDXCoreCells({
 				gradeBoundaries={IIDXLIKE_GBOUNDARIES}
 				value={sc.scoreData.percent}
 				grade={sc.scoreData.grade}
+				formatNumFn={(deltaPercent) => {
+					const max = Math.floor(sc.scoreData.score / (sc.scoreData.percent / 100));
+
+					const v = (deltaPercent / 100) * max;
+
+					return Math.floor(v).toFixed(0);
+				}}
 			/>
 			<IIDXLampCell sc={sc} chart={chart} />
-			{rating === "BPI" ? (
-				<BPICell chart={chart} score={sc} />
-			) : (
-				<RatingCell rating={rating} score={sc} />
+			{!short && (
+				<>
+					{rating === "BPI" ? (
+						<BPICell chart={chart} score={sc} />
+					) : (
+						<RatingCell rating={rating} score={sc} />
+					)}
+				</>
 			)}
 		</>
 	);

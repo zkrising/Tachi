@@ -308,7 +308,9 @@ export async function GetEnumDistForFolder(userID: integer, folder: FolderDocume
 		allEnumDists[metric] = GetEnumDist(pbData.pbs, metric);
 	}
 
-	return allEnumDists;
+	const chartIDs = await GetFolderChartIDs(folder.folderID);
+
+	return { folderID: folder.folderID, chartCount: chartIDs.length, stats: allEnumDists };
 }
 
 /**
@@ -447,7 +449,7 @@ export async function GetEnumDistForFolderAsOf(
 			}
 
 			// for the cumulative dist, count up until this metric.
-			for (const val of conf.values.slice(0, score[metric]!)) {
+			for (const val of conf.values.slice(0, score[metric])) {
 				if (thisCumulativeEnumDist[val] !== undefined) {
 					thisCumulativeEnumDist[val]++;
 				} else {

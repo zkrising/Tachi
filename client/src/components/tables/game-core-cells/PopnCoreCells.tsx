@@ -9,9 +9,11 @@ import RatingCell from "../cells/RatingCell";
 export default function PopnCoreCells({
 	sc,
 	rating,
+	short,
 }: {
 	sc: ScoreDocument<"popn:9B"> | PBScoreDocument<"popn:9B">;
 	rating: keyof ScoreDocument["calculatedData"];
+	short: boolean;
 }) {
 	return (
 		<>
@@ -22,7 +24,7 @@ export default function PopnCoreCells({
 			/>
 			<PopnJudgementCell score={sc} />
 			<PopnLampCell score={sc} />
-			<RatingCell score={sc} rating={rating} />
+			{!short && <RatingCell score={sc} rating={rating} />}
 		</>
 	);
 }

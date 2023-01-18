@@ -56,6 +56,10 @@ const GITADORA_COLOURS: GPTClientImplementation<GPTStrings["gitadora"]>["classCo
 };
 
 export const GITADORA_GITA_IMPL: GPTClientImplementation<"gitadora:Gita"> = {
+	enumIcons: {
+		grade: "sort-alpha-up",
+		lamp: "lightbulb",
+	},
 	enumColours: GITADORA_ENUM_COLOURS,
 	difficultyColours: {
 		BASIC: COLOUR_SET.blue,
@@ -73,6 +77,10 @@ export const GITADORA_GITA_IMPL: GPTClientImplementation<"gitadora:Gita"> = {
 };
 
 export const GITADORA_DORA_IMPL: GPTClientImplementation<"gitadora:Dora"> = {
+	enumIcons: {
+		grade: "sort-alpha-up",
+		lamp: "lightbulb",
+	},
 	enumColours: GITADORA_ENUM_COLOURS,
 	difficultyColours: {
 		BASIC: COLOUR_SET.blue,

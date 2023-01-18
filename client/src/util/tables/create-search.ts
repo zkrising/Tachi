@@ -46,7 +46,11 @@ export function CreateDefaultScoreSearchParams<GPT extends GPTString = GPTString
 	return searchFunctions;
 }
 
-export function GetMetricSearchParams(game: Game, playtype: Playtype) {
+export function GetMetricSearchParams(
+	game: Game,
+	playtype: Playtype,
+	kMapper: (v: any) => PBScoreDocument | ScoreDocument = (v) => v
+) {
 	const searchFns: Record<string, ValueGetterOrHybrid<PBScoreDocument | ScoreDocument>> = {};
 
 	const gptConfig = GetGamePTConfig(game, playtype);
@@ -59,14 +63,14 @@ export function GetMetricSearchParams(game: Game, playtype: Playtype) {
 			case "ENUM":
 				searchFns[metric] = {
 					// @ts-expect-error lol this is fine pls
-					valueGetter: (x) => x.scoreData[metric],
+					valueGetter: (x) => kMapper(x)?.scoreData[metric] ?? null,
 					strToNum: HumanFriendlyStrToEnumIndex(game, playtype, metric),
 				};
 				break;
 			case "INTEGER":
 			case "DECIMAL":
 				// @ts-expect-error lol this is fine pls
-				searchFns[metric] = (x) => x.scoreData[metric];
+				searchFns[metric] = (x) => kMapper(x)?.scoreData[metric] ?? null;
 		}
 	}
 
@@ -132,7 +136,7 @@ export function CreateDefaultFolderSearchParams<GPT extends GPTString = GPTStrin
 		rivalRanking: (x) => x.__related.pb?.rankingData.rivalRank ?? null,
 		highlight: (x) => !!x.__related.pb?.highlight,
 		played: (x) => !!x.__related.pb,
-		...GetMetricSearchParams(game, playtype),
+		...GetMetricSearchParams(game, playtype, (k) => k.__related.pb),
 		...CreateFolderCalcDataSearchFns(gptConfig),
 	};
 

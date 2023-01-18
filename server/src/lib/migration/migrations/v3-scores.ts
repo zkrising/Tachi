@@ -1,9 +1,11 @@
-import db from "external/mongo/db";
+/* eslint-disable no-await-in-loop */
+import db, { monkDB } from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
 import { DeleteMultipleScores } from "lib/score-mutation/delete-scores";
 import UpdateScore from "lib/score-mutation/update-score";
 import { RecalcGameProfiles } from "scripts/state-sync/recalc-game-profiles";
-import { GetGPTString, allSupportedGames } from "tachi-common";
+import { GetGPTString, GetGamePTConfig, allSupportedGames } from "tachi-common";
 import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 import { RecalcSessions } from "utils/calculations/recalc-sessions";
 import { EfficientDBIterate } from "utils/efficient-db-iterate";
@@ -183,17 +185,35 @@ const migration: Migration = {
 				delete score._id;
 
 				try {
+					const gptString = GetGPTString(score.game, score.playtype);
+
+					const newScore = {
+						...score,
+						scoreData: scoreMovers[gptString](
+							score.scoreData as unknown as OldScoreData
+						),
+					};
+
+					const newScoreID = CreateScoreID(
+						gptString,
+						newScore.userID,
+						newScore,
+						newScore.chartID
+					);
+
+					await monkDB.get("temp-update-map").insert({
+						old: score.scoreID,
+						new: newScoreID,
+					});
+
 					await UpdateScore(
 						score,
-						{
-							...score,
-							scoreData: scoreMovers[GetGPTString(score.game, score.playtype)](
-								score.scoreData as unknown as OldScoreData
-							),
-						},
+						newScore,
 						undefined,
-						true // skipUpdatingPBs because we'll do it after
+						true, // skipUpdatingPBs because we'll do it after
 						// all scores are guaranteeably correct.
+						true // dangerously skip updating refs
+						// as we're gonna do it ourselves
 					);
 				} catch (err) {
 					logger.warn(err);
@@ -208,7 +228,7 @@ const migration: Migration = {
 			{
 				"scoreData.enumIndexes": { $exists: false },
 			},
-			1000
+			10000
 		);
 
 		if (failedScores.length > 0) {
@@ -218,14 +238,107 @@ const migration: Migration = {
 		}
 
 		logger.info(`Reconstructing PBs...`);
-		// await UpdateAllPBs();n
+
+		await UpdateAllPBs();
 
 		logger.info(`Re-calcing Game Profiles...`);
 		await RecalcGameProfiles();
 
+		// turn old integery classes into strings
+		const profiles = await db["game-stats"].find({});
+
+		for (const p of profiles) {
+			const newClasses: Record<string, string | null> = {};
+
+			for (const [key, value] of Object.entries(p.classes)) {
+				if (value === null) {
+					newClasses[key] = null;
+					continue;
+				}
+
+				if (typeof value === "string") {
+					newClasses[key] = value;
+					continue;
+				}
+
+				const cVal = GetGamePTConfig(p.game, p.playtype).classes[key]!.values[value];
+
+				if (!cVal) {
+					logger.error(`No such class ${p.game} ${p.playtype} ${key} ${value}?`);
+					newClasses[key] = value;
+					continue;
+				}
+
+				newClasses[key] = cVal.id;
+			}
+
+			await db["game-stats"].update(
+				{
+					userID: p.userID,
+					game: p.game,
+					playtype: p.playtype,
+				},
+				{
+					$set: {
+						classes: newClasses,
+						oldClasses: p.classes,
+					},
+				}
+			);
+		}
+
+		const classAchievements = await db["class-achievements"].find({}, { projectID: true });
+
+		for (const c of classAchievements) {
+			const gptConfig = GetGamePTConfig(c.game, c.playtype);
+
+			let newPreviousValue: string | null | undefined = c.classOldValue;
+
+			if (typeof newPreviousValue === "number") {
+				newPreviousValue =
+					// @ts-expect-error hack, we know this type isn't what it
+					// claims to be
+					gptConfig.classes[c.classSet].values[c.classOldValue]?.id;
+			}
+
+			let newValue: string | undefined = c.classValue;
+
+			if (typeof newValue === "number") {
+				newValue = // @ts-expect-error hack, we know this type isn't what it
+					// claims to be
+					gptConfig.classes[c.classSet].values[c.classValue]?.id;
+			}
+
+			if (newPreviousValue === undefined) {
+				logger.error(
+					`OLD: No such class ${c.game} ${c.playtype} ${c.classSet} ${c.classOldValue}?`
+				);
+				continue;
+			}
+
+			if (newValue === undefined) {
+				logger.error(
+					`NEW: No such class ${c.game} ${c.playtype} ${c.classSet} ${c.classValue}?`
+				);
+				continue;
+			}
+
+			await db["class-achievements"].update(
+				{
+					_id: c._id,
+				},
+				{
+					$set: {
+						classOldValue: newPreviousValue,
+						classValue: newValue,
+					},
+				}
+			);
+		}
+
 		// somehow these sessions got corrupted, my bad.
 		const corruptSessionsSomehow = await db.sessions.find({
-			scoreIDs: { $type: "string" },
+			"scoreIDs.0": { $exists: false },
 		});
 
 		for (const ses of corruptSessionsSomehow) {
@@ -235,12 +348,117 @@ const migration: Migration = {
 			);
 		}
 
+		logger.info(`Starting Ref Update`);
+
+		await FastUpdateSessions();
+		await FastUpdateImports();
+
+		logger.info(`Finished Ref Update`);
+
 		logger.info(`Re-calcing Sessions...`);
 		await RecalcSessions();
+
+		logger.info("Done!");
 	},
 	down: () => {
 		throw new Error(`Reverting this change is not possible.`);
 	},
 };
+
+async function FastUpdateSessions() {
+	const sessions = await db.sessions.find({});
+
+	await Promise.allSettled(
+		sessions.map(async (session) => {
+			if (session.scoreIDs.every((k) => k.startsWith("T"))) {
+				return;
+			}
+
+			const newScoreIDRefs: Array<{ old: string; new: string }> = await monkDB
+				.get("temp-update-map")
+				.find({ old: { $in: session.scoreIDs } });
+
+			const lookup = new Map<string, string>();
+
+			for (const n of newScoreIDRefs) {
+				lookup.set(n.old, n.new);
+			}
+
+			const newScoreIDs: Array<string> = [];
+
+			for (const oldScoreID of session.scoreIDs) {
+				// definitely new format
+				if (oldScoreID.startsWith("T")) {
+					newScoreIDs.push(oldScoreID);
+					continue;
+				}
+
+				const newScoreID = lookup.get(oldScoreID);
+
+				if (!newScoreID) {
+					logger.warn(`No such scoreID ${oldScoreID} exists in lookup? Skipping score.`);
+					continue;
+				}
+
+				newScoreIDs.push(newScoreID);
+			}
+
+			await db.sessions.update(
+				{ sessionID: session.sessionID },
+				{
+					$set: { scoreIDs: newScoreIDs },
+				}
+			);
+		})
+	);
+}
+
+async function FastUpdateImports() {
+	const sessions = await db.imports.find({});
+
+	await Promise.allSettled(
+		sessions.map(async (importDoc) => {
+			if (importDoc.scoreIDs.every((k) => k.startsWith("T"))) {
+				return;
+			}
+
+			const newScoreIDRefs: Array<{ old: string; new: string }> = await monkDB
+				.get("temp-update-map")
+				.find({ old: { $in: importDoc.scoreIDs } });
+
+			const lookup = new Map<string, string>();
+
+			for (const n of newScoreIDRefs) {
+				lookup.set(n.old, n.new);
+			}
+
+			const newScoreIDs: Array<string> = [];
+
+			for (const oldScoreID of importDoc.scoreIDs) {
+				// definitely new format
+				if (oldScoreID.startsWith("T")) {
+					newScoreIDs.push(oldScoreID);
+					continue;
+				}
+
+				const newScoreID = lookup.get(oldScoreID);
+
+				if (!newScoreID) {
+					logger.warn(`No such scoreID ${oldScoreID} exists in lookup? Skipping score.`);
+					continue;
+				}
+
+				newScoreIDs.push(newScoreID);
+			}
+
+			await db.imports.update(
+				{ importID: importDoc.importID },
+				{
+					$set: { scoreIDs: newScoreIDs },
+				}
+			);
+		})
+	);
+}
 
 export default migration;

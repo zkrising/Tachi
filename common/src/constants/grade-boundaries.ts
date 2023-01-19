@@ -93,14 +93,13 @@ export const JUBEAT_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"jubeat:Singl
 export const ITG_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"itg:Stamina", "grade">>({
 	// cannot be achieved. This can only be attained if the player failed the chart.
 	F: -Infinity,
-	D: -400, // The lowest score you can get in ITG is -400%. Scores "can" go negative.
+	D: 0, // The lowest score you can get in ITG is -400%. Scores "can" go negative.
+	// but we don't support it haha lol
 
-	// these are all **NOT** what the game treats these grades as
-	// however, what the game does for grades is stupid.
-	C: 60,
-	B: 70,
+	C: 55,
+	B: 68,
 	A: 80,
-	S: 90,
+	S: 89,
 	"★": 96,
 	"★★": 98,
 	"★★★": 99,

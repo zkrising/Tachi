@@ -110,7 +110,15 @@ export const ITG_STAMINA_CONF = {
 
 	classes: {},
 
-	orderedJudgements: ["15ms", "fantastic", "excellent", "great", "decent", "wayoff", "miss"],
+	orderedJudgements: [
+		"fantastic+",
+		"fantastic",
+		"excellent",
+		"great",
+		"decent",
+		"wayoff",
+		"miss",
+	],
 
 	versions: {},
 

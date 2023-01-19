@@ -1,15 +1,11 @@
 import { DeleteScore } from "./delete-scores";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import CreateLogCtx from "lib/logger/logger";
-import { SDVX_VF_CLASSES } from "tachi-common";
 import t from "tap";
 import { mkFakeSDVXChart, mkFakeSDVXPB } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPScore, TestingSDVXScore } from "test-utils/test-data";
 import type { ImportDocument, ScoreDocument, SessionDocument } from "tachi-common";
-
-const logger = CreateLogCtx(__filename);
 
 const mockImportDocument: ImportDocument = {
 	userID: 1,
@@ -36,7 +32,6 @@ const mockSessionDocument: SessionDocument = {
 	game: "iidx",
 	playtype: "SP",
 	highlight: false,
-	importType: "file/batch-manual",
 	name: "",
 	scoreIDs: ["scoreid_1", "scoreid_2"],
 	sessionID: "mockSessionID",

@@ -1,4 +1,4 @@
-import { Game, IDStrings, Playtype } from "tachi-common";
+import { Game, GPTString, Playtype } from "tachi-common";
 import { GPTUtility } from "types/ugpt";
 import { BMSCustomTablesTool } from "./tools/BMSCustomTablesTool";
 import { IIDXEamusementExportTool } from "./tools/IIDXEamusementExportTool";
@@ -7,7 +7,7 @@ import { JubilityBreakdownInsight } from "./insights/JubilityBreakdownInsight";
 import { BMSSieglindeInfoTool } from "./tools/BMSSieglindeInfoTool";
 
 // What utils does each game support?
-const GPT_UTILS: Record<IDStrings, Array<GPTUtility>> = {
+const GPT_UTILS: Record<GPTString, Array<GPTUtility>> = {
 	"bms:7K": [BMSCustomTablesTool, BMSSieglindeInfoTool],
 	"bms:14K": [BMSCustomTablesTool, BMSSieglindeInfoTool],
 	"chunithm:Single": [],
@@ -29,7 +29,7 @@ const GPT_UTILS: Record<IDStrings, Array<GPTUtility>> = {
 };
 
 export function GetGPTUtils(game: Game, playtype: Playtype) {
-	const idString = `${game}:${playtype}` as IDStrings;
+	const idString = `${game}:${playtype}` as GPTString;
 
 	return GPT_UTILS[idString];
 }

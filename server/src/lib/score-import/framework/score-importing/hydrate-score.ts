@@ -1,48 +1,33 @@
-import { CreateCalculatedData } from "../calculated-data/calculated-data";
-import { CalculateESDForGame } from "../common/score-utils";
-import { GetGamePTConfig } from "tachi-common";
+import { CreateFullScoreData } from "./derivers";
+import { CreateScoreCalcData } from "../calculated-data/score";
+import { GetGPTString } from "tachi-common";
 import type { DryScore } from "../common/types";
 import type { KtLogger } from "lib/logger/logger";
-import type { ChartDocument, integer, ScoreDocument, SongDocument } from "tachi-common";
+import type { ChartDocument, ScoreDocument, SongDocument, integer } from "tachi-common";
 
 /**
  * Takes an "intermediate" score and appends the rest of the data it needs.
  * @param dryScore The intermediate score to make into a real score.
  * @param userID The userID this score is for.
  */
-export async function HydrateScore(
+export function HydrateScore(
 	userID: integer,
 	dryScore: DryScore,
 	chart: ChartDocument,
 	song: SongDocument,
 	scoreID: string,
 	logger: KtLogger
-): Promise<ScoreDocument> {
-	const esd = CalculateESDForGame(
-		dryScore.game,
-		chart.playtype,
-		dryScore.scoreData.percent / 100
-	);
+): ScoreDocument {
+	const gpt = GetGPTString(dryScore.game, chart.playtype);
 
-	const calculatedData = await CreateCalculatedData(dryScore, chart, esd, logger);
+	const scoreData = CreateFullScoreData(gpt, dryScore.scoreData, chart, logger);
 
-	const { scoreData: dryScoreData, ...rest } = dryScore;
-
-	const gptConfig = GetGamePTConfig(dryScore.game, chart.playtype);
-
-	// Fill out the rest of the fields we want for scoreData
-	const scoreData = {
-		lampIndex: gptConfig.lamps.indexOf(dryScore.scoreData.lamp),
-		gradeIndex: gptConfig.grades.indexOf(dryScore.scoreData.grade),
-		esd,
-		...dryScoreData,
-	};
+	const calculatedData = CreateScoreCalcData(dryScore.game, dryScore.scoreData, chart);
 
 	const score: ScoreDocument = {
-		// extract all of the non-scoreData props from a dry score and push them here
-		...rest,
+		...dryScore,
 
-		// then push our score data.
+		// then push our new score data.
 		scoreData,
 
 		// everything below this point is sane

@@ -1,7 +1,8 @@
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { WACCA_STAGEUPS } from "tachi-common";
-import type { ClassHandler } from "../../../framework/user-game-stats/types";
+import { WaccaStageUps } from "tachi-common/config/game-support/wacca";
 import type { MyPagePlayerStage } from "./types";
+import type { ClassProvider } from "lib/score-import/framework/calculated-data/types";
 
 const STAGES: Record<number, number> = {
 	1: WACCA_STAGEUPS.I,
@@ -38,8 +39,8 @@ const STAGE_NAMES: Record<number, string> = {
 	14: "XIV",
 };
 
-export function CreateMyPageScraperClassHandler(stage: MyPagePlayerStage): ClassHandler {
-	return (_game, _playtype, _userID, _ratings, logger) => {
+export function CreateMyPageScraperClassProvider(stage: MyPagePlayerStage): ClassProvider {
+	return (gpt, userID, ratings, logger) => {
 		const stageName = STAGE_NAMES[stage.id];
 
 		if (stageName === undefined) {
@@ -52,7 +53,8 @@ export function CreateMyPageScraperClassHandler(stage: MyPagePlayerStage): Class
 			);
 		}
 
-		const stageEnum = STAGES[stage.id];
+		// cheeky -1
+		const stageEnum = WaccaStageUps[stage.id - 1];
 
 		if (stageEnum === undefined) {
 			// If we can find the stage name but not the enum value, something is
@@ -64,7 +66,7 @@ export function CreateMyPageScraperClassHandler(stage: MyPagePlayerStage): Class
 		}
 
 		return {
-			stageUp: stageEnum,
+			stageUp: stageEnum.id,
 		};
 	};
 }

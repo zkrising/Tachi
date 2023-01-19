@@ -6,14 +6,7 @@ import { exec } from "child_process";
 import crypto from "crypto";
 import { URL } from "url";
 import type { KtLogger } from "lib/logger/logger";
-import type {
-	Game,
-	GamePTConfig,
-	integer,
-	Playtype,
-	GPTSupportedVersions,
-	IDStrings,
-} from "tachi-common";
+import type { Game, GamePTConfig, integer, Playtype, Versions, GPTString } from "tachi-common";
 
 // https://github.com/sindresorhus/escape-string-regexp/blob/main/index.js
 // the developer of this has migrated everything to Force ES6 style modules,
@@ -79,14 +72,15 @@ export function IsValidGame(str: string): str is Game {
 }
 
 export function IsValidPlaytype(game: Game, str: string): str is Playtype {
-	return GetGameConfig(game).validPlaytypes.includes(str as Playtype);
+	return GetGameConfig(game).playtypes.includes(str as Playtype);
 }
 
 export function IsValidScoreAlg(
 	gptConfig: GamePTConfig,
 	str: unknown
 ): str is GamePTConfig["scoreRatingAlgs"][0] {
-	return gptConfig.scoreRatingAlgs.includes(str as GamePTConfig["scoreRatingAlgs"][0]);
+	// @ts-expect-error i hate this feature
+	return Object.keys(gptConfig.scoreRatingAlgs).includes(str);
 }
 
 export function IsString(val: unknown): val is string {
@@ -238,8 +232,23 @@ export function HumanisedJoinArray(arr: Array<string>, lastJoiner = "or") {
 	return `${arr.slice(0, arr.length - 1).join(", ")} ${lastJoiner} ${arr[arr.length - 1]!}`;
 }
 
-export function FormatMaxDP(num: number, points = 2) {
-	return parseFloat(num.toFixed(points)).toString();
+export function NumToDP(num: number, points = 2) {
+	return num.toFixed(points);
+}
+
+/**
+ * If the input is a decimal, format it to N decimal places, otherwise,
+ * format it to 0dp, i.e.
+ *
+ * 10.053 -> 10.05
+ * 10 -> 10
+ */
+export function OnlyFloatToDP(num: number, points = 2) {
+	if (Number.isInteger(num)) {
+		return num.toFixed(0);
+	}
+
+	return num.toFixed(points);
 }
 
 /**
@@ -329,11 +338,10 @@ export function StringIsGameVersion(
 	game: Game,
 	playtype: Playtype,
 	version: string
-): version is GPTSupportedVersions[IDStrings] {
+): version is Versions[GPTString] {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	// @ts-expect-error yes, we know!
-	return gptConfig.orderedSupportedVersions.includes(version);
+	return Object.keys(gptConfig.versions).includes(version);
 }
 
 /**

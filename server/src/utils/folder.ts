@@ -4,21 +4,18 @@ import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
-import { FormatGame, GetGamePTConfig } from "tachi-common";
+import { FormatGame, GetGamePTConfig, GetScoreEnumConfs, GetScoreMetrics } from "tachi-common";
 import type { BulkWriteOperation, FilterQuery } from "mongodb";
 import type {
 	ChartDocument,
 	FolderChartLookup,
 	FolderDocument,
 	Game,
-	Grades,
-	IDStrings,
-	integer,
-	Lamps,
 	PBScoreDocument,
 	Playtype,
 	SongDocument,
 	TableDocument,
+	integer,
 } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
@@ -45,7 +42,7 @@ export async function ResolveFolderToCharts(
 
 	switch (folder.type) {
 		case "static": {
-			charts = await db.charts[folder.game].find(
+			charts = await db.anyCharts[folder.game].find(
 				deepmerge(filter, {
 					// Specifying playtype is mandatory, don't want to catch other charts.
 					playtype: folder.playtype,
@@ -56,9 +53,9 @@ export async function ResolveFolderToCharts(
 		}
 
 		case "songs": {
-			songs = await db.songs[folder.game].find(folder.data);
+			songs = await db.anySongs[folder.game].find(folder.data);
 
-			charts = await db.charts[folder.game].find(
+			charts = await db.anyCharts[folder.game].find(
 				deepmerge(filter, {
 					playtype: folder.playtype,
 					songID: { $in: songs.map((e) => e.id) },
@@ -77,19 +74,8 @@ export async function ResolveFolderToCharts(
 
 			const fx = deepmerge.all([filter, { playtype: folder.playtype }, folderDataTransposed]);
 
-			charts = await db.charts[folder.game].find(fx);
+			charts = await db.anyCharts[folder.game].find(fx);
 			break;
-		}
-
-		default: {
-			logger.error(
-				`Invalid folder at ${(folder as FolderDocument).folderID}. Cannot resolve.`,
-				{ folder }
-			);
-
-			throw new Error(
-				`Invalid folder ${(folder as FolderDocument).folderID}. Cannot resolve.`
-			);
 		}
 	}
 
@@ -98,7 +84,7 @@ export async function ResolveFolderToCharts(
 			return { songs, charts };
 		}
 
-		songs = await db.songs[folder.game].find({
+		songs = await db.anySongs[folder.game].find({
 			id: { $in: charts.map((e) => e.songID) },
 		});
 
@@ -150,12 +136,12 @@ export async function GetFolderCharts(
 ): Promise<{ songs?: Array<SongDocument>; charts: Array<ChartDocument> }> {
 	const chartIDs = await GetFolderChartIDs(folder.folderID);
 
-	const charts = await db.charts[folder.game].find(
+	const charts = await db.anyCharts[folder.game].find(
 		deepmerge.all([{ playtype: folder.playtype }, { chartID: { $in: chartIDs } }, filter])
 	);
 
 	if (getSongs) {
-		const songs = await db.songs[folder.game].find({
+		const songs = await db.anySongs[folder.game].find({
 			id: { $in: charts.map((e) => e.songID) },
 		});
 
@@ -306,50 +292,49 @@ export async function GetPBsOnFolder(userID: integer, folder: FolderDocument) {
 	return { pbs, charts, songs };
 }
 
-export function CalculateLampDistribution(pbs: Array<PBScoreDocument>) {
-	const lampDist: Partial<Record<Lamps[IDStrings], integer>> = {};
-
-	for (const pb of pbs) {
-		if (lampDist[pb.scoreData.lamp] !== undefined) {
-			lampDist[pb.scoreData.lamp]!++;
-		} else {
-			lampDist[pb.scoreData.lamp] = 1;
-		}
-	}
-
-	return lampDist;
-}
-
-export function CalculateGradeDistribution(pbs: Array<PBScoreDocument>) {
-	const gradeDist: Partial<Record<Grades[IDStrings], integer>> = {};
-
-	for (const pb of pbs) {
-		if (gradeDist[pb.scoreData.grade] !== undefined) {
-			gradeDist[pb.scoreData.grade]!++;
-		} else {
-			gradeDist[pb.scoreData.grade] = 1;
-		}
-	}
-
-	return gradeDist;
-}
-
-export async function GetGradeLampDistributionForFolder(userID: integer, folder: FolderDocument) {
+/**
+ * Get the distribution for this all gpt enums for this user on this folder.
+ */
+export async function GetEnumDistForFolder(userID: integer, folder: FolderDocument) {
 	const pbData = await GetPBsOnFolder(userID, folder);
 
-	return {
-		grades: CalculateGradeDistribution(pbData.pbs),
-		lamps: CalculateLampDistribution(pbData.pbs),
-		folderID: folder.folderID,
-		chartCount: pbData.charts.length,
-	};
+	const gptConfig = GetGamePTConfig(folder.game, folder.playtype);
+
+	const enumMetrics = GetScoreMetrics(gptConfig, "ENUM");
+
+	const allEnumDists: Record<string, Record<string, integer>> = {};
+
+	for (const metric of enumMetrics) {
+		allEnumDists[metric] = GetEnumDist(pbData.pbs, metric);
+	}
+
+	const chartIDs = await GetFolderChartIDs(folder.folderID);
+
+	return { folderID: folder.folderID, chartCount: chartIDs.length, stats: allEnumDists };
 }
 
-export function GetGradeLampDistributionForFolders(
-	userID: integer,
-	folders: Array<FolderDocument>
-) {
-	return Promise.all(folders.map((f) => GetGradeLampDistributionForFolder(userID, f)));
+/**
+ * Get the distribution for this all gpt enums for this user on all these folders.
+ */
+export async function GetEnumDistForFolders(userID: integer, folders: Array<FolderDocument>) {
+	return Promise.all(folders.map((folder) => GetEnumDistForFolder(userID, folder)));
+}
+
+function GetEnumDist(pbs: Array<PBScoreDocument>, enumMetric: string) {
+	const enumDist: Record<string, integer> = {};
+
+	for (const pb of pbs) {
+		// @ts-expect-error hacky string types, be careful.
+		const enumValue = pb.scoreData[enumMetric];
+
+		if (enumDist[enumValue] !== undefined) {
+			enumDist[enumValue]++;
+		} else {
+			enumDist[enumValue] = 1;
+		}
+	}
+
+	return enumDist;
 }
 
 export function CreateFolderID(query: Record<string, unknown>, game: Game, playtype: Playtype) {
@@ -382,24 +367,45 @@ export async function GetRecentlyViewedFolders(userID: integer, game: Game, play
 	return { views, folders };
 }
 
+export async function GetTableForIDGuaranteed(tableID: string): Promise<TableDocument> {
+	const table = await db.tables.findOne({ tableID });
+
+	if (!table) {
+		throw new Error(`Couldn't find table with ID '${tableID}'.`);
+	}
+
+	return table;
+}
+
 /**
  * Long function name. Wew.
  *
- * Get the grade and lamp distribution for a user on a folder before the given time.
+ * Get the grade, lamp, etc. distribution for a user on a folder before the given time.
  * So for example, you want to know how many AAAs/HARD CLEARs a user had on a folder
  * before Jan 1st 2022.
  *
  * This is used to calculate folder raises.
  */
-export async function GetGradeLampDistributionForFolderAsOf(
+export async function GetEnumDistForFolderAsOf(
 	userID: integer,
 	folderID: string,
 	beforeTime: number
 ) {
 	const chartIDs = await GetFolderChartIDs(folderID);
 	const folder = await GetFolderForIDGuaranteed(folderID);
+	const { game, playtype } = folder;
 
-	const bestGradeLampIndexes: Array<{ _id: string; gradeIndex: integer; lampIndex: integer }> =
+	const gptConfig = GetGamePTConfig(folder.game, folder.playtype);
+
+	const groupOn: any = {};
+
+	const enumMetrics = GetScoreEnumConfs(gptConfig);
+
+	for (const met of Object.keys(enumMetrics)) {
+		groupOn[met] = { $max: `$scoreData.enumIndexes.${met}` };
+	}
+
+	const bestEnumIndexes: Array<Record<string, integer> & { _id: string }> =
 		await db.scores.aggregate([
 			{
 				$match: {
@@ -411,67 +417,24 @@ export async function GetGradeLampDistributionForFolderAsOf(
 			{
 				$group: {
 					_id: "$chartID",
-					gradeIndex: { $max: "$scoreData.gradeIndex" },
-					lampIndex: { $max: "$scoreData.lampIndex" },
+					...groupOn,
 				},
 			},
 		]);
 
-	const { game, playtype } = folder;
+	const enumDist: Record<string, Record<string, integer>> = {};
+	const cumulativeEnumDist: Record<string, Record<string, integer>> = {};
 
-	const gradeDist: Partial<Record<Grades[IDStrings], integer>> = {};
-	const cumulativeGradeDist: Partial<Record<Grades[IDStrings], integer>> = {};
+	for (const [metric, conf] of Object.entries(enumMetrics)) {
+		const thisEnumDist: Record<string, integer> = {};
+		const thisCumulativeEnumDist: Record<string, integer> = {};
 
-	const lampDist: Partial<Record<Lamps[IDStrings], integer>> = {};
-	const cumulativeLampDist: Partial<Record<Lamps[IDStrings], integer>> = {};
-	const gptConfig = GetGamePTConfig(game, playtype);
+		for (const score of bestEnumIndexes) {
+			const val = conf.values[score[metric] ?? -1];
 
-	for (const score of bestGradeLampIndexes) {
-		const grade = gptConfig.grades[score.gradeIndex];
-		const lamp = gptConfig.lamps[score.lampIndex];
-
-		if (!grade) {
-			logger.warn(
-				`Failed to resolve gradeIndex '${score.gradeIndex}' for ${FormatGame(
-					game,
-					playtype
-				)}.`
-			);
-			continue;
-		}
-
-		if (!lamp) {
-			logger.warn(
-				`Failed to resolve lampIndex '${score.lampIndex}' for ${FormatGame(
-					game,
-					playtype
-				)}.`
-			);
-			continue;
-		}
-
-		if (gradeDist[grade] !== undefined) {
-			// @ts-expect-error object is definitely not undefined
-			gradeDist[grade]++;
-		} else {
-			gradeDist[grade] = 1;
-		}
-
-		if (lampDist[lamp] !== undefined) {
-			// @ts-expect-error object is definitely not undefined
-			lampDist[lamp]++;
-		} else {
-			lampDist[lamp] = 1;
-		}
-
-		// we also want to count this cumulatively, i.e. a HARD CLEAR
-		// also counts as an EASY CLEAR, etc.
-		for (let i = 0; i <= score.lampIndex; i++) {
-			const lamp = gptConfig.lamps[i];
-
-			if (!lamp) {
+			if (!val) {
 				logger.warn(
-					`Failed to resolve lampIndex '${score.lampIndex}' for ${FormatGame(
+					`Failed to resolve ${metric} index '${score[metric]}' for ${FormatGame(
 						game,
 						playtype
 					)}.`
@@ -479,49 +442,30 @@ export async function GetGradeLampDistributionForFolderAsOf(
 				continue;
 			}
 
-			if (cumulativeLampDist[lamp] !== undefined) {
-				// @ts-expect-error object is definitely not undefined
-				cumulativeLampDist[lamp]++;
+			if (thisEnumDist[val] !== undefined) {
+				thisEnumDist[val]++;
 			} else {
-				cumulativeLampDist[lamp] = 1;
+				thisEnumDist[val] = 1;
+			}
+
+			// for the cumulative dist, count up until this metric.
+			for (const val of conf.values.slice(0, score[metric])) {
+				if (thisCumulativeEnumDist[val] !== undefined) {
+					thisCumulativeEnumDist[val]++;
+				} else {
+					thisCumulativeEnumDist[val] = 1;
+				}
 			}
 		}
 
-		for (let i = 0; i <= score.gradeIndex; i++) {
-			const grade = gptConfig.grades[i];
-
-			if (!grade) {
-				logger.warn(
-					`Failed to resolve gradeIndex '${i}' for ${FormatGame(game, playtype)}.`
-				);
-				continue;
-			}
-
-			if (cumulativeGradeDist[grade] !== undefined) {
-				// @ts-expect-error object is definitely not undefined
-				cumulativeGradeDist[grade]++;
-			} else {
-				cumulativeGradeDist[grade] = 1;
-			}
-		}
+		enumDist[metric] = thisEnumDist;
+		cumulativeEnumDist[metric] = thisEnumDist;
 	}
 
 	return {
-		gradeDist,
-		lampDist,
-		cumulativeGradeDist,
-		cumulativeLampDist,
+		enumDist,
+		cumulativeEnumDist,
 		chartIDs,
 		folder,
 	};
-}
-
-export async function GetTableForIDGuaranteed(tableID: string): Promise<TableDocument> {
-	const table = await db.tables.findOne({ tableID });
-
-	if (!table) {
-		throw new Error(`Couldn't find table with ID '${tableID}'.`);
-	}
-
-	return table;
 }

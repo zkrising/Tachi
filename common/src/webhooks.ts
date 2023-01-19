@@ -1,6 +1,5 @@
-import type { Game, Playtypes } from ".";
-import type { GameClassSets } from "./game-classes";
-import type { GoalImportStat, IDStrings, integer, QuestImportStat } from "./types";
+import type { GoalImportStat, integer, QuestImportStat } from "./types";
+import type { Classes, Game, GPTString, Playtypes } from "./types/game-config";
 
 /**
  * An event fired when a users class improves.
@@ -9,9 +8,9 @@ export interface WebhookEventClassUpdateV1 {
 	type: "class-update/v1";
 	content: {
 		userID: integer;
-		set: GameClassSets[IDStrings];
-		old: integer | null;
-		new: integer;
+		set: Classes[GPTString];
+		old: string | null;
+		new: string;
 		game: Game;
 		playtype: Playtypes[Game];
 	};

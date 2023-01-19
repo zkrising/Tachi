@@ -4,12 +4,11 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { p } from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
-import { GetGamePTConfig } from "tachi-common";
-import { PR_GAMESPECIFIC_SETTINGS } from "tachi-common/lib/schemas";
+import { GetGamePTConfig, PrudenceZodShim } from "tachi-common";
 import { FormatPrError, optNull } from "utils/prudence";
 import { GetUGPT } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
-import type { UGPTSettings } from "tachi-common";
+import type { UGPTSettingsDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -31,17 +30,23 @@ router.patch(
 
 		const gptConfig = GetGamePTConfig(game, playtype);
 
-		const gameSpecificSchema = PR_GAMESPECIFIC_SETTINGS(game);
+		const gameSpecificSchema = PrudenceZodShim(gptConfig.preferences);
 
 		const err = p(req.safeBody, {
-			preferredScoreAlg: p.optional(p.nullable(p.isIn(gptConfig.scoreRatingAlgs))),
-			preferredSessionAlg: p.optional(p.nullable(p.isIn(gptConfig.sessionRatingAlgs))),
-			preferredProfileAlg: p.optional(p.nullable(p.isIn(gptConfig.profileRatingAlgs))),
+			preferredScoreAlg: p.optional(
+				p.nullable(p.isIn(Object.keys(gptConfig.scoreRatingAlgs)))
+			),
+			preferredSessionAlg: p.optional(
+				p.nullable(p.isIn(Object.keys(gptConfig.sessionRatingAlgs)))
+			),
+			preferredProfileAlg: p.optional(
+				p.nullable(p.isIn(Object.keys(gptConfig.profileRatingAlgs)))
+			),
 			defaultTable: "*?string",
 			preferredRanking: optNull(p.isIn("global", "rival")),
 
 			gameSpecific: optNull(gameSpecificSchema),
-			scoreBucket: optNull(p.isIn("grade", "lamp")),
+			preferredDefaultEnum: optNull(p.isIn("grade", "lamp")),
 		});
 
 		if (err) {
@@ -51,7 +56,7 @@ router.patch(
 			});
 		}
 
-		const body = req.safeBody as Partial<UGPTSettings["preferences"]>;
+		const body = req.safeBody as Partial<UGPTSettingsDocument["preferences"]>;
 
 		if (typeof body.defaultTable === "string") {
 			const table = await db.tables.findOne({
@@ -81,8 +86,8 @@ router.patch(
 			}
 		}
 
-		if (body.scoreBucket !== undefined) {
-			updateQuery[`preferences.scoreBucket`] = body.scoreBucket;
+		if (body.preferredDefaultEnum !== undefined) {
+			updateQuery[`preferences.preferredDefaultEnum`] = body.preferredDefaultEnum;
 		}
 
 		if (body.defaultTable !== undefined) {

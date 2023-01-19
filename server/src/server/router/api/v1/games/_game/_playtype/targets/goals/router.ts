@@ -49,15 +49,10 @@ router.post(
 	prValidate(
 		{
 			criteria: {
-				key: p.isIn(
-					"scoreData.percent",
-					"scoreData.lampIndex",
-					"scoreData.gradeIndex",
-					"scoreData.score"
-				),
-
 				// we do proper validation on this later.
+				key: "string",
 				value: p.gte(0),
+
 				mode: p.isIn("single", "absolute", "proportion"),
 				countNum: (self, parent) => {
 					if (parent.mode === "single") {

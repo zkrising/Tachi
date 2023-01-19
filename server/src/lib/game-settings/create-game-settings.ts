@@ -41,7 +41,7 @@ export async function CreateGameSettings(userID: integer, game: Game, playtype: 
 			preferredProfileAlg: null,
 			preferredSessionAlg: null,
 			preferredScoreAlg: null,
-			scoreBucket: null,
+			preferredDefaultEnum: null,
 			defaultTable: null,
 			preferredRanking: null,
 			stats: [],

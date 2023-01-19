@@ -46,11 +46,8 @@ t.test("#ConvertMyPageScraperRecordsCSV", (t) => {
 				scoreData: {
 					score: 996827,
 					lamp: "MISSLESS",
-
-					percent: 99.6827, // floating point
-					grade: "SSS+",
 					judgements: {},
-					hitMeta: {},
+					optional: {},
 				},
 			},
 		});
@@ -60,7 +57,7 @@ t.test("#ConvertMyPageScraperRecordsCSV", (t) => {
 
 	t.test("Should reject out of bounds diffIndex", (t) => {
 		t.rejects(() => conv({ diffIndex: 4 }), {
-			message: /We somehow got an invalid difficulty index 4\./u,
+			message: /Invalid difficulty index of 4\./u,
 		});
 
 		t.end();

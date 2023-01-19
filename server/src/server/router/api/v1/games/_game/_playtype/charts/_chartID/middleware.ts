@@ -5,7 +5,7 @@ import type { RequestHandler } from "express";
 export const ValidateAndGetChart: RequestHandler = async (req, res, next) => {
 	const { game, playtype } = GetGPT(req);
 
-	const chart = await db.charts[game].findOne({
+	const chart = await db.anyCharts[game].findOne({
 		chartID: req.params.chartID,
 
 		// technically redundant, but we're under playtypes here URL wise.

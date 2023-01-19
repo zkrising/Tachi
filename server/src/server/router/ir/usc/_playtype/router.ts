@@ -13,6 +13,7 @@ import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { p } from "prudence";
 import { RejectIfBanned, RequirePermissions } from "server/middleware/auth";
 import { CreateMulterSingleUploadMiddleware } from "server/middleware/multer-upload";
+import { GetGamePTConfig } from "tachi-common";
 import { FormatPrError } from "utils/prudence";
 import { AssignToReqTachiData, GetTachiData } from "utils/req-tachi-data";
 import type { USCClientChart } from "./types";
@@ -225,13 +226,15 @@ router.get("/charts/:chartHash/leaderboard", RetrieveChart, async (req, res) => 
 		});
 	}
 
+	const gptConfig = GetGamePTConfig("usc", chart.playtype);
+
 	const bestScores = (await db["personal-bests"].find(
 		{
 			chartID: chart.chartID,
 		},
 		{
 			sort: {
-				"scoreData.percent": -1,
+				[`scoreData.${gptConfig.defaultMetric}`]: -1,
 			},
 			limit: n,
 		}

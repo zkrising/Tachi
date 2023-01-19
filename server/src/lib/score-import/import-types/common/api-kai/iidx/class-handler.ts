@@ -1,16 +1,17 @@
 import { KaiTypeToBaseURL } from "../utils";
 import { IIDX_DANS } from "tachi-common";
+import { IIDXDans } from "tachi-common/config/game-support/iidx";
 import nodeFetch from "utils/fetch";
 import { IsRecord } from "utils/misc";
 import type { KaiAPIReauthFunction } from "../traverse-api";
-import type { ClassHandler } from "lib/score-import/framework/user-game-stats/types";
+import type { ClassProvider } from "lib/score-import/framework/calculated-data/types";
 
-export async function CreateKaiIIDXClassHandler(
+export async function CreateKaiIIDXClassProvider(
 	kaiType: "EAG" | "FLO",
 	token: string,
 	reauthFn: KaiAPIReauthFunction,
 	fetch = nodeFetch
-): Promise<ClassHandler> {
+): Promise<ClassProvider> {
 	let json: unknown;
 	let err: unknown;
 	const baseUrl = KaiTypeToBaseURL(kaiType);
@@ -48,7 +49,7 @@ export async function CreateKaiIIDXClassHandler(
 		err = e;
 	}
 
-	return (game, playtype, userID, ratings, logger) => {
+	return (gptString, userID, ratings, logger) => {
 		if (err !== undefined) {
 			logger.error(`An error occured while updating classes for ${baseUrl}.`, { err });
 			return {};
@@ -63,12 +64,12 @@ export async function CreateKaiIIDXClassHandler(
 
 		let maybeIIDXDan: unknown;
 
-		if (playtype === "SP") {
+		if (gptString === "iidx:SP") {
 			maybeIIDXDan = json.sp;
-		} else if (playtype === "DP") {
+		} else if (gptString === "iidx:DP") {
 			maybeIIDXDan = json.dp;
 		} else {
-			logger.warn(`KAIIIDXClassUpdater called with invalid playtype of ${playtype}.`);
+			logger.warn(`KAIIIDXClassUpdater called with invalid gptString of ${gptString}.`);
 			return {};
 		}
 
@@ -77,7 +78,7 @@ export async function CreateKaiIIDXClassHandler(
 			maybeIIDXDan === undefined ||
 			typeof maybeIIDXDan !== "number"
 		) {
-			logger.info(`User has no ${playtype} dan. Not updating anything.`);
+			logger.info(`User has no ${gptString} dan. Not updating anything.`);
 			return {};
 		}
 
@@ -102,8 +103,17 @@ export async function CreateKaiIIDXClassHandler(
 			return {};
 		}
 
+		const value = IIDXDans[iidxDan];
+
+		if (!value) {
+			logger.warn(
+				`${baseUrl} returned a dan of ${iidxDan}, which has no corresponding value.`
+			);
+			return {};
+		}
+
 		return {
-			dan: iidxDan,
+			dan: value.id,
 		};
 	};
 }

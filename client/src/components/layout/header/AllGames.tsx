@@ -10,7 +10,7 @@ export default function AllGames() {
 	for (const game of TachiConfig.games) {
 		const gameConfig = GetGameConfig(game);
 
-		for (const playtype of gameConfig.validPlaytypes) {
+		for (const playtype of gameConfig.playtypes) {
 			links.push(
 				<MenuLink
 					key={`${game}:${playtype}`}

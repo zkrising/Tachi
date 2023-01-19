@@ -1,7 +1,7 @@
+import { allSupportedGames } from "../config/config";
 import type {
 	Game,
 	ChartDocument,
-	GameToIDStrings,
 	SongDocument,
 	BMSCourseDocument,
 	FolderDocument,
@@ -9,13 +9,14 @@ import type {
 	QuestlineDocument,
 	QuestDocument,
 	TableDocument,
+	GPTStrings,
 } from "../types";
 
 // lazy, but kinda cool macros.
 // note that TS won't let you do this multiple times within an object
 // so, we have to join them ourselves. Ah well, not that bad.
 type ChartDBSeeds = {
-	[G in Game as `charts-${G}.json`]: Array<ChartDocument<GameToIDStrings[G]>>;
+	[G in Game as `charts-${G}.json`]: Array<ChartDocument<GPTStrings[G]>>;
 };
 
 type SongDBSeeds = {
@@ -34,41 +35,21 @@ interface OtherDBSeeds {
 export type AllDatabaseSeeds = ChartDBSeeds & OtherDBSeeds & SongDBSeeds;
 
 // Nifty trick to enforce that we always specify all database seeds :)
-const CURRENT_DATABASE_SEEDS: Record<keyof AllDatabaseSeeds, true> = {
+const CURRENT_DATABASE_SEEDS: Record<keyof OtherDBSeeds, true> = {
 	"bms-course-lookup.json": true,
-	"charts-bms.json": true,
-	"charts-chunithm.json": true,
-	"charts-gitadora.json": true,
-	"charts-iidx.json": true,
-	"charts-itg.json": true,
-	"charts-jubeat.json": true,
-	"charts-maimaidx.json": true,
-	"charts-museca.json": true,
-	"charts-pms.json": true,
-	"charts-popn.json": true,
-	"charts-sdvx.json": true,
-	"charts-usc.json": true,
-	"charts-wacca.json": true,
 	"folders.json": true,
 	"goals.json": true,
 	"questlines.json": true,
 	"quests.json": true,
-	"songs-bms.json": true,
-	"songs-chunithm.json": true,
-	"songs-gitadora.json": true,
-	"songs-iidx.json": true,
-	"songs-itg.json": true,
-	"songs-jubeat.json": true,
-	"songs-maimaidx.json": true,
-	"songs-museca.json": true,
-	"songs-pms.json": true,
-	"songs-popn.json": true,
-	"songs-sdvx.json": true,
-	"songs-usc.json": true,
-	"songs-wacca.json": true,
 	"tables.json": true,
 };
 
-export const DatabaseSeedNames = Object.keys(CURRENT_DATABASE_SEEDS) as Array<
+const moreOnes: Array<string> = [];
+
+for (const game of allSupportedGames) {
+	moreOnes.push(`songs-${game}`, `charts-${game}`);
+}
+
+export const DatabaseSeedNames = [...Object.keys(CURRENT_DATABASE_SEEDS), ...moreOnes] as Array<
 	keyof AllDatabaseSeeds
 >;

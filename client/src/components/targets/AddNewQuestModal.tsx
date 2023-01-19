@@ -3,7 +3,7 @@ import Select from "components/util/Select";
 import { TachiConfig } from "lib/config";
 import React, { useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
-import { FormatGame, Game, GetGameConfig, IDStrings, Playtype } from "tachi-common";
+import { FormatGame, Game, GetGameConfig, GPTString, Playtype } from "tachi-common";
 import { SetState } from "types/react";
 import { RawQuestDocument } from "types/tachi";
 
@@ -16,7 +16,7 @@ export default function AddNewQuestModal({
 	setShow: SetState<boolean>;
 	onCreate: (rawQuest: RawQuestDocument) => void;
 }) {
-	const [gpt, setGPT] = useState<IDStrings | null>(null);
+	const [gpt, setGPT] = useState<GPTString | null>(null);
 
 	return (
 		<Modal size="xl" show={show} onHide={() => setShow(false)}>
@@ -36,7 +36,7 @@ export default function AddNewQuestModal({
 							{TachiConfig.games.flatMap((game) => {
 								const gameConfig = GetGameConfig(game);
 
-								return gameConfig.validPlaytypes.map((playtype) => (
+								return gameConfig.playtypes.map((playtype) => (
 									<option
 										key={`${game}:${playtype}`}
 										value={`${game}:${playtype}`}

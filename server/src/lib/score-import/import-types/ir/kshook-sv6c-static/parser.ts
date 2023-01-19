@@ -41,6 +41,6 @@ export function ParseKsHookSV6CStatic(
 		game: "sdvx",
 		iterable: data.scores,
 		context: {},
-		classHandler: null,
+		classProvider: null,
 	};
 }

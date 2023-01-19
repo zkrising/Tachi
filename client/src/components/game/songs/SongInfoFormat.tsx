@@ -12,7 +12,7 @@ export default function SongChartInfoFormat({
 	chart: ChartDocument | null;
 	game: Game;
 }) {
-	// lazy casting hack to avoid IDStrings
+	// lazy casting hack to avoid GPTString
 	const props = { song: tempSong, chart: tempChart, game } as any;
 	const { song, chart } = props;
 

@@ -1,8 +1,9 @@
 import { IsScore } from "util/asserts";
 import { ChangeOpacity } from "util/color-opacity";
 import { IsNotNullish } from "util/misc";
-import { ChartDocument, GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { GetEnumColour } from "lib/game-implementations";
 import React from "react";
+import { ChartDocument, GetGPTString, PBScoreDocument, ScoreDocument } from "tachi-common";
 
 export default function IIDXLampCell({
 	sc,
@@ -11,33 +12,36 @@ export default function IIDXLampCell({
 	sc: ScoreDocument<"iidx:SP" | "iidx:DP"> | PBScoreDocument<"iidx:SP" | "iidx:DP">;
 	chart: ChartDocument<"iidx:SP" | "iidx:DP">;
 }) {
-	const gptConfig = GetGamePTConfig("iidx", sc.playtype);
-
 	let gaugeText = null;
 
-	if (sc.scoreData.hitMeta.gsm) {
+	if (
+		sc.scoreData.optional.gsmEXHard &&
+		sc.scoreData.optional.gsmHard &&
+		sc.scoreData.optional.gsmNormal &&
+		sc.scoreData.optional.gsmEasy
+	) {
 		gaugeText = `EC: ${
-			sc.scoreData.hitMeta.gsm.EASY[sc.scoreData.hitMeta.gsm.EASY.length - 1]
-		}%, NC: ${sc.scoreData.hitMeta.gsm.NORMAL[sc.scoreData.hitMeta.gsm.NORMAL.length - 1]}%`;
+			sc.scoreData.optional.gsmEasy[sc.scoreData.optional.gsmEasy.length - 1]
+		}%, NC: ${sc.scoreData.optional.gsmNormal[sc.scoreData.optional.gsmNormal.length - 1]}%`;
 	} else if (IsScore(sc)) {
 		if (sc.scoreMeta.gauge === "EASY") {
-			gaugeText = `EC: ${sc.scoreData.hitMeta.gauge}%`;
+			gaugeText = `EC: ${sc.scoreData.optional.gauge}%`;
 		} else if (sc.scoreMeta.gauge === "NORMAL") {
-			gaugeText = `NC: ${sc.scoreData.hitMeta.gauge}%`;
+			gaugeText = `NC: ${sc.scoreData.optional.gauge}%`;
 		}
 	}
 
 	let bpText;
 
-	if (IsNotNullish(sc.scoreData.hitMeta.bp)) {
-		bpText = `[BP: ${sc.scoreData.hitMeta.bp}]`;
+	if (IsNotNullish(sc.scoreData.optional.bp)) {
+		bpText = `[BP: ${sc.scoreData.optional.bp}]`;
 	}
 
 	let cbrkCount;
 	let cbrkText;
 
-	if (sc.scoreData.hitMeta.comboBreak) {
-		cbrkCount = sc.scoreData.hitMeta.comboBreak;
+	if (sc.scoreData.optional.comboBreak) {
+		cbrkCount = sc.scoreData.optional.comboBreak;
 	} else if (
 		IsNotNullish(sc.scoreData.judgements.pgreat) &&
 		IsNotNullish(sc.scoreData.judgements.great) &&
@@ -57,7 +61,7 @@ export default function IIDXLampCell({
 	return (
 		<td
 			style={{
-				backgroundColor: ChangeOpacity(gptConfig.lampColours[sc.scoreData.lamp], 0.2),
+				backgroundColor: ChangeOpacity(GetEnumColour(sc, "lamp"), 0.2),
 			}}
 		>
 			<strong>{sc.scoreData.lamp}</strong>

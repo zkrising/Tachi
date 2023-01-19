@@ -4,22 +4,14 @@ import {
 	InvalidScoreFailure,
 	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
-import {
-	GenericGetGradeAndPercent,
-	ParseDateFromString,
-} from "lib/score-import/framework/common/score-utils";
+import { ParseDateFromString } from "lib/score-import/framework/common/score-utils";
 import { FindChartOnInGameIDVersion } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import type { ConverterFunction } from "../../types";
 import type { CGContext, CGPopnScore } from "../types";
 import type { DryScore } from "lib/score-import/framework/common/types";
-import type {
-	Difficulties,
-	GPTSupportedVersions,
-	HitMetaLookup,
-	Lamps,
-	integer,
-} from "tachi-common";
+import type { Difficulties, Versions, integer } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 
 export const ConverterAPICGPopn: ConverterFunction<CGPopnScore, CGContext> = async (
 	data,
@@ -54,19 +46,7 @@ export const ConverterAPICGPopn: ConverterFunction<CGPopnScore, CGContext> = asy
 		throw new InternalFailure(`Song-Chart desync with song ID ${chart.songID} (popn).`);
 	}
 
-	const lamp = GetLamp(data.clearFlag);
-	const specificClearType = GetSpecificClearMedal(data.clearFlag);
-
-	const gradeAndPercent = GenericGetGradeAndPercent("popn", data.score, chart);
-	const percent = gradeAndPercent.percent; // ugly declarations because one is const
-	// and the other isn't...
-	let grade = gradeAndPercent.grade;
-
-	// TEMP HACK: TODO MOVE THIS TO COMMON SOMEHOW
-	// pop'n scores are capped at an A rank if they're fails.
-	if (lamp === "FAILED" && percent >= 90) {
-		grade = "A";
-	}
+	const clearMedal = GetClearMedal(data.clearFlag);
 
 	const timeAchieved = ParseDateFromString(data.dateTime);
 
@@ -77,19 +57,15 @@ export const ConverterAPICGPopn: ConverterFunction<CGPopnScore, CGContext> = asy
 		timeAchieved,
 		service: FormatCGService(context.service),
 		scoreData: {
-			grade,
-			percent,
 			score: data.score,
-			lamp,
+			clearMedal,
 			judgements: {
 				cool: data.coolCount,
 				great: data.greatCount,
 				good: data.goodCount,
 				bad: data.badCount,
 			},
-			hitMeta: {
-				specificClearType,
-			},
+			optional: {},
 		},
 		scoreMeta: {},
 	};
@@ -112,7 +88,7 @@ function ConvertDifficulty(diff: number): Difficulties["popn:9B"] {
 	throw new InvalidScoreFailure(`Invalid difficulty of ${diff} - Could not convert.`);
 }
 
-function ConvertVersion(ver: number): GPTSupportedVersions["popn:9B"] {
+function ConvertVersion(ver: number): Versions["popn:9B"] {
 	switch (ver) {
 		case 26:
 			return "kaimei";
@@ -123,21 +99,7 @@ function ConvertVersion(ver: number): GPTSupportedVersions["popn:9B"] {
 	throw new InvalidScoreFailure(`Unknown/Unsupported Game Version ${ver}.`);
 }
 
-function GetLamp(clearFlag: integer): Lamps["popn:9B"] {
-	if (clearFlag === 11) {
-		return "PERFECT";
-	} else if (clearFlag >= 8) {
-		return "FULL COMBO";
-	} else if (clearFlag >= 5) {
-		return "CLEAR";
-	} else if (clearFlag === 4) {
-		return "EASY CLEAR";
-	}
-
-	return "FAILED";
-}
-
-function GetSpecificClearMedal(clearFlag: integer): HitMetaLookup["popn:9B"]["specificClearType"] {
+function GetClearMedal(clearFlag: integer): GetEnumValue<"popn:9B", "clearMedal"> {
 	switch (clearFlag) {
 		case 1:
 			return "failedCircle";
@@ -163,6 +125,5 @@ function GetSpecificClearMedal(clearFlag: integer): HitMetaLookup["popn:9B"]["sp
 			return "perfect";
 	}
 
-	// no idea.
-	return null;
+	throw new InvalidScoreFailure(`Invalid/unexpected clearMedal of ${clearFlag}.`);
 }

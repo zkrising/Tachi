@@ -2,7 +2,7 @@ import { ToCDNURL } from "util/api";
 import { IsSupportedGame, IsSupportedPlaytype } from "util/asserts";
 import { ChangeOpacity } from "util/color-opacity";
 import { CreateChartLink } from "util/data";
-import { NumericSOV } from "util/sorts";
+import { NumericSOV, StrSOV } from "util/sorts";
 import PlaytypeSelect from "app/pages/dashboard/games/_game/PlaytypeSelect";
 import GPTChartPage from "app/pages/dashboard/games/_game/_playtype/GPTChartPage";
 import GPTDevInfo from "app/pages/dashboard/games/_game/_playtype/GPTDevInfo";
@@ -30,6 +30,7 @@ import {
 	ChartDocument,
 	FormatDifficulty,
 	Game,
+	GetGPTString,
 	GetGameConfig,
 	GetGamePTConfig,
 	SongDocument,
@@ -43,6 +44,8 @@ import QuestlinePage from "components/game/targets/QuestlinePage";
 import QuestsPage from "components/game/targets/QuestsPage";
 import ChartRedirector from "app/pages/dashboard/games/_game/_playtype/ChartRedirector";
 import QuestPage from "components/game/targets/QuestPage";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
+import { DifficultyConfig, FixedDifficulties } from "tachi-common/types/game-config-utils";
 
 export default function GameRoutes() {
 	const { game } = useParams<{ game: string }>();
@@ -59,8 +62,8 @@ export default function GameRoutes() {
 	return (
 		<Switch>
 			<Route exact path="/games/:game">
-				{gameConfig.validPlaytypes.length === 1 ? (
-					<Redirect to={`/games/${game}/${gameConfig.validPlaytypes[0]}`} />
+				{gameConfig.playtypes.length === 1 ? (
+					<Redirect to={`/games/${game}/${gameConfig.playtypes[0]}`} />
 				) : (
 					<PlaytypeSelect
 						subheaderCrumbs={["Games", gameConfig.name]}
@@ -265,18 +268,16 @@ function SongInfoHeader({
 	SongsReturn) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	// accidentally O(n^2) but this is a short list so who cares
-	const sortedCharts = charts
-		.slice(0)
-		.sort(
-			NumericSOV((x) =>
-				gptConfig.difficulties.indexOf(
-					game === "itg"
-						? (x as ChartDocument<"itg:Stamina">).data.difficultyTag
-						: x.difficulty
-				)
-			)
-		);
+	const sortedCharts = charts.slice(0).sort(
+		gptConfig.difficulties.type === "DYNAMIC"
+			? StrSOV((x) => x.difficulty)
+			: NumericSOV((x) =>
+					// can TS *really* not infer this?
+					(gptConfig.difficulties as FixedDifficulties<string>).order.indexOf(
+						x.difficulty
+					)
+			  )
+	);
 
 	const [ImageCell, setImageCell] = useState<JSX.Element | null>(null);
 
@@ -293,7 +294,7 @@ function SongInfoHeader({
 				/>
 			);
 		} else if (game === "itg") {
-			const banner = (song as SongDocument<"itg">).data.banner;
+			const banner = (song as SongDocument<"itg">).data.originalPack;
 
 			if (banner) {
 				setImageCell(
@@ -385,12 +386,9 @@ function DifficultyButton({
 	setActiveChart,
 	activeChart,
 }: Props & { chart: ChartDocument }) {
-	const gptConfig = GetGamePTConfig(game, playtype);
+	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, playtype)];
 
-	const diffTag =
-		game === "itg"
-			? (chart as ChartDocument<"itg:Stamina">).data.difficultyTag
-			: chart.difficulty;
+	const diffTag = chart.difficulty;
 
 	return (
 		<LinkButton
@@ -399,9 +397,11 @@ function DifficultyButton({
 			key={chart.chartID}
 			to={CreateChartLink(chart, game)}
 			style={{
-				backgroundColor: gptConfig.difficultyColours[diffTag]
+				// @ts-expect-error hack!
+				backgroundColor: gptImpl.difficultyColours[diffTag]
 					? ChangeOpacity(
-							gptConfig.difficultyColours[diffTag]!,
+							// @ts-expect-error hack!
+							gptImpl.difficultyColours[diffTag],
 							activeChart?.chartID === chart.chartID ? 0.4 : 0.2
 					  )
 					: undefined,

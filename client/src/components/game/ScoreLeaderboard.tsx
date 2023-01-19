@@ -38,9 +38,9 @@ export default function ScoreLeaderboard({
 	const [alg, setAlg] = useState(defaultAlg);
 
 	const SelectComponent =
-		gptConfig.scoreRatingAlgs.length > 1 ? (
+		Object.keys(gptConfig.scoreRatingAlgs).length > 1 ? (
 			<Form.Control as="select" value={alg} onChange={(e) => setAlg(e.target.value as any)}>
-				{gptConfig.scoreRatingAlgs.map((e) => (
+				{Object.keys(gptConfig.scoreRatingAlgs).map((e) => (
 					<option key={e} value={e}>
 						{UppercaseFirst(e)}
 					</option>

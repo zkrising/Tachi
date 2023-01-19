@@ -3,16 +3,14 @@ import {
 	SongOrChartNotFoundFailure,
 	SkipScoreFailure,
 } from "../../../framework/common/converter-failures";
-import {
-	GenericGetGradeAndPercent,
-	ParseDateFromString,
-} from "../../../framework/common/score-utils";
+import { ParseDateFromString } from "../../../framework/common/score-utils";
 import { FindChartWithPTDFVersion } from "utils/queries/charts";
 import { FindSongOnTitleInsensitive } from "utils/queries/songs";
 import type { DryScore } from "../../../framework/common/types";
 import type { ConverterFunction } from "../../common/types";
 import type { S3Score } from "./types";
-import type { Difficulties, GPTSupportedVersions, Lamps, Playtypes } from "tachi-common";
+import type { Difficulties, Playtypes, Versions } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 import type { EmptyObject } from "utils/types";
 
 export function ParseDifficulty(diff: S3Score["diff"]): {
@@ -43,7 +41,7 @@ export function ParseDifficulty(diff: S3Score["diff"]): {
 	}
 }
 
-export function ResolveS3Lamp(data: S3Score): Lamps["iidx:DP" | "iidx:SP"] {
+export function ResolveS3Lamp(data: S3Score): GetEnumValue<"iidx:DP" | "iidx:SP", "lamp"> {
 	switch (data.cleartype) {
 		case "played":
 			return "FAILED";
@@ -71,7 +69,7 @@ export function ResolveS3Lamp(data: S3Score): Lamps["iidx:DP" | "iidx:SP"] {
 	}
 }
 
-const S3_VERSION_CONV: Record<string, GPTSupportedVersions["iidx:SP"]> = {
+const S3_VERSION_CONV: Record<string, Versions["iidx:SP"]> = {
 	"3rd": "3-cs",
 	"4th": "4-cs",
 	"5th": "5-cs",
@@ -139,8 +137,6 @@ export const ConvertFileS3: ConverterFunction<S3Score, EmptyObject> = async (
 		);
 	}
 
-	const { percent, grade } = GenericGetGradeAndPercent("iidx", data.exscore, chart);
-
 	const lamp = ResolveS3Lamp(data);
 
 	const timeAchieved = ParseDateFromString(data.date);
@@ -163,12 +159,10 @@ export const ConvertFileS3: ConverterFunction<S3Score, EmptyObject> = async (
 		importType: "file/solid-state-squad",
 		service: "Solid State Squad",
 		scoreData: {
-			percent,
-			grade,
 			score: data.exscore,
 			lamp,
 			judgements,
-			hitMeta: {},
+			optional: {},
 		},
 		scoreMeta: {},
 		timeAchieved,

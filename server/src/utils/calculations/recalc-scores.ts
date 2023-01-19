@@ -2,11 +2,11 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { CreateCalculatedData } from "lib/score-import/framework/calculated-data/calculated-data";
+import { CreateScoreCalcData } from "lib/score-import/framework/calculated-data/score";
 import { GetAndUpdateUsersGoals } from "lib/score-import/framework/goals/goals";
 import { ProcessPBs } from "lib/score-import/framework/pb/process-pbs";
 import { UpdateUsersQuests } from "lib/score-import/framework/quests/quests";
-import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/user-game-stats/update-ugs";
+import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/ugpt-stats/update-ugpt-stats";
 import { TachiConfig } from "lib/setup/config";
 import { GetGameConfig } from "tachi-common";
 import { EfficientDBIterate } from "utils/efficient-db-iterate";
@@ -25,7 +25,7 @@ export async function RecalcAllScores(filter = {}) {
 	await EfficientDBIterate(
 		db.scores,
 		async (c) => {
-			const chart = await db.charts[c.game].findOne({ chartID: c.chartID });
+			const chart = await db.anyCharts[c.game].findOne({ chartID: c.chartID });
 
 			if (!chart) {
 				logger.error(`Can't find chartID ${c.chartID} ${c.scoreID} (${c.game})`, {
@@ -40,7 +40,7 @@ export async function RecalcAllScores(filter = {}) {
 			modifiedUsers.add(`${c.game}-${c.playtype}-${c.userID}`);
 			modifiedUserIDs.add(c.userID);
 
-			const calculatedData = await CreateCalculatedData(c, chart, c.scoreData.esd, logger);
+			const calculatedData = CreateScoreCalcData(c.game, c.scoreData, chart);
 
 			return { scoreID: c.scoreID, calculatedData };
 		},
@@ -100,7 +100,7 @@ export async function UpdateAllPBs(userIDs?: Array<integer>, filter = {}) {
 		for (const game of TachiConfig.GAMES) {
 			const gameConfig = GetGameConfig(game);
 
-			for (const playtype of gameConfig.validPlaytypes) {
+			for (const playtype of gameConfig.playtypes) {
 				const scores = await db.scores.find(
 					deepmerge({ userID: user.id, game, playtype }, filter),
 					{

@@ -132,7 +132,7 @@ export function ParseSolidStateXML(
 	}));
 
 	return {
-		classHandler: null,
+		classProvider: null,
 		context: {},
 		iterable: scoreData as Array<S3Score>,
 		game: "iidx",

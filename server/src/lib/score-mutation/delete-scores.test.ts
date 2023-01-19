@@ -1,15 +1,11 @@
 import { DeleteScore } from "./delete-scores";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
-import CreateLogCtx from "lib/logger/logger";
-import { SDVX_VF_CLASSES } from "tachi-common";
 import t from "tap";
 import { mkFakeSDVXChart, mkFakeSDVXPB } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
 import { TestingIIDXSPScore, TestingSDVXScore } from "test-utils/test-data";
 import type { ImportDocument, ScoreDocument, SessionDocument } from "tachi-common";
-
-const logger = CreateLogCtx(__filename);
 
 const mockImportDocument: ImportDocument = {
 	userID: 1,
@@ -18,7 +14,7 @@ const mockImportDocument: ImportDocument = {
 	createdSessions: [],
 	errors: [],
 	goalInfo: [],
-	idStrings: [],
+	gptStrings: [],
 	importID: "mockImportID",
 	importType: "file/batch-manual",
 	questInfo: [],
@@ -36,7 +32,6 @@ const mockSessionDocument: SessionDocument = {
 	game: "iidx",
 	playtype: "SP",
 	highlight: false,
-	importType: "file/batch-manual",
 	name: "",
 	scoreIDs: ["scoreid_1", "scoreid_2"],
 	sessionID: "mockSessionID",
@@ -205,7 +200,7 @@ t.test("#DeleteScore", (t) => {
 			game: "sdvx",
 			playtype: "Single",
 			classes: {
-				vfClass: SDVX_VF_CLASSES.CYAN_I,
+				vfClass: "CYAN_I",
 			},
 			ratings: {
 				VF6: 14,
@@ -222,7 +217,7 @@ t.test("#DeleteScore", (t) => {
 
 		t.hasStrict(res, {
 			classes: {
-				vfClass: SDVX_VF_CLASSES.SIENNA_II,
+				vfClass: "SIENNA_II",
 			},
 			ratings: {
 				VF6: 4,

@@ -71,10 +71,10 @@ export async function GetRelevantSongsAndCharts(
 	game: Game
 ) {
 	const [songs, charts] = await Promise.all([
-		db.songs[game].find({
+		db.anySongs[game].find({
 			id: { $in: scores.map((e) => e.songID) },
 		}),
-		db.charts[game].find({
+		db.anyCharts[game].find({
 			chartID: { $in: scores.map((e) => e.chartID) },
 		}),
 	]);
@@ -83,7 +83,7 @@ export async function GetRelevantSongsAndCharts(
 }
 
 export async function UpdateGameSongIDCounter(game: "bms" | "pms") {
-	const latestSong = await db.songs[game].findOne(
+	const latestSong = await db.anySongs[game].findOne(
 		{},
 		{
 			sort: { id: -1 },
@@ -112,7 +112,7 @@ export async function UpdateGameSongIDCounter(game: "bms" | "pms") {
 }
 
 export async function GetChartForIDGuaranteed(game: Game, chartID: string) {
-	const chart = await db.charts[game].findOne({ chartID });
+	const chart = await db.anyCharts[game].findOne({ chartID });
 
 	if (!chart) {
 		throw new Error(`Couldn't find chart with ID ${chartID} (${game}).`);
@@ -122,7 +122,7 @@ export async function GetChartForIDGuaranteed(game: Game, chartID: string) {
 }
 
 export async function GetSongForIDGuaranteed(game: Game, songID: integer) {
-	const song = await db.songs[game].findOne({ id: songID });
+	const song = await db.anySongs[game].findOne({ id: songID });
 
 	if (!song) {
 		throw new Error(`Couldn't find song with ID ${songID} (${game}).`);

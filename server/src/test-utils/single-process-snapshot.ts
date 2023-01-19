@@ -4,7 +4,7 @@ import path from "path";
 
 const SNAP_PATH = path.join(__dirname, "./snapshots/snapshot-data.json");
 
-type Snapshots = Record<string, string>;
+type Snapshots = Record<string, boolean | number | string>;
 
 function ReadSnapshotData() {
 	let snapshots: Snapshots = {};
@@ -22,7 +22,7 @@ export function WriteSnapshotData() {
 
 const snapshotData = ReadSnapshotData();
 
-export function TestSnapshot(t: Tap.Test, value: string, testName: string) {
+export function TestSnapshot(t: Tap.Test, value: boolean | number | string, testName: string) {
 	if (IsNonEmptyString(process.env.TAP_SNAPSHOT)) {
 		snapshotData[testName] = value;
 		WriteSnapshotData();

@@ -2,8 +2,7 @@
 // and no quest-goal desync, etc.
 
 import chalk from "chalk";
-import { Game } from "tachi-common";
-import { allSupportedGames } from "tachi-common/config/static-config";
+import { Game, allSupportedGames } from "tachi-common";
 import { ReadCollection } from "../util";
 import { FormatFunctions } from "./test-utils";
 
@@ -63,7 +62,7 @@ for (const refCheck of refChecks) {
 		})
 	);
 
-	const formatFn = FormatFunctions[refCheck.base];
+	const formatFn = FormatFunctions[refCheck.base] ?? ((v) => JSON.stringify(v));
 
 	for (const data of baseData) {
 		const keys: Array<string> = [];

@@ -85,6 +85,17 @@ export enum CHUNITHM_GRADES {
 	SSS = 10,
 }
 
+export enum JUBEAT_GRADES {
+	E = 0,
+	D = 1,
+	C = 2,
+	B = 3,
+	A = 4,
+	S = 5,
+	SS = 6,
+	SSS = 7,
+}
+
 export enum SDVX_GRADES {
 	D = 0,
 	C = 1,
@@ -116,17 +127,17 @@ export enum MUSECA_GRADES {
  * K950 means the grade that starts at 950K and goes
  * to 975K.
  */
-export enum MUSECA_GRADES_ASCII {
-	ZERO = 0,
-	K600 = 1,
-	K700 = 2,
-	K800 = 3,
-	K850 = 4,
-	K900 = 5,
-	K950 = 6,
-	K975 = 7,
-	K1000 = 8,
-}
+export const MUSECA_GRADES_ASCII = {
+	ZERO: "没",
+	K600: "拙",
+	K700: "凡",
+	K800: "佳",
+	K850: "良",
+	K900: "優",
+	K950: "秀",
+	K975: "傑",
+	K1000: "傑G",
+};
 
 export enum DDR_GRADES {
 	D = 0,

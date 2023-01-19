@@ -1,25 +1,37 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
 import { rootLogger } from "lib/logger/logger";
-import { CreateCalculatedData } from "lib/score-import/framework/calculated-data/calculated-data";
+import { CreateScoreCalcData } from "lib/score-import/framework/calculated-data/score";
+import { CreateSessionCalcData } from "lib/score-import/framework/calculated-data/session";
 import { UpdateChartRanking } from "lib/score-import/framework/pb/create-pb-doc";
+import { CreateFullScoreData } from "lib/score-import/framework/score-importing/derivers";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
-import { CreateSessionCalcData } from "lib/score-import/framework/sessions/calculated-data";
+import { GetGPTString } from "tachi-common";
 import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 import { FormatUserDoc, GetUserWithID } from "utils/user";
 import type { KtLogger } from "lib/logger/logger";
-import type { ScoreDocument } from "tachi-common";
+import type { DryScoreData } from "lib/score-import/framework/common/types";
+import type { ScoreDocument, GPTString } from "tachi-common";
+
+type NewScore =
+	| ScoreDocument
+	| (Omit<ScoreDocument, "scoreData"> & { scoreData: DryScoreData<GPTString> });
 
 /**
  * Updates a score from oldScore to newScore, applying all necessary state
  * changes on the way.
  *
+ * @param dangerouslySkipUpdatingRefs - Skip updating session/import pointers to this
+ * scoreID.
+ *
  * @note You don't need to recalc the scoreID for newScore, it's done for you.
  */
 export default async function UpdateScore(
 	oldScore: ScoreDocument,
-	newScore: ScoreDocument,
-	updateOldChart = true
+	newScore: NewScore,
+	updateOldChart = true,
+	skipUpdatingPBs = false,
+	dangerouslySkipUpdatingRefs = false
 ) {
 	const userID = oldScore.userID;
 	const user = await GetUserWithID(userID);
@@ -35,7 +47,7 @@ export default async function UpdateScore(
 
 	const chartID = newScore.chartID;
 
-	const chart = await db.charts[oldScore.game].findOne({
+	const chart = await db.anyCharts[oldScore.game].findOne({
 		chartID,
 	});
 
@@ -54,7 +66,12 @@ export default async function UpdateScore(
 
 	const oldScoreID = oldScore.scoreID;
 
-	const newScoreID = CreateScoreID(newScore.userID, newScore, newScore.chartID);
+	const newScoreID = CreateScoreID(
+		GetGPTString(newScore.game, newScore.playtype),
+		newScore.userID,
+		newScore,
+		newScore.chartID
+	);
 
 	// We need to change *so* many references to score IDs, and recalculate *so*
 	// much stored state. Obviously, changing a scoreID is an exceptional circumstance
@@ -69,23 +86,24 @@ export default async function UpdateScore(
 
 	logger.verbose("Received Update Score request.");
 
+	const gpt = GetGPTString(newScore.game, newScore.playtype);
+
+	// rehydrate this scoredata, incase we got passed a new score thats dry
+	newScore.scoreData = CreateFullScoreData(gpt, newScore.scoreData, chart, logger);
+
 	// eslint-disable-next-line require-atomic-updates
-	newScore.calculatedData = await CreateCalculatedData(
-		newScore,
-		chart,
-		newScore.scoreData.esd,
-		logger
-	);
+	newScore.calculatedData = CreateScoreCalcData(newScore.game, newScore.scoreData, chart);
 
 	try {
 		// Having _id defined will cause this to throw, causing it to not apply
 		// the update.
+		// @ts-expect-error this shouldn't happen according to types.
 		if (newScore._id) {
 			logger.warn(
 				`Passed a score with _id to UpdateScore. This property should not be set. Deleting this property and continuing anyway.`
 			);
 
-			// This property shouldn't be defined.
+			// @ts-expect-error this shouldn't happen according to types.
 			delete newScore._id;
 		}
 
@@ -93,7 +111,7 @@ export default async function UpdateScore(
 			{
 				scoreID: oldScoreID,
 			},
-			{ $set: newScore }
+			{ $set: newScore as ScoreDocument }
 		);
 	} catch (err) {
 		logger.error(err);
@@ -103,6 +121,16 @@ export default async function UpdateScore(
 		await db.scores.remove({
 			scoreID: oldScoreID,
 		});
+	}
+
+	if (oldScoreID === newScoreID) {
+		logger.verbose(`Done updating score.`);
+		return;
+	}
+
+	if (dangerouslySkipUpdatingRefs) {
+		logger.verbose(`Done updating score.`);
+		return;
 	}
 
 	const sessions = await db.sessions.find({
@@ -157,23 +185,25 @@ export default async function UpdateScore(
 		);
 	}
 
-	logger.verbose(`Updating PBs.`);
+	if (!skipUpdatingPBs) {
+		logger.verbose(`Updating PBs.`);
 
-	// Update the PBs to reference properly.
-	// We run updateAllPbs on just the modified chart -- the reason
-	// for this is to update ranking info incase that might fall out of
-	// sync as a result.
-	await UpdateAllPBs([userID], {
-		chartID: newScore.chartID,
-	});
-
-	await UpdateChartRanking(newScore.game, newScore.playtype, newScore.chartID);
-
-	if (updateOldChart) {
+		// Update the PBs to reference properly.
+		// We run updateAllPbs on just the modified chart -- the reason
+		// for this is to update ranking info incase that might fall out of
+		// sync as a result.
 		await UpdateAllPBs([userID], {
-			chartID: oldScore.chartID,
+			chartID: newScore.chartID,
 		});
-		await UpdateChartRanking(oldScore.game, oldScore.playtype, oldScore.chartID);
+
+		await UpdateChartRanking(newScore.game, newScore.playtype, newScore.chartID);
+
+		if (updateOldChart) {
+			await UpdateAllPBs([userID], {
+				chartID: oldScore.chartID,
+			});
+			await UpdateChartRanking(oldScore.game, oldScore.playtype, oldScore.chartID);
+		}
 	}
 
 	const imports = await db.imports.find({

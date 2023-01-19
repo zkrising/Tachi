@@ -199,8 +199,8 @@ function UserGameStatsInfo({ user }: { user: UserDocument }) {
 							const gameConfig = GetGameConfig(a.game);
 
 							return (
-								gameConfig.validPlaytypes.indexOf(a.playtype) -
-								gameConfig.validPlaytypes.indexOf(b.playtype)
+								gameConfig.playtypes.indexOf(a.playtype) -
+								gameConfig.playtypes.indexOf(b.playtype)
 							);
 						}
 

@@ -1,18 +1,19 @@
 import {
 	InternalFailure,
 	InvalidScoreFailure,
+	SkipScoreFailure,
 	SongOrChartNotFoundFailure,
 } from "../../../framework/common/converter-failures";
-import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import db from "external/mongo/db";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
+import { GetGPTString } from "tachi-common";
 import { IsNullishOrEmptyStr } from "utils/misc";
 import { FindIIDXChartOnInGameIDVersion, FindIIDXChartWith2DXtraHash } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import type { DryScore } from "../../../framework/common/types";
 import type { ConverterFunction } from "../../common/types";
 import type { FervidexContext, FervidexScore } from "./types";
-import type { Difficulties, Lamps, Playtypes } from "tachi-common";
+import type { Difficulties, Playtypes } from "tachi-common";
 
 export const FERVIDEX_LAMP_LOOKUP = {
 	0: "NO PLAY",
@@ -23,7 +24,7 @@ export const FERVIDEX_LAMP_LOOKUP = {
 	5: "HARD CLEAR",
 	6: "EX HARD CLEAR",
 	7: "FULL COMBO",
-};
+} as const;
 
 export function TachifyAssist(
 	assist: Required<FervidexScore>["option"]["assist"]
@@ -108,10 +109,8 @@ export function SplitFervidexChartRef(ferDif: FervidexScore["chart"]) {
 	let difficulty: Difficulties["iidx:DP" | "iidx:SP"];
 
 	switch (ferDif[ferDif.length - 1]) {
-		case "b": {
-			difficulty = "BEGINNER";
-			break;
-		}
+		case "b":
+			throw new SkipScoreFailure(`BEGINNER charts are not supported.`);
 
 		case "n": {
 			difficulty = "NORMAL";
@@ -191,8 +190,6 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 		throw new InvalidScoreFailure(`Invalid value of gauge ${gauge}.`);
 	}
 
-	const { percent, grade } = GenericGetGradeAndPercent("iidx", data.ex_score, chart);
-
 	let bp: number | null = data.bad + data.poor;
 
 	if (data.dead) {
@@ -207,9 +204,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 		timeAchieved: context.timeReceived,
 		scoreData: {
 			score: data.ex_score,
-			percent,
-			grade,
-			lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type] as Lamps["iidx:DP" | "iidx:SP"],
+			lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type],
 			judgements: {
 				pgreat: data.pgreat,
 				great: data.great,
@@ -217,7 +212,7 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 				bad: data.bad,
 				poor: data.poor,
 			},
-			hitMeta: {
+			optional: {
 				fast: data.fast,
 				slow: data.slow,
 				maxCombo: null,
@@ -226,15 +221,16 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 				gauge,
 				bp,
 				comboBreak: data.combo_break,
-				gsm: data["2dx-gsm"],
+				gsmEasy: data["2dx-gsm"]?.EASY,
+				gsmNormal: data["2dx-gsm"]?.NORMAL,
+				gsmHard: data["2dx-gsm"]?.HARD,
+				gsmEXHard: data["2dx-gsm"]?.EX_HARD,
 			},
 		},
 		scoreMeta: {
 			assist: TachifyAssist(data.option?.assist),
 			gauge: TachifyGauge(data.option?.gauge),
 
-			// @ts-expect-error Awkward expansion of iidx:SP|DP strings here causes this
-			// to complain that [x,x] is not assignable to SP randoms. This is a lazy ignore!
 			random:
 				chart.playtype === "SP"
 					? TachifyRandom(data.option?.style)
@@ -247,7 +243,12 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 	// marked as a duplicate, but with highlight set. As such, we should highlight
 	// the score this is for.
 	if (data.highlight === true) {
-		const scoreID = CreateScoreID(context.userID, dryScore, chart.chartID);
+		const scoreID = CreateScoreID(
+			GetGPTString("iidx", chart.playtype),
+			context.userID,
+			dryScore,
+			chart.chartID
+		);
 
 		await db.scores.update({ scoreID }, { $set: { highlight: true } });
 

@@ -15,7 +15,7 @@ export const ValidateAndGetSong: RequestHandler = async (req, res, next) => {
 
 	const game = GetTachiData(req, "game");
 
-	const song = await db.songs[game].findOne({ id: songID });
+	const song = await db.anySongs[game].findOne({ id: songID });
 
 	if (!song) {
 		return res.status(404).json({

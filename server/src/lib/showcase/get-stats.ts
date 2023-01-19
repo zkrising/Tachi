@@ -2,7 +2,8 @@ import { EvaluateShowcaseStat } from "./evaluator";
 import { GetRelatedStatDocuments } from "./get-related";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import type { integer, Game, Playtype, ShowcaseStatDetails } from "tachi-common";
+import { GetGPTString } from "tachi-common";
+import type { integer, Game, Playtype, ShowcaseStatDetails, GPTString } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -34,16 +35,23 @@ export async function EvaluateUsersStatsShowcase(
 		);
 	}
 
+	const gpt = GetGPTString(game, playtype);
+
 	const results = await Promise.all(
-		settings.preferences.stats.map((details) => EvaluateStats(details, userID, game))
+		settings.preferences.stats.map((details) => EvaluateStats(gpt, details, userID, game))
 	);
 
 	return results;
 }
 
-async function EvaluateStats(details: ShowcaseStatDetails, userID: integer, game: Game) {
+async function EvaluateStats(
+	gpt: GPTString,
+	details: ShowcaseStatDetails,
+	userID: integer,
+	game: Game
+) {
 	const [result, related] = await Promise.all([
-		EvaluateShowcaseStat(details, userID),
+		EvaluateShowcaseStat(gpt, details, userID),
 		GetRelatedStatDocuments(details, game),
 	]);
 

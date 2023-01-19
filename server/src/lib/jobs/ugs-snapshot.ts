@@ -2,7 +2,7 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { GetMillisecondsSince } from "utils/misc";
 import { GetAllRankings } from "utils/user";
-import type { UserGameStats, UserGameStatsSnapshot } from "tachi-common";
+import type { UserGameStats, UserGameStatsSnapshotDocument } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -10,7 +10,7 @@ const logger = CreateLogCtx(__filename);
 // nonsense happens. we'll have to see.
 const currentTime = new Date().setUTCHours(0, 0, 0, 0);
 
-let batchWrite: Array<UserGameStatsSnapshot> = [];
+let batchWrite: Array<UserGameStatsSnapshotDocument> = [];
 
 // This code is intentionally *very* robust, and handles a lot of unanticipated failures
 // because if it breaks, we brick the database.
@@ -48,7 +48,7 @@ export async function UGSSnapshot() {
 					GetAllRankings(ugs),
 				]);
 
-				const ugsSnapshot: UserGameStatsSnapshot = {
+				const ugsSnapshot: UserGameStatsSnapshotDocument = {
 					...ugs,
 					playcount,
 					rankings,

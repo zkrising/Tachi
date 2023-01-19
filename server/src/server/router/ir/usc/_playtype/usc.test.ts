@@ -10,10 +10,10 @@ const mockScorePB: PBScoreDocument<"usc:Controller" | "usc:Keyboard"> = {
 	calculatedData: {
 		VF6: 0,
 	},
-	composedFrom: {
-		scorePB: "USC_EXAMPLE_SCORE_PB_ID",
-		lampPB: "USC_EXAMPLE_LAMP_PB_ID",
-	},
+	composedFrom: [
+		{ name: "Best Score", scoreID: "USC_EXAMPLE_SCORE_PB_ID" },
+		{ name: "Best Lamp", scoreID: "USC_EXAMPLE_LAMP_PB_ID" },
+	],
 	game: "usc",
 	highlight: false,
 	isPrimary: true,
@@ -24,18 +24,20 @@ const mockScorePB: PBScoreDocument<"usc:Controller" | "usc:Keyboard"> = {
 		rivalRank: null,
 	},
 	scoreData: {
-		esd: null,
 		grade: "AAA+",
-		gradeIndex: 7,
 		judgements: {
 			critical: 100,
 			miss: 15,
 		},
-		hitMeta: {},
+		enumIndexes: {
+			grade: 7,
+			lamp: 3,
+		},
 		lamp: "EXCESSIVE CLEAR",
-		lampIndex: 3,
-		percent: 95,
 		score: 9_500_000,
+		optional: {
+			enumIndexes: {},
+		},
 	},
 	songID: 1,
 	timeAchieved: null,
@@ -272,7 +274,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
 				ranking: 1,
 			},
 			isServerRecord: false,
-			isPB: false,
+			isPB: true,
 			sendReplay: "USER_1_SCORE_PB",
 			adjacentAbove: [
 				{ score: 9_300_000, username: "4", ranking: 2 },
@@ -311,7 +313,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
 				ranking: 1,
 			},
 			isServerRecord: false,
-			isPB: false,
+			isPB: true,
 			sendReplay: "USER_4_SCORE_PB",
 		});
 
@@ -350,7 +352,7 @@ t.test("#CreatePOSTScoresResponseBody", async (t) => {
 				ranking: 1,
 			},
 			isServerRecord: false,
-			isPB: false,
+			isPB: true,
 			sendReplay: "USER_3_SCORE_PB",
 		});
 

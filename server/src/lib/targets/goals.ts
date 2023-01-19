@@ -1,11 +1,12 @@
 import { CreateGoalTitle as CreateGoalName, ValidateGoalChartsAndCriteria } from "./goal-utils";
 import db from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
+import { GPT_SERVER_IMPLEMENTATIONS } from "game-implementations/game-implementations";
 import { SubscribeFailReasons } from "lib/constants/err-codes";
 import CreateLogCtx from "lib/logger/logger";
-import { FormatGame, GenericFormatGradeDelta, GetGamePTConfig } from "tachi-common";
+import { FormatGame, GetGPTConfig, GetGPTString, GetScoreMetricConf } from "tachi-common";
 import { GetFolderChartIDs } from "utils/folder";
-import { IsNullish } from "utils/misc";
+import type { GoalCriteriaFormatter } from "game-implementations/types";
 import type { KtLogger } from "lib/logger/logger";
 import type { FilterQuery } from "mongodb";
 import type {
@@ -17,6 +18,8 @@ import type {
 	Playtype,
 	QuestDocument,
 	QuestSubscriptionDocument,
+	GPTString,
+	ScoreData,
 } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
@@ -57,6 +60,23 @@ export async function EvaluateGoalForUser(
 	// First, we need to resolve the set of charts this
 	// goal involves.
 	const chartIDs = await ResolveGoalCharts(goal);
+	const gptString = GetGPTString(goal.game, goal.playtype);
+	const gptConfig = GetGPTConfig(gptString);
+	const scoreConf = GetScoreMetricConf(gptConfig, goal.criteria.key);
+
+	if (!scoreConf) {
+		throw new Error(
+			`Invalid goal.criteria.key, got '${goal.criteria.key}', but no config exists for this metric for ${gptString}.`
+		);
+	}
+
+	let scoreDataKey;
+
+	if (scoreConf.type === "ENUM") {
+		scoreDataKey = `scoreData.enumIndexes.${goal.criteria.key}`;
+	} else {
+		scoreDataKey = `scoreData.${goal.criteria.key}`;
+	}
 
 	// lets configure a "base" query for our requests.
 	const scoreQuery: FilterQuery<PBScoreDocument> = {
@@ -66,7 +86,7 @@ export async function EvaluateGoalForUser(
 
 		// normally, this would be a VERY WORRYING line of code, but goal.criteria.key is guaranteed to be
 		// within a specific set of fields.
-		[goal.criteria.key]: { $gte: goal.criteria.value },
+		[scoreDataKey]: { $gte: goal.criteria.value },
 		chartID: { $in: chartIDs },
 	};
 
@@ -74,29 +94,21 @@ export async function EvaluateGoalForUser(
 		case "single": {
 			const res = await db["personal-bests"].findOne(scoreQuery);
 
-			// hack, but guaranteed to work.
-			const scoreDataKey = goal.criteria.key.split(".")[1] as
-				| "gradeIndex"
-				| "lampIndex"
-				| "percent"
-				| "score";
-
-			const outOfHuman = HumaniseGoalOutOf(
-				goal.game,
-				goal.playtype,
-				goal.criteria.key,
-				goal.criteria.value
-			);
+			const outOfHuman = HumaniseGoalOutOf(gptString, goal.criteria.key, goal.criteria.value);
 
 			if (res) {
 				return {
 					achieved: true,
 					outOf: goal.criteria.value,
-					progress: res.scoreData[scoreDataKey],
+					progress:
+						scoreConf.type === "ENUM"
+							? // @ts-expect-error this is always correct but the typesystem is rightfully concerned
+							  res.scoreData.enumIndexes[goal.criteria.key]
+							: // @ts-expect-error see above
+							  res.scoreData[goal.criteria.key],
 					outOfHuman,
 					progressHuman: HumaniseGoalProgress(
-						goal.game,
-						goal.playtype,
+						gptString,
 						goal.criteria.key,
 						goal.criteria.value,
 						res
@@ -114,7 +126,7 @@ export async function EvaluateGoalForUser(
 			};
 
 			const nextBestScore = await db["personal-bests"].findOne(nextBestQuery, {
-				sort: { [goal.criteria.key]: -1 },
+				sort: { [scoreDataKey]: -1 },
 			});
 
 			// user has no scores on any charts in this set.
@@ -132,10 +144,14 @@ export async function EvaluateGoalForUser(
 				achieved: false,
 				outOf: goal.criteria.value,
 				outOfHuman,
-				progress: nextBestScore.scoreData[scoreDataKey],
+				progress:
+					scoreConf.type === "ENUM"
+						? // @ts-expect-error this is always correct but the typesystem is rightfully concerned
+						  nextBestScore.scoreData.enumIndexes[goal.criteria.key]
+						: // @ts-expect-error see above
+						  nextBestScore.scoreData[goal.criteria.key],
 				progressHuman: HumaniseGoalProgress(
-					goal.game,
-					goal.playtype,
+					gptString,
 					goal.criteria.key,
 					goal.criteria.value,
 					nextBestScore
@@ -215,159 +231,64 @@ type GoalKeys = GoalDocument["criteria"]["key"];
  * IIDX lamp goals.
  */
 export function HumaniseGoalProgress(
-	game: Game,
-	playtype: Playtype,
+	gptString: GPTString,
 	key: GoalKeys,
 	goalValue: integer,
 	userPB: PBScoreDocument
 ): string {
-	switch (key) {
-		case "scoreData.gradeIndex": {
-			// for iidx, pms and bms we expect grade deltas (rarely) formatted like
-			// AAA-1520
-			// however, for other games (namely those that run with larger numbers)
-			// we want to format this stuff like AA-172k.
-			const fmtFn =
-				game === "iidx" || game === "pms" || game === "bms"
-					? undefined
-					: (num: number) => Intl.NumberFormat("en", { notation: "compact" }).format(num);
+	const gptImpl = GPT_SERVER_IMPLEMENTATIONS[gptString];
 
-			const goalGrade = GetGamePTConfig(game, playtype).grades[goalValue];
+	// @ts-expect-error yeah this might fail, i know.
+	const formatter = gptImpl.goalProgressFormatters[key];
 
-			if (!goalGrade) {
-				throw new Error(
-					`Invalid Goal -- Tried to get a grade with index '${goalValue}', but no such grade exists for ${FormatGame(
-						game,
-						playtype
-					)}`
-				);
-			}
-
-			const { lower, upper, closer } = GenericFormatGradeDelta(
-				game,
-				playtype,
-				userPB.scoreData.score,
-				userPB.scoreData.percent,
-				userPB.scoreData.grade,
-				fmtFn
-			);
-
-			// If this goal is, say, AAA $chart, and the user's deltas are AA+40, AAA-100
-			// instead of picking the one with less delta from the grade (AA+40)
-			// pick the one closest to the target grade.
-			// Because sometimes this function wraps the grade operand in brackets
-			// (see (MAX-)-50), we need a regexp for this.
-			// eslint-disable-next-line @typescript-eslint/prefer-optional-chain
-			if (upper && new RegExp(`\\(?${goalGrade}`, "u").exec(upper)) {
-				return upper;
-			}
-
-			// for some reason, our TS compiler disagrees that this is non-nullable.
-			// but my IDE thinks it is. Who knows.
-			// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-			return closer === "lower" ? lower : upper!;
-		}
-
-		case "scoreData.lampIndex": {
-			switch (game) {
-				case "iidx":
-				case "bms":
-				case "pms": {
-					// @ts-expect-error This is guaranteed to exist, we're going to ignore it.
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-					const maybeBP: number | null | undefined = userPB.scoreData.hitMeta.bp;
-
-					// render BP if it exists
-					if (!IsNullish(maybeBP)) {
-						return `${userPB.scoreData.lamp} (BP: ${maybeBP})`;
-					}
-
-					break;
-				}
-
-				case "itg": {
-					// @ts-expect-error This is guaranteed to exist, we're going to ignore it.
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-					const maybeDiedAt: number | null | undefined = userPB.scoreData.hitMeta.diedAt;
-
-					// render diedAt if it exists as "FAILED (Died 25% in)"
-					if (!IsNullish(maybeDiedAt)) {
-						return `${userPB.scoreData.lamp} (Died ${maybeDiedAt.toFixed(0)}% in)`;
-					}
-
-					break;
-				}
-
-				// no special logic needed for these games, just render the lamp.
-				case "chunithm":
-				case "gitadora":
-				case "jubeat":
-				case "museca":
-				case "popn":
-				case "sdvx":
-				case "usc":
-				case "wacca":
-				case "maimaidx":
-			}
-
-			// otherwise, just roll on.
-			return userPB.scoreData.lamp;
-		}
-
-		case "scoreData.percent":
-			return `${userPB.scoreData.percent.toFixed(2)}%`;
-		case "scoreData.score":
-			return userPB.scoreData.score.toLocaleString();
-		default:
-			throw new Error(`Broken goal - invalid key ${key}.`);
+	if (!formatter) {
+		throw new Error(
+			`Attempted to format progress for metric '${key}' when no such score metric exists for ${gptString}.`
+		);
 	}
+
+	return formatter(userPB, goalValue);
 }
 
 /**
  * Turn a goal's "outOf" (i.e. HARD CLEAR; AAA or score=2450) into a human-understandable
  * string.
  */
-export function HumaniseGoalOutOf(game: Game, playtype: Playtype, key: GoalKeys, value: number) {
-	const gptConfig = GetGamePTConfig(game, playtype);
+export function HumaniseGoalOutOf(gptString: GPTString, key: GoalKeys, value: number) {
+	const gptConf = GetGPTConfig(gptString);
 
-	switch (key) {
-		case "scoreData.gradeIndex": {
-			const grade = gptConfig.grades[value];
+	const metricConf = GetScoreMetricConf(gptConf, key);
 
-			if (!grade) {
-				throw new Error(
-					`Invalid goal: Requested a grade with index '${value}' for ${FormatGame(
-						game,
-						playtype
-					)}, yet none existed?`
-				);
-			}
-
-			return grade;
-		}
-
-		case "scoreData.lampIndex": {
-			const lamp = gptConfig.lamps[value];
-
-			if (!lamp) {
-				throw new Error(
-					`Invalid goal: Requested a lamp with index '${value}' for ${FormatGame(
-						game,
-						playtype
-					)}, yet none existed?`
-				);
-			}
-
-			return lamp;
-		}
-
-		case "scoreData.percent":
-			return `${value.toFixed(2)}%`;
-		case "scoreData.score":
-			return value.toLocaleString();
-		default:
-			throw new Error(`Broken goal - invalid key ${key}.`);
+	if (!metricConf) {
+		throw new Error(
+			`Attempted to format outOf for metric '${key}' when no such score metric exists for ${gptString}.`
+		);
 	}
+
+	if (metricConf.type === "ENUM") {
+		const val = metricConf.values[value];
+
+		if (val === undefined) {
+			throw new Error(
+				`Attempted to format outOf for metric '${key}' but no such enum exists at index ${value}. (${gptString})`
+			);
+		}
+
+		return val;
+	}
+
+	const gptImpl = GPT_SERVER_IMPLEMENTATIONS[gptString];
+
+	// @ts-expect-error yeah this is technically unsafe, whatever
+	const fmt: GoalCriteriaFormatter | undefined = gptImpl.goalOutOfFormatters[key];
+
+	if (!fmt) {
+		throw new Error(
+			`Invalid metric '${key}' passed to format outOf, as no goalCriteriaFormatter exists for it.`
+		);
+	}
+
+	return fmt(value);
 }
 
 /**
@@ -742,12 +663,12 @@ export async function GetRelevantGoals(
  * Returns the set of goals where its folder contains any member
  * of chartIDsArr.
  */
-export function GetRelevantFolderGoals(goalIDs: Array<string>, chartIDsArr: Array<string>) {
+export async function GetRelevantFolderGoals(goalIDs: Array<string>, chartIDsArr: Array<string>) {
 	// Slightly black magic - this is kind of like doing an SQL join.
 	// it's weird to do this in mongodb, but this seems like the right
 	// way to actually handle this.
 
-	const result: Promise<Array<GoalDocument>> = db.goals.aggregate([
+	const result: Array<GoalDocument> = await db.goals.aggregate([
 		{
 			$match: {
 				"charts.type": "folder",
@@ -770,9 +691,82 @@ export function GetRelevantFolderGoals(goalIDs: Array<string>, chartIDsArr: Arra
 		{
 			$project: {
 				folderCharts: 0,
+				_id: 0,
 			},
 		},
 	]);
 
 	return result;
+}
+
+/**
+ * Rarely, some sort of change might happen where a goal needs to be edited.
+ *
+ * This happens if the goal schema changes, but that really is quite rare.
+ */
+export async function EditGoal(oldGoal: GoalDocument, newGoal: GoalDocument) {
+	const newGoalID = CreateGoalID(
+		newGoal.charts,
+		newGoal.criteria,
+		newGoal.game,
+		newGoal.playtype
+	);
+
+	// eslint-disable-next-line require-atomic-updates
+	newGoal.goalID = newGoalID;
+
+	await db["goal-subs"].update(
+		{
+			goalID: oldGoal.goalID,
+		},
+		{
+			$set: { goalID: newGoalID },
+		}
+	);
+
+	// update any dangling quest references
+	const quests = await GetQuestsThatContainGoal(oldGoal.goalID);
+
+	for (const quest of quests) {
+		const newQuestData: QuestDocument["questData"] = [];
+
+		for (const qd of quest.questData) {
+			const goals = [];
+
+			for (const goal of qd.goals) {
+				if (goal.goalID === oldGoal.goalID) {
+					goals.push({ ...goal, goalID: newGoal.goalID });
+				} else {
+					goals.push(goal);
+				}
+			}
+
+			newQuestData.push({
+				...qd,
+				goals,
+			});
+		}
+
+		await db.quests.update(
+			{ questID: quest.questID },
+			{
+				$set: { questData: newQuestData },
+			}
+		);
+	}
+
+	await db.goals.remove({ goalID: oldGoal.goalID });
+
+	// eslint-disable-next-line require-atomic-updates
+	newGoal.name = await CreateGoalName(
+		newGoal.charts,
+		newGoal.criteria,
+		newGoal.game,
+		newGoal.playtype
+	);
+	try {
+		await db.goals.insert(newGoal);
+	} catch (err) {
+		logger.info(`Goal ${newGoal.name} already existed.`);
+	}
 }

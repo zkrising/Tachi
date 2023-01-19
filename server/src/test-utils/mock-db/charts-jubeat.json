@@ -1,7 +1,6 @@
 [
 	{
 		"chartID": "b90a319f18d1a746b330b8f4cd6f74874f664421",
-		"rgcID": null,
 		"songID": 1,
 		"level": "6",
 		"levelNum": 6,
@@ -9,10 +8,8 @@
 		"isPrimary": true,
 		"playtype": "Single",
 		"data": {
-			"inGameID": 10000001,
-			"isHardMode": false
+			"inGameID": 10000001
 		},
-		"tierlistInfo": {},
 		"versions": [
 			"festo"
 		]

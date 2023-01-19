@@ -11,15 +11,14 @@ import {
 	REV_NORMAL,
 	REV_OMNIMIX,
 } from "lib/constants/ea3id";
-import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
 import { p } from "prudence";
 import { ParseEA3SoftID } from "utils/ea3id";
 import { FormatPrError, optNull } from "utils/prudence";
 import type { ParserFunctionReturns } from "../../common/types";
-import type { FerHeaders as FervidexHeaders, FervidexContext, FervidexScore } from "./types";
+import type { FervidexContext, FerHeaders as FervidexHeaders, FervidexScore } from "./types";
 import type { KtLogger } from "lib/logger/logger";
 import type { PrudenceSchema, ValidSchemaValue } from "prudence";
-import type { GPTSupportedVersions, integer } from "tachi-common";
+import type { Versions, integer } from "tachi-common";
 
 const PR_FERVIDEX: PrudenceSchema = {
 	chart: p.isIn("spb", "spn", "dpn", "sph", "dph", "spa", "dpa", "spl", "dpl"),
@@ -82,7 +81,7 @@ const PR_FERVIDEX: PrudenceSchema = {
 export function SoftwareIDToVersion(
 	model: string,
 	logger: KtLogger
-): GPTSupportedVersions["iidx:DP" | "iidx:SP"] {
+): Versions["iidx:DP" | "iidx:SP"] {
 	try {
 		const data = ParseEA3SoftID(model);
 
@@ -151,6 +150,6 @@ export function ParseFervidexSingle(
 		context: { version, timeReceived: Date.now(), userID },
 		game: "iidx",
 		iterable: [score],
-		classHandler: null,
+		classProvider: null,
 	};
 }

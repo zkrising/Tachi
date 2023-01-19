@@ -11,7 +11,7 @@ import {
 	GetKTDataJSON,
 } from "test-utils/test-data";
 import { Random20Hex, Sleep } from "utils/misc";
-import type { ChartDocument, SongDocument } from "tachi-common";
+import type { ChartDocument, GPTStrings, SongDocument } from "tachi-common";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function TestHeaders(url: string, data: any) {
@@ -233,7 +233,7 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 
 		const ugs = await db["game-stats"].findOne({ userID: 1, game: "iidx", playtype: "SP" });
 
-		t.equal(ugs?.classes.dan, 18);
+		t.equal(ugs?.classes.dan, "KAIDEN");
 
 		const recentAchievement = await db["class-achievements"].findOne({
 			userID: 1,
@@ -245,7 +245,7 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 			userID: 1,
 			game: "iidx",
 			playtype: "SP",
-			classValue: 18,
+			classValue: "KAIDEN",
 			classSet: "dan",
 			classOldValue: null,
 		});
@@ -267,7 +267,7 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 
 		const ugs = await db["game-stats"].findOne({ userID: 1, game: "iidx", playtype: "DP" });
 
-		t.equal(ugs?.classes.dan, 17);
+		t.equal(ugs?.classes.dan, "CHUUDEN");
 
 		t.end();
 	});
@@ -423,11 +423,70 @@ t.test("POST /ir/fervidex/score/submit", (t) => {
 			.post("/ir/fervidex/score/submit")
 			.set("User-Agent", "fervidex/1.3.0")
 			.set("Authorization", "Bearer mock_token")
+			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
 			.send({});
 
 		t.equal(res.body.success, false, "Should not be successful");
 
 		t.type(res.body.error, "string", "Should have an error prop that is a string.");
+
+		t.end();
+	});
+
+	t.test("Should reject an invalid exscore", async (t) => {
+		const res = await mockApi
+			.post("/ir/fervidex/score/submit")
+			.set("User-Agent", "fervidex/1.3.0")
+			.set("Authorization", "Bearer mock_token")
+			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
+			.send(
+				deepmerge(FervidexBaseScore, {
+					ex_score: 9999,
+				})
+			);
+
+		t.equal(res.statusCode, 200, "Should pass validation.");
+
+		await Sleep(2000);
+
+		const imp = await db.imports.findOne({
+			importID: res.body.body.importID,
+		});
+
+		t.strictSame(imp?.errors, [
+			{
+				type: "InvalidDatapoint",
+				message: `Got 2 errors when validating score:
+Invalid value for score, EX Score cannot be greater than 1572 for this chart. Got 9999.
+Invalid value for percent, Expected a number between 0 and 100. Got 636.0687022900763.`,
+			},
+		]);
+
+		t.end();
+	});
+
+	t.test("Should reject an invalid gauge", async (t) => {
+		const res = await mockApi
+			.post("/ir/fervidex/score/submit")
+			.set("User-Agent", "fervidex/1.3.0")
+			.set("Authorization", "Bearer mock_token")
+			.set("X-Software-Model", "LDJ:J:B:A:2020092900")
+			.send(deepmerge(FervidexBaseScore, { gauge: [150] }));
+
+		t.equal(res.statusCode, 200, "Should pass validation.");
+
+		await Sleep(2000);
+
+		const imp = await db.imports.findOne({
+			importID: res.body.body.importID,
+		});
+
+		t.strictSame(imp?.errors, [
+			{
+				type: "InvalidDatapoint",
+				message: "Invalid value of gauge 150.",
+			},
+		]);
 
 		t.end();
 	});
@@ -444,11 +503,13 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 	t.test("Should accept a fervidex-static body", async (t) => {
 		await db.songs.iidx.remove({});
 		await db.songs.iidx.insert(
-			GetKTDataJSON("./tachi/tachi-songs-iidx.json") as Array<SongDocument>
+			GetKTDataJSON("./tachi/tachi-songs-iidx.json") as Array<SongDocument<"iidx">>
 		);
 		await db.charts.iidx.remove({});
 		await db.charts.iidx.insert(
-			GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<ChartDocument>
+			GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<
+				ChartDocument<GPTStrings["iidx"]>
+			>
 		);
 
 		const res = await mockApi
@@ -477,20 +538,28 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 			playtype: "SP",
 		});
 
-		t.equal(ugs!.classes.dan, 15, "Should successfully update dan to 9th.");
+		t.equal(ugs!.classes.dan, "DAN_9", "Should successfully update dan to 9th.");
 
 		t.end();
 	});
 
 	t.test("Should allow requests from non INF2 if forceStaticImport is true.", async (t) => {
-		await db["fer-settings"].update({ userID: 1 }, { $set: { forceStaticImport: true } });
 		await db.songs.iidx.remove({});
 		await db.songs.iidx.insert(
-			GetKTDataJSON("./tachi/tachi-songs-iidx.json") as Array<SongDocument>
+			GetKTDataJSON("./tachi/tachi-songs-iidx.json") as Array<SongDocument<"iidx">>
 		);
 		await db.charts.iidx.remove({});
 		await db.charts.iidx.insert(
-			GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<ChartDocument>
+			GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<
+				ChartDocument<GPTStrings["iidx"]>
+			>
+		);
+
+		await db["fer-settings"].update(
+			{ userID: 1 },
+			{
+				$set: { forceStaticImport: true },
+			}
 		);
 
 		const res = await mockApi
@@ -517,7 +586,7 @@ t.test("POST /ir/fervidex/profile/submit", (t) => {
 			playtype: "SP",
 		});
 
-		t.equal(ugs!.classes.dan, 15, "Should successfully update dan to 9th.");
+		t.equal(ugs!.classes.dan, "DAN_9", "Should successfully update dan to 9th.");
 
 		const dbRes = await db["fer-settings"].findOne({ userID: 1 });
 

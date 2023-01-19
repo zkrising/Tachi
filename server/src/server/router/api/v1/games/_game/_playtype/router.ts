@@ -46,7 +46,7 @@ async function GetGameStats(
 				game,
 				playtype,
 			}),
-			db.charts[game].count({ playtype }),
+			db.anyCharts[game].count({ playtype }),
 		]);
 
 		gptStatCache.set(`${game}:${playtype}`, { scoreCount, playerCount, chartCount }, ONE_HOUR);
@@ -111,7 +111,7 @@ router.get("/leaderboard", async (req, res) => {
 				success: false,
 				description: `Invalid value of ${
 					req.query.alg
-				} for alg. Expected one of ${gptConfig.profileRatingAlgs.join(", ")}`,
+				} for alg. Expected one of ${Object.keys(gptConfig.profileRatingAlgs).join(", ")}`,
 			});
 		}
 
@@ -176,7 +176,7 @@ router.get("/pb-leaderboard", async (req, res) => {
 				success: false,
 				description: `Invalid value of ${
 					req.query.alg
-				} for alg. Expected one of ${gptConfig.profileRatingAlgs.join(", ")}`,
+				} for alg. Expected one of ${Object.keys(gptConfig.profileRatingAlgs).join(", ")}`,
 			});
 		}
 

@@ -3,7 +3,7 @@ import {
 	ChartDocument,
 	Difficulties,
 	GetGamePTConfig,
-	GPTSupportedVersions,
+	Versions,
 	integer,
 	SongDocument,
 } from "tachi-common";
@@ -38,7 +38,7 @@ program
 
 program.parse(process.argv);
 const options = program.opts() as {
-	version: GPTSupportedVersions["iidx:SP"];
+	version: Versions["iidx:SP"];
 	index: "0" | "1";
 	basedir: string;
 	omni: boolean;
@@ -48,11 +48,9 @@ const options = program.opts() as {
 
 const iidxConfig = GetGamePTConfig("iidx", "SP");
 
-if (!iidxConfig.orderedSupportedVersions.includes(options.version)) {
+if (!iidxConfig.versions.includes(options.version)) {
 	throw new Error(
-		`Invalid version of '${
-			options.version
-		}'. Expected any of ${iidxConfig.orderedSupportedVersions.join(
+		`Invalid version of '${options.version}'. Expected any of ${iidxConfig.versions.join(
 			", "
 		)}. If you're adding a new version, go update common/src/config.ts.`
 	);
@@ -238,7 +236,7 @@ async function ParseIIDXMDB() {
 					levelNum: level,
 					isPrimary: true,
 					playtype: diffName.split("-")[0] as "SP" | "DP",
-					rgcID: null,
+					
 					songID: song.id,
 					tierlistInfo: {},
 					versions: [options.version],

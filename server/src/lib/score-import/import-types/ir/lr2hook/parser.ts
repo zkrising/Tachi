@@ -83,6 +83,6 @@ export function ParseLR2Hook(
 		context: {
 			timeReceived: Date.now(),
 		},
-		classHandler: null,
+		classProvider: null,
 	};
 }

@@ -35,7 +35,7 @@ export default function BatchManualPage() {
 
 				if (!gptConfig) {
 					throw new Error(
-						`Invalid Playtype ${data.meta.playtype}. Expected any of ${gameConfig.validPlaytypes}.`
+						`Invalid Playtype ${data.meta.playtype}. Expected any of ${gameConfig.playtypes}.`
 					);
 				}
 

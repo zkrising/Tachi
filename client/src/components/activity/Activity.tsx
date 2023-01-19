@@ -18,7 +18,13 @@ import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FormatChart, FormatGame, GetGamePTConfig, UserDocument } from "tachi-common";
+import {
+	FormatChart,
+	FormatGame,
+	GetGamePTConfig,
+	GetScoreEnumConfs,
+	UserDocument,
+} from "tachi-common";
 import { ActivityReturn, RecordActivityReturn, SessionReturns } from "types/api-returns";
 import { UGPT } from "types/react";
 import { ScoreDataset } from "types/tables";
@@ -556,15 +562,21 @@ function SessionShower({ sessionID }: { sessionID: string }) {
 			return false;
 		}
 
-		if (e.isNewScore) {
-			return (
-				score.scoreData.lampIndex > gptConfig.lamps.indexOf(gptConfig.clearLamp) ||
-				score.scoreData.gradeIndex > gptConfig.grades.indexOf(gptConfig.clearGrade)
-			);
-		} else if (e.gradeDelta > 0) {
-			return score.scoreData.gradeIndex > gptConfig.grades.indexOf(gptConfig.clearGrade);
-		} else if (e.lampDelta > 0) {
-			return score.scoreData.lampIndex > gptConfig.lamps.indexOf(gptConfig.clearLamp);
+		const enumMetrics = GetScoreEnumConfs(gptConfig);
+
+		// for all enum metrics, check if this score beats the minimum relevant enum
+		// and is a raise.
+		for (const [metric, conf] of Object.entries(enumMetrics)) {
+			if (!e.isNewScore && e.deltas[metric] <= 0) {
+				continue;
+			}
+
+			if (
+				// @ts-expect-error its gonna exist buddy
+				score.scoreData.enumIndexes[metric] > conf.values.indexOf(conf.minimumRelevantValue)
+			) {
+				return true;
+			}
 		}
 
 		return false;

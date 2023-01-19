@@ -59,12 +59,6 @@ t.test("#GetUsersWithIDs", (t) => {
 
 		const expected = [mkFakeUser(2), mkFakeUser(3)];
 
-		for (const e of expected) {
-			// workaround for monk mutating our state. I know this is bad.
-			// I'll fix it at some point.
-			delete e._id;
-		}
-
 		t.strictSame(res, expected, "Should return the user documents at these IDs.");
 
 		t.end();

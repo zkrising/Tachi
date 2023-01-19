@@ -7,13 +7,11 @@ import {
 	GamePTConfig,
 	GoalDocument,
 	GoalSubscriptionDocument,
-	Grades,
-	IDStrings,
-	IDStringToGame,
+	GPTString,
+	GPTStringToGame,
 	ImportDocument,
 	ImportTrackerFailed,
 	integer,
-	Lamps,
 	PBScoreDocument,
 	UserDocument,
 	ScoreDocument,
@@ -22,22 +20,22 @@ import {
 	ShowcaseStatFolder,
 	SongDocument,
 	TableDocument,
-	ProfileRatingLookup,
 	UserGameStats,
-	UserGameStatsSnapshot,
+	UserGameStatsSnapshotDocument,
 	QuestDocument,
 	QuestSubscriptionDocument,
 	QuestlineDocument,
 	SessionScoreInfo,
+	ProfileRatingAlgorithms,
 } from "tachi-common";
 
-export interface UGPTStatsReturn<I extends IDStrings = IDStrings> {
+export interface UGPTStatsReturn<GPT extends GPTString = GPTString> {
 	gameStats: UserGameStats;
-	firstScore: ScoreDocument<I>;
-	mostRecentScore: ScoreDocument<I>;
+	firstScore: ScoreDocument<GPT>;
+	mostRecentScore: ScoreDocument<GPT>;
 	totalScores: number;
 	rankingData: Record<
-		ProfileRatingLookup[I],
+		ProfileRatingAlgorithms[GPT],
 		{
 			ranking: integer;
 			outOf: integer;
@@ -76,35 +74,34 @@ export type UGPTPreferenceStatsReturn =
 			related: { folder: FolderDocument };
 	  };
 
-export type UGPTHistory = Omit<UserGameStatsSnapshot, "userID" | "game" | "playtype">[];
+export type UGPTHistory = Omit<UserGameStatsSnapshotDocument, "userID" | "game" | "playtype">[];
 
-export interface SessionReturns<I extends IDStrings = IDStrings> {
+export interface SessionReturns<GPT extends GPTString = GPTString> {
 	session: SessionDocument;
 	scores: ScoreDocument[];
 	scoreInfo: Array<SessionScoreInfo>;
-	songs: SongDocument<IDStringToGame[I]>[];
-	charts: ChartDocument<I>[];
+	songs: SongDocument<GPTStringToGame[GPT]>[];
+	charts: ChartDocument<GPT>[];
 	user: UserDocument;
 }
 
-export interface UGPTChartPBComposition<I extends IDStrings = IDStrings> {
-	scores: ScoreDocument<I>[];
-	chart: ChartDocument<I>;
-	pb: PBScoreDocument<I>;
+export interface UGPTChartPBComposition<GPT extends GPTString = GPTString> {
+	scores: ScoreDocument<GPT>[];
+	chart: ChartDocument<GPT>;
+	pb: PBScoreDocument<GPT>;
 }
 
-export type UGSWithRankingData<I extends IDStrings = IDStrings> = UserGameStats<I> & {
-	__rankingData: Record<ProfileRatingLookup[I], { outOf: number; ranking: number }>;
+export type UGSWithRankingData<GPT extends GPTString = GPTString> = UserGameStats & {
+	__rankingData: Record<ProfileRatingAlgorithms[GPT], { outOf: number; ranking: number }>;
 };
 
-export interface SongChartsSearch<I extends IDStrings = IDStrings> {
-	songs: SongDocument<IDStringToGame[I]>[];
-	charts: ChartDocument<I>[];
+export interface SongChartsSearch<GPT extends GPTString = GPTString> {
+	songs: SongDocument<GPTStringToGame[GPT]>[];
+	charts: ChartDocument<GPT>[];
 }
 
-export interface FolderStatsInfo<I extends IDStrings = IDStrings> {
-	grades: Record<Grades[I], integer>;
-	lamps: Record<Lamps[I], integer>;
+export interface FolderStatsInfo {
+	stats: Record<string, Record<string, integer>>;
 	folderID: string;
 	chartCount: integer;
 }
@@ -120,17 +117,17 @@ export interface UGPTTableReturns {
 	table: TableDocument;
 }
 
-export interface UGPTFolderReturns<I extends IDStrings = IDStrings> {
+export interface UGPTFolderReturns<GPT extends GPTString = GPTString> {
 	folder: FolderDocument;
-	songs: SongDocument<IDStringToGame[I]>[];
-	charts: ChartDocument<I>[];
-	pbs: PBScoreDocument<I>[];
+	songs: SongDocument<GPTStringToGame[GPT]>[];
+	charts: ChartDocument<GPT>[];
+	pbs: PBScoreDocument<GPT>[];
 }
 
-export interface GPTFolderReturns<I extends IDStrings = IDStrings> {
+export interface GPTFolderReturns<GPT extends GPTString = GPTString> {
 	folder: FolderDocument;
-	songs: SongDocument<IDStringToGame[I]>[];
-	charts: ChartDocument<I>[];
+	songs: SongDocument<GPTStringToGame[GPT]>[];
+	charts: ChartDocument<GPT>[];
 }
 
 export interface GPTStatsReturn {
@@ -145,33 +142,33 @@ export interface RecentClassesReturn {
 	users: UserDocument[];
 }
 
-export interface SongsReturn<I extends IDStrings = IDStrings> {
-	song: SongDocument<IDStringToGame[I]>;
-	charts: ChartDocument<I>[];
+export interface SongsReturn<GPT extends GPTString = GPTString> {
+	song: SongDocument<GPTStringToGame[GPT]>;
+	charts: ChartDocument<GPT>[];
 }
 
-export interface ChartPBLeaderboardReturn<I extends IDStrings = IDStrings> {
+export interface ChartPBLeaderboardReturn<GPT extends GPTString = GPTString> {
 	users: UserDocument[];
-	pbs: PBScoreDocument<I>[];
+	pbs: PBScoreDocument<GPT>[];
 }
 
-export interface UGPTChartLeaderboardAdjacent<I extends IDStrings = IDStrings> {
+export interface UGPTChartLeaderboardAdjacent<GPT extends GPTString = GPTString> {
 	users: UserDocument[];
-	pb: PBScoreDocument<I>;
-	adjacentAbove: PBScoreDocument<I>[];
-	adjacentBelow: PBScoreDocument<I>[];
+	pb: PBScoreDocument<GPT>;
+	adjacentAbove: PBScoreDocument<GPT>[];
+	adjacentBelow: PBScoreDocument<GPT>[];
 }
 
-export interface ScoreLeaderboardReturns<I extends IDStrings = IDStrings> {
+export interface ScoreLeaderboardReturns<GPT extends GPTString = GPTString> {
 	users: UserDocument[];
-	songs: SongDocument<IDStringToGame[I]>[];
-	charts: ChartDocument<I>[];
-	pbs: PBScoreDocument<I>[];
+	songs: SongDocument<GPTStringToGame[GPT]>[];
+	charts: ChartDocument<GPT>[];
+	pbs: PBScoreDocument<GPT>[];
 }
 
-export interface UserLeaderboardReturns<I extends IDStrings = IDStrings> {
+export interface UserLeaderboardReturns {
 	users: UserDocument[];
-	gameStats: UserGameStats<I>[];
+	gameStats: UserGameStats[];
 }
 
 export interface UserRecentSummary {
@@ -242,7 +239,7 @@ export interface ActivityReturn {
 	users: Array<UserDocument>;
 }
 
-export type RecordActivityReturn = Partial<Record<IDStrings, ActivityReturn>>;
+export type RecordActivityReturn = Partial<Record<GPTString, ActivityReturn>>;
 
 export interface GoalsOnChartReturn {
 	goals: Array<GoalDocument>;
@@ -292,13 +289,6 @@ export type SessionFolderRaises = {
 	previousCount: integer; // how many AAAs/HARD CLEARs/whatevers was on this
 	// folder before this session?
 	totalCharts: integer;
-} & (
-	| {
-			type: "grade";
-			value: Grades[IDStrings];
-	  }
-	| {
-			type: "lamp";
-			value: Lamps[IDStrings];
-	  }
-);
+	type: string;
+	value: string;
+};

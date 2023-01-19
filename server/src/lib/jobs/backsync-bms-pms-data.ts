@@ -18,7 +18,7 @@ export async function BacksyncBMSPMSSongsAndCharts() {
 			logger.info(`Fetching ${game} songs from DB.`);
 
 			// did you know, this code is liable to blow up in my face and OOM one day?
-			let songs = await db.songs[game].find({});
+			let songs = await db.anySongs[game].find({});
 
 			logger.info(`Found ${songs.length} ${game} songs.`);
 
@@ -30,7 +30,7 @@ export async function BacksyncBMSPMSSongsAndCharts() {
 			songs = null;
 
 			logger.info(`Fetching ${game} charts from DB.`);
-			let charts = await db.charts[game].find({});
+			let charts = await db.anyCharts[game].find({});
 
 			logger.info(`Found ${charts.length} bms charts.`);
 

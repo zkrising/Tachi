@@ -1,36 +1,36 @@
 import { ChangeOpacity } from "util/color-opacity";
 import React from "react";
-import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { integer } from "tachi-common";
 
 export default function ScoreCell({
 	score,
-	showScore = true,
+	colour,
+	grade,
+	percent,
 	scoreRenderFn,
 }: {
-	score: PBScoreDocument | ScoreDocument;
+	score?: integer;
+	percent: number;
+	grade: string;
+	colour: string;
 	showScore?: boolean;
 	scoreRenderFn?: (s: number) => string;
 }) {
-	const gptConfig = GetGamePTConfig(score.game, score.playtype);
-
 	return (
 		<td
 			style={{
-				backgroundColor: ChangeOpacity(gptConfig.gradeColours[score.scoreData.grade], 0.2),
+				backgroundColor: ChangeOpacity(colour, 0.2),
 			}}
 		>
-			<strong>{score.scoreData.grade}</strong>
+			<strong>{grade}</strong>
 			<br />
-			{`${score.scoreData.percent.toFixed(2)}%`}
-			{showScore && (
+			{`${percent.toFixed(2)}%`}
+
+			{score !== undefined && (
 				<>
 					<br />
 					<small className="text-muted">
-						[
-						{scoreRenderFn
-							? scoreRenderFn(score.scoreData.score)
-							: score.scoreData.score}
-						]
+						[{scoreRenderFn ? scoreRenderFn(score) : score}]
 					</small>
 				</>
 			)}

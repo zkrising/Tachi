@@ -31,7 +31,7 @@ t.test("#ConverterLR2Hook", (t) => {
 			dryScore: {
 				scoreData: {
 					score: TestingLR2HookScore.scoreData.exScore,
-					hitMeta: {
+					optional: {
 						bp: 56,
 					},
 				},
@@ -71,7 +71,7 @@ t.test("#ConverterLR2Hook", (t) => {
 			dryScore: {
 				scoreData: {
 					score: TestingLR2HookScore.scoreData.exScore,
-					hitMeta: {
+					optional: {
 						bp: null,
 					},
 				},

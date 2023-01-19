@@ -9,9 +9,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 1,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -27,9 +25,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 1,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -45,9 +41,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 1,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -63,9 +57,7 @@
 		"level": "1",
 		"levelNum": 1,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 2,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -81,9 +73,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 2,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -99,9 +89,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 2,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -117,9 +105,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 3,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -135,9 +121,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 3,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -153,9 +137,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 3,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -171,9 +153,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 4,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -189,9 +169,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 4,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -207,9 +185,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 4,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -225,9 +201,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 5,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -243,9 +217,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 5,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -261,9 +233,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 5,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -279,9 +249,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 6,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -297,9 +265,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 6,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -315,9 +281,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 6,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -333,9 +297,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 7,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -351,9 +313,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 7,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -369,9 +329,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 7,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -387,9 +345,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 8,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -405,9 +361,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 8,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -423,9 +377,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 8,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -441,9 +393,7 @@
 		"level": "1",
 		"levelNum": 1,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 9,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -459,9 +409,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 9,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -477,9 +425,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 9,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -495,9 +441,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 10,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -513,9 +457,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 10,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -531,9 +473,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 10,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -549,9 +489,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 11,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -567,9 +505,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 11,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -585,9 +521,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 11,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -603,9 +537,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 12,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -621,9 +553,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 12,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -639,9 +569,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 12,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -657,9 +585,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 13,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -675,9 +601,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 13,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -693,9 +617,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 13,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -711,9 +633,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 14,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -729,9 +649,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 14,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -747,9 +665,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 14,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -765,9 +681,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 15,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -783,9 +697,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 15,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -801,9 +713,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 15,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -819,9 +729,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 16,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -837,9 +745,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 16,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -855,9 +761,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 16,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -873,9 +777,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 17,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -891,9 +793,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 17,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -909,9 +809,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 17,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -927,9 +825,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 18,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -945,9 +841,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 18,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -963,9 +857,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 18,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -981,9 +873,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 19,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -999,9 +889,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 19,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1017,9 +905,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 19,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1035,9 +921,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 20,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1053,9 +937,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 20,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1071,9 +953,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 20,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1089,9 +969,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 21,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1107,9 +985,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 21,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1125,9 +1001,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 21,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1143,9 +1017,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 22,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1161,9 +1033,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 22,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1179,9 +1049,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 22,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1197,9 +1065,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 23,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1215,9 +1081,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 23,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1233,9 +1097,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 23,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1251,9 +1113,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 24,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1269,9 +1129,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 24,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1287,9 +1145,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 24,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1305,9 +1161,7 @@
 		"level": "1",
 		"levelNum": 1,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 25,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1323,9 +1177,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 25,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1341,9 +1193,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 25,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1359,9 +1209,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 26,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1377,9 +1225,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 26,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1395,9 +1241,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 26,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1413,9 +1257,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 27,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1431,9 +1273,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 27,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1449,9 +1289,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 27,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1467,9 +1305,7 @@
 		"level": "1",
 		"levelNum": 1,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 28,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1485,9 +1321,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 28,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1503,9 +1337,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 28,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1521,9 +1353,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 29,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1539,9 +1369,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 29,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1557,9 +1385,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 29,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1575,9 +1401,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 31,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1593,9 +1417,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 31,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1611,9 +1433,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 31,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1629,9 +1449,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 32,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1647,9 +1465,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 32,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1665,9 +1481,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 32,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1683,9 +1497,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 33,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1701,9 +1513,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 33,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1719,9 +1529,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 33,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1737,9 +1545,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 34,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1755,9 +1561,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 34,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1773,9 +1577,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 34,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1791,9 +1593,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 35,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1809,9 +1609,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 35,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1827,9 +1625,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 35,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1845,9 +1641,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 37,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1863,9 +1657,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 37,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1881,9 +1673,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 37,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1899,9 +1689,7 @@
 		"level": "1",
 		"levelNum": 1,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 38,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1917,9 +1705,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 38,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1935,9 +1721,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 38,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1953,9 +1737,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 43,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1971,9 +1753,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 43,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -1989,9 +1769,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 43,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2007,9 +1785,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 45,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2025,9 +1801,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 45,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2043,9 +1817,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 45,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2061,9 +1833,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 46,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2079,9 +1849,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 46,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2097,9 +1865,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 46,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2115,9 +1881,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 47,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2133,9 +1897,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 47,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2151,9 +1913,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 47,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2169,9 +1929,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 48,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2187,9 +1945,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 48,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2205,9 +1961,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 48,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2223,9 +1977,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 49,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2241,9 +1993,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 49,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2259,9 +2009,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 49,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2277,9 +2025,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 51,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2295,9 +2041,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 51,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2313,9 +2057,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 51,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2331,9 +2073,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 52,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2349,9 +2089,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 52,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2367,9 +2105,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 52,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2385,9 +2121,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 53,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2403,9 +2137,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 53,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2421,9 +2153,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 53,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2439,9 +2169,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 54,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2457,9 +2185,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 54,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2475,9 +2201,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 54,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2493,9 +2217,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 55,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2511,9 +2233,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 55,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2529,9 +2249,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 55,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2547,9 +2265,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 56,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2565,9 +2281,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 56,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2583,9 +2297,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 56,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2601,9 +2313,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 57,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2619,9 +2329,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 57,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2637,9 +2345,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 57,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2655,9 +2361,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 58,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2673,9 +2377,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 58,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2691,9 +2393,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 58,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2709,9 +2409,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 59,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2727,9 +2425,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 59,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2745,9 +2441,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 59,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2763,9 +2457,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 60,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2781,9 +2473,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 60,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2799,9 +2489,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 60,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2817,9 +2505,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 61,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2835,9 +2521,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 61,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2853,9 +2537,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 61,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2871,9 +2553,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 62,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2889,9 +2569,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 62,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2907,9 +2585,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 62,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2925,9 +2601,7 @@
 		"level": "1",
 		"levelNum": 1,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 63,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2943,9 +2617,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 63,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2961,9 +2633,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 63,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2979,9 +2649,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 64,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -2997,9 +2665,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 64,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3015,9 +2681,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 64,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3033,9 +2697,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 65,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3051,9 +2713,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 65,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3069,9 +2729,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 65,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3087,9 +2745,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 66,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3105,9 +2761,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 66,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3123,9 +2777,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 66,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3141,9 +2793,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 67,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3159,9 +2809,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 67,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3177,9 +2825,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 67,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3195,9 +2841,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 68,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3213,9 +2857,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 68,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3231,9 +2873,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 68,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3249,9 +2889,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 69,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3267,9 +2905,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 69,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3285,9 +2921,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 69,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3303,9 +2937,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 70,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3321,9 +2953,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 70,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3339,9 +2969,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 70,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3357,9 +2985,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 71,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3375,9 +3001,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 71,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3393,9 +3017,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 71,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3411,9 +3033,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 72,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3429,9 +3049,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 72,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3447,9 +3065,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 72,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3465,9 +3081,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 73,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3483,9 +3097,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 73,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3501,9 +3113,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 73,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3519,9 +3129,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 74,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3537,9 +3145,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 74,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3555,9 +3161,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 74,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3573,9 +3177,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 75,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3591,9 +3193,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 75,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3609,9 +3209,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 75,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3627,9 +3225,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 76,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3645,9 +3241,7 @@
 		"level": "16",
 		"levelNum": 16,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 76,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3663,9 +3257,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 76,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3681,9 +3273,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 77,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3699,9 +3289,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 77,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3717,9 +3305,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 77,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3735,9 +3321,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 78,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3753,9 +3337,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 78,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3771,9 +3353,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 78,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3789,9 +3369,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 79,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3807,9 +3385,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 79,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3825,9 +3401,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 79,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3843,9 +3417,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 80,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3861,9 +3433,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 80,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3879,9 +3449,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 80,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3897,9 +3465,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 81,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3915,9 +3481,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 81,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3933,9 +3497,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 81,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3951,9 +3513,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 82,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3969,9 +3529,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 82,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -3987,9 +3545,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 82,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4005,9 +3561,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 83,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4023,9 +3577,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 83,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4041,9 +3593,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 83,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4059,9 +3609,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 84,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4077,9 +3625,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 84,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4095,9 +3641,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 84,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4113,9 +3657,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 85,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4131,9 +3673,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 85,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4149,9 +3689,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 85,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4167,9 +3705,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 86,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4185,9 +3721,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 86,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4203,9 +3737,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 86,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4221,9 +3753,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 87,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4239,9 +3769,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 87,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4257,9 +3785,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 87,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4275,9 +3801,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 88,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4293,9 +3817,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 88,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4311,9 +3833,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 88,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4329,9 +3849,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 89,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4347,9 +3865,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 89,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4365,9 +3881,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 89,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4383,9 +3897,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 90,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4401,9 +3913,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 90,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4419,9 +3929,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 90,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4437,9 +3945,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 91,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4455,9 +3961,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 91,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4473,9 +3977,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 91,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4491,9 +3993,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 92,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4509,9 +4009,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 92,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4527,9 +4025,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 92,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4545,9 +4041,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 93,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4563,9 +4057,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 93,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4581,9 +4073,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 93,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4599,9 +4089,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 94,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4617,9 +4105,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 94,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4635,9 +4121,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 94,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4653,9 +4137,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 95,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4671,9 +4153,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 95,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4689,9 +4169,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 95,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4707,9 +4185,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 96,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4725,9 +4201,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 96,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4743,9 +4217,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 96,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4761,9 +4233,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 97,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4779,9 +4249,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 97,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4797,9 +4265,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 97,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4815,9 +4281,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 98,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4833,9 +4297,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 98,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4851,9 +4313,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 98,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4869,9 +4329,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 99,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4887,9 +4345,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 99,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4905,9 +4361,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 99,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4923,9 +4377,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 101,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4941,9 +4393,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 101,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4959,9 +4409,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 101,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4977,9 +4425,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 103,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -4995,9 +4441,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 103,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5013,9 +4457,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 103,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5031,9 +4473,7 @@
 		"level": "1",
 		"levelNum": 1,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 104,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5049,9 +4489,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 104,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5067,9 +4505,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 104,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5085,9 +4521,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 106,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5103,9 +4537,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 106,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5121,9 +4553,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 106,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5139,9 +4569,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 107,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5157,9 +4585,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 107,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5175,9 +4601,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 107,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5193,9 +4617,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 108,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5211,9 +4633,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 108,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5229,9 +4649,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 108,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5247,9 +4665,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 109,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5265,9 +4681,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 109,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5283,9 +4697,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 109,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5301,9 +4713,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 110,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5319,9 +4729,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 110,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5337,9 +4745,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 110,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5355,9 +4761,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 111,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5373,9 +4777,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 111,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5391,9 +4793,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 111,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5409,9 +4809,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 112,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5427,9 +4825,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 112,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5445,9 +4841,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 112,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5463,9 +4857,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 113,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5481,9 +4873,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 113,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5499,9 +4889,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 113,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5517,9 +4905,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 115,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5535,9 +4921,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 115,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5553,9 +4937,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 115,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5571,9 +4953,7 @@
 		"level": "1",
 		"levelNum": 1,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 116,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5589,9 +4969,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 116,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5607,9 +4985,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 116,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5625,9 +5001,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 117,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5643,9 +5017,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 117,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5661,9 +5033,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 117,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5679,9 +5049,7 @@
 		"level": "1",
 		"levelNum": 1,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 118,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5697,9 +5065,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 118,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5715,9 +5081,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 118,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5733,9 +5097,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 119,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5751,9 +5113,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 119,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5769,9 +5129,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 119,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5787,9 +5145,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 126,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5805,9 +5161,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 126,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5823,9 +5177,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 126,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5841,9 +5193,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 127,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5859,9 +5209,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 127,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5877,9 +5225,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 127,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5895,9 +5241,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 128,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5913,9 +5257,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 128,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5931,9 +5273,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 128,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5949,9 +5289,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 129,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5967,9 +5305,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 129,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -5985,9 +5321,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 129,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6003,9 +5337,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 130,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6021,9 +5353,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 130,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6039,9 +5369,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 130,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6057,9 +5385,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 131,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6075,9 +5401,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 131,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6093,9 +5417,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 131,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6111,9 +5433,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 132,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6129,9 +5449,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 132,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6147,9 +5465,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 132,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6165,9 +5481,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 133,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6183,9 +5497,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 133,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6201,9 +5513,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 133,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6219,9 +5529,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 134,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6237,9 +5545,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 134,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6255,9 +5561,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 134,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6273,9 +5577,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 135,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6291,9 +5593,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 135,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6309,9 +5609,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 135,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6327,9 +5625,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 136,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6345,9 +5641,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 136,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6363,9 +5657,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 136,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6381,9 +5673,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 137,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6399,9 +5689,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 137,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6417,9 +5705,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 137,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6435,9 +5721,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 138,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6453,9 +5737,7 @@
 		"level": "16",
 		"levelNum": 16,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 138,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6471,9 +5753,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 138,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6489,9 +5769,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 139,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6507,9 +5785,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 139,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6525,9 +5801,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 139,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6543,9 +5817,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 140,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6561,9 +5833,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 140,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6579,9 +5849,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 140,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6597,9 +5865,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 141,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6615,9 +5881,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 141,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6633,9 +5897,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 141,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6651,9 +5913,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 142,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6669,9 +5929,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 142,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6687,9 +5945,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 142,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6705,9 +5961,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 143,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6723,9 +5977,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 143,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6741,9 +5993,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 143,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6759,9 +6009,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 144,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6777,9 +6025,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 144,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6795,9 +6041,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 144,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6813,9 +6057,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 145,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6831,9 +6073,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 145,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6849,9 +6089,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 145,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6867,9 +6105,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 146,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6885,9 +6121,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 146,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6903,9 +6137,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 146,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6921,9 +6153,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 147,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6939,9 +6169,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 147,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6957,9 +6185,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 147,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6975,9 +6201,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 148,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -6993,9 +6217,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 148,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7011,9 +6233,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 148,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7029,9 +6249,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 149,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7047,9 +6265,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 149,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7065,9 +6281,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 149,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7083,9 +6297,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 150,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7101,9 +6313,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 150,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7119,9 +6329,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 150,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7137,9 +6345,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 151,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7155,9 +6361,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 151,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7173,9 +6377,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 151,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7191,9 +6393,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 152,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7209,9 +6409,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 152,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7227,9 +6425,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 152,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7245,9 +6441,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 153,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7263,9 +6457,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 153,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7281,9 +6473,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 153,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7299,9 +6489,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 154,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7317,9 +6505,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 154,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7335,9 +6521,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 154,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7353,9 +6537,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 155,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7371,9 +6553,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 155,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7389,9 +6569,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 155,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7407,9 +6585,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 156,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7425,9 +6601,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 156,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7443,9 +6617,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 156,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7461,9 +6633,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 157,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7479,9 +6649,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 157,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7497,9 +6665,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 157,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7515,9 +6681,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 158,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7533,9 +6697,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 158,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7551,9 +6713,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 158,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7569,9 +6729,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 159,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7587,9 +6745,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 159,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7605,9 +6761,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 159,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7623,9 +6777,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 160,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7641,9 +6793,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 160,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7659,9 +6809,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 160,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7677,9 +6825,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 161,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7695,9 +6841,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 161,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7713,9 +6857,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 161,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7731,9 +6873,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 162,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7749,9 +6889,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 162,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7767,9 +6905,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 162,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7785,9 +6921,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 163,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7803,9 +6937,7 @@
 		"level": "16",
 		"levelNum": 16,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 163,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7821,9 +6953,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 163,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7839,9 +6969,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 164,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7857,9 +6985,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 164,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7875,9 +7001,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 164,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7893,9 +7017,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 165,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7911,9 +7033,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 165,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7929,9 +7049,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 165,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7947,9 +7065,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 166,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7965,9 +7081,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 166,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -7983,9 +7097,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 166,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8001,9 +7113,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 167,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8019,9 +7129,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 167,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8037,9 +7145,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 167,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8055,9 +7161,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 168,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8073,9 +7177,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 168,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8091,9 +7193,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 168,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8109,9 +7209,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 169,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8127,9 +7225,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 169,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8145,9 +7241,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 169,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8163,9 +7257,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 170,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8181,9 +7273,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 170,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8199,9 +7289,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 170,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8217,9 +7305,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 172,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8235,9 +7321,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 172,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8253,9 +7337,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 172,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8271,9 +7353,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 173,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8289,9 +7369,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 173,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8307,9 +7385,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 173,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8325,9 +7401,7 @@
 		"level": "1",
 		"levelNum": 1,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 174,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8343,9 +7417,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 174,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8361,9 +7433,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 174,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8379,9 +7449,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 175,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8397,9 +7465,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 175,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8415,9 +7481,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 175,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8433,9 +7497,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 176,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8451,9 +7513,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 176,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8469,9 +7529,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 176,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8487,9 +7545,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 177,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8505,9 +7561,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 177,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8523,9 +7577,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 177,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8541,9 +7593,7 @@
 		"level": "1",
 		"levelNum": 1,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 178,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8559,9 +7609,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 178,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8577,9 +7625,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 178,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8595,9 +7641,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 179,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8613,9 +7657,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 179,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8631,9 +7673,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 179,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8649,9 +7689,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 180,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8667,9 +7705,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 180,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8685,9 +7721,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 180,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8703,9 +7737,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 181,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8721,9 +7753,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 181,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8739,9 +7769,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 181,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8757,9 +7785,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 182,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8775,9 +7801,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 182,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8793,9 +7817,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 182,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8811,9 +7833,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 183,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8829,9 +7849,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 183,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8847,9 +7865,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 183,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8865,9 +7881,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 184,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8883,9 +7897,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 184,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8901,9 +7913,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 184,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8919,9 +7929,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 185,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8937,9 +7945,7 @@
 		"level": "16",
 		"levelNum": 16,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 185,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8955,9 +7961,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 185,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8973,9 +7977,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 186,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -8991,9 +7993,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 186,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9009,9 +8009,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 186,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9027,9 +8025,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 187,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9045,9 +8041,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 187,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9063,9 +8057,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 187,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9081,9 +8073,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 188,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9099,9 +8089,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 188,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9117,9 +8105,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 188,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9135,9 +8121,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 189,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9153,9 +8137,7 @@
 		"level": "16",
 		"levelNum": 16,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 189,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9171,9 +8153,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 189,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9189,9 +8169,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 190,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9207,9 +8185,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 190,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9225,9 +8201,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 190,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9243,9 +8217,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 191,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9261,9 +8233,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 191,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9279,9 +8249,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 191,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9297,9 +8265,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 192,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9315,9 +8281,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 192,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9333,9 +8297,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 192,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9351,9 +8313,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 193,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9369,9 +8329,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 193,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9387,9 +8345,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 193,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9405,9 +8361,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 194,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9423,9 +8377,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 194,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9441,9 +8393,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 194,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9459,9 +8409,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 195,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9477,9 +8425,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 195,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9495,9 +8441,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 195,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9513,9 +8457,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 197,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9531,9 +8473,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 197,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9549,9 +8489,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 197,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9567,9 +8505,7 @@
 		"level": "1",
 		"levelNum": 1,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 198,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9585,9 +8521,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 198,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9603,9 +8537,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 198,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9621,9 +8553,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 199,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9639,9 +8569,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 199,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9657,9 +8585,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 199,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9675,9 +8601,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 201,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9693,9 +8617,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 201,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9711,9 +8633,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 201,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9729,9 +8649,7 @@
 		"level": "1",
 		"levelNum": 1,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 202,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9747,9 +8665,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 202,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9765,9 +8681,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 202,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9783,9 +8697,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 203,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9801,9 +8713,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 203,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9819,9 +8729,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 203,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9837,9 +8745,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 204,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9855,9 +8761,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 204,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9873,9 +8777,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 204,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9891,9 +8793,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 205,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9909,9 +8809,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 205,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9927,9 +8825,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 205,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9945,9 +8841,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 206,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9963,9 +8857,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 206,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9981,9 +8873,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 206,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -9999,9 +8889,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 207,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10017,9 +8905,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 207,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10035,9 +8921,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 207,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10053,9 +8937,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 208,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10071,9 +8953,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 208,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10089,9 +8969,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 208,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10107,9 +8985,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 209,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10125,9 +9001,7 @@
 		"level": "16",
 		"levelNum": 16,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 209,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10143,9 +9017,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 209,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10161,9 +9033,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 210,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10179,9 +9049,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 210,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10197,9 +9065,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 210,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10215,9 +9081,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 211,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10233,9 +9097,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 211,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10251,9 +9113,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 211,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10269,9 +9129,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 212,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10287,9 +9145,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 212,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10305,9 +9161,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 212,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10323,9 +9177,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 213,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10341,9 +9193,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 213,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10359,9 +9209,7 @@
 		"level": "7",
 		"levelNum": 7,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 213,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10377,9 +9225,7 @@
 		"level": "1",
 		"levelNum": 1,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 214,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10395,9 +9241,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 214,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10413,9 +9257,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 214,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10431,9 +9273,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 215,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10449,9 +9289,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 215,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10467,9 +9305,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 215,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10485,9 +9321,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 216,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10503,9 +9337,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 216,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10521,9 +9353,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 216,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10539,9 +9369,7 @@
 		"level": "3",
 		"levelNum": 3,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 217,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10557,9 +9385,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 217,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10575,9 +9401,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 217,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10593,9 +9417,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 218,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10611,9 +9433,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 218,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10629,9 +9449,7 @@
 		"level": "9",
 		"levelNum": 9,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 218,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10647,9 +9465,7 @@
 		"level": "4",
 		"levelNum": 4,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 219,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10665,9 +9481,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 219,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10683,9 +9497,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 219,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10701,9 +9513,7 @@
 		"level": "2",
 		"levelNum": 2,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 220,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10719,9 +9529,7 @@
 		"level": "13",
 		"levelNum": 13,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 220,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10737,9 +9545,7 @@
 		"level": "8",
 		"levelNum": 8,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 220,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10755,9 +9561,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 221,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10773,9 +9577,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 221,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10791,9 +9593,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 221,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10809,9 +9609,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 222,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10827,9 +9625,7 @@
 		"level": "14",
 		"levelNum": 14,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 222,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10845,9 +9641,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 222,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10863,9 +9657,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 223,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10881,9 +9673,7 @@
 		"level": "16",
 		"levelNum": 16,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 223,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10899,9 +9689,7 @@
 		"level": "10",
 		"levelNum": 10,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 223,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10917,9 +9705,7 @@
 		"level": "5",
 		"levelNum": 5,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 225,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10935,9 +9721,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 225,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10953,9 +9737,7 @@
 		"level": "11",
 		"levelNum": 11,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 225,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5",
 			"1.5-b"
@@ -10971,9 +9753,7 @@
 		"level": "6",
 		"levelNum": 6,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 226,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5-b"
 		]
@@ -10988,9 +9768,7 @@
 		"level": "15",
 		"levelNum": 15,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 226,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5-b"
 		]
@@ -11005,9 +9783,7 @@
 		"level": "12",
 		"levelNum": 12,
 		"playtype": "Single",
-		"rgcID": null,
 		"songID": 226,
-		"tierlistInfo": {},
 		"versions": [
 			"1.5-b"
 		]

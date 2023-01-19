@@ -4,7 +4,7 @@ import {
 	Game,
 	Playtype,
 	UserDocument,
-	UGPTSettings,
+	UGPTSettingsDocument,
 	UserGameStats,
 } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
@@ -15,7 +15,7 @@ import { UGPTStatsReturn } from "types/api-returns";
  * It's worth keeping this around for both the currently-viewed user and the currently-logged-in user.
  */
 export interface UGPTData {
-	settings: UGPTSettings;
+	settings: UGPTSettingsDocument;
 	stats: UserGameStats;
 	game: Game;
 	playtype: Playtype;
@@ -48,7 +48,7 @@ export default async function fetchUGPTData(
 		);
 	}
 
-	const settingsRes = await APIFetchV1<UGPTSettings>(
+	const settingsRes = await APIFetchV1<UGPTSettingsDocument>(
 		`/users/${userID}/games/${game}/${playtype}/settings`
 	);
 

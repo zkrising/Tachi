@@ -3,7 +3,8 @@
 import dotenv from "dotenv";
 import JSON5 from "json5";
 import { p } from "prudence";
-import { StaticConfig } from "tachi-common";
+import { allSupportedGames } from "tachi-common";
+import { allImportTypes } from "tachi-common/constants/import-types";
 import { FormatPrError } from "utils/prudence";
 import fs from "fs";
 import { URL } from "url";
@@ -212,8 +213,8 @@ const err = p(config, {
 	TACHI_CONFIG: {
 		NAME: "string",
 		TYPE: p.isIn("ktchi", "btchi", "omni"),
-		GAMES: [p.isIn(StaticConfig.allSupportedGames)],
-		IMPORT_TYPES: [p.isIn(StaticConfig.allImportTypes)],
+		GAMES: [p.isIn(allSupportedGames)],
+		IMPORT_TYPES: [p.isIn(allImportTypes)],
 	},
 	LOGGER_CONFIG: {
 		LOG_LEVEL: p.optional(

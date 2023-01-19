@@ -2,13 +2,11 @@ import {
 	InternalFailure,
 	SongOrChartNotFoundFailure,
 } from "../../../framework/common/converter-failures";
-import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import type { DryScore } from "../../../framework/common/types";
 import type { ConverterFunction } from "../../common/types";
 import type { BarbatosContext, BarbatosScore, BarbatosSDVX6Score } from "./types";
-import type { Lamps } from "tachi-common";
 
 const LAMP_LOOKUP = {
 	1: "FAILED",
@@ -16,7 +14,7 @@ const LAMP_LOOKUP = {
 	3: "EXCESSIVE CLEAR",
 	4: "ULTIMATE CHAIN",
 	5: "PERFECT ULTIMATE CHAIN",
-};
+} as const;
 
 const DIFFICULTY_LOOKUP = {
 	0: "NOV",
@@ -26,18 +24,13 @@ const DIFFICULTY_LOOKUP = {
 	// special case for inf/grv/hvn/vvd - which are all the same diff internally. (kinda).
 	3: "ANY_INF",
 	4: "MXM",
-};
+} as const;
 
 export const ConverterIRBarbatos: ConverterFunction<
 	BarbatosScore | BarbatosSDVX6Score,
 	BarbatosContext
 > = async (data, context, importType, logger) => {
-	const difficulty = DIFFICULTY_LOOKUP[data.difficulty] as
-		| "ADV"
-		| "ANY_INF"
-		| "EXH"
-		| "MXM"
-		| "NOV";
+	const difficulty = DIFFICULTY_LOOKUP[data.difficulty];
 
 	const chart = await FindSDVXChartOnInGameIDVersion(data.song_id, difficulty, context.version);
 
@@ -57,8 +50,6 @@ export const ConverterIRBarbatos: ConverterFunction<
 		throw new InternalFailure(`Song ${chart.songID} (sdvx) has no parent song?`);
 	}
 
-	const { percent, grade } = GenericGetGradeAndPercent("sdvx", data.score, chart);
-
 	const { critical, near, miss } = GetJudgements(data);
 	const { fast, slow } = GetFastSlow(data);
 
@@ -70,15 +61,13 @@ export const ConverterIRBarbatos: ConverterFunction<
 		timeAchieved: context.timeReceived,
 		scoreData: {
 			score: data.score,
-			percent,
-			grade,
-			lamp: LAMP_LOOKUP[data.clear_type] as Lamps["sdvx:Single"],
+			lamp: LAMP_LOOKUP[data.clear_type],
 			judgements: {
 				critical,
 				near,
 				miss,
 			},
-			hitMeta: {
+			optional: {
 				fast,
 				slow,
 				gauge: data.percent,

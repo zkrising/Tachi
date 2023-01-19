@@ -9,7 +9,7 @@ import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext, useReducer, useState } from "react";
 import {
 	ChartDocument,
-	IDStrings,
+	GPTString,
 	PBScoreDocument,
 	ScoreDocument,
 	SongDocument,
@@ -32,12 +32,12 @@ export interface ScoreState {
 	setHighlight: SetState<boolean>;
 }
 
-export interface ScoreDropdownProps<I extends IDStrings = IDStrings> {
-	score: ScoreDocument<I> | PBScoreDocument<I>;
+export interface ScoreDropdownProps {
+	score: ScoreDocument | PBScoreDocument;
 	scoreState: ScoreState;
 }
 
-export default function ScoreDropdown<I extends IDStrings = IDStrings>({
+export default function ScoreDropdown({
 	game,
 	playtype,
 	user,
@@ -65,11 +65,11 @@ export default function ScoreDropdown<I extends IDStrings = IDStrings>({
 	const { user: currentUser } = useContext(UserContext);
 	const { settings } = useLUGPTSettings();
 
-	const { data, error } = useApiQuery<UGPTChartPBComposition<I>>(
+	const { data, error } = useApiQuery<UGPTChartPBComposition>(
 		`/users/${user.id}/games/${game}/${playtype}/pbs/${chart.chartID}?getComposition=true`
 	);
 
-	const { error: histError, data: histData } = useApiQuery<ScoreDocument<I>[]>(
+	const { error: histError, data: histData } = useApiQuery<ScoreDocument[]>(
 		`/users/${user.id}/games/${game}/${playtype}/scores/${chart.chartID}`
 	);
 

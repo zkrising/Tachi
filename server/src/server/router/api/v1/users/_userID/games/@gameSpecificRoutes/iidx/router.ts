@@ -8,19 +8,18 @@ import { GetUser } from "utils/req-tachi-data";
 import type { TachiIIDXPlaylist } from "lib/game-specific/iidx-playlists";
 import type {
 	ChartDocument,
-	Grades,
-	Lamps,
 	PBScoreDocument,
 	Playtypes,
 	SongDocument,
 	integer,
 } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 
 const router: Router = Router({ mergeParams: true });
 
 const EAMUSEMENT_CSV_HEADER = `バージョン,タイトル,ジャンル,アーティスト,プレー回数,BEGINNER 難易度,BEGINNER スコア,BEGINNER PGreat,BEGINNER Great,BEGINNER ミスカウント,BEGINNER クリアタイプ,BEGINNER DJ LEVEL,NORMAL 難易度,NORMAL スコア,NORMAL PGreat,NORMAL Great,NORMAL ミスカウント,NORMAL クリアタイプ,NORMAL DJ LEVEL,HYPER 難易度,HYPER スコア,HYPER PGreat,HYPER Great,HYPER ミスカウント,HYPER クリアタイプ,HYPER DJ LEVEL,ANOTHER 難易度,ANOTHER スコア,ANOTHER PGreat,ANOTHER Great,ANOTHER ミスカウント,ANOTHER クリアタイプ,ANOTHER DJ LEVEL,LEGGENDARIA 難易度,LEGGENDARIA スコア,LEGGENDARIA PGreat,LEGGENDARIA Great,LEGGENDARIA ミスカウント,LEGGENDARIA クリアタイプ,LEGGENDARIA DJ LEVEL,最終プレー日時`;
 
-function ConvertEamGrade(grade: Grades["iidx:DP" | "iidx:SP"]) {
+function ConvertEamGrade(grade: GetEnumValue<"iidx:DP" | "iidx:SP", "grade">) {
 	// eamusement has no concept of max or max-.
 	if (grade === "MAX" || grade === "MAX-") {
 		return "AAA";
@@ -29,7 +28,7 @@ function ConvertEamGrade(grade: Grades["iidx:DP" | "iidx:SP"]) {
 	return grade;
 }
 
-function ConvertEamLamp(lamp: Lamps["iidx:DP" | "iidx:SP"]) {
+function ConvertEamLamp(lamp: GetEnumValue<"iidx:DP" | "iidx:SP", "lamp">) {
 	if (lamp === "FULL COMBO") {
 		return "FULLCOMBO CLEAR"; // weird, but ok
 	}
@@ -90,7 +89,7 @@ router.get(
 		// get all relevant charts
 		const charts = await db.charts.iidx.find({
 			songID: { $in: pbData.map((e) => e.song.id) },
-			difficulty: { $in: ["BEGINNER", "NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"] },
+			difficulty: { $in: ["NORMAL", "HYPER", "ANOTHER", "LEGGENDARIA"] },
 		});
 
 		// get a lookup table for songID + difficulty -> chart.
@@ -143,7 +142,7 @@ router.get(
 						pb.scoreData.score.toString(), // ex
 						pb.scoreData.judgements.pgreat?.toString() ?? "0", // pgreat
 						pb.scoreData.judgements.great?.toString() ?? "0", // great
-						pb.scoreData.hitMeta.bp?.toString() ?? "0", // BP
+						pb.scoreData.optional.bp?.toString() ?? "0", // BP
 						ConvertEamLamp(pb.scoreData.lamp), // lamp
 						ConvertEamGrade(pb.scoreData.grade) // grade
 					);

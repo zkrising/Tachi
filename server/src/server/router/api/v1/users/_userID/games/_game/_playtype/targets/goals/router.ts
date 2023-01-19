@@ -14,6 +14,7 @@ import { GetParentQuests } from "lib/targets/quests";
 import { p } from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import prValidate from "server/middleware/prudence-validate";
+import { GetGamePTConfig } from "tachi-common";
 import { GetGoalForIDGuaranteed } from "utils/db";
 import { AssignToReqTachiData, GetTachiData, GetUGPT } from "utils/req-tachi-data";
 import type { RequestHandler } from "express";
@@ -88,15 +89,10 @@ router.post(
 	RequirePermissions("manage_targets"),
 	prValidate({
 		criteria: {
-			key: p.isIn(
-				"scoreData.percent",
-				"scoreData.lampIndex",
-				"scoreData.gradeIndex",
-				"scoreData.score"
-			),
-
 			// we do proper validation on this later.
+			key: "string",
 			value: p.gte(0),
+
 			mode: p.isIn("single", "absolute", "proportion"),
 			countNum: (self, parent) => {
 				if (parent.mode === "single") {
@@ -153,6 +149,22 @@ router.post(
 			return res.status(400).json({
 				success: false,
 				description: `You already have ${ServerConfig.MAX_GOAL_SUBSCRIPTIONS} goals. You cannot have anymore.`,
+			});
+		}
+
+		const gptConfig = GetGamePTConfig(game, playtype);
+
+		const validCriteria = [
+			...Object.keys(gptConfig.providedMetrics),
+			...Object.keys(gptConfig.derivedMetrics),
+		];
+
+		if (!validCriteria.includes(req.body.criteria.key)) {
+			return res.status(400).json({
+				success: false,
+				description: `Invalid criteria '${
+					req.body.criteria.key
+				}', expected any of ${validCriteria.join(", ")}.`,
 			});
 		}
 

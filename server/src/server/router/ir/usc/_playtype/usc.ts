@@ -4,12 +4,19 @@ import CreateLogCtx from "lib/logger/logger";
 import { MStoS } from "utils/misc";
 import { GetPBOnChart, GetServerRecordOnChart } from "utils/scores";
 import type { USCServerScore } from "./types";
-import type { ChartDocument, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
+import type {
+	ChartDocument,
+	GPTStrings,
+	integer,
+	PBScoreDocument,
+	ScoreDocument,
+} from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 
 const logger = CreateLogCtx(__filename);
 
 export const TACHI_LAMP_TO_USC: Record<
-	PBScoreDocument<"usc:Controller" | "usc:Keyboard">["scoreData"]["lamp"],
+	GetEnumValue<GPTStrings["usc"], "lamp">,
 	USCServerScore["lamp"]
 > = {
 	// we don't do NO PLAY, so its not handled.
@@ -52,17 +59,19 @@ export async function TachiScoreToServerScore(
 		);
 	}
 
+	const firstScoreID = tachiScore.composedFrom[0].scoreID;
+
 	const scorePB = (await db.scores.findOne({
-		scoreID: tachiScore.composedFrom.scorePB,
+		scoreID: firstScoreID,
 	})) as ScoreDocument<"usc:Controller" | "usc:Keyboard"> | null;
 
 	if (!scorePB) {
 		logger.severe(
-			`Score ${tachiScore.composedFrom.scorePB} does not exist, but is referenced in ${tachiScore.userID}'s PBDoc on ${tachiScore.chartID}?`
+			`Score ${firstScoreID} does not exist, but is referenced in ${tachiScore.userID}'s PBDoc on ${tachiScore.chartID}?`
 		);
 
 		throw new Error(
-			`Score ${tachiScore.composedFrom.scorePB} does not exist, but is referenced in ${tachiScore.userID}'s PBDoc on ${tachiScore.chartID}?`
+			`Score ${firstScoreID} does not exist, but is referenced in ${tachiScore.userID}'s PBDoc on ${tachiScore.chartID}?`
 		);
 	}
 
@@ -184,7 +193,9 @@ export async function CreatePOSTScoresResponseBody(
 		score,
 		serverRecord,
 		isServerRecord: scorePB.userID === ktServerRecord.userID,
-		isPB: scorePB.composedFrom.scorePB === scoreID,
+		// it's a pb if the score is equal to what the user has as their best.
+		// lamps notwithstanding.
+		isPB: scorePB.scoreData.score === score.score,
 		sendReplay: originalScore.scoreID,
 		adjacentAbove,
 		adjacentBelow,

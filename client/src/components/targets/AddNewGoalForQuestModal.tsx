@@ -6,11 +6,18 @@ import Divider from "components/util/Divider";
 import Select from "components/util/Select";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Form, InputGroup, Modal, Row } from "react-bootstrap";
-import { FolderDocument, FormatChart, GetGamePTConfig, GoalDocument } from "tachi-common";
+import {
+	FolderDocument,
+	FormatChart,
+	GetGamePTConfig,
+	GetScoreMetricConf,
+	GoalDocument,
+} from "tachi-common";
 import { SongChartsSearch } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
 import { RawQuestGoal } from "types/tachi";
 import { OptionsOrGroups, GroupBase } from "react-select";
+import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
 import { RenderGoalCriteriaPicker } from "./SetNewGoalModal";
 
 export default function AddNewGoalForQuestModal({
@@ -30,14 +37,16 @@ export default function AddNewGoalForQuestModal({
 } & GamePT) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
+	const enumConf = GetScoreMetricConf(
+		gptConfig,
+		gptConfig.preferredDefaultEnum
+	) as ConfEnumScoreMetric<string>;
+
 	const [criteria, setCriteria] = useState<GoalDocument["criteria"]>(
 		initialState?.goal.criteria ?? {
 			mode: "single",
-			key: gptConfig.scoreBucket === "grade" ? "scoreData.gradeIndex" : "scoreData.lampIndex",
-			value:
-				gptConfig.scoreBucket === "grade"
-					? gptConfig.grades.indexOf(gptConfig.clearGrade)
-					: gptConfig.lamps.indexOf(gptConfig.clearLamp),
+			key: gptConfig.preferredDefaultEnum,
+			value: enumConf.values.indexOf(enumConf.minimumRelevantValue),
 		}
 	);
 

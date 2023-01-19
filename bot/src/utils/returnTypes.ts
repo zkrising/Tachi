@@ -2,7 +2,7 @@ import type {
 	APIPermissions,
 	ChartDocument,
 	Game,
-	IDStrings,
+	GPTString,
 	ImportDocument,
 	ImportTypes,
 	integer,
@@ -45,12 +45,12 @@ export type ImportPollStatus =
 			};
 	  };
 
-export interface UGPTStats<I extends IDStrings = IDStrings> {
+export interface UGPTStats<GPT extends GPTString = GPTString> {
 	gameStats: UserGameStats;
 	firstScore: ScoreDocument;
 	mostRecentScore: ScoreDocument;
 	totalScores: integer;
-	rankingData: Record<ProfileRatingLookup[I], { ranking: integer; outOf: integer }>;
+	rankingData: Record<ProfileRatingLookup[GPT], { ranking: integer; outOf: integer }>;
 }
 
 export interface ChartQueryReturns {

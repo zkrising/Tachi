@@ -8,11 +8,12 @@ import { SoftwareIDToVersion } from "lib/score-import/import-types/ir/fervidex/p
 import { p } from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { PrudenceErrorFormatter } from "server/middleware/prudence-validate";
+import { GetGamePTConfig } from "tachi-common";
 import { UpdateClassIfGreater } from "utils/class";
 import { ParseEA3SoftID } from "utils/ea3id";
 import { IsNullishOrEmptyStr } from "utils/misc";
 import type { RequestHandler } from "express";
-import type { integer, Playtypes } from "tachi-common";
+import type { Playtypes, SpecificGamePTConfig, integer } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -125,7 +126,7 @@ const ValidateCards: RequestHandler = async (req, res, next) => {
 
 	const cardFilters = await db["fer-settings"].findOne({ userID });
 
-	if (!cardFilters || !cardFilters.cards) {
+	if (!cardFilters?.cards) {
 		next();
 		return;
 	}
@@ -316,12 +317,25 @@ router.post("/class/submit", ValidateModelHeader, async (req, res) => {
 	// is 0 or 1.
 	const playtype: Playtypes["iidx"] = body.play_style === 0 ? "SP" : "DP";
 
+	const dans = (
+		GetGamePTConfig("iidx", playtype) as unknown as SpecificGamePTConfig<"iidx:DP" | "iidx:SP">
+	).classes.dan.values;
+
+	const dan = dans[body.course_id];
+
+	if (dan === undefined) {
+		return res.status(400).json({
+			success: false,
+			description: `Unknown course_id ${body.course_id}.`,
+		});
+	}
+
 	const r = await UpdateClassIfGreater(
 		req[SYMBOL_TACHI_API_AUTH].userID!,
 		"iidx",
 		playtype,
 		"dan",
-		body.course_id
+		dan.id
 	);
 
 	return res.status(200).json({

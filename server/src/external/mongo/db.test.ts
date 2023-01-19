@@ -1,6 +1,7 @@
 import db from "./db";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
+import type { ScoreDocument } from "tachi-common";
 
 t.test("ID field autoprojection", async (t) => {
 	await ResetDBState();
@@ -28,6 +29,20 @@ t.test("ID field autoprojection", async (t) => {
 	const res6 = await db.scores.findOne({}, { projection: { scoreID: 0 }, projectID: true });
 
 	t.not(res6!._id, undefined);
+
+	t.end();
+});
+
+// Literally no fix for this? MongoDB just mutates objects you give it
+// for fun, i guess.
+t.test("Don't add stuff onto my objects please", async (t) => {
+	const sc = { scoreID: "foo" } as unknown as ScoreDocument;
+
+	await db.scores.insert(sc);
+
+	t.strictSame(sc, { scoreID: "foo" }, "Shouldn't have _id attached onto it.");
+
+	await db.scores.remove({});
 
 	t.end();
 });

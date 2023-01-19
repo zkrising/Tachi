@@ -5,7 +5,7 @@ import { GetAndUpdateUsersGoals } from "lib/score-import/framework/goals/goals";
 import { UpdateChartRanking } from "lib/score-import/framework/pb/create-pb-doc";
 import { ProcessPBs } from "lib/score-import/framework/pb/process-pbs";
 import { UpdateUsersQuests } from "lib/score-import/framework/quests/quests";
-import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/user-game-stats/update-ugs";
+import { UpdateUsersGamePlaytypeStats } from "lib/score-import/framework/ugpt-stats/update-ugpt-stats";
 import { RecalcSessions } from "utils/calculations/recalc-sessions";
 import type { Game, Playtype, ScoreDocument } from "tachi-common";
 
@@ -123,7 +123,7 @@ export async function DeleteScore(
 }
 
 export async function DeleteMultipleScores(scores: Array<ScoreDocument>, blacklist = false) {
-	logger.info(`Received request to delete ${scores.length} (Blacklist: ${blacklist}).`);
+	logger.info(`Received request to delete ${scores.length} score(s) (Blacklist: ${blacklist}).`);
 
 	const scoreIDs = scores.map((e) => e.scoreID);
 	const chartIDs = scores.map((e) => e.chartID);

@@ -69,6 +69,6 @@ export function ParseKsHookSV6C(
 		context: {
 			timeReceived: Date.now(),
 		},
-		classHandler: null,
+		classProvider: null,
 	};
 }

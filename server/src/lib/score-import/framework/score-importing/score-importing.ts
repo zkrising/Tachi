@@ -1,10 +1,12 @@
 import { HydrateScore } from "./hydrate-score";
 import { GetScoreQueueMaybe, InsertQueue, QueueScoreInsert } from "./insert-score";
 import { CreateScoreID } from "./score-id";
+import { ValidateScore } from "./validate-score";
 import { IsConverterFailure } from "../common/converter-failures";
 import { OrphanScore } from "../orphans/orphans";
 import db from "external/mongo/db";
 import { AppendLogCtx } from "lib/logger/logger";
+import { GetGPTString } from "tachi-common";
 import { ClassToObject } from "utils/misc";
 import type { ConverterFnSuccessReturn, ConverterFunction } from "../../import-types/common/types";
 import type { ConverterFailure, SongOrChartNotFoundFailure } from "../common/converter-failures";
@@ -16,9 +18,9 @@ import type {
 	Game,
 	ImportProcessingInfo,
 	ImportTypes,
-	integer,
 	ScoreDocument,
 	SongDocument,
+	integer,
 } from "tachi-common";
 
 /**
@@ -119,11 +121,12 @@ export async function ImportIterableDatapoint<D, C>(
 	blacklist: Array<string>,
 	logger: KtLogger
 ): Promise<ImportProcessingInfo | null> {
-	// Converter Function Return
-	let cfnReturn: ConverterFnSuccessReturn;
-
 	try {
-		cfnReturn = await ConverterFunction(data, context, importType, logger);
+		const cfnReturn = await ConverterFunction(data, context, importType, logger);
+
+		const res = await ProcessSuccessfulConverterReturn(userID, cfnReturn, blacklist, logger);
+
+		return res;
 	} catch (e) {
 		const err = e as ConverterFailure | Error;
 
@@ -236,8 +239,6 @@ export async function ImportIterableDatapoint<D, C>(
 			}
 		}
 	}
-
-	return ProcessSuccessfulConverterReturn(userID, cfnReturn, blacklist, logger);
 }
 
 export async function ProcessSuccessfulConverterReturn(
@@ -247,7 +248,7 @@ export async function ProcessSuccessfulConverterReturn(
 	logger: KtLogger,
 	forceImmediateImport = false
 ): Promise<ImportProcessingInfo | null> {
-	const result = await HydrateAndInsertScore(
+	const result = await HydrateCheckAndInsertScore(
 		userID,
 		cfnReturn.dryScore,
 		cfnReturn.chart,
@@ -277,7 +278,7 @@ export async function ProcessSuccessfulConverterReturn(
 }
 
 /**
- * Hydrates and inserts a score to the Tachi database.
+ * Hydrates, validates and inserts a score to the Tachi database.
  * @param userID - The user this score is from.
  * @param dryScore - The score that is to be hydrated and inserted.
  * @param chart - The chart this score is on.
@@ -287,7 +288,7 @@ export async function ProcessSuccessfulConverterReturn(
  * @param force - Whether to immediately insert the score into the database
  * or not.
  */
-async function HydrateAndInsertScore(
+async function HydrateCheckAndInsertScore(
 	userID: integer,
 	dryScore: DryScore,
 	chart: ChartDocument,
@@ -296,7 +297,9 @@ async function HydrateAndInsertScore(
 	importLogger: KtLogger,
 	force = false
 ): Promise<ScoreDocument | null> {
-	const scoreID = CreateScoreID(userID, dryScore, chart.chartID);
+	const gptString = GetGPTString(dryScore.game, chart.playtype);
+
+	const scoreID = CreateScoreID(gptString, userID, dryScore, chart.chartID);
 
 	// sub-context the logger so the below logs are more accurate
 	const logger = AppendLogCtx(scoreID, importLogger);
@@ -331,7 +334,9 @@ async function HydrateAndInsertScore(
 		return null;
 	}
 
-	const score = await HydrateScore(userID, dryScore, chart, song, scoreID, logger);
+	const score = HydrateScore(userID, dryScore, chart, song, scoreID, logger);
+
+	ValidateScore(score, chart);
 
 	let res;
 

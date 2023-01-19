@@ -40,11 +40,8 @@ t.test("#ConvertEamSDVXCSV", (t) => {
 				scoreData: {
 					score: 9310699,
 					lamp: "EXCESSIVE CLEAR",
-
-					// percent: 93.10699, floating point
-					grade: "AA",
 					judgements: {},
-					hitMeta: {},
+					optional: {},
 				},
 			},
 		});
@@ -68,11 +65,8 @@ t.test("#ConvertEamSDVXCSV", (t) => {
 				scoreData: {
 					score: 9310699,
 					lamp: "EXCESSIVE CLEAR",
-
-					// percent: 93.10699, floating point
-					grade: "AA",
 					judgements: {},
-					hitMeta: {
+					optional: {
 						exScore: 5730,
 					},
 				},

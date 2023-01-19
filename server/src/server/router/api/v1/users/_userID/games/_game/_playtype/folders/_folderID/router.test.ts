@@ -98,8 +98,10 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/timeli
 			}),
 			deepmerge(TestingIIDXSPScore, {
 				scoreData: {
-					lampIndex: 3,
-					lamp: "CLEAR",
+					lamp: "EASY CLEAR",
+					enumIndexes: {
+						lamp: 3,
+					},
 				},
 				scoreID: "OTHER_SCORE_ID_3",
 				timeAchieved: 50,
@@ -115,7 +117,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/timeli
 		]);
 
 		const res = await mockApi.get(
-			"/api/v1/users/1/games/iidx/SP/folders/testing_folder/timeline?criteriaType=lamp&criteriaValue=4"
+			"/api/v1/users/1/games/iidx/SP/folders/testing_folder/timeline?criteriaType=lamp&criteriaValue=CLEAR"
 		);
 
 		t.equal(res.body.body.scores.length, 3);

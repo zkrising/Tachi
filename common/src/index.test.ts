@@ -5,7 +5,6 @@ import t from "tap";
 t.test("Property Checks", (t) => {
 	t.type(tachiCommon.GetGameConfig, "function");
 	t.type(tachiCommon.GetGamePTConfig, "function");
-	t.type(tachiCommon.gameClasses, "object");
 	t.type(tachiCommon.COLOUR_SET, "object");
 
 	t.end();

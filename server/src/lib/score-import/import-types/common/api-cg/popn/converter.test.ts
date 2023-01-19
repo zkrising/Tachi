@@ -37,19 +37,15 @@ function mkOutput(modifant: any = {}): DryScore<"popn:9B"> {
 		timeAchieved: ParseDateFromString("2019-06-06 08:14:22"),
 		service: "CG Dev",
 		scoreData: {
-			grade: "A",
-			percent: 87,
+			clearMedal: "clearCircle",
 			score: 87000,
-			lamp: "CLEAR",
 			judgements: {
 				cool: 100,
 				great: 15,
 				good: 25,
 				bad: 50,
 			},
-			hitMeta: {
-				specificClearType: "clearCircle",
-			},
+			optional: {},
 		},
 		scoreMeta: {},
 	};
@@ -80,43 +76,6 @@ t.test("#ConverterAPICGPopn", (t) => {
 				},
 			},
 			dryScore: mkOutput(),
-		});
-
-		t.end();
-	});
-
-	t.test("Should cap fails at A grade", async (t) => {
-		const res = await convert({
-			clearFlag: 1,
-			score: 98_000,
-		});
-
-		t.hasStrict(res, {
-			dryScore: mkOutput({
-				scoreData: {
-					lamp: "FAILED",
-					grade: "A",
-					score: 98_000,
-					percent: 98,
-					hitMeta: {
-						specificClearType: "failedCircle",
-					},
-				},
-			}),
-		});
-
-		const res2 = await convert({
-			score: 98_000,
-		});
-
-		t.hasStrict(res2, {
-			dryScore: mkOutput({
-				scoreData: {
-					grade: "S",
-					score: 98_000,
-					percent: 98,
-				},
-			}),
 		});
 
 		t.end();

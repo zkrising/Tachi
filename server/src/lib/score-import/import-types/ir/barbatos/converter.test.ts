@@ -25,7 +25,6 @@ t.test("#ConverterIRBarbatos", (t) => {
 	};
 
 	const albidaChart = {
-		rgcID: null,
 		chartID: "5088a4d0e1ee9d0cc2f625934306e45b1a60699b",
 		difficulty: "ADV",
 		songID: 1,
@@ -59,15 +58,13 @@ t.test("#ConverterIRBarbatos", (t) => {
 				// timeAchieved: , its Date.now() give or take lol
 				scoreData: {
 					score: 9000000,
-					percent: 90,
-					grade: "A+",
 					lamp: "CLEAR",
 					judgements: {
 						critical: 100,
 						near: 50,
 						miss: 5,
 					},
-					hitMeta: {
+					optional: {
 						fast: 40,
 						slow: 10,
 						gauge: 90,
@@ -104,15 +101,13 @@ t.test("#ConverterIRBarbatos", (t) => {
 				// timeAchieved: , its Date.now() give or take lol
 				scoreData: {
 					score: 9000000,
-					percent: 90,
-					grade: "A+",
 					lamp: "CLEAR",
 					judgements: {
 						critical: 26,
 						near: 2,
 						miss: 17,
 					},
-					hitMeta: {
+					optional: {
 						fast: 6,
 						slow: 9,
 						gauge: 90,

@@ -2,8 +2,9 @@ import { GetFolderFromParam } from "../../../../../../../games/_game/_playtype/f
 import { RequireSelfRequestFromUser } from "../../../../../middleware";
 import { Router } from "express";
 import db from "external/mongo/db";
-import { GetGamePTConfig } from "tachi-common";
-import { GetFolderCharts, GetGradeLampDistributionForFolder, GetPBsOnFolder } from "utils/folder";
+import prValidate from "server/middleware/prudence-validate";
+import { GetGamePTConfig, GetScoreMetricConf, ValidateMetric } from "tachi-common";
+import { GetEnumDistForFolder, GetFolderCharts, GetPBsOnFolder } from "utils/folder";
 import { GetTachiData, GetUGPT } from "utils/req-tachi-data";
 import { ParseStrPositiveInt } from "utils/string-checks";
 import type { FilterQuery } from "mongodb";
@@ -47,7 +48,7 @@ router.get("/stats", async (req, res) => {
 
 	const folder = GetTachiData(req, "folderDoc");
 
-	const stats = await GetGradeLampDistributionForFolder(user.id, folder);
+	const stats = await GetEnumDistForFolder(user.id, folder);
 
 	return res.status(200).json({
 		success: true,
@@ -99,101 +100,106 @@ router.post("/viewed", RequireSelfRequestFromUser, async (req, res) => {
 /**
  * Returns the users scores in order of when they met this criteria.
  *
- * @param criteriaType - either "lamp" or "grade".
- * @param criteriaValue - An index for this lamp or grade.
+ * @param criteriaType - Any metric for this GPT.
+ * @param criteriaValue - Any valid value for that metric.
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/timeline
  */
-router.get("/timeline", async (req, res) => {
-	const { user, game, playtype } = GetUGPT(req);
+router.get(
+	"/timeline",
+	prValidate({
+		criteriaType: "string",
+		criteriaValue: "string",
+	}),
+	async (req, res) => {
+		const { user, game, playtype } = GetUGPT(req);
 
-	const folder = GetTachiData(req, "folderDoc");
-	const gptConfig = GetGamePTConfig(game, playtype);
+		const folder = GetTachiData(req, "folderDoc");
+		const gptConfig = GetGamePTConfig(game, playtype);
 
-	const intIndex = ParseStrPositiveInt(req.query.criteriaValue);
+		// as asserted by prudence.
+		const metric = req.query.criteriaType as string;
 
-	const { songs, charts } = await GetFolderCharts(folder, {}, true);
+		const conf = GetScoreMetricConf(gptConfig, metric);
 
-	if (intIndex === null) {
-		return res.status(400).json({
-			success: false,
-			description: `Invalid value for criteriaValue.`,
-		});
-	}
-
-	const matchCriteria: FilterQuery<ScoreDocument> = {
-		userID: user.id,
-		game,
-		playtype,
-		chartID: { $in: charts.map((e) => e.chartID) },
-	};
-
-	if (req.query.criteriaType === "lamp") {
-		if (!gptConfig.lamps[intIndex]) {
+		if (!conf || conf.type !== "ENUM") {
 			return res.status(400).json({
 				success: false,
-				description: `Invalid index for this games' lamps.`,
+				description: `Invalid metric '${metric}' passed. Expected an ENUM for this game.`,
 			});
 		}
 
-		matchCriteria["scoreData.lampIndex"] = { $gte: intIndex };
-	} else if (req.query.criteriaType === "grade") {
-		if (!gptConfig.grades[intIndex]) {
+		const criteriaValue = conf.values.indexOf(req.query.criteriaValue as string);
+
+		if (criteriaValue === -1) {
 			return res.status(400).json({
 				success: false,
-				description: `Invalid index for this games' grades.`,
+				description: `Invalid criteriaValue of ${req.query.criteriaValue} for ${metric}.`,
 			});
 		}
 
-		matchCriteria["scoreData.gradeIndex"] = { $gte: intIndex };
-	} else {
-		return res.status(400).json({
-			success: false,
-			description: `Invalid criteriaType. Expected "lamp" or "grade".`,
+		const { songs, charts } = await GetFolderCharts(folder, {}, true);
+
+		const err = ValidateMetric(gptConfig, metric, criteriaValue);
+
+		if (typeof err === "string") {
+			return res.status(400).json({
+				success: false,
+				description: err,
+			});
+		}
+
+		const matchCriteria: FilterQuery<ScoreDocument> = {
+			userID: user.id,
+			game,
+			playtype,
+			chartID: { $in: charts.map((e) => e.chartID) },
+		};
+
+		matchCriteria[`scoreData.enumIndexes.${metric}`] = { $gte: criteriaValue };
+
+		// Returns a unique score per-chart that was the first score to achieve
+		// this criteria on that chart.
+		const scoresAgg: Array<{ doc: ScoreDocument }> = await db.scores.aggregate([
+			{
+				$match: matchCriteria,
+			},
+			{
+				$addFields: {
+					__sortTime: { $ifNull: ["$timeAchieved", Infinity, "$timeAchieved"] },
+				},
+			},
+			{
+				$sort: {
+					__sortTime: 1,
+				},
+			},
+			{
+				$group: {
+					_id: "$chartID",
+					doc: { $first: "$$ROOT" },
+				},
+			},
+			{
+				$unset: ["doc.__sortTime"],
+			},
+		]);
+
+		const scores = scoresAgg
+			.map((e) => e.doc)
+			.sort((a, b) => (a.timeAchieved ?? 0) - (b.timeAchieved ?? 0));
+
+		return res.status(200).json({
+			success: true,
+			description: `Returned ${scores.length} scores for ${charts.length} charts.`,
+			body: {
+				songs,
+				charts,
+				scores,
+				folder,
+			},
 		});
 	}
-
-	// Returns a unique score per-chart that was the first score to achieve
-	// this criteria on that chart.
-	const scoresAgg: Array<{ doc: ScoreDocument }> = await db.scores.aggregate([
-		{
-			$match: matchCriteria,
-		},
-		{
-			$addFields: {
-				__sortTime: { $ifNull: ["$timeAchieved", Infinity, "$timeAchieved"] },
-			},
-		},
-		{
-			$sort: {
-				__sortTime: 1,
-			},
-		},
-		{
-			$group: {
-				_id: "$chartID",
-				doc: { $first: "$$ROOT" },
-			},
-		},
-		{
-			$unset: ["doc.__sortTime"],
-		},
-	]);
-
-	const scores = scoresAgg
-		.map((e) => e.doc)
-		.sort((a, b) => (a.timeAchieved ?? 0) - (b.timeAchieved ?? 0));
-
-	return res.status(200).json({
-		success: true,
-		description: `Returned ${scores.length} scores for ${charts.length} charts.`,
-		body: {
-			songs,
-			charts,
-			scores,
-			folder,
-		},
-	});
-});
+);
 
 export default router;

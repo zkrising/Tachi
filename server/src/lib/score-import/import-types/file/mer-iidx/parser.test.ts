@@ -35,7 +35,7 @@ t.test("#ParseMerIIDX", (t) => {
 			{
 				game: "iidx",
 				context: {},
-				classHandler: null,
+				classProvider: null,
 				iterable: [
 					{
 						music_id: 3007,

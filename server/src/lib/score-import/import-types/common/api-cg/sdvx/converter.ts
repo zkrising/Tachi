@@ -4,16 +4,14 @@ import {
 	InvalidScoreFailure,
 	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
-import {
-	GenericGetGradeAndPercent,
-	ParseDateFromString,
-} from "lib/score-import/framework/common/score-utils";
+import { ParseDateFromString } from "lib/score-import/framework/common/score-utils";
 import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import type { ConverterFunction } from "../../types";
 import type { CGContext, CGSDVXScore } from "../types";
 import type { DryScore } from "lib/score-import/framework/common/types";
-import type { GPTSupportedVersions, Lamps } from "tachi-common";
+import type { Versions } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 
 export const ConverterAPICGSDVX: ConverterFunction<CGSDVXScore, CGContext> = async (
 	data,
@@ -44,8 +42,6 @@ export const ConverterAPICGSDVX: ConverterFunction<CGSDVXScore, CGContext> = asy
 
 	const lamp = ConvertCGSDVXLamp(data.clearType);
 
-	const { percent, grade } = GenericGetGradeAndPercent("sdvx", data.score, chart);
-
 	const timeAchieved = ParseDateFromString(data.dateTime);
 
 	const dryScore: DryScore<"sdvx:Single"> = {
@@ -55,8 +51,6 @@ export const ConverterAPICGSDVX: ConverterFunction<CGSDVXScore, CGContext> = asy
 		timeAchieved,
 		service: FormatCGService(context.service),
 		scoreData: {
-			grade,
-			percent,
 			score: data.score,
 			lamp,
 			judgements: {
@@ -64,7 +58,7 @@ export const ConverterAPICGSDVX: ConverterFunction<CGSDVXScore, CGContext> = asy
 				near: data.near,
 				miss: data.error,
 			},
-			hitMeta: {
+			optional: {
 				maxCombo: data.maxChain,
 			},
 		},
@@ -91,7 +85,7 @@ function ConvertDifficulty(diff: number) {
 	throw new InvalidScoreFailure(`Invalid difficulty of ${diff} - Could not convert.`);
 }
 
-function ConvertVersion(ver: number): GPTSupportedVersions["sdvx:Single"] {
+function ConvertVersion(ver: number): Versions["sdvx:Single"] {
 	switch (ver) {
 		case 1:
 			return "booth";
@@ -114,7 +108,7 @@ function ConvertVersion(ver: number): GPTSupportedVersions["sdvx:Single"] {
  * Convert CG's clearType enum into a Tachi lamp. Note that what numbers mean what are
  * dependent on what version of the game we're listening for.
  */
-function ConvertCGSDVXLamp(clearType: number): Lamps["sdvx:Single"] {
+function ConvertCGSDVXLamp(clearType: number): GetEnumValue<"sdvx:Single", "lamp"> {
 	switch (clearType) {
 		case 1:
 			return "FAILED";

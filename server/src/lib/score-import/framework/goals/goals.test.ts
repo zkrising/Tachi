@@ -29,7 +29,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 		criteria: {
 			mode: "single",
 			value: 1,
-			key: "scoreData.score",
+			key: "score",
 		},
 	};
 
@@ -51,15 +51,9 @@ t.test("#UpdateGoalsForUser", (t) => {
 
 	t.test("Should correctly update goals when user achieves goal.", async (t) => {
 		await db.goals.insert(baseGoalDocument);
-		delete baseGoalDocument._id;
 
 		await db["goal-subs"].insert(baseGoalSubscriptionDocument);
-
-		// we dont delete _id here because updategoalsforuser
-		// depends on usergoal _id
-
 		await db["personal-bests"].insert(TestingIIDXSPScorePB);
-		delete TestingIIDXSPScorePB._id;
 
 		const ugMap = new Map([["FAKE_GOAL_ID", baseGoalSubscriptionDocument]]);
 
@@ -77,7 +71,7 @@ t.test("#UpdateGoalsForUser", (t) => {
 				},
 				new: {
 					progress: 1479,
-					progressHuman: "1,479",
+					progressHuman: "1479",
 					outOf: 1,
 					outOfHuman: "1",
 					achieved: true,
@@ -91,15 +85,13 @@ t.test("#UpdateGoalsForUser", (t) => {
 			r,
 			{
 				progress: 1479,
-				progressHuman: "1,479",
+				progressHuman: "1479",
 				outOf: 1,
 				outOfHuman: "1",
 				achieved: true,
 			},
 			"Should update goals in the database."
 		);
-
-		delete baseGoalSubscriptionDocument._id;
 
 		t.end();
 	});
@@ -160,8 +152,6 @@ t.test("#UpdateGoalsForUser", (t) => {
 			},
 			"Should update goals in the database."
 		);
-
-		delete baseGoalSubscriptionDocument._id;
 
 		t.end();
 	});

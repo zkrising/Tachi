@@ -1,7 +1,8 @@
 import { ChangeOpacity } from "util/color-opacity";
 import { IsNotNullish } from "util/misc";
+import { GetEnumColour } from "lib/game-implementations";
 import React from "react";
-import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { PBScoreDocument, ScoreDocument } from "tachi-common";
 
 export default function BMSOrPMSLampCell({
 	score,
@@ -10,19 +11,17 @@ export default function BMSOrPMSLampCell({
 		| ScoreDocument<"bms:7K" | "bms:14K" | "pms:Keyboard" | "pms:Controller">
 		| PBScoreDocument<"bms:7K" | "bms:14K" | "pms:Keyboard" | "pms:Controller">;
 }) {
-	const gptConfig = GetGamePTConfig(score.game, score.playtype);
-
 	return (
 		<td
 			style={{
-				backgroundColor: ChangeOpacity(gptConfig.lampColours[score.scoreData.lamp], 0.2),
+				backgroundColor: ChangeOpacity(GetEnumColour(score, "lamp"), 0.2),
 			}}
 		>
 			<strong>{score.scoreData.lamp}</strong>
-			{IsNotNullish(score.scoreData.hitMeta.bp) && (
+			{IsNotNullish(score.scoreData.optional.bp) && (
 				<>
 					<br />
-					<small>[BP: {score.scoreData.hitMeta.bp}]</small>
+					<small>[BP: {score.scoreData.optional.bp}]</small>
 				</>
 			)}
 		</td>

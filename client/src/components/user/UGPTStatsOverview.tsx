@@ -1,4 +1,4 @@
-import { FormatGPTProfileRating, FormatGPTRating, UppercaseFirst } from "util/misc";
+import { FormatGPTProfileRating, UppercaseFirst } from "util/misc";
 import ClassBadge from "components/game/ClassBadge";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import MiniTable from "components/tables/components/MiniTable";
@@ -6,22 +6,21 @@ import Divider from "components/util/Divider";
 import React from "react";
 import {
 	GetGamePTConfig,
-	IDStrings,
-	ScoreCalculatedDataLookup,
-	ProfileRatingLookup,
+	GPTString,
+	ProfileRatingAlgorithms,
 	UserGameStats,
+	Classes,
 } from "tachi-common";
-import { GameClassSets } from "tachi-common/game-classes";
 
 export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 	const gptConfig = GetGamePTConfig(ugs.game, ugs.playtype);
 
-	const ratings = Object.entries(ugs.ratings) as [ProfileRatingLookup[IDStrings], number][];
+	const ratings = Object.entries(ugs.ratings) as [ProfileRatingAlgorithms[GPTString], number][];
 
 	return (
 		<MiniTable className="table-sm text-center" headers={["Player Stats"]} colSpan={2}>
 			<>
-				{(Object.keys(gptConfig.classHumanisedFormat) as GameClassSets[IDStrings][])
+				{(Object.keys(gptConfig.classes) as Classes[GPTString][])
 					.filter((k) => ugs.classes[k] !== undefined)
 					.map((k) => (
 						<tr key={k}>
@@ -44,15 +43,13 @@ export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 							<QuickTooltip
 								tooltipContent={
 									<div>
-										{gptConfig.profileRatingAlgDescriptions[k]}
-										{k in gptConfig.scoreRatingAlgDescriptions &&
-											gptConfig.idString !== "itg:Stamina" && (
-												<>
-													<Divider />({UppercaseFirst(k)}:{" "}
-													{/* @ts-expect-error I know better. */}
-													{gptConfig.scoreRatingAlgDescriptions[k]})
-												</>
-											)}
+										{gptConfig.profileRatingAlgs[k].description}
+										{k in gptConfig.scoreRatingAlgs && (
+											<>
+												<Divider />({UppercaseFirst(k)}:{" "}
+												{gptConfig.scoreRatingAlgs[k].description})
+											</>
+										)}
 									</div>
 								}
 								wide

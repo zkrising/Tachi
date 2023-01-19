@@ -15,7 +15,7 @@ import type { Game, integer, SongDocument } from "tachi-common";
  */
 export function FindSongOnTitle(game: Game, title: string): Promise<FindOneResult<SongDocument>> {
 	// @optimisable: Performance should be tested here by having a utility field for all-titles.
-	return db.songs[game].findOne({
+	return db.anySongs[game].findOne({
 		$or: [
 			{
 				title,
@@ -39,7 +39,7 @@ export function FindSongOnTitleInsensitive(
 
 	const regex = new RegExp(`^${EscapeStringRegexp(title)}$`, "iu");
 
-	return db.songs[game].findOne({
+	return db.anySongs[game].findOne({
 		$or: [
 			{
 				title: { $regex: regex },
@@ -59,7 +59,7 @@ export function FindSongOnTitleInsensitive(
  * @returns SongDocument
  */
 export function FindSongOnID(game: Game, songID: integer): Promise<FindOneResult<SongDocument>> {
-	return db.songs[game].findOne({
+	return db.anySongs[game].findOne({
 		id: songID,
 	});
 }

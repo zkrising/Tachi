@@ -1,17 +1,16 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { GetGamePTConfig, UserAuthLevels } from "tachi-common";
-import type { ProfileRatingAlgs } from "./string-checks";
 import type { FindOneResult } from "monk";
 import type {
 	APITokenDocument,
 	Game,
-	IDStrings,
+	GPTString,
 	integer,
 	Playtype,
 	UserDocument,
-	ProfileRatingLookup,
 	UserGameStats,
+	ProfileRatingAlgorithms,
 } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
@@ -179,20 +178,23 @@ export async function GetAllRankings(stats: UserGameStats) {
 	const gptConfig = GetGamePTConfig(stats.game, stats.playtype);
 
 	const entries = await Promise.all(
-		gptConfig.profileRatingAlgs.map((k) =>
-			GetUsersRankingAndOutOf(stats, k).then((r) => [k, r])
+		Object.keys(gptConfig.profileRatingAlgs).map((k) =>
+			GetUsersRankingAndOutOf(stats, k as ProfileRatingAlgorithms[GPTString]).then((r) => [
+				k,
+				r,
+			])
 		)
 	);
 
 	return Object.fromEntries(entries) as Record<
-		ProfileRatingAlgs,
+		ProfileRatingAlgorithms[GPTString],
 		{ ranking: integer; outOf: integer }
 	>;
 }
 
 export async function GetUsersRankingAndOutOf(
 	stats: UserGameStats,
-	alg?: ProfileRatingLookup[IDStrings]
+	alg?: ProfileRatingAlgorithms[GPTString]
 ) {
 	const gptConfig = GetGamePTConfig(stats.game, stats.playtype);
 

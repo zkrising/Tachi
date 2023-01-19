@@ -4,11 +4,13 @@ import React from "react";
 import {
 	Game,
 	GetGamePTConfig,
-	IDStrings,
+	GPTString,
 	PBScoreDocument,
-	ScoreCalculatedDataLookup,
+	ScoreRatingAlgorithms,
 	ScoreDocument,
 	Playtype,
+	AnyScoreRatingAlg,
+	GetGPTString,
 } from "tachi-common";
 import { SetState } from "types/react";
 import {
@@ -18,6 +20,7 @@ import {
 	RivalChartDataset,
 	ScoreDataset,
 } from "types/tables";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import SelectableRating from "../components/SelectableRating";
 import { Header, ZTableTHProps } from "../components/TachiTable";
 
@@ -26,28 +29,16 @@ export function GetGPTCoreHeaders<
 >(
 	game: Game,
 	playtype: Playtype,
-	rating: ScoreCalculatedDataLookup[IDStrings],
-	setRating: SetState<ScoreCalculatedDataLookup[IDStrings]>,
+	rating: ScoreRatingAlgorithms[GPTString],
+	setRating: SetState<ScoreRatingAlgorithms[GPTString]>,
 	kMapToScoreOrPB: (k: Dataset[0]) => PBScoreDocument | ScoreDocument | null
 ): Header<Dataset[0]>[] {
-	const ScoreHeader: Header<Dataset[0]> = [
-		"Score",
-		"Score",
-		NumericSOV((x) => kMapToScoreOrPB(x)?.scoreData.percent ?? -Infinity),
-	];
-
-	const LampHeader: Header<Dataset[0]> = [
-		"Lamp",
-		"Lamp",
-		NumericSOV((x) => kMapToScoreOrPB(x)?.scoreData.lampIndex ?? -Infinity),
-	];
+	const gptConfig = GetGamePTConfig(game, playtype);
 
 	let RatingHeader: Header<Dataset[0]>;
 
-	const gptConfig = GetGamePTConfig(game, playtype);
-
-	if (gptConfig.scoreRatingAlgs.length === 1) {
-		const alg = gptConfig.scoreRatingAlgs[0];
+	if (Object.keys(gptConfig.scoreRatingAlgs).length === 1) {
+		const alg = Object.keys(gptConfig.scoreRatingAlgs)[0] as AnyScoreRatingAlg;
 
 		RatingHeader = [
 			UppercaseFirst(alg),
@@ -72,108 +63,41 @@ export function GetGPTCoreHeaders<
 		];
 	}
 
-	switch (game) {
-		case "sdvx":
-		case "museca":
-		case "usc":
-			return [
-				ScoreHeader,
-				[
-					"Near - Miss",
-					"Nr. Ms.",
-					NumericSOV((x) => kMapToScoreOrPB(x)?.scoreData.percent ?? -Infinity),
-				],
-				LampHeader,
-				RatingHeader,
-			];
-		case "iidx":
-		case "bms":
-		case "pms":
-			return [
-				ScoreHeader,
-				[
-					"Deltas",
-					"Deltas",
-					NumericSOV((x) => kMapToScoreOrPB(x)?.scoreData.percent ?? -Infinity),
-				],
-				LampHeader,
-				RatingHeader,
-			];
-		case "gitadora":
-		case "jubeat":
-		case "wacca":
-		case "chunithm":
-		case "maimaidx":
-		case "itg":
-			return [
-				ScoreHeader,
-				[
-					"Judgements",
-					"Hits",
-					NumericSOV((x) => kMapToScoreOrPB(x)?.scoreData.percent ?? -Infinity),
-				],
-				LampHeader,
-				RatingHeader,
-			];
-		case "popn":
-			return [
-				ScoreHeader,
-				[
-					"Judgements",
-					"Hits",
-					NumericSOV((x) => kMapToScoreOrPB(x)?.scoreData.percent ?? -Infinity),
-				],
-				[
-					"Lamp",
-					"Lamp",
-					(a, b) => {
-						const aSc = kMapToScoreOrPB(a) as
-							| ScoreDocument<"popn:9B">
-							| PBScoreDocument<"popn:9B">;
-						const bSc = kMapToScoreOrPB(b) as
-							| ScoreDocument<"popn:9B">
-							| PBScoreDocument<"popn:9B">;
+	const implHeaders = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, playtype)].scoreHeaders;
 
-						if (!aSc) {
-							return -Infinity;
-						}
+	const outHeaders: Array<Header<Dataset[0]>> = [];
 
-						if (aSc && !bSc) {
-							return Infinity;
-						}
+	for (const header of implHeaders) {
+		if (header[2]) {
+			// replace the sort function with one that correctly resolves
+			// pbs
+			outHeaders.push([
+				header[0],
+				header[1],
+				(a, b) => {
+					const pbA = kMapToScoreOrPB(a);
+					const pbB = kMapToScoreOrPB(b);
 
-						if (aSc.scoreData.lampIndex === bSc.scoreData.lampIndex) {
-							if (
-								!aSc.scoreData.hitMeta.specificClearType ||
-								!bSc.scoreData.hitMeta.specificClearType
-							) {
-								return -Infinity;
-							}
+					if (!pbA) {
+						return -Infinity;
+					}
+					if (!pbB) {
+						return Infinity;
+					}
 
-							return (
-								popnClearTypeToInt[aSc.scoreData.hitMeta.specificClearType] -
-								popnClearTypeToInt[bSc.scoreData.hitMeta.specificClearType]
-							);
-						}
-
-						return aSc.scoreData.lampIndex - bSc.scoreData.lampIndex;
-					},
-				],
-				RatingHeader,
-			];
+					// typescript is NOT happy with what i've done here
+					// LOL, who cares.
+					// safety is for chumps
+					return (header[2] as any)!(pbA, pbB);
+				},
+			]);
+		} else {
+			outHeaders.push(header as Header<Dataset[0]>);
+		}
 	}
-}
 
-const popnClearTypeToInt = {
-	failedCircle: 0,
-	failedDiamond: 1,
-	failedStar: 2,
-	easyClear: 3,
-	clearCircle: 4,
-	clearDiamond: 5,
-	clearStar: 6,
-	fullComboCircle: 7,
-	fullComboDiamond: 8,
-	fullComboStar: 9,
-	perfect: 10,
-} as const;
+	// all games have a rating header after their impl header.
+	outHeaders.push(RatingHeader);
+
+	return outHeaders;
+}

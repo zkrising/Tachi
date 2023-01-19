@@ -32,7 +32,7 @@ import { PBScoreDocument, ScoreDocument } from "tachi-common";
 // 	);
 // }
 
-type LampTypes = "DAN_GAUGE" | "NORMAL" | "EASY" | "HARD" | "EX_HARD";
+type LampTypes = "DAN_GAUGE" | "Normal" | "Easy" | "Hard" | "EXHard";
 
 export function IIDXGraphsComponent({
 	score,
@@ -43,9 +43,14 @@ export function IIDXGraphsComponent({
 
 	let gaugeStatus: "none" | "single" | "gsm" = "none";
 
-	if (score.scoreData.hitMeta.gsm) {
+	if (
+		score.scoreData.optional.gsmEXHard &&
+		score.scoreData.optional.gsmHard &&
+		score.scoreData.optional.gsmNormal &&
+		score.scoreData.optional.gsmEasy
+	) {
 		gaugeStatus = "gsm";
-	} else if (score.scoreData.hitMeta.gaugeHistory) {
+	} else if (score.scoreData.optional.gaugeHistory) {
 		gaugeStatus = "single";
 	}
 
@@ -78,34 +83,34 @@ export function IIDXGraphsComponent({
 						</SelectNav>
 					)}
 					<SelectNav
-						id="EASY"
+						id="Easy"
 						value={lamp}
 						setValue={setLamp}
-						disabled={shouldDisable("EASY")}
+						disabled={shouldDisable("Easy")}
 					>
 						Easy
 					</SelectNav>
 					<SelectNav
-						id="NORMAL"
+						id="Normal"
 						value={lamp}
 						setValue={setLamp}
-						disabled={shouldDisable("NORMAL")}
+						disabled={shouldDisable("Normal")}
 					>
 						Normal
 					</SelectNav>
 					<SelectNav
-						id="HARD"
+						id="Hard"
 						value={lamp}
 						setValue={setLamp}
-						disabled={shouldDisable("HARD")}
+						disabled={shouldDisable("Hard")}
 					>
 						Hard
 					</SelectNav>
 					<SelectNav
-						id="EX_HARD"
+						id="EXHard"
 						value={lamp}
 						setValue={setLamp}
-						disabled={shouldDisable("EX_HARD")}
+						disabled={shouldDisable("EXHard")}
 					>
 						Ex Hard
 					</SelectNav>
@@ -113,9 +118,9 @@ export function IIDXGraphsComponent({
 			</div>
 			<div className="col-12">
 				{gaugeStatus === "gsm" && lamp !== "DAN_GAUGE" ? (
-					<GraphComponent type={lamp} values={score.scoreData.hitMeta.gsm![lamp]} />
+					<GraphComponent type={lamp} values={score.scoreData.optional[`gsm${lamp}`]!} />
 				) : gaugeStatus === "single" ? (
-					<GraphComponent type={lamp} values={score.scoreData.hitMeta.gaugeHistory!} />
+					<GraphComponent type={lamp} values={score.scoreData.optional.gaugeHistory!} />
 				) : (
 					<div
 						className="d-flex align-items-center justify-content-center"
@@ -157,31 +162,34 @@ function LampToKey(
 	if (IsScore(score) && score.scoreMeta.gauge) {
 		switch (score.scoreMeta.gauge) {
 			case "EASY":
+				return "Easy";
 			case "NORMAL":
+				return "Normal";
 			case "HARD":
-				return score.scoreMeta.gauge;
+				return "Hard";
 			case "ASSISTED EASY":
-				return "EASY";
+				return "Easy";
 			case "EX-HARD":
-				return "EX_HARD";
+				return "EXHard";
 		}
 	}
 
 	if (lamp === "CLEAR") {
-		return "NORMAL";
+		return "Normal";
 	} else if (lamp === "EASY CLEAR") {
-		return "EASY";
+		return "Easy";
 	} else if (lamp === "HARD CLEAR") {
-		return "HARD";
+		return "Hard";
 	} else if (lamp === "EX HARD CLEAR") {
-		return "EX_HARD";
+		return "EXHard";
 	} else if (lamp === "FULL COMBO") {
 		// @hack - attempt to guess what gauge they used?
-		if ((score.scoreData.hitMeta.gaugeHistory?.[0] ?? 0) > 22) {
-			return "EX_HARD";
+		// this could be hard or easy, we actually legitimately do not know in this scenario
+		if ((score.scoreData.optional.gaugeHistory?.[0] ?? 0) > 22) {
+			return "EXHard";
 		}
-		return "NORMAL";
+		return "Normal";
 	}
 
-	return "NORMAL";
+	return "Normal";
 }

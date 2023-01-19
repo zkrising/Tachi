@@ -33,7 +33,7 @@ const anotherFakeChart = dm(Testing511SPA, {
 	chartID: "another_chart",
 	difficulty: "HYPER",
 	data: {},
-}) as ChartDocument;
+}) as ChartDocument<"iidx:SP">;
 
 t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/goals", (t) => {
 	t.beforeEach(ResetDBState);
@@ -45,10 +45,6 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/goals", (t) => {
 		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/targets/goals");
 
 		t.equal(res.statusCode, 200);
-
-		// due to poor design decisions, these props may be set anyway.
-		delete HC511Goal._id;
-		delete HC511UserGoal._id;
 
 		t.strictSame(res.body.body, {
 			goals: [HC511Goal],
@@ -79,7 +75,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 
 	const baseInput = {
 		criteria: {
-			key: "scoreData.percent",
+			key: "percent",
 			value: 80,
 			mode: "single",
 		},
@@ -135,19 +131,19 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 			mkInput("Percent:Single Case", {}),
 			mkInput("Score:Single Case", {
 				criteria: {
-					key: "scoreData.score",
+					key: "score",
 					value: 1000,
 				},
 			}),
 			mkInput("LampIndex:Single Case", {
 				criteria: {
-					key: "scoreData.lampIndex",
+					key: "lamp",
 					value: IIDX_LAMPS.EX_HARD_CLEAR,
 				},
 			}),
 			mkInput("GradeIndex:Single Case", {
 				criteria: {
-					key: "scoreData.gradeIndex",
+					key: "grade",
 					value: IIDX_GRADES.AAA,
 				},
 			}),
@@ -162,21 +158,21 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 			// NOT LEGAL FOR IIDX, due to being nonsense! NEEDS SPECIFIC TESTING.
 			// mkInput("Score:Multi Case", {
 			// 	criteria: {
-			// 		key: "scoreData.score",
+			// 		key: "score",
 			// 		value: 1,
 			// 	},
 			// 	charts: multiCharts,
 			// }),
 			mkInput("LampIndex:Multi Case", {
 				criteria: {
-					key: "scoreData.lampIndex",
+					key: "lamp",
 					value: IIDX_LAMPS.HARD_CLEAR,
 				},
 				charts: multiCharts,
 			}),
 			mkInput("LampIndex:Multi:Abs Case", {
 				criteria: {
-					key: "scoreData.lampIndex",
+					key: "lamp",
 					value: IIDX_LAMPS.HARD_CLEAR,
 					...absModeCriteria,
 				},
@@ -185,14 +181,14 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 
 			mkInput("GradeIndex:Multi Case", {
 				criteria: {
-					key: "scoreData.gradeIndex",
+					key: "grade",
 					value: IIDX_GRADES.AAA,
 				},
 				charts: multiCharts,
 			}),
 			mkInput("GradeIndex:Multi:Abs Case", {
 				criteria: {
-					key: "scoreData.gradeIndex",
+					key: "grade",
 					value: IIDX_GRADES.AAA,
 					...absModeCriteria,
 				},
@@ -213,21 +209,21 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 			// also illegal in iidx, bms and pms.
 			// mkInput("Score:Folder Case", {
 			// 	criteria: {
-			// 		key: "scoreData.score",
+			// 		key: "score",
 			// 		value: 1000,
 			// 	},
 			// 	charts: folderCharts,
 			// }),
 			mkInput("LampIndex:Folder Case", {
 				criteria: {
-					key: "scoreData.lampIndex",
+					key: "lamp",
 					value: IIDX_LAMPS.HARD_CLEAR,
 				},
 				charts: folderCharts,
 			}),
 			mkInput("LampIndex:Folder:Abs Case", {
 				criteria: {
-					key: "scoreData.lampIndex",
+					key: "lamp",
 					value: IIDX_LAMPS.HARD_CLEAR,
 					...absModeCriteria,
 				},
@@ -235,7 +231,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 			}),
 			mkInput("LampIndex:Folder:Proportion Case", {
 				criteria: {
-					key: "scoreData.lampIndex",
+					key: "lamp",
 					value: IIDX_LAMPS.HARD_CLEAR,
 					...proportionModeCriteria,
 				},
@@ -243,14 +239,14 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 			}),
 			mkInput("GradeIndex:Folder Case", {
 				criteria: {
-					key: "scoreData.gradeIndex",
+					key: "grade",
 					value: IIDX_GRADES.AAA,
 				},
 				charts: folderCharts,
 			}),
 			mkInput("GradeIndex:Folder:Abs Case", {
 				criteria: {
-					key: "scoreData.gradeIndex",
+					key: "grade",
 					value: IIDX_GRADES.AAA,
 					...absModeCriteria,
 				},
@@ -258,7 +254,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 			}),
 			mkInput("GradeIndex:Folder:Proportion Case", {
 				criteria: {
-					key: "scoreData.gradeIndex",
+					key: "grade",
 					value: IIDX_GRADES.AAA,
 					...proportionModeCriteria,
 				},
@@ -318,11 +314,13 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 					value: -1,
 				},
 			}),
-			mkInput("percent of 0 is a non-goal", {
-				criteria: {
-					value: 0,
-				},
-			}),
+			// as stupid as it is, it technically "is" a goal, as it's a valid
+			// value for percent.
+			// mkInput("percent of 0 is a non-goal", {
+			// 	criteria: {
+			// 		value: 0,
+			// 	},
+			// }),
 			mkInput("percent greater than 100", {
 				criteria: {
 					value: 100.1,
@@ -330,31 +328,37 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 			}),
 			mkInput("too big grade", {
 				criteria: {
-					key: "scoreData.gradeIndex",
+					key: "grade",
 					value: IIDX_GRADES.MAX + 1,
+				},
+			}),
+			mkInput("string enum", {
+				criteria: {
+					key: "grade",
+					value: IIDX_GRADES.MAX.toString(),
 				},
 			}),
 			mkInput("invalid grade", {
 				criteria: {
-					key: "scoreData.gradeIndex",
+					key: "grade",
 					value: 0.5,
 				},
 			}),
 			mkInput("too big lamp", {
 				criteria: {
-					key: "scoreData.lampIndex",
+					key: "lamp",
 					value: IIDX_LAMPS.FULL_COMBO + 1,
 				},
 			}),
 			mkInput("invalid lamp", {
 				criteria: {
-					key: "scoreData.lampIndex",
+					key: "lamp",
 					value: 0.5,
 				},
 			}),
 			mkInput("too big score", {
 				criteria: {
-					key: "scoreData.score",
+					key: "score",
 					value: 9_000,
 				},
 			}),
@@ -453,14 +457,14 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 			}),
 			mkInput("multi-score for iidx is illegal", {
 				criteria: {
-					key: "scoreData.score",
+					key: "score",
 					value: 1000,
 				},
 				charts: multiCharts,
 			}),
 			mkInput("folder-score for iidx is illegal", {
 				criteria: {
-					key: "scoreData.score",
+					key: "score",
 					value: 1000,
 				},
 				charts: folderCharts,
@@ -473,7 +477,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 			}),
 			mkInput("LampIndex:Multi:Proportion Case", {
 				criteria: {
-					key: "scoreData.lampIndex",
+					key: "lamp",
 					value: IIDX_LAMPS.HARD_CLEAR,
 					...proportionModeCriteria,
 				},
@@ -481,7 +485,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 			}),
 			mkInput("GradeIndex:Multi:Proportion Case", {
 				criteria: {
-					key: "scoreData.gradeIndex",
+					key: "grade",
 					value: IIDX_GRADES.AAA,
 					...proportionModeCriteria,
 				},
@@ -536,7 +540,7 @@ t.test("POST /api/v1/users/:userID/games/:game/:playtype/targets/add-goal", asyn
 			.send(
 				dm(baseInput, {
 					criteria: {
-						key: "scoreData.score",
+						key: "score",
 						value: 1,
 					},
 				})
@@ -593,10 +597,6 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/targets/goals/:goalID", 
 		);
 
 		t.equal(res.statusCode, 200);
-
-		delete IIDXSPQuestGoals[0]._id;
-		delete IIDXSPQuestGoalSubs[0]._id;
-		delete TestingIIDXSPQuest._id;
 
 		t.hasStrict(res.body.body, {
 			goal: IIDXSPQuestGoals[0],

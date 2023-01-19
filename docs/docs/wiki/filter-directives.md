@@ -30,7 +30,7 @@ on the song `AA`?
 That's where Filter Directives come in. We can search for that using:
 
 ```
-title:AA
+title=AA
 ```
 
 Simple enough, right!
@@ -57,13 +57,13 @@ change that behaviour!
 
 | Name | Example | What it does. |
 | :: | :: | :: |
-| Normal | `title:AA` | Matches any title that contains "AA". |
-| Exact | `title:$AA` | Matches any title that is *exactly* AA. |
-| Not | `title:!AA` | Matches any title that does not contain AA. |
-| Less Than | `percent:<50` | Matches any percent that is less than 50. |
-| Less Than Equal | `percent:<=50` | Matches any percent that is less than or equal to 50. |
-| Greater Than | `percent:>50` | Matches any percent that is greater than 50. |
-| Greater Than Equal | `percent:>=50` | Matches any percent that is greater than or equal to 50. |
+| Normal | `title=AA` | Matches any title that contains "AA". |
+| Exact | `title==AA` | Matches any title that is *exactly* AA. |
+| Not | `title!=AA` | Matches any title that does not contain AA. |
+| Less Than | `percent<50` | Matches any percent that is less than 50. |
+| Less Than Equal | `percent<=50` | Matches any percent that is less than or equal to 50. |
+| Greater Than | `percent>50` | Matches any percent that is greater than 50. |
+| Greater Than Equal | `percent>=50` | Matches any percent that is greater than or equal to 50. |
 <!-- | Regex | `title:~^[a-z]*$` | Matches any title that matches the regex `^[a-z]*$` | -->
 <!-- 
 	Undocumented the regex stuff as, although its supported, it's completely pointless
@@ -78,7 +78,7 @@ change that behaviour!
 
 You can use multiple directives in one filter!
 
-`title:$AA percent:>50` - Find all scores on AA where the percent is greater than 50.
+`title==AA percent>50` - Find all scores on AA where the percent is greater than 50.
 
 !!! example
 	![](../images/advanced-search.png)
@@ -93,12 +93,12 @@ You can use multiple directives in one filter!
 Multiple directives are separated by spaces. However, if you need to use a
 space inside a value, you should quote it, like this:
 
-`title:"FREEDOM DiVE" percent:>50`.
+`title="FREEDOM DiVE" percent>50`.
 
 !!! tip
 	If you need quotes *inside* that, you should escape them, like this:
 
-	`artist:"A Tribe Called \"Quest\"" percent:>50`
+	`artist="A Tribe Called \"Quest\"" percent>50`
 
 	However, it is likely you will never need to use this.
 

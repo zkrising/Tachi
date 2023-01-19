@@ -6,7 +6,7 @@ import { SearchSpecificGameSongs } from "lib/search/search";
 import { IsString } from "utils/misc";
 import { FindChartsOnPopularity } from "utils/queries/charts";
 import { GetGPT } from "utils/req-tachi-data";
-import type { ChartDocument, integer, UGPTSettings } from "tachi-common";
+import type { ChartDocument, integer, UGPTSettingsDocument } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -61,7 +61,7 @@ router.get("/", async (req, res) => {
 	const skip = 0;
 	const limit = 100;
 
-	let charts = await FindChartsOnPopularity(
+	let charts = (await FindChartsOnPopularity(
 		game,
 		playtype,
 
@@ -70,12 +70,12 @@ router.get("/", async (req, res) => {
 		skip,
 		limit,
 		"personal-bests"
-	);
+	)) as Array<ChartDocument>;
 
 	// @optimisable
 	// could use songIDs from above instead of refetching
 	// but this is not very expensive.
-	const songs = await db.songs[game].find({
+	const songs = await db.anySongs[game].find({
 		id: { $in: charts.map((e) => e.songID) },
 	});
 
@@ -96,9 +96,9 @@ router.get("/", async (req, res) => {
 				userID: req[SYMBOL_TACHI_API_AUTH].userID,
 				game,
 				playtype,
-			})) as UGPTSettings<"iidx:DP" | "iidx:SP"> | null;
+			})) as UGPTSettingsDocument<"iidx:DP" | "iidx:SP"> | null;
 
-			if (!iidxSettings || !iidxSettings.preferences.gameSpecific.display2DXTra) {
+			if (!iidxSettings?.preferences.gameSpecific.display2DXTra) {
 				charts = charts.filter(
 					(e) => (e as ChartDocument<"iidx:DP" | "iidx:SP">).data["2dxtraSet"] === null
 				);

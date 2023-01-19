@@ -7,7 +7,7 @@ import type {
 	ChartDocument,
 	Game,
 	Grades,
-	IDStrings,
+	GPTString,
 	integer,
 	PBScoreDocument,
 	Playtype,
@@ -17,7 +17,7 @@ import type {
 	SongDocument,
 	GameConfig,
 } from "tachi-common";
-import type { GameClassSets } from "tachi-common/game-classes";
+import type { Classes } from "tachi-common/game-classes";
 
 export function Sleep(ms: number) {
 	return new Promise<void>((resolve) => {
@@ -38,7 +38,7 @@ export function Pluralise(int: integer, str: string) {
 export function FormatScoreRating(
 	game: Game,
 	playtype: Playtype,
-	rating: ScoreCalculatedDataLookup[IDStrings],
+	rating: ScoreCalculatedDataLookup[GPTString],
 	value: number | null | undefined
 ) {
 	if (value === null || value === undefined) {
@@ -70,7 +70,7 @@ export function ParseGPT(str: string) {
 	// this is an interesting way of game checking noah
 	const gameConfig = GetGameConfig(game) as GameConfig | undefined;
 
-	if (!gameConfig || !gameConfig.validPlaytypes.includes(playtype)) {
+	if (!gameConfig || !gameConfig.playtypes.includes(playtype)) {
 		throw new Error(`Invalid GPT Combination '${str}'.`);
 	}
 
@@ -96,7 +96,7 @@ export function FormatDate(ms: number) {
 export function FormatClass(
 	game: Game,
 	playtype: Playtype,
-	classSet: GameClassSets[IDStrings],
+	classSet: Classes[GPTString],
 	classValue: integer
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
@@ -152,14 +152,14 @@ export function CreateChartLink(chart: ChartDocument, game: Game) {
 	return `${BotConfig.TACHI_SERVER_LOCATION}/games/${game}/${chart.playtype}/songs/${chart.songID}/${chart.chartID}`;
 }
 
-type ScOrPBDoc<I extends IDStrings> = PBScoreDocument<I> | ScoreDocument<I>;
+type ScOrPBDoc<GPT extends GPTString> = PBScoreDocument<GPT> | ScoreDocument<GPT>;
 
-export function FormatScoreData<I extends IDStrings = IDStrings>(score: ScOrPBDoc<I>) {
+export function FormatScoreData<GPT extends GPTString = GPTString>(score: ScOrPBDoc<GPT>) {
 	const game = score.game;
 
 	let lampStr: string = score.scoreData.lamp;
 	let scoreStr = `${score.scoreData.score.toLocaleString()} (${
-		score.scoreData.grade
+		score.scoreData.grade.string
 	}, ${score.scoreData.percent.toFixed(2)}%)`;
 
 	if (game === "iidx" || game === "bms" || game === "pms") {
@@ -167,7 +167,7 @@ export function FormatScoreData<I extends IDStrings = IDStrings>(score: ScOrPBDo
 			score as ScOrPBDoc<
 				"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP" | "pms:Controller" | "pms:Keyboard"
 			>
-		).scoreData.hitMeta.bp;
+		).scoreData.optional.bp;
 
 		lampStr = `${score.scoreData.lamp} (BP: ${bp ?? "No Data"})`;
 
@@ -176,7 +176,7 @@ export function FormatScoreData<I extends IDStrings = IDStrings>(score: ScOrPBDo
 			score.playtype,
 			score.scoreData.score,
 			score.scoreData.percent,
-			score.scoreData.grade
+			score.scoreData.grade.string
 		);
 
 		scoreStr = `${closer === "lower" ? lower : upper} (${
@@ -190,11 +190,11 @@ export function FormatScoreData<I extends IDStrings = IDStrings>(score: ScOrPBDo
 /**
  * Util for getting a games' grade for a given percent.
  */
-function GetGradeFromPercent<I extends IDStrings = IDStrings>(
+function GetGradeFromPercent<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype,
 	percent: number
-): Grades[I] {
+): Grades[GPT] {
 	const gptConfig = GetGamePTConfig(game, playtype);
 	const boundaries = gptConfig.gradeBoundaries;
 	const grades = gptConfig.grades;
@@ -208,7 +208,7 @@ function GetGradeFromPercent<I extends IDStrings = IDStrings>(
 	// (hey, this for loop is backwards!)
 	for (let i = boundaries.length; i >= 0; i--) {
 		if (percent + Number.EPSILON >= boundaries[i]!) {
-			return grades[i] as Grades[I];
+			return grades[i] as Grades[GPT];
 		}
 	}
 
@@ -229,7 +229,7 @@ function FormatIIDXEXScore(exscore: integer, notecount: integer, playtype: Playt
 	return `${closer === "lower" ? lower : upper} (${exscore}, ${percent.toFixed(2)}%)`;
 }
 
-export function GetChartPertinentInfo<I extends IDStrings>(game: Game, chart: ChartDocument<I>) {
+export function GetChartPertinentInfo<GPT extends GPTString>(game: Game, chart: ChartDocument<GPT>) {
 	if (game === "iidx") {
 		const ch = chart as ChartDocument<"iidx:DP" | "iidx:SP">;
 

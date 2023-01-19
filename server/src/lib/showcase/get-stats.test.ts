@@ -24,20 +24,20 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 				preferredProfileAlg: null,
 				preferredScoreAlg: null,
 				preferredSessionAlg: null,
-				scoreBucket: null,
+				preferredDefaultEnum: null,
 				defaultTable: null,
 				preferredRanking: null,
 				stats: [
 					{
 						folderID: TestingIIDXFolderSP10.folderID,
 						mode: "folder",
-						property: "lamp",
+						metric: "lamp",
 						gte: IIDX_LAMPS.HARD_CLEAR,
 					},
 					{
 						chartID: Testing511SPA.chartID,
 						mode: "chart",
-						property: "score",
+						metric: "score",
 					},
 				],
 				gameSpecific: {
@@ -112,7 +112,7 @@ t.test("#EvalulateUsersStatsShowcase", (t) => {
 			{
 				stat: { folderID: TestingIIDXFolderSP10.folderID },
 				result: {
-					value: 0,
+					value: 1,
 					outOf: 1,
 				},
 			},

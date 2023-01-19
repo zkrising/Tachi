@@ -18,13 +18,7 @@ t.test("#CreateSessions", (t) => {
 	t.beforeEach(() => db.sessions.remove({}));
 
 	t.test("Should compose sessions from one timestamped score provided.", async (t) => {
-		const res = await CreateSessions(
-			1,
-			"ir/direct-manual",
-			"iidx",
-			{ SP: [TestingIIDXSPScore] },
-			logger
-		);
+		const res = await CreateSessions(1, "iidx", { SP: [TestingIIDXSPScore] }, logger);
 
 		t.match(res, [
 			{
@@ -43,8 +37,6 @@ t.test("#CreateSessions", (t) => {
 
 		t.hasStrict(session, {
 			userID: 1,
-			importType: "ir/direct-manual",
-
 			// name: "adjective1 adjective2 noun1",
 			sessionID: res[0]?.sessionID,
 			desc: null,
@@ -65,7 +57,6 @@ t.test("#CreateSessions", (t) => {
 	t.test("Should not compose sessions from untimestamped scores.", async (t) => {
 		const res = await CreateSessions(
 			1,
-			"ir/direct-manual",
 			"iidx",
 			{ SP: [deepmerge(TestingIIDXSPScore, { timeAchieved: null })] },
 			logger
@@ -83,7 +74,6 @@ t.test("#CreateSessions", (t) => {
 	t.test("Should compose sessions for multiple playtypes.", async (t) => {
 		const res = await CreateSessions(
 			1,
-			"ir/direct-manual",
 			"iidx",
 			{ DP: [deepmerge(TestingIIDXSPScore, { playtype: "DP" })], SP: [TestingIIDXSPScore] },
 			logger
@@ -114,7 +104,6 @@ t.test("#LoadScoresIntoSessions", (t) => {
 	t.test("Should create sessions from scores.", async (t) => {
 		const res = await LoadScoresIntoSessions(
 			1,
-			"ir/direct-manual",
 			[null, start, start + 1000, start + 2000, start + 3000].map((e, i) =>
 				deepmerge(TestingIIDXSPScore, { timeAchieved: e, scoreID: `SCORE_ID_${i}` })
 			) as Array<ScoreDocument>,
@@ -147,7 +136,6 @@ t.test("#LoadScoresIntoSessions", (t) => {
 	t.test("Should sort scores before creating sessions.", async (t) => {
 		const res = await LoadScoresIntoSessions(
 			1,
-			"ir/direct-manual",
 			[null, start, start - 4000, start + 2000, start - 3000, null, start + 1000].map(
 				(e, i) =>
 					deepmerge(TestingIIDXSPScore, { timeAchieved: e, scoreID: `SCORE_ID_${i}` })
@@ -184,7 +172,6 @@ t.test("#LoadScoresIntoSessions", (t) => {
 	t.test("Should create multiple sessions if scores are far apart.", async (t) => {
 		const res = await LoadScoresIntoSessions(
 			1,
-			"ir/direct-manual",
 			[
 				null,
 				start,
@@ -228,7 +215,6 @@ t.test("#LoadScoresIntoSessions", (t) => {
 			userID: 1,
 			game: "iidx",
 			playtype: "SP",
-			importType: "ir/direct-manual",
 			timeStarted: start,
 			timeEnded: start,
 			scoreIDs: ["EXAMPLE_SCORE_ID"],
@@ -236,7 +222,6 @@ t.test("#LoadScoresIntoSessions", (t) => {
 
 		const res = await LoadScoresIntoSessions(
 			1,
-			"ir/direct-manual",
 			[null, start, start + 1000, start + 2000].map((e, i) =>
 				deepmerge(TestingIIDXSPScore, { timeAchieved: e, scoreID: `SCORE_ID_${i}` })
 			) as Array<ScoreDocument>,
@@ -274,7 +259,6 @@ t.test("#LoadScoresIntoSessions", (t) => {
 			userID: 1,
 			game: "iidx",
 			playtype: "SP",
-			importType: "ir/direct-manual",
 			timeStarted: start,
 			timeEnded: start,
 			scoreIDs: ["EXAMPLE_SCORE_ID"],
@@ -282,7 +266,6 @@ t.test("#LoadScoresIntoSessions", (t) => {
 
 		const res = await LoadScoresIntoSessions(
 			1,
-			"ir/direct-manual",
 			[null, start, start - 1000, start - 2000].map((e, i) =>
 				deepmerge(TestingIIDXSPScore, { timeAchieved: e, scoreID: `SCORE_ID_${i}` })
 			) as Array<ScoreDocument>,
@@ -317,14 +300,7 @@ t.test("#LoadScoresIntoSessions", (t) => {
 	t.test("Should calculate pbDifferences if a scorePB exists.", async (t) => {
 		await db["personal-bests"].insert(TestingIIDXSPScorePB);
 
-		const res = await LoadScoresIntoSessions(
-			1,
-			"ir/direct-manual",
-			[TestingIIDXSPScore],
-			"iidx",
-			"SP",
-			logger
-		);
+		const res = await LoadScoresIntoSessions(1, [TestingIIDXSPScore], "iidx", "SP", logger);
 
 		t.match(res, [
 			{

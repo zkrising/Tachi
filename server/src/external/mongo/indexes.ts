@@ -2,7 +2,8 @@
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
 import monk from "monk";
-import { Random20Hex } from "utils/misc";
+import { GAME_PT_CONFIGS } from "tachi-common";
+import { DedupeArr, Random20Hex } from "utils/misc";
 import type { Databases } from "./db";
 import type { IndexOptions } from "mongodb";
 import type { IMonkManager } from "monk";
@@ -20,6 +21,8 @@ function index(fields: Record<string, unknown>, options?: IndexOptions) {
 
 const UNIQUE = { unique: true };
 
+const allDefaultMetrics = DedupeArr(Object.values(GAME_PT_CONFIGS).map((e) => e.defaultMetric));
+
 // NOTE: INDEXES REMOVED FROM HERE WILL **NOT** AUTOMATICALLY UPDATE.
 // YOU NEED TO RUN src/scripts/set-indexes.ts --reset TO REMOVE INDEXES.
 // (indexes added will automatically apply on tachi-server boot, though).
@@ -34,7 +37,10 @@ const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 	],
 	"personal-bests": [
 		index({ chartID: 1, userID: 1 }, UNIQUE),
-		index({ chartID: 1, "scoreData.percent": 1 }),
+
+		// one index for every default metric, why not.
+		...allDefaultMetrics.map((e) => index({ chartID: 1, [`scoreData.${e}`]: 1 })),
+
 		index({ userID: 1, game: 1, playtype: 1 }),
 
 		// activity

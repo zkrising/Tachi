@@ -360,10 +360,6 @@ t.test("GET /api/v1/users/:userID/game-stats", (t) => {
 
 		await db["game-stats"].insert(stats);
 
-		for (const s of stats) {
-			delete s._id;
-		}
-
 		const res = await mockApi.get("/api/v1/users/test_zkldi/game-stats");
 
 		t.hasStrict(res.body, {
@@ -402,7 +398,7 @@ t.test("GET /api/v1/users/:userID/recent-imports", (t) => {
 			importType,
 			importID: Random20Hex(),
 			goalInfo: [],
-			idStrings: [],
+			gptStrings: [],
 			questInfo: [],
 			playtypes: [],
 			scoreIDs: [],

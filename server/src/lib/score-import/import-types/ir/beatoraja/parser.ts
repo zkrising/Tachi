@@ -126,6 +126,6 @@ export function ParseBeatorajaSingle(
 		},
 		game: isPMS ? "pms" : "bms",
 		iterable: [score],
-		classHandler: null,
+		classProvider: null,
 	};
 }

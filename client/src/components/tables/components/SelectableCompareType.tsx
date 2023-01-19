@@ -1,22 +1,26 @@
+import { UppercaseFirst } from "util/misc";
 import React from "react";
 import { SetState } from "types/react";
+import { GamePTConfig, GetScoreMetrics } from "tachi-common";
 import { ZTableTHProps } from "./TachiTable";
 
 export default function SelectableCompareType({
-	compareType,
-	setCompareType,
+	metric,
+	setMetric,
 	changeSort,
 	currentSortMode,
 	reverseSort,
+	gptConfig,
 }: {
-	compareType: "score" | "lamp";
-	setCompareType: SetState<"score" | "lamp">;
+	metric: string;
+	setMetric: SetState<string>;
+	gptConfig: GamePTConfig;
 } & ZTableTHProps) {
 	return (
 		<th>
 			<select
-				onChange={(v) => setCompareType(v.target.value as "score" | "lamp")}
-				value={compareType}
+				onChange={(v) => setMetric(v.target.value)}
+				value={metric}
 				style={{
 					backgroundColor: "#131313",
 					border: "none",
@@ -26,8 +30,9 @@ export default function SelectableCompareType({
 					textAlign: "center",
 				}}
 			>
-				<option value="score">Vs. (Score)</option>
-				<option value="lamp">Vs. (Lamp)</option>
+				{GetScoreMetrics(gptConfig, ["DECIMAL", "INTEGER", "ENUM"]).map((e) => (
+					<option value={e}>Vs. ({UppercaseFirst(e)})</option>
+				))}
 			</select>
 			<br />
 			<span onClick={() => changeSort("Vs.")}>

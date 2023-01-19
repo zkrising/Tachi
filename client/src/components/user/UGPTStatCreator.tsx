@@ -1,5 +1,6 @@
 import { APIFetchV1 } from "util/api";
 import { CreateSongMap } from "util/data";
+import { UppercaseFirst } from "util/misc";
 import { useFormik } from "formik";
 import React, { ChangeEventHandler, useContext, useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
@@ -11,6 +12,8 @@ import {
 	UserDocument,
 	ShowcaseStatDetails,
 	Playtype,
+	GetScoreMetricConf,
+	GetScoreMetrics,
 } from "tachi-common";
 import { GamePT, SetState } from "types/react";
 import { SongChartsSearch } from "types/api-returns";
@@ -38,7 +41,7 @@ export default function UGPTStatCreator({
 	const formik = useFormik({
 		initialValues: {
 			mode: "chart",
-			property: "lamp",
+			metric: "lamp",
 			folderID: undefined,
 			chartID: undefined,
 		},
@@ -48,13 +51,13 @@ export default function UGPTStatCreator({
 			if (values.mode === "chart") {
 				stat = {
 					mode: "chart",
-					property: values.property as ShowcaseStatDetails["property"],
+					metric: values.metric as ShowcaseStatDetails["metric"],
 					chartID: values.chartID ?? "",
 				};
 			} else if (values.mode === "folder") {
 				stat = {
 					mode: "folder",
-					property: values.property as "lamp" | "score" | "percent" | "grade",
+					metric: values.metric as "lamp" | "score" | "percent" | "grade",
 					folderID: values.folderID ?? "",
 					gte,
 				};
@@ -68,8 +71,8 @@ export default function UGPTStatCreator({
 	});
 
 	useEffect(() => {
-		if (formik.values.mode === "folder" && formik.values.property === "playcount") {
-			formik.setValues({ ...formik.values, property: "lamp" });
+		if (formik.values.mode === "folder" && formik.values.metric === "playcount") {
+			formik.setValues({ ...formik.values, metric: "lamp" });
 		}
 	}, [formik.values.mode]);
 
@@ -143,6 +146,8 @@ export default function UGPTStatCreator({
 		})();
 	}, [chartSearch, requesterHasPlayed]);
 
+	const gptConfig = GetGamePTConfig(game, playtype);
+
 	return (
 		<Modal show={show} onHide={() => setShow(false)}>
 			<Modal.Header closeButton>
@@ -167,14 +172,15 @@ export default function UGPTStatCreator({
 						<Form.Label>Property</Form.Label>
 						<Form.Control
 							as="select"
-							id="property"
-							value={formik.values.property}
+							id="metric"
+							value={formik.values.metric}
 							onChange={formik.handleChange}
 						>
-							<option value="lamp">Lamp</option>
-							<option value="grade">Grade</option>
-							<option value="percent">Percent</option>
-							<option value="score">Score</option>
+							{GetScoreMetrics(gptConfig, ["DECIMAL", "INTEGER", "ENUM"]).map((e) => (
+								<option key={e} value={e}>
+									{UppercaseFirst(e)}
+								</option>
+							))}
 							{formik.values.mode === "chart" && (
 								<option value="playcount">Playcount</option>
 							)}
@@ -222,7 +228,7 @@ export default function UGPTStatCreator({
 									{...{
 										game,
 										playtype,
-										property: formik.values.property,
+										metric: formik.values.metric,
 									}}
 								/>
 							</Form.Group>
@@ -268,52 +274,39 @@ export default function UGPTStatCreator({
 }
 
 function FolderGTESelect({
-	property,
+	metric,
 	game,
 	playtype,
 	value,
 	onChange,
 }: {
-	property: string;
+	metric: string;
 	value: number;
 	onChange: ChangeEventHandler<HTMLSelectElement | HTMLInputElement>;
 } & GamePT) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const props = { value, onChange };
-	if (property === "grade") {
-		return (
-			<select className="form-control" {...props}>
-				{gptConfig.grades.map((e, i) => (
-					<option key={i} value={i}>
-						{e}
-					</option>
-				))}
-			</select>
-		);
-	} else if (property === "lamp" || property === "playcount") {
-		return (
-			<select className="form-control" {...props}>
-				{gptConfig.lamps.map((e, i) => (
-					<option key={i} value={i}>
-						{e}
-					</option>
-				))}
-			</select>
-		);
-	} else if (property === "percent") {
-		return (
-			<input
-				className="form-control"
-				type="number"
-				min={0}
-				max={gptConfig.percentMax}
-				{...props}
-			/>
-		);
-	} else if (property === "score") {
-		return <input className="form-control" type="number" min={0} {...props} />;
+
+	const conf = GetScoreMetricConf(gptConfig, metric);
+
+	if (!conf) {
+		return <>error: no conf? what?</>;
 	}
 
-	throw new Error(`Invalid property ${property}.`);
+	if (conf.type === "ENUM") {
+		return (
+			<select className="form-control" {...props}>
+				{conf.values.map((e, i) => (
+					<option key={i} value={i}>
+						{e}
+					</option>
+				))}
+			</select>
+		);
+	} else if (conf.type === "GRAPH" || conf.type === "NULLABLE_GRAPH") {
+		return <>can't set stats for graphs. how'd you get here?</>;
+	}
+
+	return <input className="form-control" type="number" min={0} {...props} />;
 }

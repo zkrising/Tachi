@@ -1,7 +1,7 @@
 import { APIFetchV1 } from "util/api";
 import { DEFAULT_BAR_PROPS } from "util/charts";
 import { ChangeOpacity } from "util/color-opacity";
-import { Reverse } from "util/misc";
+import { Reverse, UppercaseFirst } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { ResponsiveBar } from "@nivo/bar";
 import { BarChartTooltip } from "components/charts/ChartTooltip";
@@ -24,12 +24,18 @@ import {
 	FolderDocument,
 	Game,
 	GamePTConfig,
+	GetGPTString,
 	GetGamePTConfig,
+	GetScoreMetricConf,
+	GetScoreMetrics,
 	Playtype,
 	TableDocument,
 	UserDocument,
 } from "tachi-common";
 import { FolderStatsInfo, UGPTTableReturns } from "types/api-returns";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
+import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
+import DebugContent from "components/util/DebugContent";
 
 interface Props {
 	reqUser: UserDocument;
@@ -248,17 +254,14 @@ function TableBarChart({
 	dataMap: Map<string, UGPTFolderStats>;
 }) {
 	const gptConfig = GetGamePTConfig(table.game, table.playtype);
+	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(table.game, table.playtype)];
+
 	const bucket = useBucket(table.game, table.playtype);
 
-	const [mode, setMode] = useState<"grades" | "lamps">(bucket === "grade" ? "grades" : "lamps");
+	const [enumMetric, setEnumMetric] = useState<string>(bucket);
 
-	const colours = useMemo(() => {
-		if (mode === "grades") {
-			return gptConfig.gradeColours;
-		}
-
-		return gptConfig.lampColours;
-	}, [mode]);
+	// @ts-expect-error hack!
+	const colours = useMemo(() => gptImpl.enumColours[enumMetric], [enumMetric]);
 
 	const dataset = useMemo(() => {
 		const arr = [];
@@ -275,11 +278,11 @@ function TableBarChart({
 			};
 
 			// this is a series of stupid hacks and i dont really care.
-			for (const key in data.stats[mode]) {
+			for (const key in data.stats.stats[enumMetric]) {
 				// @ts-expect-error stupid key stuff
-				realData[key] = (100 * data.stats[mode][key]) / data.stats.chartCount;
+				realData[key] = (100 * data.stats.stats[enumMetric][key]) / data.stats.chartCount;
 				// @ts-expect-error stupid key stuff
-				realData[`${key}-count`] = data.stats[mode][key];
+				realData[`${key}-count`] = data.stats.stats[enumMetric][key];
 			}
 
 			arr.push({
@@ -292,21 +295,20 @@ function TableBarChart({
 		}
 
 		return arr.reverse();
-	}, [dataMap, mode]);
+	}, [dataMap, enumMetric]);
 
 	return (
 		<Card header="Overview">
 			<div className="row">
 				<div className="col-12 d-flex justify-content-center">
 					<div className="btn-group">
-						<SelectButton value={mode} setValue={setMode} id="grades">
-							<Icon type="sort-alpha-up" />
-							Grades
-						</SelectButton>
-						<SelectButton value={mode} setValue={setMode} id="lamps">
-							<Icon type="lightbulb" />
-							Lamps
-						</SelectButton>
+						{GetScoreMetrics(gptConfig, "ENUM").map((e) => (
+							<SelectButton value={enumMetric} setValue={setEnumMetric} id={e}>
+								{/* @ts-expect-error this access is legal zzz */}
+								<Icon type={gptImpl.enumIcons[e]} />
+								{UppercaseFirst(e)}s
+							</SelectButton>
+						))}
 					</div>
 				</div>
 				<div className="col-12">
@@ -319,26 +321,14 @@ function TableBarChart({
 							height: dataset.length * 40,
 						}}
 					>
-						{/* This hack is necessary because otherwise
-						nivo gets caught in a render loop
-						and dies */}
-						{mode === "grades" ? (
-							<OverviewBarChart
-								key="grade"
-								gptConfig={gptConfig}
-								mode={mode}
-								dataset={dataset}
-								colours={colours}
-							/>
-						) : (
-							<OverviewBarChart
-								key="lamp"
-								gptConfig={gptConfig}
-								mode={mode}
-								dataset={dataset}
-								colours={colours}
-							/>
-						)}
+						<OverviewBarChart
+							// This hack is necessary because otherwise nivo gets caught in a render loop and dies
+							key={enumMetric}
+							gptConfig={gptConfig}
+							mode={enumMetric}
+							dataset={dataset}
+							colours={colours}
+						/>
 					</div>
 				</div>
 			</div>
@@ -348,12 +338,12 @@ function TableBarChart({
 
 function OverviewBarChart({
 	gptConfig,
-	mode,
+	mode: metric,
 	dataset,
 	colours,
 }: {
 	gptConfig: GamePTConfig;
-	mode: "grades" | "lamps";
+	mode: string;
 	dataset: any;
 	colours: any;
 }) {
@@ -366,6 +356,8 @@ function OverviewBarChart({
 			),
 		[dataset]
 	);
+
+	const conf = GetScoreMetricConf(gptConfig, metric) as ConfEnumScoreMetric<string>;
 
 	return (
 		<ResponsiveBar
@@ -388,7 +380,7 @@ function OverviewBarChart({
 					)}
 				/>
 			)}
-			keys={Reverse(gptConfig[mode])}
+			keys={Reverse(conf.values)}
 			colors={(k) => ChangeOpacity(colours[k.id], 0.5)}
 			borderColor={(k) => colours[k.data.id]}
 			borderWidth={1}

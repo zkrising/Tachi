@@ -4,11 +4,11 @@ import useLUGPTSettings from "./useLUGPTSettings";
 export function useBucket(game: Game, playtype: Playtype) {
 	const { settings } = useLUGPTSettings();
 
-	if (!settings?.preferences.scoreBucket) {
+	if (!settings?.preferences.preferredDefaultEnum) {
 		const gptConfig = GetGamePTConfig(game, playtype);
 
-		return gptConfig.scoreBucket;
+		return gptConfig.preferredDefaultEnum;
 	}
 
-	return settings.preferences.scoreBucket;
+	return settings.preferences.preferredDefaultEnum;
 }

@@ -124,7 +124,7 @@ router.get("/recent", async (req, res) => {
 router.get("/:chartID", async (req, res) => {
 	const { user, game, playtype } = GetUGPT(req);
 
-	const chart = await db.charts[game].findOne({
+	const chart = await db.anyCharts[game].findOne({
 		chartID: req.params.chartID,
 		playtype,
 	});

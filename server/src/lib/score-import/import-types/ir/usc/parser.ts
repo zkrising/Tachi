@@ -67,6 +67,6 @@ export function ParseIRUSC(
 		},
 		game: "usc",
 		iterable: [score] as Array<USCClientScore>,
-		classHandler: null,
+		classProvider: null,
 	};
 }

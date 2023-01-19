@@ -4,17 +4,13 @@ import {
 	InvalidScoreFailure,
 	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
-import {
-	GenericGetGradeAndPercent,
-	MusecaGetLamp,
-	ParseDateFromString,
-} from "lib/score-import/framework/common/score-utils";
+import { MusecaGetLamp, ParseDateFromString } from "lib/score-import/framework/common/score-utils";
 import { FindChartOnInGameIDVersion } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import type { ConverterFunction } from "../../types";
 import type { CGContext, CGMusecaScore } from "../types";
 import type { DryScore } from "lib/score-import/framework/common/types";
-import type { Difficulties, GPTSupportedVersions } from "tachi-common";
+import type { Difficulties, Versions } from "tachi-common";
 
 export const ConverterAPICGMuseca: ConverterFunction<CGMusecaScore, CGContext> = async (
 	data,
@@ -51,8 +47,6 @@ export const ConverterAPICGMuseca: ConverterFunction<CGMusecaScore, CGContext> =
 
 	const lamp = MusecaGetLamp(data.score, data.error);
 
-	const { percent, grade } = GenericGetGradeAndPercent("museca", data.score, chart);
-
 	const timeAchieved = ParseDateFromString(data.dateTime);
 
 	const dryScore: DryScore<"museca:Single"> = {
@@ -62,8 +56,6 @@ export const ConverterAPICGMuseca: ConverterFunction<CGMusecaScore, CGContext> =
 		timeAchieved,
 		service: FormatCGService(context.service),
 		scoreData: {
-			grade,
-			percent,
 			score: data.score,
 			lamp,
 			judgements: {
@@ -71,7 +63,7 @@ export const ConverterAPICGMuseca: ConverterFunction<CGMusecaScore, CGContext> =
 				near: data.near,
 				miss: data.error,
 			},
-			hitMeta: {
+			optional: {
 				maxCombo: data.maxChain,
 			},
 		},
@@ -94,7 +86,7 @@ function ConvertDifficulty(diff: number): Difficulties["museca:Single"] {
 	throw new InvalidScoreFailure(`Invalid difficulty of ${diff} - Could not convert.`);
 }
 
-function ConvertVersion(ver: number): GPTSupportedVersions["museca:Single"] {
+function ConvertVersion(ver: number): Versions["museca:Single"] {
 	switch (ver) {
 		case 1:
 			return "1.5-b";

@@ -30,6 +30,8 @@ t.test("#EvaluateGoalForUser", (t) => {
 	t.test("Should correctly evaluate against single goals.", (t) => {
 		t.beforeEach(async () => {
 			await db["personal-bests"].insert(TestingIIDXSPScorePB);
+
+			// @ts-expect-error why does mongodb feel like mutating our documents!
 			delete TestingIIDXSPScorePB._id;
 		});
 
@@ -57,7 +59,7 @@ t.test("#EvaluateGoalForUser", (t) => {
 				{
 					$set: {
 						"scoreData.lamp": "CLEAR",
-						"scoreData.lampIndex": 4,
+						"scoreData.enumIndexes.lamp": 4,
 					},
 				}
 			);
@@ -114,7 +116,6 @@ t.test("#EvaluateGoalForUser", (t) => {
 
 		t.beforeEach(async () => {
 			await db["personal-bests"].insert(TestingIIDXSPScorePB);
-			delete TestingIIDXSPScorePB._id;
 
 			await db["personal-bests"].insert(
 				deepmerge(TestingIIDXSPScorePB, {
@@ -145,11 +146,11 @@ t.test("#EvaluateGoalForUser", (t) => {
 		t.test("Should work if other chart is >= HARD CLEAR", async (t) => {
 			await db["personal-bests"].update(
 				{ userID: 1, chartID: Testing511SPA.chartID },
-				{ $set: { "scoreData.lamp": "CLEAR", "scoreData.lampIndex": 4 } }
+				{ $set: { "scoreData.lamp": "CLEAR", "scoreData.enumIndexes.lamp": 4 } }
 			);
 			await db["personal-bests"].update(
 				{ userID: 1, chartID: "fake_other_chart_id" },
-				{ $set: { "scoreData.lamp": "HARD CLEAR", "scoreData.lampIndex": 5 } }
+				{ $set: { "scoreData.lamp": "HARD CLEAR", "scoreData.enumIndexes.lamp": 5 } }
 			);
 
 			const res = await EvaluateGoalForUser(multiGoal, 1, logger);
@@ -204,7 +205,6 @@ t.test("#EvaluateGoalForUser", (t) => {
 
 		t.beforeEach(async () => {
 			await db["personal-bests"].insert(TestingIIDXSPScorePB);
-			delete TestingIIDXSPScorePB._id;
 
 			await db["personal-bests"].insert(
 				deepmerge(TestingIIDXSPScorePB, {
@@ -212,8 +212,6 @@ t.test("#EvaluateGoalForUser", (t) => {
 					chartID: "other_sp10",
 				})
 			);
-
-			delete Testing511SPA._id;
 
 			await db.charts.iidx.insert([
 				deepmerge(Testing511SPA, {
@@ -254,12 +252,12 @@ t.test("#EvaluateGoalForUser", (t) => {
 		t.test("Should work if other chart is >= HARD CLEAR", async (t) => {
 			await db["personal-bests"].update(
 				{ userID: 1, chartID: Testing511SPA.chartID },
-				{ $set: { "scoreData.lamp": "CLEAR", "scoreData.lampIndex": 4 } }
+				{ $set: { "scoreData.lamp": "CLEAR", "scoreData.enumIndexes.lamp": 4 } }
 			);
 
 			await db["personal-bests"].update(
 				{ userID: 1, chartID: "other_sp10" },
-				{ $set: { "scoreData.lamp": "HARD CLEAR", "scoreData.lampIndex": 5 } }
+				{ $set: { "scoreData.lamp": "HARD CLEAR", "scoreData.enumIndexes.lamp": 5 } }
 			);
 
 			const res = await EvaluateGoalForUser(folderGoal, 1, logger);
@@ -309,20 +307,18 @@ t.test("#HumaniseGoalProgress", (t) => {
 	t.test("Should prefer AAA- over AA+ for AAA goals", (t) => {
 		t.equal(
 			HumaniseGoalProgress(
-				"iidx",
-				"SP",
-				"scoreData.gradeIndex",
+				"iidx:SP",
+				"grade",
 				IIDX_GRADES.AAA,
 				mkFakePBIIDXSP({
-					// @ts-expect-error faulty deepmerge types
 					scoreData: {
-						score: 1230,
+						score: 1865,
 						grade: "AA",
-						percent: 78.89,
+						percent: 79.97,
 					},
 				})
 			),
-			"AAA-156"
+			"AAA-208"
 		);
 
 		t.end();
@@ -346,7 +342,7 @@ t.test("#GetRelevantFolderGoals", (t) => {
 		criteria: {
 			mode: "single",
 			value: 1,
-			key: "scoreData.score",
+			key: "score",
 		},
 	};
 
@@ -362,7 +358,7 @@ t.test("#GetRelevantFolderGoals", (t) => {
 		criteria: {
 			mode: "single",
 			value: 1,
-			key: "scoreData.score",
+			key: "score",
 		},
 	};
 
@@ -427,7 +423,7 @@ t.test("#GetRelevantGoals", (t) => {
 			criteria: {
 				mode: "single",
 				value: 1,
-				key: "scoreData.score",
+				key: "score",
 			},
 		}));
 

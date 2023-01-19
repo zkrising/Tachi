@@ -125,8 +125,6 @@ function FolderCompare({
 	withUser: UserDocument;
 	folder: FolderDocument;
 } & GamePT) {
-	const gptConfig = GetGamePTConfig(game, playtype);
-
 	const { data: baseData, error: baseError } = useApiQuery<UGPTFolderReturns>(
 		`/users/${reqUser.id}/games/${game}/${playtype}/folders/${folder.folderID}`
 	);
@@ -136,11 +134,6 @@ function FolderCompare({
 	);
 
 	const [shouldIncludeNotPlayed, setShouldIncludeNotPlayed] = useState(false);
-	const [shouldESD, setShouldESD] = useState(gptConfig.supportsESD);
-
-	useEffect(() => {
-		setShouldESD(gptConfig.supportsESD);
-	}, [gptConfig]);
 
 	const dataset = useMemo(() => {
 		// i *LOVE* the rules of hooks! they're so convenient!
@@ -185,11 +178,11 @@ function FolderCompare({
 			<Col xs={12}>
 				<Divider />
 			</Col>
-			<CompareCard
+			{/* <CompareCard
 				dataset={dataset}
 				baseUsername={reqUser.username}
 				otherUsername={withUser.username}
-			/>
+			/> */}
 			<Col xs={12}>
 				<Divider />
 				<Form.Check
@@ -197,13 +190,6 @@ function FolderCompare({
 					onChange={() => setShouldIncludeNotPlayed(!shouldIncludeNotPlayed)}
 					label="Include charts without plays?"
 				/>
-				{gptConfig.supportsESD && (
-					<Form.Check
-						checked={shouldESD}
-						onChange={() => setShouldESD(!shouldESD)}
-						label="Sort score differences intelligently? (i.e. Treat the difference between 70% and 71% as smaller than the difference between 99% and 100%)"
-					/>
-				)}
 				<Divider />
 			</Col>
 			<ComparePBsTable
@@ -211,7 +197,6 @@ function FolderCompare({
 				compareUser={withUser.username}
 				dataset={dataset}
 				game={game}
-				shouldESD={shouldESD}
 				playtype={playtype}
 			/>
 		</Row>
@@ -253,120 +238,123 @@ function UserCard({ username, game, playtype }: { username: string } & GamePT) {
 	);
 }
 
-function CompareCard({
-	dataset,
-	baseUsername,
-	otherUsername,
-}: {
-	dataset: ComparePBsDataset;
+// temp disabled. needs to be migrated into conf somehow
+// as a declaration of "these are the metrics that should appear in the rival compare card".
 
-	baseUsername: string;
-	otherUsername: string;
-}) {
-	// this code sucks
-	let scoreWin = 0;
-	let scoreDraw = 0;
-	let scoreLoss = 0;
-	let lampWin = 0;
-	let lampDraw = 0;
-	let lampLoss = 0;
+// function CompareCard({
+// 	dataset,
+// 	baseUsername,
+// 	otherUsername,
+// }: {
+// 	dataset: ComparePBsDataset;
 
-	for (const d of dataset) {
-		if (!d.compare && !d.base) {
-			scoreDraw++;
-			lampDraw++;
-			continue;
-		}
+// 	baseUsername: string;
+// 	otherUsername: string;
+// }) {
+// 	// this code sucks
+// 	let scoreWin = 0;
+// 	let scoreDraw = 0;
+// 	let scoreLoss = 0;
+// 	let lampWin = 0;
+// 	let lampDraw = 0;
+// 	let lampLoss = 0;
 
-		if (!d.compare) {
-			scoreWin++;
-			lampWin++;
-			continue;
-		}
+// 	for (const d of dataset) {
+// 		if (!d.compare && !d.base) {
+// 			scoreDraw++;
+// 			lampDraw++;
+// 			continue;
+// 		}
 
-		if (!d.base) {
-			scoreLoss++;
-			lampLoss++;
-			continue;
-		}
+// 		if (!d.compare) {
+// 			scoreWin++;
+// 			lampWin++;
+// 			continue;
+// 		}
 
-		if (d.base.scoreData.percent > d.compare.scoreData.percent) {
-			scoreWin++;
-		} else if (d.base.scoreData.percent < d.compare.scoreData.percent) {
-			scoreLoss++;
-		} else {
-			scoreDraw++;
-		}
+// 		if (!d.base) {
+// 			scoreLoss++;
+// 			lampLoss++;
+// 			continue;
+// 		}
 
-		if (d.base.scoreData.lampIndex > d.compare.scoreData.lampIndex) {
-			lampWin++;
-		} else if (d.base.scoreData.lampIndex < d.compare.scoreData.lampIndex) {
-			lampLoss++;
-		} else {
-			lampDraw++;
-		}
-	}
+// 		if (d.base.scoreData.percent > d.compare.scoreData.percent) {
+// 			scoreWin++;
+// 		} else if (d.base.scoreData.percent < d.compare.scoreData.percent) {
+// 			scoreLoss++;
+// 		} else {
+// 			scoreDraw++;
+// 		}
 
-	return (
-		<Col xs={12}>
-			<Card>
-				<Row>
-					<Col xs={12} lg={6}>
-						<MiniTable headers={["Score Win/Loss"]} colSpan={23}>
-							<tr>
-								<td>{baseUsername} Win</td>
+// 		if (d.base.scoreData.lampIndex > d.compare.scoreData.lampIndex) {
+// 			lampWin++;
+// 		} else if (d.base.scoreData.lampIndex < d.compare.scoreData.lampIndex) {
+// 			lampLoss++;
+// 		} else {
+// 			lampDraw++;
+// 		}
+// 	}
 
-								<td style={{ color: COLOUR_SET.green }}>{scoreWin}</td>
+// 	return (
+// 		<Col xs={12}>
+// 			<Card>
+// 				<Row>
+// 					<Col xs={12} lg={6}>
+// 						<MiniTable headers={["Score Win/Loss"]} colSpan={23}>
+// 							<tr>
+// 								<td>{baseUsername} Win</td>
 
-								<td style={{ color: COLOUR_SET.green }}>
-									{((100 * scoreWin) / dataset.length).toFixed(2)}%
-								</td>
-							</tr>
-							<tr>
-								<td>Draw</td>
-								<td style={{ color: COLOUR_SET.gold }}>{scoreDraw}</td>
-								<td style={{ color: COLOUR_SET.gold }}>
-									{((100 * scoreDraw) / dataset.length).toFixed(2)}%
-								</td>
-							</tr>
-							<tr>
-								<td>{otherUsername} Win</td>
-								<td style={{ color: COLOUR_SET.red }}>{scoreLoss}</td>
-								<td style={{ color: COLOUR_SET.red }}>
-									{((100 * scoreLoss) / dataset.length).toFixed(2)}%
-								</td>
-							</tr>
-						</MiniTable>
-					</Col>
-					<Col xs={12} lg={6}>
-						<MiniTable headers={["Lamp Win/Loss"]} colSpan={23}>
-							<tr>
-								<td>{baseUsername} Win</td>
+// 								<td style={{ color: COLOUR_SET.green }}>{scoreWin}</td>
 
-								<td style={{ color: COLOUR_SET.green }}>{lampWin}</td>
+// 								<td style={{ color: COLOUR_SET.green }}>
+// 									{((100 * scoreWin) / dataset.length).toFixed(2)}%
+// 								</td>
+// 							</tr>
+// 							<tr>
+// 								<td>Draw</td>
+// 								<td style={{ color: COLOUR_SET.gold }}>{scoreDraw}</td>
+// 								<td style={{ color: COLOUR_SET.gold }}>
+// 									{((100 * scoreDraw) / dataset.length).toFixed(2)}%
+// 								</td>
+// 							</tr>
+// 							<tr>
+// 								<td>{otherUsername} Win</td>
+// 								<td style={{ color: COLOUR_SET.red }}>{scoreLoss}</td>
+// 								<td style={{ color: COLOUR_SET.red }}>
+// 									{((100 * scoreLoss) / dataset.length).toFixed(2)}%
+// 								</td>
+// 							</tr>
+// 						</MiniTable>
+// 					</Col>
+// 					<Col xs={12} lg={6}>
+// 						<MiniTable headers={["Lamp Win/Loss"]} colSpan={23}>
+// 							<tr>
+// 								<td>{baseUsername} Win</td>
 
-								<td style={{ color: COLOUR_SET.green }}>
-									{((100 * lampWin) / dataset.length).toFixed(2)}%
-								</td>
-							</tr>
-							<tr>
-								<td>Draw</td>
-								<td style={{ color: COLOUR_SET.gold }}>{lampDraw}</td>
-								<td style={{ color: COLOUR_SET.gold }}>
-									{((100 * lampDraw) / dataset.length).toFixed(2)}%
-								</td>
-							</tr>
-							<tr>
-								<td>{otherUsername} Win</td>
-								<td style={{ color: COLOUR_SET.red }}>{lampLoss}</td>
-								<td style={{ color: COLOUR_SET.red }}>
-									{((100 * lampLoss) / dataset.length).toFixed(2)}%
-								</td>
-							</tr>
-						</MiniTable>
-					</Col>
-				</Row>
-			</Card>
-		</Col>
-	);
-}
+// 								<td style={{ color: COLOUR_SET.green }}>{lampWin}</td>
+
+// 								<td style={{ color: COLOUR_SET.green }}>
+// 									{((100 * lampWin) / dataset.length).toFixed(2)}%
+// 								</td>
+// 							</tr>
+// 							<tr>
+// 								<td>Draw</td>
+// 								<td style={{ color: COLOUR_SET.gold }}>{lampDraw}</td>
+// 								<td style={{ color: COLOUR_SET.gold }}>
+// 									{((100 * lampDraw) / dataset.length).toFixed(2)}%
+// 								</td>
+// 							</tr>
+// 							<tr>
+// 								<td>{otherUsername} Win</td>
+// 								<td style={{ color: COLOUR_SET.red }}>{lampLoss}</td>
+// 								<td style={{ color: COLOUR_SET.red }}>
+// 									{((100 * lampLoss) / dataset.length).toFixed(2)}%
+// 								</td>
+// 							</tr>
+// 						</MiniTable>
+// 					</Col>
+// 				</Row>
+// 			</Card>
+// 		</Col>
+// 	);
+// }

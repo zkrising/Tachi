@@ -31,11 +31,6 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/scores/recent", (t) => {
 
 		await db.scores.insert(mockScores);
 
-		for (const sc of mockScores) {
-			// lol
-			delete sc._id;
-		}
-
 		const res = await mockApi.get("/api/v1/users/1/games/iidx/SP/scores/recent");
 
 		t.hasStrict(res.body, {

@@ -8,19 +8,19 @@ import { CheckAndSetOngoingImportLock, UnsetOngoingImportLock } from "../import-
 import { ProcessPBs } from "../pb/process-pbs";
 import { UpdateUsersQuests } from "../quests/quests";
 import { CreateSessions } from "../sessions/sessions";
-import { UpdateUsersGamePlaytypeStats } from "../user-game-stats/update-ugs";
+import { UpdateUsersGamePlaytypeStats } from "../ugpt-stats/update-ugpt-stats";
 import db from "external/mongo/db";
 import { GetGameConfig } from "tachi-common";
 import { GetMillisecondsSince } from "utils/misc";
 import { GetUserWithID } from "utils/user";
 import type { ConverterFunction, ImportInputParser } from "../../import-types/common/types";
+import type { ClassProvider } from "../calculated-data/types";
 import type { ChartIDPlaytypeMap, ScorePlaytypeMap } from "../common/types";
-import type { ClassHandler } from "../user-game-stats/types";
 import type { KtLogger } from "lib/logger/logger";
 import type { ScoreImportJob } from "lib/score-import/worker/types";
 import type {
 	Game,
-	IDStrings,
+	GPTString,
 	ImportDocument,
 	ImportProcessingInfo,
 	ImportTypes,
@@ -87,7 +87,7 @@ export default async function ScoreImportMain<D, C>(
 		// We get an iterable from the provided parser function, alongside some context and a converter function.
 		// This iterable does not have to be an array - it's anything that's iterable, like a generator.
 		const parseTimeStart = process.hrtime.bigint();
-		const { iterable, context, game, classHandler } = await InputParser(logger);
+		const { iterable, context, game, classProvider: classProvider } = await InputParser(logger);
 
 		const parseTime = GetMillisecondsSince(parseTimeStart);
 
@@ -172,7 +172,7 @@ export default async function ScoreImportMain<D, C>(
 			user,
 			importType,
 			game,
-			classHandler,
+			classProvider,
 			logger,
 			job
 		);
@@ -187,7 +187,7 @@ export default async function ScoreImportMain<D, C>(
 		// Create and Save an import document to the database, and finish everything up!
 		const ImportDocument: ImportDocument = {
 			importType,
-			idStrings: playtypes.map((e) => `${game}:${e}`) as Array<IDStrings>,
+			gptStrings: playtypes.map((e) => `${game}:${e}`) as Array<GPTString>,
 			scoreIDs,
 			playtypes,
 			game,
@@ -260,7 +260,7 @@ export async function HandlePostImportSteps(
 	user: UserDocument,
 	importType: ImportTypes,
 	game: Game,
-	classHandler: ClassHandler | null,
+	classProvider: ClassProvider | null,
 	logger: KtLogger,
 	job: ScoreImportJob | undefined
 ) {
@@ -283,7 +283,7 @@ export async function HandlePostImportSteps(
 	// We create (or update existing) sessions here. This uses the aforementioned parsed import info
 	// to determine what goes where.
 	const sessionTimeStart = process.hrtime.bigint();
-	const sessionInfo = await CreateSessions(user.id, importType, game, scorePlaytypeMap, logger);
+	const sessionInfo = await CreateSessions(user.id, game, scorePlaytypeMap, logger);
 
 	const sessionTime = GetMillisecondsSince(sessionTimeStart);
 	const sessionTimeRel = sessionTime / sessionInfo.length;
@@ -324,7 +324,7 @@ export async function HandlePostImportSteps(
 	// --- 6. Game Stats ---
 	// This function updates the users "stats" for this game - such as their profile rating or their classes.
 	const ugsTimeStart = process.hrtime.bigint();
-	const classDeltas = await UpdateUsersGameStats(game, playtypes, user.id, classHandler, logger);
+	const classDeltas = await UpdateUsersGameStats(game, playtypes, user.id, classProvider, logger);
 
 	const ugsTime = GetMillisecondsSince(ugsTimeStart);
 
@@ -384,20 +384,20 @@ async function UpdateUsersGameStats(
 	game: Game,
 	modifiedPlaytypes: Array<Playtype>,
 	userID: integer,
-	classHandler: ClassHandler | null,
+	classProvider: ClassProvider | null,
 	logger: KtLogger
 ) {
 	const promises = [];
 
-	// Instead of using the provided playtypes, run the classHandler on all
-	// playtypes. This should only happen if a classHandler is provided, and is
+	// Instead of using the provided playtypes, run the classProvider on all
+	// playtypes. This should only happen if a classProvider is provided, and is
 	// a hack fix for things like #480.
-	const allPlaytypes = GetGameConfig(game).validPlaytypes;
+	const allPlaytypes = GetGameConfig(game).playtypes;
 
-	const playtypes = classHandler ? allPlaytypes : modifiedPlaytypes;
+	const playtypes = classProvider ? allPlaytypes : modifiedPlaytypes;
 
 	for (const pt of playtypes) {
-		promises.push(UpdateUsersGamePlaytypeStats(game, pt, userID, classHandler, logger));
+		promises.push(UpdateUsersGamePlaytypeStats(game, pt, userID, classProvider, logger));
 	}
 
 	const r = await Promise.all(promises);

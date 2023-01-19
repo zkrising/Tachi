@@ -68,15 +68,28 @@ function ChartsToPlaylistFormat(
 			continue;
 		}
 
+		let barStyle: "event" | undefined;
+
+		// highlight individual difference charts as "event".
+		if (
+			chart.playtype === "SP" &&
+			(chart as ChartDocument<"iidx:SP">).data.hcTier?.individualDifference
+		) {
+			barStyle = "event";
+		} else if (
+			chart.playtype === "DP" &&
+			(chart as ChartDocument<"iidx:DP">).data.dpTier?.individualDifference
+		) {
+			barStyle = "event";
+		}
+
 		arr.push({
 			entry_id: inGameID,
 
 			// @ts-expect-error yeah, i know. it'll be fine.
 			difficulty: chart.difficulty.toLowerCase(),
 
-			// highlight individual difference charts as "event".
-			bar_style:
-				chart.tierlistInfo["kt-HC"]?.individualDifference === true ? "event" : undefined,
+			bar_style: barStyle,
 		});
 	}
 

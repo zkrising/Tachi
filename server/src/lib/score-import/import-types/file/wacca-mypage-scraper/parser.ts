@@ -1,4 +1,4 @@
-import { CreateMyPageScraperClassHandler } from "./class-handler";
+import { CreateMyPageScraperClassProvider } from "./class-handler";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { parse, CsvError as CSVError } from "csv-parse/sync";
 import { p } from "prudence";
@@ -54,6 +54,7 @@ export function ParseMyPageScraperRecordsCSV(
 	try {
 		rawCSVRecords = parse(fileData.buffer, { columns: true }) as Array<unknown>;
 	} catch (err) {
+		// eslint-disable-next-line cadence/no-instanceof
 		if (err instanceof CSVError) {
 			throw new ScoreImportFatalError(400, `Failed to parse CSV: ${err.message}`);
 		}
@@ -110,7 +111,7 @@ export function ParseMyPageScraperRecordsCSV(
 		iterable,
 		context: {},
 		game: "wacca",
-		classHandler: null,
+		classProvider: null,
 	};
 }
 
@@ -124,6 +125,7 @@ export function ParseMyPageScraperPlayerCSV(
 	try {
 		csvRecords = parse(fileData.buffer, { columns: true }) as Array<Record<string, string>>;
 	} catch (err) {
+		// eslint-disable-next-line cadence/no-instanceof
 		if (err instanceof CSVError) {
 			throw new ScoreImportFatalError(400, `Failed to parse CSV: ${err.message}`);
 		}
@@ -167,6 +169,6 @@ export function ParseMyPageScraperPlayerCSV(
 		iterable: [],
 		context: {},
 		game: "wacca",
-		classHandler: CreateMyPageScraperClassHandler(stage),
+		classProvider: CreateMyPageScraperClassProvider(stage),
 	};
 }

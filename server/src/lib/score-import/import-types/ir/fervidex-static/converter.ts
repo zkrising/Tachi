@@ -2,14 +2,12 @@ import {
 	InternalFailure,
 	SongOrChartNotFoundFailure,
 } from "../../../framework/common/converter-failures";
-import { GenericGetGradeAndPercent } from "../../../framework/common/score-utils";
 import { FERVIDEX_LAMP_LOOKUP, SplitFervidexChartRef } from "../fervidex/converter";
 import { FindChartOnInGameIDVersion } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import type { DryScore } from "../../../framework/common/types";
 import type { ConverterFunction } from "../../common/types";
 import type { FervidexStaticContext, FervidexStaticScore } from "./types";
-import type { Lamps } from "tachi-common";
 
 export const ConverterIRFervidexStatic: ConverterFunction<
 	FervidexStaticScore,
@@ -41,12 +39,10 @@ export const ConverterIRFervidexStatic: ConverterFunction<
 		throw new InternalFailure(`Song ${chart.songID} (iidx) has no parent song?`);
 	}
 
-	const { percent, grade } = GenericGetGradeAndPercent("iidx", data.ex_score, chart);
-
-	const hitMeta: { bp?: number | null } = {};
+	const optional: { bp?: number | null } = {};
 
 	if (data.miss_count !== undefined) {
-		hitMeta.bp = data.miss_count === -1 ? null : data.miss_count;
+		optional.bp = data.miss_count === -1 ? null : data.miss_count;
 	}
 
 	const dryScore: DryScore<"iidx:DP" | "iidx:SP"> = {
@@ -57,11 +53,9 @@ export const ConverterIRFervidexStatic: ConverterFunction<
 		timeAchieved: null,
 		scoreData: {
 			score: data.ex_score,
-			percent,
-			grade,
-			lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type] as Lamps["iidx:DP" | "iidx:SP"],
+			lamp: FERVIDEX_LAMP_LOOKUP[data.clear_type],
 			judgements: {},
-			hitMeta,
+			optional,
 		},
 		scoreMeta: {},
 	};

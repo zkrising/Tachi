@@ -39,8 +39,6 @@ function mkOutput(modifant: any = {}): DryScore<"sdvx:Single"> {
 		timeAchieved: ParseDateFromString("2019-06-06 08:14:22"),
 		service: "CG Dev",
 		scoreData: {
-			grade: "A+",
-			percent: 91.23,
 			score: 9_123_000,
 			lamp: "CLEAR",
 			judgements: {
@@ -48,7 +46,7 @@ function mkOutput(modifant: any = {}): DryScore<"sdvx:Single"> {
 				near: 50,
 				miss: 10,
 			},
-			hitMeta: {},
+			optional: {},
 		},
 		scoreMeta: {},
 	};

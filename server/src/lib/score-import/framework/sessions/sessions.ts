@@ -1,8 +1,11 @@
-import { CreateSessionCalcData } from "./calculated-data";
 import { GenerateRandomSessionName } from "./name-generation";
+import { CreateSessionCalcData } from "../calculated-data/session";
 import { CreatePBDoc } from "../pb/create-pb-doc";
 import db from "external/mongo/db";
+import { ONE_HOUR } from "lib/constants/time";
 import CreateLogCtx, { AppendLogCtx } from "lib/logger/logger";
+import { GetGPTString, GetGamePTConfig, GetScoreMetricConf, GetScoreMetrics } from "tachi-common";
+import { GetChartForIDGuaranteed } from "utils/db";
 import { GetScoresFromSession } from "utils/session";
 import crypto from "crypto";
 import type { ScorePlaytypeMap } from "../common/types";
@@ -10,9 +13,7 @@ import type { PBScoreDocumentNoRank } from "../pb/create-pb-doc";
 import type { KtLogger } from "lib/logger/logger";
 import type {
 	Game,
-	ImportTypes,
 	integer,
-	PBScoreDocument,
 	Playtype,
 	ScoreDocument,
 	SessionDocument,
@@ -20,11 +21,10 @@ import type {
 	SessionScoreInfo,
 } from "tachi-common";
 
-const TWO_HOURS = 1000 * 60 * 60 * 2;
+const TWO_HOURS = ONE_HOUR * 2;
 
 export async function CreateSessions(
 	userID: integer,
-	importType: ImportTypes,
 	game: Game,
 	scorePtMap: ScorePlaytypeMap,
 	logger: KtLogger
@@ -35,7 +35,6 @@ export async function CreateSessions(
 	for (const [playtype, scores] of Object.entries(scorePtMap)) {
 		const sessionInfo = await LoadScoresIntoSessions(
 			userID,
-			importType,
 			scores,
 			game,
 			playtype as Playtype,
@@ -64,13 +63,29 @@ function ScoreToSessionScoreInfo(
 		};
 	}
 
+	const gptConfig = GetGamePTConfig(score.game, score.playtype);
+
+	const deltas: Record<string, number> = {};
+
+	const scoreMetrics = GetScoreMetrics(gptConfig, ["DECIMAL", "ENUM", "INTEGER"]);
+
+	for (const metric of scoreMetrics) {
+		const conf = GetScoreMetricConf(gptConfig, metric)!;
+
+		if (conf.type === "ENUM") {
+			deltas[metric] =
+				// @ts-expect-error shush
+				score.scoreData.enumIndexes[metric] - previousPB.scoreData.enumIndexes[metric];
+		} else {
+			// @ts-expect-error shush
+			deltas[metric] = score.scoreData[metric] - previousPB.scoreData[metric];
+		}
+	}
+
 	return {
 		scoreID: score.scoreID,
 		isNewScore: false,
-		gradeDelta: score.scoreData.gradeIndex - previousPB.scoreData.gradeIndex,
-		lampDelta: score.scoreData.lampIndex - previousPB.scoreData.lampIndex,
-		percentDelta: score.scoreData.percent - previousPB.scoreData.percent,
-		scoreDelta: score.scoreData.score - previousPB.scoreData.score,
+		deltas,
 	};
 }
 
@@ -87,12 +102,16 @@ export async function GetSessionScoreInfo(
 		scoreID: { $in: session.scoreIDs },
 	});
 
+	const gptString = GetGPTString(session.game, session.playtype);
+
 	const promises = [];
 
 	for (const score of scores) {
 		promises.push(
-			CreatePBDoc(session.userID, score.chartID, logger, session.timeStarted).then((pb) =>
-				ScoreToSessionScoreInfo(score, pb)
+			GetChartForIDGuaranteed(score.game, score.chartID).then((chart) =>
+				CreatePBDoc(gptString, session.userID, chart, logger, session.timeStarted).then(
+					(pb) => ScoreToSessionScoreInfo(score, pb)
+				)
 			)
 		);
 	}
@@ -136,7 +155,6 @@ function UpdateExistingSession(
 
 function CreateSession(
 	userID: integer,
-	importType: ImportTypes,
 	scoreIDs: Array<string>,
 	groupScores: Array<ScoreDocument>,
 	game: Game,
@@ -148,7 +166,6 @@ function CreateSession(
 
 	return {
 		userID,
-		importType,
 		name,
 		sessionID: CreateSessionID(),
 		desc: null,
@@ -165,7 +182,6 @@ function CreateSession(
 
 export async function LoadScoresIntoSessions(
 	userID: integer,
-	importType: ImportTypes,
 	importScores: Array<ScoreDocument>,
 	game: Game,
 	playtype: Playtype,
@@ -241,7 +257,6 @@ export async function LoadScoresIntoSessions(
 			userID,
 			game,
 			playtype,
-			importType,
 			$or: [
 				{ timeStarted: { $gte: startOfGroup - TWO_HOURS, $lt: endOfGroup + TWO_HOURS } },
 				{ timeEnded: { $gte: startOfGroup - TWO_HOURS, $lt: endOfGroup + TWO_HOURS } },
@@ -274,14 +289,7 @@ export async function LoadScoresIntoSessions(
 				`Creating new session for ${userID} (${game} ${playtype}) around ${startOfGroup} ${endOfGroup}.`
 			);
 
-			const session = CreateSession(
-				userID,
-				importType,
-				scoreIDs,
-				groupScores,
-				game,
-				playtype
-			);
+			const session = CreateSession(userID, scoreIDs, groupScores, game, playtype);
 
 			infoReturn = { sessionID: session.sessionID, type: "Created" };
 			await db.sessions.insert(session);

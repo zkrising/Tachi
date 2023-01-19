@@ -2,9 +2,10 @@ import { NumericSOV, StrSOV } from "util/sorts";
 import { CreateDefaultScoreSearchParams } from "util/tables/create-search";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
-import { Game, IDStrings, integer, ScoreCalculatedDataLookup, Playtype } from "tachi-common";
+import { AnyScoreRatingAlg, Game, Playtype, integer } from "tachi-common";
 import { ScoreDataset } from "types/tables";
 import DifficultyCell from "../cells/DifficultyCell";
+import DropdownIndicatorCell from "../cells/DropdownIndicatorCell";
 import IndicatorsCell from "../cells/IndicatorsCell";
 import TimestampCell from "../cells/TimestampCell";
 import TitleCell from "../cells/TitleCell";
@@ -17,9 +18,8 @@ import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";
 import ChartHeader from "../headers/ChartHeader";
 import { GetGPTCoreHeaders } from "../headers/GameHeaders";
 import IndicatorHeader, { EmptyHeader } from "../headers/IndicatorHeader";
-import DropdownIndicatorCell from "../cells/DropdownIndicatorCell";
 
-export default function ScoreTable<I extends IDStrings = IDStrings>({
+export default function ScoreTable({
 	dataset,
 	pageLen,
 	playtype,
@@ -28,18 +28,18 @@ export default function ScoreTable<I extends IDStrings = IDStrings>({
 	alg,
 	noTopDisplayStr,
 }: {
-	dataset: ScoreDataset<I>;
+	dataset: ScoreDataset;
 	pageLen?: integer;
 	playtype: Playtype;
 	userCol?: boolean;
 	game: Game;
-	alg?: ScoreCalculatedDataLookup[I];
+	alg?: AnyScoreRatingAlg;
 	noTopDisplayStr?: boolean;
 }) {
 	const defaultRating = useScoreRatingAlg(game, playtype);
 	const [rating, setRating] = useState(alg ?? defaultRating);
 
-	const headers: Header<ScoreDataset<I>[0]>[] = [
+	const headers: Header<ScoreDataset[0]>[] = [
 		ChartHeader(game, (k) => k.__related.chart),
 		IndicatorHeader,
 		["Song", "Song", StrSOV((x) => x.__related.song.title)],
@@ -74,15 +74,15 @@ export default function ScoreTable<I extends IDStrings = IDStrings>({
 	);
 }
 
-function Row<I extends IDStrings = IDStrings>({
+function Row({
 	sc,
 	rating,
 	playtype,
 	userCol,
 	game,
 }: {
-	sc: ScoreDataset<I>[0];
-	rating: ScoreCalculatedDataLookup[I];
+	sc: ScoreDataset[0];
+	rating: AnyScoreRatingAlg;
 	game: Game;
 	playtype: Playtype;
 	userCol: boolean;

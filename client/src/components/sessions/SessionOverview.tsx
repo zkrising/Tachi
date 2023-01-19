@@ -5,7 +5,7 @@ import ScoreTable from "components/tables/scores/ScoreTable";
 import Divider from "components/util/Divider";
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { GetGamePTConfig, ScoreDocument, SessionDocument } from "tachi-common";
+import { AnySessionRatingAlg, GetGamePTConfig, ScoreDocument, SessionDocument } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
 import { ScoreDataset } from "types/tables";
 import { SetState } from "types/react";
@@ -73,15 +73,15 @@ function RatingsOverview({ session }: { session: SessionDocument }) {
 			<Divider />
 			<Card header="Ratings">
 				<div className="d-flex text-center" style={{ justifyContent: "space-evenly" }}>
-					{gptConfig.sessionRatingAlgs.map((e) => (
+					{Object.keys(gptConfig.sessionRatingAlgs).map((e) => (
 						<div key={e}>
 							<div className="display-4">{UppercaseFirst(e)}</div>
 							<div style={{ fontSize: "1.2rem" }}>
 								{FormatSessionRating(
 									session.game,
 									session.playtype,
-									e,
-									session.calculatedData[e]
+									e as AnySessionRatingAlg,
+									session.calculatedData[e as AnySessionRatingAlg]
 								)}
 							</div>
 						</div>

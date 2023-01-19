@@ -134,7 +134,7 @@ export function CreateCGParser<T>(cgGame: CGSupportedGames, service: CGServices)
 			},
 			game: CGGameToTachiGame(cgGame),
 			iterable: scores as Array<T>,
-			classHandler: null,
+			classProvider: null,
 		};
 	};
 }

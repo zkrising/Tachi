@@ -1,6 +1,6 @@
 import { GetTableFromParam } from "../../../../../../games/_game/_playtype/tables/middleware";
 import { Router } from "express";
-import { GetFoldersFromTable, GetGradeLampDistributionForFolders } from "utils/folder";
+import { GetEnumDistForFolders, GetFoldersFromTable } from "utils/folder";
 import { GetTachiData, GetUGPT } from "utils/req-tachi-data";
 
 const router: Router = Router({ mergeParams: true });
@@ -19,7 +19,7 @@ router.get("/:tableID", GetTableFromParam, async (req, res) => {
 
 	// @optimisable - Requests a lot of charts we don't care about
 	// could be cached too, i guess.
-	const stats = await GetGradeLampDistributionForFolders(user.id, folders);
+	const stats = await GetEnumDistForFolders(user.id, folders);
 
 	return res.status(200).json({
 		success: true,

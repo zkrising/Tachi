@@ -19,10 +19,6 @@ function cfile(data: S3Score) {
 
 t.test("#ConvertFileS3", (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(() => {
-		// @ts-expect-error hacky just-incase.
-		delete MockParsedS3Score._id;
-	});
 
 	function mfile(merge: Partial<S3Score>) {
 		return cfile(deepmerge(MockParsedS3Score, merge));
@@ -34,8 +30,6 @@ t.test("#ConvertFileS3", (t) => {
 		importType: "file/solid-state-squad",
 		service: "Solid State Squad",
 		scoreData: {
-			// percent: 6.36, -- fpa
-			grade: "F",
 			score: 100,
 			lamp: "FULL COMBO",
 			judgements: {
@@ -45,7 +39,7 @@ t.test("#ConvertFileS3", (t) => {
 				bad: 0,
 				poor: 4,
 			},
-			hitMeta: {},
+			optional: {},
 		},
 		scoreMeta: {},
 
@@ -158,14 +152,6 @@ t.test("#ConvertFileS3", (t) => {
 	t.test("Should throw an invalidscore if the cleartype is invalid", (t) => {
 		t.rejects(mfile({ cleartype: "INVALID" } as unknown as S3Score), {
 			message: /Invalid cleartype of INVALID/u,
-		});
-
-		t.end();
-	});
-
-	t.test("Should throw an invalidscore if the exscore is greater than MAX", (t) => {
-		t.rejects(mfile({ exscore: 10000 }), {
-			message: /Invalid percent of 636/u,
 		});
 
 		t.end();

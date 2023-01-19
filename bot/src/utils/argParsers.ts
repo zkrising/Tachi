@@ -4,7 +4,7 @@ import { GetGamePTConfig } from "tachi-common";
 import type { DiscordUserMapDocument } from "../database/documents";
 import type { Emittable } from "../slashCommands/types";
 import type { CommandInteraction } from "discord.js";
-import type { Difficulties, Game, IDStrings, Playtype, UserDocument } from "tachi-common";
+import type { Difficulties, Game, GPTString, Playtype, UserDocument } from "tachi-common";
 
 /**
  * Utility parser for getting the game, playtype and requesting user, since this is
@@ -43,7 +43,7 @@ export function ParseDifficulty(
 	game: Game,
 	playtype: Playtype,
 	input: string | null
-): Difficulties[IDStrings] | null {
+): Difficulties[GPTString] | null {
 	if (input === null || game === "bms" || game === "pms") {
 		return null;
 	}

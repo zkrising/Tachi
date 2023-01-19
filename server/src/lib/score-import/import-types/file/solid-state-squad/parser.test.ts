@@ -60,7 +60,7 @@ t.test("#ParseSolidStateXML", (t) => {
 			"Should return the right scores in the iterable."
 		);
 		t.equal(res.game, "iidx", "Should return IIDX as the game.");
-		t.equal(res.classHandler, null, "Should return no class handler.");
+		t.equal(res.classProvider, null, "Should return no class handler.");
 		t.strictSame(res.context, {}, "Should return no context.");
 
 		t.end();
@@ -97,7 +97,7 @@ t.test("#ParseSolidStateXML", (t) => {
 			"Should return the right score in the iterable."
 		);
 		t.equal(res.game, "iidx", "Should return IIDX as the game.");
-		t.equal(res.classHandler, null, "Should return no class handler.");
+		t.equal(res.classProvider, null, "Should return no class handler.");
 		t.strictSame(res.context, {}, "Should return no context.");
 
 		t.end();
@@ -134,7 +134,7 @@ t.test("#ParseSolidStateXML", (t) => {
 			"Should return the right score in the iterable."
 		);
 		t.equal(res.game, "iidx", "Should return IIDX as the game.");
-		t.equal(res.classHandler, null, "Should return no class handler.");
+		t.equal(res.classProvider, null, "Should return no class handler.");
 		t.strictSame(res.context, {}, "Should return no context.");
 
 		t.end();

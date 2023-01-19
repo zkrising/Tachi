@@ -5,8 +5,8 @@ import Divider from "components/util/Divider";
 import Muted from "components/util/Muted";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
 import React from "react";
-import { BMS_TABLES, ChartDocument, COLOUR_SET, UGPTSettings } from "tachi-common";
-import TierlistInfoPart from "./TierlistInfoPart";
+import { BMS_TABLES, ChartDocument, COLOUR_SET, UGPTSettingsDocument } from "tachi-common";
+import RatingSystemPart from "./RatingSystemPart";
 
 export default function BMSOrPMSDifficultyCell({
 	chart,
@@ -15,7 +15,9 @@ export default function BMSOrPMSDifficultyCell({
 	chart: ChartDocument<"bms:7K" | "bms:14K" | "pms:Controller" | "pms:Keyboard">;
 	game: "bms" | "pms";
 }) {
-	const { settings } = useLUGPTSettings() as { settings: UGPTSettings<"bms:7K" | "bms:14K"> };
+	const { settings } = useLUGPTSettings() as {
+		settings: UGPTSettingsDocument<"bms:7K" | "bms:14K">;
+	};
 
 	const hasLevel = chart.data.tableFolders.length > 0;
 
@@ -31,10 +33,10 @@ export default function BMSOrPMSDifficultyCell({
 
 		if (settings?.preferences.gameSpecific.displayTables) {
 			filteredTables = tables.filter(
-				(e) => !settings.preferences.gameSpecific.displayTables.includes(e.table)
+				(e) => !settings.preferences.gameSpecific.displayTables!.includes(e.table)
 			);
 			tables = tables.filter((e) =>
-				settings.preferences.gameSpecific.displayTables.includes(e.table)
+				settings.preferences.gameSpecific.displayTables!.includes(e.table)
 			);
 		}
 
@@ -81,7 +83,7 @@ export default function BMSOrPMSDifficultyCell({
 				<span>{levelText}</span>
 			)}
 
-			<TierlistInfoPart chart={chart} game={game} />
+			<RatingSystemPart chart={chart} game={game} />
 		</td>
 	);
 }

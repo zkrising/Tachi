@@ -18,10 +18,10 @@ import {
 	GamePTConfig,
 	GetGameConfig,
 	GetGamePTConfig,
-	IDStrings,
+	GPTString,
 	PBScoreDocument,
 	UserDocument,
-	ScoreCalculatedDataLookup,
+	ScoreRatingAlgorithms,
 	ScoreDocument,
 	SongDocument,
 	UnsuccessfulAPIResponse,
@@ -77,7 +77,7 @@ export default function ScoresPage({
 				<Switch>
 					<Route exact path="/u/:userID/games/:game/:playtype/scores">
 						<>
-							{gptConfig.scoreRatingAlgs.length > 1 && (
+							{Object.keys(gptConfig.scoreRatingAlgs).length > 1 && (
 								<AlgSelector {...{ alg, setAlg, gptConfig }} />
 							)}
 							<PBsOverview
@@ -120,8 +120,8 @@ function AlgSelector({
 	setAlg,
 }: {
 	gptConfig: GamePTConfig;
-	alg: ScoreCalculatedDataLookup[IDStrings];
-	setAlg: SetState<ScoreCalculatedDataLookup[IDStrings]>;
+	alg: ScoreRatingAlgorithms[GPTString];
+	setAlg: SetState<ScoreRatingAlgorithms[GPTString]>;
 }) {
 	return (
 		<div className="row justify-content-center mb-4">
@@ -132,7 +132,7 @@ function AlgSelector({
 					value={alg}
 					onChange={(e) => setAlg(e.target.value as any)}
 				>
-					{gptConfig.scoreRatingAlgs.map((e) => (
+					{Object.keys(gptConfig.scoreRatingAlgs).map((e) => (
 						<option key={e}>{e}</option>
 					))}
 				</select>
@@ -172,7 +172,7 @@ function PBsOverview({
 	url: string;
 	indexCol?: boolean;
 	showPlaycount?: boolean;
-	alg?: ScoreCalculatedDataLookup[IDStrings];
+	alg?: ScoreRatingAlgorithms[GPTString];
 } & GamePT) {
 	const [search, setSearch] = useState("");
 
@@ -212,9 +212,9 @@ function PBsOverview({
 
 function FormatData<
 	D extends PBScoreDocument | ScoreDocument,
-	I extends IDStrings = IDStrings,
+	GPT extends GPTString = GPTString,
 	G extends Game = Game
->(d: D[], songs: SongDocument<G>[], charts: ChartDocument<I>[], reqUser: UserDocument) {
+>(d: D[], songs: SongDocument<G>[], charts: ChartDocument<GPT>[], reqUser: UserDocument) {
 	const songMap = new Map();
 	const chartMap = new Map();
 
@@ -266,7 +266,7 @@ function PBsSearch({
 }: {
 	reqUser: UserDocument;
 	search: string;
-	alg?: ScoreCalculatedDataLookup[IDStrings];
+	alg?: ScoreRatingAlgorithms[GPTString];
 } & GamePT) {
 	const { data, error } = useFetchPBs(
 		`/users/${reqUser.id}/games/${game}/${playtype}/pbs?search=${search}`,

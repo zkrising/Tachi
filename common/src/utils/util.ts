@@ -1,7 +1,22 @@
-import { GetGameConfig, GetGamePTConfig } from "../config/config";
-import type { ChartDocument, Game, IDStrings, Playtypes, SongDocument } from "..";
-import type { Grades, integer, PBScoreDocument } from "../types";
-import type { PrudenceError } from "prudence";
+import {
+	GetGPTString,
+	GetGameConfig,
+	GetGamePTConfig,
+	GetSpecificGPTConfig,
+} from "../config/config";
+import type { GradeBoundary } from "../constants/grade-boundaries";
+import type {
+	BMSCourseDocument,
+	ChartDocument,
+	GPTString,
+	GPTStrings,
+	Game,
+	Playtypes,
+	SongDocument,
+	integer,
+} from "../types";
+import type { PrudenceError, ValidSchemaValue } from "prudence";
+import type { AnyZodObject } from "zod";
 
 export function FormatInt(v: number): string {
 	return Math.floor(v).toFixed(0);
@@ -23,9 +38,20 @@ export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 	}
 
 	if (game === "gitadora") {
-		const gptConfig = GetGamePTConfig(game, chart.playtype);
+		const ch = chart as ChartDocument<GPTStrings["gitadora"]>;
 
-		const shortDiff = gptConfig.shortDifficulties[chart.difficulty] ?? chart.difficulty;
+		const gptConfig = GetSpecificGPTConfig<GPTStrings["gitadora"]>(
+			GetGPTString(game, chart.playtype) as GPTStrings["gitadora"]
+		);
+
+		// @ts-expect-error maybe this new config format was a mistake.
+		// it's complaining that since the dora config doesn't have shorthand for
+		// "BASS BASIC", this assignment may fail.
+		// it's technically correct, but in the worst way, since this isn't
+		// actually possible.
+		// todo: come up with something better.
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+		const shortDiff = gptConfig.difficulties.difficultyShorthand[ch.difficulty];
 
 		// gitadora should always use short diffs. they just look better.
 		return `${shortDiff} ${chart.level}`;
@@ -33,7 +59,7 @@ export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 
 	const gameConfig = GetGameConfig(game);
 
-	if (gameConfig.validPlaytypes.length > 1) {
+	if (gameConfig.playtypes.length > 1) {
 		return `${chart.playtype} ${chart.difficulty} ${chart.level}`;
 	}
 
@@ -54,9 +80,14 @@ export function FormatDifficultyShort(chart: ChartDocument, game: Game): string 
 		return `S${itgChart.data.difficultyTag} ${chart.level}`;
 	}
 
-	const shortDiff = gptConfig.shortDifficulties[chart.difficulty] ?? chart.difficulty;
+	if (gptConfig.difficulties.type === "DYNAMIC") {
+		// TODO cap string length
+		return `${chart.difficulty} ${chart.level}`;
+	}
 
-	if (gameConfig.validPlaytypes.length === 1 || game === "gitadora") {
+	const shortDiff = gptConfig.difficulties.shorthand[chart.difficulty] ?? chart.difficulty;
+
+	if (gameConfig.playtypes.length === 1 || game === "gitadora") {
 		return `${shortDiff} ${chart.level}`;
 	}
 
@@ -70,7 +101,7 @@ export function FormatDifficultyShort(chart: ChartDocument, game: Game): string 
 export function FormatGame(game: Game, playtype: Playtypes[Game]): string {
 	const gameConfig = GetGameConfig(game);
 
-	if (gameConfig.validPlaytypes.length === 1) {
+	if (gameConfig.playtypes.length === 1) {
 		return gameConfig.name;
 	}
 
@@ -84,7 +115,7 @@ export function FormatChart(
 	short = false
 ): string {
 	if (game === "bms") {
-		const tables = (chart as ChartDocument<"bms:7K" | "bms:14K">).data.tableFolders;
+		const tables = (chart as ChartDocument<GPTStrings["bms"]>).data.tableFolders;
 
 		const bmsSong = song as SongDocument<"bms">;
 
@@ -104,7 +135,7 @@ export function FormatChart(
 
 		return `${realTitle} (${tables.map((e) => `${e.table}${e.level}`).join(", ")})`;
 	} else if (game === "usc") {
-		const uscChart = chart as ChartDocument<"usc:Controller" | "usc:Keyboard">;
+		const uscChart = chart as ChartDocument<GPTStrings["usc"]>;
 
 		// If this chart isn't an official, render it differently
 		if (!uscChart.data.isOfficial) {
@@ -136,15 +167,21 @@ export function FormatChart(
 
 	let playtypeStr = `${chart.playtype}`;
 
-	if (gameConfig.validPlaytypes.length === 1) {
+	if (gameConfig.playtypes.length === 1) {
 		playtypeStr = "";
 	}
 
 	const gptConfig = GetGamePTConfig(game, chart.playtype);
 
-	const diff = short
-		? gptConfig.shortDifficulties[chart.difficulty] ?? chart.difficulty
-		: chart.difficulty;
+	let diff: string;
+
+	if (gptConfig.difficulties.type === "DYNAMIC") {
+		diff = chart.difficulty;
+	} else if (short) {
+		diff = gptConfig.difficulties.shorthand[chart.difficulty] ?? chart.difficulty;
+	} else {
+		diff = chart.difficulty;
+	}
 
 	// iidx formats things like SPA instead of SP A.
 	// this is a hack, this should be part of the gptConfig, tbh.
@@ -165,59 +202,44 @@ export function FormatChart(
 	return `${song.title} (${playtypeStr}${space}${diff} ${chart.level})`;
 }
 
-export function AbsoluteGradeDelta<I extends IDStrings = IDStrings>(
-	game: Game,
-	playtype: Playtypes[Game],
-	score: number,
-	percent: number,
-	gradeOrIndex: Grades[I] | integer
-): number {
-	const gptConfig = GetGamePTConfig(game, playtype);
+/**
+ * Run a zod schema inside prudence.
+ */
+export function PrudenceZodShim(zodSchema: AnyZodObject): ValidSchemaValue {
+	return (self) => {
+		const res = zodSchema.safeParse(self);
 
-	const maxScore = Math.round(score * (100 / percent));
+		if (res.success) {
+			return true;
+		}
 
-	const gradeIndex =
-		typeof gradeOrIndex === "number" ? gradeOrIndex : gptConfig.grades.indexOf(gradeOrIndex);
-
-	const gradeValue = gptConfig.gradeBoundaries[gradeIndex];
-
-	if (gradeValue === undefined) {
-		throw new Error(`Grade Index ${gradeIndex} has no corresponding grade value?`);
-	}
-
-	const gradeScore = Math.ceil((gradeValue / 100) * maxScore);
-
-	return score - gradeScore;
+		return res.error.message;
+	};
 }
 
-export function RelativeGradeDelta<I extends IDStrings = IDStrings>(
-	game: Game,
-	playtype: Playtypes[Game],
-	score: number,
-	percent: number,
-	grade: Grades[I],
-	relativeIndex: integer
-): { grade: string; delta: number } | null {
-	const gptConfig = GetGamePTConfig(game, playtype);
+/**
+ * Formats a number (14100) into "14K".
+ */
+export function FmtNumCompact(num: number) {
+	return Intl.NumberFormat("en", { notation: "compact" }).format(num);
+}
 
-	const nextGradeIndex = gptConfig.grades.indexOf(grade) + relativeIndex;
+/**
+ * Formats a number (14100) into "14,100"
+ */
+export function FmtNum(num: number) {
+	return num.toLocaleString();
+}
 
-	if (nextGradeIndex < 0 || nextGradeIndex >= gptConfig.grades.length) {
-		return null;
-	}
+export function FmtPercent(v: number, dp = 2) {
+	return `${v.toFixed(dp)}%`;
+}
 
-	const nextGrade = gptConfig.grades[nextGradeIndex];
-
-	if (nextGrade === undefined) {
-		throw new Error(
-			`Unexpectedly found no grade at index ${nextGradeIndex} for ${game} ${playtype}.`
-		);
-	}
-
-	return {
-		grade: nextGrade,
-		delta: AbsoluteGradeDelta(game, playtype, score, percent, nextGradeIndex),
-	};
+/**
+ * Turns a number of 12834 into "12834" instead of "12,834".
+ */
+export function FmtScoreNoCommas(v: number) {
+	return v.toString();
 }
 
 function WrapGrade(grade: string) {
@@ -228,31 +250,52 @@ function WrapGrade(grade: string) {
 	return grade;
 }
 
-type FormatGradeDeltaReturns =
-	| {
-			lower: string;
-			upper: string;
-			closer: "upper";
-	  }
-	| {
-			lower: string;
-			upper?: string;
-			closer: "lower";
-	  };
+function RelativeGradeDelta<G extends string>(
+	gradeBoundaries: Array<GradeBoundary<G>>,
+	scoreGrade: G,
+	scoreValue: number,
+	// Positive number means higher grade, etc.
+	relativeIndex: number
+) {
+	const gradeBoundary =
+		gradeBoundaries[gradeBoundaries.findIndex((e) => e.name === scoreGrade) + relativeIndex];
 
-export function GenericFormatGradeDelta<I extends IDStrings = IDStrings>(
-	game: Game,
-	playtype: Playtypes[Game],
-	score: number,
-	percent: number,
-	grade: Grades[I],
-	formatNumFn: (n: number) => string = (s) => s.toString()
-): FormatGradeDeltaReturns {
-	const upper = RelativeGradeDelta(game, playtype, score, percent, grade, 1);
-	const lower = AbsoluteGradeDelta(game, playtype, score, percent, grade);
+	if (!gradeBoundary) {
+		return null;
+	}
 
-	const formatLower = `${WrapGrade(grade)}+${formatNumFn(lower)}`;
+	return AbsoluteGradeDelta(gradeBoundary, scoreValue);
+}
 
+function AbsoluteGradeDelta<G extends string>(gradeBoundary: GradeBoundary<G>, scoreValue: number) {
+	return {
+		grade: gradeBoundary.name,
+		delta: scoreValue - gradeBoundary.lowerBound,
+	};
+}
+
+export function GetGradeDeltas<G extends string>(
+	gradeBoundaries: Array<GradeBoundary<G>>,
+	scoreGrade: G,
+	scoreValue: number,
+	formatNumFn = FmtNumCompact
+) {
+	const scoreGradeBoundary = gradeBoundaries.find((e) => e.name === scoreGrade);
+
+	if (!scoreGradeBoundary) {
+		throw new Error(
+			`Passed a scoreGrade of ${scoreGrade} but no such boundary exists in ${gradeBoundaries
+				.map((e) => e.name)
+				.join(", ")}`
+		);
+	}
+
+	const upper = RelativeGradeDelta(gradeBoundaries, scoreGrade, scoreValue, 1);
+	const lower = AbsoluteGradeDelta(scoreGradeBoundary, scoreValue);
+
+	const formatLower = `${WrapGrade(lower.grade)}+${formatNumFn(lower.delta)}`;
+
+	// there might be *no* grade above this one, in this case lower obviously wins.
 	if (!upper) {
 		return {
 			lower: formatLower,
@@ -260,14 +303,15 @@ export function GenericFormatGradeDelta<I extends IDStrings = IDStrings>(
 		};
 	}
 
+	// this will automatically have a - separating the two.
 	const formatUpper = `${WrapGrade(upper.grade)}${formatNumFn(upper.delta)}`;
 
 	// are we closer to the lower bound, or the upper one?
-	let closer: "lower" | "upper" = upper.delta + lower < 0 ? "lower" : "upper";
+	let closer: "lower" | "upper" = upper.delta + lower.delta < 0 ? "lower" : "upper";
 
-	// lovely hardcoded exception for IIDX - (MAX-)+ is always a stupid metric
+	// lovely hardcoded exception for IIDXLikes - (MAX-)+ is always a stupid metric
 	// so always mute it.
-	if (game === "iidx" && formatLower.startsWith("(MAX-)+")) {
+	if (formatLower.startsWith("(MAX-)+")) {
 		closer = "upper";
 	}
 
@@ -278,20 +322,16 @@ export function GenericFormatGradeDelta<I extends IDStrings = IDStrings>(
 	};
 }
 
-export function GetCloserGradeDelta<I extends IDStrings = IDStrings>(
-	game: Game,
-	playtype: Playtypes[Game],
-	score: number,
-	percent: number,
-	grade: Grades[I],
-	formatNumFn: (n: number) => string = (s) => s.toString()
+export function GetCloserGradeDelta<G extends string>(
+	gradeBoundaries: Array<GradeBoundary<G>>,
+	scoreGrade: G,
+	scoreValue: number,
+	formatNumFn = FmtNumCompact
 ): string {
-	const { lower, upper, closer } = GenericFormatGradeDelta(
-		game,
-		playtype,
-		score,
-		percent,
-		grade,
+	const { lower, upper, closer } = GetGradeDeltas(
+		gradeBoundaries,
+		scoreGrade,
+		scoreValue,
 		formatNumFn
 	);
 
@@ -299,7 +339,7 @@ export function GetCloserGradeDelta<I extends IDStrings = IDStrings>(
 		// this type assertion is unecessary in theory, but in practice older versions
 		// of TS aren't happy with it.
 		// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-		return upper as string;
+		return upper!;
 	}
 
 	return lower;
@@ -315,8 +355,10 @@ export function CreateSongMap<G extends Game = Game>(songs: Array<SongDocument<G
 	return songMap;
 }
 
-export function CreateChartMap<I extends IDStrings = IDStrings>(charts: Array<ChartDocument<I>>) {
-	const chartMap = new Map<string, ChartDocument<I>>();
+export function CreateChartMap<GPT extends GPTString = GPTString>(
+	charts: Array<ChartDocument<GPT>>
+) {
+	const chartMap = new Map<string, ChartDocument<GPT>>();
 
 	for (const chart of charts) {
 		chartMap.set(chart.chartID, chart);
@@ -339,65 +381,32 @@ export function FormatPrError(err: PrudenceError, foreword = "Error"): string {
 	return `${foreword}: ${err.keychain} | ${err.message}${receivedText}.`;
 }
 
-// games that have funny relative grades, basically.
-type IIDXBMSGPTs = "bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP" | "pms:Controller" | "pms:Keyboard";
-export function IIDXBMSGradeGoalFormatter(pb: PBScoreDocument<IIDXBMSGPTs>) {
-	const { closer, lower, upper } = GenericFormatGradeDelta(
-		pb.game,
-		pb.playtype,
-		pb.scoreData.score,
-		pb.scoreData.percent,
-		pb.scoreData.grade
-	);
+export function GetBMSCourseIndex(course: BMSCourseDocument) {
+	const gptConf = GetGamePTConfig("bms", course.playtype);
 
-	// if upper doesn't exist, we have to return lower (this is a MAX)
-	// or something.
-	if (!upper) {
-		return lower;
+	const cls = gptConf.classes[course.set];
+
+	if (!cls) {
+		throw new Error(
+			`Invalid BMSCourse set of ${course.set}. No classes are defined for this set.`
+		);
 	}
 
-	// if the upper bound is relevant to the grade we're looking for
-	// i.e. the goal is to AAA a chart and the user has AA+20/AAA-100
-	// prefer AAA-100 instead of AA+20.
-	if (upper.startsWith(`${pb.scoreData.grade}-`)) {
-		return upper;
-	}
-
-	// otherwise, return whichever is closer.
-	return closer === "lower" ? lower : upper;
+	return cls.values.findIndex((e) => e.id === course.value);
 }
 
-export function GradeGoalFormatter(pb: PBScoreDocument) {
-	const { closer, lower, upper } = GenericFormatGradeDelta(
-		pb.game,
-		pb.playtype,
-		pb.scoreData.score,
-		pb.scoreData.percent,
-		pb.scoreData.grade
-	);
+/**
+ * Util for getting a games' grade for a given score.
+ */
+export function GetGrade<G extends string>(grades: Array<GradeBoundary<G>>, score: number): G {
+	// sort grades going downwards in their boundaries.
+	const descendingGrades = grades.slice(0).sort((a, b) => b.lowerBound - a.lowerBound);
 
-	// if upper doesn't exist, we have to return lower (this is a MAX)
-	// or something.
-	if (!upper) {
-		return lower;
+	for (const { name, lowerBound } of descendingGrades) {
+		if (score >= lowerBound) {
+			return name;
+		}
 	}
 
-	// if the upper bound is relevant to the grade we're looking for
-	// i.e. the goal is to AAA a chart and the user has AA+20/AAA-100
-	// prefer AAA-100 instead of AA+20.
-	if (upper.startsWith(`${pb.scoreData.grade}-`)) {
-		return upper;
-	}
-
-	// otherwise, return whichever is closer.
-	return closer === "lower" ? lower : upper;
-}
-
-// For games with 'BP', show that next to the clear.
-export function IIDXBMSLampGoalFormatter(pb: PBScoreDocument<IIDXBMSGPTs>) {
-	if (typeof pb.scoreData.hitMeta.bp === "number") {
-		return `${pb.scoreData.lamp} (BP: ${pb.scoreData.hitMeta.bp})`;
-	}
-
-	return pb.scoreData.lamp;
+	throw new Error(`Could not resolve grade for score ${score}.`);
 }

@@ -1,24 +1,13 @@
 import { UppercaseFirst } from "util/misc";
 import React from "react";
-import {
-	Game,
-	GetGamePTConfig,
-	IDStrings,
-	Playtypes,
-	ScoreCalculatedDataLookup,
-} from "tachi-common";
+import { Game, GetGamePTConfig, GPTString, Playtypes, ScoreRatingAlgorithms } from "tachi-common";
 import { SetState } from "types/react";
 import { ZTableTHProps } from "./TachiTable";
-
-// type AllRatings<I extends IDStrings> =
-// 	| ScoreCalculatedDataLookup[I]
-// 	| SessionCalculatedDataLookup[I]
-// 	| UGSRatingsLookup[I];
 
 // hack to get everything to work
 type AllRatings<I> = any;
 
-export default function SelectableRating<I extends IDStrings>({
+export default function SelectableRating<GPT extends GPTString>({
 	game,
 	playtype,
 	rating,
@@ -30,8 +19,8 @@ export default function SelectableRating<I extends IDStrings>({
 }: {
 	game: Game;
 	playtype: Playtypes[Game];
-	rating: AllRatings<I>;
-	setRating: SetState<AllRatings<I>>;
+	rating: AllRatings<GPT>;
+	setRating: SetState<AllRatings<GPT>>;
 	mode?: "score" | "session" | "profile";
 } & ZTableTHProps) {
 	const gptConfig = GetGamePTConfig(game, playtype);
@@ -48,7 +37,7 @@ export default function SelectableRating<I extends IDStrings>({
 	return (
 		<th>
 			<select
-				onChange={(v) => setRating(v.target.value as AllRatings<I>)}
+				onChange={(v) => setRating(v.target.value as AllRatings<GPT>)}
 				value={rating}
 				style={{
 					backgroundColor: "#131313",
@@ -59,7 +48,7 @@ export default function SelectableRating<I extends IDStrings>({
 					textAlign: "center",
 				}}
 			>
-				{gptConfig[key].map((s) => (
+				{Object.keys(gptConfig[key]).map((s) => (
 					<option key={s} value={s}>
 						{UppercaseFirst(s)}
 					</option>

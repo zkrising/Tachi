@@ -19,6 +19,8 @@ export const CreateMulterSingleUploadMiddleware = (
 
 	return (req, res, next) => {
 		UploadMW(req, res, (err: unknown) => {
+			// this use is fine... ish.. probably.
+			// eslint-disable-next-line cadence/no-instanceof
 			if (err instanceof MulterError) {
 				logger.info(`Multer Error.`, { err });
 

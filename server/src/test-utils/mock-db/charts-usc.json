@@ -1,6 +1,6 @@
 [
 	{
-		"rgcID": null,
+		
 		"chartID": "USC_CHART_ID",
 		"difficulty": "NOV",
 		"songID": 1,
@@ -12,7 +12,6 @@
 			"hashSHA1": "USC_CHART_HASH"
 		},
 		"isPrimary": true,
-		"versions": [],
-		"tierlistInfo": {}
+		"versions": []
 	}
 ]

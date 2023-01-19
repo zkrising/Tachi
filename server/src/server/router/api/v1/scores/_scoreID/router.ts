@@ -28,8 +28,8 @@ router.get("/", async (req, res) => {
 	if (req.query.getRelated !== undefined) {
 		const [user, chart, song] = await Promise.all([
 			GetUserWithID(score.userID),
-			db.charts[score.game].findOne({ chartID: score.chartID }),
-			db.songs[score.game].findOne({ id: score.songID }),
+			db.anyCharts[score.game].findOne({ chartID: score.chartID }),
+			db.anySongs[score.game].findOne({ id: score.songID }),
 		]);
 
 		if (!user || !chart || !song) {

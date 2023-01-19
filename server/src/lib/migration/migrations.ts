@@ -4,18 +4,18 @@ import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
 import FixUndefinedBMSData from "./migrations/fix-undefined-bms-data";
 import JoinINFCastHourCharts from "./migrations/join-inf-casthour-charts";
 import JoinINFCastHourSongs from "./migrations/join-inf-casthour-songs";
-import JubeatMusicRate1DP from "./migrations/jubeat-musicrate-1dp";
 import KtRatingToCuratorSkill from "./migrations/ktRating-to-curator-skill";
 import MarkFervidexAsWithoutIntent from "./migrations/mark-fervidex-as-without-intent";
 import MarkKsHookAsWithoutIntent from "./migrations/mark-kshook-as-without-intent";
 import NullLR2HookFailedBPs from "./migrations/null-lr2hook-failed-bps";
-import RecalcBrokenIIDXNotecounts from "./migrations/recalc-broken-iidx-notecounts";
 import RemoveIIDXBeginners from "./migrations/remove-iidx-beginners";
 import RemoveMultifolderStats from "./migrations/remove-multifolder-stats";
 import RemoveRandom from "./migrations/remove-random";
 import RemoveSessionViews from "./migrations/remove-session-views";
 import SessionsToScoreIDs from "./migrations/sessions-to-scoreIDs";
 import UpdateJubeatPreferredTables from "./migrations/update-jubeat-preferred-tables";
+import V3PropsMigration from "./migrations/v3-props";
+import V3ScoresMigration from "./migrations/v3-scores";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, TachiConfig } from "lib/setup/config";
@@ -47,6 +47,8 @@ const REGISTERED_MIGRATIONS: Array<Migration> =
 				UserFollowersMigration,
 				RemoveSessionViews,
 				SessionsToScoreIDs,
+				V3PropsMigration,
+				V3ScoresMigration,
 		  ];
 
 // only apply type-specific migrations if we're not in testing
@@ -54,14 +56,12 @@ if (Environment.nodeEnv !== "test") {
 	// kamaitachi specific migrations
 	if (TachiConfig.TYPE !== "btchi") {
 		REGISTERED_MIGRATIONS.push(
-			RecalcBrokenIIDXNotecounts,
 			RemoveIIDXBeginners,
 			UpdateJubeatPreferredTables,
 			JoinINFCastHourCharts,
 			JoinINFCastHourSongs,
 			MarkFervidexAsWithoutIntent,
 			MarkKsHookAsWithoutIntent,
-			JubeatMusicRate1DP,
 			KtRatingToCuratorSkill
 		);
 	}

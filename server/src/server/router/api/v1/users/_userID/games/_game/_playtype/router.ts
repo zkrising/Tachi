@@ -30,7 +30,13 @@ import {
 	GetUsersRankingAndOutOf,
 	GetUsersWithIDs,
 } from "utils/user";
-import type { integer, PBScoreDocument, UserGameStatsSnapshot } from "tachi-common";
+import type {
+	integer,
+	PBScoreDocument,
+	UserGameStatsSnapshotDocument,
+	GPTString,
+	ProfileRatingAlgorithms,
+} from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -155,17 +161,18 @@ router.get(
 					playtype: 0,
 				},
 			}
-		)) as Array<Omit<UserGameStatsSnapshot, "game" | "playtype" | "userID">>;
+		)) as Array<Omit<UserGameStatsSnapshotDocument, "game" | "playtype" | "userID">>;
 
-		const currentSnapshot: Omit<UserGameStatsSnapshot, "game" | "playtype" | "userID"> = {
-			classes: stats.classes,
-			ratings: stats.ratings,
+		const currentSnapshot: Omit<UserGameStatsSnapshotDocument, "game" | "playtype" | "userID"> =
+			{
+				classes: stats.classes,
+				ratings: stats.ratings,
 
-			// lazy, should probably be this midnight
-			timestamp: Date.now(),
-			playcount: await GetUGPTPlaycount(user.id, game, playtype),
-			rankings: await GetAllRankings(stats),
-		};
+				// lazy, should probably be this midnight
+				timestamp: Date.now(),
+				playcount: await GetUGPTPlaycount(user.id, game, playtype),
+				rankings: await GetAllRankings(stats),
+			};
 
 		return res.status(200).json({
 			success: true,
@@ -215,8 +222,8 @@ router.get("/most-played", async (req, res) => {
 	const songIDs = mostPlayed.map((e) => e.songID);
 
 	const [songs, charts, pbs] = await Promise.all([
-		await db.songs[game].find({ id: { $in: songIDs } }),
-		await db.charts[game].find({ chartID: { $in: chartIDs } }),
+		await db.anySongs[game].find({ id: { $in: songIDs } }),
+		await db.anyCharts[game].find({ chartID: { $in: chartIDs } }),
 		await db["personal-bests"].find({ chartID: { $in: chartIDs }, userID: user.id }),
 	]);
 
@@ -269,7 +276,7 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 				success: false,
 				description: `Invalid value of ${
 					req.query.alg
-				} for alg. Expected one of ${gptConfig.profileRatingAlgs.join(", ")}`,
+				} for alg. Expected one of ${Object.keys(gptConfig.profileRatingAlgs).join(", ")}`,
 			});
 		}
 

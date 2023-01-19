@@ -6,7 +6,7 @@ import { EvaluateUsersStatsShowcase } from "lib/showcase/get-stats";
 import { p } from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
 import { RequireAuthedAsUser } from "server/router/api/v1/users/_userID/middleware";
-import { FormatGame, GetGamePTConfig } from "tachi-common";
+import { FormatGame, GetGPTString, GetGamePTConfig, GetScoreMetrics } from "tachi-common";
 import { IsRecord } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
 import { GetUGPT } from "utils/req-tachi-data";
@@ -53,24 +53,29 @@ router.get("/", async (req, res) => {
  * Evalulate a custom stat on this user.
  *
  * @param mode - "folder" or "chart"
- * @param property - "grade" | "lamp" | "score" | "percent" and "playcount" if mode is chart.
+ * @param metric - "any score metric for this game (i.e. non-optional).
+ * Also, "playcount" if mode is chart.
  * @param chartID - If mode is "chart" this must contain the chartID the stat is referencing.
  * @param folderID - If mode is "folder" this must contain the folderID the stat is referencing.
- * @param gte - If mode is "folder" this must contain the value the property must be greater than.
+ * @param gte - If mode is "folder" this must contain the value the metric must be greater than.
  *
  * @name GET /api/v1/users/:userID/games/:game/:playtype/showcase/custom
  */
 router.get("/custom", async (req, res) => {
 	const { user, game, playtype } = GetUGPT(req);
 
+	const gptConfig = GetGamePTConfig(game, playtype);
+
 	let stat: ShowcaseStatDetails;
+
+	const availableMetrics = GetScoreMetrics(gptConfig, ["DECIMAL", "ENUM", "INTEGER"]);
 
 	if (req.query.mode === "folder") {
 		const err = p(
 			req.query,
 			{
 				mode: p.is("folder"),
-				property: p.isIn("grade", "lamp", "score", "percent"),
+				metric: p.isIn(availableMetrics),
 				folderID: "string",
 
 				// lazy regex for matching strings that look like numbers
@@ -103,7 +108,7 @@ router.get("/custom", async (req, res) => {
 
 		stat = {
 			mode: "folder",
-			property: req.query.property as "grade" | "lamp" | "percent" | "score",
+			metric: req.query.metric as string,
 			folderID,
 			gte: Number(req.query.gte),
 		};
@@ -112,7 +117,7 @@ router.get("/custom", async (req, res) => {
 			req.query,
 			{
 				mode: p.is("chart"),
-				property: p.isIn("grade", "lamp", "score", "percent", "playcount"),
+				metric: p.isIn(...availableMetrics, "playcount"),
 				chartID: "string",
 			},
 			{},
@@ -126,7 +131,7 @@ router.get("/custom", async (req, res) => {
 			});
 		}
 
-		const chart = await db.charts[game].findOne({ chartID: req.query.chartID as string });
+		const chart = await db.anyCharts[game].findOne({ chartID: req.query.chartID as string });
 
 		if (!chart || chart.playtype !== playtype) {
 			return res.status(400).json({
@@ -137,7 +142,7 @@ router.get("/custom", async (req, res) => {
 
 		stat = {
 			mode: "chart",
-			property: req.query.property as "grade" | "lamp" | "percent" | "playcount" | "score",
+			metric: req.query.metric as string,
 			chartID: req.query.chartID as string,
 		};
 	} else {
@@ -147,7 +152,9 @@ router.get("/custom", async (req, res) => {
 		});
 	}
 
-	const result = await EvaluateShowcaseStat(stat, user.id);
+	const gpt = GetGPTString(game, playtype);
+
+	const result = await EvaluateShowcaseStat(gpt, stat, user.id);
 
 	const related = await GetRelatedStatDocuments(stat, game);
 
@@ -184,6 +191,8 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 
 	const stats = req.safeBody as Array<unknown>;
 
+	const availableMetrics = GetScoreMetrics(gptConfig, ["DECIMAL", "ENUM", "INTEGER"]);
+
 	for (const unvalidatedStat of stats) {
 		let err;
 
@@ -198,7 +207,7 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 			err = p(unvalidatedStat, {
 				chartID: "string",
 				mode: p.is("chart"),
-				property: p.isIn("grade", "lamp", "score", "percent", "playcount"),
+				metric: p.isIn(...availableMetrics, "playcount"),
 			});
 		} else if (unvalidatedStat.mode === "folder") {
 			err = p(unvalidatedStat, {
@@ -212,24 +221,40 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 					return false;
 				},
 				mode: p.is("folder"),
-				property: p.isIn("grade", "lamp", "score", "percent"),
+				metric: p.isIn(availableMetrics),
 
 				gte: (self, parent) => {
 					if (typeof self !== "number") {
 						return "Expected a number.";
 					}
 
-					if (parent.property === "grade") {
-						return !!gptConfig.grades[self];
-					} else if (parent.property === "lamp") {
-						return !!gptConfig.lamps[self];
-					} else if (parent.property === "score") {
-						return p.isPositive(self);
-					} else if (parent.property === "percent") {
-						return p.isBetween(0, gptConfig.percentMax)(self);
+					if (typeof parent.metric !== "string") {
+						return `Expected parent.metric to be a string.`;
 					}
 
-					return `Invalid property of ${parent.property}`;
+					const conf =
+						gptConfig.providedMetrics[parent.metric] ??
+						gptConfig.derivedMetrics[parent.metric];
+
+					if (!conf) {
+						return `Invalid metric ${
+							parent.metric
+						}, Expected any of ${availableMetrics.join(", ")}.`;
+					}
+
+					if (conf.type === "ENUM") {
+						return p.isBoundedInteger(0, conf.values.length - 1)(self);
+					}
+
+					if (conf.type === "GRAPH" || conf.type === "NULLABLE_GRAPH") {
+						return "Cannot set a showcase stat for this metric.";
+					}
+
+					if (conf.chartDependentMax) {
+						return `Cannot set a folder showcase goal for this metric as it is chart dependent.`;
+					}
+
+					return conf.validate(self);
 				},
 			});
 		} else {
@@ -250,7 +275,7 @@ router.put("/", RequireAuthedAsUser, RequirePermissions("customise_profile"), as
 
 		if (stat.mode === "chart") {
 			// eslint-disable-next-line no-await-in-loop
-			const chart = await db.charts[game].findOne({ chartID: stat.chartID });
+			const chart = await db.anyCharts[game].findOne({ chartID: stat.chartID });
 
 			if (!chart || chart.playtype !== playtype) {
 				return res.status(400).json({

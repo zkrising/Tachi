@@ -3,10 +3,7 @@ import {
 	InvalidScoreFailure,
 	SongOrChartNotFoundFailure,
 } from "../../../../framework/common/converter-failures";
-import {
-	GenericGetGradeAndPercent,
-	ParseDateFromString,
-} from "../../../../framework/common/score-utils";
+import { ParseDateFromString } from "../../../../framework/common/score-utils";
 import { p } from "prudence";
 import { FormatPrError } from "utils/prudence";
 import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
@@ -14,7 +11,8 @@ import { FindSongOnID } from "utils/queries/songs";
 import type { DryScore } from "../../../../framework/common/types";
 import type { ConverterFunction } from "../../types";
 import type { KaiContext, KaiSDVXScore } from "../types";
-import type { Lamps } from "tachi-common";
+import type { Versions } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 
 const PR_KAI_SDVX_SCORE = {
 	music_id: p.isPositiveInteger,
@@ -70,8 +68,6 @@ export const ConvertAPIKaiSDVX: ConverterFunction<unknown, KaiContext> = async (
 
 	const lamp = ResolveKaiLamp(score.clear_type);
 
-	const { percent, grade } = GenericGetGradeAndPercent("sdvx", score.score, chart);
-
 	const timeAchieved = ParseDateFromString(score.timestamp);
 
 	const dryScore: DryScore<"sdvx:Single"> = {
@@ -81,8 +77,6 @@ export const ConvertAPIKaiSDVX: ConverterFunction<unknown, KaiContext> = async (
 		timeAchieved,
 		service: context.service,
 		scoreData: {
-			grade,
-			percent,
 			score: score.score,
 			lamp,
 			judgements: {
@@ -90,7 +84,7 @@ export const ConvertAPIKaiSDVX: ConverterFunction<unknown, KaiContext> = async (
 				near: score.near,
 				miss: score.error,
 			},
-			hitMeta: {
+			optional: {
 				fast: score.early,
 				slow: score.late,
 				gauge: score.gauge_rate,
@@ -120,7 +114,7 @@ export function ConvertDifficulty(diff: number) {
 	throw new InvalidScoreFailure(`Invalid difficulty of ${diff} - Could not convert.`);
 }
 
-export function ConvertVersion(ver: number) {
+export function ConvertVersion(ver: number): Versions["sdvx:Single"] {
 	switch (ver) {
 		case 1:
 			return "booth";
@@ -139,7 +133,7 @@ export function ConvertVersion(ver: number) {
 	throw new InvalidScoreFailure(`Unknown Game Version ${ver}.`);
 }
 
-export function ResolveKaiLamp(clear: number): Lamps["sdvx:Single"] {
+export function ResolveKaiLamp(clear: number): GetEnumValue<"sdvx:Single", "lamp"> {
 	switch (clear) {
 		case 1:
 			return "FAILED";

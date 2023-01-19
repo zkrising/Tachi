@@ -1,4 +1,5 @@
 import { Converters } from "../../import-types/converters";
+import { IsConverterFailure } from "../common/converter-failures";
 import { HandlePostImportSteps } from "../score-importing/score-import-main";
 import { ProcessSuccessfulConverterReturn } from "../score-importing/score-importing";
 import db from "external/mongo/db";
@@ -135,13 +136,24 @@ export async function ReprocessOrphan(
 	await db["orphan-scores"].remove({ orphanID: orphan.orphanID });
 
 	// else, import the orphan.
-	const converterReturns = await ProcessSuccessfulConverterReturn(
-		orphan.userID,
-		res,
-		blacklist,
-		logger,
-		true
-	);
+
+	let converterReturns;
+
+	try {
+		converterReturns = await ProcessSuccessfulConverterReturn(
+			orphan.userID,
+			res,
+			blacklist,
+			logger,
+			true
+		);
+	} catch (err) {
+		if (IsConverterFailure(err) && err.failureType === "InvalidScore") {
+			return null;
+		}
+
+		throw err;
+	}
 
 	if (converterReturns === null || !converterReturns.success) {
 		return null;

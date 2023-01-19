@@ -110,7 +110,7 @@ router.post("/score/export", async (req, res) => {
 
 	const settings = await db["kshook-sv6c-settings"].findOne({ userID });
 
-	if (!settings || !settings.forceStaticImport) {
+	if (!settings?.forceStaticImport) {
 		return res.status(200).json({
 			success: true,
 			description: "Static importing is disabled. Ignoring static import request.",

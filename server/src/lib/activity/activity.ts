@@ -15,7 +15,7 @@ import type {
 	Game,
 	GoalDocument,
 	GoalSubscriptionDocument,
-	IDStrings,
+	GPTString,
 	Playtype,
 	QuestDocument,
 	QuestSubscriptionDocument,
@@ -171,7 +171,7 @@ export async function GetRecentActivityForMultipleGames(
 	startFrom: number | null = null
 ) {
 	// { "iidx:SP": {recentSessions: ..., ...} }
-	const data: Partial<Record<IDStrings, Awaited<ReturnType<typeof GetRecentActivity>>>> = {};
+	const data: Partial<Record<GPTString, Awaited<ReturnType<typeof GetRecentActivity>>>> = {};
 
 	await Promise.all(
 		gpts.map(async ({ game, playtype }) => {
@@ -185,7 +185,7 @@ export async function GetRecentActivityForMultipleGames(
 				startFrom
 			);
 
-			data[`${game}:${playtype}` as IDStrings] = activity;
+			data[`${game}:${playtype}` as GPTString] = activity;
 		})
 	);
 
@@ -195,7 +195,7 @@ export async function GetRecentActivityForMultipleGames(
 	// very far back, resulting in us skipping over data.
 
 	const flatPointer = Object.entries(data) as Array<
-		[IDStrings, { recentSessions: Array<SessionDocument> }]
+		[GPTString, { recentSessions: Array<SessionDocument> }]
 	>;
 
 	// sort all games data to find the Nth session (where we should set our cutoff).

@@ -1,9 +1,8 @@
 import chalk from "chalk";
-import { FormatGame, TableDocument } from "tachi-common";
-import { allIDStrings } from "tachi-common/config/static-config";
+import { FormatGame, TableDocument, allGPTStrings } from "tachi-common";
 import { ReadCollection } from "../util";
 
-const idStringMap = {};
+const gptStringMap = {};
 
 const tables: Array<TableDocument> = ReadCollection("tables.json");
 
@@ -22,8 +21,8 @@ for (const t of tables) {
 	}
 
 	if (t.default) {
-		const idString = `${t.game}:${t.playtype}`;
-		if (idStringMap[idString]) {
+		const gptString = `${t.game}:${t.playtype}`;
+		if (gptStringMap[gptString]) {
 			console.log(
 				chalk.red(
 					`[TABLE-DEFAULT] There are multiple default tables for ${FormatGame(
@@ -34,13 +33,13 @@ for (const t of tables) {
 			);
 		}
 
-		idStringMap[idString] = true;
+		gptStringMap[gptString] = true;
 	}
 }
 
-for (const idString of allIDStrings) {
-	if (!idStringMap[idString]) {
-		console.log(chalk.red(`[TABLE-DEFAULT] There is no default table for ${idString}.`));
+for (const gptString of allGPTStrings) {
+	if (!gptStringMap[gptString]) {
+		console.log(chalk.red(`[TABLE-DEFAULT] There is no default table for ${gptString}.`));
 		errs += 1;
 	}
 }

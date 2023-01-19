@@ -4,7 +4,7 @@ import Muted from "components/util/Muted";
 import usePreferredRanking from "components/util/usePreferredRanking";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
-import { Game, IDStrings, ScoreCalculatedDataLookup, Playtype } from "tachi-common";
+import { Game, GPTString, ScoreRatingAlgorithms, Playtype } from "tachi-common";
 import { FolderDataset } from "types/tables";
 import DifficultyCell from "../cells/DifficultyCell";
 import IndicatorsCell from "../cells/IndicatorsCell";
@@ -21,12 +21,12 @@ import { GetGPTCoreHeaders } from "../headers/GameHeaders";
 import { EmptyHeader, FolderIndicatorHeader } from "../headers/IndicatorHeader";
 import { CreateRankingHeader } from "../headers/RankingHeader";
 
-export default function FolderTable<I extends IDStrings = IDStrings>({
+export default function FolderTable({
 	dataset,
 	game,
 	playtype,
 }: {
-	dataset: FolderDataset<I>;
+	dataset: FolderDataset;
 	game: Game;
 	playtype: Playtype;
 }) {
@@ -78,15 +78,15 @@ export default function FolderTable<I extends IDStrings = IDStrings>({
 	);
 }
 
-function Row<I extends IDStrings = IDStrings>({
+function Row({
 	data,
 	rating,
 	game,
 	rankingViewMode,
 }: {
-	data: FolderDataset<I>[0];
+	data: FolderDataset[0];
 	game: Game;
-	rating: ScoreCalculatedDataLookup[I];
+	rating: ScoreRatingAlgorithms[GPTString];
 	rankingViewMode: RankingViewMode;
 }) {
 	const score = data.__related.pb;

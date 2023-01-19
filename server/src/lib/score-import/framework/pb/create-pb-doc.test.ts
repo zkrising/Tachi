@@ -2,10 +2,15 @@ import { CreatePBDoc } from "./create-pb-doc";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { GetGamePTConfig } from "tachi-common";
+import { IIDX_GRADES, IIDX_LAMPS } from "tachi-common";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import { Testing511SPA, TestingBMS7KScore, TestingIIDXSPScore } from "test-utils/test-data";
+import {
+	BMSGazerChart,
+	Testing511SPA,
+	TestingBMS7KScore,
+	TestingIIDXSPScore,
+} from "test-utils/test-data";
 import type { PBScoreDocumentNoRank } from "./create-pb-doc";
 import type { KtLogger } from "lib/logger/logger";
 import type { ScoreDocument } from "tachi-common";
@@ -13,8 +18,6 @@ import type { ScoreDocument } from "tachi-common";
 const IIDXScore = TestingIIDXSPScore;
 
 const logger = CreateLogCtx(__filename);
-
-const lamps = GetGamePTConfig("iidx", "SP").lamps;
 
 t.test("#CreatePBDoc", (t) => {
 	t.beforeEach(ResetDBState);
@@ -32,28 +35,30 @@ t.test("#CreatePBDoc", (t) => {
 		timeAchieved: 1619454485988,
 		game: "iidx",
 		playtype: "SP",
-		composedFrom: {
-			scorePB: IIDXScore.scoreID,
-			lampPB: "LAMP_PB_ID",
-		},
+		composedFrom: [
+			{ name: "Best Score", scoreID: IIDXScore.scoreID },
+			{ name: "Best Lamp", scoreID: "LAMP_PB_ID" },
+		],
 		scoreData: {
 			score: IIDXScore.scoreData.score,
 			percent: IIDXScore.scoreData.percent,
-			esd: IIDXScore.scoreData.esd,
 			grade: IIDXScore.scoreData.grade,
-			gradeIndex: IIDXScore.scoreData.gradeIndex,
 			judgements: IIDXScore.scoreData.judgements,
 			lamp: "FULL COMBO",
-			lampIndex: lamps.indexOf("FULL COMBO"),
-			hitMeta: { bp: 1 },
+			enumIndexes: {
+				lamp: IIDX_LAMPS.FULL_COMBO,
+				grade: IIDX_GRADES.C,
+			},
+			optional: { bp: 1, enumIndexes: {} },
 		},
 		calculatedData: {
-			ktLampRating: 12,
+			BPI: null,
+			ktLampRating: 10,
 		},
 	};
 
 	t.test(
-		"(IIDX) Should use the GameSpecificMergeFN to also join the BP PB if necessary.",
+		"(IIDX) Should use the Server Impl Merge FNs to also join the BP PB if necessary.",
 		async (t) => {
 			await db.scores.remove({});
 			await db.scores.insert([
@@ -61,47 +66,44 @@ t.test("#CreatePBDoc", (t) => {
 				deepmerge(IIDXScore, {
 					scoreData: {
 						lamp: "FULL COMBO",
-						lampIndex: lamps.indexOf("FULL COMBO"),
 						score: 0,
 						percent: 0,
-						hitMeta: {
+						optional: {
 							bp: 15,
 						},
-					},
-					calculatedData: {
-						ktLampRating: 12,
+						enumIndexes: {
+							lamp: IIDX_LAMPS.FULL_COMBO,
+						},
 					},
 					scoreID: "LAMP_PB_ID",
 				}),
 				deepmerge(IIDXScore, {
 					scoreData: {
 						lamp: "CLEAR",
-						lampIndex: lamps.indexOf("CLEAR"),
 						score: 1,
 						percent: 1,
-						hitMeta: {
+						optional: {
 							bp: 5,
 						},
-					},
-					calculatedData: {
-						ktLampRating: 10,
+						enumIndexes: {
+							lamp: IIDX_LAMPS.CLEAR,
+						},
 					},
 					scoreID: "BP_PB_ID",
 				}),
 			]);
 
-			const res = await CreatePBDoc(1, chartID, logger);
+			const res = await CreatePBDoc("iidx:SP", 1, Testing511SPA, logger);
 
 			t.not(res, undefined, "Should actually return something.");
 
 			t.strictSame(
 				res,
 				deepmerge(ExamplePBDoc, {
-					composedFrom: {
-						other: [{ name: "Best BP", scoreID: "BP_PB_ID" }],
-					},
+					composedFrom: [{ name: "Lowest BP", scoreID: "BP_PB_ID" }],
+
 					scoreData: {
-						hitMeta: {
+						optional: {
 							bp: 5,
 						},
 					},
@@ -117,11 +119,13 @@ t.test("#CreatePBDoc", (t) => {
 		const d = deepmerge(IIDXScore, {
 			scoreData: {
 				lamp: "FULL COMBO",
-				lampIndex: lamps.indexOf("FULL COMBO"),
 				score: 0,
 				percent: 0,
-				hitMeta: {
+				optional: {
 					bp: 1,
+				},
+				enumIndexes: {
+					lamp: IIDX_LAMPS.FULL_COMBO,
 				},
 			},
 			calculatedData: {
@@ -133,7 +137,7 @@ t.test("#CreatePBDoc", (t) => {
 		await db.scores.remove({});
 		await db.scores.insert([IIDXScore, d]);
 
-		const res = await CreatePBDoc(1, chartID, logger);
+		const res = await CreatePBDoc("iidx:SP", 1, Testing511SPA, logger);
 
 		t.not(res, undefined, "Should actually return something.");
 
@@ -153,45 +157,11 @@ t.test("#CreatePBDoc", (t) => {
 
 		await db.scores.remove({});
 
-		const res = await CreatePBDoc(1, chartID, fakeLogger);
+		const res = await CreatePBDoc("iidx:SP", 1, Testing511SPA, fakeLogger);
 
 		t.equal(res, undefined, "Should return nothing (and emit a warning)");
 
 		t.equal(warnCalled, true, "Warn logging should have been called.");
-
-		t.end();
-	});
-
-	t.test("(BMS) Should inherit sieglinde from the higher rated score.", async (t) => {
-		await db.scores.remove({});
-		await db.scores.insert([
-			TestingBMS7KScore,
-			deepmerge(TestingBMS7KScore, {
-				scoreData: {
-					lamp: "FULL COMBO",
-					lampIndex: lamps.indexOf("FULL COMBO"),
-					score: 0,
-					percent: 0,
-					hitMeta: {
-						bp: 15,
-					},
-				},
-				calculatedData: {
-					sieglinde: 500,
-				},
-				scoreID: "LAMP_PB_ID",
-			}),
-		]);
-
-		const res = await CreatePBDoc(1, TestingBMS7KScore.chartID, logger);
-
-		t.not(res, undefined, "Should actually return something.");
-
-		t.equal(
-			res?.calculatedData.sieglinde,
-			500,
-			"Should select the lampPBs sieglinde and not the score PBs."
-		);
 
 		t.end();
 	});
@@ -203,11 +173,13 @@ t.test("#CreatePBDoc", (t) => {
 			deepmerge(TestingBMS7KScore, {
 				scoreData: {
 					lamp: "FULL COMBO",
-					lampIndex: lamps.indexOf("FULL COMBO"),
 					score: 0,
 					percent: 0,
-					hitMeta: {
+					optional: {
 						bp: 15,
+					},
+					enumIndexes: {
+						lamp: IIDX_LAMPS.FULL_COMBO,
 					},
 				},
 				calculatedData: {
@@ -217,7 +189,7 @@ t.test("#CreatePBDoc", (t) => {
 			}),
 			deepmerge(TestingBMS7KScore, {
 				scoreData: {
-					hitMeta: {
+					optional: {
 						bp: 1,
 					},
 				},
@@ -225,88 +197,23 @@ t.test("#CreatePBDoc", (t) => {
 			}),
 		]);
 
-		const res = (await CreatePBDoc(1, TestingBMS7KScore.chartID, logger)) as
+		const res = (await CreatePBDoc("bms:7K", 1, BMSGazerChart, logger)) as
 			| PBScoreDocumentNoRank<"bms:7K" | "bms:14K">
 			| undefined;
 
 		t.not(res, undefined, "Should actually return something.");
 
 		t.equal(
-			res?.scoreData.hitMeta.bp,
+			res?.scoreData.optional.bp,
 			1,
 			"Should select the best BP's BP and not the score PBs."
 		);
 
-		t.strictSame(res?.composedFrom, {
-			lampPB: "LAMP_PB_ID",
-			scorePB: TestingBMS7KScore.scoreID,
-			other: [
-				{
-					name: "Best BP",
-					scoreID: "BP_PB_ID",
-				},
-			],
-		});
-
-		t.end();
-	});
-
-	t.test("(PMS) Should inherit BP from the best BP score.", async (t) => {
-		const pmsScore = deepmerge(TestingBMS7KScore, {
-			game: "pms",
-			playtype: "Controller",
-		}) as unknown as ScoreDocument<"pms:Controller">;
-
-		await db.scores.remove({});
-		await db.scores.insert([
-			pmsScore,
-			deepmerge(pmsScore, {
-				scoreData: {
-					lamp: "FULL COMBO",
-					lampIndex: lamps.indexOf("FULL COMBO"),
-					score: 0,
-					percent: 0,
-					hitMeta: {
-						bp: 15,
-					},
-				},
-				calculatedData: {
-					sieglinde: 500,
-				},
-				scoreID: "LAMP_PB_ID",
-			}),
-			deepmerge(pmsScore, {
-				scoreData: {
-					hitMeta: {
-						bp: 1,
-					},
-				},
-				scoreID: "BP_PB_ID",
-			}),
+		t.strictSame(res?.composedFrom, [
+			{ name: "Best Score", scoreID: TestingBMS7KScore.scoreID },
+			{ name: "Best Lamp", scoreID: "LAMP_PB_ID" },
+			{ name: "Lowest BP", scoreID: "BP_PB_ID" },
 		]);
-
-		const res = (await CreatePBDoc(1, TestingBMS7KScore.chartID, logger)) as
-			| PBScoreDocumentNoRank<"bms:7K" | "bms:14K">
-			| undefined;
-
-		t.not(res, undefined, "Should actually return something.");
-
-		t.equal(
-			res?.scoreData.hitMeta.bp,
-			1,
-			"Should select the best BP's BP and not the score PBs."
-		);
-
-		t.strictSame(res?.composedFrom, {
-			lampPB: "LAMP_PB_ID",
-			scorePB: TestingBMS7KScore.scoreID,
-			other: [
-				{
-					name: "Best BP",
-					scoreID: "BP_PB_ID",
-				},
-			],
-		});
 
 		t.end();
 	});
@@ -318,13 +225,15 @@ t.test("#CreatePBDoc", (t) => {
 			deepmerge(TestingBMS7KScore, {
 				scoreData: {
 					lamp: "FULL COMBO",
-					lampIndex: lamps.indexOf("FULL COMBO"),
 					score: 0,
 					percent: 0,
-					hitMeta: {
+					optional: {
 						bp: 15,
 						gauge: 12,
 						gaugeHistory: [20, 20, 21, 12],
+					},
+					enumIndexes: {
+						lamp: IIDX_LAMPS.FULL_COMBO,
 					},
 				},
 				calculatedData: {
@@ -334,14 +243,14 @@ t.test("#CreatePBDoc", (t) => {
 			}),
 		]);
 
-		const res = (await CreatePBDoc(1, TestingBMS7KScore.chartID, logger)) as
+		const res = (await CreatePBDoc("bms:7K", 1, BMSGazerChart, logger)) as
 			| PBScoreDocumentNoRank<"bms:7K" | "bms:14K">
 			| undefined;
 
 		t.not(res, undefined, "Should actually return something.");
 
 		t.hasStrict(
-			res?.scoreData.hitMeta,
+			res?.scoreData.optional,
 			{
 				gauge: 12,
 				gaugeHistory: [20, 20, 21, 12],

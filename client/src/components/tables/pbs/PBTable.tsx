@@ -3,7 +3,7 @@ import { CreateDefaultPBSearchParams } from "util/tables/create-search";
 import { GetPBLeadingHeaders } from "util/tables/get-pb-leaders";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
-import { Game, IDStrings, ScoreCalculatedDataLookup, Playtype } from "tachi-common";
+import { Game, GPTString, ScoreRatingAlgorithms, Playtype, AnyScoreRatingAlg } from "tachi-common";
 import { PBDataset } from "types/tables";
 import DropdownIndicatorCell from "../cells/DropdownIndicatorCell";
 import IndexCell from "../cells/IndexCell";
@@ -20,7 +20,7 @@ import { EmptyHeader } from "../headers/IndicatorHeader";
 import { CreateRankingHeader } from "../headers/RankingHeader";
 import PBLeadingRows from "./PBLeadingRows";
 
-export default function PBTable<I extends IDStrings = IDStrings>({
+export default function PBTable({
 	dataset,
 	game,
 	indexCol = true,
@@ -31,14 +31,14 @@ export default function PBTable<I extends IDStrings = IDStrings>({
 	alg,
 	defaultRankingViewMode,
 }: {
-	dataset: PBDataset<I>;
+	dataset: PBDataset;
 	indexCol?: boolean;
 	showPlaycount?: boolean;
 	showUser?: boolean;
 	showChart?: boolean;
 	playtype: Playtype;
 	game: Game;
-	alg?: ScoreCalculatedDataLookup[I];
+	alg?: AnyScoreRatingAlg;
 	defaultRankingViewMode?: RankingViewMode | null;
 }) {
 	const defaultRating = useScoreRatingAlg(game, playtype);
@@ -48,7 +48,7 @@ export default function PBTable<I extends IDStrings = IDStrings>({
 		defaultRankingViewMode ?? "global"
 	);
 
-	const headers: Header<PBDataset<I>[0]>[] = [
+	const headers: Header<PBDataset[0]>[] = [
 		...GetPBLeadingHeaders(
 			showUser,
 			showChart,
@@ -98,7 +98,7 @@ export default function PBTable<I extends IDStrings = IDStrings>({
 	);
 }
 
-function Row<I extends IDStrings = IDStrings>({
+function Row({
 	pb,
 	indexCol,
 	showPlaycount,
@@ -108,7 +108,7 @@ function Row<I extends IDStrings = IDStrings>({
 	rating,
 	rankingViewMode,
 }: {
-	pb: PBDataset<I>[0];
+	pb: PBDataset[0];
 	indexCol: boolean;
 	showPlaycount: boolean;
 	showChart: boolean;
@@ -116,7 +116,7 @@ function Row<I extends IDStrings = IDStrings>({
 	game: Game;
 	playtype: Playtype;
 	// ts bug?
-	rating: any; // ScoreCalculatedDataLookup[I];
+	rating: any; // ScoreRatingAlgorithms[I];
 	rankingViewMode: RankingViewMode;
 }) {
 	const scoreState = usePBState(pb);

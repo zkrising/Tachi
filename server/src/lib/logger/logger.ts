@@ -16,6 +16,8 @@ const formatExcessProperties = (meta: Record<string, unknown>, limit = false) =>
 	let i = 0;
 
 	for (const [key, val] of Object.entries(meta)) {
+		// this is probably fine
+		// eslint-disable-next-line cadence/no-instanceof
 		if (val instanceof Error) {
 			meta[key] = { message: val.message, stack: val.stack };
 		}
@@ -52,6 +54,8 @@ const formatExcessPropertiesNoStack = (
 			continue;
 		}
 
+		// this is probably fine
+		// eslint-disable-next-line cadence/no-instanceof
 		if (val instanceof Error) {
 			realMeta[key] = { message: val.message };
 		} else if (!key.startsWith("__") && !key.startsWith("!")) {

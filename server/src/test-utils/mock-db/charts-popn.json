@@ -6,13 +6,11 @@
 		"playtype": "9B",
 		"level": "1",
 		"levelNum": 1,
-		"rgcID": null,
 		"isPrimary": true,
 		"data": {
 			"hashSHA256": "2c26d666fa7c907e85115dbb279c267c14a263d47b2d46a93f99eae49d779119",
 			"inGameID": 0
 		},
-		"tierlistInfo": {},
 		"versions": [
 			"peace"
 		]

@@ -1,8 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
 import { decode } from "html-entities";
-import { VERSION_INFO } from "lib/constants/version";
-import { BacksyncCollectionToBothBranches, PullDatabaseSeeds } from "lib/database-seeds/repo";
+import { BacksyncCollectionToBothBranches } from "lib/database-seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import { parse } from "node-html-parser";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";

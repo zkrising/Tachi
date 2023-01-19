@@ -1,16 +1,17 @@
 import { KaiTypeToBaseURL } from "../utils";
 import { SDVX_DANS } from "tachi-common";
+import { SDVXDans } from "tachi-common/config/game-support/sdvx";
 import nodeFetch from "utils/fetch";
 import { IsRecord } from "utils/misc";
 import type { KaiAPIReauthFunction } from "../traverse-api";
-import type { ClassHandler } from "lib/score-import/framework/user-game-stats/types";
+import type { ClassProvider } from "lib/score-import/framework/calculated-data/types";
 
-export async function CreateKaiSDVXClassHandler(
+export async function CreateKaiSDVXClassProvider(
 	kaiType: "EAG" | "FLO" | "MIN",
 	token: string,
 	reauthFn: KaiAPIReauthFunction,
 	fetch = nodeFetch
-): Promise<ClassHandler> {
+): Promise<ClassProvider> {
 	let json: unknown;
 	let err: unknown;
 	const baseUrl = KaiTypeToBaseURL(kaiType);
@@ -40,7 +41,7 @@ export async function CreateKaiSDVXClassHandler(
 		err = e;
 	}
 
-	return (game, playtype, userID, ratings, logger) => {
+	return (gptString, userID, ratings, logger) => {
 		logger.info(`Got return from ${baseUrl}/api/sdvx/v1/player_profile.`, {
 			json,
 		});
@@ -95,8 +96,17 @@ export async function CreateKaiSDVXClassHandler(
 			return {};
 		}
 
+		const value = SDVXDans[sdvxDan];
+
+		if (!value) {
+			logger.warn(
+				`${baseUrl} returned a dan of ${sdvxDan}, which has no corresponding value.`
+			);
+			return {};
+		}
+
 		return {
-			dan: sdvxDan,
+			dan: value.id,
 		};
 	};
 }

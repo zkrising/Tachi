@@ -24,13 +24,15 @@ t.test("GET /ir/beatoraja/charts/:chartSHA256/scores", (t) => {
 	t.test("Should return PB scores on a chart", async (t) => {
 		// very lazy fake scores
 		await db["personal-bests"].insert({
-			composedFrom: {
-				lampPB: "mock_lampPB",
-			},
+			composedFrom: [{ name: "Best Lamp", scoreID: "mock_lampPB" }],
 			scoreData: {
-				lampIndex: 4,
 				score: 1234,
-				hitMeta: {},
+				enumIndexes: {
+					lamp: 4,
+				},
+				optional: {
+					enumIndexes: {},
+				},
 			},
 			scoreMeta: {},
 			chartID: GAZER_CHARTID,

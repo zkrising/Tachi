@@ -10,7 +10,7 @@ import type {
 	Game,
 	Playtype,
 	SongDocument,
-	UserSettings,
+	UserSettingsDocument,
 	TachiAPIClientDocument,
 	GoalDocument,
 	QuestSubscriptionDocument,
@@ -43,7 +43,7 @@ declare module "express-serve-static-core" {
 
 export interface TachiSessionData {
 	user: UserDocument;
-	settings: UserSettings;
+	settings: UserSettingsDocument;
 }
 
 export interface TachiAPIFailResponse {
@@ -120,3 +120,13 @@ export type MigrationDocument = {
 			status: "pending";
 	  }
 );
+
+// https://www.designcise.com/web/tutorial/how-to-change-readonly-properties-to-be-writable-in-typescript
+export type Mutable<T> = { -readonly [K in keyof T]: T[K] };
+
+// https://stackoverflow.com/questions/61132262/typescript-deep-partial
+export type DeepPartial<T> = T extends object
+	? {
+			[P in keyof T]?: DeepPartial<T[P]>;
+	  }
+	: T;

@@ -167,7 +167,7 @@ function UserHistory({
 								setRating(e.target.value as keyof UserGameStats["ratings"])
 							}
 						>
-							{gptConfig.profileRatingAlgs.map((e) => (
+							{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
 								<option key={e} value={e}>
 									{UppercaseFirst(e)}
 								</option>
@@ -219,7 +219,7 @@ function UserHistory({
 								setRating(e.target.value as keyof UserGameStats["ratings"])
 							}
 						>
-							{gptConfig.profileRatingAlgs.map((e) => (
+							{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
 								<option key={e} value={e}>
 									{UppercaseFirst(e)}
 								</option>

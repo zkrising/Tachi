@@ -57,16 +57,16 @@ export function TachiScoreDataToBeatorajaFormat(
 		sha256,
 		player: username,
 		playcount,
-		clear: LAMP_TO_BEATORAJA[scoreData.lampIndex] ?? 0,
+		clear: LAMP_TO_BEATORAJA[scoreData.enumIndexes.lamp] ?? 0,
 		date: pbScore.timeAchieved ?? 0,
-		maxcombo: scoreData.hitMeta.maxCombo ?? 0,
-		gauge: scoreData.hitMeta.gauge ?? 0,
+		maxcombo: scoreData.optional.maxCombo ?? 0,
+		gauge: scoreData.optional.gauge ?? 0,
 
 		// These two are now unsupported due to performance concerns.
 		deviceType: null,
 		random: null,
 
-		minbp: scoreData.hitMeta.bp ?? 0,
+		minbp: scoreData.optional.bp ?? 0,
 		passnotes: 0,
 		notes: notecount,
 	};
@@ -85,7 +85,7 @@ export function TachiScoreDataToBeatorajaFormat(
 		"ems",
 		"lms",
 	] as Array<BeatorajaJudgements>) {
-		judgements[key] = scoreData.hitMeta[key] ?? 0;
+		judgements[key] = scoreData.optional[key] ?? 0;
 	}
 
 	// // If we have no epg/egr data, we can't calculate EX score on the beatoraja client.

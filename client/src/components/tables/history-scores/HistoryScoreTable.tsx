@@ -4,9 +4,9 @@ import React, { useState } from "react";
 import {
 	ChartDocument,
 	Game,
-	IDStrings,
+	GPTString,
 	integer,
-	ScoreCalculatedDataLookup,
+	ScoreRatingAlgorithms,
 	ScoreDocument,
 	Playtype,
 } from "tachi-common";
@@ -67,7 +67,7 @@ function Row({
 	game,
 }: {
 	sc: ScoreDocument;
-	rating: ScoreCalculatedDataLookup[IDStrings];
+	rating: ScoreRatingAlgorithms[GPTString];
 	game: Game;
 	chart: ChartDocument;
 }) {

@@ -1,20 +1,18 @@
 import {
 	InternalFailure,
+	SkipScoreFailure,
 	SongOrChartNotFoundFailure,
 } from "../../../framework/common/converter-failures";
-import {
-	GenericGetGradeAndPercent,
-	ParseDateFromString,
-} from "../../../framework/common/score-utils";
+import { ParseDateFromString } from "../../../framework/common/score-utils";
 import { FindIIDXChartOnInGameID } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import type { DryScore } from "../../../framework/common/types";
 import type { ConverterFunction } from "../../common/types";
 import type { MerScore } from "./types";
-import type { Lamps } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 import type { EmptyObject } from "utils/types";
 
-function ConvertMERLamp(lamp: MerScore["clear_type"]): Lamps["iidx:DP" | "iidx:SP"] {
+function ConvertMERLamp(lamp: MerScore["clear_type"]): GetEnumValue<"iidx:DP" | "iidx:SP", "lamp"> {
 	if (lamp === "FULLCOMBO CLEAR") {
 		return "FULL COMBO";
 	}
@@ -29,6 +27,10 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
 	logger
 ) => {
 	const playtype = data.play_type === "SINGLE" ? "SP" : "DP";
+
+	if (data.diff_type === "BEGINNER") {
+		throw new SkipScoreFailure(`BEGINNER scores are not supported.`);
+	}
 
 	const chart = await FindIIDXChartOnInGameID(data.music_id, playtype, data.diff_type);
 
@@ -48,8 +50,6 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
 		throw new InternalFailure(`Song-Chart Desync on songID ${chart.songID}`);
 	}
 
-	const { percent, grade } = GenericGetGradeAndPercent("iidx", data.score, chart);
-
 	const lamp = ConvertMERLamp(data.clear_type);
 
 	const timeAchieved = ParseDateFromString(ConvertDateToJST(data.update_time));
@@ -61,11 +61,9 @@ export const ConvertFileMerIIDX: ConverterFunction<MerScore, EmptyObject> = asyn
 		service: "MER",
 		scoreData: {
 			score: data.score,
-			percent,
-			grade,
 			lamp,
 			judgements: {},
-			hitMeta: {
+			optional: {
 				bp: data.miss_count === -1 ? null : data.miss_count,
 			},
 		},

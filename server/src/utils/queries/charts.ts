@@ -4,15 +4,15 @@ import type {
 	ChartDocument,
 	Difficulties,
 	Game,
-	GPTSupportedVersions,
-	IDStrings,
+	Versions,
+	GPTString,
 	integer,
 	Playtype,
 	Playtypes,
 } from "tachi-common";
 
 export function FindChartWithChartID(game: Game, chartID: string) {
-	return db.charts[game].findOne({ chartID });
+	return db.anyCharts[game].findOne({ chartID });
 }
 
 /**
@@ -23,9 +23,9 @@ export function FindChartWithChartID(game: Game, chartID: string) {
 export function FindChartWithPTDF<
 	G extends Game = Game,
 	P extends Playtypes[G] = Playtypes[G],
-	I extends IDStrings = IDStrings
->(game: G, songID: integer, playtype: P, difficulty: Difficulties[I]) {
-	return db.charts[game].findOne({
+	GPT extends GPTString = GPTString
+>(game: G, songID: integer, playtype: P, difficulty: Difficulties[GPT]) {
+	return db.anyCharts[game].findOne({
 		songID,
 		playtype,
 		difficulty,
@@ -40,15 +40,9 @@ export function FindChartWithPTDF<
 export function FindChartWithPTDFVersion<
 	G extends Game = Game,
 	P extends Playtypes[G] = Playtypes[G],
-	I extends IDStrings = IDStrings
->(
-	game: G,
-	songID: integer,
-	playtype: P,
-	difficulty: Difficulties[I],
-	version: GPTSupportedVersions[I]
-) {
-	return db.charts[game].findOne({
+	GPT extends GPTString = GPTString
+>(game: G, songID: integer, playtype: P, difficulty: Difficulties[GPT], version: Versions[GPT]) {
+	return db.anyCharts[game].findOne({
 		songID,
 		playtype,
 		difficulty,
@@ -79,13 +73,13 @@ export function FindChartOnInGameID(
 	game: Game,
 	inGameID: number,
 	playtype: Playtype,
-	difficulty: Difficulties[IDStrings]
+	difficulty: Difficulties[GPTString]
 ) {
 	if (game === "bms" || game === "usc") {
 		throw new Error(`Cannot call FindChartOnInGameID for game ${game}.`);
 	}
 
-	return db.charts[game].findOne({
+	return db.anyCharts[game].findOne({
 		"data.inGameID": inGameID,
 		playtype,
 		difficulty,
@@ -98,8 +92,8 @@ export function FindChartOnInGameID(
  */
 export function FindIIDXChartOnInGameID(
 	inGameID: number,
-	playtype: Playtype,
-	difficulty: Difficulties[IDStrings]
+	playtype: Playtypes["iidx"],
+	difficulty: Difficulties["iidx:DP" | "iidx:SP"]
 ) {
 	return db.charts.iidx.findOne({
 		"data.inGameID": inGameID,
@@ -116,9 +110,9 @@ export function FindIIDXChartOnInGameID(
  */
 export function FindIIDXChartOnInGameIDVersion(
 	inGameID: number,
-	playtype: Playtype,
-	difficulty: Difficulties[IDStrings],
-	version: GPTSupportedVersions[IDStrings]
+	playtype: Playtypes["iidx"],
+	difficulty: Difficulties["iidx:DP" | "iidx:SP"],
+	version: Versions["iidx:DP" | "iidx:SP"]
 ) {
 	return db.charts.iidx.findOne({
 		"data.inGameID": inGameID,
@@ -132,14 +126,14 @@ export function FindIIDXChartOnInGameIDVersion(
 /**
  * Find a chart on its in-game-ID, playtype, difficulty and version.
  */
-export function FindChartOnInGameIDVersion<I extends IDStrings = IDStrings>(
+export function FindChartOnInGameIDVersion<GPT extends GPTString = GPTString>(
 	game: Game,
 	inGameID: number,
 	playtype: Playtype,
-	difficulty: Difficulties[I],
-	version: GPTSupportedVersions[I]
+	difficulty: Difficulties[GPT],
+	version: Versions[GPT]
 ) {
-	return db.charts[game].findOne({
+	return db.anyCharts[game].findOne({
 		"data.inGameID": inGameID,
 		versions: version,
 		playtype,
@@ -181,7 +175,7 @@ export function FindSDVXChartOnInGameID(
 export function FindSDVXChartOnInGameIDVersion(
 	inGameID: number,
 	difficulty: Difficulties["sdvx:Single"] | "ANY_INF",
-	version: GPTSupportedVersions["sdvx:Single"]
+	version: Versions["sdvx:Single"]
 ) {
 	const diffQuery =
 		difficulty === "ANY_INF"
@@ -198,7 +192,7 @@ export function FindSDVXChartOnInGameIDVersion(
 export function FindSDVXChartOnDFVersion(
 	songID: integer,
 	difficulty: Difficulties["sdvx:Single"] | "ANY_INF",
-	version: GPTSupportedVersions["sdvx:Single"]
+	version: Versions["sdvx:Single"]
 ) {
 	const diffQuery =
 		difficulty === "ANY_INF"
@@ -217,7 +211,7 @@ export function FindChartOnSHA256(game: Game, hash: string) {
 		throw new Error(`Cannot call FindChartOnSHA256 for game ${game}.`);
 	}
 
-	return db.charts[game].findOne({
+	return db.anyCharts[game].findOne({
 		"data.hashSHA256": hash,
 	});
 }
@@ -227,7 +221,7 @@ export function FindChartOnSHA256Playtype(game: Game, hash: string, playtype: Pl
 		throw new Error(`Cannot call FindChartOnSHA256 for game ${game}.`);
 	}
 
-	return db.charts[game].findOne({
+	return db.anyCharts[game].findOne({
 		"data.hashSHA256": hash,
 		playtype,
 	});
@@ -262,7 +256,7 @@ export async function FindChartsOnPopularity(
 	// magnitude faster.
 	// Not entirely sure why, but $lookup is incredibly inefficient,
 	// and you should just avoid it.
-	const charts = (await db.charts[game].find(matchQuery)) as unknown as Array<
+	const charts = (await db.anyCharts[game].find(matchQuery)) as unknown as Array<
 		ChartDocument & {
 			__playcount: integer;
 		}

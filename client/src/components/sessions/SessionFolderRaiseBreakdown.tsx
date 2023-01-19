@@ -24,11 +24,16 @@ import {
 	Game,
 	GamePTConfig,
 	GetGamePTConfig,
+	GetGPTString,
+	GetScoreMetricConf,
+	GPTString,
 	integer,
 	SongDocument,
 	TableDocument,
 } from "tachi-common";
 import { SessionFolderRaises, SessionReturns } from "types/api-returns";
+import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 
 export default function SessionFolderRaiseBreakdown({
 	sessionData,
@@ -115,7 +120,8 @@ export default function SessionFolderRaiseBreakdown({
 	const chartMap = CreateChartMap(sessionData.charts);
 	const songMap = CreateSongMap(sessionData.songs);
 
-	const preferredScoreBucket = settings?.preferences.scoreBucket ?? gptConfig.scoreBucket;
+	const preferredScoreBucket =
+		settings?.preferences.preferredDefaultEnum ?? gptConfig.preferredDefaultEnum;
 
 	if (selectedTable === "LOADING") {
 		return <Loading />;
@@ -181,7 +187,7 @@ export default function SessionFolderRaiseBreakdown({
 											chartMap={chartMap}
 											game={game}
 											folderRaiseInfo={folderRaiseInfo}
-											gptConfig={gptConfig}
+											gptString={GetGPTString(game, playtype)}
 										/>
 									))}
 							</MiniTable>
@@ -204,41 +210,39 @@ export default function SessionFolderRaiseBreakdown({
 	);
 }
 
-const SortRaisesNicely = (gptConfig: GamePTConfig, preferredScoreBucket: "grade" | "lamp") =>
-	NumericSOV<SessionFolderRaises>((x) => {
-		const baseValue =
-			x.type === "grade"
-				? gptConfig.grades.indexOf(x.value)
-				: gptConfig.lamps.indexOf(x.value);
+const SortRaisesNicely = (gptConfig: GamePTConfig, preferredEnum: string) => {
+	const conf = GetScoreMetricConf(gptConfig, preferredEnum) as ConfEnumScoreMetric<string>;
+
+	return NumericSOV<SessionFolderRaises>((x) => {
+		const baseValue = conf.values.indexOf(x.value);
 
 		// if this is what the user prefers to see, push it to the top
-		if (x.type === preferredScoreBucket) {
+		if (x.type === preferredEnum) {
 			return baseValue + 1_000_000;
 		}
 
 		return baseValue;
 	}, true);
+};
 
 function FolderRaiseRender({
 	folderRaiseInfo,
 	game,
 	songMap,
 	chartMap,
-	gptConfig,
+	gptString,
 }: {
 	folderRaiseInfo: SessionFolderRaises;
 	chartMap: Map<string, ChartDocument>;
 	songMap: Map<integer, SongDocument>;
 	game: Game;
-	gptConfig: GamePTConfig;
+	gptString: GPTString;
 }) {
-	let colour;
-
-	if (folderRaiseInfo.type === "grade") {
-		colour = gptConfig.gradeColours[folderRaiseInfo.value];
-	} else {
-		colour = gptConfig.lampColours[folderRaiseInfo.value];
-	}
+	const colour =
+		// @ts-expect-error lazy
+		GPT_CLIENT_IMPLEMENTATIONS[gptString].enumColours[folderRaiseInfo.type][
+			folderRaiseInfo.value
+		];
 
 	const newTotal = folderRaiseInfo.previousCount + folderRaiseInfo.raisedCharts.length;
 

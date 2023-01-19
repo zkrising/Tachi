@@ -28,6 +28,24 @@ t.test("#ProcessPBs", (t) => {
 	t.test("Should successfully insert multiple pbs into the score-pb database", async (t) => {
 		await db["personal-bests"].remove({});
 
+		await db.charts.iidx.insert([
+			// @ts-expect-error lol
+			deepmerge(Testing511SPA, {
+				chartID: "test1",
+				songID: 2,
+			}),
+			// @ts-expect-error lol
+			deepmerge(Testing511SPA, {
+				chartID: "test2",
+				songID: 3,
+			}),
+			// @ts-expect-error lol
+			deepmerge(Testing511SPA, {
+				chartID: "test3",
+				songID: 4,
+			}),
+		]);
+
 		await db.scores.insert([
 			// @ts-expect-error lol
 			deepmerge(TestingIIDXSPScore, {

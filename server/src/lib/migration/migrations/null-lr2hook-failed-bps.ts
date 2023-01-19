@@ -13,7 +13,7 @@ const migration: Migration = {
 			},
 			{
 				$set: {
-					"scoreData.hitMeta.bp": null,
+					"scoreData.optional.bp": null,
 				},
 			},
 			{

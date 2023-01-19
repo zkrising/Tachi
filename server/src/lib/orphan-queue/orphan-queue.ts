@@ -3,13 +3,12 @@ import CreateLogCtx from "lib/logger/logger";
 import { GetNextCounterValue } from "utils/db";
 import { DedupeArr } from "utils/misc";
 import type { FilterQuery } from "mongodb";
-import type { WithID } from "monk";
 import type {
 	ChartDocument,
-	IDStrings,
-	IDStringToGame,
+	GPTString,
+	GPTStringToGame,
 	integer,
-	OrphanChart,
+	OrphanChartDocument,
 	SongDocument,
 } from "tachi-common";
 
@@ -27,12 +26,12 @@ const logger = CreateLogCtx(__filename);
  * If the chart has been seen before, and has >= N unique players who have
  * played it, unorphan the chart, and return it.
  */
-export async function HandleOrphanQueue<I extends IDStrings>(
-	idString: I,
-	game: IDStringToGame[I],
-	chartDoc: ChartDocument<I>,
-	songDoc: SongDocument<IDStringToGame[I]>,
-	orphanMatchCriteria: FilterQuery<OrphanChart<I>>,
+export async function HandleOrphanQueue<GPT extends GPTString>(
+	gptString: GPT,
+	game: GPTStringToGame[GPT],
+	chartDoc: ChartDocument<GPT>,
+	songDoc: SongDocument<GPTStringToGame[GPT]>,
+	orphanMatchCriteria: FilterQuery<OrphanChartDocument<GPT>>,
 	queueSize: integer,
 	userID: integer,
 	chartName: string
@@ -40,7 +39,7 @@ export async function HandleOrphanQueue<I extends IDStrings>(
 	logger.debug(`Received orphanqueue request for ${chartName}.`);
 
 	const orphanChart = await db["orphan-chart-queue"].findOne(
-		{ idString, ...orphanMatchCriteria },
+		{ gptString, ...orphanMatchCriteria },
 		{
 			projectID: true,
 		}
@@ -50,7 +49,7 @@ export async function HandleOrphanQueue<I extends IDStrings>(
 		logger.verbose(`Received unknown chart ${chartName}, orphaning.`);
 
 		await db["orphan-chart-queue"].insert({
-			idString,
+			gptString,
 			chartDoc,
 			songDoc,
 			userIDs: [userID],
@@ -79,13 +78,14 @@ export async function HandleOrphanQueue<I extends IDStrings>(
 		songDoc.id = songID;
 		chartDoc.songID = songID;
 
-		await db.songs[game].insert(songDoc);
-		await db.charts[game].insert(chartDoc);
+		await db.anySongs[game].insert(songDoc);
+		await db.anyCharts[game].insert(chartDoc);
+
 		await db["orphan-chart-queue"].remove({
 			_id: orphanChart._id,
 		});
 
-		return chartDoc as ChartDocument<I>;
+		return chartDoc as ChartDocument<GPT>;
 	}
 
 	// otherwise, update the state of this orphan.
@@ -111,17 +111,17 @@ export async function HandleOrphanQueue<I extends IDStrings>(
  * Useful for something like BMS-Table-Sync, where we want to load anything in a table
  * regardless of how many people have played the chart.
  */
-export async function DeorphanIfInQueue<I extends IDStrings>(
-	idString: I,
-	game: IDStringToGame[I],
-	orphanMatchCriteria: FilterQuery<OrphanChart<I>>
-): Promise<ChartDocument<I> | null> {
-	const orphanChart = (await db["orphan-chart-queue"].findOne(
-		{ idString, ...orphanMatchCriteria },
+export async function DeorphanIfInQueue<GPT extends GPTString>(
+	gptString: GPT,
+	game: GPTStringToGame[GPT],
+	orphanMatchCriteria: FilterQuery<OrphanChartDocument<GPT>>
+): Promise<ChartDocument<GPT> | null> {
+	const orphanChart = await db["orphan-chart-queue"].findOne(
+		{ gptString, ...orphanMatchCriteria },
 		{
 			projectID: true,
 		}
-	)) as WithID<OrphanChart<I>> | null;
+	);
 
 	if (!orphanChart) {
 		return null;
@@ -137,11 +137,11 @@ export async function DeorphanIfInQueue<I extends IDStrings>(
 	songDoc.id = songID;
 	chartDoc.songID = songID;
 
-	await db.songs[game].insert(songDoc);
-	await db.charts[game].insert(chartDoc);
+	await db.anySongs[game].insert(songDoc);
+	await db.anyCharts[game].insert(chartDoc);
 	await db["orphan-chart-queue"].remove({
 		_id: orphanChart._id,
 	});
 
-	return chartDoc;
+	return chartDoc as ChartDocument<GPT>;
 }

@@ -154,9 +154,9 @@ function UserGameRoutes({ reqUser }: { reqUser: UserDocument }) {
 	return (
 		<Switch>
 			<Route exact path="/u/:userID/games/:game">
-				{gameConfig.validPlaytypes.length === 1 ? (
+				{gameConfig.playtypes.length === 1 ? (
 					<Redirect
-						to={`/u/${reqUser.username}/games/${game}/${gameConfig.validPlaytypes[0]}`}
+						to={`/u/${reqUser.username}/games/${game}/${gameConfig.playtypes[0]}`}
 					/>
 				) : (
 					<PlaytypeSelect

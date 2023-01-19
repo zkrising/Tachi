@@ -1,6 +1,6 @@
 {
 	"name": "tachi",
-	"version": "2.3.0-dev",
+	"version": "3.0.0-dev",
 	"private": true,
 	"description": "The root of the Tachi monorepo. Contains common utils like linters.",
 	"scripts": {
@@ -11,6 +11,7 @@
 		"test-dbseeds": "pnpm --filter ./database-seeds/scripts test",
 		"sync-database": "pnpm --filter ./server sync-database",
 		"sync-database-local": "pnpm --filter ./server sync-database-local",
+		"validate-database": "pnpm --filter ./server validate-database",
 		"start-score-import-worker": "pnpm --filter ./server runscoreworker",
 		"start-docs": "cd docs/ && mkdocs serve",
 		"make-user-admin": "pnpm --filter ./server make-user-admin $@"
@@ -28,10 +29,10 @@
 	"devDependencies": {
 		"@types/node": "16.11.7",
 		"@types/tap": "15.0.3",
-		"@typescript-eslint/eslint-plugin": "5.22.0",
-		"@typescript-eslint/parser": "5.22.0",
+		"@typescript-eslint/eslint-plugin": "5.47.1",
+		"@typescript-eslint/parser": "5.47.1",
 		"eslint": "8.18.0",
-		"eslint-plugin-cadence": "0.0.4",
+		"eslint-plugin-cadence": "0.1.0",
 		"tap": "15.0.9",
 		"ts-node": "10.9.1",
 		"tsc-alias": "1.7.1",
@@ -47,7 +48,8 @@
 			"@types/mongodb": "3.6.20",
 			"@types/bson": "1.0.11",
 			"@types/node": "16.11.7",
-			"@types/express-serve-static-core": "4.17.29"
+			"@types/express-serve-static-core": "4.17.29",
+			"ts-node": "10.9.1"
 		},
 		"patchedDependencies": {
 			"@types/mongodb@3.6.20": "patches/@types__mongodb@3.6.20.patch",

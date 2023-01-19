@@ -17,7 +17,7 @@ export default function UGPTStatContainer({
 	const searchParams = new URLSearchParams();
 
 	searchParams.set("mode", stat.mode);
-	searchParams.set("property", stat.property);
+	searchParams.set("metric", stat.metric);
 
 	if (stat.mode === "chart") {
 		searchParams.set("chartID", stat.chartID);

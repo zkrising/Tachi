@@ -1,10 +1,17 @@
 import db from "external/mongo/db";
-import { GenericCalculatePercent } from "lib/score-import/framework/common/score-utils";
-import { FormatGame, GetGamePTConfig } from "tachi-common";
+import { GPT_SERVER_IMPLEMENTATIONS } from "game-implementations/game-implementations";
+import {
+	FormatGame,
+	GetGPTConfig,
+	GetGPTString,
+	GetScoreMetricConf,
+	GetSpecificGPTConfig,
+} from "tachi-common";
 import { GetFolderForIDGuaranteed, HumaniseChartID } from "utils/db";
 import { GetFolderChartIDs } from "utils/folder";
-import { FormatMaxDP, HumanisedJoinArray } from "utils/misc";
-import type { ChartDocument, Game, GoalDocument, Playtype } from "tachi-common";
+import { HumanisedJoinArray, OnlyFloatToDP } from "utils/misc";
+import type { GoalCriteriaFormatter } from "game-implementations/types";
+import type { GPTString, Game, GoalDocument, Playtype } from "tachi-common";
 
 export async function CreateGoalTitle(
 	charts: GoalDocument["charts"],
@@ -12,7 +19,9 @@ export async function CreateGoalTitle(
 	game: Game,
 	playtype: Playtype
 ) {
-	const formattedCriteria = FormatCriteria(criteria, game, playtype);
+	const gptString = GetGPTString(game, playtype);
+
+	const formattedCriteria = FormatCriteria(criteria, gptString);
 
 	const datasetName = await FormatCharts(charts, criteria, game);
 
@@ -62,7 +71,7 @@ export async function CreateGoalTitle(
 		// See above about switch exhaustivity
 		// eslint-disable-next-line no-fallthrough
 		case "proportion": {
-			const propFormat = FormatMaxDP(criteria.countNum * 100);
+			const propFormat = OnlyFloatToDP(criteria.countNum * 100);
 
 			switch (charts.type) {
 				case "multi":
@@ -119,19 +128,39 @@ async function FormatCharts(
 	}
 }
 
-function FormatCriteria(criteria: GoalDocument["criteria"], game: Game, playtype: Playtype) {
-	const gptConfig = GetGamePTConfig(game, playtype);
+function FormatCriteria<GPT extends GPTString>(
+	criteria: GoalDocument<GPT>["criteria"],
+	gptString: GPT
+) {
+	const gptConfig = GetSpecificGPTConfig(gptString);
 
-	switch (criteria.key) {
-		case "scoreData.gradeIndex":
-			return gptConfig.grades[criteria.value];
-		case "scoreData.lampIndex":
-			return gptConfig.lamps[criteria.value];
-		case "scoreData.percent":
-			return `Get ${FormatMaxDP(criteria.value)}% on`;
-		case "scoreData.score":
-			return `Get a score of ${criteria.value.toLocaleString("en-GB")} on`;
+	const conf = GetScoreMetricConf(gptConfig, criteria.key);
+
+	if (!conf) {
+		throw new Error(`Invalid goal criteria with key ${criteria.key}. No config exists?`);
 	}
+
+	if (conf.type === "ENUM") {
+		const v = conf.values[criteria.value];
+
+		if (v === undefined) {
+			throw new Error(`Invalid criteria value '${criteria.value}'.`);
+		}
+
+		return v;
+	} else if (conf.type === "DECIMAL" || conf.type === "INTEGER") {
+		const fmt: GoalCriteriaFormatter | undefined =
+			// @ts-expect-error it still thinks criteria.key might be a symbol.
+			GPT_SERVER_IMPLEMENTATIONS[gptString].goalCriteriaFormatters[criteria.key];
+
+		if (!fmt) {
+			throw new Error(`No formatter defined for ${criteria.key}, yet one must exist?`);
+		}
+
+		return fmt(criteria.value);
+	}
+
+	throw new Error(`Cannot set a goal for ${criteria.key} as it is of type ${conf.type}.`);
 }
 
 /**
@@ -153,7 +182,7 @@ export async function ValidateGoalChartsAndCriteria(
 
 	switch (charts.type) {
 		case "single": {
-			const chart = await db.charts[game].findOne({
+			const chart = await db.anyCharts[game].findOne({
 				playtype,
 				chartID: charts.data,
 			});
@@ -192,7 +221,7 @@ export async function ValidateGoalChartsAndCriteria(
 				);
 			}
 
-			const multiCharts = await db.charts[game].find({
+			const multiCharts = await db.anyCharts[game].find({
 				playtype,
 				chartID: { $in: charts.data },
 			});
@@ -237,58 +266,71 @@ export async function ValidateGoalChartsAndCriteria(
 		);
 	}
 
+	const gptString = GetGPTString(game, playtype);
+
 	// checking whether the key and value make sense
-	const gptConfig = GetGamePTConfig(game, playtype);
+	const gptConfig = GetGPTConfig(gptString);
 
-	if (criteria.key === "scoreData.gradeIndex" && !gptConfig.grades[criteria.value]) {
-		throw new Error(
-			`Invalid value of ${criteria.value} for grade goal. No such grade exists at that index.`
-		);
-	} else if (criteria.key === "scoreData.lampIndex" && !gptConfig.lamps[criteria.value]) {
-		throw new Error(
-			`Invalid value of ${criteria.value} for lamp goal. No such lamp exists at that index.`
-		);
-	} else if (
-		criteria.key === "scoreData.percent" &&
-		(criteria.value <= 0 || criteria.value > gptConfig.percentMax)
-	) {
-		throw new Error(
-			`Invalid value of ${criteria.value} for percent goal. Percents must be between 0 and ${gptConfig.percentMax}.`
-		);
-	} else if (criteria.key === "scoreData.score") {
-		if (criteria.value < 0) {
-			throw new Error(`Invalid score value for goal. Can't be negative.`);
-		}
+	const config = GetScoreMetricConf(gptConfig, criteria.key);
 
-		// troublemaker games where score is relative to notecount
-		if (game === "iidx" || game === "bms" || game === "pms") {
-			if (charts.type !== "single") {
+	if (!config) {
+		throw new Error(
+			`Invalid criteria.key for ${FormatGame(game, playtype)} (Got ${criteria.key}).`
+		);
+	}
+
+	const gptImpl = GPT_SERVER_IMPLEMENTATIONS[gptString];
+
+	switch (config.type) {
+		case "DECIMAL":
+		case "INTEGER": {
+			if (config.chartDependentMax && charts.type !== "single") {
 				throw new Error(
-					`Invalid key for ${game} with multiple charts. Creating score goals on multiple charts where score is relative to notecount is a terrible idea, and has been disabled.`
+					`Creating ${criteria.key} goals on multiple charts where the maximum value is relative to the chart is a terrible idea, and has been disabled.`
 				);
 			}
 
-			const relatedChart = (await db.charts[game].findOne({
-				playtype,
-				chartID: charts.data,
-			})) as ChartDocument<
-				"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP" | "pms:Controller" | "pms:Keyboard"
-			>;
+			let err;
 
-			const notecount = relatedChart.data.notecount;
+			if (config.chartDependentMax) {
+				const chart = await db.anyCharts[game].findOne({
+					playtype,
+					// guaranteed by previous if statement
+					chartID: charts.data as string,
+				});
 
-			if (criteria.value > notecount * 2) {
+				if (!chart) {
+					throw new Error(
+						`Chart ${charts.data} was removed from the database while a goal was being validated on it?`
+					);
+				}
+
+				// @ts-expect-error this is fine leave me alone
+				err = gptImpl.validators[criteria.key](criteria.value, chart);
+			} else {
+				err = config.validate(criteria.value);
+			}
+
+			if (err !== true) {
+				throw new Error(`Invalid value ${criteria.value} for ${criteria.key}, ${err}`);
+			}
+
+			break;
+		}
+
+		case "ENUM": {
+			if (!config.values[criteria.value]) {
 				throw new Error(
-					`Invalid value of ${
-						criteria.value
-					} for goal. Maximum score possible on this chart is ${notecount * 2}.`
+					`Invalid value of ${criteria.value} for ${criteria.key} goal. No such ${criteria.key} exists at that index.`
 				);
 			}
-		} else if (GenericCalculatePercent(game, criteria.value) >= gptConfig.percentMax) {
-			throw new Error(
-				`Score of ${criteria.value} is too large for ${FormatGame(game, playtype)}.`
-			);
+
+			break;
 		}
+
+		case "GRAPH":
+		case "NULLABLE_GRAPH":
+			throw new Error(`Cannot set a goal on ${criteria.key} as it's a graph metric.`);
 	}
 
 	if (charts.type === "single" && criteria.mode !== "single") {

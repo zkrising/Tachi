@@ -32,11 +32,6 @@ t.test("GET /api/v1/games/:game/:playtype/targets/goals/popular", (t) => {
 
 		t.equal(res.statusCode, 200, "Should return 200.");
 
-		for (const goalSub of IIDXSPQuestGoals) {
-			// i hate this monk 'feature'!!!
-			delete goalSub._id;
-		}
-
 		// note: we have to sort the output here such that it's deterministic.
 		t.strictSame(
 			(res.body.body as Array<GoalDocument>).sort((a, b) => a.goalID.localeCompare(b.goalID)),

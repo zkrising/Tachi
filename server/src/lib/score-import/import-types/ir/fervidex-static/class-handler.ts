@@ -1,17 +1,19 @@
-import type { ClassHandler } from "../../../framework/user-game-stats/types";
+import { IIDXDans } from "tachi-common/config/game-support/iidx";
+import type { ClassProvider } from "lib/score-import/framework/calculated-data/types";
 import type { integer } from "tachi-common";
 
-export function CreateFerStaticClassHandler(body: Record<string, unknown>): ClassHandler {
-	return (game, playtype, userID, ratings, logger) => {
+export function CreateFerStaticClassProvider(body: Record<string, unknown>): ClassProvider {
+	return (gptString, userID, ratings, logger) => {
 		let index;
 
-		if (playtype === "SP") {
+		if (gptString === "iidx:SP") {
 			index = body.sp_dan;
-		} else if (playtype === "DP") {
+			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+		} else if (gptString === "iidx:DP") {
 			index = body.dp_dan;
 		} else {
 			logger.warn(
-				`Invalid playtype ${playtype} passed to FerStaticClassHandler. Attempting to continue.`
+				`Invalid gptString ${gptString} passed to FerStaticClassProvider. Attempting to continue.`
 			);
 			return;
 		}
@@ -21,19 +23,19 @@ export function CreateFerStaticClassHandler(body: Record<string, unknown>): Clas
 		}
 
 		if (!Number.isInteger(index)) {
-			logger.info(`received invalid fer-static class of ${index} (${playtype}).`, { body });
+			logger.info(`received invalid fer-static class of ${index} (${gptString}).`, { body });
 			return;
 		}
 
-		const intIndex = index as integer;
+		const dan = IIDXDans[index as integer];
 
-		if (intIndex < 0 || intIndex > 18) {
+		if (!dan) {
 			logger.warn(`Invalid fer-static class of ${index}. Skipping.`);
 			return;
 		}
 
 		return {
-			dan: intIndex,
+			dan: dan.id,
 		};
 	};
 }

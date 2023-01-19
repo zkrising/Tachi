@@ -253,7 +253,7 @@ router.post(
 
 		await DeleteMultipleScores(scores);
 
-		await db.charts[game].remove({
+		await db.anyCharts[game].remove({
 			chartID,
 		});
 

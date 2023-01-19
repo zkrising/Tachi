@@ -10,45 +10,41 @@ t.test("#RemoveStaleFolderShowcaseStats", (t) => {
 		await db["game-settings"].remove({});
 		await db["game-settings"].insert([
 			mkFakeGameSettings(1, "iidx", "SP", {
-				// @todo Make `mk` test functions deeply partial.
-				// @ts-expect-error DeepPartial modifications to mkFakeGameSettings
-				// is not currently possible.
 				preferences: {
 					stats: [
 						{
 							mode: "chart",
 							chartID: "foo",
-							property: "grade",
+							metric: "grade",
 						},
 						{
 							mode: "folder",
 							folderID: "REMOVED_FOLDER",
 							gte: 1,
-							property: "lamp",
+							metric: "lamp",
 						},
 						{
 							mode: "folder",
 							folderID: "NORMAL_FOLDER",
 							gte: 1,
-							property: "lamp",
+							metric: "lamp",
 						},
 					],
 				},
 			}),
 			mkFakeGameSettings(2, "iidx", "SP", {
-				// @ts-expect-error see above
 				preferences: {
 					stats: [
 						{
 							mode: "chart",
 							chartID: "foo",
-							property: "grade",
+							metric: "grade",
 						},
 						{
 							mode: "folder",
 							folderID: "REMOVED_FOLDER",
 							gte: 1,
-							property: "lamp",
+							metric: "lamp",
 						},
 					],
 				},
@@ -68,20 +64,20 @@ t.test("#RemoveStaleFolderShowcaseStats", (t) => {
 					{
 						mode: "chart",
 						chartID: "foo",
-						property: "grade",
+						metric: "grade",
 					},
 					{
 						mode: "folder",
 						folderID: "NORMAL_FOLDER",
 						gte: 1,
-						property: "lamp",
+						metric: "lamp",
 					},
 				],
 				[
 					{
 						mode: "chart",
 						chartID: "foo",
-						property: "grade",
+						metric: "grade",
 					},
 				],
 			]

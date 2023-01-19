@@ -8,15 +8,15 @@ import {
 	MatchTypes,
 	Playtype,
 	SongDocument,
+	allSupportedGames,
 } from "tachi-common";
-import { allSupportedGames } from "tachi-common/config/static-config";
 import { ReadCollection } from "../util";
 
 // check that a given matchType works for a given game.
 const uniquenessChecks: Array<{ game: Game; playtype: Playtype; matchType: MatchTypes }> = [];
 
 for (const game of allSupportedGames) {
-	for (const playtype of GetGameConfig(game).validPlaytypes) {
+	for (const playtype of GetGameConfig(game).playtypes) {
 		const gptConfig = GetGamePTConfig(game, playtype);
 
 		for (const matchType of gptConfig.supportedMatchTypes) {

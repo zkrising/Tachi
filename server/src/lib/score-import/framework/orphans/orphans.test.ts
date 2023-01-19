@@ -133,7 +133,7 @@ t.test("#ReprocessOrphan", (t) => {
 				success: true,
 				type: "ScoreImported",
 				message:
-					"Imported score R7a3a2b04bd4882ec06c198d78297fe3d56561502c7b134c067214bbfdf4f1602.",
+					"Imported score Tecc9141bfbc12fcc1ead785c13c4cf15a5c8a04d8d431e208ffe8c9d0df2080d.",
 				content: {
 					score: {
 						game: "iidx",
@@ -142,16 +142,18 @@ t.test("#ReprocessOrphan", (t) => {
 						importType: "ir/direct-manual",
 						timeAchieved: null,
 						scoreData: {
-							lampIndex: 5,
 							lamp: "HARD CLEAR",
 							score: 500,
+							enumIndexes: {
+								lamp: 5,
+							},
 						},
 						highlight: false,
 						userID: 1,
 						songID: 1,
 						chartID: "c2311194e3897ddb5745b1760d2c0141f933e683",
 						scoreID:
-							"R7a3a2b04bd4882ec06c198d78297fe3d56561502c7b134c067214bbfdf4f1602",
+							"Tecc9141bfbc12fcc1ead785c13c4cf15a5c8a04d8d431e208ffe8c9d0df2080d",
 						playtype: "SP",
 						isPrimary: true,
 					},

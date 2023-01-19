@@ -33,6 +33,9 @@ export async function EfficientDBIterate<T extends object, R>(
 			projectID: true,
 		});
 
+		// update lastID by taking the last document's ID.
+		lastID = docs.at(-1)?._id ?? null;
+
 		if (docs.length === 0) {
 			logger.info(`Ended documents at ${i}.`);
 			break;
@@ -41,9 +44,6 @@ export async function EfficientDBIterate<T extends object, R>(
 		const rDocs = await Promise.all(docs.map(callbackFn));
 
 		i = i + bucketSize;
-
-		// update lastID by taking the last document's ID.
-		lastID = docs.at(-1)?._id ?? null;
 
 		await saveOp(rDocs);
 	}

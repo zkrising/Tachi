@@ -1,4 +1,4 @@
-import { GetGradeFromPercent, IsNullish } from "util/misc";
+import { IsNullish } from "util/misc";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Divider from "components/util/Divider";
 import Muted from "components/util/Muted";
@@ -6,7 +6,15 @@ import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
 import { PoyashiBPI } from "rg-stats";
-import { ChartDocument, integer, PBScoreDocument, ScoreDocument } from "tachi-common";
+import {
+	ChartDocument,
+	GetGrade,
+	IIDXLIKE_GBOUNDARIES,
+	integer,
+	PBScoreDocument,
+	ScoreDocument,
+} from "tachi-common";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import MiniTable from "../components/MiniTable";
 import DeltaCell from "./DeltaCell";
 import ScoreCell from "./ScoreCell";
@@ -135,33 +143,18 @@ export default function BPICell({
 function FormatAverage(score: integer, playtype: "SP" | "DP", notecount: integer) {
 	const percent = (100 * score) / (notecount * 2);
 
-	const grade = GetGradeFromPercent("iidx", playtype, percent);
+	const grade = GetGrade(IIDXLIKE_GBOUNDARIES, percent);
 
 	return {
 		score: (
 			<ScoreCell
-				score={
-					{
-						game: "iidx",
-						playtype,
-						scoreData: {
-							grade,
-							percent,
-							score,
-						},
-					} as any
-				}
-			/>
-		),
-		delta: (
-			<DeltaCell
-				game="iidx"
-				playtype={playtype}
-				score={score}
-				percent={percent}
+				colour={GPT_CLIENT_IMPLEMENTATIONS[`iidx:${playtype}`].enumColours.grade[grade]}
 				grade={grade}
+				percent={percent}
+				score={score}
 			/>
 		),
+		delta: <DeltaCell value={percent} grade={grade} gradeBoundaries={IIDXLIKE_GBOUNDARIES} />,
 	};
 }
 

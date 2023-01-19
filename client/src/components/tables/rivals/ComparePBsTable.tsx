@@ -1,38 +1,41 @@
 import { NumericSOV, StrSOV } from "util/sorts";
 import { CreatePBCompareSearchParams } from "util/tables/create-search";
-import React, { useState } from "react";
-import { Game, IDStrings, Playtype } from "tachi-common";
-import { ESDCompare } from "tachi-common/lib/esd";
+import React, { useEffect, useState } from "react";
+import { Game, GetGamePTConfig, GetScoreMetricConf, Playtype } from "tachi-common";
 import { ComparePBsDataset } from "types/tables";
 import DifficultyCell from "../cells/DifficultyCell";
 import PBCompareCell from "../cells/PBCompareCell";
 import TitleCell from "../cells/TitleCell";
 import SelectableCompareType from "../components/SelectableCompareType";
 import TachiTable, { Header, ZTableTHProps } from "../components/TachiTable";
-import ShortScoreCoreCells from "../game-core-cells/ShortScoreCoreCells";
 import ChartHeader from "../headers/ChartHeader";
+import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";
 
-export default function ComparePBsTable<I extends IDStrings = IDStrings>({
+export default function ComparePBsTable({
 	dataset,
 	game,
 	playtype,
 	baseUser,
 	compareUser,
-	shouldESD,
 }: {
-	dataset: ComparePBsDataset<I>;
+	dataset: ComparePBsDataset;
 	game: Game;
 	playtype: Playtype;
 	baseUser: string;
 	compareUser: string;
-	shouldESD: boolean;
 }) {
-	const [compareType, setCompareType] = useState<"score" | "lamp">("score");
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	const [metric, setMetric] = useState<string>(gptConfig.defaultMetric);
+
+	useEffect(() => {
+		setMetric(gptConfig.defaultMetric);
+	}, [gptConfig]);
 
 	const headers: Header<ComparePBsDataset[0]>[] = [
 		ChartHeader(game, (d) => d.chart),
 		["Song", "Song", StrSOV((x) => x.song.title)],
-		["", "", () => 1, () => <td colSpan={2}>{baseUser}</td>],
+		["", "", () => 1, () => <td colSpan={3}>{baseUser}</td>],
 		[
 			"Vs.",
 			"Vs.",
@@ -45,82 +48,81 @@ export default function ComparePBsTable<I extends IDStrings = IDStrings>({
 					return -Infinity;
 				}
 
-				if (compareType === "score") {
-					if (shouldESD && x.base.scoreData.esd && x.compare.scoreData.esd) {
-						// esd is inverted, whoops
-						const e = ESDCompare(x.compare.scoreData.esd, x.base.scoreData.esd);
+				const conf = GetScoreMetricConf(gptConfig, metric);
 
-						if (e !== 0) {
-							return e;
-						}
-					}
-
-					return x.base.scoreData.percent - x.compare.scoreData.percent;
+				if (!conf) {
+					return 0; // wut
 				}
 
-				return x.base.scoreData.lampIndex - x.compare.scoreData.lampIndex;
+				if (conf.type === "ENUM") {
+					return (
+						// @ts-expect-error this will work
+						x.base.scoreData.enumIndexes[metric] -
+						// @ts-expect-error this will work
+						x.compare.scoreData.enumIndexes[metric]
+					);
+				}
+
+				return (
+					// @ts-expect-error this will work
+					x.base.scoreData[metric] -
+					// @ts-expect-error this will work
+					x.compare.scoreData[metric]
+				);
 			}),
 			(thProps: ZTableTHProps) => (
 				<SelectableCompareType
-					key={compareType}
-					compareType={compareType}
-					setCompareType={setCompareType}
+					key={metric}
+					metric={metric}
+					setMetric={(e) => {
+						setMetric(e);
+						thProps.changeSort("Vs.");
+					}}
+					gptConfig={gptConfig}
 					{...thProps}
 				/>
 			),
 		],
-		["", "", () => 1, () => <td colSpan={2}>{compareUser}</td>],
+		["", "", () => 1, () => <td colSpan={3}>{compareUser}</td>],
 	];
 
 	return (
 		<TachiTable
-			// very funny way of getting the table to re-render when shouldESD is changed
-			key={`${shouldESD}`}
 			dataset={dataset}
 			headers={headers}
 			entryName="Charts"
 			defaultReverseSort
 			defaultSortMode="Vs."
 			searchFunctions={CreatePBCompareSearchParams(game, playtype)}
-			rowFunction={(data) => (
-				<Row data={data} game={game} compareType={compareType} shouldESD={shouldESD} />
-			)}
+			rowFunction={(data) => <Row data={data} game={game} metric={metric} />}
 		/>
 	);
 }
 
-function Row<I extends IDStrings = IDStrings>({
-	data,
-	game,
-	compareType,
-	shouldESD,
-}: {
-	data: ComparePBsDataset<I>[0];
-	game: Game;
-	compareType: "score" | "lamp";
-	shouldESD: boolean;
-}) {
+function Row({ data, game, metric }: { data: ComparePBsDataset[0]; game: Game; metric: string }) {
+	const metricConf = GetScoreMetricConf(GetGamePTConfig(game, data.chart.playtype), metric)!;
+
 	return (
 		<tr>
 			<DifficultyCell chart={data.chart} game={game} alwaysShort />
 			<TitleCell game={game} song={data.song} chart={data.chart} />
 			{data.base ? (
-				<ShortScoreCoreCells score={data.base} game={game} chart={data.chart} />
+				<ScoreCoreCells short score={data.base} game={game} chart={data.chart} />
 			) : (
-				<td colSpan={2}>Not Played</td>
+				<td colSpan={3}>Not Played</td>
 			)}
 			<PBCompareCell
-				shouldESD={shouldESD}
 				base={data.base}
 				compare={data.compare}
 				game={game}
 				playtype={data.chart.playtype}
-				compareType={compareType}
+				metricConf={metricConf}
+				metric={metric}
 			/>
 			{data.compare ? (
-				<ShortScoreCoreCells score={data.compare} game={game} chart={data.chart} />
+				<ScoreCoreCells short score={data.compare} game={game} chart={data.chart} />
 			) : (
-				<td colSpan={2}>Not Played</td>
+				<td colSpan={3}>Not Played</td>
 			)}
 		</tr>
 	);

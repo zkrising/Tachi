@@ -36,11 +36,6 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/pbs/best", (t) => {
 
 		await db["personal-bests"].insert(mockPBs);
 
-		for (const sc of mockPBs) {
-			// lol
-			delete sc._id;
-		}
-
 		const res = await mockApi.get("/api/v1/users/test_zkldi/games/iidx/SP/pbs/best");
 
 		t.hasStrict(res.body, {

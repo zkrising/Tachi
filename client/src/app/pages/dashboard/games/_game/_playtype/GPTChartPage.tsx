@@ -4,15 +4,20 @@ import { SelectRightChart } from "util/misc";
 import { MillisToSince } from "util/time";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
-import LampCell from "components/tables/cells/LampCell";
-import ScoreCell from "components/tables/cells/ScoreCell";
 import MiniTable from "components/tables/components/MiniTable";
+import TargetInfo from "components/tables/dropdowns/components/TargetInfo";
+import ScoreCoreCells from "components/tables/game-core-cells/ScoreCoreCells";
 import PBTable from "components/tables/pbs/PBTable";
 import ProfilePicture from "components/user/ProfilePicture";
 import ApiError from "components/util/ApiError";
+import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
+import SelectLinkButton from "components/util/SelectLinkButton";
+import useApiQuery from "components/util/query/useApiQuery";
+import useLUGPTSettings from "components/util/useLUGPTSettings";
+import { TargetsContext } from "context/TargetsContext";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useState } from "react";
 import { Col, Row } from "react-bootstrap";
@@ -23,10 +28,10 @@ import {
 	FormatDifficulty,
 	GetGameConfig,
 	GetGamePTConfig,
-	integer,
 	PBScoreDocument,
-	UserDocument,
 	SongDocument,
+	UserDocument,
+	integer,
 } from "tachi-common";
 import {
 	ChartPBLeaderboardReturn,
@@ -36,12 +41,6 @@ import {
 } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
 import { PBDataset } from "types/tables";
-import useLUGPTSettings from "components/util/useLUGPTSettings";
-import TargetInfo from "components/tables/dropdowns/components/TargetInfo";
-import useApiQuery from "components/util/query/useApiQuery";
-import Divider from "components/util/Divider";
-import { TargetsContext } from "context/TargetsContext";
-import SelectLinkButton from "components/util/SelectLinkButton";
 
 // This component forms a wrapper around the Real GPT Chart Page
 // which handles the case where activeChart == null.
@@ -206,7 +205,7 @@ function InternalGPTChartPage({
 					)}
 				</div>
 			</Col>
-			<TopShowcase data={data} user={user} userMap={userMap} />
+			<TopShowcase data={data} user={user} userMap={userMap} chart={chart} />
 			<Col xs={12} className="mt-4">
 				<Switch>
 					<Route exact path="/games/:game/:playtype/songs/:songID/:difficulty/targets">
@@ -375,10 +374,12 @@ function TopShowcase({
 	data,
 	user,
 	userMap,
+	chart,
 }: {
 	data: ChartPBData;
 	user: UserDocument | null;
 	userMap: Map<integer, UserDocument>;
+	chart: ChartDocument;
 }) {
 	// We have a couple of conditions.
 	// User is #1: col-12 #1,
@@ -392,7 +393,7 @@ function TopShowcase({
 	if (user?.id === bestPlay.userID) {
 		return (
 			<Col xs={12}>
-				<PlayCard name="Best PB" pb={bestPlay} user={bestUser} />
+				<PlayCard name="Best PB" pb={bestPlay} user={bestUser} chart={chart} />
 			</Col>
 		);
 	}
@@ -401,7 +402,7 @@ function TopShowcase({
 		return (
 			<>
 				<Col xs={12} lg={6}>
-					<PlayCard name="Best PB" pb={bestPlay} user={bestUser} />
+					<PlayCard name="Best PB" pb={bestPlay} user={bestUser} chart={chart} />
 				</Col>
 				<Col xs={12} lg={6}>
 					<Card header="Your PB" className="text-center">
@@ -417,16 +418,26 @@ function TopShowcase({
 	return (
 		<>
 			<Col xs={12} lg={6}>
-				<PlayCard name="Best Play" pb={bestPlay} user={bestUser} />
+				<PlayCard name="Best Play" pb={bestPlay} user={bestUser} chart={chart} />
 			</Col>
 			<Col xs={12} lg={6}>
-				<PlayCard name="Your PB" pb={thisUsersPlay} user={user!} />
+				<PlayCard name="Your PB" pb={thisUsersPlay} user={user!} chart={chart} />
 			</Col>
 		</>
 	);
 }
 
-function PlayCard({ pb, user, name }: { pb: PBScoreDocument; user: UserDocument; name: string }) {
+function PlayCard({
+	pb,
+	user,
+	name,
+	chart,
+}: {
+	pb: PBScoreDocument;
+	user: UserDocument;
+	name: string;
+	chart: ChartDocument;
+}) {
 	return (
 		<Card header={name}>
 			<Row className="align-items-center">
@@ -446,13 +457,8 @@ function PlayCard({ pb, user, name }: { pb: PBScoreDocument; user: UserDocument;
 					<span className="text-muted">/{pb.rankingData.outOf}</span>
 				</Col>
 				<Col lg={6}>
-					<MiniTable headers={["PB Info"]}>
-						<tr>
-							<ScoreCell score={pb} />
-						</tr>
-						<tr>
-							<LampCell score={pb} />
-						</tr>
+					<MiniTable headers={["PB Info"]} colSpan={100}>
+						<ScoreCoreCells short game={pb.game} chart={chart} score={pb} />
 					</MiniTable>
 					<div className="text-center">
 						<Muted>

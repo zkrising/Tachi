@@ -1,7 +1,13 @@
 import { NumericSOV, StrSOV } from "util/sorts";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
-import { ChartDocument, Game, IDStrings, ScoreCalculatedDataLookup } from "tachi-common";
+import {
+	AnyScoreRatingAlg,
+	ChartDocument,
+	Game,
+	GPTString,
+	ScoreRatingAlgorithms,
+} from "tachi-common";
 import { RivalChartDataset } from "types/tables";
 import IndexCell from "../cells/IndexCell";
 import RankingCell, { RankingViewMode } from "../cells/RankingCell";
@@ -15,12 +21,12 @@ import ScoreCoreCells from "../game-core-cells/ScoreCoreCells";
 import { GetGPTCoreHeaders } from "../headers/GameHeaders";
 import { CreateRankingHeader } from "../headers/RankingHeader";
 
-export default function RivalChartTable<I extends IDStrings = IDStrings>({
+export default function RivalChartTable({
 	dataset,
 	game,
 	chart,
 }: {
-	dataset: RivalChartDataset<I>;
+	dataset: RivalChartDataset;
 	game: Game;
 	chart: ChartDocument;
 }) {
@@ -70,16 +76,16 @@ export default function RivalChartTable<I extends IDStrings = IDStrings>({
 	);
 }
 
-function Row<I extends IDStrings = IDStrings>({
+function Row({
 	data,
 	rating,
 	game,
 	chart,
 	rankingViewMode,
 }: {
-	data: RivalChartDataset<I>[0];
+	data: RivalChartDataset[0];
 	game: Game;
-	rating: ScoreCalculatedDataLookup[I];
+	rating: AnyScoreRatingAlg;
 	chart: ChartDocument;
 	rankingViewMode: RankingViewMode;
 }) {

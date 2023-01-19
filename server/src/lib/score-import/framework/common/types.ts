@@ -1,14 +1,32 @@
-import type { IDStrings, Playtype, ScoreDocument } from "tachi-common";
+import type {
+	GPTString,
+	Judgements,
+	Playtype,
+	ScoreDocument,
+	integer,
+	OptionalMetrics,
+	ConfProvidedMetrics,
+} from "tachi-common";
+import type { ExtractMetrics } from "tachi-common/types/metrics";
+import type { Mutable } from "utils/types";
 
 /**
- * An intermediate score format that will be filled out by
+ * ScoreData, but it's just the provided metrics (and enumIndexes don't exist).
+ */
+export type DryScoreData<GPT extends GPTString> = ExtractMetrics<ConfProvidedMetrics[GPT]> & {
+	optional: Mutable<OptionalMetrics[GPT]>;
+	judgements: Partial<Record<Judgements[GPT], integer | null>>;
+};
+
+/**
+ * An intermediate score format that will be fully filled out by
  * HydrateScore.
  */
-export type DryScore<I extends IDStrings = IDStrings> = Pick<
-	ScoreDocument<I>,
+export type DryScore<GPT extends GPTString = GPTString> = Pick<
+	ScoreDocument<GPT>,
 	"comment" | "game" | "importType" | "scoreMeta" | "service" | "timeAchieved"
 > & {
-	scoreData: Omit<ScoreDocument<I>["scoreData"], "esd" | "gradeIndex" | "lampIndex">;
+	scoreData: DryScoreData<GPT>;
 };
 
 export type ScorePlaytypeMap = Partial<Record<Playtype, Array<ScoreDocument>>>;

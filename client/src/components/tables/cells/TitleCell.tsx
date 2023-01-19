@@ -32,7 +32,7 @@ export default function TitleCell({
 			`/misc/popn/banners/${(chart as any).data.inGameID}.png`
 		)})`;
 	} else if (game === "itg") {
-		const banner = (song as SongDocument<"itg">).data.banner;
+		const banner = (song as SongDocument<"itg">).data.originalPack;
 
 		if (banner) {
 			backgroundImage = `url(${ToCDNURL(

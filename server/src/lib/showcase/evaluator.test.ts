@@ -21,10 +21,11 @@ t.test("#EvaluateShowcaseStat", (t) => {
 
 	t.test("Should evaluate a folder stat.", async (t) => {
 		const data = await EvaluateShowcaseStat(
+			"iidx:SP",
 			{
 				folderID: TestingIIDXFolderSP10.folderID,
 				mode: "folder",
-				property: "lamp",
+				metric: "lamp",
 				gte: IIDX_LAMPS.HARD_CLEAR,
 			},
 			1
@@ -40,10 +41,11 @@ t.test("#EvaluateShowcaseStat", (t) => {
 
 	t.test("Should evaluate a chart stat.", async (t) => {
 		const data = await EvaluateShowcaseStat(
+			"iidx:SP",
 			{
 				chartID: Testing511SPA.chartID,
 				mode: "chart",
-				property: "score",
+				metric: "score",
 			},
 			1
 		);
@@ -57,10 +59,11 @@ t.test("#EvaluateShowcaseStat", (t) => {
 
 	t.test("Should return null if the user has no score on this chart.", async (t) => {
 		const data = await EvaluateShowcaseStat(
+			"iidx:SP",
 			{
 				chartID: "nonsense",
 				mode: "chart",
-				property: "score",
+				metric: "score",
 			},
 			1
 		);

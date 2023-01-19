@@ -1,4 +1,4 @@
-import { HumanFriendlyStrToGradeIndex, HumanFriendlyStrToLampIndex } from "util/str-to-num";
+import { HumanFriendlyStrToEnumIndex } from "util/str-to-num";
 import { ValueGetterOrHybrid } from "util/ztable/search";
 import {
 	BMS_TABLES,
@@ -6,8 +6,10 @@ import {
 	Game,
 	GamePTConfig,
 	GetGamePTConfig,
-	IDStrings,
+	GPTString,
+	PBScoreDocument,
 	Playtype,
+	ScoreDocument,
 } from "tachi-common";
 import { ComparePBsDataset, FolderDataset, PBDataset, ScoreDataset } from "types/tables";
 
@@ -21,28 +23,19 @@ function GetBMSTableVal(chart: ChartDocument<"bms:7K" | "bms:14K">, key: string)
 	return null;
 }
 
-export function CreateDefaultScoreSearchParams<I extends IDStrings = IDStrings>(
+export function CreateDefaultScoreSearchParams<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const searchFunctions: Record<string, ValueGetterOrHybrid<ScoreDataset<I>[0]>> = {
+	const searchFunctions: Record<string, ValueGetterOrHybrid<ScoreDataset<GPT>[0]>> = {
 		artist: (x) => x.__related.song.artist,
 		title: (x) => x.__related.song.title,
 		difficulty: (x) => x.__related.chart.difficulty,
 		level: (x) => x.__related.chart.levelNum,
-		score: (x) => x.scoreData.score,
-		percent: (x) => x.scoreData.percent,
 		highlight: (x) => !!x.highlight,
-		lamp: {
-			valueGetter: (x) => [x.scoreData.lamp, x.scoreData.lampIndex],
-			strToNum: HumanFriendlyStrToLampIndex(game, playtype),
-		},
-		grade: {
-			valueGetter: (x) => [x.scoreData.grade, x.scoreData.gradeIndex],
-			strToNum: HumanFriendlyStrToGradeIndex(game, playtype),
-		},
+		...GetMetricSearchParams(game, playtype),
 		...CreateCalcDataSearchFns(gptConfig),
 	};
 
@@ -53,31 +46,53 @@ export function CreateDefaultScoreSearchParams<I extends IDStrings = IDStrings>(
 	return searchFunctions;
 }
 
-export function CreateDefaultPBSearchParams<I extends IDStrings = IDStrings>(
+export function GetMetricSearchParams(
+	game: Game,
+	playtype: Playtype,
+	kMapper: (v: any) => PBScoreDocument | ScoreDocument = (v) => v
+) {
+	const searchFns: Record<string, ValueGetterOrHybrid<PBScoreDocument | ScoreDocument>> = {};
+
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	for (const [metric, conf] of Object.entries({
+		...gptConfig.providedMetrics,
+		...gptConfig.derivedMetrics,
+	})) {
+		switch (conf.type) {
+			case "ENUM":
+				searchFns[metric] = {
+					// @ts-expect-error lol this is fine pls
+					valueGetter: (x) => kMapper(x)?.scoreData[metric] ?? null,
+					strToNum: HumanFriendlyStrToEnumIndex(game, playtype, metric),
+				};
+				break;
+			case "INTEGER":
+			case "DECIMAL":
+				// @ts-expect-error lol this is fine pls
+				searchFns[metric] = (x) => kMapper(x)?.scoreData[metric] ?? null;
+		}
+	}
+
+	return searchFns;
+}
+
+export function CreateDefaultPBSearchParams<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const searchFunctions: Record<string, ValueGetterOrHybrid<PBDataset<I>[0]>> = {
+	const searchFunctions: Record<string, ValueGetterOrHybrid<PBDataset<GPT>[0]>> = {
 		artist: (x) => x.__related.song.artist,
 		title: (x) => x.__related.song.title,
 		difficulty: (x) => x.__related.chart.difficulty,
 		level: (x) => x.__related.chart.levelNum,
-		score: (x) => x.scoreData.score,
-		percent: (x) => x.scoreData.percent,
 		ranking: (x) => x.rankingData.rank,
 		rivalRanking: (x) => x.rankingData.rivalRank,
 		highlight: (x) => !!x.highlight,
 		username: (x) => x.__related.user?.username ?? null,
-		lamp: {
-			valueGetter: (x) => [x.scoreData.lamp, x.scoreData.lampIndex],
-			strToNum: HumanFriendlyStrToLampIndex(game, playtype),
-		},
-		grade: {
-			valueGetter: (x) => [x.scoreData.grade, x.scoreData.gradeIndex],
-			strToNum: HumanFriendlyStrToGradeIndex(game, playtype),
-		},
+		...GetMetricSearchParams(game, playtype),
 		...CreateCalcDataSearchFns(gptConfig),
 	};
 
@@ -88,11 +103,11 @@ export function CreateDefaultPBSearchParams<I extends IDStrings = IDStrings>(
 	return searchFunctions;
 }
 
-export function CreatePBCompareSearchParams<I extends IDStrings = IDStrings>(
+export function CreatePBCompareSearchParams<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype
 ) {
-	const searchFunctions: Record<string, ValueGetterOrHybrid<ComparePBsDataset<I>[0]>> = {
+	const searchFunctions: Record<string, ValueGetterOrHybrid<ComparePBsDataset<GPT>[0]>> = {
 		artist: (x) => x.song.artist,
 		title: (x) => x.song.title,
 		difficulty: (x) => x.chart.difficulty,
@@ -106,37 +121,22 @@ export function CreatePBCompareSearchParams<I extends IDStrings = IDStrings>(
 	return searchFunctions;
 }
 
-export function CreateDefaultFolderSearchParams<I extends IDStrings = IDStrings>(
+export function CreateDefaultFolderSearchParams<GPT extends GPTString = GPTString>(
 	game: Game,
 	playtype: Playtype
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const searchFunctions: Record<string, ValueGetterOrHybrid<FolderDataset<I>[0]>> = {
+	const searchFunctions: Record<string, ValueGetterOrHybrid<FolderDataset<GPT>[0]>> = {
 		artist: (x) => x.__related.song.artist,
 		title: (x) => x.__related.song.title,
 		difficulty: (x) => x.difficulty,
 		level: (x) => x.levelNum,
-		score: (x) => x.__related.pb?.scoreData.score ?? null,
-		percent: (x) => x.__related.pb?.scoreData.percent ?? null,
 		ranking: (x) => x.__related.pb?.rankingData.rank ?? null,
 		rivalRanking: (x) => x.__related.pb?.rankingData.rivalRank ?? null,
 		highlight: (x) => !!x.__related.pb?.highlight,
 		played: (x) => !!x.__related.pb,
-		lamp: {
-			valueGetter: (x) =>
-				x.__related.pb
-					? [x.__related.pb.scoreData.lamp, x.__related.pb.scoreData.lampIndex]
-					: null,
-			strToNum: HumanFriendlyStrToLampIndex(game, playtype),
-		},
-		grade: {
-			valueGetter: (x) =>
-				x.__related.pb
-					? [x.__related.pb.scoreData.grade, x.__related.pb.scoreData.gradeIndex]
-					: null,
-			strToNum: HumanFriendlyStrToGradeIndex(game, playtype),
-		},
+		...GetMetricSearchParams(game, playtype, (k) => k.__related.pb),
 		...CreateFolderCalcDataSearchFns(gptConfig),
 	};
 
@@ -149,8 +149,9 @@ export function CreateDefaultFolderSearchParams<I extends IDStrings = IDStrings>
 
 function CreateFolderCalcDataSearchFns(gptConfig: GamePTConfig) {
 	return Object.fromEntries(
-		gptConfig.scoreRatingAlgs.map((e) => [
+		Object.keys(gptConfig.scoreRatingAlgs).map((e) => [
 			e.toLowerCase(),
+			// @ts-expect-error this is fine please leave me alone
 			(x: FolderDataset[0]) => x.__related.pb?.calculatedData[e] ?? null,
 		])
 	);
@@ -158,7 +159,8 @@ function CreateFolderCalcDataSearchFns(gptConfig: GamePTConfig) {
 
 function CreateCalcDataSearchFns(gptConfig: GamePTConfig) {
 	return Object.fromEntries(
-		gptConfig.scoreRatingAlgs.map(
+		Object.keys(gptConfig.scoreRatingAlgs).map(
+			// @ts-expect-error this is fine please leave me alone
 			(e) => [e.toLowerCase(), (x: PBDataset[0]) => x.calculatedData[e]] ?? null
 		)
 	);

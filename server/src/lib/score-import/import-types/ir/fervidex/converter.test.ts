@@ -6,7 +6,7 @@ import {
 	TachifyRandom,
 	TachifyRange,
 } from "./converter";
-import { InternalFailure } from "../../../framework/common/converter-failures";
+import { InternalFailure, SkipScoreFailure } from "../../../framework/common/converter-failures";
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
@@ -14,13 +14,12 @@ import { CreateScoreID } from "lib/score-import/framework/score-importing/score-
 import t from "tap";
 import { mkFakeScoreIIDXSP } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
-import { Testing511Song, Testing511SPA, TestingIIDXSPDryScore } from "test-utils/test-data";
+import { Testing511SPA, Testing511Song, TestingIIDXSPDryScore } from "test-utils/test-data";
 import type { FervidexScore } from "./types";
 
 const logger = CreateLogCtx(__filename);
 
 t.test("#SplitFervidexChartRef", (t) => {
-	t.strictSame(SplitFervidexChartRef("spb"), { playtype: "SP", difficulty: "BEGINNER" });
 	t.strictSame(SplitFervidexChartRef("spn"), { playtype: "SP", difficulty: "NORMAL" });
 	t.strictSame(SplitFervidexChartRef("sph"), { playtype: "SP", difficulty: "HYPER" });
 	t.strictSame(SplitFervidexChartRef("spa"), { playtype: "SP", difficulty: "ANOTHER" });
@@ -33,6 +32,11 @@ t.test("#SplitFervidexChartRef", (t) => {
 	t.throws(
 		() => SplitFervidexChartRef("INVALID" as "spn"),
 		new InternalFailure(`Invalid fervidex difficulty of INVALID`)
+	);
+
+	t.throws(
+		() => SplitFervidexChartRef("spb"),
+		new SkipScoreFailure(`BEGINNER charts are not supported.`)
 	);
 
 	t.end();
@@ -120,8 +124,6 @@ const baseDryScore = {
 	importType: "ir/fervidex",
 	scoreData: {
 		score: 68,
-		percent: 4.325699745547074,
-		grade: "F",
 		lamp: "FAILED",
 		judgements: {
 			pgreat: 34,
@@ -130,7 +132,7 @@ const baseDryScore = {
 			bad: 0,
 			poor: 6,
 		},
-		hitMeta: {
+		optional: {
 			fast: 0,
 			slow: 0,
 			maxCombo: null,
@@ -184,9 +186,6 @@ t.test("#ConverterIRFervidex", (t) => {
 
 		await db.charts.iidx.insert(Testing511DPA);
 
-		// @ts-expect-error apparantly this prop isnt optional. but i'm sure it is.
-		delete Testing511DPA._id;
-
 		const res = await ConverterIRFervidex(
 			deepmerge(baseFervidexScore, { option: { style_2p: "R_RANDOM" }, chart: "dpa" }),
 			{ version: "27", timeReceived: 10, userID: 1 },
@@ -222,7 +221,7 @@ t.test("#ConverterIRFervidex", (t) => {
 			{
 				song: Testing511Song,
 				chart: Testing511SPA,
-				dryScore: deepmerge(baseDryScore, { scoreData: { hitMeta: { bp: null } } }),
+				dryScore: deepmerge(baseDryScore, { scoreData: { optional: { bp: null } } }),
 			},
 			"Should return a dry score."
 		);
@@ -261,38 +260,6 @@ t.test("#ConverterIRFervidex", (t) => {
 		t.end();
 	});
 
-	t.test("Should throw invalid score on percent > 100.", (t) => {
-		t.rejects(
-			ConverterIRFervidex(
-				// eslint-disable-next-line lines-around-comment
-				// @ts-expect-error eternally broken deepmerge
-				deepmerge(baseFervidexScore, { ex_score: 9999 }),
-				{ version: "27" },
-				"ir/fervidex",
-				logger
-			),
-			/Invalid percent/giu
-		);
-
-		t.end();
-	});
-
-	t.test("Should throw invalid score on gauge > 100.", (t) => {
-		t.rejects(
-			ConverterIRFervidex(
-				// eslint-disable-next-line lines-around-comment
-				// @ts-expect-error eternally broken deepmerge
-				deepmerge(baseFervidexScore, { gauge: [150] }),
-				{ version: "27" },
-				"ir/fervidex",
-				logger
-			),
-			/Invalid value of gauge 150./giu
-		);
-
-		t.end();
-	});
-
 	t.test("Should convert underflow gauge to null.", async (t) => {
 		const res = await ConverterIRFervidex(
 			deepmerge(baseFervidexScore, { gauge: [10, 5, 249, 248] }) as FervidexScore,
@@ -307,7 +274,7 @@ t.test("#ConverterIRFervidex", (t) => {
 				song: Testing511Song,
 				chart: Testing511SPA,
 				dryScore: deepmerge(baseDryScore, {
-					scoreData: { hitMeta: { gauge: null, gaugeHistory: [10, 5, null, null] } },
+					scoreData: { optional: { gauge: null, gaugeHistory: [10, 5, null, null] } },
 				}),
 			},
 			"Should return a dry score."
@@ -319,6 +286,7 @@ t.test("#ConverterIRFervidex", (t) => {
 	t.test("Should highlight existing scores.", async (t) => {
 		const fakeScore = mkFakeScoreIIDXSP({
 			scoreID: CreateScoreID(
+				"iidx:SP",
 				1,
 				TestingIIDXSPDryScore,
 				"c2311194e3897ddb5745b1760d2c0141f933e683"

@@ -1,20 +1,19 @@
 import {
-	InternalFailure,
 	InvalidScoreFailure,
 	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
-import { GenericGetGradeAndPercent } from "lib/score-import/framework/common/score-utils";
 import { FindChartWithPTDF } from "utils/queries/charts";
 import { FindSongOnTitle } from "utils/queries/songs";
 import type { ConverterFunction } from "../../common/types";
 import type { MyPageRecordsParsedPB } from "./types";
 import type { DryScore } from "lib/score-import/framework/common/types";
-import type { Difficulties, Lamps } from "tachi-common";
+import type { Difficulties } from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 import type { EmptyObject } from "utils/types";
 
 const DIFFICULTIES: Array<Difficulties["wacca:Single"]> = ["NORMAL", "HARD", "EXPERT", "INFERNO"];
 
-const LAMPS: Record<number, Lamps["wacca:Single"]> = {
+const LAMPS: Record<number, GetEnumValue<"wacca:Single", "lamp">> = {
 	0: "FAILED",
 	1: "CLEAR",
 	2: "MISSLESS",
@@ -41,7 +40,9 @@ const ConvertMyPageScraperRecordsCSV: ConverterFunction<
 	const difficulty = DIFFICULTIES[data.diffIndex];
 
 	if (difficulty === undefined) {
-		throw new InternalFailure(`We somehow got an invalid difficulty index ${data.diffIndex}.`);
+		throw new InvalidScoreFailure(
+			`Invalid difficulty index of ${data.diffIndex}. This corresponds to some unknown difficulty. Invalid input?`
+		);
 	}
 
 	const humanisedChartTitle = `${song.title} [${difficulty}]`;
@@ -63,32 +64,12 @@ const ConvertMyPageScraperRecordsCSV: ConverterFunction<
 		);
 	}
 
-	if (data.score > 1_000_000) {
-		throw new InvalidScoreFailure(
-			`${humanisedChartTitle} - Invalid score of ${data.score} (was greater than 1,000,000).`
-		);
-	}
-
 	const lamp = LAMPS[data.lamp];
 
 	if (lamp === undefined) {
 		logger.info(`Invalid lamp of ${data.lamp} provided.`);
 		throw new InvalidScoreFailure(`${humanisedChartTitle} - Invalid lamp of ${data.lamp}.`);
 	}
-
-	if (data.score === 1_000_000 && lamp !== "ALL MARVELOUS") {
-		throw new InvalidScoreFailure(
-			`MASTER score of ${data.score}, but lamp ${lamp} is not ALL MARVELOUS.`
-		);
-	}
-
-	if (lamp === "ALL MARVELOUS" && data.score !== 1_000_000) {
-		throw new InvalidScoreFailure(
-			`AM lamp ${lamp}, but score is ${data.score}, not 1,000,000.`
-		);
-	}
-
-	const { percent, grade } = GenericGetGradeAndPercent("wacca", data.score, chart);
 
 	const dryScore: DryScore<"wacca:Single"> = {
 		service: "mypage-scraper",
@@ -102,16 +83,10 @@ const ConvertMyPageScraperRecordsCSV: ConverterFunction<
 		scoreData: {
 			score: data.score,
 			lamp,
-			percent,
-			grade,
 			judgements: {},
-			hitMeta: {},
+			optional: {},
 		},
 	};
-
-	logger.verbose(
-		`Returning dryscore with ${dryScore.scoreData.score} for ${humanisedChartTitle}`
-	);
 
 	return { chart, song, dryScore };
 };

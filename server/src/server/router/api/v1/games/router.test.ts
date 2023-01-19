@@ -10,7 +10,17 @@ t.test("GET /api/v1/games", async (t) => {
 
 	t.strictSame(res.body.body.supportedGames, TachiConfig.GAMES);
 
-	t.strictSame(res.body.body.configs.iidx, GetGameConfig("iidx"));
+	t.hasStrict(
+		{
+			...res.body.body.configs.iidx,
+			// songData doesn't serialise nicely as it has functions on it.
+			songData: null,
+		},
+		{
+			...GetGameConfig("iidx"),
+			songData: null,
+		}
+	);
 	t.equal(Object.keys(res.body.body.configs).length, TachiConfig.GAMES.length);
 
 	t.end();

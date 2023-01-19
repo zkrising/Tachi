@@ -2,7 +2,7 @@ import {
 	ChartDocument,
 	Game,
 	GoalDocument,
-	IDStrings,
+	GPTString,
 	integer,
 	UserDocument,
 	ScoreDocument,
@@ -13,7 +13,19 @@ import {
 import { GoalsOnChartReturn, GoalsOnFolderReturn } from "types/api-returns";
 
 export function GetPBs(scoreInfo: SessionScoreInfo[]) {
-	return scoreInfo.filter((e) => e.isNewScore === true || e.lampDelta > 0 || e.scoreDelta > 0);
+	return scoreInfo.filter((e) => {
+		if (e.isNewScore) {
+			return true;
+		}
+
+		for (const v of Object.values(e.deltas)) {
+			if (v >= 0) {
+				return true;
+			}
+		}
+
+		return false;
+	});
 }
 
 export function CreateSongMap<G extends Game = Game>(songs: SongDocument<G>[]) {
@@ -56,8 +68,8 @@ export function CreateChartIDMap<T extends { chartID: string }>(arr: T[]): Map<s
 	return map;
 }
 
-export function CreateChartMap<I extends IDStrings = IDStrings>(charts: ChartDocument<I>[]) {
-	const chartMap = new Map<string, ChartDocument<I>>();
+export function CreateChartMap<GPT extends GPTString = GPTString>(charts: ChartDocument<GPT>[]) {
+	const chartMap = new Map<string, ChartDocument<GPT>>();
 
 	for (const chart of charts) {
 		chartMap.set(chart.chartID, chart);
@@ -66,8 +78,8 @@ export function CreateChartMap<I extends IDStrings = IDStrings>(charts: ChartDoc
 	return chartMap;
 }
 
-export function CreateScoreIDMap<I extends IDStrings = IDStrings>(scores: ScoreDocument<I>[]) {
-	const scoreMap = new Map<string, ScoreDocument<I>>();
+export function CreateScoreIDMap<GPT extends GPTString = GPTString>(scores: ScoreDocument<GPT>[]) {
+	const scoreMap = new Map<string, ScoreDocument<GPT>>();
 
 	for (const score of scores) {
 		scoreMap.set(score.scoreID, score);

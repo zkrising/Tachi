@@ -6,13 +6,13 @@ import { BMSGazerChart, GetKTDataJSON } from "test-utils/test-data";
 import type { PBScoreDocument } from "tachi-common";
 
 const pbScore = {
-	composedFrom: {
-		lampPB: "mock_lampPB",
-	},
+	composedFrom: [{ name: "Best Score", scoreID: "mock_lampPB" }],
 	scoreData: {
-		lampIndex: 4,
+		enumIndexes: {
+			lamp: 4,
+		},
 		score: 1234,
-		hitMeta: {},
+		optional: {},
 	},
 	playtype: "7K",
 	scoreMeta: {},

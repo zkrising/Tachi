@@ -1,31 +1,31 @@
 import { ToCDNURL } from "util/api";
 import { ChangeOpacity } from "util/color-opacity";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import React from "react";
-import { GetGamePTConfig, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { PBScoreDocument, ScoreDocument } from "tachi-common";
 
 export default function PopnLampCell({
 	score,
 }: {
 	score: ScoreDocument<"popn:9B"> | PBScoreDocument<"popn:9B">;
 }) {
-	const gptConfig = GetGamePTConfig(score.game, score.playtype);
-
 	return (
 		<td
 			style={{
-				backgroundColor: ChangeOpacity(gptConfig.lampColours[score.scoreData.lamp], 0.2),
+				backgroundColor: ChangeOpacity(
+					GPT_CLIENT_IMPLEMENTATIONS["popn:9B"].enumColours.lamp[score.scoreData.lamp],
+					0.2
+				),
 			}}
 		>
 			<strong>{score.scoreData.lamp}</strong>
 			<br />
-			{score.scoreData.hitMeta.specificClearType && (
-				<img
-					style={{
-						maxWidth: "32px",
-					}}
-					src={ToCDNURL(`/misc/popn/${score.scoreData.hitMeta.specificClearType}.png`)}
-				/>
-			)}
+			<img
+				style={{
+					maxWidth: "32px",
+				}}
+				src={ToCDNURL(`/misc/popn/${score.scoreData.clearMedal}.png`)}
+			/>
 		</td>
 	);
 }

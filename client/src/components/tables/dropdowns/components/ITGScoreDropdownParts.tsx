@@ -26,14 +26,14 @@ export function ITGGraphsComponent({
 				</Nav>
 			</div>
 			<div className="col-12">
-				{chart.data.breakdown.npsPerMeasure ? (
+				{chart.data.npsPerMeasure ? (
 					<ITGDensityChart
 						height="200px"
 						mobileHeight="175px"
 						data={[
 							{
 								id: "chart",
-								data: chart.data.breakdown.npsPerMeasure.map((e, i) => ({
+								data: chart.data.npsPerMeasure.map((e, i) => ({
 									x: i,
 									y: e,
 								})),

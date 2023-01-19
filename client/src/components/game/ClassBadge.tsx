@@ -1,59 +1,73 @@
 import { UppercaseFirst } from "util/misc";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import React from "react";
 import { Badge } from "react-bootstrap";
-import { GetGamePTConfig, IDStrings, integer } from "tachi-common";
-import { GameClassSets } from "tachi-common/game-classes";
+import { Classes, GPTString, GetGPTString, GetGamePTConfig } from "tachi-common";
 import { GamePT } from "types/react";
 
-export default function ClassBadge<I extends IDStrings = IDStrings>({
+export default function ClassBadge<GPT extends GPTString = GPTString>({
 	game,
 	playtype,
 	classSet,
 	classValue,
 	showSetOnHover = true,
 }: {
-	classSet: GameClassSets[I];
-	classValue: integer;
+	classSet: Classes[GPT];
+	classValue: string;
 	showSetOnHover?: boolean;
 } & GamePT) {
-	const gptConfig = GetGamePTConfig(game, playtype);
+	const classStyle =
+		// @ts-expect-error hepl i'm trapped in a type factory
+		GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, playtype)].classColours[classSet][classValue];
 
-	const data = gptConfig.classHumanisedFormat[classSet][classValue];
+	const data = GetGamePTConfig(game, playtype).classes[classSet].values.find(
+		(e) => e.id === classValue
+	);
 
 	if (!data) {
-		throw new Error(`Unknown class value ${classSet}:${classValue}`);
+		return (
+			<>
+				{classSet} {classValue} (messed up!)
+			</>
+		);
 	}
 
 	let badgeComponent;
-	if (data.variant) {
+
+	if (classStyle === null) {
 		badgeComponent = (
-			<Badge className="mx-2" variant={data.variant}>
+			<Badge
+				className="mx-2"
+				style={{
+					backgroundColor: "#131313",
+				}}
+			>
 				{data.display}
 			</Badge>
 		);
-	} else if (data.css) {
+	} else if (typeof classStyle === "string") {
 		badgeComponent = (
-			<Badge className="mx-2" style={data.css}>
+			<Badge className="mx-2" variant={classStyle}>
 				{data.display}
 			</Badge>
 		);
 	} else {
 		badgeComponent = (
-			<Badge className="mx-2" variant="secondary">
+			<Badge className="mx-2" style={classStyle}>
 				{data.display}
 			</Badge>
 		);
 	}
 
-	if (data.mouseover && showSetOnHover) {
+	if (data.hoverText && showSetOnHover) {
 		return (
-			<QuickTooltip tooltipContent={`${UppercaseFirst(classSet)}: ${data.mouseover}`}>
+			<QuickTooltip tooltipContent={`${UppercaseFirst(classSet)}: ${data.hoverText}`}>
 				{badgeComponent}
 			</QuickTooltip>
 		);
-	} else if (data.mouseover) {
-		return <QuickTooltip tooltipContent={data.mouseover}>{badgeComponent}</QuickTooltip>;
+	} else if (data.hoverText) {
+		return <QuickTooltip tooltipContent={data.hoverText}>{badgeComponent}</QuickTooltip>;
 	} else if (showSetOnHover) {
 		<QuickTooltip tooltipContent={UppercaseFirst(classSet)}>{badgeComponent}</QuickTooltip>;
 	}

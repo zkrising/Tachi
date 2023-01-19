@@ -1,12 +1,10 @@
 import chalk from "chalk";
-import { Game, integer } from "tachi-common";
-import { allSupportedGames } from "tachi-common/config/static-config";
-import { SCHEMAS } from "tachi-common/lib/schemas";
-import { ReadCollection } from "../util";
+import { Game, allSupportedGames, integer } from "tachi-common";
 import { FormatFunctions } from "./test-utils";
 import get from "lodash.get";
 import fjsh from "fast-json-stable-hash";
-import logger from "../logger";
+import { SCHEMAS } from "tachi-common/lib/schemas";
+import { ReadCollection } from "../util";
 
 // Either it's a bare string or an array of strings for co-uniqueness.
 type DuplicateKeyDecl = string | string[];
@@ -88,7 +86,7 @@ for (const [collection, uniqueIDs] of Object.entries(UniqueKeys)) {
 	console.log(`[VALIDATING DUPES] ${collection}`);
 
 	const collectionName = `${collection}.json`;
-	const formatFn = FormatFunctions[collection];
+	const formatFn = FormatFunctions[collection] ?? ((v) => JSON.stringify(v));
 
 	let success = 0;
 	let fails = 0;
@@ -111,7 +109,7 @@ for (const [collection, uniqueIDs] of Object.entries(UniqueKeys)) {
 		const set = new Set<string>();
 
 		for (const d of data) {
-			const pretty = formatFn(d, game);
+			const pretty = formatFn(d, game as Game);
 
 			let value: Array<Array<string | number>>;
 

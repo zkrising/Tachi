@@ -4,12 +4,7 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import t from "tap";
 import ResetDBState from "test-utils/resets";
-import {
-	GetKTDataJSON,
-	LoadTachiIIDXData,
-	Testing511Song,
-	Testing511SPA,
-} from "test-utils/test-data";
+import { LoadTachiIIDXData, Testing511Song, Testing511SPA } from "test-utils/test-data";
 import type { MerScore } from "./types";
 
 const logger = CreateLogCtx(__filename);
@@ -46,12 +41,9 @@ t.test("#ConvertFileMerIIDX", (t) => {
 					service: "MER",
 					scoreData: {
 						score: 1000,
-
-						// percent: 63.61, approximately, fpa impossible.
-						grade: "B",
 						lamp: "CLEAR",
 						judgements: {},
-						hitMeta: {
+						optional: {
 							bp: 21,
 						},
 					},
@@ -81,12 +73,9 @@ t.test("#ConvertFileMerIIDX", (t) => {
 					service: "MER",
 					scoreData: {
 						score: 1000,
-
-						// percent: 63.61, approximately, fpa impossible.
-						grade: "B",
 						lamp: "CLEAR",
 						judgements: {},
-						hitMeta: {
+						optional: {
 							bp: 21,
 						},
 					},
@@ -121,14 +110,6 @@ t.test("#ConvertFileMerIIDX", (t) => {
 
 		t.rejects(() => merc(), {
 			message: /Song-Chart Desync on songID 1/u,
-		});
-
-		t.end();
-	});
-
-	t.test("Invalid Percent", (t) => {
-		t.rejects(() => merc({ score: 9999 }), {
-			message: /Invalid percent/u,
 		});
 
 		t.end();

@@ -1,36 +1,41 @@
 import { APIFetchV1 } from "util/api";
 import { ChangeOpacity } from "util/color-opacity";
 import { CreateChartMap, CreateScoreIDMap, CreateSongMap } from "util/data";
-import { PartialArrayRecordAssign } from "util/misc";
+import { PartialArrayRecordAssign, Reverse, UppercaseFirst } from "util/misc";
 import DifficultyCell from "components/tables/cells/DifficultyCell";
-import LampCell from "components/tables/cells/LampCell";
-import ScoreCell from "components/tables/cells/ScoreCell";
 import TitleCell from "components/tables/cells/TitleCell";
 import MiniTable from "components/tables/components/MiniTable";
 import { CommentModal, ModifyScore } from "components/tables/dropdowns/components/ScoreEditButtons";
+import ScoreCoreCells from "components/tables/game-core-cells/ScoreCoreCells";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import SelectButton from "components/util/SelectButton";
 import { UserContext } from "context/UserContext";
 import deepmerge from "deepmerge";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
+import { GPTClientImplementation } from "lib/types";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import {
 	ChartDocument,
+	GPTString,
 	Game,
 	GamePTConfig,
+	GetGPTString,
 	GetGamePTConfig,
-	Grades,
-	IDStrings,
-	integer,
-	Lamps,
+	GetScoreMetricConf,
+	GetScoreMetrics,
 	ScoreDocument,
 	SessionScoreInfo,
 	SongDocument,
 	TableDocument,
+	integer,
 } from "tachi-common";
+import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
 import { SessionReturns } from "types/api-returns";
+import { cloneDeep } from "lodash";
+import DebugContent from "components/util/DebugContent";
 
 type SetScores = (scores: ScoreDocument[]) => void;
 
@@ -57,7 +62,10 @@ export default function SessionRaiseBreakdown({
 
 		return res.body;
 	});
-	const [view, setView] = useState<"lamps" | "both" | "grades">("both");
+
+	// null -> view all in small format
+	// string -> view this specific metric.
+	const [view, setView] = useState<string | null>(null);
 
 	if (error) {
 		return <>{(error as Error).message}</>;
@@ -75,17 +83,17 @@ export default function SessionRaiseBreakdown({
 						<div className="col-12 col-lg-6 offset-lg-3">
 							<div className="d-none d-lg-flex justify-content-center">
 								<div className="btn-group">
-									<SelectButton value={view} setValue={setView} id="lamps">
+									<SelectButton value={view} setValue={setView} id="lamp">
 										<Icon type="lightbulb" />
 										Lamps Only
 									</SelectButton>
 
-									<SelectButton value={view} setValue={setView} id="both">
+									<SelectButton value={view} setValue={setView} id={null}>
 										<Icon type="bolt" />
-										Both
+										All
 									</SelectButton>
 
-									<SelectButton value={view} setValue={setView} id="grades">
+									<SelectButton value={view} setValue={setView} id="grade">
 										<Icon type="sort-alpha-up" />
 										Grades Only
 									</SelectButton>
@@ -115,122 +123,107 @@ function SessionScoreStatBreakdown({
 }: {
 	sessionData: SessionReturns;
 	setScores?: SetScores;
-	view: "lamps" | "both" | "grades";
+	view: string | null;
 }) {
 	const songMap = CreateSongMap(sessionData.songs);
 	const chartMap = CreateChartMap(sessionData.charts);
 	const scoreMap = CreateScoreIDMap(sessionData.scores);
+	const gptConfig = GetGamePTConfig(sessionData.session.game, sessionData.session.playtype);
 
-	const [newLamps, newGrades] = useMemo(() => {
-		const newLamps: Partial<
-			Record<Lamps[IDStrings], { score: ScoreDocument; scoreInfo: SessionScoreInfo }[]>
+	const enumMetrics = GetScoreMetrics(gptConfig, "ENUM");
+
+	const newEnums = useMemo(() => {
+		const newEnums: Record<
+			string,
+			Record<string, { score: ScoreDocument; scoreInfo: SessionScoreInfo }[]>
 		> = {};
-		const newGrades: Partial<
-			Record<Grades[IDStrings], { score: ScoreDocument; scoreInfo: SessionScoreInfo }[]>
-		> = {};
 
-		for (const scoreInfo of sessionData.scoreInfo) {
-			const score = scoreMap.get(scoreInfo.scoreID);
+		for (const metric of enumMetrics) {
+			newEnums[metric] = {};
 
-			if (!score) {
-				console.error(
-					`Session score info contains scoreID ${scoreInfo.scoreID}, but no score exists?`
-				);
-				continue;
-			}
+			for (const scoreInfo of sessionData.scoreInfo) {
+				const score = scoreMap.get(scoreInfo.scoreID);
 
-			if (scoreInfo.isNewScore) {
-				PartialArrayRecordAssign(newLamps, score.scoreData.lamp, { score, scoreInfo });
-				PartialArrayRecordAssign(newGrades, score.scoreData.grade, { score, scoreInfo });
-			} else {
-				if (scoreInfo.lampDelta > 0) {
-					PartialArrayRecordAssign(newLamps, score.scoreData.lamp, { score, scoreInfo });
+				if (!score) {
+					console.error(
+						`Session score info contains scoreID ${scoreInfo.scoreID}, but no score exists?`
+					);
+					continue;
 				}
 
-				if (scoreInfo.gradeDelta > 0) {
-					PartialArrayRecordAssign(newGrades, score.scoreData.grade, {
-						score,
-						scoreInfo,
-					});
+				if (scoreInfo.isNewScore || scoreInfo.deltas[metric] > 0) {
+					PartialArrayRecordAssign(
+						newEnums[metric],
+
+						// @ts-expect-error yeah this is fine pls
+						score.scoreData[metric] as string,
+						{
+							score,
+							scoreInfo,
+						}
+					);
 				}
 			}
 		}
 
-		return [newLamps, newGrades];
+		return newEnums;
 	}, [view]);
 
-	const gptConfig = GetGamePTConfig(sessionData.session.game, sessionData.session.playtype);
+	const gptImpl =
+		GPT_CLIENT_IMPLEMENTATIONS[
+			GetGPTString(sessionData.session.game, sessionData.session.playtype)
+		];
 
 	return (
 		<>
-			{view === "both" ? (
-				<>
-					<div className="col-12 col-lg-6">
-						<MiniTable
-							headers={["Lamp", "New Lamps"]}
-							colSpan={[1, 2]}
-							className="table-sm"
-						>
-							<ElementStatTable
-								scores={sessionData.scores}
-								setScores={setScores}
-								chartMap={chartMap}
-								songMap={songMap}
-								counts={newLamps}
-								game={sessionData.session.game}
-								type="lamp"
-								gptConfig={gptConfig}
-							/>
-						</MiniTable>
-					</div>
-					<div className="col-12 col-lg-6">
-						<MiniTable
-							headers={["Grade", "New Grades"]}
-							colSpan={[1, 2]}
-							className="table-sm"
-						>
-							<ElementStatTable
-								scores={sessionData.scores}
-								setScores={setScores}
-								chartMap={chartMap}
-								songMap={songMap}
-								counts={newGrades}
-								game={sessionData.session.game}
-								type="grade"
-								gptConfig={gptConfig}
-							/>
-						</MiniTable>
-					</div>
-				</>
-			) : view === "grades" ? (
-				<div className="col-12">
-					<MiniTable headers={["Grade", "New Grades"]} colSpan={[1, 100]}>
-						<ElementStatTable
-							scores={sessionData.scores}
-							setScores={setScores}
-							fullSize
-							chartMap={chartMap}
-							songMap={songMap}
-							counts={newGrades}
-							game={sessionData.session.game}
-							type="grade"
-							gptConfig={gptConfig}
-						/>
-					</MiniTable>
+			{view === null ? (
+				<div
+					className="d-flex w-100"
+					style={{
+						gap: "20px",
+					}}
+				>
+					{enumMetrics.map((metric) => (
+						<div style={{ flex: 1 }}>
+							<MiniTable
+								headers={[
+									`${UppercaseFirst(metric)}s`,
+									`New ${UppercaseFirst(metric)}s`,
+								]}
+								colSpan={[1, 100]}
+							>
+								<ElementStatTable
+									scores={sessionData.scores}
+									setScores={setScores}
+									chartMap={chartMap}
+									songMap={songMap}
+									counts={newEnums[metric]!}
+									game={sessionData.session.game}
+									metric={metric}
+									gptConfig={gptConfig}
+									gptImpl={gptImpl}
+								/>
+							</MiniTable>
+						</div>
+					))}
 				</div>
 			) : (
 				<div className="col-12">
-					<MiniTable headers={["Lamps", "New Lamps"]} colSpan={[1, 100]}>
+					<MiniTable
+						headers={[`${UppercaseFirst(view)}s`, `New ${UppercaseFirst(view)}s`]}
+						colSpan={[1, 100]}
+					>
 						<ElementStatTable
 							scores={sessionData.scores}
 							setScores={setScores}
 							fullSize
 							chartMap={chartMap}
 							songMap={songMap}
-							counts={newLamps}
+							counts={newEnums[view]!}
 							game={sessionData.session.game}
-							type="lamp"
 							gptConfig={gptConfig}
+							gptImpl={gptImpl}
+							metric={view}
 						/>
 					</MiniTable>
 				</div>
@@ -240,7 +233,7 @@ function SessionScoreStatBreakdown({
 }
 
 function ElementStatTable({
-	type,
+	metric: metric,
 	counts,
 	gptConfig,
 	songMap,
@@ -249,30 +242,29 @@ function ElementStatTable({
 	fullSize = false,
 	scores,
 	setScores,
+	gptImpl,
 }: {
-	type: "lamp" | "grade";
+	metric: string;
 	setScores?: SetScores;
 	scores: ScoreDocument[];
 	counts: Record<string, { score: ScoreDocument; scoreInfo: SessionScoreInfo }[]>;
 	gptConfig: GamePTConfig;
+	gptImpl: GPTClientImplementation<any>;
 	songMap: Map<integer, SongDocument<Game>>;
-	chartMap: Map<string, ChartDocument<IDStrings>>;
+	chartMap: Map<string, ChartDocument<GPTString>>;
 	game: Game;
 	fullSize?: boolean;
 }) {
 	const tableContents = useMemo(() => {
-		// relements.. haha
-		const relevantElements =
-			type === "lamp"
-				? gptConfig.lamps.slice(gptConfig.lamps.indexOf(gptConfig.clearLamp) - 1).reverse()
-				: gptConfig.grades
-						.slice(gptConfig.grades.indexOf(gptConfig.clearGrade) - 1)
-						.reverse();
+		const conf = GetScoreMetricConf(gptConfig, metric) as ConfEnumScoreMetric<string>;
 
-		const colours = type === "lamp" ? gptConfig.lampColours : gptConfig.gradeColours;
+		// relements.. haha
+		const relevantElements = conf.values.slice(conf.values.indexOf(conf.minimumRelevantValue));
+
+		const colours = gptImpl.enumColours[metric];
 
 		const tableContents = [];
-		for (const element of relevantElements) {
+		for (const element of Reverse(relevantElements)) {
 			if (!counts[element] || !counts[element].length) {
 				continue;
 			}
@@ -283,7 +275,6 @@ function ElementStatTable({
 				<tr key={element} className="breakdown-hover-row">
 					<td
 						style={{
-							// @ts-expect-error this is a hack due to the funky type of colours and element.
 							backgroundColor: ChangeOpacity(colours[element], 0.1),
 						}}
 						rowSpan={counts[element]!.length}
@@ -298,7 +289,7 @@ function ElementStatTable({
 							fullSize,
 							game,
 							gptConfig,
-							type,
+							metric: metric,
 							scores,
 							setScores,
 						}}
@@ -317,7 +308,7 @@ function ElementStatTable({
 								fullSize,
 								game,
 								gptConfig,
-								type,
+								metric: metric,
 								scores,
 								setScores,
 							}}
@@ -328,7 +319,7 @@ function ElementStatTable({
 		}
 
 		return tableContents;
-	}, [type, counts, fullSize, game, scores]);
+	}, [metric, counts, fullSize, game, scores]);
 
 	if (tableContents.length === 0) {
 		return (
@@ -349,7 +340,7 @@ function BreakdownChartContents({
 	chartMap,
 	fullSize,
 	gptConfig,
-	type,
+	metric,
 	scores,
 	setScores,
 }: {
@@ -360,7 +351,7 @@ function BreakdownChartContents({
 	songMap: Map<integer, SongDocument>;
 	chartMap: Map<string, ChartDocument>;
 	gptConfig: GamePTConfig;
-	type: "lamp" | "grade";
+	metric: string;
 	scores: Array<ScoreDocument>;
 	setScores?: SetScores;
 }) {
@@ -422,42 +413,47 @@ function BreakdownChartContents({
 	}
 
 	if (fullSize) {
-		let preScoreCell = <td>No Play</td>;
+		let preScoreCell = <td colSpan={3}>No Play</td>;
 
 		if (!scoreInfo.isNewScore) {
-			const oldGradeIndex = score.scoreData.gradeIndex - scoreInfo.gradeDelta;
-			const oldLampIndex = score.scoreData.lampIndex - scoreInfo.lampDelta;
+			const newScoreData = cloneDeep(score.scoreData);
+
+			for (const [k, d] of Object.entries(scoreInfo.deltas)) {
+				// @ts-expect-error it'll be an enum
+				if (typeof score.scoreData[k] === "string") {
+					const enumConf = GetScoreMetricConf(
+						gptConfig,
+						k
+					) as ConfEnumScoreMetric<string>;
+
+					// @ts-expect-error alter the enum
+					const newIndex = score.scoreData.enumIndexes[k] - d;
+
+					// @ts-expect-error alter the enum
+					newScoreData.enumIndexes[k] = newIndex;
+					// @ts-expect-error alter the enum
+					newScoreData[k] = enumConf.values[newIndex] ?? "UNKNOWN ENUM ??";
+				} else {
+					// @ts-expect-error ugh
+					newScoreData[k] = score.scoreData[k] - d;
+				}
+			}
 
 			const mockScore = deepmerge(score, {
-				scoreData: {
-					score: score.scoreData.score - scoreInfo.scoreDelta,
-					percent: score.scoreData.percent - scoreInfo.percentDelta,
-					grade: gptConfig.grades[oldGradeIndex],
-					gradeIndex: oldGradeIndex,
-					lamp: gptConfig.lamps[oldLampIndex],
-					lampIndex: oldLampIndex,
-				},
+				scoreData: newScoreData,
 			}) as ScoreDocument;
 
-			if (type === "grade") {
-				preScoreCell = <ScoreCell score={mockScore} />;
-			} else {
-				preScoreCell = <LampCell score={mockScore} />;
-			}
+			preScoreCell = <ScoreCoreCells short chart={chart} game={game} score={mockScore} />;
 		}
 
 		if (score) {
 			return (
 				<>
 					<TitleCell chart={chart} game={game} song={song} />
-					<DifficultyCell chart={chart} game={game} />
+					<DifficultyCell alwaysShort chart={chart} game={game} />
 					{preScoreCell}
 					<td>⟶</td>
-					{type === "grade" ? (
-						<ScoreCell {...{ score, game, playtype: score.playtype }} />
-					) : (
-						<LampCell score={score} />
-					)}
+					<ScoreCoreCells short chart={chart} game={game} score={score} />
 				</>
 			);
 		}

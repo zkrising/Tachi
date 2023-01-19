@@ -156,6 +156,8 @@ router.get(
 			chartID: { $in: charts.map((e) => e.chartID) },
 		};
 
+		matchCriteria[`scoreData.enumIndexes.${metric}`] = { $gte: criteriaValue };
+
 		// Returns a unique score per-chart that was the first score to achieve
 		// this criteria on that chart.
 		const scoresAgg: Array<{ doc: ScoreDocument }> = await db.scores.aggregate([

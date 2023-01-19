@@ -98,7 +98,7 @@ t.test("GET /api/v1/users/:userID/games/:game/:playtype/folders/:folderID/timeli
 			}),
 			deepmerge(TestingIIDXSPScore, {
 				scoreData: {
-					lamp: "CLEAR",
+					lamp: "EASY CLEAR",
 					enumIndexes: {
 						lamp: 3,
 					},

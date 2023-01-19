@@ -245,7 +245,7 @@ t.test("POST /ir/fervidex/class/submit", (t) => {
 			userID: 1,
 			game: "iidx",
 			playtype: "SP",
-			classValue: 18,
+			classValue: "KAIDEN",
 			classSet: "dan",
 			classOldValue: null,
 		});

@@ -9,11 +9,8 @@ import {
 } from "tachi-common";
 import { GetFolderForIDGuaranteed, HumaniseChartID } from "utils/db";
 import { GetFolderChartIDs } from "utils/folder";
-import { NumToDP, HumanisedJoinArray } from "utils/misc";
-import type {
-	ChartSpecificMetricValidator,
-	GoalCriteriaFormatter,
-} from "game-implementations/types";
+import { HumanisedJoinArray, OnlyFloatToDP } from "utils/misc";
+import type { GoalCriteriaFormatter } from "game-implementations/types";
 import type { GPTString, Game, GoalDocument, Playtype } from "tachi-common";
 
 export async function CreateGoalTitle(
@@ -74,7 +71,7 @@ export async function CreateGoalTitle(
 		// See above about switch exhaustivity
 		// eslint-disable-next-line no-fallthrough
 		case "proportion": {
-			const propFormat = NumToDP(criteria.countNum * 100);
+			const propFormat = OnlyFloatToDP(criteria.countNum * 100);
 
 			switch (charts.type) {
 				case "multi":

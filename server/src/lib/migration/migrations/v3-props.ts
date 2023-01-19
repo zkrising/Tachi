@@ -11,18 +11,19 @@ async function UpdateGoals(
 ) {
 	const goals = await db.goals.find(query);
 
-	return Promise.all(
-		goals.map((oldGoal) =>
-			EditGoal(oldGoal, {
-				...oldGoal,
-				criteria: {
-					...oldGoal.criteria,
-					key: newCriteriaKey,
-					value: newCriteriaValue?.(oldGoal) ?? oldGoal.criteria.value,
-				},
-			})
-		)
-	);
+	for (const oldGoal of goals) {
+		// too lazy to parallelise this wrt. the quest changes.
+		// ah well
+		// eslint-disable-next-line no-await-in-loop
+		await EditGoal(oldGoal, {
+			...oldGoal,
+			criteria: {
+				...oldGoal.criteria,
+				key: newCriteriaKey,
+				value: newCriteriaValue?.(oldGoal) ?? oldGoal.criteria.value,
+			},
+		});
+	}
 }
 
 function perToScore(goal: GoalDocument) {

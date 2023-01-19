@@ -237,6 +237,21 @@ export function NumToDP(num: number, points = 2) {
 }
 
 /**
+ * If the input is a decimal, format it to N decimal places, otherwise,
+ * format it to 0dp, i.e.
+ *
+ * 10.053 -> 10.05
+ * 10 -> 10
+ */
+export function OnlyFloatToDP(num: number, points = 2) {
+	if (Number.isInteger(num)) {
+		return num.toFixed(0);
+	}
+
+	return num.toFixed(points);
+}
+
+/**
  * Returns whether this game is supported by this instance of tachi or not.
  */
 export function IsSupported(game: Game) {

@@ -712,6 +712,9 @@ export async function EditGoal(oldGoal: GoalDocument, newGoal: GoalDocument) {
 		newGoal.playtype
 	);
 
+	// eslint-disable-next-line require-atomic-updates
+	newGoal.goalID = newGoalID;
+
 	await db["goal-subs"].update(
 		{
 			goalID: oldGoal.goalID,
@@ -754,8 +757,6 @@ export async function EditGoal(oldGoal: GoalDocument, newGoal: GoalDocument) {
 
 	await db.goals.remove({ goalID: oldGoal.goalID });
 
-	// eslint-disable-next-line require-atomic-updates
-	newGoal.goalID = newGoalID;
 	// eslint-disable-next-line require-atomic-updates
 	newGoal.name = await CreateGoalName(
 		newGoal.charts,

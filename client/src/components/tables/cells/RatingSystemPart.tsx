@@ -1,3 +1,4 @@
+import { IsNotNullish } from "util/misc";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
 import Muted from "components/util/Muted";
@@ -60,7 +61,10 @@ export default function RatingSystemPart({ chart, game }: { chart: ChartDocument
 				>
 					<div>
 						<Muted>
-							{ratingSystems.map((r) => r.toString(chart as any)).join(" / ")}
+							{ratingSystems
+								.map((r) => r.toString(chart as any))
+								.filter((e) => IsNotNullish(e))
+								.join(" / ")}
 						</Muted>
 					</div>
 				</QuickTooltip>

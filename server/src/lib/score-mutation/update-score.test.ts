@@ -32,7 +32,6 @@ const mockSessionDocument: SessionDocument = {
 	game: "iidx",
 	playtype: "SP",
 	highlight: false,
-	importType: "file/batch-manual",
 	name: "",
 	scoreIDs: ["TESTING_SCORE_ID", "scoreid_2"],
 	sessionID: "mockSessionID",

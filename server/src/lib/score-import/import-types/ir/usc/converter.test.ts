@@ -80,7 +80,11 @@ t.test("#DeriveNoteMod", (t) => {
 const dm = (p: Partial<USCClientScore>) =>
 	ConverterIRUSC(
 		d(uscScore, p),
-		{ chartHash: TestingUSCChart.data.hashSHA1 as string, playtype: "Controller", timeReceived: 10 },
+		{
+			chartHash: TestingUSCChart.data.hashSHA1 as string,
+			playtype: "Controller",
+			timeReceived: 10,
+		},
 		"ir/usc",
 		logger
 	);

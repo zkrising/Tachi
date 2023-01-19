@@ -67,7 +67,7 @@ t.test("#GetGamePTConfig", (t) => {
 					t.fail(`Cannot have a metric called ${metric}. This is a banned metric name.`);
 				}
 
-				t.match(/^[a-zA-Z][a-zA-Z0-9]+$/u, metric, `Should be alphanumeric.`);
+				t.match(metric, /^[a-zA-Z][a-zA-Z0-9]+$/u, `Should be alphanumeric.`);
 			}
 		}
 	}

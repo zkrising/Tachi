@@ -26,10 +26,13 @@ t.test("#ParseIRUSC", (t) => {
 	});
 
 	t.test("Should reject empty bodies", (t) => {
-		t.throws(() => ParseIRUSC({}, TestingUSCChart.data.hashSHA1 as string, "Controller", logger), {
-			statusCode: 400,
-			message: /invalid usc score/iu,
-		});
+		t.throws(
+			() => ParseIRUSC({}, TestingUSCChart.data.hashSHA1 as string, "Controller", logger),
+			{
+				statusCode: 400,
+				message: /invalid usc score/iu,
+			}
+		);
 
 		t.end();
 	});

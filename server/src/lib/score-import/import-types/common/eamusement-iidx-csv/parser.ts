@@ -103,6 +103,8 @@ export function IIDXCSVParse(csvBuffer: Buffer, playtype: Playtypes["iidx"], log
 	try {
 		({ rawHeaders, rawRows } = NaiveCSVParse(csvBuffer, logger));
 	} catch (e) {
+		// this is probably fine
+		// eslint-disable-next-line cadence/no-instanceof
 		if (e instanceof CSVParseError) {
 			throw new ScoreImportFatalError(400, e.message);
 		}

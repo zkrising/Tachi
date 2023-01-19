@@ -199,8 +199,8 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 		optional[k] = data[k];
 	}
 
-	optional.epr = (optional.epr ?? 0) + (data.ems ?? 0);
-	optional.lpr = (optional.lpr ?? 0) + (data.lms ?? 0);
+	optional.epr = (optional.epr ?? 0) + data.ems;
+	optional.lpr = (optional.lpr ?? 0) + data.lms;
 
 	const judgements = {
 		[game === "pms" ? "cool" : "pgreat"]: data.epg + data.lpg,

@@ -126,7 +126,7 @@ const ValidateCards: RequestHandler = async (req, res, next) => {
 
 	const cardFilters = await db["fer-settings"].findOne({ userID });
 
-	if (!cardFilters || !cardFilters.cards) {
+	if (!cardFilters?.cards) {
 		next();
 		return;
 	}

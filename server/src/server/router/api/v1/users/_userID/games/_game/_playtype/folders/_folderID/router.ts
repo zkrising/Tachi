@@ -156,20 +156,6 @@ router.get(
 			chartID: { $in: charts.map((e) => e.chartID) },
 		};
 
-		if (!conf) {
-			// not possible?
-			return res.status(500).json({
-				success: false,
-				description: `Invalid criteria ${req.query.criteriaType}.`,
-			});
-		}
-
-		if (conf.type === "ENUM") {
-			matchCriteria[`scoreData.enumIndexes.${metric}`] = { $gte: criteriaValue };
-		} else {
-			matchCriteria[`scoreData.${metric}`] = { $gte: criteriaValue };
-		}
-
 		// Returns a unique score per-chart that was the first score to achieve
 		// this criteria on that chart.
 		const scoresAgg: Array<{ doc: ScoreDocument }> = await db.scores.aggregate([

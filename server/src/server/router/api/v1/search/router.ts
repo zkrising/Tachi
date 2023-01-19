@@ -7,11 +7,10 @@ import {
 	SearchUsersRegExp,
 } from "lib/search/search";
 import { TachiConfig } from "lib/setup/config";
-import { RequireBokutachi } from "server/middleware/type-require";
 import { IsString } from "utils/misc";
 import { GetAllUserRivals, GetUserPlayedGPTs } from "utils/user";
 import type { FilterQuery } from "mongodb";
-import type { FolderDocument, Game, integer, UserDocument, SongDocument } from "tachi-common";
+import type { FolderDocument, Game, SongDocument, UserDocument, integer } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 

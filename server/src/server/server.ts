@@ -178,6 +178,8 @@ interface ExpressJSONErr extends SyntaxError {
 const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res, _next) => {
 	logger.info(`MAIN_ERR_HANDLER hit by request.`, { url: req.originalUrl });
 
+	// this use of instanceof is fine.
+	// eslint-disable-next-line cadence/no-instanceof
 	if (err instanceof SyntaxError) {
 		const expErr: ExpressJSONErr = err as ExpressJSONErr;
 

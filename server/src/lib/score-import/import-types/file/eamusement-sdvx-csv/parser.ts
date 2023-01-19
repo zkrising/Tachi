@@ -33,6 +33,8 @@ export default function ParseEamusementSDVXCSV(
 	try {
 		({ rawHeaders, rawRows } = NaiveCSVParse(fileData.buffer, logger));
 	} catch (e) {
+		// This is probably fine.
+		// eslint-disable-next-line cadence/no-instanceof
 		if (e instanceof CSVParseError) {
 			throw new ScoreImportFatalError(400, e.message);
 		}

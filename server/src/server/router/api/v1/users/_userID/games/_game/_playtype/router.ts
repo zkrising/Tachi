@@ -266,7 +266,7 @@ router.get("/leaderboard-adjacent", async (req, res) => {
 
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	let alg = gptConfig.defaultProfileRatingAlg as ProfileRatingAlgorithms[GPTString];
+	let alg = gptConfig.defaultProfileRatingAlg;
 
 	if (IsString(req.query.alg)) {
 		const temp = CheckStrProfileAlg(game, playtype, req.query.alg);

@@ -112,7 +112,7 @@ router.get("/best", prValidate({ alg: "*string" }), async (req, res) => {
 		});
 	}
 
-	const alg = req.query.alg ?? gptConfig.defaultScoreRatingAlg;
+	const alg = (req.query.alg as string | undefined) ?? gptConfig.defaultScoreRatingAlg;
 
 	const pbs = await db["personal-bests"].find(
 		{

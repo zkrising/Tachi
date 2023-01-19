@@ -51,6 +51,8 @@ export async function ExpressWrappedScoreImportMain<I extends ImportTypes>(
 			},
 		};
 	} catch (err) {
+		// this is definitely fine, as the errors are emitted from the same place.
+		// eslint-disable-next-line cadence/no-instanceof
 		if (err instanceof ScoreImportFatalError) {
 			logger.info(err.message);
 			return {

@@ -898,10 +898,29 @@ function PR_METRICS(metrics: Record<string, ConfScoreMetric>, shouldAllBeOptNull
 		let prValidator = PR_METRIC(value);
 
 		if ("validate" in value) {
-			prValidator = p.and(
-				prValidator,
-				(self) => typeof self === "number" && value.validate(self)
-			);
+			switch (value.type) {
+				case "DECIMAL":
+				case "INTEGER": {
+					prValidator = p.and(
+						prValidator,
+						(self) => typeof self === "number" && value.validate(self)
+					);
+					break;
+				}
+
+				case "GRAPH": {
+					prValidator = p.and(prValidator, [
+						(self) => typeof self === "number" && value.validate(self),
+					]);
+					break;
+				}
+
+				case "NULLABLE_GRAPH":
+					prValidator = p.and(prValidator, [
+						(self) =>
+							self === null || (typeof self === "number" && value.validate(self)),
+					]);
+			}
 		}
 
 		if (shouldAllBeOptNull === true) {

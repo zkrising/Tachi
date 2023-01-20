@@ -89,7 +89,7 @@ function EfficientInPlaceDeepmerge(ref, apply) {
  * Not thread safe.
  */
 function GetFreshSongIDGenerator(game) {
-	let maxSongID = ReadCollection(`songs-${game}.json`).sort((a, b) => b.id - a.id)[0].id;
+	let maxSongID = ReadCollection(`songs-${game}.json`).sort((a, b) => b.id - a.id)[0]?.id ?? 0;
 
 	return () => ++maxSongID;
 }

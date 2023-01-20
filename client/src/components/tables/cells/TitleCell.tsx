@@ -31,8 +31,9 @@ export default function TitleCell({
 		backgroundImage = `url(${ToCDNURL(
 			`/misc/popn/banners/${(chart as any).data.inGameID}.png`
 		)})`;
-	} else if (game === "itg") {
-		const banner = (song as SongDocument<"itg">).data.originalPack;
+	} else if (game === "itg" && chart) {
+		const itgChart = chart as ChartDocument<"itg:Stamina">;
+		const banner = itgChart.data.bannerLocationOverride ?? itgChart.data.originalPack;
 
 		if (banner) {
 			backgroundImage = `url(${ToCDNURL(

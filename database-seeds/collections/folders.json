@@ -18323,6 +18323,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 1
+		},
+		"folderID": "F39515e4f8aa6fec99dcc477ba81fdb0a4ba0e05defe054497960c58c5de422c9",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 1 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 1,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Fcd795d50e9ad9d03d8a54be29f020d0c3c8440af7a0e7fe383d5bcd0b2584b6a",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 1 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 1
+		},
+		"folderID": "F1cc19c926d15b24e17b41cf6a7fc2a856793637e32edda7c9397a9df322e530d",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 1 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 1
+		},
+		"folderID": "F825cea2c8d750947071448db8819fc44b320063fa8a9baa0ea71b0da25ac384b",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 1 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "10"
 		},
 		"folderID": "Fea6cd28a26ed4a098881e5664dd9ca96d033694bb2016af2d0d858d6ec330abd",
@@ -18331,6 +18385,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 10",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 10
+		},
+		"folderID": "F42f76550b85132228c3f9482d45e8e8182a867b299ff9d90b2a63ac6a103b984",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 10 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 10,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F17a8325e58ad4689dc418bfbc5b814d08834a1ab441c665376520939e5446872",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 10 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 10
+		},
+		"folderID": "F0ca9002af213d560a02ae63760209bdd8c6f0bb17ac97570a27db33e9c76a911",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 10 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 10
+		},
+		"folderID": "Ff00e2ae47e0c5a205addc100befe59f2a950b6593f8d0795b67ab426c5b08499",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 10 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18347,6 +18455,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 11
+		},
+		"folderID": "Fa4005ef9bca94544d3de1e9b979ab8fedcc11a443f308af9f69983e5c2aee3e6",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 11 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 11,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F483b069cfebd7024294e44d192c95504f4edf8cc9333a5f5482598c000333f05",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 11 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 11
+		},
+		"folderID": "Faa313715508d3b6771ec29dd5de4ce7d60e51c32c6f2138c73083fe67178912a",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 11 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 11
+		},
+		"folderID": "F98c12bf00a343c1dc938eabe74b668db6c7d781a8a459d2fedc689009ee66d03",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 11 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "12"
 		},
 		"folderID": "F33b5a1fa8e8b74daf86266148bcb3c8be298991a99beb91c46a85e02905f1737",
@@ -18355,6 +18517,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 12",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 12
+		},
+		"folderID": "Fe46e6ed132b920295ec550fbb675d8d0ed5c8ebb873e24bc57a678ae1c308d4e",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 12 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 12,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F8bc0442131053a09de1ea7ccd0cee4be9bf4b4175acc3a8922e377688c6713fa",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 12 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 12
+		},
+		"folderID": "F808ce861396fb29262b792d795b3f5cd92b8f2f95fc6fe18d21c69f8d6baa7d4",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 12 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 12
+		},
+		"folderID": "Fda849f1d2e3abc9501ed85a273c73d2bc9e9f438892d89944b5bd90aca780599",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 12 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18371,6 +18587,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 13
+		},
+		"folderID": "F6b796f48dc02a06b78ef22381aa9345061f66e0c80477a2c91c54884820f999c",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 13 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 13,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F4161b5d19d647dbf7bbbf52e856f422a2c363ceb6e63c81dc8f2fd16a837dbc7",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 13 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 13
+		},
+		"folderID": "F19d9a3f4f3a4265e30ea81d546536705c0386fc63e2f93bc40cbe4fa9c4ec711",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 13 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 13
+		},
+		"folderID": "F9abf1aafd86d50e367d48c1a154e75304d28d0870fd2a103d53f378828e4a8ae",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 13 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "14"
 		},
 		"folderID": "F98f064b3ed979949ad65b2ed9e80fd4cbc11cdb15e6568d9b495a26246e6ee73",
@@ -18379,6 +18649,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 14",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 14
+		},
+		"folderID": "F002d678237fcefdadd067b73db9e207cb3410d670a36fe210a53d7754670919e",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 14 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 14,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Ff6b9ea477abfd9a3261e60100bac68400e083424fc37d1975a7ca4d057ff3f77",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 14 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 14
+		},
+		"folderID": "F2df7455d454651166f694d5aabcfdbb5956d6f007111599e5d0121f4dd37f763",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 14 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 14
+		},
+		"folderID": "Fce88074bb302b66b07486c96e43a56da1105a44aa4538390100999604cac1ec5",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 14 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18395,6 +18719,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 15
+		},
+		"folderID": "F7ff3a5d06212384e208095e8a611ce62b4f035df693f1760b17f5d31cdfdea98",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 15 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 15,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Fb251a42328901c6db8ac79b189dd2291da554f3128f6b5274bd9b34f7257d08d",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 15 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 15
+		},
+		"folderID": "F5d96c1922fe514f5ecf7f2e40436fca8d89a8ebbed09f594f7c7c3dae66f5780",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 15 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 15
+		},
+		"folderID": "F9c8967ca229cf128e7fcaaec9cbb40b247dd023c4a01e9cabc044139bb63e041",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 15 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "16"
 		},
 		"folderID": "F61e43331944906f89f4670d9682cda0617f150268f15b4a9aa01f7fc315e4864",
@@ -18403,6 +18781,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 16",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 16
+		},
+		"folderID": "F1fb06cd6a4bec083f87e4779d9a13f3fedfbf77794025ccdda833de669710c75",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 16 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 16,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Fe883ade51a4dadf7f4798a8a98a557df23d166f537e35d3072191f24bde58b2b",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 16 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 16
+		},
+		"folderID": "Fcf3d33d06c34ddedac295385863a6adadbe281b64b0f783b8d7ef8aa7961dfd2",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 16 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 16
+		},
+		"folderID": "F223633585bb6ec9ba19cba35019e85828cf31f44fdd651177828957034bc7afc",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 16 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18419,6 +18851,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 17
+		},
+		"folderID": "Fa2b8f08ec4885dded61623b41672d7fbb9d6aecd2f02e3fcafa4b05f615ed41e",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 17 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 17,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Fcacd8e3d7d4b6167e07b021459cab3ba0981643d76e44bb832c617429a23fde1",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 17 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 17
+		},
+		"folderID": "F756224315c713cbc2c2cbb997b99b3bbb0fa39d0a5a887ca11915619c36d6628",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 17 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 17
+		},
+		"folderID": "Fa49950e6e3bdcfbe684711354315cbec07413dfe61fc97419e693cbae1d129c9",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 17 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "18"
 		},
 		"folderID": "Fb35972740b0ac17d955221fc829198058324870d2c5c157669e7ace80e0cebf3",
@@ -18427,6 +18913,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 18",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 18
+		},
+		"folderID": "Fa811e50a7324cf9708effde7f8e3be19f89b106c3de33076d8eeba6e8c21387a",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 18 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 18,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F467a48d6380f641dd2973e8cd3ed2c56e66e26787d08f604cba79b52f7887ea1",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 18 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 18
+		},
+		"folderID": "Fd2c37cc512c696c5550225e2abb7338f5f3b429baa51b06a9df3f9f302284d52",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 18 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 18
+		},
+		"folderID": "F6411537239a9edf9ff2144f7f64bc78c78351e73ec5f8ff4f6489bbf8aad8343",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 18 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18443,6 +18983,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 19
+		},
+		"folderID": "Fbd406c99fb2b644ab78f9ace136a30e47e066c5c8f81e2ceab78b25ef68d3d02",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 19 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 19,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F83d8933ac16c0f147220ff91666cdeea7720243dbe767da225d6ae457266832e",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 19 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 19
+		},
+		"folderID": "Fddf4796fdbc79020b364939b57448d4cb846501e7b866ab958dca1d125c644b9",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 19 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 19
+		},
+		"folderID": "Fffd143efe8ec1ed6314b48bc35c33a5bde6d29adbb067ecb325a3342e4d39933",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 19 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "2"
 		},
 		"folderID": "Feb2df6621fa22099c2b2e8b20e69499a54b03e985267e270185acd7260d16366",
@@ -18451,6 +19045,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 2",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 2
+		},
+		"folderID": "F884b209ae543a736e736f5c0411089f9b45d190d77c89ef01002ac19db41a2f0",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 2 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 2,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F1df21eb99d760f3c68bccbe8f64ff7ab8fe8e1c2fe9fbec43d04eecd35a61716",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 2 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 2
+		},
+		"folderID": "F4af15b8cbfbe1de73e8d47c7a6435b9d55ec1c8306a00f5995599170554b0bd8",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 2 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 2
+		},
+		"folderID": "Fd55a9afa388b73a625f24498d1636dbde35c0958dc1b6c042cd3a873f2646997",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 2 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18467,6 +19115,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 20
+		},
+		"folderID": "Fb01235965106f738dfb211647edc4d403ece309778d23709d100bb31af0549c0",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 20 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 20,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F732b4679ccbffe10a02315fd2a3b2ae7d17f0c727eb194747be71fc19a344283",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 20 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 20
+		},
+		"folderID": "Fd7b582e94b4470f6e2f5a16e340444fcaf2ea3b10a09be96bfc2c704eeb273fd",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 20 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 20
+		},
+		"folderID": "F1db91314031ea8b3a0aa32c5a6a4938369a320b3f1cd83dbc980ae33556c83e0",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 20 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "21"
 		},
 		"folderID": "Fa3dac2e3b8186396839524d1334b35aec25da54b1771e7b6cb3cab3761b7a18e",
@@ -18475,6 +19177,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 21",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 21
+		},
+		"folderID": "F9f9bf9174ae721cbd586e7036ad820239dd6fcbc7719894b8bdcb4cd968ac486",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 21 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 21,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Fa01d231ffb51f53d93e6cba26447b365060fd13001d138f0ae07d8e81f1259ba",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 21 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 21
+		},
+		"folderID": "Ff912e618d9ae91cb586cb50037a5e6bf27b209ef002a6940b5e1f532eb42dcfe",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 21 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 21
+		},
+		"folderID": "F2d4ca90ffd3bdaf6742d0a5c2ed657d036fedb65d5ad9214378cbbe033c952d2",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 21 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18491,6 +19247,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 22
+		},
+		"folderID": "F57e0e688b666c6940ab89121e521b02bef8ff0614924c0c6d2a5dba01c29ecba",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 22 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 22,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F7b25f4dfc3537fea34b02579e4e8d2dc986bef69269ab17605e3877d3abff8c1",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 22 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 22
+		},
+		"folderID": "Fbace16f2f3700e09f49f69de7c68cb74a8d4a1189cabbc11eb98e869193ee6eb",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 22 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 22
+		},
+		"folderID": "F7fd00914a8fd5781e05c4769835a2c7f40235d03d98f715db335a1308c26496a",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 22 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "23"
 		},
 		"folderID": "F5e10d0ce0ff24db4440e9c9bc049b081d47ade419927772f6afba0e1208e52e7",
@@ -18499,6 +19309,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 23",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 23
+		},
+		"folderID": "F5021e878e55f079fd4f76e09eb4c3f8e1164a4d8e3a0e1d041a9460469d3a53d",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 23 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 23,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Fffd6de4bc62b2a3f40b4c173f797664d2dbc626a9a5dd3dd0111990b195f7ac3",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 23 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 23
+		},
+		"folderID": "F549497570821f8633b7b2b3dcf346ad03391f2551491800ce85f0fd11011590e",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 23 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 23
+		},
+		"folderID": "F41215629ad3a3af1130555cb14e798da60222a64c18657145432208c739f6da4",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 23 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18515,6 +19379,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 24
+		},
+		"folderID": "F03ddae762674af00dd6332250e3a497e9c425cccd1257e88fdc8286c0692bee3",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 24 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 24,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Fd118336ebbca763a7049cbd4832b7fb882656c6e294462600fef9702f4651406",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 24 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 24
+		},
+		"folderID": "Fd74a62791da3fefcebf20d7d0b90f37badf8e8f2c54ebdc8378df888168c9ad4",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 24 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 24
+		},
+		"folderID": "Fef190a528fc71b09e9a6176f8b569a018cc7f89d5b02328b1e25d5b6f5580921",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 24 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "25"
 		},
 		"folderID": "Ff61b9863219eeaed00e05834879933262f0f80dc25327e3a9df5a3729f7ea0a5",
@@ -18523,6 +19441,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 25",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 25
+		},
+		"folderID": "F8606bd646536f372363de9b2299b1356e7966f257b60b924ea887227d9e2fb31",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 25 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 25,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F185192f30466c02c4acd0f56c4cd9638a22f055a4c51809e322ab69d50d9ea1e",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 25 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 25
+		},
+		"folderID": "Fe63ab76510f4bc00160538d57b07db4c49164be9e2c6877ca23dcb3d2520b029",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 25 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 25
+		},
+		"folderID": "F75899db5516e5fd92ad686f844d05f3bf46a4142ddb172a8aeaec79f788053cf",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 25 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18539,6 +19511,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 26
+		},
+		"folderID": "F0a3c5f01505aefc38dd7a6f48618bf61b655ef915d312b0ef15a6ebb92f84644",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 26 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 26,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Ff000ccc7ff97b3b4f0c791f45e07867a48b861c086d5cb22906df2cd69d7f6e9",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 26 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 26
+		},
+		"folderID": "F02f46a1825d48a41c6d6bd8a57987bab6d13b805424608bb6b25b5ec5cb870f0",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 26 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 26
+		},
+		"folderID": "Ff6e9aaf227263ffb3a44e83aaefbafd7df467e09ff8d85d602c9f8de0dd50e58",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 26 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "27"
 		},
 		"folderID": "F9a24f6be0b18f02e75dcb001aee5cb6bd5e20ef1f7968db278d1a936de957f9a",
@@ -18547,6 +19573,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 27",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 27
+		},
+		"folderID": "F52ab02d6fb9fa333eefde4ddf67fae73028b4cb5ddfab92de9c6f93f6a6c8f2d",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 27 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 27,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Fc6b9f121eb69b7e9f72461e26d7f7b4158c392072d92ba34be6fc9ba3e945489",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 27 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 27
+		},
+		"folderID": "F7e9311cab5ff5f2792155ca7c0bff802175d88cdfd5007eb1ad474ef97fc7388",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 27 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 27
+		},
+		"folderID": "F03d7d83a83b2986c2655a0a80ef17d8e96236c9d601c1fac87dd619c0246230d",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 27 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18563,6 +19643,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 28
+		},
+		"folderID": "F2f7df3ac84be64d2cbf319f7e2d3b93212cbc83e06c04c8f8d60ff01ec0ad11d",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 28 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 28,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F2302c23c0e101b75f5c06517496e5693baa0d68299cce57affe32f5ac8f2d136",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 28 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 28
+		},
+		"folderID": "F6034733463d5a43cd3160b41c861f2e110ccb64eea9b38243a81585e0f105204",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 28 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 28
+		},
+		"folderID": "F17a43335d220f1bfef3efea1e84fa5bf077299c458646bd86e5622f642dcf886",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 28 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "29"
 		},
 		"folderID": "F5309c48c7b1de84ecf12839b4278ca56fc26ccf5adeb075e3a1c86d46f02d8cb",
@@ -18571,6 +19705,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 29",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 29
+		},
+		"folderID": "F0ba64d6ea159f59d4439ff9341620489fec78634298e7f59f615d7938d7c3e42",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 29 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 29,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F6270f12b0df467cbd1d23af2b40110fc3ec7f0ef076621267efc0fea00011d16",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 29 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 29
+		},
+		"folderID": "Ff974f5280458cb258b1cd3f4c18dfdf17e8bd64b0297380580a88a1860472df2",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 29 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 29
+		},
+		"folderID": "Fe68ea23d1be71ea19167a1f5574b4aea8aefe166b9cc9346062bd5de15a942a0",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 29 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18587,6 +19775,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 3
+		},
+		"folderID": "Fbc4352f4b44ec1882232cc14ee389bef57a34f2dac424e84e34a21439a1f76e3",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 3 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 3,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F6f8f324098d941f89ac51bc819a99080b94f65c4e9cd18696556da3558511e57",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 3 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 3
+		},
+		"folderID": "F35a1b69e1b5cc21dd37e5bb46d1120e61d54a19fd7f89267db7ddf441c1bdb51",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 3 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 3
+		},
+		"folderID": "F219461f921e03b47110cc036096433f99dbda9f19798722a0c7e8dd4cb73aa15",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 3 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "30"
 		},
 		"folderID": "Fd918e7b91caca2090bac84d30170d661e5904d025eb3235fe68bf02e1df87eff",
@@ -18595,6 +19837,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 30",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 30
+		},
+		"folderID": "F15477fb81117c4f55defa20c7909770d85cc223e11059bd6d40ea1d76bb888e6",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 30 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 30,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Fabada1bda596b4c3f92748e99d29d75bab96b30e086861741d716dc1aea0abab",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 30 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 30
+		},
+		"folderID": "F30ab09b39d4f80347153a68ac125a22163457579a6f98762c4ece1088f59fb30",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 30 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 30
+		},
+		"folderID": "F0c13ac6d5ffd5b19fc3092479a9c3e279c18f7b1c639afdafc6133ffff2b58d9",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 30 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18611,6 +19907,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 31
+		},
+		"folderID": "Fd643bdd3976f10b86b57b5e202d6850a54d0ac7278806076aee652e15d816436",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 31 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 31,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Fe8e3a87c42104bc7063782f0d58c41c0b4fdd6b57f353b57f809a98a19b24548",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 31 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 31
+		},
+		"folderID": "Ff11bfb413a6f056ce801f7e12ebfcf260242e3a515822f0f8fb4171f88036f71",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 31 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 31
+		},
+		"folderID": "F6adbbaa802bc62d2bc77116ef0c5448e8cf436619ec855208f8f25a5193cef40",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 31 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "32"
 		},
 		"folderID": "F94004145dedb9137a256cd889f84ddc05a841d09c86314635bb140ae0b5eb962",
@@ -18619,6 +19969,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 32",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 32
+		},
+		"folderID": "F70220a22f99cbd33a0d6eb5888e1f735d0d1a059bd1050afab07c50bf7a7c677",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 32 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 32,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Fbddd5c7c0d515dadee6499a26906e171f6dd5879229e62c2bf339b099bb254d5",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 32 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 32
+		},
+		"folderID": "Fe35e4400fa0dc602583c8a655af96d979fc36d3b565e61f1e56fc6cc55001d27",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 32 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 32
+		},
+		"folderID": "Fcd7b93ab216d39bfe0cac9799030a4e4b45c38dd6efffd27a30d3c0f1bab2d1f",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 32 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18635,6 +20039,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 33
+		},
+		"folderID": "F30636cf68e63c5b4daabf5242038b20a04eb849f74c1f222310aa7f7b5afc717",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 33 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 33,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F4c7ed0827cb695e41e783b4f0e648bb379d6b01a97cfbc03da639f74178544e1",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 33 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 33
+		},
+		"folderID": "F323e2cc78ef8495b8ab015f36efe7ef966dfa43119252cf687caf138e911ab9b",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 33 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 33
+		},
+		"folderID": "F92a23b8828d66e6a336c433f9398656afda1b3e12a4f81d4807702f67839dd21",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 33 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "34"
 		},
 		"folderID": "Ff726570cb7c16ec094bee2e835029392e58d07092d1364020bcb41a441b3d7d2",
@@ -18643,6 +20101,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 34",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 34
+		},
+		"folderID": "Fd0ff3281b867d47c077c79f465f8fbeab240fd3df32e5eed001a2715bb28aab9",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 34 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 34,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F074b8c7b38cc39b08aa3fffc0085135f8272387af87bf4d1380614646941eba9",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 34 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 34
+		},
+		"folderID": "Fa5c70004cc81240aba5f2887cd29d5427287d76b9a5db1f04908d97f95464fff",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 34 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 34
+		},
+		"folderID": "F07d105baaa80de0e2ccb6d1a65318e9ecea569c1a444b8cd17591ff223937183",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 34 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18659,6 +20171,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 35
+		},
+		"folderID": "Fe81c8e2791d7bb2521d3543254d99650ff76cba5ba6bbf10f711bf44b42fe8dc",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 35 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 35,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F19c7c3e995deccf7119a20d2bdad0a1623d7dd1449e9753220d96bf8d9637275",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 35 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 35
+		},
+		"folderID": "Ffe3d09126883ecfbf2662531edd1a39a8b69fa05d2ac97463570de7358c9d0cc",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 35 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 35
+		},
+		"folderID": "Ffc2b29fd11285b727b204f380e59da9cc9d29a2d91f375b97409136d54b7277b",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 35 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "36"
 		},
 		"folderID": "F3011ee48d3a18011351fe4601015323baa20688e9fb7bbd0ffc2686cb8545123",
@@ -18667,6 +20233,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 36",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 36
+		},
+		"folderID": "Fb605220caeb3d35d0ffbf451bbd3be2e2831899fbdc1410446a6fd633bdd90f6",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 36 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 36,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Feb336b1650d6bab2d1aa5bbc1dd03e771383c81ab0f665ebc15f46ccf382fa3f",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 36 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 36
+		},
+		"folderID": "Fb30be3122ab76c5ac7623551414989b13a3c4abb9db7dd2d5742f09087ac5b26",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 36 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 36
+		},
+		"folderID": "F2e4b5f17d3915f7ecd96ebb7d78d1c290b1494d52354c8cd3bdbd9331ed2e416",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 36 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18683,6 +20303,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 37
+		},
+		"folderID": "Ff17cca18e63d5e44b44cc920b33cced3abcc5d0fea31ca1df7e5062d38f2c763",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 37 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 37,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F184d9fec5d3f59594b3810605e312135680ed71bfd3bfa8f15a161969eef7936",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 37 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 37
+		},
+		"folderID": "F577ddc536b77b4be6ea8889e438b95359f7a5e4ecd0740dfe03c93943553aa52",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 37 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 37
+		},
+		"folderID": "F63dde84d7f818a19951aad75b5c5fe62509375a2250df5829bafeefd4feefd60",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 37 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "38"
 		},
 		"folderID": "F7598158525d26deb2c26b8727991f91992ea301778d0faa9e5ed37fa40daf5df",
@@ -18691,6 +20365,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 38",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 38
+		},
+		"folderID": "F42c830dff8008db646f590b2be59ea0c810c270c50a1c21dd72d1a86aba5f046",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 38 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 38,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F54467af217bb396917ec05b97a94cc0c7b3fe8229ced3e695711c3d22131e8f1",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 38 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 38
+		},
+		"folderID": "F8905e896d69b8c6f11bedbcb85f51e7ba5103e48314512b910b6f3f0fe614cce",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 38 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 38
+		},
+		"folderID": "F9b86044d92fde52c063c94d8eb4c6b36eae89bf7de6aa40ade6ff4af5a04e8ae",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 38 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18707,6 +20435,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 39
+		},
+		"folderID": "F5f95c6098df9821c021b5f456c64922af21adee6b8e1a05f01b9a0d192d1964c",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 39 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 39,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Ffd18193d67f63a66eb50a7afdb217d659561caba2b924c373a454595dd780130",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 39 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 39
+		},
+		"folderID": "F8c3b61962cf9b45085e6b0a30c7b4c1f06d1f933b3c6b9ca5a8879e548cc439e",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 39 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 39
+		},
+		"folderID": "Fc9927c172d825af09661e4d7187240ce637f7d5b5a45cce295038a9432cbf29a",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 39 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "4"
 		},
 		"folderID": "F60737d537fa7799432103bbbbcec1c8c0d51e77269a901ded7ae96a5fb990b0a",
@@ -18715,6 +20497,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 4",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 4
+		},
+		"folderID": "Fe3072824048d081a26c9c1964ca95ff04e1f494f1762f01d787b097dcc59e61f",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 4 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 4,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F32a36f1af2c124e67e0c2fd94573246444ea7a69904dc95c313a17489fe1efec",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 4 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 4
+		},
+		"folderID": "Fd9360b32a3e0f387daf3912a81e255234d2b89d549c358c36be1d0ece5a35f44",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 4 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 4
+		},
+		"folderID": "F70babe0344463aa8625a36302a094f4473d511e66d5921b5c7eff27673cda049",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 4 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18731,6 +20567,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 5
+		},
+		"folderID": "Ffe712a8af2e437b8ae7a3315ef98aa022b2b33b6f619a806d725230af483daba",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 5 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 5,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "F120e3e1afd9c17ba1b96ad89c92ca4370a2a367463dce9f33cdb10b3e3d409ac",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 5 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 5
+		},
+		"folderID": "F825aac6f64ae4f01a1928e95a0f3bd4d1cbc54f70bf651f11de4528e44bfe942",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 5 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 5
+		},
+		"folderID": "F558bc27f22c0c49ff1c037ccc380e634feb04ad16f96c5c5d3bb1088d9bf0fdd",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 5 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "6"
 		},
 		"folderID": "F70a1b21e00e80403c584d1b74f420dc44d471ce3cc141e019ac2960ba757d044",
@@ -18739,6 +20629,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 6",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 6
+		},
+		"folderID": "Fa8742da9a7204f70f61d693813dee985c96b3001113d4c7d7c2349f5c66f171e",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 6 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 6,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Fbfa7455653154ce50fc39e9fcd389697ca6cebb8f11724a2f9b4e6bae70be2eb",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 6 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 6
+		},
+		"folderID": "F7996ebffa651e077d578cfcd00586a8c160e7f73a840e545fde6489439aa094f",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 6 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 6
+		},
+		"folderID": "Fb7c4a4f50b90ae1903beaf8221df8c9e88b39ca528d3074b45af9c41586aec5f",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 6 Ranked",
 		"type": "charts"
 	},
 	{
@@ -18755,6 +20699,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 7
+		},
+		"folderID": "F8fb22a22456bb49cbbcd1a1bdd59e874ab7441982193027929e728b842ba0333",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 7 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 7,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Feaf36245f9421b233cdbcae690c73e1a6e61356917273b997007e470044afa92",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 7 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 7
+		},
+		"folderID": "F56b22e5167015603a8e73073571f77487553e3b184961bfc58752110d6a24d43",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 7 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 7
+		},
+		"folderID": "F119d87309bcc7e3b7056be6c6ef3896ac0252a3e90e5740b8fa52f6e97a465ba",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 7 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "8"
 		},
 		"folderID": "F40a52df9c8aeb941ba2d0092d224503bced6ba02df410a6454e63e38207f0d28",
@@ -18767,6 +20765,60 @@
 	},
 	{
 		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 8
+		},
+		"folderID": "F31391c035b60ee7ea7e81d30214eb6c0c7819a2b7b255c99dd494f2268f49240",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 8 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 8,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Fa7ffd6a050f12705ff08d94bda924a523ef4fda548a7538d67c29a33c2f7ef69",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 8 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 8
+		},
+		"folderID": "F0c02918cb77907528015200cbe9903b1392543ea3472ebb6ff7d68f8b4abddbb",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 8 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 8
+		},
+		"folderID": "F1462ca80de5f028f542ac1f9db031192af6b5d9847121ba1fcc386c4475a10f0",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 8 Ranked",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "9"
 		},
 		"folderID": "F00b57c9af97f0b1b2bb6f8140612a05b913649b907cef973dc21cb6aa88524ee",
@@ -18775,6 +20827,60 @@
 		"playtype": "Stamina",
 		"searchTerms": [],
 		"title": "Level 9",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.length": {
+				"$gte": 960
+			},
+			"data.rankedLevel": 9
+		},
+		"folderID": "F342055146c9b024c6c4fd1f42dc610ff3b04575fae0f2df374a8b901f4592296",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 9 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 9,
+			"data.length": {
+				"$gte": 960
+			}
+		},
+		"folderID": "Fd4d34c0a02d7ce6eb3fa94f8be0b08f5e83909da123c48732914638603869952",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 9 (Ranked Marathons)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.chartLevel": 9
+		},
+		"folderID": "F35dacb73d6601b4eb1f0ebb50f69238c93aeb8f4ce2910fa4f029bd5a288370b",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 9 (w/ Unranked)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data.rankedLevel": 9
+		},
+		"folderID": "Fd8866390ffaab87aaa457a8b37cbce062f672bd3912aecbcaf3c25ca629c90a9",
+		"game": "itg",
+		"inactive": false,
+		"playtype": "Stamina",
+		"searchTerms": [],
+		"title": "Level 9 Ranked",
 		"type": "charts"
 	},
 	{

@@ -10,7 +10,6 @@ export const ITG_CONF = {
 	playtypes: ["Stamina"],
 	songData: z.strictObject({
 		subtitle: z.string(),
-		originalPack: z.string(),
 	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
@@ -26,7 +25,7 @@ export const ITG_STAMINA_CONF = {
 
 		lamp: {
 			type: "ENUM",
-			values: ["FAILED", "CLEAR", "FULL COMBO", "FULL EXCELLENT COMBO", "QUAD"],
+			values: ["FAILED", "CLEAR", "FULL COMBO", "FULL EXCELLENT COMBO", "QUAD", "QUINT"],
 			minimumRelevantValue: "FAILED", // lol, maybe this is stupid.
 		},
 	},
@@ -123,27 +122,44 @@ export const ITG_STAMINA_CONF = {
 	versions: {},
 
 	chartData: z.strictObject({
+		// if this chart is "ranked" (i.e. worth any rating) what rating is it
+		// ranked at?
+		// For now, a chart is given this value if and only if it is in an ECS/SRPG.
+		rankedLevel: z.number().nullable(),
+
+		// what level does the chart say it is?
+		chartLevel: z.number(),
+
 		hashGSv3: z.string(),
 		difficultyTag: z.enum(["Beginner", "Easy", "Medium", "Hard", "Expert", "Edit"] as const),
+
+		// Chart length in seconds.
 		length: z.number().positive(),
 		charter: z.string(),
 
-		// Pick one BPM to represent this chart. If that doesn't make any sense
+		// Pick one BPM to represent this chart's stream speed.
+		// If that doesn't make any sense
 		// (i.e. chart has significant bpm changes)
 		// this should be null.
 		// Note that for some charts with BPM changes, Archi typically picks a common
 		// BPM to place it at. Not sure if that's automatable.
-		primaryBPM: z.number().nullable(),
+		streamBPM: z.number().nullable(),
 
-		breakdown: z.strictObject({
-			detailed: z.string(),
-			partiallySimplified: z.string(),
-			simplified: z.string(),
-			total: z.string(),
-		}),
+		breakdown: z
+			.strictObject({
+				detailed: z.string(),
+				partiallySimplified: z.string(),
+				simplified: z.string(),
+				total: z.string(),
+				density: z.number(),
+			})
+			.nullable(),
 
 		npsPerMeasure: z.array(zodNonNegativeInt),
 		notesPerMeasure: z.array(zodNonNegativeInt),
+
+		bannerLocationOverride: z.string().nullable(),
+		originalPack: z.string(),
 	}),
 
 	preferences: z.strictObject({}),

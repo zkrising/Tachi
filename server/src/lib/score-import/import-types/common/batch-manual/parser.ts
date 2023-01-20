@@ -18,8 +18,8 @@ import type { BatchManual, BatchManualScore, Game, ImportTypes, Playtype } from 
  */
 export function ParseBatchManualFromObject(
 	object: unknown,
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	importType: ImportTypes,
+	inferTimestamp: boolean,
 	_logger: KtLogger
 ): ParserFunctionReturns<BatchManualScore, BatchManualContext> {
 	// now to perform some basic validation so we can return
@@ -91,6 +91,27 @@ export function ParseBatchManualFromObject(
 	}
 
 	const batchManual = object as unknown as BatchManual;
+
+	// If this import method wants us to infer the timestamp then we should do that
+	// this operation only really makes sense for single-score imports so
+	// we'll enforce that.
+	if (inferTimestamp) {
+		if (batchManual.scores.length > 1) {
+			throw new ScoreImportFatalError(
+				400,
+				`Cannot use X-Infer-Score-TimeAchieved with multiple scores in your import.`
+			);
+		}
+
+		if (batchManual.scores[0]!.timeAchieved) {
+			throw new ScoreImportFatalError(
+				400,
+				`Cannot use X-Infer-Score-Timestamp if the importing score already has a timeAchieved set.`
+			);
+		}
+
+		batchManual.scores[0]!.timeAchieved = Date.now();
+	}
 
 	return {
 		game,

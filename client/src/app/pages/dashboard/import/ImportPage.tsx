@@ -256,6 +256,15 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			<ImportTypeInfoCard key="api/cg-dev-museca" importType="api/cg-dev-museca" />,
 			<ImportTypeInfoCard key="api/cg-prod-museca" importType="api/cg-prod-museca" />
 		);
+	} else if (game === "itg") {
+		Content.unshift(
+			<ImportInfoCard
+				name="Simply Love ITGMania Module"
+				href="itghook"
+				desc="Automatically import scores, whenever you get them (in ITGMania)!"
+				key="SL-ITG"
+			/>
+		);
 	} // else if (game === "jubeat") {
 	// 	Content.unshift(
 	// 		<ImportTypeInfoCard key="api/cg-dev-jubeat" importType="api/cg-dev-jubeat" />,

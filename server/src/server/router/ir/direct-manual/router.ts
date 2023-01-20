@@ -20,6 +20,7 @@ router.post(
 	ScoreImportRateLimiter,
 	async (req, res) => {
 		const userIntent = req.header("X-User-Intent")?.toLowerCase() === "true";
+		const inferTimestamp = req.header("X-Infer-Score-TimeAchieved")?.toLowerCase() === "true";
 
 		if (ServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER) {
 			const importID = Random20Hex();
@@ -29,7 +30,7 @@ router.post(
 				userID: req[SYMBOL_TACHI_API_AUTH].userID!,
 				userIntent,
 				importType: "ir/direct-manual",
-				parserArguments: [req.safeBody],
+				parserArguments: [req.safeBody, inferTimestamp],
 			};
 
 			// Fire the score import, but make no guarantees about its state.
@@ -51,7 +52,7 @@ router.post(
 			req[SYMBOL_TACHI_API_AUTH].userID!,
 			userIntent,
 			"ir/direct-manual",
-			[req.safeBody]
+			[req.safeBody, inferTimestamp]
 		);
 
 		return res.status(importResponse.statusCode).json(importResponse.body);

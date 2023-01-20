@@ -10,6 +10,7 @@ export default function ITGJudgementCell({
 	const judgements = score.scoreData.judgements;
 
 	if (
+		IsNullish(judgements["fantastic+"]) ||
 		IsNullish(judgements.fantastic) ||
 		IsNullish(judgements.excellent) ||
 		IsNullish(judgements.great) ||
@@ -36,7 +37,8 @@ export default function ITGJudgementCell({
 	return (
 		<td>
 			<strong>
-				<span style={{ color: COLOUR_SET.teal }}>{judgements.fantastic}</span>-
+				<span style={{ color: COLOUR_SET.teal }}>{judgements["fantastic+"]}</span>-
+				<span style={{ color: COLOUR_SET.white }}>{judgements.fantastic}</span>-
 				<span style={{ color: COLOUR_SET.gold }}>{judgements.excellent}</span>-
 				<span style={{ color: COLOUR_SET.green }}>{judgements.great}</span>-
 				<span style={{ color: COLOUR_SET.red }}>{cbString}cb</span>

@@ -35,7 +35,7 @@ export const ITG_STAMINA_IMPL: GPTServerImplementation<"itg:Stamina"> = {
 				return null;
 			}
 
-			return chart.levelNum;
+			return chart.data.rankedLevel;
 		},
 		fastest32: (scoreData, chart) => {
 			const diedAtMeasure =

@@ -23,7 +23,7 @@ function ParseBatchManual(
 		throw new ScoreImportFatalError(400, `Invalid JSON. (${(err as Error).message})`);
 	}
 
-	return ParseBatchManualFromObject(jsonData, "file/batch-manual", logger);
+	return ParseBatchManualFromObject(jsonData, "file/batch-manual", false, logger);
 }
 
 export default ParseBatchManual;

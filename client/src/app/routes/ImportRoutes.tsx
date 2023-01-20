@@ -24,6 +24,7 @@ import React, { useContext } from "react";
 import Switch from "react-bootstrap/esm/Switch";
 import { Link, Redirect, Route } from "react-router-dom";
 import CGIntegrationPage from "components/imports/CGIntegrationPage";
+import ITGHookPage from "app/pages/dashboard/import/ITGHookPage";
 
 export default function ImportRoutes() {
 	const { user } = useContext(UserContext);
@@ -58,6 +59,9 @@ export default function ImportRoutes() {
 							</Route>
 							<Route exact path="/import/lr2hook">
 								<LR2HookPage />
+							</Route>
+							<Route exact path="/import/itghook">
+								<ITGHookPage />
 							</Route>
 							<Route exact path="/import/usc-ir">
 								<USCIRPage />

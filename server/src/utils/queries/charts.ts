@@ -52,7 +52,7 @@ export function FindChartWithPTDFVersion<
 
 export function FindITGChartOnHash(hash: string) {
 	return db.charts.itg.findOne({
-		"data.hashGSV3": hash,
+		"data.hashGSv3": hash,
 	});
 }
 

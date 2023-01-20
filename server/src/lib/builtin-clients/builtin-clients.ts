@@ -161,6 +161,20 @@ const BtchiDefaultClients: DefaultClients = [
 			"\t"
 		),
 	},
+	{
+		name: "ITG Hook",
+		webhookUri: null,
+		redirectUri: null,
+		requestedPermissions: ["submit_score"],
+		clientID: "CXITGHook",
+		apiKeyFilename: "Tachi.json",
+		apiKeyTemplate: JSON.stringify([
+			{
+				url: `${ServerConfig.OUR_URL}/ir/direct-manual/import`,
+				token: "%%TACHI_KEY%%",
+			},
+		]),
+	},
 ];
 
 export async function LoadDefaultClients() {

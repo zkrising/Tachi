@@ -11,9 +11,10 @@ import type { BatchManualScore } from "tachi-common";
  */
 function ParseDirectManual(
 	body: Record<string, unknown>,
+	inferTimestamp: boolean,
 	logger: KtLogger
 ): ParserFunctionReturns<BatchManualScore, BatchManualContext> {
-	return ParseBatchManualFromObject(body, "ir/direct-manual", logger);
+	return ParseBatchManualFromObject(body, "ir/direct-manual", inferTimestamp, logger);
 }
 
 export default ParseDirectManual;

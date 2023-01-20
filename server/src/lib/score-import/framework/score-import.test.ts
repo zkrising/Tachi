@@ -12,7 +12,7 @@ t.test("#MakeScoreImport", (t) => {
 		const res = await MakeScoreImport({
 			importID: "mockImportID",
 			importType: "ir/direct-manual",
-			parserArguments: [FakeSmallBatchManual],
+			parserArguments: [FakeSmallBatchManual, false],
 			userID: 1,
 			userIntent: true,
 		});
@@ -48,6 +48,7 @@ t.test("#MakeScoreImport", (t) => {
 							},
 						],
 					},
+					false,
 				],
 				"Should store import-input on the CDN."
 			);

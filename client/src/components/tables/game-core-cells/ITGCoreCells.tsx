@@ -1,3 +1,4 @@
+import { ChangeOpacity } from "util/color-opacity";
 import React from "react";
 import { PBScoreDocument, ScoreDocument } from "tachi-common";
 import { GetEnumColour } from "lib/game-implementations";
@@ -23,7 +24,17 @@ export default function ITGCoreCells({
 				percent={sc.scoreData.scorePercent}
 			/>
 			<ITGJudgementCell score={sc} />
-			<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
+			<td
+				style={{
+					backgroundColor: ChangeOpacity(GetEnumColour(sc, "lamp"), 0.2),
+				}}
+			>
+				{sc.scoreData.lamp === "FAILED" ? (
+					<strong>DIED @ {Math.floor(sc.scoreData.survivedPercent)}%</strong>
+				) : (
+					<strong>{sc.scoreData.lamp}</strong>
+				)}
+			</td>
 			{!short && <RatingCell score={sc} rating={rating} />}
 		</>
 	);

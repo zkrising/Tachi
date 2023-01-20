@@ -30,6 +30,13 @@ export default function ITGHookPage() {
 					Place this file inside your user profile. It should go next to
 					<code>Groovestats.ini</code>.
 				</li>
+				<li>
+					<strong style={{ fontSize: "1.15rem" }}>
+						Edit <code>HttpAllowHosts=*.groovestats.com</code> in{" "}
+						<code>Preferences.ini</code> to{" "}
+						<code>HttpAllowHosts=*.bokutachi.xyz,*.groovestats.com</code>
+					</strong>
+				</li>
 				<li>That's it! Your scores should now automatically import.</li>
 			</ol>
 			<Divider />

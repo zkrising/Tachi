@@ -45,7 +45,7 @@ const MATCH_TYPE_CHECKS: Record<
 		fn: (c: ChartDocument<"bms:7K" | "bms:14K">) => [c.data.hashMD5, c.data.hashSHA256],
 	},
 	inGameID: { type: "CHARTS", fn: (c) => `${c.data.inGameID}-${c.difficulty}` },
-	itgChartHash: { type: "CHARTS", fn: (c) => c.data.hashGSV3 },
+	itgChartHash: { type: "CHARTS", fn: (c) => c.data.hashGSv3 },
 	popnChartHash: { type: "CHARTS", fn: (c) => c.data.hashSHA256 },
 	sdvxInGameID: {
 		type: "CHARTS",

@@ -9,7 +9,7 @@ export const ITG_CONF = {
 	name: "ITG",
 	playtypes: ["Stamina"],
 	songData: z.strictObject({
-		subtitle: z.string(),
+		subtitle: z.string().nullable(),
 	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
@@ -155,8 +155,8 @@ export const ITG_STAMINA_CONF = {
 			})
 			.nullable(),
 
-		npsPerMeasure: z.array(zodNonNegativeInt),
-		notesPerMeasure: z.array(zodNonNegativeInt),
+		npsPerMeasure: z.array(z.number().nonnegative()),
+		notesPerMeasure: z.array(z.number().nonnegative()),
 
 		bannerLocationOverride: z.string().nullable(),
 		originalPack: z.string(),

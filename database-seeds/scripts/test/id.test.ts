@@ -42,7 +42,7 @@ UniqueKeys["charts-bms"]!.push("data.hashSHA256");
 UniqueKeys["charts-pms"]!.push(["data.hashMD5", "playtype"]);
 UniqueKeys["charts-pms"]!.push(["data.hashSHA256", "playtype"]);
 
-UniqueKeys["charts-itg"]!.push("data.chartHash");
+UniqueKeys["charts-itg"]!.push("data.hashGSv3");
 
 let exitCode = 0;
 const suites: Array<{ name: string; good: boolean; report: unknown }> = [];

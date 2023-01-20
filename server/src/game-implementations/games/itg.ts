@@ -85,7 +85,7 @@ export const ITG_STAMINA_IMPL: GPTServerImplementation<"itg:Stamina"> = {
 				return `Survive ${NumToDP(val)}% through`;
 			}
 
-			return `CLEAR, and get ${NumToDP(val)}% on`;
+			return `CLEAR, and get ${NumToDP(val - 100)}% on`;
 		},
 		scorePercent: GoalFmtPercent,
 	},

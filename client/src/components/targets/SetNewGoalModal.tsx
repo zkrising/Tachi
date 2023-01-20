@@ -1,5 +1,5 @@
 import { APIFetchV1 } from "util/api";
-import { clamp } from "util/misc";
+import { UppercaseFirst, clamp } from "util/misc";
 import Divider from "components/util/Divider";
 import Select from "components/util/Select";
 import React, { useEffect, useMemo, useState } from "react";
@@ -11,6 +11,7 @@ import {
 	Game,
 	GetGamePTConfig,
 	GetScoreMetricConf,
+	GetScoreMetrics,
 	GoalDocument,
 	Playtype,
 	SongDocument,
@@ -134,6 +135,8 @@ export function RenderGoalCriteriaPicker({
 	game: Game;
 	playtype: Playtype;
 }) {
+	const gptConfig = GetGamePTConfig(game, playtype);
+
 	return (
 		<>
 			<div>
@@ -149,10 +152,9 @@ export function RenderGoalCriteriaPicker({
 						});
 					}}
 				>
-					<option value="scoreData.score">Score</option>
-					<option value="scoreData.percent">Percent</option>
-					<option value="scoreData.gradeIndex">Grade</option>
-					<option value="scoreData.lampIndex">Lamp</option>
+					{GetScoreMetrics(gptConfig, ["ENUM", "DECIMAL", "INTEGER"]).map((e) => (
+						<option value={e}>{UppercaseFirst(e)}</option>
+					))}
 				</Select>
 				is greater than or equal to
 				<div className="form-group" style={{ display: "inline" }}>

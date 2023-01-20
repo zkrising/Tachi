@@ -39,7 +39,7 @@ export default function ITGDensityChart({
 					},
 				},
 			}}
-			curve="linear"
+			curve="stepAfter"
 			tooltip={(d) => (
 				<ChartTooltip
 					point={d.point}

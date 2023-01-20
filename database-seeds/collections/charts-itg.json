@@ -1,6 +1,6 @@
 [
 	{
-		"chartID": "1fa5cc7c59a7f3df03ed2007bd6640805fc139e6",
+		"chartID": "b388252402dac59d77fa548cc3c1024b1aefb83a",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -201,7 +201,7 @@
 			"rankedLevel": 11,
 			"streamBPM": 128
 		},
-		"difficulty": "Zaia Expert 11/18/8/15",
+		"difficulty": "0b020e29c3919c10",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -210,7 +210,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "6dcb3e0ae889504cf40bb56c1fa997fd81833763",
+		"chartID": "e984208cf73e3a6ef35a4586187f784c71cdc519",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -423,7 +423,7 @@
 			"rankedLevel": 11,
 			"streamBPM": 136
 		},
-		"difficulty": "Solus Expert 7|7/19",
+		"difficulty": "f2bc769bdf7addfc",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -432,7 +432,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d0dd16c4fc4f23c01c8afb2735d246300cba6a41",
+		"chartID": "b902d1628bf7bbbe7d8cccdd271d7e93019edfe3",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -661,7 +661,7 @@
 			"rankedLevel": 11,
 			"streamBPM": 124
 		},
-		"difficulty": "N3PH Expert 7/15/22",
+		"difficulty": "c0b5988bae418d86",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -670,7 +670,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "59ca23a9395831dd790cc5cbcfe4105d59c87406",
+		"chartID": "9525b0727ddd51a3c3befac717d952c7bf7cc863",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -889,7 +889,7 @@
 			"rankedLevel": 11,
 			"streamBPM": 136
 		},
-		"difficulty": "ChasePines Hard 8/16/14",
+		"difficulty": "fc05556c0b501fab",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -898,7 +898,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "3a8c799833649ebc309baff0007b6c8e3b8712fa",
+		"chartID": "c3c6aca419f68b6661c0ede4498439cf07b43e18",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -1135,7 +1135,7 @@
 			"rankedLevel": 11,
 			"streamBPM": 145
 		},
-		"difficulty": "Lugea Expert 1|10/7/10/1",
+		"difficulty": "d0b51e7437f6705f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -1144,7 +1144,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "c05b34264a36ef6a6e7cdadc1af5481c90221d08",
+		"chartID": "7af2715ce5cccbad26168806b131ea0244ab8bfc",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -1361,7 +1361,7 @@
 			"rankedLevel": 11,
 			"streamBPM": 131
 		},
-		"difficulty": "Solus Expert 8|16/15",
+		"difficulty": "2dfb525a8c6de1ca",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -1370,7 +1370,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "aa29540ddee9b54984e7f90e5f531d5238f578a1",
+		"chartID": "5ee24e5d499ab44f953aab03aad34e249beca5c9",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -1635,7 +1635,7 @@
 			"rankedLevel": 11,
 			"streamBPM": 145
 		},
-		"difficulty": "Tuuc Expert 8|16/16",
+		"difficulty": "8b5b9badbf924024",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -1644,7 +1644,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "721a65fc65e880d429fe036c730e8a02aa6b5b5a",
+		"chartID": "d242dd098ada13ee5925991ff8715c9b0b5334b0",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -1737,7 +1737,7 @@
 			"rankedLevel": 11,
 			"streamBPM": 120
 		},
-		"difficulty": "Zaia Expert 32",
+		"difficulty": "6a470b19828fdd77",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -1746,7 +1746,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "41c7e40981e0b3a3035974418c47bc966bec13ad",
+		"chartID": "6ebda4e94c9b8ece7e0245e6637d8ee06383be05",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -1899,7 +1899,7 @@
 			"rankedLevel": 11,
 			"streamBPM": 130
 		},
-		"difficulty": "Chief Skittles Hard 2/11/23",
+		"difficulty": "f6a9c3555ffd5d9a",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -1908,7 +1908,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "457a13a133286f4e407b90802d1e278cf0f4fefa",
+		"chartID": "495832490355b12465f3b72879066d0dea9c5388",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -2127,7 +2127,7 @@
 			"rankedLevel": 11,
 			"streamBPM": 124
 		},
-		"difficulty": "N3PH Expert 1/7/17/17",
+		"difficulty": "cc5d918a88d4981a",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -2136,7 +2136,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "36b08ea815f72340079f35ebb29a544070381214",
+		"chartID": "6641d627b6cc5cb5a06a442e46f97d2a29cd5621",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -2227,7 +2227,7 @@
 			"rankedLevel": 11,
 			"streamBPM": 145
 		},
-		"difficulty": "GOBOW Expert 12/8",
+		"difficulty": "21b79fa03e7bfd23",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -2236,7 +2236,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "3368b8e62c41715346d7c4fcaba8ede1a838f59a",
+		"chartID": "9d26fa5193bdd80f9e428c2af91455ca5c7a22ad",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -2367,7 +2367,7 @@
 			"rankedLevel": 11,
 			"streamBPM": 147
 		},
-		"difficulty": "nv Hard 3/8/16",
+		"difficulty": "08c79a111721544e",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -2376,7 +2376,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "ffcabe440e1f0d5979b896bcbb287184760c5c43",
+		"chartID": "5c4c7c730214b19f026f32fbdf2c481067058d50",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -2613,7 +2613,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 138
 		},
-		"difficulty": "Solus Expert 16/54",
+		"difficulty": "baafb243d346d7eb",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -2622,7 +2622,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "8f6402273cccae8f9c00f0a0f0d4f74cfaa36452",
+		"chartID": "268dea9f897a09828870e15b7febb22eac1464f7",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -3017,7 +3017,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 174
 		},
-		"difficulty": "Maxx Expert 1|4/1|14",
+		"difficulty": "3d2952e0f5fd58f8",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -3026,7 +3026,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "47b6b56c9f892aaf167d0e183e05b6beb5920ea9",
+		"chartID": "c5097d760136af835e644d747596ce6edf2cec93",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -3279,7 +3279,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 159.996994
 		},
-		"difficulty": "Rems Hard 7|23/23",
+		"difficulty": "37e179dacebf1bfb",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -3288,7 +3288,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "b3a2c18c4edef92913c2375a291715c638b23f04",
+		"chartID": "70a51b0188d0a8a1b5642a55b4a0c455c4dcd403",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -3619,7 +3619,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 140
 		},
-		"difficulty": "t3a Expert 7/27/15/35",
+		"difficulty": "b502ad588316b2e0",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -3628,7 +3628,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "b8e66468acbf23af3b15a9abfbf9ca2949fa3a58",
+		"chartID": "2ba7699a10d7d72d3e88788fd1cdc30a05fe0f99",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -3889,7 +3889,7 @@
 			"rankedLevel": 11,
 			"streamBPM": 128
 		},
-		"difficulty": "Okami Expert 10/13/38",
+		"difficulty": "4957360be2f78952",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -3898,7 +3898,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "48dc981909fe29bcb2a4797c4ba1ad15202ce8b4",
+		"chartID": "c0aec91c15c65613f0ef6fd6ab7956b82e6525c1",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -4073,7 +4073,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 156
 		},
-		"difficulty": "Mango Expert 7/8/33",
+		"difficulty": "767ccf2b2bcc1fa0",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -4082,7 +4082,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "787b5c7126c4ae680875f0d42bfc7435de59326b",
+		"chartID": "01d02d5376a00dfad801ec0913493e382d7e2fb4",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -4299,7 +4299,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 135
 		},
-		"difficulty": "sorae Expert 1/13/7/29",
+		"difficulty": "50d73eb908c8f1c4",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -4308,7 +4308,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "2398181e23786be7439833dd3c0fcc9847d53727",
+		"chartID": "ee43f7c0bee55cf120278dd903a7bf4efc11d09e",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -4529,7 +4529,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 166
 		},
-		"difficulty": "nv Expert 7/15/15",
+		"difficulty": "0723c695475f541e",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -4538,7 +4538,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d9088419cb0f083154eb0556ac6be3fe941489cb",
+		"chartID": "fe3c3e3d3e2319eb768f52c9a1912c8148169fd8",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -4699,7 +4699,7 @@
 			"rankedLevel": 12,
 			"streamBPM": null
 		},
-		"difficulty": "nv Expert 4/8/14",
+		"difficulty": "fae6c535ed7020e0",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -4708,7 +4708,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d02230c2e56225d0a64607cbd516e98daccc35a8",
+		"chartID": "7f3e729afc86f34b138511f9194cd1d96f35ec98",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -4957,7 +4957,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 174.595001
 		},
-		"difficulty": "ITGAlex Expert 1|16/1/3",
+		"difficulty": "15160e012fc91836",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -4966,7 +4966,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "857c910126a2d8f689dca26037f40ec5abf7d30c",
+		"chartID": "2a5175eb8efc7f7c6ced69a508925d0ae81beb6f",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -5289,7 +5289,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 150
 		},
-		"difficulty": "Okami Expert 3/16/16/20",
+		"difficulty": "be73cef77658cdab",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -5298,7 +5298,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "95df4215acba12c997bd1cc94443d3f6f7ad83fd",
+		"chartID": "0d8d0447b97a8b72361086a5820271190cb12edb",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -5601,7 +5601,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 150
 		},
-		"difficulty": "Tuuc, Kyy Expert 7|22|29",
+		"difficulty": "cb19a8e1f5bb7fb3",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -5610,7 +5610,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "bb991e9f5eb583c71a9c6e1ba6a0fd97a1337d13",
+		"chartID": "b3ff50d76c4a61968e8c352a6e969306381ffed0",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -5909,7 +5909,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 150
 		},
-		"difficulty": "StarrySergal Expert 7/34/7/13/14",
+		"difficulty": "5917e5adf542ae3e",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -5918,7 +5918,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "738142af89bb48adeb8f7e4f15dc7f51aedba837",
+		"chartID": "954e806abb681e832a6fc5b672b5562f588b875a",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -6087,7 +6087,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 165
 		},
-		"difficulty": "Chief Skittles Expert 3/17/23",
+		"difficulty": "540c22f3417e72d4",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -6096,7 +6096,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "8465aa9121ab64e46c1aae818c0b2ea7cc3b5da1",
+		"chartID": "1a7e35409f82e2dbda376b58a41e8224756e3a54",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -6317,7 +6317,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 140.01
 		},
-		"difficulty": "StarrySergal Expert 3/32/30",
+		"difficulty": "f4fd449d39cc0181",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -6326,7 +6326,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "0b95341892e99fa0567bd833a87925e08a712d08",
+		"chartID": "d487e43d9e8e916b13486de7bbaa3c7e50f10747",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -6543,7 +6543,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 165
 		},
-		"difficulty": "nv Expert 8/8/16/16",
+		"difficulty": "e269abe8adf8319c",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -6552,7 +6552,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "f3373226a2acdde6b7fb2e82893a67b8eebce49d",
+		"chartID": "ac48edf271ee304e0fc5123e006a0ce80182b203",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -6805,7 +6805,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 132
 		},
-		"difficulty": "Okami Expert 14/30/7/22",
+		"difficulty": "2a26bd904503f235",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -6814,7 +6814,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "5a7ef6872ebeafde57302ffbcbe5e5d1b0c37337",
+		"chartID": "41f0ad1e6391371799ec6b39ec37b704d2a00a4c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -7101,7 +7101,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 135
 		},
-		"difficulty": "Okami Expert 39/57",
+		"difficulty": "e17518a6e2bd93d5",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -7110,7 +7110,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "ade979f46ff6f2928623c576ded65f37b6411ca2",
+		"chartID": "dd355fa0c0dbeec32d4b811a693765025a12b7d7",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -7463,7 +7463,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 145
 		},
-		"difficulty": "Okami Expert 2|29/34/33",
+		"difficulty": "2d7d2dfcb578a04c",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -7472,7 +7472,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "441537513385c3bc37f6469b59d1475f44dd4d4c",
+		"chartID": "245c271f88e4da92813aeaf5a8853e37453a7ce6",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -7719,7 +7719,7 @@
 			"rankedLevel": 12,
 			"streamBPM": 144
 		},
-		"difficulty": "Solus Expert 8/11/19/29",
+		"difficulty": "8557642626c4682c",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -7728,7 +7728,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "296dc906cf24ba63208c00f4e6adaed2b1f0799d",
+		"chartID": "beec853ef6b4c54461fea755de249a90d7995e44",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -8027,7 +8027,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 170
 		},
-		"difficulty": "ITGAlex Expert 17/15/33",
+		"difficulty": "cdabc6e24feee373",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -8036,7 +8036,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "9787f2ccdd74d23e4e2baa5dc14af0705a559444",
+		"chartID": "640a1c7d958f05da322136217ed791142ac30ade",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -8329,7 +8329,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 180
 		},
-		"difficulty": "Rust Hard 1|16|15",
+		"difficulty": "7d92f04c1b303829",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -8338,7 +8338,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "1ea1f901972412f530fb28103c4d541017dc14ed",
+		"chartID": "be523c5d062ce79724a775800d8c6d0bd62f0266",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -8641,7 +8641,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 149
 		},
-		"difficulty": "Hiiro Expert 16/61/22",
+		"difficulty": "cbb4a3c11d2ef4dd",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -8650,7 +8650,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "6ffc99e3fd1a2ff9de6dcba5238ff94622c866d2",
+		"chartID": "7d9e094193925307d6011fe80b9e4f33002fab33",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -9091,7 +9091,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 175
 		},
-		"difficulty": "StoryTime Expert 1|28/15|28",
+		"difficulty": "f6bb17227c1e2c08",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -9100,7 +9100,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d36a18eeed6ff285af5ba214c8eaf5b1030feaf4",
+		"chartID": "fbee536780dc68a190979a188cf9548cbc058e23",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -9391,7 +9391,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 150
 		},
-		"difficulty": "Okami Expert 8/7/73",
+		"difficulty": "9eec217bc3383e48",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -9400,7 +9400,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "ae6cae4129565c558127baf49759e3457531b44d",
+		"chartID": "93c1e837b8f7561275f13313f0c5011819193d6c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -9947,7 +9947,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 138
 		},
-		"difficulty": "yutsi Expert 23/98|75",
+		"difficulty": "fd049cc727b72a14",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -9956,7 +9956,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "cf2c0c81b4738d9b6e4fd929562350757ddeec55",
+		"chartID": "70013a9c1dc5f135baadac688847ebbc23737703",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -10419,7 +10419,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 136
 		},
-		"difficulty": "Implode Edit 7/16/16/2/55",
+		"difficulty": "e816ed12286bef13",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -10428,7 +10428,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "6cf55e1be3da006690e5b8355286912a4d78630a",
+		"chartID": "10baded51a80c8eaf2f739be7d0f94dc4996721f",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -10641,7 +10641,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 180
 		},
-		"difficulty": "Okami Expert 16|31",
+		"difficulty": "31dea82820e4297d",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -10650,7 +10650,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "33627826ccc169613db6cd761342dd7f1f074a95",
+		"chartID": "46c4e2d18ac6eccb03f7d1f8e7e163187de250ab",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -11089,7 +11089,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 150
 		},
-		"difficulty": "zaniel Expert 14|53/48",
+		"difficulty": "79eca0aec39320c8",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -11098,7 +11098,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "40ac3e4336bcd124a71a32cd5e8fbc072ac13381",
+		"chartID": "1ab90d56483fcc3e78d175682b93b1b6349edfe4",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -11519,7 +11519,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 140
 		},
-		"difficulty": "Rems Expert 7/119/35",
+		"difficulty": "ab8ae90d15c65a05",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -11528,7 +11528,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "8bdb83c3a25e06201cc7b53713233769b273c793",
+		"chartID": "046ae298aeca2bf6e500fa56c271eb7991f1277c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -11839,7 +11839,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 145
 		},
-		"difficulty": "Okami Expert 4/127",
+		"difficulty": "a87fc9ae699982da",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -11848,7 +11848,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "ebf353ee2212cc5b5172a5e193c86a6ec41c9ac1",
+		"chartID": "42442510c8bcc0e75cdd2dea8e232f4d29f32d3b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -12027,7 +12027,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 185
 		},
-		"difficulty": "nv Expert 7|24",
+		"difficulty": "33cc05c5a6468b0f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -12036,7 +12036,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d17cd838a87cd8ebb6a1eba27c963c4f2680391c",
+		"chartID": "9fac22644bde68cb5929c5c50fd8844be23278c0",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -12275,7 +12275,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 160
 		},
-		"difficulty": "StarrySergal Expert 7/17/41",
+		"difficulty": "ae03082ed5291ec5",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -12284,7 +12284,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "3b843cd6beb4aabf3db36bd6662b8b70f0abc4ee",
+		"chartID": "f21f968f26925c0cd51700a84563783c48f1c3f7",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -12545,7 +12545,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 160.841003
 		},
-		"difficulty": "yutsi Expert 23/25/19",
+		"difficulty": "fb4a68466f3bea9f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -12554,7 +12554,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "4e056f9ecd23398a91e42767f2b38750478acc64",
+		"chartID": "f988ab4cac4018858b4a07b59a4d310bbf6beea7",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -12769,7 +12769,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 174
 		},
-		"difficulty": "ITGAlex Expert 15/16/21",
+		"difficulty": "1029df8c11a166c2",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -12778,7 +12778,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "dc78c4004a39fd155af847a8f1edb2098393aea8",
+		"chartID": "a6f027f10b446887f14d0b1bdd2148c8fa6cad93",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -13141,7 +13141,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 155
 		},
-		"difficulty": "Janus5k Expert 1/24/38/15/38",
+		"difficulty": "07fc4623b4ca8a6f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -13150,7 +13150,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "b8ea91b8d136ffb607964c1b25aff1f98b793136",
+		"chartID": "1e6d4a7d3781b323ebd30648232587e3fb6bdff7",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -13577,7 +13577,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 175
 		},
-		"difficulty": "Happy Feet Expert 2|29|31/16",
+		"difficulty": "18f00e65805cfee5",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -13586,7 +13586,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "38c78c20ee9252713cf84927ff16a1f5b7c7fe57",
+		"chartID": "2c8dd67e2b163656868bf8fe963a21415d5fb4c3",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -13855,7 +13855,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 152.04
 		},
-		"difficulty": "Rems Expert 7/78",
+		"difficulty": "76897b5d8708708e",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -13864,7 +13864,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "8bbaec919f7e83e0f9784935483fb3cb9df2c231",
+		"chartID": "923bad2d32641000f0f454290df35be4b8d3f0fc",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -14375,7 +14375,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 135
 		},
-		"difficulty": "Rems Expert 88|90",
+		"difficulty": "71914af5886f49da",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -14384,7 +14384,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "14f5afea9509881aff667d02ba150f1d7701590f",
+		"chartID": "d4a730569c336047075089eb0761fe52a11f6363",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -14745,7 +14745,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 162
 		},
-		"difficulty": "Mango Expert 9/5/15/27/15/20",
+		"difficulty": "ef7aa102dfe694dc",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -14754,7 +14754,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "1e8b7aa2b6675a2856c7e0730f17bf812c4848e3",
+		"chartID": "4f4e96cc85d2505a07ec5ddf47ab4f60423d553b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -15009,7 +15009,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 163
 		},
-		"difficulty": "Rems Expert 82/15",
+		"difficulty": "815249bf5c86d346",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -15018,7 +15018,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "28e64e81ec46b65b4ec5e2c63974108996a513fc",
+		"chartID": "785608e91e155a4adb8982a41a1d12d60ca89eed",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -15175,7 +15175,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 167.913
 		},
-		"difficulty": "Solus Expert 41/14",
+		"difficulty": "87e215ed72e0a461",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -15184,7 +15184,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "44deab0cf3c13d4b82c3c5f39cfaec7cfbd6477e",
+		"chartID": "e60ecbd169ce9e81dec26213bf2bf33c0c2f6807",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -15661,7 +15661,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 170
 		},
-		"difficulty": "Janus5k Expert 7|6/38/4/20|28",
+		"difficulty": "7d3538c0668d7346",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -15670,7 +15670,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "c61a695545130f25147195cb73a0f33129c39b49",
+		"chartID": "11dd6a3fa6f14cbf2b44059d652ab6a2b7571c48",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -15877,7 +15877,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 185
 		},
-		"difficulty": "ITGAlex Expert 7/44",
+		"difficulty": "a0d8cf5d128bab88",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -15886,7 +15886,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "35b831e989dd8a230c21fb0a2a8abfb21d82d591",
+		"chartID": "7ee5ad63b67b7404188b5a97af97d52633216be5",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -16219,7 +16219,7 @@
 			"rankedLevel": 13,
 			"streamBPM": 148
 		},
-		"difficulty": "Okami Expert 1/118",
+		"difficulty": "942ad605a3a6e5f7",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -16228,7 +16228,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "cb30bb500711ef25ffc5d17e27862014a8f2f888",
+		"chartID": "194bf325aa56db6343eca77098a0633d72677532",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -16561,7 +16561,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 174
 		},
-		"difficulty": "Zaia Expert 14|28/28",
+		"difficulty": "bfd7053ef975797f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -16570,7 +16570,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "9a163e1c859336687f6fb9f2fbe67a989f7211be",
+		"chartID": "43a99481115d9e362d01dac2a87ffb5daf26b4ae",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -17231,7 +17231,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 144
 		},
-		"difficulty": "yutsi Expert 48/83/72/46",
+		"difficulty": "938ef9a46175c780",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -17240,7 +17240,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "68f3ed54ac1a71dec6b509e9e1f2e235ae74ccbc",
+		"chartID": "8530afb1dd56c08f32f1db1f3049981031d82b9d",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -17571,7 +17571,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 180
 		},
-		"difficulty": "Mango Expert 3/33/42",
+		"difficulty": "2d1222e26baf0c6b",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -17580,7 +17580,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "024a53c31b6f68e00221df2ac0efac027ad9a922",
+		"chartID": "abba12ce6d6296c56476db8305e44411a7341f89",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -17923,7 +17923,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 180
 		},
-		"difficulty": "ITGAlex Expert 2/36/47",
+		"difficulty": "b654fe06eb91b7e1",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -17932,7 +17932,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "052de586de2aa0c231324a5b5b653c226f3fcd73",
+		"chartID": "fe7a23a0efabfcb30b62075098c891d19fa0df9e",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -18145,7 +18145,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 196
 		},
-		"difficulty": "ITGAlex Expert 1/10/26",
+		"difficulty": "46928a00833c5ae6",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -18154,7 +18154,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "f7961b0c9ad1e165621637bfe660e4fbe3fda040",
+		"chartID": "42f72a4e52b0273ac9c963a0cb647c0e54dde278",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -18571,7 +18571,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 159
 		},
-		"difficulty": "Janus5k Expert 6|76/47",
+		"difficulty": "bfd17b18eba5d4a2",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -18580,7 +18580,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "c44f18fa0b9c92994a8004efb1b9a47b6445afd9",
+		"chartID": "9c2f5bb7f0108bfb3292ae188d7f9f11fd92bd86",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -19117,7 +19117,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 150
 		},
-		"difficulty": "Okami Expert 15/80/116",
+		"difficulty": "b064ced0954cbb60",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -19126,7 +19126,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "07f5e674efb866385d17a1669270df0e5f212dac",
+		"chartID": "7f90bd84ec3ed21b06093c14c6ebe26788181346",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -19329,7 +19329,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 190
 		},
-		"difficulty": "Zaia Hard 1/2/3/23",
+		"difficulty": "d1589d6630782b9c",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -19338,7 +19338,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "9bdf928295d99b6d563d3a8ead5cb3f0457d51de",
+		"chartID": "ca97b167d8598871fdcc9d28428c58a6b87332da",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -19587,7 +19587,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 166.25
 		},
-		"difficulty": "StarrySergal Expert 74/18",
+		"difficulty": "3f8fd2b7cb3a24de",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -19596,7 +19596,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "722a80e7388ff20041860deec31c511b524ad049",
+		"chartID": "337d091788acbcb0a8de5728c8539fae0646385a",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -19917,7 +19917,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 155
 		},
-		"difficulty": "Okami Expert 104",
+		"difficulty": "81feb7628a23c19a",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -19926,7 +19926,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "43fcfe5ecbe50b132a1aa09bf05a10f0107bc8a4",
+		"chartID": "de4b8eb00314179b42068b57ffee80c1508bb304",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -20331,7 +20331,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 157
 		},
-		"difficulty": "Rems Expert 2/76/1/64",
+		"difficulty": "f901881d55ed814a",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -20340,7 +20340,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "9f4f352d03cb1443564add772a5f27058fdf6990",
+		"chartID": "6bbe6e827ae98df70899131a84cbcab38b28afe7",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -20699,7 +20699,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 174
 		},
-		"difficulty": "Rems Expert 2|44/45",
+		"difficulty": "d9d8ef38dcd058b1",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -20708,7 +20708,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "f6ae382b13a546ed5ae5774dd35d9e760279cfd5",
+		"chartID": "fed503711ab5c1d95a994a638858934632e389e8",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -21037,7 +21037,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 180
 		},
-		"difficulty": "Chief Skittles Expert 7/15/15/29/23",
+		"difficulty": "8385b08d34927e34",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -21046,7 +21046,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d355d087c06dd11d41b20b07ae1eb01aad251f27",
+		"chartID": "1e117c8e0a27fce652dc2789f20092c35e5e7541",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -21471,7 +21471,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 174
 		},
-		"difficulty": "ITGAlex Hard 7|34|44",
+		"difficulty": "14c3710b57aaf91a",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -21480,7 +21480,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "919ac868005e9d62a3be473950cf9a565d7cadc9",
+		"chartID": "8307bdc29d7ddd1befd375ad33eecc2f9ec35826",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -22113,7 +22113,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 146.2
 		},
-		"difficulty": "yutsi Expert 7/28/205",
+		"difficulty": "b46fe20a30fef760",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -22122,7 +22122,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "6af6eb10361a3e3ecf88a15fb414a8ae4477a4f9",
+		"chartID": "a70ee0699fe56d2ba615fcacaba5e023c66c9cab",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -22401,7 +22401,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 160
 		},
-		"difficulty": "sorae Expert 80/31",
+		"difficulty": "ba4564506a26e6d4",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -22410,7 +22410,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "1b875ef8b03727354b445b1338260bedef667c22",
+		"chartID": "5afcb5fcb622ac06b0639e95e3e08a0bbf46b416",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -22699,7 +22699,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 165
 		},
-		"difficulty": "Mango Expert 3/108",
+		"difficulty": "d843460bb912f61e",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -22708,7 +22708,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "43789e8111c32f0e609428211edc1dfc6e265a13",
+		"chartID": "26f2df9e15e1a2b307a46f33f0f0afd26631e4fd",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -23041,7 +23041,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 148
 		},
-		"difficulty": "ITGAlex Expert 16/126",
+		"difficulty": "b50f6d59ea917220",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -23050,7 +23050,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "102744fa4b175edbb372b2c0a854ce0aed21779a",
+		"chartID": "abecf497ef1cc81eb098f62ea49426aa1dac2f0a",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -23375,7 +23375,7 @@
 			"rankedLevel": 14,
 			"streamBPM": 190
 		},
-		"difficulty": "Chief Skittles Expert 7/18/22/14/15",
+		"difficulty": "c5b2c916594a05d3",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -23384,7 +23384,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "32e68347a305915c275bf74f8bcf4761a280d98d",
+		"chartID": "37fa2294c465fd22be4486ec076e3503cc74c4f4",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -23609,7 +23609,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 203
 		},
-		"difficulty": "ITGAlex Expert 7/8/16/21",
+		"difficulty": "a839a894fc40334a",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -23618,7 +23618,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "cdc7868dbb72fd9585f639bdd5aba88db8027fc4",
+		"chartID": "bc3fc3fd2772a254f423336c61d0ebcd9aee9452",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -23847,7 +23847,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 202
 		},
-		"difficulty": "StoryTime Expert 3/38/1/22",
+		"difficulty": "c58ed1fd1d5b38fc",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -23856,7 +23856,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "227d650e52a01361fda32e5187f3cbb6bf665a8a",
+		"chartID": "c2ac41d2f810d3109283c0b90e1766513efd8a77",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -24121,7 +24121,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 195
 		},
-		"difficulty": "Chief Skittles Expert 15/12/43",
+		"difficulty": "cef6e0145c200cd7",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -24130,7 +24130,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "f3d3a56dff1ca5373bd5e8c5fdf9c670c1ec66de",
+		"chartID": "b69f95d64e6799d2fc2c91ab0080c213c774195d",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -24645,7 +24645,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 160
 		},
-		"difficulty": "Chief Skittles Expert 205/7",
+		"difficulty": "ac59ecb6a651985b",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -24654,7 +24654,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "bac0529d4fb238fbb457d02dae40d4a629de8291",
+		"chartID": "0dcab7f937d2c840286396d4b8832b1dc2e11d35",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -25065,7 +25065,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 161
 		},
-		"difficulty": "Rems Expert 21/87/47",
+		"difficulty": "8f6e0ffea0fdbec9",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -25074,7 +25074,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d9899f577b1a1ec5b83607a1cde0f4362879750c",
+		"chartID": "0a84e4e7b1632b607bad8ee92d39b6979afd6d8a",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -25293,7 +25293,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 197
 		},
-		"difficulty": "ITGAlex Expert 15/15/33",
+		"difficulty": "b1007fe30f7fb7ca",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -25302,7 +25302,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "4a1ee663da1716c0e93e386bf5dc9efc44a9b1c4",
+		"chartID": "b18b19736537381485fff6b1e8d571899e63c7dc",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -25865,7 +25865,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 158
 		},
-		"difficulty": "Mango Expert 117/116",
+		"difficulty": "20f574c037be6668",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -25874,7 +25874,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "238ab7cbc627326917232806624138303b02821c",
+		"chartID": "4f967ebd8374709ac682274f79186e6ec5c5f280",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -26225,7 +26225,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 174
 		},
-		"difficulty": "Archi Expert 14/42/58",
+		"difficulty": "572224b5ea6abcbc",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -26234,7 +26234,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "4d14fa325a867f746214957e4033d864304e8d4f",
+		"chartID": "5b23c07d263d91524feb223a3241afbe93aaf60f",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -26583,7 +26583,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 170
 		},
-		"difficulty": "4199 Expert 3/103",
+		"difficulty": "5af2a46155e5168c",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -26592,7 +26592,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "45b85bd9f16b19c790055a3dd10a35048d07fb02",
+		"chartID": "c3a4a35675be08e700ecc89b5e48f3fa8e39a01a",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -27105,7 +27105,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 163
 		},
-		"difficulty": "sorae Expert 56/8/32/8/90",
+		"difficulty": "ea759a14ef86e3a3",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -27114,7 +27114,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "45fae2678a9c9f38c25b651d3339460bea3f1a93",
+		"chartID": "8996ab1610c7dfa33becc180259f30d06d488625",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -27603,7 +27603,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 180
 		},
-		"difficulty": "Janus5k Expert 16/40/23/37/33",
+		"difficulty": "f3978500c7546333",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -27612,7 +27612,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "0399a0d0e93a6b7b7f6a935af21f09430bc5adff",
+		"chartID": "02b0bce35914988c83ecc4ee4f2e3dab37c5fa3d",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -28027,7 +28027,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 178
 		},
-		"difficulty": "StoryTime Expert 15/38|61",
+		"difficulty": "6267513c7485ddf4",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -28036,7 +28036,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "e1ab7b1d474d980278ab1b89d2822a7d3b62769e",
+		"chartID": "4a13306ad22234eccf30345794a25f9d896ff51b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -28481,7 +28481,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 182
 		},
-		"difficulty": "StoryTime Expert 16|31/46/48",
+		"difficulty": "06216a6e5d99dc4e",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -28490,7 +28490,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "8c9f80183c5d3dc16d363f43e921a64ac4de8fcc",
+		"chartID": "b9e0c4ad1a631330e73aa61501b23ab8a876e66c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -28875,7 +28875,7 @@
 			"rankedLevel": 15,
 			"streamBPM": null
 		},
-		"difficulty": "ChasePines_101 Expert 32/13/98",
+		"difficulty": "f6685cb85c1921e7",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -28884,7 +28884,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "b47df949cad7a71fbd2575d304d2e5d49781de21",
+		"chartID": "b53937c66bbb448edf0c011a3cc5a506de045113",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -29551,7 +29551,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 150
 		},
-		"difficulty": "Rikame Expert 311",
+		"difficulty": "6d3641c9d3df20dd",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -29560,7 +29560,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "bd0e085893de69daa95cc407d497aa99637c3883",
+		"chartID": "e6ab1ad3b35fa5cbeb256f6d4a92544e32731164",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -29949,7 +29949,7 @@
 			"rankedLevel": 15,
 			"streamBPM": null
 		},
-		"difficulty": "HISA Expert 11/30/27/32",
+		"difficulty": "4250b4fc4fec8546",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -29958,7 +29958,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "4924258643f2c582244e22a21854b51b0ce0173b",
+		"chartID": "99f79f82f4586515874b7da8bf65d5160f8bd809",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -30205,7 +30205,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 174
 		},
-		"difficulty": "ITGAlex Expert 20/80",
+		"difficulty": "96995ee82c7a70d2",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -30214,7 +30214,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "fe82162e15d80ea6e912a426ff95ba3627545472",
+		"chartID": "329aabbd4df49a286465b4e8b19b56e75176fdb9",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -30415,7 +30415,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 185.43
 		},
-		"difficulty": "ITGAlex Expert 74",
+		"difficulty": "2e2af183cd8d1fed",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -30424,7 +30424,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "9071fc7ca777d2995d7cf7b9f40245fe852b5f92",
+		"chartID": "4e58527a58959eec3e38768708b28685598a1f04",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -30645,7 +30645,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 200
 		},
-		"difficulty": "Rust Easy 39|17",
+		"difficulty": "c2f76a9f2b222d6e",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -30654,7 +30654,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "4b6f9a12ebfb8de536f3635191eac921d5ebaa47",
+		"chartID": "c6858a68d6aa80f4db950608807e928a450f2c0c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -31085,7 +31085,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 157
 		},
-		"difficulty": "Rems Expert 1/172",
+		"difficulty": "1b8e43b641a651b4",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -31094,7 +31094,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "e350032708d12ca626db63caf83e4574539cec87",
+		"chartID": "7616bf41533c01379839fe9c709e6811328e144c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -31407,7 +31407,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 188
 		},
-		"difficulty": "StarrySergal Expert 16|15/48",
+		"difficulty": "4c713c1b33729b41",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -31416,7 +31416,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "3a2f62ed2283a079224c509211377f610d1b6741",
+		"chartID": "159a8455fdf9292d5108cf3fb0586050d92ea4f8",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -31709,7 +31709,7 @@
 			"rankedLevel": 15,
 			"streamBPM": 191
 		},
-		"difficulty": "sorae Expert 7/37/37",
+		"difficulty": "d4094b12c889d44d",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -31718,7 +31718,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "393894a452f2b127ab7604fb81cef32a0495bd9b",
+		"chartID": "e2f9d5bf541f9e3d05033cf68455f0675b90a44f",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -32077,7 +32077,7 @@
 			"rankedLevel": 16,
 			"streamBPM": null
 		},
-		"difficulty": "Zaia Expert 5|15/70",
+		"difficulty": "fe4d48e0e28bf1f3",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -32086,7 +32086,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "397007757558dfa5414ee38ea7dae1412c655333",
+		"chartID": "f0e0b9c16f80022976749332eba788d6694fb04b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -32577,7 +32577,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 185
 		},
-		"difficulty": "Okami Expert 48|129",
+		"difficulty": "235fc70d73235026",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -32586,7 +32586,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "f075e60004afe7a95808b6e2f535ba2b34c2d891",
+		"chartID": "8c78e5588c2306d8713d50f30a237dcdde391906",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -32957,7 +32957,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 207
 		},
-		"difficulty": "Okami Expert 1/24/17/4/43",
+		"difficulty": "c8748ac5bd2a7fa9",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -32966,7 +32966,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "3140c3a7f05fcbbf4c90bd3159d30ec7fa413012",
+		"chartID": "f893ccd6e1c94b2be6bc9067e761fe71cf2f0495",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -33549,7 +33549,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 175
 		},
-		"difficulty": "Archi Expert 48|63/23/79",
+		"difficulty": "5d340c67dc621302",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -33558,7 +33558,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "daac27ec89a1287c0bb40b2e9b42d995c34405cc",
+		"chartID": "b53d0ca9cf1b6463b54c35a7962f54e7ef32838a",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -33929,7 +33929,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 195
 		},
-		"difficulty": "zaniel Expert 7/23/43/16/18",
+		"difficulty": "64fd5c66c68c9a50",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -33938,7 +33938,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "520a3a1ba301cfaae8fea8e22314bc9e64f274c5",
+		"chartID": "05aa7240c4da042c525faa935fd2557b0a30b537",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -34285,7 +34285,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 191
 		},
-		"difficulty": "sorae Expert 30/87",
+		"difficulty": "37f73ca45700d49c",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -34294,7 +34294,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "a453862457df1693fd4c72980366aab75c673832",
+		"chartID": "8eb281556f9c47f2e12d2fb0e6176f1d9ee26aa7",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -34649,7 +34649,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 205
 		},
-		"difficulty": "Kyy Expert 2|80/17",
+		"difficulty": "bd70d1f78a46b194",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -34658,7 +34658,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "a717fbff4309d08c7d3bd64085a2f9a1ff0e23f2",
+		"chartID": "4f862f0c87a8942516c87b3dd068a7ccddab1284",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -35135,7 +35135,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 190
 		},
-		"difficulty": "Sefirot Expert 48/55/8/48",
+		"difficulty": "7ccac54fd37a4d3c",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -35144,7 +35144,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "baad64d54fe8e0b0cc075835ae182f0e4bc754db",
+		"chartID": "8764d047528f0fbfcd245b32a42c7edde5c7badd",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -35617,7 +35617,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 175
 		},
-		"difficulty": "ITGAlex Expert 120/80",
+		"difficulty": "1607cd36706dbd65",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -35626,7 +35626,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "95a9be22abd096c2d78501830084a9916da07560",
+		"chartID": "8d1c17a8b827a1fdbbeed1113046cccbaf45336b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -36319,7 +36319,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 180
 		},
-		"difficulty": "NAOKI Expert 3|82|2|30/73",
+		"difficulty": "ee38049fce6cf948",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -36328,7 +36328,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "bfcc5f8cd8ce4c2adef2a9d52b65fa444161dc01",
+		"chartID": "1023a435ce755ec1004ce5b4057fbb8084eea30c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -36849,7 +36849,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 201.5
 		},
-		"difficulty": "Zaia Expert 124 Total",
+		"difficulty": "03c7e4784a3f0544",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -36858,7 +36858,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "ef7b60197012a027d2eedfb4c3b57eace8efe3bf",
+		"chartID": "2f7d3be385189eb5a916a4a26ee79fa65e9c3069",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -37485,7 +37485,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 166
 		},
-		"difficulty": "ITGAlex Expert 96/32/128",
+		"difficulty": "36c52b1fa220d72f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -37494,7 +37494,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "a212e8126bae847819bcfc8298e85d620dd9ef95",
+		"chartID": "345d8d5f1366974408ecc56098ada251304fb03c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -38465,7 +38465,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 166.064
 		},
-		"difficulty": "ITGAlex Expert 40/180/121",
+		"difficulty": "0f739e6f5e8cd5cf",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -38474,7 +38474,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "bfb52b9dbaed5e3e951b8cb89a8be4c8162652dc",
+		"chartID": "4d7d9fce10890107bef825bf104c843b5a4562e3",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -38903,7 +38903,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 185
 		},
-		"difficulty": "zaniel Expert 1|37/79",
+		"difficulty": "9536c3b311ebcccf",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -38912,7 +38912,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d6894dfafa186f799af97e25fd3acc4d50bb4487",
+		"chartID": "f5537d1b2af03971d69b57298f50481c180744b5",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -39281,7 +39281,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 200
 		},
-		"difficulty": "Chief Skittles Expert 7/7/33/61/2",
+		"difficulty": "fb873f2e7278e55f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -39290,7 +39290,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "ba93158f8e2b5c7ab2c2a4e2fb263b0b4d9be6d4",
+		"chartID": "142a6ca61c72ee42cd0c808ce2d9f8edcfe01850",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -39839,7 +39839,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 167
 		},
-		"difficulty": "ZoG-, StarrySergal Expert 158/80",
+		"difficulty": "b627d0c62e1a397f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -39848,7 +39848,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "fe736bf6e9d4e825af43cdbf7f0712725a8bcb57",
+		"chartID": "e0e77e8ef0d038f93b528ed573eb0b8fdeeac155",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -40339,7 +40339,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 175
 		},
-		"difficulty": "StoryTime Expert 3/80/83",
+		"difficulty": "d9d5b7000ace0e73",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -40348,7 +40348,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "016273e96c7f7d71492b7e0100f0cf31fbb0e967",
+		"chartID": "f25a0108223d68c41b2756ba4fcdbfd9716cd672",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -41019,7 +41019,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 177
 		},
-		"difficulty": "yutsi Expert 7|153/69",
+		"difficulty": "0ab4c8fef7dc7cab",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -41028,7 +41028,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "e26f22dc24b72eb20ac002fb3066330290cd5129",
+		"chartID": "e14e73e2126a5e4d6dc283d8c575ca867c5c379f",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -41473,7 +41473,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 195
 		},
-		"difficulty": "Janus5k Expert 62/104/17",
+		"difficulty": "1ae3198b6a072624",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -41482,7 +41482,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "295a5a3a2a97037a34fba8172e801e54138bce50",
+		"chartID": "6fdb0d8d823b9dd31e19efd16ab29551e5c39669",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -41875,7 +41875,7 @@
 			"rankedLevel": 16,
 			"streamBPM": 181
 		},
-		"difficulty": "ITGAlex Hard 3/158",
+		"difficulty": "112502f2a8492f34",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -41884,7 +41884,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "81e281aadfd2248c9b9120863533232e7cd4681f",
+		"chartID": "76b08c49b0a238f8e7492e9c2a3a66140205614d",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -42353,7 +42353,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 200
 		},
-		"difficulty": "Zaia Expert 1/7/121/25",
+		"difficulty": "c798ad1b5b930c72",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -42362,7 +42362,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "c326807886990747b06eccc09f571f7421115733",
+		"chartID": "a343449529e6763aa2f5adfeb662f953018f4fc5",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -42669,7 +42669,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 210
 		},
-		"difficulty": "Janus5k Expert 9|89",
+		"difficulty": "9babc6924df6975d",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -42678,7 +42678,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "797ddc495aa172b1d20f586bec07907fa202a5b5",
+		"chartID": "ea833a4990c923a937e7e7e47ddc1d46707914e9",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -43131,7 +43131,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 205
 		},
-		"difficulty": "Sefirot Expert 3/9/17|34/63",
+		"difficulty": "f15533ef22b028d6",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -43140,7 +43140,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "52d5d4823d12b791d7e073f83c0f2789ee26a9be",
+		"chartID": "1584f985baa11a7f17971439d8065affdb49ff7b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -43819,7 +43819,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 180
 		},
-		"difficulty": "ITGAlex Expert 96|192",
+		"difficulty": "6a642b70f0beacd3",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -43828,7 +43828,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d3f3e2f7b6cecd6accfc30746a7920d6f4a89468",
+		"chartID": "bd6413104402dee6f73a67101a921367bc94a69b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -45241,7 +45241,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 174
 		},
-		"difficulty": "ITGAlex Expert 561 Total",
+		"difficulty": "5a47d70e00b69b0a",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -45250,7 +45250,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d10d115929f3684a80878ea68d0bc19aa4b52b4d",
+		"chartID": "55330e4adea66f6cab86b7c0a0743b96c8b1b3f1",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -45577,7 +45577,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 218
 		},
-		"difficulty": "Kyy Expert 3/28/18/11/5/11",
+		"difficulty": "a26b61d0df287f42",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -45586,7 +45586,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "698f45f9835cf8365f73009a4c862bc30ee6ffe7",
+		"chartID": "5a5061c23888fb5f5f031c00536de2185e92d7e7",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -46253,7 +46253,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 192
 		},
-		"difficulty": "Zaia Expert 7/175/22/37",
+		"difficulty": "7cfefc61e11cbccb",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -46262,7 +46262,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "2900adf8669653ef5d9a3838d5cfc171362468c2",
+		"chartID": "38b0f9b02cbff0cd97c79775eea5c8ce9082d4c2",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -46851,7 +46851,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 184
 		},
-		"difficulty": "ZoG- Expert 17/234",
+		"difficulty": "d73cf73c164819ed",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -46860,7 +46860,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "973b994db998a4f96554d98c2cdd267a45c6d690",
+		"chartID": "5ad947ad5101abb2a93f038a817825aa8c2d8e44",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -47417,7 +47417,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 190
 		},
-		"difficulty": "Happy Feet Expert 1/91/32/16/3/64",
+		"difficulty": "0b79b8eebd188337",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -47426,7 +47426,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "9c4b600fd2f6dd410808e8cef3c2b804ff71b9dd",
+		"chartID": "1ebcf19f31ad3e3f183f85c93a0fe99064b8dfb7",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -47899,7 +47899,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 189
 		},
-		"difficulty": "StarrySergal Expert 64|124",
+		"difficulty": "2694d87b423b97ad",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -47908,7 +47908,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "b02c4ec0112a5590fd029c2b9b9fbcb733a33c3c",
+		"chartID": "814e1eac6a89daf86805e849f35e9d567dcb108d",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -48593,7 +48593,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 198
 		},
-		"difficulty": "ITGAlex Expert 32|20/48/36/82",
+		"difficulty": "871f6827baabe718",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -48602,7 +48602,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "2da8a8222060bb565d2951df99090bc21a269678",
+		"chartID": "7a1fc9e3e58bbc9d9cf957d0540a2d6d318cf010",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -49439,7 +49439,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 180
 		},
-		"difficulty": "yutsi Expert 36|121/79|59",
+		"difficulty": "c7c0f0592ac546a7",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -49448,7 +49448,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "70f15c00d0ee2102d15b0ef02b1c488d81450640",
+		"chartID": "69d6d0b0f2d8faf8ed5df45eadd218fb0864d147",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -50375,7 +50375,7 @@
 			"rankedLevel": 17,
 			"streamBPM": null
 		},
-		"difficulty": "Janus5k Expert 48|48/47|182",
+		"difficulty": "ab758c83f38ff5be",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -50384,7 +50384,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "aa8b87b0944f58afa09fd6b410cea94ba0a7fdd1",
+		"chartID": "d3e088e3fab91f2fec59b88b80ebaa7c421602c5",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -51101,7 +51101,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 174
 		},
-		"difficulty": "Archi Expert 56/260",
+		"difficulty": "81b057d53f5d72df",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -51110,7 +51110,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "e36b9a48b217a996755341d5c9b2033baf06d606",
+		"chartID": "27e7f4fa5a27ab759e6c48487859eaf652679e6d",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -51743,7 +51743,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 203
 		},
-		"difficulty": "Chief Skittles Expert 16|62/39/95",
+		"difficulty": "2d92b619bbb93ad9",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -51752,7 +51752,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "24c9b2259273a4c3bcf1a61822dfbb49affed711",
+		"chartID": "832019deae78286f06c202868d835d297eec7944",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -52197,7 +52197,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 207.002
 		},
-		"difficulty": "StarrySergal Expert 143 Total",
+		"difficulty": "ebd71d625ba33d63",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -52206,7 +52206,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "afebcecda8c146c0ca3b52b463afc9dbcf56448e",
+		"chartID": "c7076ffb71d9afeebcfde818ad41e3e8e13673b3",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -52667,7 +52667,7 @@
 			"rankedLevel": 17,
 			"streamBPM": 210
 		},
-		"difficulty": "Dingoshi Expert 3/43/43/39",
+		"difficulty": "39ae880e3728d99f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -52676,7 +52676,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "c17cc0c81e5b3ef5968e524093ab6b01d7c13b18",
+		"chartID": "10e29de495b6bc2e432c1472642892b73496d70a",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -53473,7 +53473,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 190
 		},
-		"difficulty": "glory limited. Expert 30/319",
+		"difficulty": "c6035d7d3bf6a7a8",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -53482,7 +53482,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d374cfc96dd2abf8b71b18d80539b90b835b0a75",
+		"chartID": "accf5a8741ba3d4262cd43c57236aa785a239e7e",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -53935,7 +53935,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 212
 		},
-		"difficulty": "ITGAlex Expert 7/15/39/99",
+		"difficulty": "e1525cfb0a6a86f1",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -53944,7 +53944,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "acf66f4a25e544101f562d0bc68361eafa654af1",
+		"chartID": "8121398882e27fe9be3372e459ec1fe6655f408c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -54571,7 +54571,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 195.880997
 		},
-		"difficulty": "yutsi Expert 265",
+		"difficulty": "dc83f637166c3632",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -54580,7 +54580,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "80997ff273b6af1ca27df5f1b20514a167fae150",
+		"chartID": "d1f38046ea766fe9af4b0b7febd8607f307e4a27",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -54979,7 +54979,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 209.975998
 		},
-		"difficulty": "Zaia Expert 110|40",
+		"difficulty": "90675619014619e7",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -54988,7 +54988,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "6503fc793a99f269b11e642b3296efe3711608fa",
+		"chartID": "593cdc453d9e111c66ec78a706fda497ed0e536e",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -55415,7 +55415,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 210
 		},
-		"difficulty": "Janus5k Expert 19/97/33",
+		"difficulty": "6469a5fdbc8b7c22",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -55424,7 +55424,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "7980b82b3cb7db04ef44b832c65854ec53ff4853",
+		"chartID": "d19f73d026013efb1f28fe25127f3f82ecab14ac",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -56175,7 +56175,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 203
 		},
-		"difficulty": "yutsi Expert 15|42/26/87/83",
+		"difficulty": "2979beb65b5475a3",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -56184,7 +56184,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "dedd93e2179e1af613f54ccfd14184480208da4c",
+		"chartID": "c8cb74d462faa57ccffb738056781dff571f0c1c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -56927,7 +56927,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 185
 		},
-		"difficulty": "yutsi Expert 9/83/31",
+		"difficulty": "01b2f30f60770037",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -56936,7 +56936,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "4b78734abd26ad25a6b9760b476996183756f183",
+		"chartID": "5057e28d56b3edcda6f7c8636874561c9c968799",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -57541,7 +57541,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 208
 		},
-		"difficulty": "StripE Expert 92/59/23/57",
+		"difficulty": "e58d4f6050e8910b",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -57550,7 +57550,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "34b8c8a4fe056a33c2f3b49244e9726d3f80ad7e",
+		"chartID": "16fab3eac1a62d9853e1d74dbfdefb2698f33130",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -57937,7 +57937,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 210
 		},
-		"difficulty": "StoryTime Expert 1/94/49",
+		"difficulty": "eeb0d556ffa21090",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -57946,7 +57946,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "3c9eb019ed85af56a827ed634e11af53a521e0f1",
+		"chartID": "6011100a92592ce1d6b996cbfa714d805503cd4a",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -58361,7 +58361,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 222
 		},
-		"difficulty": "Kyy Expert 2/30/5/85",
+		"difficulty": "d605183b4dfe736f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -58370,7 +58370,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "7bd87395e53a39a4cd2f4785d3e93ad18d1a9e96",
+		"chartID": "3e9e4b851b10250dccdbee88de7e2cb1fe81514a",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -59141,7 +59141,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 200
 		},
-		"difficulty": "zaniel, glory limited. Expert 6/15/211/40/15",
+		"difficulty": "7cb6f9afff30d160",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -59150,7 +59150,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "33b1c0bef354ef8e2c9e3dedc90e62c938f3ef1e",
+		"chartID": "409864e4e838d9420e2fe202791bfa3a997793a6",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -59505,7 +59505,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 215
 		},
-		"difficulty": "Rust Expert 2/45/59/16",
+		"difficulty": "fdf01abbc5348371",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -59514,7 +59514,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "6a072feb13ccf950a0d3bc5c5802ab62840117f6",
+		"chartID": "53e1a2ed47c437cd1cb97056f29a96d32edef531",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -60171,7 +60171,7 @@
 			"rankedLevel": 18,
 			"streamBPM": null
 		},
-		"difficulty": "Aoreo Expert 31/129/56/19",
+		"difficulty": "74e40f591f3de1b2",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -60180,7 +60180,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "8667b42b50f7402953cd6258c0370631792dd251",
+		"chartID": "eee2985eb932bef654ca5216636e3bfab03d9096",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -64395,7 +64395,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 174
 		},
-		"difficulty": "Archi Rust Janus5k Expert 1574 Total",
+		"difficulty": "f8744f97eebeebca",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -64404,7 +64404,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "e0cf0e676ea8b349e5faee3ad4ad86661eeed29d",
+		"chartID": "65a21c5d66ea1ec1bacc631da30d42374050f789",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -65199,7 +65199,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 190
 		},
-		"difficulty": "sorae Expert 7/125/201",
+		"difficulty": "e068fff8c764b9c4",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -65208,7 +65208,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "bac2ec8349c532d956db41412ca5f32c77fd0308",
+		"chartID": "9388fafef6a150b105ee8197ca7407976191427e",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -66111,7 +66111,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 187
 		},
-		"difficulty": "@@ Expert 140/245",
+		"difficulty": "8db0f8f10e12fe6b",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -66120,7 +66120,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "6a5c4c3884d9f368fbd836999aff6181a40d8b12",
+		"chartID": "fc81f69f154be486ea903d3fb7b545ea11245709",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -66797,7 +66797,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 189
 		},
-		"difficulty": "@@ Expert 15/273",
+		"difficulty": "24fe688f89d276d0",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -66806,7 +66806,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "4381e8903f8f13e1c4d018d83a8fbc6bc7514289",
+		"chartID": "34da80d0d9e9ba9190d301aedb951c30e976028f",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -67291,7 +67291,7 @@
 			"rankedLevel": 18,
 			"streamBPM": null
 		},
-		"difficulty": "Zalem Expert 139 Total",
+		"difficulty": "12bcd199f3f4b449",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -67300,7 +67300,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "9798dbb141ce4c4545dd09bd687960377c1ca0a0",
+		"chartID": "15676f7522a24411caaca113508c95928c592459",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -68117,7 +68117,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 186.0186
 		},
-		"difficulty": "Nav Expert 35|323",
+		"difficulty": "52a8c598da150a4a",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -68126,7 +68126,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "15812c7df2d4a86bdc05d30c30ff0decce0c7fb6",
+		"chartID": "3e2685c0a4c9bc200a54ef9943441f18609445b0",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -68683,7 +68683,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 201
 		},
-		"difficulty": "StarrySergal Expert 7/29/22/32/128",
+		"difficulty": "13004a401485ff07",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -68692,7 +68692,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "5852531d185a66b0c6098fa58efa91af642a3522",
+		"chartID": "7e8b4b3936a805439914d1e722944a519c665dd7",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -69461,7 +69461,7 @@
 			"rankedLevel": 18,
 			"streamBPM": null
 		},
-		"difficulty": "Aoreo Expert 220/31/70",
+		"difficulty": "b454713cdcffa73a",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -69470,7 +69470,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "963d16c60256785c46946f8b5f446f0e9cfdf188",
+		"chartID": "79e694dd2f4d90587aac78673508571e28ce6854",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -70283,7 +70283,7 @@
 			"rankedLevel": 18,
 			"streamBPM": null
 		},
-		"difficulty": "Zaia Expert 250/65",
+		"difficulty": "c3a872625d05e5ad",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -70292,7 +70292,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "429c57aca8735a4d3043d1bf9f8a6bbd15ce6d4e",
+		"chartID": "7d52718458a1b4cd7ccaab64a6a1397e41b25436",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -70847,7 +70847,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 196.5
 		},
-		"difficulty": "TYLR, Prolix Expert 97/77/45",
+		"difficulty": "4b4f771870b20382",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -70856,7 +70856,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "2073c2e9131d3a7ee4750d47001a55624ce83d34",
+		"chartID": "b183eeb3b57fa5eaa82f6e008c621cb4f0dd59f6",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -71173,7 +71173,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 222
 		},
-		"difficulty": "StarrySergal Expert 6/14/46/30",
+		"difficulty": "0a0b0663c412ff1f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -71182,7 +71182,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "e105fa3fc147aeef748df713a3c4d33e3bc56042",
+		"chartID": "1574962753610645e145bc9a03e5b5689ee3d7ab",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -71681,7 +71681,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 220
 		},
-		"difficulty": "Okami Expert 38|29/23/55",
+		"difficulty": "6ed13c575d749ee4",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -71690,7 +71690,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "adb9b79fbb5bb09831f9bccce3286925ef3e1052",
+		"chartID": "cd1fac3a86d7ab9a936424c7837b7ccec0a7fca7",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -72315,7 +72315,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 205
 		},
-		"difficulty": "Janus5k Expert 36/42/180",
+		"difficulty": "e62daed621562ff8",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -72324,7 +72324,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "9075e62f08ec1e0232790500c2923e8b6ab8ed94",
+		"chartID": "17675a0be70f07810e3e6adb4baaa644d2beb528",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -73381,7 +73381,7 @@
 			"rankedLevel": 18,
 			"streamBPM": null
 		},
-		"difficulty": "YourVinished Expert 47/438",
+		"difficulty": "7a8841c87e50676f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -73390,7 +73390,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "11b6b767b7f11bb4365d354045bd17c3e83d9541",
+		"chartID": "bd45a86904b7a4b8157ef7fb2c039c15cddaf13a",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -73739,7 +73739,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 214
 		},
-		"difficulty": "StarrySergal Expert 32/78",
+		"difficulty": "720107194ab6829f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -73748,7 +73748,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "2e724cc1f69db94bc779f28d4b905cb29c52a53e",
+		"chartID": "eaf56ae20da1c63979e198a25f3d0202d7a0c01e",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -73987,7 +73987,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 218
 		},
-		"difficulty": "ITGAlex Expert 3/64/18",
+		"difficulty": "1c373ff7c9684470",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -73996,7 +73996,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "7ecc58bf038812250ea5a7c3e828e05e5351449c",
+		"chartID": "dc86807f05461e8414f973e410ae2e180cf521ab",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -76491,7 +76491,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 175
 		},
-		"difficulty": "ITGAlex Expert 999.125 Total",
+		"difficulty": "96c14a8d96a88ec4",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -76500,7 +76500,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "45b13beb025ae6f7cf6fcb5b97e69ae9b7d04b78",
+		"chartID": "c048f24f0e5e359c94c986802f7338b0a9e79a17",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -76737,7 +76737,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 225
 		},
-		"difficulty": "ITGAlex Expert 6/32/35",
+		"difficulty": "97462ba25c8ef0b4",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -76746,7 +76746,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "2f7c9735418094ffa3880ad3565720c8637cdbe1",
+		"chartID": "52d7d2fecd0ed362bef5a5d050a096469150fee4",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -77439,7 +77439,7 @@
 			"rankedLevel": 18,
 			"streamBPM": 195
 		},
-		"difficulty": "yutsi Expert 15|70/171",
+		"difficulty": "d3f56113dd45d43f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -77448,7 +77448,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "b86b12ddf9087b50bc77bc50a3ccef55b80a6edb",
+		"chartID": "e2275db2804c5f343b5aa29a12085567d5c59e26",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -78215,7 +78215,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 204
 		},
-		"difficulty": "Archi Expert 354",
+		"difficulty": "8115708010dfc1e9",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -78224,7 +78224,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "a92d57b91f2dd57d1c93d8fc87e5e0a796543cd6",
+		"chartID": "62bfe24fee4266a1ea3d92324654bf1cc66906ee",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -79333,7 +79333,7 @@
 			"rankedLevel": 18,
 			"streamBPM": null
 		},
-		"difficulty": "StarrySergal Expert 23|83/130|92|63",
+		"difficulty": "8e8e1f8ae07f8b0c",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -79342,7 +79342,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "259e24423fcac601433c9ad0db95be644cd571c4",
+		"chartID": "009259b242c200c1407aac2a3b7e9298584b9a24",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -80291,7 +80291,7 @@
 			"rankedLevel": 19,
 			"streamBPM": null
 		},
-		"difficulty": "@@ Expert 83|64/261",
+		"difficulty": "7e4e74aab0c54267",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -80300,7 +80300,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "7a4a8f338d53b11815ea61789dd379b553d6ec96",
+		"chartID": "8d2edef46d0986234c50690cdc9faa1f393bc765",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -80737,7 +80737,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 235
 		},
-		"difficulty": "Nico Expert 122 Total",
+		"difficulty": "41f00dd379ea7bc5",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -80746,7 +80746,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "74828ec476fbfa56724fe87d07487dce83076111",
+		"chartID": "c02ab4c9cbd3758dbb44c6875c986eb07f29216c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -81413,7 +81413,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 210
 		},
-		"difficulty": "yutsi Expert 15/242",
+		"difficulty": "c297a205ed7b03f7",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -81422,7 +81422,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "ee9ce0ad67903660112c8cc2ce287d52ce57fb5d",
+		"chartID": "1f89dc4d7accc9bb9c5ef14dfb9e15856878c2d8",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -82599,7 +82599,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 190
 		},
-		"difficulty": "Rems Expert 490",
+		"difficulty": "86d76dbf5fc93717",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -82608,7 +82608,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "b9741d977da20085afd86a82dc95dabf6ecfbc81",
+		"chartID": "faaf19f65e8208ce62657a52b2e9cc9b88928787",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -83681,7 +83681,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 201
 		},
-		"difficulty": "StarrySergal Expert 456 Total",
+		"difficulty": "74aeaa43e86d79d2",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -83690,7 +83690,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "82fbcf6b3daeba17bb451c4a730a037c63a28551",
+		"chartID": "e9ca88037aa23a43795781cc2f32712e65690a05",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -84119,7 +84119,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 220
 		},
-		"difficulty": "yutsi Expert 47/126",
+		"difficulty": "2df4c10cf8fa7ded",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -84128,7 +84128,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "7d533b75b1eca0b2d39fcd58018efb36e9d45042",
+		"chartID": "b12ef4c55b0e5b38f2f25faea9d3901bafc6bd71",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -85099,7 +85099,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 200
 		},
-		"difficulty": "zaniel, glory limited. Expert 34/192/43/124",
+		"difficulty": "4254d75adc022b04",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -85108,7 +85108,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "b9d268456792112359fd1386ad50709ce1045e7f",
+		"chartID": "c71fb614d87ed1317072115185f676d4e843c021",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -85689,7 +85689,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 210
 		},
-		"difficulty": "Stuff Illusionist Expert 32/126/88",
+		"difficulty": "ab30409ec2e5c070",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -85698,7 +85698,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "c62e5b46182b8db8516946d17a3bd2515607a461",
+		"chartID": "32071af6708b7c27cfc95af5df5f2a98d7e50155",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -86059,7 +86059,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 220
 		},
-		"difficulty": "Loak Expert 7/131",
+		"difficulty": "bed253b80f4f20a0",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -86068,7 +86068,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d36cb4f058cbc389d3006bce293d3808d977454a",
+		"chartID": "8628e30a3ae4af3ea80252eb5da4bddc45c9d951",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -86587,7 +86587,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 220
 		},
-		"difficulty": "Archi Expert 42/73|64",
+		"difficulty": "97e5eff956b5b8eb",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -86596,7 +86596,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "c85505df2f4bf1b4823d4d6e335ba474eedef484",
+		"chartID": "21bc711362fb420ac2866e14668b530aa322432e",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -86973,7 +86973,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 225
 		},
-		"difficulty": "StarrySergal Expert 27/72/31",
+		"difficulty": "32bd538378d6af38",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -86982,7 +86982,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "c4ab33b191b62361571b0b88e6f4f0642ab59e19",
+		"chartID": "14f0ef7ac4c2d4883466bbdb5f2775ddb3fc391d",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -87903,7 +87903,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 195
 		},
-		"difficulty": "yutsi Expert 4/388",
+		"difficulty": "40be74626da984d8",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -87912,7 +87912,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "11a9a14f4b45febda6dde4aed6295a129c215c6b",
+		"chartID": "79d91f456e964cdca5de908f4d596104990918b0",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -88209,7 +88209,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 230
 		},
-		"difficulty": "StarrySergal Expert 12/29/38/21",
+		"difficulty": "7f3112cf25d03aa8",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -88218,7 +88218,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "a2a2bfda3f05f21a63de6b458f0ecff0f3dfa36c",
+		"chartID": "4af388226e0379231331c0d12d8624b3c205ff13",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -88571,7 +88571,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 224
 		},
-		"difficulty": "Kyy Expert 6/66/53",
+		"difficulty": "d1d668a94e21fc4e",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -88580,7 +88580,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "2c260f7b621a22899e7ef132834cfc63c1a944d1",
+		"chartID": "b982be35f16873cddea39a8fb09fb1939947e3c8",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -88991,7 +88991,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 217.001007
 		},
-		"difficulty": "StarrySergal Expert 1/129/31",
+		"difficulty": "24ec411bc512573b",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -89000,7 +89000,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "5ac90a2229bdd342539fd6ab371df418bb5223e4",
+		"chartID": "5b1f90d89a85d02c79b5cf9c55f569c0b1646079",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -89613,7 +89613,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 208
 		},
-		"difficulty": "Zaia Expert 277",
+		"difficulty": "aebf711322248d69",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -89622,7 +89622,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "dabd3b832046d6faa2fcfabdc65dc3964c09bd7c",
+		"chartID": "4120a17054f6a722ca18912a4efb19a192b0adb4",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -92043,7 +92043,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 200
 		},
-		"difficulty": "Zaniel StarrySergal Expert 811 Total",
+		"difficulty": "3e1c56b53ebd3b16",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -92052,7 +92052,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "62eab1bd840edc3f12d064846da3d291774b2204",
+		"chartID": "e353cd9acfd825fe97dd08fd7b65a6d1b18cbdf6",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -92765,7 +92765,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 218
 		},
-		"difficulty": "ITGAlex Expert 90/90|34/43",
+		"difficulty": "b3df1d7195b3365f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -92774,7 +92774,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "635aae83934b1a68620934afcdf2f62d2ecb7fc9",
+		"chartID": "41008b1613436454e2051ce0c7ae5fc73437445e",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -93455,7 +93455,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 217
 		},
-		"difficulty": "Rust Expert 15/105/1/2/124",
+		"difficulty": "7e95102f9a37ba80",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -93464,7 +93464,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "53a88383e8878b802ff3c1c6770e38aac1ce671c",
+		"chartID": "85cdb70f6fea5705ff09f27dae15e7e860543ea3",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -94169,7 +94169,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 208
 		},
-		"difficulty": "yutsi Expert 64/148/72",
+		"difficulty": "a7fce8c457664db3",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -94178,7 +94178,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "e3934c0eee1bdf956ad4b57f53966ff19adbcc57",
+		"chartID": "161536fd9cac202fe4b16c2d14dc29ce97d9168b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -94505,7 +94505,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 236
 		},
-		"difficulty": "Aoreo Expert 7/24/15/26/31",
+		"difficulty": "e3d8ac5a16858c45",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -94514,7 +94514,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "e06062f93db5c5b9814f8001327f131770a9ec30",
+		"chartID": "0c0eb23835be3e95d98be2d616e2876476ae823d",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -95155,7 +95155,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 225.001007
 		},
-		"difficulty": "Chief Skittles Expert 15|42|65/61",
+		"difficulty": "d2fa991e296f8c0d",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -95164,7 +95164,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "aeaafc08f0fcc00354744ebd036eed0080104b3a",
+		"chartID": "1a42f2c7e21c6ab737970cd4f35a4b3ebb9d1394",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -95701,7 +95701,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 232
 		},
-		"difficulty": "StoryTime Expert 16|7|41/16/44",
+		"difficulty": "42d7749ebbba4b6b",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -95710,7 +95710,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "64637b90afb319222cf64df9757f9226cca06515",
+		"chartID": "3eabdaa1ec4b5868ff12e08fd3aeba84cfcb373d",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -96213,7 +96213,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 210
 		},
-		"difficulty": "StarrySergal Expert 136/80",
+		"difficulty": "b5e4c087b6bbe08a",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -96222,7 +96222,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d9afb409eb4d60391193b71cd7dc06958d1a5e80",
+		"chartID": "234aeef6ae5f05c0bd7b1be72bbe88cd28784bcf",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -97147,7 +97147,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 200
 		},
-		"difficulty": "Aoreo Expert 229/154",
+		"difficulty": "9031dcaf9b62ce18",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -97156,7 +97156,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "9a76d57f7570fd0281e9f07152d72d56ef0b8dc7",
+		"chartID": "07d898f1bce9e7829d1254cc945d20d04509a370",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -98501,7 +98501,7 @@
 			"rankedLevel": 19,
 			"streamBPM": 190
 		},
-		"difficulty": "@@ Expert 9/523/13/19/23",
+		"difficulty": "5cb16f5a69f80d5a",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -98510,7 +98510,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "009621e7ca014a76a745e632d58d665c2b63ada1",
+		"chartID": "900e56d108d4807968242e4b3259138764bdbc3e",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -99011,7 +99011,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 225
 		},
-		"difficulty": "Archi Expert 104|75/96",
+		"difficulty": "d132c0ea27a9444b",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -99020,7 +99020,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d83b2929368e1be12a40982bccf422b8d9bb2a68",
+		"chartID": "41e51c44a281d080764bc44989ac0bbc86c1d47d",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -99261,7 +99261,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 243
 		},
-		"difficulty": "StarrySergal Expert 46/27",
+		"difficulty": "b3769efb58ce9587",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -99270,7 +99270,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "4081218c1136ae171919f355d872a98cd4e3499c",
+		"chartID": "d419d8457c39223b0d4bb69e7d0e93de148b2e13",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -99561,7 +99561,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 237.5
 		},
-		"difficulty": "ITGAlex Expert 31|42",
+		"difficulty": "e2c5a87da98f655c",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -99570,7 +99570,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d3e946964a4d5feeda372b85c07b3db0f0d8d0ba",
+		"chartID": "e8c5db4a1a6d093e115edd825edc28ed90a63757",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -100399,7 +100399,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 214
 		},
-		"difficulty": "Zaia Expert 15|333",
+		"difficulty": "68bd87624676c0f1",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -100408,7 +100408,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "dcca03a7d47df1bc951e8a17916ecfe58dc8a814",
+		"chartID": "6c3e3b28e30a909d54c43a0b2f5a84d4a69aed55",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -100859,7 +100859,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 230
 		},
-		"difficulty": "ITGAlex Expert 39/28/62/31",
+		"difficulty": "1467f6a5488acac2",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -100868,7 +100868,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "0435d9ac502b1ecfac5a9287bdc53bf8f2e654c8",
+		"chartID": "bb04a368e1ef79a8ce3e6aaa75b3d2a9b14631a7",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -102405,7 +102405,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 209
 		},
-		"difficulty": "Rems Expert 584.0625 Total",
+		"difficulty": "338f2771ebdfc770",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -102414,7 +102414,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "bc13674702d9cdcec759cb22ebd44417d74e50b2",
+		"chartID": "ed71ab92d25f9b8fa994ad0b0ffaad6841e1868b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -102671,7 +102671,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 234
 		},
-		"difficulty": "ITGAlex Expert 3/63/16",
+		"difficulty": "814174151ee162d5",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -102680,7 +102680,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "3826dfff7cd407e9655eb02ef9272e6cf04f8713",
+		"chartID": "6a27cf2c4d0a09104acd794c19e4d26bb4e4048e",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -103423,7 +103423,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 220
 		},
-		"difficulty": "yutsi Expert 7/106/152",
+		"difficulty": "7beb1e5d9cabe5d3",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -103432,7 +103432,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "b5d40f9b6a4d3c1ed9f1494291d2a854865857b0",
+		"chartID": "55278adef32abbe6ded1a532eb08a0e01e2a49e4",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -104321,7 +104321,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 212
 		},
-		"difficulty": "Maxx Expert 3/173/180",
+		"difficulty": "b455878497f8d228",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -104330,7 +104330,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "81c77d62d5ae105636ea4daf4371a00f0e34bd15",
+		"chartID": "325c227a388f51250321eaaaec650a802d355741",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -105351,7 +105351,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 208
 		},
-		"difficulty": "TYLR, Zaia, Archi Expert 73/110/262",
+		"difficulty": "3642d1d19165c831",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -105360,7 +105360,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "ab4fc06f3fa30cfee0a77ef0ee29fbddff3c04c7",
+		"chartID": "38ef01eb9860080c518a8f53ccd8ddc4cf4821a3",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -105735,7 +105735,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 234
 		},
-		"difficulty": "yutsi Hard 28/32/60",
+		"difficulty": "2fd890254a6d1543",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -105744,7 +105744,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "99d6f84d0fe71f84d912b905418dd45bcedcb75e",
+		"chartID": "fe487d896aae3f02d39c74ee88872a13903206cf",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -106893,7 +106893,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 204
 		},
-		"difficulty": "Archi, StarrySergal Expert 135/391",
+		"difficulty": "0730da156abdd563",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -106902,7 +106902,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d58c39c2cf8efe10148c31d43b918254d63301bb",
+		"chartID": "453d370b661423e67f39b6ca3d0d7b62470c440d",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -107651,7 +107651,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 242
 		},
-		"difficulty": "Okami Expert 1|57|26/29|2/52",
+		"difficulty": "e4103ff162402e96",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -107660,7 +107660,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "06af28a8ed459952667b24b312d3f88d8a3d5e6e",
+		"chartID": "bae538b75edd450c604aa47c501f13bf282c9f7d",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -108079,7 +108079,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 230
 		},
-		"difficulty": "StarrySergal Expert 64/32/62",
+		"difficulty": "fd87ea88f90ccdfd",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -108088,7 +108088,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "fa151d32024e5b76efbeb51d5eb4f5ebaabe6e4d",
+		"chartID": "6d7983f7e3395955cf2eaddb87bca838db473866",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -108811,7 +108811,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 219
 		},
-		"difficulty": "yutsi Expert 31|236",
+		"difficulty": "72cb155e1a7b8dbb",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -108820,7 +108820,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d36fb51bc21ccc15c84c20dbd8d8206b61e5e569",
+		"chartID": "ac72dd4cd074cb0403ba520f9363468caca5932a",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -109065,7 +109065,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 225
 		},
-		"difficulty": "yutsi Expert 58/72",
+		"difficulty": "3c0a34e01c998df8",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -109074,7 +109074,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "be179364601f9798faa95d4e1c034eb835c15abe",
+		"chartID": "e89e1811629df43afe45a9681f1a67cf536d4692",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -109587,7 +109587,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 222
 		},
-		"difficulty": "ITGAlex Expert 3/143/54/1",
+		"difficulty": "75aebdba91c1686f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -109596,7 +109596,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "f76e4c99bd6976f2dfce2b72c70cae232729c46e",
+		"chartID": "1ada0a5d80b908752e08ea50adeb09627e80d143",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -109881,7 +109881,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 241.000015
 		},
-		"difficulty": "ITGAlex Expert 16/33/44",
+		"difficulty": "7871622f1d4151cc",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -109890,7 +109890,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "64bbc4e9f927165a66a698c95581aca4ceeb3dec",
+		"chartID": "749c82c356c71fad6451b5c2c51288bb31031794",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -111179,7 +111179,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 207
 		},
-		"difficulty": "@@ Expert 15/278/255",
+		"difficulty": "689bd7e6d8285cf3",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -111188,7 +111188,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "268ade160801f67ba1445d3be270a3bff87eeb34",
+		"chartID": "b6c9e42e8651981d1194e05071a1edaa8ea43318",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -112077,7 +112077,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 214
 		},
-		"difficulty": "yutsi Expert 7/199/156",
+		"difficulty": "acadbfc2ef189844",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -112086,7 +112086,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "eb17c404023f158927b06d74bc249957d4c932b2",
+		"chartID": "7fb60640db83f4d43b7436432977adec208675e1",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -112783,7 +112783,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 217
 		},
-		"difficulty": "mmagdon Expert 31/95/155",
+		"difficulty": "ccde45147f496119",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -112792,7 +112792,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "0b41fc90cb3b25a9424220a443c8d4a1c0ce89d0",
+		"chartID": "3e4c9b9f6644934ac79987779141eb82280179e0",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -113261,7 +113261,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 217
 		},
-		"difficulty": "StarrySergal Expert 217",
+		"difficulty": "864e17005667ccb5",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -113270,7 +113270,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "bcb0d67127a386f0795349b20afaa06f79a65615",
+		"chartID": "b59b823255ada45aa3ece1bcabf09d38f1d3af3f",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -113615,7 +113615,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 227
 		},
-		"difficulty": "StarrySergal Expert 136",
+		"difficulty": "40b1b3886e7c1458",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -113624,7 +113624,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "032e0fbffbc2b5066fe53c84724b1cbd9d5a551e",
+		"chartID": "4f022612e875e054e8f8e699411a7b3075e32325",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -113863,7 +113863,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 240
 		},
-		"difficulty": "ITGAlex Expert 16/60",
+		"difficulty": "45056f885d247e39",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -113872,7 +113872,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "264d548891ddecbe035081be9528c9a80a4ef43b",
+		"chartID": "1656dc3dd77c6cd940d8187b905c7143c249d70b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -114331,7 +114331,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 229.9
 		},
-		"difficulty": "ITGAlex Expert 8/54/34/66",
+		"difficulty": "927788c4d75c5679",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -114340,7 +114340,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "7134050d869705350a28024ae0e59cb4f90efa3a",
+		"chartID": "e86655deba3167c3461c7c52b13eb101bcc3f409",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -115005,7 +115005,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 233
 		},
-		"difficulty": "Rems Expert 2/62/1/58/82",
+		"difficulty": "91e2455b3e9f69b3",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -115014,7 +115014,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "678bd0b3796ac8936476ebc611cf428987fc5985",
+		"chartID": "3abe33dfbc691ef19dbaf8e0085e6a25b1693121",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -115629,7 +115629,7 @@
 			"rankedLevel": 20,
 			"streamBPM": null
 		},
-		"difficulty": "ITGAlex Expert 135|24/6/74",
+		"difficulty": "ba8db636efdcf6ba",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -115638,7 +115638,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "153bd6e45feb71380d3d60339a516bc94721fe69",
+		"chartID": "3429a44fc786e3ee01d5e94eb2061f02eadfc042",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -116039,7 +116039,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 240
 		},
-		"difficulty": "Kyy Expert 8/19/90/21",
+		"difficulty": "e4ba417e3eb89285",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -116048,7 +116048,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "59be823213dec1b262ea5e696a94f1ad4350dd80",
+		"chartID": "69c65703d6b130f521f3a0afadb30b81bd7add22",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -116523,7 +116523,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 244.988998
 		},
-		"difficulty": "Kyy Expert 7/56/55/30",
+		"difficulty": "43f4f14d3593ce97",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -116532,7 +116532,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "9f14c6f30ac6bbcfbc9d879d82726def64ba992c",
+		"chartID": "224f1cd6e00702023cf0ed0329d1fa7d419c6d65",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -116881,7 +116881,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 234
 		},
-		"difficulty": "YourVinished Expert 33/91/17",
+		"difficulty": "0d0373347bb2917c",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -116890,7 +116890,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "381bacbc19c73573f73af986b7d87b1a3ffe01b1",
+		"chartID": "21f814a8ea2b07cd07b73aeaf2a9078d5b5a97d6",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -117237,7 +117237,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 236
 		},
-		"difficulty": "ITGAlex Expert 48/38/47/1",
+		"difficulty": "9bd98fa715c129fd",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -117246,7 +117246,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "66681fca7d8d58ab93077d8e84b5472a05b34cc9",
+		"chartID": "cf23af7780708f482cb74f1a3f26b0ff7f8ce4dc",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -118395,7 +118395,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 220
 		},
-		"difficulty": "Archi, Rems, StarrySergal Hard 432.125 Total",
+		"difficulty": "ab4205346fdd9602",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -118404,7 +118404,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "3e211820ce5668fb6a0bfdb57f20c0c2c941b85a",
+		"chartID": "46ecbca7088cab533e41bc7b7e6086b79e605326",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -119001,7 +119001,7 @@
 			"rankedLevel": 20,
 			"streamBPM": 228
 		},
-		"difficulty": "Rust Expert 95|95",
+		"difficulty": "4fab3bef58777922",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -119010,7 +119010,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "2b714b0f6ec9e51ffbfcdc048813f3e59f6f8bb7",
+		"chartID": "78cb57b49081181c8468084af8428ef0034edd1d",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -119581,7 +119581,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 240
 		},
-		"difficulty": "Rems Expert 64|10/94",
+		"difficulty": "5b781dc41429fc7a",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -119590,7 +119590,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "91fb5f62e1d23bd43686a4e9ab643259f4ee2246",
+		"chartID": "460ca306ea58490ad9e08cd71c647f064090caf1",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -120059,7 +120059,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 230
 		},
-		"difficulty": "Janus5k Expert 217",
+		"difficulty": "8b779c26a034260a",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -120068,7 +120068,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "5f38fd0ec77ba2c8e0183d21e9a4736628888cae",
+		"chartID": "d47b4eb8c8542ff68491ba4fe18a480f397e3727",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -121153,7 +121153,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 217
 		},
-		"difficulty": "Zaia, Aoreo, Archi Expert 14/16/187/2/223",
+		"difficulty": "df4adcb3dba87853",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -121162,7 +121162,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "876f1b84a6319f475876d4f9a32be73013d3e0c7",
+		"chartID": "3e8223d57af197ffc1a31114d8b417c8098f9eeb",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -122557,7 +122557,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 220
 		},
-		"difficulty": "Rust Expert 556 Total",
+		"difficulty": "8d7db790e3827172",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -122566,7 +122566,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "735a1d2d6030ab5cde3cd313f452384e2a784fef",
+		"chartID": "e5d7cd44349889dee9d955b56ee97e5792479685",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -122999,7 +122999,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 249.999985
 		},
-		"difficulty": "ITGAlex Expert 8/15|60/8",
+		"difficulty": "323e5e14a5be926c",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -123008,7 +123008,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "a6c0987a86548a48ee6125ae3e6588e76fabb896",
+		"chartID": "3f4b4855b88c136e22ac2acd139b0004ffe95115",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -123477,7 +123477,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 240
 		},
-		"difficulty": "Aoreo Expert 152 Total",
+		"difficulty": "45a4c4e3ad71d069",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -123486,7 +123486,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "4825af4f50597e26f218de7b06439e356c2d1542",
+		"chartID": "1ddb11c3c459606ff8267b04633531f617f039a8",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -124233,7 +124233,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 220
 		},
-		"difficulty": "Stuff Illusionist Expert 48/225/49",
+		"difficulty": "a691f97689ccf9c9",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -124242,7 +124242,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "64adfe533f1e2ca72f540b919046e387488a480c",
+		"chartID": "32a9a7412d61d9d63a2c6e3e6e9bb0bb038e8f17",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -125861,7 +125861,7 @@
 			"rankedLevel": 21,
 			"streamBPM": null
 		},
-		"difficulty": "Rems Expert 7/500/59/86/7",
+		"difficulty": "d0a6a06041edeee4",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -125870,7 +125870,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "35609adfc2759915e93b9e07b5b8e726db1fb633",
+		"chartID": "b70e4547fc29be3927c9c87b905dec46a8e41e35",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -126263,7 +126263,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 240
 		},
-		"difficulty": "Rust Expert 32/76/31",
+		"difficulty": "4c8a8393467bee92",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -126272,7 +126272,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "3212a7224e200fa4c6b80300f733ce5b9cd2018c",
+		"chartID": "34d530db584c9463e34210c20c6d3b216be27eb9",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -126925,7 +126925,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 224
 		},
-		"difficulty": "yutsi Expert 15/201/64",
+		"difficulty": "64fad2dc56fc49c0",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -126934,7 +126934,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "7adf2dd88b6734da20a262bb699234cc675d424f",
+		"chartID": "45135d451a50194c80bf949ef1884394d8ceb575",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -127309,7 +127309,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 256
 		},
-		"difficulty": "ITGAlex Expert 1/32/1/15/16",
+		"difficulty": "fd3a6fbc6bf14f80",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -127318,7 +127318,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "11d9c287d9bc8482903855a4687749d3552a2e0c",
+		"chartID": "f2ee0d49e96ccee07a11f3b754ffd4f4b4e0bec0",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -127639,7 +127639,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 257
 		},
-		"difficulty": "yutsi Expert 7/18/11/33",
+		"difficulty": "99c3795c7d02fec5",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -127648,7 +127648,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "1fe0f51f1c1dc99478390ec00def3c7ae367413b",
+		"chartID": "aa6f721d0649d05b4a301e3ae784af1bc4f86fa1",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -128155,7 +128155,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 240
 		},
-		"difficulty": "ITGAlex Expert 16/45/79/43",
+		"difficulty": "85e0d5ff6294f0c5",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -128164,7 +128164,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "0729337edd709bb7a99a4f54fd142352ccb0764e",
+		"chartID": "1bb70ee96709623a2c7f35153fc49dc9015d3bb1",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -128433,7 +128433,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 249.999985
 		},
-		"difficulty": "ITGAlex Expert 16|64",
+		"difficulty": "ecc4fc9d478853e9",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -128442,7 +128442,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "9666f0b1b8000d01a99d1650b3299bf76a07514b",
+		"chartID": "9ee78f89dd7a110e8af5800b1b55a7bb3d609691",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -129955,7 +129955,7 @@
 			"rankedLevel": 21,
 			"streamBPM": null
 		},
-		"difficulty": "Chief Skittles, ITGAlex Expert 521 Total",
+		"difficulty": "c41d8911c69b2c83",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -129964,7 +129964,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "b5e7f9ebe57040bd939bd3852c6518f140a2879e",
+		"chartID": "77b52e316130849ad9ffb91ac2fee99ad38aeb27",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -130975,7 +130975,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 220
 		},
-		"difficulty": "Chief Skittles Expert 176|249",
+		"difficulty": "33084afa4d77b31f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -130984,7 +130984,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "b7a5631e9c6fee34928ef420fcdbc60630d64c29",
+		"chartID": "b0b38b99d47e97f372ae85bb3b34f58e5ce58c8d",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -131439,7 +131439,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 230
 		},
-		"difficulty": "ITGAlex Expert 3/16/70/95",
+		"difficulty": "7f3315d7b078307a",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -131448,7 +131448,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "2672bb9360c859136fbafd98105dd6de9ed927e3",
+		"chartID": "2cb478fbd55895d5c6afbb22dc960abbc4d4f0e7",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -132615,7 +132615,7 @@
 			"rankedLevel": 21,
 			"streamBPM": 213
 		},
-		"difficulty": "Archi Expert 1/350/125/28",
+		"difficulty": "5a857ae2689612f0",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -132624,7 +132624,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "c941505790e3bd768725e7b927b90f7e78cf6574",
+		"chartID": "73a467d9e15ecd25582ba733c26c8908b1409545",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -133235,7 +133235,7 @@
 			"rankedLevel": 22,
 			"streamBPM": 234
 		},
-		"difficulty": "yutsi Expert 136/101",
+		"difficulty": "83d1ffffe32a3875",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -133244,7 +133244,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "edbf60f9a0a3fad7fea4de440491434f6952721a",
+		"chartID": "ec658d4affb71f52611bfdb830a000e5eb5a4043",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -133569,7 +133569,7 @@
 			"rankedLevel": 22,
 			"streamBPM": 240
 		},
-		"difficulty": "ITGAlex Expert 138",
+		"difficulty": "67bd77cc12d51764",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -133578,7 +133578,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "6b3ab681bbed272d98037bb8a89c53fee722003a",
+		"chartID": "4a70896195bb07acf874795fc697f5d11ef1026b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -134137,7 +134137,7 @@
 			"rankedLevel": 22,
 			"streamBPM": 234
 		},
-		"difficulty": "ITGAlex Expert 50/135/56",
+		"difficulty": "97d897b92539ab99",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -134146,7 +134146,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "ca3efb452371b8e4492a11c4d606591edc5ec2f1",
+		"chartID": "42f0b966b4e1453b7905bda6cfcdbabf5e284443",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -134707,7 +134707,7 @@
 			"rankedLevel": 22,
 			"streamBPM": 244
 		},
-		"difficulty": "ITGAlex Expert 16/63/110/17",
+		"difficulty": "a636c2d66cf634bd",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -134716,7 +134716,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "9802df380c194fb88f8b9cae0c790a76ec5a7b52",
+		"chartID": "5c54abc4f361fa4219549e53de4df3a635255b56",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -135185,7 +135185,7 @@
 			"rankedLevel": 22,
 			"streamBPM": 240
 		},
-		"difficulty": "YourVinished Expert 106/105",
+		"difficulty": "142c197615004fb3",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -135194,7 +135194,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "588d7d4f7622caa3b0ebad04331738c124e3e2b0",
+		"chartID": "41f2c9fab3cb482532be25dec915678beb4c0701",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -135453,7 +135453,7 @@
 			"rankedLevel": 22,
 			"streamBPM": 258
 		},
-		"difficulty": "ITGAlex Expert 6/16/7/41",
+		"difficulty": "fedc2d92d46975d6",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -135462,7 +135462,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "596f6204f38ea428dead5da6bef7099007133e9d",
+		"chartID": "b1018391bc1eb3a17abe3e955a157442b00a2d52",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -135727,7 +135727,7 @@
 			"rankedLevel": 22,
 			"streamBPM": 260
 		},
-		"difficulty": "StoryTime Expert 35|36",
+		"difficulty": "f34cfcce9fc4adce",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -135736,7 +135736,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "b29f3097bb4cee0c7ce027ff3eb59d6c0f8addf0",
+		"chartID": "7859871e32e54bb6465af27a25b63593af1bf39f",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -139943,7 +139943,7 @@
 			"rankedLevel": 22,
 			"streamBPM": null
 		},
-		"difficulty": "zaniel ltd. Rust YVinished ITGAlex Expert 1569 Total",
+		"difficulty": "f35703e2a2d0086e",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -139952,7 +139952,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "5e2e63921c31b4d0d8e4bbda7c01c80cb82b1d6e",
+		"chartID": "ddd0161a6c7884c0c8a5bd7678bbb0bf7035abfe",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -140397,7 +140397,7 @@
 			"rankedLevel": 22,
 			"streamBPM": 244
 		},
-		"difficulty": "StarrySergal Expert 62|40/39",
+		"difficulty": "49bfed7cb925318a",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -140406,7 +140406,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "5fbd3d7554c762dcadcf99c601ed01c084542e32",
+		"chartID": "ff21d41be55000507123b0fe175b7b448d3e4d1f",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -140685,7 +140685,7 @@
 			"rankedLevel": 22,
 			"streamBPM": 264
 		},
-		"difficulty": "ITGAlex Expert 26|19",
+		"difficulty": "ebef3ac09c4fba04",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -140694,7 +140694,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "49a8d92943aaa5fedf2c9eb25745206629aa56cd",
+		"chartID": "5fb66f862773d397b441b3a2def736a6bf9a1802",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -141013,7 +141013,7 @@
 			"rankedLevel": 22,
 			"streamBPM": 270
 		},
-		"difficulty": "Redzone Expert 16/12|32",
+		"difficulty": "a5972af153af673d",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -141022,7 +141022,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "ed2e40fa2a86da088317e15e462fcd2621604f88",
+		"chartID": "09a102c3a812598fac9adbdc7bda3203c197aa4e",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -141545,7 +141545,7 @@
 			"rankedLevel": 22,
 			"streamBPM": 256
 		},
-		"difficulty": "ChasePines_101 Expert 15|48/48/32",
+		"difficulty": "b8a935fae0cba612",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -141554,7 +141554,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "df633059111ae71c87c038ece304286b68f7c116",
+		"chartID": "14032594ccd4f02bfe39e4ff7480798aac39e077",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -145089,7 +145089,7 @@
 			"rankedLevel": 22,
 			"streamBPM": null
 		},
-		"difficulty": "Rust Zaia Expert 1501 Total",
+		"difficulty": "600f4b478247ef73",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -145098,7 +145098,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "be9721eda1c087caff1911d5ff30dfac9581ce6b",
+		"chartID": "005c989648b36ded1bb0b2097418435b6b357ced",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -145585,7 +145585,7 @@
 			"rankedLevel": 22,
 			"streamBPM": 249.999985
 		},
-		"difficulty": "Zaia Expert 14/94/46",
+		"difficulty": "65f050a2ecdea6ba",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -145594,7 +145594,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "431c62fc5b39586c4f30280a3097fb5be38370fd",
+		"chartID": "8cd1d17db7b7e6bd884cfaf87ff30c3183304c7c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -147171,7 +147171,7 @@
 			"rankedLevel": 22,
 			"streamBPM": 224
 		},
-		"difficulty": "Zaia, glory limited. Expert 633 Total",
+		"difficulty": "f1eb3f412ce480aa",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -147180,7 +147180,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "02ea6f1ede2f3124b35efbeeeeb2926775c57b2a",
+		"chartID": "6c047bbcbdafdba380881e6fc321194307c664bb",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -147727,7 +147727,7 @@
 			"rankedLevel": 22,
 			"streamBPM": 252
 		},
-		"difficulty": "Archi Hard 2|72|46",
+		"difficulty": "0c346176f530dfd3",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -147736,7 +147736,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "9dc83f45569d2d56257daeef00b1e1f42de05f56",
+		"chartID": "741a717eeb49e3144ed53aa1dd2c4587dc447ffa",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -148243,7 +148243,7 @@
 			"rankedLevel": 22,
 			"streamBPM": 237
 		},
-		"difficulty": "Tuuc Expert 56/88/78",
+		"difficulty": "549bd4296c9454e7",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -148252,7 +148252,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "9faf033c582211f25551494073de37e03ab5e612",
+		"chartID": "bab7a4b7ea6f41757192f352e5420fe3fe2651f7",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -148871,7 +148871,7 @@
 			"rankedLevel": 22,
 			"streamBPM": 235
 		},
-		"difficulty": "ITGAlex Expert 2/1/95/134",
+		"difficulty": "b1d55a1363f41006",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -148880,7 +148880,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "392e87c69a0c1fa5f82729232c27a4003d9917e5",
+		"chartID": "c80e1e68c32bee61bd704e3c97ed842d94d79a6a",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -149567,7 +149567,7 @@
 			"rankedLevel": 23,
 			"streamBPM": null
 		},
-		"difficulty": "Zaia Expert 66/27/9/93/102",
+		"difficulty": "a1ca1abcd45845da",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -149576,7 +149576,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "75995773ec3848569517fd0de483701218882bda",
+		"chartID": "7dbb085e01bd3a7395b22db0ee4c3d096b8be39c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -149851,7 +149851,7 @@
 			"rankedLevel": 23,
 			"streamBPM": 260
 		},
-		"difficulty": "zaniel Expert 100/1",
+		"difficulty": "425309c614936975",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -149860,7 +149860,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "bf95090fdd38ea96e65483db22ae5180e607938d",
+		"chartID": "56d372f45fe2ac0ead67552439c753d86e13f5fa",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -150421,7 +150421,7 @@
 			"rankedLevel": 23,
 			"streamBPM": 249
 		},
-		"difficulty": "Rust Expert 16/81/49/39",
+		"difficulty": "4ff5d8a3bfa100a3",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -150430,7 +150430,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "75b48cbbc6e3e32b26bdb518f86a8d3eee250271",
+		"chartID": "dbe1caf93fb4c0d507a9b17ccdd693e9ea5f0909",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -150777,7 +150777,7 @@
 			"rankedLevel": 23,
 			"streamBPM": 255
 		},
-		"difficulty": "Zaia Expert 1/93/35/2/42",
+		"difficulty": "0c2f70cb60dc9324",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -150786,7 +150786,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "f52e456f5439f274e66baeca430865105c76f90e",
+		"chartID": "019b4f4c9fbe1390655921ab0977bdb4ad8579e4",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -151433,7 +151433,7 @@
 			"rankedLevel": 23,
 			"streamBPM": 257
 		},
-		"difficulty": "nico Expert 211 Total",
+		"difficulty": "2ebbf3edf5cb1f0b",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -151442,7 +151442,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "57f78167202aa699b72b40dfdc88625b16277b46",
+		"chartID": "e56aeebd3047ea0f0029110ce5a1659b837b59ba",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -151927,7 +151927,7 @@
 			"rankedLevel": 23,
 			"streamBPM": 262.5
 		},
-		"difficulty": "ChaseyPinesgal_101 Expert 173.6875 Total",
+		"difficulty": "cd65d3000380b739",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -151936,7 +151936,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "6fcde0a2066b3bb1589c789365b8a830a719e1a3",
+		"chartID": "848679922505523fc9c99f817d7260633700504c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -152351,7 +152351,7 @@
 			"rankedLevel": 23,
 			"streamBPM": 249.999985
 		},
-		"difficulty": "ITGAlex Expert 15/108/40",
+		"difficulty": "b6d6ead86bca26dc",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -152360,7 +152360,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "f0eab89f72117d7745cdafbe0b9fff182c3d12fe",
+		"chartID": "da1f3864f7a75afe12803ee00fcc4c9bfe7c2d0c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -153691,7 +153691,7 @@
 			"rankedLevel": 23,
 			"streamBPM": 240
 		},
-		"difficulty": "Kyy Expert 504 Total",
+		"difficulty": "814dc363c8b7b0cf",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -153700,7 +153700,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "5e942000b71772eedc6ae808929c09e509228160",
+		"chartID": "a74efc71b421a049d8519d67e1ea6c8eb4cb8f0e",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -154837,7 +154837,7 @@
 			"rankedLevel": 23,
 			"streamBPM": 238
 		},
-		"difficulty": "yutsi Expert 7|149/281",
+		"difficulty": "049b769cbc50e014",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -154846,7 +154846,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "48aca19eafd46339b1fcd3cd29b88178baa81f71",
+		"chartID": "163840f9f1871b3c171dfceb2ae822a8b6283920",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -155167,7 +155167,7 @@
 			"rankedLevel": 23,
 			"streamBPM": 265.876
 		},
-		"difficulty": "Aoreo Expert 7/35/27/14",
+		"difficulty": "f05ba714e5c2e4e3",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -155176,7 +155176,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "071da5215f91d8b8ed9fe20d9f3f58c6b5a0b160",
+		"chartID": "98e89451ce28f74dd6c9db977ae373a24cab0c91",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -155899,7 +155899,7 @@
 			"rankedLevel": 23,
 			"streamBPM": 240
 		},
-		"difficulty": "Aoreo Expert 14/127/153",
+		"difficulty": "fdca113c8c984999",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -155908,7 +155908,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "3ecbc75bc6900f0a9bfb8601d8c2965ef88731b0",
+		"chartID": "03987bdd38289141246a804f984a2a30c84af494",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -156247,7 +156247,7 @@
 			"rankedLevel": 23,
 			"streamBPM": 260
 		},
-		"difficulty": "Kyy Expert 46/15/13/21",
+		"difficulty": "bf42746c8d267bda",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -156256,7 +156256,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "e035a202482840cf52259342872c3551edb9a7c3",
+		"chartID": "861a02d31324e07d956183d1aaf626f13e9afeb6",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -156749,7 +156749,7 @@
 			"rankedLevel": 23,
 			"streamBPM": 243
 		},
-		"difficulty": "ITGAlex Expert 226",
+		"difficulty": "e87e08f52344af14",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -156758,7 +156758,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "3c7f2fa0c534c01086729011fa3dfa76abd738ed",
+		"chartID": "b9d069fee795a68123464d663a9a3a503876cc1f",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -158691,7 +158691,7 @@
 			"rankedLevel": 23,
 			"streamBPM": 230
 		},
-		"difficulty": "Aoreo Expert 747 Total",
+		"difficulty": "128c006aaf1654f6",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -158700,7 +158700,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "3dd8713d276ef39026a48404f2ce7a5378bbf468",
+		"chartID": "92230dac4ac4fe791b31ae526efe60b9df85dcd8",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -159247,7 +159247,7 @@
 			"rankedLevel": 23,
 			"streamBPM": 252
 		},
-		"difficulty": "Archi Expert 2/95|95",
+		"difficulty": "596e277fa2efef0c",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -159256,7 +159256,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "8d7f2d0cbd9b342188b5abfd69614c60edb90bd2",
+		"chartID": "6c764e8e1a8e5da4e9b73929274a568630a07d62",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -159809,7 +159809,7 @@
 			"rankedLevel": 23,
 			"streamBPM": 270
 		},
-		"difficulty": "Janus5k Expert 16/32/28/32/30",
+		"difficulty": "065a2cb4a23e4596",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -159818,7 +159818,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "e5eebd9aa98f2b789393a3186c193696cad95df9",
+		"chartID": "3892ab370b81cc957fe9a54921c69e027176c0e9",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -160051,7 +160051,7 @@
 			"rankedLevel": 23,
 			"streamBPM": 256.5
 		},
-		"difficulty": "Levitas Hard 72/54",
+		"difficulty": "09d2861333fc6a8f",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -160060,7 +160060,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "c8ab0ad1d31dbb90ad937b563c315d88a0cb6170",
+		"chartID": "7b537f5d6d45741c4383942d7cacc112f9cf4a67",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -160309,7 +160309,7 @@
 			"rankedLevel": 24,
 			"streamBPM": 275
 		},
-		"difficulty": "Aoreo Expert 41/48",
+		"difficulty": "4c57ed75744d1f68",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -160318,7 +160318,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "b13d0e2847dfd4e1e21a3bd782ed3bb18ddd55fb",
+		"chartID": "473b8a6806c3119cf604c582e5ba3429116f9495",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -164761,7 +164761,7 @@
 			"rankedLevel": 23,
 			"streamBPM": null
 		},
-		"difficulty": "Zaia Okami StoryTime Rems Expert 1573 Total",
+		"difficulty": "c2e41ffa2fe379d8",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -164770,7 +164770,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d4decbf3c64e246dc557d43474406a6eb1e6961c",
+		"chartID": "8969b3b9818f70db489528f5ba7f66096d31d5e1",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -165211,7 +165211,7 @@
 			"rankedLevel": 24,
 			"streamBPM": 255
 		},
-		"difficulty": "ExJam10 Expert 200",
+		"difficulty": "79497094031815d4",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -165220,7 +165220,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "a19daf1794a1d61c0cacf2886cd17a81064dfa6d",
+		"chartID": "f615d4da639e676276ad8718f17458ebdfe178b5",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -165541,7 +165541,7 @@
 			"rankedLevel": 24,
 			"streamBPM": 264
 		},
-		"difficulty": "StoryTime Expert 19/108",
+		"difficulty": "e88930dc453957ec",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -165550,7 +165550,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "899de626e8fadd317ef01a163640152acd240f22",
+		"chartID": "343fa3aad1891113069d96a4859a6563a78d340b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -165905,7 +165905,7 @@
 			"rankedLevel": 24,
 			"streamBPM": 270
 		},
-		"difficulty": "YourVinished Expert 32/32/68",
+		"difficulty": "566bdcd21b79a130",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -165914,7 +165914,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "eeaeb1a011ca596885ebda79c4dc9cb7956740b5",
+		"chartID": "49d9da557b7433a1e5c2a80c81661dc76fd46d9e",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -166181,7 +166181,7 @@
 			"rankedLevel": 24,
 			"streamBPM": 260
 		},
-		"difficulty": "Levitas Expert 119",
+		"difficulty": "ed82212f300b6dfd",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -166190,7 +166190,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "e7a9a46e4c142d207f0d84d78b685b070633e395",
+		"chartID": "6b1615dd171deba6fa021f873f8e3334415e64c7",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -167097,7 +167097,7 @@
 			"rankedLevel": 24,
 			"streamBPM": 246
 		},
-		"difficulty": "StoryTime Expert 330/80",
+		"difficulty": "a1f55dfa6ad20958",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -167106,7 +167106,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "74db9b5a5b53518d60699c59bd9b87a6c82ddc13",
+		"chartID": "7941416347395661ace5186fd0a5915f6c658052",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -167369,7 +167369,7 @@
 			"rankedLevel": 24,
 			"streamBPM": 270
 		},
-		"difficulty": "Cardboard Box Expert 1/103",
+		"difficulty": "b818d3a425a82c25",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -167378,7 +167378,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "e6dcb6c372e8fa89cea56381469831ec3cdbfbf9",
+		"chartID": "72e2ef0f361abc8909db09d0672e6633413e3ec0",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -167875,7 +167875,7 @@
 			"rankedLevel": 24,
 			"streamBPM": 250
 		},
-		"difficulty": "Levitas Expert 122/102",
+		"difficulty": "a928249a66764249",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -167884,7 +167884,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "7a74004ae682cb1ef21e361d782302f29624267e",
+		"chartID": "83345fa105cbbc04e0f7f8b44014276776cfb22a",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -168211,7 +168211,7 @@
 			"rankedLevel": 24,
 			"streamBPM": 259.5
 		},
-		"difficulty": "ITGAlex Expert 98/98",
+		"difficulty": "b2e0f41bb8341748",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -168220,7 +168220,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "2feca2b41432e57db803c4bd399950aa7b903590",
+		"chartID": "8ea5279a0ef28d02ba0c503ab7ca185d6e5c0824",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -168591,7 +168591,7 @@
 			"rankedLevel": 24,
 			"streamBPM": 280
 		},
-		"difficulty": "StarrySergal Expert 16|32|32",
+		"difficulty": "608ea97839d5b700",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -168600,7 +168600,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "db2974f3bfc85b00aa51d0f018e7ece686a32567",
+		"chartID": "3a98d4151369da7823a859a303fb7c88d3baf93a",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -168951,7 +168951,7 @@
 			"rankedLevel": 24,
 			"streamBPM": 277.016
 		},
-		"difficulty": "StarrySergal Expert 1/38/4/27/33",
+		"difficulty": "65009d3a033c6be3",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -168960,7 +168960,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "6d3f819708b640c75e4ba3f571f701523dd9d9fc",
+		"chartID": "93ac884eaf776515f67d12216b8b5a0158c82620",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -169227,7 +169227,7 @@
 			"rankedLevel": 24,
 			"streamBPM": 280
 		},
-		"difficulty": "Aoreo Hard 16|48",
+		"difficulty": "4a069d4ccc280b07",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -169236,7 +169236,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "1d5c7fa28d005ab49a202b598348834577f8f53a",
+		"chartID": "4e7e988dca684b0d75ba5bbecb68914bcf2d7d78",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -175123,7 +175123,7 @@
 			"rankedLevel": 24,
 			"streamBPM": null
 		},
-		"difficulty": "Rust StoryTime Levitas Expert 2303.3125 Total",
+		"difficulty": "092ddf9f15dae5a8",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -175132,7 +175132,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "ccdbcf79362fbe8daffd40eee78e921c27c3d171",
+		"chartID": "89716a389417a40d0cafb7537fa4b07553abb75b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -175597,7 +175597,7 @@
 			"rankedLevel": 24,
 			"streamBPM": 250
 		},
-		"difficulty": "Aoreo Expert 63/128",
+		"difficulty": "a07000df23161d27",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -175606,7 +175606,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "56d58fdb126c796f164414136859c979b368e1df",
+		"chartID": "67c8795d174843b5d10c4e52cbcc389bfeb666cd",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -182307,7 +182307,7 @@
 			"rankedLevel": 23,
 			"streamBPM": null
 		},
-		"difficulty": "Archi Rems STime YVinished ITGAlex Expert 2731.5625 Total",
+		"difficulty": "be1811d125b4b9d5",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -182316,7 +182316,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "5cc4faec9dd9dda8726cff714ab0fcf5aae1c161",
+		"chartID": "a26489e7022c061051820c2147bc94c1956be822",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -182635,7 +182635,7 @@
 			"rankedLevel": 24,
 			"streamBPM": 266
 		},
-		"difficulty": "yutsi Expert 1/204",
+		"difficulty": "8a86e472d2fb7e73",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -182644,7 +182644,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "cadc1737b20122fc9293f0f86dce6ff5d9ebf18d",
+		"chartID": "e7d58ea79ec5d575b7df0c6187155d7a034901ad",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -182991,7 +182991,7 @@
 			"rankedLevel": 25,
 			"streamBPM": 268
 		},
-		"difficulty": "Levitas Expert 138/7",
+		"difficulty": "9ae5a9428dd0410e",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -183000,7 +183000,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "a0f2dff70fbfebb70b9043d6211144477fdee310",
+		"chartID": "5fb303176898aaa8c3100d8223803314b0f0c45c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -183837,7 +183837,7 @@
 			"rankedLevel": 25,
 			"streamBPM": 260
 		},
-		"difficulty": "Okami Expert 36/135/156/7",
+		"difficulty": "2a44a144e5b4dba3",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -183846,7 +183846,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "1a5d25f6f024f1098ac727b0c05f703bf4f6a0bd",
+		"chartID": "47d8ab4607b3d38ffa12b376bb792bd09b210e37",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -184415,7 +184415,7 @@
 			"rankedLevel": 25,
 			"streamBPM": 268
 		},
-		"difficulty": "StarrySergal Expert 36/79/104",
+		"difficulty": "327ebf0d9c024219",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -184424,7 +184424,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "74886aa4cc8afb697f296cc318d426a9ef4a3da2",
+		"chartID": "4788556ec5b41d84c5e40579ec29bfe3c79fe61d",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -185441,7 +185441,7 @@
 			"rankedLevel": 24,
 			"streamBPM": 244
 		},
-		"difficulty": "StarrySergal Expert 11|197/234",
+		"difficulty": "58e9cba3a1deecf5",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -185450,7 +185450,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "e85a447bb172d722f408e9c1489b776511d25282",
+		"chartID": "536029b06c64dfbf4d8cc8c4f69242e48f4862fc",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -185607,7 +185607,7 @@
 			"rankedLevel": 25,
 			"streamBPM": 294.078002
 		},
-		"difficulty": "Levitas Expert 32|32",
+		"difficulty": "45761ffc04be99df",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -185616,7 +185616,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "4adc469e06cae0302ce579167154214319db6c4b",
+		"chartID": "2187d8a43ca3ad2946321a522709d208a105592e",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -186011,7 +186011,7 @@
 			"rankedLevel": 25,
 			"streamBPM": 275
 		},
-		"difficulty": "StarrySergal Expert 23/90",
+		"difficulty": "0cac234a5b239214",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -186020,7 +186020,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "54fa958d6afdcc78bc38b7e12378e05124a6c407",
+		"chartID": "3af447cc382cc94d78770c4d261fb0e47c4db976",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -186347,7 +186347,7 @@
 			"rankedLevel": 25,
 			"streamBPM": 270
 		},
-		"difficulty": "ITGAlex Expert 64/32/2/71/33",
+		"difficulty": "0037017c66abee74",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -186356,7 +186356,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d706339de8b88a4b110fd781163fb5f43e72b8bc",
+		"chartID": "9b7dc631320e27abea08866997302d21a9d13af1",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -186629,7 +186629,7 @@
 			"rankedLevel": 25,
 			"streamBPM": 280
 		},
-		"difficulty": "yutsi, ChasePines_101 Expert 97/74",
+		"difficulty": "310700c0df76efb0",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -186638,7 +186638,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "13a5f962322add1d1dc69ea8d9aed46bd5950c4f",
+		"chartID": "938d13725da1913a755f8d611263c68da8dc26c0",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -186887,7 +186887,7 @@
 			"rankedLevel": 25,
 			"streamBPM": 270.0015105
 		},
-		"difficulty": "Aoreo Expert 28/96",
+		"difficulty": "91093ff468b769b8",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -186896,7 +186896,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "478a0c1db619ed0ee6177d110b769ec5b5a252a8",
+		"chartID": "870b77d9fec20cc30436227cc34ea08da0a85626",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -187299,7 +187299,7 @@
 			"rankedLevel": 25,
 			"streamBPM": 280
 		},
-		"difficulty": "ITGAlex Expert 1/7/50/33/10/15",
+		"difficulty": "efec7ede1f1fe899",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -187308,7 +187308,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "c11a2c317a9a63278a59dc8843580ad36b5f34e1",
+		"chartID": "6183f01ae3d484dcc5c1abbb88ca480bfa03aac2",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -187585,7 +187585,7 @@
 			"rankedLevel": 25,
 			"streamBPM": 280
 		},
-		"difficulty": "Rems Expert 14/46/38",
+		"difficulty": "be64e7c25b03c63d",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -187594,7 +187594,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "7bfd103c7c42ee55aaad094c889b48139243ea3e",
+		"chartID": "ff4c050ce43572f9cba2f53472dc4e682d3a0f9c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -188493,7 +188493,7 @@
 			"rankedLevel": 25,
 			"streamBPM": 249.999985
 		},
-		"difficulty": "Zaia Expert 1/369",
+		"difficulty": "03ef4ab7135b4542",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -188502,7 +188502,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "25636cf2b86d7d2254f12a29d09a4c9a0ac9e21a",
+		"chartID": "adf02e0d7f23863f93a90c5097507943fc435ac2",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -188775,7 +188775,7 @@
 			"rankedLevel": 25,
 			"streamBPM": 280
 		},
-		"difficulty": "ITGAlex Expert 13/84",
+		"difficulty": "cd8e3654dff78d47",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -188784,7 +188784,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "065e96fdf3e4137b03ff6740bbcc66bf5f20eb0e",
+		"chartID": "2f4c3d2837f88651b9a8247291f4da150893d00b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -189553,7 +189553,7 @@
 			"rankedLevel": 25,
 			"streamBPM": 262
 		},
-		"difficulty": "Levitas Expert 16/147/16/131",
+		"difficulty": "dc9654b9ebce0252",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -189562,7 +189562,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "0f64f0356d69a3633561a5e3b0773c536251275b",
+		"chartID": "2c186b58c7dfcffb0a52a4182a5e1792672ced9b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -190117,7 +190117,7 @@
 			"rankedLevel": 25,
 			"streamBPM": 260.9984895
 		},
-		"difficulty": "Levitas Expert 48|138/94",
+		"difficulty": "9155bf044c370071",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -190126,7 +190126,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "4d47b6246867f593b32adf4ff1b1f09bc52fca58",
+		"chartID": "aab0aec7aa83e35c3a45be5c37a690fea9b30f1a",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -190811,7 +190811,7 @@
 			"rankedLevel": 25,
 			"streamBPM": 270
 		},
-		"difficulty": "ITGAlex Expert 244 Total",
+		"difficulty": "7805d3b76e6e93e4",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -190820,7 +190820,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "657b9c4f4bacffa8461a0ca217125f831b20b102",
+		"chartID": "a835df8675b851483b4353e721a408f429be878b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -191451,7 +191451,7 @@
 			"rankedLevel": 25,
 			"streamBPM": 256
 		},
-		"difficulty": "Zaia Expert 146/128",
+		"difficulty": "c34572b44b84e19a",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -191460,7 +191460,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "9b3f48042c6dd6f7e6481b5d16d0ed39b0649507",
+		"chartID": "97726d4bda7735131c7f4d176ccca3da9a60abb8",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -191759,7 +191759,7 @@
 			"rankedLevel": 26,
 			"streamBPM": 272.076
 		},
-		"difficulty": "Zaia Expert 241",
+		"difficulty": "c1e309e4b0570bac",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -191768,7 +191768,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "50467b895310291da48482a1d457ff1c42a3155b",
+		"chartID": "3d4571bc75f62f89904fdbf076f65cdc967e1b06",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -199251,7 +199251,7 @@
 			"rankedLevel": 25,
 			"streamBPM": null
 		},
-		"difficulty": "Archi Rems STime ITGAlex Zaia Expert 2671.75 Total",
+		"difficulty": "945ec467c0b8fd94",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -199260,7 +199260,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "4782b9f4122b5d8e049c4be9e7bfe0b93aade92d",
+		"chartID": "2fb7d6f50f12f823e07e0ba79e2a40e1555976f8",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -199445,7 +199445,7 @@
 			"rankedLevel": 26,
 			"streamBPM": 292
 		},
-		"difficulty": "Levitas Hard 34/70/17",
+		"difficulty": "42648497676c3d45",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -199454,7 +199454,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "eaca948758d715e21abe6f4907d66cca24056b58",
+		"chartID": "6949027ddc64db71453caab9258f091d4266e95c",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -202221,7 +202221,7 @@
 			"rankedLevel": 26,
 			"streamBPM": 250
 		},
-		"difficulty": "ITGAlex Rust Aoreo Zaia Expert 1140 Total",
+		"difficulty": "e5df95c5ca524a87",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -202230,7 +202230,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "70f18765c4aba963f92622d87ef7a5b7ab6326b3",
+		"chartID": "daae43489058a281ebca5b290e1ea197fc2fd0dc",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -202511,7 +202511,7 @@
 			"rankedLevel": 26,
 			"streamBPM": 296
 		},
-		"difficulty": "StarrySergal Expert 24/48",
+		"difficulty": "09c0b4c9e3dbc29c",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -202520,7 +202520,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "98a410bacfebe9d29c1583951dccd308a5061b69",
+		"chartID": "6d7f4467d4e696c3599e3e5c6e02348c7e21a895",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -202833,7 +202833,7 @@
 			"rankedLevel": 26,
 			"streamBPM": 280
 		},
-		"difficulty": "Levitas Expert 128",
+		"difficulty": "9a43f9aba9d7154e",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -202842,7 +202842,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "3b1f2e7392d33589ec2c6780bbdd14badf33e41d",
+		"chartID": "b51526d6e72bca213029d902ab5732ea650e0384",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -203393,7 +203393,7 @@
 			"rankedLevel": 26,
 			"streamBPM": 282
 		},
-		"difficulty": "Zaia Expert 96|48",
+		"difficulty": "7fcd47a24c5450fc",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -203402,7 +203402,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "1d5a3e92305766c33cd7f159f729a4a8feb0c14c",
+		"chartID": "74a9f45d3d8265aba96048277adebb4e0acba731",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -203929,7 +203929,7 @@
 			"rankedLevel": 26,
 			"streamBPM": 274
 		},
-		"difficulty": "Levitas Expert 176/37",
+		"difficulty": "a86c030c9a647240",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -203938,7 +203938,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "61f400c377d50eedb8fcf8e9f6eaecaccf677af1",
+		"chartID": "4bae42e1dc9bf1c2ddc52b58608976a17e015a4b",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -204999,7 +204999,7 @@
 			"rankedLevel": 26,
 			"streamBPM": 260
 		},
-		"difficulty": "Levitas Hard 31/159/287",
+		"difficulty": "eb1602b44b82aafb",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -205008,7 +205008,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "84130b9f00ab9ba6026d029cd4eea3a5223f70c1",
+		"chartID": "2f173e546fab8a995cebf44effd79b0897dcd726",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -205315,7 +205315,7 @@
 			"rankedLevel": 26,
 			"streamBPM": 280
 		},
-		"difficulty": "StarrySergal Expert 16/106/64",
+		"difficulty": "f4d0a1340c2b2afa",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -205324,7 +205324,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "3e55d27561183da134484af3bfa0017b22f8358a",
+		"chartID": "fd27481f9b715bdf876a15ab202e5b1ca0705ae4",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -205683,7 +205683,7 @@
 			"rankedLevel": 27,
 			"streamBPM": 281.295
 		},
-		"difficulty": "Levitas Expert 238",
+		"difficulty": "227dbcf2e83907a5",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -205692,7 +205692,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "d5bd9c6163adade858493cf8414a9ef8c94cd2cf",
+		"chartID": "a624cf530c537dc9f5eba9638322a9e7dc24c021",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -206461,7 +206461,7 @@
 			"rankedLevel": 26,
 			"streamBPM": 270
 		},
-		"difficulty": "ITGAlex Expert 8|1/6/189/73",
+		"difficulty": "04e9a007c2ab4855",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -206470,7 +206470,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "8159d9a3be7845632689b28cf6dc64543e28c3d4",
+		"chartID": "b4808f8c1808bdec29f4ec1cfba070c415bc6828",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -206699,7 +206699,7 @@
 			"rankedLevel": 27,
 			"streamBPM": 290
 		},
-		"difficulty": "YourVinished Expert 98",
+		"difficulty": "4c710adac4297c36",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -206708,7 +206708,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "bef02ce7a4a186f68b219a7145c9d32d8d57a0f4",
+		"chartID": "f73230458e51738a9feb56add2e5d18e10ea91fe",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -207805,7 +207805,7 @@
 			"rankedLevel": 27,
 			"streamBPM": null
 		},
-		"difficulty": "Chief Skittles Expert 216|159/17/182",
+		"difficulty": "6e9d3ccbff2cf85d",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -207814,7 +207814,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "f57bd14d0e30ad32ab16f9f7cdc024fae952bc8e",
+		"chartID": "c30f72eecef756615073214ae0ee3640979e38dd",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -215643,7 +215643,7 @@
 			"rankedLevel": 26,
 			"streamBPM": null
 		},
-		"difficulty": "Archi Rems ITGAlex Zaia Expert 3182 Total",
+		"difficulty": "5c42a7d953f4ce91",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,
@@ -215652,7 +215652,7 @@
 		"versions": []
 	},
 	{
-		"chartID": "73ad25368123d7b9075b78d4dda9e147f1a4bbe1",
+		"chartID": "f3579c081aea2b16f56334182210e004fea3ef02",
 		"data": {
 			"bannerLocationOverride": null,
 			"breakdown": {
@@ -223677,7 +223677,7 @@
 			"rankedLevel": 28,
 			"streamBPM": null
 		},
-		"difficulty": "Rems CSkittles Zaia SSergal Levitas Expert 3137 Total",
+		"difficulty": "2184afe998acc7a5",
 		"isPrimary": true,
 		"level": "?",
 		"levelNum": 0,

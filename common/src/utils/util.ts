@@ -34,7 +34,9 @@ export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 	if (game === "itg") {
 		const itgChart = chart as ChartDocument<"itg:Stamina">;
 
-		return `${itgChart.data.difficultyTag} ${itgChart.level}`;
+		const level = itgChart.data.rankedLevel ?? `${itgChart.data.chartLevel}?`;
+
+		return `${itgChart.data.charter} ${itgChart.data.difficultyTag} ${level}`;
 	}
 
 	if (game === "gitadora") {
@@ -158,9 +160,11 @@ export function FormatChart(
 		const itgChart = chart as ChartDocument<"itg:Stamina">;
 		const itgSong = song as SongDocument<"itg">;
 
+		const level = itgChart.data.rankedLevel ?? `${itgChart.data.chartLevel}?`;
+
 		return `${itgSong.title}${itgSong.data.subtitle ? ` ${itgSong.data.subtitle}` : ""} ${
 			itgChart.data.difficultyTag
-		} ${chart.level}`;
+		} ${level}`;
 	}
 
 	const gameConfig = GetGameConfig(game);

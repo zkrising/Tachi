@@ -96,16 +96,6 @@ for (const d of content) {
 		// leading space into a number is likely a breakdown. remove it.
 		const author = chart.credit.replace(/ [1-9].*$/u, "");
 
-		let preferredBD = null;
-
-		if (chart.breakdown) {
-			if (chart.breakdown.simplified.length < 16) {
-				preferredBD = chart.breakdown.simplified;
-			} else {
-				preferredBD = `${chart.breakdown.total} Total`;
-			}
-		}
-
 		if (difficultyTag === "Challenge") {
 			difficultyTag = "Expert";
 		}
@@ -116,7 +106,7 @@ for (const d of content) {
 			level: "?",
 			levelNum: 0, // do not use, should b removed
 			isPrimary: true,
-			difficulty: `${author} ${difficultyTag}${preferredBD ? ` ${preferredBD}` : ""}`,
+			difficulty: chart.hashGSv3,
 			playtype: "Stamina",
 			versions: [],
 			data: {

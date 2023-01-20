@@ -4,7 +4,9 @@
  */
 export function ChangeOpacity(str: string, opacity: number) {
 	if (!str) {
-		throw new Error(`Str given to ChangeOpacity was undefined.`);
+		return "#000000";
+
+		// throw new Error(`Str given to ChangeOpacity was undefined.`);
 	}
 
 	if (str.startsWith("#")) {

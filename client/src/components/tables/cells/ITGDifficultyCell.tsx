@@ -1,13 +1,11 @@
 import { ChangeOpacity } from "util/color-opacity";
-import { ONE_MINUTE } from "util/constants/time";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
-import Muted from "components/util/Muted";
-import React from "react";
-import { ChartDocument, COLOUR_SET } from "tachi-common";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
+import Muted from "components/util/Muted";
+import React from "react";
+import { COLOUR_SET, ChartDocument } from "tachi-common";
 import MiniTable from "../components/MiniTable";
-import RatingSystemPart from "./RatingSystemPart";
 
 const COLOUR_LOOKUP = {
 	Beginner: COLOUR_SET.paleBlue,
@@ -90,14 +88,14 @@ export default function ITGDifficultyCell({ chart }: { chart: ChartDocument<"itg
 				}
 			>
 				<div>
-					<span style={{ fontSize: "1.05rem" }}>
+					<span>
 						{chart.data.difficultyTag} {levelStr} [
 						{chart.data.streamBPM?.toFixed() ?? "???"}]
 					</span>
 					<br />
 					<Muted>{chart.data.charter}</Muted>
 					<br />
-					<span>{breakdown}</span>
+					<span style={{ fontSize: "0.9rem" }}>{breakdown}</span>
 					{chart.data.length > 60 * 16 && (
 						<>
 							<br />

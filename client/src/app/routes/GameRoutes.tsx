@@ -27,6 +27,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Redirect, Route, Switch, useParams } from "react-router-dom";
 import {
+	COLOUR_SET,
 	ChartDocument,
 	FormatDifficulty,
 	Game,
@@ -294,7 +295,8 @@ function SongInfoHeader({
 				/>
 			);
 		} else if (game === "itg") {
-			const banner = (song as SongDocument<"itg">).data.originalPack;
+			const itgChart = charts[0] as ChartDocument<"itg:Stamina">;
+			const banner = itgChart?.data.bannerLocationOverride ?? itgChart?.data.originalPack;
 
 			if (banner) {
 				setImageCell(
@@ -379,6 +381,15 @@ type Props = { song: SongDocument } & {
 	setActiveChart: SetState<ChartDocument | null>;
 } & GamePT;
 
+const ITG_COLOUR_LOOKUP = {
+	Beginner: COLOUR_SET.paleBlue,
+	Easy: COLOUR_SET.green,
+	Medium: COLOUR_SET.vibrantYellow,
+	Hard: COLOUR_SET.red,
+	Expert: COLOUR_SET.pink,
+	Edit: COLOUR_SET.gray,
+};
+
 function DifficultyButton({
 	chart,
 	game,
@@ -402,6 +413,12 @@ function DifficultyButton({
 					? ChangeOpacity(
 							// @ts-expect-error hack!
 							gptImpl.difficultyColours[diffTag],
+							activeChart?.chartID === chart.chartID ? 0.4 : 0.2
+					  )
+					: game === "itg"
+					? ChangeOpacity(
+							// @ts-expect-error hack!
+							ITG_COLOUR_LOOKUP[chart.data.difficultyTag],
 							activeChart?.chartID === chart.chartID ? 0.4 : 0.2
 					  )
 					: undefined,

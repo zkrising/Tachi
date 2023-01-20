@@ -158,6 +158,7 @@ const syncInstructions: Array<SyncInstructions> = [
 
 				await RecalcAllScores({
 					chartID: { $in: r.changedFields },
+					game: collectionName.split("-")[0],
 				});
 			}
 		},
@@ -167,7 +168,8 @@ const syncInstructions: Array<SyncInstructions> = [
 		handler: async (
 			charts: Array<ChartDocument>,
 			collection: ICollection<ChartDocument>,
-			logger
+			logger,
+			collName
 		) => {
 			const r = await GenericUpsert(charts, collection, "chartID", logger, true);
 
@@ -177,6 +179,7 @@ const syncInstructions: Array<SyncInstructions> = [
 
 				await RecalcAllScores({
 					chartID: { $in: r.changedFields },
+					game: collName.split("-")[0],
 				});
 			}
 		},
@@ -186,13 +189,15 @@ const syncInstructions: Array<SyncInstructions> = [
 		handler: async (
 			songs: Array<SongDocument>,
 			collection: ICollection<SongDocument>,
-			logger
+			logger,
+			collName
 		) => {
 			const r = await GenericUpsert(songs, collection, "id", logger, false);
 
 			if (r.thingsChanged) {
 				await RecalcAllScores({
 					songID: { $in: r.changedFields },
+					game: collName.split("-")[0],
 				});
 			}
 		},
@@ -202,13 +207,15 @@ const syncInstructions: Array<SyncInstructions> = [
 		handler: async (
 			songs: Array<SongDocument>,
 			collection: ICollection<SongDocument>,
-			logger
+			logger,
+			collName
 		) => {
 			const r = await GenericUpsert(songs, collection, "id", logger, true);
 
 			if (r.thingsChanged) {
 				await RecalcAllScores({
 					songID: { $in: r.changedFields },
+					game: collName.split("-")[0],
 				});
 			}
 		},

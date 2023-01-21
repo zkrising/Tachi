@@ -13,6 +13,7 @@ import {
 	PBScoreDocument,
 	ScoreDocument,
 	SongDocument,
+	UserAuthLevels,
 	UserDocument,
 } from "tachi-common";
 import { GoalsOnChartReturn, UGPTChartPBComposition } from "types/api-returns";
@@ -173,7 +174,8 @@ export default function ScoreDropdown({
 							Rivals
 						</SelectButton>
 					)}
-					{currentUser?.id === user.id && (
+					{(currentUser?.id === user.id ||
+						currentUser?.authLevel === UserAuthLevels.ADMIN) && (
 						<SelectButton setValue={setView} value={view} id="manage">
 							<Icon type="trash" />
 							Delete Score

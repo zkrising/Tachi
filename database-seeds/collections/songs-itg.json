@@ -3308,5 +3308,415 @@
 		"id": 331,
 		"searchTerms": [],
 		"title": "In Memoriam"
+	},
+	{
+		"altTitles": [],
+		"artist": "Waveshaper",
+		"data": {
+			"subtitle": null
+		},
+		"id": 332,
+		"searchTerms": [],
+		"title": "66 MHz"
+	},
+	{
+		"altTitles": [],
+		"artist": "tsunenori",
+		"data": {
+			"subtitle": null
+		},
+		"id": 333,
+		"searchTerms": [],
+		"title": "A Map of the World"
+	},
+	{
+		"altTitles": [],
+		"artist": "Banzai",
+		"data": {
+			"subtitle": null
+		},
+		"id": 334,
+		"searchTerms": [],
+		"title": "Anubis"
+	},
+	{
+		"altTitles": [],
+		"artist": "Phibes",
+		"data": {
+			"subtitle": null
+		},
+		"id": 335,
+		"searchTerms": [],
+		"title": "Bass Is Kickin"
+	},
+	{
+		"altTitles": [],
+		"artist": "tsunenori feat. Pismo",
+		"data": {
+			"subtitle": null
+		},
+		"id": 336,
+		"searchTerms": [],
+		"title": "Believe That"
+	},
+	{
+		"altTitles": [],
+		"artist": "Maritumix",
+		"data": {
+			"subtitle": null
+		},
+		"id": 337,
+		"searchTerms": [],
+		"title": "Blue Sky"
+	},
+	{
+		"altTitles": [],
+		"artist": "Eric Prydz feat. Rob Swire",
+		"data": {
+			"subtitle": null
+		},
+		"id": 338,
+		"searchTerms": [],
+		"title": "Breathe"
+	},
+	{
+		"altTitles": [],
+		"artist": "tsunenori",
+		"data": {
+			"subtitle": null
+		},
+		"id": 339,
+		"searchTerms": [],
+		"title": "Continue the Voyage"
+	},
+	{
+		"altTitles": [],
+		"artist": "ilem (cover by Marblue)",
+		"data": {
+			"subtitle": null
+		},
+		"id": 340,
+		"searchTerms": [],
+		"title": "Coronach"
+	},
+	{
+		"altTitles": [],
+		"artist": "Noisestorm",
+		"data": {
+			"subtitle": null
+		},
+		"id": 341,
+		"searchTerms": [],
+		"title": "Crab Rave"
+	},
+	{
+		"altTitles": [],
+		"artist": "Sanxion7",
+		"data": {
+			"subtitle": null
+		},
+		"id": 342,
+		"searchTerms": [],
+		"title": "Creed"
+	},
+	{
+		"altTitles": [],
+		"artist": "The DNC feat. Gigi",
+		"data": {
+			"subtitle": "The Way It Moves"
+		},
+		"id": 343,
+		"searchTerms": [],
+		"title": "Dance"
+	},
+	{
+		"altTitles": [],
+		"artist": "Aaron Smith",
+		"data": {
+			"subtitle": "KRONO Extended Remix"
+		},
+		"id": 344,
+		"searchTerms": [],
+		"title": "Dancin"
+	},
+	{
+		"altTitles": [],
+		"artist": "Sanxion7",
+		"data": {
+			"subtitle": null
+		},
+		"id": 345,
+		"searchTerms": [],
+		"title": "EternuS"
+	},
+	{
+		"altTitles": [],
+		"artist": "DJ Okawari",
+		"data": {
+			"subtitle": null
+		},
+		"id": 346,
+		"searchTerms": [],
+		"title": "Flower Dance"
+	},
+	{
+		"altTitles": [],
+		"artist": "Luomuhappo",
+		"data": {
+			"subtitle": "Extra charts"
+		},
+		"id": 347,
+		"searchTerms": [],
+		"title": "Haapaneitty"
+	},
+	{
+		"altTitles": [],
+		"artist": "Uhm Jung Hwa",
+		"data": {
+			"subtitle": null
+		},
+		"id": 348,
+		"searchTerms": [],
+		"title": "I Don't Know Anything"
+	},
+	{
+		"altTitles": [],
+		"artist": "Luomuhappo",
+		"data": {
+			"subtitle": null
+		},
+		"id": 349,
+		"searchTerms": [],
+		"title": "Haapaneitty"
+	},
+	{
+		"altTitles": [],
+		"artist": "Madonna",
+		"data": {
+			"subtitle": null
+		},
+		"id": 350,
+		"searchTerms": [],
+		"title": "I'll Remember"
+	},
+	{
+		"altTitles": [],
+		"artist": "DJ Okawari",
+		"data": {
+			"subtitle": null
+		},
+		"id": 351,
+		"searchTerms": [],
+		"title": "In the Dream"
+	},
+	{
+		"altTitles": [],
+		"artist": "Years & Years",
+		"data": {
+			"subtitle": null
+		},
+		"id": 352,
+		"searchTerms": [],
+		"title": "King"
+	},
+	{
+		"altTitles": [],
+		"artist": "Crystal Castles",
+		"data": {
+			"subtitle": null
+		},
+		"id": 353,
+		"searchTerms": [],
+		"title": "Knights"
+	},
+	{
+		"altTitles": [],
+		"artist": "MGMT",
+		"data": {
+			"subtitle": null
+		},
+		"id": 354,
+		"searchTerms": [],
+		"title": "Little Dark Age"
+	},
+	{
+		"altTitles": [],
+		"artist": "Alpha C & Ko0x",
+		"data": {
+			"subtitle": null
+		},
+		"id": 355,
+		"searchTerms": [],
+		"title": "March of the ants"
+	},
+	{
+		"altTitles": [],
+		"artist": "Banzai",
+		"data": {
+			"subtitle": null
+		},
+		"id": 356,
+		"searchTerms": [],
+		"title": "Necropolis"
+	},
+	{
+		"altTitles": [],
+		"artist": "Meghan Trainor",
+		"data": {
+			"subtitle": null
+		},
+		"id": 357,
+		"searchTerms": [],
+		"title": "No"
+	},
+	{
+		"altTitles": [],
+		"artist": "Animotion",
+		"data": {
+			"subtitle": null
+		},
+		"id": 358,
+		"searchTerms": [],
+		"title": "Obsession"
+	},
+	{
+		"altTitles": [],
+		"artist": "Astrophysics",
+		"data": {
+			"subtitle": null
+		},
+		"id": 359,
+		"searchTerms": [],
+		"title": "Plastic Love"
+	},
+	{
+		"altTitles": [],
+		"artist": "Digitalism",
+		"data": {
+			"subtitle": null
+		},
+		"id": 360,
+		"searchTerms": [],
+		"title": "Pogo"
+	},
+	{
+		"altTitles": [],
+		"artist": "Keri Hilson",
+		"data": {
+			"subtitle": null
+		},
+		"id": 361,
+		"searchTerms": [],
+		"title": "Pretty Girl Rock"
+	},
+	{
+		"altTitles": [],
+		"artist": "Astrophysics",
+		"data": {
+			"subtitle": "Extended"
+		},
+		"id": 362,
+		"searchTerms": [],
+		"title": "Plastic Love"
+	},
+	{
+		"altTitles": [],
+		"artist": "Corrupt",
+		"data": {
+			"subtitle": null
+		},
+		"id": 363,
+		"searchTerms": [],
+		"title": "Shook"
+	},
+	{
+		"altTitles": [],
+		"artist": "Perfume",
+		"data": {
+			"subtitle": null
+		},
+		"id": 364,
+		"searchTerms": [],
+		"title": "STAR TRAIN"
+	},
+	{
+		"altTitles": [],
+		"artist": "Firevision",
+		"data": {
+			"subtitle": null
+		},
+		"id": 365,
+		"searchTerms": [],
+		"title": "Stars"
+	},
+	{
+		"altTitles": [],
+		"artist": "Kobaryo",
+		"data": {
+			"subtitle": null
+		},
+		"id": 366,
+		"searchTerms": [],
+		"title": "Structure of the Alchemy Forest"
+	},
+	{
+		"altTitles": [],
+		"artist": "yst",
+		"data": {
+			"subtitle": null
+		},
+		"id": 367,
+		"searchTerms": [],
+		"title": "the lost dedicated"
+	},
+	{
+		"altTitles": [],
+		"artist": "Blind Guardian",
+		"data": {
+			"subtitle": null
+		},
+		"id": 368,
+		"searchTerms": [],
+		"title": "The Ninth Wave"
+	},
+	{
+		"altTitles": [],
+		"artist": "Blaqk Audio",
+		"data": {
+			"subtitle": null
+		},
+		"id": 369,
+		"searchTerms": [],
+		"title": "Wake Up, Open The Door And Escape To The Sea"
+	},
+	{
+		"altTitles": [],
+		"artist": "3L (Shibayan Records)",
+		"data": {
+			"subtitle": null
+		},
+		"id": 370,
+		"searchTerms": [],
+		"title": "Tiny Little Adiantum"
+	},
+	{
+		"altTitles": [],
+		"artist": "Diplo feat. Lil Pump, Zhavia Ward, & French Montana",
+		"data": {
+			"subtitle": null
+		},
+		"id": 371,
+		"searchTerms": [],
+		"title": "Welcome to the Party"
+	},
+	{
+		"altTitles": [],
+		"artist": "Kat DeLuna feat. Elephant Man",
+		"data": {
+			"subtitle": null
+		},
+		"id": 372,
+		"searchTerms": [],
+		"title": "Whine Up"
 	}
 ]

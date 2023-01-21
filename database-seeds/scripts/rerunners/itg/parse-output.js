@@ -86,7 +86,7 @@ for (const d of content) {
 			continue;
 		}
 
-		if (!difficultyTag) {
+		if (!difficultyTag || d.charts.length > 1) {
 			difficultyTag = chart.difficultyTag;
 		}
 

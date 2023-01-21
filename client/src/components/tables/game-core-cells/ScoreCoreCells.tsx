@@ -43,13 +43,14 @@ export default function ScoreCoreCells({
 	const rt: AnyScoreRatingAlg = rating ?? defaultRating;
 
 	const sc = score as any; // lazy hack
+	const ch = chart as any;
 
 	switch (game) {
 		case "iidx":
 			return (
 				<IIDXCoreCells
 					rating={rt as ScoreRatingAlgorithms["iidx:SP" | "iidx:DP"]}
-					chart={chart as ChartDocument<"iidx:SP" | "iidx:DP">}
+					chart={ch}
 					sc={sc}
 					short={short}
 				/>
@@ -58,15 +59,7 @@ export default function ScoreCoreCells({
 			return <BMSCoreCells sc={sc} rating={rt} short={short} />;
 		case "sdvx":
 		case "usc":
-			return (
-				<SDVXScoreCoreCells
-					sc={sc}
-					chart={
-						chart as ChartDocument<"sdvx:Single" | "usc:Controller" | "usc:Keyboard">
-					}
-					short={short}
-				/>
-			);
+			return <SDVXScoreCoreCells sc={sc} chart={ch} short={short} />;
 		case "museca":
 			return <MusecaCoreCells sc={sc} rating={rt} short={short} />;
 		case "wacca":
@@ -82,7 +75,7 @@ export default function ScoreCoreCells({
 		case "pms":
 			return <PMSCoreCells sc={sc} rating={rt} short={short} />;
 		case "itg":
-			return <ITGCoreCells sc={sc} rating={rt} short={short} />;
+			return <ITGCoreCells sc={sc} chart={ch} rating={rt} short={short} />;
 		case "maimaidx":
 			return <MaimaiDXCoreCells sc={sc} rating={rt} short={short} />;
 	}

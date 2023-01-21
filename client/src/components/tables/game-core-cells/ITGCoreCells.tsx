@@ -1,6 +1,6 @@
 import { ChangeOpacity } from "util/color-opacity";
 import React from "react";
-import { PBScoreDocument, ScoreDocument } from "tachi-common";
+import { ChartDocument, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { GetEnumColour } from "lib/game-implementations";
 import ITGJudgementCell from "../cells/ITGJudgementCell";
 import LampCell from "../cells/LampCell";
@@ -11,8 +11,10 @@ export default function ITGCoreCells({
 	sc,
 	rating,
 	short,
+	chart,
 }: {
 	sc: ScoreDocument<"itg:Stamina"> | PBScoreDocument<"itg:Stamina">;
+	chart: ChartDocument<"itg:Stamina">;
 	rating: keyof ScoreDocument["calculatedData"];
 	short: boolean;
 }) {
@@ -35,7 +37,20 @@ export default function ITGCoreCells({
 					<strong>{sc.scoreData.lamp}</strong>
 				)}
 			</td>
-			{!short && <RatingCell score={sc} rating={rating} />}
+			{!short &&
+				(rating === "blockRating" ? (
+					<td>
+						<strong>
+							{chart.data.rankedLevel === null
+								? "Unranked Chart."
+								: sc.calculatedData.blockRating === null
+								? "Failed"
+								: sc.calculatedData.blockRating}
+						</strong>
+					</td>
+				) : (
+					<RatingCell score={sc} rating={rating} />
+				))}
 		</>
 	);
 }

@@ -108,9 +108,11 @@ function RecentInfo({ user }: { user: UserDocument }) {
 					{data.recentSessions.length !== 1 ? "s" : ""} today!
 					<Divider />
 					{data.recentSessions.sort(NumericSOV((x) => x.timeEnded, true)).map((e) => (
-						<SessionCard sessionID={e.sessionID} key={e.sessionID} />
+						<>
+							<SessionCard sessionID={e.sessionID} key={e.sessionID} />
+							<Divider />
+						</>
 					))}
-					<Divider />
 				</>
 			)}
 			{data.recentAchievedGoals.length !== 0 && (

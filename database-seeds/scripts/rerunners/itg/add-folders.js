@@ -44,7 +44,7 @@ for (let i = 1; i < 40; i++) {
 				"data¬chartLevel": i,
 				"data¬length": { "~gte": 60 * 16 },
 			},
-			title: `Level ${i} (Ranked Marathons)`,
+			title: `Level ${i} (All Marathons)`,
 			game: "itg",
 			playtype: "Stamina",
 			inactive: false,

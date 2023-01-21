@@ -442,7 +442,7 @@ function PlayCard({
 		<Card header={name}>
 			<Row className="align-items-center">
 				<Col lg={3}>
-					<ProfilePicture user={user} />
+					<ProfilePicture user={user} toGPT={`${pb.game}/${pb.playtype}`} />
 				</Col>
 				<Col lg={3}>
 					<h4>

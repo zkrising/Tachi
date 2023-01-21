@@ -4,6 +4,7 @@ import ExternalLink from "components/util/ExternalLink";
 import Muted from "components/util/Muted";
 import { TachiConfig } from "lib/config";
 import React from "react";
+import { Alert } from "react-bootstrap";
 
 export default function ITGHookPage() {
 	useSetSubheader(["Import Scores", "ITG Hook"]);
@@ -11,6 +12,17 @@ export default function ITGHookPage() {
 	return (
 		<div>
 			<h2 className="text-center mb-4">ITG Hook Setup Instructions</h2>
+			<Alert variant="warning">
+				Make sure you are running the following things:
+				<ul>
+					<li>ITGMania v0.5.1 or higher</li>
+					<li>Simply Love</li>
+					<li>
+						Playing on <b>ITG</b> mode, (not <b>FA+</b>)
+					</li>
+				</ul>
+				We will not ever be supporting Stepmania 5.1/OutFox/etc.
+			</Alert>
 			<ol className="instructions-list">
 				<li>
 					Download the latest version of <code>Tachi.lua</code>{" "}
@@ -36,6 +48,12 @@ export default function ITGHookPage() {
 						<code>Preferences.ini</code> to{" "}
 						<code>HttpAllowHosts=*.bokutachi.xyz,*.groovestats.com</code>
 					</strong>
+				</li>
+				<li>
+					Make sure you are playing on <b>ITG</b> mode. <b>FA+</b> mode is not supported
+					and will not work.
+					<br />
+					The FA+ window is built into ITG mode now.
 				</li>
 				<li>That's it! Your scores should now automatically import.</li>
 			</ol>

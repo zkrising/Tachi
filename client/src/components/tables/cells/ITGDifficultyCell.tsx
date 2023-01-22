@@ -1,7 +1,6 @@
 import { ChangeOpacity } from "util/color-opacity";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Divider from "components/util/Divider";
-import Icon from "components/util/Icon";
 import Muted from "components/util/Muted";
 import React from "react";
 import { COLOUR_SET, ChartDocument } from "tachi-common";
@@ -17,7 +16,13 @@ const COLOUR_LOOKUP = {
 };
 
 export default function ITGDifficultyCell({ chart }: { chart: ChartDocument<"itg:Stamina"> }) {
-	const levelStr = chart.data.rankedLevel ?? `${chart.data.chartLevel}?`;
+	let diff;
+
+	if (chart.data.rankedLevel === null) {
+		diff = `UNRANKED ${chart.data.difficultyTag} ${chart.data.chartLevel}`;
+	} else {
+		diff = `${chart.data.difficultyTag} ${chart.data.chartLevel}`;
+	}
 
 	let breakdown = "No Streams!";
 
@@ -102,8 +107,7 @@ export default function ITGDifficultyCell({ chart }: { chart: ChartDocument<"itg
 			>
 				<div>
 					<span>
-						{chart.data.difficultyTag} {levelStr} [
-						{chart.data.streamBPM?.toFixed() ?? "???"}]
+						{diff} [{chart.data.streamBPM?.toFixed() ?? "???"}]
 					</span>
 					<br />
 					<Muted>{chart.data.charter}</Muted>

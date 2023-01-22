@@ -34,9 +34,10 @@ export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 	if (game === "itg") {
 		const itgChart = chart as ChartDocument<"itg:Stamina">;
 
-		const level = itgChart.data.rankedLevel ?? `${itgChart.data.chartLevel}?`;
+		const level = itgChart.data.rankedLevel ?? itgChart.data.chartLevel;
+		const unranked = itgChart.data.rankedLevel === null ? "UNRANKED " : "";
 
-		return `${itgChart.data.charter} ${itgChart.data.difficultyTag} ${level}`;
+		return `${unranked}${itgChart.data.difficultyTag} ${level} (${itgChart.data.charter})`;
 	}
 
 	if (game === "gitadora") {

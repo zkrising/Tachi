@@ -456,9 +456,10 @@ t.test("POST /ir/fervidex/score/submit", (t) => {
 		t.strictSame(imp?.errors, [
 			{
 				type: "InvalidDatapoint",
-				message: `Got 2 errors when validating score:
+				message: `Got 3 errors when validating score:
 Invalid value for score, EX Score cannot be greater than 1572 for this chart. Got 9999.
-Invalid value for percent, Expected a number between 0 and 100. Got 636.0687022900763.`,
+Invalid value for percent, Expected a number between 0 and 100. Got 636.0687022900763.
+Expected PGreat*2 + Great to equal EX score. Got 34*2 + 0 but that wasn't equal to the EX score of 9999.`,
 			},
 		]);
 

@@ -1,5 +1,6 @@
 import { InvalidScoreFailure } from "../common/converter-failures";
 import { GPT_SERVER_IMPLEMENTATIONS } from "game-implementations/game-implementations";
+import { RunValidators } from "game-implementations/games/_common";
 import { GetGPTConfig, GetGPTString } from "tachi-common";
 import type { ChartDocument, GPTString, ScoreDocument } from "tachi-common";
 import type { ConfScoreMetric } from "tachi-common/types/metrics";
@@ -14,6 +15,7 @@ import type { ConfScoreMetric } from "tachi-common/types/metrics";
 export function ValidateScore(score: ScoreDocument, chart: ChartDocument): void {
 	const gptString = GetGPTString(score.game, score.playtype);
 	const gptConfig = GetGPTConfig(gptString);
+	const gptImpl = GPT_SERVER_IMPLEMENTATIONS[gptString];
 
 	const errs: Array<string> = [];
 
@@ -46,6 +48,12 @@ export function ValidateScore(score: ScoreDocument, chart: ChartDocument): void 
 		(s, m) => s.scoreData.optional[m],
 		true
 	);
+
+	const moreErrors = RunValidators(gptImpl.scoreValidators as any, score);
+
+	if (moreErrors) {
+		errs.push(...moreErrors);
+	}
 
 	if (errs.length > 0) {
 		const errorStr = errs.length === 1 ? "error" : "errors";
@@ -102,7 +110,7 @@ function ValidateMetrics(
 
 				if (conf.chartDependentMax) {
 					// @ts-expect-error hack, this is fine. don't worry.
-					err = gptImpl.validators[metric](scoreVal, chart);
+					err = gptImpl.chartSpecificValidators[metric](scoreVal, chart);
 				} else {
 					err = conf.validate(scoreVal);
 				}

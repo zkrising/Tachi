@@ -1,9 +1,9 @@
 import {
 	GoalFmtPercent,
-	GoalFmtScore,
 	GoalOutOfFmtPercent,
 	GradeGoalFormatter,
 	IIDXLIKE_DERIVERS,
+	IIDXLIKE_SCORE_VALIDATORS,
 	IIDXLIKE_VALIDATORS,
 	SGLCalc,
 } from "./_common";
@@ -33,7 +33,7 @@ const BMS_PMS_MERGERS: Array<PBMergeFunction<GPTStrings["bms" | "pms"]>> = [
 
 const BMS_IMPL: GPTServerImplementation<GPTStrings["bms" | "pms"]> = {
 	derivers: IIDXLIKE_DERIVERS,
-	validators: IIDXLIKE_VALIDATORS,
+	chartSpecificValidators: IIDXLIKE_VALIDATORS,
 	scoreCalcs: { sieglinde: SGLCalc },
 	sessionCalcs: { sieglinde: SessionAvgBest10For("sieglinde") },
 	profileCalcs: { sieglinde: ProfileAvgBestN("sieglinde", 20) },
@@ -77,6 +77,7 @@ const BMS_IMPL: GPTServerImplementation<GPTStrings["bms" | "pms"]> = {
 	},
 	pbMergeFunctions: BMS_PMS_MERGERS,
 	defaultMergeRefName: "Best Score",
+	scoreValidators: IIDXLIKE_SCORE_VALIDATORS,
 };
 
 export const BMS_14K_IMPL: GPTServerImplementation<"bms:14K"> = BMS_IMPL;

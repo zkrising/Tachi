@@ -22,7 +22,7 @@ export function WriteSnapshotData() {
 
 const snapshotData = ReadSnapshotData();
 
-export function TestSnapshot(t: Tap.Test, value: boolean | number | string, testName: string) {
+export function TestSnapshot(t: Tap.Test, value: any, testName: string) {
 	if (IsNonEmptyString(process.env.TAP_SNAPSHOT)) {
 		snapshotData[testName] = value;
 		WriteSnapshotData();
@@ -31,6 +31,6 @@ export function TestSnapshot(t: Tap.Test, value: boolean | number | string, test
 			return t.fail(`No snapshot exists for ${testName}. Have you ran pnpm snap?`);
 		}
 
-		t.equal(value, snapshotData[testName], `Snapshot: ${testName}`);
+		t.strictSame(value, snapshotData[testName], `Snapshot: ${testName}`);
 	}
 }

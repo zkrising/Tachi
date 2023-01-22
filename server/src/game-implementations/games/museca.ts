@@ -7,7 +7,7 @@ import { FmtNum, GetGrade, MUSECA_GBOUNDARIES } from "tachi-common";
 import type { GPTServerImplementation } from "game-implementations/types";
 
 export const MUSECA_IMPL: GPTServerImplementation<"museca:Single"> = {
-	validators: {},
+	chartSpecificValidators: {},
 	derivers: {
 		grade: ({ score }) => GetGrade(MUSECA_GBOUNDARIES, score),
 	},
@@ -42,4 +42,38 @@ export const MUSECA_IMPL: GPTServerImplementation<"museca:Single"> = {
 		}),
 	],
 	defaultMergeRefName: "Best Score",
+	scoreValidators: [
+		(s) => {
+			if (s.scoreData.lamp === "PERFECT CONNECT ALL" && s.scoreData.score !== 1_000_000) {
+				return "A PERFECT CONNECT ALL must have a score of 1 million.";
+			}
+
+			if (s.scoreData.score === 1_000_000 && s.scoreData.lamp !== "PERFECT CONNECT ALL") {
+				return "A perfect score of 1 million must have a lamp of PERFECT CONNECT ALL.";
+			}
+		},
+		(s) => {
+			let { miss, near } = s.scoreData.judgements;
+
+			miss ??= 0;
+			near ??= 0;
+
+			if (s.scoreData.lamp === "PERFECT CONNECT ALL" && miss + near > 0) {
+				return "Cannot have a PERFECT CONNECT ALL with any nears or misses.";
+			}
+
+			if (s.scoreData.lamp === "CONNECT ALL" && miss > 0) {
+				return "Cannot have a CONNECT ALL with any misses.";
+			}
+		},
+		(s) => {
+			if (s.scoreData.score < 800_000 && s.scoreData.lamp !== "FAILED") {
+				return "A score of <800k must be a fail.";
+			}
+
+			if (s.scoreData.score >= 800_000 && s.scoreData.lamp === "FAILED") {
+				return "A score of >=800k must be a clear.";
+			}
+		},
+	],
 };

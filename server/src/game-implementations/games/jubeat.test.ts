@@ -61,18 +61,18 @@ t.test("Jubeat Implementation", (t) => {
 
 	t.test("Music Rate Validator", (t) => {
 		t.equal(
-			JUBEAT_IMPL.validators.musicRate(80, TestingJubeatChart),
+			JUBEAT_IMPL.chartSpecificValidators.musicRate(80, TestingJubeatChart),
 			true,
 			"normal music rate"
 		);
-		t.equal(JUBEAT_IMPL.validators.musicRate(0, TestingJubeatChart), true, "0 music rate");
+		t.equal(JUBEAT_IMPL.chartSpecificValidators.musicRate(0, TestingJubeatChart), true, "0 music rate");
 		t.equal(
-			JUBEAT_IMPL.validators.musicRate(100, TestingJubeatChart),
+			JUBEAT_IMPL.chartSpecificValidators.musicRate(100, TestingJubeatChart),
 			true,
 			"perfect music rate"
 		);
 		t.equal(
-			JUBEAT_IMPL.validators.musicRate(
+			JUBEAT_IMPL.chartSpecificValidators.musicRate(
 				120,
 				dmf(TestingJubeatChart, {
 					difficulty: "HARD ADV",
@@ -84,12 +84,12 @@ t.test("Jubeat Implementation", (t) => {
 
 		TestSnapshot(
 			t,
-			JUBEAT_IMPL.validators.musicRate(-1, TestingJubeatChart),
+			JUBEAT_IMPL.chartSpecificValidators.musicRate(-1, TestingJubeatChart),
 			`Jubeat Music Rate Validator: negative`
 		);
 		TestSnapshot(
 			t,
-			JUBEAT_IMPL.validators.musicRate(
+			JUBEAT_IMPL.chartSpecificValidators.musicRate(
 				100.1,
 				dmf(TestingJubeatChart, {
 					difficulty: "ADV",
@@ -99,7 +99,7 @@ t.test("Jubeat Implementation", (t) => {
 		);
 		TestSnapshot(
 			t,
-			JUBEAT_IMPL.validators.musicRate(
+			JUBEAT_IMPL.chartSpecificValidators.musicRate(
 				120.1,
 				dmf(TestingJubeatChart, {
 					difficulty: "HARD ADV",

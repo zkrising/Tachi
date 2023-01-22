@@ -306,7 +306,7 @@ export async function ValidateGoalChartsAndCriteria(
 				}
 
 				// @ts-expect-error this is fine leave me alone
-				err = gptImpl.validators[criteria.key](criteria.value, chart);
+				err = gptImpl.chartSpecificValidators[criteria.key](criteria.value, chart);
 			} else {
 				err = config.validate(criteria.value);
 			}

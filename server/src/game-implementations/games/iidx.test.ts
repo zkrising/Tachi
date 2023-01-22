@@ -102,21 +102,21 @@ t.test("IIDX Implementation", (t) => {
 			["SP", IIDX_SP_IMPL],
 			["DP", IIDX_DP_IMPL],
 		] as const) {
-			t.equal(impl.validators.score(1000, Testing511SPA as any), true);
-			t.equal(impl.validators.score(0, Testing511SPA as any), true);
+			t.equal(impl.chartSpecificValidators.score(1000, Testing511SPA as any), true);
+			t.equal(impl.chartSpecificValidators.score(0, Testing511SPA as any), true);
 			t.equal(
-				impl.validators.score(Testing511SPA.data.notecount * 2, Testing511SPA as any),
+				impl.chartSpecificValidators.score(Testing511SPA.data.notecount * 2, Testing511SPA as any),
 				true
 			);
 
 			TestSnapshot(
 				t,
-				impl.validators.score(-1, Testing511SPA as any),
+				impl.chartSpecificValidators.score(-1, Testing511SPA as any),
 				`EX Score Validator ${playtype}: negative`
 			);
 			TestSnapshot(
 				t,
-				impl.validators.score(Testing511SPA.data.notecount * 2 + 1, Testing511SPA as any),
+				impl.chartSpecificValidators.score(Testing511SPA.data.notecount * 2 + 1, Testing511SPA as any),
 				`EX Score Validator ${playtype}: excessive`
 			);
 		}

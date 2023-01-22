@@ -137,7 +137,7 @@ async function CalculateJubility(game: Game, playtype: Playtype, userID: integer
 }
 
 export const JUBEAT_IMPL: GPTServerImplementation<"jubeat:Single"> = {
-	validators: {
+	chartSpecificValidators: {
 		musicRate: (rate, chart) => {
 			switch (chart.difficulty) {
 				case "BSC":
@@ -227,4 +227,44 @@ export const JUBEAT_IMPL: GPTServerImplementation<"jubeat:Single"> = {
 		}),
 	],
 	defaultMergeRefName: "Best Music Rate",
+	scoreValidators: [
+		(s) => {
+			if (s.scoreData.lamp === "EXCELLENT" && s.scoreData.score !== 1_000_000) {
+				return `An EXCELLENT lamp must be accompanied with a score of 1 million.`;
+			}
+
+			if (s.scoreData.lamp !== "EXCELLENT" && s.scoreData.score === 1_000_000) {
+				return `A score of 1 million must be accompanied with an EXCELLENT lamp.`;
+			}
+		},
+		(s) => {
+			let { good, great, miss, poor } = s.scoreData.judgements;
+
+			great ??= 0;
+			good ??= 0;
+			poor ??= 0;
+			miss ??= 0;
+
+			if (s.scoreData.lamp === "EXCELLENT") {
+				if (good + great + miss + poor > 0) {
+					return "An EXCELLENT lamp can't have any non-perfect judgements.";
+				}
+			}
+
+			if (s.scoreData.lamp === "FULL COMBO") {
+				if (miss > 0) {
+					return "A FULL COMBO cannot have any misses.";
+				}
+			}
+		},
+		(s) => {
+			if (s.scoreData.score < 700_000 && s.scoreData.lamp !== "FAILED") {
+				return "A score of <700k must be a fail.";
+			}
+
+			if (s.scoreData.score >= 700_000 && s.scoreData.lamp === "FAILED") {
+				return "A score >=700k must be a clear.";
+			}
+		},
+	],
 };

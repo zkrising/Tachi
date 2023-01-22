@@ -1,3 +1,4 @@
+import { RunValidators } from "./_common";
 import { WACCA_IMPL } from "./wacca";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
@@ -6,8 +7,10 @@ import { WACCA_SINGLE_CONF } from "tachi-common/config/game-support/wacca";
 import t from "tap";
 import { dmf, mkMockPB, mkMockScore } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
+import { TestSnapshot } from "test-utils/single-process-snapshot";
 import { TestingWaccaPupaExp } from "test-utils/test-data";
-import type { ProvidedMetrics, ScoreData } from "tachi-common";
+import type { ProvidedMetrics, ScoreData, ScoreDocument } from "tachi-common";
+import type { DeepPartial } from "utils/types";
 
 const GRADES = WACCA_SINGLE_CONF.derivedMetrics.grade.values;
 const LAMPS = WACCA_SINGLE_CONF.providedMetrics.lamp.values;
@@ -163,6 +166,43 @@ t.test("WACCA Implementation", (t) => {
 
 			t.end();
 		});
+
+		t.end();
+	});
+
+	t.test("Score Validations", (t) => {
+		const f = (s: DeepPartial<ScoreDocument<"wacca:Single">>) =>
+			RunValidators(WACCA_IMPL.scoreValidators, dmf(mockScore, s));
+
+		t.strictSame(f({ scoreData: { lamp: "ALL MARVELOUS", score: 1_000_000 } }), undefined);
+		t.strictSame(f({ scoreData: { lamp: "FULL COMBO", judgements: { miss: 0 } } }), undefined);
+
+		TestSnapshot(
+			t,
+			f({ scoreData: { lamp: "ALL MARVELOUS", score: 999_999 } }),
+			"WACCA IMPL Validators: Should disallow ALL MARVELOUS with non-perfect score."
+		);
+		TestSnapshot(
+			t,
+			f({ scoreData: { lamp: "FULL COMBO", judgements: { miss: 1 } } }),
+			`WACCA IMPL Validators: Should disallow FC with miss`
+		);
+
+		TestSnapshot(
+			t,
+			f({ scoreData: { lamp: "ALL MARVELOUS", judgements: { good: 1 } } }),
+			"WACCA IMPL Validators: Should disallow ALL MARVELOUS with non-perfect good judgements."
+		);
+		TestSnapshot(
+			t,
+			f({ scoreData: { lamp: "ALL MARVELOUS", judgements: { great: 1 } } }),
+			"WACCA IMPL Validators: Should disallow ALL MARVELOUS with non-perfect good judgements."
+		);
+		TestSnapshot(
+			t,
+			f({ scoreData: { lamp: "ALL MARVELOUS", judgements: { miss: 1 } } }),
+			"WACCA IMPL Validators: Should disallow ALL MARVELOUS with non-perfect good judgements."
+		);
 
 		t.end();
 	});

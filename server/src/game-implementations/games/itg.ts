@@ -8,7 +8,7 @@ import { NumToDP } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 
 export const ITG_STAMINA_IMPL: GPTServerImplementation<"itg:Stamina"> = {
-	validators: {},
+	chartSpecificValidators: {},
 	derivers: {
 		finalPercent: (metrics) => {
 			// *important*
@@ -136,4 +136,46 @@ export const ITG_STAMINA_IMPL: GPTServerImplementation<"itg:Stamina"> = {
 
 	// this name sucks, what should we do instead? TODO.
 	defaultMergeRefName: "Best Result",
+
+	scoreValidators: [
+		(s) => {
+			if (s.scoreData.lamp !== "FAILED" && s.scoreData.survivedPercent < 100) {
+				return "Cannot clear a chart that you didn't survive 100% of.";
+			}
+		},
+		(s) => {
+			let { fantastic, excellent, great, decent, wayoff, miss } = s.scoreData.judgements;
+
+			fantastic ??= 0;
+			excellent ??= 0;
+			great ??= 0;
+			decent ??= 0;
+			wayoff ??= 0;
+			miss ??= 0;
+
+			if (s.scoreData.lamp === "QUINT") {
+				if (fantastic + excellent + great + decent + wayoff + miss > 0) {
+					return "Cannot have a QUINT with any fantastic (or worse) judgements.";
+				}
+			}
+
+			if (s.scoreData.lamp === "QUAD") {
+				if (excellent + great + decent + wayoff + miss > 0) {
+					return "Cannot have a QUAD with any excellent (or worse) judgements.";
+				}
+			}
+
+			if (s.scoreData.lamp === "FULL EXCELLENT COMBO") {
+				if (great + decent + wayoff + miss > 0) {
+					return "Cannot have a FULL EXCELLENT COMBO with any great (or worse) judgements.";
+				}
+			}
+
+			if (s.scoreData.lamp === "FULL COMBO") {
+				if (decent + wayoff + miss > 0) {
+					return "Cannot have a FULL COMBO with any combo breaks.";
+				}
+			}
+		},
+	],
 };

@@ -47,5 +47,15 @@
 	"EX Score Validator Controller: negative": "EX Score cannot be negative.",
 	"EX Score Validator Controller: excessive": "EX Score cannot be greater than 4512 for this chart.",
 	"EX Score Validator Keyboard: negative": "EX Score cannot be negative.",
-	"EX Score Validator Keyboard: excessive": "EX Score cannot be greater than 4512 for this chart."
+	"EX Score Validator Keyboard: excessive": "EX Score cannot be greater than 4512 for this chart.",
+	"WACCA IMPL Validators: Should disallow ALL MARVELOUS with non-perfect score.": [
+		"ALL MARVELOUS scores must have a perfect score. Got 999999 instead."
+	],
+	"WACCA IMPL Validators: Should disallow FC with miss": [
+		"Cannot have a FULL COMBO with misses."
+	],
+	"WACCA IMPL Validators: Should disallow ALL MARVELOUS with non-perfect good judgements.": [
+		"ALL MARVELOUS scores must have a perfect score. Got 953000 instead.",
+		"Cannot have an ALL MARVELOUS if all judgements were not marvelous."
+	]
 }

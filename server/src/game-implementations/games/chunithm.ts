@@ -8,7 +8,7 @@ import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 
 export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
-	validators: {},
+	chartSpecificValidators: {},
 	derivers: {
 		grade: ({ score }) => GetGrade(CHUNITHM_GBOUNDARIES, score),
 	},
@@ -72,4 +72,40 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 		}),
 	],
 	defaultMergeRefName: "Best Score",
+	scoreValidators: [
+		(s) => {
+			if (s.scoreData.lamp === "ALL JUSTICE CRITICAL" && s.scoreData.score !== 1_010_000) {
+				return "An ALL JUSTICE CRITICAL must have a score of 1.01 million.";
+			}
+
+			if (s.scoreData.lamp !== "ALL JUSTICE CRITICAL" && s.scoreData.score === 1_010_000) {
+				return "A score of 1.01 million must have a lamp of ALL JUSTICE CRITICAL.";
+			}
+		},
+		(s) => {
+			let { attack, justice, miss } = s.scoreData.judgements;
+
+			justice ??= 0;
+			attack ??= 0;
+			miss ??= 0;
+
+			if (s.scoreData.lamp === "ALL JUSTICE CRITICAL") {
+				if (attack + justice + miss > 0) {
+					return "Cannot have an ALL JUSTICE CRITICAL with any non-jcrit judgements.";
+				}
+			}
+
+			if (s.scoreData.lamp === "ALL JUSTICE") {
+				if (attack + miss > 0) {
+					return "Cannot have an ALL JUSTICE if not all hits were justice or better.";
+				}
+			}
+
+			if (s.scoreData.lamp === "FULL COMBO") {
+				if (miss > 0) {
+					return "Cannot have a FULL COMBO if the score has misses.";
+				}
+			}
+		},
+	],
 };

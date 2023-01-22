@@ -109,7 +109,7 @@ export type PBMergeFunction<GPT extends GPTString> = (
  * The only metrics that need validators are those that have `chartDependentMax` set.
  * Otherwise, a validator is built into the ConfScoreMetric.
  */
-export type GPTMetricValidators<GPT extends GPTString> = {
+export type GPTChartSpecificMetricValidators<GPT extends GPTString> = {
 	[M in keyof AllConfMetrics[GPT] as AllConfMetrics[GPT][M] extends ChartDependentMax
 		? M
 		: never]: ChartSpecificMetricValidator<GPT>;
@@ -159,12 +159,35 @@ export type GPTGoalProgressFormatters<GPT extends GPTString> = {
 	[K in keyof ConfScoreMetrics[GPT]]: GoalProgressFormatter<GPT>;
 };
 
+/**
+ * Return nothing on success, and a string
+ * indicating what the error was on failure.
+ */
+export type ScoreValidator<GPT extends GPTString> = (
+	score: ScoreDocument<GPT>
+) => string | undefined;
+
 export interface GPTServerImplementation<GPT extends GPTString> {
-	validators: GPTMetricValidators<GPT>;
+	/**
+	 * For any chart-dependent metrics, such as EX Score for IIDX, how should we
+	 * validate they're correct?
+	 */
+	chartSpecificValidators: GPTChartSpecificMetricValidators<GPT>;
+
+	/**
+	 * How should we derive the derived metrics for this game?
+	 */
 	derivers: GPTDerivers<GPT>;
+
+	// assorted calculator functions
 	scoreCalcs: GPTScoreCalculators<GPT>;
 	sessionCalcs: GPTSessionCalculators<GPT>;
 	profileCalcs: GPTProfileCalculators<GPT>;
+
+	/**
+	 * For any "derived" classes for this game (i.e. classes that are the function
+	 * of the user's state), how should they work?
+	 */
 	classDerivers: GPTClassDerivers<GPT>;
 
 	/**
@@ -204,6 +227,17 @@ export interface GPTServerImplementation<GPT extends GPTString> {
 	 * metric. What should that be called?
 	 */
 	defaultMergeRefName: string;
+
+	/**
+	 * There are various things that should be true about scores for each game
+	 * that aren't already checked. This is for invariants that can't be tested
+	 * otherwise, like judgements properly summing up to the EX Score for IIDX, etc.
+	 *
+	 * These are for checking things that are *obviously* incorrect. For more subtle
+	 * incorrectnesses, like working out what the minimum possible full combo score
+	 * could be (which might be chart dependent, etc), don't bother.
+	 */
+	scoreValidators: Array<ScoreValidator<GPT>>;
 }
 
 export type GPTImplementations = {

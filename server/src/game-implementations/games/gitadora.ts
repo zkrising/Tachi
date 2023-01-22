@@ -37,7 +37,7 @@ async function CalculateGitadoraSkill(game: Game, playtype: Playtype, userID: in
 }
 
 const GITADORA_IMPL: GPTServerImplementation<"gitadora:Dora" | "gitadora:Gita"> = {
-	validators: {},
+	chartSpecificValidators: {},
 	derivers: {
 		grade: ({ percent }) => GetGrade(GITADORA_GBOUNDARIES, percent),
 	},
@@ -115,6 +115,7 @@ const GITADORA_IMPL: GPTServerImplementation<"gitadora:Dora" | "gitadora:Gita"> 
 		}),
 	],
 	defaultMergeRefName: "Best Percent",
+	scoreValidators: [],
 };
 
 export const GITADORA_GITA_IMPL: GPTServerImplementation<"gitadora:Gita"> = GITADORA_IMPL;

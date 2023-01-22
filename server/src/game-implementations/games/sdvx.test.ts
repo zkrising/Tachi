@@ -34,12 +34,12 @@ const mockPB = mkMockPB("sdvx", "Single", TestingSDVXAlbidaChart, scoreData);
 
 t.test("SDVX Implementation", (t) => {
 	t.test("EX Score Validator", (t) => {
-		t.equal(SDVX_IMPL.validators.exScore(1000, TestingSDVXAlbidaChart), true);
-		t.equal(SDVX_IMPL.validators.exScore(0, TestingSDVXAlbidaChart), true);
+		t.equal(SDVX_IMPL.chartSpecificValidators.exScore(1000, TestingSDVXAlbidaChart), true);
+		t.equal(SDVX_IMPL.chartSpecificValidators.exScore(0, TestingSDVXAlbidaChart), true);
 
 		TestSnapshot(
 			t,
-			SDVX_IMPL.validators.exScore(-1, TestingSDVXAlbidaChart),
+			SDVX_IMPL.chartSpecificValidators.exScore(-1, TestingSDVXAlbidaChart),
 			`EX Score Validator SDVX: negative`
 		);
 

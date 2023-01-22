@@ -143,18 +143,18 @@ for (const [game, playtype, impl] of [
 	});
 
 	t.test("Validators", (t) => {
-		t.equal(impl.validators.score(1000, chart as any), true);
-		t.equal(impl.validators.score(0, chart as any), true);
-		t.equal(impl.validators.score(chart.data.notecount * 2, chart as any), true);
+		t.equal(impl.chartSpecificValidators.score(1000, chart as any), true);
+		t.equal(impl.chartSpecificValidators.score(0, chart as any), true);
+		t.equal(impl.chartSpecificValidators.score(chart.data.notecount * 2, chart as any), true);
 
 		TestSnapshot(
 			t,
-			impl.validators.score(-1, chart as any),
+			impl.chartSpecificValidators.score(-1, chart as any),
 			`EX Score Validator ${playtype}: negative`
 		);
 		TestSnapshot(
 			t,
-			impl.validators.score(chart.data.notecount * 2 + 1, chart as any),
+			impl.chartSpecificValidators.score(chart.data.notecount * 2 + 1, chart as any),
 			`EX Score Validator ${playtype}: excessive`
 		);
 

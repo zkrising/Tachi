@@ -17,14 +17,22 @@ import type {
 	GPTDerivers,
 	GPTGoalFormatters,
 	GPTGoalProgressFormatters,
-	GPTMetricValidators,
+	GPTChartSpecificMetricValidators,
 	GPTProfileCalculators,
 	GPTScoreCalculators,
 	GPTSessionCalculators,
 	PBMergeFunction,
 	ScoreCalculator,
+	ScoreValidator,
 } from "game-implementations/types";
-import type { GPTStrings, GradeBoundary, integer, SpecificUserGameStats } from "tachi-common";
+import type {
+	GPTStrings,
+	GradeBoundary,
+	integer,
+	SpecificUserGameStats,
+	GPTString,
+	ScoreDocument,
+} from "tachi-common";
 
 export const EX_SCORE_CHECK: ChartSpecificMetricValidator<IIDXLikes> = (exScore, chart) => {
 	if (exScore < 0) {
@@ -58,7 +66,23 @@ export const IIDXLIKE_DERIVERS: GPTDerivers<IIDXLikes> = {
 	},
 };
 
-export const IIDXLIKE_VALIDATORS: GPTMetricValidators<IIDXLikes> = { score: EX_SCORE_CHECK };
+export const IIDXLIKE_VALIDATORS: GPTChartSpecificMetricValidators<IIDXLikes> = {
+	score: EX_SCORE_CHECK,
+};
+
+export const IIDXLIKE_SCORE_VALIDATORS: Array<ScoreValidator<IIDXLikes>> = [
+	(s) => {
+		const { pgreat, great } = s.scoreData.judgements;
+
+		if (IsNullish(pgreat) || IsNullish(great)) {
+			return;
+		}
+
+		if (pgreat * 2 + great !== s.scoreData.score) {
+			return `Expected PGreat*2 + Great to equal EX score. Got ${pgreat}*2 + ${great} but that wasn't equal to the EX score of ${s.scoreData.score}.`;
+		}
+	},
+];
 
 type SDVXLikes = GPTStrings["sdvx" | "usc"];
 
@@ -212,6 +236,28 @@ export const SDVXLIKE_PB_MERGERS: Array<PBMergeFunction<SDVXLikes>> = [
 
 export const SDVXLIKE_DEFAULT_MERGE_NAME = "Best Score";
 
+export const SDVXLIKE_SCORE_VALIDATORS: Array<ScoreValidator<SDVXLikes>> = [
+	(s) => {
+		if (s.scoreData.lamp === "PERFECT ULTIMATE CHAIN" && s.scoreData.score !== 10_000_000) {
+			return "Cannot have a PERFECT ULTIMATE CHAIN without a perfect score.";
+		}
+	},
+	(s) => {
+		const { near, miss } = s.scoreData.judgements;
+
+		if (s.scoreData.lamp === "PERFECT ULTIMATE CHAIN" && (miss ?? 0) + (near ?? 0) > 0) {
+			return "Cannot have a PERFECT ULTIMATE CHAIN with any nears or misses.";
+		} else if (s.scoreData.lamp === "ULTIMATE CHAIN" && (miss ?? 0) > 0) {
+			return "Cannot have an ULTIMATE CHAIN with non-zero miss count.";
+		}
+	},
+	(s) => {
+		if (s.scoreData.lamp === "ULTIMATE CHAIN" && s.scoreData.score < 5_000_000) {
+			return "Cannot have an ULTIMATE CHAIN with a score less than 5m.";
+		}
+	},
+];
+
 export const SGLCalc: ScoreCalculator<GPTStrings["bms" | "pms"]> = (scoreData, chart) => {
 	const ecValue = chart.data.sglEC ?? 0;
 	const hcValue = chart.data.sglHC ?? 0;
@@ -280,4 +326,30 @@ export function GradeGoalFormatter<G extends string>(
 
 	// otherwise, return whichever is closer.
 	return closer === "lower" ? lower : upper;
+}
+
+/**
+ * Run all of the provided validators on the given score.
+ *
+ * @returns undefined on success, an array of error messages (strings) on failure.
+ */
+export function RunValidators<GPT extends GPTString>(
+	validators: Array<ScoreValidator<GPT>>,
+	score: ScoreDocument<GPT>
+) {
+	const errs = [];
+
+	for (const validator of validators) {
+		const err = validator(score);
+
+		if (err !== undefined) {
+			errs.push(err);
+		}
+	}
+
+	if (errs.length === 0) {
+		return;
+	}
+
+	return errs;
 }

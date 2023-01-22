@@ -9,13 +9,14 @@ import {
 	SDVXLIKE_GOAL_OO_FMT,
 	SDVXLIKE_DEFAULT_MERGE_NAME,
 	SDVXLIKE_PB_MERGERS,
+	SDVXLIKE_SCORE_VALIDATORS,
 } from "./_common";
 import type { GPTServerImplementation } from "game-implementations/types";
 import type { GPTStrings } from "tachi-common";
 
 const USC_IMPL: GPTServerImplementation<GPTStrings["usc"]> = {
 	derivers: SDVXLIKE_DERIVERS,
-	validators: {},
+	chartSpecificValidators: {},
 	scoreCalcs: SDVXLIKE_SCORE_CALCS,
 	sessionCalcs: SDVXLIKE_SESSION_CALCS,
 	profileCalcs: SDVXLIKE_PROFILE_CALCS,
@@ -25,6 +26,7 @@ const USC_IMPL: GPTServerImplementation<GPTStrings["usc"]> = {
 	goalOutOfFormatters: SDVXLIKE_GOAL_OO_FMT,
 	pbMergeFunctions: SDVXLIKE_PB_MERGERS,
 	defaultMergeRefName: SDVXLIKE_DEFAULT_MERGE_NAME,
+	scoreValidators: SDVXLIKE_SCORE_VALIDATORS,
 };
 
 export const USC_KEYBOARD_IMPL: GPTServerImplementation<"usc:Keyboard"> = USC_IMPL;

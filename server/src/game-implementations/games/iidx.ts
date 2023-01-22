@@ -3,6 +3,7 @@ import {
 	GoalOutOfFmtPercent,
 	GradeGoalFormatter,
 	IIDXLIKE_DERIVERS,
+	IIDXLIKE_SCORE_VALIDATORS,
 	IIDXLIKE_VALIDATORS,
 } from "./_common";
 import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
@@ -10,12 +11,14 @@ import { ProfileAvgBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { PoyashiBPI } from "rg-stats";
 import { IIDXLIKE_GBOUNDARIES } from "tachi-common";
+import { IsNullish } from "utils/misc";
 import type {
 	GPTGoalFormatters,
 	GPTGoalProgressFormatters,
 	GPTServerImplementation,
 	PBMergeFunction,
 	ScoreCalculator,
+	ScoreValidator,
 } from "game-implementations/types";
 import type { GPTStrings } from "tachi-common";
 
@@ -110,7 +113,7 @@ const IIDX_GOAL_PG_FMT: GPTGoalProgressFormatters<"iidx:DP" | "iidx:SP"> = {
 
 export const IIDX_SP_IMPL: GPTServerImplementation<"iidx:SP"> = {
 	derivers: IIDXLIKE_DERIVERS,
-	validators: IIDXLIKE_VALIDATORS,
+	chartSpecificValidators: IIDXLIKE_VALIDATORS,
 	scoreCalcs: {
 		BPI: BPICalc,
 		ktLampRating: (scoreData, chart) => {
@@ -144,11 +147,12 @@ export const IIDX_SP_IMPL: GPTServerImplementation<"iidx:SP"> = {
 	goalOutOfFormatters: IIDX_GOAL_OO_FMT,
 	pbMergeFunctions: IIDX_MERGERS,
 	defaultMergeRefName: "Best Score",
+	scoreValidators: IIDXLIKE_SCORE_VALIDATORS,
 };
 
 export const IIDX_DP_IMPL: GPTServerImplementation<"iidx:DP"> = {
 	derivers: IIDXLIKE_DERIVERS,
-	validators: IIDXLIKE_VALIDATORS,
+	chartSpecificValidators: IIDXLIKE_VALIDATORS,
 	scoreCalcs: {
 		BPI: BPICalc,
 		ktLampRating: (scoreData, chart) => {
@@ -175,4 +179,5 @@ export const IIDX_DP_IMPL: GPTServerImplementation<"iidx:DP"> = {
 	goalOutOfFormatters: IIDX_GOAL_OO_FMT,
 	pbMergeFunctions: IIDX_MERGERS,
 	defaultMergeRefName: "Best Score",
+	scoreValidators: IIDXLIKE_SCORE_VALIDATORS,
 };

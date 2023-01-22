@@ -68,7 +68,7 @@ async function CalculateMaimaiDXRate(game: Game, playtype: Playtype, userID: int
 }
 
 export const MAIMAIDX_IMPL: GPTServerImplementation<"maimaidx:Single"> = {
-	validators: {},
+	chartSpecificValidators: {},
 	derivers: {
 		grade: ({ percent }) => GetGrade(MAIMAIDX_GBOUNDARIES, percent),
 	},
@@ -137,4 +137,15 @@ export const MAIMAIDX_IMPL: GPTServerImplementation<"maimaidx:Single"> = {
 		}),
 	],
 	defaultMergeRefName: "Best Percent",
+	scoreValidators: [
+		(s) => {
+			if (s.scoreData.lamp === "ALL PERFECT+" && s.scoreData.percent !== 101) {
+				return "Cannot have an ALL PERFECT+ without 101%.";
+			}
+
+			if (s.scoreData.lamp !== "ALL PERFECT+" && s.scoreData.percent === 101) {
+				return "A score of 101% should be an ALL PERFECT+";
+			}
+		},
+	],
 };

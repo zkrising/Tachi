@@ -32,7 +32,7 @@ export function PopnClearMedalToLamp(
 }
 
 export const POPN_9B_IMPL: GPTServerImplementation<"popn:9B"> = {
-	validators: {},
+	chartSpecificValidators: {},
 	derivers: {
 		lamp: ({ clearMedal }) => PopnClearMedalToLamp(clearMedal),
 		grade: ({ score, clearMedal }) => {
@@ -114,4 +114,83 @@ export const POPN_9B_IMPL: GPTServerImplementation<"popn:9B"> = {
 		}),
 	],
 	defaultMergeRefName: "Best Score",
+	scoreValidators: [
+		(s) => {
+			const { bad, good } = s.scoreData.judgements;
+
+			if (s.scoreData.lamp === "PERFECT") {
+				const mistakes = (bad ?? 0) + (good ?? 0);
+
+				if (mistakes > 0) {
+					return "Cannot have a PERFECT lamp with any bads or goods.";
+				}
+			} else if (s.scoreData.lamp === "FULL COMBO") {
+				const mistakes = bad ?? 0;
+
+				if (mistakes > 0) {
+					return "Cannot have a FULL COMBO lamp with any bads.";
+				}
+			}
+		},
+		// clear medal bad/good checks.
+		(s) => {
+			let { bad, good } = s.scoreData.judgements;
+
+			bad ??= 0;
+			good ??= 0;
+
+			switch (s.scoreData.clearMedal) {
+				case "fullComboStar": {
+					if (good > 5 || good < 1) {
+						return "Must have between 1-5 goods for a full combo star.";
+					}
+
+					break;
+				}
+
+				case "fullComboDiamond": {
+					if (good > 20 || good < 6) {
+						return "Must have between 6-20 goods for a full combo diamond.";
+					}
+
+					break;
+				}
+
+				case "fullComboCircle": {
+					if (good < 21) {
+						return "Must have >21 goods for a full combo circle.";
+					}
+
+					break;
+				}
+
+				case "clearStar": {
+					if (bad > 5 || bad < 1) {
+						return "Must have between 1-5 bads for a clear star.";
+					}
+
+					break;
+				}
+
+				case "clearDiamond": {
+					if (bad > 20 || bad < 6) {
+						return "Must have between 6-20 bads for a clear diamond.";
+					}
+
+					break;
+				}
+
+				case "clearCircle": {
+					if (bad < 21) {
+						return "Must have between >21 bads for a clear circle.";
+					}
+
+					break;
+				}
+
+				// can't validate the fails since we don't have the gauge info.
+				default:
+			}
+		},
+	],
 };

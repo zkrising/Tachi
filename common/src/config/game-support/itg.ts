@@ -166,5 +166,5 @@ export const ITG_STAMINA_CONF = {
 
 	scoreMeta: z.strictObject({}),
 
-	supportedMatchTypes: ["itgChartHash", "tachiSongID"],
+	supportedMatchTypes: ["itgChartHash"],
 } as const satisfies INTERNAL_GAME_PT_CONFIG;

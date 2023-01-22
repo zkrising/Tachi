@@ -5,7 +5,7 @@ import { SDVX_IMPL, USC_IMPL } from "./games/sdvx-usc";
 import { GPTClientImplementation } from "./types";
 import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
 import { BMS_14K_IMPL, BMS_7K_IMPL, PMS_IMPL } from "./games/bms-pms";
-import { bg, bgc } from "./games/_util";
+import { CreateRatingSys, bg, bgc } from "./games/_util";
 
 type GPTClientImplementations = {
 	[GPT in GPTString]: GPTClientImplementation<GPT>;
@@ -397,14 +397,22 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				CLEAR: COLOUR_SET.blue,
 				"FULL COMBO": COLOUR_SET.pink,
 				"FULL EXCELLENT COMBO": COLOUR_SET.gold,
-				QUAD: COLOUR_SET.white,
+				QUAD: COLOUR_SET.teal,
+				QUINT: COLOUR_SET.white,
 			},
 		},
 		difficultyColours: {
 			// this game has dynamic difficulties. Formatting is handled elsewhere.
 		},
 		classColours: {},
-		ratingSystems: [],
+		ratingSystems: [
+			CreateRatingSys(
+				"BPM",
+				"How fast are the streams in this chart?",
+				(c) => c.data.streamBPM,
+				(c) => c.data.streamBPM?.toString()
+			),
+		],
 		scoreHeaders: [
 			["Score", "Score", NumericSOV((x) => x.scoreData.finalPercent)],
 			["Judgements", "Hits", NumericSOV((x) => x.scoreData.scorePercent)],

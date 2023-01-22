@@ -35,6 +35,13 @@ export default function ITGDifficultyCell({ chart }: { chart: ChartDocument<"itg
 		}
 	}
 
+	const minutes = Math.floor(chart.data.length / 60);
+	let seconds: number | string = Math.floor(chart.data.length - minutes * 60);
+
+	if (seconds < 10) {
+		seconds = `0${seconds}`;
+	}
+
 	return (
 		<td
 			style={{
@@ -66,6 +73,12 @@ export default function ITGDifficultyCell({ chart }: { chart: ChartDocument<"itg
 									<td>Simplified</td>
 									<td>{chart.data.breakdown.simplified}</td>
 								</tr>
+								<tr>
+									<td>Length</td>
+									<td>
+										{minutes}:{seconds}
+									</td>
+								</tr>
 							</MiniTable>
 						) : (
 							<b>This chart has no streams.</b>
@@ -96,12 +109,16 @@ export default function ITGDifficultyCell({ chart }: { chart: ChartDocument<"itg
 					<Muted>{chart.data.charter}</Muted>
 					<br />
 					<span style={{ fontSize: "0.9rem" }}>{breakdown}</span>
-					{chart.data.length > 60 * 16 && (
-						<>
-							<br />
-							<Icon type="clock" />
-						</>
-					)}
+					<br />
+					<span>
+						{chart.data.length > 60 * 16 ? (
+							<b>
+								({minutes}:{seconds})
+							</b>
+						) : (
+							`(${minutes}:${seconds})`
+						)}
+					</span>
 				</div>
 			</QuickTooltip>
 		</td>

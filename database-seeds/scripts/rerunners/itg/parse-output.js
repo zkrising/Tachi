@@ -124,6 +124,8 @@ for (const d of content) {
 				charter: author,
 			},
 		});
+
+		existingChartIDs.push(chart.hashGSv3);
 	}
 }
 

@@ -33,20 +33,8 @@ This means that if there was more than two hours between
 any two successive scores, the session is marked as terminated
 and a new bucket of scores is created.
 
-For every bucket of scores we have, we iterate over the
-scores inside the bucket, and compare them against the
-users' current PB. Since PBs are updated *after* sessions
-are processed, this means we are processing them against
-their past PBs.
-
-!!! bug
-	If a user ends up making sessions in the past,
-	this step will compare against their current PBs -
-	instead of the PBs they would've had at the time
-	of that session.
-
-Once we have compared all the scores against the PBs, we
-can create a session from it. We need to generate a random
+Once we have gotten all the scores we
+can create a session from them. We need to generate a random
 name (we have some stuff in `src/datasets` for this).
 
 We also need to calculate statistics for this session,
@@ -62,3 +50,6 @@ then that score is appended to the session.
 	get a score between two sessions such that
 	there was now less than two hours between the first
 	sessions last score and the second sessions first score.
+
+	This is so difficult to properly resolve that Tachi simply
+	makes no attempt to stop it.

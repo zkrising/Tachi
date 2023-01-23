@@ -407,7 +407,7 @@ None.
 
 ## Retrieve your notifications
 
-`GET /api/v1/users/:userID/games/:game/notifications`
+`GET /api/v1/users/:userID/notifications`
 
 ### Permissions
 
@@ -462,7 +462,7 @@ None. (Empty Object)
 
 ### Permissions
 
-- Must be a session-level request from the user who owns these notifications.d
+- Must be a session-level request from the user who owns these notifications.
 
 ### Parameters
 

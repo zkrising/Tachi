@@ -176,7 +176,7 @@ used as the privateKey and the certificate, respectively.
 - Type: String
 - Default: Null
 
-If present, and a string, this points to the webpack dev server for a react app. Having this
+If present, and a string, this points to the local dev server for a react app. Having this
 option set results in CORS being enabled for *that* specific URL. This is useful for local
 development, but should not be used in production.
 
@@ -212,7 +212,8 @@ If true, all `OPTIONS` requests to the server will return `200`, no matter what.
 If true, an external worker process will be used to handle score imports.
 
 !!! warning
-	You have to run this worker yourself. The entry point is `src/lib/score-import/worker/worker.ts`.
+	You have to run this worker yourself. `pnpm build && pnpm start-score-worker` will
+	run the external worker process.
 
 ### EXTERNAL_SCORE_IMPORT_WORKER_CONCURRENCY
 
@@ -220,16 +221,6 @@ If true, an external worker process will be used to handle score imports.
 - Default: 10
 
 How many score imports one worker should be allowed to work on at a time. This improves parallelisation of score imports.
-
-### USC_QUEUE_SIZE
-
-- Type: Integer
-- Default: 3
-
-How many unique players have to have a score on a chart for it to be de-orphaned.
-
-!!! warning
-	The lowest legal value for this field is 2.
 
 ### BEATORAJA_QUEUE_SIZE
 
@@ -422,7 +413,7 @@ The process environment also contains necessary things for functional Tachi Serv
 
 !!! info
 	These variables are put into the process environment instead of the conf.json5 file because
-	they're easier to change between docker instances. Helps us scale and deploy.
+	they're easier to change between docker instances. This Helps us scale and deploy.
 
 ### PORT
 

@@ -16,7 +16,7 @@
 		"lint": "eslint ./src --ext .ts --fix",
 		"start": "pnpm build && pnpm start-no-build",
 		"start-no-build": "NODE_PATH=js/ node js/main.js",
-		"runscoreworker": "NODE_PATH=js/ node js/lib/score-import/worker/worker.js",
+		"start-score-worker": "NODE_PATH=js/ node js/lib/score-import/worker/worker.js",
 		"sync-database": "ts-node src/scripts/sync-database",
 		"sync-database-local": "ts-node src/scripts/sync-database --localPath '../database-seeds/collections'",
 		"recalc-everything": "ts-node src/scripts/state-sync/sync-state.ts",

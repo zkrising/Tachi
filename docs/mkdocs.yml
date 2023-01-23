@@ -48,10 +48,6 @@ nav:
       - "wiki/lamps.md"
       - "wiki/score-oddities.md"
 
-      - Statistics:
-          - "wiki/stats/tachi.md"
-        #     - "wiki/stats/esd.md"
-
   - Documents:
       - "schemas/index.md"
       - "schemas/user.md"
@@ -94,60 +90,55 @@ nav:
           - "api/webhooks/main.md"
           - "api/webhooks/class-update-v1.md"
 
-  - Tachi Server Reference:
-      - "tachi-server/index.md"
+  - Codebase Reference:
+      - "codebase/index.md"
 
       - Setup:
-          - "tachi-server/setup/config.md"
+          - "codebase/setup/config.md"
 
       - Infrastructure:
-          - "tachi-server/infrastructure/toolchain.md"
-          - "tachi-server/infrastructure/logging.md"
-          - "tachi-server/infrastructure/branches.md"
-          - "tachi-server/infrastructure/versions.md"
-          - "tachi-server/infrastructure/api-clients.md"
-          - "tachi-server/infrastructure/oauth2.md"
-          - "tachi-server/infrastructure/file-flow.md"
-          - "tachi-server/infrastructure/database-seeds.md"
+          - "codebase/infrastructure/logging.md"
+          - "codebase/infrastructure/branches.md"
+          - "codebase/infrastructure/versions.md"
+          - "codebase/infrastructure/database-seeds.md"
+
+      - OAuth2:
+          - "codebase/infrastructure/api-clients.md"
+          - "codebase/infrastructure/oauth2.md"
+          - "codebase/infrastructure/file-flow.md"
 
       - Structure:
-          - "tachi-server/structure/style.md"
-          - "tachi-server/structure/filesystem.md"
-          - "tachi-server/structure/testing.md"
+          - "codebase/structure/style.md"
+          - "codebase/structure/filesystem.md"
+          - "codebase/structure/testing.md"
 
       - BATCH-MANUAL:
-          - "tachi-server/batch-manual/index.md"
-          - "tachi-server/batch-manual/direct-manual.md"
+          - "codebase/batch-manual/index.md"
+          - "codebase/batch-manual/direct-manual.md"
 
       - Score Importing:
-          - "tachi-server/import/index.md"
-          - "tachi-server/import/main.md"
-          - "tachi-server/import/import-types.md"
-          - "tachi-server/import/parse-conv.md"
-          - "tachi-server/import/conv-failures.md"
-          - "tachi-server/import/importing.md"
-          - "tachi-server/import/orphans.md"
-          - "tachi-server/import/parse-ipi.md"
-          - "tachi-server/import/sessions.md"
-          - "tachi-server/import/pbs.md"
-          - "tachi-server/import/ugs.md"
-          - "tachi-server/import/goals.md"
-          - "tachi-server/import/quests.md"
-          - "tachi-server/import/import-doc-time.md"
+          - "codebase/import/main.md"
+          - "codebase/import/import-types.md"
+          - "codebase/import/parse-conv.md"
+          - "codebase/import/conv-failures.md"
+          - "codebase/import/importing.md"
+          - "codebase/import/orphans.md"
+          - "codebase/import/parse-ipi.md"
+          - "codebase/import/sessions.md"
+          - "codebase/import/pbs.md"
+          - "codebase/import/ugs.md"
+          - "codebase/import/goals.md"
+          - "codebase/import/quests.md"
+          - "codebase/import/import-doc-time.md"
 
       - Implementation Details:
-          - "tachi-server/implementation-details/details.md"
-          - "tachi-server/implementation-details/search.md"
-          - "tachi-server/implementation-details/statistics.md"
-          - "tachi-server/implementation-details/songs-charts.md"
-          - "tachi-server/implementation-details/game-configuration.md"
-          - "tachi-server/implementation-details/esd.md"
-          - "tachi-server/implementation-details/score-id.md"
-          - "tachi-server/implementation-details/goal-id.md"
-          - "tachi-server/implementation-details/goals-quests.md"
-
-  - Tachi Bot Reference:
-      - "tachi-bot"
+          - "codebase/implementation-details/details.md"
+          - "codebase/implementation-details/search.md"
+          - "codebase/implementation-details/songs-charts.md"
+          - "codebase/implementation-details/game-configuration.md"
+          - "codebase/implementation-details/score-id.md"
+          - "codebase/implementation-details/goal-id.md"
+          - "codebase/implementation-details/goals-quests.md"
 
 markdown_extensions:
   - admonition

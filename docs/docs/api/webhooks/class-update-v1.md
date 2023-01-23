@@ -8,8 +8,8 @@ The content is as follows:
 | `set` | Game Class Set | The name of the class set that was updated, such as `genocideDan` or `vfClass`. |
 | `game` | Game | The game this class update was for. |
 | `playtype` | Playtype | The playtype this class update was for. |
-| `old` | Null \| Integer | The old value for this class. If null, the user had no class here before. |
-| `new` | Integer | The new value for this class. |
+| `old` | Null \| String | The old value for this class. If null, the user had no class here before. |
+| `new` | String | The new value for this class. |
 
 ## Example
 
@@ -20,6 +20,6 @@ The content is as follows:
 	"game": "iidx",
 	"playtype": "SP",
 	"old": null,
-	"new": 12
+	"new": "CHUUDEN"
 }
 ```

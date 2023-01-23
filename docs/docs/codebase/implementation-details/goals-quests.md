@@ -103,18 +103,13 @@ webhook event is emitted.
 
 ### Unsubscribing
 
-Unsubscribing from a quest is a two-pass process. Firstly, for all `goalID`s in the quest, the subscription document has the relevant `questID` pulled from the array.
+For all `goalID`s in the quest, we check if this goal subscription has any other parent quests.
 
-The second part of the process involves unsubscribing the user from any goals that now have
-an empty array as a result of this process.
-
-!!! warning
-	If this process sounds like it has race conditions, it's because it probably does.
-	Ah well.
+If this quest was the only reason the goal was assigned (i.e. it wasn't assigned directly, or isn't part of another quest), this quest will be unsubscribed from.
 
 ## Questlines
 
 Questline are ordered lists of quests. Their purpose is to group quests together
-visually.
+visually in an ordered manner.
 
 Users *can not* "subscribe" to questlines, but they can use questlines as a utility for subscribing to all the related quests.

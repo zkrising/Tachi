@@ -20,8 +20,6 @@ as a result of the import. This is calculated as follows:
 
 - Multi Goals are matched if their data contains any chartIDs that were affected.
 
-- Any Goals are always matched.
-
 - Folder goals are matched if the folder contains any charts inside the set of chartIDs affected.
 
 ## Processing Goals

@@ -4,8 +4,6 @@ The final step of the process is to coalesce all the returns
 of the various steps above into one analysable document
 and return it.
 
-Details on what this document looks like can be found [(todo) here](todo).
-
 *****
 
 ## Logging

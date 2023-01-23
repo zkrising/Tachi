@@ -62,7 +62,7 @@ into their original form, changing the difficulty from ANOTHER to LEGGENDARIA.
 
 ## Deduplication False Positives (All Games)
 
-Tachi identifies scores using a `scoreID`. This is calculated from some properties on the score, such as who got it (`userID`), their `score`, `percent` and `lamp`.
+Tachi identifies scores using a `scoreID`. This is calculated from some properties on the score, such as who got it (`userID`) and the various metrics for this game (`score`, `percent`, `lamp`, etc.)
 
 `scoreID`s are *unique* across all of Tachi. The motivation for this is to avoid score duplication.
 

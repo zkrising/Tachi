@@ -75,8 +75,11 @@ The valid input devices are listed below.
 | :: | :: | :: |
 | unnamed_sdvx_clone (Controller) | Any Arcade Size Controller | The controller leaderboards are **exclusively** for Arcade **SIZE** controllers. **POCKET VOLTEXES DO NOT COUNT AS ARCADE SIZE CONTROLLERS.** |
 | unnamed_sdvx_clone (Keyboard) | Keyboard | The keyboard leaderboards are **exclusively** for keyboard players. You must not play on these leaderboards with a controller! |
-| BMS (7K) | Keyboard, any IIDX Controller | Keyboard play is allowed for BMS 7K. |
-| BMS (14K) | any two IIDX Controllers | Keyboard play is **NOT** allowed for BMS 14K, due to some ridiculous advantages. |
+| PMS (Controller) | Any Arcade Size Controller | The controller leaderboards are **exclusively** for Arcade **SIZE** controllers. **MINI POP'N CONTROLLERS DO NOT COUNT AS ARCADE SIZE CONTROLLERS.** |
+| PMS (Keyboard) | Keyboard | The keyboard leaderboards are **exclusively** for keyboard players. You must not play on these leaderboards with a controller! |
+| ITG (Stamina) | Standard Pad | Any pad that you step on with your feet is probably fine. **DO NOT SUBMIT KEYBOARD SCORES.** |
+| BMS (7K) | Anything | Do whatever. |
+| BMS (14K) | Anything | Do Whatever. |
 
 !!! info
 	As always though, exercise some common sense. I'm not going to whitelist controllers on here, because that's asking for trouble. Use your head as for whether something is fair or not, and if you're not certain still, ask in the discord.

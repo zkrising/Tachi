@@ -15,7 +15,12 @@ export const USC_CONF = {
 
 export const USC_CONTROLLER_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", validate: p.isBetween(0, 10_000_000), formatter: FmtNum },
+		score: {
+			type: "INTEGER",
+			validate: p.isBetween(0, 10_000_000),
+			formatter: FmtNum,
+			description: "The score value. This is between 0 and 10 million.",
+		},
 		lamp: {
 			type: "ENUM",
 			values: [
@@ -26,6 +31,7 @@ export const USC_CONTROLLER_CONF = {
 				"PERFECT ULTIMATE CHAIN",
 			],
 			minimumRelevantValue: "CLEAR",
+			description: "The type of clear this score was.",
 		},
 	},
 
@@ -34,6 +40,7 @@ export const USC_CONTROLLER_CONF = {
 			type: "ENUM",
 			values: ["D", "C", "B", "A", "A+", "AA", "AA+", "AAA", "AAA+", "S", "PUC"],
 			minimumRelevantValue: "A+",
+			description: "The grade this score was.",
 		},
 	},
 
@@ -42,7 +49,13 @@ export const USC_CONTROLLER_CONF = {
 
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
-		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
+		gauge: {
+			type: "DECIMAL",
+			validate: p.isBetween(0, 100),
+			formatter: FmtPercent,
+			description:
+				"The amount of life in the gauge when this chart finished. This is between 0 and 100.",
+		},
 	},
 
 	scoreRatingAlgs: {

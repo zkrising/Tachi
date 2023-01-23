@@ -136,7 +136,13 @@ const RANDOM_SCHEMA = z.enum(["MIRROR", "NONRAN", "R-RANDOM", "RANDOM", "S-RANDO
 
 export const BMS_7K_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", chartDependentMax: true, formatter: FmtScoreNoCommas },
+		score: {
+			type: "INTEGER",
+			chartDependentMax: true,
+			formatter: FmtScoreNoCommas,
+			description:
+				"EX Score. This should be between 0 and the maximum possible EX on this chart.",
+		},
 
 		lamp: {
 			type: "ENUM",
@@ -151,6 +157,7 @@ export const BMS_7K_CONF = {
 				"FULL COMBO",
 			],
 			minimumRelevantValue: "EASY CLEAR",
+			description: "The type of clear this was.",
 		},
 	},
 
@@ -159,12 +166,19 @@ export const BMS_7K_CONF = {
 			type: "ENUM",
 			values: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
 			minimumRelevantValue: "A",
+			description:
+				"Grades as they are in BMS. We also add MAX- (94.44...%) and MAX (100%) as their own grades for convenience.",
 		},
 
 		// if #RANDOM is to ever be supported, the user's percent would become
 		// a *mandatory* metric, as a chart's notecount can be completely unknown.
 		// However, supporting #RANDOM is an awful pain, so I don't really care.
-		percent: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
+		percent: {
+			type: "DECIMAL",
+			validate: p.isBetween(0, 100),
+			formatter: FmtPercent,
+			description: "EX Score divided by the maximum possible EX Score on this chart.",
+		},
 	},
 
 	defaultMetric: "percent",
@@ -172,19 +186,86 @@ export const BMS_7K_CONF = {
 
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
-		bp: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
-		gaugeHistory: { type: "GRAPH", validate: p.isBetween(0, 100) },
-		epg: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		egr: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		egd: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		ebd: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		epr: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		lpg: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		lgr: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		lgd: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		lbd: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		lpr: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
+		bp: {
+			type: "INTEGER",
+			validate: p.isPositive,
+			formatter: FmtScoreNoCommas,
+			description: "The total bads + poors in this score.",
+		},
+		gauge: {
+			type: "DECIMAL",
+			validate: p.isBetween(0, 100),
+			formatter: FmtPercent,
+			description:
+				"The life in percent (between 0 and 100) that was on the gauge at the end of the chart.",
+		},
+		gaugeHistory: {
+			type: "GRAPH",
+			validate: p.isBetween(0, 100),
+			description:
+				"A snapshot of the gauge percent throughout the chart. The values should be null from the point the user dies until the end of the chart.",
+		},
+		epg: {
+			type: "INTEGER",
+			validate: p.isPositive,
+			formatter: FmtScoreNoCommas,
+			description: `The amount of early PGreats in this score.`,
+		},
+		egr: {
+			type: "INTEGER",
+			validate: p.isPositive,
+			formatter: FmtScoreNoCommas,
+			description: `The amount of early greats in this score.`,
+		},
+		egd: {
+			type: "INTEGER",
+			validate: p.isPositive,
+			formatter: FmtScoreNoCommas,
+			description: `The amount of early goods in this score.`,
+		},
+		ebd: {
+			type: "INTEGER",
+			validate: p.isPositive,
+			formatter: FmtScoreNoCommas,
+			description: `The amount of early bads in this score.`,
+		},
+		epr: {
+			type: "INTEGER",
+			validate: p.isPositive,
+			formatter: FmtScoreNoCommas,
+			description: `The amount of early poors in this score.`,
+		},
+
+		lpg: {
+			type: "INTEGER",
+			validate: p.isPositive,
+			formatter: FmtScoreNoCommas,
+			description: `The amount of late PGreats in this score.`,
+		},
+		lgr: {
+			type: "INTEGER",
+			validate: p.isPositive,
+			formatter: FmtScoreNoCommas,
+			description: `The amount of late greats in this score.`,
+		},
+		lgd: {
+			type: "INTEGER",
+			validate: p.isPositive,
+			formatter: FmtScoreNoCommas,
+			description: `The amount of late goods in this score.`,
+		},
+		lbd: {
+			type: "INTEGER",
+			validate: p.isPositive,
+			formatter: FmtScoreNoCommas,
+			description: `The amount of late bads in this score.`,
+		},
+		lpr: {
+			type: "INTEGER",
+			validate: p.isPositive,
+			formatter: FmtScoreNoCommas,
+			description: `The amount of late poors in this score.`,
+		},
 	},
 
 	scoreRatingAlgs: {

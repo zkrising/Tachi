@@ -1,6 +1,4 @@
 packages:
-  # this isn't even JS LOL. doesn't need monorepo management
-  # - "docs/**"
   - "client/**"
   - "common/**"
   - "bot/**"
@@ -8,3 +6,4 @@ packages:
   - "server/**"
   - "sieglinde/**"
   - "github-bot/**"
+  - "docs/autogen-scripts/**"

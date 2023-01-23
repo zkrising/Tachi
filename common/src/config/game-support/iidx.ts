@@ -51,7 +51,13 @@ const RANDOM_SCHEMA = z.enum(["NONRAN", "MIRROR", "R-RANDOM", "RANDOM", "S-RANDO
 
 export const IIDX_SP_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", chartDependentMax: true, formatter: FmtScoreNoCommas },
+		score: {
+			type: "INTEGER",
+			chartDependentMax: true,
+			formatter: FmtScoreNoCommas,
+			description:
+				"EX Score. This should be between 0 and the maximum possible EX on this chart.",
+		},
 		lamp: {
 			type: "ENUM",
 			values: [
@@ -65,6 +71,7 @@ export const IIDX_SP_CONF = {
 				"FULL COMBO",
 			],
 			minimumRelevantValue: "EASY CLEAR",
+			description: "The type of clear this was.",
 		},
 	},
 
@@ -73,11 +80,14 @@ export const IIDX_SP_CONF = {
 			type: "DECIMAL",
 			validate: p.isBetween(0, 100),
 			formatter: FmtPercent,
+			description: "EX Score divided by the maximum possible EX Score on this chart.",
 		},
 		grade: {
 			type: "ENUM",
 			values: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
 			minimumRelevantValue: "A",
+			description:
+				"Grades as they are in IIDX. We also add MAX- (94.44...%) and MAX (100%) as their own grades for convenience.",
 		},
 	},
 
@@ -87,21 +97,57 @@ export const IIDX_SP_CONF = {
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
 
-		bp: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
-		comboBreak: { type: "INTEGER", validate: p.isPositive, formatter: FmtNum },
+		bp: {
+			type: "INTEGER",
+			validate: p.isPositive,
+			formatter: FmtScoreNoCommas,
+			description: "The total bads + poors in this score.",
+		},
+		gauge: {
+			type: "DECIMAL",
+			validate: p.isBetween(0, 100),
+			formatter: FmtPercent,
+			description:
+				"The life in percent (between 0 and 100) that was on the gauge at the end of the chart.",
+		},
+		comboBreak: {
+			type: "INTEGER",
+			validate: p.isPositive,
+			formatter: FmtNum,
+			description: "The amount of times combo was broken.",
+		},
 
 		// The players history for the gauge type they were playing on.
 		// this may fall into "NULL" if the user fails.
-		gaugeHistory: { type: "NULLABLE_GRAPH", validate: p.isBetween(0, 100) },
-		scoreHistory: { type: "NULLABLE_GRAPH", validate: p.isBetween(0, 100) },
+		gaugeHistory: {
+			type: "NULLABLE_GRAPH",
+			validate: p.isBetween(0, 100),
+			description:
+				"A snapshot of the gauge percent throughout the chart. The values should be null from the point the user dies until the end of the chart.",
+		},
 
 		// if "GSM" is enabled (via fervidex.dll) then all graphs
 		// are sent. we should store all of them.
-		gsmEasy: { type: "NULLABLE_GRAPH", validate: p.isBetween(0, 100) },
-		gsmNormal: { type: "NULLABLE_GRAPH", validate: p.isBetween(0, 100) },
-		gsmHard: { type: "NULLABLE_GRAPH", validate: p.isBetween(0, 100) },
-		gsmEXHard: { type: "NULLABLE_GRAPH", validate: p.isBetween(0, 100) },
+		gsmEasy: {
+			type: "NULLABLE_GRAPH",
+			validate: p.isBetween(0, 100),
+			description: "If GSM is used, this stores the easy gauge history.",
+		},
+		gsmNormal: {
+			type: "NULLABLE_GRAPH",
+			validate: p.isBetween(0, 100),
+			description: "If GSM is used, this stores the normal gauge history.",
+		},
+		gsmHard: {
+			type: "NULLABLE_GRAPH",
+			validate: p.isBetween(0, 100),
+			description: "If GSM is used, this stores the hard gauge history.",
+		},
+		gsmEXHard: {
+			type: "NULLABLE_GRAPH",
+			validate: p.isBetween(0, 100),
+			description: "If GSM is used, this stores the ex-hard gauge history.",
+		},
 	},
 
 	defaultScoreRatingAlg: "ktLampRating",

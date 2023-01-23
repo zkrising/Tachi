@@ -36,11 +36,18 @@ const GitadoraColours = [
 
 export const GITADORA_GITA_CONF = {
 	providedMetrics: {
-		percent: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
+		percent: {
+			type: "DECIMAL",
+			validate: p.isBetween(0, 100),
+			formatter: FmtPercent,
+			description:
+				"The percent this score was worth. Sometimes referred to as 'Achievement Rate' in game. This is a value between 0 and 100.",
+		},
 		lamp: {
 			type: "ENUM",
 			values: ["FAILED", "CLEAR", "FULL COMBO", "EXCELLENT"],
 			minimumRelevantValue: "CLEAR",
+			description: "The type of clear this was.",
 		},
 	},
 
@@ -49,6 +56,7 @@ export const GITADORA_GITA_CONF = {
 			type: "ENUM",
 			values: ["C", "B", "A", "S", "SS", "MAX"],
 			minimumRelevantValue: "A",
+			description: "The grade this score was.",
 		},
 	},
 

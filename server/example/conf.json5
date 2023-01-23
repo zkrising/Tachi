@@ -46,6 +46,7 @@
 			"pms",
 			"gitadora",
 			"maimaidx",
+			"itg",
 		],
 		IMPORT_TYPES: [
 			"file/eamusement-iidx-csv",

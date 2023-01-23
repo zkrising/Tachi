@@ -292,6 +292,14 @@ importers:
     devDependencies:
       tsconfig-paths: 3.12.0
 
+  docs/autogen-scripts:
+    specifiers:
+      commander: ^10.0.0
+      tachi-common: workspace:../../common
+    dependencies:
+      commander: 10.0.0
+      tachi-common: link:../../common
+
   github-bot:
     specifiers:
       '@octokit/app': ^13.1.0
@@ -4265,6 +4273,11 @@ packages:
 
   /comma-separated-tokens/2.0.2:
     resolution: {integrity: sha512-G5yTt3KQN4Yn7Yk4ed73hlZ1evrFKXeUW3086p3PRFNp7m2vIjI6Pg+Kgb+oyzhd9F2qdcoj67+y3SdxL5XWsg==}
+    dev: false
+
+  /commander/10.0.0:
+    resolution: {integrity: sha512-zS5PnTI22FIRM6ylNW8G4Ap0IEOyk62fhLSD0+uHRT9McRCLGpkVNvao4bjimpK/GShynyQkFFxHhwMcETmduA==}
+    engines: {node: '>=14'}
     dev: false
 
   /commander/2.20.3:

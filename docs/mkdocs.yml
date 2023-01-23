@@ -34,6 +34,31 @@ nav:
               - "contributing/components/documentation.md"
               - "contributing/components/seeds.md"
 
+      - Game Support:
+          - "game-support/common-config.md"
+          - "game-support/server-impl.md"
+          - "game-support/client-impl.md"
+          - "game-support/database-seeds.md"
+          - Game Information:
+            - "game-support/games/iidx-SP.md"
+            - "game-support/games/iidx-DP.md"
+            - "game-support/games/museca-Single.md"
+            - "game-support/games/chunithm-Single.md"
+            - "game-support/games/bms-7K.md"
+            - "game-support/games/bms-14K.md"
+            - "game-support/games/gitadora-Gita.md"
+            - "game-support/games/gitadora-Dora.md"
+            - "game-support/games/jubeat-Single.md"
+            - "game-support/games/maimaidx-Single.md"
+            - "game-support/games/popn-9B.md"
+            - "game-support/games/sdvx-Single.md"
+            - "game-support/games/usc-Controller.md"
+            - "game-support/games/usc-Keyboard.md"
+            - "game-support/games/wacca-Single.md"
+            - "game-support/games/pms-Controller.md"
+            - "game-support/games/pms-Keyboard.md"
+            - "game-support/games/itg-Stamina.md"
+
   - Wiki:
       - "wiki/index.md"
       - "wiki/rules.md"

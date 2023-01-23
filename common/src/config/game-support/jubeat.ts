@@ -29,12 +29,24 @@ const JubeatColours = [
 
 export const JUBEAT_SINGLE_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", validate: p.isBetween(0, 1_000_000), formatter: FmtNum },
-		musicRate: { type: "DECIMAL", chartDependentMax: true, formatter: FmtPercent },
+		score: {
+			type: "INTEGER",
+			validate: p.isBetween(0, 1_000_000),
+			formatter: FmtNum,
+			description: "The score value. This is between 0 and 1 million.",
+		},
+		musicRate: {
+			type: "DECIMAL",
+			chartDependentMax: true,
+			formatter: FmtPercent,
+			description:
+				"The music rate for this score. This is between 0 and 100 on normal difficulties, and 0 and 120 for hard-mode difficulties. This should be submitted to one decimal place.",
+		},
 		lamp: {
 			type: "ENUM",
 			values: ["FAILED", "CLEAR", "FULL COMBO", "EXCELLENT"],
 			minimumRelevantValue: "CLEAR",
+			description: "The type of clear this was.",
 		},
 	},
 
@@ -43,6 +55,7 @@ export const JUBEAT_SINGLE_CONF = {
 			type: "ENUM",
 			values: ["E", "D", "C", "B", "A", "S", "SS", "SSS", "EXC"],
 			minimumRelevantValue: "A",
+			description: "The grade this score was.",
 		},
 	},
 

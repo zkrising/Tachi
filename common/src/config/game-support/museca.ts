@@ -18,11 +18,18 @@ export const MUSECA_CONF = {
 
 export const MUSECA_SINGLE_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", validate: p.isBetween(0, 1_000_000), formatter: FmtNum },
+		score: {
+			type: "INTEGER",
+			validate: p.isBetween(0, 1_000_000),
+			formatter: FmtNum,
+			description: "The score value. This is between 0 and 1 million.",
+		},
 		lamp: {
 			type: "ENUM",
 			values: ["FAILED", "CLEAR", "CONNECT ALL", "PERFECT CONNECT ALL"],
 			minimumRelevantValue: "CLEAR",
+			description:
+				"The type of clear this score was. **Note:** we define a CLEAR as being >= 800k, and FAILED as anything less. We do not respect MUSECA's story mode for clear/failed types.",
 		},
 	},
 
@@ -38,6 +45,8 @@ export const MUSECA_SINGLE_CONF = {
 			// In my opinion (zkldi) this is a little too low for this
 			// game, as 900K is pretty easy to get. Ah well!
 			minimumRelevantValue: "優",
+
+			description: "The grade this score was.",
 		},
 	},
 

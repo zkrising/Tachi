@@ -295,7 +295,7 @@ function SongInfoHeader({
 				/>
 			);
 		} else if (game === "itg") {
-			const itgChart = charts[0] as ChartDocument<"itg:Stamina">;
+			const itgChart = activeChart as ChartDocument<"itg:Stamina">;
 			const banner = itgChart?.data.bannerLocationOverride ?? itgChart?.data.originalPack;
 
 			if (banner) {

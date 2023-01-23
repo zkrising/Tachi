@@ -13,7 +13,7 @@ For user-specific target endpoints, such as subscriptions, see [UGPT-Target Endp
 !!! info
 	This endpoint returns the 100 most recently achieved goal subscriptions, and 50 most recently achieved quest subscriptions.
 
-	A target is not considered recently achieved if it was [instantly achieved](../../tachi-server/implementation-details/goals-quests.md#instant-indirect-achievements).
+	A target is not considered recently achieved if it was [instantly achieved](../../codebase/implementation-details/goals-quests.md#instant-indirect-achievements).
 
 ### Parameters
 
@@ -215,7 +215,7 @@ None.
 | `results.outOfHuman` | String | A user friendly format for what this goal was out of. |
 
 !!! info
-	For more info on `progress`/`outOf`, see [Goals](../../tachi-server/implementation-details/goals-quests.md#evaluating-a-users-progress).
+	For more info on `progress`/`outOf`, see [Goals](../../codebase/implementation-details/goals-quests.md#evaluating-a-users-progress).
 
 ### Example
 

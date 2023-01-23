@@ -20,12 +20,12 @@ appropriate way to send files.
 
 | Property | Type | Description |
 | :: | :: | :: |
-| `importType` | String | The ImportType this import is for. This only accepts `file/` [ImportTypes](../../tachi-server/import/import-types.md). |
+| `importType` | String | The ImportType this import is for. This only accepts `file/` [ImportTypes](../../codebase/import/import-types.md). |
 | `scoreData` | File | The file to import scores from. |
 
 | HTTP Header | Description |
 | :: | :: |
-| `X-User-Intent` (optional) | If this header is "true", the request is assumed to have been sent with 'User Intent'. For more on this, see [Import Types](../../tachi-server/import/import-types.md) |
+| `X-User-Intent` (optional) | If this header is "true", the request is assumed to have been sent with 'User Intent'. For more on this, see [Import Types](../../codebase/import/import-types.md) |
 
 !!! info
 	It's the responsibility of the API user to use the X-User-Intent
@@ -174,7 +174,7 @@ See previous example.
 `POST /api/v1/import/orphans`
 
 
-This endpoint goes through all of the requesting user's [Orphanned Scores](../../tachi-server/import/orphans.md) and attempts to find them a parent song & chart.
+This endpoint goes through all of the requesting user's [Orphanned Scores](../../codebase/import/orphans.md) and attempts to find them a parent song & chart.
 
 !!! note
 	Scores automatically attempt de-orphaning every day on Kamaitachi and Bokutachi,

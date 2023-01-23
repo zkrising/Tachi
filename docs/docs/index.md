@@ -26,11 +26,18 @@ This is the documentation for *all* of Tachi. It - like Tachi - is primarily mai
 person, and as such, some things may be slightly outdated, wrong, or generally just ill-maintained.
 
 !!! info
-	If you're confused about anything, ask in the `#dev` channel of your Tachi instance's discord!
+	If you're confused about anything, ask in your Tachi instance's discord!
 	We have a remarkably helpful community of developers and contributors, who should be able to help you out.
 
 Apologies in advance! If you find a problem in the documentation, you can freely contribute a fix
 to it. See the [Contribution Guide](./contributing)!
+
+## User Wiki
+
+This is for end user reference, such as score importing tutorials, documentation on tachi's
+statistics. It requires no programming knowledge, and is mostly used as a wiki-like reference.
+
+View it [here](./user).
 
 *****
 
@@ -38,6 +45,8 @@ to it. See the [Contribution Guide](./contributing)!
 
 These sections are for experienced programmers who want to see documentation on how
 Tachi's components work internally and externally.
+
+### Contributor Reference
 
 If you're looking to contribute to Tachi, check out the [Contribution Guide](./contributing).
 
@@ -48,26 +57,12 @@ APIs and how they work.
 
 View it [here](./api).
 
-### Server Codebase Reference
+### Codebase Reference
 
-This is for people who want to work on `Tachi-Server`'s codebase.
-This contains things like the tools we use and the
-infrastructure that powers Tachi.
+This is for people who want further documentation for `Tachi`'s codebase.
+This is mainly full of high-level architectural documentation.
 
-View it [here](./tachi-server).
-
-### Bot Codebase Reference
-
-This is for people who want to work on the `Tachi-Bot`.
-
-View it [here](./tachi-bot).
-
-### Wiki
-
-This is for end user reference, such as score importing tutorials, documentation on tachi's
-statistics. It requires no programming knowledge, and is mostly used as a wiki-like reference.
-
-View it [here](./user).
+View it [here](./codebase).
 
 ## Acknowledgements
 

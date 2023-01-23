@@ -1,6 +1,12 @@
 import { NumericSOV } from "util/sorts";
 import { GPTClientImplementation } from "lib/types";
 import { COLOUR_SET, GPTStrings } from "tachi-common";
+import GitadoraJudgementCell from "components/tables/cells/GitadoraJudgementCell copy";
+import LampCell from "components/tables/cells/LampCell";
+import ScoreCell from "components/tables/cells/ScoreCell";
+import { GetEnumColour } from "lib/game-implementations";
+import React from "react";
+import RatingCell from "components/tables/cells/RatingCell";
 import { bg, bgc } from "./_util";
 
 const GITADORA_ENUM_COLOURS: GPTClientImplementation<
@@ -55,6 +61,25 @@ const GITADORA_COLOURS: GPTClientImplementation<GPTStrings["gitadora"]>["classCo
 	},
 };
 
+const GITADORACoreCells: GPTClientImplementation<GPTStrings["gitadora"]>["scoreCoreCells"] = ({
+	sc,
+}) => (
+	<>
+		<ScoreCell
+			colour={GetEnumColour(sc, "grade")}
+			grade={sc.scoreData.grade}
+			percent={sc.scoreData.percent}
+		/>
+		<GitadoraJudgementCell score={sc} />
+		<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
+	</>
+);
+
+const GITADORARatingCell: GPTClientImplementation<GPTStrings["gitadora"]>["ratingCell"] = ({
+	sc,
+	rating,
+}) => <RatingCell score={sc} rating={rating} />;
+
 export const GITADORA_GITA_IMPL: GPTClientImplementation<"gitadora:Gita"> = {
 	enumIcons: {
 		grade: "sort-alpha-up",
@@ -74,6 +99,8 @@ export const GITADORA_GITA_IMPL: GPTClientImplementation<"gitadora:Gita"> = {
 	ratingSystems: [],
 	scoreHeaders: GITADORA_HEADERS,
 	classColours: GITADORA_COLOURS,
+	scoreCoreCells: GITADORACoreCells,
+	ratingCell: GITADORARatingCell,
 };
 
 export const GITADORA_DORA_IMPL: GPTClientImplementation<"gitadora:Dora"> = {
@@ -91,4 +118,6 @@ export const GITADORA_DORA_IMPL: GPTClientImplementation<"gitadora:Dora"> = {
 	ratingSystems: [],
 	scoreHeaders: GITADORA_HEADERS,
 	classColours: GITADORA_COLOURS,
+	scoreCoreCells: GITADORACoreCells,
+	ratingCell: GITADORARatingCell,
 };

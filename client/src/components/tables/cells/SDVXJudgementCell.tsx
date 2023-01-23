@@ -5,7 +5,9 @@ import { COLOUR_SET, PBScoreDocument, ScoreDocument } from "tachi-common";
 export default function SDVXJudgementCell({
 	score,
 }: {
-	score: ScoreDocument<"sdvx:Single"> | PBScoreDocument<"sdvx:Single">;
+	score:
+		| ScoreDocument<"sdvx:Single" | "usc:Controller" | "usc:Keyboard">
+		| PBScoreDocument<"sdvx:Single" | "usc:Controller" | "usc:Keyboard">;
 }) {
 	// even if we dont have judgement data, we know what they got.
 	if (score.scoreData.lamp === "PERFECT ULTIMATE CHAIN") {

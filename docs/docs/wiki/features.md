@@ -159,7 +159,7 @@ You can also select multiple, fixed charts.
 	
 	Get 95% on 2 of the following, FREEDOM DiVE, Elemental Creation, BRAIN POWER or Blue Zenith.
 
-Alternatively, you can set goals on folders.
+Alternatively, you can set goals on folders!
 
 !!! example
 	Full combo any chart in the Level 12 folder.
@@ -168,21 +168,12 @@ Alternatively, you can set goals on folders.
 
 	AAA 100 charts in the Level 12 folder.
 
-Or, remove the chart restriction entirely!
-
-!!! example
-	AAA any chart.
-
-	AAA 100 charts.
-
-	Full Combo Every Chart.
-
 ### Summary
 
 That's it for goals! As a quick summary:
 
-- Goals can be set for charts, folders, or anything!
-- You can set goals for lamps, scores, percents and grades.
+- Goals can be set for charts or folders!
+- You can set goals for any of the game's metrics (score, percent, etc.).
 - You can share your goals with other users, and see what your rivals have set!
 
 This is nice, but there's something missing...

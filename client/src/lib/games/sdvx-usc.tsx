@@ -1,9 +1,17 @@
 import { NumericSOV } from "util/sorts";
 import { GPTClientImplementation } from "lib/types";
 import { COLOUR_SET, GPTStrings } from "tachi-common";
+import MillionsScoreCell from "components/tables/cells/MillionsScoreCell";
+import SDVXJudgementCell from "components/tables/cells/SDVXJudgementCell";
+import SDVXLampCell from "components/tables/cells/SDVXLampCell";
+import { GetEnumColour } from "lib/game-implementations";
+import React from "react";
+import VF6Cell from "components/tables/cells/VF6Cell";
 import { CreateRatingSys, bg, bgc } from "./_util";
 
-const SDVXLIKE_ENUM_COLOURS: GPTClientImplementation<GPTStrings["usc" | "sdvx"]>["enumColours"] = {
+type SDVXLikes = GPTStrings["usc" | "sdvx"];
+
+const SDVXLIKE_ENUM_COLOURS: GPTClientImplementation<SDVXLikes>["enumColours"] = {
 	grade: {
 		D: COLOUR_SET.gray,
 		C: COLOUR_SET.red,
@@ -25,6 +33,22 @@ const SDVXLIKE_ENUM_COLOURS: GPTClientImplementation<GPTStrings["usc" | "sdvx"]>
 		"PERFECT ULTIMATE CHAIN": COLOUR_SET.gold,
 	},
 };
+
+const SDVXCoreCells: GPTClientImplementation<SDVXLikes>["scoreCoreCells"] = ({ sc, chart }) => (
+	<>
+		<MillionsScoreCell
+			score={sc.scoreData.score}
+			grade={sc.scoreData.grade}
+			colour={GetEnumColour(sc, "grade")}
+		/>
+		<SDVXJudgementCell score={sc} />
+		<SDVXLampCell score={sc} />
+	</>
+);
+
+const SDVXRatingCell: GPTClientImplementation<SDVXLikes>["ratingCell"] = ({ sc, chart }) => (
+	<VF6Cell score={sc} chart={chart} />
+);
 
 export const SDVX_IMPL: GPTClientImplementation<"sdvx:Single"> = {
 	enumColours: SDVXLIKE_ENUM_COLOURS,
@@ -115,6 +139,8 @@ export const SDVX_IMPL: GPTClientImplementation<"sdvx:Single"> = {
 		["Near - Miss", "Nr. Ms.", NumericSOV((x) => x?.scoreData.score)],
 		["Lamp", "Lamp", NumericSOV((x) => x?.scoreData.enumIndexes.lamp)],
 	],
+	scoreCoreCells: SDVXCoreCells,
+	ratingCell: SDVXRatingCell,
 };
 export const USC_IMPL: GPTClientImplementation<GPTStrings["usc"]> = {
 	enumColours: SDVXLIKE_ENUM_COLOURS,
@@ -137,4 +163,6 @@ export const USC_IMPL: GPTClientImplementation<GPTStrings["usc"]> = {
 	classColours: {
 		vfClass: SDVX_IMPL.classColours.vfClass,
 	},
+	scoreCoreCells: SDVXCoreCells,
+	ratingCell: SDVXRatingCell,
 };

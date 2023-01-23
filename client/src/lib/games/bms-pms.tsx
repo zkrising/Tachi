@@ -1,8 +1,13 @@
 import { IsNullish } from "util/misc";
 import { NumericSOV } from "util/sorts";
 import { GPTClientImplementation } from "lib/types";
-import { COLOUR_SET, GPTStrings } from "tachi-common";
+import { COLOUR_SET, GPTStrings, IIDXLIKE_GBOUNDARIES } from "tachi-common";
 import { FormatSieglindeBMS } from "tachi-common/config/game-support/bms";
+import BMSOrPMSLampCell from "components/tables/cells/BMSOrPMSLampCell";
+import DeltaCell from "components/tables/cells/DeltaCell";
+import ScoreCell from "components/tables/cells/ScoreCell";
+import React from "react";
+import RatingCell from "components/tables/cells/RatingCell";
 import { CreateRatingSys, bg } from "./_util";
 
 const BASE_IMPL: GPTClientImplementation<GPTStrings["bms" | "pms"]> = {
@@ -57,6 +62,34 @@ const BASE_IMPL: GPTClientImplementation<GPTStrings["bms" | "pms"]> = {
 		["Deltas", "Deltas", NumericSOV((x) => x.scoreData.percent)],
 		["Lamp", "Lamp", NumericSOV((x) => x.scoreData.enumIndexes.lamp)],
 	],
+	scoreCoreCells: ({ sc }) => (
+		<>
+			<ScoreCell
+				colour={
+					// @ts-expect-error lazy
+					GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(sc.game, sc.playtype)].enumColours
+						.grade[sc.scoreData.grade]
+				}
+				grade={sc.scoreData.grade}
+				percent={sc.scoreData.percent}
+				score={sc.scoreData.score}
+			/>
+			<DeltaCell
+				gradeBoundaries={IIDXLIKE_GBOUNDARIES}
+				value={sc.scoreData.percent}
+				grade={sc.scoreData.grade}
+				formatNumFn={(deltaPercent) => {
+					const max = Math.floor(sc.scoreData.score / (sc.scoreData.percent / 100));
+
+					const v = (deltaPercent / 100) * max;
+
+					return Math.floor(v).toFixed(0);
+				}}
+			/>
+			<BMSOrPMSLampCell score={sc} />
+		</>
+	),
+	ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 };
 
 export const BMS_7K_IMPL: GPTClientImplementation<"bms:7K"> = {

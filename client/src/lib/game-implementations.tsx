@@ -1,11 +1,27 @@
 import { NumericSOV } from "util/sorts";
+import { ChangeOpacity } from "util/color-opacity";
 import { COLOUR_SET, GPTString, GetGPTString, PBScoreDocument, ScoreDocument } from "tachi-common";
-import { GITADORA_DORA_IMPL, GITADORA_GITA_IMPL } from "./games/gitadora";
-import { SDVX_IMPL, USC_IMPL } from "./games/sdvx-usc";
-import { GPTClientImplementation } from "./types";
-import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
-import { BMS_14K_IMPL, BMS_7K_IMPL, PMS_IMPL } from "./games/bms-pms";
+import CHUNITHMJudgementCell from "components/tables/cells/CHUNITHMJudgementCell";
+import ITGJudgementCell from "components/tables/cells/ITGJudgementCell";
+import JubeatJudgementCell from "components/tables/cells/JubeatJudgementCell";
+import JubeatScoreCell from "components/tables/cells/JubeatScoreCell";
+import JubilityCell from "components/tables/cells/JubilityCell";
+import LampCell from "components/tables/cells/LampCell";
+import MaimaiDXJudgementCell from "components/tables/cells/MaimaiDXJudgementCell";
+import MillionsScoreCell from "components/tables/cells/MillionsScoreCell";
+import MusecaJudgementCell from "components/tables/cells/MusecaJudgementCell";
+import PopnJudgementCell from "components/tables/cells/PopnJudgementCell";
+import PopnLampCell from "components/tables/cells/PopnLampCell";
+import RatingCell from "components/tables/cells/RatingCell";
+import ScoreCell from "components/tables/cells/ScoreCell";
+import WaccaJudgementCell from "components/tables/cells/WACCAJudgementCell";
+import React from "react";
 import { CreateRatingSys, bg, bgc } from "./games/_util";
+import { BMS_14K_IMPL, BMS_7K_IMPL, PMS_IMPL } from "./games/bms-pms";
+import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
+import { GPTClientImplementation } from "./types";
+import { SDVX_IMPL, USC_IMPL } from "./games/sdvx-usc";
+import { GITADORA_DORA_IMPL, GITADORA_GITA_IMPL } from "./games/gitadora";
 
 type GPTClientImplementations = {
 	[GPT in GPTString]: GPTClientImplementation<GPT>;
@@ -69,6 +85,18 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			["Judgements", "Hits", NumericSOV((x) => x.scoreData.score)],
 			["Lamp", "Lamp", NumericSOV((x) => x.scoreData.enumIndexes.lamp)],
 		],
+		scoreCoreCells: ({ sc, chart }) => (
+			<>
+				<MillionsScoreCell
+					score={sc.scoreData.score}
+					grade={sc.scoreData.grade}
+					colour={GetEnumColour(sc, "grade")}
+				/>
+				<CHUNITHMJudgementCell score={sc} />
+				<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
+			</>
+		),
+		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"jubeat:Single": {
 		enumIcons: defaultEnumIcons,
@@ -119,6 +147,14 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			["Judgements", "Hits", NumericSOV((x) => x?.scoreData.score ?? -Infinity)],
 			["Lamp", "Lamp", NumericSOV((x) => x?.scoreData.enumIndexes.lamp ?? -Infinity)],
 		],
+		scoreCoreCells: ({ sc, chart }) => (
+			<>
+				<JubeatScoreCell sc={sc} />
+				<JubeatJudgementCell score={sc} />
+				<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
+			</>
+		),
+		ratingCell: ({ sc }) => <JubilityCell score={sc} />,
 	},
 	"maimaidx:Single": {
 		enumIcons: defaultEnumIcons,
@@ -210,6 +246,18 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			["Judgements", "Hits", NumericSOV((x) => x?.scoreData.percent)],
 			["Lamp", "Lamp", NumericSOV((x) => x?.scoreData.enumIndexes.lamp)],
 		],
+		scoreCoreCells: ({ sc }) => (
+			<>
+				<ScoreCell
+					colour={GetEnumColour(sc, "grade")}
+					grade={sc.scoreData.grade}
+					percent={sc.scoreData.percent}
+				/>
+				<MaimaiDXJudgementCell score={sc} />
+				<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
+			</>
+		),
+		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"museca:Single": {
 		enumIcons: defaultEnumIcons,
@@ -245,6 +293,18 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			["Near - Miss", "Nr. Ms.", NumericSOV((x) => x?.scoreData.score)],
 			["Lamp", "Lamp", NumericSOV((x) => x?.scoreData.enumIndexes.lamp)],
 		],
+		scoreCoreCells: ({ sc, chart }) => (
+			<>
+				<MillionsScoreCell
+					score={sc.scoreData.score}
+					grade={sc.scoreData.grade}
+					colour={GetEnumColour(sc, "grade")}
+				/>
+				<MusecaJudgementCell score={sc} />
+				<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
+			</>
+		),
+		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"popn:9B": {
 		enumIcons: {
@@ -308,6 +368,18 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			["Judgements", "Hits", NumericSOV((x) => x.scoreData.score)],
 			["Lamp", "Lamp", NumericSOV((x) => x.scoreData.enumIndexes.clearMedal)],
 		],
+		scoreCoreCells: ({ sc }) => (
+			<>
+				<MillionsScoreCell
+					score={sc.scoreData.score}
+					grade={sc.scoreData.grade}
+					colour={GetEnumColour(sc, "grade")}
+				/>
+				<PopnJudgementCell score={sc} />
+				<PopnLampCell score={sc} />
+			</>
+		),
+		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"wacca:Single": {
 		enumIcons: defaultEnumIcons,
@@ -376,6 +448,18 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			["Judgements", "Hits", NumericSOV((x) => x.scoreData.score)],
 			["Lamp", "Lamp", NumericSOV((x) => x.scoreData.enumIndexes.lamp)],
 		],
+		scoreCoreCells: ({ sc }) => (
+			<>
+				<MillionsScoreCell
+					score={sc.scoreData.score}
+					grade={sc.scoreData.grade}
+					colour={GetEnumColour(sc, "grade")}
+				/>
+				<WaccaJudgementCell score={sc} />
+				<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
+			</>
+		),
+		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"itg:Stamina": {
 		enumIcons: defaultEnumIcons,
@@ -418,6 +502,44 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			["Judgements", "Hits", NumericSOV((x) => x.scoreData.scorePercent)],
 			["Lamp", "Lamp", NumericSOV((x) => x.scoreData.enumIndexes.lamp)],
 		],
+		scoreCoreCells: ({ sc, chart }) => (
+			<>
+				<ScoreCell
+					colour={GetEnumColour(sc, "grade")}
+					grade={sc.scoreData.grade}
+					percent={sc.scoreData.scorePercent}
+				/>
+				<ITGJudgementCell score={sc} />
+				<td
+					style={{
+						backgroundColor: ChangeOpacity(GetEnumColour(sc, "lamp"), 0.2),
+					}}
+				>
+					{sc.scoreData.lamp === "FAILED" ? (
+						<strong>DIED @ {Math.floor(sc.scoreData.survivedPercent)}%</strong>
+					) : (
+						<strong>{sc.scoreData.lamp}</strong>
+					)}
+				</td>
+			</>
+		),
+		ratingCell: ({ sc, chart, rating }) => (
+			<>
+				{rating === "blockRating" ? (
+					<td>
+						<strong>
+							{chart.data.rankedLevel === null
+								? "Unranked Chart."
+								: sc.calculatedData.blockRating === null
+								? "Failed"
+								: sc.calculatedData.blockRating}
+						</strong>
+					</td>
+				) : (
+					<RatingCell score={sc} rating={rating} />
+				)}
+			</>
+		),
 	},
 	"gitadora:Dora": GITADORA_DORA_IMPL,
 	"gitadora:Gita": GITADORA_GITA_IMPL,

@@ -1,6 +1,6 @@
 # Config Endpoints
 
-These endpoints display certain properties about the Tachi [config file](../../tachi-server/setup/config.md).
+These endpoints display certain properties about the Tachi [config file](../../codebase/setup/config.md).
 
 *****
 

@@ -34,10 +34,6 @@ nav:
               - "contributing/components/documentation.md"
               - "contributing/components/seeds.md"
 
-          - Tooling Guides:
-              - "contributing/tools/terminal.md"
-              - "contributing/tools/vscode.md"
-
   - Wiki:
       - "wiki/index.md"
       - "wiki/rules.md"
@@ -99,7 +95,6 @@ nav:
       - Infrastructure:
           - "codebase/infrastructure/logging.md"
           - "codebase/infrastructure/branches.md"
-          - "codebase/infrastructure/versions.md"
           - "codebase/infrastructure/database-seeds.md"
 
       - OAuth2:

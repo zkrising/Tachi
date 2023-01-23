@@ -15,7 +15,7 @@ To properly contribute to the documentation, you'll need to know the following t
 
 If you know JavaScript, that will be helpful for the scripting sections when we go over how
 to batch-apply updates.
-However, we don't maintain a JS guide (yet). You'll have to ask in `#dev`!
+However, we don't maintain a JS guide (yet). You'll have to ask in the discord!
 
 If you don't know, or aren't comfortable with all of the things on this list, click on them to learn about them!
 
@@ -74,7 +74,7 @@ This is automatically ran when changes are sent to me, but you should run it you
 !!! info
 	Your changes won't be synced with the database if they fail the tests.
 
-	If you're confused about why tests are failing, ask in `#dev`.
+	If you're confused about why tests are failing, ask in the discord.
 
 ## Rerunners
 

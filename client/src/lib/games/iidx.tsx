@@ -1,6 +1,13 @@
 import { NumericSOV } from "util/sorts";
 import { GPTClientImplementation } from "lib/types";
-import { COLOUR_SET, GPTStrings } from "tachi-common";
+import { COLOUR_SET, GPTStrings, IIDXLIKE_GBOUNDARIES } from "tachi-common";
+import DeltaCell from "components/tables/cells/DeltaCell";
+import IIDXLampCell from "components/tables/cells/IIDXLampCell";
+import ScoreCell from "components/tables/cells/ScoreCell";
+import { GetEnumColour } from "lib/game-implementations";
+import React from "react";
+import BPICell from "components/tables/cells/BPICell";
+import RatingCell from "components/tables/cells/RatingCell";
 import { CreateRatingSys, bg, bgc } from "./_util";
 
 const IIDX_ENUM_COLOURS: GPTClientImplementation<GPTStrings["iidx"]>["enumColours"] = {
@@ -77,6 +84,47 @@ const IIDX_COLOURS: GPTClientImplementation<"iidx:SP" | "iidx:DP">["classColours
 	},
 };
 
+const IIDXCoreCells: GPTClientImplementation<GPTStrings["iidx"]>["scoreCoreCells"] = ({
+	sc,
+	chart,
+}) => (
+	<>
+		<ScoreCell
+			colour={GetEnumColour(sc, "grade")}
+			grade={sc.scoreData.grade}
+			percent={sc.scoreData.percent}
+			score={sc.scoreData.score}
+		/>
+		<DeltaCell
+			gradeBoundaries={IIDXLIKE_GBOUNDARIES}
+			value={sc.scoreData.percent}
+			grade={sc.scoreData.grade}
+			formatNumFn={(deltaPercent) => {
+				const max = Math.floor(sc.scoreData.score / (sc.scoreData.percent / 100));
+
+				const v = (deltaPercent / 100) * max;
+
+				return Math.floor(v).toFixed(0);
+			}}
+		/>
+		<IIDXLampCell sc={sc} chart={chart} />
+	</>
+);
+
+const IIDXRatingCell: GPTClientImplementation<GPTStrings["iidx"]>["ratingCell"] = ({
+	sc,
+	chart,
+	rating,
+}) => (
+	<>
+		{rating === "BPI" ? (
+			<BPICell chart={chart} score={sc} />
+		) : (
+			<RatingCell rating={rating} score={sc} />
+		)}
+	</>
+);
+
 export const IIDX_SP_IMPL: GPTClientImplementation<"iidx:SP"> = {
 	difficultyColours: IIDX_DIFF_COLOURS,
 	enumColours: IIDX_ENUM_COLOURS,
@@ -109,6 +157,8 @@ export const IIDX_SP_IMPL: GPTClientImplementation<"iidx:SP"> = {
 	],
 	scoreHeaders: IIDX_HEADERS,
 	classColours: IIDX_COLOURS,
+	scoreCoreCells: IIDXCoreCells,
+	ratingCell: IIDXRatingCell,
 };
 
 export const IIDX_DP_IMPL: GPTClientImplementation<"iidx:DP"> = {
@@ -128,4 +178,6 @@ export const IIDX_DP_IMPL: GPTClientImplementation<"iidx:DP"> = {
 	],
 	scoreHeaders: IIDX_HEADERS,
 	classColours: IIDX_COLOURS,
+	scoreCoreCells: IIDXCoreCells,
+	ratingCell: IIDXRatingCell,
 };

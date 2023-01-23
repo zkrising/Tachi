@@ -10,6 +10,7 @@ import {
 	GPTString,
 	PBScoreDocument,
 	ScoreDocument,
+	ScoreRatingAlgorithms,
 } from "tachi-common";
 import { ExtractEnumMetricNames, GetEnumValue } from "tachi-common/types/metrics";
 
@@ -86,4 +87,30 @@ export interface GPTClientImplementation<GPT extends GPTString = GPTString> {
 	 * What headers should be used when rendering scores in a table for this game?
 	 */
 	scoreHeaders: Array<Header<ScoreDocument<GPT> | PBScoreDocument<GPT>>>;
+
+	/**
+	 * How should we render the "core cells" for a score row in this game?
+	 *
+	 * This should render exactly the same amount of cells as there are headers.
+	 */
+	scoreCoreCells: (props: {
+		sc: ScoreDocument<GPT> | PBScoreDocument<GPT>;
+		chart: ChartDocument<GPT>;
+	}) => JSX.Element;
+
+	/**
+	 * How should we render the "rating cell" for a score row in this game?
+	 *
+	 * This is separate from the core cells as not all views in the client want to
+	 * necessarily display all four cells at once.
+	 *
+	 * You can use this to stylise certain things about your game's rating system, like
+	 * colouring in jubility with the appropriate colour, or indicating why a user
+	 * got 0 points on an unranked chart, etc..
+	 */
+	ratingCell: (props: {
+		sc: ScoreDocument<GPT> | PBScoreDocument<GPT>;
+		chart: ChartDocument<GPT>;
+		rating: ScoreRatingAlgorithms[GPT];
+	}) => JSX.Element;
 }

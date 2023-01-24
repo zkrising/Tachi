@@ -54,7 +54,7 @@ export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 		// actually possible.
 		// todo: come up with something better.
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-		const shortDiff = gptConfig.difficulties.difficultyShorthand[ch.difficulty];
+		const shortDiff = gptConfig.difficulties.shorthand[ch.difficulty];
 
 		// gitadora should always use short diffs. they just look better.
 		return `${shortDiff} ${chart.level}`;

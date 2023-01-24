@@ -2,15 +2,15 @@ import { UserProfileDropdown } from "components/layout/header/UserProfileDropdow
 import LinkButton from "components/util/LinkButton";
 import { UserContext } from "context/UserContext";
 import React, { useContext } from "react";
-import SearchBar from "./SearchBar";
 import { UserNotificationButton } from "./UserNotificationButton";
+import { SearchButton } from "./SearchButton";
 
 export function Topbar() {
 	const { user } = useContext(UserContext);
 
 	return (
 		<div className="topbar" style={{ minWidth: "35%" }}>
-			<SearchBar />
+			<SearchButton />
 
 			{user ? (
 				<>

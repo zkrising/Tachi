@@ -2,6 +2,8 @@ import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
+import { CreateSongMap, GetGPTString, SplitGPT } from "tachi-common";
+import { GetSongForIDGuaranteed } from "utils/db";
 import { EscapeStringRegexp } from "utils/misc";
 import { GetOnlineCutoff } from "utils/user";
 import type { FilterQuery } from "mongodb";
@@ -15,6 +17,8 @@ import type {
 	UserDocument,
 	SessionDocument,
 	SongDocument,
+	GPTString,
+	GPTStrings,
 } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
@@ -94,9 +98,69 @@ export async function SearchSpecificGameSongsAndCharts(
 		chartQuery.playtype = playtype;
 	}
 
-	const charts = (await db.anyCharts[game].find(chartQuery)) as Array<ChartDocument>;
+	const charts = (await db.anyCharts[game].find(chartQuery, { limit })) as Array<ChartDocument>;
 
 	return { songs, charts };
+}
+
+/**
+ * Search this Game/GPTs songs and charts, but globally.
+ */
+export async function SearchGlobalGameSongsAndCharts(
+	game: Game,
+	search: string,
+	playtype?: Playtype,
+	limit = 100
+): Promise<Array<{ song: SongDocument; chart: ChartDocument; playcount: integer }>> {
+	const songs = await SearchSpecificGameSongs(game, search, limit);
+
+	const chartQuery: FilterQuery<ChartDocument> = {
+		songID: { $in: songs.map((e) => e.id) },
+	};
+
+	if (playtype) {
+		chartQuery.playtype = playtype;
+	}
+
+	const charts = (await db.anyCharts[game].find(chartQuery, { limit })) as unknown as Array<
+		ChartDocument & { __playcount: integer }
+	>;
+
+	const playcounts: Array<{ _id: string; playcount: integer }> = await db.scores.aggregate([
+		{
+			$match: {
+				chartID: { $in: charts.map((e) => e.chartID) },
+			},
+		},
+		{
+			$group: {
+				_id: "$chartID",
+				playcount: { $sum: 1 },
+			},
+		},
+	]);
+
+	const playcountLookup = Object.fromEntries(playcounts.map((e) => [e._id, e.playcount]));
+	const songMap = CreateSongMap(songs);
+
+	const output = [];
+
+	for (const chart of charts) {
+		const song = songMap.get(chart.songID);
+
+		if (!song) {
+			logger.warn(`Failed to find parent song for ${chart.songID} (${game})? Skipping.`);
+			continue;
+		}
+
+		output.push({
+			song,
+			chart,
+			playcount: playcountLookup[chart.chartID] ?? 0,
+		});
+	}
+
+	return output;
 }
 
 export function SearchSessions(
@@ -184,68 +248,76 @@ export async function SearchGamesSongs(search: string, games: Array<Game>) {
 	return res.flat(1).sort((a, b) => b.__textScore - a.__textScore);
 }
 
-export async function SearchGamesSongsCharts(search: string, games: Array<Game>) {
+export async function SearchGamesSongsCharts(search: string, gpts: Array<GPTString>) {
 	const promises = [];
 
-	for (const game of games) {
+	const results: Partial<
+		Record<GPTString, Array<{ song: SongDocument; chart: ChartDocument; playcount: integer }>>
+	> = {};
+
+	for (const gpt of gpts) {
+		const [game, playtype] = SplitGPT(gpt);
+
 		promises.push(
-			SearchSpecificGameSongsAndCharts(game, search).then((e) => ({
-				game,
-				songs: e.songs,
-				charts: e.charts,
-			}))
+			SearchGlobalGameSongsAndCharts(game, search, playtype).then((res) => {
+				results[gpt] = res;
+			})
 		);
 	}
 
-	return Promise.all(promises);
+	await Promise.all(promises);
+
+	return results;
 }
 
 export async function SearchForChartHash(search: string) {
-	const results = (await Promise.all([
-		db.charts.bms.findOne({ $or: [{ "data.hashMD5": search }, { "data.hashSHA256": search }] }),
-		db.charts.pms.findOne({ $or: [{ "data.hashMD5": search }, { "data.hashSHA256": search }] }),
-		db.charts.usc.findOne({ "data.hashSHA1": search }),
-	])) as [ChartDocument | null, ChartDocument | null, ChartDocument | null];
+	const results = await Promise.all([
+		db.charts.bms.find({ $or: [{ "data.hashMD5": search }, { "data.hashSHA256": search }] }),
+		db.charts.pms.find({ $or: [{ "data.hashMD5": search }, { "data.hashSHA256": search }] }),
+		db.charts.usc.find({ "data.hashSHA1": search }),
+		db.charts.itg.find({ "data.hashGSv3": search }),
+	]);
 
-	const [bmsChart, pmsChart, uscChart] = results;
+	const [bmsCharts, pmsCharts, uscCharts, itgCharts] = results;
 
-	const songs = [];
-	const charts = results.filter((e) => e !== null) as Array<ChartDocument>;
+	const output: Record<
+		GPTStrings["bms" | "itg" | "pms" | "usc"],
+		Array<{
+			song: SongDocument;
+			chart: ChartDocument;
+			playcount: null;
+		}>
+	> = {
+		"bms:7K": [],
+		"bms:14K": [],
+		"pms:Controller": [],
+		"pms:Keyboard": [],
+		"usc:Controller": [],
+		"usc:Keyboard": [],
+		"itg:Stamina": [],
+	};
 
-	if (bmsChart) {
-		songs.push(
-			AddGamePropToSong(
-				(await db.songs.bms.findOne({
-					id: bmsChart.songID,
-				}))!,
-				"bms"
-			)
-		);
+	const zip = [
+		["bms", bmsCharts],
+		["pms", pmsCharts],
+		["itg", itgCharts],
+		["usc", uscCharts],
+	] as const;
+
+	for (const [game, charts] of zip) {
+		for (const chart of charts as Array<ChartDocument>) {
+			const song = await GetSongForIDGuaranteed(game, chart.songID);
+
+			// @ts-expect-error ts doesn't like this hack but it'll work.
+			output[`${game}:${chart.playtype}`]!.push({
+				song,
+				chart,
+				playcount: null,
+			});
+		}
 	}
 
-	if (pmsChart) {
-		songs.push(
-			AddGamePropToSong(
-				(await db.songs.pms.findOne({
-					id: pmsChart.songID,
-				}))!,
-				"pms"
-			)
-		);
-	}
-
-	if (uscChart) {
-		songs.push(
-			AddGamePropToSong(
-				(await db.songs.usc.findOne({
-					id: uscChart.songID,
-				}))!,
-				"usc"
-			)
-		);
-	}
-
-	return { songs, charts };
+	return output;
 }
 
 export function SearchFolders(

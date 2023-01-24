@@ -62,6 +62,10 @@ export function GetGPTString(game: Game, playtype: Playtype): GPTString {
 	return `${game}:${playtype}` as GPTString;
 }
 
+export function SplitGPT(gpt: GPTString) {
+	return gpt.split(":") as [Game, Playtype];
+}
+
 /**
  * Based on every declared playtype for every declared game, they all need a GPT
  * config. This controls almost everything about each GPT.

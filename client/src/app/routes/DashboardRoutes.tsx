@@ -11,6 +11,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { BackgroundContext } from "context/BackgroundContext";
 import NotificationsPage from "app/pages/dashboard/users/NotificationsPage";
+import SearchPage from "app/pages/dashboard/search/SearchPage";
 import { DashboardPage } from "../pages/dashboard/DashboardPage";
 import CreditsPage from "../pages/dashboard/misc/CreditsPage";
 import GameRoutes from "./GameRoutes";
@@ -72,6 +73,10 @@ export default function DashboardRoutes() {
 					{/* these routes */}
 					<Route exact path={["/", "/profiles", "/global-activity"]}>
 						<DashboardPage />
+					</Route>
+
+					<Route path="/search">
+						<SearchPage />
 					</Route>
 
 					<Route exact path="/privacy">

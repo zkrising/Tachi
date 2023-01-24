@@ -6,9 +6,9 @@ import type {
 	ImportDocument,
 	ImportTypes,
 	integer,
+	ProfileRatingAlgorithms,
 	ScoreDocument,
 	SongDocument,
-	ProfileRatingLookup,
 	UserGameStats,
 } from "tachi-common";
 
@@ -50,7 +50,7 @@ export interface UGPTStats<GPT extends GPTString = GPTString> {
 	firstScore: ScoreDocument;
 	mostRecentScore: ScoreDocument;
 	totalScores: integer;
-	rankingData: Record<ProfileRatingLookup[GPT], { ranking: integer; outOf: integer }>;
+	rankingData: Record<ProfileRatingAlgorithms[GPT], { ranking: integer; outOf: integer }>;
 }
 
 export interface ChartQueryReturns {

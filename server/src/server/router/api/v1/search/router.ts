@@ -7,10 +7,11 @@ import {
 	SearchUsersRegExp,
 } from "lib/search/search";
 import { TachiConfig } from "lib/setup/config";
+import { Game, GetGPTString, GetGameConfig } from "tachi-common";
 import { IsString } from "utils/misc";
 import { GetAllUserRivals, GetUserPlayedGPTs } from "utils/user";
 import type { FilterQuery } from "mongodb";
-import type { FolderDocument, Game, SongDocument, UserDocument, integer } from "tachi-common";
+import type { FolderDocument, GPTString, SongDocument, UserDocument, integer } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -32,7 +33,10 @@ router.get("/", async (req, res) => {
 	const userID = req[SYMBOL_TACHI_API_AUTH].userID;
 
 	let filter: FilterQuery<FolderDocument & SongDocument & UserDocument> = {};
-	let relevantGames: Array<Game> = TachiConfig.GAMES;
+
+	let relevantGPTs: Array<GPTString> = TachiConfig.GAMES.flatMap((g) =>
+		GetGameConfig(g).playtypes.map((pt) => GetGPTString(g, pt))
+	);
 
 	if (userID !== null) {
 		// if the requesting user exists, and they've set this param,
@@ -47,20 +51,15 @@ router.get("/", async (req, res) => {
 				playtype: { $in: gpts.map((e) => e.playtype) },
 			};
 
-			relevantGames = gpts.map((e) => e.game);
+			relevantGPTs = gpts.map((e) => GetGPTString(e.game, e.playtype));
 		}
 	}
 
-	const [users, songChartData, folders] = await Promise.all([
+	const [users, charts, folders] = await Promise.all([
 		SearchUsersRegExp(req.query.search),
-		SearchGamesSongsCharts(req.query.search, relevantGames),
+		SearchGamesSongsCharts(req.query.search, relevantGPTs),
 		SearchFolders(req.query.search, filter),
 	]);
-
-	const songs = songChartData.flatMap((e) => e.songs.map((song) => ({ game: e.game, ...song })));
-	const charts = songChartData.flatMap((e) =>
-		e.charts.map((chart) => ({ game: e.game, ...chart }))
-	);
 
 	// @ts-expect-error Handled below -- the field is added by the below for loop.
 	const usersWithRivalTag: Array<UserDocument & { __isRival: boolean }> = users;
@@ -80,7 +79,6 @@ router.get("/", async (req, res) => {
 		description: `Searched everything.`,
 		body: {
 			users,
-			songs,
 			charts,
 			folders,
 		},
@@ -90,9 +88,9 @@ router.get("/", async (req, res) => {
 /**
  * Search checksums for charts, instead of matching on song title.
  *
- * @param search - The hash to search on
+ * @param search - The hash to search on.
  *
- * @note This matches MD5 and SHA256 for BMS/PMS, and SHA1 for USC.
+ * @note This matches MD5 and SHA256 for BMS/PMS, GSv3 for ITG and SHA1 for USC.
  */
 router.get("/chart-hash", async (req, res) => {
 	if (!IsString(req.query.search)) {
@@ -102,13 +100,12 @@ router.get("/chart-hash", async (req, res) => {
 		});
 	}
 
-	const { songs, charts } = await SearchForChartHash(req.query.search);
+	const charts = await SearchForChartHash(req.query.search);
 
 	return res.status(200).json({
 		success: true,
 		description: `Searched for chart hash ${req.query.search}.`,
 		body: {
-			songs,
 			charts,
 		},
 	});

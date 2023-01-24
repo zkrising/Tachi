@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { SetState } from "types/react";
 import { UserNotificationButton } from "./UserNotificationButton";
+import { SearchButton } from "./SearchButton";
 
 export function HeaderMobile({
 	mobileShow,
@@ -28,6 +29,8 @@ export function HeaderMobile({
 				</div>
 
 				<div className="d-flex align-items-center">
+					<SearchButton />
+
 					{user ? (
 						<>
 							<UserNotificationButton user={user} />

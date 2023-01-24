@@ -1,24 +1,23 @@
 import { APIFetchV1, ToCDNURL } from "util/api";
 import Divider from "components/util/Divider";
+import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import useComponentVisible from "components/util/useComponentVisible";
-import { UserContext } from "context/UserContext";
 import { AllLUGPTStatsContext } from "context/AllLUGPTStatsContext";
+import { UserContext } from "context/UserContext";
+import { UserSettingsContext } from "context/UserSettingsContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useEffect } from "react";
+import { Button } from "react-bootstrap";
+import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { FormatGame, GetGameConfig, UserGameStats } from "tachi-common";
 import { SetState } from "types/react";
-import { UserSettingsContext } from "context/UserSettingsContext";
-import { Button } from "react-bootstrap";
-import Icon from "components/util/Icon";
-import toast from "react-hot-toast";
 import AllGames from "./AllGames";
 import ImportScoresLink from "./ImportScoresLink";
 import MenuDropdown from "./MenuDropdown";
 import MenuLink from "./MenuLink";
-import SearchBar from "./SearchBar";
 import UtilsDropdown from "./UtilsDropdown";
 
 export function HeaderMenu({
@@ -119,13 +118,6 @@ export function HeaderMenu({
 						</div>
 					</div>
 					<ul className="menu-nav">
-						<li className="menu-item d-block d-lg-none">
-							<div className="d-flex w-100 mb-8 px-4">
-								<SearchBar />
-							</div>
-							<Divider />
-						</li>
-
 						{user && ugs && ugs.length !== 0 && (
 							<MenuDropdown name="Your Profiles">{userProfileLinks}</MenuDropdown>
 						)}

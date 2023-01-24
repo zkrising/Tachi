@@ -72,9 +72,7 @@ GET /api/v1/games/iidx
 
 ```json
 {
-	"defaultPlaytype": "SP",
 	"name": "beatmania IIDX",
-	"internalName": "iidx",
 	"validPlaytypes": ["SP", "DP"],
 }
 ```

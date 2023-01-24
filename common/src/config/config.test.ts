@@ -10,10 +10,6 @@ t.test("#GetGameConfig", (t) => {
 		const conf = GetGameConfig(game);
 
 		t.not(conf, undefined, `'${game}' should have a config defined.`);
-		t.ok(
-			conf.playtypes.includes(conf.defaultPlaytype),
-			"Default playtype should be in the array of playtypes."
-		);
 	}
 
 	t.end();

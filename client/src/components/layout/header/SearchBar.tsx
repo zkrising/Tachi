@@ -139,7 +139,7 @@ function SearchResults({ results }: { results: SearchReturns }) {
 								link={`/games/${s.game}/${
 									GetGameConfig(s.game).playtypes.includes(playtype as Playtype)
 										? playtype
-										: GetGameConfig(s.game).defaultPlaytype
+										: GetGameConfig(s.game).playtypes[0]
 								}/songs/${s.id}`}
 								tabIndex={0}
 							>

@@ -45,12 +45,11 @@ export type SongDocumentData = {
 };
 
 /**
- * Configuration for the given game. This declares things like its user-facing name,
- * internal ID, defaultPlaytype and what playtypes it supports.
+ * Configuration for the given game. This declares things like its user-facing name
+ * and what playtypes it supports.
  */
 export interface GameConfig<G extends Game = Game> {
 	readonly name: string;
-	readonly defaultPlaytype: Playtypes[G];
 	readonly playtypes: ReadonlyArray<Playtypes[G]>;
 
 	/**

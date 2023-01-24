@@ -5,7 +5,6 @@ import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const ITG_CONF = {
-	defaultPlaytype: "Stamina",
 	name: "ITG",
 	playtypes: ["Stamina"],
 	songData: z.strictObject({

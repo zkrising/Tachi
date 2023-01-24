@@ -34,11 +34,19 @@ nav:
               - "contributing/components/documentation.md"
               - "contributing/components/seeds.md"
 
-      - Game Support:
-          - "game-support/common-config.md"
+      - Supporting New Games:
+          - "game-support/index.md"
+
+          - Common Config:
+            - "game-support/common-config/index.md"
+            - "game-support/common-config/metrics.md"
+            - "game-support/common-config/metric-groups.md"
+            - "game-support/common-config/match-types.md"
+            - "game-support/common-config/versions.md"
+
           - "game-support/server-impl.md"
           - "game-support/client-impl.md"
-          - "game-support/database-seeds.md"
+
           - Game Information:
             - "game-support/games/iidx-SP.md"
             - "game-support/games/iidx-DP.md"
@@ -68,16 +76,6 @@ nav:
       - "wiki/filter-directives.md"
       - "wiki/lamps.md"
       - "wiki/score-oddities.md"
-
-  - Documents:
-      - "schemas/index.md"
-      - "schemas/user.md"
-      - "schemas/session.md"
-      - "schemas/score.md"
-      - "schemas/song.md"
-      - "schemas/chart.md"
-      - "schemas/goal.md"
-      - "schemas/goal-sub.md"
 
   - API Reference:
       - "api/index.md"

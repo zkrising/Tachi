@@ -1,13 +1,11 @@
-import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { BMS_7K_CONF } from "./bms";
-import { FmtScoreNoCommas, FmtPercent } from "../../utils/util";
+import { FmtPercent, FmtScoreNoCommas } from "../../utils/util";
 import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const PMS_CONF = {
-	defaultPlaytype: "Controller",
 	name: "PMS",
 	playtypes: ["Controller", "Keyboard"],
 	songData: z.strictObject({

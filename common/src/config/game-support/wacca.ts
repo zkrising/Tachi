@@ -6,7 +6,6 @@ import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const WACCA_CONF = {
-	defaultPlaytype: "Single",
 	name: "WACCA",
 	playtypes: ["Single"],
 	songData: z.strictObject({

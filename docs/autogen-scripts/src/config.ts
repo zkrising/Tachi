@@ -124,7 +124,7 @@ function createConfigDocumentation(game: Game, playtype: Playtype) {
 This game has the internal GPTString of \`${gptString}\`.
 
 !!! note
-	For information on what each section means, please see [Common Config](../../common-config.md).
+	For information on what each section means, please see [Common Config](../common-config/index.md).
 
 ## Metrics
 

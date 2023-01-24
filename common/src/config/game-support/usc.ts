@@ -7,7 +7,6 @@ import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const USC_CONF = {
-	defaultPlaytype: "Controller",
 	name: "USC",
 	playtypes: ["Controller", "Keyboard"],
 	songData: z.strictObject({}),

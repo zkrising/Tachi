@@ -6,7 +6,6 @@ import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const POPN_CONF = {
-	defaultPlaytype: "9B",
 	name: "pop'n music",
 	playtypes: ["9B"],
 	songData: z.strictObject({

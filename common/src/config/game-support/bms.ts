@@ -6,7 +6,6 @@ import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const BMS_CONF = {
-	defaultPlaytype: "7K",
 	name: "BMS",
 	playtypes: ["7K", "14K"],
 	songData: z.strictObject({

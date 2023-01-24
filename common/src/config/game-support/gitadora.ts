@@ -6,7 +6,6 @@ import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const GITADORA_CONF = {
-	defaultPlaytype: "Dora",
 	name: "GITADORA",
 	playtypes: ["Gita", "Dora"],
 	songData: z.strictObject({

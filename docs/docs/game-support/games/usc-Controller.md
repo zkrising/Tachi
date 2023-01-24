@@ -3,7 +3,7 @@
 This game has the internal GPTString of `usc:Controller`.
 
 !!! note
-	For information on what each section means, please see [Common Config](../../common-config.md).
+	For information on what each section means, please see [Common Config](../common-config/index.md).
 
 ## Metrics
 

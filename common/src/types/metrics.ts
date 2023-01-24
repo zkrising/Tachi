@@ -82,7 +82,6 @@ export interface ConfEnumScoreMetric<V extends string> {
 	type: "ENUM";
 	values: ReadonlyArray<V>;
 
-	// todo document this
 	minimumRelevantValue: V;
 }
 

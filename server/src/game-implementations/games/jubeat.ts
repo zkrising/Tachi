@@ -1,10 +1,4 @@
-import {
-	GoalFmtPercent,
-	GoalFmtScore,
-	GoalOutOfFmtPercent,
-	GoalOutOfFmtScore,
-	GradeGoalFormatter,
-} from "./_common";
+import { GoalFmtScore, GoalOutOfFmtScore, GradeGoalFormatter } from "./_common";
 import db from "external/mongo/db";
 import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileSumBestN } from "game-implementations/utils/profile-calc";

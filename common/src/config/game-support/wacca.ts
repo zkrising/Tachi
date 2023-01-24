@@ -6,7 +6,6 @@ import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const WACCA_CONF = {
-	defaultPlaytype: "Single",
 	name: "WACCA",
 	playtypes: ["Single"],
 	songData: z.strictObject({
@@ -48,11 +47,17 @@ export const WaccaColours = [
 
 export const WACCA_SINGLE_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", validate: p.isBetween(0, 1_000_000), formatter: FmtNum },
+		score: {
+			type: "INTEGER",
+			validate: p.isBetween(0, 1_000_000),
+			formatter: FmtNum,
+			description: "The score value. This is between 0 and 1 million.",
+		},
 		lamp: {
 			type: "ENUM",
 			values: ["FAILED", "CLEAR", "MISSLESS", "FULL COMBO", "ALL MARVELOUS"],
 			minimumRelevantValue: "CLEAR",
+			description: "The type of clear this score was.",
 		},
 	},
 
@@ -75,6 +80,7 @@ export const WACCA_SINGLE_CONF = {
 				"MASTER",
 			],
 			minimumRelevantValue: "S",
+			description: "The grade this score was.",
 		},
 	},
 

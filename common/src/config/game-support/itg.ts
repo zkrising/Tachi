@@ -5,7 +5,6 @@ import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const ITG_CONF = {
-	defaultPlaytype: "Stamina",
 	name: "ITG",
 	playtypes: ["Stamina"],
 	songData: z.strictObject({
@@ -15,18 +14,31 @@ export const ITG_CONF = {
 
 export const ITG_STAMINA_CONF = {
 	providedMetrics: {
-		scorePercent: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
+		scorePercent: {
+			type: "DECIMAL",
+			validate: p.isBetween(0, 100),
+			formatter: FmtPercent,
+			description:
+				"The % value this score was worth. This is a number between 0 and 100. Note that negative %s, although existing in ITG, are not supported.",
+		},
 
 		// How far through the chart did they get?
 		// 100 means they cleared.
 		// 50 means they got halfway through.
 		// 0 means they died instantly etc.
-		survivedPercent: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
+		survivedPercent: {
+			type: "DECIMAL",
+			validate: p.isBetween(0, 100),
+			formatter: FmtPercent,
+			description:
+				"How far this user survived through the chart. For clears, this should be 100, if the user got halfway through, this should be 50, etc.",
+		},
 
 		lamp: {
 			type: "ENUM",
 			values: ["FAILED", "CLEAR", "FULL COMBO", "FULL EXCELLENT COMBO", "QUAD", "QUINT"],
 			minimumRelevantValue: "FAILED", // lol, maybe this is stupid.
+			description: "The type of clear this user got.",
 		},
 	},
 
@@ -35,6 +47,8 @@ export const ITG_STAMINA_CONF = {
 			type: "ENUM",
 			values: ["F", "D", "C", "B", "A", "S", "★", "★★", "★★★", "★★★★"],
 			minimumRelevantValue: "A",
+			description:
+				"The grade this score was. Note that grades are capped at F if this was a fail.",
 		},
 
 		// todo please come up with a better name
@@ -60,11 +74,17 @@ export const ITG_STAMINA_CONF = {
 
 				return `Cleared with ${(v - 100).toFixed(2)}%`;
 			},
+			description:
+				"A combination of `survivedPercent` and `scorePercent`. This metric is `survivedPercent` if the player didn't clear the chart. Otherwise, it's their `scorePercent` + 100.",
 		},
 	},
 
 	optionalMetrics: {
-		lifebarHistory: { type: "GRAPH", validate: p.isBetween(0, 100) },
+		lifebarHistory: {
+			type: "GRAPH",
+			validate: p.isBetween(0, 100),
+			description: "A snapshot of how much life the player had throughout the chart.",
+		},
 	},
 
 	defaultMetric: "finalPercent",

@@ -1,12 +1,11 @@
-import { FAST_SLOW_MAXCOMBO } from "./_common";
-import { FmtScoreNoCommas, FmtPercent } from "../../utils/util";
+import { BMS_7K_CONF } from "./bms";
+import { FmtPercent, FmtScoreNoCommas } from "../../utils/util";
 import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const PMS_CONF = {
-	defaultPlaytype: "Controller",
 	name: "PMS",
 	playtypes: ["Controller", "Keyboard"],
 	songData: z.strictObject({
@@ -43,7 +42,13 @@ function FormatSieglindePMS(sgl: number): string {
 
 export const PMS_CONTROLLER_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", chartDependentMax: true, formatter: FmtScoreNoCommas },
+		score: {
+			type: "INTEGER",
+			chartDependentMax: true,
+			formatter: FmtScoreNoCommas,
+			description:
+				"EX Score. This should be between 0 and the maximum possible EX on this chart.",
+		},
 
 		lamp: {
 			type: "ENUM",
@@ -58,6 +63,7 @@ export const PMS_CONTROLLER_CONF = {
 				"FULL COMBO",
 			],
 			minimumRelevantValue: "EASY CLEAR",
+			description: "The type of clear this was.",
 		},
 	},
 
@@ -66,32 +72,26 @@ export const PMS_CONTROLLER_CONF = {
 			type: "ENUM",
 			values: ["F", "E", "D", "C", "B", "A", "AA", "AAA", "MAX-", "MAX"],
 			minimumRelevantValue: "A",
+			description:
+				"Grades as they are in IIDX. We also add MAX- (94.44...%) and MAX (100%) as their own grades for convenience.",
 		},
 
 		// if #RANDOM is to ever be supported, the user's percent would become
 		// a *mandatory* metric, as a chart's notecount can be completely unknown.
 		// However, supporting #RANDOM is an awful pain, so I don't really care.
-		percent: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
+		percent: {
+			type: "DECIMAL",
+			validate: p.isBetween(0, 100),
+			formatter: FmtPercent,
+			description: "EX Score divided by the maximum possible EX Score on this chart.",
+		},
 	},
 
 	defaultMetric: "percent",
 	preferredDefaultEnum: "lamp",
 
 	optionalMetrics: {
-		...FAST_SLOW_MAXCOMBO,
-		bp: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
-		gaugeHistory: { type: "GRAPH", validate: p.isBetween(0, 100) },
-		epg: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		egr: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		egd: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		ebd: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		epr: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		lpg: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		lgr: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		lgd: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		lbd: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
-		lpr: { type: "INTEGER", validate: p.isPositive, formatter: FmtScoreNoCommas },
+		...BMS_7K_CONF.optionalMetrics,
 	},
 
 	scoreRatingAlgs: {

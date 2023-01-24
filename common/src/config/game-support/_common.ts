@@ -21,7 +21,22 @@ import type { ConfScoreMetric } from "../../types/metrics";
  * as that necessitates that you either can't miss, or can't hit.
  */
 export const FAST_SLOW_MAXCOMBO = {
-	fast: { type: "INTEGER", validate: p.isPositiveInteger, formatter: FmtNum },
-	slow: { type: "INTEGER", validate: p.isPositiveInteger, formatter: FmtNum },
-	maxCombo: { type: "INTEGER", validate: p.isPositiveInteger, formatter: FmtNum },
+	fast: {
+		type: "INTEGER",
+		validate: p.isPositiveInteger,
+		formatter: FmtNum,
+		description: "The amount of mistakes in this score that were a result of hitting early.",
+	},
+	slow: {
+		type: "INTEGER",
+		validate: p.isPositiveInteger,
+		formatter: FmtNum,
+		description: "The amount of mistakes in this score that were a result of hitting late.",
+	},
+	maxCombo: {
+		type: "INTEGER",
+		validate: p.isPositiveInteger,
+		formatter: FmtNum,
+		description: "The largest combo in this score.",
+	},
 } as const satisfies Record<string, ConfScoreMetric>;

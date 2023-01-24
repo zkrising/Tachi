@@ -6,7 +6,6 @@ import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const SDVX_CONF = {
-	defaultPlaytype: "Single",
 	name: "SOUND VOLTEX",
 	playtypes: ["Single"],
 	songData: z.strictObject({
@@ -74,7 +73,12 @@ export const SDVXVFClasses = [
 
 export const SDVX_SINGLE_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", validate: p.isBetween(0, 10_000_000), formatter: FmtNum },
+		score: {
+			type: "INTEGER",
+			validate: p.isBetween(0, 10_000_000),
+			formatter: FmtNum,
+			description: "The score value. This is between 0 and 10 million.",
+		},
 		lamp: {
 			type: "ENUM",
 			values: [
@@ -85,6 +89,7 @@ export const SDVX_SINGLE_CONF = {
 				"PERFECT ULTIMATE CHAIN",
 			],
 			minimumRelevantValue: "CLEAR",
+			description: "The type of clear this was.",
 		},
 	},
 
@@ -93,6 +98,7 @@ export const SDVX_SINGLE_CONF = {
 			type: "ENUM",
 			values: ["D", "C", "B", "A", "A+", "AA", "AA+", "AAA", "AAA+", "S", "PUC"],
 			minimumRelevantValue: "A+",
+			description: "The grade this score was.",
 		},
 	},
 
@@ -107,10 +113,18 @@ export const SDVX_SINGLE_CONF = {
 			formatter: FmtNum,
 
 			// We want to track the best EXScore a user gets, but it is an optional
-			// metric.N
+			// metric.
 			partOfScoreID: true,
+
+			description:
+				"The EXScore value. This is part of the scoreID, and is optional -- this metric did not exist before SDVX6, and is still optional.",
 		},
-		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
+		gauge: {
+			type: "DECIMAL",
+			validate: p.isBetween(0, 100),
+			formatter: FmtPercent,
+			description: "The amount of life in the gauge at the end of this chart.",
+		},
 	},
 
 	scoreRatingAlgs: {

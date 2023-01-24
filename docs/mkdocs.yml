@@ -34,6 +34,39 @@ nav:
               - "contributing/components/documentation.md"
               - "contributing/components/seeds.md"
 
+      - Supporting New Games:
+          - "game-support/index.md"
+
+          - Common Config:
+            - "game-support/common-config/index.md"
+            - "game-support/common-config/metrics.md"
+            - "game-support/common-config/metric-groups.md"
+            - "game-support/common-config/match-types.md"
+            - "game-support/common-config/versions.md"
+
+          - "game-support/server-impl.md"
+          - "game-support/client-impl.md"
+
+          - Game Information:
+            - "game-support/games/iidx-SP.md"
+            - "game-support/games/iidx-DP.md"
+            - "game-support/games/museca-Single.md"
+            - "game-support/games/chunithm-Single.md"
+            - "game-support/games/bms-7K.md"
+            - "game-support/games/bms-14K.md"
+            - "game-support/games/gitadora-Gita.md"
+            - "game-support/games/gitadora-Dora.md"
+            - "game-support/games/jubeat-Single.md"
+            - "game-support/games/maimaidx-Single.md"
+            - "game-support/games/popn-9B.md"
+            - "game-support/games/sdvx-Single.md"
+            - "game-support/games/usc-Controller.md"
+            - "game-support/games/usc-Keyboard.md"
+            - "game-support/games/wacca-Single.md"
+            - "game-support/games/pms-Controller.md"
+            - "game-support/games/pms-Keyboard.md"
+            - "game-support/games/itg-Stamina.md"
+
   - Wiki:
       - "wiki/index.md"
       - "wiki/rules.md"
@@ -43,16 +76,6 @@ nav:
       - "wiki/filter-directives.md"
       - "wiki/lamps.md"
       - "wiki/score-oddities.md"
-
-  - Documents:
-      - "schemas/index.md"
-      - "schemas/user.md"
-      - "schemas/session.md"
-      - "schemas/score.md"
-      - "schemas/song.md"
-      - "schemas/chart.md"
-      - "schemas/goal.md"
-      - "schemas/goal-sub.md"
 
   - API Reference:
       - "api/index.md"

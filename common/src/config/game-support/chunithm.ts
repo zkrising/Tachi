@@ -6,7 +6,6 @@ import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const CHUNITHM_CONF = {
-	defaultPlaytype: "Single",
 	name: "CHUNITHM",
 	playtypes: ["Single"],
 	songData: z.strictObject({
@@ -30,11 +29,17 @@ export const CHUNITHMColours = [
 
 export const CHUNITHM_SINGLE_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", validate: p.isBetween(0, 1_010_000), formatter: FmtNum },
+		score: {
+			type: "INTEGER",
+			validate: p.isBetween(0, 1_010_000),
+			formatter: FmtNum,
+			description: "The score value. This is between 0 and 1.01 million.",
+		},
 		lamp: {
 			type: "ENUM",
 			values: ["FAILED", "CLEAR", "FULL COMBO", "ALL JUSTICE", "ALL JUSTICE CRITICAL"],
 			minimumRelevantValue: "CLEAR",
+			description: "The type of clear this was.",
 		},
 	},
 
@@ -43,6 +48,7 @@ export const CHUNITHM_SINGLE_CONF = {
 			type: "ENUM",
 			values: ["D", "C", "B", "BB", "BBB", "A", "AA", "AAA", "S", "SS", "SSS"],
 			minimumRelevantValue: "A",
+			description: "The grade this score was.",
 		},
 	},
 

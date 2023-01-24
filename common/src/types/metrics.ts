@@ -82,7 +82,6 @@ export interface ConfEnumScoreMetric<V extends string> {
 	type: "ENUM";
 	values: ReadonlyArray<V>;
 
-	// todo document this
 	minimumRelevantValue: V;
 }
 
@@ -106,12 +105,15 @@ export interface ConfNullableGraphScoreMetric {
 	size?: (v: number) => string | true;
 }
 
-export type ConfScoreMetric =
+export type ConfScoreMetric = {
+	description: string;
+} & (
 	| ConfDecimalScoreMetric
 	| ConfEnumScoreMetric<string>
 	| ConfGraphScoreMetric
 	| ConfIntegerScoreMetric
-	| ConfNullableGraphScoreMetric;
+	| ConfNullableGraphScoreMetric
+);
 
 /**
  * Given a Metric Type, turn it into its evaluated form. An IntegerScoreMetric

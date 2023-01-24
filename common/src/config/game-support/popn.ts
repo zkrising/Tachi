@@ -6,7 +6,6 @@ import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const POPN_CONF = {
-	defaultPlaytype: "9B",
 	name: "pop'n music",
 	playtypes: ["9B"],
 	songData: z.strictObject({
@@ -29,7 +28,12 @@ const PopnClasses = [
 
 export const POPN_9B_CONF = {
 	providedMetrics: {
-		score: { type: "INTEGER", validate: p.isBetween(0, 100_000), formatter: FmtNum },
+		score: {
+			type: "INTEGER",
+			validate: p.isBetween(0, 100_000),
+			formatter: FmtNum,
+			description: "The score value.",
+		},
 		clearMedal: {
 			type: "ENUM",
 			values: [
@@ -46,6 +50,7 @@ export const POPN_9B_CONF = {
 				"perfect",
 			],
 			minimumRelevantValue: "clearCircle",
+			description: "The clear medal for this score. This is a superset of lamps.",
 		},
 	},
 
@@ -58,11 +63,15 @@ export const POPN_9B_CONF = {
 			type: "ENUM",
 			values: ["FAILED", "EASY CLEAR", "CLEAR", "FULL COMBO", "PERFECT"],
 			minimumRelevantValue: "CLEAR",
+			description:
+				"The lamp for this score. This is a subset of clearMedals, and is - as a result - derived from them. We keep both around as lamps are better for grouping up scores.",
 		},
 		grade: {
 			type: "ENUM",
 			values: ["E", "D", "C", "B", "A", "AA", "AAA", "S"],
 			minimumRelevantValue: "A",
+			description:
+				"The grade this score was worth. Note that scores are capped at a grade of A if they are a fail, regardless of how good the score was.",
 		},
 	},
 
@@ -71,7 +80,13 @@ export const POPN_9B_CONF = {
 
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
-		gauge: { type: "DECIMAL", validate: p.isBetween(0, 100), formatter: FmtPercent },
+		gauge: {
+			type: "DECIMAL",
+			validate: p.isBetween(0, 100),
+			formatter: FmtPercent,
+			description:
+				"The gauge value this score had at the end. This is a value between 0 and 100.",
+		},
 	},
 
 	scoreRatingAlgs: {

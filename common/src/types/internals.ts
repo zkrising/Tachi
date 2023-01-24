@@ -70,6 +70,5 @@ export type INTERNAL_GAME_PT_CONFIG = Readonly<{
 export type INTERNAL_GAME_CONFIG<PT extends string = string> = Readonly<{
 	name: string;
 	playtypes: ReadonlyArray<PT>;
-	defaultPlaytype: PT;
 	songData: AnyZodObject;
 }>;

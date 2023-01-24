@@ -6,7 +6,6 @@ import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const MAIMAI_DX_CONF = {
-	defaultPlaytype: "Single",
 	name: "maimai DX",
 	playtypes: ["Single"],
 	songData: z.strictObject({
@@ -58,11 +57,18 @@ const MaimaiDXColours = [
 
 export const MAIMAI_DX_SINGLE_CONF = {
 	providedMetrics: {
-		percent: { type: "DECIMAL", validate: p.isBetween(0, 101), formatter: FmtPercent },
+		percent: {
+			type: "DECIMAL",
+			validate: p.isBetween(0, 101),
+			formatter: FmtPercent,
+			description:
+				"The percent this score was worth. Sometimes called 'rate' in game. This is between 0 and 101.",
+		},
 		lamp: {
 			type: "ENUM",
 			values: ["FAILED", "CLEAR", "FULL COMBO", "FULL COMBO+", "ALL PERFECT", "ALL PERFECT+"],
 			minimumRelevantValue: "CLEAR",
+			description: "The type of clear this score was.",
 		},
 	},
 
@@ -86,6 +92,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 				"SSS+",
 			],
 			minimumRelevantValue: "A",
+			description: "The grade this score was.",
 		},
 	},
 

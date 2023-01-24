@@ -1,0 +1,17 @@
+{
+	"name": "tachi-autogen-docs",
+	"private": true,
+	"version": "1.0.0",
+	"description": "Scripts for automatically generating Tachi documentation.",
+	"scripts": {},
+	"keywords": [],
+	"author": "zkldi",
+	"license": "MIT",
+	"engines": {
+		"node": ">= 16.0.0"
+	},
+	"dependencies": {
+		"commander": "^10.0.0",
+		"tachi-common": "workspace:../../common"
+	}
+}

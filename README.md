@@ -19,7 +19,7 @@ There are way more features that Tachi has, and you can read about all of them [
 
 ## Setup
 
-Check the [Documentation](https://docs-staging.bokutachi.xyz/contributing/setup) for how to set Tachi up.
+Check the [Documentation](https://docs.bokutachi.xyz/contributing/setup) for how to set Tachi up.
 
 You can then check the component-specific guides to see how to run those components and contribute back.
 

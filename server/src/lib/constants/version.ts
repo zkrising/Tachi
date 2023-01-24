@@ -9,14 +9,44 @@ import fs from "fs";
 import path from "path";
 
 // As is with all front-facing zkldi projects, the version names for tachi-server
-// are from an album I like.
-const SPIRIT_OF_EDEN = [
-	"The Rainbow",
-	"Eden",
-	"Desire",
-	"Inheritance",
-	"I Believe In You",
-	"Wealth",
+// are from an album I like. In this case, the al(bum is Portishead - Dummy.
+// The fact that this album is very similar to Mezzanine
+// - the album used for Kamaitachi v1 - is deliberate. :) - zkldi
+const PORTISHEAD_DUMMY = [
+	// v2.0.0
+	"Mysterons",
+
+	// v2.1.0
+	"Sour Times",
+
+	// v2.2.0
+	"Strangers",
+
+	// v2.3.0
+	"It Could Be Sweet",
+
+	// v2.4.0
+	"Wandering Star",
+
+	// v2.5.0
+	"It's a Fire",
+
+	// v2.6.0
+	"Numb",
+
+	// v2.7.0
+	"Roads",
+
+	// v2.8.0
+	"Pedestal",
+
+	// v2.9.0
+	"Biscuit",
+
+	// v2.10.0
+	"Glory Box",
+
+	// v2.11+ onwards are not expected to occur, but if they do, we'll figure something out.
 ];
 
 const logger = CreateLogCtx(__filename);
@@ -55,7 +85,7 @@ export const VERSION_INFO = {
 	minor: semverInfo?.minor ?? 0,
 	patch: semverInfo?.patch ?? 0,
 	commit,
-	name: SPIRIT_OF_EDEN[semverInfo?.minor ?? 0] ?? "No Version Name",
+	name: PORTISHEAD_DUMMY[semverInfo?.minor ?? 0] ?? "No Version Name",
 };
 
 export const VERSION_STR = semverInfo?.raw ?? "0.0.0-unknown";

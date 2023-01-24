@@ -124,6 +124,12 @@ export const IIDX_SP_CONF = {
 			description:
 				"A snapshot of the gauge percent throughout the chart. The values should be null from the point the user dies until the end of the chart.",
 		},
+		scoreHistory: {
+			type: "NULLABLE_GRAPH",
+			validate: p.isBetween(0, 100),
+			description:
+				"A snapshot of the user's ghost throughout the chart. The values may be null.",
+		},
 
 		// if "GSM" is enabled (via fervidex.dll) then all graphs
 		// are sent. we should store all of them.

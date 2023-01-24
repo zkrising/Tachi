@@ -74,6 +74,7 @@ export default defineConfig(() => {
 					data: {
 						VITE_CDN_URL: process.env.VITE_CDN_URL,
 						TACHI_NAME: process.env.TACHI_NAME ?? "Tachi",
+						VITE_ADDITIONAL_HEAD: process.env.VITE_GOATCOUNTER ? `<script data-goatcounter="${process.env.VITE_GOATCOUNTER}" async src="//gc.zgo.at/count.js"></script>` : ""
 					},
 				},
 			}),

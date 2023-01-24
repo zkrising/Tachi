@@ -47,13 +47,13 @@ export function FormatDifficulty(chart: ChartDocument, game: Game): string {
 			GetGPTString(game, chart.playtype) as GPTStrings["gitadora"]
 		);
 
-		// @ts-expect-error maybe this new config format was a mistake.
 		// it's complaining that since the dora config doesn't have shorthand for
 		// "BASS BASIC", this assignment may fail.
 		// it's technically correct, but in the worst way, since this isn't
 		// actually possible.
 		// todo: come up with something better.
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
+		// @ts-ignore this fails in my IDE but is fine in the compiler, can't use ts-expect-err here.
 		const shortDiff = gptConfig.difficulties.shorthand[ch.difficulty];
 
 		// gitadora should always use short diffs. they just look better.

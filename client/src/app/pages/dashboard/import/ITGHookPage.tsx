@@ -53,7 +53,7 @@ export default function ITGHookPage() {
 					Make sure you are playing on <b>ITG</b> mode. <b>FA+</b> mode is not supported
 					and will not work.
 					<br />
-					The FA+ window is built into ITG mode now.
+					The FA+ window is built into the ITG mode now.
 				</li>
 				<li>That's it! Your scores should now automatically import.</li>
 			</ol>

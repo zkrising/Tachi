@@ -53,6 +53,13 @@ export default function DifficultyCell({
 
 	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, chart.playtype)];
 
+	if (game === "iidx") {
+		// IIDX stuff should always be in the form SPA/SPL to save space.
+		// All players know what this means.
+		// eslint-disable-next-line no-param-reassign
+		alwaysShort = true;
+	}
+
 	return (
 		<td
 			style={{

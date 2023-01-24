@@ -1,4 +1,6 @@
 import { NumericSOV } from "util/sorts";
+import { ChangeOpacity } from "util/color-opacity";
+import { FormatMillions } from "util/misc";
 import { GPTClientImplementation } from "lib/types";
 import { COLOUR_SET, GPTStrings } from "tachi-common";
 import MillionsScoreCell from "components/tables/cells/MillionsScoreCell";
@@ -34,13 +36,35 @@ const SDVXLIKE_ENUM_COLOURS: GPTClientImplementation<SDVXLikes>["enumColours"] =
 	},
 };
 
-const SDVXCoreCells: GPTClientImplementation<SDVXLikes>["scoreCoreCells"] = ({ sc, chart }) => (
+const USCCoreCells: GPTClientImplementation<GPTStrings["usc"]>["scoreCoreCells"] = ({ sc }) => (
 	<>
 		<MillionsScoreCell
 			score={sc.scoreData.score}
 			grade={sc.scoreData.grade}
 			colour={GetEnumColour(sc, "grade")}
 		/>
+		<SDVXJudgementCell score={sc} />
+		<SDVXLampCell score={sc} />
+	</>
+);
+
+const SDVXCoreCells: GPTClientImplementation<"sdvx:Single">["scoreCoreCells"] = ({ sc }) => (
+	<>
+		<td
+			style={{
+				backgroundColor: ChangeOpacity(GetEnumColour(sc, "grade"), 0.2),
+			}}
+		>
+			<strong>{sc.scoreData.grade}</strong>
+			<br />
+			{FormatMillions(sc.scoreData.score)}
+			{sc.scoreData.optional.exScore && (
+				<>
+					<br />
+					[EX: {sc.scoreData.optional.exScore}]
+				</>
+			)}
+		</td>
 		<SDVXJudgementCell score={sc} />
 		<SDVXLampCell score={sc} />
 	</>
@@ -163,6 +187,6 @@ export const USC_IMPL: GPTClientImplementation<GPTStrings["usc"]> = {
 	classColours: {
 		vfClass: SDVX_IMPL.classColours.vfClass,
 	},
-	scoreCoreCells: SDVXCoreCells,
+	scoreCoreCells: USCCoreCells,
 	ratingCell: SDVXRatingCell,
 };

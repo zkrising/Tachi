@@ -1,6 +1,9 @@
 # Client Implementation
 
-As you probably can expect, the client implementation is entirely
+As you probably can expect, the client implementation is entirely frontend-related stuff.
+
+This includes things like how to render score tables for this GPT, and how to colour
+in enums.
 
 ## Where do Client Implementations go?
 

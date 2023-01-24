@@ -13,9 +13,6 @@ A metric definition looks like this:
 }
 ```
 
-!!! note
-	All metrics look like t
-
 ## Metric Types
 
 We're allowed 5 types of metrics:

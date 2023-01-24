@@ -14,11 +14,14 @@ Once you have written a config, go to `common/src/config/config.ts` and import i
 
 A game config is configuration for a game. Games in Tachi aren't actually the meaty part of support, instead, games form a kind of "group" for their playtypes.
 
-For example, in IIDX there are two kinds of playtypes - Single Play and Double Play. Although these are completely separate kinds of games (it wouldn't make sense to share scores between them).
+For example, in IIDX there are two kinds of playtypes - Single Play and Double Play. Although these are completely separate kinds of games (it wouldn't make sense to share scores between them), they do share songs.
 
 The game part - in this case `iidx` - defines things that are shared between all of its playtypes - things like what to call the game and what the song documents look like.
 
 Whereas the game + playtype (typically shortened to GPT) is the part that contains almost all of the actual configuration. This distinction will become more obvious when you see the difference in size between the two configs.
+
+!!! note
+	I picked the shorthand `GPT` before ChatGPT et. al. blew up. Ah well.
 
 ## Game Configurations
 
@@ -35,7 +38,18 @@ export const IIDX_CONF = {
 } as const satisfies INTERNAL_GAME_CONFIG;
 ```
 
-It's important to note that `game` in Tachi is pretty much *just* used to group related types of game that **share songs**. This is fairly common in arcade games, but for home games it's rare for things across playtypes to share songs.
+!!! note
+	`game` in Tachi is a bit of an unfortunate name. While - intuitively - most people
+	will think of the game as the important part, `game` in Tachi functions more like
+	a "grouping" of playtypes.
+
+	Our IIDX game contains two playtypes - SP and DP, these are implemented almost
+	entirely separately -- SP and DP could have entirely different calculations if they
+	wanted!
+
+	Things should be grouped together if the songs involved in the game can have
+	multiple charts across-playtypes. Since songs in IIDX can have SP and DP difficulties,
+	they share a `game`!
 
 ### `name`
 

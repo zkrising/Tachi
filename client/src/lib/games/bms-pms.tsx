@@ -8,6 +8,7 @@ import DeltaCell from "components/tables/cells/DeltaCell";
 import ScoreCell from "components/tables/cells/ScoreCell";
 import React from "react";
 import RatingCell from "components/tables/cells/RatingCell";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import { CreateRatingSys, bg } from "./_util";
 
 const BASE_IMPL: GPTClientImplementation<GPTStrings["bms" | "pms"]> = {

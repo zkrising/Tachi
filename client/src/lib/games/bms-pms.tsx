@@ -8,7 +8,7 @@ import DeltaCell from "components/tables/cells/DeltaCell";
 import ScoreCell from "components/tables/cells/ScoreCell";
 import React from "react";
 import RatingCell from "components/tables/cells/RatingCell";
-import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
+import { GPT_CLIENT_IMPLEMENTATIONS, GetEnumColour } from "lib/game-implementations";
 import { CreateRatingSys, bg } from "./_util";
 
 const BASE_IMPL: GPTClientImplementation<GPTStrings["bms" | "pms"]> = {
@@ -66,11 +66,7 @@ const BASE_IMPL: GPTClientImplementation<GPTStrings["bms" | "pms"]> = {
 	scoreCoreCells: ({ sc }) => (
 		<>
 			<ScoreCell
-				colour={
-					// @ts-expect-error lazy
-					GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(sc.game, sc.playtype)].enumColours
-						.grade[sc.scoreData.grade]
-				}
+				colour={GetEnumColour(sc, "grade")}
 				grade={sc.scoreData.grade}
 				percent={sc.scoreData.percent}
 				score={sc.scoreData.score}

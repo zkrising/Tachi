@@ -721,7 +721,8 @@ export async function EditGoal(oldGoal: GoalDocument, newGoal: GoalDocument) {
 		},
 		{
 			$set: { goalID: newGoalID },
-		}
+		},
+		{ multi: true }
 	);
 
 	// update any dangling quest references

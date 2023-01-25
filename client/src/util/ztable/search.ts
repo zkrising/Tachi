@@ -40,7 +40,7 @@ export interface Directive {
 
 export function ParseDirectives(search: string): Directive[] {
 	const parsedSearch = search.matchAll(
-		/([^ ]+)\s*(>=|<=|!=|==|>|<|~=|=)\s*("(?:\\"|[^"])+"|[^ ]+)/gu
+		/([a-zA-Z0-9]+)\s*(>=|<=|!=|==|>|<|~=|=)\s*("(?:\\"|[^"])+"|[^ ]+)/gu
 	);
 
 	const searchDirectives = [];

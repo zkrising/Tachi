@@ -66,7 +66,7 @@ export async function UpdateDPTiers() {
 					},
 					{
 						$set: {
-							"tierlistInfo.dp-tier": {
+							"data.dpTier": {
 								text: d[difficulty]!.toString(),
 								value: d[difficulty]!,
 								individualDifference: false,

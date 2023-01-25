@@ -139,10 +139,7 @@ router.get("/:playtype/sieglinde-charts", ValidatePlaytypeFromParamFor("bms"), a
 
 	const charts = await db.charts.bms.find({
 		playtype,
-		$or: [
-			{ "tierlistInfo.sgl-EC.value": { $gt: 0 } },
-			{ "tierlistInfo.sgl-HC.value": { $gt: 0 } },
-		],
+		$or: [{ "data.sglEC": { $gt: 0 } }, { "data.sglHC": { $gt: 0 } }],
 	});
 
 	const songs = await db.songs.bms.find({ id: { $in: charts.map((e) => e.songID) } });

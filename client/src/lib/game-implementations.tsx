@@ -144,7 +144,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		ratingSystems: [],
 		scoreHeaders: [
 			["Score", "Score", NumericSOV((x) => x?.scoreData.score ?? -Infinity)],
-			["Judgements", "Hits", NumericSOV((x) => x?.scoreData.score ?? -Infinity)],
+			["Judgements", "Hits", NumericSOV((x) => x?.scoreData.musicRate ?? -Infinity)],
 			["Lamp", "Lamp", NumericSOV((x) => x?.scoreData.enumIndexes.lamp ?? -Infinity)],
 		],
 		scoreCoreCells: ({ sc, chart }) => (

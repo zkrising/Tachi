@@ -12,7 +12,10 @@ export default function UserIcon({
 }: { user: UserDocument } & Partial<JustChildren> & Partial<GamePT>) {
 	return (
 		<div className="text-center p-8">
-			<ProfilePicture user={user} toGPT={`${game}/${playtype}`} />
+			<ProfilePicture
+				user={user}
+				toGPT={game && playtype ? `games/${game}/${playtype}` : undefined}
+			/>
 			<h4 className="mt-2">
 				<Link
 					className="gentle-link"

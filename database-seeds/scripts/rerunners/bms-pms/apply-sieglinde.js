@@ -65,12 +65,10 @@ for (const tableName of APPLICATION_ORDER) {
 				// patch stuff that falls out of bounds
 				if (maybeSgl.ec < 1) {
 					maybeSgl.ec = 1;
-					maybeSgl.ecStr = "☆1";
 				}
 
 				if (maybeSgl.hc < 1) {
 					maybeSgl.hc = 1;
-					maybeSgl.hcStr = "☆1";
 				}
 
 				// here's a bunch of stupid patches beacuse doing stats properly is for chumps
@@ -80,15 +78,12 @@ for (const tableName of APPLICATION_ORDER) {
 				// hand patch it out
 				if (maybeSgl.ec < 10) {
 					maybeSgl.hc = maybeSgl.ec;
-					maybeSgl.hcStr = maybeSgl.ecStr;
 				}
 
 				// all overjoy data is screwed, disable it for now.
 				if (maybeSgl.baseLevel.startsWith("★★")) {
 					maybeSgl.hc = 0;
-					maybeSgl.hcStr += "?";
 					maybeSgl.ec = 0;
-					maybeSgl.ecStr += "?";
 				}
 
 				// sl12 data is screwed, neuter it.
@@ -100,18 +95,8 @@ for (const tableName of APPLICATION_ORDER) {
 					maybeSgl.hcStr = fmtSgl(maybeSgl.hc);
 				}
 
-				chart.tierlistInfo = {
-					"sgl-EC": {
-						individualDifference: false,
-						text: maybeSgl.ecStr,
-						value: maybeSgl.ec,
-					},
-					"sgl-HC": {
-						individualDifference: false,
-						text: maybeSgl.hcStr,
-						value: maybeSgl.hc,
-					},
-				};
+				chart.data.sglEC = maybeSgl.ec;
+				chart.data.sglHC = maybeSgl.hc;
 			}
 		}
 

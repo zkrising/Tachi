@@ -49,7 +49,7 @@ export default function ITGHookPage() {
 					<strong style={{ fontSize: "1.15rem" }}>
 						Edit <code>HttpAllowHosts=*.groovestats.com</code> in{" "}
 						<code>Preferences.ini</code> to{" "}
-						<code>HttpAllowHosts=*.bokutachi.xyz,*.groovestats.com</code>
+						<code>HttpAllowHosts=*.bokutachi.xyz,bokutachi.xyz,*.groovestats.com</code>
 					</strong>
 				</li>
 				<li>

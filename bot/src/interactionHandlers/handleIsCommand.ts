@@ -26,8 +26,6 @@ export async function handleIsCommand(
 			throw new Error(`A command was requested that does not exist.`);
 		}
 
-		await interaction.deferReply();
-
 		logger.verbose(`Running ${command.info.name} interaction.`);
 		try {
 			const response = await command.exec(interaction, requestingUser);

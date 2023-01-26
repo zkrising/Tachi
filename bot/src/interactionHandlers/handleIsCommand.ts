@@ -26,34 +26,29 @@ export async function handleIsCommand(
 			throw new Error(`A command was requested that does not exist.`);
 		}
 
-		if (command) {
-			await interaction.deferReply();
+		await interaction.deferReply();
 
-			logger.verbose(`Running ${command.info.name} interaction.`);
-			try {
-				const response = await command.exec(interaction, requestingUser);
+		logger.verbose(`Running ${command.info.name} interaction.`);
+		try {
+			const response = await command.exec(interaction, requestingUser);
 
-				const method = interaction.replied ? "followUp" : "reply";
-
-				if (response instanceof MessageEmbed) {
-					await interaction[method]({ embeds: [response] });
-				} else if (response !== null) {
-					await interaction[method](response);
-				} else {
-					await interaction.reply({
-						content: "Done!",
-						ephemeral: true,
-					});
-				}
-			} catch (err) {
-				logger.error(`An error occured while executing a command.`, { command, err });
-
-				const method = interaction.replied ? "followUp" : "reply";
-
-				interaction[method](
-					"An error has occured while executing this command. This has been reported."
-				);
+			// eslint-disable-next-line cadence/no-instanceof
+			if (response instanceof MessageEmbed) {
+				await interaction.editReply({ embeds: [response] });
+			} else if (response !== null) {
+				await interaction.editReply(response);
+			} else {
+				await interaction.reply({
+					content: "Done!",
+					ephemeral: true,
+				});
 			}
+		} catch (err) {
+			logger.error(`An error occured while executing a command.`, { command, err });
+
+			void interaction.editReply(
+				"An error has occured while executing this command. This has been reported."
+			);
 		}
 	} catch (e) {
 		logger.error("Failed to handle isCommand interaction", { error: e });

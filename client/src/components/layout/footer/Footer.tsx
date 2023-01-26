@@ -33,7 +33,7 @@ export function Footer() {
 					<div className="order-2 order-md-1">
 						{/* is there a better way to do this? mt-md-3 is the intent */}
 						<ExternalLink
-							href="https://en.wikipedia.org/wiki/Spirit_of_Eden"
+							href="https://en.wikipedia.org/wiki/Dummy_(album)"
 							className="gentle-link"
 						>
 							{serverVersion}

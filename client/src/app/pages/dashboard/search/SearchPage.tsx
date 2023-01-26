@@ -190,7 +190,7 @@ function ChartView({
 			headers={[
 				["Chart", "Chart", (a, b) => CascadingRatingValue(game, a.chart, b.chart)],
 				["Song Title", "Song", StrSOV((x) => x.song.title)],
-				["Playcount", "Playcount", NumericSOV((x) => x.playcount)],
+				["Site Playcount", "Playcount", NumericSOV((x) => x.playcount)],
 			]}
 			searchFunctions={{
 				title: (x) => x.song.title,
@@ -199,7 +199,7 @@ function ChartView({
 				difficulty: (x) => x.chart.difficulty,
 				level: (x) => x.chart.levelNum,
 			}}
-			defaultSortMode="Playcount"
+			defaultSortMode="Site Playcount"
 			defaultReverseSort
 			rowFunction={(d) => (
 				<tr>

@@ -1,4 +1,3 @@
-import chart from "./commands/chart";
 import faq from "./commands/faq";
 import invite from "./commands/invite";
 import letmein from "./commands/letmein";
@@ -13,7 +12,6 @@ export const SLASH_COMMANDS: Map<string, SlashCommand> = new Map(
 		ping,
 		faq,
 		whois,
-		chart,
 	})
 );
 

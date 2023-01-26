@@ -2,7 +2,6 @@ import { BotConfig, ProcessEnv, ServerConfig } from "./config";
 import { LoggerLayers } from "./data/data";
 import { GetUserAndTokenForDiscordID } from "./database/queries";
 import { handleIsCommand } from "./interactionHandlers/handleIsCommand";
-import { handleIsSelectMenu } from "./interactionHandlers/handleIsSelectMenu";
 import { app } from "./server/server";
 import { RegisterSlashCommands } from "./slashCommands/register";
 import { CreateLayeredLogger } from "./utils/logger";
@@ -36,10 +35,6 @@ client.on("interactionCreate", async (interaction) => {
 
 		if (!requestingUser) {
 			return RequireUserAuth(interaction);
-		}
-
-		if (interaction.isSelectMenu()) {
-			return handleIsSelectMenu(interaction, requestingUser);
 		}
 
 		if (interaction.isCommand()) {

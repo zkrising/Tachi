@@ -3,7 +3,9 @@ import { GetQuestWithID, GetUserInfo } from "../utils/apiRequests";
 import { CreateEmbed } from "../utils/embeds";
 import logger from "../utils/logger";
 import { GetGameChannel } from "../utils/misc";
+import { BotConfig } from "config";
 import { GetGameConfig } from "tachi-common";
+import { PrependTachiUrl } from "utils/fetchTachi";
 import type { integer, WebhookEventQuestAchievedV1 } from "tachi-common";
 
 export async function HandleQuestAchievedV1(
@@ -29,9 +31,12 @@ export async function HandleQuestAchievedV1(
 	const gameConfig = GetGameConfig(game);
 	const shouldShowPlaytype = gameConfig.playtypes.length > 1 ? ` (${playtype})` : "";
 
-	const embed = CreateEmbed(userDoc.id).setTitle(
-		`${userDoc.username} just completed the ${quest.name}${shouldShowPlaytype} quest!`
-	);
+	const embed = CreateEmbed(userDoc.id)
+		.setThumbnail(PrependTachiUrl(`/users/${userDoc.id}/pfp`))
+		.setURL(`${BotConfig.TACHI_SERVER_LOCATION}/u/${userDoc.username}`)
+		.setTitle(
+			`${userDoc.username} just completed the ${quest.name}${shouldShowPlaytype} quest!`
+		);
 
 	await channel.send({ embeds: [embed] });
 

@@ -3,7 +3,9 @@ import { GetGoalWithID, GetUserInfo } from "../utils/apiRequests";
 import { CreateEmbed } from "../utils/embeds";
 import logger from "../utils/logger";
 import { GetGameChannel, Pluralise } from "../utils/misc";
+import { BotConfig } from "config";
 import { GetGameConfig } from "tachi-common";
+import { PrependTachiUrl } from "utils/fetchTachi";
 import type { GoalDocument, integer, WebhookEventGoalAchievedV1 } from "tachi-common";
 
 export async function HandleGoalAchievedV1(
@@ -45,6 +47,8 @@ export async function HandleGoalAchievedV1(
 				"goal"
 			)}!`
 		)
+		.setThumbnail(PrependTachiUrl(`/users/${userDoc.id}/pfp`))
+		.setURL(`${BotConfig.TACHI_SERVER_LOCATION}/u/${userDoc.username}`)
 		.addFields(
 			event.goals.map((e) => {
 				const goal = goalMap.get(e.goalID)!;

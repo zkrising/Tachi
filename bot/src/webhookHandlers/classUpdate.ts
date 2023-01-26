@@ -5,9 +5,15 @@ import { CreateEmbed } from "../utils/embeds";
 import { PrependTachiUrl } from "../utils/fetchTachi";
 import logger from "../utils/logger";
 import { FormatClass, GetGameChannel } from "../utils/misc";
-import { FormatGame, POPN_CLASSES, SDVX_VF_CLASSES } from "tachi-common";
-import type { Game, integer, Playtype, WebhookEventClassUpdateV1 } from "tachi-common";
-import type { AllClassSets } from "tachi-common/game-classes";
+import { FormatGame } from "tachi-common";
+import type {
+	Classes,
+	GPTString,
+	Game,
+	Playtype,
+	WebhookEventClassUpdateV1,
+	integer,
+} from "tachi-common";
 
 export async function HandleClassUpdateV1(
 	event: WebhookEventClassUpdateV1["content"]
@@ -73,27 +79,26 @@ export async function HandleClassUpdateV1(
 function ShouldRenderUpdate(
 	game: Game,
 	playtype: Playtype,
-	classSet: AllClassSets,
-	classValue: integer
+	classSet: Classes[GPTString],
+	classValue: string
 ) {
 	if (game === "sdvx" && classSet === "vfClass") {
-		return [
-			SDVX_VF_CLASSES.IMPERIAL_I,
-			SDVX_VF_CLASSES.IMPERIAL_II,
-			SDVX_VF_CLASSES.IMPERIAL_III,
-			SDVX_VF_CLASSES.IMPERIAL_IV,
-		].includes(classValue);
+		return ["IMPERIAL_I", "IMPERIAL_II", "IMPERIAL_III", "IMPERIAL_IV"].includes(classValue);
 	} else if (game === "popn" && classSet === "class") {
 		return [
 			// All of the other classes in pop'n can be trivially blitzed through.
-			POPN_CLASSES.GOD,
+			"GOD",
 		].includes(classValue);
 	}
 
 	return true;
 }
 
-function GetMinimumScores(game: Game, playtype: Playtype, classSet: AllClassSets): integer | null {
+function GetMinimumScores(
+	game: Game,
+	playtype: Playtype,
+	classSet: Classes[GPTString]
+): integer | null {
 	if (game === "chunithm") {
 		return 20;
 	} else if (game === "sdvx" && classSet === "vfClass") {

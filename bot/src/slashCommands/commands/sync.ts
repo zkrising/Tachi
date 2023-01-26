@@ -36,7 +36,7 @@ const command: SlashCommand = {
 		)
 		.toJSON(),
 	exec: async (interaction, requestingUser) => {
-		await interaction.reply(`Importing scores...`);
+		await interaction.editReply(`Importing scores...`);
 
 		const importType = interaction.options.getString("service", true);
 

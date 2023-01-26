@@ -11,6 +11,7 @@ import CommentContainer from "./CommentContainer";
 import JudgementTable from "./JudgementTable";
 import PBNote from "./PBNote";
 import ScoreEditButtons from "./ScoreEditButtons";
+import DeleteScoreBtn from "./DeleteScoreBtn";
 
 export function ScoreInfo({
 	score,
@@ -98,8 +99,8 @@ export default function DocumentComponent({
 	}, [comment]);
 
 	return (
-		<>
-			<div className="col-9">
+		<div className="w-100 h-100 mb-0 d-flex" style={{ gap: "10px" }}>
+			<div style={{ flex: 9 }}>
 				<div className="row h-100 justify-content-center">
 					{GraphComponent ? (
 						<GraphComponent chart={chart} score={score} />
@@ -146,10 +147,23 @@ export default function DocumentComponent({
 					)}
 				</div>
 			</div>
-			<div className="col-3 align-self-center">
-				<JudgementTable score={score} />
+			<div className="m-4" style={{ flex: 3 }}>
+				<div
+					className="h-100 d-flex"
+					style={{ flexDirection: "column", justifyContent: "space-between" }}
+				>
+					<div className="my-auto">
+						<JudgementTable score={score} />
+					</div>
+
+					{IsScore(score) && (
+						<div>
+							<DeleteScoreBtn score={score} />
+						</div>
+					)}
+				</div>
 			</div>
-		</>
+		</div>
 	);
 }
 

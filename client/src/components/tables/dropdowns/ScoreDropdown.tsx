@@ -5,11 +5,9 @@ import Loading from "components/util/Loading";
 import SelectButton from "components/util/SelectButton";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
-import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext, useReducer, useState } from "react";
 import {
 	ChartDocument,
-	GPTString,
 	PBScoreDocument,
 	ScoreDocument,
 	SongDocument,
@@ -22,7 +20,7 @@ import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { GPTDropdownSettings } from "./GPTDropdownSettings";
 import DocComponentCreator, { DocumentComponentType } from "./components/DocumentComponent";
 import DropdownStructure from "./components/DropdownStructure";
-import ManageScore from "./components/ManageScore";
+import DeleteScoreBtn from "./components/DeleteScoreBtn";
 import PBCompare from "./components/PBCompare";
 import PlayHistory from "./components/PlayHistory";
 import RivalCompare from "./components/RivalCompare";
@@ -124,7 +122,7 @@ export default function ScoreDropdown({
 	} else if (view === "vsPB") {
 		body = <PBCompare data={data} DocComponent={DocComponent} scoreState={scoreState} />;
 	} else if (view === "manage") {
-		body = <ManageScore score={thisScore} />;
+		body = <DeleteScoreBtn score={thisScore} />;
 	} else if (view === "targets") {
 		if (currentUser) {
 			body = (

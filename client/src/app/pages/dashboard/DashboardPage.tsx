@@ -250,12 +250,20 @@ function DashboardNotLoggedIn() {
 				description={`${TachiConfig.name} implements the features rhythm gamers already talk about. Break your scores down into sessions, Showcase your best metrics on your profile, study your progress on folders - it's all there, and done for you!`}
 			/>
 			<Divider />
-			<div className="col-12 text-center" style={{ paddingTop: 50, height: 250 }}>
+			<div className="col-12 text-center" style={{ paddingTop: 50, paddingBottom: 50 }}>
 				Interested? You can register right now for <b>free</b>!
 				<br />
 				<LinkButton to="/register" className="mt-4 btn-outline-primary">
 					Register!
 				</LinkButton>
+			</div>
+			<Divider />
+			<div className="col-12 text-center" style={{ paddingTop: 25 }}>
+				Nosey? Here's what our users are up to.
+				<br />
+				<div style={{ fontSize: "1.0rem" }}>
+					<Activity url="/activity" />
+				</div>
 			</div>
 		</div>
 	);

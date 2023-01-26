@@ -20,28 +20,14 @@ export default function SilentHookPage() {
 			<h1 className="text-center my-4">Setup Instructions</h1>
 			<ol className="instructions-list">
 				<li>
-					Download <code>silent.dll</code> from{" "}
-					<ExternalLink href="https://cdn.discordapp.com/attachments/783119769649414166/1032859092982714428/silent.dll">
+					Download <code>silent</code> from{" "}
+					<ExternalLink href="https://cdn.discordapp.com/attachments/783119769649414166/1067870352291672064/Release.zip">
 						Here
 					</ExternalLink>
-					and place it in the same folder as <code>popn22.dll</code>.
-					<br />
-					<Muted>
-						The above download is for Kaimei Riddles. For Pop'n Peace, use{" "}
-						<ExternalLink href="https://cdn.discordapp.com/attachments/917508472625573888/938094517226192906/silent.dll">
-							this download
-						</ExternalLink>
-						.
-					</Muted>
-				</li>
-				<li>
-					Download <code>silent</code>'s dependencies from
-					<ExternalLink href="https://cdn.discordapp.com/attachments/683093664192266282/975761045568233513/aksjdfhg.7z">
-						Here.
-					</ExternalLink>
-					<br />
-					Put these files in the same folder as <code>silent.dll</code> and{" "}
+					and place all the <code>.dll</code> files in the same folder as{" "}
 					<code>popn22.dll</code>.
+					<br />
+					<Muted>The above download is for Kaimei Riddles.</Muted>
 				</li>
 				<li>
 					Download your config file to the same folder{" "}

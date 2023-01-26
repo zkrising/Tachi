@@ -9,6 +9,7 @@ import MarkFervidexAsWithoutIntent from "./migrations/mark-fervidex-as-without-i
 import MarkKsHookAsWithoutIntent from "./migrations/mark-kshook-as-without-intent";
 import NullLR2HookFailedBPs from "./migrations/null-lr2hook-failed-bps";
 import RemoveIIDXBeginners from "./migrations/remove-iidx-beginners";
+import RemoveIIDX2dxtraBeginners from "./migrations/remove-iidx-extra-beginners";
 import RemoveMultifolderStats from "./migrations/remove-multifolder-stats";
 import RemoveRandom from "./migrations/remove-random";
 import RemoveSessionViews from "./migrations/remove-session-views";
@@ -62,7 +63,8 @@ if (Environment.nodeEnv !== "test") {
 			JoinINFCastHourSongs,
 			MarkFervidexAsWithoutIntent,
 			MarkKsHookAsWithoutIntent,
-			KtRatingToCuratorSkill
+			KtRatingToCuratorSkill,
+			RemoveIIDX2dxtraBeginners
 		);
 	}
 

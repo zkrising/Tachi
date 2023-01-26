@@ -1,23 +1,18 @@
 import { BotConfig } from "../config";
 import _ from "lodash";
 import { DateTime } from "luxon";
-import { GenericFormatGradeDelta, GetGameConfig, GetGamePTConfig } from "tachi-common";
+import { GetGameConfig, GetGamePTConfig } from "tachi-common";
 import type { Client } from "discord.js";
 import type {
 	ChartDocument,
-	Game,
-	Grades,
 	GPTString,
-	integer,
-	PBScoreDocument,
-	Playtype,
-	Playtypes,
-	ScoreCalculatedDataLookup,
-	ScoreDocument,
-	SongDocument,
+	Game,
 	GameConfig,
+	Playtype,
+	integer,
+	Classes,
 } from "tachi-common";
-import type { Classes } from "tachi-common/game-classes";
+import type { ClassInfo } from "tachi-common/types/game-config-utils";
 
 export function Sleep(ms: number) {
 	return new Promise<void>((resolve) => {
@@ -33,25 +28,6 @@ export function Pluralise(int: integer, str: string) {
 	}
 
 	return `${str}s`;
-}
-
-export function FormatScoreRating(
-	game: Game,
-	playtype: Playtype,
-	rating: ScoreCalculatedDataLookup[GPTString],
-	value: number | null | undefined
-) {
-	if (value === null || value === undefined) {
-		return "No Data.";
-	}
-
-	const formatter = GetGamePTConfig(game, playtype).scoreRatingAlgFormatters[rating];
-
-	if (!formatter) {
-		return value.toFixed(2);
-	}
-
-	return formatter(value);
 }
 
 /**
@@ -70,7 +46,7 @@ export function ParseGPT(str: string) {
 	// this is an interesting way of game checking noah
 	const gameConfig = GetGameConfig(game) as GameConfig | undefined;
 
-	if (!gameConfig || !gameConfig.playtypes.includes(playtype)) {
+	if (!gameConfig?.playtypes.includes(playtype)) {
 		throw new Error(`Invalid GPT Combination '${str}'.`);
 	}
 
@@ -97,11 +73,12 @@ export function FormatClass(
 	game: Game,
 	playtype: Playtype,
 	classSet: Classes[GPTString],
-	classValue: integer
+	classValue: string
 ) {
 	const gptConfig = GetGamePTConfig(game, playtype);
 
-	const classInfo = gptConfig.classHumanisedFormat[classSet][classValue];
+	// @ts-expect-error hacky access
+	const classInfo: ClassInfo = gptConfig.classes[classSet]?.find((k) => k.id === classValue);
 
 	if (!classInfo) {
 		throw new Error(
@@ -109,7 +86,7 @@ export function FormatClass(
 		);
 	}
 
-	return classInfo.display;
+	return classInfo.display as string;
 }
 
 /**
@@ -150,132 +127,6 @@ export function CreateChartLink(chart: ChartDocument, game: Game) {
 	}
 
 	return `${BotConfig.TACHI_SERVER_LOCATION}/games/${game}/${chart.playtype}/songs/${chart.songID}/${chart.chartID}`;
-}
-
-type ScOrPBDoc<GPT extends GPTString> = PBScoreDocument<GPT> | ScoreDocument<GPT>;
-
-export function FormatScoreData<GPT extends GPTString = GPTString>(score: ScOrPBDoc<GPT>) {
-	const game = score.game;
-
-	let lampStr: string = score.scoreData.lamp;
-	let scoreStr = `${score.scoreData.score.toLocaleString()} (${
-		score.scoreData.grade.string
-	}, ${score.scoreData.percent.toFixed(2)}%)`;
-
-	if (game === "iidx" || game === "bms" || game === "pms") {
-		const bp = (
-			score as ScOrPBDoc<
-				"bms:7K" | "bms:14K" | "iidx:DP" | "iidx:SP" | "pms:Controller" | "pms:Keyboard"
-			>
-		).scoreData.optional.bp;
-
-		lampStr = `${score.scoreData.lamp} (BP: ${bp ?? "No Data"})`;
-
-		const { lower, upper, closer } = GenericFormatGradeDelta(
-			game,
-			score.playtype,
-			score.scoreData.score,
-			score.scoreData.percent,
-			score.scoreData.grade.string
-		);
-
-		scoreStr = `${closer === "lower" ? lower : upper} (${
-			score.scoreData.score
-		}, ${score.scoreData.percent.toFixed(2)}%)`;
-	}
-
-	return { lampStr, scoreStr };
-}
-
-/**
- * Util for getting a games' grade for a given percent.
- */
-function GetGradeFromPercent<GPT extends GPTString = GPTString>(
-	game: Game,
-	playtype: Playtype,
-	percent: number
-): Grades[GPT] {
-	const gptConfig = GetGamePTConfig(game, playtype);
-	const boundaries = gptConfig.gradeBoundaries;
-	const grades = gptConfig.grades;
-
-	if (!boundaries) {
-		throw new Error(
-			`Invalid call to GetGradeFromPercent! GPT ${game}:${playtype} does not use grade boundaries.`
-		);
-	}
-
-	// (hey, this for loop is backwards!)
-	for (let i = boundaries.length; i >= 0; i--) {
-		if (percent + Number.EPSILON >= boundaries[i]!) {
-			return grades[i] as Grades[GPT];
-		}
-	}
-
-	throw new Error(`Couldn't find grade for ${game}:${playtype} (${percent}%)`);
-}
-
-function FormatIIDXEXScore(exscore: integer, notecount: integer, playtype: Playtypes["iidx"]) {
-	const percent = (exscore * 100) / (notecount * 2);
-
-	const { closer, upper, lower } = GenericFormatGradeDelta(
-		"iidx",
-		playtype,
-		exscore,
-		percent,
-		GetGradeFromPercent("iidx", playtype, percent)
-	);
-
-	return `${closer === "lower" ? lower : upper} (${exscore}, ${percent.toFixed(2)}%)`;
-}
-
-export function GetChartPertinentInfo<GPT extends GPTString>(game: Game, chart: ChartDocument<GPT>) {
-	if (game === "iidx") {
-		const ch = chart as ChartDocument<"iidx:DP" | "iidx:SP">;
-
-		if (ch.data.kaidenAverage === null || ch.data.worldRecord === null) {
-			return null;
-		}
-
-		return `皆伝 Average: ${FormatIIDXEXScore(
-			ch.data.kaidenAverage,
-			ch.data.notecount,
-			ch.playtype
-		)}
-e-amusement WR: ${FormatIIDXEXScore(ch.data.worldRecord, ch.data.notecount, ch.playtype)}`;
-	}
-
-	return null;
-}
-
-export function FormatChartTierlistInfo(game: Game, chart: ChartDocument) {
-	const gptConfig = GetGamePTConfig(game, chart.playtype);
-
-	if (gptConfig.tierlists.length === 0) {
-		return null;
-	}
-
-	const fmts = [];
-
-	for (const tierlist of gptConfig.tierlists) {
-		const data = chart.tierlistInfo[tierlist];
-
-		if (!data) {
-			continue;
-		}
-
-		fmts.push(
-			`${tierlist}: ${data.text} (${data.value}${
-				data.individualDifference === true ? " ⚖️" : ""
-			})`
-		);
-	}
-
-	if (fmts.length === 0) {
-		return null;
-	}
-
-	return fmts.join("\n");
 }
 
 export function ConvertInputIntoGenerousRegex(input: string) {

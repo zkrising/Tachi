@@ -5,7 +5,7 @@ import type { LoggerLayers } from "../data/data";
 import type { MeiLogger } from "mei-logger";
 import type { SeqLogLevel } from "seq-logging";
 
-const logger = CreateLogger(`tachi-bot`, undefined, []);
+const transports: Array<any> = [];
 
 if (BotConfig.LOGGER?.SEQ_API_KEY && ProcessEnv.seqUrl) {
 	// Turns winston log levels into seq format.
@@ -23,7 +23,7 @@ if (BotConfig.LOGGER?.SEQ_API_KEY && ProcessEnv.seqUrl) {
 		debug: "Debug",
 	};
 
-	logger.transports.push(
+	transports.push(
 		new SeqTransport({
 			apiKey: BotConfig.LOGGER.SEQ_API_KEY,
 			serverUrl: ProcessEnv.seqUrl,
@@ -37,6 +37,8 @@ if (BotConfig.LOGGER?.SEQ_API_KEY && ProcessEnv.seqUrl) {
 		})
 	);
 }
+
+const logger = CreateLogger(`tachi-bot`, undefined, transports);
 
 export default logger;
 

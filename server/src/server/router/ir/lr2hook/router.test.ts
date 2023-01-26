@@ -98,7 +98,7 @@ t.test("POST /ir/lr2hook/import/course", (t) => {
 
 		t.equal(res.statusCode, 200);
 		t.equal(res.body.body.set, "genocideDan");
-		t.equal(res.body.body.value, 22);
+		t.equal(res.body.body.value, "OVERJOY");
 
 		const dbRes = await db["game-stats"].findOne({
 			userID: 1,
@@ -106,7 +106,7 @@ t.test("POST /ir/lr2hook/import/course", (t) => {
 			playtype: "7K",
 		});
 
-		t.equal(dbRes?.classes.genocideDan, 22);
+		t.equal(dbRes?.classes.genocideDan, "OVERJOY");
 
 		t.end();
 	});

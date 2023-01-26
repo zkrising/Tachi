@@ -36,9 +36,8 @@ export async function handleIsCommand(
 			} else if (response !== null) {
 				await interaction.editReply(response);
 			} else {
-				await interaction.reply({
+				await interaction.editReply({
 					content: "Done!",
-					ephemeral: true,
 				});
 			}
 		} catch (err) {

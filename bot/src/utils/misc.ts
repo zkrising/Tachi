@@ -116,6 +116,26 @@ export function GetGameChannel(client: Client, game: Game) {
 	return channel;
 }
 
+export function GetLimboChannel(client: Client) {
+	const limboCID = BotConfig.DISCORD.LIMBO_CHANNEL;
+
+	if (!limboCID) {
+		throw new Error(`Attempted to get channel for #limbo, but none was registered.`);
+	}
+
+	const channel = client.channels.cache.find((c) => c.id === limboCID);
+
+	if (!channel) {
+		throw new Error(`No channel with ID ${limboCID} is in the cache for this bot.`);
+	}
+
+	if (!channel.isText()) {
+		throw new Error(`Channel ${limboCID} is not a text channel. Can't send message.`);
+	}
+
+	return channel;
+}
+
 /**
  * Given a chart and a game, return a link to the site for that chart.
  */

@@ -13,7 +13,7 @@ COPY bot ./bot
 COPY common ./common
 COPY *.json *.yaml ./
 
-RUN pnpm --filter tachi-bot... --filter . install --offline --silent
+RUN pnpm --filter tachi-bot... --filter . install --offline --frozen-lockfile
 RUN pnpm --filter tachi-bot... -r build
 
 FROM base AS app

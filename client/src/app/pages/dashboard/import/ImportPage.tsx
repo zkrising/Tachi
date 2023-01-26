@@ -9,7 +9,7 @@ import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
@@ -26,6 +26,14 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 	useSetSubheader(["Import Scores"]);
 
 	const [game, setGame] = useState<Game | null>(null);
+
+	const queryGame = new URLSearchParams(window.location.search).get("game");
+
+	useEffect(() => {
+		if (queryGame) {
+			setGame(queryGame as Game);
+		}
+	}, [queryGame]);
 
 	return (
 		<div>
@@ -50,6 +58,7 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 			<select
 				className="form-control"
 				onChange={(e) => setGame(e.target.value === "" ? null : (e.target.value as Game))}
+				value={game}
 			>
 				<option value="">Please select a game.</option>
 				{TachiConfig.games.map((e) => (

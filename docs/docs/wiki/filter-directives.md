@@ -80,16 +80,6 @@ You can use multiple directives in one filter!
 
 `title==AA percent>50` - Find all scores on AA where the percent is greater than 50.
 
-!!! example
-	![](../images/advanced-search.png)
-	Here's me combining a lot of directives to find all the charts where I have:
-
-	- A server ranking lower than 10
-	- A BPI that is non-zero
-	- On a chart who's level is greater than 10.
-
-	Pretty powerful stuff!
-
 Multiple directives are separated by spaces. However, if you need to use a
 space inside a value, you should quote it, like this:
 

@@ -245,7 +245,11 @@ function TimelineMain({
 		songs: SongDocument[];
 		charts: ChartDocument[];
 	}>(
-		`/users/${reqUser.id}/games/${game}/${playtype}/folders/${folderID}/timeline?criteriaValue=${value}&criteriaType=${enumMetric}`
+		`/users/${
+			reqUser.id
+		}/games/${game}/${playtype}/folders/${folderID}/timeline?criteriaValue=${encodeURIComponent(
+			value
+		)}&criteriaType=${encodeURIComponent(enumMetric)}`
 	);
 
 	if (error) {

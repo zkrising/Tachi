@@ -145,11 +145,11 @@ export const POPN_9B_CONF = {
 	}),
 
 	scoreMeta: z.strictObject({
-		hiSpeed: z.number().optional(),
-		hidden: z.number().optional(),
-		sudden: z.number().optional(),
-		random: z.enum(["MIRROR", "NONRAN", "RANDOM", "S-RANDOM"]).optional(),
-		gauge: z.enum(["EASY", "NORMAL", "HARD", "DANGER"]).optional(),
+		hiSpeed: z.number().nullable().optional(),
+		hidden: z.number().nullable().optional(),
+		sudden: z.number().nullable().optional(),
+		random: z.enum(["MIRROR", "NONRAN", "RANDOM", "S-RANDOM"]).nullable().optional(),
+		gauge: z.enum(["EASY", "NORMAL", "HARD", "DANGER"]).nullable().optional(),
 	}),
 
 	preferences: z.strictObject({}),

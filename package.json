@@ -27,7 +27,7 @@
 	},
 	"homepage": "https://github.com/TNG-dev/Tachi#readme",
 	"devDependencies": {
-		"@types/node": "16.11.7",
+		"@types/node": "18.11.18",
 		"@types/tap": "15.0.3",
 		"@typescript-eslint/eslint-plugin": "5.47.1",
 		"@typescript-eslint/parser": "5.47.1",
@@ -47,7 +47,7 @@
 		"overrides": {
 			"@types/mongodb": "3.6.20",
 			"@types/bson": "1.0.11",
-			"@types/node": "16.11.7",
+			"@types/node": "18.11.18",
 			"@types/express-serve-static-core": "4.17.29",
 			"ts-node": "10.9.1"
 		},

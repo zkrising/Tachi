@@ -35,6 +35,7 @@ export interface BotConfig {
 		SERVER_ID: string;
 		GAME_CHANNELS: Partial<Record<Game, string>>;
 		ADMIN_USERS: Array<string>;
+		LIMBO_CHANNEL?: string;
 		APPROVED_ROLE?: string;
 	};
 	LOGGER?: {

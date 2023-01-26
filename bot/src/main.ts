@@ -7,6 +7,7 @@ import { RegisterSlashCommands } from "./slashCommands/register";
 import { CreateLayeredLogger } from "./utils/logger";
 import { VERSION_PRETTY } from "./version";
 import { Client, Intents } from "discord.js";
+import { GetLimboChannel } from "utils/misc";
 import type { CommandInteraction, SelectMenuInteraction } from "discord.js";
 
 const logger = CreateLayeredLogger(LoggerLayers.client);
@@ -16,11 +17,11 @@ export const client = new Client({
 });
 
 client.on("guildMemberAdd", async (member) => {
-	if (BotConfig.DISCORD.APPROVED_ROLE) {
-		const dmChannel = await member.createDM();
+	if (BotConfig.DISCORD.APPROVED_ROLE && BotConfig.DISCORD.LIMBO_CHANNEL) {
+		const channel = GetLimboChannel(client);
 
-		await dmChannel.send(
-			`Hello! If you already have an account in ${ServerConfig.name}, run \`/letmein\` in #limbo to be let in. Otherwise, ask for an invite in #limbo.`
+		await channel.send(
+			`Hello! If you already have an account on ${ServerConfig.name}, run \`/letmein\` in #limbo to be let in. Otherwise, ask for an invite in #limbo.`
 		);
 	}
 });

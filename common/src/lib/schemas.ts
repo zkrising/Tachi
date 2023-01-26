@@ -3,6 +3,7 @@
 // The schemas themselves are wrapped in functions that throw on error.
 
 import {
+	GetGPTString,
 	GetGameConfig,
 	GetGamePTConfig,
 	GetScoreMetrics,
@@ -292,9 +293,19 @@ const PRE_SCHEMAS = {
 
 			return true;
 		},
-		set: p.isIn("genocideDan", "stslDan", "lnDan", "scratchDan"),
+		set: (self, pa) => {
+			const parent = pa as any;
+			const config = GetGamePTConfig("bms", parent.playtype);
+
+			return p.isIn(Object.keys(config.classes))(self);
+		},
 		playtype: p.isIn("7K", "14K"),
-		value: p.isInteger,
+		value: (self, pa) => {
+			const parent = pa as any;
+			const config = GetGamePTConfig("bms", parent.playtype);
+
+			return p.isIn(config.classes[parent.set]?.values.map((e) => e.id) ?? [])(self);
+		},
 	}),
 	folders: prSchemaFnWrap({
 		title: "string",

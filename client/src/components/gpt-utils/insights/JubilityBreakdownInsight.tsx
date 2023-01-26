@@ -89,7 +89,12 @@ function Component({ game, playtype, reqUser }: UGPT) {
 	return (
 		<Row>
 			<Col xs={12}>
-				<Card header="Pick-Up">
+				<Card
+					header={`Pick-Up (${pickUpDataset.reduce(
+						(a, e) => a + (e.calculatedData.jubility ?? 0),
+						0
+					)})`}
+				>
 					<PBTable
 						game={game}
 						playtype={playtype}
@@ -100,7 +105,12 @@ function Component({ game, playtype, reqUser }: UGPT) {
 					/>
 				</Card>
 				<Divider />
-				<Card header="Others">
+				<Card
+					header={`Others (${normalDataset.reduce(
+						(a, e) => a + (e.calculatedData.jubility ?? 0),
+						0
+					)})`}
+				>
 					<PBTable
 						game={game}
 						playtype={playtype}

@@ -447,7 +447,7 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
 
 		const ugs = await db["game-stats"].findOne({ userID: 1, game: "bms", playtype: "7K" });
 
-		t.equal(ugs?.classes.genocideDan, 22, "Should set their dan to insane kaiden.");
+		t.equal(ugs?.classes.genocideDan, "OVERJOY", "Should set their dan to overjoy.");
 
 		t.end();
 	});

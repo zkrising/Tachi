@@ -17,12 +17,16 @@ export const client = new Client({
 });
 
 client.on("guildMemberAdd", async (member) => {
+	logger.info("New user joined.");
+
 	if (BotConfig.DISCORD.APPROVED_ROLE && BotConfig.DISCORD.LIMBO_CHANNEL) {
 		const channel = GetLimboChannel(client);
 
-		await channel.send(
+		const res = await channel.send(
 			`Hello! If you already have an account on ${ServerConfig.name}, run \`/letmein\` in #limbo to be let in. Otherwise, ask for an invite in #limbo.`
 		);
+
+		logger.info(res);
 	}
 });
 

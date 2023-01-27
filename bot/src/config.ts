@@ -92,6 +92,8 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 			// to them.
 			// if this is not set, no role will be assigned.
 			APPROVED_ROLE: "*string",
+
+			LIMBO_CHANNEL: "*string",
 		},
 		LOGGER: p.optional({
 			SEQ_API_KEY: "*string",

@@ -85,16 +85,21 @@ interface UserPatchBody {
 router.patch(
 	"/",
 	RequireSelfRequestFromUser,
-	prValidate({
-		about: p.optional(p.isBoundedString(0, 2000)),
-		status: optNullFluffStrField,
-		discord: optNullFluffStrField,
-		twitter: optNullFluffStrField,
-		github: optNullFluffStrField,
-		steam: optNullFluffStrField,
-		youtube: optNullFluffStrField,
-		twitch: optNullFluffStrField,
-	}),
+	prValidate(
+		{
+			about: p.optional(p.isBoundedString(0, 2000)),
+			status: optNullFluffStrField,
+			discord: optNullFluffStrField,
+			twitter: optNullFluffStrField,
+			github: optNullFluffStrField,
+			steam: optNullFluffStrField,
+			youtube: optNullFluffStrField,
+			twitch: optNullFluffStrField,
+		},
+		{
+			about: "Your about me is too long.",
+		}
+	),
 	async (req, res) => {
 		const user = GetUser(req);
 

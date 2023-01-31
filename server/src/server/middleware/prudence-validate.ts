@@ -10,11 +10,19 @@ import type {
 
 const logger = CreateLogCtx(__filename);
 
+export function TruncateString(string: string, len = 30) {
+	if (string.length < len) {
+		return string;
+	}
+
+	return `${string.substring(0, len - 3)}...`;
+}
+
 export const PrudenceErrorFormatter = (
 	message: string,
 	stringVal: string | null,
 	keychain: string | null
-) => `[${keychain}] ${message}${stringVal ? ` (Received ${stringVal})` : ""}`;
+) => `[${keychain}] ${message}${stringVal ? ` (Received ${TruncateString(stringVal, 100)})` : ""}`;
 
 const API_ERR_HANDLER =
 	(logLevel: TachiLogLevels): MiddlewareErrorHandler =>

@@ -121,6 +121,16 @@ function AboutMeCard({ reqUser }: Props) {
 						</ExternalLink>{" "}
 						here!
 					</Muted>
+					{content.length > 1900 && (
+						<>
+							<br />
+							<span
+								className={content.length >= 2000 ? "text-danger" : "text-warning"}
+							>
+								{content.length}/2000
+							</span>
+						</>
+					)}
 					<Divider className="mt-4 mb-4" />
 				</>
 			)}

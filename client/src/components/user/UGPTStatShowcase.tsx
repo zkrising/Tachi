@@ -326,6 +326,10 @@ export function FormatValue(
 		return "NOT PLAYED";
 	}
 
+	if (mode === "folder") {
+		return value;
+	}
+
 	if (conf.type === "ENUM") {
 		return conf.values[value];
 	} else if (conf.type === "DECIMAL" || conf.type === "INTEGER") {

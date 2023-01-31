@@ -320,7 +320,10 @@ function CriteriaValuePicker({
 					{conf.values
 						.slice(conf.values.indexOf(conf.minimumRelevantValue))
 						.map((e, i) => (
-							<option key={i} value={i}>
+							<option
+								key={i}
+								value={i + conf.values.indexOf(conf.minimumRelevantValue)}
+							>
 								{e}
 							</option>
 						))}

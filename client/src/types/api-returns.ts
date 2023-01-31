@@ -62,7 +62,7 @@ export interface GPTLeaderboard {
 export type UGPTPreferenceStatsReturn =
 	| {
 			stat: ShowcaseStatChart;
-			result: { value: number };
+			result: { value: number | null };
 			related: {
 				song: SongDocument;
 				chart: ChartDocument;

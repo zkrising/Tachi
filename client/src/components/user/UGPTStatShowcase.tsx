@@ -309,7 +309,7 @@ export function FormatValue(
 	playtype: Playtype,
 	mode: "folder" | "chart",
 	metric: string,
-	value: number
+	value: number | null
 ) {
 	if (mode === "chart" && metric === "playcount") {
 		return value;
@@ -320,6 +320,10 @@ export function FormatValue(
 
 	if (!conf) {
 		return "UNKNOWN METRIC";
+	}
+
+	if (value === null) {
+		return "NOT PLAYED";
 	}
 
 	if (conf.type === "ENUM") {

@@ -264,8 +264,8 @@ function StatDelta({
 	game,
 	playtype,
 }: {
-	v1: number;
-	v2?: number;
+	v1: number | null;
+	v2?: number | null;
 	mode: "folder" | "chart";
 	metric: string;
 	game: Game;
@@ -275,6 +275,11 @@ function StatDelta({
 		// @warn: This means things like BPI goals can go negative and spit nonsense
 		// eslint-disable-next-line no-param-reassign
 		v2 = 0;
+	}
+
+	if (v1 === null) {
+		// eslint-disable-next-line no-param-reassign
+		v1 = 0;
 	}
 
 	const formattedV2 = FormatValue(game, playtype, mode, property, v2);

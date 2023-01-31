@@ -20885,11 +20885,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "1",
 			"versions": "copious"
 		},
-		"folderID": "Fedd7416838e0de979d9da697d985346a10210a39ed2db0941347ba7806012cf5",
+		"folderID": "Fc0784a113cc997075ea210d7ce090a1dfab3f4b2b2a372a5f2450047a696b351",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -20899,11 +20905,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "1",
 			"versions": "festo"
 		},
-		"folderID": "F85d58fa2d5dd0af628ecd67e6a742d2d07b8d7dc72baeb35dedecd68472c57b7",
+		"folderID": "Fbe17de215244962c083398520ddb98f29478944c57712b9e5f9ed0dbc9a45541",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -20913,11 +20925,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "1",
 			"versions": "copious"
 		},
-		"folderID": "F3e0b06b9d579dc4cf50ba1d9a28c868d0e80649b1142d4418014e6fd3d764799",
+		"folderID": "Fac03f7b11915bf10f2a4289bbb5fda70140283061c9364e5a5a9ce5ebca86ebd",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -20927,11 +20945,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "1",
 			"versions": "festo"
 		},
-		"folderID": "F761a8099a3d537432f7d939c10025b3d0ca6813fd26e10acbcb557645d15ce0d",
+		"folderID": "F2cbdc30e472064793d0193ef22960f0c5f239b9e9efa240d742a42c245da4d35",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -20941,11 +20965,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "1",
 			"versions": "jubeat"
 		},
-		"folderID": "F7c0665b481a17f2a1ba5a3f1921da305f66a3cb3ce8033cd14e391d708880511",
+		"folderID": "Fc46391cd2177a8dd8f318f79ef5b95178412b4606f9ceaa8140858f1417fb089",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -20955,11 +20985,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "1",
 			"versions": "knit"
 		},
-		"folderID": "Fd8e7f72916dcc3febba276349ccacb228c6287d1ce79b6d462fe5fa6bf972b6d",
+		"folderID": "Fc8fcd5cfa79968038bff0dc40d6ca191520ee66711379a4a3ae0c47f4ee329ad",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -20969,11 +21005,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "1",
 			"versions": "prop"
 		},
-		"folderID": "F6fee009ae99634e4e8458fbdd508e39409d9e5284cff9ccc537f0880c483369f",
+		"folderID": "Fd3303d4bbc7972ec3d3849e8d3d8dfe9fdbd70791ceab19a3e71b5bfa0ec5203",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -20983,11 +21025,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "1",
 			"versions": "qubell"
 		},
-		"folderID": "Fe6eca44eb7688565d6dfbbd942866c1e1ad3569ca6c2a17c1e10f2ba207ca7e3",
+		"folderID": "Fec94ea50ef82303a8a85166026f410f7de64632ddf4adaf806851c2a794c1163",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -20997,11 +21045,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "1",
 			"versions": "ripples"
 		},
-		"folderID": "Fab14702f80bd3c6a359f67bb5f08e370a9cb3bba085e90869a0327b755f0d53d",
+		"folderID": "F95b208a86876daf8f1d1da63f98ebc7379796aa89bbf8f190baaa59c1082af75",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21011,11 +21065,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "1",
 			"versions": "saucer"
 		},
-		"folderID": "Fa950d9a516767641a261d62ccb2f365849ff11c12a5fe7eef7a1318f8777208e",
+		"folderID": "F369457c314ab8bae31ebf1f1b61cdbd5ccf690cd0ebc541b72efbb1f1ac8d803",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21025,11 +21085,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "1",
 			"versions": "jubeat"
 		},
-		"folderID": "F8deb6cad67c9f2f603a8142b3c0653091b992809a8a8d11132921b5afea7bb3c",
+		"folderID": "F4f78764233f3fac9585dc76f2aece8ce51d5b6728b8bec58b83adddfd0ec362b",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21039,11 +21105,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "1",
 			"versions": "knit"
 		},
-		"folderID": "Fd503bc4d12b6a851b94045a523d7c1485724df96e808e5e161de4792f4f78de2",
+		"folderID": "F8ba292905e2b3cefac3542da62c193c7e264b022e40a6abbe22c57cc0806d86a",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21053,11 +21125,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "1",
 			"versions": "prop"
 		},
-		"folderID": "Fc334926a1639f07748f517bf7851c01d3edaa844d779f0d769d89991e99d8cd0",
+		"folderID": "Fc74533fecaa88b797e197efa4d4fb9c6998acea07326fa272ad0f9871a1e611c",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21067,11 +21145,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "1",
 			"versions": "qubell"
 		},
-		"folderID": "F5597b8e01373f3ed99e7e65ab2cd73abc7dee912edf2bacd146c4e6957da271f",
+		"folderID": "F2de8189a350f94793379cf2007d4098bbff3572ca8f2ad9957efe47ecbce8c38",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21081,11 +21165,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "1",
 			"versions": "ripples"
 		},
-		"folderID": "Fe79456952064c62b4145b1dba1b887f79c5648547d94bc9fa45e6acbaa9b4bdd",
+		"folderID": "F6f815bd32f7e4ce62c7100bd49f1637a813a5de4458cb64630aa107e33ff1562",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21095,11 +21185,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "1",
 			"versions": "saucer"
 		},
-		"folderID": "F1cc0b61136302d8a52f042ca00dbf021ff836a60cf5e3bcc386553e14709faba",
+		"folderID": "Fb6e07361e854689fdd207ba44b35cc5d8a7b738f07e285202d82ee0ee7ad971a",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21109,11 +21205,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.0",
 			"versions": "festo"
 		},
-		"folderID": "F64f72e2f32d7ffe319091d2d608c519ed375d8923fca9304af7307882b457959",
+		"folderID": "Fb5c73b49dbd62343dde9f3b1850e798c1e4c117521788a0a4c4e3baa8ef87170",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21123,11 +21225,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.0",
 			"versions": "festo"
 		},
-		"folderID": "Fdaaefb6523caa029648f1f0d237f024da3f631f115569bfde129b739dd2b50ff",
+		"folderID": "F51a465409b26d1c700a99f06b10f6d1ac1a116ff733ec6aeaf11cb42f0519097",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21137,11 +21245,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.0",
 			"versions": "qubell"
 		},
-		"folderID": "F27815177696466ed771e1e8254143affd578719428955e6804e6df83783be2d7",
+		"folderID": "F1f091b003bf7bf48a6a136a1ff6766979ac5976bd4b533cf06630d6a265e513f",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21151,11 +21265,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.0",
 			"versions": "qubell"
 		},
-		"folderID": "F896456d42e285a3897f50dabc1bd382f60c7de09fdebb023a4a0e6eabb3cc086",
+		"folderID": "Fc1d8754193899290272e0a3fcecab6426ef952e647f20db403a10a1ceda890b6",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21165,14 +21285,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 10,
 				"~lt": 11
 			},
 			"versions": "copious"
 		},
-		"folderID": "F5409af75fd273f299cc55ed0e62edbc6306ceb9e9b22abba7c2818a1b27bfa77",
+		"folderID": "Fa586873ded00c8ccd79df99c6f257cfb42e349712ff51d7a829ea48e3dadc8d8",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21182,14 +21308,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 10,
 				"~lt": 11
 			},
 			"versions": "festo"
 		},
-		"folderID": "F7b7e67c640f6276c043a2e46bb622d290474d7d820da491bee518abeb978a41a",
+		"folderID": "Fe06b58eef982542a2caff985de0d07a0fe25ca3f883de0031e83a03f32311e9c",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21199,14 +21331,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 10,
 				"~lt": 11
 			},
 			"versions": "copious"
 		},
-		"folderID": "Fca020eab40ef43599359f98b92c629322d4d7910e6be58821b04c06a481cc441",
+		"folderID": "F3a684c28310008bc15e7dfe3dd39d08b3911934a40a3c16073dc05eaeca251e4",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21216,14 +21354,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 10,
 				"~lt": 11
 			},
 			"versions": "festo"
 		},
-		"folderID": "F9def652a6b557b41ea0b3c1f262cb73978e618ab46fd0d336b0578358c8473ec",
+		"folderID": "Fe178d04b7187e34d784be4c3bb03d5bad04d3934d3deceeaaaab2113934aad23",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21233,14 +21377,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 10,
 				"~lt": 11
 			},
 			"versions": "jubeat"
 		},
-		"folderID": "F91d984965db8ba6abdbb8f6a51cf4a66abeadd45df44544992cd6d727fee57aa",
+		"folderID": "Fb16f4a643a42b78a02f18956a58d2dab240a6cf22971d9164587fb6c68a70a40",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21250,14 +21400,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 10,
 				"~lt": 11
 			},
 			"versions": "knit"
 		},
-		"folderID": "Ffa7d711e2bc6727e60167b4b929a50a0bd317c259cf7ae096289972da0c56510",
+		"folderID": "Fcc556576cd6ab15025e1dde2072e770c8e02eac76264ec78c307423a4a32a445",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21267,14 +21423,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 10,
 				"~lt": 11
 			},
 			"versions": "prop"
 		},
-		"folderID": "Fda0c199ded7c4ff4ca10026b5bf30bd64910c9e882f0e06671f442d4b07c1b68",
+		"folderID": "F913d7347cec5e11b9b6e7de30ce128e7cf842d7b8dfc28a13d8f194e1113c8b5",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21284,14 +21446,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 10,
 				"~lt": 11
 			},
 			"versions": "qubell"
 		},
-		"folderID": "F8a63e5b8ff8a5843ef4f2da6472f6325042b1bf338b1e15d12f0e2550ca93501",
+		"folderID": "F50388d22e6f043c2222d45141997545092b1db693f49d129e8ffa236774cd786",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21301,14 +21469,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 10,
 				"~lt": 11
 			},
 			"versions": "ripples"
 		},
-		"folderID": "F5220e830d22f4af6bf9e425f231663b93ee2d64f500e5664a4fb8cf9c89198be",
+		"folderID": "F8365f59ed99a4a0520efae4ab4c23e2979a2207703fb89a758d400e0e761d47e",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21318,14 +21492,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 10,
 				"~lt": 11
 			},
 			"versions": "saucer"
 		},
-		"folderID": "F111f109b7f7aa6530ebb1355d364bf795dbe67fef87884e0faa935bb482b725a",
+		"folderID": "Fb285b4bedb613860a3607500257a7fa82be1d8a24450eae1dac0d34ab4057ad8",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21335,14 +21515,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 10,
 				"~lt": 11
 			},
 			"versions": "jubeat"
 		},
-		"folderID": "F72ccce7b9bd959ec56404da19e196ae26688e030f6df09a0be0b941410ed6939",
+		"folderID": "Fbd351b82a2dfdc1dc6595c200f1a2688e87129810f1ac5e05ffd244324ae408c",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21352,14 +21538,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 10,
 				"~lt": 11
 			},
 			"versions": "knit"
 		},
-		"folderID": "F16563703b20895cbb6a35af728086ad7307d63a957367c45aaa461debaa7fa60",
+		"folderID": "F98842550fd9304fa9e8d914bd52e33c7c1e7d7a1be40f0ecd90d2884a18a98b1",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21369,14 +21561,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 10,
 				"~lt": 11
 			},
 			"versions": "prop"
 		},
-		"folderID": "Fe70d52b55c0f3444d5389d6bc11a6052954970b073f8f3425b3bc8db5468341f",
+		"folderID": "F5a13d82b9fbafaa2f52f8500e39bf15f7fd3ecf3480a4defdee9319a60ff0ad9",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21386,14 +21584,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 10,
 				"~lt": 11
 			},
 			"versions": "qubell"
 		},
-		"folderID": "Fdf50d447333221c279fe2179b7cb36812cafc03b05626a7880f21e6b346bb6f7",
+		"folderID": "F66a95b3d1701c59ae48f2e9b15914897acefb2c82520d05b74185fe6b4cc2af5",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21403,14 +21607,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 10,
 				"~lt": 11
 			},
 			"versions": "ripples"
 		},
-		"folderID": "Fdb5d95dd1264de6e03b762a1b7d3068ec07198a65a0c349120440849b47b5df2",
+		"folderID": "Fea382bb10d81b78a7d47e133a0aa6088eaa5e7d6be49fa292118cf5fea242b68",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21420,14 +21630,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 10,
 				"~lt": 11
 			},
 			"versions": "saucer"
 		},
-		"folderID": "F5ac765bef509d073fbbc65ae82dd1c3427070a88c6f90d399d0de6c08f9e5f4e",
+		"folderID": "Fd12cb05f5adb353f4565a39f74b78a229fbcfd6d8165a6ff378421097a5f2027",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21437,11 +21653,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.1",
 			"versions": "festo"
 		},
-		"folderID": "F8c14c52f24c50e0c49a253c7b22b6f370307039ef5612b25ce6e4a5b94881961",
+		"folderID": "F06856442a2b6d156115822df63dd187d341b6dcd2eef93b7011f895615472eb8",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21451,11 +21673,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.1",
 			"versions": "festo"
 		},
-		"folderID": "Fff4f7d74aacca2db1b1e2c09fcf8df9aa5e295a563a76fe774c02602fc48a18d",
+		"folderID": "F3bd6380f4806ee03b8189d0f4d68758194079c188c6e2a140585f7290c3d8777",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21465,11 +21693,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.1",
 			"versions": "qubell"
 		},
-		"folderID": "Faf8e169b4b834733fb25d236fb0f4ad92af219cd0f42caf5cacf257ea5171ccc",
+		"folderID": "F83589b2c0d5bf385093111933614a27b38e2bb995f58a9d6b50405c5a17d0acb",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21479,11 +21713,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.1",
 			"versions": "qubell"
 		},
-		"folderID": "F4c397041db53903b22865b8c390eef02f73ede5255ce56579a73d0bd70c4f995",
+		"folderID": "Fc44f82f0a43fb32689de38e73ba84d4304817a7cc27669803e7e06a0e543870d",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21493,11 +21733,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.2",
 			"versions": "festo"
 		},
-		"folderID": "Fb72b72f95604ce66a7a7fb3b8a14848dad09291102307c4fef8dabf01209f0ef",
+		"folderID": "F105bd71727ce7620e09d142b857ecb3e062d9b166e0c75190bfe2676062256e5",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21507,11 +21753,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.2",
 			"versions": "festo"
 		},
-		"folderID": "Ff087b1829308ca0690d43d6dbbf091a18e18e5e7fb109c996fa51f08eaffa3c4",
+		"folderID": "Fa50adf1fb64febf1cd095642192fc2bc6d4a80cd75043e4f66161ff13809eb82",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21521,11 +21773,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.2",
 			"versions": "qubell"
 		},
-		"folderID": "F7b118b28476578326314a935d67be1fdd2ad39f23b8e4ff2b5021c706713028a",
+		"folderID": "Fb2b87ee897ab643ed793bef338cd9a3de3b701524adbb5dfb4584f0c67ed7d54",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21535,11 +21793,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.2",
 			"versions": "qubell"
 		},
-		"folderID": "Fdfcb195fb263ff6752d64dd733b3fae721e7f020160ea8de8620a7065f5a5b66",
+		"folderID": "F86500ffb456d1c905c5ba53083431645d041b1b71db1a61e04d3a9c1cb33ba5b",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21549,11 +21813,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.3",
 			"versions": "festo"
 		},
-		"folderID": "F1e7f46e1a8fc8cf439a24aabdc7eb5ba4c6b9afb927deac12f4cd683e4673303",
+		"folderID": "F2510c3b8477cdd84b59fd577a95f1728efb27cfe5f6842e724c550c24b16c66f",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21563,11 +21833,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.3",
 			"versions": "festo"
 		},
-		"folderID": "F4b42c08ca75ce8e6a34ee8d236eda3e2551c04b6157e55bf57a936be6bf9e694",
+		"folderID": "Ff8abcabebfaa8e9052c4118329f18584525037246a3f860eb67cf2bfef4a1c5a",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21577,11 +21853,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.3",
 			"versions": "qubell"
 		},
-		"folderID": "F7f48e642b63ac308dad6e90b465c609b9ac7cc3c41d68a41f4773e5d276b54c8",
+		"folderID": "F70510548a5d7e349f9cac277daf7d5ec1f503e4480893319165768cee55c6337",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21591,11 +21873,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.3",
 			"versions": "qubell"
 		},
-		"folderID": "F27a2a9846643e93056b6b9f156e22a1ed8a76438de0e01414bc1b6fa8a19850e",
+		"folderID": "Ff998355d774bb232769704233d5eafe9e11d6794ebca7741378cde304bb900bb",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21605,11 +21893,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.4",
 			"versions": "festo"
 		},
-		"folderID": "Ff67b382d50c55b7cf30e9ce0d7e3eedc4c1b0a7a5d65214f6db37c574275b345",
+		"folderID": "F2b877e83e8bdc0aec887c5dce44395f62cc726e2706efc737c6dd2b9066a29a2",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21619,11 +21913,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.4",
 			"versions": "festo"
 		},
-		"folderID": "F7321321189e0a021e3f2b9a959b5299869ce58c4b1398aeaa4332f90c60c5fdd",
+		"folderID": "F248a05df982af3e6b3b0c66a84cf87cf610c8c261f3dd6d9f64d46e6cd2dff31",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21633,11 +21933,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.4",
 			"versions": "qubell"
 		},
-		"folderID": "F202b8591c0a11c8828f8d10da55f823fef26137a04c2109218a667031dbd1a8b",
+		"folderID": "Fe0ff8f6b28553590c8fb50ef452924c68baa360d214fe216f75a7f8e3e939caa",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21647,11 +21953,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.4",
 			"versions": "qubell"
 		},
-		"folderID": "Fba5ae25a820d1a91907e87f8520fcd8aa54c341aa886c7f4f0769bea53cf2e7d",
+		"folderID": "F803ff7986ce2a21deec689277c2c54846c629aa1bd3dab183121b9664060ff9a",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21661,11 +21973,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.5",
 			"versions": "festo"
 		},
-		"folderID": "Fc2b68da00ab92a064d3485a5653ef0879442a39fd23bdf4029c2b893a5d724db",
+		"folderID": "Fc5785b3007b81fe8205e0cb2a74007aac2f320dee356500231d44867042ec4bd",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21675,11 +21993,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.5",
 			"versions": "festo"
 		},
-		"folderID": "Fb83ad2d782b90fd5f49fb25d56df434d68908fdd6115617040cd5461fbd9340d",
+		"folderID": "F1d426a443f6a9aa155d2ba1ca6b037f4db5b8f61660aeafb4777ea0041094f17",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21689,11 +22013,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.5",
 			"versions": "qubell"
 		},
-		"folderID": "Faad10d5ab6eb6aea155cab78a244b0b785b26132e752b6231f0e27bfae46b010",
+		"folderID": "Ff0932f242b1a4f9b8fe1ea9005144a366cbfad087e64bbee96c05a5cb8ebd2dc",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21703,11 +22033,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.5",
 			"versions": "qubell"
 		},
-		"folderID": "F3f666e978ff44ae33810fa590ba3af10683d5fb7b40c418766a643f3911e5fd9",
+		"folderID": "Fe337c2ec3dd41770dc0c5867ae47dfe88349824512bd5dd86403a5fdc971e4e2",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21717,11 +22053,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.6",
 			"versions": "festo"
 		},
-		"folderID": "F59155f9830619a3116a4c7865672ac65bd6a3584aacfb80a09836d76934c95ec",
+		"folderID": "Fe8b84334ca5c1571db854414cda0e83c43f0c1035c7aec6bf4e8ef4e6d8c51a7",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21731,11 +22073,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.6",
 			"versions": "festo"
 		},
-		"folderID": "F5643f9328b72c6076ac28e75a1dfc56465b702756e05ce63ef56c1a147dd8a99",
+		"folderID": "F14e48a63e3b2bfa5dd46bc3313e88c560a1c368092d5eee35c70ebcae99a4134",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21745,11 +22093,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.6",
 			"versions": "qubell"
 		},
-		"folderID": "Fbe7f0fd9cf8899d5d637913c5fa49a87ce137c10280d21103ef9c9a9ff3efdfe",
+		"folderID": "Fdb67d1a26d40de642c9ae6e3932cd63e622ec84959b7d3030d15b1f44382260f",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21759,11 +22113,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.6",
 			"versions": "qubell"
 		},
-		"folderID": "F528c7671d51c792696940a0f84a218fbbd34839b08096bf42681f2e75dac0a4b",
+		"folderID": "F0661930dc54000714a3bf88b72b43c35995eda988c23d48a44b3915200bb6d24",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21773,11 +22133,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.7",
 			"versions": "festo"
 		},
-		"folderID": "F7169c087ad403022cd6c8c246879ff7f53e8a530dd1ed0a976d19022243cc9fe",
+		"folderID": "F61f947e86ae5b899831f4741f8aefb98973b4c0883f63cd0d3c87759719ac2ab",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21787,11 +22153,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.7",
 			"versions": "festo"
 		},
-		"folderID": "F5f44582cc8d652be12749f8fac61362f335814dd93d72fca0fda768f0ef65ba0",
+		"folderID": "F18eae2ea1257ba01d39a95a08758b4d4b0b62ebdd172bd511db99883efb4d41a",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21801,11 +22173,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.7",
 			"versions": "qubell"
 		},
-		"folderID": "F4f07a4cd561323f986c4cfb7c76ada1da2e1bc41b76e8c74b798fe71e5e6253c",
+		"folderID": "F7aef43d0356344175cacfdd11d258dbcf1693709e2ca6e674d07b651863a4970",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21815,11 +22193,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.7",
 			"versions": "qubell"
 		},
-		"folderID": "F9b9e1d5f6e99168be8b6b4ff4397fb4b5dc51e89c008d10dcefd5e9a29ae76fd",
+		"folderID": "Fb946ff2505fa7f7535f5896d7dc6fb2c70f86d0ff495210b79407f243b795ebd",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21829,11 +22213,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.8",
 			"versions": "festo"
 		},
-		"folderID": "Fe74cc26ad5404e21dcf8e7758fdd7f4a758f6b68bf2ecd323ac16599750fec91",
+		"folderID": "Fd8fdbb1c69ac16183378d991c5b79a544d421da2f3a2e165fb0496e3ef775639",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21843,11 +22233,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.8",
 			"versions": "festo"
 		},
-		"folderID": "Fe6004218d58fafe735767d95ffae7e25ea738b5120c703eba63ea77462e633f3",
+		"folderID": "F22f85aa28dc3d8c3e24f9025cef86d43d778f7d61462181ca3d02f6020dda66a",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21857,11 +22253,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.8",
 			"versions": "qubell"
 		},
-		"folderID": "F0a9e942ed85ddddf3aef43c3ddb888c9e0ab8a2cdddbaeb4b3109a16f6cbdfb9",
+		"folderID": "F78662782644778846e50fe0d7da1c75c3b9124640c251c8d3e89ae480ea987e4",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21871,11 +22273,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.8",
 			"versions": "qubell"
 		},
-		"folderID": "F2dec754c1fa1878a8573af3f6f4357cc2d59f540081da9ad1613bc1949f4691f",
+		"folderID": "Fc6e6d7ec7a0f9a61e92b8d2a15600611e69e0ad86be1db28c1b5379c326d7b2c",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21885,11 +22293,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.9",
 			"versions": "festo"
 		},
-		"folderID": "F42e062a8cb40ec4d252934e7fbe9e102dbf46bd3067e83a7ea2cfe111699043b",
+		"folderID": "F7e496dea76af2532827dc237cdc07d504b11eddafa1b5f2676fcba2f92d6e938",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21899,11 +22313,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.9",
 			"versions": "festo"
 		},
-		"folderID": "F6358b4532e12c2582d3f937184c6b770ff16e9be45c837bfe4bd0273855bc79a",
+		"folderID": "F6fcf3bc4063181f5b8f1ca976d826b05bab22cd42f4423b660ec08edb08acf0e",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21913,11 +22333,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "10.9",
 			"versions": "qubell"
 		},
-		"folderID": "F93a79e8959e267ae2c2a8a626e52c30c98b5bd1f6abac612562a5e34be8e08a6",
+		"folderID": "F7056e65a960e0453b91f51f734d69ea0974a96dd0416665a658dfce13522e6b2",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21927,11 +22353,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "10.9",
 			"versions": "qubell"
 		},
-		"folderID": "Fcae67acaf13ad278cf94b17ac08ec53deaead9421dc27c569e708d49737acdf4",
+		"folderID": "Fe1578fdaa1229d2de374a54e5166f45d788e50e375f46369d837cda851e3058f",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21941,11 +22373,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "2",
 			"versions": "copious"
 		},
-		"folderID": "Fba78de070331d70a961876efde840b1c319449b72ba04d22c2517e3811c9b7ad",
+		"folderID": "F77dff203be337b9d0103b1f895f135e8f68b44fd5541159daddbb1edcb2bc860",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21955,11 +22393,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "2",
 			"versions": "festo"
 		},
-		"folderID": "Fd95770fe928a69c14016bb9c5c90410b521142d4a1195a998cdf974cf56a8f53",
+		"folderID": "Fdcadcbe68a661e0baa3dc9c3fe6b4125ff791c720c30be55a0517bd2f263b0fd",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21969,11 +22413,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "2",
 			"versions": "copious"
 		},
-		"folderID": "F646b57c783e82fd4a0b266f53eba33dd7ffdbdd5fb2d09df27b93dfce65d16e6",
+		"folderID": "F5fc7872fb3ca751416b18273b3c15e1fe64ed3acfb0a5b2a54bbf3f540857504",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -21983,11 +22433,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "2",
 			"versions": "festo"
 		},
-		"folderID": "Fa4f4214ac61492243b201ce238c225d0f1a8fc0f457843981fc03c8bfbf711b9",
+		"folderID": "F9b725f57bd6fe35ca8c207617eca0cd29c226bd7cb654227999895729f1452c9",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -21997,11 +22453,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "2",
 			"versions": "jubeat"
 		},
-		"folderID": "Ff969004fccc7d40765b0fddddbf6aa162fe1a55a40de429ea262aa5f431e7bf8",
+		"folderID": "F916716be766990b6904d77f82ec2ddcf04ed5abdd8be7b671755f3be7d957c32",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22011,11 +22473,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "2",
 			"versions": "knit"
 		},
-		"folderID": "Fd6faa3928525bc755772a9cfe8307fa9219f8698536b5499127e92c049923cf5",
+		"folderID": "Fb8300876df0994d0672a3d5ab706dd2a1d946ad79940ddc6efa185a78c2b51ae",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22025,11 +22493,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "2",
 			"versions": "prop"
 		},
-		"folderID": "F138f345f59f12d4caaf5e8be92ea1a02c25d53f70f383c485d7cf9ba6a864325",
+		"folderID": "Ff6150f5997ae1e2fce1645aa12ecc8d06246db9cf95d26018f04a776273b13c2",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22039,11 +22513,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "2",
 			"versions": "qubell"
 		},
-		"folderID": "F208f1a0585dd99b71f2d214235b01d697dc9c78973df90caae6a4b76249f09f1",
+		"folderID": "F6b52bac6a06082f9a6ba0b91df916d86718182ff3887f09caadabe54eb3f23c8",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22053,11 +22533,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "2",
 			"versions": "ripples"
 		},
-		"folderID": "F88a350712052d007a621d0577a8d641719e1a040c6280a20411f4df722d3bb4c",
+		"folderID": "Fae28f736d1fefa5ef1ec88d852e9e2f5e1affd38f515345b90f19f710dcb65dc",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22067,11 +22553,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "2",
 			"versions": "saucer"
 		},
-		"folderID": "Fa5538ca8bff0fd7ab4b397b0348736c2e4267a4c7ebdd65fc4a64d9126aea1e9",
+		"folderID": "Faeb1aa02d5b8c847885225fe6ae162ce7bf31bfb3c263f554f1d11a1e633d4ea",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22081,11 +22573,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "2",
 			"versions": "jubeat"
 		},
-		"folderID": "Fad120636b5e99c2085e9ff09b065dfeb093e9f385bc0c71a6fb03a75bbda12eb",
+		"folderID": "F5d51d0cc25f5a535aefa741ec23f7f239956712b65192e6f5bbbed2e7ffeb54a",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22095,11 +22593,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "2",
 			"versions": "knit"
 		},
-		"folderID": "F9e90ca8f482a128da10e2b2503e468d62a9ec6fe8d4e62d98436ba8f4065546e",
+		"folderID": "Fa032097e603538b6f265f3bba32e81523bef421de9b0bc80d7e65c56b24276b8",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22109,11 +22613,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "2",
 			"versions": "prop"
 		},
-		"folderID": "Fd0a4d869410ae03385532a783763cbc9a5314e6dc735fe7291a06004e38d2ac2",
+		"folderID": "Ff7df95a9dd3c06ff899681f46e2421b1dfda0f2d51719c1791bc7b3a7a50c2c1",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22123,11 +22633,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "2",
 			"versions": "qubell"
 		},
-		"folderID": "F901bbbbac9b53f49d32c041051064862d118018e2f9fa719e9b38b2689464c4d",
+		"folderID": "F174fb6bca80266fcbe0e3d47263cc8fabd44a9bd9199b084d90a59a471be4eec",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22137,11 +22653,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "2",
 			"versions": "ripples"
 		},
-		"folderID": "F2fefbdb73ea48d3c3487b6b105e186f2fc99f4812cdcf43570f605b378e3f042",
+		"folderID": "F68778c59e8274366d9543637f1fdd9215423d653a46eefa31ac263fdd0d43fdb",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22151,11 +22673,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "2",
 			"versions": "saucer"
 		},
-		"folderID": "Fd1da4ae8e6d8a2094d6b6d50030601866428e3a8fe20e0bbdee9a186a4a3624e",
+		"folderID": "Ff1a9eccf91fe82e9112dbd2a3f91b225befa7d2b3850d274285fc3730ce85a9a",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22165,11 +22693,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "3",
 			"versions": "copious"
 		},
-		"folderID": "F744f56a8941e340a8d61aea15e4020db4f6a306ad33721231bd6a5e2957591ca",
+		"folderID": "F8871234eb8e1739af3ee0b241fb0a2f409589f8407944dac86222a3c6a2664fa",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22179,11 +22713,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "3",
 			"versions": "festo"
 		},
-		"folderID": "F505d2720f3d31cab6de92a6eaeb2ae687f7ff3e1f7de0cb9bde9a0531c04c12a",
+		"folderID": "Fb4524def4255ea1967813607009da271ceb6f9b988ff7c7578f3d731719e22e0",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -22193,11 +22733,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "3",
 			"versions": "copious"
 		},
-		"folderID": "Ff9160c7a6e5c7a8da748d7ba4937a9a813a0033c043621b3071491c91722a2a1",
+		"folderID": "Fbda36dd8a23af39df77b9105c0f6dab731c693a2e54e2d97d0f18aee9397fbe6",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22207,11 +22753,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "3",
 			"versions": "festo"
 		},
-		"folderID": "F85ecf1faf0ab55ae320734d38ee0878a2ec31b9ac444412cc010525462a13412",
+		"folderID": "Fb1d6959b2bb836658bcbb1adff42e436e5b2c8d48d5893c4b7b543dc5e57f08f",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -22221,11 +22773,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "3",
 			"versions": "jubeat"
 		},
-		"folderID": "F4689ae7c811b8517b42ffd60ac5e884c0c3263735968e84091d7b46a70fa8132",
+		"folderID": "F838f07e44467f927985bd5d8a33d66db0f202723401becd8b61992ff16e1654d",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22235,11 +22793,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "3",
 			"versions": "knit"
 		},
-		"folderID": "F32a004d9edf14063cc0369d5de765a94ae1f4ee7de9ac1620652e717306a4c54",
+		"folderID": "Ff50335529557bfe1cc64f858793eeed2d84283b798d264db46b3ce0aa59ef641",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22249,11 +22813,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "3",
 			"versions": "prop"
 		},
-		"folderID": "Fa753dd332ce0a2092e250ad2279838cd58c378257ecdec8c5f09faad5449970b",
+		"folderID": "F654bd1772287b6b365c7dd1702b6e449a89c33ace57cfd72cdf093720878b998",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22263,11 +22833,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "3",
 			"versions": "qubell"
 		},
-		"folderID": "F151ef81c121d531a222977c94a5dbbc256f7e2edcbae38869a293b2f6271b6b6",
+		"folderID": "Fa798cc59df45a1209f289ed72071d50f9def56d67a7d26739e854cf56b1c01b7",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22277,11 +22853,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "3",
 			"versions": "ripples"
 		},
-		"folderID": "Fe705f301fc13fac1ab5b83cc83badb5eb3a62b4f418d143088b768f22a5edaef",
+		"folderID": "F01575e7391f9f33d9d462c6225dfd5c56f3261651044f920ca42ee0598121cbb",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22291,11 +22873,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "3",
 			"versions": "saucer"
 		},
-		"folderID": "F58b66304ef80a8de5d3f37f1ab61811f9a17c9ad1fcd8cdc00053bbb6a687a07",
+		"folderID": "F84812075a554fc86ebe3647a09fbf0b0c8eb0320a0c3aef255cbee84717e3734",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22305,11 +22893,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "3",
 			"versions": "jubeat"
 		},
-		"folderID": "F06c4122a2d827e07f741f6e4b2491c8b4d87bf9d66dc70dacfb9b2f1b9efda15",
+		"folderID": "F0fe03ac792bc9ef03402b8fc45cd8748050628484d6a282f2c6660eb63aca686",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22319,11 +22913,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "3",
 			"versions": "knit"
 		},
-		"folderID": "F05d73811b259824ee5e58f55b5509efb1be322b70dd349b38b6229c6b0cebd03",
+		"folderID": "F43e519238d8bc47397c6aa671c4fc93da37520861b22b822ab4913803f131708",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22333,11 +22933,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "3",
 			"versions": "prop"
 		},
-		"folderID": "F2e0580a3900b5c15e1dd90a687fe5abd33496d1aee001858479832b5cb406e75",
+		"folderID": "F20d62811ef61b07c098798e667cccc5935bd4f99e0fe8096defeae5cd2140dde",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22347,11 +22953,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "3",
 			"versions": "qubell"
 		},
-		"folderID": "Ff70993ed87bcadc48d957c29d5173868c34a904038234d50bb525d7eb7eb55e6",
+		"folderID": "F1dbfa2f3873b4a5df4d931890147950fd4798fb3910d70538d6487a404c9624d",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22361,11 +22973,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "3",
 			"versions": "ripples"
 		},
-		"folderID": "Fabb93686325c3146ddae6cb69951933578cace46953fc2d937746d21b2453cfd",
+		"folderID": "F916544bdf3805ca408649d25c0f7a34575337e471efea396e0da47091bc44399",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22375,11 +22993,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "3",
 			"versions": "saucer"
 		},
-		"folderID": "Fe9071e2df10d81d6a942b459b6530c61a3852edf4a3a67c99aba823b33034fa7",
+		"folderID": "F92feb7905eb9552ab402922ef3bb1d21a31aec7d6e0a720d483012d325743721",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22389,11 +23013,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "4",
 			"versions": "copious"
 		},
-		"folderID": "F35c59bd5748bec7e7232c661cbdb18d09c5308618cf511e4b29f63a986a3f7b2",
+		"folderID": "F9c927d54289dea04203760544b75698c4270bbc89ee516eebccfbae22680a79b",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22403,11 +23033,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "4",
 			"versions": "festo"
 		},
-		"folderID": "F8810b6913271b53b6b782c5895775f77fd8537faaea174464a36db96fc1b1f58",
+		"folderID": "F265e59f1c399de9c036e107f708a02c902d432ada57fe238b256e171d189b418",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -22417,11 +23053,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "4",
 			"versions": "copious"
 		},
-		"folderID": "Fc2c4f6f1e2d23dee6f5b8613b73e26d400d5bab35b201e04adf88eab0605230d",
+		"folderID": "F7a858cae10845574752a706a2668ff8add00aaa96f7fcaa67d22d058d270a177",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22431,11 +23073,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "4",
 			"versions": "festo"
 		},
-		"folderID": "F04cc90be15294ca3935ae38738a08cc6a61f36ad45460c909d134a498dcaf3f7",
+		"folderID": "F69c27e9eda3ff0052a1aa0b03b20cde40a3edd0d062de3227dc5c8080c10f813",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -22445,11 +23093,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "4",
 			"versions": "jubeat"
 		},
-		"folderID": "Fc68643d167d9874a9c55dc4e4449c3b2de64c5bbec64c4e7707f02b7de66ca0f",
+		"folderID": "Fe8ea90c10f7c74378366bac27cc6f74aa9b683cf5a7f4b7eda7de89420909c1e",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22459,11 +23113,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "4",
 			"versions": "knit"
 		},
-		"folderID": "F319493d4eb9cbcbb5eabd30e686d0c0066db941949438b4f154a801611a09774",
+		"folderID": "F4a1f4c1083d69500bcb8273473ee48e838ef36860ff14986d0c2206312fa356e",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22473,11 +23133,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "4",
 			"versions": "prop"
 		},
-		"folderID": "F73309263797cb2d15733dc0720c218710c7612c1f7643d8ed574281eaf6c12a2",
+		"folderID": "Fe37bf864737739ea74a6f24605a74738f0506092711c25626d6bdea288e0688b",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22487,11 +23153,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "4",
 			"versions": "qubell"
 		},
-		"folderID": "F87fbdd58a2c247307bfa1c8c46868ad71fd0f8747b51468266df033a5a051177",
+		"folderID": "Fc501a661462e49aa04de8b7e1b01c45585adde525a9bc3d56759748e653e37d2",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22501,11 +23173,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "4",
 			"versions": "ripples"
 		},
-		"folderID": "Ff0478aeadd3cda10eccfb1bdd8f7152a84ef501a94b0c226e28065a126b944da",
+		"folderID": "F6034069ac1a6fcbe624986a58f2bd8e694d4caa2663d9e89ea42c826c11e1f6e",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22515,11 +23193,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "4",
 			"versions": "saucer"
 		},
-		"folderID": "F8ced2fd80a0b70c9a4806fa5de518f96c4c5ffef221767e906cbb6cbaae7c0f0",
+		"folderID": "F0b815b73b1fb2fbe7fa3b18968157aa9ca61dd2c1c0d6cfbf2c7ad5cebfe38f3",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22529,11 +23213,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "4",
 			"versions": "jubeat"
 		},
-		"folderID": "Fd68f778aa68f1a7de469bd34ac1c53e8949ee1bd35022bd23e596b3ba42d7657",
+		"folderID": "Ff8d2e28bb48628ca176e0b880a8014ca3f72280d6652284135ff58652ba22e94",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22543,11 +23233,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "4",
 			"versions": "knit"
 		},
-		"folderID": "F88bc5b3c02d5f419fd1e21b69f7d46086c740be9400bd5fbc2f75e07a4b13ba9",
+		"folderID": "Ff877280589529f3932635d22dde79417618043d22f164f5ac71dd4e84a417921",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22557,11 +23253,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "4",
 			"versions": "prop"
 		},
-		"folderID": "F01170349445d71c0ebb621820080f7a5bea88260d1a9af552ad49eb02a7be7a1",
+		"folderID": "F6ddf597e6bd4b0b7ab6bced1d4ab7038e16b318d7d10fa8a76184b7b31006b90",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22571,11 +23273,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "4",
 			"versions": "qubell"
 		},
-		"folderID": "Fe5dd037701ac40f5b134585231bd23cffed503141261bdfc23aad73e44f748cc",
+		"folderID": "F388ce4621b1bcdae9a747ada2615454e2bc5cd64686d2cf489aabf217915324d",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22585,11 +23293,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "4",
 			"versions": "ripples"
 		},
-		"folderID": "F35c9cb988b47fa6616ac8dad44ad5c6ae6e0a7b422bf5b466049cdb76df16dd0",
+		"folderID": "Fc3e61089b9ca8b59ccdf8baee0e7a826c3b9745b07c58527478cd8047f507dd3",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22599,11 +23313,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "4",
 			"versions": "saucer"
 		},
-		"folderID": "Faf7d4979268e5ab45fffc98f12d006db34fde6e4aeef731ca9520614546eb92c",
+		"folderID": "F5a504dcc6c6d84eed0bb78194df96679069bab75663da4ce435f7b9e5b19b35e",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22613,11 +23333,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "5",
 			"versions": "copious"
 		},
-		"folderID": "Fb77d7d2fcc2269b79693ad89ec02a9106e7daad7bceb54218dc21458fc0b9f84",
+		"folderID": "Fc83b91978840957b65d377b2053fd277a8bec14a8f23fd7c4fdc992b2cd81cbd",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22627,11 +23353,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "5",
 			"versions": "festo"
 		},
-		"folderID": "Ff44c2583b65802e126d08ad18f1cde56baa18a0f1ca4ff9fedfdd51a73c45ef3",
+		"folderID": "F76f2889fa51aa0cb7bf3d828be3611880d6e031d1f3387b72271a4ee6a6f0664",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -22641,11 +23373,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "5",
 			"versions": "copious"
 		},
-		"folderID": "F209d154aced77b3c98783d814fecb7868120725dddb604e6233ead6272ff9bea",
+		"folderID": "F8097c65c57b54cceeaf6bc4140e6a66609bdbc5ae7298e2152e2edd26a7dc498",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22655,11 +23393,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "5",
 			"versions": "festo"
 		},
-		"folderID": "F71cf7762e706bbca1d11ac9eeb2d71ff53a49c15d0eecde694bbd7cd12464b06",
+		"folderID": "F2455e0cb65feaa00dc98585ad334e09072bb8638630c6db704732a9c3973f8a4",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -22669,11 +23413,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "5",
 			"versions": "jubeat"
 		},
-		"folderID": "F1a05d615671f23834f1395ad0c00462a8d30d3ae774479ef59f1557786c38586",
+		"folderID": "F0421ae84deb8f16a6db5c995a66a12cfefd7845fa5cdcada9bb58a1a11a70ca9",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22683,11 +23433,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "5",
 			"versions": "knit"
 		},
-		"folderID": "F3785c0d9956e5a693239165ad814ec963f333bae82c7f21091c9d70dcf53303a",
+		"folderID": "F342d1335cb2e959d7fb37980adf862278d143a132c8785cb399ccb6ad5a7bb84",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22697,11 +23453,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "5",
 			"versions": "prop"
 		},
-		"folderID": "Fe1faeab0486b2f407bb7ac74dc7a0d7338485cc152f1858e9b9252f42683b859",
+		"folderID": "F54b2f243f9366def718a42e1287ba5ee7d359e77e4adfb1379eb5afeb29fd283",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22711,11 +23473,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "5",
 			"versions": "qubell"
 		},
-		"folderID": "Fcb4327d3ac9a2e863f7899347cb14cdf29e1f35f45bf623b4b40aa1b32045939",
+		"folderID": "F630286dc4b4719793c1205273793fc740e1c1c2eca0279e00fb88b5bc728aacc",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22725,11 +23493,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "5",
 			"versions": "ripples"
 		},
-		"folderID": "Fd40d4e1de02de1c14507b046213f0e4a7df85d2c7a5afd93dca9393d5ff81948",
+		"folderID": "Fd4a1986fe9fa4f9cb589eed45046c6bdcd8f0b4219af16b7475c5bd9af8ef197",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22739,11 +23513,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "5",
 			"versions": "saucer"
 		},
-		"folderID": "F372cfa36610b4ec376d2459baa48377edfb567afebd2bc67ddef9701e6b5819e",
+		"folderID": "F789dd8d932571cdc472213e8120ebf52c16791ef96b39bb0bb951bcee07c8c05",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22753,11 +23533,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "5",
 			"versions": "jubeat"
 		},
-		"folderID": "Fc09c6550457e96d49939d7cb7a7fa3147cabebfb9fa228c6c6dd3cdd740bf7b3",
+		"folderID": "Fb40e2c581b1d907b8d2b13fe80da929478d727fd48cdb32dbd50c836971bcd97",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22767,11 +23553,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "5",
 			"versions": "knit"
 		},
-		"folderID": "Facc0a194cbeb71f5e4466bf57da73fc9ebc3607fa8f465fb851e2ad50635548a",
+		"folderID": "F016dd746b0f09bd3b3e58f745fd4a8610297ced157ee229ed7dc92dda16cc907",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22781,11 +23573,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "5",
 			"versions": "prop"
 		},
-		"folderID": "F7f7d613d9fc4cf00833edd4145654a7c4527847df30c2702066e347ee8a3e85f",
+		"folderID": "F52f10e675a14a586c7b28b2ebfeea668670e6061e2314140dce094e80eebdc83",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22795,11 +23593,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "5",
 			"versions": "qubell"
 		},
-		"folderID": "Fc334e07ec305b4bde36800a13538e6d061d9d476386435d3db5ab47dcb9ec2c0",
+		"folderID": "F840ab3d8cdcc2ee2e6eecb927c233eaaa137c78e3c2517f56bdcae4c0a66d309",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22809,11 +23613,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "5",
 			"versions": "ripples"
 		},
-		"folderID": "F6911256c1a89251846ced37806e41be14078d4535b46df6664fe28a1b960c119",
+		"folderID": "F75cf504c5d41ecfa2981d45a00c8dc0bcdad0800b2b2a0316fe9fae6c6d3779e",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22823,11 +23633,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "5",
 			"versions": "saucer"
 		},
-		"folderID": "Fee50ff7bf953eb5c2d69b6c49bcbe42aa3fea793c872f23bb616d97630e15e12",
+		"folderID": "F7b76b49fb4839cb3156b65e19fe49768e4f7ebe0ff69010d20257068ab4a86d6",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22837,11 +23653,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "6",
 			"versions": "copious"
 		},
-		"folderID": "F70e1c8020834182c73e0dff3af0e35ffc6ee5dd39e420aae5fc13ad97c2d099e",
+		"folderID": "Fe203c8bbdc9549043ae68805f9d112695cdf8e9231e4f7a21b16bd53cce9d63f",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22851,11 +23673,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "6",
 			"versions": "festo"
 		},
-		"folderID": "F37b526e7b72b0c84fa30b50884e3603134f38dd80ae2bdd21d1664762500b844",
+		"folderID": "F987f6b35253d4e5c3b7edb917935b1ac9f62e7201a1e66d6c3d30de55a22fb16",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -22865,11 +23693,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "6",
 			"versions": "copious"
 		},
-		"folderID": "F063fc4a7bc7e6ee50e76c0f8dcde6e90f933721b7c326987293a29c756c317e1",
+		"folderID": "F0716290def3d5212f69b5fdf328b2dd1247548265fb74e517ed35878bf217d7e",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22879,11 +23713,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "6",
 			"versions": "festo"
 		},
-		"folderID": "F2a57a800cdf4b0e9481a3a658dd9a84d7deaa303aaebcb3eac081601928a879c",
+		"folderID": "F95aae7f291a169a36209427a9fb71c282000aa4b9fe3875764e22920c11e5827",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -22893,11 +23733,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "6",
 			"versions": "jubeat"
 		},
-		"folderID": "F84d55815fc360a730343c6bb6abab5c544eb8e48a26d9cf59da275609fef69a4",
+		"folderID": "Fd3bbe4fd81949b854018067735d3fde9983f11671b67ecd93838f581ef1e9260",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22907,11 +23753,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "6",
 			"versions": "knit"
 		},
-		"folderID": "Fa06fc4c770fd5fe63408336803ecb476861fd48e29b6095ae18ad7ecb36e89cd",
+		"folderID": "Fb805b4cf7aaaa0b428cac79b49b40c0be64fc2725aa92c5d99ddc9b2bdbc351c",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22921,11 +23773,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "6",
 			"versions": "prop"
 		},
-		"folderID": "Fde59c66df6f8a6a29b69b40cbafbdd37e81d3804c6dfbf4eaee78d40566fac82",
+		"folderID": "F7bde40cb4f3bd214f5fdb7d0688072fe5a716b835b87004dba6256db46e4fb73",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22935,11 +23793,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "6",
 			"versions": "qubell"
 		},
-		"folderID": "F72a0fae6c5eecda2ead01c2043f8e6ed4f8a5ef9a6d702a2cb54e824f8c9a67d",
+		"folderID": "F0ad85c7198964cab1921bce9e5a3c4580e5ddfe812c8c2e1ec004c694280fe31",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22949,11 +23813,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "6",
 			"versions": "ripples"
 		},
-		"folderID": "F3361921820a9fb09fd58f899cf672847fcb1b04e0be391d5d8839145f8059ff7",
+		"folderID": "Fd9db3a70a3046981bee1bf5a027f3afddb2fd67f02fd6e02525d772dc14446a2",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22963,11 +23833,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "6",
 			"versions": "saucer"
 		},
-		"folderID": "Fb0edca771d3aa360634b0c591fc7d2d98a6b7fe58b9dc969a0a04b896db1790a",
+		"folderID": "F827b995692a94b5ff4c422cbedd7434d308d24676a4b3c84f8d41617650ce100",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22977,11 +23853,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "6",
 			"versions": "jubeat"
 		},
-		"folderID": "F02f65b1200d6b00dedc41732edd9ee9bb420832238cc32e4d57c00d060d1d026",
+		"folderID": "F5fc2f771a8562002efe0ee1ddfc2e8a428cd75ce02cc180d2d31638dd86dd4d7",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -22991,11 +23873,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "6",
 			"versions": "knit"
 		},
-		"folderID": "Fadc1cb6b03a52ae3a69469903f455ae6b174725e5fa812941905f1eebc1b93d4",
+		"folderID": "F5af44040b9eec9ebaeea99280f3ba6f64d6a28e7392c9510ae51b57139e85e4a",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23005,11 +23893,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "6",
 			"versions": "prop"
 		},
-		"folderID": "F4c10e1d2f0261e9cfbbd35fc285f42aab2e715cdf2da113469c95176efcac6c7",
+		"folderID": "Fa8ba22b740f25ff00a05e812c5471bcb35f7924f0499164517d65780d0d8d0e4",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23019,11 +23913,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "6",
 			"versions": "qubell"
 		},
-		"folderID": "F34637877cb994285dd864e417a3d2e27dc1454ab2fe1686abb5392c49c784af9",
+		"folderID": "Ff935595f72671dc178b0dd6bc639facef1802543d09238a9579056cc3740a0b2",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23033,11 +23933,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "6",
 			"versions": "ripples"
 		},
-		"folderID": "Ffabd3487a6816bf19e2b60b36f960bec4de71a9e8d560e4093c142c3bad9e112",
+		"folderID": "Fc9e8fbf4457d9b95150d94b2b89fa90b347de9bb5b25cbf97d626403b79bf488",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23047,11 +23953,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "6",
 			"versions": "saucer"
 		},
-		"folderID": "Fce530a0cd1aeebd91ac882e0424be9bcde182807910eee8bf7261a2bb064a3a5",
+		"folderID": "Fffd715182529bbf5a7a84e2f40ccc4209575a3dd3830e5eeb3e7375f23cce3c5",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23061,11 +23973,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "7",
 			"versions": "copious"
 		},
-		"folderID": "Fc5f39a6ccb88646501c9e9228fcce94bd492ba2ca662c2671022c214c4d01033",
+		"folderID": "Ff50b97390b0121e9ba355873caf43b45a82a03d635371e921f6a51ae19f8fe1e",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23075,11 +23993,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "7",
 			"versions": "festo"
 		},
-		"folderID": "F4464789a6e7e59f4c92e56cb25910e2e20d42821a492f44169b8cae20a98b027",
+		"folderID": "F993fb421bcb8deef5afdfa03b76da6acd9521b24e188b7b29ba71a5241f849b4",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -23089,11 +24013,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "7",
 			"versions": "copious"
 		},
-		"folderID": "Fa3ab0ee5f93059bfce719f6ebeeb7448617ba72058bb444acb7c5ca432a0089e",
+		"folderID": "F953f48cfd61df73ceed3c6b8876cf1f0d40b2bcc93007aa3db050b5cbf305001",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23103,11 +24033,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "7",
 			"versions": "festo"
 		},
-		"folderID": "F029320c64e85c714ade6a4160d1b0384f70dfd8636feb17013882768a3606fbd",
+		"folderID": "F7b6eac25b7ed014f94663a49fa647c0e42c5e1a6cb47618da7b03458d6df66c6",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -23117,11 +24053,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "7",
 			"versions": "jubeat"
 		},
-		"folderID": "Ffb6531e42a5325e0b666e834345de1c8b87892fc69753e7a04a30d205649c704",
+		"folderID": "Fc75d5a32df48e47d8caf5659739de2a97845719ff38b4ae4aa8803f2f4b0de6f",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23131,11 +24073,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "7",
 			"versions": "knit"
 		},
-		"folderID": "F60617823b59850be12f938aa6562af619edb604ec4e0ca118067a050e3ca321c",
+		"folderID": "F09c8326afb0d042d830664019ebe29a46cd029e1dda06d4a99d693179d0a5294",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23145,11 +24093,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "7",
 			"versions": "prop"
 		},
-		"folderID": "Fc7adb28d91d675a8fd6b58f8dc7d2217f787ea4787360278e170f263eca4bedd",
+		"folderID": "Fdfc47babd98cb9760d740068d2fa7bdd86474aeabe7648a8246cb8296e5ee079",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23159,11 +24113,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "7",
 			"versions": "qubell"
 		},
-		"folderID": "F8b6f9d77733d0e21d181cfad3bcfe3e355588692d80a4cfc620f4d3ba5e932ed",
+		"folderID": "F782718d7007dc73f4d0f6b5ff52bb6d48d9483f8d9c778ab1fe829e9bfa47a45",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23173,11 +24133,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "7",
 			"versions": "ripples"
 		},
-		"folderID": "Faa6aac38f931e60c0051388df217d0b813327c605d8da4cfb910c689f62c1ea3",
+		"folderID": "F262fb401dc89d1ef20648ab227caa63a4a9c0a9a38345efc46236df743fca0db",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23187,11 +24153,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "7",
 			"versions": "saucer"
 		},
-		"folderID": "F810318ec14fb1f01098a07b3a4dd4dccd1e33d8f3842b51da681a3af88eddd74",
+		"folderID": "Fd73c60b99f68ab860d1b776a07630e2c7a956c0ba189cbdd155b58f8c5b591fe",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23201,11 +24173,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "7",
 			"versions": "jubeat"
 		},
-		"folderID": "F084271c648bc62bd5fd1fb8891d82239ccb393c3885a7c7fb4dcf6594da22ca7",
+		"folderID": "F55dbee2c2a2424f84c51e14635aba59f53be3304fb2242ecec768f2793d99a23",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23215,11 +24193,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "7",
 			"versions": "knit"
 		},
-		"folderID": "F793c94deaabf0be68dc34fa66a931812aed3f828bb3e9b437fcecc1c0d0e1b96",
+		"folderID": "Fed06249c325741c7a3db4825fc6b28b77c9f6d81ac2cc53be5bcbce67a35529e",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23229,11 +24213,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "7",
 			"versions": "prop"
 		},
-		"folderID": "Fd2bd17a863aff498fa555b573dcb269afd076424ac5819d2f6852bbe5ad7581c",
+		"folderID": "Fb55eda6f0f573de5b0adceedc88a6cab8d3ce4effd73f00cb727bd25b60372d4",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23243,11 +24233,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "7",
 			"versions": "qubell"
 		},
-		"folderID": "F5d27bfbb6406037c128bda07923226c7b7285ed5b6e181fb859cba602570df3d",
+		"folderID": "Fb99f7d9f262e158d27de712d01bec669089606e7d1cc041119aa6ac500fa8833",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23257,11 +24253,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "7",
 			"versions": "ripples"
 		},
-		"folderID": "F15c569c7d6857af49f4cab6b276986ccbbb41ff5902bc92b69cccf3957518d30",
+		"folderID": "F711925ce028498ee5a2f6b1346f8579a0bfe47b9eb24902d1efe80bfbd5f66b9",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23271,11 +24273,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "7",
 			"versions": "saucer"
 		},
-		"folderID": "F488010bf9e1f37426a3df164bdac28821de5283673789c192961d7b6019eba84",
+		"folderID": "Fe59159702783da498d98857ac24920d2f7438b828d583a3b109575191ad25a98",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23285,11 +24293,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "8",
 			"versions": "copious"
 		},
-		"folderID": "Fad9240878c31aff2372a053a1746c97593650e6d109d278d90fd5504e4b1af67",
+		"folderID": "Fa2b74d5fada19308eb33450c20f696a44957505041fbd4aef4b06b481b8c751f",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23299,11 +24313,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "8",
 			"versions": "festo"
 		},
-		"folderID": "F07571f0419b7cdea78ecb77b07f524f47600abeeced27821adfeb2f5e6a8b9ee",
+		"folderID": "F76a7f68a4267e7a7943b03106df0599499aaab03b1b8871947be37d16a5dc458",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -23313,11 +24333,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "8",
 			"versions": "copious"
 		},
-		"folderID": "F9f4d2a85cc094c6ed231df1786211eba9b1c932e20e006066d6301c91f7dc9e4",
+		"folderID": "F3fba40955b527a18f21b6e9ed1216ebd487716e4549e2ea50112eed74ab5cf63",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23327,11 +24353,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "8",
 			"versions": "festo"
 		},
-		"folderID": "F736cff3906cf958c3e0b33ed1b21ba146aa52360503914cbda232e7021c525b4",
+		"folderID": "F5f30adfeabab660ee6f3df9809405d8e893e5bb0a847d61036f89ce8325ea909",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -23341,11 +24373,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "8",
 			"versions": "jubeat"
 		},
-		"folderID": "Ffc9a541cb2897ba56cd89eaa3f86083d762114677623dafef6500684bd1c0a98",
+		"folderID": "Fb7f5d391ef6adb73782ee4a583b9159ec6eadfe8d9572590e3735c5388719cc9",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23355,11 +24393,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "8",
 			"versions": "knit"
 		},
-		"folderID": "F5afa275a1294e978294c0f0fc943ebae0080b21e0d2493e558740b1daa5c8ed6",
+		"folderID": "Fc3a7b5152c97b283523c147944763d62c4a804ec0317be42287bb2ab0bb2d263",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23369,11 +24413,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "8",
 			"versions": "prop"
 		},
-		"folderID": "Fee634c9fbddeda288e27049f8343f66d12599d0f7a9acc359e173338df70f13e",
+		"folderID": "F29598ae4c21c30db8eb0181858b1d294eca9dde172148958b4793c2b3ad30e61",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23383,11 +24433,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "8",
 			"versions": "qubell"
 		},
-		"folderID": "Ff1decf8630c85a73ec485792b2efb41a7d167e1645f1b5db2ed2af6f92fa3a0c",
+		"folderID": "Fc2de370a404c5e5d514852fce0a2f6762575f0c021b4f02007d38a88d5812078",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23397,11 +24453,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "8",
 			"versions": "ripples"
 		},
-		"folderID": "F6084fc2303ec5d53dcc6b3536b8a4ce781f78681f068ebc8ed024944f16a7439",
+		"folderID": "F62215376e1a59534f2c1902ee7bfd94c527f01d10a1d02e8d98531760a73c22f",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23411,11 +24473,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "8",
 			"versions": "saucer"
 		},
-		"folderID": "Fa78e538360b63040e069276ed63b384321238ffa5fe7dde44c057f1675612e7b",
+		"folderID": "F435403fe60fccd96f937cac9cc0f6d3e024e9b1a2715fe541717e2c13e0170ce",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23425,11 +24493,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "8",
 			"versions": "jubeat"
 		},
-		"folderID": "F48ab4a166a6cdffba2ee259a26a4dddd4681137ce9d79e5e0af2fb89a08e984f",
+		"folderID": "Fb76ecd1f79173d55bde6a33e0f3c3f0292bf0d16017efaf2af4efb3f460d394e",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23439,11 +24513,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "8",
 			"versions": "knit"
 		},
-		"folderID": "F241fb953815c8f9bcbc607a01a609b6c3af01208217ff8da306ffa4ffe7064a9",
+		"folderID": "F80783963061b36a526fd83484b7af50787edca02c2fd759cafc6b02caf645cec",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23453,11 +24533,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "8",
 			"versions": "prop"
 		},
-		"folderID": "Ffc3a5afbd3f0258629fa12bef83b75373797d0bb4038e41c74154d86c89a24ab",
+		"folderID": "Fb4720f67371f95eb8ba76edc45319ee2dfb4e18a39a21b15bceaf7ad370a45b6",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23467,11 +24553,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "8",
 			"versions": "qubell"
 		},
-		"folderID": "Fda5de4a190e4d4f3cf8324babade6046663b820b14f7a519803dc2401f8609ba",
+		"folderID": "Fedd2b0546fd624cd3feeb2c70581a15081960dc86e4fdf177588a4dfbc5bfcd7",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23481,11 +24573,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "8",
 			"versions": "ripples"
 		},
-		"folderID": "F3bb5f92aeb277c6aee70b12cf47b3037d1d75473f388aca3baa630d796158025",
+		"folderID": "F3ed4f718aab2adb0f8b2808821d73438b762bb6fdd02bcfc2a429870af349d73",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23495,11 +24593,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "8",
 			"versions": "saucer"
 		},
-		"folderID": "Ffa501379db4265fedbfb592728f22ccd738b139afa09cf21fa2265d417bc2b45",
+		"folderID": "Fc737ae012958a50ee46f6126abcf6b12c5b6194484853c8c310a07187cc1669d",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23509,11 +24613,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.0",
 			"versions": "festo"
 		},
-		"folderID": "F5841877f8cf53eb03c791a00bbfabacdc88185ee5b42c5773f8882bf7223dde5",
+		"folderID": "F51493e5c749a20340893249cc21806c386b20dd4327dbeb4fcc557ca2bfe578a",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -23523,11 +24633,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.0",
 			"versions": "festo"
 		},
-		"folderID": "Fb04d0483611fbfa76e6e615f0df4d5b9092b720fcb09b714e3bf9536c9749a94",
+		"folderID": "F58fe76aabadd6aec7d2bfb29d51c981c5c760a278e16e56e0187b8446303d6e4",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -23537,11 +24653,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.0",
 			"versions": "qubell"
 		},
-		"folderID": "F09219275678563e904ab9dc25c3741166f4cb35bff9f9a8520148395a7b312af",
+		"folderID": "F74e817a9ea5669aebd8fd7a1e409ff8f4d5c29208bea07dcd79fe9efad5bf3aa",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23551,11 +24673,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.0",
 			"versions": "qubell"
 		},
-		"folderID": "F20ae291c14499228ea751fa248696429796f5e62ee783fe651b3c103eda659f5",
+		"folderID": "F46aa6d8c253c546352aa966883a6899f89c2de14ca775154de79ce6bb927453c",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23565,14 +24693,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 9,
 				"~lt": 10
 			},
 			"versions": "copious"
 		},
-		"folderID": "F8db383d308092dee3b28094c35aa9690653c12df05cf17c649991dee66f9ecfb",
+		"folderID": "Fdbb7928cf96fcb982133edcdc0d2903a36f36684ff6a6e5baa0a6af683409598",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23582,14 +24716,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 9,
 				"~lt": 10
 			},
 			"versions": "festo"
 		},
-		"folderID": "F1c0c7a305cdea0366cd0b7063acbbb2ceb1e52b420bcb93d97272ab00e2bd2f5",
+		"folderID": "F59e6555060b31213a1bf6b971b999fcc866fa1b18b6446de3cff2ecafcd9bdee",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -23599,14 +24739,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 9,
 				"~lt": 10
 			},
 			"versions": "copious"
 		},
-		"folderID": "Fed720ecb698d02cb26de1a341ed8d034fb734c9d8125341df0833052cffae2e8",
+		"folderID": "Fd15d2888e764b7f62d9afcced2871da5223f08e0d4e2e46f06e57642901b5252",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23616,14 +24762,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 9,
 				"~lt": 10
 			},
 			"versions": "festo"
 		},
-		"folderID": "F07b1d33953ddc1852b33a88fb1f4f6e0c89915382015b4d201a2d50d820f0dc3",
+		"folderID": "F6ebbc454d6ddac566c6dc82f06f3ce943a392597417bfbb1d4a8d610e3caba21",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -23633,14 +24785,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 9,
 				"~lt": 10
 			},
 			"versions": "jubeat"
 		},
-		"folderID": "Fb4774fb1734e9a9c4f197b7ecf83e363abc247b835efe0b639c5c45ccd1cd803",
+		"folderID": "F0657b5dc2a06da9ba3d2acc815a13432bc9bba47a2d6f431e0e71a5834afe47f",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23650,14 +24808,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 9,
 				"~lt": 10
 			},
 			"versions": "knit"
 		},
-		"folderID": "Fa02802019c2dbd41732a927989bc7abd1818747a0700a18b0200b6163114b1d2",
+		"folderID": "F9eaca19d3b1f61554fb3ca6b759ca8543d0ee4d510760315e258d03b3289539a",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23667,14 +24831,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 9,
 				"~lt": 10
 			},
 			"versions": "prop"
 		},
-		"folderID": "Fad8528691393692984df4cfdc8f8e0379f26e46e5cf6f96383fc5cfd1d489a56",
+		"folderID": "Fad4d547d85ea1aa30bf087ec3fd3bfe66793d58bd6b9337d71e53f42fa5a15b6",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23684,14 +24854,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 9,
 				"~lt": 10
 			},
 			"versions": "qubell"
 		},
-		"folderID": "Fb6d2c97d0ba9392fd8eed8c95f8744236e549b1a86828c372c3abf8ba5920f33",
+		"folderID": "Fb3b5b2dfd5e4f8261d9b81f5751761691e7ddaa6c070273496c3861738338e38",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23701,14 +24877,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 9,
 				"~lt": 10
 			},
 			"versions": "ripples"
 		},
-		"folderID": "Fa57a2abe047ee2fd60bbc180c57e007352e619e5823dc4785d71558a311e194b",
+		"folderID": "F8f92ec10fb0a83bdab5418d60df23b8d08e4a65c7433da888b4c0c9faeca11e5",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23718,14 +24900,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 9,
 				"~lt": 10
 			},
 			"versions": "saucer"
 		},
-		"folderID": "F19958a9751f52d836a6d4c1e8753eda53729dbf1239251e727e956a9ca60263d",
+		"folderID": "Fbf150a066ed3d049fd1f77933d7a0af21467460fd326b307ef6208d19d51d022",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23735,14 +24923,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 9,
 				"~lt": 10
 			},
 			"versions": "jubeat"
 		},
-		"folderID": "F70fe105a8562f9ed05a2d1d1fb8141e9a929c19e4bb9015b71dda95177331dbc",
+		"folderID": "Fddbb178cd6cdfe235608b9afa80ad102518186558722503c0d6d025ab92aa585",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23752,14 +24946,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 9,
 				"~lt": 10
 			},
 			"versions": "knit"
 		},
-		"folderID": "F006033b7385722d97bb147e2fb0c6319d55b0c3c434eefdfd6a0c792f751e80b",
+		"folderID": "Fac39d5ce1b5f5bdd0455d14a1cc676cf31a25e8f5561a8f7c5e646e96d7177b3",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23769,14 +24969,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 9,
 				"~lt": 10
 			},
 			"versions": "prop"
 		},
-		"folderID": "F14a286825edd80096f2888fd9f4c2d11a69cb2a8156afd9e503ae6e124032182",
+		"folderID": "F8d24ad67612aeff1ea83d007e8b1f525d63272676e6544e338f720a0c44e52d1",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23786,14 +24992,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 9,
 				"~lt": 10
 			},
 			"versions": "qubell"
 		},
-		"folderID": "Fffa3c667d9eeecc9fd9d404fdef7d4f67d5ff28cb75d7c8e3a7039b44e0aa4a4",
+		"folderID": "F218bcc110ad4163ad2a30269b505940c09c109f38a7dfa329280d633e5f8609b",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23803,14 +25015,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 9,
 				"~lt": 10
 			},
 			"versions": "ripples"
 		},
-		"folderID": "Ff63b9b5d720c7c0be67cefdb2910a22bbfc4032a93990873287d3edc9094a88f",
+		"folderID": "Fce5dd56503cb3354c2f7874ff0f9b50e422de0d4efc747e8e5f04c7c1fef3cf8",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23820,14 +25038,20 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"levelNum": {
 				"~gte": 9,
 				"~lt": 10
 			},
 			"versions": "saucer"
 		},
-		"folderID": "Fd0a2b814d954e1c9f3be6a1d1fffd701661fe53bd17965dea842eaef2514b07e",
+		"folderID": "F2d04b07887bcb93a2a85aa4db1b3b00755e4eb690d2b54ce5fb5a8c36bc786d8",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23837,11 +25061,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.1",
 			"versions": "festo"
 		},
-		"folderID": "F006ab459a3f29570767f04151a035cefa5065244f1490594aa3fe0a1cb5d43bd",
+		"folderID": "F891e0c398de94128202bf4c05d1bfb81167f541bfd9640a519afc269d098a3e7",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -23851,11 +25081,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.1",
 			"versions": "festo"
 		},
-		"folderID": "Fed43bcc1c190d5d604789cf64678284d5a8aaa288cb9f07223875cd62dee6c5f",
+		"folderID": "F7dda621093eec21d2838df3433d2d41d6a1bcfc3cad05f0e65097790625fb53a",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -23865,11 +25101,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.1",
 			"versions": "qubell"
 		},
-		"folderID": "F32b98c655d8e4c9ed1e31f8e45e4cd0dfccb1b69645899677a237e388fea36db",
+		"folderID": "F6b276562e0f4ae1f409bc351b0ae483b4ea249ff6c3bb8464278e6b7a0a16391",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23879,11 +25121,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.1",
 			"versions": "qubell"
 		},
-		"folderID": "Ff7c38930fb3ca0020356ae6e4b670164b47a5592be8b047212c7e120f2862642",
+		"folderID": "F4201a4fcb1f77153f78b7630c00ea16aa38f2ff8c9530639619d29cb6ac5bc83",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23893,11 +25141,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.2",
 			"versions": "festo"
 		},
-		"folderID": "Fd4a784685357d396bf8dfa7d0ac5f2ae99d43146cb794f4c8cd9443812a8cc31",
+		"folderID": "F77dac654747515a2fd6739c70b986d92c311f339461e9d0e83baf476537523cd",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -23907,11 +25161,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.2",
 			"versions": "festo"
 		},
-		"folderID": "F26a2507f45117f0dbed9681a96a6fc5eaf962ae54e8561b88c9da275eed1e968",
+		"folderID": "F2c9719d397174a8544ae71d6897f19b38d04f79aeb043978b069b4f86525b266",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -23921,11 +25181,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.2",
 			"versions": "qubell"
 		},
-		"folderID": "F69d54c0e3d60411370a1ae429f16b7a53e29d09c074354ede5d0ba2e56bc3a07",
+		"folderID": "Fb63da160a5ea5313311e4225b22cd9eda26e71281d3815720b7f6a151f7cce8f",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23935,11 +25201,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.2",
 			"versions": "qubell"
 		},
-		"folderID": "F8801ade829e863add502acab3c0a12244b06404855d285b5cf83b7a67bf2bdfe",
+		"folderID": "Fde077861a27b54d8a106abb90558f3b3029f520e116fdf2efcfc1712527b05b2",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23949,11 +25221,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.3",
 			"versions": "festo"
 		},
-		"folderID": "F2ff58823370f738d12cac26bb1d9bfa13e49c695655f25a362414f36d2b75a28",
+		"folderID": "Febeed9e1c76d7d7a15767565709920b0fc598e4db86bb01efbf3e83d0e9654df",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -23963,11 +25241,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.3",
 			"versions": "festo"
 		},
-		"folderID": "F2a67a1f2a007b8f56cc7f76f6e57f25b388c7b15c43e0a3156500bab48dd2984",
+		"folderID": "Fd327bfe57f83f98fb6a44affac4494902220d8a2b01a7136a06b8a64b45fc76c",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -23977,11 +25261,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.3",
 			"versions": "qubell"
 		},
-		"folderID": "F4a21c50763e0c8d98be6ccd6fc643c4eb72ba2f305b1164bb7f2d1a7c7d8e2c7",
+		"folderID": "F6cc70718c31faccc7043c2c39a8d5b2838262282b518021458f963c1708c22a1",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -23991,11 +25281,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.3",
 			"versions": "qubell"
 		},
-		"folderID": "Fb6b6147f2e7c6b0ad7c2058035883b005c1446b1308eeaf3ce6bbf937b7e6dc1",
+		"folderID": "F353c15d53211abd20769b3537588e52c84a5378a39bf100d037b7c38b63c3af2",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -24005,11 +25301,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.4",
 			"versions": "festo"
 		},
-		"folderID": "F0cc00d9b69ae63bc2ed909032a8c806889040f6aeb9c71e48098c09a40b00ae5",
+		"folderID": "F80a7a25f0647ffb9a756ecec5c865f1dea8f9d027d8ef3c26fc69b637b2f2a4f",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -24019,11 +25321,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.4",
 			"versions": "festo"
 		},
-		"folderID": "Fa1834f32b672b41f6b66d6a3f656dfa7fccf1fa72ad5ff020e080cca69a4eb79",
+		"folderID": "Ff0e90f0796359d4c032330e1b41b3025f94901c9eac7d6cf363006b3a7af5ddd",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -24033,11 +25341,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.4",
 			"versions": "qubell"
 		},
-		"folderID": "Fafd825da4667bbde09ae3d11c236724032b86a7b7329e103299da4567feae448",
+		"folderID": "F3d7c9d5853e4c9ba66a5e20f3a0abf18d212046d08944e3288fa906167a05bc2",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -24047,11 +25361,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.4",
 			"versions": "qubell"
 		},
-		"folderID": "F3fce8b8d04e7ba2d707ea2e7051d3205d2fcc9a8b6c58eb71f5402cfd0997a48",
+		"folderID": "F6b56efcfff73f05f5e50c09a721f27427e532424ba40c54979526b4133e16483",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -24061,11 +25381,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.5",
 			"versions": "festo"
 		},
-		"folderID": "F29fa530d1a3c2c86cdad23017210c48c5f12ec2589f6fac75fd99247be1b4e07",
+		"folderID": "F50ae7e80ad36716d117f4b0a1154d9558bf0ac9d40bdfa8ca6f821687bab5893",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -24075,11 +25401,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.5",
 			"versions": "festo"
 		},
-		"folderID": "Ff98a91ac6d5702b82e98744ca104522c079f19d93201502d247c6d00039d839c",
+		"folderID": "Fad3b49693ee5b431b45637f831d2c119162b33075d71bf4b0b5265887c3014aa",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -24089,11 +25421,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.5",
 			"versions": "qubell"
 		},
-		"folderID": "Ff60b9959e9dd7ca4b508c707bd1d38ac53121f79ba87e3bab73dd4ca1e6d6ccc",
+		"folderID": "F028126e50838bc453fc9113e93c21349929ee537479dccf69cedbe66cef2709a",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -24103,11 +25441,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.5",
 			"versions": "qubell"
 		},
-		"folderID": "F249dd63ae3b329ac8b5bbcd1e7a0b336797cf7a238cb8260fab0e4975adf13e5",
+		"folderID": "Fe957b832a6e1cbeefdc465b8b46e44420354958828ff5934349c137900483911",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -24117,11 +25461,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.6",
 			"versions": "festo"
 		},
-		"folderID": "F4d8915162d0191c44b786e847defaaa60972b9289bc74de6af1f52d1b31fb5ba",
+		"folderID": "Fa013f36b81be6d217196cc1df0ed400bd872dae9e544dfb860a624a8be2a2e68",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -24131,11 +25481,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.6",
 			"versions": "festo"
 		},
-		"folderID": "Ff5f547973d0ea4d786ca82ab8654bf1269299b12dc120546cab13390a68cb9bc",
+		"folderID": "Fe2b324ded8a55683114b47f8e819c47dd764092be4145db612969954c249dfb5",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -24145,11 +25501,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.6",
 			"versions": "qubell"
 		},
-		"folderID": "Fc861d6bc47e38ce078c550341bc55aa24af9c732a2bdc98c9b10bf27673d1fc3",
+		"folderID": "Fb6ffc80d91e4b7b5216ebfd33b81639894fdbd841532a525527caf5a8e5e5591",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -24159,11 +25521,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.6",
 			"versions": "qubell"
 		},
-		"folderID": "Fcce4156df9a12a4103b2392e72b1f75d60c262bca01fb839eec8e30e7d522744",
+		"folderID": "Fb13be85c838e175aeab968376c07c639ae59c23ebc9b06e8e5dc886ded4d4d87",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -24173,11 +25541,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.7",
 			"versions": "festo"
 		},
-		"folderID": "Fc390a3edbdcc8da2dcfaa6af86773b76a7a151cba076401886a047219ad86802",
+		"folderID": "F4ed014686d77a9a8b57aba784317dca45c579d258531a2317877a2dfebf29eb0",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -24187,11 +25561,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.7",
 			"versions": "festo"
 		},
-		"folderID": "F5c62fc14d2ecaa60b64bb6c39c4848f09253f5a0773db137c18e22eb35dc39bb",
+		"folderID": "F63b2a138e1a18bdc68ddb3edda7023b26f03850746560a036ba9d15fcec0d521",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -24201,11 +25581,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.7",
 			"versions": "qubell"
 		},
-		"folderID": "F14abe58c1100e9def6786f8a0009edd29b899e4e53c135e55ef48324eeb41449",
+		"folderID": "F78d73e35eda2ce5ed6b13a3dc76b02ece0a19bda9fd54044f763910cb2840cd4",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -24215,11 +25601,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.7",
 			"versions": "qubell"
 		},
-		"folderID": "F9d76c89ed6c2f35e9aa1d9742bf3ee4a596cd9bcdc5357db9afb911021b7d387",
+		"folderID": "F589ac717011e1082c72181c9c2888f26789a6ab712f530965af335ae8410b850",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -24229,11 +25621,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.8",
 			"versions": "festo"
 		},
-		"folderID": "F45d13a4da806ac112497058b2a2b3f14b5690c8572f86897f7a6e4f7259bef97",
+		"folderID": "Fb21572a62ad2b6a573d7f33f58afd513583df8bedb10fb42c5f1d975b2d48d90",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -24243,11 +25641,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.8",
 			"versions": "festo"
 		},
-		"folderID": "Fcaf9ca3d46a696ab3c9a3bed096c31dc5a0842c5ae3c1dfc5a81db5accd792d4",
+		"folderID": "F02472c722227e370d679692efe7b0b3ac1d5130ca9d7e0da12c463cd11b1bb3f",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -24257,11 +25661,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.8",
 			"versions": "qubell"
 		},
-		"folderID": "F872641c086f45fbb52a14eb7e53604979b792b36fb6f4e9c2d476fd7d5e63770",
+		"folderID": "F2546b5538a7c5c2b98ee6443a1fbbff2d2bf759897c82610aa609950fba9922b",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -24271,11 +25681,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.8",
 			"versions": "qubell"
 		},
-		"folderID": "Fe430c1ee08c016a0c941602c0a8efdfb17bc11758f4534b6169d153b45bf9972",
+		"folderID": "F6e370e5d7c738f3aec4c1fc299621579738233bfec9902db8ba4ce06d9633395",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -24285,11 +25701,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.9",
 			"versions": "festo"
 		},
-		"folderID": "F3af07a58e814beeab0bedac239f07831f2703dabfb129b3b3f78144b1e9b7505",
+		"folderID": "Ff40c8135b5c0107ef3445159aaf2fcb0cd374670c518f994b4afa4475752814c",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -24299,11 +25721,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.9",
 			"versions": "festo"
 		},
-		"folderID": "Ff34c2f40a3a528203725a3b6440d367da4c7c7cc04e956b9ab5a8ea00d7d729b",
+		"folderID": "F28b7d4bd96e8ef80341983dd054379587c68b1b6e75b1fab2bea47d848d2eb27",
 		"game": "jubeat",
 		"inactive": false,
 		"playtype": "Single",
@@ -24313,11 +25741,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": true,
+			"difficulty": {
+				"~in": [
+					"HARD BSC",
+					"HARD ADV",
+					"HARD EXT"
+				]
+			},
 			"level": "9.9",
 			"versions": "qubell"
 		},
-		"folderID": "F59d3adb67561e2ec175c0e971b8c688c8c15310a09fc0cb689f34d98ec4eacf1",
+		"folderID": "F530a322b785619dacbc14d8c803b629c0fdffe111a9e2842976eae9ad94aa172",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",
@@ -24327,11 +25761,17 @@
 	},
 	{
 		"data": {
-			"data¬isHardMode": false,
+			"difficulty": {
+				"~in": [
+					"BSC",
+					"ADV",
+					"EXT"
+				]
+			},
 			"level": "9.9",
 			"versions": "qubell"
 		},
-		"folderID": "F4d2fb041630da3c62e179cfae79ce545262ff59e40be2e23f8ce7a49c04a1f0a",
+		"folderID": "Fb9760c6fe5c0fb50817626822bae110569c4457e475ea7f89193d43f9d79c7ac",
 		"game": "jubeat",
 		"inactive": true,
 		"playtype": "Single",

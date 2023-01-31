@@ -7,11 +7,15 @@ import Select from "components/util/Select";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Form, InputGroup, Modal, Row } from "react-bootstrap";
 import {
+	ChartDocument,
 	FolderDocument,
 	FormatChart,
+	GPTString,
+	GetGPTString,
 	GetGamePTConfig,
 	GetScoreMetricConf,
 	GoalDocument,
+	SongDocument,
 } from "tachi-common";
 import { SongChartsSearch } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
@@ -324,17 +328,25 @@ function ChartSelect({
 				`/games/${game}/${playtype}/charts?search=${encodeURIComponent(input)}`
 			);
 
-			const res2 = await APIFetchV1<SongChartsSearch>(
-				`/search/chart-hash?search=${encodeURIComponent(input)}`
-			);
+			const res2 = await APIFetchV1<{
+				charts: Record<
+					GPTString,
+					{
+						chart: ChartDocument;
+						song: SongDocument;
+					}[]
+				>;
+			}>(`/search/chart-hash?search=${encodeURIComponent(input)}`);
 
 			if (!res.success || !res2.success) {
 				throw new Error(res.description);
 			}
 
-			const songMap = CreateSongMap([...res.body.songs, ...res2.body.songs]);
+			const res2Data = res2.body.charts[GetGPTString(game, playtype)] ?? [];
 
-			const options = [...res.body.charts, ...res2.body.charts].map((e) => ({
+			const songMap = CreateSongMap([...res.body.songs, ...res2Data.map((e) => e.song)]);
+
+			const options = [...res.body.charts, ...res2Data.map((e) => e.chart)].map((e) => ({
 				value: e.chartID,
 				label: FormatChart(game, songMap.get(e.songID)!, e),
 			}));

@@ -186,16 +186,16 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		},
 		classColours: {
 			dan: {
-				DAN_1: bg("warning"),
-				DAN_2: bg("warning"),
-				DAN_3: bg("warning"),
-				DAN_4: bg("warning"),
-				DAN_5: bg("warning"),
-				DAN_6: bg("warning"),
-				DAN_7: bg("warning"),
-				DAN_8: bg("warning"),
-				DAN_9: bg("warning"),
-				DAN_10: bg("warning"),
+				DAN_1: "warning",
+				DAN_2: "warning",
+				DAN_3: "warning",
+				DAN_4: "warning",
+				DAN_5: "warning",
+				DAN_6: "warning",
+				DAN_7: "warning",
+				DAN_8: "warning",
+				DAN_9: "warning",
+				DAN_10: "warning",
 
 				SHINDAN_1: bg("purple"),
 				SHINDAN_2: bg("purple"),
@@ -219,12 +219,13 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				PURPLE: bg("purple"),
 				BRONZE: bg("brown"),
 				SILVER: bg("gray"),
-				GOLD: bg("warning"),
+				GOLD: "warning",
 				PLATINUM: bgc("lightgoldenrodyellow", "black"),
 
 				RAINBOW: {
 					background:
 						"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
+					color: "black",
 				},
 			},
 		},

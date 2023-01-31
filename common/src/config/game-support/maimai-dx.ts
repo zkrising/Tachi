@@ -50,9 +50,7 @@ const MaimaiDXColours = [
 	ClassValue("SILVER", "Silver"),
 	ClassValue("GOLD", "Gold"),
 	ClassValue("PLATINUM", "Platinum"),
-
-	// TODO come up with color for dx's rainbow
-	ClassValue("RAINBOW", "Rainbow", "todo"),
+	ClassValue("RAINBOW", "Rainbow"),
 ];
 
 export const MAIMAI_DX_SINGLE_CONF = {

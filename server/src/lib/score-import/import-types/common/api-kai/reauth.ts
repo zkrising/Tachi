@@ -3,7 +3,6 @@ import db from "external/mongo/db";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import { p } from "prudence";
 import nodeFetch from "utils/fetch";
-import { CreateURLWithParams } from "utils/url";
 import type { KtLogger } from "lib/logger/logger";
 import type { KaiAuthDocument } from "tachi-common";
 
@@ -37,14 +36,17 @@ export function CreateKaiReauthFunction(
 		let res;
 
 		try {
-			const url = CreateURLWithParams(`${KaiTypeToBaseURL(kaiType)}/oauth/token`, {
-				refresh_token: authDoc.refreshToken,
-				grant_type: "refresh_token",
-				client_secret: CLIENT_SECRET,
-				client_id: CLIENT_ID,
-			});
+			const url = `${KaiTypeToBaseURL(kaiType)}/oauth/token`;
 
-			res = await fetch(url.href);
+			res = await fetch(url, {
+				body: JSON.stringify({
+					refresh_token: authDoc.refreshToken,
+					grant_type: "refresh_token",
+					client_secret: CLIENT_SECRET,
+					client_id: CLIENT_ID,
+				}),
+				headers: { "Content-Type": "application/json" },
+			});
 		} catch (err) {
 			logger.error(`Unexpected error while fetching reauth?`, { res, err });
 			throw new ScoreImportFatalError(

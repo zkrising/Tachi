@@ -45,6 +45,7 @@ export function CreateKaiReauthFunction(
 					client_secret: CLIENT_SECRET,
 					client_id: CLIENT_ID,
 				}),
+				method: "POST",
 				headers: { "Content-Type": "application/json" },
 			});
 		} catch (err) {

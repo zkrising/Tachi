@@ -39,14 +39,14 @@ export function CreateKaiReauthFunction(
 			const url = `${KaiTypeToBaseURL(kaiType)}/oauth/token`;
 
 			res = await fetch(url, {
-				body: JSON.stringify({
+				body: new URLSearchParams({
 					refresh_token: authDoc.refreshToken,
 					grant_type: "refresh_token",
 					client_secret: CLIENT_SECRET,
 					client_id: CLIENT_ID,
-				}),
+				}).toString(),
 				method: "POST",
-				headers: { "Content-Type": "application/json" },
+				headers: { "Content-Type": "application/x-www-form-urlencoded" },
 			});
 		} catch (err) {
 			logger.error(`Unexpected error while fetching reauth?`, { res, err });

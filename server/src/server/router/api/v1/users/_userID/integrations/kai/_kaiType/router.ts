@@ -15,7 +15,6 @@ import { NotNullish } from "utils/misc";
 import { GetKaiAuth, RevokeKaiAuth } from "utils/queries/auth";
 import { GetTachiData } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
-import { URL } from "url";
 
 const router: Router = Router({ mergeParams: true });
 
@@ -122,22 +121,29 @@ router.post(
 
 		const { CLIENT_SECRET, CLIENT_ID, REDIRECT_URI } = maybeCredentials;
 
-		const url = new URL(`${baseUrl}/oauth/token`);
+		const url = `${baseUrl}/oauth/token`;
 
-		url.searchParams.append("code", body.code);
-		url.searchParams.append("grant_type", "authorization_code");
-		url.searchParams.append("client_secret", CLIENT_SECRET);
-		url.searchParams.append("client_id", CLIENT_ID);
-		url.searchParams.append("redirect_uri", REDIRECT_URI);
+		const params = new URLSearchParams();
+
+		params.append("code", body.code);
+		params.append("grant_type", "authorization_code");
+		params.append("client_secret", CLIENT_SECRET);
+		params.append("client_id", CLIENT_ID);
+		params.append("redirect_uri", REDIRECT_URI);
 
 		logger.info(`Making token reify request from ${baseUrl}/oauth/token`);
 		let getTokenRes;
 
 		try {
-			// this also isn't a POST??
-			getTokenRes = await fetch(url.href);
+			getTokenRes = await fetch(url, {
+				body: params.toString(),
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded",
+				},
+				method: "POST",
+			});
 		} catch (err) {
-			logger.error(`Completely failed to getTokenRes from ${url.href}.`, err);
+			logger.error(`Completely failed to getTokenRes from ${url}.`, err);
 			return res.status(500).json({
 				success: false,
 				description: `We failed to reach this site. Are they down?`,
@@ -145,9 +151,7 @@ router.post(
 		}
 
 		if (getTokenRes.status !== 200) {
-			logger.error(
-				`Unexpected status of ${getTokenRes.status} from ${url.href} oauth2 flow.`
-			);
+			logger.error(`Unexpected status of ${getTokenRes.status} from ${url} oauth2 flow.`);
 
 			return res.status(getTokenRes.status < 500 ? 400 : 500).json({
 				success: false,
@@ -174,7 +178,7 @@ router.post(
 		const err = p(json, KAI_OAUTH2_RETURN_SCHEMA, {}, { allowExcessKeys: true });
 
 		if (err) {
-			logger.error(`Validation error in JSON return from ${url.href}.`, { err });
+			logger.error(`Validation error in JSON return from ${url}.`, { err });
 			return res.status(500).json({
 				success: false,
 				description: `Failed to validate JSON returned from this service. Is their server malfunctioning?`,

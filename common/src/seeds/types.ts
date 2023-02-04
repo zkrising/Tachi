@@ -47,7 +47,7 @@ const CURRENT_DATABASE_SEEDS: Record<keyof OtherDBSeeds, true> = {
 const moreOnes: Array<string> = [];
 
 for (const game of allSupportedGames) {
-	moreOnes.push(`songs-${game}`, `charts-${game}`);
+	moreOnes.push(`songs-${game}.json`, `charts-${game}.json`);
 }
 
 export const DatabaseSeedNames = [...Object.keys(CURRENT_DATABASE_SEEDS), ...moreOnes] as Array<

@@ -1,4 +1,5 @@
 import { ChangeOpacity } from "util/color-opacity";
+import { TruncateString } from "util/misc";
 import { EventInput } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import FullCalendar from "@fullcalendar/react"; // must go before plugins
@@ -59,6 +60,10 @@ export default function SessionCalendar({ game, playtype, reqUser }: UGPT) {
 					<Link
 						className="w-100"
 						to={`/u/${reqUser.username}/games/${game}/${playtype}/sessions/${e.event.extendedProps.sessionID}`}
+						style={{
+							textOverflow: "ellipsis",
+							wordWrap: "break-word",
+						}}
 					>
 						<div
 							className="rounded m-1"
@@ -72,7 +77,19 @@ export default function SessionCalendar({ game, playtype, reqUser }: UGPT) {
 							}}
 						>
 							<div
-								className="p-2"
+								className="p-2 d-lg-none"
+								style={{
+									color: "white",
+									textOverflow: "ellipsis",
+									maxWidth: "100%",
+									overflow: "hidden",
+								}}
+							>
+								<b style={{ color: "white" }}>{e.event.title}</b>
+							</div>
+
+							<div
+								className="p-2 d-none d-lg-block"
 								style={{
 									whiteSpace: "pre-wrap",
 									color: "white",

@@ -29,7 +29,7 @@ export default function UserPage({ reqUser }: Props) {
 }
 
 function InferLinks(aboutMe: string) {
-	return aboutMe.replace(/(https?:\/\/[a-zA-Z0-9-._~?&=]+)(\s*)/gu, "[$1]($1)$2");
+	return aboutMe.replace(/[^(](https?:\/\/[a-zA-Z0-9-._~?&=]+)(\s*)/gu, "[$1]($1)$2");
 }
 
 function AboutMeCard({ reqUser }: Props) {

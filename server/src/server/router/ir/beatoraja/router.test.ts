@@ -6,6 +6,9 @@ import ResetDBState from "test-utils/resets";
 import { MockBeatorajaBMSScore, MockBeatorajaPMSScore } from "test-utils/test-data";
 import type { UserDocument } from "tachi-common";
 
+const NEW_SHA256 = "769359ebb55d3d6dff3b5c6a07ec03be9b87beda1ffb0c07d7ea99590605a732";
+const NEW_MD5 = "d0f497c0f955e7edfb0278f446cdb6f8";
+
 t.test("POST /ir/beatoraja/submit-score", (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(() =>
@@ -219,8 +222,8 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 			.set("Authorization", "Bearer mock_token")
 			.send(
 				deepmerge(MockBeatorajaBMSScore, {
-					chart: { sha256: "new_chart", md5: "new_md5" },
-					score: { sha256: "new_chart", md5: "new_md5" },
+					chart: { sha256: NEW_SHA256, md5: NEW_MD5 },
+					score: { sha256: NEW_SHA256, md5: NEW_MD5 },
 				})
 			);
 
@@ -230,13 +233,13 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 		t.match(res.body.description, /Chart and score have been orphaned/u);
 
 		const orphanChart = await db["orphan-chart-queue"].findOne({
-			"chartDoc.data.hashSHA256": "new_chart",
+			"chartDoc.data.hashSHA256": NEW_SHA256,
 		});
 
 		t.hasStrict(orphanChart?.chartDoc, {
 			data: {
-				hashSHA256: "new_chart",
-				hashMD5: "new_md5",
+				hashSHA256: NEW_SHA256,
+				hashMD5: NEW_MD5,
 			},
 		});
 
@@ -280,14 +283,8 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 			.set("Authorization", "Bearer mock_token")
 			.send(
 				deepmerge(MockBeatorajaBMSScore, {
-					chart: {
-						sha256: "769359ebb55d3d6dff3b5c6a07ec03be9b87beda1ffb0c07d7ea99590605a732",
-						md5: "d0f497c0f955e7edfb0278f446cdb6f8",
-					},
-					score: {
-						sha256: "769359ebb55d3d6dff3b5c6a07ec03be9b87beda1ffb0c07d7ea99590605a732",
-						md5: "d0f497c0f955e7edfb0278f446cdb6f8",
-					},
+					chart: { sha256: NEW_SHA256, md5: NEW_MD5 },
+					score: { sha256: NEW_SHA256, md5: NEW_MD5 },
 				})
 			);
 
@@ -299,15 +296,15 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 			.set("Authorization", "Bearer token2")
 			.send(
 				deepmerge(MockBeatorajaBMSScore, {
-					chart: { sha256: "new_chart", md5: "new_md5" },
-					score: { sha256: "new_chart", md5: "new_md5" },
+					chart: { sha256: NEW_SHA256, md5: NEW_MD5 },
+					score: { sha256: NEW_SHA256, md5: NEW_MD5 },
 				})
 			);
 
 		t.equal(res2.statusCode, 202);
 
 		const orphanData = await db["orphan-chart-queue"].findOne({
-			"chartDoc.data.hashSHA256": "new_chart",
+			"chartDoc.data.hashSHA256": NEW_SHA256,
 		});
 
 		t.strictSame(orphanData?.userIDs, [1, 2]);
@@ -318,15 +315,15 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 			.set("Authorization", "Bearer token3")
 			.send(
 				deepmerge(MockBeatorajaBMSScore, {
-					chart: { sha256: "new_chart", md5: "new_md5" },
-					score: { sha256: "new_chart", md5: "new_md5" },
+					chart: { sha256: NEW_SHA256, md5: NEW_MD5 },
+					score: { sha256: NEW_SHA256, md5: NEW_MD5 },
 				})
 			);
 
 		t.equal(res3.statusCode, 200);
 
 		const orphanData2 = await db["orphan-chart-queue"].findOne({
-			"chartDoc.data.hashSHA256": "new_chart",
+			"chartDoc.data.hashSHA256": NEW_SHA256,
 		});
 
 		t.equal(orphanData2, null, "Orphan data should be removed from the database.");

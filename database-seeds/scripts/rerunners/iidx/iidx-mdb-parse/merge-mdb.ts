@@ -48,11 +48,13 @@ const options = program.opts() as {
 
 const iidxConfig = GetGamePTConfig("iidx", "SP");
 
-if (!iidxConfig.versions.includes(options.version)) {
+if (!Object.keys(iidxConfig.versions).includes(options.version)) {
 	throw new Error(
-		`Invalid version of '${options.version}'. Expected any of ${iidxConfig.versions.join(
+		`Invalid version of '${options.version}'. Expected any of ${Object.keys(
+			iidxConfig.versions
+		).join(
 			", "
-		)}. If you're adding a new version, go update common/src/config.ts.`
+		)}. If you're adding a new version, go update common/src/config/game-config/iidx.ts.`
 	);
 }
 
@@ -236,9 +238,8 @@ async function ParseIIDXMDB() {
 					levelNum: level,
 					isPrimary: true,
 					playtype: diffName.split("-")[0] as "SP" | "DP",
-					
+
 					songID: song.id,
-					tierlistInfo: {},
 					versions: [options.version],
 					data: {
 						inGameID: inp.songID,

@@ -280,8 +280,14 @@ t.test("POST /ir/beatoraja/submit-score", (t) => {
 			.set("Authorization", "Bearer mock_token")
 			.send(
 				deepmerge(MockBeatorajaBMSScore, {
-					chart: { sha256: "new_chart", md5: "new_md5" },
-					score: { sha256: "new_chart", md5: "new_md5" },
+					chart: {
+						sha256: "769359ebb55d3d6dff3b5c6a07ec03be9b87beda1ffb0c07d7ea99590605a732",
+						md5: "d0f497c0f955e7edfb0278f446cdb6f8",
+					},
+					score: {
+						sha256: "769359ebb55d3d6dff3b5c6a07ec03be9b87beda1ffb0c07d7ea99590605a732",
+						md5: "d0f497c0f955e7edfb0278f446cdb6f8",
+					},
 				})
 			);
 

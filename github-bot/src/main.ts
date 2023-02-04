@@ -50,10 +50,10 @@ app.webhooks.on(
 				repo: body.repository.name,
 				issue_number: body.pull_request.number,
 				body: mkSeedDiffViewMsg(
-					body.pull_request.head.repo.url,
-					body.pull_request.head.sha,
 					body.pull_request.base.repo.url,
-					body.pull_request.base.sha
+					body.pull_request.base.sha,
+					body.pull_request.head.repo.url,
+					body.pull_request.head.sha
 				),
 			});
 		}

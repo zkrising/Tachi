@@ -21,7 +21,7 @@ export default function SilentHookPage() {
 			<ol className="instructions-list">
 				<li>
 					Download <code>silent</code> from{" "}
-					<ExternalLink href="https://cdn.discordapp.com/attachments/687614263287611434/1068130139755528232/Release.zip">
+					<ExternalLink href="https://zkldi.xyz/stuff/silent-latest.zip">
 						Here
 					</ExternalLink>
 					and place all the <code>.dll</code> files in the same folder as{" "}

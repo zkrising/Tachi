@@ -422,7 +422,8 @@ export function StatDisplay({
 					</Link>
 					<h5>
 						{UppercaseFirst(stat.metric)} &gt;={" "}
-						{FormatValue(game, playtype, stat.mode, stat.metric, stat.gte)}
+						{/* basically, FormatValue is being used for two different things here: formatting Score >= 900000 for folders, and also displaying counts of how scores in this folder match that thing. Obviously, these should get different functions, but i don't care, and you don't either, because nobody will ever read this comment, or this code, or ever care. it's fine. Everything is OK. */}
+						{FormatValue(game, playtype, "chart", stat.metric, stat.gte)}
 					</h5>
 					<h4>
 						{result.value}

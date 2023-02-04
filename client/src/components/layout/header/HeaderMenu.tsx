@@ -129,40 +129,42 @@ export function HeaderMenu({
 						{settings?.preferences.developerMode && <UtilsDropdown />}
 					</ul>
 				</div>
-				<div
-					className="d-flex d-lg-none"
-					style={{ paddingLeft: "30px", marginBottom: "2rem", flex: "1 1 auto" }}
-				>
-					<div>
-						<Divider />
-					</div>
-					<Button
-						style={{ alignSelf: "flex-end" }}
-						variant="outline-danger"
-						onClick={async () => {
-							if (confirm("Are you sure you want to sign out?")) {
-								const rj = await APIFetchV1("/auth/logout", {
-									method: "POST",
-								});
-
-								if (rj.success) {
-									toast.success("Logged out.");
-									setTimeout(() => {
-										setUser(null);
-										localStorage.removeItem("isLoggedIn");
-										// This has to be the case.
-										// Otherwise, react just ruins its own
-										// state. I hate react state.
-										window.location.href = "/";
-									}, 500);
-								}
-							}
-						}}
+				{user && (
+					<div
+						className="d-flex d-lg-none"
+						style={{ paddingLeft: "30px", marginBottom: "2rem", flex: "1 1 auto" }}
 					>
-						<Icon type="sign-out-alt" />
-						Sign Out
-					</Button>
-				</div>
+						<div>
+							<Divider />
+						</div>
+						<Button
+							style={{ alignSelf: "flex-end" }}
+							variant="outline-danger"
+							onClick={async () => {
+								if (confirm("Are you sure you want to sign out?")) {
+									const rj = await APIFetchV1("/auth/logout", {
+										method: "POST",
+									});
+
+									if (rj.success) {
+										toast.success("Logged out.");
+										setTimeout(() => {
+											setUser(null);
+											localStorage.removeItem("isLoggedIn");
+											// This has to be the case.
+											// Otherwise, react just ruins its own
+											// state. I hate react state.
+											window.location.href = "/";
+										}, 500);
+									}
+								}
+							}}
+						>
+							<Icon type="sign-out-alt" />
+							Sign Out
+						</Button>
+					</div>
+				)}
 			</div>
 		</div>
 	);

@@ -71,16 +71,21 @@ async function HandleOrphanChartProcess(
 			context.chart.mode === "BEAT_7K" ? "7K" : "14K"
 		);
 
-		chart = await HandleOrphanQueue(
-			gptString,
-			"bms",
-			chartDoc,
-			songDoc,
-			criteria,
-			ServerConfig.BEATORAJA_QUEUE_SIZE,
-			context.userID,
-			chartName
-		);
+		// only try and insert this in the tachi DB if it has a valid MD5.
+		// beatoraja makes it **perfectly valid** for MD5 to be an empty string
+		// if it doesn't feel like md5ing the chart (for whatever reason)
+		if (chartDoc.data.hashMD5.length === "d0f497c0f955e7edfb0278f446cdb6f8".length) {
+			chart = await HandleOrphanQueue(
+				gptString,
+				"bms",
+				chartDoc,
+				songDoc,
+				criteria,
+				ServerConfig.BEATORAJA_QUEUE_SIZE,
+				context.userID,
+				chartName
+			);
+		}
 	} else {
 		const playtype = data.deviceType === "BM_CONTROLLER" ? "Controller" : "Keyboard";
 
@@ -93,16 +98,21 @@ async function HandleOrphanChartProcess(
 
 		const { chartDoc, songDoc } = ConvertBeatorajaChartToTachi(context.chart, playtype);
 
-		chart = await HandleOrphanQueue(
-			gptString,
-			"pms",
-			chartDoc,
-			songDoc,
-			criteria,
-			ServerConfig.BEATORAJA_QUEUE_SIZE,
-			context.userID,
-			chartName
-		);
+		// only try and insert this in the tachi DB if it has a valid MD5.
+		// beatoraja makes it **perfectly valid** for MD5 to be an empty string
+		// if it doesn't feel like md5ing the chart (for whatever reason)
+		if (chartDoc.data.hashMD5.length === "d0f497c0f955e7edfb0278f446cdb6f8".length) {
+			chart = await HandleOrphanQueue(
+				gptString,
+				"pms",
+				chartDoc,
+				songDoc,
+				criteria,
+				ServerConfig.BEATORAJA_QUEUE_SIZE,
+				context.userID,
+				chartName
+			);
+		}
 	}
 
 	// If chart wasn't unorphaned as a result of this request

@@ -7,7 +7,9 @@ import type { KtLogger } from "lib/logger/logger";
 import type { integer } from "tachi-common";
 
 const PR_BEATORAJA_SCORE = {
-	sha256: "string",
+	// sha256 **MUST** be a 64 char hex string.
+	sha256: p.regex(/^[0-9a-f]{64}$/u),
+
 	exscore: p.isPositiveInteger,
 	passnotes: p.isPositiveInteger,
 	gauge: p.or(p.isBetween(0, 100), p.is(-1)),
@@ -47,8 +49,15 @@ const PR_BEATORAJA_SCORE = {
 };
 
 const PR_BEATORAJA_CHART = {
+	// IMPORTANT!!! MD5 IS **NOT GUARANTEED TO BE CORRECT AT ALL.
+	// IT IS PERFECTLY LEGAL FOR RAJA TO GIVE YOU **ANYTHING** IN THIS FIELD.
+	// YOU SHOULD ONLY USE IT IF YOU CHECK IT AND IT LOOKS LIKE A VALID MD5.
+	// THIS MAY BE THE EMPTY STRING, THE STRING "null", etc.
 	md5: "string",
-	sha256: "string",
+
+	// sha256 **MUST** be a 64 char hex string.
+	sha256: p.regex(/^[0-9a-f]{64}$/u),
+
 	title: "string",
 	subtitle: "string",
 	genre: "string",

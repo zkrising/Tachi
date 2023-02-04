@@ -29,7 +29,7 @@ export default function OAuth2CallbackPage({
 	});
 
 	if (error) {
-		<ApiError error={error} />;
+		return <ApiError error={error} />;
 	}
 
 	if (!data) {

@@ -180,6 +180,7 @@ export const ITG_STAMINA_CONF = {
 
 		bannerLocationOverride: z.string().nullable(),
 		originalPack: z.string(),
+		packs: z.array(z.string()),
 	}),
 
 	preferences: z.strictObject({}),

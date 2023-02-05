@@ -120,6 +120,7 @@ for (const d of content) {
 				notesPerMeasure: chart.notesPerMeasure,
 				npsPerMeasure: chart.npsPerMeasure,
 				originalPack: options.pack,
+				packs: [options.pack],
 				bannerLocationOverride: null,
 				charter: author,
 			},
@@ -128,10 +129,16 @@ for (const d of content) {
 		if (existingChartIDs.has(chart.hashGSv3)) {
 			const ch = existingChartIDs.get(chart.hashGSv3);
 
-			ch.data.breakdown = chart.data.breakdown;
+			ch.data.breakdown = newChart.data.breakdown;
+
 			if (ch.data.rankedLevel === null && newChart.data.rankedLevel !== null) {
 				ch.data.rankedLevel = newChart.data.rankedLevel;
 			}
+
+			if (!ch.data.packs.includes(options.pack)) {
+				ch.data.packs.push(options.pack);
+			}
+
 			continue;
 		}
 

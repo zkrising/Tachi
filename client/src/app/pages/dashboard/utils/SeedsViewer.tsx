@@ -9,13 +9,16 @@ import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import { TachiConfig } from "lib/config";
 import React, { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Alert, Col, Row } from "react-bootstrap";
 import { Revision } from "types/git";
+import LinkButton from "components/util/LinkButton";
 
 export default function SeedsViewer() {
 	useSetSubheader(["Developer Utils", "Database Seeds Management"]);
 
 	const { data, error: failedToGetLocalAPI } = useApiQuery<Record<string, never>>("/seeds");
+
+	const { data: hasUncommittedRes } = useApiQuery<boolean>("/seeds/has-uncommitted-changes");
 
 	if (!data && !failedToGetLocalAPI) {
 		return <Loading />;
@@ -51,6 +54,31 @@ export default function SeedsViewer() {
 				)}
 			</span>
 			<Divider />
+			{hasUncommittedRes && (
+				<>
+					<Alert
+						variant="warning"
+						className="d-flex w-100 justify-content-center"
+						style={{
+							flexDirection: "column",
+							alignItems: "center",
+							gap: "20px",
+						}}
+					>
+						<div>You have uncommitted changes on your local disk.</div>
+						<div>
+							{/* this deliberately reloads the page. */}
+							<a
+								className="btn btn-secondary"
+								href="/utils/seeds?repo=local&sha=WORKING_DIRECTORY"
+							>
+								Click to view what you've changed.
+							</a>
+						</div>
+					</Alert>{" "}
+					<Divider />
+				</>
+			)}
 			<InnerSeedsViewer hasLocalAPI={!failedToGetLocalAPI} />
 		</>
 	);

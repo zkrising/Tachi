@@ -5,6 +5,7 @@ const {
 	GetFreshSongIDGenerator,
 	CreateChartID,
 	MutateCollection,
+	WriteCollection,
 } = require("../../util");
 
 const program = new Command();
@@ -29,7 +30,10 @@ for (const song of existingSongs) {
 	artistTitleMap.set(`${song.title}\0${song.artist}\0${song.data.subtitle}`, song);
 }
 
-const existingChartIDs = existingCharts.map((e) => e.data.hashGSv3);
+const existingChartIDs = new Map();
+for (const ch of existingCharts) {
+	existingChartIDs.set(ch.data.hashGSv3, ch);
+}
 
 const getFreshID = GetFreshSongIDGenerator("itg");
 
@@ -82,10 +86,6 @@ for (const d of content) {
 	}
 
 	for (const chart of d.charts) {
-		if (existingChartIDs.includes(chart.hashGSv3)) {
-			continue;
-		}
-
 		if (!difficultyTag || d.charts.length > 1) {
 			difficultyTag = chart.difficultyTag;
 		}
@@ -94,13 +94,13 @@ for (const d of content) {
 		const chartLevel = Number(chart.level);
 
 		// leading space into a number is likely a breakdown. remove it.
-		const author = chart.credit.replace(/ [1-9].*$/u, "");
+		const author = chart.credit.replace(/ \(?[1-9].*$/u, "");
 
 		if (difficultyTag === "Challenge") {
 			difficultyTag = "Expert";
 		}
 
-		newCharts.push({
+		const newChart = {
 			chartID: CreateChartID(),
 			songID: song.id,
 			level: "?",
@@ -123,11 +123,23 @@ for (const d of content) {
 				bannerLocationOverride: null,
 				charter: author,
 			},
-		});
+		};
+
+		if (existingChartIDs.has(chart.hashGSv3)) {
+			const ch = existingChartIDs.get(chart.hashGSv3);
+
+			ch.data.breakdown = chart.data.breakdown;
+			if (ch.data.rankedLevel === null && newChart.data.rankedLevel !== null) {
+				ch.data.rankedLevel = newChart.data.rankedLevel;
+			}
+			continue;
+		}
+
+		newCharts.push(newChart);
 
 		existingChartIDs.push(chart.hashGSv3);
 	}
 }
 
-MutateCollection("charts-itg.json", (charts) => [...charts, ...newCharts]);
+WriteCollection("charts-itg.json", [...existingCharts, ...newCharts]);
 MutateCollection("songs-itg.json", (songs) => [...songs, ...newSongs]);

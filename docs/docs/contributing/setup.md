@@ -81,7 +81,7 @@ Because system package managers may have outdated versions of `node` available (
 
 Follow [these instructions](https://github.com/nvm-sh/nvm#install--update-script).
 
-Then close and re-open your shell to apply the changes. We can now install node16
+Then close and re-open your shell to apply the changes. We can now install node16.
 ```sh
 # install node 16
 nvm install 16

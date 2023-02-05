@@ -31,7 +31,6 @@ t.test("#CreateKaiReauthFunction", (t) => {
 	t.test("Should create a working reauthentication for the service.", async (t) => {
 		const mockFetch = MockJSONFetch({
 			[`${ServerConfig.FLO_API_URL}/oauth/token`]: {
-				refresh_token: "NEW_REFRESH_TOKEN",
 				access_token: "NEW_ACCESS_TOKEN",
 			},
 		});
@@ -52,7 +51,6 @@ t.test("#CreateKaiReauthFunction", (t) => {
 		});
 
 		// should also update the db
-		t.equal(dbChange?.refreshToken, "NEW_REFRESH_TOKEN");
 		t.equal(dbChange?.token, "NEW_ACCESS_TOKEN");
 
 		t.end();
@@ -92,8 +90,7 @@ t.test("#CreateKaiReauthFunction", (t) => {
 			}&grant_type=refresh_token&client_secret=${
 				ServerConfig.FLO_OAUTH2_INFO!.CLIENT_SECRET
 			}&client_id=${ServerConfig.FLO_OAUTH2_INFO!.CLIENT_ID}`]: {
-				// missing refresh_token
-				access_token: "NEW_ACCESS_TOKEN",
+				// missing access_token
 			},
 		});
 

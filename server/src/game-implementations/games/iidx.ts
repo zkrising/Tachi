@@ -106,7 +106,7 @@ const IIDX_GOAL_PG_FMT: GPTGoalProgressFormatters<"iidx:DP" | "iidx:SP"> = {
 
 				const v = (deltaPercent / 100) * max;
 
-				return Math.floor(v).toFixed(0);
+				return Math.round(v).toFixed(0);
 			}
 		),
 };

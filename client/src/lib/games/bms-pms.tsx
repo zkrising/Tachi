@@ -80,7 +80,7 @@ const BASE_IMPL: GPTClientImplementation<GPTStrings["bms" | "pms"]> = {
 
 					const v = (deltaPercent / 100) * max;
 
-					return Math.floor(v).toFixed(0);
+					return Math.round(v).toFixed(0);
 				}}
 			/>
 			<BMSOrPMSLampCell score={sc} />

@@ -1,5 +1,5 @@
 import { GetGradeDeltas } from "./util";
-import { WACCA_GBOUNDARIES } from "../constants/grade-boundaries";
+import { IIDXLIKE_GBOUNDARIES, WACCA_GBOUNDARIES } from "../constants/grade-boundaries";
 import t from "tap";
 
 t.test("#GetGradeDeltas", (t) => {
@@ -31,6 +31,22 @@ t.test("#GetGradeDeltas", (t) => {
 			closer: "lower",
 		},
 		"Should apply the num format function."
+	);
+
+	t.strictSame(
+		GetGradeDeltas(IIDXLIKE_GBOUNDARIES, "MAX-", 99.47, (deltaPercent) => {
+			const max = 2090;
+
+			const v = (deltaPercent / 100) * max;
+
+			return Math.round(v).toFixed(0);
+		}),
+		{
+			lower: "(MAX-)+105",
+			upper: "MAX-11",
+			closer: "upper",
+		},
+		"i hate iidx"
 	);
 
 	t.end();

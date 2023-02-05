@@ -35,8 +35,8 @@ nav:
               - "contributing/components/seeds.md"
 
           - Cookbook:
-            - "contributing/components/cookbook/iidx-mdb.md"
-            - "contributing/components/cookbook/sdvx-mdb.md"
+            - "contributing/cookbook/iidx-mdb.md"
+            - "contributing/cookbook/sdvx-mdb.md"
 
       - Supporting New Games:
           - "game-support/index.md"

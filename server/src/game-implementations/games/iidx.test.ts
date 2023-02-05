@@ -105,7 +105,10 @@ t.test("IIDX Implementation", (t) => {
 			t.equal(impl.chartSpecificValidators.score(1000, Testing511SPA as any), true);
 			t.equal(impl.chartSpecificValidators.score(0, Testing511SPA as any), true);
 			t.equal(
-				impl.chartSpecificValidators.score(Testing511SPA.data.notecount * 2, Testing511SPA as any),
+				impl.chartSpecificValidators.score(
+					Testing511SPA.data.notecount * 2,
+					Testing511SPA as any
+				),
 				true
 			);
 
@@ -116,7 +119,10 @@ t.test("IIDX Implementation", (t) => {
 			);
 			TestSnapshot(
 				t,
-				impl.chartSpecificValidators.score(Testing511SPA.data.notecount * 2 + 1, Testing511SPA as any),
+				impl.chartSpecificValidators.score(
+					Testing511SPA.data.notecount * 2 + 1,
+					Testing511SPA as any
+				),
 				`EX Score Validator ${playtype}: excessive`
 			);
 		}
@@ -326,19 +332,19 @@ t.test("IIDX Implementation", (t) => {
 					"grade",
 					{ score: 1333, percent: scoreToPercent(1333), grade: "AA" },
 					IIDX_GRADES.AAA,
-					"AAA-65"
+					"AAA-64"
 				);
 				f(
 					"grade",
 					{ score: 1233, percent: scoreToPercent(1233), grade: "AA" },
 					IIDX_GRADES.AAA,
-					"AAA-165"
+					"AAA-164"
 				);
 				f(
 					"grade",
 					{ score: 1400, percent: scoreToPercent(1400), grade: "AAA" },
 					IIDX_GRADES.AAA,
-					"AAA+2"
+					"AAA+3"
 				);
 
 				f(

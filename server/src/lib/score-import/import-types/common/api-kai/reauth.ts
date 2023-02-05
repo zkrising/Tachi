@@ -57,7 +57,9 @@ export function CreateKaiReauthFunction(
 
 		/* istanbul ignore next */
 		if (res.status !== 200) {
-			logger.error(`Unexpected ${res.status} error while fetching reauth?`, { res });
+			const text = await res.text();
+
+			logger.error(`Unexpected ${res.status} error while fetching reauth?`, { res, text });
 			throw new ScoreImportFatalError(
 				500,
 				"An error has occured while attempting reauthentication."

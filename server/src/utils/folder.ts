@@ -459,7 +459,7 @@ export async function GetEnumDistForFolderAsOf(
 		}
 
 		enumDist[metric] = thisEnumDist;
-		cumulativeEnumDist[metric] = thisEnumDist;
+		cumulativeEnumDist[metric] = thisCumulativeEnumDist;
 	}
 
 	return {

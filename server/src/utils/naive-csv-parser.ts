@@ -57,7 +57,20 @@ export function NaiveCSVParse(csvBuffer: Buffer, logger: KtLogger) {
 
 	for (const [rowNumber, data] of Object.entries(csvData).slice(1)) {
 		// @security: This should probably be safetied from DOSing
-		const cells = data.split(",");
+		const cells = data.split(",").map((e) => {
+			// we want to remove quotes from anything that is *absolutely*
+			// surrounded by quotes.
+			// Even though we are naively parsing csvs, it seems like atleast
+			// one person managed to mangle their inputs such that this happened.
+			const isSurroundedByQuotes = /^"(.*)"$/u.exec(e) as [string, string] | null;
+
+			if (isSurroundedByQuotes) {
+				return isSurroundedByQuotes[1]; // unwrap the quotes
+			}
+
+			// do nothing
+			return e;
+		});
 
 		// an empty string split on "," is an array with one empty value.
 		if (cells.length === 1) {

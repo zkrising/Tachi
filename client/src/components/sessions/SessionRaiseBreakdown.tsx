@@ -152,16 +152,37 @@ function SessionScoreStatBreakdown({
 				}
 
 				if (scoreInfo.isNewScore || scoreInfo.deltas[metric] > 0) {
-					PartialArrayRecordAssign(
-						newEnums[metric],
+					// @ts-expect-error yeah this is fine pls
+					const enumValue = score.scoreData[metric] as string;
+					// @ts-expect-error yeah this is fine pls
+					const enumIndex = score.scoreData.enumIndexes[metric] as integer;
 
-						// @ts-expect-error yeah this is fine pls
-						score.scoreData[metric] as string,
-						{
-							score,
-							scoreInfo,
+					if (newEnums[metric][enumValue]) {
+						const alreadyInArray = newEnums[metric][enumValue].find(
+							(e) => e.score.scoreID === score.scoreID
+						);
+
+						if (
+							alreadyInArray &&
+							// @ts-expect-error not justifying this
+							alreadyInArray.score.scoreData.enumIndexes[enumValue] < enumIndex
+						) {
+							alreadyInArray.score = score;
+							alreadyInArray.scoreInfo = scoreInfo;
+						} else {
+							newEnums[metric][enumValue].push({
+								score,
+								scoreInfo,
+							});
 						}
-					);
+					} else {
+						newEnums[metric][enumValue] = [
+							{
+								score,
+								scoreInfo,
+							},
+						];
+					}
 				}
 			}
 		}

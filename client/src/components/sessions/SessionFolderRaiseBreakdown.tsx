@@ -210,10 +210,10 @@ export default function SessionFolderRaiseBreakdown({
 	);
 }
 
-const SortRaisesNicely = (gptConfig: GamePTConfig, preferredEnum: string) => {
-	const conf = GetScoreMetricConf(gptConfig, preferredEnum) as ConfEnumScoreMetric<string>;
+const SortRaisesNicely = (gptConfig: GamePTConfig, preferredEnum: string) =>
+	NumericSOV<SessionFolderRaises>((x) => {
+		const conf = GetScoreMetricConf(gptConfig, x.type) as ConfEnumScoreMetric<string>;
 
-	return NumericSOV<SessionFolderRaises>((x) => {
 		const baseValue = conf.values.indexOf(x.value);
 
 		// if this is what the user prefers to see, push it to the top
@@ -223,7 +223,6 @@ const SortRaisesNicely = (gptConfig: GamePTConfig, preferredEnum: string) => {
 
 		return baseValue;
 	}, true);
-};
 
 function FolderRaiseRender({
 	folderRaiseInfo,

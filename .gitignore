@@ -7,6 +7,7 @@ node_modules
 
 # PNPM noise
 .pnpm-debug.log
+.pnpm-store
 
 # Compiled output
 js
@@ -39,4 +40,4 @@ failed-tests.log
 .tsbuildinfo
 
 # bootstrap flag
-_scripts/I_HAVE_BOOTSTRAPPED_OK
+I_HAVE_BOOTSTRAPPED_OK

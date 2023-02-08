@@ -22,7 +22,8 @@
 		"recalc-everything": "ts-node src/scripts/state-sync/sync-state.ts",
 		"make-user-admin": "ts-node src/scripts/make-user-admin.ts $@",
 		"validate-database": "ts-node src/scripts/validate-database",
-		"dev": "NODE_PATH=js/ nodemon"
+		"dev": "NODE_PATH=js/ nodemon",
+		"set-indexes": "ts-node src/scripts/set-indexes"
 	},
 	"author": "zkldi",
 	"license": "AGPL3",

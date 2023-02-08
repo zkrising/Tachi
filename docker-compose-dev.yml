@@ -51,6 +51,23 @@ services:
       dockerfile: Dockerfile.seeds
     volumes:
       - ./:/app
+  bootstrap:
+    container_name: tachi-bootstrap
+    build:
+      dockerfile: Dockerfile.bootstrap
+    volumes:
+      - ./:/app
+    depends_on:
+      - redis
+      - mongo
+    links:
+      - redis
+      - mongo
+    environment:
+      REDIS_URL: redis
+      MONGO_URL: mongo
+      PORT: 8080
+      NODE_ENV: "dev"
 volumes:
   tachi:
     driver: local

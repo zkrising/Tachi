@@ -45,6 +45,12 @@ services:
       - ./:/app
     ports:
       - '3000:3000'
+  tachi-seeds:
+    container_name: tachi-seeds
+    build:
+      dockerfile: Dockerfile.seeds
+    volumes:
+      - ./:/app
 volumes:
   tachi:
     driver: local

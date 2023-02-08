@@ -37,3 +37,6 @@ out.*
 failed-tests.log
 
 .tsbuildinfo
+
+# bootstrap flag
+_scripts/I_HAVE_BOOTSTRAPPED_OK

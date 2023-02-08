@@ -68,22 +68,5 @@ mvExampleFiles
 selfSignHTTPS
 pnpmInstall
 syncDatabaseWithSeeds
+touch I_HAVE_BOOTSTRAPPED_OK
 
-tput setaf 1
-
-cat << EOF
-=== READ THIS YOU MUPPET ===
-
-YOU ARE USING SELF-SIGNED HTTPS CERTIFICATES.
-YOU WILL LIKELY HAVE TO GO TO HTTPS://127.0.0.1:8080 AFTER STARTING TACHI-SERVER.
-TELL YOUR BROWSER THESE CERTIFICATES ARE TRUSTED!
-OTHERWISE, THE CLIENT WILL FAIL TO LAUNCH, AND WILL JUST BE A WHITE PAGE!
-EOF
-
-tput sgr0
-
-cat << EOF
-Bootstrapped.
-Launch the server with pnpm start-server.
-Launch the client with pnpm start-client.
-EOF

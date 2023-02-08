@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { ServerConfig } from "lib/setup/config";
+import { Environment, ServerConfig } from "lib/setup/config";
 import { p } from "prudence";
 import { UserAuthLevels } from "tachi-common";
 import nodeFetch from "utils/fetch";
@@ -96,6 +96,11 @@ export async function AddNewUser(
 		authLevel: UserAuthLevels.USER,
 		badges: [],
 	};
+
+	// all created users on a dev instance should be admins, for convenience.
+	if (Environment.nodeEnv === "dev") {
+		userDoc.authLevel = UserAuthLevels.ADMIN;
+	}
 
 	const res = await db.users.insert(userDoc);
 

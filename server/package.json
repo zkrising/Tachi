@@ -21,7 +21,8 @@
 		"sync-database-local": "ts-node src/scripts/sync-database --localPath '../database-seeds/collections'",
 		"recalc-everything": "ts-node src/scripts/state-sync/sync-state.ts",
 		"make-user-admin": "ts-node src/scripts/make-user-admin.ts $@",
-		"validate-database": "ts-node src/scripts/validate-database"
+		"validate-database": "ts-node src/scripts/validate-database",
+		"dev": "NODE_PATH=js/ nodemon"
 	},
 	"author": "zkldi",
 	"license": "AGPL3",
@@ -30,6 +31,7 @@
 		"@types/tap": "15.0.5",
 		"glob": "^7.2.0",
 		"node-mocks-http": "1.11.0",
+		"nodemon": "^2.0.20",
 		"supertest": "6.2.2",
 		"tap": "15.1.6",
 		"tsconfig-paths": "3.12.0"

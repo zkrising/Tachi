@@ -1,0 +1,50 @@
+version: "3.9"
+services:
+  mongo:
+    container_name: mongo
+    image: mongo:5
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - tachi:/data/mongo
+  redis:
+    container_name: redis
+    command: redis-server --save 60 1 --loglevel warning
+    image: redis:6
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      - tachi:/data/redis
+  tachi-server:
+    container_name: tachi-server
+    build:
+      dockerfile: Dockerfile.server
+    depends_on:
+      - redis
+      - mongo
+    links:
+      - redis
+      - mongo
+    volumes:
+      - ./:/app
+    ports:
+      - '8080:8080'
+    environment:
+      REDIS_URL: redis
+      MONGO_URL: mongo
+      PORT: 8080
+      NODE_ENV: "dev"
+    command: pnpm dev
+  tachi-client:
+    container_name: tachi-client
+    build:
+      dockerfile: Dockerfile.client
+    volumes:
+      - ./:/app
+    ports:
+      - '3000:3000'
+volumes:
+  tachi:
+    driver: local

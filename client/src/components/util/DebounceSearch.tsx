@@ -5,10 +5,12 @@ export default function DebounceSearch({
 	className,
 	setSearch,
 	placeholder,
+	autoFocus = false,
 }: {
 	className?: string;
 	setSearch: SetState<string>;
 	placeholder: string;
+	autoFocus?: boolean;
 }) {
 	const [lastTimeout, setLastTimeout] = useState<null | number>(null);
 	const [uiSearch, setUISearch] = useState("");
@@ -16,6 +18,7 @@ export default function DebounceSearch({
 	return (
 		<div className="input-group">
 			<input
+				autoFocus={autoFocus}
 				className={`form-control ${className}`}
 				type="text"
 				value={uiSearch}

@@ -40,6 +40,7 @@ export default function SearchPage() {
 		<Row>
 			<Col xs={12}>
 				<DebounceSearch
+					autoFocus
 					className="form-control-lg"
 					setSearch={setSearch}
 					placeholder="Search songs, users..."

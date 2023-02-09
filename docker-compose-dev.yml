@@ -7,7 +7,7 @@ services:
     ports:
       - '27017:27017'
     volumes:
-      - tachi:/data/mongo
+      - tachi-volume:/data/db
   redis:
     container_name: redis
     command: redis-server --save 60 1 --loglevel warning
@@ -16,15 +16,19 @@ services:
     ports:
       - '6379:6379'
     volumes:
-      - tachi:/data/redis
+      - tachi-redis:/data
   tachi-server:
     container_name: tachi-server
     build:
       dockerfile: Dockerfile.server
       target: dev
     depends_on:
-      - redis
-      - mongo
+      bootstrap:
+        condition: service_completed_successfully
+      redis:
+        condition: service_started
+      mongo:
+        condition: service_started
     links:
       - redis
       - mongo
@@ -39,6 +43,11 @@ services:
       NODE_ENV: "dev"
   tachi-client:
     container_name: tachi-client
+
+    depends_on:
+      bootstrap:
+        condition: service_completed_successfully
+
     build:
       dockerfile: Dockerfile.client
     volumes:
@@ -57,9 +66,6 @@ services:
       dockerfile: Dockerfile.bootstrap
     volumes:
       - ./:/app
-    depends_on:
-      - redis
-      - mongo
     links:
       - redis
       - mongo
@@ -69,5 +75,6 @@ services:
       PORT: 8080
       NODE_ENV: "dev"
 volumes:
-  tachi:
-    driver: local
+  tachi-volume:
+  tachi-redis:
+  tachi-logs:

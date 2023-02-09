@@ -134,10 +134,11 @@ export const POPN_9B_IMPL: GPTServerImplementation<"popn:9B"> = {
 		},
 		// clear medal bad/good checks.
 		(s) => {
-			let { bad, good } = s.scoreData.judgements;
+			const { bad, good } = s.scoreData.judgements;
 
-			bad ??= 0;
-			good ??= 0;
+			if (IsNullish(bad) || IsNullish(good)) {
+				return;
+			}
 
 			switch (s.scoreData.clearMedal) {
 				case "fullComboStar": {

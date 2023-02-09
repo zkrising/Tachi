@@ -90,6 +90,8 @@ pnpmInstall
 setIndexes
 syncDatabaseWithSeeds
 
+echo "Bootstrap Complete."
+
 cat << EOF > I_HAVE_BOOTSTRAPPED_OK
 Tachi was bootstrapped here on $(date).
 

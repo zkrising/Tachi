@@ -34,7 +34,7 @@ export interface BeatorajaScore {
 	gauge: number;
 	deviceType: "BM_CONTROLLER" | "KEYBOARD";
 	minbp: integer;
-	option: 0 | 1 | 2 | 3 | 4;
+	option: integer;
 
 	lntype: 0 | 1;
 	clear:

@@ -228,7 +228,9 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 	// pms and bms are fine using this randomlookup, except for 14k, which is
 	// broken in beatoraja.
 	if (chart.playtype !== "14K") {
-		random = RANDOM_LOOKUP[data.option];
+		if ([0, 1, 2, 3, 4].includes(data.option)) {
+			random = RANDOM_LOOKUP[data.option as 0 | 1 | 2 | 3 | 4];
+		}
 	}
 
 	const lamp = LAMP_LOOKUP[data.clear];

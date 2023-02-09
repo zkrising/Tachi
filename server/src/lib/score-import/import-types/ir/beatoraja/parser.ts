@@ -15,7 +15,7 @@ const PR_BEATORAJA_SCORE = {
 	gauge: p.or(p.isBetween(0, 100), p.is(-1)),
 	deviceType: p.isIn("BM_CONTROLLER", "KEYBOARD"),
 	minbp: p.or(p.isPositiveInteger, p.is(-1)),
-	option: p.isBoundedInteger(0, 4),
+	option: p.isInteger,
 
 	lntype: p.isIn(0, 1),
 	clear: p.isIn(

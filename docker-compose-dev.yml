@@ -21,6 +21,7 @@ services:
     container_name: tachi-server
     build:
       dockerfile: Dockerfile.server
+      target: dev
     depends_on:
       - redis
       - mongo
@@ -36,7 +37,6 @@ services:
       MONGO_URL: mongo
       PORT: 8080
       NODE_ENV: "dev"
-    command: pnpm dev
   tachi-client:
     container_name: tachi-client
     build:

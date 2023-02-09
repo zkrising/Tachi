@@ -2,7 +2,7 @@
 import { SetIndexes } from "../external/mongo/indexes";
 import { Command } from "commander";
 import CreateLogCtx from "lib/logger/logger";
-import { ServerConfig } from "lib/setup/config";
+import { Environment, ServerConfig } from "lib/setup/config";
 import { WrapScriptPromise } from "utils/misc";
 
 const program = new Command();
@@ -19,7 +19,7 @@ program.parse(process.argv);
 const options: { db: string; reset?: boolean } = program.opts();
 
 if (!options.db) {
-	options.db = ServerConfig.MONGO_DATABASE_NAME;
+	options.db = `${Environment.mongoUrl}/${ServerConfig.MONGO_DATABASE_NAME}`;
 }
 
 if (require.main === module) {

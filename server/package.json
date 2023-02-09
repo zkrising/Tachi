@@ -23,7 +23,7 @@
 		"make-user-admin": "ts-node src/scripts/make-user-admin.ts $@",
 		"validate-database": "ts-node src/scripts/validate-database",
 		"dev": "NODE_PATH=js/ nodemon",
-		"set-indexes": "ts-node src/scripts/set-indexes"
+		"set-indexes": "ts-node src/scripts/set-indexes.ts"
 	},
 	"author": "zkldi",
 	"license": "AGPL3",

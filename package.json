@@ -11,15 +11,15 @@
 		"logs-client": "docker logs tachi-client -f",
 		"logs-seeds": "docker logs tachi-seeds -f",
 
-		"test-server": "docker exec -it tachi-server pnpm test",
-		"test-seeds": "docker exec -it tachi-seeds pnpm --filter ./scripts test",
+		"test-server": "docker compose -f docker-compose-dev.yml exec tachi-server pnpm test",
+		"test-seeds": "docker compose -f docker-compose-dev.yml exec tachi-seeds pnpm --filter ./scripts test",
 
-		"enter-seeds": "docker exec -it tachi-seeds bash",
-		"sort-seeds": "docker exec -it tachi-seeds node scripts/deterministic-collection-sort.js",
+		"enter-seeds": "docker compose -f docker-compose-dev.yml exec tachi-seeds bash",
+		"sort-seeds": "docker compose -f docker-compose-dev.yml exec tachi-seeds node scripts/deterministic-collection-sort.js",
 		"view-seeds": "xdg-open http://127.0.0.1:3000/utils/seeds",
-		"load-seeds": "docker exec -it tachi-server pnpm sync-database-local",
+		"load-seeds": "docker compose -f docker-compose-dev.yml exec tachi-server pnpm sync-database-local",
 
-		"validate-db": "docker exec -it tachi-server pnpm validate-database",
+		"validate-db": "docker compose -f docker-compose-dev.yml exec tachi-server pnpm validate-database",
 
 		"start-docs": "cd docs/ && mkdocs serve",
 

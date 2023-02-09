@@ -1,0 +1,21 @@
+FROM node:16-alpine as base
+
+RUN npm install --silent -g pnpm
+
+FROM base AS build
+WORKDIR /app
+
+COPY pnpm-lock.yaml .
+COPY patches ./patches
+
+RUN pnpm fetch
+
+COPY client ./client
+COPY common ./common
+COPY *.json *.yaml ./
+
+RUN pnpm --filter tachi-client... --filter . install --offline --frozen-lockfile
+
+WORKDIR /app/client
+
+CMD ["pnpm", "start"]

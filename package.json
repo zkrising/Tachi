@@ -4,17 +4,31 @@
 	"private": true,
 	"description": "The root of the Tachi monorepo. Contains common utils like linters.",
 	"scripts": {
-		"build": "pnpm -r build",
-		"start-client": "pnpm --filter ./client start",
-		"start-server": "pnpm --filter ./server start",
-		"test-server": "pnpm --filter ./server test",
-		"test-dbseeds": "pnpm --filter ./database-seeds/scripts test",
-		"sync-database": "pnpm --filter ./server sync-database",
-		"sync-database-local": "pnpm --filter ./server sync-database-local",
-		"validate-database": "pnpm --filter ./server validate-database",
-		"start-score-import-worker": "pnpm --filter ./server runscoreworker",
+		"start": "docker compose -f docker-compose-dev.yml up --build -d",
+		"stop": "docker compose -f docker-compose-dev.yml down",
+
+		"logs-server": "docker logs tachi-server -f",
+		"logs-client": "docker logs tachi-client -f",
+		"logs-seeds": "docker logs tachi-seeds -f",
+
+		"test-server": "docker compose -f docker-compose-dev.yml exec tachi-server pnpm test",
+		"test-seeds": "docker compose -f docker-compose-dev.yml exec tachi-seeds pnpm --filter ./scripts test",
+
+		"enter-seeds": "docker compose -f docker-compose-dev.yml exec tachi-seeds bash",
+		"sort-seeds": "docker compose -f docker-compose-dev.yml exec tachi-seeds node scripts/deterministic-collection-sort.js",
+		"view-seeds": "xdg-open http://127.0.0.1:3000/utils/seeds",
+		"load-seeds": "docker compose -f docker-compose-dev.yml exec tachi-server pnpm sync-database-local",
+
+		"validate-db": "docker compose -f docker-compose-dev.yml exec tachi-server pnpm validate-database",
+
 		"start-docs": "cd docs/ && mkdocs serve",
-		"make-user-admin": "pnpm --filter ./server make-user-admin $@"
+
+		"^^ DEV STUFF IS HERE ^^": "comment",
+		"vv PROD STUFF YOU WON'T TOUCH vv": "comment",
+
+		"build": "pnpm -r build",
+		"sync-database": "pnpm --filter ./server sync-database",
+		"start-score-import-worker": "pnpm --filter ./server runscoreworker"
 	},
 	"repository": {
 		"type": "git",

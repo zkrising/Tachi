@@ -55,11 +55,10 @@ try {
 				? `
 			<hr />
 			<div><b>You're in local development mode.</b>
-			<ul>
+			<ul style="font-size: 2rem;">
 				<li>Have you accepted the HTTPS certificates for <a href="${ToAPIURL(
-					"/"
+					"/status"
 				)}">the server?</a>. If not, the site won't load.</li>
-				<li>Failing that, have you made sure to start the server with <code>pnpm start-server</code>?</li>
 			</ul>
 		`
 				: ""

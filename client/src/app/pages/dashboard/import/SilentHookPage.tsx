@@ -23,7 +23,7 @@ export default function SilentHookPage() {
 					Download <code>silent</code> from{" "}
 					<ExternalLink href="https://zkldi.xyz/stuff/silent-latest.zip">
 						Here
-					</ExternalLink>
+					</ExternalLink>{" "}
 					and place all the <code>.dll</code> files in the same folder as{" "}
 					<code>popn22.dll</code>.
 					<br />

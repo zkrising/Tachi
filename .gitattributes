@@ -1,0 +1,6 @@
+# if you don't do this
+# a windows clone will fail
+# because the .sh scripts will have their \n's turned into
+# \r\n, and then bash will fail to run \r as a command.
+# the future is now.
+*.sh text eol=lf

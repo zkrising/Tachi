@@ -6,42 +6,7 @@ You don't *necessarily* need to have a working install to contribute - you could
 make documentation contributions without having anything running on your machine - but
 it's extremely helpful to be able to run Tachi's things while working on them.
 
-## 0. Unix Necessary!
-
-You *must* be on some Unix-Like operating system. That ideally means means Linux, MacOS or WSL.
-
-!!! info
-	This is because of Redis, mainly. We also depend on the `sendmail` binary to send emails around, which might be even less portable.
-	
-	Also - we use Linux in production, and your local
-	environment should be as close to production as reasonably possible.
-
-### I'm on Windows, help!
-
-Don't worry. You can run Linux as a subsystem inside Windows, without any virtual machine
-nonsense. It's a bit of a headache to get sorted, but Microsoft provide a decent [setup guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
-
-!!! danger
-	You can pick your own Linux distro to use when setting up WSL2.
-
-	**YOU MUST PICK UBUNTU LATEST (22.04) UNLESS YOU KNOW EXACTLY WHAT YOU ARE DOING**. Anything else will likely have *ancient*
-	versions of software installed, and will cause some obscene headaches.
-
-	**UBUNTU 20.04 LTS HAS A SIGNIFICANTLY-TOO-OLD VERSION OF GIT. DO NOT USE IT.**
-
-### I'm on Mac.
-
-Everything should work out of the box.
-
-### I'm on Linux.
-
-Tachi has been tested on Ubuntu, Debian, Arch and Manjaro. There's no reason it won't run on any Linux variant, but
-if you're running something willfully obtuse like Artix or Slackware, you'll probably hit problems. Figure it out yourself.
-
-The happiest path for the below guide is for Arch/Manjaro users. For other distros, you
-might find getting some of the services running a bit cumbersome. Ah well.
-
-## 0.5. Get some developer tools.
+## 0. Get some developer tools.
 
 If you're an experienced programmer, you won't need this bit.
 
@@ -65,41 +30,22 @@ with everything we use.
 You'll need a terminal to run commands in. For Linux and Mac users, you can just open
 a Terminal app.
 
-However, for Windows users we recommend installing the [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=en-gb&gl=GB). It integrates well with WSL2, which is what you'll have to use.
+However, for Windows users we recommend installing the [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=en-gb&gl=GB).
 
-Anyway, with a terminal open you can proceed to the next steps!
+With a terminal open you can proceed to the next steps!
 
-### Understanding the Terminal
+## 1. Getting Node and Docker.
 
-If you're completely unfamiliar with the terminal, check out our [Terminal Guide](./tools/terminal.md). We'll be assuming you know terminal basics in the below instructions.
+You'll need `node` and `npm` in order to run Tachi. Install this from [the official NodeJS website](https://nodejs.org).
 
-## 1. Getting Node, PNPM and Docker.
+!!! info
+	If you are on linux, NodeJS will be provided by your package manager instead.
+	
+	You may wish to use that instead. It honestly doesn't matter all too much.
 
-You'll need `node` to run JavaScript code on your machine. Our codebase is wrote in JS, so this is pretty important.
+Check that the install has worked by running `npm -v`. If you get an error message saying that `npm` was not found, try restarting the terminal.
 
-Because system package managers may have outdated versions of `node` available (we want Node 16), we're going to use a separate tool called `nvm` to manage our node installs.
-
-Follow [these instructions](https://github.com/nvm-sh/nvm#install--update-script).
-
-Then close and re-open your shell to apply the changes. We can now install node16.
-```sh
-# install node 16
-nvm install 16
-
-# Check it worked
-node --version
-```
-
-We use `pnpm` instead of `npm`. To get `pnpm`, you'll need to run:
-
-```sh
-# You might need `sudo` to run this command.
-npm install -g pnpm
-```
-
-We use MongoDB and Redis as databases, these external databases require radically different instructions for setup depending on what OS/Linux variant you're on.
-
-As such, we're going to take the lazy route and use something called [Docker](https://docker.com).
+To set everything else up for local development, we'll use [Docker](https://docker.com).
 
 === "Windows, WSL Ubuntu"
 	You should install [Docker Desktop](https://docs.docker.com/desktop/) instead.
@@ -170,63 +116,22 @@ There's a remarkably easy way to do this, using GitHub's `gh` tool.
 Once you've installed it, type `gh auth` and follow the instructions.
 You should now be properly authenticated!
 
-## 4. Start the databases.
+## 4. Start Tachi!
 
-Before we bootstrap, lets get the databases started.
+With a terminal open inside the `Tachi` folder you just cloned, run `npm start`.
 
-!!! important
-	**You should be inside the Tachi folder you just cloned.**
-
-```sh
-# you can write either docker compose or docker-compose. However, the former might
-# require you to restart your shell if you've just installed docker compose.
-docker-compose up --detach
-```
-
-## 5. Bootstrap!
-
-!!! warning
-	The bootstrap script is a fairly recent addition.
-
-	If you have any issues with it, please report them!
-
-Using a terminal, run `_scripts/bootstrap.sh`. This will "bootstrap" your install of Tachi, and load
-everything you need.
+The frontend will be running on `http://127.0.0.1:3000`.
+The backend will be running on `https://127.0.0.1:8080`.
 
 !!! danger
-	The bootstrap script you just ran created some local self-signed HTTPS certificates.
+	The backend **always runs on HTTPS** in local development. This is because browsers
+	tend to *really* hate HTTP mode nowadays, and it causes so many problems.
 
-	Browsers (rightfully) tell you that these are not actually secure HTTPS certs.
-	We need them for local development, though.
-
-	You **need** to navigate to your running instance of the server in a browser, and tell
+	You **need** to navigate to your running instance of the backend in a browser, and tell
 	the browser that you trust these certificates. Otherwise, all client requests to
 	the server will silently be chomped by the browser.
 
-## 6. That's it!
-
-You now have a fully working instance of Tachi on your PC. You can now start to tinker
-with all of its various components.
-
-To check everything's gone soundly, run `pnpm start-server` and `pnpm start-client`.
-
-!!! tip
-	You can use the `+` inside the VSCode terminal to spawn multiple terminals.
-
-	Remember that `Ctrl-C` will kill the currently active process. You should use that
-	to stop the server or client.
-
-You should then be able to navigate to https://127.0.0.1:8080, accept the certificates,
-and view the client on http://127.0.0.1:3000.
-
-!!! warning
-	You **MUST** accept the certificates on https://127.0.0.1:8080. The client **will not** start otherwise.
-
-!!! help
-	If you're getting an `SSL_RX_RECORD_TOO_LONG` error, you're trying to access the client
-	via https. The client is served over HTTP - use http://127.0.0.1:3000.
-
-## 7. Editor Plugins
+## 5. Editor Plugins
 
 If you're using VSCode as your editor (I *really* recommend it!) You'll want a couple
 plugins.
@@ -243,4 +148,4 @@ Namely, Install the ESLint plugin, and enable "Format On Save" in your settings.
 
 Now that you've got a working version of Tachi running on your local PC, you should go check out the [component-specific contribution guides](./components.md)!
 
-[^1]: Docker is not actually a VM, it's significantly smarter and does some Linux jail cgroup nonsense. All you need to care about is that it works like having a separate Linux system on your host system.
+[^1]: Docker is not actually a VM, it's significantly smarter and does some Linux jail cgroup nonsense. All you need to care about is that we're using it to spawn Linux VMs on your host system.

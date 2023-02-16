@@ -104,7 +104,13 @@ const IIDXCoreCells: GPTClientImplementation<GPTStrings["iidx"]>["scoreCoreCells
 
 				const v = (deltaPercent / 100) * max;
 
-				return Math.round(v).toFixed(0);
+				// i don't know if this is correct
+				// it's just really hard to work out.
+				if (v < 0) {
+					return Math.floor(v).toFixed(0);
+				} else {
+					return Math.ceil(v).toFixed(0);
+				}
 			}}
 		/>
 		<IIDXLampCell sc={sc} chart={chart} />

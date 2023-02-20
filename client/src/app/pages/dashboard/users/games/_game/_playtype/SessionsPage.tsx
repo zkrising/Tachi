@@ -69,7 +69,10 @@ export default function SessionsPage({ reqUser, game, playtype }: UGPT) {
 	return (
 		<div className="row">
 			<div className="col-12">
-				<SessionCalendar {...{ reqUser, game, playtype }} />
+				<SessionCalendar
+					user={reqUser}
+					url={`/users/${reqUser.id}/games/${game}/${playtype}/sessions/calendar`}
+				/>
 				<Divider />
 			</div>
 			<div className="col-12 text-center">

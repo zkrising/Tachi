@@ -7,6 +7,7 @@
 		"start": "docker compose -f docker-compose-dev.yml up --build -d",
 		"stop": "docker compose -f docker-compose-dev.yml down",
 
+
 		"logs-server": "docker logs tachi-server -f",
 		"logs-client": "docker logs tachi-client -f",
 		"logs-seeds": "docker logs tachi-seeds -f",
@@ -22,6 +23,10 @@
 		"validate-db": "docker compose -f docker-compose-dev.yml exec tachi-server pnpm validate-database",
 
 		"start-docs": "cd docs/ && mkdocs serve",
+
+		"raw-start-server": "pnpm --filter ./server start",
+		"raw-start-client": "pnpm --filter ./client start",
+		"raw-start-dbs": "redis-server --daemonize yes; sudo systemctl start mongodb.service",
 
 		"^^ DEV STUFF IS HERE ^^": "comment",
 		"vv PROD STUFF YOU WON'T TOUCH vv": "comment",

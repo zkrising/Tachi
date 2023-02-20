@@ -9,6 +9,7 @@ import invitesRouter from "./invites/router";
 import { GetUserFromParam, RequireSelfRequestFromUser } from "./middleware";
 import notifsRouter from "./notifications/router";
 import pfpRouter from "./pfp/router";
+import sessionsRouter from "./sessions/router";
 import settingsRouter from "./settings/router";
 import { HashPassword, PasswordCompare, ValidatePassword } from "../../auth/auth";
 import { Router } from "express";
@@ -523,5 +524,6 @@ router.use("/invites", invitesRouter);
 router.use("/imports", importsRouter);
 router.use("/notifications", notifsRouter);
 router.use("/following", followingRouter);
+router.use("/sessions", sessionsRouter);
 
 export default router;

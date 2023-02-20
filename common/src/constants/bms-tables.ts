@@ -214,4 +214,22 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		description:
 			"Exoplanet is a table by the stella/satellite maintainers with less rules on what can be submitted. Includes gimmick charts.",
 	},
+	{
+		name: "DP Library",
+		asciiPrefix: "dpLibrary",
+		url: "https://yaruki0.net/DPlibrary/",
+		playtype: "14K",
+		prefix: "☆",
+		notDefault: true,
+		description: "A huge collection of Normal-Scale 14K charts.",
+	},
+	{
+		name: "table14",
+		asciiPrefix: "table14",
+		url: "https://kenpel.github.io/objeCraft/table14/",
+		playtype: "14K",
+		prefix: "★",
+		notDefault: true,
+		description: "An extended 14K Insane Table.",
+	},
 ];

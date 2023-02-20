@@ -223,13 +223,4 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		notDefault: true,
 		description: "A huge collection of Normal-Scale 14K charts.",
 	},
-	{
-		name: "table14",
-		asciiPrefix: "table14",
-		url: "https://kenpel.github.io/objeCraft/table14/",
-		playtype: "14K",
-		prefix: "★",
-		notDefault: true,
-		description: "An extended 14K Insane Table.",
-	},
 ];

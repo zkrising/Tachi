@@ -120,35 +120,6 @@
 	},
 	{
 		"default": false,
-		"description": "An extended 14K Insane Table.",
-		"folders": [
-			"F9686e0110de4c29df327c79cda5c670c737ed7ad12059f365eda9d12aff1be52",
-			"Fd30ddc91cc7498a7fc776e3aa0fefce8c596c11365d1a2f5a3bd45cf649536d9",
-			"F76a9b1134b5572136ba84d218353a8800f8cd113a8682258b654adb36cd9ad8c",
-			"F7275a7397f22930983f6958659773feebf0ce6926b5c9d47dc927d0d2a1b4657",
-			"Fb2c7c1d5998124186d953748895716a485f7cbf01f3b0bd14363943537959f8d",
-			"F88d9ad83a889dbbffa19642f639018fa81ea7f73ab9b44fca6e58fc91eec0658",
-			"Ffdc2abd564716a39f2ed75c21d55b310844afe2aebd507f509b5434fbbe64713",
-			"F0dd56f9f61242053e878de66f23472eec16f70a8ff5b59eb60857d999465ccfa",
-			"F21275a23c9af83fabf62da6465e1cdb91da209f6640ab2fd6f3d01ec1226e38f",
-			"F109ac7a27fd3af1a816e9ef8a841792074cc88524e614194ae5a11d843b29fc8",
-			"Ff7bcf98f1bd8c534876aeab0de5a2001c1ab98dbebefd13454062df85c16f209",
-			"F27ce01053e7f2195afa64898b34d17f88f7ea14234113e4c3b506af1c87b4bea",
-			"Fcda20abcb6d18d16aafccf3a5b5e518765ac3d4b05ceaa6eeef4bb8b71841806",
-			"Fa1a5c419195b4d3bae86ae5eed02b155d2bac2622f36b1dabdfa70c8bc491220",
-			"Faeed55f601f5a17c110afd025cb9fd3931dd7a7eca5b90b292a5023eb65c261c",
-			"Fd36a14208a0847617fcfc27840972236a804fbd2a430b7772a5f367b8acc7298",
-			"Fb0d16a98e3663faa8817841e6f6eaebb017a06993a6310ae4b0ee348429bdb5d",
-			"F495a05b3f35b3bbd3794255019314a331451e25d039f3102b3fda1a1f0d2c028"
-		],
-		"game": "bms",
-		"inactive": false,
-		"playtype": "14K",
-		"tableID": "bms-14K-table14",
-		"title": "table14"
-	},
-	{
-		"default": false,
 		"description": "The Arm-Shougakkou table is A gachi and gachi-ish practice table, Ude0 is approximately equivalent to an sl0",
 		"folders": [
 			"Fa19c8f49da25cd984fc90b9c8ced846dd7087ee4eee023302619c02b9ed038bf",

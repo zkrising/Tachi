@@ -228,6 +228,8 @@ router.get("/calendar", async (req, res) => {
 				highlight: 1,
 				timeStarted: 1,
 				timeEnded: 1,
+				game: 1,
+				playtype: 1,
 			},
 		}
 	);

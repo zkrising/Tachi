@@ -7,6 +7,9 @@ export function DashboardHeader() {
 		<NavItem key="activity" to="/">
 			Activity
 		</NavItem>,
+		<NavItem key="activity" to="/calendar">
+			Calendar
+		</NavItem>,
 		<NavItem key="profiles" to="/profiles">
 			Your Profiles
 		</NavItem>,

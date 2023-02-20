@@ -24,6 +24,7 @@ import { Alert } from "react-bootstrap";
 import { Link, Route, Switch } from "react-router-dom";
 import { COLOUR_SET, GetGameConfig, UserDocument } from "tachi-common";
 import { UGSWithRankingData, UserRecentSummary } from "types/api-returns";
+import SessionCalendar from "components/sessions/SessionCalendar";
 import { GameStatContainer } from "./users/UserGamesPage";
 
 export function DashboardPage() {
@@ -56,6 +57,13 @@ function DashboardLoggedIn({ user }: { user: UserDocument }) {
 			<Switch>
 				<Route exact path="/">
 					<DashboardActivity user={user} />
+				</Route>
+				<Route exact path="/calendar">
+					<SessionCalendar
+						user={user}
+						url={`/users/${user.id}/sessions/calendar`}
+						shouldDifferentiateGames
+					/>
 				</Route>
 				<Route exact path="/profiles">
 					<UserGameStatsInfo user={user} />

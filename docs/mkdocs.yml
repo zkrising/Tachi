@@ -37,6 +37,7 @@ nav:
           - Cookbook:
             - "contributing/cookbook/iidx-mdb.md"
             - "contributing/cookbook/sdvx-mdb.md"
+            - "contributing/cookbook/bms-tables.md"
 
       - Supporting New Games:
           - "game-support/index.md"

@@ -189,7 +189,6 @@ router.get("/folder-raises", async (req, res) => {
 			// 	}
 			// }
 
-			// for all charts in this folder
 			for (const [metric, conf] of Object.entries(enumScoreMetrics)) {
 				const metricDist: Record<string, Set<string>> = {};
 				const previousDist = cumulativeEnumDist[metric]!;
@@ -205,7 +204,9 @@ router.get("/folder-raises", async (req, res) => {
 						(s) => s.scoreID === bestEnumOnThisChart.scoreID
 					);
 
-					let gradeDelta = -Infinity;
+					// if no grade delta exists then they raised from 0
+					// @ts-expect-error silly cheaty enum access
+					let gradeDelta = bestEnumOnThisChart.scoreData.enumIndexes[metric]!;
 
 					if (
 						gradeDeltaSc &&

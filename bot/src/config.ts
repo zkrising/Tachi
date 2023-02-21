@@ -96,6 +96,7 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 		LOGGER: p.optional({
 			SEQ_API_KEY: "*string",
 		}),
+		LIMBO_CHANNEL: "*string",
 	});
 
 	if (err) {

@@ -1,6 +1,7 @@
 import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
 import { ChangeOpacity } from "util/color-opacity";
 import { FormatGPTProfileRating, IsNotNullish, UppercaseFirst } from "util/misc";
+import { StrSOV } from "util/sorts";
 import ClassBadge from "components/game/ClassBadge";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
@@ -136,18 +137,20 @@ function LeaderboardsPageContent({
 				{/* temp */}
 				<td>
 					{Object.entries(s.classes).length
-						? Object.entries(s.classes).map(
-								([k, v]) =>
-									v && (
-										<ClassBadge
-											key={`${k}:${v}`}
-											classValue={v}
-											classSet={k as Classes[GPTString]}
-											game={game}
-											playtype={playtype}
-										/>
-									)
-						  )
+						? Object.entries(s.classes)
+								.sort(StrSOV((x) => x[0]))
+								.map(
+									([k, v]) =>
+										v && (
+											<ClassBadge
+												key={`${k}:${v}`}
+												classValue={v}
+												classSet={k as Classes[GPTString]}
+												game={game}
+												playtype={playtype}
+											/>
+										)
+								)
 						: "No Classes"}
 				</td>
 			</tr>

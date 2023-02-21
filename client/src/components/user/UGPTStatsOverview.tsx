@@ -1,4 +1,5 @@
 import { FormatGPTProfileRating, UppercaseFirst } from "util/misc";
+import { StrSOV } from "util/sorts";
 import ClassBadge from "components/game/ClassBadge";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import MiniTable from "components/tables/components/MiniTable";
@@ -21,6 +22,7 @@ export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 		<MiniTable className="table-sm text-center" headers={["Player Stats"]} colSpan={2}>
 			<>
 				{(Object.keys(gptConfig.classes) as Classes[GPTString][])
+					.sort(StrSOV((x) => x[0]))
 					.filter((k) => ugs.classes[k] !== undefined)
 					.map((k) => (
 						<tr key={k}>

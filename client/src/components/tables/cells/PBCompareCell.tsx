@@ -17,25 +17,31 @@ export default function PBCompareCell({
 }) {
 	let status: "win" | "draw" | "lose";
 
-	let delta: number | null = null;
+	let delta: number;
+
+	const getMetricNum =
+		metricConf.type === "ENUM"
+			? // @ts-expect-error bad hacks
+			  (pb: PBScoreDocument) => pb.scoreData.enumIndexes[metric]
+			: // @ts-expect-error bad hacks
+			  (pb: PBScoreDocument) => pb.scoreData[metric];
 
 	// wut?
 	if (!base && !compare) {
 		status = "draw";
+		delta = 0;
 	} else if (!base) {
 		status = "lose";
+		delta = getMetricNum(compare!);
 	} else if (!compare) {
 		status = "win";
-	} else if (metricConf.type === "ENUM") {
-		// @ts-expect-error yeah this index will work sorry
-		status = cmp(base.scoreData.enumIndexes[metric], compare.scoreData.enumIndexes[metric]);
-		// @ts-expect-error yeah this index will work sorry
-		delta = base.scoreData.enumIndexes[metric] - compare.scoreData.enumIndexes[metric];
+		delta = getMetricNum(base);
 	} else {
-		// @ts-expect-error yeah this index will work sorry
-		status = cmp(base.scoreData[metric], compare.scoreData[metric]);
-		// @ts-expect-error yeah this index will work sorry
-		delta = base.scoreData[metric] - compare.scoreData[metric];
+		const b = getMetricNum(base);
+		const c = getMetricNum(compare);
+
+		status = cmp(b, c);
+		delta = b - c;
 	}
 
 	return (
@@ -52,18 +58,10 @@ export default function PBCompareCell({
 			}}
 		>
 			{metricConf.type === "ENUM" ? (
-				<>
-					{/* @ts-expect-error this is fine */}
-					{(delta > 0 ? "+" : "") + delta}
-				</>
+				<>{(delta > 0 ? "+" : "") + delta}</>
 			) : (
 				(metricConf.type === "DECIMAL" || metricConf.type === "INTEGER") && (
-					<strong>
-						{/* @ts-expect-error this is fine */}
-						{(delta > 0 ? "+" : "") +
-							//  @ts-expect-error this is fine
-							metricConf.formatter(delta)}
-					</strong>
+					<strong>{(delta > 0 ? "+" : "") + metricConf.formatter(delta)}</strong>
 				)
 			)}
 		</td>
@@ -78,18 +76,4 @@ function cmp(a: number, b: number) {
 	}
 
 	return "lose";
-}
-
-function fmtNum(num: number, fixed?: number, suffix?: string) {
-	let str = fixed ? num.toFixed(fixed) : num.toString();
-
-	if (num >= 0) {
-		str = `+${str}`;
-	}
-
-	if (suffix) {
-		str += suffix;
-	}
-
-	return str;
 }

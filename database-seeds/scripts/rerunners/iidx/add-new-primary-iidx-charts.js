@@ -1,12 +1,15 @@
 const { MutateCollection, CreateChartID } = require("../../util");
 
-const inGameID = 19017;
-const tachiSongID = 1014;
+const inGameID = 30091;
+const tachiSongID = 2203;
 
 const newCharts = [
-	["SP", "NORMAL", 297, 3],
-	["DP", "NORMAL", 316, 3],
-	["DP", "ANOTHER", 1068, 10],
+	["SP", "NORMAL", 427, 4],
+	["SP", "HYPER", 880, 8],
+	["SP", "ANOTHER", 1230, 10],
+	["DP", "NORMAL", 446, 4],
+	["DP", "HYPER", 882, 8],
+	["DP", "ANOTHER", 1271, 10],
 ];
 
 const shouldBeDeprimaried = (c) =>
@@ -39,7 +42,7 @@ MutateCollection("charts-iidx.json", (charts) => {
 			rgcID: null,
 			songID: tachiSongID,
 			tierlistInfo: {},
-			versions: ["29"],
+			versions: ["30", "inf"],
 		});
 	}
 

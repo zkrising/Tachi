@@ -39,9 +39,7 @@ MutateCollection("charts-iidx.json", (charts) => {
 			isPrimary: true,
 			level: level.toString(),
 			levelNum: level,
-			rgcID: null,
 			songID: tachiSongID,
-			tierlistInfo: {},
 			versions: ["30", "inf"],
 		});
 	}

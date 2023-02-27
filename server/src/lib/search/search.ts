@@ -1,8 +1,8 @@
-import deepmerge from "deepmerge";
 import db from "external/mongo/db";
+import { AsyncFzf } from "fzf";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
-import { CreateSongMap, GetGPTString, SplitGPT } from "tachi-common";
+import { CreateSongMap, SplitGPT } from "tachi-common";
 import { GetSongForIDGuaranteed } from "utils/db";
 import { EscapeStringRegexp } from "utils/misc";
 import { GetOnlineCutoff } from "utils/user";
@@ -11,17 +11,34 @@ import type { ICollection } from "monk";
 import type {
 	ChartDocument,
 	FolderDocument,
-	Game,
-	integer,
-	Playtype,
-	UserDocument,
-	SessionDocument,
-	SongDocument,
 	GPTString,
 	GPTStrings,
+	Game,
+	Playtype,
+	SessionDocument,
+	SongDocument,
+	UserDocument,
+	integer,
 } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
+
+interface SearchControls {
+	keys: Array<string>;
+	primary: string;
+}
+
+const SEARCH_CONTROLS = {
+	songs: {
+		keys: ["title", "artist", "searchTerms", "altTitles"],
+		primary: "id",
+	},
+	sessions: { keys: ["name"], primary: "sessionID" },
+	goals: { keys: ["name"], primary: "goalID" },
+	quests: { keys: ["name"], primary: "questID" },
+	users: { keys: ["username"], primary: "id" },
+	folders: { keys: ["name", "searchTerms"], primary: "folderID" },
+} satisfies Partial<Record<keyof typeof db, SearchControls>>;
 
 /**
  * Perform a $text index search on a collection.
@@ -31,43 +48,63 @@ const logger = CreateLogCtx(__filename);
  * @param existingMatch - An existing $match query to further filter results
  * by.
  */
-export function SearchCollection<T extends object>(
+export async function SearchCollection<T extends object>(
 	collection: ICollection<T>,
 	search: string,
+	searchMethod: keyof typeof SEARCH_CONTROLS,
 	existingMatch: FilterQuery<T> = {},
-	limit = 100
+	limit = 500
 ): Promise<Array<T & { __textScore: number }>> {
-	const agg: Promise<Array<T & { __textScore: number }>> = collection.aggregate([
-		{
-			$match: deepmerge({ $text: { $search: search } }, existingMatch),
-		},
+	const controls = SEARCH_CONTROLS[searchMethod];
 
-		// Project the __textScore field on so we can sort
-		// based on search proximity to query
-		{
-			$addFields: {
-				__textScore: { $meta: "textScore" },
-			},
-		},
+	const projection = Object.fromEntries([...controls.keys, controls.primary].map((e) => [e, 1]));
 
-		// sort by quality of match
-		{ $sort: { __textScore: -1 } },
+	// we do the searching in-memory, because mongodb's search offerings are truly
+	// abysmal. I'm sorry. The performance is fine. I think.
+	const data = (await collection.find(existingMatch, { projection })) as Array<any>;
 
-		// hide nonsense
-		{ $match: { __textScore: { $gt: 0.25 } } },
-		{ $limit: limit },
-		{ $unset: "_id" },
-	]);
+	const pkeys: Array<string> = [];
+	const scores: Record<string, number> = {};
 
-	return agg.catch((err: unknown) => {
-		logger.error(
-			`An error occured while trying to $text search collection ${collection.name}. Does this have a $text index?`,
-			{ err }
-		);
+	// extremely slow, extremely inefficent, but whatever.
+	// we'll live.
+	await Promise.all(
+		controls.keys.map(async (key) => {
+			const fzf = new AsyncFzf(
+				data.filter((e) => e[key]),
+				{
+					selector: (item) => item[key].toString(),
+					limit,
+				}
+			);
 
-		// throw it up further
-		throw err;
+			const results = await fzf
+				.find(search)
+				.then((data) => data.filter((d) => d.score > 100));
+
+			for (const res of results) {
+				const pkey = res.item[controls.primary];
+
+				pkeys.push(pkey);
+
+				const existingScore = scores[pkey];
+
+				if (!existingScore || existingScore < res.score) {
+					scores[pkey] = res.score;
+				}
+			}
+		})
+	);
+
+	const documents: Array<any> = await (collection as ICollection).find({
+		[controls.primary]: { $in: pkeys },
 	});
+
+	for (const doc of documents) {
+		doc.__textScore = scores[doc[controls.primary]] ?? 0;
+	}
+
+	return documents;
 }
 
 export type SongSearchReturn = SongDocument & {
@@ -79,7 +116,7 @@ export function SearchSpecificGameSongs(
 	search: string,
 	limit = 100
 ): Promise<Array<SongSearchReturn>> {
-	return SearchCollection(db.anySongs[game], search, {}, limit);
+	return SearchCollection(db.anySongs[game], search, "songs", {}, limit);
 }
 
 export async function SearchSpecificGameSongsAndCharts(
@@ -184,7 +221,7 @@ export function SearchSessions(
 		baseMatch.userID = userID;
 	}
 
-	return SearchCollection(db.sessions, search, baseMatch, limit);
+	return SearchCollection(db.sessions, search, "sessions", baseMatch, limit);
 }
 
 /**
@@ -325,7 +362,7 @@ export function SearchFolders(
 	existingMatch?: FilterQuery<FolderDocument>,
 	limit?: integer
 ) {
-	return SearchCollection(db.folders, search, existingMatch, limit);
+	return SearchCollection(db.folders, search, "folders", existingMatch, limit);
 }
 
 function AddGamePropToSong(songDocument: SongDocument, game: Game): SongDocument & { game: Game } {

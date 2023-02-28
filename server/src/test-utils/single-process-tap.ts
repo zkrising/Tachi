@@ -1,10 +1,3 @@
-/* eslint-disable import/first */
-// see: https://www.npmjs.com/package/fix-esm
-// fzf *mandates* esm, but we don't use it (ts transpiles to cjs)
-// sick of this headache.
-// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
-require("fix-esm").register();
-
 import "external/mongo/db";
 import { CleanUpAfterTests } from "./cleanup";
 import glob from "glob";

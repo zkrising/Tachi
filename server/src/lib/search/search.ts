@@ -1,3 +1,10 @@
+/* eslint-disable import/first */
+// see: https://www.npmjs.com/package/fix-esm
+// fzf *mandates* esm, but we don't use it (ts transpiles to cjs)
+// sick of this headache.
+// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
+require("fix-esm").register();
+
 import db from "external/mongo/db";
 import { AsyncFzf } from "fzf";
 import CreateLogCtx from "lib/logger/logger";
@@ -37,7 +44,7 @@ const SEARCH_CONTROLS = {
 	goals: { keys: ["name"], primary: "goalID" },
 	quests: { keys: ["name"], primary: "questID" },
 	users: { keys: ["username"], primary: "id" },
-	folders: { keys: ["name", "searchTerms"], primary: "folderID" },
+	folders: { keys: ["title", "searchTerms"], primary: "folderID" },
 } satisfies Partial<Record<keyof typeof db, SearchControls>>;
 
 /**
@@ -78,9 +85,13 @@ export async function SearchCollection<T extends object>(
 				}
 			);
 
-			const results = await fzf
-				.find(search)
-				.then((data) => data.filter((d) => d.score > 100));
+			let results = await fzf.find(search);
+
+			// filter out anything far from the best match
+			// 30 was chosen arbitrarily :)
+			const max = results[0]?.score ?? 0;
+
+			results = results.filter((e) => e.score >= max - 30);
 
 			for (const res of results) {
 				const pkey = res.item[controls.primary];

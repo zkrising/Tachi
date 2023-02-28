@@ -206,7 +206,6 @@ function ChartView({
 				<tr>
 					<DifficultyCell game={game} chart={d.chart} />
 					<TitleCell chart={d.chart} game={game} song={d.song} />
-					<td>{d.song.__textScore}</td>
 					<td>{d.playcount}</td>
 				</tr>
 			)}

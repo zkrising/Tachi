@@ -28,7 +28,28 @@ t.test("#SearchSpecificGameSongs", (t) => {
 		// songID here and expect this.
 		t.strictSame(
 			res.sort((a, b) => a.id - b.id).map((e) => e.title),
-			["A", "AA", "冥", "F", "HAERETICUS", "ZZ", "X", "AA -rebuild-", "∀", "-65℃"]
+			[
+				"L'amour et la liberte",
+				"A",
+				"I'm In Love Again -Y&Co. EURO MIX-",
+				"AA",
+				"冥",
+				"Make Me Your Own",
+				"AIR RAID FROM THA UNDAGROUND",
+				"Programmed Sun (xac Antarctic Ocean mix)",
+				"黒髪乱れし修羅となりて",
+				"F",
+				"DON'T WAKE ME FROM THE DREAM (2010 Summer Edition)",
+				"HAERETICUS",
+				"狂イ咲ケ焔ノ華",
+				"ZZ",
+				"X",
+				"獅子霞麗ノ舞",
+				"AA -rebuild-",
+				"抱きしめてモナムール",
+				"∀",
+				"-65℃",
+			]
 		);
 
 		t.end();

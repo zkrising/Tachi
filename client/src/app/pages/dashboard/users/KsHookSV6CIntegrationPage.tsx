@@ -81,7 +81,7 @@ function KsHookSV6CForm({
 					onChange={(e) => {
 						setFormSettings({ ...formSettings, forceStaticImport: e.target.checked });
 					}}
-					label="Force Static Imports"
+					label="Sync Existing Scores"
 				/>
 				<Form.Text>
 					Import existing scores on game load.

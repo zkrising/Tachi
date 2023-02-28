@@ -103,6 +103,25 @@ function ParseFunction(data: string) {
 		throw new Error(`This CSV has no scores? Only found headers.`);
 	}
 
+	// check for nonsense non-zero EX stuff with zero judgements
+
+	for (const line of lines) {
+		const cells = line.split(",");
+		for (let i = 0; i < 5; i++) {
+			const di = 5 + i * 7;
+
+			const exscore = cells[di + 1]!;
+			const pgreat = cells[di + 2]!;
+			const great = cells[di + 3]!;
+
+			if (Number(exscore) && Number(pgreat) === 0 && Number(great) === 0) {
+				throw new Error(
+					`Invalid CSV. This CSV does not have PGREAT/GREAT information, which we use to sanity check scores. If this is from Fervidex you can enable "Sync Existing Scores" and boot the game instead.`
+				);
+			}
+		}
+	}
+
 	const linesWithScores = lines.filter((e) => e !== "");
 
 	return {

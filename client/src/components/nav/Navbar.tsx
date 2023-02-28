@@ -39,10 +39,12 @@ export default function Navbar({ children }: { children: JSX.Element[] }) {
 		<Tabs
 			sx={{
 				width: "100%",
+				borderRadius: ".42rem",
 			}}
 			variant="scrollable"
 			scrollButtons="auto"
 			value={value}
+			allowScrollButtonsMobile
 		>
 			{children}
 		</Tabs>

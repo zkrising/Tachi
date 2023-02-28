@@ -3,6 +3,8 @@ import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import { TachiConfig } from "lib/config";
 import React from "react";
+import { Alert } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function FervidexPage() {
 	useSetSubheader(["Import Scores", "Fervidex"]);
@@ -52,6 +54,17 @@ export default function FervidexPage() {
 				</ul>
 				<li>That's it! Your scores should now automatically submit to the server.</li>
 			</ol>
+			<Alert variant="warning">
+				Looking to import existing scores? Import from your network first. If that's not
+				possible, enable "Sync Existing Scores" in{" "}
+				<Link
+					className="gentle-link"
+					to={"/u/me/integrations/services/fervidex"}
+					style={{ color: "black", textDecoration: "underline" }}
+				>
+					<b>your settings.</b>
+				</Link>
+			</Alert>
 		</div>
 	);
 }

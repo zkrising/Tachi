@@ -153,7 +153,7 @@ export default function TachiTable<D>({
 			</div>
 
 			<div className="col-12 px-0 mt-4 mb-4">
-				<table className="table table-striped table-hover table-vertical-center text-center table-responsive-md">
+				<table className="table table-striped table-hover table-vertical-center text-center table-responsive-xs">
 					<thead>{headersRow}</thead>
 					<tbody>
 						<NoDataWrapper>{window.map((e) => rowFunction(e))}</NoDataWrapper>

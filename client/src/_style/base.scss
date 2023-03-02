@@ -194,3 +194,17 @@
 .topbar {
 	justify-content: end;
 }
+
+@include media-breakpoint-up(lg) {
+	.session-raise-container {
+		width: 100%;
+		display: flex;
+	}
+}
+@include media-breakpoint-down(md) {
+	.session-raise-container {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+}

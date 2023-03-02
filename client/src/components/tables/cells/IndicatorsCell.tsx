@@ -15,6 +15,7 @@ export default function IndicatorsCell({ highlight }: { highlight: boolean }) {
 				style={{
 					backgroundColor: highlight ? ChangeOpacity("#e6a303", 0.5) : "#383838",
 					maxWidth: 5,
+					padding: 3,
 				}}
 			></td>
 		</QuickTooltip>

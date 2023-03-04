@@ -92,7 +92,6 @@ const diffMap = new Map([
 			charts.push({
 				songID: thisSongID,
 				chartID: chartID,
-				rgcID: null,
 				level: data[`dx_lev_${diff}`],
 				levelNum: lvNum,
 				isPrimary: true,
@@ -101,7 +100,6 @@ const diffMap = new Map([
 				data: {
 					isLatest,
 				},
-				tierlistInfo: {},
 				versions: ["universeplus"],
 			});
 		});

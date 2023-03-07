@@ -1,9 +1,10 @@
 /* eslint-disable no-loop-func */
 const { MutateCollection, CreateFolderID } = require("../../util");
-const { PrettyVersions } = require("tachi-common/config/versions");
+import { JUBEAT_SINGLE_CONF } from "tachi-common/config/game-support/jubeat";
+import { FolderDocument } from "tachi-common/src/types";
 
 function CreateFolder(criteria, title) {
-	const f = {
+	const f: any = {
 		game: "jubeat",
 		playtype: "Single",
 		data: criteria,
@@ -20,15 +21,14 @@ function CreateFolder(criteria, title) {
 	return f;
 }
 
-const versions = ["jubeat", "ripples", "knit", "copious", "saucer", "prop"];
+const versions = ["festo-omni"];
 
 for (const version of versions) {
-	// CHANGEME IF YOU'RE ADDING AVENUE SUPPORT!!!!
-	const shouldAddDecimals = false;
+	const shouldAddDecimals = true;
 
-	const versionPretty = PrettyVersions["jubeat:Single"][version];
-	const levelFolders = [];
-	const levelHardFolders = [];
+	const versionPretty = JUBEAT_SINGLE_CONF.versions[version];
+	const levelFolders: Array<FolderDocument> = [];
+	const levelHardFolders: Array<FolderDocument> = [];
 
 	for (const level of ["1", "2", "3", "4", "5", "6", "7", "8"]) {
 		const f = CreateFolder(
@@ -70,8 +70,8 @@ for (const version of versions) {
 		)
 	);
 
-	const detailFolders = [];
-	const detailHardFolders = [];
+	const detailFolders: Array<FolderDocument> = [];
+	const detailHardFolders: Array<FolderDocument> = [];
 
 	if (shouldAddDecimals) {
 		for (const level of [

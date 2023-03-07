@@ -114,6 +114,7 @@ export const JUBEAT_SINGLE_CONF = {
 		qubell: "Qubell",
 		clan: "clan",
 		festo: "festo",
+		"festo-omni": "festo Omnimix",
 	},
 
 	chartData: z.strictObject({

@@ -2,6 +2,9 @@
 
 This is the main monorepo for Tachi.
 
+![](.github/img/tachi.png)
+![](.github/img/tachi-2.png)
+
 ## What is Tachi?
 
 Tachi is a modern, powerful, modular Rhythm Game Score Tracker.

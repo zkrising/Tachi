@@ -2501,7 +2501,7 @@
 			"F7a23b59259f7a95a9488f1fd26f92e71bdd237bc76576cfd5bde83cda772c819"
 		],
 		"game": "jubeat",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"tableID": "jubeat-Single-declv-festo-omni",
 		"title": "Decimal Level Folders (festo Omnimix)"
@@ -2594,7 +2594,7 @@
 			"F5e2ef54a3103d5e0ff625e12536a9cc1b2223f7261318262772e744c58926c9c"
 		],
 		"game": "jubeat",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"tableID": "jubeat-Single-declvhd-festo-omni",
 		"title": "Hard Mode Decimal Level Folders (festo Omnimix)"
@@ -2698,7 +2698,7 @@
 			"F749c2d226f908fc06abd2169099562afdd452d3949110301bc95a4bc5105567d"
 		],
 		"game": "jubeat",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"tableID": "jubeat-Single-lvhd-festo-omni",
 		"title": "Hard Mode Level Folders (festo Omnimix)"
@@ -2887,7 +2887,7 @@
 			"F7c90a898ba49a179f1dd94a11dd699ed1264aa318df540322f6672e0fe0ca102"
 		],
 		"game": "jubeat",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"tableID": "jubeat-Single-lv-festo-omni",
 		"title": "Level Folders (festo Omnimix)"

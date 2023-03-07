@@ -34,7 +34,7 @@ export function GPTBottomNav({ baseUrl }: { baseUrl: string }) {
 	}
 
 	return (
-		<div className="row align-items-center mb-0">
+		<div className="align-items-center mb-0">
 			<Navbar>{navItems}</Navbar>
 		</div>
 	);

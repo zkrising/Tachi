@@ -21276,6 +21276,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "1",
+			"versions": "festo-omni"
+		},
+		"folderID": "F33923db7c1e05497ed41d3d75526bf8da01b91a826462b0c909410f779774bcc",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -21312,6 +21326,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 1 (Hard Mode) (copious)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "1",
+			"versions": "festo-omni"
+		},
+		"folderID": "Fc70c3f6d58287cc2b1b94b409fdebf6d748ed2c7652ce1a805e7f9116b149240",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -21576,6 +21604,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "10.0",
+			"versions": "festo-omni"
+		},
+		"folderID": "F9af14d78e5aa58566112fae0d696631292c4d2adc9d4cd5835b192278f2765ad",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.0 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -21592,6 +21634,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10.0 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "10.0",
+			"versions": "festo-omni"
+		},
+		"folderID": "F4befa5616a6778a28078bbfefa9d3b3345ed0676a42df287f2c61a193de7e93a",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.0 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -21679,6 +21735,23 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"levelNum": {
+				"~gte": 10,
+				"~lt": 11
+			},
+			"versions": "festo-omni"
+		},
+		"folderID": "F7c90a898ba49a179f1dd94a11dd699ed1264aa318df540322f6672e0fe0ca102",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.0-10.9 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -21721,6 +21794,23 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10.0-10.9 (Hard Mode) (copious)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"levelNum": {
+				"~gte": 10,
+				"~lt": 11
+			},
+			"versions": "festo-omni"
+		},
+		"folderID": "F749c2d226f908fc06abd2169099562afdd452d3949110301bc95a4bc5105567d",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.0-10.9 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -22024,6 +22114,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "10.1",
+			"versions": "festo-omni"
+		},
+		"folderID": "Ff420e5f09a69f21013fddc52f7b324001b6908f6bd92a4ecce02f437c41ca00e",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.1 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -22040,6 +22144,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10.1 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "10.1",
+			"versions": "festo-omni"
+		},
+		"folderID": "Fa0992bdf7f84a804e7a83192c59a8e150696c3661ad5de442dba567317a113a1",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.1 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -22104,6 +22222,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "10.2",
+			"versions": "festo-omni"
+		},
+		"folderID": "Fca20da29c1a3aa7def64a21b331ca46432f4e805c111630369cd69cbd6c8700b",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.2 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -22120,6 +22252,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10.2 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "10.2",
+			"versions": "festo-omni"
+		},
+		"folderID": "F34ad24b84d11a9ed63dc4d9a365228ec2da925908dc61781ac49fb51844bdee2",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.2 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -22184,6 +22330,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "10.3",
+			"versions": "festo-omni"
+		},
+		"folderID": "Fa819ce9ee778683fbd60966de97b00b3479135f205c5332b57e6addf62e31e12",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.3 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -22200,6 +22360,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10.3 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "10.3",
+			"versions": "festo-omni"
+		},
+		"folderID": "Fe11d4ce59c117ff6037db16e0e3159e5a87f55c6786686606631f9423eabf4cd",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.3 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -22264,6 +22438,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "10.4",
+			"versions": "festo-omni"
+		},
+		"folderID": "Fa45e7ba610f61ee35df94698b3f901989c6a9d693f756ebc695499f18156dd34",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.4 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -22280,6 +22468,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10.4 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "10.4",
+			"versions": "festo-omni"
+		},
+		"folderID": "F05279c8f71882ed9070beb00af97c88b6907c766b91e777e942e62b0b3506c1f",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.4 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -22344,6 +22546,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "10.5",
+			"versions": "festo-omni"
+		},
+		"folderID": "F1ef53d42443a25362848d0d1ad9f956c2080beb790ae4276ce52d5bf4eb874d7",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.5 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -22360,6 +22576,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10.5 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "10.5",
+			"versions": "festo-omni"
+		},
+		"folderID": "F8ff7260bee54bf33fcd2e14f7ce98645f03bec368ee205d280aad79f93888023",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.5 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -22424,6 +22654,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "10.6",
+			"versions": "festo-omni"
+		},
+		"folderID": "Fba5c16e9a936ec065bed4c3eb0675f6d0e777cd93cede5eb64f4e1fa70bbedc3",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.6 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -22440,6 +22684,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10.6 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "10.6",
+			"versions": "festo-omni"
+		},
+		"folderID": "F9f87299ad4dc94fd22e5181008a70e24903bd2525a4ba9cc60a6214fb8b2b3d1",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.6 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -22504,6 +22762,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "10.7",
+			"versions": "festo-omni"
+		},
+		"folderID": "F885766c523d8e8d17a33c867b2f88c560e454a0274e9c87959162dee665baf54",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.7 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -22520,6 +22792,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10.7 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "10.7",
+			"versions": "festo-omni"
+		},
+		"folderID": "Fd30ff07a314695aec6fe659bca5872b472fb2fa15143742ae23eaa3455abb853",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.7 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -22584,6 +22870,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "10.8",
+			"versions": "festo-omni"
+		},
+		"folderID": "F04546faddef6b877fa967edaf789b7ae47d840fb7213a1e64b5bba2ef66c3e17",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.8 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -22600,6 +22900,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10.8 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "10.8",
+			"versions": "festo-omni"
+		},
+		"folderID": "F68af3911faebf80a91a26dc61e3b180d1a223c7f7e75b17e43fa11cc7afb5555",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.8 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -22664,6 +22978,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "10.9",
+			"versions": "festo-omni"
+		},
+		"folderID": "F7a23b59259f7a95a9488f1fd26f92e71bdd237bc76576cfd5bde83cda772c819",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.9 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -22680,6 +23008,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10.9 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "10.9",
+			"versions": "festo-omni"
+		},
+		"folderID": "F5e2ef54a3103d5e0ff625e12536a9cc1b2223f7261318262772e744c58926c9c",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10.9 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -22764,6 +23106,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "2",
+			"versions": "festo-omni"
+		},
+		"folderID": "Ff7f728e5ee0f358a33f765d37038cff2ddeb33a0cd2ac4a470fcacfb423daae7",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -22800,6 +23156,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 2 (Hard Mode) (copious)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "2",
+			"versions": "festo-omni"
+		},
+		"folderID": "Fcb5de17c2953b0878e937f3ef47ccce9443d582ff68f62fbc86ba011ce6b082b",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -23084,6 +23454,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "3",
+			"versions": "festo-omni"
+		},
+		"folderID": "F948963fc142b12e88afc5a57c14a69c65d1aa3d013215ebc16dc24bfa7e0e8dd",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -23120,6 +23504,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 3 (Hard Mode) (copious)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "3",
+			"versions": "festo-omni"
+		},
+		"folderID": "F9e0d8ec9f93b097008cfa731398b023953efaccd828ed39b6e28d3fa801ff55d",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -23404,6 +23802,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "4",
+			"versions": "festo-omni"
+		},
+		"folderID": "F816fe9afb25bd1e9a988d432f00aedcfb180da42c1b59c94bddfd5af5b899388",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -23440,6 +23852,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 4 (Hard Mode) (copious)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "4",
+			"versions": "festo-omni"
+		},
+		"folderID": "Fec4c863394c2a8040a8152e2011536439c9dbf1a5044e92e0ea4fa6a0b6eba62",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -23724,6 +24150,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "5",
+			"versions": "festo-omni"
+		},
+		"folderID": "F04b75eaf957355ef455b97c2329d22931cb05419aa50c94b93e38dcf54a688a6",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -23760,6 +24200,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 5 (Hard Mode) (copious)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "5",
+			"versions": "festo-omni"
+		},
+		"folderID": "F5a8a32fda25c0d0ab4490de06a3af63f47a0cda11772eef96ebfd8e959d1e185",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -24044,6 +24498,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "6",
+			"versions": "festo-omni"
+		},
+		"folderID": "F61eed0ca21d992036e9dc928808fbed26ad519c548952cdb55c33c42b998011d",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -24080,6 +24548,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 6 (Hard Mode) (copious)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "6",
+			"versions": "festo-omni"
+		},
+		"folderID": "F2f510139387624d656495d8a4cd91cb0ea97e7ba74e8cd726c7a814527b9a5df",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -24364,6 +24846,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "7",
+			"versions": "festo-omni"
+		},
+		"folderID": "F1fb7ba3632fd64eaa6a952aa86613cdfa32e059ccc198a91cd1105a437e64fb7",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -24400,6 +24896,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 7 (Hard Mode) (copious)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "7",
+			"versions": "festo-omni"
+		},
+		"folderID": "F61b5c8c0648ef22dd7ad596740be501bba37a7ca5ed4172a7a20eb920a52ef8a",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -24684,6 +25194,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "8",
+			"versions": "festo-omni"
+		},
+		"folderID": "Fffa46c8e1dc9f7261805a3a9cc5ea1abcf74a24fae618429dc77f43939f226ee",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -24720,6 +25244,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 8 (Hard Mode) (copious)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "8",
+			"versions": "festo-omni"
+		},
+		"folderID": "F83ffb5d28bf3c0e6c4c6c5976677a96b5d4707dc91bc80146f75a3ddf65b870d",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -24984,6 +25522,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "9.0",
+			"versions": "festo-omni"
+		},
+		"folderID": "Fc1396639ceaffc91d8de7c840b04d62fc2ce463365c15ae9d12b804152b1dad3",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.0 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -25000,6 +25552,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9.0 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "9.0",
+			"versions": "festo-omni"
+		},
+		"folderID": "Ff1f23c3fe65f42329045a8eefae40b0d41159b7d6207b0e1133a7b5ed34fcc72",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.0 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -25087,6 +25653,23 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"levelNum": {
+				"~gte": 9,
+				"~lt": 10
+			},
+			"versions": "festo-omni"
+		},
+		"folderID": "Fa9b2ddc8ee764b3138c99b5601d0811284cc47da6794dc7187827b1e94a6b6ec",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.0-9.9 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -25129,6 +25712,23 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9.0-9.9 (Hard Mode) (copious)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"levelNum": {
+				"~gte": 9,
+				"~lt": 10
+			},
+			"versions": "festo-omni"
+		},
+		"folderID": "F4a9db8d87a9de1092f43428a221ca8e52ca7003473717789a3c3ab3a5483edeb",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.0-9.9 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -25432,6 +26032,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "9.1",
+			"versions": "festo-omni"
+		},
+		"folderID": "F8b73212b42135a9189bceb2ab120ff7900c61744e39451f0ded93dfb70426f4e",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.1 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -25448,6 +26062,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9.1 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "9.1",
+			"versions": "festo-omni"
+		},
+		"folderID": "Ff65ade99586cc7a063f54f23c10c3f2f30ffc578e3fd2f55bd0b853df9a7a85f",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.1 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -25512,6 +26140,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "9.2",
+			"versions": "festo-omni"
+		},
+		"folderID": "F8ef9aa5c00e4658e46b949acbb666d63d38f48504ee4d8f211d5bcdb6e151c34",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.2 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -25528,6 +26170,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9.2 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "9.2",
+			"versions": "festo-omni"
+		},
+		"folderID": "Fc29416cb4ea37cdab69ac68f2bff28847fb9e3f1de591ac93125d9db04fa7249",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.2 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -25592,6 +26248,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "9.3",
+			"versions": "festo-omni"
+		},
+		"folderID": "F2ea2ec1ab300d204570404600d6362cea7d7c6bca3abd1377b2610313132c687",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.3 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -25608,6 +26278,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9.3 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "9.3",
+			"versions": "festo-omni"
+		},
+		"folderID": "F8c6c1d2f8fb6548170c5f31bc595c683bf1a261dfe91501247bef10e4969b81b",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.3 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -25672,6 +26356,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "9.4",
+			"versions": "festo-omni"
+		},
+		"folderID": "F2bc48bab21654aad2df30f8c201f89c38ce2c6aac5057134ea59354d0ce24f17",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.4 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -25688,6 +26386,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9.4 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "9.4",
+			"versions": "festo-omni"
+		},
+		"folderID": "F381171737bb0ac32966495eeb228c1a4558ec7b3ad083b9379253ff3ca404990",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.4 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -25752,6 +26464,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "9.5",
+			"versions": "festo-omni"
+		},
+		"folderID": "Ff038d2ccf2e60076d528ea3e449f5f4a5e96ad98e772c400fec8599c8502a402",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.5 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -25768,6 +26494,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9.5 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "9.5",
+			"versions": "festo-omni"
+		},
+		"folderID": "Ffa44d74199a548d9d009009d431148287dc43e0fa7a1794d8f7676d0c12e9439",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.5 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -25832,6 +26572,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "9.6",
+			"versions": "festo-omni"
+		},
+		"folderID": "F4a3cc9facf905b0cc5a421d5827b57e1f5a486c75f6a36138df63640c0ec1ef3",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.6 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -25848,6 +26602,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9.6 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "9.6",
+			"versions": "festo-omni"
+		},
+		"folderID": "F0f1c70d421cf3f1aff7b4791b52b9144d102683b3aab32cc9901e54a8da5a72a",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.6 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -25912,6 +26680,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "9.7",
+			"versions": "festo-omni"
+		},
+		"folderID": "F3a6adfd4e70321bea971ff1dc239963cfc25f65cee7ce38c2ccf8edcf065db68",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.7 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -25928,6 +26710,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9.7 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "9.7",
+			"versions": "festo-omni"
+		},
+		"folderID": "F18e1aa12f76582d6838b2208e3e62421cdc89c81eb637e9bf472e9a1682a51d6",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.7 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -25992,6 +26788,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "9.8",
+			"versions": "festo-omni"
+		},
+		"folderID": "Fd85e49b85d9aaf3160bbf620d00da048912d7c55996aa42597143f0a69fd0698",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.8 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -26008,6 +26818,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9.8 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "9.8",
+			"versions": "festo-omni"
+		},
+		"folderID": "Fb11462e12f7779128b9820c68e868ee5bdd60d607a9774d5b2500982d2b2cbaf",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.8 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -26072,6 +26896,20 @@
 	},
 	{
 		"data": {
+			"data¬isHardMode": false,
+			"level": "9.9",
+			"versions": "festo-omni"
+		},
+		"folderID": "F7a8926d6da70ffd323d4679fb36a657b67d2b4b6d5f900d79bc4da66dee62649",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.9 (festo Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": {
 				"~in": [
 					"BSC",
@@ -26088,6 +26926,20 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9.9 (festo)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isHardMode": true,
+			"level": "9.9",
+			"versions": "festo-omni"
+		},
+		"folderID": "F963ef3d8f98a386fa7872620a3bcbc835d8565af706499abef51a364a709b30a",
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9.9 (Hard Mode) (festo Omnimix)",
 		"type": "charts"
 	},
 	{

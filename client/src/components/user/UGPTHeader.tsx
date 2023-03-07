@@ -254,7 +254,7 @@ export function UGPTBottomNav({
 	}
 
 	return (
-		<div className="row align-items-center mb-0">
+		<div className="mx-n9 align-items-center mb-0">
 			<Navbar>{navItems}</Navbar>
 		</div>
 	);

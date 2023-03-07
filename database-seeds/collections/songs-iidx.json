@@ -21744,7 +21744,8 @@
 	},
 	{
 		"altTitles": [
-			"POLKAMAИIA"
+			"POLKAMAИIA",
+			"POLKAMANIA"
 		],
 		"artist": "かめりあ feat. ななひら",
 		"data": {
@@ -22417,7 +22418,9 @@
 		"title": "BLACK or WHITE?"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"ZENITH"
+		],
 		"artist": "Snail's House",
 		"data": {
 			"displayVersion": "28",
@@ -24273,5 +24276,93 @@
 		"id": 2195,
 		"searchTerms": [],
 		"title": "Chocolate Planet"
+	},
+	{
+		"altTitles": [],
+		"artist": "Blacklolita",
+		"data": {
+			"displayVersion": "30",
+			"genre": "GODSPEED"
+		},
+		"id": 2196,
+		"searchTerms": [],
+		"title": "《ORDERBREAKER》"
+	},
+	{
+		"altTitles": [],
+		"artist": "Nhato",
+		"data": {
+			"displayVersion": "30",
+			"genre": "HYBRID TRANCE"
+		},
+		"id": 2197,
+		"searchTerms": [],
+		"title": "Get On Your Feet"
+	},
+	{
+		"altTitles": [],
+		"artist": "Hommarju",
+		"data": {
+			"displayVersion": "30",
+			"genre": "UK HARDCORE"
+		},
+		"id": 2198,
+		"searchTerms": [],
+		"title": "Hat Surprise (Season 2)"
+	},
+	{
+		"altTitles": [],
+		"artist": "Maozon",
+		"data": {
+			"displayVersion": "30",
+			"genre": "DRUM & BASS"
+		},
+		"id": 2199,
+		"searchTerms": [],
+		"title": "Next Level"
+	},
+	{
+		"altTitles": [],
+		"artist": "かめりあ",
+		"data": {
+			"displayVersion": "30",
+			"genre": "TOHOKU NEURO DENSETSU"
+		},
+		"id": 2200,
+		"searchTerms": [],
+		"title": "Ōu Legends"
+	},
+	{
+		"altTitles": [],
+		"artist": "Yuta Imai",
+		"data": {
+			"displayVersion": "30",
+			"genre": "HARDSTYLE"
+		},
+		"id": 2201,
+		"searchTerms": [],
+		"title": "OVER VOLTAGE"
+	},
+	{
+		"altTitles": [],
+		"artist": "RoughSketch",
+		"data": {
+			"displayVersion": "30",
+			"genre": "HARDCORE"
+		},
+		"id": 2202,
+		"searchTerms": [],
+		"title": "Red Soul"
+	},
+	{
+		"altTitles": [],
+		"artist": "MK",
+		"data": {
+			"displayVersion": "30",
+			"genre": "COLOUR BASS"
+		},
+		"id": 2203,
+		"searchTerms": [],
+		"title": "STAR BEAT"
 	}
 ]

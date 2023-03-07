@@ -48,7 +48,13 @@ router.get("/", async (req, res) => {
 		});
 	}
 
-	const quests = await SearchCollection(db.quests, req.query.search, { game, playtype }, 50);
+	const quests = await SearchCollection(
+		db.quests,
+		req.query.search,
+		"quests",
+		{ game, playtype },
+		50
+	);
 	const goals = await GetGoalsInQuests(quests);
 
 	return res.status(200).json({

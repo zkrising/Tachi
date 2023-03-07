@@ -1,5 +1,8 @@
+/* eslint-disable import/first */
 // Before we run anything, set a global to indicate to the code that
 // we're running as a server, and not as a job runner or score worker.
+process.env.IS_SERVER = "true";
+
 import db, { monkDB } from "external/mongo/db";
 import { UpdateIndexes } from "external/mongo/indexes";
 import { InitSequenceDocs } from "external/mongo/sequence-docs";
@@ -17,8 +20,6 @@ import fs from "fs";
 import https from "https";
 import path from "path";
 import type http from "http";
-
-process.env.IS_SERVER = "true";
 
 const logger = CreateLogCtx(__filename);
 

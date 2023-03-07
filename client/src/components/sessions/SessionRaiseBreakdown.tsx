@@ -199,7 +199,7 @@ function SessionScoreStatBreakdown({
 		<>
 			{view === null ? (
 				<div
-					className="d-flex w-100"
+					className="session-raise-container"
 					style={{
 						gap: "20px",
 					}}

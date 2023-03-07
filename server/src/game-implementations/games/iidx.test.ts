@@ -2,7 +2,7 @@ import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./iidx";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { CreatePBDoc } from "lib/score-import/framework/pb/create-pb-doc";
-import { IIDX_GRADES, IIDX_LAMPS } from "tachi-common";
+import { GetGrade, IIDXLIKE_GBOUNDARIES, IIDX_GRADES, IIDX_LAMPS } from "tachi-common";
 import t from "tap";
 import { dmf, mkFakePBIIDXSP, mkFakeScoreIIDXSP } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
@@ -359,6 +359,19 @@ t.test("IIDX Implementation", (t) => {
 					{ lamp: "HARD CLEAR", optional: { bp: null } as any },
 					IIDX_LAMPS.HARD_CLEAR,
 					"HARD CLEAR"
+				);
+				f(
+					"grade",
+					{ score: 1899, percent: (100 * 1899) / 1918, grade: "MAX-" },
+					IIDX_GRADES.MAX,
+					"MAX-19"
+				);
+
+				f(
+					"grade",
+					{ score: 2831, percent: (100 * 2831) / 3546, grade: "AA" },
+					IIDX_GRADES.AA,
+					"AA+73"
 				);
 
 				t.end();

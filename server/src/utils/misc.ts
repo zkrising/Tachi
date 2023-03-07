@@ -1,4 +1,5 @@
 import { ONE_MEGABYTE } from "lib/constants/filesize";
+import { DISALLOWED_CALLBACK_PROTOCOLS } from "lib/constants/url-protocols";
 import { ONE_HOUR } from "lib/constants/time";
 import { TachiConfig } from "lib/setup/config";
 import { GetGameConfig, GetGamePTConfig } from "tachi-common";
@@ -127,7 +128,7 @@ export function IsValidURL(string: string) {
 	try {
 		const url = new URL(string);
 
-		return url.protocol === "http:" || url.protocol === "https:";
+		return !DISALLOWED_CALLBACK_PROTOCOLS.includes(url.protocol)
 	} catch (_err) {
 		return false;
 	}

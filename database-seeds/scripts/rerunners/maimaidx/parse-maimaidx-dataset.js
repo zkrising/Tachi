@@ -80,7 +80,7 @@ const diffMap = new Map([
 				return;
 			}
 
-			if (existingCharts.get(`${thisSongID} ${diffMap.get(diff)}`)) {
+			if (existingCharts.get(`${thisSongID} DX ${diffMap.get(diff)}`)) {
 				return;
 			}
 
@@ -92,7 +92,6 @@ const diffMap = new Map([
 			charts.push({
 				songID: thisSongID,
 				chartID: chartID,
-				rgcID: null,
 				level: data[`dx_lev_${diff}`],
 				levelNum: lvNum,
 				isPrimary: true,
@@ -101,7 +100,6 @@ const diffMap = new Map([
 				data: {
 					isLatest,
 				},
-				tierlistInfo: {},
 				versions: ["universeplus"],
 			});
 		});

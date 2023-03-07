@@ -378,7 +378,7 @@ export const TestingMaimaiDXChart: ChartDocument<"maimaidx:Single"> = {
 	levelNum: 7,
 	playtype: "Single",
 	songID: 1,
-	versions: ["universeplus"],
+	versions: ["universeplus", "festival"],
 };
 
 export const TestingMusecaChart: ChartDocument<"museca:Single"> = {

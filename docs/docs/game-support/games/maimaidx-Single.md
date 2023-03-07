@@ -88,6 +88,7 @@ The default rating algorithm is `naiveRate`.
 | ID | Pretty Name |
 | :: | :: |
 | `universeplus` | UNiVERSE PLUS |
+| `festival` | FESTiVAL |
 
 ## Supported Match Types
 

@@ -3041,6 +3041,40 @@
 	},
 	{
 		"default": true,
+		"description": "Levels for maimai DX in FESTiVAL.",
+		"folders": [
+			"F29303d01c9e76686779858ec865846b70d148c8de825c152aabd174616972892",
+			"F282c25cac6cd3d4374d3857ddc77825dde5b5625a76cef501fcbe7f37b9663b6",
+			"Fb85abfb6af00e2596cf15cd365a72687e2d338795876785cf43ab87b5b6bc4e4",
+			"F29c124f28c8e9d487a784c9dd519d930e17be7764fbd5f9446e4dffb58060666",
+			"Fb7e42efe21482a24c222c7c1d1b132dba26a8a612f7ad747c6aeef631d9cae22",
+			"Fc8f4d7073646fd50f359ccc89fb881c1570c53453d01f61744cf2b68271799f1",
+			"Fd025d4d84d23b96ae00f42d8569d619f7a25a4b2afb117afa26c9fa3f067b603",
+			"F2ee0e897e9d44677daf0568a38861e22fdfc48299267d28868bc1b6907d4866b",
+			"F4f87aa38b75a7dd48e4b6603b079bdc51143d9942505b329a00ac55acd0a7cf9",
+			"Fa4ecef3517a3e9abb5dc3882ce4f4fec1faaac1aea3aa7c0b5b57774377d1e14",
+			"Fe7b0e93434a80b2e9fe85a888ca7ac1b231e40700bbb290f8804df5ce64eadb7",
+			"Feae498a86b1aa344d90ed94c9045df41c655e3afe99a8006e19c1c0e308df954",
+			"Ff95a21372fb9619391de8b5ea0cacf9dc61614d148fcb1147f74eeeb33c892d4",
+			"Fc4a255d2b764466bc38d5c2ebfd360e5abaacea70a3f07d7de150b2ad8be646e",
+			"F100e0316c2baff00f723ec17d0805e3ceb511f67867ea19347e478df625271e5",
+			"F95e1a2c8d3ec1f5419c1b62de3bc0c8a977820855176bc3b1e7595a72e200e97",
+			"Fc311db6405e1dc4a581e6185d05c89fef79f884e6e5d8ef90bc4e09e102eb6d9",
+			"F5e174e402efcf6b7101ab1455a63f233d74fc838257ced0db5c59075640c346c",
+			"F00a4c2175bc58ae69d210c83497fd34cbcbaa43aa20421624cd975fd953f3a40",
+			"F85ae698740031bb79c35a8aeedd4a635ca333a65e8c194b0ca206e01e970cfa1",
+			"F096b807153464c8cdbd9193c297513b5381210627c226430dc1c01d2646edaf6",
+			"F475edb7c06e96e9fafbf90a2523afb4e917aca5346b84184a82133fd773a6f0a",
+			"F1ca300e8a7659e95d958c5eea4defb8f3ad43dd7818d923b55df854620ed4eec"
+		],
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "maimaidx-Single-festival-levels",
+		"title": "maimai DX (FESTiVAL)"
+	},
+	{
+		"default": false,
 		"description": "Levels for maimai DX in UNiVERSE PLUS.",
 		"folders": [
 			"F0fbdcae40c32aa7cd9a3cbb94ca1682e9e64f2c92c637be1c650e2572492f675",
@@ -3068,7 +3102,7 @@
 			"F45bb90e158a0cbc0a3f5bea07751c7b5fb20aec64b338f37653583d9e9bf933c"
 		],
 		"game": "maimaidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "maimaidx-Single-universeplus-levels",
 		"title": "maimai DX (UNiVERSE PLUS)"

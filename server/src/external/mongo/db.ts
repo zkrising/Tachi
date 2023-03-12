@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 // ^ These rules are disabled for good reason. We have to deal with some very nonsensical types here
 // so we just disable these rules. I know, it sucks, but we'll live.
-import { ONE_MINUTE } from "lib/constants/time";
+import { ONE_MINUTE, ONE_SECOND } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
 import monk from "monk";
@@ -63,10 +63,10 @@ if (Environment.nodeEnv === "test") {
 logger.info(`Connecting to database ${Environment.mongoUrl}/${dbName}...`, { bootInfo: true });
 const dbtime = process.hrtime.bigint();
 
-// By default the connectTimeoutMS is 30 seconds. This has been upped to 2 minutes, due to poor performance
+// By default the connectTimeoutMS is 30 seconds. This has been upped to 5 minutes, due to poor performance
 // inside githubs test runners.
 export const monkDB = monk(`${Environment.mongoUrl}/${dbName}`, {
-	serverSelectionTimeoutMS: ONE_MINUTE * 2,
+	serverSelectionTimeoutMS: Environment.nodeEnv === "test" ? ONE_MINUTE * 5 : ONE_MINUTE,
 
 	// in local dev, don't **ever** add _id onto objects you're inserting
 	// in production, this might have a performance hit.
@@ -81,9 +81,12 @@ monkDB
 		});
 	})
 	.catch((err) => {
-		logger.crit(`Failed to connect to database: ${err}`, () => {
+		logger.crit(`Failed to connect to database: ${err}`);
+
+		// can't connect. kill self after 1 second.
+		setTimeout(() => {
 			process.exit(1);
-		});
+		}, ONE_SECOND);
 	});
 
 /**

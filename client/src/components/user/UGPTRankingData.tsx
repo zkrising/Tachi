@@ -16,6 +16,11 @@ export default function RankingData({
 } & GamePT) {
 	const alg = useProfileRatingAlg(game, playtype);
 
+	// weird react edge case where rankingData and alg desynchronise.
+	if (!(alg in rankingData)) {
+		return <>Loading...</>;
+	}
+
 	const extendData = [];
 
 	for (const k in rankingData) {

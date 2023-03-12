@@ -32,11 +32,23 @@ for (const version of versions) {
 
 	for (const level of ["1", "2", "3", "4", "5", "6", "7", "8"]) {
 		const f = CreateFolder(
-			{ level, versions: version, "data¬isHardMode": false },
+			{
+				level,
+				versions: version,
+				difficulty: {
+					"~in": ["BSC", "ADV", "EXT"],
+				},
+			},
 			`Level ${level} (${versionPretty})`
 		);
 		const fh = CreateFolder(
-			{ level, versions: version, "data¬isHardMode": true },
+			{
+				level,
+				versions: version,
+				difficulty: {
+					"~in": ["HARD BSC", "HARD ADV", "HARD EXT"],
+				},
+			},
 			`Level ${level} (Hard Mode) (${versionPretty})`
 		);
 

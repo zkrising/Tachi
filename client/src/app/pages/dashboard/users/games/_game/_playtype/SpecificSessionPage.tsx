@@ -10,7 +10,6 @@ import Divider from "components/util/Divider";
 import EditableText from "components/util/EditableText";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
-import SelectButton from "components/util/SelectButton";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
@@ -69,8 +68,6 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 		[session.name, game, playtype, user],
 		`${user.username}: ${session.name}`
 	);
-
-	const [view, setView] = useState<"overview" | "scores">("overview");
 
 	const songMap = CreateSongMap(songs);
 	const chartMap = CreateChartMap(charts);
@@ -259,33 +256,21 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 						<Divider />
 					</>
 				)}
-				<div className="btn-group">
-					<SelectButton value={view} setValue={setView} id="overview">
-						<Icon type="chart-area" />
-						Overview
-					</SelectButton>
-					<SelectButton value={view} setValue={setView} id="scores">
-						<Icon type="table" />
-						All Scores
-					</SelectButton>
-				</div>
-				<Divider />
 			</Col>
-			{view === "overview" ? (
-				<SessionOverview
-					scoreDataset={scoreDataset}
-					sessionData={sessionData}
-					setSessionData={setSessionData}
+			<SessionOverview
+				scoreDataset={scoreDataset}
+				sessionData={sessionData}
+				setSessionData={setSessionData}
+			/>
+			<Col xs={12}>
+				<Divider />
+
+				<ScoreTable
+					dataset={scoreDataset}
+					game={session.game}
+					playtype={session.playtype}
 				/>
-			) : (
-				<Col xs={12}>
-					<ScoreTable
-						dataset={scoreDataset}
-						game={session.game}
-						playtype={session.playtype}
-					/>
-				</Col>
-			)}
+			</Col>
 			{settings?.preferences.developerMode && (
 				<Col xs={12}>
 					<Divider />

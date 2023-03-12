@@ -218,6 +218,7 @@ export const JUBEAT_IMPL: GPTServerImplementation<"jubeat:Single"> = {
 		}),
 		CreatePBMergeFor("largest", "score", "Best Score", (base, score) => {
 			base.scoreData.score = score.scoreData.score;
+			base.scoreData.grade = score.scoreData.grade;
 		}),
 	],
 	defaultMergeRefName: "Best Music Rate",

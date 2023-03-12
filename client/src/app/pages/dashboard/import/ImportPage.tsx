@@ -58,7 +58,7 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 			<select
 				className="form-control"
 				onChange={(e) => setGame(e.target.value === "" ? null : (e.target.value as Game))}
-				value={game}
+				value={game ?? ""}
 			>
 				<option value="">Please select a game.</option>
 				{TachiConfig.games.map((e) => (
@@ -167,7 +167,8 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			<ImportTypeInfoCard key="api/flo-sdvx" importType="api/flo-sdvx" />,
 			<ImportTypeInfoCard key="api/eag-sdvx" importType="api/eag-sdvx" />,
 			<ImportTypeInfoCard key="api/cg-dev-sdvx" importType="api/cg-dev-sdvx" />,
-			<ImportTypeInfoCard key="api/cg-prod-sdvx" importType="api/cg-prod-sdvx" />,
+			<ImportTypeInfoCard key="api/cg-gan-sdvx" importType="api/cg-gan-sdvx" />,
+			<ImportTypeInfoCard key="api/cg-nag-sdvx" importType="api/cg-nag-sdvx" />,
 			<ImportTypeInfoCard key="api/min-sdvx" importType="api/min-sdvx" />
 		);
 	} else if (game === "chunithm") {
@@ -238,7 +239,8 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				key="Silent Hook"
 			/>,
 			<ImportTypeInfoCard key="api/cg-dev-popn" importType="api/cg-dev-popn" />,
-			<ImportTypeInfoCard key="api/cg-prod-popn" importType="api/cg-prod-popn" />
+			<ImportTypeInfoCard key="api/cg-gan-popn" importType="api/cg-gan-popn" />,
+			<ImportTypeInfoCard key="api/cg-nag-popn" importType="api/cg-nag-popn" />
 		);
 	} else if (game === "pms") {
 		Content.unshift(
@@ -263,7 +265,8 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 	} else if (game === "museca") {
 		Content.unshift(
 			<ImportTypeInfoCard key="api/cg-dev-museca" importType="api/cg-dev-museca" />,
-			<ImportTypeInfoCard key="api/cg-prod-museca" importType="api/cg-prod-museca" />
+			<ImportTypeInfoCard key="api/cg-gan-museca" importType="api/cg-gan-museca" />,
+			<ImportTypeInfoCard key="api/cg-nag-museca" importType="api/cg-nag-museca" />
 		);
 	} else if (game === "itg") {
 		Content.unshift(
@@ -360,13 +363,22 @@ function ImportTypeInfoCard({
 					key="cg-dev-sdvx"
 				/>
 			);
-		case "api/cg-prod-sdvx":
+		case "api/cg-nag-sdvx":
 			return (
 				<ImportInfoCard
-					name="CG Prod Integration"
-					href="cg-prod-sdvx"
-					desc="Pull your SDVX scores from the CG Network."
-					key="cg-prod-sdvx"
+					name="CG NAG Integration"
+					href="cg-nag-sdvx"
+					desc="Pull your SDVX scores from CG-NAG."
+					key="cg-nag-sdvx"
+				/>
+			);
+		case "api/cg-gan-sdvx":
+			return (
+				<ImportInfoCard
+					name="CG GAN Integration"
+					href="cg-gan-sdvx"
+					desc="Pull your SDVX scores from CG-GAN."
+					key="cg-gan-sdvx"
 				/>
 			);
 		case "api/cg-dev-popn":
@@ -374,17 +386,26 @@ function ImportTypeInfoCard({
 				<ImportInfoCard
 					name="CG Dev Integration"
 					href="cg-dev-popn"
-					desc="Pull your pop'n music scores from the CG Dev Network."
+					desc="Pull your pop'n music scores from the CG-GAN Network."
 					key="cg-dev-popn"
 				/>
 			);
-		case "api/cg-prod-popn":
+		case "api/cg-nag-popn":
 			return (
 				<ImportInfoCard
-					name="CG Prod Integration"
-					href="cg-prod-popn"
-					desc="Pull your pop'n music scores from the CG Network."
-					key="cg-prod-popn"
+					name="CG NAG Integration"
+					href="cg-nag-popn"
+					desc="Pull your pop'n music scores from CG-NAG."
+					key="cg-nag-popn"
+				/>
+			);
+		case "api/cg-gan-popn":
+			return (
+				<ImportInfoCard
+					name="CG GAN Integration"
+					href="cg-gan-popn"
+					desc="Pull your pop'n music scores from CG-GAN."
+					key="cg-gan-popn"
 				/>
 			);
 		case "api/cg-dev-museca":
@@ -396,13 +417,22 @@ function ImportTypeInfoCard({
 					key="cg-dev-museca"
 				/>
 			);
-		case "api/cg-prod-museca":
+		case "api/cg-gan-museca":
 			return (
 				<ImportInfoCard
-					name="CG Prod Integration"
-					href="cg-prod-museca"
-					desc="Pull your MUSECA scores from the CG Network."
-					key="cg-prod-museca"
+					name="CG GAN Integration"
+					href="cg-gan-museca"
+					desc="Pull your MUSECA scores from CG-GAN."
+					key="cg-gan-museca"
+				/>
+			);
+		case "api/cg-nag-museca":
+			return (
+				<ImportInfoCard
+					name="CG NAG Integration"
+					href="cg-nag-museca"
+					desc="Pull your MUSECA scores from CG-NAG."
+					key="cg-nag-museca"
 				/>
 			);
 		case "file/eamusement-iidx-csv":

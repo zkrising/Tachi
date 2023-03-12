@@ -45,6 +45,7 @@ export default function ScoreDropdown({
 	scoreState,
 	thisScore,
 	defaultView = "moreInfo",
+	onScoreUpdate,
 }: {
 	user: UserDocument;
 	chart: ChartDocument;
@@ -52,6 +53,7 @@ export default function ScoreDropdown({
 	scoreState: ScoreState;
 	defaultView?: "vsPB" | "moreInfo" | "history" | "debug" | "manage" | "rivals" | "targets";
 	thisScore: ScoreDocument;
+	onScoreUpdate?: (sc: ScoreDocument) => void;
 } & GamePT) {
 	const DocComponent: DocumentComponentType = (props) =>
 		DocComponentCreator({
@@ -115,6 +117,7 @@ export default function ScoreDropdown({
 			<DocComponent
 				score={thisScore as any}
 				scoreState={scoreState}
+				onScoreUpdate={onScoreUpdate}
 				pbData={data}
 				chart={chart}
 			/>

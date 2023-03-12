@@ -2,7 +2,7 @@ import { NumericSOV, StrSOV } from "util/sorts";
 import { CreateDefaultScoreSearchParams } from "util/tables/create-search";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
-import { AnyScoreRatingAlg, Game, Playtype, integer } from "tachi-common";
+import { AnyScoreRatingAlg, Game, Playtype, ScoreDocument, integer } from "tachi-common";
 import { ScoreDataset } from "types/tables";
 import DifficultyCell from "../cells/DifficultyCell";
 import DropdownIndicatorCell from "../cells/DropdownIndicatorCell";
@@ -27,6 +27,7 @@ export default function ScoreTable({
 	game,
 	alg,
 	noTopDisplayStr,
+	onScoreUpdate,
 }: {
 	dataset: ScoreDataset;
 	pageLen?: integer;
@@ -35,6 +36,7 @@ export default function ScoreTable({
 	game: Game;
 	alg?: AnyScoreRatingAlg;
 	noTopDisplayStr?: boolean;
+	onScoreUpdate?: (sc: ScoreDocument) => void;
 }) {
 	const defaultRating = useScoreRatingAlg(game, playtype);
 	const [rating, setRating] = useState(alg ?? defaultRating);
@@ -68,6 +70,7 @@ export default function ScoreTable({
 					sc={sc}
 					rating={rating as any}
 					userCol={userCol}
+					onScoreUpdate={onScoreUpdate}
 				/>
 			)}
 		/>
@@ -80,12 +83,14 @@ function Row({
 	playtype,
 	userCol,
 	game,
+	onScoreUpdate,
 }: {
 	sc: ScoreDataset[0];
 	rating: AnyScoreRatingAlg;
 	game: Game;
 	playtype: Playtype;
 	userCol: boolean;
+	onScoreUpdate?: (sc: ScoreDocument) => void;
 }) {
 	const scoreState = useScoreState(sc);
 
@@ -100,6 +105,7 @@ function Row({
 					user={sc.__related.user}
 					thisScore={sc}
 					scoreState={scoreState}
+					onScoreUpdate={onScoreUpdate}
 				/>
 			}
 		>

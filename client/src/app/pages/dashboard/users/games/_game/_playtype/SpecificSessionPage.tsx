@@ -269,6 +269,17 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 					dataset={scoreDataset}
 					game={session.game}
 					playtype={session.playtype}
+					onScoreUpdate={(sc) => {
+						const newScores = [
+							...sessionData.scores.filter((e) => e.scoreID !== sc.scoreID),
+							sc,
+						];
+
+						setSessionData({
+							...sessionData,
+							scores: newScores,
+						});
+					}}
 				/>
 			</Col>
 			{settings?.preferences.developerMode && (

@@ -102,7 +102,7 @@ export async function UpdateAllPBs(userIDs?: Array<integer>, filter = {}) {
 
 			for (const playtype of gameConfig.playtypes) {
 				const scores = await db.scores.find(
-					deepmerge({ userID: user.id, game, playtype }, filter),
+					deepmerge(filter, { userID: user.id, game, playtype }),
 					{
 						projection: { chartID: 1 },
 					}

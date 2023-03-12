@@ -65,9 +65,13 @@ export interface ImportTypeDataMap {
 	// "api/cg-dev-jubeat": CGJubeatScore;
 	// "api/cg-prod-jubeat": CGJubeatScore;
 
-	"api/cg-prod-sdvx": CGSDVXScore;
-	"api/cg-prod-museca": CGMusecaScore;
-	"api/cg-prod-popn": CGPopnScore;
+	"api/cg-nag-sdvx": CGSDVXScore;
+	"api/cg-nag-museca": CGMusecaScore;
+	"api/cg-nag-popn": CGPopnScore;
+
+	"api/cg-gan-sdvx": CGSDVXScore;
+	"api/cg-gan-museca": CGMusecaScore;
+	"api/cg-gan-popn": CGPopnScore;
 }
 
 export interface ImportTypeContextMap {
@@ -100,10 +104,14 @@ export interface ImportTypeContextMap {
 	"api/cg-dev-sdvx": CGContext;
 	"api/cg-dev-museca": CGContext;
 	"api/cg-dev-popn": CGContext;
-	"api/cg-prod-jubeat": CGContext;
-	"api/cg-prod-sdvx": CGContext;
-	"api/cg-prod-museca": CGContext;
-	"api/cg-prod-popn": CGContext;
+	"api/cg-nag-jubeat": CGContext;
+	"api/cg-nag-sdvx": CGContext;
+	"api/cg-nag-museca": CGContext;
+	"api/cg-nag-popn": CGContext;
+	"api/cg-gan-jubeat": CGContext;
+	"api/cg-gan-sdvx": CGContext;
+	"api/cg-gan-museca": CGContext;
+	"api/cg-gan-popn": CGContext;
 }
 
 export interface OrphanScoreDocument<T extends ImportTypes = ImportTypes> {

@@ -144,7 +144,12 @@ export const ParseCGDevSDVX = CreateCGParser<CGSDVXScore>("sdvx", "dev");
 export const ParseCGDevJubeat = CreateCGParser<CGJubeatScore>("jb", "dev");
 export const ParseCGDevPopn = CreateCGParser<CGPopnScore>("popn", "dev");
 
-export const ParseCGProdMuseca = CreateCGParser<CGMusecaScore>("msc", "prod");
-export const ParseCGProdSDVX = CreateCGParser<CGSDVXScore>("sdvx", "prod");
-export const ParseCGProdJubeat = CreateCGParser<CGJubeatScore>("jb", "prod");
-export const ParseCGProdPopn = CreateCGParser<CGPopnScore>("popn", "prod");
+export const ParseCGGanMuseca = CreateCGParser<CGMusecaScore>("msc", "gan");
+export const ParseCGGanSDVX = CreateCGParser<CGSDVXScore>("sdvx", "gan");
+export const ParseCGGanJubeat = CreateCGParser<CGJubeatScore>("jb", "gan");
+export const ParseCGGanPopn = CreateCGParser<CGPopnScore>("popn", "gan");
+
+export const ParseCGNagMuseca = CreateCGParser<CGMusecaScore>("msc", "nag");
+export const ParseCGNagSDVX = CreateCGParser<CGSDVXScore>("sdvx", "nag");
+export const ParseCGNagJubeat = CreateCGParser<CGJubeatScore>("jb", "nag");
+export const ParseCGNagPopn = CreateCGParser<CGPopnScore>("popn", "nag");

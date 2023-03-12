@@ -73,27 +73,33 @@ export async function FetchCGScores(
 }
 
 function GetCGConf(service: CGServices) {
+	let conf;
+
 	switch (service) {
 		case "dev": {
-			if (!ServerConfig.CG_DEV_CONFIG) {
-				throw new Error(
-					`No CG_DEV_CONFIG is available, yet a request to cg-dev was attempted?`
-				);
-			}
-
-			return ServerConfig.CG_DEV_CONFIG;
+			conf = ServerConfig.CG_DEV_CONFIG;
+			break;
 		}
 
-		case "prod": {
-			if (!ServerConfig.CG_PROD_CONFIG) {
-				throw new Error(
-					`No CG_PROD_CONFIG is available, yet a request to cg-prod was attempted?`
-				);
-			}
+		case "nag": {
+			conf = ServerConfig.CG_NAG_CONFIG;
+			break;
+		}
 
-			return ServerConfig.CG_PROD_CONFIG;
+		case "gan": {
+			conf = ServerConfig.CG_GAN_CONFIG;
+			break;
 		}
 	}
+
+	if (!conf) {
+		throw new ScoreImportFatalError(
+			500,
+			`Tried to get ${service} CG conf, yet was not defined?`
+		);
+	}
+
+	return conf;
 }
 
 function GetCGUrl(service: CGServices, cardInfo: CGCardInfo, game: CGSupportedGames) {

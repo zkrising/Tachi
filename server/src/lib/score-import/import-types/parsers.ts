@@ -4,14 +4,15 @@ import { ParseFloIIDX } from "./api/flo-iidx/parser";
 import { ParseFloSDVX } from "./api/flo-sdvx/parser";
 import { ParseMinSDVX } from "./api/min-sdvx/parser";
 import {
-	ParseCGDevJubeat,
 	ParseCGDevMuseca,
 	ParseCGDevPopn,
 	ParseCGDevSDVX,
-	ParseCGProdJubeat,
-	ParseCGProdMuseca,
-	ParseCGProdPopn,
-	ParseCGProdSDVX,
+	ParseCGGanMuseca,
+	ParseCGGanPopn,
+	ParseCGGanSDVX,
+	ParseCGNagMuseca,
+	ParseCGNagPopn,
+	ParseCGNagSDVX,
 } from "./common/api-cg/parsers";
 import ParseBatchManual from "./file/batch-manual/parser";
 import ParseEamusementIIDXCSV from "./file/eamusement-iidx-csv/parser";
@@ -20,8 +21,8 @@ import { ParseMerIIDX } from "./file/mer-iidx/parser";
 import ParsePLIIIDXCSV from "./file/pli-iidx-csv/parser";
 import { ParseSolidStateXML } from "./file/solid-state-squad/parser";
 import {
-	ParseMyPageScraperRecordsCSV,
 	ParseMyPageScraperPlayerCSV,
+	ParseMyPageScraperRecordsCSV,
 } from "./file/wacca-mypage-scraper/parser";
 import { ParseBarbatosSingle } from "./ir/barbatos/parser";
 import { ParseBeatorajaSingle } from "./ir/beatoraja/parser";
@@ -52,14 +53,18 @@ export const Parsers = {
 	"api/cg-dev-sdvx": ParseCGDevSDVX,
 	"api/cg-dev-popn": ParseCGDevPopn,
 	"api/cg-dev-museca": ParseCGDevMuseca,
-	"api/cg-prod-sdvx": ParseCGProdSDVX,
 
 	// temporarily disabled as no musicRate is provided.
 	// "api/cg-dev-jubeat": ParseCGDevJubeat,
 	// "api/cg-prod-jubeat": ParseCGProdJubeat,
 
-	"api/cg-prod-popn": ParseCGProdPopn,
-	"api/cg-prod-museca": ParseCGProdMuseca,
+	"api/cg-nag-sdvx": ParseCGNagSDVX,
+	"api/cg-nag-popn": ParseCGNagPopn,
+	"api/cg-nag-museca": ParseCGNagMuseca,
+
+	"api/cg-gan-sdvx": ParseCGGanSDVX,
+	"api/cg-gan-popn": ParseCGGanPopn,
+	"api/cg-gan-museca": ParseCGGanMuseca,
 
 	"ir/barbatos": ParseBarbatosSingle,
 	"ir/beatoraja": ParseBeatorajaSingle,

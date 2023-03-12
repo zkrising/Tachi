@@ -662,8 +662,11 @@ function ServicesPage({ reqUser }: { reqUser: UserDocument }) {
 				<Route exact path={`${baseUrl}/fervidex`}>
 					<FervidexIntegrationPage reqUser={reqUser} />
 				</Route>
-				<Route exact path={`${baseUrl}/cg`}>
-					<CGIntegrationInfo key="cg" userID={reqUser.id} cgType="prod" />
+				<Route exact path={`${baseUrl}/cg-gan`}>
+					<CGIntegrationInfo key="cg" userID={reqUser.id} cgType="gan" />
+				</Route>
+				<Route exact path={`${baseUrl}/cg-nag`}>
+					<CGIntegrationInfo key="cg" userID={reqUser.id} cgType="nag" />
 				</Route>
 				<Route exact path={`${baseUrl}/cg-dev`}>
 					<CGIntegrationInfo key="cg" userID={reqUser.id} cgType="dev" />
@@ -951,7 +954,7 @@ function APIKeyRow({
 	);
 }
 
-function CGIntegrationInfo({ cgType, userID }: { cgType: "dev" | "prod"; userID: integer }) {
+function CGIntegrationInfo({ cgType, userID }: { cgType: "dev" | "gan" | "nag"; userID: integer }) {
 	const [reload, shouldReloadCardInfo] = useReducer((x) => x + 1, 0);
 
 	const { data, error } = useApiQuery<CGCardInfo | null>(

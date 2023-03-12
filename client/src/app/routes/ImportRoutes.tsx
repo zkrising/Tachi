@@ -177,14 +177,24 @@ export default function ImportRoutes() {
 								<CGIntegrationPage cgType="dev" game="museca" />
 							</Route>
 
-							<Route exact path="/import/cg-prod-sdvx">
-								<CGIntegrationPage cgType="prod" game="sdvx" />
+							<Route exact path="/import/cg-nag-sdvx">
+								<CGIntegrationPage cgType="nag" game="sdvx" />
 							</Route>
-							<Route exact path="/import/cg-prod-popn">
-								<CGIntegrationPage cgType="prod" game="popn" />
+							<Route exact path="/import/cg-nag-popn">
+								<CGIntegrationPage cgType="nag" game="popn" />
 							</Route>
-							<Route exact path="/import/cg-prod-museca">
-								<CGIntegrationPage cgType="prod" game="museca" />
+							<Route exact path="/import/cg-nag-museca">
+								<CGIntegrationPage cgType="nag" game="museca" />
+							</Route>
+
+							<Route exact path="/import/cg-gan-sdvx">
+								<CGIntegrationPage cgType="gan" game="sdvx" />
+							</Route>
+							<Route exact path="/import/cg-gan-popn">
+								<CGIntegrationPage cgType="gan" game="popn" />
+							</Route>
+							<Route exact path="/import/cg-gan-museca">
+								<CGIntegrationPage cgType="gan" game="museca" />
 							</Route>
 
 							<Route exact path="/import/wacca-mypage-scraper">

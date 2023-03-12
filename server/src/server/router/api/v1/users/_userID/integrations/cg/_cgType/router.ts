@@ -5,12 +5,13 @@ import { p } from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { GetTachiData } from "utils/req-tachi-data";
 import type { RequestHandler } from "express-serve-static-core";
+import type { CGServices } from "lib/score-import/import-types/common/api-cg/types";
 import type { CGCardInfo } from "tachi-common";
 
 const router: Router = Router({ mergeParams: true });
 
 const ValidateCGType: RequestHandler = (req, res, next) => {
-	if (req.params.cgType === "dev" || req.params.cgType === "prod") {
+	if (req.params.cgType === "dev" || req.params.cgType === "nag" || req.params.cgType === "gan") {
 		next();
 		return;
 	}
@@ -28,7 +29,7 @@ const ValidateCGType: RequestHandler = (req, res, next) => {
  */
 router.get("/", ValidateCGType, RequireSelfRequestFromUser, async (req, res) => {
 	const user = GetTachiData(req, "requestedUser");
-	const cgType = req.params.cgType as "dev" | "prod";
+	const cgType = req.params.cgType as CGServices;
 
 	const cardInfo = await db["cg-card-info"].findOne({
 		userID: user.id,
@@ -71,7 +72,7 @@ router.put(
 	),
 	async (req, res) => {
 		const user = GetTachiData(req, "requestedUser");
-		const cgType = req.params.cgType as "dev" | "prod";
+		const cgType = req.params.cgType as CGServices;
 
 		const { cardID, pin } = req.safeBody as {
 			cardID: string;
@@ -112,7 +113,7 @@ router.put(
  */
 router.delete("/", ValidateCGType, RequireSelfRequestFromUser, async (req, res) => {
 	const user = GetTachiData(req, "requestedUser");
-	const cgType = req.params.cgType as "dev" | "prod";
+	const cgType = req.params.cgType as CGServices;
 
 	await db["cg-card-info"].remove({
 		userID: user.id,

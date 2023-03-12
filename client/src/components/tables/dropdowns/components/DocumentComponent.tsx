@@ -65,6 +65,7 @@ export default function DocumentComponent({
 	forceScoreData = false,
 	pbData,
 	chart,
+	onScoreUpdate,
 }: {
 	score: ScoreDocument | PBScoreDocument;
 	scoreState: {
@@ -77,6 +78,7 @@ export default function DocumentComponent({
 	pbData: UGPTChartPBComposition;
 	forceScoreData?: boolean;
 	chart: ChartDocument;
+	onScoreUpdate?: (sc: ScoreDocument) => void;
 	GraphComponent?:
 		| (({
 				score,
@@ -128,6 +130,7 @@ export default function DocumentComponent({
 							)}
 							<ScoreEditButtons
 								score={score}
+								onScoreUpdate={onScoreUpdate}
 								scoreState={{ ...scoreState, comment, setComment }}
 							/>
 						</>

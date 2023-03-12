@@ -10,8 +10,10 @@ import { SetState } from "types/react";
 export default function ScoreEditButtons({
 	score,
 	scoreState,
+	onScoreUpdate,
 }: {
 	score: ScoreDocument;
+	onScoreUpdate?: (sc: ScoreDocument) => void;
 	scoreState: {
 		highlight: boolean;
 		comment: string | null;
@@ -61,6 +63,7 @@ export default function ScoreEditButtons({
 												if (r) {
 													setHighlight(false);
 													score.highlight = false;
+													onScoreUpdate?.(score);
 												}
 											}
 										)
@@ -80,6 +83,7 @@ export default function ScoreEditButtons({
 												if (r) {
 													setHighlight(true);
 													score.highlight = true;
+													onScoreUpdate?.(score);
 												}
 											}
 										)
@@ -103,6 +107,7 @@ export default function ScoreEditButtons({
 							setComment(comment);
 							score.comment = comment;
 							setShow(false);
+							onScoreUpdate?.(score);
 						}
 					});
 				}}

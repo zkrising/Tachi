@@ -566,7 +566,7 @@ export interface KaiAuthDocument {
 
 export interface CGCardInfo {
 	userID: integer;
-	service: "dev" | "prod";
+	service: "dev" | "gan" | "nag";
 	cardID: string;
 
 	// are we gonna do maths on it? no. it's a string. don't bother me.

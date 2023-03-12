@@ -67,7 +67,8 @@ export interface TachiServerConfig {
 	ARC_API_URL?: string;
 
 	CG_DEV_CONFIG?: CGConfig;
-	CG_PROD_CONFIG?: CGConfig;
+	CG_NAG_CONFIG?: CGConfig;
+	CG_GAN_CONFIG?: CGConfig;
 
 	FLO_OAUTH2_INFO?: OAuth2Info;
 	EAG_OAUTH2_INFO?: OAuth2Info;
@@ -162,7 +163,8 @@ const err = p(config, {
 	ARC_API_URL: p.optional(isValidURL),
 
 	CG_DEV_CONFIG: isValidCGConfig,
-	CG_PROD_CONFIG: isValidCGConfig,
+	CG_NAG_CONFIG: isValidCGConfig,
+	CG_GAN_CONFIG: isValidCGConfig,
 
 	FLO_OAUTH2_INFO: isValidOauth2,
 	EAG_OAUTH2_INFO: isValidOauth2,

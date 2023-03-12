@@ -16,13 +16,13 @@ import Icon from "components/util/Icon";
 import ImportStateRenderer from "./ImportStateRenderer";
 
 interface Props {
-	cgType: "dev" | "prod";
+	cgType: "dev" | "gan" | "nag";
 	game: "sdvx" | "popn" | "museca";
 }
 
 export default function CGIntegrationPage({ cgType, game }: Props) {
 	const gameConfig = GetGameConfig(game);
-	const cgName = cgType === "dev" ? "CG Dev" : "CG";
+	const cgName = cgType === "dev" ? "CG Dev" : `CG ${cgType.toUpperCase()}`;
 
 	const [reload, shouldReloadCardInfo] = useReducer((x) => x + 1, 0);
 	const [showEdit, setShowEdit] = useState(false);
@@ -105,7 +105,7 @@ function CGImporter({
 	setShowEdit: SetState<boolean>;
 }) {
 	const importType: APIImportTypes = `api/cg-${cgType}-${game}`;
-	const cgName = cgType === "dev" ? "CG Dev" : "CG";
+	const cgName = cgType === "dev" ? "CG Dev" : `CG ${cgType.toUpperCase()}`;
 
 	const { importState, runImport } = useImport("/import/from-api", {
 		method: "POST",

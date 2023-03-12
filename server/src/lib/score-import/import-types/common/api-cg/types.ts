@@ -6,7 +6,7 @@ export type CGSupportedGames =
 	| "popn"
 	| "sdvx";
 
-export type CGServices = "dev" | "prod";
+export type CGServices = "dev" | "gan" | "nag";
 
 export interface CGScoresResponse<T> {
 	success: true;
@@ -84,6 +84,6 @@ export interface CGJubeatScore {
 }
 
 export interface CGContext {
-	service: "dev" | "prod";
+	service: CGServices;
 	userID: integer;
 }

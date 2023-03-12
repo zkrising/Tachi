@@ -58,10 +58,10 @@ export const Converters: ConverterMap = {
 	"api/cg-dev-sdvx": ConverterAPICGSDVX,
 	"api/cg-dev-museca": ConverterAPICGMuseca,
 	"api/cg-dev-popn": ConverterAPICGPopn,
-	"api/cg-prod-sdvx": ConverterAPICGSDVX,
-	"api/cg-prod-museca": ConverterAPICGMuseca,
-	"api/cg-prod-popn": ConverterAPICGPopn,
-
-	// "api/cg-dev-jubeat": ConverterAPICGJubeat,
-	// "api/cg-prod-jubeat": ConverterAPICGJubeat,
+	"api/cg-nag-sdvx": ConverterAPICGSDVX,
+	"api/cg-nag-museca": ConverterAPICGMuseca,
+	"api/cg-nag-popn": ConverterAPICGPopn,
+	"api/cg-gan-sdvx": ConverterAPICGSDVX,
+	"api/cg-gan-museca": ConverterAPICGMuseca,
+	"api/cg-gan-popn": ConverterAPICGPopn,
 };

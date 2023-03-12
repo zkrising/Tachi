@@ -41,7 +41,7 @@ export const DatabaseSchemas: Record<Databases, SchemaValidatorFunction> = {
 	}),
 	"cg-card-info": prSchemaify({
 		userID: p.isPositiveNonZeroInteger,
-		service: p.isIn("dev", "prod"),
+		service: p.isIn("dev", "gan", "nag"),
 		cardID: "string",
 		pin: "string",
 	}),

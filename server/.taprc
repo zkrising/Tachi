@@ -9,7 +9,7 @@ test-env:
 # On github actions, these tests can take an inordinate amount of time.
 # The timeout is set to 16 minutes, which is ridiculous.
 # Doesn't matter for real machines.
-timeout: 960
+timeout: 600
 ts: true
 before: "./src/test-utils/hack-setup.js"
 check-coverage: true

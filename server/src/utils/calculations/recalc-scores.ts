@@ -108,6 +108,10 @@ export async function UpdateAllPBs(userIDs?: Array<integer>, filter = {}) {
 					}
 				);
 
+				if (scores.length === 0) {
+					continue;
+				}
+
 				logger.verbose(`PBing ${FormatUserDoc(user)}'s scores.`);
 				await ProcessPBs(
 					game,

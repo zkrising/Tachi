@@ -10,11 +10,11 @@ const logger = CreateLogCtx(__filename);
 
 function mkInput(modifant: Partial<CGMusecaScore> = {}) {
 	const validInput: CGMusecaScore = {
-		internalId: 1, // ALBIDA (Remix) ADV
+		internalId: 1,
 		difficulty: 0,
 		dateTime: "2019-06-06 08:14:22",
 		score: 912_000,
-		version: 1,
+		version: 2,
 		clearType: 2,
 		critical: 100,
 		near: 50,

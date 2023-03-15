@@ -59,7 +59,7 @@ router.get("/", async (req, res) => {
 	}
 
 	const skip = 0;
-	const limit = 100;
+	const limit = 300;
 
 	let charts = (await FindChartsOnPopularity(
 		game,

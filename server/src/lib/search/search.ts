@@ -158,7 +158,7 @@ export async function SearchGlobalGameSongsAndCharts(
 	game: Game,
 	search: string,
 	playtype?: Playtype,
-	limit = 100
+	limit = 300
 ): Promise<Array<{ song: SongDocument; chart: ChartDocument; playcount: integer }>> {
 	const songs = await SearchSpecificGameSongs(game, search, limit);
 

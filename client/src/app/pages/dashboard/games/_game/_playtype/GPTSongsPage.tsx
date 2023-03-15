@@ -98,6 +98,7 @@ function SearchSongsTable({ game, playtype, search }: { search: string } & GameP
 				searchFunctions={{
 					title: (x) => x.__related.song.title,
 					artist: (x) => x.__related.song.artist,
+					searchTerms: (x) => x.__related.song.searchTerms.join(", "),
 					playcount: (x) => x.__playcount,
 					difficulty: (x) => x.difficulty,
 					level: (x) => x.levelNum,

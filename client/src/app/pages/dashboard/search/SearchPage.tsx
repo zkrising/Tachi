@@ -196,6 +196,7 @@ function ChartView({
 			searchFunctions={{
 				title: (x) => x.song.title,
 				artist: (x) => x.song.artist,
+				searchTerms: (x) => x.song.searchTerms.join(", "),
 				playcount: (x) => x.playcount,
 				difficulty: (x) => x.chart.difficulty,
 				level: (x) => x.chart.levelNum,

@@ -125,6 +125,7 @@ export const JUBEAT_SINGLE_CONF = {
 
 	chartData: z.strictObject({
 		inGameID: z.union([z.array(zodNonNegativeInt), zodNonNegativeInt]),
+		noteCount: z.number().nonnegative(),
 		musicBar: z.array(z.number().nonnegative()),
 	}),
 

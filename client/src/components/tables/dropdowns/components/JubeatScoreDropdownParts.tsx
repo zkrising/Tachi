@@ -1,7 +1,8 @@
 import SelectNav from "components/util/SelectNav";
-import React, { useEffect, useState } from "react";
+import React, {useRef, useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
 import { ChartDocument, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { COLOUR_SET } from "tachi-common";
 
 export function JubeatGraphsComponent ({
 	score,
@@ -12,62 +13,69 @@ export function JubeatGraphsComponent ({
 }) {
 	const [graph, setGraph] = useState("DENSITY");
 
-	if(score.scoreData.optional.musicBar)
+	if(score.scoreData.optional.musicBar != null)
 	{
+		const canvasRef = useRef<HTMLCanvasElement>(null);
 
-		/*
-		var c = document.getElementById("mbar") as HTMLCanvasElement;
-		var ctx = c?.getContext("2d");
+		useEffect(() => {
+			const canvas = canvasRef.current;
+			if(canvas != null)
+			{
+				const context = canvas.getContext('2d');
+				if(context != null)
+				{
+					var size = 5;
+					var space= 2;
 
-		if( ctx != null)
-		{
-			var size = 10;
-			var height = 130;
-			var space= 5;
-			
-			var colors = new Array();
-			colors[0] = new Array("#88866c", "#3a4231"); //base
-			colors[1] = new Array("#8f938c", "#6a6e69"); //grey
-			colors[2] = new Array("#84cbe2", "#007f87"); //blue
-			colors[3] = new Array("#ffde00", "#7a7000"); //yellow
-			
-			for (let i = 0; i < chart.data.musicBar.length; i++) { //X
-				let color = score.scoreData.optional.musicBar[i];
-				ctx.fillStyle = colors[color][0];
-				ctx.strokeStyle = colors[color][1];
-				for (let j = 0; j < chart.data.musicBar[i]; j++) { //Y
-					ctx.beginPath();
-					ctx.rect(i*size+i*space, height - j*size*2 + j*space, size, size);
-					ctx.fill();
-					ctx.lineWidth = 2;
-					ctx.stroke();
+					context.canvas.height = 65;
+					context.canvas.width = 820;
+					
+					var colors = new Array();
+					colors[0] = COLOUR_SET.white
+					colors[1] = COLOUR_SET.gray
+					colors[2] = COLOUR_SET.vibrantBlue
+					colors[3] = COLOUR_SET.gold
+					
+					for (let i = 0; i < chart.data.musicBar.length; i++) { //X
+						if(score.scoreData.optional.musicBar != null)
+						{
+							context.fillStyle = colors[score.scoreData.optional.musicBar[i]];
+							for (let j = 0; j < chart.data.musicBar[i]; j++) { //Y
+								context.beginPath();
+								context.rect(space + i*size+i*space, (context.canvas.height-size*2) - j*size - j*space, size, size);
+								context.fill();
+							}
+						}
+					}
 				}
 			}
-		}
-		*/
+		  }, []);
+
 
 		return (
 			<>
 				<div className="col-12 d-flex justify-content-center">
 						<Nav variant="pills">
 							<SelectNav id="DENSITY" value={graph} setValue={setGraph}>
-								Play Bar
+								Music Bar
 							</SelectNav>
 						</Nav>
 					</div>
-				<div className="col-12">
-					<p>
-						Behold the music bar
-					</p>
-					<canvas id="mbar" width="400" height="200"/>
+				<div className="col-12 ">
+					<canvas ref={canvasRef}/>
 				</div>
 			</>
 		); 
 	}
 	else
 	{
-		return (<><p>No graph for you</p></>);
+		return (<>
+					<div
+						className="d-flex align-items-center justify-content-center"
+						style={{ height: "200px" }}
+					>
+						<span className="text-muted">No gauge data :(</span>
+					</div>
+				</>);
 	}
-
-
 }

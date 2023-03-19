@@ -35,7 +35,11 @@ export default function LoginPage() {
 				"/auth/login",
 				{
 					method: "POST",
-					body: JSON.stringify(values),
+					body: JSON.stringify({
+						username: values.username.trim(),
+						"!password": values["!password"],
+						captcha: values.captcha,
+					}),
 					headers: {
 						"Content-Type": "application/json",
 					},

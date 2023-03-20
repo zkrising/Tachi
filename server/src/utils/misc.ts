@@ -127,7 +127,11 @@ export function IsValidURL(string: string) {
 	try {
 		const url = new URL(string);
 
-		return url.protocol === "http" || url.protocol === "https" || url.protocol.startsWith("tachi-")
+		return (
+			url.protocol === "http:" ||
+			url.protocol === "https:" ||
+			/^tachi-[a-z0-9]+:$/u.exec(url.protocol)
+		);
 	} catch (_err) {
 		return false;
 	}

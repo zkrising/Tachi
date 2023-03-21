@@ -40,7 +40,7 @@ export const SeedsQuestCells: CellsRenderFN<QuestWithRelated> = ({
 		</td>
 		<td>{FormatGame(data.game, data.playtype)}</td>
 		<td>
-			<div style={{ maxHeight: "200px", overflowY: "scroll" }}>
+			<div style={{ maxHeight: "200px", overflowY: "auto" }}>
 				{data.questData.map((section) => (
 					<>
 						<h6>{section.title}</h6>

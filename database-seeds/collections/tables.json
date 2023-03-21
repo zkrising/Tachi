@@ -172,6 +172,26 @@
 	},
 	{
 		"default": false,
+		"description": "The dystopia table, dy0-dy7 == st5-st12.",
+		"folders": [
+			"Faca9f7c3a64e81cb18ab3489c31408541f725a397f9bdecfc47cc41966d40012",
+			"Fba6f89c636959478c6f8c8da1090c70f532229a6520c827435e3aa9945c8490b",
+			"Fd2fdecdf1c0574b0f17aedcbefb29ea99ed58a8a693cc3bdc1e3f32500fb27a5",
+			"Fe708c9bb01b971d030b36a27556a204e27fe74a33eba1bdca16fcdc5ada4f992",
+			"F5d62516c32ea5da46c21a2b1aa1c9ad349613cf39fa76113c081cd21baf9cf0a",
+			"F4556c9708a752f6f13307fe00549a0bd7f6bdbe6f25d1f72065999e9c116dc3c",
+			"F8ac40f4583b76adfaec22b9c0c5ae20a544ba350d385272d212cf9971a056821",
+			"Fed65fc214bf9e0256a23d6798c75d2f3f856f40b80c653611cae738026681a28",
+			"F4feae15fe1c3f525edb0f955f392c79ac502ec80219a4271af5b9b1a78cfb00c"
+		],
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"tableID": "bms-7K-dystopia",
+		"title": "Dystopia"
+	},
+	{
+		"default": false,
 		"description": "Exoplanet is a table by the stella/satellite maintainers with less rules on what can be submitted. Includes gimmick charts.",
 		"folders": [
 			"F95e1c93906b4383747ee1cf3dd497930c8a0a8d4b3f9b0df6aeeb29aa3ab82dc",
@@ -407,7 +427,8 @@
 			"Fd87fd6cae620b851468df1da0cc1b7fd4173f6bc0fe3e1c1a01abedf66a2b1e8",
 			"Fcf221f3abd17ae3607718898be929121d44c3582c90e300c6e7efdc83df6187a",
 			"Fdfdce10ee518f37c4ab3657abf2ce912cbf523359e2689a96ecf020b0ab8bb26",
-			"F4c7bb7c15715dfece55170d98a1d7ba2c4b4dafb361f348282701aae5fe8baae"
+			"F4c7bb7c15715dfece55170d98a1d7ba2c4b4dafb361f348282701aae5fe8baae",
+			"F9bdaa06980b75f3406dbaa93ed2bf1be47b6b60cfb1463a3b7c88d5c350963c6"
 		],
 		"game": "bms",
 		"inactive": false,

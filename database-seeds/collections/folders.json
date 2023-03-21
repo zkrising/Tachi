@@ -3935,6 +3935,173 @@
 	},
 	{
 		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "？",
+					"table": "dy"
+				}
+			}
+		},
+		"folderID": "F4feae15fe1c3f525edb0f955f392c79ac502ec80219a4271af5b9b1a78cfb00c",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "dy？",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "0",
+					"table": "dy"
+				}
+			}
+		},
+		"folderID": "Faca9f7c3a64e81cb18ab3489c31408541f725a397f9bdecfc47cc41966d40012",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "dy0",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "1",
+					"table": "dy"
+				}
+			}
+		},
+		"folderID": "Fba6f89c636959478c6f8c8da1090c70f532229a6520c827435e3aa9945c8490b",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "dy1",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "2",
+					"table": "dy"
+				}
+			}
+		},
+		"folderID": "Fd2fdecdf1c0574b0f17aedcbefb29ea99ed58a8a693cc3bdc1e3f32500fb27a5",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "dy2",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "3",
+					"table": "dy"
+				}
+			}
+		},
+		"folderID": "Fe708c9bb01b971d030b36a27556a204e27fe74a33eba1bdca16fcdc5ada4f992",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "dy3",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "4",
+					"table": "dy"
+				}
+			}
+		},
+		"folderID": "F5d62516c32ea5da46c21a2b1aa1c9ad349613cf39fa76113c081cd21baf9cf0a",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "dy4",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "5",
+					"table": "dy"
+				}
+			}
+		},
+		"folderID": "F4556c9708a752f6f13307fe00549a0bd7f6bdbe6f25d1f72065999e9c116dc3c",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "dy5",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "6",
+					"table": "dy"
+				}
+			}
+		},
+		"folderID": "F8ac40f4583b76adfaec22b9c0c5ae20a544ba350d385272d212cf9971a056821",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "dy6",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "7",
+					"table": "dy"
+				}
+			}
+		},
+		"folderID": "Fed65fc214bf9e0256a23d6798c75d2f3f856f40b80c653611cae738026681a28",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "dy7",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders¬table": "dy"
+		},
+		"folderID": "F9bdaa06980b75f3406dbaa93ed2bf1be47b6b60cfb1463a3b7c88d5c350963c6",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"dystopia"
+		],
+		"title": "Dystopia",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"data¬sglEC": {
 				"~gte": 13,
 				"~lt": 14

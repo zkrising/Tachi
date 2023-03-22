@@ -44,11 +44,11 @@ export default defineConfig(() => {
 
 	// If you have access to the private metronic scss submodule
 	// and have cloned it, use that.
-	if (fs.existsSync(path.join(__dirname, "../_assets/metronic-scss/style.react.scss"))) {
-		scssEntryPoint = "../_assets/metronic-scss/style.react.scss";
+	if (fs.existsSync(path.join(__dirname, "./src/_assets/metronic-scss/style.react.scss"))) {
+		scssEntryPoint = "./src/_assets/metronic-scss/style.react.scss";
 	} else {
 		// Else, use some default compiled css.
-		scssEntryPoint = "../_assets/compiled-css/main.css";
+		scssEntryPoint = './src/_assets/compiled-css/main.css";@import "./src/_style/base.scss';
 	}
 
 	return {

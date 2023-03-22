@@ -48,6 +48,8 @@ export default defineConfig(() => {
 		scssEntryPoint = "./src/_assets/metronic-scss/style.react.scss";
 	} else {
 		// Else, use some default compiled css.
+		// note: silly injection here as we eval this.      VVV note the quote escaping.
+		// too lazy to do this properly with arrays
 		scssEntryPoint = './src/_assets/compiled-css/main.css";@import "./src/_style/base.scss';
 	}
 

@@ -37,10 +37,7 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 			</Dropdown.Toggle>
 			<Dropdown.Menu className="p-0 m-0 dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
 				<div className="navi navi-spacer-x-0 pt-5">
-					<Link
-						to={`/u/${user.username}`}
-						className="navi-item px-8 cursor-pointer"
-					>
+					<Link to={`/u/${user.username}`} className="navi-item px-8 cursor-pointer">
 						<div className="navi-link">
 							<div className="navi-icon mr-2">
 								<Icon type="user" colour="primary" />
@@ -51,10 +48,7 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 							</div>
 						</div>
 					</Link>
-					<Link
-						to={`/u/${user.username}`}
-						className="navi-item px-8 cursor-pointer"
-					>
+					<Link to={`/u/${user.username}`} className="navi-item px-8 cursor-pointer">
 						<div className="navi-link">
 							<div className="navi-icon mr-2">
 								<Icon type="envelope" colour="success" />

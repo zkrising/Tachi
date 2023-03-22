@@ -54,8 +54,8 @@ function QuestlineSelector({ game, playtype }: GamePT) {
 				<Col xs={12}>
 					<div className="w-100 text-center">
 						Looks like this game has no quests. If you want, you could{" "}
-						<Link to="/utils/quests">create your own</Link>, and submit them
-						in the discord!
+						<Link to="/utils/quests">create your own</Link>, and submit them in the
+						discord!
 					</div>
 				</Col>
 			</Row>

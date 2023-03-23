@@ -66,8 +66,8 @@ export const JUBEAT_SINGLE_CONF = {
 
 		musicBar: {
 			type: "GRAPH",
-			validate: p.isBoundedInteger(0,3),
-			description: "A snapshot of how much the player succeeded each part of the song",
+			validate: p.isBoundedInteger(0, 3),
+			description: "A snapshot of how well the player did in each part of the song",
 		},
 	},
 

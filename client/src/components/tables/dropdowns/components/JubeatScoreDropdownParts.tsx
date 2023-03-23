@@ -1,10 +1,9 @@
 import SelectNav from "components/util/SelectNav";
-import React, {useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
-import { ChartDocument, PBScoreDocument, ScoreDocument } from "tachi-common";
-import { COLOUR_SET } from "tachi-common";
+import { ChartDocument, PBScoreDocument, ScoreDocument, COLOUR_SET } from "tachi-common";
 
-export function JubeatGraphsComponent ({
+export function JubeatGraphsComponent({
 	score,
 	chart,
 }: {
@@ -13,69 +12,74 @@ export function JubeatGraphsComponent ({
 }) {
 	const [graph, setGraph] = useState("DENSITY");
 
-	if(score.scoreData.optional.musicBar != null)
-	{
-		const canvasRef = useRef<HTMLCanvasElement>(null);
+	const canvasRef = useRef<HTMLCanvasElement>(null);
 
-		useEffect(() => {
-			const canvas = canvasRef.current;
-			if(canvas != null)
-			{
-				const context = canvas.getContext('2d');
-				if(context != null)
-				{
-					var size = 5;
-					var space= 2;
+	useEffect(() => {
+		const canvas = canvasRef.current;
 
-					context.canvas.height = 65;
-					context.canvas.width = 820;
-					
-					var colors = new Array();
-					colors[0] = COLOUR_SET.white
-					colors[1] = COLOUR_SET.gray
-					colors[2] = COLOUR_SET.vibrantBlue
-					colors[3] = COLOUR_SET.gold
-					
-					for (let i = 0; i < chart.data.musicBar.length; i++) { //X
-						if(score.scoreData.optional.musicBar != null)
-						{
-							context.fillStyle = colors[score.scoreData.optional.musicBar[i]];
-							for (let j = 0; j < chart.data.musicBar[i]; j++) { //Y
-								context.beginPath();
-								context.rect(space + i*size+i*space, (context.canvas.height-size*2) - j*size - j*space, size, size);
-								context.fill();
-							}
+		if (!score.scoreData.optional.musicBar) {
+			return;
+		}
+
+		if (canvas !== null) {
+			const context = canvas.getContext("2d");
+			if (context !== null) {
+				const size = 5;
+				const space = 2;
+
+				context.canvas.height = 65;
+				context.canvas.width = 820;
+
+				const colors = [];
+				colors[0] = COLOUR_SET.white;
+				colors[1] = COLOUR_SET.gray;
+				colors[2] = COLOUR_SET.vibrantBlue;
+				colors[3] = COLOUR_SET.gold;
+
+				for (let i = 0; i < chart.data.musicBar.length; i++) {
+					//X
+					if (score.scoreData.optional.musicBar !== null) {
+						context.fillStyle = colors[score.scoreData.optional.musicBar[i]];
+						for (let j = 0; j < chart.data.musicBar[i]; j++) {
+							//Y
+							context.beginPath();
+							context.rect(
+								space + i * size + i * space,
+								context.canvas.height - size * 2 - j * size - j * space,
+								size,
+								size
+							);
+							context.fill();
 						}
 					}
 				}
 			}
-		  }, []);
+		}
+	}, [score]);
 
-
+	if (score.scoreData.optional.musicBar) {
 		return (
 			<>
 				<div className="col-12 d-flex justify-content-center">
-						<Nav variant="pills">
-							<SelectNav id="DENSITY" value={graph} setValue={setGraph}>
-								Music Bar
-							</SelectNav>
-						</Nav>
-					</div>
+					<Nav variant="pills">
+						<SelectNav id="DENSITY" value={graph} setValue={setGraph}>
+							Music Bar
+						</SelectNav>
+					</Nav>
+				</div>
 				<div className="col-12 ">
-					<canvas ref={canvasRef}/>
+					<canvas ref={canvasRef} />
 				</div>
 			</>
-		); 
+		);
 	}
-	else
-	{
-		return (<>
-					<div
-						className="d-flex align-items-center justify-content-center"
-						style={{ height: "200px" }}
-					>
-						<span className="text-muted">No gauge data :(</span>
-					</div>
-				</>);
-	}
+
+	return (
+		<div
+			className="d-flex align-items-center justify-content-center"
+			style={{ height: "200px" }}
+		>
+			<span className="text-muted">No gauge data :(</span>
+		</div>
+	);
 }

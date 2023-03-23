@@ -58,7 +58,7 @@ export default function RegisterPage() {
 					body: JSON.stringify({
 						"!password": values["!password"],
 						inviteCode: values.inviteCode,
-						username: values.username,
+						username: values.username.trim(),
 						email: values.email,
 						captcha: values.captcha,
 					}),
@@ -272,8 +272,7 @@ function RegisterForm({
 			<ReCAPTCHA
 				ref={recaptchaRef}
 				sitekey={
-					process.env.VITE_RECAPTCHA_KEY ??
-					"6LdI2swUAAAAAArkM0ZQi4SnttilqgAwsJSFw3PX"
+					process.env.VITE_RECAPTCHA_KEY ?? "6LdI2swUAAAAAArkM0ZQi4SnttilqgAwsJSFw3PX"
 				}
 				onChange={(v) => {
 					formik.setFieldValue("captcha", v);

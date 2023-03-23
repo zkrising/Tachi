@@ -349,6 +349,8 @@ export const TestingJubeatChart: ChartDocument<"jubeat:Single"> = {
 	playtype: "Single",
 	data: {
 		inGameID: 10000001,
+		noteCount: 100,
+		musicBar: [0, 1, 2, 3],
 	},
 	versions: ["festo"],
 };

@@ -26,7 +26,7 @@ export function GPTDropdownSettings(game: Game, playtype: Playtype): any {
 		return {
 			renderScoreInfo: true,
 			GraphComponent: JubeatGraphsComponent as any,
-		}
+		};
 	}
 
 	return {};

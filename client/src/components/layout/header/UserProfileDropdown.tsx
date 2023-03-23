@@ -48,7 +48,7 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 							</div>
 						</div>
 					</Link>
-					<Link to={`/u/${user.username}`} className="navi-item px-8 cursor-pointer">
+					<Link to={`/notifications`} className="navi-item px-8 cursor-pointer">
 						<div className="navi-link">
 							<div className="navi-icon mr-2">
 								<Icon type="envelope" colour="success" />

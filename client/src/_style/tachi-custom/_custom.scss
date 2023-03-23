@@ -8,17 +8,17 @@
 }
 
 .stat-overview-card {
-	box-shadow: black 0px 0px 2px 1px;
+	box-shadow: black 0px 0px 2px 1px !important;
 }
 
 .card-dark {
-	background-color: #1c1c1c;
+	background-color: #1c1c1c !important;
 
 	> .card-header {
-		background-color: #1c1c1c;
+		background-color: #1c1c1c !important;
 	}
 	> .card-footer {
-		background-color: #1c1c1c;
+		background-color: #1c1c1c !important;
 	}
 }
 

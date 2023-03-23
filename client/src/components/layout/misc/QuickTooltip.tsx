@@ -10,7 +10,7 @@ export default function QuickTooltip({
 	max,
 	delay = 40,
 }: {
-	tooltipContent: React.ReactChild;
+	tooltipContent: React.ReactChild | undefined;
 	wide?: boolean;
 	max?: boolean;
 	style?: CSSProperties;
@@ -19,6 +19,10 @@ export default function QuickTooltip({
 }) {
 	const [show, setShow] = useState(false);
 	const [mousedOver, setMousedOver] = useState(false);
+
+	if (tooltipContent === undefined) {
+		return children;
+	}
 
 	return (
 		<OverlayTrigger

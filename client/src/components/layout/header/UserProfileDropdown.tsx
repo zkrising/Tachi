@@ -48,17 +48,6 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 							</div>
 						</div>
 					</Link>
-					<Link to={`/u/${user.username}`} className="navi-item px-8 cursor-pointer">
-						<div className="navi-link">
-							<div className="navi-icon mr-2">
-								<Icon type="envelope" colour="success" />
-							</div>
-							<div className="navi-text">
-								<div className="font-weight-bold cursor-pointer">Notifications</div>
-								<div className="text-muted">View your notifications!</div>
-							</div>
-						</div>
-					</Link>
 					<Link
 						to={`/u/${user.username}/settings`}
 						className="navi-item px-8 cursor-pointer"

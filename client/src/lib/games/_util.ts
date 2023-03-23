@@ -7,7 +7,8 @@ export function CreateRatingSys<GPT extends GPTString>(
 	description: string,
 	toNumber: GPTRatingSystem<GPT>["toNumber"],
 	toString: GPTRatingSystem<GPT>["toString"],
-	idvDifference: GPTRatingSystem<GPT>["idvDifference"] = () => false
+	idvDifference: GPTRatingSystem<GPT>["idvDifference"] = () => false,
+	achievementFn: GPTRatingSystem<GPT>["achievementFn"] = undefined
 ): GPTRatingSystem<GPT> {
 	return {
 		description,
@@ -15,6 +16,7 @@ export function CreateRatingSys<GPT extends GPTString>(
 		toNumber,
 		toString,
 		idvDifference,
+		achievementFn,
 	};
 }
 

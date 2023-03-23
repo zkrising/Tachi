@@ -495,7 +495,14 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				"BPM",
 				"How fast are the streams in this chart?",
 				(c) => c.data.streamBPM,
-				(c) => c.data.streamBPM?.toString()
+				(c) => c.data.streamBPM?.toString(),
+				(c) => undefined,
+				(s) => [
+					s.scoreData.lamp === "FAILED"
+						? `Failed ${s.scoreData.survivedPercent.toFixed(2)}%`
+						: s.scoreData.lamp,
+					s.scoreData.lamp !== "FAILED",
+				]
 			),
 		],
 		scoreHeaders: [

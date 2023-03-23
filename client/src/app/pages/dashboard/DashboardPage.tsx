@@ -26,6 +26,7 @@ import { COLOUR_SET, GetGameConfig, UserDocument } from "tachi-common";
 import { UGSWithRankingData, UserRecentSummary } from "types/api-returns";
 import SessionCalendar from "components/sessions/SessionCalendar";
 import { GameStatContainer } from "./users/UserGamesPage";
+import SupportBanner from "./misc/SupportBanner";
 
 export function DashboardPage() {
 	const { settings } = useContext(UserSettingsContext);
@@ -46,6 +47,7 @@ function DashboardLoggedIn({ user }: { user: UserDocument }) {
 
 	return (
 		<div>
+			<SupportBanner user={user} />
 			<span className="display-4">
 				{splash}, {user.username}.
 			</span>

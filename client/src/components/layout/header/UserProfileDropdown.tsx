@@ -11,6 +11,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { UserDocument } from "tachi-common";
+import SupporterIcon from "components/util/SupporterIcon";
 
 export function UserProfileDropdown({ user }: { user: UserDocument }) {
 	const { setUser } = useContext(UserContext);
@@ -29,6 +30,12 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 					</span>{" "}
 					<span className="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-2">
 						{user.username}
+						{user.isSupporter && (
+							<>
+								{" "}
+								<SupporterIcon />
+							</>
+						)}
 					</span>
 					<span className="symbol symbol-35">
 						<img alt="Pic" className="hidden" src={ToAPIURL("/users/me/pfp")} />

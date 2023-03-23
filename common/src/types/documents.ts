@@ -324,6 +324,7 @@ export interface UserDocument {
 	customBannerLocation: string | null;
 	badges: Array<UserBadges>;
 	authLevel: UserAuthLevels;
+	isSupporter?: boolean;
 }
 
 export interface SpecificUserGameStats<GPT extends GPTString> {

@@ -53,7 +53,7 @@ export function UGPTHeaderBody({
 					<ProfilePicture user={reqUser} />
 				</div>
 				<div className="d-flex align-items-center" style={{ flexDirection: "column" }}>
-					<ProfileBadges badges={reqUser.badges} />
+					<ProfileBadges user={reqUser} />
 				</div>
 				<div className="d-block d-lg-none">
 					<Divider className="mt-4 mb-4" />

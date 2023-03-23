@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { UserDocument } from "tachi-common";
 import { GamePT } from "types/react";
+import SupporterIcon from "components/util/SupporterIcon";
 
 export default function UserCell({ user, game, playtype }: { user: UserDocument } & GamePT) {
 	return (
@@ -23,6 +24,12 @@ export default function UserCell({ user, game, playtype }: { user: UserDocument 
 				to={`/u/${user.username}/games/${game}/${playtype}`}
 			>
 				{user.username}
+				{user.isSupporter && (
+					<>
+						{" "}
+						<SupporterIcon />
+					</>
+				)}
 			</Link>
 		</td>
 	);

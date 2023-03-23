@@ -38,6 +38,7 @@ import {
 } from "types/tachi";
 import { InnerQuestSectionGoal } from "components/targets/quests/Quest";
 import ProfilePicture, { ProfilePictureSmall } from "components/user/ProfilePicture";
+import SupporterIcon from "components/util/SupporterIcon";
 
 // Records activity for a group of users on a GPT. Also used for single users.
 export default function Activity({
@@ -704,6 +705,14 @@ function UGPTLink({ reqUser, game, playtype }: UGPT) {
 			}}
 		>
 			{user?.id === reqUser.id ? "You" : reqUser.username}
+			{user?.isSupporter ? (
+				<>
+					{" "}
+					<SupporterIcon />
+				</>
+			) : (
+				<></>
+			)}
 		</Link>
 	);
 }

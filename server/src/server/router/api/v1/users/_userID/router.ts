@@ -430,11 +430,32 @@ router.get("/recent-imports", async (req, res) => {
 });
 
 /**
+ * Get stats for this user on all games.
+ *
+ * @name GET /api/v1/users/:userID/stats
+ */
+router.get("/stats", async (req, res) => {
+	const user = GetUser(req);
+
+	const scoreCount = await db.scores.count({ userID: user.id });
+	const sessionCount = await db.sessions.count({ userID: user.id });
+
+	return res.status(200).json({
+		success: true,
+		description: `Retrieved stats.`,
+		body: {
+			scores: scoreCount,
+			sessions: sessionCount,
+		},
+	});
+});
+
+/**
  * Fetch this users recent activity, and all of their rivals for each GPT they've played.
  *
  * @name GET /api/v1/users/:userID/activity
  */
-router.use(
+router.get(
 	"/activity",
 	prValidate({
 		startTime: "*string",

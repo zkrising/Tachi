@@ -155,7 +155,8 @@ export const SDVX_IMPL: GPTClientImplementation<"sdvx:Single"> = {
 			"The unofficial SDVX clearing tierlist",
 			(c) => c.data.clearTier?.value,
 			(c) => c.data.clearTier?.text,
-			(c) => c.data.clearTier?.individualDifference
+			(c) => c.data.clearTier?.individualDifference,
+			(s) => [s.scoreData.lamp, s.scoreData.lamp !== "FAILED"]
 		),
 	],
 	scoreHeaders: [

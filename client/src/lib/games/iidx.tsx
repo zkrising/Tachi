@@ -1,6 +1,6 @@
 import { NumericSOV } from "util/sorts";
 import { GPTClientImplementation } from "lib/types";
-import { COLOUR_SET, GPTStrings, IIDXLIKE_GBOUNDARIES } from "tachi-common";
+import { COLOUR_SET, GPTStrings, IIDXLIKE_GBOUNDARIES, IIDX_LAMPS } from "tachi-common";
 import DeltaCell from "components/tables/cells/DeltaCell";
 import IIDXLampCell from "components/tables/cells/IIDXLampCell";
 import ScoreCell from "components/tables/cells/ScoreCell";
@@ -140,21 +140,24 @@ export const IIDX_SP_IMPL: GPTClientImplementation<"iidx:SP"> = {
 			"Tierlist Ratings for Normal Clears.",
 			(c) => c.data.ncTier?.value,
 			(c) => c.data.ncTier?.text,
-			(c) => c.data.ncTier?.individualDifference
+			(c) => c.data.ncTier?.individualDifference,
+			(s) => [s.scoreData.lamp, s.scoreData.enumIndexes.lamp >= IIDX_LAMPS.CLEAR]
 		),
 		CreateRatingSys(
 			"HC Tier",
 			"Tierlist Ratings for Hard Clears.",
 			(c) => c.data.hcTier?.value,
 			(c) => c.data.hcTier?.text,
-			(c) => c.data.hcTier?.individualDifference
+			(c) => c.data.hcTier?.individualDifference,
+			(s) => [s.scoreData.lamp, s.scoreData.enumIndexes.lamp >= IIDX_LAMPS.HARD_CLEAR]
 		),
 		CreateRatingSys(
 			"EXHC Tier",
 			"Tierlist Ratings for EX-HARD Clears.",
 			(c) => c.data.exhcTier?.value,
 			(c) => c.data.exhcTier?.text,
-			(c) => c.data.exhcTier?.individualDifference
+			(c) => c.data.exhcTier?.individualDifference,
+			(s) => [s.scoreData.lamp, s.scoreData.enumIndexes.lamp >= IIDX_LAMPS.EX_HARD_CLEAR]
 		),
 	],
 	scoreHeaders: IIDX_HEADERS,
@@ -175,7 +178,9 @@ export const IIDX_DP_IMPL: GPTClientImplementation<"iidx:DP"> = {
 			"DP Tier",
 			"The unofficial DP tiers, taken from https://zasa.sakura.ne.jp/dp/run.php.",
 			(c) => c.data.dpTier?.value,
-			(c) => c.data.dpTier?.text
+			(c) => c.data.dpTier?.text,
+			() => undefined,
+			(s) => [s.scoreData.lamp, s.scoreData.enumIndexes.lamp >= IIDX_LAMPS.CLEAR]
 		),
 	],
 	scoreHeaders: IIDX_HEADERS,

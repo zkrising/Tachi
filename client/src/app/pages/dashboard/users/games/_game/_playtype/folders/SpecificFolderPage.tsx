@@ -1,9 +1,11 @@
+import { ChangeOpacity } from "util/color-opacity";
 import { ONE_DAY } from "util/constants/time";
-import { CreateChartIDMap, CreateSongMap } from "util/data";
-import { UppercaseFirst } from "util/misc";
+import { CreateChartIDMap, CreateChartLink, CreateSongMap } from "util/data";
+import { DistinctArr, UppercaseFirst } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
 import { FormatDate } from "util/time";
 import FolderInfoHeader from "components/game/folder/FolderInfoHeader";
+import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Card from "components/layout/page/Card";
 import DifficultyCell from "components/tables/cells/DifficultyCell";
 import TimestampCell from "components/tables/cells/TimestampCell";
@@ -15,14 +17,22 @@ import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
+import Muted from "components/util/Muted";
+import ReferToUser from "components/util/ReferToUser";
+import Select from "components/util/Select";
 import SelectLinkButton from "components/util/SelectLinkButton";
 import useApiQuery from "components/util/query/useApiQuery";
 import useUGPTBase from "components/util/useUGPTBase";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
+import { GPTRatingSystem } from "lib/types";
 import React, { useEffect, useMemo, useState } from "react";
-import { Form } from "react-bootstrap";
-import { Route, Switch, useParams } from "react-router-dom";
+import { Col, Form, Row } from "react-bootstrap";
+import { Link, Route, Switch, useParams } from "react-router-dom";
 import {
+	COLOUR_SET,
 	ChartDocument,
+	FormatDifficultyShort,
+	GPTString,
 	Game,
 	GetGamePTConfig,
 	GetScoreEnumConfs,
@@ -35,6 +45,7 @@ import {
 import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
 import { UGPTFolderReturns } from "types/api-returns";
 import { FolderDataset } from "types/tables";
+import SelectButton from "components/util/SelectButton";
 import FolderComparePage from "./FolderComparePage";
 import FolderQuestsPage from "./FolderQuestsPage";
 
@@ -103,6 +114,8 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 		return <Loading />;
 	}
 
+	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[`${game}:${playtype}` as GPTString];
+
 	return (
 		<div className="row">
 			<div className="col-12">{folderInfoHeader}</div>
@@ -115,6 +128,15 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 						<Icon type="table" />
 						Normal View
 					</SelectLinkButton>
+					{gptImpl.ratingSystems.length !== 0 &&
+						// temp: tierlist view sucks for BMS and PMS
+						game !== "bms" &&
+						game !== "pms" && (
+							<SelectLinkButton to={`${base}/tierlist`}>
+								<Icon type="sort-alpha-up" />
+								Tierlist View
+							</SelectLinkButton>
+						)}
 					<SelectLinkButton to={`${base}/timeline`}>
 						<Icon type="stream" />
 						Timeline View
@@ -136,6 +158,15 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 				<Switch>
 					<Route exact path={base}>
 						<FolderTable dataset={folderDataset} game={game} playtype={playtype} />
+					</Route>
+					<Route exact path={`${base}/tierlist`}>
+						<TierlistBreakdown
+							game={game}
+							playtype={playtype}
+							reqUser={reqUser}
+							folderDataset={folderDataset}
+							data={data}
+						/>
 					</Route>
 					<Route exact path={`${base}/timeline`}>
 						<TimelineView
@@ -391,4 +422,386 @@ function TimelineElement({
 			</div>
 		</div>
 	);
+}
+
+// here be demons
+// i don't remember how this code works
+// and i was almost certainly drinking heavily when i wrote it
+// so
+
+type InfoProps = Props & {
+	folderDataset: FolderDataset;
+	data: UGPTFolderReturns;
+};
+
+function TierlistBreakdown({ game, folderDataset, playtype, reqUser }: InfoProps) {
+	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[`${game}:${playtype}` as GPTString];
+
+	const [tierlist, setTierlist] = useState<string>(gptImpl.ratingSystems[0].name);
+
+	const playerStats = useMemo(
+		() => FolderDatasetAchievedStatus(folderDataset, game, playtype, tierlist),
+		[tierlist]
+	);
+
+	// @ts-expect-error i don't care to resolve this typeissue and i'm tired
+	// of typescript
+	const tierlistImpl = gptImpl.ratingSystems.find((rs) => rs.name === tierlist);
+
+	if (!tierlistImpl) {
+		return <>(E) no tierlist impl (howd you get here?)</>;
+	}
+
+	return (
+		<Row>
+			{gptImpl.ratingSystems.length > 1 && (
+				<Col xs={12}>
+					<div className="btn-group d-flex">
+						{gptImpl.ratingSystems.map((e) => (
+							<SelectButton
+								className="btn-lg"
+								id={e.name}
+								setValue={setTierlist}
+								value={tierlist}
+							>
+								{e.name}
+								<br />
+								{e.description}
+							</SelectButton>
+						))}
+					</div>
+				</Col>
+			)}
+			<Col xs={12}>
+				<Divider />
+			</Col>
+			<Col xs={12}>
+				<TierlistInfoLadder
+					playerStats={playerStats}
+					game={game}
+					playtype={playtype}
+					reqUser={reqUser}
+					folderDataset={folderDataset}
+					tierlistImpl={tierlistImpl}
+				/>
+			</Col>
+		</Row>
+	);
+}
+
+function TierlistInfoLadder({
+	playerStats,
+	game,
+	playtype,
+	reqUser,
+	folderDataset,
+	tierlistImpl,
+}: {
+	playerStats: Record<string, { status: AchievedStatuses; score: string | null }>;
+	game: Game;
+	playtype: Playtype;
+	reqUser: UserDocument;
+	tierlistImpl: GPTRatingSystem<GPTString>;
+	folderDataset: FolderDataset;
+}) {
+	const buckets: TierlistInfo[][] = useMemo(() => {
+		const buckets: TierlistInfo[][] = [];
+
+		const allData: TierlistInfo[] = [];
+
+		for (const d of folderDataset) {
+			const { status, score } = playerStats[d.chartID] ?? AchievedStatuses.NOT_PLAYED;
+
+			allData.push({
+				status,
+				score,
+				chart: d,
+				text: tierlistImpl.toString(d),
+				value: tierlistImpl.toNumber(d),
+				idvDiff: tierlistImpl.idvDifference(d),
+			});
+		}
+
+		allData.sort(NumericSOV((x) => x.value ?? -Infinity, true));
+
+		let bucket: TierlistInfo[] = [];
+		const noTierlistInfoBucket: TierlistInfo[] = [];
+
+		let lastNum: number | null = null;
+		for (const d of allData) {
+			console.log(d);
+
+			if (typeof d.value !== "number") {
+				noTierlistInfoBucket.push(d);
+				continue;
+			}
+
+			if (lastNum !== d.value) {
+				buckets.push(bucket);
+
+				// go again
+				bucket = [];
+			} else {
+				bucket.push(d);
+			}
+
+			lastNum = d.value;
+		}
+
+		if (bucket.length > 0) {
+			buckets.push(bucket);
+		}
+
+		if (noTierlistInfoBucket.length > 0) {
+			buckets.push(noTierlistInfoBucket);
+		}
+
+		return buckets;
+	}, [playerStats]);
+
+	if (buckets.length === 0) {
+		return <Row className="justify-content-center">Got no tierlist data to show you!</Row>;
+	}
+
+	return (
+		<Row className="text-center">
+			{buckets
+				.filter((e) => e.length > 0)
+				.map((bucket, i) => (
+					<React.Fragment key={i}>
+						<Col className="ladder-header" xs={12}>
+							{bucket[0].value} (
+							{DistinctArr(bucket.map((e) => e.text ?? "No Tierlist Data")).join(
+								", "
+							)}
+							)
+						</Col>
+
+						<TierlistBucket {...{ bucket, game, playtype, reqUser }} />
+					</React.Fragment>
+				))}
+		</Row>
+	);
+}
+
+function TierlistBucket({
+	bucket,
+	game,
+	reqUser,
+}: {
+	game: Game;
+	playtype: Playtype;
+	reqUser: UserDocument;
+	bucket: TierlistInfo[];
+}) {
+	// xs view is tabular
+	if (window.screen.width <= 576) {
+		return (
+			<MiniTable>
+				{bucket.map((tierlistInfo, i) => (
+					<TierlistInfoBucketValues
+						tierlistInfo={tierlistInfo}
+						key={`${tierlistInfo.chart.chartID}-${tierlistInfo.text}`}
+						game={game}
+						bucket={bucket}
+						i={i}
+						reqUser={reqUser}
+					/>
+				))}
+			</MiniTable>
+		);
+	}
+
+	return (
+		<>
+			{bucket.map((tierlistInfo, i) => (
+				<TierlistInfoBucketValues
+					tierlistInfo={tierlistInfo}
+					key={`${tierlistInfo.chart.chartID}-${tierlistInfo.text}`}
+					game={game}
+					bucket={bucket}
+					i={i}
+					reqUser={reqUser}
+				/>
+			))}
+		</>
+	);
+}
+
+function TierlistInfoBucketValues({
+	tierlistInfo,
+	game,
+	bucket,
+	i,
+	reqUser,
+}: {
+	tierlistInfo: TierlistInfo;
+	bucket: TierlistInfo[];
+	game: Game;
+	i: integer;
+	reqUser: UserDocument;
+}) {
+	const lastKey = bucket[i - 1];
+
+	let statusClass;
+
+	switch (tierlistInfo.status) {
+		case AchievedStatuses.ACHIEVED:
+			statusClass = "achieved";
+			break;
+		case AchievedStatuses.FAILED:
+			statusClass = "unachieved";
+			break;
+		case AchievedStatuses.NOT_PLAYED:
+		case AchievedStatuses.SCORE_BASED:
+			statusClass = "";
+	}
+
+	const data = tierlistInfo.chart;
+
+	// xs view
+	if (window.screen.width <= 576) {
+		return (
+			<tr>
+				<DifficultyCell game={game} chart={tierlistInfo.chart} alwaysShort noTierlist />
+				<td className="text-left">
+					<Link className="gentle-link" to={CreateChartLink(data, game)}>
+						{tierlistInfo.chart.__related.song.title}
+					</Link>{" "}
+					<br />
+					<div>
+						{tierlistInfo.value} ({tierlistInfo.text ?? "No Info"})
+						{tierlistInfo.idvDiff && (
+							<span className="ml-1">
+								<Icon type="balance-scale-left" />
+							</span>
+						)}
+					</div>
+				</td>
+				<TierlistInfoCell tierlistInfo={tierlistInfo} />
+			</tr>
+		);
+	}
+
+	return (
+		<>
+			{lastKey && lastKey.text !== tierlistInfo.text && <Col xl={12} className="my-2" />}
+			<Col
+				className={`ladder-element ${
+					i % 12 < 6 ? "ladder-element-dark" : ""
+				} ladder-element-${statusClass} d-none d-sm-block`}
+				xs={12}
+				sm={6}
+				md={4}
+				lg={3}
+				xl={2}
+			>
+				<Link className="gentle-link" to={CreateChartLink(data, game)}>
+					{data.__related.song.title}
+				</Link>{" "}
+				{FormatDifficultyShort(data, game)}
+				<Divider className="my-2" />
+				{tierlistInfo.value} ({tierlistInfo.text ?? "No Info"})
+				{tierlistInfo.idvDiff && (
+					<>
+						<br />
+
+						<div className="mt-1">
+							<QuickTooltip tooltipContent="Individual Difference - The difficulty of this varies massively between people!">
+								<span>
+									<Icon type="balance-scale-left" />
+								</span>
+							</QuickTooltip>
+						</div>
+					</>
+				)}
+				<Muted>
+					<Divider className="my-2" />
+					<ReferToUser reqUser={reqUser} />{" "}
+					{tierlistInfo.status === AchievedStatuses.NOT_PLAYED
+						? "not played this chart."
+						: tierlistInfo.score}
+				</Muted>
+			</Col>
+		</>
+	);
+}
+
+function TierlistInfoCell({ tierlistInfo }: { tierlistInfo: TierlistInfo }) {
+	let colour;
+	const text = tierlistInfo.score ?? "NOT PLAYED";
+
+	if (tierlistInfo.status === AchievedStatuses.FAILED) {
+		colour = COLOUR_SET.red;
+	} else if (tierlistInfo.status === AchievedStatuses.NOT_PLAYED) {
+		colour = COLOUR_SET.red;
+	} else {
+		colour = COLOUR_SET.green;
+	}
+
+	return (
+		<td
+			style={{
+				backgroundColor: ChangeOpacity(colour, 0.2),
+				width: "60px",
+				minWidth: "60px",
+				maxWidth: "60px",
+			}}
+		>
+			{text}
+		</td>
+	);
+}
+
+interface TierlistInfo {
+	chart: FolderDataset[0];
+	score: string | null;
+	status: AchievedStatuses;
+	value: number | null | undefined;
+	text: string | null | undefined;
+	idvDiff: boolean | null | undefined;
+}
+
+enum AchievedStatuses {
+	NOT_PLAYED,
+	FAILED,
+	ACHIEVED,
+	SCORE_BASED,
+}
+
+function FolderDatasetAchievedStatus(
+	folderDataset: FolderDataset,
+	game: Game,
+	playtype: Playtype,
+	tierlist: string
+) {
+	const tierlistInfo: Record<string, { status: AchievedStatuses; score: string | null }> = {};
+
+	// @ts-expect-error i'm sick of this language and i'm sick of type hacks
+	const fn = GPT_CLIENT_IMPLEMENTATIONS[`${game}:${playtype}` as GPTString].ratingSystems.find(
+		(e: GPTRatingSystem<GPTString>) => e.name === tierlist
+	)?.achievementFn;
+
+	for (const data of folderDataset) {
+		let achieved: AchievedStatuses;
+		let score: string | null = null;
+
+		if (!data.__related.pb) {
+			achieved = AchievedStatuses.NOT_PLAYED;
+		} else if (fn) {
+			const v = fn(data.__related.pb);
+
+			achieved = v[1] ? AchievedStatuses.ACHIEVED : AchievedStatuses.FAILED;
+			score = v[0];
+		} else {
+			achieved = AchievedStatuses.SCORE_BASED;
+		}
+
+		tierlistInfo[data.chartID] = {
+			status: achieved,
+			score,
+		};
+	}
+
+	return tierlistInfo;
 }

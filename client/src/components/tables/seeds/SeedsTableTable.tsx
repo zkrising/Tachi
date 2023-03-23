@@ -45,7 +45,7 @@ export const SeedsTableCells: CellsRenderFN<TableWithRelated> = ({ data }) => (
 		</td>
 		<td>{FormatGame(data.game, data.playtype)}</td>
 		<td className="text-left">
-			<div style={{ maxHeight: "200px", overflowY: "scroll" }}>
+			<div style={{ maxHeight: "200px", overflowY: "auto" }}>
 				{data.folders.map((e) => {
 					const folder = data.__related.folders[e];
 

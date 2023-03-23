@@ -56,16 +56,10 @@ export default function FoldersMainPage({ reqUser, game, playtype }: UGPT) {
 					<Route exact path="/u/:userID/games/:game/:playtype/folders">
 						<FolderTablePage {...{ reqUser, game, playtype }} />
 					</Route>
-					<Route
-						exact
-						path="/u/:userID/games/:game/:playtype/folders/search"
-					>
+					<Route exact path="/u/:userID/games/:game/:playtype/folders/search">
 						<FolderSelectPage {...{ reqUser, game, playtype }} />
 					</Route>
-					<Route
-						exact
-						path="/u/:userID/games/:game/:playtype/folders/recent"
-					>
+					<Route exact path="/u/:userID/games/:game/:playtype/folders/recent">
 						<RecentFoldersPage {...{ reqUser, game, playtype }} />
 					</Route>
 					<Route path="/u/:userID/games/:game/:playtype/folders/:folderID">

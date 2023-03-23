@@ -37,6 +37,7 @@ import {
 	ClumpedActivitySession,
 } from "types/tachi";
 import { InnerQuestSectionGoal } from "components/targets/quests/Quest";
+import ProfilePicture, { ProfilePictureSmall } from "components/user/ProfilePicture";
 
 // Records activity for a group of users on a GPT. Also used for single users.
 export default function Activity({
@@ -298,6 +299,9 @@ function ScoresActivity({
 			<div className="timeline-content">
 				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
 					<div className="timeline-content-title">
+						<span className="mr-2">
+							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
+						</span>
 						<Icon
 							type={`chevron-${show ? "down" : "right"}`}
 							style={{
@@ -377,6 +381,9 @@ function GoalActivity({
 			<div className="timeline-content">
 				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
 					<div className="timeline-content-title">
+						<span className="mr-2">
+							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
+						</span>
 						<Icon
 							type={`chevron-${show ? "down" : "right"}`}
 							style={{
@@ -443,6 +450,9 @@ function QuestActivity({
 				<div className="timeline-content-inner">
 					<div className="timeline-content-title">
 						<span style={{ fontSize: "1.15rem" }}>
+							<span className="mr-2">
+								<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
+							</span>
 							<UGPTLink reqUser={user} game={game} playtype={playtype} /> completed
 							the{" "}
 							<Link
@@ -484,12 +494,17 @@ function SessionActivity({
 
 	const isProbablyActive = Date.now() - data.timeEnded < ONE_HOUR;
 
+	const { game, playtype } = data;
+
 	return (
 		<div className="timeline-item timeline-hover">
 			<div className={`timeline-badge bg-${data.highlight ? "warning" : "secondary"}`}></div>
 			<div className="timeline-content d-flex">
 				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
 					<div className="timeline-content-title">
+						<span className="mr-2">
+							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
+						</span>
 						<Icon
 							type={`chevron-${show ? "down" : "right"}`}
 							style={{
@@ -633,6 +648,12 @@ function ClassAchievementActivity({
 			<div className="timeline-content d-flex">
 				<div className="timeline-content-inner">
 					<div className="timeline-content-title">
+						<span className="mr-2">
+							<ProfilePictureSmall
+								user={user}
+								toGPT={`${data.game}/${data.playtype}`}
+							/>
+						</span>
 						<UGPTLink reqUser={user} game={data.game} playtype={data.playtype} />{" "}
 						achieved{" "}
 						<ClassBadge

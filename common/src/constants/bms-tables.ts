@@ -223,4 +223,13 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		notDefault: true,
 		description: "A huge collection of Normal-Scale 14K charts.",
 	},
+	{
+		name: "Dystopia",
+		playtype: "7K",
+		description: "The dystopia table, dy0-dy7 == st5-st12.",
+		url: "https://monibms.github.io/Dystopia/dystopia.html",
+		prefix: "dy",
+		asciiPrefix: "dystopia",
+		colour: COLOUR_SET.purple,
+	},
 ];

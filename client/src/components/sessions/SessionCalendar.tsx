@@ -151,7 +151,7 @@ function SessionTooltip({ sessionID, game, playtype, reqUser }: { sessionID: str
 				{data.session.desc && <Muted>{data.session.desc}</Muted>}
 				<Divider />
 			</div>
-			<Row className="w-100" style={{ maxHeight: "500px", overflowY: "scroll" }}>
+			<Row className="w-100" style={{ maxHeight: "500px", overflowY: "auto" }}>
 				<SessionRaiseBreakdown noHeader sessionData={data} />
 			</Row>
 			<div className="w-100 text-center">

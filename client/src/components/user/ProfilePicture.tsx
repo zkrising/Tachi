@@ -48,3 +48,49 @@ export default function ProfilePicture({
 		</Link>
 	);
 }
+
+export function ProfilePictureSmall({
+	user,
+	src,
+	toGPT = "",
+}: {
+	user: UserDocument | string;
+	src?: string;
+
+	/**
+	 * When clicking this this profile, should it take you to a UGPT page?
+	 */
+	toGPT?: string;
+}) {
+	if (typeof user === "string") {
+		return (
+			<Link to={`/u/${user}/${toGPT}`}>
+				<img
+					src={src ? src : ToAPIURL(`/users/${user}/pfp`)}
+					alt={`${user}'s Profile Picture`}
+					className="rounded"
+					style={{
+						width: "32px",
+						height: "32px",
+						boxShadow: "0px 0px 10px 0px #000000",
+					}}
+				/>
+			</Link>
+		);
+	}
+
+	return (
+		<Link to={`/u/${user.username}/${toGPT}`}>
+			<img
+				src={src ? src : ToAPIURL(`/users/${user.id}/pfp`)}
+				alt={`${user.username}'s Profile Picture`}
+				className="rounded"
+				style={{
+					width: "32px",
+					height: "32px",
+					boxShadow: "0px 0px 10px 0px #000000",
+				}}
+			/>
+		</Link>
+	);
+}

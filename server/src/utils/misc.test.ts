@@ -15,6 +15,7 @@ t.test("#IsValidURL", (t) => {
 	t.ok(IsValidURL("http://example.com/suburl"));
 	t.ok(IsValidURL("http://example.com#href"));
 	t.ok(IsValidURL("http://example.com?querystring"));
+	t.ok(IsValidURL("tachi-fdsaf7324hf://example.com?querystring"));
 
 	t.notOk(IsValidURL("ftp://example.com"));
 

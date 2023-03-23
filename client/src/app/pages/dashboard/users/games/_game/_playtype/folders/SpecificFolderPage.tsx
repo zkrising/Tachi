@@ -529,8 +529,6 @@ function TierlistInfoLadder({
 
 		let lastNum: number | null = null;
 		for (const d of allData) {
-			console.log(d);
-
 			if (typeof d.value !== "number") {
 				noTierlistInfoBucket.push(d);
 				continue;
@@ -540,7 +538,7 @@ function TierlistInfoLadder({
 				buckets.push(bucket);
 
 				// go again
-				bucket = [];
+				bucket = [d];
 			} else {
 				bucket.push(d);
 			}

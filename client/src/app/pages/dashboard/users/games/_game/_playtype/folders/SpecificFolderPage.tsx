@@ -556,6 +556,10 @@ function TierlistInfoLadder({
 			buckets.push(noTierlistInfoBucket);
 		}
 
+		for (const bucket of buckets) {
+			bucket.sort(StrSOV((s) => s.text ?? "NO DATA"));
+		}
+
 		return buckets;
 	}, [playerStats]);
 
@@ -686,43 +690,54 @@ function TierlistInfoBucketValues({
 	return (
 		<>
 			{lastKey && lastKey.text !== tierlistInfo.text && <Col xl={12} className="my-2" />}
-			<Col
-				className={`ladder-element ${
-					i % 12 < 6 ? "ladder-element-dark" : ""
-				} ladder-element-${statusClass} d-none d-sm-block`}
-				xs={12}
-				sm={6}
-				md={4}
-				lg={3}
-				xl={2}
+			<QuickTooltip
+				max
+				tooltipContent={
+					data.__related.pb ? (
+						<MiniTable headers={[`${reqUser.username}'s Score`]} colSpan={99}>
+							<ScoreCoreCells chart={data} game={game} score={data.__related.pb} />
+						</MiniTable>
+					) : undefined
+				}
 			>
-				<Link className="gentle-link" to={CreateChartLink(data, game)}>
-					{data.__related.song.title}
-				</Link>{" "}
-				{FormatDifficultyShort(data, game)}
-				<Divider className="my-2" />
-				{tierlistInfo.value} ({tierlistInfo.text ?? "No Info"})
-				{tierlistInfo.idvDiff && (
-					<>
-						<br />
-
-						<div className="mt-1">
-							<QuickTooltip tooltipContent="Individual Difference - The difficulty of this varies massively between people!">
-								<span>
-									<Icon type="balance-scale-left" />
-								</span>
-							</QuickTooltip>
-						</div>
-					</>
-				)}
-				<Muted>
+				<Col
+					className={`ladder-element ${
+						i % 12 < 6 ? "ladder-element-dark" : ""
+					} ladder-element-${statusClass} d-none d-sm-block`}
+					xs={12}
+					sm={6}
+					md={4}
+					lg={3}
+					xl={2}
+				>
+					<Link className="gentle-link" to={CreateChartLink(data, game)}>
+						{data.__related.song.title}
+					</Link>{" "}
+					{FormatDifficultyShort(data, game)}
 					<Divider className="my-2" />
-					<ReferToUser reqUser={reqUser} />{" "}
-					{tierlistInfo.status === AchievedStatuses.NOT_PLAYED
-						? "not played this chart."
-						: tierlistInfo.score}
-				</Muted>
-			</Col>
+					{tierlistInfo.value} ({tierlistInfo.text ?? "No Info"})
+					{tierlistInfo.idvDiff && (
+						<>
+							<br />
+
+							<div className="mt-1">
+								<QuickTooltip tooltipContent="Individual Difference - The difficulty of this varies massively between people!">
+									<span>
+										<Icon type="balance-scale-left" />
+									</span>
+								</QuickTooltip>
+							</div>
+						</>
+					)}
+					<Muted>
+						<Divider className="my-2" />
+						<ReferToUser reqUser={reqUser} />{" "}
+						{tierlistInfo.status === AchievedStatuses.NOT_PLAYED
+							? "not played this chart."
+							: tierlistInfo.score}
+					</Muted>
+				</Col>
+			</QuickTooltip>
 		</>
 	);
 }

@@ -2,6 +2,7 @@ import { Game, Playtype } from "tachi-common";
 import { BMSGraphsComponent } from "./components/BMSScoreDropdownParts";
 import { IIDXGraphsComponent } from "./components/IIDXScoreDropdownParts";
 import { ITGGraphsComponent } from "./components/ITGScoreDropdownParts";
+import { JubeatGraphsComponent } from "./components/JubeatScoreDropdownParts";
 
 export function GPTDropdownSettings(game: Game, playtype: Playtype): any {
 	if (game === "iidx") {
@@ -20,6 +21,11 @@ export function GPTDropdownSettings(game: Game, playtype: Playtype): any {
 		return {
 			renderScoreInfo: true,
 			GraphComponent: ITGGraphsComponent as any,
+		};
+	} else if (game === "jubeat") {
+		return {
+			renderScoreInfo: true,
+			GraphComponent: JubeatGraphsComponent as any,
 		};
 	}
 

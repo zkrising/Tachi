@@ -20,6 +20,15 @@ export default function SupportBanner({ user }: { user: UserDocument }) {
 		localStorage.setItem("SHOW_SUPPORT_TACHI", `${show}`);
 	}, [show]);
 
+	// thank you
+	if (user.isSupporter) {
+		return (
+			<div className="d-flex w-100 justify-content-center flex-column align-items-center">
+				<div>❤️❤️❤️ Thank you for supporting {TachiConfig.name}. ❤️❤️❤️</div>
+			</div>
+		);
+	}
+
 	if (!data) {
 		return <></>;
 	}
@@ -35,15 +44,6 @@ export default function SupportBanner({ user }: { user: UserDocument }) {
 	// too soon to bother
 	if (Date.now() - user.joinDate < ONE_DAY * 7) {
 		return <></>;
-	}
-
-	// thank you
-	if (user.isSupporter) {
-		return (
-			<div className="d-flex w-100 justify-content-center flex-column align-items-center">
-				<div>❤️❤️❤️ Thank you for supporting {TachiConfig.name}. ❤️❤️❤️</div>
-			</div>
-		);
 	}
 
 	if (!show) {

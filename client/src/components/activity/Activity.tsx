@@ -705,7 +705,7 @@ function UGPTLink({ reqUser, game, playtype }: UGPT) {
 			}}
 		>
 			{user?.id === reqUser.id ? "You" : reqUser.username}
-			{user?.isSupporter ? (
+			{reqUser?.isSupporter ? (
 				<>
 					{" "}
 					<SupporterIcon />

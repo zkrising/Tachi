@@ -1,13 +1,11 @@
 import { ONE_DAY } from "util/constants/time";
-import useApiQuery from "components/util/query/useApiQuery";
-import { ColourConfig, TachiConfig } from "lib/config";
-import React, { useEffect, useState } from "react";
-import { Alert } from "react-bootstrap";
-import { UserDocument, integer } from "tachi-common";
-import { Link } from "react-router-dom";
-import ExternalLink from "components/util/ExternalLink";
 import Card from "components/layout/page/Card";
+import ExternalLink from "components/util/ExternalLink";
 import Icon from "components/util/Icon";
+import useApiQuery from "components/util/query/useApiQuery";
+import { TachiConfig } from "lib/config";
+import React, { useEffect, useState } from "react";
+import { UserDocument, integer } from "tachi-common";
 
 export default function SupportBanner({ user }: { user: UserDocument }) {
 	const { data, error } = useApiQuery<{ scores: integer; sessions: integer }>(

@@ -96,6 +96,7 @@ export default function ScoresPage({
 							game={game}
 							playtype={playtype}
 							indexCol={false}
+							key="all-pbs"
 						/>
 					</Route>
 					<Route path="/u/:userID/games/:game/:playtype/scores/most-played">
@@ -106,6 +107,7 @@ export default function ScoresPage({
 							playtype={playtype}
 							indexCol
 							showPlaycount
+							key="most-played-pbs"
 						/>
 					</Route>
 				</Switch>

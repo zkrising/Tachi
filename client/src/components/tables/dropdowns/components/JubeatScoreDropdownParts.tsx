@@ -21,38 +21,41 @@ export function JubeatGraphsComponent({
 			return;
 		}
 
-		if (canvas !== null) {
-			const context = canvas.getContext("2d");
-			if (context !== null) {
-				const size = 5;
-				const space = 2;
+		if (!canvas) {
+			return;
+		}
 
-				context.canvas.height = 65;
-				context.canvas.width = 820;
+		const context = canvas.getContext("2d");
 
-				const colors = [];
-				colors[0] = COLOUR_SET.white;
-				colors[1] = COLOUR_SET.gray;
-				colors[2] = COLOUR_SET.vibrantBlue;
-				colors[3] = COLOUR_SET.gold;
+		if (!context) {
+			return;
+		}
 
-				for (let i = 0; i < chart.data.musicBar.length; i++) {
-					//X
-					if (score.scoreData.optional.musicBar !== null) {
-						context.fillStyle = colors[score.scoreData.optional.musicBar[i]];
-						for (let j = 0; j < chart.data.musicBar[i]; j++) {
-							//Y
-							context.beginPath();
-							context.rect(
-								space + i * size + i * space,
-								context.canvas.height - size * 2 - j * size - j * space,
-								size,
-								size
-							);
-							context.fill();
-						}
-					}
-				}
+		const size = 5;
+		const space = 2;
+
+		context.canvas.height = 65;
+		context.canvas.width = 820;
+
+		const colors = [];
+		colors[0] = COLOUR_SET.white;
+		colors[1] = COLOUR_SET.gray;
+		colors[2] = COLOUR_SET.vibrantBlue;
+		colors[3] = COLOUR_SET.gold;
+
+		for (let i = 0; i < chart.data.musicBar.length; i++) {
+			//X
+			context.fillStyle = colors[score.scoreData.optional.musicBar[i]];
+			for (let j = 0; j < chart.data.musicBar[i]; j++) {
+				//Y
+				context.beginPath();
+				context.rect(
+					space + i * size + i * space,
+					context.canvas.height - size * 2 - j * size - j * space,
+					size,
+					size
+				);
+				context.fill();
 			}
 		}
 	}, [score]);

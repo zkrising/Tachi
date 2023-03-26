@@ -24499,5 +24499,53 @@
 			"misogi nhato"
 		],
 		"title": "禊"
+	},
+	{
+		"altTitles": [],
+		"artist": "RoughSkreamZ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2075,
+		"searchTerms": [
+			"gloryoffights_roughskreamz"
+		],
+		"title": "Glory of Fighters"
+	},
+	{
+		"altTitles": [],
+		"artist": "花譜",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2076,
+		"searchTerms": [
+			"kakowokurau_kaf"
+		],
+		"title": "過去を喰らう"
+	},
+	{
+		"altTitles": [],
+		"artist": "理芽",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2077,
+		"searchTerms": [
+			"syokuchusyokubutsu_rim"
+		],
+		"title": "食虫植物"
+	},
+	{
+		"altTitles": [],
+		"artist": "ツミキ feat.可不",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2078,
+		"searchTerms": [
+			"phony_tsumiki"
+		],
+		"title": "フォニイ"
 	}
 ]

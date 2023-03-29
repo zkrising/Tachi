@@ -16,6 +16,20 @@ import { XMLParser } from "fast-xml-parser";
 import { ReadCollection, MutateCollection } from "../../util";
 import { ChartDocument, SongDocument } from "tachi-common";
 
+interface XmlNotes {
+	file: { path: string };
+
+	level: number;
+	levelDecimal: number;
+
+	notesDesigner: { id: number; str: string };
+	notesType: number;
+
+	musicLevelID: number;
+	maxNotes: number;
+	isEnable: boolean;
+}
+
 const diffMap = new Map([
 	["BAS", "Basic"],
 	["ADV", "Advanced"],
@@ -312,11 +326,11 @@ if (options.directory) {
 			// DX song IDs start from 10000
 			const style = Math.floor(musicData.name.id / 10000) === 1 ? "DX " : "";
 
-			musicData.notesData.Notes.forEach((notes, idx) => {
+			for (const [idx, notes] of Object.entries(musicData.notesData.Notes as XmlNotes[])) {
 				if (notes.maxNotes === 0) {
-					return;
+					continue;
 				}
-				const difficulty = `${style}${[...diffMap.values()][idx]}`;
+				const difficulty = `${style}${[...diffMap.values()][Number(idx)]}`;
 				const chart = charts.find(
 					(c) => c.songID === song.id && c.difficulty === difficulty
 				);
@@ -342,7 +356,7 @@ if (options.directory) {
 					);
 					chart.levelNum = internalLevel;
 				}
-			});
+			}
 		});
 		return charts;
 	});

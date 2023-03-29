@@ -54,10 +54,10 @@ const versionOverrides = ["INTERNET OVERDOSE", "Knight Rider", "Let you DIVE!", 
 	const datum = await fetch(DATA_URL).then((r) => r.json());
 	const aliases = new Map();
 	const aliasesRaw = await fetch(ALIAS_URL).then((r) => r.text());
-	aliasesRaw.split("\n").forEach((line) => {
+	for (const line of aliasesRaw.split("\n")) {
 		const [title, ...alias] = line.split("\t");
 		aliases.set(title, alias);
-	});
+	}
 
 	// not properly implemented yet as i can't find romaji titles for
 	// japanese titled songs
@@ -74,7 +74,7 @@ const versionOverrides = ["INTERNET OVERDOSE", "Knight Rider", "Let you DIVE!", 
 			continue;
 		}
 		if (data.title === "　" && data.artist === "x0o0x_") {
-			// Manual override
+			// Manual override since the song's title is "" (empty) in the dataset.
 			continue;
 		}
 		if (versionOverrides.includes(data.title)) {

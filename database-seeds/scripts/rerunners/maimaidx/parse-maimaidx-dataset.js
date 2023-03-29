@@ -107,7 +107,11 @@ const versionOverrides = ["INTERNET OVERDOSE", "Knight Rider", "Let you DIVE!", 
 			}
 
 			const chartID = existingCharts.get(`${thisSongID} DX ${diffMap.get(diff)}`);
+			const chart = charts.find((e) => e.chartID === chartID);
 			if (chartID) {
+				if (!chart.versions.includes(CURRENT_VERSION)) {
+					chart.versions.push(CURRENT_VERSION);
+				}
 				return;
 			}
 
@@ -137,7 +141,11 @@ const versionOverrides = ["INTERNET OVERDOSE", "Knight Rider", "Let you DIVE!", 
 			}
 
 			const chartID = existingCharts.get(`${thisSongID} ${diffMap.get(diff)}`);
+			const chart = charts.find((e) => e.chartID === chartID);
 			if (chartID) {
+				if (!chart.versions.includes(CURRENT_VERSION)) {
+					chart.versions.push(CURRENT_VERSION);
+				}
 				return;
 			}
 

@@ -14255,66 +14255,6 @@
 		]
 	},
 	{
-		"chartID": "90c4a7757741a227458e883f6378ebbaa3dbf1b8",
-		"data": {
-			"isLatest": false
-		},
-		"difficulty": "DX Advanced",
-		"isPrimary": true,
-		"level": "6",
-		"levelNum": 6,
-		"playtype": "Single",
-		"songID": 196,
-		"versions": [
-			"festival"
-		]
-	},
-	{
-		"chartID": "bf127e42ced70ed36a6e77a8939e35d22735552e",
-		"data": {
-			"isLatest": false
-		},
-		"difficulty": "DX Basic",
-		"isPrimary": true,
-		"level": "2",
-		"levelNum": 2,
-		"playtype": "Single",
-		"songID": 196,
-		"versions": [
-			"festival"
-		]
-	},
-	{
-		"chartID": "b9ea37e430dce8380275ce7205625340fd971a44",
-		"data": {
-			"isLatest": false
-		},
-		"difficulty": "DX Expert",
-		"isPrimary": true,
-		"level": "9",
-		"levelNum": 9,
-		"playtype": "Single",
-		"songID": 196,
-		"versions": [
-			"festival"
-		]
-	},
-	{
-		"chartID": "eb6829e0909e5eb28bec70940ebd8c3e58387b02",
-		"data": {
-			"isLatest": true
-		},
-		"difficulty": "DX Master",
-		"isPrimary": true,
-		"level": "13",
-		"levelNum": 13.1,
-		"playtype": "Single",
-		"songID": 196,
-		"versions": [
-			"festival"
-		]
-	},
-	{
 		"chartID": "4cd41dc90ddf2ffb787003676cfddcc899fc4283",
 		"data": {
 			"isLatest": false

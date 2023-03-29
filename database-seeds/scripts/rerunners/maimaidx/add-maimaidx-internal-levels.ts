@@ -251,7 +251,7 @@ function addOtherSheet(
 				if (!internalLevelString || internalLevelString === "#N/A") {
 					continue;
 				}
-				const internalLevel = Number(internalLevelString);
+				const internalLevel = Number(internalLevelString.match(/\d+\.\d+/u)?.[0]);
 				const level = calculateDisplayLevel(internalLevel);
 
 				const song = findSong(songs, title, currentCategory);

@@ -1,6 +1,8 @@
 const { Command } = require("commander");
 const { parse } = require("csv-parse/sync");
+const { XMLParser } = require("fast-xml-parser");
 const fs = require("fs");
+const path = require("path");
 const { ReadCollection, MutateCollection } = require("../../util");
 
 // run parse-maimaidx-dataset.js first!!!
@@ -9,6 +11,9 @@ const { ReadCollection, MutateCollection } = require("../../util");
 // https://docs.google.com/spreadsheets/d/1xbDMo-36bGL_d435Oy8TTVq4ADFmxl9sYFqhTXiJYRg/edit
 
 // Download a sheet as CSV and use -f <CSV filename>.
+
+// If you somehow obtained a folder with the A000/music folder, use -d <A000/music> folder.
+// This will also add in-game IDs to the songs.
 
 const diffMap = new Map([
 	["BAS", "Basic"],
@@ -100,6 +105,12 @@ function findSong(songs, title, category) {
 	// - Link (niconico) is 244
 	if (title === "Link") {
 		return songs.find((s) => s.id === (category === "maimai" ? 68 : 244));
+	}
+	if (title === "Heartbeats") {
+		return songs.find((s) => s.id === 131);
+	}
+	if (title === "Heart Beats") {
+		return songs.find((s) => s.id === 211);
 	}
 	return songs.find(
 		(s) =>
@@ -249,20 +260,85 @@ function addOtherSheet(csvData, parseCategory, headerRow, hasCategoryColumn, mar
 
 const program = new Command();
 program.option("-f, --file <filename>", "CSV file to read from");
+program.option("-d, --directory <music>", "path to A000/music directory");
 program.parse(process.argv);
 const options = program.opts();
 
-const csvData = parse(fs.readFileSync(options.file));
-const newSongsSheet = options.file.includes("新曲.csv");
-const tmaiSheet = options.file.includes(" - Tmai.csv");
-const highLevelSheet = / - (14以上|13+|13).csv$/u.test(options.file);
+if (options.directory) {
+	const songs = ReadCollection("songs-maimaidx.json");
+	const parser = new XMLParser({ ignoreAttributes: false });
 
-if (tmaiSheet) {
-	addTmaiSheet(csvData);
-} else if (newSongsSheet) {
-	addOtherSheet(csvData, false, 7, false, true);
-} else if (highLevelSheet) {
-	addOtherSheet(csvData, false, 3, true, false);
+	MutateCollection("charts-maimaidx.json", (charts) => {
+		const items = fs.readdirSync(options.directory);
+		items.forEach((item) => {
+			const fullPath = path.join(options.directory, item);
+			if (
+				!fs.lstatSync(fullPath).isDirectory() ||
+				!fs.existsSync(path.join(fullPath, "Music.xml"))
+			) {
+				return;
+			}
+			const musicData = parser.parse(
+				fs.readFileSync(path.join(fullPath, "Music.xml"))
+			).MusicData;
+			const title = `${musicData.name.str}`; // the song "39" do be treated as a number
+			const category = musicData.genreName.str;
+			const song = findSong(songs, title, category);
+			if (!song) {
+				console.log(`Could not find song ${title}`);
+				return;
+			}
+
+			// DX song IDs start from 10000
+			const style = Math.floor(musicData.name.id / 10000) === 1 ? "DX " : "";
+
+			musicData.notesData.Notes.forEach((notes, idx) => {
+				if (notes.maxNotes === 0) {
+					return;
+				}
+				const difficulty = `${style}${[...diffMap.values()][idx]}`;
+				const chart = charts.find(
+					(c) => c.songID === song.id && c.difficulty === difficulty
+				);
+				if (!chart) {
+					console.log(`Could not find chart ${difficulty} for ${title}`);
+					return;
+				}
+				const internalLevel = Number((notes.level + notes.levelDecimal / 10).toFixed(1));
+				const level = `${notes.level}${notes.levelDecimal >= 7 ? "+" : ""}`;
+
+				if (chart.level !== level) {
+					console.log(
+						`Overwriting level for ${song.title} [${chart.difficulty}]: ${chart.level} -> ${level}`
+					);
+					chart.level = level;
+				}
+				if (chart.levelNum !== internalLevel) {
+					console.log(
+						`Overwriting levelNum for ${song.title} [${chart.difficulty}]: ${chart.levelNum} -> ${internalLevel}`
+					);
+					chart.levelNum = internalLevel;
+				}
+			});
+		});
+		return charts;
+	});
+} else if (options.file) {
+	const csvData = parse(fs.readFileSync(options.file));
+	const newSongsSheet = options.file.includes("新曲.csv");
+	const tmaiSheet = options.file.includes(" - Tmai.csv");
+	const highLevelSheet = / - (14以上|13+|13).csv$/u.test(options.file);
+
+	if (tmaiSheet) {
+		addTmaiSheet(csvData);
+	} else if (newSongsSheet) {
+		addOtherSheet(csvData, false, 7, false, true);
+	} else if (highLevelSheet) {
+		addOtherSheet(csvData, false, 3, true, false);
+	} else {
+		addOtherSheet(csvData, true, 2, true, false);
+	}
 } else {
-	addOtherSheet(csvData, true, 2, true, false);
+	console.error("Must specify either a file or a directory");
+	process.exit(1);
 }

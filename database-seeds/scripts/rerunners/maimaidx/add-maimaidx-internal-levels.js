@@ -121,7 +121,7 @@ function findSong(songs, title, category) {
 
 function calculateDisplayLevel(internalLevel) {
 	const plusDifficulty = (internalLevel * 10) % 10 >= 7;
-	const level = `${Math.floor(internalLevel)}${plusDifficulty ? "+" : ""}`;
+	const level = `${Math.floor(internalLevel)}${plusDifficulty && internalLevel >= 7 ? "+" : ""}`;
 	return level;
 }
 

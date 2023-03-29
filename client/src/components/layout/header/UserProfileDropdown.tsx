@@ -37,8 +37,13 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 							</>
 						)}
 					</span>
-					<span className="symbol symbol-35">
-						<img alt="Pic" className="hidden" src={ToAPIURL("/users/me/pfp")} />
+					<span className="symbol symbol-35 symbol-fixed">
+						<img
+							alt={"Pic"}
+							className="hidden"
+							style={{objectFit:"cover"}}
+							src={ToAPIURL("/users/me/pfp")}
+						/>
 					</span>
 				</div>
 			</Dropdown.Toggle>

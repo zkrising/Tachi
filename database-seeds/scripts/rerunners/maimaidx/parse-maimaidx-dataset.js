@@ -41,7 +41,7 @@ const diffMap = new Map([
 	["remas", "Re:Master"],
 ]);
 
-// maimai DX Int'l getting songs before/at the same time as JP???? No way!!!!
+// maimai DX FESTiVAL+ songs that are in maimai DX FESTiVAL International Version
 const versionOverrides = ["INTERNET OVERDOSE", "Knight Rider", "Let you DIVE!", "Trrricksters!!"];
 
 (async () => {
@@ -70,11 +70,11 @@ const versionOverrides = ["INTERNET OVERDOSE", "Knight Rider", "Let you DIVE!", 
 
 		let version = Number(data.version.substring(0, 3));
 		if (version > CURRENT_VERSION_NUM && !versionOverrides.includes(data.title)) {
-			// Ignoring FES+ songs since we're dealing with the int'l version for now
+			// Skipping songs that are newer than currently supported version.
 			continue;
 		}
 		if (data.title === "　" && data.artist === "x0o0x_") {
-			// man i hate this
+			// Manual override
 			continue;
 		}
 		if (versionOverrides.includes(data.title)) {

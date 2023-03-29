@@ -161,8 +161,8 @@ function addTmaiSheet(csvData: string[][]) {
 	const songs = ReadCollection("songs-maimaidx.json");
 
 	MutateCollection("charts-maimaidx.json", (charts: ChartDocument<"maimaidx:Single">[]) => {
-		for (let rowNumber = 1; ; rowNumber++) {
-			const row = csvData[rowNumber];
+		for (let rowNumber = 1; rowNumber < csvData.length; rowNumber++) {
+			const row = csvData[rowNumber]!;
 			const title = row[1];
 			if (!title) {
 				break;
@@ -174,14 +174,14 @@ function addTmaiSheet(csvData: string[][]) {
 				continue;
 			}
 
-			const difficulty = calculateDifficulty(row[2], row[3]);
+			const difficulty = calculateDifficulty(row[2]!, row[3]!);
 			const chart = charts.find((c) => c.songID === song.id && c.difficulty === difficulty);
 			if (!chart) {
 				console.log(`Could not find chart ${difficulty} for ${title}`);
 				continue;
 			}
 
-			const internalLevel = Number(row[7]);
+			const internalLevel = Number(row[7]!);
 			const level = calculateDisplayLevel(internalLevel);
 			if (chart.level !== level) {
 				console.log(
@@ -225,12 +225,12 @@ function addOtherSheet(
 	MutateCollection("charts-maimaidx.json", (charts) => {
 		for (
 			let colNumber = 0;
-			colNumber + 4 + categoryColumnOffset < csvData[0].length;
+			colNumber + 4 + categoryColumnOffset < csvData[0]!.length;
 			colNumber += 6 + categoryColumnOffset
 		) {
 			for (let rowNumber = headerRow; rowNumber < csvData.length; rowNumber++) {
-				const row = csvData[rowNumber];
-				const title = row[colNumber];
+				const row = csvData[rowNumber]!;
+				const title = row[colNumber]!;
 
 				if (
 					parseCategory &&
@@ -246,7 +246,7 @@ function addOtherSheet(
 					continue;
 				}
 
-				const sheetDifficulty = row[colNumber + categoryColumnOffset + 2];
+				const sheetDifficulty = row[colNumber + categoryColumnOffset + 2]!;
 				const internalLevelString = row[colNumber + categoryColumnOffset + 4];
 				if (!internalLevelString || internalLevelString === "#N/A") {
 					continue;
@@ -327,7 +327,7 @@ if (options.directory) {
 			const style = Math.floor(musicData.name.id / 10000) === 1 ? "DX " : "";
 
 			for (const [idx, notes] of Object.entries(musicData.notesData.Notes as XmlNotes[])) {
-				if (notes.maxNotes === 0) {
+				if (!notes.isEnable) {
 					continue;
 				}
 				const difficulty = `${style}${[...diffMap.values()][Number(idx)]}`;
@@ -336,7 +336,7 @@ if (options.directory) {
 				);
 				if (!chart) {
 					console.log(`Could not find chart ${difficulty} for ${title}`);
-					return;
+					continue;
 				}
 				const internalLevel = Number((notes.level + notes.levelDecimal / 10).toFixed(1));
 				let level = notes.level.toString();

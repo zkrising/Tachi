@@ -149,7 +149,7 @@ const versionOverrides = ["INTERNET OVERDOSE", "Knight Rider", "Let you DIVE!", 
 				return;
 			}
 
-			const isLatest = version === CURRENT_VERSION_NUM;
+			const isLatest = version >= CURRENT_VERSION_NUM;
 
 			const lvNum = Number(data[`lev_${diff}`].replace(/\+/u, ".7"));
 

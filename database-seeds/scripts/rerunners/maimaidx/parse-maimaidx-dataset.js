@@ -70,7 +70,7 @@ const versionOverrides = ["INTERNET OVERDOSE", "Knight Rider", "Let you DIVE!", 
 
 		let version = Number(data.version.substring(0, 3));
 		if (version > CURRENT_VERSION_NUM && !versionOverrides.includes(data.title)) {
-			// Skipping songs that are newer than currently supported version.
+			// Skipping songs that are newer than currently supported version (FESTiVAL).
 			continue;
 		}
 		if (data.title === "　" && data.artist === "x0o0x_") {

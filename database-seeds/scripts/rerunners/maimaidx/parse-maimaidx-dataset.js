@@ -1,7 +1,11 @@
 const fetch = require("node-fetch");
 const { CreateChartID, ReadCollection, WriteCollection } = require("../../util");
 
+const CURRENT_VERSION = "festival";
+const CURRENT_VERSION_NUM = 230;
 const DATA_URL = "https://maimai.sega.jp/data/maimai_songs.json";
+const ALIAS_URL =
+	"https://raw.githubusercontent.com/lomotos10/GCM-bot/main/data/aliases/en/maimai.tsv";
 
 const versionMap = new Map([
 	[0, null],
@@ -37,6 +41,9 @@ const diffMap = new Map([
 	["remas", "Re:Master"],
 ]);
 
+// maimai DX Int'l getting songs before/at the same time as JP???? No way!!!!
+const versionOverrides = ["INTERNET OVERDOSE", "Knight Rider", "Let you DIVE!", "Trrricksters!!"];
+
 (async () => {
 	const songs = ReadCollection("songs-maimaidx.json");
 	const charts = ReadCollection("charts-maimaidx.json");
@@ -45,10 +52,15 @@ const diffMap = new Map([
 	const existingCharts = new Map(charts.map((e) => [`${e.songID} ${e.difficulty}`, e.chartID]));
 
 	const datum = await fetch(DATA_URL).then((r) => r.json());
+	const aliases = new Map();
+	const aliasesRaw = await fetch(ALIAS_URL).then((r) => r.text());
+	aliasesRaw.split("\n").forEach((line) => {
+		const [title, ...alias] = line.split("\t");
+		aliases.set(title, alias);
+	});
 
 	// not properly implemented yet as i can't find romaji titles for
 	// japanese titled songs
-	const searchTerms = [];
 	const altTitles = [];
 
 	let songID = Math.max(Math.max(...existingSongs.values()), 0) + 1;
@@ -56,22 +68,36 @@ const diffMap = new Map([
 	for (const data of datum) {
 		let thisSongID = songID;
 
-		const version = Number(data.version.substring(0, 3));
+		let version = Number(data.version.substring(0, 3));
+		if (version > CURRENT_VERSION_NUM && !versionOverrides.includes(data.title)) {
+			// Ignoring FES+ songs since we're dealing with the int'l version for now
+			continue;
+		}
+		if (data.title === "　" && data.artist === "x0o0x_") {
+			// man i hate this
+			continue;
+		}
+		if (versionOverrides.includes(data.title)) {
+			version = CURRENT_VERSION_NUM;
+		}
 
 		if (existingSongs.has(data.title)) {
 			thisSongID = existingSongs.get(data.title);
+			const song = songs.find((e) => e.id === thisSongID);
+			song.searchTerms = aliases.get(data.title.trim()) ?? [];
 		} else {
 			songID++;
 			songs.push({
 				id: thisSongID,
 				title: data.title.trim(),
 				artist: data.artist.trim(),
-				searchTerms,
+				searchTerms: aliases.get(data.title.trim()) ?? [],
 				altTitles,
 				data: {
 					displayVersion: versionMap.get(version),
 				},
 			});
+			console.log(`New song: ${data.artist.trim()} - ${data.title.trim()}`);
 		}
 
 		diffNames.forEach((diff) => {
@@ -80,18 +106,18 @@ const diffMap = new Map([
 				return;
 			}
 
-			if (existingCharts.get(`${thisSongID} DX ${diffMap.get(diff)}`)) {
+			const chartID = existingCharts.get(`${thisSongID} DX ${diffMap.get(diff)}`);
+			if (chartID) {
 				return;
 			}
 
-			const chartID = CreateChartID();
-			const isLatest = Number(version) === 225;
+			const isLatest = version >= CURRENT_VERSION_NUM;
 
 			const lvNum = Number(data[`dx_lev_${diff}`].replace(/\+/u, ".7"));
 
 			charts.push({
 				songID: thisSongID,
-				chartID: chartID,
+				chartID: CreateChartID(),
 				level: data[`dx_lev_${diff}`],
 				levelNum: lvNum,
 				isPrimary: true,
@@ -100,7 +126,7 @@ const diffMap = new Map([
 				data: {
 					isLatest,
 				},
-				versions: ["universeplus"],
+				versions: [CURRENT_VERSION],
 			});
 		});
 
@@ -110,19 +136,18 @@ const diffMap = new Map([
 				return;
 			}
 
-			if (existingCharts.get(`${thisSongID} ${diffMap.get(diff)}`)) {
+			const chartID = existingCharts.get(`${thisSongID} ${diffMap.get(diff)}`);
+			if (chartID) {
 				return;
 			}
 
-			const chartID = CreateChartID();
-			const isLatest = Number(version) === 225;
+			const isLatest = version === CURRENT_VERSION_NUM;
 
 			const lvNum = Number(data[`lev_${diff}`].replace(/\+/u, ".7"));
 
 			charts.push({
 				songID: thisSongID,
-				chartID: chartID,
-				rgcID: null,
+				chartID: CreateChartID(),
 				level: data[`lev_${diff}`],
 				levelNum: lvNum,
 				isPrimary: true,
@@ -131,8 +156,7 @@ const diffMap = new Map([
 				data: {
 					isLatest,
 				},
-				tierlistInfo: {},
-				versions: ["universeplus"],
+				versions: [CURRENT_VERSION],
 			});
 		});
 	}

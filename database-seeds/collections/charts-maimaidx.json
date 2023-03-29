@@ -1511,7 +1511,7 @@
 		"difficulty": "Re:Master",
 		"isPrimary": true,
 		"level": "14",
-		"levelNum": 14,
+		"levelNum": 14.2,
 		"playtype": "Single",
 		"songID": 22,
 		"versions": [
@@ -2114,7 +2114,7 @@
 	{
 		"chartID": "6ec0e67258f2e63581b4fa4ea74d218ae07afdd9",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -2123,14 +2123,13 @@
 		"playtype": "Single",
 		"songID": 31,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "98b6476f9666926957a53ca0b07a4f981a82cd50",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -2139,14 +2138,13 @@
 		"playtype": "Single",
 		"songID": 31,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "84998c5a2e6a86df1493b9a881b8bb6b2917ec25",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -2155,14 +2153,13 @@
 		"playtype": "Single",
 		"songID": 31,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "b463dc1f681cae7980ca1692b7e9df71b2850143",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -2171,7 +2168,6 @@
 		"playtype": "Single",
 		"songID": 31,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -2839,7 +2835,7 @@
 		"difficulty": "Re:Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.2,
 		"playtype": "Single",
 		"songID": 40,
 		"versions": [
@@ -4071,7 +4067,7 @@
 		"difficulty": "Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13.2,
+		"levelNum": 13,
 		"playtype": "Single",
 		"songID": 58,
 		"versions": [
@@ -7042,7 +7038,7 @@
 	{
 		"chartID": "20c5f6de02838408e05074d5e9b01cf64e951df4",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -7051,14 +7047,13 @@
 		"playtype": "Single",
 		"songID": 98,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "c70c1dc59e61b7bb9100e43a64714da725bb7ba7",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -7067,14 +7062,13 @@
 		"playtype": "Single",
 		"songID": 98,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "59e60ea1a6ee0f2d02a41d21835fc6f90788c3af",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -7083,14 +7077,13 @@
 		"playtype": "Single",
 		"songID": 98,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "7fc87ffb9cc56903b459ace006c7c1e08e58077f",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -7099,7 +7092,6 @@
 		"playtype": "Single",
 		"songID": 98,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -7591,7 +7583,7 @@
 		"difficulty": "Re:Master",
 		"isPrimary": true,
 		"level": "13+",
-		"levelNum": 13.7,
+		"levelNum": 13.9,
 		"playtype": "Single",
 		"songID": 103,
 		"versions": [
@@ -9762,7 +9754,7 @@
 	{
 		"chartID": "b12ef3fbba241512857f6344f2004d4c71c242de",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -9771,14 +9763,13 @@
 		"playtype": "Single",
 		"songID": 135,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "ec9c08e457f2bcd4537f3f6143f84674ac34ad7b",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -9787,39 +9778,36 @@
 		"playtype": "Single",
 		"songID": 135,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "ce5a8ac9660d68c5b59ea3789c87b95afd21dd8d",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "12",
-		"levelNum": 12,
+		"levelNum": 12.5,
 		"playtype": "Single",
 		"songID": 135,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "4b4931303b5159d1f7803a1968ab6e73613648c0",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "14",
-		"levelNum": 14,
+		"levelNum": 14.1,
 		"playtype": "Single",
 		"songID": 135,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -10183,7 +10171,7 @@
 		"difficulty": "Master",
 		"isPrimary": true,
 		"level": "13+",
-		"levelNum": 14.5,
+		"levelNum": 13.7,
 		"playtype": "Single",
 		"songID": 140,
 		"versions": [
@@ -10754,7 +10742,7 @@
 	{
 		"chartID": "a9d7c15910a38d6e32bcd939578275bcf063e14a",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "Re:Master",
 		"isPrimary": true,
@@ -10763,7 +10751,6 @@
 		"playtype": "Single",
 		"songID": 148,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -13287,7 +13274,7 @@
 		"difficulty": "Re:Master",
 		"isPrimary": true,
 		"level": "14",
-		"levelNum": 14,
+		"levelNum": 14.2,
 		"playtype": "Single",
 		"songID": 183,
 		"versions": [
@@ -13538,7 +13525,7 @@
 	{
 		"chartID": "97b0e53db16216a31a4b450eab01e6135795bd2a",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -13547,14 +13534,13 @@
 		"playtype": "Single",
 		"songID": 186,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "68748157e27e88219cc9bb8dcd69ce5e4c9e2cb6",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -13563,14 +13549,13 @@
 		"playtype": "Single",
 		"songID": 186,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "ee7e37b7832be5321115642751319666ba3f9480",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -13579,23 +13564,21 @@
 		"playtype": "Single",
 		"songID": 186,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "bad4ee0cb746a2dfdf5f5bc09c388924aa053acd",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.4,
 		"playtype": "Single",
 		"songID": 186,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -14272,6 +14255,66 @@
 		]
 	},
 	{
+		"chartID": "90c4a7757741a227458e883f6378ebbaa3dbf1b8",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 196,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "bf127e42ced70ed36a6e77a8939e35d22735552e",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"songID": 196,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "b9ea37e430dce8380275ce7205625340fd971a44",
+		"data": {
+			"isLatest": false
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "9",
+		"levelNum": 9,
+		"playtype": "Single",
+		"songID": 196,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "eb6829e0909e5eb28bec70940ebd8c3e58387b02",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.1,
+		"playtype": "Single",
+		"songID": 196,
+		"versions": [
+			"festival"
+		]
+	},
+	{
 		"chartID": "4cd41dc90ddf2ffb787003676cfddcc899fc4283",
 		"data": {
 			"isLatest": false
@@ -14338,7 +14381,7 @@
 	{
 		"chartID": "d9b6261a46b43bddff99211a6bd544336b5e3f68",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -14347,14 +14390,13 @@
 		"playtype": "Single",
 		"songID": 197,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "249d356b921c3dfd677e55b790f852bf1c24ecda",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -14363,14 +14405,13 @@
 		"playtype": "Single",
 		"songID": 197,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "39161675e00e987630a30d5ba35a27cbe4927ec0",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -14379,14 +14420,13 @@
 		"playtype": "Single",
 		"songID": 197,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "228842b0b44a8a80fa4f76666d27dd6f38de7885",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -14395,7 +14435,6 @@
 		"playtype": "Single",
 		"songID": 197,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -17095,7 +17134,7 @@
 		"difficulty": "Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.4,
 		"playtype": "Single",
 		"songID": 236,
 		"versions": [
@@ -18386,7 +18425,7 @@
 	{
 		"chartID": "0f6d36d0f2e6a9ff3a649ab75b76cbdfeb83f33f",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -18395,14 +18434,13 @@
 		"playtype": "Single",
 		"songID": 256,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "4fbf3fee3fee52a0bdafd442426ec5a67f197677",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -18411,30 +18449,28 @@
 		"playtype": "Single",
 		"songID": 256,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "8b52dea81f03d5d0e6a2fac67560f363255d1737",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "10",
-		"levelNum": 10,
+		"levelNum": 10.5,
 		"playtype": "Single",
 		"songID": 256,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "da53fb7f50ba915b9ef59c1eea3d0f309b500be2",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -18443,7 +18479,6 @@
 		"playtype": "Single",
 		"songID": 256,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -23959,7 +23994,7 @@
 		"difficulty": "Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.4,
 		"playtype": "Single",
 		"songID": 339,
 		"versions": [
@@ -28834,7 +28869,7 @@
 	{
 		"chartID": "e00683960e7ab647e3ba2d27585e622e39a46386",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -28843,14 +28878,13 @@
 		"playtype": "Single",
 		"songID": 408,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "dd2a3bd1c4eedc7abde72b70f756883966ac637b",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -28859,14 +28893,13 @@
 		"playtype": "Single",
 		"songID": 408,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "bc1f349aa8bad0c072781b491202e774e15408d8",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -28875,14 +28908,13 @@
 		"playtype": "Single",
 		"songID": 408,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "8ff1e63530d87e8d67bd7460ab00cbb26016f270",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -28891,7 +28923,6 @@
 		"playtype": "Single",
 		"songID": 408,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -31767,7 +31798,7 @@
 		"difficulty": "Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13.3,
+		"levelNum": 13.5,
 		"playtype": "Single",
 		"songID": 449,
 		"versions": [
@@ -34087,7 +34118,7 @@
 		"difficulty": "Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13.3,
+		"levelNum": 13.2,
 		"playtype": "Single",
 		"songID": 482,
 		"versions": [
@@ -36279,7 +36310,7 @@
 		"difficulty": "Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.4,
 		"playtype": "Single",
 		"songID": 514,
 		"versions": [
@@ -36551,7 +36582,7 @@
 		"difficulty": "Master",
 		"isPrimary": true,
 		"level": "13+",
-		"levelNum": 13.7,
+		"levelNum": 13.9,
 		"playtype": "Single",
 		"songID": 518,
 		"versions": [
@@ -41511,7 +41542,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.4,
 		"playtype": "Single",
 		"songID": 590,
 		"versions": [
@@ -43559,7 +43590,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13+",
-		"levelNum": 13.3,
+		"levelNum": 13.9,
 		"playtype": "Single",
 		"songID": 617,
 		"versions": [
@@ -52151,7 +52182,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13+",
-		"levelNum": 12.8,
+		"levelNum": 13.7,
 		"playtype": "Single",
 		"songID": 750,
 		"versions": [
@@ -54007,7 +54038,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "14",
-		"levelNum": 14,
+		"levelNum": 14.3,
 		"playtype": "Single",
 		"songID": 779,
 		"versions": [
@@ -54082,7 +54113,7 @@
 	{
 		"chartID": "35c8bc0eba78d661ad4f9db1301730666f8f99e8",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "DX Re:Master",
 		"isPrimary": true,
@@ -54091,7 +54122,6 @@
 		"playtype": "Single",
 		"songID": 780,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -54482,7 +54512,7 @@
 	{
 		"chartID": "d7c7537beb5f259e3754b1133a2483f403e18c78",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "Advanced",
 		"isPrimary": true,
@@ -54491,14 +54521,13 @@
 		"playtype": "Single",
 		"songID": 787,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "fe68ed7c79d5f451d6b689f0671cb31127f6244e",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "Basic",
 		"isPrimary": true,
@@ -54507,7 +54536,6 @@
 		"playtype": "Single",
 		"songID": 787,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -54578,32 +54606,30 @@
 	{
 		"chartID": "5c42add964c5e48fc2979a86e33c38677f51d984",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "Expert",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.9,
 		"playtype": "Single",
 		"songID": 787,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
 	{
 		"chartID": "a1e73e7bdfefec3f931f736056864cad4167412f",
 		"data": {
-			"isLatest": false
+			"isLatest": true
 		},
 		"difficulty": "Master",
 		"isPrimary": true,
 		"level": "14",
-		"levelNum": 14,
+		"levelNum": 14.5,
 		"playtype": "Single",
 		"songID": 787,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -56599,7 +56625,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.1,
 		"playtype": "Single",
 		"songID": 817,
 		"versions": [
@@ -58775,7 +58801,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13+",
-		"levelNum": 13.7,
+		"levelNum": 13.8,
 		"playtype": "Single",
 		"songID": 851,
 		"versions": [
@@ -60823,7 +60849,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.1,
 		"playtype": "Single",
 		"songID": 882,
 		"versions": [
@@ -61143,7 +61169,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.1,
 		"playtype": "Single",
 		"songID": 887,
 		"versions": [
@@ -64743,7 +64769,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.4,
 		"playtype": "Single",
 		"songID": 943,
 		"versions": [
@@ -65239,7 +65265,7 @@
 		"difficulty": "DX Re:Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.4,
 		"playtype": "Single",
 		"songID": 950,
 		"versions": [
@@ -66775,7 +66801,7 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.3,
 		"playtype": "Single",
 		"songID": 974,
 		"versions": [
@@ -67563,7 +67589,6 @@
 		"playtype": "Single",
 		"songID": 987,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67579,7 +67604,6 @@
 		"playtype": "Single",
 		"songID": 987,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67595,7 +67619,6 @@
 		"playtype": "Single",
 		"songID": 987,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67611,7 +67634,6 @@
 		"playtype": "Single",
 		"songID": 987,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67627,7 +67649,6 @@
 		"playtype": "Single",
 		"songID": 988,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67643,7 +67664,6 @@
 		"playtype": "Single",
 		"songID": 988,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67659,7 +67679,6 @@
 		"playtype": "Single",
 		"songID": 988,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67675,7 +67694,6 @@
 		"playtype": "Single",
 		"songID": 988,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67691,7 +67709,6 @@
 		"playtype": "Single",
 		"songID": 989,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67707,7 +67724,6 @@
 		"playtype": "Single",
 		"songID": 989,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67723,7 +67739,6 @@
 		"playtype": "Single",
 		"songID": 989,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67739,7 +67754,6 @@
 		"playtype": "Single",
 		"songID": 989,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67755,7 +67769,6 @@
 		"playtype": "Single",
 		"songID": 990,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67771,7 +67784,6 @@
 		"playtype": "Single",
 		"songID": 990,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67787,7 +67799,6 @@
 		"playtype": "Single",
 		"songID": 990,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67803,7 +67814,6 @@
 		"playtype": "Single",
 		"songID": 990,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67819,7 +67829,6 @@
 		"playtype": "Single",
 		"songID": 991,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67835,7 +67844,6 @@
 		"playtype": "Single",
 		"songID": 991,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67851,7 +67859,6 @@
 		"playtype": "Single",
 		"songID": 991,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67867,7 +67874,6 @@
 		"playtype": "Single",
 		"songID": 991,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67883,7 +67889,6 @@
 		"playtype": "Single",
 		"songID": 992,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67899,7 +67904,6 @@
 		"playtype": "Single",
 		"songID": 992,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67911,11 +67915,10 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.8,
 		"playtype": "Single",
 		"songID": 992,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67931,7 +67934,6 @@
 		"playtype": "Single",
 		"songID": 992,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67947,7 +67949,6 @@
 		"playtype": "Single",
 		"songID": 993,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67963,7 +67964,6 @@
 		"playtype": "Single",
 		"songID": 993,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67979,7 +67979,6 @@
 		"playtype": "Single",
 		"songID": 993,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -67995,7 +67994,6 @@
 		"playtype": "Single",
 		"songID": 993,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68011,7 +68009,6 @@
 		"playtype": "Single",
 		"songID": 994,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68027,7 +68024,6 @@
 		"playtype": "Single",
 		"songID": 994,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68039,11 +68035,10 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.8,
 		"playtype": "Single",
 		"songID": 994,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68059,7 +68054,6 @@
 		"playtype": "Single",
 		"songID": 994,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68075,7 +68069,6 @@
 		"playtype": "Single",
 		"songID": 995,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68091,7 +68084,6 @@
 		"playtype": "Single",
 		"songID": 995,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68103,11 +68095,10 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.8,
 		"playtype": "Single",
 		"songID": 995,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68123,7 +68114,6 @@
 		"playtype": "Single",
 		"songID": 995,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68139,7 +68129,6 @@
 		"playtype": "Single",
 		"songID": 996,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68155,7 +68144,6 @@
 		"playtype": "Single",
 		"songID": 996,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68171,7 +68159,6 @@
 		"playtype": "Single",
 		"songID": 996,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68187,7 +68174,6 @@
 		"playtype": "Single",
 		"songID": 996,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68203,7 +68189,6 @@
 		"playtype": "Single",
 		"songID": 997,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68219,7 +68204,6 @@
 		"playtype": "Single",
 		"songID": 997,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68235,7 +68219,6 @@
 		"playtype": "Single",
 		"songID": 997,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68251,7 +68234,6 @@
 		"playtype": "Single",
 		"songID": 997,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68267,7 +68249,6 @@
 		"playtype": "Single",
 		"songID": 998,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68283,7 +68264,6 @@
 		"playtype": "Single",
 		"songID": 998,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68299,7 +68279,6 @@
 		"playtype": "Single",
 		"songID": 998,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68315,7 +68294,6 @@
 		"playtype": "Single",
 		"songID": 998,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68331,7 +68309,6 @@
 		"playtype": "Single",
 		"songID": 999,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68347,7 +68324,6 @@
 		"playtype": "Single",
 		"songID": 999,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68363,7 +68339,6 @@
 		"playtype": "Single",
 		"songID": 999,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68375,11 +68350,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.8,
 		"playtype": "Single",
 		"songID": 999,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68395,7 +68369,6 @@
 		"playtype": "Single",
 		"songID": 1000,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68411,7 +68384,6 @@
 		"playtype": "Single",
 		"songID": 1000,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68423,11 +68395,10 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "10+",
-		"levelNum": 10.7,
+		"levelNum": 10.8,
 		"playtype": "Single",
 		"songID": 1000,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68443,7 +68414,6 @@
 		"playtype": "Single",
 		"songID": 1000,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68459,7 +68429,6 @@
 		"playtype": "Single",
 		"songID": 1001,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68475,7 +68444,6 @@
 		"playtype": "Single",
 		"songID": 1001,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68487,11 +68455,10 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "10",
-		"levelNum": 10,
+		"levelNum": 10.2,
 		"playtype": "Single",
 		"songID": 1001,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68503,11 +68470,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.9,
 		"playtype": "Single",
 		"songID": 1001,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68523,7 +68489,6 @@
 		"playtype": "Single",
 		"songID": 1002,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68539,7 +68504,6 @@
 		"playtype": "Single",
 		"songID": 1002,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68551,11 +68515,10 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "8",
-		"levelNum": 8,
+		"levelNum": 8.5,
 		"playtype": "Single",
 		"songID": 1002,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68567,11 +68530,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "11",
-		"levelNum": 11,
+		"levelNum": 11.5,
 		"playtype": "Single",
 		"songID": 1002,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68587,7 +68549,6 @@
 		"playtype": "Single",
 		"songID": 1002,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68603,7 +68564,6 @@
 		"playtype": "Single",
 		"songID": 1003,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68619,7 +68579,6 @@
 		"playtype": "Single",
 		"songID": 1003,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68635,7 +68594,6 @@
 		"playtype": "Single",
 		"songID": 1003,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68651,7 +68609,6 @@
 		"playtype": "Single",
 		"songID": 1003,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68667,7 +68624,6 @@
 		"playtype": "Single",
 		"songID": 1004,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68683,7 +68639,6 @@
 		"playtype": "Single",
 		"songID": 1004,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68695,11 +68650,10 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "9+",
-		"levelNum": 9.7,
+		"levelNum": 9.8,
 		"playtype": "Single",
 		"songID": 1004,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68711,11 +68665,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "11",
-		"levelNum": 11,
+		"levelNum": 11.5,
 		"playtype": "Single",
 		"songID": 1004,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68731,7 +68684,6 @@
 		"playtype": "Single",
 		"songID": 1004,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68747,7 +68699,6 @@
 		"playtype": "Single",
 		"songID": 1005,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68763,7 +68714,6 @@
 		"playtype": "Single",
 		"songID": 1005,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68775,11 +68725,10 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "9",
-		"levelNum": 9,
+		"levelNum": 9.2,
 		"playtype": "Single",
 		"songID": 1005,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68791,11 +68740,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "11+",
-		"levelNum": 11.7,
+		"levelNum": 11.8,
 		"playtype": "Single",
 		"songID": 1005,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68811,7 +68759,6 @@
 		"playtype": "Single",
 		"songID": 1005,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68827,7 +68774,6 @@
 		"playtype": "Single",
 		"songID": 1006,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68843,7 +68789,6 @@
 		"playtype": "Single",
 		"songID": 1006,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68859,7 +68804,6 @@
 		"playtype": "Single",
 		"songID": 1006,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68871,11 +68815,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.9,
 		"playtype": "Single",
 		"songID": 1006,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68891,7 +68834,6 @@
 		"playtype": "Single",
 		"songID": 1007,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68907,7 +68849,6 @@
 		"playtype": "Single",
 		"songID": 1007,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68923,7 +68864,6 @@
 		"playtype": "Single",
 		"songID": 1007,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68939,7 +68879,6 @@
 		"playtype": "Single",
 		"songID": 1007,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68955,7 +68894,6 @@
 		"playtype": "Single",
 		"songID": 1008,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68971,7 +68909,6 @@
 		"playtype": "Single",
 		"songID": 1008,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -68987,7 +68924,6 @@
 		"playtype": "Single",
 		"songID": 1008,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69003,7 +68939,6 @@
 		"playtype": "Single",
 		"songID": 1008,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69019,7 +68954,6 @@
 		"playtype": "Single",
 		"songID": 1009,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69035,7 +68969,6 @@
 		"playtype": "Single",
 		"songID": 1009,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69051,7 +68984,6 @@
 		"playtype": "Single",
 		"songID": 1009,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69067,7 +68999,6 @@
 		"playtype": "Single",
 		"songID": 1009,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69083,7 +69014,6 @@
 		"playtype": "Single",
 		"songID": 1010,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69099,7 +69029,6 @@
 		"playtype": "Single",
 		"songID": 1010,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69111,11 +69040,10 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "12",
-		"levelNum": 12,
+		"levelNum": 12.2,
 		"playtype": "Single",
 		"songID": 1010,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69131,7 +69059,6 @@
 		"playtype": "Single",
 		"songID": 1010,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69147,7 +69074,6 @@
 		"playtype": "Single",
 		"songID": 1011,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69163,7 +69089,6 @@
 		"playtype": "Single",
 		"songID": 1011,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69179,7 +69104,6 @@
 		"playtype": "Single",
 		"songID": 1011,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69191,11 +69115,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "12",
-		"levelNum": 12,
+		"levelNum": 12.4,
 		"playtype": "Single",
 		"songID": 1011,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69211,7 +69134,6 @@
 		"playtype": "Single",
 		"songID": 1012,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69227,7 +69149,6 @@
 		"playtype": "Single",
 		"songID": 1012,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69243,7 +69164,6 @@
 		"playtype": "Single",
 		"songID": 1012,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69255,11 +69175,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.8,
 		"playtype": "Single",
 		"songID": 1012,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69275,7 +69194,6 @@
 		"playtype": "Single",
 		"songID": 1013,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69291,7 +69209,6 @@
 		"playtype": "Single",
 		"songID": 1013,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69307,7 +69224,6 @@
 		"playtype": "Single",
 		"songID": 1013,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69323,7 +69239,6 @@
 		"playtype": "Single",
 		"songID": 1013,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69339,7 +69254,6 @@
 		"playtype": "Single",
 		"songID": 1014,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69355,7 +69269,6 @@
 		"playtype": "Single",
 		"songID": 1014,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69371,7 +69284,6 @@
 		"playtype": "Single",
 		"songID": 1014,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69383,11 +69295,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.9,
 		"playtype": "Single",
 		"songID": 1014,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69403,7 +69314,6 @@
 		"playtype": "Single",
 		"songID": 1015,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69419,7 +69329,6 @@
 		"playtype": "Single",
 		"songID": 1015,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69435,7 +69344,6 @@
 		"playtype": "Single",
 		"songID": 1015,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69451,7 +69359,6 @@
 		"playtype": "Single",
 		"songID": 1015,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69467,7 +69374,6 @@
 		"playtype": "Single",
 		"songID": 1016,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69483,7 +69389,6 @@
 		"playtype": "Single",
 		"songID": 1016,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69499,7 +69404,6 @@
 		"playtype": "Single",
 		"songID": 1016,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69515,7 +69419,6 @@
 		"playtype": "Single",
 		"songID": 1016,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69531,7 +69434,6 @@
 		"playtype": "Single",
 		"songID": 1017,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69547,7 +69449,6 @@
 		"playtype": "Single",
 		"songID": 1017,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69563,7 +69464,6 @@
 		"playtype": "Single",
 		"songID": 1017,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69579,7 +69479,6 @@
 		"playtype": "Single",
 		"songID": 1017,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69595,7 +69494,6 @@
 		"playtype": "Single",
 		"songID": 1018,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69611,7 +69509,6 @@
 		"playtype": "Single",
 		"songID": 1018,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69627,7 +69524,6 @@
 		"playtype": "Single",
 		"songID": 1018,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69643,7 +69539,6 @@
 		"playtype": "Single",
 		"songID": 1018,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69659,7 +69554,6 @@
 		"playtype": "Single",
 		"songID": 1019,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69675,7 +69569,6 @@
 		"playtype": "Single",
 		"songID": 1019,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69691,7 +69584,6 @@
 		"playtype": "Single",
 		"songID": 1019,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69703,11 +69595,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.9,
 		"playtype": "Single",
 		"songID": 1019,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69723,7 +69614,6 @@
 		"playtype": "Single",
 		"songID": 1021,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69739,7 +69629,6 @@
 		"playtype": "Single",
 		"songID": 1021,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69755,7 +69644,6 @@
 		"playtype": "Single",
 		"songID": 1021,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69771,7 +69659,6 @@
 		"playtype": "Single",
 		"songID": 1021,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69787,7 +69674,6 @@
 		"playtype": "Single",
 		"songID": 1022,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69803,7 +69689,6 @@
 		"playtype": "Single",
 		"songID": 1022,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69819,7 +69704,6 @@
 		"playtype": "Single",
 		"songID": 1022,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69835,7 +69719,6 @@
 		"playtype": "Single",
 		"songID": 1022,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69851,7 +69734,6 @@
 		"playtype": "Single",
 		"songID": 1023,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69867,7 +69749,6 @@
 		"playtype": "Single",
 		"songID": 1023,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69883,7 +69764,6 @@
 		"playtype": "Single",
 		"songID": 1023,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69895,11 +69775,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "14",
-		"levelNum": 14,
+		"levelNum": 14.4,
 		"playtype": "Single",
 		"songID": 1023,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69915,7 +69794,6 @@
 		"playtype": "Single",
 		"songID": 1024,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69931,7 +69809,6 @@
 		"playtype": "Single",
 		"songID": 1024,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69943,11 +69820,10 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.9,
 		"playtype": "Single",
 		"songID": 1024,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69959,11 +69835,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "14",
-		"levelNum": 14,
+		"levelNum": 14.4,
 		"playtype": "Single",
 		"songID": 1024,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69979,7 +69854,6 @@
 		"playtype": "Single",
 		"songID": 1025,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -69995,7 +69869,6 @@
 		"playtype": "Single",
 		"songID": 1025,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70011,7 +69884,6 @@
 		"playtype": "Single",
 		"songID": 1025,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70027,7 +69899,6 @@
 		"playtype": "Single",
 		"songID": 1025,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70043,7 +69914,6 @@
 		"playtype": "Single",
 		"songID": 1026,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70059,7 +69929,6 @@
 		"playtype": "Single",
 		"songID": 1026,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70075,7 +69944,6 @@
 		"playtype": "Single",
 		"songID": 1026,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70091,7 +69959,6 @@
 		"playtype": "Single",
 		"songID": 1026,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70107,7 +69974,6 @@
 		"playtype": "Single",
 		"songID": 1027,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70123,7 +69989,6 @@
 		"playtype": "Single",
 		"songID": 1027,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70139,7 +70004,6 @@
 		"playtype": "Single",
 		"songID": 1027,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70155,7 +70019,6 @@
 		"playtype": "Single",
 		"songID": 1027,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70171,7 +70034,6 @@
 		"playtype": "Single",
 		"songID": 1028,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70187,7 +70049,6 @@
 		"playtype": "Single",
 		"songID": 1028,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70203,7 +70064,6 @@
 		"playtype": "Single",
 		"songID": 1028,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70219,7 +70079,6 @@
 		"playtype": "Single",
 		"songID": 1028,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70235,7 +70094,6 @@
 		"playtype": "Single",
 		"songID": 1029,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70251,7 +70109,6 @@
 		"playtype": "Single",
 		"songID": 1029,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70267,7 +70124,6 @@
 		"playtype": "Single",
 		"songID": 1029,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70283,7 +70139,6 @@
 		"playtype": "Single",
 		"songID": 1029,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70299,7 +70154,6 @@
 		"playtype": "Single",
 		"songID": 1030,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70315,7 +70169,6 @@
 		"playtype": "Single",
 		"songID": 1030,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70327,11 +70180,10 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.8,
 		"playtype": "Single",
 		"songID": 1030,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70347,7 +70199,6 @@
 		"playtype": "Single",
 		"songID": 1030,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70363,7 +70214,6 @@
 		"playtype": "Single",
 		"songID": 1031,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70379,7 +70229,6 @@
 		"playtype": "Single",
 		"songID": 1031,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70395,7 +70244,6 @@
 		"playtype": "Single",
 		"songID": 1031,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70411,7 +70259,6 @@
 		"playtype": "Single",
 		"songID": 1031,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70427,7 +70274,6 @@
 		"playtype": "Single",
 		"songID": 1032,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70443,7 +70289,6 @@
 		"playtype": "Single",
 		"songID": 1032,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70459,7 +70304,6 @@
 		"playtype": "Single",
 		"songID": 1032,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70475,7 +70319,6 @@
 		"playtype": "Single",
 		"songID": 1032,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70491,7 +70334,6 @@
 		"playtype": "Single",
 		"songID": 1033,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70507,7 +70349,6 @@
 		"playtype": "Single",
 		"songID": 1033,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70523,7 +70364,6 @@
 		"playtype": "Single",
 		"songID": 1033,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70539,7 +70379,6 @@
 		"playtype": "Single",
 		"songID": 1033,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70555,7 +70394,6 @@
 		"playtype": "Single",
 		"songID": 1035,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70571,7 +70409,6 @@
 		"playtype": "Single",
 		"songID": 1035,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70587,7 +70424,6 @@
 		"playtype": "Single",
 		"songID": 1035,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70599,11 +70435,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13+",
-		"levelNum": 13.7,
+		"levelNum": 13.9,
 		"playtype": "Single",
 		"songID": 1035,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70619,7 +70454,6 @@
 		"playtype": "Single",
 		"songID": 1036,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70635,7 +70469,6 @@
 		"playtype": "Single",
 		"songID": 1036,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70651,7 +70484,6 @@
 		"playtype": "Single",
 		"songID": 1036,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70663,11 +70495,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13+",
-		"levelNum": 13.7,
+		"levelNum": 13.8,
 		"playtype": "Single",
 		"songID": 1036,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70683,7 +70514,6 @@
 		"playtype": "Single",
 		"songID": 1037,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70699,7 +70529,6 @@
 		"playtype": "Single",
 		"songID": 1037,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70715,7 +70544,6 @@
 		"playtype": "Single",
 		"songID": 1037,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70727,11 +70555,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "14",
-		"levelNum": 14,
+		"levelNum": 14.4,
 		"playtype": "Single",
 		"songID": 1037,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70747,7 +70574,6 @@
 		"playtype": "Single",
 		"songID": 1038,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70763,7 +70589,6 @@
 		"playtype": "Single",
 		"songID": 1038,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70775,11 +70600,10 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.2,
 		"playtype": "Single",
 		"songID": 1038,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70795,7 +70619,6 @@
 		"playtype": "Single",
 		"songID": 1038,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70811,7 +70634,6 @@
 		"playtype": "Single",
 		"songID": 1039,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70827,7 +70649,6 @@
 		"playtype": "Single",
 		"songID": 1039,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70843,7 +70664,6 @@
 		"playtype": "Single",
 		"songID": 1039,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70855,11 +70675,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.3,
 		"playtype": "Single",
 		"songID": 1039,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70875,7 +70694,6 @@
 		"playtype": "Single",
 		"songID": 1040,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70891,7 +70709,6 @@
 		"playtype": "Single",
 		"songID": 1040,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70903,11 +70720,10 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.8,
 		"playtype": "Single",
 		"songID": 1040,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70919,11 +70735,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "14",
-		"levelNum": 14,
+		"levelNum": 14.4,
 		"playtype": "Single",
 		"songID": 1040,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70939,7 +70754,6 @@
 		"playtype": "Single",
 		"songID": 1041,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70955,7 +70769,6 @@
 		"playtype": "Single",
 		"songID": 1041,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70967,11 +70780,10 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.9,
 		"playtype": "Single",
 		"songID": 1041,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -70983,11 +70795,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "14",
-		"levelNum": 14,
+		"levelNum": 14.4,
 		"playtype": "Single",
 		"songID": 1041,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71003,7 +70814,6 @@
 		"playtype": "Single",
 		"songID": 1042,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71019,7 +70829,6 @@
 		"playtype": "Single",
 		"songID": 1042,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71035,7 +70844,6 @@
 		"playtype": "Single",
 		"songID": 1042,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71047,11 +70855,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.9,
 		"playtype": "Single",
 		"songID": 1042,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71067,7 +70874,6 @@
 		"playtype": "Single",
 		"songID": 1043,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71083,7 +70889,6 @@
 		"playtype": "Single",
 		"songID": 1043,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71099,7 +70904,6 @@
 		"playtype": "Single",
 		"songID": 1043,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71111,11 +70915,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.3,
 		"playtype": "Single",
 		"songID": 1043,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71131,7 +70934,6 @@
 		"playtype": "Single",
 		"songID": 1044,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71147,7 +70949,6 @@
 		"playtype": "Single",
 		"songID": 1044,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71163,7 +70964,6 @@
 		"playtype": "Single",
 		"songID": 1044,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71175,11 +70975,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.2,
 		"playtype": "Single",
 		"songID": 1044,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71195,7 +70994,6 @@
 		"playtype": "Single",
 		"songID": 1045,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71211,7 +71009,6 @@
 		"playtype": "Single",
 		"songID": 1045,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71227,7 +71024,6 @@
 		"playtype": "Single",
 		"songID": 1045,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71239,11 +71035,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13+",
-		"levelNum": 13.7,
+		"levelNum": 13.9,
 		"playtype": "Single",
 		"songID": 1045,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71259,7 +71054,6 @@
 		"playtype": "Single",
 		"songID": 1046,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71275,7 +71069,6 @@
 		"playtype": "Single",
 		"songID": 1046,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71291,7 +71084,6 @@
 		"playtype": "Single",
 		"songID": 1046,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71303,11 +71095,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.8,
 		"playtype": "Single",
 		"songID": 1046,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71323,7 +71114,6 @@
 		"playtype": "Single",
 		"songID": 1047,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71339,7 +71129,6 @@
 		"playtype": "Single",
 		"songID": 1047,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71355,7 +71144,6 @@
 		"playtype": "Single",
 		"songID": 1047,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71367,11 +71155,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.2,
 		"playtype": "Single",
 		"songID": 1047,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71387,7 +71174,6 @@
 		"playtype": "Single",
 		"songID": 1048,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71403,7 +71189,6 @@
 		"playtype": "Single",
 		"songID": 1048,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71419,7 +71204,6 @@
 		"playtype": "Single",
 		"songID": 1048,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71435,7 +71219,6 @@
 		"playtype": "Single",
 		"songID": 1048,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71451,7 +71234,6 @@
 		"playtype": "Single",
 		"songID": 1049,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71467,7 +71249,6 @@
 		"playtype": "Single",
 		"songID": 1049,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71483,7 +71264,6 @@
 		"playtype": "Single",
 		"songID": 1049,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71499,7 +71279,6 @@
 		"playtype": "Single",
 		"songID": 1049,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71515,7 +71294,6 @@
 		"playtype": "Single",
 		"songID": 1050,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71531,7 +71309,6 @@
 		"playtype": "Single",
 		"songID": 1050,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71547,7 +71324,6 @@
 		"playtype": "Single",
 		"songID": 1050,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71559,11 +71335,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13+",
-		"levelNum": 13.7,
+		"levelNum": 13.8,
 		"playtype": "Single",
 		"songID": 1050,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71579,7 +71354,6 @@
 		"playtype": "Single",
 		"songID": 1051,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71595,7 +71369,6 @@
 		"playtype": "Single",
 		"songID": 1051,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71607,11 +71380,10 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.7,
+		"levelNum": 12.8,
 		"playtype": "Single",
 		"songID": 1051,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71627,7 +71399,6 @@
 		"playtype": "Single",
 		"songID": 1051,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71643,7 +71414,6 @@
 		"playtype": "Single",
 		"songID": 1052,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71659,7 +71429,6 @@
 		"playtype": "Single",
 		"songID": 1052,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71675,7 +71444,6 @@
 		"playtype": "Single",
 		"songID": 1052,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71687,11 +71455,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "14",
-		"levelNum": 14,
+		"levelNum": 14.6,
 		"playtype": "Single",
 		"songID": 1052,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71707,7 +71474,6 @@
 		"playtype": "Single",
 		"songID": 1053,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71723,7 +71489,6 @@
 		"playtype": "Single",
 		"songID": 1053,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71735,11 +71500,10 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.2,
 		"playtype": "Single",
 		"songID": 1053,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71755,7 +71519,6 @@
 		"playtype": "Single",
 		"songID": 1053,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71771,7 +71534,6 @@
 		"playtype": "Single",
 		"songID": 1054,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71787,7 +71549,6 @@
 		"playtype": "Single",
 		"songID": 1054,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71803,7 +71564,6 @@
 		"playtype": "Single",
 		"songID": 1054,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71815,11 +71575,10 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13+",
-		"levelNum": 13.7,
+		"levelNum": 13.8,
 		"playtype": "Single",
 		"songID": 1054,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71835,7 +71594,6 @@
 		"playtype": "Single",
 		"songID": 1055,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71851,7 +71609,6 @@
 		"playtype": "Single",
 		"songID": 1055,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71867,7 +71624,6 @@
 		"playtype": "Single",
 		"songID": 1055,
 		"versions": [
-			"universeplus",
 			"festival"
 		]
 	},
@@ -71879,11 +71635,490 @@
 		"difficulty": "DX Master",
 		"isPrimary": true,
 		"level": "13+",
-		"levelNum": 13.7,
+		"levelNum": 13.8,
 		"playtype": "Single",
 		"songID": 1055,
 		"versions": [
-			"universeplus",
+			"festival"
+		]
+	},
+	{
+		"chartID": "91390700310aebea371548ead70d18d586acdd81",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7,
+		"playtype": "Single",
+		"songID": 1056,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "a2c0de024fff80ef8b9f4278b1e292a09dfa7797",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 1056,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "928206e99f6899817ae597023dbc195563e2cf0b",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "Single",
+		"songID": 1056,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "389bf3b3f8c7be9ddd82de95d24dc1d8a21f5f70",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.1,
+		"playtype": "Single",
+		"songID": 1056,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "f1bd89ba07e69fbc00aca97e4933b0763ffd42af",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 1057,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "14afc4807ab17b7838b1e596ff25637cdaf45652",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"songID": 1057,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "0fc162bc31ed9ddb308f4945d32c43c886c2e730",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "9",
+		"levelNum": 9,
+		"playtype": "Single",
+		"songID": 1057,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "fa7ef4768f0e180a745a0facea28304fb956b436",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.8,
+		"playtype": "Single",
+		"songID": 1057,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "9b83357f13879ece66f599b897d3dfcf316a9ded",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 1058,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "a2f08a1d888c732363bc348dd2cf3f1db46dfbed",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "1",
+		"levelNum": 1,
+		"playtype": "Single",
+		"songID": 1058,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "719118c02cd241ae88750f08ee511f73a21c9e39",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "8",
+		"levelNum": 8,
+		"playtype": "Single",
+		"songID": 1058,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "3a2e6caaac34210f263e9148c0947c87a4bc9873",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.7,
+		"playtype": "Single",
+		"songID": 1058,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "1bf748922dfc7540954476f379c85c128060789d",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 1059,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "39ce3f2ab9eae3b9ba54f3efe5a92eb95d6bc70b",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"songID": 1059,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "a46ee2559cf6e29b42c84342102c546edf89220b",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "9+",
+		"levelNum": 9.7,
+		"playtype": "Single",
+		"songID": 1059,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "f99f1d3f6661f78881af96d3e5354a4484ecb757",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.3,
+		"playtype": "Single",
+		"songID": 1059,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "fd6842c30a24a2b7b317519389704fb5fc7da911",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "8",
+		"levelNum": 8,
+		"playtype": "Single",
+		"songID": 1060,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "98db6f6cfe4e0aaf5f08ce0fc891d5c6e3805428",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 1060,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "05b6f4eae41b21913d3f9c379dac7bb8a9ccfd77",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.8,
+		"playtype": "Single",
+		"songID": 1060,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "6b6a9ef0bf90e4e5d5f019999b4f59d4526e3a3e",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14.5,
+		"playtype": "Single",
+		"songID": 1060,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "fb42c6bd54ef42f07ad78a113de9cf5def3d5d0b",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.7,
+		"playtype": "Single",
+		"songID": 1061,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "366f73063267873e5e07fa18f94b8c4025ceb6e6",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 1061,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "9b53139eef272fc55b142fef7aaa8d34d9b5df1e",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "11+",
+		"levelNum": 11.7,
+		"playtype": "Single",
+		"songID": 1061,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "7b2214f5c958523360843418468149005f405ed8",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.8,
+		"playtype": "Single",
+		"songID": 1061,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "6d64dd39b5a3a07bd68bd4d8451243360058a027",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "8",
+		"levelNum": 8,
+		"playtype": "Single",
+		"songID": 1062,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "a12a8e3a458aeee21b0b2d8445d6ce79c6d8df71",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"songID": 1062,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "b6607382e5c3fa0932bf710ae2f71006b1f62db6",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "11",
+		"levelNum": 11.2,
+		"playtype": "Single",
+		"songID": 1062,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "36b9930a9acf4fb2963fbdc66be11390b893360c",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.8,
+		"playtype": "Single",
+		"songID": 1062,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "748716394423681235adebd140adae92a5cf806c",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7,
+		"playtype": "Single",
+		"songID": 1063,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "79f26158edcf4846969ebea646530868d641616e",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "4",
+		"levelNum": 4,
+		"playtype": "Single",
+		"songID": 1063,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "65679b0d0a7278fec73688c65178e9db6223c4ab",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "10+",
+		"levelNum": 10.7,
+		"playtype": "Single",
+		"songID": 1063,
+		"versions": [
+			"festival"
+		]
+	},
+	{
+		"chartID": "6b7f63716755b5419e489113a052a0c46def0836",
+		"data": {
+			"isLatest": true
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.5,
+		"playtype": "Single",
+		"songID": 1063,
+		"versions": [
 			"festival"
 		]
 	}

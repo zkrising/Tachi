@@ -1,19 +1,20 @@
-const { Command } = require("commander");
-const { parse } = require("csv-parse/sync");
-const { XMLParser } = require("fast-xml-parser");
-const fs = require("fs");
-const path = require("path");
-const { ReadCollection, MutateCollection } = require("../../util");
-
-// run parse-maimaidx-dataset.js first!!!
-
-// Internal levels for FESTiVAL songs are at
-// https://docs.google.com/spreadsheets/d/1xbDMo-36bGL_d435Oy8TTVq4ADFmxl9sYFqhTXiJYRg/edit
-
-// Download a sheet as CSV and use -f <CSV filename>.
-
-// If you somehow obtained a folder with the A000/music folder, use -d <A000/music> folder.
-// This will also add in-game IDs to the songs.
+/**
+ * Run parse-maimaidx-dataset.js first.
+ *
+ * Internal levels for FESTiVAL songs are at
+ * https://docs.google.com/spreadsheets/d/1xbDMo-36bGL_d435Oy8TTVq4ADFmxl9sYFqhTXiJYRg/edit
+ *
+ * Download sheets as CSV and use `-f <CSV filename>`.
+ *
+ * If you have a `music` folder from a current maimai DX dump, pass it with `-d path/to/music`.
+ */
+import fs from "fs";
+import path from "path";
+import { Command } from "commander";
+import { parse } from "csv-parse/sync";
+import { XMLParser } from "fast-xml-parser";
+import { ReadCollection, MutateCollection } from "../../util";
+import { ChartDocument, SongDocument } from "tachi-common";
 
 const diffMap = new Map([
 	["BAS", "Basic"],
@@ -43,7 +44,7 @@ const manualTitleMap = new Map([
 	// 13+
 	["GRANDIR", "GRÄNDIR"],
 	["D✪N’T ST✪P R✪CKIN’", "D✪N’T  ST✪P  R✪CKIN’"],
-	["Seclet Sleuth", "Secret Sleuth"], // bruh
+	["Seclet Sleuth", "Secret Sleuth"],
 	["L'epilogue", "L'épilogue"],
 
 	// 13
@@ -78,27 +79,37 @@ const manualTitleMap = new Map([
 	["スカーレット警察のゲットーパトロール２４時", "スカーレット警察のゲットーパトロール24時"],
 ]);
 
-function normalizeTitle(title) {
-	return title
-		.toLowerCase()
-		.replaceAll(" ", "")
-		.replaceAll("　", "")
-		.replaceAll(" ", "")
-		.replaceAll("：", ":")
-		.replaceAll("（", "(")
-		.replaceAll("）", ")")
-		.replaceAll("！", "!")
-		.replaceAll("？", "?")
-		.replaceAll("`", "'")
-		.replaceAll("’", "'")
-		.replaceAll("”", '"')
-		.replaceAll("“", '"')
-		.replaceAll("～", "~")
-		.replaceAll("－", "-")
-		.replaceAll("＠", "@");
+function normalizeTitle(title: string): string {
+	return (
+		title
+			.toLowerCase()
+			.replace(/ /gu, "")
+			// ideographic space is used in some titles
+			// eslint-disable-next-line no-irregular-whitespace
+			.replace(/　/gu, "")
+			// so is nbsp I think?
+			// eslint-disable-next-line no-irregular-whitespace
+			.replace(/ /gu, "")
+			.replace(/：/gu, ":")
+			.replace(/（/gu, "(")
+			.replace(/）/gu, ")")
+			.replace(/！/gu, "!")
+			.replace(/？/gu, "?")
+			.replace(/`/gu, "'")
+			.replace(/’/gu, "'")
+			.replace(/”/gu, '"')
+			.replace(/“/gu, '"')
+			.replace(/～/gu, "~")
+			.replace(/－/gu, "-")
+			.replace(/＠/gu, "@")
+	);
 }
 
-function findSong(songs, title, category) {
+function findSong(
+	songs: SongDocument<"maimaidx">[],
+	title: string,
+	category: string
+): SongDocument<"maimaidx"> | undefined {
 	// There are two songs with the exact same title and that only differs
 	// by category:
 	// - Link (maimai) is 68
@@ -106,12 +117,15 @@ function findSong(songs, title, category) {
 	if (title === "Link") {
 		return songs.find((s) => s.id === (category === "maimai" ? 68 : 244));
 	}
+
+	// These songs will return the same result if normalized
 	if (title === "Heartbeats") {
 		return songs.find((s) => s.id === 131);
 	}
 	if (title === "Heart Beats") {
 		return songs.find((s) => s.id === 211);
 	}
+
 	return songs.find(
 		(s) =>
 			normalizeTitle(s.title) === normalizeTitle(title) ||
@@ -119,20 +133,20 @@ function findSong(songs, title, category) {
 	);
 }
 
-function calculateDisplayLevel(internalLevel) {
+function calculateDisplayLevel(internalLevel: number): string {
 	const plusDifficulty = (internalLevel * 10) % 10 >= 7;
 	const level = `${Math.floor(internalLevel)}${plusDifficulty && internalLevel >= 7 ? "+" : ""}`;
 	return level;
 }
 
-function calculateDifficulty(style, sheetDifficulty) {
+function calculateDifficulty(style: string, sheetDifficulty: string): string {
 	return `${style === "DX" ? `${style} ` : ""}${diffMap.get(sheetDifficulty)}`;
 }
 
-function addTmaiSheet(csvData) {
+function addTmaiSheet(csvData: string[][]) {
 	const songs = ReadCollection("songs-maimaidx.json");
 
-	MutateCollection("charts-maimaidx.json", (charts) => {
+	MutateCollection("charts-maimaidx.json", (charts: ChartDocument<"maimaidx:Single">[]) => {
 		for (let rowNumber = 1; ; rowNumber++) {
 			const row = csvData[rowNumber];
 			const title = row[1];
@@ -174,16 +188,22 @@ function addTmaiSheet(csvData) {
 
 /**
  * Adds internal levels to charts from a CSV file.
- * @param {string[][]} csvData raw CSV data
- * @param {boolean} parseCategory whether to include category header in parsing
- * @param {number} headerRow the index (starting from 0) of the first row with a song
+ * @param csvData raw CSV data
+ * @param parseCategory whether to include category header in parsing
+ * @param headerRow the index (starting from 0) of the first row with a song
  * 	(or with category if `parseCategory` is `true`)
  *
- *  TO BE CONSIDERED A CATEGORY ROW THERE MUST ONLY BE CONTENT IN THE TITLE CELL!!!
- * @param {boolean} hasCategoryColumn whether there is a category column for each song
- * @param {boolean} markLatest whether to mark chart as latest
+ *  **To be considered a category only the first column can have text.**
+ * @param hasCategoryColumn whether there is a category column for each song
+ * @param markLatest whether to mark chart as latest
  */
-function addOtherSheet(csvData, parseCategory, headerRow, hasCategoryColumn, markLatest) {
+function addOtherSheet(
+	csvData: string[][],
+	parseCategory: boolean,
+	headerRow: number,
+	hasCategoryColumn: boolean,
+	markLatest: boolean
+) {
 	const songs = ReadCollection("songs-maimaidx.json");
 	const categoryColumnOffset = hasCategoryColumn ? 1 : 0;
 	let currentCategory = "";
@@ -203,7 +223,7 @@ function addOtherSheet(csvData, parseCategory, headerRow, hasCategoryColumn, mar
 					title &&
 					[1, 2, 3, 4].every((i) => !row[colNumber + categoryColumnOffset + i])
 				) {
-					currentCategory = categoryMap.get(title);
+					currentCategory = categoryMap.get(title) ?? "";
 					continue;
 				}
 
@@ -268,7 +288,7 @@ if (options.directory) {
 	const songs = ReadCollection("songs-maimaidx.json");
 	const parser = new XMLParser({ ignoreAttributes: false });
 
-	MutateCollection("charts-maimaidx.json", (charts) => {
+	MutateCollection("charts-maimaidx.json", (charts: ChartDocument<"maimaidx:Single">[]) => {
 		const items = fs.readdirSync(options.directory);
 		items.forEach((item) => {
 			const fullPath = path.join(options.directory, item);
@@ -281,7 +301,7 @@ if (options.directory) {
 			const musicData = parser.parse(
 				fs.readFileSync(path.join(fullPath, "Music.xml"))
 			).MusicData;
-			const title = `${musicData.name.str}`; // the song "39" do be treated as a number
+			const title = `${musicData.name.str}`; // The song "39" is treated as a number by the XML parser
 			const category = musicData.genreName.str;
 			const song = findSong(songs, title, category);
 			if (!song) {

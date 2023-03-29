@@ -305,7 +305,10 @@ if (options.directory) {
 					return;
 				}
 				const internalLevel = Number((notes.level + notes.levelDecimal / 10).toFixed(1));
-				const level = `${notes.level}${notes.levelDecimal >= 7 ? "+" : ""}`;
+				let level = notes.level.toString();
+				if (notes.level >= 7 && notes.levelDecimal >= 7) {
+					level += "+";
+				}
 
 				if (chart.level !== level) {
 					console.log(

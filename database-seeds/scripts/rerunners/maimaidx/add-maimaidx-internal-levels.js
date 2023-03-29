@@ -260,9 +260,9 @@ const highLevelSheet = / - (14以上|13+|13).csv$/u.test(options.file);
 if (tmaiSheet) {
 	addTmaiSheet(csvData);
 } else if (newSongsSheet) {
-	addOtherSheet(csvData, false, 8, false, true);
+	addOtherSheet(csvData, false, 7, false, true);
 } else if (highLevelSheet) {
-	addOtherSheet(csvData, false, 4, true, false);
+	addOtherSheet(csvData, false, 3, true, false);
 } else {
-	addOtherSheet(csvData, true, 3, true, false);
+	addOtherSheet(csvData, true, 2, true, false);
 }

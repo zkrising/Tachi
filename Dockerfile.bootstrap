@@ -8,7 +8,7 @@
 # Want it better? Do it yourself.
 FROM node:16 as base
 
-RUN npm install --silent -g pnpm
+RUN npm install --silent -g pnpm@7.20.0
 
 WORKDIR /app
 

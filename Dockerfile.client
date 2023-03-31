@@ -1,6 +1,6 @@
 FROM node:16-alpine as base
 
-RUN npm install --silent -g pnpm
+RUN npm install --silent -g pnpm@7.20.0
 
 FROM base AS build
 WORKDIR /app

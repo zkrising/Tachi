@@ -26,6 +26,7 @@ export default function ProfilePicture({
 					style={{
 						width: "128px",
 						height: "128px",
+						objectFit: "cover",
 						boxShadow: "0px 0px 10px 0px #000000",
 					}}
 				/>
@@ -42,6 +43,7 @@ export default function ProfilePicture({
 				style={{
 					width: "128px",
 					height: "128px",
+					objectFit: "cover",
 					boxShadow: "0px 0px 10px 0px #000000",
 				}}
 			/>
@@ -72,6 +74,7 @@ export function ProfilePictureSmall({
 					style={{
 						width: "32px",
 						height: "32px",
+						objectFit: "cover",
 						boxShadow: "0px 0px 10px 0px #000000",
 					}}
 				/>
@@ -88,6 +91,7 @@ export function ProfilePictureSmall({
 				style={{
 					width: "32px",
 					height: "32px",
+					objectFit: "cover",
 					boxShadow: "0px 0px 10px 0px #000000",
 				}}
 			/>

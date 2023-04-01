@@ -22253,5 +22253,113 @@
 			"kafu"
 		],
 		"title": "フォニイ"
+	},
+	{
+		"altTitles": [],
+		"artist": "Tatsunoshin",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2079,
+		"searchTerms": [
+			"halo_tatsunoshin"
+		],
+		"title": "HALO"
+	},
+	{
+		"altTitles": [],
+		"artist": "Mono.",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2080,
+		"searchTerms": [
+			"startarpistol_mono"
+		],
+		"title": "S(TAR)饌☆pistol"
+	},
+	{
+		"altTitles": [],
+		"artist": "ryhki",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2081,
+		"searchTerms": [
+			"ragnarok_ryhki"
+		],
+		"title": "赫焉のヴァルキュリア -Ragnar煢k-"
+	},
+	{
+		"altTitles": [],
+		"artist": "ゆんゆん",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2082,
+		"searchTerms": [
+			"cudliecudlie_yunyun"
+		],
+		"title": "CUDDLIE CUDDLIE"
+	},
+	{
+		"altTitles": [],
+		"artist": "概念",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2083,
+		"searchTerms": [
+			"bravepower_gainen"
+		],
+		"title": "Brave Power Leader 《 = Voltage = 》"
+	},
+	{
+		"altTitles": [],
+		"artist": "隣の庭は青い(庭師+Aoi)",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2084,
+		"searchTerms": [
+			"reitenshi_tonarinoniwa"
+		],
+		"title": "零天視"
+	},
+	{
+		"altTitles": [],
+		"artist": "後藤 feat. リリカ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2085,
+		"searchTerms": [
+			"stellaimi_gotou"
+		],
+		"title": "ステラ・イミグレーション"
+	},
+	{
+		"altTitles": [],
+		"artist": "ミハイル + K.key",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2086,
+		"searchTerms": [
+			"garland_mihairukkey"
+		],
+		"title": "Garland"
+	},
+	{
+		"altTitles": [],
+		"artist": "xi vs. モリモリあつし",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2087,
+		"searchTerms": [
+			"suddendeath_ximorimori"
+		],
+		"title": "SuddeИDeath"
 	}
 ]

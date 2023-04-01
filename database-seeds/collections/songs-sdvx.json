@@ -22361,5 +22361,65 @@
 			"suddendeath_ximorimori"
 		],
 		"title": "SuddeИDeath"
+	},
+	{
+		"altTitles": [],
+		"artist": "Risk Junk",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2088,
+		"searchTerms": [
+			"quaver_riskjunk"
+		],
+		"title": "quaver♪"
+	},
+	{
+		"altTitles": [],
+		"artist": "Dirty Androids",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2089,
+		"searchTerms": [
+			"aerialskydive_dirtyandroids"
+		],
+		"title": "Aerial Skydive"
+	},
+	{
+		"altTitles": [],
+		"artist": "黒猫ダンジョン",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2090,
+		"searchTerms": [
+			"liliezeto_kuronekod"
+		],
+		"title": "リリーゼと炎龍レーヴァテイン"
+	},
+	{
+		"altTitles": [],
+		"artist": "VENUS",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2091,
+		"searchTerms": [
+			"fujimorimatsuri_venus"
+		],
+		"title": "FUJIMORI -祭- FESTIVAL"
+	},
+	{
+		"altTitles": [],
+		"artist": "コスモドライバー  join. shully & Nimo",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2092,
+		"searchTerms": [
+			"blackorred_cosmodriver"
+		],
+		"title": "Black or Red?"
 	}
 ]

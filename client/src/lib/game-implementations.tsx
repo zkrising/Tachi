@@ -209,6 +209,12 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				SHINDAN_10: bg("purple"),
 
 				SHINKAIDEN: bg("purple"),
+
+				URAKAIDEN: {
+					background:
+						"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
+					color: "black",
+				},
 			},
 			colour: {
 				WHITE: bgc("white", "black"),

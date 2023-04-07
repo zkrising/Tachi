@@ -63,6 +63,12 @@ export const JUBEAT_SINGLE_CONF = {
 
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
+
+		musicBar: {
+			type: "GRAPH",
+			validate: p.isBoundedInteger(0, 3),
+			description: "A snapshot of how well the player did in each part of the song",
+		},
 	},
 
 	scoreRatingAlgs: { jubility: { description: "Jubility as it's implemented in game." } },
@@ -119,6 +125,8 @@ export const JUBEAT_SINGLE_CONF = {
 
 	chartData: z.strictObject({
 		inGameID: z.union([z.array(zodNonNegativeInt), zodNonNegativeInt]),
+		noteCount: z.number().nonnegative(),
+		musicBar: z.array(z.number().nonnegative()),
 	}),
 
 	preferences: z.strictObject({ jubilityTarget: z.number().optional().nullable() }),

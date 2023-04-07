@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { forwardRef } from "react";
 
 // todo: understand this file - it was leveraged from metronic and uses something weird.

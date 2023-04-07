@@ -46,7 +46,7 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 				<DiscordLink>Discord</DiscordLink>.
 				<br />
 				Know how to program, and want to write a script yourself? Check out{" "}
-				<ExternalLink href="https://docs.bokutachi.xyz/tachi-server/batch-manual">
+				<ExternalLink href="https://docs.bokutachi.xyz/codebase/batch-manual">
 					Batch Manual
 				</ExternalLink>
 				.
@@ -131,8 +131,8 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			<ImportInfoCard
 				name="Fervidex"
 				href="fervidex"
-				desc="Automatically import scores from INFINITAS and other clients, whenever they are achieved!"
-				moreInfo="This is the recommended way to import scores, as it provides quality data in real-time."
+				desc="Automatically import scores, whenever you get them!"
+				moreInfo="This works with both Infinitas and other clients and is the recommended way to import scores, as it provides quality data in real-time."
 				key="Fervidex"
 			/>,
 			<ImportTypeInfoCard
@@ -156,7 +156,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			<ImportInfoCard
 				name="Konaste Hook"
 				href="ks-hook"
-				desc="Automatically import scores from SDVX 6 Konaste!"
+				desc="Automatically import scores from SDVX Konaste!"
 				moreInfo="Yep, it's that simple."
 				key="Konaste Hook"
 			/>,
@@ -360,6 +360,7 @@ function ImportTypeInfoCard({
 					name="CG Dev Integration"
 					href="cg-dev-sdvx"
 					desc="Pull your SDVX scores from the CG Dev Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 					key="cg-dev-sdvx"
 				/>
 			);
@@ -368,7 +369,8 @@ function ImportTypeInfoCard({
 				<ImportInfoCard
 					name="CG NAG Integration"
 					href="cg-nag-sdvx"
-					desc="Pull your SDVX scores from CG-NAG."
+					desc="Pull your SDVX scores from the NAG Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 					key="cg-nag-sdvx"
 				/>
 			);
@@ -377,7 +379,8 @@ function ImportTypeInfoCard({
 				<ImportInfoCard
 					name="CG GAN Integration"
 					href="cg-gan-sdvx"
-					desc="Pull your SDVX scores from CG-GAN."
+					desc="Pull your SDVX scores from the GAN Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 					key="cg-gan-sdvx"
 				/>
 			);
@@ -386,7 +389,8 @@ function ImportTypeInfoCard({
 				<ImportInfoCard
 					name="CG Dev Integration"
 					href="cg-dev-popn"
-					desc="Pull your pop'n music scores from the CG-GAN Network."
+					desc="Pull your pop'n music scores from the CG Dev Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 					key="cg-dev-popn"
 				/>
 			);
@@ -395,7 +399,8 @@ function ImportTypeInfoCard({
 				<ImportInfoCard
 					name="CG NAG Integration"
 					href="cg-nag-popn"
-					desc="Pull your pop'n music scores from CG-NAG."
+					desc="Pull your pop'n music scores from the NAG Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 					key="cg-nag-popn"
 				/>
 			);
@@ -404,7 +409,8 @@ function ImportTypeInfoCard({
 				<ImportInfoCard
 					name="CG GAN Integration"
 					href="cg-gan-popn"
-					desc="Pull your pop'n music scores from CG-GAN."
+					desc="Pull your pop'n music scores from the GAN Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 					key="cg-gan-popn"
 				/>
 			);
@@ -414,6 +420,7 @@ function ImportTypeInfoCard({
 					name="CG Dev Integration"
 					href="cg-dev-museca"
 					desc="Pull your MUSECA scores from the CG Dev Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 					key="cg-dev-museca"
 				/>
 			);
@@ -422,7 +429,8 @@ function ImportTypeInfoCard({
 				<ImportInfoCard
 					name="CG GAN Integration"
 					href="cg-gan-museca"
-					desc="Pull your MUSECA scores from CG-GAN."
+					desc="Pull your MUSECA scores from the GAN Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 					key="cg-gan-museca"
 				/>
 			);
@@ -431,7 +439,8 @@ function ImportTypeInfoCard({
 				<ImportInfoCard
 					name="CG NAG Integration"
 					href="cg-nag-museca"
-					desc="Pull your MUSECA scores from CG-NAG."
+					desc="Pull your MUSECA scores from the NAG Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 					key="cg-nag-museca"
 				/>
 			);
@@ -450,8 +459,16 @@ function ImportTypeInfoCard({
 				<ImportInfoCard
 					name="SOLID STATE SQUAD .xml"
 					href="sss-xml"
-					desc="Use a SOLID STATE SQUAD XML file to import scores. This service is rather old, and was originally for manually tracking CS scores. However, it still exports data, and we still support it!"
-					moreInfo="Also, these guys provide pretty good quality data, especially for the time."
+					desc="Use a SOLID STATE SQUAD XML file to import scores."
+					moreInfo={
+						<>
+							This service is rather old, and was originally for manually tracking CS
+							scores. However, it still exports data, and we still support it! <br />
+							<br />
+							Also, these guys provide pretty good quality data, especially for the
+							time.
+						</>
+					}
 					key="SOLID STATE SQUAD .xml"
 				/>
 			);
@@ -470,12 +487,13 @@ function ImportTypeInfoCard({
 				<ImportInfoCard
 					name="Batch Manual"
 					href="batch-manual"
-					desc={`A JSON format ${TachiConfig.name} recognises and can import scores from. This is for programmers to create their own import scripts.`}
+					desc={`A JSON format ${TachiConfig.name} recognises and can import scores from.`}
 					moreInfo={
 						<>
-							Check{" "}
-							<ExternalLink href="https://docs.bokutachi.xyz/tachi-server/batch-manual">
-								the documentation
+							This is for programmers to create their own import scripts. <br /> Check
+							the{" "}
+							<ExternalLink href="https://docs.bokutachi.xyz/codebase/batch-manual">
+								documentation
 							</ExternalLink>
 							.
 						</>
@@ -530,7 +548,7 @@ function ImportInfoCard({
 	moreInfo?: React.ReactChild;
 }) {
 	return (
-		<div className="col-12 col-lg-6 mb-4">
+		<div className="col-12 col-lg-6 mb-6 d-grid">
 			<Card header={name} footer={<LinkButton to={`/import/${href}`}>Use this!</LinkButton>}>
 				<div style={{ fontSize: "1.5rem" }}>{desc}</div>
 				{moreInfo && (

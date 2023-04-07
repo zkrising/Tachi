@@ -220,8 +220,8 @@ export const ConverterIRBeatoraja: ConverterFunction<BeatorajaScore, BeatorajaCo
 		poor: data.epr + data.lpr + data.ems + data.lms,
 	};
 
-	optional.fast = (["ebd", "egr", "epg", "epr", "ems"] as const).reduce((a, e) => a + data[e], 0);
-	optional.slow = (["lbd", "lgr", "lpg", "lpr", "lms"] as const).reduce((a, e) => a + data[e], 0);
+	optional.fast = (["ebd", "egr", "epr", "ems"] as const).reduce((a, e) => a + data[e], 0);
+	optional.slow = (["lbd", "lgr", "lpr", "lms"] as const).reduce((a, e) => a + data[e], 0);
 
 	let random = null;
 

@@ -8,7 +8,7 @@ export default function SeedsDiffCell({ diffs }: { diffs: JSONAttributeDiff[] })
 				style={{
 					maxHeight: "200px",
 					maxWidth: "600px",
-					overflow: "scroll",
+					overflow: "auto",
 					textAlign: "left",
 				}}
 			>

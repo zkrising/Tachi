@@ -289,7 +289,7 @@ export default function SearchBar() {
 						className="quick-search quick-search-dropdown quick-search-has-result"
 					>
 						<div
-							style={{ maxHeight: "325px", overflowY: "scroll" }}
+							style={{ maxHeight: "325px", overflowY: "auto" }}
 							className="quick-search-wrapper"
 						>
 							{results ? <SearchResults results={results} /> : <Loading />}

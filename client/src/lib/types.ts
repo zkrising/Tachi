@@ -40,6 +40,17 @@ export type GPTRatingSystem<GPT extends GPTString> = {
 	 * between players?
 	 */
 	idvDifference: (c: ChartDocument<GPT>) => boolean | null | undefined;
+
+	/**
+	 * What qualifies as "achieving" the band in this rating system?
+	 * For example, a clear tierlist would use this to discriminate clears
+	 * from non-clears.
+	 *
+	 * Returns a two-tuple. The first is the value that should be displayed to the
+	 * end user (i.e. the string lamp when the target is hard clear)
+	 * the second is whether they achieved this or not.
+	 */
+	achievementFn?: (p: PBScoreDocument<GPT> | ScoreDocument<GPT>) => [string | number, boolean];
 };
 
 export type GPTClassColours<GPT extends GPTString> = {

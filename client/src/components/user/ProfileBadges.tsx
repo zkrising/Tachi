@@ -1,15 +1,20 @@
 import React from "react";
-import { UserBadges } from "tachi-common";
+import { UserBadges, UserDocument } from "tachi-common";
 import { Badge } from "react-bootstrap";
 
-export default function ProfileBadges({ badges }: { badges: UserBadges[] }) {
+export default function ProfileBadges({ user }: { user: UserDocument }) {
 	return (
 		<>
-			{badges.map((e, i) => (
+			{user.badges.map((e, i) => (
 				<span key={i} className="mt-1">
 					<ProfileBadge variant={e} />
 				</span>
 			))}
+			{user.isSupporter && (
+				<span className="mt-1">
+					<Badge variant="warning">Supporter!</Badge>
+				</span>
+			)}
 		</>
 	);
 }

@@ -10,7 +10,7 @@ import { UserContext } from "context/UserContext";
 import { ClientConfig } from "lib/config";
 import React, { useContext, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { UserDocument } from "tachi-common";
+import { UserAuthLevels, UserDocument } from "tachi-common";
 import { SetState } from "types/react";
 import FollowUserButton from "components/util/FollowUserButton";
 import ProfileBadges from "./ProfileBadges";
@@ -50,14 +50,48 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 					<ProfilePicture user={reqUser} />
 				</div>
 				<div className="d-flex align-items-center" style={{ flexDirection: "column" }}>
-					<ProfileBadges badges={reqUser.badges} />
+					<ProfileBadges user={reqUser} />
 				</div>
 				<div className="d-block d-lg-none">
 					<Divider className="mt-4 mb-4" />
 				</div>
 			</div>
-			<div className="col-12 col-lg-6 d-flex justify-content-center">
+			<div className="col-12 col-lg-6 d-flex justify-content-center flex-column align-items-center">
 				<StatusComponent reqUser={reqUser} />
+				{loggedInUser?.authLevel === UserAuthLevels.ADMIN && (
+					<>
+						<Divider />
+						{reqUser.isSupporter ? (
+							<Button
+								onClick={() =>
+									APIFetchV1(
+										`/admin/supporter/${reqUser.id}`,
+										{ method: "DELETE" },
+										true,
+										true
+									).then(() => window.location.reload())
+								}
+								variant="danger"
+							>
+								Remove Supporter Rank?
+							</Button>
+						) : (
+							<Button
+								onClick={() =>
+									APIFetchV1(
+										`/admin/supporter/${reqUser.id}`,
+										{ method: "POST" },
+										true,
+										true
+									).then(() => window.location.reload())
+								}
+								variant="primary"
+							>
+								Make Supporter?
+							</Button>
+						)}
+					</>
+				)}
 			</div>
 			<div className="col-12 col-lg-3 d-flex justify-content-center">
 				<ul>

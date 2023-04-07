@@ -23,7 +23,7 @@ export default defineConfig(() => {
 		$tachi-lightground: #2b292b;
 		$tachi-backestground: #000000;
 		$tachi-overground: #524e52;
-		
+
 		$tachi-info: #527acc;
 		$tachi-info-hover: #8da7dd;`;
 	} else {
@@ -34,7 +34,7 @@ export default defineConfig(() => {
 		$tachi-lightground: #2b292b;
 		$tachi-backestground: #000000;
 		$tachi-overground: #524e52;
-	
+
 		$tachi-info: #31497A;
 		$tachi-info-hover: #455B87;`;
 	}
@@ -48,7 +48,9 @@ export default defineConfig(() => {
 		scssEntryPoint = "./src/_assets/metronic-scss/style.react.scss";
 	} else {
 		// Else, use some default compiled css.
-		scssEntryPoint = "./src/_assets/compiled-css/main.css";
+		// note: silly injection here as we eval this.      VVV note the quote escaping.
+		// too lazy to do this properly with arrays
+		scssEntryPoint = './src/_assets/compiled-css/main.css";@import "./src/_style/base.scss';
 	}
 
 	return {

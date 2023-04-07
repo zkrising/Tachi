@@ -92,8 +92,9 @@ if (Environment.nodeEnv !== "production" && IsNonEmptyString(ServerConfig.CLIENT
 } else {
 	app.use((req, res, next) => {
 		res.header("Access-Control-Allow-Origin", "*");
+		res.header("Access-Control-Allow-Headers", "Content-Type, X-User-Intent, Authorization");
 		res.header("Access-Control-Allow-Credentials", "false");
-		res.header("Access-Control-Allow-Methods", "GET");
+		res.header("Access-Control-Allow-Methods", "GET,POST,PATCH,PUT,DELETE,OPTIONS");
 		next();
 	});
 

@@ -411,7 +411,9 @@ export async function GetEnumDistForFolderAsOf(
 				$match: {
 					chartID: { $in: chartIDs },
 					userID,
-					timeAdded: { $lt: beforeTime },
+					// we deliberately use not gte as that includes null
+					// rather than "lt" which skips over null.
+					timeAdded: { $not: { $gte: beforeTime } },
 				},
 			},
 			{

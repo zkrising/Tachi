@@ -14,7 +14,7 @@ import { RecalcAllScores, UpdateAllPBs } from "utils/calculations/recalc-scores"
 import { RecalcSessions } from "utils/calculations/recalc-sessions";
 import { IsValidPlaytype } from "utils/misc";
 import DestroyUserGamePlaytypeData from "utils/reset-state/destroy-ugpt";
-import { GetUserWithID } from "utils/user";
+import { GetUserWithID, ResolveUser } from "utils/user";
 import type { RequestHandler } from "express";
 import type { Game, integer, Playtype } from "tachi-common";
 
@@ -341,5 +341,53 @@ router.post(
 		});
 	}
 );
+
+/**
+ * Make this user a Tachi supporter.
+ *
+ * @name POST /api/v1/admin/supporter/:userID
+ */
+router.post("/supporter/:userID", async (req, res) => {
+	const user = await ResolveUser(req.params.userID);
+
+	if (!user) {
+		return res.status(404).json({
+			success: false,
+			description: `This user does not exist.`,
+		});
+	}
+
+	await db.users.update({ id: user.id }, { $set: { isSupporter: true } });
+
+	return res.status(200).json({
+		success: true,
+		description: `Done.`,
+		body: {},
+	});
+});
+
+/**
+ * Un-Make this user a Tachi supporter.
+ *
+ * @name POST /api/v1/admin/supporter/:userID
+ */
+router.delete("/supporter/:userID", async (req, res) => {
+	const user = await ResolveUser(req.params.userID);
+
+	if (!user) {
+		return res.status(404).json({
+			success: false,
+			description: `This user does not exist.`,
+		});
+	}
+
+	await db.users.update({ id: user.id }, { $set: { isSupporter: false } });
+
+	return res.status(200).json({
+		success: true,
+		description: `Done.`,
+		body: {},
+	});
+});
 
 export default router;

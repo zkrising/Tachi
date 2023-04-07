@@ -11,6 +11,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { UserDocument } from "tachi-common";
+import SupporterIcon from "components/util/SupporterIcon";
 
 export function UserProfileDropdown({ user }: { user: UserDocument }) {
 	const { setUser } = useContext(UserContext);
@@ -29,18 +30,26 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 					</span>{" "}
 					<span className="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-2">
 						{user.username}
+						{user.isSupporter && (
+							<>
+								{" "}
+								<SupporterIcon />
+							</>
+						)}
 					</span>
-					<span className="symbol symbol-35">
-						<img alt="Pic" className="hidden" src={ToAPIURL("/users/me/pfp")} />
+					<span className="symbol symbol-35 symbol-fixed">
+						<img
+							alt={"Pic"}
+							className="hidden"
+							style={{objectFit:"cover"}}
+							src={ToAPIURL("/users/me/pfp")}
+						/>
 					</span>
 				</div>
 			</Dropdown.Toggle>
 			<Dropdown.Menu className="p-0 m-0 dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
 				<div className="navi navi-spacer-x-0 pt-5">
-					<Link
-						to={`/u/${user.username}`}
-						className="navi-item px-8 cursor-pointer"
-					>
+					<Link to={`/u/${user.username}`} className="navi-item px-8 cursor-pointer">
 						<div className="navi-link">
 							<div className="navi-icon mr-2">
 								<Icon type="user" colour="primary" />
@@ -48,20 +57,6 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 							<div className="navi-text">
 								<div className="font-weight-bold cursor-pointer">My Profile</div>
 								<div className="text-muted">View your profile!</div>
-							</div>
-						</div>
-					</Link>
-					<Link
-						to={`/u/${user.username}`}
-						className="navi-item px-8 cursor-pointer"
-					>
-						<div className="navi-link">
-							<div className="navi-icon mr-2">
-								<Icon type="envelope" colour="success" />
-							</div>
-							<div className="navi-text">
-								<div className="font-weight-bold cursor-pointer">Notifications</div>
-								<div className="text-muted">View your notifications!</div>
 							</div>
 						</div>
 					</Link>

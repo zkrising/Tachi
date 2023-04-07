@@ -69,6 +69,10 @@
 	display: block;
 }
 
+.d-grid{
+	display: grid;
+}
+
 .fading-image-td-left {
 	position: relative;
 	z-index: 1;
@@ -212,3 +216,5 @@
 .MuiTabs-scrollButtons.Mui-disabled {
 	opacity: 0.3;
 }
+
+@import "tachi-custom/custom", "tachi-custom/hero", "tachi-custom/splash-screen";

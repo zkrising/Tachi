@@ -37,6 +37,8 @@ const MaimaiDXDans = [
 	ClassValue("SHINDAN_10", "真十段", "10th Shindan"),
 
 	ClassValue("SHINKAIDEN", "真皆伝", "Shinkaiden"),
+
+	ClassValue("URAKAIDEN", "裏皆伝", "Urakaiden"),
 ];
 
 const MaimaiDXColours = [

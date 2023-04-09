@@ -84,7 +84,7 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		name: "Overjoy",
 		description: "The overjoy table. Level 1 is roughly equivalent to Insane 20.",
 		playtype: "7K",
-		url: "http://lr2.sakura.ne.jp/overjoy.php",
+		url: "http://rattoto10.jounin.jp/table_overjoy.html",
 		prefix: "★★",
 		asciiPrefix: "overjoy",
 		colour: COLOUR_SET.paleOrange,

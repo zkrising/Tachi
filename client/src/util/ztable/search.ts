@@ -5,7 +5,7 @@ import { ZTableSearchFn } from "components/util/table/useZTable";
 // never needs any extending, but should you want to change something here,
 // it would genuinely be faster to just completely rewrite it.
 // This is a parser that handles things like
-// title:"FREEDOM DIVE" level:>12
+// title="FREEDOM DIVE" level>12
 // etc.
 // This was written before I knew anything about how to implement a lexer or parser.
 // Apologies.
@@ -29,6 +29,8 @@ export interface Directive {
 	// ~= - REGEXP
 	mode: DirectiveModes;
 	value: string;
+
+	originalStr: string;
 }
 
 // Regex is an irritatingly write-only language, so i've split this one
@@ -64,6 +66,7 @@ export function ParseDirectives(search: string): Directive[] {
 			key: key.toLowerCase(),
 			mode: mode as Directive["mode"],
 			value: v,
+			originalStr: ps[0],
 		});
 	}
 
@@ -257,10 +260,13 @@ export function ComposeSearchFunction<D>(
 			});
 		}
 
+		const skippedDirectives: Directive[] = [];
+
 		for (const directive of directives) {
 			const vgOrHybrid = GetValueInsensitive(valueGetters, directive.key);
 
 			if (!vgOrHybrid) {
+				skippedDirectives.push(directive);
 				continue;
 			}
 
@@ -280,6 +286,33 @@ export function ComposeSearchFunction<D>(
 			if (!DirectiveMatch(directive, dataValue, directiveNumValue)) {
 				return false;
 			}
+		}
+
+		if (skippedDirectives.length > 0) {
+			return allGetters.some((vgOrHybrid) => {
+				const v = GetValueGetter(vgOrHybrid)(data);
+
+				if (v === undefined) {
+					console.warn(
+						`Unexpected undefined in directive ${vgOrHybrid}, casting to null.`
+					);
+					return null;
+				}
+
+				if (v === null) {
+					return null;
+				}
+
+				// These don't make sense for a neutral.
+				if (typeof v === "boolean") {
+					return null;
+				}
+
+				return NeutralMatch(
+					skippedDirectives.map((e) => e.originalStr).join(" "),
+					GetStrData(v)
+				);
+			});
 		}
 
 		return true;

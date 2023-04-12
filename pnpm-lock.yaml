@@ -404,6 +404,7 @@ importers:
       winston: 3.5.1
       winston-daily-rotate-file: 4.6.0
       winston-transport: 4.5.0
+      xml2js: ^0.5.0
     dependencies:
       '@aws-sdk/client-s3': 3.49.0_brkgtpysd3itykgdcoi6jctzqq
       '@aws-sdk/signature-v4-crt': 3.49.0
@@ -470,6 +471,7 @@ importers:
       winston: 3.5.1
       winston-daily-rotate-file: 4.6.0_winston@3.5.1
       winston-transport: 4.5.0
+      xml2js: 0.5.0
     devDependencies:
       '@types/supertest': 2.0.11
       '@types/tap': 15.0.5
@@ -10877,6 +10879,14 @@ packages:
 
   /xml2js/0.4.23:
     resolution: {integrity: sha512-ySPiMjM0+pLDftHgXY4By0uswI3SPKLDw/i3UXbnO8M/p28zqexCUoPmQFrYD+/1BzhGJSs2i1ERWKJAtiLrug==}
+    engines: {node: '>=4.0.0'}
+    dependencies:
+      sax: 1.2.4
+      xmlbuilder: 11.0.1
+    dev: false
+
+  /xml2js/0.5.0:
+    resolution: {integrity: sha512-drPFnkQJik/O+uPKpqSgr22mpuFHqKdbS835iAQrUC73L2F5WkboIRd63ai/2Yg6I1jzifPFKH2NTK+cfglkIA==}
     engines: {node: '>=4.0.0'}
     dependencies:
       sax: 1.2.4

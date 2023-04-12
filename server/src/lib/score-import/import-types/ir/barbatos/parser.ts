@@ -6,7 +6,7 @@ import type { BarbatosContext, BarbatosScore, BarbatosSDVX6Score } from "./types
 import type { KtLogger } from "lib/logger/logger";
 
 const PR_BARBATOS = {
-	difficulty: p.isIn(1, 2, 3, 4),
+	difficulty: p.isIn(0, 1, 2, 3, 4),
 	level: p.isBoundedInteger(1, 20),
 	song_id: p.isPositiveInteger,
 	max_chain: p.isPositiveInteger,
@@ -24,7 +24,7 @@ const PR_BARBATOS = {
 };
 
 const PR_BARBATOS_SDVX6 = {
-	difficulty: p.isIn(1, 2, 3, 4),
+	difficulty: p.isIn(0, 1, 2, 3, 4),
 	level: p.isBoundedInteger(1, 20),
 	score: p.isBoundedInteger(0, 10_000_000),
 	ex_score: p.isInteger,

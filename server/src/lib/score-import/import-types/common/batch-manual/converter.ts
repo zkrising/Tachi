@@ -333,6 +333,7 @@ export async function ResolveMatchTypeToTachiData(
 					"data.inGameID": identifier,
 					playtype: context.playtype,
 					difficulty,
+					isPrimary: true,
 				});
 			}
 

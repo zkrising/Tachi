@@ -64,6 +64,11 @@ export function ProfilePictureSmall({
 	 */
 	toGPT?: string;
 }) {
+	if (toGPT) {
+		// eslint-disable-next-line no-param-reassign
+		toGPT = `games/${toGPT}`;
+	}
+
 	if (typeof user === "string") {
 		return (
 			<Link to={`/u/${user}/${toGPT}`}>

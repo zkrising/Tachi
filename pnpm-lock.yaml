@@ -460,7 +460,7 @@ importers:
       prudence: 0.10.0
       rate-limit-redis: 2.1.0
       redis: 3.1.2
-      rg-stats: 0.5.0
+      rg-stats: 0.5.1
       rimraf: 3.0.2
       safe-json-stringify: 1.2.0
       semver: 7.3.7
@@ -9301,8 +9301,8 @@ packages:
     resolution: {integrity: sha512-d+IFYlryQMZjMYVJgL0vIZCdUpkYhUC9vzfMHOs/HNEeM5jjlVLDyuiru4UJlc67XoqGgby2Mp6IkcFoRXz4Gw==}
     dev: false
 
-  /rg-stats/0.5.0:
-    resolution: {integrity: sha512-A/AkliKlRaOpXCKugPYXhufQ4Vk7j1bbYs6CRppQ8q9W2eJCQHCTaQTDCELX4kiX0ew27MxVh6xmsPrPV2iwzg==}
+  /rg-stats/0.5.1:
+    resolution: {integrity: sha512-VjQ1nB+wSv4bGHufeWQbTXmMPGLRsL6c1yPH+GLzc2HQvcBAJJjPkaBooL3/FkdLSSIZqTIo8IM3OS5DADS3BQ==}
     dev: false
 
   /rimraf/2.4.5:

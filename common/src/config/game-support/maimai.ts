@@ -115,7 +115,7 @@ export const MAIMAI_SINGLE_CONF = {
 	profileRatingAlgs: {
 		naiveRate: {
 			description:
-				"Rating almost identical to the one in-game, except it does not take into account recent scores.",
+				"An average of your 30 best ratings. This is different from the rating in-game, as that is song-based and takes into account recent scores.",
 			formatter: ToDecimalPlaces(2),
 		},
 	},

@@ -1,108 +1,11 @@
 import { GoalFmtPercent, GoalOutOfFmtPercent, GradeGoalFormatter } from "./_common";
-import db from "external/mongo/db";
 import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
+import { ProfileAvgBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { MaimaiRate } from "rg-stats";
 import { GetGrade, MAIMAI_GBOUNDARIES } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
-import type { FindOneResult } from "monk";
-import type {
-	ExtractedClasses,
-	Game,
-	integer,
-	Playtype,
-	UserGameStatsSnapshotDocument,
-} from "tachi-common";
-
-const DAN_BONUSES: Record<ExtractedClasses["maimai:Single"]["dan"], number> = {
-	DAN_1: 0.2,
-	DAN_2: 0.4,
-	DAN_3: 0.55,
-	DAN_4: 0.7,
-	DAN_5: 0.85,
-	DAN_6: 0.95,
-	DAN_7: 1.05,
-	DAN_8: 1.15,
-	DAN_9: 1.25,
-	DAN_10: 1.35,
-	KAIDEN: 1.65,
-
-	SHINDAN_1: 1.7,
-	SHINDAN_2: 1.75,
-	SHINDAN_3: 1.8,
-	SHINDAN_4: 1.85,
-	SHINDAN_5: 1.9,
-	SHINDAN_6: 1.95,
-	SHINDAN_7: 1.98,
-	SHINDAN_8: 2.01,
-	SHINDAN_9: 2.04,
-	SHINDAN_10: 2.07,
-	SHINKAIDEN: 2.1,
-};
-
-// maimai rating is composed of three components: BEST, RECENT, HISTORY
-// The BEST and RECENT components consist of N best **songs**, that is,
-// each song can only be in the BEST or RECENT component once.
-//
-// For example, if a player has a 99% on PANDORA PARADOXX Re:MASTER and
-// a 100% on PANDORA PARADOXX MASTER, only the MASTER score will be counted
-// since it is higher rated.
-//
-// There is also a dan bonus, up to 2.10 for Shinkaidan.
-//
-// This does not take into account the RECENT component.
-async function CalculateMaimaiRate(game: Game, playtype: Playtype, userID: integer) {
-	const user = (await db["game-stats-snapshots"].findOne(
-		{
-			userID,
-			game,
-			playtype,
-			"classes.dan": { $exists: true },
-		},
-		{
-			projection: {
-				"classes.dan": 1,
-			},
-		}
-	)) as FindOneResult<UserGameStatsSnapshotDocument<"maimai:Single">>;
-
-	const danBonus = user?.classes.dan ? DAN_BONUSES[user.classes.dan] : 0;
-
-	const songs: Array<{ _id: integer; rate: number }> = await db["personal-bests"].aggregate([
-		{
-			$match: {
-				game,
-				playtype,
-				userID,
-				"calculatedData.rate": { $type: "number" },
-			},
-		},
-		{
-			$group: {
-				_id: "$songID",
-				rate: { $max: "$calculatedData.rate" },
-			},
-		},
-		{
-			$sort: {
-				rate: -1,
-			},
-		},
-		{
-			$limit: 570,
-		},
-	]);
-
-	if (typeof songs === "undefined" || songs.length === 0) {
-		return null;
-	}
-
-	const best30 = songs.slice(0, 30).reduce((acc, cur) => acc + cur.rate, 0);
-	const history570 = best30 + songs.slice(30).reduce((acc, cur) => acc + cur.rate, 0);
-
-	return (best30 + (history570 * 4) / 570) / 44 + danBonus;
-}
 
 export const MAIMAI_IMPL: GPTServerImplementation<"maimai:Single"> = {
 	chartSpecificValidators: {
@@ -127,7 +30,7 @@ export const MAIMAI_IMPL: GPTServerImplementation<"maimai:Single"> = {
 	},
 	sessionCalcs: { rate: SessionAvgBest10For("rate") },
 	profileCalcs: {
-		naiveRate: CalculateMaimaiRate,
+		naiveRate: ProfileAvgBestN("rate", 30),
 	},
 	classDerivers: {
 		colour: (ratings) => {

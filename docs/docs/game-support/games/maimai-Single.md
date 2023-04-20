@@ -20,7 +20,7 @@ For more information on what metrics are and how they work, see [TODO]!
 
 | Metric Name | Type | Description |
 | :: | :: | :: |
-| `grade` | "D", "C", "B", "A", "AA", "AAA", "S", "S+", "SS", "SS+", "SSS" | The grade this score was. |
+| `grade` | "D", "C", "B", "A", "AA", "AAA", "S", "S+", "SS", "SS+", "SSS", "SSS+" | The grade this score was. |
 
 ### Optional Metrics
 

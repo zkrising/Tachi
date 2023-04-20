@@ -14,7 +14,7 @@ const logger = CreateLogCtx(__filename);
 
 const baseMetrics: ProvidedMetrics["maimai:Single"] = {
 	lamp: "CLEAR",
-	percent: 97.012,
+	percent: 97.01,
 };
 
 const GRADES = MAIMAI_SINGLE_CONF.derivedMetrics.grade.values;
@@ -22,7 +22,7 @@ const LAMPS = MAIMAI_SINGLE_CONF.providedMetrics.lamp.values;
 
 const scoreData: ScoreData<"maimai:Single"> = {
 	lamp: "CLEAR",
-	percent: 97.012,
+	percent: 97.01,
 	grade: "S",
 	judgements: {},
 	optional: { enumIndexes: {} },
@@ -78,7 +78,16 @@ t.test("maimai Implementation", (t) => {
 		t.end();
 	});
 
-	t.todo("Score Calcs");
+	t.test("Score Calcs", (t) => {
+		t.equal(
+			MAIMAI_IMPL.scoreCalcs.rate(scoreData, TestingMaimaiChart),
+			14.85,
+			"Basic rate check",
+		);
+
+		t.end();
+	});
+
 	t.todo("Session Calcs");
 	t.todo("Profile Calcs");
 

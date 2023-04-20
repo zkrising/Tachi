@@ -51,6 +51,8 @@ t.test("maimai Implementation", (t) => {
 			MAIMAI_IMPL.chartSpecificValidators.percent(101, TestingMaimaiChart),
 			`Maimai Percent Validator: excessive`
 		);
+
+		t.end();
 	});
 
 	t.test("Grade Deriver", (t) => {
@@ -140,6 +142,11 @@ t.test("maimai Implementation", (t) => {
 				);
 
 			f("grade", { grade: "S", percent: 97.5 }, GRADES.indexOf("SS"), "(S+)-0.50%");
+
+			f("grade", { grade: "S", percent: 97.5 }, GRADES.indexOf("SSS+"), "(S+)-0.50%");
+			f("grade", { grade: "SSS", percent: 100.2 }, GRADES.indexOf("SSS+"), "SSS+0.20%");
+			f("grade", { grade: "SSS+", percent: 100.78 }, GRADES.indexOf("SSS+"), "SSS+");
+			
 			f("percent", { percent: 98.23 }, 1_000_000, "98.23%");
 			f("lamp", { lamp: "CLEAR" }, LAMPS.indexOf("CLEAR"), "CLEAR");
 

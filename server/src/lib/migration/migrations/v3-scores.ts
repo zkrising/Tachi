@@ -90,7 +90,7 @@ const scoreMovers: ScoreMovers = {
 	"maimai:Single": (old) => ({
 		percent: old.percent,
 		judgements: old.judgements,
-		lamp: old.lamp,
+		lamp: old.lamp as any,
 		optional: old.hitMeta,
 	}),
 	"maimaidx:Single": (old) => ({

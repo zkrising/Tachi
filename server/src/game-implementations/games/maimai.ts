@@ -76,27 +76,21 @@ export const MAIMAI_IMPL: GPTServerImplementation<"maimai:Single"> = {
 		percent: (pb) => `${pb.scoreData.percent.toFixed(2)}%`,
 		lamp: (pb) => pb.scoreData.lamp,
 		grade: (pb, gradeIndex) => {
+			if (pb.scoreData.grade === "SSS+") {
+				return "SSS+";
+			}
+			
 			// Grade SSS+ is chart-dependent, and it isn't possible to get the
 			// max score/max percent from only the percent.
 			//
 			// As such, if the goal is to SSS+, we have to return the current rank+delta.
-			if (MAIMAI_GBOUNDARIES[gradeIndex]!.name === "SSS+") {
-				if (pb.scoreData.grade === "SSS+") {
-					return "SSS+";
-				}
-
+			if (MAIMAI_GBOUNDARIES[gradeIndex]!.name === "SSS+" && pb.scoreData.grade === "SSS") {
 				const boundary = MAIMAI_GBOUNDARIES.find(
-					(c) => c.name === pb.scoreData.grade
+					(c) => c.name === "SSS"
 				)!.lowerBound;
 				const delta = pb.scoreData.percent - boundary;
 
-				let grade: string = pb.scoreData.grade;
-
-				if (grade.endsWith("-") || grade.endsWith("+")) {
-					grade = `(${grade})`;
-				}
-
-				return `${grade}+${delta.toFixed(2)}%`;
+				return `SSS+${delta.toFixed(2)}%`;
 			}
 
 			return GradeGoalFormatter(
@@ -124,6 +118,15 @@ export const MAIMAI_IMPL: GPTServerImplementation<"maimai:Single"> = {
 			}
 		},
 		(s) => {
+			if (s.scoreData.lamp === "ALL PERFECT+" && !(s.scoreData.grade === "SSS+")) {
+				return "Cannot have an ALL PERFECT+ without grade SSS+.";
+			}
+
+			if (s.scoreData.grade === "SSS+" && !(s.scoreData.lamp === "ALL PERFECT+")) {
+				return "Cannot have grade SSS+ without an ALL PERFECT+";
+			}
+		},
+		(s) => {
 			let { great, good, miss, perfect } = s.scoreData.judgements;
 
 			perfect ??= 0;
@@ -133,7 +136,7 @@ export const MAIMAI_IMPL: GPTServerImplementation<"maimai:Single"> = {
 
 			if (s.scoreData.lamp === "ALL PERFECT") {
 				if (great + good + miss > 0) {
-					return "Cannot have an ALL PERFECT with any non-jcrit judgements.";
+					return "Cannot have an ALL PERFECT with any non-perfect judgements.";
 				}
 			}
 

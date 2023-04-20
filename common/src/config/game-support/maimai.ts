@@ -88,10 +88,7 @@ export const MAIMAI_SINGLE_CONF = {
 				"SS",
 				"SS+",
 				"SSS",
-				// SSS+ in maimai is an ALL PERFECT+, and so determining it requires
-				// knowing the chart's maximum achievement. This is not possible
-				// without a lot of extra work, so not implementing, sorry!s
-				// "SSS+",
+				"SSS+",
 			],
 			minimumRelevantValue: "A",
 			description: "The grade this score was.",

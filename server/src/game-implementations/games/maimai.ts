@@ -22,7 +22,13 @@ export const MAIMAI_IMPL: GPTServerImplementation<"maimai:Single"> = {
 		},
 	},
 	derivers: {
-		grade: ({ percent }) => GetGrade(MAIMAI_GBOUNDARIES, percent),
+		grade: ({ percent }, chart) => {
+			if (percent === chart.data.maxPercent) {
+				return "SSS+";
+			}
+
+			return GetGrade(MAIMAI_GBOUNDARIES, percent);
+		},
 	},
 	scoreCalcs: {
 		rate: (scoreData, chart) =>
@@ -69,14 +75,38 @@ export const MAIMAI_IMPL: GPTServerImplementation<"maimai:Single"> = {
 	goalProgressFormatters: {
 		percent: (pb) => `${pb.scoreData.percent.toFixed(2)}%`,
 		lamp: (pb) => pb.scoreData.lamp,
-		grade: (pb, gradeIndex) =>
-			GradeGoalFormatter(
+		grade: (pb, gradeIndex) => {
+			// Grade SSS+ is chart-dependent, and it isn't possible to get the
+			// max score/max percent from only the percent.
+			//
+			// As such, if the goal is to SSS+, we have to return the current rank+delta.
+			if (MAIMAI_GBOUNDARIES[gradeIndex]!.name === "SSS+") {
+				if (pb.scoreData.grade === "SSS+") {
+					return "SSS+";
+				}
+
+				const boundary = MAIMAI_GBOUNDARIES.find(
+					(c) => c.name === pb.scoreData.grade
+				)!.lowerBound;
+				const delta = pb.scoreData.percent - boundary;
+
+				let grade: string = pb.scoreData.grade;
+
+				if (grade.endsWith("-") || grade.endsWith("+")) {
+					grade = `(${grade})`;
+				}
+
+				return `${grade}+${delta.toFixed(2)}%`;
+			}
+
+			return GradeGoalFormatter(
 				MAIMAI_GBOUNDARIES,
 				pb.scoreData.grade,
 				pb.scoreData.percent,
 				MAIMAI_GBOUNDARIES[gradeIndex]!.name,
 				(v) => `${v.toFixed(2)}%`
-			),
+			);
+		},
 	},
 	goalOutOfFormatters: {
 		percent: GoalOutOfFmtPercent,

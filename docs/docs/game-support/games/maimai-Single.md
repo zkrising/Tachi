@@ -59,7 +59,7 @@ The default rating algorithm is `naiveRate`.
 
 | Name | Description |
 | :: | :: |
-| `naiveRate` | Rating almost identical to the one in-game, except it does not take into account recent scores. |
+| `naiveRate` | An average of your 30 best ratings. This is different from the rating in-game, as that is song-based and takes into account recent scores. |
 
 ## Difficulties
 

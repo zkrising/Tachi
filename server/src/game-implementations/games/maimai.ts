@@ -5,7 +5,6 @@ import {
 } from "./_common";
 import db from "external/mongo/db";
 import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
-import { ProfileAvgBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { MaimaiRate } from "rg-stats";
 import { GetGrade, MAIMAI_GBOUNDARIES } from "tachi-common";

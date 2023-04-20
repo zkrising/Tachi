@@ -6,6 +6,7 @@ import { MAIMAI_SINGLE_CONF } from "tachi-common/config/game-support/maimai";
 import t from "tap";
 import { mkMockScore, mkMockPB, dmf } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
+import { TestSnapshot } from "test-utils/single-process-snapshot";
 import { TestingMaimaiChart } from "test-utils/test-data";
 import type { ProvidedMetrics, ScoreData } from "tachi-common";
 
@@ -35,6 +36,23 @@ const mockScore = mkMockScore("maimai", "Single", TestingMaimaiChart, scoreData)
 const mockPB = mkMockPB("maimai", "Single", TestingMaimaiChart, scoreData);
 
 t.test("maimai Implementation", (t) => {
+	t.test("Percent Validator", (t) => {
+		t.equal(MAIMAI_IMPL.chartSpecificValidators.percent(100.78, TestingMaimaiChart), true);
+		t.equal(MAIMAI_IMPL.chartSpecificValidators.percent(0, TestingMaimaiChart), true);
+
+		TestSnapshot(
+			t,
+			MAIMAI_IMPL.chartSpecificValidators.percent(-1, TestingMaimaiChart),
+			`maimai Percent Validator: negative`
+		);
+
+		TestSnapshot(
+			t,
+			MAIMAI_IMPL.chartSpecificValidators.percent(101, TestingMaimaiChart),
+			`maimai Percent Validator: over max percent`
+		);
+	});
+
 	t.test("Grade Deriver", (t) => {
 		const f = (percent: number, expected: any) =>
 			t.equal(

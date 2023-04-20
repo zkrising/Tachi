@@ -7,6 +7,7 @@ import JubeatJudgementCell from "components/tables/cells/JubeatJudgementCell";
 import JubeatScoreCell from "components/tables/cells/JubeatScoreCell";
 import JubilityCell from "components/tables/cells/JubilityCell";
 import LampCell from "components/tables/cells/LampCell";
+import MaimaiJudgementCell from "components/tables/cells/MaimaiJudgementCell";
 import MaimaiDXJudgementCell from "components/tables/cells/MaimaiDXJudgementCell";
 import MillionsScoreCell from "components/tables/cells/MillionsScoreCell";
 import MusecaJudgementCell from "components/tables/cells/MusecaJudgementCell";
@@ -155,6 +156,104 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			</>
 		),
 		ratingCell: ({ sc }) => <JubilityCell score={sc} />,
+	},
+	"maimai:Single": {
+		enumIcons: defaultEnumIcons,
+		enumColours: {
+			lamp: {
+				FAILED: COLOUR_SET.red,
+				CLEAR: COLOUR_SET.green,
+				"FULL COMBO": COLOUR_SET.blue,
+				"ALL PERFECT": COLOUR_SET.gold,
+				"ALL PERFECT+": COLOUR_SET.teal,
+			},
+			grade: {
+				F: COLOUR_SET.gray,
+				E: COLOUR_SET.gray,
+				D: COLOUR_SET.gray,
+				C: COLOUR_SET.red,
+				B: COLOUR_SET.maroon,
+				A: COLOUR_SET.green,
+				AA: COLOUR_SET.paleBlue,
+				AAA: COLOUR_SET.blue,
+				S: COLOUR_SET.gold,
+				"S+": COLOUR_SET.vibrantYellow,
+				SS: COLOUR_SET.paleOrange,
+				"SS+": COLOUR_SET.orange,
+				SSS: COLOUR_SET.teal,
+			},
+		},
+		classColours: {
+			dan: {
+				DAN_1: "warning",
+				DAN_2: "warning",
+				DAN_3: "warning",
+				DAN_4: "warning",
+				DAN_5: "warning",
+				DAN_6: "warning",
+				DAN_7: "warning",
+				DAN_8: "warning",
+				DAN_9: "warning",
+				DAN_10: "warning",
+				KAIDEN: "warning",
+
+				SHINDAN_1: bg("purple"),
+				SHINDAN_2: bg("purple"),
+				SHINDAN_3: bg("purple"),
+				SHINDAN_4: bg("purple"),
+				SHINDAN_5: bg("purple"),
+				SHINDAN_6: bg("purple"),
+				SHINDAN_7: bg("purple"),
+				SHINDAN_8: bg("purple"),
+				SHINDAN_9: bg("purple"),
+				SHINDAN_10: bg("purple"),
+
+				SHINKAIDEN: bg("purple"),
+			},
+			colour: {
+				WHITE: bgc("white", "black"),
+				BLUE: bgc("cyan", "black"),
+				GREEN: bg("green"),
+				YELLOW: bgc("yellow", "black"),
+				RED: bg("red"),
+				PURPLE: bg("purple"),
+				BRONZE: bg("brown"),
+				SILVER: bg("gray"),
+				GOLD: "warning",
+
+				RAINBOW: {
+					background:
+						"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
+					color: "black",
+				},
+			},
+		},
+		difficultyColours: {
+			Easy: COLOUR_SET.blue,
+			Basic: COLOUR_SET.green,
+			Advanced: COLOUR_SET.orange,
+			Expert: COLOUR_SET.red,
+			Master: COLOUR_SET.purple,
+			"Re:Master": COLOUR_SET.white,
+		},
+		ratingSystems: [],
+		scoreHeaders: [
+			["Percent", "%", NumericSOV((x) => x?.scoreData.percent)],
+			["Judgements", "Hits", NumericSOV((x) => x?.scoreData.percent)],
+			["Lamp", "Lamp", NumericSOV((x) => x?.scoreData.enumIndexes.lamp)],
+		],
+		scoreCoreCells: ({ sc }) => (
+			<>
+				<ScoreCell
+					colour={GetEnumColour(sc, "grade")}
+					grade={sc.scoreData.grade}
+					percent={sc.scoreData.percent}
+				/>
+				<MaimaiJudgementCell score={sc} />
+				<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
+			</>
+		),
+		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"maimaidx:Single": {
 		enumIcons: defaultEnumIcons,

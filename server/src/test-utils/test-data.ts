@@ -369,6 +369,22 @@ export const TestingGitadoraChart: ChartDocument<"gitadora:Dora" | "gitadora:Git
 	versions: ["konaste"],
 };
 
+export const TestingMaimaiChart: ChartDocument<"maimai:Single"> = {
+	chartID: "6e087e5f58519a2697374b9bff776a004046e952",
+	data: {
+		inGameID: 834,
+		inGameStrID: "pandora_paradoxxx",
+		maxPercent: 100.78,
+	},
+	difficulty: "Master",
+	isPrimary: true,
+	level: "13+",
+	levelNum: 13.9,
+	playtype: "Single",
+	songID: 834,
+	versions: ["finale"],
+}
+
 export const TestingMaimaiDXChart: ChartDocument<"maimaidx:Single"> = {
 	chartID: "fbde73d543f93cbad9ec67052a7165700c5c8df6",
 	data: {

@@ -6,6 +6,7 @@ import { GITADORA_CONF, GITADORA_DORA_CONF, GITADORA_GITA_CONF } from "./game-su
 import { IIDX_CONF, IIDX_DP_CONF, IIDX_SP_CONF } from "./game-support/iidx";
 import { ITG_CONF, ITG_STAMINA_CONF } from "./game-support/itg";
 import { JUBEAT_CONF, JUBEAT_SINGLE_CONF } from "./game-support/jubeat";
+import { MAIMAI_CONF, MAIMAI_SINGLE_CONF } from "./game-support/maimai";
 import { MAIMAI_DX_CONF, MAIMAI_DX_SINGLE_CONF } from "./game-support/maimai-dx";
 import { MUSECA_CONF, MUSECA_SINGLE_CONF } from "./game-support/museca";
 import { PMS_CONF, PMS_CONTROLLER_CONF, PMS_KEYBOARD_CONF } from "./game-support/pms";
@@ -37,6 +38,7 @@ export const GAME_CONFIGS = {
 	bms: BMS_CONF,
 	gitadora: GITADORA_CONF,
 	jubeat: JUBEAT_CONF,
+	maimai: MAIMAI_CONF,
 	maimaidx: MAIMAI_DX_CONF,
 	popn: POPN_CONF,
 	sdvx: SDVX_CONF,
@@ -83,6 +85,7 @@ export const GAME_PT_CONFIGS = {
 	"wacca:Single": WACCA_SINGLE_CONF,
 	"jubeat:Single": JUBEAT_SINGLE_CONF,
 	"popn:9B": POPN_9B_CONF,
+	"maimai:Single": MAIMAI_SINGLE_CONF,
 	"maimaidx:Single": MAIMAI_DX_SINGLE_CONF,
 	"pms:Controller": PMS_CONTROLLER_CONF,
 	"pms:Keyboard": PMS_KEYBOARD_CONF,

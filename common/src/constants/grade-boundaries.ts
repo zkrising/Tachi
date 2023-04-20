@@ -129,12 +129,8 @@ export const MUSECA_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"museca:Singl
 	傑G: 1_000_000,
 });
 
-export const MAIMAIDX_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"maimaidx:Single", "grade">>({
-	D: 0,
-	C: 10,
-	B: 20,
-	BB: 40,
-	BBB: 60,
+const MAIMAI_COMMON_BOUNDARIES = {
+	B: 60,
 	A: 80,
 	AA: 90,
 	AAA: 94,
@@ -143,6 +139,23 @@ export const MAIMAIDX_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"maimaidx:S
 	SS: 99,
 	"SS+": 99.5,
 	SSS: 100,
+};
+
+export const MAIMAI_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"maimai:Single", "grade">>({
+	...MAIMAI_COMMON_BOUNDARIES,
+	F: 0,
+	E: 10,
+	D: 20,
+	C: 40,
+});
+
+export const MAIMAIDX_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"maimaidx:Single", "grade">>({
+	...MAIMAI_COMMON_BOUNDARIES,
+	D: 0,
+	C: 50,
+	B: 60,
+	BB: 70,
+	BBB: 75,
 	"SSS+": 100.5,
 });
 

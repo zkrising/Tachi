@@ -1,0 +1,184 @@
+import { FAST_SLOW_MAXCOMBO } from "./_common";
+import { FmtPercent } from "../../utils/util";
+import { ClassValue, ToDecimalPlaces } from "../config-utils";
+import { p } from "prudence";
+import { z } from "zod";
+import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
+
+export const MAIMAI_CONF = {
+    name: "maimai",
+    playtypes: ["Single"],
+    songData: z.strictObject({
+		titleJP: z.string(),
+		artistJP: z.string(),
+        displayVersion: z.string(),
+    }),
+} as const satisfies INTERNAL_GAME_CONFIG;
+
+const MaimaiDans = [
+    ClassValue("DAN_1", "初段", "1st Dan"),
+	ClassValue("DAN_2", "二段", "2nd Dan"),
+	ClassValue("DAN_3", "三段", "3rd Dan"),
+	ClassValue("DAN_4", "四段", "4th Dan"),
+	ClassValue("DAN_5", "五段", "5th Dan"),
+	ClassValue("DAN_6", "六段", "6th Dan"),
+	ClassValue("DAN_7", "七段", "7th Dan"),
+	ClassValue("DAN_8", "八段", "8th Dan"),
+	ClassValue("DAN_9", "九段", "9th Dan"),
+	ClassValue("DAN_10", "十段", "10th Dan"),
+	ClassValue("KAIDEN", "皆伝", "Kaiden"),
+
+	ClassValue("SHINDAN_1", "真初段", "Shinshodan"),
+	ClassValue("SHINDAN_2", "真二段", "2nd Shindan"),
+	ClassValue("SHINDAN_3", "真三段", "3rd Shindan"),
+	ClassValue("SHINDAN_4", "真四段", "4th Shindan"),
+	ClassValue("SHINDAN_5", "真五段", "5th Shindan"),
+	ClassValue("SHINDAN_6", "真六段", "6th Shindan"),
+	ClassValue("SHINDAN_7", "真七段", "7th Shindan"),
+	ClassValue("SHINDAN_8", "真八段", "8th Shindan"),
+	ClassValue("SHINDAN_9", "真九段", "9th Shindan"),
+	ClassValue("SHINDAN_10", "真十段", "10th Shindan"),
+	ClassValue("SHINKAIDEN", "真皆伝", "Shinkaiden"),
+];
+
+const MaimaiColours = [
+	ClassValue("WHITE", "White"),
+	ClassValue("BLUE", "Blue"),
+	ClassValue("GREEN", "Green"),
+	ClassValue("YELLOW", "Yellow"),
+	ClassValue("RED", "Red"),
+	ClassValue("PURPLE", "Purple"),
+	ClassValue("BRONZE", "Bronze"),
+	ClassValue("SILVER", "Silver"),
+	ClassValue("GOLD", "Gold"),
+	ClassValue("RAINBOW", "Rainbow"),
+];
+
+export const MAIMAI_SINGLE_CONF = {
+	providedMetrics: {
+		percent: {
+			type: "DECIMAL",
+			chartDependentMax: true,
+			formatter: FmtPercent,
+			description:
+				"The percent this score was worth. Sometimes called 'rate' in game. This is between 0 and 104.",
+		},
+		lamp: {
+			type: "ENUM",
+			values: ["FAILED", "CLEAR", "FULL COMBO", "ALL PERFECT", "ALL PERFECT+"],
+			minimumRelevantValue: "CLEAR",
+			description: "The type of clear this score was.",
+		},
+	},
+
+	derivedMetrics: {
+		grade: {
+			type: "ENUM",
+			values: [
+				"F",
+				"E",
+				"D",
+				"C",
+				"B",
+				"A",
+				"AA",
+				"AAA",
+				"S",
+				"S+",
+				"SS",
+				"SS+",
+				"SSS",
+				// SSS+ in maimai is an ALL PERFECT+, and so determining it requires
+				// knowing the chart's maximum achievement. This is not possible
+				// without a lot of extra work, so not implementing, sorry!s
+				// "SSS+",
+			],
+			minimumRelevantValue: "A",
+			description: "The grade this score was.",
+		},
+	},
+
+	defaultMetric: "percent",
+	preferredDefaultEnum: "grade",
+
+	optionalMetrics: FAST_SLOW_MAXCOMBO,
+
+	scoreRatingAlgs: {
+		rate: { description: "Rating as it's implemented in game.", formatter: ToDecimalPlaces(2) },
+	},
+	sessionRatingAlgs: {
+		rate: {
+			description: "The average of your best 10 ratings this session.",
+			formatter: ToDecimalPlaces(2),
+		},
+	},
+	profileRatingAlgs: {
+		naiveRate: {
+			description: "The average of your best 30 ratings. This is different to in-game, as it does not take into account your recent or historicals scores in any way.",
+			formatter: ToDecimalPlaces(2),
+		},
+		rate: {
+			description: "Rating almost as it's implemented in game, taking into account 570 best songs. This does not take into account recent scores.",
+			formatter: ToDecimalPlaces(2),
+		},
+	},
+
+	defaultScoreRatingAlg: "rate",
+	defaultSessionRatingAlg: "rate",
+	defaultProfileRatingAlg: "naiveRate",
+
+    // Similar to CHUNITHM, this game has a dynamic set of difficulties,
+    // with a song able to have as many UTAGE difficulties as it likes.
+    // This will also not be implemented for the same reasons as CHUNITHM.
+    // Sorry!
+	difficulties: {
+		type: "FIXED",
+		order: [
+			"Easy",
+			"Basic",
+			"Advanced",
+			"Expert",
+			"Master",
+			"Re:Master",
+		],
+		shorthand: {
+			Easy: "ESY",
+			Basic: "BAS",
+			Advanced: "ADV",
+			Expert: "EXP",
+			Master: "MAS",
+			"Re:Master": "Re:MAS",
+		},
+		default: "Master",
+	},
+
+	classes: {
+		colour: {
+			type: "DERIVED",
+			values: MaimaiColours,
+		},
+		dan: {
+			type: "PROVIDED",
+			values: MaimaiDans,
+		},
+	},
+
+	orderedJudgements: ["perfect", "great", "good", "miss"],
+
+	versions: {
+        finale: "FiNALE",
+	},
+
+	chartData: z.strictObject({
+        inGameID: z.number(),
+        inGameStrID: z.string(),
+        maxPercent: z.number(),
+	}),
+
+	preferences: z.strictObject({}),
+	scoreMeta: z.strictObject({}),
+
+	supportedMatchTypes: ["songTitle", "tachiSongID", "inGameID"],
+} as const satisfies INTERNAL_GAME_PT_CONFIG;
+
+

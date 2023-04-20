@@ -1,8 +1,4 @@
-import {
-	GoalFmtPercent,
-	GoalOutOfFmtPercent,
-	GradeGoalFormatter,
-} from "./_common";
+import { GoalFmtPercent, GoalOutOfFmtPercent, GradeGoalFormatter } from "./_common";
 import db from "external/mongo/db";
 import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
@@ -10,6 +6,7 @@ import { MaimaiRate } from "rg-stats";
 import { GetGrade, MAIMAI_GBOUNDARIES } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
+import type { FindOneResult } from "monk";
 import type {
 	ExtractedClasses,
 	Game,
@@ -17,32 +14,31 @@ import type {
 	Playtype,
 	UserGameStatsSnapshotDocument,
 } from "tachi-common";
-import { FindOneResult } from "monk";
 
 const DAN_BONUSES: Record<ExtractedClasses["maimai:Single"]["dan"], number> = {
-	"DAN_1": 0.2,
-	"DAN_2": 0.4,
-	"DAN_3": 0.55,
-	"DAN_4": 0.7,
-	"DAN_5": 0.85,
-	"DAN_6": 0.95,
-	"DAN_7": 1.05,
-	"DAN_8": 1.15,
-	"DAN_9": 1.25,
-	"DAN_10": 1.35,
-	"KAIDEN": 1.65,
+	DAN_1: 0.2,
+	DAN_2: 0.4,
+	DAN_3: 0.55,
+	DAN_4: 0.7,
+	DAN_5: 0.85,
+	DAN_6: 0.95,
+	DAN_7: 1.05,
+	DAN_8: 1.15,
+	DAN_9: 1.25,
+	DAN_10: 1.35,
+	KAIDEN: 1.65,
 
-	"SHINDAN_1": 1.70,
-	"SHINDAN_2": 1.75,
-	"SHINDAN_3": 1.80,
-	"SHINDAN_4": 1.85,
-	"SHINDAN_5": 1.90,
-	"SHINDAN_6": 1.95,
-	"SHINDAN_7": 1.98,
-	"SHINDAN_8": 2.01,
-	"SHINDAN_9": 2.04,
-	"SHINDAN_10": 2.07,
-	"SHINKAIDEN": 2.10,
+	SHINDAN_1: 1.7,
+	SHINDAN_2: 1.75,
+	SHINDAN_3: 1.8,
+	SHINDAN_4: 1.85,
+	SHINDAN_5: 1.9,
+	SHINDAN_6: 1.95,
+	SHINDAN_7: 1.98,
+	SHINDAN_8: 2.01,
+	SHINDAN_9: 2.04,
+	SHINDAN_10: 2.07,
+	SHINKAIDEN: 2.1,
 };
 
 // maimai rating is composed of three components: BEST, RECENT, HISTORY
@@ -56,12 +52,8 @@ const DAN_BONUSES: Record<ExtractedClasses["maimai:Single"]["dan"], number> = {
 // There is also a dan bonus, up to 2.10 for Shinkaidan.
 //
 // This does not take into account the RECENT component.
-async function CalculateMaimaiRate(
-	game: Game,
-	playtype: Playtype,
-	userID: integer,
-) {
-	const user = await db["game-stats-snapshots"].findOne(
+async function CalculateMaimaiRate(game: Game, playtype: Playtype, userID: integer) {
+	const user = (await db["game-stats-snapshots"].findOne(
 		{
 			userID,
 			game,
@@ -72,46 +64,44 @@ async function CalculateMaimaiRate(
 			projection: {
 				"classes.dan": 1,
 			},
+		}
+	)) as FindOneResult<UserGameStatsSnapshotDocument<"maimai:Single">>;
+
+	const danBonus = user?.classes.dan ? DAN_BONUSES[user.classes.dan] : 0;
+
+	const songs: Array<{ _id: integer; rate: number }> = await db["personal-bests"].aggregate([
+		{
+			$match: {
+				game,
+				playtype,
+				userID,
+				"calculatedData.rate": { $type: "number" },
+			},
 		},
-	) as FindOneResult<UserGameStatsSnapshotDocument<"maimai:Single">>;
-
-	const danBonus = user?.classes?.dan ? DAN_BONUSES[user.classes.dan] : 0;
-
-	const songs: Array<{ _id: integer; rate: number }> =
-		await db["personal-bests"].aggregate([
-			{
-				$match: {
-					game,
-					playtype,
-					userID,
-					"calculatedData.rate": { $type: "number" },
-				},
+		{
+			$group: {
+				_id: "$songID",
+				rate: { $max: "$calculatedData.rate" },
 			},
-			{
-				$group: {
-					_id: "$songID",
-					rate: { $max: "$calculatedData.rate" },
-				},
+		},
+		{
+			$sort: {
+				rate: -1,
 			},
-			{
-				$sort: {
-					rate: -1,
-				},
-			},
-			{
-				$limit: 570,
-			},
-		]);
+		},
+		{
+			$limit: 570,
+		},
+	]);
 
 	if (typeof songs === "undefined" || songs.length === 0) {
 		return null;
 	}
 
 	const best30 = songs.slice(0, 30).reduce((acc, cur) => acc + cur.rate, 0);
-	const history570 = best30 +
-		songs.slice(30).reduce((acc, cur) => acc + cur.rate, 0);
+	const history570 = best30 + songs.slice(30).reduce((acc, cur) => acc + cur.rate, 0);
 
-	return (best30 + history570 * 4 / 570) / 44 + danBonus;
+	return (best30 + (history570 * 4) / 570) / 44 + danBonus;
 }
 
 export const MAIMAI_IMPL: GPTServerImplementation<"maimai:Single"> = {
@@ -120,24 +110,20 @@ export const MAIMAI_IMPL: GPTServerImplementation<"maimai:Single"> = {
 			if (percent < 0) {
 				return "Percent cannot be negative.";
 			}
-			
+
 			if (percent > chart.data.maxPercent) {
 				return `Percent cannot be greater than ${chart.data.maxPercent} for this chart.`;
 			}
 
 			return true;
-		}
+		},
 	},
 	derivers: {
 		grade: ({ percent }) => GetGrade(MAIMAI_GBOUNDARIES, percent),
 	},
 	scoreCalcs: {
 		rate: (scoreData, chart) =>
-			MaimaiRate.calculate(
-				scoreData.percent,
-				chart.data.maxPercent,
-				chart.levelNum,
-			),
+			MaimaiRate.calculate(scoreData.percent, chart.data.maxPercent, chart.levelNum),
 	},
 	sessionCalcs: { rate: SessionAvgBest10For("rate") },
 	profileCalcs: {
@@ -186,21 +172,16 @@ export const MAIMAI_IMPL: GPTServerImplementation<"maimai:Single"> = {
 				pb.scoreData.grade,
 				pb.scoreData.percent,
 				MAIMAI_GBOUNDARIES[gradeIndex]!.name,
-				(v) => `${v.toFixed(2)}%`,
+				(v) => `${v.toFixed(2)}%`
 			),
 	},
 	goalOutOfFormatters: {
 		percent: GoalOutOfFmtPercent,
 	},
 	pbMergeFunctions: [
-		CreatePBMergeFor(
-			"largest",
-			"enumIndexes.lamp",
-			"Best Lamp",
-			(base, score) => {
-				base.scoreData.lamp = score.scoreData.lamp;
-			},
-		),
+		CreatePBMergeFor("largest", "enumIndexes.lamp", "Best Lamp", (base, score) => {
+			base.scoreData.lamp = score.scoreData.lamp;
+		}),
 	],
 	defaultMergeRefName: "Best Percent",
 	scoreValidators: [

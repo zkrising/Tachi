@@ -6,17 +6,17 @@ import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const MAIMAI_CONF = {
-    name: "maimai",
-    playtypes: ["Single"],
-    songData: z.strictObject({
+	name: "maimai",
+	playtypes: ["Single"],
+	songData: z.strictObject({
 		titleJP: z.string(),
 		artistJP: z.string(),
-        displayVersion: z.string(),
-    }),
+		displayVersion: z.string(),
+	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 const MaimaiDans = [
-    ClassValue("DAN_1", "初段", "1st Dan"),
+	ClassValue("DAN_1", "初段", "1st Dan"),
 	ClassValue("DAN_2", "二段", "2nd Dan"),
 	ClassValue("DAN_3", "三段", "3rd Dan"),
 	ClassValue("DAN_4", "四段", "4th Dan"),
@@ -114,7 +114,8 @@ export const MAIMAI_SINGLE_CONF = {
 	},
 	profileRatingAlgs: {
 		naiveRate: {
-			description: "Rating almost identical to the one in-game, except it does not take into account recent scores.",
+			description:
+				"Rating almost identical to the one in-game, except it does not take into account recent scores.",
 			formatter: ToDecimalPlaces(2),
 		},
 	},
@@ -123,20 +124,13 @@ export const MAIMAI_SINGLE_CONF = {
 	defaultSessionRatingAlg: "rate",
 	defaultProfileRatingAlg: "naiveRate",
 
-    // Similar to CHUNITHM, this game has a dynamic set of difficulties,
-    // with a song able to have as many UTAGE difficulties as it likes.
-    // This will also not be implemented for the same reasons as CHUNITHM.
-    // Sorry!
+	// Similar to CHUNITHM, this game has a dynamic set of difficulties,
+	// with a song able to have as many UTAGE difficulties as it likes.
+	// This will also not be implemented for the same reasons as CHUNITHM.
+	// Sorry!
 	difficulties: {
 		type: "FIXED",
-		order: [
-			"Easy",
-			"Basic",
-			"Advanced",
-			"Expert",
-			"Master",
-			"Re:Master",
-		],
+		order: ["Easy", "Basic", "Advanced", "Expert", "Master", "Re:Master"],
 		shorthand: {
 			Easy: "ESY",
 			Basic: "BAS",
@@ -162,13 +156,13 @@ export const MAIMAI_SINGLE_CONF = {
 	orderedJudgements: ["perfect", "great", "good", "miss"],
 
 	versions: {
-        finale: "FiNALE",
+		finale: "FiNALE",
 	},
 
 	chartData: z.strictObject({
-        inGameID: z.number(),
-        inGameStrID: z.string(),
-        maxPercent: z.number(),
+		inGameID: z.number(),
+		inGameStrID: z.string(),
+		maxPercent: z.number(),
 	}),
 
 	preferences: z.strictObject({}),
@@ -176,5 +170,3 @@ export const MAIMAI_SINGLE_CONF = {
 
 	supportedMatchTypes: ["songTitle", "tachiSongID", "inGameID"],
 } as const satisfies INTERNAL_GAME_PT_CONFIG;
-
-

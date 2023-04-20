@@ -1,4 +1,3 @@
-import { ToAPIURL } from "util/api";
 import { RFA } from "util/misc";
 import { heySplashes } from "util/splashes";
 import Divider from "components/util/Divider";

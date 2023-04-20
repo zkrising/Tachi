@@ -10,7 +10,7 @@ import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { MaimaiRate } from "rg-stats";
 import { GetGrade, MAIMAI_GBOUNDARIES } from "tachi-common";
 import { IsNullish } from "utils/misc";
-import type { GPTChartSpecificMetricValidators, GPTServerImplementation } from "game-implementations/types";
+import type { GPTServerImplementation } from "game-implementations/types";
 import type {
 	ExtractedClasses,
 	Game,
@@ -138,12 +138,11 @@ export const MAIMAI_IMPL: GPTServerImplementation<"maimai:Single"> = {
 	},
 	sessionCalcs: { rate: SessionAvgBest10For("rate") },
 	profileCalcs: {
-		rate: CalculateMaimaiRate,
-		naiveRate: ProfileAvgBestN("rate", 30),
+		naiveRate: CalculateMaimaiRate,
 	},
 	classDerivers: {
 		colour: (ratings) => {
-			const rate = ratings.rate;
+			const rate = ratings.naiveRate;
 
 			if (IsNullish(rate)) {
 				return null;

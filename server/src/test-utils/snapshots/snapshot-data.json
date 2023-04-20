@@ -48,6 +48,8 @@
 	"EX Score Validator Controller: excessive": "EX Score cannot be greater than 4512 for this chart.",
 	"EX Score Validator Keyboard: negative": "EX Score cannot be negative.",
 	"EX Score Validator Keyboard: excessive": "EX Score cannot be greater than 4512 for this chart.",
+	"Maimai Percent Validator: negative": "Percent cannot be negative.",
+	"Maimai Percent Validator: excessive": "Percent cannot be greater than 100.78 for this chart.",
 	"WACCA IMPL Validators: Should disallow ALL MARVELOUS with non-perfect score.": [
 		"ALL MARVELOUS scores must have a perfect score. Got 999999 instead."
 	],

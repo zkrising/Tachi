@@ -43,13 +43,13 @@ t.test("maimai Implementation", (t) => {
 		TestSnapshot(
 			t,
 			MAIMAI_IMPL.chartSpecificValidators.percent(-1, TestingMaimaiChart),
-			`maimai Percent Validator: negative`
+			`Maimai Percent Validator: negative`
 		);
 
 		TestSnapshot(
 			t,
 			MAIMAI_IMPL.chartSpecificValidators.percent(101, TestingMaimaiChart),
-			`maimai Percent Validator: over max percent`
+			`Maimai Percent Validator: excessive`
 		);
 	});
 

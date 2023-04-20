@@ -185,6 +185,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				SS: COLOUR_SET.paleOrange,
 				"SS+": COLOUR_SET.orange,
 				SSS: COLOUR_SET.teal,
+				"SSS+": COLOUR_SET.white,
 			},
 		},
 		classColours: {
@@ -199,6 +200,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				DAN_8: "warning",
 				DAN_9: "warning",
 				DAN_10: "warning",
+
 				KAIDEN: "warning",
 
 				SHINDAN_1: bg("purple"),

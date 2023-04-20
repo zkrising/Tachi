@@ -132,7 +132,15 @@ export const MUSECA_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"museca:Singl
 	傑G: 1_000_000,
 });
 
-const MAIMAI_COMMON_BOUNDARIES = {
+/**
+ * @note - The SSS+ rank boundary is chart-dependent - it is the maximum percent of a chart.
+ * 104 is just the upper limit of the maximum percent.
+ */
+export const MAIMAI_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"maimai:Single", "grade">>({
+	F: 0,
+	E: 10,
+	D: 20,
+	C: 40,
 	B: 60,
 	A: 80,
 	AA: 90,
@@ -142,23 +150,24 @@ const MAIMAI_COMMON_BOUNDARIES = {
 	SS: 99,
 	"SS+": 99.5,
 	SSS: 100,
-};
-
-export const MAIMAI_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"maimai:Single", "grade">>({
-	...MAIMAI_COMMON_BOUNDARIES,
-	F: 0,
-	E: 10,
-	D: 20,
-	C: 40,
+	// The actual SSS+ boundary is chart-dependent!
+	"SSS+": 104,
 });
 
 export const MAIMAIDX_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"maimaidx:Single", "grade">>({
-	...MAIMAI_COMMON_BOUNDARIES,
 	D: 0,
 	C: 50,
 	B: 60,
 	BB: 70,
 	BBB: 75,
+	A: 80,
+	AA: 90,
+	AAA: 94,
+	S: 97,
+	"S+": 98,
+	SS: 99,
+	"SS+": 99.5,
+	SSS: 100,
 	"SSS+": 100.5,
 });
 

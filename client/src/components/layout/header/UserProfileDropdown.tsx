@@ -41,7 +41,7 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 						<img
 							alt={"Pic"}
 							className="hidden"
-							style={{objectFit:"cover"}}
+							style={{ objectFit: "cover" }}
 							src={ToAPIURL("/users/me/pfp")}
 						/>
 					</span>

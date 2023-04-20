@@ -10,10 +10,10 @@ MutateCollection("charts-iidx.json", (charts) => {
 			chart.data["2dxtraSet"] === null &&
 			chart.difficulty !== "LEGGENDARIA" &&
 			chart.difficulty !== "BEGINNER"
-			) {
-				chart.versions.push("inf");
-			}
+		) {
+			chart.versions.push("inf");
 		}
+	}
 
-		return charts;
-	});
+	return charts;
+});

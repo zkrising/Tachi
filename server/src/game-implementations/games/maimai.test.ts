@@ -82,7 +82,7 @@ t.test("maimai Implementation", (t) => {
 		t.equal(
 			MAIMAI_IMPL.scoreCalcs.rate(scoreData, TestingMaimaiChart),
 			14.85,
-			"Basic rate check",
+			"Basic rate check"
 		);
 
 		t.end();

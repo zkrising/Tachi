@@ -383,7 +383,7 @@ export const TestingMaimaiChart: ChartDocument<"maimai:Single"> = {
 	playtype: "Single",
 	songID: 834,
 	versions: ["finale"],
-}
+};
 
 export const TestingMaimaiDXChart: ChartDocument<"maimaidx:Single"> = {
 	chartID: "fbde73d543f93cbad9ec67052a7165700c5c8df6",

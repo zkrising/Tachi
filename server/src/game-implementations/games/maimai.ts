@@ -118,6 +118,10 @@ async function CalculateMaimaiRate(
 export const MAIMAI_IMPL: GPTServerImplementation<"maimai:Single"> = {
 	chartSpecificValidators: {
 		percent: (percent, chart) => {
+			if (percent < 0) {
+				return `Percent must be non-negative. Got ${percent}.`;
+			}
+			
 			if (percent > chart.data.maxPercent) {
 				return `Percent (${percent}) is greater than max percent (${chart.data.maxPercent}).`;
 			}

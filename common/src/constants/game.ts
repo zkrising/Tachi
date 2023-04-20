@@ -42,6 +42,14 @@ export enum DDR_LAMPS {
 	MARVELOUS_FULL_COMBO = 6,
 }
 
+export enum MAIMAI_LAMPS {
+	FAILED = 0,
+	CLEAR = 1,
+	FULL_COMBO = 2,
+	ALL_PERFECT = 3,
+	ALL_PERFECT_PLUS = 4,
+}
+
 export enum MAIMAIDX_LAMPS {
 	FAILED = 0,
 	CLEAR = 1,

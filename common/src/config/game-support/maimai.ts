@@ -1,7 +1,6 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { FmtPercent } from "../../utils/util";
 import { ClassValue, ToDecimalPlaces } from "../config-utils";
-import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 

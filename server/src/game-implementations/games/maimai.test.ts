@@ -8,7 +8,7 @@ import { mkMockScore, mkMockPB, dmf } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
 import { TestSnapshot } from "test-utils/single-process-snapshot";
 import { TestingMaimaiChart } from "test-utils/test-data";
-import type { ProvidedMetrics, ScoreData } from "tachi-common";
+import type { ProvidedMetrics, ScoreData, integer } from "tachi-common";
 
 const logger = CreateLogCtx(__filename);
 
@@ -56,7 +56,7 @@ t.test("maimai Implementation", (t) => {
 	});
 
 	t.test("Grade Deriver", (t) => {
-		const f = (percent: number, expected: any) =>
+		const f = (percent: number, expected: string) =>
 			t.equal(
 				MAIMAI_IMPL.derivers.grade(dmf(baseMetrics, { percent }), TestingMaimaiChart),
 				expected,
@@ -76,6 +76,7 @@ t.test("maimai Implementation", (t) => {
 		f(99, "SS");
 		f(99.5, "SS+");
 		f(100, "SSS");
+		f(100.78, "SSS+");
 
 		t.end();
 	});
@@ -94,7 +95,7 @@ t.test("maimai Implementation", (t) => {
 	t.todo("Profile Calcs");
 
 	t.test("Colour Deriver", (t) => {
-		const f = (v: number | null, expected: any) =>
+		const f = (v: number | null, expected: string | null) =>
 			t.equal(
 				MAIMAI_IMPL.classDerivers.colour({ naiveRate: v }),
 				expected,
@@ -128,8 +129,8 @@ t.test("maimai Implementation", (t) => {
 			const f = (
 				k: keyof typeof MAIMAI_IMPL.goalProgressFormatters,
 				modifant: Partial<ScoreData<"maimai:Single">>,
-				goalValue: any,
-				expected: any
+				goalValue: integer,
+				expected: string
 			) =>
 				t.equal(
 					MAIMAI_IMPL.goalProgressFormatters[k](
@@ -146,7 +147,7 @@ t.test("maimai Implementation", (t) => {
 			f("grade", { grade: "S", percent: 97.5 }, GRADES.indexOf("SSS+"), "(S+)-0.50%");
 			f("grade", { grade: "SSS", percent: 100.2 }, GRADES.indexOf("SSS+"), "SSS+0.20%");
 			f("grade", { grade: "SSS+", percent: 100.78 }, GRADES.indexOf("SSS+"), "SSS+");
-			
+
 			f("percent", { percent: 98.23 }, 1_000_000, "98.23%");
 			f("lamp", { lamp: "CLEAR" }, LAMPS.indexOf("CLEAR"), "CLEAR");
 

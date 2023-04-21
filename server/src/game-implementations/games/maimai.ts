@@ -79,15 +79,18 @@ export const MAIMAI_IMPL: GPTServerImplementation<"maimai:Single"> = {
 			if (pb.scoreData.grade === "SSS+") {
 				return "SSS+";
 			}
-			
+
+			// gradeIndex is guaranteed to be a valid rank
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			const goalGrade = MAIMAI_GBOUNDARIES[gradeIndex]!.name;
+
 			// Grade SSS+ is chart-dependent, and it isn't possible to get the
 			// max score/max percent from only the percent.
 			//
 			// As such, if the goal is to SSS+, we have to return the current rank+delta.
-			if (MAIMAI_GBOUNDARIES[gradeIndex]!.name === "SSS+" && pb.scoreData.grade === "SSS") {
-				const boundary = MAIMAI_GBOUNDARIES.find(
-					(c) => c.name === "SSS"
-				)!.lowerBound;
+			if (goalGrade === "SSS+" && pb.scoreData.grade === "SSS") {
+				const boundary =
+					MAIMAI_GBOUNDARIES.find((c) => c.name === "SSS")?.lowerBound ?? 100;
 				const delta = pb.scoreData.percent - boundary;
 
 				return `SSS+${delta.toFixed(2)}%`;
@@ -97,7 +100,7 @@ export const MAIMAI_IMPL: GPTServerImplementation<"maimai:Single"> = {
 				MAIMAI_GBOUNDARIES,
 				pb.scoreData.grade,
 				pb.scoreData.percent,
-				MAIMAI_GBOUNDARIES[gradeIndex]!.name,
+				goalGrade,
 				(v) => `${v.toFixed(2)}%`
 			);
 		},
@@ -127,14 +130,16 @@ export const MAIMAI_IMPL: GPTServerImplementation<"maimai:Single"> = {
 			}
 		},
 		(s) => {
-			let { great, good, miss, perfect } = s.scoreData.judgements;
+			let { great, good, miss } = s.scoreData.judgements;
 
-			perfect ??= 0;
 			great ??= 0;
 			good ??= 0;
 			miss ??= 0;
 
 			if (s.scoreData.lamp === "ALL PERFECT") {
+				// `great`, `good` and `miss` are all coalesced to 0, so they're all
+				// numbers, even if eslint doesn't think so.
+				// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
 				if (great + good + miss > 0) {
 					return "Cannot have an ALL PERFECT with any non-perfect judgements.";
 				}

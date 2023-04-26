@@ -78,6 +78,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			ADVANCED: COLOUR_SET.orange,
 			EXPERT: COLOUR_SET.red,
 			MASTER: COLOUR_SET.purple,
+			ULTIMA: COLOUR_SET.vibrantRed,
 		},
 		ratingSystems: [],
 		scoreHeaders: [

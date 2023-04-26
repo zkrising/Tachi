@@ -46,7 +46,22 @@ export const CHUNITHM_SINGLE_CONF = {
 	derivedMetrics: {
 		grade: {
 			type: "ENUM",
-			values: ["D", "C", "B", "BB", "BBB", "A", "AA", "AAA", "S", "SS", "SSS"],
+			values: [
+				"D",
+				"C",
+				"B",
+				"BB",
+				"BBB",
+				"A",
+				"AA",
+				"AAA",
+				"S",
+				"S+",
+				"SS",
+				"SS+",
+				"SSS",
+				"SSS+",
+			],
 			minimumRelevantValue: "A",
 			description: "The grade this score was.",
 		},

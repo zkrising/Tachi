@@ -49,8 +49,11 @@ t.test("CHUNITHM Implementation", (t) => {
 		f(925_000, "AA");
 		f(950_000, "AAA");
 		f(975_000, "S");
+		f(990_000, "S+");
 		f(1_000_000, "SS");
+		f(1_005_000, "SS+");
 		f(1_007_500, "SSS");
+		f(1_009_000, "SSS+");
 
 		t.end();
 	});
@@ -83,10 +86,10 @@ t.test("CHUNITHM Implementation", (t) => {
 		f(7, "RED");
 		f(10, "PURPLE");
 		f(12, "COPPER");
-		f(13, "SILVER");
-		f(14, "GOLD");
-		f(14.5, "PLATINUM");
-		f(15, "RAINBOW");
+		f(13.25, "SILVER");
+		f(14.5, "GOLD");
+		f(15.25, "PLATINUM");
+		f(16, "RAINBOW");
 
 		t.end();
 	});

@@ -769,7 +769,7 @@
 			"Fb138e45b7b5d571c85c7ae6393831d26970e8fbd074ba87738b3e452bef6316e"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-paradiselost-levels",
 		"title": "CHUNITHM (Paradise Lost)"

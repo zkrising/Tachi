@@ -121,7 +121,7 @@ t.test("CHUNITHM Implementation", (t) => {
 					expected
 				);
 
-			f("grade", { grade: "S", score: 997_342 }, CHUNITHM_GRADES.SS, "SS-2.7K");
+			f("grade", { grade: "S+", score: 997_342 }, CHUNITHM_GRADES.SS, "SS-2.7K");
 			f("score", { score: 982_123 }, 1_000_000, "982,123");
 			f("lamp", { lamp: "CLEAR" }, CHUNITHM_LAMPS.CLEAR, "CLEAR");
 

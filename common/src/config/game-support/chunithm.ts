@@ -105,8 +105,8 @@ export const CHUNITHM_SINGLE_CONF = {
 	orderedJudgements: ["jcrit", "justice", "attack", "miss"],
 
 	versions: {
-		paradiselost: "Paradise Lost",
-		sun: "Sun",
+		paradiselost: "PARADISE LOST",
+		sun: "SUN",
 	},
 
 	chartData: z.strictObject({

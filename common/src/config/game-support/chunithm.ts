@@ -84,12 +84,13 @@ export const CHUNITHM_SINGLE_CONF = {
 	// awkward to implement, and I can't be bothered. Sorry!
 	difficulties: {
 		type: "FIXED",
-		order: ["BASIC", "ADVANCED", "EXPERT", "MASTER"],
+		order: ["BASIC", "ADVANCED", "EXPERT", "MASTER", "ULTIMA"],
 		shorthand: {
 			BASIC: "B",
 			ADVANCED: "A",
 			EXPERT: "E",
 			MASTER: "M",
+			ULTIMA: "U",
 		},
 		default: "MASTER",
 	},
@@ -105,6 +106,7 @@ export const CHUNITHM_SINGLE_CONF = {
 
 	versions: {
 		paradiselost: "Paradise Lost",
+		sun: "Sun",
 	},
 
 	chartData: z.strictObject({

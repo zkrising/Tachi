@@ -160,7 +160,7 @@ function releaseDateToVersion(date: Date): string {
 					displayVersion: releaseDateToVersion(new Date(chunirecSong.meta.release)),
 					genre: chunithmSong.catname,
 				},
-				id: Number(chunithmSong.id),
+				id,
 				searchTerms: aliases.get(chunithmSong.title) ?? [],
 				title: chunithmSong.title,
 			});

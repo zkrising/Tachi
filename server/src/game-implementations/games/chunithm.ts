@@ -16,7 +16,7 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 		rating: (scoreData, chart) => CHUNITHMRating.calculate(scoreData.score, chart.levelNum),
 	},
 	sessionCalcs: { naiveRating: SessionAvgBest10For("rating") },
-	profileCalcs: { naiveRating: ProfileAvgBestN("rating", 20) },
+	profileCalcs: { naiveRating: ProfileAvgBestN("rating", 30) },
 	classDerivers: {
 		colour: (ratings) => {
 			const rating = ratings.naiveRating;

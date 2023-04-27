@@ -2,8 +2,9 @@ import { APIFetchV1 } from "util/api";
 import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useEffect, useState } from "react";
-import { UserDocument } from "tachi-common";
+import { UserDocument, UserSettingsDocument } from "tachi-common";
 import { JustChildren } from "types/react";
+import { UserSettingsContext } from "context/UserSettingsContext";
 import { SplashScreen } from "./SplashScreen";
 
 export function LoadingScreen({ children }: JustChildren) {
@@ -12,6 +13,7 @@ export function LoadingScreen({ children }: JustChildren) {
 	const [broke, setBroke] = useState("");
 
 	const { setUser } = useContext(UserContext);
+	const { setSettings } = useContext(UserSettingsContext);
 
 	useEffect(() => {
 		if (!localStorage.getItem("isLoggedIn")) {
@@ -27,18 +29,38 @@ export function LoadingScreen({ children }: JustChildren) {
 			4_000
 		);
 
-		Promise.all([
-			APIFetchV1<UserDocument>("/users/me").then((rj) => {
+		APIFetchV1<UserDocument>("/users/me")
+			.then((rj) => {
 				if (rj.success) {
 					setUser(rj.body);
+					return rj.body;
 				} else {
 					localStorage.removeItem("isLoggedIn");
+					return null;
 				}
-			}),
-		])
-			.then(() => {
-				setLoading(false);
-				clearTimeout(timeout);
+			})
+			.then((user) => {
+				if (user !== null) {
+					APIFetchV1<UserSettingsDocument>(`/users/${user.id}/settings`)
+						.then((rj) => {
+							if (rj.success) {
+								setSettings(rj.body);
+							} else {
+								setSettings(null);
+							}
+							setLoading(false);
+						})
+						.catch((err) => {
+							console.error(err);
+							setBroke(
+								`${TachiConfig.name} is currently down, sadly. Check back in a while, or we might be doing a quick server restart. Sorry!`
+							);
+							clearTimeout(timeout);
+						});
+				} else {
+					setLoading(false);
+					clearTimeout(timeout);
+				}
 			})
 			.catch((err) => {
 				console.error(err);

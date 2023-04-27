@@ -50,7 +50,7 @@ export const SeedsQuestCells: CellsRenderFN<QuestWithRelated> = ({
 
 							if (goal) {
 								return (
-									<div className="text-left">
+									<div className="text-start">
 										<InnerQuestSectionGoal goal={goal} />
 										{ref.note && <Muted>{ref.note}</Muted>}
 									</div>

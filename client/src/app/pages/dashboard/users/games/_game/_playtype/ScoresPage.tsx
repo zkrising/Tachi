@@ -54,26 +54,26 @@ export default function ScoresPage({
 	return (
 		<div className="row">
 			<div className="col-12 text-center">
-				<div className="btn-group d-flex justify-content-center mb-4">
-					<SelectLinkButton to={`${base}/scores`}>
-						<Icon type="trophy" />
+				<div className="btn-group d-flex mb-4">
+					<SelectLinkButton to={`${base}/scores`} className="w-25">
+						<Icon type="trophy" className="me-1" />
 						Best 100 PBs
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/scores/history`}>
-						<Icon type="history" />
+					<SelectLinkButton to={`${base}/scores/history`} className="w-25">
+						<Icon type="history" className="me-1" />
 						Recent 100 Scores
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/scores/most-played`}>
-						<Icon type="mortar-pestle" />
+					<SelectLinkButton to={`${base}/scores/most-played`} className="w-25">
+						<Icon type="mortar-pestle" className="me-1" />
 						Most Played
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/scores/all`}>
-						<Icon type="database" />
+					<SelectLinkButton to={`${base}/scores/all`} className="w-25">
+						<Icon type="database" className="me-1" />
 						All PBs
 					</SelectLinkButton>
 				</div>
 			</div>
-			<div className="col-12 mt-4">
+			<div className="col-12">
 				<Switch>
 					<Route exact path="/u/:userID/games/:game/:playtype/scores">
 						<>
@@ -126,13 +126,14 @@ function AlgSelector({
 	setAlg: SetState<ScoreRatingAlgorithms[GPTString]>;
 }) {
 	return (
-		<div className="row justify-content-center mb-4">
-			<div className="form-group">
-				<span className="form-group-prefix">Best 100 PBs according to </span>
+		<div className="row justify-content-end">
+			<div className="col-2 text-end align-self-center">Top 100 according to</div>
+			<div className="col-2">
 				<select
 					className="form-control"
 					value={alg}
 					onChange={(e) => setAlg(e.target.value as any)}
+					title="Algorithm Select"
 				>
 					{Object.keys(gptConfig.scoreRatingAlgs).map((e) => (
 						<option key={e}>{e}</option>
@@ -184,14 +185,8 @@ function PBsOverview({
 
 	return (
 		<div className="row">
-			<div className="col-12">
-				<DebounceSearch
-					className="form-control-lg"
-					setSearch={setSearch}
-					placeholder="Search all PBs..."
-				/>
-			</div>
-			<div className="col-12 mt-8">
+			<div className="col-12 mt-4">
+				<DebounceSearch setSearch={setSearch} placeholder="Search all PBs..." />
 				{search === "" ? (
 					<LoadingWrapper style={{ height: 500 }} {...{ error, dataset: data }}>
 						<PBTable
@@ -300,12 +295,12 @@ function ScoresOverview({ reqUser, game, playtype }: UGPT) {
 		<div className="row">
 			<div className="col-12">
 				<DebounceSearch
-					className="form-control-lg"
+					className="form-control"
 					setSearch={setSearch}
 					placeholder="Search all individual scores..."
 				/>
 			</div>
-			<div className="col-12 mt-8">
+			<div className="col-12 mt-2">
 				{search === "" ? (
 					<LoadingWrapper style={{ height: 500 }} {...{ dataset: data, error }}>
 						<ScoreTable dataset={data!} game={game} playtype={playtype as any} />

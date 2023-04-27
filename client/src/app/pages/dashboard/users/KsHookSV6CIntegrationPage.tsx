@@ -56,7 +56,7 @@ function KsHookSV6CForm({
 
 	return (
 		<form
-			className="text-left"
+			className="text-start"
 			onSubmit={async (e) => {
 				e.preventDefault();
 

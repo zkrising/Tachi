@@ -122,8 +122,8 @@ export default function RegisterPage() {
 				</div>
 				<div className="text-center mb-10 mb-lg-20">
 					<h3 className="font-size-h1">Register</h3>
-					<span className="font-weight-bold text-dark-50">Have an account?</span>
-					<Link to="/login" className="font-weight-bold ml-2">
+					<span className="fw-bold text-dark-50">Have an account?</span>
+					<Link to="/login" className="fw-bold m-2">
 						Sign in!
 					</Link>
 				</div>
@@ -173,12 +173,12 @@ export default function RegisterPage() {
 						)}
 
 						<div className="justify-content-center d-flex mt-4">
-							<Link to="/" tabIndex={-1} className="mr-auto btn btn-outline-danger">
+							<Link to="/" tabIndex={-1} className="me-auto btn btn-outline-danger">
 								Back
 							</Link>
 							<Button
 								disabled={disabled}
-								className="ml-auto"
+								className="ms-auto"
 								onClick={() => setReadRules("acknowledged")}
 							>
 								{btnText}
@@ -283,10 +283,10 @@ function RegisterForm({
 				{err}
 			</Form.Group>
 			<Form.Group className="justify-content-center d-flex pt-4">
-				<Link to="/" tabIndex={7} className="mr-auto btn btn-outline-danger">
+				<Link to="/" tabIndex={7} className="me-auto btn btn-outline-danger">
 					Back
 				</Link>
-				<Button tabIndex={6} type="submit" className="ml-auto">
+				<Button tabIndex={6} type="submit" className="ms-auto">
 					Register!
 				</Button>
 			</Form.Group>

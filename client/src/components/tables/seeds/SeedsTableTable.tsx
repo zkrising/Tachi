@@ -2,7 +2,7 @@ import { StrSOV } from "util/sorts";
 import { SearchFunctions } from "util/ztable/search";
 import Muted from "components/util/Muted";
 import React from "react";
-import { Badge } from "react-bootstrap";
+import Badge from "react-bootstrap/Badge";
 import { FormatGame } from "tachi-common";
 import { CellsRenderFN, TableWithRelated } from "types/seeds";
 import { Header } from "../components/TachiTable";
@@ -40,11 +40,11 @@ export const SeedsTableCells: CellsRenderFN<TableWithRelated> = ({ data }) => (
 			<br />
 			<Muted>{data.description}</Muted>
 			{(data.inactive || data.default) && <br />}
-			{data.default && <Badge variant="success">DEFAULT</Badge>}
-			{data.inactive && <Badge variant="warning">INACTIVE</Badge>}
+			{data.default && <Badge bg="success">DEFAULT</Badge>}
+			{data.inactive && <Badge bg="warning">INACTIVE</Badge>}
 		</td>
 		<td>{FormatGame(data.game, data.playtype)}</td>
-		<td className="text-left">
+		<td className="text-start">
 			<div style={{ maxHeight: "200px", overflowY: "auto" }}>
 				{data.folders.map((e) => {
 					const folder = data.__related.folders[e];

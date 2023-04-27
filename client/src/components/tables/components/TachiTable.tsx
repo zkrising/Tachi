@@ -130,24 +130,26 @@ export default function TachiTable<D>({
 	const { settings } = useContext(UserSettingsContext);
 
 	return (
-		<div className="justify-content-center w-100">
-			<div className="row">
+		<div className="justify-content-center w-100 mt-4">
+			<div className="row justify-content-between">
 				{!noTopDisplayStr && (
 					<div className="d-none d-lg-flex col-lg-6 align-self-center">{displayStr}</div>
 				)}
 				{searchFunctions && (
-					<div className="col-12 col-lg-3 ml-auto input-group">
-						<input
-							className="form-control filter-directives-enabled"
-							onChange={(e) => setSearch(e.target.value)}
-							type="text"
-							placeholder={`Filter ${entryName}`}
-							value={search}
-						/>
-						<FilterDirectivesIndicator
-							searchFunctions={searchFunctions}
-							doc={dataset[0]}
-						/>
+					<div className="col-12 order-md-1 col-lg-3 ml-auto">
+						<div className="input-group">
+							<input
+								className="form-control filter-directives-enabled"
+								onChange={(e) => setSearch(e.target.value)}
+								type="text"
+								placeholder={`Filter ${entryName}`}
+								value={search}
+							/>
+							<FilterDirectivesIndicator
+								searchFunctions={searchFunctions}
+								doc={dataset[0]}
+							/>
+						</div>
 					</div>
 				)}
 			</div>
@@ -182,7 +184,7 @@ export default function TachiTable<D>({
 							</Button>
 						)}
 					</div>
-					<div className="col-lg-4 ml-auto text-right">
+					<div className="col-lg-4 ml-auto text-end">
 						<div className="btn-group">
 							<Button
 								variant="secondary"

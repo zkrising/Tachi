@@ -1,7 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 // adapted from https://gist.github.com/lou/571b7c0e7797860d6c555a9fdc0496f9
-import { Overlay, Tooltip } from "react-bootstrap";
+import Overlay from "react-bootstrap/Overlay";
+import Tooltip from "react-bootstrap/Tooltip";
 import React, { useEffect, useRef, useState } from "react";
 import { nanoid } from "nanoid";
 

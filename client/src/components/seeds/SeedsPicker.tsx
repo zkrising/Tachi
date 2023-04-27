@@ -136,7 +136,7 @@ export default function SeedsPicker({
 						</span>
 						{body && (
 							<span
-								className="ml-4 badge badge-secondary"
+								className="ml-4 badge bg-secondary"
 								onClick={() => setShowBody(!showBody)}
 							>
 								{showBody ? (
@@ -161,7 +161,7 @@ export default function SeedsPicker({
 									</>
 								)}
 							</div>
-							<div className="text-right" style={{ flex: 1 }}>
+							<div className="text-end" style={{ flex: 1 }}>
 								{FormatTime(Date.parse(rev.c.commit.author.date))}
 							</div>
 						</div>
@@ -430,7 +430,7 @@ function RevisionComponent({
 					</span>
 					{body && (
 						<span
-							className="ml-4 badge badge-secondary"
+							className="ml-4 badge bg-secondary"
 							onClick={() => setShowBody(!showBody)}
 						>
 							{showBody ? (
@@ -464,7 +464,7 @@ function RevisionComponent({
 					</div>
 				</div>
 
-				<span className="text-muted font-italic text-right">
+				<span className="text-muted font-italic text-end">
 					{FormatTime(Date.parse(rev.commit.author.date))}
 				</span>
 			</div>

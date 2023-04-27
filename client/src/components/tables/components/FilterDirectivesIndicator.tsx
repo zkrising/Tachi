@@ -7,6 +7,7 @@ import StickyPopover from "components/util/StickyPopover";
 import { nanoid } from "nanoid";
 import React, { useState } from "react";
 import { Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
+import Icon from "components/util/Icon";
 
 function AdditionalTableProps({
 	value,
@@ -66,11 +67,9 @@ export default function FilterDirectivesIndicator<D>({
 					</>
 				}
 			>
-				<div className="input-group-append" onClick={() => setModalShow(true)}>
-					<small className="input-group-text">
-						<i className="fas fa-bolt" style={{ fontSize: "0.8rem" }} />
-					</small>
-				</div>
+				<button className="btn btn-secondary" onClick={() => setModalShow(true)}>
+					<Icon type="bolt" />
+				</button>
 			</StickyPopover>
 			<Modal show={modalShow} onHide={() => setModalShow(false)} size="xl">
 				<Modal.Header closeButton>

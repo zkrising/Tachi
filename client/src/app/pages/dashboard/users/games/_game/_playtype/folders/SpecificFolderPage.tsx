@@ -396,7 +396,7 @@ function TimelineElement({
 						<td>
 							<b>#{index}</b>
 							{Date.now() - scoreData.timeAdded < ONE_DAY && (
-								<span className="ml-2 label label-inline label-primary font-weight-bolder">
+								<span className="ml-2 label label-inline label-primary fw-bolder">
 									NEW!
 								</span>
 							)}
@@ -666,7 +666,7 @@ function TierlistInfoBucketValues({
 		return (
 			<tr>
 				<DifficultyCell game={game} chart={tierlistInfo.chart} alwaysShort noTierlist />
-				<td className="text-left">
+				<td className="text-start">
 					<Link className="gentle-link" to={CreateChartLink(data, game)}>
 						{tierlistInfo.chart.__related.song.title}
 					</Link>{" "}

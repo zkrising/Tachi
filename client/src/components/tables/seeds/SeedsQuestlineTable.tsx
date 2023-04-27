@@ -38,7 +38,7 @@ export const SeedsQuestlineCells: CellsRenderFN<QuestlineWithRelated> = ({ data 
 			<Muted>{data.desc}</Muted>
 		</td>
 		<td>{FormatGame(data.game, data.playtype)}</td>
-		<td className="text-left">
+		<td className="text-start">
 			<div style={{ maxHeight: "200px", overflowY: "auto" }}>
 				{data.quests.map((e) => {
 					const quest = data.__related.quests[e];

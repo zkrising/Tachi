@@ -12,7 +12,7 @@ export default function ProfileBadges({ user }: { user: UserDocument }) {
 			))}
 			{user.isSupporter && (
 				<span className="mt-1">
-					<Badge variant="warning">Supporter!</Badge>
+					<Badge bg="warning">Supporter!</Badge>
 				</span>
 			)}
 		</>
@@ -21,11 +21,11 @@ export default function ProfileBadges({ user }: { user: UserDocument }) {
 
 export function ProfileBadge({ variant }: { variant: UserBadges }) {
 	if (variant === "alpha") {
-		return <Badge variant="warning">Alpha Tester</Badge>;
+		return <Badge bg="warning">Alpha Tester</Badge>;
 	} else if (variant === "beta") {
-		return <Badge variant="info">Beta Tester</Badge>;
+		return <Badge bg="info">Beta Tester</Badge>;
 	} else if (variant === "dev-team") {
-		return <Badge variant="primary">Dev Team</Badge>;
+		return <Badge bg="primary">Dev Team</Badge>;
 	} else if (variant === "contributor") {
 		// discord contributor colour
 		return <Badge style={{ backgroundColor: "#1abc9c" }}>Contributor</Badge>;

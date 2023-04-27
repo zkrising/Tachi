@@ -328,7 +328,7 @@ function OAuthClientRow({ client, clients, setClients }: OAuthClientProps) {
 			<Divider />
 
 			<h2 className="mb-4">{client.name}</h2>
-			<div className="text-left">
+			<div className="text-start">
 				<h5>
 					Client ID: <code>{client.clientID}</code>
 				</h5>
@@ -354,7 +354,7 @@ function OAuthClientRow({ client, clients, setClients }: OAuthClientProps) {
 					File Format:{" "}
 					<textarea
 						readOnly
-						className="w-100 mt-2 text-monospace"
+						className="w-100 mt-2 font-monospace"
 						value={client.apiKeyTemplate ?? "%%TACHI_KEY%%"}
 					/>
 				</h5>
@@ -945,7 +945,7 @@ function APIKeyRow({
 						setApiKeys(apiKeys.filter((e) => e.token !== apiKey.token));
 					}
 				}}
-				className="float-right"
+				className="float-end"
 				variant="danger"
 			>
 				{sure ? "Are you really sure?" : "Delete Key"}

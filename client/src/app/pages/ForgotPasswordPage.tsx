@@ -62,14 +62,14 @@ export default function ForgotPasswordPage() {
 								<span
 									onClick={() => HistorySafeGoBack(history)}
 									tabIndex={4}
-									className="mr-auto btn btn-outline-danger"
+									className="me-auto btn btn-outline-danger"
 								>
 									Back
 								</span>
 								<Button
 									tabIndex={3}
 									type="submit"
-									className="ml-auto"
+									className="ms-auto"
 									disabled={email === ""}
 								>
 									Send Reset Link

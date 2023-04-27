@@ -52,7 +52,7 @@ export const SeedsBMSCourseLookupCells: CellsRenderFN<BMSCourseWithRelated> = ({
 		<td>
 			<strong>{data.title}</strong>
 		</td>
-		<td className="text-left">
+		<td className="text-start">
 			{data.__related.entries.map((e, i) => (
 				<div key={i} className="d-flex w-100">
 					{typeof e === "string" ? (

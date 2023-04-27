@@ -157,7 +157,7 @@ export function RenderGoalCriteriaPicker({
 					))}
 				</Select>
 				is greater than or equal to
-				<div className="form-group" style={{ display: "inline" }}>
+				<div className="mb-2" style={{ display: "inline" }}>
 					<CriteriaValuePicker
 						criteria={criteria}
 						game={game}

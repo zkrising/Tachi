@@ -68,7 +68,7 @@ export default function GoalSubInfo({ dataset }: { dataset: GoalSubDataset } & G
 				{directGoals.length !== 0 && (
 					<div className="pl-6">
 						{directGoals.map((e, i) => (
-							<div className="pb-2 text-left" key={i}>
+							<div className="pb-2 text-start" key={i}>
 								<InnerQuestSectionGoal
 									goal={e.__related.goal}
 									dependencies={e.__related.parentQuests.map((e) => e.name)}
@@ -81,7 +81,7 @@ export default function GoalSubInfo({ dataset }: { dataset: GoalSubDataset } & G
 				{folderGoals.length !== 0 && (
 					<div className="pl-6">
 						{folderGoals.map((e, i) => (
-							<div className="pb-2 text-left" key={i}>
+							<div className="pb-2 text-start" key={i}>
 								<InnerQuestSectionGoal
 									goal={e.__related.goal}
 									dependencies={e.__related.parentQuests.map((e) => e.name)}

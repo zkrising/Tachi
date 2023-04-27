@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { SetState } from "types/react";
+import Icon from "./Icon";
 
 export default function DebounceSearch({
 	className,
@@ -19,7 +20,7 @@ export default function DebounceSearch({
 		<div className="input-group">
 			<input
 				autoFocus={autoFocus}
-				className={`form-control ${className}`}
+				className={`form-control form-control-lg ${className ? { className } : ""}`}
 				type="text"
 				value={uiSearch}
 				onChange={(e) => {
@@ -39,11 +40,9 @@ export default function DebounceSearch({
 				}}
 				placeholder={placeholder}
 			/>
-			<div className="input-group-append">
-				<span className="input-group-text">
-					<i className="fas fa-search"></i>
-				</span>
-			</div>
+			<button className="btn btn-primary">
+				<Icon type="search" style={{ color: "#000" }} />
+			</button>
 		</div>
 	);
 }

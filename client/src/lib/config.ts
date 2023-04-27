@@ -27,24 +27,32 @@ try {
 	document.open();
 	document.write(`
 	<style>
+		html {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
 		.box {
 			display: flex;
 			justify-content: center;
+			width: 100%;
+			height: 100%;
 			align-items: center;
-			width: 100vw;
-			height: 100vh;
+			margin: 0;
+			padding: 0;
+			inset: 0;
 			flex-direction: column;
 			text-align: center;
+			font-family: system-ui, -apple-system, sans-serif;
 			position: absolute;
-		}
-
+		}	
 		ul {
 			text-align: left;
 		}
 	</style>
 	<div class="box">
 		<h1>Failed to connect!</h1>
-		<div>Welp. Looks like we're down. Sorry about that.</div>
+		<div style="max-width: 720px">Welp. Looks like we're down. Sorry about that.</div>
 		<div>Chances are, this is just a temporary outage and will be fixed soon.</div>
 		<div style="font-size: 1.25rem; margin-top: 1rem; margin-bottom: 1rem;">
 			Please be patient, <a href="https://github.com/TNG-dev/Tachi">Tachi is maintained by a very small team.</a>
@@ -53,13 +61,12 @@ try {
 		${
 			process.env.VITE_IS_LOCAL_DEV
 				? `
-			<hr />
-			<div><b>You're in local development mode.</b>
-			<ul style="font-size: 2rem;">
-				<li>Have you accepted the HTTPS certificates for <a href="${ToAPIURL(
+			<div style="max-width: 720px; margin-top: 1.75em"><b>You're in local development mode.</b>
+			<p style="font-size: 1.75rem;">
+				Have you accepted the HTTPS certificates for <a href="${ToAPIURL(
 					"/status"
-				)}">the server?</a>. If not, the site won't load.</li>
-			</ul>
+				)}">the server?</a> If not, the site won't load.
+			</p>
 		`
 				: ""
 		}

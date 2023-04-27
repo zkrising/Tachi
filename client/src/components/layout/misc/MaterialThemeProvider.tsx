@@ -6,7 +6,7 @@ import { JustChildren } from "types/react";
 
 const theme = createTheme({
 	typography: {
-		fontFamily: "Poppins",
+		fontFamily: "var(--bs-font-sans-serif)",
 	},
 	palette: {
 		secondary: {

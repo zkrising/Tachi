@@ -13,14 +13,14 @@ For more information on what metrics are and how they work, see [TODO]!
 
 | Metric Name | Type | Description |
 | :: | :: | :: |
-| `percent` | Decimal | The percent this score was worth. Sometimes called 'rate' in game. This is between 0 and 104 (upper bound, each chart has its own maximum percent) |
+| `percent` | Decimal | The percent this score was worth. Sometimes called 'rate' in game. This is between 0 and the chart-specific maximum. |
 | `lamp` | "FAILED", "CLEAR", "FULL COMBO", "ALL PERFECT", "ALL PERFECT+" | The type of clear this score was. |
 
 ### Derived Metrics
 
 | Metric Name | Type | Description |
 | :: | :: | :: |
-| `grade` | "D", "C", "B", "A", "AA", "AAA", "S", "S+", "SS", "SS+", "SSS", "SSS+" | The grade this score was. |
+| `grade` | "F", "E", "D", "C", "B", "A", "AA", "AAA", "S", "S+", "SS", "SS+", "SSS", "SSS+" | The grade this score was. |
 
 ### Optional Metrics
 
@@ -59,7 +59,7 @@ The default rating algorithm is `naiveRate`.
 
 | Name | Description |
 | :: | :: |
-| `naiveRate` | An average of your 30 best ratings. This is different from the rating in-game, as that is song-based and takes into account recent scores. |
+| `naiveRate` | An average of your 30 best ratings. This is different from the rating in-game, as that takes into account recent scores and a bonus based on the dan achieved. |
 
 ## Difficulties
 
@@ -73,8 +73,8 @@ The default rating algorithm is `naiveRate`.
 
 | Name | Type | Values |
 | :: | :: | :: |
-| `colour` | DERIVED | WHITE, BLUE, GREEN, YELLOW, RED, PURPLE, BRONZE, SILVER, GOLD, RAINBOW
-| `dan` | PROVIDED | DAN_1, DAN_2, DAN_3, DAN_4, DAN_5, DAN_6, DAN_7, DAN_8, DAN_9, DAN_10, KAIDEN, SHINDAN_1, SHINDAN_2, SHINDAN_3, SHINDAN_4, SHINDAN_5, SHINDAN_6, SHINDAN_7, SHINDAN_8, SHINDAN_9, SHINDAN_10, SHINKAIDEN
+| `colour` | DERIVED | WHITE, BLUE, GREEN, YELLOW, RED, PURPLE, BRONZE, SILVER, GOLD, RAINBOW |
+| `dan` | PROVIDED | DAN_1, DAN_2, DAN_3, DAN_4, DAN_5, DAN_6, DAN_7, DAN_8, DAN_9, DAN_10, KAIDEN, SHINDAN_1, SHINDAN_2, SHINDAN_3, SHINDAN_4, SHINDAN_5, SHINDAN_6, SHINDAN_7, SHINDAN_8, SHINDAN_9, SHINDAN_10, SHINKAIDEN |
 
 ## Versions
 
@@ -86,3 +86,4 @@ The default rating algorithm is `naiveRate`.
 
 - `songTitle`
 - `tachiSongID`
+- `inGameID`

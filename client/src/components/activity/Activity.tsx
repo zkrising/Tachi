@@ -16,7 +16,7 @@ import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
 	FormatChart,
@@ -37,7 +37,7 @@ import {
 	ClumpedActivitySession,
 } from "types/tachi";
 import { InnerQuestSectionGoal } from "components/targets/quests/Quest";
-import ProfilePicture, { ProfilePictureSmall } from "components/user/ProfilePicture";
+import { ProfilePictureSmall } from "components/user/ProfilePicture";
 import SupporterIcon from "components/util/SupporterIcon";
 
 // Records activity for a group of users on a GPT. Also used for single users.
@@ -135,7 +135,7 @@ function ActivityInner({
 	return (
 		<Col xs={12} className="text-center">
 			Tip: You can click on an event to learn more about it.
-			<div className="timeline activity-timeline timeline-2 mt-4">
+			<div className="activity-timeline mt-4">
 				<div className="timeline-bar"></div>
 				{data.map((e) => {
 					const user = userMap.get(e.type === "SCORES" ? e.scores[0]?.userID : e.userID);
@@ -188,54 +188,45 @@ function ActivityInner({
 					}
 				})}
 				<div className="timeline-item">
-					<div className="timeline-item">
-						<div className="timeline-badge bg-success"></div>
-						<div
-							className="timeline-content d-flex"
-							style={{
-								flexDirection: "column",
-								flexWrap: "wrap",
-								marginRight: "2rem",
-							}}
-						>
-							{exhausted ? (
-								<>No more activity. This is the end of the road!</>
-							) : (
-								<Button
-									variant="outline-primary"
-									onClick={() => {
-										let lastTimestamp;
-										const lastThing = data.at(-1)!;
+					<div className="timeline-dot bg-success"></div>
+					<div className="timeline-content w-100 align-middle text-center">
+						{exhausted ? (
+							<>No more activity. This is the end of the road!</>
+						) : (
+							<a
+								className="text-primary"
+								onClick={() => {
+									let lastTimestamp;
+									const lastThing = data.at(-1)!;
 
-										switch (lastThing.type) {
-											case "SCORES":
-												lastTimestamp = lastThing.scores[0]?.timeAchieved;
-												break;
-											case "CLASS_ACHIEVEMENT":
-												lastTimestamp = lastThing.timeAchieved;
-												break;
-											case "SESSION":
-												lastTimestamp = lastThing.timeStarted;
-												break;
-											case "GOAL_ACHIEVEMENTS":
-												lastTimestamp = lastThing.goals[0]?.timeAchieved;
-												break;
-											case "QUEST_ACHIEVEMENT":
-												lastTimestamp = lastThing.sub.timeAchieved;
-										}
+									switch (lastThing.type) {
+										case "SCORES":
+											lastTimestamp = lastThing.scores[0]?.timeAchieved;
+											break;
+										case "CLASS_ACHIEVEMENT":
+											lastTimestamp = lastThing.timeAchieved;
+											break;
+										case "SESSION":
+											lastTimestamp = lastThing.timeStarted;
+											break;
+										case "GOAL_ACHIEVEMENTS":
+											lastTimestamp = lastThing.goals[0]?.timeAchieved;
+											break;
+										case "QUEST_ACHIEVEMENT":
+											lastTimestamp = lastThing.sub.timeAchieved;
+									}
 
-										if (!lastTimestamp) {
-											alert("Failed. What?");
-											return;
-										}
+									if (!lastTimestamp) {
+										alert("Failed. What?");
+										return;
+									}
 
-										fetchMoreFrom(lastTimestamp);
-									}}
-								>
-									Load More...
-								</Button>
-							)}
-						</div>
+									fetchMoreFrom(lastTimestamp);
+								}}
+							>
+								Load More...
+							</a>
+						)}
 					</div>
 				</div>
 			</div>
@@ -295,21 +286,20 @@ function ScoresActivity({
 	}));
 
 	return (
-		<div className="timeline-item timeline-hover my-4">
-			<div className="timeline-badge bg-warning"></div>
+		<div className="timeline-item my-4">
+			<div className="timeline-dot bg-warning"></div>
 			<div className="timeline-content">
-				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
+				<div
+					className="timeline-content-inner"
+					onClick={() => setShow(!show)}
+					style={{ cursor: "pointer" }}
+				>
 					<div className="timeline-content-title">
-						<span className="mr-2">
+						<span className="me-2">
 							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
 						</span>
-						<Icon
-							type={`chevron-${show ? "down" : "right"}`}
-							style={{
-								fontSize: "0.75rem",
-							}}
-						/>
-						<span style={{ fontSize: "1.15rem" }} className="ml-2">
+						<Icon type="chevron-right" show={show ? true : false} />
+						<span style={{ fontSize: "1.15rem" }} className="ms-2">
 							<UGPTLink reqUser={user} game={game} playtype={playtype} /> highlighted{" "}
 							{subMessage}!
 						</span>
@@ -324,7 +314,7 @@ function ScoresActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.scores[0].timeAchieved ?? 0)}
 						<br />
-						<span className="text-muted font-italic text-right">
+						<span className="text-muted fst-italic text-end">
 							{FormatTime(data.scores[0].timeAchieved ?? 0)}
 						</span>
 					</div>
@@ -377,21 +367,20 @@ function GoalActivity({
 	}
 
 	return (
-		<div className="timeline-item timeline-hover my-4">
-			<div className="timeline-badge bg-warning"></div>
+		<div className="timeline-item my-4">
+			<div className="timeline-dot bg-warning"></div>
 			<div className="timeline-content">
-				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
+				<div
+					className="timeline-content-inner"
+					onClick={() => setShow(!show)}
+					style={{ cursor: "pointer" }}
+				>
 					<div className="timeline-content-title">
-						<span className="mr-2">
+						<span className="me-2">
 							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
 						</span>
-						<Icon
-							type={`chevron-${show ? "down" : "right"}`}
-							style={{
-								fontSize: "0.75rem",
-							}}
-						/>
-						<span style={{ fontSize: "1.15rem" }} className="ml-2">
+						<Icon type="chevron-right" show={show ? true : false} />
+						<span style={{ fontSize: "1.15rem" }} className="ms-2">
 							<UGPTLink reqUser={user} game={game} playtype={playtype} /> achieved{" "}
 							{subMessage}!
 						</span>
@@ -406,7 +395,7 @@ function GoalActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.goals[0]?.timeAchieved ?? 0)}
 						<br />
-						<span className="text-muted font-italic text-right">
+						<span className="text-muted fst-italic text-end">
 							{FormatTime(data.goals[0]?.timeAchieved ?? 0)}
 						</span>
 					</div>
@@ -445,13 +434,13 @@ function QuestActivity({
 	const prettyGame = shouldShowGame ? FormatGame(game, playtype) : "";
 
 	return (
-		<div className="timeline-item timeline-hover my-4">
-			<div className="timeline-badge bg-warning"></div>
+		<div className="timeline-item my-4">
+			<div className="timeline-dot bg-warning"></div>
 			<div className="timeline-content">
 				<div className="timeline-content-inner">
 					<div className="timeline-content-title">
 						<span style={{ fontSize: "1.15rem" }}>
-							<span className="mr-2">
+							<span className="me-2">
 								<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
 							</span>
 							<UGPTLink reqUser={user} game={game} playtype={playtype} /> completed
@@ -469,7 +458,7 @@ function QuestActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.sub.timeAchieved ?? 0)}
 						<br />
-						<span className="text-muted font-italic text-right">
+						<span className="text-muted fst-italic text-end">
 							{FormatTime(data.sub.timeAchieved ?? 0)}
 						</span>
 					</div>
@@ -489,7 +478,34 @@ function SessionActivity({
 	shouldShowGame: boolean;
 }) {
 	const [show, setShow] = useState(false);
+	const [closing, setClosing] = useState(false);
+	const [debounce, setDebounce] = useState(false);
 	const { user: loggedInUser } = useContext(UserContext);
+
+	const handleToggle = () => {
+		if (!debounce) {
+			setDebounce(true);
+			if (!show) {
+				setShow(true);
+			} else {
+				setClosing(true);
+			}
+			setTimeout(() => {
+				setDebounce(false);
+			}, 150);
+		}
+	};
+
+	useEffect(() => {
+		if (closing) {
+			const timer = setTimeout(() => {
+				setShow(false);
+				setClosing(false);
+			}, 150);
+			return () => clearTimeout(timer);
+		}
+		return undefined;
+	}, [closing]);
 
 	const prettyGame = shouldShowGame ? `${FormatGame(data.game, data.playtype)} ` : "";
 
@@ -498,22 +514,21 @@ function SessionActivity({
 	const { game, playtype } = data;
 
 	return (
-		<div className="timeline-item timeline-hover">
-			<div className={`timeline-badge bg-${data.highlight ? "warning" : "secondary"}`}></div>
-			<div className="timeline-content d-flex">
-				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
+		<div className="timeline-item">
+			<div className={`timeline-dot bg-${data.highlight ? "warning" : "secondary"}`}></div>
+			<div className="timeline-content">
+				<div
+					className="timeline-content-inner"
+					onClick={handleToggle}
+					style={{ cursor: "pointer" }}
+				>
 					<div className="timeline-content-title">
-						<span className="mr-2">
+						<span className="me-2">
 							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
 						</span>
-						<Icon
-							type={`chevron-${show ? "down" : "right"}`}
-							style={{
-								fontSize: "0.75rem",
-							}}
-						/>
+						<Icon type="chevron-right" show={show ? true : false} />
 						<span
-							className="ml-2"
+							className="ms-2"
 							style={{
 								fontWeight: isProbablyActive ? "bold" : undefined,
 								fontSize: isProbablyActive ? "1.2rem" : undefined,
@@ -544,18 +559,26 @@ function SessionActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.timeStarted ?? 0)}
 						<br />
-						<span className="text-muted font-italic text-right">
+						<span className="text-muted fst-italic text-end">
 							{FormatTime(data.timeStarted ?? 0)}
 						</span>
 					</div>
 				</div>
-				{show && <SessionShower sessionID={data.sessionID} />}
+				{show && <SessionShower sessionID={data.sessionID} show={show} closing={closing} />}
 			</div>
 		</div>
 	);
 }
 
-function SessionShower({ sessionID }: { sessionID: string }) {
+function SessionShower({
+	sessionID,
+	show,
+	closing,
+}: {
+	sessionID: string;
+	show: boolean;
+	closing: boolean;
+}) {
 	const { data, error } = useApiQuery<SessionReturns>(`/sessions/${sessionID}`);
 
 	if (error) {
@@ -600,7 +623,9 @@ function SessionShower({ sessionID }: { sessionID: string }) {
 
 	if (raises.length === 0) {
 		return (
-			<Row className="mt-4">
+			<Row
+				className={`mt-4 overflow-hidden${show ? " show" : ""}${closing ? " closing" : ""}`}
+			>
 				<div className="d-flex w-100 justify-content-center flex-column">
 					<div className="mb-4">This session had no raises.</div>
 					<div>
@@ -617,7 +642,7 @@ function SessionShower({ sessionID }: { sessionID: string }) {
 	}
 
 	return (
-		<Row className="mt-4">
+		<Row className={`mt-4 overflow-hidden${show ? " show" : ""}${closing ? " closing" : ""}`}>
 			<SessionRaiseBreakdown sessionData={data} setScores={NO_OP} />
 			<Col xs={12}>
 				<Divider />
@@ -644,12 +669,12 @@ function ClassAchievementActivity({
 	shouldShowGame: boolean;
 }) {
 	return (
-		<div className="timeline-item timeline-hover">
-			<div className="timeline-badge bg-success"></div>
-			<div className="timeline-content d-flex">
+		<div className="timeline-item">
+			<div className="timeline-dot bg-success"></div>
+			<div className="timeline-content">
 				<div className="timeline-content-inner">
 					<div className="timeline-content-title">
-						<span className="mr-2">
+						<span className="me-2">
 							<ProfilePictureSmall
 								user={user}
 								toGPT={`${data.game}/${data.playtype}`}
@@ -682,7 +707,7 @@ function ClassAchievementActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.timeAchieved)}
 						<br />
-						<span className="text-muted font-italic text-right">
+						<span className="text-muted fst-italic text-end">
 							{FormatTime(data.timeAchieved)}
 						</span>
 					</div>

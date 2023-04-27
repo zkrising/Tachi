@@ -22,13 +22,7 @@ export default function ProfilePicture({
 				<img
 					src={src ? src : ToAPIURL(`/users/${user}/pfp`)}
 					alt={`${user}'s Profile Picture`}
-					className="rounded"
-					style={{
-						width: "128px",
-						height: "128px",
-						objectFit: "cover",
-						boxShadow: "0px 0px 10px 0px #000000",
-					}}
+					className="rounded pfp"
 				/>
 			</Link>
 		);
@@ -39,13 +33,7 @@ export default function ProfilePicture({
 			<img
 				src={src ? src : ToAPIURL(`/users/${user.id}/pfp`)}
 				alt={`${user.username}'s Profile Picture`}
-				className="rounded"
-				style={{
-					width: "128px",
-					height: "128px",
-					objectFit: "cover",
-					boxShadow: "0px 0px 10px 0px #000000",
-				}}
+				className="rounded pfp"
 			/>
 		</Link>
 	);
@@ -75,13 +63,7 @@ export function ProfilePictureSmall({
 				<img
 					src={src ? src : ToAPIURL(`/users/${user}/pfp`)}
 					alt={`${user}'s Profile Picture`}
-					className="rounded"
-					style={{
-						width: "32px",
-						height: "32px",
-						objectFit: "cover",
-						boxShadow: "0px 0px 10px 0px #000000",
-					}}
+					className="rounded pfp-small"
 				/>
 			</Link>
 		);
@@ -92,13 +74,7 @@ export function ProfilePictureSmall({
 			<img
 				src={src ? src : ToAPIURL(`/users/${user.id}/pfp`)}
 				alt={`${user.username}'s Profile Picture`}
-				className="rounded"
-				style={{
-					width: "32px",
-					height: "32px",
-					objectFit: "cover",
-					boxShadow: "0px 0px 10px 0px #000000",
-				}}
+				className="rounded pfp-small"
 			/>
 		</Link>
 	);

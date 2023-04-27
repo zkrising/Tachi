@@ -1,0 +1,129 @@
+.activity {
+    // Nothing to see here
+
+    &-timeline {
+        position: relative;
+        margin: 0 .5rem;
+
+        .timeline {
+
+            &-bar {
+                background-color: hsla(0, 0, 85%, 0.5);
+                position: absolute;
+                display: block;
+                content: "";
+                width: 1px;
+                inset: 0;
+                top: 6px;
+                z-index: 1;
+                margin: 2rem 4px;
+            }
+
+            &-dot {
+                position: absolute;
+                display: block;
+                border-radius: 100%;
+                height: 9px;
+                width: 9px;
+                left: 0;
+                z-index: 2;
+            }
+
+            &-item {
+                padding: 0.2rem 0;
+                align-items: center;
+                display: flex;
+
+                @include media-breakpoint-down(md) {
+                    margin-bottom: 1rem;
+                    padding-bottom: 1rem !important;
+                    position: relative;
+
+                    // Commented out because ugly
+                    /*:after {
+                        display: block;
+                        width: 100%;
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        border-bottom: 1px $secondary solid;
+                    }*/
+                }
+            }
+
+            &-content {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+                width: 100%;
+                margin: 0 1.2rem;
+                padding: 1rem 0.8rem;
+                border-radius: var(--bs-border-radius);
+
+                &:hover{
+                    background-color: $tachi-hover;
+                }
+
+                // Not a fan
+                @include media-breakpoint-down(md) {
+                    margin-left: 1.5rem;
+                    margin-right: 0rem;
+                    // magic number
+                    width: 86.5vw;
+                }
+
+                &-inner {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+
+                    @include media-breakpoint-down(md) {
+                        flex-wrap: wrap;
+                        flex-direction: column;
+                    }
+                    span:first-of-type{
+                        display: inline-block;
+                        margin-bottom: 0.1rem;
+                    }
+                }
+
+                &-title {
+                    text-align: left;
+                    width: 75%;
+                    font-weight: 400;
+                    user-select: none;
+                    height: 100%;
+
+                    // Animate the chevron
+                    i {
+                        font-size: 0.75rem;
+                        transition: transform 0.25s ease;
+
+                        &.show {
+                            transform: rotate(90deg);
+                        }
+                    }
+
+                    @include media-breakpoint-down(md) {
+                        // the madness must end
+                        align-self: start;
+                        width: 82%;
+                    }
+                }
+
+                &-timestamp {
+                    text-align: right;
+                    font-weight: 400;
+                    cursor: default;
+                    @include media-breakpoint-down(md) {
+                        margin-top: -1.5rem;
+                        align-self: end;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -11,12 +11,14 @@ export default function SelectLinkButton({
 	to,
 	matchIfStartsWith = false,
 	disabled = false,
+	className,
 }: {
 	onVariant?: ButtonVariant;
 	offVariant?: ButtonVariant;
 	to: string;
 	matchIfStartsWith?: boolean;
 	disabled?: boolean;
+	className?: string;
 } & JustChildren) {
 	return (
 		<LinkButton
@@ -26,7 +28,7 @@ export default function SelectLinkButton({
 				DoesMatchRoute(window.location.href, to, !matchIfStartsWith)
 					? onVariant
 					: offVariant
-			}`}
+			}${className ? ` ${className}` : ""}`}
 		>
 			{children}
 		</LinkButton>

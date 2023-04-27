@@ -1,0 +1,40 @@
+.dropdown-link {
+    display: block;
+    padding: .7rem .7rem;
+    margin: .2rem 0;
+    width: 100%;
+    clear: both;
+    color: var(--bs-dropdown-link-color);
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;  
+    border: 2px solid transparent;
+    border-radius: var(--bs-border-radius);
+    font-weight: 400;
+
+    &:hover {
+        color: currentColor;
+        background-color: var(--bs-dropdown-link-hover-bg);
+    }
+}
+
+.dropdown-toggle {
+    &:has(.show) {
+        border-color: transparent !important;
+    }
+
+    &.header-link {
+        display: flex;
+        align-items: center;
+
+        &::after {
+            content: "\f078";
+            border: none;
+            vertical-align: 0.1rem;
+            margin-left: 0.75rem;
+            font-size: 0.75rem;
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+        }
+    }
+}

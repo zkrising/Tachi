@@ -13,44 +13,15 @@ const toplevelDirs = fs
 	.map((e) => e.name);
 
 export default defineConfig(() => {
-	let COLOUR_SET;
+	// Determines which stylesheet gets loaded
+	let styleMode;
 
 	if (process.env.VITE_TCHIC_MODE === "ktchi" || process.env.VITE_TCHIC_MODE === "omni") {
 		// kamai colours
-		COLOUR_SET = `$tachi-primary: #e61c6e;
-		$tachi-primary-hover: #de6589;
-		$tachi-background: #131313;
-		$tachi-lightground: #2b292b;
-		$tachi-backestground: #000000;
-		$tachi-overground: #524e52;
-
-		$tachi-info: #527acc;
-		$tachi-info-hover: #8da7dd;`;
+		styleMode = `./src/_style/tachi/colors/kamai.scss`;
 	} else {
 		// boku colours
-		COLOUR_SET = `$tachi-primary: #527acc;
-		$tachi-primary-hover: #8da7dd;
-		$tachi-background: #131313;
-		$tachi-lightground: #2b292b;
-		$tachi-backestground: #000000;
-		$tachi-overground: #524e52;
-
-		$tachi-info: #31497A;
-		$tachi-info-hover: #455B87;`;
-	}
-
-	// This is dynamically inserted into the head of _style/base.scss, on the first line.
-	let scssEntryPoint;
-
-	// If you have access to the private metronic scss submodule
-	// and have cloned it, use that.
-	if (fs.existsSync(path.join(__dirname, "./src/_assets/metronic-scss/style.react.scss"))) {
-		scssEntryPoint = "./src/_assets/metronic-scss/style.react.scss";
-	} else {
-		// Else, use some default compiled css.
-		// note: silly injection here as we eval this.      VVV note the quote escaping.
-		// too lazy to do this properly with arrays
-		scssEntryPoint = './src/_assets/compiled-css/main.css";@import "./src/_style/base.scss';
+		styleMode = `./src/_style/tachi/colors/boku.scss`
 	}
 
 	return {
@@ -94,7 +65,7 @@ export default defineConfig(() => {
 		css: {
 			preprocessorOptions: {
 				scss: {
-					additionalData: `${COLOUR_SET}\n@import "${scssEntryPoint}";`,
+					additionalData: `@import "${styleMode}";`,
 				},
 			},
 		},

@@ -5,11 +5,11 @@ import React, { useContext } from "react";
 import { UserNotificationButton } from "./UserNotificationButton";
 import { SearchButton } from "./SearchButton";
 
-export function Topbar() {
+export function Endbar() {
 	const { user } = useContext(UserContext);
 
 	return (
-		<div className="topbar" style={{ minWidth: "35%" }}>
+		<div className={"endbar d-flex justify-flex-end align-items-center"}>
 			<SearchButton />
 
 			{user ? (
@@ -19,12 +19,12 @@ export function Topbar() {
 				</>
 			) : (
 				<>
-					<div className="topbar-item mr-3">
+					<div className="endbar-item me-3">
 						<LinkButton to="/login" className="btn-outline-primary">
 							Log In
 						</LinkButton>
 					</div>
-					<div className="topbar-item">
+					<div className="endbar-item">
 						<LinkButton to="/register">Create Account</LinkButton>
 					</div>
 				</>

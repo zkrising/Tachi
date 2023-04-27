@@ -1,0 +1,22 @@
+.divider {
+	position: relative;
+	width: 99%;
+	left: .5%;
+	height: 1px;
+	background-color: var(--bs-gray-300);
+	opacity: .1;
+
+    &.small {
+        width: 94%;
+        left: 3%;
+    }
+
+    &.full {
+        width: 100%;
+        left: 0;
+    }
+
+    &.thick {
+        height: 3px;
+    }
+}

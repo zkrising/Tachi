@@ -5,6 +5,7 @@ import { BannedContext } from "context/BannedContext";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ServerStatus } from "types/api-returns";
+import Nav from "react-bootstrap/Nav";
 
 export function Footer() {
 	const [serverVersion, setServerVersion] = useState("Loading...");
@@ -25,13 +26,12 @@ export function Footer() {
 	}, []);
 
 	return (
-		<>
-			<Divider className="mt-8" />
+		<footer>
+			<Divider size="full" className="my-3" />
 
-			<div className="footer py-4 d-flex flex-lg-column" id="kt_footer">
-				<div className="container d-flex flex-column flex-md-row align-items-center justify-content-between">
-					<div className="order-2 order-md-1">
-						{/* is there a better way to do this? mt-md-3 is the intent */}
+			<div className="pb-4 d-flex flex-lg-column">
+				<div className="container d-flex flex-column flex-lg-row align-items-center justify-content-between">
+					<div className="mt-2 mb-md-2 order-1">
 						<ExternalLink
 							href="https://en.wikipedia.org/wiki/Dummy_(album)"
 							className="gentle-link"
@@ -40,30 +40,30 @@ export function Footer() {
 						</ExternalLink>
 					</div>
 
-					<div className="nav nav-dark order-1 order-md-2 justify-content-center">
+					<Nav className="order-0 order-lg-2 justify-content-center">
 						<Link
 							to="/support"
-							className="nav-link px-3"
+							className="nav-link px-3 text-muted"
 							onClick={() => window.scrollTo(0, 0)}
 						>
 							Support
 						</Link>
 						<ExternalLink
 							href="https://docs.bokutachi.xyz/wiki/rules"
-							className="nav-link px-3"
+							className="nav-link px-3 text-muted"
 						>
 							Rules
 						</ExternalLink>
 						<Link
 							to="/privacy"
-							className="nav-link px-3"
+							className="nav-link px-3 text-muted"
 							onClick={() => window.scrollTo(0, 0)}
 						>
 							GDPR
 						</Link>
 						<Link
 							to="/credits"
-							className="nav-link px-3"
+							className="nav-link px-3 text-muted"
 							onClick={() => window.scrollTo(0, 0)}
 						>
 							Credits
@@ -73,7 +73,7 @@ export function Footer() {
 								href={process.env.VITE_DISCORD}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="nav-link px-3"
+								className="nav-link px-3 text-muted"
 							>
 								Discord
 							</a>
@@ -82,7 +82,7 @@ export function Footer() {
 							href="https://github.com/tng-dev/tachi"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="nav-link px-3"
+							className="nav-link px-3 text-muted"
 						>
 							Source Code
 						</a>
@@ -90,13 +90,13 @@ export function Footer() {
 							href="https://docs.bokutachi.xyz/"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="nav-link px-3"
+							className="nav-link px-3 text-muted"
 						>
 							Developer Documentation
 						</a>
-					</div>
+					</Nav>
 				</div>
 			</div>
-		</>
+		</footer>
 	);
 }

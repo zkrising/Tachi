@@ -5,14 +5,9 @@ import React, { useContext } from "react";
 export default function BackgroundImage() {
 	const { background } = useContext(BackgroundContext);
 
-	return (
-		<div
-			className="background-image"
-			style={{
-				backgroundImage: background
-					? `url(${background})`
-					: `url(${ToCDNURL("/game-banners/default")})`,
-			}}
-		></div>
-	);
+	const backgroundImage = background
+		? `url(${background})`
+		: `url(${ToCDNURL("/game-banners/default")})`;
+
+	return <div className="background-image" style={{ backgroundImage }} />;
 }

@@ -1,0 +1,56 @@
+.btn {
+    &-primary {
+        &:focus-visible{
+            border-color: shade-color($tachi-primary, 80%);
+        }
+    }
+
+    &-icon {
+        display: flex;
+        font-size: 1.4rem;
+        justify-content: center;
+        align-items: center;
+        height: 45px;
+        width: 45px;
+        @include media-breakpoint-down(md) {
+            height: 40px;
+            width: 40px;
+        }
+    }
+
+    &-header {
+        overflow: hidden;
+
+        @include media-breakpoint-down(md) {
+            height: 40px;
+        }
+
+        @include media-breakpoint-up(md) {
+            height: 45px;
+        }
+
+        &:hover,    
+        &:focus,
+        &.show {
+            border-color: transparent;
+            background-color: $tachi-hover; 
+            color: currentColor !important;
+        }
+        // I want this chained with the specifiers above but it breaks in Firefox if I do that
+        &:has(> .show) {
+            border-color: transparent;
+            background-color: $tachi-hover; 
+            color: currentColor !important;
+        }
+
+        &:active {
+            background-color: opacify($color: $tachi-hover, $amount: 0.01) !important;
+            border-color: transparent !important;
+        }   
+        &:focus-visible{
+            box-shadow: none;
+            color: currentColor !important;
+            border-color: var(--t-primary);
+        }
+    }
+}

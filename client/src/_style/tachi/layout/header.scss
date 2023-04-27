@@ -1,0 +1,195 @@
+#header_main {
+    height: 80px;
+    background-color: $tachi-background;
+    transition: height 150ms ease-in-out;
+
+    @include media-breakpoint-down(md) {
+        height: 40px;
+        background-color: transparent;
+    }
+
+    .navbar {
+        transition: height 150ms ease-in-out;
+        height: 80px;
+
+        @include media-breakpoint-down(md) {
+            height: 45px;
+        }
+
+        &-brand {
+            margin-left: 0.35rem;
+            height: max-content;
+
+            @include media-breakpoint-down(md) {
+                display: none;
+            }
+        }
+
+        &-nav {
+            .header-link {
+                &.show {
+                    color: currentColor;
+                }
+
+                &:hover,
+                &:focus {
+                    color: currentColor;
+                }
+            }
+
+            .nav-item:nth-child(n + 2) {
+                margin-left: 0.4rem;
+                transition: margin 200ms ease-in-out;
+
+                @include media-breakpoint-down(xl) {
+                    margin-left: 0.15rem;
+                }
+            }
+
+            #Developer\ Utils {
+                transition: width 75ms ease-in 120ms, visibility 37.5ms linear 120ms;
+                width: 100%;
+                visibility: visible;
+                @include media-breakpoint-down(lg) {
+                    transition: width 16ms ease-in, visibility 4ms linear 10ms;
+                    width: 0;
+                    visibility: hidden;
+                }
+            }
+        }
+    }
+
+    .endbar {
+        .nav-item {
+            padding: 0;
+            &:not(:last-child) {
+                margin-right: 0.4rem;
+                transition: margin 333ms ease-in-out;
+
+                @include media-breakpoint-down(xl) {
+                    margin-right: 0.15rem;
+                }
+            }
+        }
+
+        #user-dropdown {
+
+            .dropdown-toggle {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+                @include media-breakpoint-down(lg) {
+                    height: 45px;
+                    width: 45px;
+                    padding-right: 5px;
+                }
+
+                &::after {
+                    display: none;
+                }
+            }
+
+            .user-dropdown-menu {
+                width: 30rem;
+            }
+        }
+    }
+
+    .dropdown-menu {
+        top: 0;
+        margin-top: 62.5px;
+        height: max-content;
+        width: 100%;
+        box-shadow: var(--t-shadow-lg);
+        border: var(--bs-border-width);
+
+        &.show {
+            animation: dropdown-menu-fade-in 0.3s ease 1;
+        }
+
+        @keyframes dropdown-menu-fade-in {
+            0% {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.dropdown-item {
+    border-radius: var(--bs-border-radius);
+    transition: color 120ms ease-in-out, background-color 120ms ease-in-out, border-color 120ms ease-in-out, box-shadow 120ms ease-in-out;
+    margin: .35rem 0;
+    &.active {
+        // override bootstrap default behaviour because it isn't ideal in this case
+        color: currentColor;
+        background-color: var(--t-lightground);
+        &:hover, &:focus {
+            // I shouldn't have to do this
+            background-color: var(--bs-dropdown-link-hover-bg);
+        }
+    }
+}
+
+@include media-breakpoint-down(md) { // This is highly customised because I'd rather just do it this way for this one specific componant
+    .offcanvas.offcanvas-start {
+        .offcanvas-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .navbar-nav {
+                align-items: flex-start;
+                margin-left: 0 !important;
+
+                .nav-item {
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                    width: 100%;
+                    
+                    .dropdown-menu {
+                        padding: var(--bs-dropdown-padding-y) 0.25em;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#subheader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    @include media-breakpoint-down(md) {
+        height: 125px;
+    }
+
+    @include media-breakpoint-up(md) {
+        height: 200px;
+    }
+
+    #subheader_content {
+        flex-grow: 1;
+        transition: flex 150ms ease-in-out;
+
+        @include media-breakpoint-down(md) {
+            flex-grow: 0;
+        }
+    }
+
+    #breadcrumbs {
+        display: flex;
+        align-items: center;
+
+        @include media-breakpoint-down(md) {
+            display: none;
+        }
+    }
+}

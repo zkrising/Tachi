@@ -1,0 +1,9 @@
+.pfp {
+    width: 128px;
+    height: 128px;
+    object-fit: cover;
+    &-small{
+        width: 32px;
+        height: 32px
+    }
+}

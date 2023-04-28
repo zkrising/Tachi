@@ -45,6 +45,7 @@ const RELEASE_DATES = {
 	new: new Date("2021-11-04"),
 	newplus: new Date("2022-04-14"),
 	sun: new Date("2022-10-13"),
+	sunplus: new Date("2023-05-11"),
 };
 
 interface ChunithmSong {
@@ -178,7 +179,10 @@ function releaseDateToVersion(date: Date): string {
 			const chunirecChart = chunirecSong.data[shortName.toUpperCase()];
 
 			let chartConstant = chunirecChart.level;
-			if (chunirecChart.is_const_unknown === 0) {
+			if (
+				chunirecChart.is_const_unknown === 0 &&
+				chunirecChart.const >= chunirecChart.level
+			) {
 				chartConstant = chunirecChart.const;
 			}
 

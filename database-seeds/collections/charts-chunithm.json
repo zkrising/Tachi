@@ -83477,7 +83477,7 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "13+",
-		"levelNum": 0,
+		"levelNum": 13.5,
 		"playtype": "Single",
 		"songID": 2334,
 		"versions": [
@@ -83492,7 +83492,7 @@
 		"difficulty": "MASTER",
 		"isPrimary": true,
 		"level": "14+",
-		"levelNum": 0,
+		"levelNum": 14.5,
 		"playtype": "Single",
 		"songID": 2334,
 		"versions": [
@@ -84977,7 +84977,7 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "10",
-		"levelNum": 0,
+		"levelNum": 10,
 		"playtype": "Single",
 		"songID": 2362,
 		"versions": [
@@ -84992,7 +84992,7 @@
 		"difficulty": "MASTER",
 		"isPrimary": true,
 		"level": "12",
-		"levelNum": 0,
+		"levelNum": 12,
 		"playtype": "Single",
 		"songID": 2362,
 		"versions": [
@@ -85037,7 +85037,7 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "12",
-		"levelNum": 0,
+		"levelNum": 12.2,
 		"playtype": "Single",
 		"songID": 2363,
 		"versions": [
@@ -85052,7 +85052,7 @@
 		"difficulty": "MASTER",
 		"isPrimary": true,
 		"level": "14",
-		"levelNum": 0,
+		"levelNum": 14.3,
 		"playtype": "Single",
 		"songID": 2363,
 		"versions": [
@@ -85097,7 +85097,7 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "11+",
-		"levelNum": 0,
+		"levelNum": 11.9,
 		"playtype": "Single",
 		"songID": 2364,
 		"versions": [
@@ -85112,7 +85112,7 @@
 		"difficulty": "MASTER",
 		"isPrimary": true,
 		"level": "14",
-		"levelNum": 0,
+		"levelNum": 14.2,
 		"playtype": "Single",
 		"songID": 2364,
 		"versions": [
@@ -85172,7 +85172,7 @@
 		"difficulty": "MASTER",
 		"isPrimary": true,
 		"level": "12",
-		"levelNum": 0,
+		"levelNum": 12.2,
 		"playtype": "Single",
 		"songID": 2365,
 		"versions": [
@@ -85217,7 +85217,7 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "10+",
-		"levelNum": 0,
+		"levelNum": 10.9,
 		"playtype": "Single",
 		"songID": 2366,
 		"versions": [
@@ -85232,7 +85232,7 @@
 		"difficulty": "MASTER",
 		"isPrimary": true,
 		"level": "13+",
-		"levelNum": 0,
+		"levelNum": 13.9,
 		"playtype": "Single",
 		"songID": 2366,
 		"versions": [

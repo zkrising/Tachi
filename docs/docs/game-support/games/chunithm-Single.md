@@ -20,7 +20,7 @@ For more information on what metrics are and how they work, see [TODO]!
 
 | Metric Name | Type | Description |
 | :: | :: | :: |
-| `grade` | "D", "C", "B", "BB", "BBB", "A", "AA", "AAA", "S", "SS", "SSS" | The grade this score was. |
+| `grade` | "D", "C", "B", "BB", "BBB", "A", "AA", "AAA", "S", "S+", "SS", "SS+", "SSS", "SSS+" | The grade this score was. |
 
 ### Optional Metrics
 
@@ -70,7 +70,7 @@ The folowing judgements are defined:
 
 | Name | Type | Values |
 | :: | :: | :: |
-| `colour` | DERIVED | BLUE, GREEN, ORANGE, RED, PURPLE, COPPER, SILVER, GOLD, PLATINUM, RAINBOW
+| `colour` | DERIVED | BLUE, GREEN, ORANGE, RED, PURPLE, COPPER, SILVER, GOLD, PLATINUM, RAINBOW |
 
 ## Versions
 

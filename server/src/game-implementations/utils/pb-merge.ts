@@ -85,8 +85,9 @@ export function CreatePBMergeFor<GPT extends GPTString>(
 
 		// if this timestamp is newer than the most recent one
 		if (
+			base.timeAchieved !== null &&
 			bestScoreFor.timeAchieved !== null &&
-			bestScoreFor.timeAchieved > (base.timeAchieved ?? -Infinity)
+			bestScoreFor.timeAchieved > base.timeAchieved
 		) {
 			base.timeAchieved = bestScoreFor.timeAchieved;
 		}

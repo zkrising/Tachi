@@ -3,7 +3,6 @@ import { APIFetchV1 } from "util/api";
 import { HumaniseError } from "util/humanise-error";
 import { SendErrorToast, SendSuccessToast } from "util/toaster";
 import Navbar from "components/nav/Navbar";
-import NavItem from "components/nav/NavItem";
 import MiniTable from "components/tables/components/MiniTable";
 import Divider from "components/util/Divider";
 import React, { useContext } from "react";
@@ -204,58 +203,54 @@ export function UGPTBottomNav({
 	playtype: Playtype;
 }) {
 	const navItems = [
-		<NavItem key="overview" to={`${baseUrl}/`}>
-			Overview & Activity
-		</NavItem>,
-		<NavItem key="scores" to={`${baseUrl}/scores`}>
+		<Navbar.Item key="overview" to={`${baseUrl}`}>
+			Overview
+		</Navbar.Item>,
+		<Navbar.Item key="scores" to={`${baseUrl}/scores`}>
 			Scores
-		</NavItem>,
-		<NavItem key="folders" to={`${baseUrl}/folders`}>
+		</Navbar.Item>,
+		<Navbar.Item key="folders" to={`${baseUrl}/folders`}>
 			Folders
-		</NavItem>,
-		<NavItem key="sessions" to={`${baseUrl}/sessions`}>
+		</Navbar.Item>,
+		<Navbar.Item key="sessions" to={`${baseUrl}/sessions`}>
 			Sessions
-		</NavItem>,
+		</Navbar.Item>,
 	];
 
 	const utilsName = GetGPTUtilsName(game, playtype, isRequestedUser);
 
 	if (utilsName) {
 		navItems.push(
-			<NavItem key="targets" to={`${baseUrl}/utils`}>
+			<Navbar.Item key="targets" to={`${baseUrl}/utils`}>
 				{utilsName}
-			</NavItem>
+			</Navbar.Item>
 		);
 	}
 
 	if (isRequestedUser) {
 		navItems.push(
-			<NavItem key="rivals" to={`${baseUrl}/rivals`}>
+			<Navbar.Item key="rivals" to={`${baseUrl}/rivals`}>
 				Rivals
-			</NavItem>,
-			<NavItem key="targets" to={`${baseUrl}/targets`}>
+			</Navbar.Item>,
+			<Navbar.Item key="targets" to={`${baseUrl}/targets`}>
 				Goals & Quests
-			</NavItem>
+			</Navbar.Item>
 		);
 	}
 
 	navItems.push(
-		<NavItem key="leaderboard" to={`${baseUrl}/leaderboard`}>
+		<Navbar.Item key="leaderboard" to={`${baseUrl}/leaderboard`}>
 			Leaderboard
-		</NavItem>
+		</Navbar.Item>
 	);
 
 	if (isRequestedUser) {
 		navItems.push(
-			<NavItem key="settings" to={`${baseUrl}/settings`}>
+			<Navbar.Item key="settings" to={`${baseUrl}/settings`}>
 				Settings
-			</NavItem>
+			</Navbar.Item>
 		);
 	}
 
-	return (
-		<div className="mx-n9 align-items-center mb-0">
-			<Navbar>{navItems}</Navbar>
-		</div>
-	);
+	return <Navbar>{navItems}</Navbar>;
 }

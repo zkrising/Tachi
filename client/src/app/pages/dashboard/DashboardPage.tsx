@@ -20,7 +20,7 @@ import { UserContext } from "context/UserContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import { ColourConfig, TachiConfig } from "lib/config";
 import React, { useContext, useMemo } from "react";
-import { Alert } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 import { Link, Route, Switch } from "react-router-dom";
 import { COLOUR_SET, GetGameConfig, UserDocument } from "tachi-common";
 import { UGSWithRankingData, UserRecentSummary } from "types/api-returns";

@@ -14,11 +14,11 @@ export default function Card({
 	style?: CSSProperties;
 } & JustChildren) {
 	return (
-		<div className={`card card-custom ${className ? className : ""}`} style={style}>
+		<div className={`card ${className ? className : ""}`} style={style}>
 			{header && (
 				<div className="card-header">
 					{typeof header === "string" ? (
-						<h3 className="text-center mb-0">{header}</h3>
+						<h3 className="text-center mt-2">{header}</h3>
 					) : (
 						header
 					)}

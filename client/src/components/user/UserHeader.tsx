@@ -1,7 +1,6 @@
 import { APIFetchV1 } from "util/api";
 import { FormatDate } from "util/time";
 import Navbar from "components/nav/Navbar";
-import NavItem from "components/nav/NavItem";
 import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import Icon from "components/util/Icon";
@@ -133,24 +132,24 @@ export function UserBottomNav({ baseUrl, reqUser }: { baseUrl: string; reqUser: 
 	const isRequestedUser = !!(user && user.id === reqUser.id);
 
 	const navItems = [
-		<NavItem key="about" to={`${baseUrl}/`}>
+		<Navbar.Item key="about" to={`${baseUrl}`}>
 			Overview
-		</NavItem>,
-		<NavItem key="games" to={`${baseUrl}/games`}>
+		</Navbar.Item>,
+		<Navbar.Item key="games" to={`${baseUrl}/games`}>
 			Games
-		</NavItem>,
+		</Navbar.Item>,
 	];
 
 	if (isRequestedUser) {
 		navItems.push(
-			<NavItem key="integrations" to={`${baseUrl}/integrations`}>
+			<Navbar.Item key="integrations" to={`${baseUrl}/integrations`}>
 				Service Integrations
-			</NavItem>
+			</Navbar.Item>
 		);
 		navItems.push(
-			<NavItem key="imports" to={`${baseUrl}/imports`}>
+			<Navbar.Item key="imports" to={`${baseUrl}/imports`}>
 				Imports
-			</NavItem>
+			</Navbar.Item>
 		);
 
 		// If mandates login, assume that we also use invite codes.
@@ -158,24 +157,20 @@ export function UserBottomNav({ baseUrl, reqUser }: { baseUrl: string; reqUser: 
 		// querying the server, but I just don't care.
 		if (ClientConfig.MANDATE_LOGIN) {
 			navItems.push(
-				<NavItem key="invites" to={`${baseUrl}/invites`}>
+				<Navbar.Item key="invites" to={`${baseUrl}/invites`}>
 					Invites
-				</NavItem>
+				</Navbar.Item>
 			);
 		}
 
 		navItems.push(
-			<NavItem key="settings" to={`${baseUrl}/settings`}>
+			<Navbar.Item key="settings" to={`${baseUrl}/settings`}>
 				Profile Settings
-			</NavItem>
+			</Navbar.Item>
 		);
 	}
 
-	return (
-		<div className="mx-n9 align-items-center mb-0">
-			<Navbar>{navItems}</Navbar>
-		</div>
-	);
+	return <Navbar>{navItems}</Navbar>;
 }
 
 function StatusComponent({ reqUser }: { reqUser: UserDocument }) {

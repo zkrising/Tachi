@@ -20,7 +20,7 @@ export default function PlaytypeSelect({
 
 	return (
 		<div className="col-12 col-lg-6 mx-auto">
-			<div className="card card-custom">
+			<div className="card">
 				<div className="card-header">
 					<h3>Playtype Selector</h3>
 				</div>

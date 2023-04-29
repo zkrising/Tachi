@@ -1,5 +1,4 @@
 import Navbar from "components/nav/Navbar";
-import NavItem from "components/nav/NavItem";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext } from "react";
 
@@ -7,29 +6,29 @@ export function GPTBottomNav({ baseUrl }: { baseUrl: string }) {
 	const { settings } = useContext(UserSettingsContext);
 
 	const navItems = [
-		<NavItem key="activity" to={`${baseUrl}/`}>
+		<Navbar.Item key="activity" to={`${baseUrl}`}>
 			Activity
-		</NavItem>,
-		<NavItem key="songs" to={`${baseUrl}/songs`}>
+		</Navbar.Item>,
+		<Navbar.Item key="songs" to={`${baseUrl}/songs`}>
 			Songs
-		</NavItem>,
-		<NavItem key="leaderboards" to={`${baseUrl}/leaderboards`}>
+		</Navbar.Item>,
+		<Navbar.Item key="leaderboards" to={`${baseUrl}/leaderboards`}>
 			Leaderboards
-		</NavItem>,
-		<NavItem
+		</Navbar.Item>,
+		<Navbar.Item
 			key="quests"
 			to={`${baseUrl}/quests`}
-			otherMatchingPaths={[`${baseUrl}/questline`]}
+			otherMatchingPaths={[`${baseUrl}/questlines`]}
 		>
 			Quests
-		</NavItem>,
+		</Navbar.Item>,
 	];
 
 	if (settings?.preferences.developerMode) {
 		navItems.push(
-			<NavItem key="dev-info" to={`${baseUrl}/dev-info`}>
+			<Navbar.Item key="dev-info" to={`${baseUrl}/dev-info`}>
 				Developer Info
-			</NavItem>
+			</Navbar.Item>
 		);
 	}
 

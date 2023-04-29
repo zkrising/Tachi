@@ -38,16 +38,11 @@
             }
 
             .nav-item:nth-child(n + 2) {
-                margin-left: 0.4rem;
-                transition: margin 200ms ease-in-out;
-
-                @include media-breakpoint-down(xl) {
-                    margin-left: 0.15rem;
-                }
+                margin-left: 0.5rem;
             }
 
             #Developer\ Utils {
-                transition: width 75ms ease-in 120ms, visibility 37.5ms linear 120ms;
+                transition: width 75ms ease-in 75ms, visibility 37.5ms linear 75ms;
                 width: 100%;
                 visibility: visible;
                 @include media-breakpoint-down(lg) {
@@ -64,23 +59,24 @@
             padding: 0;
             &:not(:last-child) {
                 margin-right: 0.4rem;
-                transition: margin 333ms ease-in-out;
-
-                @include media-breakpoint-down(xl) {
-                    margin-right: 0.15rem;
-                }
             }
         }
 
         #user-dropdown {
-
+            transition: width 75ms ease-in 75ms;
+            width: 100%;
+            @include media-breakpoint-down(lg) {
+                transition: width 16ms ease-in;
+                width: 45px;
+            }
             .dropdown-toggle {
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
+                overflow: hidden;
+                width: 100%;
 
                 @include media-breakpoint-down(lg) {
-                    height: 45px;
                     width: 45px;
                     padding-right: 5px;
                 }

@@ -9,7 +9,7 @@ export function Endbar() {
 	const { user } = useContext(UserContext);
 
 	return (
-		<div className={"endbar d-flex justify-flex-end align-items-center"}>
+		<div className={"endbar d-flex justify-content-end align-items-center"}>
 			<SearchButton />
 
 			{user ? (

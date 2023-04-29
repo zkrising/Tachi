@@ -1,7 +1,7 @@
 import { ToCDNURL } from "util/api";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import { TachiConfig } from "lib/config";
-import React, { CSSProperties } from "react";
+import React from "react";
 
 export default function SupporterIcon() {
 	return (

@@ -13,18 +13,18 @@ export default function UserHeaderContainer({
 	return (
 		<div className="row">
 			<div className="col-12">
-				<div className="card card-custom">
+				<div className="card">
 					<div className="card-header">
 						<h4>{header}</h4>
 					</div>
 					<div className="card-body">
 						<div className="row align-items-center">{children}</div>
 					</div>
-					<div className="card-footer pb-0 pt-0">{footer}</div>
+					<div className="card-footer p-0">{footer}</div>
 				</div>
 			</div>
 			<div className="col-12">
-				<Divider className="mt-8 mb-4" />
+				<Divider />
 			</div>
 		</div>
 	);

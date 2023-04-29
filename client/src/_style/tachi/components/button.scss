@@ -20,7 +20,7 @@
 
     &-header {
         overflow: hidden;
-
+        transition: width 150ms ease-in-out, height 150ms ease-in-out;
         @include media-breakpoint-down(md) {
             height: 40px;
         }

@@ -1,4 +1,3 @@
-import { MaterialThemeProvider } from "components/layout/misc/MaterialThemeProvider";
 import { LoadingScreen } from "components/layout/screens/LoadingScreen";
 import { AllLUGPTStatsContextProvider } from "context/AllLUGPTStatsContext";
 import { BannedContextProvider } from "context/BannedContext";
@@ -27,12 +26,10 @@ export default function App({ basename }: { basename: string }) {
 								<AllLUGPTStatsContextProvider>
 									<LoadingScreen>
 										<BrowserRouter basename={basename}>
-											<MaterialThemeProvider>
-												<Toaster />
-												<SubheaderContextProvider>
-													<Routes />
-												</SubheaderContextProvider>
-											</MaterialThemeProvider>
+											<Toaster />
+											<SubheaderContextProvider>
+												<Routes />
+											</SubheaderContextProvider>
 										</BrowserRouter>
 									</LoadingScreen>
 								</AllLUGPTStatsContextProvider>

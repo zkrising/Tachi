@@ -11,14 +11,6 @@
 
 // Some selected styles from old base.scss
 
-
-@include media-breakpoint-up(lg) {
-	.MuiTabs-flexContainer {
-		width: 100%;
-		justify-content: space-around
-	}
-}
-
 @include media-breakpoint-up(lg) {
 	.session-raise-container {
 		width: 100%;
@@ -33,13 +25,8 @@
 	}
 }
 
-.MuiTabs-scrollButtons.Mui-disabled {
-	opacity: 0.3;
-}
-
 .gentle-link {
 	color: var(--bs-body-color);
-	transition: color 80ms linear;
 	&:hover {
 	color: var(--t-primary-hover);
 	}

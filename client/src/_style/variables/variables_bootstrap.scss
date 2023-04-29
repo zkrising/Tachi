@@ -379,9 +379,12 @@ $spacers: (
   0h: $spacer * .125,
   1: $spacer * .25,
   2: $spacer * .5,
-  3: $spacer,
-  4: $spacer * 1.5,
-  5: $spacer * 3,
+  3: $spacer * .75,
+  4: $spacer,
+  5: $spacer * 1.25,
+  6: $spacer * 1.5,
+  7: $spacer * 2,
+  8: $spacer * 2.5
 );
 // scss-docs-end spacer-variables-maps
 
@@ -435,11 +438,10 @@ $paragraph-margin-bottom:   1rem !default;
 // scss-docs-start grid-breakpoints
 $grid-breakpoints: (
   xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 1000px,
-  xl: 1200px,
-  xxl: 1400px
+  sm: 720px,
+  md: 920px,
+  lg: 1160px,
+  xl: 1400px,
 );
 // scss-docs-end grid-breakpoints
 
@@ -453,11 +455,10 @@ $grid-breakpoints: (
 
 // scss-docs-start container-max-widths
 $container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 980px,
-  xl: 1140px,
-  xxl: 1320px
+  sm: 720px,
+  md: 840px,
+  lg: 1080px,
+  xl: 1320px,
 );
 // scss-docs-end container-max-widths
 
@@ -521,7 +522,7 @@ $caret-vertical-align:        $caret-width * .85 !default;
 $caret-spacing:               $caret-width * .85 !default;
 // scss-docs-end caret-variables
 
-$transition-base:             all .2s ease-in-out !default;
+$transition-base:             all .15s ease-in-out ;
 $transition-fade:             opacity .15s linear !default;
 // scss-docs-start collapse-transition
 $transition-collapse:         height .35s ease !default;
@@ -1100,10 +1101,10 @@ $navbar-brand-height:               $navbar-brand-font-size * $line-height-base;
 $navbar-brand-padding-y:            0;
 $navbar-brand-margin-end:           0.25rem;
 
-$navbar-toggler-padding-y:          .25rem !default;
-$navbar-toggler-padding-x:          .75rem !default;
+$navbar-toggler-padding-y:          .25rem;
+$navbar-toggler-padding-x:          .25rem;
 $navbar-toggler-font-size:          $font-size-lg;
-$navbar-toggler-border-radius:      $btn-border-radius !default;
+$navbar-toggler-border-radius:      $btn-border-radius;
 $navbar-toggler-focus-width:        $btn-focus-width;
 $navbar-toggler-transition:         box-shadow .15s ease-in-out !default;
 
@@ -1112,7 +1113,7 @@ $navbar-light-hover-color:          rgba($black, .7) !default;
 $navbar-light-active-color:         rgba($black, .9);
 $navbar-light-disabled-color:       rgba($black, .3) !default;
 $navbar-light-toggler-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-light-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !default;
-$navbar-light-toggler-border-color: rgba($black, .1) !default;
+$navbar-light-toggler-border-color: transparent;
 $navbar-light-brand-color:          $navbar-light-active-color !default;
 $navbar-light-brand-hover-color:    $navbar-light-active-color !default;
 // scss-docs-end navbar-variables
@@ -1123,7 +1124,7 @@ $navbar-dark-hover-color:           rgba($white, .75) !default;
 $navbar-dark-active-color:          null;
 $navbar-dark-disabled-color:        rgba($white, .25) !default;
 $navbar-dark-toggler-icon-bg:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-dark-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !default;
-$navbar-dark-toggler-border-color:  rgba($white, .1) !default;
+$navbar-dark-toggler-border-color:  transparent;
 $navbar-dark-brand-color:           $navbar-dark-active-color !default;
 $navbar-dark-brand-hover-color:     $navbar-dark-active-color !default;
 // scss-docs-end navbar-dark-variables
@@ -1241,7 +1242,7 @@ $placeholder-opacity-min:           .2 !default;
 $card-spacer-y:                     $spacer !default;
 $card-spacer-x:                     $spacer !default;
 $card-title-spacer-y:               $spacer * .5 !default;
-$card-border-width:                 $border-width;
+$card-border-width:                 none;
 $card-border-color:                 transparent;
 $card-border-radius:                $border-radius !default;
 $card-box-shadow:                   null !default;

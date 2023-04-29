@@ -33,7 +33,6 @@
 		"@fullcalendar/core": "^6.0.0",
 		"@fullcalendar/daygrid": "^6.0.0",
 		"@fullcalendar/react": "^6.0.0",
-		"@mui/material": "^5.11.1",
 		"@nivo/bar": "0.79.1",
 		"@nivo/colors": "0.79.1",
 		"@nivo/core": "0.79.0",

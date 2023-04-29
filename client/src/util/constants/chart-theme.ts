@@ -1,32 +1,31 @@
 import { Theme } from "@nivo/core";
 
 export const TACHI_CHART_THEME: Theme = {
-	background: "#2b292b",
-	textColor: "#ffffff",
+	textColor: "",
 	fontSize: 11,
 	axis: {
 		domain: {
 			line: {
-				stroke: "#777777",
+				stroke: "var(--bs-secondary)",
 				strokeWidth: 1,
 			},
 		},
 		ticks: {
 			line: {
-				stroke: "#777777",
+				stroke: "var(--bs-secondary)",
 				strokeWidth: 1,
 			},
 		},
 	},
 	grid: {
 		line: {
-			stroke: "#131313",
+			stroke: "var(--bs-body-bg)",
 			strokeWidth: 1,
 		},
 	},
 	crosshair: {
 		line: {
-			stroke: "white",
+			stroke: "var(--bs-body-color)",
 		},
 	},
 };

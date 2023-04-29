@@ -65,14 +65,6 @@
                     background-color: $tachi-hover;
                 }
 
-                // Not a fan
-                @include media-breakpoint-down(md) {
-                    margin-left: 1.5rem;
-                    margin-right: 0rem;
-                    // magic number
-                    width: 86.5vw;
-                }
-
                 &-inner {
                     display: flex;
                     flex-direction: row;

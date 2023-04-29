@@ -1,0 +1,77 @@
+.tachi-navbar-container {
+    height: max-content;
+
+    &-inner {
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        &:focus-visible {
+            outline: none;
+        }
+    }
+}
+
+.tachi-navbar {
+    min-width: max-content;
+    font-size: 0.875rem;
+    .tachi-item {
+        &:focus-visible{
+            color: var(--bs-link-hover-color);
+        }
+        .tachi-link {
+            pointer-events: none;
+            width: max-content;
+            position: relative;
+            display: block;
+        }
+    }
+}
+
+.tachi-indicator {
+    // always absolute. the indicator will not work if the display property is changed
+    bottom: 0.5pt;
+    height: 2px;
+    transition: left 150ms ease-in-out, width 150ms ease-in-out;
+}
+
+.tachi-scroll {
+    width: 0;
+    z-index: 2;
+    transition: width 50ms ease-out;
+    > i {
+        font-size: 0.75rem;
+        &::before {
+            transition: opacity 75ms linear;
+            opacity: 0;
+        }
+    }
+    &.show {
+        width: 2rem;
+        > i::before {
+            opacity: 1;
+        }
+    }
+}
+
+.tachi-scroll-left {
+    background: linear-gradient(to left, transparent, var(--t-lightground) 25%);
+    border-top-left-radius: var(--bs-border-radius);
+    border-bottom-left-radius: var(--bs-border-radius);
+    > i::before {
+        position: absolute;
+        left: 0.75rem;
+    }
+}
+
+.tachi-scroll-right {
+    background: linear-gradient(to right, transparent, var(--t-lightground) 25%);
+    border-top-right-radius: var(--bs-border-radius);
+    border-bottom-right-radius: var(--bs-border-radius);
+    > i::before {
+        position: absolute;
+        right: 0.75rem;
+    }
+}

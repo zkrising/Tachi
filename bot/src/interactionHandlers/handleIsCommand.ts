@@ -46,7 +46,7 @@ export async function handleIsCommand(
 			logger.error(`An error occured while executing a command.`, { command, err });
 
 			void interaction.editReply(
-				"An error has occured while executing this command. This has been reported."
+				`An error has occured while executing this command (${err}). This has been reported.`
 			);
 		}
 	} catch (e) {

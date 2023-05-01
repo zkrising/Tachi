@@ -428,7 +428,8 @@
 			"Fcf221f3abd17ae3607718898be929121d44c3582c90e300c6e7efdc83df6187a",
 			"Fdfdce10ee518f37c4ab3657abf2ce912cbf523359e2689a96ecf020b0ab8bb26",
 			"F4c7bb7c15715dfece55170d98a1d7ba2c4b4dafb361f348282701aae5fe8baae",
-			"F9bdaa06980b75f3406dbaa93ed2bf1be47b6b60cfb1463a3b7c88d5c350963c6"
+			"F9bdaa06980b75f3406dbaa93ed2bf1be47b6b60cfb1463a3b7c88d5c350963c6",
+			"F93c9abfd0d678a9f5ec1aac023dd945c971a283fedd1fd0017dea0e4aa9b6528"
 		],
 		"game": "bms",
 		"inactive": false,
@@ -531,6 +532,32 @@
 		"playtype": "7K",
 		"tableID": "bms-7K-satellite",
 		"title": "Satellite"
+	},
+	{
+		"default": false,
+		"description": "The Scramble table, a 7k scratch table",
+		"folders": [
+			"F078c8fbb335a2d610a2d80f0a2c551e37bf922764fe2ff33103770bcde058f3f",
+			"F18e2b787c802bf8714a83bf25ae386f27be7bd519ad507e7d913e7d9151779cd",
+			"Ff2679db33d051392b6df22400b916d95df84495e809554dabdb4e999db04c162",
+			"Fccf27ca56017a7e048bbddacecd2b0f0e8ba4853d6605efb5dee7196b4520a3d",
+			"Facee02cb46f9c8b0c4772110bc51653fe7a4497aa638e3a0ab0816758620de7e",
+			"F9c19419eee83b3b7d2ff133ccc96d198493823e16658cfe1cd400651efb6d845",
+			"F364eddb3541d8a81aacafd7ed39b1bb29f9f5e95c89c641753acfda055ecc11a",
+			"F02807f1c8c0f57635a94642465345f5784146c7acb0141ff41ef6bde2ad254f3",
+			"Fb4aac43ae442e2d43ca3a1e4f9961c7415b82d80bd86e8738d2dbee344ad3800",
+			"F844cc3d9adcd5bc687d8515a1bf0ff5da7785d45caecb96a43037b540affa70a",
+			"F4cd8960917057b360eebd413d1df7e63a1c181262694f51f5dc3366dded9f10f",
+			"F62c6acd92079a90f08457f98eceeee3f48b9a5a12a374162aab2c9460bf94790",
+			"Fec3557af11ff5a66b6b5c7a9ff717fc836fbcc9fcc3d2779887b8ffeba08e02f",
+			"F12893ed39be532545eb42f5127578da3ac816650373292ec11d2e1a1abc79945",
+			"Feae6078111916ad5037c118c44579dae59887faa3eb9192aa1c4d727490830dd"
+		],
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"tableID": "bms-7K-Scramble",
+		"title": "Scramble"
 	},
 	{
 		"default": false,

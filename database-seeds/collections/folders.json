@@ -6641,6 +6641,275 @@
 	},
 	{
 		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "-1",
+					"table": "SB"
+				}
+			}
+		},
+		"folderID": "F078c8fbb335a2d610a2d80f0a2c551e37bf922764fe2ff33103770bcde058f3f",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "SB-1",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "!i",
+					"table": "SB"
+				}
+			}
+		},
+		"folderID": "Feae6078111916ad5037c118c44579dae59887faa3eb9192aa1c4d727490830dd",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "SB!i",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "0",
+					"table": "SB"
+				}
+			}
+		},
+		"folderID": "F18e2b787c802bf8714a83bf25ae386f27be7bd519ad507e7d913e7d9151779cd",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "SB0",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "1",
+					"table": "SB"
+				}
+			}
+		},
+		"folderID": "Ff2679db33d051392b6df22400b916d95df84495e809554dabdb4e999db04c162",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "SB1",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "10",
+					"table": "SB"
+				}
+			}
+		},
+		"folderID": "F62c6acd92079a90f08457f98eceeee3f48b9a5a12a374162aab2c9460bf94790",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "SB10",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "11",
+					"table": "SB"
+				}
+			}
+		},
+		"folderID": "Fec3557af11ff5a66b6b5c7a9ff717fc836fbcc9fcc3d2779887b8ffeba08e02f",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "SB11",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "12",
+					"table": "SB"
+				}
+			}
+		},
+		"folderID": "F12893ed39be532545eb42f5127578da3ac816650373292ec11d2e1a1abc79945",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "SB12",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "2",
+					"table": "SB"
+				}
+			}
+		},
+		"folderID": "Fccf27ca56017a7e048bbddacecd2b0f0e8ba4853d6605efb5dee7196b4520a3d",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "SB2",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "3",
+					"table": "SB"
+				}
+			}
+		},
+		"folderID": "Facee02cb46f9c8b0c4772110bc51653fe7a4497aa638e3a0ab0816758620de7e",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "SB3",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "4",
+					"table": "SB"
+				}
+			}
+		},
+		"folderID": "F9c19419eee83b3b7d2ff133ccc96d198493823e16658cfe1cd400651efb6d845",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "SB4",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "5",
+					"table": "SB"
+				}
+			}
+		},
+		"folderID": "F364eddb3541d8a81aacafd7ed39b1bb29f9f5e95c89c641753acfda055ecc11a",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "SB5",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "6",
+					"table": "SB"
+				}
+			}
+		},
+		"folderID": "F02807f1c8c0f57635a94642465345f5784146c7acb0141ff41ef6bde2ad254f3",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "SB6",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "7",
+					"table": "SB"
+				}
+			}
+		},
+		"folderID": "Fb4aac43ae442e2d43ca3a1e4f9961c7415b82d80bd86e8738d2dbee344ad3800",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "SB7",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "8",
+					"table": "SB"
+				}
+			}
+		},
+		"folderID": "F844cc3d9adcd5bc687d8515a1bf0ff5da7785d45caecb96a43037b540affa70a",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "SB8",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders": {
+				"~elemMatch": {
+					"level": "9",
+					"table": "SB"
+				}
+			}
+		},
+		"folderID": "F4cd8960917057b360eebd413d1df7e63a1c181262694f51f5dc3366dded9f10f",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [],
+		"title": "SB9",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬tableFolders¬table": "SB"
+		},
+		"folderID": "F93c9abfd0d678a9f5ec1aac023dd945c971a283fedd1fd0017dea0e4aa9b6528",
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"searchTerms": [
+			"Scramble"
+		],
+		"title": "Scramble",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"data¬tableFolders¬table": "h◎"
 		},
 		"folderID": "Fd8f69f38e6e033a41fa5a24d87060561ed5e1da4c6c81dc32bf24931a27359dc",

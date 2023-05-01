@@ -232,4 +232,13 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		asciiPrefix: "dystopia",
 		colour: COLOUR_SET.purple,
 	},
+	{
+		name: "Scramble",
+		prefix: "SB",
+		asciiPrefix: "Scramble",
+		playtype: "7K",
+		description: "The Scramble table, a 7k scratch table",
+		url: "https://egret9.github.io/Scramble/",
+		colour: COLOUR_SET.vibrantOrange,
+	},
 ];

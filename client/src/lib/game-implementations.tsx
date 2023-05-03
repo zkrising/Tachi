@@ -121,16 +121,16 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		},
 		classColours: {
 			colour: {
-				BLACK: bg("secondary"),
+				BLACK: "secondary",
 				YELLOW_GREEN: bgc("yellowgreen", "black"),
 				GREEN: bg("green"),
 				LIGHT_BLUE: bgc("cyan", "black"),
-				BLUE: bg("info"),
+				BLUE: "info",
 				VIOLET: bg("violet"),
 				PURPLE: bg("purple"),
 				PINK: bgc("pink", "black"),
 				ORANGE: bg("orange"),
-				GOLD: bg("warning"),
+				GOLD: "warning",
 			},
 		},
 		difficultyColours: {

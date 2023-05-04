@@ -21,8 +21,7 @@ import Divider from "components/util/Divider";
 import { UserContext } from "context/UserContext";
 import { mode } from "lib/config";
 import React, { useContext } from "react";
-import Switch from "react-bootstrap/esm/Switch";
-import { Link, Redirect, Route } from "react-router-dom";
+import { Link, Redirect, Route, Switch } from "react-router-dom";
 import CGIntegrationPage from "components/imports/CGIntegrationPage";
 import ITGHookPage from "app/pages/dashboard/import/ITGHookPage";
 

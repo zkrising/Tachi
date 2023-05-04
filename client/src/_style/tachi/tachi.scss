@@ -31,3 +31,10 @@
 	color: var(--t-primary-hover);
 	}
 }
+
+.fullscreen {
+	inset: 0;
+	position: fixed;
+	background-color: var(--t-background);
+	z-index: 8888;
+}

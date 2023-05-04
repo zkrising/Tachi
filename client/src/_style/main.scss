@@ -18,10 +18,10 @@
 @import "bootstrap-scss/root";
 
 // Bootstrap components we want
+@import "bootstrap-scss/reboot";
 @import "bootstrap-scss/utilities";
 @import "bootstrap-scss/buttons";
 @import "bootstrap-scss/button-group";
-@import "bootstrap-scss/reboot";
 @import "bootstrap-scss/type";
 @import "bootstrap-scss/containers";
 @import "bootstrap-scss/grid";
@@ -42,6 +42,21 @@
 @import "bootstrap-scss/pagination";
 @import "bootstrap-scss/modal";
 @import "bootstrap-scss/close";
+
+// custom bootstrap utilities
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "cursor": (
+      property: cursor,
+      class: cursor,
+      responsive: false,
+      values: auto pointer grab,
+    )
+  )
+);
+
 @import "bootstrap-scss/utilities/api";
 
 // Custom Tachi stuff

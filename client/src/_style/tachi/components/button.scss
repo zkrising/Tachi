@@ -1,5 +1,12 @@
 .btn {
     &-primary {
+        color: currentColor;
+        &:disabled {
+            color: currentColor;
+        }
+        &:hover {
+            color: currentColor;
+        }
         &:focus-visible{
             border-color: shade-color($tachi-primary, 80%);
         }

@@ -2,12 +2,16 @@ import { APIFetchV1, ToCDNURL } from "util/api";
 import { HumaniseError } from "util/humanise-error";
 import { HistorySafeGoBack } from "util/misc";
 import useSetSubheader from "components/layout/header/useSetSubheader";
+import CenterPage from "components/util/CenterPage";
+import SiteWordmark from "components/util/SiteWordmark";
 import Divider from "components/util/Divider";
 import { UserContext } from "context/UserContext";
 import { useFormik } from "formik";
 import { ClientConfig, TachiConfig } from "lib/config";
 import React, { MutableRefObject, useContext, useRef, useState } from "react";
-import { Alert, Button, Col, Form } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import ReCAPTCHA from "react-google-recaptcha";
 import toast from "react-hot-toast";
 import { Link, useHistory } from "react-router-dom";
@@ -111,83 +115,74 @@ export default function RegisterPage() {
 	}
 
 	return (
-		<div className="container d-flex flex-column flex-root justify-content-center align-items-center">
-			<Col lg="6">
-				<div className="text-center mb-10 mb-lg-10">
-					<img
-						src={ToCDNURL("/logos/logo-wordmark.png")}
-						alt={TachiConfig.name}
-						width="256px"
-					/>
-				</div>
-				<div className="text-center mb-10 mb-lg-20">
-					<h3 className="font-size-h1">Register</h3>
-					<span className="fw-bold text-dark-50">Have an account?</span>
-					<Link to="/login" className="fw-bold m-2">
-						Sign in!
-					</Link>
-				</div>
+		<CenterPage>
+			<SiteWordmark />
+			<div className="text-center mb-8">
+				<h1>Register</h1>
+				<span className="fw-bold text-muted">Have an account?</span>
+				<Link to="/login" className="fw-bold ms-1">
+					Sign in!
+				</Link>
+			</div>
 
-				{readRules === "acknowledged" ? (
-					<RegisterForm formik={formik} err={err} recaptchaRef={recaptchaRef} />
-				) : (
-					<div className="text-center">
-						<div className="mb-8">
-							<Alert variant="warning">
-								<b>
-									If you already have an account. DO NOT MAKE ANOTHER ONE! That
-									will get both accounts banned.
-								</b>
-							</Alert>
-							<h4>
-								Hey! Before you make an account, please read the{" "}
-								<a
-									href="https://docs.bokutachi.xyz/wiki/rules/"
-									target="_blank"
-									rel="noopener noreferrer"
-									onAuxClick={ReadRulesWait}
-									onClick={() => {
-										setTimeout(() => ReadRulesWait(), 300);
-									}}
-								>
-									Rules.
-								</a>
-							</h4>
-
-							<h6>(This link opens in a new tab.)</h6>
-						</div>
-
-						<Divider />
-
-						{readRules === "opened" ? (
-							<p className="mt-4">
-								Hey, it takes longer than {RULES_READ_TIME} seconds to read the
-								rules.
-								<br />I know it sucks to wait around, but the few rules we have are
-								enforced strictly.
-								<br />
-								The last thing you'd want is to accidentally get yourself banned!
-							</p>
-						) : (
-							<></>
-						)}
-
-						<div className="justify-content-center d-flex mt-4">
-							<Link to="/" tabIndex={-1} className="me-auto btn btn-outline-danger">
-								Back
-							</Link>
-							<Button
-								disabled={disabled}
-								className="ms-auto"
-								onClick={() => setReadRules("acknowledged")}
+			{readRules === "acknowledged" ? (
+				<RegisterForm formik={formik} err={err} recaptchaRef={recaptchaRef} />
+			) : (
+				<div className="text-center">
+					<div className="mb-8">
+						<Alert variant="warning my-8">
+							<b>
+								If you already have an account. DO NOT MAKE ANOTHER ONE! That will
+								get both accounts banned.
+							</b>
+						</Alert>
+						<h4>
+							Hey! Before you make an account, please read the{" "}
+							<a
+								href="https://docs.bokutachi.xyz/wiki/rules/"
+								target="_blank"
+								rel="noopener noreferrer"
+								onAuxClick={ReadRulesWait}
+								onClick={() => {
+									setTimeout(() => ReadRulesWait(), 300);
+								}}
 							>
-								{btnText}
-							</Button>
-						</div>
+								Rules.
+							</a>
+						</h4>
+
+						<h6>(This link opens in a new tab.)</h6>
 					</div>
-				)}
-			</Col>
-		</div>
+
+					<Divider className="my-6" />
+
+					{readRules === "opened" ? (
+						<p className="my-4">
+							Hey, it takes longer than {RULES_READ_TIME} seconds to read the rules.
+							<br />I know it sucks to wait around, but the few rules we have are
+							enforced strictly.
+							<br />
+							The last thing you'd want is to accidentally get yourself banned!
+						</p>
+					) : (
+						<></>
+					)}
+
+					<div className="justify-content-center d-flex">
+						<Link to="/" tabIndex={-1} className="me-auto btn btn-outline-danger">
+							Back
+						</Link>
+						<Button
+							disabled={disabled}
+							className="ms-auto"
+							onClick={() => setReadRules("acknowledged")}
+						>
+							{btnText}
+						</Button>
+					</div>
+				</div>
+			)}
+		</CenterPage>
 	);
 }
 
@@ -208,8 +203,12 @@ function RegisterForm({
 	recaptchaRef: MutableRefObject<any>;
 }) {
 	return (
-		<Form onSubmit={formik.handleSubmit}>
-			<Form.Group>
+		<Form
+			className="w-100 px-4 mt-8"
+			style={{ maxWidth: "620px" }}
+			onSubmit={formik.handleSubmit}
+		>
+			<Form.Group className="mb-6">
 				<Form.Label>Username</Form.Label>
 				<Form.Control
 					tabIndex={1}
@@ -219,7 +218,7 @@ function RegisterForm({
 					onChange={formik.handleChange}
 				/>
 			</Form.Group>
-			<Form.Group>
+			<Form.Group className="mb-6">
 				<Form.Label>Email</Form.Label>
 				<Form.Control
 					tabIndex={2}
@@ -227,6 +226,7 @@ function RegisterForm({
 					id="email"
 					value={formik.values.email}
 					onChange={formik.handleChange}
+					className="mb-2"
 				/>
 				<Form.Text className="text-muted">
 					This is used for things like password recovery, and authentication checks. If
@@ -236,7 +236,7 @@ function RegisterForm({
 					We will never use this to send spam!
 				</Form.Text>
 			</Form.Group>
-			<Form.Group>
+			<Form.Group className="mb-6">
 				<Form.Label>Password</Form.Label>
 				<Form.Control
 					tabIndex={3}
@@ -246,7 +246,7 @@ function RegisterForm({
 					onChange={formik.handleChange}
 				/>
 			</Form.Group>
-			<Form.Group>
+			<Form.Group className="mb-6">
 				<Form.Label>Confirm Password</Form.Label>
 				<Form.Control
 					tabIndex={4}
@@ -257,7 +257,7 @@ function RegisterForm({
 				/>
 			</Form.Group>
 			{ClientConfig.MANDATE_LOGIN && (
-				<Form.Group>
+				<Form.Group className="mb-6">
 					<Form.Label>Invite Code</Form.Label>
 					<Form.Control
 						tabIndex={5}
@@ -268,21 +268,24 @@ function RegisterForm({
 					/>
 				</Form.Group>
 			)}
-
-			<ReCAPTCHA
-				ref={recaptchaRef}
-				sitekey={
-					process.env.VITE_RECAPTCHA_KEY ?? "6LdI2swUAAAAAArkM0ZQi4SnttilqgAwsJSFw3PX"
-				}
-				onChange={(v) => {
-					formik.setFieldValue("captcha", v);
-				}}
-			/>
-
-			<Form.Group style={{ display: err ? "" : "none" }} className="text-center text-danger">
+			<Form.Group
+				style={{ display: err ? "" : "none" }}
+				className="text-center text-danger mb-6"
+			>
 				{err}
 			</Form.Group>
-			<Form.Group className="justify-content-center d-flex pt-4">
+			<div className="my-6">
+				{process.env.VITE_RECAPTCHA_KEY && (
+					<ReCAPTCHA
+						ref={recaptchaRef}
+						sitekey={process.env.VITE_RECAPTCHA_KEY}
+						onChange={(v) => {
+							formik.setFieldValue("captcha", v);
+						}}
+					/>
+				)}
+			</div>
+			<Form.Group className="justify-content-center d-flex">
 				<Link to="/" tabIndex={7} className="me-auto btn btn-outline-danger">
 					Back
 				</Link>

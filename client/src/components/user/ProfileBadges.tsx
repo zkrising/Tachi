@@ -6,12 +6,12 @@ export default function ProfileBadges({ user }: { user: UserDocument }) {
 	return (
 		<>
 			{user.badges.map((e, i) => (
-				<span key={i} className="mt-1">
+				<span key={i} className="mt-2">
 					<ProfileBadge variant={e} />
 				</span>
 			))}
 			{user.isSupporter && (
-				<span className="mt-1">
+				<span className="mt-2">
 					<Badge bg="warning">Supporter!</Badge>
 				</span>
 			)}

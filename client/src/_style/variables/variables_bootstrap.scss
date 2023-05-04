@@ -31,7 +31,7 @@ $grays: (
   "700": $gray-700,
   "800": $gray-800,
   "900": $gray-900
-) !default;
+);
 // scss-docs-end gray-colors-map
 // fusv-enable
 
@@ -64,7 +64,7 @@ $colors: (
   "white":      $white,
   "gray":       $gray-600,
   "gray-dark":  $gray-800
-) !default;
+);
 // scss-docs-end colors-map
 
 // The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
@@ -347,7 +347,7 @@ $enable-grid-classes:         true !default;
 $enable-container-classes:    true !default;
 $enable-cssgrid:              false !default;
 $enable-button-pointers:      true !default;
-$enable-rfs:                  true !default;
+$enable-rfs:                  true;
 $enable-validation-icons:     true !default;
 $enable-negative-margins:     false !default;
 $enable-deprecation-messages: true !default;
@@ -580,6 +580,15 @@ $h5-font-size:                $font-size-base * 1.175;
 $h6-font-size:                $font-size-base;
 // scss-docs-end font-variables
 
+// rfs variables :)
+// https://getbootstrap.com/docs/5.2/getting-started/rfs/
+// most of these variables are ran through calculations...
+$rfs-rem-value: 13; // i want to use $font-size-root here but i can't because they don't remove the unit before running the calculation
+$rfs-base-value: $font-size-base; // setting this too high causes the value to become negative and breaks rfs.
+$rfs-factor: 8; // setting this <= 1 throws an error => bootstrap-scss/vendor/_rfs.scss:34
+$rfs-breakpoint: 920px;
+$rfs-class: "enable"; // yes please... this allows us to enable it with a class selector only when we want it
+
 // scss-docs-start font-sizes
 $font-sizes: (
   1: $h1-font-size,
@@ -602,10 +611,10 @@ $headings-color:              null !default;
 
 // scss-docs-start display-headings
 $display-font-sizes: (
-  1: 4rem,
-  2: 3.5rem,
-  3: 3rem,
-  4: 2.5rem,
+  1: 8rem,
+  2: 6rem,
+  3: 4rem,
+  4: 3rem,
   5: 2rem,
   6: 1.5rem
 );

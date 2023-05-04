@@ -1,9 +1,10 @@
 import { APIFetchV1 } from "util/api";
 import { ShortDelayify } from "util/misc";
 import CenterPage from "components/util/CenterPage";
-import MainPageTitleContainer from "components/util/MainPageTitleContainer";
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import SiteWordmark from "components/util/SiteWordmark";
 import { ErrorPage } from "./ErrorPage";
 
 export default function ResetPasswordPage() {
@@ -17,11 +18,12 @@ export default function ResetPasswordPage() {
 
 	return (
 		<CenterPage>
-			<MainPageTitleContainer
-				title="Reset Password"
-				desc="Pick something you'll remember this time :)"
-			/>
+			<SiteWordmark />
+			<h3>Reset Password</h3>
+			<span className="fw-bold">Pick something you'll remember this time :)</span>
 			<Form
+				className="w-100 px-4 mt-8"
+				style={{ maxWidth: "620px" }}
 				onSubmit={async (e) => {
 					e.preventDefault();
 
@@ -43,7 +45,7 @@ export default function ResetPasswordPage() {
 					}
 				}}
 			>
-				<Form.Group>
+				<Form.Group className="mb-6">
 					<Form.Label>New Password</Form.Label>
 					<Form.Control
 						value={password}
@@ -52,21 +54,21 @@ export default function ResetPasswordPage() {
 						type="password"
 					/>
 				</Form.Group>
-				<Form.Group>
+				<Form.Group className="mb-6">
 					<Form.Label>Confirm</Form.Label>
 					<Form.Control
 						value={confirmPass}
 						onChange={(e) => setConfirmPass(e.target.value)}
-						isValid={password === confirmPass}
+						isValid={password === confirmPass && password.length >= 8}
 						type="password"
 					/>
 				</Form.Group>
-				<Form.Group className="justify-content-center d-flex pt-4">
+				<Form.Group className="justify-content-center d-flex">
 					<Button
 						tabIndex={3}
 						type="submit"
-						className="ml-auto"
 						disabled={!(password === confirmPass && password.length >= 8)}
+						className="mt-6"
 					>
 						Reset Password
 					</Button>

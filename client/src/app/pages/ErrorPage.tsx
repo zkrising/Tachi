@@ -51,7 +51,7 @@ export function ErrorPage({
 
 	return (
 		<div
-			className="fullscreen text-center"
+			className="fullscreen text-center user-select-none"
 			style={
 				statusCode === 999
 					? {
@@ -64,13 +64,17 @@ export function ErrorPage({
 					: undefined
 			}
 		>
-			<div className="d-flex flex-column flex-root">
-				<div className="d-flex flex-row-fluid flex-column bgi-size-cover bgi-position-center bgi-no-repeat p-10 p-sm-30">
-					<h1 className="font-size-sm-100 fw-boldest mt-15" style={{ fontSize: "150px" }}>
+			<div className="d-flex h-100 align-items-center justify-content-center px-2">
+				<div className="flex-grow-1">
+					<div className="display-1 fw-bolder enable-rfs">
 						{statusCode || "Completely Screwed."}
-					</h1>
-					<p className="font-size-h3 fw-light">{message}</p>
-					<a className="text-primary" onClick={() => HistorySafeGoBack(history)}>
+					</div>
+					<h3 className="enable-rfs">{message}</h3>
+					<a
+						className="cursor-pointer"
+						onClick={() => HistorySafeGoBack(history)}
+						style={statusCode === 999 ? { color: "red", fontSize: "24px" } : undefined}
+					>
 						Go Back.
 					</a>
 				</div>

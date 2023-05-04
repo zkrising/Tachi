@@ -9,20 +9,26 @@ export default function PrivacyPolicyPage() {
 	return (
 		<div className="privacy-policy">
 			<h2>What data do we collect?</h2>
-			<li>Personally identifiable information (email address)</li>
-			<li>Your submitted scores.</li>
+			<ul>
+				<li>Personally identifiable information (email address)</li>
+				<li>Your submitted scores.</li>
+			</ul>
 			<h2>How do we collect your data?</h2>
 			<p>
 				You directly provide {TachiConfig.name} with most of the data we collect. We collect
 				data and process data when you:
 			</p>
-			<li>Register</li>
-			<li>Submit scores</li>
+			<ul>
+				<li>Register</li>
+				<li>Submit scores</li>
+			</ul>
 			<h2>How will we use your data?</h2>
 			<p>{TachiConfig.name} collects your data so that we can:</p>
-			<li>Login</li>
-			<li>Manage our score database</li>
-			<li>Provide you with statistics</li>
+			<ul>
+				<li>Login</li>
+				<li>Manage our score database</li>
+				<li>Provide you with statistics</li>
+			</ul>
 			<h2>How do we store your data?</h2>
 			<p>{TachiConfig.name} securely stores your data on our server in Norway.</p>
 			<p>
@@ -84,7 +90,9 @@ export default function PrivacyPolicyPage() {
 				{TachiConfig.name} uses cookies in a range of ways to improve your experience on our
 				website, including, and limited to:
 			</p>
-			<li>Keeping you signed in</li>
+			<ul>
+				<li>Keeping you signed in</li>
+			</ul>
 			<h2>What types of cookies do we use?</h2>
 			<p>
 				Functionality - {TachiConfig.name} uses these cookies so that we recognize you on

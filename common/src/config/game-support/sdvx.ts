@@ -87,6 +87,7 @@ export const SDVX_SINGLE_CONF = {
 				"EXCESSIVE CLEAR",
 				"ULTIMATE CHAIN",
 				"PERFECT ULTIMATE CHAIN",
+				"S-PUC",
 			],
 			minimumRelevantValue: "CLEAR",
 			description: "The type of clear this was.",
@@ -117,8 +118,9 @@ export const SDVX_SINGLE_CONF = {
 			partOfScoreID: true,
 
 			description:
-				"The EXScore value. This is part of the scoreID, and is optional -- this metric did not exist before SDVX6, and is still optional.",
+				"The EXScore value, an extra statistic for precision. A new score is created from this in case the only metric upscored is EXScore.",
 		},
+		
 		gauge: {
 			type: "DECIMAL",
 			validate: p.isBetween(0, 100),
@@ -183,6 +185,7 @@ export const SDVX_SINGLE_CONF = {
 
 	chartData: z.strictObject({
 		inGameID: zodNonNegativeInt,
+		maxExScore: zodNonNegativeInt,
 		clearTier: zodTierlistData,
 	}),
 

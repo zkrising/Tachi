@@ -32,7 +32,8 @@ const SDVXLIKE_ENUM_COLOURS: GPTClientImplementation<SDVXLikes>["enumColours"] =
 		CLEAR: COLOUR_SET.green,
 		"EXCESSIVE CLEAR": COLOUR_SET.purple,
 		"ULTIMATE CHAIN": COLOUR_SET.teal,
-		"PERFECT ULTIMATE CHAIN": COLOUR_SET.gold,
+		"PERFECT ULTIMATE CHAIN": COLOUR_SET.pink,
+		"S-PUC": COLOUR_SET.gold,
 	},
 };
 
@@ -48,7 +49,7 @@ const USCCoreCells: GPTClientImplementation<GPTStrings["usc"]>["scoreCoreCells"]
 	</>
 );
 
-const SDVXCoreCells: GPTClientImplementation<"sdvx:Single">["scoreCoreCells"] = ({ sc }) => (
+const SDVXCoreCells: GPTClientImplementation<"sdvx:Single">["scoreCoreCells"] = ({ sc, chart }) => (
 	<>
 		<td
 			style={{
@@ -61,7 +62,8 @@ const SDVXCoreCells: GPTClientImplementation<"sdvx:Single">["scoreCoreCells"] = 
 			{typeof sc.scoreData.optional.exScore === "number" && (
 				<>
 					<br />
-					[EX: {sc.scoreData.optional.exScore}]
+					{sc.scoreData.optional.exScore} EX {""}
+					(MAX -{Math.abs(sc.scoreData.optional.exScore - chart.data.maxExScore)})
 				</>
 			)}
 		</td>

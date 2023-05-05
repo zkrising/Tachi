@@ -8,6 +8,7 @@
 		"level": "10",
 		"data": {
 			"inGameID": 1,
+			"maxExScore": 2517,
 			"clearTier": null
 		},
 		"isPrimary": true,

@@ -334,6 +334,7 @@ The `chartData` field is a [Zod](https://github.com/colinhacks/zod) schema indic
 	```ts
 	chartData: z.strictObject({
 		inGameID: z.number().int().nonnegative(),
+		maxExScore: z.number().int().nonnegative(),
 		clearTier: z.strictObject({
 			value: z.number(),
 			text: z.string(),
@@ -349,6 +350,7 @@ The `chartData` field is a [Zod](https://github.com/colinhacks/zod) schema indic
 		"chartID": "5088a4d0e1ee9d0cc2f625934306e45b1a60699b",
 		"data": {
 			"inGameID": 1,
+			"maxExscore": 2517,
 			"clearTier": { value: 12.5, text: "12C", individualDifference: false }
 		},
 		"difficulty": "ADV",

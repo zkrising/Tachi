@@ -33,6 +33,7 @@ interface MDBChart {
 	difnum: XMLText<number>;
 	illustrator: string;
 	effected_by: string;
+	max_exscore: XMLText<number>;
 }
 
 interface MDBEntry {
@@ -246,6 +247,7 @@ for (const entry of data.mdb.music as Array<MDBEntry>) {
 			playtype: "Single",
 			data: {
 				inGameID,
+				maxExScore: maybeEntry.max_exscore["#text"],
 			},
 		};
 		// new chart

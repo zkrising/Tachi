@@ -22261,34 +22261,36 @@
 			"displayVersion": "exceed"
 		},
 		"id": 2079,
-		"searchTerms": [
-			"halo_tatsunoshin"
-		],
+		"searchTerms": [],
 		"title": "HALO"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"S(TAR)饌☆pistol"
+		],
 		"artist": "Mono.",
 		"data": {
 			"displayVersion": "exceed"
 		},
 		"id": 2080,
 		"searchTerms": [
-			"startarpistol_mono"
+			"s(tar)2 pistol"
 		],
-		"title": "S(TAR)饌☆pistol"
+		"title": "S(TAR)²☆pistol"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"赫焉のヴァルキュリア -Ragnar煢k-"
+		],
 		"artist": "ryhki",
 		"data": {
 			"displayVersion": "exceed"
 		},
 		"id": 2081,
 		"searchTerms": [
-			"ragnarok_ryhki"
+			"kakuen no valkyria -ragnarok-"
 		],
-		"title": "赫焉のヴァルキュリア -Ragnar煢k-"
+		"title": "赫焉のヴァルキュリア -Ragnarøk-"
 	},
 	{
 		"altTitles": [],
@@ -22298,7 +22300,7 @@
 		},
 		"id": 2082,
 		"searchTerms": [
-			"cudliecudlie_yunyun"
+			"yunyun"
 		],
 		"title": "CUDDLIE CUDDLIE"
 	},
@@ -22310,7 +22312,7 @@
 		},
 		"id": 2083,
 		"searchTerms": [
-			"bravepower_gainen"
+			"gainen"
 		],
 		"title": "Brave Power Leader 《 = Voltage = 》"
 	},
@@ -22322,7 +22324,9 @@
 		},
 		"id": 2084,
 		"searchTerms": [
-			"reitenshi_tonarinoniwa"
+			"reitenshi",
+			"niwashi",
+			"tonari no niwa wa aoi"
 		],
 		"title": "零天視"
 	},
@@ -22334,7 +22338,9 @@
 		},
 		"id": 2085,
 		"searchTerms": [
-			"stellaimi_gotou"
+			"stella immigration",
+			"goto",
+			"lyrica"
 		],
 		"title": "ステラ・イミグレーション"
 	},
@@ -22346,7 +22352,7 @@
 		},
 		"id": 2086,
 		"searchTerms": [
-			"garland_mihairukkey"
+			"mihairu"
 		],
 		"title": "Garland"
 	},
@@ -22358,7 +22364,7 @@
 		},
 		"id": 2087,
 		"searchTerms": [
-			"suddendeath_ximorimori"
+			"morimori atsushi"
 		],
 		"title": "SuddeИDeath"
 	},
@@ -22369,9 +22375,7 @@
 			"displayVersion": "exceed"
 		},
 		"id": 2088,
-		"searchTerms": [
-			"quaver_riskjunk"
-		],
+		"searchTerms": [],
 		"title": "quaver♪"
 	},
 	{
@@ -22381,9 +22385,7 @@
 			"displayVersion": "exceed"
 		},
 		"id": 2089,
-		"searchTerms": [
-			"aerialskydive_dirtyandroids"
-		],
+		"searchTerms": [],
 		"title": "Aerial Skydive"
 	},
 	{
@@ -22394,7 +22396,8 @@
 		},
 		"id": 2090,
 		"searchTerms": [
-			"liliezeto_kuronekod"
+			"lilieze to enryuu laevateinn",
+			"kuroneko dungeon"
 		],
 		"title": "リリーゼと炎龍レーヴァテイン"
 	},
@@ -22406,7 +22409,7 @@
 		},
 		"id": 2091,
 		"searchTerms": [
-			"fujimorimatsuri_venus"
+			"fujimori -matsuri- festival"
 		],
 		"title": "FUJIMORI -祭- FESTIVAL"
 	},
@@ -22418,8 +22421,139 @@
 		},
 		"id": 2092,
 		"searchTerms": [
-			"blackorred_cosmodriver"
+			"cosmo driver"
 		],
 		"title": "Black or Red?"
+	},
+	{
+		"altTitles": [],
+		"artist": "Tanchiky",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2093,
+		"searchTerms": [],
+		"title": "ENERGY SYNERGY MATRIX"
+	},
+	{
+		"altTitles": [],
+		"artist": "Synthion",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2094,
+		"searchTerms": [],
+		"title": "Blossom"
+	},
+	{
+		"altTitles": [],
+		"artist": "みーに feat. しろさきあや",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2095,
+		"searchTerms": [
+			"alpha sky",
+			"mini",
+			"shirosaki aya"
+		],
+		"title": "アルファ・スカイ"
+	},
+	{
+		"altTitles": [],
+		"artist": "諸星なな feat.加藤はるか",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2096,
+		"searchTerms": [
+			"idiot kekkou!",
+			"moroboshi nana",
+			"kato haruka"
+		],
+		"title": "いでぃおで結構！"
+	},
+	{
+		"altTitles": [],
+		"artist": "irucaice feat. ちょこ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2097,
+		"searchTerms": [
+			"choko"
+		],
+		"title": "Chocolate Planet (いるちょこRemix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "庭師",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2098,
+		"searchTerms": [
+			"niwashi"
+		],
+		"title": "Zero-Day Exploit(One-Day Fusion Mix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "M-UE vs. siromaru",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2099,
+		"searchTerms": [],
+		"title": "Distorted Floor -Boosted-"
+	},
+	{
+		"altTitles": [],
+		"artist": "カギコ&チノン（CV:金元寿子&大空直美）",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2100,
+		"searchTerms": [
+			"chase chase jokers no uta",
+			"chase chase jokers song",
+			"ccj",
+			"akagi kagiko",
+			"aqua chinon"
+		],
+		"title": "チェイスチェイスジョーカーズのうた"
+	},
+	{
+		"altTitles": [],
+		"artist": "HIMEHINA",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2101,
+		"searchTerms": [],
+		"title": "Hello, Hologram"
+	},
+	{
+		"altTitles": [],
+		"artist": "HIMEHINA",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2102,
+		"searchTerms": [],
+		"title": "WWW"
+	},
+	{
+		"altTitles": [],
+		"artist": "DECO*27",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2103,
+		"searchTerms": [
+			"hibana -reloaded-",
+			"DECO黻27"
+		],
+		"title": "ヒバナ-Reloaded-"
 	}
 ]

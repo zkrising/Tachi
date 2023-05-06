@@ -46,7 +46,22 @@ export const CHUNITHM_SINGLE_CONF = {
 	derivedMetrics: {
 		grade: {
 			type: "ENUM",
-			values: ["D", "C", "B", "BB", "BBB", "A", "AA", "AAA", "S", "SS", "SSS"],
+			values: [
+				"D",
+				"C",
+				"B",
+				"BB",
+				"BBB",
+				"A",
+				"AA",
+				"AAA",
+				"S",
+				"S+",
+				"SS",
+				"SS+",
+				"SSS",
+				"SSS+",
+			],
 			minimumRelevantValue: "A",
 			description: "The grade this score was.",
 		},
@@ -71,7 +86,7 @@ export const CHUNITHM_SINGLE_CONF = {
 	profileRatingAlgs: {
 		naiveRating: {
 			description:
-				"The average of your best 20 ratings. This is different to in-game, as it does not take into account your recent scores in any way.",
+				"The average of your best 30 ratings. This is different to in-game, as it does not take into account your recent scores in any way.",
 		},
 	},
 
@@ -84,12 +99,13 @@ export const CHUNITHM_SINGLE_CONF = {
 	// awkward to implement, and I can't be bothered. Sorry!
 	difficulties: {
 		type: "FIXED",
-		order: ["BASIC", "ADVANCED", "EXPERT", "MASTER"],
+		order: ["BASIC", "ADVANCED", "EXPERT", "MASTER", "ULTIMA"],
 		shorthand: {
 			BASIC: "B",
 			ADVANCED: "A",
 			EXPERT: "E",
 			MASTER: "M",
+			ULTIMA: "U",
 		},
 		default: "MASTER",
 	},
@@ -104,7 +120,8 @@ export const CHUNITHM_SINGLE_CONF = {
 	orderedJudgements: ["jcrit", "justice", "attack", "miss"],
 
 	versions: {
-		paradiselost: "Paradise Lost",
+		paradiselost: "PARADISE LOST",
+		sun: "SUN",
 	},
 
 	chartData: z.strictObject({

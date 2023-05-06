@@ -8405,10 +8405,23 @@
 		},
 		"folderID": "F7ab54c2dff3a2bcd7fa5129aae7e03d6c9b1998cfc06bf360cbcd9ac05653c71",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 1 (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
+			"versions": "sun"
+		},
+		"folderID": "Ff3881c8525378f40166e20293df8c3ababb72c7ce8bd596e29b319c1856e3438",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8418,10 +8431,23 @@
 		},
 		"folderID": "Fe543868beccad30c99eb14d61d822ab621b42fb7cc38a25d6bd380d6a0310a71",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10 (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "sun"
+		},
+		"folderID": "F8936ee78df7499a1d4eaae0ead5099eb2a867b9a8f6ec9c8f6068bd758ebb1d9",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10 (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8431,10 +8457,23 @@
 		},
 		"folderID": "Fd58eab69698d06c996784cb22440646e1183e2e74d6b7b9d5f9128a875966dc6",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10+ (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10+",
+			"versions": "sun"
+		},
+		"folderID": "F54253c39ace59ebdec44d2320bed3433d824f1300a441f9c202dc310d54d03e3",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10+ (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8444,10 +8483,23 @@
 		},
 		"folderID": "F4956b5a3f609ee8f61e67c4bb132bfe2334c7cd7289b4b6dfc23d7cbc78223ef",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 11 (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "sun"
+		},
+		"folderID": "Fd5f2980e30b5182bf07521cdb24c9c9a9017e790821d02763deff4eb2127ce4f",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11 (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8457,10 +8509,23 @@
 		},
 		"folderID": "F61ba8a4fdb8d4a0b4b76ead9ce1bdf6b44e14b36c14cc238f451017e3b301779",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 11+ (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11+",
+			"versions": "sun"
+		},
+		"folderID": "F4f403ef963db137b186438dc81bb133857abc73843a2157a60ffc2aab88cc4b7",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11+ (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8470,10 +8535,23 @@
 		},
 		"folderID": "Fd84984975ceafd2636d334c8090863eeda7fac95ab09a2a839b5e730ccff8183",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 12 (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "sun"
+		},
+		"folderID": "Fd0e1a20941cb21a4e289bdeed849de2f772d0e00a8f0e8226ef3b96eb7c9c813",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12 (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8483,10 +8561,23 @@
 		},
 		"folderID": "F40ef585b0f469755f094caa3a8dd376bb6f75ef40d1f80acaa001ee573cb446c",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 12+ (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12+",
+			"versions": "sun"
+		},
+		"folderID": "F9d8fc9832871db9cc6e0f1c55d3c2f832dd20433cacc8181073b20e133c0c935",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12+ (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8496,10 +8587,23 @@
 		},
 		"folderID": "Ff39a784a78c5391a8286267039bff61c04253abab3adfecbce833acb1707c030",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 13 (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
+			"versions": "sun"
+		},
+		"folderID": "Fd4ee105ce52bd11e9488fd80acae8ffdc20bdb4803e3095e1e9104c91a61332a",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13 (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8509,10 +8613,23 @@
 		},
 		"folderID": "F4e788bbf78710a3972fec8fbd0029bccc6c166381a2667a3b2a26c025da6e286",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 13+ (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13+",
+			"versions": "sun"
+		},
+		"folderID": "Fc9e606ce11b1bc05540edfc5c73a4d889c8ca77e356d8f5868ab2bcef637f062",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13+ (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8522,10 +8639,23 @@
 		},
 		"folderID": "F59b31a7f803e9dfa228b7ad22a6788a4736ccbdd276a0ec62a330643395c00dd",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 14 (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
+			"versions": "sun"
+		},
+		"folderID": "F2e39bdd8b9adf7c96f934f4db3c35f388ec5c52b0005b2b54f7463dcd328bb31",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14 (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8535,10 +8665,36 @@
 		},
 		"folderID": "Fb138e45b7b5d571c85c7ae6393831d26970e8fbd074ba87738b3e452bef6316e",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 14+ (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14+",
+			"versions": "sun"
+		},
+		"folderID": "Fedd085e270284fbd3192477f4e536fe727f5e1c7b642e7335aa161ee67d2349a",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14+ (Sun)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
+			"versions": "sun"
+		},
+		"folderID": "F0dbda68e409a25d9ffe0db61ea2a51ee7692cef3f3ef71537c26f8f1e1eab311",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15 (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8548,10 +8704,23 @@
 		},
 		"folderID": "F5877dced3e7b942eb91d4595a7543475a9afd68bd978de70a52224cc1e1981d3",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 2 (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "sun"
+		},
+		"folderID": "Fca334aec18ecddf9fe69e4fab40619a4ee90448e442ea7d467d8837eb24dd840",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8561,10 +8730,23 @@
 		},
 		"folderID": "F897a7ed2429917a5d1f87913eeb36f08e4e57919fd9b1336e319b7b836fc7b60",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 3 (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "sun"
+		},
+		"folderID": "F60e8098e5bb3f27b350a27b96700a6b944b5932b10299771eb9b39eea5ca30dd",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8574,10 +8756,23 @@
 		},
 		"folderID": "F72c6ceedb033e71f60ef0daf772eb2cb76f3bba268386d4bdb8a07a8693d1be8",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 4 (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "sun"
+		},
+		"folderID": "Fd8e83a053e783202a91582508fc119077f2434b4ea19fc60d2fd7c7f67d7c845",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8587,10 +8782,23 @@
 		},
 		"folderID": "Fe8a7e436f0da7a3ac2529476706192f82bdb96e15491ed2cdde6860dc1019018",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 5 (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "sun"
+		},
+		"folderID": "Fde63735793e4434f42b6ec24c1868a462e0364affbb8c3865eca10ca1919b39a",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8600,10 +8808,23 @@
 		},
 		"folderID": "F553100a9eabbf0e0511f9887edefe84413e21545221d968593f4de827e656960",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 6 (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "sun"
+		},
+		"folderID": "Fcf51860c4ccdd06ddc9637336a793cde802de72d886affdbc1c2b44ef7ea2bbc",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8613,10 +8834,23 @@
 		},
 		"folderID": "Fe30d512e03ec5836ebbd608a0528d823c0b08d6d5ee803095a4e716d9890b3cc",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 7 (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "sun"
+		},
+		"folderID": "F72443d44c04aaf8a2f1e8aded5776c5a5fb11189c7baa0378684460cdd8a0567",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7 (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8626,10 +8860,23 @@
 		},
 		"folderID": "Fe02e4f35e878508c5b1dcb24e7c13e74f840ccd8762341d8348c7a23550d6fa3",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 7+ (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7+",
+			"versions": "sun"
+		},
+		"folderID": "Ff8b6d166d4779f98d5fd820ebe14bb4c941a70cfbac7f19e206aa58ce61cf598",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7+ (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8639,10 +8886,23 @@
 		},
 		"folderID": "F2ef4a7e09647d9924a2e1f6f5e07fa2ddcc4b8dfad30b1c5130a06cffa11241b",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 8 (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "sun"
+		},
+		"folderID": "F157c90044b9a570acc51d08e942952ac59f49dbbcc83fecacc001b7f4455363a",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8 (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8652,10 +8912,23 @@
 		},
 		"folderID": "F0b8602ad7e72434442af14363455e20714a8812cff5a70b8645b87674f64d2dd",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 8+ (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8+",
+			"versions": "sun"
+		},
+		"folderID": "F35062bbebbde3f1634087459e4fe0d7e2467cb8f71b276c800253fbe42ef6ac5",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8+ (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8665,10 +8938,23 @@
 		},
 		"folderID": "F1972242bf9a2aa0b17ff4f33447590b79913d213beb9bbf0ba9552e10e718b54",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9 (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "sun"
+		},
+		"folderID": "F0920882a673a8f9fa6ba4aeb57042c55629133395e22d90e6ee959245c4b4b40",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9 (Sun)",
 		"type": "charts"
 	},
 	{
@@ -8678,10 +8964,23 @@
 		},
 		"folderID": "Ff3a04b25e1100d17e5b030ab275534ce950b8afab1f0eca5e96eb99b837c24eb",
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9+ (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9+",
+			"versions": "sun"
+		},
+		"folderID": "Fa3046e8dfc86ba9062261b82ebfc0080d96027ebbc230bc693c3f3ac7aad6a8f",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9+ (Sun)",
 		"type": "charts"
 	},
 	{

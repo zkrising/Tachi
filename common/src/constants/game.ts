@@ -81,8 +81,11 @@ export enum CHUNITHM_GRADES {
 	AA = 6,
 	AAA = 7,
 	S = 8,
-	SS = 9,
-	SSS = 10,
+	S_PLUS = 9,
+	SS = 10,
+	SS_PLUS = 11,
+	SSS = 12,
+	SSS_PLUS = 13,
 }
 
 export enum JUBEAT_GRADES {

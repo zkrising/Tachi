@@ -58,8 +58,11 @@ export const CHUNITHM_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"chunithm:S
 	AA: 925_000,
 	AAA: 950_000,
 	S: 975_000,
+	"S+": 990_000,
 	SS: 1_000_000,
+	"SS+": 1_005_000,
 	SSS: 1_007_500,
+	"SSS+": 1_009_000,
 });
 
 export const WACCA_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"wacca:Single", "grade">>({

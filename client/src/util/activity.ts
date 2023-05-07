@@ -120,7 +120,9 @@ export function ClumpActivity(data: ActivityReturn | RecordActivityReturn): Clum
 			(curUserID !== sub.userID && curUserID !== null) ||
 			(lastTime !== null && lastTime - (sub.timeAchieved ?? 0) > ONE_HOUR * 8)
 		) {
-			clumped.push({ type: "GOAL_ACHIEVEMENTS", userID: sub.userID, goals: goalClump });
+			if (curUserID !== null) {
+				clumped.push({ type: "GOAL_ACHIEVEMENTS", userID: curUserID, goals: goalClump });
+			}
 
 			goalClump = [];
 		}

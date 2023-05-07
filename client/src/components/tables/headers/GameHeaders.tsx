@@ -88,7 +88,7 @@ export function GetGPTCoreHeaders<
 					// typescript is NOT happy with what i've done here
 					// LOL, who cares.
 					// safety is for chumps
-					return (header[2] as any)!(pbA, pbB);
+					return (header[2] as any)(pbA, pbB);
 				},
 			]);
 		} else {

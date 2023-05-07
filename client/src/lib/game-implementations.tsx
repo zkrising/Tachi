@@ -61,9 +61,12 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				A: COLOUR_SET.paleGreen,
 				AA: COLOUR_SET.green,
 				AAA: COLOUR_SET.vibrantGreen,
-				S: COLOUR_SET.vibrantOrange,
+				S: COLOUR_SET.orange,
+				"S+": COLOUR_SET.vibrantOrange,
 				SS: COLOUR_SET.vibrantYellow,
+				"SS+": COLOUR_SET.gold,
 				SSS: COLOUR_SET.teal,
+				"SSS+": COLOUR_SET.white,
 			},
 			lamp: {
 				FAILED: COLOUR_SET.red,

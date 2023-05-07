@@ -58,7 +58,7 @@ const SDVXCoreCells: GPTClientImplementation<"sdvx:Single">["scoreCoreCells"] = 
 			<strong>{sc.scoreData.grade}</strong>
 			<br />
 			{FormatMillions(sc.scoreData.score)}
-			{sc.scoreData.optional.exScore && (
+			{typeof sc.scoreData.optional.exScore === "number" && (
 				<>
 					<br />
 					[EX: {sc.scoreData.optional.exScore}]

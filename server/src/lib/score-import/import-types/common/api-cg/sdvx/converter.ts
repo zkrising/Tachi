@@ -60,7 +60,7 @@ export const ConverterAPICGSDVX: ConverterFunction<CGSDVXScore, CGContext> = asy
 			},
 			optional: {
 				maxCombo: data.maxChain,
-				exScore: data.exScore,
+				exScore: data.exScore === 0 ? null : data.exScore,
 			},
 		},
 		scoreMeta: {},

@@ -68,10 +68,16 @@ const SDVXCoreCells: GPTClientImplementation<"sdvx:Single">["scoreCoreCells"] = 
 				<strong>{sc.scoreData.grade}</strong>
 				<br />
 				{FormatMillions(sc.scoreData.score)}
-				{exScore > 0 && maxExScore > 0 && (
+				{exScore > 0 && (
 					<>
 						<br />
-						{percent <= 0.96 ? `${(percent * 100).toFixed(2)}%` : `MAX -${diff}`}
+						{/*	For konaste exclusives that currently don't have a maxExScore value, 
+						we should just display the EXScore value as is as a fallback */}
+						{maxExScore > 0
+							? percent <= 0.96
+								? `${(percent * 100).toFixed(2)}%`
+								: `MAX -${diff}`
+							: `${exScore} EX`}
 					</>
 				)}
 			</td>

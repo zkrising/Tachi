@@ -33,7 +33,6 @@ const SDVXLIKE_ENUM_COLOURS: GPTClientImplementation<SDVXLikes>["enumColours"] =
 		"EXCESSIVE CLEAR": COLOUR_SET.purple,
 		"ULTIMATE CHAIN": COLOUR_SET.teal,
 		"PERFECT ULTIMATE CHAIN": COLOUR_SET.pink,
-		"S-PUC": COLOUR_SET.gold,
 	},
 };
 
@@ -49,28 +48,39 @@ const USCCoreCells: GPTClientImplementation<GPTStrings["usc"]>["scoreCoreCells"]
 	</>
 );
 
-const SDVXCoreCells: GPTClientImplementation<"sdvx:Single">["scoreCoreCells"] = ({ sc, chart }) => (
-	<>
-		<td
-			style={{
-				backgroundColor: ChangeOpacity(GetEnumColour(sc, "grade"), 0.2),
-			}}
-		>
-			<strong>{sc.scoreData.grade}</strong>
-			<br />
-			{FormatMillions(sc.scoreData.score)}
-			{typeof sc.scoreData.optional.exScore === "number" && (
-				<>
-					<br />
-					{sc.scoreData.optional.exScore} EX {""}
-					(MAX -{Math.abs(sc.scoreData.optional.exScore - chart.data.maxExScore)})
-				</>
-			)}
-		</td>
-		<SDVXJudgementCell score={sc} />
-		<SDVXLampCell score={sc} />
-	</>
-);
+const SDVXCoreCells: GPTClientImplementation<"sdvx:Single">["scoreCoreCells"] = ({ sc, chart }) => {
+	const exScore = sc.scoreData.optional.exScore ?? 0;
+	const maxExScore = chart.data.maxExScore;
+	const percent = exScore / chart.data.maxExScore;
+	const diff = maxExScore - exScore;
+
+	return (
+		<>
+			<td
+				style={
+					diff === 0
+						? { backgroundColor: ChangeOpacity(COLOUR_SET.gold, 0.2) }
+						: {
+								backgroundColor: ChangeOpacity(GetEnumColour(sc, "lamp"), 0.2),
+						  }
+				}
+			>
+				<strong>{sc.scoreData.grade}</strong>
+				<br />
+				{FormatMillions(sc.scoreData.score)}
+				{typeof sc.scoreData.optional.exScore === "number" &&
+					sc.scoreData.optional.exScore >= 1 && (
+						<>
+							<br />
+							{percent <= 0.96 ? `${(percent * 100).toFixed(2)}%` : `MAX -${diff}`}
+						</>
+					)}
+			</td>
+			<SDVXJudgementCell score={sc} />
+			<SDVXLampCell score={sc} chart={chart} />
+		</>
+	);
+};
 
 const SDVXRatingCell: GPTClientImplementation<SDVXLikes>["ratingCell"] = ({ sc, chart }) => (
 	<VF6Cell score={sc} chart={chart} />

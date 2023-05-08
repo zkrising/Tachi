@@ -87,7 +87,6 @@ export const SDVX_SINGLE_CONF = {
 				"EXCESSIVE CLEAR",
 				"ULTIMATE CHAIN",
 				"PERFECT ULTIMATE CHAIN",
-				"S-PUC",
 			],
 			minimumRelevantValue: "CLEAR",
 			description: "The type of clear this was.",

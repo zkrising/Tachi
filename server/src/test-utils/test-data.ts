@@ -187,6 +187,8 @@ export const TestingSDVXScore: ScoreDocument<"sdvx:Single"> = {
 		},
 		judgements: {},
 		optional: {
+			maxCombo: 687,
+			exScore: 789,
 			enumIndexes: {},
 		},
 	},
@@ -219,6 +221,8 @@ export const TestingSDVXPB: PBScoreDocument<"sdvx:Single"> = {
 		},
 		judgements: {},
 		optional: {
+			maxCombo: 687,
+			exScore: 789,
 			enumIndexes: {},
 		},
 	},
@@ -247,6 +251,7 @@ export const TestingSDVXAlbidaChart: ChartDocument<"sdvx:Single"> = {
 	level: "10",
 	data: {
 		inGameID: 1,
+		maxExScore: 2517,
 		clearTier: null,
 	},
 	isPrimary: true,
@@ -468,6 +473,7 @@ export const TestingAlbidaADV: ChartDocument<"sdvx:Single"> = {
 	level: "10",
 	data: {
 		inGameID: 1,
+		maxExScore: 2517,
 		clearTier: null,
 	},
 	isPrimary: true,

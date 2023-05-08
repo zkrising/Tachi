@@ -7,8 +7,9 @@ import MillionsScoreCell from "components/tables/cells/MillionsScoreCell";
 import SDVXJudgementCell from "components/tables/cells/SDVXJudgementCell";
 import SDVXLampCell from "components/tables/cells/SDVXLampCell";
 import { GetEnumColour } from "lib/game-implementations";
-import React from "react";
+import React, { useState } from "react";
 import VF6Cell from "components/tables/cells/VF6Cell";
+import { SDVXEXScoreCell, SDVXMaxEXScoreCell } from "components/tables/cells/SDVXEXScoreCell";
 import { CreateRatingSys, bg, bgc } from "./_util";
 
 type SDVXLikes = GPTStrings["usc" | "sdvx"];
@@ -49,16 +50,15 @@ const USCCoreCells: GPTClientImplementation<GPTStrings["usc"]>["scoreCoreCells"]
 );
 
 const SDVXCoreCells: GPTClientImplementation<"sdvx:Single">["scoreCoreCells"] = ({ sc, chart }) => {
-	const exScore = sc.scoreData.optional.exScore ?? 0;
-	const maxExScore = chart.data.maxExScore;
-	const percent = exScore / chart.data.maxExScore;
-	const diff = maxExScore - exScore;
+	const ex = sc.scoreData.optional.exScore;
+	const maxEx = chart.data.maxExScore;
+	const [sPuc, setSPuc] = useState(false);
 
 	return (
 		<>
 			<td
 				style={
-					diff === 0
+					sPuc
 						? { backgroundColor: ChangeOpacity(COLOUR_SET.gold, 0.2) }
 						: {
 								backgroundColor: ChangeOpacity(GetEnumColour(sc, "lamp"), 0.2),
@@ -68,18 +68,10 @@ const SDVXCoreCells: GPTClientImplementation<"sdvx:Single">["scoreCoreCells"] = 
 				<strong>{sc.scoreData.grade}</strong>
 				<br />
 				{FormatMillions(sc.scoreData.score)}
-				{exScore > 0 && (
-					<>
-						<br />
-						{/*	For konaste exclusives that currently don't have a maxExScore value, 
-						we should just display the EXScore value as is as a fallback */}
-						{maxExScore > 0
-							? percent <= 0.96
-								? `${(percent * 100).toFixed(2)}%`
-								: `MAX -${diff}`
-							: `${exScore} EX`}
-					</>
-				)}
+				{typeof ex === "number" && typeof maxEx === "number" ? (
+					<SDVXMaxEXScoreCell ex={ex} maxEx={maxEx} setSPuc={setSPuc} />
+				) : null}
+				{maxEx === null && typeof ex === "number" ? SDVXEXScoreCell(ex) : null}
 			</td>
 			<SDVXJudgementCell score={sc} />
 			<SDVXLampCell score={sc} chart={chart} />

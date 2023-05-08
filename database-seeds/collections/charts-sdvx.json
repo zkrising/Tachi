@@ -94810,7 +94810,7 @@
 		"chartID": "2f1a5558010a92f364c177a27a9fd1ce35096fb3",
 		"data": {
 			"inGameID": 1330,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -94827,7 +94827,7 @@
 		"chartID": "e17bb7ad61c50792300f4ade94c366a6f99b3f4b",
 		"data": {
 			"inGameID": 1330,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -94849,7 +94849,7 @@
 				"value": 16.3
 			},
 			"inGameID": 1330,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -94866,7 +94866,7 @@
 		"chartID": "85cec32668e89cead74e6f7055e4e4cd6bbcc7eb",
 		"data": {
 			"inGameID": 1330,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
@@ -96370,7 +96370,7 @@
 		"chartID": "56f1e72013682fa2420d03caab6488a898f50c78",
 		"data": {
 			"inGameID": 1350,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -96387,7 +96387,7 @@
 		"chartID": "cedcdc464da3ed54f59574986b93f8c480425a4b",
 		"data": {
 			"inGameID": 1350,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -96409,7 +96409,7 @@
 				"value": 16.1
 			},
 			"inGameID": 1350,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -96426,7 +96426,7 @@
 		"chartID": "071fe4c19ad60f8cef3ad2ddb97dfe8f0c10be79",
 		"data": {
 			"inGameID": 1350,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
@@ -96443,7 +96443,7 @@
 		"chartID": "7bc1966735597a0ab6c0d9318ecc843c4e364487",
 		"data": {
 			"inGameID": 1351,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -96460,7 +96460,7 @@
 		"chartID": "030ee2824569d0b072c1b21352794e6db59ca9f7",
 		"data": {
 			"inGameID": 1351,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -96482,7 +96482,7 @@
 				"value": 16.3
 			},
 			"inGameID": 1351,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -96499,7 +96499,7 @@
 		"chartID": "36302734d064367f713ed305a65937ff3eb00889",
 		"data": {
 			"inGameID": 1351,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
@@ -96516,7 +96516,7 @@
 		"chartID": "0ae0d16e612ce0d9676faf6e70786e84ee97ea80",
 		"data": {
 			"inGameID": 1352,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -96533,7 +96533,7 @@
 		"chartID": "981fcad1d24b1d681f2a097715b02a3f8a14b35c",
 		"data": {
 			"inGameID": 1352,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -96555,7 +96555,7 @@
 				"value": 17.6
 			},
 			"inGameID": 1352,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -96572,7 +96572,7 @@
 		"chartID": "0bd2ff9cbea19cf885dd5c93c3389aebeac010a6",
 		"data": {
 			"inGameID": 1352,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
@@ -96589,7 +96589,7 @@
 		"chartID": "a28bf15a6632c597ec98deb47206cfa227a74b6d",
 		"data": {
 			"inGameID": 1353,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -96606,7 +96606,7 @@
 		"chartID": "5941790c711d5267790b23c6838fe90efb854fa7",
 		"data": {
 			"inGameID": 1353,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -96628,7 +96628,7 @@
 				"value": 17.2
 			},
 			"inGameID": 1353,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -96645,7 +96645,7 @@
 		"chartID": "fa1d1bf7694105834889ffcada20a89ab7c335ab",
 		"data": {
 			"inGameID": 1353,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
@@ -96662,7 +96662,7 @@
 		"chartID": "5dbc83615df7e441278e672d000aa61bc0878714",
 		"data": {
 			"inGameID": 1354,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -96679,7 +96679,7 @@
 		"chartID": "7f423dc81ef87292b09db3e827125cf656c3cd2b",
 		"data": {
 			"inGameID": 1354,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -96701,7 +96701,7 @@
 				"value": 17
 			},
 			"inGameID": 1354,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -96718,7 +96718,7 @@
 		"chartID": "44f8ba0cde25f0c1cb49b0170adb9006af047ebd",
 		"data": {
 			"inGameID": 1354,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
@@ -96735,7 +96735,7 @@
 		"chartID": "c5879f83479bd436171f936539fdde14c992a282",
 		"data": {
 			"inGameID": 1355,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -96752,7 +96752,7 @@
 		"chartID": "71071ea3b2490891d706153affdef1058bd57672",
 		"data": {
 			"inGameID": 1355,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -96774,7 +96774,7 @@
 				"value": 17.3
 			},
 			"inGameID": 1355,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -96791,7 +96791,7 @@
 		"chartID": "1bd0e08536adbc4f742a075a8d8fdde594a14390",
 		"data": {
 			"inGameID": 1355,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
@@ -96808,7 +96808,7 @@
 		"chartID": "5f6c0b1162d8e01a5181a72fbe0a9b51875bcf06",
 		"data": {
 			"inGameID": 1356,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -96825,7 +96825,7 @@
 		"chartID": "5d00e881a1757a6f8a86d92cb79253bea56d3fc2",
 		"data": {
 			"inGameID": 1356,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -96847,7 +96847,7 @@
 				"value": 17.4
 			},
 			"inGameID": 1356,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -96864,7 +96864,7 @@
 		"chartID": "9793235de315f4e47455a41174d8178342c329b8",
 		"data": {
 			"inGameID": 1356,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
@@ -96881,7 +96881,7 @@
 		"chartID": "72caa05ba13d1b6e1dd8a087e200225e95c758ed",
 		"data": {
 			"inGameID": 1357,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -96898,7 +96898,7 @@
 		"chartID": "265a4dea4ba16f588456c46a503a09df452c9bb9",
 		"data": {
 			"inGameID": 1357,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -96920,7 +96920,7 @@
 				"value": 16.3
 			},
 			"inGameID": 1357,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -96937,7 +96937,7 @@
 		"chartID": "2f08a6fb6ba1b868216d489e53d4c98c1b1bb124",
 		"data": {
 			"inGameID": 1357,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
@@ -96954,7 +96954,7 @@
 		"chartID": "f90d09d49d0e5e0832739397fdc8919efb0cd398",
 		"data": {
 			"inGameID": 1358,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -96971,7 +96971,7 @@
 		"chartID": "cc45ebe518dd8ca4bbdb4541d27e03158a819cc6",
 		"data": {
 			"inGameID": 1358,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -96993,7 +96993,7 @@
 				"value": 17.4
 			},
 			"inGameID": 1358,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -97010,7 +97010,7 @@
 		"chartID": "108a64bcc84848e8f3898cf29ce44157146b9cf8",
 		"data": {
 			"inGameID": 1358,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
@@ -97027,7 +97027,7 @@
 		"chartID": "35483dc9ae34b94694c5539a1d4b00ef9b732bab",
 		"data": {
 			"inGameID": 1359,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -97044,7 +97044,7 @@
 		"chartID": "16b6b823d96bc4a70b3a6512f11e1f5efb339b32",
 		"data": {
 			"inGameID": 1359,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -97066,7 +97066,7 @@
 				"value": 16.3
 			},
 			"inGameID": 1359,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -97083,7 +97083,7 @@
 		"chartID": "000db0ca19c330c2c99c722c21270a67919a38c5",
 		"data": {
 			"inGameID": 1359,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
@@ -131566,7 +131566,7 @@
 		"chartID": "f25b5bfe2a4b5ec7a0a43a705863e5e25777ba8b",
 		"data": {
 			"inGameID": 1963,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -131582,7 +131582,7 @@
 		"chartID": "94b137637f3ae21fab3436f8a4ddf9f1e0c1c42c",
 		"data": {
 			"inGameID": 1963,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -131598,7 +131598,7 @@
 		"chartID": "4ed7ece132c39de9fed6937b3c8882f45ed8b37e",
 		"data": {
 			"inGameID": 1963,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -131614,7 +131614,7 @@
 		"chartID": "eb6d59777bcdde5e21b7f2752d413c8533f7f2ed",
 		"data": {
 			"inGameID": 1963,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
@@ -131630,7 +131630,7 @@
 		"chartID": "c568466a49ab1bdbb7e8d7506e73211e84a18b71",
 		"data": {
 			"inGameID": 1964,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -131646,7 +131646,7 @@
 		"chartID": "30648dc29bc7f4bea052fafc4d6a25a8796972ab",
 		"data": {
 			"inGameID": 1964,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -131662,7 +131662,7 @@
 		"chartID": "d0af5e957885abaff758bffa0e1a197d97fdbe42",
 		"data": {
 			"inGameID": 1964,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -131678,7 +131678,7 @@
 		"chartID": "f4bdafaa4600d41e7a03afd1f06ed5ade3e20f4c",
 		"data": {
 			"inGameID": 1964,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
@@ -131694,7 +131694,7 @@
 		"chartID": "f22cfe128c377c0a8c282a9cd71d228ff33a6417",
 		"data": {
 			"inGameID": 1965,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -131710,7 +131710,7 @@
 		"chartID": "9532e4a846e4828f45e8f6af43dcfac0bf2794d2",
 		"data": {
 			"inGameID": 1965,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -131726,7 +131726,7 @@
 		"chartID": "c099d0f12b040742eeb3887f63ed0adcc7082211",
 		"data": {
 			"inGameID": 1965,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -131742,7 +131742,7 @@
 		"chartID": "dfd3f8d7d5b92eb26757a14d7a91c0b6993f0470",
 		"data": {
 			"inGameID": 1965,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
@@ -131758,7 +131758,7 @@
 		"chartID": "2f4fc618e30896c1efe77e17b347f32d2445a7d7",
 		"data": {
 			"inGameID": 1966,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -131774,7 +131774,7 @@
 		"chartID": "24dd69f6774fe60a81af9abf70bbb4d45b9421c0",
 		"data": {
 			"inGameID": 1966,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -131790,7 +131790,7 @@
 		"chartID": "f878cb4b7f8492104de00d5039cd20ae833b45a5",
 		"data": {
 			"inGameID": 1966,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -131806,7 +131806,7 @@
 		"chartID": "5a381382b3e225863a8f53d0e5cefecf2e727ff9",
 		"data": {
 			"inGameID": 1966,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
@@ -131822,7 +131822,7 @@
 		"chartID": "32084442e3da64b9518c8fab4577d6c70a750f7b",
 		"data": {
 			"inGameID": 1967,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -131838,7 +131838,7 @@
 		"chartID": "c909bc6bc2dee7b89a6cef7903e29173cd2604c1",
 		"data": {
 			"inGameID": 1967,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -131854,7 +131854,7 @@
 		"chartID": "085fee45d19b03065b68d62c7032ab65f06f8366",
 		"data": {
 			"inGameID": 1967,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -131870,7 +131870,7 @@
 		"chartID": "2571f5b9a65a224bb9acaebef1680feacabbd60c",
 		"data": {
 			"inGameID": 1967,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
@@ -131886,7 +131886,7 @@
 		"chartID": "fb457b4f667ede5c7768308a4017ae90a4bfe256",
 		"data": {
 			"inGameID": 1968,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "ADV",
 		"isPrimary": true,
@@ -131902,7 +131902,7 @@
 		"chartID": "ef69501ed1a1f5b04a44649730c8fc7179e42dae",
 		"data": {
 			"inGameID": 1968,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -131918,7 +131918,7 @@
 		"chartID": "80106fb4a32a8ceade84b1a102b2c2838aee77d5",
 		"data": {
 			"inGameID": 1968,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -131934,7 +131934,7 @@
 		"chartID": "84f65762289ad0a5abe7c2b62f8400db5d2ccaad",
 		"data": {
 			"inGameID": 1968,
-			"maxExScore": 0
+			"maxExScore": null
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,

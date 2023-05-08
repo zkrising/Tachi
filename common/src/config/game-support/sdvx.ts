@@ -184,7 +184,7 @@ export const SDVX_SINGLE_CONF = {
 
 	chartData: z.strictObject({
 		inGameID: zodNonNegativeInt,
-		maxExScore: zodNonNegativeInt,
+		maxExScore: z.nullable(zodNonNegativeInt),
 		clearTier: zodTierlistData,
 	}),
 

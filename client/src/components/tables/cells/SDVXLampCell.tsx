@@ -14,8 +14,11 @@ export default function SDVXLampCell({
 	chart?: ChartDocument<"sdvx:Single">;
 }) {
 	const exScore = "exScore" in score.scoreData.optional ? score.scoreData.optional.exScore : 0;
-	const maxExScore = chart?.data.maxExScore ?? 1;
-	const sPuc = maxExScore === exScore;
+	const maxExScore = chart?.data.maxExScore ?? 0;
+	let sPuc = false;
+	if (maxExScore > 0) {
+		sPuc = maxExScore === exScore;
+	}
 	return (
 		<td
 			style={
@@ -27,8 +30,11 @@ export default function SDVXLampCell({
 			}
 		>
 			<strong>
-				{(score.scoreData.lamp === "FAILED" ? "PLAYED" : score.scoreData.lamp) &&
-					(sPuc ? "S-PUC" : score.scoreData.lamp)}
+				{score.scoreData.lamp === "FAILED"
+					? "PLAYED"
+					: sPuc
+					? "S-PUC"
+					: score.scoreData.lamp}
 			</strong>
 		</td>
 	);

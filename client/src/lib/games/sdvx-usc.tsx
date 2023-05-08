@@ -68,13 +68,12 @@ const SDVXCoreCells: GPTClientImplementation<"sdvx:Single">["scoreCoreCells"] = 
 				<strong>{sc.scoreData.grade}</strong>
 				<br />
 				{FormatMillions(sc.scoreData.score)}
-				{typeof sc.scoreData.optional.exScore === "number" &&
-					sc.scoreData.optional.exScore >= 1 && (
-						<>
-							<br />
-							{percent <= 0.96 ? `${(percent * 100).toFixed(2)}%` : `MAX -${diff}`}
-						</>
-					)}
+				{exScore > 0 && maxExScore > 0 && (
+					<>
+						<br />
+						{percent <= 0.96 ? `${(percent * 100).toFixed(2)}%` : `MAX -${diff}`}
+					</>
+				)}
 			</td>
 			<SDVXJudgementCell score={sc} />
 			<SDVXLampCell score={sc} chart={chart} />

@@ -23,14 +23,14 @@ const Navbar = ({ children }: NavbarProps) => {
 	const [showScrollLeft, setShowScrollLeft] = useState(false);
 	const [showScrollRight, setShowScrollRight] = useState(false);
 
+	// If the page changes size or the container scrolls, we need to refresh the indicator's position and the scroll buttons,
+	// so we observe the container and add a scroll event listener
 	useEffect(() => {
-		// If the page changes size or the container scrolls, we need to refresh the indicator's position and the scroll buttons,
-		// so we observe the container and add a scroll event listener
-		handlePositionChange();
+		handlePosChange();
 		handleScrollButtonVisibility();
 
 		const resizeObserver = new ResizeObserver(() => {
-			handlePositionChange();
+			handlePosChange();
 			handleScrollButtonVisibility();
 		});
 		resizeObserver.observe(parentRef.current as HTMLElement);
@@ -47,9 +47,8 @@ const Navbar = ({ children }: NavbarProps) => {
 			}
 		};
 	}, [activeItem, parentRef]);
-
-	function handlePositionChange() {
-		// The logic to set the position of the indicator
+	// The logic to set the position of the indicator
+	function handlePosChange() {
 		const { offsetLeft, offsetWidth } = activeItem;
 		const containerOffsetLeft = parentRef.current?.offsetLeft || 0;
 		setIndicatorPos({
@@ -70,18 +69,16 @@ const Navbar = ({ children }: NavbarProps) => {
 		}
 	}
 	{
-		// Scroll functions
+		// Scroll button functions
 	}
 	function handleScrollLeft() {
 		const container = parentRef.current;
-		container?.scrollBy({ left: -container.clientWidth, behavior: "smooth" });
+		container?.scrollBy({ left: -container.clientWidth * 0.75, behavior: "smooth" });
 	}
-
 	function handleScrollRight() {
 		const container = parentRef.current;
-		container?.scrollBy({ left: container.clientWidth, behavior: "smooth" });
+		container?.scrollBy({ left: container.clientWidth * 0.75, behavior: "smooth" });
 	}
-
 	return (
 		<div className="tachi-navbar-container rounded position-relative">
 			<div
@@ -97,7 +94,7 @@ const Navbar = ({ children }: NavbarProps) => {
 								? child.props.otherMatchingPaths.map((p) => p)
 								: [];
 							const pathname = loc.pathname.replace(/\/$/u, ""); // get pathname from router-dom and remove any trailing slash
-							const isActive = // set item active if it matches the current URL by checking it's to property and any otherMatchingPaths it may have
+							const isActive = // set item active if it matches the current URL by checking it's to property and any otherMatchingPaths it passes through
 								to === pathname ||
 								otherMatchingPaths.some((p) => pathname.startsWith(p));
 							return React.cloneElement<NavItemProps>(child, {
@@ -116,6 +113,9 @@ const Navbar = ({ children }: NavbarProps) => {
 					/>
 				</div>
 			</div>
+			{/* The buttons use transitions based on the show selector. The behaviour I chose is to adjust the width of the buttons between 0 and 2rem.
+			There is also a gradient background so there's a nice transition between the elements under and the opaque background of the button 
+			The arrows use a simple opacity transition with a longer duration than the buttons' so the arrow doesn't pop in before it has a background */}
 			<div
 				className={`tachi-scroll tachi-scroll-left position-absolute start-0 top-0 h-100 ${
 					showScrollLeft ? "show" : ""
@@ -138,7 +138,7 @@ const Navbar = ({ children }: NavbarProps) => {
 
 const Item = ({ to, key, children, setActiveItem, active }: NavItemProps) => {
 	const linkRef = useRef<HTMLAnchorElement>(null);
-	// If an item is active, update its parent's active state
+	// If a link is active, update its parent's active state
 	useEffect(() => {
 		if (linkRef.current && active && setActiveItem) {
 			setActiveItem(linkRef.current);
@@ -146,7 +146,14 @@ const Item = ({ to, key, children, setActiveItem, active }: NavItemProps) => {
 	}, [linkRef, active, setActiveItem]);
 
 	return (
-		<NavLink className="tachi-item gentle-link mx-2" key={key} to={to} exact ref={linkRef}>
+		<NavLink
+			className="tachi-item gentle-link mx-2"
+			key={key}
+			to={to}
+			exact
+			ref={linkRef}
+			draggable={false}
+		>
 			<div className="tachi-link px-8 my-5">{children}</div>
 		</NavLink>
 	);

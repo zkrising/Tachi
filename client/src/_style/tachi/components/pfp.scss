@@ -4,6 +4,7 @@
     object-fit: cover;
     &-small{
         width: 32px;
-        height: 32px
+        height: 32px;
+        object-fit: cover;
     }
 }

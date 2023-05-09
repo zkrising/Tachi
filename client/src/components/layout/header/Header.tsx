@@ -48,10 +48,10 @@ export function Header() {
 	}
 
 	return (
-		<header id="header_main" className="fixed-top">
-			<Navbar variant="dark" expand="md" className="p-0">
+		<header id="tachi_header" className="fixed-top">
+			<Navbar variant="dark" key="md" expand="md" className="p-0">
 				<Container className="align-center">
-					<Navbar.Brand className="logo-default">
+					<Navbar.Brand>
 						<Link to="/" className="my-auto">
 							<img
 								alt="Logo"
@@ -62,18 +62,22 @@ export function Header() {
 					</Navbar.Brand>
 					<Navbar.Toggle aria-controls="offcanvasNavbar-expand-md" />
 					<Navbar.Offcanvas
-						aria-labelledby={"offcanvasNavbar-expand-md"}
+						id="offcanvasNavbar-expand-md"
+						aria-labelledby="offcanvasNavbar-expand-md"
 						placement="start"
 					>
 						<Offcanvas.Header closeButton>
 							<Offcanvas.Title>
 								{/* ! placeholder ! */}
-								<Link className={"fw-bolder display-2 text-primary"} to={"/"}>
+								<Link
+									className={"fw-bolder display-3 text-primary enable-rfs"}
+									to={"/"}
+								>
 									Kamai<span className="text-body">tachi</span>
 								</Link>
 							</Offcanvas.Title>
 						</Offcanvas.Header>
-						<Offcanvas.Body>
+						<Offcanvas.Body id="tachi_offcanvas">
 							<Nav className="ms-4">
 								{user && ugs && ugs.length !== 0 && <UserProfileLinks />}
 

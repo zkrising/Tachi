@@ -1,6 +1,6 @@
 import React from "react";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { DropdownLink } from "./MenuLink";
+import { Link } from "react-router-dom";
 
 export default function UtilsDropdown() {
 	return (
@@ -9,9 +9,15 @@ export default function UtilsDropdown() {
 			title="Developer Utils"
 			bsPrefix="header-link btn btn-header"
 		>
-			<DropdownLink to="/utils/seeds" name="Seeds Management" />
-			<DropdownLink to="/utils/imports" name="Import Management" />
-			<DropdownLink to="/utils/quests" name="Quest Creator" />
+			<NavDropdown.Item as={Link} to="/utils/seeds">
+				Seeds Management
+			</NavDropdown.Item>
+			<NavDropdown.Item as={Link} to="/utils/imports">
+				Import Management
+			</NavDropdown.Item>
+			<NavDropdown.Item as={Link} to="/utils/quests">
+				Quest Creator
+			</NavDropdown.Item>
 		</NavDropdown>
 	);
 }

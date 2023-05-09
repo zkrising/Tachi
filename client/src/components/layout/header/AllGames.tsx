@@ -1,8 +1,8 @@
 import { TachiConfig } from "lib/config";
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { FormatGame, GetGameConfig } from "tachi-common";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { DropdownLink } from "./MenuLink";
 
 export default function AllGames() {
 	const links = [];
@@ -12,11 +12,13 @@ export default function AllGames() {
 
 		for (const playtype of gameConfig.playtypes) {
 			links.push(
-				<DropdownLink
+				<NavDropdown.Item
+					as={NavLink}
 					key={`${game}:${playtype}`}
-					name={FormatGame(game, playtype)}
 					to={`/games/${game}/${playtype}`}
-				/>
+				>
+					{FormatGame(game, playtype)}
+				</NavDropdown.Item>
 			);
 		}
 	}

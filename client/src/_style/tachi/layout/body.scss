@@ -18,10 +18,6 @@ a {
     }
 }
 
-body {
-    background: $tachi-background;
-}
-
 #content_tachi {
     flex: 1 0 auto;
     @include media-breakpoint-down(md) {
@@ -32,6 +28,6 @@ body {
     }
 }
 
-.container {
-    transition: max-width 150ms ease-in-out, padding 150ms ease-in-out;
+.border-transparent {
+    border-color: transparent;
 }

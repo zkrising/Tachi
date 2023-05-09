@@ -3,8 +3,8 @@ import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext } from "react";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { Link } from "react-router-dom";
 import { FormatGame, GetGameConfig } from "tachi-common";
-import { DropdownLink } from "./MenuLink";
 
 export default function UserProfileLinks() {
 	const { user } = useContext(UserContext);
@@ -25,15 +25,18 @@ export default function UserProfileLinks() {
 			}
 
 			links.push(
-				<DropdownLink
+				<NavDropdown.Item
+					as={Link}
 					key={`${e.game}:${e.playtype}`}
-					name={FormatGame(e.game, e.playtype)}
 					to={`/u/${user?.username}/games/${e.game}/${e.playtype}`}
-				/>
+				>
+					{FormatGame(e.game, e.playtype)}
+				</NavDropdown.Item>
 			);
 		}
 	}
 
+	// I don't think escaping bootstrap is necessary but it was how i felt like doing it at the time... maybe I'll fix it at some point. maybe not
 	return (
 		<NavDropdown id="Your Profiles" title="Your Profiles" bsPrefix="header-link btn btn-header">
 			{links}

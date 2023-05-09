@@ -16,7 +16,7 @@ import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row, Collapse } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
 	FormatChart,
@@ -133,104 +133,85 @@ function ActivityInner({
 	const userMap = CreateUserMap(users);
 
 	return (
-		<Col xs={12} className="text-center">
-			Tip: You can click on an event to learn more about it.
-			<div className="activity-timeline mt-4">
-				<div className="timeline-bar"></div>
-				{data.map((e) => {
-					const user = userMap.get(e.type === "SCORES" ? e.scores[0]?.userID : e.userID);
+		<Container className="position-relative" id="activity-timeline">
+			<div className="timeline-bar" />
+			{data.map((e) => {
+				const user = userMap.get(e.type === "SCORES" ? e.scores[0]?.userID : e.userID);
 
-					if (!user) {
-						return <div>This user doesn't exist? Whoops.</div>;
-					}
+				if (!user) {
+					return <div>This user doesn't exist? Whoops.</div>;
+				}
 
-					switch (e.type) {
-						case "SCORES":
-							return (
-								<ScoresActivity
-									shouldShowGame={shouldShowGame}
-									data={e}
-									user={user}
-								/>
-							);
-						case "SESSION":
-							return (
-								<SessionActivity
-									shouldShowGame={shouldShowGame}
-									data={e}
-									user={user}
-								/>
-							);
-						case "CLASS_ACHIEVEMENT":
-							return (
-								<ClassAchievementActivity
-									shouldShowGame={shouldShowGame}
-									data={e}
-									user={user}
-								/>
-							);
-						case "GOAL_ACHIEVEMENTS":
-							return (
-								<GoalActivity
-									shouldShowGame={shouldShowGame}
-									data={e}
-									user={user}
-								/>
-							);
-						case "QUEST_ACHIEVEMENT":
-							return (
-								<QuestActivity
-									shouldShowGame={shouldShowGame}
-									data={e}
-									user={user}
-								/>
-							);
-					}
-				})}
-				<div className="timeline-item">
-					<div className="timeline-dot bg-success"></div>
-					<div className="timeline-content w-100 align-middle text-center">
-						{exhausted ? (
-							<>No more activity. This is the end of the road!</>
-						) : (
-							<a
-								className="text-primary"
-								onClick={() => {
-									let lastTimestamp;
-									const lastThing = data.at(-1)!;
+				switch (e.type) {
+					case "SCORES":
+						return (
+							<ScoresActivity shouldShowGame={shouldShowGame} data={e} user={user} />
+						);
+					case "SESSION":
+						return (
+							<SessionActivity shouldShowGame={shouldShowGame} data={e} user={user} />
+						);
+					case "CLASS_ACHIEVEMENT":
+						return (
+							<ClassAchievementActivity
+								shouldShowGame={shouldShowGame}
+								data={e}
+								user={user}
+							/>
+						);
+					case "GOAL_ACHIEVEMENTS":
+						return (
+							<GoalActivity shouldShowGame={shouldShowGame} data={e} user={user} />
+						);
+					case "QUEST_ACHIEVEMENT":
+						return (
+							<QuestActivity shouldShowGame={shouldShowGame} data={e} user={user} />
+						);
+				}
+			})}
+			<Col className="d-flex py-4 align-items-center" id="timeline-end">
+				<div className="timeline-dot align-self-center p-0 bg-success"></div>
+				<div className="w-100 align-middle text-center user-select-none">
+					{exhausted ? (
+						<>No more activity. This is the end of the road!</>
+					) : (
+						<a
+							className="cursor-pointer"
+							onClick={() => {
+								let lastTimestamp;
+								const lastThing = data.at(-1)!;
 
-									switch (lastThing.type) {
-										case "SCORES":
-											lastTimestamp = lastThing.scores[0]?.timeAchieved;
-											break;
-										case "CLASS_ACHIEVEMENT":
-											lastTimestamp = lastThing.timeAchieved;
-											break;
-										case "SESSION":
-											lastTimestamp = lastThing.timeStarted;
-											break;
-										case "GOAL_ACHIEVEMENTS":
-											lastTimestamp = lastThing.goals[0]?.timeAchieved;
-											break;
-										case "QUEST_ACHIEVEMENT":
-											lastTimestamp = lastThing.sub.timeAchieved;
-									}
+								switch (lastThing.type) {
+									case "SCORES":
+										lastTimestamp = lastThing.scores[0]?.timeAchieved;
+										break;
+									case "CLASS_ACHIEVEMENT":
+										lastTimestamp = lastThing.timeAchieved;
+										break;
+									case "SESSION":
+										lastTimestamp = lastThing.timeStarted;
+										break;
+									case "GOAL_ACHIEVEMENTS":
+										lastTimestamp = lastThing.goals[0]?.timeAchieved;
+										break;
+									case "QUEST_ACHIEVEMENT":
+										lastTimestamp = lastThing.sub.timeAchieved;
+								}
 
-									if (!lastTimestamp) {
-										alert("Failed. What?");
-										return;
-									}
+								if (!lastTimestamp) {
+									alert("Failed. What?");
+									return;
+								}
 
-									fetchMoreFrom(lastTimestamp);
-								}}
-							>
-								Load More...
-							</a>
-						)}
-					</div>
+								fetchMoreFrom(lastTimestamp);
+							}}
+						>
+							Load More...
+						</a>
+					)}
 				</div>
-			</div>
-		</Col>
+			</Col>
+		</Container>
 	);
 }
 
@@ -286,53 +267,44 @@ function ScoresActivity({
 	}));
 
 	return (
-		<div className="timeline-item my-4">
-			<div className="timeline-dot bg-warning"></div>
-			<div className="timeline-content">
-				<div
-					className="timeline-content-inner"
-					onClick={() => setShow(!show)}
-					style={{ cursor: "pointer" }}
-				>
-					<div className="timeline-content-title">
-						<span className="me-2">
-							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
-						</span>
-						<Icon type="chevron-right" show={show ? true : false} />
-						<span style={{ fontSize: "1.15rem" }} className="ms-2">
-							<UGPTLink reqUser={user} game={game} playtype={playtype} /> highlighted{" "}
-							{subMessage}!
-						</span>
-						{mutedText && (
-							<>
-								<br />
-								<Muted>{mutedText}</Muted>
-							</>
-						)}
-					</div>
+		<>
+			<Row
+				id="score-activity"
+				className="justify-content-between align-items-center user-select-none mx-2 my-2 py-3 hover-tachi cursor-pointer rounded"
+				onClick={() => setShow(!show)}
+			>
+				<div className="timeline-dot bg-warning align-self-center p-0" />
 
-					<div className="timeline-content-timestamp">
-						{MillisToSince(data.scores[0].timeAchieved ?? 0)}
-						<br />
-						<span className="text-muted fst-italic text-end">
-							{FormatTime(data.scores[0].timeAchieved ?? 0)}
-						</span>
-					</div>
-				</div>
+				<Col md={8} lg={10} className=" d-flex fw-light h-100 align-items-center">
+					<span className="me-2">
+						<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
+					</span>
+					<Icon type="chevron-right" show={show ? true : false} />
+					<span className="fs-5">
+						<UGPTLink reqUser={user} game={game} playtype={playtype} /> highlighted{" "}
+						{subMessage}!
+					</span>
+					{mutedText && (
+						<>
+							<br />
+							<Muted>{mutedText}</Muted>
+						</>
+					)}
+				</Col>
 
-				{show && (
-					<>
-						<Divider />
-						<ScoreTable
-							noTopDisplayStr
-							dataset={dataset}
-							game={game}
-							playtype={playtype}
-						/>
-					</>
-				)}
-			</div>
-		</div>
+				<Col md={4} lg={2} className="text-end">
+					{MillisToSince(data.scores[0].timeAchieved ?? 0)}
+					<div className="text-muted fst-italic">
+						{FormatTime(data.scores[0].timeAchieved ?? 0)}
+					</div>
+				</Col>
+			</Row>
+			{show && (
+				<>
+					<ScoreTable noTopDisplayStr dataset={dataset} game={game} playtype={playtype} />
+				</>
+			)}
+		</>
 	);
 }
 
@@ -367,56 +339,48 @@ function GoalActivity({
 	}
 
 	return (
-		<div className="timeline-item my-4">
-			<div className="timeline-dot bg-warning"></div>
-			<div className="timeline-content">
-				<div
-					className="timeline-content-inner"
-					onClick={() => setShow(!show)}
-					style={{ cursor: "pointer" }}
-				>
-					<div className="timeline-content-title">
-						<span className="me-2">
-							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
-						</span>
-						<Icon type="chevron-right" show={show ? true : false} />
-						<span style={{ fontSize: "1.15rem" }} className="ms-2">
-							<UGPTLink reqUser={user} game={game} playtype={playtype} /> achieved{" "}
-							{subMessage}!
-						</span>
-						{mutedText && (
-							<>
-								<br />
-								<Muted>{mutedText}</Muted>
-							</>
-						)}
-					</div>
+		<>
+			<Row
+				id="goal-activity"
+				className="justify-content-between align-items-center user-select-none mx-2 my-2 py-3 hover-tachi cursor-pointer rounded"
+				onClick={() => setShow(!show)}
+			>
+				<div className="timeline-dot bg-warning align-self-center p-0" />
+				<Col md={8} lg={10} className=" d-flex fw-light h-100 align-items-center">
+					<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
 
-					<div className="timeline-content-timestamp">
-						{MillisToSince(data.goals[0]?.timeAchieved ?? 0)}
-						<br />
-						<span className="text-muted fst-italic text-end">
-							{FormatTime(data.goals[0]?.timeAchieved ?? 0)}
-						</span>
+					<Icon type="chevron-right" show={show ? true : false} />
+					<span className="fs-5">
+						<UGPTLink reqUser={user} game={game} playtype={playtype} /> achieved{" "}
+						{subMessage}!
+					</span>
+					{mutedText && (
+						<>
+							<br />
+							<Muted>{mutedText}</Muted>
+						</>
+					)}
+				</Col>
+				<Col md={4} lg={2} className="text-end">
+					{MillisToSince(data.goals[0]?.timeAchieved ?? 0)}
+					<div className="text-muted fst-italic">
+						{FormatTime(data.goals[0]?.timeAchieved ?? 0)}
 					</div>
-				</div>
+				</Col>
+			</Row>
 
-				{show && (
-					<>
-						<Divider />
-						<div className="pl-4">
-							{data.goals.map((e) => (
-								<InnerQuestSectionGoal
-									goal={e.__related.goal}
-									goalSubOverride={e}
-									key={e.goalID}
-								/>
-							))}
-						</div>
-					</>
-				)}
-			</div>
-		</div>
+			{show && (
+				<>
+					{data.goals.map((e) => (
+						<InnerQuestSectionGoal
+							goal={e.__related.goal}
+							goalSubOverride={e}
+							key={e.goalID}
+						/>
+					))}
+				</>
+			)}
+		</>
 	);
 }
 
@@ -434,37 +398,29 @@ function QuestActivity({
 	const prettyGame = shouldShowGame ? FormatGame(game, playtype) : "";
 
 	return (
-		<div className="timeline-item my-4">
-			<div className="timeline-dot bg-warning"></div>
-			<div className="timeline-content">
-				<div className="timeline-content-inner">
-					<div className="timeline-content-title">
-						<span style={{ fontSize: "1.15rem" }}>
-							<span className="me-2">
-								<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
-							</span>
-							<UGPTLink reqUser={user} game={game} playtype={playtype} /> completed
-							the{" "}
-							<Link
-								className="gentle-link"
-								to={`/games/${game}/${playtype}/quests/${data.quest.questID}`}
-							>
-								{data.quest.name}
-							</Link>{" "}
-							quest{prettyGame && ` in ${prettyGame}`}!
-						</span>
-					</div>
-
-					<div className="timeline-content-timestamp">
-						{MillisToSince(data.sub.timeAchieved ?? 0)}
-						<br />
-						<span className="text-muted fst-italic text-end">
-							{FormatTime(data.sub.timeAchieved ?? 0)}
-						</span>
-					</div>
+		<Row
+			id="quest-activity"
+			className="justify-content-between align-items-center user-select-none mx-2 my-2 py-3 hover-tachi rounded"
+		>
+			<div className="timeline-dot align-self-center p-0 bg-warning"></div>
+			<Col md={8} lg={10} className=" d-flex fw-light h-100 align-items-center fs-5">
+				<ProfilePictureSmall className="me-2" user={user} toGPT={`${game}/${playtype}`} />
+				<UGPTLink reqUser={user} game={game} playtype={playtype} /> completed the{" "}
+				<Link
+					className="gentle-link"
+					to={`/games/${game}/${playtype}/quests/${data.quest.questID}`}
+				>
+					{data.quest.name}
+				</Link>{" "}
+				quest{prettyGame && ` in ${prettyGame}`}!
+			</Col>
+			<Col md={4} lg={2} className="text-end">
+				{MillisToSince(data.sub.timeAchieved ?? 0)}
+				<div className="text-muted fst-italic">
+					{FormatTime(data.sub.timeAchieved ?? 0)}
 				</div>
-			</div>
-		</div>
+			</Col>
+		</Row>
 	);
 }
 
@@ -477,108 +433,83 @@ function SessionActivity({
 	user: UserDocument;
 	shouldShowGame: boolean;
 }) {
-	const [show, setShow] = useState(false);
-	const [closing, setClosing] = useState(false);
-	const [debounce, setDebounce] = useState(false);
 	const { user: loggedInUser } = useContext(UserContext);
-
-	const handleToggle = () => {
-		if (!debounce) {
-			setDebounce(true);
-			if (!show) {
-				setShow(true);
-			} else {
-				setClosing(true);
-			}
-			setTimeout(() => {
-				setDebounce(false);
-			}, 150);
-		}
-	};
-
-	useEffect(() => {
-		if (closing) {
-			const timer = setTimeout(() => {
-				setShow(false);
-				setClosing(false);
-			}, 150);
-			return () => clearTimeout(timer);
-		}
-		return undefined;
-	}, [closing]);
-
+	const isProbablyActive = Date.now() - data.timeEnded < ONE_HOUR;
+	const { game, playtype } = data;
 	const prettyGame = shouldShowGame ? `${FormatGame(data.game, data.playtype)} ` : "";
 
-	const isProbablyActive = Date.now() - data.timeEnded < ONE_HOUR;
+	const [active, setActive] = useState(false);
+	const [open, setOpen] = useState(false);
 
-	const { game, playtype } = data;
+	const handleClick = () => {
+		setOpen(!open);
+		setActive(true);
+	};
 
 	return (
-		<div className="timeline-item">
-			<div className={`timeline-dot bg-${data.highlight ? "warning" : "secondary"}`}></div>
-			<div className="timeline-content">
+		<>
+			<Row
+				id="session-activity"
+				className="justify-content-between align-items-center user-select-none mx-2 my-2 py-3 hover-tachi cursor-pointer rounded"
+				onClick={handleClick}
+				aria-controls="session-shower-container"
+				aria-expanded={open}
+			>
 				<div
-					className="timeline-content-inner"
-					onClick={handleToggle}
-					style={{ cursor: "pointer" }}
-				>
-					<div className="timeline-content-title">
-						<span className="me-2">
-							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
-						</span>
-						<Icon type="chevron-right" show={show ? true : false} />
-						<span
-							className="ms-2"
-							style={{
-								fontWeight: isProbablyActive ? "bold" : undefined,
-								fontSize: isProbablyActive ? "1.2rem" : undefined,
-							}}
-						>
-							{/* worst string formatting ever */}
-							<UGPTLink
-								reqUser={user}
-								game={data.game}
-								playtype={data.playtype}
-							/>{" "}
-							{isProbablyActive
-								? user.id === loggedInUser?.id
-									? "are having"
-									: "is having"
-								: "had"}{" "}
-							a {prettyGame}
-							session '{data.name}' with {data.scoreIDs.length}{" "}
-							{data.scoreIDs.length === 1 ? "score" : "scores"}
-							{data.highlight ? "!" : "."}
-						</span>
-						<br />
-						{data.desc && data.desc !== "This session has no description." && (
-							<span className="text-muted">{data.desc}</span>
-						)}
-					</div>
-
-					<div className="timeline-content-timestamp">
-						{MillisToSince(data.timeStarted ?? 0)}
-						<br />
-						<span className="text-muted fst-italic text-end">
-							{FormatTime(data.timeStarted ?? 0)}
-						</span>
-					</div>
+					className={`timeline-dot align-self-center p-0 bg-${
+						data.highlight ? "warning" : "secondary"
+					}`}
+				/>
+				<Col md={8} lg={10} className=" d-flex fw-light h-100 align-items-center">
+					<ProfilePictureSmall
+						className="me-2"
+						user={user}
+						toGPT={`${game}/${playtype}`}
+					/>
+					<Icon className="timeline-icon" type="chevron-right" show={open} />
+					<span
+						className="ms-2"
+						style={{
+							fontWeight: isProbablyActive ? "bold" : undefined,
+							fontSize: isProbablyActive ? "1.2rem" : undefined,
+						}}
+					>
+						{/* worst string formatting ever */}
+						<UGPTLink reqUser={user} game={data.game} playtype={data.playtype} />{" "}
+						{isProbablyActive
+							? user.id === loggedInUser?.id
+								? "are having"
+								: "is having"
+							: "had"}{" "}
+						a {prettyGame}
+						session '{data.name}' with {data.scoreIDs.length}{" "}
+						{data.scoreIDs.length === 1 ? "score" : "scores"}
+						{data.highlight ? "!" : "."}
+					</span>
+					<br />
+					{data.desc && data.desc !== "This session has no description." && (
+						<span className="text-muted">{data.desc}</span>
+					)}
+				</Col>
+				<Col md={4} lg={2} className="text-end">
+					{MillisToSince(data.timeStarted ?? 0)}
+					<div className="text-muted fst-italic">{FormatTime(data.timeStarted ?? 0)}</div>
+				</Col>
+			</Row>
+			<Collapse in={open}>
+				<div className="m-0 p-0 overflow-y-hidden" id="session-shower-container">
+					<SessionShower sessionID={data.sessionID} active={active} />
 				</div>
-				{show && <SessionShower sessionID={data.sessionID} show={show} closing={closing} />}
-			</div>
-		</div>
+			</Collapse>
+		</>
 	);
 }
 
-function SessionShower({
-	sessionID,
-	show,
-	closing,
-}: {
-	sessionID: string;
-	show: boolean;
-	closing: boolean;
-}) {
+function SessionShower({ sessionID, active }: { sessionID: string; active: boolean }) {
+	if (!active) {
+		return null;
+	}
+
 	const { data, error } = useApiQuery<SessionReturns>(`/sessions/${sessionID}`);
 
 	if (error) {
@@ -586,7 +517,15 @@ function SessionShower({
 	}
 
 	if (!data) {
-		return <Loading />;
+		return (
+			<Col
+				className="mx-2 p-6 text-center bg-dark rounded clearfix"
+				id="session-shower-loading"
+				style={{ height: "186px" }}
+			>
+				<Loading />
+			</Col>
+		);
 	}
 
 	const scoreMap = CreateScoreIDMap(data.scores);
@@ -623,39 +562,35 @@ function SessionShower({
 
 	if (raises.length === 0) {
 		return (
-			<Row
-				className={`mt-4 overflow-hidden${show ? " show" : ""}${closing ? " closing" : ""}`}
+			<Col
+				className="mx-2 px-3 py-6 text-center bg-dark rounded clearfix"
+				id="session-shower"
 			>
-				<div className="d-flex w-100 justify-content-center flex-column">
-					<div className="mb-4">This session had no raises.</div>
-					<div>
-						<LinkButton
-							className="btn-outline-primary"
-							to={`/u/${data.user.username}/games/${data.session.game}/${data.session.playtype}/sessions/${sessionID}`}
-						>
-							View Full Session
-						</LinkButton>
-					</div>
-				</div>
-			</Row>
-		);
-	}
-
-	return (
-		<Row className={`mt-4 overflow-hidden${show ? " show" : ""}${closing ? " closing" : ""}`}>
-			<SessionRaiseBreakdown sessionData={data} setScores={NO_OP} />
-			<Col xs={12}>
-				<Divider />
-			</Col>
-			<div className="d-flex w-100 justify-content-center">
+				<div className="mb-8 mt-4">This session had no raises.</div>
 				<LinkButton
-					className="btn-outline-primary"
+					variant="outline-primary"
+					className="mt-8 mb-4"
 					to={`/u/${data.user.username}/games/${data.session.game}/${data.session.playtype}/sessions/${sessionID}`}
 				>
 					View Full Session
 				</LinkButton>
-			</div>
-		</Row>
+			</Col>
+		);
+	}
+
+	return (
+		<Col className="mx-2 p-3 text-center bg-dark rounded clearfix" id="session-shower">
+			<SessionRaiseBreakdown sessionData={data} setScores={NO_OP} /* TODO */ />
+
+			<Divider />
+			<LinkButton
+				variant="outline-primary"
+				className="float-end float-md-none"
+				to={`/u/${data.user.username}/games/${data.session.game}/${data.session.playtype}/sessions/${sessionID}`}
+			>
+				View Full Session
+			</LinkButton>
+		</Col>
 	);
 }
 
@@ -669,51 +604,48 @@ function ClassAchievementActivity({
 	shouldShowGame: boolean;
 }) {
 	return (
-		<div className="timeline-item">
-			<div className="timeline-dot bg-success"></div>
-			<div className="timeline-content">
-				<div className="timeline-content-inner">
-					<div className="timeline-content-title">
-						<span className="me-2">
-							<ProfilePictureSmall
-								user={user}
-								toGPT={`${data.game}/${data.playtype}`}
+		<Row
+			id="class-activity"
+			className="justify-content-between align-items-center user-select-none mx-2 my-2 py-3 hover-tachi cursor-pointer rounded"
+		>
+			<div className="timeline-dot bg-success align-self-center p-0" />
+			<Col md={8} lg={10} className=" d-flex fw-light h-100 align-items-center">
+				<ProfilePictureSmall
+					className="me-6"
+					user={user}
+					toGPT={`${data.game}/${data.playtype}`}
+				/>
+				<span>
+					<UGPTLink reqUser={user} game={data.game} playtype={data.playtype} />
+					<span> achieved </span>
+					<ClassBadge
+						classSet={data.classSet}
+						game={data.game}
+						playtype={data.playtype}
+						classValue={data.classValue}
+					/>
+					{shouldShowGame && ` in ${FormatGame(data.game, data.playtype)}`}!
+					{data.classOldValue !== null && (
+						<>
+							{" "}
+							(Raised from{" "}
+							<ClassBadge
+								classSet={data.classSet}
+								game={data.game}
+								playtype={data.playtype}
+								classValue={data.classOldValue}
 							/>
-						</span>
-						<UGPTLink reqUser={user} game={data.game} playtype={data.playtype} />{" "}
-						achieved{" "}
-						<ClassBadge
-							classSet={data.classSet}
-							game={data.game}
-							playtype={data.playtype}
-							classValue={data.classValue}
-						/>
-						{shouldShowGame && ` in ${FormatGame(data.game, data.playtype)}`}!
-						{data.classOldValue !== null && (
-							<>
-								{" "}
-								(Raised from{" "}
-								<ClassBadge
-									classSet={data.classSet}
-									game={data.game}
-									playtype={data.playtype}
-									classValue={data.classOldValue}
-								/>
-								)
-							</>
-						)}
-					</div>
+							)
+						</>
+					)}
+				</span>
+			</Col>
 
-					<div className="timeline-content-timestamp">
-						{MillisToSince(data.timeAchieved)}
-						<br />
-						<span className="text-muted fst-italic text-end">
-							{FormatTime(data.timeAchieved)}
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
+			<Col md={4} lg={2} className="text-end">
+				{MillisToSince(data.timeAchieved)}
+				<div className="text-muted fst-italic">{FormatTime(data.timeAchieved)}</div>
+			</Col>
+		</Row>
 	);
 }
 

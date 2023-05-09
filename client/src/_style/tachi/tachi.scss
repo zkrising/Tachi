@@ -9,6 +9,10 @@
     }
 }
 
+.hover-tachi:hover {
+	background-color: $tachi-hover;
+}
+
 // Some selected styles from old base.scss
 
 @include media-breakpoint-up(lg) {
@@ -37,4 +41,17 @@
 	position: fixed;
 	background-color: var(--t-background);
 	z-index: 8888;
+}
+
+.form-length-validation {
+	z-index: 10;
+	right: 2.5em;
+	align-self: center; // browser says it has no effect but i can say with absolute confidence that it absolutely does
+}
+
+.undraggable {
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
 }

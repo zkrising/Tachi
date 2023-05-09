@@ -25,6 +25,7 @@ import { Link, Route, Switch } from "react-router-dom";
 import { COLOUR_SET, GetGameConfig, UserDocument } from "tachi-common";
 import { UGSWithRankingData, UserRecentSummary } from "types/api-returns";
 import SessionCalendar from "components/sessions/SessionCalendar";
+import Row from "react-bootstrap/Row";
 import { GameStatContainer } from "./users/UserGamesPage";
 import SupportBanner from "./misc/SupportBanner";
 
@@ -195,7 +196,7 @@ function RecentInfo({ user }: { user: UserDocument }) {
 
 function UserGameStatsInfo({ user }: { user: UserDocument }) {
 	return (
-		<div className="row">
+		<Row>
 			<AsyncLoader
 				promiseFn={async () => {
 					const res = await APIFetchV1<UGSWithRankingData[]>(
@@ -229,7 +230,7 @@ function UserGameStatsInfo({ user }: { user: UserDocument }) {
 					))
 				}
 			</AsyncLoader>
-		</div>
+		</Row>
 	);
 }
 

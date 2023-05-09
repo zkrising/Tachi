@@ -1,10 +1,10 @@
-#header_main {
+#tachi_header {
     height: 80px;
     background-color: $tachi-background;
     transition: height 150ms ease-in-out;
 
     @include media-breakpoint-down(md) {
-        height: 40px;
+        height: 45px;
         background-color: transparent;
     }
 
@@ -40,21 +40,10 @@
             .nav-item:nth-child(n + 2) {
                 margin-left: 0.5rem;
             }
-
-            #Developer\ Utils {
-                transition: width 75ms ease-in 75ms, visibility 37.5ms linear 75ms;
-                width: 100%;
-                visibility: visible;
-                @include media-breakpoint-down(lg) {
-                    transition: width 16ms ease-in, visibility 4ms linear 10ms;
-                    width: 0;
-                    visibility: hidden;
-                }
-            }
         }
     }
 
-    .endbar {
+    #endbar {
         .nav-item {
             padding: 0;
             &:not(:last-child) {
@@ -63,22 +52,16 @@
         }
 
         #user-dropdown {
-            transition: width 75ms ease-in 75ms;
-            width: 100%;
-            @include media-breakpoint-down(lg) {
-                transition: width 16ms ease-in;
-                width: 45px;
-            }
             .dropdown-toggle {
                 display: flex;
-                justify-content: flex-end;
+                justify-content: center;
                 align-items: center;
-                overflow: hidden;
-                width: 100%;
 
                 @include media-breakpoint-down(lg) {
-                    width: 45px;
-                    padding-right: 5px;
+                    width: 40px;
+                    #user-dropdown-text {
+                            display: none;
+                    }
                 }
 
                 &::after {
@@ -88,15 +71,20 @@
 
             .user-dropdown-menu {
                 width: 30rem;
-            }
+                transition: margin 150ms ease-in-out;
+                @include media-breakpoint-down(md) {
+                margin-top: 2.5px;
+                }
+                .user-dropdown-item {
+                    white-space: break-spaces;
+                }
+            }            
         }
     }
 
     .dropdown-menu {
-        top: 0;
-        margin-top: 62.5px;
+        margin-top: 17.5px;
         height: max-content;
-        width: 100%;
         box-shadow: var(--t-shadow-lg);
         border: var(--bs-border-width);
 

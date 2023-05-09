@@ -7,9 +7,11 @@ export default function ProfilePicture({
 	user,
 	src,
 	toGPT = "",
+	className,
 }: {
 	user: UserDocument | string;
 	src?: string;
+	className?: string;
 
 	/**
 	 * When clicking this this profile, should it take you to a UGPT page?
@@ -18,7 +20,7 @@ export default function ProfilePicture({
 }) {
 	if (typeof user === "string") {
 		return (
-			<Link to={`/u/${user}/${toGPT}`}>
+			<Link to={`/u/${user}/${toGPT}`} className={`${className ? `${className}` : ""}`}>
 				<img
 					src={src ? src : ToAPIURL(`/users/${user}/pfp`)}
 					alt={`${user}'s Profile Picture`}
@@ -29,7 +31,7 @@ export default function ProfilePicture({
 	}
 
 	return (
-		<Link to={`/u/${user.username}/${toGPT}`}>
+		<Link to={`/u/${user.username}/${toGPT}`} className={`${className ? `${className}` : ""}`}>
 			<img
 				src={src ? src : ToAPIURL(`/users/${user.id}/pfp`)}
 				alt={`${user.username}'s Profile Picture`}
@@ -43,10 +45,11 @@ export function ProfilePictureSmall({
 	user,
 	src,
 	toGPT = "",
+	className,
 }: {
 	user: UserDocument | string;
 	src?: string;
-
+	className?: string;
 	/**
 	 * When clicking this this profile, should it take you to a UGPT page?
 	 */
@@ -59,7 +62,7 @@ export function ProfilePictureSmall({
 
 	if (typeof user === "string") {
 		return (
-			<Link to={`/u/${user}/${toGPT}`}>
+			<Link to={`/u/${user}/${toGPT}`} className={`${className ? `${className}` : ""}`}>
 				<img
 					src={src ? src : ToAPIURL(`/users/${user}/pfp`)}
 					alt={`${user}'s Profile Picture`}
@@ -70,7 +73,7 @@ export function ProfilePictureSmall({
 	}
 
 	return (
-		<Link to={`/u/${user.username}/${toGPT}`}>
+		<Link to={`/u/${user.username}/${toGPT}`} className={`${className ? `${className}` : ""}`}>
 			<img
 				src={src ? src : ToAPIURL(`/users/${user.id}/pfp`)}
 				alt={`${user.username}'s Profile Picture`}

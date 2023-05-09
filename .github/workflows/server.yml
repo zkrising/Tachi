@@ -22,7 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NODE_ENV: "test"
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     steps:
       - uses: actions/checkout@v3
 
@@ -55,12 +54,6 @@ jobs:
 
       - name: Typecheck code
         run: pnpm --filter tachi-server typecheck
-
-      - name: Upload coverage
-        if: always()
-        run: |
-          pnpm install -g codecov
-          cat coverage/lcov.info | codecov
   docker-push:
     runs-on: ubuntu-latest
     needs: [test]

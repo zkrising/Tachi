@@ -27,7 +27,7 @@
 
     &-header {
         overflow: hidden;
-        transition: width 150ms ease-in-out, height 150ms ease-in-out;
+        transition: width 150ms ease-in-out, height 150ms ease-in-out, background-color 80ms linear;
         @include media-breakpoint-down(md) {
             height: 40px;
         }
@@ -37,7 +37,6 @@
         }
 
         &:hover,    
-        &:focus,
         &.show {
             border-color: transparent;
             background-color: $tachi-hover; 

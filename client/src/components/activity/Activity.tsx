@@ -84,7 +84,7 @@ export default function Activity({
 	}
 
 	if (!data) {
-		return <Loading />;
+		return <Loading className="my-8" />;
 	}
 
 	if (clumped.length === 0) {
@@ -493,7 +493,7 @@ function SessionActivity({
 	return (
 		<>
 			<Row
-				id="session-activity"
+				id={`session-activity-${data.sessionID}`}
 				className={`align-items-center user-select-none mx-2 my-4 p-1 hover-tachi bg-transition rounded ${
 					open ? "bg-dark" : ""
 				}`}
@@ -585,6 +585,10 @@ function SessionShower({
 	}
 
 	const handleClose = () => {
+		const element = document.getElementById(`session-activity-${sessionID}`);
+		if (element) {
+			element.scrollIntoView({ behavior: "smooth" });
+		}
 		setOpen(false);
 	};
 
@@ -622,7 +626,7 @@ function SessionShower({
 
 	if (raises.length === 0) {
 		return (
-			<Col className="py-6 text-center clearfix" id="session-shower">
+			<Col className="py-6 text-center clearfix" id={`session-shower`}>
 				<div className="mb-8 mt-4">This session had no raises.</div>
 				<LinkButton
 					variant="outline-primary"
@@ -636,7 +640,7 @@ function SessionShower({
 	}
 
 	return (
-		<Col className="mx-2 py-3 text-center clearfix" id="session-shower">
+		<Col className="mx-2 py-3 text-center clearfix" id={`session-shower`}>
 			<SessionRaiseBreakdown sessionData={data} setScores={NO_OP} /* TODO */ />
 
 			<Divider />
@@ -667,16 +671,12 @@ function ClassAchievementActivity({
 	return (
 		<Row
 			id="class-activity"
-			className="justify-content-between align-items-center user-select-none mx-2 my-2 py-3 hover-tachi rounded"
+			className="align-items-center user-select-none mx-2 my-4 p-1 hover-tachi rounded"
 		>
 			<div className="timeline-dot bg-success align-self-center p-0" />
-			<Col md={8} lg={10} className=" d-flex fw-light h-100 align-items-center">
-				<ProfilePictureSmall
-					className="me-6"
-					user={user}
-					toGPT={`${data.game}/${data.playtype}`}
-				/>
-				<span>
+			<Col md={8} lg={10} className="py-4 d-flex fw-light h-100 align-items-center">
+				<ProfilePictureSmall user={user} toGPT={`${data.game}/${data.playtype}`} />
+				<span className="ms-2">
 					<UGPTLink reqUser={user} game={data.game} playtype={data.playtype} /> achieved{" "}
 					<ClassBadge
 						className="mb-1 mb-md-0 mx-1"

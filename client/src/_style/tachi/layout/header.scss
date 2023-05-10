@@ -87,6 +87,7 @@
         height: max-content;
         box-shadow: var(--t-shadow-lg);
         border: var(--bs-border-width);
+        width: 18rem;
 
         &.show {
             animation: dropdown-menu-fade-in 0.3s ease 1;
@@ -106,7 +107,7 @@
 
 .dropdown-item {
     border-radius: var(--bs-border-radius);
-    transition: color 120ms ease-in-out, background-color 120ms ease-in-out, border-color 120ms ease-in-out, box-shadow 120ms ease-in-out;
+    transition: color 80ms ease-in-out, background-color 80ms ease-in-out, border-color 80ms ease-in-out, box-shadow 80ms ease-in-out;
     margin: .35rem 0;
     &.active {
         // override bootstrap default behaviour because it isn't ideal in this case
@@ -120,30 +121,26 @@
 }
 
 @include media-breakpoint-down(md) { // This is highly customised because I'd rather just do it this way for this one specific componant
-    .offcanvas.offcanvas-start {
-        .offcanvas-body {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            .navbar-nav {
-                align-items: flex-start;
-                margin-left: 0 !important;
-
+    .offcanvas-start .offcanvas-body .navbar-nav {
+             margin-left: 0 !important;
                 .nav-item {
-                    display: flex;
-                    flex-direction: column;
-                    position: relative;
-                    width: 100%;
-                    
-                    .dropdown-menu {
-                        padding: var(--bs-dropdown-padding-y) 0.25em;
+                   margin-bottom: .5rem;               
+                    .dropdown-menu {  
+                        padding: .5em;
+                        .dropdown-item {
+                            padding-left: 2em;
+                        }
+                        .dropdown-item:last-child {
+                            margin-bottom: 0;
+                        }
+                        .dropdown-item.active {
+                            background-color: transparent;
+                        }
                     }
                 }
             }
         }
-    }
-}
+
 
 #subheader {
     display: flex;

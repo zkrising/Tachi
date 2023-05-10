@@ -347,7 +347,7 @@ $enable-cssgrid:              false !default;
 $enable-button-pointers:      true !default;
 $enable-rfs:                  true;
 $enable-validation-icons:     true !default;
-$enable-negative-margins:     false !default;
+$enable-negative-margins:     true;
 $enable-deprecation-messages: true !default;
 $enable-important-utilities:  true !default;
 
@@ -436,7 +436,7 @@ $paragraph-margin-bottom:   1rem !default;
 // scss-docs-start grid-breakpoints
 $grid-breakpoints: (
   xs: 0,
-  sm: 720px,
+  sm: 768px,
   md: 920px,
   lg: 1160px,
   xl: 1400px,
@@ -453,7 +453,7 @@ $grid-breakpoints: (
 
 // scss-docs-start container-max-widths
 $container-max-widths: (
-  sm: 720px,
+  sm: 768px,
   md: 840px,
   lg: 1080px,
   xl: 1320px,
@@ -468,7 +468,7 @@ $container-max-widths: (
 // Set the number of columns and specify the width of the gutters.
 
 $grid-columns:                12 !default;
-$grid-gutter-width:           1rem;
+$grid-gutter-width:           1.5rem;
 $grid-row-columns:            6 !default;
 
 // Container padding
@@ -1146,7 +1146,7 @@ $navbar-dark-brand-hover-color:     $navbar-dark-active-color !default;
 // Dropdown menu container and contents.
 
 // scss-docs-start dropdown-variables
-$dropdown-min-width:                20rem;
+$dropdown-min-width:                16rem;
 $dropdown-padding-x:                1rem;
 $dropdown-padding-y:                1rem;
 $dropdown-spacer:                   .1rem;
@@ -1253,7 +1253,7 @@ $placeholder-opacity-min:           .2 !default;
 $card-spacer-y:                     $spacer * .5;
 $card-spacer-x:                     $spacer * 1.5;
 $card-title-spacer-y:               $spacer;
-$card-border-width:                 $tachi-lightground;
+$card-border-width:                 $border-width;
 $card-border-color:                 transparent;
 $card-border-radius:                $border-radius;
 $card-box-shadow:                   null;
@@ -1589,11 +1589,11 @@ $carousel-dark-control-icon-filter:  invert(1) grayscale(100) !default;
 // Spinners
 
 // scss-docs-start spinner-variables
-$spinner-width:           2rem !default;
-$spinner-height:          $spinner-width !default;
+$spinner-width:           3rem;
+$spinner-height:          $spinner-width;
 $spinner-vertical-align:  -.125em !default;
-$spinner-border-width:    .25em !default;
-$spinner-animation-speed: .75s !default;
+$spinner-border-width:    .35em;
+$spinner-animation-speed: 1s;
 
 $spinner-width-sm:        1rem !default;
 $spinner-height-sm:       $spinner-width-sm !default;
@@ -1624,7 +1624,7 @@ $btn-close-white-filter:     invert(1) grayscale(100%) brightness(200%) !default
 // scss-docs-start offcanvas-variables
 $offcanvas-padding-y:               $modal-inner-padding;
 $offcanvas-padding-x:               $modal-inner-padding;
-$offcanvas-horizontal-width:        340px;
+$offcanvas-horizontal-width:        68vw;
 $offcanvas-vertical-height:         30vh !default;
 $offcanvas-transition-duration:     .3s !default;
 $offcanvas-border-color:            $modal-content-border-color;

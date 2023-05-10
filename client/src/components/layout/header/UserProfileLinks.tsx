@@ -6,7 +6,11 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 import { FormatGame, GetGameConfig } from "tachi-common";
 
-export default function UserProfileLinks() {
+export default function UserProfileLinks({
+	closeOffCanvas,
+}: {
+	closeOffCanvas?: () => void | null;
+}) {
 	const { user } = useContext(UserContext);
 	const { ugs } = useContext(AllLUGPTStatsContext);
 	const links = [];
@@ -29,6 +33,9 @@ export default function UserProfileLinks() {
 					as={Link}
 					key={`${e.game}:${e.playtype}`}
 					to={`/u/${user?.username}/games/${e.game}/${e.playtype}`}
+					onClick={() => {
+						closeOffCanvas?.();
+					}}
 				>
 					{FormatGame(e.game, e.playtype)}
 				</NavDropdown.Item>

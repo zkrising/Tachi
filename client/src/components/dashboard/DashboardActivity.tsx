@@ -13,7 +13,7 @@ export default function DashboardActivity({ user }: { user: UserDocument }) {
 
 	return (
 		<>
-			<div className="display-4 mx-2 mb-4">Here's what's been happening.</div>
+			<div className="display-4 mx-2 mb-4 enable-rfs">Here's what's been happening.</div>
 			<Activity url={`/users/${user.id}/activity?includeRivals=true&includeFollowers=true`} />
 		</>
 	);

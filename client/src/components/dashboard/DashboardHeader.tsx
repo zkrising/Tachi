@@ -1,7 +1,7 @@
 import Navbar from "components/nav/Navbar";
 import React from "react";
 
-export function DashboardHeader() {
+export default function DashboardHeader() {
 	const navItems = [
 		<Navbar.Item to="/">Activity</Navbar.Item>,
 		<Navbar.Item to="/calendar">Calendar</Navbar.Item>,

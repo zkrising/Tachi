@@ -1,9 +1,13 @@
 import Spinner from "react-bootstrap/Spinner";
 import React from "react";
 
-export default function Loading() {
+export default function Loading({ className }: { className?: string }) {
 	return (
-		<div className="d-flex justify-content-center align-items-center h-100 w-100">
+		<div
+			className={`d-flex justify-content-center align-items-center w-100 ${
+				className ?? `${className}`
+			}`}
+		>
 			<Spinner animation="border" role="status" variant="primary" />
 		</div>
 	);

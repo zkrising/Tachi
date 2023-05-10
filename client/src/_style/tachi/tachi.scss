@@ -3,10 +3,10 @@
 @import "pages/pages";
 
 .hover-opacity {
-    transition: opacity .15s ease;
-    &:hover {
-        opacity: 100 !important;
-    }
+	transition: opacity 0.15s ease;
+	&:hover {
+		opacity: 100 !important;
+	}
 }
 
 .hover-tachi:hover {
@@ -32,7 +32,7 @@
 .gentle-link {
 	color: var(--bs-body-color);
 	&:hover {
-	color: var(--t-primary-hover);
+		color: var(--t-primary-hover);
 	}
 }
 
@@ -58,4 +58,11 @@
 
 .bg-transition {
 	transition: background-color 75ms ease-in-out;
+}
+.hide-scrollbar {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }

@@ -4,14 +4,21 @@ import { TachiConfig } from "lib/config";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink } from "react-router-dom";
 
-export default function ImportScoresLink() {
+export default function ImportScoresLink({ onClick }: { onClick?: () => void }) {
 	const links = [];
 
 	for (const game of TachiConfig.games) {
 		const gameConfig = GetGameConfig(game);
 
 		links.push(
-			<NavDropdown.Item as={NavLink} key={game} to={`/import?game=${game}`}>
+			<NavDropdown.Item
+				onClick={() => {
+					onClick?.();
+				}}
+				as={NavLink}
+				key={game}
+				to={`/import?game=${game}`}
+			>
 				{gameConfig.name}
 			</NavDropdown.Item>
 		);
@@ -20,7 +27,13 @@ export default function ImportScoresLink() {
 	return (
 		<NavDropdown id="ImportScores" title="Import Scores" bsPrefix="header-link btn btn-header">
 			{links}
-			<NavDropdown.Item as={NavLink} to={"/import/batch-manual"}>
+			<NavDropdown.Item
+				onClick={() => {
+					onClick?.();
+				}}
+				as={NavLink}
+				to={"/import/batch-manual"}
+			>
 				Batch Manual
 			</NavDropdown.Item>
 		</NavDropdown>

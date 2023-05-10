@@ -6,7 +6,7 @@ import { NumericSOV } from "util/sorts";
 import { heySplashes } from "util/splashes";
 import Activity from "components/activity/Activity";
 import DashboardActivity from "components/dashboard/DashboardActivity";
-import { DashboardHeader } from "components/dashboard/DashboardHeader";
+import DashboardHeader from "components/dashboard/DashboardHeader";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import SessionCard from "components/sessions/SessionCard";
 import ApiError from "components/util/ApiError";
@@ -47,15 +47,14 @@ function DashboardLoggedIn({ user }: { user: UserDocument }) {
 	const splash = useMemo(() => RFA(heySplashes), [user]);
 
 	return (
-		<div>
+		<>
 			<SupportBanner user={user} />
-			<span className="display-4">
+			<div id="hi" className=" mt-2 display-4 enable-rfs">
 				{splash}, {user.username}.
-			</span>
-			<div className="card my-4">
+			</div>
+			<div className="bg-dark rounded my-4">
 				<DashboardHeader />
 			</div>
-			<Divider />
 			<RecentInfo user={user} />
 			<Switch>
 				<Route exact path="/">
@@ -75,7 +74,7 @@ function DashboardLoggedIn({ user }: { user: UserDocument }) {
 					<Activity url="/activity" />
 				</Route>
 			</Switch>
-		</div>
+		</>
 	);
 }
 

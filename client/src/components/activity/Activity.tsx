@@ -286,7 +286,7 @@ function ScoresActivity({
 					md={8}
 					lg={10}
 					onClick={handleClick}
-					aria-controls="session-shower-container"
+					aria-controls="scores-container"
 					aria-expanded={open}
 					className="py-4 d-flex fw-light h-100 align-items-center cursor-pointer"
 				>
@@ -382,7 +382,7 @@ function GoalActivity({
 					md={8}
 					lg={10}
 					onClick={handleClick}
-					aria-controls="session-shower-container"
+					aria-controls="goal-container"
 					aria-expanded={open}
 					className="py-4 d-flex fw-light h-100 align-items-center cursor-pointer"
 				>
@@ -409,7 +409,7 @@ function GoalActivity({
 					</div>
 				</Col>
 				<Collapse in={open}>
-					<div className="m-0 p-0 overflow-y-hidden" id="session-shower-container">
+					<div className="m-0 p-0 overflow-y-hidden" id="goal-container">
 						<Col className="clearfix" id="goals">
 							{data.goals.map((e) => (
 								<InnerQuestSectionGoal

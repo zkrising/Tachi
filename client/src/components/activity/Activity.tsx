@@ -16,7 +16,7 @@ import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useState } from "react";
-import { Col, Container, Row, Collapse } from "react-bootstrap";
+import { Col, Container, Row, Collapse, CloseButton } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
 	FormatChart,
@@ -228,7 +228,13 @@ function ScoresActivity({
 
 	const prettyGame = shouldShowGame ? `${FormatGame(game, playtype)} ` : "";
 
-	const [show, setShow] = useState(false);
+	const [active, setActive] = useState(false);
+	const [open, setOpen] = useState(false);
+
+	const handleClick = () => {
+		setOpen(!open);
+		setActive(true);
+	};
 
 	let subMessage;
 	let mutedText: string | null | undefined;
@@ -253,7 +259,7 @@ function ScoresActivity({
 			data.scores
 				.map((e) => FormatChart(e.game, e.__related.song, e.__related.chart, true))
 				.join(", "),
-			100
+			72
 		);
 	}
 
@@ -270,40 +276,62 @@ function ScoresActivity({
 		<>
 			<Row
 				id="score-activity"
-				className="justify-content-between align-items-center user-select-none mx-2 my-2 py-3 hover-tachi cursor-pointer rounded"
-				onClick={() => setShow(!show)}
+				className={`align-items-center user-select-none mx-2 my-4 p-1 hover-tachi bg-transition rounded ${
+					open ? "bg-dark" : ""
+				}`}
 			>
 				<div className="timeline-dot bg-warning align-self-center p-0" />
 
-				<Col md={8} lg={10} className=" d-flex fw-light h-100 align-items-center">
-					<span className="me-2">
-						<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
-					</span>
-					<Icon type="chevron-right" show={show ? true : false} />
-					<span className="fs-5">
+				<Col
+					md={8}
+					lg={10}
+					onClick={handleClick}
+					aria-controls="session-shower-container"
+					aria-expanded={open}
+					className="py-4 d-flex fw-light h-100 align-items-center cursor-pointer"
+				>
+					<ProfilePictureSmall
+						className="me-2"
+						user={user}
+						toGPT={`${game}/${playtype}`}
+					/>
+
+					<Icon
+						className="timeline-icon"
+						type="chevron-right"
+						show={open ? true : false}
+					/>
+					<span className="ms-2 fw-normal">
 						<UGPTLink reqUser={user} game={game} playtype={playtype} /> highlighted{" "}
-						{subMessage}!
+						{subMessage}!{" "}
+						{mutedText && (
+							<>
+								<br />
+								<Muted>{mutedText}</Muted>
+							</>
+						)}
 					</span>
-					{mutedText && (
-						<>
-							<br />
-							<Muted>{mutedText}</Muted>
-						</>
-					)}
 				</Col>
 
-				<Col md={4} lg={2} className="text-end">
+				<Col md={4} lg={2} className="py-4 text-end cursor-pointer" onClick={handleClick}>
 					{MillisToSince(data.scores[0].timeAchieved ?? 0)}
 					<div className="text-muted fst-italic">
 						{FormatTime(data.scores[0].timeAchieved ?? 0)}
 					</div>
 				</Col>
+				<Collapse className="px-2 py-3" in={open}>
+					<div className="m-0 p-0" id="scores-container">
+						<ScoreTable // TODO
+							noTopDisplayStr
+							dataset={dataset}
+							game={game}
+							playtype={playtype}
+							timeline={true}
+							active={active}
+						/>
+					</div>
+				</Collapse>
 			</Row>
-			{show && (
-				<>
-					<ScoreTable noTopDisplayStr dataset={dataset} game={game} playtype={playtype} />
-				</>
-			)}
 		</>
 	);
 }
@@ -318,10 +346,13 @@ function GoalActivity({
 	shouldShowGame: boolean;
 }) {
 	const { game, playtype } = data.goals[0];
-
 	const prettyGame = shouldShowGame ? `${FormatGame(game, playtype)} ` : "";
 
-	const [show, setShow] = useState(false);
+	const [open, setOpen] = useState(false);
+
+	const handleClick = () => {
+		setOpen(!open);
+	};
 
 	let subMessage;
 	let mutedText: string | null | undefined;
@@ -342,44 +373,55 @@ function GoalActivity({
 		<>
 			<Row
 				id="goal-activity"
-				className="justify-content-between align-items-center user-select-none mx-2 my-2 py-3 hover-tachi cursor-pointer rounded"
-				onClick={() => setShow(!show)}
+				className={`align-items-center user-select-none mx-2 my-4 p-1 hover-tachi bg-transition rounded ${
+					open ? "bg-dark" : ""
+				}`}
 			>
 				<div className="timeline-dot bg-warning align-self-center p-0" />
-				<Col md={8} lg={10} className=" d-flex fw-light h-100 align-items-center">
-					<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
-
-					<Icon type="chevron-right" show={show ? true : false} />
-					<span className="fs-5">
+				<Col
+					md={8}
+					lg={10}
+					onClick={handleClick}
+					aria-controls="session-shower-container"
+					aria-expanded={open}
+					className="py-4 d-flex fw-light h-100 align-items-center cursor-pointer"
+				>
+					<ProfilePictureSmall
+						className="me-2"
+						user={user}
+						toGPT={`${game}/${playtype}`}
+					/>
+					<Icon className="timeline-icon" type="chevron-right" show={open} />
+					<span className="ms-2">
 						<UGPTLink reqUser={user} game={game} playtype={playtype} /> achieved{" "}
-						{subMessage}!
+						{subMessage}!{" "}
+						{mutedText && (
+							<>
+								<Muted>{mutedText}</Muted>
+							</>
+						)}
 					</span>
-					{mutedText && (
-						<>
-							<br />
-							<Muted>{mutedText}</Muted>
-						</>
-					)}
 				</Col>
-				<Col md={4} lg={2} className="text-end">
+				<Col md={4} lg={2} className="py-4 text-end cursor-pointer" onClick={handleClick}>
 					{MillisToSince(data.goals[0]?.timeAchieved ?? 0)}
 					<div className="text-muted fst-italic">
 						{FormatTime(data.goals[0]?.timeAchieved ?? 0)}
 					</div>
 				</Col>
+				<Collapse in={open}>
+					<div className="m-0 p-0 overflow-y-hidden" id="session-shower-container">
+						<Col className="clearfix" id="goals">
+							{data.goals.map((e) => (
+								<InnerQuestSectionGoal
+									goal={e.__related.goal}
+									goalSubOverride={e}
+									key={e.goalID}
+								/>
+							))}
+						</Col>
+					</div>
+				</Collapse>
 			</Row>
-
-			{show && (
-				<>
-					{data.goals.map((e) => (
-						<InnerQuestSectionGoal
-							goal={e.__related.goal}
-							goalSubOverride={e}
-							key={e.goalID}
-						/>
-					))}
-				</>
-			)}
 		</>
 	);
 }
@@ -403,16 +445,18 @@ function QuestActivity({
 			className="justify-content-between align-items-center user-select-none mx-2 my-2 py-3 hover-tachi rounded"
 		>
 			<div className="timeline-dot align-self-center p-0 bg-warning"></div>
-			<Col md={8} lg={10} className=" d-flex fw-light h-100 align-items-center fs-5">
+			<Col md={8} lg={10} className=" d-flex fw-light h-100 align-items-center">
 				<ProfilePictureSmall className="me-2" user={user} toGPT={`${game}/${playtype}`} />
-				<UGPTLink reqUser={user} game={game} playtype={playtype} /> completed the{" "}
-				<Link
-					className="gentle-link"
-					to={`/games/${game}/${playtype}/quests/${data.quest.questID}`}
-				>
-					{data.quest.name}
-				</Link>{" "}
-				quest{prettyGame && ` in ${prettyGame}`}!
+				<span className="fw-normal">
+					<UGPTLink reqUser={user} game={game} playtype={playtype} /> completed the{" "}
+					<Link
+						className="gentle-link"
+						to={`/games/${game}/${playtype}/quests/${data.quest.questID}`}
+					>
+						{data.quest.name}
+					</Link>{" "}
+					quest{prettyGame && ` in ${prettyGame}`}!
+				</span>
 			</Col>
 			<Col md={4} lg={2} className="text-end">
 				{MillisToSince(data.sub.timeAchieved ?? 0)}
@@ -450,30 +494,30 @@ function SessionActivity({
 		<>
 			<Row
 				id="session-activity"
-				className="justify-content-between align-items-center user-select-none mx-2 my-2 py-3 hover-tachi cursor-pointer rounded"
-				onClick={handleClick}
-				aria-controls="session-shower-container"
-				aria-expanded={open}
+				className={`align-items-center user-select-none mx-2 my-4 p-1 hover-tachi bg-transition rounded ${
+					open ? "bg-dark" : ""
+				}`}
 			>
 				<div
 					className={`timeline-dot align-self-center p-0 bg-${
 						data.highlight ? "warning" : "secondary"
-					}`}
+					} ${isProbablyActive ? "active" : ""}`}
 				/>
-				<Col md={8} lg={10} className=" d-flex fw-light h-100 align-items-center">
+				<Col
+					md={8}
+					lg={10}
+					onClick={handleClick}
+					aria-controls="session-shower-container"
+					aria-expanded={open}
+					className="py-4 d-flex fw-light h-100 align-items-center cursor-pointer"
+				>
 					<ProfilePictureSmall
 						className="me-2"
 						user={user}
 						toGPT={`${game}/${playtype}`}
 					/>
 					<Icon className="timeline-icon" type="chevron-right" show={open} />
-					<span
-						className="ms-2"
-						style={{
-							fontWeight: isProbablyActive ? "bold" : undefined,
-							fontSize: isProbablyActive ? "1.2rem" : undefined,
-						}}
-					>
+					<span className={`ms-2 ${isProbablyActive ? "fw-normal" : ""}`}>
 						{/* worst string formatting ever */}
 						<UGPTLink reqUser={user} game={data.game} playtype={data.playtype} />{" "}
 						{isProbablyActive
@@ -491,21 +535,33 @@ function SessionActivity({
 						<span className="text-muted">{data.desc}</span>
 					)}
 				</Col>
-				<Col md={4} lg={2} className="text-end">
+				<Col md={4} lg={2} className="py-2 text-end cursor-pointer" onClick={handleClick}>
 					{MillisToSince(data.timeStarted ?? 0)}
 					<div className="text-muted fst-italic">{FormatTime(data.timeStarted ?? 0)}</div>
 				</Col>
+				<Collapse in={open}>
+					<div className="m-0 p-0 overflow-y-hidden" id="session-shower-container">
+						<SessionShower
+							sessionID={data.sessionID}
+							active={active}
+							setOpen={setOpen}
+						/>
+					</div>
+				</Collapse>
 			</Row>
-			<Collapse in={open}>
-				<div className="m-0 p-0 overflow-y-hidden" id="session-shower-container">
-					<SessionShower sessionID={data.sessionID} active={active} />
-				</div>
-			</Collapse>
 		</>
 	);
 }
 
-function SessionShower({ sessionID, active }: { sessionID: string; active: boolean }) {
+function SessionShower({
+	sessionID,
+	active,
+	setOpen,
+}: {
+	sessionID: string;
+	active: boolean;
+	setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
 	if (!active) {
 		return null;
 	}
@@ -519,7 +575,7 @@ function SessionShower({ sessionID, active }: { sessionID: string; active: boole
 	if (!data) {
 		return (
 			<Col
-				className="mx-2 p-6 text-center bg-dark rounded clearfix"
+				className="mx-2 p-6 text-center"
 				id="session-shower-loading"
 				style={{ height: "186px" }}
 			>
@@ -527,6 +583,10 @@ function SessionShower({ sessionID, active }: { sessionID: string; active: boole
 			</Col>
 		);
 	}
+
+	const handleClose = () => {
+		setOpen(false);
+	};
 
 	const scoreMap = CreateScoreIDMap(data.scores);
 
@@ -562,10 +622,7 @@ function SessionShower({ sessionID, active }: { sessionID: string; active: boole
 
 	if (raises.length === 0) {
 		return (
-			<Col
-				className="mx-2 px-3 py-6 text-center bg-dark rounded clearfix"
-				id="session-shower"
-			>
+			<Col className="py-6 text-center clearfix" id="session-shower">
 				<div className="mb-8 mt-4">This session had no raises.</div>
 				<LinkButton
 					variant="outline-primary"
@@ -579,10 +636,14 @@ function SessionShower({ sessionID, active }: { sessionID: string; active: boole
 	}
 
 	return (
-		<Col className="mx-2 p-3 text-center bg-dark rounded clearfix" id="session-shower">
+		<Col className="mx-2 py-3 text-center clearfix" id="session-shower">
 			<SessionRaiseBreakdown sessionData={data} setScores={NO_OP} /* TODO */ />
 
 			<Divider />
+			<CloseButton
+				className="float-start mx-1 mt-1 d-block d-md-none"
+				onClick={handleClose}
+			/>
 			<LinkButton
 				variant="outline-primary"
 				className="float-end float-md-none"
@@ -606,7 +667,7 @@ function ClassAchievementActivity({
 	return (
 		<Row
 			id="class-activity"
-			className="justify-content-between align-items-center user-select-none mx-2 my-2 py-3 hover-tachi cursor-pointer rounded"
+			className="justify-content-between align-items-center user-select-none mx-2 my-2 py-3 hover-tachi rounded"
 		>
 			<div className="timeline-dot bg-success align-self-center p-0" />
 			<Col md={8} lg={10} className=" d-flex fw-light h-100 align-items-center">
@@ -616,26 +677,29 @@ function ClassAchievementActivity({
 					toGPT={`${data.game}/${data.playtype}`}
 				/>
 				<span>
-					<UGPTLink reqUser={user} game={data.game} playtype={data.playtype} />
-					<span> achieved </span>
+					<UGPTLink reqUser={user} game={data.game} playtype={data.playtype} /> achieved{" "}
 					<ClassBadge
+						className="mb-1 mb-md-0 mx-1"
 						classSet={data.classSet}
 						game={data.game}
 						playtype={data.playtype}
 						classValue={data.classValue}
-					/>
+					/>{" "}
 					{shouldShowGame && ` in ${FormatGame(data.game, data.playtype)}`}!
 					{data.classOldValue !== null && (
 						<>
 							{" "}
 							(Raised from{" "}
-							<ClassBadge
-								classSet={data.classSet}
-								game={data.game}
-								playtype={data.playtype}
-								classValue={data.classOldValue}
-							/>
-							)
+							<span className="text-nowrap">
+								<ClassBadge
+									className="mb-1 mb-md-0 mx-1"
+									classSet={data.classSet}
+									game={data.game}
+									playtype={data.playtype}
+									classValue={data.classOldValue}
+								/>
+								)
+							</span>
 						</>
 					)}
 				</span>

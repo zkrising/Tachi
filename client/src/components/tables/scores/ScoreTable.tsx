@@ -28,6 +28,8 @@ export default function ScoreTable({
 	alg,
 	noTopDisplayStr,
 	onScoreUpdate,
+	timeline = false,
+	active = false, //setOpen,
 }: {
 	dataset: ScoreDataset;
 	pageLen?: integer;
@@ -37,7 +39,14 @@ export default function ScoreTable({
 	alg?: AnyScoreRatingAlg;
 	noTopDisplayStr?: boolean;
 	onScoreUpdate?: (sc: ScoreDocument) => void;
+	timeline?: boolean;
+	active?: boolean;
+	//setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+	if (timeline && !active) {
+		return null;
+	}
+
 	const defaultRating = useScoreRatingAlg(game, playtype);
 	const [rating, setRating] = useState(alg ?? defaultRating);
 
@@ -54,6 +63,14 @@ export default function ScoreTable({
 		headers.unshift(["User", "User", StrSOV((x) => x.__related.user.username)]);
 	}
 
+	/*const handleClose = !timeline
+		? () => {
+				if (setOpen) {
+					setOpen(false);
+				}
+		  }
+		: undefined;
+	*/
 	return (
 		<TachiTable
 			noTopDisplayStr={noTopDisplayStr}

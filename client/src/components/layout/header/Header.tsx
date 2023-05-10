@@ -48,7 +48,7 @@ export function Header() {
 	}
 
 	return (
-		<header id="tachi_header" className="fixed-top">
+		<header id="tachi-header" className="fixed-top">
 			<Navbar variant="dark" key="md" expand="md" className="p-0">
 				<Container className="align-center">
 					<Navbar.Brand>

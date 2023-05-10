@@ -1,12 +1,12 @@
 .timeline {
-    &-icon {
-			font-size: 0.75rem;
-			transition: transform 0.25s ease;
+	&-icon {
+		font-size: 0.75rem;
+		transition: transform 0.25s ease;
 
-			&.show {
-				transform: rotate(90deg);
-			}
+		&.show {
+			transform: rotate(90deg);
 		}
+	}
 
 	&-bar {
 		background-color: hsla(0, 0, 85%, 0.5);
@@ -28,5 +28,17 @@
 		width: 9px;
 		left: 0;
 		z-index: 2;
+		&.active {
+			@keyframes timeline-activity {
+				from {
+					opacity: 0.5;
+				}
+				to {
+					opacity: 1;
+				}
+			}
+			animation: timeline-activity 1.25s ease-in-out alternate infinite;
+			background-color: var(--bs-primary) !important;
+		}
 	}
 }

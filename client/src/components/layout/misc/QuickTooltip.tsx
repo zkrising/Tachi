@@ -1,21 +1,71 @@
 import { nanoid } from "nanoid";
-import React, { CSSProperties, useState } from "react";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import React from "react";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 export default function QuickTooltip({
 	children,
 	tooltipContent,
-	wide,
-	style,
-	max,
+	className,
 	delay = 40,
+	placement = "top",
+	trigger,
 }: {
-	tooltipContent: React.ReactChild | undefined;
-	wide?: boolean;
-	max?: boolean;
-	style?: CSSProperties;
 	children: JSX.Element;
+	tooltipContent: React.ReactChild | undefined;
+	className?: string;
 	delay?: number;
+	placement?:
+		| "auto-start"
+		| "auto"
+		| "auto-end"
+		| "top-start"
+		| "top"
+		| "top-end"
+		| "right-start"
+		| "right"
+		| "right-end"
+		| "bottom-end"
+		| "bottom"
+		| "bottom-start"
+		| "left-end"
+		| "left"
+		| "left-start";
+	trigger?: "hover" | "click" | "focus" | Array<"hover" | "click" | "focus">;
+}) {
+	if (tooltipContent === undefined) {
+		return children;
+	}
+
+	return (
+		<OverlayTrigger
+			placement={placement}
+			delay={delay}
+			trigger={trigger}
+			overlay={
+				<Tooltip className={`${className ?? ""}`} id={nanoid()}>
+					{tooltipContent}
+				</Tooltip>
+			}
+		>
+			{children}
+		</OverlayTrigger>
+	);
+}
+
+// TODO
+/* export function QuickPopover({ 
+	children,
+	tooltipContent,
+	className,
+	delay = 40,
+	placement,
+}: {
+	children: JSX.Element;
+	tooltipContent: React.ReactChild | undefined;
+	className?: string;
+	delay?: number;
+	placement?: string;
 }) {
 	const [show, setShow] = useState(false);
 	const [mousedOver, setMousedOver] = useState(false);
@@ -26,23 +76,22 @@ export default function QuickTooltip({
 
 	return (
 		<OverlayTrigger
-			placement="top"
+			placement={`${placement ? (`${placement}` as Placement) : ("top" as Placement)}`}
 			show={show || mousedOver}
 			delay={delay}
 			overlay={
-				<Tooltip
-					style={style}
-					className={wide ? "tooltip-wide" : ` ${max ? "tooltip-max" : ""}`}
+				<Popover
+					className={`${className ?? ""}`}
 					id={nanoid()}
 					onMouseEnter={() => setMousedOver(true)}
 					onMouseLeave={() => setMousedOver(false)}
 				>
-					{tooltipContent}
-				</Tooltip>
+					{popoverContent}
+				</Popover>
 			}
 			onToggle={(nextShow) => setShow(nextShow)}
 		>
 			{children}
 		</OverlayTrigger>
 	);
-}
+} */

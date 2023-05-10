@@ -55,3 +55,7 @@
 	-moz-user-select: none;
 	user-select: none;
 }
+
+.bg-transition {
+	transition: background-color 75ms ease-in-out;
+}

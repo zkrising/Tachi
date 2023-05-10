@@ -1,4 +1,4 @@
-import { ONE_DAY } from "util/constants/time";
+import { ONE_WEEK } from "util/constants/time";
 import Card from "components/layout/page/Card";
 import ExternalLink from "components/util/ExternalLink";
 import Icon from "components/util/Icon";
@@ -21,27 +21,28 @@ export default function SupportBanner({ user }: { user: UserDocument }) {
 	// thank you
 	if (user.isSupporter) {
 		return (
-			<div className="d-flex w-100 justify-content-center flex-column align-items-center">
-				<div>❤️❤️❤️ Thank you for supporting {TachiConfig.name}. ❤️❤️❤️</div>
+			<div id="❤️" className="text-center">
+				<span className="d-none d-sm-inline">❤️❤️❤️</span> Thank you for supporting{" "}
+				{TachiConfig.name}. ❤️<span className="d-none d-sm-inline">❤️❤️</span>
 			</div>
 		);
 	}
 
 	if (!data) {
-		return <></>;
+		return null;
 	}
 
 	if (error) {
-		return <></>;
+		return null;
 	}
 
 	if (data.scores < 1_000) {
-		return <></>;
+		return null;
 	}
 
 	// too soon to bother
-	if (Date.now() - user.joinDate < ONE_DAY * 7) {
-		return <></>;
+	if (Date.now() - user.joinDate < ONE_WEEK) {
+		return null;
 	}
 
 	if (!show) {

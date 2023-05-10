@@ -89,14 +89,19 @@ const Navbar = ({ children }: NavbarProps) => {
 				<div className="tachi-navbar rounded d-flex justify-content-evenly position-relative w-100 text-uppercase">
 					{React.Children.toArray(children).map((child) => {
 						if (React.isValidElement<NavItemProps>(child)) {
-							const to = child.props.to.replace(/\/$/u, ""); // Homepage link is 'to="/"' which is fine but this causes an issue with setting the navItem active so... we ignore it.
+							const to: string = child.props.to.replace(/\/?$/u, "/"); // Homepage link is 'to="/"' which is fine but this causes an issue with setting the navItem active so... we ignore it.
 							const otherMatchingPaths = Array.isArray(child.props.otherMatchingPaths)
 								? child.props.otherMatchingPaths.map((p) => p)
 								: [];
-							const pathname = loc.pathname.replace(/\/$/u, ""); // get pathname from router-dom and remove any trailing slash
-							const isActive = // set item active if it matches the current URL by checking it's to property and any otherMatchingPaths it passes through
-								to === pathname ||
-								otherMatchingPaths.some((p) => pathname.startsWith(p));
+							const pathname = loc.pathname.replace(/\/?$/u, "/"); // get pathname from router-dom and remove any trailing slash
+							let isActive = false;
+							if (to === "/") {
+								isActive = pathname === "/";
+							} else {
+								isActive =
+									pathname.startsWith(to) ||
+									otherMatchingPaths.some((p) => pathname.startsWith(p));
+							}
 							return React.cloneElement<NavItemProps>(child, {
 								active: isActive,
 								setActiveItem,

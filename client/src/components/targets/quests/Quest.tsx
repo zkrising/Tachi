@@ -56,7 +56,7 @@ export default function Quest({
 							<h4>
 								Progress:{" "}
 								{questSub.achieved ? (
-									<Badge variant="success">COMPLETE!</Badge>
+									<Badge bg="success">COMPLETE!</Badge>
 								) : (
 									<span>
 										<span className="text-danger">{questSub.progress}</span>
@@ -176,7 +176,7 @@ function QuestSectionComponent({
 			{section.goals.length === 0 ? (
 				<Muted>No Goals...</Muted>
 			) : (
-				<div className="pl-6">
+				<div className="ps-6">
 					{section.goals.map((e, i) => {
 						const goal = goals.get(e.goalID);
 
@@ -215,61 +215,47 @@ export function InnerQuestSectionGoal({
 	if (!goalSub) {
 		return (
 			<>
-				<div className="w-100 d-flex">
-					<div>
-						<Icon
-							style={{ verticalAlign: "middle", fontSize: "0.4rem" }}
-							type="circle"
-						/>
-					</div>
+				<Icon type="circle" />
 
-					<GoalLink goal={goal} />
-				</div>
+				<GoalLink goal={goal} />
+
 				{note && <Muted>{note}</Muted>}
 			</>
 		);
 	}
 
 	return (
-		<>
-			<div className="w-100 d-flex">
-				<QuickTooltip
-					tooltipContent={
-						goalSub.achieved
-							? `Achieved on ${FormatTime(goalSub.timeAchieved)}`
-							: goalSub.lastInteraction
-							? `Last raised on ${FormatTime(goalSub.lastInteraction)}`
-							: `Never Attempted.`
-					}
-				>
-					<div>
-						{goalSub.achieved ? (
-							<Icon
-								style={{ verticalAlign: "middle" }}
-								regular
-								type="check-square"
-								colour="success"
-							/>
-						) : (
-							<Icon
-								style={{ verticalAlign: "middle" }}
-								regular
-								type="square"
-								colour="danger"
-							/>
-						)}
-					</div>
-				</QuickTooltip>
-
-				<GoalLink goal={goal} />
-
-				{!goalSub.achieved && (
-					<div className="ml-auto text-danger">
-						<span className="text-danger">{goalSub.progressHuman}</span>
-						<Muted> / {goalSub.outOfHuman}</Muted>
-					</div>
+		<div className="my-3 mx-3">
+			<QuickTooltip
+				placement="right"
+				tooltipContent={
+					goalSub.achieved
+						? `Achieved on ${FormatTime(goalSub.timeAchieved)}`
+						: goalSub.lastInteraction
+						? `Last raised on ${FormatTime(goalSub.lastInteraction)}`
+						: `Never Attempted.`
+				}
+			>
+				{goalSub.achieved ? (
+					<span className="align-middle">
+						{/* This needs to be inside an element to work since the icon is a pseudo element */}
+						<Icon regular type="check-square" colour="success" className="fs-5" />
+					</span>
+				) : (
+					<span className="align-middle">
+						<Icon regular type="square" colour="danger" className="fs-5" />
+					</span>
 				)}
-			</div>
+			</QuickTooltip>
+
+			<span className={"ms-3"}>{goal.name}</span>
+
+			{!goalSub.achieved && (
+				<div className="ml-auto text-danger">
+					<span className="text-danger">{goalSub.progressHuman}</span>
+					<Muted> / {goalSub.outOfHuman}</Muted>
+				</div>
+			)}
 			<div>
 				{note && <Muted>{note}</Muted>}
 				{dependencies && (
@@ -279,7 +265,7 @@ export function InnerQuestSectionGoal({
 					/>
 				)}
 			</div>
-		</>
+		</div>
 	);
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 
-export default function UtilsDropdown({ closeOffCanvas }: { closeOffCanvas?: () => void }) {
+export default function UtilsDropdown({ onClick }: { onClick?: () => void }) {
 	return (
 		<NavDropdown
 			id="Developer Utils"
@@ -11,7 +11,7 @@ export default function UtilsDropdown({ closeOffCanvas }: { closeOffCanvas?: () 
 		>
 			<NavDropdown.Item
 				onClick={() => {
-					closeOffCanvas?.();
+					onClick?.();
 				}}
 				as={Link}
 				to="/utils/seeds"
@@ -20,7 +20,7 @@ export default function UtilsDropdown({ closeOffCanvas }: { closeOffCanvas?: () 
 			</NavDropdown.Item>
 			<NavDropdown.Item
 				onClick={() => {
-					closeOffCanvas?.();
+					onClick?.();
 				}}
 				as={Link}
 				to="/utils/imports"
@@ -29,7 +29,7 @@ export default function UtilsDropdown({ closeOffCanvas }: { closeOffCanvas?: () 
 			</NavDropdown.Item>
 			<NavDropdown.Item
 				onClick={() => {
-					closeOffCanvas?.();
+					onClick?.();
 				}}
 				as={Link}
 				to="/utils/quests"

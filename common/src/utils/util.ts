@@ -111,6 +111,11 @@ export function FormatGame(game: Game, playtype: Playtypes[Game]): string {
 	return `${gameConfig.name} (${playtype})`;
 }
 
+export function FormatGameLess(game: Game): string {
+	const gameConfig = GetGameConfig(game);
+	return gameConfig.name;
+}
+
 export function FormatChart(
 	game: Game,
 	song: SongDocument,

@@ -121,7 +121,9 @@
 }
 
 @include media-breakpoint-down(md) { // This is highly customised because I'd rather just do it this way for this one specific componant
-    .offcanvas-start .offcanvas-body .navbar-nav {
+    .offcanvas-start {
+        box-shadow: var(--t-shadow-lg);
+        .offcanvas-body .navbar-nav {
              margin-left: 0 !important;
                 .nav-item {
                    margin-bottom: .5rem;               
@@ -140,7 +142,7 @@
                 }
             }
         }
-
+    }
 
 #subheader {
     display: flex;
@@ -173,4 +175,21 @@
             display: none;
         }
     }
+}
+
+.tachi-backdrop{
+    &.show{
+        background-color: #13131322;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+    }
+    position: absolute;
+    display: block;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(0);
+    transition: background-color 150ms ease-in-out, backdrop-filter 150ms ease-in, -webkit-backdrop-filter 150ms ease-in;
+    z-index: 1040;
 }

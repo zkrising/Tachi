@@ -56,16 +56,41 @@ export default function RankingData({
 	);
 }
 
-export function LazyRankingData({ ranking, outOf }: { ranking: integer; outOf: integer }) {
+export function TidyRankingData({
+	rankingData,
+	game,
+	userID,
+	playtype,
+}: {
+	rankingData: Record<ProfileRatingAlgorithms[GPTString], { ranking: number; outOf: integer }>;
+	userID: integer;
+} & GamePT) {
+	const alg = useProfileRatingAlg(game, playtype);
+	const extendData = [];
+
+	for (const k in rankingData) {
+		const key = k as ProfileRatingAlgorithms[GPTString];
+
+		if (key !== alg) {
+			extendData.push(
+				<div key={key} className="col-12">
+					<small className="text-muted">
+						{UppercaseFirst(key)}: #{rankingData[key].ranking}/{rankingData[key].outOf}
+					</small>
+				</div>
+			);
+		}
+	}
+
 	return (
-		<div className="row text-center">
-			<div className="col-12">
-				<h4>Ranking</h4>
-			</div>
-			<div className="col-12">
-				<strong className="display-4">#{ranking}</strong>
-				<span className="text-muted">/{outOf}</span>
-			</div>
-		</div>
+		<>
+			<Link to={`/u/${userID}/games/${game}/${playtype}/leaderboard`} className="gentle-link">
+				#{rankingData[alg].ranking}
+			</Link>
+			<small className="text-muted" style={{ fontSize: ".675em" }}>
+				/{rankingData[alg].outOf}
+			</small>
+			{/*{extendData}*/}
+		</>
 	);
 }

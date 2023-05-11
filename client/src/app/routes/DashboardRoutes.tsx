@@ -100,6 +100,10 @@ export default function DashboardRoutes() {
 						<Redirect to="/" />
 					</Route>
 
+					<Route exact path="/games">
+						<Redirect to="/" />
+					</Route>
+
 					<Route exact path="/g">
 						<Redirect to="/" />
 					</Route>

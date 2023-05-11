@@ -25,11 +25,10 @@ import { BackgroundContext } from "context/BackgroundContext";
 import { TargetsContextProvider } from "context/TargetsContext";
 import { UGPTContextProvider } from "context/UGPTContext";
 import { UserContext } from "context/UserContext";
-import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext, useEffect } from "react";
 import { useQuery } from "react-query";
 import { Redirect, Route, Switch, useHistory, useParams } from "react-router-dom";
-import { FormatGame, Game, GetGameConfig, UserDocument, UserGameStats } from "tachi-common";
+import { Game, GetGameConfig, UserDocument, UserGameStats } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import UGPTUtilsPage from "app/pages/dashboard/users/games/_game/_playtype/utils/UGPTUtilsPage";
 import UserPage from "../pages/dashboard/users/UserPage";
@@ -98,16 +97,9 @@ export default function UserRoutes() {
 }
 
 function UserProfileRoutes({ reqUser }: { reqUser: UserDocument }) {
-	const { settings } = useContext(UserSettingsContext);
-
 	return (
 		<>
 			<LayoutHeaderContainer
-				header={
-					settings?.preferences.developerMode
-						? `${reqUser.username} (UID: ${reqUser.id})`
-						: `${reqUser.username}'s Profile`
-				}
 				footer={<UserBottomNav reqUser={reqUser} baseUrl={`/u/${reqUser.username}`} />}
 			>
 				<UserHeaderBody reqUser={reqUser} />
@@ -227,7 +219,6 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: UserDocument; game
 	return (
 		<>
 			<LayoutHeaderContainer
-				header={`${reqUser.username}'s ${FormatGame(game, playtype)} Profile`}
 				footer={
 					<UGPTBottomNav
 						game={game}

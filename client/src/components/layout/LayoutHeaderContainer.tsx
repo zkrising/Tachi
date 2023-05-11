@@ -1,31 +1,17 @@
-import Divider from "components/util/Divider";
 import React from "react";
+import Card from "react-bootstrap/Card";
 
 export default function UserHeaderContainer({
-	header,
 	footer,
 	children,
 }: {
 	children: React.ReactChild;
 	footer: React.ReactChild;
-	header: React.ReactChild;
 }) {
 	return (
-		<div className="row">
-			<div className="col-12">
-				<div className="card">
-					<div className="card-header">
-						<h4>{header}</h4>
-					</div>
-					<div className="card-body">
-						<div className="row align-items-center">{children}</div>
-					</div>
-					<div className="card-footer p-0">{footer}</div>
-				</div>
-			</div>
-			<div className="col-12">
-				<Divider />
-			</div>
-		</div>
+		<Card className="mb-4">
+			<Card.Body className="d-flex flex-column">{children}</Card.Body>
+			<Card.Footer className="card-footer p-0">{footer}</Card.Footer>
+		</Card>
 	);
 }

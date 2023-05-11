@@ -6,7 +6,7 @@ import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const SDVX_CONF = {
-	name: "SOUND VOLTEX",
+	name: "Sound Voltex",
 	playtypes: ["Single"],
 	songData: z.strictObject({
 		displayVersion: z.string(),

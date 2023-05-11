@@ -1,25 +1,34 @@
-import { MillisToSince } from "util/time";
 import { APIFetchV1 } from "util/api";
+import { MillisToSince } from "util/time";
 import { HumaniseError } from "util/humanise-error";
 import { SendErrorToast, SendSuccessToast } from "util/toaster";
 import Navbar from "components/nav/Navbar";
-import MiniTable from "components/tables/components/MiniTable";
-import Divider from "components/util/Divider";
 import React, { useContext } from "react";
-import { Button } from "react-bootstrap";
-import { Game, Playtype, UserDocument, integer } from "tachi-common";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import {
+	Game,
+	Playtype,
+	UserDocument,
+	integer,
+	FormatGameLess,
+	UserGameStats,
+	//Classes,
+} from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import FollowUserButton from "components/util/FollowUserButton";
+//import ProfileBadges from "./ProfileBadges";
 import { GetGPTUtilsName } from "components/gpt-utils/GPTUtils";
 import ApiError from "components/util/ApiError";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
-import ProfileBadges from "./ProfileBadges";
+import QuickTooltip from "components/layout/misc/QuickTooltip";
 import ProfilePicture from "./ProfilePicture";
-import RankingData from "./UGPTRankingData";
-import UGPTRatingsTable from "./UGPTStatsOverview";
+import { TidyRankingData } from "./UGPTRankingData";
+import { UGPTClassBadge, UGPTPrimaryRating, UGPTOtherRatings } from "./UGPTStatsOverview";
 
 export function UGPTHeaderBody({
 	reqUser,
@@ -34,6 +43,10 @@ export function UGPTHeaderBody({
 }) {
 	const { settings, setSettings } = useLUGPTSettings();
 	const { settings: userSettings } = useContext(UserSettingsContext);
+	const ugs: UserGameStats = stats.gameStats;
+
+	//const gptConfig = GetGamePTConfig(ugs.game, ugs.playtype);
+	//const ratings = Object.entries(ugs.ratings) as [ProfileRatingAlgorithms[GPTString], number][];
 
 	const { data: MAX_RIVALS, error } = useApiQuery<integer>("/config/max-rivals");
 
@@ -47,54 +60,93 @@ export function UGPTHeaderBody({
 
 	return (
 		<>
-			<div className="col-12 col-lg-3">
-				<div className="d-flex justify-content-center mb-3">
+			<Row
+				id={`${reqUser.username}-${game}${playtype === "Single" ? "" : `${playtype}`}-info`}
+				className="pt-6 justify-content-between"
+			>
+				<Col lg={"auto"} className="d-flex" id="user-info">
 					<ProfilePicture user={reqUser} />
-				</div>
-				<div className="d-flex align-items-center" style={{ flexDirection: "column" }}>
+					<div className="d-flex ms-4 flex-column flex-lg-column-reverse flex-lg-grow-1">
+						<h3 className="enable-rfs overflow-hidden mb-lg-0">
+							{reqUser.username}'s{" "}
+							<span className="text-nowrap">
+								{FormatGameLess(game)}
+
+								{playtype === "Single" ? "" : <sup> {playtype}</sup>}
+							</span>{" "}
+							Profile
+						</h3>
+						<h3 className="fw-light">
+							<TidyRankingData
+								rankingData={stats.rankingData}
+								game={game}
+								playtype={playtype}
+								userID={reqUser.id}
+							/>
+						</h3>
+						<div className="fw-light mb-lg-2 flex-grow-1 flex-lg-grow-0">
+							{stats.totalScores} {stats.totalScores === 1 ? "Score" : "Scores"}
+						</div>
+						<div className="flex-lg-grow-1">
+							<QuickTooltip // Last Played / First Played
+								placement="auto"
+								tooltipContent={`First Played
+							${
+								stats.firstScore === null || stats.firstScore.timeAchieved === null
+									? "Unknown."
+									: MillisToSince(stats.firstScore.timeAchieved)
+							}`}
+							>
+								{stats.mostRecentScore === null ||
+								stats.mostRecentScore.timeAchieved === null ? (
+									<></>
+								) : (
+									<small className="text-muted">
+										Last Played{" "}
+										{MillisToSince(stats.mostRecentScore.timeAchieved)}
+									</small>
+								)}
+							</QuickTooltip>
+						</div>
+					</div>
+				</Col>
+				<Col lg={"auto"} className="d-lg-flex" id="rating-info">
+					<Row
+						lg={2}
+						className="justify-content-between w-100 ms-0 mt-2 flex-lg-nowrap justify-content-lg-end"
+					>
+						<Col
+							xs={5}
+							lg="auto"
+							className="me-2 mb-lg-2 me-lg-5 p-0 text-lg-end align-self-lg-end"
+						>
+							<UGPTClassBadge className="m-1" ugs={ugs} />
+						</Col>
+						<Col
+							xs="auto"
+							className="d-flex flex-column align-items-end ms-auto me-0 p-0 justify-content-lg-end"
+						>
+							<UGPTOtherRatings
+								className="fs-3 fs-lg-2 text-nowrap enable-rfs"
+								ugs={ugs}
+							/>
+							<UGPTPrimaryRating
+								className="display-3 text-nowrap fw-normal enable-rfs"
+								ugs={ugs}
+							/>
+						</Col>
+					</Row>
+				</Col>
+			</Row>
+			{/*
+			
+			<UGPTRatingsTable ugs={stats.gameStats} />
+
+			<div className="d-flex align-items-center" style={{ flexDirection: "column" }}>
 					<ProfileBadges user={reqUser} />
 				</div>
-				<div className="d-block d-lg-none">
-					<Divider className="mt-4 mb-4" />
-				</div>
-			</div>
-
-			<div className="col-12 col-md-6 col-lg-3">
-				<MiniTable className="table-sm text-center" headers={["Player Info"]} colSpan={2}>
-					<tr>
-						<td>Scores</td>
-						<td>{stats.totalScores}</td>
-					</tr>
-					<tr>
-						<td>Last Played</td>
-						<td>
-							{stats.mostRecentScore === null ||
-							stats.mostRecentScore.timeAchieved === null
-								? "Unknown."
-								: MillisToSince(stats.mostRecentScore.timeAchieved)}
-						</td>
-					</tr>
-					<tr>
-						<td>First Play</td>
-						<td>
-							{stats.firstScore === null || stats.firstScore.timeAchieved === null
-								? "Unknown."
-								: MillisToSince(stats.firstScore.timeAchieved)}
-						</td>
-					</tr>
-				</MiniTable>
-			</div>
-			<div className="col-12 col-md-6 col-lg-3">
-				<UGPTRatingsTable ugs={stats.gameStats} />
-			</div>
-			<div className="col-12 col-lg-3">
-				<RankingData
-					rankingData={stats.rankingData}
-					game={game}
-					playtype={playtype}
-					userID={reqUser.id}
-				/>
-			</div>
+			
+			*/}
 			{/* if someone is logged in and they aren't the user they're viewing */}
 			{/* give them the option to add them as a rival or follow them */}
 			{userSettings && reqUser.id !== userSettings.userID && (
@@ -184,7 +236,7 @@ export function UGPTHeaderBody({
 							)}
 						</>
 					)}
-					<FollowUserButton userToFollow={reqUser} />
+					{<FollowUserButton userToFollow={reqUser} />}
 				</div>
 			)}
 		</>

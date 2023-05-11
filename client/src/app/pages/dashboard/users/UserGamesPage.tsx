@@ -80,7 +80,7 @@ function GamesInfo({ ugs, reqUser }: { ugs: UserGameStats[]; reqUser: UserDocume
 
 export function GameStatContainer({ ugs, reqUser }: { ugs: UGSWithRankingData } & Props) {
 	return (
-		<div className="col-12 col-lg-6">
+		<div className="col-12 col-lg-6 flex-grow-1 d-grid">
 			<Card
 				className="mb-4"
 				footer={

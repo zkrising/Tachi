@@ -153,6 +153,12 @@ router.get(
 		const query = req.query as unknown as ResolveArgs;
 
 		try {
+			const mockBatchManualScore: BatchManualScore = {
+				identifier: query.identifier,
+				matchType: query.matchType,
+				difficulty: query.difficulty,
+			} as unknown as BatchManualScore;
+
 			const { song, chart } = await ResolveMatchTypeToTachiData(
 				// This is an extremely silly hack. Basically, this function is called
 				// relatively deep in the batch-manual import process. I couldn't be bothered
@@ -161,11 +167,7 @@ router.get(
 				// We happen to know that this function doesn't interact or care about the
 				// scorey bits, but hey ho. This is still a stupid hack. Wouldn't happen in
 				// Rust.
-				{
-					identifier: query.identifier,
-					matchType: query.matchType,
-					difficulty: query.difficulty,
-				} as BatchManualScore,
+				mockBatchManualScore,
 				{
 					game,
 					playtype,

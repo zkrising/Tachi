@@ -65,7 +65,11 @@ t.test("Jubeat Implementation", (t) => {
 			true,
 			"normal music rate"
 		);
-		t.equal(JUBEAT_IMPL.chartSpecificValidators.musicRate(0, TestingJubeatChart), true, "0 music rate");
+		t.equal(
+			JUBEAT_IMPL.chartSpecificValidators.musicRate(0, TestingJubeatChart),
+			true,
+			"0 music rate"
+		);
 		t.equal(
 			JUBEAT_IMPL.chartSpecificValidators.musicRate(100, TestingJubeatChart),
 			true,

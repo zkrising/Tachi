@@ -117,7 +117,10 @@ export async function ResolveMatchTypeToTachiData(
 		}
 
 		throw new InvalidScoreFailure(
-			`Cannot use matchType ${data.matchType} for ${FormatGame(game, playtype)}. Expected any of ${config.supportedMatchTypes.join(", ")}.`
+			`Cannot use matchType ${data.matchType} for ${FormatGame(
+				game,
+				playtype
+			)}. Expected any of ${config.supportedMatchTypes.join(", ")}.`
 		);
 	}
 

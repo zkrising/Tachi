@@ -133,9 +133,9 @@ function ActivityInner({
 	const userMap = CreateUserMap(users);
 
 	return (
-		<Container className="position-relative" id="activity-timeline">
+		<div className="position-relative" id="activity-timeline">
 			<div className="timeline-bar" />
-			{data.map((e) => {
+			{data.map((e, i) => {
 				const user = userMap.get(e.type === "SCORES" ? e.scores[0]?.userID : e.userID);
 
 				if (!user) {
@@ -145,11 +145,21 @@ function ActivityInner({
 				switch (e.type) {
 					case "SCORES":
 						return (
-							<ScoresActivity shouldShowGame={shouldShowGame} data={e} user={user} />
+							<ScoresActivity
+								shouldShowGame={shouldShowGame}
+								data={e}
+								user={user}
+								key={`scores-activity-${i}`}
+							/>
 						);
 					case "SESSION":
 						return (
-							<SessionActivity shouldShowGame={shouldShowGame} data={e} user={user} />
+							<SessionActivity
+								shouldShowGame={shouldShowGame}
+								data={e}
+								user={user}
+								key={`session-activity-${i}`}
+							/>
 						);
 					case "CLASS_ACHIEVEMENT":
 						return (
@@ -157,15 +167,26 @@ function ActivityInner({
 								shouldShowGame={shouldShowGame}
 								data={e}
 								user={user}
+								key={`class-activity-${i}`}
 							/>
 						);
 					case "GOAL_ACHIEVEMENTS":
 						return (
-							<GoalActivity shouldShowGame={shouldShowGame} data={e} user={user} />
+							<GoalActivity
+								shouldShowGame={shouldShowGame}
+								data={e}
+								user={user}
+								key={`goal-activity-${i}`}
+							/>
 						);
 					case "QUEST_ACHIEVEMENT":
 						return (
-							<QuestActivity shouldShowGame={shouldShowGame} data={e} user={user} />
+							<QuestActivity
+								shouldShowGame={shouldShowGame}
+								data={e}
+								user={user}
+								key={`quest-activity-${i}`}
+							/>
 						);
 				}
 			})}
@@ -211,7 +232,7 @@ function ActivityInner({
 					)}
 				</div>
 			</Col>
-		</Container>
+		</div>
 	);
 }
 
@@ -276,7 +297,7 @@ function ScoresActivity({
 		<>
 			<Row
 				id="score-activity"
-				className={`align-items-center user-select-none mx-2 my-4 p-1 hover-tachi bg-transition rounded ${
+				className={`align-items-center user-select-none mx-2 my-4 p-1 bg-hover bg-transition rounded ${
 					open ? "bg-dark" : ""
 				}`}
 			>
@@ -373,7 +394,7 @@ function GoalActivity({
 		<>
 			<Row
 				id="goal-activity"
-				className={`align-items-center user-select-none mx-2 my-4 p-1 hover-tachi bg-transition rounded ${
+				className={`align-items-center user-select-none mx-2 my-4 p-1 bg-hover bg-transition rounded ${
 					open ? "bg-dark" : ""
 				}`}
 			>
@@ -442,7 +463,7 @@ function QuestActivity({
 	return (
 		<Row
 			id="quest-activity"
-			className="justify-content-between align-items-center user-select-none mx-2 my-2 py-3 hover-tachi rounded"
+			className="justify-content-between align-items-center user-select-none mx-2 my-2 py-3 bg-hover bg-transition rounded"
 		>
 			<div className="timeline-dot align-self-center p-0 bg-warning"></div>
 			<Col md={8} lg={10} className=" d-flex fw-light h-100 align-items-center">
@@ -494,7 +515,7 @@ function SessionActivity({
 		<>
 			<Row
 				id={`session-activity-${data.sessionID}`}
-				className={`align-items-center user-select-none mx-2 my-4 p-1 hover-tachi bg-transition rounded ${
+				className={`align-items-center user-select-none mx-2 my-4 p-1 bg-hover bg-transition rounded ${
 					open ? "bg-dark" : ""
 				}`}
 			>
@@ -671,7 +692,7 @@ function ClassAchievementActivity({
 	return (
 		<Row
 			id="class-activity"
-			className="align-items-center user-select-none mx-2 my-4 p-1 hover-tachi rounded"
+			className="align-items-center user-select-none mx-2 my-4 p-1 bg-hover rounded"
 		>
 			<div className="timeline-dot bg-success align-self-center p-0" />
 			<Col md={8} lg={10} className="py-4 d-flex fw-light h-100 align-items-center">

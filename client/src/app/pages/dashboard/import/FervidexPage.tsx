@@ -3,14 +3,14 @@ import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import { TachiConfig } from "lib/config";
 import React from "react";
-import { Alert } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 import { Link } from "react-router-dom";
 
 export default function FervidexPage() {
 	useSetSubheader(["Import Scores", "Fervidex"]);
 
 	return (
-		<div>
+		<>
 			<h1 className="text-center mb-4">What Is Fervidex?</h1>
 			<div>
 				Fervidex is a <code>.dll</code> file that hooks into IIDX and automatically sends
@@ -65,6 +65,6 @@ export default function FervidexPage() {
 					<b>your settings.</b>
 				</Link>
 			</Alert>
-		</div>
+		</>
 	);
 }

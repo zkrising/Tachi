@@ -8,7 +8,7 @@ export default function KsHookPage() {
 	useSetSubheader(["Import Scores", "Konaste Hook"]);
 
 	return (
-		<div>
+		<>
 			<h1 className="text-center mb-4">What Is Konaste Hook?</h1>
 			<div>
 				Konaste Hook is a <code>.dll</code> file that hooks into SDVX and automatically
@@ -42,6 +42,6 @@ export default function KsHookPage() {
 				</li>
 				<li>Your scores now automatically upload to {TachiConfig.name}!</li>
 			</ol>
-		</div>
+		</>
 	);
 }

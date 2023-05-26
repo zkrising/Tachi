@@ -24,6 +24,8 @@ import React, { useContext } from "react";
 import { Link, Redirect, Route, Switch } from "react-router-dom";
 import CGIntegrationPage from "components/imports/CGIntegrationPage";
 import ITGHookPage from "app/pages/dashboard/import/ITGHookPage";
+import Icon from "components/util/Icon";
+import Col from "react-bootstrap/Col";
 
 export default function ImportRoutes() {
 	const { user } = useContext(UserContext);
@@ -37,13 +39,18 @@ export default function ImportRoutes() {
 			<Route exact path="/import">
 				<ImportPage user={user} />
 			</Route>
-
 			<Route path="/import/*">
 				<div>
-					<Link to="/import">Go back to all import methods.</Link>
-					<Divider />
+					<Link to="/import">
+						<Icon type="chevron-left" className="ms-2" /> Go back to all import methods.{/*But not really*/}
+					</Link>
+					<Divider size="full" />
 				</div>
-				<Switch>
+				<Col
+					xl={{ span: 8, offset: 2 }}
+					lg={{ span: 10, offset: 1 }}
+					className="bg-dark rounded p-8"
+				>
 					<Route exact path="/import/batch-manual">
 						<BatchManualPage />
 					</Route>
@@ -201,7 +208,7 @@ export default function ImportRoutes() {
 							</Route>
 						</>
 					)}
-				</Switch>
+				</Col>
 			</Route>
 		</Switch>
 	);

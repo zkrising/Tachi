@@ -336,7 +336,7 @@ $escaped-characters: (
 
 $enable-caret:                true !default;
 $enable-rounded:              true !default;
-$enable-shadows:              false !default;
+$enable-shadows:              false;
 $enable-gradients:            false !default;
 $enable-transitions:          true !default;
 $enable-reduced-motion:       true !default;
@@ -436,10 +436,10 @@ $paragraph-margin-bottom:   1rem !default;
 // scss-docs-start grid-breakpoints
 $grid-breakpoints: (
   xs: 0,
-  sm: 768px,
-  md: 920px,
-  lg: 1160px,
-  xl: 1400px,
+  sm: 648px,
+  md: 864px,
+  lg: 1152px,
+  xl: 1536px,
 );
 // scss-docs-end grid-breakpoints
 
@@ -453,10 +453,10 @@ $grid-breakpoints: (
 
 // scss-docs-start container-max-widths
 $container-max-widths: (
-  sm: 768px,
-  md: 840px,
-  lg: 1080px,
-  xl: 1320px,
+  sm: 648px,
+  md: 864px,
+  lg: 1152px,
+  xl: 1440px,
 );
 // scss-docs-end container-max-widths
 
@@ -468,7 +468,7 @@ $container-max-widths: (
 // Set the number of columns and specify the width of the gutters.
 
 $grid-columns:                12 !default;
-$grid-gutter-width:           1.5rem;
+$grid-gutter-width:           1rem;
 $grid-row-columns:            6 !default;
 
 // Container padding
@@ -498,7 +498,7 @@ $border-color-translucent:    rgba($black, .175) !default;
 // scss-docs-start border-radius-variables
 $border-radius:               .5rem;
 $border-radius-sm:            .25rem !default;
-$border-radius-lg:            .5rem !default;
+$border-radius-lg:            .75rem;
 $border-radius-xl:            1rem !default;
 $border-radius-2xl:           2rem !default;
 $border-radius-pill:          50rem !default;
@@ -508,7 +508,7 @@ $border-radius-pill:          50rem !default;
 $box-shadow:                  0 0 0.725rem 0.5rem rgba($black, .075);
 $box-shadow-sm:               0 .125rem .25rem rgba($black, .075) !default;
 $box-shadow-lg:               0 1rem 3rem rgba($black, .175) !default;
-$box-shadow-inset:            inset 0 1px 2px rgba($black, .075) !default;
+$box-shadow-inset:            inset 0 0 6px rgba($body-bg, .5);
 // scss-docs-end box-shadow-variables
 
 $component-active-color:      $body-color;
@@ -520,11 +520,11 @@ $caret-vertical-align:        $caret-width * .85 !default;
 $caret-spacing:               $caret-width * .85 !default;
 // scss-docs-end caret-variables
 
-$transition-base:             all .15s ease-in-out ;
+$transition-base:             all .15s ease-in-out;
 $transition-fade:             opacity .15s linear !default;
 // scss-docs-start collapse-transition
-$transition-collapse:         height .35s ease !default;
-$transition-collapse-width:   width .35s ease !default;
+$transition-collapse:         height .5s ease;
+$transition-collapse-width:   width .5s ease;
 // scss-docs-end collapse-transition
 
 // stylelint-disable function-disallowed-list
@@ -581,10 +581,10 @@ $h6-font-size:                $font-size-base;
 // rfs variables :)
 // https://getbootstrap.com/docs/5.2/getting-started/rfs/
 // most of these variables are ran through calculations...
-$rfs-rem-value: 13; // i want to use $font-size-root here but i can't because they don't remove the unit before running the calculation
+$rfs-rem-value: 13; // i want to use $font-size-root here but i can't because the unit isn't remobed before using it in the calculation
 $rfs-base-value: $font-size-base; // setting this too high causes the value to become negative and breaks rfs.
 $rfs-factor: 8; // setting this <= 1 throws an error => bootstrap-scss/vendor/_rfs.scss:34
-$rfs-breakpoint: 920px;
+$rfs-breakpoint: 864px;
 $rfs-class: "enable"; // yes please... this allows us to enable it with a class selector only when we want it
 
 // scss-docs-start font-sizes
@@ -775,7 +775,7 @@ $btn-font-size-lg:            $input-btn-font-size-lg;
 $btn-border-width:            $input-btn-border-width;
 
 $btn-font-weight:             $font-weight-normal;
-$btn-box-shadow:              inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075) !default;
+$btn-box-shadow:              inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075);
 $btn-focus-width:             $input-btn-focus-width;
 $btn-focus-box-shadow:        $input-btn-focus-box-shadow !default;
 $btn-disabled-opacity:        .65 !default;
@@ -860,7 +860,7 @@ $input-focus-box-shadow:                $input-btn-focus-box-shadow;
 $input-placeholder-color:               $gray-600;
 $input-plaintext-color:                 $body-color;
 
-$input-height-border:                   $input-border-width * 2 !default;
+$input-height-border:                   $input-border-width * 2;
 
 $input-height-inner:                    add($input-line-height * 1em, $input-padding-y * 2) !default;
 $input-height-inner-half:               add($input-line-height * .5em, $input-padding-y) !default;
@@ -932,8 +932,8 @@ $input-group-addon-padding-y:           $input-padding-y;
 $input-group-addon-padding-x:           $input-padding-x;
 $input-group-addon-font-weight:         $input-font-weight;
 $input-group-addon-color:               $input-color;
-$input-group-addon-bg:                  $tachi-lightground;
-$input-group-addon-border-color:        $input-border-color;
+$input-group-addon-bg:                  $gray-700;
+$input-group-addon-border-color:        $input-group-addon-bg;
 // scss-docs-end input-group-variables
 
 // scss-docs-start form-select-variables
@@ -952,7 +952,7 @@ $form-select-disabled-border-color: $input-disabled-border-color;
 $form-select-bg-position:           right $form-select-padding-x center;
 $form-select-bg-size:               16px 12px; // In pixels because image dimensions
 $form-select-indicator-color:       $body-color;
-$form-select-indicator:             url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$form-select-indicator-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>") !default;
+$form-select-indicator:             url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$form-select-indicator-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>");
 
 $form-select-feedback-icon-padding-end: $form-select-padding-x * 2.5 + $form-select-indicator-padding;
 $form-select-feedback-icon-position:    center right $form-select-indicator-padding;
@@ -1003,7 +1003,7 @@ $form-range-thumb-transition:              background-color .15s ease-in-out, bo
 
 // scss-docs-start form-file-variables
 $form-file-button-color:          $input-color;
-$form-file-button-bg:             $input-group-addon-bg;
+$form-file-button-bg:             transparent;
 $form-file-button-hover-bg:       shade-color($form-file-button-bg, 5%);
 // scss-docs-end form-file-variables
 
@@ -1640,12 +1640,12 @@ $offcanvas-backdrop-opacity:        $modal-backdrop-opacity;
 // Code
 
 $code-font-size:                    $small-font-size;
-$code-color:                        $pink !default;
+$code-color:                        $gray-300;
 
 $kbd-padding-y:                     .1875rem !default;
 $kbd-padding-x:                     .375rem !default;
 $kbd-font-size:                     $code-font-size;
-$kbd-color:                         var(--#{$prefix}body-bg) !default;
+$kbd-color:                         var(--#{$prefix}body-bg);
 $kbd-bg:                            var(--#{$prefix}body-color);
 $nested-kbd-font-weight:            null !default; // Deprecated in v5.2.0, removing in v6
 

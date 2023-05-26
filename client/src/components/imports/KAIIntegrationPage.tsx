@@ -1,3 +1,4 @@
+import { truncate } from "fs";
 import { ErrorPage } from "app/pages/ErrorPage";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import ApiError from "components/util/ApiError";
@@ -9,7 +10,10 @@ import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import hashjs from "hash.js";
 import React, { useContext, useMemo, useState } from "react";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import Button from "react-bootstrap/Button";
 import { APIImportTypes, GetGameConfig } from "tachi-common";
 import ImportStateRenderer from "./ImportStateRenderer";
 
@@ -83,9 +87,8 @@ function KAIImporter({ kaiType, game }: Pick<Props, "kaiType" | "game">) {
 	});
 
 	return (
-		<div>
+		<>
 			<h2 className="text-center mb-4">Authenticated with {kaiType}.</h2>
-			<Divider />
 			<div className="d-flex w-100 justify-content-center">
 				<Button
 					className="mx-auto"
@@ -109,7 +112,7 @@ function KAIImporter({ kaiType, game }: Pick<Props, "kaiType" | "game">) {
 			</div>
 			<Divider />
 			<ImportStateRenderer state={importState} />
-		</div>
+		</>
 	);
 }
 
@@ -133,48 +136,58 @@ function KAINeedsIntegrate({ kaiType, hash, clientID, redirectUri }: Omit<Props,
 
 	return (
 		<div>
-			<h4 className="text-center mb-4">You need to authenticate with {kaiType}!</h4>
-			<Form.Group>
-				<Form.Text>
-					For security reasons, please input the URL of the site for {kaiType}.
-				</Form.Text>
-				<InputGroup>
-					<InputGroup.Prepend>
+			<h2 className="text-center mb-4">You need to authenticate with {kaiType}!</h2>
+			<Form>
+				<Form.Group>
+					<Form.Text>
+						For security reasons, please input the URL of the site for {kaiType}.
+					</Form.Text>
+					<InputGroup className="mb-4 mt-2">
 						<InputGroup.Text>https://</InputGroup.Text>
-					</InputGroup.Prepend>
-					<Form.Control value={url} onChange={(e) => setUrl(e.target.value)} />
-				</InputGroup>
-			</Form.Group>
-
-			{url.split(".").length >= 3 && (
-				<>
-					<br />
-					<span className="text-danger">
-						The URL should only have one <code>.</code> in it.
-					</span>
-				</>
-			)}
-			{url.includes("/") && (
-				<>
-					<br />
-					<span className="text-danger">
-						The URL should not need any <code>/</code> characters!
-					</span>
-				</>
-			)}
-			<Divider />
-			<div>You'll need to come back to this page after linking!</div>
-			<Divider />
-			{valid === null ? null : valid ? (
+						<Form.Control
+							className="form-gray-800"
+							value={url}
+							onChange={(e) => setUrl(e.target.value)}
+							isInvalid={url.split(".").length >= 3 || url.includes("/")}
+							isValid={valid === null ? undefined : valid}
+						/>
+					</InputGroup>
+				</Form.Group>
+				<Alert variant="warning" className="mb-0">
+					You'll need to come back to this page after linking!
+				</Alert>
+				{valid || valid === null ? undefined : (
+					<div className="mt-4">
+						Your input doesn't match up with the URL in our records.
+					</div>
+				)}
+				{url.split(".").length >= 3 && (
+					<>
+						<div className="text-danger mt-2">
+							The URL should only have one <code>.</code> in it.
+						</div>
+					</>
+				)}
+				{url.includes("/") && (
+					<>
+						<div className="text-danger mt-2">
+							The URL should not need any <code>/</code> characters!
+						</div>
+					</>
+				)}
 				<ExternalLink
-					className="btn btn-primary"
-					href={`https://kailua.${url}/oauth/authorize?${urlParams.toString()}`}
+					className={`btn btn-primary mt-4 align-self-center ${
+						valid ? undefined : "disabled"
+					}`}
+					href={
+						valid
+							? `https://kailua.${url}/oauth/authorize?${urlParams.toString()}`
+							: undefined
+					}
 				>
 					Link with {kaiType}!
 				</ExternalLink>
-			) : (
-				"Your input doesn't match up with the URL in our records."
-			)}
+			</Form>
 		</div>
 	);
 }

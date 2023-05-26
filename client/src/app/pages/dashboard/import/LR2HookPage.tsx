@@ -9,7 +9,7 @@ export default function LR2HookPage() {
 	useSetSubheader(["Import Scores", "LR2 Hook"]);
 
 	return (
-		<div>
+		<>
 			<h2 className="text-center mb-4">LR2 Hook Setup Instructions</h2>
 			<ol className="instructions-list">
 				<li>
@@ -35,11 +35,13 @@ export default function LR2HookPage() {
 				</li>
 			</ol>
 			<Divider />
-			<Muted>
-				Note: If you submit a score on a chart that {TachiConfig.name} doesn't recognise,
-				you'll need to wait until atleast 2 other players submit scores for that chart
-				before it'll show up. This is to combat accidental IR spam.
-			</Muted>
-		</div>
+			<div className="px-4">
+				<Muted>
+					Note: If you submit a score on a chart that {TachiConfig.name} doesn't
+					recognise, you'll need to wait until atleast 2 other players submit scores for
+					that chart before it'll show up. This is to combat accidental IR spam.
+				</Muted>
+			</div>
+		</>
 	);
 }

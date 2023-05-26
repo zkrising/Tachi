@@ -3,7 +3,7 @@ import Divider from "components/util/Divider";
 import useImport from "components/util/import/useImport";
 import prettyBytes from "pretty-bytes";
 import React, { useEffect, useMemo, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Col, Container } from "react-bootstrap";
 import { FileUploadImportTypes } from "tachi-common";
 import { SetState } from "types/react";
 import ImportStateRenderer from "./ImportStateRenderer";
@@ -99,11 +99,11 @@ export default function ImportFileInfo({
 	const { importState, runImport } = useImport("/import/file", {});
 
 	return (
-		<div>
-			<Form.Group>
+		<>
+			<Form.Group controlId="formFile">
 				<Form.Label>Upload {name} File</Form.Label>
-				<input
-					className="form-control"
+				<Form.Control
+					className="form-gray-800 form-control"
 					accept={Array.isArray(acceptMime) ? acceptMime.join(",") : acceptMime}
 					type="file"
 					id="batch-manual"
@@ -111,74 +111,72 @@ export default function ImportFileInfo({
 					onChange={(e) => setFile(e.target.files![0])}
 				/>
 			</Form.Group>
-			{file && (
-				<>
-					{info}
-					{errMsg ? <div className="text-danger text-center">Error: {errMsg}</div> : null}
-					<Divider />
-					{MoreDataForm ? (
-						<>
-							<MoreDataForm
-								setInfo={setMoreInfo}
-								setFulfilled={setMoreInfoFulfilled}
-							/>
-							<Divider />
-						</>
-					) : null}
-					<div className="text-center">
-						<div className="row justify-content-center mt-4">
-							{valid && moreInfoFulfilled ? (
-								<>
-									{importState.state === "waiting_init" ? (
-										<Button className="btn-primary" disabled>
-											Processing...
-										</Button>
-									) : importState.state === "waiting_processing" ? (
-										<Button className="btn-primary" disabled>
-											Processing...
-										</Button>
-									) : (
-										<Button
-											className="btn-primary"
-											onClick={() => {
-												const formData = new FormData();
-												formData.append("importType", importType);
-												formData.append("scoreData", file);
+			<Container className="">
+				{file && (
+					<>
+						{info}
+						{errMsg ? (
+							<div className="text-danger text-center">Error: {errMsg}</div>
+						) : null}
+						<Divider />
+						{MoreDataForm ? (
+							<>
+								<MoreDataForm
+									setInfo={setMoreInfo}
+									setFulfilled={setMoreInfoFulfilled}
+								/>
+								<Divider />
+							</>
+						) : null}
+						{valid && moreInfoFulfilled ? (
+							<>
+								{importState.state === "waiting_init" ? (
+									<Button className="m-auto d-block" disabled>
+										Processing...
+									</Button>
+								) : importState.state === "waiting_processing" ? (
+									<Button className="m-auto d-block" disabled>
+										Processing...
+									</Button>
+								) : (
+									<Button
+										className="m-auto d-block"
+										onClick={() => {
+											const formData = new FormData();
+											formData.append("importType", importType);
+											formData.append("scoreData", file);
 
-												for (const [key, value] of Object.entries(
-													moreInfo
-												)) {
-													formData.append(key, value);
-												}
+											for (const [key, value] of Object.entries(moreInfo)) {
+												formData.append(key, value);
+											}
 
-												runImport({
-													method: "POST",
-													headers: {
-														"X-User-Intent": "true",
-													},
-													body: formData,
-												});
-											}}
-										>
-											Submit File
-										</Button>
-									)}
-								</>
-							) : !valid ? (
-								<Button className="btn-danger" disabled>
-									There are errors in this {name} file, Can't upload.
-								</Button>
-							) : (
-								<Button className="btn-warning" disabled>
-									More fields need to be filled out.
-								</Button>
-							)}
-						</div>
-					</div>
-					<Divider />
-					<ImportStateRenderer state={importState} />
-				</>
-			)}
-		</div>
+											runImport({
+												method: "POST",
+												headers: {
+													"X-User-Intent": "true",
+												},
+												body: formData,
+											});
+										}}
+									>
+										Submit File
+									</Button>
+								)}
+							</>
+						) : !valid ? (
+							<Button className="btn-danger" disabled>
+								There are errors in this {name} file, Can't upload.
+							</Button>
+						) : (
+							<Button className="btn-warning" disabled>
+								More fields need to be filled out.
+							</Button>
+						)}
+						<Divider />
+						<ImportStateRenderer state={importState} />
+					</>
+				)}
+			</Container>
+		</>
 	);
 }

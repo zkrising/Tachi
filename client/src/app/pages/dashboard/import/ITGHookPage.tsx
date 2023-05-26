@@ -11,8 +11,8 @@ export default function ITGHookPage() {
 
 	return (
 		<div>
-			<h2 className="text-center mb-4">ITG Hook Setup Instructions</h2>
-			<Alert variant="warning" style={{ fontSize: "3rem" }}>
+			<h2 className="text-center mb-8">ITG Hook Setup Instructions</h2>
+			<Alert variant="danger" className="text-center fw-bold display-4 enable-rfs">
 				All submitted scores <b>should be played on a pad.</b>
 			</Alert>
 			<Alert variant="warning">

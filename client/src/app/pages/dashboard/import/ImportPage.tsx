@@ -10,7 +10,9 @@ import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useEffect, useState } from "react";
-import { Row } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import FormSelect from "react-bootstrap/FormSelect";
 import { Link } from "react-router-dom";
 import {
 	APIImportTypes,
@@ -55,8 +57,8 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 				<Link to={`/u/${user.username}/imports`}>Import Management</Link>.
 			</div>
 			<Divider />
-			<select
-				className="form-control"
+			<FormSelect
+				size={"lg"}
 				onChange={(e) => setGame(e.target.value === "" ? null : (e.target.value as Game))}
 				value={game ?? ""}
 			>
@@ -66,7 +68,7 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 						{GetGameConfig(e).name}
 					</option>
 				))}
-			</select>
+			</FormSelect>
 			<Divider />
 
 			{game ? <ImportInfoDisplayer game={game} /> : <ShowRecentImports />}
@@ -122,7 +124,7 @@ function InnerShowRecentImports({ user }: { user: UserDocument }) {
 }
 
 function ImportInfoDisplayer({ game }: { game: Game }) {
-	const gameConfig = GetGameConfig(game);
+	//const gameConfig = GetGameConfig(game);
 
 	const Content = [<ImportTypeInfoCard key="file/batch-manual" importType="file/batch-manual" />];
 
@@ -286,10 +288,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 
 	return (
 		<>
-			<div className="text-center mb-4">
-				<h1>{gameConfig.name}</h1>
-			</div>
-			<div className="row justify-content-center">{Content}</div>
+			<Row>{Content}</Row>
 		</>
 	);
 }
@@ -548,9 +547,16 @@ function ImportInfoCard({
 	moreInfo?: React.ReactChild;
 }) {
 	return (
-		<div className="col-12 col-lg-6 mb-6 d-grid">
-			<Card header={name} footer={<LinkButton to={`/import/${href}`}>Use this!</LinkButton>}>
-				<div style={{ fontSize: "1.5rem" }}>{desc}</div>
+		<Col lg={6} className="mb-4 d-grid">
+			<Card
+				header={name}
+				footer={
+					<LinkButton to={`/import/${href}`} className="float-end">
+						Use this!
+					</LinkButton>
+				}
+			>
+				<div className="fs-3">{desc}</div>
 				{moreInfo && (
 					<>
 						<Divider />
@@ -558,6 +564,6 @@ function ImportInfoCard({
 					</>
 				)}
 			</Card>
-		</div>
+		</Col>
 	);
 }

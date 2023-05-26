@@ -1,0 +1,18 @@
+@mixin form($colour) { 
+	// classes to change form background colour if it shares the same colour as its parent
+	.form-#{$colour} {
+		background-color: var(--bs-#{$colour});
+		border-color: var(--bs-#{$colour});
+		&:focus {
+			background-color: var(--bs-#{$colour});
+		}
+	}
+}
+
+@include form(gray-800);
+
+.form-control { // This looks bad but file forms are very jank...
+	&::file-selector-button {
+		border-color: $input-group-addon-border-color;
+	}
+}

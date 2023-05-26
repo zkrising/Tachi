@@ -4,6 +4,7 @@ import ExternalLink from "components/util/ExternalLink";
 import Muted from "components/util/Muted";
 import { TachiConfig } from "lib/config";
 import React from "react";
+import { Alert } from "react-bootstrap";
 
 const WIN_BAT = `
 REM *** Set system-wide "_JAVA_OPTIONS" environment variable to use OpenGL pipeline (improved performance of > 30% potentially. Also use anti-aliasing for non-LR2 fonts, and finally allow Swing framework to utilize AA and GTKLookAndFeel for config window. ***
@@ -27,7 +28,7 @@ export default function BeatorajaIRPage({ game }: { game: "bms" | "pms" }) {
 	const name = game === "bms" ? "LR2oraja" : "Beatoraja";
 
 	return (
-		<div>
+		<>
 			<h2 className="text-center mb-4">{name} IR Setup Instructions</h2>
 			<ol className="instructions-list">
 				<li>
@@ -103,23 +104,25 @@ export default function BeatorajaIRPage({ game }: { game: "bms" | "pms" }) {
 					Place the API token in the password field. Put your username in as well! The IR
 					wont load if you don't have a username set.
 					<br />
-					<span className="text-warning">
-						<b>DO NOT PUT YOUR PASSWORD IN THE PASSWORD FIELD!</b>
-						<br />
-						For security reasons, you must put the API Key in that field, instead.
-					</span>
 				</li>
+				<Alert variant="warning" className="mt-4 me-8">
+					<b>DO NOT PUT YOUR PASSWORD IN THE PASSWORD FIELD!</b>
+					<br />
+					For security reasons, you must put the API Key in that field, instead.
+				</Alert>
 				<li>
 					That's it! Launch the game and start playing, your scores will automatically
 					submit to the server.
 				</li>
 			</ol>
 			<Divider />
-			<Muted>
-				Note: If you submit a score on a chart that {TachiConfig.name} doesn't recognise,
-				you'll need to wait until atleast 2 other players submit scores for that chart
-				before it'll show up. This is to combat accidental IR spam.
-			</Muted>
-		</div>
+			<div className="px-4">
+				<Muted>
+					Note: If you submit a score on a chart that {TachiConfig.name} doesn't
+					recognise, you'll need to wait until atleast 2 other players submit scores for
+					that chart before it'll show up. This is to combat accidental IR spam.
+				</Muted>
+			</div>
+		</>
 	);
 }

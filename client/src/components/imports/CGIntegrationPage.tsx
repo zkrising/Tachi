@@ -3,13 +3,14 @@ import { ErrorPage } from "app/pages/ErrorPage";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import ApiError from "components/util/ApiError";
 import Divider from "components/util/Divider";
-import FormInput from "components/util/FormInput";
 import Loading from "components/util/Loading";
 import useImport from "components/util/import/useImport";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useReducer, useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import Button from "react-bootstrap/Button";
 import { APIImportTypes, CGCardInfo, GetGameConfig } from "tachi-common";
 import { SetState } from "types/react";
 import Icon from "components/util/Icon";
@@ -52,6 +53,15 @@ export default function CGIntegrationPage({ cgType, game }: Props) {
 
 	return (
 		<>
+			{data && (
+				<CGImporter
+					cgType={cgType}
+					game={game}
+					cardID={data.cardID}
+					setShowEdit={setShowEdit}
+					showEdit={showEdit}
+				/>
+			)}
 			{(showEdit || !data) && (
 				<>
 					<CGNeedsIntegrate
@@ -74,20 +84,11 @@ export default function CGIntegrationPage({ cgType, game }: Props) {
 								shouldReloadCardInfo();
 							}
 						}}
-						initialCardID={data?.cardID ?? undefined}
+						initialCardID={data?.cardID.match(/.{1,4}/gu)?.join(" ") ?? undefined}
 						initialPin={data?.pin ?? undefined}
+						showEdit={showEdit}
 					/>
-					<Divider />
 				</>
-			)}
-			{data && (
-				<CGImporter
-					cgType={cgType}
-					game={game}
-					cardID={data.cardID}
-					setShowEdit={setShowEdit}
-					showEdit={showEdit}
-				/>
 			)}
 		</>
 	);
@@ -118,42 +119,43 @@ function CGImporter({
 	});
 
 	return (
-		<div>
-			<h2 className="text-center mb-4">
-				Importing scores from {cgName} card{" "}
-				<code>{cardID.match(/.{1,4}/gu)?.join(" ")}</code>{" "}
+		<>
+			<h2 className="text-center mb-4 lh-lg">
+				{showEdit ? "Editing" : "Importing scores from"} {cgName} card{" "}
+				<code className="fs-6 rfs-enabled">{cardID.match(/.{1,4}/gu)?.join(" ")}</code>{" "}
 				<Icon
 					onClick={() => setShowEdit(!showEdit)}
 					type={showEdit ? "times" : "pencil-alt"}
 					noPad
+					style={{ fontSize: "12px", transform: "translateX(.4em) translateY(-.6em)" }}
+					className="position-absolute cursor-pointer"
 				/>
-				.
 			</h2>
-			<Divider />
-			<div className="d-flex w-100 justify-content-center">
-				<Button
-					className="mx-auto"
-					variant="primary"
-					onClick={() => runImport()}
-					disabled={
-						importState.state === "waiting_init" ||
+			{showEdit ? undefined : (
+				<>
+					<Button
+						className="mx-auto d-block"
+						variant="primary"
+						onClick={() => runImport()}
+						disabled={
+							importState.state === "waiting_init" ||
+							importState.state === "waiting_processing"
+						}
+					>
+						{importState.state === "waiting_init" ||
 						importState.state === "waiting_processing"
-					}
-				>
-					{importState.state === "waiting_init" ||
-					importState.state === "waiting_processing"
-						? "Syncing..."
-						: "Click to Sync!"}
-				</Button>
-			</div>
-			<Divider />
-			<div>
-				Play on {cgName} a lot? You can synchronise your scores straight from the discord by
-				typing <code>/sync</code>!
-			</div>
-			<Divider />
-			<ImportStateRenderer state={importState} />
-		</div>
+							? "Syncing..."
+							: "Click to Sync!"}
+					</Button>
+					<Divider />
+					<div className="text-center mb-4">
+						Play on {cgName} a lot? You can synchronise your scores straight from the
+						discord by typing <code>/sync</code>!
+					</div>
+					<ImportStateRenderer state={importState} />
+				</>
+			)}
+		</>
 	);
 }
 
@@ -162,62 +164,105 @@ export function CGNeedsIntegrate({
 	initialCardID,
 	initialPin,
 	onSubmit,
+	showEdit,
 }: Pick<Props, "cgType"> & {
 	onSubmit: (cardID: string, pin: string) => Promise<void>;
 	initialCardID?: string;
 	initialPin?: string;
+	showEdit: boolean;
 }) {
 	const cgName = cgType === "dev" ? "CG Dev" : "CG";
 
-	const [cardID, setCardID] = useState(initialCardID ?? "");
+	const [CardID, setCardID] = useState(initialCardID ?? "");
 	const [pin, setPin] = useState(initialPin ?? "");
 
-	// strip any whitespace the user feels like entering
-	const realCardID = useMemo(() => cardID.replace(/\s+/gu, ""), [cardID]);
+	const formatCardID = (e: { target: { value: string } }) => {
+		const inputVal = e.target.value.replace(/ /gu, "");
+		const splits = inputVal.match(/.{1,4}/gu);
 
-	const shouldDisable = useMemo(() => {
-		// yes i could turn this into a boolean with !
-		// but have you *seen* how ugly that is?
-		if (/^[0-9]{4}$/u.exec(pin) && /^[a-zA-Z0-9]{16}$/u.exec(realCardID)) {
-			return false;
+		let outputVal = "";
+		if (splits) {
+			outputVal = splits.join(" ");
 		}
 
+		setCardID(outputVal);
+	};
+
+	// strip any whitespace from the auto-formatted CardID
+	const realCardID = useMemo(() => CardID.replace(/\s+/gu, ""), [CardID]);
+
+	const shouldDisableCard = useMemo(() => {
+		// yes i could turn this into a boolean with !
+		// but have you *seen* how ugly that is?
+		if (/^[a-zA-Z0-9]{16}$/u.exec(realCardID)) {
+			return false;
+		}
 		return true;
-	}, [pin, realCardID]);
+	}, [realCardID]);
+
+	const shouldDisablePin = useMemo(() => {
+		if (/^[0-9]{4}$/u.exec(pin)) {
+			return false;
+		}
+		return true;
+	}, [pin]);
 
 	return (
-		<div>
-			<h3 className="text-center mb-4">Set your {cgName} card.</h3>
-
-			<FormInput fieldName="Card ID" setValue={setCardID} value={cardID} />
-			<Form.Label>
+		<>
+			{showEdit ? "" : <h2 className="text-center mb-4">Set your {cgName} card.</h2>}
+			<Form.Text>
 				This is the card ID that's displayed in game. It should be 16 characters long.
-				<br />
-				{cardID.length > 0 && !/^[a-zA-Z0-9]{16}$/u.exec(realCardID) ? (
-					<span className="text-danger">
-						Invalid Card ID. This should be 16 alphanumeric characters.
+			</Form.Text>
+			<InputGroup className="mb-4 mt-2">
+				<InputGroup.Text>Card ID</InputGroup.Text>
+				{realCardID.length >= 1 ? (
+					<span
+						className={`form-length-validation z-index-1 ${
+							shouldDisableCard ? "text-danger" : "text-success"
+						}`}
+					>
+						{realCardID.length}/16
 					</span>
-				) : (
-					cardID.length > 0 && <span className="text-success">Looking good!</span>
-				)}
-			</Form.Label>
-			<br />
-			<FormInput fieldName="PIN" setValue={setPin} value={pin} type="password" />
-			<Form.Label>What PIN do you use to card in to {cgName}?</Form.Label>
-			<br />
+				) : undefined}
+				<Form.Control
+					className="form-gray-800"
+					onChange={formatCardID}
+					value={CardID}
+					maxLength={19}
+					isInvalid={CardID.length !== 0 && shouldDisableCard}
+					isValid={CardID.length !== 0 && !shouldDisableCard}
+				/>
+			</InputGroup>
+			<Form.Text>
+				What PIN do you use to card in to {cgName}? It should be 4 digits long.
+			</Form.Text>
+			<InputGroup className="my-2">
+				<InputGroup.Text>PIN</InputGroup.Text>
+				<Form.Control
+					className="form-gray-800"
+					onChange={(e) => setPin(e.target.value)}
+					value={pin}
+					type="password"
+					maxLength={4}
+					isInvalid={pin.length !== 0 && shouldDisablePin}
+					isValid={pin.length !== 0 && !shouldDisablePin}
+				/>
+			</InputGroup>
+			<small
+				className={`text-danger ${
+					pin.length >= 4 && shouldDisablePin ? "visible" : "invisible"
+				}`}
+			>
+				PIN contains non-digit characters!
+			</small>
 
-			{pin.length > 0 && !/^[0-9]{4}$/u.exec(pin) ? (
-				<span className="text-danger">Invalid PIN. This should be 4 digits.</span>
-			) : (
-				pin.length > 0 && <span className="text-success">Looking good!</span>
-			)}
-
-			<Divider />
-			<div className="w-100 d-flex justify-content-center">
-				<Button disabled={shouldDisable} onClick={() => onSubmit(realCardID, pin)}>
-					Submit Card ID
-				</Button>
-			</div>
-		</div>
+			<Button
+				disabled={shouldDisableCard || shouldDisablePin}
+				onClick={() => onSubmit(realCardID, pin)}
+				className="m-auto d-block mt-2"
+			>
+				Submit Card ID
+			</Button>
+		</>
 	);
 }

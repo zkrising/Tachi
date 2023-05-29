@@ -53,13 +53,9 @@
 
         #user-dropdown {
             .dropdown-toggle {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
                 @include media-breakpoint-down(lg) {
                     width: 40px;
-                    #user-dropdown-text {
+                    .user-dropdown-text {
                             display: none;
                     }
                 }

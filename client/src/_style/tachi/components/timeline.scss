@@ -1,11 +1,6 @@
 .timeline {
 	&-icon {
 		font-size: 0.75rem;
-		transition: transform 0.25s ease;
-
-		&.show {
-			transform: rotate(90deg);
-		}
 	}
 
 	&-bar {

@@ -1,15 +1,18 @@
 import { nanoid } from "nanoid";
-import React from "react";
+import React, { CSSProperties } from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 
 export default function QuickTooltip({
 	children,
 	tooltipContent,
-	className,
+	className = "",
 	delay = 40,
-	placement = "top",
+	placement = "auto",
 	trigger,
+	onToggle,
+	show,
+	tooltipStyle,
 }: {
 	children: JSX.Element;
 	tooltipContent: React.ReactChild | undefined;
@@ -32,6 +35,9 @@ export default function QuickTooltip({
 		| "left"
 		| "left-start";
 	trigger?: "hover" | "click" | "focus" | Array<"hover" | "click" | "focus">;
+	onToggle?: () => void;
+	show?: boolean;
+	tooltipStyle?: CSSProperties;
 }) {
 	if (tooltipContent === undefined) {
 		return children;
@@ -42,8 +48,10 @@ export default function QuickTooltip({
 			placement={placement}
 			delay={delay}
 			trigger={trigger}
+			onToggle={onToggle}
+			show={show}
 			overlay={
-				<Tooltip className={`${className ?? ""}`} id={nanoid()}>
+				<Tooltip className={className} id={nanoid()} style={tooltipStyle}>
 					{tooltipContent}
 				</Tooltip>
 			}

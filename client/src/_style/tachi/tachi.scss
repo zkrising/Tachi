@@ -3,7 +3,8 @@
 @import "components/components";
 @import "pages/pages";
 
-.hover-opacity { // only used on breakcrumbs
+.hover-opacity {
+	// only used on breakcrumbs
 	transition: opacity 0.15s ease;
 	&:hover {
 		opacity: 100 !important;
@@ -29,24 +30,27 @@
 	}
 } */
 
-.gentle-link { // override primary colour for links
+.gentle-link {
+	// override primary colour for links
 	color: var(--bs-body-color);
 	&:hover {
 		color: var(--bs-link-hover-color);
 	}
-	&:focus-visible{
+	&:focus-visible {
 		color: var(--bs-link-hover-color);
 	}
 }
 
-.fullscreen { // used by error messages
+.fullscreen {
+	// used by error messages
 	inset: 0;
 	position: fixed;
 	background-color: var(--t-background);
 	z-index: 8888;
 }
 
-.form-length-validation { // class selector for a numerical form validation overlay
+.form-length-validation {
+	// class selector for a numerical form validation overlay
 	position: absolute;
 	z-index: 10;
 	right: 2.5em;
@@ -54,18 +58,21 @@
 	transition: color 150ms ease-in-out;
 }
 
-.undraggable { // combo class to make items undraggable
+.undraggable {
+	// combo class to make items undraggable
 	-webkit-user-drag: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
 }
 
-.bg-transition { // transition any background
+.bg-transition {
+	// transition any background
 	transition: background-color 75ms ease-in-out;
 }
 
-.hide-scrollbar { // combo class to hide the scrollbar on any scrollable element
+.hide-scrollbar {
+	// combo class to hide the scrollbar on any scrollable element
 	scrollbar-width: none;
 	-webkit-overflow-scrolling: touch;
 	-ms-overflow-style: none;
@@ -73,3 +80,33 @@
 		display: none;
 	}
 }
+
+.content-box {
+	box-sizing: content-box;
+}
+
+@mixin animate-rotate($degrees) {
+	.animate-rotate-#{$degrees} {
+		transition: transform 0.25s ease;
+
+		&.show {
+			transform: rotate(#{$degrees}deg);
+		}
+	}
+}
+
+@include animate-rotate(90);
+@include animate-rotate(180);
+
+@mixin text-hover($colour) {
+	@each $k, $v in $theme-colors {
+		.text-hover-#{$k} {
+			transition: $nav-link-transition;
+			&:hover {
+				color: #{$v};
+			}
+		}
+	}
+}
+
+@include text-hover($theme-colors);

@@ -2,9 +2,22 @@
     width: 128px;
     height: 128px;
     object-fit: cover;
+    user-select: none;
     &-small{
         width: 32px;
         height: 32px;
         object-fit: cover;
+    }
+    &-supporter{
+        width: 128px;
+        height: 128px;
+        border: .25rem solid var(--bs-warning);
+        margin: auto;
+        position: absolute;
+        border-radius: var(--bs-border-radius);
+        font-size: 11px;
+    }
+    &-badge{
+        border-top-left-radius: var(--bs-border-radius);
     }
 }

@@ -1,0 +1,22 @@
+$utilities: map-merge(
+  $utilities,
+  (
+    "cursor": (
+      property: cursor,
+      class: cursor,
+      responsive: false,
+      values: auto pointer grab,
+    ),
+    "min-width": (
+      property: min-width,
+      class: min-w,
+      responsive: true,
+      values: (
+        min: min-content,
+        max: max-content,
+        50: 50%,
+        100: 100%,
+      )
+    )
+  )
+);

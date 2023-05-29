@@ -11,7 +11,7 @@ export default function ClassBadge<GPT extends GPTString = GPTString>({
 	playtype,
 	classSet,
 	classValue,
-	className,
+	className = "",
 	showSetOnHover = true,
 }: {
 	classSet: Classes[GPT];
@@ -39,25 +39,19 @@ export default function ClassBadge<GPT extends GPTString = GPTString>({
 
 	if (classStyle === null) {
 		badgeComponent = (
-			<Badge
-				className={`${className ? `${className}` : ""}`}
-				bg={""}
-				style={{
-					backgroundColor: "#131313",
-				}}
-			>
+			<Badge className={className} bg={"black"}>
 				{data.display}
 			</Badge>
 		);
 	} else if (typeof classStyle === "string") {
 		badgeComponent = (
-			<Badge className={`${className ? `${className}` : ""}`} bg={classStyle}>
+			<Badge className={className} bg={classStyle}>
 				{data.display}
 			</Badge>
 		);
 	} else {
 		badgeComponent = (
-			<Badge className={`${className ? `${className}` : ""}`} bg={""} style={classStyle}>
+			<Badge className={className} bg={""} style={classStyle}>
 				{data.display}
 			</Badge>
 		);

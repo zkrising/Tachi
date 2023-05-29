@@ -10,6 +10,7 @@
 	z-index: 2;
 	transition: width 50ms ease-out;
 	> i {
+		cursor: pointer;
 		font-size: 0.75rem;
 		&::before {
 			transition: opacity 75ms linear;
@@ -17,7 +18,7 @@
 		}
 	}
 	&.show {
-		width: 2rem;
+		width: 2.5rem;
 		> i::before {
 			opacity: 1;
 		}
@@ -29,13 +30,13 @@
 		background: linear-gradient(
 			to #{$direction},
 			transparent,
-			var(--t-lightground) 25%
+			var(--t-lightground) 33%
 		);
 		border-top-#{$direction}-radius: var(--bs-border-radius);
 		border-bottom-#{$direction}-radius: var(--bs-border-radius);
 		> i::before {
 			position: absolute;
-			#{$direction}: 0.75rem;
+			#{$direction}: 0.66rem;
 		}
 	}
 }

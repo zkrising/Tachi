@@ -190,6 +190,14 @@ export function CopyToClipboard(data: unknown) {
 	navigator.clipboard.writeText(str);
 }
 
+export function CopyTextToClipboard(data: unknown) {
+	toast.success("Copied to clipboard.");
+
+	const str = typeof data === "string" ? data : JSON.stringify(data, null, "\t");
+
+	navigator.clipboard.writeText(str);
+}
+
 export const allPermissions: APIPermissions[] = [
 	"customise_profile",
 	"customise_score",

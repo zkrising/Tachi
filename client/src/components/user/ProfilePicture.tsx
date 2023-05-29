@@ -7,7 +7,7 @@ export default function ProfilePicture({
 	user,
 	src,
 	toGPT = "",
-	className,
+	className = "",
 }: {
 	user: UserDocument | string;
 	src?: string;
@@ -20,7 +20,7 @@ export default function ProfilePicture({
 }) {
 	if (typeof user === "string") {
 		return (
-			<Link to={`/u/${user}/${toGPT}`} className={`${className ? `${className}` : ""}`}>
+			<Link to={`/u/${user}/${toGPT}`} className={className}>
 				<img
 					src={src ? src : ToAPIURL(`/users/${user}/pfp`)}
 					alt={`${user}'s Profile Picture`}
@@ -32,6 +32,49 @@ export default function ProfilePicture({
 
 	return (
 		<Link to={`/u/${user.username}/${toGPT}`} className={`${className ? `${className}` : ""}`}>
+			<img
+				src={src ? src : ToAPIURL(`/users/${user.id}/pfp`)}
+				alt={`${user.username}'s Profile Picture`}
+				className="rounded pfp"
+			/>
+		</Link>
+	);
+}
+
+export function SupporterProfilePicture({
+	user,
+	src,
+	toGPT = "",
+	className = "",
+}: {
+	user: UserDocument | string;
+	src?: string;
+	className?: string;
+
+	/**
+	 * When clicking this this profile, should it take you to a UGPT page?
+	 */
+	toGPT?: string;
+}) {
+	if (typeof user === "string") {
+		return (
+			<Link to={`/u/${user}/${toGPT}`} className={className}>
+				<img
+					src={src ? src : ToAPIURL(`/users/${user}/pfp`)}
+					alt={`${user}'s Profile Picture`}
+					className="rounded pfp"
+				/>
+			</Link>
+		);
+	}
+
+	return (
+		<Link to={`/u/${user.username}/${toGPT}`} className={className}>
+			<div className="pfp-supporter d-flex align-items-end justify-content-end user-select-none">
+				<div className="bg-warning text-dark ps-1 pfp-badge">
+					<small>Supporter!</small>
+				</div>
+			</div>
 			<img
 				src={src ? src : ToAPIURL(`/users/${user.id}/pfp`)}
 				alt={`${user.username}'s Profile Picture`}
@@ -62,7 +105,7 @@ export function ProfilePictureSmall({
 
 	if (typeof user === "string") {
 		return (
-			<Link to={`/u/${user}/${toGPT}`} className={`${className ? `${className}` : ""}`}>
+			<Link to={`/u/${user}/${toGPT}`} className={className}>
 				<img
 					src={src ? src : ToAPIURL(`/users/${user}/pfp`)}
 					alt={`${user}'s Profile Picture`}
@@ -73,7 +116,7 @@ export function ProfilePictureSmall({
 	}
 
 	return (
-		<Link to={`/u/${user.username}/${toGPT}`} className={`${className ? `${className}` : ""}`}>
+		<Link to={`/u/${user.username}/${toGPT}`} className={className}>
 			<img
 				src={src ? src : ToAPIURL(`/users/${user.id}/pfp`)}
 				alt={`${user.username}'s Profile Picture`}

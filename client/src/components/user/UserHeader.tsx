@@ -1,5 +1,6 @@
 import { APIFetchV1 } from "util/api";
 import { FormatDate } from "util/time";
+import { TruncateString, CopyTextToClipboard } from "util/misc";
 import Navbar from "components/nav/Navbar";
 import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
@@ -8,119 +9,229 @@ import Muted from "components/util/Muted";
 import { UserContext } from "context/UserContext";
 import { ClientConfig } from "lib/config";
 import React, { useContext, useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/esm/Modal";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import InputGroup from "react-bootstrap/InputGroup";
+import Collapse from "react-bootstrap/Collapse";
 import { UserAuthLevels, UserDocument } from "tachi-common";
 import { SetState } from "types/react";
 import FollowUserButton from "components/util/FollowUserButton";
+import useBreakpoint from "components/util/useBreakpoint";
+import QuickTooltip from "components/layout/misc/QuickTooltip";
 import ProfileBadges from "./ProfileBadges";
-import ProfilePicture from "./ProfilePicture";
+import ProfilePicture, { SupporterProfilePicture } from "./ProfilePicture";
 
 export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
-	function ConditionalSocialMediaRender({
-		mode,
-		href,
-	}: {
-		mode: "discord" | "twitter" | "github" | "steam" | "youtube" | "twitch";
-		href?: string;
-	}) {
-		if (!reqUser.socialMedia[mode]) {
-			return null;
-		}
+	const ConditionalSocialMediaRender = React.memo(
+		({
+			mode,
+			href,
+			className = "",
+		}: {
+			mode: "discord" | "twitter" | "github" | "steam" | "youtube" | "twitch";
+			href?: string;
+			className?: string;
+		}) => {
+			if (!reqUser.socialMedia[mode]) {
+				return null;
+			}
 
-		return (
-			<li>
-				<Icon brand type={mode} />{" "}
-				<ExternalLink
-					className="gentle-link"
-					href={href ? href + reqUser.socialMedia[mode] : undefined}
-				>
-					{reqUser.socialMedia[mode]}
-				</ExternalLink>
-			</li>
-		);
-	}
+			const { isMd } = useBreakpoint();
+
+			const max = 19;
+
+			return (
+				<div className="text-end d-flex flex-md-row-reverse align-items-center justify-content-start my-1 overflow-hidden">
+					<Icon brand type={mode} className="mx-2" />
+					<QuickTooltip
+						show={isMd ? undefined : false}
+						tooltipContent={
+							typeof reqUser.socialMedia[mode] === "string" &&
+							(reqUser.socialMedia[mode] ?? "").length > max ? (
+								mode !== "discord" ? (
+									reqUser.socialMedia[mode]!
+								) : (
+									<>
+										<div>{reqUser.socialMedia[mode]!}</div>
+										<Muted>Click to copy</Muted>
+									</>
+								)
+							) : mode === "discord" && reqUser.socialMedia.discord ? (
+								<>
+									<Muted>Click to copy</Muted>
+								</>
+							) : undefined
+						}
+					>
+						<a
+							target="_blank"
+							rel="noopener noreferrer"
+							className={`gentle-link ${className}`}
+							href={href ? href + reqUser.socialMedia[mode] : undefined}
+							onClick={() =>
+								mode === "discord" &&
+								CopyTextToClipboard(reqUser.socialMedia.discord)
+							}
+						>
+							<small>
+								{typeof reqUser.socialMedia[mode] === "string"
+									? TruncateString(reqUser.socialMedia[mode]!, max)
+									: undefined}
+							</small>
+						</a>
+					</QuickTooltip>
+				</div>
+			);
+		}
+	);
+
+	const SocialMediaCluster = React.memo(() => (
+		<>
+			<Row xs="2" className="ms-lg-8 ms-xl-10">
+				<ConditionalSocialMediaRender mode="discord" className="cursor-pointer" />
+				<ConditionalSocialMediaRender href="https://github.com/" mode="github" />
+				<ConditionalSocialMediaRender href="https://steamcommunity.com/id/" mode="steam" />
+				<ConditionalSocialMediaRender href="https://twitch.tv/" mode="twitch" />
+				<ConditionalSocialMediaRender href="https://twitter.com/" mode="twitter" />
+				<ConditionalSocialMediaRender href="https://youtube.com/channel/" mode="youtube" />
+			</Row>
+		</>
+	));
 
 	const { user: loggedInUser } = useContext(UserContext);
 
+	const { isMd, isLg } = useBreakpoint();
+
+	const [socialShow, setSocialShow] = useState(false);
+	const [adminShow, setAdminShow] = useState(false);
+
+	const hasSocialMediaLinks =
+		reqUser.socialMedia && Object.values(reqUser.socialMedia).some((link) => link !== null);
+
 	return (
 		<>
-			<div className="col-12 col-lg-3">
-				<div className="d-flex justify-content-center mb-3">
-					<ProfilePicture user={reqUser} />
-				</div>
-				<div className="d-flex align-items-center" style={{ flexDirection: "column" }}>
-					<ProfileBadges user={reqUser} />
-				</div>
-				<div className="d-block d-lg-none">
-					<Divider className="mt-4 mb-4" />
-				</div>
-			</div>
-			<div className="col-12 col-lg-6 d-flex justify-content-center flex-column align-items-center">
-				<StatusComponent reqUser={reqUser} />
-				{loggedInUser?.authLevel === UserAuthLevels.ADMIN && (
-					<>
-						<Divider />
-						{reqUser.isSupporter ? (
-							<Button
-								onClick={() =>
-									APIFetchV1(
-										`/admin/supporter/${reqUser.id}`,
-										{ method: "DELETE" },
-										true,
-										true
-									).then(() => window.location.reload())
-								}
-								variant="danger"
-							>
-								Remove Supporter Rank?
-							</Button>
-						) : (
-							<Button
-								onClick={() =>
-									APIFetchV1(
-										`/admin/supporter/${reqUser.id}`,
-										{ method: "POST" },
-										true,
-										true
-									).then(() => window.location.reload())
-								}
-								variant="primary"
-							>
-								Make Supporter?
-							</Button>
-						)}
-					</>
-				)}
-			</div>
-			<div className="col-12 col-lg-3 d-flex justify-content-center">
-				<ul>
-					<ConditionalSocialMediaRender mode="discord" />
-					<ConditionalSocialMediaRender href="https://github.com/" mode="github" />
-					<ConditionalSocialMediaRender
-						href="https://steamcommunity.com/id/"
-						mode="steam"
-					/>
-					<ConditionalSocialMediaRender href="https://twitch.tv/" mode="twitch" />
-					<ConditionalSocialMediaRender href="https://twitter.com/" mode="twitter" />
-					<ConditionalSocialMediaRender
-						href="https://youtube.com/channel/"
-						mode="youtube"
-					/>
-					<li>
-						<Muted>UserID: {reqUser.id}</Muted>
-					</li>
-					<li>
-						<Muted>Joined: {FormatDate(reqUser.joinDate)}</Muted>
-					</li>
-				</ul>
-			</div>
-			{loggedInUser && reqUser.id !== loggedInUser.id && (
-				<div className="col-12 mt-8">
-					<Divider />
-					<div className="d-flex w-100 justify-content-center ">
-						<FollowUserButton userToFollow={reqUser} />
+			<Row
+				xs="1"
+				lg="2"
+				id={`${reqUser.username}-info`}
+				className="pt-6 justify-content-between"
+			>
+				<Col className="d-flex">
+					{reqUser.isSupporter ? (
+						<SupporterProfilePicture user={reqUser} />
+					) : (
+						<ProfilePicture user={reqUser} />
+					)}
+					<Col className="d-flex ms-4 flex-column flex-lg-column-reverse">
+						<div className="d-flex align-items-start align-items-md-center mb-2 mb-lg-0">
+							<h3 className="enable-rfs overflow-hidden flex-grow-1 flex-md-grow-0 m-0">
+								{reqUser.username}'s Profile
+							</h3>
+							<div className="text-end text-md-start">
+								{loggedInUser && reqUser.id !== loggedInUser.id && (
+									<FollowUserButton
+										userToFollow={reqUser}
+										className="ms-2"
+										tooltipPlacement="top"
+										breakpoint={isMd}
+									/>
+								)}
+							</div>
+						</div>
+						<div className="flex-grow-1 flex-lg-grow-0">
+							<StatusComponent reqUser={reqUser} />
+						</div>
+						<div className="flex-lg-grow-1">
+							<Muted>Joined on {FormatDate(reqUser.joinDate)}</Muted>
+						</div>
+					</Col>
+					{isMd && !isLg && hasSocialMediaLinks && (
+						<Col>
+							<SocialMediaCluster />
+						</Col>
+					)}
+				</Col>
+				<Col
+					lg="5"
+					className="d-flex flex-column align-items-start align-items-lg-end justify-content-between"
+				>
+					{isLg && hasSocialMediaLinks && <SocialMediaCluster />}
+					<div className="d-flex mt-1 mt-lg-0 flex-wrap justify-content-start justify-content-lg-end">
+						<ProfileBadges user={reqUser} />
 					</div>
-				</div>
+				</Col>
+				{!isMd && hasSocialMediaLinks && (
+					<Col className="d-flex justify-content-center mt-2 flex-column">
+						<Col
+							className="text-center lh-sm user-select-none cursor-pointer"
+							onClick={() => setSocialShow(!socialShow)}
+						>
+							<small>Socials</small>
+							<br />
+							<Icon
+								type="chevron-down"
+								className="animate-rotate-180"
+								show={socialShow}
+							/>
+						</Col>
+
+						<Col>
+							<Collapse in={socialShow}>
+								<div>
+									<SocialMediaCluster />
+								</div>
+							</Collapse>
+						</Col>
+					</Col>
+				)}
+			</Row>
+
+			{loggedInUser?.authLevel === UserAuthLevels.ADMIN && (
+				<>
+					<Divider />
+					{reqUser.isSupporter ? (
+						<div className="text-end">
+							<Button
+								size="sm"
+								variant="danger"
+								onClick={() => setAdminShow(true)}
+								className="text-end me-2 cursor-pointer"
+							>
+								<small>Remove Supporter Rank?</small>
+							</Button>
+							<AdminModal
+								show={adminShow}
+								setShow={setAdminShow}
+								confirmText="Remove Supporter Rank"
+								confirmVariant="danger"
+								id={reqUser.id}
+								method="DELETE"
+							/>
+						</div>
+					) : (
+						<div className="text-end">
+							<Button
+								size="sm"
+								variant="success"
+								onClick={() => setAdminShow(true)}
+								className="me-2 cursor-pointer"
+							>
+								<small>Make Supporter?</small>
+							</Button>
+							<AdminModal
+								show={adminShow}
+								setShow={setAdminShow}
+								confirmText="Make Supporter"
+								confirmVariant="success"
+								id={reqUser.id}
+								method="POST"
+							/>
+						</div>
+					)}
+				</>
 			)}
 		</>
 	);
@@ -180,24 +291,39 @@ function StatusComponent({ reqUser }: { reqUser: UserDocument }) {
 
 	const [modalShow, setModalShow] = useState(false);
 
+	const { isXs, isMd, isLg } = useBreakpoint();
+
 	return (
-		<div className="row text-center">
-			<div className="col-12">
-				{reqUser.status ? (
-					<span>{reqUser.status}</span>
-				) : (
-					<Muted>
-						{isRequestedUser ? "You have" : `${reqUser.username} has`} no status...
-					</Muted>
-				)}
-			</div>
-			<div className="col-12">
-				{isRequestedUser && (
-					<a href="#" onClick={() => setModalShow(true)}>
-						Change Status
-					</a>
-				)}
-			</div>
+		<div className="fw-light mb-1">
+			{reqUser.status ? (
+				<span>{reqUser.status}</span>
+			) : (
+				<Muted>
+					{isRequestedUser ? "You have" : `${reqUser.username} has`} no status...
+				</Muted>
+			)}
+
+			{isRequestedUser && (
+				<span
+					className="position-absolute"
+					onClick={() => setModalShow(true)}
+					style={{ transform: "translateX(.4em) translateY(-.6em)" }}
+				>
+					<QuickTooltip tooltipContent={"Change status"} show={isMd ? undefined : false}>
+						<span>
+							<Icon
+								type="pencil"
+								className="cursor-pointer"
+								noPad
+								style={{
+									fontSize: "12px",
+								}}
+							/>
+						</span>
+					</QuickTooltip>
+				</span>
+			)}
+
 			{/* <div className="col-12">
 				<Muted>Last Seen: {MillisToSince(reqUser.lastSeen)}</Muted>
 			</div> */}
@@ -223,7 +349,12 @@ function ChangeStatusModal({
 	const [innerStatus, setInnerStatus] = useState(reqUser.status ?? "");
 
 	return (
-		<Modal show={modalShow} onHide={() => setModalShow(false)}>
+		<Modal
+			show={modalShow}
+			onHide={() => setModalShow(false)}
+			centered
+			backdropClassName="tachi-backdrop"
+		>
 			<Modal.Header closeButton>
 				<Modal.Title>Change Status</Modal.Title>
 			</Modal.Header>
@@ -252,23 +383,64 @@ function ChangeStatusModal({
 						});
 					}}
 				>
-					<Form.Group>
-						<div className="input-group">
-							<input
-								className="form-control form-control-lg"
-								type="text"
-								placeholder={status ?? "I'm gaming..."}
-								value={innerStatus}
-								onChange={(e) => setInnerStatus(e.target.value)}
-							/>
-							<div className="input-group-append">
-								<Button variant="primary" type="submit">
-									Submit
-								</Button>
-							</div>
-						</div>
-					</Form.Group>
+					<InputGroup className="mb-2">
+						<Form.Control
+							size="lg"
+							className="form-gray-800"
+							type="text"
+							placeholder={status ?? "I'm gaming..."}
+							value={innerStatus}
+							onChange={(e) => setInnerStatus(e.target.value)}
+						/>
+						<Button variant="primary" type="submit">
+							Submit
+						</Button>
+					</InputGroup>
 				</Form>
+			</Modal.Body>
+		</Modal>
+	);
+}
+
+function AdminModal({
+	show,
+	setShow,
+	confirmText,
+	confirmVariant,
+	id,
+	method,
+}: {
+	show: boolean;
+	setShow: (state: boolean) => void;
+	confirmText: string;
+	confirmVariant: string;
+	id: number;
+	method: "DELETE" | "POST";
+}) {
+	return (
+		<Modal show={show} backdropClassName="tachi-backdrop" animation centered>
+			<Modal.Header className="text-center">
+				<h3>Please confirm</h3>
+			</Modal.Header>
+			<Modal.Body className="d-flex justify-content-between">
+				<Button variant="secondary" onClick={() => setShow(false)}>
+					Cancel
+				</Button>
+				<Button
+					variant={confirmVariant}
+					onClick={() =>
+						APIFetchV1(
+							`/admin/supporter/${id}`,
+							{ method: method as string },
+							true,
+							true
+						)
+							.then()
+							.then(() => window.location.reload())
+					}
+				>
+					{confirmText}
+				</Button>
 			</Modal.Body>
 		</Modal>
 	);

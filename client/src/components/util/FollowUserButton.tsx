@@ -1,11 +1,37 @@
 import { APIFetchV1 } from "util/api";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext } from "react";
-import { Button } from "react-bootstrap";
 import { UserDocument } from "tachi-common";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
+import Icon from "./Icon";
 
-export default function FollowUserButton({ userToFollow }: { userToFollow: UserDocument }) {
+export default function FollowUserButton({
+	userToFollow,
+	className = "",
+	tooltipPlacement = "auto",
+	breakpoint,
+}: {
+	userToFollow: UserDocument;
+	className?: string;
+	tooltipPlacement?:
+		| "auto"
+		| "auto-start"
+		| "auto-end"
+		| "top-start"
+		| "top"
+		| "top-end"
+		| "right-start"
+		| "right"
+		| "right-end"
+		| "bottom-end"
+		| "bottom"
+		| "bottom-start"
+		| "left-end"
+		| "left"
+		| "left-start"
+		| undefined;
+	breakpoint?: boolean;
+}) {
 	const { settings: userSettings, setSettings: setUserSettings } =
 		useContext(UserSettingsContext);
 
@@ -20,45 +46,55 @@ export default function FollowUserButton({ userToFollow }: { userToFollow: UserD
 
 	if (userSettings.following.includes(userToFollow.id)) {
 		return (
-			<Button
-				variant="outline-danger"
-				onClick={async () => {
-					const res = await APIFetchV1(
-						`/users/${userSettings.userID}/following/remove`,
-						{
-							method: "POST",
-							body: JSON.stringify({
-								userID: userToFollow.id,
-							}),
-							headers: {
-								"Content-Type": "application/json",
+			<QuickTooltip
+				placement={tooltipPlacement}
+				tooltipContent={<>Unfollow {userToFollow.username}</>}
+				show={breakpoint ? undefined : false}
+			>
+				<span
+					className="cursor-pointer user-select-none text-hover-danger"
+					onClick={async () => {
+						const res = await APIFetchV1(
+							`/users/${userSettings.userID}/following/remove`,
+							{
+								method: "POST",
+								body: JSON.stringify({
+									userID: userToFollow.id,
+								}),
+								headers: {
+									"Content-Type": "application/json",
+								},
 							},
-						},
-						true,
-						true
-					);
-
-					if (res.success) {
-						const newFollowing = userSettings.following.filter(
-							(e) => e !== userToFollow.id
+							true,
+							true
 						);
 
-						setUserSettings({
-							...userSettings,
-							following: newFollowing,
-						});
-					}
-				}}
-			>
-				Unfollow
-			</Button>
+						if (res.success) {
+							const newFollowing = userSettings.following.filter(
+								(e) => e !== userToFollow.id
+							);
+
+							setUserSettings({
+								...userSettings,
+								following: newFollowing,
+							});
+						}
+					}}
+				>
+					<Icon type="user-minus" className={className} />
+				</span>
+			</QuickTooltip>
 		);
 	}
 
 	return (
-		<QuickTooltip tooltipContent="Following a user will mean you'll see their sessions and updates in your feed.">
-			<Button
-				variant="outline-success"
+		<QuickTooltip
+			placement={tooltipPlacement}
+			tooltipContent="Following a user will mean you'll see their sessions and updates in your feed."
+			show={breakpoint ? undefined : false}
+		>
+			<span
+				className="cursor-pointer text-hover-success user-select-none"
 				onClick={async () => {
 					const res = await APIFetchV1(
 						`/users/${userSettings.userID}/following/add`,
@@ -85,8 +121,8 @@ export default function FollowUserButton({ userToFollow }: { userToFollow: UserD
 					}
 				}}
 			>
-				Follow
-			</Button>
+				<Icon type="user-plus" className={className} />
+			</span>
 		</QuickTooltip>
 	);
 }

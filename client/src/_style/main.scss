@@ -25,7 +25,7 @@
 @import "bootstrap-scss/button-group";
 @import "bootstrap-scss/type";
 @import "bootstrap-scss/containers";
-@import "bootstrap-scss/grid"; // Unsure if this is being used, check later
+@import "bootstrap-scss/grid";
 @import "bootstrap-scss/dropdown";
 @import "bootstrap-scss/forms";
 @import "bootstrap-scss/card";
@@ -43,30 +43,11 @@
 @import "bootstrap-scss/modal";
 @import "bootstrap-scss/close";
 
-// Custom Bootstrap utilities
+// Custom Bootstrap maps
 
-$utilities: map-merge(
-  $utilities,
-  (
-    "cursor": (
-      property: cursor,
-      class: cursor,
-      responsive: false,
-      values: auto pointer grab,
-    ),
-    "min-width": (
-      property: min-width,
-      class: min-w,
-      responsive: true,
-      values: (
-        min: min-content,
-        max: max-content,
-        50: 50%,
-        100: 100%,
-      )
-    )
-  )
-);
+@import "tachi/maps";
+
+// Bootstrap Utilities API
 
 @import "bootstrap-scss/utilities/api";
 

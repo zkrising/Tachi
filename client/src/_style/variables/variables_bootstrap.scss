@@ -382,7 +382,16 @@ $spacers: (
   5: $spacer * 1.25,
   6: $spacer * 1.5,
   7: $spacer * 2,
-  8: $spacer * 2.5
+  8: $spacer * 2.5,
+  // some massive spacers after 8
+  9: $spacer * 4,
+  10: $spacer * 8,
+  11: $spacer * 12,
+  12: $spacer * 16,
+  13: $spacer * 24,
+  14: $spacer * 32,
+  15: $spacer * 48,
+  16: $spacer * 64,
 );
 // scss-docs-end spacer-variables-maps
 

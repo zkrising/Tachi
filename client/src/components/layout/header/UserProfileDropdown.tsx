@@ -12,30 +12,24 @@ import { Link } from "react-router-dom";
 import { UserDocument } from "tachi-common";
 import SupporterIcon from "components/util/SupporterIcon";
 import { ProfilePictureSmall } from "components/user/ProfilePicture";
+import useBreakpoint from "components/util/useBreakpoint";
 
 export function UserProfileDropdown({ user }: { user: UserDocument }) {
 	const { setUser } = useContext(UserContext);
 	const [heySplash] = useState(RFA(heySplashes));
-	const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
-	useEffect(() => {
-		const handleResize = () => {
-			setIsMobile(window.innerWidth <= 720);
-		};
-		window.addEventListener("resize", handleResize);
-		return () => {
-			window.removeEventListener("resize", handleResize);
-		};
-	});
+	const { isMd } = useBreakpoint();
 
 	return (
 		<>
-			{isMobile ? (
+			{!isMd ? (
 				<ProfilePictureSmall user={user} className="btn btn-header btn-icon" />
 			) : (
 				<Dropdown id="user-dropdown" align="end">
-					<Dropdown.Toggle variant="header">
-						<span id="user-dropdown-text">
+					<Dropdown.Toggle
+						variant="header"
+						className="d-flex justify-content-center align-items-center"
+					>
+						<span className="user-dropdown-text">
 							<span id={heySplash} className="fw-normal text-muted">
 								{heySplash},{" "}
 							</span>

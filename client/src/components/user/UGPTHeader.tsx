@@ -4,7 +4,6 @@ import { HumaniseError } from "util/humanise-error";
 import { SendErrorToast, SendSuccessToast } from "util/toaster";
 import Navbar from "components/nav/Navbar";
 import React, { useContext } from "react";
-import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Icon from "components/util/Icon";
@@ -15,6 +14,7 @@ import {
 	integer,
 	FormatGameLess,
 	UserGameStats,
+	UGPTSettingsDocument,
 	//Classes,
 } from "tachi-common";
 import { UGPTStatsReturn } from "types/api-returns";
@@ -28,7 +28,7 @@ import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import useBreakpoint from "components/util/useBreakpoint";
-import ProfilePicture, { SupporterProfilePicture } from "./ProfilePicture";
+import ProfilePicture from "./ProfilePicture";
 import { TidyRankingData } from "./UGPTRankingData";
 import { UGPTClassBadge, UGPTPrimaryRating, UGPTOtherRatings } from "./UGPTStatsOverview";
 
@@ -52,7 +52,7 @@ export function UGPTHeaderBody({
 
 	const { data: MAX_RIVALS, error } = useApiQuery<integer>("/config/max-rivals");
 
-	const { isMd, isLg } = useBreakpoint();
+	const { isLg } = useBreakpoint();
 
 	if (error) {
 		return <ApiError error={error} />;
@@ -69,11 +69,7 @@ export function UGPTHeaderBody({
 				className="pt-6 justify-content-between"
 			>
 				<Col lg={"auto"} className="d-flex">
-					{reqUser.isSupporter ? (
-						<SupporterProfilePicture user={reqUser} />
-					) : (
-						<ProfilePicture user={reqUser} />
-					)}
+					<ProfilePicture user={reqUser} isSupporter={reqUser.isSupporter} />
 					<div className="d-flex ms-4 flex-column flex-lg-column-reverse flex-lg-grow-1 w-100">
 						<div className="m-0 d-flex align-items-start align-items-md-center mb-1 mb-lg-0">
 							<h3 className="enable-rfs overflow-hidden flex-grow-1 flex-md-grow-0 mb-0">
@@ -85,136 +81,33 @@ export function UGPTHeaderBody({
 								</span>{" "}
 								Profile
 							</h3>
-							{/* this should be a separate component
-							run logic and define click handlers here and pass them through */}
+							{/* allow logged in users to follow and rival other players */}
 							{userSettings && reqUser.id !== userSettings.userID && (
 								<>
-									{/* has the logged in user played this game? */}
-									{/* otherwise, they can't rival. */}
+									<FollowUserButton
+										className="ms-2 mb-2 mb-lg-0"
+										userToFollow={reqUser}
+										tooltipPlacement={isLg ? "top" : "bottom"}
+										tooltipClassName="d-none d-md-block"
+									/>
 									{settings && (
 										<div className="text-end text-md-start">
-											<FollowUserButton
-												className="ms-2 mb-2 mb-lg-0"
-												userToFollow={reqUser}
-												tooltipPlacement={isLg ? "top" : "bottom"}
-												breakpoint={isMd}
+											{/* has the logged in user played this game? */}
+											{/* otherwise, they can't rival. */}
+											<RivalButton
+												settings={settings}
+												reqUser={reqUser}
+												game={game}
+												playtype={playtype}
+												setSettings={setSettings}
+												maxRivals={MAX_RIVALS}
+												breakpoint={isLg}
+												add={
+													settings.rivals.includes(reqUser.id)
+														? false
+														: true
+												}
 											/>
-											{settings.rivals.includes(reqUser.id) ? (
-												<QuickTooltip
-													tooltipContent={<>Remove rival</>}
-													placement={isLg ? "top" : "bottom"}
-													show={isMd ? undefined : false}
-												>
-													<span
-														className="text-hover-danger ms-2"
-														onClick={async () => {
-															const newRivals =
-																settings.rivals.filter(
-																	(e) => e !== reqUser.id
-																);
-
-															const res = await APIFetchV1(
-																`/users/${settings.userID}/games/${game}/${playtype}/rivals`,
-																{
-																	method: "PUT",
-																	body: JSON.stringify({
-																		rivalIDs: newRivals,
-																	}),
-																	headers: {
-																		"Content-Type":
-																			"application/json",
-																	},
-																}
-															);
-
-															if (res.success) {
-																SendSuccessToast(
-																	`Removed ${reqUser.username} from your rivals.`
-																);
-																setSettings({
-																	...settings,
-																	rivals: newRivals,
-																});
-															} else {
-																SendErrorToast(
-																	HumaniseError(res.description)
-																);
-															}
-														}}
-													>
-														<Icon type="handshake-simple-slash" />
-													</span>
-												</QuickTooltip>
-											) : (
-												<QuickTooltip
-													placement={isLg ? "top" : "bottom"}
-													show={isMd ? undefined : false}
-													tooltipContent={
-														settings.rivals.length < MAX_RIVALS ? (
-															<>Add to rivals</>
-														) : (
-															<>Max rivals reached</>
-														)
-													}
-												>
-													<span
-														className={
-															settings.rivals.length < MAX_RIVALS
-																? "text-hover-success cursor-pointer ms-2"
-																: "text-muted ms-2"
-														}
-														onClick={
-															settings.rivals.length < MAX_RIVALS
-																? async () => {
-																		const newRivals = [
-																			...settings.rivals,
-																			reqUser.id,
-																		];
-
-																		const res =
-																			await APIFetchV1(
-																				`/users/${settings.userID}/games/${game}/${playtype}/rivals`,
-																				{
-																					method: "PUT",
-																					body: JSON.stringify(
-																						{
-																							rivalIDs:
-																								newRivals,
-																						}
-																					),
-																					headers: {
-																						"Content-Type":
-																							"application/json",
-																					},
-																				}
-																			);
-
-																		if (res.success) {
-																			SendSuccessToast(
-																				`Added ${reqUser.username} to your rivals!`
-																			);
-																			setSettings({
-																				...settings,
-																				rivals: newRivals,
-																			});
-																		} else {
-																			SendErrorToast(
-																				HumaniseError(
-																					res.description
-																				)
-																			);
-																		}
-																  }
-																: () =>
-																		SendErrorToast(
-																			"Max rivals reached."
-																		)
-														}
-													>
-														<Icon type="handshake-simple" />
-													</span>
-												</QuickTooltip>
-											)}
 										</div>
 									)}
 								</>
@@ -282,16 +175,100 @@ export function UGPTHeaderBody({
 					</Row>
 				</Col>
 			</Row>
-			{/*
-
-			<div className="d-flex align-items-center" style={{ flexDirection: "column" }}>
-					<ProfileBadges user={reqUser} />
-				</div>
-			
-			*/}
-			{/* if someone is logged in and they aren't the user they're viewing */}
-			{/* give them the option to add them as a rival or follow them */}
 		</>
+	);
+}
+
+export function RivalButton({
+	reqUser,
+	game,
+	playtype,
+	settings,
+	setSettings,
+	maxRivals,
+	add = false,
+	breakpoint,
+}: {
+	reqUser: UserDocument;
+	game: Game;
+	playtype: Playtype;
+	settings: UGPTSettingsDocument;
+	setSettings: (newSettings: UGPTSettingsDocument) => void;
+	maxRivals: number;
+	add?: boolean;
+	breakpoint: boolean;
+}) {
+	async function handleAddRival() {
+		const newRivals = [...settings.rivals, reqUser.id];
+
+		const res = await APIFetchV1(`/users/${settings.userID}/games/${game}/${playtype}/rivals`, {
+			method: "PUT",
+			body: JSON.stringify({
+				rivalIDs: newRivals,
+			}),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+
+		if (res.success) {
+			SendSuccessToast(`Added ${reqUser.username} to your rivals!`);
+			setSettings({
+				...settings,
+				rivals: newRivals,
+			});
+		} else {
+			SendErrorToast(HumaniseError(res.description));
+		}
+	}
+
+	async function handleRemoveRival() {
+		const newRivals = settings.rivals.filter((e) => e !== reqUser.id);
+
+		const res = await APIFetchV1(`/users/${settings.userID}/games/${game}/${playtype}/rivals`, {
+			method: "PUT",
+			body: JSON.stringify({
+				rivalIDs: newRivals,
+			}),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+
+		if (res.success) {
+			SendSuccessToast(`Removed ${reqUser.username} from your rivals.`);
+			setSettings({
+				...settings,
+				rivals: newRivals,
+			});
+		} else {
+			SendErrorToast(HumaniseError(res.description));
+		}
+	}
+
+	const iconType = add ? "handshake-simple" : "handshake-simple-slash";
+	const iconStyle = add
+		? settings.rivals.length < maxRivals
+			? "text-hover-success cursor-pointer ms-2"
+			: "text-muted ms-2"
+		: "text-hover-danger cursor-pointer ms-2";
+
+	return (
+		<QuickTooltip
+			tooltipContent={
+				add
+					? settings.rivals.length < maxRivals
+						? "Add to rivals"
+						: "Max rivals reached"
+					: "Remove rival"
+			}
+			placement={breakpoint ? "top" : "bottom"}
+			className="d-none d-md-block"
+		>
+			<span className={iconStyle} onClick={add ? handleAddRival : handleRemoveRival}>
+				<Icon type={iconType} />
+			</span>
+		</QuickTooltip>
 	);
 }
 

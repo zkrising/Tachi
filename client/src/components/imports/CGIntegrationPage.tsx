@@ -14,6 +14,7 @@ import Button from "react-bootstrap/Button";
 import { APIImportTypes, CGCardInfo, GetGameConfig } from "tachi-common";
 import { SetState } from "types/react";
 import Icon from "components/util/Icon";
+import QuickTooltip from "components/layout/misc/QuickTooltip";
 import ImportStateRenderer from "./ImportStateRenderer";
 
 interface Props {
@@ -120,17 +121,36 @@ function CGImporter({
 
 	return (
 		<>
-			<h2 className="text-center mb-4 lh-lg">
-				{showEdit ? "Editing" : "Importing scores from"} {cgName} card{" "}
+			<div className="text-center mb-4">
+				<span className="fs-2">
+					{showEdit ? "Editing" : "Importing scores from"} {cgName} card{" "}
+				</span>
 				<code className="fs-6 rfs-enabled">{cardID.match(/.{1,4}/gu)?.join(" ")}</code>{" "}
-				<Icon
+				<span
+					className="position-absolute"
 					onClick={() => setShowEdit(!showEdit)}
-					type={showEdit ? "times" : "pencil-alt"}
-					noPad
-					style={{ fontSize: "12px", transform: "translateX(.4em) translateY(-.6em)" }}
-					className="position-absolute cursor-pointer"
-				/>
-			</h2>
+					style={{
+						transform: "translateX(.4em) translateY(-.6em)",
+						maxHeight: "min-content",
+					}}
+				>
+					<QuickTooltip
+						tooltipContent={showEdit ? "Cancel" : "Edit card"}
+						className="d-none d-md-block"
+					>
+						<span>
+							<Icon
+								type={showEdit ? "xmark" : "pencil"}
+								className="cursor-pointer"
+								noPad
+								style={{
+									fontSize: "12px",
+								}}
+							/>
+						</span>
+					</QuickTooltip>
+				</span>
+			</div>
 			{showEdit ? undefined : (
 				<>
 					<Button

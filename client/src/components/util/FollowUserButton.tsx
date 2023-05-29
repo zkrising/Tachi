@@ -9,6 +9,7 @@ export default function FollowUserButton({
 	userToFollow,
 	className = "",
 	tooltipPlacement = "auto",
+	tooltipClassName = "",
 	breakpoint,
 }: {
 	userToFollow: UserDocument;
@@ -30,6 +31,7 @@ export default function FollowUserButton({
 		| "left"
 		| "left-start"
 		| undefined;
+	tooltipClassName?: string;
 	breakpoint?: boolean;
 }) {
 	const { settings: userSettings, setSettings: setUserSettings } =
@@ -49,7 +51,7 @@ export default function FollowUserButton({
 			<QuickTooltip
 				placement={tooltipPlacement}
 				tooltipContent={<>Unfollow {userToFollow.username}</>}
-				show={breakpoint ? undefined : false}
+				className={tooltipClassName}
 			>
 				<span
 					className="cursor-pointer user-select-none text-hover-danger"

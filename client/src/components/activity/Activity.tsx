@@ -318,7 +318,7 @@ function ScoresActivity({
 					/>
 
 					<Icon
-						className="timeline-icon"
+						className="timeline-icon animate-rotate-90"
 						type="chevron-right"
 						show={open ? true : false}
 					/>
@@ -412,7 +412,11 @@ function GoalActivity({
 						user={user}
 						toGPT={`${game}/${playtype}`}
 					/>
-					<Icon className="timeline-icon" type="chevron-right" show={open} />
+					<Icon
+						className="timeline-icon animate-rotate-90"
+						type="chevron-right"
+						show={open}
+					/>
 					<span className="ms-2">
 						<UGPTLink reqUser={user} game={game} playtype={playtype} /> achieved{" "}
 						{subMessage}!{" "}
@@ -537,7 +541,11 @@ function SessionActivity({
 						user={user}
 						toGPT={`${game}/${playtype}`}
 					/>
-					<Icon className="timeline-icon" type="chevron-right" show={open} />
+					<Icon
+						className="timeline-icon animate-rotate-90"
+						type="chevron-right"
+						show={open}
+					/>
 					<span className={`ms-2 ${isProbablyActive ? "fw-normal" : ""}`}>
 						{/* worst string formatting ever */}
 						<UGPTLink reqUser={user} game={data.game} playtype={data.playtype} />{" "}

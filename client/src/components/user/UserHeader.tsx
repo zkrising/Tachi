@@ -3,7 +3,6 @@ import { FormatDate } from "util/time";
 import { TruncateString, CopyTextToClipboard } from "util/misc";
 import Navbar from "components/nav/Navbar";
 import Divider from "components/util/Divider";
-import ExternalLink from "components/util/ExternalLink";
 import Icon from "components/util/Icon";
 import Muted from "components/util/Muted";
 import { UserContext } from "context/UserContext";
@@ -22,7 +21,7 @@ import FollowUserButton from "components/util/FollowUserButton";
 import useBreakpoint from "components/util/useBreakpoint";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
 import ProfileBadges from "./ProfileBadges";
-import ProfilePicture, { SupporterProfilePicture } from "./ProfilePicture";
+import ProfilePicture from "./ProfilePicture";
 
 export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 	const ConditionalSocialMediaRender = React.memo(
@@ -39,15 +38,13 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 				return null;
 			}
 
-			const { isMd } = useBreakpoint();
-
 			const max = 19;
 
 			return (
 				<div className="text-end d-flex flex-md-row-reverse align-items-center justify-content-start my-1 overflow-hidden">
 					<Icon brand type={mode} className="mx-2" />
 					<QuickTooltip
-						show={isMd ? undefined : false}
+						className="d-none d-md-block"
 						tooltipContent={
 							typeof reqUser.socialMedia[mode] === "string" &&
 							(reqUser.socialMedia[mode] ?? "").length > max ? (
@@ -120,11 +117,7 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 				className="pt-6 justify-content-between"
 			>
 				<Col className="d-flex">
-					{reqUser.isSupporter ? (
-						<SupporterProfilePicture user={reqUser} />
-					) : (
-						<ProfilePicture user={reqUser} />
-					)}
+					<ProfilePicture user={reqUser} isSupporter={reqUser.isSupporter} />
 					<Col className="d-flex ms-4 flex-column flex-lg-column-reverse">
 						<div className="d-flex align-items-start align-items-md-center mb-2 mb-lg-0">
 							<h3 className="enable-rfs overflow-hidden flex-grow-1 flex-md-grow-0 m-0">
@@ -135,8 +128,8 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 									<FollowUserButton
 										userToFollow={reqUser}
 										className="ms-2"
+										tooltipClassName="d-none d-md-block"
 										tooltipPlacement="top"
-										breakpoint={isMd}
 									/>
 								)}
 							</div>
@@ -291,8 +284,6 @@ function StatusComponent({ reqUser }: { reqUser: UserDocument }) {
 
 	const [modalShow, setModalShow] = useState(false);
 
-	const { isXs, isMd, isLg } = useBreakpoint();
-
 	return (
 		<div className="fw-light mb-1">
 			{reqUser.status ? (
@@ -309,7 +300,7 @@ function StatusComponent({ reqUser }: { reqUser: UserDocument }) {
 					onClick={() => setModalShow(true)}
 					style={{ transform: "translateX(.4em) translateY(-.6em)" }}
 				>
-					<QuickTooltip tooltipContent={"Change status"} show={isMd ? undefined : false}>
+					<QuickTooltip tooltipContent={"Change status"} className="d-none d-md-block">
 						<span>
 							<Icon
 								type="pencil"

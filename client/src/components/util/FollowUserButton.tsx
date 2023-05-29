@@ -10,7 +10,6 @@ export default function FollowUserButton({
 	className = "",
 	tooltipPlacement = "auto",
 	tooltipClassName = "",
-	breakpoint,
 }: {
 	userToFollow: UserDocument;
 	className?: string;
@@ -32,7 +31,6 @@ export default function FollowUserButton({
 		| "left-start"
 		| undefined;
 	tooltipClassName?: string;
-	breakpoint?: boolean;
 }) {
 	const { settings: userSettings, setSettings: setUserSettings } =
 		useContext(UserSettingsContext);
@@ -93,7 +91,7 @@ export default function FollowUserButton({
 		<QuickTooltip
 			placement={tooltipPlacement}
 			tooltipContent="Following a user will mean you'll see their sessions and updates in your feed."
-			show={breakpoint ? undefined : false}
+			className={tooltipClassName}
 		>
 			<span
 				className="cursor-pointer text-hover-success user-select-none"

@@ -121,7 +121,7 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 					<Col className="d-flex ms-4 flex-column flex-lg-column-reverse">
 						<div className="d-flex align-items-start align-items-md-center mb-2 mb-lg-0">
 							<h3 className="enable-rfs overflow-hidden flex-grow-1 flex-md-grow-0 m-0">
-								{reqUser.username}'s Profile
+								{reqUser.username}
 							</h3>
 							<div className="text-end text-md-start">
 								{loggedInUser && reqUser.id !== loggedInUser.id && (

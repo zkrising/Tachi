@@ -3,7 +3,7 @@ import { MillisToSince } from "util/time";
 import { HumaniseError } from "util/humanise-error";
 import { SendErrorToast, SendSuccessToast } from "util/toaster";
 import Navbar from "components/nav/Navbar";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Icon from "components/util/Icon";
@@ -198,7 +198,10 @@ export function RivalButton({
 	add?: boolean;
 	breakpoint: boolean;
 }) {
+	const [isAwait, setIsAwait] = useState(false);
+
 	async function handleAddRival() {
+		setIsAwait(true);
 		const newRivals = [...settings.rivals, reqUser.id];
 
 		const res = await APIFetchV1(`/users/${settings.userID}/games/${game}/${playtype}/rivals`, {
@@ -212,17 +215,20 @@ export function RivalButton({
 		});
 
 		if (res.success) {
+			setIsAwait(false);
 			SendSuccessToast(`Added ${reqUser.username} to your rivals!`);
 			setSettings({
 				...settings,
 				rivals: newRivals,
 			});
 		} else {
+			setIsAwait(false);
 			SendErrorToast(HumaniseError(res.description));
 		}
 	}
 
 	async function handleRemoveRival() {
+		setIsAwait(true);
 		const newRivals = settings.rivals.filter((e) => e !== reqUser.id);
 
 		const res = await APIFetchV1(`/users/${settings.userID}/games/${game}/${playtype}/rivals`, {
@@ -236,22 +242,29 @@ export function RivalButton({
 		});
 
 		if (res.success) {
+			setIsAwait(false);
 			SendSuccessToast(`Removed ${reqUser.username} from your rivals.`);
 			setSettings({
 				...settings,
 				rivals: newRivals,
 			});
 		} else {
+			setIsAwait(false);
 			SendErrorToast(HumaniseError(res.description));
 		}
 	}
 
+	function handleMaxRivals() {
+		SendErrorToast("Rivals list full!");
+	}
+
+	const waiting = isAwait ? "waiting" : "";
 	const iconType = add ? "handshake-simple" : "handshake-simple-slash";
 	const iconStyle = add
 		? settings.rivals.length < maxRivals
-			? "text-hover-success cursor-pointer ms-2"
+			? `text-hover-success cursor-pointer ms-2 ${waiting}`
 			: "text-muted ms-2"
-		: "text-hover-danger cursor-pointer ms-2";
+		: `text-hover-danger cursor-pointer ms-2 ${waiting}`;
 
 	return (
 		<QuickTooltip
@@ -259,13 +272,22 @@ export function RivalButton({
 				add
 					? settings.rivals.length < maxRivals
 						? "Add to rivals"
-						: "Max rivals reached"
+						: "Rivals list full!"
 					: "Remove rival"
 			}
 			placement={breakpoint ? "top" : "bottom"}
 			className="d-none d-md-block"
 		>
-			<span className={iconStyle} onClick={add ? handleAddRival : handleRemoveRival}>
+			<span
+				className={iconStyle}
+				onClick={
+					add
+						? settings.rivals.length < maxRivals
+							? handleAddRival
+							: handleMaxRivals
+						: handleRemoveRival
+				}
+			>
 				<Icon type={iconType} />
 			</span>
 		</QuickTooltip>

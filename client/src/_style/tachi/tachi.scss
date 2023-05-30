@@ -2,6 +2,7 @@
 @import "layout/layout";
 @import "components/components";
 @import "pages/pages";
+@import "keyframes";
 
 .hover-opacity {
 	// only used on breakcrumbs
@@ -83,6 +84,10 @@
 
 .content-box {
 	box-sizing: content-box;
+}
+
+.waiting {
+	animation: pulse 500ms ease-in-out alternate infinite;
 }
 
 @mixin animate-rotate($degrees) {

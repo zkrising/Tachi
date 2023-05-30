@@ -24,15 +24,7 @@
 		left: -4px;
 		z-index: 2;
 		&.active {
-			@keyframes timeline-active {
-				from {
-					opacity: 0.5;
-				}
-				to {
-					opacity: 1;
-				}
-			}
-			animation: timeline-active 1.25s ease-in-out alternate infinite;
+			animation: pulse 1.25s ease-in-out alternate infinite;
 			background-color: var(--bs-primary) !important;
 		}
 	}

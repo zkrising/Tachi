@@ -15,7 +15,7 @@ export function Layout({ children }: JustChildren) {
 
 				<Header />
 
-				<Container id="tachi-content">
+				<Container as="main" id="tachi-content">
 					<SubHeader />
 
 					{children}

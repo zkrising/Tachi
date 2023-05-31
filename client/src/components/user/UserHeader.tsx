@@ -87,7 +87,7 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 
 	const SocialMediaCluster = React.memo(() => (
 		<>
-			<Row xs="2" className="ms-lg-8 ms-xl-10">
+			<Row xs="2" className="ms-lg-9 ms-xl-11 lh-sm">
 				<ConditionalSocialMediaRender mode="discord" className="cursor-pointer" />
 				<ConditionalSocialMediaRender href="https://github.com/" mode="github" />
 				<ConditionalSocialMediaRender href="https://steamcommunity.com/id/" mode="steam" />
@@ -114,7 +114,7 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 				xs="1"
 				lg="2"
 				id={`${reqUser.username}-info`}
-				className="pt-6 justify-content-between"
+				className="pt-4 justify-content-between"
 			>
 				<Col className="d-flex">
 					<ProfilePicture user={reqUser} isSupporter={reqUser.isSupporter} />
@@ -123,16 +123,6 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 							<h3 className="enable-rfs overflow-hidden flex-grow-1 flex-md-grow-0 m-0">
 								{reqUser.username}
 							</h3>
-							<div className="text-end text-md-start">
-								{loggedInUser && reqUser.id !== loggedInUser.id && (
-									<FollowUserButton
-										userToFollow={reqUser}
-										className="ms-2"
-										tooltipClassName="d-none d-md-block"
-										tooltipPlacement="top"
-									/>
-								)}
-							</div>
 						</div>
 						<div className="flex-grow-1 flex-lg-grow-0">
 							<StatusComponent reqUser={reqUser} />
@@ -149,35 +139,52 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 				</Col>
 				<Col
 					lg="5"
-					className="d-flex flex-column align-items-start align-items-lg-end justify-content-between"
+					className="d-flex align-items-center flex-lg-column mt-1 mt-lg-0 align-items-lg-end justify-content-between"
 				>
+					{isLg && loggedInUser && reqUser.id !== loggedInUser.id && (
+						<FollowUserButton
+							userToFollow={reqUser}
+							className="mb-1"
+							tooltipPlacement="bottom"
+						/>
+					)}
 					{isLg && hasSocialMediaLinks && <SocialMediaCluster />}
-					<div className="d-flex mt-1 mt-lg-0 flex-wrap justify-content-start justify-content-lg-end">
+					<div className="d-flex flex-wrap justify-content-start justify-content-lg-end">
 						<ProfileBadges user={reqUser} />
 					</div>
-				</Col>
-				{!isMd && hasSocialMediaLinks && (
-					<Col className="d-flex justify-content-center mt-2 flex-column">
-						<Col
-							className="text-center lh-sm user-select-none cursor-pointer"
-							onClick={() => setSocialShow(!socialShow)}
-						>
-							<small>Socials</small>
-							<br />
-							<Icon
-								type="chevron-down"
-								className="animate-rotate-180"
-								show={socialShow}
+					<div className="d-flex d-lg-none">
+						{!isMd && hasSocialMediaLinks && (
+							<Button
+								size="sm"
+								variant="secondary"
+								className="fw-light border-0"
+								onClick={() => setSocialShow(!socialShow)}
+							>
+								<Icon
+									type="chevron-down"
+									className="small animate-rotate-180"
+									show={socialShow}
+								/>
+								<span className="ms-1">Socials</span>
+							</Button>
+						)}
+						{!isLg && loggedInUser && reqUser.id !== loggedInUser.id && (
+							<FollowUserButton
+								userToFollow={reqUser}
+								className="d-block d-lg-none ms-2"
+								tooltipPlacement="bottom"
 							/>
-						</Col>
+						)}
+					</div>
+				</Col>
 
-						<Col>
-							<Collapse in={socialShow}>
-								<div>
-									<SocialMediaCluster />
-								</div>
-							</Collapse>
-						</Col>
+				{!isMd && hasSocialMediaLinks && (
+					<Col>
+						<Collapse in={socialShow}>
+							<div>
+								<SocialMediaCluster />
+							</div>
+						</Collapse>
 					</Col>
 				)}
 			</Row>

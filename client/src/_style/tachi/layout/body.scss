@@ -18,7 +18,7 @@ a {
     }
 }
 
-#tachi-content {
+main {
     flex: 1 0 auto;
     @include media-breakpoint-down(md) {
         padding-top: 45px;

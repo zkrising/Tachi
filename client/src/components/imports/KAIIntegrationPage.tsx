@@ -137,7 +137,7 @@ function KAINeedsIntegrate({ kaiType, hash, clientID, redirectUri }: Omit<Props,
 	return (
 		<div>
 			<h2 className="text-center mb-4">You need to authenticate with {kaiType}!</h2>
-			<Form>
+			<Form className="d-flex flex-column">
 				<Form.Group>
 					<Form.Text>
 						For security reasons, please input the URL of the site for {kaiType}.
@@ -176,7 +176,7 @@ function KAINeedsIntegrate({ kaiType, hash, clientID, redirectUri }: Omit<Props,
 					</>
 				)}
 				<ExternalLink
-					className={`btn btn-primary mt-4 align-self-center ${
+					className={`btn btn-primary mt-4 align-self-end ${
 						valid ? undefined : "disabled"
 					}`}
 					href={

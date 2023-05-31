@@ -87,7 +87,7 @@
 }
 
 .waiting {
-	animation: pulse 500ms ease-in-out alternate infinite;
+	animation: pulse 750ms ease-in-out alternate infinite;
 }
 
 @mixin animate-rotate($degrees) {
@@ -115,3 +115,17 @@
 }
 
 @include text-hover($theme-colors);
+
+@mixin bg-hover($colour) {
+	@each $k, $v in $theme-colors {
+		.bg-hover-#{$k} {
+			transition: $nav-link-transition;
+			&:hover {
+				background-color: #{$v};
+				border-color: #{$v};
+			}
+		}
+	}
+}
+
+@include bg-hover($theme-colors);

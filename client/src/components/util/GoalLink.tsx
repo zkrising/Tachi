@@ -6,10 +6,13 @@ import useLUGPTSettings from "./useLUGPTSettings";
 export default function GoalLink({ goal, noPad }: { goal: GoalDocument; noPad?: boolean }) {
 	const { settings } = useLUGPTSettings();
 
-	const pad = noPad ? "" : "ml-2";
+	const pad = noPad ? "" : "ms-2";
 
 	switch (goal.charts.type) {
-		case "multi":
+		case "multi": // if this is the case, just print the goal.name directly into a span element
+			console.log(
+				"goal.name should be called directly into a span element if it's not a link"
+			);
 			return <span className={pad}>{goal.name}</span>;
 		case "single":
 			return (

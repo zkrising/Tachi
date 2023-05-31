@@ -1,5 +1,5 @@
 import Icon from "components/util/Icon";
-import React, { useEffect, useRef, useState } from "react";
+import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 interface NavbarProps {
@@ -18,33 +18,42 @@ const Navbar = ({ children }: NavbarProps) => {
 	const [activeItem, setActiveItem] = useState<HTMLElement | Record<string, never>>({});
 	const parentRef = useRef<HTMLDivElement>(null);
 	const loc = useLocation();
-	const [indicatorPos, setIndicatorPos] = useState({});
+	const [indicatorPos, setIndicatorPos] = useState<CSSProperties>({});
 	const [showScrollLeft, setShowScrollLeft] = useState(false);
 	const [showScrollRight, setShowScrollRight] = useState(false);
 
 	function handleScrollLeft() {
 		const container = parentRef.current;
-		container?.scrollBy({
-			left: -container.clientWidth * 0.75,
-			behavior: "smooth",
-		});
+		const clientWidth = parentRef.current?.clientWidth || 0;
+		if (container) {
+			container.scrollBy({
+				left: -clientWidth * 0.75,
+				behavior: "smooth",
+			});
+		}
 	}
 	function handleScrollRight() {
 		const container = parentRef.current;
-		container?.scrollBy({
-			left: container.clientWidth * 0.75,
-			behavior: "smooth",
-		});
+		const clientWidth = parentRef.current?.clientWidth || 0;
+		if (container) {
+			container.scrollBy({
+				left: clientWidth * 0.75,
+				behavior: "smooth",
+			});
+		}
 	}
 
 	useEffect(() => {
 		function handlePosChange() {
 			const { offsetLeft, offsetWidth } = activeItem;
-			const containerOffsetLeft = parentRef.current?.offsetLeft || 0;
-			setIndicatorPos({
-				left: offsetLeft - containerOffsetLeft,
-				width: offsetWidth,
-			});
+			const containerOffsetLeft = parentRef.current?.offsetLeft;
+			const realOffset = offsetLeft - (containerOffsetLeft || 0);
+			if (containerOffsetLeft && offsetLeft && realOffset) {
+				setIndicatorPos({
+					left: realOffset,
+					width: offsetWidth,
+				});
+			}
 		}
 		{
 			// Set when scroll buttons show based on the scroll position, if any
@@ -111,13 +120,15 @@ const Navbar = ({ children }: NavbarProps) => {
 						}
 						return child;
 					})}
-					<div
-						className="navbar-indicator bg-primary rounded"
-						style={{
-							...indicatorPos,
-							position: "absolute", // set absolute here because it's necessary
-						}}
-					/>
+					{indicatorPos.width !== 0 && (
+						<div
+							className="navbar-indicator bg-primary rounded"
+							style={{
+								...indicatorPos,
+								position: "absolute", // set absolute here because it's necessary
+							}}
+						/>
+					)}
 				</div>
 			</div>
 			<div
@@ -143,20 +154,22 @@ const Navbar = ({ children }: NavbarProps) => {
 const Item = ({ to, children, setActiveItem, active }: NavItemProps) => {
 	const linkRef = useRef<HTMLAnchorElement>(null);
 	// If a link is active, update its parent's active state
-	if (linkRef.current && active && setActiveItem) {
-		setActiveItem(linkRef.current);
-	}
+	useEffect(() => {
+		if (linkRef.current && active && setActiveItem) {
+			setActiveItem(linkRef.current);
+		}
+	});
 
 	return (
 		<NavLink
-			className="gentle-link mx-2"
+			className="gentle-link px-8 py-4"
 			key={to}
 			to={to}
 			exact
 			ref={linkRef}
 			draggable={false}
 		>
-			<div className="pe-none px-8 my-5">{children}</div>
+			{children}
 		</NavLink>
 	);
 };

@@ -3,34 +3,17 @@ import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext } from "react";
 import { UserDocument } from "tachi-common";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
-import Icon from "./Icon";
+import Button from "react-bootstrap/Button";
+import { Placement } from "react-bootstrap/esm/types";
 
 export default function FollowUserButton({
 	userToFollow,
 	className = "",
 	tooltipPlacement = "auto",
-	tooltipClassName = "",
 }: {
 	userToFollow: UserDocument;
 	className?: string;
-	tooltipPlacement?:
-		| "auto"
-		| "auto-start"
-		| "auto-end"
-		| "top-start"
-		| "top"
-		| "top-end"
-		| "right-start"
-		| "right"
-		| "right-end"
-		| "bottom-end"
-		| "bottom"
-		| "bottom-start"
-		| "left-end"
-		| "left"
-		| "left-start"
-		| undefined;
-	tooltipClassName?: string;
+	tooltipPlacement?: Placement;
 }) {
 	const { settings: userSettings, setSettings: setUserSettings } =
 		useContext(UserSettingsContext);
@@ -44,85 +27,83 @@ export default function FollowUserButton({
 		return null;
 	}
 
-	if (userSettings.following.includes(userToFollow.id)) {
-		return (
-			<QuickTooltip
-				placement={tooltipPlacement}
-				tooltipContent={<>Unfollow {userToFollow.username}</>}
-				className={tooltipClassName}
-			>
-				<span
-					className="cursor-pointer user-select-none text-hover-danger"
-					onClick={async () => {
-						const res = await APIFetchV1(
-							`/users/${userSettings.userID}/following/remove`,
-							{
-								method: "POST",
-								body: JSON.stringify({
-									userID: userToFollow.id,
-								}),
-								headers: {
-									"Content-Type": "application/json",
-								},
-							},
-							true,
-							true
-						);
+	const unfollow = userSettings.following.includes(userToFollow.id);
+	let handleFollow: () => void;
 
-						if (res.success) {
-							const newFollowing = userSettings.following.filter(
-								(e) => e !== userToFollow.id
-							);
+	if (unfollow) {
+		handleFollow = async function () {
+			// Unfollow User
+			const res = await APIFetchV1(
+				`/users/${userSettings.userID}/following/remove`,
+				{
+					method: "POST",
+					body: JSON.stringify({
+						userID: userToFollow.id,
+					}),
+					headers: {
+						"Content-Type": "application/json",
+					},
+				},
+				true,
+				true
+			);
 
-							setUserSettings({
-								...userSettings,
-								following: newFollowing,
-							});
-						}
-					}}
-				>
-					<Icon type="user-minus" className={className} />
-				</span>
-			</QuickTooltip>
-		);
+			if (res.success) {
+				const newFollowing = userSettings.following.filter((e) => e !== userToFollow.id);
+
+				setUserSettings({
+					...userSettings,
+					following: newFollowing,
+				});
+			}
+		};
+	} else {
+		handleFollow = async function () {
+			// Follow user
+			const res = await APIFetchV1(
+				`/users/${userSettings.userID}/following/add`,
+				{
+					method: "POST",
+					body: JSON.stringify({
+						userID: userToFollow.id,
+					}),
+					headers: {
+						"Content-Type": "application/json",
+					},
+				},
+				true,
+				true
+			);
+
+			if (res.success) {
+				const newFollowing = [...userSettings.following, userToFollow.id];
+
+				setUserSettings({
+					...userSettings,
+					following: newFollowing,
+				});
+			}
+		};
 	}
+
+	const buttonStyle = unfollow ? "bg-hover-danger" : "bg-hover-success";
+	const buttonText = unfollow ? "Unfollow" : "Follow";
 
 	return (
 		<QuickTooltip
 			placement={tooltipPlacement}
 			tooltipContent="Following a user will mean you'll see their sessions and updates in your feed."
-			className={tooltipClassName}
+			className="d-none d-md-block"
+			show={unfollow ? false : undefined}
 		>
-			<span
-				className="cursor-pointer text-hover-success user-select-none"
-				onClick={async () => {
-					const res = await APIFetchV1(
-						`/users/${userSettings.userID}/following/add`,
-						{
-							method: "POST",
-							body: JSON.stringify({
-								userID: userToFollow.id,
-							}),
-							headers: {
-								"Content-Type": "application/json",
-							},
-						},
-						true,
-						true
-					);
-
-					if (res.success) {
-						const newFollowing = [...userSettings.following, userToFollow.id];
-
-						setUserSettings({
-							...userSettings,
-							following: newFollowing,
-						});
-					}
-				}}
+			<Button
+				size="sm"
+				variant="secondary"
+				className={`${buttonStyle} ${className} fw-light user-select-none border-0`}
+				onClick={handleFollow}
 			>
-				<Icon type="user-plus" className={className} />
-			</span>
+				{buttonText}
+			</Button>
 		</QuickTooltip>
 	);
 }

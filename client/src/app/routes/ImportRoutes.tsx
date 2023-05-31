@@ -42,173 +42,172 @@ export default function ImportRoutes() {
 			<Route path="/import/*">
 				<div>
 					<Link to="/import">
-						<Icon type="chevron-left" className="ms-2" /> Go back to all import methods.{/*But not really*/}
+						<Icon type="chevron-left" className="ms-2" /> Go back to all import methods.
+						{/*But not really*/}
 					</Link>
 					<Divider size="full" />
 				</div>
-				<Col
-					xl={{ span: 8, offset: 2 }}
-					lg={{ span: 10, offset: 1 }}
-					className="bg-dark rounded p-8"
-				>
-					<Route exact path="/import/batch-manual">
-						<BatchManualPage />
-					</Route>
+				<div className="bg-dark rounded py-8 px-4 px-lg-0">
+					<Col xl={{ span: 8, offset: 2 }} lg={{ span: 10, offset: 1 }}>
+						<Route exact path="/import/batch-manual">
+							<BatchManualPage />
+						</Route>
 
-					{mode !== "ktchi" && (
-						<>
-							<Route exact path="/import/lr2oraja-ir">
-								<BeatorajaIRPage game="bms" />
-							</Route>
-							<Route exact path="/import/beatoraja-ir-pms">
-								<BeatorajaIRPage game="pms" />
-							</Route>
-							<Route exact path="/import/lr2hook">
-								<LR2HookPage />
-							</Route>
-							<Route exact path="/import/itghook">
-								<ITGHookPage />
-							</Route>
-							<Route exact path="/import/usc-ir">
-								<USCIRPage />
-							</Route>
-							<Route exact path="/import/usc-db">
-								<USCDBPage />
-							</Route>
-							<Route exact path="/import/lr2-db">
-								<LR2DBPage />
-							</Route>
-							<Route exact path="/import/lr2oraja-db">
-								<LR2orajaDBPage />
-							</Route>
-						</>
-					)}
+						{mode !== "ktchi" && (
+							<>
+								<Route exact path="/import/lr2oraja-ir">
+									<BeatorajaIRPage game="bms" />
+								</Route>
+								<Route exact path="/import/beatoraja-ir-pms">
+									<BeatorajaIRPage game="pms" />
+								</Route>
+								<Route exact path="/import/lr2hook">
+									<LR2HookPage />
+								</Route>
+								<Route exact path="/import/itghook">
+									<ITGHookPage />
+								</Route>
+								<Route exact path="/import/usc-ir">
+									<USCIRPage />
+								</Route>
+								<Route exact path="/import/usc-db">
+									<USCDBPage />
+								</Route>
+								<Route exact path="/import/lr2-db">
+									<LR2DBPage />
+								</Route>
+								<Route exact path="/import/lr2oraja-db">
+									<LR2orajaDBPage />
+								</Route>
+							</>
+						)}
 
-					{mode !== "btchi" && (
-						<>
-							<Route exact path="/import/iidx-eam-csv">
-								<IIDXEamCSVPage
-									name="IIDX e-amusement CSV"
-									importType="file/eamusement-iidx-csv"
-								/>
-							</Route>
-							<Route exact path="/import/iidx-pli-csv">
-								<IIDXEamCSVPage
-									name="IIDX PLI CSV"
-									importType="file/pli-iidx-csv"
-								/>
-							</Route>
-							<Route exact path="/import/sdvx-eam-csv">
-								<SDVXEamCSVPage
-									name="SDVX e-amusement CSV"
-									importType="file/eamusement-sdvx-csv"
-								/>
-							</Route>
-							<Route exact path="/import/iidx-mer">
-								<MerJSONPage />
-							</Route>
-							<Route exact path="/import/sss-xml">
-								<SSSXMLPage />
-							</Route>
+						{mode !== "btchi" && (
+							<>
+								<Route exact path="/import/iidx-eam-csv">
+									<IIDXEamCSVPage
+										name="IIDX e-amusement CSV"
+										importType="file/eamusement-iidx-csv"
+									/>
+								</Route>
+								<Route exact path="/import/iidx-pli-csv">
+									<IIDXEamCSVPage
+										name="IIDX PLI CSV"
+										importType="file/pli-iidx-csv"
+									/>
+								</Route>
+								<Route exact path="/import/sdvx-eam-csv">
+									<SDVXEamCSVPage
+										name="SDVX e-amusement CSV"
+										importType="file/eamusement-sdvx-csv"
+									/>
+								</Route>
+								<Route exact path="/import/iidx-mer">
+									<MerJSONPage />
+								</Route>
+								<Route exact path="/import/sss-xml">
+									<SSSXMLPage />
+								</Route>
 
-							<Route exact path="/import/fervidex">
-								<FervidexPage />
-							</Route>
-							<Route exact path="/import/barbatos">
-								<BarbatosPage />
-							</Route>
-							<Route exact path="/import/ks-hook">
-								<KsHookPage />
-							</Route>
-							<Route exact path="/import/silent-hook">
-								<SilentHookPage />
-							</Route>
+								<Route exact path="/import/fervidex">
+									<FervidexPage />
+								</Route>
+								<Route exact path="/import/barbatos">
+									<BarbatosPage />
+								</Route>
+								<Route exact path="/import/ks-hook">
+									<KsHookPage />
+								</Route>
+								<Route exact path="/import/silent-hook">
+									<SilentHookPage />
+								</Route>
 
-							<Route exact path="/import/chunitachi">
-								<ChunitachiPage />
-							</Route>
+								<Route exact path="/import/chunitachi">
+									<ChunitachiPage />
+								</Route>
 
-							<Route exact path="/import/iidx-flo">
-								<KAIIntegrationPage
-									hash="6f64b82107cea90aa4c51a33705cd57c1883c8cdc22a634730ca461a431744b3"
-									clientID={process.env.VITE_FLO_CLIENT_ID ?? ""}
-									redirectUri={`${window.location.origin}/oauth2-callback/flo`}
-									kaiType="FLO"
-									game="iidx"
-								/>
-							</Route>
-							<Route exact path="/import/iidx-eag">
-								<KAIIntegrationPage
-									hash="0451a33ffc7f8b0c089450d842efb8b7099e22a2df2251ae4e6d9ec1b3cb4a5f"
-									clientID={process.env.VITE_EAG_CLIENT_ID ?? ""}
-									redirectUri={`${window.location.origin}/oauth2-callback/eag`}
-									kaiType="EAG"
-									game="iidx"
-								/>
-							</Route>
-							<Route exact path="/import/sdvx-min">
-								<KAIIntegrationPage
-									hash="5885d4123b6db3f0127111a587ea6549f533a178dc2e198d31f98bed4ffd0cad"
-									clientID={process.env.VITE_MIN_CLIENT_ID ?? ""}
-									redirectUri={`${window.location.origin}/oauth2-callback/min`}
-									kaiType="MIN"
-									game="sdvx"
-								/>
-							</Route>
-							<Route exact path="/import/sdvx-flo">
-								<KAIIntegrationPage
-									hash="6f64b82107cea90aa4c51a33705cd57c1883c8cdc22a634730ca461a431744b3"
-									clientID={process.env.VITE_FLO_CLIENT_ID ?? ""}
-									redirectUri={`${window.location.origin}/oauth2-callback/flo`}
-									kaiType="FLO"
-									game="sdvx"
-								/>
-							</Route>
-							<Route exact path="/import/sdvx-eag">
-								<KAIIntegrationPage
-									hash="0451a33ffc7f8b0c089450d842efb8b7099e22a2df2251ae4e6d9ec1b3cb4a5f"
-									clientID={process.env.VITE_EAG_CLIENT_ID ?? ""}
-									redirectUri={`${window.location.origin}/oauth2-callback/eag`}
-									kaiType="EAG"
-									game="sdvx"
-								/>
-							</Route>
-							<Route exact path="/import/cg-dev-sdvx">
-								<CGIntegrationPage cgType="dev" game="sdvx" />
-							</Route>
-							<Route exact path="/import/cg-dev-popn">
-								<CGIntegrationPage cgType="dev" game="popn" />
-							</Route>
-							<Route exact path="/import/cg-dev-museca">
-								<CGIntegrationPage cgType="dev" game="museca" />
-							</Route>
+								<Route exact path="/import/iidx-flo">
+									<KAIIntegrationPage
+										hash="6f64b82107cea90aa4c51a33705cd57c1883c8cdc22a634730ca461a431744b3"
+										clientID={process.env.VITE_FLO_CLIENT_ID ?? ""}
+										redirectUri={`${window.location.origin}/oauth2-callback/flo`}
+										kaiType="FLO"
+										game="iidx"
+									/>
+								</Route>
+								<Route exact path="/import/iidx-eag">
+									<KAIIntegrationPage
+										hash="0451a33ffc7f8b0c089450d842efb8b7099e22a2df2251ae4e6d9ec1b3cb4a5f"
+										clientID={process.env.VITE_EAG_CLIENT_ID ?? ""}
+										redirectUri={`${window.location.origin}/oauth2-callback/eag`}
+										kaiType="EAG"
+										game="iidx"
+									/>
+								</Route>
+								<Route exact path="/import/sdvx-min">
+									<KAIIntegrationPage
+										hash="5885d4123b6db3f0127111a587ea6549f533a178dc2e198d31f98bed4ffd0cad"
+										clientID={process.env.VITE_MIN_CLIENT_ID ?? ""}
+										redirectUri={`${window.location.origin}/oauth2-callback/min`}
+										kaiType="MIN"
+										game="sdvx"
+									/>
+								</Route>
+								<Route exact path="/import/sdvx-flo">
+									<KAIIntegrationPage
+										hash="6f64b82107cea90aa4c51a33705cd57c1883c8cdc22a634730ca461a431744b3"
+										clientID={process.env.VITE_FLO_CLIENT_ID ?? ""}
+										redirectUri={`${window.location.origin}/oauth2-callback/flo`}
+										kaiType="FLO"
+										game="sdvx"
+									/>
+								</Route>
+								<Route exact path="/import/sdvx-eag">
+									<KAIIntegrationPage
+										hash="0451a33ffc7f8b0c089450d842efb8b7099e22a2df2251ae4e6d9ec1b3cb4a5f"
+										clientID={process.env.VITE_EAG_CLIENT_ID ?? ""}
+										redirectUri={`${window.location.origin}/oauth2-callback/eag`}
+										kaiType="EAG"
+										game="sdvx"
+									/>
+								</Route>
+								<Route exact path="/import/cg-dev-sdvx">
+									<CGIntegrationPage cgType="dev" game="sdvx" />
+								</Route>
+								<Route exact path="/import/cg-dev-popn">
+									<CGIntegrationPage cgType="dev" game="popn" />
+								</Route>
+								<Route exact path="/import/cg-dev-museca">
+									<CGIntegrationPage cgType="dev" game="museca" />
+								</Route>
 
-							<Route exact path="/import/cg-nag-sdvx">
-								<CGIntegrationPage cgType="nag" game="sdvx" />
-							</Route>
-							<Route exact path="/import/cg-nag-popn">
-								<CGIntegrationPage cgType="nag" game="popn" />
-							</Route>
-							<Route exact path="/import/cg-nag-museca">
-								<CGIntegrationPage cgType="nag" game="museca" />
-							</Route>
+								<Route exact path="/import/cg-nag-sdvx">
+									<CGIntegrationPage cgType="nag" game="sdvx" />
+								</Route>
+								<Route exact path="/import/cg-nag-popn">
+									<CGIntegrationPage cgType="nag" game="popn" />
+								</Route>
+								<Route exact path="/import/cg-nag-museca">
+									<CGIntegrationPage cgType="nag" game="museca" />
+								</Route>
 
-							<Route exact path="/import/cg-gan-sdvx">
-								<CGIntegrationPage cgType="gan" game="sdvx" />
-							</Route>
-							<Route exact path="/import/cg-gan-popn">
-								<CGIntegrationPage cgType="gan" game="popn" />
-							</Route>
-							<Route exact path="/import/cg-gan-museca">
-								<CGIntegrationPage cgType="gan" game="museca" />
-							</Route>
+								<Route exact path="/import/cg-gan-sdvx">
+									<CGIntegrationPage cgType="gan" game="sdvx" />
+								</Route>
+								<Route exact path="/import/cg-gan-popn">
+									<CGIntegrationPage cgType="gan" game="popn" />
+								</Route>
+								<Route exact path="/import/cg-gan-museca">
+									<CGIntegrationPage cgType="gan" game="museca" />
+								</Route>
 
-							<Route exact path="/import/wacca-mypage-scraper">
-								<WACCAMyPageScraperPage />
-							</Route>
-						</>
-					)}
-				</Col>
+								<Route exact path="/import/wacca-mypage-scraper">
+									<WACCAMyPageScraperPage />
+								</Route>
+							</>
+						)}
+					</Col>
+				</div>
 			</Route>
 		</Switch>
 	);

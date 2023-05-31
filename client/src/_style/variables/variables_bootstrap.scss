@@ -506,7 +506,7 @@ $border-color-translucent:    rgba($black, .175) !default;
 
 // scss-docs-start border-radius-variables
 $border-radius:               .5rem;
-$border-radius-sm:            .25rem !default;
+$border-radius-sm:            .25rem;
 $border-radius-lg:            .75rem;
 $border-radius-xl:            1rem !default;
 $border-radius-2xl:           2rem !default;
@@ -563,8 +563,8 @@ $font-family-code:            var(--#{$prefix}font-monospace) !default;
 // $font-size-base affects the font size of the body text
 $font-size-root:              13px;
 $font-size-base:              1rem;
-$font-size-sm:                $font-size-base * 0.92;
-$font-size-lg:                $font-size-base * 1.08;
+$font-size-sm:                $font-size-base * 0.85;
+$font-size-lg:                $font-size-base * 1.16;
 
 $font-weight-lighter:         lighter !default;
 $font-weight-light:           400;
@@ -592,8 +592,8 @@ $h6-font-size:                $font-size-base;
 // most of these variables are ran through calculations...
 $rfs-rem-value: 13; // i want to use $font-size-root here but i can't because the unit isn't remobed before using it in the calculation
 $rfs-base-value: $font-size-base; // setting this too high causes the value to become negative and breaks rfs.
-$rfs-factor: 8; // setting this <= 1 throws an error => bootstrap-scss/vendor/_rfs.scss:34
-$rfs-breakpoint: 864px;
+$rfs-factor: 25; // setting this <= 1 throws an error => bootstrap-scss/vendor/_rfs.scss:34
+$rfs-breakpoint: 648px;
 $rfs-class: "enable"; // yes please... this allows us to enable it with a class selector only when we want it
 
 // scss-docs-start font-sizes
@@ -608,11 +608,11 @@ $font-sizes: (
 // scss-docs-end font-sizes
 
 // scss-docs-start headings-variables
-$headings-margin-bottom:      $spacer * .5 !default;
+$headings-margin-bottom:      $spacer * .5;
 $headings-font-family:        null !default;
 $headings-font-style:         null !default;
-$headings-font-weight:        500 !default;
-$headings-line-height:        1.2 !default;
+$headings-font-weight:        500;
+$headings-line-height:        1.25;
 $headings-color:              null !default;
 // scss-docs-end headings-variables
 
@@ -628,38 +628,26 @@ $display-font-sizes: (
 
 $display-font-family: null !default;
 $display-font-style:  null !default;
-$display-font-weight: 300 !default;
-$display-line-height: $headings-line-height !default;
+$display-font-weight: 400;
+$display-line-height: $headings-line-height;
 // scss-docs-end display-headings
 
 // scss-docs-start type-variables
-$lead-font-size:              $font-size-base * 1.25 !default;
-$lead-font-weight:            300 !default;
+$lead-font-size:              $font-size-base * 1.25;
+$lead-font-weight:            400;
 
-$small-font-size:             .875em !default;
+$small-font-size:             .85em;
 
-$sub-sup-font-size:           .75em !default;
+$sub-sup-font-size:           .75em;
 
 $text-muted:                  $gray-500;
 
 $initialism-font-size:        $small-font-size;
 
-$blockquote-margin-y:         $spacer !default;
-$blockquote-font-size:        $font-size-base * 1.25 !default;
+$blockquote-margin-y:         $spacer;
+$blockquote-font-size:        $font-size-base * 1.25;
 $blockquote-footer-color:     $gray-600;
 $blockquote-footer-font-size: $small-font-size;
-
-$hr-margin-y:                 $spacer !default;
-$hr-color:                    inherit !default;
-
-// fusv-disable
-$hr-bg-color:                 null !default; // Deprecated in v5.2.0
-$hr-height:                   null !default; // Deprecated in v5.2.0
-// fusv-enable
-
-$hr-border-color:             null !default; // Allows for inherited colors
-$hr-border-width:             $border-width;
-$hr-opacity:                  .25 !default;
 
 $legend-margin-bottom:        .5rem !default;
 $legend-font-size:            1.5rem !default;
@@ -726,8 +714,8 @@ $table-variants: (
   "info":       shift-color($info, $table-bg-scale),
   "warning":    shift-color($warning, $table-bg-scale),
   "danger":     shift-color($danger, $table-bg-scale),
-  "light":      $light,
-  "dark":       $dark,
+  "light":      shift-color($light, $table-bg-scale),
+  "dark":       shift-color($dark, $table-bg-scale),
 );
 // scss-docs-end table-loop
 
@@ -749,7 +737,7 @@ $input-btn-focus-color:         rgba($component-active-bg, $input-btn-focus-colo
 $input-btn-focus-blur:          0;
 $input-btn-focus-box-shadow:    null;
 
-$input-btn-padding-y-sm:      .4rem;
+$input-btn-padding-y-sm:      .165rem;
 $input-btn-padding-x-sm:      .5rem;
 $input-btn-font-size-sm:      $font-size-sm;
 
@@ -815,7 +803,7 @@ $btn-active-border-tint-amount:   10% !default;
 // Forms
 
 // scss-docs-start form-text-variables
-$form-text-margin-top:                  .25rem;
+$form-text-margin-top:                  $spacer * 0.25;
 $form-text-font-size:                   $small-font-size;
 $form-text-font-style:                  null !default;
 $form-text-font-weight:                 null !default;
@@ -823,7 +811,7 @@ $form-text-color:                       $body-color;
 // scss-docs-end form-text-variables
 
 // scss-docs-start form-label-variables
-$form-label-margin-bottom:              .5rem ;
+$form-label-margin-bottom:              $spacer * 0.5;
 $form-label-font-size:                  null !default;
 $form-label-font-style:                 null !default;
 $form-label-font-weight:                null !default;
@@ -871,9 +859,9 @@ $input-plaintext-color:                 $body-color;
 
 $input-height-border:                   $input-border-width * 2;
 
-$input-height-inner:                    add($input-line-height * 1em, $input-padding-y * 2) !default;
-$input-height-inner-half:               add($input-line-height * .5em, $input-padding-y) !default;
-$input-height-inner-quarter:            add($input-line-height * .25em, $input-padding-y * .5) !default;
+$input-height-inner:                    add($input-line-height * 1em, $input-padding-y * 2);
+$input-height-inner-half:               add($input-line-height * .5em, $input-padding-y);
+$input-height-inner-quarter:            add($input-line-height * .25em, $input-padding-y * .5);
 
 $input-height:                          add($input-line-height * 1em, add($input-padding-y * 2, $input-height-border, false));
 $input-height-sm:                       add($input-line-height * 1em, add($input-padding-y-sm * 2, $input-height-border, false));
@@ -881,7 +869,7 @@ $input-height-lg:                       add($input-line-height * 1em, add($input
 
 $input-transition:                      border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
 
-$form-color-width:                      3rem !default;
+$form-color-width:                      3rem;
 // scss-docs-end form-input-variables
 
 // scss-docs-start form-check-variables
@@ -1166,8 +1154,8 @@ $dropdown-border-color:             transparent;
 $dropdown-border-radius:            $border-radius;
 $dropdown-border-width:             0px;
 $dropdown-inner-border-radius:      subtract($dropdown-border-radius, $dropdown-border-width);
-$dropdown-divider-bg:               $dropdown-border-color !default;
-$dropdown-divider-margin-y:         $spacer * .5 !default;
+$dropdown-divider-bg:               $dropdown-border-color;
+$dropdown-divider-margin-y:         $spacer * .5;
 $dropdown-box-shadow:               $box-shadow;
 
 $dropdown-link-color:               $dropdown-color;
@@ -1402,11 +1390,11 @@ $toast-header-border-color:         rgba($black, .05) !default;
 // Badges
 
 // scss-docs-start badge-variables
-$badge-font-size:                   .85em;
+$badge-font-size:                   $font-size-sm;
 $badge-font-weight:                 $font-weight-normal;
-$badge-color:                       $white;
-$badge-padding-y:                   .5em;
-$badge-padding-x:                   .75em;
+$badge-color:                       $body-color;
+$badge-padding-y:                   $input-btn-padding-y-sm * 2.75;
+$badge-padding-x:                   $input-btn-padding-x-sm * 1.2;
 $badge-border-radius:               $border-radius;
 // scss-docs-end badge-variables
 

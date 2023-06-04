@@ -48,16 +48,26 @@ const Navbar = ({ children }: NavbarProps) => {
 			const { offsetLeft, offsetWidth } = activeItem;
 			const containerOffsetLeft = parentRef.current?.offsetLeft;
 			const realOffset = offsetLeft - (containerOffsetLeft || 0);
-			if (containerOffsetLeft && offsetLeft && realOffset) {
+			if (realOffset) {
 				setIndicatorPos({
 					left: realOffset,
 					width: offsetWidth,
 				});
 			}
 		}
-		{
-			// Set when scroll buttons show based on the scroll position, if any
-		}
+		// Update the indicator whenever a resize happens
+		const resizeObserver = new ResizeObserver(() => {
+			handlePosChange();
+		});
+		resizeObserver.observe(parentRef.current as HTMLElement);
+
+		return () => {
+			resizeObserver.disconnect();
+		};
+	}, [activeItem, parentRef]);
+
+	useEffect(() => {
+		// Show some scroll arrows/buttons when the navbar overflows
 		function handleScrollButtonVisibility() {
 			const container = parentRef.current;
 			if (container) {
@@ -67,11 +77,6 @@ const Navbar = ({ children }: NavbarProps) => {
 				);
 			}
 		}
-		const resizeObserver = new ResizeObserver(() => {
-			handlePosChange();
-			handleScrollButtonVisibility();
-		});
-		resizeObserver.observe(parentRef.current as HTMLElement);
 
 		const container = parentRef.current;
 		if (container) {
@@ -79,12 +84,12 @@ const Navbar = ({ children }: NavbarProps) => {
 		}
 
 		return () => {
-			resizeObserver.disconnect();
 			if (container) {
 				container.removeEventListener("scroll", handleScrollButtonVisibility);
 			}
 		};
-	}, [activeItem, parentRef]);
+	}, [parentRef]);
+
 	return (
 		<div className="rounded position-relative user-select-none">
 			<div
@@ -101,12 +106,7 @@ const Navbar = ({ children }: NavbarProps) => {
 								? child.props.otherMatchingPaths.map((p) => p)
 								: [];
 							const pathname = loc.pathname;
-							if (to === pathname) {
-								return React.cloneElement<NavItemProps>(child, {
-									active: true,
-									setActiveItem,
-								});
-							} else if (pathname.startsWith(to)) {
+							if (pathname.startsWith(to)) {
 								return React.cloneElement<NavItemProps>(child, {
 									active: true,
 									setActiveItem,
@@ -153,7 +153,6 @@ const Navbar = ({ children }: NavbarProps) => {
 
 const Item = ({ to, children, setActiveItem, active }: NavItemProps) => {
 	const linkRef = useRef<HTMLAnchorElement>(null);
-	// If a link is active, update its parent's active state
 	useEffect(() => {
 		if (linkRef.current && active && setActiveItem) {
 			setActiveItem(linkRef.current);

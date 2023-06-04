@@ -5,6 +5,7 @@ import React from "react";
 import { Badge } from "react-bootstrap";
 import { Classes, GPTString, GetGPTString, GetGamePTConfig } from "tachi-common";
 import { GamePT } from "types/react";
+import { Placement } from "react-bootstrap/esm/types";
 
 export default function ClassBadge<GPT extends GPTString = GPTString>({
 	game,
@@ -13,11 +14,14 @@ export default function ClassBadge<GPT extends GPTString = GPTString>({
 	classValue,
 	className = "",
 	showSetOnHover = true,
+	tooltipPlacement = "top",
 }: {
 	classSet: Classes[GPT];
 	classValue: string;
 	className?: string;
 	showSetOnHover?: boolean;
+	/**Refer to OverlayTrigger from react-bootstrap v2 for valid values*/
+	tooltipPlacement?: Placement;
 } & GamePT) {
 	const classStyle =
 		// @ts-expect-error hepl i'm trapped in a type factory
@@ -59,14 +63,23 @@ export default function ClassBadge<GPT extends GPTString = GPTString>({
 
 	if (data.hoverText && showSetOnHover) {
 		return (
-			<QuickTooltip tooltipContent={`${UppercaseFirst(classSet)}: ${data.hoverText}`}>
+			<QuickTooltip
+				placement={tooltipPlacement}
+				tooltipContent={`${UppercaseFirst(classSet)}: ${data.hoverText}`}
+			>
 				{badgeComponent}
 			</QuickTooltip>
 		);
 	} else if (data.hoverText) {
-		return <QuickTooltip tooltipContent={data.hoverText}>{badgeComponent}</QuickTooltip>;
+		return (
+			<QuickTooltip placement={tooltipPlacement} tooltipContent={data.hoverText}>
+				{badgeComponent}
+			</QuickTooltip>
+		);
 	} else if (showSetOnHover) {
-		<QuickTooltip tooltipContent={UppercaseFirst(classSet)}>{badgeComponent}</QuickTooltip>;
+		<QuickTooltip placement={tooltipPlacement} tooltipContent={UppercaseFirst(classSet)}>
+			{badgeComponent}
+		</QuickTooltip>;
 	}
 
 	return badgeComponent;

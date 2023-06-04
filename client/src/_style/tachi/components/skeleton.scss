@@ -1,0 +1,30 @@
+.skeleton {
+    background-color: var(--bs-secondary);
+    animation: pulse 1.5s ease-out alternate infinite;
+    &-pfp {
+        min-height: 128px;
+        min-width: 128px;
+        border-radius: var(--bs-border-radius);
+    }
+    &-pfp-small {
+        min-height: 32px;
+        min-width: 32px;
+        border-radius: var(--bs-border-radius);
+    }
+    &-text {
+        height: var(--bs-body-font-size);
+        border-radius: var(--bs-border-radius-sm)
+    }
+    &-title {
+        @extend .skeleton-text;
+        width: 672px;
+    }
+    &-time {
+        @extend .skeleton-text;
+        width: 82px;
+    }
+    &-date {
+        @extend .skeleton-text;
+        width: 144px;
+    }
+}

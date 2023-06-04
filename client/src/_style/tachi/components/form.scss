@@ -3,16 +3,18 @@
 	.form-#{$colour} {
 		background-color: var(--bs-#{$colour});
 		border-color: var(--bs-#{$colour});
+		border-left-color: transparent;
 		&:focus {
 			background-color: var(--bs-#{$colour});
 		}
 	}
 }
 
-@include form(gray-800);
+@include form(translucent);
 
 .form-control { // This looks bad but file forms are very jank...
 	&::file-selector-button {
 		border-color: $input-group-addon-border-color;
+		border-right-color: transparent;
 	}
 }

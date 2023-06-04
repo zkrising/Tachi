@@ -5,6 +5,7 @@ $tachi-background:          rgb(19, 19, 19);
 $tachi-lightground:         rgb(43, 41, 43);
 $tachi-overground:          rgb(82, 78, 82);
 $tachi-hover:               rgba(255, 255, 255, 0.02);
+$translucent:          rgba(255, 255, 255, 0.04);
 
 $tachi-primary-hover:       adjust-color($tachi-primary, $saturation: -10%, $lightness: 20%);
 $tachi-secondary-hover:     adjust-color($tachi-secondary, $saturation: -10%, $lightness: 20%);

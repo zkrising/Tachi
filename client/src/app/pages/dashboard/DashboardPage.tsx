@@ -19,7 +19,7 @@ import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import { ColourConfig, TachiConfig } from "lib/config";
-import React, { useContext, useMemo } from "react";
+import React from "react";
 import Alert from "react-bootstrap/Alert";
 import { Link, Route, Switch } from "react-router-dom";
 import { COLOUR_SET, GetGameConfig, UserDocument } from "tachi-common";
@@ -30,11 +30,11 @@ import { GameStatContainer } from "./users/UserGamesPage";
 import SupportBanner from "./misc/SupportBanner";
 
 export function DashboardPage() {
-	const { settings } = useContext(UserSettingsContext);
+	const { settings } = React.useContext(UserSettingsContext);
 
 	useSetSubheader("Home", [settings]);
 
-	const { user } = useContext(UserContext);
+	const { user } = React.useContext(UserContext);
 
 	if (!user) {
 		return <DashboardNotLoggedIn />;
@@ -44,7 +44,7 @@ export function DashboardPage() {
 }
 
 function DashboardLoggedIn({ user }: { user: UserDocument }) {
-	const splash = useMemo(() => RFA(heySplashes), [user]);
+	const splash = React.useMemo(() => RFA(heySplashes), [user]);
 
 	return (
 		<>
@@ -86,7 +86,7 @@ function RecentInfo({ user }: { user: UserDocument }) {
 	}
 
 	if (!data) {
-		return <Loading />;
+		return <></>;
 	}
 
 	const folderInfoMap = new Map();

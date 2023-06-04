@@ -50,10 +50,6 @@ export function Header() {
 		console.error(error);
 	}
 
-	if (isLoading) {
-		return <Loading />;
-	}
-
 	return (
 		<>
 			{

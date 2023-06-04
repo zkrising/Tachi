@@ -61,9 +61,7 @@ $colors: (
   "teal":       $teal,
   "cyan":       $cyan,
   "black":      $black,
-  "white":      $white,
-  "gray":       $gray-600,
-  "gray-dark":  $gray-800
+  "white":      $white
 );
 // scss-docs-end colors-map
 
@@ -72,8 +70,8 @@ $colors: (
 $min-contrast-ratio:   4.5 !default;
 
 // Customize the light and dark text colors for use in our color contrast function.
-$color-contrast-dark:      $black !default;
-$color-contrast-light:     $white !default;
+$color-contrast-dark:      $tachi-background;
+$color-contrast-light:     $body-color;
 
 // fusv-disable
 $blue-100: tint-color($blue, 80%) !default;
@@ -299,7 +297,7 @@ $cyans: (
 
 // scss-docs-start theme-color-variables
 $primary:       $tachi-primary;
-$secondary:     $tachi-secondary;
+$secondary:     $gray-700;
 $success:       $green !default;
 $info:          $tachi-info;
 $warning:       $yellow !default;
@@ -318,6 +316,7 @@ $theme-colors: (
   "danger":     $danger,
   "light":      $light,
   "dark":       $dark,
+  "translucent":$translucent,
 );
 // scss-docs-end theme-colors-map
 
@@ -618,11 +617,11 @@ $headings-color:              null !default;
 
 // scss-docs-start display-headings
 $display-font-sizes: (
-  1: 8rem,
-  2: 6rem,
+  1: 6rem,
+  2: 4rem,
   3: 3rem,
-  4: 2.25rem,
-  5: 1.75rem,
+  4: 2.5rem,
+  5: 2rem,
   6: 1.5rem
 );
 
@@ -649,15 +648,15 @@ $blockquote-font-size:        $font-size-base * 1.25;
 $blockquote-footer-color:     $gray-600;
 $blockquote-footer-font-size: $small-font-size;
 
-$legend-margin-bottom:        .5rem !default;
-$legend-font-size:            1.5rem !default;
+$legend-margin-bottom:        .5rem;
+$legend-font-size:            1.5rem;
 $legend-font-weight:          null !default;
 
-$dt-font-weight:              $font-weight-bold !default;
+$dt-font-weight:              $font-weight-bold;
 
-$list-inline-padding:         .5rem !default;
+$list-inline-padding:         .5rem;
 
-$mark-padding:                .1875em !default;
+$mark-padding:                .1875em;
 $mark-bg:                     $yellow-100 !default;
 // scss-docs-end type-variables
 
@@ -929,7 +928,7 @@ $input-group-addon-padding-y:           $input-padding-y;
 $input-group-addon-padding-x:           $input-padding-x;
 $input-group-addon-font-weight:         $input-font-weight;
 $input-group-addon-color:               $input-color;
-$input-group-addon-bg:                  $gray-700;
+$input-group-addon-bg:                  var(--bs-gray-700);
 $input-group-addon-border-color:        $input-group-addon-bg;
 // scss-docs-end input-group-variables
 
@@ -1000,7 +999,7 @@ $form-range-thumb-transition:              background-color .15s ease-in-out, bo
 
 // scss-docs-start form-file-variables
 $form-file-button-color:          $input-color;
-$form-file-button-bg:             transparent;
+$form-file-button-bg:             $gray-700;
 $form-file-button-hover-bg:       shade-color($form-file-button-bg, 5%);
 // scss-docs-end form-file-variables
 

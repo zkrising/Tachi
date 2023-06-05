@@ -6,3 +6,7 @@
 		opacity: 1;
 	}
 }
+
+.animation-pulse {
+	animation: pulse 1.5s ease-out alternate infinite;
+}

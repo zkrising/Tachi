@@ -39,24 +39,24 @@
         &:hover,    
         &.show {
             border-color: transparent;
-            background-color: $tachi-hover; 
+            background-color: $translucent; 
             color: currentColor !important;
         }
         // I want this chained with the specifiers above but it breaks in Firefox if I do that
         &:has(> .show) {
             border-color: transparent;
-            background-color: $tachi-hover; 
+            background-color: $translucent; 
             color: currentColor !important;
         }
 
         &:active {
-            background-color: opacify($color: $tachi-hover, $amount: 0.01) !important;
+            background-color: opacify($color: $translucent, $amount: 0.01) !important;
             border-color: transparent !important;
         }   
         &:focus-visible{
             box-shadow: none;
             color: currentColor !important;
-            border-color: var(--t-primary);
+            border-color: var($tachi-primary);
         }
     }
 }

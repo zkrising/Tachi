@@ -20,31 +20,27 @@ export default function ProfilePicture({
 	toGPT?: string;
 	isSupporter?: boolean;
 }) {
+	const defaultClass = `pfp ${className}`;
+
 	if (typeof user === "string") {
 		return (
-			<Link to={`/u/${user}/${toGPT}`} className={className}>
+			<Link to={`/u/${user}/${toGPT}`} className={defaultClass}>
 				<img
 					src={src ? src : ToAPIURL(`/users/${user}/pfp`)}
 					alt={`${user}'s Profile Picture`}
-					className="rounded pfp"
+					className="pfp fs-0"
 				/>
 			</Link>
 		);
 	}
 
 	return (
-		<Link to={`/u/${user.username}/${toGPT}`} className={`${className ? `${className}` : ""}`}>
-			{isSupporter ? (
-				<div className="pfp-supporter d-flex align-items-end justify-content-end user-select-none">
-					<div className="bg-warning text-dark ps-1 pfp-badge">
-						<small>Supporter!</small>
-					</div>
-				</div>
-			) : undefined}
+		<Link to={`/u/${user.username}/${toGPT}`} className={defaultClass}>
+			{isSupporter ? <SupporterFrame /> : undefined}
 			<img
 				src={src ? src : ToAPIURL(`/users/${user.id}/pfp`)}
 				alt={`${user.username}'s Profile Picture`}
-				className="rounded pfp"
+				className="pfp fs-0"
 			/>
 		</Link>
 	);
@@ -64,6 +60,8 @@ export function ProfilePictureSmall({
 	 */
 	toGPT?: string;
 }) {
+	const defaultClass = `pfp-small ${className}`;
+
 	if (toGPT) {
 		// eslint-disable-next-line no-param-reassign
 		toGPT = `games/${toGPT}`;
@@ -71,23 +69,33 @@ export function ProfilePictureSmall({
 
 	if (typeof user === "string") {
 		return (
-			<Link to={`/u/${user}/${toGPT}`} className={className}>
+			<Link to={`/u/${user}/${toGPT}`} className={defaultClass}>
 				<img
 					src={src ? src : ToAPIURL(`/users/${user}/pfp`)}
 					alt={`${user}'s Profile Picture`}
-					className="rounded pfp-small"
+					className="pfp-small fs-0"
 				/>
 			</Link>
 		);
 	}
 
 	return (
-		<Link to={`/u/${user.username}/${toGPT}`} className={className}>
+		<Link to={`/u/${user.username}/${toGPT}`} className={defaultClass}>
 			<img
 				src={src ? src : ToAPIURL(`/users/${user.id}/pfp`)}
 				alt={`${user.username}'s Profile Picture`}
-				className="rounded pfp-small"
+				className="pfp-small fs-0"
 			/>
 		</Link>
+	);
+}
+
+function SupporterFrame() {
+	return (
+		<div className="pfp-supporter d-flex align-items-end justify-content-end user-select-none">
+			<div className="bg-warning text-dark ps-1 pfp-badge">
+				<small>Supporter!</small>
+			</div>
+		</div>
 	);
 }

@@ -101,7 +101,7 @@ export function UGPTContextProvider({ children }: JustChildren) {
 	}, [user, game, playtype, viewingUserID]);
 
 	if (viewingLoading || loggedLoading) {
-		return <Loading />;
+		return <>{children}</>;
 	}
 
 	return (

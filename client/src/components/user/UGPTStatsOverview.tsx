@@ -73,7 +73,13 @@ export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 	);
 }
 
-export function UGPTClassBadge({ ugs, className }: { ugs: UserGameStats; className?: string }) {
+export function UGPTClassBadge({
+	ugs,
+	className = "",
+}: {
+	ugs: UserGameStats;
+	className?: string;
+}) {
 	const gptConfig = GetGamePTConfig(ugs.game, ugs.playtype);
 
 	return (
@@ -90,7 +96,7 @@ export function UGPTClassBadge({ ugs, className }: { ugs: UserGameStats; classNa
 							playtype={ugs.playtype}
 							classSet={k}
 							classValue={ugs.classes[k]!}
-							className={className ?? `${className}`}
+							className={className}
 						/>
 					</>
 				))}

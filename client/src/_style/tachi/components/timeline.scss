@@ -24,7 +24,7 @@
 		left: -4px;
 		z-index: 2;
 		&.active {
-			animation: pulse 1.25s ease-in-out alternate infinite;
+			@extend .animation-pulse;
 			background-color: var(--bs-primary) !important;
 		}
 	}

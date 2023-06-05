@@ -724,7 +724,7 @@ function ActivityLayout({
 			<Col
 				md={4}
 				lg={2}
-				className={`text-end ${expandable ? "cursor-pointer" : ""}`}
+				className={`text-end py-4 ${expandable ? "cursor-pointer" : ""}`}
 				onClick={expandable ? handleClick : undefined}
 			>
 				{MillisToSince(time)}

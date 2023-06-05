@@ -1,42 +1,38 @@
 import { nanoid } from "nanoid";
 import React, { CSSProperties } from "react";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Popover from "react-bootstrap/Popover";
+import OverlayTrigger, { OverlayTriggerType } from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import { Placement } from "react-bootstrap/esm/types";
 
 export default function QuickTooltip({
 	children,
-	tooltipContent,
+	id = nanoid(),
 	className = "",
 	delay = 40,
 	placement = "auto",
 	trigger,
 	onToggle,
 	show,
+	flip,
+	tooltipContent,
 	tooltipStyle,
 }: {
 	children: JSX.Element;
-	tooltipContent: React.ReactChild | undefined;
+	id?: string;
 	className?: string;
+	/**Default: 40*/
 	delay?: number;
-	placement?:
-		| "auto-start"
-		| "auto"
-		| "auto-end"
-		| "top-start"
-		| "top"
-		| "top-end"
-		| "right-start"
-		| "right"
-		| "right-end"
-		| "bottom-end"
-		| "bottom"
-		| "bottom-start"
-		| "left-end"
-		| "left"
-		| "left-start";
-	trigger?: "hover" | "click" | "focus" | Array<"hover" | "click" | "focus">;
-	onToggle?: () => void;
+	/**Refer to OverlayTrigger from react-bootstrap v2 for valid values*/
+	placement?: Placement;
+	/**"hover" | "click" | "focus"*/
+	trigger?: OverlayTriggerType | OverlayTriggerType[];
+	/**A callback that fires when the tooltip is triggered after the set delay.*/
+	onToggle?: (nextShow: boolean) => void;
+	/**Manually trigger the tooltip. Directly controlling show bypasses the delay value.*/
 	show?: boolean;
+	flip?: boolean;
+	tooltipContent: React.ReactChild | undefined;
 	tooltipStyle?: CSSProperties;
 }) {
 	if (tooltipContent === undefined) {
@@ -50,8 +46,9 @@ export default function QuickTooltip({
 			trigger={trigger}
 			onToggle={onToggle}
 			show={show}
+			flip={flip}
 			overlay={
-				<Tooltip className={className} id={nanoid()} style={tooltipStyle}>
+				<Tooltip className={className} id={id} style={tooltipStyle}>
 					{tooltipContent}
 				</Tooltip>
 			}
@@ -61,45 +58,58 @@ export default function QuickTooltip({
 	);
 }
 
-// TODO
-/* export function QuickPopover({ 
+export function QuickPopover({
 	children,
-	tooltipContent,
-	className,
+	id = nanoid(),
+	className = "",
 	delay = 40,
-	placement,
+	placement = "auto",
+	trigger,
+	onToggle,
+	show,
+	flip,
+	popoverHeader,
+	popoverContent,
+	popoverStyle,
 }: {
 	children: JSX.Element;
-	tooltipContent: React.ReactChild | undefined;
+	id?: string;
 	className?: string;
+	/**Default: 40*/
 	delay?: number;
-	placement?: string;
+	/**Refer to OverlayTrigger from react-bootstrap v2 for valid values*/
+	placement?: Placement;
+	/**"hover" | "click" | "focus"*/
+	trigger?: OverlayTriggerType | OverlayTriggerType[];
+	/**A callback that fires when the popover is triggered after the set delay.*/
+	onToggle?: (nextShow: boolean) => void;
+	/**Manually trigger the popover. Directly controlling show bypasses the delay value.*/
+	show?: boolean;
+	flip?: boolean;
+	popoverHeader: string;
+	popoverContent: React.ReactChild | undefined;
+	popoverStyle?: CSSProperties;
 }) {
-	const [show, setShow] = useState(false);
-	const [mousedOver, setMousedOver] = useState(false);
-
-	if (tooltipContent === undefined) {
+	if (popoverContent === undefined) {
 		return children;
 	}
 
 	return (
 		<OverlayTrigger
-			placement={`${placement ? (`${placement}` as Placement) : ("top" as Placement)}`}
-			show={show || mousedOver}
+			placement={placement}
 			delay={delay}
+			trigger={trigger}
+			onToggle={onToggle}
+			show={show}
+			flip={flip}
 			overlay={
-				<Popover
-					className={`${className ?? ""}`}
-					id={nanoid()}
-					onMouseEnter={() => setMousedOver(true)}
-					onMouseLeave={() => setMousedOver(false)}
-				>
-					{popoverContent}
+				<Popover className={className} id={id} style={popoverStyle}>
+					{popoverHeader ? <Popover.Header>{popoverHeader}</Popover.Header> : <></>}
+					<Popover.Body>{popoverContent}</Popover.Body>
 				</Popover>
 			}
-			onToggle={(nextShow) => setShow(nextShow)}
 		>
 			{children}
 		</OverlayTrigger>
 	);
-} */
+}

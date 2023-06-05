@@ -5,7 +5,8 @@ import React from "react";
 export default function SplashImage() {
 	return (
 		<img
-			src={ToCDNURL("/logos/logo-wordmark.png")}
+			src={ToCDNURL("/logos/logo.png")}
+			className="animation-pulse"
 			alt={TachiConfig.name}
 			max-width="50%"
 			width="256px"

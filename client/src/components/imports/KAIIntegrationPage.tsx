@@ -145,7 +145,7 @@ function KAINeedsIntegrate({ kaiType, hash, clientID, redirectUri }: Omit<Props,
 					<InputGroup className="mb-4 mt-2">
 						<InputGroup.Text>https://</InputGroup.Text>
 						<Form.Control
-							className="form-gray-800"
+							className="form-translucent"
 							value={url}
 							onChange={(e) => setUrl(e.target.value)}
 							isInvalid={url.split(".").length >= 3 || url.includes("/")}

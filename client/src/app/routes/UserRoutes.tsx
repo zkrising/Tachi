@@ -210,10 +210,6 @@ function UserGamePlaytypeRoutes({ reqUser, game }: { reqUser: UserDocument; game
 		return <ErrorPage statusCode={error.statusCode} />;
 	}
 
-	if (!data) {
-		return <Loading />;
-	}
-
 	const stats = data;
 
 	return (

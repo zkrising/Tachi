@@ -4,7 +4,7 @@ import { heySplashes } from "util/splashes";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import { UserContext } from "context/UserContext";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import toast from "react-hot-toast";
@@ -22,7 +22,9 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 	return (
 		<>
 			{!isMd ? (
-				<ProfilePictureSmall user={user} className="btn btn-header btn-icon" />
+				<div className="btn btn-header btn-icon">
+					<ProfilePictureSmall user={user} />
+				</div>
 			) : (
 				<Dropdown id="user-dropdown" align="end">
 					<Dropdown.Toggle
@@ -45,8 +47,8 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 						</span>
 						<span>
 							<img
-								alt={"Pic"}
-								className="hidden pfp-small rounded"
+								alt={`${user.username}'s Profile Picture`}
+								className="pfp-small rounded fs-0"
 								src={ToAPIURL("/users/me/pfp")}
 							/>
 						</span>

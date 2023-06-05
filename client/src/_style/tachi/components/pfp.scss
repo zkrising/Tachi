@@ -1,12 +1,18 @@
 .pfp {
+    min-width: 128px;
+    min-height: 128px;
     width: 128px;
     height: 128px;
     object-fit: cover;
     user-select: none;
+    background-color: var(--bs-secondary);
+    border-radius: var(--bs-border-radius);
     &-small{
+        @extend .pfp;
+        min-width: 32px;
+        min-height: 32px;
         width: 32px;
         height: 32px;
-        object-fit: cover;
     }
     &-supporter{
         width: 128px;

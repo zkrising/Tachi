@@ -103,7 +103,7 @@ export default function ImportFileInfo({
 			<Form.Group controlId="formFile">
 				<Form.Label>Upload {name} File</Form.Label>
 				<Form.Control
-					className="form-gray-800 form-control"
+					className="form-translucent form-control"
 					accept={Array.isArray(acceptMime) ? acceptMime.join(",") : acceptMime}
 					type="file"
 					id="batch-manual"

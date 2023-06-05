@@ -1,5 +1,5 @@
 import { APIFetchV1 } from "util/api";
-import { FormatDate } from "util/time";
+import { FormatDate, FormatDateSmall } from "util/time";
 import { TruncateString, CopyTextToClipboard } from "util/misc";
 import Navbar from "components/nav/Navbar";
 import Divider from "components/util/Divider";
@@ -53,12 +53,12 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 								) : (
 									<>
 										<div>{reqUser.socialMedia[mode]!}</div>
-										<Muted>Click to copy</Muted>
+										<Muted small>Click to copy</Muted>
 									</>
 								)
 							) : mode === "discord" && reqUser.socialMedia.discord ? (
 								<>
-									<Muted>Click to copy</Muted>
+									<Muted small>Click to copy</Muted>
 								</>
 							) : undefined
 						}
@@ -114,9 +114,9 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 				xs="1"
 				lg="2"
 				id={`${reqUser.username}-info`}
-				className="pt-4 justify-content-between"
+				className="pt-2 pt-lg-4 justify-content-between"
 			>
-				<Col className="d-flex">
+				<Col className="d-flex p-0 px-lg-2">
 					<ProfilePicture user={reqUser} isSupporter={reqUser.isSupporter} />
 					<Col className="d-flex ms-4 flex-column flex-lg-column-reverse">
 						<div className="d-flex align-items-start align-items-md-center mb-2 mb-lg-0">
@@ -128,7 +128,11 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 							<StatusComponent reqUser={reqUser} />
 						</div>
 						<div className="flex-lg-grow-1">
-							<Muted>Joined on {FormatDate(reqUser.joinDate)}</Muted>
+							{isMd ? (
+								<Muted small>Joined on {FormatDate(reqUser.joinDate)}</Muted>
+							) : (
+								<Muted small>Joined on {FormatDateSmall(reqUser.joinDate)}</Muted>
+							)}
 						</div>
 					</Col>
 					{isMd && !isLg && hasSocialMediaLinks && (
@@ -139,7 +143,7 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 				</Col>
 				<Col
 					lg="5"
-					className="d-flex align-items-center flex-lg-column mt-1 mt-lg-0 align-items-lg-end justify-content-between"
+					className="d-flex align-items-center flex-lg-column p-0 px-lg-2 mt-1 mt-lg-0 align-items-lg-end justify-content-between"
 				>
 					{isLg && loggedInUser && reqUser.id !== loggedInUser.id && (
 						<FollowUserButton
@@ -179,7 +183,7 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 				</Col>
 
 				{!isMd && hasSocialMediaLinks && (
-					<Col>
+					<Col className="p-0 ms-n2">
 						<Collapse in={socialShow}>
 							<div>
 								<SocialMediaCluster />
@@ -198,7 +202,7 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 								size="sm"
 								variant="danger"
 								onClick={() => setAdminShow(true)}
-								className="text-end me-2 cursor-pointer"
+								className="me-n2 me-lg-0 cursor-pointer"
 							>
 								<small>Remove Supporter Rank?</small>
 							</Button>
@@ -217,7 +221,7 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 								size="sm"
 								variant="success"
 								onClick={() => setAdminShow(true)}
-								className="me-2 cursor-pointer"
+								className="me-n2 me-lg-0 cursor-pointer"
 							>
 								<small>Make Supporter?</small>
 							</Button>
@@ -296,7 +300,7 @@ function StatusComponent({ reqUser }: { reqUser: UserDocument }) {
 			{reqUser.status ? (
 				<span>{reqUser.status}</span>
 			) : (
-				<Muted>
+				<Muted small>
 					{isRequestedUser ? "You have" : `${reqUser.username} has`} no status...
 				</Muted>
 			)}
@@ -384,7 +388,7 @@ function ChangeStatusModal({
 					<InputGroup className="mb-2">
 						<Form.Control
 							size="lg"
-							className="form-gray-800"
+							className="form-translucent"
 							type="text"
 							placeholder={status ?? "I'm gaming..."}
 							value={innerStatus}

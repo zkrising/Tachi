@@ -14,7 +14,7 @@ interface NavItemProps {
 	setActiveItem?: (ref: HTMLElement) => void;
 }
 
-const Navbar = ({ children }: NavbarProps) => {
+function Navbar({ children }: NavbarProps): JSX.Element {
 	const [activeItem, setActiveItem] = useState<HTMLElement | Record<string, never>>({});
 	const parentRef = useRef<HTMLDivElement>(null);
 	const loc = useLocation();
@@ -44,6 +44,8 @@ const Navbar = ({ children }: NavbarProps) => {
 	}
 
 	useEffect(() => {
+		const container = parentRef.current;
+
 		function handlePosChange() {
 			const { offsetLeft, offsetWidth } = activeItem;
 			const containerOffsetLeft = parentRef.current?.offsetLeft;
@@ -58,18 +60,11 @@ const Navbar = ({ children }: NavbarProps) => {
 		// Update the indicator whenever a resize happens
 		const resizeObserver = new ResizeObserver(() => {
 			handlePosChange();
+			handleScrollButtonVisibility();
 		});
 		resizeObserver.observe(parentRef.current as HTMLElement);
 
-		return () => {
-			resizeObserver.disconnect();
-		};
-	}, [activeItem, parentRef]);
-
-	useEffect(() => {
-		// Show some scroll arrows/buttons when the navbar overflows
 		function handleScrollButtonVisibility() {
-			const container = parentRef.current;
 			if (container) {
 				setShowScrollLeft(container.scrollLeft > 0);
 				setShowScrollRight(
@@ -78,17 +73,17 @@ const Navbar = ({ children }: NavbarProps) => {
 			}
 		}
 
-		const container = parentRef.current;
 		if (container) {
 			container.addEventListener("scroll", handleScrollButtonVisibility);
 		}
 
 		return () => {
+			resizeObserver.disconnect();
 			if (container) {
 				container.removeEventListener("scroll", handleScrollButtonVisibility);
 			}
 		};
-	}, [parentRef]);
+	}, [activeItem, parentRef]);
 
 	return (
 		<div className="rounded position-relative user-select-none">
@@ -149,9 +144,9 @@ const Navbar = ({ children }: NavbarProps) => {
 			</div>
 		</div>
 	);
-};
+}
 
-const Item = ({ to, children, setActiveItem, active }: NavItemProps) => {
+function Item({ to, children, setActiveItem, active }: NavItemProps) {
 	const linkRef = useRef<HTMLAnchorElement>(null);
 	useEffect(() => {
 		if (linkRef.current && active && setActiveItem) {
@@ -161,8 +156,7 @@ const Item = ({ to, children, setActiveItem, active }: NavItemProps) => {
 
 	return (
 		<NavLink
-			className="gentle-link px-8 py-4"
-			key={to}
+			className="gentle-link px-8 mx-2 py-4"
 			to={to}
 			exact
 			ref={linkRef}
@@ -171,7 +165,7 @@ const Item = ({ to, children, setActiveItem, active }: NavItemProps) => {
 			{children}
 		</NavLink>
 	);
-};
+}
 
 Navbar.Item = Item;
 

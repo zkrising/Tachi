@@ -10,8 +10,8 @@ export default function UserHeaderContainer({
 }) {
 	return (
 		<Card className="mb-4">
-			<Card.Body className="d-flex flex-column">{children}</Card.Body>
-			<Card.Footer className="card-footer p-0">{footer}</Card.Footer>
+			<Card.Body>{children}</Card.Body>
+			<Card.Footer className="p-0">{footer}</Card.Footer>
 		</Card>
 	);
 }

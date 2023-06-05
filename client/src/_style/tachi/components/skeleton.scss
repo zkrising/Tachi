@@ -1,14 +1,18 @@
 .skeleton {
+    @extend .animation-pulse;
     background-color: var(--bs-secondary);
-    animation: pulse 1.5s ease-out alternate infinite;
     &-pfp {
         min-height: 128px;
         min-width: 128px;
+        max-height: 128px;
+        max-width: 128px;
         border-radius: var(--bs-border-radius);
     }
     &-pfp-small {
         min-height: 32px;
         min-width: 32px;
+        max-height: 32px;
+        max-width: 32px;
         border-radius: var(--bs-border-radius);
     }
     &-text {

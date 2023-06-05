@@ -245,7 +245,7 @@ export function CGNeedsIntegrate({
 					</span>
 				) : undefined}
 				<Form.Control
-					className="form-gray-800"
+					className="form-translucent"
 					onChange={formatCardID}
 					value={CardID}
 					maxLength={19}
@@ -259,7 +259,7 @@ export function CGNeedsIntegrate({
 			<InputGroup className="my-2">
 				<InputGroup.Text>PIN</InputGroup.Text>
 				<Form.Control
-					className="form-gray-800"
+					className="form-translucent"
 					onChange={(e) => setPin(e.target.value)}
 					value={pin}
 					type="password"

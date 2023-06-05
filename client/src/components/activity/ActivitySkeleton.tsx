@@ -19,22 +19,17 @@ const ActivitySkeleton = () => {
 			<Row className="align-items-center justify-content-between user-select-none mx-2 my-4 p-1">
 				<div className="timeline-dot skeleton align-self-center p-0" />
 				<Col md={8} lg={10} className="py-4 d-flex fw-light h-100 align-items-center">
-					{/*Mobile skeleton*/}
-					<div className="d-flex d-md-none w-100">
-						<div className="skeleton skeleton-pfp-small me-4" />
-						<div className="d-flex flex-column w-100">
-							<div className="skeleton skeleton-title mb-1 w-100" />
+					{/*Small screen skeleton*/}
+					<div className="d-flex align-items-center d-lg-none mb-1 w-100">
+						<div className="skeleton skeleton-pfp-small me-6" />
+						<div className="d-flex flex-column w-100 py-1">
+							<div className="skeleton skeleton-title mb-2 w-100" />
 							<div className="skeleton skeleton-title" style={{ width }} />
 						</div>
 					</div>
-					{/*Responsive width looks strange on the medium breakpoint we use a static width*/}
-					<div className="d-none d-md-flex d-lg-none align-items-center w-100">
-						<div className="skeleton skeleton-pfp-small me-4" />
-						<div className="skeleton skeleton-title skeleton-title d-none d-md-block" />
-					</div>
-					{/*Large medium skeleton*/}
-					<div className="d-none d-lg-flex align-items-center w-100">
-						<div className="skeleton skeleton-pfp-small me-4" />
+					{/*Large screen skeleton*/}
+					<div className="d-none d-lg-flex align-items-center py-1 w-100">
+						<div className="skeleton skeleton-pfp-small me-6" />
 						<div
 							className="skeleton skeleton-title skeleton-title d-none d-md-block"
 							style={{ width }}
@@ -43,7 +38,7 @@ const ActivitySkeleton = () => {
 				</Col>
 				{/*Timestamp skeleton*/}
 				<Col md={4} lg={2} className="d-flex flex-column align-items-end py-4">
-					<div className="skeleton skeleton-time rounded rounded-1 mb-1" />
+					<div className="skeleton skeleton-time rounded rounded-1 mb-2" />
 					<div className="skeleton skeleton-date rounded rounded-1" />
 				</Col>
 			</Row>

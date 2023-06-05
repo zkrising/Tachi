@@ -31,6 +31,7 @@ import useBreakpoint from "components/util/useBreakpoint";
 import ProfilePicture from "./ProfilePicture";
 import { TidyRankingData } from "./UGPTRankingData";
 import { UGPTClassBadge, UGPTPrimaryRating, UGPTOtherRatings } from "./UGPTStatsOverview";
+import Skeleton from "./UserSkeleton";
 
 export function UGPTHeaderBody({
 	reqUser,
@@ -41,11 +42,11 @@ export function UGPTHeaderBody({
 	reqUser: UserDocument;
 	game: Game;
 	playtype: Playtype;
-	stats: UGPTStatsReturn;
+	stats?: UGPTStatsReturn;
 }) {
 	const { settings, setSettings } = useLUGPTSettings();
 	const { settings: userSettings } = useContext(UserSettingsContext);
-	const ugs: UserGameStats = stats.gameStats;
+	const ugs: UserGameStats | undefined = stats ? stats.gameStats : undefined;
 
 	//const gptConfig = GetGamePTConfig(ugs.game, ugs.playtype);
 	//const ratings = Object.entries(ugs.ratings) as [ProfileRatingAlgorithms[GPTString], number][];
@@ -56,10 +57,6 @@ export function UGPTHeaderBody({
 
 	if (error) {
 		return <ApiError error={error} />;
-	}
-
-	if (!MAX_RIVALS) {
-		return <Loading />;
 	}
 
 	return (
@@ -82,38 +79,45 @@ export function UGPTHeaderBody({
 								Profile
 							</h3>
 						</div>
-						<h3 className="fw-light mb-0">
-							<TidyRankingData
-								rankingData={stats.rankingData}
-								game={game}
-								playtype={playtype}
-								userID={reqUser.id}
-							/>
-						</h3>
-						<small className="fw-light mb-lg-1 flex-grow-1 flex-lg-grow-0">
-							{stats.totalScores} {stats.totalScores === 1 ? "Score" : "Scores"}
-						</small>
-						<div className="flex-lg-grow-1 fw-light">
-							<QuickTooltip // Last Played / First Played
-								placement="auto"
-								tooltipContent={`First Played
+						{stats ? (
+							<>
+								<h3 className="fw-light mb-0">
+									<TidyRankingData
+										rankingData={stats.rankingData}
+										game={game}
+										playtype={playtype}
+										userID={reqUser.id}
+									/>
+								</h3>
+								<small className="fw-light mb-lg-1 flex-grow-1 flex-lg-grow-0">
+									{stats.totalScores}{" "}
+									{stats.totalScores === 1 ? "Score" : "Scores"}
+								</small>
+								<div className="flex-lg-grow-1 fw-light">
+									<QuickTooltip // Last Played / First Played
+										placement="auto"
+										tooltipContent={`First Played
 							${
 								stats.firstScore === null || stats.firstScore.timeAchieved === null
 									? "Unknown."
 									: MillisToSince(stats.firstScore.timeAchieved)
 							}`}
-							>
-								{stats.mostRecentScore === null ||
-								stats.mostRecentScore.timeAchieved === null ? (
-									<></>
-								) : (
-									<small className="text-muted">
-										Last Played{" "}
-										{MillisToSince(stats.mostRecentScore.timeAchieved)}
-									</small>
-								)}
-							</QuickTooltip>
-						</div>
+									>
+										{stats.mostRecentScore === null ||
+										stats.mostRecentScore.timeAchieved === null ? (
+											<></>
+										) : (
+											<small className="text-muted">
+												Last Played{" "}
+												{MillisToSince(stats.mostRecentScore.timeAchieved)}
+											</small>
+										)}
+									</QuickTooltip>
+								</div>
+							</>
+						) : (
+							<Skeleton.Info />
+						)}
 					</div>
 				</Col>
 				<Col lg={"auto"} className="d-lg-flex p-0 px-lg-2 mt-n2" id="rating-info">
@@ -121,26 +125,34 @@ export function UGPTHeaderBody({
 						lg={2}
 						className="justify-content-between w-100 ms-0 mt-2 mt-lg-0 flex-lg-nowrap justify-content-lg-end"
 					>
-						<Col
-							xs={5}
-							lg="auto"
-							className="me-2 me-lg-4 mb-lg-1 p-0 text-lg-end align-self-lg-end justify-content-start"
-						>
-							<UGPTClassBadge className="me-2 mt-2 mb-lg-0" ugs={ugs} />
-						</Col>
-						<Col
-							xs="auto"
-							className="d-flex flex-column justify-content-end align-items-end ms-auto p-0 mt-lg-0 mb-lg-n2"
-						>
-							<UGPTOtherRatings
-								className="fs-3 fs-lg-2 text-nowrap enable-rfs"
-								ugs={ugs}
-							/>
-							<UGPTPrimaryRating
-								className="display-3 text-nowrap fw-normal enable-rfs"
-								ugs={ugs}
-							/>
-						</Col>
+						{ugs ? (
+							<>
+								<Col
+									xs={5}
+									lg="auto"
+									className="d-flex me-2 me-lg-4 mb-lg-1 p-0 text-lg-end align-self-lg-end justify-content-start justify-content-lg-end align-items-start align-items-lg-end"
+								>
+									<UGPTClassBadge className="me-2 mt-2 mb-lg-0" ugs={ugs} />
+								</Col>
+								<Col
+									xs="auto"
+									className="d-flex flex-column justify-content-end align-items-end ms-auto p-0 mt-lg-0 mb-lg-n2"
+								>
+									<>
+										<UGPTOtherRatings
+											className="fs-3 fs-lg-2 text-nowrap enable-rfs"
+											ugs={ugs}
+										/>
+										<UGPTPrimaryRating
+											className="display-3 text-nowrap fw-normal enable-rfs"
+											ugs={ugs}
+										/>
+									</>
+								</Col>
+							</>
+						) : (
+							<Skeleton.Rating />
+						)}
 					</Row>
 				</Col>
 				{/* allow logged in users to follow and rival other players */}
@@ -150,7 +162,7 @@ export function UGPTHeaderBody({
 							isLg ? "position-absolute" : ""
 						} p-0 pe-lg-8`}
 					>
-						{settings && (
+						{settings && MAX_RIVALS && (
 							<>
 								{/* has the logged in user played this game? */}
 								{/* otherwise, they can't rival. */}
@@ -308,55 +320,59 @@ export function UGPTBottomNav({
 	game: Game;
 	playtype: Playtype;
 }) {
-	const navItems = [
-		<Navbar.Item key="overview" to={`${baseUrl}`}>
-			Overview
-		</Navbar.Item>,
-		<Navbar.Item key="scores" to={`${baseUrl}/scores`}>
-			Scores
-		</Navbar.Item>,
-		<Navbar.Item key="folders" to={`${baseUrl}/folders`}>
-			Folders
-		</Navbar.Item>,
-		<Navbar.Item key="sessions" to={`${baseUrl}/sessions`}>
-			Sessions
-		</Navbar.Item>,
-	];
-
 	const utilsName = GetGPTUtilsName(game, playtype, isRequestedUser);
 
-	if (utilsName) {
-		navItems.push(
-			<Navbar.Item key="targets" to={`${baseUrl}/utils`}>
-				{utilsName}
-			</Navbar.Item>
-		);
-	}
+	const utilsItem = utilsName ? (
+		<Navbar.Item to={`${baseUrl}/utils`}>{utilsName}</Navbar.Item>
+	) : (
+		<></>
+	);
 
-	if (isRequestedUser) {
-		navItems.push(
+	const userItems = isRequestedUser ? (
+		<>
 			<Navbar.Item key="rivals" to={`${baseUrl}/rivals`}>
 				Rivals
-			</Navbar.Item>,
+			</Navbar.Item>
 			<Navbar.Item key="targets" to={`${baseUrl}/targets`}>
 				Goals & Quests
 			</Navbar.Item>
-		);
-	}
+		</>
+	) : (
+		<></>
+	);
 
-	navItems.push(
+	const leaderboard = (
 		<Navbar.Item key="leaderboard" to={`${baseUrl}/leaderboard`}>
 			Leaderboard
 		</Navbar.Item>
 	);
 
-	if (isRequestedUser) {
-		navItems.push(
-			<Navbar.Item key="settings" to={`${baseUrl}/settings`}>
-				Settings
-			</Navbar.Item>
-		);
-	}
+	const settings = isRequestedUser ? (
+		<Navbar.Item key="settings" to={`${baseUrl}/settings`}>
+			Settings
+		</Navbar.Item>
+	) : (
+		<></>
+	);
 
-	return <Navbar>{navItems}</Navbar>;
+	return (
+		<Navbar>
+			<Navbar.Item key="overview" to={`${baseUrl}`}>
+				Overview
+			</Navbar.Item>
+			<Navbar.Item key="scores" to={`${baseUrl}/scores`}>
+				Scores
+			</Navbar.Item>
+			<Navbar.Item key="folders" to={`${baseUrl}/folders`}>
+				Folders
+			</Navbar.Item>
+			<Navbar.Item key="sessions" to={`${baseUrl}/sessions`}>
+				Sessions
+			</Navbar.Item>
+			{utilsItem}
+			{userItems}
+			{leaderboard}
+			{settings}
+		</Navbar>
+	);
 }

@@ -1,56 +1,64 @@
+/* poppins-regular - latin_latin-ext */
 @font-face {
-    font-family: "Poppins";
-    font-style: normal;
-    font-display: swap;
-    font-weight: 400;
-    src: url(@fonts/Poppins-Regular.woff2) format("woff2");
+	font-display: fallback;
+	font-family: "Poppins";
+	font-style: normal;
+	font-weight: 400;
+	src: url("@fonts/poppins-v20-latin_latin-ext-regular.woff2") format("woff2");
 }
+/* poppins-500 - latin_latin-ext */
 @font-face {
-    font-family: "Poppins";
-    font-style: normal;
-    font-display: swap;
-    font-weight: 500;
-    src: url(@fonts/Poppins-Medium.woff2) format("woff2");
+	font-display: swap;
+	font-family: "Poppins";
+	font-style: normal;
+	font-weight: 500;
+	src: url("@fonts/poppins-v20-latin_latin-ext-500.woff2") format("woff2");
 }
+/* poppins-600 - latin_latin-ext */
 @font-face {
-    font-family: "Poppins";
-    font-style: normal;
-    font-display: swap;
-    font-weight: 600;
-    src: url(@fonts/Poppins-SemiBold.woff2) format("woff2");
+	font-display: swap;
+	font-family: "Poppins";
+	font-style: normal;
+	font-weight: 600;
+	src: url("@fonts/poppins-v20-latin_latin-ext-600.woff2") format("woff2");
 }
+/* poppins-700 - latin_latin-ext */
 @font-face {
-    font-family: "Poppins";
-    font-style: normal;
-    font-display: swap;
-    font-weight: 700;
-    src: url(@fonts/Poppins-Bold.woff2) format("woff2");
+	font-display: swap;
+	font-family: "Poppins";
+	font-style: normal;
+	font-weight: 700;
+	src: url("@fonts/poppins-v20-latin_latin-ext-700.woff2") format("woff2");
 }
+/* m-plus-2-regular - japanese */
 @font-face {
-    font-family: "M PLUS 2";
-    font-style: normal;
-    font-display: swap;
-    font-weight: 400;
-    src: url(@fonts/MPLUS2-Regular.woff2) format("woff2");
+	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+	font-family: "M PLUS 2";
+	font-style: normal;
+	font-weight: 400;
+	src: url("@fonts/m-plus-2-v6-japanese-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+/* m-plus-2-500 - japanese */
 @font-face {
-    font-family: "M PLUS 2";
-    font-style: normal;
-    font-display: swap;
-    font-weight: 500;
-    src: url(@fonts/MPLUS2-Medium.woff2) format("woff2");
+	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+	font-family: "M PLUS 2";
+	font-style: normal;
+	font-weight: 500;
+	src: url("@fonts/m-plus-2-v6-japanese-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+/* m-plus-2-600 - japanese */
 @font-face {
-    font-family: "M PLUS 2";
-    font-style: normal;
-    font-display: swap;
-    font-weight: 600;
-    src: url(@fonts/MPLUS2-SemiBold.woff2) format("woff2");
+	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+	font-family: "M PLUS 2";
+	font-style: normal;
+	font-weight: 600;
+	src: url("@fonts/m-plus-2-v6-japanese-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+/* m-plus-2-700 - japanese */
 @font-face {
-    font-family: "M PLUS 2";
-    font-style: normal;
-    font-display: swap;
-    font-weight: 700;
-    src: url(@fonts/MPLUS2-Bold.woff2) format("woff2");
+	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+	font-family: "M PLUS 2";
+	font-style: normal;
+	font-weight: 700;
+	src: url("@fonts/m-plus-2-v6-japanese-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }

@@ -32,7 +32,7 @@ export function Header() {
 		setShow(!show);
 	};
 
-	const { isLoading, error } = useQuery([user?.id, "game_stats"], async () => {
+	const { error } = useQuery([user?.id, "game_stats"], async () => {
 		if (!user) {
 			return null;
 		}
@@ -90,7 +90,7 @@ export function Header() {
 								<Offcanvas.Title onClick={toggleOffcanvas}>
 									{/* ! placeholder ! */}
 									<Link
-										className={"fw-bolder display-3 text-primary enable-rfs"}
+										className={"fw-bold display-3 text-primary enable-rfs"}
 										to={"/"}
 									>
 										Kamai<span className="text-body">tachi</span>

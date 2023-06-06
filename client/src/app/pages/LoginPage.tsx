@@ -11,11 +11,13 @@ import Form from "react-bootstrap/Form";
 import ReCAPTCHA from "react-google-recaptcha";
 import toast from "react-hot-toast";
 import { Link, useHistory } from "react-router-dom";
-import { UserDocument } from "tachi-common";
+import { UserDocument, UserSettingsDocument } from "tachi-common";
+import { UserSettingsContext } from "context/UserSettingsContext";
 
 export default function LoginPage() {
 	const [err, setErr] = useState("");
 	const { setUser } = useContext(UserContext);
+	const { setSettings } = useContext(UserSettingsContext);
 	const history = useHistory();
 
 	const recaptchaRef = useRef<any>(null);
@@ -70,9 +72,18 @@ export default function LoginPage() {
 
 			toast.success("Logged in!");
 
+			const settingsRJ = await APIFetchV1<UserSettingsDocument>(
+				`/users/${userRJ.body.id}/settings`
+			);
+
 			setTimeout(() => {
 				setUser(userRJ.body);
 				localStorage.setItem("isLoggedIn", "true");
+				if (settingsRJ.success) {
+					setSettings(settingsRJ.body);
+				} else {
+					setSettings(null);
+				}
 
 				HistorySafeGoBack(history);
 			}, 500);

@@ -1,10 +1,6 @@
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import "./_style/main.scss";
-// i want to replace these icons
-import "./_assets/flaticon/flaticon.css";
-import "./_assets/flaticon2/flaticon.css";
 import App from "app/App";
 
 const { PUBLIC_URL } = process.env;

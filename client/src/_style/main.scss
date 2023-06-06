@@ -1,9 +1,9 @@
 // Tachi Colours
 @import "./tachi/colors/common.scss";
 
-// Google Fonts // TODO: include fonts rather than sending requests to google all the time
-@import "https://fonts.googleapis.com/css?family=Zen+Kaku+Gothic+New:wght@300;400;500;700";
-@import "https://fonts.googleapis.com/css?family=Poppins:wght@300,400,500,600,700";
+// Fonts
+@import "./tachi/fonts";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
 
 // Bootstrap Functions
 @import "bootstrap-scss/functions";

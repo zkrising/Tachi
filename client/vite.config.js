@@ -35,6 +35,10 @@ export default defineConfig(() => {
 					find: new RegExp(`^((${toplevelDirs.join("|")}).*)$`, "u"),
 					replacement: path.resolve(__dirname, "src", "$1"),
 				},
+				{
+					find: /@fonts/u,
+					replacement: process.env.VITE_IS_LOCAL_DEV ? path.resolve(__dirname, "src", "_assets", "fonts") : "./static/fonts",
+				},
 			],
 		},
 		define: {

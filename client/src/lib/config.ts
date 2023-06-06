@@ -52,25 +52,25 @@ try {
 	</style>
 	<div class="box">
 		<h1>Failed to connect!</h1>
-		<div style="max-width: 720px">Welp. Looks like we're down. Sorry about that.</div>
+		<div>Welp. Looks like we're down. Sorry about that.</div>
 		<div>Chances are, this is just a temporary outage and will be fixed soon.</div>
 		<div style="font-size: 1.25rem; margin-top: 1rem; margin-bottom: 1rem;">
 			Please be patient, <a href="https://github.com/TNG-dev/Tachi">Tachi is maintained by a very small team.</a>
 		</div>
 		<div>An error message can be found in the console. (<code>Ctrl-Shift-I</code>)</div>
-		${
-			process.env.VITE_IS_LOCAL_DEV
-				? `
-			<div style="max-width: 720px; margin-top: 1.75em"><b>You're in local development mode.</b>
-			<p style="font-size: 1.75rem;">
-				Have you accepted the HTTPS certificates for <a href="${ToAPIURL(
-					"/status"
-				)}">the server?</a> If not, the site won't load.
-			</p>
-		`
-				: ""
-		}
-	</div>
+			${
+				process.env.VITE_IS_LOCAL_DEV
+					? `
+						<div style="max-width: 720px; margin-top: 1.75em"><b>You're in local development mode.</b>
+						<p style="font-size: 1.75rem;">
+							Have you accepted the HTTPS certificates for <a href="${ToAPIURL(
+								"/status"
+							)}">the server?</a> If not, the site won't load.
+						</p>
+						`
+					: ""
+			}
+		</div>
 	`);
 	document.close();
 	// alert(`Fatal Error: Site is (probably) down. Sorry. (${(err as Error).message})`);

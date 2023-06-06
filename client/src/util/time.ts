@@ -13,6 +13,10 @@ export function FormatDate(ms: number) {
 	return DateTime.fromMillis(ms).toLocaleString(DateTime.DATE_HUGE);
 }
 
+export function FormatDateSmall(ms: number) {
+	return DateTime.fromMillis(ms).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
+}
+
 export function FormatDuration(ms: number) {
 	return humaniseDuration(ms, {
 		units: ["d", "h", "m"],

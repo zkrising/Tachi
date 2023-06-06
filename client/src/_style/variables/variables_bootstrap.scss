@@ -552,7 +552,7 @@ $aspect-ratios: (
 
 // scss-docs-start font-variables
 // stylelint-disable value-keyword-case
-$font-family-sans-serif:      "Poppins", "Zen Kaku Gothic New", system-ui, -apple-system, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-sans-serif:      "Poppins", "M PLUS 2", system-ui, -apple-system, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 $font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 // stylelint-enable value-keyword-case
 $font-family-base:            var(--#{$prefix}font-sans-serif);
@@ -565,12 +565,12 @@ $font-size-base:              1rem;
 $font-size-sm:                $font-size-base * 0.85;
 $font-size-lg:                $font-size-base * 1.16;
 
-$font-weight-lighter:         lighter !default;
+$font-weight-lighter:         null;
 $font-weight-light:           400;
 $font-weight-normal:          500;
 $font-weight-semibold:        600 !default;
 $font-weight-bold:            700 !default;
-$font-weight-bolder:          bolder !default;
+$font-weight-bolder:          null;
 
 $font-weight-base:            $font-weight-normal;
 

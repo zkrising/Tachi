@@ -343,7 +343,7 @@ function TimelineMain({
 				<h1 className="display-4">Total Progress</h1>
 				<h1 className="display-4">
 					{data.scores.length}
-					<span className="text-muted" style={{ fontSize: "1.1rem" }}>
+					<span className="text-body-secondary" style={{ fontSize: "1.1rem" }}>
 						/{data.charts.length}
 					</span>
 				</h1>
@@ -358,7 +358,7 @@ function TimelineMain({
 				<h1 className="display-4">Total Progress</h1>
 				<h1 className="display-4">
 					{data.scores.length}
-					<span className="text-muted" style={{ fontSize: "1.1rem" }}>
+					<span className="text-body-secondary" style={{ fontSize: "1.1rem" }}>
 						/{data.charts.length}
 					</span>
 				</h1>
@@ -667,7 +667,7 @@ function TierlistInfoBucketValues({
 			<tr>
 				<DifficultyCell game={game} chart={tierlistInfo.chart} alwaysShort noTierlist />
 				<td className="text-start">
-					<Link className="gentle-link" to={CreateChartLink(data, game)}>
+					<Link to={CreateChartLink(data, game)}>
 						{tierlistInfo.chart.__related.song.title}
 					</Link>{" "}
 					<br />
@@ -708,9 +708,7 @@ function TierlistInfoBucketValues({
 					lg={3}
 					xl={2}
 				>
-					<Link className="gentle-link" to={CreateChartLink(data, game)}>
-						{data.__related.song.title}
-					</Link>{" "}
+					<Link to={CreateChartLink(data, game)}>{data.__related.song.title}</Link>{" "}
 					{FormatDifficultyShort(data, game)}
 					<Divider className="my-2" />
 					{tierlistInfo.value} ({tierlistInfo.text ?? "No Info"})

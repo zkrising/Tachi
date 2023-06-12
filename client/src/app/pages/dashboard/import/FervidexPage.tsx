@@ -58,7 +58,6 @@ export default function FervidexPage() {
 				Looking to import existing scores? Import from your network first. If that's not
 				possible, enable "Sync Existing Scores" in{" "}
 				<Link
-					className="gentle-link"
 					to={"/u/me/integrations/services/fervidex"}
 					style={{ color: "black", textDecoration: "underline" }}
 				>

@@ -167,7 +167,7 @@ export default function FilterDirectivesIndicator<D>({
 						</span>
 					)}
 					<span>
-						<small className="text-muted">
+						<small className="text-body-secondary">
 							You can <SmallText small="tap" large="click" /> anywhere off this dialog
 							to close it.
 						</small>

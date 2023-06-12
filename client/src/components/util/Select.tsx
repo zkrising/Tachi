@@ -44,7 +44,7 @@ export default function Select<T extends string | null>({
 				{allowNull && <option value="">{unselectedName}</option>}
 				{children}
 			</Form.Control>
-			{description && <Form.Text className="text-muted">{description}</Form.Text>}
+			{description && <Form.Text className="text-body-secondary">{description}</Form.Text>}
 		</Form.Group>
 	);
 }

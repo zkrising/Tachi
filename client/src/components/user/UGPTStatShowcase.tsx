@@ -380,10 +380,10 @@ export function StatDisplay({
 		return (
 			<Card
 				className="text-center stat-overview-card w-100"
-				header={<h5 className="text-muted mb-0">Chart</h5>}
+				header={<h5 className="text-body-secondary mb-0">Chart</h5>}
 			>
 				<>
-					<Link className="gentle-link" to={CreateChartLink(chart, game)}>
+					<Link to={CreateChartLink(chart, game)}>
 						<h4>{FormatChart(game, song, chart, true)}</h4>
 					</Link>
 					<h4>
@@ -411,11 +411,10 @@ export function StatDisplay({
 		return (
 			<Card
 				className="text-center stat-overview-card w-100"
-				header={<h5 className="text-muted mb-0">Folder</h5>}
+				header={<h5 className="text-body-secondary mb-0">Folder</h5>}
 			>
 				<>
 					<Link
-						className="gentle-link"
 						to={`/u/${reqUser.id}/games/${game}/${playtype}/folders/${folder.folderID}`}
 					>
 						<h4>{headerStr}</h4>
@@ -427,7 +426,7 @@ export function StatDisplay({
 					</h5>
 					<h4>
 						{result.value}
-						<small className="text-muted">
+						<small className="text-body-secondary">
 							{/* @ts-expect-error This property definitely exists.*/}
 							{/* */}/{result.outOf} ({ToPercent(result.value, result.outOf)})
 						</small>

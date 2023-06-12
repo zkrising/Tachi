@@ -9,9 +9,5 @@ export default function GentleLink({
 	to: string;
 	className?: string;
 } & JustChildren) {
-	return (
-		<Link to={to} className="gentle-link">
-			{children}
-		</Link>
-	);
+	return <Link to={to}>{children}</Link>;
 }

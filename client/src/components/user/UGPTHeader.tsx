@@ -107,7 +107,7 @@ export function UGPTHeaderBody({
 										stats.mostRecentScore.timeAchieved === null ? (
 											<></>
 										) : (
-											<small className="text-muted">
+											<small className="text-body-secondary">
 												Last Played{" "}
 												{MillisToSince(stats.mostRecentScore.timeAchieved)}
 											</small>

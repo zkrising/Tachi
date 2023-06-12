@@ -119,7 +119,7 @@ export default function RegisterPage() {
 			<SiteWordmark />
 			<div className="text-center mb-8">
 				<h1>Register</h1>
-				<span className="fw-bold text-muted">Have an account?</span>
+				<span className="fw-bold text-body-secondary">Have an account?</span>
 				<Link to="/login" className="fw-bold ms-1">
 					Sign in!
 				</Link>
@@ -228,7 +228,7 @@ function RegisterForm({
 					onChange={formik.handleChange}
 					className="mb-2"
 				/>
-				<Form.Text className="text-muted">
+				<Form.Text className="text-body-secondary">
 					This is used for things like password recovery, and authentication checks. If
 					this email is fake, and you forget your password,{" "}
 					<b>You will be permanently locked out of your account.</b>

@@ -56,7 +56,6 @@ export default function ChartInfoFormat({
 						<li key={e.folderID}>
 							{user && ugs ? (
 								<Link
-									className="gentle-link"
 									to={`/u/${user.username}/games/${game}/${playtype}/folders/${e.folderID}`}
 								>
 									{e.title}

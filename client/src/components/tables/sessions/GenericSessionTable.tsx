@@ -118,17 +118,18 @@ function Row({
 			<td style={{ minWidth: "140px" }}>
 				<Link
 					to={`/u/${reqUser.username}/games/${data.game}/${data.playtype}/sessions/${data.sessionID}`}
-					className="gentle-link"
 				>
 					{data.name}
 				</Link>
 				<br />
-				<small className="text-muted">{data.desc}</small>
+				<small className="text-body-secondary">{data.desc}</small>
 			</td>
 			<td>
 				{data.scoreIDs.length}
 				<br />
-				<small className="text-muted">PBs: {GetPBs(data.__related.scoreInfo).length}</small>
+				<small className="text-body-secondary">
+					PBs: {GetPBs(data.__related.scoreInfo).length}
+				</small>
 			</td>
 			<td>
 				{FormatGPTSessionRating(
@@ -142,7 +143,7 @@ function Row({
 			<td>
 				{MillisToSince(data.timeStarted)}
 				<br />
-				<small className="text-muted">{FormatTime(data.timeStarted)}</small>
+				<small className="text-body-secondary">{FormatTime(data.timeStarted)}</small>
 			</td>
 		</tr>
 	);

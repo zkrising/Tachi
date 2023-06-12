@@ -61,7 +61,7 @@ function GPTSearchResult({
 					</QuickTooltip>
 				</Link>
 			</strong>
-			<span className="font-size-sm fw-bold text-muted">{user.status}</span>
+			<span className="font-size-sm fw-bold text-body-secondary">{user.status}</span>
 		</div>
 	);
 }
@@ -115,7 +115,7 @@ function SearchResults({ results }: { results: SearchReturns }) {
 							) : (
 								<SearchResult key={u.id} link={`/u/${u.username}`} tabIndex={0}>
 									<strong>{u.username}</strong>
-									<span className="font-size-sm fw-bold text-muted">
+									<span className="font-size-sm fw-bold text-body-secondary">
 										{u.status}
 									</span>
 								</SearchResult>
@@ -144,7 +144,7 @@ function SearchResults({ results }: { results: SearchReturns }) {
 								tabIndex={0}
 							>
 								<strong>{FormatSongTitle(s.game, s)}</strong>
-								<span className="font-size-sm fw-bold text-muted">
+								<span className="font-size-sm fw-bold text-body-secondary">
 									{GetGameConfig(s.game).name}
 								</span>
 							</SearchResult>

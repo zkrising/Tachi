@@ -20,7 +20,6 @@ export default function UserCell({ user, game, playtype }: { user: UserDocument 
 				style={{
 					maskImage: "unset",
 				}}
-				className="gentle-link"
 				to={`/u/${user.username}/games/${game}/${playtype}`}
 			>
 				{user.username}

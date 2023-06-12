@@ -32,10 +32,7 @@ export function Footer() {
 			<div className="pb-4 d-flex flex-lg-column">
 				<div className="container d-flex flex-column flex-lg-row align-items-center justify-content-between">
 					<div className="mt-2 mb-md-2 order-1">
-						<ExternalLink
-							href="https://en.wikipedia.org/wiki/Dummy_(album)"
-							className="gentle-link"
-						>
+						<ExternalLink href="https://en.wikipedia.org/wiki/Dummy_(album)">
 							{serverVersion}
 						</ExternalLink>
 					</div>
@@ -43,27 +40,27 @@ export function Footer() {
 					<Nav className="order-0 order-lg-2 justify-content-center">
 						<Link
 							to="/support"
-							className="nav-link px-3 text-muted"
+							className="nav-link px-3 text-body-secondary"
 							onClick={() => window.scrollTo(0, 0)}
 						>
 							Support
 						</Link>
 						<ExternalLink
 							href="https://docs.bokutachi.xyz/wiki/rules"
-							className="nav-link px-3 text-muted"
+							className="nav-link px-3 text-body-secondary"
 						>
 							Rules
 						</ExternalLink>
 						<Link
 							to="/privacy"
-							className="nav-link px-3 text-muted"
+							className="nav-link px-3 text-body-secondary"
 							onClick={() => window.scrollTo(0, 0)}
 						>
 							GDPR
 						</Link>
 						<Link
 							to="/credits"
-							className="nav-link px-3 text-muted"
+							className="nav-link px-3 text-body-secondary"
 							onClick={() => window.scrollTo(0, 0)}
 						>
 							Credits
@@ -73,7 +70,7 @@ export function Footer() {
 								href={process.env.VITE_DISCORD}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="nav-link px-3 text-muted"
+								className="nav-link px-3 text-body-secondary"
 							>
 								Discord
 							</a>
@@ -82,7 +79,7 @@ export function Footer() {
 							href="https://github.com/tng-dev/tachi"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="nav-link px-3 text-muted"
+							className="nav-link px-3 text-body-secondary"
 						>
 							Source Code
 						</a>
@@ -90,7 +87,7 @@ export function Footer() {
 							href="https://docs.bokutachi.xyz/"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="nav-link px-3 text-muted"
+							className="nav-link px-3 text-body-secondary"
 						>
 							Developer Documentation
 						</a>

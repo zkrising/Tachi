@@ -32,7 +32,7 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 						className="d-flex justify-content-center align-items-center"
 					>
 						<span className="user-dropdown-text">
-							<span id={heySplash} className="fw-normal text-muted">
+							<span id={heySplash} className="fw-normal text-body-secondary">
 								{heySplash},{" "}
 							</span>
 							<span id="username" className="fw-bolder me-2">
@@ -68,7 +68,7 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 								/>
 								<div className="w-100 user-dropdown-item">
 									<div className="fw-normal">My Profile</div>
-									<div className="fw-light text-muted pe-none">
+									<div className="fw-light text-body-secondary pe-none">
 										View your profile!
 									</div>
 								</div>
@@ -86,7 +86,7 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 								/>
 								<div className="w-100 user-dropdown-item">
 									<div className="fw-normal">Profile Settings</div>
-									<div className="fw-light text-muted pe-none">
+									<div className="fw-light text-body-secondary pe-none">
 										Manage your profile picture, status, and more!
 									</div>
 								</div>
@@ -104,7 +104,7 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 								/>
 								<div className="w-100 user-dropdown-item">
 									<span className="fw-normal">My Integrations</span>
-									<div className="fw-light text-muted pe-none position-relative">
+									<div className="fw-light text-body-secondary pe-none position-relative">
 										Manage your API Keys and integrations with other services.
 									</div>
 								</div>

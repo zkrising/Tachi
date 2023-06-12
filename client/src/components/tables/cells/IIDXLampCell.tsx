@@ -83,7 +83,7 @@ export default function IIDXLampCell({
 			{sc.scoreData.lamp === "FAILED" && (
 				<>
 					<br />
-					<small className="text-muted">{gaugeText}</small>
+					<small className="text-body-secondary">{gaugeText}</small>
 				</>
 			)}
 		</td>

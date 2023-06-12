@@ -1,6 +1,9 @@
 import React from "react";
 import { JustChildren } from "types/react";
 
+// The name of this component aged like fine milk.
+// text-muted is depricated as of Bootstrap 5.3.0
+
 /**A tool to quickly render muted text as both inline (by default) and block elements*/
 export default function Muted({
 	children,
@@ -27,10 +30,18 @@ export default function Muted({
 			if (small) {
 				isSmall = " small";
 			}
-			return <div className={`text-muted${isItalic}${isSmall} ${className}`}>{children}</div>;
+			return (
+				<div className={`text-body-secondary${isItalic}${isSmall} ${className}`}>
+					{children}
+				</div>
+			);
 		case small:
-			return <small className={`text-muted${isItalic} ${className}`}>{children}</small>;
+			return (
+				<small className={`text-body-secondary${isItalic} ${className}`}>{children}</small>
+			);
 		default:
-			return <span className={`text-muted${isItalic} ${className}`}>{children}</span>;
+			return (
+				<span className={`text-body-secondary${isItalic} ${className}`}>{children}</span>
+			);
 	}
 }

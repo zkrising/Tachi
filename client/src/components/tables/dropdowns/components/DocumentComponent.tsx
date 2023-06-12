@@ -108,7 +108,7 @@ export default function DocumentComponent({
 						<GraphComponent chart={chart} score={score} />
 					) : (
 						<div className="d-flex align-items-center" style={{ height: "200px" }}>
-							<span className="text-muted">No graphs available :(</span>
+							<span className="text-body-secondary">No graphs available :(</span>
 						</div>
 					)}
 
@@ -198,7 +198,7 @@ export function GraphAndJudgementDataComponent({
 						<GraphComponent chart={chart} score={score} />
 					) : (
 						<div className="d-flex align-items-center" style={{ height: "200px" }}>
-							<span className="text-muted">No graphs available :(</span>
+							<span className="text-body-secondary">No graphs available :(</span>
 						</div>
 					)}
 				</div>

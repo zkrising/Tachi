@@ -17,15 +17,7 @@ export default function NotificationRow({ notif }: { notif: NotificationDocument
 				)}
 			</td>
 			<td>
-				<strong>
-					{url ? (
-						<Link className="gentle-link" to={url}>
-							{notif.title}
-						</Link>
-					) : (
-						notif.title
-					)}
-				</strong>
+				<strong>{url ? <Link to={url}>{notif.title}</Link> : notif.title}</strong>
 			</td>
 			<TimestampCell time={notif.sentAt} />
 		</tr>

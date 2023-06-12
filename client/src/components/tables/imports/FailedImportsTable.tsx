@@ -38,7 +38,7 @@ function Row({ data }: { data: FailedImportDataset[0] }) {
 	return (
 		<DropdownRow dropdown={<FailedImportDropdown data={data} />}>
 			<td>
-				<Link className="gentle-link" to={`/u/${data.__related.user.username}`}>
+				<Link to={`/u/${data.__related.user.username}`}>
 					{data.__related.user.username}
 				</Link>
 			</td>

@@ -29,7 +29,7 @@ export default function ScoreCell({
 			{score !== undefined && (
 				<>
 					<br />
-					<small className="text-muted">
+					<small className="text-body-secondary">
 						[{scoreRenderFn ? scoreRenderFn(score) : score}]
 					</small>
 				</>

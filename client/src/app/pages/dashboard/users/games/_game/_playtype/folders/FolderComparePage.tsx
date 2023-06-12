@@ -221,12 +221,7 @@ function UserCard({ username, game, playtype }: { username: string } & GamePT) {
 					</Col>
 					<Col lg={3}>
 						<h4>
-							<Link
-								className="gentle-link"
-								to={`/u/${username}/games/${game}/${playtype}`}
-							>
-								{username}
-							</Link>
+							<Link to={`/u/${username}/games/${game}/${playtype}`}>{username}</Link>
 						</h4>
 					</Col>
 					<Col lg={6}>

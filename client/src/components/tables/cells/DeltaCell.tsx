@@ -29,7 +29,7 @@ export default function DeltaCell({
 			<td>
 				<strong>{upper}</strong>
 				<br />
-				<small className="text-muted">{lower}</small>
+				<small className="text-body-secondary">{lower}</small>
 			</td>
 		);
 	} else {
@@ -37,7 +37,7 @@ export default function DeltaCell({
 			<td>
 				<strong>{lower}</strong>
 				<br />
-				<small className="text-muted">{upper}</small>
+				<small className="text-body-secondary">{upper}</small>
 			</td>
 		);
 	}

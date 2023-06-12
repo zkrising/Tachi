@@ -446,15 +446,12 @@ function PlayCard({
 				</Col>
 				<Col lg={3}>
 					<h4>
-						<Link
-							className="gentle-link"
-							to={`/u/${user.username}/games/${pb.game}/${pb.playtype}`}
-						>
+						<Link to={`/u/${user.username}/games/${pb.game}/${pb.playtype}`}>
 							{user.username}
 						</Link>
 					</h4>
 					<strong className="display-4">#{pb.rankingData.rank}</strong>
-					<span className="text-muted">/{pb.rankingData.outOf}</span>
+					<span className="text-body-secondary">/{pb.rankingData.outOf}</span>
 				</Col>
 				<Col lg={6}>
 					<MiniTable headers={["PB Info"]} colSpan={100}>

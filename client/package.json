@@ -42,7 +42,7 @@
 		"@types/lodash": "4.14.172",
 		"@types/natural-compare": "^1.4.1",
 		"@types/react-google-recaptcha": "2.1.2",
-		"bootstrap-scss": "^5.2.3",
+		"bootstrap-scss": "^5.3.0",
 		"csstype": "3.1.1",
 		"d3-scale": "3.3.0",
 		"deepmerge": "4.2.2",

@@ -29,7 +29,7 @@ export default function RankingData({
 		if (key !== alg) {
 			extendData.push(
 				<div key={key} className="col-12">
-					<small className="text-muted">
+					<small className="text-body-secondary">
 						{UppercaseFirst(key)}: #{rankingData[key].ranking}/{rankingData[key].outOf}
 					</small>
 				</div>
@@ -43,13 +43,10 @@ export default function RankingData({
 				<h4>Ranking{extendData.length ? ` (${UppercaseFirst(alg)})` : ""}</h4>
 			</div>
 			<div className="col-12">
-				<Link
-					to={`/u/${userID}/games/${game}/${playtype}/leaderboard`}
-					className="gentle-link"
-				>
+				<Link to={`/u/${userID}/games/${game}/${playtype}/leaderboard`}>
 					<strong className="display-4">#{rankingData[alg].ranking}</strong>
 				</Link>
-				<span className="text-muted">/{rankingData[alg].outOf}</span>
+				<span className="text-body-secondary">/{rankingData[alg].outOf}</span>
 			</div>
 			{extendData}
 		</div>
@@ -74,7 +71,7 @@ export function TidyRankingData({
 		if (key !== alg) {
 			extendData.push(
 				<div key={key} className="col-12">
-					<small className="text-muted">
+					<small className="text-body-secondary">
 						{UppercaseFirst(key)}: #{rankingData[key].ranking}/{rankingData[key].outOf}
 					</small>
 				</div>
@@ -84,10 +81,10 @@ export function TidyRankingData({
 
 	return (
 		<>
-			<Link to={`/u/${userID}/games/${game}/${playtype}/leaderboard`} className="gentle-link">
+			<Link to={`/u/${userID}/games/${game}/${playtype}/leaderboard`}>
 				#{rankingData[alg].ranking}
 			</Link>
-			<small className="text-muted" style={{ fontSize: ".675em" }}>
+			<small className="text-body-secondary" style={{ fontSize: ".675em" }}>
 				/{rankingData[alg].outOf}
 			</small>
 			{/*{extendData}*/}

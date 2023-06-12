@@ -119,7 +119,9 @@ function LeaderboardsPageContent({
 				<td>
 					<strong>#{i}</strong>
 					{reqUser.id === s.userID && (
-						<small className="text-muted">/{stats.thisUsersRanking.outOf}</small>
+						<small className="text-body-secondary">
+							/{stats.thisUsersRanking.outOf}
+						</small>
 					)}
 				</td>
 				<td>

@@ -62,7 +62,7 @@ export default function UGPTUtilsPage({ reqUser, game, playtype }: UGPT) {
 								footer={
 									<Link
 										to={`/u/${reqUser.username}/games/${game}/${playtype}/utils`}
-										className="text-muted text-hover-white"
+										className="text-body-secondary text-hover-white"
 									>
 										&lt; Back to all tools...
 									</Link>

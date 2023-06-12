@@ -96,7 +96,7 @@ export default function TitleCell({
 				{chart && !chart.isPrimary && (
 					<>
 						<br />
-						<small className="text-muted">({chart.versions.join("/")})</small>
+						<small className="text-body-secondary">({chart.versions.join("/")})</small>
 					</>
 				)}
 			</GentleLink>

@@ -3,14 +3,7 @@
 @import "components/components";
 @import "pages/pages";
 @import "keyframes";
-
-.hover-opacity {
-	// only used on breakcrumbs
-	transition: opacity 0.15s ease;
-	&:hover {
-		opacity: 100 !important;
-	}
-}
+@import "utilities";
 
 /*.bg-hover:hover {
 	background-color: $tachi-hover;
@@ -30,102 +23,3 @@
 		flex-direction: column;
 	}
 } */
-
-.gentle-link {
-	// override primary colour for links
-	color: var(--bs-body-color);
-	&:hover {
-		color: var(--bs-link-hover-color);
-	}
-	&:focus-visible {
-		color: var(--bs-link-hover-color);
-	}
-}
-
-.fullscreen {
-	// used by error messages
-	inset: 0;
-	position: fixed;
-	background-color: var(--t-background);
-	z-index: 8888;
-}
-
-.form-length-validation {
-	// class selector for a numerical form validation overlay
-	position: absolute;
-	z-index: 10;
-	right: 2.5em;
-	align-self: center; // browser says it has no effect but i can say with absolute confidence that it absolutely does
-	transition: color 150ms ease-in-out;
-}
-
-.undraggable {
-	// combo class to make items undraggable
-	-webkit-user-drag: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	user-select: none;
-}
-
-.bg-transition {
-	// transition any background
-	transition: background-color 75ms ease-in-out;
-}
-
-.hide-scrollbar {
-	// combo class to hide the scrollbar on any scrollable element
-	scrollbar-width: none;
-	-webkit-overflow-scrolling: touch;
-	-ms-overflow-style: none;
-	&::-webkit-scrollbar {
-		display: none;
-	}
-}
-
-.content-box {
-	box-sizing: content-box;
-}
-
-.waiting {
-	animation: pulse 750ms ease-in-out alternate infinite;
-}
-
-@mixin animate-rotate($degrees) {
-	.animate-rotate-#{$degrees} {
-		transition: transform 0.25s ease;
-
-		&.show {
-			transform: rotate(#{$degrees}deg);
-		}
-	}
-}
-
-@include animate-rotate(90);
-@include animate-rotate(180);
-
-@mixin text-hover($colour) {
-	@each $k, $v in $theme-colors {
-		.text-hover-#{$k} {
-			transition: $nav-link-transition;
-			&:hover {
-				color: #{$v};
-			}
-		}
-	}
-}
-
-@include text-hover($theme-colors);
-
-@mixin bg-hover($colour) {
-	@each $k, $v in $theme-colors {
-		.bg-hover-#{$k} {
-			transition: $nav-link-transition;
-			&:hover {
-				background-color: #{$v};
-				border-color: #{$v};
-			}
-		}
-	}
-}
-
-@include bg-hover($theme-colors);

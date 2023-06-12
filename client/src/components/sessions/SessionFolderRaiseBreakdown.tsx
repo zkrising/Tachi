@@ -168,7 +168,6 @@ export default function SessionFolderRaiseBreakdown({
 							header={
 								<h3 className="text-center w-100">
 									<Link
-										className="gentle-link"
 										to={`/u/${reqUser.username}/games/${game}/${playtype}/folders/${folder.folderID}`}
 									>
 										{folder.title}

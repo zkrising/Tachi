@@ -424,9 +424,7 @@ function RevisionComponent({
 				<div className="mr-3" style={{ width: "70%", textAlign: "left" }}>
 					<span style={{ fontSize: "1.15rem" }}>
 						<code>{TruncateString(rev.sha, 9)}</code>:{" "}
-						<a className="gentle-link" onClick={() => onSelect(rev)}>
-							{subject}
-						</a>
+						<a onClick={() => onSelect(rev)}>{subject}</a>
 					</span>
 					{body && (
 						<span
@@ -464,7 +462,7 @@ function RevisionComponent({
 					</div>
 				</div>
 
-				<span className="text-muted font-italic text-end">
+				<span className="text-body-secondary font-italic text-end">
 					{FormatTime(Date.parse(rev.commit.author.date))}
 				</span>
 			</div>

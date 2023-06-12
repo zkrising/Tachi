@@ -238,9 +238,7 @@ function UsersView({ users }: { users: Array<UserDocument> }) {
 							>
 								<div>
 									<h4>
-										<Link className="gentle-link" to={`/u/${user.username}`}>
-											{user.username}
-										</Link>
+										<Link to={`/u/${user.username}`}>{user.username}</Link>
 									</h4>
 								</div>
 								<div>

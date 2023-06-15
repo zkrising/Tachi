@@ -31,7 +31,9 @@ export default function LoginPage() {
 			captcha: "",
 		},
 		onSubmit: async (values) => {
-			const token = await recaptchaRef.current.executeAsync();
+			const token = process.env.VITE_RECAPTCHA_KEY
+				? await recaptchaRef.current.executeAsync()
+				: "";
 			setErr("");
 
 			if (!regex.test(values.username) || values["!password"].length < 8) {

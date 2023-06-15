@@ -38,6 +38,30 @@ export default function UGPTStatCreator({
 	show,
 	setShow,
 }: Props) {
+	return (
+		<Modal show={show} onHide={() => setShow(false)}>
+			<Modal.Header closeButton>
+				<Modal.Title>Showcase Stat Creator</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>
+				{show && (
+					<UGPTStatInnerSearchyBit
+						game={game}
+						onCreate={onCreate}
+						playtype={playtype}
+						reqUser={reqUser}
+						setShow={setShow}
+						show={show}
+					/>
+				)}
+			</Modal.Body>
+		</Modal>
+	);
+}
+
+function UGPTStatInnerSearchyBit({ game, playtype, onCreate, setShow }: Props) {
+	const gptConfig = GetGamePTConfig(game, playtype);
+
 	const formik = useFormik({
 		initialValues: {
 			mode: "chart",
@@ -146,130 +170,116 @@ export default function UGPTStatCreator({
 		})();
 	}, [chartSearch, requesterHasPlayed]);
 
-	const gptConfig = GetGamePTConfig(game, playtype);
-
 	return (
-		<Modal show={show} onHide={() => setShow(false)}>
-			<Modal.Header closeButton>
-				<Modal.Title>Showcase Stat Creator</Modal.Title>
-			</Modal.Header>
-			<Modal.Body>
-				<Form onSubmit={formik.handleSubmit}>
-					<Form.Group>
-						<Form.Label>Mode</Form.Label>
+		<Form onSubmit={formik.handleSubmit}>
+			<Form.Group>
+				<Form.Label>Mode</Form.Label>
+				<Form.Control
+					as="select"
+					id="mode"
+					value={formik.values.mode}
+					onChange={formik.handleChange}
+				>
+					<option value="chart">Chart</option>
+					<option value="folder">Folder</option>
+				</Form.Control>
+				<Form.Text>What kind of stat should this be?</Form.Text>
+			</Form.Group>
+			<Form.Group>
+				<Form.Label>Property</Form.Label>
+				<Form.Control
+					as="select"
+					id="metric"
+					value={formik.values.metric}
+					onChange={formik.handleChange}
+				>
+					{GetScoreMetrics(gptConfig, ["DECIMAL", "INTEGER", "ENUM"]).map((e) => (
+						<option key={e} value={e}>
+							{UppercaseFirst(e)}
+						</option>
+					))}
+					{formik.values.mode === "chart" && <option value="playcount">Playcount</option>}
+				</Form.Control>
+				<Form.Text>What kind of statistic should this check for?</Form.Text>
+			</Form.Group>
+			{formik.values.mode === "chart" ? (
+				<Form.Group>
+					<Form.Label>Chart</Form.Label>
+					<DebounceSearch setSearch={setChartSearch} placeholder="Chart Name" />
+					{user && (
+						<Form.Check
+							id="requesterHasPlayed"
+							checked={requesterHasPlayed}
+							onChange={(e) => setRequesterHasPlayed(e.target.checked)}
+							className="mt-4 mb-4"
+							label="Only show charts you've played?"
+						/>
+					)}
+					{chartData.length ? (
 						<Form.Control
-							as="select"
-							id="mode"
-							value={formik.values.mode}
+							id="chartID"
+							value={formik.values.chartID}
 							onChange={formik.handleChange}
-						>
-							<option value="chart">Chart</option>
-							<option value="folder">Folder</option>
-						</Form.Control>
-						<Form.Text>What kind of stat should this be?</Form.Text>
-					</Form.Group>
-					<Form.Group>
-						<Form.Label>Property</Form.Label>
-						<Form.Control
 							as="select"
-							id="metric"
-							value={formik.values.metric}
-							onChange={formik.handleChange}
 						>
-							{GetScoreMetrics(gptConfig, ["DECIMAL", "INTEGER", "ENUM"]).map((e) => (
-								<option key={e} value={e}>
-									{UppercaseFirst(e)}
+							<option value="">Select a chart...</option>
+							{chartData.map((e, i) => (
+								<option key={i} value={e.chartID}>
+									{e.name}
 								</option>
 							))}
-							{formik.values.mode === "chart" && (
-								<option value="playcount">Playcount</option>
-							)}
 						</Form.Control>
-						<Form.Text>What kind of statistic should this check for?</Form.Text>
-					</Form.Group>
-					{formik.values.mode === "chart" ? (
-						<Form.Group>
-							<Form.Label>Chart</Form.Label>
-							<DebounceSearch setSearch={setChartSearch} placeholder="Chart Name" />
-							{user && (
-								<Form.Check
-									id="requesterHasPlayed"
-									checked={requesterHasPlayed}
-									onChange={(e) => setRequesterHasPlayed(e.target.checked)}
-									className="mt-4 mb-4"
-									label="Only show charts you've played?"
-								/>
-							)}
-							{chartData.length ? (
-								<Form.Control
-									id="chartID"
-									value={formik.values.chartID}
-									onChange={formik.handleChange}
-									as="select"
-								>
-									<option value="">Select a chart...</option>
-									{chartData.map((e, i) => (
-										<option key={i} value={e.chartID}>
-											{e.name}
-										</option>
-									))}
-								</Form.Control>
-							) : (
-								<Muted>Your search returned nothing... :(</Muted>
-							)}
-						</Form.Group>
 					) : (
-						<>
-							<Form.Group>
-								<Form.Label>Target</Form.Label>
-								<FolderGTESelect
-									value={gte}
-									onChange={(e) => setGte(Number(e.target.value))}
-									{...{
-										game,
-										playtype,
-										metric: formik.values.metric,
-									}}
-								/>
-							</Form.Group>
-							<Form.Group>
-								<Form.Label>Folder</Form.Label>
-								<DebounceSearch
-									setSearch={setFolderSearch}
-									placeholder="Folder Name"
-								/>
-								{folderData.length ? (
-									<Form.Control
-										id="folderID"
-										value={formik.values.folderID}
-										onChange={formik.handleChange}
-										as="select"
-										className="mt-4"
-									>
-										<option value="">Select a folder...</option>
-										{folderData.map((e, i) => (
-											<option key={i} value={e.folderID}>
-												{e.name}
-											</option>
-										))}
-									</Form.Control>
-								) : (
-									<></>
-								)}
-							</Form.Group>
-						</>
+						<Muted>Your search returned nothing... :(</Muted>
 					)}
-					<Form.Group className="d-flex justify-content-end">
-						<Button
-							disabled={formik.values.mode === "chart" && !formik.values.chartID}
-							type="submit ml-auto"
-						>
-							Submit
-						</Button>
+				</Form.Group>
+			) : (
+				<>
+					<Form.Group>
+						<Form.Label>Target</Form.Label>
+						<FolderGTESelect
+							value={gte}
+							onChange={(e) => setGte(Number(e.target.value))}
+							{...{
+								game,
+								playtype,
+								metric: formik.values.metric,
+							}}
+						/>
 					</Form.Group>
-				</Form>
-			</Modal.Body>
-		</Modal>
+					<Form.Group>
+						<Form.Label>Folder</Form.Label>
+						<DebounceSearch setSearch={setFolderSearch} placeholder="Folder Name" />
+						{folderData.length ? (
+							<Form.Control
+								id="folderID"
+								value={formik.values.folderID}
+								onChange={formik.handleChange}
+								as="select"
+								className="mt-4"
+							>
+								<option value="">Select a folder...</option>
+								{folderData.map((e, i) => (
+									<option key={i} value={e.folderID}>
+										{e.name}
+									</option>
+								))}
+							</Form.Control>
+						) : (
+							<></>
+						)}
+					</Form.Group>
+				</>
+			)}
+			<Form.Group className="d-flex justify-content-end">
+				<Button
+					disabled={formik.values.mode === "chart" && !formik.values.chartID}
+					type="submit ml-auto"
+				>
+					Submit
+				</Button>
+			</Form.Group>
+		</Form>
 	);
 }
 

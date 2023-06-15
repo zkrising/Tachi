@@ -1,3 +1,8 @@
+#feature-navbar > * a:focus {
+	@extend .text-primary;
+	box-shadow: none;
+}
+
 .navbar-indicator {
 	// always absolute. the indicator will not work if the display property is changed
 	bottom: 0.5pt;
@@ -6,8 +11,8 @@
 }
 
 .navbar-scroll {
+	@extend .z-2;
 	width: 0;
-	z-index: 2;
 	transition: width 50ms ease-out;
 	> i {
 		cursor: pointer;
@@ -30,12 +35,12 @@
 		background: linear-gradient(
 			to #{$direction},
 			transparent,
-			var(--t-lightground) 33%
+			var(--bs-secondary-bg) 33%
 		);
 		border-top-#{$direction}-radius: var(--bs-border-radius);
 		border-bottom-#{$direction}-radius: var(--bs-border-radius);
 		> i::before {
-			position: absolute;
+			@extend .position-absolute;
 			#{$direction}: 0.66rem;
 		}
 	}

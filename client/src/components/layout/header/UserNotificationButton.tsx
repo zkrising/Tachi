@@ -1,12 +1,11 @@
 import Icon from "components/util/Icon";
-import useApiQuery from "components/util/query/useApiQuery";
+//import useApiQuery from "components/util/query/useApiQuery";
 import { NotificationsContext } from "context/NotificationsContext";
 import React, { useContext, useMemo } from "react";
-import NavItem from "react-bootstrap/NavItem";
 import { Link } from "react-router-dom";
-import { NotificationDocument, UserDocument } from "tachi-common";
+//import { NotificationDocument, UserDocument } from "tachi-common";
 
-export function UserNotificationButton({ user }: { user: UserDocument }) {
+export function UserNotificationButton() {
 	const { notifications } = useContext(NotificationsContext);
 
 	const unread = useMemo(() => {
@@ -18,14 +17,12 @@ export function UserNotificationButton({ user }: { user: UserDocument }) {
 	}, [notifications]);
 
 	return (
-		<NavItem>
-			<Link to="/notifications" className="btn btn-header btn-icon">
-				{unread > 0 ? (
-					<Icon type="envelope" animation="shake" colour="primary" />
-				) : (
-					<Icon type="envelope" colour="muted" />
-				)}
-			</Link>
-		</NavItem>
+		<Link to="/notifications" className="header-icon">
+			{unread > 0 ? (
+				<Icon type="envelope" animation="shake" colour="primary" />
+			) : (
+				<Icon type="envelope" colour="muted" />
+			)}
+		</Link>
 	);
 }

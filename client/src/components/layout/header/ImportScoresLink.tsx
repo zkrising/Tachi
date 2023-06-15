@@ -12,6 +12,7 @@ export default function ImportScoresLink({ onClick }: { onClick?: () => void }) 
 
 		links.push(
 			<NavDropdown.Item
+				className="rounded my-1"
 				onClick={() => {
 					onClick?.();
 				}}
@@ -25,7 +26,7 @@ export default function ImportScoresLink({ onClick }: { onClick?: () => void }) 
 	}
 
 	return (
-		<NavDropdown id="ImportScores" title="Import Scores" bsPrefix="header-link btn btn-header">
+		<NavDropdown id="import-scores" title="Import Scores" className="header-dropdown">
 			{links}
 			<NavDropdown.Item
 				onClick={() => {

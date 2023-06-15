@@ -11,11 +11,6 @@ body,
 
 a {
     transition: color 80ms linear;
-    &:focus-visible {
-        outline: 0;
-        box-shadow: none;
-        border-color: var(--t-primary);
-    }
 }
 
 main {
@@ -26,8 +21,4 @@ main {
     @include media-breakpoint-up(md) {
         padding-top: 80px;
     }
-}
-
-.border-transparent {
-    border-color: transparent;
 }

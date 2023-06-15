@@ -22,6 +22,8 @@ export default function LoginPage() {
 
 	const recaptchaRef = useRef<any>(null);
 
+	const regex = /^[a-zA-Z_-][a-zA-Z0-9_-]{2,20}$/u;
+
 	const formik = useFormik({
 		initialValues: {
 			username: "",
@@ -29,30 +31,33 @@ export default function LoginPage() {
 			captcha: "",
 		},
 		onSubmit: async (values) => {
+			const token = await recaptchaRef.current.executeAsync();
 			setErr("");
 
-			const rj = await APIFetchV1(
-				"/auth/login",
-				{
-					method: "POST",
-					body: JSON.stringify({
-						username: values.username.trim(),
-						"!password": values["!password"],
-						captcha: values.captcha,
-					}),
-					headers: {
-						"Content-Type": "application/json",
-					},
+			if (!regex.test(values.username) || values["!password"].length < 8) {
+				setErr("Invalid Username / Password");
+			}
+
+			const rj = await APIFetchV1("/auth/login", {
+				method: "POST",
+				body: JSON.stringify({
+					username: values.username.trim(),
+					"!password": values["!password"],
+					captcha: token,
+				}),
+				headers: {
+					"Content-Type": "application/json",
 				},
-				false,
-				false
-			);
+			});
+
+			toast.loading("Logging in", { id: "login-toast", className: "bg-dark text-body" });
 
 			if (recaptchaRef.current) {
 				recaptchaRef.current.reset();
 			}
 
 			if (!rj.success) {
+				toast.dismiss("login-toast");
 				setErr(HumaniseError(rj.description));
 				return;
 			}
@@ -60,21 +65,22 @@ export default function LoginPage() {
 			const userRJ = await APIFetchV1<UserDocument>("/users/me");
 
 			if (userRJ.statusCode === 403) {
+				toast.dismiss("login-toast");
 				setErr("You are banned.");
 				return;
 			}
 
 			if (!userRJ.success) {
+				toast.dismiss("login-toast");
 				console.error("Error retrieving own user?");
 				setErr("An internal server error has occurred.");
 				return;
 			}
 
-			toast.success("Logged in!");
+			toast.dismiss("login-toast");
+			toast.success("Logged in!", { className: "bg-dark text-body" });
 
-			const settingsRJ = await APIFetchV1<UserSettingsDocument>(
-				`/users/${userRJ.body.id}/settings`
-			);
+			const settingsRJ = await APIFetchV1<UserSettingsDocument>(`/users/me/settings`);
 
 			setTimeout(() => {
 				setUser(userRJ.body);
@@ -93,22 +99,16 @@ export default function LoginPage() {
 	return (
 		<CenterPage>
 			<SiteWordmark />
-			<div className="text-center mb-8">
-				<h1>Log In</h1>
-				<span className="fw-bold text-muted">Don't have an account?</span>
-				<Link to="/register" className="fw-bold ms-1">
-					Sign Up!
-				</Link>
-			</div>
+			<h1 className="mb-4">Log In</h1>
 			<Form
-				className="w-100 px-4 mt-8"
-				style={{ maxWidth: "620px" }}
+				className="w-100 px-4 mt-4"
+				style={{ maxWidth: "480px" }}
 				onSubmit={formik.handleSubmit}
 			>
 				<Form.Group className="mb-6">
 					<Form.Label>Username</Form.Label>
 					<Form.Control
-						tabIndex={1}
+						className="focus-ring"
 						type="text"
 						id="username"
 						value={formik.values.username}
@@ -118,7 +118,7 @@ export default function LoginPage() {
 				<Form.Group className="mb-6">
 					<Form.Label>Password</Form.Label>
 					<Form.Control
-						tabIndex={2}
+						className="focus-ring"
 						type="password"
 						id="!password"
 						value={formik.values["!password"]}
@@ -131,29 +131,47 @@ export default function LoginPage() {
 				>
 					{err}
 				</Form.Group>
-				<div className="my-6">
-					{process.env.VITE_RECAPTCHA_KEY && (
-						<ReCAPTCHA
-							ref={recaptchaRef}
-							sitekey={process.env.VITE_RECAPTCHA_KEY}
-							onChange={(v) => {
-								formik.setFieldValue("captcha", v);
-							}}
-						/>
-					)}
-				</div>
-				<Form.Group className="justify-content-center d-flex">
-					<span
-						onClick={() => history.goBack()}
-						tabIndex={4}
-						className="me-auto btn btn-outline-danger"
-					>
-						Back
-					</span>
-					<Link to="/forgot-password">Forgot Password</Link>
-					<Button tabIndex={3} type="submit" className="ms-auto">
+				<Form.Group className="d-flex flex-column">
+					<Button type="submit" className="mt-2">
 						Log In
 					</Button>
+					<div className="d-flex justify-content-between mt-2">
+						<span className="text-body-secondary">
+							Don't have an account?
+							<Link to="/register" className="fw-bold ms-1 link-primary rounded">
+								Sign Up!
+							</Link>
+						</span>
+						<Link
+							to="/forgot-password"
+							className="fst-italic text-body-secondary text-hover-primary rounded"
+						>
+							Forgot Password?
+						</Link>
+					</div>
+					<div className="my-6 d-flex justify-content-between">
+						{process.env.VITE_RECAPTCHA_KEY && (
+							<ReCAPTCHA
+								theme="dark"
+								size="invisible"
+								ref={recaptchaRef}
+								sitekey={process.env.VITE_RECAPTCHA_KEY}
+								onChange={(v) => {
+									formik.setFieldValue("captcha", v);
+								}}
+							/>
+						)}
+					</div>
+					{/*process.env.VITE_MANDATE_LOGIN ? (
+						<Button
+							onClick={() => history.goBack()}
+							tabIndex={0}
+							variant="secondary"
+							className="me-auto mt-4"
+						>
+							Back
+						</Button>
+					) : undefined*/}
 				</Form.Group>
 			</Form>
 		</CenterPage>

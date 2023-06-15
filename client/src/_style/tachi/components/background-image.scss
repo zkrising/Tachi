@@ -1,12 +1,12 @@
 .background-image {
-    position: absolute;
+    @extend .w-100;
+    @extend .position-absolute;
+    @extend .z-n1;
     opacity: 0.4;
     inset: 0;
-    width: 100%;
     background-position: 50% 20%;
     background-repeat: no-repeat;
     background-size: cover;
-    z-index: -1;
     transition: height 150ms ease-in-out, margin-top 150ms ease-in-out;
     /*&::after {
         content: "";

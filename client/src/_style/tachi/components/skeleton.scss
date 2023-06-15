@@ -2,18 +2,12 @@
     @extend .animation-pulse;
     background-color: var(--bs-secondary);
     &-pfp {
-        min-height: 128px;
-        min-width: 128px;
-        max-height: 128px;
-        max-width: 128px;
-        border-radius: var(--bs-border-radius);
+        @extend %pfp-128px;
+        @extend .rounded;
     }
     &-pfp-small {
-        min-height: 32px;
-        min-width: 32px;
-        max-height: 32px;
-        max-width: 32px;
-        border-radius: var(--bs-border-radius);
+        @extend %pfp-32px;
+        @extend .rounded
     }
     &-text {
         height: var(--bs-body-font-size);

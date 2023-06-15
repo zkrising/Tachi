@@ -13,6 +13,7 @@ export default function AllGames({ onClick }: { onClick?: () => void }) {
 		for (const playtype of gameConfig.playtypes) {
 			links.push(
 				<NavDropdown.Item
+					className="rounded my-1"
 					as={NavLink}
 					key={`${game}:${playtype}`}
 					to={`/games/${game}/${playtype}`}
@@ -27,7 +28,7 @@ export default function AllGames({ onClick }: { onClick?: () => void }) {
 	}
 
 	return (
-		<NavDropdown id="Global Info" title="Global Info" bsPrefix="header-link btn btn-header">
+		<NavDropdown id="global-info" title="Global Info" className="header-dropdown">
 			{links}
 		</NavDropdown>
 	);

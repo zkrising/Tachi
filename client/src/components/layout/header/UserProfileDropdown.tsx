@@ -22,16 +22,14 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 	return (
 		<>
 			{!isMd ? (
-				<div className="btn btn-header btn-icon">
-					<ProfilePictureSmall user={user} />
-				</div>
+				<ProfilePictureSmall className="header-icon ms-2" user={user} />
 			) : (
-				<Dropdown id="user-dropdown" align="end">
+				<Dropdown className="header-dropdown" id="user-dropdown" align="end">
 					<Dropdown.Toggle
-						variant="header"
+						as={"button"}
 						className="d-flex justify-content-center align-items-center"
 					>
-						<span className="user-dropdown-text">
+						<span className="d-none d-lg-block">
 							<span id={heySplash} className="fw-normal text-body-secondary">
 								{heySplash},{" "}
 							</span>
@@ -45,20 +43,20 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 								)}
 							</span>
 						</span>
-						<span>
+						<>
 							<img
 								alt={`${user.username}'s Profile Picture`}
 								className="pfp-small rounded fs-0"
 								src={ToAPIURL("/users/me/pfp")}
 							/>
-						</span>
+						</>
 					</Dropdown.Toggle>
-					<Dropdown.Menu className="user-dropdown-menu">
+					<Dropdown.Menu>
 						<div className="pt-3 px-2 d-flex flex-column">
 							<Dropdown.Item
 								as={Link}
 								to={`/u/${user.username}`}
-								className="d-flex flex-row align-items-center gentle-link"
+								className="d-flex flex-row align-items-center"
 							>
 								<Icon
 									type="user"
@@ -76,7 +74,7 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 							<Dropdown.Item
 								as={Link}
 								to={`/u/${user.username}/settings`}
-								className="d-flex flex-row align-items-center gentle-link"
+								className="d-flex flex-row align-items-center"
 							>
 								<Icon
 									type="cog"
@@ -94,7 +92,7 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 							<Dropdown.Item
 								as={Link}
 								to={`/u/${user.username}/integrations`}
-								className="d-flex flex-row align-items-center gentle-link"
+								className="d-flex flex-row align-items-center"
 							>
 								<Icon
 									type="wrench"

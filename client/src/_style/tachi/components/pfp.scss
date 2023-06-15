@@ -1,29 +1,48 @@
+%pfp-32px {
+	min-width: 32px;
+	min-height: 32px;
+	width: 32px;
+	height: 32px;
+}
+%pfp-128px {
+	min-width: 128px;
+	min-height: 128px;
+	width: 128px;
+	height: 128px;
+}
+%pfp-base {
+	@extend .object-fit-cover;
+	@extend .user-select-none;
+	background-color: var(--bs-secondary);
+	@extend .rounded;
+}
 .pfp {
-    min-width: 128px;
-    min-height: 128px;
-    width: 128px;
-    height: 128px;
-    object-fit: cover;
-    user-select: none;
-    background-color: var(--bs-secondary);
-    border-radius: var(--bs-border-radius);
-    &-small{
-        @extend .pfp;
-        min-width: 32px;
-        min-height: 32px;
-        width: 32px;
-        height: 32px;
-    }
-    &-supporter{
-        width: 128px;
-        height: 128px;
-        border: .25rem solid var(--bs-warning);
-        margin: auto;
-        position: absolute;
-        border-radius: var(--bs-border-radius);
-        font-size: 11px;
-    }
-    &-badge{
-        border-top-left-radius: var(--bs-border-radius);
-    }
+	@extend %pfp-base;
+	@extend %pfp-128px;
+	&-small {
+		@extend %pfp-base;
+		@extend %pfp-32px;
+		&:hover::before {
+			content: "";
+			@extend %pfp-32px;
+			@extend .rounded;
+			@extend .bg-hover-translucent;
+			@extend .position-absolute;
+			@extend .d-block;	
+		}
+        &:focus {
+            @extend .focus-ring;
+        }
+	}
+	&-supporter {
+		@extend %pfp-128px;
+		border: 0.25rem solid var(--bs-warning);
+		@extend .m-auto;
+		@extend .position-absolute;
+		@extend .rounded;
+		font-size: 11px;
+	}
+	&-badge {
+		border-top-left-radius: var(--bs-border-radius);
+	}
 }

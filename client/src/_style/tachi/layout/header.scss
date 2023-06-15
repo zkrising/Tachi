@@ -1,192 +1,140 @@
-#tachi-header {
-    height: 80px;
-    background-color: $tachi-background;
-    transition: height 150ms ease-in-out;
+.header-button {
+	@extend .btn;
+	@extend .btn-primary;
+	@extend .text-body;
+	@extend .my-md-1;
+	@extend .my-md-5;
+	background-color: transparent !important;
+	border-color: transparent !important;
+	--bs-btn-active-color: currentColor;
+	--bs-btn-active-bg: #{$translucent};
+	--bs-btn-active-border-color: transparent;
+	@extend .d-flex;
+	@extend .align-items-center;
 
-    @include media-breakpoint-down(md) {
-        height: 45px;
-        background-color: transparent;
-    }
+	@include media-breakpoint-down(md) {
+		height: 40px !important;
+	}
 
-    .navbar {
-        transition: height 150ms ease-in-out;
-        height: 80px;
+	@include media-breakpoint-up(md) {
+		height: 45px !important;
+	}
 
-        @include media-breakpoint-down(md) {
-            height: 45px;
-        }
-
-        &-brand {
-            margin-left: 0.35rem;
-            height: max-content;
-
-            @include media-breakpoint-down(md) {
-                display: none;
-            }
-        }
-
-        &-nav {
-            .header-link {
-                &.show {
-                    color: currentColor;
-                }
-
-                &:hover,
-                &:focus {
-                    color: currentColor;
-                }
-            }
-
-            .nav-item:nth-child(n + 2) {
-                margin-left: 0.5rem;
-            }
-        }
-    }
-
-    #endbar {
-        .nav-item {
-            padding: 0;
-            &:not(:last-child) {
-                margin-right: 0.4rem;
-            }
-        }
-
-        #user-dropdown {
-            .dropdown-toggle {
-                @include media-breakpoint-down(lg) {
-                    width: 40px;
-                    .user-dropdown-text {
-                            display: none;
-                    }
-                }
-
-                &::after {
-                    display: none;
-                }
-            }
-
-            .user-dropdown-menu {
-                width: 30rem;
-                transition: margin 150ms ease-in-out;
-                @include media-breakpoint-down(md) {
-                margin-top: 2.5px;
-                }
-                .user-dropdown-item {
-                    white-space: break-spaces;
-                }
-            }            
-        }
-    }
-
-    .dropdown-menu {
-        margin-top: 17.5px;
-        height: max-content;
-        box-shadow: var(--t-shadow-lg);
-        border: var(--bs-border-width);
-        width: 18rem;
-
-        &.show {
-            animation: dropdown-menu-fade-in 0.3s ease 1;
-        }
-
-        @keyframes dropdown-menu-fade-in {
-            0% {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-    }
+	&:hover,
+	&.show,
+	&:focus {
+		border-color: transparent !important;
+		background-color: $translucent !important;
+	}
 }
 
-.dropdown-item {
-    border-radius: var(--bs-border-radius);
-    transition: color 80ms ease-in-out, background-color 80ms ease-in-out, border-color 80ms ease-in-out, box-shadow 80ms ease-in-out;
-    margin: .35rem 0;
-    &.active {
-        // override bootstrap default behaviour because it isn't ideal in this case
-        color: currentColor;
-        background-color: var(--t-lightground);
-        &:hover, &:focus {
-            // I shouldn't have to do this
-            background-color: var(--bs-dropdown-link-hover-bg);
-        }
-    }
+.header-icon {
+	@extend .header-button;
+	@extend .align-items-center;
+    @extend .justify-content-center;
+    @extend .fs-3;
+	@include media-breakpoint-down(md) {
+		width: 40px !important;
+	}
+
+	@include media-breakpoint-up(md) {
+		width: 45px !important;
+	}
 }
 
-@include media-breakpoint-down(md) { // This is highly customised because I'd rather just do it this way for this one specific componant
-    .offcanvas-start {
-        box-shadow: var(--t-shadow-lg);
-        .offcanvas-body .navbar-nav {
-             margin-left: 0 !important;
-                .nav-item {
-                   margin-bottom: .5rem;               
-                    .dropdown-menu {  
-                        padding: .5em;
-                        .dropdown-item {
-                            padding-left: 2em;
-                        }
-                        .dropdown-item:last-child {
-                            margin-bottom: 0;
-                        }
-                        .dropdown-item.active {
-                            background-color: transparent;
-                        }
-                    }
-                }
-            }
+header {
+	height: 80px;
+	transition: height 150ms ease-in-out;
+
+	@include media-breakpoint-down(md) {
+		height: 45px;
+	}
+
+	.navbar {
+		height: 80px;
+
+		@include media-breakpoint-down(md) {
+			height: 45px;
+		}
+
+		#logo {
+			@extend .d-none;
+			@extend .d-md-block;
+		}
+	}
+}
+
+.header-dropdown {
+	& > a,
+	& > button {
+		@extend .header-button;
+        &.disabled {
+            background-color: transparent;
+            border-color: transparent;
         }
-    }
+	}
+	& > a {
+		@extend .me-2;
+	}
+
+	& > a::after {
+		content: "\f078";
+		border: none;
+		@extend .ms-3;
+		@extend .small;
+		font-family: "Font Awesome 6 Free";
+		font-weight: 900;
+	}
+
+	& > button {
+		@extend .ms-2;
+		@include media-breakpoint-down(lg) {
+			width: 45px;
+		}
+	}
+
+	& > button::after {
+		@extend .d-none;
+	}
+}
+
+.dropdown-item.active {
+		// override bootstrap default behaviour because it isn't ideal in this case
+		&:hover,
+		&:focus {
+			background-color: var(--bs-dropdown-link-hover-bg);
+		}
+	}
 
 #subheader {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 
-    @include media-breakpoint-down(md) {
-        height: 125px;
-    }
+	@include media-breakpoint-down(md) {
+		height: 125px;
+	}
 
-    @include media-breakpoint-up(md) {
-        height: 200px;
-    }
+	@include media-breakpoint-up(md) {
+		height: 200px;
+	}
 
-    #subheader_content {
-        flex-grow: 1;
-        transition: flex 150ms ease-in-out;
+	#subheader_content {
+		flex-grow: 1;
+		transition: flex 150ms ease-in-out;
 
-        @include media-breakpoint-down(md) {
-            flex-grow: 0;
-        }
-    }
+		@include media-breakpoint-down(md) {
+			flex-grow: 0;
+		}
+	}
 
-    #breadcrumbs {
-        display: flex;
-        align-items: center;
+	#breadcrumbs {
+		display: flex;
+		align-items: center;
 
-        @include media-breakpoint-down(md) {
-            display: none;
-        }
-    }
-}
-
-.tachi-backdrop{
-    &.show{
-        background-color: #13131322;
-        backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(2px);
-        opacity: 1;
-    }
-    position: absolute;
-    display: block;
-    background-color: transparent;
-    height: 100%;
-    width: 100%;
-    backdrop-filter: blur(0);
-    -webkit-backdrop-filter: blur(0);
-    transition: background-color 150ms ease-in-out, backdrop-filter 150ms ease-in, -webkit-backdrop-filter 150ms ease-in;
-    z-index: 1040;
+		@include media-breakpoint-down(md) {
+			display: none;
+		}
+	}
 }

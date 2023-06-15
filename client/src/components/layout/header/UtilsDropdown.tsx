@@ -4,12 +4,9 @@ import { Link } from "react-router-dom";
 
 export default function UtilsDropdown({ onClick }: { onClick?: () => void }) {
 	return (
-		<NavDropdown
-			id="Developer Utils"
-			title="Developer Utils"
-			bsPrefix="header-link btn btn-header"
-		>
+		<NavDropdown id="developer-utils" title="Developer Utils" className="header-dropdown">
 			<NavDropdown.Item
+				className="rounded my-1"
 				onClick={() => {
 					onClick?.();
 				}}
@@ -19,6 +16,7 @@ export default function UtilsDropdown({ onClick }: { onClick?: () => void }) {
 				Seeds Management
 			</NavDropdown.Item>
 			<NavDropdown.Item
+				className="rounded my-1"
 				onClick={() => {
 					onClick?.();
 				}}
@@ -28,6 +26,7 @@ export default function UtilsDropdown({ onClick }: { onClick?: () => void }) {
 				Import Management
 			</NavDropdown.Item>
 			<NavDropdown.Item
+				className="rounded my-1"
 				onClick={() => {
 					onClick?.();
 				}}

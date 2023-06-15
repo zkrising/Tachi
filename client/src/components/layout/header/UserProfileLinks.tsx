@@ -6,7 +6,13 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 import { FormatGame, GetGameConfig } from "tachi-common";
 
-export default function UserProfileLinks({ onClick }: { onClick?: () => void | null }) {
+export default function UserProfileLinks({
+	onClick,
+	disabled = true,
+}: {
+	onClick?: () => void | null;
+	disabled: boolean;
+}) {
 	const { user } = useContext(UserContext);
 	const { ugs } = useContext(AllLUGPTStatsContext);
 	const links = [];
@@ -26,6 +32,7 @@ export default function UserProfileLinks({ onClick }: { onClick?: () => void | n
 
 			links.push(
 				<NavDropdown.Item
+					className="rounded my-1"
 					as={Link}
 					key={`${e.game}:${e.playtype}`}
 					to={`/u/${user?.username}/games/${e.game}/${e.playtype}`}
@@ -39,9 +46,13 @@ export default function UserProfileLinks({ onClick }: { onClick?: () => void | n
 		}
 	}
 
-	// I don't think escaping bootstrap is necessary but it was how i felt like doing it at the time... maybe I'll fix it at some point. maybe not
 	return (
-		<NavDropdown id="Your Profiles" title="Your Profiles" bsPrefix="header-link btn btn-header">
+		<NavDropdown
+			disabled={disabled}
+			className="header-dropdown"
+			id="your-profiles"
+			title="Your Profiles"
+		>
 			{links}
 		</NavDropdown>
 	);

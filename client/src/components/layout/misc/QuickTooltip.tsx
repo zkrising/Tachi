@@ -4,11 +4,12 @@ import Popover from "react-bootstrap/Popover";
 import OverlayTrigger, { OverlayTriggerType } from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { Placement } from "react-bootstrap/esm/types";
+import { Offset } from "@restart/ui/esm/usePopper";
 
 export default function QuickTooltip({
 	children,
 	id = nanoid(),
-	className = "",
+	tooltipClassName = "",
 	delay = 40,
 	placement = "auto",
 	trigger,
@@ -16,11 +17,12 @@ export default function QuickTooltip({
 	show,
 	flip,
 	tooltipContent,
-	tooltipStyle,
+	tooltipStyle = {},
+	tooltipOffset = [0, 6],
 }: {
 	children: JSX.Element;
 	id?: string;
-	className?: string;
+	tooltipClassName?: string;
 	/**Default: 40*/
 	delay?: number;
 	/**Refer to OverlayTrigger from react-bootstrap v2 for valid values*/
@@ -34,8 +36,10 @@ export default function QuickTooltip({
 	flip?: boolean;
 	tooltipContent: React.ReactChild | undefined;
 	tooltipStyle?: CSSProperties;
+	/**https://popper.js.org/docs/v2/modifiers/offset/*/
+	tooltipOffset?: Offset;
 }) {
-	if (tooltipContent === undefined) {
+	if (tooltipContent === undefined || tooltipContent === null || tooltipContent === <></>) {
 		return children;
 	}
 
@@ -47,8 +51,9 @@ export default function QuickTooltip({
 			onToggle={onToggle}
 			show={show}
 			flip={flip}
+			offset={tooltipOffset}
 			overlay={
-				<Tooltip className={className} id={id} style={tooltipStyle}>
+				<Tooltip className={tooltipClassName} id={id} style={tooltipStyle}>
 					{tooltipContent}
 				</Tooltip>
 			}

@@ -58,7 +58,7 @@ export default function LandingPage() {
 						</div>
 					</div>
 				</section>
-				<Divider className="mt-8 mb-16" />
+				<Divider className="mt-8 mb-12" />
 				<section id="features" className="features">
 					<div className="container">
 						<div className="row">
@@ -117,7 +117,7 @@ function FeatureContainer({
 	leftAlign?: boolean;
 }) {
 	return (
-		<div className="col-12 mb-16">
+		<div className="col-12 mb-12">
 			<div className="row">
 				{leftAlign && (
 					<div className="col-12 col-lg-6 align-self-center">

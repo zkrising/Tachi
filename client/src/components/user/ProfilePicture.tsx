@@ -50,7 +50,7 @@ export function ProfilePictureSmall({
 	user,
 	src,
 	toGPT = "",
-	className,
+	className = "",
 }: {
 	user: UserDocument | string;
 	src?: string;
@@ -60,8 +60,6 @@ export function ProfilePictureSmall({
 	 */
 	toGPT?: string;
 }) {
-	const defaultClass = `pfp-small ${className}`;
-
 	if (toGPT) {
 		// eslint-disable-next-line no-param-reassign
 		toGPT = `games/${toGPT}`;
@@ -69,7 +67,7 @@ export function ProfilePictureSmall({
 
 	if (typeof user === "string") {
 		return (
-			<Link to={`/u/${user}/${toGPT}`} className={defaultClass}>
+			<Link to={`/u/${user}/${toGPT}`} className={className}>
 				<img
 					src={src ? src : ToAPIURL(`/users/${user}/pfp`)}
 					alt={`${user}'s Profile Picture`}
@@ -80,7 +78,7 @@ export function ProfilePictureSmall({
 	}
 
 	return (
-		<Link to={`/u/${user.username}/${toGPT}`} className={defaultClass}>
+		<Link to={`/u/${user.username}/${toGPT}`} className={className}>
 			<img
 				src={src ? src : ToAPIURL(`/users/${user.id}/pfp`)}
 				alt={`${user.username}'s Profile Picture`}

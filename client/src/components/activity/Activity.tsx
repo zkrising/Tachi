@@ -15,7 +15,7 @@ import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Collapse from "react-bootstrap/Collapse";
@@ -255,8 +255,6 @@ function ScoresActivity({
 
 	const pfp = <ProfilePictureSmall className="me-2" user={user} toGPT={`${game}/${playtype}`} />;
 
-	const [active, setActive] = useState(false);
-
 	let subMessage;
 	let mutedText: string | null | undefined;
 
@@ -293,27 +291,26 @@ function ScoresActivity({
 		},
 	}));
 
+	const collapseContent = (
+		<ScoreTable // TODO
+			noTopDisplayStr
+			dataset={dataset}
+			game={game}
+			playtype={playtype}
+		/>
+	);
+
 	return (
 		<>
 			<ActivityLayout
 				type="scores"
 				pfp={pfp}
 				time={data.scores[0].timeAchieved ?? 0}
-				isActive={setActive}
-				collapseContent={
-					<ScoreTable // TODO
-						noTopDisplayStr
-						dataset={dataset}
-						game={game}
-						playtype={playtype}
-						timeline={true}
-						active={active}
-					/>
-				}
+				collapseContent={collapseContent}
 			>
 				<span className="ms-2 fw-normal">
-					<UGPTLink reqUser={user} game={game} playtype={playtype} /> highlighted{" "}
-					{subMessage}!{" "}
+					<UGPTLink reqUser={user} game={game} playtype={playtype} tabindex={-1} />{" "}
+					highlighted {subMessage}!{" "}
 					{mutedText && (
 						<>
 							<br />
@@ -373,8 +370,8 @@ function GoalActivity({
 				}
 			>
 				<span className="ms-2">
-					<UGPTLink reqUser={user} game={game} playtype={playtype} /> achieved{" "}
-					{subMessage}!{" "}
+					<UGPTLink reqUser={user} game={game} playtype={playtype} tabindex={-1} />{" "}
+					achieved {subMessage}!{" "}
 					{mutedText && (
 						<>
 							<Muted small italic>
@@ -406,7 +403,8 @@ function QuestActivity({
 	return (
 		<ActivityLayout type="quest" time={data.sub.timeAchieved ?? 0} pfp={pfp}>
 			<span className="fw-normal">
-				<UGPTLink reqUser={user} game={game} playtype={playtype} /> completed the{" "}
+				<UGPTLink reqUser={user} game={game} playtype={playtype} tabindex={-1} /> completed
+				the{" "}
 				<Link
 					className="gentle-link"
 					to={`/games/${game}/${playtype}/quests/${data.quest.questID}`}
@@ -446,7 +444,12 @@ function SessionActivity({
 			>
 				<span className={`ms-2 ${isProbablyActive ? "fw-normal" : ""}`}>
 					{/* worst string formatting ever */}
-					<UGPTLink reqUser={user} game={data.game} playtype={data.playtype} />{" "}
+					<UGPTLink
+						reqUser={user}
+						game={data.game}
+						playtype={data.playtype}
+						tabindex={-1}
+					/>{" "}
 					{isProbablyActive
 						? user.id === loggedInUser?.id
 							? "are having"
@@ -468,17 +471,11 @@ function SessionActivity({
 
 function SessionShower({
 	sessionID,
-	active,
 	setOpen,
 }: {
 	sessionID: string;
-	active: boolean;
 	setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-	if (!active) {
-		return null;
-	}
-
 	const { data, error } = useApiQuery<SessionReturns>(`/sessions/${sessionID}`);
 
 	if (error) {
@@ -498,10 +495,6 @@ function SessionShower({
 	}
 
 	const handleClose = () => {
-		const element = document.getElementById(`session-activity-${sessionID}`);
-		if (element) {
-			element.scrollIntoView({ behavior: "smooth" });
-		}
 		setOpen(false);
 	};
 
@@ -587,7 +580,8 @@ function ClassAchievementActivity({
 	return (
 		<ActivityLayout type="class" pfp={pfp} time={data.timeAchieved}>
 			<span className="ms-2">
-				<UGPTLink reqUser={user} game={data.game} playtype={data.playtype} /> achieved{" "}
+				<UGPTLink reqUser={user} game={data.game} playtype={data.playtype} tabindex={-1} />{" "}
+				achieved{" "}
 				<ClassBadge
 					className="mb-1 mb-md-0 mx-1"
 					classSet={data.classSet}
@@ -614,12 +608,13 @@ function ClassAchievementActivity({
 	);
 }
 
-function UGPTLink({ reqUser, game, playtype }: UGPT) {
+function UGPTLink({ reqUser, game, playtype, tabindex }: { tabindex?: number } & UGPT) {
 	// currently
 	const { user } = useContext(UserContext);
 
 	return (
 		<Link
+			tabIndex={tabindex}
 			to={`/u/${reqUser.username}/games/${game}/${playtype}`}
 			className="gentle-link"
 			style={{
@@ -642,17 +637,14 @@ function UGPTLink({ reqUser, game, playtype }: UGPT) {
 function ActivityLayout({
 	children,
 	type,
-	isActive,
 	pfp,
 	time,
 	sessionActive,
 	highlight,
-	id = `${type}-activity`,
 	collapseContent,
 	sessionID,
 }: JustChildren & {
 	type: string;
-	isActive?: (active: React.SetStateAction<boolean>) => void;
 	pfp: React.ReactChild;
 	time: number;
 	sessionActive?: boolean;
@@ -661,16 +653,42 @@ function ActivityLayout({
 	collapseContent?: React.ReactChild;
 	sessionID?: string;
 }) {
-	const [active, setActive] = useState(false);
 	const [open, setOpen] = useState(false);
+	const ref = useRef<HTMLDivElement>(null);
 
-	const handleClick = () => {
+	function handleClick(): void {
 		setOpen(!open);
-		setActive(true);
-		if (isActive) {
-			isActive(true);
+	}
+
+	function handleKey(e: React.KeyboardEvent<HTMLElement>): void {
+		switch (true) {
+			case e.key === "Enter" || e.key === "Space":
+				handleClick();
+				break;
+			case e.key === "ArrowRight":
+				if (!open) {
+					setOpen(true);
+				}
+				break;
+			case e.key === "ArrowLeft":
+				if (open) {
+					setOpen(false);
+				}
+				break;
+			default:
+				break;
 		}
-	};
+	}
+
+	function handleScroll(): void {
+		if (ref.current !== null) {
+			ref.current.scrollIntoView({
+				behavior: "smooth",
+				block: "nearest",
+			});
+		}
+	}
+
 	let bg: string;
 	switch (true) {
 		case type === "scores" || type === "goal" || type === "quest":
@@ -687,7 +705,7 @@ function ActivityLayout({
 	// Lazy
 	if (type === "session" && sessionID) {
 		// eslint-disable-next-line no-param-reassign
-		collapseContent = <SessionShower sessionID={sessionID} active={active} setOpen={setOpen} />;
+		collapseContent = <SessionShower sessionID={sessionID} setOpen={setOpen} />;
 	}
 
 	let expandable = false;
@@ -696,50 +714,50 @@ function ActivityLayout({
 	}
 
 	return (
-		<Row
-			id={id}
-			className={`align-items-center user-select-none mx-2 my-4 p-1 bg-hover-translucent bg-transition rounded ${
-				open ? "bg-dark" : ""
-			}`}
+		<div
+			id={`${type}-activity`}
+			className={` user-select-none mx-2 my-4 bg-transition rounded ${open ? "bg-dark" : ""}`}
 		>
-			<TimelineDot bg={bg} highlight={highlight} active={sessionActive} />
-			<Col
-				md={8}
-				lg={10}
+			<Row
+				role={expandable ? "button" : undefined}
+				tabIndex={0}
+				onKeyDown={expandable ? (e) => handleKey(e) : undefined}
+				className={`mx-0 px-2 align-items-center bg-hover-translucent focus-ring rounded ${
+					expandable ? "cursor-pointer" : ""
+				}`}
 				onClick={expandable ? handleClick : undefined}
 				aria-expanded={expandable ? open : undefined}
-				aria-controls="activity-container"
-				className="py-4 d-flex fw-light h-100 align-items-center cursor-pointer"
+				aria-controls={expandable ? `${type}-activity-container` : ""}
+				ref={ref}
+				style={{ scrollMarginBlock: "140px" }}
 			>
-				{pfp}
-				{expandable ? (
-					<Icon
-						className="timeline-icon animate-rotate-90"
-						type="chevron-right"
-						show={open}
-					/>
-				) : undefined}
-				{children}
-			</Col>
-			<Col
-				md={4}
-				lg={2}
-				className={`text-end py-4 ${expandable ? "cursor-pointer" : ""}`}
-				onClick={expandable ? handleClick : undefined}
-			>
-				{MillisToSince(time)}
-				<Muted block italic>
-					{FormatTime(time)}
-				</Muted>
-			</Col>
+				<TimelineDot bg={bg} highlight={highlight} active={sessionActive} />
+				<Col md={8} lg={10} className="py-4 d-flex fw-light h-100 align-items-center">
+					{pfp}
+					{expandable ? (
+						<Icon
+							className="timeline-icon animate-rotate-90"
+							type="chevron-right"
+							show={open}
+						/>
+					) : undefined}
+					{children}
+				</Col>
+				<Col md={4} lg={2} className="text-end py-4">
+					{MillisToSince(time)}
+					<Muted block italic>
+						{FormatTime(time)}
+					</Muted>
+				</Col>
+			</Row>
 			{expandable ? (
-				<Collapse in={open}>
-					<div className="m-0 p-0 overflow-y-hidden" id={`${type}-container`}>
+				<Collapse mountOnEnter in={open} onExit={() => handleScroll()}>
+					<div className="m-0 p-0 overflow-y-hidden" id={`${type}-activity-container`}>
 						{collapseContent}
 					</div>
 				</Collapse>
 			) : undefined}
-		</Row>
+		</div>
 	);
 }
 

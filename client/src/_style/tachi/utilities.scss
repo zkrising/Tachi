@@ -1,50 +1,57 @@
+.nav-link {
+	@extend .rounded;
+}
+
+/**
+ * Remove focus styles for non-keyboard focus.
+ */
+ :focus:not(:focus-visible) {
+	outline: 0;
+	box-shadow: none;
+  }
+  
+
 .hover-opacity {
 	// only used on breakcrumbs
 	transition: opacity 0.15s ease;
 	&:hover {
-		opacity: 100 !important;
-	}
-}
-
-.gentle-link {
-	// override primary colour for links
-	color: var(--bs-body-color);
-	&:hover {
-		color: var(--bs-link-hover-color);
-	}
-	&:focus-visible {
-		color: var(--bs-link-hover-color);
+		@extend .opacity-100;
 	}
 }
 
 .fullscreen {
 	// used by error messages
 	inset: 0;
-	position: fixed;
-	background-color: var(--bs-body-bg);
 	z-index: 8888;
+	@extend .position-fixed;
+	@extend .bg-body;
 }
 
 .form-length-validation {
 	// class selector for a numerical form validation overlay
-	position: absolute;
+	@extend .position-absolute;
 	z-index: 10;
 	right: 2.5em;
-	align-self: center; // browser says it has no effect but i can say with absolute confidence that it absolutely does
+	@extend .align-self-center; // firefox says it has no effect but i can say with absolute confidence that it absolutely does
 	transition: color 150ms ease-in-out;
 }
 
-.undraggable {
+/*.undraggable {
 	// combo class to make items undraggable
 	-webkit-user-drag: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
-}
+} probably unecessary */ 
 
 .bg-transition {
 	// transition any background
 	transition: background-color 75ms ease-in-out;
+}
+
+.text-transition {
+	// transition any text
+	transition: color 75ms ease-in-out;
 }
 
 .hide-scrollbar {
@@ -83,7 +90,7 @@
 		.text-hover-#{$k} {
 			transition: $nav-link-transition;
 			&:hover {
-				color: #{$v};
+				color: var(--bs-#{$k}) !important;
 			}
 		}
 	}
@@ -95,18 +102,16 @@
 	@each $k, $v in $theme-colors {
 		.bg-hover-#{$k} {
 			transition: $nav-link-transition;
-			&:hover, &:focus, &:focus-visible {
+			&:hover, &:focus {
 				background-color: #{$v};
-				border-color: #{$v};
 			}
-            &:focus-visible {
-                outline-color: var(--bs-primary);
-                outline-style: solid;
-                outline-width: 2px;
-                outline-offset: 0;
-            }
 		}
 	}
 }
 
 @include bg-hover($theme-colors);
+
+a:focus {
+	@extend .focus-ring;
+	@extend .rounded;
+}

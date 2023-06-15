@@ -64,6 +64,7 @@ function Navbar({ children }: NavbarProps): JSX.Element {
 		});
 		resizeObserver.observe(parentRef.current as HTMLElement);
 
+		// Check the scroll position to determine which buttons display
 		function handleScrollButtonVisibility() {
 			if (container) {
 				setShowScrollLeft(container.scrollLeft > 0);
@@ -156,7 +157,7 @@ function Item({ to, children, setActiveItem, active }: NavItemProps) {
 
 	return (
 		<NavLink
-			className="gentle-link px-8 mx-2 py-4"
+			className="px-8 mx-2 py-4 feature-nav"
 			to={to}
 			exact
 			ref={linkRef}

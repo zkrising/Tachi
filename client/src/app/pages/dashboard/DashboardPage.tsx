@@ -263,7 +263,7 @@ function DashboardNotLoggedIn() {
 			<div className="col-12 text-center" style={{ paddingTop: 50, paddingBottom: 50 }}>
 				Interested? You can register right now for <b>free</b>!
 				<br />
-				<LinkButton to="/register" className="mt-4 btn-outline-primary">
+				<LinkButton to="/register" variant="outline-primary" className="mt-4">
 					Register!
 				</LinkButton>
 			</div>
@@ -281,7 +281,7 @@ function DashboardNotLoggedIn() {
 
 function FeatureContainer({ tagline, description }: { tagline: string; description: string }) {
 	return (
-		<div className="row my-4 mb-16" style={{ lineHeight: "1.3", fontSize: "1.15rem" }}>
+		<div className="row my-4 mb-12" style={{ lineHeight: "1.3", fontSize: "1.15rem" }}>
 			<div className="col-12 col-lg-6">
 				<h1 className="display-4">{tagline}</h1>
 				<span>{description}</span>

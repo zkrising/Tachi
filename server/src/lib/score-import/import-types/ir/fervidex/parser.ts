@@ -76,7 +76,6 @@ const PR_FERVIDEX: PrudenceSchema = {
 
 /**
  * Converts a string of the form LDJ:X:X:X:2020092900 into a game version.
- * I don't really understand the software model format, so this is lazy.
  */
 export function SoftwareIDToVersion(
 	model: string,

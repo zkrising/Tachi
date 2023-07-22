@@ -56,7 +56,7 @@ export default function Quest({
 							<h4>
 								Progress:{" "}
 								{questSub.achieved ? (
-									<Badge variant="success">COMPLETE!</Badge>
+									<Badge bg="success">COMPLETE!</Badge>
 								) : (
 									<span>
 										<span className="text-danger">{questSub.progress}</span>

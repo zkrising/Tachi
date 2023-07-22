@@ -40,8 +40,8 @@ export const SeedsTableCells: CellsRenderFN<TableWithRelated> = ({ data }) => (
 			<br />
 			<Muted>{data.description}</Muted>
 			{(data.inactive || data.default) && <br />}
-			{data.default && <Badge variant="success">DEFAULT</Badge>}
-			{data.inactive && <Badge variant="warning">INACTIVE</Badge>}
+			{data.default && <Badge bg="success">DEFAULT</Badge>}
+			{data.inactive && <Badge bg="warning">INACTIVE</Badge>}
 		</td>
 		<td>{FormatGame(data.game, data.playtype)}</td>
 		<td className="text-start">

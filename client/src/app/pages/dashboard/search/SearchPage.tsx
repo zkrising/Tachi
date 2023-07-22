@@ -133,7 +133,7 @@ function SearchResults({ search, hasPlayedGame }: { search: string; hasPlayedGam
 						return (
 							<SelectButton id={gpt} value={mode} setValue={setMode}>
 								{FormatGame(game, playtype)}
-								<Badge variant="secondary" className="ms-2">
+								<Badge bg="secondary" className="ms-2">
 									{charts.length}
 								</Badge>
 							</SelectButton>
@@ -148,7 +148,7 @@ function SearchResults({ search, hasPlayedGame }: { search: string; hasPlayedGam
 						setValue={setMode}
 					>
 						Users
-						<Badge variant="secondary" className="ms-2">
+						<Badge bg="secondary" className="ms-2">
 							{data.users.length}
 						</Badge>
 					</SelectButton>
@@ -248,7 +248,7 @@ function UsersView({ users }: { users: Array<UserDocument> }) {
 								</div>
 								{Date.now() - user.lastSeen < ONE_MINUTE * 5 && (
 									<div className="mt-2">
-										<Badge variant="success">ONLINE</Badge>
+										<Badge bg="success">ONLINE</Badge>
 									</div>
 								)}
 							</div>

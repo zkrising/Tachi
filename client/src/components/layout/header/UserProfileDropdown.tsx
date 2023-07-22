@@ -18,7 +18,7 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 	const [heySplash] = useState(RFA(heySplashes));
 
 	return (
-		<Dropdown drop="down" alignRight>
+		<Dropdown drop="down" align="end">
 			<Dropdown.Toggle as={DropdownToggleOverride} id="dropdown-toggle-user-profile">
 				<div
 					className={

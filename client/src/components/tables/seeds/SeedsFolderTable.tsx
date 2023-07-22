@@ -50,7 +50,7 @@ export const SeedsFolderCells: CellsRenderFN<FolderDocument> = ({
 			{data.inactive && (
 				<>
 					<br />
-					<Badge variant="warning">INACTIVE</Badge>
+					<Badge bg="warning">INACTIVE</Badge>
 				</>
 			)}
 		</td>

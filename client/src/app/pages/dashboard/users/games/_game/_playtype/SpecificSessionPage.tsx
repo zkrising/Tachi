@@ -192,7 +192,7 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 						style={{
 							lineHeight: "15px",
 						}}
-						variant="warning"
+						bg="warning"
 						className="ms-2"
 					>
 						Highlight!

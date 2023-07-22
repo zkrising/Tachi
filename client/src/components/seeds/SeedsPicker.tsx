@@ -136,7 +136,7 @@ export default function SeedsPicker({
 						</span>
 						{body && (
 							<span
-								className="ms-4 badge badge-secondary"
+								className="ms-4 badge bg-secondary"
 								onClick={() => setShowBody(!showBody)}
 							>
 								{showBody ? (
@@ -430,7 +430,7 @@ function RevisionComponent({
 					</span>
 					{body && (
 						<span
-							className="ms-4 badge badge-secondary"
+							className="ms-4 badge bg-secondary"
 							onClick={() => setShowBody(!showBody)}
 						>
 							{showBody ? (
@@ -443,7 +443,7 @@ function RevisionComponent({
 					{tags.length !== 0 && (
 						<span className="ms-2">
 							{tags.map((e) => (
-								<Badge className="ms-2" variant="primary" key={e}>
+								<Badge className="ms-2" bg="primary" key={e}>
 									{e}
 								</Badge>
 							))}

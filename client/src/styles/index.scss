@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+@import "../_assets/flaticon/flaticon.css";
+@import "../_assets/flaticon2/flaticon.css";
+@import "../_assets/keenthemes-icons/font/ki.css";
+
+// Bootstrap Functions
+@import "bootstrap-scss/functions";
+
+// Bootstrap Variables Overrides
+@import "bootstrap-scss/variables";
+// @import "./customised-bootstrap/variables-dark";
+@import "./customised-bootstrap/variables";
+
+// Bootstrap Requirements
+@import "bootstrap-scss/maps";
+@import "bootstrap-scss/mixins";
+@import "bootstrap-scss/root";
+
+// Bootstrap components we want
+@import "bootstrap-scss/utilities";
+@import "bootstrap-scss/reboot";
+@import "bootstrap-scss/helpers";
+@import "bootstrap-scss/buttons";
+@import "bootstrap-scss/button-group";
+@import "bootstrap-scss/type";
+@import "bootstrap-scss/containers";
+@import "bootstrap-scss/grid";
+@import "bootstrap-scss/dropdown";
+@import "bootstrap-scss/forms";
+@import "bootstrap-scss/card";
+@import "bootstrap-scss/badge";
+@import "bootstrap-scss/alert";
+@import "bootstrap-scss/offcanvas";
+@import "bootstrap-scss/tables";
+@import "bootstrap-scss/transitions";
+@import "bootstrap-scss/tooltip";
+@import "bootstrap-scss/toasts";
+@import "bootstrap-scss/spinners";
+@import "bootstrap-scss/nav";
+@import "bootstrap-scss/navbar";
+@import "bootstrap-scss/pagination";
+@import "bootstrap-scss/modal";
+@import "bootstrap-scss/close";
+
+@import "bootstrap-scss/utilities/api";

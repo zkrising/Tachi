@@ -604,7 +604,6 @@ $aspect-ratios: (
 // stylelint-disable value-keyword-case
 $font-family-sans-serif:
   "Poppins",
-  "M PLUS 2",
   system-ui,
   -apple-system,
   "Helvetica Neue",
@@ -626,11 +625,11 @@ $font-size-sm: $font-size-base * 0.85;
 $font-size-lg: $font-size-base * 1.16;
 
 $font-weight-lighter: null;
-$font-weight-light: 400;
-$font-weight-normal: 500;
+$font-weight-light: 300;
+$font-weight-normal: 400;
 $font-weight-medium: null;
-$font-weight-semibold: 600 !default;
-$font-weight-bold: 700 !default;
+$font-weight-semibold: 500;
+$font-weight-bold: 600;
 $font-weight-bolder: null;
 
 $font-weight-base: $font-weight-normal;

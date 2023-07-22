@@ -186,11 +186,9 @@ export function CommentModal({
 								onChange={(e) => setInnerComment(e.target.value)}
 							/>
 
-							<div className="input-group-append">
-								<Button variant="primary" type="submit">
-									Submit
-								</Button>
-							</div>
+							<Button variant="primary" type="submit">
+								Submit
+							</Button>
 						</div>
 					</Form.Group>
 

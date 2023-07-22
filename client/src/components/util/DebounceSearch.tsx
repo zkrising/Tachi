@@ -39,11 +39,9 @@ export default function DebounceSearch({
 				}}
 				placeholder={placeholder}
 			/>
-			<div className="input-group-append">
-				<span className="input-group-text">
-					<i className="fas fa-search"></i>
-				</span>
-			</div>
+			<span className="input-group-text">
+				<i className="fas fa-search"></i>
+			</span>
 		</div>
 	);
 }

@@ -266,11 +266,9 @@ function ChangeStatusModal({
 								value={innerStatus}
 								onChange={(e) => setInnerStatus(e.target.value)}
 							/>
-							<div className="input-group-append">
-								<Button variant="primary" type="submit">
-									Submit
-								</Button>
-							</div>
+							<Button variant="primary" type="submit">
+								Submit
+							</Button>
 						</div>
 					</Form.Group>
 				</Form>

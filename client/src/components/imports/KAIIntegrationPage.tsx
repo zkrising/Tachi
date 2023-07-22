@@ -139,9 +139,7 @@ function KAINeedsIntegrate({ kaiType, hash, clientID, redirectUri }: Omit<Props,
 					For security reasons, please input the URL of the site for {kaiType}.
 				</Form.Text>
 				<InputGroup>
-					<InputGroup.Prepend>
-						<InputGroup.Text>https://</InputGroup.Text>
-					</InputGroup.Prepend>
+					<InputGroup.Text>https://</InputGroup.Text>
 					<Form.Control value={url} onChange={(e) => setUrl(e.target.value)} />
 				</InputGroup>
 			</Form.Group>

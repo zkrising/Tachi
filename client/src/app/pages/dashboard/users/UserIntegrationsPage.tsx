@@ -196,9 +196,7 @@ function CreateNewOAuthClient({ setClients }: { setClients: SetState<TachiAPICli
 						}}
 					>
 						<div className="input-group">
-							<div className="input-group-append">
-								<span className="input-group-text">Name</span>
-							</div>
+							<span className="input-group-text">Name</span>
 							<input
 								value={name}
 								className="form-control"
@@ -212,9 +210,7 @@ function CreateNewOAuthClient({ setClients }: { setClients: SetState<TachiAPICli
 						</Muted>
 						<Divider />
 						<div className="input-group">
-							<div className="input-group-append">
-								<span className="input-group-text">Redirect URI</span>
-							</div>
+							<span className="input-group-text">Redirect URI</span>
 							<input
 								value={redirectUri}
 								className="form-control"
@@ -859,9 +855,7 @@ function CreateAPIKeyModal({
 					}}
 				>
 					<div className="input-group">
-						<div className="input-group-append">
-							<span className="input-group-text">Identifier</span>
-						</div>
+						<span className="input-group-text">Identifier</span>
 						<input
 							value={identifier}
 							className="form-control"

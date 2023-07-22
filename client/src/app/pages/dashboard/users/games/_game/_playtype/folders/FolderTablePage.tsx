@@ -103,9 +103,7 @@ export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 	return (
 		<>
 			<InputGroup>
-				<InputGroup.Prepend>
-					<InputGroup.Text>Table</InputGroup.Text>
-				</InputGroup.Prepend>
+				<InputGroup.Text>Table</InputGroup.Text>
 				<Form.Control
 					as="select"
 					size="lg"

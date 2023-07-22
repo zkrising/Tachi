@@ -26,7 +26,7 @@ function SearchResult({
 			tabIndex={tabIndex}
 			to={link}
 		>
-			<div className="d-flex flex-column ml-3 mt-2 mb-2">{children}</div>
+			<div className="d-flex flex-column ms-3 mt-2 mb-2">{children}</div>
 		</Link>
 	);
 }
@@ -43,11 +43,11 @@ function GPTSearchResult({
 	const currentLoc = window.location.href.split(`games/${game}/${playtype}`)[1];
 
 	return (
-		<div className="d-flex flex-column ml-3 mt-2 mb-2">
+		<div className="d-flex flex-column ms-3 mt-2 mb-2">
 			<strong>
 				<Link to={`/u/${user.username}`}>{user.username}</Link>
 				<Link
-					className="float-right gentle-link mr-4"
+					className="float-end gentle-link me-4"
 					tabIndex={tabIndex}
 					to={`/u/${user.username}/games/${game}/${playtype}${currentLoc}`}
 					style={{
@@ -61,7 +61,7 @@ function GPTSearchResult({
 					</QuickTooltip>
 				</Link>
 			</strong>
-			<span className="font-size-sm font-weight-bold text-muted">{user.status}</span>
+			<span className="font-size-sm fw-bold text-muted">{user.status}</span>
 		</div>
 	);
 }
@@ -69,7 +69,7 @@ function GPTSearchResult({
 function SearchResults({ results }: { results: SearchReturns }) {
 	if (!results.users?.length && !results.songs.length) {
 		return (
-			<div className="font-size-sm font-weight-bolder text-uppercase mb-2 text-center">
+			<div className="font-size-sm fw-bolder text-uppercase mb-2 text-center">
 				Found nothing :(
 			</div>
 		);
@@ -99,7 +99,7 @@ function SearchResults({ results }: { results: SearchReturns }) {
 		<div className="quick-search-result">
 			{results?.users?.length ? (
 				<>
-					<div className="font-size-sm text-primary font-weight-bolder text-uppercase mb-2">
+					<div className="font-size-sm text-primary fw-bolder text-uppercase mb-2">
 						Users
 					</div>
 					<div>
@@ -115,7 +115,7 @@ function SearchResults({ results }: { results: SearchReturns }) {
 							) : (
 								<SearchResult key={u.id} link={`/u/${u.username}`} tabIndex={0}>
 									<strong>{u.username}</strong>
-									<span className="font-size-sm font-weight-bold text-muted">
+									<span className="font-size-sm fw-bold text-muted">
 										{u.status}
 									</span>
 								</SearchResult>
@@ -129,7 +129,7 @@ function SearchResults({ results }: { results: SearchReturns }) {
 			)}
 			{results?.songs.length ? (
 				<>
-					<div className="font-size-sm text-primary font-weight-bolder text-uppercase mb-2">
+					<div className="font-size-sm text-primary fw-bolder text-uppercase mb-2">
 						Songs
 					</div>
 					<div className="mb-4">
@@ -144,7 +144,7 @@ function SearchResults({ results }: { results: SearchReturns }) {
 								tabIndex={0}
 							>
 								<strong>{FormatSongTitle(s.game, s)}</strong>
-								<span className="font-size-sm font-weight-bold text-muted">
+								<span className="font-size-sm fw-bold text-muted">
 									{GetGameConfig(s.game).name}
 								</span>
 							</SearchResult>
@@ -255,7 +255,7 @@ export default function SearchBar() {
 
 	return (
 		<div ref={ref} className="align-self-center" style={{ flexGrow: 1 }}>
-			<div className="topbar-item mr-2">
+			<div className="topbar-item me-2">
 				<form className="quick-search-form" onSubmit={PREVENT_DEFAULT}>
 					<div className="input-group">
 						<input

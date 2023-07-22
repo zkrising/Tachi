@@ -136,7 +136,7 @@ export default function TachiTable<D>({
 					<div className="d-none d-lg-flex col-lg-6 align-self-center">{displayStr}</div>
 				)}
 				{searchFunctions && (
-					<div className="col-12 col-lg-3 ml-auto input-group">
+					<div className="col-12 col-lg-3 ms-auto input-group">
 						<input
 							className="form-control filter-directives-enabled"
 							onChange={(e) => setSearch(e.target.value)}
@@ -166,7 +166,7 @@ export default function TachiTable<D>({
 					<div className="d-none d-lg-flex col-lg-4 justify-content-center align-items-center">
 						{settings?.preferences.developerMode && (
 							<Button
-								className="ml-4 w-50"
+								className="ms-4 w-50"
 								onClick={() => {
 									let data = dataset;
 									if (search !== "") {
@@ -182,7 +182,7 @@ export default function TachiTable<D>({
 							</Button>
 						)}
 					</div>
-					<div className="col-lg-4 ml-auto text-right">
+					<div className="col-lg-4 ms-auto text-end">
 						<div className="btn-group">
 							<Button
 								variant="secondary"

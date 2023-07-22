@@ -19,7 +19,7 @@ export function Topbar() {
 				</>
 			) : (
 				<>
-					<div className="topbar-item mr-3">
+					<div className="topbar-item me-3">
 						<LinkButton to="/login" className="btn-outline-primary">
 							Log In
 						</LinkButton>

@@ -16,7 +16,7 @@ export default function CheckEdit<T extends string>({
 			<Form.Check
 				type="radio"
 				style={{ display: "inline" }}
-				className="mr-4"
+				className="me-4"
 				checked={currentType === type}
 				onChange={onChange}
 			/>{" "}

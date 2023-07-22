@@ -161,7 +161,7 @@ function LeaderboardsPageContent({
 		<Card
 			header={"Leaderboard"}
 			footer={
-				<Link to={`/games/${game}/${playtype}/leaderboards`} className="float-right">
+				<Link to={`/games/${game}/${playtype}/leaderboards`} className="float-end">
 					View Global Leaderboards
 				</Link>
 			}

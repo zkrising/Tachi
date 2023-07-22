@@ -153,7 +153,7 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 						{(text) => (
 							<div className="mb-4">
 								<span className="display-4">{text}</span>
-								<span className="ml-2 text-hover-white">
+								<span className="ms-2 text-hover-white">
 									<Icon type="pencil-alt" />
 								</span>
 							</div>
@@ -180,7 +180,7 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 							<div className="mb-4">
 								<span className="text-muted mb-4">{text}</span>
 
-								<span className="ml-2 text-hover-white">
+								<span className="ms-2 text-hover-white">
 									<Icon type="pencil-alt" />
 								</span>
 							</div>
@@ -193,7 +193,7 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 							lineHeight: "15px",
 						}}
 						variant="warning"
-						className="ml-2"
+						className="ms-2"
 					>
 						Highlight!
 					</Badge>

@@ -11,11 +11,11 @@ export function SubHeader() {
 			<div id="kt_subheader" className="subheader">
 				<div className="container d-flex align-items-center justify-content-start">
 					<div className="d-flex w-100 d-md-none align-items-center justify-content-center">
-						<h2 className="text-white font-weight-bold">{subheader.title}</h2>
+						<h2 className="text-white fw-bold">{subheader.title}</h2>
 					</div>
-					<div className="d-none d-md-flex flex-wrap mr-1 justify-content-start">
+					<div className="d-none d-md-flex flex-wrap me-1 justify-content-start">
 						<div className="d-flex flex-column">
-							<h2 className="text-white font-weight-bold my-2 mr-5">
+							<h2 className="text-white fw-bold my-2 me-5">
 								{subheader.title}
 							</h2>
 

@@ -38,7 +38,7 @@ function Component({ game, playtype, reqUser }: UGPT) {
 								Just drop this file into your <code>playlists/</code> folder.
 							</div>
 							<a
-								className="btn btn-outline-primary ml-4"
+								className="btn btn-outline-primary ms-4"
 								download={`tachi-playlists.json`}
 								href={`data:text/plain,${encodeURIComponent(
 									JSON.stringify(

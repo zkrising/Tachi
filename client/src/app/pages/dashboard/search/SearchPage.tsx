@@ -46,7 +46,7 @@ export default function SearchPage() {
 					placeholder="Search songs, users..."
 				/>
 				{user && (
-					<div className="w-100 mt-4 ml-1">
+					<div className="w-100 mt-4 ms-1">
 						<Form.Check
 							checked={hasPlayedGame}
 							onChange={(e) => setHasPlayedGame(e.target.checked)}
@@ -133,7 +133,7 @@ function SearchResults({ search, hasPlayedGame }: { search: string; hasPlayedGam
 						return (
 							<SelectButton id={gpt} value={mode} setValue={setMode}>
 								{FormatGame(game, playtype)}
-								<Badge variant="secondary" className="ml-2">
+								<Badge variant="secondary" className="ms-2">
 									{charts.length}
 								</Badge>
 							</SelectButton>
@@ -148,7 +148,7 @@ function SearchResults({ search, hasPlayedGame }: { search: string; hasPlayedGam
 						setValue={setMode}
 					>
 						Users
-						<Badge variant="secondary" className="ml-2">
+						<Badge variant="secondary" className="ms-2">
 							{data.users.length}
 						</Badge>
 					</SelectButton>
@@ -230,7 +230,7 @@ function UsersView({ users }: { users: Array<UserDocument> }) {
 								<ProfilePicture user={user} />
 							</div>
 							<div
-								className="ml-4 d-flex w-100 h-100"
+								className="ms-4 d-flex w-100 h-100"
 								style={{
 									flexWrap: "wrap",
 									flexDirection: "column",

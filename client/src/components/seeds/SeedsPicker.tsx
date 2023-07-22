@@ -127,7 +127,7 @@ export default function SeedsPicker({
 		<>
 			<Card header={header}>
 				{rev ? (
-					<div className="mr-3" style={{ textAlign: "left" }}>
+					<div className="me-3" style={{ textAlign: "left" }}>
 						<span style={{ fontSize: "1.15rem" }}>
 							<code>
 								{rev.repo}/{rev.c.sha}
@@ -136,7 +136,7 @@ export default function SeedsPicker({
 						</span>
 						{body && (
 							<span
-								className="ml-4 badge badge-secondary"
+								className="ms-4 badge badge-secondary"
 								onClick={() => setShowBody(!showBody)}
 							>
 								{showBody ? (
@@ -146,7 +146,7 @@ export default function SeedsPicker({
 								)}
 							</span>
 						)}
-						{showBody && <div className="ml-6 mt-1">{body}</div>}
+						{showBody && <div className="ms-6 mt-1">{body}</div>}
 						<Divider />
 						<div style={{ width: "100%", display: "flex" }}>
 							<div style={{ flex: 1 }}>
@@ -161,7 +161,7 @@ export default function SeedsPicker({
 									</>
 								)}
 							</div>
-							<div className="text-right" style={{ flex: 1 }}>
+							<div className="text-end" style={{ flex: 1 }}>
 								{FormatTime(Date.parse(rev.c.commit.author.date))}
 							</div>
 						</div>
@@ -421,7 +421,7 @@ function RevisionComponent({
 		<div className="timeline-item">
 			<span className="timeline-badge bg-primary"></span>
 			<div className="timeline-content d-flex align-items-center justify-content-between">
-				<div className="mr-3" style={{ width: "70%", textAlign: "left" }}>
+				<div className="me-3" style={{ width: "70%", textAlign: "left" }}>
 					<span style={{ fontSize: "1.15rem" }}>
 						<code>{TruncateString(rev.sha, 9)}</code>:{" "}
 						<a className="gentle-link" onClick={() => onSelect(rev)}>
@@ -430,7 +430,7 @@ function RevisionComponent({
 					</span>
 					{body && (
 						<span
-							className="ml-4 badge badge-secondary"
+							className="ms-4 badge badge-secondary"
 							onClick={() => setShowBody(!showBody)}
 						>
 							{showBody ? (
@@ -441,15 +441,15 @@ function RevisionComponent({
 						</span>
 					)}
 					{tags.length !== 0 && (
-						<span className="ml-2">
+						<span className="ms-2">
 							{tags.map((e) => (
-								<Badge className="ml-2" variant="primary" key={e}>
+								<Badge className="ms-2" variant="primary" key={e}>
 									{e}
 								</Badge>
 							))}
 						</span>
 					)}
-					{showBody && <div className="ml-6 mt-1">{body}</div>}
+					{showBody && <div className="ms-6 mt-1">{body}</div>}
 					<div>
 						{authorNotCommitter ? (
 							<>
@@ -464,7 +464,7 @@ function RevisionComponent({
 					</div>
 				</div>
 
-				<span className="text-muted font-italic text-right">
+				<span className="text-muted fst-italic text-end">
 					{FormatTime(Date.parse(rev.commit.author.date))}
 				</span>
 			</div>

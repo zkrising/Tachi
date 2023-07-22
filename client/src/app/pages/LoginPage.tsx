@@ -87,8 +87,8 @@ export default function LoginPage() {
 				<SiteWordmark />
 				<div className="text-center mb-10 mb-lg-20">
 					<h3 className="font-size-h1">Log In</h3>
-					<span className="font-weight-bold text-dark-50">Don't have an account?</span>
-					<Link to="/register" className="font-weight-bold ml-2">
+					<span className="fw-bold text-dark-50">Don't have an account?</span>
+					<Link to="/register" className="fw-bold ms-2">
 						Sign Up!
 					</Link>
 				</div>
@@ -134,12 +134,12 @@ export default function LoginPage() {
 						<span
 							onClick={() => history.goBack()}
 							tabIndex={4}
-							className="mr-auto btn btn-outline-danger"
+							className="me-auto btn btn-outline-danger"
 						>
 							Back
 						</span>
 						<Link to="/forgot-password">Forgot Password</Link>
-						<Button tabIndex={3} type="submit" className="ml-auto">
+						<Button tabIndex={3} type="submit" className="ms-auto">
 							Log In
 						</Button>
 					</Form.Group>

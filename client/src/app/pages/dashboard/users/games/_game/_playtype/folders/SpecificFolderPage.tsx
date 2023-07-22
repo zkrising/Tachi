@@ -391,12 +391,12 @@ function TimelineElement({
 		<div className="timeline-item">
 			<span className="timeline-badge bg-primary"></span>
 			<div className="timeline-content d-flex align-items-center justify-content-between">
-				<span className="mr-3 w-100" style={{ fontSize: "1.15rem" }}>
+				<span className="me-3 w-100" style={{ fontSize: "1.15rem" }}>
 					<MiniTable>
 						<td>
 							<b>#{index}</b>
 							{Date.now() - scoreData.timeAdded < ONE_DAY && (
-								<span className="ml-2 label label-inline label-primary font-weight-bolder">
+								<span className="ms-2 label label-inline label-primary fw-bolder">
 									NEW!
 								</span>
 							)}
@@ -666,7 +666,7 @@ function TierlistInfoBucketValues({
 		return (
 			<tr>
 				<DifficultyCell game={game} chart={tierlistInfo.chart} alwaysShort noTierlist />
-				<td className="text-left">
+				<td className="text-start">
 					<Link className="gentle-link" to={CreateChartLink(data, game)}>
 						{tierlistInfo.chart.__related.song.title}
 					</Link>{" "}
@@ -674,7 +674,7 @@ function TierlistInfoBucketValues({
 					<div>
 						{tierlistInfo.value} ({tierlistInfo.text ?? "No Info"})
 						{tierlistInfo.idvDiff && (
-							<span className="ml-1">
+							<span className="ms-1">
 								<Icon type="balance-scale-left" />
 							</span>
 						)}

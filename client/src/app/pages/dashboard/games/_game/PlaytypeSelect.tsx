@@ -32,7 +32,7 @@ export default function PlaytypeSelect({
 						{gameConfig.playtypes.map((pt) => (
 							<Link
 								key={pt}
-								className="btn btn-outline-primary float-right"
+								className="btn btn-outline-primary float-end"
 								to={`${base}/${pt}`}
 							>
 								{pt}

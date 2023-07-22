@@ -274,7 +274,7 @@ function UGPTStatInnerSearchyBit({ game, playtype, onCreate, setShow }: Props) {
 			<Form.Group className="d-flex justify-content-end">
 				<Button
 					disabled={formik.values.mode === "chart" && !formik.values.chartID}
-					type="submit ml-auto"
+					type="submit ms-auto"
 				>
 					Submit
 				</Button>

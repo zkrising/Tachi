@@ -19,8 +19,8 @@ export default function SortableTH({
 }) {
 	return (
 		<th className="compressible-th" onClick={() => changeSort(sortingName)} style={style}>
-			<span className="mr-2 d-none d-lg-block">{name}</span>
-			<span className="mr-2 d-block d-lg-none">{shortName}</span>
+			<span className="me-2 d-none d-lg-block">{name}</span>
+			<span className="me-2 d-block d-lg-none">{shortName}</span>
 			<span>
 				<i
 					className={`flaticon2-arrow-up icon-sm sort-icon ${

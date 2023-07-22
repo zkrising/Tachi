@@ -9,7 +9,7 @@ export function SearchButton() {
 	return (
 		<div className="topbar-item">
 			<Link to="/search">
-				<div className="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1">
+				<div className="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg me-1">
 					<Icon type="search" colour="muted" />
 				</div>
 			</Link>

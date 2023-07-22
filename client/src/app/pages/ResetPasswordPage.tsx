@@ -65,7 +65,7 @@ export default function ResetPasswordPage() {
 					<Button
 						tabIndex={3}
 						type="submit"
-						className="ml-auto"
+						className="ms-auto"
 						disabled={!(password === confirmPass && password.length >= 8)}
 					>
 						Reset Password

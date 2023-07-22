@@ -436,7 +436,7 @@ function FileUploadController({
 					}
 				}}
 				disabled={!reqUser.customPfpLocation}
-				className="mr-auto"
+				className="me-auto"
 				variant="secondary"
 			>
 				Unset
@@ -466,7 +466,7 @@ function FileUploadController({
 							window.location.reload();
 						}
 					}}
-					className="ml-auto"
+					className="ms-auto"
 					variant="success"
 					disabled={file.size > 1024 * 1000}
 				>

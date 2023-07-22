@@ -176,7 +176,7 @@ export default function UGPTStatShowcase({ reqUser, game, playtype }: UGPT) {
 									<div className="col-12 col-lg-4 lg-offset-8">
 										<Alert variant="info" className="text-center">
 											CUSTOM STAT{" "}
-											<span className="float-right">
+											<span className="float-end">
 												<Icon
 													type="times"
 													onClick={() => setCustomStat(null)}

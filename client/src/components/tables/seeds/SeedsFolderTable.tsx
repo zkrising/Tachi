@@ -58,7 +58,7 @@ export const SeedsFolderCells: CellsRenderFN<FolderDocument> = ({
 		<td>
 			TYPE: <b>{data.type}</b>
 			<Divider />
-			<div className="text-left">
+			<div className="text-start">
 				{FlattenValue(data.data).map((e) => (
 					<>
 						{StringifyKeyChain(e.keychain)} = {String(e.value)}

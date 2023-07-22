@@ -300,7 +300,7 @@ function ScoresActivity({
 			<div className="timeline-content">
 				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
 					<div className="timeline-content-title">
-						<span className="mr-2">
+						<span className="me-2">
 							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
 						</span>
 						<Icon
@@ -309,7 +309,7 @@ function ScoresActivity({
 								fontSize: "0.75rem",
 							}}
 						/>
-						<span style={{ fontSize: "1.15rem" }} className="ml-2">
+						<span style={{ fontSize: "1.15rem" }} className="ms-2">
 							<UGPTLink reqUser={user} game={game} playtype={playtype} /> highlighted{" "}
 							{subMessage}!
 						</span>
@@ -324,7 +324,7 @@ function ScoresActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.scores[0].timeAchieved ?? 0)}
 						<br />
-						<span className="text-muted font-italic text-right">
+						<span className="text-muted fst-italic text-end">
 							{FormatTime(data.scores[0].timeAchieved ?? 0)}
 						</span>
 					</div>
@@ -382,7 +382,7 @@ function GoalActivity({
 			<div className="timeline-content">
 				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
 					<div className="timeline-content-title">
-						<span className="mr-2">
+						<span className="me-2">
 							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
 						</span>
 						<Icon
@@ -391,7 +391,7 @@ function GoalActivity({
 								fontSize: "0.75rem",
 							}}
 						/>
-						<span style={{ fontSize: "1.15rem" }} className="ml-2">
+						<span style={{ fontSize: "1.15rem" }} className="ms-2">
 							<UGPTLink reqUser={user} game={game} playtype={playtype} /> achieved{" "}
 							{subMessage}!
 						</span>
@@ -406,7 +406,7 @@ function GoalActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.goals[0]?.timeAchieved ?? 0)}
 						<br />
-						<span className="text-muted font-italic text-right">
+						<span className="text-muted fst-italic text-end">
 							{FormatTime(data.goals[0]?.timeAchieved ?? 0)}
 						</span>
 					</div>
@@ -415,7 +415,7 @@ function GoalActivity({
 				{show && (
 					<>
 						<Divider />
-						<div className="pl-4">
+						<div className="ps-4">
 							{data.goals.map((e) => (
 								<InnerQuestSectionGoal
 									goal={e.__related.goal}
@@ -451,7 +451,7 @@ function QuestActivity({
 				<div className="timeline-content-inner">
 					<div className="timeline-content-title">
 						<span style={{ fontSize: "1.15rem" }}>
-							<span className="mr-2">
+							<span className="me-2">
 								<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
 							</span>
 							<UGPTLink reqUser={user} game={game} playtype={playtype} /> completed
@@ -469,7 +469,7 @@ function QuestActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.sub.timeAchieved ?? 0)}
 						<br />
-						<span className="text-muted font-italic text-right">
+						<span className="text-muted fst-italic text-end">
 							{FormatTime(data.sub.timeAchieved ?? 0)}
 						</span>
 					</div>
@@ -503,7 +503,7 @@ function SessionActivity({
 			<div className="timeline-content d-flex">
 				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
 					<div className="timeline-content-title">
-						<span className="mr-2">
+						<span className="me-2">
 							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
 						</span>
 						<Icon
@@ -513,7 +513,7 @@ function SessionActivity({
 							}}
 						/>
 						<span
-							className="ml-2"
+							className="ms-2"
 							style={{
 								fontWeight: isProbablyActive ? "bold" : undefined,
 								fontSize: isProbablyActive ? "1.2rem" : undefined,
@@ -544,7 +544,7 @@ function SessionActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.timeStarted ?? 0)}
 						<br />
-						<span className="text-muted font-italic text-right">
+						<span className="text-muted fst-italic text-end">
 							{FormatTime(data.timeStarted ?? 0)}
 						</span>
 					</div>
@@ -649,7 +649,7 @@ function ClassAchievementActivity({
 			<div className="timeline-content d-flex">
 				<div className="timeline-content-inner">
 					<div className="timeline-content-title">
-						<span className="mr-2">
+						<span className="me-2">
 							<ProfilePictureSmall
 								user={user}
 								toGPT={`${data.game}/${data.playtype}`}
@@ -682,7 +682,7 @@ function ClassAchievementActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.timeAchieved)}
 						<br />
-						<span className="text-muted font-italic text-right">
+						<span className="text-muted fst-italic text-end">
 							{FormatTime(data.timeAchieved)}
 						</span>
 					</div>

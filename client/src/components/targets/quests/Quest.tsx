@@ -72,7 +72,7 @@ export default function Quest({
 							(questSub ? (
 								<Button
 									variant="outline-danger"
-									className="ml-auto"
+									className="ms-auto"
 									onClick={async () => {
 										setSubscribing(true);
 
@@ -102,7 +102,7 @@ export default function Quest({
 							) : (
 								<Button
 									variant="outline-success"
-									className="ml-auto"
+									className="ms-auto"
 									onClick={async () => {
 										setSubscribing(true);
 
@@ -176,7 +176,7 @@ function QuestSectionComponent({
 			{section.goals.length === 0 ? (
 				<Muted>No Goals...</Muted>
 			) : (
-				<div className="pl-6">
+				<div className="ps-6">
 					{section.goals.map((e, i) => {
 						const goal = goals.get(e.goalID);
 
@@ -264,7 +264,7 @@ export function InnerQuestSectionGoal({
 				<GoalLink goal={goal} />
 
 				{!goalSub.achieved && (
-					<div className="ml-auto text-danger">
+					<div className="ms-auto text-danger">
 						<span className="text-danger">{goalSub.progressHuman}</span>
 						<Muted> / {goalSub.outOfHuman}</Muted>
 					</div>

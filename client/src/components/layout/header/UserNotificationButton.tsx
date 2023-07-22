@@ -20,7 +20,7 @@ export function UserNotificationButton({ user }: { user: UserDocument }) {
 		<div className="topbar-item">
 			<Link to="/notifications">
 				<div
-					className="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1"
+					className="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg me-1"
 					id="kt_quick_notifications_toggle"
 				>
 					{unread > 0 ? (

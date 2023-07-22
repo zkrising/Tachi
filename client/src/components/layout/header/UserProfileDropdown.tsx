@@ -25,10 +25,10 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 						"btn btn-icon btn-hover-transparent-white d-flex align-items-center btn-lg px-md-2 w-md-auto"
 					}
 				>
-					<span className="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1">
+					<span className="text-white opacity-70 fw-bold font-size-base d-none d-md-inline me-1">
 						{heySplash},
 					</span>{" "}
-					<span className="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-2">
+					<span className="text-white opacity-90 fw-bolder font-size-base d-none d-md-inline me-2">
 						{user.username}
 						{user.isSupporter && (
 							<>
@@ -51,11 +51,11 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 				<div className="navi navi-spacer-x-0 pt-5">
 					<Link to={`/u/${user.username}`} className="navi-item px-8 cursor-pointer">
 						<div className="navi-link">
-							<div className="navi-icon mr-2">
+							<div className="navi-icon me-2">
 								<Icon type="user" colour="primary" />
 							</div>
 							<div className="navi-text">
-								<div className="font-weight-bold cursor-pointer">My Profile</div>
+								<div className="fw-bold cursor-pointer">My Profile</div>
 								<div className="text-muted">View your profile!</div>
 							</div>
 						</div>
@@ -65,11 +65,11 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 						className="navi-item px-8 cursor-pointer"
 					>
 						<div className="navi-link">
-							<div className="navi-icon mr-2">
+							<div className="navi-icon me-2">
 								<Icon type="cog" colour="info" />
 							</div>
 							<div className="navi-text">
-								<div className="font-weight-bold cursor-pointer">
+								<div className="fw-bold cursor-pointer">
 									Profile Settings
 								</div>
 								<div className="text-muted">
@@ -83,11 +83,11 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 						className="navi-item px-8 cursor-pointer"
 					>
 						<div className="navi-link">
-							<div className="navi-icon mr-2">
+							<div className="navi-icon me-2">
 								<Icon type="wrench" colour="danger" />
 							</div>
 							<div className="navi-text">
-								<div className="font-weight-bold cursor-pointer">
+								<div className="fw-bold cursor-pointer">
 									My Integrations
 								</div>
 								<div className="text-muted">
@@ -118,7 +118,7 @@ export function UserProfileDropdown({ user }: { user: UserDocument }) {
 									}, 500);
 								}
 							}}
-							className="btn-outline-danger font-weight-bold"
+							className="btn-outline-danger fw-bold"
 						>
 							Sign Out
 						</Button>

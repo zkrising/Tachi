@@ -306,7 +306,6 @@ $warning: $yellow;
 $danger: $red;
 $light: $gray-100;
 $dark: $gray-800;
-$translucent: #ffffff0a;
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
@@ -319,7 +318,6 @@ $theme-colors: (
   "danger": $danger,
   "light": $light,
   "dark": $dark,
-  "translucent": $translucent
 );
 // scss-docs-end theme-colors-map
 

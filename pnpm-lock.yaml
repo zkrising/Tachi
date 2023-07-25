@@ -132,6 +132,7 @@ importers:
       '@types/react': 17.0.13
       '@types/react-dom': 17.0.8
       '@types/react-google-recaptcha': 2.1.2
+      '@types/react-router-bootstrap': 0.26.1
       '@types/react-router-dom': 5.1.7
       '@vitejs/plugin-react': ^2.0.1
       bootstrap-scss: ^5.3.0
@@ -160,6 +161,7 @@ importers:
       react-hot-toast: 2.0.0
       react-markdown: 7.0.1
       react-query: 3.18.1
+      react-router-bootstrap: ^0.25.0
       react-router-dom: 5.1.2
       react-select: ^5.6.1
       rg-stats: 0.5.2
@@ -211,6 +213,7 @@ importers:
       react-hot-toast: 2.0.0_pwge5r66yg44rq5pj4ruhckhdm
       react-markdown: 7.0.1_inkz57ubmkfufypemv2d42r77i
       react-query: 3.18.1_sfoxds7t5ydpegc3knd667wn6m
+      react-router-bootstrap: 0.25.0_ojxjs55rmvr7fxvfrkhc3ong3q
       react-router-dom: 5.1.2_react@17.0.2
       react-select: 5.6.1_yiqn7u2tkfehrr3elhe5qwqfqy
       rg-stats: 0.5.2
@@ -223,6 +226,7 @@ importers:
       '@types/luxon': 1.27.1
       '@types/react': 17.0.13
       '@types/react-dom': 17.0.8
+      '@types/react-router-bootstrap': 0.26.1
       '@types/react-router-dom': 5.1.7
       '@vitejs/plugin-react': 2.2.0_vite@3.2.7
       bootstrap-scss: 5.3.0
@@ -3396,6 +3400,12 @@ packages:
     dependencies:
       '@types/react': 17.0.13
     dev: false
+
+  /@types/react-router-bootstrap/0.26.1:
+    resolution: {integrity: sha512-EdgZn/PmSA8+I0RW6WyDUgBvkVXc8AmbbgOJ8WJfec1R/V06X++OrIOzwzdgYl4g3uXvEB6oEIxzcjx1/8Opqw==}
+    dependencies:
+      '@types/react': 17.0.13
+    dev: true
 
   /@types/react-router-dom/5.1.7:
     resolution: {integrity: sha512-D5mHD6TbdV/DNHYsnwBTv+y73ei+mMjrkGrla86HthE4/PVvL1J94Bu3qABU+COXzpL23T1EZapVVpwHuBXiUg==}
@@ -8927,6 +8937,17 @@ packages:
     resolution: {integrity: sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /react-router-bootstrap/0.25.0_ojxjs55rmvr7fxvfrkhc3ong3q:
+    resolution: {integrity: sha512-/22eqxjn6Zv5fvY2rZHn57SKmjmJfK7xzJ6/G1OgxAjLtKVfWgV5sn41W2yiqzbtV5eE4/i4LeDLBGYTqx7jbA==}
+    peerDependencies:
+      react: '>=0.14.0'
+      react-router-dom: '>=4.0.0'
+    dependencies:
+      prop-types: 15.8.1
+      react: 17.0.2
+      react-router-dom: 5.1.2_react@17.0.2
+    dev: false
 
   /react-router-dom/5.1.2_react@17.0.2:
     resolution: {integrity: sha512-7BPHAaIwWpZS074UKaw1FjVdZBSVWEk8IuDXdB+OkLb8vd/WRQIpA4ag9WQk61aEfQs47wHyjWUoUGGZxpQXew==}

@@ -1,45 +1,28 @@
-import BackgroundImage from "components/layout/misc/BackgroundImage";
-import { BackgroundContextProvider } from "context/BackgroundContext";
-import React, { useState } from "react";
+import React from "react";
 import { JustChildren } from "types/react";
+import { BackgroundContextProvider } from "context/BackgroundContext";
+import BackgroundImage from "components/layout/misc/BackgroundImage";
+import Container from "react-bootstrap/Container";
 import { Footer } from "./footer/Footer";
-import { Header } from "./header/Header";
-import { HeaderMobile } from "./header/HeaderMobile";
+import Header from "./header/Header";
 import { SubHeader } from "./subheader/SubHeader";
 
 export function Layout({ children }: JustChildren) {
-	const [mobileShow, setMobileShow] = useState(false);
-
 	return (
-		<>
-			<HeaderMobile setMobileShow={setMobileShow} mobileShow={mobileShow} />
+		<div id="main-wrapper" className="d-flex flex-column overflow-x-hidden min-vh-100">
+			<Header />
 
-			<div className="d-flex flex-column flex-root">
-				<div className="d-flex flex-row flex-column-fluid page">
-					<div
-						className="d-flex flex-column flex-row-fluid wrapper"
-						id="kt_wrapper"
-						style={{ overflowX: "hidden" }}
-					>
-						<Header mobileShow={mobileShow} setMobileShow={setMobileShow} />
+			<BackgroundContextProvider>
+				<BackgroundImage />
 
-						<BackgroundContextProvider>
-							<BackgroundImage />
+				<Container as="main" className="pt-8 d-flex flex-column flex-grow-1">
+					<SubHeader />
 
-							<div
-								id="kt_content"
-								className="content d-flex flex-column flex-column-fluid"
-							>
-								<SubHeader />
+					{children}
+				</Container>
+			</BackgroundContextProvider>
 
-								<div className="container">{children}</div>
-							</div>
-						</BackgroundContextProvider>
-
-						<Footer />
-					</div>
-				</div>
-			</div>
-		</>
+			<Footer />
+		</div>
 	);
 }

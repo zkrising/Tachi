@@ -1,13 +1,31 @@
 import React from "react";
-import MenuDropdown from "./MenuDropdown";
-import MenuLink from "./MenuLink";
+import DropdownNavLink from "components/ui/DropdownNavLink";
+import QuickDropdown from "components/ui/QuickDropdown";
 
-export default function UtilsDropdown() {
+const UtilsLinks = () => (
+	<>
+		<DropdownNavLink to="/utils/seeds">Seeds Management</DropdownNavLink>
+		<DropdownNavLink to="/utils/imports">Import Management</DropdownNavLink>
+		<DropdownNavLink to="/utils/quests">Quest Creator</DropdownNavLink>
+	</>
+);
+
+export default function UtilsDropdown({
+	className,
+	style,
+}: {
+	className?: string;
+	style?: React.CSSProperties;
+}) {
 	return (
-		<MenuDropdown name="Developer Utils">
-			<MenuLink to="/utils/seeds" name="Seeds Management" />
-			<MenuLink to="/utils/imports" name="Import Management" />
-			<MenuLink to="/utils/quests" name="Quest Creator" />
-		</MenuDropdown>
+		<QuickDropdown
+			variant="clear"
+			toggle="Developer Utils"
+			className={`h-14 ${className}`}
+			menuStyle={style}
+			caret
+		>
+			<UtilsLinks />
+		</QuickDropdown>
 	);
 }

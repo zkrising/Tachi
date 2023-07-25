@@ -1,10 +1,16 @@
 import { TachiConfig } from "lib/config";
 import React from "react";
 import { FormatGame, GetGameConfig } from "tachi-common";
-import MenuDropdown from "./MenuDropdown";
-import MenuLink from "./MenuLink";
+import QuickDropdown from "components/ui/QuickDropdown";
+import DropdownNavLink from "components/ui/DropdownNavLink";
 
-export default function AllGames() {
+export default function AllGames({
+	className,
+	style,
+}: {
+	className?: string;
+	style?: React.CSSProperties;
+}) {
 	const links = [];
 
 	for (const game of TachiConfig.games) {
@@ -12,14 +18,22 @@ export default function AllGames() {
 
 		for (const playtype of gameConfig.playtypes) {
 			links.push(
-				<MenuLink
-					key={`${game}:${playtype}`}
-					name={FormatGame(game, playtype)}
-					to={`/games/${game}/${playtype}`}
-				/>
+				<DropdownNavLink key={`${game}:${playtype}`} to={`/games/${game}/${playtype}`}>
+					{FormatGame(game, playtype)}
+				</DropdownNavLink>
 			);
 		}
 	}
 
-	return <MenuDropdown name="Global Info">{links}</MenuDropdown>;
+	return (
+		<QuickDropdown
+			variant="clear"
+			toggle="Global Info"
+			className={`h-14 ${className}`}
+			menuStyle={style}
+			caret
+		>
+			{links}
+		</QuickDropdown>
+	);
 }

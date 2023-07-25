@@ -1,17 +1,45 @@
+import { parse } from "url";
 import React from "react";
-import { FormatGame, GetGameConfig } from "tachi-common";
+import { GetGameConfig } from "tachi-common";
 import { TachiConfig } from "lib/config";
-import MenuLink from "./MenuLink";
-import MenuDropdown from "./MenuDropdown";
+import QuickDropdown from "components/ui/QuickDropdown";
+import DropdownNavLink from "components/ui/DropdownNavLink";
 
-export default function ImportScoresLink() {
+export default function ImportScoresLink({
+	className,
+	style,
+}: {
+	className?: string;
+	style?: React.CSSProperties;
+}) {
 	const links = [];
 
 	for (const game of TachiConfig.games) {
 		const gameConfig = GetGameConfig(game);
 
-		links.push(<MenuLink key={game} name={gameConfig.name} to={`/import?game=${game}`} />);
+		links.push(
+			<DropdownNavLink
+				isActive={() => {
+					const queryGame = new URLSearchParams(window.location.search).get("game");
+					return queryGame === game;
+				}}
+				key={game}
+				to={`/import?game=${game}`}
+			>
+				{gameConfig.name}
+			</DropdownNavLink>
+		);
 	}
 
-	return <MenuDropdown name="Import Scores">{links}</MenuDropdown>;
+	return (
+		<QuickDropdown
+			variant="clear"
+			toggle="Import Scores"
+			className={`h-14 ${className}`}
+			menuStyle={style}
+			caret
+		>
+			{links}
+		</QuickDropdown>
+	);
 }

@@ -1,11 +1,10 @@
 import Icon from "components/util/Icon";
-import useApiQuery from "components/util/query/useApiQuery";
+import LinkButton from "components/util/LinkButton";
 import { NotificationsContext } from "context/NotificationsContext";
 import React, { useContext, useMemo } from "react";
-import { Link } from "react-router-dom";
-import { NotificationDocument, UserDocument } from "tachi-common";
+import { Badge } from "react-bootstrap";
 
-export function UserNotificationButton({ user }: { user: UserDocument }) {
+export function UserNotificationButton() {
 	const { notifications } = useContext(NotificationsContext);
 
 	const unread = useMemo(() => {
@@ -17,19 +16,29 @@ export function UserNotificationButton({ user }: { user: UserDocument }) {
 	}, [notifications]);
 
 	return (
-		<div className="topbar-item">
-			<Link to="/notifications">
-				<div
-					className="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg me-1"
-					id="kt_quick_notifications_toggle"
-				>
-					{unread > 0 ? (
-						<Icon type="envelope" colour="primary" />
-					) : (
-						<Icon type="envelope" regular colour="muted" />
-					)}
-				</div>
-			</Link>
-		</div>
+		<LinkButton
+			variant="clear"
+			to="/notifications"
+			aria-label="Notifications"
+			className="h-14 w-14 px-4 d-flex align-items-center position-relative display-6 text-body-secondary"
+		>
+			{unread > 0 ? (
+				<>
+					<Icon type="envelope" colour="primary" />
+					<Badge
+						pill
+						bg="secondary-subtle"
+						className="position-absolute text-primary"
+						style={{ scale: "0.75", top: "6%", left: "52%" }}
+					>
+						{unread <= 9 ? unread : "9+"}
+					</Badge>
+				</>
+			) : (
+				<>
+					<Icon type="envelope" regular />
+				</>
+			)}
+		</LinkButton>
 	);
 }

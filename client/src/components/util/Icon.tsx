@@ -1,29 +1,22 @@
-import React, { CSSProperties } from "react";
+import React from "react";
+import { TextColour } from "types/bootstrap";
 
 export default function Icon({
 	type,
 	noPad,
 	brand,
-	onClick,
 	colour,
-	style,
 	regular,
+	className = "",
+	...props
 }: {
 	type: string;
 	noPad?: boolean;
 	brand?: boolean;
 	regular?: boolean;
-	onClick?: () => void;
-	colour?: "info" | "primary" | "danger" | "warning" | "success" | "muted";
-	style?: CSSProperties;
-}) {
-	return (
-		<i
-			onClick={onClick}
-			className={`fa${regular ? "r" : brand ? "b" : "s"} fa-${type} ${noPad ? "p-0" : ""} ${
-				colour ? `text-${colour}` : ""
-			}`}
-			style={style}
-		/>
-	);
+	colour?: TextColour;
+} & React.HTMLAttributes<HTMLElement>) {
+	// eslint-disable-next-line prettier/prettier
+	const iconClassName = `fa${regular ? "r" : brand ? "b" : "s"} fa-${type}${noPad ? " p-0" : ""}${colour ? ` text-${colour}` : ""}`;
+	return <i className={`${iconClassName + (className && " ") + className}`} {...props} />;
 }

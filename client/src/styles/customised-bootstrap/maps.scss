@@ -1,0 +1,110 @@
+// known unused utilities are commented out. they can be added in and expanded when wanted
+
+$utilities: map-merge(
+    $utilities,
+    (
+        "width": (
+            property: width,
+            class: w,
+            values: (
+                //1: 0.25rem,
+                //2: 0.5rem,
+                //3: 0.75rem,
+                //4: 1.rem,
+                //6: 1.5em,
+                //8: 2rem,
+                //10: 2.5rem,
+                //12: 3rem,
+                14: 3.5rem,
+                //16: 4rem,
+                50: 50%,
+                //75: 75%,
+                100: 100%,
+                //"half": 50%,
+                "full": 100%,
+                auto: auto,
+            )
+        ),
+        "height": (
+            property: height,
+            class: h,
+            responsive: true,
+            values: (
+                //1: 0.25rem,
+                //2: 0.5rem,
+                //3: 0.75rem,
+                //4: 1.rem,
+                //6: 1.5em,
+                //8: 2rem,
+                //10: 2.5rem,
+                //12: 3rem,
+                14: 3.5rem,
+                //16: 4rem,
+                //50: 50%,
+                //75: 75%,
+                100: 100%,
+                //"half": 50%,
+                "full": 100%,
+                auto: auto,
+            )
+        ),
+        "backdrop-blur": (
+            property: backdrop-filter,
+            class: backdrop-blur,
+            values: (
+                //sm: blur(4px),
+                md: blur(8px),
+                //lg: blur(12px),
+                xl: blur(16px)
+            )
+        ),
+        "background-color": (
+            property: background-color,
+            class: bg,
+            local-vars: (
+                "bg-opacity": 1
+            ),
+            state: hover,
+            values:
+                map-merge(
+                    $utilities-bg-colors,
+                    (
+                        "transparent": transparent,
+                        "body-secondary": rgba(var(--#{$prefix}secondary-bg-rgb), var(--#{$prefix}bg-opacity)),
+                        "body-tertiary": rgba(var(--#{$prefix}tertiary-bg-rgb), var(--#{$prefix}bg-opacity))
+                    )
+                )
+        ),
+        "subtle-background-color": (
+            property: background-color,
+            class: bg,
+            state: hover,
+            values: $utilities-bg-subtle
+        ),
+        "bg-opacity": (
+            css-var: true,
+            class: bg-opacity,
+            state: hover,
+            values: (
+                10: 0.1,
+                25: 0.25,
+                50: 0.5,
+                75: 0.75,
+                100: 1
+            )
+        ),
+        "transition": (
+            property: transition,
+            class: transition,
+            values: (
+                "color": color 120ms ease-in-out,
+                "background-color": background-color 120ms ease-in-out
+            )
+        ),
+        "overflow-y": (
+            property: overflow-y,
+            responsive: true,
+            values: auto hidden visible scroll
+        )
+    )
+);

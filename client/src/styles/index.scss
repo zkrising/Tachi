@@ -45,6 +45,12 @@
 @import "bootstrap-scss/modal";
 @import "bootstrap-scss/close";
 
+@import "customised-bootstrap/maps";
+
 @import "bootstrap-scss/utilities/api";
 
-@import "legacy/base"
+@import "legacy/base";
+
+@import "globals";
+@import "components/components";
+@import "utilities/utilities";

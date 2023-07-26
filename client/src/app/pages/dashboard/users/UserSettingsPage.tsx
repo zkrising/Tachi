@@ -32,20 +32,16 @@ export default function UserSettingsDocumentPage({ reqUser }: Props) {
 				<div className="col-12">
 					<div className="btn-group d-flex justify-content-center">
 						<SelectButton value={page} setValue={setPage} id="image">
-							<Icon type="image" />
-							Pictures
+							<Icon type="image" /> Pictures
 						</SelectButton>
 						<SelectButton value={page} setValue={setPage} id="socialMedia">
-							<Icon type="twitter" brand />
-							Social Media
+							<Icon type="twitter" brand /> Social Media
 						</SelectButton>
 						<SelectButton value={page} setValue={setPage} id="preferences">
-							<Icon type="cogs" />
-							UI Preferences
+							<Icon type="cogs" /> UI Preferences
 						</SelectButton>
 						<SelectButton value={page} setValue={setPage} id="account">
-							<Icon type="lock" />
-							Change Password
+							<Icon type="lock" /> Change Password
 						</SelectButton>
 					</div>
 				</div>

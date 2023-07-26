@@ -78,16 +78,13 @@ export default function SessionsPage({ reqUser, game, playtype }: UGPT) {
 			<div className="col-12 text-center">
 				<div className="btn-group d-flex justify-content-center mb-4">
 					<SelectButton id="best" setValue={setSessionSet} value={sessionSet}>
-						<Icon type="trophy" />
-						Best Sessions
+						<Icon type="trophy" /> Best Sessions
 					</SelectButton>
 					<SelectButton id="recent" setValue={setSessionSet} value={sessionSet}>
-						<Icon type="history" />
-						Recent Sessions
+						<Icon type="history" /> Recent Sessions
 					</SelectButton>
 					<SelectButton id="highlighted" setValue={setSessionSet} value={sessionSet}>
-						<Icon type="star" />
-						Highlighted Sessions
+						<Icon type="star" /> Highlighted Sessions
 					</SelectButton>
 				</div>
 			</div>

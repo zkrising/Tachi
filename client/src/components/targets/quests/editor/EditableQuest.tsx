@@ -224,8 +224,7 @@ function QuestSection({
 			<br />
 			<div className="w-100 d-flex mt-8">
 				<Button variant="outline-success" onClick={() => setShow(true)}>
-					<Icon type="plus" />
-					Add Goal
+					<Icon type="plus" /> Add Goal
 				</Button>
 				<Button
 					className="ms-auto"
@@ -236,8 +235,7 @@ function QuestSection({
 						}
 					}}
 				>
-					<Icon type="times" />
-					Delete Section
+					<Icon type="times" /> Delete Section
 				</Button>
 			</div>
 			{show && (

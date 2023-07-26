@@ -177,8 +177,8 @@ export default function TachiTable<D>({
 								}}
 								variant="outline-info"
 							>
-								<Icon type="table" />
-								Export {search !== "" ? "Filtered Data" : "Table"} (JSON)
+								<Icon type="table" /> Export{" "}
+								{search !== "" ? "Filtered Data" : "Table"} (JSON)
 							</Button>
 						)}
 					</div>

@@ -27,12 +27,10 @@ export default function TargetsPage({ reqUser, game, playtype }: UGPT) {
 			<Col xs={12} className="text-center">
 				<div className="btn-group d-flex justify-content-center">
 					<SelectLinkButton to={`${base}/targets`}>
-						<Icon type="scroll" />
-						Quests
+						<Icon type="scroll" /> Quests
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/targets/goals`}>
-						<Icon type="bullseye" />
-						Goals
+						<Icon type="bullseye" /> Goals
 					</SelectLinkButton>
 				</div>
 				<Divider />

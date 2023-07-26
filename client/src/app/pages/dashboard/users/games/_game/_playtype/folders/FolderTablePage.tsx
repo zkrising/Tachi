@@ -303,8 +303,7 @@ function TableBarChart({
 						{GetScoreMetrics(gptConfig, "ENUM").map((e) => (
 							<SelectButton value={enumMetric} setValue={setEnumMetric} id={e}>
 								{/* @ts-expect-error this access is legal zzz */}
-								<Icon type={gptImpl.enumIcons[e]} />
-								{UppercaseFirst(e)}s
+								<Icon type={gptImpl.enumIcons[e]} /> {UppercaseFirst(e)}s
 							</SelectButton>
 						))}
 					</div>

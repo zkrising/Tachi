@@ -135,16 +135,13 @@ function UserHistory({
 				<div className="col-12 col-md-6 align-self-center">
 					<div className="btn-group d-flex justify-content-center w-100">
 						<SelectButton id="ranking" value={mode} setValue={setMode}>
-							<Icon type="trophy" />
-							Ranking
+							<Icon type="trophy" /> Ranking
 						</SelectButton>
 						<SelectButton id="playcount" value={mode} setValue={setMode}>
-							<Icon type="gamepad" />
-							Playcount
+							<Icon type="gamepad" /> Playcount
 						</SelectButton>
 						<SelectButton id="rating" value={mode} setValue={setMode}>
-							<Icon type="chart-line" />
-							Ratings
+							<Icon type="chart-line" /> Ratings
 						</SelectButton>
 					</div>
 				</div>

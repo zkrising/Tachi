@@ -184,22 +184,18 @@ function InternalGPTChartPage({
 			<Col xs={12} className="d-flex mb-8">
 				<div className="btn-group w-100">
 					<SelectLinkButton to={base}>
-						<Icon type="trophy" />
-						Best 100
+						<Icon type="trophy" /> Best 100
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/me`} disabled={!data.adjacent}>
-						<Icon type="user" />
-						Your Position
+						<Icon type="user" /> Your Position
 					</SelectLinkButton>
 					{user && (
 						<>
 							<SelectLinkButton to={`${base}/rivals`} disabled={!data.adjacent}>
-								<Icon type="users" />
-								Vs. Rivals
+								<Icon type="users" /> Vs. Rivals
 							</SelectLinkButton>
 							<SelectLinkButton to={`${base}/targets`}>
-								<Icon type="scroll" />
-								Goals & Quests
+								<Icon type="scroll" /> Goals & Quests
 							</SelectLinkButton>
 						</>
 					)}

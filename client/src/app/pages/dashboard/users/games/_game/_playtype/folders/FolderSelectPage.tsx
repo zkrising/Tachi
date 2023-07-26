@@ -135,12 +135,10 @@ export function FolderInfoComponent({
 					<div className="col-12">
 						<div className="btn-group">
 							<SelectButton value={metric} setValue={setMetric} id="grade">
-								<Icon type="sort-alpha-up" />
-								Grades
+								<Icon type="sort-alpha-up" /> Grades
 							</SelectButton>
 							<SelectButton value={metric} setValue={setMetric} id="lamp">
-								<Icon type="lightbulb" />
-								Lamps
+								<Icon type="lightbulb" /> Lamps
 							</SelectButton>
 						</div>
 						<Divider />

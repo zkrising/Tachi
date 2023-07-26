@@ -164,8 +164,7 @@ export default function PBDropdown({
 			buttons={
 				<>
 					<SelectButton setValue={setView} value={view} id="pb">
-						<Icon type="trophy" />
-						PB Info
+						<Icon type="trophy" /> PB Info
 					</SelectButton>
 					{!isComposedFromSingleScore && (
 						<>
@@ -175,20 +174,18 @@ export default function PBDropdown({
 									value={view}
 									id={`otherPB::${e.scoreID}`}
 								>
-									<Icon type="star-half-alt" />
-									{e.name}
+									<Icon type="star-half-alt" /> {e.name}
 								</SelectButton>
 							))}
 						</>
 					)}
 					<SelectButton setValue={setView} value={view} id="history">
-						<Icon type="history" />
-						Play History{histData && ` (${histData.length})`}
+						<Icon type="history" /> Play History{histData && ` (${histData.length})`}
 					</SelectButton>
 					{currentUser?.id === userID && (
 						<SelectButton setValue={setView} value={view} id="targets">
-							<Icon type="scroll" />
-							Goals & Quests{targetData && ` (${targetData.goals.length})`}
+							<Icon type="scroll" /> Goals & Quests
+							{targetData && ` (${targetData.goals.length})`}
 						</SelectButton>
 					)}
 					<SelectButton setValue={setView} value={view} id="rivals">
@@ -197,8 +194,7 @@ export default function PBDropdown({
 					</SelectButton>
 					<HasDevModeOn>
 						<SelectButton setValue={setView} value={view} id="debug">
-							<Icon type="bug" />
-							Debug Info
+							<Icon type="bug" /> Debug Info
 						</SelectButton>
 					</HasDevModeOn>
 				</>

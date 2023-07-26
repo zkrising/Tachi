@@ -44,17 +44,14 @@ export default function UserIntegrationsPage({ reqUser }: { reqUser: UserDocumen
 					<div className="btn-group d-flex justify-content-center">
 						{mode !== "btchi" && (
 							<SelectLinkButton to={`${baseUrl}/services`}>
-								<Icon type="network-wired" />
-								Service Configuration
+								<Icon type="network-wired" /> Service Configuration
 							</SelectLinkButton>
 						)}
 						<SelectLinkButton to={`${baseUrl}`}>
-							<Icon type="key" />
-							API Keys
+							<Icon type="key" /> API Keys
 						</SelectLinkButton>
 						<SelectLinkButton to={`${baseUrl}/oauth-clients`}>
-							<Icon type="robot" />
-							My API Clients
+							<Icon type="robot" /> My API Clients
 						</SelectLinkButton>
 					</div>
 					<Divider />

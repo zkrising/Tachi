@@ -55,16 +55,13 @@ export default function UGPTSettingsPage({ reqUser, game, playtype }: UGPT) {
 				<div className="col-12 d-flex justify-content-center">
 					<div className="btn-group">
 						<SelectButton value={page} setValue={setPage} id="preferences">
-							<Icon type="cogs" />
-							Preferences
+							<Icon type="cogs" /> Preferences
 						</SelectButton>
 						<SelectButton value={page} setValue={setPage} id="showcase">
-							<Icon type="bars" />
-							Showcase Stats
+							<Icon type="bars" /> Showcase Stats
 						</SelectButton>
 						<SelectButton value={page} setValue={setPage} id="manage">
-							<Icon type="eraser" />
-							Manage Account
+							<Icon type="eraser" /> Manage Account
 						</SelectButton>
 					</div>
 				</div>

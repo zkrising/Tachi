@@ -36,12 +36,10 @@ export default function GPTLeaderboardsPage({ game, playtype }: GamePT) {
 			<Col xs={12} className="d-flex justify-content-center">
 				<div className="btn-group">
 					<SelectButton id="profile" value={mode} setValue={setMode}>
-						<Icon type="user" />
-						User Leaderboards
+						<Icon type="user" /> User Leaderboards
 					</SelectButton>
 					<SelectButton id="score" value={mode} setValue={setMode}>
-						<Icon type="sort-numeric-up-alt" />
-						PB Leaderboards
+						<Icon type="sort-numeric-up-alt" /> PB Leaderboards
 					</SelectButton>
 				</div>
 			</Col>

@@ -161,8 +161,7 @@ export default function QuestEditor() {
 				<div className="w-100 h-100">
 					<div className="d-flex w-100 h-100 justify-content-center align-items-center">
 						<Button variant="outline-success" onClick={() => setShow(true)}>
-							<Icon type="plus" />
-							Add New Quest
+							<Icon type="plus" /> Add New Quest
 						</Button>
 					</div>
 				</div>

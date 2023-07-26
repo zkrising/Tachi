@@ -56,8 +56,7 @@ export default function FolderInfoHeader({
 						))
 					)}
 					<SelectButton value={currentGraph} setValue={setCurrentGraph} id="score">
-						<Icon type="sort" />
-						Score Averages
+						<Icon type="sort" /> Score Averages
 					</SelectButton>
 				</div>
 			</div>

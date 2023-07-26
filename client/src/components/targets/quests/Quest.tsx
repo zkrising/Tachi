@@ -94,8 +94,7 @@ export default function Quest({
 										"Unsubscribing..."
 									) : (
 										<>
-											<Icon type="trash" />
-											Unsubscribe
+											<Icon type="trash" /> Unsubscribe
 										</>
 									)}
 								</Button>
@@ -124,8 +123,7 @@ export default function Quest({
 										"Subscribing..."
 									) : (
 										<>
-											<Icon type="scroll" />
-											Subscribe to Quest
+											<Icon type="scroll" /> Subscribe to Quest
 										</>
 									)}
 								</Button>

@@ -79,7 +79,7 @@ function OAuthClientPage() {
 		<Row className="text-center justify-content-center">
 			<Col xs={12}>
 				<h3>API Clients</h3>
-				<Alert variant="info" style={{ color: "black" }}>
+				<Alert variant="info">
 					This page is for programmers who want to make their own things that interface
 					with {TachiConfig.name}.
 					<br />
@@ -769,7 +769,7 @@ function APIKeysPage({ reqUser }: { reqUser: UserDocument }) {
 
 	return (
 		<>
-			<Alert variant="danger" style={{ color: "black" }}>
+			<Alert variant="danger">
 				API Keys allow other programs to interact with {TachiConfig.name} on your behalf.
 				They have limited permissions, so they can't just change your password!
 				<br />
@@ -796,11 +796,9 @@ function APIKeysPage({ reqUser }: { reqUser: UserDocument }) {
 				)}
 			</div>
 			<Divider />
-			<div className="row justify-content-center">
-				<button className="btn btn-primary" onClick={() => setShowModal(true)}>
-					Create new API Key
-				</button>
-			</div>
+			<button className="btn btn-primary w-100" onClick={() => setShowModal(true)}>
+				Create new API Key
+			</button>
 			<CreateAPIKeyModal {...{ showModal, setShowModal, reqUser, setApiKeys, apiKeys }} />
 		</>
 	);

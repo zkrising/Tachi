@@ -128,5 +128,15 @@ $utilities: map-merge(
             responsive: true,
             values: auto hidden visible scroll
         ),
+        "overflow-x": (
+            property: overflow-x,
+            responsive: true,
+            values: auto hidden visible scroll
+        ),
+        "overflow": (
+            property: overflow,
+            responsive: true,
+            values: auto hidden visible scroll
+        ),
     )
 );

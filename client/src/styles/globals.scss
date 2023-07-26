@@ -1,10 +1,10 @@
-main {
+/*main {
     margin-top: 55px;
     @include media-breakpoint-up(md) {
         margin-top: 80px;
     }
-}
+}*/
 
-a {
+.nav-link {
     @extend .rounded;
 }

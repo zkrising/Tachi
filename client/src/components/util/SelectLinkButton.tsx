@@ -22,11 +22,12 @@ export default function SelectLinkButton({
 		<LinkButton
 			disabled={disabled}
 			to={to}
-			className={`btn-${
+			isActive={() => DoesMatchRoute(window.location.href, to, !matchIfStartsWith)}
+			variant={
 				DoesMatchRoute(window.location.href, to, !matchIfStartsWith)
 					? onVariant
 					: offVariant
-			}`}
+			}
 		>
 			{children}
 		</LinkButton>

@@ -8,7 +8,7 @@ export default function Logo() {
 		<Link
 			id="home"
 			to="/"
-			className="p-2 d-none d-md-block focus-ring focus-ring-light transition-color"
+			className="p-2 d-none d-md-block focus-ring focus-ring-light transition-color rounded"
 		>
 			<img
 				id="logo"

@@ -1,14 +1,16 @@
 import { APIFetchV1 } from "util/api";
-import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import { BannedContext } from "context/BannedContext";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ServerStatus } from "types/api-returns";
+import Nav from "react-bootstrap/Nav";
+import Container from "react-bootstrap/Container";
 
 export function Footer() {
 	const [serverVersion, setServerVersion] = useState("Loading...");
 	const { setBanned } = useContext(BannedContext);
+	const linkClassNames = "link-light link-opacity-75 link-opacity-100-hover";
 
 	useEffect(() => {
 		APIFetchV1<ServerStatus>("/status").then((r) => {
@@ -25,78 +27,76 @@ export function Footer() {
 	}, []);
 
 	return (
-		<>
-			<Divider className="mt-8" />
-
-			<div className="footer py-4 d-flex flex-lg-column" id="kt_footer">
-				<div className="container d-flex flex-column flex-md-row align-items-center justify-content-between">
-					<div className="order-2 order-md-1">
-						{/* is there a better way to do this? mt-md-3 is the intent */}
-						<ExternalLink
+		<footer className="py-4 border-top border-secondary border-opacity-25 mt-4">
+			<Nav>
+				<Container className="d-flex flex-column flex-lg-row justify-content-between align-items-center">
+					<div className="order-2 order-lg-0 mt-2 m-lg-0">
+						<Nav.Link
+							as={ExternalLink}
 							href="https://en.wikipedia.org/wiki/Dummy_(album)"
-							className="gentle-link"
+							className={linkClassNames}
 						>
 							{serverVersion}
-						</ExternalLink>
+						</Nav.Link>
 					</div>
-
-					<div className="nav nav-dark order-1 order-md-2 justify-content-center">
-						<Link
+					<div className="d-flex flex-wrap flex-lg-nowrap justify-content-evenly justify-content-lg-end">
+						<Nav.Link
+							as={Link}
 							to="/support"
-							className="nav-link px-3"
+							className={linkClassNames}
 							onClick={() => window.scrollTo(0, 0)}
 						>
 							Support
-						</Link>
-						<ExternalLink
+						</Nav.Link>
+						<Nav.Link
+							as={ExternalLink}
 							href="https://docs.bokutachi.xyz/wiki/rules"
-							className="nav-link px-3"
+							className={linkClassNames}
 						>
 							Rules
-						</ExternalLink>
-						<Link
+						</Nav.Link>
+						<Nav.Link
+							as={Link}
 							to="/privacy"
-							className="nav-link px-3"
+							className={linkClassNames}
 							onClick={() => window.scrollTo(0, 0)}
 						>
 							GDPR
-						</Link>
-						<Link
+						</Nav.Link>
+						<Nav.Link
+							as={Link}
 							to="/credits"
-							className="nav-link px-3"
+							className={linkClassNames}
 							onClick={() => window.scrollTo(0, 0)}
 						>
 							Credits
-						</Link>
+						</Nav.Link>
 						{process.env.VITE_DISCORD && (
-							<a
+							<Nav.Link
+								as={ExternalLink}
 								href={process.env.VITE_DISCORD}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="nav-link px-3"
+								className={linkClassNames}
 							>
 								Discord
-							</a>
+							</Nav.Link>
 						)}
-						<a
+						<Nav.Link
+							as={ExternalLink}
 							href="https://github.com/tng-dev/tachi"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="nav-link px-3"
+							className={linkClassNames}
 						>
 							Source Code
-						</a>
-						<a
+						</Nav.Link>
+						<Nav.Link
+							as={ExternalLink}
 							href="https://docs.bokutachi.xyz/"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="nav-link px-3"
+							className={linkClassNames}
 						>
 							Developer Documentation
-						</a>
+						</Nav.Link>
 					</div>
-				</div>
-			</div>
-		</>
+				</Container>
+			</Nav>
+		</footer>
 	);
 }

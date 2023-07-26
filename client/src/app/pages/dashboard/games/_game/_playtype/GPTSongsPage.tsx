@@ -34,11 +34,7 @@ export default function GPTSongsPage({ game, playtype }: GamePT) {
 	return (
 		<Row>
 			<Col xs={12}>
-				<DebounceSearch
-					className="form-control-lg"
-					setSearch={setSearch}
-					placeholder="Search songs and charts..."
-				/>
+				<DebounceSearch setSearch={setSearch} placeholder="Search songs and charts..." />
 				<Divider />
 			</Col>
 			<Col xs={12}>

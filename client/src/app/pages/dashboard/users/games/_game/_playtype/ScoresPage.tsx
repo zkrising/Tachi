@@ -181,11 +181,7 @@ function PBsOverview({
 	return (
 		<div className="row">
 			<div className="col-12">
-				<DebounceSearch
-					className="form-control-lg"
-					setSearch={setSearch}
-					placeholder="Search all PBs..."
-				/>
+				<DebounceSearch setSearch={setSearch} placeholder="Search all PBs..." />
 			</div>
 			<div className="col-12 mt-8">
 				{search === "" ? (
@@ -296,7 +292,7 @@ function ScoresOverview({ reqUser, game, playtype }: UGPT) {
 		<div className="row">
 			<div className="col-12">
 				<DebounceSearch
-					className="form-control-lg"
+					size="lg"
 					setSearch={setSearch}
 					placeholder="Search all individual scores..."
 				/>

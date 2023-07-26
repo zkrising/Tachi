@@ -53,11 +53,7 @@ export default function UserSelectModal({
 			<Modal.Body>
 				<Row>
 					<Col xs={12}>
-						<DebounceSearch
-							className="form-control-lg"
-							setSearch={setSearch}
-							placeholder="Search users..."
-						/>
+						<DebounceSearch setSearch={setSearch} placeholder="Search users..." />
 						<Divider />
 						<span className="text-danger">{errMsg}</span>
 						<div className="d-flex justify-content-center flex-wrap">

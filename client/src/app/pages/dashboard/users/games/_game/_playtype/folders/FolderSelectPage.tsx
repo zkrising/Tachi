@@ -63,11 +63,7 @@ export default function FoldersSearch({ reqUser, game, playtype }: UGPT) {
 	return (
 		<>
 			<div className="col-12">
-				<DebounceSearch
-					className="form-control-lg"
-					setSearch={setSearch}
-					placeholder="Search all Folders..."
-				/>
+				<DebounceSearch setSearch={setSearch} placeholder="Search all Folders..." />
 			</div>
 			<div className="col-12 mt-8">
 				<div className="row">{search !== "" && body}</div>

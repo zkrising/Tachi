@@ -89,11 +89,7 @@ export default function SessionsPage({ reqUser, game, playtype }: UGPT) {
 				</div>
 			</div>
 			<div className="col-12 mt-4">
-				<DebounceSearch
-					placeholder="Search all sessions..."
-					className="form-control-lg"
-					setSearch={setSearch}
-				/>
+				<DebounceSearch placeholder="Search all sessions..." setSearch={setSearch} />
 			</div>
 			<div className="col-12 mt-4">
 				{search === "" ? (

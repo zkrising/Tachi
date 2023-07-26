@@ -97,8 +97,9 @@ $utilities: map-merge(
             property: transition,
             class: transition,
             values: (
-                "color": color 120ms ease-in-out,
-                "background-color": background-color 120ms ease-in-out
+                "color": color #{$transition-duration} ease-in-out,
+                "background-color": background-color #{$transition-duration} ease-in-out,
+                "box-shadow": box-shadow #{$transition-duration} ease-in-out
             )
         ),
         "overflow-y": (

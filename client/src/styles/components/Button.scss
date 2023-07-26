@@ -1,4 +1,7 @@
 .btn-clear {
     border: transparent !important;
-    box-shadow: none !important;
+    &:not(:focus),
+    &:not(:focus-visible) {
+        box-shadow: none !important;
+    }
 }

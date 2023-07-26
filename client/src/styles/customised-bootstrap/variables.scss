@@ -574,6 +574,10 @@ $caret-vertical-align: $caret-width * 0.85 !default;
 $caret-spacing: $caret-width * 0.85 !default;
 // scss-docs-end caret-variables
 
+$transition-duration-sm: 75ms;
+$transition-duration: 120ms;
+$transition-duration-lg: 250ms;
+
 $transition-base: all 0.15s ease-in-out;
 $transition-fade: opacity 0.15s linear !default;
 // scss-docs-start collapse-transition

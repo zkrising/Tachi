@@ -433,14 +433,12 @@ function ShowcaseForm({ reqUser, game, playtype }: UGPT) {
 	}, [stats]);
 
 	return (
-		<div className="row">
+		<div className="d-flex flex-column gap-4 align-items-center">
 			{stats.length < 6 && (
-				<div className="col-12">
-					<div className="row justify-content-center align-items-center mt-4">
-						<Button variant="info" onClick={() => setShow(true)}>
-							Add Statistic
-						</Button>
-					</div>
+				<div>
+					<Button variant="info" onClick={() => setShow(true)}>
+						Add Statistic
+					</Button>
 				</div>
 			)}
 			<RenderCurrentStats {...{ reqUser, game, playtype, stats, setStats }} />
@@ -481,18 +479,16 @@ function RenderCurrentStats({
 	}
 
 	return (
-		<>
+		<Row className="w-100 row-gap-4" lg={{ cols: 2 }}>
 			{stats.map((e, i) => (
-				<div key={i} className="col-12 col-lg-6">
+				<Col key={i} className="d-flex flex-column gap-4">
 					<UGPTStatContainer stat={e} reqUser={reqUser} game={game} playtype={playtype} />
-					<div className="row justify-content-center mt-4">
-						<Button variant="danger" onClick={() => RemoveStatAtIndex(i)}>
-							Delete
-						</Button>
-					</div>
-				</div>
+					<Button variant="danger" className="w-100" onClick={() => RemoveStatAtIndex(i)}>
+						Delete
+					</Button>
+				</Col>
 			))}
-		</>
+		</Row>
 	);
 }
 

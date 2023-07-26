@@ -12,10 +12,9 @@ import UserArea from "./UserArea";
 import MobileMenuToggle from "./MobileMenuToggle";
 import Logo from "./Logo";
 
-export default function Header() {
+export default function Header({ breakpoint }: { breakpoint: number }) {
 	const { user } = useContext(UserContext);
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
-	const breakpoint = useBreakpoint();
 
 	const dropdownMenuStyle =
 		breakpoint > Breakpoints.md ? { transform: "translateY(16px)" } : undefined;

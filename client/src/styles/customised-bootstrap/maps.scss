@@ -48,6 +48,14 @@ $utilities: map-merge(
                 auto: auto,
             )
         ),
+        "animate": (
+            property: animation,
+            class: animate,
+            values: (
+                "fade-in": fade #{$transition-duration} ease-in forwards,
+                "fade-out": fade #{$transition-duration} ease-in backwards,
+            )
+        ),
         "backdrop-blur": (
             property: backdrop-filter,
             class: backdrop-blur,
@@ -81,16 +89,29 @@ $utilities: map-merge(
             state: hover,
             values: $utilities-bg-subtle
         ),
-        "bg-opacity": (
+        /*"bg-opacity": (
             css-var: true,
             class: bg-opacity,
-            state: hover,
+            state: hover focus,
             values: (
                 10: 0.1,
                 25: 0.25,
                 50: 0.5,
                 75: 0.75,
                 100: 1
+            )
+        ),*/
+        "box-shadow": (
+            property: box-shadow,
+            class: shadow,
+            responsive: true,
+            state: focus,
+            values: (
+                "sm": var(--#{$prefix}box-shadow-sm),
+                "md": var(--#{$prefix}box-shadow),
+                //"lg": var(--#{$prefix}box-shadow-lg),
+                //"inset": var(--#{$prefix}box-shadow-inset),
+                "none": none,
             )
         ),
         "transition": (
@@ -106,19 +127,6 @@ $utilities: map-merge(
             property: overflow-y,
             responsive: true,
             values: auto hidden visible scroll
-        ),
-        "box-shadow": (
-            property: box-shadow,
-            class: shadow,
-            responsive: true,
-            state: focus,
-            values: (
-                "sm": var(--#{$prefix}box-shadow-sm),
-                "md": var(--#{$prefix}box-shadow),
-                //"lg": var(--#{$prefix}box-shadow-lg),
-                //"inset": var(--#{$prefix}box-shadow-inset),
-                "none": none,
-            )
         ),
     )
 );

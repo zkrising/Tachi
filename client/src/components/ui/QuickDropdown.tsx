@@ -47,7 +47,7 @@ export default function QuickDropdown({
 			<Dropdown.Menu
 				id={id ? `${id}-menu` : undefined}
 				style={menuStyle}
-				className={`animate-fade ${menuClassName}`}
+				className={`animate-fade-in ${menuClassName}`}
 			>
 				{children}
 			</Dropdown.Menu>

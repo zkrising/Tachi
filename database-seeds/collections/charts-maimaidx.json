@@ -2246,7 +2246,7 @@
 	{
 		"chartID": "6ec0e67258f2e63581b4fa4ea74d218ae07afdd9",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -2262,7 +2262,7 @@
 	{
 		"chartID": "98b6476f9666926957a53ca0b07a4f981a82cd50",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -2278,7 +2278,7 @@
 	{
 		"chartID": "84998c5a2e6a86df1493b9a881b8bb6b2917ec25",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -2294,7 +2294,7 @@
 	{
 		"chartID": "b463dc1f681cae7980ca1692b7e9df71b2850143",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -7478,7 +7478,7 @@
 	{
 		"chartID": "20c5f6de02838408e05074d5e9b01cf64e951df4",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -7494,7 +7494,7 @@
 	{
 		"chartID": "c70c1dc59e61b7bb9100e43a64714da725bb7ba7",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -7510,7 +7510,7 @@
 	{
 		"chartID": "59e60ea1a6ee0f2d02a41d21835fc6f90788c3af",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -7526,7 +7526,7 @@
 	{
 		"chartID": "7fc87ffb9cc56903b459ace006c7c1e08e58077f",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -10424,7 +10424,7 @@
 	{
 		"chartID": "b12ef3fbba241512857f6344f2004d4c71c242de",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -10440,7 +10440,7 @@
 	{
 		"chartID": "ec9c08e457f2bcd4537f3f6143f84674ac34ad7b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -10456,7 +10456,7 @@
 	{
 		"chartID": "ce5a8ac9660d68c5b59ea3789c87b95afd21dd8d",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -10472,7 +10472,7 @@
 	{
 		"chartID": "4b4931303b5159d1f7803a1968ab6e73613648c0",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -11534,7 +11534,7 @@
 	{
 		"chartID": "a9d7c15910a38d6e32bcd939578275bcf063e14a",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "Re:Master",
 		"isPrimary": true,
@@ -14491,7 +14491,7 @@
 	{
 		"chartID": "97b0e53db16216a31a4b450eab01e6135795bd2a",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -14507,7 +14507,7 @@
 	{
 		"chartID": "68748157e27e88219cc9bb8dcd69ce5e4c9e2cb6",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -14523,7 +14523,7 @@
 	{
 		"chartID": "ee7e37b7832be5321115642751319666ba3f9480",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -14539,7 +14539,7 @@
 	{
 		"chartID": "bad4ee0cb746a2dfdf5f5bc09c388924aa053acd",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -15397,7 +15397,7 @@
 	{
 		"chartID": "d9b6261a46b43bddff99211a6bd544336b5e3f68",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -15413,7 +15413,7 @@
 	{
 		"chartID": "249d356b921c3dfd677e55b790f852bf1c24ecda",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -15429,7 +15429,7 @@
 	{
 		"chartID": "39161675e00e987630a30d5ba35a27cbe4927ec0",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -15445,7 +15445,7 @@
 	{
 		"chartID": "228842b0b44a8a80fa4f76666d27dd6f38de7885",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -19690,7 +19690,7 @@
 	{
 		"chartID": "0f6d36d0f2e6a9ff3a649ab75b76cbdfeb83f33f",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -19706,7 +19706,7 @@
 	{
 		"chartID": "4fbf3fee3fee52a0bdafd442426ec5a67f197677",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -19722,7 +19722,7 @@
 	{
 		"chartID": "8b52dea81f03d5d0e6a2fac67560f363255d1737",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -19738,7 +19738,7 @@
 	{
 		"chartID": "da53fb7f50ba915b9ef59c1eea3d0f309b500be2",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -30839,7 +30839,7 @@
 	{
 		"chartID": "e00683960e7ab647e3ba2d27585e622e39a46386",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -30855,7 +30855,7 @@
 	{
 		"chartID": "dd2a3bd1c4eedc7abde72b70f756883966ac637b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -30871,7 +30871,7 @@
 	{
 		"chartID": "bc1f349aa8bad0c072781b491202e774e15408d8",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -30887,7 +30887,7 @@
 	{
 		"chartID": "8ff1e63530d87e8d67bd7460ab00cbb26016f270",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -57636,7 +57636,7 @@
 	{
 		"chartID": "35c8bc0eba78d661ad4f9db1301730666f8f99e8",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Re:Master",
 		"isPrimary": true,
@@ -58060,7 +58060,7 @@
 	{
 		"chartID": "d7c7537beb5f259e3754b1133a2483f403e18c78",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "Advanced",
 		"isPrimary": true,
@@ -58076,7 +58076,7 @@
 	{
 		"chartID": "fe68ed7c79d5f451d6b689f0671cb31127f6244e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "Basic",
 		"isPrimary": true,
@@ -58160,7 +58160,7 @@
 	{
 		"chartID": "5c42add964c5e48fc2979a86e33c38677f51d984",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "Expert",
 		"isPrimary": true,
@@ -58176,7 +58176,7 @@
 	{
 		"chartID": "a1e73e7bdfefec3f931f736056864cad4167412f",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "Master",
 		"isPrimary": true,
@@ -71941,7 +71941,7 @@
 	{
 		"chartID": "b3eac30d4aa94311877c57b6b4a3b099c76875bb",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -71957,7 +71957,7 @@
 	{
 		"chartID": "4e00aeee460ebb5fbc3315ec992eba13f7fc9778",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -71973,7 +71973,7 @@
 	{
 		"chartID": "4338b59f737770e09e906147e44381770c248dd1",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -71989,7 +71989,7 @@
 	{
 		"chartID": "363ed418c634262f027570b55f9a3247e83ce40d",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -72005,7 +72005,7 @@
 	{
 		"chartID": "0026b55b0fe15786eee76981a056d7ae251611a3",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -72021,7 +72021,7 @@
 	{
 		"chartID": "6db3aa21f1c831123fa14c06a5b36b9b48a0e1ce",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -72037,7 +72037,7 @@
 	{
 		"chartID": "10a98ab84de42cf7a43236521887338293fb8e96",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -72053,7 +72053,7 @@
 	{
 		"chartID": "97391f54de109906095d16219c273378e071c246",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -72069,7 +72069,7 @@
 	{
 		"chartID": "78761956c016178c0608f138a8071485f61ffd0f",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -72085,7 +72085,7 @@
 	{
 		"chartID": "9a366a7a2e181acf54d493e28beaa13f9fed81d0",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -72101,7 +72101,7 @@
 	{
 		"chartID": "244df90793dddc5ca058d73a0a05ab0277a4ced2",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -72117,7 +72117,7 @@
 	{
 		"chartID": "7280866e2fcbf21b5457566711e596fdc8275b8b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -72133,7 +72133,7 @@
 	{
 		"chartID": "137da7d5699f022bf7b975264bcd6dadcac5b431",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -72149,7 +72149,7 @@
 	{
 		"chartID": "23e0dce056035f23962bca849af3bc3cdf7469de",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -72165,7 +72165,7 @@
 	{
 		"chartID": "47dcfc3a1f9ba766e92bb5c16a0fd676dbcfea09",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -72181,7 +72181,7 @@
 	{
 		"chartID": "89f344edd8ef9922c251c223d56c3ee2dacf0290",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -72197,7 +72197,7 @@
 	{
 		"chartID": "b8cf764a53434b2dc492fb50162e49358e8ab4f9",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -72213,7 +72213,7 @@
 	{
 		"chartID": "1399c7f29875cb53a50af8009df5c31c36604fea",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -72229,7 +72229,7 @@
 	{
 		"chartID": "71c14958b8024ba935aa1748d3a7c8b8ca786a53",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -72245,7 +72245,7 @@
 	{
 		"chartID": "30f2fc24457abf468b80e33de05a9fb95f7880e8",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -72261,7 +72261,7 @@
 	{
 		"chartID": "3d326616e6f06e2021e38767b6764b569f219b63",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -72277,7 +72277,7 @@
 	{
 		"chartID": "fff86fd8ceeec6231ffa59d4c684520a4a193c29",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -72293,7 +72293,7 @@
 	{
 		"chartID": "e8e63831b931b64fa2635ebd15b10b0ead094f58",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -72309,7 +72309,7 @@
 	{
 		"chartID": "33ebdfc22376b932440a59f206062104d45caf29",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -72325,7 +72325,7 @@
 	{
 		"chartID": "b3742b34a072fb1ae05047ffbb5caeec4b5ae2ac",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -72341,7 +72341,7 @@
 	{
 		"chartID": "61b4a4eee1cb0530a06d5f50a12129f7fe38bfca",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -72357,7 +72357,7 @@
 	{
 		"chartID": "94044aa466aade599cb063da90adc11c7583af4b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -72373,7 +72373,7 @@
 	{
 		"chartID": "073b0482c06def03ffd58784f310bcffb39eb61d",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -72389,7 +72389,7 @@
 	{
 		"chartID": "97dcf2adba7c7266aa8102077234caa05ea39d1c",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -72405,7 +72405,7 @@
 	{
 		"chartID": "23e2541407f9b94398e59d53ba39844a6dbefdca",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -72421,7 +72421,7 @@
 	{
 		"chartID": "d970d1254ef5ea74ba3fc37d50149199830c5e76",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -72437,7 +72437,7 @@
 	{
 		"chartID": "8f44a46e132c7c97f9bea1dda7e69dafb782a9e8",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -72453,7 +72453,7 @@
 	{
 		"chartID": "dabce68c42a4df932fce66ec7c7253246bcb8bb9",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -72469,7 +72469,7 @@
 	{
 		"chartID": "2f9174f570d415d094d3767adee46fdd6dccd65e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -72485,7 +72485,7 @@
 	{
 		"chartID": "fc0bd43fd0d81f7b65bff302db6800a3280c1cef",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -72501,7 +72501,7 @@
 	{
 		"chartID": "39ec94f19e682a16e7401dbb8f2cb183b1679c07",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -72517,7 +72517,7 @@
 	{
 		"chartID": "6d52ebfbe881759a79df8533b9701935703437a6",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -72533,7 +72533,7 @@
 	{
 		"chartID": "cd70fc18f0edc9e3fe70b1dda7eb9f9f1f3604ff",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -72549,7 +72549,7 @@
 	{
 		"chartID": "ec99f42805a3c6cfbebaeb3fec6bb72abf74e227",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -72565,7 +72565,7 @@
 	{
 		"chartID": "2ae5db2017d15649139cbb525ca074a4c9a66b2c",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -72581,7 +72581,7 @@
 	{
 		"chartID": "32f99c084755c02259019359d8b9c4d4318407f1",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -72597,7 +72597,7 @@
 	{
 		"chartID": "bbdc08194c7cb0f21a861ade8c34235eee71d6d3",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -72613,7 +72613,7 @@
 	{
 		"chartID": "0d4e34b75d4a352b21712a5de92ae1772ac6fc65",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -72629,7 +72629,7 @@
 	{
 		"chartID": "72f10294cae24a7d8069df6c2492752e5fabc230",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -72645,7 +72645,7 @@
 	{
 		"chartID": "98ce6511dbae5f6ee432a7b1050753bc15c0cddd",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -72661,7 +72661,7 @@
 	{
 		"chartID": "3e5ece0c10b2a0764166ac179c8a1ec44238524b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -72677,7 +72677,7 @@
 	{
 		"chartID": "6f3eb56e03170ade025db11e84ccdce5c286efbe",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -72693,7 +72693,7 @@
 	{
 		"chartID": "c2921a6a1237f26188cfb91a5f399e3ccd27f7ec",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -72709,7 +72709,7 @@
 	{
 		"chartID": "abb018b2b90b35a7624d36b0ecfbf6bc8cd4be8b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -72725,7 +72725,7 @@
 	{
 		"chartID": "256662bfa2205177f70c0e98f593b447a4cfc82e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -72741,7 +72741,7 @@
 	{
 		"chartID": "4f68d1ea55220b4f58fead772247ef9c1b279f55",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -72757,7 +72757,7 @@
 	{
 		"chartID": "af6750695b3dc4d23bbdc268b1ac9da3b2d2fd7b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -72773,7 +72773,7 @@
 	{
 		"chartID": "c063d8e76ac8f1e5e7b202f245f932c978007348",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -72789,7 +72789,7 @@
 	{
 		"chartID": "743e8c16db937e098bf39dad60a3703342aee90b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -72805,7 +72805,7 @@
 	{
 		"chartID": "7f8495836bc3a4df0891c966c94fb39e2ebc124d",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -72821,7 +72821,7 @@
 	{
 		"chartID": "ce84aac54cebdbb9e755963249e27194cb677c48",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -72837,7 +72837,7 @@
 	{
 		"chartID": "b53a669ffbd8ae3e53168a337476ed677dd93858",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -72853,7 +72853,7 @@
 	{
 		"chartID": "459f8b2967e45261d2f448194c1762b357dff818",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -72869,7 +72869,7 @@
 	{
 		"chartID": "166ca3e892a15e2b676bd592686398f6d370edd5",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -72885,7 +72885,7 @@
 	{
 		"chartID": "03c07109de4c8f2018c0a9b73f47835cd1e6e072",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -72901,7 +72901,7 @@
 	{
 		"chartID": "dd89fe99407a2ca90230221c9f8a26e9757a8f40",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -72917,7 +72917,7 @@
 	{
 		"chartID": "cfdcc13b1a35a97930af9b4627fc0aceed750d5d",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -72933,7 +72933,7 @@
 	{
 		"chartID": "048e276e272f7e8ceade53eaa694253489262495",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -72949,7 +72949,7 @@
 	{
 		"chartID": "b07bcf487b76b7934c84083267b648e3351f74c9",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -72965,7 +72965,7 @@
 	{
 		"chartID": "5d9d0c68e6593ad0427e230a69171e386ecbb20c",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Re:Master",
 		"isPrimary": true,
@@ -72981,7 +72981,7 @@
 	{
 		"chartID": "d5d3f622822caecf5eadaecbf50db66a0c6c7605",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -72997,7 +72997,7 @@
 	{
 		"chartID": "fa07ab2c73407adbedfaadf53de110c19f092946",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -73013,7 +73013,7 @@
 	{
 		"chartID": "9acfcdf1461473d9129a791b6de98245e61bf643",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -73029,7 +73029,7 @@
 	{
 		"chartID": "64d1cfd6ee5522dc1936590f4a7720a7c4ae0965",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -73045,7 +73045,7 @@
 	{
 		"chartID": "c460e2faac6df11d6340fe709c52762a8f12b71b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -73061,7 +73061,7 @@
 	{
 		"chartID": "731e65ade6f820c6233d0145977a19ddfad25dc1",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -73077,7 +73077,7 @@
 	{
 		"chartID": "f3d9d54a0031e6110ae00c7faef89f91efc3ffde",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -73093,7 +73093,7 @@
 	{
 		"chartID": "3d5cbda2714c8a079feff2c50ad4a892e1d61c00",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -73109,7 +73109,7 @@
 	{
 		"chartID": "436247f380aa8260f4d927c4d0fc15b82acc1eb9",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Re:Master",
 		"isPrimary": true,
@@ -73125,7 +73125,7 @@
 	{
 		"chartID": "5754286a1b6afd477ed54dd4a10cfe532574cffa",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -73141,7 +73141,7 @@
 	{
 		"chartID": "584df250ee424c178c746dbf11ffa5bdf28938c9",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -73157,7 +73157,7 @@
 	{
 		"chartID": "39163c854735a02767921ffe844d757caa618e1d",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -73173,7 +73173,7 @@
 	{
 		"chartID": "e89f384e2788a05c0a94b5b928a39d2da7496b1d",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -73189,7 +73189,7 @@
 	{
 		"chartID": "2437566f8cff316234e244e3937dd5fa3619b6e6",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Re:Master",
 		"isPrimary": true,
@@ -73205,7 +73205,7 @@
 	{
 		"chartID": "ff31da69673b495222773345c3ee048143715125",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -73221,7 +73221,7 @@
 	{
 		"chartID": "c2fe0ee2483f7481012af61a4afa75e5c942943b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -73237,7 +73237,7 @@
 	{
 		"chartID": "7e618e69db612d1df03a9d58b6ba0d6eb99ade0a",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -73253,7 +73253,7 @@
 	{
 		"chartID": "f0e23a168af49513be426f6044f92cabdcfcbfe9",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -73269,7 +73269,7 @@
 	{
 		"chartID": "d2b7af669ae117985877df387b165bceb42a756d",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -73285,7 +73285,7 @@
 	{
 		"chartID": "b8fc3e6e903fb57cbe3c8794eeb6cb9bf45dc30b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -73301,7 +73301,7 @@
 	{
 		"chartID": "ac146a0f1f802f9db8309ba352f0a95346b28025",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -73317,7 +73317,7 @@
 	{
 		"chartID": "b9666aaf47a2541aed9c21a6897357e7c2e809a9",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -73333,7 +73333,7 @@
 	{
 		"chartID": "ac657c1c7cec60aa8b8252ae2af41fb421b2560d",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -73349,7 +73349,7 @@
 	{
 		"chartID": "f76106ceea9387403f909eab1644f15a27b8a5f6",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -73365,7 +73365,7 @@
 	{
 		"chartID": "2be8ab1fdf9dfb591fa94ac700fcfbf45c4e37e6",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -73381,7 +73381,7 @@
 	{
 		"chartID": "665e0dea4ebd397fa9c73ef66c311251ec9434d4",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -73397,7 +73397,7 @@
 	{
 		"chartID": "ee9656935ae6fd83e3e83851eecfc05f41dd0c56",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -73413,7 +73413,7 @@
 	{
 		"chartID": "af5007dcec89122f4ae1416cc8f857f395c167c9",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -73429,7 +73429,7 @@
 	{
 		"chartID": "8cf474a274e2faa03eefd361bee1f9b7847eba41",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -73445,7 +73445,7 @@
 	{
 		"chartID": "6b182790cc4413c2dd9c7a9a52a60f02002a614f",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -73461,7 +73461,7 @@
 	{
 		"chartID": "a310c1cd7db94b870c2a3a9b3778bf0866a51671",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -73477,7 +73477,7 @@
 	{
 		"chartID": "2bbf7b4e9191534d0965ffe5ab9dcfc348d19875",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -73493,7 +73493,7 @@
 	{
 		"chartID": "fd8a2998d87e96bead37359e0386cb2c52814d79",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -73509,7 +73509,7 @@
 	{
 		"chartID": "5eb2e812432ae4f8146df2ee7523d0c26bba0eba",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -73525,7 +73525,7 @@
 	{
 		"chartID": "adef4002df57f08938063c0999862b9e1b12deec",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -73541,7 +73541,7 @@
 	{
 		"chartID": "c36b1dfd909bf25b85a14f62e19f9b9f1de350cf",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -73557,7 +73557,7 @@
 	{
 		"chartID": "020edd0c542f47284dff0659a1ddf4fc56104ef7",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -73573,7 +73573,7 @@
 	{
 		"chartID": "a118694b4135a6d850d63da72b4db4d6ff3f8153",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -73589,7 +73589,7 @@
 	{
 		"chartID": "4ecf94e670f97c04cf2a409262b61bf57560b55c",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -73605,7 +73605,7 @@
 	{
 		"chartID": "ace20e16e7f8750eac17727c0be692af0d8a01dd",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -73621,7 +73621,7 @@
 	{
 		"chartID": "694d87d185d808e6252d5cbe4286f68107473b62",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -73637,7 +73637,7 @@
 	{
 		"chartID": "1d64ff97a6bd004b1e29f2972220bae30d0c983e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -73653,7 +73653,7 @@
 	{
 		"chartID": "d35584318cdcb2fe75b25673f8eb95f475a1b8c9",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -73669,7 +73669,7 @@
 	{
 		"chartID": "aba34c421dcc11ef8d2864bf39c8c38cc1400b8e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -73685,7 +73685,7 @@
 	{
 		"chartID": "a1cd95881cb63b06b37e2f60083df67e1de44863",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -73701,7 +73701,7 @@
 	{
 		"chartID": "28c0f987c8aa622d4bfc4006af8e0d6bd497877a",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -73717,7 +73717,7 @@
 	{
 		"chartID": "33bbfdf455b8c151470525c73556622d7e5bfe9e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -73733,7 +73733,7 @@
 	{
 		"chartID": "63e3c5fcc1d2ef2bb53ee57478c8946332c212c8",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -73749,7 +73749,7 @@
 	{
 		"chartID": "cac9eaa4116a17579382264d402fe80356b8f630",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -73765,7 +73765,7 @@
 	{
 		"chartID": "c56a3b250e6500f8552f9455a70d7de410bf4022",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -73781,7 +73781,7 @@
 	{
 		"chartID": "cec773a4a3cd40ce65412fff394a0266e229c891",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -73797,7 +73797,7 @@
 	{
 		"chartID": "96f964c577c97823d64576fee4f9c9abdf8d3c76",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -73813,7 +73813,7 @@
 	{
 		"chartID": "828a945eabb169e7232efd6d0c586ab50535030c",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -73829,7 +73829,7 @@
 	{
 		"chartID": "b65732a8fb7b9087d45935bef19b0928483e6466",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -73845,7 +73845,7 @@
 	{
 		"chartID": "fdd1eb5052c07a24a3bf6ab3dedc4dc561dd98d2",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -73861,7 +73861,7 @@
 	{
 		"chartID": "6be26b77547d18d4b100472373f2bbe9905ab7ac",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -73877,7 +73877,7 @@
 	{
 		"chartID": "53e3bc5eb9bee701be583579d7d662c44cd5b1e2",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -73893,7 +73893,7 @@
 	{
 		"chartID": "f812f46cc060679f66f12aaf64cb44c36bbd3794",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -73909,7 +73909,7 @@
 	{
 		"chartID": "3887b25c5c3df292b35b8368ba5ff68da154e4b9",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -73925,7 +73925,7 @@
 	{
 		"chartID": "f15b033baf68f0022e8df8c8428855415733575e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -73941,7 +73941,7 @@
 	{
 		"chartID": "495b05aacd2d6a4dbea01b30ea0e873eea468571",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -73957,7 +73957,7 @@
 	{
 		"chartID": "15575036ef109df60582a86481865fe950ae10a4",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -73973,7 +73973,7 @@
 	{
 		"chartID": "87f8172142545e86b2fa2f5f85fc31d14a560c70",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -73989,7 +73989,7 @@
 	{
 		"chartID": "9829cf23f675db8d50658bbde9aab04d00833670",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -74005,7 +74005,7 @@
 	{
 		"chartID": "080600ef95aa298d9488262f29117df5195dcc91",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -74021,7 +74021,7 @@
 	{
 		"chartID": "294af7dee84f5ec88c0810c486f78f33ae4cb75d",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -74037,7 +74037,7 @@
 	{
 		"chartID": "962266049666e8ca6ec568508c2891ade935aaf5",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -74053,7 +74053,7 @@
 	{
 		"chartID": "4ecd346d0cafd6b2078e608f4321f05b23a99b45",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -74069,7 +74069,7 @@
 	{
 		"chartID": "b9d6e4d3b91a48b59039bc5d8860f316cb4a3c42",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -74085,7 +74085,7 @@
 	{
 		"chartID": "0509b8730cb9a7ca06c5f3ec32bb4d5bdd120ca8",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -74101,7 +74101,7 @@
 	{
 		"chartID": "e44d53a4c96e46ee2bc1fed5dd4249106038ca22",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -74117,7 +74117,7 @@
 	{
 		"chartID": "19032876d5c30b14b77b88ea66ecf1d1b13a9224",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -74133,7 +74133,7 @@
 	{
 		"chartID": "6dc646e965b8e94f09b35f276205bbad00325ea3",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -74149,7 +74149,7 @@
 	{
 		"chartID": "04195f89a7e2dec09aab28f5220849665e54510c",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -74165,7 +74165,7 @@
 	{
 		"chartID": "5d83046111885daaa31112e8ce75c358aacb1da8",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -74181,7 +74181,7 @@
 	{
 		"chartID": "f001c04644a79625cb8f05edc82cc3f71a1cb079",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -74197,7 +74197,7 @@
 	{
 		"chartID": "b01f9b956b2977fa4e0313c7f4309377bece7c0c",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -74213,7 +74213,7 @@
 	{
 		"chartID": "b58b3a4e83de95839d07ef0fc5232cf822448dc5",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -74229,7 +74229,7 @@
 	{
 		"chartID": "d4bdd492e49e7e6e3b4cdef0f3259eb6c29520d3",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -74245,7 +74245,7 @@
 	{
 		"chartID": "69ed95ae6670d59c8bccf6b5cebeaffa0187fddb",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -74261,7 +74261,7 @@
 	{
 		"chartID": "5d2645e402edd0af3172e1c65728689006789ed9",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -74277,7 +74277,7 @@
 	{
 		"chartID": "0e23943e58a87f16f562e733d6b88273b0906806",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -74293,7 +74293,7 @@
 	{
 		"chartID": "1800c45e76ae5210a9ab73ed7e835a010668f874",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -74309,7 +74309,7 @@
 	{
 		"chartID": "7eb990302a775d63fe5d1d6b18caf2a6e5b7784a",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -74325,7 +74325,7 @@
 	{
 		"chartID": "6d9c056a6de5cd0bb61c03e58b899a307dc57e22",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -74341,7 +74341,7 @@
 	{
 		"chartID": "f327fa06bbe0fe24a717472e9b8210a0cb5ce310",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -74357,7 +74357,7 @@
 	{
 		"chartID": "88fe1a27c79d0df8b872ef2e640beee28d0b26df",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -74373,7 +74373,7 @@
 	{
 		"chartID": "2f2b403a384f64cfb17d24688c242579262e6e8c",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -74389,7 +74389,7 @@
 	{
 		"chartID": "4f8a5782c2b5829921c9258ec44e1281f0a62d75",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -74405,7 +74405,7 @@
 	{
 		"chartID": "9b26b3147c55f8ba5c84be23148fde7bc15b78cb",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -74421,7 +74421,7 @@
 	{
 		"chartID": "40c62ae150a6488025253c1b5859f850a2245eac",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -74437,7 +74437,7 @@
 	{
 		"chartID": "bb2bb3636d6c8452fcf0468a5ca7be0089363bc8",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -74453,7 +74453,7 @@
 	{
 		"chartID": "9f0a96135d5c61b567cdc65f56b91897986f5180",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -74469,7 +74469,7 @@
 	{
 		"chartID": "5146d03cf532a8d0deced89506f14a7eec6a3b9b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -74485,7 +74485,7 @@
 	{
 		"chartID": "0b7baec8001e4a73d5cada9825de8faaf6a5f612",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -74501,7 +74501,7 @@
 	{
 		"chartID": "89a3f37b8d56e7b8a26c6b777b829949e6bb088d",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -74517,7 +74517,7 @@
 	{
 		"chartID": "f361f0ef0a5a0df0ff177a032413ce63a12d5a9b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -74533,7 +74533,7 @@
 	{
 		"chartID": "c5398b0579450b9316da4900ab61ca9432c02cc7",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -74549,7 +74549,7 @@
 	{
 		"chartID": "0c72b567e9170658b1e4cfbe50ee9a9be98996ed",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -74565,7 +74565,7 @@
 	{
 		"chartID": "78a828751d3ab8cca49b6bffed132953f6bc2bbd",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -74581,7 +74581,7 @@
 	{
 		"chartID": "98155a4622c3575135725045b5e5a26d3c1c1fc3",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -74597,7 +74597,7 @@
 	{
 		"chartID": "da9615bda5c82e038efc6bbcbc934799e39b2a92",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -74613,7 +74613,7 @@
 	{
 		"chartID": "af2b2e9795389fcb129c2b58f1cbac08dbcbb66c",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -74629,7 +74629,7 @@
 	{
 		"chartID": "402ee574e9a4dbdc336aeba39f6e62772573fed8",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -74645,7 +74645,7 @@
 	{
 		"chartID": "6ac128c1340c012f541636db515b6242d728415d",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -74661,7 +74661,7 @@
 	{
 		"chartID": "7e6da3b3bf6b75bbb731c9f9a29acde01c0e21f3",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -74677,7 +74677,7 @@
 	{
 		"chartID": "3dddd542a385a6d6fbbc24c2b6435cdb8cf2220c",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -74693,7 +74693,7 @@
 	{
 		"chartID": "d6dba650676335436ad81d723d9afcfdfccbc54c",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -74709,7 +74709,7 @@
 	{
 		"chartID": "a0862d70273f0e142409c27e1f2162e459055335",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -74725,7 +74725,7 @@
 	{
 		"chartID": "d3833492117b86e619ababda464b863874fa1875",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -74741,7 +74741,7 @@
 	{
 		"chartID": "00622c95291c835887b75237a28d42bb4d41f9e7",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -74757,7 +74757,7 @@
 	{
 		"chartID": "e72338eb8d7b471218111aa2a0d568056db519b1",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -74773,7 +74773,7 @@
 	{
 		"chartID": "d3949ff7e1abf8632c4e94a96a49250cc3794078",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -74789,7 +74789,7 @@
 	{
 		"chartID": "3e501adc2fa7a2ee8fc70e342ee1a8578c90c712",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -74805,7 +74805,7 @@
 	{
 		"chartID": "c5a1ebfdc94e743c6565546aedf78f69bc8bc6ae",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -74821,7 +74821,7 @@
 	{
 		"chartID": "e67b78dddb9c0d0d6fd136018a77bb6597881be4",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -74837,7 +74837,7 @@
 	{
 		"chartID": "f28015917bd9e9286d666f621baac7798d0f3437",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -74853,7 +74853,7 @@
 	{
 		"chartID": "3adebf45c3fa8a1a172f4bb7649722145a9de95b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -74869,7 +74869,7 @@
 	{
 		"chartID": "ad1125e20f306f0ae9c2c2da6becddc1ac25993d",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -74885,7 +74885,7 @@
 	{
 		"chartID": "fd9f6ca76e75ccefea0c34c99f90a9a9dc5bdb6e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -74901,7 +74901,7 @@
 	{
 		"chartID": "07dc76678aea93ae82cb723f4de4b0946b18bf22",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -74917,7 +74917,7 @@
 	{
 		"chartID": "7d850c38412376bccd3002496bfda9439617dc7b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -74933,7 +74933,7 @@
 	{
 		"chartID": "07cf3d331c0a7023faace3ec8758ec9dc0caa09e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -74949,7 +74949,7 @@
 	{
 		"chartID": "ad566849e3b31f649fde4617e5ce6c346f373ffc",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -74965,7 +74965,7 @@
 	{
 		"chartID": "29d58771474ca5233e72f2462a65f849e5122cb9",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -74981,7 +74981,7 @@
 	{
 		"chartID": "cbf29205f7a70c3e9f348c7834de82931c92b1f8",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -74997,7 +74997,7 @@
 	{
 		"chartID": "85bec17cccb296e95013ab145bad1551bdb1376e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -75013,7 +75013,7 @@
 	{
 		"chartID": "bf2c9f8d65a1bbb51d363db78451ce440287e4c9",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -75029,7 +75029,7 @@
 	{
 		"chartID": "55a826663475249ff9ac9de1d9dbdbf916a40202",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -75045,7 +75045,7 @@
 	{
 		"chartID": "8b5ddce4703f1d5434f82385ef7a88e9a7dc9d06",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -75061,7 +75061,7 @@
 	{
 		"chartID": "2224ff460249aad5eba3c1e69c3795a1dec7029b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -75077,7 +75077,7 @@
 	{
 		"chartID": "8eca3412f6979a742bc0cd8dba1b58602fc9efe7",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -75093,7 +75093,7 @@
 	{
 		"chartID": "092c6e6cf566b1c2f42fdb135fdb5fbadfe200d7",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -75109,7 +75109,7 @@
 	{
 		"chartID": "d2adf5bcb7ff91c47620067e1c44d1e7ae0da185",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -75125,7 +75125,7 @@
 	{
 		"chartID": "1c04cdcbfd8e333791684b2820973feabd822a18",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -75141,7 +75141,7 @@
 	{
 		"chartID": "106ee2540b842fee9cfcd966fc9ded69ddf93ee6",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -75157,7 +75157,7 @@
 	{
 		"chartID": "c7b786c429c79e16ffdf04dced1fefc075e780af",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -75173,7 +75173,7 @@
 	{
 		"chartID": "f6a968ef0247366931667b175760c79d182b5407",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -75189,7 +75189,7 @@
 	{
 		"chartID": "685a251d738867ca49590e98be45fc5f55cbb4f1",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -75205,7 +75205,7 @@
 	{
 		"chartID": "e7e8909c3a967af6ea97ff99c738a8aa1f8dee0c",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -75221,7 +75221,7 @@
 	{
 		"chartID": "6748652a5f0a87fa2ebd2cbe643603711f3bd832",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -75237,7 +75237,7 @@
 	{
 		"chartID": "996ff6c5400242ca48b58f8f28298e7aa7c886eb",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -75253,7 +75253,7 @@
 	{
 		"chartID": "85dec0a6b63b1f773fd6741a1703e187dc0727ed",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -75269,7 +75269,7 @@
 	{
 		"chartID": "449f175e249cf5e1c5184f6e84b0cbcc517227ba",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -75285,7 +75285,7 @@
 	{
 		"chartID": "221efb48c6f03d666de10717f81eff1c0cd37180",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -75301,7 +75301,7 @@
 	{
 		"chartID": "690429a3ad9141a772cc0c87a54fd69f03b2eb00",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -75317,7 +75317,7 @@
 	{
 		"chartID": "0c72662d7c696360edd2c599b33344131a6f0c64",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -75333,7 +75333,7 @@
 	{
 		"chartID": "2ab7b05f10f516a552549140be261e6b434d377e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -75349,7 +75349,7 @@
 	{
 		"chartID": "a25ec6932db572d3a23840a6245b95bb2b5362ef",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -75365,7 +75365,7 @@
 	{
 		"chartID": "79c85d31e118fefce4f675e78fe3c6e13e908ddf",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -75381,7 +75381,7 @@
 	{
 		"chartID": "bd9ca9bc4efb8d8499bfa7031e9941e85f3021b6",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -75397,7 +75397,7 @@
 	{
 		"chartID": "68d9f54c0fcc41f8b57ad853a47e7525440f3949",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -75413,7 +75413,7 @@
 	{
 		"chartID": "733865d933e6cbd0e258e113ac45cb9076c559af",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -75429,7 +75429,7 @@
 	{
 		"chartID": "75ea0a0ed3fbd0c9c2e987934572e2b710eb140b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -75445,7 +75445,7 @@
 	{
 		"chartID": "5572c7f34d0f0813c2ad3d5a638e915c09e3ba37",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -75461,7 +75461,7 @@
 	{
 		"chartID": "7f1dea290cc4155591a49412d8ce3b6e0f38ee5b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -75477,7 +75477,7 @@
 	{
 		"chartID": "d893f274f1444ce0a1693e72342d2141db45924e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -75493,7 +75493,7 @@
 	{
 		"chartID": "e85d8382768ba53240d72277a24e3294858420e3",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -75509,7 +75509,7 @@
 	{
 		"chartID": "09728c028a4eeb0ef08b4e15f1299dc2fae4479f",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -75525,7 +75525,7 @@
 	{
 		"chartID": "a11b4413a158ff03647192249567f69cd7adbf64",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -75541,7 +75541,7 @@
 	{
 		"chartID": "cee147090116c66929e8f83ec90c227b5ff031ac",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -75557,7 +75557,7 @@
 	{
 		"chartID": "d6356db9188e34cd0b8d1c40d43c9827ada20cd9",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -75573,7 +75573,7 @@
 	{
 		"chartID": "1df60f8e75c31d859e1e7f1f1d4e089c41799b49",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -75589,7 +75589,7 @@
 	{
 		"chartID": "330d9d1bc6721f1b520d232105e5ece650a80cc6",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -75605,7 +75605,7 @@
 	{
 		"chartID": "deb1cabebdc05830f8bc7608c9ea54c97ab51cc5",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -75621,7 +75621,7 @@
 	{
 		"chartID": "04056d4e4cba2e43a96e15ea0a69051f5cc9e7bb",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -75637,7 +75637,7 @@
 	{
 		"chartID": "65e3f0f0250b5bdc47c2adbae29c50a298a60b11",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -75653,7 +75653,7 @@
 	{
 		"chartID": "48b478a6ce082869db1d7d883238413222b8cb15",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -75669,7 +75669,7 @@
 	{
 		"chartID": "0d3786bf945344c0cbd0b4cbd5c98553fe6d9de6",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -75685,7 +75685,7 @@
 	{
 		"chartID": "123b6a4331d75a564d94a5de0731a14a2693f4d1",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -75701,7 +75701,7 @@
 	{
 		"chartID": "b28ccf30c13e3e6b7b1dc4a87bc6557c5d63362a",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -75717,7 +75717,7 @@
 	{
 		"chartID": "bcd62d0c3d8ed862b5df59775a3b222d84727da7",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -75733,7 +75733,7 @@
 	{
 		"chartID": "0fd1af00b35430185a9b39711f8954d7752d40a3",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -75749,7 +75749,7 @@
 	{
 		"chartID": "85d73b1bf12038dc4537c0462c140ddf2a7fbcfa",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -75765,7 +75765,7 @@
 	{
 		"chartID": "fe873b5299d241aff4405cdc81ff588509a7fcff",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -75781,7 +75781,7 @@
 	{
 		"chartID": "9c96e15a5ffe75bb4351e1a0b526795cbb1b529e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -75797,7 +75797,7 @@
 	{
 		"chartID": "8b8b9fe2e808460b457394d611f4106286163327",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -75813,7 +75813,7 @@
 	{
 		"chartID": "e59951a13da39fa637aa8c156168c32c109b9293",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -75829,7 +75829,7 @@
 	{
 		"chartID": "b755d6ae1b0ee6da73b39306d9280ebcc16ccf0a",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -75845,7 +75845,7 @@
 	{
 		"chartID": "891441c3fbafadfe5139ac7170f701df72c6e1fa",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -75861,7 +75861,7 @@
 	{
 		"chartID": "cebb2c462d3d92cd66b3d297e603c8e6b4685a1d",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -75877,7 +75877,7 @@
 	{
 		"chartID": "ccfc340ddfcb888b6c79f8ee0aeeaac2395de791",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -75893,7 +75893,7 @@
 	{
 		"chartID": "4ccfa7f2a588ac5b53fc2f86996248866d9fbfc3",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -75909,7 +75909,7 @@
 	{
 		"chartID": "31321558f06f0e766f8de887bbbfd634a4b915b2",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -75925,7 +75925,7 @@
 	{
 		"chartID": "7d4a5f9fab1b95a5a3c856b807bcb92be6963fac",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -75941,7 +75941,7 @@
 	{
 		"chartID": "949731b9a8615934f1b40fd7a76ea96a248778d7",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -75957,7 +75957,7 @@
 	{
 		"chartID": "a5cd25e2aa597b279e8a2a198b9c8a06241f2924",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -75973,7 +75973,7 @@
 	{
 		"chartID": "9162ee3fe2bbc677ed16ac5fb824ec092237efd4",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -75989,7 +75989,7 @@
 	{
 		"chartID": "834d841716436ef30a514fa8438c97a376e52f6a",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -76005,7 +76005,7 @@
 	{
 		"chartID": "20da956277223cff7ac3091fdd6cf6a6041278e6",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -76021,7 +76021,7 @@
 	{
 		"chartID": "80d07bf430a277bf125bb054946a731151395428",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -76037,7 +76037,7 @@
 	{
 		"chartID": "287ad46fae9954cf04915dc902f39594efcdafbf",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -76053,7 +76053,7 @@
 	{
 		"chartID": "6be08b228bc9c0fb75bfa9b610f078228c67aa88",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -76069,7 +76069,7 @@
 	{
 		"chartID": "dfd196e479fa798a0fc05e4734a014574f6c6b4e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -76085,7 +76085,7 @@
 	{
 		"chartID": "1e3ff942eaa872f17721764e17cc14f3609cb9cd",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -76101,7 +76101,7 @@
 	{
 		"chartID": "01dbe6af3fe626de71651e2cae7290d95fde3bc2",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -76117,7 +76117,7 @@
 	{
 		"chartID": "e1363111422696637d56573a308e7aff6d6d7adb",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -76133,7 +76133,7 @@
 	{
 		"chartID": "3b45d9d0dab9ade0f19b6afe613b770046e78d6b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -76149,7 +76149,7 @@
 	{
 		"chartID": "c7e940b491beadbe7498aadc176850d160be68ea",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -76165,7 +76165,7 @@
 	{
 		"chartID": "f919e17c6e436f91b842328bf18fcf9a37a9f0f7",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -76181,7 +76181,7 @@
 	{
 		"chartID": "d3f9a1547313777b2c29bc17463ebece94e295f1",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -76197,7 +76197,7 @@
 	{
 		"chartID": "8f94f9a5ddbd75e76e2c492247ca9ed133b873bb",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -76213,7 +76213,7 @@
 	{
 		"chartID": "ecf4e475181d82a4d15a931bb4b1e84bc2db493f",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -76229,7 +76229,7 @@
 	{
 		"chartID": "78c06ca0d4ba695e5ed16ee4ea0b91e482b6eea8",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -76245,7 +76245,7 @@
 	{
 		"chartID": "97d719b3c77af61f90e773668c38e5ee01757df2",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -76261,7 +76261,7 @@
 	{
 		"chartID": "82d77a96867fa19b4c8d8ee53422aa79b1665823",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -76277,7 +76277,7 @@
 	{
 		"chartID": "91390700310aebea371548ead70d18d586acdd81",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -76293,7 +76293,7 @@
 	{
 		"chartID": "a2c0de024fff80ef8b9f4278b1e292a09dfa7797",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -76309,7 +76309,7 @@
 	{
 		"chartID": "928206e99f6899817ae597023dbc195563e2cf0b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -76325,7 +76325,7 @@
 	{
 		"chartID": "389bf3b3f8c7be9ddd82de95d24dc1d8a21f5f70",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -76341,7 +76341,7 @@
 	{
 		"chartID": "f1bd89ba07e69fbc00aca97e4933b0763ffd42af",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -76357,7 +76357,7 @@
 	{
 		"chartID": "14afc4807ab17b7838b1e596ff25637cdaf45652",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -76373,7 +76373,7 @@
 	{
 		"chartID": "0fc162bc31ed9ddb308f4945d32c43c886c2e730",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -76389,7 +76389,7 @@
 	{
 		"chartID": "fa7ef4768f0e180a745a0facea28304fb956b436",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -76405,7 +76405,7 @@
 	{
 		"chartID": "9b83357f13879ece66f599b897d3dfcf316a9ded",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -76421,7 +76421,7 @@
 	{
 		"chartID": "a2f08a1d888c732363bc348dd2cf3f1db46dfbed",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -76437,7 +76437,7 @@
 	{
 		"chartID": "719118c02cd241ae88750f08ee511f73a21c9e39",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -76453,7 +76453,7 @@
 	{
 		"chartID": "3a2e6caaac34210f263e9148c0947c87a4bc9873",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -76469,7 +76469,7 @@
 	{
 		"chartID": "1bf748922dfc7540954476f379c85c128060789d",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -76485,7 +76485,7 @@
 	{
 		"chartID": "39ce3f2ab9eae3b9ba54f3efe5a92eb95d6bc70b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -76501,7 +76501,7 @@
 	{
 		"chartID": "a46ee2559cf6e29b42c84342102c546edf89220b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -76517,7 +76517,7 @@
 	{
 		"chartID": "f99f1d3f6661f78881af96d3e5354a4484ecb757",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -76533,7 +76533,7 @@
 	{
 		"chartID": "fd6842c30a24a2b7b317519389704fb5fc7da911",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -76549,7 +76549,7 @@
 	{
 		"chartID": "98db6f6cfe4e0aaf5f08ce0fc891d5c6e3805428",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -76565,7 +76565,7 @@
 	{
 		"chartID": "05b6f4eae41b21913d3f9c379dac7bb8a9ccfd77",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -76581,7 +76581,7 @@
 	{
 		"chartID": "6b6a9ef0bf90e4e5d5f019999b4f59d4526e3a3e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -76597,7 +76597,7 @@
 	{
 		"chartID": "fb42c6bd54ef42f07ad78a113de9cf5def3d5d0b",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -76613,7 +76613,7 @@
 	{
 		"chartID": "366f73063267873e5e07fa18f94b8c4025ceb6e6",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -76629,7 +76629,7 @@
 	{
 		"chartID": "9b53139eef272fc55b142fef7aaa8d34d9b5df1e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -76645,7 +76645,7 @@
 	{
 		"chartID": "7b2214f5c958523360843418468149005f405ed8",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -76661,7 +76661,7 @@
 	{
 		"chartID": "6d64dd39b5a3a07bd68bd4d8451243360058a027",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -76677,7 +76677,7 @@
 	{
 		"chartID": "a12a8e3a458aeee21b0b2d8445d6ce79c6d8df71",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -76693,7 +76693,7 @@
 	{
 		"chartID": "b6607382e5c3fa0932bf710ae2f71006b1f62db6",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -76709,7 +76709,7 @@
 	{
 		"chartID": "36b9930a9acf4fb2963fbdc66be11390b893360c",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -76725,7 +76725,7 @@
 	{
 		"chartID": "748716394423681235adebd140adae92a5cf806c",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -76741,7 +76741,7 @@
 	{
 		"chartID": "79f26158edcf4846969ebea646530868d641616e",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -76757,7 +76757,7 @@
 	{
 		"chartID": "65679b0d0a7278fec73688c65178e9db6223c4ab",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -76773,7 +76773,7 @@
 	{
 		"chartID": "6b7f63716755b5419e489113a052a0c46def0836",
 		"data": {
-			"isLatest": true
+			"isLatest": false
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,

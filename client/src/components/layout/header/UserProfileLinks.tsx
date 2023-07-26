@@ -3,17 +3,20 @@ import DropdownNavLink from "components/ui/DropdownNavLink";
 import { TachiConfig } from "lib/config";
 import React from "react";
 import { FormatGame, GetGameConfig, UserDocument, UserGameStats } from "tachi-common";
+import { SetState } from "types/react";
 
 export default function UserProfileLinks({
 	user,
 	ugs,
 	className,
 	style,
+	setState,
 }: {
 	user: UserDocument;
 	ugs: UserGameStats[];
 	className?: string;
 	style?: React.CSSProperties;
+	setState?: SetState<boolean>;
 }) {
 	const userProfileLinks = [];
 
@@ -35,6 +38,9 @@ export default function UserProfileLinks({
 					<DropdownNavLink
 						key={`${e.game}:${e.playtype}`}
 						to={`/u/${user.username}/games/${e.game}/${e.playtype}`}
+						onClick={() => {
+							setState?.(false);
+						}}
 					>
 						{FormatGame(e.game, e.playtype)}
 					</DropdownNavLink>

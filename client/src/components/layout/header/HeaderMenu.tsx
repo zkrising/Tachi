@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { UserDocument, UserGameStats } from "tachi-common";
 import useApiQuery from "components/util/query/useApiQuery";
 import Nav from "react-bootstrap/Nav";
+import { SetState } from "types/react";
 import AllGames from "./AllGames";
 import ImportScoresLink from "./ImportScoresLink";
 import UtilsDropdown from "./UtilsDropdown";
@@ -14,9 +15,11 @@ const toggleClassNames = "w-100 justify-content-between w-lg-auto justify-conten
 export function HeaderMenu({
 	user,
 	dropdownMenuStyle,
+	setState,
 }: {
 	user: UserDocument | null;
 	dropdownMenuStyle?: React.CSSProperties;
+	setState?: SetState<boolean>;
 }) {
 	const { ugs, setUGS } = useContext(AllLUGPTStatsContext);
 	const { settings } = useContext(UserSettingsContext);
@@ -42,12 +45,23 @@ export function HeaderMenu({
 					ugs={ugs}
 					className={toggleClassNames}
 					style={dropdownMenuStyle}
+					setState={setState}
 				/>
 			)}
-			<AllGames className={toggleClassNames} style={dropdownMenuStyle} />
-			{user && <ImportScoresLink className={toggleClassNames} style={dropdownMenuStyle} />}
+			<AllGames className={toggleClassNames} style={dropdownMenuStyle} setState={setState} />
+			{user && (
+				<ImportScoresLink
+					className={toggleClassNames}
+					style={dropdownMenuStyle}
+					setState={setState}
+				/>
+			)}
 			{settings?.preferences.developerMode && (
-				<UtilsDropdown className={toggleClassNames} style={dropdownMenuStyle} />
+				<UtilsDropdown
+					className={toggleClassNames}
+					style={dropdownMenuStyle}
+					setState={setState}
+				/>
 			)}
 		</Nav>
 	);

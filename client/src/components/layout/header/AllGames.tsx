@@ -3,13 +3,16 @@ import React from "react";
 import { FormatGame, GetGameConfig } from "tachi-common";
 import QuickDropdown from "components/ui/QuickDropdown";
 import DropdownNavLink from "components/ui/DropdownNavLink";
+import { SetState } from "types/react";
 
 export default function AllGames({
 	className,
 	style,
+	setState,
 }: {
 	className?: string;
 	style?: React.CSSProperties;
+	setState?: SetState<boolean>;
 }) {
 	const links = [];
 
@@ -18,7 +21,11 @@ export default function AllGames({
 
 		for (const playtype of gameConfig.playtypes) {
 			links.push(
-				<DropdownNavLink key={`${game}:${playtype}`} to={`/games/${game}/${playtype}`}>
+				<DropdownNavLink
+					key={`${game}:${playtype}`}
+					to={`/games/${game}/${playtype}`}
+					onClick={() => setState?.(false)}
+				>
 					{FormatGame(game, playtype)}
 				</DropdownNavLink>
 			);

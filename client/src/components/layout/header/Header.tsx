@@ -20,6 +20,8 @@ export default function Header() {
 	const dropdownMenuStyle =
 		breakpoint > Breakpoints.md ? { transform: "translateY(16px)" } : undefined;
 
+	const setState = breakpoint <= Breakpoints.md ? setShowMobileMenu : undefined;
+
 	useEffect(() => {
 		if (breakpoint >= Breakpoints.md) {
 			setShowMobileMenu(false);
@@ -50,7 +52,11 @@ export default function Header() {
 							</Link>
 						</OffcanvasHeader>
 						<Offcanvas.Body className="ps-lg-4 h-lg-100 position-relative">
-							<HeaderMenu user={user} dropdownMenuStyle={dropdownMenuStyle} />
+							<HeaderMenu
+								user={user}
+								dropdownMenuStyle={dropdownMenuStyle}
+								setState={setState}
+							/>
 							<div className="position-absolute bottom-0 w-100 pb-4 px-4 d-md-none">
 								<SignOut className="w-100 bg-body-secondary bg-opacity-75 backdrop-blur-xl" />
 							</div>

@@ -1,16 +1,18 @@
-import { parse } from "url";
 import React from "react";
 import { GetGameConfig } from "tachi-common";
 import { TachiConfig } from "lib/config";
 import QuickDropdown from "components/ui/QuickDropdown";
 import DropdownNavLink from "components/ui/DropdownNavLink";
+import { SetState } from "types/react";
 
 export default function ImportScoresLink({
 	className,
 	style,
+	setState,
 }: {
 	className?: string;
 	style?: React.CSSProperties;
+	setState?: SetState<boolean>;
 }) {
 	const links = [];
 
@@ -25,6 +27,7 @@ export default function ImportScoresLink({
 				}}
 				key={game}
 				to={`/import?game=${game}`}
+				onClick={() => setState?.(false)}
 			>
 				{gameConfig.name}
 			</DropdownNavLink>

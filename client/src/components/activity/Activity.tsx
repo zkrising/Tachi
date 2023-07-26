@@ -190,14 +190,7 @@ function ActivityInner({
 				<div className="timeline-item">
 					<div className="timeline-item">
 						<div className="timeline-badge bg-success"></div>
-						<div
-							className="timeline-content d-flex"
-							style={{
-								flexDirection: "column",
-								flexWrap: "wrap",
-								marginRight: "2rem",
-							}}
-						>
+						<div className="timeline-content">
 							{exhausted ? (
 								<>No more activity. This is the end of the road!</>
 							) : (
@@ -500,7 +493,7 @@ function SessionActivity({
 	return (
 		<div className="timeline-item timeline-hover">
 			<div className={`timeline-badge bg-${data.highlight ? "warning" : "secondary"}`}></div>
-			<div className="timeline-content d-flex">
+			<div className="timeline-content">
 				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
 					<div className="timeline-content-title">
 						<span className="me-2">
@@ -605,7 +598,7 @@ function SessionShower({ sessionID }: { sessionID: string }) {
 					<div className="mb-4">This session had no raises.</div>
 					<div>
 						<LinkButton
-							className="btn-outline-primary"
+							variant="outline-primary"
 							to={`/u/${data.user.username}/games/${data.session.game}/${data.session.playtype}/sessions/${sessionID}`}
 						>
 							View Full Session
@@ -624,7 +617,7 @@ function SessionShower({ sessionID }: { sessionID: string }) {
 			</Col>
 			<div className="d-flex w-100 justify-content-center">
 				<LinkButton
-					className="btn-outline-primary"
+					variant="outline-primary"
 					to={`/u/${data.user.username}/games/${data.session.game}/${data.session.playtype}/sessions/${sessionID}`}
 				>
 					View Full Session
@@ -646,7 +639,7 @@ function ClassAchievementActivity({
 	return (
 		<div className="timeline-item timeline-hover">
 			<div className="timeline-badge bg-success"></div>
-			<div className="timeline-content d-flex">
+			<div className="timeline-content">
 				<div className="timeline-content-inner">
 					<div className="timeline-content-title">
 						<span className="me-2">

@@ -3,6 +3,7 @@ import React from "react";
 import { SetState } from "types/react";
 import { GamePTConfig, GetScoreMetrics } from "tachi-common";
 import { ZTableTHProps } from "./TachiTable";
+import Icon from "components/util/Icon";
 
 export default function SelectableCompareType({
 	metric,
@@ -35,18 +36,28 @@ export default function SelectableCompareType({
 				))}
 			</select>
 			<br />
-			<span onClick={() => changeSort("Vs.")}>
-				<i
-					className={`flaticon2-arrow-up icon-sm sort-icon ${
-						currentSortMode === "Vs." && reverseSort ? "active" : ""
-					}`}
-				></i>
-				<i
-					className={`flaticon2-arrow-down icon-sm sort-icon ${
-						currentSortMode === "Vs." && !reverseSort ? "active" : ""
-					}`}
-				></i>
-			</span>
+			<div onClick={() => changeSort("Vs.")}>
+				<div className="d-flex flex-column text-nowrap gap-1">
+					<span className="d-flex justify-content-center gap-1">
+						<Icon
+							type="arrow-up"
+							className={
+								currentSortMode === "Vs." && reverseSort
+									? "opacity-100"
+									: "opacity-25"
+							}
+						/>
+						<Icon
+							type="arrow-down"
+							className={
+								currentSortMode === "Vs." && !reverseSort
+									? "opacity-100"
+									: "opacity-25"
+							}
+						/>
+					</span>
+				</div>
+			</div>
 		</th>
 	);
 }

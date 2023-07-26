@@ -50,8 +50,8 @@ export default function FolderInfoHeader({
 								id={`${en}-${g}`}
 							>
 								{/* @ts-expect-error zzz */}
-								<Icon type={gptImpl.enumIcons[en]} />
-								{UppercaseFirst(en)} {UppercaseFirst(g)}
+								<Icon type={gptImpl.enumIcons[en]} /> {UppercaseFirst(en)}{" "}
+								{UppercaseFirst(g)}
 							</SelectButton>
 						))
 					)}

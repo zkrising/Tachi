@@ -3,7 +3,7 @@ import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import { ScoreDocument } from "tachi-common";
 import { SetState } from "types/react";
 
@@ -171,11 +171,10 @@ export function CommentModal({
 					}}
 				>
 					<Form.Group>
-						<div className="input-group">
-							<input
+						<InputGroup size="lg">
+							<Form.Control
 								ref={ref}
 								autoFocus
-								className="form-control form-control-lg"
 								type="text"
 								placeholder={initialComment ?? "This score was great!"}
 								value={innerComment}
@@ -185,7 +184,7 @@ export function CommentModal({
 							<Button variant="primary" type="submit">
 								Submit
 							</Button>
-						</div>
+						</InputGroup>
 					</Form.Group>
 
 					{initialComment !== null && (

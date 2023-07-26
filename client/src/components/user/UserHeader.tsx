@@ -9,7 +9,7 @@ import Muted from "components/util/Muted";
 import { UserContext } from "context/UserContext";
 import { ClientConfig } from "lib/config";
 import React, { useContext, useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import { UserAuthLevels, UserDocument } from "tachi-common";
 import { SetState } from "types/react";
 import FollowUserButton from "components/util/FollowUserButton";
@@ -258,9 +258,8 @@ function ChangeStatusModal({
 					}}
 				>
 					<Form.Group>
-						<div className="input-group">
-							<input
-								className="form-control form-control-lg"
+						<InputGroup size="lg">
+							<Form.Control
 								type="text"
 								placeholder={status ?? "I'm gaming..."}
 								value={innerStatus}
@@ -269,7 +268,7 @@ function ChangeStatusModal({
 							<Button variant="primary" type="submit">
 								Submit
 							</Button>
-						</div>
+						</InputGroup>
 					</Form.Group>
 				</Form>
 			</Modal.Body>

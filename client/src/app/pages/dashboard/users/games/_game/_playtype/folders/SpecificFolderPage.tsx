@@ -124,24 +124,24 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 			</div>
 			<div className="col-12 d-flex">
 				<div className="btn-group d-flex w-100">
-					<SelectLinkButton to={base}>
+					<SelectLinkButton className="text-wrap" to={base}>
 						<Icon type="table" /> Normal View
 					</SelectLinkButton>
 					{gptImpl.ratingSystems.length !== 0 &&
 						// temp: tierlist view sucks for BMS and PMS
 						game !== "bms" &&
 						game !== "pms" && (
-							<SelectLinkButton to={`${base}/tierlist`}>
+							<SelectLinkButton className="text-wrap" to={`${base}/tierlist`}>
 								<Icon type="sort-alpha-up" /> Tierlist View
 							</SelectLinkButton>
 						)}
-					<SelectLinkButton to={`${base}/timeline`}>
+					<SelectLinkButton className="text-wrap" to={`${base}/timeline`}>
 						<Icon type="stream" /> Timeline View
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/compare`}>
+					<SelectLinkButton className="text-wrap" to={`${base}/compare`}>
 						<Icon type="users" /> Compare Against User
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/targets`}>
+					<SelectLinkButton className="text-wrap" to={`${base}/targets`}>
 						<Icon type="scroll" /> Goals & Quests
 					</SelectLinkButton>
 				</div>

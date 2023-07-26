@@ -55,21 +55,21 @@ export default function ScoresPage({
 		<div className="row">
 			<div className="col-12 text-center">
 				<div className="btn-group d-flex justify-content-center mb-4">
-					<SelectLinkButton to={`${base}/scores`}>
+					<SelectLinkButton className="text-wrap" to={`${base}/scores`}>
 						<Icon type="trophy" /> Best 100 PBs
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/scores/history`}>
+					<SelectLinkButton className="text-wrap" to={`${base}/scores/history`}>
 						<Icon type="history" /> Recent 100 Scores
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/scores/most-played`}>
+					<SelectLinkButton className="text-wrap" to={`${base}/scores/most-played`}>
 						<Icon type="mortar-pestle" /> Most Played
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/scores/all`}>
+					<SelectLinkButton className="text-wrap" to={`${base}/scores/all`}>
 						<Icon type="database" /> All PBs
 					</SelectLinkButton>
 				</div>
 			</div>
-			<div className="col-12 mt-4">
+			<div className="col-12">
 				<Switch>
 					<Route exact path="/u/:userID/games/:game/:playtype/scores">
 						<>
@@ -183,7 +183,7 @@ function PBsOverview({
 			<div className="col-12">
 				<DebounceSearch setSearch={setSearch} placeholder="Search all PBs..." />
 			</div>
-			<div className="col-12 mt-8">
+			<div className="col-12 mt-4">
 				{search === "" ? (
 					<LoadingWrapper style={{ height: 500 }} {...{ error, dataset: data }}>
 						<PBTable
@@ -297,7 +297,7 @@ function ScoresOverview({ reqUser, game, playtype }: UGPT) {
 					placeholder="Search all individual scores..."
 				/>
 			</div>
-			<div className="col-12 mt-8">
+			<div className="col-12 mt-4">
 				{search === "" ? (
 					<LoadingWrapper style={{ height: 500 }} {...{ dataset: data, error }}>
 						<ScoreTable dataset={data!} game={game} playtype={playtype as any} />

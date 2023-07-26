@@ -44,7 +44,9 @@ export default function FolderInfoHeader({
 					{enumGraphs.flatMap((g) =>
 						Object.keys(enumConf).flatMap((en) => (
 							<SelectButton
-								className={g === "minimap" ? "d-none d-lg-block" : ""}
+								className={
+									g === "minimap" ? "d-none d-lg-block text-wrap" : "text-wrap"
+								}
 								value={currentGraph}
 								setValue={setCurrentGraph}
 								id={`${en}-${g}`}
@@ -55,7 +57,12 @@ export default function FolderInfoHeader({
 							</SelectButton>
 						))
 					)}
-					<SelectButton value={currentGraph} setValue={setCurrentGraph} id="score">
+					<SelectButton
+						className="text-wrap"
+						value={currentGraph}
+						setValue={setCurrentGraph}
+						id="score"
+					>
 						<Icon type="sort" /> Score Averages
 					</SelectButton>
 				</div>

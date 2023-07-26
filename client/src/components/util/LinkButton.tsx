@@ -3,6 +3,8 @@ import { LinkContainer } from "react-router-bootstrap";
 import Button, { ButtonProps } from "react-bootstrap/Button";
 import { LinkContainerProps } from "types/bootstrap";
 
+export type LinkButtonProps = LinkContainerProps & ButtonProps;
+
 /**A Bootstrap Button component that acts like a react-router Link */
 export default function LinkButton({
 	to,
@@ -15,7 +17,7 @@ export default function LinkButton({
 	style,
 	className,
 	...props
-}: LinkContainerProps & ButtonProps) {
+}: LinkButtonProps) {
 	return (
 		<LinkContainer
 			to={to}

@@ -182,7 +182,7 @@ function InternalGPTChartPage({
 	return (
 		<Row>
 			<Col xs={12} className="d-flex mb-8">
-				<div className="btn-group w-100">
+				<div className="btn-group text-wrap w-100">
 					<SelectLinkButton to={base}>
 						<Icon type="trophy" /> Best 100
 					</SelectLinkButton>

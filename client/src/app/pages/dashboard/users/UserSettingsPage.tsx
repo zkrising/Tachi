@@ -121,7 +121,7 @@ function AccountSettings({ reqUser }: { reqUser: UserDocument }) {
 	});
 
 	return (
-		<Form onSubmit={formik.handleSubmit}>
+		<Form onSubmit={formik.handleSubmit} className="d-flex flex-column gap-4">
 			<Form.Group>
 				<Form.Label>Old Password</Form.Label>
 				<Form.Control
@@ -143,7 +143,7 @@ function AccountSettings({ reqUser }: { reqUser: UserDocument }) {
 				/>
 				{formik.values["!password"].length < 8 && (
 					<Form.Text className="text-warning">
-						Passwords have to be atleast 8 characters long.
+						Passwords have to be at least 8 characters long.
 					</Form.Text>
 				)}
 			</Form.Group>
@@ -206,7 +206,7 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 	});
 
 	return (
-		<Form onSubmit={formik.handleSubmit}>
+		<Form onSubmit={formik.handleSubmit} className="d-flex flex-column gap-4">
 			<Form.Group>
 				<Form.Check
 					type="checkbox"
@@ -272,7 +272,7 @@ function ImageForm({ reqUser }: { reqUser: UserDocument }) {
 	const [banner, setBanner] = useState<File | undefined>();
 
 	return (
-		<div>
+		<div className="d-flex flex-column">
 			<Alert variant="danger">
 				Do not set inappropriate stuff as your avatar/banner. If you have to ask, the answer
 				is probably no.
@@ -375,7 +375,7 @@ function SocialMediaForm({ reqUser }: { reqUser: UserDocument }) {
 	});
 
 	return (
-		<Form onSubmit={formik.handleSubmit}>
+		<Form onSubmit={formik.handleSubmit} className="d-flex flex-column gap-4">
 			{(["discord", "twitter", "github", "steam", "youtube"] as const).map((e, i) => (
 				<Form.Group key={e}>
 					<Form.Label>{UppercaseFirst(e)}</Form.Label>
@@ -400,11 +400,9 @@ function SocialMediaForm({ reqUser }: { reqUser: UserDocument }) {
 					onChange={formik.handleChange}
 				/>
 			</Form.Group>
-			<div className="row justify-content-center">
-				<Button type="submit" variant="success">
-					Submit
-				</Button>
-			</div>
+			<Button type="submit" variant="success">
+				Submit
+			</Button>
 		</Form>
 	);
 }
@@ -452,7 +450,7 @@ function FileUploadController({
 					}
 				}}
 				disabled={!reqUser.customPfpLocation}
-				className="me-auto"
+				className="ms-auto"
 				variant="secondary"
 			>
 				Unset

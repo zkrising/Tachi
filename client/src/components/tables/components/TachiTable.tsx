@@ -130,10 +130,12 @@ export default function TachiTable<D>({
 	const { settings } = useContext(UserSettingsContext);
 
 	return (
-		<div className="justify-content-center w-100">
+		<div className="w-100">
 			<div className="row">
 				{!noTopDisplayStr && (
-					<div className="d-none d-lg-flex col-lg-6 align-self-center">{displayStr}</div>
+					<div className="d-none d-lg-flex col-lg-6 align-self-center mb-1">
+						{displayStr}
+					</div>
 				)}
 				{searchFunctions && (
 					<div className="col-12 col-lg-3 ms-auto input-group">
@@ -152,8 +154,8 @@ export default function TachiTable<D>({
 				)}
 			</div>
 
-			<div className="col-12 px-0 mt-4 mb-4">
-				<table className="table table-striped table-hover table-vertical-center text-center table-responsive-md">
+			<div className="col-12 px-0 mt-4 mb-4 overflow-x-auto overflow-x-lg-hidden">
+				<table className="table table-striped table-hover table-vertical-center text-center">
 					<thead>{headersRow}</thead>
 					<tbody>
 						<NoDataWrapper>{window.map((e) => rowFunction(e))}</NoDataWrapper>

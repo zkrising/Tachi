@@ -107,7 +107,10 @@ export default function DocumentComponent({
 					{GraphComponent ? (
 						<GraphComponent chart={chart} score={score} />
 					) : (
-						<div className="d-flex align-items-center" style={{ height: "200px" }}>
+						<div
+							className="d-flex align-items-center justify-content-center"
+							style={{ height: "200px" }}
+						>
 							<span className="text-muted">No graphs available :(</span>
 						</div>
 					)}
@@ -197,7 +200,10 @@ export function GraphAndJudgementDataComponent({
 					{GraphComponent ? (
 						<GraphComponent chart={chart} score={score} />
 					) : (
-						<div className="d-flex align-items-center" style={{ height: "200px" }}>
+						<div
+							className="d-flex align-items-center justify-content-center"
+							style={{ height: "200px" }}
+						>
 							<span className="text-muted">No graphs available :(</span>
 						</div>
 					)}

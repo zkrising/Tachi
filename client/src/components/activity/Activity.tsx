@@ -188,47 +188,45 @@ function ActivityInner({
 					}
 				})}
 				<div className="timeline-item">
-					<div className="timeline-item">
-						<div className="timeline-badge bg-success"></div>
-						<div className="timeline-content">
-							{exhausted ? (
-								<>No more activity. This is the end of the road!</>
-							) : (
-								<Button
-									variant="outline-primary"
-									onClick={() => {
-										let lastTimestamp;
-										const lastThing = data.at(-1)!;
+					<div className="timeline-badge bg-success"></div>
+					<div className="timeline-content">
+						{exhausted ? (
+							<>No more activity. This is the end of the road!</>
+						) : (
+							<Button
+								variant="outline-primary"
+								onClick={() => {
+									let lastTimestamp;
+									const lastThing = data.at(-1)!;
 
-										switch (lastThing.type) {
-											case "SCORES":
-												lastTimestamp = lastThing.scores[0]?.timeAchieved;
-												break;
-											case "CLASS_ACHIEVEMENT":
-												lastTimestamp = lastThing.timeAchieved;
-												break;
-											case "SESSION":
-												lastTimestamp = lastThing.timeStarted;
-												break;
-											case "GOAL_ACHIEVEMENTS":
-												lastTimestamp = lastThing.goals[0]?.timeAchieved;
-												break;
-											case "QUEST_ACHIEVEMENT":
-												lastTimestamp = lastThing.sub.timeAchieved;
-										}
+									switch (lastThing.type) {
+										case "SCORES":
+											lastTimestamp = lastThing.scores[0]?.timeAchieved;
+											break;
+										case "CLASS_ACHIEVEMENT":
+											lastTimestamp = lastThing.timeAchieved;
+											break;
+										case "SESSION":
+											lastTimestamp = lastThing.timeStarted;
+											break;
+										case "GOAL_ACHIEVEMENTS":
+											lastTimestamp = lastThing.goals[0]?.timeAchieved;
+											break;
+										case "QUEST_ACHIEVEMENT":
+											lastTimestamp = lastThing.sub.timeAchieved;
+									}
 
-										if (!lastTimestamp) {
-											alert("Failed. What?");
-											return;
-										}
+									if (!lastTimestamp) {
+										alert("Failed. What?");
+										return;
+									}
 
-										fetchMoreFrom(lastTimestamp);
-									}}
-								>
-									Load More...
-								</Button>
-							)}
-						</div>
+									fetchMoreFrom(lastTimestamp);
+								}}
+							>
+								Load More...
+							</Button>
+						)}
 					</div>
 				</div>
 			</div>

@@ -32,12 +32,18 @@ export default function SessionOverview({
 
 	return (
 		<>
-			<StatThing name="Scores" value={session.scoreIDs.length} />
-			<StatThing
-				name="Duration"
-				value={FormatDuration(session.timeEnded - session.timeStarted)}
-			/>
-			<StatThing md12 name="Highlights" value={scores.filter((e) => e.highlight).length} />
+			<Row xs={{ cols: 1 }} lg={{ cols: 3 }} className="p-0 row-gap-4">
+				<StatThing name="Scores" value={session.scoreIDs.length} />
+				<StatThing
+					name="Duration"
+					value={FormatDuration(session.timeEnded - session.timeStarted)}
+				/>
+				<StatThing
+					md12
+					name="Highlights"
+					value={scores.filter((e) => e.highlight).length}
+				/>
+			</Row>
 			<SessionFolderRaiseBreakdown sessionData={sessionData} />
 			<Col xs={12}>
 				<Divider />
@@ -58,6 +64,7 @@ export default function SessionOverview({
 					/>
 				</Card>
 			</Col>
+
 			<RatingsOverview session={session} />
 		</>
 	);
@@ -102,7 +109,7 @@ function StatThing({
 	md12?: boolean;
 }) {
 	return (
-		<Col xs={12} md={md12 ? 12 : 6} lg={4}>
+		<Col>
 			<div className="card">
 				<div className="card-body">
 					<div className="display-4">{value}</div>

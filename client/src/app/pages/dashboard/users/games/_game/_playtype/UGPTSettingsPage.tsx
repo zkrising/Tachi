@@ -165,10 +165,12 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 		(e) => !e.inactive || settings?.preferences.defaultTable === e.tableID
 	);
 
+	const formGroupClassNames = "d-flex flex-column";
+
 	return (
-		<Form onSubmit={formik.handleSubmit}>
+		<Form onSubmit={formik.handleSubmit} className="d-flex flex-column gap-4">
 			{Object.keys(gptConfig.scoreRatingAlgs).length > 1 && (
-				<Form.Group>
+				<Form.Group className={formGroupClassNames}>
 					<Form.Label>Preferred Score Algorithm</Form.Label>
 					<Form.Control
 						as="select"
@@ -187,7 +189,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 				</Form.Group>
 			)}
 			{Object.keys(gptConfig.sessionRatingAlgs).length > 1 && (
-				<Form.Group>
+				<Form.Group className={formGroupClassNames}>
 					<Form.Label>Preferred Session Algorithm</Form.Label>
 					<Form.Control
 						as="select"
@@ -206,7 +208,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 				</Form.Group>
 			)}
 			{Object.keys(gptConfig.profileRatingAlgs).length > 1 && (
-				<Form.Group>
+				<Form.Group className={formGroupClassNames}>
 					<Form.Label>Preferred Profile Algorithm</Form.Label>
 					<Form.Control
 						as="select"
@@ -224,7 +226,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 					</Form.Text>
 				</Form.Group>
 			)}
-			<Form.Group>
+			<Form.Group className={formGroupClassNames}>
 				<Form.Label>Preferred Folder Info</Form.Label>
 				<Form.Control
 					as="select"
@@ -241,7 +243,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 				</Form.Text>
 			</Form.Group>
 			{settings.rivals.length !== 0 && (
-				<Form.Group>
+				<Form.Group className={formGroupClassNames}>
 					<Form.Label>Preferred Ranking</Form.Label>
 					<Form.Control
 						as="select"
@@ -257,7 +259,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 					</Form.Text>
 				</Form.Group>
 			)}
-			<Form.Group>
+			<Form.Group className={formGroupClassNames}>
 				<Form.Label>Preferred Table</Form.Label>
 				<Form.Control
 					as="select"
@@ -281,7 +283,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 			</Form.Group>
 			{game === "iidx" && (
 				<>
-					<Form.Group>
+					<Form.Group className={formGroupClassNames}>
 						<Form.Check
 							type="checkbox"
 							id="gameSpecific.display2DXTra"
@@ -294,7 +296,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 							Display 2DX-tra charts on the song page.
 						</Form.Text>
 					</Form.Group>
-					<Form.Group>
+					<Form.Group className={formGroupClassNames}>
 						<Form.Label>BPI Target</Form.Label>
 						<Form.Control
 							type="number"
@@ -314,27 +316,20 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 				</>
 			)}
 			{(game === "sdvx" || game === "usc") && (
-				<Form.Group>
+				<Form.Group className={formGroupClassNames}>
 					<Form.Label>VF6 Target</Form.Label>
-					<Row>
-						<Col xs={12} lg={9}>
-							<Form.Control
-								type="number"
-								id="gameSpecific.vf6Target"
-								name="gameSpecific.vf6Target"
-								value={formik.values.gameSpecific.vf6Target}
-								min={0}
-								max={0.5}
-								step={0.001}
-								onChange={formik.handleChange}
-							/>
-						</Col>
-						<Col xs={12} lg={3} className="my-auto">
-							Expected Profile VF6{" "}
-							{ToFixedFloor((formik.values.gameSpecific.vf6Target ?? 0) * 50, 2)}
-						</Col>
-					</Row>
-
+					<Form.Control
+						type="number"
+						id="gameSpecific.vf6Target"
+						name="gameSpecific.vf6Target"
+						value={formik.values.gameSpecific.vf6Target}
+						min={0}
+						max={0.5}
+						step={0.001}
+						onChange={formik.handleChange}
+					/>
+					Expected Profile VF6{" "}
+					{ToFixedFloor((formik.values.gameSpecific.vf6Target ?? 0) * 50, 2)}
 					<Form.Text className="text-muted">
 						Set yourself a VF6 target. {TachiConfig.name} will show how far away you are
 						from it in the UI!
@@ -344,42 +339,38 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 				</Form.Group>
 			)}
 			{game === "bms" && (
-				<Form.Group>
+				<Form.Group className={formGroupClassNames}>
 					<Form.Label>Preferred Tables</Form.Label>
-					<Row>
-						<Col xs={12}>
-							{BMS_TABLES.filter((e) => e.playtype === playtype).map((e) => (
-								<Form.Check
-									key={e.prefix}
-									checked={
-										formik.values.gameSpecific.displayTables?.includes(
-											e.prefix
-										) ?? !e.notDefault
-									}
-									label={`(${e.prefix}) ${e.name}`}
-									onChange={(event) => {
-										const base: Array<string> =
-											formik.values.gameSpecific.displayTables ??
-											BMS_TABLES.filter(
-												(e) => e.playtype === playtype && !e.notDefault
-											).map((e) => e.prefix);
 
-										if (event.target.checked) {
-											formik.setFieldValue("gameSpecific.displayTables", [
-												...base,
-												e.prefix,
-											]);
-										} else {
-											formik.setFieldValue(
-												"gameSpecific.displayTables",
-												base.filter((a) => a !== e.prefix)
-											);
-										}
-									}}
-								/>
-							))}
-						</Col>
-					</Row>
+					{BMS_TABLES.filter((e) => e.playtype === playtype).map((e) => (
+						<Form.Check
+							key={e.prefix}
+							checked={
+								formik.values.gameSpecific.displayTables?.includes(e.prefix) ??
+								!e.notDefault
+							}
+							label={`(${e.prefix}) ${e.name}`}
+							onChange={(event) => {
+								const base: Array<string> =
+									formik.values.gameSpecific.displayTables ??
+									BMS_TABLES.filter(
+										(e) => e.playtype === playtype && !e.notDefault
+									).map((e) => e.prefix);
+
+								if (event.target.checked) {
+									formik.setFieldValue("gameSpecific.displayTables", [
+										...base,
+										e.prefix,
+									]);
+								} else {
+									formik.setFieldValue(
+										"gameSpecific.displayTables",
+										base.filter((a) => a !== e.prefix)
+									);
+								}
+							}}
+						/>
+					))}
 
 					<Form.Text className="text-muted">
 						What tables do you want to display in the UI? Use this to disable tables you
@@ -387,11 +378,9 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 					</Form.Text>
 				</Form.Group>
 			)}
-			<div className="row justify-content-center">
-				<Button type="submit" variant="success">
-					Save Changes
-				</Button>
-			</div>
+			<Button type="submit" variant="success">
+				Save Changes
+			</Button>
 		</Form>
 	);
 }
@@ -545,6 +534,7 @@ function ManageAccount({ reqUser, game, playtype }: UGPT) {
 					/>
 				</Form.Group>
 				<Button
+					className="text-wrap mt-4"
 					disabled={deleting}
 					variant="outline-danger"
 					onClick={async () => {

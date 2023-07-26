@@ -11,16 +11,27 @@ export default function SupportMePage() {
 		<div style={{ fontSize: "1.15rem" }}>
 			<p>
 				{TachiConfig.name} is a passion project, and developed by{" "}
-				<Link to="/credits">people like you</Link>.
+				<Link className="text-decoration-underline" to="/credits">
+					people like you
+				</Link>
+				.
 			</p>
 			<p>
 				If you want to support {TachiConfig.name} development, you can donate to my{" "}
-				<ExternalLink href="https://ko-fi.com/zkldi">Ko-Fi</ExternalLink>.
+				<ExternalLink className="text-decoration-underline" href="https://ko-fi.com/zkldi">
+					Ko-Fi
+				</ExternalLink>
+				.
 			</p>
 			<p>
 				Alternatively, you can star the{" "}
-				<ExternalLink href="https://github.com/TNG-Dev/Tachi">GitHub Repo</ExternalLink>.
-				This makes me look cool to employers!
+				<ExternalLink
+					className="text-decoration-underline"
+					href="https://github.com/TNG-Dev/Tachi"
+				>
+					GitHub Repo
+				</ExternalLink>
+				. This makes me look cool to employers!
 			</p>
 		</div>
 	);

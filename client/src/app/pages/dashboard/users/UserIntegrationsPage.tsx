@@ -85,7 +85,7 @@ function OAuthClientPage() {
 					<br />
 					You can read the documentation{" "}
 					<ExternalLink
-						style={{ color: "white" }}
+						className="text-decoration-underline"
 						href="https://docs.bokutachi.xyz/tachi-server/infrastructure/api-clients/"
 					>
 						here
@@ -738,8 +738,10 @@ function KAIIntegrationStatus({
 				) : (
 					<h4>
 						You should authenticate yourself by going to{" "}
-						<Link to="/import">Import Scores</Link> for the thing you want to import
-						for!
+						<Link to="/import" className="link-primary">
+							Import Scores
+						</Link>{" "}
+						for the thing you want to import for!
 					</h4>
 				)}
 			</div>

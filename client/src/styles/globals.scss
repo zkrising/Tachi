@@ -8,3 +8,13 @@
 .nav-link {
     @extend .rounded;
 }
+
+.credits-easter-egg {
+    transition: text-decoration-color 120ms ease-in-out;
+    text-decoration: underline;
+    text-decoration-color: rgba($link-color, 0);
+    &:hover {
+        
+        text-decoration-color: rgba($link-color, 1);
+    }
+}

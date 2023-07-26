@@ -16,8 +16,7 @@ export default function Header({ breakpoint }: { breakpoint: number }) {
 	const { user } = useContext(UserContext);
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-	const dropdownMenuStyle =
-		breakpoint > Breakpoints.md ? { transform: "translateY(16px)" } : undefined;
+	const dropdownMenuStyle = breakpoint > Breakpoints.md ? { marginTop: "1.37rem" } : undefined;
 
 	const setState = breakpoint <= Breakpoints.md ? setShowMobileMenu : undefined;
 

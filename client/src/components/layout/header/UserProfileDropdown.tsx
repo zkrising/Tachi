@@ -4,12 +4,12 @@ import { heySplashes } from "util/splashes";
 import Divider from "components/util/Divider";
 import Icon from "components/util/Icon";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { UserDocument } from "tachi-common";
 import SupporterIcon from "components/util/SupporterIcon";
 import SignOut from "components/util/SignOut";
 import QuickDropdown from "components/ui/QuickDropdown";
 import { TextColour } from "types/bootstrap";
+import DropdownNavLink from "components/ui/DropdownNavLink";
 
 const UserProfileDropdownToggle = ({ user }: { user: UserDocument }) => {
 	const [heySplash] = useState(RFA(heySplashes));
@@ -48,17 +48,18 @@ const UserProfileMenuItem = ({
 	iconColour: TextColour;
 	children: React.ReactNode;
 }) => (
-	<Link
+	<DropdownNavLink
 		to={to}
 		id={id}
-		className="d-flex align-items-center gap-6 p-4 bg-light-hover bg-opacity-10-hover transition-background-color"
+		isActive={() => false}
+		className="d-flex align-items-center gap-6 p-4 text-wrap"
 		style={{ minWidth: "30rem" }}
 	>
 		<span className="display-6">
 			<Icon type={iconType} colour={iconColour} />
 		</span>
 		<div>{children}</div>
-	</Link>
+	</DropdownNavLink>
 );
 
 export function UserProfileDropdown({

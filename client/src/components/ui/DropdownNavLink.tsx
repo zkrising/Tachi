@@ -5,10 +5,11 @@ import { NavLink, NavLinkProps } from "react-router-dom";
 export default function DropdownNavLink({
 	to,
 	children,
+	className,
 	...props
 }: { to: string; children: React.ReactNode } & NavLinkProps) {
 	return (
-		<DropdownItem as={NavLink} to={to} {...props}>
+		<DropdownItem as={NavLink} to={to} className={`rounded ${className}`} {...props}>
 			{children}
 		</DropdownItem>
 	);

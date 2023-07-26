@@ -55,6 +55,7 @@ export default function UserProfileLinks({
 			toggle="Your Profiles"
 			className={`h-14 ${className}`}
 			menuStyle={style}
+			menuClassName="shadow-none shadow-md-md"
 			caret
 		>
 			{userProfileLinks}

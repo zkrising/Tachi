@@ -35,6 +35,7 @@ export default function UtilsDropdown({
 			toggle="Developer Utils"
 			className={`h-14 ${className}`}
 			menuStyle={style}
+			menuClassName="shadow-none shadow-md-md"
 			caret
 		>
 			<UtilsLinks onClick={handleClick} />

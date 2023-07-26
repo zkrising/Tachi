@@ -26,7 +26,7 @@ export default function QuickDropdown({
 	caretPosition = "end",
 	className = "",
 	menuStyle,
-	menuClassName,
+	menuClassName = "",
 	dropdownClassName,
 	children,
 	...props

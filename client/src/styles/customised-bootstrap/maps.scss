@@ -106,6 +106,19 @@ $utilities: map-merge(
             property: overflow-y,
             responsive: true,
             values: auto hidden visible scroll
-        )
+        ),
+        "box-shadow": (
+            property: box-shadow,
+            class: shadow,
+            responsive: true,
+            state: focus,
+            values: (
+                "sm": var(--#{$prefix}box-shadow-sm),
+                "md": var(--#{$prefix}box-shadow),
+                //"lg": var(--#{$prefix}box-shadow-lg),
+                //"inset": var(--#{$prefix}box-shadow-inset),
+                "none": none,
+            )
+        ),
     )
 );

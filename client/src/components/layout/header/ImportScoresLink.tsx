@@ -40,6 +40,7 @@ export default function ImportScoresLink({
 			toggle="Import Scores"
 			className={`h-14 ${className}`}
 			menuStyle={style}
+			menuClassName="shadow-none shadow-md-md"
 			caret
 		>
 			{links}

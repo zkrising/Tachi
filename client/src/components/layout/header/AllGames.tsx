@@ -38,6 +38,7 @@ export default function AllGames({
 			toggle="Global Info"
 			className={`h-14 ${className}`}
 			menuStyle={style}
+			menuClassName="shadow-none shadow-md-md"
 			caret
 		>
 			{links}

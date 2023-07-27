@@ -7,10 +7,15 @@ export default function BackgroundImage({ styles }: { styles: LayoutStyles }) {
 	const { background } = useContext(BackgroundContext);
 	return (
 		<img
-			className="position-absolute object-fit-cover w-full z-n1"
 			src={background ? background : `${ToCDNURL("/game-banners/default")}`}
 			height={styles.height}
-			style={{ marginTop: styles.margin }}
+			style={{
+				marginTop: styles.margin,
+				objectFit: "cover",
+				width: "100%",
+				zIndex: "-1",
+				position: "absolute",
+			}}
 		/>
 	);
 }

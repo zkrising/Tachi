@@ -172,8 +172,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 			{Object.keys(gptConfig.scoreRatingAlgs).length > 1 && (
 				<Form.Group className={formGroupClassNames}>
 					<Form.Label>Preferred Score Algorithm</Form.Label>
-					<Form.Control
-						as="select"
+					<Form.Select
 						id="preferredScoreAlg"
 						value={formik.values.preferredScoreAlg}
 						onChange={formik.handleChange}
@@ -181,7 +180,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 						{Object.keys(gptConfig.scoreRatingAlgs).map((e) => (
 							<option key={e}>{e}</option>
 						))}
-					</Form.Control>
+					</Form.Select>
 					<Form.Text className="text-muted">
 						This configures the default rating algorithm to display for scores. This is
 						used for things like score tables and PB tables.
@@ -191,8 +190,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 			{Object.keys(gptConfig.sessionRatingAlgs).length > 1 && (
 				<Form.Group className={formGroupClassNames}>
 					<Form.Label>Preferred Session Algorithm</Form.Label>
-					<Form.Control
-						as="select"
+					<Form.Select
 						id="preferredSessionAlg"
 						value={formik.values.preferredSessionAlg}
 						onChange={formik.handleChange}
@@ -200,7 +198,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 						{Object.keys(gptConfig.sessionRatingAlgs).map((e) => (
 							<option key={e}>{e}</option>
 						))}
-					</Form.Control>
+					</Form.Select>
 					<Form.Text className="text-muted">
 						This configures the default rating algorithm to display for sessions. This
 						is used for things like session tables.
@@ -210,8 +208,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 			{Object.keys(gptConfig.profileRatingAlgs).length > 1 && (
 				<Form.Group className={formGroupClassNames}>
 					<Form.Label>Preferred Profile Algorithm</Form.Label>
-					<Form.Control
-						as="select"
+					<Form.Select
 						id="preferredProfileAlg"
 						value={formik.values.preferredProfileAlg}
 						onChange={formik.handleChange}
@@ -219,7 +216,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 						{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
 							<option key={e}>{e}</option>
 						))}
-					</Form.Control>
+					</Form.Select>
 					<Form.Text className="text-muted">
 						This configures the default rating algorithm to display for profiles. This
 						is used for things like leaderboards.
@@ -228,8 +225,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 			)}
 			<Form.Group className={formGroupClassNames}>
 				<Form.Label>Preferred Folder Info</Form.Label>
-				<Form.Control
-					as="select"
+				<Form.Select
 					id="preferredDefaultEnum"
 					value={formik.values.preferredDefaultEnum}
 					onChange={formik.handleChange}
@@ -237,7 +233,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 					{GetScoreMetrics(gptConfig, "ENUM").map((e) => (
 						<option value={e}>{UppercaseFirst(e)}</option>
 					))}
-				</Form.Control>
+				</Form.Select>
 				<Form.Text className="text-muted">
 					What should {TachiConfig.name} default to showing you about folders?
 				</Form.Text>
@@ -245,15 +241,14 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 			{settings.rivals.length !== 0 && (
 				<Form.Group className={formGroupClassNames}>
 					<Form.Label>Preferred Ranking</Form.Label>
-					<Form.Control
-						as="select"
+					<Form.Select
 						id="preferredRanking"
 						value={formik.values.preferredRanking}
 						onChange={formik.handleChange}
 					>
 						<option value="global">Global Rankings</option>
 						<option value="rival">Rival Rankings</option>
-					</Form.Control>
+					</Form.Select>
 					<Form.Text className="text-muted">
 						What should {TachiConfig.name} default to when showing your score rankings?
 					</Form.Text>
@@ -261,8 +256,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 			)}
 			<Form.Group className={formGroupClassNames}>
 				<Form.Label>Preferred Table</Form.Label>
-				<Form.Control
-					as="select"
+				<Form.Select
 					id="defaultTable"
 					value={
 						formik.values.defaultTable ??
@@ -276,7 +270,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 							{table.title}
 						</option>
 					))}
-				</Form.Control>
+				</Form.Select>
 				<Form.Text className="text-muted">
 					What folders would you like to see by default?
 				</Form.Text>

@@ -104,18 +104,13 @@ export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 		<>
 			<InputGroup>
 				<InputGroup.Text>Table</InputGroup.Text>
-				<Form.Control
-					as="select"
-					size="lg"
-					value={tableID}
-					onChange={(e) => setTableID(e.target.value)}
-				>
+				<Form.Select size="lg" value={tableID} onChange={(e) => setTableID(e.target.value)}>
 					{displayableTables.map((e) => (
 						<option key={e.tableID} value={e.tableID}>
 							{e.title}
 						</option>
 					))}
-				</Form.Control>
+				</Form.Select>
 			</InputGroup>
 			<Divider />
 			{table && <TableFolderViewer {...{ reqUser, game, playtype, table }} />}

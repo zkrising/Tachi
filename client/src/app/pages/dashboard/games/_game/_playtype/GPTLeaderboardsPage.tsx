@@ -68,13 +68,13 @@ function ProfileLeaderboard({ game, playtype }: GamePT) {
 
 	const SelectComponent =
 		Object.keys(gptConfig.profileRatingAlgs).length > 1 ? (
-			<Form.Control as="select" value={alg} onChange={(e) => setAlg(e.target.value as any)}>
+			<Form.Select value={alg} onChange={(e) => setAlg(e.target.value as any)}>
 				{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
 					<option key={e} value={e}>
 						{UppercaseFirst(e)}
 					</option>
 				))}
-			</Form.Control>
+			</Form.Select>
 		) : null;
 
 	const { data, error } = useApiQuery<UserLeaderboardReturns>(

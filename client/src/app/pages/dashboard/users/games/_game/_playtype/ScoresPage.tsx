@@ -28,6 +28,7 @@ import {
 } from "tachi-common";
 import { GamePT, SetState, UGPT } from "types/react";
 import usePreferredRanking from "components/util/usePreferredRanking";
+import { Col, Form, Row } from "react-bootstrap";
 
 export default function ScoresPage({
 	reqUser,
@@ -52,8 +53,8 @@ export default function ScoresPage({
 	const base = useUGPTBase({ reqUser, game, playtype });
 
 	return (
-		<div className="row">
-			<div className="col-12 text-center">
+		<Row xs={{ cols: 1 }}>
+			<Col className="text-center">
 				<div className="btn-group d-flex justify-content-center mb-4">
 					<SelectLinkButton className="text-wrap" to={`${base}/scores`}>
 						<Icon type="trophy" /> Best 100 PBs
@@ -68,8 +69,8 @@ export default function ScoresPage({
 						<Icon type="database" /> All PBs
 					</SelectLinkButton>
 				</div>
-			</div>
-			<div className="col-12">
+			</Col>
+			<Col className="d-flex flex-column gap-4">
 				<Switch>
 					<Route exact path="/u/:userID/games/:game/:playtype/scores">
 						<>
@@ -107,8 +108,8 @@ export default function ScoresPage({
 						/>
 					</Route>
 				</Switch>
-			</div>
-		</div>
+			</Col>
+		</Row>
 	);
 }
 
@@ -122,20 +123,14 @@ function AlgSelector({
 	setAlg: SetState<ScoreRatingAlgorithms[GPTString]>;
 }) {
 	return (
-		<div className="row justify-content-center mb-4">
-			<div className="form-group">
-				<span className="form-group-prefix">Best 100 PBs according to </span>
-				<select
-					className="form-control"
-					value={alg}
-					onChange={(e) => setAlg(e.target.value as any)}
-				>
-					{Object.keys(gptConfig.scoreRatingAlgs).map((e) => (
-						<option key={e}>{e}</option>
-					))}
-				</select>
-			</div>
-		</div>
+		<Form.Group className="d-flex flex-column gap-1">
+			<div>Best 100 PBs according to</div>
+			<Form.Select value={alg} onChange={(e) => setAlg(e.target.value as any)}>
+				{Object.keys(gptConfig.scoreRatingAlgs).map((e) => (
+					<option key={e}>{e}</option>
+				))}
+			</Form.Select>
+		</Form.Group>
 	);
 }
 

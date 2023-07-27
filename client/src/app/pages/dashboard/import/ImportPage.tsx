@@ -55,8 +55,7 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 				<Link to={`/u/${user.username}/imports`}>Import Management</Link>.
 			</div>
 			<Divider />
-			<select
-				className="form-control"
+			<Form.Select
 				onChange={(e) => setGame(e.target.value === "" ? null : (e.target.value as Game))}
 				value={game ?? ""}
 			>
@@ -66,7 +65,7 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 						{GetGameConfig(e).name}
 					</option>
 				))}
-			</select>
+			</Form.Select>
 			<Divider />
 
 			{game ? <ImportInfoDisplayer game={game} /> : <ShowRecentImports />}

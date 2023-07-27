@@ -39,14 +39,7 @@ export default function SelectableRanking({
 			<select
 				onChange={(v) => setRankingViewMode(v.target.value as RankingViewMode)}
 				value={rankingViewMode}
-				style={{
-					backgroundColor: "#131313",
-					border: "none",
-					color: "#ffffff",
-					fontSize: "inherit",
-					font: "inherit",
-					textAlign: "center",
-				}}
+				className="my-1 bg-dark border-0 text-body fw-bold rounded focus-ring focus-ring-light"
 			>
 				<option value="global">Global Ranking</option>
 				<option value="rival">Rival Ranking</option>

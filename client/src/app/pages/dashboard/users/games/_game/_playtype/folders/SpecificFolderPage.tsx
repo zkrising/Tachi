@@ -219,8 +219,7 @@ function TimelineView({ game, playtype, reqUser, folderID }: Props & { folderID:
 						<Divider />
 					</div>
 					<div className="col-12 col-lg-6">
-						<Form.Control
-							as="select"
+						<Form.Select
 							value={selectedEnum}
 							onChange={(e) => setSelectedEnum(e.target.value)}
 						>
@@ -229,20 +228,16 @@ function TimelineView({ game, playtype, reqUser, folderID }: Props & { folderID:
 									{UppercaseFirst(e)}
 								</option>
 							))}
-						</Form.Control>
+						</Form.Select>
 					</div>
 					<div className="col-12 col-lg-6">
-						<Form.Control
-							as="select"
-							value={value}
-							onChange={(e) => setValue(e.target.value)}
-						>
+						<Form.Select value={value} onChange={(e) => setValue(e.target.value)}>
 							{enumConf.values
 								.slice(enumConf.values.indexOf(enumConf.minimumRelevantValue))
 								.map((e) => (
 									<option key={e}>{e}</option>
 								))}
-						</Form.Control>
+						</Form.Select>
 					</div>
 				</div>
 			</Card>

@@ -2,8 +2,8 @@ import { UppercaseFirst } from "util/misc";
 import React from "react";
 import { SetState } from "types/react";
 import { GamePTConfig, GetScoreMetrics } from "tachi-common";
-import { ZTableTHProps } from "./TachiTable";
 import Icon from "components/util/Icon";
+import { ZTableTHProps } from "./TachiTable";
 
 export default function SelectableCompareType({
 	metric,
@@ -22,14 +22,7 @@ export default function SelectableCompareType({
 			<select
 				onChange={(v) => setMetric(v.target.value)}
 				value={metric}
-				style={{
-					backgroundColor: "#131313",
-					border: "none",
-					color: "#ffffff",
-					fontSize: "inherit",
-					font: "inherit",
-					textAlign: "center",
-				}}
+				className="my-1 bg-dark border-0 text-body fw-bold rounded focus-ring focus-ring-light"
 			>
 				{GetScoreMetrics(gptConfig, ["DECIMAL", "INTEGER", "ENUM"]).map((e) => (
 					<option value={e}>Vs. ({UppercaseFirst(e)})</option>

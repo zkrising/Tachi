@@ -2,8 +2,8 @@ import { UppercaseFirst } from "util/misc";
 import React from "react";
 import { Game, GetGamePTConfig, GPTString, Playtypes, ScoreRatingAlgorithms } from "tachi-common";
 import { SetState } from "types/react";
-import { ZTableTHProps } from "./TachiTable";
 import Icon from "components/util/Icon";
+import { ZTableTHProps } from "./TachiTable";
 
 // hack to get everything to work
 type AllRatings<I> = any;
@@ -40,14 +40,7 @@ export default function SelectableRating<GPT extends GPTString>({
 			<select
 				onChange={(v) => setRating(v.target.value as AllRatings<GPT>)}
 				value={rating}
-				style={{
-					backgroundColor: "#131313",
-					border: "none",
-					color: "#ffffff",
-					fontSize: "inherit",
-					font: "inherit",
-					textAlign: "center",
-				}}
+				className="my-1 bg-dark border-0 text-body fw-bold rounded focus-ring focus-ring-light"
 			>
 				{Object.keys(gptConfig[key]).map((s) => (
 					<option key={s} value={s}>

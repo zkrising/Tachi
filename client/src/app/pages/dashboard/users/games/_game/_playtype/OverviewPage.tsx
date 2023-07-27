@@ -20,6 +20,7 @@ import React, { useMemo, useState } from "react";
 import { FormatGame, GetGameConfig, GetGamePTConfig, UserGameStats } from "tachi-common";
 import { UGPTHistory } from "types/api-returns";
 import { GamePT, SetState, UGPT } from "types/react";
+import FormSelect from "react-bootstrap/FormSelect";
 
 export default function OverviewPage({ reqUser, game, playtype }: UGPT) {
 	const gameConfig = GetGameConfig(game);
@@ -157,8 +158,7 @@ function UserHistory({
 			{mode === "ranking" ? (
 				<>
 					<div className="col-12 offset-md-4 col-md-4 mt-4">
-						<select
-							className="form-control"
+						<FormSelect
 							value={rating}
 							onChange={(e) =>
 								setRating(e.target.value as keyof UserGameStats["ratings"])
@@ -169,7 +169,7 @@ function UserHistory({
 									{UppercaseFirst(e)}
 								</option>
 							))}
-						</select>
+						</FormSelect>
 					</div>
 					<RankingTimeline data={data} rating={rating} />
 				</>
@@ -209,8 +209,7 @@ function UserHistory({
 			) : (
 				<>
 					<div className="col-12 offset-md-4 col-md-4 mt-4">
-						<select
-							className="form-control"
+						<FormSelect
 							value={rating}
 							onChange={(e) =>
 								setRating(e.target.value as keyof UserGameStats["ratings"])
@@ -221,7 +220,7 @@ function UserHistory({
 									{UppercaseFirst(e)}
 								</option>
 							))}
-						</select>
+						</FormSelect>
 					</div>
 
 					<RatingTimeline {...{ data, rating }} />

@@ -464,7 +464,7 @@ function RevisionComponent({
 					</div>
 				</div>
 
-				<span className="text-muted fst-italic text-end">
+				<span className="text-body-secondary fst-italic text-end">
 					{FormatTime(Date.parse(rev.commit.author.date))}
 				</span>
 			</div>

@@ -275,7 +275,7 @@ export default function CreditsPage() {
 					Everyone in the <code>#dev</code> chat for the constant advice and comedy gold.
 				</p>
 			</div>
-			<span className="text-muted" style={{ fontSize: "0.2rem" }}>
+			<span className="text-body-secondary" style={{ fontSize: "0.2rem" }}>
 				Click the V in Dev Team.
 			</span>
 		</div>

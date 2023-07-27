@@ -111,7 +111,7 @@ export default function DocumentComponent({
 							className="d-flex align-items-center justify-content-center"
 							style={{ height: "200px" }}
 						>
-							<span className="text-muted">No graphs available :(</span>
+							<span className="text-body-secondary">No graphs available :(</span>
 						</div>
 					)}
 
@@ -204,7 +204,7 @@ export function GraphAndJudgementDataComponent({
 							className="d-flex align-items-center justify-content-center"
 							style={{ height: "200px" }}
 						>
-							<span className="text-muted">No graphs available :(</span>
+							<span className="text-body-secondary">No graphs available :(</span>
 						</div>
 					)}
 				</div>

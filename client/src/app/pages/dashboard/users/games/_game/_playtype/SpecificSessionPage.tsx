@@ -178,7 +178,7 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 					>
 						{(text) => (
 							<div className="mb-4">
-								<span className="text-muted mb-4">{text}</span>
+								<span className="text-body-secondary mb-4">{text}</span>
 
 								<span className="ms-2 text-hover-white">
 									<Icon type="pencil-alt" />

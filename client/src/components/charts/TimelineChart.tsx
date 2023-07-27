@@ -36,7 +36,7 @@ export default function TimelineChart({
 						<div className="text-center">
 							Not Enough Data... Yet.
 							<br />
-							<small className="text-muted">
+							<small className="text-body-secondary">
 								(You need atleast 2 days worth of data)
 							</small>
 						</div>
@@ -47,7 +47,7 @@ export default function TimelineChart({
 						<div className="text-center">
 							Not Enough Data... Yet.
 							<br />
-							<small className="text-muted">
+							<small className="text-body-secondary">
 								(You need atleast 2 days worth of data)
 							</small>
 						</div>

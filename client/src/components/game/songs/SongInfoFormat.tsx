@@ -53,7 +53,7 @@ export default function SongChartInfoFormat({
 
 		return (
 			<>
-				{chart && <h6 className="text-muted">{itgChart.data.charter}</h6>}
+				{chart && <h6 className="text-body-secondary">{itgChart.data.charter}</h6>}
 				<h4 style={{ fontSize: "2.5rem", fontWeight: "bold" }}>
 					{song.title}
 					{itgSong.data.subtitle ? ` ${itgSong.data.subtitle}` : ""}

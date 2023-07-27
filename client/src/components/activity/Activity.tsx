@@ -315,7 +315,7 @@ function ScoresActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.scores[0].timeAchieved ?? 0)}
 						<br />
-						<span className="text-muted fst-italic text-end">
+						<span className="text-body-secondary fst-italic text-end">
 							{FormatTime(data.scores[0].timeAchieved ?? 0)}
 						</span>
 					</div>
@@ -397,7 +397,7 @@ function GoalActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.goals[0]?.timeAchieved ?? 0)}
 						<br />
-						<span className="text-muted fst-italic text-end">
+						<span className="text-body-secondary fst-italic text-end">
 							{FormatTime(data.goals[0]?.timeAchieved ?? 0)}
 						</span>
 					</div>
@@ -460,7 +460,7 @@ function QuestActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.sub.timeAchieved ?? 0)}
 						<br />
-						<span className="text-muted fst-italic text-end">
+						<span className="text-body-secondary fst-italic text-end">
 							{FormatTime(data.sub.timeAchieved ?? 0)}
 						</span>
 					</div>
@@ -528,14 +528,14 @@ function SessionActivity({
 						</span>
 						<br />
 						{data.desc && data.desc !== "This session has no description." && (
-							<span className="text-muted">{data.desc}</span>
+							<span className="text-body-secondary">{data.desc}</span>
 						)}
 					</div>
 
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.timeStarted ?? 0)}
 						<br />
-						<span className="text-muted fst-italic text-end">
+						<span className="text-body-secondary fst-italic text-end">
 							{FormatTime(data.timeStarted ?? 0)}
 						</span>
 					</div>
@@ -673,7 +673,7 @@ function ClassAchievementActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.timeAchieved)}
 						<br />
-						<span className="text-muted fst-italic text-end">
+						<span className="text-body-secondary fst-italic text-end">
 							{FormatTime(data.timeAchieved)}
 						</span>
 					</div>

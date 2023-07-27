@@ -73,7 +73,7 @@ export default function VF6Cell({
 						{score.calculatedData.VF6! >= vf6Target ? (
 							<small className="text-success">{vf6Target}VF Target Achieved!</small>
 						) : vf6Target > maxVF ? (
-							<small className="text-muted">
+							<small className="text-body-secondary">
 								{vf6Target}VF Not Possible (Max {maxVF})
 							</small>
 						) : (
@@ -124,7 +124,7 @@ function VF6TargetCell({
 }) {
 	if (targetDelta === null || targetScore === null) {
 		return (
-			<small className="text-muted">
+			<small className="text-body-secondary">
 				{vf6Target}VF w/ {clearType}: Not Possible
 			</small>
 		);

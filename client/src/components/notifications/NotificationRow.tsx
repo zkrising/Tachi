@@ -11,7 +11,7 @@ export default function NotificationRow({ notif }: { notif: NotificationDocument
 		<tr>
 			<td>
 				{notif.read ? (
-					<Icon type="envelope" regular colour="muted" />
+					<Icon type="envelope" regular colour="body-secondary" />
 				) : (
 					<Icon type="envelope-open" />
 				)}

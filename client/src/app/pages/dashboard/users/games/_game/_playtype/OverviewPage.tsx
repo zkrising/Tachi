@@ -197,7 +197,7 @@ function UserHistory({
 						<div>
 							{p.data.yFormatted} Play{p.data.yFormatted !== "1" && "s"}
 							<br />
-							<small className="text-muted">
+							<small className="text-body-secondary">
 								{MillisToSince(+p.data.xFormatted)}
 							</small>
 						</div>
@@ -261,7 +261,9 @@ function RatingTimeline({
 					{p.data.y ? ToFixedFloor(p.data.y as number, 2) : "N/A"}{" "}
 					{UppercaseFirst(rating)}
 					<br />
-					<small className="text-muted">{MillisToSince(+p.data.xFormatted)}</small>
+					<small className="text-body-secondary">
+						{MillisToSince(+p.data.xFormatted)}
+					</small>
 				</div>
 			)}
 		/>
@@ -300,7 +302,9 @@ function RankingTimeline({
 				<div>
 					{MillisToSince(+p.data.xFormatted)}: #{p.data.yFormatted}
 					<br />
-					<small className="text-muted">({FormatDate(+p.data.xFormatted)})</small>
+					<small className="text-body-secondary">
+						({FormatDate(+p.data.xFormatted)})
+					</small>
 				</div>
 			)}
 		/>

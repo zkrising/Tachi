@@ -181,7 +181,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 							<option key={e}>{e}</option>
 						))}
 					</Form.Select>
-					<Form.Text className="text-muted">
+					<Form.Text className="text-body-secondary">
 						This configures the default rating algorithm to display for scores. This is
 						used for things like score tables and PB tables.
 					</Form.Text>
@@ -199,7 +199,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 							<option key={e}>{e}</option>
 						))}
 					</Form.Select>
-					<Form.Text className="text-muted">
+					<Form.Text className="text-body-secondary">
 						This configures the default rating algorithm to display for sessions. This
 						is used for things like session tables.
 					</Form.Text>
@@ -217,7 +217,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 							<option key={e}>{e}</option>
 						))}
 					</Form.Select>
-					<Form.Text className="text-muted">
+					<Form.Text className="text-body-secondary">
 						This configures the default rating algorithm to display for profiles. This
 						is used for things like leaderboards.
 					</Form.Text>
@@ -234,7 +234,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 						<option value={e}>{UppercaseFirst(e)}</option>
 					))}
 				</Form.Select>
-				<Form.Text className="text-muted">
+				<Form.Text className="text-body-secondary">
 					What should {TachiConfig.name} default to showing you about folders?
 				</Form.Text>
 			</Form.Group>
@@ -249,7 +249,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 						<option value="global">Global Rankings</option>
 						<option value="rival">Rival Rankings</option>
 					</Form.Select>
-					<Form.Text className="text-muted">
+					<Form.Text className="text-body-secondary">
 						What should {TachiConfig.name} default to when showing your score rankings?
 					</Form.Text>
 				</Form.Group>
@@ -271,7 +271,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 						</option>
 					))}
 				</Form.Select>
-				<Form.Text className="text-muted">
+				<Form.Text className="text-body-secondary">
 					What folders would you like to see by default?
 				</Form.Text>
 			</Form.Group>
@@ -286,7 +286,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 							onChange={formik.handleChange}
 							label="Display 2DX-tra Charts"
 						/>
-						<Form.Text className="text-muted">
+						<Form.Text className="text-body-secondary">
 							Display 2DX-tra charts on the song page.
 						</Form.Text>
 					</Form.Group>
@@ -302,7 +302,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 							step={5}
 							onChange={formik.handleChange}
 						/>
-						<Form.Text className="text-muted">
+						<Form.Text className="text-body-secondary">
 							Set yourself a BPI target. {TachiConfig.name} will show how far away you
 							are from it in the UI!
 						</Form.Text>
@@ -324,7 +324,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 					/>
 					Expected Profile VF6{" "}
 					{ToFixedFloor((formik.values.gameSpecific.vf6Target ?? 0) * 50, 2)}
-					<Form.Text className="text-muted">
+					<Form.Text className="text-body-secondary">
 						Set yourself a VF6 target. {TachiConfig.name} will show how far away you are
 						from it in the UI!
 						<br />
@@ -366,7 +366,7 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 						/>
 					))}
 
-					<Form.Text className="text-muted">
+					<Form.Text className="text-body-secondary">
 						What tables do you want to display in the UI? Use this to disable tables you
 						don't really care for.
 					</Form.Text>

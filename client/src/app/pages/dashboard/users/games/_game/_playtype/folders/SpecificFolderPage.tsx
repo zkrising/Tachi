@@ -333,7 +333,7 @@ function TimelineMain({
 				<h1 className="display-4">Total Progress</h1>
 				<h1 className="display-4">
 					{data.scores.length}
-					<span className="text-muted" style={{ fontSize: "1.1rem" }}>
+					<span className="text-body-secondary" style={{ fontSize: "1.1rem" }}>
 						/{data.charts.length}
 					</span>
 				</h1>
@@ -348,7 +348,7 @@ function TimelineMain({
 				<h1 className="display-4">Total Progress</h1>
 				<h1 className="display-4">
 					{data.scores.length}
-					<span className="text-muted" style={{ fontSize: "1.1rem" }}>
+					<span className="text-body-secondary" style={{ fontSize: "1.1rem" }}>
 						/{data.charts.length}
 					</span>
 				</h1>

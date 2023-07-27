@@ -1,9 +1,9 @@
 import { APIFetchV1 } from "util/api";
 import { ShortDelayify } from "util/misc";
-import CenterPage from "components/util/CenterPage";
 import MainPageTitleContainer from "components/util/MainPageTitleContainer";
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import LoginPageLayout from "components/layout/LoginPageLayout";
 import { ErrorPage } from "./ErrorPage";
 
 export default function ResetPasswordPage() {
@@ -15,13 +15,17 @@ export default function ResetPasswordPage() {
 		return <ErrorPage statusCode={400} />;
 	}
 
+	<MainPageTitleContainer
+		title="Reset Password"
+		desc="Pick something you'll remember this time :)"
+	/>;
 	return (
-		<CenterPage>
-			<MainPageTitleContainer
-				title="Reset Password"
-				desc="Pick something you'll remember this time :)"
-			/>
+		<LoginPageLayout
+			heading="Reset Password"
+			description="Pick something you'll remember this time :)"
+		>
 			<Form
+				className="d-flex flex-column gap-4 w-100"
 				onSubmit={async (e) => {
 					e.preventDefault();
 
@@ -72,6 +76,6 @@ export default function ResetPasswordPage() {
 					</Button>
 				</Form.Group>
 			</Form>
-		</CenterPage>
+		</LoginPageLayout>
 	);
 }

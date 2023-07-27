@@ -2,16 +2,15 @@ import { APIFetchV1 } from "util/api";
 import { HumaniseError } from "util/humanise-error";
 import { HistorySafeGoBack } from "util/misc";
 import useSetSubheader from "components/layout/header/useSetSubheader";
-import CenterPage from "components/util/CenterPage";
-import SiteWordmark from "components/util/SiteWordmark";
 import { UserContext } from "context/UserContext";
 import { useFormik } from "formik";
 import React, { useContext, useRef, useState } from "react";
-import { Button, Col, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
 import toast from "react-hot-toast";
 import { Link, useHistory } from "react-router-dom";
 import { UserDocument } from "tachi-common";
+import LoginPageLayout from "components/layout/LoginPageLayout";
 
 export default function LoginPage() {
 	useSetSubheader("Login");
@@ -82,69 +81,68 @@ export default function LoginPage() {
 	});
 
 	return (
-		<CenterPage>
-			<Col lg="6">
-				<SiteWordmark />
-				<div className="text-center mb-10 mb-lg-20">
-					<h3 className="font-size-h1">Log In</h3>
-					<span className="fw-bold text-dark-50">Don't have an account?</span>
-					<Link to="/register" className="fw-bold ms-2">
-						Sign Up!
-					</Link>
-				</div>
-				<Form onSubmit={formik.handleSubmit}>
-					<Form.Group>
-						<Form.Label>Username</Form.Label>
-						<Form.Control
-							tabIndex={1}
-							type="text"
-							id="username"
-							value={formik.values.username}
-							onChange={formik.handleChange}
-						/>
-					</Form.Group>
-					<Form.Group>
-						<Form.Label>Password</Form.Label>
-						<Form.Control
-							tabIndex={2}
-							type="password"
-							id="!password"
-							value={formik.values["!password"]}
-							onChange={formik.handleChange}
-						/>
-					</Form.Group>
-					<Form.Group
-						style={{ display: err ? "" : "none" }}
-						className="text-center text-danger"
+		<LoginPageLayout heading="Log In" description={<Description />}>
+			<Form onSubmit={formik.handleSubmit} className="d-flex flex-column gap-4 w-100">
+				<Form.Group>
+					<Form.Label>Username</Form.Label>
+					<Form.Control
+						tabIndex={1}
+						type="text"
+						id="username"
+						value={formik.values.username}
+						onChange={formik.handleChange}
+					/>
+				</Form.Group>
+				<Form.Group>
+					<Form.Label>Password</Form.Label>
+					<Form.Control
+						tabIndex={2}
+						type="password"
+						id="!password"
+						value={formik.values["!password"]}
+						onChange={formik.handleChange}
+					/>
+				</Form.Group>
+				<Form.Group
+					style={{ display: err ? "" : "none" }}
+					className="text-center text-danger"
+				>
+					{err}
+				</Form.Group>
+
+				{process.env.VITE_RECAPTCHA_KEY && (
+					<ReCAPTCHA
+						ref={recaptchaRef}
+						sitekey={process.env.VITE_RECAPTCHA_KEY}
+						onChange={(v) => {
+							formik.setFieldValue("captcha", v);
+						}}
+					/>
+				)}
+
+				<Form.Group className="justify-content-center d-flex pt-4">
+					<span
+						onClick={() => history.goBack()}
+						tabIndex={4}
+						className="me-auto btn btn-outline-danger"
 					>
-						{err}
-					</Form.Group>
-
-					{process.env.VITE_RECAPTCHA_KEY && (
-						<ReCAPTCHA
-							ref={recaptchaRef}
-							sitekey={process.env.VITE_RECAPTCHA_KEY}
-							onChange={(v) => {
-								formik.setFieldValue("captcha", v);
-							}}
-						/>
-					)}
-
-					<Form.Group className="justify-content-center d-flex pt-4">
-						<span
-							onClick={() => history.goBack()}
-							tabIndex={4}
-							className="me-auto btn btn-outline-danger"
-						>
-							Back
-						</span>
-						<Link to="/forgot-password">Forgot Password</Link>
-						<Button tabIndex={3} type="submit" className="ms-auto">
-							Log In
-						</Button>
-					</Form.Group>
-				</Form>
-			</Col>
-		</CenterPage>
+						Back
+					</span>
+					<Link to="/forgot-password">Forgot Password</Link>
+					<Button tabIndex={3} type="submit" className="ms-auto">
+						Log In
+					</Button>
+				</Form.Group>
+			</Form>
+		</LoginPageLayout>
 	);
 }
+
+const Description = () => (
+	<>
+		Don't have an account?
+		<Link to="/register" className="fw-bold ms-2 link-primary">
+			Sign Up!
+		</Link>
+	</>
+);

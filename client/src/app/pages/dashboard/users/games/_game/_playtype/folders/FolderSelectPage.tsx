@@ -120,7 +120,7 @@ export function FolderInfoComponent({
 								}
 							}}
 							to={`${base}/folders/${folder.folderID}`}
-							className="btn-outline-info"
+							variant="outline-info"
 						>
 							View
 						</LinkButton>

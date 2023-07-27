@@ -40,7 +40,10 @@ export default function RivalCompare({ chart, game }: { chart: ChartDocument; ga
 			<div className="w-100 text-center">
 				You have no rivals set!
 				<br />
-				Why not <Link to={`${base}/rivals/manage`}>set some?</Link>
+				Why not{" "}
+				<Link className="text-decoration-underline" to={`${base}/rivals/manage`}>
+					set some?
+				</Link>
 			</div>
 		);
 	}

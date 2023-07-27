@@ -140,12 +140,7 @@ function SessionTooltip({ sessionID, game, playtype, reqUser }: { sessionID: str
 	}
 
 	return (
-		<div
-			className="w-100 d-flex align-items-center"
-			style={{
-				flexDirection: "column",
-			}}
-		>
+		<div className="w-100 d-flex flex-column p-4 align-items-center">
 			<div className="w-100">
 				<h4 className="text-center">{data.session.name}</h4>
 				{data.session.desc && <Muted>{data.session.desc}</Muted>}

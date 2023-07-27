@@ -454,7 +454,9 @@ function PlayCard({
 				</Col>
 				<Col lg={6}>
 					<MiniTable headers={["PB Info"]} colSpan={100}>
-						<ScoreCoreCells short game={pb.game} chart={chart} score={pb} />
+						<tr>
+							<ScoreCoreCells short game={pb.game} chart={chart} score={pb} />
+						</tr>
 					</MiniTable>
 					<div className="text-center">
 						<Muted>

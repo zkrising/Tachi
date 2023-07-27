@@ -383,30 +383,32 @@ function TimelineElement({
 			<div className="timeline-content d-flex align-items-center justify-content-between">
 				<span className="me-3 w-100" style={{ fontSize: "1.15rem" }}>
 					<MiniTable>
-						<td>
-							<b>#{index}</b>
-							{Date.now() - scoreData.timeAdded < ONE_DAY && (
-								<span className="ms-2 label label-inline label-primary fw-bolder">
-									NEW!
-								</span>
-							)}
-						</td>
-						<DifficultyCell
-							alwaysShort
-							game={scoreData.game}
-							chart={scoreData.__related.chart}
-						/>
-						<TitleCell
-							game={scoreData.game}
-							chart={scoreData.__related.chart}
-							song={scoreData.__related.song}
-						/>
-						<ScoreCoreCells
-							game={scoreData.game}
-							chart={scoreData.__related.chart}
-							score={scoreData}
-						/>
-						<TimestampCell time={scoreData.timeAchieved} />
+						<tr>
+							<td>
+								<b>#{index}</b>
+								{Date.now() - scoreData.timeAdded < ONE_DAY && (
+									<span className="ms-2 label label-inline label-primary fw-bolder">
+										NEW!
+									</span>
+								)}
+							</td>
+							<DifficultyCell
+								alwaysShort
+								game={scoreData.game}
+								chart={scoreData.__related.chart}
+							/>
+							<TitleCell
+								game={scoreData.game}
+								chart={scoreData.__related.chart}
+								song={scoreData.__related.song}
+							/>
+							<ScoreCoreCells
+								game={scoreData.game}
+								chart={scoreData.__related.chart}
+								score={scoreData}
+							/>
+							<TimestampCell time={scoreData.timeAchieved} />
+						</tr>
 					</MiniTable>
 				</span>
 			</div>

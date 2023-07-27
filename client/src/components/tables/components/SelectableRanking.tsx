@@ -1,6 +1,7 @@
 import useLUGPTSettings from "components/util/useLUGPTSettings";
 import React from "react";
 import { SetState } from "types/react";
+import Icon from "components/util/Icon";
 import { RankingViewMode } from "../cells/RankingCell";
 import SortableTH from "./SortableTH";
 import { ZTableTHProps } from "./TachiTable";
@@ -45,18 +46,28 @@ export default function SelectableRanking({
 				<option value="rival">Rival Ranking</option>
 			</select>
 			<br />
-			<span onClick={() => changeSort("Site Ranking")}>
-				<i
-					className={`flaticon2-arrow-up icon-sm sort-icon ${
-						currentSortMode === "Site Ranking" && reverseSort ? "active" : ""
-					}`}
-				></i>
-				<i
-					className={`flaticon2-arrow-down icon-sm sort-icon ${
-						currentSortMode === "Site Ranking" && !reverseSort ? "active" : ""
-					}`}
-				></i>
-			</span>
+			<div onClick={() => changeSort("Site Ranking")}>
+				<div className="d-flex flex-column text-nowrap gap-1">
+					<span className="d-flex justify-content-center gap-1">
+						<Icon
+							type="arrow-up"
+							className={
+								currentSortMode === "Rating" && reverseSort
+									? "opacity-100"
+									: "opacity-25"
+							}
+						/>
+						<Icon
+							type="arrow-down"
+							className={
+								currentSortMode === "Rating" && !reverseSort
+									? "opacity-100"
+									: "opacity-25"
+							}
+						/>
+					</span>
+				</div>
+			</div>
 		</th>
 	);
 }

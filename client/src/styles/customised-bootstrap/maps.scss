@@ -48,6 +48,14 @@ $utilities: map-merge(
                 auto: auto,
             )
         ),
+        "inset": (
+            property: inset,
+            class: inset,
+            values: (
+                0: 0,
+                //...
+            )
+        ),
         "animate": (
             property: animation,
             class: animate,

@@ -683,7 +683,13 @@ function TierlistInfoBucketValues({
 				tooltipContent={
 					data.__related.pb ? (
 						<MiniTable headers={[`${reqUser.username}'s Score`]} colSpan={99}>
-							<ScoreCoreCells chart={data} game={game} score={data.__related.pb} />
+							<tr>
+								<ScoreCoreCells
+									chart={data}
+									game={game}
+									score={data.__related.pb}
+								/>
+							</tr>
 						</MiniTable>
 					) : undefined
 				}

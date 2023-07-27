@@ -10,7 +10,8 @@ import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useEffect, useState } from "react";
-import { Row } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import {
 	APIImportTypes,

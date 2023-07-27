@@ -159,3 +159,12 @@
 	transition: opacity 0.3s;
 	opacity: 0;
 }
+
+table {
+	border-width: $table-border-width;
+	border-style: solid;
+}
+
+.table.table-vertical-center th, .table.table-vertical-center td {
+	vertical-align: middle;
+}

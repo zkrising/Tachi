@@ -22,7 +22,7 @@ $utilities: map-merge(
                 100: 100%,
                 //"half": 50%,
                 "full": 100%,
-                auto: auto,
+                auto: auto
             )
         ),
         "height": (
@@ -45,7 +45,7 @@ $utilities: map-merge(
                 100: 100%,
                 //"half": 50%,
                 "full": 100%,
-                auto: auto,
+                auto: auto
             )
         ),
         "inset": (
@@ -61,7 +61,7 @@ $utilities: map-merge(
             class: animate,
             values: (
                 "fade-in": fade #{$transition-duration} ease-in forwards,
-                "fade-out": fade #{$transition-duration} ease-in backwards,
+                "fade-out": fade #{$transition-duration} ease-in backwards
             )
         ),
         "backdrop-blur": (
@@ -109,18 +109,43 @@ $utilities: map-merge(
                 100: 1
             )
         ),*/
-        "box-shadow": (
-            property: box-shadow,
-            class: shadow,
-            responsive: true,
-            state: focus,
-            values: (
-                "sm": var(--#{$prefix}box-shadow-sm),
-                "md": var(--#{$prefix}box-shadow),
-                //"lg": var(--#{$prefix}box-shadow-lg),
-                //"inset": var(--#{$prefix}box-shadow-inset),
-                "none": none,
-            )
+            "box-shadow":
+            (
+                property: box-shadow,
+                class: shadow,
+                responsive: true,
+                state: focus,
+                values: (
+                    "sm": var(--#{$prefix}box-shadow-sm),
+                    "md": var(--#{$prefix}box-shadow),
+                    //"lg": var(--#{$prefix}box-shadow-lg),
+                    //"inset": var(--#{$prefix}box-shadow-inset),
+                    "none": none
+                )
+            ),
+        "color": (
+            property: color,
+            class: text,
+            local-vars: (
+                "text-opacity": 1
+            ),
+            state: hover,
+            values:
+                map-merge(
+                    $utilities-text-colors,
+                    (
+                        "body-secondary": var(--#{$prefix}secondary-color),
+                        "body-tertiary": var(--#{$prefix}tertiary-color),
+                        "body-emphasis": var(--#{$prefix}emphasis-color),
+                        "reset": inherit
+                    )
+                )
+        ),
+        "text-color": (
+            property: color,
+            class: text,
+            state: hover,
+            values: $utilities-text-emphasis-colors
         ),
         "transition": (
             property: transition,
@@ -145,6 +170,6 @@ $utilities: map-merge(
             property: overflow,
             responsive: true,
             values: auto hidden visible scroll
-        ),
+        )
     )
 );

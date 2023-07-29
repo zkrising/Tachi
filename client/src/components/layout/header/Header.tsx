@@ -15,26 +15,26 @@ import Logo from "./Logo";
 export default function Header({ styles }: { styles: LayoutStyles }) {
 	const { user } = useContext(UserContext);
 	const {
-		breakpoint: { isMd },
+		breakpoint: { isLg },
 	} = useContext(WindowContext);
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-	const dropdownMenuStyle = isMd ? { transform: "translateY(16.5px)" } : undefined;
+	const dropdownMenuStyle = isLg ? { transform: "translateY(16.5px)" } : undefined;
 
-	const setState = isMd ? undefined : setShowMobileMenu;
+	const setState = isLg ? undefined : setShowMobileMenu;
 
 	useEffect(() => {
-		if (isMd) {
+		if (isLg) {
 			setShowMobileMenu(false);
 		}
-	}, [isMd]);
+	}, [isLg]);
 	return (
 		<header
 			id="main-header"
 			className="bg-body bg-opacity-75 backdrop-blur-xl border-bottom border-secondary border-opacity-25 fixed-top"
 			style={{ height: `${styles.headerHeight}px` }}
 		>
-			<Navbar expand={"md"} variant="" className="h-100 p-0">
+			<Navbar expand={"lg"} variant="" className="h-100 p-0">
 				<Container className="d-flex align-items-center">
 					<Logo />
 					<MobileMenuToggle state={showMobileMenu} setState={setShowMobileMenu} />
@@ -53,7 +53,7 @@ export default function Header({ styles }: { styles: LayoutStyles }) {
 								<SiteWordmark id="mobile-menu-label" width="192px" />
 							</Link>
 						</OffcanvasHeader>
-						<Offcanvas.Body className="ps-lg-4 h-lg-100 position-relative">
+						<Offcanvas.Body className="position-relative">
 							<HeaderMenu
 								user={user}
 								dropdownMenuStyle={dropdownMenuStyle}

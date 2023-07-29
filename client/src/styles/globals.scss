@@ -1,3 +1,9 @@
+code {
+    background-color: var(--#{$prefix}black);
+    padding: 0.25rem 0.25rem;
+    border-radius: var(--#{$prefix}border-radius-sm)
+}
+
 .nav-link {
     @extend .rounded;
 }

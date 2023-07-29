@@ -27,7 +27,7 @@ export default function UserArea({
 				<>
 					<UserNotificationButton />
 					<UserProfileDropdown style={dropdownMenuStyle} user={user} />
-					<div className="h-14 w-14 d-flex d-md-none justify-content-center align-items-center">
+					<div className="h-14 w-14 d-flex d-lg-none justify-content-center align-items-center">
 						{/* a temporary solution */}
 						<ProfilePictureSmall user={user} />
 					</div>

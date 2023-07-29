@@ -7,10 +7,12 @@ import { SetState } from "types/react";
 
 export default function ImportScoresLink({
 	className,
+	menuClassName,
 	style,
 	setState,
 }: {
 	className?: string;
+	menuClassName?: string;
 	style?: React.CSSProperties;
 	setState?: SetState<boolean>;
 }) {
@@ -40,7 +42,7 @@ export default function ImportScoresLink({
 			toggle="Import Scores"
 			className={`h-14 ${className}`}
 			menuStyle={style}
-			menuClassName="shadow-none shadow-md-md"
+			menuClassName={menuClassName}
 			caret
 		>
 			{links}

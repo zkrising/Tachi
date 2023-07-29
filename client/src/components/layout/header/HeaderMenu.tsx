@@ -10,7 +10,8 @@ import ImportScoresLink from "./ImportScoresLink";
 import UtilsDropdown from "./UtilsDropdown";
 import UserProfileLinks from "./UserProfileLinks";
 
-const toggleClassNames = "w-100 justify-content-between w-lg-auto justify-content-lg-start";
+const toggleClassNames = "w-100 justify-content-between";
+const menuClassNames = "shadow-none shadow-lg-md";
 
 export function HeaderMenu({
 	user,
@@ -38,20 +39,27 @@ export function HeaderMenu({
 	}
 
 	return (
-		<Nav className="p-4 d-flex flex-column flex-md-row align-content-between w-100 gap-2 h-lg-100 overflow-y-auto overflow-y-md-visible scrollbar-hide h-100">
+		<Nav className="p-4 d-flex flex-column flex-lg-row align-content-between gap-2 gap-lg-4 overflow-y-auto overflow-y-lg-visible scrollbar-hide h-100">
 			{user && ugs && ugs.length !== 0 && (
 				<UserProfileLinks
 					user={user}
 					ugs={ugs}
 					className={toggleClassNames}
+					menuClassName={menuClassNames}
 					style={dropdownMenuStyle}
 					setState={setState}
 				/>
 			)}
-			<AllGames className={toggleClassNames} style={dropdownMenuStyle} setState={setState} />
+			<AllGames
+				className={toggleClassNames}
+				menuClassName={menuClassNames}
+				style={dropdownMenuStyle}
+				setState={setState}
+			/>
 			{user && (
 				<ImportScoresLink
 					className={toggleClassNames}
+					menuClassName={menuClassNames}
 					style={dropdownMenuStyle}
 					setState={setState}
 				/>
@@ -59,6 +67,7 @@ export function HeaderMenu({
 			{settings?.preferences.developerMode && (
 				<UtilsDropdown
 					className={toggleClassNames}
+					menuClassName={menuClassNames}
 					style={dropdownMenuStyle}
 					setState={setState}
 				/>

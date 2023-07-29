@@ -485,10 +485,10 @@ $paragraph-margin-bottom: 1rem !default;
 // scss-docs-start grid-breakpoints
 $grid-breakpoints: (
   xs: 0,
-  sm: 648px,
-  md: 864px,
-  lg: 1152px,
-  xl: 1536px
+  sm: 576px,
+	md: 816px,
+	lg: 1008px,
+	xl: 1320px,
 );
 // scss-docs-end grid-breakpoints
 
@@ -501,10 +501,9 @@ $grid-breakpoints: (
 
 // scss-docs-start container-max-widths
 $container-max-widths: (
-  sm: 720px,
-  md: 840px,
-  lg: 1128px,
-  xl: 1440px
+  sm: 768px,
+  lg: 984px,
+  xl: 1296px,
 );
 // scss-docs-end container-max-widths
 
@@ -515,7 +514,7 @@ $container-max-widths: (
 // Set the number of columns and specify the width of the gutters.
 
 $grid-columns: 12 !default;
-$grid-gutter-width: 1rem;
+$grid-gutter-width: 1.5rem;
 $grid-row-columns: 6 !default;
 
 // Container padding
@@ -1364,14 +1363,14 @@ $placeholder-opacity-min: 0.2 !default;
 // Cards
 
 // scss-docs-start card-variables
-$card-spacer-y: $spacer * 1;
-$card-spacer-x: $spacer * 1;
+$card-spacer-y: $spacer * 2;
+$card-spacer-x: $spacer * 2;
 $card-title-spacer-y: $spacer;
 $card-title-color: null !default;
 $card-subtitle-color: null !default;
 $card-border-width: var(--#{$prefix}border-width);
-$card-border-color: var(--#{$prefix}secondary-bg);
-$card-border-radius: var(--#{$prefix}border-radius) !default;
+$card-border-color: var(--#{$prefix}dark);
+$card-border-radius: var(--#{$prefix}border-radius);
 $card-box-shadow: var(--#{$prefix}box-shadow-sm);
 $card-inner-border-radius: subtract($card-border-radius, $card-border-width);
 $card-cap-padding-y: $card-spacer-y;
@@ -1739,7 +1738,7 @@ $btn-close-white-filter: invert(1) grayscale(100%) brightness(200%) !default;
 // scss-docs-start offcanvas-variables
 $offcanvas-padding-y: 0;
 $offcanvas-padding-x: 0;
-$offcanvas-horizontal-width: 68vw;
+$offcanvas-horizontal-width: 256px;
 $offcanvas-vertical-height: 30vh !default;
 $offcanvas-transition-duration: 0.3s !default;
 $offcanvas-border-color: $modal-content-border-color;
@@ -1755,7 +1754,7 @@ $offcanvas-backdrop-opacity: $modal-backdrop-opacity;
 // Code
 
 $code-font-size: $small-font-size;
-$code-color: var(--#{$prefix}secondary-color);
+$code-color: var(--#{$prefix}white);
 
 $kbd-padding-y: 0.1875rem;
 $kbd-padding-x: 0.375rem;

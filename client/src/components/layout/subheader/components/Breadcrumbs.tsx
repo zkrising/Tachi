@@ -9,7 +9,7 @@ export function Breadcrumbs({ items }: { items: string[] }) {
 	const parts = url.split("/").slice(1);
 
 	return (
-		<div className="d-none d-md-flex align-items-center fw-semibold">
+		<div className="d-none d-lg-flex align-items-center fw-semibold">
 			<Link
 				className="link-light link-opacity-75 link-opacity-100-hover transition-color"
 				to="/"

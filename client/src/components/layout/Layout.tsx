@@ -15,11 +15,11 @@ export type LayoutStyles = {
 
 export function Layout({ children }: JustChildren) {
 	const {
-		breakpoint: { isMd },
+		breakpoint: { isLg },
 	} = useContext(WindowContext);
 	const styles: LayoutStyles = {
-		backgroundHeight: isMd ? 200 : 125,
-		headerHeight: isMd ? 80 : 55,
+		backgroundHeight: isLg ? 200 : 125,
+		headerHeight: isLg ? 80 : 55,
 	};
 	return (
 		<div id="main-wrapper" className="d-flex flex-column overflow-x-hidden min-vh-100">

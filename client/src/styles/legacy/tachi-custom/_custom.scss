@@ -168,3 +168,10 @@ table {
 .table.table-vertical-center th, .table.table-vertical-center td {
 	vertical-align: middle;
 }
+
+a:where(.MuiTab-root) {
+	@extend .transition-color;
+	&:hover {
+		color: var(--#{$prefix}link-hover-color)
+	}
+}

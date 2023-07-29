@@ -15,7 +15,7 @@
         justify-content: space-between;
         border-radius: var(--bs-border-radius);
         margin: 0 .5rem;
-        @include media-breakpoint-down(sm) {
+        @include media-breakpoint-down(md) {
             margin: .5rem 0;
             padding: .5rem 0 !important;
             position: relative;
@@ -37,10 +37,10 @@
             border-radius: 100%;
             position: absolute;
             z-index: 3;
-            @include media-breakpoint-down(sm) {
+            @include media-breakpoint-down(md) {
                 transform: translateX(-0.35rem);
             }
-            @include media-breakpoint-up(sm) {
+            @include media-breakpoint-up(md) {
                 transform: translateX(-0.835rem);
             }
         }
@@ -57,7 +57,7 @@
                 align-items: center;
                 width: 100%;
 
-                @include media-breakpoint-down(sm) {
+                @include media-breakpoint-down(md) {
                     flex-wrap: wrap;
                     flex-direction: column;
                 }
@@ -70,7 +70,7 @@
                     width: 70%;
                 }
 
-                @include media-breakpoint-down(sm) {
+                @include media-breakpoint-down(md) {
                     display: block;
                     align-self: start;
                 }
@@ -78,7 +78,7 @@
 
             &-timestamp {
                 text-align: right;
-                @include media-breakpoint-down(sm) {
+                @include media-breakpoint-down(md) {
                     align-self: end;
                     margin: .5rem 0;
                 }

@@ -420,7 +420,7 @@ function RevisionComponent({
 	return (
 		<div className="timeline-item">
 			<span className="timeline-badge bg-primary"></span>
-			<div className="timeline-content d-flex align-items-center justify-content-between">
+			<div className="timeline-content flex-lg-row align-items-start justify-content-between">
 				<div className="me-3" style={{ width: "70%", textAlign: "left" }}>
 					<span style={{ fontSize: "1.15rem" }}>
 						<code>{TruncateString(rev.sha, 9)}</code>:{" "}
@@ -464,7 +464,7 @@ function RevisionComponent({
 					</div>
 				</div>
 
-				<span className="text-body-secondary fst-italic text-end">
+				<span className="text-body-secondary fst-italic align-self-end">
 					{FormatTime(Date.parse(rev.commit.author.date))}
 				</span>
 			</div>

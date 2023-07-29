@@ -28,6 +28,7 @@ function UserProfileDropdownToggle({ user }: { user: UserDocument }) {
 			<img
 				alt={user.username}
 				height={32}
+				width={32}
 				src={ToAPIURL("/users/me/pfp")}
 				className="object-fit-cover rounded"
 			/>
@@ -77,7 +78,7 @@ export function UserProfileDropdown({
 			align="end"
 			id="user-profile-dropdown"
 			toggle={<UserProfileDropdownToggle user={user} />}
-			dropdownClassName="d-none d-md-block"
+			dropdownClassName="d-none d-lg-block"
 			menuStyle={style}
 			menuClassName="p-4"
 		>

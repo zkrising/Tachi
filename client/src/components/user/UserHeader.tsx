@@ -198,7 +198,11 @@ function StatusComponent({ reqUser }: { reqUser: UserDocument }) {
 			</div>
 			<div className="col-12">
 				{isRequestedUser && (
-					<a href="#" onClick={() => setModalShow(true)}>
+					<a
+						href="#"
+						className="link-opacity-75 link-opacity-100-hover transition-color"
+						onClick={() => setModalShow(true)}
+					>
 						Change Status
 					</a>
 				)}

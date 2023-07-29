@@ -9,12 +9,14 @@ export default function UserProfileLinks({
 	user,
 	ugs,
 	className,
+	menuClassName,
 	style,
 	setState,
 }: {
 	user: UserDocument;
 	ugs: UserGameStats[];
 	className?: string;
+	menuClassName?: string;
 	style?: React.CSSProperties;
 	setState?: SetState<boolean>;
 }) {
@@ -55,7 +57,7 @@ export default function UserProfileLinks({
 			toggle="Your Profiles"
 			className={`h-14 ${className}`}
 			menuStyle={style}
-			menuClassName="shadow-none shadow-md-md"
+			menuClassName={menuClassName}
 			caret
 		>
 			{userProfileLinks}

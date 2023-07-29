@@ -77,7 +77,7 @@ export function UserProfileDropdown({
 			align="end"
 			id="user-profile-dropdown"
 			toggle={<UserProfileDropdownToggle user={user} />}
-			dropdownClassName="d-none d-md-block"
+			dropdownClassName="d-none d-lg-block"
 			menuStyle={style}
 			menuClassName="p-4"
 		>

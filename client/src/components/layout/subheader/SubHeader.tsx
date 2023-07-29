@@ -10,11 +10,11 @@ export function SubHeader({ styles }: { styles: LayoutStyles }) {
 		<>
 			<header
 				id="subheader"
-				className="bg-black bg-opacity-50"
+				className="bg-body bg-opacity-75"
 				style={{ marginTop: `${styles.headerHeight}px` }}
 			>
 				<Container
-					className="d-flex flex-column justify-content-center align-items-center align-items-md-start gap-4"
+					className="d-flex flex-column justify-content-center align-items-center align-items-lg-start gap-4"
 					style={{ height: styles.backgroundHeight }}
 				>
 					<h2 className="fw-bold">{subheader.title}</h2>

@@ -108,7 +108,7 @@ export default function UGPTStatShowcase({ reqUser, game, playtype }: UGPT) {
 										}
 									>
 										<div
-											className="btn btn-outline-secondary"
+											className="btn btn-outline-secondary text-body"
 											onClick={() => setProjectingStats(true)}
 										>
 											<i
@@ -127,7 +127,7 @@ export default function UGPTStatShowcase({ reqUser, game, playtype }: UGPT) {
 								}
 							>
 								<div
-									className="btn btn-outline-secondary"
+									className="btn btn-outline-secondary text-body"
 									onClick={() => setCustomShow(true)}
 								>
 									<i

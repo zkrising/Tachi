@@ -21,10 +21,12 @@ function UtilsLinks({ onClick }: { onClick: React.MouseEventHandler }) {
 
 export default function UtilsDropdown({
 	className,
+	menuClassName,
 	style,
 	setState,
 }: {
 	className?: string;
+	menuClassName?: string;
 	style?: React.CSSProperties;
 	setState?: SetState<boolean>;
 }) {
@@ -37,7 +39,7 @@ export default function UtilsDropdown({
 			toggle="Developer Utils"
 			className={`h-14 ${className}`}
 			menuStyle={style}
-			menuClassName="shadow-none shadow-md-md"
+			menuClassName={menuClassName}
 			caret
 		>
 			<UtilsLinks onClick={handleClick} />

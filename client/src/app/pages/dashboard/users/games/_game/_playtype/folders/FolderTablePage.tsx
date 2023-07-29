@@ -103,21 +103,14 @@ export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 	return (
 		<>
 			<InputGroup>
-				<InputGroup.Prepend>
-					<InputGroup.Text>Table</InputGroup.Text>
-				</InputGroup.Prepend>
-				<Form.Control
-					as="select"
-					size="lg"
-					value={tableID}
-					onChange={(e) => setTableID(e.target.value)}
-				>
+				<InputGroup.Text>Table</InputGroup.Text>
+				<Form.Select size="lg" value={tableID} onChange={(e) => setTableID(e.target.value)}>
 					{displayableTables.map((e) => (
 						<option key={e.tableID} value={e.tableID}>
 							{e.title}
 						</option>
 					))}
-				</Form.Control>
+				</Form.Select>
 			</InputGroup>
 			<Divider />
 			{table && <TableFolderViewer {...{ reqUser, game, playtype, table }} />}
@@ -305,8 +298,7 @@ function TableBarChart({
 						{GetScoreMetrics(gptConfig, "ENUM").map((e) => (
 							<SelectButton value={enumMetric} setValue={setEnumMetric} id={e}>
 								{/* @ts-expect-error this access is legal zzz */}
-								<Icon type={gptImpl.enumIcons[e]} />
-								{UppercaseFirst(e)}s
+								<Icon type={gptImpl.enumIcons[e]} /> {UppercaseFirst(e)}s
 							</SelectButton>
 						))}
 					</div>

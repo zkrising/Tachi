@@ -15,14 +15,14 @@
 			">0.2%",
 			"not dead",
 			"not op_mini all",
-			"ie 11"
+			"not ie <= 11"
 		],
 		"development": [
 			"last 1 chrome version",
 			"last 1 firefox version",
 			"last 1 safari version",
 			"last 1 edge version",
-			"IE 11"
+			"not ie <= 11"
 		]
 	},
 	"dependencies": {
@@ -61,12 +61,13 @@
 		"prudence": "0.10.0",
 		"react": "17.0.2",
 		"react-async": "10.0.1",
-		"react-bootstrap": "1.6.1",
+		"react-bootstrap": "2.9.0-beta.0",
 		"react-dom": "17.0.2",
 		"react-google-recaptcha": "2.1.0",
 		"react-hot-toast": "2.0.0",
 		"react-markdown": "7.0.1",
 		"react-query": "3.18.1",
+		"react-router-bootstrap": "^0.25.0",
 		"react-router-dom": "5.1.2",
 		"react-select": "^5.6.1",
 		"rg-stats": "0.5.2",
@@ -80,10 +81,11 @@
 		"@types/luxon": "1.27.1",
 		"@types/react": "17.0.13",
 		"@types/react-dom": "17.0.8",
+		"@types/react-router-bootstrap": "0.26.1",
 		"@types/react-router-dom": "5.1.7",
 		"@vitejs/plugin-react": "^2.0.1",
-		"bootstrap-scss": "^4.6.2",
-		"sass": "1.32.8",
+		"bootstrap-scss": "^5.3.0",
+		"sass": "1.64.1",
 		"typescript": "4.9.4",
 		"vite": "^3.0.7"
 	}

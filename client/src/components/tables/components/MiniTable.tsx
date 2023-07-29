@@ -1,18 +1,15 @@
-import { nanoid } from "nanoid";
 import React from "react";
 import { integer } from "tachi-common";
 import { JustChildren } from "types/react";
 
 export default function MiniTable({
-	className,
+	className = "",
 	children,
 	headers,
 	colSpan = 1,
 }: { className?: string; headers?: string[]; colSpan?: integer | integer[] } & JustChildren) {
 	return (
-		<table
-			className={`table table-hover table-striped table-vertical-center text-center ${className}`}
-		>
+		<table className={`table table-hover table-striped text-center ${className}`}>
 			{headers && (
 				<thead>
 					<tr>

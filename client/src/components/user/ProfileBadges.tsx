@@ -7,32 +7,31 @@ export default function ProfileBadges({ user }: { user: UserDocument }) {
 		<>
 			{user.badges.map((e, i) => (
 				<span key={i} className="mt-1">
-					<ProfileBadge variant={e} />
+					<ProfileBadge bg={e} />
 				</span>
 			))}
 			{user.isSupporter && (
 				<span className="mt-1">
-					<Badge variant="warning">Supporter!</Badge>
+					<Badge bg="warning">Supporter!</Badge>
 				</span>
 			)}
 		</>
 	);
 }
 
-export function ProfileBadge({ variant }: { variant: UserBadges }) {
-	if (variant === "alpha") {
-		return <Badge variant="warning">Alpha Tester</Badge>;
-	} else if (variant === "beta") {
-		return <Badge variant="info">Beta Tester</Badge>;
-	} else if (variant === "dev-team") {
-		return <Badge variant="primary">Dev Team</Badge>;
-	} else if (variant === "contributor") {
+export function ProfileBadge({ bg }: { bg: UserBadges }) {
+	if (bg === "alpha") {
+		return <Badge bg="warning">Alpha Tester</Badge>;
+	} else if (bg === "beta") {
+		return <Badge bg="info">Beta Tester</Badge>;
+	} else if (bg === "dev-team") {
+		return <Badge bg="primary">Dev Team</Badge>;
+	} else if (bg === "contributor") {
 		// discord contributor colour
 		return <Badge style={{ backgroundColor: "#1abc9c" }}>Contributor</Badge>;
-	} else if (variant === "significant-contributor") {
+	} else if (bg === "significant-contributor") {
 		// discord sig. contributor colour
 		return <Badge style={{ backgroundColor: "#e62e22" }}>Significant Contributor</Badge>;
 	}
-
 	return <></>;
 }

@@ -82,7 +82,7 @@ export function JubeatGraphsComponent({
 			className="d-flex align-items-center justify-content-center"
 			style={{ height: "200px" }}
 		>
-			<span className="text-muted">No gauge data :(</span>
+			<span className="text-body-secondary">No gauge data :(</span>
 		</div>
 	);
 }

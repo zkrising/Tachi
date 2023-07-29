@@ -31,21 +31,37 @@ export default function UserSettingsDocumentPage({ reqUser }: Props) {
 			<div className="row">
 				<div className="col-12">
 					<div className="btn-group d-flex justify-content-center">
-						<SelectButton value={page} setValue={setPage} id="image">
-							<Icon type="image" />
-							Pictures
+						<SelectButton
+							className="text-wrap"
+							value={page}
+							setValue={setPage}
+							id="image"
+						>
+							<Icon type="image" /> Pictures
 						</SelectButton>
-						<SelectButton value={page} setValue={setPage} id="socialMedia">
-							<Icon type="twitter" brand />
-							Social Media
+						<SelectButton
+							className="text-wrap"
+							value={page}
+							setValue={setPage}
+							id="socialMedia"
+						>
+							<Icon type="twitter" brand /> Social Media
 						</SelectButton>
-						<SelectButton value={page} setValue={setPage} id="preferences">
-							<Icon type="cogs" />
-							UI Preferences
+						<SelectButton
+							className="text-wrap"
+							value={page}
+							setValue={setPage}
+							id="preferences"
+						>
+							<Icon type="cogs" /> UI Preferences
 						</SelectButton>
-						<SelectButton value={page} setValue={setPage} id="account">
-							<Icon type="lock" />
-							Change Password
+						<SelectButton
+							className="text-wrap"
+							value={page}
+							setValue={setPage}
+							id="account"
+						>
+							<Icon type="lock" /> Change Password
 						</SelectButton>
 					</div>
 				</div>
@@ -105,7 +121,7 @@ function AccountSettings({ reqUser }: { reqUser: UserDocument }) {
 	});
 
 	return (
-		<Form onSubmit={formik.handleSubmit}>
+		<Form onSubmit={formik.handleSubmit} className="d-flex flex-column gap-4">
 			<Form.Group>
 				<Form.Label>Old Password</Form.Label>
 				<Form.Control
@@ -127,7 +143,7 @@ function AccountSettings({ reqUser }: { reqUser: UserDocument }) {
 				/>
 				{formik.values["!password"].length < 8 && (
 					<Form.Text className="text-warning">
-						Passwords have to be atleast 8 characters long.
+						Passwords have to be at least 8 characters long.
 					</Form.Text>
 				)}
 			</Form.Group>
@@ -190,7 +206,7 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 	});
 
 	return (
-		<Form onSubmit={formik.handleSubmit}>
+		<Form onSubmit={formik.handleSubmit} className="d-flex flex-column gap-4">
 			<Form.Group>
 				<Form.Check
 					type="checkbox"
@@ -256,7 +272,7 @@ function ImageForm({ reqUser }: { reqUser: UserDocument }) {
 	const [banner, setBanner] = useState<File | undefined>();
 
 	return (
-		<div>
+		<div className="d-flex flex-column">
 			<Alert variant="danger">
 				Do not set inappropriate stuff as your avatar/banner. If you have to ask, the answer
 				is probably no.
@@ -359,7 +375,7 @@ function SocialMediaForm({ reqUser }: { reqUser: UserDocument }) {
 	});
 
 	return (
-		<Form onSubmit={formik.handleSubmit}>
+		<Form onSubmit={formik.handleSubmit} className="d-flex flex-column gap-4">
 			{(["discord", "twitter", "github", "steam", "youtube"] as const).map((e, i) => (
 				<Form.Group key={e}>
 					<Form.Label>{UppercaseFirst(e)}</Form.Label>
@@ -384,11 +400,9 @@ function SocialMediaForm({ reqUser }: { reqUser: UserDocument }) {
 					onChange={formik.handleChange}
 				/>
 			</Form.Group>
-			<div className="row justify-content-center">
-				<Button type="submit" variant="success">
-					Submit
-				</Button>
-			</div>
+			<Button type="submit" variant="success">
+				Submit
+			</Button>
 		</Form>
 	);
 }
@@ -436,7 +450,7 @@ function FileUploadController({
 					}
 				}}
 				disabled={!reqUser.customPfpLocation}
-				className="mr-auto"
+				className="ms-auto"
 				variant="secondary"
 			>
 				Unset
@@ -466,7 +480,7 @@ function FileUploadController({
 							window.location.reload();
 						}
 					}}
-					className="ml-auto"
+					className="ms-auto"
 					variant="success"
 					disabled={file.size > 1024 * 1000}
 				>

@@ -6,7 +6,7 @@ import useLUGPTSettings from "./useLUGPTSettings";
 export default function GoalLink({ goal, noPad }: { goal: GoalDocument; noPad?: boolean }) {
 	const { settings } = useLUGPTSettings();
 
-	const pad = noPad ? "" : "ml-2";
+	const pad = noPad ? "" : "ms-2";
 
 	switch (goal.charts.type) {
 		case "multi":

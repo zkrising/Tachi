@@ -11,7 +11,7 @@ export default function IndexCell({ index }: { index: integer }) {
 				backgroundColor: index < 3 ? COLORS[index] : undefined,
 			}}
 		>
-			<span className="text-muted" style={{ marginRight: "1px" }}>
+			<span className="text-body-secondary" style={{ marginRight: "1px" }}>
 				#
 			</span>
 			<span

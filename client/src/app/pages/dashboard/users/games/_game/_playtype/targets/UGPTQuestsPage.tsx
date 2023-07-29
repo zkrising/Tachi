@@ -78,7 +78,7 @@ export default function UGPTQuestsPage({ reqUser, game, playtype }: UGPT) {
 		<Row>
 			<Col xs={12}>
 				<Divider />
-				<div className="pl-6">
+				<div className="ps-6">
 					<div className="d-flex w-100 justify-content-start">
 						<Select value={show} setValue={setShow} name="What quests should we show?">
 							<option value="all">All</option>
@@ -94,7 +94,12 @@ export default function UGPTQuestsPage({ reqUser, game, playtype }: UGPT) {
 					<div className="text-center">
 						Looks like you have no quests set.
 						<br />
-						<Link to={`/games/${game}/${playtype}/quests`}>Go set some!</Link>
+						<Link
+							className="text-decoration-underline"
+							to={`/games/${game}/${playtype}/quests`}
+						>
+							Go set some!
+						</Link>
 					</div>
 				</Col>
 			)}

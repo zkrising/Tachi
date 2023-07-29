@@ -45,7 +45,7 @@ export function ITGGraphsComponent({
 						className="d-flex align-items-center justify-content-center"
 						style={{ height: "200px" }}
 					>
-						<span className="text-muted">No chart graph :(</span>
+						<span className="text-body-secondary">No chart graph :(</span>
 					</div>
 				)}
 			</div>

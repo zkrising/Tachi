@@ -93,12 +93,12 @@ export function InnerQuestInfo({ quest }: { quest: QuestDocument }) {
 						/>
 					</div>
 
-					<a className="quest-link gentle-link ml-2" href={`#${quest.questID}`}>
+					<a className="quest-link gentle-link ms-2" href={`#${quest.questID}`}>
 						{quest.name}
 					</a>
 
 					{settings && (
-						<div className="ml-auto text-danger">
+						<div className="ms-auto text-danger">
 							<Button
 								variant="outline-success"
 								onClick={async () => {
@@ -152,12 +152,12 @@ export function InnerQuestInfo({ quest }: { quest: QuestDocument }) {
 					</div>
 				</QuickTooltip>
 
-				<a className="quest-link gentle-link ml-2" href={`#${quest.questID}`}>
+				<a className="quest-link gentle-link ms-2" href={`#${quest.questID}`}>
 					{quest.name}
 				</a>
 
 				{!questSub.achieved && (
-					<div className="ml-auto text-danger">
+					<div className="ms-auto text-danger">
 						<span className="text-danger">{questSub.progress}</span>
 						<Muted> / {GetGoalIDsFromQuest(quest).length}</Muted>
 					</div>

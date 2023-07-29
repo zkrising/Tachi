@@ -206,12 +206,14 @@ function MinimapElement({
 					{data.__related.pb ? (
 						<div className="w-100">
 							<MiniTable>
-								<ScoreCoreCells
-									short
-									chart={data}
-									game={game}
-									score={data.__related.pb}
-								/>
+								<tr>
+									<ScoreCoreCells
+										short
+										chart={data}
+										game={game}
+										score={data.__related.pb}
+									/>
+								</tr>
 							</MiniTable>
 						</div>
 					) : (

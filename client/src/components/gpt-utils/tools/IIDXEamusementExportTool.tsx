@@ -37,7 +37,7 @@ function Component({ game, playtype, reqUser }: UGPT) {
 			<Col xs={12}>
 				<textarea
 					readOnly
-					className="w-100 text-monospace"
+					className="w-100 font-monospace"
 					style={{ height: "400px" }}
 					value={data}
 				/>

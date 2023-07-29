@@ -1,6 +1,6 @@
+import Icon from "components/util/Icon";
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { GetGameConfig } from "tachi-common";
 
 export function Breadcrumbs({ items }: { items: string[] }) {
 	const url = location.pathname;
@@ -9,9 +9,12 @@ export function Breadcrumbs({ items }: { items: string[] }) {
 	const parts = url.split("/").slice(1);
 
 	return (
-		<div className="align-items-center font-weight-bold my-2 d-flex">
-			<Link className="opacity-75 hover-opacity-100" to="/">
-				<i className="flaticon2-shelter text-white icon-1x" />
+		<div className="d-none d-md-flex align-items-center fw-semibold">
+			<Link
+				className="link-light link-opacity-75 link-opacity-100-hover transition-color"
+				to="/"
+			>
+				<Icon type="home" />
 			</Link>
 			{items.map((name, index) => {
 				// Skip playtype in the breadcrumbs if the game only has one playtype.
@@ -25,9 +28,12 @@ export function Breadcrumbs({ items }: { items: string[] }) {
 
 				return (
 					<Fragment key={index}>
-						<span className="label label-dot label-sm bg-white opacity-75 mx-3" />
+						<span
+							id="dot"
+							className="h-2 w-2 d-block bg-light rounded-circle bg-opacity-75 mx-3"
+						/>
 						<Link
-							className="text-white text-hover-white opacity-75 hover-opacity-100"
+							className="link-light link-opacity-75 link-opacity-100-hover transition-color"
 							to={`/${parts.slice(0, index + 1).join("/")}`}
 						>
 							{name}

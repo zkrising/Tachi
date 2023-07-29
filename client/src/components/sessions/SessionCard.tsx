@@ -106,7 +106,7 @@ export default function SessionCard({ sessionID }: { sessionID: string }) {
 					</Button>
 					<LinkButton
 						to={`/u/${sessionUser.username}/games/${session.game}/${session.playtype}/sessions/${session.sessionID}`}
-						className="ml-4 btn-primary"
+						className="ms-4 btn-primary"
 					>
 						View Session
 					</LinkButton>

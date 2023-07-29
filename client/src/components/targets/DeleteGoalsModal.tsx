@@ -43,7 +43,7 @@ export default function DeleteGoalsModal({
 										dependencies={e.__related.parentQuests.map((e) => e.name)}
 									/>
 								</div>
-								<div className="ml-auto pl-4">
+								<div className="ms-auto ps-4">
 									{e.__related.parentQuests.length === 0 ? (
 										<Button
 											variant="outline-danger"

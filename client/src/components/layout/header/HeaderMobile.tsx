@@ -20,7 +20,7 @@ export function HeaderMobile({
 			<div id="kt_header_mobile" className="header-mobile header-mobile-fixed">
 				<div className="d-flex align-items-center justify-content-start">
 					<button
-						className="btn p-0 burger-icon burger-icon-right ml-2 mr-auto"
+						className="btn p-0 burger-icon burger-icon-right ms-2 me-auto"
 						id="kt_header_mobile_toggle"
 						onClick={() => setMobileShow(!mobileShow)}
 					>
@@ -33,9 +33,9 @@ export function HeaderMobile({
 
 					{user ? (
 						<>
-							<UserNotificationButton user={user} />
+							<UserNotificationButton />
 							<button
-								className="btn btn-icon btn-hover-transparent-white p-0 ml-3"
+								className="btn btn-icon btn-hover-transparent-white p-0 ms-3"
 								id="kt_header_mobile_topbar_toggle"
 							>
 								<Link to={`/u/${user.username}`}>

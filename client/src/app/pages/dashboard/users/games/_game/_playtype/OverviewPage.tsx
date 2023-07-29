@@ -20,6 +20,7 @@ import React, { useMemo, useState } from "react";
 import { FormatGame, GetGameConfig, GetGamePTConfig, UserGameStats } from "tachi-common";
 import { UGPTHistory } from "types/api-returns";
 import { GamePT, SetState, UGPT } from "types/react";
+import FormSelect from "react-bootstrap/FormSelect";
 
 export default function OverviewPage({ reqUser, game, playtype }: UGPT) {
 	const gameConfig = GetGameConfig(game);
@@ -125,7 +126,7 @@ function UserHistory({
 		<>
 			<div className="row d-flex justify-content-center mb-4">
 				<div className="col-12 col-md-3 align-self-center text-center">
-					<Select noMarginBottom setValue={setDuration} value={duration}>
+					<Select className="mb-4 mb-md-0" setValue={setDuration} value={duration}>
 						<option value="week">Past Week</option>
 						<option value="month">Past Month</option>
 						<option value="3mo">Past 3 Months</option>
@@ -135,16 +136,13 @@ function UserHistory({
 				<div className="col-12 col-md-6 align-self-center">
 					<div className="btn-group d-flex justify-content-center w-100">
 						<SelectButton id="ranking" value={mode} setValue={setMode}>
-							<Icon type="trophy" />
-							Ranking
+							<Icon type="trophy" /> Ranking
 						</SelectButton>
 						<SelectButton id="playcount" value={mode} setValue={setMode}>
-							<Icon type="gamepad" />
-							Playcount
+							<Icon type="gamepad" /> Playcount
 						</SelectButton>
 						<SelectButton id="rating" value={mode} setValue={setMode}>
-							<Icon type="chart-line" />
-							Ratings
+							<Icon type="chart-line" /> Ratings
 						</SelectButton>
 					</div>
 				</div>
@@ -160,8 +158,7 @@ function UserHistory({
 			{mode === "ranking" ? (
 				<>
 					<div className="col-12 offset-md-4 col-md-4 mt-4">
-						<select
-							className="form-control"
+						<FormSelect
 							value={rating}
 							onChange={(e) =>
 								setRating(e.target.value as keyof UserGameStats["ratings"])
@@ -172,7 +169,7 @@ function UserHistory({
 									{UppercaseFirst(e)}
 								</option>
 							))}
-						</select>
+						</FormSelect>
 					</div>
 					<RankingTimeline data={data} rating={rating} />
 				</>
@@ -200,7 +197,7 @@ function UserHistory({
 						<div>
 							{p.data.yFormatted} Play{p.data.yFormatted !== "1" && "s"}
 							<br />
-							<small className="text-muted">
+							<small className="text-body-secondary">
 								{MillisToSince(+p.data.xFormatted)}
 							</small>
 						</div>
@@ -212,8 +209,7 @@ function UserHistory({
 			) : (
 				<>
 					<div className="col-12 offset-md-4 col-md-4 mt-4">
-						<select
-							className="form-control"
+						<FormSelect
 							value={rating}
 							onChange={(e) =>
 								setRating(e.target.value as keyof UserGameStats["ratings"])
@@ -224,7 +220,7 @@ function UserHistory({
 									{UppercaseFirst(e)}
 								</option>
 							))}
-						</select>
+						</FormSelect>
 					</div>
 
 					<RatingTimeline {...{ data, rating }} />
@@ -265,7 +261,9 @@ function RatingTimeline({
 					{p.data.y ? ToFixedFloor(p.data.y as number, 2) : "N/A"}{" "}
 					{UppercaseFirst(rating)}
 					<br />
-					<small className="text-muted">{MillisToSince(+p.data.xFormatted)}</small>
+					<small className="text-body-secondary">
+						{MillisToSince(+p.data.xFormatted)}
+					</small>
 				</div>
 			)}
 		/>
@@ -304,7 +302,9 @@ function RankingTimeline({
 				<div>
 					{MillisToSince(+p.data.xFormatted)}: #{p.data.yFormatted}
 					<br />
-					<small className="text-muted">({FormatDate(+p.data.xFormatted)})</small>
+					<small className="text-body-secondary">
+						({FormatDate(+p.data.xFormatted)})
+					</small>
 				</div>
 			)}
 		/>

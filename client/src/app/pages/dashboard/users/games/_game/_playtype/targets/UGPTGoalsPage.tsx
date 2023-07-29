@@ -49,8 +49,7 @@ export default function UGPTGoalsPage({ reqUser, game, playtype }: UGPT) {
 					className="mb-4 w-100"
 					onClick={() => setShow(true)}
 				>
-					<Icon type="bullseye" />
-					Add New Goal
+					<Icon type="bullseye" /> Add New Goal
 				</Button>
 				<Button
 					variant="outline-danger"
@@ -58,12 +57,14 @@ export default function UGPTGoalsPage({ reqUser, game, playtype }: UGPT) {
 					className="mb-4 w-100"
 					onClick={() => setShowDelete(true)}
 				>
-					<Icon type="trash" />
-					Delete Goals
+					<Icon type="trash" /> Delete Goals
 				</Button>
 				<div>
 					Looking for goal recommendations?{" "}
-					<Link to={`/games/${game}/${playtype}/quests`}>
+					<Link
+						className="text-decoration-underline"
+						to={`/games/${game}/${playtype}/quests`}
+					>
 						Check out {FormatGame(game, playtype)}'s Quests
 					</Link>
 					.

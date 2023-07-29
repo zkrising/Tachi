@@ -130,13 +130,15 @@ export default function TachiTable<D>({
 	const { settings } = useContext(UserSettingsContext);
 
 	return (
-		<div className="justify-content-center w-100">
+		<div className="w-100">
 			<div className="row">
 				{!noTopDisplayStr && (
-					<div className="d-none d-lg-flex col-lg-6 align-self-center">{displayStr}</div>
+					<div className="d-none d-lg-flex col-lg-6 align-self-center mb-1">
+						{displayStr}
+					</div>
 				)}
 				{searchFunctions && (
-					<div className="col-12 col-lg-3 ml-auto input-group">
+					<div className="col-12 col-lg-3 ms-auto input-group">
 						<input
 							className="form-control filter-directives-enabled"
 							onChange={(e) => setSearch(e.target.value)}
@@ -152,8 +154,8 @@ export default function TachiTable<D>({
 				)}
 			</div>
 
-			<div className="col-12 px-0 mt-4 mb-4">
-				<table className="table table-striped table-hover table-vertical-center text-center table-responsive-md">
+			<div className="col-12 px-0 mt-4 mb-4 overflow-x-auto overflow-x-lg-hidden">
+				<table className="table table-striped table-hover table-vertical-center text-center">
 					<thead>{headersRow}</thead>
 					<tbody>
 						<NoDataWrapper>{window.map((e) => rowFunction(e))}</NoDataWrapper>
@@ -166,7 +168,7 @@ export default function TachiTable<D>({
 					<div className="d-none d-lg-flex col-lg-4 justify-content-center align-items-center">
 						{settings?.preferences.developerMode && (
 							<Button
-								className="ml-4 w-50"
+								className="ms-4 w-50"
 								onClick={() => {
 									let data = dataset;
 									if (search !== "") {
@@ -177,12 +179,12 @@ export default function TachiTable<D>({
 								}}
 								variant="outline-info"
 							>
-								<Icon type="table" />
-								Export {search !== "" ? "Filtered Data" : "Table"} (JSON)
+								<Icon type="table" /> Export{" "}
+								{search !== "" ? "Filtered Data" : "Table"} (JSON)
 							</Button>
 						)}
 					</div>
-					<div className="col-lg-4 ml-auto text-right">
+					<div className="col-lg-4 ms-auto text-end">
 						<div className="btn-group">
 							<Button
 								variant="secondary"

@@ -39,13 +39,13 @@ export default function ScoreLeaderboard({
 
 	const SelectComponent =
 		Object.keys(gptConfig.scoreRatingAlgs).length > 1 ? (
-			<Form.Control as="select" value={alg} onChange={(e) => setAlg(e.target.value as any)}>
+			<Form.Select value={alg} onChange={(e) => setAlg(e.target.value as any)}>
 				{Object.keys(gptConfig.scoreRatingAlgs).map((e) => (
 					<option key={e} value={e}>
 						{UppercaseFirst(e)}
 					</option>
 				))}
-			</Form.Control>
+			</Form.Select>
 		) : null;
 
 	const { data, error } = useApiQuery<ScoreLeaderboardReturns>(

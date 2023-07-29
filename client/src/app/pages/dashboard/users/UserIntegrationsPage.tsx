@@ -43,18 +43,15 @@ export default function UserIntegrationsPage({ reqUser }: { reqUser: UserDocumen
 				<Col xs={12}>
 					<div className="btn-group d-flex justify-content-center">
 						{mode !== "btchi" && (
-							<SelectLinkButton to={`${baseUrl}/services`}>
-								<Icon type="network-wired" />
-								Service Configuration
+							<SelectLinkButton className="text-wrap" to={`${baseUrl}/services`}>
+								<Icon type="network-wired" /> Service Configuration
 							</SelectLinkButton>
 						)}
-						<SelectLinkButton to={`${baseUrl}`}>
-							<Icon type="key" />
-							API Keys
+						<SelectLinkButton className="text-wrap" to={`${baseUrl}`}>
+							<Icon type="key" /> API Keys
 						</SelectLinkButton>
-						<SelectLinkButton to={`${baseUrl}/oauth-clients`}>
-							<Icon type="robot" />
-							My API Clients
+						<SelectLinkButton className="text-wrap" to={`${baseUrl}/oauth-clients`}>
+							<Icon type="robot" /> My API Clients
 						</SelectLinkButton>
 					</div>
 					<Divider />
@@ -82,13 +79,13 @@ function OAuthClientPage() {
 		<Row className="text-center justify-content-center">
 			<Col xs={12}>
 				<h3>API Clients</h3>
-				<Alert variant="info" style={{ color: "black" }}>
+				<Alert variant="info">
 					This page is for programmers who want to make their own things that interface
 					with {TachiConfig.name}.
 					<br />
 					You can read the documentation{" "}
 					<ExternalLink
-						style={{ color: "white" }}
+						className="text-decoration-underline"
 						href="https://docs.bokutachi.xyz/tachi-server/infrastructure/api-clients/"
 					>
 						here
@@ -196,9 +193,7 @@ function CreateNewOAuthClient({ setClients }: { setClients: SetState<TachiAPICli
 						}}
 					>
 						<div className="input-group">
-							<div className="input-group-append">
-								<span className="input-group-text">Name</span>
-							</div>
+							<span className="input-group-text">Name</span>
 							<input
 								value={name}
 								className="form-control"
@@ -212,9 +207,7 @@ function CreateNewOAuthClient({ setClients }: { setClients: SetState<TachiAPICli
 						</Muted>
 						<Divider />
 						<div className="input-group">
-							<div className="input-group-append">
-								<span className="input-group-text">Redirect URI</span>
-							</div>
+							<span className="input-group-text">Redirect URI</span>
 							<input
 								value={redirectUri}
 								className="form-control"
@@ -328,7 +321,7 @@ function OAuthClientRow({ client, clients, setClients }: OAuthClientProps) {
 			<Divider />
 
 			<h2 className="mb-4">{client.name}</h2>
-			<div className="text-left">
+			<div className="text-start">
 				<h5>
 					Client ID: <code>{client.clientID}</code>
 				</h5>
@@ -354,7 +347,7 @@ function OAuthClientRow({ client, clients, setClients }: OAuthClientProps) {
 					File Format:{" "}
 					<textarea
 						readOnly
-						className="w-100 mt-2 text-monospace"
+						className="w-100 mt-2 font-monospace"
 						value={client.apiKeyTemplate ?? "%%TACHI_KEY%%"}
 					/>
 				</h5>
@@ -745,8 +738,10 @@ function KAIIntegrationStatus({
 				) : (
 					<h4>
 						You should authenticate yourself by going to{" "}
-						<Link to="/import">Import Scores</Link> for the thing you want to import
-						for!
+						<Link to="/import" className="link-primary">
+							Import Scores
+						</Link>{" "}
+						for the thing you want to import for!
 					</h4>
 				)}
 			</div>
@@ -776,7 +771,7 @@ function APIKeysPage({ reqUser }: { reqUser: UserDocument }) {
 
 	return (
 		<>
-			<Alert variant="danger" style={{ color: "black" }}>
+			<Alert variant="danger">
 				API Keys allow other programs to interact with {TachiConfig.name} on your behalf.
 				They have limited permissions, so they can't just change your password!
 				<br />
@@ -803,11 +798,9 @@ function APIKeysPage({ reqUser }: { reqUser: UserDocument }) {
 				)}
 			</div>
 			<Divider />
-			<div className="row justify-content-center">
-				<button className="btn btn-primary" onClick={() => setShowModal(true)}>
-					Create new API Key
-				</button>
-			</div>
+			<button className="btn btn-primary w-100" onClick={() => setShowModal(true)}>
+				Create new API Key
+			</button>
 			<CreateAPIKeyModal {...{ showModal, setShowModal, reqUser, setApiKeys, apiKeys }} />
 		</>
 	);
@@ -859,9 +852,7 @@ function CreateAPIKeyModal({
 					}}
 				>
 					<div className="input-group">
-						<div className="input-group-append">
-							<span className="input-group-text">Identifier</span>
-						</div>
+						<span className="input-group-text">Identifier</span>
 						<input
 							value={identifier}
 							className="form-control"
@@ -945,7 +936,7 @@ function APIKeyRow({
 						setApiKeys(apiKeys.filter((e) => e.token !== apiKey.token));
 					}
 				}}
-				className="float-right"
+				className="float-end"
 				variant="danger"
 			>
 				{sure ? "Are you really sure?" : "Delete Key"}

@@ -3,7 +3,7 @@ import React from "react";
 
 export default function ObjCell({ data }: { data: unknown }) {
 	return (
-		<td className="text-left">
+		<td className="text-start">
 			{/* this kinda sucks. have we got a better way to do this? */}
 			{FlattenValue(data)
 				.filter((e) => e.value !== null)

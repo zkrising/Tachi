@@ -1,8 +1,7 @@
 import { DoesMatchRoute } from "util/routing";
 import React from "react";
 import { ButtonVariant } from "react-bootstrap/esm/types";
-import { JustChildren } from "types/react";
-import LinkButton from "./LinkButton";
+import LinkButton, { LinkButtonProps } from "./LinkButton";
 
 export default function SelectLinkButton({
 	children,
@@ -10,24 +9,18 @@ export default function SelectLinkButton({
 	offVariant = "outline-secondary",
 	to,
 	matchIfStartsWith = false,
-	disabled = false,
+	...props
 }: {
 	onVariant?: ButtonVariant;
 	offVariant?: ButtonVariant;
 	to: string;
 	matchIfStartsWith?: boolean;
-	disabled?: boolean;
-} & JustChildren) {
+} & LinkButtonProps) {
+	const match = DoesMatchRoute(window.location.href, to, !matchIfStartsWith);
+	const variant = match ? onVariant : offVariant;
+
 	return (
-		<LinkButton
-			disabled={disabled}
-			to={to}
-			className={`btn-${
-				DoesMatchRoute(window.location.href, to, !matchIfStartsWith)
-					? onVariant
-					: offVariant
-			}`}
-		>
+		<LinkButton to={to} isActive={() => match} variant={variant} {...props}>
 			{children}
 		</LinkButton>
 	);

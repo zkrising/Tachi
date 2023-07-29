@@ -1,171 +1,68 @@
-import { APIFetchV1, ToCDNURL } from "util/api";
-import Divider from "components/util/Divider";
-import Icon from "components/util/Icon";
-import Loading from "components/util/Loading";
-import useComponentVisible from "components/util/useComponentVisible";
 import { AllLUGPTStatsContext } from "context/AllLUGPTStatsContext";
-import { UserContext } from "context/UserContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
-import { TachiConfig } from "lib/config";
-import React, { useContext, useEffect } from "react";
-import { Button } from "react-bootstrap";
-import toast from "react-hot-toast";
-import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
-import { FormatGame, GetGameConfig, UserGameStats } from "tachi-common";
+import React, { useContext } from "react";
+import { UserDocument, UserGameStats } from "tachi-common";
+import useApiQuery from "components/util/query/useApiQuery";
+import Nav from "react-bootstrap/Nav";
 import { SetState } from "types/react";
 import AllGames from "./AllGames";
 import ImportScoresLink from "./ImportScoresLink";
-import MenuDropdown from "./MenuDropdown";
-import MenuLink from "./MenuLink";
 import UtilsDropdown from "./UtilsDropdown";
+import UserProfileLinks from "./UserProfileLinks";
+
+const toggleClassNames = "w-100 justify-content-between w-lg-auto justify-content-lg-start";
 
 export function HeaderMenu({
-	mobileShow,
-	setMobileShow,
+	user,
+	dropdownMenuStyle,
+	setState,
 }: {
-	mobileShow: boolean;
-	setMobileShow: SetState<boolean>;
+	user: UserDocument | null;
+	dropdownMenuStyle?: React.CSSProperties;
+	setState?: SetState<boolean>;
 }) {
-	const { user, setUser } = useContext(UserContext);
 	const { ugs, setUGS } = useContext(AllLUGPTStatsContext);
 	const { settings } = useContext(UserSettingsContext);
 
-	const { isLoading, error } = useQuery([user?.id, "game_stats"], async () => {
-		if (!user) {
-			return null;
-		}
-
-		const res = await APIFetchV1<UserGameStats[]>("/users/me/game-stats");
-
-		if (!res.success) {
-			throw res;
-		}
-
-		return setUGS(res.body);
-	});
+	const { data, error } = useApiQuery<UserGameStats[]>("/users/me/game-stats", undefined, [
+		user?.id,
+		"game_stats",
+	]);
 
 	if (error) {
 		console.error(error);
 	}
 
-	const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(mobileShow);
-
-	// how does this not cause a problem. What?
-	useEffect(() => {
-		setIsComponentVisible(mobileShow);
-	}, [mobileShow]);
-
-	useEffect(() => {
-		setMobileShow(isComponentVisible);
-	}, [isComponentVisible]);
-
-	if (isLoading) {
-		return <Loading />;
-	}
-
-	const userProfileLinks = [];
-
-	if (user && ugs && ugs.length !== 0) {
-		const ugsMap = new Map();
-		for (const s of ugs) {
-			ugsMap.set(`${s.game}:${s.playtype}`, s);
-		}
-
-		for (const game of TachiConfig.games) {
-			for (const playtype of GetGameConfig(game).playtypes) {
-				const e = ugsMap.get(`${game}:${playtype}`);
-
-				if (!e) {
-					continue;
-				}
-
-				userProfileLinks.push(
-					<MenuLink
-						key={`${e.game}:${e.playtype}`}
-						name={FormatGame(e.game, e.playtype)}
-						to={`/u/${user.username}/games/${e.game}/${e.playtype}`}
-					/>
-				);
-			}
-		}
+	if (data) {
+		setUGS(data);
 	}
 
 	return (
-		<div
-			className={`header-menu-wrapper header-menu-wrapper-left ${
-				isComponentVisible ? "header-menu-wrapper-on" : ""
-			}`}
-			ref={ref}
-			id="kt_header_menu_wrapper"
-		>
-			<div className="d-flex h-100" style={{ flexDirection: "column" }}>
-				<div
-					id="kt_header_menu"
-					className="header-menu header-menu-left header-menu-mobile header-menu-layout-default header-menu-root-arrow"
-				>
-					<div className="d-lg-none">
-						<Link to="/">
-							<img
-								src={ToCDNURL("/logos/logo-wordmark.png")}
-								width="100%"
-								className="px-10 mt-4"
-							/>
-						</Link>
-
-						<div className="mt-4">
-							<Divider />
-						</div>
-					</div>
-					<ul className="menu-nav">
-						{user && ugs && ugs.length !== 0 && (
-							<MenuDropdown name="Your Profiles">{userProfileLinks}</MenuDropdown>
-						)}
-
-						<AllGames />
-
-						{user && <ImportScoresLink />}
-
-						{settings?.preferences.developerMode && <UtilsDropdown />}
-					</ul>
-				</div>
-				{user && (
-					<div
-						className="d-flex d-lg-none"
-						style={{ paddingLeft: "30px", marginBottom: "2rem", flex: "1 1 auto" }}
-					>
-						<div>
-							<Divider />
-						</div>
-						<Button
-							style={{ alignSelf: "flex-end" }}
-							variant="outline-danger"
-							onClick={async () => {
-								if (confirm("Are you sure you want to sign out?")) {
-									const rj = await APIFetchV1("/auth/logout", {
-										method: "POST",
-									});
-
-									if (rj.success) {
-										toast.success("Logged out.");
-										setTimeout(() => {
-											setUser(null);
-											localStorage.removeItem("isLoggedIn");
-											// This has to be the case.
-											// Otherwise, react just ruins its own
-											// state. I hate react state.
-											window.location.href = "/";
-										}, 500);
-									}
-								}
-							}}
-						>
-							<Icon type="sign-out-alt" />
-							Sign Out
-						</Button>
-					</div>
-				)}
-			</div>
-		</div>
+		<Nav className="p-4 d-flex flex-column flex-md-row align-content-between w-100 gap-2 h-lg-100 overflow-y-auto overflow-y-md-visible scrollbar-hide h-100">
+			{user && ugs && ugs.length !== 0 && (
+				<UserProfileLinks
+					user={user}
+					ugs={ugs}
+					className={toggleClassNames}
+					style={dropdownMenuStyle}
+					setState={setState}
+				/>
+			)}
+			<AllGames className={toggleClassNames} style={dropdownMenuStyle} setState={setState} />
+			{user && (
+				<ImportScoresLink
+					className={toggleClassNames}
+					style={dropdownMenuStyle}
+					setState={setState}
+				/>
+			)}
+			{settings?.preferences.developerMode && (
+				<UtilsDropdown
+					className={toggleClassNames}
+					style={dropdownMenuStyle}
+					setState={setState}
+				/>
+			)}
+		</Nav>
 	);
 }

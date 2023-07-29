@@ -3,7 +3,7 @@ import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import { ScoreDocument } from "tachi-common";
 import { SetState } from "types/react";
 
@@ -39,16 +39,14 @@ export default function ScoreEditButtons({
 										variant="outline-secondary"
 										onClick={() => setShow(true)}
 									>
-										<Icon type="file-signature" />
-										Comment
+										<Icon type="file-signature" /> Comment
 									</Button>
 								</QuickTooltip>
 							</>
 						) : (
 							<QuickTooltip tooltipContent="Comment on this score.">
 								<Button variant="outline-secondary" onClick={() => setShow(true)}>
-									<Icon type="file-signature" />
-									Comment
+									<Icon type="file-signature" /> Comment
 								</Button>
 							</QuickTooltip>
 						)}
@@ -69,8 +67,7 @@ export default function ScoreEditButtons({
 										)
 									}
 								>
-									<Icon type="star" />
-									Un-Highlight
+									<Icon type="star" /> Un-Highlight
 								</Button>
 							</QuickTooltip>
 						) : (
@@ -89,8 +86,7 @@ export default function ScoreEditButtons({
 										)
 									}
 								>
-									<Icon type="star" />
-									Highlight
+									<Icon type="star" /> Highlight
 								</Button>
 							</QuickTooltip>
 						)}
@@ -175,23 +171,20 @@ export function CommentModal({
 					}}
 				>
 					<Form.Group>
-						<div className="input-group">
-							<input
+						<InputGroup size="lg">
+							<Form.Control
 								ref={ref}
 								autoFocus
-								className="form-control form-control-lg"
 								type="text"
 								placeholder={initialComment ?? "This score was great!"}
 								value={innerComment}
 								onChange={(e) => setInnerComment(e.target.value)}
 							/>
 
-							<div className="input-group-append">
-								<Button variant="primary" type="submit">
-									Submit
-								</Button>
-							</div>
-						</div>
+							<Button variant="primary" type="submit">
+								Submit
+							</Button>
+						</InputGroup>
 					</Form.Group>
 
 					{initialComment !== null && (

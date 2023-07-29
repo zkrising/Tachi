@@ -19,9 +19,7 @@ export default function FormInput({
 }) {
 	return (
 		<InputGroup>
-			<InputGroup.Append>
-				<InputGroup.Text>{fieldName}</InputGroup.Text>
-			</InputGroup.Append>
+			<InputGroup.Text>{fieldName}</InputGroup.Text>
 			<Form.Control
 				as={as}
 				placeholder={placeholder}

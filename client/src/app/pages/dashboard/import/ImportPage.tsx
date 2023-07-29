@@ -10,7 +10,8 @@ import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useEffect, useState } from "react";
-import { Row } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import {
 	APIImportTypes,
@@ -55,8 +56,7 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 				<Link to={`/u/${user.username}/imports`}>Import Management</Link>.
 			</div>
 			<Divider />
-			<select
-				className="form-control"
+			<Form.Select
 				onChange={(e) => setGame(e.target.value === "" ? null : (e.target.value as Game))}
 				value={game ?? ""}
 			>
@@ -66,7 +66,7 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 						{GetGameConfig(e).name}
 					</option>
 				))}
-			</select>
+			</Form.Select>
 			<Divider />
 
 			{game ? <ImportInfoDisplayer game={game} /> : <ShowRecentImports />}

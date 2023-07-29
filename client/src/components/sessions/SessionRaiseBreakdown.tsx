@@ -1,7 +1,7 @@
 import { APIFetchV1 } from "util/api";
 import { ChangeOpacity } from "util/color-opacity";
 import { CreateChartMap, CreateScoreIDMap, CreateSongMap } from "util/data";
-import { PartialArrayRecordAssign, Reverse, UppercaseFirst } from "util/misc";
+import { Reverse, UppercaseFirst } from "util/misc";
 import DifficultyCell from "components/tables/cells/DifficultyCell";
 import TitleCell from "components/tables/cells/TitleCell";
 import MiniTable from "components/tables/components/MiniTable";
@@ -35,7 +35,6 @@ import {
 import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
 import { SessionReturns } from "types/api-returns";
 import { cloneDeep } from "lodash";
-import DebugContent from "components/util/DebugContent";
 
 type SetScores = (scores: ScoreDocument[]) => void;
 
@@ -84,18 +83,15 @@ export default function SessionRaiseBreakdown({
 							<div className="d-none d-lg-flex justify-content-center">
 								<div className="btn-group">
 									<SelectButton value={view} setValue={setView} id="lamp">
-										<Icon type="lightbulb" />
-										Lamps Only
+										<Icon type="lightbulb" /> Lamps Only
 									</SelectButton>
 
 									<SelectButton value={view} setValue={setView} id={null}>
-										<Icon type="bolt" />
-										All
+										<Icon type="bolt" /> All
 									</SelectButton>
 
 									<SelectButton value={view} setValue={setView} id="grade">
-										<Icon type="sort-alpha-up" />
-										Grades Only
+										<Icon type="sort-alpha-up" /> Grades Only
 									</SelectButton>
 								</div>
 							</div>

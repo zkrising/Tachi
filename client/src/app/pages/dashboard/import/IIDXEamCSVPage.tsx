@@ -42,8 +42,7 @@ const MoreDataFormComponent: MoreDataForm = ({ setFulfilled, setInfo }) => {
 				If you input the wrong playtype here, you will corrupt your account. I'm serious.
 				Don't make that mistake.
 			</div>
-			<select
-				className="form-control"
+			<Form.Select
 				onChange={(e) => {
 					const playtype = e.target.value;
 
@@ -58,7 +57,7 @@ const MoreDataFormComponent: MoreDataForm = ({ setFulfilled, setInfo }) => {
 				<option value="">Please select a playtype.</option>
 				<option value="SP">SP</option>
 				<option value="DP">DP</option>
-			</select>
+			</Form.Select>
 			<Form.Group className="mt-4">
 				<Form.Check
 					type="checkbox"

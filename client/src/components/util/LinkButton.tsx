@@ -5,7 +5,9 @@ import { LinkContainerProps } from "types/bootstrap";
 
 export type LinkButtonProps = LinkContainerProps & ButtonProps;
 
-/**A Bootstrap Button component that acts like a react-router Link */
+/**
+ * A Bootstrap Button component that acts like a react-router Link
+ */
 export default function LinkButton({
 	to,
 	activeClassName,

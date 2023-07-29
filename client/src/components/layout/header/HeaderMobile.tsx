@@ -33,7 +33,7 @@ export function HeaderMobile({
 
 					{user ? (
 						<>
-							<UserNotificationButton user={user} />
+							<UserNotificationButton />
 							<button
 								className="btn btn-icon btn-hover-transparent-white p-0 ms-3"
 								id="kt_header_mobile_topbar_toggle"

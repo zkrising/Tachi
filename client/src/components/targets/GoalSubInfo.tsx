@@ -2,7 +2,7 @@ import { NumericSOV } from "util/sorts";
 import Divider from "components/util/Divider";
 import Select from "components/util/Select";
 import React, { useMemo, useState } from "react";
-import { Col, Form } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import { GamePT } from "types/react";
 import { GoalSubDataset } from "types/tables";
 import { InnerQuestSectionGoal } from "./quests/Quest";

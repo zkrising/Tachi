@@ -3,7 +3,7 @@ import { FormatDuration } from "util/time";
 import Card from "components/layout/page/Card";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import Divider from "components/util/Divider";
-import React, { useState } from "react";
+import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { AnySessionRatingAlg, GetGamePTConfig, ScoreDocument, SessionDocument } from "tachi-common";
 import { SessionReturns } from "types/api-returns";
@@ -38,11 +38,7 @@ export default function SessionOverview({
 					name="Duration"
 					value={FormatDuration(session.timeEnded - session.timeStarted)}
 				/>
-				<StatThing
-					md12
-					name="Highlights"
-					value={scores.filter((e) => e.highlight).length}
-				/>
+				<StatThing name="Highlights" value={scores.filter((e) => e.highlight).length} />
 			</Row>
 			<SessionFolderRaiseBreakdown sessionData={sessionData} />
 			<Col xs={12}>
@@ -99,15 +95,7 @@ function RatingsOverview({ session }: { session: SessionDocument }) {
 	);
 }
 
-function StatThing({
-	value,
-	name,
-	md12,
-}: {
-	value: string | number;
-	name: string;
-	md12?: boolean;
-}) {
+function StatThing({ value, name }: { value: string | number; name: string }) {
 	return (
 		<Col>
 			<div className="card">

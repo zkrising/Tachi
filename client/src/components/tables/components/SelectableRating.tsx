@@ -1,6 +1,6 @@
 import { UppercaseFirst } from "util/misc";
 import React from "react";
-import { Game, GetGamePTConfig, GPTString, Playtypes, ScoreRatingAlgorithms } from "tachi-common";
+import { Game, GetGamePTConfig, GPTString, Playtypes } from "tachi-common";
 import { SetState } from "types/react";
 import Icon from "components/util/Icon";
 import { ZTableTHProps } from "./TachiTable";

@@ -1,5 +1,4 @@
 import { ChangeOpacity } from "util/color-opacity";
-import { TruncateString } from "util/misc";
 import { EventInput } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import FullCalendar from "@fullcalendar/react"; // must go before plugins

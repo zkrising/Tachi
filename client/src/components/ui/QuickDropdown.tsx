@@ -5,12 +5,18 @@ import { DropdownToggleProps } from "react-bootstrap/esm/DropdownToggle";
 import { AlignType } from "react-bootstrap/esm/types";
 
 export interface QuickDropdownProps extends DropdownToggleProps {
-	/**Text or JSX to render in the toggle button*/
+	/**
+	 * Text or JSX to render in the toggle button
+	 */
 	toggle: React.ReactNode;
-	/**Render a caret*/
+	/**
+	 * Render a caret
+	 */
 	caret?: boolean;
 	caretPosition?: "start" | "end";
-	/**Which position of the toggle the dropdown should align to*/
+	/**
+	 * Which position of the toggle the dropdown should align to
+	 */
 	align?: AlignType;
 	menuStyle?: React.CSSProperties;
 	menuClassName?: string;
@@ -37,8 +43,9 @@ export default function QuickDropdown({
 			<Dropdown.Toggle
 				id={id ? `${id}-toggle` : undefined}
 				variant={variant}
-				// eslint-disable-next-line prettier/prettier
-				className={`${className} fw-semibold align-items-center d-flex${caret && caretPosition === "start" ? " flex-row-reverse" : ""}`}
+				className={`${className} fw-semibold align-items-center d-flex${
+					caret && caretPosition === "start" ? " flex-row-reverse" : ""
+				}`}
 				{...props}
 			>
 				{toggle}

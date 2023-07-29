@@ -7,14 +7,7 @@ import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useReducer, useState } from "react";
-import {
-	ChartDocument,
-	GPTString,
-	integer,
-	PBScoreDocument,
-	ScoreDocument,
-	SongDocument,
-} from "tachi-common";
+import { ChartDocument, integer, PBScoreDocument, ScoreDocument, SongDocument } from "tachi-common";
 import { GoalsOnChartReturn, UGPTChartPBComposition } from "types/api-returns";
 import { GamePT } from "types/react";
 import DocComponentCreator, {

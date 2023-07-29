@@ -14,7 +14,7 @@ export function Topbar() {
 
 			{user ? (
 				<>
-					<UserNotificationButton user={user} />
+					<UserNotificationButton />
 					<UserProfileDropdown user={user} />
 				</>
 			) : (

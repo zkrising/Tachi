@@ -11,7 +11,7 @@ import QuickDropdown from "components/ui/QuickDropdown";
 import { TextColour } from "types/bootstrap";
 import DropdownNavLink from "components/ui/DropdownNavLink";
 
-const UserProfileDropdownToggle = ({ user }: { user: UserDocument }) => {
+function UserProfileDropdownToggle({ user }: { user: UserDocument }) {
 	const [heySplash] = useState(RFA(heySplashes));
 	return (
 		<>
@@ -33,9 +33,9 @@ const UserProfileDropdownToggle = ({ user }: { user: UserDocument }) => {
 			/>
 		</>
 	);
-};
+}
 
-const UserProfileMenuItem = ({
+function UserProfileMenuItem({
 	to,
 	id,
 	iconType,
@@ -47,20 +47,22 @@ const UserProfileMenuItem = ({
 	iconType: string;
 	iconColour: TextColour;
 	children: React.ReactNode;
-}) => (
-	<DropdownNavLink
-		to={to}
-		id={id}
-		isActive={() => false}
-		className="d-flex align-items-center gap-6 p-4 text-wrap"
-		style={{ minWidth: "30rem" }}
-	>
-		<span className="display-6">
-			<Icon type={iconType} colour={iconColour} />
-		</span>
-		<div>{children}</div>
-	</DropdownNavLink>
-);
+}) {
+	return (
+		<DropdownNavLink
+			to={to}
+			id={id}
+			isActive={() => false}
+			className="d-flex align-items-center gap-6 p-4 text-wrap"
+			style={{ minWidth: "30rem" }}
+		>
+			<span className="display-6">
+				<Icon type={iconType} colour={iconColour} />
+			</span>
+			<div>{children}</div>
+		</DropdownNavLink>
+	);
+}
 
 export function UserProfileDropdown({
 	user,

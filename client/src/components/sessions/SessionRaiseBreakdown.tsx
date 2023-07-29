@@ -1,7 +1,7 @@
 import { APIFetchV1 } from "util/api";
 import { ChangeOpacity } from "util/color-opacity";
 import { CreateChartMap, CreateScoreIDMap, CreateSongMap } from "util/data";
-import { PartialArrayRecordAssign, Reverse, UppercaseFirst } from "util/misc";
+import { Reverse, UppercaseFirst } from "util/misc";
 import DifficultyCell from "components/tables/cells/DifficultyCell";
 import TitleCell from "components/tables/cells/TitleCell";
 import MiniTable from "components/tables/components/MiniTable";
@@ -35,7 +35,6 @@ import {
 import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
 import { SessionReturns } from "types/api-returns";
 import { cloneDeep } from "lodash";
-import DebugContent from "components/util/DebugContent";
 
 type SetScores = (scores: ScoreDocument[]) => void;
 

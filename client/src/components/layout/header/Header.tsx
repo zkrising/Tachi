@@ -1,4 +1,3 @@
-import useBreakpoint from "util/useBreakpoint";
 import { Breakpoints } from "util/constants/breakpoints";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";

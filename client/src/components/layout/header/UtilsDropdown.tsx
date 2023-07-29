@@ -3,19 +3,21 @@ import DropdownNavLink from "components/ui/DropdownNavLink";
 import QuickDropdown from "components/ui/QuickDropdown";
 import { SetState } from "types/react";
 
-const UtilsLinks = ({ onClick }: { onClick: React.MouseEventHandler }) => (
-	<>
-		<DropdownNavLink to="/utils/seeds" onClick={onClick}>
-			Seeds Management
-		</DropdownNavLink>
-		<DropdownNavLink to="/utils/imports" onClick={onClick}>
-			Import Management
-		</DropdownNavLink>
-		<DropdownNavLink to="/utils/quests" onClick={onClick}>
-			Quest Creator
-		</DropdownNavLink>
-	</>
-);
+function UtilsLinks({ onClick }: { onClick: React.MouseEventHandler }) {
+	return (
+		<>
+			<DropdownNavLink to="/utils/seeds" onClick={onClick}>
+				Seeds Management
+			</DropdownNavLink>
+			<DropdownNavLink to="/utils/imports" onClick={onClick}>
+				Import Management
+			</DropdownNavLink>
+			<DropdownNavLink to="/utils/quests" onClick={onClick}>
+				Quest Creator
+			</DropdownNavLink>
+		</>
+	);
+}
 
 export default function UtilsDropdown({
 	className,

@@ -1,7 +1,6 @@
 import Icon from "components/util/Icon";
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { GetGameConfig } from "tachi-common";
 
 export function Breadcrumbs({ items }: { items: string[] }) {
 	const url = location.pathname;

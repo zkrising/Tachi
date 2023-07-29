@@ -42,7 +42,6 @@ export function WindowContextProvider({ children }: JustChildren) {
 		const resize = () => setClientWidth(getClientWidth());
 		const throttledResize = throttle(resize, 250);
 		window.addEventListener("resize", throttledResize);
-		console.log("render");
 
 		return () => {
 			window.removeEventListener("resize", throttledResize);

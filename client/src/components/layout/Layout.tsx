@@ -1,28 +1,29 @@
-import useBreakpoint from "util/useBreakpoint";
-import { Breakpoints } from "util/constants/breakpoints";
-import React from "react";
+import React, { useContext } from "react";
 import { JustChildren } from "types/react";
 import { BackgroundContextProvider } from "context/BackgroundContext";
 import BackgroundImage from "components/layout/misc/BackgroundImage";
 import Container from "react-bootstrap/Container";
+import { WindowContext } from "context/WindowContext";
 import { Footer } from "./footer/Footer";
 import Header from "./header/Header";
 import { SubHeader } from "./subheader/SubHeader";
 
 export type LayoutStyles = {
-	height: number;
-	margin: string;
+	backgroundHeight: number;
+	headerHeight: number;
 };
 
 export function Layout({ children }: JustChildren) {
-	const breakpoint = useBreakpoint();
-	const styles = {
-		height: breakpoint < Breakpoints.md ? 125 : 200,
-		margin: breakpoint < Breakpoints.md ? "55px" : "80px",
+	const {
+		breakpoint: { isMd },
+	} = useContext(WindowContext);
+	const styles: LayoutStyles = {
+		backgroundHeight: isMd ? 200 : 125,
+		headerHeight: isMd ? 80 : 55,
 	};
 	return (
 		<div id="main-wrapper" className="d-flex flex-column overflow-x-hidden min-vh-100">
-			<Header breakpoint={breakpoint} />
+			<Header styles={styles} />
 
 			<BackgroundContextProvider>
 				<BackgroundImage styles={styles} />

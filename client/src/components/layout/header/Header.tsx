@@ -1,4 +1,3 @@
-import { Breakpoints } from "util/constants/breakpoints";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
@@ -6,28 +5,34 @@ import { Navbar, Offcanvas, OffcanvasHeader } from "react-bootstrap";
 import SiteWordmark from "components/util/SiteWordmark";
 import SignOut from "components/util/SignOut";
 import { UserContext } from "context/UserContext";
+import { WindowContext } from "context/WindowContext";
+import { LayoutStyles } from "../Layout";
 import { HeaderMenu } from "./HeaderMenu";
 import UserArea from "./UserArea";
 import MobileMenuToggle from "./MobileMenuToggle";
 import Logo from "./Logo";
 
-export default function Header({ breakpoint }: { breakpoint: number }) {
+export default function Header({ styles }: { styles: LayoutStyles }) {
 	const { user } = useContext(UserContext);
+	const {
+		breakpoint: { isMd },
+	} = useContext(WindowContext);
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-	const dropdownMenuStyle = breakpoint > Breakpoints.md ? { marginTop: "1.37rem" } : undefined;
+	const dropdownMenuStyle = isMd ? { transform: "translateY(16.5px)" } : undefined;
 
-	const setState = breakpoint <= Breakpoints.md ? setShowMobileMenu : undefined;
+	const setState = isMd ? undefined : setShowMobileMenu;
 
 	useEffect(() => {
-		if (breakpoint >= Breakpoints.md) {
+		if (isMd) {
 			setShowMobileMenu(false);
 		}
-	}, [breakpoint]);
+	}, [isMd]);
 	return (
 		<header
 			id="main-header"
 			className="bg-body bg-opacity-75 backdrop-blur-xl border-bottom border-secondary border-opacity-25 fixed-top"
+			style={{ height: `${styles.headerHeight}px` }}
 		>
 			<Navbar expand={"md"} variant="" className="h-100 p-0">
 				<Container className="d-flex align-items-center">

@@ -8,9 +8,9 @@ export default function BackgroundImage({ styles }: { styles: LayoutStyles }) {
 	return (
 		<img
 			src={background ? background : `${ToCDNURL("/game-banners/default")}`}
-			height={styles.height}
+			height={styles.backgroundHeight}
 			style={{
-				marginTop: styles.margin,
+				marginTop: `${styles.headerHeight}px`,
 				objectFit: "cover",
 				width: "100%",
 				zIndex: "-1",

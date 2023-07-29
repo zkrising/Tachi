@@ -28,6 +28,7 @@ function UserProfileDropdownToggle({ user }: { user: UserDocument }) {
 			<img
 				alt={user.username}
 				height={32}
+				width={32}
 				src={ToAPIURL("/users/me/pfp")}
 				className="object-fit-cover rounded"
 			/>

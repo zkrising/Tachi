@@ -1,6 +1,6 @@
 .fading-image-td-left {
 	position: relative;
-	z-index: -1;
+	z-index: 1;
 
 	&:before {
 		content: "";
@@ -22,10 +22,10 @@
 
 .fading-image-td-right {
 	position: relative;
-	z-index: -1;
+	z-index: 1;
 
 	&:before {
-		content: '';
+		content: "";
 		display: block;
 		background-image: var(--image-url);
 		mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
@@ -42,6 +42,22 @@
 	}
 }
 
+.expandable-pseudo-row, .nested-expandable-pseudo-row {
+	td { 
+		border: none;
+	}
+}
+
+.fake-row {
+	border: none;
+}
+
+.tr-dropdown-container {
+	padding: 4px;
+	border-bottom: #{$table-border-width} solid #{$table-border-color};
+	background-color: var(--bs-body-bg);
+}
+
 .quest-anchor {
 	scroll-margin-top: 100px;
 }
@@ -54,7 +70,7 @@
 @include media-breakpoint-up(lg) {
 	.MuiTabs-flexContainer {
 		width: 100%;
-		justify-content: space-around
+		justify-content: space-around;
 	}
 }
 

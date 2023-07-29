@@ -22,23 +22,6 @@
 	}
 }
 
-.fake-row {
-	td {
-		padding: 0 !important;
-		border-top: none;
-	}
-}
-
-.tr-dropdown-container {
-	padding: 4px;
-	border-top: 1px solid $table-border-color;
-	background-color: var(--bs-body-bg);
-
-	&.collapsing {
-		border-bottom: 1px solid $table-border-color;
-	}
-}
-
 .gentle-link {
 	color: var(--bs-body-color);
 

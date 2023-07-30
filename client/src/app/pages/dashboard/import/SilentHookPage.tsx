@@ -4,6 +4,7 @@ import ExternalLink from "components/util/ExternalLink";
 import Muted from "components/util/Muted";
 import { TachiConfig } from "lib/config";
 import React from "react";
+import Alert from "react-bootstrap/Alert";
 
 export default function SilentHookPage() {
 	useSetSubheader(["Import Scores", "Silent Hook"]);
@@ -21,8 +22,11 @@ export default function SilentHookPage() {
 			<ol className="instructions-list">
 				<li>
 					Download <code>silent</code> from{" "}
-					<ExternalLink href="https://zkldi.xyz/stuff/silent-latest.zip">
-						Here
+					<ExternalLink
+						className="text-decoration-underline"
+						href="https://zkldi.xyz/stuff/silent-latest.zip"
+					>
+						here
 					</ExternalLink>{" "}
 					and place all the <code>.dll</code> files in the same folder as{" "}
 					<code>popn22.dll</code>.
@@ -31,8 +35,16 @@ export default function SilentHookPage() {
 				</li>
 				<li>
 					Download your config file to the same folder{" "}
-					<ExternalLink href="/client-file-flow/CXSilentHook">here</ExternalLink>. <br />
-					<b>This file contains an API Key, which is meant to be kept secret!</b>
+					<ExternalLink
+						className="text-decoration-underline"
+						href="/client-file-flow/CXSilentHook"
+					>
+						here
+					</ExternalLink>
+					. <br />
+					<Alert variant="warning" className="mt-2">
+						This file contains an API Key, which is meant to be kept secret!
+					</Alert>
 				</li>
 				<li>
 					Add <code>silent</code> to your startup script as a hook.

@@ -4,6 +4,7 @@ import ExternalLink from "components/util/ExternalLink";
 import Muted from "components/util/Muted";
 import { TachiConfig } from "lib/config";
 import React from "react";
+import Alert from "react-bootstrap/Alert";
 
 const WIN_BAT = `
 REM *** Set system-wide "_JAVA_OPTIONS" environment variable to use OpenGL pipeline (improved performance of > 30% potentially. Also use anti-aliasing for non-LR2 fonts, and finally allow Swing framework to utilize AA and GTKLookAndFeel for config window. ***
@@ -32,7 +33,10 @@ export default function BeatorajaIRPage({ game }: { game: "bms" | "pms" }) {
 			<ol className="instructions-list">
 				<li>
 					Download the latest version of the {name} IR{" "}
-					<ExternalLink href="https://github.com/TNG-dev/tachi-beatoraja-ir/releases">
+					<ExternalLink
+						className="text-decoration-underline"
+						href="https://github.com/TNG-dev/tachi-beatoraja-ir/releases"
+					>
 						here
 					</ExternalLink>
 					.
@@ -44,7 +48,10 @@ export default function BeatorajaIRPage({ game }: { game: "bms" | "pms" }) {
 							<b>NOT</b> support BMS scores achieved on beatoraja, and will not accept
 							scores from the client.
 							<br />
-							<ExternalLink href="https://github.com/wcko87/lr2oraja/releases">
+							<ExternalLink
+								className="text-decoration-underline"
+								href="https://github.com/wcko87/lr2oraja/releases"
+							>
 								LR2oraja
 							</ExternalLink>{" "}
 							is a one-file change for beatoraja that changes the settings to match
@@ -68,7 +75,7 @@ export default function BeatorajaIRPage({ game }: { game: "bms" | "pms" }) {
 				<li>
 					Select {TachiConfig.name} IR.
 					<br />
-					<span className="text-warning">
+					<Alert className="mt-2" variant="warning">
 						If the IR isn't showing up, make sure you're launching the game with the{" "}
 						<code>beatoraja-config.bat</code> file. Otherwise, IRs will never load.
 						<br />
@@ -80,6 +87,7 @@ export default function BeatorajaIRPage({ game }: { game: "bms" | "pms" }) {
 								<a
 									download="beatoraja-config.bat"
 									href={`data:text/plain;base64,${window.btoa(WIN_BAT)}`}
+									className="text-decoration-underline"
 								>
 									Windows
 								</a>
@@ -88,26 +96,32 @@ export default function BeatorajaIRPage({ game }: { game: "bms" | "pms" }) {
 								<a
 									download="beatoraja-config.sh"
 									href={`data:text/plain;base64,${window.btoa(LINUX_SH)}`}
+									className="text-decoration-underline"
 								>
 									Linux
 								</a>
 							</li>
 						</ul>
-					</span>
+					</Alert>
 				</li>
 				<li>
 					Get an API token for the IR by clicking{" "}
-					<ExternalLink href="/client-file-flow/CXBeatorajaIR">this link</ExternalLink>.
+					<ExternalLink
+						className="text-decoration-underline"
+						href="/client-file-flow/CXBeatorajaIR"
+					>
+						this link
+					</ExternalLink>
+					.
 				</li>
 				<li>
 					Place the API token in the password field. Put your username in as well! The IR
 					wont load if you don't have a username set.
-					<br />
-					<span className="text-warning">
+					<Alert className="mt-2" variant="warning">
 						<b>DO NOT PUT YOUR PASSWORD IN THE PASSWORD FIELD!</b>
 						<br />
 						For security reasons, you must put the API Key in that field, instead.
-					</span>
+					</Alert>
 				</li>
 				<li>
 					That's it! Launch the game and start playing, your scores will automatically

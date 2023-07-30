@@ -29,7 +29,10 @@ export default function ITGHookPage() {
 			<ol className="instructions-list">
 				<li>
 					Download the latest version of <code>Tachi.lua</code>{" "}
-					<ExternalLink href="https://github.com/TNG-Dev/Simply-Love-Tachi-Module">
+					<ExternalLink
+						className="text-decoration-underline"
+						href="https://github.com/TNG-Dev/Simply-Love-Tachi-Module"
+					>
 						here
 					</ExternalLink>
 					.
@@ -39,7 +42,13 @@ export default function ITGHookPage() {
 				</li>
 				<li>
 					Get your <code>Tachi.json</code> file by clicking{" "}
-					<ExternalLink href="/client-file-flow/CXITGHook">this link</ExternalLink>.
+					<ExternalLink
+						className="text-decoration-underline"
+						href="/client-file-flow/CXITGHook"
+					>
+						this link
+					</ExternalLink>
+					.
 				</li>
 				<li>
 					Place this file inside your user profile. It should go next to

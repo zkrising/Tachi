@@ -37,7 +37,7 @@ export default function EditableQuest({
 						{(text) => (
 							<h3>
 								{text}
-								<span className="ml-2 text-hover-white">
+								<span className="ms-2 text-hover-white">
 									<Icon type="pencil-alt" />
 								</span>
 							</h3>
@@ -56,7 +56,7 @@ export default function EditableQuest({
 						{(desc) => (
 							<div>
 								{desc}
-								<span className="ml-2 text-hover-white">
+								<span className="ms-2 text-hover-white">
 									<Icon type="pencil-alt" />
 								</span>
 							</div>
@@ -114,7 +114,7 @@ export default function EditableQuest({
 			</div>
 			<Divider />
 			<div className="d-flex w-100">
-				<div className="mr-auto">
+				<div className="me-auto">
 					<QuickTooltip tooltipContent="Copy this quest to your clipboard in a pretty format.">
 						<Button
 							variant="outline-info"
@@ -126,7 +126,7 @@ export default function EditableQuest({
 						</Button>
 					</QuickTooltip>
 				</div>
-				<div className="ml-auto">
+				<div className="ms-auto">
 					<Button
 						variant="outline-danger"
 						onClick={() => {
@@ -170,7 +170,7 @@ function QuestSection({
 				{(text) => (
 					<h5>
 						{text}
-						<span className="ml-2 text-hover-white">
+						<span className="ms-2 text-hover-white">
 							<Icon type="pencil-alt" />
 						</span>
 					</h5>
@@ -188,7 +188,7 @@ function QuestSection({
 				{(desc) => (
 					<div>
 						{desc === "" ? <Muted>No Description...</Muted> : desc}
-						<span className="ml-2 text-hover-white">
+						<span className="ms-2 text-hover-white">
 							<Icon type="pencil-alt" />
 						</span>
 					</div>
@@ -224,11 +224,10 @@ function QuestSection({
 			<br />
 			<div className="w-100 d-flex mt-8">
 				<Button variant="outline-success" onClick={() => setShow(true)}>
-					<Icon type="plus" />
-					Add Goal
+					<Icon type="plus" /> Add Goal
 				</Button>
 				<Button
-					className="ml-auto"
+					className="ms-auto"
 					variant="outline-danger"
 					onClick={() => {
 						if (confirm("Are you absolutely sure you want to delete this section?")) {
@@ -236,8 +235,7 @@ function QuestSection({
 						}
 					}}
 				>
-					<Icon type="times" />
-					Delete Section
+					<Icon type="times" /> Delete Section
 				</Button>
 			</div>
 			{show && (
@@ -274,13 +272,13 @@ function InnerQuestSectionGoal({
 	return (
 		<li className="quest-goal">
 			<div className="w-100 d-flex">
-				<div className="mr-auto">{rawGoal.goal.name}</div>
+				<div className="me-auto">{rawGoal.goal.name}</div>
 
-				<div className="ml-auto d-flex flex-nowrap">
+				<div className="ms-auto d-flex flex-nowrap">
 					<div className="text-hover-white">
 						<Icon type="pencil-alt" onClick={() => setShow(true)} />
 					</div>
-					<div className="ml-2 text-hover-white">
+					<div className="ms-2 text-hover-white">
 						<Icon
 							type="trash"
 							onClick={() => {

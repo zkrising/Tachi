@@ -36,12 +36,10 @@ export default function GPTLeaderboardsPage({ game, playtype }: GamePT) {
 			<Col xs={12} className="d-flex justify-content-center">
 				<div className="btn-group">
 					<SelectButton id="profile" value={mode} setValue={setMode}>
-						<Icon type="user" />
-						User Leaderboards
+						<Icon type="user" /> User Leaderboards
 					</SelectButton>
 					<SelectButton id="score" value={mode} setValue={setMode}>
-						<Icon type="sort-numeric-up-alt" />
-						PB Leaderboards
+						<Icon type="sort-numeric-up-alt" /> PB Leaderboards
 					</SelectButton>
 				</div>
 			</Col>
@@ -70,13 +68,13 @@ function ProfileLeaderboard({ game, playtype }: GamePT) {
 
 	const SelectComponent =
 		Object.keys(gptConfig.profileRatingAlgs).length > 1 ? (
-			<Form.Control as="select" value={alg} onChange={(e) => setAlg(e.target.value as any)}>
+			<Form.Select value={alg} onChange={(e) => setAlg(e.target.value as any)}>
 				{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
 					<option key={e} value={e}>
 						{UppercaseFirst(e)}
 					</option>
 				))}
-			</Form.Control>
+			</Form.Select>
 		) : null;
 
 	const { data, error } = useApiQuery<UserLeaderboardReturns>(

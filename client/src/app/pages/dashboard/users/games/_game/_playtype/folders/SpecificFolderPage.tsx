@@ -124,30 +124,25 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 			</div>
 			<div className="col-12 d-flex">
 				<div className="btn-group d-flex w-100">
-					<SelectLinkButton to={base}>
-						<Icon type="table" />
-						Normal View
+					<SelectLinkButton className="text-wrap" to={base}>
+						<Icon type="table" /> Normal View
 					</SelectLinkButton>
 					{gptImpl.ratingSystems.length !== 0 &&
 						// temp: tierlist view sucks for BMS and PMS
 						game !== "bms" &&
 						game !== "pms" && (
-							<SelectLinkButton to={`${base}/tierlist`}>
-								<Icon type="sort-alpha-up" />
-								Tierlist View
+							<SelectLinkButton className="text-wrap" to={`${base}/tierlist`}>
+								<Icon type="sort-alpha-up" /> Tierlist View
 							</SelectLinkButton>
 						)}
-					<SelectLinkButton to={`${base}/timeline`}>
-						<Icon type="stream" />
-						Timeline View
+					<SelectLinkButton className="text-wrap" to={`${base}/timeline`}>
+						<Icon type="stream" /> Timeline View
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/compare`}>
-						<Icon type="users" />
-						Compare Against User
+					<SelectLinkButton className="text-wrap" to={`${base}/compare`}>
+						<Icon type="users" /> Compare Against User
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/targets`}>
-						<Icon type="scroll" />
-						Goals & Quests
+					<SelectLinkButton className="text-wrap" to={`${base}/targets`}>
+						<Icon type="scroll" /> Goals & Quests
 					</SelectLinkButton>
 				</div>
 			</div>
@@ -224,8 +219,7 @@ function TimelineView({ game, playtype, reqUser, folderID }: Props & { folderID:
 						<Divider />
 					</div>
 					<div className="col-12 col-lg-6">
-						<Form.Control
-							as="select"
+						<Form.Select
 							value={selectedEnum}
 							onChange={(e) => setSelectedEnum(e.target.value)}
 						>
@@ -234,20 +228,16 @@ function TimelineView({ game, playtype, reqUser, folderID }: Props & { folderID:
 									{UppercaseFirst(e)}
 								</option>
 							))}
-						</Form.Control>
+						</Form.Select>
 					</div>
 					<div className="col-12 col-lg-6">
-						<Form.Control
-							as="select"
-							value={value}
-							onChange={(e) => setValue(e.target.value)}
-						>
+						<Form.Select value={value} onChange={(e) => setValue(e.target.value)}>
 							{enumConf.values
 								.slice(enumConf.values.indexOf(enumConf.minimumRelevantValue))
 								.map((e) => (
 									<option key={e}>{e}</option>
 								))}
-						</Form.Control>
+						</Form.Select>
 					</div>
 				</div>
 			</Card>
@@ -343,7 +333,7 @@ function TimelineMain({
 				<h1 className="display-4">Total Progress</h1>
 				<h1 className="display-4">
 					{data.scores.length}
-					<span className="text-muted" style={{ fontSize: "1.1rem" }}>
+					<span className="text-body-secondary" style={{ fontSize: "1.1rem" }}>
 						/{data.charts.length}
 					</span>
 				</h1>
@@ -358,7 +348,7 @@ function TimelineMain({
 				<h1 className="display-4">Total Progress</h1>
 				<h1 className="display-4">
 					{data.scores.length}
-					<span className="text-muted" style={{ fontSize: "1.1rem" }}>
+					<span className="text-body-secondary" style={{ fontSize: "1.1rem" }}>
 						/{data.charts.length}
 					</span>
 				</h1>
@@ -391,32 +381,34 @@ function TimelineElement({
 		<div className="timeline-item">
 			<span className="timeline-badge bg-primary"></span>
 			<div className="timeline-content d-flex align-items-center justify-content-between">
-				<span className="mr-3 w-100" style={{ fontSize: "1.15rem" }}>
+				<span className="me-3 w-100" style={{ fontSize: "1.15rem" }}>
 					<MiniTable>
-						<td>
-							<b>#{index}</b>
-							{Date.now() - scoreData.timeAdded < ONE_DAY && (
-								<span className="ml-2 label label-inline label-primary font-weight-bolder">
-									NEW!
-								</span>
-							)}
-						</td>
-						<DifficultyCell
-							alwaysShort
-							game={scoreData.game}
-							chart={scoreData.__related.chart}
-						/>
-						<TitleCell
-							game={scoreData.game}
-							chart={scoreData.__related.chart}
-							song={scoreData.__related.song}
-						/>
-						<ScoreCoreCells
-							game={scoreData.game}
-							chart={scoreData.__related.chart}
-							score={scoreData}
-						/>
-						<TimestampCell time={scoreData.timeAchieved} />
+						<tr>
+							<td>
+								<b>#{index}</b>
+								{Date.now() - scoreData.timeAdded < ONE_DAY && (
+									<span className="ms-2 label label-inline label-primary fw-bolder">
+										NEW!
+									</span>
+								)}
+							</td>
+							<DifficultyCell
+								alwaysShort
+								game={scoreData.game}
+								chart={scoreData.__related.chart}
+							/>
+							<TitleCell
+								game={scoreData.game}
+								chart={scoreData.__related.chart}
+								song={scoreData.__related.song}
+							/>
+							<ScoreCoreCells
+								game={scoreData.game}
+								chart={scoreData.__related.chart}
+								score={scoreData}
+							/>
+							<TimestampCell time={scoreData.timeAchieved} />
+						</tr>
 					</MiniTable>
 				</span>
 			</div>
@@ -666,7 +658,7 @@ function TierlistInfoBucketValues({
 		return (
 			<tr>
 				<DifficultyCell game={game} chart={tierlistInfo.chart} alwaysShort noTierlist />
-				<td className="text-left">
+				<td className="text-start">
 					<Link className="gentle-link" to={CreateChartLink(data, game)}>
 						{tierlistInfo.chart.__related.song.title}
 					</Link>{" "}
@@ -674,7 +666,7 @@ function TierlistInfoBucketValues({
 					<div>
 						{tierlistInfo.value} ({tierlistInfo.text ?? "No Info"})
 						{tierlistInfo.idvDiff && (
-							<span className="ml-1">
+							<span className="ms-1">
 								<Icon type="balance-scale-left" />
 							</span>
 						)}
@@ -693,7 +685,13 @@ function TierlistInfoBucketValues({
 				tooltipContent={
 					data.__related.pb ? (
 						<MiniTable headers={[`${reqUser.username}'s Score`]} colSpan={99}>
-							<ScoreCoreCells chart={data} game={game} score={data.__related.pb} />
+							<tr>
+								<ScoreCoreCells
+									chart={data}
+									game={game}
+									score={data.__related.pb}
+								/>
+							</tr>
 						</MiniTable>
 					) : undefined
 				}

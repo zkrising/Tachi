@@ -14,8 +14,8 @@ export default function UserHeaderContainer({
 		<div className="row">
 			<div className="col-12">
 				<div className="card card-custom">
-					<div className="card-header">
-						<h4>{header}</h4>
+					<div className="card-header d-flex">
+						<h4 className="m-0 fw-bold">{header}</h4>
 					</div>
 					<div className="card-body">
 						<div className="row align-items-center">{children}</div>

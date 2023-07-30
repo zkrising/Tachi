@@ -42,7 +42,7 @@ export const SeedsGoalCells: CellsRenderFN<GoalDocument> = ({ data }: { data: Go
 		</td>
 		<td>{FormatGame(data.game, data.playtype)}</td>
 		<td>
-			<div className="text-left">
+			<div className="text-start">
 				{FlattenValue(data.charts).map((e) => (
 					<>
 						{StringifyKeyChain(e.keychain)} = {String(e.value)}
@@ -52,7 +52,7 @@ export const SeedsGoalCells: CellsRenderFN<GoalDocument> = ({ data }: { data: Go
 			</div>
 		</td>
 		<td>
-			<div className="text-left">
+			<div className="text-start">
 				{FlattenValue(data.criteria).map((e) => (
 					<>
 						{StringifyKeyChain(e.keychain)} = {String(e.value)}

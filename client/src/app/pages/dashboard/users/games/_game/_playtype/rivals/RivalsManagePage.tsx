@@ -183,8 +183,7 @@ function RivalsOverviewPage({
 								variant="outline-danger"
 								onClick={() => setRivals(rivals.filter((u) => u.id !== e.id))}
 							>
-								<Icon type="trash" />
-								Remove
+								<Icon type="trash" /> Remove
 							</Button>
 						</UserIcon>
 					))}
@@ -208,8 +207,7 @@ function RivalsOverviewPage({
 								</Button>
 							) : (
 								<Button onClick={() => setShow(true)} variant="success">
-									<Icon type="plus" />
-									Add Rival
+									<Icon type="plus" /> Add Rival
 								</Button>
 							)}
 						</Col>
@@ -266,13 +264,11 @@ function RivalsOverviewPage({
 										variant="outline-success"
 										onClick={() => setRivals([...rivals, e])}
 									>
-										<Icon type="plus" />
-										Rival Back
+										<Icon type="plus" /> Rival Back
 									</Button>
 								) : (
 									<Button variant="outline-secondary" disabled>
-										<Icon type="plus" />
-										At Max Rivals
+										<Icon type="plus" /> At Max Rivals
 									</Button>
 								))}
 						</UserIcon>

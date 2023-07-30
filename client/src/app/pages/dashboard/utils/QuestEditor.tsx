@@ -114,7 +114,7 @@ export default function QuestEditor() {
 					{quests.length > 0 && (
 						<>
 							<a
-								className="btn btn-success mr-4"
+								className="btn btn-success me-4"
 								download={`Quests-${Date.now()}.json`}
 								href={`data:application/json;charset=UTF-8,${encodeURIComponent(
 									JSON.stringify(quests)
@@ -123,7 +123,7 @@ export default function QuestEditor() {
 								Download Quests
 							</a>
 							<div
-								className="btn btn-danger mr-4"
+								className="btn btn-danger me-4"
 								onClick={() => {
 									if (confirm("Are you sure you want to start from scratch?")) {
 										setQuests([]);
@@ -161,8 +161,7 @@ export default function QuestEditor() {
 				<div className="w-100 h-100">
 					<div className="d-flex w-100 h-100 justify-content-center align-items-center">
 						<Button variant="outline-success" onClick={() => setShow(true)}>
-							<Icon type="plus" />
-							Add New Quest
+							<Icon type="plus" /> Add New Quest
 						</Button>
 					</div>
 				</div>

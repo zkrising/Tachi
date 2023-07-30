@@ -182,24 +182,20 @@ function InternalGPTChartPage({
 	return (
 		<Row>
 			<Col xs={12} className="d-flex mb-8">
-				<div className="btn-group w-100">
+				<div className="btn-group text-wrap w-100">
 					<SelectLinkButton to={base}>
-						<Icon type="trophy" />
-						Best 100
+						<Icon type="trophy" /> Best 100
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/me`} disabled={!data.adjacent}>
-						<Icon type="user" />
-						Your Position
+						<Icon type="user" /> Your Position
 					</SelectLinkButton>
 					{user && (
 						<>
 							<SelectLinkButton to={`${base}/rivals`} disabled={!data.adjacent}>
-								<Icon type="users" />
-								Vs. Rivals
+								<Icon type="users" /> Vs. Rivals
 							</SelectLinkButton>
 							<SelectLinkButton to={`${base}/targets`}>
-								<Icon type="scroll" />
-								Goals & Quests
+								<Icon type="scroll" /> Goals & Quests
 							</SelectLinkButton>
 						</>
 					)}
@@ -454,11 +450,13 @@ function PlayCard({
 						</Link>
 					</h4>
 					<strong className="display-4">#{pb.rankingData.rank}</strong>
-					<span className="text-muted">/{pb.rankingData.outOf}</span>
+					<span className="text-body-secondary">/{pb.rankingData.outOf}</span>
 				</Col>
 				<Col lg={6}>
 					<MiniTable headers={["PB Info"]} colSpan={100}>
-						<ScoreCoreCells short game={pb.game} chart={chart} score={pb} />
+						<tr>
+							<ScoreCoreCells short game={pb.game} chart={chart} score={pb} />
+						</tr>
 					</MiniTable>
 					<div className="text-center">
 						<Muted>

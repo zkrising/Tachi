@@ -1,7 +1,5 @@
 import { ToCDNURL } from "util/api";
 import { Footer } from "components/layout/footer/Footer";
-import { Header } from "components/layout/header/Header";
-import { HeaderMobile } from "components/layout/header/HeaderMobile";
 import Divider from "components/util/Divider";
 import LinkButton from "components/util/LinkButton";
 import { TachiConfig } from "lib/config";
@@ -127,7 +125,7 @@ function FeatureContainer({
 				)}
 				<div className="col-12 d-none d-lg-block col-lg-6 text-center">{children}</div>
 				{!leftAlign && (
-					<div className="col-12 col-lg-6 text-right">
+					<div className="col-12 col-lg-6 text-end">
 						<h1 className="display-4">{tagline}</h1>
 						<h5>{description}</h5>
 					</div>

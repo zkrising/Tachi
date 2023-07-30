@@ -114,16 +114,13 @@ export default function ImportInfo({
 			<div className="col-12">
 				<div className="btn btn-group mb-4">
 					<SelectButton value={tab} setValue={setTab} id="scores">
-						<Icon type="table" />
-						Scores
+						<Icon type="table" /> Scores
 					</SelectButton>
 					<SelectButton value={tab} setValue={setTab} id="sessions">
-						<Icon type="calendar-week" />
-						Sessions
+						<Icon type="calendar-week" /> Sessions
 					</SelectButton>
 					<SelectButton value={tab} setValue={setTab} id="errors">
-						<Icon type="exclamation-triangle" />
-						Errors
+						<Icon type="exclamation-triangle" /> Errors
 					</SelectButton>
 				</div>
 				{tab === "errors" ? (

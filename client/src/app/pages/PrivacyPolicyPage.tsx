@@ -122,7 +122,10 @@ export default function PrivacyPolicyPage() {
 				Commissioner's Office.
 			</p>
 			<p>
-				Website: <ExternalLink href="https://ico.org.uk">https://ico.org.uk</ExternalLink>
+				Website:{" "}
+				<ExternalLink className="text-decoration-underline" href="https://ico.org.uk">
+					https://ico.org.uk
+				</ExternalLink>
 			</p>
 		</div>
 	);

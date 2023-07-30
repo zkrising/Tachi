@@ -41,12 +41,11 @@ export default function SearchPage() {
 			<Col xs={12}>
 				<DebounceSearch
 					autoFocus
-					className="form-control-lg"
 					setSearch={setSearch}
 					placeholder="Search songs, users..."
 				/>
 				{user && (
-					<div className="w-100 mt-4 ml-1">
+					<div className="w-100 mt-4 ms-1">
 						<Form.Check
 							checked={hasPlayedGame}
 							onChange={(e) => setHasPlayedGame(e.target.checked)}
@@ -133,7 +132,7 @@ function SearchResults({ search, hasPlayedGame }: { search: string; hasPlayedGam
 						return (
 							<SelectButton id={gpt} value={mode} setValue={setMode}>
 								{FormatGame(game, playtype)}
-								<Badge variant="secondary" className="ml-2">
+								<Badge bg="secondary" className="ms-2">
 									{charts.length}
 								</Badge>
 							</SelectButton>
@@ -148,7 +147,7 @@ function SearchResults({ search, hasPlayedGame }: { search: string; hasPlayedGam
 						setValue={setMode}
 					>
 						Users
-						<Badge variant="secondary" className="ml-2">
+						<Badge bg="secondary" className="ms-2">
 							{data.users.length}
 						</Badge>
 					</SelectButton>
@@ -230,7 +229,7 @@ function UsersView({ users }: { users: Array<UserDocument> }) {
 								<ProfilePicture user={user} />
 							</div>
 							<div
-								className="ml-4 d-flex w-100 h-100"
+								className="ms-4 d-flex w-100 h-100"
 								style={{
 									flexWrap: "wrap",
 									flexDirection: "column",
@@ -248,7 +247,7 @@ function UsersView({ users }: { users: Array<UserDocument> }) {
 								</div>
 								{Date.now() - user.lastSeen < ONE_MINUTE * 5 && (
 									<div className="mt-2">
-										<Badge variant="success">ONLINE</Badge>
+										<Badge bg="success">ONLINE</Badge>
 									</div>
 								)}
 							</div>

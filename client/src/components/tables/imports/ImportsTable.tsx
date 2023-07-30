@@ -61,7 +61,7 @@ function Row({ data }: { data: ImportDataset[0] }) {
 				<br />
 				(Duration: {FormatDuration(data.timeFinished - data.timeStarted)})
 				<br />
-				<small className="text-muted">{FormatTime(data.timeFinished)}</small>
+				<small className="text-body-secondary">{FormatTime(data.timeFinished)}</small>
 			</td>
 		</DropdownRow>
 	);

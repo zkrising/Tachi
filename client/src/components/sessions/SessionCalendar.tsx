@@ -1,5 +1,4 @@
 import { ChangeOpacity } from "util/color-opacity";
-import { TruncateString } from "util/misc";
 import { EventInput } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import FullCalendar from "@fullcalendar/react"; // must go before plugins
@@ -140,12 +139,7 @@ function SessionTooltip({ sessionID, game, playtype, reqUser }: { sessionID: str
 	}
 
 	return (
-		<div
-			className="w-100 d-flex align-items-center"
-			style={{
-				flexDirection: "column",
-			}}
-		>
+		<div className="w-100 d-flex flex-column p-4 align-items-center">
 			<div className="w-100">
 				<h4 className="text-center">{data.session.name}</h4>
 				{data.session.desc && <Muted>{data.session.desc}</Muted>}

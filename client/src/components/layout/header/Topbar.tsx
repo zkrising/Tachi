@@ -14,12 +14,12 @@ export function Topbar() {
 
 			{user ? (
 				<>
-					<UserNotificationButton user={user} />
+					<UserNotificationButton />
 					<UserProfileDropdown user={user} />
 				</>
 			) : (
 				<>
-					<div className="topbar-item mr-3">
+					<div className="topbar-item me-3">
 						<LinkButton to="/login" className="btn-outline-primary">
 							Log In
 						</LinkButton>

@@ -1,29 +1,37 @@
-import React, { CSSProperties } from "react";
-import { Link } from "react-router-dom";
-import { JustChildren } from "types/react";
+import React from "react";
+import { LinkContainer } from "react-router-bootstrap";
+import Button, { ButtonProps } from "react-bootstrap/Button";
+import { LinkContainerProps } from "types/bootstrap";
 
+export type LinkButtonProps = LinkContainerProps & ButtonProps;
+
+/**
+ * A Bootstrap Button component that acts like a react-router Link
+ */
 export default function LinkButton({
 	to,
-	className = "btn-primary",
+	activeClassName,
+	activeStyle,
+	isActive,
+	replace,
+	state,
 	children,
 	style,
-	onClick,
-	disabled = false,
-}: {
-	to: string;
-	className?: string;
-	style?: CSSProperties;
-	onClick?: () => void;
-	disabled?: boolean;
-} & JustChildren) {
+	className,
+	...props
+}: LinkButtonProps) {
 	return (
-		<Link
-			onClick={onClick}
+		<LinkContainer
 			to={to}
-			className={`btn ${disabled ? "disabled" : ""} ${className}`}
+			activeClassName={activeClassName}
+			activeStyle={activeStyle}
+			replace={replace}
+			state={state}
+			isActive={isActive}
 			style={style}
+			className={className}
 		>
-			{children}
-		</Link>
+			<Button {...props}>{children}</Button>
+		</LinkContainer>
 	);
 }

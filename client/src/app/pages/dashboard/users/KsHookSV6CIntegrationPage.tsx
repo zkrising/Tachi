@@ -55,8 +55,8 @@ function KsHookSV6CForm({
 	);
 
 	return (
-		<form
-			className="text-left"
+		<Form
+			className="text-start d-flex flex-column gap-4"
 			onSubmit={async (e) => {
 				e.preventDefault();
 
@@ -93,11 +93,9 @@ function KsHookSV6CForm({
 				</Form.Text>
 			</Form.Group>
 
-			<div className="d-flex justify-content-center">
-				<Button variant="primary" className="mt-4" type="submit">
-					Submit Settings
-				</Button>
-			</div>
-		</form>
+			<Button variant="primary" type="submit">
+				Submit Settings
+			</Button>
+		</Form>
 	);
 }

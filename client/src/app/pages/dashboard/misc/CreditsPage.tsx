@@ -48,7 +48,7 @@ export default function CreditsPage() {
 			<Divider />
 
 			<div className="mt-4">
-				<h1>
+				<h1 className="user-select-none">
 					De
 					<span
 						className="text-white credits-easter-egg"
@@ -194,7 +194,9 @@ export default function CreditsPage() {
 
 				<ul>
 					<li>
-						<ExternalLink href="https://pnpm.io">PNPM</ExternalLink>
+						<ExternalLink className="text-decoration-underline" href="https://pnpm.io">
+							PNPM
+						</ExternalLink>
 						<br />
 						<small>
 							PNPM is a monumental improvement over NPM. I cannot recommend it highly
@@ -202,7 +204,12 @@ export default function CreditsPage() {
 						</small>
 					</li>
 					<li>
-						<ExternalLink href="https://mkdocs.org">MkDocs</ExternalLink>
+						<ExternalLink
+							className="text-decoration-underline"
+							href="https://mkdocs.org"
+						>
+							MkDocs
+						</ExternalLink>
 						<br />
 						<small>
 							MkDocs is a simple Markdown-based documentation generator. It is
@@ -210,19 +217,30 @@ export default function CreditsPage() {
 						</small>
 					</li>
 					<li>
-						<ExternalLink href="https://squidfunk.github.io/mkdocs-material">
+						<ExternalLink
+							className="text-decoration-underline"
+							href="https://squidfunk.github.io/mkdocs-material"
+						>
 							MkDocs Material
 						</ExternalLink>
 						<br />
 						<small>MkDocs Material is a beautiful theme for MkDocs.</small>
 					</li>
 					<li>
-						<ExternalLink href="https://node-tap.org">Node TAP</ExternalLink>
+						<ExternalLink
+							className="text-decoration-underline"
+							href="https://node-tap.org"
+						>
+							Node TAP
+						</ExternalLink>
 						<br />
 						<small>Node TAP is a testing framework that is.not.a("mess")</small>
 					</li>
 					<li>
-						<ExternalLink href="https://automattic.github.io/monk/docs/GETTING_STARTED.html">
+						<ExternalLink
+							className="text-decoration-underline"
+							href="https://automattic.github.io/monk/docs/GETTING_STARTED.html"
+						>
 							Monk
 						</ExternalLink>
 						<br />
@@ -232,7 +250,12 @@ export default function CreditsPage() {
 						</small>
 					</li>
 					<li>
-						<ExternalLink href="https://nivo.rocks">Nivo</ExternalLink>
+						<ExternalLink
+							className="text-decoration-underline"
+							href="https://nivo.rocks"
+						>
+							Nivo
+						</ExternalLink>
 						<br />
 						<small>Nivo is the best graphing library ever made. That's it.</small>
 					</li>
@@ -252,7 +275,7 @@ export default function CreditsPage() {
 					Everyone in the <code>#dev</code> chat for the constant advice and comedy gold.
 				</p>
 			</div>
-			<span className="text-muted" style={{ fontSize: "0.2rem" }}>
+			<span className="text-body-secondary" style={{ fontSize: "0.2rem" }}>
 				Click the V in Dev Team.
 			</span>
 		</div>

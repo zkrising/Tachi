@@ -28,13 +28,11 @@ export default function FailedImportDropdown({ data }: { data: FailedImportDatas
 			buttons={
 				<>
 					<SelectButton setValue={setView} value={view} id="input">
-						<Icon type="database" />
-						Input
+						<Icon type="database" /> Input
 					</SelectButton>
 					<HasDevModeOn>
 						<SelectButton setValue={setView} value={view} id="debug">
-							<Icon type="bug" />
-							Debug Info
+							<Icon type="bug" /> Debug Info
 						</SelectButton>
 					</HasDevModeOn>
 				</>

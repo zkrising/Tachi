@@ -10,6 +10,7 @@ import React from "react";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
+import { WindowContextProvider } from "context/WindowContext";
 import { Routes } from "./routes/AppRoutes";
 
 const queryClient = new QueryClient({
@@ -27,12 +28,14 @@ export default function App({ basename }: { basename: string }) {
 								<AllLUGPTStatsContextProvider>
 									<LoadingScreen>
 										<BrowserRouter basename={basename}>
-											<MaterialThemeProvider>
-												<Toaster />
-												<SubheaderContextProvider>
-													<Routes />
-												</SubheaderContextProvider>
-											</MaterialThemeProvider>
+											<WindowContextProvider>
+												<MaterialThemeProvider>
+													<Toaster />
+													<SubheaderContextProvider>
+														<Routes />
+													</SubheaderContextProvider>
+												</MaterialThemeProvider>
+											</WindowContextProvider>
 										</BrowserRouter>
 									</LoadingScreen>
 								</AllLUGPTStatsContextProvider>

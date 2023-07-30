@@ -37,13 +37,13 @@ export default function ImportRoutes() {
 			<Route exact path="/import">
 				<ImportPage user={user} />
 			</Route>
+			<Switch>
+				<Route path="/import/*">
+					<div>
+						<Link to="/import">Go back to all import methods.</Link>
+						<Divider />
+					</div>
 
-			<Route path="/import/*">
-				<div>
-					<Link to="/import">Go back to all import methods.</Link>
-					<Divider />
-				</div>
-				<Switch>
 					<Route exact path="/import/batch-manual">
 						<BatchManualPage />
 					</Route>
@@ -201,8 +201,8 @@ export default function ImportRoutes() {
 							</Route>
 						</>
 					)}
-				</Switch>
-			</Route>
+				</Route>
+			</Switch>
 		</Switch>
 	);
 }

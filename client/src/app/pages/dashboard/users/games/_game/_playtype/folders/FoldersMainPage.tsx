@@ -33,21 +33,19 @@ export default function FoldersMainPage({ reqUser, game, playtype }: UGPT) {
 			<div className="col-12 text-center">
 				<div className="btn-group d-flex justify-content-center mb-8">
 					{user && ugs?.find((x) => x.game === game && x.playtype === playtype) && (
-						<SelectLinkButton to={`${base}/folders/recent`}>
-							<Icon type="clock" />
+						<SelectLinkButton className="text-wrap" to={`${base}/folders/recent`}>
+							<Icon type="clock" />{" "}
 							{user.id === reqUser.id
 								? "Recent Folders"
 								: "Your Recently Viewed Folders"}
 						</SelectLinkButton>
 					)}
 
-					<SelectLinkButton to={`${base}/folders`}>
-						<Icon type="table" />
-						Table Overview
+					<SelectLinkButton className="text-wrap" to={`${base}/folders`}>
+						<Icon type="table" /> Table Overview
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/folders/search`}>
-						<Icon type="search" />
-						Folder Select
+					<SelectLinkButton className="text-wrap" to={`${base}/folders/search`}>
+						<Icon type="search" /> Folder Select
 					</SelectLinkButton>
 				</div>
 			</div>

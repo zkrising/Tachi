@@ -61,8 +61,8 @@ function FervidexForm({
 	);
 
 	return (
-		<form
-			className="text-left"
+		<Form
+			className="d-flex flex-column gap-4 text-start"
 			onSubmit={async (e) => {
 				e.preventDefault();
 
@@ -161,10 +161,10 @@ function FervidexForm({
 			</Form.Text>
 
 			<div className="d-flex justify-content-center">
-				<Button variant="primary" className="mt-4" type="submit">
+				<Button variant="primary" type="submit">
 					Submit Settings
 				</Button>
 			</div>
-		</form>
+		</Form>
 	);
 }

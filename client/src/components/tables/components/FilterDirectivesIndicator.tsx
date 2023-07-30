@@ -66,11 +66,9 @@ export default function FilterDirectivesIndicator<D>({
 					</>
 				}
 			>
-				<div className="input-group-append" onClick={() => setModalShow(true)}>
-					<small className="input-group-text">
-						<i className="fas fa-bolt" style={{ fontSize: "0.8rem" }} />
-					</small>
-				</div>
+				<small className="input-group-text" onClick={() => setModalShow(true)}>
+					<i className="fas fa-bolt" style={{ fontSize: "0.8rem" }} />
+				</small>
 			</StickyPopover>
 			<Modal show={modalShow} onHide={() => setModalShow(false)} size="xl">
 				<Modal.Header closeButton>
@@ -168,7 +166,7 @@ export default function FilterDirectivesIndicator<D>({
 						</span>
 					)}
 					<span>
-						<small className="text-muted">
+						<small className="text-body-secondary">
 							You can <SmallText small="tap" large="click" /> anywhere off this dialog
 							to close it.
 						</small>

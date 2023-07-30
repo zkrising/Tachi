@@ -1,18 +1,21 @@
 import { ToCDNURL } from "util/api";
 import { BackgroundContext } from "context/BackgroundContext";
 import React, { useContext } from "react";
+import { LayoutStyles } from "../Layout";
 
-export default function BackgroundImage() {
+export default function BackgroundImage({ styles }: { styles: LayoutStyles }) {
 	const { background } = useContext(BackgroundContext);
-
 	return (
-		<div
-			className="background-image"
+		<img
+			src={background ? background : `${ToCDNURL("/game-banners/default")}`}
+			height={styles.backgroundHeight}
 			style={{
-				backgroundImage: background
-					? `url(${background})`
-					: `url(${ToCDNURL("/game-banners/default")})`,
+				marginTop: `${styles.headerHeight}px`,
+				objectFit: "cover",
+				width: "100%",
+				zIndex: "-1",
+				position: "absolute",
 			}}
-		></div>
+		/>
 	);
 }

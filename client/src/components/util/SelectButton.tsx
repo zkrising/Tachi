@@ -27,13 +27,14 @@ export default function SelectButton<T>({
 	offStyle?: CSSProperties;
 	className?: string;
 } & JustChildren) {
+	const active = id === value;
 	return (
 		<Button
 			disabled={disabled}
-			variant={id === value ? onVariant : offVariant}
+			variant={active ? onVariant : offVariant}
 			onClick={() => setValue(id)}
-			style={id === value ? Object.assign(style, onStyle) : Object.assign(style, offStyle)}
-			className={className}
+			style={active ? Object.assign(style, onStyle) : Object.assign(style, offStyle)}
+			className={`${active ? "" : "text-body"} ${className}`}
 		>
 			{children}
 		</Button>

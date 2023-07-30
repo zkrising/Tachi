@@ -4,7 +4,6 @@ import HasDevModeOn from "components/util/HasDevModeOn";
 import Icon from "components/util/Icon";
 import SelectButton from "components/util/SelectButton";
 import { UserContext } from "context/UserContext";
-import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext, useState } from "react";
 import { Col } from "react-bootstrap";
 import { ImportDataset } from "types/tables";
@@ -15,7 +14,6 @@ import ManageImport from "./components/ManageImport";
 export default function ImportDropdown({ data }: { data: ImportDataset[0] }) {
 	const [view, setView] = useState<"input" | "info" | "manage" | "debug">("info");
 	const { user: currentUser } = useContext(UserContext);
-	const { settings } = useContext(UserSettingsContext);
 
 	let body;
 
@@ -42,23 +40,19 @@ export default function ImportDropdown({ data }: { data: ImportDataset[0] }) {
 			buttons={
 				<>
 					<SelectButton setValue={setView} value={view} id="info">
-						<Icon type="exclamation-triangle" />
-						Import Info
+						<Icon type="exclamation-triangle" /> Import Info
 					</SelectButton>
 					<SelectButton setValue={setView} value={view} id="input">
-						<Icon type="database" />
-						Input
+						<Icon type="database" /> Input
 					</SelectButton>
 					{currentUser?.id === data.userID && (
 						<SelectButton setValue={setView} value={view} id="manage">
-							<Icon type="trash" />
-							Revert Import
+							<Icon type="trash" /> Revert Import
 						</SelectButton>
 					)}
 					<HasDevModeOn>
 						<SelectButton setValue={setView} value={view} id="debug">
-							<Icon type="bug" />
-							Debug Info
+							<Icon type="bug" /> Debug Info
 						</SelectButton>
 					</HasDevModeOn>
 				</>

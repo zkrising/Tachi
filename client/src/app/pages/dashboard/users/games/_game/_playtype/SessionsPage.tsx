@@ -77,26 +77,34 @@ export default function SessionsPage({ reqUser, game, playtype }: UGPT) {
 			</div>
 			<div className="col-12 text-center">
 				<div className="btn-group d-flex justify-content-center mb-4">
-					<SelectButton id="best" setValue={setSessionSet} value={sessionSet}>
-						<Icon type="trophy" />
-						Best Sessions
+					<SelectButton
+						className="text-wrap"
+						id="best"
+						setValue={setSessionSet}
+						value={sessionSet}
+					>
+						<Icon type="trophy" /> Best Sessions
 					</SelectButton>
-					<SelectButton id="recent" setValue={setSessionSet} value={sessionSet}>
-						<Icon type="history" />
-						Recent Sessions
+					<SelectButton
+						className="text-wrap"
+						id="recent"
+						setValue={setSessionSet}
+						value={sessionSet}
+					>
+						<Icon type="history" /> Recent Sessions
 					</SelectButton>
-					<SelectButton id="highlighted" setValue={setSessionSet} value={sessionSet}>
-						<Icon type="star" />
-						Highlighted Sessions
+					<SelectButton
+						className="text-wrap"
+						id="highlighted"
+						setValue={setSessionSet}
+						value={sessionSet}
+					>
+						<Icon type="star" /> Highlighted Sessions
 					</SelectButton>
 				</div>
 			</div>
 			<div className="col-12 mt-4">
-				<DebounceSearch
-					placeholder="Search all sessions..."
-					className="form-control-lg"
-					setSearch={setSearch}
-				/>
+				<DebounceSearch placeholder="Search all sessions..." setSearch={setSearch} />
 			</div>
 			<div className="col-12 mt-4">
 				{search === "" ? (

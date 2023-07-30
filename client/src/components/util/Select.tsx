@@ -34,17 +34,16 @@ export default function Select<T extends string | null>({
 			}}
 		>
 			{name && <Form.Label>{name}</Form.Label>}
-			<Form.Control
+			<Form.Select
 				style={{ width: "unset", display: "inline", ...style }}
 				className={`mx-2 ${className}`}
-				as="select"
 				value={value ?? ""}
 				onChange={(e) => setValue((e.target.value === "" ? null : e.target.value) as T)}
 			>
 				{allowNull && <option value="">{unselectedName}</option>}
 				{children}
-			</Form.Control>
-			{description && <Form.Text className="text-muted">{description}</Form.Text>}
+			</Form.Select>
+			{description && <Form.Text className="text-body-secondary">{description}</Form.Text>}
 		</Form.Group>
 	);
 }

@@ -54,8 +54,7 @@ export default function TargetInfo({
 
 			<Divider />
 			<Button variant="outline-success" onClick={() => setShow(true)}>
-				<Icon type="bullseye" />
-				Set New Goal
+				<Icon type="bullseye" /> Set New Goal
 			</Button>
 			<SetNewGoalModal
 				show={show}

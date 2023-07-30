@@ -5,6 +5,7 @@ import LinkButton, { LinkButtonProps } from "./LinkButton";
 
 export default function SelectLinkButton({
 	children,
+	className,
 	onVariant = "primary",
 	offVariant = "outline-secondary",
 	to,
@@ -18,9 +19,16 @@ export default function SelectLinkButton({
 } & LinkButtonProps) {
 	const match = DoesMatchRoute(window.location.href, to, !matchIfStartsWith);
 	const variant = match ? onVariant : offVariant;
+	const classNames = `${match ? "" : "text-body"} ${className}`;
 
 	return (
-		<LinkButton to={to} isActive={() => match} variant={variant} {...props}>
+		<LinkButton
+			to={to}
+			isActive={() => match}
+			variant={variant}
+			{...props}
+			className={classNames}
+		>
 			{children}
 		</LinkButton>
 	);

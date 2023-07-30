@@ -65,7 +65,7 @@ $utilities: map-merge(
             )
         ),
         "backdrop-blur": (
-            property: backdrop-filter,
+            property: backdrop-filter -webkit-backdrop-filter,
             class: backdrop-blur,
             values: (
                 //sm: blur(4px),

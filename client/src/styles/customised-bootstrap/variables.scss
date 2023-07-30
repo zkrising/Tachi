@@ -637,11 +637,11 @@ $line-height-base: 1.5;
 $line-height-sm: 1.25;
 $line-height-lg: 2;
 
-$h1-font-size: $font-size-base * 2;
-$h2-font-size: $font-size-base * 1.75;
-$h3-font-size: $font-size-base * 1.5;
-$h4-font-size: $font-size-base * 1.25;
-$h5-font-size: $font-size-base * 1.125;
+$h1-font-size: $font-size-base * 2.5;
+$h2-font-size: $font-size-base * 2;
+$h3-font-size: $font-size-base * 1.75;
+$h4-font-size: $font-size-base * 1.5;
+$h5-font-size: $font-size-base * 1.25;
 $h6-font-size: $font-size-base;
 // scss-docs-end font-variables
 
@@ -650,7 +650,7 @@ $h6-font-size: $font-size-base;
 $rfs-rem-value: 13;
 $rfs-base-value: $font-size-base;
 $rfs-factor: 25; // setting this <= 1 throws an error ==> bootstrap-scss/vendor/_rfs.scss:34
-$rfs-breakpoint: 648px;
+$rfs-breakpoint: 576px;
 $rfs-class: "enable"; // this allows us to enable it with a class selector only when we want it
 
 // scss-docs-start font-sizes
@@ -715,8 +715,8 @@ $hr-height: null !default; // Deprecated in v5.2.0
 // fusv-enable
 
 $hr-border-color: null !default; // Allows for inherited colors
-$hr-border-width: var(--#{$prefix}border-width) !default;
-$hr-opacity: 0.25 !default;
+$hr-border-width: var(--#{$prefix}border-width);
+$hr-opacity: 0.1;
 
 $legend-margin-bottom: 0.5rem;
 $legend-font-size: 1.5rem;

@@ -37,7 +37,7 @@ import {
 	ClumpedActivitySession,
 } from "types/tachi";
 import { InnerQuestSectionGoal } from "components/targets/quests/Quest";
-import ProfilePicture, { ProfilePictureSmall } from "components/user/ProfilePicture";
+import ProfilePicture from "components/user/ProfilePicture";
 import SupporterIcon from "components/util/SupporterIcon";
 
 // Records activity for a group of users on a GPT. Also used for single users.
@@ -292,7 +292,7 @@ function ScoresActivity({
 				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
 					<div className="timeline-content-title">
 						<span className="me-2">
-							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
+							<ProfilePicture size="sm" user={user} toGPT={`${game}/${playtype}`} />
 						</span>
 						<Icon
 							type={`chevron-${show ? "down" : "right"}`}
@@ -374,7 +374,7 @@ function GoalActivity({
 				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
 					<div className="timeline-content-title">
 						<span className="me-2">
-							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
+							<ProfilePicture size="sm" user={user} toGPT={`${game}/${playtype}`} />
 						</span>
 						<Icon
 							type={`chevron-${show ? "down" : "right"}`}
@@ -443,7 +443,7 @@ function QuestActivity({
 					<div className="timeline-content-title">
 						<span style={{ fontSize: "1.15rem" }}>
 							<span className="me-2">
-								<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
+								<ProfilePicture size="sm" user={user} toGPT={`${game}/${playtype}`} />
 							</span>
 							<UGPTLink reqUser={user} game={game} playtype={playtype} /> completed
 							the{" "}
@@ -495,7 +495,7 @@ function SessionActivity({
 				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
 					<div className="timeline-content-title">
 						<span className="me-2">
-							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
+							<ProfilePicture size="sm" user={user} toGPT={`${game}/${playtype}`} />
 						</span>
 						<Icon
 							type={`chevron-${show ? "down" : "right"}`}
@@ -641,7 +641,7 @@ function ClassAchievementActivity({
 				<div className="timeline-content-inner">
 					<div className="timeline-content-title">
 						<span className="me-2">
-							<ProfilePictureSmall
+							<ProfilePicture size="sm"
 								user={user}
 								toGPT={`${data.game}/${data.playtype}`}
 							/>

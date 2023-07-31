@@ -3,6 +3,7 @@ import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import { TachiConfig } from "lib/config";
 import React from "react";
+import Alert from "react-bootstrap/Alert";
 
 export default function ChunitachiPage() {
 	useSetSubheader(["Import Scores", "Chunitachi"]);
@@ -20,19 +21,33 @@ export default function ChunitachiPage() {
 			<ol className="instructions-list">
 				<li>
 					Download <code>chunitachi.dll</code> from{" "}
-					<ExternalLink href="https://github.com/tomatosoupcan/ChunItachi/releases">
-						Here
+					<ExternalLink
+						className="text-decoration-underline"
+						href="https://github.com/tomatosoupcan/ChunItachi/releases"
+					>
+						here
 					</ExternalLink>
 					.
 				</li>
 				<li>
 					Download your <code>ChunItachi.ini</code> config file{" "}
-					<ExternalLink href="/client-file-flow/CXChunitachi">here</ExternalLink>. <br />
-					<b>This config file contains an API Key, which should be kept secret!</b>.
+					<ExternalLink
+						className="text-decoration-underline"
+						href="/client-file-flow/CXChunitachi"
+					>
+						here
+					</ExternalLink>
+					. <br />
+					<Alert variant="warning" className="mt-2">
+						This config file contains an API Key, which should be kept secret!
+					</Alert>
 				</li>
 				<li>
 					Follow the remaining install instructions on{" "}
-					<ExternalLink href="https://github.com/tomatosoupcan/ChunItachi/blob/main/README.md">
+					<ExternalLink
+						className="text-decoration-underline"
+						href="https://github.com/tomatosoupcan/ChunItachi/blob/main/README.md"
+					>
 						GitHub
 					</ExternalLink>
 					.

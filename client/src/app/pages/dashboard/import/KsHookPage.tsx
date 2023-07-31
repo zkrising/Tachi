@@ -3,6 +3,7 @@ import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import { TachiConfig } from "lib/config";
 import React from "react";
+import Alert from "react-bootstrap/Alert";
 
 export default function KsHookPage() {
 	useSetSubheader(["Import Scores", "Konaste Hook"]);
@@ -20,15 +21,26 @@ export default function KsHookPage() {
 			<ol className="instructions-list">
 				<li>
 					Download the latest version of <code>kshook.dll</code> from{" "}
-					<ExternalLink href="https://djtrackers.com/kshook/latest.zip">
+					<ExternalLink
+						className="text-decoration-underline"
+						href="https://djtrackers.com/kshook/latest.zip"
+					>
 						here
 					</ExternalLink>
 					.
 				</li>
 				<li>
 					Download your config file{" "}
-					<ExternalLink href="/client-file-flow/CXKsHook">here</ExternalLink>. <br />
-					<b>This file contains an API Key, which is meant to be kept secret!</b>
+					<ExternalLink
+						className="text-decoration-underline"
+						href="/client-file-flow/CXKsHook"
+					>
+						here
+					</ExternalLink>
+					. <br />
+					<Alert variant="warning" className="mt-2">
+						This file contains an API Key, which is meant to be kept secret!
+					</Alert>
 				</li>
 				<li>Place all of these files inside your SDVX6 (EAC) folder.</li>
 				<li>

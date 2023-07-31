@@ -9,9 +9,10 @@ import Muted from "components/util/Muted";
 import SelectButton from "components/util/SelectButton";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import { useFormik } from "formik";
-import React, { useContext, useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
+import React, { useContext, useRef, useState } from "react";
+import { Alert, Button, Form, Stack } from "react-bootstrap";
 import { UserDocument, UserSettingsDocument } from "tachi-common";
+import { SetState } from "types/react";
 
 interface Props {
 	reqUser: UserDocument;
@@ -269,10 +270,18 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 
 function ImageForm({ reqUser }: { reqUser: UserDocument }) {
 	const [pfp, setPfp] = useState<File | undefined>();
+	const pfpInput = useRef(null);
 	const [banner, setBanner] = useState<File | undefined>();
+	const bannerInput = useRef<HTMLInputElement>(null);
+
+	const handleReset = (ref: React.MutableRefObject<HTMLInputElement | null>) => {
+		if (ref.current) {
+			ref.current.value = "";
+		}
+	};
 
 	return (
-		<div className="d-flex flex-column">
+		<Stack gap={4}>
 			<Alert variant="danger">
 				Do not set inappropriate stuff as your avatar/banner. If you have to ask, the answer
 				is probably no.
@@ -282,11 +291,11 @@ function ImageForm({ reqUser }: { reqUser: UserDocument }) {
 				<input
 					className="form-control"
 					accept="image/png,image/jpeg,image/gif"
-					tabIndex={1}
 					type="file"
 					id="pfp"
 					multiple={false}
 					onChange={(e) => setPfp(e.target.files![0])}
+					ref={pfpInput}
 				/>
 				<div className="d-flex justify-content-center mt-4">
 					<ProfilePicture
@@ -294,18 +303,24 @@ function ImageForm({ reqUser }: { reqUser: UserDocument }) {
 						src={pfp ? URL.createObjectURL(pfp) : ToAPIURL(`/users/${reqUser.id}/pfp`)}
 					/>
 				</div>
-				<FileUploadController file={pfp} reqUser={reqUser} type="pfp" />
+				<FileUploadController
+					setFile={setPfp}
+					reset={() => handleReset(pfpInput)}
+					file={pfp}
+					reqUser={reqUser}
+					type="pfp"
+				/>
 			</Form.Group>
 			<Form.Group>
 				<Form.Label>Profile Banner</Form.Label>
 				<input
 					className="form-control"
 					accept="image/png,image/jpeg,image/gif"
-					tabIndex={2}
 					type="file"
 					id="banner"
 					multiple={false}
 					onChange={(e) => setBanner(e.target.files![0])}
+					ref={bannerInput}
 				/>
 				<div
 					className="d-flex justify-content-center mt-4 rounded"
@@ -322,15 +337,21 @@ function ImageForm({ reqUser }: { reqUser: UserDocument }) {
 						})`,
 					}}
 				/>
-				<FileUploadController file={banner} reqUser={reqUser} type="banner" />
+				<FileUploadController
+					setFile={setBanner}
+					reset={() => handleReset(bannerInput)}
+					file={banner}
+					reqUser={reqUser}
+					type="banner"
+				/>
 			</Form.Group>
-		</div>
+		</Stack>
 	);
 }
 
 function SocialMediaForm({ reqUser }: { reqUser: UserDocument }) {
 	const placeholders = {
-		discord: "Example#0000",
+		discord: "Discord Username",
 		twitter: "Twitter Handle",
 		twitch: "Twitch Username",
 		github: "Github Username",
@@ -429,32 +450,57 @@ function FileUploadController({
 	file,
 	type,
 	reqUser,
+	setFile,
+	reset,
 }: {
 	file?: File;
 	type: "pfp" | "banner";
 	reqUser: UserDocument;
+	setFile: SetState<File | undefined>;
+	reset: () => void;
 }) {
 	return (
-		<div className="d-flex mt-8">
-			<Button
-				onClick={async () => {
-					const res = await APIFetchV1(
-						`/users/me/${type}`,
-						{ method: "DELETE" },
-						true,
-						true
-					);
+		<div className="d-flex mt-8 justify-content-end">
+			{file ? (
+				<Button
+					variant="secondary"
+					onClick={() => {
+						setFile(undefined);
+						reset();
+					}}
+				>
+					Cancel
+				</Button>
+			) : (
+				<Button
+					onClick={async () => {
+						if (
+							confirm(
+								`Are you sure you want to clear your ${
+									type === "pfp" ? "profile picture?" : "profile banner?"
+								}`
+							)
+						) {
+							const res = await APIFetchV1(
+								`/users/me/${type}`,
+								{ method: "DELETE" },
+								true,
+								true
+							);
 
-					if (res.success) {
-						DelayedPageReload();
+							if (res.success) {
+								DelayedPageReload();
+							}
+						}
+					}}
+					disabled={
+						type === "pfp" ? !reqUser.customPfpLocation : !reqUser.customBannerLocation
 					}
-				}}
-				disabled={!reqUser.customPfpLocation}
-				className="ms-auto"
-				variant="secondary"
-			>
-				Unset
-			</Button>
+					variant="danger"
+				>
+					Clear {type === "pfp" ? "Profile Picture" : "Profile Banner"}
+				</Button>
+			)}
 			{file && (
 				<div className="mx-auto">
 					<SizeWarner bytes={file.size} cap={1024} />
@@ -480,7 +526,6 @@ function FileUploadController({
 							window.location.reload();
 						}
 					}}
-					className="ms-auto"
 					variant="success"
 					disabled={file.size > 1024 * 1000}
 				>

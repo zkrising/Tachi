@@ -10,6 +10,7 @@ import SignOut from "components/util/SignOut";
 import QuickDropdown from "components/ui/QuickDropdown";
 import { TextColour } from "types/bootstrap";
 import DropdownNavLink from "components/ui/DropdownNavLink";
+import ProfilePicture from "components/user/ProfilePicture";
 
 function UserProfileDropdownToggle({ user }: { user: UserDocument }) {
 	const [heySplash] = useState(RFA(heySplashes));
@@ -25,13 +26,7 @@ function UserProfileDropdownToggle({ user }: { user: UserDocument }) {
 					</>
 				)}
 			</div>
-			<img
-				alt={user.username}
-				height={32}
-				width={32}
-				src={ToAPIURL("/users/me/pfp")}
-				className="object-fit-cover rounded"
-			/>
+			<ProfilePicture size="sm" link={false} user={user} />
 		</>
 	);
 }

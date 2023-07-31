@@ -1,6 +1,6 @@
 import { AllLUGPTStatsContext } from "context/AllLUGPTStatsContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { UserDocument, UserGameStats } from "tachi-common";
 import useApiQuery from "components/util/query/useApiQuery";
 import Nav from "react-bootstrap/Nav";
@@ -30,13 +30,15 @@ export function HeaderMenu({
 		"game_stats",
 	]);
 
-	if (error) {
-		console.error(error);
-	}
+	useEffect(() => {
+		if (error) {
+			console.error(error);
+		}
 
-	if (data) {
-		setUGS(data);
-	}
+		if (data) {
+			setUGS(data);
+		}
+	}, [error, data]);
 
 	return (
 		<Nav className="p-4 d-flex flex-column flex-lg-row align-content-between gap-2 gap-lg-4 overflow-y-auto overflow-y-lg-visible scrollbar-hide h-100">

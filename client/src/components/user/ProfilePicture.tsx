@@ -5,101 +5,47 @@ import { Link } from "react-router-dom";
 
 export default function ProfilePicture({
 	user,
-	src,
+	src: imgUrl,
 	toGPT = "",
+	link = true,
+	size = "lg",
 }: {
-	user: UserDocument | string;
+	user: UserDocument;
+
+	/**
+	 * Specify an image src instead of infering one from the user's info
+	 */
 	src?: string;
+
+	/**
+	 * Whether or not this profile picture should be a link (default = true)
+	 */
+	link?: boolean;
+
+	/**
+	 * sm = 32px, lg = 128px
+	 */
+	size?: "sm" | "lg";
 
 	/**
 	 * When clicking this this profile, should it take you to a UGPT page?
 	 */
 	toGPT?: string;
 }) {
-	if (typeof user === "string") {
+	const dimensions = size === "sm" ? 32 : 128;
+	const props = {
+		src: imgUrl ? imgUrl : ToAPIURL(`/users/${user.id}/pfp`),
+		alt: `${user.username}'s Profile Picture`,
+		height: dimensions,
+		width: dimensions,
+		className: "d-inline-block object-fit-cover bg-body-tertiary shadow-sm rounded fs-0",
+	};
+	if (link) {
 		return (
-			<Link to={`/u/${user}/${toGPT}`}>
-				<img
-					src={src ? src : ToAPIURL(`/users/${user}/pfp`)}
-					alt={`${user}'s Profile Picture`}
-					className="rounded"
-					style={{
-						width: "128px",
-						height: "128px",
-						objectFit: "cover",
-						boxShadow: "0px 0px 10px 0px #000000",
-					}}
-				/>
+			<Link to={`/u/${user.username}/${toGPT}`}>
+				<img {...props} />
 			</Link>
 		);
 	}
-
-	return (
-		<Link to={`/u/${user.username}/${toGPT}`}>
-			<img
-				src={src ? src : ToAPIURL(`/users/${user.id}/pfp`)}
-				alt={`${user.username}'s Profile Picture`}
-				className="rounded"
-				style={{
-					width: "128px",
-					height: "128px",
-					objectFit: "cover",
-					boxShadow: "0px 0px 10px 0px #000000",
-				}}
-			/>
-		</Link>
-	);
-}
-
-export function ProfilePictureSmall({
-	user,
-	src,
-	toGPT = "",
-}: {
-	user: UserDocument | string;
-	src?: string;
-
-	/**
-	 * When clicking this this profile, should it take you to a UGPT page?
-	 */
-	toGPT?: string;
-}) {
-	if (toGPT) {
-		// eslint-disable-next-line no-param-reassign
-		toGPT = `games/${toGPT}`;
-	}
-
-	if (typeof user === "string") {
-		return (
-			<Link to={`/u/${user}/${toGPT}`}>
-				<img
-					src={src ? src : ToAPIURL(`/users/${user}/pfp`)}
-					alt={`${user}'s Profile Picture`}
-					className="rounded"
-					style={{
-						width: "32px",
-						height: "32px",
-						objectFit: "cover",
-						boxShadow: "0px 0px 10px 0px #000000",
-					}}
-				/>
-			</Link>
-		);
-	}
-
-	return (
-		<Link to={`/u/${user.username}/${toGPT}`}>
-			<img
-				src={src ? src : ToAPIURL(`/users/${user.id}/pfp`)}
-				alt={`${user.username}'s Profile Picture`}
-				className="rounded"
-				style={{
-					width: "32px",
-					height: "32px",
-					objectFit: "cover",
-					boxShadow: "0px 0px 10px 0px #000000",
-				}}
-			/>
-		</Link>
-	);
+	return <img {...props} />;
 }

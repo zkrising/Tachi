@@ -38,8 +38,13 @@ export default function USCIRPage() {
 				<Divider />
 				<li>
 					Grab an API Token from{" "}
-					<ExternalLink href="/client-file-flow/CXUSCIR">here</ExternalLink>, and place it
-					in the API Token field.
+					<ExternalLink
+						className="text-decoration-underline"
+						href="/client-file-flow/CXUSCIR"
+					>
+						here
+					</ExternalLink>
+					, and place it in the API Token field.
 				</li>
 				<li>That's it! Your scores will now automatically upload to the server.</li>
 			</ol>

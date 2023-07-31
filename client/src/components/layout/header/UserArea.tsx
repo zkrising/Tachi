@@ -1,7 +1,7 @@
 import React from "react";
 import LinkButton from "components/util/LinkButton";
 import { UserDocument } from "tachi-common/types/documents";
-import { ProfilePictureSmall } from "components/user/ProfilePicture";
+import ProfilePicture from "components/user/ProfilePicture";
 import { UserNotificationButton } from "./UserNotificationButton";
 import { UserProfileDropdown } from "./UserProfileDropdown";
 import { SearchButton } from "./SearchButton";
@@ -28,8 +28,7 @@ export default function UserArea({
 					<UserNotificationButton />
 					<UserProfileDropdown style={dropdownMenuStyle} user={user} />
 					<div className="h-14 w-14 d-flex d-lg-none justify-content-center align-items-center">
-						{/* a temporary solution */}
-						<ProfilePictureSmall user={user} />
+						<ProfilePicture size="sm" user={user} />
 					</div>
 				</>
 			)}

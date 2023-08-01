@@ -4,4 +4,24 @@
     &:not(:focus-visible) {
         box-shadow: none !important;
     }
+    //--bs-btn-bg: ;
+    //--bs-btn-border-color: ;
+    //--bs-btn-hover-color: ;
+    --bs-btn-hover-bg: rgba(var(--#{$prefix}tertiary-bg-rgb), 0.5);
+    --bs-btn-hover-border-color: #b02a37;
+    //--bs-btn-focus-shadow-rgb: ;
+    //--bs-btn-active-color: ;
+    --bs-btn-active-bg: rgba(var(--#{$prefix}tertiary-bg-rgb), 0.25);
+    //--bs-btn-active-border-color: ;
+    --bs-btn-active-shadow: var(--bs-box-shadow);
+    --bs-btn-disabled-color: rgba(var(--#{$prefix}body-color-rgb), 0.65);
+    //--bs-btn-disabled-bg: ;
+    //--bs-btn-disabled-border-color: ;
+    --bs-btn-focus-box-shadow: #{$focus-ring-box-shadow};
+    &:focus-visible {
+        //color: var(--bs-btn-hover-color);
+        background-color: var(--bs-btn-hover-bg);
+        //border-color: var(--bs-btn-hover-border-color);
+        box-shadow: var(--bs-btn-box-shadow), var(--bs-btn-focus-box-shadow);
+    }
 }

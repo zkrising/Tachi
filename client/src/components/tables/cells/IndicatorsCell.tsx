@@ -13,7 +13,9 @@ export default function IndicatorsCell({ highlight }: { highlight: boolean }) {
 		>
 			<td
 				style={{
-					backgroundColor: highlight ? ChangeOpacity("#e6a303", 0.5) : "#383838",
+					backgroundColor: highlight
+						? ChangeOpacity("#e6a303", 0.5)
+						: "var(--bs-tertiary-bg)",
 					maxWidth: 5,
 					padding: 3,
 				}}

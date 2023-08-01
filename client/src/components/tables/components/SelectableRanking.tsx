@@ -36,36 +36,33 @@ export default function SelectableRanking({
 	}
 
 	return (
-		<th>
+		<th className="vstack gap-1 align-items-center justify-content-center">
 			<select
 				onChange={(v) => setRankingViewMode(v.target.value as RankingViewMode)}
 				value={rankingViewMode}
-				className="my-1 bg-dark border-0 text-body fw-bold rounded focus-ring focus-ring-light"
+				className="border-0 text-body fw-bold rounded focus-ring focus-ring-light"
 			>
 				<option value="global">Global Ranking</option>
 				<option value="rival">Rival Ranking</option>
 			</select>
-			<br />
 			<div onClick={() => changeSort("Site Ranking")}>
-				<div className="d-flex flex-column text-nowrap gap-1">
-					<span className="d-flex justify-content-center gap-1">
-						<Icon
-							type="arrow-up"
-							className={
-								currentSortMode === "Rating" && reverseSort
-									? "opacity-100"
-									: "opacity-25"
-							}
-						/>
-						<Icon
-							type="arrow-down"
-							className={
-								currentSortMode === "Rating" && !reverseSort
-									? "opacity-100"
-									: "opacity-25"
-							}
-						/>
-					</span>
+				<div className="d-flex justify-content-center gap-1">
+					<Icon
+						type="arrow-up"
+						className={
+							currentSortMode === "Rating" && reverseSort
+								? "opacity-100"
+								: "opacity-25"
+						}
+					/>
+					<Icon
+						type="arrow-down"
+						className={
+							currentSortMode === "Rating" && !reverseSort
+								? "opacity-100"
+								: "opacity-25"
+						}
+					/>
 				</div>
 			</div>
 		</th>

@@ -9,7 +9,11 @@ import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Stack from "react-bootstrap/Stack";
 import { Link } from "react-router-dom";
 import { COLOUR_SET, FolderDocument, GetGamePTConfig, UserDocument } from "tachi-common";
 import { UGPTFolderReturns, UGPTStatsReturn } from "types/api-returns";
@@ -172,26 +176,22 @@ function FolderCompare({
 	}
 
 	return (
-		<Row>
-			<UserCard username={reqUser.username} game={game} playtype={playtype} />
-			<UserCard username={withUser.username} game={game} playtype={playtype} />
-			<Col xs={12}>
-				<Divider />
-			</Col>
+		<Stack gap={4}>
+			<Row xs={{ cols: 1 }} lg={{ cols: 2 }}>
+				<UserCard user={reqUser} game={game} playtype={playtype} />
+				<UserCard user={withUser} game={game} playtype={playtype} />
+			</Row>
 			{/* <CompareCard
 				dataset={dataset}
 				baseUsername={reqUser.username}
 				otherUsername={withUser.username}
 			/> */}
-			<Col xs={12}>
-				<Divider />
-				<Form.Check
-					checked={shouldIncludeNotPlayed}
-					onChange={() => setShouldIncludeNotPlayed(!shouldIncludeNotPlayed)}
-					label="Include charts without plays?"
-				/>
-				<Divider />
-			</Col>
+			<Form.Check
+				checked={shouldIncludeNotPlayed}
+				onChange={() => setShouldIncludeNotPlayed(!shouldIncludeNotPlayed)}
+				label="Include charts without plays?"
+			/>
+			<hr className="m-0" />
 			<ComparePBsTable
 				baseUser={reqUser.username}
 				compareUser={withUser.username}
@@ -199,13 +199,13 @@ function FolderCompare({
 				game={game}
 				playtype={playtype}
 			/>
-		</Row>
+		</Stack>
 	);
 }
 
-function UserCard({ username, game, playtype }: { username: string } & GamePT) {
+function UserCard({ user, game, playtype }: { user: UserDocument } & GamePT) {
 	const { data, error } = useApiQuery<UGPTStatsReturn>(
-		`/users/${username}/games/${game}/${playtype}`
+		`/users/${user.username}/games/${game}/${playtype}`
 	);
 
 	if (error) {
@@ -213,26 +213,20 @@ function UserCard({ username, game, playtype }: { username: string } & GamePT) {
 	}
 
 	return (
-		<Col xs={12} lg={6}>
-			<Card>
-				<Row className="align-items-center">
-					<Col lg={3}>
-						<ProfilePicture user={username} />
-					</Col>
-					<Col lg={3}>
-						<h4>
-							<Link
-								className="gentle-link"
-								to={`/u/${username}/games/${game}/${playtype}`}
-							>
-								{username}
-							</Link>
-						</h4>
-					</Col>
-					<Col lg={6}>
-						{data ? <UGPTRatingsTable ugs={data.gameStats} /> : <Loading />}
-					</Col>
-				</Row>
+		<Col className="d-grid">
+			<Card cardBodyClassName="d-flex flex-column gap-4 flex-lg-row align-items-center justify-content-between">
+				<div className="d-flex flex-column">
+					<Link
+						className="fw-bold fs-4 text-center text-lg-start"
+						to={`/u/${user.username}/games/${game}/${playtype}`}
+					>
+						{user.username}
+					</Link>
+					<ProfilePicture user={user} />
+				</div>
+				<Col xs={12} sm={6} lg={7} xl={6}>
+					{data ? <UGPTRatingsTable ugs={data.gameStats} /> : <Loading />}
+				</Col>
 			</Card>
 		</Col>
 	);

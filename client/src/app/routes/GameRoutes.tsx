@@ -320,12 +320,7 @@ function SongInfoHeader({
 
 	return (
 		<Card header="Song Info">
-			<Row
-				className="align-items-center"
-				style={{
-					justifyContent: "space-evenly",
-				}}
-			>
+			<Row className="align-items-center justify-content-evenly">
 				{ImageCell && (
 					<Col xs={12} lg={3} className="text-center">
 						{ImageCell}
@@ -338,7 +333,10 @@ function SongInfoHeader({
 					<Col xs={12} lg={3} className="text-center">
 						<h5>Charts</h5>
 						<hr />
-						<div className="btn-group-vertical d-flex justify-content-center">
+						<div
+							role="group"
+							className="btn-group-vertical d-flex justify-content-center"
+						>
 							{game === "iidx" ? (
 								<IIDXDifficultyList
 									{...{
@@ -367,7 +365,7 @@ function SongInfoHeader({
 				)}
 				{activeChart && (
 					<Col xs={12}>
-						<Divider />
+						<hr />
 						<ChartInfoFormat playtype={playtype} chart={activeChart} game={game} />
 					</Col>
 				)}
@@ -404,7 +402,8 @@ function DifficultyButton({
 	return (
 		<LinkButton
 			onClick={() => setActiveChart(chart)}
-			className="btn-secondary"
+			variant="secondary"
+			className="text-body"
 			key={chart.chartID}
 			to={CreateChartLink(chart, game)}
 			style={{

@@ -6,11 +6,13 @@ export default function Card({
 	children,
 	footer,
 	className,
+	cardBodyClassName = "",
 	style,
 }: {
 	header?: JSX.Element | string;
 	footer?: JSX.Element | string;
 	className?: string;
+	cardBodyClassName?: string;
 	style?: CSSProperties;
 } & JustChildren) {
 	return (
@@ -24,7 +26,7 @@ export default function Card({
 					)}
 				</div>
 			)}
-			<div className="card-body">{children}</div>
+			<div className={`card-body ${cardBodyClassName}`}>{children}</div>
 			{footer && <div className="card-footer">{footer}</div>}
 		</div>
 	);

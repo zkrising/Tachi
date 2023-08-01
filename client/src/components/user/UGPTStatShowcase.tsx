@@ -50,7 +50,7 @@ export default function UGPTStatShowcase({ reqUser, game, playtype }: UGPT) {
 	return (
 		<>
 			<Card
-				className="card-dark"
+				className="bg-body-secondary bg-opacity-50"
 				header={
 					<CardHeader
 						rightContent={
@@ -379,7 +379,7 @@ export function StatDisplay({
 
 		return (
 			<Card
-				className="text-center stat-overview-card w-100"
+				className="text-center w-100"
 				header={<h5 className="text-body-secondary mb-0">Chart</h5>}
 			>
 				<>

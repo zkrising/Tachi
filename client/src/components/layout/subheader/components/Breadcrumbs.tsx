@@ -11,7 +11,7 @@ export function Breadcrumbs({ items }: { items: string[] }) {
 	return (
 		<div className="d-none d-lg-flex align-items-center fw-semibold">
 			<Link
-				className="link-light link-opacity-75 link-opacity-100-hover transition-color"
+				className="link-body-emphasis link-opacity-75 link-opacity-100-hover transition-color"
 				to="/"
 			>
 				<Icon type="home" />
@@ -30,10 +30,10 @@ export function Breadcrumbs({ items }: { items: string[] }) {
 					<Fragment key={index}>
 						<span
 							id="dot"
-							className="h-2 w-2 d-block bg-light rounded-circle bg-opacity-75 mx-3"
+							className="h-2 w-2 d-block bg-body-emphasis rounded-circle bg-opacity-75 mx-3"
 						/>
 						<Link
-							className="link-light link-opacity-75 link-opacity-100-hover transition-color"
+							className="link-body-emphasis link-opacity-75 link-opacity-100-hover transition-color"
 							to={`/${parts.slice(0, index + 1).join("/")}`}
 						>
 							{name}

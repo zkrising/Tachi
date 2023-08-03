@@ -3190,7 +3190,7 @@
 		"title": "maimai (FiNALE)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for maimai DX in FESTiVAL.",
 		"folders": [
 			"F29303d01c9e76686779858ec865846b70d148c8de825c152aabd174616972892",

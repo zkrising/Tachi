@@ -60,7 +60,7 @@ export const MAIMAI_SINGLE_CONF = {
 			chartDependentMax: true,
 			formatter: FmtPercent,
 			description:
-				"The percent this score was worth. Sometimes called 'rate' in game. This is between 0 and 104.",
+				"The percent this score was worth. Sometimes called 'rate' in game. This is upper-bounded by how many BREAK notes the chart has.",
 		},
 		lamp: {
 			type: "ENUM",

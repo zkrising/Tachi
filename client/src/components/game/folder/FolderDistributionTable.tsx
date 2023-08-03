@@ -1,5 +1,5 @@
 import { ChangeOpacity } from "util/color-opacity";
-import { TACHI_CHART_THEME } from "util/constants/chart-theme";
+import { TACHI_BAR_THEME } from "util/constants/chart-theme";
 import { Reverse, StepFromToMax, PercentFrom } from "util/misc";
 import { ResponsiveBar } from "@nivo/bar";
 import { BarChartTooltip } from "components/charts/ChartTooltip";
@@ -65,7 +65,7 @@ function FolderThermometer<T extends string>({
 			<ResponsiveBar
 				keys={Reverse(keys)}
 				data={[Object.assign({ id: "" }, values)]}
-				theme={Object.assign({}, TACHI_CHART_THEME)}
+				theme={Object.assign({}, TACHI_BAR_THEME)}
 				// @ts-expect-error temp
 				colors={(k) => ChangeOpacity(colours[k.id], 0.5)}
 				// @ts-expect-error Keys are appended with "." for some reason.

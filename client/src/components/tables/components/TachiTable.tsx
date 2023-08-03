@@ -141,7 +141,7 @@ export default function TachiTable<D>({
 					<div className="d-none d-lg-flex align-self-center">{displayStr}</div>
 				)}
 				{searchFunctions && (
-					<InputGroup style={{ maxWidth: isLg ? 384 : undefined }}>
+					<InputGroup className="ms-lg-auto" style={{ maxWidth: isLg ? 384 : undefined }}>
 						<Form.Control
 							onChange={(e) => setSearch(e.target.value)}
 							type="text"

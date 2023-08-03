@@ -19,7 +19,7 @@ export default function SelectLinkButton({
 } & LinkButtonProps) {
 	const match = DoesMatchRoute(window.location.href, to, !matchIfStartsWith);
 	const variant = match ? onVariant : offVariant;
-	const classNames = `${match ? "" : "text-body"} ${className}`;
+	const classNames = `${match ? "" : "text-body text-light-hover"} ${className}`;
 
 	return (
 		<LinkButton

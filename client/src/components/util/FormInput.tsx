@@ -1,32 +1,19 @@
-import React, { ElementType } from "react";
-import { Form, InputGroup } from "react-bootstrap";
+import React from "react";
+import { Form, FormControlProps, InputGroup } from "react-bootstrap";
 import { SetState } from "types/react";
 
 export default function FormInput({
 	fieldName,
-	value,
 	setValue,
-	placeholder,
-	as,
-	type,
+	...props
 }: {
 	fieldName: string;
-	value: string;
 	setValue: SetState<string>;
-	placeholder?: string;
-	as?: ElementType;
-	type?: string;
-}) {
+} & FormControlProps) {
 	return (
 		<InputGroup>
 			<InputGroup.Text>{fieldName}</InputGroup.Text>
-			<Form.Control
-				as={as}
-				placeholder={placeholder}
-				value={value}
-				onChange={(e) => setValue(e.target.value)}
-				type={type}
-			/>
+			<Form.Control onChange={(e) => setValue(e.target.value)} {...props} />
 		</InputGroup>
 	);
 }

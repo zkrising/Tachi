@@ -16,6 +16,20 @@
     box-shadow: 0 0 0 0.25rem var(--#{$prefix}focus-ring-color);
     border-color: $input-focus-border-color;
   }
+  &:has(:where(.is-invalid)) {
+    border-color: var(--#{$prefix}form-invalid-border-color) !important;
+    &:focus-within {
+      box-shadow: 0 0 $input-btn-focus-blur $input-focus-width
+        rgba(var(--#{$prefix}danger-rgb), $input-btn-focus-color-opacity) !important;
+    }
+  }
+  &:has(:where(.is-valid)) {
+    border-color: var(--#{$prefix}form-valid-border-color) !important;
+    &:focus-within {
+      box-shadow: 0 0 $input-btn-focus-blur $input-focus-width
+        rgba(var(--#{$prefix}success-rgb), $input-btn-focus-color-opacity) !important;
+    }
+  }
 
   &-sm {
     @include border-radius($input-border-radius-sm);
@@ -34,7 +48,7 @@
     box-shadow: none;
     border: none;
     &:focus {
-      border-color: $input-border-color;
+      box-shadow: none !important;
     }
   }
 

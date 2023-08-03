@@ -3156,7 +3156,7 @@
 		"title": "maimai DX (FESTiVAL PLUS)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for maimai FiNALE.",
 		"folders": [
 			"F1a0c0e32b477738519b1a69e167b4c6f87fa5ffd704b2a47759b414a7da4b8c4",
@@ -3190,7 +3190,8 @@
 		"title": "maimai (FiNALE)"
 	},
 	{
-		"default": false,
+		"default": true,
+>>>>>>> 23b51523c (add table and their folders)
 		"description": "Levels for maimai DX in FESTiVAL.",
 		"folders": [
 			"F29303d01c9e76686779858ec865846b70d148c8de825c152aabd174616972892",

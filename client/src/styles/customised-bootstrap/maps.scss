@@ -124,7 +124,7 @@ $utilities: map-merge(
                             body: rgba(var(--#{$prefix}body-bg-rgb), var(--#{$prefix}border-opacity)),
                             body-secondary: rgba(var(--#{$prefix}secondary-bg-rgb), var(--#{$prefix}border-opacity)),
                             body-tertiary: rgba(var(--#{$prefix}tertiary-bg-rgb), var(--#{$prefix}border-opacity)),
-                            translucent: var(--#{$prefix}border-color-translucent),
+                            translucent: var(--#{$prefix}border-color-translucent)
                         )
                     )
             ),
@@ -147,7 +147,10 @@ $utilities: map-merge(
             local-vars: (
                 "text-opacity": 1
             ),
-            state: hover,
+            state: (
+                hover,
+                focus
+            ),
             values:
                 map-merge(
                     $utilities-text-colors,
@@ -174,7 +177,7 @@ $utilities: map-merge(
                 25: 25%,
                 50: 50%,
                 75: 75%,
-                100: 100%,
+                100: 100%
             )
         ),
         "transition": (

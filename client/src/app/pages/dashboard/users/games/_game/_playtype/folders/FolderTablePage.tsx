@@ -103,9 +103,9 @@ export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 
 	return (
 		<>
-			<InputGroup>
+			<InputGroup size="lg">
 				<InputGroup.Text>Table</InputGroup.Text>
-				<Form.Select size="lg" value={tableID} onChange={(e) => setTableID(e.target.value)}>
+				<Form.Select value={tableID} onChange={(e) => setTableID(e.target.value)}>
 					{displayableTables.map((e) => (
 						<option key={e.tableID} value={e.tableID}>
 							{e.title}

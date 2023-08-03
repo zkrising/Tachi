@@ -5,8 +5,11 @@ import SmallText from "components/util/SmallText";
 import { useZTable, ZTableSortFn } from "components/util/table/useZTable";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext, useState } from "react";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import InputGroup from "react-bootstrap/InputGroup";
+import Form from "react-bootstrap/Form";
 import { integer } from "tachi-common";
+import { WindowContext } from "context/WindowContext";
 import FilterDirectivesIndicator from "./FilterDirectivesIndicator";
 import NoDataWrapper from "./NoDataWrapper";
 import PageSelector from "./PageSelector";
@@ -128,19 +131,18 @@ export default function TachiTable<D>({
 	});
 
 	const { settings } = useContext(UserSettingsContext);
-
+	const {
+		breakpoint: { isLg },
+	} = useContext(WindowContext);
 	return (
-		<div className="w-100">
-			<div className="row">
+		<div>
+			<div className="hstack justify-content-between">
 				{!noTopDisplayStr && (
-					<div className="d-none d-lg-flex col-lg-6 align-self-center mb-1">
-						{displayStr}
-					</div>
+					<div className="d-none d-lg-flex align-self-center">{displayStr}</div>
 				)}
 				{searchFunctions && (
-					<div className="col-12 col-lg-3 ms-auto input-group">
-						<input
-							className="form-control filter-directives-enabled"
+					<InputGroup style={{ maxWidth: isLg ? 384 : undefined }}>
+						<Form.Control
 							onChange={(e) => setSearch(e.target.value)}
 							type="text"
 							placeholder={`Filter ${entryName}`}
@@ -150,10 +152,9 @@ export default function TachiTable<D>({
 							searchFunctions={searchFunctions}
 							doc={dataset[0]}
 						/>
-					</div>
+					</InputGroup>
 				)}
 			</div>
-
 			<div className="col-12 px-0 mt-4 mb-4 overflow-x-auto overflow-x-lg-hidden">
 				<table className="table table-striped table-hover table-vertical-center text-center">
 					<thead>{headersRow}</thead>
@@ -162,46 +163,43 @@ export default function TachiTable<D>({
 					</tbody>
 				</table>
 			</div>
-			<div className="col-12 px-0">
-				<div className="row">
-					<div className="col-lg-4 align-self-center">{displayStr}</div>
-					<div className="d-none d-lg-flex col-lg-4 justify-content-center align-items-center">
-						{settings?.preferences.developerMode && (
-							<Button
-								className="ms-4 w-50"
-								onClick={() => {
-									let data = dataset;
-									if (search !== "") {
-										data = filteredDataset;
-									}
+			<div className="row justify-content-between">
+				<div className="col text-start align-self-center">{displayStr}</div>
+				<div className="d-none d-lg-flex col justify-content-center align-items-center">
+					{settings?.preferences.developerMode && (
+						<Button
+							onClick={() => {
+								let data = dataset;
+								if (search !== "") {
+									data = filteredDataset;
+								}
 
-									CopyToClipboard(data);
-								}}
-								variant="outline-info"
-							>
-								<Icon type="table" /> Export{" "}
-								{search !== "" ? "Filtered Data" : "Table"} (JSON)
-							</Button>
-						)}
-					</div>
-					<div className="col-lg-4 ms-auto text-end">
-						<div className="btn-group">
-							<Button
-								variant="secondary"
-								disabled={pageState === "start" || pageState === "start-end"}
-								onClick={decrementPage}
-							>
-								<SmallText small="<" large="Previous" />
-							</Button>
-							<PageSelector currentPage={page} maxPage={maxPage} setPage={setPage} />
-							<Button
-								variant="secondary"
-								disabled={pageState === "end" || pageState === "start-end"}
-								onClick={incrementPage}
-							>
-								<SmallText small=">" large="Next" />
-							</Button>
-						</div>
+								CopyToClipboard(data);
+							}}
+							variant="outline-info"
+						>
+							<Icon type="table" /> Export {search !== "" ? "Filtered Data" : "Table"}{" "}
+							(JSON)
+						</Button>
+					)}
+				</div>
+				<div className="text-end col">
+					<div className="btn-group">
+						<Button
+							variant="secondary"
+							disabled={pageState === "start" || pageState === "start-end"}
+							onClick={decrementPage}
+						>
+							<SmallText small="<" large="Previous" />
+						</Button>
+						<PageSelector currentPage={page} maxPage={maxPage} setPage={setPage} />
+						<Button
+							variant="secondary"
+							disabled={pageState === "end" || pageState === "start-end"}
+							onClick={incrementPage}
+						>
+							<SmallText small=">" large="Next" />
+						</Button>
 					</div>
 				</div>
 			</div>

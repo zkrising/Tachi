@@ -1,10 +1,5 @@
 const logger = require("../logger");
-const {
-	MutateCollection,
-	CreateFolderID,
-	ReadCollection,
-	WriteCollection,
-} = require("../util");
+const { MutateCollection, CreateFolderID, ReadCollection, WriteCollection } = require("../util");
 
 const translateMap = new Map();
 
@@ -14,11 +9,7 @@ MutateCollection("folders.json", (folders) => {
 	logger.info("Updating Folders.");
 
 	for (const folder of folders) {
-		const newFolderID = CreateFolderID(
-			folder.data,
-			folder.game,
-			folder.playtype
-		);
+		const newFolderID = CreateFolderID(folder.data, folder.game, folder.playtype);
 
 		translateMap.set(folder.folderID, newFolderID);
 
@@ -37,9 +28,7 @@ try {
 				const newFolderID = translateMap.get(e);
 
 				if (!newFolderID) {
-					throw new Error(
-						`${e} doesn't exist as a folderID? Can't autofix.`
-					);
+					throw new Error(`${e} doesn't exist as a folderID? Can't autofix.`);
 				}
 
 				return newFolderID;
@@ -51,9 +40,6 @@ try {
 		return tables;
 	});
 } catch (err) {
-	logger.error(
-		"Failed to update tables.json, reverting all auto-folder fixes.",
-		{ err }
-	);
+	logger.error("Failed to update tables.json, reverting all auto-folder fixes.", { err });
 	WriteCollection("folders.json", origFolders);
 }

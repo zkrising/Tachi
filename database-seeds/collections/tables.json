@@ -3156,6 +3156,40 @@
 		"title": "maimai DX (FESTiVAL PLUS)"
 	},
 	{
+		"default": true,
+		"description": "Levels for maimai FiNALE.",
+		"folders": [
+			"F1a0c0e32b477738519b1a69e167b4c6f87fa5ffd704b2a47759b414a7da4b8c4",
+			"Fae54b2e40ea8e8a3cab7f007a516f6c4dbbb0eda8a6d211d02e1b8cce5cf1ff9",
+			"Fc0ffd85c2959bd4f39703ca5df640bc55ef375de5c5633c2724ee9b3b22cd86d",
+			"F4e7ac5d666f05d39cbb4d1a6ea8061241a904685f2e888b3e97388de6bc70e9a",
+			"F6f79ae4e23953dbff6bfd3709360805b2652b863dedf29c7a7880157e2bc36d1",
+			"Fe789cf5db5b4153582c557a99c1b3af74dbf8aaa90afc5cb2d9faa05ec60cf03",
+			"F1c076b827e34f5f3c03c8ee2626773c1bed614687e605acf866d3f2acd2a8bb2",
+			"F017c78011efb1784e53b2c659fcaf089daede5ec2e39a26d55a3ddc53c4c5b58",
+			"Fee6ff8ec22ed89de6c619a5e0584a19f2e80eefc8ceddb15ab99a99ed6b17dab",
+			"Fbec2ce2959e8a23ae39cbba3396136617c289836e50b9a9f635ded49fe546736",
+			"Fb2baf0a296fac30b8b2270f5ca3e7c759c403e2d8c110ec424e05727c6c33d18",
+			"F85df71c7b200899ec6759b2dfee5446c7da0a0af49524b3b261c4aac34f18e09",
+			"F5534b37f2e158f7ad946f7d38b61c085b3fc6b2ddaf2cc57ae0a2693e12b803e",
+			"F8fd9946d8a24ba19f98736bded20ad6c173063a5b4a1322c004a8775851cd5cb",
+			"F15a62cbb7b4af62198f1048d315d4f784d0f9943c967ebee2e8207b376513668",
+			"Fb26affb9911425f64b06ee78ae717f52ca2b19d06ffd26a7c1cbe90de8cea7e0",
+			"F5b7589434609a8a5117dbc71c421e9c6b8588926cf0ca01eec1cbb8f2792aa49",
+			"F77b0b508a335d4ad32c351690364f6ec75615499660c033ce33103b489802cf8",
+			"Fae9a5d9ce589b0286a41cebf212aafba4d209e22ff8d6874717c10b743f45a36",
+			"F6467544964f67cadfbb688470493baece6a97cdda1d0108949a807436ffe9f72",
+			"F5fd3fe0b33f6d9473c16f970a4a4a7b775c1ef833ad346d230cc76ec105cb6bd",
+			"F6b5f9be654a31e6eb13f4f5d4fbb252392d02b0dbdd163e736f37dcd3a37ba77",
+			"F506c71630d7208d67522261012fdc3ab253ddaa3b5c9ba4e31a5c6fe88a7ffb9"
+		],
+		"game": "maimai",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "maimai-Single-finale-levels",
+		"title": "maimai (FiNALE)"
+	},
+	{
 		"default": false,
 		"description": "Levels for maimai DX in FESTiVAL.",
 		"folders": [

@@ -40,7 +40,7 @@ export default function SelectableRating<GPT extends GPTString>({
 			<select
 				onChange={(v) => setRating(v.target.value as AllRatings<GPT>)}
 				value={rating}
-				className="border-0 text-body fw-bold rounded focus-ring focus-ring-light"
+				className="border-0 text-body fw-bolder bg-transparent rounded focus-ring focus-ring-light"
 			>
 				{Object.keys(gptConfig[key]).map((s) => (
 					<option key={s} value={s}>

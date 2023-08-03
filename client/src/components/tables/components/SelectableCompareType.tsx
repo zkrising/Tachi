@@ -22,7 +22,7 @@ export default function SelectableCompareType({
 			<select
 				onChange={(v) => setMetric(v.target.value)}
 				value={metric}
-				className="my-1 border-0 text-body fw-bold rounded focus-ring focus-ring-light"
+				className="my-1 border-0 text-body fw-bolder bg-transparent rounded focus-ring focus-ring-light"
 			>
 				{GetScoreMetrics(gptConfig, ["DECIMAL", "INTEGER", "ENUM"]).map((e) => (
 					<option value={e}>Vs. ({UppercaseFirst(e)})</option>

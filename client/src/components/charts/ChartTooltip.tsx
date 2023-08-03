@@ -34,7 +34,6 @@ export function BarChartTooltip({
 }) {
 	return (
 		<div className="tooltip bs-tooltip-top show rounded" x-placement="top">
-			<div className="tooltip-arrow" />
 			<div className="tooltip-inner vstack gap-0.5 text-center">
 				{barDatum && barTooltipContent(barDatum)}
 				{children}

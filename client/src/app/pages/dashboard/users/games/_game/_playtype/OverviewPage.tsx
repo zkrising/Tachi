@@ -158,20 +158,22 @@ function UserHistory({
 			<Divider className="mt-6 mb-2" />
 			{mode === "ranking" ? (
 				<>
-					<div className="col-12 offset-md-4 col-md-4 mt-4">
-						<FormSelect
-							value={rating}
-							onChange={(e) =>
-								setRating(e.target.value as keyof UserGameStats["ratings"])
-							}
-						>
-							{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
-								<option key={e} value={e}>
-									{UppercaseFirst(e)}
-								</option>
-							))}
-						</FormSelect>
-					</div>
+					{Object.keys(gptConfig.profileRatingAlgs).length > 1 && (
+						<div className="col-12 offset-md-4 col-md-4 mt-4">
+							<FormSelect
+								value={rating}
+								onChange={(e) =>
+									setRating(e.target.value as keyof UserGameStats["ratings"])
+								}
+							>
+								{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
+									<option key={e} value={e}>
+										{UppercaseFirst(e)}
+									</option>
+								))}
+							</FormSelect>
+						</div>
+					)}
 					<RankingTimeline data={data} rating={rating} />
 				</>
 			) : mode === "playcount" ? (
@@ -209,20 +211,22 @@ function UserHistory({
 				/>
 			) : (
 				<>
-					<div className="col-12 offset-md-4 col-md-4 mt-4">
-						<FormSelect
-							value={rating}
-							onChange={(e) =>
-								setRating(e.target.value as keyof UserGameStats["ratings"])
-							}
-						>
-							{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
-								<option key={e} value={e}>
-									{UppercaseFirst(e)}
-								</option>
-							))}
-						</FormSelect>
-					</div>
+					{Object.keys(gptConfig.profileRatingAlgs).length > 1 && (
+						<div className="col-12 offset-md-4 col-md-4 mt-4">
+							<FormSelect
+								value={rating}
+								onChange={(e) =>
+									setRating(e.target.value as keyof UserGameStats["ratings"])
+								}
+							>
+								{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
+									<option key={e} value={e}>
+										{UppercaseFirst(e)}
+									</option>
+								))}
+							</FormSelect>
+						</div>
+					)}
 
 					<RatingTimeline {...{ data, rating }} />
 				</>

@@ -1428,11 +1428,11 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
 $tooltip-font-size: $font-size-sm;
 $tooltip-max-width: 200px;
 $tooltip-color: var(--#{$prefix}body-color);
-$tooltip-bg: rgba(var(--#{$prefix}tertiary-bg-rgb), .75);
+$tooltip-bg: rgba(var(--#{$prefix}tertiary-bg-rgb), .85);
 $tooltip-border-radius: var(--#{$prefix}border-radius) !default;
 $tooltip-opacity: null;
-$tooltip-padding-y: $spacer * 0.25 !default;
-$tooltip-padding-x: $spacer * 0.5 !default;
+$tooltip-padding-y: $spacer * 0.5;
+$tooltip-padding-x: $spacer * 1;
 $tooltip-margin: null !default; // TODO: remove this in v6
 
 $tooltip-arrow-width: 0.8rem !default;

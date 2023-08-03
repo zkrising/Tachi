@@ -4,24 +4,25 @@
     &:not(:focus-visible) {
         box-shadow: none !important;
     }
-    //--bs-btn-bg: ;
-    //--bs-btn-border-color: ;
-    //--bs-btn-hover-color: ;
-    --bs-btn-hover-bg: rgba(var(--#{$prefix}tertiary-bg-rgb), 0.5);
-    --bs-btn-hover-border-color: #b02a37;
-    //--bs-btn-focus-shadow-rgb: ;
-    //--bs-btn-active-color: ;
-    --bs-btn-active-bg: rgba(var(--#{$prefix}tertiary-bg-rgb), 0.25);
-    //--bs-btn-active-border-color: ;
-    --bs-btn-active-shadow: var(--bs-box-shadow);
-    --bs-btn-disabled-color: rgba(var(--#{$prefix}body-color-rgb), 0.65);
-    //--bs-btn-disabled-bg: ;
-    //--bs-btn-disabled-border-color: ;
-    --bs-btn-focus-box-shadow: #{$focus-ring-box-shadow};
+    //--#{$prefix}btn-bg: ;
+    //--#{$prefix}btn-border-color: ;
+    //--#{$prefix}btn-hover-color: ;
+    --#{$prefix}btn-hover-bg: rgba(var(--#{$prefix}tertiary-bg-rgb), 0.5);
+    --#{$prefix}btn-hover-border-color: #b02a37;
+    //--#{$prefix}btn-focus-shadow-rgb: ;
+    //--#{$prefix}btn-active-color: ;
+    --#{$prefix}btn-active-bg: rgba(var(--#{$prefix}tertiary-bg-rgb), 0.25);
+    //--#{$prefix}btn-active-border-color: ;
+    --#{$prefix}btn-active-shadow: var(--#{$prefix}box-shadow);
+    --#{$prefix}btn-disabled-color: rgba(var(--#{$prefix}body-color-rgb), 0.65);
+    //--#{$prefix}btn-disabled-bg: ;
+    //--#{$prefix}btn-disabled-border-color: ;
+    --#{$prefix}btn-box-shadow: none;
+    --#{$prefix}btn-focus-box-shadow: #{$focus-ring-box-shadow};
     &:focus-visible {
-        //color: var(--bs-btn-hover-color);
-        background-color: var(--bs-btn-hover-bg);
-        //border-color: var(--bs-btn-hover-border-color);
-        box-shadow: var(--bs-btn-box-shadow), var(--bs-btn-focus-box-shadow);
+        //color: var(--#{$prefix}btn-hover-color);
+        background-color: var(--#{$prefix}btn-hover-bg);
+        //border-color: var(--#{$prefix}btn-hover-border-color);
+        box-shadow: var(--#{$prefix}btn-focus-box-shadow);
     }
 }

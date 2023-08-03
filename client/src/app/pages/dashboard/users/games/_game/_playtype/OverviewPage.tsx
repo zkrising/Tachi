@@ -21,6 +21,7 @@ import { FormatGame, GetGameConfig, GetGamePTConfig, UserGameStats } from "tachi
 import { UGPTHistory } from "types/api-returns";
 import { GamePT, SetState, UGPT } from "types/react";
 import FormSelect from "react-bootstrap/FormSelect";
+import ChartTooltip from "components/charts/ChartTooltip";
 
 export default function OverviewPage({ reqUser, game, playtype }: UGPT) {
 	const gameConfig = GetGameConfig(game);
@@ -193,16 +194,16 @@ function UserHistory({
 						tickRotation: 0,
 						format: (y) => (Number.isInteger(y) ? y : ""),
 					}}
-					tooltipRenderFn={(p) => (
-						<div>
-							{p.data.yFormatted} Play{p.data.yFormatted !== "1" && "s"}
+					tooltip={(p) => (
+						<ChartTooltip>
+							{p.point.data.yFormatted} Play{p.point.data.yFormatted !== "1" && "s"}
 							<br />
 							<small className="text-body-secondary">
-								{MillisToSince(+p.data.xFormatted)}
+								{MillisToSince(+p.point.data.xFormatted)}
 							</small>
-						</div>
+						</ChartTooltip>
 					)}
-					curve={"stepBefore"}
+					curve="linear"
 					enableArea={true}
 					areaBaselineValue={Math.min(...data.map((e) => e.playcount))}
 				/>
@@ -256,15 +257,16 @@ function RatingTimeline({
 				tickRotation: 0,
 				format: (y) => (y ? ToFixedFloor(y, 2) : "N/A"),
 			}}
-			tooltipRenderFn={(p) => (
-				<div>
-					{p.data.y ? ToFixedFloor(p.data.y as number, 2) : "N/A"}{" "}
-					{UppercaseFirst(rating)}
-					<br />
+			tooltip={(p) => (
+				<ChartTooltip>
+					<div>
+						{p.point.data.y ? ToFixedFloor(p.point.data.y as number, 2) : "N/A"}{" "}
+						{UppercaseFirst(rating)}
+					</div>
 					<small className="text-body-secondary">
-						{MillisToSince(+p.data.xFormatted)}
+						{MillisToSince(+p.point.data.xFormatted)}
 					</small>
-				</div>
+				</ChartTooltip>
 			)}
 		/>
 	);
@@ -298,14 +300,15 @@ function RankingTimeline({
 				format: (y) => (Number.isInteger(y) ? `#${y}` : ""),
 			}}
 			reverse={true}
-			tooltipRenderFn={(p) => (
-				<div>
-					{MillisToSince(+p.data.xFormatted)}: #{p.data.yFormatted}
-					<br />
+			tooltip={(p) => (
+				<ChartTooltip>
+					<div>
+						{MillisToSince(+p.point.data.xFormatted)}: #{p.point.data.yFormatted}
+					</div>
 					<small className="text-body-secondary">
-						({FormatDate(+p.data.xFormatted)})
+						({FormatDate(+p.point.data.xFormatted)})
 					</small>
-				</div>
+				</ChartTooltip>
 			)}
 		/>
 	);

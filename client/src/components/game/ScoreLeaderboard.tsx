@@ -9,7 +9,7 @@ import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 import { COLOUR_SET, CreateSongMap, GetGamePTConfig, integer } from "tachi-common";
 import { ScoreLeaderboardReturns } from "types/api-returns";
 import { GamePT } from "types/react";
@@ -147,7 +147,7 @@ function DistributionChart({ dataset }: { dataset: PBDataset }) {
 					USER_COLOURS[(usernames.indexOf(x.data.username) ?? 0) % USER_COLOURS.length]
 				}
 				margin={{ left: 80, bottom: 40, top: 20, right: 20 }}
-				tooltip={() => <></>}
+				isInteractive={false}
 				{...DEFAULT_BAR_PROPS}
 			/>
 		</div>

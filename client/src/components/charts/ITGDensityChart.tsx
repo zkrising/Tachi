@@ -1,6 +1,8 @@
+import { TACHI_LINE_THEME } from "util/constants/chart-theme";
 import { ResponsiveLine, Serie } from "@nivo/line";
-import React from "react";
+import React, { useContext } from "react";
 import { COLOUR_SET } from "tachi-common";
+import { WindowContext } from "context/WindowContext";
 import ChartTooltip from "./ChartTooltip";
 
 export default function ITGDensityChart({
@@ -16,55 +18,36 @@ export default function ITGDensityChart({
 	height?: number | string;
 	data: Serie[];
 } & ResponsiveLine["props"]) {
-	const component = (
-		<ResponsiveLine
-			data={data}
-			margin={{ top: 30, bottom: 50, left: 90, right: 50 }}
-			xScale={{ type: "linear" }}
-			motionConfig="stiff"
-			crosshairType="x"
-			yScale={{ type: "linear" }}
-			axisLeft={{ format: (y) => `${npsToBPM(y)}BPM` }}
-			enablePoints={false}
-			useMesh={true}
-			enableGridX={false}
-			colors={COLOUR_SET.purple}
-			theme={{
-				background: "none",
-				textColor: "#ffffff",
-				grid: {
-					line: {
-						stroke: "#1c1c1c",
-						strokeWidth: 1,
-					},
-				},
-			}}
-			curve="stepAfter"
-			tooltip={(d) => (
-				<ChartTooltip
-					point={d.point}
-					renderFn={(p) => (
-						<div>
-							Measure {p.data.xFormatted}:{" "}
-							{npsToBPM(Number(p.data.yFormatted)).toFixed()}BPM
-						</div>
-					)}
-				/>
-			)}
-			legends={[]}
-			enableArea
-		/>
-	);
-
+	const {
+		breakpoint: { isMd },
+	} = useContext(WindowContext);
 	return (
-		<>
-			<div className="d-block d-md-none" style={{ height: mobileHeight, width: mobileWidth }}>
-				{component}
-			</div>
-			<div className="d-none d-md-block" style={{ height, width }}>
-				{component}
-			</div>
-		</>
+		<div style={{ height: isMd ? height : mobileHeight, width: isMd ? width : mobileWidth }}>
+			<ResponsiveLine
+				data={data}
+				margin={{ top: 30, bottom: 50, left: 90, right: 50 }}
+				xScale={{ type: "linear" }}
+				motionConfig="stiff"
+				crosshairType="x"
+				yScale={{ type: "linear" }}
+				axisLeft={{ format: (y) => `${npsToBPM(y)}BPM` }}
+				enablePoints={false}
+				useMesh={true}
+				enableGridX={false}
+				colors={COLOUR_SET.purple}
+				theme={TACHI_LINE_THEME}
+				curve="stepAfter"
+				tooltip={(d) => (
+					<ChartTooltip>
+						Measure {d.point.data.xFormatted}:{" "}
+						{npsToBPM(Number(d.point.data.yFormatted)).toFixed()}
+						BPM
+					</ChartTooltip>
+				)}
+				legends={[]}
+				enableArea
+			/>
+		</div>
 	);
 }
 

@@ -1,60 +1,44 @@
 import React from "react";
-import { PointTooltipProps } from "@nivo/line";
-import { BarTooltipProps } from "@nivo/bar";
+import { BarDatum, BarTooltipProps } from "@nivo/bar";
+import { JustChildren } from "types/react";
 
-const defaultRenderFn = (point: PointTooltipProps["point"]) => (
-	<div>
-		{point.data.xFormatted} {point.data.yFormatted}
-	</div>
-);
-
-export default function ChartTooltip({
-	renderFn = defaultRenderFn,
-	point,
-}: {
-	point: PointTooltipProps["point"];
-	renderFn?: (p: PointTooltipProps["point"]) => JSX.Element;
-}) {
+/*function pointTooltipContent(point: PointTooltipProps["point"]) {
 	return (
-		<div
-			className="chart-tooltip d-flex align-items-center justify-content-center"
-			style={{
-				padding: "1rem",
-				backgroundColor: "#131313",
-				borderRadius: "1px 1px 1px 1px",
-				boxShadow: "0px 0px 5px 0px black",
-			}}
-		>
-			{renderFn(point)}
+		<div>
+			x:{point.data.xFormatted} y:{point.data.yFormatted}
+		</div>
+	);
+}*/
+
+export default function ChartTooltip({ children }: JustChildren) {
+	return (
+		<div className="tooltip bs-tooltip-top show rounded" x-placement="top">
+			<div className="tooltip-inner vstack gap-0.5 text-center">{children}</div>
 		</div>
 	);
 }
 
-const defaultBarRenderFn = (data: BarTooltipProps<unknown>) => (
-	<div>
-		{data.label} {data.value}
-	</div>
+const barTooltipContent = (data: BarTooltipProps<BarDatum>) => (
+	<>
+		<div>{data.label}</div>
+		<div>{data.formattedValue}</div>
+	</>
 );
 
 export function BarChartTooltip({
-	renderFn = defaultBarRenderFn,
-	point,
+	barDatum,
+	children,
 }: {
-	point: BarTooltipProps<unknown>;
-	renderFn?: (p: BarTooltipProps<unknown>) => JSX.Element;
+	barDatum?: BarTooltipProps<BarDatum>;
+	children?: React.ReactNode;
 }) {
 	return (
-		<div
-			className="chart-tooltip d-flex align-items-center justify-content-center"
-			style={{
-				padding: "1rem",
-				backgroundColor: "#131313",
-				borderRadius: "1px 1px 1px 1px",
-				boxShadow: "0px 0px 5px 0px black",
-				width: 200,
-			}}
-		>
-			{renderFn(point)}
+		<div className="tooltip bs-tooltip-top show rounded" x-placement="top">
+			<div className="tooltip-arrow" />
+			<div className="tooltip-inner vstack gap-0.5 text-center">
+				{barDatum && barTooltipContent(barDatum)}
+				{children}
+			</div>
 		</div>
 	);
 }

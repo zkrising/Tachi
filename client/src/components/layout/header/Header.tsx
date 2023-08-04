@@ -19,7 +19,7 @@ export default function Header({ styles }: { styles: LayoutStyles }) {
 	} = useContext(WindowContext);
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-	const dropdownMenuStyle = isLg ? { transform: "translateY(16.5px)" } : undefined;
+	const dropdownMenuStyle = isLg ? { transform: "translateY(1.05rem)" } : undefined;
 
 	const setState = isLg ? undefined : setShowMobileMenu;
 

@@ -20,8 +20,6 @@ export default function useApiQuery<T>(
 		deps.push(url);
 	}
 
-	console.log(`useApiQuery ${url}`);
-
 	return useQuery<T, UnsuccessfulAPIFetchResponse>(
 		deps,
 		async () => {

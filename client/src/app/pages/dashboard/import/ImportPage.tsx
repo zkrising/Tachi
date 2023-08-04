@@ -549,7 +549,14 @@ function ImportInfoCard({
 }) {
 	return (
 		<div className="col-12 col-lg-6 mb-6 d-grid">
-			<Card header={name} footer={<LinkButton to={`/import/${href}`}>Use this!</LinkButton>}>
+			<Card
+				header={name}
+				footer={
+					<LinkButton className="float-end" to={`/import/${href}`}>
+						Use this!
+					</LinkButton>
+				}
+			>
 				<div style={{ fontSize: "1.5rem" }}>{desc}</div>
 				{moreInfo && (
 					<>

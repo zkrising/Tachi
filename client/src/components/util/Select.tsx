@@ -7,7 +7,7 @@ export default function Select<T extends string | null>({
 	children,
 	allowNull = false,
 	style,
-	className,
+	className = "",
 	unselectedName = "Select...",
 	name,
 	description,

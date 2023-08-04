@@ -5,7 +5,7 @@ import { NavLink, NavLinkProps } from "react-router-dom";
 export default function DropdownNavLink({
 	to,
 	children,
-	className,
+	className = "",
 	...props
 }: { to: string; children: React.ReactNode } & NavLinkProps) {
 	return (

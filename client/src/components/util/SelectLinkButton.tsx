@@ -5,7 +5,7 @@ import LinkButton, { LinkButtonProps } from "./LinkButton";
 
 export default function SelectLinkButton({
 	children,
-	className,
+	className = "",
 	onVariant = "primary",
 	offVariant = "outline-secondary",
 	to,

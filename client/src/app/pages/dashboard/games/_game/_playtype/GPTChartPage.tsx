@@ -184,82 +184,90 @@ function InternalGPTChartPage({
 	const base = CreateChartLink(chart, game);
 
 	return (
-		<Row xs={{ cols: 1 }} lg={{ cols: 2 }} className="row-gap-4">
-			<ButtonGroup className="d-flex w-100">
-				<SelectLinkButton className="text-wrap" to={base}>
-					<Icon type="trophy" /> Best 100
-				</SelectLinkButton>
-				<SelectLinkButton className="text-wrap" to={`${base}/me`} disabled={!data.adjacent}>
-					<Icon type="user" /> Your Position
-				</SelectLinkButton>
-				{user && (
-					<>
-						<SelectLinkButton
-							className="text-wrap"
-							to={`${base}/rivals`}
-							disabled={!data.adjacent}
-						>
-							<Icon type="users" /> Vs. Rivals
-						</SelectLinkButton>
-						<SelectLinkButton className="text-wrap" to={`${base}/targets`}>
-							<Icon type="scroll" /> Goals & Quests
-						</SelectLinkButton>
-					</>
-				)}
-			</ButtonGroup>
+		<>
+			<Row xs={{ cols: 1 }} lg={{ cols: 2 }} className="row-gap-4">
+				<ButtonGroup className="d-flex w-100">
+					<SelectLinkButton className="text-wrap" to={base}>
+						<Icon type="trophy" /> Best 100
+					</SelectLinkButton>
+					<SelectLinkButton
+						className="text-wrap"
+						to={`${base}/me`}
+						disabled={!data.adjacent}
+					>
+						<Icon type="user" /> Your Position
+					</SelectLinkButton>
+					{user && (
+						<>
+							<SelectLinkButton
+								className="text-wrap"
+								to={`${base}/rivals`}
+								disabled={!data.adjacent}
+							>
+								<Icon type="users" /> Vs. Rivals
+							</SelectLinkButton>
+							<SelectLinkButton className="text-wrap" to={`${base}/targets`}>
+								<Icon type="scroll" /> Goals & Quests
+							</SelectLinkButton>
+						</>
+					)}
+				</ButtonGroup>
 
-			<TopShowcase data={data} user={user} userMap={userMap} chart={chart} />
-			<Switch>
-				<Route exact path="/games/:game/:playtype/songs/:songID/:difficulty/targets">
-					<ChartTargetInfo {...{ chart, game, playtype, song, user: user! }} />
-				</Route>
+				<TopShowcase data={data} user={user} userMap={userMap} chart={chart} />
+			</Row>
+			<div className="mt-4">
+				<Switch>
+					<Route exact path="/games/:game/:playtype/songs/:songID/:difficulty/targets">
+						<ChartTargetInfo {...{ chart, game, playtype, song, user: user! }} />
+					</Route>
 
-				<Route exact path="/games/:game/:playtype/songs/:songID/:difficulty">
-					<ChartLeaderboardTable
-						{...{
-							data,
-							game,
-							playtype,
-							user,
-							userMap,
-							chart,
-							song,
-							mode: "leaderboard",
-						}}
-					/>
-				</Route>
+					<Route exact path="/games/:game/:playtype/songs/:songID/:difficulty">
+						<ChartLeaderboardTable
+							{...{
+								data,
+								game,
+								playtype,
+								user,
+								userMap,
+								chart,
+								song,
+								mode: "leaderboard",
+							}}
+						/>
+					</Route>
 
-				<Route exact path="/games/:game/:playtype/songs/:songID/:difficulty/me">
-					<ChartLeaderboardTable
-						{...{
-							data,
-							game,
-							playtype,
-							user,
-							userMap,
-							chart,
-							song,
-							mode: "adjacent",
-						}}
-					/>
-				</Route>
+					<Route exact path="/games/:game/:playtype/songs/:songID/:difficulty/me">
+						<ChartLeaderboardTable
+							{...{
+								data,
+								game,
+								playtype,
+								user,
+								userMap,
+								chart,
+								song,
+								mode: "adjacent",
+							}}
+						/>
+					</Route>
 
-				<Route exact path="/games/:game/:playtype/songs/:songID/:difficulty/rivals">
-					<ChartLeaderboardTable
-						{...{
-							data,
-							game,
-							playtype,
-							user,
-							userMap,
-							chart,
-							song,
-							mode: "rivals",
-						}}
-					/>
-				</Route>
-			</Switch>
-		</Row>
+					<Route exact path="/games/:game/:playtype/songs/:songID/:difficulty/rivals">
+						<ChartLeaderboardTable
+							{...{
+								data,
+								game,
+								playtype,
+								user,
+								userMap,
+								chart,
+								song,
+								mode: "rivals",
+							}}
+						/>
+					</Route>
+				</Switch>
+			</div>
+		</>
 	);
 }
 

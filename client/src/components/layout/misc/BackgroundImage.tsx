@@ -6,15 +6,19 @@ import { LayoutStyles } from "../Layout";
 export default function BackgroundImage({ styles }: { styles: LayoutStyles }) {
 	const { background } = useContext(BackgroundContext);
 	return (
-		<img
-			src={background ? background : `${ToCDNURL("/game-banners/default")}`}
-			height={styles.backgroundHeight}
+		<div
 			style={{
-				marginTop: `${styles.headerHeight}px`,
-				objectFit: "cover",
-				width: "100%",
-				zIndex: "-1",
+				backgroundImage: background
+					? `url(${background})`
+					: `url(${ToCDNURL("/game-banners/default")})`,
+				backgroundRepeat: "no-repeat",
+				backgroundPosition: "center",
+				backgroundSize: "cover",
 				position: "absolute",
+				top: `${styles.headerHeight}px`,
+				width: "100%",
+				height: styles.backgroundHeight,
+				zIndex: "-1",
 			}}
 		/>
 	);

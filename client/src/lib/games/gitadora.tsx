@@ -37,26 +37,27 @@ const GITADORA_HEADERS: GPTClientImplementation<"gitadora:Dora" | "gitadora:Gita
 
 const GITADORA_COLOURS: GPTClientImplementation<GPTStrings["gitadora"]>["classColours"] = {
 	colour: {
-		WHITE: bgc("white", "black"),
-		ORANGE: bg("orange"),
-		ORANGE_GRD: bg("orange"),
-		YELLOW: "warning",
-		YELLOW_GRD: "warning",
-		GREEN: bg("green"),
-		GREEN_GRD: bg("green"),
-		BLUE: "info",
-		BLUE_GRD: "info",
-		PURPLE: bg("purple"),
-		PURPLE_GRD: bg("purple"),
-		RED: "danger",
-		RED_GRD: "danger",
-		BRONZE: bg("bronze"),
-		SILVER: bgc("silver", "black"),
-		GOLD: bg("gold"),
+		WHITE: bgc("white", "var(--bs-dark)"),
+		ORANGE: bgc("orange", "var(--bs-dark)"),
+		ORANGE_GRD: bgc("orange", "var(--bs-dark)"),
+		YELLOW: bgc("var(--bs-warning)", "var(--bs-dark)"),
+		YELLOW_GRD: bgc("var(--bs-warning)", "var(--bs-dark)"),
+		GREEN: bgc("green", "var(--bs-light"),
+		GREEN_GRD: bgc("green", "var(--bs-light"),
+		BLUE: bgc("var(--bs-info)", "var(--bs-light)"),
+		BLUE_GRD: bgc("var(--bs-info)", "var(--bs-light)"),
+		PURPLE: bgc("purple", "var(--bs-light)"),
+		PURPLE_GRD: bgc("purple", "var(--bs-light)"),
+		RED: bgc("var(--bs-danger)", "var(--bs-light)"),
+		RED_GRD: bgc("var(--bs-danger)", "var(--bs-light)"),
+		BRONZE: bgc("sienna", "var(--bs-light)"),
+		SILVER: bgc("silver", "var(--bs-dark)"),
+		GOLD: bgc("gold", "var(--bs-dark)"),
 
 		RAINBOW: {
 			background:
 				"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
+			color: "var(--bs-dark)",
 		},
 	},
 };

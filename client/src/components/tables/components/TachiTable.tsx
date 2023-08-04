@@ -186,7 +186,7 @@ export default function TachiTable<D>({
 				<div className="text-end col">
 					<div className="btn-group">
 						<Button
-							variant="secondary"
+							variant="base"
 							disabled={pageState === "start" || pageState === "start-end"}
 							onClick={decrementPage}
 						>
@@ -194,7 +194,7 @@ export default function TachiTable<D>({
 						</Button>
 						<PageSelector currentPage={page} maxPage={maxPage} setPage={setPage} />
 						<Button
-							variant="secondary"
+							variant="base"
 							disabled={pageState === "end" || pageState === "start-end"}
 							onClick={incrementPage}
 						>

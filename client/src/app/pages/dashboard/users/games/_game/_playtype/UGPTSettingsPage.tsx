@@ -524,7 +524,7 @@ function ManageAccount({ reqUser, game, playtype }: UGPT) {
 					/>
 				</Form.Group>
 				<Button
-					className="text-wrap mt-4"
+					className="text-wrap w-100 mt-4"
 					disabled={deleting}
 					variant="outline-danger"
 					onClick={async () => {

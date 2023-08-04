@@ -182,8 +182,7 @@ export default function PBDropdown({
 						</SelectButton>
 					)}
 					<SelectButton setValue={setView} value={view} id="rivals">
-						<Icon type="users" />
-						Rivals
+						<Icon type="users" /> Rivals
 					</SelectButton>
 					<HasDevModeOn>
 						<SelectButton setValue={setView} value={view} id="debug">

@@ -26,9 +26,9 @@ function getTheme() {
 	if (window.matchMedia("(prefers-color-scheme: dark").matches) {
 		return "dark";
 	} else {
-	return "light";
+		return "light";
 	}
-};
+}
 
 export type WindowContextProps = {
 	clientWidth: number;

@@ -14292,5 +14292,49 @@
 		"id": 1116,
 		"searchTerms": [],
 		"title": "MAGENTA POTION"
+	},
+	{
+		"altTitles": [],
+		"artist": "カルロス袴田 feat. 日南めい, 古川由彩",
+		"data": {
+			"displayVersion": "FESTiVAL PLUS",
+			"genre": "maimai"
+		},
+		"id": 1117,
+		"searchTerms": [],
+		"title": "隠密あんみつDX"
+	},
+	{
+		"altTitles": [],
+		"artist": "立秋 feat.ちょこ",
+		"data": {
+			"displayVersion": "FESTiVAL PLUS",
+			"genre": "maimai"
+		},
+		"id": 1118,
+		"searchTerms": [],
+		"title": "地球"
+	},
+	{
+		"altTitles": [],
+		"artist": "ピエロ☆マン",
+		"data": {
+			"displayVersion": "FESTiVAL PLUS",
+			"genre": "maimai"
+		},
+		"id": 1119,
+		"searchTerms": [],
+		"title": "Churros Parlor"
+	},
+	{
+		"altTitles": [],
+		"artist": "FANTAGIRAFF",
+		"data": {
+			"displayVersion": "FESTiVAL PLUS",
+			"genre": "maimai"
+		},
+		"id": 1120,
+		"searchTerms": [],
+		"title": "超熊猫的周遊記（ワンダーパンダートラベラー）"
 	}
 ]

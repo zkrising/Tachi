@@ -1,6 +1,6 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { FmtNum, FmtPercent } from "../../utils/util";
-import { ClassValue, ToDecimalPlaces, zodNonNegativeInt, zodTierlistData } from "../config-utils";
+import { ClassValue, ToDecimalPlaces, zodNonNegativeInt, zodPositiveInt, zodTierlistData } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
@@ -183,6 +183,7 @@ export const SDVX_SINGLE_CONF = {
 
 	chartData: z.strictObject({
 		inGameID: zodNonNegativeInt,
+		maxExScore: zodPositiveInt.nullable(),
 		clearTier: zodTierlistData,
 	}),
 

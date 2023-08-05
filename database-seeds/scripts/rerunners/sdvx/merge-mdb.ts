@@ -33,6 +33,7 @@ interface MDBChart {
 	difnum: XMLText<number>;
 	illustrator: string;
 	effected_by: string;
+	max_exscore: XMLText<number>;
 }
 
 interface MDBEntry {
@@ -118,6 +119,14 @@ function convertDiff(
 			throw new Error(
 				`Unknown inf_ver ${infVer}. Cannot interpret the real difficulty of this chart!`
 			);
+	}
+}
+
+function checkMaxExScore(maxExScore: integer | undefined) {
+	if (maxExScore) {
+		return maxExScore;
+	} else {
+		return null;
 	}
 }
 
@@ -219,12 +228,18 @@ for (const entry of data.mdb.music as Array<MDBEntry>) {
 
 		const difficulty = convertDiff(diff, entry.info.inf_ver["#text"]);
 
+		const maxExScore = checkMaxExScore(maybeEntry.max_exscore["#text"]);
+
 		const exists = existingCharts.get(`${inGameID}-${difficulty}`);
 
 		// for existing charts, add this version if we need to
 		if (exists) {
 			if (!exists.versions.includes(options.version)) {
 				exists.versions.push(options.version);
+			}
+
+			if (maxExScore !== null && exists.data.maxExScore === null) {
+				exists.data.maxExScore = maxExScore;
 			}
 
 			continue;
@@ -246,6 +261,7 @@ for (const entry of data.mdb.music as Array<MDBEntry>) {
 			playtype: "Single",
 			data: {
 				inGameID,
+				maxExScore,
 			},
 		};
 		// new chart

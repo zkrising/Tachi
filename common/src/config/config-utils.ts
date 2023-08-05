@@ -45,3 +45,4 @@ export const zodTierlistData = z
 
 export const zodInt = z.number().int();
 export const zodNonNegativeInt = z.number().int().nonnegative();
+export const zodPositiveInt = z.number().int().positive();

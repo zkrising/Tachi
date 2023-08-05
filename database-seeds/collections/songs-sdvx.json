@@ -20139,7 +20139,8 @@
 		"id": 1772,
 		"searchTerms": [
 			"juu no shiren",
-			"d-d-dice"
+			"d-d-dice",
+			"da da dice"
 		],
 		"title": "十の試煉"
 	},
@@ -21708,7 +21709,8 @@
 		"id": 2032,
 		"searchTerms": [
 			"kakuen",
-			"d-d-dice"
+			"d-d-dice",
+			"da da dice"
 		],
 		"title": "赫焉"
 	},
@@ -22570,7 +22572,8 @@
 		},
 		"id": 2104,
 		"searchTerms": [
-			"rinsaku_ookamimio"
+			"rin to shite saku hana no gotoku",
+			"ookami mio"
 		],
 		"title": "凛として咲く花の如く"
 	},
@@ -22582,7 +22585,7 @@
 		},
 		"id": 2105,
 		"searchTerms": [
-			"happyend_technoplanet"
+			"happy end"
 		],
 		"title": "ハッピーエンド"
 	},
@@ -22594,7 +22597,9 @@
 		},
 		"id": 2106,
 		"searchTerms": [
-			"tenkyuno_daizutanchisiromaru"
+			"tenkuu no arcana bit",
+			"d-d-dice",
+			"da da dice"
 		],
 		"title": "天穹のアルカナビット"
 	},
@@ -22606,7 +22611,7 @@
 		},
 		"id": 2107,
 		"searchTerms": [
-			"cadenzamaiden_uz"
+			"murasaki hotaru"
 		],
 		"title": "CadenzaMaiden"
 	},
@@ -22617,9 +22622,7 @@
 			"displayVersion": "exceed"
 		},
 		"id": 2108,
-		"searchTerms": [
-			"fortune_capchii"
-		],
+		"searchTerms": [],
 		"title": "For.*tune"
 	},
 	{
@@ -22630,7 +22633,7 @@
 		},
 		"id": 2109,
 		"searchTerms": [
-			"kikaijikake_tsubusarebozz"
+			"kikai shikake no mahoutsukai"
 		],
 		"title": "機械仕掛けの魔法使い"
 	},
@@ -22641,9 +22644,7 @@
 			"displayVersion": "exceed"
 		},
 		"id": 2110,
-		"searchTerms": [
-			"jumpscare_cotatsu"
-		],
+		"searchTerms": [],
 		"title": "Juωpscare!!"
 	},
 	{
@@ -22654,7 +22655,7 @@
 		},
 		"id": 2111,
 		"searchTerms": [
-			"prideoffireball_kabochacoda"
+			"kabocha"
 		],
 		"title": "PRIDE of the FIREBALL"
 	},
@@ -22666,7 +22667,8 @@
 		},
 		"id": 2112,
 		"searchTerms": [
-			"dix_higurashisuzuri"
+			"higurashi suzuri",
+			"rin rin"
 		],
 		"title": "D.I.X."
 	},
@@ -22677,9 +22679,7 @@
 			"displayVersion": "exceed"
 		},
 		"id": 2113,
-		"searchTerms": [
-			"secondgame_tracy"
-		],
+		"searchTerms": [],
 		"title": "Second Game"
 	},
 	{
@@ -22689,9 +22689,7 @@
 			"displayVersion": "exceed"
 		},
 		"id": 2114,
-		"searchTerms": [
-			"shera_myukke"
-		],
+		"searchTerms": [],
 		"title": "Shera"
 	},
 	{
@@ -22702,7 +22700,9 @@
 		},
 		"id": 2115,
 		"searchTerms": [
-			"ochame_gojimajip"
+			"mischievous function",
+			"ochame kinou",
+			"kasane teto"
 		],
 		"title": "おちゃめ機能"
 	},
@@ -22714,7 +22714,10 @@
 		},
 		"id": 2116,
 		"searchTerms": [
-			"tokyosummerrmx_amamihinami"
+			"tokyo summer night hanakin remix",
+			"mini",
+			"amami chihama",
+			"hinami yuri"
 		],
 		"title": "トーキョーサマーナイト（華金Remix）"
 	},
@@ -22726,7 +22729,10 @@
 		},
 		"id": 2117,
 		"searchTerms": [
-			"muunyarmx_dadadaizu"
+			"gekijouban muunya poyopoyo suppokonyaago~shinryaku dice teikoku! dramatic uchuu daisensou~",
+			"d-d-dice",
+			"da da dice"
+			
 		],
 		"title": "劇場版ムーニャポヨポヨスッポコニャーゴ~侵略だいず帝国！ドラマティック宇宙大戦争~"
 	},
@@ -22737,9 +22743,7 @@
 			"displayVersion": "exceed"
 		},
 		"id": 2118,
-		"searchTerms": [
-			"absurdgaffrmx_metalgiant"
-		],
+		"searchTerms": [],
 		"title": "Absurd Gaff (Metallize Remix)"
 	},
 	{
@@ -22750,7 +22754,8 @@
 		},
 		"id": 2119,
 		"searchTerms": [
-			"vvelcomermx_chubay"
+			"vvelcome remix",
+			"chubay"
 		],
 		"title": "うぇるかむ -||祭みっくす||-"
 	},
@@ -22761,9 +22766,7 @@
 			"displayVersion": "exceed"
 		},
 		"id": 2120,
-		"searchTerms": [
-			"worldofsoundrmx_aoi"
-		],
+		"searchTerms": [],
 		"title": "The EXworld of sound"
 	},
 	{
@@ -22774,7 +22777,7 @@
 		},
 		"id": 2121,
 		"searchTerms": [
-			"pixelatedrmx_soyomogi"
+			"soyomogi"
 		],
 		"title": "Pixelated Platform (Super Honey!)"
 	},
@@ -22786,7 +22789,9 @@
 		},
 		"id": 2122,
 		"searchTerms": [
-			"matsuyoi_beatmario"
+			"matsuyoi nightbug",
+			"beatmario",
+			"maron"
 		],
 		"title": "マツヨイナイトバグ"
 	},
@@ -22810,7 +22815,8 @@
 		},
 		"id": 2124,
 		"searchTerms": [
-			"muishiki_sinrabansyou"
+			"muishiki requiem",
+			"shinra banshou"
 		],
 		"title": "無意識レクイエム"
 	},
@@ -22822,7 +22828,7 @@
 		},
 		"id": 2125,
 		"searchTerms": [
-			"muishikiremix_sinrabansyou"
+			"muishiki requiem"
 		],
 		"title": "無意識レクイエム (cosmobsp rmx)"
 	},
@@ -22834,7 +22840,9 @@
 		},
 		"id": 2126,
 		"searchTerms": [
-			"redo_rezero"
+			"suzuki konomi",
+			"re:zero",
+			"starting life in another world"
 		],
 		"title": "Redo／アニメ「Re:ゼロから始める異世界生活」より"
 	},
@@ -22846,7 +22854,9 @@
 		},
 		"id": 2127,
 		"searchTerms": [
-			"realize_rezero"
+			"suzuki konomi",
+			"re:zero",
+			"starting life in another world"
 		],
 		"title": "Realize／アニメ「Re:ゼロから始める異世界生活」より"
 	},
@@ -22857,9 +22867,7 @@
 			"displayVersion": "exceed"
 		},
 		"id": 2128,
-		"searchTerms": [
-			"birth_yuasahina"
-		],
+		"searchTerms": [],
 		"title": "birth"
 	},
 	{
@@ -22870,7 +22878,8 @@
 		},
 		"id": 2129,
 		"searchTerms": [
-			"prayer_mizonokuchi"
+			"mizonokuchi yuma",
+			"ohsera ai"
 		],
 		"title": "Prayer"
 	},
@@ -22882,7 +22891,8 @@
 		},
 		"id": 2130,
 		"searchTerms": [
-			"onedari_one"
+			"onegai darling",
+			"one"
 		],
 		"title": "おねがいダーリン"
 	}

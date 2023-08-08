@@ -179,6 +179,13 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc="Automatically import scores, whenever you get them!"
 				moreInfo="This is the recommended way to import CHUNITHM scores, as it provides high quality data in real-time."
 				key="Chunitachi"
+			/>,
+			<ImportInfoCard
+				name="CHUNITHM Site Importer"
+				href="kt-chunithm-site-importer"
+				desc="Use your data from CHUNITHM NET."
+				moreInfo="If you are currently playing on CHUNITHM International, you can import play data from it here."
+				key="CHUNITHM Site Importer"
 			/>
 		);
 	} else if (game === "bms") {

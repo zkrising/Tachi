@@ -9,7 +9,7 @@ export default function MaimaiDXSiteImportPage() {
 
 	return (
 		<div>
-			<h1 className="text-center mb-4">What is the maimai DX site importer?</h1>
+			<h1 className="text-center mb-4">What is the maimai DX Site Importer?</h1>
 			<div>
 				The maimai DX Site Importer is a script that will scrape your profile on the maimai
 				DX website and import it to {TachiConfig.name}.

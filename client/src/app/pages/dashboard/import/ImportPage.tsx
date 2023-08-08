@@ -262,6 +262,16 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				key="WACCA MyPage Scraper"
 			/>
 		);
+	} else if (game === "maimaidx") {
+		Content.unshift(
+			<ImportInfoCard
+				name="maimai DX Site Importer"
+				href="kt-maimaidx-site-importer"
+				desc="Use your data from maimai DX NET."
+				moreInfo="If you are currently playing on maimai DX International, you can import play data from it here."
+				key="maimai DX NET Importer"
+			/>
+		);
 	} else if (game === "museca") {
 		Content.unshift(
 			<ImportTypeInfoCard key="api/cg-dev-museca" importType="api/cg-dev-museca" />,

@@ -24,6 +24,7 @@ import React, { useContext } from "react";
 import { Link, Redirect, Route, Switch } from "react-router-dom";
 import CGIntegrationPage from "components/imports/CGIntegrationPage";
 import ITGHookPage from "app/pages/dashboard/import/ITGHookPage";
+import MaimaiDXSiteImportPage from "app/pages/dashboard/import/MaimaiDXSiteImportPage";
 
 export default function ImportRoutes() {
 	const { user } = useContext(UserContext);
@@ -198,6 +199,10 @@ export default function ImportRoutes() {
 
 							<Route exact path="/import/wacca-mypage-scraper">
 								<WACCAMyPageScraperPage />
+							</Route>
+
+							<Route exact path="/import/kt-maimaidx-site-importer">
+								<MaimaiDXSiteImportPage />
 							</Route>
 						</>
 					)}

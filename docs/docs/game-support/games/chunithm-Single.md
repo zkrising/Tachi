@@ -77,6 +77,7 @@ The folowing judgements are defined:
 | ID | Pretty Name |
 | :: | :: |
 | `paradiselost` | Paradise Lost |
+| `sun` | SUN |
 
 ## Supported Match Types
 

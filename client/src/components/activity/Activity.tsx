@@ -443,7 +443,11 @@ function QuestActivity({
 					<div className="timeline-content-title">
 						<span style={{ fontSize: "1.15rem" }}>
 							<span className="me-2">
-								<ProfilePicture size="sm" user={user} toGPT={`${game}/${playtype}`} />
+								<ProfilePicture
+									size="sm"
+									user={user}
+									toGPT={`${game}/${playtype}`}
+								/>
 							</span>
 							<UGPTLink reqUser={user} game={game} playtype={playtype} /> completed
 							the{" "}
@@ -641,7 +645,8 @@ function ClassAchievementActivity({
 				<div className="timeline-content-inner">
 					<div className="timeline-content-title">
 						<span className="me-2">
-							<ProfilePicture size="sm"
+							<ProfilePicture
+								size="sm"
 								user={user}
 								toGPT={`${data.game}/${data.playtype}`}
 							/>

@@ -43,12 +43,12 @@ const diffMap = new Map([
 ]);
 
 // Songs that are released in different versions in international and Japanese regions.
-// The key is the title in the dataset, and the value is the version to use.
+// The key is the title in the dataset, and the value is the version to use (refer to versionMap).
 const versionOverrides = {
-	"INTERNET OVERDOSE": "festival",
-	"Knight Rider": "festival",
-	"Let you DIVE!": "festival",
-	"Trrricksters!!": "festival",
+	"INTERNET OVERDOSE": 230,
+	"Knight Rider": 230,
+	"Let you DIVE!": 230,
+	"Trrricksters!!": 230,
 };
 
 (async () => {
@@ -76,7 +76,7 @@ const versionOverrides = {
 		let thisSongID = songID;
 
 		const version = versionOverrides[data.title] ?? Number(data.version.substring(0, 3));
-		if (version > CURRENT_VERSION_NUM && !versionOverrides.includes(data.title)) {
+		if (version > CURRENT_VERSION_NUM && !Object.keys(versionOverrides).includes(data.title)) {
 			// Skipping songs that are newer than currently supported version (FESTiVAL PLUS).
 			continue;
 		}

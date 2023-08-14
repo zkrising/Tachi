@@ -377,7 +377,7 @@ if (options.directory) {
 	});
 } else if (options.file) {
 	const csvData = parse(fs.readFileSync(options.file));
-	const newSongsSheet = options.file.includes("新曲.csv");
+	const newSongsSheet = options.file.includes("新曲");
 	const tmaiSheet = options.file.includes(" - Tmai.csv");
 	const highLevelSheet = / - (14以上|13+|13).csv$/u.test(options.file);
 

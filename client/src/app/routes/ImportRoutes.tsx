@@ -24,6 +24,8 @@ import React, { useContext } from "react";
 import { Link, Redirect, Route, Switch } from "react-router-dom";
 import CGIntegrationPage from "components/imports/CGIntegrationPage";
 import ITGHookPage from "app/pages/dashboard/import/ITGHookPage";
+import MaimaiDXSiteImportPage from "app/pages/dashboard/import/MaimaiDXSiteImportPage";
+import ChunithmSiteImportPage from "app/pages/dashboard/import/ChunithmSiteImportPage";
 
 export default function ImportRoutes() {
 	const { user } = useContext(UserContext);
@@ -121,6 +123,10 @@ export default function ImportRoutes() {
 								<ChunitachiPage />
 							</Route>
 
+							<Route exact path="/import/kt-chunithm-site-importer">
+								<ChunithmSiteImportPage />
+							</Route>
+
 							<Route exact path="/import/iidx-flo">
 								<KAIIntegrationPage
 									hash="6f64b82107cea90aa4c51a33705cd57c1883c8cdc22a634730ca461a431744b3"
@@ -198,6 +204,10 @@ export default function ImportRoutes() {
 
 							<Route exact path="/import/wacca-mypage-scraper">
 								<WACCAMyPageScraperPage />
+							</Route>
+
+							<Route exact path="/import/kt-maimaidx-site-importer">
+								<MaimaiDXSiteImportPage />
 							</Route>
 						</>
 					)}

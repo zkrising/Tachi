@@ -28100,19 +28100,6 @@
 	{
 		"data": {
 			"level": "1",
-			"versions": "festivalplus"
-		},
-		"folderID": "F3cb8c46dfb31ca7fb8d4ec18b226232b8a05303f88f329a83455099317f1759b",
-		"game": "maimaidx",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 1 (FESTiVAL PLUS)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"level": "1",
 			"versions": "finale"
 		},
 		"folderID": "F1a0c0e32b477738519b1a69e167b4c6f87fa5ffd704b2a47759b414a7da4b8c4",
@@ -28407,6 +28394,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9+ (FiNALE)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
+			"versions": "festivalplus"
+		},
+		"folderID": "F3cb8c46dfb31ca7fb8d4ec18b226232b8a05303f88f329a83455099317f1759b",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (FESTiVAL PLUS)",
 		"type": "charts"
 	},
 	{

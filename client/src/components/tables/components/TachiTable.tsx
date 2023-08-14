@@ -5,11 +5,12 @@ import SmallText from "components/util/SmallText";
 import { useZTable, ZTableSortFn } from "components/util/table/useZTable";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext, useState } from "react";
-import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
-import { integer } from "tachi-common";
 import { WindowContext } from "context/WindowContext";
+import { Button } from "react-bootstrap";
+import { integer } from "tachi-common";
+import Select from "components/util/Select";
 import FilterDirectivesIndicator from "./FilterDirectivesIndicator";
 import NoDataWrapper from "./NoDataWrapper";
 import PageSelector from "./PageSelector";
@@ -101,6 +102,16 @@ export default function TachiTable<D>({
 
 	const sortFunctions = GetSortFunctions(headers);
 
+	const ztable = useZTable(dataset ?? [], {
+		search,
+		searchFunction,
+		sortFunctions,
+		entryName,
+		pageLen,
+		defaultSortMode,
+		defaultReverseSort,
+	});
+
 	const {
 		window,
 		setPage,
@@ -114,15 +125,7 @@ export default function TachiTable<D>({
 		reverseSort,
 		changeSort,
 		filteredDataset,
-	} = useZTable(dataset ?? [], {
-		search,
-		searchFunction,
-		sortFunctions,
-		entryName,
-		pageLen,
-		defaultSortMode,
-		defaultReverseSort,
-	});
+	} = ztable;
 
 	const headersRow = ParseHeaders(headers, {
 		changeSort,
@@ -163,43 +166,57 @@ export default function TachiTable<D>({
 					</tbody>
 				</table>
 			</div>
-			<div className="row justify-content-between">
-				<div className="col text-start align-self-center">{displayStr}</div>
-				<div className="d-none d-lg-flex col justify-content-center align-items-center">
-					{settings?.preferences.developerMode && (
-						<Button
-							onClick={() => {
-								let data = dataset;
-								if (search !== "") {
-									data = filteredDataset;
-								}
+			<div className="col-12 px-0">
+				<div className="row">
+					<div className="col-lg-4 align-self-center">
+						<Select
+							name={`Show this many ${entryName}:`}
+							value={ztable.pageLen.toString()}
+							setValue={(e) => ztable.setPageLen(Number(e))}
+						>
+							<option value="10">10</option>
+							<option value="25">25</option>
+							<option value="50">50</option>
+							<option value="100">100</option>
+						</Select>
+					</div>
+					<div className="d-none d-lg-flex col-lg-4 justify-content-center align-items-center">
+						{settings?.preferences.developerMode && (
+							<Button
+								className="ms-4 w-50"
+								onClick={() => {
+									let data = dataset;
+									if (search !== "") {
+										data = filteredDataset;
+									}
 
-								CopyToClipboard(data);
-							}}
-							variant="outline-info"
-						>
-							<Icon type="table" /> Export {search !== "" ? "Filtered Data" : "Table"}{" "}
-							(JSON)
-						</Button>
-					)}
-				</div>
-				<div className="text-end col">
-					<div className="btn-group">
-						<Button
-							variant="base"
-							disabled={pageState === "start" || pageState === "start-end"}
-							onClick={decrementPage}
-						>
-							<SmallText small="<" large="Previous" />
-						</Button>
-						<PageSelector currentPage={page} maxPage={maxPage} setPage={setPage} />
-						<Button
-							variant="base"
-							disabled={pageState === "end" || pageState === "start-end"}
-							onClick={incrementPage}
-						>
-							<SmallText small=">" large="Next" />
-						</Button>
+									CopyToClipboard(data);
+								}}
+								variant="outline-info"
+							>
+								<Icon type="table" /> Export{" "}
+								{search !== "" ? "Filtered Data" : "Table"} (JSON)
+							</Button>
+						)}
+					</div>
+					<div className="col-lg-4 ms-auto text-end">
+						<div className="btn-group">
+							<Button
+								variant="secondary"
+								disabled={pageState === "start" || pageState === "start-end"}
+								onClick={decrementPage}
+							>
+								<SmallText small="<" large="Previous" />
+							</Button>
+							<PageSelector currentPage={page} maxPage={maxPage} setPage={setPage} />
+							<Button
+								variant="secondary"
+								disabled={pageState === "end" || pageState === "start-end"}
+								onClick={incrementPage}
+							>
+								<SmallText small=">" large="Next" />
+							</Button>
+						</div>
 					</div>
 				</div>
 			</div>

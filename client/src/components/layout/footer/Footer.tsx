@@ -10,7 +10,7 @@ import Container from "react-bootstrap/Container";
 export function Footer() {
 	const [serverVersion, setServerVersion] = useState("Loading...");
 	const { setBanned } = useContext(BannedContext);
-	const linkClassNames = "link-light link-opacity-75 link-opacity-100-hover";
+	const linkClassNames = "text-body text-opacity-50 text-opacity-100-hover";
 
 	useEffect(() => {
 		APIFetchV1<ServerStatus>("/status").then((r) => {
@@ -27,7 +27,7 @@ export function Footer() {
 	}, []);
 
 	return (
-		<footer className="py-4 border-top border-secondary border-opacity-25 mt-4">
+		<footer className="py-4 border-top border-body-tertiary border-opacity-75 mt-4">
 			<Nav>
 				<Container className="d-flex flex-column flex-lg-row justify-content-between align-items-center">
 					<div className="order-2 order-lg-0 mt-2 m-lg-0">

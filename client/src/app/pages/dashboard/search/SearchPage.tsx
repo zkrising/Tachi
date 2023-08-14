@@ -132,7 +132,7 @@ function SearchResults({ search, hasPlayedGame }: { search: string; hasPlayedGam
 						return (
 							<SelectButton id={gpt} value={mode} setValue={setMode}>
 								{FormatGame(game, playtype)}
-								<Badge bg="secondary" className="ms-2">
+								<Badge bg="secondary" className="ms-2 text-light">
 									{charts.length}
 								</Badge>
 							</SelectButton>

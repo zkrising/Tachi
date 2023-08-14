@@ -1,3 +1,4 @@
+import { TACHI_LINE_THEME } from "util/constants/chart-theme";
 import React from "react";
 import { ResponsiveLine, Serie } from "@nivo/line";
 import { COLOUR_SET } from "tachi-common";
@@ -48,7 +49,7 @@ export default function IIDXLampChart({
 		let lastWasFail = true;
 
 		for (const d of data[0].data) {
-			if ((d.y ?? 0) >= 80) {
+			if (((d.y as number) ?? 0) >= 80) {
 				if (lastWasFail) {
 					clearSet.push(d);
 					failSet.push(d);
@@ -66,7 +67,7 @@ export default function IIDXLampChart({
 				}
 			}
 			lastLastWasFail = lastWasFail;
-			lastWasFail = (d.y ?? 0) < 80;
+			lastWasFail = ((d.y as number) ?? 0) < 80;
 		}
 
 		realData = [
@@ -111,27 +112,13 @@ export default function IIDXLampChart({
 			// 		id: "nc",
 			// 	},
 			// ]}
-			theme={{
-				background: "none",
-				textColor: "#ffffff",
-				grid: {
-					line: {
-						stroke: "#1c1c1c",
-						strokeWidth: 1,
-					},
-				},
-			}}
+			theme={TACHI_LINE_THEME}
 			curve="linear"
 			tooltip={(d) => (
-				<ChartTooltip
-					point={d.point}
-					renderFn={(p) => (
-						<div>
-							Measure {Math.floor(Number(p.data.xFormatted) / 4).toString()}:{" "}
-							{p.data.yFormatted}%
-						</div>
-					)}
-				/>
+				<ChartTooltip>
+					Measure {Math.floor(Number(d.point.data.xFormatted) / 4).toString()}:{" "}
+					{d.point.data.yFormatted}%
+				</ChartTooltip>
 			)}
 			legends={[]}
 			enableArea

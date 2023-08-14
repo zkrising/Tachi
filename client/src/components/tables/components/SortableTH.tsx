@@ -20,7 +20,7 @@ export default function SortableTH({
 }) {
 	return (
 		<th onClick={() => changeSort(sortingName)} style={style}>
-			<div className="d-flex flex-column text-nowrap gap-1">
+			<div className="vstack align-items-center text-nowrap gap-1">
 				<span className="d-none d-xl-block">{name}</span>
 				<span className="d-block d-xl-none">{shortName}</span>
 				<span className="d-flex justify-content-center gap-1">

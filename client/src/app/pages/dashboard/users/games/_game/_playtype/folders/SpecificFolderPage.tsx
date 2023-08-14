@@ -19,13 +19,12 @@ import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import ReferToUser from "components/util/ReferToUser";
-import Select from "components/util/Select";
 import SelectLinkButton from "components/util/SelectLinkButton";
 import useApiQuery from "components/util/query/useApiQuery";
 import useUGPTBase from "components/util/useUGPTBase";
 import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import { GPTRatingSystem } from "lib/types";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { Link, Route, Switch, useParams } from "react-router-dom";
 import {
@@ -46,6 +45,7 @@ import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
 import { UGPTFolderReturns } from "types/api-returns";
 import { FolderDataset } from "types/tables";
 import SelectButton from "components/util/SelectButton";
+import { WindowContext } from "context/WindowContext";
 import FolderComparePage from "./FolderComparePage";
 import FolderQuestsPage from "./FolderQuestsPage";
 
@@ -558,23 +558,23 @@ function TierlistInfoLadder({
 	}
 
 	return (
-		<Row className="text-center">
+		<>
 			{buckets
 				.filter((e) => e.length > 0)
 				.map((bucket, i) => (
-					<React.Fragment key={i}>
-						<Col className="ladder-header" xs={12}>
+					<div className="mb-4" key={i}>
+						<div className="fs-3 mb-4 text-center">
 							{bucket[0].value} (
 							{DistinctArr(bucket.map((e) => e.text ?? "No Tierlist Data")).join(
 								", "
 							)}
 							)
-						</Col>
+						</div>
 
 						<TierlistBucket {...{ bucket, game, playtype, reqUser }} />
-					</React.Fragment>
+					</div>
 				))}
-		</Row>
+		</>
 	);
 }
 
@@ -588,8 +588,11 @@ function TierlistBucket({
 	reqUser: UserDocument;
 	bucket: TierlistInfo[];
 }) {
+	const {
+		breakpoint: { isLg },
+	} = useContext(WindowContext);
 	// xs view is tabular
-	if (window.screen.width <= 576) {
+	if (!isLg) {
 		return (
 			<MiniTable>
 				{bucket.map((tierlistInfo, i) => (
@@ -607,7 +610,7 @@ function TierlistBucket({
 	}
 
 	return (
-		<>
+		<div className="grid text-center gap-2 g-columns-md-4 g-columns-lg-5 g-columns-xl-6">
 			{bucket.map((tierlistInfo, i) => (
 				<TierlistInfoBucketValues
 					tierlistInfo={tierlistInfo}
@@ -618,15 +621,13 @@ function TierlistBucket({
 					reqUser={reqUser}
 				/>
 			))}
-		</>
+		</div>
 	);
 }
 
 function TierlistInfoBucketValues({
 	tierlistInfo,
 	game,
-	bucket,
-	i,
 	reqUser,
 }: {
 	tierlistInfo: TierlistInfo;
@@ -635,26 +636,19 @@ function TierlistInfoBucketValues({
 	i: integer;
 	reqUser: UserDocument;
 }) {
-	const lastKey = bucket[i - 1];
+	const { breakpoint } = useContext(WindowContext);
 
-	let statusClass;
-
-	switch (tierlistInfo.status) {
-		case AchievedStatuses.ACHIEVED:
-			statusClass = "achieved";
-			break;
-		case AchievedStatuses.FAILED:
-			statusClass = "unachieved";
-			break;
-		case AchievedStatuses.NOT_PLAYED:
-		case AchievedStatuses.SCORE_BASED:
-			statusClass = "";
-	}
+	const statusClasses: Record<AchievedStatuses, string> = {
+		[AchievedStatuses.ACHIEVED]: "bg-success",
+		[AchievedStatuses.FAILED]: "bg-danger",
+		[AchievedStatuses.NOT_PLAYED]: "bg-body-tertiary",
+		[AchievedStatuses.SCORE_BASED]: "bg-transparent",
+	};
 
 	const data = tierlistInfo.chart;
 
 	// xs view
-	if (window.screen.width <= 576) {
+	if (!breakpoint.isLg) {
 		return (
 			<tr>
 				<DifficultyCell game={game} chart={tierlistInfo.chart} alwaysShort noTierlist />
@@ -678,63 +672,47 @@ function TierlistInfoBucketValues({
 	}
 
 	return (
-		<>
-			{lastKey && lastKey.text !== tierlistInfo.text && <Col xl={12} className="my-2" />}
-			<QuickTooltip
-				max
-				tooltipContent={
-					data.__related.pb ? (
-						<MiniTable headers={[`${reqUser.username}'s Score`]} colSpan={99}>
-							<tr>
-								<ScoreCoreCells
-									chart={data}
-									game={game}
-									score={data.__related.pb}
-								/>
-							</tr>
-						</MiniTable>
-					) : undefined
-				}
-			>
-				<Col
-					className={`ladder-element ${
-						i % 12 < 6 ? "ladder-element-dark" : ""
-					} ladder-element-${statusClass} d-none d-sm-block`}
-					xs={12}
-					sm={6}
-					md={4}
-					lg={3}
-					xl={2}
-				>
-					<Link className="gentle-link" to={CreateChartLink(data, game)}>
-						{data.__related.song.title}
-					</Link>{" "}
-					{FormatDifficultyShort(data, game)}
-					<Divider className="my-2" />
-					{tierlistInfo.value} ({tierlistInfo.text ?? "No Info"})
-					{tierlistInfo.idvDiff && (
-						<>
-							<br />
+		<QuickTooltip
+			max
+			tooltipContent={
+				data.__related.pb ? (
+					<MiniTable headers={[`${reqUser.username}'s Score`]} colSpan={99}>
+						<tr>
+							<ScoreCoreCells chart={data} game={game} score={data.__related.pb} />
+						</tr>
+					</MiniTable>
+				) : undefined
+			}
+		>
+			<div className={`${statusClasses[tierlistInfo.status]} bg-opacity-50 rounded p-2`}>
+				<Link className="gentle-link" to={CreateChartLink(data, game)}>
+					{data.__related.song.title}
+				</Link>{" "}
+				{FormatDifficultyShort(data, game)}
+				<Divider className="my-2" />
+				{tierlistInfo.value} ({tierlistInfo.text ?? "No Info"})
+				{tierlistInfo.idvDiff && (
+					<>
+						<br />
 
-							<div className="mt-1">
-								<QuickTooltip tooltipContent="Individual Difference - The difficulty of this varies massively between people!">
-									<span>
-										<Icon type="balance-scale-left" />
-									</span>
-								</QuickTooltip>
-							</div>
-						</>
-					)}
-					<Muted>
-						<Divider className="my-2" />
-						<ReferToUser reqUser={reqUser} />{" "}
-						{tierlistInfo.status === AchievedStatuses.NOT_PLAYED
-							? "not played this chart."
-							: tierlistInfo.score}
-					</Muted>
-				</Col>
-			</QuickTooltip>
-		</>
+						<div className="mt-1">
+							<QuickTooltip tooltipContent="Individual Difference - The difficulty of this varies massively between people!">
+								<span>
+									<Icon type="balance-scale-left" />
+								</span>
+							</QuickTooltip>
+						</div>
+					</>
+				)}
+				<Muted>
+					<Divider className="my-2" />
+					<ReferToUser reqUser={reqUser} />{" "}
+					{tierlistInfo.status === AchievedStatuses.NOT_PLAYED
+						? "not played this chart."
+						: tierlistInfo.score}
+				</Muted>
+			</div>
+		</QuickTooltip>
 	);
 }
 

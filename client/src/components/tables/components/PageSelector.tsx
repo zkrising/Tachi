@@ -18,7 +18,7 @@ export default function PageSelector({
 	function PageButton({ page }: { page: integer }) {
 		return (
 			<Button
-				variant={currentPage === page ? "primary" : "secondary"}
+				variant={currentPage === page ? "primary" : "base"}
 				onClick={() => setPage(page)}
 			>
 				{page}
@@ -54,7 +54,7 @@ export default function PageSelector({
 		<>
 			<PageButton page={1} />
 			{elipseStart ? (
-				<Button disabled={true} variant="secondary">
+				<Button disabled={true} variant="base">
 					...
 				</Button>
 			) : (
@@ -64,7 +64,7 @@ export default function PageSelector({
 				<PageButton key={e} page={e} />
 			))}
 			{elipseEnd ? (
-				<Button disabled={true} variant="secondary">
+				<Button disabled={true} variant="base">
 					...
 				</Button>
 			) : (

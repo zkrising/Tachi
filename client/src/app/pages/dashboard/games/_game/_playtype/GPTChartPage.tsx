@@ -20,7 +20,10 @@ import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { TargetsContext } from "context/TargetsContext";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Stack from "react-bootstrap/Stack";
 import { useQuery } from "react-query";
 import { Link, Route, Switch, useParams } from "react-router-dom";
 import {
@@ -41,6 +44,7 @@ import {
 } from "types/api-returns";
 import { GamePT, SetState } from "types/react";
 import { PBDataset } from "types/tables";
+import { WindowContext } from "context/WindowContext";
 
 // This component forms a wrapper around the Real GPT Chart Page
 // which handles the case where activeChart == null.
@@ -180,29 +184,38 @@ function InternalGPTChartPage({
 	const base = CreateChartLink(chart, game);
 
 	return (
-		<Row>
-			<Col xs={12} className="d-flex mb-8">
-				<div className="btn-group text-wrap w-100">
-					<SelectLinkButton to={base}>
+		<>
+			<Row xs={{ cols: 1 }} lg={{ cols: 2 }} className="row-gap-4">
+				<ButtonGroup className="d-flex w-100">
+					<SelectLinkButton className="text-wrap" to={base}>
 						<Icon type="trophy" /> Best 100
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/me`} disabled={!data.adjacent}>
+					<SelectLinkButton
+						className="text-wrap"
+						to={`${base}/me`}
+						disabled={!data.adjacent}
+					>
 						<Icon type="user" /> Your Position
 					</SelectLinkButton>
 					{user && (
 						<>
-							<SelectLinkButton to={`${base}/rivals`} disabled={!data.adjacent}>
+							<SelectLinkButton
+								className="text-wrap"
+								to={`${base}/rivals`}
+								disabled={!data.adjacent}
+							>
 								<Icon type="users" /> Vs. Rivals
 							</SelectLinkButton>
-							<SelectLinkButton to={`${base}/targets`}>
+							<SelectLinkButton className="text-wrap" to={`${base}/targets`}>
 								<Icon type="scroll" /> Goals & Quests
 							</SelectLinkButton>
 						</>
 					)}
-				</div>
-			</Col>
-			<TopShowcase data={data} user={user} userMap={userMap} chart={chart} />
-			<Col xs={12} className="mt-4">
+				</ButtonGroup>
+
+				<TopShowcase data={data} user={user} userMap={userMap} chart={chart} />
+			</Row>
+			<div className="mt-4">
 				<Switch>
 					<Route exact path="/games/:game/:playtype/songs/:songID/:difficulty/targets">
 						<ChartTargetInfo {...{ chart, game, playtype, song, user: user! }} />
@@ -253,8 +266,8 @@ function InternalGPTChartPage({
 						/>
 					</Route>
 				</Switch>
-			</Col>
-		</Row>
+			</div>
+		</>
 	);
 }
 
@@ -280,7 +293,7 @@ function ChartTargetInfo({
 	);
 
 	return (
-		<Col xs={12} className="text-center">
+		<div className="w-100 text-center">
 			<Divider />
 			<TargetInfo
 				{...{
@@ -298,7 +311,7 @@ function ChartTargetInfo({
 					},
 				}}
 			/>
-		</Col>
+		</div>
 	);
 }
 
@@ -397,10 +410,10 @@ function TopShowcase({
 	if (!data.adjacent) {
 		return (
 			<>
-				<Col xs={12} lg={6}>
+				<Col className="d-grid">
 					<PlayCard name="Best PB" pb={bestPlay} user={bestUser} chart={chart} />
 				</Col>
-				<Col xs={12} lg={6}>
+				<Col className="d-grid">
 					<Card header="Your PB" className="text-center">
 						<Muted>You've not played this chart.</Muted>
 					</Card>
@@ -413,10 +426,10 @@ function TopShowcase({
 
 	return (
 		<>
-			<Col xs={12} lg={6}>
+			<Col className="d-grid">
 				<PlayCard name="Best Play" pb={bestPlay} user={bestUser} chart={chart} />
 			</Col>
-			<Col xs={12} lg={6}>
+			<Col className="d-grid">
 				<PlayCard name="Your PB" pb={thisUsersPlay} user={user!} chart={chart} />
 			</Col>
 		</>
@@ -434,39 +447,49 @@ function PlayCard({
 	name: string;
 	chart: ChartDocument;
 }) {
+	const {
+		breakpoint: { isLg },
+	} = useContext(WindowContext);
 	return (
-		<Card header={name}>
-			<Row className="align-items-center">
-				<Col lg={3}>
-					<ProfilePicture user={user} toGPT={`${pb.game}/${pb.playtype}`} />
-				</Col>
-				<Col lg={3}>
-					<h4>
-						<Link
-							className="gentle-link"
-							to={`/u/${user.username}/games/${pb.game}/${pb.playtype}`}
-						>
-							{user.username}
-						</Link>
-					</h4>
-					<strong className="display-4">#{pb.rankingData.rank}</strong>
-					<span className="text-body-secondary">/{pb.rankingData.outOf}</span>
-				</Col>
-				<Col lg={6}>
-					<MiniTable headers={["PB Info"]} colSpan={100}>
-						<tr>
-							<ScoreCoreCells short game={pb.game} chart={chart} score={pb} />
-						</tr>
-					</MiniTable>
-					<div className="text-center">
-						<Muted>
-							{pb.timeAchieved
-								? MillisToSince(pb.timeAchieved) ?? ""
-								: "No Timestamp Info"}
-						</Muted>
+		<Card header={name} cardBodyClassName="vstack gap-4">
+			<Stack
+				direction={isLg ? "horizontal" : "vertical"}
+				className="flex-grow-1 align-items-lg-start align-items-center  justify-content-around"
+			>
+				<ProfilePicture user={user} toGPT={`${pb.game}/${pb.playtype}`} />
+				<div
+					className="d-flex flex-column align-self-stretch justify-content-between align-items-center"
+					style={{ maxHeight: 128, minWidth: 256 }}
+				>
+					<Link
+						className="gentle-link fs-4 fw-bold text-break text-center"
+						to={`/u/${user.username}/games/${pb.game}/${pb.playtype}`}
+					>
+						{user.username}
+					</Link>
+					<div>
+						<strong className="display-3">#{pb.rankingData.rank}</strong>
+						<span className="text-body-secondary display-6">
+							/{pb.rankingData.outOf}
+						</span>
 					</div>
-				</Col>
-			</Row>
+				</div>
+			</Stack>
+
+			<Col>
+				<MiniTable headers={["PB Info"]} colSpan={100}>
+					<tr>
+						<ScoreCoreCells short game={pb.game} chart={chart} score={pb} />
+					</tr>
+				</MiniTable>
+				<div className="text-center">
+					<Muted>
+						{pb.timeAchieved
+							? MillisToSince(pb.timeAchieved) ?? ""
+							: "No Timestamp Info"}
+					</Muted>
+				</div>
+			</Col>
 		</Card>
 	);
 }

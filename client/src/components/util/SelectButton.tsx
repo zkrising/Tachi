@@ -34,7 +34,9 @@ export default function SelectButton<T>({
 			variant={active ? onVariant : offVariant}
 			onClick={() => setValue(id)}
 			style={active ? Object.assign(style, onStyle) : Object.assign(style, offStyle)}
-			className={`${active ? "" : "text-body"} ${className}`}
+			className={`${
+				active ? "" : "text-body text-light-hover text-light-focus"
+			} ${className}`}
 		>
 			{children}
 		</Button>

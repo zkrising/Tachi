@@ -19,7 +19,7 @@ export default function Header({ styles }: { styles: LayoutStyles }) {
 	} = useContext(WindowContext);
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-	const dropdownMenuStyle = isLg ? { transform: "translateY(16.5px)" } : undefined;
+	const dropdownMenuStyle = isLg ? { transform: "translateY(1.05rem)" } : undefined;
 
 	const setState = isLg ? undefined : setShowMobileMenu;
 
@@ -31,7 +31,7 @@ export default function Header({ styles }: { styles: LayoutStyles }) {
 	return (
 		<header
 			id="main-header"
-			className="bg-body bg-opacity-75 backdrop-blur-xl border-bottom border-secondary border-opacity-25 fixed-top"
+			className="bg-body bg-opacity-75 backdrop-blur-xl border-bottom fixed-top border-body-tertiary border-opacity-50"
 			style={{ height: `${styles.headerHeight}px` }}
 		>
 			<Navbar expand={"lg"} variant="" className="h-100 p-0">
@@ -44,7 +44,7 @@ export default function Header({ styles }: { styles: LayoutStyles }) {
 						show={showMobileMenu}
 						onHide={() => setShowMobileMenu(false)}
 					>
-						<OffcanvasHeader className="p-4 border-bottom border-secondary border-opacity-25">
+						<OffcanvasHeader className="p-4 border-bottom border-body-tertiary">
 							<Link
 								id="home"
 								to="/"

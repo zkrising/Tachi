@@ -10,8 +10,14 @@ import SelectButton from "components/util/SelectButton";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import { useFormik } from "formik";
 import React, { useContext, useRef, useState } from "react";
-import { Alert, Button, Form, Stack } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import Stack from "react-bootstrap/Stack";
 import { UserDocument, UserSettingsDocument } from "tachi-common";
+import { Themes, WindowContext } from "context/WindowContext";
+import toast from "react-hot-toast";
 import { SetState } from "types/react";
 
 interface Props {
@@ -266,6 +272,8 @@ export function AccountSettings({ reqUser }: { reqUser: UserDocument }) {
 
 function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 	const { settings, setSettings } = useContext(UserSettingsContext);
+	const { theme, setTheme } = useContext(WindowContext);
+	const [themeSetting, setThemeSetting] = useState<Themes>(theme);
 
 	const formik = useFormik({
 		initialValues: {
@@ -292,19 +300,54 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 		},
 	});
 
+	const handleThemeSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		if (theme !== themeSetting) {
+			setTheme(themeSetting);
+			localStorage.setItem("theme", themeSetting);
+			toast.success(`Applied ${themeSetting} theme`);
+		}
+	};
+
 	return (
-		<Form onSubmit={formik.handleSubmit} className="d-flex flex-column gap-4">
-			<Form.Group>
-				<Form.Check
-					type="checkbox"
-					id="developerMode"
-					checked={formik.values.developerMode}
-					onChange={formik.handleChange}
-					label="Developer Mode"
-				/>
-				<Form.Text>Enable debug information and other useful debugging buttons.</Form.Text>
-			</Form.Group>
-			{/* <Form.Group>
+		<Stack gap={4}>
+			<Form onSubmit={handleThemeSubmit}>
+				<Form.Group>
+					<label htmlFor="theme-selector">Theme</label>
+					<InputGroup>
+						<Form.Select
+							value={themeSetting}
+							onChange={(e) => setThemeSetting(e.target.value as Themes)}
+						>
+							<option value="light">Light</option>
+							<option value="dark">Dark</option>
+							<option value="oled">OLED</option>
+						</Form.Select>
+						<Button type="submit">Apply Theme</Button>
+					</InputGroup>
+					<Form.Text>Themes are applied per device</Form.Text>
+				</Form.Group>
+			</Form>
+			<Form
+				onSubmit={(e) => {
+					formik.handleSubmit(e);
+					handleThemeSubmit(e);
+				}}
+				className="d-flex flex-column gap-4"
+			>
+				<Form.Group>
+					<Form.Check
+						type="checkbox"
+						id="developerMode"
+						checked={formik.values.developerMode}
+						onChange={formik.handleChange}
+						label="Developer Mode"
+					/>
+					<Form.Text>
+						Enable debug information and other useful debugging buttons.
+					</Form.Text>
+				</Form.Group>
+				{/* <Form.Group>
 				<Form.Check
 					type="checkbox"
 					id="advancedMode"
@@ -314,7 +357,7 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 				/>
 				<Form.Text>Enable advanced stuff.</Form.Text>
 			</Form.Group> */}
-			{/* <Form.Group>
+				{/* <Form.Group>
 				<Form.Check
 					type="checkbox"
 					id="invisible"
@@ -324,7 +367,7 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 				/>
 				<Form.Text>Hide your last seen status.</Form.Text>
 			</Form.Group> */}
-			{/* <Form.Group>
+				{/* <Form.Group>
 				<Form.Check
 					type="checkbox"
 					id="deletableScores"
@@ -337,26 +380,28 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 					score gives you anxiety.
 				</Form.Text>
 			</Form.Group> */}
-			<Form.Group>
-				<Form.Check
-					type="checkbox"
-					id="contentiousContent"
-					checked={formik.values.contentiousContent}
-					onChange={formik.handleChange}
-					label="Family Unfriendly Mode"
-				/>
-				<Form.Text>
-					Show slightly less appropriate splash texts in certain places.
-				</Form.Text>
-			</Form.Group>
-			<Button type="submit">Update Settings</Button>
-		</Form>
+				<Form.Group>
+					<Form.Check
+						type="checkbox"
+						id="contentiousContent"
+						checked={formik.values.contentiousContent}
+						onChange={formik.handleChange}
+						label="Family Unfriendly Mode"
+					/>
+					<Form.Text>
+						Show slightly less appropriate splash texts in certain places.
+					</Form.Text>
+				</Form.Group>
+				<Button type="submit">Update Settings</Button>
+			</Form>
+		</Stack>
 	);
 }
 
 function ImageForm({ reqUser }: { reqUser: UserDocument }) {
 	const [pfp, setPfp] = useState<File | undefined>();
-	const pfpInput = useRef(null);
+
+	const pfpInput = useRef<HTMLInputElement>(null);
 	const [banner, setBanner] = useState<File | undefined>();
 	const bannerInput = useRef<HTMLInputElement>(null);
 
@@ -373,7 +418,7 @@ function ImageForm({ reqUser }: { reqUser: UserDocument }) {
 				is probably no.
 			</Alert>
 			<Form.Group>
-				<Form.Label>Profile Picture</Form.Label>
+				<Form.Label htmlFor="pfp">Profile Picture</Form.Label>
 				<input
 					className="form-control"
 					accept="image/png,image/jpeg,image/gif"
@@ -383,7 +428,7 @@ function ImageForm({ reqUser }: { reqUser: UserDocument }) {
 					onChange={(e) => setPfp(e.target.files![0])}
 					ref={pfpInput}
 				/>
-				<div className="d-flex justify-content-center mt-4">
+				<div className="d-flex justify-content-center my-4">
 					<ProfilePicture
 						user={reqUser}
 						src={pfp ? URL.createObjectURL(pfp) : ToAPIURL(`/users/${reqUser.id}/pfp`)}
@@ -398,7 +443,7 @@ function ImageForm({ reqUser }: { reqUser: UserDocument }) {
 				/>
 			</Form.Group>
 			<Form.Group>
-				<Form.Label>Profile Banner</Form.Label>
+				<Form.Label htmlFor="banner">Profile Banner</Form.Label>
 				<input
 					className="form-control"
 					accept="image/png,image/jpeg,image/gif"
@@ -408,20 +453,14 @@ function ImageForm({ reqUser }: { reqUser: UserDocument }) {
 					onChange={(e) => setBanner(e.target.files![0])}
 					ref={bannerInput}
 				/>
-				<div
-					className="d-flex justify-content-center mt-4 rounded"
-					style={{
-						height: "200px",
-						boxShadow: "0px 0px 10px 0px #000000",
-						backgroundRepeat: "no-repeat",
-						backgroundSize: "cover",
-						backgroundPosition: "center",
-						backgroundImage: `url(${
-							banner
-								? URL.createObjectURL(banner)
-								: ToAPIURL(`/users/${reqUser.id}/banner`)
-						})`,
-					}}
+				<img
+					className="my-4 w-100 object-fit-cover shadow-sm rounded"
+					height={200}
+					src={
+						banner
+							? URL.createObjectURL(banner)
+							: ToAPIURL(`/users/${reqUser.id}/banner`)
+					}
 				/>
 				<FileUploadController
 					setFile={setBanner}
@@ -546,7 +585,7 @@ function FileUploadController({
 	reset: () => void;
 }) {
 	return (
-		<div className="d-flex mt-8 justify-content-end">
+		<div className="d-flex justify-content-end">
 			{file ? (
 				<Button
 					variant="secondary"

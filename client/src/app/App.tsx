@@ -20,30 +20,30 @@ const queryClient = new QueryClient({
 export default function App({ basename }: { basename: string }) {
 	return (
 		<React.StrictMode>
-			<QueryClientProvider client={queryClient}>
-				<BannedContextProvider>
-					<UserContextProvider>
-						<NotificationsContextProvider>
-							<UserSettingsContextProvider>
-								<AllLUGPTStatsContextProvider>
-									<LoadingScreen>
-										<BrowserRouter basename={basename}>
-											<WindowContextProvider>
+			<WindowContextProvider>
+				<QueryClientProvider client={queryClient}>
+					<BannedContextProvider>
+						<UserContextProvider>
+							<LoadingScreen>
+								<NotificationsContextProvider>
+									<UserSettingsContextProvider>
+										<AllLUGPTStatsContextProvider>
+											<BrowserRouter basename={basename}>
 												<MaterialThemeProvider>
 													<Toaster />
 													<SubheaderContextProvider>
 														<Routes />
 													</SubheaderContextProvider>
 												</MaterialThemeProvider>
-											</WindowContextProvider>
-										</BrowserRouter>
-									</LoadingScreen>
-								</AllLUGPTStatsContextProvider>
-							</UserSettingsContextProvider>
-						</NotificationsContextProvider>
-					</UserContextProvider>
-				</BannedContextProvider>
-			</QueryClientProvider>
+											</BrowserRouter>
+										</AllLUGPTStatsContextProvider>
+									</UserSettingsContextProvider>
+								</NotificationsContextProvider>
+							</LoadingScreen>
+						</UserContextProvider>
+					</BannedContextProvider>
+				</QueryClientProvider>
+			</WindowContextProvider>
 		</React.StrictMode>
 	);
 }

@@ -4,7 +4,10 @@ import Icon from "components/util/Icon";
 import SmallText from "components/util/SmallText";
 import { useZTable, ZTableSortFn } from "components/util/table/useZTable";
 import { UserSettingsContext } from "context/UserSettingsContext";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+import InputGroup from "react-bootstrap/InputGroup";
+import Form from "react-bootstrap/Form";
+import { WindowContext } from "context/WindowContext";
 import { Button } from "react-bootstrap";
 import { integer } from "tachi-common";
 import Select from "components/util/Select";
@@ -131,19 +134,18 @@ export default function TachiTable<D>({
 	});
 
 	const { settings } = useContext(UserSettingsContext);
-
+	const {
+		breakpoint: { isLg },
+	} = useContext(WindowContext);
 	return (
-		<div className="w-100">
-			<div className="row">
+		<div>
+			<div className="hstack justify-content-between">
 				{!noTopDisplayStr && (
-					<div className="d-none d-lg-flex col-lg-6 align-self-center mb-1">
-						{displayStr}
-					</div>
+					<div className="d-none d-lg-flex align-self-center">{displayStr}</div>
 				)}
 				{searchFunctions && (
-					<div className="col-12 col-lg-3 ms-auto input-group">
-						<input
-							className="form-control filter-directives-enabled"
+					<InputGroup className="ms-lg-auto" style={{ maxWidth: isLg ? 384 : undefined }}>
+						<Form.Control
 							onChange={(e) => setSearch(e.target.value)}
 							type="text"
 							placeholder={`Filter ${entryName}`}
@@ -153,10 +155,9 @@ export default function TachiTable<D>({
 							searchFunctions={searchFunctions}
 							doc={dataset[0]}
 						/>
-					</div>
+					</InputGroup>
 				)}
 			</div>
-
 			<div className="col-12 px-0 mt-4 mb-4 overflow-x-auto overflow-x-lg-hidden">
 				<table className="table table-striped table-hover table-vertical-center text-center">
 					<thead>{headersRow}</thead>

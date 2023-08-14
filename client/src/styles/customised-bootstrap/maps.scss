@@ -87,7 +87,8 @@ $utilities: map-merge(
                     (
                         "transparent": transparent,
                         "body-secondary": rgba(var(--#{$prefix}secondary-bg-rgb), var(--#{$prefix}bg-opacity)),
-                        "body-tertiary": rgba(var(--#{$prefix}tertiary-bg-rgb), var(--#{$prefix}bg-opacity))
+                        "body-tertiary": rgba(var(--#{$prefix}tertiary-bg-rgb), var(--#{$prefix}bg-opacity)),
+                        "body-emphasis": rgba(var(--#{$prefix}emphasis-color-rgb), var(--#{$prefix}bg-opacity))
                     )
                 )
         ),
@@ -109,27 +110,47 @@ $utilities: map-merge(
                 100: 1
             )
         ),*/
-            "box-shadow":
+            "border-color":
             (
-                property: box-shadow,
-                class: shadow,
-                responsive: true,
-                state: focus,
-                values: (
-                    "sm": var(--#{$prefix}box-shadow-sm),
-                    "md": var(--#{$prefix}box-shadow),
-                    //"lg": var(--#{$prefix}box-shadow-lg),
-                    //"inset": var(--#{$prefix}box-shadow-inset),
-                    "none": none
-                )
+                property: border-color,
+                class: border,
+                local-vars: (
+                    "border-opacity": 1
+                ),
+                values:
+                    map-merge(
+                        $utilities-border-colors,
+                        (
+                            body: rgba(var(--#{$prefix}body-bg-rgb), var(--#{$prefix}border-opacity)),
+                            body-secondary: rgba(var(--#{$prefix}secondary-bg-rgb), var(--#{$prefix}border-opacity)),
+                            body-tertiary: rgba(var(--#{$prefix}tertiary-bg-rgb), var(--#{$prefix}border-opacity)),
+                            translucent: var(--#{$prefix}border-color-translucent)
+                        )
+                    )
             ),
+        "box-shadow": (
+            property: box-shadow,
+            class: shadow,
+            responsive: true,
+            state: focus,
+            values: (
+                "sm": var(--#{$prefix}box-shadow-sm),
+                "md": var(--#{$prefix}box-shadow),
+                //"lg": var(--#{$prefix}box-shadow-lg),
+                //"inset": var(--#{$prefix}box-shadow-inset),
+                "none": none
+            )
+        ),
         "color": (
             property: color,
             class: text,
             local-vars: (
                 "text-opacity": 1
             ),
-            state: hover,
+            state: (
+                hover,
+                focus
+            ),
             values:
                 map-merge(
                     $utilities-text-colors,
@@ -147,12 +168,24 @@ $utilities: map-merge(
             state: hover,
             values: $utilities-text-emphasis-colors
         ),
+        "text-opacity": (
+            property: --#{$prefix}text-opacity,
+            class: text-opacity,
+            state: hover,
+            values: (
+                10: 10%,
+                25: 25%,
+                50: 50%,
+                75: 75%,
+                100: 100%
+            )
+        ),
         "transition": (
             property: transition,
             class: transition,
             values: (
                 "color": color #{$transition-duration} ease-in-out,
-                "background-color": background-color #{$transition-duration} ease-in-out,
+                "bg": background-color #{$transition-duration} ease-in-out,
                 "box-shadow": box-shadow #{$transition-duration} ease-in-out
             )
         ),
@@ -170,6 +203,18 @@ $utilities: map-merge(
             property: overflow,
             responsive: true,
             values: auto hidden visible scroll
+        ),
+        "rows": (
+            property: --#{$prefix}rows,
+            class: g-rows,
+            responsive: true,
+            values: 1 2 3 4 5 6 7 8 9 10 11 12
+        ),
+        "cols": (
+            property: --#{$prefix}columns,
+            class: g-columns,
+            responsive: true,
+            values: 1 2 3 4 5 6 7 8 9 10 11 12
         )
     )
 );

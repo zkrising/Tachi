@@ -10,9 +10,9 @@
 
 // scss-docs-start gray-color-variables
 $white: #fff !default;
-$gray-100: #f0f0f0;
-$gray-200: #e0e0e0;
-$gray-300: #d1d1d1;
+$gray-100: #f7f7f7;
+$gray-200: #e5e5e5;
+$gray-300: #d9d9d9;
 $gray-400: #bdbdbd;
 $gray-500: #808080;
 $gray-600: #616161;
@@ -318,7 +318,6 @@ $theme-colors: (
   "danger": $danger,
   "light": $light,
   "dark": $dark,
-  "clear": rgba($gray-900, 0)
 );
 // scss-docs-end theme-colors-map
 
@@ -326,23 +325,23 @@ $theme-colors: (
 $escaped-characters: (("<", "%3c"), (">", "%3e"), ("#", "%23"), ("(", "%28"), (")", "%29")) !default;
 
 // scss-docs-start theme-text-variables
-$primary-text-emphasis: tint-color($primary, 50%);
-$secondary-text-emphasis: tint-color($secondary, 50%);
-$success-text-emphasis: tint-color($success, 50%);
-$info-text-emphasis: tint-color($info, 50%);
-$warning-text-emphasis: tint-color($warning, 50%);
-$danger-text-emphasis: tint-color($danger, 50%);
+$primary-text-emphasis: shade-color($primary, 40%);
+$secondary-text-emphasis: shade-color($secondary, 40%);
+$success-text-emphasis: shade-color($success, 40%);
+$info-text-emphasis: shade-color($info, 40%);
+$warning-text-emphasis: shade-color($warning, 40%);
+$danger-text-emphasis: shade-color($danger, 40%);
 $light-text-emphasis: $gray-700;
 $dark-text-emphasis: $gray-400;
 // scss-docs-end theme-text-variables
 
 // scss-docs-start theme-bg-subtle-variables
-$primary-bg-subtle: shade-color($primary, 60%);
-$secondary-bg-subtle: shade-color($secondary, 60%);
-$success-bg-subtle: shade-color($success, 60%);
-$info-bg-subtle: shade-color($info, 60%);
-$warning-bg-subtle: shade-color($warning, 60%);
-$danger-bg-subtle: shade-color($danger, 60%);
+$primary-bg-subtle: tint-color($primary, 80%);
+$secondary-bg-subtle: tint-color($secondary, 80%);
+$success-bg-subtle: tint-color($success, 80%);
+$info-bg-subtle: tint-color($info, 80%);
+$warning-bg-subtle: tint-color($warning, 80%);
+$danger-bg-subtle: tint-color($danger, 80%);
 $light-bg-subtle: $light;
 $dark-bg-subtle: $gray-900;
 // scss-docs-end theme-bg-subtle-variables
@@ -371,7 +370,7 @@ $enable-reduced-motion: true !default;
 $enable-smooth-scroll: true !default;
 $enable-grid-classes: true !default;
 $enable-container-classes: true !default;
-$enable-cssgrid: false !default;
+$enable-cssgrid: true;
 $enable-button-pointers: true !default;
 $enable-rfs: true;
 $enable-validation-icons: true !default;
@@ -379,7 +378,7 @@ $enable-negative-margins: false;
 $enable-deprecation-messages: true !default;
 $enable-important-utilities: true !default;
 
-$enable-dark-mode: false; // for now
+$enable-dark-mode: true;
 $color-mode-type: data; // `data` or `media-query`
 
 // Prefix for :root CSS variables
@@ -437,17 +436,18 @@ $position-values: (
 //
 // Settings for the `<body>` element.
 
-$body-bg: $gray-900;
-$body-color: $gray-100;
+$body-bg: $white;
+$body-color: $gray-900;
 $body-text-align: null !default;
 
+$body-secondary-bg: $gray-100;
 $body-secondary-color: rgba($body-color, 0.75);
-$body-secondary-bg: $gray-800;
 
+$body-tertiary-bg: $gray-200;
 $body-tertiary-color: rgba($body-color, 0.5);
-$body-tertiary-bg: $gray-700;
 
-$body-emphasis-color: $white;
+
+$body-emphasis-color: $black;
 
 // Links
 //
@@ -456,7 +456,7 @@ $body-emphasis-color: $white;
 $link-color: $body-color;
 $link-decoration: none;
 $link-shade-percentage: 15%;
-$link-hover-color: shift-color($primary, $link-shade-percentage);
+$link-hover-color: shade-color($primary, $link-shade-percentage);
 $link-hover-decoration: null !default;
 
 $stretched-link-pseudo-element: after !default;
@@ -537,7 +537,7 @@ $border-widths: (
 
 $border-style: solid;
 $border-color: transparent;
-$border-color-translucent: rgba($black, 0.175) !default;
+$border-color-translucent: rgba($black, 0.175);
 // scss-docs-end border-variables
 
 // scss-docs-start border-radius-variables
@@ -550,10 +550,10 @@ $border-radius-pill: 50rem !default;
 // scss-docs-end border-radius-variables
 
 // scss-docs-start box-shadow-variables
-$box-shadow:                  0 0 0.725rem 0.5rem rgba($black, .075);
-$box-shadow-sm:               0 .125rem .25rem rgba($black, .075) !default;
-$box-shadow-lg:               0 1rem 3rem rgba($black, .175) !default;
-$box-shadow-inset:            inset 0 0 6px rgba($body-bg, .5);
+$box-shadow-sm:               0 .025rem 0.175rem rgba($black, .1);
+$box-shadow:                  0 .05rem .45rem rgba($black, .075);
+$box-shadow-lg:               0 .1rem 1.25rem rgba($black, .125);
+$box-shadow-inset:            inset 0 0 6px rgba($body-bg, .15);
 // scss-docs-end box-shadow-variables
 
 $component-active-color: var(--#{$prefix}body-color);
@@ -629,7 +629,7 @@ $font-weight-normal: 400;
 $font-weight-medium: null;
 $font-weight-semibold: 500;
 $font-weight-bold: 600;
-$font-weight-bolder: null;
+$font-weight-bolder: 700;
 
 $font-weight-base: $font-weight-normal;
 
@@ -686,7 +686,7 @@ $display-font-sizes: (
 
 $display-font-family: null !default;
 $display-font-style: null !default;
-$display-font-weight: 400;
+$display-font-weight: 300;
 $display-line-height: $headings-line-height;
 // scss-docs-end display-headings
 
@@ -706,7 +706,7 @@ $initialism-font-size: $small-font-size;
 
 $blockquote-margin-y: $spacer;
 $blockquote-font-size: $font-size-base * 1.25;
-$blockquote-footer-color: $gray-600;
+$blockquote-footer-color: var(--#{$prefix}secondary-color);
 $blockquote-footer-font-size: $small-font-size;
 
 // fusv-disable
@@ -743,26 +743,26 @@ $table-cell-padding-x-sm: 0.25rem;
 $table-cell-vertical-align: top;
 
 $table-color: var(--#{$prefix}body-color);
-$table-bg: var(--#{$prefix}body-bg);
+$table-bg: transparent;
 $table-accent-bg: transparent;
 
 $table-th-font-weight: null !default;
 
 $table-striped-color: $table-color;
-$table-striped-bg-factor: 0.05;
-$table-striped-bg: rgba($gray-100, $table-striped-bg-factor);
+$table-striped-bg-factor: 0.075;
+$table-striped-bg: rgba($black, $table-striped-bg-factor);
 
 $table-active-color: $table-color;
 $table-active-bg-factor: 0.0125;
-$table-active-bg: rgba($gray-100, $table-active-bg-factor);
+$table-active-bg: rgba($black, $table-active-bg-factor);
 
 $table-hover-color: $table-color;
-$table-hover-bg-factor: 0.1;
-$table-hover-bg: rgba($gray-100, $table-hover-bg-factor);
+$table-hover-bg-factor: 0.125;
+$table-hover-bg: rgba($black, $table-hover-bg-factor);
 
 $table-border-factor: 1;
 $table-border-width: 0.5pt;
-$table-border-color: rgba($dark-border-subtle, $table-border-factor);
+$table-border-color: var(--#{$prefix}border-color-translucent);
 
 $table-striped-order: odd;
 $table-striped-columns-order: even;
@@ -795,7 +795,7 @@ $table-variants: (
 $input-btn-padding-y: 0.5rem;
 $input-btn-padding-x: 0.75rem;
 $input-btn-font-family: null;
-$input-btn-font-size: $font-size-base;
+$input-btn-font-size: var(--#{$prefix}body-font-size);
 $input-btn-line-height: $line-height-base;
 
 $input-btn-focus-width: $focus-ring-width;
@@ -820,7 +820,7 @@ $input-btn-border-width: var(--#{$prefix}border-width);
 // For each of Bootstrap's buttons, define text, background, and border color.
 
 // scss-docs-start btn-variables
-$btn-color: var(--#{$prefix}body-color) !default;
+$btn-color: var(--#{$prefix}body-color);
 $btn-padding-y: $input-btn-padding-y;
 $btn-padding-x: $input-btn-padding-x;
 $btn-font-family: $input-btn-font-family;
@@ -879,7 +879,7 @@ $form-text-margin-top: $spacer * 0.5;
 $form-text-font-size: $small-font-size;
 $form-text-font-style: null !default;
 $form-text-font-weight: null !default;
-$form-text-color: $body-color;
+$form-text-color: var(--#{$prefix}body-color);
 // scss-docs-end form-text-variables
 
 // scss-docs-start form-label-variables
@@ -967,8 +967,8 @@ $form-check-input-focus-box-shadow: $input-btn-focus-box-shadow;
 $form-check-input-checked-color: $component-active-color;
 $form-check-input-checked-bg-color: $component-active-bg;
 $form-check-input-checked-border-color: $form-check-input-checked-bg-color;
-$form-check-input-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$form-check-input-checked-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>");
-$form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$form-check-input-checked-color}'/></svg>");
+$form-check-input-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$body-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>");
+$form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$body-color}'/></svg>");
 
 $form-check-input-indeterminate-color: $component-active-color;
 $form-check-input-indeterminate-bg-color: $component-active-bg;
@@ -1080,7 +1080,7 @@ $form-range-thumb-transition:
 // scss-docs-start form-file-variables
 $form-file-button-color: $input-color;
 $form-file-button-bg: $body-tertiary-bg;
-$form-file-button-hover-bg: shade-color($form-file-button-bg, 5%);
+$form-file-button-hover-bg: shade-color($form-file-button-bg, $btn-hover-bg-shade-amount);
 // scss-docs-end form-file-variables
 
 // scss-docs-start form-floating-variables
@@ -1258,7 +1258,7 @@ $navbar-dark-brand-hover-color: $navbar-dark-active-color !default;
 $dropdown-min-width: 18rem;
 $dropdown-padding-x: 1rem;
 $dropdown-padding-y: 1rem;
-$dropdown-spacer: 0.1rem;
+$dropdown-spacer: 0.25rem;
 $dropdown-font-size: $font-size-base;
 $dropdown-color: var(--#{$prefix}body-color) !default;
 $dropdown-bg: var(--#{$prefix}secondary-bg);
@@ -1269,7 +1269,7 @@ $dropdown-border-width: var(--#{$prefix}border-width) !default;
 $dropdown-inner-border-radius: subtract($dropdown-border-radius, $dropdown-border-width);
 $dropdown-divider-bg: $dropdown-border-color;
 $dropdown-divider-margin-y: $spacer * 0.5;
-$dropdown-box-shadow: $box-shadow;
+$dropdown-box-shadow: var(--#{$prefix}box-shadow-lg);
 
 $dropdown-link-color: var(--#{$prefix}body-color) !default;
 $dropdown-link-hover-color: null;
@@ -1317,21 +1317,21 @@ $pagination-padding-x-lg: 1.5rem !default;
 
 $pagination-font-size: $font-size-base;
 
-$pagination-color: var(--#{$prefix}link-color) !default;
-$pagination-bg: var(--#{$prefix}body-bg) !default;
-$pagination-border-radius: var(--#{$prefix}border-radius) !default;
-$pagination-border-width: var(--#{$prefix}border-width) !default;
+$pagination-color: var(--#{$prefix}link-color);
+$pagination-bg: var(--#{$prefix}body-bg);
+$pagination-border-radius: var(--#{$prefix}border-radius);
+$pagination-border-width: var(--#{$prefix}border-width);
 $pagination-margin-start: calc(
   #{$pagination-border-width} * -1
-) !default; // stylelint-disable-line function-disallowed-list
-$pagination-border-color: var(--#{$prefix}border-color) !default;
+); // stylelint-disable-line function-disallowed-list
+$pagination-border-color: var(--#{$prefix}border-color);
 
-$pagination-focus-color: var(--#{$prefix}link-hover-color) !default;
-$pagination-focus-bg: var(--#{$prefix}secondary-bg) !default;
-$pagination-focus-box-shadow: $focus-ring-box-shadow !default;
-$pagination-focus-outline: 0 !default;
+$pagination-focus-color: var(--#{$prefix}link-hover-color);
+$pagination-focus-bg: var(--#{$prefix}secondary-bg);
+$pagination-focus-box-shadow: $focus-ring-box-shadow;
+$pagination-focus-outline: 0;
 
-$pagination-hover-color: var(--#{$prefix}link-hover-color) !default;
+$pagination-hover-color: var(--#{$prefix}link-hover-color);
 $pagination-hover-bg: $gray-200;
 $pagination-hover-border-color: $gray-300;
 
@@ -1339,18 +1339,18 @@ $pagination-active-color: $component-active-color;
 $pagination-active-bg: $component-active-bg;
 $pagination-active-border-color: $pagination-active-bg;
 
-$pagination-disabled-color: var(--#{$prefix}secondary-color) !default;
-$pagination-disabled-bg: var(--#{$prefix}secondary-bg) !default;
-$pagination-disabled-border-color: var(--#{$prefix}border-color) !default;
+$pagination-disabled-color: var(--#{$prefix}secondary-color);
+$pagination-disabled-bg: var(--#{$prefix}secondary-bg);
+$pagination-disabled-border-color: var(--#{$prefix}border-color);
 
 $pagination-transition:
   color 0.15s ease-in-out,
   background-color 0.15s ease-in-out,
   border-color 0.15s ease-in-out,
-  box-shadow 0.15s ease-in-out !default;
+  box-shadow 0.15s ease-in-out;
 
-$pagination-border-radius-sm: var(--#{$prefix}border-radius-sm) !default;
-$pagination-border-radius-lg: var(--#{$prefix}border-radius-lg) !default;
+$pagination-border-radius-sm: var(--#{$prefix}border-radius-sm);
+$pagination-border-radius-lg: var(--#{$prefix}border-radius-lg);
 // scss-docs-end pagination-variables
 
 // Placeholders
@@ -1428,11 +1428,11 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
 $tooltip-font-size: $font-size-sm;
 $tooltip-max-width: 200px;
 $tooltip-color: var(--#{$prefix}body-color);
-$tooltip-bg: rgba(var(--#{$prefix}tertiary-bg-rgb), .75);
+$tooltip-bg: rgba(var(--#{$prefix}tertiary-bg-rgb), .85);
 $tooltip-border-radius: var(--#{$prefix}border-radius) !default;
 $tooltip-opacity: null;
-$tooltip-padding-y: $spacer * 0.25 !default;
-$tooltip-padding-x: $spacer * 0.5 !default;
+$tooltip-padding-y: $spacer * 0.5;
+$tooltip-padding-x: $spacer * 1;
 $tooltip-margin: null !default; // TODO: remove this in v6
 
 $tooltip-arrow-width: 0.8rem !default;
@@ -1511,10 +1511,11 @@ $toast-header-border-color: $toast-border-color !default;
 // scss-docs-start badge-variables
 $badge-font-size: $font-size-sm;
 $badge-font-weight: $font-weight-normal;
-$badge-color: $body-color;
+$badge-color: var(--#{$prefix}body-color);
 $badge-padding-y: $input-btn-padding-y-sm * 2.75;
 $badge-padding-x: $input-btn-padding-x-sm * 1.2;
 $badge-border-radius: $border-radius;
+$badge-box-shadow: var(--#{$prefix}box-shadow-sm);
 // scss-docs-end badge-variables
 
 // Modals
@@ -1754,7 +1755,7 @@ $offcanvas-backdrop-opacity: $modal-backdrop-opacity;
 // Code
 
 $code-font-size: $small-font-size;
-$code-color: var(--#{$prefix}white);
+$code-color: var(--#{$prefix}body-color);
 
 $kbd-padding-y: 0.1875rem;
 $kbd-padding-x: 0.375rem;

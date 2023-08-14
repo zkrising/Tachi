@@ -1,7 +1,7 @@
 import { DEFAULT_BAR_PROPS } from "util/charts";
 import { CreateChartMap, CreateUserMap } from "util/data";
 import { UppercaseFirst } from "util/misc";
-import { NumericSOV, StrSOV } from "util/sorts";
+import { NumericSOV } from "util/sorts";
 import { ResponsiveBar } from "@nivo/bar";
 import PBTable from "components/tables/pbs/PBTable";
 import ApiError from "components/util/ApiError";

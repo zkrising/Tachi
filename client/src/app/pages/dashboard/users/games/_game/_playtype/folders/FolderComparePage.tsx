@@ -8,21 +8,20 @@ import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Stack from "react-bootstrap/Stack";
 import { Link } from "react-router-dom";
-import { COLOUR_SET, FolderDocument, GetGamePTConfig, UserDocument } from "tachi-common";
+import { FolderDocument, UserDocument } from "tachi-common";
 import { UGPTFolderReturns, UGPTStatsReturn } from "types/api-returns";
 import { GamePT } from "types/react";
 import { ComparePBsDataset } from "types/tables";
 import UserSelectModal from "components/util/modal/UserSelectModal";
 import UserIcon from "components/util/UserIcon";
 import { UserContext } from "context/UserContext";
-import MiniTable from "components/tables/components/MiniTable";
 
 export default function RivalCompareFolderPage({
 	reqUser,

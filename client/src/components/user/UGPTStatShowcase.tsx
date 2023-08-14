@@ -379,7 +379,7 @@ export function StatDisplay({
 
 		return (
 			<Card
-				className="text-center w-100 flex-grow-1"
+				className="text-center stat-overview-card w-100 flex-grow-1"
 				header={<h5 className="text-body-secondary mb-0">Chart</h5>}
 			>
 				<>

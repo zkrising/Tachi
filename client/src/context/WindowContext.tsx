@@ -1,4 +1,5 @@
 import { breakpoints } from "util/constants/breakpoints";
+import { Themes, getTheme, themeColours } from "util/theme";
 import React, {
 	createContext,
 	useCallback,
@@ -10,14 +11,6 @@ import React, {
 import { throttle } from "lodash";
 import { JustChildren, SetState } from "types/react";
 
-export type Themes = "light" | "dark" | "oled";
-
-export const themeColours: Record<Themes, string> = {
-	light: "#FFF",
-	dark: "#131313",
-	oled: "#000",
-};
-
 export type WindowContextProps = {
 	clientWidth: number;
 	breakpoint: {
@@ -28,8 +21,6 @@ export type WindowContextProps = {
 	};
 	theme: Themes;
 	setTheme: SetState<Themes>;
-	preference: boolean;
-	setPreference: SetState<boolean>;
 };
 
 export const WindowContext = createContext<WindowContextProps>({
@@ -42,33 +33,7 @@ export const WindowContext = createContext<WindowContextProps>({
 	},
 	theme: "dark",
 	setTheme: () => null,
-	preference: true,
-	setPreference: () => null,
 });
-
-export function mediaQueryPrefers() {
-	if (window.matchMedia("(prefers-color-scheme: dark").matches) {
-		return "dark";
-	} else {
-		return "light";
-	}
-}
-
-function getPreference() {
-	const storedTheme = localStorage.getItem("theme");
-	if (storedTheme && storedTheme !== null && storedTheme !== "undefined") {
-		return false;
-	}
-	return true;
-}
-
-function getTheme() {
-	const storedTheme = localStorage.getItem("theme");
-	if (storedTheme && storedTheme !== null && storedTheme !== "undefined") {
-		return storedTheme as Themes;
-	}
-	return mediaQueryPrefers();
-}
 
 export function WindowContextProvider({ children }: JustChildren) {
 	const getClientWidth = useCallback(() => window.innerWidth || 0, []);
@@ -93,7 +58,6 @@ export function WindowContextProvider({ children }: JustChildren) {
 		};
 	});
 
-	const [preference, setPreference] = useState<boolean>(getPreference());
 	const [theme, setTheme] = useState<Themes>(getTheme());
 
 	useLayoutEffect(() => {
@@ -103,9 +67,7 @@ export function WindowContextProvider({ children }: JustChildren) {
 	}, [theme]);
 
 	return (
-		<WindowContext.Provider
-			value={{ clientWidth, breakpoint, theme, setTheme, preference, setPreference }}
-		>
+		<WindowContext.Provider value={{ clientWidth, breakpoint, theme, setTheme }}>
 			{children}
 		</WindowContext.Provider>
 	);

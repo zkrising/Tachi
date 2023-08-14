@@ -1,5 +1,6 @@
 import { APIFetchV1, ToAPIURL } from "util/api";
 import { DelayedPageReload, FetchJSONBody, UppercaseFirst } from "util/misc";
+import { Themes, getThemePreference, mediaQueryPrefers } from "util/theme";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import ProfilePicture from "components/user/ProfilePicture";
@@ -16,7 +17,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Stack from "react-bootstrap/Stack";
 import { UserDocument, UserSettingsDocument } from "tachi-common";
-import { Themes, WindowContext, mediaQueryPrefers } from "context/WindowContext";
+import { WindowContext } from "context/WindowContext";
 import toast from "react-hot-toast";
 import { SetState } from "types/react";
 
@@ -272,7 +273,8 @@ export function AccountSettings({ reqUser }: { reqUser: UserDocument }) {
 
 function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 	const { settings, setSettings } = useContext(UserSettingsContext);
-	const { theme, setTheme, preference, setPreference } = useContext(WindowContext);
+	const { theme, setTheme } = useContext(WindowContext);
+	const [preference, setPreference] = useState<boolean>(getThemePreference());
 	const [themeSetting, setThemeSetting] = useState<Themes | "follow">(
 		preference ? "follow" : theme
 	);
@@ -304,17 +306,15 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 
 	const handleThemeSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		if (theme !== themeSetting) {
-			if (themeSetting === "follow") {
-				localStorage.removeItem("theme");
-				setPreference(true);
-				setTheme(mediaQueryPrefers());
-				toast.success(`Following system preference!`);
-			} else {
-				setTheme(themeSetting);
-				localStorage.setItem("theme", themeSetting);
-				toast.success(`Applied ${UppercaseFirst(themeSetting)} theme!`);
-			}
+		if (themeSetting === "follow") {
+			localStorage.removeItem("theme");
+			setPreference(true);
+			setTheme(mediaQueryPrefers());
+			toast.success(`Following system preference!`);
+		} else {
+			setTheme(themeSetting);
+			localStorage.setItem("theme", themeSetting);
+			toast.success(`Applied ${UppercaseFirst(themeSetting)} theme!`);
 		}
 	};
 

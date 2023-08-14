@@ -136,7 +136,7 @@ $utilities: map-merge(
             values: (
                 "sm": var(--#{$prefix}box-shadow-sm),
                 "md": var(--#{$prefix}box-shadow),
-                //"lg": var(--#{$prefix}box-shadow-lg),
+                "lg": var(--#{$prefix}box-shadow-lg),
                 //"inset": var(--#{$prefix}box-shadow-inset),
                 "none": none
             )

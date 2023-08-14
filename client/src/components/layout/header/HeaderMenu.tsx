@@ -11,7 +11,7 @@ import UtilsDropdown from "./UtilsDropdown";
 import UserProfileLinks from "./UserProfileLinks";
 
 const toggleClassNames = "w-100 justify-content-between";
-const menuClassNames = "shadow-none shadow-lg-md";
+const menuClassNames = "shadow-none shadow-lg-lg";
 
 export function HeaderMenu({
 	user,

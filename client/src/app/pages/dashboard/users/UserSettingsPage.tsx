@@ -16,7 +16,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Stack from "react-bootstrap/Stack";
 import { UserDocument, UserSettingsDocument } from "tachi-common";
-import { Themes, WindowContext } from "context/WindowContext";
+import { Themes, WindowContext, mediaQueryPrefers } from "context/WindowContext";
 import toast from "react-hot-toast";
 import { SetState } from "types/react";
 
@@ -272,8 +272,10 @@ export function AccountSettings({ reqUser }: { reqUser: UserDocument }) {
 
 function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 	const { settings, setSettings } = useContext(UserSettingsContext);
-	const { theme, setTheme } = useContext(WindowContext);
-	const [themeSetting, setThemeSetting] = useState<Themes>(theme);
+	const { theme, setTheme, preference, setPreference } = useContext(WindowContext);
+	const [themeSetting, setThemeSetting] = useState<Themes | "follow">(
+		preference ? "follow" : theme
+	);
 
 	const formik = useFormik({
 		initialValues: {
@@ -303,9 +305,16 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 	const handleThemeSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		if (theme !== themeSetting) {
-			setTheme(themeSetting);
-			localStorage.setItem("theme", themeSetting);
-			toast.success(`Applied ${themeSetting} theme!`);
+			if (themeSetting === "follow") {
+				localStorage.removeItem("theme");
+				setPreference(true);
+				setTheme(mediaQueryPrefers());
+				toast.success(`Following system preference!`);
+			} else {
+				setTheme(themeSetting);
+				localStorage.setItem("theme", themeSetting);
+				toast.success(`Applied ${UppercaseFirst(themeSetting)} theme!`);
+			}
 		}
 	};
 
@@ -317,8 +326,9 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 					<InputGroup>
 						<Form.Select
 							value={themeSetting}
-							onChange={(e) => setThemeSetting(e.target.value as Themes)}
+							onChange={(e) => setThemeSetting(e.target.value as Themes | "follow")}
 						>
+							<option value="follow">Follow system preference</option>
 							<option value="light">Light</option>
 							<option value="dark">Dark</option>
 							<option value="oled">OLED</option>

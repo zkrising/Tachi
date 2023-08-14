@@ -179,6 +179,13 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc="Automatically import scores, whenever you get them!"
 				moreInfo="This is the recommended way to import CHUNITHM scores, as it provides high quality data in real-time."
 				key="Chunitachi"
+			/>,
+			<ImportInfoCard
+				name="CHUNITHM Site Importer"
+				href="kt-chunithm-site-importer"
+				desc="Use your data from CHUNITHM NET."
+				moreInfo="If you are currently playing on CHUNITHM International, you can import play data from it here."
+				key="CHUNITHM Site Importer"
 			/>
 		);
 	} else if (game === "bms") {
@@ -260,6 +267,16 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc="Use your data from WaccaMyPageScraper."
 				moreInfo="If you saved your play data from MyPage using XezolesS's WaccaMyPageScraper project, you can import it here."
 				key="WACCA MyPage Scraper"
+			/>
+		);
+	} else if (game === "maimaidx") {
+		Content.unshift(
+			<ImportInfoCard
+				name="maimai DX Site Importer"
+				href="kt-maimaidx-site-importer"
+				desc="Use your data from maimai DX NET."
+				moreInfo="If you are currently playing on maimai DX International, you can import play data from it here."
+				key="maimai DX NET Importer"
 			/>
 		);
 	} else if (game === "museca") {

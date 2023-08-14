@@ -101,12 +101,7 @@ function RecentInfo({ user }: { user: UserDocument }) {
 		<>
 			{data.recentSessions.length !== 0 && (
 				<>
-					<Alert
-						style={{
-							backgroundColor: `${ColourConfig.primary}44`,
-							color: "white",
-						}}
-					>
+					<Alert variant="primary">
 						<div className="text-center">
 							<h1>Today's Summary</h1>
 							You've gotten <b>{data.recentPlaycount}</b> new score
@@ -128,11 +123,7 @@ function RecentInfo({ user }: { user: UserDocument }) {
 			)}
 			{data.recentAchievedGoals.length !== 0 && (
 				<>
-					<Alert
-						style={{
-							backgroundColor: ChangeOpacity(COLOUR_SET.gold, 0.2),
-						}}
-					>
+					<Alert variant="warning">
 						<div className="text-center text-white">
 							<h1>
 								{RFA([

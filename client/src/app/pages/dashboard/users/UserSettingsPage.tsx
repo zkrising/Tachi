@@ -305,7 +305,7 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 		if (theme !== themeSetting) {
 			setTheme(themeSetting);
 			localStorage.setItem("theme", themeSetting);
-			toast.success(`Applied ${themeSetting} theme`);
+			toast.success(`Applied ${themeSetting} theme!`);
 		}
 	};
 

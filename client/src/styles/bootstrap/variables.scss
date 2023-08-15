@@ -749,7 +749,7 @@ $table-accent-bg: transparent;
 $table-th-font-weight: null !default;
 
 $table-striped-color: $table-color;
-$table-striped-bg-factor: 0.075;
+$table-striped-bg-factor: 0.05;
 $table-striped-bg: rgba($black, $table-striped-bg-factor);
 
 $table-active-color: $table-color;
@@ -757,7 +757,7 @@ $table-active-bg-factor: 0.0125;
 $table-active-bg: rgba($black, $table-active-bg-factor);
 
 $table-hover-color: $table-color;
-$table-hover-bg-factor: 0.125;
+$table-hover-bg-factor: 0.075;
 $table-hover-bg: rgba($black, $table-hover-bg-factor);
 
 $table-border-factor: 1;

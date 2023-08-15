@@ -19,7 +19,7 @@
     //--#{$prefix}btn-disabled-border-color: ;
     --#{$prefix}btn-box-shadow: none;
     --#{$prefix}btn-focus-box-shadow: #{$focus-ring-box-shadow};
-    &:focus {
+    &:focus-visible {
         //color: var(--#{$prefix}btn-hover-color);
         background-color: var(--#{$prefix}btn-hover-bg);
         //border-color: var(--#{$prefix}btn-hover-border-color);

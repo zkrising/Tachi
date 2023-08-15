@@ -41,7 +41,7 @@ export function HeaderMenu({
 	}, [error, data]);
 
 	return (
-		<Nav className="p-4 d-flex flex-column flex-lg-row align-content-between gap-2 gap-lg-4 overflow-y-auto overflow-y-lg-visible scrollbar-hide h-100">
+		<Nav as="nav" className="p-4 d-flex align-content-between gap-4 h-100">
 			{user && ugs && ugs.length !== 0 && (
 				<UserProfileLinks
 					user={user}

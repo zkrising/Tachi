@@ -19,7 +19,9 @@ import { UserContext } from "context/UserContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useMemo } from "react";
-import { Alert, Stack } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import Stack from "react-bootstrap/Stack";
+import Row from "react-bootstrap/Row";
 import { Link, Route, Switch } from "react-router-dom";
 import { GetGameConfig, UserDocument } from "tachi-common";
 import { UGSWithRankingData, UserRecentSummary } from "types/api-returns";
@@ -188,7 +190,7 @@ function RecentInfo({ user }: { user: UserDocument }) {
 
 function UserGameStatsInfo({ user }: { user: UserDocument }) {
 	return (
-		<div className="row">
+		<Row xs={{ cols: 1 }} lg={{ cols: 2 }}>
 			<AsyncLoader
 				promiseFn={async () => {
 					const res = await APIFetchV1<UGSWithRankingData[]>(
@@ -222,7 +224,7 @@ function UserGameStatsInfo({ user }: { user: UserDocument }) {
 					))
 				}
 			</AsyncLoader>
-		</div>
+		</Row>
 	);
 }
 

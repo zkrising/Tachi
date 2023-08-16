@@ -214,7 +214,7 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 									);
 								}}
 							>
-								Un-Highlight Session
+								<Icon type="star" /> Un-Highlight Session
 							</Button>
 						) : (
 							<Button
@@ -239,7 +239,7 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 									);
 								}}
 							>
-								Highlight Session
+								<Icon regular type="star" /> Highlight Session
 							</Button>
 						)}
 						<Divider />

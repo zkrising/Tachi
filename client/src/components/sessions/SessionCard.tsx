@@ -101,7 +101,7 @@ export default function SessionCard({ sessionID }: { sessionID: string }) {
 						}}
 						variant={highlight ? "outline-danger" : "outline-warning"}
 					>
-						<Icon type="star" />
+						<Icon type="star" regular={!highlight} />{" "}
 						{highlight ? "Remove as Highlight" : "Highlight this session!"}
 					</Button>
 					<LinkButton

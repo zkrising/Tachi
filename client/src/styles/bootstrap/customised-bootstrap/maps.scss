@@ -233,15 +233,15 @@ $utilities: map-merge(
 			responsive: true,
 			values: auto hidden visible scroll,
 		),
-		"rows": (
+		"grid-rows": (
 			property: --#{$prefix}rows,
-			class: g-rows,
+			class: grid-rows,
 			responsive: true,
 			values: 1 2 3 4 5 6 7 8 9 10 11 12,
 		),
-		"cols": (
+		"grid-cols": (
 			property: --#{$prefix}columns,
-			class: g-columns,
+			class: grid-cols,
 			responsive: true,
 			values: 1 2 3 4 5 6 7 8 9 10 11 12,
 		),

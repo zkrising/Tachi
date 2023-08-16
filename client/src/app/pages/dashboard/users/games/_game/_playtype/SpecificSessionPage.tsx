@@ -139,7 +139,7 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 						as="h1"
 						className="enable-rfs"
 						initial={session.name}
-						onEdit={(name) => {
+						onSubmit={(name) => {
 							const newSession: SessionReturns = {
 								...sessionData,
 								session: {
@@ -153,14 +153,12 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 							updateSession(newSession);
 						}}
 						authorised={isAuthorised || false}
-					>
-						{session.name}
-					</EditableText>
+					/>
 
 					<EditableText
 						initial={session.desc ?? "No Description..."}
 						className="fs-5"
-						onEdit={(desc) => {
+						onSubmit={(desc) => {
 							const newSession: SessionReturns = {
 								...sessionData,
 								session: {

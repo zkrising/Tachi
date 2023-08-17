@@ -26,42 +26,29 @@ export default function EditableQuest({
 			header={
 				<div>
 					<EditableText
-						initial={quest.name}
-						onChange={(name) =>
+						as="h1"
+						initialText={quest.name}
+						placeholderText={quest.name || "Untitled Quest"}
+						onSubmit={(name) =>
 							onChange({
 								...quest,
 								name,
 							})
 						}
-					>
-						{(text) => (
-							<h3>
-								{text}
-								<span className="ms-2 text-hover-white">
-									<Icon type="pencil-alt" />
-								</span>
-							</h3>
-						)}
-					</EditableText>
+						authorised
+					/>
 
 					<EditableText
-						initial={quest.desc}
-						onChange={(desc) =>
+						initialText={quest.desc}
+						placeholderText={quest.desc || "Please set a description."}
+						onSubmit={(desc) =>
 							onChange({
 								...quest,
 								desc,
 							})
 						}
-					>
-						{(desc) => (
-							<div>
-								{desc}
-								<span className="ms-2 text-hover-white">
-									<Icon type="pencil-alt" />
-								</span>
-							</div>
-						)}
-					</EditableText>
+						authorised
+					/>
 
 					<div className="mt-4">
 						<Muted>Game: {FormatGame(quest.game, quest.playtype)}</Muted>
@@ -159,41 +146,30 @@ function QuestSection({
 	return (
 		<div>
 			<EditableText
-				initial={section.title}
-				onChange={(title) =>
+				as="h4"
+				initialText={section.title}
+				placeholderText="Untitled Section"
+				onSubmit={(title) =>
 					onChange({
 						...section,
 						title,
 					})
 				}
-			>
-				{(text) => (
-					<h5>
-						{text}
-						<span className="ms-2 text-hover-white">
-							<Icon type="pencil-alt" />
-						</span>
-					</h5>
-				)}
-			</EditableText>
+				authorised
+			/>
+
 			<EditableText
-				initial={section.desc}
-				onChange={(desc) =>
+				initialText={section.desc}
+				placeholderText="No Description..."
+				onSubmit={(desc) =>
 					onChange({
 						...section,
 						desc,
 					})
 				}
-			>
-				{(desc) => (
-					<div>
-						{desc === "" ? <Muted>No Description...</Muted> : desc}
-						<span className="ms-2 text-hover-white">
-							<Icon type="pencil-alt" />
-						</span>
-					</div>
-				)}
-			</EditableText>
+				authorised
+			/>
+
 			<br />
 			{section.rawGoals.length === 0 ? (
 				<Muted>No Goals...</Muted>

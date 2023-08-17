@@ -343,7 +343,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 					color: "var(--bs-dark)",
 				},
 			},
-			class: {
+			matchingClass: {
 				B5: bgc("green", "var(--bs-light)"),
 				B4: bgc("green", "var(--bs-light)"),
 				B3: bgc("green", "var(--bs-light)"),

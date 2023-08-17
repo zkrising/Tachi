@@ -479,7 +479,7 @@ export enum MAIMAIDX_GRADES {
 	SSS_PLUS = 13,
 }
 
-export enum MAIMAIDX_CLASSES {
+export enum MAIMAIDX_MATCHING_CLASSES {
 	B5 = 0,
 	B4 = 1,
 	B3 = 2,

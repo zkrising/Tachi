@@ -56,7 +56,7 @@ const MaimaiDXColours = [
 	ClassValue("RAINBOW", "Rainbow"),
 ];
 
-const MaimaiDXClasses = [
+const MaimaiDXMatchingClasses = [
 	ClassValue("B5", "B5"),
 	ClassValue("B4", "B4"),
 	ClassValue("B3", "B3"),
@@ -200,9 +200,9 @@ export const MAIMAI_DX_SINGLE_CONF = {
 			type: "PROVIDED",
 			values: MaimaiDXDans,
 		},
-		class: {
+		matchingClass: {
 			type: "PROVIDED",
-			values: MaimaiDXClasses,
+			values: MaimaiDXMatchingClasses,
 		}
 	},
 

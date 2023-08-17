@@ -24,7 +24,7 @@ export default function EditableQuest({
 	return (
 		<Card
 			header={
-				<div>
+				<div className="vstack gap-2">
 					<EditableText
 						as="h1"
 						initialText={quest.name}
@@ -50,9 +50,7 @@ export default function EditableQuest({
 						authorised
 					/>
 
-					<div className="mt-4">
-						<Muted>Game: {FormatGame(quest.game, quest.playtype)}</Muted>
-					</div>
+					<Muted>Game: {FormatGame(quest.game, quest.playtype)}</Muted>
 				</div>
 			}
 		>
@@ -144,32 +142,33 @@ function QuestSection({
 	const [show, setShow] = useState(false);
 
 	return (
-		<div>
-			<EditableText
-				as="h4"
-				initialText={section.title}
-				placeholderText="Untitled Section"
-				onSubmit={(title) =>
-					onChange({
-						...section,
-						title,
-					})
-				}
-				authorised
-			/>
+		<>
+			<div className="vstack gap-2">
+				<EditableText
+					as="h4"
+					initialText={section.title}
+					placeholderText="Untitled Section"
+					onSubmit={(title) =>
+						onChange({
+							...section,
+							title,
+						})
+					}
+					authorised
+				/>
 
-			<EditableText
-				initialText={section.desc}
-				placeholderText="No Description..."
-				onSubmit={(desc) =>
-					onChange({
-						...section,
-						desc,
-					})
-				}
-				authorised
-			/>
-
+				<EditableText
+					initialText={section.desc}
+					placeholderText="No Description..."
+					onSubmit={(desc) =>
+						onChange({
+							...section,
+							desc,
+						})
+					}
+					authorised
+				/>
+			</div>
 			<br />
 			{section.rawGoals.length === 0 ? (
 				<Muted>No Goals...</Muted>
@@ -228,7 +227,7 @@ function QuestSection({
 					}}
 				/>
 			)}
-		</div>
+		</>
 	);
 }
 

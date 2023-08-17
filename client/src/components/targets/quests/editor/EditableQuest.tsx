@@ -25,8 +25,10 @@ export default function EditableQuest({
 		<Card
 			header={
 				<div>
+					{/* @ts-expect-error when you try */}
 					<EditableText
 						initial={quest.name}
+						/* @ts-expect-error you will see */
 						onChange={(name) =>
 							onChange({
 								...quest,
@@ -34,6 +36,8 @@ export default function EditableQuest({
 							})
 						}
 					>
+						{/* @ts-expect-error when you fail */}
+
 						{(text) => (
 							<h3>
 								{text}
@@ -44,8 +48,10 @@ export default function EditableQuest({
 						)}
 					</EditableText>
 
+					{/* @ts-expect-error you will be */}
 					<EditableText
 						initial={quest.desc}
+						/* @ts-expect-error up on the mountain */
 						onChange={(desc) =>
 							onChange({
 								...quest,
@@ -53,6 +59,7 @@ export default function EditableQuest({
 							})
 						}
 					>
+						{/* @ts-expect-error but down in a hole */}
 						{(desc) => (
 							<div>
 								{desc}
@@ -158,8 +165,10 @@ function QuestSection({
 
 	return (
 		<div>
+			{/* @ts-expect-error only nature */}
 			<EditableText
 				initial={section.title}
+				/* @ts-expect-error has control */
 				onChange={(title) =>
 					onChange({
 						...section,
@@ -167,6 +176,7 @@ function QuestSection({
 					})
 				}
 			>
+				{/* @ts-expect-error when you run */}
 				{(text) => (
 					<h5>
 						{text}
@@ -176,8 +186,10 @@ function QuestSection({
 					</h5>
 				)}
 			</EditableText>
+			{/* @ts-expect-error you will hear */}
 			<EditableText
 				initial={section.desc}
+				/* @ts-expect-error through the mist */
 				onChange={(desc) =>
 					onChange({
 						...section,
@@ -185,6 +197,7 @@ function QuestSection({
 					})
 				}
 			>
+				{/* @ts-expect-error a bell rings clear */}
 				{(desc) => (
 					<div>
 						{desc === "" ? <Muted>No Description...</Muted> : desc}

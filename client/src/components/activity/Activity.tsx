@@ -288,7 +288,7 @@ function ScoresActivity({
 	return (
 		<div className="timeline-item timeline-hover my-4">
 			<div className="timeline-badge bg-warning"></div>
-			<div className="timeline-content">
+			<div className="timeline-content flex-nowrap">
 				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
 					<div className="timeline-content-title">
 						<span className="me-2">

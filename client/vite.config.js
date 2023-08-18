@@ -35,9 +35,10 @@ export default defineConfig({
 				data: {
 					VITE_CDN_URL: process.env.VITE_CDN_URL,
 					TACHI_NAME: process.env.TACHI_NAME ?? "Tachi",
-					VITE_ADDITIONAL_HEAD: process.env.VITE_GOATCOUNTER
+					THEME_INIT: '<script>var r=document.documentElement,l="light",d="dark",t=localStorage.theme||(window.matchMedia(`(prefers-color-scheme: ${d})`).matches?d:l);r.style.setProperty("color-scheme",t===l?l:d),r.setAttribute("data-bs-theme",t);</script>',
+					GOATCOUNTER: process.env.VITE_GOATCOUNTER
 						? `<script data-goatcounter="${process.env.VITE_GOATCOUNTER}" async src="//gc.zgo.at/count.js"></script>`
-						: ""
+						: "",
 				},
 			},
 		}),
@@ -47,7 +48,7 @@ export default defineConfig({
 		host: true,
 		watch: {
 			usePolling: process.env.FORCE_FS_POLLING,
-		}
+		},
 	},
 	preview: {
 		port: 3000,
@@ -56,8 +57,10 @@ export default defineConfig({
 		preprocessorOptions: {
 			scss: {
 				additionalData: [
-					process.env.VITE_TCHIC_MODE === "btchi" ? "$primary: #527acc;" : "$primary: #e61c6e;",
-				]
+					process.env.VITE_TCHIC_MODE === "btchi"
+						? "$primary: #527acc;"
+						: "$primary: #e61c6e;",
+				],
 			},
 		},
 	},

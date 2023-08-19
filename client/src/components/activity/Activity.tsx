@@ -452,7 +452,7 @@ function QuestActivity({
 							<UGPTLink reqUser={user} game={game} playtype={playtype} /> completed
 							the{" "}
 							<Link
-								className="gentle-link"
+								className="text-decoration-none"
 								to={`/games/${game}/${playtype}/quests/${data.quest.questID}`}
 							>
 								{data.quest.name}
@@ -695,10 +695,7 @@ function UGPTLink({ reqUser, game, playtype }: UGPT) {
 	return (
 		<Link
 			to={`/u/${reqUser.username}/games/${game}/${playtype}`}
-			className="gentle-link"
-			style={{
-				fontWeight: "bold",
-			}}
+			className="text-decoration-none fw-bold"
 		>
 			{user?.id === reqUser.id ? "You" : reqUser.username}
 			{reqUser?.isSupporter ? (

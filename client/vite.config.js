@@ -35,7 +35,16 @@ export default defineConfig({
 				data: {
 					VITE_CDN_URL: process.env.VITE_CDN_URL,
 					TACHI_NAME: process.env.TACHI_NAME ?? "Tachi",
-					THEME_INIT: '<script>var r=document.documentElement,l="light",d="dark",t=localStorage.theme||(window.matchMedia(`(prefers-color-scheme: ${d})`).matches?d:l);r.style.setProperty("color-scheme",t===l?l:d),r.setAttribute("data-bs-theme",t);</script>',
+					THEME_INIT: `
+<script>
+const root = document.documentElement;
+const theme = localStorage.theme ||
+(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+
+root.style.setProperty("color-scheme", theme === "light" ? "light" : "dark"),
+root.setAttribute("data-bs-theme", theme);
+</script>
+					`,
 					GOATCOUNTER: process.env.VITE_GOATCOUNTER
 						? `<script data-goatcounter="${process.env.VITE_GOATCOUNTER}" async src="//gc.zgo.at/count.js"></script>`
 						: "",

@@ -2559,6 +2559,37 @@
 	},
 	{
 		"default": false,
+		"description": "Decimal Level Folders for jubeat Ave..",
+		"folders": [
+			"F9dd79f97d13cd4d13b3ab1a04ccfbcfceb4e1016a7aa70f6f499b12ac6202931",
+			"F83956869b99004d6ab1b6df02ca86c3d3e1788dea116d272173feecc7f0cae5c",
+			"F7fedb4596a08bd672816c7b56cf9e0b89ab57a4caa8edfd118e32fdf078fe2cd",
+			"Fb10f602af234a6d3b9490a140044986f46566182c7be56f936cd7ed3125f2693",
+			"F72605c63323de3f510924eb001c3e02155b8b9e9b542fc9f4c66aaf5d8a926bc",
+			"F7eadf76a24093ef9e3ac9460d20a2b2787c7b6cbe36c85059d6f08bd19f6be94",
+			"F72b1117dd3e097cfddf8810a1d082f01deda7a6ed313e2bfce9b352c5e217620",
+			"Ffbde998c4ae3079132878d38dabce2f651bdb183c508d5c56a46265fc70360c5",
+			"Fd6946218a10de911446d7998db8f675af41425045aee1b905f2601ab0d084b50",
+			"Ffc3dd8b633d8d7b0841700f6f4abc5c571f4996f828809442f06cb6b9b2cf8ad",
+			"F002a3cbef74b52a4b6f5036baf3de71855c51fcf50019ef549707b3f946b3a7c",
+			"Fd56dadc5d1359d869a9428d08e7119328f427b0772827f8f506d2cdc76b95c16",
+			"F35908cb21594c4ddaeaa0fa39e9898c86473bc20c65a64fb2ad4092c8201947b",
+			"Fc95173b1cfe333e320ebfa4747fb9045216e35033c8f2d152fbe45b87afc8b2b",
+			"F3e39f0d71f8c316ab4363fd9822e4d5403378f873c8e828a1298edff0059fdb4",
+			"Fbc61176b44a806428f481ac4efceff3214cba7e2fe4300594eb1dd59e96af9ee",
+			"Fb23c295f555dd62bf472c602420764a2e5279f9eeb7b9b5aaf8e405ddf5fe689",
+			"Fed37447fb8abc3b723c53cbed6f037ed06f356297d2becdd94162398c5de7fac",
+			"Fea60460c5362658fbedd80687f600939007d0d66f0fa31d790bd24399e00e32b",
+			"Fdd25cc4f9126c18feba390828b27b66529b68baf699241e35574f5439edbdea8"
+		],
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "jubeat-Single-declv-ave",
+		"title": "Decimal Level Folders (Ave.)"
+	},
+	{
+		"default": false,
 		"description": "Decimal Level Folders for jubeat festo Omnimix.",
 		"folders": [
 			"Fd5bb624ce939d93dbefda85a5d49e702b6a905744755122ff2a7626cd4bd5e23",
@@ -2649,6 +2680,37 @@
 		"playtype": "Single",
 		"tableID": "jubeat-Single-declv-qubell",
 		"title": "Decimal Level Folders (Qubell)"
+	},
+	{
+		"default": false,
+		"description": "Hard Mode Decimal Level Folders for jubeat Ave..",
+		"folders": [
+			"Ffc93c192d434ab350f8d407bfceaecf50dd940522970f21136863ae22559bfc1",
+			"Fbcc714b42a5dad6d141d5b7d0bc6ac10b07509819d697543652ac0dcc0e637a2",
+			"F7d4cfe58201d180d96dddce0fc4ad555f20559ccd563221de5d9ae832b7c7cce",
+			"Ff07122eb0921783b497fe6a73302923e9e9085e566e259d8a2dc6b6c0d2690c4",
+			"F65c0f94990d871611dba307a164ed2539807f1d56be66c7b3eb4b73d97ffde6e",
+			"F5782419652589e28d9e90f929e0660551b5d53e20b789a24c3280803d0405ffa",
+			"F08ed4d7b660a45e49387f3be2417f6d52b43f122c25a379134cf0653eba37e8b",
+			"F8007511a09010ec2da5fc6b21963f9bdb07703c78f042ff8144ef261159b0d79",
+			"F9d3057eb9c59c86a511975aa09fe389ffe21f23977012a07bb1abfb108fdae75",
+			"F7ffad6fde20cc41dcf93155533f582ada4ad888930a2817947b815268ed79f6c",
+			"Fe043c48f7241e28485fb0522b073b230394bf1889d3af7dd59c57547331cc9a8",
+			"F71d313786e538a9d1945d8cb1d57d664c83114aec98257781b892c63965dcef5",
+			"F1915c6bf62d345c9044bb6a9d6ed1a2ddb977ccf6fd90303f282f1757a13a382",
+			"F4839bad6267ee74424c7cef605ea4263e7fcb69aec4b6c826b768a0c9ad16f7d",
+			"Fcc1020ac692110f90a9dd81e7452c636563b48a6c6967413e2033681a5c8b30e",
+			"Fe43e5e6a84dfd026a8df6a687970482d634799e705c43612553dd135b0f64e3e",
+			"F02808cc052cd526c047be3268a3c54e79b054a0b5be7b0aeb9218b71fed0c070",
+			"F131692d8e93800558103c45a57984b199e7c4bb6ced029a69b9cb296042ee141",
+			"F6ea829ea8cb58eedce972aaf50dc711dc8bed26d73b8896f136293ec4ab84643",
+			"F2320c3d71a31173dc82ecc56684525dd1f5ee11790b731ca3d3245c5a6df3a8a"
+		],
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "jubeat-Single-declvhd-ave",
+		"title": "Hard Mode Decimal Level Folders (Ave.)"
 	},
 	{
 		"default": false,
@@ -2745,6 +2807,27 @@
 	},
 	{
 		"default": false,
+		"description": "Hard Mode Level Folders for jubeat Ave.. This table does not have separate folders for each decimal.",
+		"folders": [
+			"F154fea3c2a743e07e41e3e677731c5d166fae7fad318b223705c276bffcd643a",
+			"F743cee90cf440fe21cab460904c1fc759e749c750eafc16d8e2c914838a71841",
+			"F6842849112baa2fd007a759208336c3bbffa618f13be41014d9ac584925cbd49",
+			"F27de38b5ff3660d3bd4c471e4aa1e9f88391ea24038e08d30bf809e350b0057f",
+			"F2c916dfe832c4cbf67a12cd4d6d5f3a49d37a6b6688994937e9e72bbd3ba493d",
+			"F65b124540257cb2f20f3acfbf2ca953f46f2e2e97bfc666bf8d1323ae0975e59",
+			"Ff624fb527c0b57a2149aaf0e89e22d45e754683f342fbc7d13a33da77260cb0f",
+			"Fd3e2031f23c8459e85aa7cfbd95db9963b344ff33faf3f06565e06ab0a3c7a16",
+			"F52ad7825dbd11ce05d7f952f172081faba1db820cb867912e713d97a626f9862",
+			"Fca83f891af8ab8788de7448d4e5287441e49ecadf22a195f10bfe08082881721"
+		],
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "jubeat-Single-lvhd-ave",
+		"title": "Hard Mode Level Folders (Ave.)"
+	},
+	{
+		"default": false,
 		"description": "Hard Mode Level Folders for jubeat copious. This table does not have separate folders for each decimal.",
 		"folders": [
 			"Fac03f7b11915bf10f2a4289bbb5fda70140283061c9364e5a5a9ce5ebca86ebd",
@@ -2787,7 +2870,7 @@
 	},
 	{
 		"default": false,
-		"description": "Hard Mode Level Folders for jubeat. This table does not have separate folders for each decimal.",
+		"description": "Hard Mode Level Folders for jubeat festo. This table does not have separate folders for each decimal.",
 		"folders": [
 			"F2cbdc30e472064793d0193ef22960f0c5f239b9e9efa240d742a42c245da4d35",
 			"F9b725f57bd6fe35ca8c207617eca0cd29c226bd7cb654227999895729f1452c9",
@@ -2808,7 +2891,7 @@
 	},
 	{
 		"default": false,
-		"description": "Hard Mode Level Folders for jubeat jubeat. This table does not have separate folders for each decimal.",
+		"description": "Hard Mode Level Folders for jubeat. This table does not have separate folders for each decimal.",
 		"folders": [
 			"Fc46391cd2177a8dd8f318f79ef5b95178412b4606f9ceaa8140858f1417fb089",
 			"F916716be766990b6904d77f82ec2ddcf04ed5abdd8be7b671755f3be7d957c32",
@@ -2933,6 +3016,27 @@
 		"title": "Hard Mode Level Folders (saucer)"
 	},
 	{
+		"default": true,
+		"description": "Level Folders for jubeat Ave.. This table does not have separate folders for each decimal.",
+		"folders": [
+			"F4b9110f2e0428df39a2b3e4fec6a3ac2b658b3dc7d11b892ca41da657f820b6b",
+			"Ff05242271734c3e72d72ec55602882d4aca14efc977f6b33ce758e382e311637",
+			"Ff98e66969040a6c2ece0074ca6ee51752020574b242ad1135f5da40963e8f80d",
+			"F6316427346c8fc003b444f48cfa5f46d026b8dacdedd2fec076d5a2bbc227ac1",
+			"Ff6e5d18a181d75e920117430e100f8d4c22fb20eacdbc359660399d3b4459951",
+			"F19d0429ceb0753246557b359f9423ff29e7419f2bc2a4cdbbd1c69e13668a735",
+			"F69884f796e3dec8dff7332a00e3e7d4b81dfcaa3951713a55001dbb7b9ae390f",
+			"Fc40aa3efbcbb9db673ce785a2ecb6daec83678cceabe7631ad07cf7561a3425f",
+			"Fed349baaa30b7acf6e158455b1f645eeaa884421c30c9aa02ae6cf09da4d6714",
+			"F890b9ec6ba47ea73eeebae20420139a102e815d2bfd4e65a26b75548faf1d855"
+		],
+		"game": "jubeat",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "jubeat-Single-lv-ave",
+		"title": "Level Folders (Ave.)"
+	},
+	{
 		"default": false,
 		"description": "Level Folders for jubeat copious. This table does not have separate folders for each decimal.",
 		"folders": [
@@ -2975,8 +3079,8 @@
 		"title": "Level Folders (festo Omnimix)"
 	},
 	{
-		"default": true,
-		"description": "Level Folders for jubeat. This table does not have separate folders for each decimal.",
+		"default": false,
+		"description": "Level Folders for jubeat festo. This table does not have separate folders for each decimal.",
 		"folders": [
 			"Fbe17de215244962c083398520ddb98f29478944c57712b9e5f9ed0dbc9a45541",
 			"Fdcadcbe68a661e0baa3dc9c3fe6b4125ff791c720c30be55a0517bd2f263b0fd",
@@ -2997,7 +3101,7 @@
 	},
 	{
 		"default": false,
-		"description": "Level Folders for jubeat jubeat. This table does not have separate folders for each decimal.",
+		"description": "Level Folders for jubeat. This table does not have separate folders for each decimal.",
 		"folders": [
 			"F4f78764233f3fac9585dc76f2aece8ce51d5b6728b8bec58b83adddfd0ec362b",
 			"F5d51d0cc25f5a535aefa741ec23f7f239956712b65192e6f5bbbed2e7ffeb54a",

@@ -1,28 +1,40 @@
 import React, { useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import Icon from "./Icon";
+import Muted from "./Muted";
 
 export default function EditableText({
-	onChange,
-	children,
-	initial,
+	as = "p",
+	onSubmit,
+	initialText,
+	placeholderText,
+	className,
+	authorised,
 }: {
-	onChange: (str: string) => void;
-	children: (text: string) => React.ReactNode;
-	initial: string;
+	as?: "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span";
+	onSubmit: (value: string) => void;
+	initialText: string;
+	placeholderText: string;
+	className?: string;
+	authorised: boolean;
 }) {
-	const [text, setText] = useState(initial);
+	const [text, setText] = useState(initialText);
 	const [editing, setEditing] = useState(false);
 
 	if (editing) {
 		return (
-			<InputGroup className="mb-2">
-				<Form.Control value={text} onChange={(e) => setText(e.target.value)} />
+			<InputGroup>
+				<Form.Control
+					value={text}
+					placeholder={placeholderText}
+					onChange={(e) => setText(e.target.value)}
+				/>
 				<Button
 					variant="success"
+					type="submit"
 					onClick={() => {
 						setEditing(false);
-						onChange(text);
+						onSubmit(text);
 					}}
 				>
 					Change
@@ -32,11 +44,12 @@ export default function EditableText({
 	}
 
 	return (
-		<div onClick={() => setEditing(true)} className="d-flex">
-			<div>{children(text)}</div>
-			<div>
-				<Icon type="pencil" />
-			</div>
+		<div
+			onClick={() => authorised && setEditing(true)}
+			className={`d-flex gap-2 ${authorised ? "cursor-pointer" : ""}`}
+		>
+			{React.createElement(as, { className }, text ? text : <Muted>{placeholderText}</Muted>)}
+			{authorised && <Icon type="pencil-alt" />}
 		</div>
 	);
 }

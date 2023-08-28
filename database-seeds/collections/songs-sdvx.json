@@ -22851,98 +22851,12 @@
 		"title": "Realize／アニメ「Re:ゼロから始める異世界生活」より"
 	},
 	{
-		"altTitles": [
-			"AP驩CALYPSE RAY"
-		],
-		"artist": "xi",
-		"data": {
-			"displayVersion": "exceed"
-		},
-		"id": 2128,
-		"searchTerms": [
-			"apocalypseray_xi"
-		],
-		"title": "APØCALYPSE RAY"
-	},
-	{
-		"altTitles": [],
-		"artist": "Enterskip",
-		"data": {
-			"displayVersion": "exceed"
-		},
-		"id": 2129,
-		"searchTerms": [
-			"spectacular_enterskip"
-		],
-		"title": "Spectacular“V”Adventure!"
-	},
-	{
-		"altTitles": [],
-		"artist": "Ashrount",
-		"data": {
-			"displayVersion": "exceed"
-		},
-		"id": 2130,
-		"searchTerms": [
-			"breakneckpursuit_ashrount"
-		],
-		"title": "Breakneck Pursuit"
-	},
-	{
-		"altTitles": [],
-		"artist": "Mono.",
-		"data": {
-			"displayVersion": "exceed"
-		},
-		"id": 2131,
-		"searchTerms": [
-			"wasurenai_mono"
-		],
-		"title": "忘れないように、失くさないように"
-	},
-	{
-		"altTitles": [],
-		"artist": "ゆんゆん",
-		"data": {
-			"displayVersion": "exceed"
-		},
-		"id": 2132,
-		"searchTerms": [
-			"marielle_yunyun"
-		],
-		"title": "Marielle"
-	},
-	{
-		"altTitles": [],
-		"artist": "概念",
-		"data": {
-			"displayVersion": "exceed"
-		},
-		"id": 2133,
-		"searchTerms": [
-			"emergencycode_gainen"
-		],
-		"title": "ΣMERGENCY CODΣ"
-	},
-	{
-		"altTitles": [],
-		"artist": "ミハイル + K.key",
-		"data": {
-			"displayVersion": "exceed"
-		},
-		"id": 2134,
-		"searchTerms": [
-			"bliss_mihairukkey"
-		],
-		"title": "BLISS"
-	},
-	{
 		"altTitles": [],
 		"artist": "Yu_Asahina",
 		"data": {
 			"displayVersion": "exceed"
 		},
-		"id": 2135,
+		"id": 2128,
 		"searchTerms": [
 			"birth_yuasahina"
 		],
@@ -22954,7 +22868,7 @@
 		"data": {
 			"displayVersion": "exceed"
 		},
-		"id": 2136,
+		"id": 2129,
 		"searchTerms": [
 			"prayer_mizonokuchi"
 		],
@@ -22966,11 +22880,97 @@
 		"data": {
 			"displayVersion": "exceed"
 		},
-		"id": 2137,
+		"id": 2130,
 		"searchTerms": [
 			"onedari_one"
 		],
 		"title": "おねがいダーリン"
+	},
+	{
+		"altTitles": [
+			"AP驩CALYPSE RAY"
+		],
+		"artist": "xi",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2131,
+		"searchTerms": [
+			"apocalypseray_xi"
+		],
+		"title": "APØCALYPSE RAY"
+	},
+	{
+		"altTitles": [],
+		"artist": "Enterskip",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2132,
+		"searchTerms": [
+			"spectacular_enterskip"
+		],
+		"title": "Spectacular“V”Adventure!"
+	},
+	{
+		"altTitles": [],
+		"artist": "Ashrount",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2133,
+		"searchTerms": [
+			"breakneckpursuit_ashrount"
+		],
+		"title": "Breakneck Pursuit"
+	},
+	{
+		"altTitles": [],
+		"artist": "Mono.",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2134,
+		"searchTerms": [
+			"wasurenai_mono"
+		],
+		"title": "忘れないように、失くさないように"
+	},
+	{
+		"altTitles": [],
+		"artist": "ゆんゆん",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2135,
+		"searchTerms": [
+			"marielle_yunyun"
+		],
+		"title": "Marielle"
+	},
+	{
+		"altTitles": [],
+		"artist": "概念",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2136,
+		"searchTerms": [
+			"emergencycode_gainen"
+		],
+		"title": "ΣMERGENCY CODΣ"
+	},
+	{
+		"altTitles": [],
+		"artist": "ミハイル + K.key",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2137,
+		"searchTerms": [
+			"bliss_mihairukkey"
+		],
+		"title": "BLISS"
 	},
 	{
 		"altTitles": [],

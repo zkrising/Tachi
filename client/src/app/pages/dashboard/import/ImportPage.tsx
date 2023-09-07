@@ -161,6 +161,13 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				moreInfo="Yep, it's that simple."
 				key="Konaste Hook"
 			/>,
+			<ImportInfoCard
+				name="Mikado"
+				href="mikado"
+				desc="Automatically import scores, whenever you get them!" // TODO
+				moreInfo="What should I write here??" // TODO
+				key="Mikado"
+			/>,
 			<ImportTypeInfoCard
 				key="file/eamusement-sdvx-csv"
 				importType="file/eamusement-sdvx-csv"

@@ -26,7 +26,7 @@ const MaimaiDXDans = [
 	ClassValue("DAN_9", "九段", "9th Dan"),
 	ClassValue("DAN_10", "十段", "10th Dan"),
 
-	ClassValue("SHINDAN_1", "真初段", "Shinshodan"),
+	ClassValue("SHINDAN_1", "真初段", "1st Shindan"),
 	ClassValue("SHINDAN_2", "真二段", "2nd Shindan"),
 	ClassValue("SHINDAN_3", "真三段", "3rd Shindan"),
 	ClassValue("SHINDAN_4", "真四段", "4th Shindan"),

@@ -27,6 +27,15 @@ export const CHUNITHMColours = [
 	ClassValue("RAINBOW", "虹", "Rainbow: >=16 Rating"),
 ];
 
+export const CHUNITHMClasses = [
+	ClassValue("DAN_I", "I", "Class I"),
+	ClassValue("DAN_II", "II", "Class II"),
+	ClassValue("DAN_III", "III", "Class III"),
+	ClassValue("DAN_IV", "IV", "Class IV"),
+	ClassValue("DAN_V", "V", "Class V"),
+	ClassValue("DAN_INFINITE", "∞", "Infinite Class"),
+]
+
 export const CHUNITHM_SINGLE_CONF = {
 	providedMetrics: {
 		score: {
@@ -115,6 +124,16 @@ export const CHUNITHM_SINGLE_CONF = {
 			type: "DERIVED",
 			values: CHUNITHMColours,
 		},
+
+		dan: {
+			type: "PROVIDED",
+			values: CHUNITHMClasses,
+		},
+
+		emblem: {
+			type: "PROVIDED",
+			values: CHUNITHMClasses,
+		}
 	},
 
 	orderedJudgements: ["jcrit", "justice", "attack", "miss"],

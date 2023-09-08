@@ -43,17 +43,17 @@ const MaimaiDXDans = [
 ];
 
 const MaimaiDXColours = [
-	ClassValue("WHITE", "White"),
-	ClassValue("BLUE", "Blue"),
-	ClassValue("GREEN", "Green"),
-	ClassValue("YELLOW", "Yellow"),
-	ClassValue("RED", "Red"),
-	ClassValue("PURPLE", "Purple"),
-	ClassValue("BRONZE", "Bronze"),
-	ClassValue("SILVER", "Silver"),
-	ClassValue("GOLD", "Gold"),
-	ClassValue("PLATINUM", "Platinum"),
-	ClassValue("RAINBOW", "Rainbow"),
+	ClassValue("WHITE", "White", "0 - 999 Rating"),
+	ClassValue("BLUE", "Blue", "1000 - 1999 Rating"),
+	ClassValue("GREEN", "Green", "2000 - 3999 Rating"),
+	ClassValue("YELLOW", "Yellow", "4000 - 6999 Rating"),
+	ClassValue("RED", "Red", "7000 - 9999 Rating"),
+	ClassValue("PURPLE", "Purple", "10000 - 11999 Rating"),
+	ClassValue("BRONZE", "Bronze", "12000 - 12999 Rating"),
+	ClassValue("SILVER", "Silver", "13000 - 13999 Rating"),
+	ClassValue("GOLD", "Gold", "14000 - 14499 Rating"),
+	ClassValue("PLATINUM", "Platinum", "14500 - 14999 Rating"),
+	ClassValue("RAINBOW", "Rainbow", ">=15000 Rating"),
 ];
 
 const MaimaiDXMatchingClasses = [

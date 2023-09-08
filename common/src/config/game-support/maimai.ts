@@ -27,7 +27,7 @@ const MaimaiDans = [
 	ClassValue("DAN_10", "十段", "10th Dan"),
 	ClassValue("KAIDEN", "皆伝", "Kaiden"),
 
-	ClassValue("SHINDAN_1", "真初段", "Shinshodan"),
+	ClassValue("SHINDAN_1", "真初段", "1st Shindan"),
 	ClassValue("SHINDAN_2", "真二段", "2nd Shindan"),
 	ClassValue("SHINDAN_3", "真三段", "3rd Shindan"),
 	ClassValue("SHINDAN_4", "真四段", "4th Shindan"),

@@ -512,3 +512,25 @@ export enum MAIMAIDX_MATCHING_CLASSES {
 
 	LEGEND = 25,
 }
+
+export enum ARCAEA_BADGES {
+	BLUE = 0,
+	GREEN = 1,
+	PURPLE = 2,
+	DARK_PURPLE = 3,
+	RED = 4,
+	ONE_STAR = 5,
+	TWO_STARS = 6,
+	THREE_STARS = 7,
+}
+
+export enum ARCAEA_GRADES {
+	D = 0,
+	C = 1,
+	B = 2,
+	A = 3,
+	AA = 4,
+	AAA = 5,
+	EX = 6,
+	EX_PLUS = 7,
+}

@@ -47,7 +47,7 @@ export const ARCAEA_SINGLE_CONF = {
 	derivedMetrics: {
 		grade: {
 			type: "ENUM",
-			values: ["D", "C", "B", "A", "AA", "AAA", "EX", "EX+"],
+			values: ["D", "C", "B", "A", "AA", "EX", "EX+"],
 			minimumRelevantValue: "AA",
 			description: "The grade this score was.",
 		},

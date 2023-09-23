@@ -109,7 +109,7 @@ export const ARCAEA_SINGLE_CONF = {
 		},
 	},
 
-	orderedJudgements: ["pure", "near", "lost"],
+	orderedJudgements: ["pure", "far", "lost"],
 
 	versions: {},
 

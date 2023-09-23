@@ -19,8 +19,8 @@ export const ARCAEA_CONF = {
 const ArcaeaBadges = [
 	ClassValue("BLUE", "Blue", "0.00 - 3.49 Potential"),
 	ClassValue("GREEN", "Green", "3.50 - 6.99 Potential"),
-	ClassValue("PURPLE", "Purple", "7.00 - 9.99 Potential"),
-	ClassValue("DARK_PURPLE", "Dark Purple", "10.00 - 10.99 Potential"),
+	ClassValue("ASH_PURPLE", "Ash Purple", "7.00 - 9.99 Potential"),
+	ClassValue("PURPLE", "Purple", "10.00 - 10.99 Potential"),
 	ClassValue("RED", "Red", "11.00 - 11.99 Potential"),
 	ClassValue("ONE_STAR", "☆", "12.00 - 12.49 Potential"),
 	ClassValue("TWO_STARS", "☆☆", "12.50 - 12.99 Potential"),

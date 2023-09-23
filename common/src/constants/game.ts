@@ -516,8 +516,8 @@ export enum MAIMAIDX_MATCHING_CLASSES {
 export enum ARCAEA_BADGES {
 	BLUE = 0,
 	GREEN = 1,
-	PURPLE = 2,
-	DARK_PURPLE = 3,
+	ASH_PURPLE = 2,
+	PURPLE = 3,
 	RED = 4,
 	ONE_STAR = 5,
 	TWO_STARS = 6,

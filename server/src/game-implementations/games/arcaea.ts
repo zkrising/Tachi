@@ -38,7 +38,7 @@ export const ARCAEA_IMPL: GPTServerImplementation<"arcaea:Single"> = {
 			} else if (potential >= 12.5) {
 				return "TWO_STARS";
 			} else if (potential >= 12.0) {
-				return "ONE_STARS";
+				return "ONE_STAR";
 			} else if (potential >= 11.0) {
 				return "RED";
 			} else if (potential >= 10.0) {

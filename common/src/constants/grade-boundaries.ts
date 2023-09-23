@@ -197,3 +197,13 @@ export const SDVXLIKE_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<SDVXLikes, 
 	S: 9_900_000,
 	PUC: 10_000_000,
 });
+
+export const ARCAEA_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"arcaea:Single", "grade">>({
+	D: 0,
+	C: 8_600_000,
+	B: 8_900_000,
+	A: 9_200_000,
+	AA: 9_500_000,
+	EX: 9_800_000,
+	"EX+": 9_900_000,
+})

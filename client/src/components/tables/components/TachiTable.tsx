@@ -5,8 +5,12 @@ import SmallText from "components/util/SmallText";
 import { useZTable, ZTableSortFn } from "components/util/table/useZTable";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import React, { useContext, useState } from "react";
+import InputGroup from "react-bootstrap/InputGroup";
+import Form from "react-bootstrap/Form";
+import { WindowContext } from "context/WindowContext";
 import { Button } from "react-bootstrap";
 import { integer } from "tachi-common";
+import Select from "components/util/Select";
 import FilterDirectivesIndicator from "./FilterDirectivesIndicator";
 import NoDataWrapper from "./NoDataWrapper";
 import PageSelector from "./PageSelector";
@@ -98,6 +102,16 @@ export default function TachiTable<D>({
 
 	const sortFunctions = GetSortFunctions(headers);
 
+	const ztable = useZTable(dataset ?? [], {
+		search,
+		searchFunction,
+		sortFunctions,
+		entryName,
+		pageLen,
+		defaultSortMode,
+		defaultReverseSort,
+	});
+
 	const {
 		window,
 		setPage,
@@ -111,15 +125,7 @@ export default function TachiTable<D>({
 		reverseSort,
 		changeSort,
 		filteredDataset,
-	} = useZTable(dataset ?? [], {
-		search,
-		searchFunction,
-		sortFunctions,
-		entryName,
-		pageLen,
-		defaultSortMode,
-		defaultReverseSort,
-	});
+	} = ztable;
 
 	const headersRow = ParseHeaders(headers, {
 		changeSort,
@@ -128,17 +134,18 @@ export default function TachiTable<D>({
 	});
 
 	const { settings } = useContext(UserSettingsContext);
-
+	const {
+		breakpoint: { isLg },
+	} = useContext(WindowContext);
 	return (
-		<div className="justify-content-center w-100">
-			<div className="row">
+		<div>
+			<div className="hstack justify-content-between">
 				{!noTopDisplayStr && (
-					<div className="d-none d-lg-flex col-lg-6 align-self-center">{displayStr}</div>
+					<div className="d-none d-lg-flex align-self-center">{displayStr}</div>
 				)}
 				{searchFunctions && (
-					<div className="col-12 col-lg-3 ml-auto input-group">
-						<input
-							className="form-control filter-directives-enabled"
+					<InputGroup className="ms-lg-auto" style={{ maxWidth: isLg ? 384 : undefined }}>
+						<Form.Control
 							onChange={(e) => setSearch(e.target.value)}
 							type="text"
 							placeholder={`Filter ${entryName}`}
@@ -148,58 +155,66 @@ export default function TachiTable<D>({
 							searchFunctions={searchFunctions}
 							doc={dataset[0]}
 						/>
-					</div>
+					</InputGroup>
 				)}
 			</div>
-
-			<div className="col-12 px-0 mt-4 mb-4">
-				<table className="table table-striped table-hover table-vertical-center text-center table-responsive-md">
+			<div className="px-0 mt-4 mb-4 overflow-x-auto overflow-x-lg-hidden">
+				<table className="table table-striped table-hover table-vertical-center text-center">
 					<thead>{headersRow}</thead>
 					<tbody>
 						<NoDataWrapper>{window.map((e) => rowFunction(e))}</NoDataWrapper>
 					</tbody>
 				</table>
 			</div>
-			<div className="col-12 px-0">
-				<div className="row">
-					<div className="col-lg-4 align-self-center">{displayStr}</div>
-					<div className="d-none d-lg-flex col-lg-4 justify-content-center align-items-center">
-						{settings?.preferences.developerMode && (
-							<Button
-								className="ml-4 w-50"
-								onClick={() => {
-									let data = dataset;
-									if (search !== "") {
-										data = filteredDataset;
-									}
+			<div className="row row-gap-4">
+				<div className="col-lg-4 d-flex justify-content-center justify-content-lg-start">
+					<Select
+						name={`Show this many ${entryName}:`}
+						value={ztable.pageLen.toString()}
+						setValue={(e) => ztable.setPageLen(Number(e))}
+					>
+						<option value="10">10</option>
+						<option value="25">25</option>
+						<option value="50">50</option>
+						<option value="100">100</option>
+					</Select>
+				</div>
+				<div className="d-none d-lg-flex col-lg-4 justify-content-center align-items-center">
+					{settings?.preferences.developerMode && (
+						<Button
+							className="ms-4 w-50"
+							onClick={() => {
+								let data = dataset;
+								if (search !== "") {
+									data = filteredDataset;
+								}
 
-									CopyToClipboard(data);
-								}}
-								variant="outline-info"
-							>
-								<Icon type="table" />
-								Export {search !== "" ? "Filtered Data" : "Table"} (JSON)
-							</Button>
-						)}
-					</div>
-					<div className="col-lg-4 ml-auto text-right">
-						<div className="btn-group">
-							<Button
-								variant="secondary"
-								disabled={pageState === "start" || pageState === "start-end"}
-								onClick={decrementPage}
-							>
-								<SmallText small="<" large="Previous" />
-							</Button>
-							<PageSelector currentPage={page} maxPage={maxPage} setPage={setPage} />
-							<Button
-								variant="secondary"
-								disabled={pageState === "end" || pageState === "start-end"}
-								onClick={incrementPage}
-							>
-								<SmallText small=">" large="Next" />
-							</Button>
-						</div>
+								CopyToClipboard(data);
+							}}
+							variant="outline-info"
+						>
+							<Icon type="table" /> Export {search !== "" ? "Filtered Data" : "Table"}{" "}
+							(JSON)
+						</Button>
+					)}
+				</div>
+				<div className="col-lg-4 ms-auto d-flex justify-content-center justify-content-lg-end">
+					<div className="btn-group">
+						<Button
+							variant="secondary"
+							disabled={pageState === "start" || pageState === "start-end"}
+							onClick={decrementPage}
+						>
+							<SmallText small="<" large="Previous" />
+						</Button>
+						<PageSelector currentPage={page} maxPage={maxPage} setPage={setPage} />
+						<Button
+							variant="secondary"
+							disabled={pageState === "end" || pageState === "start-end"}
+							onClick={incrementPage}
+						>
+							<SmallText small=">" large="Next" />
+						</Button>
 					</div>
 				</div>
 			</div>

@@ -20,6 +20,8 @@ import React, { useMemo, useState } from "react";
 import { FormatGame, GetGameConfig, GetGamePTConfig, UserGameStats } from "tachi-common";
 import { UGPTHistory } from "types/api-returns";
 import { GamePT, SetState, UGPT } from "types/react";
+import FormSelect from "react-bootstrap/FormSelect";
+import ChartTooltip from "components/charts/ChartTooltip";
 
 export default function OverviewPage({ reqUser, game, playtype }: UGPT) {
 	const gameConfig = GetGameConfig(game);
@@ -125,7 +127,7 @@ function UserHistory({
 		<>
 			<div className="row d-flex justify-content-center mb-4">
 				<div className="col-12 col-md-3 align-self-center text-center">
-					<Select noMarginBottom setValue={setDuration} value={duration}>
+					<Select className="mb-4 mb-md-0" setValue={setDuration} value={duration}>
 						<option value="week">Past Week</option>
 						<option value="month">Past Month</option>
 						<option value="3mo">Past 3 Months</option>
@@ -135,16 +137,13 @@ function UserHistory({
 				<div className="col-12 col-md-6 align-self-center">
 					<div className="btn-group d-flex justify-content-center w-100">
 						<SelectButton id="ranking" value={mode} setValue={setMode}>
-							<Icon type="trophy" />
-							Ranking
+							<Icon type="trophy" /> Ranking
 						</SelectButton>
 						<SelectButton id="playcount" value={mode} setValue={setMode}>
-							<Icon type="gamepad" />
-							Playcount
+							<Icon type="gamepad" /> Playcount
 						</SelectButton>
 						<SelectButton id="rating" value={mode} setValue={setMode}>
-							<Icon type="chart-line" />
-							Ratings
+							<Icon type="chart-line" /> Ratings
 						</SelectButton>
 					</div>
 				</div>
@@ -159,21 +158,22 @@ function UserHistory({
 			<Divider className="mt-6 mb-2" />
 			{mode === "ranking" ? (
 				<>
-					<div className="col-12 offset-md-4 col-md-4 mt-4">
-						<select
-							className="form-control"
-							value={rating}
-							onChange={(e) =>
-								setRating(e.target.value as keyof UserGameStats["ratings"])
-							}
-						>
-							{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
-								<option key={e} value={e}>
-									{UppercaseFirst(e)}
-								</option>
-							))}
-						</select>
-					</div>
+					{Object.keys(gptConfig.profileRatingAlgs).length > 1 && (
+						<div className="col-12 offset-md-4 col-md-4 mt-4">
+							<FormSelect
+								value={rating}
+								onChange={(e) =>
+									setRating(e.target.value as keyof UserGameStats["ratings"])
+								}
+							>
+								{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
+									<option key={e} value={e}>
+										{UppercaseFirst(e)}
+									</option>
+								))}
+							</FormSelect>
+						</div>
+					)}
 					<RankingTimeline data={data} rating={rating} />
 				</>
 			) : mode === "playcount" ? (
@@ -196,36 +196,37 @@ function UserHistory({
 						tickRotation: 0,
 						format: (y) => (Number.isInteger(y) ? y : ""),
 					}}
-					tooltipRenderFn={(p) => (
-						<div>
-							{p.data.yFormatted} Play{p.data.yFormatted !== "1" && "s"}
+					tooltip={(p) => (
+						<ChartTooltip>
+							{p.point.data.yFormatted} Play{p.point.data.yFormatted !== "1" && "s"}
 							<br />
-							<small className="text-muted">
-								{MillisToSince(+p.data.xFormatted)}
+							<small className="text-body-secondary">
+								{MillisToSince(+p.point.data.xFormatted)}
 							</small>
-						</div>
+						</ChartTooltip>
 					)}
-					curve={"stepBefore"}
+					curve="linear"
 					enableArea={true}
 					areaBaselineValue={Math.min(...data.map((e) => e.playcount))}
 				/>
 			) : (
 				<>
-					<div className="col-12 offset-md-4 col-md-4 mt-4">
-						<select
-							className="form-control"
-							value={rating}
-							onChange={(e) =>
-								setRating(e.target.value as keyof UserGameStats["ratings"])
-							}
-						>
-							{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
-								<option key={e} value={e}>
-									{UppercaseFirst(e)}
-								</option>
-							))}
-						</select>
-					</div>
+					{Object.keys(gptConfig.profileRatingAlgs).length > 1 && (
+						<div className="col-12 offset-md-4 col-md-4 mt-4">
+							<FormSelect
+								value={rating}
+								onChange={(e) =>
+									setRating(e.target.value as keyof UserGameStats["ratings"])
+								}
+							>
+								{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
+									<option key={e} value={e}>
+										{UppercaseFirst(e)}
+									</option>
+								))}
+							</FormSelect>
+						</div>
+					)}
 
 					<RatingTimeline {...{ data, rating }} />
 				</>
@@ -260,13 +261,16 @@ function RatingTimeline({
 				tickRotation: 0,
 				format: (y) => (y ? ToFixedFloor(y, 2) : "N/A"),
 			}}
-			tooltipRenderFn={(p) => (
-				<div>
-					{p.data.y ? ToFixedFloor(p.data.y as number, 2) : "N/A"}{" "}
-					{UppercaseFirst(rating)}
-					<br />
-					<small className="text-muted">{MillisToSince(+p.data.xFormatted)}</small>
-				</div>
+			tooltip={(p) => (
+				<ChartTooltip>
+					<div>
+						{p.point.data.y ? ToFixedFloor(p.point.data.y as number, 2) : "N/A"}{" "}
+						{UppercaseFirst(rating)}
+					</div>
+					<small className="text-body-secondary">
+						{MillisToSince(+p.point.data.xFormatted)}
+					</small>
+				</ChartTooltip>
 			)}
 		/>
 	);
@@ -300,12 +304,15 @@ function RankingTimeline({
 				format: (y) => (Number.isInteger(y) ? `#${y}` : ""),
 			}}
 			reverse={true}
-			tooltipRenderFn={(p) => (
-				<div>
-					{MillisToSince(+p.data.xFormatted)}: #{p.data.yFormatted}
-					<br />
-					<small className="text-muted">({FormatDate(+p.data.xFormatted)})</small>
-				</div>
+			tooltip={(p) => (
+				<ChartTooltip>
+					<div>
+						{MillisToSince(+p.point.data.xFormatted)}: #{p.point.data.yFormatted}
+					</div>
+					<small className="text-body-secondary">
+						({FormatDate(+p.point.data.xFormatted)})
+					</small>
+				</ChartTooltip>
 			)}
 		/>
 	);

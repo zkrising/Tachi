@@ -7,14 +7,7 @@ import useApiQuery from "components/util/query/useApiQuery";
 import SelectButton from "components/util/SelectButton";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useMemo, useReducer, useState } from "react";
-import {
-	ChartDocument,
-	GPTString,
-	integer,
-	PBScoreDocument,
-	ScoreDocument,
-	SongDocument,
-} from "tachi-common";
+import { ChartDocument, integer, PBScoreDocument, ScoreDocument, SongDocument } from "tachi-common";
 import { GoalsOnChartReturn, UGPTChartPBComposition } from "types/api-returns";
 import { GamePT } from "types/react";
 import DocComponentCreator, {
@@ -164,8 +157,7 @@ export default function PBDropdown({
 			buttons={
 				<>
 					<SelectButton setValue={setView} value={view} id="pb">
-						<Icon type="trophy" />
-						PB Info
+						<Icon type="trophy" /> PB Info
 					</SelectButton>
 					{!isComposedFromSingleScore && (
 						<>
@@ -175,30 +167,26 @@ export default function PBDropdown({
 									value={view}
 									id={`otherPB::${e.scoreID}`}
 								>
-									<Icon type="star-half-alt" />
-									{e.name}
+									<Icon type="star-half-alt" /> {e.name}
 								</SelectButton>
 							))}
 						</>
 					)}
 					<SelectButton setValue={setView} value={view} id="history">
-						<Icon type="history" />
-						Play History{histData && ` (${histData.length})`}
+						<Icon type="history" /> Play History{histData && ` (${histData.length})`}
 					</SelectButton>
 					{currentUser?.id === userID && (
 						<SelectButton setValue={setView} value={view} id="targets">
-							<Icon type="scroll" />
-							Goals & Quests{targetData && ` (${targetData.goals.length})`}
+							<Icon type="scroll" /> Goals & Quests
+							{targetData && ` (${targetData.goals.length})`}
 						</SelectButton>
 					)}
 					<SelectButton setValue={setView} value={view} id="rivals">
-						<Icon type="users" />
-						Rivals
+						<Icon type="users" /> Rivals
 					</SelectButton>
 					<HasDevModeOn>
 						<SelectButton setValue={setView} value={view} id="debug">
-							<Icon type="bug" />
-							Debug Info
+							<Icon type="bug" /> Debug Info
 						</SelectButton>
 					</HasDevModeOn>
 				</>

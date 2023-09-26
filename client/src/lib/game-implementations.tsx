@@ -7,6 +7,7 @@ import JubeatJudgementCell from "components/tables/cells/JubeatJudgementCell";
 import JubeatScoreCell from "components/tables/cells/JubeatScoreCell";
 import JubilityCell from "components/tables/cells/JubilityCell";
 import LampCell from "components/tables/cells/LampCell";
+import MaimaiJudgementCell from "components/tables/cells/MaimaiJudgementCell";
 import MaimaiDXJudgementCell from "components/tables/cells/MaimaiDXJudgementCell";
 import MillionsScoreCell from "components/tables/cells/MillionsScoreCell";
 import MusecaJudgementCell from "components/tables/cells/MusecaJudgementCell";
@@ -39,16 +40,36 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		enumIcons: defaultEnumIcons,
 		classColours: {
 			colour: {
-				BLUE: "info",
-				GREEN: bg("green"),
-				ORANGE: bg("orange"),
-				RED: "danger",
-				PURPLE: bg("purple"),
-				COPPER: bg("bronze"),
-				SILVER: "secondary",
-				GOLD: "warning",
-				PLATINUM: bgc("silver", "black"),
-				RAINBOW: "success",
+				BLUE: bgc("var(--bs-info)", "var(--bs-light)"),
+				GREEN: bgc("green", "var(--bs-light)"),
+				ORANGE: bgc("orange", "var(--bs-dark)"),
+				RED: bgc("red", "var(--bs-light)"),
+				PURPLE: bgc("purple", "var(--bs-light)"),
+				COPPER: bgc("sienna", "var(--bs-light)"),
+				SILVER: bgc("gray", "var(--bs-light)"),
+				GOLD: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				PLATINUM: bgc("silver", "var(--bs-dark)"),
+				RAINBOW: {
+					background:
+						"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
+					color: "var(--bs-dark)",
+				},
+			},
+			dan: {
+				DAN_I: bgc("blue", "var(--bs-dark)"),
+				DAN_II: bgc("cyan", "var(--bs-dark)"),
+				DAN_III: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_IV: bgc("red", "var(--bs-light)"),
+				DAN_V: bgc("purple", "var(--bs-light)"),
+				DAN_INFINITE: bgc("lightgoldenrodyellow", "var(--bs-dark)"),
+			},
+			emblem: {
+				DAN_I: bgc("blue", "var(--bs-dark)"),
+				DAN_II: bgc("cyan", "var(--bs-dark)"),
+				DAN_III: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_IV: bgc("red", "var(--bs-light)"),
+				DAN_V: bgc("purple", "var(--bs-light)"),
+				DAN_INFINITE: bgc("lightgoldenrodyellow", "var(--bs-dark)"),
 			},
 		},
 		enumColours: {
@@ -125,16 +146,16 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		},
 		classColours: {
 			colour: {
-				BLACK: "secondary",
-				YELLOW_GREEN: bgc("yellowgreen", "black"),
-				GREEN: bg("green"),
-				LIGHT_BLUE: bgc("cyan", "black"),
-				BLUE: "info",
-				VIOLET: bg("violet"),
-				PURPLE: bg("purple"),
-				PINK: bgc("pink", "black"),
-				ORANGE: bg("orange"),
-				GOLD: "warning",
+				BLACK: bgc("var(--bs-secondary)", "var(--bs-light)"),
+				YELLOW_GREEN: bgc("yellowgreen", "var(--bs-dark)"),
+				GREEN: bgc("green", "var(--bs-light)"),
+				LIGHT_BLUE: bgc("cyan", "var(--bs-dark)"),
+				BLUE: bgc("var(--bs-info)", "var(--bs-light)"),
+				VIOLET: bgc("violet", "var(--bs-dark)"),
+				PURPLE: bgc("purple", "var(--bs-light)"),
+				PINK: bgc("pink", "var(--bs-dark)"),
+				ORANGE: bgc("orange", "var(--bs-dark)"),
+				GOLD: bgc("var(--bs-warning)", "var(--bs-dark)"),
 			},
 		},
 		difficultyColours: {
@@ -159,6 +180,106 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			</>
 		),
 		ratingCell: ({ sc }) => <JubilityCell score={sc} />,
+	},
+	"maimai:Single": {
+		enumIcons: defaultEnumIcons,
+		enumColours: {
+			lamp: {
+				FAILED: COLOUR_SET.red,
+				CLEAR: COLOUR_SET.green,
+				"FULL COMBO": COLOUR_SET.blue,
+				"ALL PERFECT": COLOUR_SET.gold,
+				"ALL PERFECT+": COLOUR_SET.teal,
+			},
+			grade: {
+				F: COLOUR_SET.gray,
+				E: COLOUR_SET.gray,
+				D: COLOUR_SET.gray,
+				C: COLOUR_SET.red,
+				B: COLOUR_SET.maroon,
+				A: COLOUR_SET.green,
+				AA: COLOUR_SET.paleBlue,
+				AAA: COLOUR_SET.blue,
+				S: COLOUR_SET.gold,
+				"S+": COLOUR_SET.vibrantYellow,
+				SS: COLOUR_SET.paleOrange,
+				"SS+": COLOUR_SET.orange,
+				SSS: COLOUR_SET.teal,
+				"SSS+": COLOUR_SET.white,
+			},
+		},
+		classColours: {
+			dan: {
+				DAN_1: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_2: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_3: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_4: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_5: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_6: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_7: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_8: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_9: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_10: bgc("var(--bs-warning)", "var(--bs-dark)"),
+
+				KAIDEN: bgc("var(--bs-warning)", "var(--bs-dark)"),
+
+				SHINDAN_1: bgc("purple", "var(--bs-light)"),
+				SHINDAN_2: bgc("purple", "var(--bs-light)"),
+				SHINDAN_3: bgc("purple", "var(--bs-light)"),
+				SHINDAN_4: bgc("purple", "var(--bs-light)"),
+				SHINDAN_5: bgc("purple", "var(--bs-light)"),
+				SHINDAN_6: bgc("purple", "var(--bs-light)"),
+				SHINDAN_7: bgc("purple", "var(--bs-light)"),
+				SHINDAN_8: bgc("purple", "var(--bs-light)"),
+				SHINDAN_9: bgc("purple", "var(--bs-light)"),
+				SHINDAN_10: bgc("purple", "var(--bs-light)"),
+
+				SHINKAIDEN: bgc("purple", "var(--bs-light)"),
+			},
+			colour: {
+				WHITE: bgc("white", "var(--bs-dark)"),
+				BLUE: bgc("cyan", "var(--bs-dark)"),
+				GREEN: bgc("green", "var(--bs-light)"),
+				YELLOW: bgc("yellow", "var(--bs-dark)"),
+				RED: bgc("red", "var(--bs-light)"),
+				PURPLE: bgc("purple", "var(--bs-light)"),
+				BRONZE: bgc("brown", "var(--bs-light)"),
+				SILVER: bgc("gray", "var(--bs-light)"),
+				GOLD: bgc("var(--bs-warning)", "var(--bs-dark)"),
+
+				RAINBOW: {
+					background:
+						"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
+					color: "var(--bs-dark)",
+				},
+			},
+		},
+		difficultyColours: {
+			Easy: COLOUR_SET.blue,
+			Basic: COLOUR_SET.green,
+			Advanced: COLOUR_SET.orange,
+			Expert: COLOUR_SET.red,
+			Master: COLOUR_SET.purple,
+			"Re:Master": COLOUR_SET.white,
+		},
+		ratingSystems: [],
+		scoreHeaders: [
+			["Percent", "%", NumericSOV((x) => x?.scoreData.percent)],
+			["Judgements", "Hits", NumericSOV((x) => x?.scoreData.percent)],
+			["Lamp", "Lamp", NumericSOV((x) => x?.scoreData.enumIndexes.lamp)],
+		],
+		scoreCoreCells: ({ sc }) => (
+			<>
+				<ScoreCell
+					colour={GetEnumColour(sc, "grade")}
+					grade={sc.scoreData.grade}
+					percent={sc.scoreData.percent}
+				/>
+				<MaimaiJudgementCell score={sc} />
+				<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
+			</>
+		),
+		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"maimaidx:Single": {
 		enumIcons: defaultEnumIcons,
@@ -190,54 +311,86 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		},
 		classColours: {
 			dan: {
-				DAN_1: "warning",
-				DAN_2: "warning",
-				DAN_3: "warning",
-				DAN_4: "warning",
-				DAN_5: "warning",
-				DAN_6: "warning",
-				DAN_7: "warning",
-				DAN_8: "warning",
-				DAN_9: "warning",
-				DAN_10: "warning",
+				DAN_1: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_2: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_3: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_4: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_5: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_6: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_7: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_8: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_9: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				DAN_10: bgc("var(--bs-warning)", "var(--bs-dark)"),
 
-				SHINDAN_1: bg("purple"),
-				SHINDAN_2: bg("purple"),
-				SHINDAN_3: bg("purple"),
-				SHINDAN_4: bg("purple"),
-				SHINDAN_5: bg("purple"),
-				SHINDAN_6: bg("purple"),
-				SHINDAN_7: bg("purple"),
-				SHINDAN_8: bg("purple"),
-				SHINDAN_9: bg("purple"),
-				SHINDAN_10: bg("purple"),
+				SHINDAN_1: bgc("purple", "var(--bs-light)"),
+				SHINDAN_2: bgc("purple", "var(--bs-light)"),
+				SHINDAN_3: bgc("purple", "var(--bs-light)"),
+				SHINDAN_4: bgc("purple", "var(--bs-light)"),
+				SHINDAN_5: bgc("purple", "var(--bs-light)"),
+				SHINDAN_6: bgc("purple", "var(--bs-light)"),
+				SHINDAN_7: bgc("purple", "var(--bs-light)"),
+				SHINDAN_8: bgc("purple", "var(--bs-light)"),
+				SHINDAN_9: bgc("purple", "var(--bs-light)"),
+				SHINDAN_10: bgc("purple", "var(--bs-light)"),
 
-				SHINKAIDEN: bg("purple"),
+				SHINKAIDEN: bgc("purple", "var(--bs-light)"),
 
 				URAKAIDEN: {
 					background:
 						"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
-					color: "black",
+					color: "var(--bs-dark)",
 				},
 			},
 			colour: {
-				WHITE: bgc("white", "black"),
-				BLUE: bgc("cyan", "black"),
-				GREEN: bg("green"),
-				YELLOW: bgc("yellow", "black"),
-				RED: bg("red"),
-				PURPLE: bg("purple"),
-				BRONZE: bg("brown"),
-				SILVER: bg("gray"),
-				GOLD: "warning",
-				PLATINUM: bgc("lightgoldenrodyellow", "black"),
+				WHITE: bgc("white", "var(--bs-dark)"),
+				BLUE: bgc("cyan", "var(--bs-dark)"),
+				GREEN: bgc("green", "var(--bs-light)"),
+				YELLOW: bgc("yellow", "var(--bs-dark)"),
+				RED: bgc("red", "var(--bs-light)"),
+				PURPLE: bgc("purple", "var(--bs-light)"),
+				BRONZE: bgc("brown", "var(--bs-light)"),
+				SILVER: bgc("gray", "var(--bs-light)"),
+				GOLD: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				PLATINUM: bgc("lightgoldenrodyellow", "var(--bs-dark)"),
 
 				RAINBOW: {
 					background:
 						"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
-					color: "black",
+					color: "var(--bs-dark)",
 				},
 			},
+			matchingClass: {
+				B5: bgc("green", "var(--bs-light)"),
+				B4: bgc("green", "var(--bs-light)"),
+				B3: bgc("green", "var(--bs-light)"),
+				B2: bgc("green", "var(--bs-light)"),
+				B1: bgc("green", "var(--bs-light)"),
+				A5: bgc("red", "var(--bs-light)"),
+				A4: bgc("red", "var(--bs-light)"),
+				A3: bgc("red", "var(--bs-light)"),
+				A2: bgc("red", "var(--bs-light)"),
+				A1: bgc("red", "var(--bs-light)"),
+				S5: bgc("brown", "var(--bs-light)"),
+				S4: bgc("brown", "var(--bs-light)"),
+				S3: bgc("brown", "var(--bs-light)"),
+				S2: bgc("brown", "var(--bs-light)"),
+				S1: bgc("brown", "var(--bs-light)"),
+				SS5: bgc("gray", "var(--bs-light)"),
+				SS4: bgc("gray", "var(--bs-light)"),
+				SS3: bgc("gray", "var(--bs-light)"),
+				SS2: bgc("gray", "var(--bs-light)"),
+				SS1: bgc("gray", "var(--bs-light)"),
+				SSS5: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				SSS4: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				SSS3: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				SSS2: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				SSS1: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				LEGEND: {
+					background:
+						"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
+					color: "var(--bs-dark)",
+				}
+			}
 		},
 		difficultyColours: {
 			Basic: COLOUR_SET.green,
@@ -357,14 +510,14 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		},
 		classColours: {
 			class: {
-				KITTY: bg("brown"),
-				STUDENT: bg("green"),
-				DELINQUENT: bgc("lime", "black"),
-				DETECTIVE: bg("purple"),
-				IDOL: "danger",
-				GENERAL: bg("darkgoldenrod"),
-				HERMIT: "success",
-				GOD: "warning",
+				KITTY: bgc("brown", "var(--bs-light)"),
+				STUDENT: bgc("green", "var(--bs-light)"),
+				DELINQUENT: bgc("lime", "var(--bs-dark)"),
+				DETECTIVE: bgc("purple", "var(--bs-light)"),
+				IDOL: bgc("var(--bs-danger)", "var(--bs-light)"),
+				GENERAL: bgc("darkgoldenrod", "var(--bs-light)"),
+				HERMIT: bgc("var(--bs-success)", "var(--bs-light)"),
+				GOD: bgc("var(--bs-warning)", "var(--bs-dark)"),
 			},
 		},
 		difficultyColours: {
@@ -420,31 +573,35 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		},
 		classColours: {
 			colour: {
-				ASH: "secondary",
-				NAVY: bg("darkblue"),
-				YELLOW: bg("orange"),
-				RED: "danger",
-				PURPLE: bg("purple"),
-				BLUE: "info",
-				SILVER: bgc("silver", "black"),
-				GOLD: "warning",
-				RAINBOW: "success",
+				ASH: bgc("var(--bs-secondary)", "var(--bs-light)"),
+				NAVY: bgc("darkblue", "var(--bs-light)"),
+				YELLOW: bgc("orange", "var(--bs-dark)"),
+				RED: bgc("red", "var(--bs-light)"),
+				PURPLE: bgc("purple", "var(--bs-light)"),
+				BLUE: bgc("var(--bs-info)", "var(--bs-light)"),
+				SILVER: bgc("silver", "var(--bs-dark)"),
+				GOLD: bgc("var(--bs-warning)", "var(--bs-dark)"),
+				RAINBOW: {
+					background:
+						"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
+					color: "var(--bs-dark)",
+				},
 			},
 			stageUp: {
-				I: null,
-				II: null,
-				III: null,
-				IV: null,
-				V: null,
-				VI: null,
-				VII: null,
-				VIII: null,
-				IX: null,
-				X: null,
-				XI: null,
-				XII: null,
-				XIII: null,
-				XIV: null,
+				I: bgc("var(--bs-dark)", "var(--bs-light)"),
+				II: bgc("var(--bs-dark)", "var(--bs-light)"),
+				III: bgc("var(--bs-dark)", "var(--bs-light)"),
+				IV: bgc("var(--bs-dark)", "var(--bs-light)"),
+				V: bgc("var(--bs-dark)", "var(--bs-light)"),
+				VI: bgc("var(--bs-dark)", "var(--bs-light)"),
+				VII: bgc("var(--bs-dark)", "var(--bs-light)"),
+				VIII: bgc("var(--bs-dark)", "var(--bs-light)"),
+				IX: bgc("var(--bs-dark)", "var(--bs-light)"),
+				X: bgc("var(--bs-dark)", "var(--bs-light)"),
+				XI: bgc("var(--bs-dark)", "var(--bs-light)"),
+				XII: bgc("var(--bs-dark)", "var(--bs-light)"),
+				XIII: bgc("var(--bs-dark)", "var(--bs-light)"),
+				XIV: bgc("var(--bs-dark)", "var(--bs-light)"),
 			},
 		},
 		difficultyColours: {
@@ -549,8 +706,8 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 							{chart.data.rankedLevel === null
 								? "Unranked Chart."
 								: sc.calculatedData.blockRating === null
-								? "Failed"
-								: sc.calculatedData.blockRating}
+									? "Failed"
+									: sc.calculatedData.blockRating}
 						</strong>
 					</td>
 				) : (

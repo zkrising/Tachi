@@ -10,6 +10,7 @@ export const MAIMAI_DX_CONF = {
 	playtypes: ["Single"],
 	songData: z.strictObject({
 		displayVersion: z.string(),
+		genre: z.string(),
 	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
@@ -25,7 +26,7 @@ const MaimaiDXDans = [
 	ClassValue("DAN_9", "九段", "9th Dan"),
 	ClassValue("DAN_10", "十段", "10th Dan"),
 
-	ClassValue("SHINDAN_1", "真初段", "Shinshodan"),
+	ClassValue("SHINDAN_1", "真初段", "1st Shindan"),
 	ClassValue("SHINDAN_2", "真二段", "2nd Shindan"),
 	ClassValue("SHINDAN_3", "真三段", "3rd Shindan"),
 	ClassValue("SHINDAN_4", "真四段", "4th Shindan"),
@@ -42,18 +43,53 @@ const MaimaiDXDans = [
 ];
 
 const MaimaiDXColours = [
-	ClassValue("WHITE", "White"),
-	ClassValue("BLUE", "Blue"),
-	ClassValue("GREEN", "Green"),
-	ClassValue("YELLOW", "Yellow"),
-	ClassValue("RED", "Red"),
-	ClassValue("PURPLE", "Purple"),
-	ClassValue("BRONZE", "Bronze"),
-	ClassValue("SILVER", "Silver"),
-	ClassValue("GOLD", "Gold"),
-	ClassValue("PLATINUM", "Platinum"),
-	ClassValue("RAINBOW", "Rainbow"),
+	ClassValue("WHITE", "White", "0 - 999 Rating"),
+	ClassValue("BLUE", "Blue", "1000 - 1999 Rating"),
+	ClassValue("GREEN", "Green", "2000 - 3999 Rating"),
+	ClassValue("YELLOW", "Yellow", "4000 - 6999 Rating"),
+	ClassValue("RED", "Red", "7000 - 9999 Rating"),
+	ClassValue("PURPLE", "Purple", "10000 - 11999 Rating"),
+	ClassValue("BRONZE", "Bronze", "12000 - 12999 Rating"),
+	ClassValue("SILVER", "Silver", "13000 - 13999 Rating"),
+	ClassValue("GOLD", "Gold", "14000 - 14499 Rating"),
+	ClassValue("PLATINUM", "Platinum", "14500 - 14999 Rating"),
+	ClassValue("RAINBOW", "Rainbow", ">=15000 Rating"),
 ];
+
+const MaimaiDXMatchingClasses = [
+	ClassValue("B5", "B5"),
+	ClassValue("B4", "B4"),
+	ClassValue("B3", "B3"),
+	ClassValue("B2", "B2"),
+	ClassValue("B1", "B1"),
+
+	ClassValue("A5", "A5"),
+	ClassValue("A5", "A5"),
+	ClassValue("A4", "A4"),
+	ClassValue("A3", "A3"),
+	ClassValue("A2", "A2"),
+	ClassValue("A1", "A1"),
+
+	ClassValue("S5", "S5"),
+	ClassValue("S4", "S4"),
+	ClassValue("S3", "S3"),
+	ClassValue("S2", "S2"),
+	ClassValue("S1", "S1"),
+
+	ClassValue("SS5", "SS5"),
+	ClassValue("SS4", "SS4"),
+	ClassValue("SS3", "SS3"),
+	ClassValue("SS2", "SS2"),
+	ClassValue("SS1", "SS1"),
+
+	ClassValue("SSS5", "SSS5"),
+	ClassValue("SSS4", "SSS4"),
+	ClassValue("SSS3", "SSS3"),
+	ClassValue("SSS2", "SSS2"),
+	ClassValue("SSS1", "SSS1"),
+
+	ClassValue("LEGEND", "Legend"),
+]
 
 export const MAIMAI_DX_SINGLE_CONF = {
 	providedMetrics: {
@@ -164,6 +200,10 @@ export const MAIMAI_DX_SINGLE_CONF = {
 			type: "PROVIDED",
 			values: MaimaiDXDans,
 		},
+		matchingClass: {
+			type: "PROVIDED",
+			values: MaimaiDXMatchingClasses,
+		}
 	},
 
 	orderedJudgements: ["pcrit", "perfect", "great", "good", "miss"],
@@ -171,6 +211,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 	versions: {
 		universeplus: "UNiVERSE PLUS",
 		festival: "FESTiVAL",
+		festivalplus: "FESTiVAL PLUS",
 	},
 
 	chartData: z.strictObject({

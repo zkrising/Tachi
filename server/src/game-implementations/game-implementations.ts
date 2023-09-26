@@ -4,6 +4,7 @@ import { GITADORA_DORA_IMPL, GITADORA_GITA_IMPL } from "./games/gitadora";
 import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
 import { ITG_STAMINA_IMPL } from "./games/itg";
 import { JUBEAT_IMPL } from "./games/jubeat";
+import { MAIMAI_IMPL } from "./games/maimai";
 import { MAIMAIDX_IMPL } from "./games/maimaidx";
 import { MUSECA_IMPL } from "./games/museca";
 import { POPN_9B_IMPL } from "./games/popn";
@@ -33,6 +34,7 @@ export const GPT_SERVER_IMPLEMENTATIONS: GPTImplementations = {
 	"gitadora:Gita": GITADORA_GITA_IMPL,
 	"itg:Stamina": ITG_STAMINA_IMPL,
 	"jubeat:Single": JUBEAT_IMPL,
+	"maimai:Single": MAIMAI_IMPL,
 	"maimaidx:Single": MAIMAIDX_IMPL,
 	"museca:Single": MUSECA_IMPL,
 	"popn:9B": POPN_9B_IMPL,

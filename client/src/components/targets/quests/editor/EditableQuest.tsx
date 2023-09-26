@@ -24,48 +24,33 @@ export default function EditableQuest({
 	return (
 		<Card
 			header={
-				<div>
+				<div className="vstack gap-2">
 					<EditableText
-						initial={quest.name}
-						onChange={(name) =>
+						as="h1"
+						initialText={quest.name}
+						placeholderText={quest.name || "Untitled Quest"}
+						onSubmit={(name) =>
 							onChange({
 								...quest,
 								name,
 							})
 						}
-					>
-						{(text) => (
-							<h3>
-								{text}
-								<span className="ml-2 text-hover-white">
-									<Icon type="pencil-alt" />
-								</span>
-							</h3>
-						)}
-					</EditableText>
+						authorised
+					/>
 
 					<EditableText
-						initial={quest.desc}
-						onChange={(desc) =>
+						initialText={quest.desc}
+						placeholderText={quest.desc || "Please set a description."}
+						onSubmit={(desc) =>
 							onChange({
 								...quest,
 								desc,
 							})
 						}
-					>
-						{(desc) => (
-							<div>
-								{desc}
-								<span className="ml-2 text-hover-white">
-									<Icon type="pencil-alt" />
-								</span>
-							</div>
-						)}
-					</EditableText>
+						authorised
+					/>
 
-					<div className="mt-4">
-						<Muted>Game: {FormatGame(quest.game, quest.playtype)}</Muted>
-					</div>
+					<Muted>Game: {FormatGame(quest.game, quest.playtype)}</Muted>
 				</div>
 			}
 		>
@@ -114,7 +99,7 @@ export default function EditableQuest({
 			</div>
 			<Divider />
 			<div className="d-flex w-100">
-				<div className="mr-auto">
+				<div className="me-auto">
 					<QuickTooltip tooltipContent="Copy this quest to your clipboard in a pretty format.">
 						<Button
 							variant="outline-info"
@@ -126,7 +111,7 @@ export default function EditableQuest({
 						</Button>
 					</QuickTooltip>
 				</div>
-				<div className="ml-auto">
+				<div className="ms-auto">
 					<Button
 						variant="outline-danger"
 						onClick={() => {
@@ -157,43 +142,33 @@ function QuestSection({
 	const [show, setShow] = useState(false);
 
 	return (
-		<div>
-			<EditableText
-				initial={section.title}
-				onChange={(title) =>
-					onChange({
-						...section,
-						title,
-					})
-				}
-			>
-				{(text) => (
-					<h5>
-						{text}
-						<span className="ml-2 text-hover-white">
-							<Icon type="pencil-alt" />
-						</span>
-					</h5>
-				)}
-			</EditableText>
-			<EditableText
-				initial={section.desc}
-				onChange={(desc) =>
-					onChange({
-						...section,
-						desc,
-					})
-				}
-			>
-				{(desc) => (
-					<div>
-						{desc === "" ? <Muted>No Description...</Muted> : desc}
-						<span className="ml-2 text-hover-white">
-							<Icon type="pencil-alt" />
-						</span>
-					</div>
-				)}
-			</EditableText>
+		<>
+			<div className="vstack gap-2">
+				<EditableText
+					as="h4"
+					initialText={section.title}
+					placeholderText="Untitled Section"
+					onSubmit={(title) =>
+						onChange({
+							...section,
+							title,
+						})
+					}
+					authorised
+				/>
+
+				<EditableText
+					initialText={section.desc}
+					placeholderText="No Description..."
+					onSubmit={(desc) =>
+						onChange({
+							...section,
+							desc,
+						})
+					}
+					authorised
+				/>
+			</div>
 			<br />
 			{section.rawGoals.length === 0 ? (
 				<Muted>No Goals...</Muted>
@@ -224,11 +199,10 @@ function QuestSection({
 			<br />
 			<div className="w-100 d-flex mt-8">
 				<Button variant="outline-success" onClick={() => setShow(true)}>
-					<Icon type="plus" />
-					Add Goal
+					<Icon type="plus" /> Add Goal
 				</Button>
 				<Button
-					className="ml-auto"
+					className="ms-auto"
 					variant="outline-danger"
 					onClick={() => {
 						if (confirm("Are you absolutely sure you want to delete this section?")) {
@@ -236,8 +210,7 @@ function QuestSection({
 						}
 					}}
 				>
-					<Icon type="times" />
-					Delete Section
+					<Icon type="times" /> Delete Section
 				</Button>
 			</div>
 			{show && (
@@ -254,7 +227,7 @@ function QuestSection({
 					}}
 				/>
 			)}
-		</div>
+		</>
 	);
 }
 
@@ -274,13 +247,13 @@ function InnerQuestSectionGoal({
 	return (
 		<li className="quest-goal">
 			<div className="w-100 d-flex">
-				<div className="mr-auto">{rawGoal.goal.name}</div>
+				<div className="me-auto">{rawGoal.goal.name}</div>
 
-				<div className="ml-auto d-flex flex-nowrap">
+				<div className="ms-auto d-flex flex-nowrap">
 					<div className="text-hover-white">
 						<Icon type="pencil-alt" onClick={() => setShow(true)} />
 					</div>
-					<div className="ml-2 text-hover-white">
+					<div className="ms-2 text-hover-white">
 						<Icon
 							type="trash"
 							onClick={() => {

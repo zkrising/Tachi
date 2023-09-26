@@ -1,12 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Nav from "react-bootstrap/Nav";
+import { NavLinkProps } from "react-bootstrap";
 
-export default function MenuLink({ name, to }: { name: string; to: string }) {
+export default function MenuLink({
+	name,
+	to,
+	...props
+}: { name: string; to: string } & NavLinkProps) {
 	return (
-		<li className="menu-item">
-			<NavLink className="menu-link" to={to}>
-				<span className="menu-text">{name}</span>
-			</NavLink>
-		</li>
+		<Nav.Item>
+			<Nav.Link as={NavLink} to={to} {...props}>
+				{name}
+			</Nav.Link>
+		</Nav.Item>
 	);
 }

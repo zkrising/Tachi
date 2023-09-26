@@ -43,6 +43,7 @@ function perToScore(goal: GoalDocument) {
 		case "bms":
 		case "gitadora":
 		case "jubeat":
+		case "maimai":
 		case "maimaidx":
 		case "pms":
 		case "itg":

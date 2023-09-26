@@ -48,10 +48,10 @@ export default function CreditsPage() {
 			<Divider />
 
 			<div className="mt-4">
-				<h1>
+				<h1 className="user-select-none">
 					De
 					<span
-						className="text-white credits-easter-egg"
+						className="credits-easter-egg"
 						onClick={() => {
 							if (alt) {
 								// Force a different RFA
@@ -252,7 +252,7 @@ export default function CreditsPage() {
 					Everyone in the <code>#dev</code> chat for the constant advice and comedy gold.
 				</p>
 			</div>
-			<span className="text-muted" style={{ fontSize: "0.2rem" }}>
+			<span className="text-body-secondary" style={{ fontSize: "0.2rem" }}>
 				Click the V in Dev Team.
 			</span>
 		</div>

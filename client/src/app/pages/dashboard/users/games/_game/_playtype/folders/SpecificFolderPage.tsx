@@ -19,13 +19,12 @@ import Icon from "components/util/Icon";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import ReferToUser from "components/util/ReferToUser";
-import Select from "components/util/Select";
 import SelectLinkButton from "components/util/SelectLinkButton";
 import useApiQuery from "components/util/query/useApiQuery";
 import useUGPTBase from "components/util/useUGPTBase";
 import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import { GPTRatingSystem } from "lib/types";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { Link, Route, Switch, useParams } from "react-router-dom";
 import {
@@ -46,6 +45,7 @@ import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
 import { UGPTFolderReturns } from "types/api-returns";
 import { FolderDataset } from "types/tables";
 import SelectButton from "components/util/SelectButton";
+import { WindowContext } from "context/WindowContext";
 import FolderComparePage from "./FolderComparePage";
 import FolderQuestsPage from "./FolderQuestsPage";
 
@@ -124,30 +124,25 @@ export default function SpecificFolderPage({ reqUser, game, playtype }: Props) {
 			</div>
 			<div className="col-12 d-flex">
 				<div className="btn-group d-flex w-100">
-					<SelectLinkButton to={base}>
-						<Icon type="table" />
-						Normal View
+					<SelectLinkButton className="text-wrap" to={base}>
+						<Icon type="table" /> Normal View
 					</SelectLinkButton>
 					{gptImpl.ratingSystems.length !== 0 &&
 						// temp: tierlist view sucks for BMS and PMS
 						game !== "bms" &&
 						game !== "pms" && (
-							<SelectLinkButton to={`${base}/tierlist`}>
-								<Icon type="sort-alpha-up" />
-								Tierlist View
+							<SelectLinkButton className="text-wrap" to={`${base}/tierlist`}>
+								<Icon type="sort-alpha-up" /> Tierlist View
 							</SelectLinkButton>
 						)}
-					<SelectLinkButton to={`${base}/timeline`}>
-						<Icon type="stream" />
-						Timeline View
+					<SelectLinkButton className="text-wrap" to={`${base}/timeline`}>
+						<Icon type="stream" /> Timeline View
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/compare`}>
-						<Icon type="users" />
-						Compare Against User
+					<SelectLinkButton className="text-wrap" to={`${base}/compare`}>
+						<Icon type="users" /> Compare Against User
 					</SelectLinkButton>
-					<SelectLinkButton to={`${base}/targets`}>
-						<Icon type="scroll" />
-						Goals & Quests
+					<SelectLinkButton className="text-wrap" to={`${base}/targets`}>
+						<Icon type="scroll" /> Goals & Quests
 					</SelectLinkButton>
 				</div>
 			</div>
@@ -214,44 +209,32 @@ function TimelineView({ game, playtype, reqUser, folderID }: Props & { folderID:
 
 	return (
 		<>
-			<Card header="Timeline View">
-				<div className="row">
-					<div className="col-12">
-						<h5 className="text-center">
-							The timeline view shows the order in which you achieved something in a
-							folder! You can choose the criteria up here.
-						</h5>
-						<Divider />
-					</div>
-					<div className="col-12 col-lg-6">
-						<Form.Control
-							as="select"
-							value={selectedEnum}
-							onChange={(e) => setSelectedEnum(e.target.value)}
-						>
-							{Object.keys(enumConfs).map((e) => (
-								<option key={e} value={e}>
-									{UppercaseFirst(e)}
-								</option>
+			<Card header="Timeline View" cardBodyClassName="vstack gap-4">
+				<h5 className="text-center">
+					The timeline view shows the order in which you achieved something in a folder!
+					You can choose the criteria up here.
+				</h5>
+				<div className="d-flex flex-column flex-lg-row gap-4">
+					<Form.Select
+						value={selectedEnum}
+						onChange={(e) => setSelectedEnum(e.target.value)}
+					>
+						{Object.keys(enumConfs).map((e) => (
+							<option key={e} value={e}>
+								{UppercaseFirst(e)}
+							</option>
+						))}
+					</Form.Select>
+					<Form.Select value={value} onChange={(e) => setValue(e.target.value)}>
+						{enumConf.values
+							.slice(enumConf.values.indexOf(enumConf.minimumRelevantValue))
+							.map((e) => (
+								<option key={e}>{e}</option>
 							))}
-						</Form.Control>
-					</div>
-					<div className="col-12 col-lg-6">
-						<Form.Control
-							as="select"
-							value={value}
-							onChange={(e) => setValue(e.target.value)}
-						>
-							{enumConf.values
-								.slice(enumConf.values.indexOf(enumConf.minimumRelevantValue))
-								.map((e) => (
-									<option key={e}>{e}</option>
-								))}
-						</Form.Control>
-					</div>
+					</Form.Select>
 				</div>
 			</Card>
-			<Divider />
+			<hr />
 			<TimelineMain
 				{...{ reqUser, game, playtype, folderID, enumMetric: selectedEnum, value }}
 			/>
@@ -343,7 +326,7 @@ function TimelineMain({
 				<h1 className="display-4">Total Progress</h1>
 				<h1 className="display-4">
 					{data.scores.length}
-					<span className="text-muted" style={{ fontSize: "1.1rem" }}>
+					<span className="text-body-secondary" style={{ fontSize: "1.1rem" }}>
 						/{data.charts.length}
 					</span>
 				</h1>
@@ -358,7 +341,7 @@ function TimelineMain({
 				<h1 className="display-4">Total Progress</h1>
 				<h1 className="display-4">
 					{data.scores.length}
-					<span className="text-muted" style={{ fontSize: "1.1rem" }}>
+					<span className="text-body-secondary" style={{ fontSize: "1.1rem" }}>
 						/{data.charts.length}
 					</span>
 				</h1>
@@ -390,33 +373,35 @@ function TimelineElement({
 	return (
 		<div className="timeline-item">
 			<span className="timeline-badge bg-primary"></span>
-			<div className="timeline-content d-flex align-items-center justify-content-between">
-				<span className="mr-3 w-100" style={{ fontSize: "1.15rem" }}>
+			<div className="timeline-content d-flex align-items-center justify-content-between overflow-x-auto overflow-x-md-visible">
+				<span className="me-3 w-100" style={{ fontSize: "1.15rem" }}>
 					<MiniTable>
-						<td>
-							<b>#{index}</b>
-							{Date.now() - scoreData.timeAdded < ONE_DAY && (
-								<span className="ml-2 label label-inline label-primary font-weight-bolder">
-									NEW!
-								</span>
-							)}
-						</td>
-						<DifficultyCell
-							alwaysShort
-							game={scoreData.game}
-							chart={scoreData.__related.chart}
-						/>
-						<TitleCell
-							game={scoreData.game}
-							chart={scoreData.__related.chart}
-							song={scoreData.__related.song}
-						/>
-						<ScoreCoreCells
-							game={scoreData.game}
-							chart={scoreData.__related.chart}
-							score={scoreData}
-						/>
-						<TimestampCell time={scoreData.timeAchieved} />
+						<tr>
+							<td>
+								<b>#{index}</b>
+								{Date.now() - scoreData.timeAdded < ONE_DAY && (
+									<span className="ms-2 label label-inline label-primary fw-bolder">
+										NEW!
+									</span>
+								)}
+							</td>
+							<DifficultyCell
+								alwaysShort
+								game={scoreData.game}
+								chart={scoreData.__related.chart}
+							/>
+							<TitleCell
+								game={scoreData.game}
+								chart={scoreData.__related.chart}
+								song={scoreData.__related.song}
+							/>
+							<ScoreCoreCells
+								game={scoreData.game}
+								chart={scoreData.__related.chart}
+								score={scoreData}
+							/>
+							<TimestampCell time={scoreData.timeAchieved} />
+						</tr>
 					</MiniTable>
 				</span>
 			</div>
@@ -566,23 +551,23 @@ function TierlistInfoLadder({
 	}
 
 	return (
-		<Row className="text-center">
+		<>
 			{buckets
 				.filter((e) => e.length > 0)
 				.map((bucket, i) => (
-					<React.Fragment key={i}>
-						<Col className="ladder-header" xs={12}>
+					<div className="mb-4" key={i}>
+						<div className="fs-3 mb-4 text-center">
 							{bucket[0].value} (
 							{DistinctArr(bucket.map((e) => e.text ?? "No Tierlist Data")).join(
 								", "
 							)}
 							)
-						</Col>
+						</div>
 
 						<TierlistBucket {...{ bucket, game, playtype, reqUser }} />
-					</React.Fragment>
+					</div>
 				))}
-		</Row>
+		</>
 	);
 }
 
@@ -596,8 +581,11 @@ function TierlistBucket({
 	reqUser: UserDocument;
 	bucket: TierlistInfo[];
 }) {
+	const {
+		breakpoint: { isLg },
+	} = useContext(WindowContext);
 	// xs view is tabular
-	if (window.screen.width <= 576) {
+	if (!isLg) {
 		return (
 			<MiniTable>
 				{bucket.map((tierlistInfo, i) => (
@@ -615,7 +603,7 @@ function TierlistBucket({
 	}
 
 	return (
-		<>
+		<div className="grid text-center gap-2 grid-cols-md-4 grid-cols-lg-5 grid-cols-xl-6">
 			{bucket.map((tierlistInfo, i) => (
 				<TierlistInfoBucketValues
 					tierlistInfo={tierlistInfo}
@@ -626,15 +614,13 @@ function TierlistBucket({
 					reqUser={reqUser}
 				/>
 			))}
-		</>
+		</div>
 	);
 }
 
 function TierlistInfoBucketValues({
 	tierlistInfo,
 	game,
-	bucket,
-	i,
 	reqUser,
 }: {
 	tierlistInfo: TierlistInfo;
@@ -643,38 +629,31 @@ function TierlistInfoBucketValues({
 	i: integer;
 	reqUser: UserDocument;
 }) {
-	const lastKey = bucket[i - 1];
+	const { breakpoint } = useContext(WindowContext);
 
-	let statusClass;
-
-	switch (tierlistInfo.status) {
-		case AchievedStatuses.ACHIEVED:
-			statusClass = "achieved";
-			break;
-		case AchievedStatuses.FAILED:
-			statusClass = "unachieved";
-			break;
-		case AchievedStatuses.NOT_PLAYED:
-		case AchievedStatuses.SCORE_BASED:
-			statusClass = "";
-	}
+	const statusClasses: Record<AchievedStatuses, string> = {
+		[AchievedStatuses.ACHIEVED]: "bg-success",
+		[AchievedStatuses.FAILED]: "bg-danger",
+		[AchievedStatuses.NOT_PLAYED]: "bg-body-tertiary",
+		[AchievedStatuses.SCORE_BASED]: "bg-transparent",
+	};
 
 	const data = tierlistInfo.chart;
 
 	// xs view
-	if (window.screen.width <= 576) {
+	if (!breakpoint.isLg) {
 		return (
 			<tr>
 				<DifficultyCell game={game} chart={tierlistInfo.chart} alwaysShort noTierlist />
-				<td className="text-left">
-					<Link className="gentle-link" to={CreateChartLink(data, game)}>
+				<td className="text-start">
+					<Link className="text-decoration-none" to={CreateChartLink(data, game)}>
 						{tierlistInfo.chart.__related.song.title}
 					</Link>{" "}
 					<br />
 					<div>
 						{tierlistInfo.value} ({tierlistInfo.text ?? "No Info"})
 						{tierlistInfo.idvDiff && (
-							<span className="ml-1">
+							<span className="ms-1">
 								<Icon type="balance-scale-left" />
 							</span>
 						)}
@@ -686,57 +665,47 @@ function TierlistInfoBucketValues({
 	}
 
 	return (
-		<>
-			{lastKey && lastKey.text !== tierlistInfo.text && <Col xl={12} className="my-2" />}
-			<QuickTooltip
-				max
-				tooltipContent={
-					data.__related.pb ? (
-						<MiniTable headers={[`${reqUser.username}'s Score`]} colSpan={99}>
+		<QuickTooltip
+			max
+			tooltipContent={
+				data.__related.pb ? (
+					<MiniTable headers={[`${reqUser.username}'s Score`]} colSpan={99}>
+						<tr>
 							<ScoreCoreCells chart={data} game={game} score={data.__related.pb} />
-						</MiniTable>
-					) : undefined
-				}
-			>
-				<Col
-					className={`ladder-element ${
-						i % 12 < 6 ? "ladder-element-dark" : ""
-					} ladder-element-${statusClass} d-none d-sm-block`}
-					xs={12}
-					sm={6}
-					md={4}
-					lg={3}
-					xl={2}
-				>
-					<Link className="gentle-link" to={CreateChartLink(data, game)}>
-						{data.__related.song.title}
-					</Link>{" "}
-					{FormatDifficultyShort(data, game)}
-					<Divider className="my-2" />
-					{tierlistInfo.value} ({tierlistInfo.text ?? "No Info"})
-					{tierlistInfo.idvDiff && (
-						<>
-							<br />
+						</tr>
+					</MiniTable>
+				) : undefined
+			}
+		>
+			<div className={`${statusClasses[tierlistInfo.status]} bg-opacity-50 rounded p-2`}>
+				<Link className="text-decoration-none" to={CreateChartLink(data, game)}>
+					{data.__related.song.title}
+				</Link>{" "}
+				{FormatDifficultyShort(data, game)}
+				<Divider className="my-2" />
+				{tierlistInfo.value} ({tierlistInfo.text ?? "No Info"})
+				{tierlistInfo.idvDiff && (
+					<>
+						<br />
 
-							<div className="mt-1">
-								<QuickTooltip tooltipContent="Individual Difference - The difficulty of this varies massively between people!">
-									<span>
-										<Icon type="balance-scale-left" />
-									</span>
-								</QuickTooltip>
-							</div>
-						</>
-					)}
-					<Muted>
-						<Divider className="my-2" />
-						<ReferToUser reqUser={reqUser} />{" "}
-						{tierlistInfo.status === AchievedStatuses.NOT_PLAYED
-							? "not played this chart."
-							: tierlistInfo.score}
-					</Muted>
-				</Col>
-			</QuickTooltip>
-		</>
+						<div className="mt-1">
+							<QuickTooltip tooltipContent="Individual Difference - The difficulty of this varies massively between people!">
+								<span>
+									<Icon type="balance-scale-left" />
+								</span>
+							</QuickTooltip>
+						</div>
+					</>
+				)}
+				<Muted>
+					<Divider className="my-2" />
+					<ReferToUser reqUser={reqUser} />{" "}
+					{tierlistInfo.status === AchievedStatuses.NOT_PLAYED
+						? "not played this chart."
+						: tierlistInfo.score}
+				</Muted>
+			</div>
+		</QuickTooltip>
 	);
 }
 

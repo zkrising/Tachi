@@ -2,7 +2,7 @@ import { NumericSOV } from "util/sorts";
 import Divider from "components/util/Divider";
 import Select from "components/util/Select";
 import React, { useMemo, useState } from "react";
-import { Col, Form } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import { GamePT } from "types/react";
 import { GoalSubDataset } from "types/tables";
 import { InnerQuestSectionGoal } from "./quests/Quest";
@@ -53,7 +53,7 @@ export default function GoalSubInfo({ dataset }: { dataset: GoalSubDataset } & G
 	return (
 		<>
 			<Col xs={12}>
-				<div className="pl-6">
+				<div className="ps-6">
 					<div className="d-flex w-100 justify-content-start">
 						<Select value={show} setValue={setShow} name="What goals should we show?">
 							<option value="all">All</option>
@@ -66,9 +66,9 @@ export default function GoalSubInfo({ dataset }: { dataset: GoalSubDataset } & G
 			</Col>
 			<Col xs={12}>
 				{directGoals.length !== 0 && (
-					<div className="pl-6">
+					<div className="ps-6">
 						{directGoals.map((e, i) => (
-							<div className="pb-2 text-left" key={i}>
+							<div className="pb-2 text-start" key={i}>
 								<InnerQuestSectionGoal
 									goal={e.__related.goal}
 									dependencies={e.__related.parentQuests.map((e) => e.name)}
@@ -79,9 +79,9 @@ export default function GoalSubInfo({ dataset }: { dataset: GoalSubDataset } & G
 				)}
 				{folderGoals.length !== 0 && directGoals.length !== 0 && <Divider />}
 				{folderGoals.length !== 0 && (
-					<div className="pl-6">
+					<div className="ps-6">
 						{folderGoals.map((e, i) => (
-							<div className="pb-2 text-left" key={i}>
+							<div className="pb-2 text-start" key={i}>
 								<InnerQuestSectionGoal
 									goal={e.__related.goal}
 									dependencies={e.__related.parentQuests.map((e) => e.name)}

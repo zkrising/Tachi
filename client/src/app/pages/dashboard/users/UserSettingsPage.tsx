@@ -1,5 +1,6 @@
 import { APIFetchV1, ToAPIURL } from "util/api";
 import { DelayedPageReload, FetchJSONBody, UppercaseFirst } from "util/misc";
+import { Themes, getStoredTheme, mediaQueryPrefers, setTheme } from "util/themeUtils";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import ProfilePicture from "components/user/ProfilePicture";
@@ -9,9 +10,15 @@ import Muted from "components/util/Muted";
 import SelectButton from "components/util/SelectButton";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import { useFormik } from "formik";
-import React, { useContext, useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
+import React, { useContext, useRef, useState } from "react";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import Stack from "react-bootstrap/Stack";
 import { UserDocument, UserSettingsDocument } from "tachi-common";
+import toast from "react-hot-toast";
+import { SetState } from "types/react";
 
 interface Props {
 	reqUser: UserDocument;
@@ -31,21 +38,37 @@ export default function UserSettingsDocumentPage({ reqUser }: Props) {
 			<div className="row">
 				<div className="col-12">
 					<div className="btn-group d-flex justify-content-center">
-						<SelectButton value={page} setValue={setPage} id="image">
-							<Icon type="image" />
-							Pictures
+						<SelectButton
+							className="text-wrap"
+							value={page}
+							setValue={setPage}
+							id="image"
+						>
+							<Icon type="image" /> Pictures
 						</SelectButton>
-						<SelectButton value={page} setValue={setPage} id="socialMedia">
-							<Icon type="twitter" brand />
-							Social Media
+						<SelectButton
+							className="text-wrap"
+							value={page}
+							setValue={setPage}
+							id="socialMedia"
+						>
+							<Icon type="twitter" brand /> Social Media
 						</SelectButton>
-						<SelectButton value={page} setValue={setPage} id="preferences">
-							<Icon type="cogs" />
-							UI Preferences
+						<SelectButton
+							className="text-wrap"
+							value={page}
+							setValue={setPage}
+							id="preferences"
+						>
+							<Icon type="cogs" /> UI Preferences
 						</SelectButton>
-						<SelectButton value={page} setValue={setPage} id="account">
-							<Icon type="lock" />
-							Change Password
+						<SelectButton
+							className="text-wrap"
+							value={page}
+							setValue={setPage}
+							id="account"
+						>
+							<Icon type="lock" /> Change Email/Password
 						</SelectButton>
 					</div>
 				</div>
@@ -73,8 +96,8 @@ export default function UserSettingsDocumentPage({ reqUser }: Props) {
 	);
 }
 
-function AccountSettings({ reqUser }: { reqUser: UserDocument }) {
-	const formik = useFormik({
+export function AccountSettings({ reqUser }: { reqUser: UserDocument }) {
+	const formikPassword = useFormik({
 		initialValues: {
 			"!oldPassword": "",
 			"!password": "",
@@ -95,7 +118,7 @@ function AccountSettings({ reqUser }: { reqUser: UserDocument }) {
 			);
 
 			if (r.success) {
-				formik.setValues({
+				formikPassword.setValues({
 					"!oldPassword": "",
 					"!password": "",
 					confPass: "",
@@ -104,65 +127,153 @@ function AccountSettings({ reqUser }: { reqUser: UserDocument }) {
 		},
 	});
 
+	const formikEmail = useFormik({
+		initialValues: {
+			"!password": "",
+			email: "",
+			confEmail: "",
+		},
+		onSubmit: async (values) => {
+			const r = await APIFetchV1<UserSettingsDocument>(
+				`/users/${reqUser.id}/change-email`,
+				{
+					method: "POST",
+					...FetchJSONBody({
+						"!password": values["!password"],
+						email: values.email,
+					}),
+				},
+				true,
+				true
+			);
+
+			if (r.success) {
+				formikEmail.setValues({
+					"!password": "",
+					email: "",
+					confEmail: "",
+				});
+			}
+		},
+	});
+
 	return (
-		<Form onSubmit={formik.handleSubmit}>
-			<Form.Group>
-				<Form.Label>Old Password</Form.Label>
-				<Form.Control
-					type="password"
-					id="!oldPassword"
-					value={formik.values["!oldPassword"]}
-					placeholder="Your Current Password"
-					onChange={formik.handleChange}
-				/>
-			</Form.Group>
-			<Form.Group>
-				<Form.Label>New Password</Form.Label>
-				<Form.Control
-					type="password"
-					id="!password"
-					value={formik.values["!password"]}
-					placeholder="New Password"
-					onChange={formik.handleChange}
-				/>
-				{formik.values["!password"].length < 8 && (
-					<Form.Text className="text-warning">
-						Passwords have to be atleast 8 characters long.
-					</Form.Text>
+		<>
+			<Form onSubmit={formikEmail.handleSubmit} className="d-flex flex-column gap-4">
+				<Form.Group>
+					<Form.Label>Password</Form.Label>
+					<Form.Control
+						type="password"
+						id="!password"
+						value={formikEmail.values["!password"]}
+						placeholder="Your Current Password"
+						onChange={formikEmail.handleChange}
+					/>
+					{formikEmail.values["!password"].length < 8 && (
+						<Form.Text className="text-warning">
+							Passwords have to be at least 8 characters long.
+						</Form.Text>
+					)}
+				</Form.Group>
+				<Form.Group>
+					<Form.Label>New Email</Form.Label>
+					<Form.Control
+						type="email"
+						id="email"
+						value={formikEmail.values.email}
+						placeholder="New Email"
+						onChange={formikEmail.handleChange}
+					/>
+				</Form.Group>
+				<Form.Group>
+					<Form.Label>Confirm New Email</Form.Label>
+					<Form.Control
+						type="email"
+						id="confEmail"
+						value={formikEmail.values.confEmail}
+						placeholder="New Email"
+						onChange={formikEmail.handleChange}
+					/>
+				</Form.Group>
+				{!(formikEmail.values.email === formikEmail.values.confEmail) && (
+					<Form.Text className="text-danger">Emails don't match!</Form.Text>
 				)}
-			</Form.Group>
-			<Form.Group>
-				<Form.Label>Confirm New Password</Form.Label>
-				<Form.Control
-					type="password"
-					id="confPass"
-					value={formik.values.confPass}
-					placeholder="New Password"
-					onChange={formik.handleChange}
-				/>
-			</Form.Group>
-			{!(formik.values["!password"] === formik.values.confPass) && (
-				<Form.Text className="text-danger">Passwords don't match!</Form.Text>
-			)}
-			<Button
-				className="mt-8"
-				variant="danger"
-				type="submit"
-				disabled={
-					!(
-						formik.values["!password"] === formik.values.confPass &&
-						formik.values.confPass.length >= 8
-					)
-				}
-			>
-				Change Password
-			</Button>
-		</Form>
+				<Button
+					className="mt-8"
+					variant="danger"
+					type="submit"
+					disabled={
+						!(
+							formikEmail.values.email === formikEmail.values.confEmail &&
+							formikEmail.values["!password"].length >= 8
+						)
+					}
+				>
+					Change Email
+				</Button>
+			</Form>
+			<Divider />
+			<Form onSubmit={formikPassword.handleSubmit} className="d-flex flex-column gap-4">
+				<Form.Group>
+					<Form.Label>Old Password</Form.Label>
+					<Form.Control
+						type="password"
+						id="!oldPassword"
+						value={formikPassword.values["!oldPassword"]}
+						placeholder="Your Current Password"
+						onChange={formikPassword.handleChange}
+					/>
+				</Form.Group>
+				<Form.Group>
+					<Form.Label>New Password</Form.Label>
+					<Form.Control
+						type="password"
+						id="!password"
+						value={formikPassword.values["!password"]}
+						placeholder="New Password"
+						onChange={formikPassword.handleChange}
+					/>
+					{formikPassword.values["!password"].length < 8 && (
+						<Form.Text className="text-warning">
+							Passwords have to be at least 8 characters long.
+						</Form.Text>
+					)}
+				</Form.Group>
+				<Form.Group>
+					<Form.Label>Confirm New Password</Form.Label>
+					<Form.Control
+						type="password"
+						id="confPass"
+						value={formikPassword.values.confPass}
+						placeholder="New Password"
+						onChange={formikPassword.handleChange}
+					/>
+				</Form.Group>
+				{!(formikPassword.values["!password"] === formikPassword.values.confPass) && (
+					<Form.Text className="text-danger">Passwords don't match!</Form.Text>
+				)}
+				<Button
+					className="mt-8"
+					variant="danger"
+					type="submit"
+					disabled={
+						!(
+							formikPassword.values["!password"] === formikPassword.values.confPass &&
+							formikPassword.values.confPass.length >= 8
+						)
+					}
+				>
+					Change Password
+				</Button>
+			</Form>
+		</>
 	);
 }
 
 function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 	const { settings, setSettings } = useContext(UserSettingsContext);
+	const theme = getStoredTheme() || "system";
+	const [themeSetting, setThemeSetting] = useState<Themes | "system">(theme);
 
 	const formik = useFormik({
 		initialValues: {
@@ -189,19 +300,59 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 		},
 	});
 
+	const handleThemeSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		if (themeSetting === "system") {
+			setTheme(mediaQueryPrefers());
+			localStorage.removeItem("theme");
+			toast.success("Following system preference!");
+		} else {
+			setTheme(themeSetting);
+			localStorage.setItem("theme", themeSetting);
+			toast.success(`Applied ${UppercaseFirst(themeSetting)} theme!`);
+		}
+	};
+
 	return (
-		<Form onSubmit={formik.handleSubmit}>
-			<Form.Group>
-				<Form.Check
-					type="checkbox"
-					id="developerMode"
-					checked={formik.values.developerMode}
-					onChange={formik.handleChange}
-					label="Developer Mode"
-				/>
-				<Form.Text>Enable debug information and other useful debugging buttons.</Form.Text>
-			</Form.Group>
-			{/* <Form.Group>
+		<Stack gap={4}>
+			<Form onSubmit={handleThemeSubmit}>
+				<Form.Group>
+					<label htmlFor="theme-selector">Theme</label>
+					<InputGroup>
+						<Form.Select
+							value={themeSetting}
+							onChange={(e) => setThemeSetting(e.target.value as Themes)}
+						>
+							<option value="system">Follow system preference</option>
+							<option value="light">Light</option>
+							<option value="dark">Dark</option>
+							<option value="oled">OLED</option>
+						</Form.Select>
+						<Button type="submit">Apply Theme</Button>
+					</InputGroup>
+					<Form.Text>Themes are applied per device</Form.Text>
+				</Form.Group>
+			</Form>
+			<Form
+				onSubmit={(e) => {
+					formik.handleSubmit(e);
+					handleThemeSubmit(e);
+				}}
+				className="d-flex flex-column gap-4"
+			>
+				<Form.Group>
+					<Form.Check
+						type="checkbox"
+						id="developerMode"
+						checked={formik.values.developerMode}
+						onChange={formik.handleChange}
+						label="Developer Mode"
+					/>
+					<Form.Text>
+						Enable debug information and other useful debugging buttons.
+					</Form.Text>
+				</Form.Group>
+				{/* <Form.Group>
 				<Form.Check
 					type="checkbox"
 					id="advancedMode"
@@ -211,7 +362,7 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 				/>
 				<Form.Text>Enable advanced stuff.</Form.Text>
 			</Form.Group> */}
-			{/* <Form.Group>
+				{/* <Form.Group>
 				<Form.Check
 					type="checkbox"
 					id="invisible"
@@ -221,7 +372,7 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 				/>
 				<Form.Text>Hide your last seen status.</Form.Text>
 			</Form.Group> */}
-			{/* <Form.Group>
+				{/* <Form.Group>
 				<Form.Check
 					type="checkbox"
 					id="deletableScores"
@@ -234,87 +385,103 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 					score gives you anxiety.
 				</Form.Text>
 			</Form.Group> */}
-			<Form.Group>
-				<Form.Check
-					type="checkbox"
-					id="contentiousContent"
-					checked={formik.values.contentiousContent}
-					onChange={formik.handleChange}
-					label="Family Unfriendly Mode"
-				/>
-				<Form.Text>
-					Show slightly less appropriate splash texts in certain places.
-				</Form.Text>
-			</Form.Group>
-			<Button type="submit">Update Settings</Button>
-		</Form>
+				<Form.Group>
+					<Form.Check
+						type="checkbox"
+						id="contentiousContent"
+						checked={formik.values.contentiousContent}
+						onChange={formik.handleChange}
+						label="Family Unfriendly Mode"
+					/>
+					<Form.Text>
+						Show slightly less appropriate splash texts in certain places.
+					</Form.Text>
+				</Form.Group>
+				<Button type="submit">Update Settings</Button>
+			</Form>
+		</Stack>
 	);
 }
 
 function ImageForm({ reqUser }: { reqUser: UserDocument }) {
 	const [pfp, setPfp] = useState<File | undefined>();
+
+	const pfpInput = useRef<HTMLInputElement>(null);
 	const [banner, setBanner] = useState<File | undefined>();
+	const bannerInput = useRef<HTMLInputElement>(null);
+
+	const handleReset = (ref: React.MutableRefObject<HTMLInputElement | null>) => {
+		if (ref.current) {
+			ref.current.value = "";
+		}
+	};
 
 	return (
-		<div>
+		<Stack gap={4}>
 			<Alert variant="danger">
 				Do not set inappropriate stuff as your avatar/banner. If you have to ask, the answer
 				is probably no.
 			</Alert>
 			<Form.Group>
-				<Form.Label>Profile Picture</Form.Label>
+				<Form.Label htmlFor="pfp">Profile Picture</Form.Label>
 				<input
 					className="form-control"
 					accept="image/png,image/jpeg,image/gif"
-					tabIndex={1}
 					type="file"
 					id="pfp"
 					multiple={false}
 					onChange={(e) => setPfp(e.target.files![0])}
+					ref={pfpInput}
 				/>
-				<div className="d-flex justify-content-center mt-4">
+				<div className="d-flex justify-content-center my-4">
 					<ProfilePicture
 						user={reqUser}
 						src={pfp ? URL.createObjectURL(pfp) : ToAPIURL(`/users/${reqUser.id}/pfp`)}
 					/>
 				</div>
-				<FileUploadController file={pfp} reqUser={reqUser} type="pfp" />
+				<FileUploadController
+					setFile={setPfp}
+					reset={() => handleReset(pfpInput)}
+					file={pfp}
+					reqUser={reqUser}
+					type="pfp"
+				/>
 			</Form.Group>
 			<Form.Group>
-				<Form.Label>Profile Banner</Form.Label>
+				<Form.Label htmlFor="banner">Profile Banner</Form.Label>
 				<input
 					className="form-control"
 					accept="image/png,image/jpeg,image/gif"
-					tabIndex={2}
 					type="file"
 					id="banner"
 					multiple={false}
 					onChange={(e) => setBanner(e.target.files![0])}
+					ref={bannerInput}
 				/>
-				<div
-					className="d-flex justify-content-center mt-4 rounded"
-					style={{
-						height: "200px",
-						boxShadow: "0px 0px 10px 0px #000000",
-						backgroundRepeat: "no-repeat",
-						backgroundSize: "cover",
-						backgroundPosition: "center",
-						backgroundImage: `url(${
-							banner
-								? URL.createObjectURL(banner)
-								: ToAPIURL(`/users/${reqUser.id}/banner`)
-						})`,
-					}}
+				<img
+					className="my-4 w-100 object-fit-cover shadow-sm rounded"
+					height={200}
+					src={
+						banner
+							? URL.createObjectURL(banner)
+							: ToAPIURL(`/users/${reqUser.id}/banner`)
+					}
 				/>
-				<FileUploadController file={banner} reqUser={reqUser} type="banner" />
+				<FileUploadController
+					setFile={setBanner}
+					reset={() => handleReset(bannerInput)}
+					file={banner}
+					reqUser={reqUser}
+					type="banner"
+				/>
 			</Form.Group>
-		</div>
+		</Stack>
 	);
 }
 
 function SocialMediaForm({ reqUser }: { reqUser: UserDocument }) {
 	const placeholders = {
-		discord: "Example#0000",
+		discord: "Discord Username",
 		twitter: "Twitter Handle",
 		twitch: "Twitch Username",
 		github: "Github Username",
@@ -359,7 +526,7 @@ function SocialMediaForm({ reqUser }: { reqUser: UserDocument }) {
 	});
 
 	return (
-		<Form onSubmit={formik.handleSubmit}>
+		<Form onSubmit={formik.handleSubmit} className="d-flex flex-column gap-4">
 			{(["discord", "twitter", "github", "steam", "youtube"] as const).map((e, i) => (
 				<Form.Group key={e}>
 					<Form.Label>{UppercaseFirst(e)}</Form.Label>
@@ -384,11 +551,9 @@ function SocialMediaForm({ reqUser }: { reqUser: UserDocument }) {
 					onChange={formik.handleChange}
 				/>
 			</Form.Group>
-			<div className="row justify-content-center">
-				<Button type="submit" variant="success">
-					Submit
-				</Button>
-			</div>
+			<Button type="submit" variant="success">
+				Submit
+			</Button>
 		</Form>
 	);
 }
@@ -415,32 +580,57 @@ function FileUploadController({
 	file,
 	type,
 	reqUser,
+	setFile,
+	reset,
 }: {
 	file?: File;
 	type: "pfp" | "banner";
 	reqUser: UserDocument;
+	setFile: SetState<File | undefined>;
+	reset: () => void;
 }) {
 	return (
-		<div className="d-flex mt-8">
-			<Button
-				onClick={async () => {
-					const res = await APIFetchV1(
-						`/users/me/${type}`,
-						{ method: "DELETE" },
-						true,
-						true
-					);
+		<div className="d-flex justify-content-end">
+			{file ? (
+				<Button
+					variant="secondary"
+					onClick={() => {
+						setFile(undefined);
+						reset();
+					}}
+				>
+					Cancel
+				</Button>
+			) : (
+				<Button
+					onClick={async () => {
+						if (
+							confirm(
+								`Are you sure you want to clear your ${
+									type === "pfp" ? "profile picture?" : "profile banner?"
+								}`
+							)
+						) {
+							const res = await APIFetchV1(
+								`/users/me/${type}`,
+								{ method: "DELETE" },
+								true,
+								true
+							);
 
-					if (res.success) {
-						DelayedPageReload();
+							if (res.success) {
+								DelayedPageReload();
+							}
+						}
+					}}
+					disabled={
+						type === "pfp" ? !reqUser.customPfpLocation : !reqUser.customBannerLocation
 					}
-				}}
-				disabled={!reqUser.customPfpLocation}
-				className="mr-auto"
-				variant="secondary"
-			>
-				Unset
-			</Button>
+					variant="danger"
+				>
+					Clear {type === "pfp" ? "Profile Picture" : "Profile Banner"}
+				</Button>
+			)}
 			{file && (
 				<div className="mx-auto">
 					<SizeWarner bytes={file.size} cap={1024} />
@@ -466,7 +656,6 @@ function FileUploadController({
 							window.location.reload();
 						}
 					}}
-					className="ml-auto"
 					variant="success"
 					disabled={file.size > 1024 * 1000}
 				>

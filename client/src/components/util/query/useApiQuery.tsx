@@ -1,11 +1,11 @@
 import { APIFetchV1, UnsuccessfulAPIFetchResponse } from "util/api";
-import { useQuery } from "react-query";
+import { QueryKey, useQuery } from "react-query";
 import { SuccessfulAPIResponse } from "tachi-common";
 
 export default function useApiQuery<T>(
 	url: string | string[],
 	options?: RequestInit,
-	additionalDeps?: string[],
+	additionalDeps?: QueryKey,
 	skip = false
 ) {
 	const deps = [];

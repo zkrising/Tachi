@@ -50,6 +50,7 @@ export default function SpecificSessionPage({ reqUser, game, playtype }: UGPT) {
 
 function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) {
 	const { settings } = useContext(UserSettingsContext);
+
 	const [sessionData, setSessionData] = useState(data);
 	const { session, user, charts, scores, songs } = sessionData;
 
@@ -108,6 +109,9 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 
 	const [highlight, setHighlight] = useState(session.highlight);
 
+	const isAuthorised =
+		loggedInUser && (loggedInUser.authLevel === 3 || loggedInUser.id === user.id);
+
 	const updateSession = (sessionData: SessionReturns) => {
 		APIFetchV1(
 			`/sessions/${sessionData.session.sessionID}`,
@@ -130,13 +134,13 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 	return (
 		<Row className="justify-content-center">
 			<Col xs={12} className="text-center">
-				<div
-					className="d-flex flex-wrap justify-content-center align-items-center"
-					style={{ flexDirection: "column" }}
-				>
+				<div className="d-flex flex-column gap-2 flex-wrap justify-content-center align-items-center">
 					<EditableText
-						initial={session.name}
-						onChange={(name) => {
+						as="h1"
+						className="enable-rfs"
+						initialText={session.name || ""}
+						placeholderText={session.name || "Untitled Session"}
+						onSubmit={(name) => {
 							const newSession: SessionReturns = {
 								...sessionData,
 								session: {
@@ -149,20 +153,14 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 
 							updateSession(newSession);
 						}}
-					>
-						{(text) => (
-							<div className="mb-4">
-								<span className="display-4">{text}</span>
-								<span className="ml-2 text-hover-white">
-									<Icon type="pencil-alt" />
-								</span>
-							</div>
-						)}
-					</EditableText>
+						authorised={isAuthorised || false}
+					/>
 
 					<EditableText
-						initial={session.desc ?? "No Description..."}
-						onChange={(desc) => {
+						initialText={session.desc || ""}
+						placeholderText={session.desc || "No Description..."}
+						className="fs-5"
+						onSubmit={(desc) => {
 							const newSession: SessionReturns = {
 								...sessionData,
 								session: {
@@ -175,25 +173,16 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 
 							updateSession(newSession);
 						}}
-					>
-						{(text) => (
-							<div className="mb-4">
-								<span className="text-muted mb-4">{text}</span>
-
-								<span className="ml-2 text-hover-white">
-									<Icon type="pencil-alt" />
-								</span>
-							</div>
-						)}
-					</EditableText>
+						authorised={isAuthorised || false}
+					/>
 				</div>
 				{session.highlight && (
 					<Badge
 						style={{
 							lineHeight: "15px",
 						}}
-						variant="warning"
-						className="ml-2"
+						bg="warning"
+						className="ms-2"
 					>
 						Highlight!
 					</Badge>
@@ -225,7 +214,7 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 									);
 								}}
 							>
-								Un-Highlight Session
+								<Icon type="star" /> Un-Highlight Session
 							</Button>
 						) : (
 							<Button
@@ -250,7 +239,7 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 									);
 								}}
 							>
-								Highlight Session
+								<Icon regular type="star" /> Highlight Session
 							</Button>
 						)}
 						<Divider />

@@ -25,6 +25,7 @@ import {
 	Playtype,
 } from "tachi-common";
 import { ScoreDataset } from "types/tables";
+import { Alert, ButtonGroup } from "react-bootstrap";
 
 interface Data {
 	import: ImportDocument;
@@ -87,7 +88,7 @@ export default function ImportInfo({
 	const importDoc = data.import;
 
 	return (
-		<div className="row">
+		<>
 			{!noTopTable && (
 				<>
 					<div className="col-12">
@@ -111,27 +112,24 @@ export default function ImportInfo({
 					</div>
 				</>
 			)}
-			<div className="col-12">
-				<div className="btn btn-group mb-4">
+			<div className="col-12 vstack gap-4">
+				<ButtonGroup>
 					<SelectButton value={tab} setValue={setTab} id="scores">
-						<Icon type="table" />
-						Scores
+						<Icon type="table" /> Scores
 					</SelectButton>
 					<SelectButton value={tab} setValue={setTab} id="sessions">
-						<Icon type="calendar-week" />
-						Sessions
+						<Icon type="calendar-week" /> Sessions
 					</SelectButton>
 					<SelectButton value={tab} setValue={setTab} id="errors">
-						<Icon type="exclamation-triangle" />
-						Errors
+						<Icon type="exclamation-triangle" /> Errors
 					</SelectButton>
-				</div>
+				</ButtonGroup>
 				{tab === "errors" ? (
 					<>
-						<div className="text-warning">
+						<Alert variant="warning">
 							Some of these errors might not be very useful. Depending on how scores
 							are matched with data, all we have to display might be a hash.
-						</div>
+						</Alert>
 						<TachiTable
 							entryName="Errors"
 							dataset={data.import.errors}
@@ -153,7 +151,7 @@ export default function ImportInfo({
 					<SessionTab data={data} />
 				)}
 			</div>
-		</div>
+		</>
 	);
 }
 
@@ -189,7 +187,7 @@ function SessionTab({ data }: { data: Data }) {
 					<td>
 						<Link
 							to={`/u/${r.session.userID}/games/${r.session.game}/${r.session.playtype}/sessions/${r.session.sessionID}`}
-							className="gentle-link"
+							className="text-decoration-none"
 						>
 							{r.session.name}
 						</Link>

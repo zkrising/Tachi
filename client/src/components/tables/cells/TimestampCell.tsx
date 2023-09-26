@@ -16,7 +16,7 @@ export default function TimestampCell({
 					{MillisToSince(time)}
 
 					<br />
-					<small className="text-muted">{FormatTime(time)}</small>
+					<small className="text-body-secondary">{FormatTime(time)}</small>
 				</>
 			) : (
 				"No Data."
@@ -24,7 +24,7 @@ export default function TimestampCell({
 			{service && (
 				<>
 					<br />
-					<small className="text-muted">Played On: {service}</small>
+					<small className="text-body-secondary">Played On: {service}</small>
 				</>
 			)}
 		</td>

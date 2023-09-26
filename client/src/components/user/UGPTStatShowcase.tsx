@@ -50,7 +50,7 @@ export default function UGPTStatShowcase({ reqUser, game, playtype }: UGPT) {
 	return (
 		<>
 			<Card
-				className="card-dark"
+				className="bg-body-secondary bg-opacity-50"
 				header={
 					<CardHeader
 						rightContent={
@@ -108,7 +108,7 @@ export default function UGPTStatShowcase({ reqUser, game, playtype }: UGPT) {
 										}
 									>
 										<div
-											className="btn btn-outline-secondary"
+											className="btn btn-outline-secondary text-body"
 											onClick={() => setProjectingStats(true)}
 										>
 											<i
@@ -127,7 +127,7 @@ export default function UGPTStatShowcase({ reqUser, game, playtype }: UGPT) {
 								}
 							>
 								<div
-									className="btn btn-outline-secondary"
+									className="btn btn-outline-secondary text-body"
 									onClick={() => setCustomShow(true)}
 								>
 									<i
@@ -176,7 +176,7 @@ export default function UGPTStatShowcase({ reqUser, game, playtype }: UGPT) {
 									<div className="col-12 col-lg-4 lg-offset-8">
 										<Alert variant="info" className="text-center">
 											CUSTOM STAT{" "}
-											<span className="float-right">
+											<span className="float-end">
 												<Icon
 													type="times"
 													onClick={() => setCustomStat(null)}
@@ -379,11 +379,11 @@ export function StatDisplay({
 
 		return (
 			<Card
-				className="text-center stat-overview-card w-100"
-				header={<h5 className="text-muted mb-0">Chart</h5>}
+				className="text-center stat-overview-card w-100 flex-grow-1"
+				header={<h5 className="text-body-secondary mb-0">Chart</h5>}
 			>
 				<>
-					<Link className="gentle-link" to={CreateChartLink(chart, game)}>
+					<Link className="text-decoration-none" to={CreateChartLink(chart, game)}>
 						<h4>{FormatChart(game, song, chart, true)}</h4>
 					</Link>
 					<h4>
@@ -411,11 +411,11 @@ export function StatDisplay({
 		return (
 			<Card
 				className="text-center stat-overview-card w-100"
-				header={<h5 className="text-muted mb-0">Folder</h5>}
+				header={<h5 className="text-body-secondary mb-0">Folder</h5>}
 			>
 				<>
 					<Link
-						className="gentle-link"
+						className="text-decoration-none"
 						to={`/u/${reqUser.id}/games/${game}/${playtype}/folders/${folder.folderID}`}
 					>
 						<h4>{headerStr}</h4>
@@ -427,7 +427,7 @@ export function StatDisplay({
 					</h5>
 					<h4>
 						{result.value}
-						<small className="text-muted">
+						<small className="text-body-secondary">
 							{/* @ts-expect-error This property definitely exists.*/}
 							{/* */}/{result.outOf} ({ToPercent(result.value, result.outOf)})
 						</small>

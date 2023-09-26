@@ -3,7 +3,7 @@ import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import { TachiConfig } from "lib/config";
 import React from "react";
-import { Alert } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 
 export default function BarbatosPage() {
 	useSetSubheader(["Import Scores", "Barbatos"]);
@@ -37,8 +37,11 @@ export default function BarbatosPage() {
 				</li>
 				<li>
 					Download your config file{" "}
-					<ExternalLink href="/client-file-flow/CXBarbatos">here</ExternalLink>. <br />
-					<b>This file contains an API Key, which is meant to be kept secret!</b>
+					<ExternalLink href="/client-file-flow/CXBarbatos">here</ExternalLink>
+					. <br />
+					<Alert variant="warning" className="mt-2">
+						This file contains an API Key, which is meant to be kept secret!
+					</Alert>
 				</li>
 				<li>
 					Place <code>barbatos.dll</code> and the above config file inside your SDVX

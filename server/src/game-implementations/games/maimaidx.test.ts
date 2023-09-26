@@ -44,10 +44,10 @@ t.test("Maimai DX Implementation", (t) => {
 			);
 
 		f(0, "D");
-		f(10, "C");
-		f(20, "B");
-		f(40, "BB");
-		f(60, "BBB");
+		f(50, "C");
+		f(60, "B");
+		f(70, "BB");
+		f(75, "BBB");
 		f(80, "A");
 		f(90, "AA");
 		f(94, "AAA");

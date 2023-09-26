@@ -152,40 +152,34 @@ export default function ScoreDropdown({
 			buttons={
 				<>
 					<SelectButton setValue={setView} value={view} id="moreInfo">
-						<Icon type="chart-bar" />
-						This Score
+						<Icon type="chart-bar" /> This Score
 					</SelectButton>
 					<SelectButton setValue={setView} value={view} id="vsPB">
-						<Icon type="trophy" />
-						Chart PB
+						<Icon type="trophy" /> Chart PB
 					</SelectButton>
 					<SelectButton setValue={setView} value={view} id="history">
-						<Icon type="history" />
-						Play History{histData && ` (${histData.length})`}
+						<Icon type="history" /> Play History{histData && ` (${histData.length})`}
 					</SelectButton>
 					{currentUser?.id === user.id && (
 						<SelectButton setValue={setView} value={view} id="targets">
-							<Icon type="scroll" />
-							Goals & Quests{targetData && ` (${targetData.goals.length})`}
+							<Icon type="scroll" /> Goals & Quests
+							{targetData && ` (${targetData.goals.length})`}
 						</SelectButton>
 					)}
 					{currentUser?.id === user.id && settings?.rivals && (
 						<SelectButton setValue={setView} value={view} id="rivals">
-							<Icon type="users" />
-							Rivals
+							<Icon type="users" /> Rivals
 						</SelectButton>
 					)}
 					{(currentUser?.id === user.id ||
 						currentUser?.authLevel === UserAuthLevels.ADMIN) && (
 						<SelectButton setValue={setView} value={view} id="manage">
-							<Icon type="trash" />
-							Delete Score
+							<Icon type="trash" /> Delete Score
 						</SelectButton>
 					)}
 					<HasDevModeOn>
 						<SelectButton setValue={setView} value={view} id="debug">
-							<Icon type="bug" />
-							Debug Info
+							<Icon type="bug" /> Debug Info
 						</SelectButton>
 					</HasDevModeOn>
 				</>

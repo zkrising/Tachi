@@ -19,7 +19,8 @@ import { useBucket } from "components/util/useBucket";
 import useLUGPTSettings from "components/util/useLUGPTSettings";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import { Form, InputGroup } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 import {
 	FolderDocument,
 	Game,
@@ -102,22 +103,15 @@ export default function FolderTablePage({ reqUser, game, playtype }: Props) {
 
 	return (
 		<>
-			<InputGroup>
-				<InputGroup.Prepend>
-					<InputGroup.Text>Table</InputGroup.Text>
-				</InputGroup.Prepend>
-				<Form.Control
-					as="select"
-					size="lg"
-					value={tableID}
-					onChange={(e) => setTableID(e.target.value)}
-				>
+			<InputGroup size="lg">
+				<InputGroup.Text>Table</InputGroup.Text>
+				<Form.Select value={tableID} onChange={(e) => setTableID(e.target.value)}>
 					{displayableTables.map((e) => (
 						<option key={e.tableID} value={e.tableID}>
 							{e.title}
 						</option>
 					))}
-				</Form.Control>
+				</Form.Select>
 			</InputGroup>
 			<Divider />
 			{table && <TableFolderViewer {...{ reqUser, game, playtype, table }} />}
@@ -305,8 +299,7 @@ function TableBarChart({
 						{GetScoreMetrics(gptConfig, "ENUM").map((e) => (
 							<SelectButton value={enumMetric} setValue={setEnumMetric} id={e}>
 								{/* @ts-expect-error this access is legal zzz */}
-								<Icon type={gptImpl.enumIcons[e]} />
-								{UppercaseFirst(e)}s
+								<Icon type={gptImpl.enumIcons[e]} /> {UppercaseFirst(e)}s
 							</SelectButton>
 						))}
 					</div>
@@ -363,26 +356,15 @@ function OverviewBarChart({
 		<ResponsiveBar
 			indexBy="folder"
 			tooltip={(d) => (
-				<BarChartTooltip
-					point={d}
-					renderFn={(d) => (
-						<div className="w-100 text-center">
-							{d.label}
-							<br />
-							{d.formattedValue}
-							<br />
-							<Muted>
-								({(d.data as any)[`${d.id}-count`] ?? 0} /{" "}
-								{/* @ts-expect-error cba */}
-								{d.data.__chartCount})
-							</Muted>
-						</div>
-					)}
-				/>
+				<BarChartTooltip barDatum={d}>
+					<Muted>
+						({(d.data as any)[`${d.id}-count`] ?? 0} / {d.data.__chartCount})
+					</Muted>
+				</BarChartTooltip>
 			)}
 			keys={Reverse(conf.values)}
 			colors={(k) => ChangeOpacity(colours[k.id], 0.5)}
-			borderColor={(k) => colours[k.data.id]}
+			borderColor={(k) => ChangeOpacity(colours[k.data.id], 0.4)}
 			borderWidth={1}
 			data={dataset}
 			minValue={0}

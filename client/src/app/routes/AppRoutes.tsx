@@ -6,13 +6,12 @@ import OAuthRequestAuthPage from "app/pages/OAuthRequestAuthPage";
 import RegisterPage from "app/pages/RegisterPage";
 import ResetPasswordPage from "app/pages/ResetPasswordPage";
 import VerifyEmailPage from "app/pages/VerifyEmailPage";
-import CenterPage from "components/util/CenterPage";
 import ErrorBoundary from "components/util/ErrorBoundary";
-import MainPageTitleContainer from "components/util/MainPageTitleContainer";
 import { UserContext } from "context/UserContext";
 import { ClientConfig } from "lib/config";
 import React, { useContext } from "react";
 import { Redirect, Route, Switch, useHistory } from "react-router-dom";
+import LoginPageLayout from "components/layout/LoginPageLayout";
 import ClientFileFlowRoutes from "./ClientFileFlowRoutes";
 import DashboardRoutes from "./DashboardRoutes";
 import OAuth2CallbackRoutes from "./OAuth2CallbackRoutes";
@@ -70,11 +69,10 @@ export function Routes() {
 					{user ? (
 						<Redirect to="/" />
 					) : (
-						<CenterPage>
-							<MainPageTitleContainer
-								title="You can't."
-								desc="If you signed up with a fake email, you're now locked out of this account. Nice one."
-							/>
+						<LoginPageLayout
+							heading="You can't."
+							description="If you signed up with a fake email, you're now locked out of this account. Nice one."
+						>
 							<span
 								onClick={() => HistorySafeGoBack(history)}
 								tabIndex={4}
@@ -82,7 +80,7 @@ export function Routes() {
 							>
 								Back
 							</span>
-						</CenterPage>
+						</LoginPageLayout>
 					)}
 				</Route>
 

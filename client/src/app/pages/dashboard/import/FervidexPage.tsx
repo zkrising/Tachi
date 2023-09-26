@@ -3,7 +3,7 @@ import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
 import { TachiConfig } from "lib/config";
 import React from "react";
-import { Alert } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 import { Link } from "react-router-dom";
 
 export default function FervidexPage() {
@@ -22,12 +22,15 @@ export default function FervidexPage() {
 			<ol className="instructions-list">
 				<li>
 					Download <code>fervidex.dll</code> from{" "}
-					<ExternalLink href="https://client.fervidex.net/latest.zip">Here</ExternalLink>.
+					<ExternalLink href="https://client.fervidex.net/latest.zip">here</ExternalLink>.
 				</li>
 				<li>
 					Download your <code>fervidex.json</code> config file{" "}
-					<ExternalLink href="/client-file-flow/CXFervidex">here</ExternalLink>. <br />
-					<b>This config file contains an API Key, which should be kept secret!</b>.
+					<ExternalLink href="/client-file-flow/CXFervidex">here</ExternalLink>
+					. <br />
+					<Alert variant="warning" className="mt-2">
+						This config file contains an API Key, which should be kept secret!
+					</Alert>
 				</li>
 				<li>
 					Drop both files into the same folder as your <code>bm2dx.dll</code>.
@@ -57,11 +60,7 @@ export default function FervidexPage() {
 			<Alert variant="warning">
 				Looking to import existing scores? Import from your network first. If that's not
 				possible, enable "Sync Existing Scores" in{" "}
-				<Link
-					className="gentle-link"
-					to={"/u/me/integrations/services/fervidex"}
-					style={{ color: "black", textDecoration: "underline" }}
-				>
+				<Link to={"/u/me/integrations/services/fervidex"}>
 					<b>your settings.</b>
 				</Link>
 			</Alert>

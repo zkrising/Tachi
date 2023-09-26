@@ -29,7 +29,7 @@ export default function RankingData({
 		if (key !== alg) {
 			extendData.push(
 				<div key={key} className="col-12">
-					<small className="text-muted">
+					<small className="text-body-secondary">
 						{UppercaseFirst(key)}: #{rankingData[key].ranking}/{rankingData[key].outOf}
 					</small>
 				</div>
@@ -45,11 +45,11 @@ export default function RankingData({
 			<div className="col-12">
 				<Link
 					to={`/u/${userID}/games/${game}/${playtype}/leaderboard`}
-					className="gentle-link"
+					className="text-decoration-none"
 				>
 					<strong className="display-4">#{rankingData[alg].ranking}</strong>
 				</Link>
-				<span className="text-muted">/{rankingData[alg].outOf}</span>
+				<span className="text-body-secondary">/{rankingData[alg].outOf}</span>
 			</div>
 			{extendData}
 		</div>
@@ -64,7 +64,7 @@ export function LazyRankingData({ ranking, outOf }: { ranking: integer; outOf: i
 			</div>
 			<div className="col-12">
 				<strong className="display-4">#{ranking}</strong>
-				<span className="text-muted">/{outOf}</span>
+				<span className="text-body-secondary">/{outOf}</span>
 			</div>
 		</div>
 	);

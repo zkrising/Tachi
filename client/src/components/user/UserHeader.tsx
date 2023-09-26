@@ -9,7 +9,7 @@ import Muted from "components/util/Muted";
 import { UserContext } from "context/UserContext";
 import { ClientConfig } from "lib/config";
 import React, { useContext, useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import { UserAuthLevels, UserDocument } from "tachi-common";
 import { SetState } from "types/react";
 import FollowUserButton from "components/util/FollowUserButton";
@@ -32,7 +32,7 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 			<li>
 				<Icon brand type={mode} />{" "}
 				<ExternalLink
-					className="gentle-link"
+					className="text-decoration-none"
 					href={href ? href + reqUser.socialMedia[mode] : undefined}
 				>
 					{reqUser.socialMedia[mode]}
@@ -198,7 +198,11 @@ function StatusComponent({ reqUser }: { reqUser: UserDocument }) {
 			</div>
 			<div className="col-12">
 				{isRequestedUser && (
-					<a href="#" onClick={() => setModalShow(true)}>
+					<a
+						href="#"
+						className="link-opacity-75 link-opacity-100-hover text-decoration-none transition-color"
+						onClick={() => setModalShow(true)}
+					>
 						Change Status
 					</a>
 				)}
@@ -258,20 +262,17 @@ function ChangeStatusModal({
 					}}
 				>
 					<Form.Group>
-						<div className="input-group">
-							<input
-								className="form-control form-control-lg"
+						<InputGroup size="lg">
+							<Form.Control
 								type="text"
 								placeholder={status ?? "I'm gaming..."}
 								value={innerStatus}
 								onChange={(e) => setInnerStatus(e.target.value)}
 							/>
-							<div className="input-group-append">
-								<Button variant="primary" type="submit">
-									Submit
-								</Button>
-							</div>
-						</div>
+							<Button variant="primary" type="submit">
+								Submit
+							</Button>
+						</InputGroup>
 					</Form.Group>
 				</Form>
 			</Modal.Body>

@@ -49,35 +49,40 @@ export function ErrorPage({
 		message = customMessage;
 	}
 
+	const style =
+		statusCode === 999
+			? {
+					background: "red",
+					backgroundImage: `url(${ToCDNURL("/eggs/michael.png")})`,
+					backgroundRepeat: "no-repeat",
+					backgroundPosition: "center",
+					backgroundSize: "cover",
+					color: "red",
+					zIndex: 9999,
+			  }
+			: { zIndex: 9999 };
+
+	const bgColour = statusCode === 999 ? " " : " bg-body ";
+
 	return (
 		<div
-			className="fullscreen text-center"
-			style={
-				statusCode === 999
-					? {
-							background: "red",
-							backgroundImage: `url(${ToCDNURL("/eggs/michael.png")})`,
-							backgroundRepeat: "no-repeat",
-							backgroundPosition: "center",
-							backgroundSize: "cover",
-					  }
-					: undefined
-			}
+			className={`position-fixed inset-0 d-flex flex-column justify-content-center align-items-center${bgColour}text-center`}
+			style={style}
 		>
-			<div className="d-flex flex-column flex-root">
-				<div className="d-flex flex-row-fluid flex-column bgi-size-cover bgi-position-center bgi-no-repeat p-10 p-sm-30">
-					<h1
-						className="font-size-sm-100 font-weight-boldest mt-15"
-						style={{ fontSize: "150px" }}
-					>
-						{statusCode || "Completely Screwed."}
-					</h1>
-					<p className="font-size-h3 font-weight-light">{message}</p>
-					<a className="text-primary" onClick={() => HistorySafeGoBack(history)}>
-						Go Back.
-					</a>
-				</div>
-			</div>
+			<h1 className="display-1 enable-rfs fw-bold mt-15">
+				{statusCode || "Completely Screwed."}
+			</h1>
+			<p className="fs-3">{message}</p>
+			<a
+				href="#"
+				style={{ color: "inherit" }}
+				onClick={(e) => {
+					e.preventDefault();
+					HistorySafeGoBack(history);
+				}}
+			>
+				Go Back
+			</a>
 		</div>
 	);
 }

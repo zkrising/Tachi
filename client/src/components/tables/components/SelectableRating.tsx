@@ -1,7 +1,8 @@
 import { UppercaseFirst } from "util/misc";
 import React from "react";
-import { Game, GetGamePTConfig, GPTString, Playtypes, ScoreRatingAlgorithms } from "tachi-common";
+import { Game, GetGamePTConfig, GPTString, Playtypes } from "tachi-common";
 import { SetState } from "types/react";
+import Icon from "components/util/Icon";
 import { ZTableTHProps } from "./TachiTable";
 
 // hack to get everything to work
@@ -35,18 +36,11 @@ export default function SelectableRating<GPT extends GPTString>({
 	}
 
 	return (
-		<th>
+		<th className="vstack gap-1 align-items-center justify-content-center">
 			<select
 				onChange={(v) => setRating(v.target.value as AllRatings<GPT>)}
 				value={rating}
-				style={{
-					backgroundColor: "#131313",
-					border: "none",
-					color: "#ffffff",
-					fontSize: "inherit",
-					font: "inherit",
-					textAlign: "center",
-				}}
+				className="border-0 text-body fw-bolder bg-transparent rounded focus-ring focus-ring-light"
 			>
 				{Object.keys(gptConfig[key]).map((s) => (
 					<option key={s} value={s}>
@@ -54,19 +48,26 @@ export default function SelectableRating<GPT extends GPTString>({
 					</option>
 				))}
 			</select>
-			<br />
-			<span onClick={() => changeSort("Rating")}>
-				<i
-					className={`flaticon2-arrow-up icon-sm sort-icon ${
-						currentSortMode === "Rating" && reverseSort ? "active" : ""
-					}`}
-				></i>
-				<i
-					className={`flaticon2-arrow-down icon-sm sort-icon ${
-						currentSortMode === "Rating" && !reverseSort ? "active" : ""
-					}`}
-				></i>
-			</span>
+			<div onClick={() => changeSort("Rating")}>
+				<span className="d-flex justify-content-center gap-1">
+					<Icon
+						type="arrow-up"
+						className={
+							currentSortMode === "Rating" && reverseSort
+								? "opacity-100"
+								: "opacity-25"
+						}
+					/>
+					<Icon
+						type="arrow-down"
+						className={
+							currentSortMode === "Rating" && !reverseSort
+								? "opacity-100"
+								: "opacity-25"
+						}
+					/>
+				</span>
+			</div>
 		</th>
 	);
 }

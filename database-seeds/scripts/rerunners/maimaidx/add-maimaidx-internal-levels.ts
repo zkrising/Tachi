@@ -1,8 +1,8 @@
 /**
  * Run parse-maimaidx-dataset.js first.
  *
- * Internal levels for FESTiVAL songs are at
- * https://docs.google.com/spreadsheets/d/1xbDMo-36bGL_d435Oy8TTVq4ADFmxl9sYFqhTXiJYRg/edit
+ * Internal levels for FESTiVAL+ songs are at
+ * https://docs.google.com/spreadsheets/d/1xqXfzfDfxiEE9mREwgX_ITIY8AowRM7w-TH2t1I_RJE/edit
  *
  * Download sheets as CSV and use `-f <CSV filename>`.
  *
@@ -28,6 +28,31 @@ interface XmlNotes {
 	musicLevelID: number;
 	maxNotes: number;
 	isEnable: boolean;
+}
+
+interface AddOtherSheetOptions {
+	/**
+	 * Whether there is a category header in the table.
+	 */
+	parseCategory?: boolean;
+
+	/**
+	 * Whether there is a category column in the table.
+	 */
+	hasCategoryColumn?: boolean;
+
+	/**
+	 * Mark all songs in this sheet as being in the latest version of the game.
+	 */
+	markLatest?: boolean;
+
+	/**
+	 * If `markLatest` is true, exclude these songs from being marked as latest.
+	 *
+	 * This is useful when songs are released in different versions of the game
+	 * in different regions (e.g. FESTiVAL PLUS in Japan but FESTiVAL internationally.)
+	 */
+	markLatestExceptions?: string[];
 }
 
 const diffMap = new Map([
@@ -91,6 +116,7 @@ const manualTitleMap = new Map([
 	["God Knows…", "God knows..."],
 	["Jorqer", "Jörqer"],
 	["スカーレット警察のゲットーパトロール２４時", "スカーレット警察のゲットーパトロール24時"],
+	["Bad Apple!! feat.nomico 〜五十嵐撫子Ver.〜", "Bad Apple!! feat.nomico ～五十嵐 撫子 Ver.～"],
 ]);
 
 function normalizeTitle(title: string): string {
@@ -116,6 +142,16 @@ function normalizeTitle(title: string): string {
 			.replace(/～/gu, "~")
 			.replace(/－/gu, "-")
 			.replace(/＠/gu, "@")
+			.replace(/１/gu, "1")
+			.replace(/２/gu, "2")
+			.replace(/３/gu, "3")
+			.replace(/４/gu, "4")
+			.replace(/５/gu, "5")
+			.replace(/６/gu, "6")
+			.replace(/７/gu, "7")
+			.replace(/８/gu, "8")
+			.replace(/９/gu, "9")
+			.replace(/０/gu, "0")
 	);
 }
 
@@ -168,7 +204,7 @@ function addTmaiSheet(csvData: string[][]) {
 				break;
 			}
 
-			const song = songs.find((s) => s.title === title);
+			const song = findSong(songs, title, "");
 			if (!song) {
 				console.log(`Could not find song ${title}`);
 				continue;
@@ -203,26 +239,25 @@ function addTmaiSheet(csvData: string[][]) {
 /**
  * Adds internal levels to charts from a CSV file.
  * @param csvData raw CSV data
- * @param parseCategory whether to include category header in parsing
  * @param headerRow the index (starting from 0) of the first row with a song
  * 	(or with category if `parseCategory` is `true`)
  *
  *  **To be considered a category only the first column can have text.**
- * @param hasCategoryColumn whether there is a category column for each song
- * @param markLatest whether to mark chart as latest
+ * @param options
  */
-function addOtherSheet(
-	csvData: string[][],
-	parseCategory: boolean,
-	headerRow: number,
-	hasCategoryColumn: boolean,
-	markLatest: boolean
-) {
+function addOtherSheet(csvData: string[][], headerRow: number, options: AddOtherSheetOptions) {
+	const {
+		parseCategory = false,
+		hasCategoryColumn = false,
+		markLatest = false,
+		markLatestExceptions = [],
+	} = options;
+
 	const songs = ReadCollection("songs-maimaidx.json");
 	const categoryColumnOffset = hasCategoryColumn ? 1 : 0;
 	let currentCategory = "";
 
-	MutateCollection("charts-maimaidx.json", (charts) => {
+	MutateCollection("charts-maimaidx.json", (charts: ChartDocument<"maimaidx:Single">[]) => {
 		for (
 			let colNumber = 0;
 			colNumber + 4 + categoryColumnOffset < csvData[0]!.length;
@@ -248,7 +283,11 @@ function addOtherSheet(
 
 				const sheetDifficulty = row[colNumber + categoryColumnOffset + 2]!;
 				const internalLevelString = row[colNumber + categoryColumnOffset + 4];
-				if (!internalLevelString || internalLevelString === "#N/A") {
+				if (
+					!internalLevelString ||
+					internalLevelString === "#N/A" ||
+					internalLevelString === "-"
+				) {
 					continue;
 				}
 				const internalLevel = Number(internalLevelString.match(/\d+\.\d+/u)?.[0]);
@@ -280,7 +319,10 @@ function addOtherSheet(
 					);
 					chart.levelNum = internalLevel;
 				}
-				if (chart.data.isLatest !== markLatest) {
+				if (
+					chart.data.isLatest !== markLatest &&
+					!markLatestExceptions.includes(song.title)
+				) {
 					console.log(
 						`Marking ${song.title} [${chart.difficulty}]'s isLatest to ${markLatest}`
 					);
@@ -362,18 +404,26 @@ if (options.directory) {
 	});
 } else if (options.file) {
 	const csvData = parse(fs.readFileSync(options.file));
-	const newSongsSheet = options.file.includes("新曲.csv");
+	const newSongsSheet = options.file.includes("新曲");
 	const tmaiSheet = options.file.includes(" - Tmai.csv");
-	const highLevelSheet = / - (14以上|13+|13).csv$/u.test(options.file);
+	const highLevelSheet = / - (14以上|13+|13)$/u.test(options.file);
 
 	if (tmaiSheet) {
 		addTmaiSheet(csvData);
 	} else if (newSongsSheet) {
-		addOtherSheet(csvData, false, 7, false, true);
+		addOtherSheet(csvData, 7, {
+			markLatest: true,
+			markLatestExceptions: [
+				"INTERNET OVERDOSE",
+				"Knight Rider",
+				"Let you DIVE!",
+				"Trrricksters!!",
+			],
+		});
 	} else if (highLevelSheet) {
-		addOtherSheet(csvData, false, 3, true, false);
+		addOtherSheet(csvData, 3, { hasCategoryColumn: true });
 	} else {
-		addOtherSheet(csvData, true, 2, true, false);
+		addOtherSheet(csvData, 2, { parseCategory: true, hasCategoryColumn: true });
 	}
 } else {
 	console.error("Must specify either a file or a directory");

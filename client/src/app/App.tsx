@@ -10,6 +10,7 @@ import React from "react";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
+import { WindowContextProvider } from "context/WindowContext";
 import { Routes } from "./routes/AppRoutes";
 
 const queryClient = new QueryClient({
@@ -19,28 +20,30 @@ const queryClient = new QueryClient({
 export default function App({ basename }: { basename: string }) {
 	return (
 		<React.StrictMode>
-			<QueryClientProvider client={queryClient}>
-				<BannedContextProvider>
-					<UserContextProvider>
-						<NotificationsContextProvider>
-							<UserSettingsContextProvider>
-								<AllLUGPTStatsContextProvider>
-									<LoadingScreen>
-										<BrowserRouter basename={basename}>
-											<MaterialThemeProvider>
-												<Toaster />
-												<SubheaderContextProvider>
-													<Routes />
-												</SubheaderContextProvider>
-											</MaterialThemeProvider>
-										</BrowserRouter>
-									</LoadingScreen>
-								</AllLUGPTStatsContextProvider>
-							</UserSettingsContextProvider>
-						</NotificationsContextProvider>
-					</UserContextProvider>
-				</BannedContextProvider>
-			</QueryClientProvider>
+			<WindowContextProvider>
+				<QueryClientProvider client={queryClient}>
+					<BannedContextProvider>
+						<UserContextProvider>
+							<LoadingScreen>
+								<NotificationsContextProvider>
+									<UserSettingsContextProvider>
+										<AllLUGPTStatsContextProvider>
+											<BrowserRouter basename={basename}>
+												<MaterialThemeProvider>
+													<Toaster />
+													<SubheaderContextProvider>
+														<Routes />
+													</SubheaderContextProvider>
+												</MaterialThemeProvider>
+											</BrowserRouter>
+										</AllLUGPTStatsContextProvider>
+									</UserSettingsContextProvider>
+								</NotificationsContextProvider>
+							</LoadingScreen>
+						</UserContextProvider>
+					</BannedContextProvider>
+				</QueryClientProvider>
+			</WindowContextProvider>
 		</React.StrictMode>
 	);
 }

@@ -3,7 +3,7 @@ import QuickTooltip from "components/layout/misc/QuickTooltip";
 import Icon from "components/util/Icon";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import { ScoreDocument } from "tachi-common";
 import { SetState } from "types/react";
 
@@ -36,19 +36,22 @@ export default function ScoreEditButtons({
 							<>
 								<QuickTooltip tooltipContent="Edit your comment on this score.">
 									<Button
-										variant="outline-secondary"
+										variant="outline-secondary text-light-hover"
+										className="text-body"
 										onClick={() => setShow(true)}
 									>
-										<Icon type="file-signature" />
-										Comment
+										<Icon type="file-signature" /> Edit Comment
 									</Button>
 								</QuickTooltip>
 							</>
 						) : (
 							<QuickTooltip tooltipContent="Comment on this score.">
-								<Button variant="outline-secondary" onClick={() => setShow(true)}>
-									<Icon type="file-signature" />
-									Comment
+								<Button
+									variant="outline-secondary text-light-hover"
+									className="text-body"
+									onClick={() => setShow(true)}
+								>
+									<Icon type="file-signature" /> Comment
 								</Button>
 							</QuickTooltip>
 						)}
@@ -56,7 +59,7 @@ export default function ScoreEditButtons({
 						{highlight ? (
 							<QuickTooltip tooltipContent="Unhighlight this score.">
 								<Button
-									variant="success"
+									variant="outline-danger"
 									onClick={() =>
 										ModifyScore(score.scoreID, { highlight: false }).then(
 											(r) => {
@@ -69,14 +72,14 @@ export default function ScoreEditButtons({
 										)
 									}
 								>
-									<Icon type="star" />
-									Un-Highlight
+									<Icon type="star" /> Un-Highlight
 								</Button>
 							</QuickTooltip>
 						) : (
 							<QuickTooltip tooltipContent="Highlight this score.">
 								<Button
 									variant="outline-secondary"
+									className="text-body text-light-hover"
 									onClick={() =>
 										ModifyScore(score.scoreID, { highlight: true }).then(
 											(r) => {
@@ -89,8 +92,7 @@ export default function ScoreEditButtons({
 										)
 									}
 								>
-									<Icon type="star" />
-									Highlight
+									<Icon type="star" /> Highlight
 								</Button>
 							</QuickTooltip>
 						)}
@@ -175,23 +177,20 @@ export function CommentModal({
 					}}
 				>
 					<Form.Group>
-						<div className="input-group">
-							<input
+						<InputGroup size="lg">
+							<Form.Control
 								ref={ref}
 								autoFocus
-								className="form-control form-control-lg"
 								type="text"
 								placeholder={initialComment ?? "This score was great!"}
 								value={innerComment}
 								onChange={(e) => setInnerComment(e.target.value)}
 							/>
 
-							<div className="input-group-append">
-								<Button variant="primary" type="submit">
-									Submit
-								</Button>
-							</div>
-						</div>
+							<Button variant="primary" type="submit">
+								Submit
+							</Button>
+						</InputGroup>
 					</Form.Group>
 
 					{initialComment !== null && (

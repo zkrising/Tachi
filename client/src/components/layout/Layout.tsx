@@ -1,45 +1,40 @@
-import BackgroundImage from "components/layout/misc/BackgroundImage";
-import { BackgroundContextProvider } from "context/BackgroundContext";
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { JustChildren } from "types/react";
+import { BackgroundContextProvider } from "context/BackgroundContext";
+import BackgroundImage from "components/layout/misc/BackgroundImage";
+import Container from "react-bootstrap/Container";
+import { WindowContext } from "context/WindowContext";
 import { Footer } from "./footer/Footer";
-import { Header } from "./header/Header";
-import { HeaderMobile } from "./header/HeaderMobile";
+import Header from "./header/Header";
 import { SubHeader } from "./subheader/SubHeader";
 
+export type LayoutStyles = {
+	backgroundHeight: number;
+	headerHeight: number;
+};
+
 export function Layout({ children }: JustChildren) {
-	const [mobileShow, setMobileShow] = useState(false);
-
+	const {
+		breakpoint: { isLg },
+	} = useContext(WindowContext);
+	const styles: LayoutStyles = {
+		backgroundHeight: isLg ? 200 : 125,
+		headerHeight: isLg ? 80 : 55,
+	};
 	return (
-		<>
-			<HeaderMobile setMobileShow={setMobileShow} mobileShow={mobileShow} />
+		<div id="main-wrapper" className="d-flex flex-column overflow-x-hidden min-vh-100">
+			<Header styles={styles} />
 
-			<div className="d-flex flex-column flex-root">
-				<div className="d-flex flex-row flex-column-fluid page">
-					<div
-						className="d-flex flex-column flex-row-fluid wrapper"
-						id="kt_wrapper"
-						style={{ overflowX: "hidden" }}
-					>
-						<Header mobileShow={mobileShow} setMobileShow={setMobileShow} />
+			<BackgroundContextProvider>
+				<BackgroundImage styles={styles} />
+				<SubHeader styles={styles} />
 
-						<BackgroundContextProvider>
-							<BackgroundImage />
+				<Container as="main" className="mt-8 d-flex flex-column flex-grow-1">
+					{children}
+				</Container>
+			</BackgroundContextProvider>
 
-							<div
-								id="kt_content"
-								className="content d-flex flex-column flex-column-fluid"
-							>
-								<SubHeader />
-
-								<div className="container">{children}</div>
-							</div>
-						</BackgroundContextProvider>
-
-						<Footer />
-					</div>
-				</div>
-			</div>
-		</>
+			<Footer />
+		</div>
 	);
 }

@@ -8,7 +8,7 @@ import { TachiConfig } from "lib/config";
 import { PrudenceSchema, p } from "prudence";
 import React, { useEffect, useMemo, useState } from "react";
 import { Alert, Button, Col, Form, Modal, Row } from "react-bootstrap";
-import { FormatPrError, GetGameConfig } from "tachi-common";
+import { FormatPrError, GetGameConfig, GetGamePTConfig, GetScoreMetrics } from "tachi-common";
 import { PR_GOAL_SCHEMA } from "tachi-common/lib/schemas";
 import { SetState } from "types/react";
 import { RawQuestDocument } from "types/tachi";
@@ -38,8 +38,33 @@ const PR_LOCAL_QUESTS_SCHEMA: PrudenceSchema = {
 						{
 							goal: {
 								name: "string",
-								charts: PR_GOAL_SCHEMA.charts,
-								criteria: PR_GOAL_SCHEMA.criteria,
+								charts: p.or(
+									{
+										type: p.is("folder"),
+										data: "string",
+									},
+									{
+										type: p.is("multi"),
+										data: ["string"],
+									},
+									{
+										type: p.is("single"),
+										data: "string",
+									}
+								),
+								criteria: p.or(
+									{
+										mode: p.is("single"),
+										key: "string", // temp
+										value: "number",
+									},
+									{
+										mode: p.isIn("absolute", "proportion"),
+										countNum: p.isPositive,
+										key: "string", // temp
+										value: "number",
+									}
+								),
 							},
 							note: p.optional("string"),
 						},
@@ -114,7 +139,7 @@ export default function QuestEditor() {
 					{quests.length > 0 && (
 						<>
 							<a
-								className="btn btn-success mr-4"
+								className="btn btn-success me-4"
 								download={`Quests-${Date.now()}.json`}
 								href={`data:application/json;charset=UTF-8,${encodeURIComponent(
 									JSON.stringify(quests)
@@ -123,7 +148,7 @@ export default function QuestEditor() {
 								Download Quests
 							</a>
 							<div
-								className="btn btn-danger mr-4"
+								className="btn btn-danger me-4"
 								onClick={() => {
 									if (confirm("Are you sure you want to start from scratch?")) {
 										setQuests([]);
@@ -161,8 +186,7 @@ export default function QuestEditor() {
 				<div className="w-100 h-100">
 					<div className="d-flex w-100 h-100 justify-content-center align-items-center">
 						<Button variant="outline-success" onClick={() => setShow(true)}>
-							<Icon type="plus" />
-							Add New Quest
+							<Icon type="plus" /> Add New Quest
 						</Button>
 					</div>
 				</div>

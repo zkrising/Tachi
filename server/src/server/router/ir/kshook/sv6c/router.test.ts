@@ -10,17 +10,13 @@ t.test("POST /ir/kshook/sv6c/score/save", (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(InsertFakeTokenWithAllPerms("mock_token"));
 
-	// eslint-disable-next-line @typescript-eslint/ban-types
-	const validSubmit = (data: object) =>
-		mockApi
+	t.test("Should import a valid score to the database.", async (t) => {
+		const res = await mockApi
 			.post("/ir/kshook/sv6c/score/save")
 			.set("Authorization", "Bearer mock_token")
 			.set("User-Agent", "kshook/0.1.0")
 			.set("X-Software-Model", "QCV:J:C:A:2021100600")
-			.send(data);
-
-	t.test("Should import a valid score to the database.", async (t) => {
-		const res = await validSubmit(TestingKsHookSV6CScore);
+			.send(TestingKsHookSV6CScore);
 
 		t.equal(res.status, 200);
 		t.equal(res.body.success, true);
@@ -33,16 +29,26 @@ t.test("POST /ir/kshook/sv6c/score/save", (t) => {
 	});
 
 	t.test("Should reject invalid scores to the database.", async (t) => {
-		const res = await validSubmit({});
+		const res = await mockApi
+			.post("/ir/kshook/sv6c/score/save")
+			.set("Authorization", "Bearer mock_token")
+			.set("User-Agent", "kshook/0.1.0")
+			.set("X-Software-Model", "QCV:J:C:A:2021100600")
+			.send({});
 
 		t.equal(res.status, 400, "Should return 400 for an empty object.");
 		t.type(res.body.error, "string", "Should attach an error message.");
 
-		const res2 = await validSubmit(
-			deepmerge(TestingKsHookSV6CScore, {
-				clear: "INVALID_CLEAR_TYPE",
-			})
-		);
+		const res2 = await mockApi
+			.post("/ir/kshook/sv6c/score/save")
+			.set("Authorization", "Bearer mock_token")
+			.set("User-Agent", "kshook/0.1.0")
+			.set("X-Software-Model", "QCV:J:C:A:2021100600")
+			.send(
+				deepmerge(TestingKsHookSV6CScore, {
+					clear: "INVALID_CLEAR_TYPE",
+				})
+			);
 
 		t.equal(res2.status, 400, "Should return 400 for an invalid clear type.");
 		t.type(res2.body.error, "string", "Should attach an error message.");

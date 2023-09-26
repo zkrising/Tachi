@@ -10,13 +10,13 @@ export default function CheckEdit<T extends string>({
 }: { type: T; currentType: T; onChange: () => void } & JustChildren) {
 	return (
 		<div
-			className={`my-4 ${currentType !== type ? "text-muted" : ""}`}
+			className={`my-4 ${currentType !== type ? "text-body-secondary" : ""}`}
 			style={{ fontWeight: currentType === type ? "bold" : "" }}
 		>
 			<Form.Check
 				type="radio"
 				style={{ display: "inline" }}
-				className="mr-4"
+				className="me-4"
 				checked={currentType === type}
 				onChange={onChange}
 			/>{" "}

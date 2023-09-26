@@ -52,7 +52,7 @@ export const SeedsBMSCourseLookupCells: CellsRenderFN<BMSCourseWithRelated> = ({
 		<td>
 			<strong>{data.title}</strong>
 		</td>
-		<td className="text-left">
+		<td className="text-start">
 			{data.__related.entries.map((e, i) => (
 				<div key={i} className="d-flex w-100">
 					{typeof e === "string" ? (
@@ -62,7 +62,7 @@ export const SeedsBMSCourseLookupCells: CellsRenderFN<BMSCourseWithRelated> = ({
 					)}
 
 					{!compress && (
-						<div className="ml-auto" key={i}>
+						<div className="ms-auto" key={i}>
 							<code>{typeof e === "string" ? e : e.chart.data.hashMD5}</code>
 						</div>
 					)}

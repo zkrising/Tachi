@@ -10,7 +10,8 @@ import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useEffect, useState } from "react";
-import { Row } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import {
 	APIImportTypes,
@@ -21,6 +22,7 @@ import {
 	integer,
 	UserDocument,
 } from "tachi-common";
+import Col from "react-bootstrap/Col";
 
 export default function ImportPage({ user }: { user: UserDocument }) {
 	useSetSubheader(["Import Scores"]);
@@ -36,7 +38,7 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 	}, [queryGame]);
 
 	return (
-		<div>
+		<>
 			<div>
 				<h4>
 					Here, you can import score files, Synchronise with existing services, or set up
@@ -54,9 +56,8 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 				Want to manage or revert an import? Go to{" "}
 				<Link to={`/u/${user.username}/imports`}>Import Management</Link>.
 			</div>
-			<Divider />
-			<select
-				className="form-control"
+			<hr />
+			<Form.Select
 				onChange={(e) => setGame(e.target.value === "" ? null : (e.target.value as Game))}
 				value={game ?? ""}
 			>
@@ -66,11 +67,11 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 						{GetGameConfig(e).name}
 					</option>
 				))}
-			</select>
-			<Divider />
+			</Form.Select>
+			<hr />
 
 			{game ? <ImportInfoDisplayer game={game} /> : <ShowRecentImports />}
-		</div>
+		</>
 	);
 }
 
@@ -179,6 +180,13 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc="Automatically import scores, whenever you get them!"
 				moreInfo="This is the recommended way to import CHUNITHM scores, as it provides high quality data in real-time."
 				key="Chunitachi"
+			/>,
+			<ImportInfoCard
+				name="CHUNITHM Site Importer"
+				href="kt-chunithm-site-importer"
+				desc="Use your data from CHUNITHM NET."
+				moreInfo="If you are currently playing on CHUNITHM International, you can import play data from it here."
+				key="CHUNITHM Site Importer"
 			/>
 		);
 	} else if (game === "bms") {
@@ -193,8 +201,8 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			<ImportInfoCard
 				name="LR2 Hook"
 				href="lr2hook"
-				desc="Automatically import scores, whenever you get them (in LR2)!"
-				moreInfo="This is the recommended way to import LR2 BMS scores, as it provides high quality data in real-time."
+				desc="Automatically import scores from LR2."
+				moreInfo="IMPORTANT: Bokutachi **DOES NOT** provide official support for LR2. Unless you have a *really* good reason, please use lr2oraja instead."
 				key="LR2 IR"
 			/>,
 			<ImportInfoCard
@@ -262,6 +270,16 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				key="WACCA MyPage Scraper"
 			/>
 		);
+	} else if (game === "maimaidx") {
+		Content.unshift(
+			<ImportInfoCard
+				name="maimai DX Site Importer"
+				href="kt-maimaidx-site-importer"
+				desc="Use your data from maimai DX NET."
+				moreInfo="If you are currently playing on maimai DX International, you can import play data from it here."
+				key="maimai DX NET Importer"
+			/>
+		);
 	} else if (game === "museca") {
 		Content.unshift(
 			<ImportTypeInfoCard key="api/cg-dev-museca" importType="api/cg-dev-museca" />,
@@ -289,7 +307,9 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			<div className="text-center mb-4">
 				<h1>{gameConfig.name}</h1>
 			</div>
-			<div className="row justify-content-center">{Content}</div>
+			<Row xs={{ cols: 1 }} lg={{ cols: 2 }}>
+				{Content}
+			</Row>
 		</>
 	);
 }
@@ -548,8 +568,16 @@ function ImportInfoCard({
 	moreInfo?: React.ReactChild;
 }) {
 	return (
-		<div className="col-12 col-lg-6 mb-6 d-grid">
-			<Card header={name} footer={<LinkButton to={`/import/${href}`}>Use this!</LinkButton>}>
+		<Col className="p-2 flex-grow-1">
+			<Card
+				className="h-100"
+				header={name}
+				footer={
+					<LinkButton className="float-end" to={`/import/${href}`}>
+						Use this!
+					</LinkButton>
+				}
+			>
 				<div style={{ fontSize: "1.5rem" }}>{desc}</div>
 				{moreInfo && (
 					<>
@@ -558,6 +586,6 @@ function ImportInfoCard({
 					</>
 				)}
 			</Card>
-		</div>
+		</Col>
 	);
 }

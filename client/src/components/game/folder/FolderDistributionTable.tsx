@@ -1,5 +1,5 @@
 import { ChangeOpacity } from "util/color-opacity";
-import { TACHI_CHART_THEME } from "util/constants/chart-theme";
+import { TACHI_BAR_THEME } from "util/constants/chart-theme";
 import { Reverse, StepFromToMax, PercentFrom } from "util/misc";
 import { ResponsiveBar } from "@nivo/bar";
 import { BarChartTooltip } from "components/charts/ChartTooltip";
@@ -65,12 +65,11 @@ function FolderThermometer<T extends string>({
 			<ResponsiveBar
 				keys={Reverse(keys)}
 				data={[Object.assign({ id: "" }, values)]}
-				theme={Object.assign({}, TACHI_CHART_THEME, { background: "#1c1c1c" })}
+				theme={Object.assign({}, TACHI_BAR_THEME)}
 				// @ts-expect-error temp
 				colors={(k) => ChangeOpacity(colours[k.id], 0.5)}
 				// @ts-expect-error Keys are appended with "." for some reason.
-				borderColor={(k) => colours[k.data.id]}
-				labelTextColor="black"
+				borderColor={(k) => ChangeOpacity(colours[k.data.id], 0.4)}
 				labelSkipHeight={12}
 				maxValue={max}
 				padding={0.33}
@@ -81,17 +80,14 @@ function FolderThermometer<T extends string>({
 					tickPadding: 5,
 					tickValues: StepFromToMax(max),
 				}}
-				margin={{ right: 50, bottom: 10, top: 20 }}
+				margin={{ left: 10, right: 40, bottom: 10, top: 20 }}
 				tooltip={(d) => (
-					<BarChartTooltip
-						point={d}
-						renderFn={(d) => (
-							<div className="w-100 text-center">
-								{d.label}
-								{d.value} ({PercentFrom(d.value, max)})
-							</div>
-						)}
-					/>
+					<BarChartTooltip>
+						<div>{d.label}</div>
+						<div>
+							{d.value} ({PercentFrom(d.value, max)})
+						</div>
+					</BarChartTooltip>
 				)}
 				motionConfig="stiff"
 			/>

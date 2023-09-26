@@ -37,7 +37,7 @@ import {
 	ClumpedActivitySession,
 } from "types/tachi";
 import { InnerQuestSectionGoal } from "components/targets/quests/Quest";
-import ProfilePicture, { ProfilePictureSmall } from "components/user/ProfilePicture";
+import ProfilePicture from "components/user/ProfilePicture";
 import SupporterIcon from "components/util/SupporterIcon";
 
 // Records activity for a group of users on a GPT. Also used for single users.
@@ -188,54 +188,45 @@ function ActivityInner({
 					}
 				})}
 				<div className="timeline-item">
-					<div className="timeline-item">
-						<div className="timeline-badge bg-success"></div>
-						<div
-							className="timeline-content d-flex"
-							style={{
-								flexDirection: "column",
-								flexWrap: "wrap",
-								marginRight: "2rem",
-							}}
-						>
-							{exhausted ? (
-								<>No more activity. This is the end of the road!</>
-							) : (
-								<Button
-									variant="outline-primary"
-									onClick={() => {
-										let lastTimestamp;
-										const lastThing = data.at(-1)!;
+					<div className="timeline-badge bg-success"></div>
+					<div className="timeline-content">
+						{exhausted ? (
+							<>No more activity. This is the end of the road!</>
+						) : (
+							<Button
+								variant="outline-primary"
+								onClick={() => {
+									let lastTimestamp;
+									const lastThing = data.at(-1)!;
 
-										switch (lastThing.type) {
-											case "SCORES":
-												lastTimestamp = lastThing.scores[0]?.timeAchieved;
-												break;
-											case "CLASS_ACHIEVEMENT":
-												lastTimestamp = lastThing.timeAchieved;
-												break;
-											case "SESSION":
-												lastTimestamp = lastThing.timeStarted;
-												break;
-											case "GOAL_ACHIEVEMENTS":
-												lastTimestamp = lastThing.goals[0]?.timeAchieved;
-												break;
-											case "QUEST_ACHIEVEMENT":
-												lastTimestamp = lastThing.sub.timeAchieved;
-										}
+									switch (lastThing.type) {
+										case "SCORES":
+											lastTimestamp = lastThing.scores[0]?.timeAchieved;
+											break;
+										case "CLASS_ACHIEVEMENT":
+											lastTimestamp = lastThing.timeAchieved;
+											break;
+										case "SESSION":
+											lastTimestamp = lastThing.timeStarted;
+											break;
+										case "GOAL_ACHIEVEMENTS":
+											lastTimestamp = lastThing.goals[0]?.timeAchieved;
+											break;
+										case "QUEST_ACHIEVEMENT":
+											lastTimestamp = lastThing.sub.timeAchieved;
+									}
 
-										if (!lastTimestamp) {
-											alert("Failed. What?");
-											return;
-										}
+									if (!lastTimestamp) {
+										alert("Failed. What?");
+										return;
+									}
 
-										fetchMoreFrom(lastTimestamp);
-									}}
-								>
-									Load More...
-								</Button>
-							)}
-						</div>
+									fetchMoreFrom(lastTimestamp);
+								}}
+							>
+								Load More...
+							</Button>
+						)}
 					</div>
 				</div>
 			</div>
@@ -297,11 +288,15 @@ function ScoresActivity({
 	return (
 		<div className="timeline-item timeline-hover my-4">
 			<div className="timeline-badge bg-warning"></div>
-			<div className="timeline-content">
+			<div className="timeline-content flex-nowrap">
 				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
 					<div className="timeline-content-title">
-						<span className="mr-2">
-							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
+						<span className="me-2">
+							<ProfilePicture
+								size="sm"
+								user={user}
+								toGPT={`games/${game}/${playtype}`}
+							/>
 						</span>
 						<Icon
 							type={`chevron-${show ? "down" : "right"}`}
@@ -309,7 +304,7 @@ function ScoresActivity({
 								fontSize: "0.75rem",
 							}}
 						/>
-						<span style={{ fontSize: "1.15rem" }} className="ml-2">
+						<span style={{ fontSize: "1.15rem" }} className="ms-2">
 							<UGPTLink reqUser={user} game={game} playtype={playtype} /> highlighted{" "}
 							{subMessage}!
 						</span>
@@ -324,7 +319,7 @@ function ScoresActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.scores[0].timeAchieved ?? 0)}
 						<br />
-						<span className="text-muted font-italic text-right">
+						<span className="text-body-secondary fst-italic text-end">
 							{FormatTime(data.scores[0].timeAchieved ?? 0)}
 						</span>
 					</div>
@@ -382,8 +377,8 @@ function GoalActivity({
 			<div className="timeline-content">
 				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
 					<div className="timeline-content-title">
-						<span className="mr-2">
-							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
+						<span className="me-2">
+							<ProfilePicture size="sm" user={user} toGPT={`${game}/${playtype}`} />
 						</span>
 						<Icon
 							type={`chevron-${show ? "down" : "right"}`}
@@ -391,7 +386,7 @@ function GoalActivity({
 								fontSize: "0.75rem",
 							}}
 						/>
-						<span style={{ fontSize: "1.15rem" }} className="ml-2">
+						<span style={{ fontSize: "1.15rem" }} className="ms-2">
 							<UGPTLink reqUser={user} game={game} playtype={playtype} /> achieved{" "}
 							{subMessage}!
 						</span>
@@ -406,7 +401,7 @@ function GoalActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.goals[0]?.timeAchieved ?? 0)}
 						<br />
-						<span className="text-muted font-italic text-right">
+						<span className="text-body-secondary fst-italic text-end">
 							{FormatTime(data.goals[0]?.timeAchieved ?? 0)}
 						</span>
 					</div>
@@ -415,7 +410,7 @@ function GoalActivity({
 				{show && (
 					<>
 						<Divider />
-						<div className="pl-4">
+						<div className="ps-4">
 							{data.goals.map((e) => (
 								<InnerQuestSectionGoal
 									goal={e.__related.goal}
@@ -451,13 +446,17 @@ function QuestActivity({
 				<div className="timeline-content-inner">
 					<div className="timeline-content-title">
 						<span style={{ fontSize: "1.15rem" }}>
-							<span className="mr-2">
-								<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
+							<span className="me-2">
+								<ProfilePicture
+									size="sm"
+									user={user}
+									toGPT={`games/${game}/${playtype}`}
+								/>
 							</span>
 							<UGPTLink reqUser={user} game={game} playtype={playtype} /> completed
 							the{" "}
 							<Link
-								className="gentle-link"
+								className="text-decoration-none"
 								to={`/games/${game}/${playtype}/quests/${data.quest.questID}`}
 							>
 								{data.quest.name}
@@ -469,7 +468,7 @@ function QuestActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.sub.timeAchieved ?? 0)}
 						<br />
-						<span className="text-muted font-italic text-right">
+						<span className="text-body-secondary fst-italic text-end">
 							{FormatTime(data.sub.timeAchieved ?? 0)}
 						</span>
 					</div>
@@ -500,11 +499,15 @@ function SessionActivity({
 	return (
 		<div className="timeline-item timeline-hover">
 			<div className={`timeline-badge bg-${data.highlight ? "warning" : "secondary"}`}></div>
-			<div className="timeline-content d-flex">
+			<div className="timeline-content">
 				<div className="timeline-content-inner" onClick={() => setShow(!show)}>
 					<div className="timeline-content-title">
-						<span className="mr-2">
-							<ProfilePictureSmall user={user} toGPT={`${game}/${playtype}`} />
+						<span className="me-2">
+							<ProfilePicture
+								size="sm"
+								user={user}
+								toGPT={`games/${game}/${playtype}`}
+							/>
 						</span>
 						<Icon
 							type={`chevron-${show ? "down" : "right"}`}
@@ -513,7 +516,7 @@ function SessionActivity({
 							}}
 						/>
 						<span
-							className="ml-2"
+							className="ms-2"
 							style={{
 								fontWeight: isProbablyActive ? "bold" : undefined,
 								fontSize: isProbablyActive ? "1.2rem" : undefined,
@@ -537,14 +540,14 @@ function SessionActivity({
 						</span>
 						<br />
 						{data.desc && data.desc !== "This session has no description." && (
-							<span className="text-muted">{data.desc}</span>
+							<span className="text-body-secondary">{data.desc}</span>
 						)}
 					</div>
 
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.timeStarted ?? 0)}
 						<br />
-						<span className="text-muted font-italic text-right">
+						<span className="text-body-secondary fst-italic text-end">
 							{FormatTime(data.timeStarted ?? 0)}
 						</span>
 					</div>
@@ -605,7 +608,7 @@ function SessionShower({ sessionID }: { sessionID: string }) {
 					<div className="mb-4">This session had no raises.</div>
 					<div>
 						<LinkButton
-							className="btn-outline-primary"
+							variant="outline-primary"
 							to={`/u/${data.user.username}/games/${data.session.game}/${data.session.playtype}/sessions/${sessionID}`}
 						>
 							View Full Session
@@ -624,7 +627,7 @@ function SessionShower({ sessionID }: { sessionID: string }) {
 			</Col>
 			<div className="d-flex w-100 justify-content-center">
 				<LinkButton
-					className="btn-outline-primary"
+					variant="outline-primary"
 					to={`/u/${data.user.username}/games/${data.session.game}/${data.session.playtype}/sessions/${sessionID}`}
 				>
 					View Full Session
@@ -646,13 +649,14 @@ function ClassAchievementActivity({
 	return (
 		<div className="timeline-item timeline-hover">
 			<div className="timeline-badge bg-success"></div>
-			<div className="timeline-content d-flex">
+			<div className="timeline-content">
 				<div className="timeline-content-inner">
 					<div className="timeline-content-title">
-						<span className="mr-2">
-							<ProfilePictureSmall
+						<span className="me-2">
+							<ProfilePicture
+								size="sm"
 								user={user}
-								toGPT={`${data.game}/${data.playtype}`}
+								toGPT={`games/${data.game}/${data.playtype}`}
 							/>
 						</span>
 						<UGPTLink reqUser={user} game={data.game} playtype={data.playtype} />{" "}
@@ -682,7 +686,7 @@ function ClassAchievementActivity({
 					<div className="timeline-content-timestamp">
 						{MillisToSince(data.timeAchieved)}
 						<br />
-						<span className="text-muted font-italic text-right">
+						<span className="text-body-secondary fst-italic text-end">
 							{FormatTime(data.timeAchieved)}
 						</span>
 					</div>
@@ -699,10 +703,7 @@ function UGPTLink({ reqUser, game, playtype }: UGPT) {
 	return (
 		<Link
 			to={`/u/${reqUser.username}/games/${game}/${playtype}`}
-			className="gentle-link"
-			style={{
-				fontWeight: "bold",
-			}}
+			className="text-decoration-none fw-bold"
 		>
 			{user?.id === reqUser.id ? "You" : reqUser.username}
 			{reqUser?.isSupporter ? (

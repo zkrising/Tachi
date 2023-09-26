@@ -1,7 +1,7 @@
 import { DEFAULT_BAR_PROPS } from "util/charts";
 import { CreateChartMap, CreateUserMap } from "util/data";
 import { UppercaseFirst } from "util/misc";
-import { NumericSOV, StrSOV } from "util/sorts";
+import { NumericSOV } from "util/sorts";
 import { ResponsiveBar } from "@nivo/bar";
 import PBTable from "components/tables/pbs/PBTable";
 import ApiError from "components/util/ApiError";
@@ -9,7 +9,7 @@ import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 import { COLOUR_SET, CreateSongMap, GetGamePTConfig, integer } from "tachi-common";
 import { ScoreLeaderboardReturns } from "types/api-returns";
 import { GamePT } from "types/react";
@@ -39,13 +39,13 @@ export default function ScoreLeaderboard({
 
 	const SelectComponent =
 		Object.keys(gptConfig.scoreRatingAlgs).length > 1 ? (
-			<Form.Control as="select" value={alg} onChange={(e) => setAlg(e.target.value as any)}>
+			<Form.Select value={alg} onChange={(e) => setAlg(e.target.value as any)}>
 				{Object.keys(gptConfig.scoreRatingAlgs).map((e) => (
 					<option key={e} value={e}>
 						{UppercaseFirst(e)}
 					</option>
 				))}
-			</Form.Control>
+			</Form.Select>
 		) : null;
 
 	const { data, error } = useApiQuery<ScoreLeaderboardReturns>(
@@ -147,7 +147,7 @@ function DistributionChart({ dataset }: { dataset: PBDataset }) {
 					USER_COLOURS[(usernames.indexOf(x.data.username) ?? 0) % USER_COLOURS.length]
 				}
 				margin={{ left: 80, bottom: 40, top: 20, right: 20 }}
-				tooltip={() => <></>}
+				isInteractive={false}
 				{...DEFAULT_BAR_PROPS}
 			/>
 		</div>

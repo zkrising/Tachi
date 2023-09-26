@@ -1,3 +1,4 @@
+import Icon from "components/util/Icon";
 import React, { HTMLAttributes } from "react";
 
 export default function SortableTH({
@@ -18,21 +19,29 @@ export default function SortableTH({
 	style?: HTMLAttributes<HTMLTableCellElement>["style"];
 }) {
 	return (
-		<th className="compressible-th" onClick={() => changeSort(sortingName)} style={style}>
-			<span className="mr-2 d-none d-lg-block">{name}</span>
-			<span className="mr-2 d-block d-lg-none">{shortName}</span>
-			<span>
-				<i
-					className={`flaticon2-arrow-up icon-sm sort-icon ${
-						currentSortMode === sortingName && reverseSort ? "active" : ""
-					}`}
-				></i>
-				<i
-					className={`flaticon2-arrow-down icon-sm sort-icon ${
-						currentSortMode === sortingName && !reverseSort ? "active" : ""
-					}`}
-				></i>
-			</span>
+		<th onClick={() => changeSort(sortingName)} style={style}>
+			<div className="vstack align-items-center text-nowrap gap-1">
+				<span className="d-none d-xl-block">{name}</span>
+				<span className="d-block d-xl-none">{shortName}</span>
+				<span className="d-flex justify-content-center gap-1">
+					<Icon
+						type="arrow-up"
+						className={
+							currentSortMode === sortingName && reverseSort
+								? "opacity-100"
+								: "opacity-25"
+						}
+					/>
+					<Icon
+						type="arrow-down"
+						className={
+							currentSortMode === sortingName && !reverseSort
+								? "opacity-100"
+								: "opacity-25"
+						}
+					/>
+				</span>
+			</div>
 		</th>
 	);
 }

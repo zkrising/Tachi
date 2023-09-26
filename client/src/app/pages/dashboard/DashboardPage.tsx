@@ -1,5 +1,4 @@
 import { APIFetchV1 } from "util/api";
-import { ChangeOpacity } from "util/color-opacity";
 import { CreateGoalMap } from "util/data";
 import { RFA } from "util/misc";
 import { NumericSOV } from "util/sorts";
@@ -18,13 +17,16 @@ import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import { UserSettingsContext } from "context/UserSettingsContext";
-import { ColourConfig, TachiConfig } from "lib/config";
+import { TachiConfig } from "lib/config";
 import React, { useContext, useMemo } from "react";
-import { Alert } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import Stack from "react-bootstrap/Stack";
+import Row from "react-bootstrap/Row";
 import { Link, Route, Switch } from "react-router-dom";
-import { COLOUR_SET, GetGameConfig, UserDocument } from "tachi-common";
+import { GetGameConfig, UserDocument } from "tachi-common";
 import { UGSWithRankingData, UserRecentSummary } from "types/api-returns";
 import SessionCalendar from "components/sessions/SessionCalendar";
+import { WindowContext } from "context/WindowContext";
 import { GameStatContainer } from "./users/UserGamesPage";
 import SupportBanner from "./misc/SupportBanner";
 
@@ -100,39 +102,32 @@ function RecentInfo({ user }: { user: UserDocument }) {
 		<>
 			{data.recentSessions.length !== 0 && (
 				<>
-					<Alert
-						style={{
-							backgroundColor: `${ColourConfig.primary}44`,
-							color: "white",
-						}}
-					>
+					<Alert variant="primary">
 						<div className="text-center">
 							<h1>Today's Summary</h1>
 							You've gotten <b>{data.recentPlaycount}</b> new score
 							{data.recentPlaycount !== 1 ? "s" : ""} today!
 						</div>
 					</Alert>
-					<Divider />
-					<h1>New Sessions</h1>
-					You've had <b>{data.recentSessions.length}</b> session
-					{data.recentSessions.length !== 1 ? "s" : ""} today!
-					<Divider />
+					<hr />
+					<div className="text-center">
+						<h1>New Sessions</h1>
+						You've had <b>{data.recentSessions.length}</b> session
+						{data.recentSessions.length !== 1 ? "s" : ""} today!
+					</div>
+					<hr />
 					{data.recentSessions.sort(NumericSOV((x) => x.timeEnded, true)).map((e) => (
 						<>
 							<SessionCard sessionID={e.sessionID} key={e.sessionID} />
-							<Divider />
+							<hr />
 						</>
 					))}
 				</>
 			)}
 			{data.recentAchievedGoals.length !== 0 && (
 				<>
-					<Alert
-						style={{
-							backgroundColor: ChangeOpacity(COLOUR_SET.gold, 0.2),
-						}}
-					>
-						<div className="text-center text-white">
+					<Alert variant="warning">
+						<div className="text-center">
 							<h1>
 								{RFA([
 									"Sweet!",
@@ -148,8 +143,8 @@ function RecentInfo({ user }: { user: UserDocument }) {
 							You've achieved <b>{data.recentAchievedGoals.length}</b> new goal
 							{data.recentAchievedGoals.length !== 1 ? "s" : ""} today!
 						</div>
-						<Divider />
-						<div className="text-white">
+						<hr />
+						<div>
 							<ul>
 								{data.recentAchievedGoals.map((e) => {
 									const goal = goalMap.get(e.goalID);
@@ -195,7 +190,7 @@ function RecentInfo({ user }: { user: UserDocument }) {
 
 function UserGameStatsInfo({ user }: { user: UserDocument }) {
 	return (
-		<div className="row">
+		<Row xs={{ cols: 1 }} lg={{ cols: 2 }}>
 			<AsyncLoader
 				promiseFn={async () => {
 					const res = await APIFetchV1<UGSWithRankingData[]>(
@@ -229,24 +224,33 @@ function UserGameStatsInfo({ user }: { user: UserDocument }) {
 					))
 				}
 			</AsyncLoader>
-		</div>
+		</Row>
 	);
 }
 
 function DashboardNotLoggedIn() {
+	const {
+		breakpoint: { isMd },
+	} = useContext(WindowContext);
 	return (
-		<div style={{ fontSize: "1.3rem" }}>
-			<h1 className="mb-4">Welcome to {TachiConfig.name}!</h1>
-			<h4>
-				Looks like you're not logged in. If you've got an account,{" "}
-				<Link to="/login">Login!</Link>
-			</h4>
+		<Stack gap={4} className="enable-rfs" style={{ fontSize: "16px" }}>
+			<div>
+				<h1 className="fw-bold">Welcome to {TachiConfig.name}!</h1>
+				<h4 className="fs-3">
+					Looks like you're not logged in. If you've got an account,{" "}
+					<Link className="link-primary" to="/login">
+						Login!
+					</Link>
+				</h4>
+			</div>
 			<Divider />
-			<h1 className="my-4">I'm New Around Here, What is this?</h1>
-			<span>
-				<b>{TachiConfig.name}</b> is a Rhythm Game Score Tracker. That means we...
-			</span>
-			<Divider />
+			<div>
+				<h1>I'm New Around Here, What is this?</h1>
+				<p>
+					<b>{TachiConfig.name}</b> is a Rhythm Game Score Tracker. That means we...
+				</p>
+			</div>
+			<Divider className="mb-2" />
 			<FeatureContainer
 				tagline="Track Your Scores."
 				description={`${TachiConfig.name} supports a bunch of your favourite games, and integrates with many existing services to make sure no score is lost to the void. Furthermore, it's backed by an Open-Source API, so your scores are always available!`}
@@ -260,32 +264,31 @@ function DashboardNotLoggedIn() {
 				description={`${TachiConfig.name} implements the features rhythm gamers already talk about. Break your scores down into sessions, Showcase your best metrics on your profile, study your progress on folders - it's all there, and done for you!`}
 			/>
 			<Divider />
-			<div className="col-12 text-center" style={{ paddingTop: 50, paddingBottom: 50 }}>
-				Interested? You can register right now for <b>free</b>!
-				<br />
-				<LinkButton to="/register" className="mt-4 btn-outline-primary">
-					Register!
+
+			<Stack direction={isMd ? "horizontal" : "vertical"} className="mx-auto gap-4 gap-md-8">
+				<h1 className="fw-bold p-0 m-0 text-center">Interested?</h1>
+				<div className="vr d-none d-md-block" />
+				<hr className="m-0 mb-2 d-md-none" />
+				<LinkButton to="/register" size="lg" className="align-self-center">
+					Create an account for <b>free</b>!
 				</LinkButton>
-			</div>
+			</Stack>
 			<Divider />
-			<div className="col-12 text-center" style={{ paddingTop: 25 }}>
+			<div className="text-center">
 				Nosey? Here's what our users are up to.
-				<br />
-				<div style={{ fontSize: "1.0rem" }}>
+				<div style={{ fontSize: "1rem" }}>
 					<Activity url="/activity" />
 				</div>
 			</div>
-		</div>
+		</Stack>
 	);
 }
 
 function FeatureContainer({ tagline, description }: { tagline: string; description: string }) {
 	return (
-		<div className="row my-4 mb-16" style={{ lineHeight: "1.3", fontSize: "1.15rem" }}>
-			<div className="col-12 col-lg-6">
-				<h1 className="display-4">{tagline}</h1>
-				<span>{description}</span>
-			</div>
+		<div style={{ maxWidth: "790px" }}>
+			<h1 className="display-3 fw-light">{tagline}</h1>
+			<p>{description}</p>
 		</div>
 	);
 }

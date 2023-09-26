@@ -1,5 +1,4 @@
 import { ChangeOpacity } from "util/color-opacity";
-import { TruncateString } from "util/misc";
 import { EventInput } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import FullCalendar from "@fullcalendar/react"; // must go before plugins
@@ -47,6 +46,8 @@ export default function SessionCalendar({
 			plugins={[dayGridPlugin]}
 			initialView="dayGridMonth"
 			events={data.map(convertSession)}
+			eventBackgroundColor="transparent"
+			eventBorderColor="transparent"
 			eventContent={(e) => (
 				<QuickTooltip
 					delay={100}
@@ -59,9 +60,6 @@ export default function SessionCalendar({
 							sessionID={e.event.extendedProps.sessionID}
 						/>
 					}
-					style={{
-						width: "800px",
-					}}
 				>
 					<Link
 						className="w-100"
@@ -74,34 +72,32 @@ export default function SessionCalendar({
 						<div
 							className="rounded m-1"
 							style={{
+								boxShadow: "var(--bs-box-shadow-sm)",
 								backgroundColor: ChangeOpacity(
 									e.event.extendedProps.highlight
 										? COLOUR_SET.gold
 										: COLOUR_SET.gray,
-									0.2
+									0.33
 								),
 							}}
 						>
 							<div
-								className="p-2 d-lg-none"
+								className="p-2 d-lg-none overflow-hidden"
 								style={{
-									color: "white",
 									textOverflow: "ellipsis",
 									maxWidth: "100%",
-									overflow: "hidden",
 								}}
 							>
-								<b style={{ color: "white" }}>{e.event.title}</b>
+								<b>{e.event.title}</b>
 							</div>
 
 							<div
 								className="p-2 d-none d-lg-block"
 								style={{
 									whiteSpace: "pre-wrap",
-									color: "white",
 								}}
 							>
-								<b style={{ color: "white" }}>{e.event.title}</b>
+								<b>{e.event.title}</b>
 								{e.event.extendedProps.desc && (
 									<>
 										<br />
@@ -140,12 +136,7 @@ function SessionTooltip({ sessionID, game, playtype, reqUser }: { sessionID: str
 	}
 
 	return (
-		<div
-			className="w-100 d-flex align-items-center"
-			style={{
-				flexDirection: "column",
-			}}
-		>
+		<div className="w-100 d-flex flex-column p-4 align-items-center">
 			<div className="w-100">
 				<h4 className="text-center">{data.session.name}</h4>
 				{data.session.desc && <Muted>{data.session.desc}</Muted>}

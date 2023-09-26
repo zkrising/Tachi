@@ -37,24 +37,19 @@ export default function ClassBadge<GPT extends GPTString = GPTString>({
 
 	if (classStyle === null) {
 		badgeComponent = (
-			<Badge
-				className="mx-2"
-				style={{
-					backgroundColor: "#131313",
-				}}
-			>
+			<Badge className="mx-2" bg="dark">
 				{data.display}
 			</Badge>
 		);
 	} else if (typeof classStyle === "string") {
 		badgeComponent = (
-			<Badge className="mx-2" variant={classStyle}>
+			<Badge className="mx-2" bg={classStyle}>
 				{data.display}
 			</Badge>
 		);
 	} else {
 		badgeComponent = (
-			<Badge className="mx-2" style={classStyle}>
+			<Badge className="mx-2" bg={""} style={classStyle}>
 				{data.display}
 			</Badge>
 		);

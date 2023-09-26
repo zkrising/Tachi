@@ -63,11 +63,7 @@ export default function FoldersSearch({ reqUser, game, playtype }: UGPT) {
 	return (
 		<>
 			<div className="col-12">
-				<DebounceSearch
-					className="form-control-lg"
-					setSearch={setSearch}
-					placeholder="Search all Folders..."
-				/>
+				<DebounceSearch setSearch={setSearch} placeholder="Search all Folders..." />
 			</div>
 			<div className="col-12 mt-8">
 				<div className="row">{search !== "" && body}</div>
@@ -124,7 +120,7 @@ export function FolderInfoComponent({
 								}
 							}}
 							to={`${base}/folders/${folder.folderID}`}
-							className="btn-outline-info"
+							variant="outline-info"
 						>
 							View
 						</LinkButton>
@@ -135,12 +131,10 @@ export function FolderInfoComponent({
 					<div className="col-12">
 						<div className="btn-group">
 							<SelectButton value={metric} setValue={setMetric} id="grade">
-								<Icon type="sort-alpha-up" />
-								Grades
+								<Icon type="sort-alpha-up" /> Grades
 							</SelectButton>
 							<SelectButton value={metric} setValue={setMetric} id="lamp">
-								<Icon type="lightbulb" />
-								Lamps
+								<Icon type="lightbulb" /> Lamps
 							</SelectButton>
 						</div>
 						<Divider />

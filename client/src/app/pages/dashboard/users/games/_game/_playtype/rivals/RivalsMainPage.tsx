@@ -47,12 +47,10 @@ export default function RivalsMainPage({
 						Rival's Bests
 					</SelectLinkButton> */}
 					<SelectLinkButton to={`${base}/rivals`}>
-						<Icon type="list" />
-						Rival Activity
+						<Icon type="list" /> Rival Activity
 					</SelectLinkButton>
 					<SelectLinkButton to={`${base}/rivals/manage`}>
-						<Icon type="users" />
-						Manage Rivals
+						<Icon type="users" /> Manage Rivals
 					</SelectLinkButton>
 				</div>
 				<Divider />

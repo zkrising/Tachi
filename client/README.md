@@ -6,17 +6,6 @@ Tachi-Client is the frontend for Tachi.
 
 Run `pnpm install` to install dependencies.
 
-### CSS and Submodules
-
-We legally cannot redistribute the source SCSS files for this repository, as they are from
-[Metronic](https://preview.keenthemes.com/metronic8/demo2/index.html). Although the codebase itself has been completely cleanly implemented, with no metronic, the SCSS is still
-theirs, and we do not have the legal right to redistribute it.
-
-If you are a member of TNG-Dev, you will have access to [tachi-client-scss](https://github.com/tng-dev/tachi-client-scss). This submodule is located at `src/_assets/metronic-scss`.
-Cloning this will make that the source of truth for CSS styling. Otherwise, we fall back
-to `src/_assets/compiled-css/main.css`. This is legally redistributable compiled (minified)
-output from the metronic SCSS.
-
 ## Dev Server
 
 `pnpm start` launches a development server for rapid iteration. Use this if you're developing.

@@ -1,8 +1,8 @@
 const fetch = require("node-fetch");
 const { CreateChartID, ReadCollection, WriteCollection } = require("../../util");
 
-const CURRENT_VERSION = "festival";
-const CURRENT_VERSION_NUM = 230;
+const CURRENT_VERSION = "festivalplus";
+const CURRENT_VERSION_NUM = 235;
 const DATA_URL = "https://maimai.sega.jp/data/maimai_songs.json";
 const ALIAS_URL =
 	"https://raw.githubusercontent.com/lomotos10/GCM-bot/main/data/aliases/en/maimai.tsv";
@@ -29,6 +29,7 @@ const versionMap = new Map([
 	[220, "UNiVERSE"],
 	[225, "UNiVERSE PLUS"],
 	[230, "FESTiVAL"],
+	[235, "FESTiVAL PLUS"],
 ]);
 
 const diffNames = ["bas", "adv", "exp", "mas", "remas"];
@@ -41,8 +42,14 @@ const diffMap = new Map([
 	["remas", "Re:Master"],
 ]);
 
-// maimai DX FESTiVAL+ songs that are in maimai DX FESTiVAL International Version
-const versionOverrides = ["INTERNET OVERDOSE", "Knight Rider", "Let you DIVE!", "Trrricksters!!"];
+// Songs that are released in different versions in international and Japanese regions.
+// The key is the title in the dataset, and the value is the version to use (refer to versionMap).
+const versionOverrides = {
+	"INTERNET OVERDOSE": 230,
+	"Knight Rider": 230,
+	"Let you DIVE!": 230,
+	"Trrricksters!!": 230,
+};
 
 (async () => {
 	const songs = ReadCollection("songs-maimaidx.json");
@@ -68,17 +75,14 @@ const versionOverrides = ["INTERNET OVERDOSE", "Knight Rider", "Let you DIVE!", 
 	for (const data of datum) {
 		let thisSongID = songID;
 
-		let version = Number(data.version.substring(0, 3));
-		if (version > CURRENT_VERSION_NUM && !versionOverrides.includes(data.title)) {
-			// Skipping songs that are newer than currently supported version (FESTiVAL).
+		const version = versionOverrides[data.title] ?? Number(data.version.substring(0, 3));
+		if (version > CURRENT_VERSION_NUM && !Object.keys(versionOverrides).includes(data.title)) {
+			// Skipping songs that are newer than currently supported version (FESTiVAL PLUS).
 			continue;
 		}
 		if (data.title === "　" && data.artist === "x0o0x_") {
 			// Manual override since the song's title is "" (empty) in the dataset.
 			continue;
-		}
-		if (versionOverrides.includes(data.title)) {
-			version = CURRENT_VERSION_NUM;
 		}
 
 		if (existingSongs.has(data.title)) {
@@ -95,6 +99,7 @@ const versionOverrides = ["INTERNET OVERDOSE", "Knight Rider", "Let you DIVE!", 
 				altTitles,
 				data: {
 					displayVersion: versionMap.get(version),
+					genre: data.catcode.trim(),
 				},
 			});
 			console.log(`New song: ${data.artist.trim()} - ${data.title.trim()}`);

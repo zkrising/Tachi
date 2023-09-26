@@ -83,7 +83,7 @@ function AboutMeCard({ reqUser }: Props) {
 			footer = (
 				<div className="d-flex">
 					<Button
-						className="mr-auto"
+						className="me-auto"
 						onClick={() => {
 							setEditMode(false);
 							setContent(reqUser.about);
@@ -93,7 +93,7 @@ function AboutMeCard({ reqUser }: Props) {
 						Cancel
 					</Button>
 					<Button
-						className="ml-auto"
+						className="ms-auto"
 						onClick={() => SubmitNewAboutMe()}
 						variant="success"
 					>

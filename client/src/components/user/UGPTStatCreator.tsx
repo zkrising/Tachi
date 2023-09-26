@@ -171,24 +171,18 @@ function UGPTStatInnerSearchyBit({ game, playtype, onCreate, setShow }: Props) {
 	}, [chartSearch, requesterHasPlayed]);
 
 	return (
-		<Form onSubmit={formik.handleSubmit}>
-			<Form.Group>
+		<Form onSubmit={formik.handleSubmit} className="d-flex flex-column gap-4">
+			<Form.Group className="d-flex flex-column">
 				<Form.Label>Mode</Form.Label>
-				<Form.Control
-					as="select"
-					id="mode"
-					value={formik.values.mode}
-					onChange={formik.handleChange}
-				>
+				<Form.Select id="mode" value={formik.values.mode} onChange={formik.handleChange}>
 					<option value="chart">Chart</option>
 					<option value="folder">Folder</option>
-				</Form.Control>
+				</Form.Select>
 				<Form.Text>What kind of stat should this be?</Form.Text>
 			</Form.Group>
-			<Form.Group>
+			<Form.Group className="d-flex flex-column">
 				<Form.Label>Property</Form.Label>
-				<Form.Control
-					as="select"
+				<Form.Select
 					id="metric"
 					value={formik.values.metric}
 					onChange={formik.handleChange}
@@ -199,11 +193,11 @@ function UGPTStatInnerSearchyBit({ game, playtype, onCreate, setShow }: Props) {
 						</option>
 					))}
 					{formik.values.mode === "chart" && <option value="playcount">Playcount</option>}
-				</Form.Control>
+				</Form.Select>
 				<Form.Text>What kind of statistic should this check for?</Form.Text>
 			</Form.Group>
 			{formik.values.mode === "chart" ? (
-				<Form.Group>
+				<Form.Group className="d-flex flex-column">
 					<Form.Label>Chart</Form.Label>
 					<DebounceSearch setSearch={setChartSearch} placeholder="Chart Name" />
 					{user && (
@@ -216,11 +210,10 @@ function UGPTStatInnerSearchyBit({ game, playtype, onCreate, setShow }: Props) {
 						/>
 					)}
 					{chartData.length ? (
-						<Form.Control
+						<Form.Select
 							id="chartID"
 							value={formik.values.chartID}
 							onChange={formik.handleChange}
-							as="select"
 						>
 							<option value="">Select a chart...</option>
 							{chartData.map((e, i) => (
@@ -228,7 +221,7 @@ function UGPTStatInnerSearchyBit({ game, playtype, onCreate, setShow }: Props) {
 									{e.name}
 								</option>
 							))}
-						</Form.Control>
+						</Form.Select>
 					) : (
 						<Muted>Your search returned nothing... :(</Muted>
 					)}
@@ -251,11 +244,10 @@ function UGPTStatInnerSearchyBit({ game, playtype, onCreate, setShow }: Props) {
 						<Form.Label>Folder</Form.Label>
 						<DebounceSearch setSearch={setFolderSearch} placeholder="Folder Name" />
 						{folderData.length ? (
-							<Form.Control
+							<Form.Select
 								id="folderID"
 								value={formik.values.folderID}
 								onChange={formik.handleChange}
-								as="select"
 								className="mt-4"
 							>
 								<option value="">Select a folder...</option>
@@ -264,21 +256,20 @@ function UGPTStatInnerSearchyBit({ game, playtype, onCreate, setShow }: Props) {
 										{e.name}
 									</option>
 								))}
-							</Form.Control>
+							</Form.Select>
 						) : (
 							<></>
 						)}
 					</Form.Group>
 				</>
 			)}
-			<Form.Group className="d-flex justify-content-end">
-				<Button
-					disabled={formik.values.mode === "chart" && !formik.values.chartID}
-					type="submit ml-auto"
-				>
-					Submit
-				</Button>
-			</Form.Group>
+			<Button
+				disabled={formik.values.mode === "chart" && !formik.values.chartID}
+				type="submit"
+				className="mt-4"
+			>
+				Submit
+			</Button>
 		</Form>
 	);
 }
@@ -306,7 +297,7 @@ function FolderGTESelect({
 
 	if (conf.type === "ENUM") {
 		return (
-			<select className="form-control" {...props}>
+			<select className="form-select" {...props}>
 				{conf.values.map((e, i) => (
 					<option key={i} value={i}>
 						{e}

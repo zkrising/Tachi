@@ -1,6 +1,162 @@
 [
 	{
 		"data": {
+			"level": 1,
+			"versions": "mobile"
+		},
+		"folderID": "Fbe24c81ba6102221920a15d43e6cf41acea82857b23c359138a78664b1e61727",
+		"game": "arcaea",
+		"inactive": false,
+		"playtype": "Touch",
+		"searchTerms": [],
+		"title": "Level 1 (Mobile)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": 10,
+			"versions": "mobile"
+		},
+		"folderID": "Fe96acf41f6bad54ee6aca61cfa61b4f85b98f274e5df342f49fa25521fffd3da",
+		"game": "arcaea",
+		"inactive": false,
+		"playtype": "Touch",
+		"searchTerms": [],
+		"title": "Level 10 (Mobile)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": 11,
+			"versions": "mobile"
+		},
+		"folderID": "F23797fd78b2145ae24906c48b4b2e03c7ce37576e52ccc5c65f5b8c401ed509b",
+		"game": "arcaea",
+		"inactive": false,
+		"playtype": "Touch",
+		"searchTerms": [],
+		"title": "Level 11 (Mobile)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": 12,
+			"versions": "mobile"
+		},
+		"folderID": "F42f0a164213224606916df3c10e852f4f33e51d0ac1552fe778e534acd3d6bde",
+		"game": "arcaea",
+		"inactive": false,
+		"playtype": "Touch",
+		"searchTerms": [],
+		"title": "Level 12 (Mobile)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": 2,
+			"versions": "mobile"
+		},
+		"folderID": "F8076adf186b084c678707526d865783057bedea0b7458ed8441cb4c856d67b26",
+		"game": "arcaea",
+		"inactive": false,
+		"playtype": "Touch",
+		"searchTerms": [],
+		"title": "Level 2 (Mobile)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": 3,
+			"versions": "mobile"
+		},
+		"folderID": "F8d35343478dace4e952d797bf711677d88127929e2768070292d48a630059aa0",
+		"game": "arcaea",
+		"inactive": false,
+		"playtype": "Touch",
+		"searchTerms": [],
+		"title": "Level 3 (Mobile)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": 4,
+			"versions": "mobile"
+		},
+		"folderID": "F46f600f7e276daa5cedf27b364e82c2e6c6a68e96154e6023883f8f030b6a386",
+		"game": "arcaea",
+		"inactive": false,
+		"playtype": "Touch",
+		"searchTerms": [],
+		"title": "Level 4 (Mobile)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": 5,
+			"versions": "mobile"
+		},
+		"folderID": "Fc5004fde5d91cf9f679cf0280909aef0512032d3d00f676d6fbdc924570e74e4",
+		"game": "arcaea",
+		"inactive": false,
+		"playtype": "Touch",
+		"searchTerms": [],
+		"title": "Level 5 (Mobile)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": 6,
+			"versions": "mobile"
+		},
+		"folderID": "Fd39ebc8f92dc2725d1c584eaa51cc3e53d66714837499f1ae1e330a64b2fdda8",
+		"game": "arcaea",
+		"inactive": false,
+		"playtype": "Touch",
+		"searchTerms": [],
+		"title": "Level 6 (Mobile)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": 7,
+			"versions": "mobile"
+		},
+		"folderID": "F506462b3e11cf7926aa951284f63721c97a523ee4ba8fe0c8fea2fbec47171b5",
+		"game": "arcaea",
+		"inactive": false,
+		"playtype": "Touch",
+		"searchTerms": [],
+		"title": "Level 7 (Mobile)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": 8,
+			"versions": "mobile"
+		},
+		"folderID": "F4cb43c30b535a3d55643a92c7ab622b9c354781dcc5d3b8c17e0f8aa63debdaf",
+		"game": "arcaea",
+		"inactive": false,
+		"playtype": "Touch",
+		"searchTerms": [],
+		"title": "Level 8 (Mobile)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": 9,
+			"versions": "mobile"
+		},
+		"folderID": "F22a38f5c458fb0be22bc078864bbabc0522589a95930799b5e3409b1666ba33d",
+		"game": "arcaea",
+		"inactive": false,
+		"playtype": "Touch",
+		"searchTerms": [],
+		"title": "Level 9 (Mobile)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"data¬tableFolders": {
 				"~elemMatch": {
 					"level": "?",

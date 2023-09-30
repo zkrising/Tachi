@@ -1,6 +1,6 @@
 [
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for the mobile version of Arcaea.",
 		"folders": [
 			"Fbe24c81ba6102221920a15d43e6cf41acea82857b23c359138a78664b1e61727",

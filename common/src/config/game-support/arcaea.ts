@@ -1,7 +1,6 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { FmtNum } from "../../utils/util";
 import { ClassValue, ToDecimalPlaces, zodNonNegativeInt } from "../config-utils";
-import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
@@ -69,15 +68,7 @@ export const ARCAEA_TOUCH_CONF = {
 	defaultMetric: "score",
 	preferredDefaultEnum: "grade",
 
-	optionalMetrics: {
-		...FAST_SLOW_MAXCOMBO,
-		gauge: {
-			type: "INTEGER",
-			validate: p.isBetween(0, 100),
-			formatter: FmtNum,
-			description: "The life in percent (between 0 and 100) that was on the gauge at the end of the chart.",
-		},
-	},
+	optionalMetrics: FAST_SLOW_MAXCOMBO,
 
 	scoreRatingAlgs: {
 		potential: {

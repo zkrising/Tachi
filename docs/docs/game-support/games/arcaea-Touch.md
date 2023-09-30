@@ -29,7 +29,6 @@ For more information on what metrics are and how they work, see [TODO]!
 | `fast` | Integer | The amount of mistakes in this score that were a result of hitting early. |
 | `slow` | Integer | The amount of mistakes in this score that were a result of hitting late. |
 | `maxCombo` | Integer | The largest combo in this score. |
-| `gauge` | Integer | The life in percent (between 0 and 100) that was on the gauge at the end of the chart. |
 
 ## Judgements
 

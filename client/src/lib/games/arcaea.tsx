@@ -5,8 +5,8 @@ import MillionsScoreCell from "components/tables/cells/MillionsScoreCell";
 import { GetEnumColour } from "lib/game-implementations";
 import ArcaeaJudgementCell from "components/tables/cells/ArcaeaJudgementCell";
 import RatingCell from "components/tables/cells/RatingCell";
+import LampCell from "components/tables/cells/LampCell";
 import React from "react";
-import ArcaeaLampCell from "components/tables/cells/ArcaeaLampCell";
 import { bgc } from "./_util";
 
 const ARCAEA_DIFFICULTY_COLORS: GPTClientImplementation<GPTStrings["arcaea"]>["difficultyColours"] =
@@ -79,7 +79,7 @@ const ArcaeaCoreCells: GPTClientImplementation<GPTStrings["arcaea"]>["scoreCoreC
 			score={sc.scoreData.score}
 		/>
 		<ArcaeaJudgementCell score={sc} />
-		<ArcaeaLampCell sc={sc} />
+		<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
 	</>
 );
 

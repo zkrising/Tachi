@@ -544,7 +544,7 @@ export enum ARCAEA_LAMPS {
 	PURE_MEMORY = 5,
 }
 
-export enum ARCAEA_CLASSES {
+export enum ARCAEA_COURSE_BANNERS {
 	PHASE_1 = 0,
 	PHASE_2 = 1,
 	PHASE_3 = 2,

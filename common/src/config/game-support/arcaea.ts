@@ -120,7 +120,7 @@ export const ARCAEA_TOUCH_CONF = {
 			type: "DERIVED",
 			values: ArcaeaBadges,
 		},
-		dan: {
+		courseBanner: {
 			type: "PROVIDED",
 			values: ArcaeaClasses,
 		}

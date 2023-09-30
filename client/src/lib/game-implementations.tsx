@@ -749,7 +749,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				TWO_STARS: bgc("darkmagenta", "var(--bs-light)"),
 				THREE_STARS: bgc("firebrick", "var(--bs-light)"),
 			},
-			dan: {
+			courseBanner: {
 				PHASE_1: bgc("aliceblue", "var(--bs-dark)"),
 				PHASE_2: bgc("lightskyblue", "var(--bs-dark)"),
 				PHASE_3: bgc("lightblue", "var(--bs-dark)"),

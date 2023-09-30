@@ -75,7 +75,7 @@ export const ARCAEA_TOUCH_CONF = {
 			type: "INTEGER",
 			validate: p.isBetween(0, 100),
 			formatter: FmtNum,
-			description: "The amount of life in the gauge at the end of this chart.",
+			description: "The life in percent (between 0 and 100) that was on the gauge at the end of the chart.",
 		},
 	},
 

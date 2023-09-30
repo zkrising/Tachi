@@ -534,3 +534,12 @@ export enum ARCAEA_GRADES {
 	EX = 6,
 	EX_PLUS = 7,
 }
+
+export enum ARCAEA_LAMPS {
+	LOST = 0,
+	EASY_CLEAR = 1,
+	CLEAR = 2,
+	HARD_CLEAR = 3,
+	FULL_RECALL = 4,
+	PURE_MEMORY = 5,
+}

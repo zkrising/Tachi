@@ -15,8 +15,6 @@ export const ARCAEA_CONF = {
 	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
-// dans will be added as a later date as i figure out how the data is stored.
-
 const ArcaeaBadges = [
 	ClassValue("BLUE", "Blue", "0.00 - 3.49 Potential"),
 	ClassValue("GREEN", "Green", "3.50 - 6.99 Potential"),
@@ -26,6 +24,20 @@ const ArcaeaBadges = [
 	ClassValue("ONE_STAR", "☆", "12.00 - 12.49 Potential"),
 	ClassValue("TWO_STARS", "☆☆", "12.50 - 12.99 Potential"),
 	ClassValue("THREE_STARS", "☆☆☆", ">=13.00 Potential"),
+];
+
+const ArcaeaClasses = [
+	ClassValue("PHASE_1", "Phase 1", "First Step in a New World"),
+	ClassValue("PHASE_2", "Phase 2", "Swept up in a Heartbeat"),
+	ClassValue("PHASE_3", "Phase 3", "Unceasing Spirit"),
+	ClassValue("PHASE_4", "Phase 4", "The Eternal Realm of Light"),
+	ClassValue("PHASE_5", "Phase 5", "The Brutality of Glass"),
+	ClassValue("PHASE_6", "Phase 6", "In Grief and Great Delight"),
+	ClassValue("PHASE_7", "Phase 7", "On Fate's Approach"),
+	ClassValue("PHASE_8", "Phase 8", "The Disfigured Flow of Time"),
+	ClassValue("PHASE_9", "Phase 9", "Ego's Demise"),
+	ClassValue("PHASE_10", "Phase 10", "A Torrent of Light and Conflict"),
+	ClassValue("PHASE_11", "Phase 11", "Radiant Genesis"),
 ];
 
 export const ARCAEA_TOUCH_CONF = {
@@ -108,6 +120,10 @@ export const ARCAEA_TOUCH_CONF = {
 			type: "DERIVED",
 			values: ArcaeaBadges,
 		},
+		dan: {
+			type: "PROVIDED",
+			values: ArcaeaClasses,
+		}
 	},
 
 	orderedJudgements: ["pure", "far", "lost"],

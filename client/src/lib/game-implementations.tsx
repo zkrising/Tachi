@@ -740,7 +740,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		},
 		classColours: {
 			badge: {
-				BLUE: bgc("blue", "var(--bs-dark"),
+				BLUE: bgc("midnightblue", "var(--bs-light)"),
 				GREEN: bgc("darkgreen", "var(--bs-light)"),
 				ASH_PURPLE: bgc("indigo", "var(--bs-light)"),
 				PURPLE: bgc("purple", "var(--bs-light)"),
@@ -748,6 +748,19 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				ONE_STAR: bgc("crimson", "var(--bs-light)"),
 				TWO_STARS: bgc("darkmagenta", "var(--bs-light)"),
 				THREE_STARS: bgc("firebrick", "var(--bs-light)"),
+			},
+			dan: {
+				PHASE_1: bgc("aliceblue", "var(--bs-dark)"),
+				PHASE_2: bgc("lightskyblue", "var(--bs-dark)"),
+				PHASE_3: bgc("lightblue", "var(--bs-dark)"),
+				PHASE_4: bgc("midnightblue", "var(--bs-light)"),
+				PHASE_5: bgc("plum", "var(--bs-dark)"),
+				PHASE_6: bgc("violet", "var(--bs-dark)"),
+				PHASE_7: bgc("orchid", "var(--bs-dark)"),
+				PHASE_8: bgc("purple", "var(--bs-light)"),
+				PHASE_9: bgc("indigo", "var(--bs-light)"),
+				PHASE_10: bgc("firebrick", "var(--bs-light)"),
+				PHASE_11: bgc("darkred", "var(--bs-light)"),
 			},
 		},
 		difficultyColours: {

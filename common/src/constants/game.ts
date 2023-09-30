@@ -543,3 +543,17 @@ export enum ARCAEA_LAMPS {
 	FULL_RECALL = 4,
 	PURE_MEMORY = 5,
 }
+
+export enum ARCAEA_CLASSES {
+	PHASE_1 = 0,
+	PHASE_2 = 1,
+	PHASE_3 = 2,
+	PHASE_4 = 3,
+	PHASE_5 = 4,
+	PHASE_6 = 5,
+	PHASE_7 = 6,
+	PHASE_8 = 7,
+	PHASE_9 = 8,
+	PHASE_10 = 9,
+	PHASE_11 = 10,
+}

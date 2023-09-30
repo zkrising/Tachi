@@ -42,5 +42,5 @@ export const GPT_SERVER_IMPLEMENTATIONS: GPTImplementations = {
 	"usc:Controller": USC_CONTROLLER_IMPL,
 	"usc:Keyboard": USC_KEYBOARD_IMPL,
 	"sdvx:Single": SDVX_IMPL,
-	"arcaea:Single": ARCAEA_IMPL,
+	"arcaea:Touch": ARCAEA_IMPL,
 };

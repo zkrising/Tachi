@@ -1,13 +1,14 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { FmtNum } from "../../utils/util";
-import { ClassValue, ToDecimalPlaces } from "../config-utils";
+import { ClassValue, ToDecimalPlaces, zodNonNegativeInt } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
 
 export const ARCAEA_CONF = {
 	name: "Arcaea",
-	playtypes: ["Single"],
+	// Potential future controller playtype support?
+	playtypes: ["Touch"],
 	songData: z.strictObject({
 		displayVersion: z.string(),
 		songPack: z.string(),
@@ -27,7 +28,7 @@ const ArcaeaBadges = [
 	ClassValue("THREE_STARS", "☆☆☆", ">=13.00 Potential"),
 ];
 
-export const ARCAEA_SINGLE_CONF = {
+export const ARCAEA_TOUCH_CONF = {
 	providedMetrics: {
 		score: {
 			type: "INTEGER",
@@ -81,7 +82,7 @@ export const ARCAEA_SINGLE_CONF = {
 	profileRatingAlgs: {
 		naivePotential: {
 			description:
-				"The average of your best 50 potential values. This is different to in-game, as it does not take into account your recent scores in any way.",
+				"The average of your best 30 potential values. This is different to in-game, as it does not take into account your recent scores in any way.",
 			formatter: ToDecimalPlaces(2),
 		},
 	},
@@ -111,9 +112,15 @@ export const ARCAEA_SINGLE_CONF = {
 
 	orderedJudgements: ["pure", "far", "lost"],
 
-	versions: {},
+	versions: {
+		mobile: "Mobile",
+		switch: "Nintendo Switch",
+	},
 
-	chartData: z.strictObject({}),
+	chartData: z.strictObject({
+		inGameID: z.string(),
+		notecount: zodNonNegativeInt,
+	}),
 
 	preferences: z.strictObject({}),
 	scoreMeta: z.strictObject({}),

@@ -5,7 +5,7 @@ import { COLOUR_SET, PBScoreDocument, ScoreDocument } from "tachi-common";
 export default function ArcaeaJudgementCell({
 	score,
 }: {
-	score: ScoreDocument<"arcaea:Single"> | PBScoreDocument<"arcaea:Single">;
+	score: ScoreDocument<"arcaea:Touch"> | PBScoreDocument<"arcaea:Touch">;
 }) {
 	// even if we dont have judgement data, we know what they got.
 	if (score.scoreData.lamp === "PURE MEMORY") {

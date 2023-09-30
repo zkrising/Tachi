@@ -717,7 +717,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			</>
 		),
 	},
-	"arcaea:Single": {
+	"arcaea:Touch": {
 		enumIcons: defaultEnumIcons,
 		enumColours: {
 			lamp: {

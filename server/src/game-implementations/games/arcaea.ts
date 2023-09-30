@@ -6,11 +6,15 @@ import { ARCAEA_GBOUNDARIES, GetGrade } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 
-export const ARCAEA_IMPL: GPTServerImplementation<"arcaea:Single"> = {
+export const ARCAEA_IMPL: GPTServerImplementation<"arcaea:Touch"> = {
 	chartSpecificValidators: {
 		score: (score, chart) => {
 			if (score < 0) {
 				return `Score must be non-negative. Got ${score}`;
+			}
+
+			if (score > 10_000_000 + chart.data.notecount) {
+				return `Score cannot exceed ${10_000_000 + chart.data.notecount} for this chart.`
 			}
 
 			return true;

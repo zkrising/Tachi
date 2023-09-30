@@ -3,7 +3,7 @@ import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileAvgBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { ARCAEA_GBOUNDARIES, GetGrade } from "tachi-common";
-import { ArcaeaPotential } from "rg-stats";
+import { Potential } from "rg-stats";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 
@@ -25,7 +25,7 @@ export const ARCAEA_IMPL: GPTServerImplementation<"arcaea:Touch"> = {
 		grade: ({ score }) => GetGrade(ARCAEA_GBOUNDARIES, score),
 	},
 	scoreCalcs: {
-		potential: (scoreData, chart) => ArcaeaPotential.calculate(scoreData.score, chart.levelNum),
+		potential: (scoreData, chart) => Potential.calculate(scoreData.score, chart.levelNum),
 	},
 	sessionCalcs: {
 		naivePotential: SessionAvgBest10For("potential"),

@@ -85,12 +85,23 @@ export const ARCAEA_IMPL: GPTServerImplementation<"arcaea:Touch"> = {
 	defaultMergeRefName: "Best Score",
 	scoreValidators: [
 		(s) => {
+			if (s.scoreData.lamp === "PURE MEMORY" && s.scoreData.score < 10_000_000) {
+				return `PURE MEMORY scores must have a score larger than 10 million. Got ${s.scoreData.score} instead.`
+			}
+
+			// This doesn't go both ways. Due to how Arcaea scoring works, you can technically
+			// achieve a score of 10 million without a PM, if the chart's notecount is high enough.
+			//
+			// For example, if a chart has 2237 notes, 2236 shiny PUREs + 1 FAR gives a score of
+			// exactly 10 million (2236.5 * 10_000_000 / 2237 + 2236 = 10_000_000).
+		},
+		(s) => {
 			const { far, lost } = s.scoreData.judgements;
 
 			if (s.scoreData.lamp === "PURE MEMORY" && (lost ?? 0) + (far ?? 0) > 0) {
 				return "Cannot have a PURE MEMORY with any fars or losts.";
 			} else if (s.scoreData.lamp === "FULL RECALL" && (lost ?? 0) > 0) {
-				return "Cannot have a PURE MEMORY with non-zero lost count.";
+				return "Cannot have a FULL RECALL with non-zero lost count.";
 			}
 		},
 	],

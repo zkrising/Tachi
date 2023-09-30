@@ -1232,3 +1232,41 @@ export const FakeChunitachiBatchManual = {
 		},
 	],
 };
+
+export const TestingArcaeaSheriruthSong: SongDocument<"arcaea"> = {
+	altTitles: [],
+	artist: "Team Grimoire",
+	data: {
+		displayVersion: "1.0",
+		songPack: "Eternal Core"
+	},
+	id: 19,
+	searchTerms: [
+		"しぇりだー",
+		"しぇりるす",
+		"셰리다",
+		"셰리루스",
+		"셰리루트",
+		"셰루트",
+		"셰루스",
+		"셰리더"
+	],
+	title: "Sheriruth",
+};
+
+export const TestingArcaeaSheriruthFTR: ChartDocument<"arcaea:Touch"> = {
+	chartID: "48de13e0be17a282eed6ef97e6e1478eb59bc55e",
+	data: {
+		inGameID: "sheriruth",
+		notecount: 1151
+	},
+	difficulty: "Future",
+	isPrimary: true,
+	level: "10",
+	levelNum: 10.1,
+	playtype: "Touch",
+	songID: 19,
+	versions: [
+		"mobile"
+	],
+};

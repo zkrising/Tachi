@@ -23,6 +23,7 @@ export const ARCAEA_IMPL: GPTServerImplementation<"arcaea:Touch"> = {
 	derivers: {
 		grade: ({ score }) => GetGrade(ARCAEA_GBOUNDARIES, score),
 	},
+	// scoreCalcs: waiting for rg-stats PR
 	sessionCalcs: {
 		naivePotential: SessionAvgBest10For("potential"),
 	},
@@ -68,7 +69,6 @@ export const ARCAEA_IMPL: GPTServerImplementation<"arcaea:Touch"> = {
 				pb.scoreData.grade,
 				pb.scoreData.score,
 				ARCAEA_GBOUNDARIES[gradeIndex]!.name,
-				(v) => `$v`
 			),
 	},
 	goalOutOfFormatters: {

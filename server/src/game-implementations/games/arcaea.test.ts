@@ -40,7 +40,7 @@ const logger = CreateLogCtx(__filename);
 
 t.test("Arcaea Implementation", (t) => {
 	t.test("Grade Deriver", (t) => {
-		const f = (score: number, expected: any) =>
+		const f = (score: number, expected: string) =>
 			t.equal(
 				ARCAEA_IMPL.derivers.grade(dmf(baseMetrics, { score }), TestingArcaeaSheriruthFTR),
 				expected,

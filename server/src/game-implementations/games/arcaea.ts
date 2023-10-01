@@ -2,12 +2,13 @@ import { GoalFmtScore, GoalOutOfFmtScore, GradeGoalFormatter } from "./_common";
 import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileAvgBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
-import { ARCAEA_GBOUNDARIES, GetGrade } from "tachi-common";
 import { Potential } from "rg-stats";
+import { ARCAEA_GBOUNDARIES, FmtNum, GetGrade } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
+import type { GPTStrings } from "tachi-common";
 
-export const ARCAEA_IMPL: GPTServerImplementation<"arcaea:Touch"> = {
+export const ARCAEA_IMPL: GPTServerImplementation<GPTStrings["arcaea"]> = {
 	chartSpecificValidators: {
 		score: (score, chart) => {
 			if (score < 0) {
@@ -15,7 +16,7 @@ export const ARCAEA_IMPL: GPTServerImplementation<"arcaea:Touch"> = {
 			}
 
 			if (score > 10_000_000 + chart.data.notecount) {
-				return `Score cannot exceed ${10_000_000 + chart.data.notecount} for this chart.`
+				return `Score cannot exceed ${10_000_000 + chart.data.notecount} for this chart.`;
 			}
 
 			return true;
@@ -64,14 +65,14 @@ export const ARCAEA_IMPL: GPTServerImplementation<"arcaea:Touch"> = {
 		score: GoalFmtScore,
 	},
 	goalProgressFormatters: {
-		score: (pb) => `${pb.scoreData.score}`,
+		score: (pb) => FmtNum(pb.scoreData.score),
 		lamp: (pb) => pb.scoreData.lamp,
 		grade: (pb, gradeIndex) =>
 			GradeGoalFormatter(
 				ARCAEA_GBOUNDARIES,
 				pb.scoreData.grade,
 				pb.scoreData.score,
-				ARCAEA_GBOUNDARIES[gradeIndex]!.name,
+				ARCAEA_GBOUNDARIES[gradeIndex]!.name
 			),
 	},
 	goalOutOfFormatters: {
@@ -86,7 +87,7 @@ export const ARCAEA_IMPL: GPTServerImplementation<"arcaea:Touch"> = {
 	scoreValidators: [
 		(s) => {
 			if (s.scoreData.lamp === "PURE MEMORY" && s.scoreData.score < 10_000_000) {
-				return `PURE MEMORY scores must have a score larger than 10 million. Got ${s.scoreData.score} instead.`
+				return `PURE MEMORY scores must have a score larger than 10 million. Got ${s.scoreData.score} instead.`;
 			}
 
 			// This doesn't go both ways. Due to how Arcaea scoring works, you can technically
@@ -94,6 +95,14 @@ export const ARCAEA_IMPL: GPTServerImplementation<"arcaea:Touch"> = {
 			//
 			// For example, if a chart has 2237 notes, 2236 shiny PUREs + 1 FAR gives a score of
 			// exactly 10 million (2236.5 * 10_000_000 / 2237 + 2236 = 10_000_000).
+		},
+		(s) => {
+			// 1 FAR is half the value of 1 PURE.
+			// The minimum score for a FULL RECALL is an all-FAR FULL RECALL, or
+			// 10_000_000 / 2 = 5_000_000.
+			if (s.scoreData.lamp === "FULL RECALL" && s.scoreData.score < 5_000_000) {
+				return `FULL RECALL scores must have a score larger than 5 million. Got ${s.scoreData.score} instead.`;
+			}
 		},
 		(s) => {
 			const { far, lost } = s.scoreData.judgements;

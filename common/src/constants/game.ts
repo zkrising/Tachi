@@ -530,9 +530,8 @@ export enum ARCAEA_GRADES {
 	B = 2,
 	A = 3,
 	AA = 4,
-	AAA = 5,
-	EX = 6,
-	EX_PLUS = 7,
+	EX = 5,
+	EX_PLUS = 6,
 }
 
 export enum ARCAEA_LAMPS {

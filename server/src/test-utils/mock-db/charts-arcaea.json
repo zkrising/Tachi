@@ -1,0 +1,16 @@
+[
+    {
+        "chartID": "48de13e0be17a282eed6ef97e6e1478eb59bc55e",
+        "data": {
+            "inGameID": "sheriruth",
+            "notecount": 1151
+        },
+        "difficulty": "Future",
+        "isPrimary": true,
+        "level": "10",
+        "levelNum": 10.1,
+        "playtype": "Touch",
+        "songID": 19,
+        "versions": ["mobile"]
+    }
+]

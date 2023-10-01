@@ -1,3 +1,4 @@
+import { RunValidators } from "./_common";
 import { ARCAEA_IMPL } from "./arcaea";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
@@ -6,11 +7,10 @@ import { ARCAEA_GRADES, ARCAEA_LAMPS } from "tachi-common";
 import t from "tap";
 import { dmf, mkMockPB, mkMockScore } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
+import { TestSnapshot } from "test-utils/single-process-snapshot";
 import { TestingArcaeaSheriruthFTR } from "test-utils/test-data";
 import type { ProvidedMetrics, ScoreData, ScoreDocument } from "tachi-common";
-import { RunValidators } from "./_common";
-import { DeepPartial } from "utils/types";
-import { TestSnapshot } from "test-utils/single-process-snapshot";
+import type { DeepPartial } from "utils/types";
 
 const baseMetrics: ProvidedMetrics["arcaea:Touch"] = {
 	lamp: "CLEAR",
@@ -22,10 +22,10 @@ const scoreData: ScoreData<"arcaea:Touch"> = {
 	score: 9_979_366,
 	grade: "EX+",
 	judgements: {
-        pure: 1148,
-        far: 1,
-        lost: 2,
-    },
+		pure: 1148,
+		far: 1,
+		lost: 2,
+	},
 	optional: { enumIndexes: {} },
 	enumIndexes: {
 		grade: ARCAEA_GRADES.EX_PLUS,
@@ -46,14 +46,14 @@ t.test("Arcaea Implementation", (t) => {
 				expected,
 				`A score of ${score.toLocaleString()} should result in grade=${expected}.`
 			);
-        
-        f(0, "D");
-        f(8_600_000, "C");
-        f(8_900_000, "B");
-        f(9_200_000, "A");
-        f(9_500_000, "AA");
-        f(9_800_000, "EX");
-        f(9_900_000, "EX+");
+
+		f(0, "D");
+		f(8_600_000, "C");
+		f(8_900_000, "B");
+		f(9_200_000, "A");
+		f(9_500_000, "AA");
+		f(9_800_000, "EX");
+		f(9_900_000, "EX+");
 
 		t.end();
 	});
@@ -81,13 +81,13 @@ t.test("Arcaea Implementation", (t) => {
 
 		f(null, null);
 		f(0, "BLUE");
-        f(3.5, "GREEN");
-        f(7, "ASH_PURPLE");
-        f(10, "PURPLE");
-        f(11, "RED");
-        f(12, "ONE_STAR");
-        f(12.5, "TWO_STARS");
-        f(13, "THREE_STARS");
+		f(3.5, "GREEN");
+		f(7, "ASH_PURPLE");
+		f(10, "PURPLE");
+		f(11, "RED");
+		f(12, "ONE_STAR");
+		f(12.5, "TWO_STARS");
+		f(13, "THREE_STARS");
 
 		t.end();
 	});
@@ -96,7 +96,7 @@ t.test("Arcaea Implementation", (t) => {
 		t.test("Criteria", (t) => {
 			t.equal(
 				ARCAEA_IMPL.goalCriteriaFormatters.score(10_002_221),
-				"Get a score of 10_002_221 on"
+				"Get a score of 10,002,221 on"
 			);
 
 			t.end();
@@ -167,24 +167,50 @@ t.test("Arcaea Implementation", (t) => {
 		t.end();
 	});
 
-    t.test("Score Validations", (t) => {
+	t.test("Score Validations", (t) => {
 		const f = (s: DeepPartial<ScoreDocument<"arcaea:Touch">>) =>
 			RunValidators(ARCAEA_IMPL.scoreValidators, dmf(mockScore, s));
 
-		t.strictSame(f({ scoreData: { lamp: "PURE MEMORY", score: 10_001_151 } }), undefined);
+		t.strictSame(
+			f({
+				scoreData: {
+					lamp: "PURE MEMORY",
+					score: 10_001_151,
+					judgements: {
+						pure: 1151,
+						far: 0,
+						lost: 0,
+					},
+				},
+			}),
+			undefined
+		);
 		t.strictSame(f({ scoreData: { lamp: "FULL RECALL", judgements: { lost: 0 } } }), undefined);
+		t.strictSame(
+			ARCAEA_IMPL.chartSpecificValidators.score(
+				mockScore.scoreData.score,
+				TestingArcaeaSheriruthFTR
+			),
+			true
+		);
 
 		TestSnapshot(
 			t,
 			f({ scoreData: { lamp: "PURE MEMORY", score: 9_999_999 } }),
 			"Arcaea IMPL Validators: Should disallow PURE MEMORY with non-perfect score"
 		);
+
+		TestSnapshot(
+			t,
+			f({ scoreData: { lamp: "FULL RECALL", score: 4_999_999 } }),
+			"Arcaea IMPL Validators: Should disallow FULL RECALL scores smaller than the minimum possible score"
+		);
+
 		TestSnapshot(
 			t,
 			f({ scoreData: { lamp: "FULL RECALL", judgements: { lost: 1 } } }),
 			`Arcaea IMPL Validators: Should disallow FR with lost`
 		);
-
 		TestSnapshot(
 			t,
 			f({ scoreData: { lamp: "PURE MEMORY", judgements: { far: 1 } } }),
@@ -196,11 +222,16 @@ t.test("Arcaea Implementation", (t) => {
 			"Arcaea IMPL Validators: Should disallow PURE MEMORY with non-perfect Lost judgements."
 		);
 
-        TestSnapshot(
-            t,
-            f({ scoreData: { score: 10_001_152 } }),
-            "Arcaea IMPL Validators: Should disallow scores that exceed 10 million + notecount."
-        )
+		TestSnapshot(
+			t,
+			ARCAEA_IMPL.chartSpecificValidators.score(-1, TestingArcaeaSheriruthFTR),
+			"Arcaea IMPL Validators: Should disallow negative scores."
+		);
+		TestSnapshot(
+			t,
+			ARCAEA_IMPL.chartSpecificValidators.score(10_001_152, TestingArcaeaSheriruthFTR),
+			"Arcaea IMPL Validators: Should disallow scores that exceed 10 million + notecount."
+		);
 
 		t.end();
 	});

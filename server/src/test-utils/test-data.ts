@@ -1238,7 +1238,7 @@ export const TestingArcaeaSheriruthSong: SongDocument<"arcaea"> = {
 	artist: "Team Grimoire",
 	data: {
 		displayVersion: "1.0",
-		songPack: "Eternal Core"
+		songPack: "Eternal Core",
 	},
 	id: 19,
 	searchTerms: [
@@ -1249,7 +1249,7 @@ export const TestingArcaeaSheriruthSong: SongDocument<"arcaea"> = {
 		"셰리루트",
 		"셰루트",
 		"셰루스",
-		"셰리더"
+		"셰리더",
 	],
 	title: "Sheriruth",
 };
@@ -1258,7 +1258,7 @@ export const TestingArcaeaSheriruthFTR: ChartDocument<"arcaea:Touch"> = {
 	chartID: "48de13e0be17a282eed6ef97e6e1478eb59bc55e",
 	data: {
 		inGameID: "sheriruth",
-		notecount: 1151
+		notecount: 1151,
 	},
 	difficulty: "Future",
 	isPrimary: true,
@@ -1266,7 +1266,5 @@ export const TestingArcaeaSheriruthFTR: ChartDocument<"arcaea:Touch"> = {
 	levelNum: 10.1,
 	playtype: "Touch",
 	songID: 19,
-	versions: [
-		"mobile"
-	],
+	versions: ["mobile"],
 };

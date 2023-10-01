@@ -49,6 +49,7 @@
 			"pms",
 			"maimai",
 			"maimaidx",
+			"arcaea"
 		],
 		IMPORT_TYPES: [
 			"file/eamusement-iidx-csv",

@@ -132,5 +132,5 @@ export const ARCAEA_TOUCH_CONF = {
 	preferences: z.strictObject({}),
 	scoreMeta: z.strictObject({}),
 
-	supportedMatchTypes: ["songTitle", "tachiSongID"],
+	supportedMatchTypes: ["inGameID", "songTitle", "tachiSongID"],
 } as const satisfies INTERNAL_GAME_PT_CONFIG;

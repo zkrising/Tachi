@@ -114,7 +114,7 @@ export const ARCAEA_TOUCH_CONF = {
 		courseBanner: {
 			type: "PROVIDED",
 			values: ArcaeaClasses,
-		}
+		},
 	},
 
 	orderedJudgements: ["pure", "far", "lost"],

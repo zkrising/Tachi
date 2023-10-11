@@ -206,4 +206,4 @@ export const ARCAEA_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"arcaea:Touch
 	AA: 9_500_000,
 	EX: 9_800_000,
 	"EX+": 9_900_000,
-})
+});

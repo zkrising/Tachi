@@ -89,7 +89,7 @@ const MaimaiDXMatchingClasses = [
 	ClassValue("SSS1", "SSS1"),
 
 	ClassValue("LEGEND", "Legend"),
-]
+];
 
 export const MAIMAI_DX_SINGLE_CONF = {
 	providedMetrics: {
@@ -203,7 +203,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 		matchingClass: {
 			type: "PROVIDED",
 			values: MaimaiDXMatchingClasses,
-		}
+		},
 	},
 
 	orderedJudgements: ["pcrit", "perfect", "great", "good", "miss"],

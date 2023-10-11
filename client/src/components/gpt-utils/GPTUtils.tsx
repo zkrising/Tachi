@@ -8,6 +8,7 @@ import { BMSSieglindeInfoTool } from "./tools/BMSSieglindeInfoTool";
 
 // What utils does each game support?
 const GPT_UTILS: Record<GPTString, Array<GPTUtility>> = {
+	"arcaea:Touch": [],
 	"bms:7K": [BMSCustomTablesTool, BMSSieglindeInfoTool],
 	"bms:14K": [BMSCustomTablesTool, BMSSieglindeInfoTool],
 	"chunithm:Single": [],

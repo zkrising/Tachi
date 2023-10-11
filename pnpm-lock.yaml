@@ -164,7 +164,7 @@ importers:
       react-router-bootstrap: ^0.25.0
       react-router-dom: 5.1.2
       react-select: ^5.6.1
-      rg-stats: 0.5.2
+      rg-stats: 0.5.4
       sass: 1.64.1
       sync-fetch: ^0.3.1
       tachi-common: workspace:../common
@@ -216,7 +216,7 @@ importers:
       react-router-bootstrap: 0.25.0_ojxjs55rmvr7fxvfrkhc3ong3q
       react-router-dom: 5.1.2_react@17.0.2
       react-select: 5.6.1_yiqn7u2tkfehrr3elhe5qwqfqy
-      rg-stats: 0.5.2
+      rg-stats: 0.5.4
       sync-fetch: 0.3.1
       tachi-common: link:../common
       vite-plugin-html: 3.2.0_vite@3.2.7
@@ -392,7 +392,7 @@ importers:
       prudence: 0.10.0
       rate-limit-redis: 2.1.0
       redis: 3.1.2
-      rg-stats: 0.5.2
+      rg-stats: 0.5.4
       rimraf: 3.0.2
       safe-json-stringify: 1.2.0
       semver: ^7.3.7
@@ -461,7 +461,7 @@ importers:
       prudence: 0.10.0
       rate-limit-redis: 2.1.0
       redis: 3.1.2
-      rg-stats: 0.5.2
+      rg-stats: 0.5.4
       rimraf: 3.0.2
       safe-json-stringify: 1.2.0
       semver: 7.3.7
@@ -9306,8 +9306,8 @@ packages:
     resolution: {integrity: sha512-V2hovdzFbOi77/WajaSMXk2OLm+xNIeQdMMuB7icj7bk6zi2F8GGAxigcnDFpJHbNyNcgyJDiP+8nOrY5cZGrA==}
     dev: false
 
-  /rg-stats/0.5.2:
-    resolution: {integrity: sha512-X2qSAFUaNGqu87J52KWGsrTbRDYO9k9YqJkd4g/LgOax00sFn8rUueadUkX1wUH7918SSmBeF4IcL+qqfgD/AA==}
+  /rg-stats/0.5.4:
+    resolution: {integrity: sha512-eatjAvoh7sXH1lvRhUlPLmSMkr1qUwHmZKroZp3HsLDafgxyqQB/UklkXWp7/+7X35CB/tPr/psMDuiT1ybZ6w==}
     dev: false
 
   /rimraf/2.4.5:

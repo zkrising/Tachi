@@ -132,6 +132,12 @@ const scoreMovers: ScoreMovers = {
 	},
 	"gitadora:Dora": GITADORA_MV,
 	"gitadora:Gita": GITADORA_MV,
+	"arcaea:Touch": (old) => ({
+		score: old.score,
+		judgements: old.judgements,
+		lamp: old.lamp as any,
+		optional: old.hitMeta,
+	}),
 };
 
 const logger = CreateLogCtx(__filename);

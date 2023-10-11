@@ -512,3 +512,47 @@ export enum MAIMAIDX_MATCHING_CLASSES {
 
 	LEGEND = 25,
 }
+
+export enum ARCAEA_BADGES {
+	BLUE = 0,
+	GREEN = 1,
+	ASH_PURPLE = 2,
+	PURPLE = 3,
+	RED = 4,
+	ONE_STAR = 5,
+	TWO_STARS = 6,
+	THREE_STARS = 7,
+}
+
+export enum ARCAEA_GRADES {
+	D = 0,
+	C = 1,
+	B = 2,
+	A = 3,
+	AA = 4,
+	EX = 5,
+	EX_PLUS = 6,
+}
+
+export enum ARCAEA_LAMPS {
+	LOST = 0,
+	EASY_CLEAR = 1,
+	CLEAR = 2,
+	HARD_CLEAR = 3,
+	FULL_RECALL = 4,
+	PURE_MEMORY = 5,
+}
+
+export enum ARCAEA_COURSE_BANNERS {
+	PHASE_1 = 0,
+	PHASE_2 = 1,
+	PHASE_3 = 2,
+	PHASE_4 = 3,
+	PHASE_5 = 4,
+	PHASE_6 = 5,
+	PHASE_7 = 6,
+	PHASE_8 = 7,
+	PHASE_9 = 8,
+	PHASE_10 = 9,
+	PHASE_11 = 10,
+}

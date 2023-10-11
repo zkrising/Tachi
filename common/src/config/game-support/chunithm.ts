@@ -34,7 +34,7 @@ export const CHUNITHMClasses = [
 	ClassValue("DAN_IV", "IV", "Class IV"),
 	ClassValue("DAN_V", "V", "Class V"),
 	ClassValue("DAN_INFINITE", "∞", "Infinite Class"),
-]
+];
 
 export const CHUNITHM_SINGLE_CONF = {
 	providedMetrics: {
@@ -133,7 +133,7 @@ export const CHUNITHM_SINGLE_CONF = {
 		emblem: {
 			type: "PROVIDED",
 			values: CHUNITHMClasses,
-		}
+		},
 	},
 
 	orderedJudgements: ["jcrit", "justice", "attack", "miss"],

@@ -59,5 +59,26 @@
 	"WACCA IMPL Validators: Should disallow ALL MARVELOUS with non-perfect good judgements.": [
 		"ALL MARVELOUS scores must have a perfect score. Got 953000 instead.",
 		"Cannot have an ALL MARVELOUS if all judgements were not marvelous."
-	]
+	],
+	"Arcaea IMPL Validators: Should disallow PURE MEMORY with non-perfect score": [
+		"PURE MEMORY scores must have a score larger than 10 million. Got 9999999 instead.",
+		"Cannot have a PURE MEMORY with any fars or losts."
+	],
+	"Arcaea IMPL Validators: Should disallow FR with lost": [
+		"Cannot have a FULL RECALL with non-zero lost count."
+	],
+	"Arcaea IMPL Validators: Should disallow PURE MEMORY with non-perfect Far judgements.": [
+		"PURE MEMORY scores must have a score larger than 10 million. Got 9979366 instead.",
+		"Cannot have a PURE MEMORY with any fars or losts."
+	],
+	"Arcaea IMPL Validators: Should disallow PURE MEMORY with non-perfect Lost judgements.": [
+		"PURE MEMORY scores must have a score larger than 10 million. Got 9979366 instead.",
+		"Cannot have a PURE MEMORY with any fars or losts."
+	],
+	"Arcaea IMPL Validators: Should disallow FULL RECALL scores smaller than the minimum possible score": [
+		"FULL RECALL scores must have a score larger than 5 million. Got 4999999 instead.",
+		"Cannot have a FULL RECALL with non-zero lost count."
+	],
+	"Arcaea IMPL Validators: Should disallow negative scores.": "Score must be non-negative. Got -1",
+	"Arcaea IMPL Validators: Should disallow scores that exceed 10 million + notecount.": "Score cannot exceed 10001151 for this chart."
 }

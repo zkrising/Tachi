@@ -849,7 +849,7 @@
 		"inactive": false,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sun-omni-difficulties",
-		"title": "CHUNITHM (SUN Omnimix)"
+		"title": "CHUNITHM (SUN Omnimix) (Difficulties)"
 	},
 	{
 		"default": false,
@@ -899,7 +899,7 @@
 		"inactive": false,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sunplus-intl-difficulties",
-		"title": "CHUNITHM (SUN PLUS International)"
+		"title": "CHUNITHM (SUN PLUS International) (Difficulties)"
 	},
 	{
 		"default": false,
@@ -949,7 +949,7 @@
 		"inactive": false,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sunplus-difficulties",
-		"title": "CHUNITHM (SUN PLUS)"
+		"title": "CHUNITHM (SUN PLUS) (Difficulties)"
 	},
 	{
 		"default": true,
@@ -999,7 +999,7 @@
 		"inactive": false,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sun-difficulties",
-		"title": "CHUNITHM (SUN)"
+		"title": "CHUNITHM (SUN) (Difficulties)"
 	},
 	{
 		"default": true,

@@ -29148,7 +29148,8 @@
 		"playtype": "Single",
 		"songID": 417,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -29163,7 +29164,8 @@
 		"playtype": "Single",
 		"songID": 417,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -29174,11 +29176,12 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "9+",
-		"levelNum": 9.7,
+		"levelNum": 9.5,
 		"playtype": "Single",
 		"songID": 417,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -29188,12 +29191,28 @@
 		},
 		"difficulty": "MASTER",
 		"isPrimary": true,
-		"level": "12",
-		"levelNum": 12.4,
+		"level": "12+",
+		"levelNum": 12.8,
 		"playtype": "Single",
 		"songID": 417,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
+		]
+	},
+	{
+		"chartID": "c6e9d417c0a35dd468bbd812036ac0ae44543a0e",
+		"data": {
+			"inGameID": 417
+		},
+		"difficulty": "ULTIMA",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.7,
+		"playtype": "Single",
+		"songID": 417,
+		"versions": [
+			"sun-omni"
 		]
 	},
 	{
@@ -55510,7 +55529,8 @@
 		"playtype": "Single",
 		"songID": 809,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55525,7 +55545,8 @@
 		"playtype": "Single",
 		"songID": 809,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55536,11 +55557,12 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "9",
-		"levelNum": 9.1,
+		"levelNum": 9,
 		"playtype": "Single",
 		"songID": 809,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55551,11 +55573,12 @@
 		"difficulty": "MASTER",
 		"isPrimary": true,
 		"level": "11+",
-		"levelNum": 11.9,
+		"levelNum": 11.8,
 		"playtype": "Single",
 		"songID": 809,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55642,7 +55665,8 @@
 		"playtype": "Single",
 		"songID": 811,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55657,7 +55681,8 @@
 		"playtype": "Single",
 		"songID": 811,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55668,11 +55693,12 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "7+",
-		"levelNum": 7.9,
+		"levelNum": 7.5,
 		"playtype": "Single",
 		"songID": 811,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55682,12 +55708,13 @@
 		},
 		"difficulty": "MASTER",
 		"isPrimary": true,
-		"level": "10",
+		"level": "10+",
 		"levelNum": 10.5,
 		"playtype": "Single",
 		"songID": 811,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55702,7 +55729,8 @@
 		"playtype": "Single",
 		"songID": 812,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55717,7 +55745,8 @@
 		"playtype": "Single",
 		"songID": 812,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55728,11 +55757,12 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "8",
-		"levelNum": 8.4,
+		"levelNum": 8,
 		"playtype": "Single",
 		"songID": 812,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55743,11 +55773,12 @@
 		"difficulty": "MASTER",
 		"isPrimary": true,
 		"level": "12",
-		"levelNum": 12.1,
+		"levelNum": 12.3,
 		"playtype": "Single",
 		"songID": 812,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55762,7 +55793,8 @@
 		"playtype": "Single",
 		"songID": 813,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55777,7 +55809,8 @@
 		"playtype": "Single",
 		"songID": 813,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55788,11 +55821,12 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "9",
-		"levelNum": 9.4,
+		"levelNum": 9,
 		"playtype": "Single",
 		"songID": 813,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55802,12 +55836,13 @@
 		},
 		"difficulty": "MASTER",
 		"isPrimary": true,
-		"level": "12",
-		"levelNum": 12.2,
+		"level": "12+",
+		"levelNum": 12.5,
 		"playtype": "Single",
 		"songID": 813,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55822,7 +55857,8 @@
 		"playtype": "Single",
 		"songID": 814,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55837,7 +55873,8 @@
 		"playtype": "Single",
 		"songID": 814,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55847,12 +55884,13 @@
 		},
 		"difficulty": "EXPERT",
 		"isPrimary": true,
-		"level": "8+",
-		"levelNum": 8.7,
+		"level": "8",
+		"levelNum": 8,
 		"playtype": "Single",
 		"songID": 814,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -55863,11 +55901,12 @@
 		"difficulty": "MASTER",
 		"isPrimary": true,
 		"level": "11",
-		"levelNum": 11.6,
+		"levelNum": 11.3,
 		"playtype": "Single",
 		"songID": 814,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -58409,7 +58448,8 @@
 		"playtype": "Single",
 		"songID": 847,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -58424,7 +58464,8 @@
 		"playtype": "Single",
 		"songID": 847,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -58435,11 +58476,12 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "9",
-		"levelNum": 9.1,
+		"levelNum": 9,
 		"playtype": "Single",
 		"songID": 847,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -58449,12 +58491,13 @@
 		},
 		"difficulty": "MASTER",
 		"isPrimary": true,
-		"level": "11+",
-		"levelNum": 11.7,
+		"level": "11",
+		"levelNum": 11.4,
 		"playtype": "Single",
 		"songID": 847,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59029,7 +59072,8 @@
 		"playtype": "Single",
 		"songID": 855,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59044,7 +59088,8 @@
 		"playtype": "Single",
 		"songID": 855,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59055,11 +59100,12 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "9",
-		"levelNum": 9.4,
+		"levelNum": 9,
 		"playtype": "Single",
 		"songID": 855,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59069,12 +59115,13 @@
 		},
 		"difficulty": "MASTER",
 		"isPrimary": true,
-		"level": "12",
-		"levelNum": 12.6,
+		"level": "13",
+		"levelNum": 13.4,
 		"playtype": "Single",
 		"songID": 855,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59161,7 +59208,8 @@
 		"playtype": "Single",
 		"songID": 857,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59176,7 +59224,8 @@
 		"playtype": "Single",
 		"songID": 857,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59187,11 +59236,12 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "8",
-		"levelNum": 8.5,
+		"levelNum": 8,
 		"playtype": "Single",
 		"songID": 857,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59206,7 +59256,8 @@
 		"playtype": "Single",
 		"songID": 857,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59453,7 +59504,8 @@
 		"playtype": "Single",
 		"songID": 861,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59468,7 +59520,8 @@
 		"playtype": "Single",
 		"songID": 861,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59479,11 +59532,12 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "8+",
-		"levelNum": 8.8,
+		"levelNum": 8.5,
 		"playtype": "Single",
 		"songID": 861,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59494,11 +59548,12 @@
 		"difficulty": "MASTER",
 		"isPrimary": true,
 		"level": "11",
-		"levelNum": 11.3,
+		"levelNum": 11.2,
 		"playtype": "Single",
 		"songID": 861,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59513,7 +59568,8 @@
 		"playtype": "Single",
 		"songID": 862,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59528,7 +59584,8 @@
 		"playtype": "Single",
 		"songID": 862,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59543,7 +59600,8 @@
 		"playtype": "Single",
 		"songID": 862,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59553,12 +59611,13 @@
 		},
 		"difficulty": "MASTER",
 		"isPrimary": true,
-		"level": "12",
-		"levelNum": 12.4,
+		"level": "12+",
+		"levelNum": 12.7,
 		"playtype": "Single",
 		"songID": 862,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59729,11 +59788,12 @@
 		"difficulty": "ADVANCED",
 		"isPrimary": true,
 		"level": "7",
-		"levelNum": 7.1,
+		"levelNum": 7,
 		"playtype": "Single",
 		"songID": 866,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59748,7 +59808,8 @@
 		"playtype": "Single",
 		"songID": 866,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59763,7 +59824,8 @@
 		"playtype": "Single",
 		"songID": 866,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -59773,12 +59835,13 @@
 		},
 		"difficulty": "MASTER",
 		"isPrimary": true,
-		"level": "12+",
-		"levelNum": 12.7,
+		"level": "13+",
+		"levelNum": 13.7,
 		"playtype": "Single",
 		"songID": 866,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -61065,7 +61128,8 @@
 		"playtype": "Single",
 		"songID": 883,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -61080,7 +61144,8 @@
 		"playtype": "Single",
 		"songID": 883,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -61091,11 +61156,12 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "8+",
-		"levelNum": 8.9,
+		"levelNum": 8.5,
 		"playtype": "Single",
 		"songID": 883,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -61106,11 +61172,12 @@
 		"difficulty": "MASTER",
 		"isPrimary": true,
 		"level": "12",
-		"levelNum": 12.2,
+		"levelNum": 12.4,
 		"playtype": "Single",
 		"songID": 883,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -61125,7 +61192,8 @@
 		"playtype": "Single",
 		"songID": 884,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -61140,7 +61208,8 @@
 		"playtype": "Single",
 		"songID": 884,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -61151,11 +61220,12 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "8",
-		"levelNum": 8.3,
+		"levelNum": 8,
 		"playtype": "Single",
 		"songID": 884,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -61166,11 +61236,12 @@
 		"difficulty": "MASTER",
 		"isPrimary": true,
 		"level": "12",
-		"levelNum": 12.1,
+		"levelNum": 12.3,
 		"playtype": "Single",
 		"songID": 884,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -61596,7 +61667,8 @@
 		"playtype": "Single",
 		"songID": 890,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -61611,7 +61683,8 @@
 		"playtype": "Single",
 		"songID": 890,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -61621,12 +61694,13 @@
 		},
 		"difficulty": "EXPERT",
 		"isPrimary": true,
-		"level": "8+",
-		"levelNum": 8.7,
+		"level": "8",
+		"levelNum": 8,
 		"playtype": "Single",
 		"songID": 890,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -61636,12 +61710,13 @@
 		},
 		"difficulty": "MASTER",
 		"isPrimary": true,
-		"level": "11",
-		"levelNum": 11,
+		"level": "10+",
+		"levelNum": 10.9,
 		"playtype": "Single",
 		"songID": 890,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -61736,7 +61811,8 @@
 		"playtype": "Single",
 		"songID": 892,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -61751,7 +61827,8 @@
 		"playtype": "Single",
 		"songID": 892,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -61761,12 +61838,13 @@
 		},
 		"difficulty": "EXPERT",
 		"isPrimary": true,
-		"level": "9",
+		"level": "9+",
 		"levelNum": 9.5,
 		"playtype": "Single",
 		"songID": 892,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{
@@ -61776,12 +61854,13 @@
 		},
 		"difficulty": "MASTER",
 		"isPrimary": true,
-		"level": "12+",
-		"levelNum": 12.7,
+		"level": "13+",
+		"levelNum": 13.7,
 		"playtype": "Single",
 		"songID": 892,
 		"versions": [
-			"paradiselost"
+			"paradiselost",
+			"sun-omni"
 		]
 	},
 	{

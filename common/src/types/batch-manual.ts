@@ -18,7 +18,12 @@ import type { AllFieldsNullableOptional } from "./utils";
 type MatchTypesNoDifficulty = "bmsChartHash" | "itgChartHash" | "popnChartHash" | "uscChartHash";
 
 // These MatchTypes need `difficulty` set in the batch manual.
-type MatchTypesWithDifficulty = "inGameID" | "sdvxInGameID" | "songTitle" | "tachiSongID";
+type MatchTypesWithDifficulty =
+	| "inGameID"
+	| "inGameStrID"
+	| "sdvxInGameID"
+	| "songTitle"
+	| "tachiSongID";
 
 export type MatchTypes = MatchTypesNoDifficulty | MatchTypesWithDifficulty;
 

@@ -359,6 +359,46 @@ export async function ResolveMatchTypeToTachiData(
 			return { song, chart };
 		}
 
+		case "inGameStrID": {
+			const difficulty = AssertStrAsDifficulty(data.difficulty, game, context.playtype);
+
+			let chart;
+
+			if (context.version) {
+				chart = await db.anyCharts[game].findOne({
+					"data.inGameStrID": data.identifier,
+					playtype: context.playtype,
+					difficulty,
+					versions: context.version,
+				});
+			} else {
+				chart = await db.anyCharts[game].findOne({
+					"data.inGameStrID": data.identifier,
+					playtype: context.playtype,
+					difficulty,
+					isPrimary: true,
+				});
+			}
+
+			if (!chart) {
+				throw new SongOrChartNotFoundFailure(
+					`Cannot find chart for inGameStrID ${data.identifier} (${context.playtype}).`,
+					importType,
+					data,
+					context
+				);
+			}
+
+			const song = await db.anySongs[game].findOne({ id: chart.songID });
+
+			if (!song) {
+				logger.severe(`Song-Chart desync on ${chart.songID}.`);
+				throw new InternalFailure(`Failed to get song for a chart that exists.`);
+			}
+
+			return { song, chart };
+		}
+
 		case "uscChartHash": {
 			if (game !== "usc") {
 				throw new InvalidScoreFailure(`uscChartHash matchType can only be used on USC.`);

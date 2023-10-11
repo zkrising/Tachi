@@ -164,5 +164,5 @@ export const MAIMAI_SINGLE_CONF = {
 	preferences: z.strictObject({}),
 	scoreMeta: z.strictObject({}),
 
-	supportedMatchTypes: ["songTitle", "tachiSongID", "inGameID"],
+	supportedMatchTypes: ["songTitle", "tachiSongID", "inGameID", "inGameStrID"],
 } as const satisfies INTERNAL_GAME_PT_CONFIG;

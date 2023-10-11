@@ -82,7 +82,7 @@
 		"html-entities": "^2.3.2",
 		"json5": "2.2.0",
 		"mkdirp": "1.0.4",
-		"mongodb": "3.6.3",
+		"mongodb": "3.6.10",
 		"monk": "7.3.4",
 		"multer": "1.4.4",
 		"node-cache": "5.1.2",

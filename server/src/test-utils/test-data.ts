@@ -1257,7 +1257,7 @@ export const TestingArcaeaSheriruthSong: SongDocument<"arcaea"> = {
 export const TestingArcaeaSheriruthFTR: ChartDocument<"arcaea:Touch"> = {
 	chartID: "48de13e0be17a282eed6ef97e6e1478eb59bc55e",
 	data: {
-		inGameID: "sheriruth",
+		inGameStrID: "sheriruth",
 		notecount: 1151,
 	},
 	difficulty: "Future",

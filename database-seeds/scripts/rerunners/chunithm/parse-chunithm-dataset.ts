@@ -166,7 +166,7 @@ function releaseDateToVersion(date: Date): string {
 					displayVersion: releaseDateToVersion(new Date(chunirecSong.meta.release)),
 					genre: chunithmSong.catname,
 				},
-				id: inGameID,
+				id: songID,
 				searchTerms: [],
 				title: chunithmSong.title,
 			});

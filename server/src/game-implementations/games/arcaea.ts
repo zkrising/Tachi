@@ -32,7 +32,7 @@ export const ARCAEA_IMPL: GPTServerImplementation<GPTStrings["arcaea"]> = {
 		naivePotential: SessionAvgBest10For("potential"),
 	},
 	profileCalcs: {
-		naivePotential: ProfileAvgBestN("potential", 50),
+		naivePotential: ProfileAvgBestN("potential", 30),
 	},
 	classDerivers: {
 		badge: (ratings) => {

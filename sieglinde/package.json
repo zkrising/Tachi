@@ -19,5 +19,9 @@
 		"node-fetch": "2.6.7",
 		"tachi-common": "workspace:../common",
 		"winston": "3.5.1"
+	},
+	"engines": {
+		"node": "16",
+		"pnpm": "7.20.0"
 	}
 }

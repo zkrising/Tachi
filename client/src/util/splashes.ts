@@ -58,7 +58,6 @@ export const loggedInSplashes = [
 	"And it just happens to be fantastically enjoyable.",
 	"Touch the statue. I will forgive you.",
 	"https://github.com/EpicGames/Signup/pull/10",
-	"Have you tried PNPM?",
 	"MongoDB is web scale, actually.",
 	"▼LTRA ▼IOLENCE EDITION",
 	"It's all about the CEO grindset.",

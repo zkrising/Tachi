@@ -73,7 +73,6 @@ export default function CreditsPage() {
 						{a(
 							"Lead Dev",
 							"Rules Of Hooks Violator",
-							"PNPM Evangelist",
 							"ABBA Enthusiast",
 							"Nutcase",
 							"IIDX 'player'"
@@ -196,14 +195,6 @@ export default function CreditsPage() {
 				</p>
 
 				<ul>
-					<li>
-						<ExternalLink href="https://pnpm.io">PNPM</ExternalLink>
-						<br />
-						<small>
-							PNPM is a monumental improvement over NPM. I cannot recommend it highly
-							enough.
-						</small>
-					</li>
 					<li>
 						<ExternalLink href="https://mkdocs.org">MkDocs</ExternalLink>
 						<br />

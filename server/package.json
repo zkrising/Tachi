@@ -117,5 +117,9 @@
 			"src/**/*.test.ts",
 			"src/external/mongo/schemas.ts"
 		]
+	},
+	"engines": {
+		"node": "16",
+		"pnpm": "7.20.0"
 	}
 }

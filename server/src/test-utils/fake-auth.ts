@@ -34,16 +34,13 @@ export async function CreateFakeAuthCookie(mockApi: supertest.SuperTest<supertes
 	return setCookieHeader;
 }
 
-// my local dev env hates this part because of pnpm
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function InsertFakeTokenWithAllPerms(token: string): () => any {
-	return async () => {
-		await db["api-tokens"].insert({
+export function InsertFakeTokenWithAllPerms(token: string): () => Promise<any> {
+	return () =>
+		db["api-tokens"].insert({
 			userID: 1,
 			identifier: "Mock API Token",
 			permissions: ALL_PERMISSIONS,
 			token,
 			fromAPIClient: null,
 		});
-	};
 }

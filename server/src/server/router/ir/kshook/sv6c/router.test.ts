@@ -1,5 +1,6 @@
 import deepmerge from "deepmerge";
 import db from "external/mongo/db";
+import { ALL_PERMISSIONS } from "tachi-common";
 import t from "tap";
 import { InsertFakeTokenWithAllPerms } from "test-utils/fake-auth";
 import mockApi from "test-utils/mock-api";
@@ -8,7 +9,15 @@ import { TestingKsHookSV6CScore, TestingKsHookSV6CStaticScore } from "test-utils
 
 t.test("POST /ir/kshook/sv6c/score/save", (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(InsertFakeTokenWithAllPerms("mock_token"));
+	t.beforeEach(() =>
+		db["api-tokens"].insert({
+			userID: 1,
+			identifier: "Mock API Token",
+			permissions: ALL_PERMISSIONS,
+			token: "mock_token",
+			fromAPIClient: null,
+		})
+	);
 
 	t.test("Should import a valid score to the database.", async (t) => {
 		const res = await mockApi
@@ -107,7 +116,15 @@ t.test("POST /ir/kshook/sv6c/score/save", (t) => {
 
 t.test("POST /ir/kshook/sv6c/score/export", (t) => {
 	t.beforeEach(ResetDBState);
-	t.beforeEach(InsertFakeTokenWithAllPerms("mock_token"));
+	t.beforeEach(() =>
+		db["api-tokens"].insert({
+			userID: 1,
+			identifier: "Mock API Token",
+			permissions: ALL_PERMISSIONS,
+			token: "mock_token",
+			fromAPIClient: null,
+		})
+	);
 
 	// eslint-disable-next-line @typescript-eslint/ban-types
 	const validSubmit = (data: object) =>

@@ -92,7 +92,7 @@ export function MYTNeedsIntegrate({
 		<div>
 			<h3 className="text-center mb-4">Set your MYT authentication token.</h3>
 
-			<FormInput fieldName="Card ID" setValue={setAuthToken} value={authToken} />
+			<FormInput fieldName="Token" setValue={setAuthToken} value={authToken} />
 			<Form.Label>
 				You can retrieve a token by visiting your account profile on the MYT web portal.	
 			</Form.Label>
@@ -101,7 +101,7 @@ export function MYTNeedsIntegrate({
 
 			<div className="w-100 d-flex justify-content-center">
 				<Button onClick={() => onSubmit(authToken)}>
-					Submit Card ID
+					Submit Token
 				</Button>
 			</div>
 		</div>

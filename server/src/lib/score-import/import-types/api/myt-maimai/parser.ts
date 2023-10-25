@@ -73,7 +73,7 @@ export async function ParseMYTMaimai(userID: integer, logger: KtLogger, fetch = 
 			version: json.meta.version ?? null,
 		},
 		game: "maimai",
-		iterable: json.scores as Array<BatchManualScore<"maimai:Single">>,
+		iterable: json.scores,
 		classProvider: json.classes ? CreateBatchManualClassProvider(json.classes) : null,
 	};
 }

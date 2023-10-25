@@ -116,7 +116,7 @@ export interface ImportTypeContextMap {
 	"api/cg-gan-museca": CGContext;
 	"api/cg-gan-popn": CGContext;
 
-	// MYT provides an API endpoint specifically for Tachi.
+	// MYT provides an API endpoint that returns scores in Tachi's BATCH-MANUAL format.
 	"api/myt-maimai": BatchManualContext;
 }
 

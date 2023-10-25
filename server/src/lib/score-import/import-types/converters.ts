@@ -65,5 +65,6 @@ export const Converters: ConverterMap = {
 	"api/cg-gan-museca": ConverterAPICGMuseca,
 	"api/cg-gan-popn": ConverterAPICGPopn,
 
+	// MYT provides an API endpoint that returns scores in Tachi's BATCH-MANUAL format.
 	"api/myt-maimai": ConverterBatchManual,
 };

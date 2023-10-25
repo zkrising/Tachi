@@ -48,6 +48,7 @@ export default function MYTIntegrationPage() {
 			{(showEdit || !data?.authStatus) && (
 				<>
 					<MYTNeedsIntegrate
+						authStatus={data?.authStatus}
 						onSubmit={async (token) => {
 							const res = await APIFetchV1(
 								`/users/${user.id}/integrations/myt`,
@@ -81,15 +82,17 @@ export default function MYTIntegrationPage() {
 }
 
 export function MYTNeedsIntegrate({
+	authStatus,
 	onSubmit,
 }: {
+	authStatus?: boolean,
 	onSubmit: (authToken: string) => Promise<void>;
 }) {
 	const [authToken, setAuthToken] = useState("");
 
 	return (
 		<div>
-			<h3 className="text-center mb-4">Set your MYT authentication token.</h3>
+			<h3 className="text-center mb-4">{authStatus ? "Update " : "Set "} your MYT authentication token.</h3>
 
 			<FormInput fieldName="Token" setValue={setAuthToken} value={authToken} />
 			<Form.Label>

@@ -993,10 +993,27 @@ function CGIntegrationInfo({ cgType, userID }: { cgType: "dev" | "gan" | "nag"; 
 }
 
 function MYTIntegrationInfo({ userID }: { userID: integer }) {
+	const [reload, shouldReloadAuthInfo] = useReducer((x) => x + 1, 0);
+
+	const { data, error } = useApiQuery<{ authStatus: boolean; }>(
+		`/users/${userID}/integrations/myt`,
+		undefined,
+		[reload],
+	);
+
+	if (error) {
+		return <ApiError error={error} />;
+	}
+
+	if (!data) {
+		return <Loading />;
+	}
+
 	return (
 		<MYTNeedsIntegrate
+			authStatus={data.authStatus}
 			onSubmit={async (token) => {
-				await APIFetchV1(
+				const res = await APIFetchV1(
 					`/users/${userID}/integrations/myt`,
 					{
 						method: "PUT",
@@ -1008,6 +1025,10 @@ function MYTIntegrationInfo({ userID }: { userID: integer }) {
 					true,
 					true,
 				);
+
+				if (res.success) {
+					shouldReloadAuthInfo();
+				}
 			}}
 		/>
 	)

@@ -48,7 +48,7 @@ export async function ParseMYTMaimai(userID: integer, logger: KtLogger, fetch = 
 		// in the case of disaster.
 		text = await res.text();
 
-		json = JSON.parse(text) as unknown as BatchManual;
+		json = JSON.parse(text) as unknown;
 	} catch (err) {
 		logger.error(
 			`Received invalid (non-json) response from MYT. Status code was ${res.status}.`,
@@ -62,6 +62,8 @@ export async function ParseMYTMaimai(userID: integer, logger: KtLogger, fetch = 
 	if (err) {
 		throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid BATCH-MANUAL from MYT."));
 	}
+
+	json = json as BatchManual<"maimai:Single">;
 
 	return {
 		context: {

@@ -65,7 +65,7 @@ export interface TachiServerConfig {
 	EAG_API_URL?: string;
 	MIN_API_URL?: string;
 	ARC_API_URL?: string;
-	MYT_API_URL?: string;
+	MAIT_API_URL?: string;
 
 	CG_DEV_CONFIG?: CGConfig;
 	CG_NAG_CONFIG?: CGConfig;
@@ -162,7 +162,7 @@ const err = p(config, {
 	EAG_API_URL: p.optional(isValidURL),
 	MIN_API_URL: p.optional(isValidURL),
 	ARC_API_URL: p.optional(isValidURL),
-	MYT_API_URL: p.optional(isValidURL),
+	MAIT_API_URL: p.optional(isValidURL),
 
 	CG_DEV_CONFIG: isValidCGConfig,
 	CG_NAG_CONFIG: isValidCGConfig,

@@ -11,14 +11,14 @@ import useApiQuery from "components/util/query/useApiQuery";
 import { UserContext } from "context/UserContext";
 import React, { useContext, useReducer, useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { APIImportTypes, GetGameConfig, MYTAuthDocument } from "tachi-common";
+import { APIImportTypes, GetGameConfig, MAITAuthDocument } from "tachi-common";
 import { SetState } from "types/react";
 import ImportStateRenderer from "./ImportStateRenderer";
 
-export default function MYTIntegrationPage() {
+export default function MAITIntegrationPage() {
 	const gameConfig = GetGameConfig("maimai");
 
-	useSetSubheader(["Import Scores", `${gameConfig.name} Sync (MYT)`]);
+	useSetSubheader(["Import Scores", `${gameConfig.name} Sync (MAIT)`]);
 
 	const [reload, shouldReloadAuthInfo] = useReducer((x) => x + 1, 0);
 	const [showEdit, setShowEdit] = useState(false);
@@ -30,7 +30,7 @@ export default function MYTIntegrationPage() {
 	}
 
 	const { data, error } = useApiQuery<{ authStatus: boolean }>(
-		`/users/${user.id}/integrations/myt`,
+		`/users/${user.id}/integrations/mait`,
 		undefined,
 		[reload]
 	);
@@ -47,11 +47,11 @@ export default function MYTIntegrationPage() {
 		<>
 			{(showEdit || !data?.authStatus) && (
 				<>
-					<MYTNeedsIntegrate
+					<MAITNeedsIntegrate
 						authStatus={data?.authStatus}
 						onSubmit={async (token) => {
 							const res = await APIFetchV1(
-								`/users/${user.id}/integrations/myt`,
+								`/users/${user.id}/integrations/mait`,
 								{
 									method: "PUT",
 									body: JSON.stringify({ token }),
@@ -71,12 +71,12 @@ export default function MYTIntegrationPage() {
 					<Divider />
 				</>
 			)}
-			{data && <MYTImporter showEdit={showEdit} setShowEdit={setShowEdit} />}
+			{data && <MAITImporter showEdit={showEdit} setShowEdit={setShowEdit} />}
 		</>
 	);
 }
 
-export function MYTNeedsIntegrate({
+export function MAITNeedsIntegrate({
 	authStatus,
 	onSubmit,
 }: {
@@ -88,12 +88,12 @@ export function MYTNeedsIntegrate({
 	return (
 		<div>
 			<h3 className="text-center mb-4">
-				{authStatus ? "Update " : "Set "} your MYT authentication token.
+				{authStatus ? "Update " : "Set "} your MAIT authentication token.
 			</h3>
 
 			<FormInput fieldName="Token" setValue={setAuthToken} value={authToken} />
 			<Form.Label>
-				You can retrieve a token by visiting your account profile on the MYT web portal.
+				You can retrieve a token by visiting your account profile on the MAIT web portal.
 			</Form.Label>
 
 			<Divider />
@@ -105,14 +105,14 @@ export function MYTNeedsIntegrate({
 	);
 }
 
-function MYTImporter({
+function MAITImporter({
 	showEdit,
 	setShowEdit,
 }: {
 	showEdit: boolean;
 	setShowEdit: SetState<boolean>;
 }) {
-	const importType: APIImportTypes = "api/myt-maimai";
+	const importType: APIImportTypes = "api/mait-maimai";
 
 	const { importState, runImport } = useImport("/import/from-api", {
 		method: "POST",
@@ -127,7 +127,7 @@ function MYTImporter({
 	return (
 		<div>
 			<h2 className="text-center mb-4">
-				Importing scores from MYT with saved token{" "}
+				Importing scores from MAIT with saved token{" "}
 				<Icon
 					onClick={() => setShowEdit(!showEdit)}
 					type={showEdit ? "times" : "pencil-alt"}
@@ -154,7 +154,7 @@ function MYTImporter({
 			</div>
 			<Divider />
 			<div>
-				Play on MYT a lot? You can synchronise your scores straight from the discord by
+				Play on MAIT a lot? You can synchronise your scores straight from the discord by
 				typing <code>/sync</code>!
 			</div>
 			<Divider />

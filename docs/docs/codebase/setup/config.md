@@ -132,11 +132,11 @@ This key is used to encrypt Session Cookies.
 	You can generate secure random strings with something 
 	like [KeePass](https://keepass.info/).
 
-### MYT_API_URL
+### MAIT_API_URL
 
 - Type: String
 
-The URL for `MYT` service. This is used for integration with the Kamaitachi
+The URL for `MAIT` service. This is used for integration with the Kamaitachi
 version of Tachi.
 
 ### FLO_API_URL, EAG_API_URL, MIN_API_URL

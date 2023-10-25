@@ -3,7 +3,7 @@ import { ParseEagSDVX } from "./api/eag-sdvx/parser";
 import { ParseFloIIDX } from "./api/flo-iidx/parser";
 import { ParseFloSDVX } from "./api/flo-sdvx/parser";
 import { ParseMinSDVX } from "./api/min-sdvx/parser";
-import { ParseMYTMaimai } from "./api/myt-maimai/parser";
+import { ParseMAITMaimai } from "./api/mait-maimai/parser";
 import {
 	ParseCGDevMuseca,
 	ParseCGDevPopn,
@@ -67,7 +67,7 @@ export const Parsers = {
 	"api/cg-gan-popn": ParseCGGanPopn,
 	"api/cg-gan-museca": ParseCGGanMuseca,
 
-	"api/myt-maimai": ParseMYTMaimai,
+	"api/mait-maimai": ParseMAITMaimai,
 
 	"ir/barbatos": ParseBarbatosSingle,
 	"ir/beatoraja": ParseBeatorajaSingle,

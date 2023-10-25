@@ -283,7 +283,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			/>
 		);
 	} else if (game === "maimai") {
-		Content.unshift(<ImportTypeInfoCard key="api/myt-maimai" importType="api/myt-maimai" />);
+		Content.unshift(<ImportTypeInfoCard key="api/mait-maimai" importType="api/mait-maimai" />);
 	} else if (game === "maimaidx") {
 		Content.unshift(
 			<ImportInfoCard
@@ -478,14 +478,14 @@ function ImportTypeInfoCard({
 					key="cg-nag-museca"
 				/>
 			);
-		case "api/myt-maimai":
+		case "api/mait-maimai":
 			return (
 				<ImportInfoCard
-					name="MYT Integration"
-					href="myt-maimai"
-					desc="Pull your maimai scores from the MYT network."
+					name="MAIT Integration"
+					href="mait-maimai"
+					desc="Pull your maimai scores from the MAIT network."
 					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
-					key="myt-maimai"
+					key="mait-maimai"
 				/>
 			);
 		case "file/eamusement-iidx-csv":

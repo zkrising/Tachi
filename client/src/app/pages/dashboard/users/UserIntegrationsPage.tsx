@@ -25,7 +25,7 @@ import {
 } from "tachi-common";
 import { SetState } from "types/react";
 import { CGNeedsIntegrate } from "components/imports/CGIntegrationPage";
-import { MYTNeedsIntegrate } from "components/imports/MYTIntegrationPage";
+import { MAITNeedsIntegrate } from "components/imports/MAITIntegrationPage";
 import FervidexIntegrationPage from "./FervidexIntegrationPage";
 import KsHookSV6CIntegrationPage from "./KsHookSV6CIntegrationPage";
 
@@ -646,7 +646,7 @@ function ServicesPage({ reqUser }: { reqUser: UserDocument }) {
 					<SelectLinkButton to={`${baseUrl}/flo`}>FLO</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/eag`}>EAG</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/min`}>MIN</SelectLinkButton>
-					<SelectLinkButton to={`${baseUrl}/myt`}>MYT</SelectLinkButton>
+					<SelectLinkButton to={`${baseUrl}/mait`}>MAIT</SelectLinkButton>
 				</div>
 				<Divider />
 			</Col>
@@ -675,8 +675,8 @@ function ServicesPage({ reqUser }: { reqUser: UserDocument }) {
 				<Route exact path={`${baseUrl}/min`}>
 					<KAIIntegrationStatus userID={reqUser.id} kaiType="min" />
 				</Route>
-				<Route exact path={`${baseUrl}/myt`}>
-					<MYTIntegrationInfo userID={reqUser.id} />
+				<Route exact path={`${baseUrl}/mait`}>
+					<MAITIntegrationInfo userID={reqUser.id} />
 				</Route>
 			</Switch>
 		</Row>
@@ -992,11 +992,11 @@ function CGIntegrationInfo({ cgType, userID }: { cgType: "dev" | "gan" | "nag"; 
 	);
 }
 
-function MYTIntegrationInfo({ userID }: { userID: integer }) {
+function MAITIntegrationInfo({ userID }: { userID: integer }) {
 	const [reload, shouldReloadAuthInfo] = useReducer((x) => x + 1, 0);
 
 	const { data, error } = useApiQuery<{ authStatus: boolean }>(
-		`/users/${userID}/integrations/myt`,
+		`/users/${userID}/integrations/mait`,
 		undefined,
 		[reload]
 	);
@@ -1010,11 +1010,11 @@ function MYTIntegrationInfo({ userID }: { userID: integer }) {
 	}
 
 	return (
-		<MYTNeedsIntegrate
+		<MAITNeedsIntegrate
 			authStatus={data.authStatus}
 			onSubmit={async (token) => {
 				const res = await APIFetchV1(
-					`/users/${userID}/integrations/myt`,
+					`/users/${userID}/integrations/mait`,
 					{
 						method: "PUT",
 						body: JSON.stringify({ token }),

@@ -19,7 +19,7 @@ export type APIImportTypes =
 	// with four games.
 	// this typescript feature for stringliteral expansion is kinda neat.
 	| `api/cg-${"dev" | "gan" | "nag"}-${"museca" | "popn" | "sdvx"}`
-	| "api/myt-maimai";
+	| "api/mait-maimai";
 
 export type IRImportTypes =
 	| "ir/barbatos"

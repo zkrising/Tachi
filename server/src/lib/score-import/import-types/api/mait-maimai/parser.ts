@@ -6,18 +6,18 @@ import { p } from "prudence";
 import { FormatPrError } from "tachi-common";
 import { PR_BATCH_MANUAL } from "tachi-common/lib/schemas";
 import nodeFetch from "utils/fetch";
-import { GetMYTAuthGuaranteed } from "utils/queries/auth";
+import { GetMAITAuthGuaranteed } from "utils/queries/auth";
 import type { KtLogger } from "lib/logger/logger";
 import type { BatchManual, BatchManualScore, integer } from "tachi-common";
 
-export async function ParseMYTMaimai(userID: integer, logger: KtLogger, fetch = nodeFetch) {
-	const baseUrl = ServerConfig.MYT_API_URL;
+export async function ParseMAITMaimai(userID: integer, logger: KtLogger, fetch = nodeFetch) {
+	const baseUrl = ServerConfig.MAIT_API_URL;
 
 	if (!baseUrl) {
-		throw new ScoreImportFatalError(500, `No API_URL was defined for MYT.`);
+		throw new ScoreImportFatalError(500, `No API_URL was defined for MAIT.`);
 	}
 
-	const authDoc = await GetMYTAuthGuaranteed(userID, logger);
+	const authDoc = await GetMAITAuthGuaranteed(userID, logger);
 
 	let json;
 	let res;
@@ -32,13 +32,13 @@ export async function ParseMYTMaimai(userID: integer, logger: KtLogger, fetch = 
 			redirect: "manual",
 		});
 	} catch (err) {
-		logger.error("Received invalid response from MYT.", { err });
-		throw new ScoreImportFatalError(500, "Received invalid response from MYT. Are they down?");
+		logger.error("Received invalid response from MAIT.", { err });
+		throw new ScoreImportFatalError(500, "Received invalid response from MAIT. Are they down?");
 	}
 
 	// The API redirects you to the login page if the API token was invalid.
 	if (res.status === 302 && res.headers.get("location") === `${baseUrl}/login`) {
-		throw new ScoreImportFatalError(401, "Unable to authenticate with MYT.");
+		throw new ScoreImportFatalError(401, "Unable to authenticate with MAIT.");
 	}
 
 	let text;
@@ -51,16 +51,16 @@ export async function ParseMYTMaimai(userID: integer, logger: KtLogger, fetch = 
 		json = JSON.parse(text) as unknown;
 	} catch (err) {
 		logger.error(
-			`Received invalid (non-json) response from MYT. Status code was ${res.status}.`,
+			`Received invalid (non-json) response from MAIT. Status code was ${res.status}.`,
 			{ err, text }
 		);
-		throw new ScoreImportFatalError(500, `Received invalid response from MYT. Are they down?`);
+		throw new ScoreImportFatalError(500, `Received invalid response from MAIT. Are they down?`);
 	}
 
 	const err = p(json, PR_BATCH_MANUAL("maimai", "Single"));
 
 	if (err) {
-		throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid BATCH-MANUAL from MYT."));
+		throw new ScoreImportFatalError(400, FormatPrError(err, "Invalid BATCH-MANUAL from MAIT."));
 	}
 
 	json = json as BatchManual<"maimai:Single">;

@@ -27,7 +27,7 @@ import CGIntegrationPage from "components/imports/CGIntegrationPage";
 import ITGHookPage from "app/pages/dashboard/import/ITGHookPage";
 import MaimaiDXSiteImportPage from "app/pages/dashboard/import/MaimaiDXSiteImportPage";
 import ChunithmSiteImportPage from "app/pages/dashboard/import/ChunithmSiteImportPage";
-import MYTIntegrationPage from "components/imports/MYTIntegrationPage";
+import MAITIntegrationPage from "components/imports/MAITIntegrationPage";
 
 export default function ImportRoutes() {
 	const { user } = useContext(UserContext);
@@ -215,8 +215,8 @@ export default function ImportRoutes() {
 								<MaimaiDXSiteImportPage />
 							</Route>
 
-							<Route exact path="/import/myt-maimai">
-								<MYTIntegrationPage />
+							<Route exact path="/import/mait-maimai">
+								<MAITIntegrationPage />
 							</Route>
 						</>
 					)}

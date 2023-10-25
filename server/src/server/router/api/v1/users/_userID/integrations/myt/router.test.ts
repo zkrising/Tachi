@@ -5,7 +5,7 @@ import mockApi from "test-utils/mock-api";
 import ResetDBState from "test-utils/resets";
 import type { UserDocument } from "tachi-common";
 
-t.test("GET /api/v1/users/:userID/integrations/myt", async (t) => {
+t.test("GET /api/v1/users/:userID/integrations/mait", async (t) => {
 	t.beforeEach(ResetDBState);
 
 	const cookie = await CreateFakeAuthCookie(mockApi);
@@ -13,9 +13,9 @@ t.test("GET /api/v1/users/:userID/integrations/myt", async (t) => {
 	t.test(
 		"Should show user is unauthenticated if they don't have an API token set.",
 		async (t) => {
-			await db["myt-auth-tokens"].remove({});
+			await db["mait-auth-tokens"].remove({});
 
-			const res = await mockApi.get("/api/v1/users/1/integrations/myt").set("Cookie", cookie);
+			const res = await mockApi.get("/api/v1/users/1/integrations/mait").set("Cookie", cookie);
 
 			t.equal(res.statusCode, 200);
 
@@ -26,12 +26,12 @@ t.test("GET /api/v1/users/:userID/integrations/myt", async (t) => {
 	);
 
 	t.test("Should show user is authenticated if they have a token set.", async (t) => {
-		await db["myt-auth-tokens"].insert({
+		await db["mait-auth-tokens"].insert({
 			userID: 1,
 			token: "foo",
 		});
 
-		const res = await mockApi.get("/api/v1/users/1/integrations/myt").set("Cookie", cookie);
+		const res = await mockApi.get("/api/v1/users/1/integrations/mait").set("Cookie", cookie);
 
 		t.equal(res.statusCode, 200);
 
@@ -41,12 +41,12 @@ t.test("GET /api/v1/users/:userID/integrations/myt", async (t) => {
 	});
 
 	t.test("Must require self-key level authentication.", async (t) => {
-		const res = await mockApi.get("/api/v1/users/1/integrations/myt");
+		const res = await mockApi.get("/api/v1/users/1/integrations/mait");
 
 		t.equal(res.statusCode, 401);
 
 		const res2 = await mockApi
-			.get("/api/v1/users/1/integrations/myt")
+			.get("/api/v1/users/1/integrations/mait")
 			.set("Authorization", "Bearer fake_api_token");
 
 		t.equal(res2.statusCode, 403);
@@ -58,7 +58,7 @@ t.test("GET /api/v1/users/:userID/integrations/myt", async (t) => {
 			usernameLowercase: "foo",
 		} as UserDocument);
 
-		const res3 = await mockApi.get("/api/v1/users/2/integrations/myt").set("Cookie", cookie);
+		const res3 = await mockApi.get("/api/v1/users/2/integrations/mait").set("Cookie", cookie);
 
 		t.equal(res3.statusCode, 403);
 
@@ -68,27 +68,27 @@ t.test("GET /api/v1/users/:userID/integrations/myt", async (t) => {
 	t.end();
 });
 
-t.test("DELETE /api/v1/users/:userID/integrations/myt", async (t) => {
+t.test("DELETE /api/v1/users/:userID/integrations/mait", async (t) => {
 	t.beforeEach(ResetDBState);
 
 	const cookie = await CreateFakeAuthCookie(mockApi);
 
-	t.test("Should error if there is no existing MYT integration.", async (t) => {
-		const res = await mockApi.delete("/api/v1/users/1/integrations/myt").set("Cookie", cookie);
+	t.test("Should error if there is no existing MAIT integration.", async (t) => {
+		const res = await mockApi.delete("/api/v1/users/1/integrations/mait").set("Cookie", cookie);
 
 		t.strictSame(res.statusCode, 409);
 
 		t.end();
 	});
 
-	t.test("Should delete MYT integration.", async (t) => {
-		await db["myt-auth-tokens"].insert({ userID: 1, token: "foo" });
+	t.test("Should delete MAIT integration.", async (t) => {
+		await db["mait-auth-tokens"].insert({ userID: 1, token: "foo" });
 
-		const res = await mockApi.delete("/api/v1/users/1/integrations/myt").set("Cookie", cookie);
+		const res = await mockApi.delete("/api/v1/users/1/integrations/mait").set("Cookie", cookie);
 
 		t.strictSame(res.statusCode, 200);
 
-		const dbRes = await db["myt-auth-tokens"].findOne({ userID: 1 });
+		const dbRes = await db["mait-auth-tokens"].findOne({ userID: 1 });
 
 		t.notOk(dbRes);
 
@@ -98,20 +98,20 @@ t.test("DELETE /api/v1/users/:userID/integrations/myt", async (t) => {
 	t.end();
 });
 
-t.test("PUT /api/v1/users/:userID/integrations/myt", async (t) => {
+t.test("PUT /api/v1/users/:userID/integrations/mait", async (t) => {
 	t.beforeEach(ResetDBState);
 
 	const cookie = await CreateFakeAuthCookie(mockApi);
 
 	t.test("Should save a provided API token.", async (t) => {
 		const res = await mockApi
-			.put("/api/v1/users/1/integrations/myt")
+			.put("/api/v1/users/1/integrations/mait")
 			.send({ token: "foo" })
 			.set("Cookie", cookie);
 
 		t.strictSame(res.statusCode, 200);
 
-		const dbRes = await db["myt-auth-tokens"].findOne({ userID: 1 });
+		const dbRes = await db["mait-auth-tokens"].findOne({ userID: 1 });
 
 		t.strictSame(dbRes?.token, "foo");
 

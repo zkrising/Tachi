@@ -565,7 +565,7 @@ export interface KaiAuthDocument {
 	service: "EAG" | "FLO" | "MIN";
 }
 
-export interface MYTAuthDocument {
+export interface MAITAuthDocument {
 	userID: integer;
 	token: string;
 }

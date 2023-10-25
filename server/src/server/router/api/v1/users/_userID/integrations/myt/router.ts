@@ -90,7 +90,7 @@ router.put(
 				$set: newAuthDoc,
 			},
 			{
-				// insert new card info if the user doesn't have it yet.
+				// insert new token if the user doesn't have it yet.
 				upsert: true,
 			}
 		);

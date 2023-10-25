@@ -33,7 +33,7 @@ export async function ParseMYTMaimai(userID: integer, logger: KtLogger, fetch = 
 		});
 	} catch (err) {
 		logger.error("Received invalid response from MYT.", { err });
-		throw new ScoreImportFatalError(500, "Received invalid respones from MYT. Are they down?");
+		throw new ScoreImportFatalError(500, "Received invalid response from MYT. Are they down?");
 	}
 
 	// The API redirects you to the login page if the API token was invalid.

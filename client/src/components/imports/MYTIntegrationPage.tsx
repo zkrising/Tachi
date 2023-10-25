@@ -29,7 +29,7 @@ export default function MYTIntegrationPage() {
 		return <ErrorPage statusCode={401} />;
 	}
 
-	const { data, error } = useApiQuery<{ authStatus: boolean; } | null>(
+	const { data, error } = useApiQuery<{ authStatus: boolean; }>(
 		`/users/${user.id}/integrations/myt`,
 		undefined,
 		[reload]
@@ -39,8 +39,7 @@ export default function MYTIntegrationPage() {
 		return <ApiError error={error} />;
 	}
 
-	// null is a valid response for this call, so be explicit with going to loading
-	if (data === undefined) {
+	if (!data) {
 		return <Loading />;
 	}
 

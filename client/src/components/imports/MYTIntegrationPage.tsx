@@ -1,3 +1,4 @@
+import { APIFetchV1 } from "util/api";
 import { ErrorPage } from "app/pages/ErrorPage";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import ApiError from "components/util/ApiError";
@@ -12,7 +13,6 @@ import React, { useContext, useReducer, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { APIImportTypes, GetGameConfig, MYTAuthDocument } from "tachi-common";
 import { SetState } from "types/react";
-import { APIFetchV1 } from "util/api";
 import ImportStateRenderer from "./ImportStateRenderer";
 
 export default function MYTIntegrationPage() {
@@ -29,7 +29,7 @@ export default function MYTIntegrationPage() {
 		return <ErrorPage statusCode={401} />;
 	}
 
-	const { data, error } = useApiQuery<{ authStatus: boolean; }>(
+	const { data, error } = useApiQuery<{ authStatus: boolean }>(
 		`/users/${user.id}/integrations/myt`,
 		undefined,
 		[reload]
@@ -60,7 +60,7 @@ export default function MYTIntegrationPage() {
 									},
 								},
 								true,
-								true,
+								true
 							);
 
 							if (res.success) {
@@ -71,51 +71,46 @@ export default function MYTIntegrationPage() {
 					<Divider />
 				</>
 			)}
-			{data && (
-				<MYTImporter
-					showEdit={showEdit}
-					setShowEdit={setShowEdit}
-				/>
-			)}
+			{data && <MYTImporter showEdit={showEdit} setShowEdit={setShowEdit} />}
 		</>
-	)
+	);
 }
 
 export function MYTNeedsIntegrate({
 	authStatus,
 	onSubmit,
 }: {
-	authStatus?: boolean,
+	authStatus?: boolean;
 	onSubmit: (authToken: string) => Promise<void>;
 }) {
 	const [authToken, setAuthToken] = useState("");
 
 	return (
 		<div>
-			<h3 className="text-center mb-4">{authStatus ? "Update " : "Set "} your MYT authentication token.</h3>
+			<h3 className="text-center mb-4">
+				{authStatus ? "Update " : "Set "} your MYT authentication token.
+			</h3>
 
 			<FormInput fieldName="Token" setValue={setAuthToken} value={authToken} />
 			<Form.Label>
-				You can retrieve a token by visiting your account profile on the MYT web portal.	
+				You can retrieve a token by visiting your account profile on the MYT web portal.
 			</Form.Label>
 
 			<Divider />
 
 			<div className="w-100 d-flex justify-content-center">
-				<Button onClick={() => onSubmit(authToken)}>
-					Submit Token
-				</Button>
+				<Button onClick={() => onSubmit(authToken)}>Submit Token</Button>
 			</div>
 		</div>
-	)
+	);
 }
 
 function MYTImporter({
 	showEdit,
 	setShowEdit,
 }: {
-	showEdit: boolean,
-	setShowEdit: SetState<boolean>,
+	showEdit: boolean;
+	setShowEdit: SetState<boolean>;
 }) {
 	const importType: APIImportTypes = "api/myt-maimai";
 

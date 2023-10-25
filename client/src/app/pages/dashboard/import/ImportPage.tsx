@@ -283,9 +283,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			/>
 		);
 	} else if (game === "maimai") {
-		Content.unshift(
-			<ImportTypeInfoCard key="api/myt-maimai" importType="api/myt-maimai" />,
-		);
+		Content.unshift(<ImportTypeInfoCard key="api/myt-maimai" importType="api/myt-maimai" />);
 	} else if (game === "maimaidx") {
 		Content.unshift(
 			<ImportInfoCard
@@ -482,7 +480,7 @@ function ImportTypeInfoCard({
 			);
 		case "api/myt-maimai":
 			return (
-				<ImportInfoCard 
+				<ImportInfoCard
 					name="MYT Integration"
 					href="myt-maimai"
 					desc="Pull your maimai scores from the MYT network."

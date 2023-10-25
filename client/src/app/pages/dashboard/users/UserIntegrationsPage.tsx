@@ -25,9 +25,9 @@ import {
 } from "tachi-common";
 import { SetState } from "types/react";
 import { CGNeedsIntegrate } from "components/imports/CGIntegrationPage";
+import { MYTNeedsIntegrate } from "components/imports/MYTIntegrationPage";
 import FervidexIntegrationPage from "./FervidexIntegrationPage";
 import KsHookSV6CIntegrationPage from "./KsHookSV6CIntegrationPage";
-import { MYTNeedsIntegrate } from "components/imports/MYTIntegrationPage";
 
 export default function UserIntegrationsPage({ reqUser }: { reqUser: UserDocument }) {
 	useSetSubheader(
@@ -995,10 +995,10 @@ function CGIntegrationInfo({ cgType, userID }: { cgType: "dev" | "gan" | "nag"; 
 function MYTIntegrationInfo({ userID }: { userID: integer }) {
 	const [reload, shouldReloadAuthInfo] = useReducer((x) => x + 1, 0);
 
-	const { data, error } = useApiQuery<{ authStatus: boolean; }>(
+	const { data, error } = useApiQuery<{ authStatus: boolean }>(
 		`/users/${userID}/integrations/myt`,
 		undefined,
-		[reload],
+		[reload]
 	);
 
 	if (error) {
@@ -1023,7 +1023,7 @@ function MYTIntegrationInfo({ userID }: { userID: integer }) {
 						},
 					},
 					true,
-					true,
+					true
 				);
 
 				if (res.success) {
@@ -1031,5 +1031,5 @@ function MYTIntegrationInfo({ userID }: { userID: integer }) {
 				}
 			}}
 		/>
-	)
+	);
 }

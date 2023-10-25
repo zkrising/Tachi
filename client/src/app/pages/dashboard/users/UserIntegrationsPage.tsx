@@ -27,6 +27,7 @@ import { SetState } from "types/react";
 import { CGNeedsIntegrate } from "components/imports/CGIntegrationPage";
 import FervidexIntegrationPage from "./FervidexIntegrationPage";
 import KsHookSV6CIntegrationPage from "./KsHookSV6CIntegrationPage";
+import { MYTNeedsIntegrate } from "components/imports/MYTIntegrationPage";
 
 export default function UserIntegrationsPage({ reqUser }: { reqUser: UserDocument }) {
 	useSetSubheader(
@@ -645,6 +646,7 @@ function ServicesPage({ reqUser }: { reqUser: UserDocument }) {
 					<SelectLinkButton to={`${baseUrl}/flo`}>FLO</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/eag`}>EAG</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/min`}>MIN</SelectLinkButton>
+					<SelectLinkButton to={`${baseUrl}/myt`}>MYT</SelectLinkButton>
 				</div>
 				<Divider />
 			</Col>
@@ -672,6 +674,9 @@ function ServicesPage({ reqUser }: { reqUser: UserDocument }) {
 				</Route>
 				<Route exact path={`${baseUrl}/min`}>
 					<KAIIntegrationStatus userID={reqUser.id} kaiType="min" />
+				</Route>
+				<Route exact path={`${baseUrl}/myt`}>
+					<MYTIntegrationInfo userID={reqUser.id} />
 				</Route>
 			</Switch>
 		</Row>
@@ -985,4 +990,25 @@ function CGIntegrationInfo({ cgType, userID }: { cgType: "dev" | "gan" | "nag"; 
 			initialPin={data?.pin ?? undefined}
 		/>
 	);
+}
+
+function MYTIntegrationInfo({ userID }: { userID: integer }) {
+	return (
+		<MYTNeedsIntegrate
+			onSubmit={async (token) => {
+				await APIFetchV1(
+					`/users/${userID}/integrations/myt`,
+					{
+						method: "PUT",
+						body: JSON.stringify({ token }),
+						headers: {
+							"Content-Type": "application/json",
+						},
+					},
+					true,
+					true,
+				);
+			}}
+		/>
+	)
 }

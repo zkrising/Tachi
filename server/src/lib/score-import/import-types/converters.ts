@@ -64,4 +64,6 @@ export const Converters: ConverterMap = {
 	"api/cg-gan-sdvx": ConverterAPICGSDVX,
 	"api/cg-gan-museca": ConverterAPICGMuseca,
 	"api/cg-gan-popn": ConverterAPICGPopn,
+
+	"api/myt-maimai": ConverterBatchManual,
 };

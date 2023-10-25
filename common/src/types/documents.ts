@@ -565,6 +565,11 @@ export interface KaiAuthDocument {
 	service: "EAG" | "FLO" | "MIN";
 }
 
+export interface MYTAuthDocument {
+	userID: integer;
+	token: string;
+}
+
 export interface CGCardInfo {
 	userID: integer;
 	service: "dev" | "gan" | "nag";

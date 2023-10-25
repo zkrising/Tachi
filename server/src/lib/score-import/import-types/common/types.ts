@@ -72,6 +72,9 @@ export interface ImportTypeDataMap {
 	"api/cg-gan-sdvx": CGSDVXScore;
 	"api/cg-gan-museca": CGMusecaScore;
 	"api/cg-gan-popn": CGPopnScore;
+
+	// MYT provides an API endpoint specifically for Tachi.
+	"api/myt-maimai": BatchManualScore;
 }
 
 export interface ImportTypeContextMap {
@@ -112,6 +115,9 @@ export interface ImportTypeContextMap {
 	"api/cg-gan-sdvx": CGContext;
 	"api/cg-gan-museca": CGContext;
 	"api/cg-gan-popn": CGContext;
+
+	// MYT provides an API endpoint specifically for Tachi.
+	"api/myt-maimai": BatchManualContext;
 }
 
 export interface OrphanScoreDocument<T extends ImportTypes = ImportTypes> {

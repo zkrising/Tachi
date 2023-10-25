@@ -44,6 +44,7 @@ const API_IMPORT_TYPES: Record<APIImportTypes, true> = {
 	"api/cg-gan-museca": true,
 	"api/cg-gan-popn": true,
 	"api/cg-gan-sdvx": true,
+	"api/myt-maimai": true,
 };
 
 export const fileImportTypes: Array<FileUploadImportTypes> = Object.keys(

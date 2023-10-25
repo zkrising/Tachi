@@ -282,6 +282,10 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				key="WACCA MyPage Scraper"
 			/>
 		);
+	} else if (game === "maimai") {
+		Content.unshift(
+			<ImportTypeInfoCard key="api/myt-maimai" importType="api/myt-maimai" />,
+		);
 	} else if (game === "maimaidx") {
 		Content.unshift(
 			<ImportInfoCard
@@ -474,6 +478,16 @@ function ImportTypeInfoCard({
 					desc="Pull your MUSECA scores from the NAG Network."
 					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 					key="cg-nag-museca"
+				/>
+			);
+		case "api/myt-maimai":
+			return (
+				<ImportInfoCard 
+					name="MYT Integration"
+					href="myt-maimai"
+					desc="Pull your maimai scores from the MYT network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
+					key="myt-maimai"
 				/>
 			);
 		case "file/eamusement-iidx-csv":

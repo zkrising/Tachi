@@ -7,6 +7,7 @@
 	FLO_API_URL: "https://flo.example.com",
 	EAG_API_URL: "https://eag.example.com",
 	MIN_API_URL: "https://min.example.com",
+	MYT_API_URL: "https://myt.example.com",
 	FLO_OAUTH2_INFO: {
 		CLIENT_ID: "DUMMY_CLIENT_ID",
 		CLIENT_SECRET: "DUMMY_CLIENT_SECRET",

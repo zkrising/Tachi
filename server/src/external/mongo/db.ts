@@ -27,6 +27,7 @@ import type {
 	integer,
 	InviteCodeDocument,
 	KaiAuthDocument,
+	MYTAuthDocument,
 	QuestDocument,
 	QuestlineDocument,
 	QuestSubscriptionDocument,
@@ -169,6 +170,7 @@ const db = {
 	counters: monkDB.get<CounterDocument>("counters"),
 	"game-stats": monkDB.get<UserGameStats>("game-stats"),
 	"kai-auth-tokens": monkDB.get<KaiAuthDocument>("kai-auth-tokens"),
+	"myt-auth-tokens": monkDB.get<MYTAuthDocument>("myt-auth-tokens"),
 	"cg-card-info": monkDB.get<CGCardInfo>("cg-card-info"),
 
 	"bms-course-lookup": monkDB.get<BMSCourseDocument>("bms-course-lookup"),

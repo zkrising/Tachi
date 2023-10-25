@@ -31,3 +31,22 @@ export async function GetKaiAuthGuaranteed(
 
 	return authDoc;
 }
+
+export function GetMYTAuth(userID: integer) {
+	return db["myt-auth-tokens"].findOne({ userID });
+}
+
+export function RevokeMYTAuth(userID: integer) {
+	return db["myt-auth-tokens"].remove({ userID });
+}
+
+export async function GetMYTAuthGuaranteed(userID: integer, logger: KtLogger) {
+	const authDoc = await GetMYTAuth(userID);
+
+	if (!authDoc) {
+		logger.error(`No authentication was stored for MYT.`);
+		throw new ScoreImportFatalError(401, `No authentication was stored for MYT.`);
+	}
+
+	return authDoc;
+}

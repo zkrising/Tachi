@@ -2,7 +2,7 @@ import cgCgTypeRouter from "./cg/_cgType/router";
 import fervidexRouter from "./fervidex/router";
 import kaiKaiTypeRouter from "./kai/_kaiType/router";
 import ksHookSV6CRouter from "./kshook-sv6c/router";
-import maitRouter from "./myt/router";
+import maitRouter from "./mait/router";
 import { Router } from "express";
 
 const router: Router = Router({ mergeParams: true });

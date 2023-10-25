@@ -39,6 +39,10 @@ export const DatabaseSchemas: Record<Databases, SchemaValidatorFunction> = {
 		refreshToken: "string",
 		service: p.isIn("FLO", "EAG", "MIN"),
 	}),
+	"myt-auth-tokens": prSchemaify({
+		userID: p.isPositiveNonZeroInteger,
+		token: "string",
+	}),
 	"cg-card-info": prSchemaify({
 		userID: p.isPositiveNonZeroInteger,
 		service: p.isIn("dev", "gan", "nag"),

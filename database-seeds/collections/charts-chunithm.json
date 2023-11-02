@@ -107378,7 +107378,9 @@
 		"playtype": "Single",
 		"songID": 2416,
 		"versions": [
-			"sunplus"
+			"sun-omni",
+			"sunplus",
+			"sunplus-intl"
 		]
 	},
 	{
@@ -107393,7 +107395,9 @@
 		"playtype": "Single",
 		"songID": 2416,
 		"versions": [
-			"sunplus"
+			"sun-omni",
+			"sunplus",
+			"sunplus-intl"
 		]
 	},
 	{
@@ -107408,7 +107412,9 @@
 		"playtype": "Single",
 		"songID": 2416,
 		"versions": [
-			"sunplus"
+			"sun-omni",
+			"sunplus",
+			"sunplus-intl"
 		]
 	},
 	{
@@ -107423,7 +107429,9 @@
 		"playtype": "Single",
 		"songID": 2416,
 		"versions": [
-			"sunplus"
+			"sun-omni",
+			"sunplus",
+			"sunplus-intl"
 		]
 	},
 	{
@@ -107438,7 +107446,9 @@
 		"playtype": "Single",
 		"songID": 2416,
 		"versions": [
-			"sunplus"
+			"sun-omni",
+			"sunplus",
+			"sunplus-intl"
 		]
 	},
 	{
@@ -110595,6 +110605,74 @@
 		"songID": 2476,
 		"versions": [
 			"sunplus"
+		]
+	},
+	{
+		"chartID": "7e11d364e6211e0fd0e1b68fa780deb86bb5fe78",
+		"data": {
+			"inGameID": 2477
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "9+",
+		"levelNum": 9.5,
+		"playtype": "Single",
+		"songID": 2477,
+		"versions": [
+			"sun-omni",
+			"sunplus",
+			"sunplus-intl"
+		]
+	},
+	{
+		"chartID": "ec6a59a5ee8a29afba9e5206c94687b0ab3972fb",
+		"data": {
+			"inGameID": 2477
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "4",
+		"levelNum": 4,
+		"playtype": "Single",
+		"songID": 2477,
+		"versions": [
+			"sun-omni",
+			"sunplus",
+			"sunplus-intl"
+		]
+	},
+	{
+		"chartID": "1ce0478e6371a68c9bea8a3bd3c20f3f1750b9b4",
+		"data": {
+			"inGameID": 2477
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.5,
+		"playtype": "Single",
+		"songID": 2477,
+		"versions": [
+			"sun-omni",
+			"sunplus",
+			"sunplus-intl"
+		]
+	},
+	{
+		"chartID": "8a6c3a76d8c4600e2d3764da456c992345a8787c",
+		"data": {
+			"inGameID": 2477
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "15",
+		"levelNum": 15.1,
+		"playtype": "Single",
+		"songID": 2477,
+		"versions": [
+			"sun-omni",
+			"sunplus",
+			"sunplus-intl"
 		]
 	},
 	{

@@ -533,16 +533,6 @@ function ImportTypeInfoCard({
 					key="Batch Manual"
 				/>
 			);
-		case "file/mer-iidx":
-			return (
-				<ImportInfoCard
-					name="MER .json"
-					href="iidx-mer"
-					desc="Use a MER-exported .json file to synchronise scores."
-					moreInfo="Note: Scores that do not match an existing song on the site will be orphaned, and anyone can see your orphaned scores. Don't be an idiot. I highly recommend using Fervidex instead."
-					key="MER .json"
-				/>
-			);
 		case "file/pli-iidx-csv":
 			return (
 				<ImportInfoCard

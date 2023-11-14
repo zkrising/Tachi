@@ -51,7 +51,6 @@ is set to indicate that this was done with User Intent.
 | `file/eamusement-iidx-csv` | The E-amusement CSV format for IIDX. This type accepts both Pre-HV and Post-HV formats. | Kamaitachi | Yes |
 | `file/batch-manual` | The Tachi BATCH-MANUAL format submitted through a multipart form. | Kamaitachi & Bokutachi | Yes |
 | `file/solid-state-squad` | The IIDX XML output by Solid State Squad. | Kamaitachi | Yes |
-| `file/mer-iidx` | The IIDX JSON output from MER. | Kamaitachi | Yes |
 | `file/pli-iidx-csv` | Same as eamusement's IIDX CSV, but output from PLI. | Kamaitachi | Yes |
 | `ir/direct-manual` | The Tachi BATCH-MANUAL format but submitted in a HTTP Request body as `application/json`. | Kamaitachi & Bokutachi | Depends on Header |
 | `ir/barbatos` | Barbatos's format submitted in a HTTP Request Body. | Kamaitachi | No |

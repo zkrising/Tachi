@@ -1,7 +1,6 @@
 import type { ConverterFailure } from "../../framework/common/converter-failures";
 import type { DryScore } from "../../framework/common/types";
 import type { SDVXEamusementCSVData } from "../file/eamusement-sdvx-csv/types";
-import type { MerScore } from "../file/mer-iidx/types";
 import type { S3Score } from "../file/solid-state-squad/types";
 import type { MyPageRecordsParsedPB } from "../file/wacca-mypage-scraper/types";
 import type { BarbatosContext, BarbatosScore, BarbatosSDVX6Score } from "../ir/barbatos/types";
@@ -34,7 +33,6 @@ export interface ImportTypeDataMap {
 	"file/eamusement-sdvx-csv": SDVXEamusementCSVData;
 	"file/batch-manual": BatchManualScore;
 	"file/solid-state-squad": S3Score;
-	"file/mer-iidx": MerScore;
 	"file/pli-iidx-csv": IIDXEamusementCSVData;
 	"file/mypagescraper-records-csv": MyPageRecordsParsedPB;
 	"file/mypagescraper-player-csv": never;
@@ -79,7 +77,6 @@ export interface ImportTypeContextMap {
 	"file/eamusement-sdvx-csv": EmptyObject;
 	"file/batch-manual": BatchManualContext;
 	"file/solid-state-squad": EmptyObject;
-	"file/mer-iidx": EmptyObject;
 	"file/pli-iidx-csv": IIDXEamusementCSVContext;
 	"file/mypagescraper-records-csv": EmptyObject;
 	"file/mypagescraper-player-csv": EmptyObject;

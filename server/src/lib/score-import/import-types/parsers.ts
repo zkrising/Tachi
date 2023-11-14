@@ -17,7 +17,6 @@ import {
 import ParseBatchManual from "./file/batch-manual/parser";
 import ParseEamusementIIDXCSV from "./file/eamusement-iidx-csv/parser";
 import ParseEamusementSDVXCSV from "./file/eamusement-sdvx-csv/parser";
-import { ParseMerIIDX } from "./file/mer-iidx/parser";
 import ParsePLIIIDXCSV from "./file/pli-iidx-csv/parser";
 import { ParseSolidStateXML } from "./file/solid-state-squad/parser";
 import {
@@ -37,7 +36,6 @@ import { ParseIRUSC } from "./ir/usc/parser";
 export const Parsers = {
 	"file/solid-state-squad": ParseSolidStateXML,
 	"file/batch-manual": ParseBatchManual,
-	"file/mer-iidx": ParseMerIIDX,
 	"file/pli-iidx-csv": ParsePLIIIDXCSV,
 	"file/eamusement-iidx-csv": ParseEamusementIIDXCSV,
 	"file/eamusement-sdvx-csv": ParseEamusementSDVXCSV,

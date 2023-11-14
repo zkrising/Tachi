@@ -68,7 +68,6 @@ the main benefits for us are as follows:
 			"file/eamusement-iidx-csv",
 			"file/batch-manual",
 			"file/solid-state-squad",
-			"file/mer-iidx",
 			"file/pli-iidx-csv",
 			"ir/direct-manual",
 			"ir/barbatos",

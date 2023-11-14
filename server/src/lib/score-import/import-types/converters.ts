@@ -6,7 +6,6 @@ import { ConvertAPIKaiSDVX } from "./common/api-kai/sdvx/converter";
 import { ConverterBatchManual } from "./common/batch-manual/converter";
 import ConvertEamIIDXCSV from "./common/eamusement-iidx-csv/converter";
 import ConvertEamSDVXCSV from "./file/eamusement-sdvx-csv/converter";
-import { ConvertFileMerIIDX } from "./file/mer-iidx/converter";
 import { ConvertFileS3 } from "./file/solid-state-squad/converter";
 import ConvertMyPageScraperRecordsCSV from "./file/wacca-mypage-scraper/converter";
 import { ConverterIRBarbatos } from "./ir/barbatos/converter";
@@ -28,7 +27,6 @@ export type ConverterMap = {
 export const Converters: ConverterMap = {
 	"file/solid-state-squad": ConvertFileS3,
 	"file/batch-manual": ConverterBatchManual,
-	"file/mer-iidx": ConvertFileMerIIDX,
 	"file/pli-iidx-csv": ConvertEamIIDXCSV,
 	"file/eamusement-iidx-csv": ConvertEamIIDXCSV,
 	"file/eamusement-sdvx-csv": ConvertEamSDVXCSV,

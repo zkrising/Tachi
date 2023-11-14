@@ -11,7 +11,6 @@ const FILE_IMPORT_TYPES: Record<FileUploadImportTypes, true> = {
 	"file/eamusement-sdvx-csv": true,
 	"file/batch-manual": true,
 	"file/solid-state-squad": true,
-	"file/mer-iidx": true,
 	"file/pli-iidx-csv": true,
 	"file/mypagescraper-records-csv": true,
 	"file/mypagescraper-player-csv": true,

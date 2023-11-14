@@ -10,7 +10,6 @@ import ImportPage from "app/pages/dashboard/import/ImportPage";
 import KsHookPage from "app/pages/dashboard/import/KsHookPage";
 import LR2DBPage from "app/pages/dashboard/import/LR2DBPage";
 import LR2HookPage from "app/pages/dashboard/import/LR2HookPage";
-import MerJSONPage from "app/pages/dashboard/import/MerJSONPage";
 import SDVXEamCSVPage from "app/pages/dashboard/import/SDVXEamCSVPage";
 import SilentHookPage from "app/pages/dashboard/import/SilentHookPage";
 import SSSXMLPage from "app/pages/dashboard/import/SSSXMLPage";
@@ -99,9 +98,6 @@ export default function ImportRoutes() {
 									name="SDVX e-amusement CSV"
 									importType="file/eamusement-sdvx-csv"
 								/>
-							</Route>
-							<Route exact path="/import/iidx-mer">
-								<MerJSONPage />
 							</Route>
 							<Route exact path="/import/sss-xml">
 								<SSSXMLPage />

@@ -26,6 +26,7 @@ import CGIntegrationPage from "components/imports/CGIntegrationPage";
 import ITGHookPage from "app/pages/dashboard/import/ITGHookPage";
 import MaimaiDXSiteImportPage from "app/pages/dashboard/import/MaimaiDXSiteImportPage";
 import ChunithmSiteImportPage from "app/pages/dashboard/import/ChunithmSiteImportPage";
+import SaekawaPage from "app/pages/dashboard/import/SaekawaPage";
 
 export default function ImportRoutes() {
 	const { user } = useContext(UserContext);
@@ -125,6 +126,10 @@ export default function ImportRoutes() {
 
 							<Route exact path="/import/kt-chunithm-site-importer">
 								<ChunithmSiteImportPage />
+							</Route>
+
+							<Route exact path="/import/saekawa">
+								<SaekawaPage />
 							</Route>
 
 							<Route exact path="/import/iidx-flo">

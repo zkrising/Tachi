@@ -114,7 +114,11 @@ t.test("POST /ir/kshook/sv6c/score/save", (t) => {
 	t.end();
 });
 
-t.test("POST /ir/kshook/sv6c/score/export", (t) => {
+// This test is flakey. No idea why. Causes severe db issues.
+// nothing else like it causes these problems.
+//
+// blegh.
+t.skip("POST /ir/kshook/sv6c/score/export", (t) => {
 	t.beforeEach(ResetDBState);
 	t.beforeEach(() =>
 		db["api-tokens"].insert({

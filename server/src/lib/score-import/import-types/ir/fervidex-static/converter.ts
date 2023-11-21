@@ -13,10 +13,14 @@ export const ConverterIRFervidexStatic: ConverterFunction<
 	FervidexStaticScore,
 	FervidexStaticContext
 > = async (data, context, importType, logger) => {
+	// eslint-disable-next-line prefer-const
 	let { difficulty, playtype } = SplitFervidexChartRef(data.chart);
 
-	//hack for scripted connection long support in older omnimixes
-	if(data.song_id === 21201 && difficulty === "ANOTHER") {
+	// Scripted Long used to be an ANOTHER with id 21201
+	//
+	// now it has an id of 12250 and is a legg.
+	// Versions of omnimix prior to oct 2023 depend on this behaviour.
+	if (data.song_id === 21201 && difficulty === "ANOTHER") {
 		data.song_id = 12250;
 		difficulty = "LEGGENDARIA";
 	}

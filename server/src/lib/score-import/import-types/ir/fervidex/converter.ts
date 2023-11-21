@@ -145,7 +145,12 @@ export const ConverterIRFervidex: ConverterFunction<FervidexScore, FervidexConte
 	importType,
 	logger
 ) => {
-	const { difficulty, playtype } = SplitFervidexChartRef(data.chart);
+	let { difficulty, playtype } = SplitFervidexChartRef(data.chart);
+
+	if(data.entry_id === 21201 && difficulty === "ANOTHER") {
+		data.entry_id = 12250;
+		difficulty = "LEGGENDARIA";
+	}
 
 	let chart;
 

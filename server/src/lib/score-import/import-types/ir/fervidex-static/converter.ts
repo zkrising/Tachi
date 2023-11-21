@@ -16,8 +16,8 @@ export const ConverterIRFervidexStatic: ConverterFunction<
 	let { difficulty, playtype } = SplitFervidexChartRef(data.chart);
 
 	//hack for scripted connection long support in older omnimixes
-	if(data.entry_id === 21201 && difficulty === "ANOTHER") {
-		data.entry_id = 12250;
+	if(data.song_id === 21201 && difficulty === "ANOTHER") {
+		data.song_id = 12250;
 		difficulty = "LEGGENDARIA";
 	}
 

@@ -11111,6 +11111,19 @@
 	{
 		"data": {
 			"level": "1",
+			"versions": "30-omni"
+		},
+		"folderID": "Ff4de2cc21bffa3e6e9eb8725e0fbe0986c231dab88178d584c41c7b3c256b118",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 1 (Resident Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
 			"versions": "30"
 		},
 		"folderID": "F1218170b008e056f1651d6bca37c6cf5eb0f3bc1f770c94c5a56677a3a468314",
@@ -11522,6 +11535,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 10 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "30-omni"
+		},
+		"folderID": "F1efd11cef63058f3bbd628f263e69c3550db00f101600164ecdb2bdbbf700e4c",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 10 (Resident Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -11943,6 +11969,19 @@
 	{
 		"data": {
 			"level": "11",
+			"versions": "30-omni"
+		},
+		"folderID": "Fe59d635ed6e06f7f2962324bf8381d2b02cdcd706bee31a2c95b9f5fb87504d2",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 11 (Resident Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
 			"versions": "30"
 		},
 		"folderID": "F48eaed0a62996f00c7aabe9b2830e3cc40f00dfb13584e2e795fa0d6cfafc863",
@@ -12354,6 +12393,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 12 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "30-omni"
+		},
+		"folderID": "Fac017a39ab8c4084178808f92c5c7109e3165a03f1f08b091a697196e88ec77d",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 12 (Resident Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -12775,6 +12827,19 @@
 	{
 		"data": {
 			"level": "2",
+			"versions": "30-omni"
+		},
+		"folderID": "F5143df7a36805fd4aacf65be0645bdceab4ce3c01177ad14268e3d6bce362801",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 2 (Resident Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
 			"versions": "30"
 		},
 		"folderID": "F9b579da9bf99227878c473acb9182cc28a35402388b039b41264f55ea7e608c1",
@@ -13186,6 +13251,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 3 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "30-omni"
+		},
+		"folderID": "F158445e29f4436e616866b7f126130e290a4463c0e12ff6f3e79bc41f1bb1ea2",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 3 (Resident Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -13607,6 +13685,19 @@
 	{
 		"data": {
 			"level": "4",
+			"versions": "30-omni"
+		},
+		"folderID": "F48c35137077a2f7c712e6c9877bbdc672d0ff02918991632dacdf02d4d179548",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 4 (Resident Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
 			"versions": "30"
 		},
 		"folderID": "Ff4efa0aeb48ee072de2bb896b3f6e9afe374ff3a0d5f954390b9b446fb69a71f",
@@ -14018,6 +14109,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 5 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "30-omni"
+		},
+		"folderID": "F621bb8be1f078964d89badb33a17bf43725423beda57f2b842a914b71949caeb",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 5 (Resident Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -14439,6 +14543,19 @@
 	{
 		"data": {
 			"level": "6",
+			"versions": "30-omni"
+		},
+		"folderID": "Fca26035746a97558a28c975e6b40c312acd53e285205feb35b6b1e3e5d52281d",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 6 (Resident Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
 			"versions": "30"
 		},
 		"folderID": "Fc631ee868c7ae1ff52179d7d6ddc14d21afde020786b9d7e338d2dc5c351a687",
@@ -14850,6 +14967,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 7 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "30-omni"
+		},
+		"folderID": "F637669b160cb74f26b2a36de16a32985141b3e1eaddca9efacca1e4b1f8f8c4d",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 7 (Resident Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -15271,6 +15401,19 @@
 	{
 		"data": {
 			"level": "8",
+			"versions": "30-omni"
+		},
+		"folderID": "F9d8efd8f6382861fc04ef3dbb53a2ac42e9187cea52341422ecf47395885f4d9",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 8 (Resident Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
 			"versions": "30"
 		},
 		"folderID": "F767970d0fdad6f2859f41b4e12a6c9061457c6dca642d717b4ff4ac104711185",
@@ -15682,6 +15825,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 9 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "30-omni"
+		},
+		"folderID": "Fea4d31db72d354155d069e15cc51aa80493fd599fa0388f916086f9eb736556d",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 9 (Resident Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -16103,6 +16259,19 @@
 	{
 		"data": {
 			"level": "1",
+			"versions": "30-omni"
+		},
+		"folderID": "Fc8eff46b03da944c5bbc149a02af7341e454c869cc5657efc069a80ed32d99bc",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 1 (Resident Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
 			"versions": "30"
 		},
 		"folderID": "F59452de8dbd5280583f1a9626229b6f63c08b50dd9da07917d6bf62785f82cdc",
@@ -16514,6 +16683,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 10 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "30-omni"
+		},
+		"folderID": "F4d45367f5f15769025d7fc31169b10c96d71ffe9e6e4885fc4fd93a6385fc616",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 10 (Resident Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -16935,6 +17117,19 @@
 	{
 		"data": {
 			"level": "11",
+			"versions": "30-omni"
+		},
+		"folderID": "F412ec5dc3d521cce489e3804ec2d660f1fcd9bfcebea5223d908f3562bae2622",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 11 (Resident Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
 			"versions": "30"
 		},
 		"folderID": "F133264d22c30a31e04d08a1017219fd3c7c5e5d2d775547e3a659f18ac403efa",
@@ -17346,6 +17541,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 12 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "30-omni"
+		},
+		"folderID": "F2b886412954844875e7dc96de42c8ff11703344436fb580e3b3ff76b3d7424ff",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 12 (Resident Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -17767,6 +17975,19 @@
 	{
 		"data": {
 			"level": "2",
+			"versions": "30-omni"
+		},
+		"folderID": "F91865a3cdebfb5d54a276d1efb8953bdd74229deed086051eee979102e1244f9",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 2 (Resident Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
 			"versions": "30"
 		},
 		"folderID": "F9e8974e0908c0b2aa66a633e1fd87db4cd4a49de76eaa1c1dbbcbf4b289afd3d",
@@ -18178,6 +18399,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 3 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "30-omni"
+		},
+		"folderID": "Fccce99caba93454ce72a0ed614bd411fc3ad92f18053c39ca0e8b593b4bf142b",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 3 (Resident Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -18599,6 +18833,19 @@
 	{
 		"data": {
 			"level": "4",
+			"versions": "30-omni"
+		},
+		"folderID": "F90adf2d5125d0d7550d991631e8c3d19b5d18a3b0627e0bcca68330808c9c085",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 4 (Resident Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
 			"versions": "30"
 		},
 		"folderID": "Fc551356526d26eae601714be6a43cdf13d8fedde52a648b6843cdaa2eade1f1a",
@@ -19010,6 +19257,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 5 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "30-omni"
+		},
+		"folderID": "Fdf8c3ec3a65a21acdcfc2addd1d64b38e48fd627a0206ba42bdde6e96c83e3fc",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 5 (Resident Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -19431,6 +19691,19 @@
 	{
 		"data": {
 			"level": "6",
+			"versions": "30-omni"
+		},
+		"folderID": "F4ce32f0b4a2242dd2f26871db885d30c86f24cce356469ba4523282b582a4cb7",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 6 (Resident Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
 			"versions": "30"
 		},
 		"folderID": "Fdd8050f9477441aa6e231589b9dc82c5bc8afc586236759d97d1a789bc9574ec",
@@ -19842,6 +20115,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 7 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "30-omni"
+		},
+		"folderID": "Fd493959f12d46fabf56a0ac7da8c4c3a01abec4344ec909e725f35be76d293c1",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 7 (Resident Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -20263,6 +20549,19 @@
 	{
 		"data": {
 			"level": "8",
+			"versions": "30-omni"
+		},
+		"folderID": "F6bcff59330c8aeb312728de2c4880e4448fc50289b686dfe6dacd1e0734b8410",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 8 (Resident Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
 			"versions": "30"
 		},
 		"folderID": "F1288491e824bad195bc8c14bd6d388eaacb3da26d2ab076235c5c8d662f4e4c4",
@@ -20674,6 +20973,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 9 (PENDUAL)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "30-omni"
+		},
+		"folderID": "Fa4b4b04fb2090b24fae6f67711109ca572661804e9c21d219bd3b7caff13ed82",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 9 (Resident Omnimix)",
 		"type": "charts"
 	},
 	{

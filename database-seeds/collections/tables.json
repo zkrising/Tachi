@@ -1376,7 +1376,7 @@
 		"title": "beatmania IIDX (DP) (CastHour Omnimix)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for beatmania IIDX (DP) in CastHour.",
 		"folders": [
 			"F72f522ea790115f463f08d9f3c3d24ab95e6baa3edabd510b4f11c4a67139e16",
@@ -1698,7 +1698,7 @@
 		"title": "beatmania IIDX (DP) (Resident Omnimix)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for beatmania IIDX (DP) in Resident.",
 		"folders": [
 			"F1218170b008e056f1651d6bca37c6cf5eb0f3bc1f770c94c5a56677a3a468314",
@@ -2135,7 +2135,7 @@
 		"title": "beatmania IIDX (SP) (CastHour Omnimix)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for beatmania IIDX (SP) in CastHour.",
 		"folders": [
 			"F10e3e0e7c0bcbd4dcbb49a1086184d6949fe7a213ecbd6bf1ed7001f2b98a98b",
@@ -2457,7 +2457,7 @@
 		"title": "beatmania IIDX (SP) (Resident Omnimix)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for beatmania IIDX (SP) in Resident.",
 		"folders": [
 			"F59452de8dbd5280583f1a9626229b6f63c08b50dd9da07917d6bf62785f82cdc",

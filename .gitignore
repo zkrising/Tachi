@@ -41,10 +41,3 @@ failed-tests.log
 
 # bootstrap flag
 I_HAVE_BOOTSTRAPPED_OK
-database-seeds/scripts/rerunners/iidx/okapi-inf.js
-database-seeds/scripts/rerunners/iidx/okapi-inf legg.js
-database-seeds/scripts/rerunners/iidx/iidx-mdb-parse/blacklist.txt
-database-seeds/scripts/rerunners/iidx/iidx-mdb-parse/convert.ts
-database-seeds/scripts/rerunners/iidx/iidx-mdb-parse/merge-mdb.ts	`
-.gitignore
-

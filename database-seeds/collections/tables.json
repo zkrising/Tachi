@@ -1370,7 +1370,7 @@
 			"F56cd39e50005431e7b3f8d002b2e6f8772cf447660321bb241a9719615f158be"
 		],
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"tableID": "iidx-DP-29-omni-levels",
 		"title": "beatmania IIDX (DP) (CastHour Omnimix)"
@@ -1393,7 +1393,7 @@
 			"F822bedcc82fef2b4e982f5214ca964db8a2948e522fb9b9c3458fab2cc6c17ed"
 		],
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"tableID": "iidx-DP-29-levels",
 		"title": "beatmania IIDX (DP) (CastHour)"
@@ -2129,7 +2129,7 @@
 			"Fb997c0c2ee9e2e98fd19c183ef9b8c80b9b0345a226d1824b4d544b0dada2ef0"
 		],
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"tableID": "iidx-SP-29-omni-levels",
 		"title": "beatmania IIDX (SP) (CastHour Omnimix)"
@@ -2152,7 +2152,7 @@
 			"F4641845dcaacfc772a35291197128d6958a0b2551d0831ea1ab6bf2901bad44a"
 		],
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"tableID": "iidx-SP-29-levels",
 		"title": "beatmania IIDX (SP) (CastHour)"

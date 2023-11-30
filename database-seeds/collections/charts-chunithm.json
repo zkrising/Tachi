@@ -100605,7 +100605,7 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "10",
-		"levelNum": 10,
+		"levelNum": 10.3,
 		"playtype": "Single",
 		"songID": 2309,
 		"versions": [
@@ -100620,7 +100620,7 @@
 		"difficulty": "MASTER",
 		"isPrimary": true,
 		"level": "12",
-		"levelNum": 12,
+		"levelNum": 12.4,
 		"playtype": "Single",
 		"songID": 2309,
 		"versions": [
@@ -111266,7 +111266,7 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "13+",
-		"levelNum": 13.5,
+		"levelNum": 13.7,
 		"playtype": "Single",
 		"songID": 2485,
 		"versions": [
@@ -111401,7 +111401,7 @@
 		"difficulty": "MASTER",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.5,
+		"levelNum": 12.7,
 		"playtype": "Single",
 		"songID": 2487,
 		"versions": [

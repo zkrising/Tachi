@@ -41,10 +41,7 @@ export function HeaderMenu({
 	}, [error, data]);
 
 	return (
-		<Nav
-			as="nav"
-			className="p-4 d-flex align-content-between gap-4 h-100 overflow-y-auto overflow-x-hidden"
-		>
+		<Nav as="nav" className="p-4 d-flex align-content-between gap-4 h-100">
 			{user && ugs && ugs.length !== 0 && (
 				<UGPTDropdown
 					user={user}

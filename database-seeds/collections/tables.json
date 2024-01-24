@@ -3497,7 +3497,7 @@
 		"title": "maimai (FiNALE)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for maimai DX in BUDDiES.",
 		"folders": [
 			"F6368ee35170f27874d3869158e738981a5dc8e2a0c0ca74d783d8006269bd1dd",
@@ -3531,7 +3531,7 @@
 		"title": "maimai DX (BUDDiES)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for maimai DX in FESTiVAL PLUS.",
 		"folders": [
 			"F3cb8c46dfb31ca7fb8d4ec18b226232b8a05303f88f329a83455099317f1759b",
@@ -3559,7 +3559,7 @@
 			"F249c6b4ed09ef3ce477aa34c8ccf9ec102d9965f77af851f01ba55fe0b2df516"
 		],
 		"game": "maimaidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "maimaidx-Single-festivalplus-levels",
 		"title": "maimai DX (FESTiVAL PLUS)"

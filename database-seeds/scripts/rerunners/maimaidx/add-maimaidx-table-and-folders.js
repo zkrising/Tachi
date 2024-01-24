@@ -1,4 +1,4 @@
-const { MutateCollection, CreateFolderID } = require("../util");
+const { MutateCollection, CreateFolderID } = require("../../util");
 
 // Change these for whatever table you are adding.
 const GAME = "maimaidx";

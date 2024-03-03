@@ -60,9 +60,11 @@ export default function Header({ styles }: { styles: LayoutStyles }) {
 								setState={setState}
 							/>
 						</Offcanvas.Body>
-						<div className="d-flex bottom-0 pb-2 px-4 d-lg-none">
-							<SignOut className="w-100" />
-						</div>
+						{user && (
+							<div className="d-flex bottom-0 pb-2 px-4 d-lg-none">
+								<SignOut className="w-100" />
+							</div>
+						)}
 					</Navbar.Offcanvas>
 					<UserArea user={user} dropdownMenuStyle={dropdownMenuStyle} />
 				</Container>

@@ -6,7 +6,8 @@ const { MutateCollection } = require("../../util");
 // Or use a tool capable of extracting is (ie Reflux)
 // Infinitas exclusives must be added with add-new-primary-IIDX-chart
 // This script is ONLY for regular charts, DO NOT USE FOR LEGGENDARIAS
-// To use, run 'node .\mina-inf.js --<ingameid 1> --<ingameid 2> [...] --<ingameid thelastoneyouhave>'
+// To use, run 'node .\mina-inf.js --<ingameid 1> --<ingameid 2> [...] --<ingameid thelastoneyouhave>' in terminal
+// Example: node.\mina-inf.js --1000 --1001 [...] --1010
 
 // Extract the command line arguments
 const args = process.argv.slice(2);

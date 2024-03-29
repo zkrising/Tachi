@@ -800,10 +800,10 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				/>
 				<OngekiPlatinumCell
 					score={sc.scoreData.platScore}
-					maxScore={(chart.data.noteCount ?? 0) * 2}
+					maxScore={(chart.data.totalNoteCount ?? 0) * 2}
 					difficulty={chart.difficulty}
 				/>
-				<OngekiJudgementCell score={sc} totalBellCount={chart.data.bellCount} />
+				<OngekiJudgementCell score={sc} totalBellCount={chart.data.totalBellCount} />
 				<OngekiLampCell
 					lamp1={sc.scoreData.noteLamp}
 					lamp2={sc.scoreData.bellLamp}

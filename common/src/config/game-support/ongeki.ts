@@ -33,7 +33,7 @@ export const ONGEKI_SINGLE_CONF = {
 			validate: p.isBetween(0, 1_010_000),
 			formatter: FmtNum,
 			description:
-				"Known in-game as 'Technical Score'. It ranges between 0 and 1'010'000, where notes are worth 950'000, and bells are worth 60'000.",
+				"Known in-game as 'Technical Score'. It ranges between 0 and 1,010,000, where notes are worth 950,000, and bells 60,000.",
 		},
 		noteLamp: {
 			type: "ENUM",
@@ -53,12 +53,6 @@ export const ONGEKI_SINGLE_CONF = {
 			chartDependentMax: true,
 			formatter: FmtNum,
 			description: "The Platinum Score value. Only exists in MASTER and LUNATIC charts.",
-		},
-		bellCount: {
-			type: "INTEGER",
-			chartDependentMax: true,
-			formatter: FmtNum,
-			description: "The number of bells collected.",
 		},
 	},
 
@@ -87,6 +81,12 @@ export const ONGEKI_SINGLE_CONF = {
 			chartDependentMax: true,
 			formatter: FmtNum,
 			description: "The number of damage ticks received.",
+		},
+		bellCount: {
+			type: "INTEGER",
+			chartDependentMax: true,
+			formatter: FmtNum,
+			description: "The number of bells collected.",
 		},
 	},
 
@@ -145,8 +145,8 @@ export const ONGEKI_SINGLE_CONF = {
 	chartData: z.strictObject({
 		displayVersion: z.string(),
 		unranked: z.boolean().optional(),
-		noteCount: z.number().int().optional(),
-		bellCount: z.number().int().optional(),
+		totalNoteCount: z.number().int().optional(),
+		totalBellCount: z.number().int().optional(),
 	}),
 
 	preferences: z.strictObject({}),

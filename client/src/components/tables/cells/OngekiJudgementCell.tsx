@@ -31,7 +31,7 @@ export default function OngekiJudgementCell({
 				</div>
 				<div>
 					<span style={{ color: COLOUR_SET.vibrantYellow }}>
-						{score.scoreData.bellCount ?? "?"}/{totalBellCount ?? "?"}
+						{score.scoreData.optional.bellCount ?? "?"}/{totalBellCount ?? "?"}
 					</span>
 					<span style={{ color: COLOUR_SET.red, marginLeft: "0.5em" }}>
 						{score.scoreData.optional.damage ?? "?"}

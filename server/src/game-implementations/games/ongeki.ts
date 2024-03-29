@@ -94,8 +94,8 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 				return `Platinum Score must be non-negative. Got ${platScore}`;
 			}
 
-			if (platScore > 2 * (chart.data.noteCount ?? 0)) {
-				return `Platinum Score is impossibly large. ${platScore} against ${chart.data.noteCount} notes`;
+			if (platScore > 2 * (chart.data.totalNoteCount ?? 0)) {
+				return `Platinum Score is impossibly large. ${platScore} against ${chart.data.totalNoteCount} notes`;
 			}
 
 			return true;
@@ -105,25 +105,37 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 				return `Bell Count must be non-negative. Got ${bellCount}`;
 			}
 
-			if (!chart.data.bellCount) {
+			if (!chart.data.totalBellCount) {
 				// Can't verify this data if we don't have it
 				return true;
 			}
 
-			if (bellCount > chart.data.bellCount) {
-				return `Bell Count is too large; ${bellCount} > ${chart.data.bellCount}`;
+			if (bellCount > chart.data.totalBellCount) {
+				return `Bell Count is too large; ${bellCount} > ${chart.data.totalBellCount}`;
 			}
 
 			return true;
 		},
-		damage: () => true,
-		platDelta: () => true,
+		damage: (damage) => {
+			if (damage < 0) {
+				return `Damage must be non-negative. Got ${damage}`;
+			}
+
+			return true;
+		},
+		platDelta: (platDelta) => {
+			if (platDelta > 0) {
+				return `Plat Delta must be non-positive. Got ${platDelta}`;
+			}
+
+			return true;
+		},
 	},
 	derivers: {
 		grade: ({ score }) => GetGrade(ONGEKI_GBOUNDARIES, score),
 		platDelta: ({ platScore }, chart) =>
 			OngekiPlatDiff(chart.difficulty)
-				? platScore - (chart.data.noteCount ?? 0) * 2
+				? platScore - (chart.data.totalNoteCount ?? 0) * 2
 				: -Number.MAX_SAFE_INTEGER,
 	},
 	scoreCalcs: {
@@ -169,7 +181,6 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	goalCriteriaFormatters: {
 		score: GoalFmtScore,
 		platScore: GoalFmtScore,
-		bellCount: GoalFmtScore,
 		platDelta: GoalFmtScore,
 	},
 	goalProgressFormatters: {
@@ -184,14 +195,12 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 		bellLamp: (pb) => pb.scoreData.bellLamp,
 		score: (pb) => FmtNum(pb.scoreData.score),
 		platScore: (pb) => FmtNum(pb.scoreData.platScore),
-		bellCount: (pb) => FmtNum(pb.scoreData.bellCount),
 		platDelta: (pb) => FmtNum(pb.scoreData.platDelta),
 	},
 	goalOutOfFormatters: {
 		score: GoalOutOfFmtScore,
 		platScore: GoalOutOfFmtScore,
-		bellCount: GoalOutOfFmtScore,
-		platDelta: GoalFmtScore,
+		platDelta: GoalOutOfFmtScore,
 	},
 	pbMergeFunctions: [
 		CreatePBMergeFor("largest", "platScore", "Best Platinum Score", (base, score) => {

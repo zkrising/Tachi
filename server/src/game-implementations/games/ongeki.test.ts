@@ -14,7 +14,6 @@ const baseMetrics: ProvidedMetrics["ongeki:Single"] = {
 	bellLamp: "FULL BELL",
 	score: 1_001_500,
 	platScore: 1000,
-	bellCount: 100,
 };
 
 const scoreData: ScoreData<"ongeki:Single"> = {
@@ -23,10 +22,9 @@ const scoreData: ScoreData<"ongeki:Single"> = {
 	score: 1_001_500,
 	platScore: 1000,
 	platDelta: -1000,
-	bellCount: 100,
 	grade: "SS",
 	judgements: {},
-	optional: { enumIndexes: {} },
+	optional: { enumIndexes: {}, bellCount: 100 },
 	enumIndexes: {
 		grade: ONGEKI_GRADES.SSS,
 		noteLamp: ONGEKI_NOTE_LAMPS.CLEAR,

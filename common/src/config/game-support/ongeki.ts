@@ -144,9 +144,10 @@ export const ONGEKI_SINGLE_CONF = {
 
 	chartData: z.strictObject({
 		displayVersion: z.string(),
-		unranked: z.boolean().optional(),
 		totalNoteCount: z.number().int().optional(),
 		totalBellCount: z.number().int().optional(),
+		isUnranked: z.boolean().optional(),
+		isHot: z.boolean(),
 	}),
 
 	preferences: z.strictObject({}),

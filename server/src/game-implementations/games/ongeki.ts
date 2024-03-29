@@ -10,22 +10,14 @@ import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 import type { Difficulties, Game, Playtype, integer } from "tachi-common";
 
-const CURRENT_VERSION = "bright MEMORY Act.3";
-
 // basically the same as WACCA and mai DX.
 const CalculateOngekiNaiveRate = async (game: Game, playtype: Playtype, userID: integer) => {
 	const newChartIDs = (
-		await db.charts.ongeki.find(
-			{ "data.displayVersion": CURRENT_VERSION },
-			{ projection: { chartID: 1 } }
-		)
+		await db.charts.ongeki.find({ "data.isHot": true }, { projection: { chartID: 1 } })
 	).map((e) => e.chartID);
 
 	const oldChartIDs = (
-		await db.charts.ongeki.find(
-			{ "data.displayVersion": { $ne: CURRENT_VERSION } },
-			{ projection: { chartID: 1 } }
-		)
+		await db.charts.ongeki.find({ "data.isHot": false }, { projection: { chartID: 1 } })
 	).map((e) => e.chartID);
 
 	const best15New = await db["personal-bests"].find(
@@ -140,7 +132,7 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	},
 	scoreCalcs: {
 		rating: (scoreData, chart) =>
-			chart.data.unranked ? 0 : ONGEKIRating.calculate(scoreData.score, chart.levelNum),
+			chart.data.isUnranked ? 0 : ONGEKIRating.calculate(scoreData.score, chart.levelNum),
 	},
 	sessionCalcs: { naiveRating: SessionAvgBest10For("rating") },
 	profileCalcs: {

@@ -341,7 +341,22 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				key="SL-ITG"
 			/>
 		);
-	} // else if (game === "jubeat") {
+	} else if (game === 'ongeki') {
+		Content.unshift(
+			<ImportInfoCard
+				name="ARTEMiS Exporter"
+				href="ongeki-artemis-exporter"
+				desc="Export your scores from an ARTEMiS instance."
+				moreInfo={
+					<>
+						This is a script that exports scores from an ARTEMiS instance. <br />
+						Note: You will need direct access to the server instance.
+					</>
+				}
+				key="ARTEMiS Exporter"
+			/>
+		);
+	}// else if (game === "jubeat") {
 	// 	Content.unshift(
 	// 		<ImportTypeInfoCard key="api/cg-dev-jubeat" importType="api/cg-dev-jubeat" />,
 	// 		<ImportTypeInfoCard key="api/cg-prod-jubeat" importType="api/cg-prod-jubeat" />

@@ -1,5 +1,5 @@
 import { APIFetchV1 } from "util/api";
-import { Reverse } from "util/misc";
+import { Reverse, UppercaseFirst } from "util/misc";
 import DistributionTable from "components/game/folder/FolderDistributionTable";
 import Card from "components/layout/page/Card";
 import DebounceSearch from "components/util/DebounceSearch";
@@ -14,7 +14,13 @@ import useUGPTBase from "components/util/useUGPTBase";
 import { UserContext } from "context/UserContext";
 import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import React, { useContext, useMemo, useState } from "react";
-import { FolderDocument, GetGPTString, GetGamePTConfig, GetScoreMetricConf } from "tachi-common";
+import {
+	FolderDocument,
+	GetGPTString,
+	GetGamePTConfig,
+	GetScoreMetricConf,
+	GetScoreMetrics,
+} from "tachi-common";
 import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
 import { FolderStatsInfo, UGPTFolderSearch } from "types/api-returns";
 import { UGPT } from "types/react";
@@ -130,12 +136,12 @@ export function FolderInfoComponent({
 				<div className="row text-center">
 					<div className="col-12">
 						<div className="btn-group">
-							<SelectButton value={metric} setValue={setMetric} id="grade">
-								<Icon type="sort-alpha-up" /> Grades
-							</SelectButton>
-							<SelectButton value={metric} setValue={setMetric} id="lamp">
-								<Icon type="lightbulb" /> Lamps
-							</SelectButton>
+							{GetScoreMetrics(gptConfig, "ENUM").map((e) => (
+								<SelectButton value={metric} setValue={setMetric} id={e}>
+									{/* @ts-expect-error this access is legal zzz */}
+									<Icon type={gptImpl.enumIcons[e]} /> {UppercaseFirst(e)}s
+								</SelectButton>
+							))}
 						</div>
 						<Divider />
 						{dataset}

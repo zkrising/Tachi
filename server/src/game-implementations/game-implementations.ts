@@ -8,6 +8,7 @@ import { JUBEAT_IMPL } from "./games/jubeat";
 import { MAIMAI_IMPL } from "./games/maimai";
 import { MAIMAIDX_IMPL } from "./games/maimaidx";
 import { MUSECA_IMPL } from "./games/museca";
+import { ONGEKI_IMPL } from "./games/ongeki";
 import { POPN_9B_IMPL } from "./games/popn";
 import { SDVX_IMPL } from "./games/sdvx";
 import { USC_CONTROLLER_IMPL, USC_KEYBOARD_IMPL } from "./games/usc";
@@ -43,4 +44,5 @@ export const GPT_SERVER_IMPLEMENTATIONS: GPTImplementations = {
 	"usc:Keyboard": USC_KEYBOARD_IMPL,
 	"sdvx:Single": SDVX_IMPL,
 	"arcaea:Touch": ARCAEA_IMPL,
+	"ongeki:Single": ONGEKI_IMPL,
 };

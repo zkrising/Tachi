@@ -29,6 +29,7 @@ import ChunithmSiteImportPage from "app/pages/dashboard/import/ChunithmSiteImpor
 import SaekawaPage from "app/pages/dashboard/import/SaekawaPage";
 import AquaArtemisExport from "app/pages/dashboard/import/AquaArtemisExportPage";
 import ChunithmMYTExport from "app/pages/dashboard/import/ChunithmMYTExportPage";
+import OngekiArtemisExport from "app/pages/dashboard/import/OngekiArtemisExportPage";
 
 export default function ImportRoutes() {
 	const { user } = useContext(UserContext);
@@ -223,6 +224,10 @@ export default function ImportRoutes() {
 
 							<Route exact path="/import/kt-maimaidx-site-importer">
 								<MaimaiDXSiteImportPage />
+							</Route>
+
+							<Route exact path="/import/ongeki-artemis-exporter">
+								<OngekiArtemisExport />
 							</Route>
 						</>
 					)}

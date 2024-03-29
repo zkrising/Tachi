@@ -17,7 +17,11 @@ export default function OngekiArtemisExport() {
 			</div>
 			<Divider />
 			<h1 className="text-center my-4">Setup Instructions</h1>
-			Instructions are available on <ExternalLink href="TODO">the GitHub gist</ExternalLink>.
+			Instructions are available on{" "}
+			<ExternalLink href="https://gist.github.com/nyairobi/ffdf9e674f31987b1ffbd38d31b55f6c">
+				the GitHub gist
+			</ExternalLink>
+			.
 		</div>
 	);
 }

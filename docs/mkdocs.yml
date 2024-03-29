@@ -71,6 +71,7 @@ nav:
             - "game-support/games/pms-Controller.md"
             - "game-support/games/pms-Keyboard.md"
             - "game-support/games/itg-Stamina.md"
+            - "game-support/games/ongeki-Single.md"
 
   - Wiki:
       - "wiki/index.md"

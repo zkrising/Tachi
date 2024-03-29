@@ -4,10 +4,11 @@ import TimestampCell from "components/tables/cells/TimestampCell";
 import ScoreCoreCells from "components/tables/game-core-cells/ScoreCoreCells";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useContext, useEffect, useState } from "react";
-import { ChartDocument, PBScoreDocument, ScoreDocument } from "tachi-common";
+import { ChartDocument, GetGPTString, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { UGPTChartPBComposition } from "types/api-returns";
 import { SetState } from "types/react";
 import { UserContext } from "context/UserContext";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import CommentContainer from "./CommentContainer";
 import JudgementTable from "./JudgementTable";
 import PBNote from "./PBNote";
@@ -22,13 +23,14 @@ export function ScoreInfo({
 	chart: ChartDocument;
 }) {
 	const rating = useScoreRatingAlg(score.game, score.playtype);
+	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(score.game, chart.playtype)];
 
 	return (
 		<div className="col-12">
 			<table className="table">
 				<thead>
 					<tr>
-						<td colSpan={3}>Score Info</td>
+						<td colSpan={gptImpl.scoreHeaders.length}>Score Info</td>
 						<td>{UppercaseFirst(rating)}</td>
 						<td>Timestamp</td>
 					</tr>

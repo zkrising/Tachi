@@ -76,7 +76,7 @@ Note: O.N.G.E.K.I.'s in-game rating also takes recent scores into account, hence
 - `MASTER`
 - `LUNATIC`
 
-Note: since bright MEMORY Act.3, there is a distinction between Lv.0 charts and "RE:MASTER" charts, but both ought to be tracked as LUNATIC.
+Note: since bright MEMORY Act.3, "crazy" charts and "Re:MASTER" charts are in separate folders, but both ought to be tracked as LUNATIC.
 
 ## Classes
 

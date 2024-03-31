@@ -43,7 +43,7 @@ export const ONGEKI_SINGLE_CONF = {
 		},
 		bellLamp: {
 			type: "ENUM",
-			values: ["", "FULL BELL"],
+			values: ["NONE", "FULL BELL"],
 			minimumRelevantValue: "",
 			description:
 				"The second lamp that tracks whether all bells in the chart have been collected.",
@@ -147,6 +147,7 @@ export const ONGEKI_SINGLE_CONF = {
 		totalNoteCount: z.number().int().optional(),
 		totalBellCount: z.number().int().optional(),
 		isUnranked: z.boolean().optional(),
+		isReMaster: z.boolean().optional(),
 		isHot: z.boolean(),
 	}),
 

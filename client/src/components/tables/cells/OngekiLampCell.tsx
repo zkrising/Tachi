@@ -17,15 +17,17 @@ export default function OngekiLampCell({
 
 	let content = <div>{lamp1}</div>;
 
-	if (lamp1 === "CLEAR" && lamp2 === "FULL\u00A0BELL") {
-		content = <div>{lamp2}</div>;
-	} else if (lamp2) {
-		content = (
-			<span>
-				<div>{lamp1}</div>
-				<div>{lamp2}</div>
-			</span>
-		);
+	if (lamp2 !== "NONE") {
+		if (lamp1 === "CLEAR") {
+			content = <div>{lamp2}</div>;
+		} else {
+			content = (
+				<span>
+					<div>{lamp1}</div>
+					<div>{lamp2}</div>
+				</span>
+			);
+		}
 	}
 
 	return (

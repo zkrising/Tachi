@@ -140,6 +140,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 79,
 			"totalNoteCount": 1170
 		},
@@ -240,6 +241,7 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 140,
 			"totalNoteCount": 1507
 		},
@@ -337,6 +339,7 @@
 		"data": {
 			"displayVersion": "PLUS",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 225,
 			"totalNoteCount": 1198
 		},
@@ -1434,6 +1437,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 92,
 			"totalNoteCount": 1755
 		},
@@ -1703,6 +1707,7 @@
 		"data": {
 			"displayVersion": "bright",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 98,
 			"totalNoteCount": 1349
 		},
@@ -2141,6 +2146,7 @@
 		"data": {
 			"displayVersion": "無印",
 			"isHot": false,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 26,
 			"totalNoteCount": 784
@@ -2245,6 +2251,7 @@
 		"data": {
 			"displayVersion": "無印",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 139,
 			"totalNoteCount": 2000
 		},
@@ -2430,6 +2437,7 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 39,
 			"totalNoteCount": 2018
 		},
@@ -2696,6 +2704,7 @@
 		"data": {
 			"displayVersion": "bright",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 75,
 			"totalNoteCount": 1117
 		},
@@ -2883,6 +2892,7 @@
 		"data": {
 			"displayVersion": "無印",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 66,
 			"totalNoteCount": 526
 		},
@@ -3576,6 +3586,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 110,
 			"totalNoteCount": 1524
 		},
@@ -4017,6 +4028,7 @@
 		"data": {
 			"displayVersion": "無印",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 238,
 			"totalNoteCount": 2076
 		},
@@ -4624,6 +4636,7 @@
 		"data": {
 			"displayVersion": "無印",
 			"isHot": false,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 116,
 			"totalNoteCount": 836
@@ -4982,6 +4995,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 174,
 			"totalNoteCount": 1510
 		},
@@ -5087,6 +5101,7 @@
 		"data": {
 			"displayVersion": "無印",
 			"isHot": false,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 274,
 			"totalNoteCount": 1226
@@ -5949,6 +5964,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 291,
 			"totalNoteCount": 1846
 		},
@@ -6054,6 +6070,7 @@
 		"data": {
 			"displayVersion": "PLUS",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 68,
 			"totalNoteCount": 1232
 		},
@@ -6159,6 +6176,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 98,
 			"totalNoteCount": 1338
 		},
@@ -6264,6 +6282,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 117,
 			"totalNoteCount": 1572
 		},
@@ -6369,6 +6388,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 103,
 			"totalNoteCount": 1417
 		},
@@ -6558,6 +6578,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 130,
 			"totalNoteCount": 1559
 		},
@@ -6663,6 +6684,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 98,
 			"totalNoteCount": 1461
 		},
@@ -7016,6 +7038,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 95,
 			"totalNoteCount": 1547
 		},
@@ -7117,6 +7140,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 125,
 			"totalNoteCount": 1357
 		},
@@ -7462,6 +7486,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 127,
 			"totalNoteCount": 1241
 		},
@@ -7567,6 +7592,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 60,
 			"totalNoteCount": 1585
 		},
@@ -7777,6 +7803,7 @@
 		"data": {
 			"displayVersion": "無印",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 170,
 			"totalNoteCount": 869
 		},
@@ -9383,6 +9410,7 @@
 		"data": {
 			"displayVersion": "無印",
 			"isHot": false,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 92,
 			"totalNoteCount": 2217
@@ -10113,6 +10141,7 @@
 		"data": {
 			"displayVersion": "無印",
 			"isHot": false,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 65,
 			"totalNoteCount": 314
@@ -10297,6 +10326,7 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 199,
 			"totalNoteCount": 1843
 		},
@@ -10778,6 +10808,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 130,
 			"totalNoteCount": 1883
 		},
@@ -10883,6 +10914,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 144,
 			"totalNoteCount": 1520
 		},
@@ -11072,6 +11104,7 @@
 		"data": {
 			"displayVersion": "PLUS",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 96,
 			"totalNoteCount": 997
 		},
@@ -11833,6 +11866,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY ",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 117,
 			"totalNoteCount": 1524
 		},
@@ -12442,6 +12476,7 @@
 		"data": {
 			"displayVersion": "SUMMER",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 228,
 			"totalNoteCount": 1004
 		},
@@ -12820,6 +12855,7 @@
 		"data": {
 			"displayVersion": "PLUS",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 230,
 			"totalNoteCount": 811
 		},
@@ -12925,6 +12961,7 @@
 		"data": {
 			"displayVersion": "UNKNOWN",
 			"isHot": false,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 142,
 			"totalNoteCount": 999
@@ -13564,6 +13601,7 @@
 		"data": {
 			"displayVersion": "R.E.D",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 133,
 			"totalNoteCount": 1513
 		},
@@ -13829,6 +13867,7 @@
 		"data": {
 			"displayVersion": "PLUS",
 			"isHot": false,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 20,
 			"totalNoteCount": 1560
@@ -15107,6 +15146,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 102,
 			"totalNoteCount": 1293
 		},
@@ -15212,6 +15252,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 117,
 			"totalNoteCount": 1403
 		},
@@ -15317,6 +15358,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 84,
 			"totalNoteCount": 1663
 		},
@@ -16146,6 +16188,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 148,
 			"totalNoteCount": 1544
 		},
@@ -18215,6 +18258,7 @@
 		"data": {
 			"displayVersion": "SUMMER PLUS",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 138,
 			"totalNoteCount": 1705
 		},
@@ -18320,6 +18364,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 161,
 			"totalNoteCount": 1615
 		},
@@ -18593,6 +18638,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 108,
 			"totalNoteCount": 1694
 		},
@@ -18782,6 +18828,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 75,
 			"totalNoteCount": 1095
 		},
@@ -18908,6 +18955,7 @@
 		"data": {
 			"displayVersion": "SUMMER",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 150,
 			"totalNoteCount": 1107
 		},
@@ -18987,6 +19035,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY ",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 185,
 			"totalNoteCount": 1779
 		},
@@ -19398,6 +19447,7 @@
 		"data": {
 			"displayVersion": "SUMMER",
 			"isHot": false,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 267,
 			"totalNoteCount": 317
@@ -22464,6 +22514,7 @@
 		"data": {
 			"displayVersion": "SUMMER",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 2512,
 			"totalNoteCount": 1225
 		},
@@ -25626,6 +25677,7 @@
 		"data": {
 			"displayVersion": "SUMMER PLUS",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 218,
 			"totalNoteCount": 888
 		},
@@ -27037,6 +27089,7 @@
 		"data": {
 			"displayVersion": "UNKNOWN",
 			"isHot": false,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 401,
 			"totalNoteCount": 738
@@ -27370,6 +27423,7 @@
 		"data": {
 			"displayVersion": "R.E.D",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 56,
 			"totalNoteCount": 1374
 		},
@@ -29632,6 +29686,7 @@
 		"data": {
 			"displayVersion": "SUMMER PLUS",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 2,
 			"totalNoteCount": 1484
 		},
@@ -29653,6 +29708,7 @@
 		"data": {
 			"displayVersion": "SUMMER PLUS",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 303,
 			"totalNoteCount": 2600
 		},
@@ -30225,6 +30281,7 @@
 		"data": {
 			"displayVersion": "SUMMER PLUS",
 			"isHot": false,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 198,
 			"totalNoteCount": 2286
@@ -31787,6 +31844,7 @@
 		"data": {
 			"displayVersion": "R.E.D.PLUS",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 67,
 			"totalNoteCount": 1503
 		},
@@ -32681,6 +32739,7 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 103,
 			"totalNoteCount": 2354
 		},
@@ -35520,6 +35579,7 @@
 		"data": {
 			"displayVersion": "UNKNOWN",
 			"isHot": false,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 229,
 			"totalNoteCount": 1293
@@ -36511,6 +36571,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 138,
 			"totalNoteCount": 1379
 		},
@@ -39303,6 +39364,7 @@
 		"data": {
 			"displayVersion": "R.E.D.PLUS",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 69,
 			"totalNoteCount": 808
 		},
@@ -39482,6 +39544,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"isHot": true,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 70,
 			"totalNoteCount": 1559
@@ -40021,6 +40084,7 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 126,
 			"totalNoteCount": 2211
 		},
@@ -40120,6 +40184,7 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 74,
 			"totalNoteCount": 1586
 		},
@@ -44437,6 +44502,7 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 57,
 			"totalNoteCount": 2870
 		},
@@ -46781,6 +46847,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 81,
 			"totalNoteCount": 2090
 		},
@@ -47122,6 +47189,7 @@
 		"data": {
 			"displayVersion": "R.E.D PLUS",
 			"isHot": false,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 137,
 			"totalNoteCount": 1592
@@ -47534,6 +47602,7 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"isHot": false,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 103,
 			"totalNoteCount": 1856
@@ -47950,6 +48019,7 @@
 		"data": {
 			"displayVersion": "bright",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 54,
 			"totalNoteCount": 1443
 		},
@@ -49091,6 +49161,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 76,
 			"totalNoteCount": 1345
 		},
@@ -50053,6 +50124,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 210,
 			"totalNoteCount": 1120
 		},
@@ -54496,6 +54568,7 @@
 		"data": {
 			"displayVersion": "bright",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 180,
 			"totalNoteCount": 1057
 		},
@@ -55458,6 +55531,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 100,
 			"totalNoteCount": 1219
 		},
@@ -56111,6 +56185,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY ",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 159,
 			"totalNoteCount": 2500
 		},
@@ -57834,6 +57909,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 168,
 			"totalNoteCount": 1530
 		},
@@ -57876,6 +57952,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 149,
 			"totalNoteCount": 1063
 		},
@@ -59650,6 +59727,7 @@
 		"data": {
 			"displayVersion": "UNKNOWN",
 			"isHot": false,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 100,
 			"totalNoteCount": 597
@@ -59731,6 +59809,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 235,
 			"totalNoteCount": 1751
 		},
@@ -65189,6 +65268,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": false,
 			"totalBellCount": 148,
 			"totalNoteCount": 1888
 		},
@@ -65374,6 +65454,7 @@
 		"data": {
 			"displayVersion": "UNKNOWN",
 			"isHot": false,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 70,
 			"totalNoteCount": 2700
@@ -66144,6 +66225,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"isHot": false,
+			"isReMaster": false,
 			"isUnranked": true,
 			"totalBellCount": 235,
 			"totalNoteCount": 1073
@@ -69777,6 +69859,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"isHot": false,
+			"isReMaster": true,
 			"totalBellCount": 138,
 			"totalNoteCount": 1161
 		},
@@ -77782,6 +77865,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"isHot": true,
+			"isReMaster": true,
 			"totalBellCount": 108,
 			"totalNoteCount": 1442
 		},
@@ -78029,6 +78113,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"isHot": true,
+			"isReMaster": false,
 			"totalBellCount": 322,
 			"totalNoteCount": 1103
 		},

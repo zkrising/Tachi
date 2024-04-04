@@ -82,7 +82,7 @@ jobs:
         with:
           context: ./
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/tachi-server:${{ env.BRANCH_TAG }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/tachi-server:stable
           file: ./Dockerfile.server
           build-args: |
             COMMIT_HASH=${{ env.SHORT_SHA }}

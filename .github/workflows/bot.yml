@@ -1,0 +1,37 @@
+name: Bot CI/CD
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "bot/**"
+      - "common/**"
+  workflow_dispatch:
+
+jobs:
+  docker-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Docker Hub login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v3
+        with:
+          context: ./
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/tachi-bot:stable
+          file: ./Dockerfile.bot
+          cache-from: type=gha,scope=$GITHUB_REF_NAME-bot
+          cache-to: type=gha,mode=max,scope=$GITHUB_REF_NAME-bot

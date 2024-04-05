@@ -100,11 +100,11 @@ jobs:
           BUILD_OUT_DIR: ~/kamai
 
       - name: Deploy Kamaitachi
-        run: scp -r ~/kamai ci@"$SSH_HOST":tachi-client
+        run: scp -r ~/kamai ci@"$TACHI_HOST":tachi-client
         env:
-          SSH_HOST: ${{secrets.SSH_HOST}}
+          TACHI_HOST: ${{secrets.TACHI_HOST}}
 
       - name: Deploy Bokutachi
-        run: scp -r ~/boku ci@"$SSH_HOST":tachi-client
+        run: scp -r ~/boku ci@"$TACHI_HOST":tachi-client
         env:
-          SSH_HOST: ${{secrets.SSH_HOST}}
+          TACHI_HOST: ${{secrets.TACHI_HOST}}

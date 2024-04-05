@@ -7,16 +7,14 @@ really do anything you want with them.
 
 ## Contribution Info
 
-All work should be merged into `staging`. That branch is synced with the staging deploys of Tachi.
-
-Changes will then be merged and cherry picked into `release/v*` whenever is best.
+All work should be merged into `main`.
 
 ## What Databases Are Here?
 
 Nothing private, nothing pertaining to an instance of Tachi. These are backbone files, such
 as songs, charts, and folders.
 
-You can read more about what all these documents mean in [common/](https://github.com/TNG-dev/Tachi/tree/staging/common).
+You can read more about what all these documents mean in [common/](https://github.com/zkldi/Tachi/tree/main/common).
 
 - `songs-{game}`
 

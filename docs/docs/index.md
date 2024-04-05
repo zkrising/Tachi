@@ -3,7 +3,7 @@
 This site serves as the documentation for Tachi.
 
 Tachi is a fully-open rhythm game score tracking engine, and is the name of the codebase that powers
-both [Bokutachi](https://bokutachi.xyz) and [Kamaitachi](https://kamaitachi.xyz).
+both [Bokutachi](https://boku.tachi.ac) and [Kamaitachi](https://kamai.tachi.ac).
 
 !!! help
 	Tachi is **fully open**. The core is almost exclusively maintained by [one person](https://github.com/zkldi).

@@ -8,17 +8,17 @@ const NEUTRAL_FAQ_ENTRIES: Record<string, string> = {
 	duplicates: `Scores on ${ServerConfig.name} are deduplicated based on your score and lamp (and some other things).
 If you happen to get the exact same score twice, ${ServerConfig.name} will **ignore** the second one!
 There are legitimate reasons for this -- it's very common for people to import the same scores twice through file uploads or import scripts.
-For more info on why this is a fundamental limitation of ${ServerConfig.name}, check [the documentation](https://docs.bokutachi.xyz/wiki/score-oddities/#deduplication-false-positives-all-games).`,
+For more info on why this is a fundamental limitation of ${ServerConfig.name}, check [the documentation](https://docs.tachi.ac/wiki/score-oddities/#deduplication-false-positives-all-games).`,
 	contribute: `Contributing to ${ServerConfig.name} in any way will get you the Contributor role, and a cool green name.\n
 Contributors who save us hours (or more) of dev time, or are just generally really supportive will get the Significant Contributor role, and an even cooler orange name.
-${ServerConfig.name} is an Open Source project. Feel free to read our [contribution guide](https://docs.bokutachi.xyz/contributing/), or just generally ask for stuff to help out with!`,
-	docs: `Documentation for ${ServerConfig.name} is stored at https://docs.bokutachi.xyz.`,
+${ServerConfig.name} is an Open Source project. Feel free to read our [contribution guide](https://docs.tachi.ac/contributing/), or just generally ask for stuff to help out with!`,
+	docs: `Documentation for ${ServerConfig.name} is stored at https://docs.tachi.ac.`,
 	pbs: `A PB is all of your best scores on that specific chart joined together.
 For most games, this means joining your best score with your best lamp.
-Read more about this [here](https://docs.bokutachi.xyz/wiki/pbs-scores/)`,
+Read more about this [here](https://docs.tachi.ac/wiki/pbs-scores/)`,
 	filter_directives: `Filter Directives are a fancy way of *filtering* rows inside a table.
 They provide an advanced toolkit for users to perform complex queries on their data.
-Read more about them [here](https://docs.bokutachi.xyz/wiki/filter-directives/)`,
+Read more about them [here](https://docs.tachi.ac/wiki/filter-directives/)`,
 	dans: `Dans are good as a milestone for your skill. However, focusing too much on dans can be massively detrimental to your skill as a player.\n
 Playing a fixed set of charts all the time will not expose you to more things, and will generally slow down your improvement as a player. Furthermore, they're stressful, and designed to be played *just* at the cusp of what you can play.\n
 In short. Don't play dans too much.`,

@@ -2,9 +2,7 @@
 
 This is the documentation for Tachi.
 
-Our `staging` branch is hosted under [https://docs-staging.bokutachi.xyz](https://docs-staging.bokutachi.xyz).
-
-Our `release/2.*` branch is hosted under [https://docs.bokutachi.xyz](https://docs.bokutachi.xyz)
+Our docs are hosted under [https://docs.tachi.ac](https://docs.tachi.ac)
 
 # Setup
 
@@ -16,4 +14,4 @@ If you're in a horribly hellish python environment like me (Sorry Sera, you know
 
 # Contributing
 
-Fork the repository and PR your changes to `staging`.
+Fork the repository and PR your changes to `main`.

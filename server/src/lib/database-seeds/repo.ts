@@ -245,9 +245,7 @@ export class DatabaseSeedsRepo {
  */
 export async function PullDatabaseSeeds(
 	fetchFromLocalPath: string | null = process.env.FORCE_LOCAL_SEEDS_PATH ?? null,
-	branch: string = Environment.nodeEnv === "production"
-		? `release/${VERSION_INFO.major}.${VERSION_INFO.minor}`
-		: "staging"
+	branch = "main"
 ) {
 	if (fetchFromLocalPath) {
 		const local = new DatabaseSeedsRepo(fetchFromLocalPath);
@@ -307,12 +305,12 @@ export async function PullDatabaseSeeds(
 	}
 }
 
-export async function BacksyncCollectionToBothBranches(
+export async function BacksyncCollection(
 	collectionName: SeedsCollections,
 	collection: ICollection,
 	commitMessage: string
 ) {
-	for (const branch of ["staging", `release/2.${VERSION_INFO.minor}`]) {
+	for (const branch of ["main"]) {
 		const repo = await PullDatabaseSeeds(undefined, branch);
 
 		let charts = await collection.find({});

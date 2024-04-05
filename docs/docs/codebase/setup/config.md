@@ -393,7 +393,7 @@ interface CDN_CONFIG: {
 
 #### WEB_LOCATION
 
-Configures a URL to redirect users to when returning CDN contents. This could be something like `cdn.bokutachi.xyz`.
+Configures a URL to redirect users to when returning CDN contents. This could be something like `cdn.boku.tachi.ac`.
 
 #### SAVE_LOCATION
 

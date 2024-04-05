@@ -1,6 +1,6 @@
 # Sieglinde
 
-Sieglinde is a simple rating algorithm for BMS, developed for [Bokutachi](https://bokutachi.xyz).
+Sieglinde is a simple rating algorithm for BMS, developed for [Bokutachi](https://boku.tachi.ac).
 
 ## Goals
 

@@ -87,7 +87,7 @@ export default function SupportBanner({ user }: { user: UserDocument }) {
 				<br />
 				<br />
 				Alternatively, you can star or contribute to the fully-open-source{" "}
-				<ExternalLink href="https://github.com/TNG-Dev/Tachi">GitHub Repo</ExternalLink>.
+				<ExternalLink href="https://github.com/zkldi/Tachi">GitHub Repo</ExternalLink>.
 				This makes me look cool to employers!
 			</span>
 		</Card>

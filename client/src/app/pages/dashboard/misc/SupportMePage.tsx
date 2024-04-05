@@ -19,7 +19,7 @@ export default function SupportMePage() {
 			</p>
 			<p>
 				Alternatively, you can star the{" "}
-				<ExternalLink href="https://github.com/TNG-Dev/Tachi">GitHub Repo</ExternalLink>.
+				<ExternalLink href="https://github.com/zkldi/Tachi">GitHub Repo</ExternalLink>.
 				This makes me look cool to employers!
 			</p>
 		</div>

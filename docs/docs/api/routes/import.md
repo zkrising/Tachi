@@ -102,7 +102,7 @@ scoreData=<file data>
 
 ```js
 {
-	url: "https://bokutachi.xyz/api/v1/imports/SOME_IMPORT_ID/poll-status",
+	url: "https://boku.tachi.ac/api/v1/imports/SOME_IMPORT_ID/poll-status",
 	importID: "SOME_IMPORT_ID"
 }
 ```

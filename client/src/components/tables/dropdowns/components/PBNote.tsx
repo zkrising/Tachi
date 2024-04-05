@@ -5,7 +5,7 @@ export default function PBNote() {
 	return (
 		<small>
 			Your PB is the combination of your best score and your best clear. Read more{" "}
-			<ExternalLink href="https://docs.bokutachi.xyz/wiki/pbs-scores/"> here</ExternalLink>.
+			<ExternalLink href="https://docs.tachi.ac/wiki/pbs-scores/"> here</ExternalLink>.
 		</small>
 	);
 }

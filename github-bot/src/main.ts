@@ -28,7 +28,7 @@ function mkSeedDiffViewMsg(repo: string, sha: string, compareRepo: string, compa
 		compareSHA,
 	});
 
-	return `\nA commit has changed the database-seeds. [View the seeds diff here.](https://bokutachi.xyz/utils/seeds?${params.toString()})`;
+	return `\nA commit has changed the database-seeds. [View the seeds diff here.](https://boku.tachi.ac/utils/seeds?${params.toString()})`;
 }
 
 function ConvertGitHubURL(url: string) {
@@ -39,7 +39,7 @@ app.webhooks.on(
 	["pull_request.opened", "pull_request.edited"],
 	async ({ octokit, payload: body }) => {
 		const filesChanged = (await fetch(
-			`https://api.github.com/repos/TNG-dev/Tachi/pulls/${body.number}/files`
+			`https://api.github.com/repos/zkldi/Tachi/pulls/${body.number}/files`
 		).then((r) => r.json())) as Array<{ filename: string }>;
 
 		// if any file modified in this pr is a collection

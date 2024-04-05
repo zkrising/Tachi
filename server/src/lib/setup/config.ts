@@ -25,7 +25,9 @@ let confFile;
 try {
 	confFile = fs.readFileSync(confLocation, "utf-8");
 } catch (err) {
-	logger.error("Error while trying to open conf.json5. Is one present?", { err });
+	logger.error("Error while trying to open conf.json5. Is one present?", {
+		err,
+	});
 
 	process.exit(1);
 }
@@ -112,7 +114,7 @@ export interface TachiServerConfig {
 	};
 	TACHI_CONFIG: {
 		NAME: string;
-		TYPE: "btchi" | "ktchi" | "omni";
+		TYPE: "boku" | "kamai" | "omni";
 		GAMES: Array<Game>;
 		IMPORT_TYPES: Array<ImportTypes>;
 	};
@@ -214,7 +216,7 @@ const err = p(config, {
 	}),
 	TACHI_CONFIG: {
 		NAME: "string",
-		TYPE: p.isIn("ktchi", "btchi", "omni"),
+		TYPE: p.isIn("kamai", "boku", "omni"),
 		GAMES: [p.isIn(allSupportedGames)],
 		IMPORT_TYPES: [p.isIn(allImportTypes)],
 	},

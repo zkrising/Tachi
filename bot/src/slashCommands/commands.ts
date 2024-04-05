@@ -19,12 +19,12 @@ if (BotConfig.DISCORD.APPROVED_ROLE) {
 	SLASH_COMMANDS.set("letmein", letmein);
 }
 
-// ktchi or omni specific commands
-if (ServerConfig.type !== "btchi") {
+// kamaitachi or omni specific commands
+if (ServerConfig.type !== "boku") {
 	SLASH_COMMANDS.set("sync", sync);
 }
 
-// btchi or omni specific commands
-if (ServerConfig.type !== "ktchi") {
+// bokutachi or omni specific commands
+if (ServerConfig.type !== "kamai") {
 	SLASH_COMMANDS.set("invite", invite);
 }

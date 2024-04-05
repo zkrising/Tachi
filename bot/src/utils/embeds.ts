@@ -6,7 +6,7 @@ import type { ImportDocument, UserDocument, integer } from "tachi-common";
 
 export function CreateEmbed(userID?: integer) {
 	const embed = new MessageEmbed()
-		.setColor(ServerConfig.type === "ktchi" ? "#e61c6e" : "#527acc")
+		.setColor(ServerConfig.type === "kamai" ? "#e61c6e" : "#527acc")
 		.setTimestamp();
 
 	if (userID !== undefined) {
@@ -24,7 +24,11 @@ export function CreateImportEmbed(importDoc: ImportDocument) {
 				"score"
 			)}!`
 		)
-		.addField("Created Sessions", importDoc.createdSessions.length.toString(), true)
+		.addField(
+			"Created Sessions",
+			importDoc.createdSessions.length.toString(),
+			true
+		)
 		.addField("Errors", importDoc.errors.length.toString(), true)
 		.addField(
 			"Your Profile",

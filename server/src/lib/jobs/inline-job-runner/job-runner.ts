@@ -33,7 +33,7 @@ const jobs: Array<Job> = [
 ];
 
 // if kamaitachi or omnitachi
-if (TachiConfig.TYPE !== "btchi") {
+if (TachiConfig.TYPE !== "boku") {
 	jobs.push({
 		name: "Update BPI",
 		cronFormat: "2 0 * * *",
@@ -48,7 +48,7 @@ if (TachiConfig.TYPE !== "btchi") {
 }
 
 // if bokutachi or omnitachi
-if (TachiConfig.TYPE !== "ktchi") {
+if (TachiConfig.TYPE !== "kamai") {
 	jobs.push({
 		name: "Update AI Table",
 		cronFormat: "2 0 * * *",

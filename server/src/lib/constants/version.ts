@@ -1,5 +1,5 @@
 // Note that Version Info is intentionally identical between all variants of tachi
-// viz. btchi and ktchi share versioning. This is because they
+// viz. boku and kamai share versioning. This is because they
 // essentially share codebases.
 import CreateLogCtx from "lib/logger/logger";
 import { Environment } from "lib/setup/config";

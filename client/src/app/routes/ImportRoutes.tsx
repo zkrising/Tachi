@@ -19,7 +19,7 @@ import WACCAMyPageScraperPage from "app/pages/dashboard/import/WACCAMyPageScrape
 import KAIIntegrationPage from "components/imports/KAIIntegrationPage";
 import Divider from "components/util/Divider";
 import { UserContext } from "context/UserContext";
-import { mode } from "lib/config";
+import { TachiConfig } from "lib/config";
 import React, { useContext } from "react";
 import { Link, Redirect, Route, Switch } from "react-router-dom";
 import CGIntegrationPage from "components/imports/CGIntegrationPage";
@@ -53,7 +53,7 @@ export default function ImportRoutes() {
 						<BatchManualPage />
 					</Route>
 
-					{mode !== "ktchi" && (
+					{TachiConfig.type !== "kamai" && (
 						<>
 							<Route exact path="/import/lr2oraja-ir">
 								<BeatorajaIRPage game="bms" />
@@ -82,7 +82,7 @@ export default function ImportRoutes() {
 						</>
 					)}
 
-					{mode !== "btchi" && (
+					{TachiConfig.type !== "boku" && (
 						<>
 							<Route exact path="/import/iidx-eam-csv">
 								<IIDXEamCSVPage

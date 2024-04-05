@@ -217,9 +217,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				href="chunithm-myt-exporter"
 				desc="Export your scores from MYT."
 				moreInfo={
-					<>
-						This is an userscript that exports scores from the MYT web interface.
-					</>
+					<>This is an userscript that exports scores from the MYT web interface.</>
 				}
 				key="MYT Exporter"
 			/>,

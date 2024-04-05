@@ -7,7 +7,7 @@ import type { RequestHandler } from "express-serve-static-core";
  * this restriction is bypassed.
  */
 export const RequireBokutachi: RequestHandler = (req, res, next) => {
-	if (TachiConfig.TYPE === "btchi" || TachiConfig.TYPE === "omni") {
+	if (TachiConfig.TYPE === "boku" || TachiConfig.TYPE === "omni") {
 		next();
 		return;
 	}
@@ -24,7 +24,7 @@ export const RequireBokutachi: RequestHandler = (req, res, next) => {
  * this restriction is bypassed.
  */
 export const RequireKamaitachi: RequestHandler = (req, res, next) => {
-	if (TachiConfig.TYPE === "ktchi" || TachiConfig.TYPE === "omni") {
+	if (TachiConfig.TYPE === "kamai" || TachiConfig.TYPE === "omni") {
 		next();
 		return;
 	}

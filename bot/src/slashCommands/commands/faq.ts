@@ -108,7 +108,7 @@ Since I don't play a lot of the the games that ${ServerConfig.name} supports, we
 };
 
 // Server specific FAQ stuff.
-const KTCHI_FAQ_ENTRIES: Record<string, string> = {
+const KAMAI_FAQ_ENTRIES: Record<string, string> = {
 	kai_support: `Support for KAI based networks (FLO, EAG, MIN) is available, but we are waiting on APIs for more games on their end. At the moment, only IIDX and SDVX are supported.`,
 	bokutachi: `Bokutachi is our public sister website for home games and simulators. Feel free to check out [the discord](${
 		Buffer.from("aHR0cHM6Ly9kaXNjb3JkLmdnL3N3VkJUanhtUFk=", "base64") // Note: obfuscating this for obvious reasons so we don't get garbage bot spam.
@@ -118,7 +118,7 @@ const KTCHI_FAQ_ENTRIES: Record<string, string> = {
 Your friend can then go to ${BotConfig.TACHI_SERVER_LOCATION} and sign up with the code! You can also invite them to the discord.`,
 };
 
-const BTCHI_FAQ_ENTRIES: Record<string, string> = {
+const BOKU_FAQ_ENTRIES: Record<string, string> = {
 	usc_hard_mode: `Hard Mode windows are not supported on ${ServerConfig.name}. Your scores **will be ignored** if they are played on non-standard windows.`,
 	ir_login: `You **must** put your API Key in the password field for the Bokutachi IR, **NOT your real password!**. See instructions here: ${BotConfig.TACHI_SERVER_LOCATION}/import/beatoraja-ir.
 (This is because putting your real password in there is a security nightmare.)`,
@@ -129,12 +129,12 @@ Beatoraja is actively developed and integrates properly with the Bokutachi IR, i
 
 let faqEntries = NEUTRAL_FAQ_ENTRIES;
 
-if (ServerConfig.type !== "btchi") {
-	faqEntries = deepmerge(faqEntries, KTCHI_FAQ_ENTRIES);
+if (ServerConfig.type !== "boku") {
+	faqEntries = deepmerge(faqEntries, KAMAI_FAQ_ENTRIES);
 }
 
-if (ServerConfig.type !== "ktchi") {
-	faqEntries = deepmerge(faqEntries, BTCHI_FAQ_ENTRIES);
+if (ServerConfig.type !== "kamai") {
+	faqEntries = deepmerge(faqEntries, BOKU_FAQ_ENTRIES);
 }
 
 const choiceMap = new Map(Object.entries(faqEntries));

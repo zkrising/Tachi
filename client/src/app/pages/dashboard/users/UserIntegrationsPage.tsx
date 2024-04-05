@@ -11,7 +11,7 @@ import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
 import SelectLinkButton from "components/util/SelectLinkButton";
-import { mode, TachiConfig } from "lib/config";
+import { TachiConfig } from "lib/config";
 import React, { useEffect, useReducer, useState } from "react";
 import { Alert, Button, Col, Form, Modal, Row } from "react-bootstrap";
 import { Link, Route, Switch } from "react-router-dom";
@@ -42,7 +42,7 @@ export default function UserIntegrationsPage({ reqUser }: { reqUser: UserDocumen
 			<Row>
 				<Col xs={12}>
 					<div className="btn-group d-flex justify-content-center">
-						{mode !== "btchi" && (
+						{TachiConfig.type !== "boku" && (
 							<SelectLinkButton className="text-wrap" to={`${baseUrl}/services`}>
 								<Icon type="network-wired" /> Service Configuration
 							</SelectLinkButton>
@@ -612,7 +612,7 @@ function EditClientModal({
 }
 
 function ServicesPage({ reqUser }: { reqUser: UserDocument }) {
-	if (mode === "btchi") {
+	if (TachiConfig.type === "boku") {
 		return (
 			<Row className="text-center">
 				Looks like there's no services available for integration.

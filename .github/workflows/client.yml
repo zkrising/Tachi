@@ -77,12 +77,12 @@ jobs:
           VITE_GIT_REPO: "GitHub:zkldi/Tachi"
           VITE_TCHIC_MODE: "boku"
           VITE_GOATCOUNTER: "https://tachi.goatcounter.com/count"
-          VITE_RECAPTCHA_KEY: "6LdRRKopAAAAAGNmmGSmUvkD64nysrFgSSWLq9LL"
+          VITE_RECAPTCHA_KEY: "6LcsYbIpAAAAAEJffjIXmbQcxj_SBZG7BnSPjF4L"
           VITE_SERVER_URL: "https://boku.tachi.ac"
           VITE_DISCORD: "https://discord.gg/E4n8ZZF5ES"
           VITE_CDN_URL: "https://cdn-boku.tachi.ac"
           TACHI_NAME: "Bokutachi"
-          BUILD_OUT_DIR: "~/boku"
+          BUILD_OUT_DIR: ~/boku
 
       - name: Build Kamaitachi
         run: pnpm --filter tachi-client build
@@ -95,7 +95,7 @@ jobs:
           VITE_TCHIC_MODE: "kamai"
           VITE_CDN_URL: "https://cdn-kamai.tachi.ac"
           VITE_GIT_REPO: "GitHub:zkldi/Tachi"
-          VITE_RECAPTCHA_KEY: "6LdRRKopAAAAAGNmmGSmUvkD64nysrFgSSWLq9LL"
+          VITE_RECAPTCHA_KEY: "6LcsYbIpAAAAAEJffjIXmbQcxj_SBZG7BnSPjF4L"
           TACHI_NAME: "Kamaitachi"
           BUILD_OUT_DIR: ~/kamai
 

@@ -94,7 +94,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: [test]
+    needs: [test, docker-push]
     defaults:
       run:
         working-directory: ./server

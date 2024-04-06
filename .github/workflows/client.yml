@@ -82,7 +82,7 @@ jobs:
           VITE_DISCORD: "https://discord.gg/E4n8ZZF5ES"
           VITE_CDN_URL: "https://cdn-boku.tachi.ac"
           TACHI_NAME: "Bokutachi"
-          BUILD_OUT_DIR: ${{ env.HOME }}/boku
+          BUILD_OUT_DIR: /home/runner/boku
 
       - name: Build Kamaitachi
         run: pnpm --filter tachi-client build
@@ -97,7 +97,7 @@ jobs:
           VITE_GIT_REPO: "GitHub:zkldi/Tachi"
           VITE_RECAPTCHA_KEY: "6LcsYbIpAAAAAEJffjIXmbQcxj_SBZG7BnSPjF4L"
           TACHI_NAME: "Kamaitachi"
-          BUILD_OUT_DIR: ${{ env.HOME }}/kamai
+          BUILD_OUT_DIR: /home/runner/kamai
 
       - name: Deploy Kamaitachi
         run: scp -r ~/kamai ci@"$TACHI_HOST":tachi-client

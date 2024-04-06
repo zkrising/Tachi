@@ -1,0 +1,37 @@
+name: Docs CI/CD
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "docs/**"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3 
+
+      - name: Enable SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          sudo chmod 600 ~/.ssh/id_rsa
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+
+      - name: Build Container
+        run: docker build . -t docs -f Dockerfile.docs
+
+      - name: Build Docs
+        run: docker run -v ./site:/site --entrypoint="mkdocs" docs build
+
+      - name: Deploy docs
+        run: scp -r ./site ci@"$TACHI_HOST":tachi-docs
+        env:
+          TACHI_HOST: ${{secrets.TACHI_HOST}}

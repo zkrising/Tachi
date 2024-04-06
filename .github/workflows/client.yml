@@ -87,6 +87,7 @@ jobs:
       - name: Build Kamaitachi
         run: pnpm --filter tachi-client build
         env:
+          VITE_MANDATE_LOGIN: true
           VITE_GOATCOUNTER: "https://tachi.goatcounter.com/count"
           VITE_SERVER_URL: "https://kamai.tachi.ac"
           VITE_EAG_CLIENT_ID: "C341A6CA3E72D48F0B20E84C045D15BFACD88E0A"

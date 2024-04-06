@@ -28,6 +28,7 @@ jobs:
       - name: Build Container
         run: docker build . -t docs -f Dockerfile.docs
 
+      # (lol)
       - name: Build Docs
         run: docker run -v ./site:/site --entrypoint="mkdocs" docs build
 

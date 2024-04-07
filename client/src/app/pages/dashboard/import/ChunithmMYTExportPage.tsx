@@ -12,7 +12,7 @@ export default function ChunithmMYTExport() {
 			<h1 className="text-center mb-4">What is the CHUNITHM Mythos Exporter?</h1>
 			<div>
 				The CHUNITHM Mythos Exporter is an userscript that will export your CHUNITHM scores
-				from MYT to a BATCH-MANUAL JSON for import to {TachiConfig.name}.
+				from MYT to a BATCH-MANUAL JSON for import to {TachiConfig.NAME}.
 			</div>
 			<Divider />
 			<h1 className="text-center my-4">Setup Instructions</h1>

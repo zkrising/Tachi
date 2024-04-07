@@ -10,10 +10,11 @@ if (!mode) {
 }
 
 export interface TachiConfig {
-	name: string;
-	type: "kamai" | "boku" | "omni";
-	games: Game[];
-	importTypes: ImportTypes[];
+	NAME: string;
+	TYPE: "kamai" | "boku" | "omni";
+	GAMES: Game[];
+	IMPORT_TYPES: ImportTypes[];
+	SIGNUPS_ENABLED: boolean;
 }
 
 let configRes;

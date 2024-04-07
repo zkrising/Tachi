@@ -12,7 +12,7 @@ export default function LR2HookPage() {
 	return (
 		<div>
 			<Alert variant="warning">
-				{TachiConfig.name} <b>DOES NOT</b> officially support LR2.
+				{TachiConfig.NAME} <b>DOES NOT</b> officially support LR2.
 				<br />
 				This hook is provided by a community member. Please do not report issues with LR2 to
 				us.
@@ -45,7 +45,7 @@ export default function LR2HookPage() {
 			</ol>
 			<Divider />
 			<Muted>
-				Note: If you submit a score on a chart that {TachiConfig.name} doesn't recognise,
+				Note: If you submit a score on a chart that {TachiConfig.NAME} doesn't recognise,
 				you'll need to wait until atleast 2 other players submit scores for that chart
 				before it'll show up. This is to combat accidental IR spam.
 			</Muted>

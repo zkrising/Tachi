@@ -62,7 +62,7 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 				value={game ?? ""}
 			>
 				<option value="">Please select a game.</option>
-				{TachiConfig.games.map((e) => (
+				{TachiConfig.GAMES.map((e) => (
 					<option value={e} key={e}>
 						{GetGameConfig(e).name}
 					</option>
@@ -288,7 +288,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			<ImportInfoCard
 				name="Silent Hook"
 				href="silent-hook"
-				desc={`Automatically upload Pop'n scores to ${TachiConfig.name}!`}
+				desc={`Automatically upload Pop'n scores to ${TachiConfig.NAME}!`}
 				moreInfo="Yep, it's that simple."
 				key="Silent Hook"
 			/>,
@@ -365,7 +365,7 @@ function ImportTypeInfoCard({
 }: {
 	importType: FileUploadImportTypes | APIImportTypes;
 }): JSX.Element | null {
-	if (!TachiConfig.importTypes.includes(importType)) {
+	if (!TachiConfig.IMPORT_TYPES.includes(importType)) {
 		return null;
 	}
 
@@ -553,7 +553,7 @@ function ImportTypeInfoCard({
 				<ImportInfoCard
 					name="Batch Manual"
 					href="batch-manual"
-					desc={`A JSON format ${TachiConfig.name} recognises and can import scores from.`}
+					desc={`A JSON format ${TachiConfig.NAME} recognises and can import scores from.`}
 					moreInfo={
 						<>
 							This is for programmers to create their own import scripts. <br /> Check

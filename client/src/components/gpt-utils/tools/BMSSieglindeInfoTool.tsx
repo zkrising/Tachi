@@ -108,7 +108,7 @@ function Component({ game, playtype, reqUser }: UGPT) {
 }
 
 export const BMSSieglindeInfoTool: GPTUtility = {
-	name: `${TachiConfig.name} Sieglinde Info`,
+	name: `${TachiConfig.NAME} Sieglinde Info`,
 	urlPath: "sieglinde",
 	description: `View the current state of the sieglinde rating algorithm.`,
 	component: Component,

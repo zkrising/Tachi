@@ -53,7 +53,7 @@ export default function ImportRoutes() {
 						<BatchManualPage />
 					</Route>
 
-					{TachiConfig.type !== "kamai" && (
+					{TachiConfig.TYPE !== "kamai" && (
 						<>
 							<Route exact path="/import/lr2oraja-ir">
 								<BeatorajaIRPage game="bms" />
@@ -82,7 +82,7 @@ export default function ImportRoutes() {
 						</>
 					)}
 
-					{TachiConfig.type !== "boku" && (
+					{TachiConfig.TYPE !== "boku" && (
 						<>
 							<Route exact path="/import/iidx-eam-csv">
 								<IIDXEamCSVPage

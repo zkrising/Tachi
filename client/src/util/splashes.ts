@@ -135,7 +135,7 @@ export const contentiousSplashes = [
 	"Node.js Is Bad Ass Rock Star Tech",
 	"i'm obligated to ask for you to seek immediate psychological attention",
 	`Is ${
-		TachiConfig.type === "kamai" ? "IIDX" : "BMS"
+		TachiConfig.TYPE === "kamai" ? "IIDX" : "BMS"
 	} still a good game or are you all basically stupid?`,
 	"Please do not reply to or quote my posts in the future.",
 	"Is this your IP? (178.62.116.150)",

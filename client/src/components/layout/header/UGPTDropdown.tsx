@@ -28,7 +28,7 @@ export default function UGPTDropdown({
 			ugsMap.set(`${s.game}:${s.playtype}`, s);
 		}
 
-		for (const game of TachiConfig.games) {
+		for (const game of TachiConfig.GAMES) {
 			for (const playtype of GetGameConfig(game).playtypes) {
 				const e = ugsMap.get(`${game}:${playtype}`);
 

@@ -9,7 +9,7 @@ export default function SiteWordmark({
 	return (
 		<img
 			src={ToCDNURL("/logos/logo-wordmark.png")}
-			alt={TachiConfig.name}
+			alt={TachiConfig.NAME}
 			width={width}
 			{...props}
 		/>

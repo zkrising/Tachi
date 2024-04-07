@@ -211,8 +211,8 @@ function UserGameStatsInfo({ user }: { user: UserDocument }) {
 							);
 						}
 
-						const i1 = TachiConfig.games.indexOf(a.game);
-						const i2 = TachiConfig.games.indexOf(b.game);
+						const i1 = TachiConfig.GAMES.indexOf(a.game);
+						const i2 = TachiConfig.GAMES.indexOf(b.game);
 
 						return i1 - i2;
 					});
@@ -235,7 +235,7 @@ function DashboardNotLoggedIn() {
 	return (
 		<Stack gap={4} className="enable-rfs" style={{ fontSize: "16px" }}>
 			<div>
-				<h1 className="fw-bold">Welcome to {TachiConfig.name}!</h1>
+				<h1 className="fw-bold">Welcome to {TachiConfig.NAME}!</h1>
 				<h4 className="fs-3">
 					Looks like you're not logged in. If you've got an account,{" "}
 					<Link className="link-primary" to="/login">
@@ -247,21 +247,21 @@ function DashboardNotLoggedIn() {
 			<div>
 				<h1>I'm New Around Here, What is this?</h1>
 				<p>
-					<b>{TachiConfig.name}</b> is a Rhythm Game Score Tracker. That means we...
+					<b>{TachiConfig.NAME}</b> is a Rhythm Game Score Tracker. That means we...
 				</p>
 			</div>
 			<Divider className="mb-2" />
 			<FeatureContainer
 				tagline="Track Your Scores."
-				description={`${TachiConfig.name} supports a bunch of your favourite games, and integrates with many existing services to make sure no score is lost to the void. Furthermore, it's backed by an Open-Source API, so your scores are always available!`}
+				description={`${TachiConfig.NAME} supports a bunch of your favourite games, and integrates with many existing services to make sure no score is lost to the void. Furthermore, it's backed by an Open-Source API, so your scores are always available!`}
 			/>
 			<FeatureContainer
 				tagline="Analyse Your Scores."
-				description={`${TachiConfig.name} analyses your scores for you, breaking them down into all the statistics you'll ever need. No more spreadsheets!`}
+				description={`${TachiConfig.NAME} analyses your scores for you, breaking them down into all the statistics you'll ever need. No more spreadsheets!`}
 			/>
 			<FeatureContainer
 				tagline="Provide Cool Features."
-				description={`${TachiConfig.name} implements the features rhythm gamers already talk about. Break your scores down into sessions, Showcase your best metrics on your profile, study your progress on folders - it's all there, and done for you!`}
+				description={`${TachiConfig.NAME} implements the features rhythm gamers already talk about. Break your scores down into sessions, Showcase your best metrics on your profile, study your progress on folders - it's all there, and done for you!`}
 			/>
 			<Divider />
 

@@ -33,7 +33,7 @@ export default function AddNewQuestModal({
 							className="w-100"
 							unselectedName="Select a game..."
 						>
-							{TachiConfig.games.flatMap((game) => {
+							{TachiConfig.GAMES.flatMap((game) => {
 								const gameConfig = GetGameConfig(game);
 
 								return gameConfig.playtypes.map((playtype) => (

@@ -8,7 +8,7 @@ export default function TISInfo({ name }: { name: string }) {
 			<h2 className="text-center mb-4">Importing {name} files</h2>
 			<ol className="instructions-list">
 				<li>
-					Download the latest version of the {TachiConfig.name} Import Scripts{" "}
+					Download the latest version of the {TachiConfig.NAME} Import Scripts{" "}
 					<ExternalLink href="https://github.com/zkldi/Tachi-import-scripts/releases">
 						here
 					</ExternalLink>
@@ -17,7 +17,7 @@ export default function TISInfo({ name }: { name: string }) {
 				<li>Follow the instructions in-client.</li>
 				<li>
 					Click import! The scripts will convert the file and submit it to{" "}
-					{TachiConfig.name}.
+					{TachiConfig.NAME}.
 				</li>
 			</ol>
 		</div>

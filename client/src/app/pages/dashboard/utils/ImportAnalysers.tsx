@@ -36,10 +36,10 @@ export default function ImportAnalysers() {
 
 	return (
 		<>
-			<h1>{TachiConfig.name} Imports</h1>
+			<h1>{TachiConfig.NAME} Imports</h1>
 			<Divider />
 			<span>
-				This tool is for viewing imports that have came through to {TachiConfig.name}.
+				This tool is for viewing imports that have came through to {TachiConfig.NAME}.
 				<br />
 				From here, if you are an administrator, you can revert successful imports, or view
 				failed imports and see why they failed and what input was given.

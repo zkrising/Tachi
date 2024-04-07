@@ -42,7 +42,7 @@ export default function UserIntegrationsPage({ reqUser }: { reqUser: UserDocumen
 			<Row>
 				<Col xs={12}>
 					<div className="btn-group d-flex justify-content-center">
-						{TachiConfig.type !== "boku" && (
+						{TachiConfig.TYPE !== "boku" && (
 							<SelectLinkButton className="text-wrap" to={`${baseUrl}/services`}>
 								<Icon type="network-wired" /> Service Configuration
 							</SelectLinkButton>
@@ -81,7 +81,7 @@ function OAuthClientPage() {
 				<h3>API Clients</h3>
 				<Alert variant="info">
 					This page is for programmers who want to make their own things that interface
-					with {TachiConfig.name}.
+					with {TachiConfig.NAME}.
 					<br />
 					You can read the documentation{" "}
 					<ExternalLink href="https://docs.tachi.ac/codebase/infrastructure/api-clients/">
@@ -89,7 +89,7 @@ function OAuthClientPage() {
 					</ExternalLink>
 					!
 				</Alert>
-				<Muted>Register your own clients for integrating with {TachiConfig.name}.</Muted>
+				<Muted>Register your own clients for integrating with {TachiConfig.NAME}.</Muted>
 			</Col>
 			<Col xs={12}>
 				<OAuthClientInfo />
@@ -213,7 +213,7 @@ function CreateNewOAuthClient({ setClients }: { setClients: SetState<TachiAPICli
 							/>
 						</div>
 						<Muted>
-							This is the URL {TachiConfig.name} will redirect to as part of the OAuth
+							This is the URL {TachiConfig.NAME} will redirect to as part of the OAuth
 							flow.
 						</Muted>
 						<Divider />
@@ -224,7 +224,7 @@ function CreateNewOAuthClient({ setClients }: { setClients: SetState<TachiAPICli
 							placeholder="https://example.com/webhook"
 						/>
 						<Muted>
-							This is the URL {TachiConfig.name} will send webhook info to. Leave this
+							This is the URL {TachiConfig.NAME} will send webhook info to. Leave this
 							blank to not recieve webhook events.
 						</Muted>
 						<Divider />
@@ -612,7 +612,7 @@ function EditClientModal({
 }
 
 function ServicesPage({ reqUser }: { reqUser: UserDocument }) {
-	if (TachiConfig.type === "boku") {
+	if (TachiConfig.TYPE === "boku") {
 		return (
 			<Row className="text-center">
 				Looks like there's no services available for integration.
@@ -769,12 +769,12 @@ function APIKeysPage({ reqUser }: { reqUser: UserDocument }) {
 	return (
 		<>
 			<Alert variant="danger">
-				API Keys allow other programs to interact with {TachiConfig.name} on your behalf.
+				API Keys allow other programs to interact with {TachiConfig.NAME} on your behalf.
 				They have limited permissions, so they can't just change your password!
 				<br />
 				<br />
 				In contrast to Integrations, API Keys let other programs interact with{" "}
-				{TachiConfig.name}, rather than the other way around.
+				{TachiConfig.NAME}, rather than the other way around.
 				<br />
 				<br />
 				Still, the stuff on this page is sensitive information! Be careful who you give

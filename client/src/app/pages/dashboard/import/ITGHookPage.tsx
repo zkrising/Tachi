@@ -62,7 +62,7 @@ export default function ITGHookPage() {
 			</ol>
 			<Divider />
 			<Muted>
-				Note: If you submit a score on a chart that {TachiConfig.name} doesn't recognise,
+				Note: If you submit a score on a chart that {TachiConfig.NAME} doesn't recognise,
 				we'll still store the score, but it won't appear until the chart is registered.
 			</Muted>
 		</div>

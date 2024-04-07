@@ -26,10 +26,10 @@ export default function SeedsViewer() {
 
 	return (
 		<>
-			<h1>{TachiConfig.name} Database Management</h1>
+			<h1>{TachiConfig.NAME} Database Management</h1>
 			<Divider />
 			<span>
-				This tool is for viewing the database that powers {TachiConfig.name} in a more
+				This tool is for viewing the database that powers {TachiConfig.NAME} in a more
 				efficient manner.
 				<br />
 				To view the state of a given commit or repository, use the select boxes below.
@@ -44,7 +44,7 @@ export default function SeedsViewer() {
 						<br />
 						<br />
 						<b>
-							Also, it seems like you're running {TachiConfig.name} in local
+							Also, it seems like you're running {TachiConfig.NAME} in local
 							development!
 						</b>{" "}
 						<br />

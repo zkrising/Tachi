@@ -8,7 +8,7 @@ export function DashboardLoggedInNoScores({ user }: { user: UserDocument }) {
 	return (
 		<div>
 			<span className="display-4">
-				Welcome to {TachiConfig.name}, {user.username}!
+				Welcome to {TachiConfig.NAME}, {user.username}!
 			</span>
 			<h4 className="mt-4">It looks like you have no scores. Let's get you set up!</h4>
 			<Divider />

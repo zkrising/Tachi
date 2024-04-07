@@ -13,7 +13,7 @@ export default function MikadoPage() {
 			<h1 className="text-center mb-4">What Is Mikado?</h1>
 			<div>
 				Mikado is a <code>.dll</code> file that hooks into SDVX and automatically sends
-				scores to a server. {TachiConfig.name} is compatible with what Mikado sends, so you
+				scores to a server. {TachiConfig.NAME} is compatible with what Mikado sends, so you
 				can use it to submit scores!
 			</div>
 			<Divider />
@@ -45,7 +45,7 @@ export default function MikadoPage() {
 						SpiceTools: Add <code>-k mikado.dll</code> to your <code>.bat</code> file.
 					</li>
 				</ul>
-				<li>Your scores and dans now automatically upload to {TachiConfig.name}!</li>
+				<li>Your scores and dans now automatically upload to {TachiConfig.NAME}!</li>
 			</ol>
 		</div>
 	);

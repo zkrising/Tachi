@@ -12,7 +12,7 @@ export default function AquaArtemisExport() {
 			<h1 className="text-center mb-4">What is the Aqua/ARTEMiS Exporter?</h1>
 			<div>
 				The Aqua/Artemis Exporter is a script that will export your CHUNITHM scores from an
-				Aqua/ARTEMiS instance to a BATCH-MANUAL JSON for import to {TachiConfig.name}. You
+				Aqua/ARTEMiS instance to a BATCH-MANUAL JSON for import to {TachiConfig.NAME}. You
 				will need direct access to the server instance.
 			</div>
 			<Divider />

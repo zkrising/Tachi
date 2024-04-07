@@ -5,14 +5,14 @@ import deepmerge from "deepmerge";
 import type { SlashCommand } from "../types";
 
 const NEUTRAL_FAQ_ENTRIES: Record<string, string> = {
-	duplicates: `Scores on ${ServerConfig.name} are deduplicated based on your score and lamp (and some other things).
-If you happen to get the exact same score twice, ${ServerConfig.name} will **ignore** the second one!
+	duplicates: `Scores on ${ServerConfig.NAME} are deduplicated based on your score and lamp (and some other things).
+If you happen to get the exact same score twice, ${ServerConfig.NAME} will **ignore** the second one!
 There are legitimate reasons for this -- it's very common for people to import the same scores twice through file uploads or import scripts.
-For more info on why this is a fundamental limitation of ${ServerConfig.name}, check [the documentation](https://docs.tachi.ac/wiki/score-oddities/#deduplication-false-positives-all-games).`,
-	contribute: `Contributing to ${ServerConfig.name} in any way will get you the Contributor role, and a cool green name.\n
+For more info on why this is a fundamental limitation of ${ServerConfig.NAME}, check [the documentation](https://docs.tachi.ac/wiki/score-oddities/#deduplication-false-positives-all-games).`,
+	contribute: `Contributing to ${ServerConfig.NAME} in any way will get you the Contributor role, and a cool green name.\n
 Contributors who save us hours (or more) of dev time, or are just generally really supportive will get the Significant Contributor role, and an even cooler orange name.
-${ServerConfig.name} is an Open Source project. Feel free to read our [contribution guide](https://docs.tachi.ac/contributing/), or just generally ask for stuff to help out with!`,
-	docs: `Documentation for ${ServerConfig.name} is stored at https://docs.tachi.ac.`,
+${ServerConfig.NAME} is an Open Source project. Feel free to read our [contribution guide](https://docs.tachi.ac/contributing/), or just generally ask for stuff to help out with!`,
+	docs: `Documentation for ${ServerConfig.NAME} is stored at https://docs.tachi.ac.`,
 	pbs: `A PB is all of your best scores on that specific chart joined together.
 For most games, this means joining your best score with your best lamp.
 Read more about this [here](https://docs.tachi.ac/wiki/pbs-scores/)`,
@@ -104,7 +104,7 @@ You should also avoid redundant goals -- all the goals in the quest should ideal
 
 I'm ideally looking for something that the average player can just set and have fun checking off. The questline itself should have the quests fairly distinguished, players shouldn't be pushing multiple quests in the same questline at the same time.
 	
-Since I don't play a lot of the the games that ${ServerConfig.name} supports, we need your help to come up with some good drafts! Your game might have a dedicated \`-quests\` channel. Check it out and discuss with others!`,
+Since I don't play a lot of the the games that ${ServerConfig.NAME} supports, we need your help to come up with some good drafts! Your game might have a dedicated \`-quests\` channel. Check it out and discuss with others!`,
 };
 
 // Server specific FAQ stuff.
@@ -113,13 +113,13 @@ const KAMAI_FAQ_ENTRIES: Record<string, string> = {
 	bokutachi: `Bokutachi is our public sister website for home games and simulators. Feel free to check out [the discord](${
 		Buffer.from("aHR0cHM6Ly9kaXNjb3JkLmdnL3N3VkJUanhtUFk=", "base64") // Note: obfuscating this for obvious reasons so we don't get garbage bot spam.
 	})`,
-	sdvx_1259: `Automation Paradise is song ID 1259. It is not a real song, and it is not supported by ${ServerConfig.name}. Related autopara-only songs are not supported, either.`,
+	sdvx_1259: `Automation Paradise is song ID 1259. It is not a real song, and it is not supported by ${ServerConfig.NAME}. Related autopara-only songs are not supported, either.`,
 	invites: `To invite your friends, go to your profile and select 'Invites'. From there, you can create an invite code.
 Your friend can then go to ${BotConfig.TACHI_SERVER_LOCATION} and sign up with the code! You can also invite them to the discord.`,
 };
 
 const BOKU_FAQ_ENTRIES: Record<string, string> = {
-	usc_hard_mode: `Hard Mode windows are not supported on ${ServerConfig.name}. Your scores **will be ignored** if they are played on non-standard windows.`,
+	usc_hard_mode: `Hard Mode windows are not supported on ${ServerConfig.NAME}. Your scores **will be ignored** if they are played on non-standard windows.`,
 	ir_login: `You **must** put your API Key in the password field for the Bokutachi IR, **NOT your real password!**. See instructions here: ${BotConfig.TACHI_SERVER_LOCATION}/import/beatoraja-ir.
 (This is because putting your real password in there is a security nightmare.)`,
 	lr2: `Support for LR2 (the LR2Hook) are **not officially maintained** and therefore **not managed by bokutachi developers**.
@@ -129,11 +129,11 @@ Beatoraja is actively developed and integrates properly with the Bokutachi IR, i
 
 let faqEntries = NEUTRAL_FAQ_ENTRIES;
 
-if (ServerConfig.type !== "boku") {
+if (ServerConfig.TYPE !== "boku") {
 	faqEntries = deepmerge(faqEntries, KAMAI_FAQ_ENTRIES);
 }
 
-if (ServerConfig.type !== "kamai") {
+if (ServerConfig.TYPE !== "kamai") {
 	faqEntries = deepmerge(faqEntries, BOKU_FAQ_ENTRIES);
 }
 

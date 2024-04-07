@@ -20,11 +20,11 @@ if (BotConfig.DISCORD.APPROVED_ROLE) {
 }
 
 // kamaitachi or omni specific commands
-if (ServerConfig.type !== "boku") {
+if (ServerConfig.TYPE !== "boku") {
 	SLASH_COMMANDS.set("sync", sync);
 }
 
 // bokutachi or omni specific commands
-if (ServerConfig.type !== "kamai") {
+if (ServerConfig.TYPE !== "kamai") {
 	SLASH_COMMANDS.set("invite", invite);
 }

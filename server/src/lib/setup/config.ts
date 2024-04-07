@@ -9,7 +9,7 @@ import { FormatPrError } from "utils/prudence";
 import fs from "fs";
 import { URL } from "url";
 import type { SendMailOptions } from "nodemailer";
-import type { Game, ImportTypes, integer } from "tachi-common";
+import type { TachiServerCoreConfig, integer } from "tachi-common";
 
 // imports things like NODE_ENV from a local .env file if one is present.
 dotenv.config();
@@ -112,13 +112,7 @@ export interface TachiServerConfig {
 		INVITE_CAP: integer;
 		BETA_USER_BONUS: integer;
 	};
-	TACHI_CONFIG: {
-		NAME: string;
-		TYPE: "boku" | "kamai" | "omni";
-		GAMES: Array<Game>;
-		IMPORT_TYPES: Array<ImportTypes>;
-		SIGNUPS_ENABLED: boolean;
-	};
+	TACHI_CONFIG: TachiServerCoreConfig;
 	LOGGER_CONFIG: {
 		LOG_LEVEL: "crit" | "debug" | "error" | "info" | "severe" | "verbose" | "warn";
 		CONSOLE: boolean;

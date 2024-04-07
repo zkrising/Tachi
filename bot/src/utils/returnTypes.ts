@@ -1,23 +1,14 @@
 import type {
 	APIPermissions,
 	ChartDocument,
-	Game,
 	GPTString,
 	ImportDocument,
-	ImportTypes,
 	integer,
 	ProfileRatingAlgorithms,
 	ScoreDocument,
 	SongDocument,
 	UserGameStats,
 } from "tachi-common";
-
-export interface ServerConfig {
-	games: Array<Game>;
-	importTypes: Array<ImportTypes>;
-	name: string;
-	type: "boku" | "kamai" | "omni";
-}
 
 export interface ServerStatus {
 	serverTime: number;
@@ -50,10 +41,7 @@ export interface UGPTStats<GPT extends GPTString = GPTString> {
 	firstScore: ScoreDocument;
 	mostRecentScore: ScoreDocument;
 	totalScores: integer;
-	rankingData: Record<
-		ProfileRatingAlgorithms[GPT],
-		{ ranking: integer; outOf: integer }
-	>;
+	rankingData: Record<ProfileRatingAlgorithms[GPT], { ranking: integer; outOf: integer }>;
 }
 
 export interface ChartQueryReturns {

@@ -1,5 +1,5 @@
 import { ToAPIURL } from "util/api";
-import { Game, ImportTypes } from "tachi-common";
+import { Game, ImportTypes, TachiServerCoreConfig } from "tachi-common";
 // @ts-expect-error No types available...
 import syncFetch from "sync-fetch";
 
@@ -7,14 +7,6 @@ const mode = process.env.VITE_TCHIC_MODE;
 
 if (!mode) {
 	throw new Error("No VITE_TCHIC_MODE set in Process Environment, refusing to boot.");
-}
-
-export interface TachiConfig {
-	NAME: string;
-	TYPE: "kamai" | "boku" | "omni";
-	GAMES: Game[];
-	IMPORT_TYPES: ImportTypes[];
-	SIGNUPS_ENABLED: boolean;
 }
 
 let configRes;
@@ -71,7 +63,7 @@ try {
 	throw new Error(`Site is (probably) down. Sorry. (${(err as Error).message})`);
 }
 
-const conf: TachiConfig = configRes.body;
+const conf: TachiServerCoreConfig = configRes.body;
 const colourConf = {
 	background: "#131313",
 	lightground: "#2b292b",

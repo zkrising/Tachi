@@ -8,7 +8,7 @@ import type { SlashCommandStringOption } from "@discordjs/builders";
  */
 const GPTChoices: Array<[string, string]> = [];
 
-for (const game of ServerConfig.games) {
+for (const game of ServerConfig.GAMES) {
 	const gameConfig = GetGameConfig(game);
 
 	for (const playtype of gameConfig.playtypes) {

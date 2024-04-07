@@ -90,8 +90,8 @@ jobs:
           VITE_MANDATE_LOGIN: true
           VITE_GOATCOUNTER: "https://tachi.goatcounter.com/count"
           VITE_SERVER_URL: "https://kamai.tachi.ac"
-          VITE_EAG_CLIENT_ID: "C341A6CA3E72D48F0B20E84C045D15BFACD88E0A"
-          VITE_FLO_CLIENT_ID: "F0C0F66355B954F5DB5472AE21C59295403D60CC"
+          VITE_EAG_CLIENT_ID: "332B9789DEA10B94DB0E345A6F8ECF54BB86E6DD"
+          VITE_FLO_CLIENT_ID: "98B965554FB2341D969667F3D04CFC28F8C080ED"
           VITE_DISCORD: "https://discord.gg/NNgGJbpQUj"
           VITE_TCHIC_MODE: "kamai"
           VITE_CDN_URL: "https://cdn-kamai.tachi.ac"

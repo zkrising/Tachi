@@ -114,7 +114,7 @@ export default function PrivacyPolicyPage() {
 				hold on you, or you would like to exercise one of your data protection rights,
 				please do not hesitate to contact us.
 			</p>
-			<p>Email us at: ktchidev@gmail.com</p>
+			<p>Email us at: zk@tachi.ac</p>
 			<h2>How to contact the appropriate authority</h2>
 			<p>
 				Should you wish to report a complaint or if you feel that {TachiConfig.name} has not

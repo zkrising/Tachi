@@ -117,6 +117,7 @@ export interface TachiServerConfig {
 		TYPE: "boku" | "kamai" | "omni";
 		GAMES: Array<Game>;
 		IMPORT_TYPES: Array<ImportTypes>;
+		SIGNUPS_ENABLED: boolean;
 	};
 	LOGGER_CONFIG: {
 		LOG_LEVEL: "crit" | "debug" | "error" | "info" | "severe" | "verbose" | "warn";
@@ -219,6 +220,7 @@ const err = p(config, {
 		TYPE: p.isIn("kamai", "boku", "omni"),
 		GAMES: [p.isIn(allSupportedGames)],
 		IMPORT_TYPES: [p.isIn(allImportTypes)],
+		SIGNUPS_ENABLED: p.optional("boolean"),
 	},
 	LOGGER_CONFIG: {
 		LOG_LEVEL: p.optional(
@@ -274,6 +276,7 @@ tachiServerConfig.MAX_QUEST_SUBSCRIPTIONS ??= 100;
 tachiServerConfig.MAX_RIVALS ??= 5;
 tachiServerConfig.MAX_FOLLOWING_AMOUNT ??= 1_000;
 tachiServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER ??= false;
+tachiServerConfig.TACHI_CONFIG.SIGNUPS_ENABLED ??= true;
 
 export const TachiConfig = tachiServerConfig.TACHI_CONFIG;
 export const ServerConfig = tachiServerConfig;

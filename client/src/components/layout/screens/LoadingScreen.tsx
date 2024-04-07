@@ -22,7 +22,7 @@ export function LoadingScreen({ children }: JustChildren) {
 		const timeout = setTimeout(
 			() =>
 				setBroke(
-					`It's taking a long time for ${TachiConfig.name} to load. We might be under strain, or completely down, sorry!`
+					`It's taking a long time for ${TachiConfig.NAME} to load. We might be under strain, or completely down, sorry!`
 				),
 			4_000
 		);
@@ -43,7 +43,7 @@ export function LoadingScreen({ children }: JustChildren) {
 			.catch((err) => {
 				console.error(err);
 				setBroke(
-					`${TachiConfig.name} is currently down, sadly. Check back in a while, or we might be doing a quick server restart. Sorry!`
+					`${TachiConfig.NAME} is currently down, sadly. Check back in a while, or we might be doing a quick server restart. Sorry!`
 				);
 				clearTimeout(timeout);
 			});

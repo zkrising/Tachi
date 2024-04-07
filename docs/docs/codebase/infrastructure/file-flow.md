@@ -10,11 +10,11 @@ site, and results in the user downloading a file, or copying a string.
 ## Outline
 
 !!! note
-	This documentation uses `bokutachi.xyz` as the example site. You should
+	This documentation uses `boku.tachi.ac` as the example site. You should
 	replace this with the instance of Tachi you're pointing against, if it
 	is different.
 
-- You navigate the user to `https://bokutachi.xyz/client-file-flow/YOUR_CLIENT_ID`.
+- You navigate the user to `https://boku.tachi.ac/client-file-flow/YOUR_CLIENT_ID`.
 - They are asked if they want to create an API Key for your client.
 - If they select yes, an API Key is created for your client, and depending on your client parameters, they get it.
 

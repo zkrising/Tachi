@@ -12,7 +12,7 @@ export default function ChunithmSiteImportPage() {
 			<h1 className="text-center mb-4">What is the CHUNITHM DX site importer?</h1>
 			<div>
 				The CHUNITHM Site Importer is a script that will scrape your profile on the CHUNITHM
-				website and import it to {TachiConfig.name}.
+				website and import it to {TachiConfig.NAME}.
 			</div>
 			<Divider />
 			<h1 className="text-center my-4">Setup Instructions</h1>

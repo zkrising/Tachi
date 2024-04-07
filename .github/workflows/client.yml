@@ -3,17 +3,16 @@ name: Client CI/CD
 on:
   push:
     branches:
-      - "staging"
-      - "release/*"
+      - "main"
     paths:
       - "client/**"
       - "common/**"
+
   pull_request:
     branches:
-      - "staging"
-      - "release/*"
+      - "main"
     paths:
-      - "client/**"
+      - "server/**"
       - "common/**"
   workflow_dispatch:
 
@@ -21,7 +20,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - uses: pnpm/action-setup@v2
         with:
@@ -31,31 +31,81 @@ jobs:
         with:
           node-version: 16
           cache: pnpm
-      
+
       - name: Install dependencies
-        run: pnpm --filter tachi-client... --filter . install 
+        run: pnpm --filter tachi-client... --filter . install
+
+      - name: Lint
+        run: pnpm --filter tachi-client lint
 
       - name: Typecheck
         run: pnpm --filter tachi-client typecheck
+
   deploy:
-    runs-on: ubuntu-latest
-    needs: [test]
+    runs-on: [ubuntu-latest]
+    needs: test
     if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
     steps:
-      - name: Deploy to staging
-        if: github.ref == 'refs/heads/staging'
-        uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
-        with:
-          host: ${{ secrets.TACHI_HOST }}
-          username: tachi
-          key: ${{ secrets.TACHI_KEY }}
-          script: tachi-client-deploy -s
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Deploy to live
-        if: startsWith(github.ref, 'refs/heads/release')
-        uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
+      - uses: pnpm/action-setup@v2
         with:
-          host: ${{ secrets.TACHI_HOST }}
-          username: tachi
-          key: ${{ secrets.TACHI_KEY }}
-          script: tachi-client-deploy
+          version: 7.20.0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: pnpm
+
+      - name: Enable SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          sudo chmod 600 ~/.ssh/id_rsa
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+
+      - name: Install dependencies
+        run: pnpm --filter tachi-client... --filter . install
+
+      - name: Build Bokutachi
+        run: pnpm --filter tachi-client build
+        env:
+          VITE_GIT_REPO: "GitHub:zkldi/Tachi"
+          VITE_TCHIC_MODE: "boku"
+          VITE_GOATCOUNTER: "https://tachi.goatcounter.com/count"
+          VITE_RECAPTCHA_KEY: "6LcsYbIpAAAAAEJffjIXmbQcxj_SBZG7BnSPjF4L"
+          VITE_SERVER_URL: "https://boku.tachi.ac"
+          VITE_DISCORD: "https://discord.gg/E4n8ZZF5ES"
+          VITE_CDN_URL: "https://cdn-boku.tachi.ac"
+          TACHI_NAME: "Bokutachi"
+          BUILD_OUT_DIR: /home/runner/boku
+
+      - name: Build Kamaitachi
+        run: pnpm --filter tachi-client build
+        env:
+          VITE_MANDATE_LOGIN: true
+          VITE_GOATCOUNTER: "https://tachi.goatcounter.com/count"
+          VITE_SERVER_URL: "https://kamai.tachi.ac"
+          VITE_EAG_CLIENT_ID: "332B9789DEA10B94DB0E345A6F8ECF54BB86E6DD"
+          VITE_FLO_CLIENT_ID: "98B965554FB2341D969667F3D04CFC28F8C080ED"
+          VITE_DISCORD: "https://discord.gg/NNgGJbpQUj"
+          VITE_TCHIC_MODE: "kamai"
+          VITE_CDN_URL: "https://cdn-kamai.tachi.ac"
+          VITE_GIT_REPO: "GitHub:zkldi/Tachi"
+          VITE_RECAPTCHA_KEY: "6LcsYbIpAAAAAEJffjIXmbQcxj_SBZG7BnSPjF4L"
+          TACHI_NAME: "Kamaitachi"
+          BUILD_OUT_DIR: /home/runner/kamai
+
+      - name: Deploy Kamaitachi
+        run: scp -r ~/kamai ci@"$TACHI_HOST":tachi-client
+        env:
+          TACHI_HOST: ${{secrets.TACHI_HOST}}
+
+      - name: Deploy Bokutachi
+        run: scp -r ~/boku ci@"$TACHI_HOST":tachi-client
+        env:
+          TACHI_HOST: ${{secrets.TACHI_HOST}}

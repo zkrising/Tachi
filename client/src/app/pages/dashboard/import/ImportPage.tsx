@@ -48,7 +48,7 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 				<DiscordLink>Discord</DiscordLink>.
 				<br />
 				Know how to program, and want to write a script yourself? Check out{" "}
-				<ExternalLink href="https://docs.bokutachi.xyz/codebase/batch-manual">
+				<ExternalLink href="https://docs.tachi.ac/codebase/batch-manual">
 					Batch Manual
 				</ExternalLink>
 				.
@@ -62,7 +62,7 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 				value={game ?? ""}
 			>
 				<option value="">Please select a game.</option>
-				{TachiConfig.games.map((e) => (
+				{TachiConfig.GAMES.map((e) => (
 					<option value={e} key={e}>
 						{GetGameConfig(e).name}
 					</option>
@@ -217,9 +217,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				href="chunithm-myt-exporter"
 				desc="Export your scores from MYT."
 				moreInfo={
-					<>
-						This is an userscript that exports scores from the MYT web interface.
-					</>
+					<>This is an userscript that exports scores from the MYT web interface.</>
 				}
 				key="MYT Exporter"
 			/>,
@@ -290,7 +288,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			<ImportInfoCard
 				name="Silent Hook"
 				href="silent-hook"
-				desc={`Automatically upload Pop'n scores to ${TachiConfig.name}!`}
+				desc={`Automatically upload Pop'n scores to ${TachiConfig.NAME}!`}
 				moreInfo="Yep, it's that simple."
 				key="Silent Hook"
 			/>,
@@ -367,7 +365,7 @@ function ImportTypeInfoCard({
 }: {
 	importType: FileUploadImportTypes | APIImportTypes;
 }): JSX.Element | null {
-	if (!TachiConfig.importTypes.includes(importType)) {
+	if (!TachiConfig.IMPORT_TYPES.includes(importType)) {
 		return null;
 	}
 
@@ -555,12 +553,12 @@ function ImportTypeInfoCard({
 				<ImportInfoCard
 					name="Batch Manual"
 					href="batch-manual"
-					desc={`A JSON format ${TachiConfig.name} recognises and can import scores from.`}
+					desc={`A JSON format ${TachiConfig.NAME} recognises and can import scores from.`}
 					moreInfo={
 						<>
 							This is for programmers to create their own import scripts. <br /> Check
 							the{" "}
-							<ExternalLink href="https://docs.bokutachi.xyz/codebase/batch-manual">
+							<ExternalLink href="https://docs.tachi.ac/codebase/batch-manual">
 								documentation
 							</ExternalLink>
 							.

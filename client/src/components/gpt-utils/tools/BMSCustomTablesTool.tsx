@@ -67,9 +67,9 @@ function Component({ game, playtype, reqUser }: UGPT) {
 }
 
 export const BMSCustomTablesTool: GPTUtility = {
-	name: `${TachiConfig.name} BMS Tables`,
+	name: `${TachiConfig.NAME} BMS Tables`,
 	urlPath: "custom-tables",
-	description: `${TachiConfig.name} has its own BMS tables that you can use in-game!`,
+	description: `${TachiConfig.NAME} has its own BMS tables that you can use in-game!`,
 	component: Component,
 	personalUseOnly: true,
 };

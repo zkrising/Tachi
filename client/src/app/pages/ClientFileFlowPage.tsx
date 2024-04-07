@@ -118,7 +118,7 @@ export default function ClientFileFlowPage() {
 								</a>
 								<br />
 								<Link className="mt-8" style={{ fontSize: "0.9rem" }} to="/">
-									Go Back to {TachiConfig.name}
+									Go Back to {TachiConfig.NAME}
 								</Link>
 							</>
 						) : (

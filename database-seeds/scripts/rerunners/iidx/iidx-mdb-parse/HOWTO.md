@@ -1,6 +1,6 @@
 # How do I use this?
 
-[Make sure you have the repository set up.](https://docs.bokutachi.xyz/contributing/setup/)
+[Make sure you have the repository set up.](https://docs.tachi.ac/contributing/setup/)
 
 With that done, run `pnpx ts-node merge-mdb.ts --help`. Provide the right data for `--basedir, --index and --version`.
 

@@ -3,8 +3,7 @@ name: Docs CI/CD
 on:
   push:
     branches:
-      - "staging"
-      - "release/*"
+      - "main"
     paths:
       - "docs/**"
   workflow_dispatch:
@@ -13,20 +12,27 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy staging docs
-        if: github.ref == 'refs/heads/staging'
-        uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
-        with:
-          host: ${{ secrets.TACHI_HOST }}
-          username: tachi
-          key: ${{ secrets.TACHI_KEY }}
-          script: tachi-docs-deploy -s
+      - name: Checkout
+        uses: actions/checkout@v3 
 
-      - name: Deploy production docs
-        if: startsWith(github.ref, 'refs/heads/release')
-        uses: appleboy/ssh-action@1a8b3784eaa665f677fa114edd5683bb6a6bfaa8
-        with:
-          host: ${{ secrets.TACHI_HOST }}
-          username: tachi
-          key: ${{ secrets.TACHI_KEY }}
-          script: tachi-docs-deploy
+      - name: Enable SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          sudo chmod 600 ~/.ssh/id_rsa
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+
+      - name: Build Container
+        run: docker build . -t docs -f Dockerfile.docs
+
+      # (lol)
+      - name: Build Docs
+        run: docker run -v ./site:/site --entrypoint="mkdocs" docs build
+
+      - name: Deploy docs
+        run: scp -r ./site ci@"$TACHI_HOST":tachi-docs
+        env:
+          TACHI_HOST: ${{secrets.TACHI_HOST}}

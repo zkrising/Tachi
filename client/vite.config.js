@@ -66,7 +66,7 @@ root.setAttribute("data-bs-theme", theme);
 		preprocessorOptions: {
 			scss: {
 				additionalData: [
-					process.env.VITE_TCHIC_MODE === "btchi"
+					process.env.VITE_TCHIC_MODE === "boku"
 						? "$primary: #527acc;"
 						: "$primary: #e61c6e;",
 				],

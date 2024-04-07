@@ -53,12 +53,6 @@ export default function EmailVerify({
 			)}
 			<br />
 			It might've ended up in your spam, so check there too!
-			<br />
-			<b>
-				Our domain ends with <code>.xyz</code>! As such, most email services will throw our
-				email in spam, or hold it in limbo for a couple minutes. Please be patient. Sending
-				email from an <code>.xyz</code> domain SUCKS!
-			</b>
 			<Divider />
 			<Button
 				onClick={async () => {

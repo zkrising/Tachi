@@ -121,7 +121,7 @@ The folders here **MUST** be 1:1 with the endpoints
 on the server. For example, the implementation of
 
 ```
-https://bokutachi.xyz/api/v1/foo/bar
+https://boku.tachi.ac/api/v1/foo/bar
 ```
 
 **MUST** be found at `src/server/router/api/v1/foo/bar/router.ts`

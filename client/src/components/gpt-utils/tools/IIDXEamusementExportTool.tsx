@@ -62,7 +62,7 @@ function Component({ game, playtype, reqUser }: UGPT) {
 export const IIDXEamusementExportTool: GPTUtility = {
 	name: `e-amusement CSV Export`,
 	urlPath: "eam-csv-export",
-	description: `Export your ${TachiConfig.name} scores into e-amusement format.`,
+	description: `Export your ${TachiConfig.NAME} scores into e-amusement format.`,
 	component: Component,
 	personalUseOnly: true,
 };

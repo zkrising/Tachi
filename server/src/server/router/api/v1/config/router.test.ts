@@ -5,16 +5,7 @@ import mockApi from "test-utils/mock-api";
 t.test("GET /api/v1/config", async (t) => {
 	const res = await mockApi.get("/api/v1/config");
 
-	t.strictSame(
-		res.body.body,
-		{
-			games: TachiConfig.GAMES,
-			importTypes: TachiConfig.IMPORT_TYPES,
-			name: TachiConfig.NAME,
-			type: TachiConfig.TYPE,
-		},
-		"Should return TachiConfig info"
-	);
+	t.strictSame(res.body.body, TachiConfig, "Should return TachiConfig info");
 
 	t.end();
 });

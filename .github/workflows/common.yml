@@ -3,14 +3,18 @@ name: Common CI/CD
 on:
   push:
     branches:
-      - "staging"
-      - "release/*"
+      - "main"
+    paths:
+      - "common/**"
+  pull_request:
+    branches:
+      - "main"
     paths:
       - "common/**"
   workflow_dispatch:
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,9 +28,11 @@ jobs:
         with:
           node-version: 16
           cache: pnpm
-      
+
       - name: Install dependencies
-        run: pnpm --filter tachi-common... --filter . install 
+        run: pnpm --filter tachi-common... --filter . install
 
       - name: Run Tests
         run: pnpm --filter tachi-common test
+        env:
+          NODE_ENV: "test"

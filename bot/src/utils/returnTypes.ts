@@ -1,23 +1,14 @@
 import type {
 	APIPermissions,
 	ChartDocument,
-	Game,
 	GPTString,
 	ImportDocument,
-	ImportTypes,
 	integer,
 	ProfileRatingAlgorithms,
 	ScoreDocument,
 	SongDocument,
 	UserGameStats,
 } from "tachi-common";
-
-export interface ServerConfig {
-	games: Array<Game>;
-	importTypes: Array<ImportTypes>;
-	name: string;
-	type: "btchi" | "ktchi" | "omni";
-}
 
 export interface ServerStatus {
 	serverTime: number;

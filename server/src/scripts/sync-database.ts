@@ -276,7 +276,7 @@ const syncInstructions: Array<SyncInstructions> = [
 			collection: ICollection<BMSCourseDocument>,
 			logger
 		) => {
-			if (TachiConfig.TYPE === "ktchi") {
+			if (TachiConfig.TYPE === "kamai") {
 				return;
 			}
 

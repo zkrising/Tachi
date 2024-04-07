@@ -18,7 +18,7 @@ const LOCAL_QUEST_KEY = "LOCAL_QUESTS";
 const PR_LOCAL_QUESTS_SCHEMA: PrudenceSchema = {
 	json: [
 		{
-			game: p.isIn(TachiConfig.games),
+			game: p.isIn(TachiConfig.GAMES),
 			playtype: (self, parent) => {
 				const gameConfig = GetGameConfig(parent.game as any);
 
@@ -123,7 +123,7 @@ export default function QuestEditor() {
 	return (
 		<Row>
 			<Col xs={12}>
-				<h1>{TachiConfig.name} Quest Editor</h1>
+				<h1>{TachiConfig.NAME} Quest Editor</h1>
 				<Divider />
 				<span>
 					This tool is for creating your own quests and questlines.

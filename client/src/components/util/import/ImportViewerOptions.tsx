@@ -36,7 +36,7 @@ export default function ImportViewerOptions({
 					setValue={setImportType}
 					value={importType}
 				>
-					{TachiConfig.importTypes.map((e) => (
+					{TachiConfig.IMPORT_TYPES.map((e) => (
 						<option key={e} value={e}>
 							{e}
 						</option>

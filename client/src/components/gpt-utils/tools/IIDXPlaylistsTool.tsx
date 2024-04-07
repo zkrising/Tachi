@@ -74,9 +74,9 @@ function Component({ game, playtype, reqUser }: UGPT) {
 }
 
 export const IIDXPlaylistsTool: GPTUtility = {
-	name: `${TachiConfig.name} IIDX Playlists`,
+	name: `${TachiConfig.NAME} IIDX Playlists`,
 	urlPath: "playlists",
-	description: `${TachiConfig.name} has its own IIDX playlists that you can use in-game via playlister!`,
+	description: `${TachiConfig.NAME} has its own IIDX playlists that you can use in-game via playlister!`,
 	component: Component,
 	personalUseOnly: true,
 };

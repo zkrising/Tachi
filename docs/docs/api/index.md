@@ -10,7 +10,7 @@ datasets.
 	HTTP requests, and how to parse JSON.
 
 Depending on what variant of Tachi you want to interact with, the API is hosted
-on `https://kamaitachi.xyz/api/v1` or `https://bokutachi.xyz/api/v1`.
+on `https://kamai.tachi.ac/api/v1` or `https://boku.tachi.ac/api/v1`.
 
 !!! note
 	Some API endpoints are only available on Kamaitachi or Bokutachi. If an
@@ -35,7 +35,7 @@ for API abuse.
 
 ## License
 
-[Tachi-Server](https://github.com/TNG-dev/Tachi/tree/staging/server) (Where the API is wrote) is licensed under the [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html).
+[Tachi-Server](https://github.com/zkldi/Tachi/tree/main/server) (Where the API is wrote) is licensed under the [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html).
 
 To quote GitHub:
 
@@ -96,7 +96,7 @@ The HTTP Status Code for any Failed Response will always be of either 4XX or 5XX
 
 That should be everything. If you have any questions about the API, you can
 contact me on discord at `zkldi#2965`. You can also write an issue on the 
-[Issue Tracker](https://github.com/TNG-dev/Tachi). I'll get around to either.
+[Issue Tracker](https://github.com/zkldi/Tachi). I'll get around to either.
 
 It's entirely possible that I might've made a typo or wrote a poor explaination
 of something, so please reach out!

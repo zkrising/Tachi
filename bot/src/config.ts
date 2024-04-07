@@ -8,8 +8,7 @@ import { p } from "prudence";
 // @ts-expect-error No types available...
 import fetchSync from "sync-fetch";
 import fs from "fs";
-import type { ServerConfig as ServerConfigType } from "./utils/returnTypes";
-import type { Game, integer } from "tachi-common";
+import type { Game, integer, TachiServerCoreConfig } from "tachi-common";
 
 // Initialise .env.
 config();
@@ -37,9 +36,6 @@ export interface BotConfig {
 		ADMIN_USERS: Array<string>;
 		LIMBO_CHANNEL?: string;
 		APPROVED_ROLE?: string;
-	};
-	LOGGER?: {
-		SEQ_API_KEY?: string;
 	};
 }
 
@@ -95,9 +91,6 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 
 			LIMBO_CHANNEL: "*string",
 		},
-		LOGGER: p.optional({
-			SEQ_API_KEY: "*string",
-		}),
 	});
 
 	if (err) {
@@ -113,7 +106,6 @@ export interface ProcessEnvironment {
 	nodeEnv: "dev" | "production" | "staging" | "test";
 	mongoUrl: string;
 	port: integer;
-	seqUrl?: string;
 }
 
 function ParseEnvVars() {
@@ -146,7 +138,6 @@ function ParseEnvVars() {
 		nodeEnv: process.env.NODE_ENV,
 		mongoUrl: process.env.MONGO_URL,
 		port: Number(process.env.PORT),
-		seqUrl: process.env.SEQ_URL,
 	} as ProcessEnvironment;
 }
 
@@ -168,7 +159,7 @@ function GetServerConfig() {
 		process.exit(1);
 	}
 
-	return res.body as ServerConfigType;
+	return res.body as TachiServerCoreConfig;
 }
 
 export const ServerConfig = GetServerConfig();
@@ -177,10 +168,10 @@ export const ProcessEnv = ParseEnvVars();
 
 // General warnings for config misuse.
 // This warns people if their parent server supports games that they aren't acknowledging.
-for (const game of ServerConfig.games) {
+for (const game of ServerConfig.GAMES) {
 	if (!Object.prototype.hasOwnProperty.call(BotConfig.DISCORD.GAME_CHANNELS, game)) {
 		logger.warn(
-			`${ServerConfig.name} declares support for ${game}, but no channel is mapped to it in your conf.json5.`
+			`${ServerConfig.NAME} declares support for ${game}, but no channel is mapped to it in your conf.json5.`
 		);
 	}
 }

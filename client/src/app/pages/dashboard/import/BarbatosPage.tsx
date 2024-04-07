@@ -13,7 +13,7 @@ export default function BarbatosPage() {
 			<h1 className="text-center mb-4">What Is Barbatos?</h1>
 			<div>
 				Barbatos is a <code>.dll</code> file that hooks into SDVX and automatically sends
-				the scores to a server. {TachiConfig.name} is compatible with what Barbatos sends,
+				the scores to a server. {TachiConfig.NAME} is compatible with what Barbatos sends,
 				so you can use it to submit scores!
 			</div>
 			<Divider />

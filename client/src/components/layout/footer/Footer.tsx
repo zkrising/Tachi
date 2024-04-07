@@ -50,7 +50,7 @@ export function Footer() {
 						</Nav.Link>
 						<Nav.Link
 							as={ExternalLink}
-							href="https://docs.bokutachi.xyz/wiki/rules"
+							href="https://docs.tachi.ac/wiki/rules"
 							className={linkClassNames}
 						>
 							Rules
@@ -82,14 +82,14 @@ export function Footer() {
 						)}
 						<Nav.Link
 							as={ExternalLink}
-							href="https://github.com/tng-dev/tachi"
+							href="https://github.com/zkldi/Tachi"
 							className={linkClassNames}
 						>
 							Source Code
 						</Nav.Link>
 						<Nav.Link
 							as={ExternalLink}
-							href="https://docs.bokutachi.xyz/"
+							href="https://docs.tachi.ac/"
 							className={linkClassNames}
 						>
 							Developer Documentation

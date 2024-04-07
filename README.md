@@ -18,11 +18,11 @@ properly is _just_ as important!
 
 By using Tachi, you get access to powerful, novel rhythm game score-tracking features, like automatically breaking your scores into sessions, setting goals and rivals, and more!
 
-There are way more features that Tachi has, and you can read about all of them [here](https://docs.bokutachi.xyz/wiki/features).
+There are way more features that Tachi has, and you can read about all of them [here](https://docs.tachi.ac/wiki/features).
 
 ## Setup
 
-Check the [Documentation](https://docs.bokutachi.xyz/contributing/setup) for how to set Tachi up.
+Check the [Documentation](https://docs.tachi.ac/contributing/setup) for how to set Tachi up.
 
 You can then check the component-specific guides to see how to run those components and contribute back.
 

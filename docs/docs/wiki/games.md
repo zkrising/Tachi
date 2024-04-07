@@ -38,7 +38,7 @@ fact is hidden in the UI, but might still poke up in URLs.
 
 ### Kamaitachi
 
-The following games are supported on [Kamaitachi](https://kamaitachi.xyz).
+The following games are supported on [Kamaitachi](https://kamai.tachi.ac).
 
 | Name | Internal Name | Playtypes |
 | :: | :: | :: |
@@ -55,7 +55,7 @@ The following games are supported on [Kamaitachi](https://kamaitachi.xyz).
 
 ### Bokutachi
 
-The following games are supported on [Bokutachi](https://bokutachi.xyz).
+The following games are supported on [Bokutachi](https://boku.tachi.ac).
 
 | Name | Internal Name | Playtypes |
 | :: | :: | :: |

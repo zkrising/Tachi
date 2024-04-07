@@ -34,14 +34,14 @@ export default function LandingPage() {
 										<div className="d-none d-lg-block">
 											<img
 												src={ToCDNURL("/logos/logo-wordmark.png")}
-												alt={TachiConfig.name}
+												alt={TachiConfig.NAME}
 												width="30%"
 											/>
 										</div>
 										<div className="d-block d-lg-none">
 											<img
 												src={ToCDNURL("/logos/logo-wordmark.png")}
-												alt={TachiConfig.name}
+												alt={TachiConfig.NAME}
 												width="80%"
 											/>
 										</div>
@@ -62,7 +62,7 @@ export default function LandingPage() {
 						<div className="row">
 							<FeatureContainer
 								tagline="No More Spreadsheets."
-								description={`${TachiConfig.name} analyses your scores for you, showing all the statistics you'll ever want to see.`}
+								description={`${TachiConfig.NAME} analyses your scores for you, showing all the statistics you'll ever want to see.`}
 							>
 								<FeatureImage
 									alt="Picture of scores."
@@ -72,13 +72,13 @@ export default function LandingPage() {
 							<FeatureContainer
 								leftAlign={false}
 								tagline="Features You'll Actually Use."
-								description={`${TachiConfig.name} implements the features rhythm gamers already talk about. Break your scores down into sessions, Track goals in real time, break down your folder averages - it's all there!`}
+								description={`${TachiConfig.NAME} implements the features rhythm gamers already talk about. Break your scores down into sessions, Track goals in real time, break down your folder averages - it's all there!`}
 							>
 								foo
 							</FeatureContainer>
 							<FeatureContainer
 								tagline="All Your Scores."
-								description={`${TachiConfig.name} supports a bunch of your favourite games, and integrates with many existing services to make sure no score is lost to the void.`}
+								description={`${TachiConfig.NAME} supports a bunch of your favourite games, and integrates with many existing services to make sure no score is lost to the void.`}
 							>
 								foo
 							</FeatureContainer>

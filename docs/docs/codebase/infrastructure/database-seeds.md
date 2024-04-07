@@ -1,6 +1,6 @@
 # Database Seeds
 
-Tachi tracks the contents of its songs and charts in something called the [Database Seeds](https://github.com/TNG-dev/Tachi/tree/staging/database-seeds).
+Tachi tracks the contents of its songs and charts in something called the [Database Seeds](https://github.com/zkldi/Tachi/tree/main/database-seeds).
 
 The databases in question aren't (normally) altered by the server code. We essentially overload git and its CI tools to version control parts of our database.
 
@@ -12,9 +12,7 @@ They also include all Folder Documents, Table Documents and BMS Course Documents
 
 ## Synchronisation
 
-When pushes are made to `staging` (the main branch), our running staging servers will automatically update to that new bit of data.
-
-When pushes are made to `release/2.X`, our running *production* servers will automatically update in the same way.
+When pushes are made to `main`, our running production servers will automatically update to that new bit of data.
 
 ## Why bother?
 

@@ -29,7 +29,7 @@ export default function ITGHookPage() {
 			<ol className="instructions-list">
 				<li>
 					Download the latest version of <code>Tachi.lua</code>{" "}
-					<ExternalLink href="https://github.com/TNG-Dev/Simply-Love-Tachi-Module">
+					<ExternalLink href="https://github.com/zkldi/Simply-Love-Tachi-Module">
 						here
 					</ExternalLink>
 					.
@@ -49,7 +49,7 @@ export default function ITGHookPage() {
 					<strong style={{ fontSize: "1.15rem" }}>
 						Edit <code>HttpAllowHosts=*.groovestats.com</code> in{" "}
 						<code>Preferences.ini</code> to{" "}
-						<code>HttpAllowHosts=*.bokutachi.xyz,bokutachi.xyz,*.groovestats.com</code>
+						<code>HttpAllowHosts=*.boku.tachi.ac,boku.tachi.ac,*.groovestats.com</code>
 					</strong>
 				</li>
 				<li>
@@ -62,7 +62,7 @@ export default function ITGHookPage() {
 			</ol>
 			<Divider />
 			<Muted>
-				Note: If you submit a score on a chart that {TachiConfig.name} doesn't recognise,
+				Note: If you submit a score on a chart that {TachiConfig.NAME} doesn't recognise,
 				we'll still store the score, but it won't appear until the chart is registered.
 			</Muted>
 		</div>

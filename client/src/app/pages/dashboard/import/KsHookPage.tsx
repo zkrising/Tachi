@@ -13,7 +13,7 @@ export default function KsHookPage() {
 			<h1 className="text-center mb-4">What Is Konaste Hook?</h1>
 			<div>
 				Konaste Hook is a <code>.dll</code> file that hooks into SDVX and automatically
-				sends the scores to a server. {TachiConfig.name} is compatible with what Konaste
+				sends the scores to a server. {TachiConfig.NAME} is compatible with what Konaste
 				Hook sends, so you can use it to submit scores!
 			</div>
 			<Divider />
@@ -44,7 +44,7 @@ export default function KsHookPage() {
 					</b>{" "}
 					instead.
 				</li>
-				<li>Your scores now automatically upload to {TachiConfig.name}!</li>
+				<li>Your scores now automatically upload to {TachiConfig.NAME}!</li>
 			</ol>
 		</div>
 	);

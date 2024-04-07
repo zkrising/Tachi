@@ -21,7 +21,7 @@ const choices: Array<[string, string]> = (
 )
 
 	// @ts-expect-error god i hate the includes signature
-	.filter((e) => ServerConfig.importTypes.includes(e[1]));
+	.filter((e) => ServerConfig.IMPORT_TYPES.includes(e[1]));
 
 const command: SlashCommand = {
 	info: new SlashCommandBuilder()

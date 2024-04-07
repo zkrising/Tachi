@@ -8,7 +8,7 @@ import type { SlashCommand } from "../types";
 const command: SlashCommand = {
 	info: new SlashCommandBuilder()
 		.setName("whois")
-		.setDescription(`Return the ${ServerConfig.name} profile of a discord user.`)
+		.setDescription(`Return the ${ServerConfig.NAME} profile of a discord user.`)
 		.addUserOption((user) =>
 			user.setName("user").setDescription("The user to check for.").setRequired(true)
 		)

@@ -14,12 +14,7 @@ router.get("/", (req, res) =>
 	res.status(200).json({
 		success: true,
 		description: `Returned configuration info.`,
-		body: {
-			games: TachiConfig.GAMES,
-			importTypes: TachiConfig.IMPORT_TYPES,
-			name: TachiConfig.NAME,
-			type: TachiConfig.TYPE,
-		},
+		body: TachiConfig,
 	})
 );
 

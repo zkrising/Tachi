@@ -18,7 +18,7 @@ export default function ImportScoresLink({
 }) {
 	const links = [];
 
-	for (const game of TachiConfig.games) {
+	for (const game of TachiConfig.GAMES) {
 		const gameConfig = GetGameConfig(game);
 
 		links.push(

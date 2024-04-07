@@ -13,7 +13,7 @@ export default function ChunitachiPage() {
 			<h1 className="text-center mb-4">What Is Chunitachi?</h1>
 			<div>
 				Chunitachi is a <code>.dll</code> file that hooks into CHUNITHM and automatically
-				sends the scores to a server. {TachiConfig.name} is compatible with what Chunitachi
+				sends the scores to a server. {TachiConfig.NAME} is compatible with what Chunitachi
 				sends, so you can use it to submit scores!
 			</div>
 			<Divider />

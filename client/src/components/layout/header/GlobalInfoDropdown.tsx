@@ -18,7 +18,7 @@ export default function GlobalInfoDropdown({
 }) {
 	const links = [];
 
-	for (const game of TachiConfig.games) {
+	for (const game of TachiConfig.GAMES) {
 		const gameConfig = GetGameConfig(game);
 
 		for (const playtype of gameConfig.playtypes) {

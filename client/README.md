@@ -40,7 +40,7 @@ VITE_MANDATE_LOGIN=true
 # What git repo to read from by default in the seeds viewer.
 VITE_GIT_REPO=""
 
-# What client mode to use. Should be btchi, ktchi or omni.
-# This affects some things, like what buttons should appear in certain places.
+# What client mode to use. Should be boku, kamai or omni.
+# This affects some things, like what buttons should appear in certain places and what colours the site should be.
 VITE_TCHIC_MODE="omni"
 ```

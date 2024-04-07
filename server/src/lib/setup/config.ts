@@ -9,7 +9,7 @@ import { FormatPrError } from "utils/prudence";
 import fs from "fs";
 import { URL } from "url";
 import type { SendMailOptions } from "nodemailer";
-import type { Game, ImportTypes, integer } from "tachi-common";
+import type { TachiServerCoreConfig, integer } from "tachi-common";
 
 // imports things like NODE_ENV from a local .env file if one is present.
 dotenv.config();
@@ -25,7 +25,9 @@ let confFile;
 try {
 	confFile = fs.readFileSync(confLocation, "utf-8");
 } catch (err) {
-	logger.error("Error while trying to open conf.json5. Is one present?", { err });
+	logger.error("Error while trying to open conf.json5. Is one present?", {
+		err,
+	});
 
 	process.exit(1);
 }
@@ -110,12 +112,7 @@ export interface TachiServerConfig {
 		INVITE_CAP: integer;
 		BETA_USER_BONUS: integer;
 	};
-	TACHI_CONFIG: {
-		NAME: string;
-		TYPE: "btchi" | "ktchi" | "omni";
-		GAMES: Array<Game>;
-		IMPORT_TYPES: Array<ImportTypes>;
-	};
+	TACHI_CONFIG: TachiServerCoreConfig;
 	LOGGER_CONFIG: {
 		LOG_LEVEL: "crit" | "debug" | "error" | "info" | "severe" | "verbose" | "warn";
 		CONSOLE: boolean;
@@ -214,9 +211,10 @@ const err = p(config, {
 	}),
 	TACHI_CONFIG: {
 		NAME: "string",
-		TYPE: p.isIn("ktchi", "btchi", "omni"),
+		TYPE: p.isIn("kamai", "boku", "omni"),
 		GAMES: [p.isIn(allSupportedGames)],
 		IMPORT_TYPES: [p.isIn(allImportTypes)],
+		SIGNUPS_ENABLED: p.optional("boolean"),
 	},
 	LOGGER_CONFIG: {
 		LOG_LEVEL: p.optional(
@@ -272,6 +270,7 @@ tachiServerConfig.MAX_QUEST_SUBSCRIPTIONS ??= 100;
 tachiServerConfig.MAX_RIVALS ??= 5;
 tachiServerConfig.MAX_FOLLOWING_AMOUNT ??= 1_000;
 tachiServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER ??= false;
+tachiServerConfig.TACHI_CONFIG.SIGNUPS_ENABLED ??= true;
 
 export const TachiConfig = tachiServerConfig.TACHI_CONFIG;
 export const ServerConfig = tachiServerConfig;

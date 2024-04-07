@@ -18,7 +18,7 @@ type DefaultClients = Array<Omit<TachiAPIClientDocument, "author" | "clientSecre
 // environment.
 // These use the special Client ID prefix "CX" instead of "CI", which
 // means they cannot possibly be collided.1
-const KtchiDefaultClients: DefaultClients = [
+const KamaiDefaultClients: DefaultClients = [
 	{
 		name: "Fervidex",
 		webhookUri: null,
@@ -225,7 +225,7 @@ api_key = '%%TACHI_KEY%%'`,
 	},
 ];
 
-const BtchiDefaultClients: DefaultClients = [
+const BokuDefaultClients: DefaultClients = [
 	{
 		name: "Beatoraja IR",
 		webhookUri: null,
@@ -277,13 +277,13 @@ const BtchiDefaultClients: DefaultClients = [
 ];
 
 export async function LoadDefaultClients() {
-	if (TachiConfig.TYPE === "ktchi") {
-		await LoadClients(KtchiDefaultClients);
-	} else if (TachiConfig.TYPE === "btchi") {
-		await LoadClients(BtchiDefaultClients);
+	if (TachiConfig.TYPE === "kamai") {
+		await LoadClients(KamaiDefaultClients);
+	} else if (TachiConfig.TYPE === "boku") {
+		await LoadClients(BokuDefaultClients);
 	} else {
-		await LoadClients(KtchiDefaultClients);
-		await LoadClients(BtchiDefaultClients);
+		await LoadClients(KamaiDefaultClients);
+		await LoadClients(BokuDefaultClients);
 	}
 }
 

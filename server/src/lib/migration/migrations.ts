@@ -55,7 +55,7 @@ const REGISTERED_MIGRATIONS: Array<Migration> =
 // only apply type-specific migrations if we're not in testing
 if (Environment.nodeEnv !== "test") {
 	// kamaitachi specific migrations
-	if (TachiConfig.TYPE !== "btchi") {
+	if (TachiConfig.TYPE !== "boku") {
 		REGISTERED_MIGRATIONS.push(
 			RemoveIIDXBeginners,
 			UpdateJubeatPreferredTables,
@@ -69,7 +69,7 @@ if (Environment.nodeEnv !== "test") {
 	}
 
 	// bokutachi specific migrations
-	if (TachiConfig.TYPE !== "ktchi") {
+	if (TachiConfig.TYPE !== "kamai") {
 		REGISTERED_MIGRATIONS.push(NullLR2HookFailedBPs, FixUndefinedBMSData, RemoveRandom);
 	}
 }

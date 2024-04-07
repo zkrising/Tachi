@@ -17,11 +17,11 @@ const command: SlashCommand = {
 		);
 
 		if (!serverStatus.success) {
-			return `Failed to reach ${ServerConfig.name}. (${serverStatus.description})`;
+			return `Failed to reach ${ServerConfig.NAME}. (${serverStatus.description})`;
 		}
 
 		return `Pong! We're live, and running ${VERSION_PRETTY}.
-${ServerConfig.name} is up, and running ${serverStatus.body.version}.`;
+${ServerConfig.NAME} is up, and running ${serverStatus.body.version}.`;
 	},
 };
 

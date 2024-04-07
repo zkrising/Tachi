@@ -22,7 +22,7 @@ export default function SupportBanner({ user }: { user: UserDocument }) {
 	if (user.isSupporter) {
 		return (
 			<div className="d-flex w-100 justify-content-center flex-column align-items-center">
-				<div>❤️❤️❤️ Thank you for supporting {TachiConfig.name}. ❤️❤️❤️</div>
+				<div>❤️❤️❤️ Thank you for supporting {TachiConfig.NAME}. ❤️❤️❤️</div>
 			</div>
 		);
 	}
@@ -73,7 +73,7 @@ export default function SupportBanner({ user }: { user: UserDocument }) {
 			}
 		>
 			<span style={{ fontSize: "1.15rem" }}>
-				{TachiConfig.name} is a passion project, and is primarily developed by one person.
+				{TachiConfig.NAME} is a passion project, and is primarily developed by one person.
 				<br />
 				Since you're enjoying the site so much, maybe you'd want to support me? :3
 				<br />
@@ -87,8 +87,8 @@ export default function SupportBanner({ user }: { user: UserDocument }) {
 				<br />
 				<br />
 				Alternatively, you can star or contribute to the fully-open-source{" "}
-				<ExternalLink href="https://github.com/TNG-Dev/Tachi">GitHub Repo</ExternalLink>.
-				This makes me look cool to employers!
+				<ExternalLink href="https://github.com/zkldi/Tachi">GitHub Repo</ExternalLink>. This
+				makes me look cool to employers!
 			</span>
 		</Card>
 	);

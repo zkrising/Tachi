@@ -31,18 +31,18 @@ export default function CreditsPage() {
 			<p>
 				{a(
 					<>
-						{TachiConfig.name} has been the work of many people, and many more
+						{TachiConfig.NAME} has been the work of many people, and many more
 						contributors. None of this would be possible without these people.
 					</>,
 					"Funding for this program was made possible by by by by by-",
-					`${TachiConfig.name} actually just appeared here one day, and we're not sure how.`,
-					`Actually, we just ran npm install ${TachiConfig.name}.`,
+					`${TachiConfig.NAME} actually just appeared here one day, and we're not sure how.`,
+					`Actually, we just ran npm install ${TachiConfig.NAME}.`,
 					"To be honest, we had a surplus of monkeys and typewriters."
 				)}
 			</p>
 			<Divider />
 			<p>
-				If you want to support {TachiConfig.name} development, see{" "}
+				If you want to support {TachiConfig.NAME} development, see{" "}
 				<Link to="/support">Support</Link>.
 			</p>
 			<Divider />
@@ -129,7 +129,7 @@ export default function CreditsPage() {
 				<h1>Significant Contributors</h1>
 
 				<p>
-					These people have contributed a significant sub-project to {TachiConfig.name}.
+					These people have contributed a significant sub-project to {TachiConfig.NAME}.
 				</p>
 
 				<ul>
@@ -173,7 +173,7 @@ export default function CreditsPage() {
 			<div className="mt-6">
 				<h1>Contributors</h1>
 
-				<p>These people have contributed to {TachiConfig.name}.</p>
+				<p>These people have contributed to {TachiConfig.NAME}.</p>
 
 				<ul>
 					{Contributors.slice(0)

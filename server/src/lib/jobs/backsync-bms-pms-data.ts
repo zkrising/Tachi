@@ -11,7 +11,7 @@ const logger = CreateLogCtx(__filename);
  * information back with the seeds.
  */
 export async function BacksyncBMSPMSSongsAndCharts() {
-	for (const branch of ["staging", `release/${VERSION_INFO.major}.${VERSION_INFO.minor}`]) {
+	for (const branch of ["main"]) {
 		const repo = await PullDatabaseSeeds(undefined, branch);
 
 		for (const game of ["bms", "pms"] as const) {

@@ -13,7 +13,7 @@ export default function Logo() {
 			<img
 				id="logo"
 				height={35}
-				alt={TachiConfig.name}
+				alt={TachiConfig.NAME}
 				src={ToCDNURL("/logos/logo-mark.png")}
 			/>
 		</Link>

@@ -33,7 +33,7 @@ export default function BeatorajaIRPage({ game }: { game: "bms" | "pms" }) {
 			<ol className="instructions-list">
 				<li>
 					Download the latest version of the {name} IR{" "}
-					<ExternalLink href="https://github.com/TNG-dev/tachi-beatoraja-ir/releases">
+					<ExternalLink href="https://github.com/zkldi/Tachi-beatoraja-ir/releases">
 						here
 					</ExternalLink>
 					.
@@ -41,7 +41,7 @@ export default function BeatorajaIRPage({ game }: { game: "bms" | "pms" }) {
 				<li>
 					{game === "bms" ? (
 						<>
-							Make sure you're running <b>LR2oraja</b>. {TachiConfig.name} does{" "}
+							Make sure you're running <b>LR2oraja</b>. {TachiConfig.NAME} does{" "}
 							<b>NOT</b> support BMS scores achieved on beatoraja, and will not accept
 							scores from the client.
 							<br />
@@ -56,7 +56,7 @@ export default function BeatorajaIRPage({ game }: { game: "bms" | "pms" }) {
 						</>
 					) : (
 						<>
-							Make sure you're running <b>beatoraja</b>. {TachiConfig.name} does{" "}
+							Make sure you're running <b>beatoraja</b>. {TachiConfig.NAME} does{" "}
 							<b>NOT</b> support PMS scores achieved on LR2oraja, and will not accept
 							scores from the client.
 						</>
@@ -67,7 +67,7 @@ export default function BeatorajaIRPage({ game }: { game: "bms" | "pms" }) {
 				</li>
 				<li>Open the game options, and navigate to the IR section.</li>
 				<li>
-					Select {TachiConfig.name} IR.
+					Select {TachiConfig.NAME} IR.
 					<br />
 					<Alert className="mt-2" variant="warning">
 						If the IR isn't showing up, make sure you're launching the game with the{" "}
@@ -116,7 +116,7 @@ export default function BeatorajaIRPage({ game }: { game: "bms" | "pms" }) {
 			</ol>
 			<Divider />
 			<Muted>
-				Note: If you submit a score on a chart that {TachiConfig.name} doesn't recognise,
+				Note: If you submit a score on a chart that {TachiConfig.NAME} doesn't recognise,
 				you'll need to wait until atleast 2 other players submit scores for that chart
 				before it'll show up. This is to combat accidental IR spam.
 			</Muted>

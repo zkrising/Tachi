@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
 import { decode } from "html-entities";
-import { BacksyncCollectionToBothBranches } from "lib/database-seeds/repo";
+import { BacksyncCollection } from "lib/database-seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import { parse } from "node-html-parser";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
@@ -95,7 +95,7 @@ export async function UpdateDPTiers() {
 
 		logger.info(`Recalced those scores.`);
 
-		await BacksyncCollectionToBothBranches("charts-iidx", db.charts.iidx, "Update DP Tierlist");
+		await BacksyncCollection("charts-iidx", db.charts.iidx, "Update DP Tierlist");
 	}
 
 	logger.info("Done.");

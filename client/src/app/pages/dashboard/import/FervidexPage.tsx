@@ -14,7 +14,7 @@ export default function FervidexPage() {
 			<h1 className="text-center mb-4">What Is Fervidex?</h1>
 			<div>
 				Fervidex is a <code>.dll</code> file that hooks into IIDX and automatically sends
-				the scores to a server. {TachiConfig.name} is compatible with what Fervidex sends,
+				the scores to a server. {TachiConfig.NAME} is compatible with what Fervidex sends,
 				so you can use it to submit scores!
 			</div>
 			<Divider />

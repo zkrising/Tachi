@@ -296,7 +296,7 @@ Configures what the Tachi Server instance supports, and what it's generally doin
 ```ts
 interface TACHI_CONFIG: {
 	NAME: string;
-	TYPE: "ktchi" | "btchi" | "omni";
+	TYPE: "kamai" | "boku" | "omni";
 	GAMES: Game[];
 	IMPORT_TYPES: ImportTypes[];
 }
@@ -308,7 +308,7 @@ The name of the server. This is reported at `/api/v1/status`.
 
 #### TYPE
 
-What type of tachi-server this is. `ktchi` will enable Kamaitachi Only routes, `btchi` will enable
+What type of tachi-server this is. `kamai` will enable Kamaitachi Only routes, `boku` will enable
 Bokutachi only routes, and `omni` will enable both.
 
 #### GAMES
@@ -393,7 +393,7 @@ interface CDN_CONFIG: {
 
 #### WEB_LOCATION
 
-Configures a URL to redirect users to when returning CDN contents. This could be something like `cdn.bokutachi.xyz`.
+Configures a URL to redirect users to when returning CDN contents. This could be something like `cdn.boku.tachi.ac`.
 
 #### SAVE_LOCATION
 

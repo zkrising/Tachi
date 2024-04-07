@@ -6,7 +6,7 @@ import type { ImportDocument, UserDocument, integer } from "tachi-common";
 
 export function CreateEmbed(userID?: integer) {
 	const embed = new MessageEmbed()
-		.setColor(ServerConfig.type === "ktchi" ? "#e61c6e" : "#527acc")
+		.setColor(ServerConfig.TYPE === "kamai" ? "#e61c6e" : "#527acc")
 		.setTimestamp();
 
 	if (userID !== undefined) {

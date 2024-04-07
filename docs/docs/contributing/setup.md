@@ -74,7 +74,7 @@ To set everything else up for local development, we'll use [Docker](https://dock
 
 Since you can't just commit straight to someone elses codebase (that would be a massive security issue), you need to make a fork of Tachi - One owned by you!
 
-Go to [the Tachi repository](https://github.com/TNG-dev/Tachi) and click the Fork button in the top right (Make sure you're signed in).
+Go to [the Tachi repository](https://github.com/zkldi/Tachi) and click the Fork button in the top right (Make sure you're signed in).
 
 Now, back to the terminal:
 

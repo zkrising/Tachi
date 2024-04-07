@@ -38,9 +38,6 @@ export interface BotConfig {
 		LIMBO_CHANNEL?: string;
 		APPROVED_ROLE?: string;
 	};
-	LOGGER?: {
-		SEQ_API_KEY?: string;
-	};
 }
 
 function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
@@ -95,9 +92,6 @@ function ParseBotConfig(fileLoc = "conf.json5"): BotConfig {
 
 			LIMBO_CHANNEL: "*string",
 		},
-		LOGGER: p.optional({
-			SEQ_API_KEY: "*string",
-		}),
 	});
 
 	if (err) {
@@ -113,7 +107,6 @@ export interface ProcessEnvironment {
 	nodeEnv: "dev" | "production" | "staging" | "test";
 	mongoUrl: string;
 	port: integer;
-	seqUrl?: string;
 }
 
 function ParseEnvVars() {
@@ -146,7 +139,6 @@ function ParseEnvVars() {
 		nodeEnv: process.env.NODE_ENV,
 		mongoUrl: process.env.MONGO_URL,
 		port: Number(process.env.PORT),
-		seqUrl: process.env.SEQ_URL,
 	} as ProcessEnvironment;
 }
 

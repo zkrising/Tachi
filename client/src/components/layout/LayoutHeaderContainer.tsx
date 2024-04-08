@@ -20,7 +20,7 @@ export default function UserHeaderContainer({
 					<div className="card-body">
 						<div className="row align-items-center">{children}</div>
 					</div>
-					<div className="card-footer pb-0 pt-0">{footer}</div>
+					<div className="card-footer p-0">{footer}</div>
 				</div>
 			</div>
 			<div className="col-12">

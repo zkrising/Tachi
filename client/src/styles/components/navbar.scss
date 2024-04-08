@@ -1,0 +1,62 @@
+%navbar-button {
+	position: absolute;
+	top: 0;
+	border: none;
+	border-radius: var(--bs-border-radius);
+	height: 100%;
+	color: rgba(var(--bs-body-color-rgb), 0.8);
+	transition: opacity, ease-in-out, $transition-duration;
+	@extend .animate-fade-in;
+	&:hover,
+	&:focus {
+		color: rgba(var(--bs-body-color-rgb), 1);
+	}
+}
+
+.tachi-navbar {
+	scroll-behavior: smooth;
+	position: relative;
+	width: 100%;
+	overflow-x: auto;
+	overflow-y: hidden;
+	&-item {
+		padding: 1rem 2rem;
+		outline: none;
+		text-decoration: none;
+		text-wrap: nowrap;
+		user-select: none;
+		&:focus-visible {
+			text-decoration: underline;
+			@extend .text-primary;
+		}
+	}
+
+	&-button {
+		&-left {
+			@extend %navbar-button;
+			left: 0;
+			padding: 0 1rem 0 0.5rem;
+			background: linear-gradient(
+				270deg,
+				rgba(var(--bs-secondary-bg-rgb), 0) 0%,
+				rgba(var(--bs-secondary-bg-rgb), 1) 75%
+			);
+		}
+		&-right {
+			@extend %navbar-button;
+			right: 0;
+			padding: 0 0.5rem 0 1rem;
+			background: linear-gradient(
+				90deg,
+				rgba(var(--bs-secondary-bg-rgb), 0) 0%,
+				rgba(var(--bs-secondary-bg-rgb), 1) 75%
+			);
+		}
+	}
+	&-indicator {
+		height: 2px;
+		transition-property: left, width;
+		transition-duration: $transition-duration-lg;
+		transition-timing-function: ease-in-out;
+	}
+}

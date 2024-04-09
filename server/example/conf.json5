@@ -81,8 +81,6 @@
 		],
 	},
 	LOGGER_CONFIG: {
-		FILE: false,
-		CONSOLE: true,
 		LOG_LEVEL: "info",
 	},
 	SEEDS_CONFIG: {

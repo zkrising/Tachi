@@ -1,12 +1,10 @@
-import DiscordWinstonTransport from "./discord-transport";
 import { Transport as SeqTransport } from "@valuabletouch/winston-seq";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import SafeJSONStringify from "safe-json-stringify";
 import { EscapeStringRegexp } from "utils/misc";
 import winston, { format, transports } from "winston";
-import type { SeqLogLevel } from "seq-logging";
+import LokiTransport from "winston-loki";
 import type { LeveledLogMethod, Logger } from "winston";
-import "winston-daily-rotate-file";
 
 export type KtLogger = Logger & { severe: LeveledLogMethod };
 
@@ -123,61 +121,27 @@ const consoleFormatRoute = format.combine(
 	})
 );
 
-const tports: Array<winston.transport> = [];
+const tports: Array<winston.transport> = [
+	new transports.Console({
+		format: consoleFormatRoute,
+	}),
+];
 
-if (ServerConfig.LOGGER_CONFIG.FILE) {
-	tports.push(
-		new transports.DailyRotateFile({
-			filename: "logs/tachi-%DATE%.log",
-			datePattern: "YYYY-MM-DD-HH",
-			zippedArchive: true,
-			maxSize: "20m",
-			maxFiles: "14d",
-			createSymlink: true,
-			symlinkName: "tachi.log",
-			format: defaultFormatRoute,
-		})
-	);
-}
-
-// If this is a job, force stdout writing no matter what.
-if (ServerConfig.LOGGER_CONFIG.CONSOLE || process.env.IS_JOB || process.env.FORCE_CONSOLE_LOG) {
-	tports.push(
-		new transports.Console({
-			format: consoleFormatRoute,
-		})
-	);
-}
-
-if (ServerConfig.LOGGER_CONFIG.DISCORD) {
-	tports.push(
-		new DiscordWinstonTransport({
-			webhook: ServerConfig.LOGGER_CONFIG.DISCORD.WEBHOOK_URL,
-			level: "warn",
-		})
-	);
-}
-
-if (ServerConfig.LOGGER_CONFIG.SEQ_API_KEY && Environment.seqUrl) {
-	// Turns winston log levels into seq format.
-	const levelMap: Record<string, SeqLogLevel> = {
+if (ServerConfig.LOGGER_CONFIG.SEQ) {
+	const levelMap: Record<string, any> = {
 		crit: "Fatal",
 		severe: "Error",
 		error: "Error",
 		warn: "Warning",
 		info: "Information",
-
-		// Note that Seq interprets these in reverse,
-		// however, it's easier to read this code if I just
-		// use the same levels, instead of the right ones.
 		verbose: "Verbose",
 		debug: "Debug",
 	};
 
 	tports.push(
 		new SeqTransport({
-			apiKey: ServerConfig.LOGGER_CONFIG.SEQ_API_KEY,
-			serverUrl: Environment.seqUrl,
+			apiKey: ServerConfig.LOGGER_CONFIG.SEQ.API_KEY,
+			serverUrl: ServerConfig.LOGGER_CONFIG.SEQ.URL,
 			onError: (err) => {
 				// eslint-disable-next-line no-console
 				console.error(`Failed to send seq message: ${err.message}.`);
@@ -185,6 +149,15 @@ if (ServerConfig.LOGGER_CONFIG.SEQ_API_KEY && Environment.seqUrl) {
 			levelMapper(level = "") {
 				return levelMap[level] ?? "Information";
 			},
+		})
+	);
+}
+
+if (ServerConfig.LOGGER_CONFIG.LOKI) {
+	tports.push(
+		new LokiTransport({
+			host: ServerConfig.LOGGER_CONFIG.LOKI.URL,
+			json: true,
 		})
 	);
 }
@@ -222,19 +195,6 @@ export const rootLogger = winston.createLogger({
 	},
 }) as KtLogger;
 
-if (!!ServerConfig.LOGGER_CONFIG.SEQ_API_KEY !== !!Environment.seqUrl) {
-	rootLogger.warn(
-		`Only one of SEQ_API_KEY (conf.json5) and SEQ_URL (Environment) were set. Not sending logs to Seq, as both must be provided.`
-	);
-}
-
-if (tports.length === 0) {
-	// eslint-disable-next-line no-console
-	console.warn(
-		"You have no transports set. Absolutely no logs will be saved. This is a terrible idea!"
-	);
-}
-
 function CreateLogCtx(filename: string, lg = rootLogger): KtLogger {
 	const replacedFilename = filename.replace(
 		new RegExp(`^${EscapeStringRegexp(process.cwd())}/((js|src)/)?`, "u"),
@@ -264,18 +224,18 @@ export function ChangeRootLogLevel(
 ) {
 	rootLogger.info(`Changing log level to ${level}.`);
 
-	for (const tp of tports) {
+	for (const tp of rootLogger.transports) {
 		tp.level = level;
 	}
 }
 
 export function GetLogLevel() {
 	return (
-		tports.map((e) => e.level).find((e) => typeof e === "string") ??
+		rootLogger.transports.map((e) => e.level).find((e) => typeof e === "string") ??
 		ServerConfig.LOGGER_CONFIG.LOG_LEVEL
 	);
 }
 
-export const Transports = tports;
+export const Transports = rootLogger.transports;
 
 export default CreateLogCtx;

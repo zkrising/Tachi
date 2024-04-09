@@ -67,6 +67,7 @@ export function SendEmail(
 			html: htmlContent,
 			text: textContent,
 			dkim: ServerConfig.EMAIL_CONFIG.DKIM,
+			headers: transporter.options.headers,
 		})
 		.catch((err: unknown) => {
 			logger.info(`Failed to send email to ${to}.`, {

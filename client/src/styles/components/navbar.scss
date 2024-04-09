@@ -23,12 +23,20 @@
 	}
 
 	&-button {
-		%navbar-button {
+		@mixin navbar-button($position) {
 			position: absolute;
 			top: 0;
+			left: if($position == left, 0, unset);
+			right: if($position == right, 0, unset);
+			padding: if($position == left, 0 0.85rem 0 0.65rem, 0 0.65rem 0 0.85rem);
 			border: none;
 			height: 100%;
 			color: rgba(var(--bs-body-color-rgb), 0.8);
+			background: linear-gradient(
+				if($position == left, 270deg, 90deg),
+				rgba(var(--bs-secondary-bg-rgb), 0) 0%,
+				rgba(var(--bs-secondary-bg-rgb), 1) 60%
+			);
 			transition: opacity, ease-in-out, $transition-duration;
 			z-index: 40;
 			@extend .animate-fade-in;
@@ -38,33 +46,24 @@
 			}
 		}
 
-		$navbar-button-gradient: rgba(var(--bs-secondary-bg-rgb), 0) 0%,
-			rgba(var(--bs-secondary-bg-rgb), 1) 60%;
-
 		&-left {
-			@extend %navbar-button;
-			left: 0;
-			padding: 0 0.85rem 0 0.65rem;
-			background: linear-gradient(270deg, $navbar-button-gradient);
+			@include navbar-button(left);
 		}
 
 		&-right {
-			@extend %navbar-button;
-			right: 0;
-			padding: 0 0.65rem 0 0.85rem;
-			background: linear-gradient(90deg, $navbar-button-gradient);
+			@include navbar-button(right);
 		}
-	}
 
-	&-indicator {
-		position: absolute;
-		bottom: 2px;
-		height: 2px;
-		border-radius: var(--bs-border-radius);
-		background-color: var(--bs-primary);
-		transition-property: left, width;
-		transition-duration: $transition-duration-lg;
-		transition-timing-function: ease-in-out;
-		z-index: 10;
+		&-indicator {
+			position: absolute;
+			bottom: 2px;
+			height: 2px;
+			border-radius: var(--bs-border-radius);
+			background-color: var(--bs-primary);
+			transition-property: left, width;
+			transition-duration: $transition-duration-lg;
+			transition-timing-function: ease-in-out;
+			z-index: 10;
+		}
 	}
 }

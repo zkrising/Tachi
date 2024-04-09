@@ -1,18 +1,27 @@
 import { InvalidScoreFailure } from "../common/converter-failures";
 import { GPT_SERVER_IMPLEMENTATIONS } from "game-implementations/game-implementations";
 import { RunValidators } from "game-implementations/games/_common";
+import { ONE_HOUR } from "lib/constants/time";
 import { GetGPTConfig, GetGPTString } from "tachi-common";
 import type { ChartDocument, GPTString, ScoreDocument } from "tachi-common";
 import type { ConfScoreMetric } from "tachi-common/types/metrics";
 
 /**
- * Checks if a score passes all of its validation checks. This tests gpt specific
- * things, like whether this passes the validators defined in gptConfig, or whether
- * it passes the chart-dependent validators defined in the gpt server implementation.
+ * Checks if a score passes all of its validation checks.
  *
  * @returns nothing. This will throw an InvalidScoreFailure on error.
  */
 export function ValidateScore(score: ScoreDocument, chart: ChartDocument): void {
+	const leniency = ONE_HOUR * 24;
+
+	if (score.timeAchieved !== null && score.timeAchieved > Date.now() + leniency) {
+		throw new InvalidScoreFailure("Invalid timestamp: score happens in the future.");
+	}
+
+	ValidateScoreGameSpecific(score, chart);
+}
+
+function ValidateScoreGameSpecific(score: ScoreDocument, chart: ChartDocument): void {
 	const gptString = GetGPTString(score.game, score.playtype);
 	const gptConfig = GetGPTConfig(gptString);
 	const gptImpl = GPT_SERVER_IMPLEMENTATIONS[gptString];

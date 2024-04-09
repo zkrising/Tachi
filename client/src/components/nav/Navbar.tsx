@@ -1,15 +1,32 @@
 import Icon from "components/util/Icon";
 import { debounce } from "lodash";
-import React, { cloneElement, ReactElement, useEffect, useMemo, useRef, useState } from "react";
+import React, {
+	cloneElement,
+	KeyboardEventHandler,
+	ReactElement,
+	useEffect,
+	useMemo,
+	useRef,
+	useState,
+} from "react";
 import { useLocation, Link, LinkProps } from "react-router-dom";
 
 export interface NavbarItemProps extends LinkProps<HTMLAnchorElement> {
 	to: string;
 	children: string;
+	/**
+	 * An array of other pathnames that should trigger an active item
+	 */
 	otherMatchingPaths?: Array<string>;
 }
 
-export default function Navbar({ children }: { children: ReactElement<NavbarItemProps>[] }) {
+export type NavbarItem = ReactElement<NavbarItemProps>;
+
+export interface NavbarProps {
+	children: ReactElement<NavbarItemProps> | ReactElement<NavbarItemProps>[];
+}
+
+export default function Navbar({ children }: NavbarProps) {
 	const location = useLocation();
 
 	const navRef = useRef<HTMLDivElement>(null);
@@ -25,24 +42,29 @@ export default function Navbar({ children }: { children: ReactElement<NavbarItem
 
 	const links = useMemo(
 		() =>
-			children.map((el) => {
-				const to = el.props.to;
+			Array.isArray(children)
+				? children.map((el) => {
+						const to = el.props.to;
+						if (!to) {
+							return [];
+						}
+						const basePath =
+							to[to.length - 1] === "/" ? to.substring(0, to.length - 1) : to;
 
-				const basePath = to[to.length - 1] === "/" ? to.substring(0, to.length - 1) : to;
-
-				if (el.props.otherMatchingPaths) {
-					return [basePath, ...el.props.otherMatchingPaths];
-				}
-				return [basePath];
-			}),
+						if (el.props.otherMatchingPaths) {
+							return [basePath, ...el.props.otherMatchingPaths];
+						}
+						return [basePath];
+				  })
+				: children.props.to
+				? [[children.props.to]]
+				: [[]],
 		[children]
 	);
 
 	const activeLocIndex = useMemo(() => {
 		const loc = location.pathname.split(/([#?]|\/$)/u)[0];
-
 		let locIndex = 0;
-
 		for (let i = 0; i < links.length; i++) {
 			const matchingPaths = links[i];
 			if (matchingPaths.some((path) => loc.startsWith(path))) {
@@ -50,15 +72,22 @@ export default function Navbar({ children }: { children: ReactElement<NavbarItem
 				// break; THIS IS DELIBERATE TO AVOID / matching everything
 			}
 		}
-
 		return locIndex;
 	}, [links, location]);
 
 	const items = React.Children.map(children, (child, index) => {
-		const active = index === activeLocIndex;
+		if (!React.isValidElement(child)) {
+			return null;
+		}
+		if (process.env.NODE_ENV === "development") {
+			if (child.type === React.Fragment) {
+				console.error("The navbar doesn't accept React fragments; Pass an array instead");
+			}
+		}
 		return cloneElement(child, {
 			key: child.key || index,
-			"aria-selected": active,
+			"aria-selected": index === activeLocIndex,
+			role: "tab",
 			draggable: false,
 			className: "tachi-navbar-item",
 		});
@@ -132,8 +161,8 @@ export default function Navbar({ children }: { children: ReactElement<NavbarItem
 				}
 			}
 		},
-		250,
-		{ leading: true }
+		125,
+		{ trailing: true }
 	);
 
 	const handleScrollButton = (right = false) => {
@@ -155,7 +184,54 @@ export default function Navbar({ children }: { children: ReactElement<NavbarItem
 		}
 	};
 
-	// forces the navbar to initialise properly
+	const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
+		type Tab = HTMLAnchorElement | null;
+
+		if (!itemsList) {
+			return;
+		}
+
+		const currentFocus = itemsList.ownerDocument.activeElement;
+
+		if (!currentFocus) {
+			return;
+		}
+
+		const previous = currentFocus.previousElementSibling as Tab;
+		const next = currentFocus.nextElementSibling as Tab;
+		const first = itemsList.firstElementChild as Tab;
+		const last = itemsList.lastElementChild as Tab;
+
+		switch (event.key) {
+			case "ArrowLeft":
+				event.preventDefault();
+				if (currentFocus === itemsList.firstElementChild) {
+					last?.focus();
+				} else {
+					previous?.focus();
+				}
+				break;
+			case "ArrowRight":
+				event.preventDefault();
+				if (currentFocus === itemsList.lastElementChild) {
+					first?.focus();
+				} else {
+					next?.focus();
+				}
+				break;
+			case "Home":
+				event.preventDefault();
+				first?.focus();
+				break;
+			case "End":
+				event.preventDefault();
+				last?.focus();
+				break;
+			default:
+				break;
+		}
+	};
+
 	useEffect(() => {
 		setMounted(true);
 	}, []);
@@ -172,16 +248,14 @@ export default function Navbar({ children }: { children: ReactElement<NavbarItem
 
 		const debouncedUpdateIndicator = debounce(updateIndicator, 75, { trailing: true });
 
+		const debounceIntersectOptions = [125, { leading: true }] as const;
 		const handleFirstIntersect: IntersectionObserverCallback = debounce(
 			(entries) => setShowScrollLeft(!entries[0].isIntersecting),
-			125,
-			{ leading: true }
+			...debounceIntersectOptions
 		);
-
 		const handleLastIntersect: IntersectionObserverCallback = debounce(
 			(entries) => setShowScrollRight(!entries[0].isIntersecting),
-			125,
-			{ leading: true }
+			...debounceIntersectOptions
 		);
 
 		const observeChildren = () => {
@@ -245,13 +319,18 @@ export default function Navbar({ children }: { children: ReactElement<NavbarItem
 	}, [activeElement, nav, itemsList]);
 
 	return (
-		<div className="overflow-hidden d-flex rounded position-relative">
-			<nav className="tachi-navbar scrollbar-hide d-inline-flex" ref={navRef}>
-				<div ref={itemsListRef} className="hstack gap-4 justify-content-around flex-grow-1">
+		<div className="d-flex position-relative rounded overflow-hidden px-1">
+			<nav className="tachi-navbar" ref={navRef}>
+				<div
+					ref={itemsListRef}
+					onKeyDown={handleKeyDown}
+					role="tablist"
+					className="hstack gap-4 flex-grow-1 justify-content-around "
+				>
 					{items}
 				</div>
 				<div
-					className="tachi-navbar-indicator rounded-pill bg-primary position-absolute bottom-0"
+					className="tachi-navbar-indicator"
 					style={indicatorStyle}
 					hidden={!mounted || indicatorStyle.width === 0}
 				/>
@@ -261,6 +340,9 @@ export default function Navbar({ children }: { children: ReactElement<NavbarItem
 	);
 }
 
+/**
+ * Exposes a React Router Link component accepting otherMatchingPaths
+ */
 export const NavbarItem = React.forwardRef<HTMLAnchorElement, NavbarItemProps>(
 	/* we don't want to pass otherMatchingPaths to the Link component
 	 it is still seen by the navbar and processed accordingly */

@@ -29,7 +29,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
           cache: pnpm
 
       - name: Install dependencies
@@ -110,4 +110,4 @@ jobs:
       - name: Deploy updates
         run: ssh ci@"$TACHI_HOST" /home/ci/tachi-devops/scripts/deploy_server.sh
         env:
-            TACHI_HOST: ${{secrets.TACHI_HOST}}
+          TACHI_HOST: ${{secrets.TACHI_HOST}}

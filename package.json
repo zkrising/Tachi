@@ -6,31 +6,22 @@
 	"scripts": {
 		"start": "docker compose -f docker-compose-dev.yml up --build -d",
 		"stop": "docker compose -f docker-compose-dev.yml down",
-
-
 		"logs-server": "docker logs tachi-server -f",
 		"logs-client": "docker logs tachi-client -f",
 		"logs-seeds": "docker logs tachi-seeds -f",
-
 		"test-server": "docker compose -f docker-compose-dev.yml exec tachi-server pnpm test",
 		"test-seeds": "docker compose -f docker-compose-dev.yml exec tachi-seeds pnpm --filter ./scripts test",
-
 		"enter-seeds": "docker compose -f docker-compose-dev.yml exec tachi-seeds bash",
 		"sort-seeds": "docker compose -f docker-compose-dev.yml exec tachi-seeds node scripts/deterministic-collection-sort.js",
 		"view-seeds": "xdg-open http://127.0.0.1:3000/utils/seeds",
 		"load-seeds": "docker compose -f docker-compose-dev.yml exec tachi-server pnpm sync-database-local",
-
 		"validate-db": "docker compose -f docker-compose-dev.yml exec tachi-server pnpm validate-database",
-
 		"start-docs": "cd docs/ && mkdocs serve",
-
 		"raw-start-server": "pnpm --filter ./server start",
 		"raw-start-client": "pnpm --filter ./client start",
 		"raw-start-dbs": "redis-server --daemonize yes; sudo systemctl start mongodb.service",
-
 		"^^ DEV STUFF IS HERE ^^": "comment",
 		"vv PROD STUFF YOU WON'T TOUCH vv": "comment",
-
 		"build": "pnpm -r build",
 		"sync-database": "pnpm --filter ./server sync-database",
 		"start-score-import-worker": "pnpm --filter ./server runscoreworker"
@@ -77,7 +68,7 @@
 		}
 	},
 	"engines": {
-		"node": "16",
-		"pnpm": "7"
+		"node": "20",
+		"pnpm": "8"
 	}
 }

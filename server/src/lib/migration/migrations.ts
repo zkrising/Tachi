@@ -1,4 +1,5 @@
 import UserFollowersMigration from "./migrations/add-following-to-users";
+import AddLockedAt from "./migrations/add-lockedat";
 import UGPTAddPreferredRanking from "./migrations/add-preferredRanking-to-ugpt";
 import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
 import FixUndefinedBMSData from "./migrations/fix-undefined-bms-data";
@@ -50,6 +51,7 @@ const REGISTERED_MIGRATIONS: Array<Migration> =
 				SessionsToScoreIDs,
 				V3PropsMigration,
 				V3ScoresMigration,
+				AddLockedAt,
 		  ];
 
 // only apply type-specific migrations if we're not in testing

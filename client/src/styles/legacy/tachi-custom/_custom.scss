@@ -40,10 +40,3 @@
 	transition: opacity 0.3s;
 	opacity: 0;
 }
-
-a:where(.MuiTab-root) {
-	@extend .transition-color;
-	&:hover {
-		color: var(--#{$prefix}link-hover-color)
-	}
-}

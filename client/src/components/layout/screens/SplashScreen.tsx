@@ -1,5 +1,5 @@
-import { CircularProgress } from "@mui/material";
 import React from "react";
+import Loading from "components/util/Loading";
 import SplashImage from "../misc/SplashImage";
 
 export function SplashScreen({ broke }: { broke: string }) {
@@ -9,7 +9,7 @@ export function SplashScreen({ broke }: { broke: string }) {
 			className="bg-body position-fixed inset-0 d-flex flex-column justify-content-center align-items-center"
 		>
 			<SplashImage />
-			{!broke && <CircularProgress />}
+			{!broke && <Loading />}
 			{broke && <p className="mt-4">{broke}</p>}
 		</div>
 	);

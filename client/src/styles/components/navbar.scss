@@ -53,17 +53,17 @@
 		&-right {
 			@include navbar-button(right);
 		}
+	}
 
-		&-indicator {
-			position: absolute;
-			bottom: 2px;
-			height: 2px;
-			border-radius: var(--bs-border-radius);
-			background-color: var(--bs-primary);
-			transition-property: left, width;
-			transition-duration: $transition-duration-lg;
-			transition-timing-function: ease-in-out;
-			z-index: 10;
-		}
+	&-indicator {
+		position: absolute;
+		bottom: 2px;
+		height: 2px;
+		border-radius: var(--bs-border-radius);
+		background-color: var(--bs-primary);
+		transition-property: left, width;
+		transition-duration: $transition-duration-lg;
+		transition-timing-function: ease-in-out;
+		z-index: 10;
 	}
 }

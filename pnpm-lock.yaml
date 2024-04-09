@@ -6,13 +6,14 @@ overrides:
   '@types/node': 18.11.18
   '@types/express-serve-static-core': 4.17.29
   ts-node: 10.9.1
+  mongodb: 3.6.3
 
 patchedDependencies:
   '@types/mongodb@3.6.20':
     hash: fmazw77vmtotccsa6gb66mxijq
     path: patches/@types__mongodb@3.6.20.patch
   browserslist@4.21.4:
-    hash: 3sk7x5xyu7mtmw3sdh5izkeejy
+    hash: iybzhxekp633yoleg54ca3ov2a
     path: patches/browserslist@4.21.4.patch
   monk@7.3.4:
     hash: vvho35r54xdabf3z6x2eo4lz7q
@@ -1468,7 +1469,7 @@ packages:
       '@babel/compat-data': 7.20.5
       '@babel/core': 7.20.12
       '@babel/helper-validator-option': 7.18.6
-      browserslist: 4.21.4_3sk7x5xyu7mtmw3sdh5izkeejy
+      browserslist: 4.21.4_iybzhxekp633yoleg54ca3ov2a
       lru-cache: 5.1.1
       semver: 6.3.0
 
@@ -4097,6 +4098,18 @@ packages:
     dev: false
 
   /browserslist/4.21.4_3sk7x5xyu7mtmw3sdh5izkeejy:
+    resolution: {integrity: sha512-CBHJJdDmgjl3daYjN5Cp5kbTf1mUhZoS+beLklHIvkOWscs83YAhLlF3Wsh/lciQYAcbBJgTOD44VtG31ZM4Hw==}
+    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
+    hasBin: true
+    dependencies:
+      caniuse-lite: 1.0.30001441
+      electron-to-chromium: 1.4.284
+      node-releases: 2.0.8
+      update-browserslist-db: 1.0.10_browserslist@4.21.4
+    dev: true
+    patched: true
+
+  /browserslist/4.21.4_iybzhxekp633yoleg54ca3ov2a:
     resolution: {integrity: sha512-CBHJJdDmgjl3daYjN5Cp5kbTf1mUhZoS+beLklHIvkOWscs83YAhLlF3Wsh/lciQYAcbBJgTOD44VtG31ZM4Hw==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
@@ -7884,39 +7897,6 @@ packages:
       saslprep: 1.0.3
     dev: false
 
-  /mongodb/3.7.3:
-    resolution: {integrity: sha512-Psm+g3/wHXhjBEktkxXsFMZvd3nemI0r3IPsE0bU+4//PnvNWKkzhZcEsbPcYiWqe8XqXJJEg4Tgtr7Raw67Yw==}
-    engines: {node: '>=4'}
-    peerDependencies:
-      aws4: '*'
-      bson-ext: '*'
-      kerberos: '*'
-      mongodb-client-encryption: '*'
-      mongodb-extjson: '*'
-      snappy: '*'
-    peerDependenciesMeta:
-      aws4:
-        optional: true
-      bson-ext:
-        optional: true
-      kerberos:
-        optional: true
-      mongodb-client-encryption:
-        optional: true
-      mongodb-extjson:
-        optional: true
-      snappy:
-        optional: true
-    dependencies:
-      bl: 2.2.1
-      bson: 1.1.6
-      denque: 1.5.1
-      optional-require: 1.1.8
-      safe-buffer: 5.2.1
-    optionalDependencies:
-      saslprep: 1.0.3
-    dev: false
-
   /monk-middleware-cast-ids/0.2.1:
     resolution: {integrity: sha512-Hp9gwjXo+inSPhXUlsV1u3DyZh2cXT3Osij/1gSNCJQCgacAF1lfmnTj6bKmlf1Et4dvLhwUL0PquxdZRIofkA==}
     dev: false
@@ -7946,7 +7926,7 @@ packages:
     dependencies:
       '@types/mongodb': 3.6.20_fmazw77vmtotccsa6gb66mxijq
       debug: 4.3.4
-      mongodb: 3.7.3
+      mongodb: 3.6.3
       monk-middleware-cast-ids: 0.2.1
       monk-middleware-fields: 0.2.0
       monk-middleware-handle-callback: 0.2.2
@@ -8384,13 +8364,6 @@ packages:
     resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
     hasBin: true
     dev: true
-
-  /optional-require/1.1.8:
-    resolution: {integrity: sha512-jq83qaUb0wNg9Krv1c5OQ+58EK+vHde6aBPzLvPPqJm89UQWsvSuFy9X/OSNJnFeSOKo7btE0n8Nl2+nE+z5nA==}
-    engines: {node: '>=4'}
-    dependencies:
-      require-at: 1.0.6
-    dev: false
 
   /optionator/0.9.1:
     resolution: {integrity: sha512-74RlY5FCnhq4jRxVUPKDaRwrVNXMqsGsiW6AJw4XK8hmtm10wC0ypZBLw5IIp85NZMr91+qd1RvvENwg7jjRFw==}
@@ -9247,11 +9220,6 @@ packages:
       tunnel-agent: 0.6.0
       uuid: 3.4.0
     dev: true
-
-  /require-at/1.0.6:
-    resolution: {integrity: sha512-7i1auJbMUrXEAZCOQ0VNJgmcT2VOKPRl2YGJwgpHpC9CE91Mv4/4UYIUm4chGJaI381ZDq1JUicFii64Hapd8g==}
-    engines: {node: '>=4'}
-    dev: false
 
   /require-directory/2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
@@ -10542,7 +10510,7 @@ packages:
     peerDependencies:
       browserslist: '>= 4.21.0'
     dependencies:
-      browserslist: 4.21.4_3sk7x5xyu7mtmw3sdh5izkeejy
+      browserslist: 4.21.4_iybzhxekp633yoleg54ca3ov2a
       escalade: 3.1.1
       picocolors: 1.0.0
 

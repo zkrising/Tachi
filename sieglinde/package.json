@@ -21,7 +21,7 @@
 		"winston": "3.5.1"
 	},
 	"engines": {
-		"node": "16",
-		"pnpm": "7"
+		"node": "20",
+		"pnpm": "8"
 	}
 }

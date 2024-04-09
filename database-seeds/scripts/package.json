@@ -17,7 +17,7 @@
 	"dependencies": {
 		"@types/node": "18.11.18",
 		"@types/lodash.get": "^4.4.7",
-		"better-sqlite3": "^7.5.0",
+		"better-sqlite3": "9.4.5",
 		"bms-table-loader": "2.0.0",
 		"chalk": "4",
 		"commander": "^8.2.0",

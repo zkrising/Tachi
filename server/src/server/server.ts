@@ -85,10 +85,6 @@ if (Environment.nodeEnv !== "production" && IsNonEmptyString(ServerConfig.CLIENT
 		next();
 	});
 
-	if (ServerConfig.ENABLE_METRICS) {
-		app.use(ExpressPromBundle({ includeMethod: true, includePath: true }));
-	}
-
 	// hack to allow all OPTIONS requests. Remember that this setting should not be on in production!
 	if (ServerConfig.OPTIONS_ALWAYS_SUCCEEDS === true) {
 		app.options("*", (req, res) => res.send());
@@ -111,6 +107,10 @@ if (Environment.nodeEnv !== "production" && IsNonEmptyString(ServerConfig.CLIENT
 	}
 
 	app.use(helmet());
+}
+
+if (ServerConfig.ENABLE_METRICS) {
+	app.use(ExpressPromBundle({ includeMethod: true, includePath: true }));
 }
 
 app.use(userSessionMiddleware);

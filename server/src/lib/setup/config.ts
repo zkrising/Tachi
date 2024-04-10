@@ -121,6 +121,7 @@ export interface TachiServerConfig {
 		};
 		LOKI?: {
 			URL: string;
+			AUTH?: string;
 		};
 	};
 	CDN_CONFIG: {
@@ -220,8 +221,14 @@ const err = p(config, {
 		LOG_LEVEL: p.optional(
 			p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit")
 		),
-		SEQ_API_KEY: "*string",
-		LOKI_URL: "*string",
+		SEQ: p.optional({
+			API_KEY: "string",
+			URL: "string",
+		}),
+		LOKI: p.optional({
+			URL: "string",
+			AUTH: "*string",
+		}),
 	},
 	CDN_CONFIG: {
 		WEB_LOCATION: "string",

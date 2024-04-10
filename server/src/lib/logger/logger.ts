@@ -157,6 +157,7 @@ if (ServerConfig.LOGGER_CONFIG.LOKI) {
 	tports.push(
 		new LokiTransport({
 			host: ServerConfig.LOGGER_CONFIG.LOKI.URL,
+			basicAuth: ServerConfig.LOGGER_CONFIG.LOKI.AUTH,
 			json: true,
 		})
 	);

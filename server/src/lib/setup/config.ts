@@ -115,12 +115,12 @@ export interface TachiServerConfig {
 	TACHI_CONFIG: TachiServerCoreConfig;
 	LOGGER_CONFIG: {
 		LOG_LEVEL: "crit" | "debug" | "error" | "info" | "severe" | "verbose" | "warn";
-		CONSOLE: boolean;
-		FILE: boolean;
-		SEQ_API_KEY: string | undefined;
-		DISCORD?: {
-			WEBHOOK_URL: string;
-			WHO_TO_TAG: Array<string>;
+		SEQ?: {
+			API_KEY: string;
+			URL: string;
+		};
+		LOKI?: {
+			URL: string;
 		};
 	};
 	CDN_CONFIG: {
@@ -220,13 +220,8 @@ const err = p(config, {
 		LOG_LEVEL: p.optional(
 			p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit")
 		),
-		CONSOLE: "*boolean",
-		FILE: "*boolean",
 		SEQ_API_KEY: "*string",
-		DISCORD: p.optional({
-			WEBHOOK_URL: "string",
-			WHO_TO_TAG: ["string"],
-		}),
+		LOKI_URL: "*string",
 	},
 	CDN_CONFIG: {
 		WEB_LOCATION: "string",
@@ -300,14 +295,6 @@ if (!mongoUrl) {
 	process.exit(1);
 }
 
-const seqUrl = process.env.SEQ_URL ?? "";
-
-if (!seqUrl && tachiServerConfig.LOGGER_CONFIG.SEQ_API_KEY) {
-	logger.warn(
-		`No SEQ_URL specified in environment, yet LOGGER_CONFIG.SEQ_API_KEY was defined. No logs will be sent to Seq!`
-	);
-}
-
 const nodeEnv = process.env.NODE_ENV ?? "";
 
 if (!nodeEnv) {
@@ -339,6 +326,5 @@ export const Environment = {
 	mongoUrl,
 	nodeEnv: nodeEnv as "dev" | "production" | "staging" | "test",
 	replicaIdentity,
-	seqUrl,
 	commitHash: process.env.COMMIT_HASH,
 };

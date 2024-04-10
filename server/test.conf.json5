@@ -49,7 +49,7 @@
 			"pms",
 			"maimai",
 			"maimaidx",
-			"arcaea"
+			"arcaea",
 		],
 		IMPORT_TYPES: [
 			"file/eamusement-iidx-csv",
@@ -71,8 +71,6 @@
 		],
 	},
 	LOGGER_CONFIG: {
-		FILE: false,
-		CONSOLE: true,
 		LOG_LEVEL: "info",
 	},
 }

@@ -2,7 +2,6 @@ import { Contributors } from "util/constants/contributors";
 import { RFA } from "util/misc";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Divider from "components/util/Divider";
-import ExternalLink from "components/util/ExternalLink";
 import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useState } from "react";

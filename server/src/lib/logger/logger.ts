@@ -95,8 +95,8 @@ winston.addColors({
 	severe: ["bgBrightRed", "black"],
 	error: ["red"],
 	warn: ["yellow"],
-	info: ["blue"],
-	verbose: ["cyan"],
+	info: ["cyan"],
+	verbose: ["white"],
 	debug: ["white"],
 });
 

@@ -83,6 +83,7 @@ export interface TachiServerConfig {
 	OPTIONS_ALWAYS_SUCCEEDS?: boolean;
 	USE_EXTERNAL_SCORE_IMPORT_WORKER: boolean;
 	EXTERNAL_SCORE_IMPORT_WORKER_CONCURRENCY?: integer;
+	ENABLE_METRICS: boolean;
 	SEEDS_CONFIG?: {
 		REPO_URL: string;
 		USER_NAME: string | null;
@@ -176,6 +177,7 @@ const err = p(config, {
 	USE_EXTERNAL_SCORE_IMPORT_WORKER: "*boolean",
 	EXTERNAL_SCORE_IMPORT_WORKER_CONCURRENCY: p.optional(p.isPositiveInteger),
 	ALLOW_RUNNING_OFFLINE: "*boolean",
+	ENABLE_METRICS: "*boolean",
 	EMAIL_CONFIG: p.optional({
 		FROM: "string",
 		DKIM: "*object",
@@ -273,6 +275,7 @@ tachiServerConfig.MAX_RIVALS ??= 5;
 tachiServerConfig.MAX_FOLLOWING_AMOUNT ??= 1_000;
 tachiServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER ??= false;
 tachiServerConfig.TACHI_CONFIG.SIGNUPS_ENABLED ??= true;
+tachiServerConfig.ENABLE_METRICS ??= false;
 
 export const TachiConfig = tachiServerConfig.TACHI_CONFIG;
 export const ServerConfig = tachiServerConfig;

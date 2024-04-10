@@ -7,6 +7,7 @@ import "express-async-errors";
 import { RequestLoggerMiddleware } from "./middleware/request-logger";
 import mainRouter from "./router/router";
 import connectRedis from "connect-redis";
+import ExpressPromBundle from "express-prom-bundle";
 import expressSession from "express-session";
 import { RedisClient } from "external/redis/redis";
 import helmet from "helmet";
@@ -83,6 +84,10 @@ if (Environment.nodeEnv !== "production" && IsNonEmptyString(ServerConfig.CLIENT
 		res.header("Access-Control-Allow-Methods", "GET,POST,PATCH,PUT,DELETE,OPTIONS");
 		next();
 	});
+
+	if (ServerConfig.ENABLE_METRICS) {
+		app.use(ExpressPromBundle({ includeMethod: true, includePath: true }));
+	}
 
 	// hack to allow all OPTIONS requests. Remember that this setting should not be on in production!
 	if (ServerConfig.OPTIONS_ALWAYS_SUCCEEDS === true) {

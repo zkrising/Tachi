@@ -9,6 +9,7 @@ overrides:
   '@types/bson': 1.0.11
   '@types/node': 18.11.18
   '@types/express-serve-static-core': 4.17.29
+  '@types/express': 4.17.13
   ts-node: 10.9.1
   mongodb: 3.6.3
 
@@ -576,6 +577,9 @@ importers:
       express-async-errors:
         specifier: 3.1.1
         version: 3.1.1(express@4.18.2)
+      express-prom-bundle:
+        specifier: ^7.0.0
+        version: 7.0.0(prom-client@15.1.1)
       express-rate-limit:
         specifier: 5.5.1
         version: 5.5.1
@@ -3127,6 +3131,11 @@ packages:
       aggregate-error: 3.1.0
     dev: false
 
+  /@opentelemetry/api@1.8.0:
+    resolution: {integrity: sha512-I/s6F7yKUDdtMsoBWXJe8Qz40Tui5vsuKCWJEWVL+5q9sSWRzzx6v2KeNsOBEwd94j0eWkpWCH4yB6rZg9Mf0w==}
+    engines: {node: '>=8.0.0'}
+    dev: false
+
   /@popperjs/core@2.11.6:
     resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
     dev: false
@@ -4154,6 +4163,10 @@ packages:
     requiresBuild: true
     dependencies:
       file-uri-to-path: 1.0.0
+    dev: false
+
+  /bintrees@1.0.2:
+    resolution: {integrity: sha512-VOMgTMwjAaUG580SXn3LacVgjurrbMme7ZZNYGSSV7mmtY6QQRh0Eg3pwIcntQ77DErK1L0NxkbetjcoXzVwKw==}
     dev: false
 
   /bl@2.2.1:
@@ -5957,6 +5970,21 @@ packages:
       express: ^4.16.2
     dependencies:
       express: 4.18.2
+    dev: false
+
+  /express-prom-bundle@7.0.0(prom-client@15.1.1):
+    resolution: {integrity: sha512-VwVaCyGBGHkHdecpTqRdW1Jm2fXK8weCUKjGjNWorc9g4M+cZ3xoj+N9uQzfRWfIPXJG5QOaiAziOIalQzMwgA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      prom-client: '>=15.0.0'
+    dependencies:
+      '@types/express': 4.17.13
+      express: 4.18.2
+      on-finished: 2.4.1
+      prom-client: 15.1.1
+      url-value-parser: 2.2.0
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /express-rate-limit@5.5.1:
@@ -8771,6 +8799,14 @@ packages:
       fromentries: 1.3.2
     dev: true
 
+  /prom-client@15.1.1:
+    resolution: {integrity: sha512-GVA2H96QCg2q71rjc3VYvSrVG7OpnJxyryC7dMzvfJfpJJHzQVwF3TJLfHzKORcwJpElWs1TwXLthlJAFJxq2A==}
+    engines: {node: ^16 || ^18 || >=20}
+    dependencies:
+      '@opentelemetry/api': 1.8.0
+      tdigest: 0.1.2
+    dev: false
+
   /promise@7.3.1:
     resolution: {integrity: sha512-nolQXZ/4L+bP/UGlkfaIujX9BKxGwmQ9OT4mOt5yvy8iK1h3wqTEJCijzGANTCCl9nWjY41juyAn2K3Q1hLLTg==}
     dependencies:
@@ -10264,6 +10300,12 @@ packages:
       diff: 4.0.2
     dev: true
 
+  /tdigest@0.1.2:
+    resolution: {integrity: sha512-+G0LLgjjo9BZX2MfdvPfH+MKLCrxlXSYec5DaPYP1fe6Iyhf0/fSmJ0bFiZ1F8BT6cGXl2LpltQptzjXKWEkKA==}
+    dependencies:
+      bintrees: 1.0.2
+    dev: false
+
   /terser@5.16.1:
     resolution: {integrity: sha512-xvQfyfA1ayT0qdK47zskQgRZeWLoOQ8JQ6mIgRGVNwZKdQMU+5FkCBjmv4QjcrTzyZquRw2FVtlJSRUmMKQslw==}
     engines: {node: '>=10'}
@@ -10673,6 +10715,11 @@ packages:
 
   /url-polyfill@1.1.12:
     resolution: {integrity: sha512-mYFmBHCapZjtcNHW0MDq9967t+z4Dmg5CJ0KqysK3+ZbyoNOWQHksGCTWwDhxGXllkWlOc10Xfko6v4a3ucM6A==}
+    dev: false
+
+  /url-value-parser@2.2.0:
+    resolution: {integrity: sha512-yIQdxJpgkPamPPAPuGdS7Q548rLhny42tg8d4vyTNzFqvOnwqrgHXvgehT09U7fwrzxi3RxCiXjoNUNnNOlQ8A==}
+    engines: {node: '>=6.0.0'}
     dev: false
 
   /use-isomorphic-layout-effect@1.1.2(@types/react@17.0.13)(react@17.0.2):

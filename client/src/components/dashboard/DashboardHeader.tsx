@@ -1,26 +1,21 @@
-import Navbar from "components/nav/Navbar";
-import NavItem from "components/nav/NavItem";
 import React from "react";
+import Navbar from "components/nav/Navbar";
 
 export function DashboardHeader() {
 	const navItems = [
-		<NavItem key="activity" to="/">
+		<Navbar.Item key="activity" to="/">
 			Activity
-		</NavItem>,
-		<NavItem key="activity" to="/calendar">
+		</Navbar.Item>,
+		<Navbar.Item key="calendar" to="/calendar">
 			Calendar
-		</NavItem>,
-		<NavItem key="profiles" to="/profiles">
+		</Navbar.Item>,
+		<Navbar.Item key="profiles" to="/profiles">
 			Your Profiles
-		</NavItem>,
-		<NavItem key="profiles" to="/global-activity">
+		</Navbar.Item>,
+		<Navbar.Item key="global-activity" to="/global-activity">
 			Global Activity
-		</NavItem>,
+		</Navbar.Item>,
 	];
 
-	return (
-		<div className="align-items-center mb-0">
-			<Navbar>{navItems}</Navbar>
-		</div>
-	);
+	return <Navbar>{navItems}</Navbar>;
 }

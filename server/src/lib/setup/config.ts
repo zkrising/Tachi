@@ -83,6 +83,7 @@ export interface TachiServerConfig {
 	OPTIONS_ALWAYS_SUCCEEDS?: boolean;
 	USE_EXTERNAL_SCORE_IMPORT_WORKER: boolean;
 	EXTERNAL_SCORE_IMPORT_WORKER_CONCURRENCY?: integer;
+	ENABLE_METRICS: boolean;
 	SEEDS_CONFIG?: {
 		REPO_URL: string;
 		USER_NAME: string | null;
@@ -115,12 +116,13 @@ export interface TachiServerConfig {
 	TACHI_CONFIG: TachiServerCoreConfig;
 	LOGGER_CONFIG: {
 		LOG_LEVEL: "crit" | "debug" | "error" | "info" | "severe" | "verbose" | "warn";
-		CONSOLE: boolean;
-		FILE: boolean;
-		SEQ_API_KEY: string | undefined;
-		DISCORD?: {
-			WEBHOOK_URL: string;
-			WHO_TO_TAG: Array<string>;
+		SEQ?: {
+			API_KEY: string;
+			URL: string;
+		};
+		LOKI?: {
+			URL: string;
+			AUTH?: string;
 		};
 	};
 	CDN_CONFIG: {
@@ -175,6 +177,7 @@ const err = p(config, {
 	USE_EXTERNAL_SCORE_IMPORT_WORKER: "*boolean",
 	EXTERNAL_SCORE_IMPORT_WORKER_CONCURRENCY: p.optional(p.isPositiveInteger),
 	ALLOW_RUNNING_OFFLINE: "*boolean",
+	ENABLE_METRICS: "*boolean",
 	EMAIL_CONFIG: p.optional({
 		FROM: "string",
 		DKIM: "*object",
@@ -220,12 +223,13 @@ const err = p(config, {
 		LOG_LEVEL: p.optional(
 			p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit")
 		),
-		CONSOLE: "*boolean",
-		FILE: "*boolean",
-		SEQ_API_KEY: "*string",
-		DISCORD: p.optional({
-			WEBHOOK_URL: "string",
-			WHO_TO_TAG: ["string"],
+		SEQ: p.optional({
+			API_KEY: "string",
+			URL: "string",
+		}),
+		LOKI: p.optional({
+			URL: "string",
+			AUTH: "*string",
 		}),
 	},
 	CDN_CONFIG: {
@@ -271,6 +275,7 @@ tachiServerConfig.MAX_RIVALS ??= 5;
 tachiServerConfig.MAX_FOLLOWING_AMOUNT ??= 1_000;
 tachiServerConfig.USE_EXTERNAL_SCORE_IMPORT_WORKER ??= false;
 tachiServerConfig.TACHI_CONFIG.SIGNUPS_ENABLED ??= true;
+tachiServerConfig.ENABLE_METRICS ??= false;
 
 export const TachiConfig = tachiServerConfig.TACHI_CONFIG;
 export const ServerConfig = tachiServerConfig;
@@ -298,14 +303,6 @@ const mongoUrl = process.env.MONGO_URL ?? "";
 if (!mongoUrl) {
 	logger.error(`No MONGO_URL specified in environment. Terminating.`);
 	process.exit(1);
-}
-
-const seqUrl = process.env.SEQ_URL ?? "";
-
-if (!seqUrl && tachiServerConfig.LOGGER_CONFIG.SEQ_API_KEY) {
-	logger.warn(
-		`No SEQ_URL specified in environment, yet LOGGER_CONFIG.SEQ_API_KEY was defined. No logs will be sent to Seq!`
-	);
 }
 
 const nodeEnv = process.env.NODE_ENV ?? "";
@@ -339,6 +336,5 @@ export const Environment = {
 	mongoUrl,
 	nodeEnv: nodeEnv as "dev" | "production" | "staging" | "test",
 	replicaIdentity,
-	seqUrl,
 	commitHash: process.env.COMMIT_HASH,
 };

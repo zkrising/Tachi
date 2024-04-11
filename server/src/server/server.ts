@@ -7,6 +7,7 @@ import "express-async-errors";
 import { RequestLoggerMiddleware } from "./middleware/request-logger";
 import mainRouter from "./router/router";
 import connectRedis from "connect-redis";
+import ExpressPromBundle from "express-prom-bundle";
 import expressSession from "express-session";
 import { RedisClient } from "external/redis/redis";
 import helmet from "helmet";
@@ -106,6 +107,10 @@ if (Environment.nodeEnv !== "production" && IsNonEmptyString(ServerConfig.CLIENT
 	}
 
 	app.use(helmet());
+}
+
+if (ServerConfig.ENABLE_METRICS) {
+	app.use(ExpressPromBundle({ includeMethod: true, includePath: true }));
 }
 
 app.use(userSessionMiddleware);

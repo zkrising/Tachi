@@ -1,10 +1,10 @@
-import CircularProgress from "@mui/material/CircularProgress";
 import React, { CSSProperties } from "react";
+import Spinner from "react-bootstrap/Spinner";
 
 export default function Loading({ style }: { style?: CSSProperties }) {
 	return (
 		<div className="d-flex justify-content-center align-items-center w-100" style={style}>
-			<CircularProgress />
+			<Spinner variant="primary" />
 		</div>
 	);
 }

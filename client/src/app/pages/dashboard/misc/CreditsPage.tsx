@@ -2,7 +2,6 @@ import { Contributors } from "util/constants/contributors";
 import { RFA } from "util/misc";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Divider from "components/util/Divider";
-import ExternalLink from "components/util/ExternalLink";
 import { UserContext } from "context/UserContext";
 import { TachiConfig } from "lib/config";
 import React, { useContext, useState } from "react";
@@ -79,18 +78,34 @@ export default function CreditsPage() {
 						)}
 						: <strong>zkldi</strong>
 					</li>
+				</ul>
+			</div>
+			<div className="mt-6">
+				<h1>Significant Contributors</h1>
+
+				<p>
+					These people have contributed a significant amount of their time to{" "}
+					{TachiConfig.NAME}.
+				</p>
+
+				<ul>
 					<li>
 						{a(
-							"Infrastructure & Dev/Ops",
-							"Professional YAML Editor",
-							"Professional nginx.conf Editor",
-							"'What do you mean you rm -rf'd that folder?'",
-							"WintOr",
-							"Frog Lover"
+							"Tachi Discord Bot Work + Homepage",
+							"oooOoooo you want to use redux oooo",
+							"Java Skirt Boy",
+							"Urbit Enjoyer"
 						)}
-						: <strong>winter</strong>
-						<br />
-						<small>Also the reason I even started learning how to program.</small>
+						: <strong>pfych</strong>
+					</li>
+					<li>
+						{a("Mikado", "SDVX Pocky")}: <strong>adamaq01</strong>
+					</li>
+					<li>
+						{a("Fervidex", "IIDX Black Magic")}: <strong>aixxe</strong>
+					</li>
+					<li>
+						{a("Barbatos", "SDVX Black Magic")}: <strong>Arm1stice</strong>
 					</li>
 					<li>
 						{a(
@@ -103,41 +118,6 @@ export default function CreditsPage() {
 							"The Ace Of Craigs"
 						)}
 						: <strong>Craig</strong>
-					</li>
-					<li>
-						{a(
-							"Dev, Maths Consultation",
-							"Functional Programming Evangelist",
-							"Born On The Cob",
-							"Crunchy Nut Enjoyer",
-							"Has An Afro"
-						)}
-						: <strong>Percyqaz</strong>
-					</li>
-					<li>
-						{a(
-							"Tachi Discord Bot Work",
-							"oooOoooo you want to use redux oooo",
-							"Java Skirt Boy",
-							"Urbit Enjoyer"
-						)}
-						: <strong>pfych</strong>
-					</li>
-				</ul>
-			</div>
-			<div className="mt-6">
-				<h1>Significant Contributors</h1>
-
-				<p>
-					These people have contributed a significant sub-project to {TachiConfig.NAME}.
-				</p>
-
-				<ul>
-					<li>
-						{a("Fervidex", "IIDX Black Magic")}: <strong>aixxe</strong>
-					</li>
-					<li>
-						{a("Barbatos", "SDVX Black Magic")}: <strong>Arm1stice</strong>
 					</li>
 					<li>
 						{a(
@@ -158,10 +138,26 @@ export default function CreditsPage() {
 						<strong>haste</strong>
 					</li>
 					<li>
+						{a(
+							"Tachi Discord Bot Work + Homepage",
+							"oooOoooo you want to use redux oooo",
+							"Java Skirt Boy",
+							"Urbit Enjoyer"
+						)}
+						: <strong>pfych</strong>
+					</li>
+					<li>
 						{a("Chunitachi", "CHUNITHM Black Magic")}: <strong>tomatosoup</strong>
 					</li>
 					<li>
-						{a("Mikado", "SDVX Pocky")}: <strong>adamaq01</strong>
+						{a(
+							"Dev, Maths Consultation",
+							"Functional Programming Evangelist",
+							"Born On The Cob",
+							"Crunchy Nut Enjoyer",
+							"Has An Afro"
+						)}
+						: <strong>Percyqaz</strong>
 					</li>
 					<li>
 						{a("Server", "Ethereum Mining Solutions")}: <strong>viddy</strong>
@@ -181,55 +177,6 @@ export default function CreditsPage() {
 						.map((e) => (
 							<li key={e}>{e}</li>
 						))}
-				</ul>
-			</div>
-			<div className="mt-6">
-				<h1>External Contributors</h1>
-
-				<p>
-					These people (or teams) have created programs that have been massively
-					beneficial.
-					<br />
-					Note: I'm leaving out huge teams here (like MongoDB and TypeScript), and
-					focusing more on the smaller guys.
-				</p>
-
-				<ul>
-					<li>
-						<ExternalLink href="https://mkdocs.org">MkDocs</ExternalLink>
-						<br />
-						<small>
-							MkDocs is a simple Markdown-based documentation generator. It is
-							lightweight, easy to use, and less hassle than things like Sphinx.
-						</small>
-					</li>
-					<li>
-						<ExternalLink href="https://squidfunk.github.io/mkdocs-material">
-							MkDocs Material
-						</ExternalLink>
-						<br />
-						<small>MkDocs Material is a beautiful theme for MkDocs.</small>
-					</li>
-					<li>
-						<ExternalLink href="https://node-tap.org">Node TAP</ExternalLink>
-						<br />
-						<small>Node TAP is a testing framework that is.not.a("mess")</small>
-					</li>
-					<li>
-						<ExternalLink href="https://automattic.github.io/monk/docs/GETTING_STARTED.html">
-							Monk
-						</ExternalLink>
-						<br />
-						<small>
-							Monk is a no-nonsense driver wrapper for MongoDB wrote and maintained by
-							one guy.
-						</small>
-					</li>
-					<li>
-						<ExternalLink href="https://nivo.rocks">Nivo</ExternalLink>
-						<br />
-						<small>Nivo is the best graphing library ever made. That's it.</small>
-					</li>
 				</ul>
 			</div>
 			<div className="mt-6">

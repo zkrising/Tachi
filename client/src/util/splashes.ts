@@ -1,4 +1,3 @@
-import { TachiConfig } from "lib/config";
 import { Days, Months } from "./misc";
 import { FormatDate } from "./time";
 
@@ -127,29 +126,6 @@ export const loggedInSplashes = [
 	"Love in all things.",
 	"You're trolling?",
 	"We teach the users how to cook a full English Breakfast.",
-];
-
-// Stuff that's bad for the kids, you know?
-export const contentiousSplashes = [
-	"Formerly Chucks",
-	"Node.js Is Bad Ass Rock Star Tech",
-	"i'm obligated to ask for you to seek immediate psychological attention",
-	`Is ${
-		TachiConfig.TYPE === "kamai" ? "IIDX" : "BMS"
-	} still a good game or are you all basically stupid?`,
-	"Please do not reply to or quote my posts in the future.",
-	"Is this your IP? (178.62.116.150)",
-	"Bad faith just coincidentally happens to be something my enemies do...",
-	"...and good faith is when people agree with me",
-	"Anyone else at this party gay?",
-	"I have the transfeminine urge to pee.",
-	"I HAVE TO LIE IN THE MIDDLE OF THE FLOOR",
-	"COMPLETELY MOTIONLESS NOT DARING TO BREATHE",
-	"I wouldn't trade one stupid decision for another 5 years of life",
-	"TRACKED.com",
-	"and you'll never believe what JK Rowling just said!",
-	"They'll only miss you when you leave.",
-	"Count your blessings, be thankful you're still around.",
 ];
 
 const curTime = new Date();

@@ -1,5 +1,5 @@
 import { RFA } from "util/misc";
-import { contentiousSplashes, loggedInSplashes, neutralSplashes } from "util/splashes";
+import { loggedInSplashes, neutralSplashes } from "util/splashes";
 import { UserSettingsContext } from "context/UserSettingsContext";
 import { useContext } from "react";
 
@@ -10,8 +10,6 @@ export default function useSplashText() {
 
 	if (!settings) {
 		set = neutralSplashes;
-	} else if (settings.preferences.contentiousContent) {
-		set = neutralSplashes.concat(loggedInSplashes).concat(contentiousSplashes);
 	} else {
 		set = neutralSplashes.concat(loggedInSplashes);
 	}

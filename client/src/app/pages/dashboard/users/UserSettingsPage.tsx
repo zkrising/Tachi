@@ -352,51 +352,6 @@ function PreferencesForm({ reqUser }: { reqUser: UserDocument }) {
 						Enable debug information and other useful debugging buttons.
 					</Form.Text>
 				</Form.Group>
-				{/* <Form.Group>
-				<Form.Check
-					type="checkbox"
-					id="advancedMode"
-					checked={formik.values.advancedMode}
-					onChange={formik.handleChange}
-					label="Advanced Mode"
-				/>
-				<Form.Text>Enable advanced stuff.</Form.Text>
-			</Form.Group> */}
-				{/* <Form.Group>
-				<Form.Check
-					type="checkbox"
-					id="invisible"
-					checked={formik.values.invisible}
-					onChange={formik.handleChange}
-					label="Invisible Mode"
-				/>
-				<Form.Text>Hide your last seen status.</Form.Text>
-			</Form.Group> */}
-				{/* <Form.Group>
-				<Form.Check
-					type="checkbox"
-					id="deletableScores"
-					checked={formik.values.deletableScores}
-					onChange={formik.handleChange}
-					label="Deletable Scores"
-				/>
-				<Form.Text>
-					Enables the option to delete scores. Turn this off if the thought of deleting a
-					score gives you anxiety.
-				</Form.Text>
-			</Form.Group> */}
-				<Form.Group>
-					<Form.Check
-						type="checkbox"
-						id="contentiousContent"
-						checked={formik.values.contentiousContent}
-						onChange={formik.handleChange}
-						label="Family Unfriendly Mode"
-					/>
-					<Form.Text>
-						Show slightly less appropriate splash texts in certain places.
-					</Form.Text>
-				</Form.Group>
 				<Button type="submit">Update Settings</Button>
 			</Form>
 		</Stack>

@@ -155,7 +155,9 @@ function SessionScoreStatBreakdown({
 
 					if (newEnums[metric][enumValue]) {
 						const alreadyInArray = newEnums[metric][enumValue].find(
-							(e) => e.score.scoreID === score.scoreID
+							(e) =>
+								e.score.scoreID === score.scoreID ||
+								e.score.chartID === score.chartID
 						);
 
 						if (

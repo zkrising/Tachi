@@ -23,6 +23,9 @@ patchedDependencies:
   monk@7.3.4:
     hash: vvho35r54xdabf3z6x2eo4lz7q
     path: patches/monk@7.3.4.patch
+  winston-loki@6.1.0:
+    hash: kd25bmwaje5zsxz4liivmh672y
+    path: patches/winston-loki@6.1.0.patch
 
 importers:
 
@@ -666,7 +669,7 @@ importers:
         version: 3.5.1
       winston-loki:
         specifier: ^6.1.0
-        version: 6.1.0
+        version: 6.1.0(patch_hash=kd25bmwaje5zsxz4liivmh672y)
       winston-transport:
         specifier: 4.5.0
         version: 4.5.0
@@ -10939,7 +10942,7 @@ packages:
     hasBin: true
     dev: false
 
-  /winston-loki@6.1.0:
+  /winston-loki@6.1.0(patch_hash=kd25bmwaje5zsxz4liivmh672y):
     resolution: {integrity: sha512-XX0Wni8eFEktUeO/YmexOw8OXLjmHjW3yuF8dr9/O+zQsG+6/b22g/ZKh2c8rJjOOQIK0h5BdVNPOtivGdV/2Q==}
     dependencies:
       async-exit-hook: 2.0.1
@@ -10950,6 +10953,7 @@ packages:
     optionalDependencies:
       snappy: 7.2.2
     dev: false
+    patched: true
 
   /winston-transport@4.5.0:
     resolution: {integrity: sha512-YpZzcUzBedhlTAfJg6vJDlyEai/IFMIVcaEZZyl3UXIl4gmqRpU7AE89AHLkbzLUsv0NVmw7ts+iztqKxxPW1Q==}

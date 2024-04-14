@@ -16,6 +16,7 @@ import { RecalcAllScores, UpdateAllPBs } from "utils/calculations/recalc-scores"
 import { RecalcSessions } from "utils/calculations/recalc-sessions";
 import { IsValidPlaytype } from "utils/misc";
 import DestroyUserGamePlaytypeData from "utils/reset-state/destroy-ugpt";
+import { GetScoresFromSession } from "utils/session";
 import { GetUserWithID, ResolveUser } from "utils/user";
 import type { RequestHandler } from "express";
 import type { Game, GoalSubscriptionDocument, integer, Playtype } from "tachi-common";
@@ -170,6 +171,36 @@ router.post("/delete-score", prValidate({ scoreID: "string" }), async (req, res)
 	return res.status(200).json({
 		success: true,
 		description: `Removed score.`,
+		body: {},
+	});
+});
+
+/**
+ * Force Delete anyones session.
+ *
+ * @param sessionID - The sessionID to delete.
+ *
+ * @name POST /api/v1/admin/delete-session
+ */
+router.post("/delete-score", prValidate({ sessionID: "string" }), async (req, res) => {
+	const body = req.safeBody as { sessionID: string };
+
+	const session = await db.sessions.findOne({ scoreID: body.sessionID });
+
+	if (!session) {
+		return res.status(404).json({
+			success: false,
+			description: `This session does not exist.`,
+		});
+	}
+
+	const scores = await GetScoresFromSession(session);
+
+	await DeleteMultipleScores(scores);
+
+	return res.status(200).json({
+		success: true,
+		description: `Removed session.`,
 		body: {},
 	});
 });

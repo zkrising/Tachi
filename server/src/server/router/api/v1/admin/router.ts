@@ -182,7 +182,7 @@ router.post("/delete-score", prValidate({ scoreID: "string" }), async (req, res)
  *
  * @name POST /api/v1/admin/delete-session
  */
-router.post("/delete-score", prValidate({ sessionID: "string" }), async (req, res) => {
+router.post("/delete-session", prValidate({ sessionID: "string" }), async (req, res) => {
 	const body = req.safeBody as { sessionID: string };
 
 	const session = await db.sessions.findOne({ scoreID: body.sessionID });

@@ -2,6 +2,7 @@
 import { PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import fetch from "node-fetch";
+import { WrapScriptPromise } from "utils/misc";
 import type { ChartDocument } from "tachi-common";
 
 const AI_URL = "https://bms.hexlataia.xyz/tables/json/ai.json";
@@ -32,11 +33,5 @@ export async function UpdateAILevels() {
 }
 
 if (require.main === module) {
-	UpdateAILevels()
-		.then(() => process.exit(0))
-		.catch((err: unknown) => {
-			logger.error(`Failed to sync BMS AI Table.`, { err }, () => {
-				process.exit(1);
-			});
-		});
+	WrapScriptPromise(UpdateAILevels(), logger);
 }

@@ -3,6 +3,7 @@ import db from "external/mongo/db";
 import { VERSION_INFO } from "lib/constants/version";
 import { PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
+import { WrapScriptPromise } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
@@ -47,11 +48,5 @@ export async function BacksyncBMSPMSSongsAndCharts() {
 }
 
 if (require.main === module) {
-	BacksyncBMSPMSSongsAndCharts()
-		.then(() => process.exit(0))
-		.catch((err: unknown) => {
-			logger.error(`Failed to backsync bms/pms songs and charts.`, { err }, () => {
-				process.exit(1);
-			});
-		});
+	WrapScriptPromise(BacksyncBMSPMSSongsAndCharts(), logger);
 }

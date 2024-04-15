@@ -102,6 +102,8 @@ if (require.main === module) {
 			// This is a severe error, not an error. Running the UGS snapshot every day is necessary.
 			logger.severe(`Failed to snapshot user game stats.`, { err });
 
-			process.exit(1);
+			setTimeout(() => {
+				process.exit(1);
+			}, 1000);
 		});
 }

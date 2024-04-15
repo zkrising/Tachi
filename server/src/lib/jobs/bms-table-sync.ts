@@ -5,7 +5,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { DeorphanIfInQueue } from "lib/orphan-queue/orphan-queue";
 import { BMS_TABLES } from "tachi-common";
 import { InitaliseFolderChartLookup } from "utils/folder";
-import { FormatBMSTables } from "utils/misc";
+import { FormatBMSTables, WrapScriptPromise } from "utils/misc";
 import type { BMSTableEntry } from "bms-table-loader";
 import type { FilterQuery } from "mongodb";
 import type { BMSTableInfo, ChartDocument } from "tachi-common";
@@ -218,11 +218,5 @@ export async function SyncBMSTables() {
 }
 
 if (require.main === module) {
-	SyncBMSTables()
-		.then(() => process.exit(0))
-		.catch((err: unknown) => {
-			logger.error(`Failed to sync BMS Tables.`, { err }, () => {
-				process.exit(1);
-			});
-		});
+	WrapScriptPromise(SyncBMSTables(), logger);
 }

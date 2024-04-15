@@ -1,5 +1,5 @@
 import { ONE_MEGABYTE } from "lib/constants/filesize";
-import { ONE_HOUR } from "lib/constants/time";
+import { ONE_HOUR, ONE_SECOND } from "lib/constants/time";
 import { TachiConfig } from "lib/setup/config";
 import { GetGameConfig, GetGamePTConfig } from "tachi-common";
 import { exec } from "child_process";
@@ -322,6 +322,11 @@ export function WrapScriptPromise(promise: Promise<unknown>, logger: KtLogger) {
 			code = 1;
 		})
 		.finally(() => {
+			// die in 10 seconds or when the logger ends, whatever ends earlier.
+			setTimeout(() => {
+				process.exit(1);
+			}, ONE_SECOND * 10);
+
 			logger.end(() => {
 				process.exit(code);
 			});

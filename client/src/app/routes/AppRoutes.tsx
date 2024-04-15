@@ -42,17 +42,6 @@ export function Routes() {
 					<VerifyEmailPage />
 				</Route>
 
-				<Route path="/oauth2-callback">
-					<OAuth2CallbackRoutes />
-				</Route>
-				<Route path="/oauth/request-auth">
-					<OAuthRequestAuthPage />
-				</Route>
-
-				<Route path="/client-file-flow">
-					<ClientFileFlowRoutes />
-				</Route>
-
 				<Route exact path="/login">
 					{user ? <Redirect to="/" /> : <LoginPage />}
 				</Route>
@@ -82,6 +71,17 @@ export function Routes() {
 							</span>
 						</LoginPageLayout>
 					)}
+				</Route>
+
+				<Route path="/oauth2-callback">
+					{!user ? <LoginPage /> : <OAuth2CallbackRoutes />}
+				</Route>
+				<Route path="/oauth/request-auth">
+					{!user ? <LoginPage /> : <OAuthRequestAuthPage />}
+				</Route>
+
+				<Route path="/client-file-flow">
+					{!user ? <LoginPage /> : <ClientFileFlowRoutes />}
 				</Route>
 
 				<Route path="*">

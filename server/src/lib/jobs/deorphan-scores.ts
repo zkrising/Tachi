@@ -3,6 +3,7 @@
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { ReprocessOrphan } from "lib/score-import/framework/orphans/orphans";
+import { WrapScriptPromise } from "utils/misc";
 
 const logger = CreateLogCtx(__dirname);
 
@@ -42,11 +43,5 @@ export async function DeoprhanScores() {
 }
 
 if (require.main === module) {
-	DeoprhanScores()
-		.then(() => process.exit(0))
-		.catch((err: unknown) => {
-			logger.error(`Failed to de-orphan scores.`, { err }, () => {
-				process.exit(1);
-			});
-		});
+	WrapScriptPromise(DeoprhanScores(), logger);
 }

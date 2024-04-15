@@ -6,6 +6,7 @@ import CreateLogCtx from "lib/logger/logger";
 import { parse } from "node-html-parser";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import fetch from "utils/fetch";
+import { WrapScriptPromise } from "utils/misc";
 import { FindSongOnTitle } from "utils/queries/songs";
 
 const logger = CreateLogCtx(__filename);
@@ -120,13 +121,5 @@ function ParseTierStr(tierStr: string) {
 }
 
 if (require.main === module) {
-	UpdateDPTiers()
-		.then(() => {
-			process.exit(0);
-		})
-		.catch((err: unknown) => {
-			logger.error(`Failed to update DP Tiers.`, { err }, () => {
-				process.exit(1);
-			});
-		});
+	WrapScriptPromise(UpdateDPTiers(), logger);
 }

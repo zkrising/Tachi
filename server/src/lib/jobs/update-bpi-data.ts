@@ -3,6 +3,7 @@ import { PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import fetch from "utils/fetch";
+import { WrapScriptPromise } from "utils/misc";
 import type {
 	ChartDocument,
 	Difficulties,
@@ -178,13 +179,5 @@ export async function UpdatePoyashiData() {
 }
 
 if (require.main === module) {
-	UpdatePoyashiData()
-		.then(() => {
-			process.exit(0);
-		})
-		.catch((err: unknown) => {
-			logger.error("Failed to update poyashi data.", { err }, () => {
-				process.exit(1);
-			});
-		});
+	WrapScriptPromise(UpdatePoyashiData(), logger);
 }

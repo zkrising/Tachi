@@ -117,7 +117,7 @@ export interface TachiServerConfig {
 	LOGGER_CONFIG: {
 		LOG_LEVEL: "crit" | "debug" | "error" | "info" | "severe" | "verbose" | "warn";
 		SEQ?: {
-			API_KEY: string;
+			API_KEY?: string;
 			URL: string;
 		};
 		LOKI?: {
@@ -224,7 +224,7 @@ const err = p(config, {
 			p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit")
 		),
 		SEQ: p.optional({
-			API_KEY: "string",
+			API_KEY: "*string",
 			URL: "string",
 		}),
 		LOKI: p.optional({

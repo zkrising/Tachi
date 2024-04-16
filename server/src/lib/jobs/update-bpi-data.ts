@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
-import { PullDatabaseSeeds } from "lib/database-seeds/repo";
+import db from "external/mongo/db";
+import { BacksyncCollection, PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import fetch from "utils/fetch";
@@ -176,6 +177,8 @@ export async function UpdatePoyashiData() {
 	}
 
 	await repo.Destroy();
+
+	await BacksyncCollection("charts-iidx", db.charts.iidx, "Update BPI Data");
 }
 
 if (require.main === module) {

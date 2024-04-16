@@ -157,18 +157,17 @@ export class DatabaseSeedsRepo {
 		// callback is called, so lets just define it to a local variable.
 		const email = ServerConfig.SEEDS_CONFIG.USER_EMAIL;
 
-		return (
-			asyncExec(`git config user.name "${ServerConfig.SEEDS_CONFIG.USER_NAME}"`, this.baseDir)
-				.then(() => asyncExec(`git config user.email "${email}"`, this.baseDir))
-
-				// @ereti is insistent that this sleep 1 is fine, so, whatever.
-				.then(() =>
-					asyncExec(
-						`git config credential.helper '!f() { sleep 1; echo "username=\${GIT_USER}"; echo "password=\${GIT_PASSWORD}"; }; f'`,
-						this.baseDir
-					)
+		return asyncExec(
+			`git config user.name "${ServerConfig.SEEDS_CONFIG.USER_NAME}"`,
+			this.baseDir
+		)
+			.then(() => asyncExec(`git config user.email "${email}"`, this.baseDir))
+			.then(() =>
+				asyncExec(
+					`git remote set-url origin "https://$GIT_USERNAME:$GIT_PASSWORD@${ServerConfig.SEEDS_CONFIG?.REPO_URL}"`,
+					this.baseDir
 				)
-		);
+			);
 	}
 
 	/**

@@ -5,6 +5,7 @@ test-env:
   - MONGO_URL=127.0.0.1
   - REDIS_URL=127.0.0.1
   - TCHIS_CONF_LOCATION=test.conf.json5
+  - LOG_LEVEL=verbose
 # On a local machine, these tests run in under 2-3 minutes.
 # On github actions, these tests can take an inordinate amount of time.
 # The timeout is set to 10 minutes, which is ridiculous.

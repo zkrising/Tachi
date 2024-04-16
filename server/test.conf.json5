@@ -70,7 +70,4 @@
 			"api/min-sdvx",
 		],
 	},
-	LOGGER_CONFIG: {
-		LOG_LEVEL: "info",
-	},
 }

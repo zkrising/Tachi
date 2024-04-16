@@ -80,9 +80,6 @@
 			"api/cg-gan-museca",
 		],
 	},
-	LOGGER_CONFIG: {
-		LOG_LEVEL: "info",
-	},
 	SEEDS_CONFIG: {
 		REPO_URL: "https://github.com/zkldi/Tachi",
 		USER_NAME: null,

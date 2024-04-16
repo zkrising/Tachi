@@ -3,12 +3,11 @@ import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import SafeJSONStringify from "safe-json-stringify";
 import { EscapeStringRegexp } from "utils/misc";
 import winston, { format, transports } from "winston";
-import LokiTransport from "winston-loki";
 import type { LeveledLogMethod, Logger } from "winston";
 
 export type KtLogger = Logger & { severe: LeveledLogMethod };
 
-const level = process.env.LOG_LEVEL ?? ServerConfig.LOGGER_CONFIG.LOG_LEVEL;
+const level = process.env.LOG_LEVEL;
 
 const formatExcessProperties = (meta: Record<string, unknown>, limit = false) => {
 	let i = 0;
@@ -127,7 +126,7 @@ const tports: Array<winston.transport> = [
 	}),
 ];
 
-if (ServerConfig.LOGGER_CONFIG.SEQ) {
+if (Environment.seqUrl) {
 	const levelMap: Record<string, any> = {
 		crit: "Fatal",
 		severe: "Error",
@@ -140,8 +139,8 @@ if (ServerConfig.LOGGER_CONFIG.SEQ) {
 
 	tports.push(
 		new SeqTransport({
-			apiKey: ServerConfig.LOGGER_CONFIG.SEQ.API_KEY,
-			serverUrl: ServerConfig.LOGGER_CONFIG.SEQ.URL,
+			apiKey: Environment.seqApiKey,
+			serverUrl: Environment.seqUrl,
 			onError: (err) => {
 				// eslint-disable-next-line no-console
 				console.error(`Failed to send seq message: ${err.message}.`);
@@ -149,16 +148,6 @@ if (ServerConfig.LOGGER_CONFIG.SEQ) {
 			levelMapper(level = "") {
 				return levelMap[level] ?? "Information";
 			},
-		})
-	);
-}
-
-if (ServerConfig.LOGGER_CONFIG.LOKI) {
-	tports.push(
-		new LokiTransport({
-			host: ServerConfig.LOGGER_CONFIG.LOKI.URL,
-			basicAuth: ServerConfig.LOGGER_CONFIG.LOKI.AUTH,
-			json: true,
 		})
 	);
 }
@@ -233,7 +222,7 @@ export function ChangeRootLogLevel(
 export function GetLogLevel() {
 	return (
 		rootLogger.transports.map((e) => e.level).find((e) => typeof e === "string") ??
-		ServerConfig.LOGGER_CONFIG.LOG_LEVEL
+		ServerConfig.LOG_LEVEL
 	);
 }
 

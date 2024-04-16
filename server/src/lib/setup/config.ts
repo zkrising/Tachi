@@ -114,17 +114,6 @@ export interface TachiServerConfig {
 		BETA_USER_BONUS: integer;
 	};
 	TACHI_CONFIG: TachiServerCoreConfig;
-	LOGGER_CONFIG: {
-		LOG_LEVEL: "crit" | "debug" | "error" | "info" | "severe" | "verbose" | "warn";
-		SEQ?: {
-			API_KEY?: string;
-			URL: string;
-		};
-		LOKI?: {
-			URL: string;
-			AUTH?: string;
-		};
-	};
 	CDN_CONFIG: {
 		WEB_LOCATION: string;
 		SAVE_LOCATION:
@@ -218,19 +207,6 @@ const err = p(config, {
 		GAMES: [p.isIn(allSupportedGames)],
 		IMPORT_TYPES: [p.isIn(allImportTypes)],
 		SIGNUPS_ENABLED: p.optional("boolean"),
-	},
-	LOGGER_CONFIG: {
-		LOG_LEVEL: p.optional(
-			p.isIn("debug", "verbose", "info", "warn", "error", "severe", "crit")
-		),
-		SEQ: p.optional({
-			API_KEY: "*string",
-			URL: "string",
-		}),
-		LOKI: p.optional({
-			URL: "string",
-			AUTH: "*string",
-		}),
 	},
 	CDN_CONFIG: {
 		WEB_LOCATION: "string",
@@ -328,6 +304,14 @@ if (TachiConfig.GAMES.includes("bms") !== TachiConfig.GAMES.includes("pms")) {
 	process.exit(1);
 }
 
+const logLevel = process.env.LOG_LEVEL ?? "info";
+
+if (!["crit", "severe", "error", "warn", "info", "verbose", "debug"].includes(logLevel)) {
+	logger.error(`Invalid LOG_LEVEL of ${logLevel}.`);
+
+	process.exit(1);
+}
+
 const replicaIdentity = process.env.REPLICA_IDENTITY;
 
 export const Environment = {
@@ -337,4 +321,6 @@ export const Environment = {
 	nodeEnv: nodeEnv as "dev" | "production" | "staging" | "test",
 	replicaIdentity,
 	commitHash: process.env.COMMIT_HASH,
+	seqUrl: process.env.SEQ_URL,
+	seqApiKey: process.env.SEQ_API_KEY,
 };

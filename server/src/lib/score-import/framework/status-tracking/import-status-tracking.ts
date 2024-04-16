@@ -49,11 +49,12 @@ export async function StartTrackingImport(jobData: ScoreImportJobData<ImportType
 	// store the input for this import on the CDN. The CDN is likely the right place
 	// to store large amounts of write-only data, so lets do that.
 	CDNStoreOrOverwrite(GetScoreImportInputURL(jobData.importID), SerialiseJobData(jobData)).catch(
-		() => {
+		(err) => {
 			logger.error(
 				`Failed to save score-import-input for import '${
 					jobData.importID
-				}' at path '${GetScoreImportInputURL(jobData.importID)}'.`
+				}' at path '${GetScoreImportInputURL(jobData.importID)}'.`,
+				{ reason: err }
 			);
 		}
 	);

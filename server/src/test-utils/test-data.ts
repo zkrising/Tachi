@@ -577,6 +577,7 @@ export const TestingWaccaPupaExp: ChartDocument<"wacca:Single"> = {
 	level: "13+",
 	data: {
 		isHot: false,
+		inGameID: 2085,
 	},
 	isPrimary: true,
 	versions: ["reverse"],

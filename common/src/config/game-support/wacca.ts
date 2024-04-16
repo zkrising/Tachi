@@ -1,6 +1,6 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { FmtNum } from "../../utils/util";
-import { ClassValue } from "../config-utils";
+import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
@@ -144,6 +144,7 @@ export const WACCA_SINGLE_CONF = {
 
 	chartData: z.strictObject({
 		isHot: z.boolean(),
+		inGameID: zodNonNegativeInt,
 	}),
 
 	preferences: z.strictObject({}),

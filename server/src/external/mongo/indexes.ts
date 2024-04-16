@@ -119,7 +119,7 @@ const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 	"charts-museca": [index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE)],
 	"charts-chunithm": [index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE)],
 	"charts-gitadora": [index({ "data.inGameID": 1, difficulty: 1, playtype: 1 }, UNIQUE)],
-	"charts-wacca": [index({ isHot: 1 })],
+	"charts-wacca": [index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE), index({ isHot: 1 })],
 	"charts-usc": [index({ "data.hashSHA1": 1, playtype: 1 }, UNIQUE)],
 	"charts-jubeat": [index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE)],
 	"charts-pms": [

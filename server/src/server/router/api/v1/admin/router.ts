@@ -8,7 +8,7 @@ import { SendSiteAnnouncementNotification } from "lib/notifications/notification
 import { UpdateGoalsForUser } from "lib/score-import/framework/goals/goals";
 import { UpdateQuestsForUser } from "lib/score-import/framework/quests/quests";
 import { DeleteMultipleScores, DeleteScore } from "lib/score-mutation/delete-scores";
-import { ServerConfig, TachiConfig } from "lib/setup/config";
+import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
 import { p } from "prudence";
 import prValidate from "server/middleware/prudence-validate";
 import { UserAuthLevels } from "tachi-common";
@@ -56,7 +56,7 @@ const RequireAdminLevel: RequestHandler = async (req, res, next) => {
 	next();
 };
 
-const LOG_LEVEL = ServerConfig.LOGGER_CONFIG.LOG_LEVEL;
+const LOG_LEVEL = Environment.logLevel;
 
 router.use(RequireAdminLevel);
 

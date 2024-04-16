@@ -26,7 +26,7 @@ const logger = CreateLogCtx(__filename);
 logger.info(`Booting ${TachiConfig.NAME} - ${VERSION_PRETTY} [ENV: ${Environment.nodeEnv}]`, {
 	bootInfo: true,
 });
-logger.info(`Log level is set to ${ServerConfig.LOGGER_CONFIG.LOG_LEVEL}.`, { bootInfo: true });
+logger.info(`Log level is set to ${Environment.logLevel}.`, { bootInfo: true });
 
 logger.info(`Loading sequence documents...`, { bootInfo: true });
 

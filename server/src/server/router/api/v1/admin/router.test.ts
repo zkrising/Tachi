@@ -2,7 +2,7 @@ import deepmerge from "deepmerge";
 import db from "external/mongo/db";
 import { ONE_MINUTE } from "lib/constants/time";
 import { ChangeRootLogLevel, GetLogLevel } from "lib/logger/logger";
-import { ServerConfig } from "lib/setup/config";
+import { Environment, ServerConfig } from "lib/setup/config";
 import { UserAuthLevels } from "tachi-common";
 import t from "tap";
 import { CreateFakeAuthCookie } from "test-utils/fake-auth";
@@ -12,7 +12,7 @@ import { TestingIIDXSPScore } from "test-utils/test-data";
 import { Sleep } from "utils/misc";
 import type { ScoreDocument } from "tachi-common";
 
-const LOG_LEVEL = ServerConfig.LOGGER_CONFIG.LOG_LEVEL;
+const LOG_LEVEL = Environment.logLevel;
 
 t.test("POST /api/v1/admin/change-log-level", async (t) => {
 	t.beforeEach(async () => {

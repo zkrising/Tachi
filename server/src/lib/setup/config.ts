@@ -323,4 +323,5 @@ export const Environment = {
 	commitHash: process.env.COMMIT_HASH,
 	seqUrl: process.env.SEQ_URL,
 	seqApiKey: process.env.SEQ_API_KEY,
+	logLevel: logLevel as "crit" | "debug" | "error" | "info" | "severe" | "verbose" | "warn",
 };

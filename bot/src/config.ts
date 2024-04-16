@@ -106,6 +106,8 @@ export interface ProcessEnvironment {
 	nodeEnv: "dev" | "production" | "staging" | "test";
 	mongoUrl: string;
 	port: integer;
+	seqUrl?: string;
+	seqApiKey?: string;
 }
 
 function ParseEnvVars() {
@@ -123,6 +125,7 @@ function ParseEnvVars() {
 				p.isPositiveInteger(Number(self)) === true ||
 				"Should be a string representing a whole integer port.",
 			SEQ_URL: "*string",
+			SEQ_API_KEY: "*string",
 		},
 		{},
 		{ allowExcessKeys: true }
@@ -138,6 +141,8 @@ function ParseEnvVars() {
 		nodeEnv: process.env.NODE_ENV,
 		mongoUrl: process.env.MONGO_URL,
 		port: Number(process.env.PORT),
+		seqUrl: process.env.SEQ_URL,
+		seqApiKey: process.env.SEQ_API_KEY,
 	} as ProcessEnvironment;
 }
 

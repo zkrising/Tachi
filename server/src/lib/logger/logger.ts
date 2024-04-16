@@ -222,7 +222,7 @@ export function ChangeRootLogLevel(
 export function GetLogLevel() {
 	return (
 		rootLogger.transports.map((e) => e.level).find((e) => typeof e === "string") ??
-		ServerConfig.LOG_LEVEL
+		Environment.logLevel
 	);
 }
 

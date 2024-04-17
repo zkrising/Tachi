@@ -156,7 +156,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			/>,
 			<ImportInfoCard
 				name="Konaste Hook"
-				href="ks-hook"
+				href="kshook"
 				desc="Automatically import scores from SDVX Konaste!"
 				moreInfo="Yep, it's that simple."
 				key="Konaste Hook"

@@ -112,7 +112,7 @@ export default function ImportRoutes() {
 							<Route exact path="/import/barbatos">
 								<BarbatosPage />
 							</Route>
-							<Route exact path="/import/ks-hook">
+							<Route exact path="/import/kshook">
 								<KsHookPage />
 							</Route>
 							<Route exact path="/import/silent-hook">

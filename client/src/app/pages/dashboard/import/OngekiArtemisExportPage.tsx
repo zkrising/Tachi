@@ -12,7 +12,7 @@ export default function OngekiArtemisExport() {
 			<h1 className="text-center mb-4">What is the ARTEMiS Exporter?</h1>
 			<div>
 				The Artemis Exporter is a script that will export your O.N.G.E.K.I. scores from an
-				ARTEMiS instance to a BATCH-MANUAL JSON for import to {TachiConfig.name}. You will
+				ARTEMiS instance to a BATCH-MANUAL JSON for import to {TachiConfig.NAME}. You will
 				need direct access to the server instance.
 			</div>
 			<Divider />

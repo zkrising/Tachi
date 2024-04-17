@@ -4612,5 +4612,68 @@
 		"id": 386,
 		"searchTerms": [],
 		"title": "DIVE with Ü"
+	},
+	{
+		"altTitles": [],
+		"artist": "UNISON SQUARE GARDEN",
+		"data": {
+			"displayVersion": "wacca",
+			"genre": "アニメ／ＰＯＰ"
+		},
+		"id": 387,
+		"searchTerms": [
+			"Sugar Song and Bitter Step"
+		],
+		"title": "シュガーソングとビターステップ"
+	},
+	{
+		"altTitles": [],
+		"artist": "あんさんぶるスターズ！ オン・ステージ",
+		"data": {
+			"displayVersion": "wacca",
+			"genre": "2.5次元"
+		},
+		"id": 388,
+		"searchTerms": [
+			"Singin' Shine!"
+		],
+		"title": "Singin'☆Shine！"
+	},
+	{
+		"altTitles": [],
+		"artist": "土間うまる(田中あいみ)",
+		"data": {
+			"displayVersion": "wacca",
+			"genre": "アニメ／ＰＯＰ"
+		},
+		"id": 389,
+		"searchTerms": [
+			"Kakushinteki☆Metamorphose!"
+		],
+		"title": "かくしん的☆めたまるふぉ～ぜっ!"
+	},
+	{
+		"altTitles": [],
+		"artist": "土間うまる(田中あいみ)",
+		"data": {
+			"displayVersion": "wacca",
+			"genre": "アニメ／ＰＯＰ"
+		},
+		"id": 390,
+		"searchTerms": [
+			"Nimensei☆Uraomote Life!"
+		],
+		"title": "にめんせい☆ウラオモテライフ!"
+	},
+	{
+		"altTitles": [],
+		"artist": "仁科カヅキ vs 大和アレクサンダー(増田俊樹・武内駿輔)",
+		"data": {
+			"displayVersion": "wacca",
+			"genre": "アニメ／ＰＯＰ"
+		},
+		"id": 391,
+		"searchTerms": [],
+		"title": "EZ DO DANCE -K.O.P. REMIX-"
 	}
 ]

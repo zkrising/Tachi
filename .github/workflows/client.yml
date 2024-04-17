@@ -72,6 +72,7 @@ jobs:
         run: pnpm --filter tachi-client... --filter . install
 
       - name: Build Bokutachi
+        if: github.ref == 'refs/heads/main'
         run: pnpm --filter tachi-client build
         env:
           VITE_GIT_REPO: "GitHub:zkldi/Tachi"
@@ -85,6 +86,7 @@ jobs:
           BUILD_OUT_DIR: /home/runner/boku
 
       - name: Build Kamaitachi
+        if: github.ref == 'refs/heads/main'
         run: pnpm --filter tachi-client build
         env:
           VITE_MANDATE_LOGIN: true
@@ -101,11 +103,33 @@ jobs:
           BUILD_OUT_DIR: /home/runner/kamai
 
       - name: Deploy Kamaitachi
+        if: github.ref == 'refs/heads/main'
         run: scp -r ~/kamai ci@"$TACHI_HOST":tachi-client
         env:
           TACHI_HOST: ${{secrets.TACHI_HOST}}
 
       - name: Deploy Bokutachi
+        if: github.ref == 'refs/heads/main'
         run: scp -r ~/boku ci@"$TACHI_HOST":tachi-client
+        env:
+          TACHI_HOST: ${{secrets.TACHI_HOST}}
+
+      - name: Build Staging
+        if: github.ref == 'refs/heads/staging'
+        run: pnpm --filter tachi-client build
+        env:
+          VITE_MANDATE_LOGIN: true
+          VITE_GOATCOUNTER: "https://tachi.goatcounter.com/count"
+          VITE_SERVER_URL: "https://staging.tachi.ac"
+          VITE_TCHIC_MODE: "omni"
+          VITE_CDN_URL: "https://cdn-staging.tachi.ac"
+          VITE_GIT_REPO: "GitHub:zkldi/Tachi"
+          VITE_RECAPTCHA_KEY: "6LcsYbIpAAAAAEJffjIXmbQcxj_SBZG7BnSPjF4L"
+          TACHI_NAME: "Tachi Staging"
+          BUILD_OUT_DIR: /home/runner/staging
+
+      - name: Deploy Staging
+        if: github.ref == 'refs/heads/staging'
+        run: scp -r ~/staging ci@"$TACHI_HOST":tachi-client
         env:
           TACHI_HOST: ${{secrets.TACHI_HOST}}

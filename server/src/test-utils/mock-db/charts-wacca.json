@@ -2,7 +2,8 @@
 	{
 		"chartID": "2abcf2da86f3d968dbe07695ab7ebf6b79cb0841",
 		"data": {
-			"isHot": false
+			"isHot": false,
+			"inGameID": 2085
 		},
 		"difficulty": "EXPERT",
 		"isPrimary": true,

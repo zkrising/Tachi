@@ -98,6 +98,7 @@ const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 		index({ title: "text", searchTerms: "text" }),
 	],
 	"kai-auth-tokens": [index({ userID: 1, service: 1 }, UNIQUE)],
+	"myt-card-info": [index({ userID: 1 }, UNIQUE)],
 	"bms-course-lookup": [index({ md5sums: 1 }, UNIQUE)],
 	"api-tokens": [index({ token: 1 }, UNIQUE), index({ userID: 1 })],
 	tables: [index({ tableID: 1, game: 1, playtype: 1 }, UNIQUE)],
@@ -119,7 +120,7 @@ const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 	"charts-museca": [index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE)],
 	"charts-chunithm": [index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE)],
 	"charts-gitadora": [index({ "data.inGameID": 1, difficulty: 1, playtype: 1 }, UNIQUE)],
-	"charts-wacca": [index({ isHot: 1 })],
+	"charts-wacca": [index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE), index({ isHot: 1 })],
 	"charts-usc": [index({ "data.hashSHA1": 1, playtype: 1 }, UNIQUE)],
 	"charts-jubeat": [index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE)],
 	"charts-pms": [

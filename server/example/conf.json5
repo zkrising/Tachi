@@ -7,6 +7,7 @@
 	FLO_API_URL: "https://flo.example.com",
 	EAG_API_URL: "https://eag.example.com",
 	MIN_API_URL: "https://min.example.com",
+	MYT_API_HOST: "myt.example.com",
 	FLO_OAUTH2_INFO: {
 		CLIENT_ID: "DUMMY_CLIENT_ID",
 		CLIENT_SECRET: "DUMMY_CLIENT_SECRET",
@@ -18,6 +19,7 @@
 		REDIRECT_URI: "https://example.com",
 	},
 	ARC_AUTH_TOKEN: "unused",
+	MYT_AUTH_TOKEN: "unused",
 	OUR_URL: "https://127.0.0.1:8080",
 	CLIENT_DEV_SERVER: "http://127.0.0.1:3000",
 	ENABLE_SERVER_HTTPS: true,
@@ -78,6 +80,7 @@
 			"api/cg-gan-sdvx",
 			"api/cg-gan-popn",
 			"api/cg-gan-museca",
+			"api/myt-wacca",
 		],
 	},
 	SEEDS_CONFIG: {

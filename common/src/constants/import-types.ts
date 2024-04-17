@@ -34,6 +34,7 @@ const API_IMPORT_TYPES: Record<APIImportTypes, true> = {
 	"api/flo-iidx": true,
 	"api/flo-sdvx": true,
 	"api/min-sdvx": true,
+	"api/myt-wacca": true,
 	"api/cg-dev-museca": true,
 	"api/cg-dev-popn": true,
 	"api/cg-dev-sdvx": true,

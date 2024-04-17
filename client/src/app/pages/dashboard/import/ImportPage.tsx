@@ -308,6 +308,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 		);
 	} else if (game === "wacca") {
 		Content.unshift(
+			<ImportTypeInfoCard key="api/myt-wacca" importType="api/myt-wacca" />,
 			<ImportInfoCard
 				name="WaccaMyPageScraper"
 				href="wacca-mypage-scraper"
@@ -523,6 +524,16 @@ function ImportTypeInfoCard({
 					desc="Pull your MUSECA scores from the NAG Network."
 					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 					key="cg-nag-museca"
+				/>
+			);
+		case "api/myt-wacca":
+			return (
+				<ImportInfoCard
+					name="MYT Integration"
+					href="myt-wacca"
+					desc="Pull your WACCA scores from the MYT Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
+					key="myt-wacca"
 				/>
 			);
 		case "file/eamusement-iidx-csv":

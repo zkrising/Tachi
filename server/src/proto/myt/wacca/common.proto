@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package mythos.wacca.v0;
+
+enum WaccaMusicDifficulty {
+  WACCA_MUSIC_DIFFICULTY_UNSPECIFIED = 0;
+  WACCA_MUSIC_DIFFICULTY_NORMAL = 1;
+  WACCA_MUSIC_DIFFICULTY_HARD = 2;
+  WACCA_MUSIC_DIFFICULTY_EXPERT = 3;
+  WACCA_MUSIC_DIFFICULTY_INFERNO = 4;
+}
+
+enum WaccaMusicScoreGrade {
+  WACCA_MUSIC_SCORE_GRADE_UNSPECIFIED = 0;
+  WACCA_MUSIC_SCORE_GRADE_D = 1;
+  WACCA_MUSIC_SCORE_GRADE_C = 2;
+  WACCA_MUSIC_SCORE_GRADE_B = 3;
+  WACCA_MUSIC_SCORE_GRADE_A = 4;
+  WACCA_MUSIC_SCORE_GRADE_AA = 5;
+  WACCA_MUSIC_SCORE_GRADE_AAA = 6;
+  WACCA_MUSIC_SCORE_GRADE_S = 7;
+  WACCA_MUSIC_SCORE_GRADE_S_PLUS = 8;
+  WACCA_MUSIC_SCORE_GRADE_SS = 9;
+  WACCA_MUSIC_SCORE_GRADE_SS_PLUS = 10;
+  WACCA_MUSIC_SCORE_GRADE_SSS = 11;
+  WACCA_MUSIC_SCORE_GRADE_SSS_PLUS = 12;
+  WACCA_MUSIC_SCORE_GRADE_MASTER = 13;
+}
+
+// <unused enums removed from Tachi>
+
+enum WaccaPlayMode {
+  WACCA_PLAY_MODE_UNSPECIFIED = 0;
+  WACCA_PLAY_MODE_SINGLE = 1;
+  WACCA_PLAY_MODE_VERSUS = 2;
+  WACCA_PLAY_MODE_CO_OP = 3;
+}
+
+message WaccaClearStatus {
+  bool is_clear = 1;
+  bool is_missless = 2;
+  bool is_full_combo = 3;
+  bool is_all_marvelous = 4;
+  bool is_give_up = 5;
+}
+
+message WaccaJudge {
+  int32 marvelous = 1;
+  int32 great = 2;
+  int32 good = 3;
+  int32 miss = 4;
+}

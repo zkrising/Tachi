@@ -10,6 +10,7 @@
 		"baseUrl": "src",
 		"outDir": "js",
 		"target": "ES2020",
+		"allowJs": true,
 		"lib": [
 			"ES2019",
 			// This is necessary because -- for some unknown reason -- the AWS SDK
@@ -33,10 +34,12 @@
 		"tsBuildInfoFile": ".tsbuildinfo"
 	},
 	"include": [
-		"src/**/*.ts"
+		"src/**/*.ts",
+		"src/proto/**/*.js",
+		"src/proto/**/*.d.ts",
 	],
 	"exclude": [
-		"node_modules"
+		"node_modules",
 	],
 	"references": [
 		{

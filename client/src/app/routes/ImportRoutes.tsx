@@ -30,6 +30,7 @@ import SaekawaPage from "app/pages/dashboard/import/SaekawaPage";
 import AquaArtemisExport from "app/pages/dashboard/import/AquaArtemisExportPage";
 import ChunithmMYTExport from "app/pages/dashboard/import/ChunithmMYTExportPage";
 import OngekiArtemisExport from "app/pages/dashboard/import/OngekiArtemisExportPage";
+import MytIntegrationPage from "components/imports/MYTIntegrationPage";
 
 export default function ImportRoutes() {
 	const { user } = useContext(UserContext);
@@ -216,6 +217,10 @@ export default function ImportRoutes() {
 							</Route>
 							<Route exact path="/import/cg-gan-museca">
 								<CGIntegrationPage cgType="gan" game="museca" />
+							</Route>
+
+							<Route exact path="/import/myt-wacca">
+								<MytIntegrationPage game="wacca" />
 							</Route>
 
 							<Route exact path="/import/wacca-mypage-scraper">

@@ -9,6 +9,7 @@
 	"extends": "./tsconfig.json",
 	"exclude": [
 		"node_modules",
+		"proto",
 		"src/test-utils",
 		"src/**/*.test.ts"
 	],

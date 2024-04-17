@@ -10,13 +10,16 @@ import { GetGameConfig, type integer } from "tachi-common";
 import type {
 	requestCallback,
 	ClientReadableStream,
-	StatusObject,
 	ServiceError,
+	CallOptions,
 } from "@grpc/grpc-js";
 import type { KtLogger } from "lib/logger/logger";
 import type { LookupResponse } from "proto/generated/cards/cards_pb";
-import type { PlaylogStreamItem } from "proto/generated/wacca/user_pb";
 import type { Game } from "tachi-common";
+
+// Hardcode all requests to time out after 30s.
+// It seems we can stream 1000+ scores in <4s.
+const GRPC_TIMEOUT_SECS = 30;
 
 export function GetMytHostname(): string {
 	const hostname = ServerConfig.MYT_API_HOST;
@@ -43,85 +46,78 @@ function CreateAuthenticatedMetadata() {
 	return auth;
 }
 
+function CreateDeadlineOptions() {
+	const deadline = new Date().setSeconds(new Date().getSeconds() + GRPC_TIMEOUT_SECS);
+
+	return { deadline };
+}
+
 export function UnaryRPCAsAsync<TIn, TOut>(
-	unaryCall: (argument: TIn, metadata: Metadata, callback: requestCallback<TOut>) => void,
+	unaryCall: (
+		argument: TIn,
+		metadata: Metadata,
+		options: CallOptions,
+		callback: requestCallback<TOut>
+	) => void,
 	argument: TIn
 ): Promise<TOut> {
 	return new Promise((resolve, reject) => {
-		unaryCall(argument, CreateAuthenticatedMetadata(), (error, value) => {
-			if (error) {
-				reject(error);
-			}
+		unaryCall(
+			argument,
+			CreateAuthenticatedMetadata(),
+			CreateDeadlineOptions(),
+			(error, value) => {
+				if (error) {
+					reject(error);
+				}
 
-			resolve(value!);
-		});
+				resolve(value!);
+			}
+		);
 	});
 }
 
 export async function* StreamRPCAsAsync<TIn, TOut>(
-	streamingCall: (argument: TIn, metadata: Metadata) => ClientReadableStream<TOut>,
+	streamingCall: (
+		argument: TIn,
+		metadata: Metadata,
+		options: CallOptions
+	) => ClientReadableStream<TOut>,
 	argument: TIn,
 	logger: KtLogger
 ): AsyncIterable<TOut> {
-	const stream = streamingCall(argument, CreateAuthenticatedMetadata());
+	try {
+		const stream = streamingCall(
+			argument,
+			CreateAuthenticatedMetadata(),
+			CreateDeadlineOptions()
+		);
+		let err: Error | null = null;
 
-	// Convert the callback hell to an AsyncIterable - this is kind of garbage but seems like the best way
-	let resolve: (_: unknown) => void;
-	let reject: (err: Error) => void;
-	const data: Array<TOut> = [];
-	let closed = false;
-
-	stream.on("data", (chunk) => {
-		if (!closed) {
-			logger.warn((chunk as PlaylogStreamItem).getInfo()?.getMusicId());
-			data.push(chunk);
-			resolve(null);
-		} else {
-			logger.warn(`ended but ${(chunk as PlaylogStreamItem).getInfo()?.getMusicId()}`);
-		}
-	});
-
-	stream.on("end", () => {
-		closed = true;
-		resolve(null);
-	});
-
-	stream.on("error", (err) => {
-		reject(err);
-	});
-
-	stream.on("status", (status: StatusObject) => {
-		logger.warn("discarding status from grpc stream", status);
-		// discard
-	});
-
-	// next is modified by the callbacks above. Each event will either throw
-	// an exception (by calling reject), or update next before resolving the
-	// Promise.
-	// eslint-disable-next-line no-unmodified-loop-condition
-	while (!closed) {
-		// The loop handling here is messy and non-standard, but intentional.
-		// Each iteration through the loop creates a Promise that we can await,
-		// then assigns the function-scoped resolve and reject functions so
-		// that this promise will resolve once we receive new data (or the
-		// stream closes/errors).
-		// eslint-disable-next-line @typescript-eslint/no-loop-func
-		const newData = new Promise((res, rej) => {
-			resolve = res;
-			reject = rej;
-			setTimeout(rej, 5000, new Error("Stream handling timed out"));
-		});
-
-		while (data.length > 0) {
-			yield data.shift()!;
+		// If we don't have stream.on("error"), or if we throw the error within
+		// this callback, it's not caught properly and will crash the whole node
+		// process. Note: if there are multiple errors within one stream, some may
+		// be dropped... so be it.
+		stream.on("error", (e) => (err = e));
+		// ClientReadableStream already implements AsyncIterable<any> vs Readable,
+		// but we know that it will really be AsyncIterable<TOut>.
+		for await (const streamItem of stream) {
+			yield streamItem as TOut;
 		}
 
-		// eslint-disable-next-line no-await-in-loop
-		await newData;
-	}
+		// TS doesn't realize that err can be set to an Error by stream.on, so it
+		// thinks the type of err is always null. Fix by casting.
+		const fixedErr = err as Error | null;
 
-	while (data.length > 0) {
-		yield data.shift()!;
+		if (fixedErr !== null) {
+			throw fixedErr;
+		}
+	} catch (err) {
+		logger.error(`Error while streaming score data from MYT: ${err}`);
+
+		// Avoid rethrowing the error as it may reveal things like the upstream
+		// server IP address.
+		throw new ScoreImportFatalError(500, `Error while streaming score data from MYT`);
 	}
 }
 

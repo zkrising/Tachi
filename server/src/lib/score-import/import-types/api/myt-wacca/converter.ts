@@ -55,7 +55,7 @@ function convertClearStatus(
 
 const ConvertAPIMytWACCA: ConverterFunction<MytWaccaScore, EmptyObject> = async (
 	data,
-	context,
+	_context,
 	importType,
 	logger
 ) => {

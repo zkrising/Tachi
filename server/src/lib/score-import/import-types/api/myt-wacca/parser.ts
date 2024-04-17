@@ -5,6 +5,7 @@ import {
 	StreamRPCAsAsync,
 } from "../../common/api-myt/traverse-api";
 import { credentials } from "@grpc/grpc-js";
+import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import { WaccaUserClient } from "proto/generated/wacca/user_grpc_pb";
 import { PlaylogRequest } from "proto/generated/wacca/user_pb";
 import type { ParserFunctionReturns } from "../../common/types";
@@ -30,14 +31,48 @@ export default async function ParseMytWACCA(
 ): Promise<ParserFunctionReturns<MytWaccaScore, EmptyObject>> {
 	const titleApiId = await FetchMytTitleAPIID(userID, "wacca", logger);
 	const endpoint = GetMytHostname();
-	const client = new WaccaUserClient(endpoint, credentials.createSsl());
+	let client;
+
+	try {
+		client = new WaccaUserClient(endpoint, credentials.createSsl());
+	} catch (err) {
+		// Note: I don't think this actually does anything on the network, so
+		// it shouldn't really fail. Still, wrap just in case.
+
+		logger.error(`Unexpected MYT during WaccaUserClient creation for ${userID}: ${err}`);
+
+		throw new ScoreImportFatalError(500, `Failed to connect to MYT.`);
+	}
+
 	const req = new PlaylogRequest();
 
 	req.setApiId(titleApiId);
-	const stream = StreamRPCAsAsync(client.getPlaylog.bind(client), req, logger);
-	const iterable = getObjectsFromGrpcIterable(stream);
 
-	const classProvider = await CreateMytWACCAClassHandler(titleApiId, client);
+	let iterable;
+
+	try {
+		const stream = StreamRPCAsAsync(client.getPlaylog.bind(client), req, logger);
+
+		iterable = getObjectsFromGrpcIterable(stream);
+	} catch (err) {
+		logger.error(
+			`Unexpected MYT error while streaming WACCA playlog items for userID ${userID}: ${err}`
+		);
+
+		throw new ScoreImportFatalError(500, `Failed to get scores from MYT.`);
+	}
+
+	let classProvider;
+
+	try {
+		classProvider = await CreateMytWACCAClassHandler(titleApiId, client);
+	} catch (err) {
+		logger.error(
+			`Unexpected MYT error while fetching player data for userID ${userID}: ${err}`
+		);
+
+		throw new ScoreImportFatalError(500, `Failed to fetch player data from MYT.`);
+	}
 
 	return {
 		iterable,

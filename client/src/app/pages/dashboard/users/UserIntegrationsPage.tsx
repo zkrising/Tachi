@@ -22,9 +22,11 @@ import {
 	UserDocument,
 	TachiAPIClientDocument,
 	CGCardInfo,
+	MytCardInfo,
 } from "tachi-common";
 import { SetState } from "types/react";
 import { CGNeedsIntegrate } from "components/imports/CGIntegrationPage";
+import { MytNeedsIntegrate } from "components/imports/MYTIntegrationPage";
 import FervidexIntegrationPage from "./FervidexIntegrationPage";
 import KsHookSV6CIntegrationPage from "./KsHookSV6CIntegrationPage";
 
@@ -641,6 +643,7 @@ function ServicesPage({ reqUser }: { reqUser: UserDocument }) {
 					<SelectLinkButton to={`${baseUrl}/fervidex`}>Fervidex</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/cg`}>CG</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/cg-dev`}>CG Dev</SelectLinkButton>
+					<SelectLinkButton to={`${baseUrl}/myt`}>MYT</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/kshook`}>KsHook</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/flo`}>FLO</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/eag`}>EAG</SelectLinkButton>
@@ -660,6 +663,9 @@ function ServicesPage({ reqUser }: { reqUser: UserDocument }) {
 				</Route>
 				<Route exact path={`${baseUrl}/cg-dev`}>
 					<CGIntegrationInfo key="cg" userID={reqUser.id} cgType="dev" />
+				</Route>
+				<Route exact path={`${baseUrl}/myt`}>
+					<MytIntegrationInfo userID={reqUser.id} />
 				</Route>
 				<Route exact path={`${baseUrl}/kshook`}>
 					<KsHookSV6CIntegrationPage reqUser={reqUser} />
@@ -983,6 +989,49 @@ function CGIntegrationInfo({ cgType, userID }: { cgType: "dev" | "gan" | "nag"; 
 			}}
 			initialCardID={data?.cardID ?? undefined}
 			initialPin={data?.pin ?? undefined}
+		/>
+	);
+}
+
+function MytIntegrationInfo({ userID }: { userID: integer }) {
+	const [reload, shouldReloadCardInfo] = useReducer((x) => x + 1, 0);
+
+	const { data, error } = useApiQuery<MytCardInfo | null>(
+		`/users/${userID}/integrations/myt`,
+		undefined,
+		[reload]
+	);
+
+	if (error) {
+		return <ApiError error={error} />;
+	}
+
+	// null is a valid response for this call, so be explicit with going to loading
+	if (data === undefined) {
+		return <Loading />;
+	}
+
+	return (
+		<MytNeedsIntegrate
+			onSubmit={async (cardAccessCode) => {
+				const res = await APIFetchV1(
+					`/users/${userID}/integrations/myt`,
+					{
+						method: "PUT",
+						body: JSON.stringify({ cardAccessCode }),
+						headers: {
+							"Content-Type": "application/json",
+						},
+					},
+					true,
+					true
+				);
+
+				if (res.success) {
+					shouldReloadCardInfo();
+				}
+			}}
+			initialCardAccessCode={data?.cardAccessCode ?? undefined}
 		/>
 	);
 }

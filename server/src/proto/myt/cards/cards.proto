@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package mythos.cards.v0;
+
+service Cards {
+  rpc Lookup(LookupRequest) returns (LookupResponse);
+}
+
+message LookupRequest {
+  string access_code = 1;
+  repeated string titles = 2;
+}
+
+message LookupResponse {
+  message TitleEntry {
+    string title_kind = 1;
+    string title_api_id = 2;
+  }
+
+  // Tachi note: player_api_id currently unused
+  string player_api_id = 1;
+  repeated TitleEntry titles = 2;
+}

@@ -1,5 +1,6 @@
 import type { ConverterFailure } from "../../framework/common/converter-failures";
 import type { DryScore } from "../../framework/common/types";
+import type { MytWaccaScore } from "../api/myt-wacca/types";
 import type { SDVXEamusementCSVData } from "../file/eamusement-sdvx-csv/types";
 import type { S3Score } from "../file/solid-state-squad/types";
 import type { MyPageRecordsParsedPB } from "../file/wacca-mypage-scraper/types";
@@ -55,6 +56,8 @@ export interface ImportTypeDataMap {
 	"api/eag-iidx": unknown;
 	"api/eag-sdvx": unknown;
 
+	"api/myt-wacca": MytWaccaScore;
+
 	"api/cg-dev-sdvx": CGSDVXScore;
 	"api/cg-dev-museca": CGMusecaScore;
 	"api/cg-dev-popn": CGPopnScore;
@@ -96,6 +99,7 @@ export interface ImportTypeContextMap {
 	"api/min-sdvx": KaiContext;
 	"api/eag-iidx": KaiContext;
 	"api/eag-sdvx": KaiContext;
+	"api/myt-wacca": EmptyObject;
 
 	"api/cg-dev-jubeat": CGContext;
 	"api/cg-dev-sdvx": CGContext;

@@ -7,6 +7,7 @@
 	FLO_API_URL: "https://flo.example.com",
 	EAG_API_URL: "https://eag.example.com",
 	MIN_API_URL: "https://min.example.com",
+    MYT_API_HOST: "myt.example.com",
 	FLO_OAUTH2_INFO: {
 		CLIENT_ID: "DUMMY_CLIENT_ID",
 		CLIENT_SECRET: "DUMMY_CLIENT_SECRET",
@@ -18,6 +19,7 @@
 		REDIRECT_URI: "https://example.com",
 	},
 	ARC_AUTH_TOKEN: "unused",
+    MYT_AUTH_TOKEN: "unused",
 	ENABLE_SERVER_HTTPS: false,
 	OUR_URL: "https://example.com",
 	INVITE_CODE_CONFIG: {

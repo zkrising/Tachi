@@ -98,6 +98,7 @@ const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 		index({ title: "text", searchTerms: "text" }),
 	],
 	"kai-auth-tokens": [index({ userID: 1, service: 1 }, UNIQUE)],
+	"myt-card-info": [index({ userID: 1 }, UNIQUE)],
 	"bms-course-lookup": [index({ md5sums: 1 }, UNIQUE)],
 	"api-tokens": [index({ token: 1 }, UNIQUE), index({ userID: 1 })],
 	tables: [index({ tableID: 1, game: 1, playtype: 1 }, UNIQUE)],

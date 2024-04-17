@@ -45,6 +45,10 @@ export const DatabaseSchemas: Record<Databases, SchemaValidatorFunction> = {
 		cardID: "string",
 		pin: "string",
 	}),
+	"myt-card-info": prSchemaify({
+		userID: p.isPositiveNonZeroInteger,
+		cardAccessCode: "string",
+	}),
 	"oauth2-auth-codes": prSchemaify({
 		code: "string",
 		userID: p.isPositiveNonZeroInteger,

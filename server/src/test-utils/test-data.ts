@@ -588,10 +588,8 @@ export const TestingWaccaPupaSong: SongDocument<"wacca"> = {
 	title: "PUPA",
 	artist: "モリモリあつし",
 	data: {
-		artistJP: "モリモリアツシ",
 		displayVersion: "lilyr",
-		genre: "バラエティ",
-		titleJP: "ピューパ",
+		genre: "バラエティ"
 	},
 	searchTerms: [],
 	altTitles: [],

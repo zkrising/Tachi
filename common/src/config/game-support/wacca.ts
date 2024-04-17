@@ -9,8 +9,6 @@ export const WACCA_CONF = {
 	name: "WACCA",
 	playtypes: ["Single"],
 	songData: z.strictObject({
-		titleJP: z.string(),
-		artistJP: z.string(),
 		genre: z.string(),
 		displayVersion: z.nullable(z.string()),
 	}),

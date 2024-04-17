@@ -574,6 +574,11 @@ export interface CGCardInfo {
 	pin: string;
 }
 
+export interface MytCardInfo {
+	userID: integer;
+	cardAccessCode: string; // matches /^[0-9]{20}$/
+}
+
 interface BMSCourseInner<GPT extends GPTStrings["bms"], Set extends keyof ExtractedClasses[GPT]> {
 	set: Set;
 	playtype: GPTStringToPlaytype[GPT];

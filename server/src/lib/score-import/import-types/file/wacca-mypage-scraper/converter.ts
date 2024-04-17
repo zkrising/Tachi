@@ -25,7 +25,7 @@ const ConvertMyPageScraperRecordsCSV: ConverterFunction<
 	MyPageRecordsParsedPB,
 	EmptyObject
 > = async (data, context, importType, logger) => {
-	// TODO: If we can verify that songId matches in-game (data) id, we should use that instead.
+	// TODO: use inGameID
 	const song = await FindSongOnTitle("wacca", data.songTitle);
 
 	if (song === null) {

@@ -577,6 +577,7 @@ export const TestingWaccaPupaExp: ChartDocument<"wacca:Single"> = {
 	level: "13+",
 	data: {
 		isHot: false,
+		inGameID: 2085,
 	},
 	isPrimary: true,
 	versions: ["reverse"],
@@ -587,10 +588,8 @@ export const TestingWaccaPupaSong: SongDocument<"wacca"> = {
 	title: "PUPA",
 	artist: "モリモリあつし",
 	data: {
-		artistJP: "モリモリアツシ",
 		displayVersion: "lilyr",
-		genre: "バラエティ",
-		titleJP: "ピューパ",
+		genre: "バラエティ"
 	},
 	searchTerms: [],
 	altTitles: [],

@@ -283,9 +283,11 @@ function SongInfoHeader({
 	return (
 		<Card header="Song Info">
 			<Row className="align-items-center justify-content-evenly">
-				<Col xs={12} lg={3} className="text-center">
-					{/* empty padding :) */}
-				</Col>
+				{game !== "bms" && game !== "pms" && (
+					<Col xs={12} lg={3} className="text-center">
+						{/* empty padding :) */}
+					</Col>
+				)}
 				<Col xs={12} lg={4} className="text-center">
 					<SongInfoFormat {...{ game, song, chart: activeChart }} />
 				</Col>

@@ -4,8 +4,17 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
-		<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="./apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./favicon-32x32.png"
+		/>
 		<link
 			rel="icon"
 			type="image/png"
@@ -24,7 +33,7 @@
 		<meta property="og:url" content="https://tachi.ac/" />
 		<!-- @TODO This should probably be a screenshot of one of the tachi' sites for nicer embeds -->
 		<meta property="og:image" content="https://tachi.ac/logo.png" />
-		<link rel="stylesheet" href="./style.css">
+		<link rel="stylesheet" href="./style.css" />
 	</head>
 	<body>
 		<div class="container">
@@ -48,9 +57,9 @@
 				<h2>Provide Cool Features.</h2>
 				<p>
 					Tachi implements the features rhythm gamers already talk about. Break
-					your scores down into sessions, Showcase your best metrics on your
-					profile, study your progress on folders - it's all there, and done for
-					you!
+					your scores down into sessions, set goals, showcase your best metrics
+					on your profile, study your progress on folders - it's all there, and
+					done for you!
 				</p>
 				<div class="services">
 					<div class="service">
@@ -126,25 +135,19 @@
 				</div>
 			</div>
 			<div class="footer">
-				<span
-					>© Tachi
-					<span id="year">
-						<!-- What will football look like in the future? -->
-						17776
-					</span></span
-				>
-				<a href="https://ko-fi.com/zkldi" target="_blank">Donate</a>
-				<a href="https://github.com/zkldi/Tachi" target="_blank">GitHub</a>
-				<a href="https://docs.tachi.ac/">Documentation</a>
-				<a href="https://boku.tachi.ac/credits">Credits</a>
+				<div class="credit">
+					<span
+						>created by <a href="https://github.com/zkldi">zk</a>, homepage by
+						<a href="https://pfy.ch">pfych</a>
+					</span>
+				</div>
+				<div class="links">
+					<a href="https://ko-fi.com/zkldi" target="_blank">Donate</a>
+					<a href="https://github.com/zkldi/Tachi" target="_blank">GitHub</a>
+					<a href="https://docs.tachi.ac/">Documentation</a>
+					<a href="https://boku.tachi.ac/credits">Credits</a>
+				</div>
 			</div>
 		</div>
 	</body>
-	<script>
-		// Elements with IDs are exposed as global variables
-		// Wild foot-guns here - your IDE *will* complain - but it makes simple scripts like this great
-		if (year) {
-			year.innerHTML = new Date().getFullYear();
-		}
-	</script>
 </html>

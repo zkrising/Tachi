@@ -172,5 +172,13 @@ body {
 		flex-wrap: wrap;
 		flex: 0 0 auto;
 		gap: var(--sm-gap);
+		justify-content: space-between;
+	}
+
+	.footer > .links {
+		display: flex;
+		flex-wrap: wrap;
+		flex: 0 0 auto;
+		gap: var(--sm-gap);
 	}
 }

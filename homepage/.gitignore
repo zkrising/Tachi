@@ -7,3 +7,4 @@ node_modules
 
 # Built file
 dist/index.html
+dist/style.css

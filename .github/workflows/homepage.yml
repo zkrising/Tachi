@@ -1,0 +1,46 @@
+name: Homepage CI/CD
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "homepage/**"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.15.6
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Enable SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          sudo chmod 600 ~/.ssh/id_rsa
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+
+      - name: Install dependencies
+        run: pnpm --filter tachi-homepage... --filter . install
+
+      - name: Build
+        run: pnpm --filter tachi-homepage build
+
+      - name: Deploy
+        run: scp -r tachi-homepage/dist/* ci@"$TACHI_HOST":tachi
+        env:
+          TACHI_HOST: ${{secrets.TACHI_HOST}}

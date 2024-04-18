@@ -6,4 +6,5 @@ packages:
   - "server/**"
   - "sieglinde/**"
   - "github-bot/**"
+  - "homepage/**"
   - "docs/autogen-scripts/**"

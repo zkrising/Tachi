@@ -16,7 +16,6 @@ For more information on what metrics are and how they work, see [TODO]!
 | `score` | Integer | Known in-game as 'Technical Score'. It ranges between 0 and 1,010,000, where notes are worth 950,000, and bells 60,000. |
 | `noteLamp` | "LOSS", "CLEAR", "FULL COMBO", "ALL BREAK" | The first lamp. A clear is either a draw or a win. |
 | `bellLamp` | "FULL BELL" | The second lamp that tracks whether all bells in the chart have been collected. |
-| `platScore` | Integer | The Platinum Score value. Only exists in MASTER and LUNATIC charts. |
 
 ### Derived Metrics
 
@@ -33,6 +32,7 @@ For more information on what metrics are and how they work, see [TODO]!
 | `maxCombo` | Integer | The largest combo in this score. |
 | `bellCount` | Integer | The numer of bells collected. |
 | `damage` | Integer | The number of damage ticks received. |
+| `platScore` | Integer | The Platinum Score value. Only exists in MASTER and LUNATIC charts. |
 
 ## Judgements
 
@@ -43,7 +43,7 @@ The folowing judgements are defined:
 - `hit`
 - `miss`
 
-Note: `pbreak`s are not tracked separately but can be deduced frm `platScore`.
+Note: `pbreak`s are not tracked separately but can be deduced from `platScore`.
 
 ## Rating Algorithms
 

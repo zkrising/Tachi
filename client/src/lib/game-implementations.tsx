@@ -780,7 +780,8 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		ratingSystems: [],
 		scoreHeaders: [
 			["Score", "Score", NumericSOV((x) => x.scoreData.score)],
-			["Platinum Score", "Score", NumericSOV((x) => x.scoreData.platDelta)],
+			// TODO: this should be sorted by %
+			["Platinum Score", "Score", NumericSOV((x) => x.scoreData.optional.platScore ?? 0)],
 			["Judgements", "Hits", NumericSOV((x) => x.scoreData.score)],
 			[
 				"Lamp",
@@ -799,7 +800,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 					colour={GetEnumColour(sc, "grade")}
 				/>
 				<OngekiPlatinumCell
-					score={sc.scoreData.platScore}
+					score={sc.scoreData.optional.platScore ?? 0}
 					maxScore={(chart.data.totalNoteCount ?? 0) * 2}
 					difficulty={chart.difficulty}
 				/>

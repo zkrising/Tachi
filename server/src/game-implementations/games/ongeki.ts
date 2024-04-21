@@ -115,20 +115,9 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 
 			return true;
 		},
-		platDelta: (platDelta) => {
-			if (platDelta > 0) {
-				return `Plat Delta must be non-positive. Got ${platDelta}`;
-			}
-
-			return true;
-		},
 	},
 	derivers: {
 		grade: ({ score }) => GetGrade(ONGEKI_GBOUNDARIES, score),
-		platDelta: ({ platScore }, chart) =>
-			OngekiPlatDiff(chart.difficulty)
-				? platScore - (chart.data.totalNoteCount ?? 0) * 2
-				: -Number.MAX_SAFE_INTEGER,
 	},
 	scoreCalcs: {
 		rating: (scoreData, chart) =>
@@ -172,8 +161,6 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	},
 	goalCriteriaFormatters: {
 		score: GoalFmtScore,
-		platScore: GoalFmtScore,
-		platDelta: GoalFmtScore,
 	},
 	goalProgressFormatters: {
 		grade: (pb, gradeIndex) =>
@@ -186,18 +173,13 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 		noteLamp: (pb) => pb.scoreData.noteLamp,
 		bellLamp: (pb) => pb.scoreData.bellLamp,
 		score: (pb) => FmtNum(pb.scoreData.score),
-		platScore: (pb) => FmtNum(pb.scoreData.platScore),
-		platDelta: (pb) => FmtNum(pb.scoreData.platDelta),
 	},
 	goalOutOfFormatters: {
 		score: GoalOutOfFmtScore,
-		platScore: GoalOutOfFmtScore,
-		platDelta: GoalOutOfFmtScore,
 	},
 	pbMergeFunctions: [
-		CreatePBMergeFor("largest", "platScore", "Best Platinum Score", (base, score) => {
-			base.scoreData.platScore = score.scoreData.platScore;
-			base.scoreData.platDelta = score.scoreData.platDelta;
+		CreatePBMergeFor("largest", "optional.platScore", "Best Platinum Score", (base, score) => {
+			base.scoreData.optional.platScore = score.scoreData.optional.platScore;
 		}),
 		CreatePBMergeFor("largest", "enumIndexes.noteLamp", "Best Note Lamp", (base, score) => {
 			base.scoreData.noteLamp = score.scoreData.noteLamp;

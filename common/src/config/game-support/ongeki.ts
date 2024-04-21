@@ -48,12 +48,6 @@ export const ONGEKI_SINGLE_CONF = {
 			description:
 				"The second lamp that tracks whether all bells in the chart have been collected.",
 		},
-		platScore: {
-			type: "INTEGER",
-			chartDependentMax: true,
-			formatter: FmtNum,
-			description: "The Platinum Score value. Only exists in MASTER and LUNATIC charts.",
-		},
 	},
 
 	derivedMetrics: {
@@ -62,12 +56,6 @@ export const ONGEKI_SINGLE_CONF = {
 			values: ["D", "C", "B", "BB", "BBB", "A", "AA", "AAA", "S", "SS", "SSS", "SSS+"],
 			minimumRelevantValue: "A",
 			description: "The grade this score was.",
-		},
-		platDelta: {
-			type: "INTEGER",
-			chartDependentMax: true,
-			formatter: FmtNum,
-			description: "The platinum score compared with the theoretical maximum.",
 		},
 	},
 
@@ -87,6 +75,12 @@ export const ONGEKI_SINGLE_CONF = {
 			chartDependentMax: true,
 			formatter: FmtNum,
 			description: "The number of bells collected.",
+		},
+		platScore: {
+			type: "INTEGER",
+			chartDependentMax: true,
+			formatter: FmtNum,
+			description: "The Platinum Score value. Only exists in MASTER and LUNATIC charts.",
 		},
 	},
 

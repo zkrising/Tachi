@@ -157,11 +157,18 @@ t.test("ONGEKI Implementation", (t) => {
 			);
 
 			t.hasStrict(await CreatePBDoc("ongeki:Single", 1, TestingOngekiChart, logger), {
-				composedFrom: [{ name: "Best Score" }, { name: "Best Lamp", scoreID: "bestLamp" }],
+				composedFrom: [
+					{ name: "Best Score" },
+					{ name: "Best Note Lamp", scoreID: "bestLamp" },
+				],
 				scoreData: {
 					score: mockScore.scoreData.score,
-					lamp: "FULL COMBO",
-					enumIndexes: { lamp: ONGEKI_NOTE_LAMPS.FULL_COMBO },
+					noteLamp: "FULL COMBO",
+					bellLamp: "FULL BELL",
+					enumIndexes: {
+						noteLamp: ONGEKI_NOTE_LAMPS.FULL_COMBO,
+						bellLamp: ONGEKI_BELL_LAMPS.FULL_BELL,
+					},
 				},
 			});
 

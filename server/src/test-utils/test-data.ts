@@ -1274,7 +1274,7 @@ export const TestingOngekiChart: ChartDocument<"ongeki:Single"> = {
 	data: {
 		totalNoteCount: 1000,
 		totalBellCount: 100,
-		displayVersion: "brightMemory3",
+		displayVersion: "bright MEMORY Act.3",
 		isHot: false,
 	},
 	difficulty: "MASTER",

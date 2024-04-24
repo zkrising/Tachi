@@ -19,7 +19,7 @@ const scoreData: ScoreData<"ongeki:Single"> = {
 	noteLamp: "CLEAR",
 	bellLamp: "FULL BELL",
 	score: 1_001_500,
-	grade: "SS",
+	grade: "SSS",
 	judgements: {},
 	optional: { enumIndexes: {}, bellCount: 100, platScore: 1000 },
 	enumIndexes: {
@@ -63,7 +63,7 @@ t.test("ONGEKI Implementation", (t) => {
 	t.test("Rating Calc", (t) => {
 		t.equal(
 			ONGEKI_IMPL.scoreCalcs.rating(scoreData, TestingOngekiChart),
-			4.3,
+			12.1,
 			"Basic rating check"
 		);
 

@@ -600,7 +600,7 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
 		t.end();
 	});
 
-	t.test("Should reject too many constraints", async (t) => {
+	t.test("Should reject invalid non lr2 gauge", async (t) => {
 		const res = await mockApi
 			.post("/ir/beatoraja/submit-course")
 			.set("X-TachiIR-Version", "v2.0.0")
@@ -610,7 +610,7 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
 					courseScore,
 					{
 						course: {
-							constraint: ["LN", "MIRROR", "GAUGE_LR2", "LN"],
+							constraint: ["GAUGE_5KEY", "MIRROR"],
 						},
 					},
 					{ arrayMerge: (d, s) => s }
@@ -619,61 +619,7 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
 
 		t.equal(res.status, 400);
 		t.equal(res.body.success, false);
-		t.equal(res.body.description, "Invalid Constraints.");
-
-		t.end();
-	});
-
-	t.test("Should reject invalid constraints", async (t) => {
-		const res = await mockApi
-			.post("/ir/beatoraja/submit-course")
-			.set("X-TachiIR-Version", "v2.0.0")
-			.set("Authorization", "Bearer mock_token")
-			.send(
-				deepmerge(
-					courseScore,
-					{
-						course: {
-							constraint: ["foo", "bar"],
-						},
-					},
-					{ arrayMerge: (d, s) => s }
-				)
-			);
-
-		t.equal(res.status, 400);
-		t.equal(res.body.success, false);
-		t.equal(
-			res.body.description,
-			"[course.constraint[0]] Expected any of LN, MIRROR, GAUGE_LR2. (Received foo)"
-		);
-
-		t.end();
-	});
-
-	t.test("Should reject invalid constraints for 3", async (t) => {
-		const res = await mockApi
-			.post("/ir/beatoraja/submit-course")
-			.set("X-TachiIR-Version", "v2.0.0")
-			.set("Authorization", "Bearer mock_token")
-			.send(
-				deepmerge(
-					courseScore,
-					{
-						course: {
-							constraint: ["GAUGE_LR2", "MIRROR", "CHEAT_MODE"],
-						},
-					},
-					{ arrayMerge: (d, s) => s }
-				)
-			);
-
-		t.equal(res.status, 400);
-		t.equal(res.body.success, false);
-		t.equal(
-			res.body.description,
-			"[course.constraint[2]] Expected any of LN, MIRROR, GAUGE_LR2. (Received CHEAT_MODE)"
-		);
+		t.equal(res.body.description, "Dan GAUGE mode must be GAUGE_LR2.");
 
 		t.end();
 	});

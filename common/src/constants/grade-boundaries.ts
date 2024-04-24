@@ -221,8 +221,3 @@ export const ONGEKI_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"ongeki:Singl
 	SSS: 1_000_000,
 	"SSS+": 1_007_500,
 });
-
-export const ONGEKI_PLATINUM_GBOUNDARIES = MakeGradeBoundaries<"MAX-" | "MAX">({
-	"MAX-": 0,
-	MAX: 100,
-});

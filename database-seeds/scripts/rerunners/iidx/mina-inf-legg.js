@@ -5,7 +5,7 @@ const { MutateCollection } = require("../../util");
 // CTRL-F the title in songs-iidx, grab the songID and CTRL-F 'ID": xxx' to find the inGameID
 // Or use a tool capable of extracting is (ie Reflux)
 // Infinitas exclusives must be added with add-new-primary-IIDX-chart
-// This script is ONLY for Leggendaria charts
+// This script is ONLY for existing Leggendaria charts
 
 const inGameID = 27116;
 

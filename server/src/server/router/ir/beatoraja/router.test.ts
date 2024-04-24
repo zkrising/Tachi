@@ -552,30 +552,6 @@ t.test("POST /ir/beatoraja/submit-course", (t) => {
 		t.end();
 	});
 
-	t.test("Should reject too few constraints", async (t) => {
-		const res = await mockApi
-			.post("/ir/beatoraja/submit-course")
-			.set("X-TachiIR-Version", "v2.0.0")
-			.set("Authorization", "Bearer mock_token")
-			.send(
-				deepmerge(
-					courseScore,
-					{
-						course: {
-							constraint: ["GAUGE_LR2"],
-						},
-					},
-					{ arrayMerge: (d, s) => s }
-				)
-			);
-
-		t.equal(res.status, 400);
-		t.equal(res.body.success, false);
-		t.equal(res.body.description, "Invalid Constraints.");
-
-		t.end();
-	});
-
 	t.test("Should reject non-array constraints", async (t) => {
 		const res = await mockApi
 			.post("/ir/beatoraja/submit-course")

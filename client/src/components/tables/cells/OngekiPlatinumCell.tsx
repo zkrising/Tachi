@@ -2,27 +2,35 @@ import React from "react";
 import { Difficulties, integer } from "tachi-common";
 
 export default function OngekiPlatinumCell({
-	score,
-	maxScore,
+	platScore: platScore,
+	notecount: notecount,
 	difficulty,
 }: {
-	score: integer;
-	maxScore: integer;
+	platScore: integer | null | undefined;
+	notecount: integer;
 	difficulty: Difficulties["ongeki:Single"];
 }) {
-	return difficulty === "MASTER" || difficulty === "LUNATIC" ? (
+	if (difficulty !== "MASTER" && difficulty !== "LUNATIC") {
+		return <td>N/A</td>;
+	}
+
+	if (platScore === null || platScore === undefined) {
+		return <td>Unknown</td>;
+	}
+
+	const maxScore = notecount * 2;
+
+	return (
 		<td>
-			<strong>MAX-{maxScore - score}</strong>
-			{score !== undefined && (
+			<strong>MAX-{maxScore - platScore}</strong>
+			{platScore !== undefined && (
 				<>
 					<br />
 					<small className="text-body-secondary">
-						[{score}/{maxScore}]
+						[{platScore}/{maxScore}]
 					</small>
 				</>
 			)}
 		</td>
-	) : (
-		<td>N/A</td>
 	);
 }

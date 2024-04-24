@@ -800,8 +800,8 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 					colour={GetEnumColour(sc, "grade")}
 				/>
 				<OngekiPlatinumCell
-					score={sc.scoreData.optional.platScore ?? 0}
-					maxScore={(chart.data.totalNoteCount ?? 0) * 2}
+					platScore={sc.scoreData.optional.platScore}
+					notecount={chart.data.totalNoteCount}
 					difficulty={chart.difficulty}
 				/>
 				<OngekiJudgementCell score={sc} totalBellCount={chart.data.totalBellCount} />

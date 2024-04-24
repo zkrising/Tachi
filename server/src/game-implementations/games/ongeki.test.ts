@@ -151,7 +151,7 @@ t.test("ONGEKI Implementation", (t) => {
 					scoreData: {
 						score: 0,
 						noteLamp: "FULL COMBO",
-						enumIndexes: {},
+						enumIndexes: { noteLamp: ONGEKI_NOTE_LAMPS.FULL_COMBO },
 					},
 				})
 			);

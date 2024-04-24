@@ -10,11 +10,6 @@ export default function OngekiLampCell({
 	lamp2: string;
 	colour: string;
 }) {
-	// eslint-disable-next-line no-param-reassign
-	lamp1 = lamp1.replace(/ /gu, "\u00A0");
-	// eslint-disable-next-line no-param-reassign
-	lamp2 = lamp2.replace(/ /gu, "\u00A0");
-
 	let content = <div>{lamp1}</div>;
 
 	if (lamp2 !== "NONE") {
@@ -34,6 +29,7 @@ export default function OngekiLampCell({
 		<td
 			style={{
 				backgroundColor: ChangeOpacity(colour, 0.2),
+				whiteSpace: "nowrap",
 			}}
 		>
 			<strong>{content}</strong>

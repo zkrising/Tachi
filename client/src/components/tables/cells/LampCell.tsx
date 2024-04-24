@@ -6,6 +6,7 @@ export default function LampCell({ lamp, colour }: { lamp: string; colour: strin
 		<td
 			style={{
 				backgroundColor: ChangeOpacity(colour, 0.2),
+				whiteSpace: "nowrap",
 			}}
 		>
 			<strong>{lamp}</strong>

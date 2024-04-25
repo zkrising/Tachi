@@ -101,6 +101,7 @@ export async function ReprocessOrphan(
 		if (!("failureType" in err)) {
 			logger.error(`Converter function ${orphan.importType} returned unexpected error.`, {
 				err,
+				orphan,
 			});
 
 			// throw this higher up, i guess.

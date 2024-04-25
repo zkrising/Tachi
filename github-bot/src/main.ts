@@ -96,7 +96,10 @@ app.webhooks.on(["issue_comment.created"], async ({ octokit, payload }) => {
 	const body = payload.comment.body.trim();
 
 	if (body.startsWith("+bot")) {
-		const cmd = body.split(" ")[1]?.replace(/[^a-z]/u, "");
+		const cmd = body
+			.split("\n")[0]!
+			.split(/\s+/u)[1]
+			?.replace(/[^a-z]/u, "");
 
 		switch (cmd) {
 			case "ping": {

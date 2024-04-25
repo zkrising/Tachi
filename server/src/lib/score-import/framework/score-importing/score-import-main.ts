@@ -129,20 +129,21 @@ export default async function ScoreImportMain<D, C>(
 				job
 			);
 		} catch (err) {
-			logger.error(
-				`An error was thrown from ImportAllIterableData, which has resulted in a potential partial-score-import. Undoing scores inserted from this import.`,
-				{ err }
-			);
-
 			// Remove all scores from the database for this user which were imported after our timer started.
 			const r = await db.scores.remove({
 				userID: user.id,
 				timeAdded: { $gte: startOfImportingScores },
 			});
 
-			logger.error(
-				`Removed ${r.deletedCount} scores from the database to undo partial-import.`
-			);
+			if (r.deletedCount !== 0) {
+				logger.error(
+					`An error was thrown from ImportAllIterableData, which has resulted in a potential partial-score-import. Undoing scores inserted from this import.`,
+					{ err }
+				);
+				logger.error(
+					`Removed ${r.deletedCount} scores from the database to undo partial-import.`
+				);
+			}
 
 			throw err;
 		}

@@ -18,6 +18,9 @@ export async function ParseKaiSDVX(
 
 	const reauthFn = CreateKaiReauthFunction(service, authDoc, logger, fetch);
 
+	// auth *before* starting import to avoid a partial-import
+	authDoc.token = await reauthFn();
+
 	return {
 		iterable: TraverseKaiAPI(
 			baseUrl,

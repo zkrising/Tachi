@@ -13,6 +13,8 @@ const fakeAuth = {
 
 const logger = CreateLogCtx(__filename);
 
+const NO_REAUTH = () => Promise.resolve("");
+
 t.test("#ParseKaiIIDX", (t) => {
 	t.beforeEach(ResetDBState);
 
@@ -32,7 +34,7 @@ t.test("#ParseKaiIIDX", (t) => {
 			},
 		});
 
-		const res = await ParseKaiIIDX("FLO", fakeAuth, logger, mockFloAPI);
+		const res = await ParseKaiIIDX("FLO", fakeAuth, logger, mockFloAPI, NO_REAUTH);
 
 		t.equal(res.game, "iidx");
 		t.strictSame(res.context, { service: "FLO" });
@@ -64,7 +66,7 @@ t.test("#ParseKaiIIDX", (t) => {
 			},
 		});
 
-		const res = await ParseKaiIIDX("EAG", fakeAuth, logger, mockEagAPI);
+		const res = await ParseKaiIIDX("EAG", fakeAuth, logger, mockEagAPI, NO_REAUTH);
 
 		t.equal(res.game, "iidx");
 		t.strictSame(res.context, { service: "EAG" });

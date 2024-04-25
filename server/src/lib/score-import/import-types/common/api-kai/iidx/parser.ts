@@ -12,11 +12,17 @@ export async function ParseKaiIIDX(
 	service: "EAG" | "FLO",
 	authDoc: KaiAuthDocument,
 	logger: KtLogger,
-	fetch = nodeFetch
+	fetch = nodeFetch,
+	reauthFn: (() => Promise<string>) | null = null
 ): Promise<ParserFunctionReturns<unknown, KaiContext>> {
 	const baseUrl = KaiTypeToBaseURL(service);
 
-	const reauthFn = CreateKaiReauthFunction(service, authDoc, logger, fetch);
+	if (!reauthFn) {
+		reauthFn = CreateKaiReauthFunction(service, authDoc, logger, fetch);
+	}
+
+	// auth *before* starting import to avoid a partial-import
+	authDoc.token = await reauthFn();
 
 	return {
 		iterable: TraverseKaiAPI(

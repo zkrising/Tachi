@@ -450,6 +450,9 @@ importers:
       '@octokit/app':
         specifier: ^13.1.0
         version: 13.1.0
+      '@octokit/webhooks-types':
+        specifier: 6.3.6
+        version: 6.3.6
       dotenv:
         specifier: 16.0.0
         version: 16.0.0

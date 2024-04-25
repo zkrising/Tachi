@@ -93,7 +93,7 @@ ${mkSeedDiffViewMsg(
 	}
 });
 
-app.webhooks.on(["commit_comment.created"], async ({ octokit, payload }) => {
+app.webhooks.on(["issue_comment.created"], async ({ octokit, payload }) => {
 	const body = payload.comment.body.trim();
 
 	if (body.startsWith("+bot")) {

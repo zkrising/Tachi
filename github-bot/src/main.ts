@@ -95,9 +95,6 @@ ${mkSeedDiffViewMsg(
 app.webhooks.on(["issue_comment.created"], async ({ octokit, payload }) => {
 	const body = payload.comment.body.trim();
 
-	console.log(`debug, temp: Issue comment created with ${body}`);
-	console.dir(payload);
-
 	if (body.startsWith("+bot")) {
 		const cmd = body.split(" ")[1]?.replace(/[^a-z]/u, "");
 

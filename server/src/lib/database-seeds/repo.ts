@@ -1,5 +1,4 @@
 /* eslint-disable no-await-in-loop */
-import { VERSION_INFO } from "lib/constants/version";
 import CreateLogCtx from "lib/logger/logger";
 import { Environment, ServerConfig } from "lib/setup/config";
 import { asyncExec } from "utils/misc";
@@ -157,6 +156,8 @@ export class DatabaseSeedsRepo {
 		// callback is called, so lets just define it to a local variable.
 		const email = ServerConfig.SEEDS_CONFIG.USER_EMAIL;
 
+		const url = new URL(ServerConfig.SEEDS_CONFIG.REPO_URL);
+
 		return asyncExec(
 			`git config user.name "${ServerConfig.SEEDS_CONFIG.USER_NAME}"`,
 			this.baseDir
@@ -164,7 +165,7 @@ export class DatabaseSeedsRepo {
 			.then(() => asyncExec(`git config user.email "${email}"`, this.baseDir))
 			.then(() =>
 				asyncExec(
-					`git remote set-url origin "https://$GIT_USERNAME:$GIT_PASSWORD@${ServerConfig.SEEDS_CONFIG?.REPO_URL}"`,
+					`git remote set-url origin "https://$GIT_USERNAME:$GIT_PASSWORD@${url.host}${url.pathname}"`,
 					this.baseDir
 				)
 			);

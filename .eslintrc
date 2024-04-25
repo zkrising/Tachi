@@ -15,7 +15,8 @@
 			"rules": {
 				// broken
 				"lines-around-comment": "off",
-
+				// no idea why this is on
+				"no-param-reassign": "off",
 				// TENPORARILY OFF AS THEY'RE BROKEN.
 				"@typescript-eslint/no-unsafe-assignment": "off",
 				"@typescript-eslint/no-unsafe-return": "off",

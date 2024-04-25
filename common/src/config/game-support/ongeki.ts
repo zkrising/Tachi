@@ -78,6 +78,12 @@ export const ONGEKI_SINGLE_CONF = {
 			description: "The number of bells collected.",
 			partOfScoreID: true,
 		},
+		totalBellCount: {
+			type: "INTEGER",
+			chartDependentMax: true,
+			formatter: FmtNum,
+			description: "The total number of bells.",
+		},
 		platScore: {
 			type: "INTEGER",
 			chartDependentMax: true,
@@ -99,10 +105,6 @@ export const ONGEKI_SINGLE_CONF = {
 	profileRatingAlgs: {
 		naiveRating: {
 			description: "The average of your best 45 scores.",
-		},
-		lessNaiveRating: {
-			description:
-				"The average of your best 15 scores from the latest version and 30 from all old versions. Similar to the in-game rating, except it does not take recent scores into account.",
 		},
 	},
 
@@ -141,11 +143,8 @@ export const ONGEKI_SINGLE_CONF = {
 
 	chartData: z.strictObject({
 		displayVersion: z.string(),
-		totalNoteCount: z.number().int().optional(),
-		totalBellCount: z.number().int().optional(),
 		isUnranked: z.boolean().optional(),
 		isReMaster: z.boolean().optional(),
-		isHot: z.boolean(),
 	}),
 
 	preferences: z.strictObject({}),

@@ -64,9 +64,6 @@ Note: `pbreak`s are not tracked separately but can be deduced from `platScore`.
 | Name | Description |
 | :: | :: |
 | `naiveRating` | The average of your best 45 ratings. |
-| `lessNaiveRating` | The average of your best 15 scores from the latest version and 30 from all old versions. |
-
-Note: O.N.G.E.K.I.'s in-game rating also takes recent scores into account, hence both algorithms are 'naive'.
 
 ## Difficulties
 

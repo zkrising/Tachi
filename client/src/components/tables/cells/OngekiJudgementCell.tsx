@@ -4,10 +4,8 @@ import { COLOUR_SET, PBScoreDocument, ScoreDocument } from "tachi-common";
 
 export default function OngekiJudgementCell({
 	score,
-	totalBellCount,
 }: {
 	score: ScoreDocument<"ongeki:Single"> | PBScoreDocument<"ongeki:Single">;
-	totalBellCount: number | undefined;
 }) {
 	const judgements = score.scoreData.judgements;
 
@@ -31,7 +29,8 @@ export default function OngekiJudgementCell({
 				</div>
 				<div>
 					<span style={{ color: COLOUR_SET.vibrantYellow }}>
-						{score.scoreData.optional.bellCount ?? "?"}/{totalBellCount ?? "?"}
+						{score.scoreData.optional.bellCount ?? "?"}/
+						{score.scoreData.optional.totalBellCount ?? "?"}
 					</span>
 					<span style={{ color: COLOUR_SET.red, marginLeft: "0.5em" }}>
 						{score.scoreData.optional.damage ?? "?"}

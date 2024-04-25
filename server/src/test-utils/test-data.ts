@@ -1272,10 +1272,7 @@ export const TestingArcaeaSheriruthFTR: ChartDocument<"arcaea:Touch"> = {
 export const TestingOngekiChart: ChartDocument<"ongeki:Single"> = {
 	chartID: "213796bdb6150f80ba6412ce69df1249e16c0cb0",
 	data: {
-		totalNoteCount: 1000,
-		totalBellCount: 100,
 		displayVersion: "bright MEMORY Act.3",
-		isHot: false,
 	},
 	difficulty: "MASTER",
 	isPrimary: true,

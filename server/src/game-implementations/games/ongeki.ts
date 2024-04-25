@@ -1,6 +1,5 @@
 /* eslint-disable no-confusing-arrow */
 import { GoalFmtScore, GoalOutOfFmtScore, GradeGoalFormatter } from "./_common";
-import db from "external/mongo/db";
 import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileAvgBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
@@ -8,68 +7,7 @@ import { ONGEKIRating } from "rg-stats";
 import { ONGEKI_GBOUNDARIES, FmtNum, GetGrade } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
-import type { Difficulties, Game, Playtype, integer } from "tachi-common";
-
-// basically the same as WACCA and mai DX.
-const CalculateOngekiNaiveRate = async (game: Game, playtype: Playtype, userID: integer) => {
-	const newChartIDs = (
-		await db.charts.ongeki.find({ "data.isHot": true }, { projection: { chartID: 1 } })
-	).map((e) => e.chartID);
-
-	const oldChartIDs = (
-		await db.charts.ongeki.find({ "data.isHot": false }, { projection: { chartID: 1 } })
-	).map((e) => e.chartID);
-
-	const best15New = await db["personal-bests"].find(
-		{
-			game,
-			playtype,
-			userID,
-			isPrimary: true,
-			chartID: { $in: newChartIDs },
-			"calculatedData.rating": { $type: "number" },
-		},
-		{
-			sort: {
-				"calculatedData.rating": -1,
-			},
-			limit: 15,
-			projection: {
-				"calculatedData.rating": 1,
-			},
-		}
-	);
-
-	const best30Old = await db["personal-bests"].find(
-		{
-			game,
-			playtype,
-			userID,
-			isPrimary: true,
-			chartID: { $in: oldChartIDs },
-			"calculatedData.rating": { $type: "number" },
-		},
-		{
-			sort: {
-				"calculatedData.rating": -1,
-			},
-			limit: 30,
-			projection: {
-				"calculatedData.rating": 1,
-			},
-		}
-	);
-
-	if (best15New.length + best30Old.length === 0) {
-		return null;
-	}
-
-	return (
-		(best15New.reduce((a, e) => a + (e.calculatedData.rating ?? 0), 0) +
-			best30Old.reduce((a, e) => a + (e.calculatedData.rating ?? 0), 0)) /
-		45
-	);
-};
+import type { Difficulties } from "tachi-common";
 
 export const OngekiPlatDiff = (diff: Difficulties["ongeki:Single"]) =>
 	diff === "MASTER" || diff === "LUNATIC";
@@ -86,24 +24,18 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 				return `Platinum Score must be non-negative. Got ${platScore}`;
 			}
 
-			if (platScore > 2 * (chart.data.totalNoteCount ?? 0)) {
-				return `Platinum Score is impossibly large. ${platScore} against ${chart.data.totalNoteCount} notes`;
-			}
-
 			return true;
 		},
-		bellCount: (bellCount, chart) => {
+		bellCount: (bellCount) => {
 			if (bellCount < 0) {
 				return `Bell Count must be non-negative. Got ${bellCount}`;
 			}
 
-			if (!chart.data.totalBellCount) {
-				// Can't verify this data if we don't have it
-				return true;
-			}
-
-			if (bellCount > chart.data.totalBellCount) {
-				return `Bell Count is too large; ${bellCount} > ${chart.data.totalBellCount}`;
+			return true;
+		},
+		totalBellCount: (bellCount) => {
+			if (bellCount < 0) {
+				return `Total bell Count must be non-negative. Got ${bellCount}`;
 			}
 
 			return true;
@@ -121,11 +53,12 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	},
 	scoreCalcs: {
 		rating: (scoreData, chart) =>
-			chart.data.isUnranked ? 0 : ONGEKIRating.calculate(scoreData.score, chart.levelNum),
+			chart.data.isUnranked || chart.levelNum === 0.0
+				? 0
+				: ONGEKIRating.calculate(scoreData.score, chart.levelNum),
 	},
 	sessionCalcs: { naiveRating: SessionAvgBest10For("rating") },
 	profileCalcs: {
-		lessNaiveRating: CalculateOngekiNaiveRate,
 		naiveRating: ProfileAvgBestN("rating", 45),
 	},
 	classDerivers: {

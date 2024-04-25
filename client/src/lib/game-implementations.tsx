@@ -1,5 +1,6 @@
 import { NumericSOV } from "util/sorts";
 import { ChangeOpacity } from "util/color-opacity";
+import { FormatMillions } from "util/misc";
 import { COLOUR_SET, GPTString, GetGPTString, PBScoreDocument, ScoreDocument } from "tachi-common";
 import CHUNITHMJudgementCell from "components/tables/cells/CHUNITHMJudgementCell";
 import ITGJudgementCell from "components/tables/cells/ITGJudgementCell";
@@ -19,7 +20,6 @@ import WaccaJudgementCell from "components/tables/cells/WACCAJudgementCell";
 import OngekiJudgementCell from "components/tables/cells/OngekiJudgementCell";
 import React from "react";
 import OngekiLampCell from "components/tables/cells/OngekiLampCell";
-import OngekiPlatinumCell from "components/tables/cells/OngekiPlatinumCell";
 import { CreateRatingSys, bgc } from "./games/_util";
 import { BMS_14K_IMPL, BMS_7K_IMPL, PMS_IMPL } from "./games/bms-pms";
 import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
@@ -114,7 +114,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			["Judgements", "Hits", NumericSOV((x) => x.scoreData.score)],
 			["Lamp", "Lamp", NumericSOV((x) => x.scoreData.enumIndexes.lamp)],
 		],
-		scoreCoreCells: ({ sc, chart }) => (
+		scoreCoreCells: ({ sc }) => (
 			<>
 				<MillionsScoreCell
 					score={sc.scoreData.score}
@@ -176,7 +176,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			["Judgements", "Hits", NumericSOV((x) => x?.scoreData.musicRate ?? -Infinity)],
 			["Lamp", "Lamp", NumericSOV((x) => x?.scoreData.enumIndexes.lamp ?? -Infinity)],
 		],
-		scoreCoreCells: ({ sc, chart }) => (
+		scoreCoreCells: ({ sc }) => (
 			<>
 				<JubeatScoreCell sc={sc} />
 				<JubeatJudgementCell score={sc} />
@@ -461,7 +461,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			["Near - Miss", "Nr. Ms.", NumericSOV((x) => x?.scoreData.score)],
 			["Lamp", "Lamp", NumericSOV((x) => x?.scoreData.enumIndexes.lamp)],
 		],
-		scoreCoreCells: ({ sc, chart }) => (
+		scoreCoreCells: ({ sc }) => (
 			<>
 				<MillionsScoreCell
 					score={sc.scoreData.score}
@@ -667,7 +667,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				"How fast are the streams in this chart?",
 				(c) => c.data.streamBPM,
 				(c) => c.data.streamBPM?.toString(),
-				(c) => undefined,
+				() => undefined,
 				(s) => [
 					s.scoreData.lamp === "FAILED"
 						? `Failed ${s.scoreData.survivedPercent.toFixed(2)}%`
@@ -681,7 +681,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			["Judgements", "Hits", NumericSOV((x) => x.scoreData.scorePercent)],
 			["Lamp", "Lamp", NumericSOV((x) => x.scoreData.enumIndexes.lamp)],
 		],
-		scoreCoreCells: ({ sc, chart }) => (
+		scoreCoreCells: ({ sc }) => (
 			<>
 				<ScoreCell
 					colour={GetEnumColour(sc, "grade")}
@@ -779,9 +779,13 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		},
 		ratingSystems: [],
 		scoreHeaders: [
-			["Score", "Score", NumericSOV((x) => x.scoreData.score)],
-			// TODO: this should be sorted by %
-			["Platinum Score", "Score", NumericSOV((x) => x.scoreData.optional.platScore ?? 0)],
+			[
+				"Score",
+				"Score",
+				NumericSOV(
+					(x) => x.scoreData.score * 10000 + (x.scoreData.optional.platScore ?? 0)
+				),
+			],
 			["Judgements", "Hits", NumericSOV((x) => x.scoreData.score)],
 			[
 				"Lamp",
@@ -794,17 +798,23 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		],
 		scoreCoreCells: ({ sc, chart }) => (
 			<>
-				<MillionsScoreCell
-					score={sc.scoreData.score}
-					grade={sc.scoreData.grade}
-					colour={GetEnumColour(sc, "grade")}
-				/>
-				<OngekiPlatinumCell
-					platScore={sc.scoreData.optional.platScore}
-					notecount={chart.data.totalNoteCount}
-					difficulty={chart.difficulty}
-				/>
-				<OngekiJudgementCell score={sc} totalBellCount={chart.data.totalBellCount} />
+				<td
+					style={{
+						backgroundColor: ChangeOpacity(GetEnumColour(sc, "grade"), 0.2),
+					}}
+				>
+					<strong>{sc.scoreData.grade}</strong>
+					<br />
+					{FormatMillions(sc.scoreData.score)}
+					{typeof sc.scoreData.optional.platScore === "number" &&
+						(chart.difficulty === "MASTER" || chart.difficulty === "LUNATIC") && (
+							<>
+								<br />
+								[Plat: {sc.scoreData.optional.platScore}]
+							</>
+						)}
+				</td>
+				<OngekiJudgementCell score={sc} />
 				<OngekiLampCell
 					lamp1={sc.scoreData.noteLamp}
 					lamp2={sc.scoreData.bellLamp}

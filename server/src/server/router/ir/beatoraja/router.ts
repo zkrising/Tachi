@@ -188,7 +188,7 @@ router.post(
 						"Expected an array of 4 objects with MD5 properties."
 					);
 				},
-				constraint: [p.isIn("LN", "MIRROR", "GAUGE_LR2")],
+				constraint: ["string"],
 			},
 			score: {
 				// For some reason, a course can have any of these lamps.
@@ -207,6 +207,7 @@ router.post(
 					"Perfect",
 					"Max"
 				),
+				option: p.isInteger,
 				lntype: p.isIn(0, 1, 2),
 			},
 		},
@@ -218,10 +219,11 @@ router.post(
 		const body = req.safeBody as {
 			course: {
 				charts: Array<{ md5: string }>;
-				constraint: Array<"GAUGE_LR2" | "LN" | "MIRROR">;
+				constraint: Array<string>;
 			};
 			score: {
 				clear: BeatorajaScore["clear"];
+				option: integer;
 				lntype: 0 | 1 | 2;
 			};
 		};
@@ -249,37 +251,32 @@ router.post(
 			});
 		}
 
-		// Constraints are a bit complicated.
-		// We only want to accept dans with the following
-		// beatoraja constraints - ["MIRROR","GAUGE_LR2"] or
-		// ["MIRROR", "GAUGE_LR2", "LN"].
-		const constraint = body.course.constraint;
-
-		if (constraint.length !== 2 && constraint.length !== 3) {
+		if (body.course.constraint.includes("CN")) {
 			return res.status(400).json({
 				success: false,
-				description: `Invalid Constraints.`,
+				description: `CN mode is not allowed in dans.`,
 			});
 		}
 
-		// If there are two constraints, check that they are
-		// MIRROR and GAUGE_LR2.
-		if (!constraint.includes("MIRROR") || !constraint.includes("GAUGE_LR2")) {
+		if (body.course.constraint.includes("HCN")) {
 			return res.status(400).json({
 				success: false,
-				description: `Invalid Constraints.`,
+				description: `HCN mode is not allowed in dans.`,
 			});
 		}
 
-		// If there are three constraints, check that the third
-		// is LN
-		if (constraint.length === 3) {
-			if (!constraint.includes("LN")) {
-				return res.status(400).json({
-					success: false,
-					description: `Invalid Constraints.`,
-				});
-			}
+		if (body.course.constraint.some((f) => f.startsWith("GAUGE_") && f !== "GAUGE_LR2")) {
+			return res.status(400).json({
+				success: false,
+				description: `Dan GAUGE mode must be GAUGE_LR2.`,
+			});
+		}
+
+		if (body.score.option !== 0 && body.score.option !== 1) {
+			return res.status(400).json({
+				success: false,
+				description: `RANDOM is not allowed in courses.`,
+			});
 		}
 
 		// Combine the md5s into one string in their order.

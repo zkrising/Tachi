@@ -9,6 +9,10 @@ function ChartSort(a, b) {
 		return -1;
 	}
 
+	if (a.data?.["2dxtraSet"] !== null && b.data?.["2dxtraSet"] === null) {
+		return 1;
+	}
+
 	if (a.songID !== b.songID) {
 		return a.songID - b.songID;
 	}

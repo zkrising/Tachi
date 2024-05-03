@@ -53,7 +53,7 @@ const collections = fs
 	.map((e) => path.basename(e).replace(/\.json$/u, ""));
 
 for (const collection of collections) {
-	console.log(`[VALIDATING] ${collection}`);
+	console.log(`[CUSTOM VALIDATING] ${collection}`);
 
 	let success = 0;
 	let fails = 0;
@@ -84,14 +84,13 @@ for (const collection of collections) {
 	game = maybeGame;
 
 	for (const d of data) {
-		// Will throw if formatFn is undefined -- that's a test failure in my book.
+		let failed = false;
+
 		const pretty = formatFn(d, game as Game);
 
 		for (const check of checks[game as Game] ?? []) {
 			try {
 				check.fn(d);
-
-				success++;
 			} catch (err) {
 				console.error(
 					chalk.red(
@@ -100,8 +99,14 @@ for (const collection of collections) {
 						)}.`
 					)
 				);
-				fails++;
+				failed = true;
 			}
+		}
+
+		if (failed) {
+			fails += 1;
+		} else {
+			success += 1;
 		}
 	}
 
@@ -121,7 +126,7 @@ for (const collection of collections) {
 
 console.log(`=== Suite Overview ===`);
 for (const suite of suites) {
-	console.log(chalk[suite.good ? "green" : "red"](`[SCHEMAS] ${suite.name}: ${suite.report}`));
+	console.log(chalk[suite.good ? "green" : "red"](`[CUSTOM] ${suite.name}: ${suite.report}`));
 }
 
 process.exit(exitCode);

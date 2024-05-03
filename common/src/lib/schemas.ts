@@ -250,7 +250,25 @@ const PR_CHART_DOCUMENT = (game: Game) => (self: unknown) => {
 
 		data: PrudenceZodShim(gptConfig.chartData),
 
-		versions: [p.isIn(Object.keys(gptConfig.versions))],
+		versions: (self) => {
+			if (!Array.isArray(self)) {
+				return "Expected an array.";
+			}
+
+			const versions = Object.keys(gptConfig.versions);
+
+			if (self.find((k) => !versions.includes(k))) {
+				return "Array contained invalid versions";
+			}
+
+			const gameUsesVersions = versions.length > 0;
+
+			if (gameUsesVersions && self.length === 0) {
+				return "Versions array should not be empty as this game uses versions";
+			}
+
+			return true;
+		},
 	})(self);
 };
 

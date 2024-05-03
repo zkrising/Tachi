@@ -18418,6 +18418,17 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "Aiobahn feat. KOTOKO「NEEDY GIRL OVERDOSE」",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "POPS & ANIME"
+		},
+		"id": 2503,
+		"searchTerms": [],
+		"title": "INTERNET YAMERO"
+	},
+	{
+		"altTitles": [],
 		"artist": "柊キライ",
 		"data": {
 			"displayVersion": "luminous",
@@ -18601,6 +18612,32 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "あやぽんず＊ feat.ビートまりお × まろん",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "東方Project"
+		},
+		"id": 2523,
+		"searchTerms": [
+			"INTERNET SURVIVOR"
+		],
+		"title": "インターネットサバイバー"
+	},
+	{
+		"altTitles": [],
+		"artist": "まろん × COOL&CREATE",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "東方Project"
+		},
+		"id": 2524,
+		"searchTerms": [
+			"Yukkuri feat. Mochitose"
+		],
+		"title": "ユックリ feat.餅千歳"
+	},
+	{
+		"altTitles": [],
 		"artist": "Toby Fox「UNDERTALE」",
 		"data": {
 			"displayVersion": "luminous",
@@ -18754,7 +18791,9 @@
 			"genre": "VARIETY"
 		},
 		"id": 2539,
-		"searchTerms": [],
+		"searchTerms": [
+			"Okeanos"
+		],
 		"title": "Ωκεανος"
 	},
 	{
@@ -18767,6 +18806,28 @@
 		"id": 2540,
 		"searchTerms": [],
 		"title": "Love's Theme of BADASS ～バッド・アス 愛のテーマ～"
+	},
+	{
+		"altTitles": [],
+		"artist": "Cosmograph「勝利の女神：NIKKE」",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "VARIETY"
+		},
+		"id": 2542,
+		"searchTerms": [],
+		"title": "Burn it All"
+	},
+	{
+		"altTitles": [],
+		"artist": "Cosmograph「勝利の女神：NIKKE」",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "VARIETY"
+		},
+		"id": 2543,
+		"searchTerms": [],
+		"title": "Stronghold LandEater"
 	},
 	{
 		"altTitles": [],
@@ -18861,6 +18922,19 @@
 		"id": 2559,
 		"searchTerms": [],
 		"title": "Catch Me If You Can"
+	},
+	{
+		"altTitles": [],
+		"artist": "cubesato",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "ゲキマイ"
+		},
+		"id": 2560,
+		"searchTerms": [
+			"April showers"
+		],
+		"title": "四月の雨"
 	},
 	{
 		"altTitles": [],
@@ -19028,6 +19102,28 @@
 			"Finding Blessing and Glory in the Last Piece"
 		],
 		"title": "ラストピースに祝福と栄光を"
+	},
+	{
+		"altTitles": [],
+		"artist": "kamome sano",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "ORIGINAL"
+		},
+		"id": 2580,
+		"searchTerms": [],
+		"title": "crazy (about you)"
+	},
+	{
+		"altTitles": [],
+		"artist": "BlackY",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "ORIGINAL"
+		},
+		"id": 2581,
+		"searchTerms": [],
+		"title": "Dèfandour"
 	},
 	{
 		"altTitles": [],

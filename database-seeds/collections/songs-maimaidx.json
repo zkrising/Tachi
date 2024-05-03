@@ -13115,7 +13115,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "子牛",
+		"artist": "子牛 feat.音街ウナ",
 		"data": {
 			"displayVersion": "FESTiVAL",
 			"genre": "niconico＆ボーカロイド"
@@ -15153,5 +15153,38 @@
 		"id": 1194,
 		"searchTerms": [],
 		"title": "Λzure Vixen"
+	},
+	{
+		"altTitles": [],
+		"artist": "Kanaria",
+		"data": {
+			"displayVersion": "BUDDiES",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1197,
+		"searchTerms": [],
+		"title": "QUEEN"
+	},
+	{
+		"altTitles": [],
+		"artist": "A4。",
+		"data": {
+			"displayVersion": "BUDDiES",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1198,
+		"searchTerms": [],
+		"title": "天使の翼。"
+	},
+	{
+		"altTitles": [],
+		"artist": "Kai",
+		"data": {
+			"displayVersion": "BUDDiES",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1199,
+		"searchTerms": [],
+		"title": "さよならプリンセス"
 	}
 ]

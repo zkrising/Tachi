@@ -252,7 +252,7 @@ const PR_CHART_DOCUMENT = (game: Game) => (self: unknown) => {
 
 		versions: (self) => {
 			if (!Array.isArray(self)) {
-				return "Expected an array.";
+				return "Expected an array";
 			}
 
 			const versions = Object.keys(gptConfig.versions);
@@ -265,6 +265,10 @@ const PR_CHART_DOCUMENT = (game: Game) => (self: unknown) => {
 
 			if (gameUsesVersions && self.length === 0) {
 				return "Versions array should not be empty as this game uses versions";
+			}
+
+			if (new Set(...self).size !== self.length) {
+				return "Versions array shouldn't contain the same version twice";
 			}
 
 			return true;

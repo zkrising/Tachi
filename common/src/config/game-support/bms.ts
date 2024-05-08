@@ -78,6 +78,31 @@ export const BMSStSlDans = [
 	ClassValue("ST11", "st11", "Stella 11"),
 ];
 
+export const BMSNewGenerationDans = [
+	ClassValue("NORMAL_1", "▽1", "Normal 1st Dan"),
+	ClassValue("NORMAL_2", "▽2", "Normal 2nd Dan"),
+	ClassValue("NORMAL_3", "▽3", "Normal 3rd Dan"),
+	ClassValue("NORMAL_4", "▽4", "Normal 4th Dan"),
+	ClassValue("NORMAL_5", "▽5", "Normal 5th Dan"),
+	ClassValue("NORMAL_6", "▽6", "Normal 6th Dan"),
+	ClassValue("NORMAL_7", "▽7", "Normal 7th Dan"),
+	ClassValue("NORMAL_8", "▽8", "Normal 8th Dan"),
+	ClassValue("NORMAL_9", "▽9", "Normal 9th Dan"),
+	ClassValue("NORMAL_10", "▽10", "Normal 10th Dan"),
+	ClassValue("INSANE_0", "▼0", "Insane 0th Dan"),
+	ClassValue("INSANE_1", "▼1", "Insane 1st Dan"),
+	ClassValue("INSANE_2", "▼2", "Insane 2nd Dan"),
+	ClassValue("INSANE_3", "▼3", "Insane 3rd Dan"),
+	ClassValue("INSANE_4", "▼4", "Insane 4th Dan"),
+	ClassValue("INSANE_5", "▼5", "Insane 5th Dan"),
+	ClassValue("INSANE_6", "▼6", "Insane 6th Dan"),
+	ClassValue("INSANE_7", "▼7", "Insane 7th Dan"),
+	ClassValue("INSANE_8", "▼8", "Insane 8th Dan"),
+	ClassValue("INSANE_9", "▼9", "Insane 9th Dan"),
+	ClassValue("INSANE_10", "▼10", "Insane 10th Dan"),
+	ClassValue("INSANE_KAIDEN", "▼皆伝", "Insane Kaiden"),
+];
+
 export const BMSDPSlDans = [
 	ClassValue("SL0", "sl0", "Satellite 0"),
 	ClassValue("SL1", "sl1", "Satellite 1"),
@@ -314,6 +339,7 @@ export const BMS_7K_CONF = {
 	classes: {
 		genocideDan: { type: "PROVIDED", values: BMSGenocideDans },
 		stslDan: { type: "PROVIDED", values: BMSStSlDans },
+		newGenerationDan: { type: "PROVIDED", values: BMSNewGenerationDans },
 		lnDan: { type: "PROVIDED", values: BMSLNDans },
 		scratchDan: { type: "PROVIDED", values: BMSScratchDans },
 	},

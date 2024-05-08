@@ -490,6 +490,160 @@
 		"value": "UDON"
 	},
 	{
+		"md5sums": "1582787258f430961e6a3245454def5ba9028508eabc2372c58b24286dd2659ccb439c3f276d9f8aa1dfb29f315936ad799cf85057ae5bf2b93ebfecc322eff7",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 発狂皆伝",
+		"value": "INSANE_KAIDEN"
+	},
+	{
+		"md5sums": "d4a1b4ad0f0bfd5681b7b0ccc012bed593bfccb37e1a3b1f44bc341383d08eb69bf55882fa4a1762bfb927f2731dbb1372eb962296d74fa32fa0dd32a17369e8",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 発狂十段",
+		"value": "INSANE_10"
+	},
+	{
+		"md5sums": "f1ac6350ac2620a7fb5563febb53116a730118f9bf142d9170ce46bedd37f96a01e0d67a5ba44cd57168ede127bfba3c434b339e1ac512e498a45369b157388b",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 発狂九段",
+		"value": "INSANE_9"
+	},
+	{
+		"md5sums": "273965c4669994761c71c0da25a49c6ffeef4d30cbd180e78eb96cb9c8772ee4f649c932d7df6ba14f3c7c4ef69cce4ea28676c6c74f68fbe6cd72574de784ba",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 発狂八段",
+		"value": "INSANE_8"
+	},
+	{
+		"md5sums": "cf872b2c69d451e5c31b59ee49b3866156ef487b38517cae523b4720d6898dd308fccad28bf0537406364224b2e597d1166c4a11b18268d2b39a7ac88a1bcc74",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 発狂七段",
+		"value": "INSANE_7"
+	},
+	{
+		"md5sums": "12465f3ced547f6a6735f94c9f6751b11834e440eb1574429d84354807389809d69d4f8b5183ede4c383d57241f16ba86391c83fb4177e30ccc58496432d39e6",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 発狂六段",
+		"value": "INSANE_6"
+	},
+	{
+		"md5sums": "f7e8da83e7507755266a1dc5fc4f0c25de1f9baa74bb6fe87f74c6bd9430f5c0e36992529f68da6ef63e34b0045fc2795f30b80a5cea33c2756cdbed08490735",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 発狂五段",
+		"value": "INSANE_5"
+	},
+	{
+		"md5sums": "decb0c6c112389652bdaa870bc89fba5a6771c323d296190f13c4eb7045f27c2011c0147f43fd1a84196782ccd88c203590510ce88bd7423e1c9939b891ab750",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 発狂四段",
+		"value": "INSANE_4"
+	},
+	{
+		"md5sums": "fcdc14c55ebadeaccab843a2cce15ae53f24fa74c7b7914e9bb3e94ee5b5c3c24c11405a191dfd9b5410fda5b646f863a1fc8f39becc3b3ee381a800b624b809",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 発狂三段",
+		"value": "INSANE_3"
+	},
+	{
+		"md5sums": "b8bf6163d5c4454ada801c972e95a414032401f30d2c7f1f764d106fb3842301dcbfe6891ef8e9405f49f563d4c99c58e4d02272c104dc5e393a4e2a0f1284c0",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 発狂二段",
+		"value": "INSANE_2"
+	},
+	{
+		"md5sums": "fd8425255fbde9dd84e6db44ffb12329973aa88c6e8082e4d096281238d9a3fea49868a3e1c9eb580967c67d96a07e1018f23cd1ad1b0505aec5f9ae10c07600",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 発狂初段",
+		"value": "INSANE_1"
+	},
+	{
+		"md5sums": "d2d922aa6bcaeed61087d434b330c30eb9c7bc62daea8f9ccd4502328d624486ac0742b6db091fb76f08841056d0e4b89863fa6d88f44158a1d899cc2f0f9f87",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 発狂入門",
+		"value": "INSANE_0"
+	},
+	{
+		"md5sums": "91b54734a22bed760a953963893f8e0eeef8d0c82be70c2dc3becfc1d41d8aca9556d61f768faa592b0f49f8132f71423f168702da8b2d738862304c315a5954",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 十段",
+		"value": "NORMAL_10"
+	},
+	{
+		"md5sums": "1486448b03ccc4d643b210c12d73a9157545700edd28023f8ea759e0901a5c9bd2d5792aa418494573c6885c6b8f85f709f70fef057a5ef2e3a4cae194d5388b",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 九段",
+		"value": "NORMAL_9"
+	},
+	{
+		"md5sums": "1580d908e2b3f679174d232b18164f17cf9786af6107164addae85a1d3680e6673fb4847967683227b3a348b0076b13ca856404b747a23b25e8785ccde5fca63",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 八段",
+		"value": "NORMAL_8"
+	},
+	{
+		"md5sums": "4f7194ff14462a3145f3aa2b88cb70ea754050a3165d9a7a742da2f1390378cea45c28522052b8920bc2b00ffa436424f0571f9ffd44be2dd7acf420fc025a53",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 七段",
+		"value": "NORMAL_7"
+	},
+	{
+		"md5sums": "7a916c323e24b215146d698f63b75b96a5d3cb037e4fa7b7c28a8a5932c1c7cf3a16881ef5ebbb61612524c5ce8bc115583651c7df1035502636f37db24c060b",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 六段",
+		"value": "NORMAL_6"
+	},
+	{
+		"md5sums": "5ed0d97f7f66d9a031ff9176efff07e9224bbb19e568282ff63130f1931eb53766c8c81ac9ef3ed701a90b5d84bfaf97a5f15f76b2bfc1a248e1ee093d69d644",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 五段",
+		"value": "NORMAL_5"
+	},
+	{
+		"md5sums": "e8f7a57bfa91c9b1a5173d12c4d9584b503522fb02a2f279923030c1be1fcbc7ace78078aad6103d8fdbec3a682c9f28b49ddb9e8ffea4d75ea6f8c03b690fae",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 四段",
+		"value": "NORMAL_4"
+	},
+	{
+		"md5sums": "f8876484d74f536a0b24764cbe3ab9c77b48acd7eab9e800738a3b72d2da0e577d21fdb4c13aa53e223774ac85f47b28f5b3911b04267dc36cca4ce961eb0f7a",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 三段",
+		"value": "NORMAL_3"
+	},
+	{
+		"md5sums": "a23cf15dffec468ac87e101fb2b5e3ab3e5a252169b7aaa315b95ee1db26f00d6afea3bb3054b57e51dd2ee14cbfe82bf0b424aea7daee8512cda44addf3ae51",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 二段",
+		"value": "NORMAL_2"
+	},
+	{
+		"md5sums": "c3ada42b7771b9d6f27d7b59bf3f3ae5148e9f208f0d13304179a7b781ccfc58da6a14018c6f26e6a556d00b322931501da6bdaff412c794e4a3ca5888103ad0",
+		"playtype": "7K",
+		"set": "newGenerationDan",
+		"title": "NEW GENERATION 初段",
+		"value": "NORMAL_1"
+	},
+	{
 		"md5sums": "3d3d5255905b468abe944bd17699e1f2d49d1a220c1be93ac3dda1ed24c11728872727c4dc8116897bfd2316dd8a0389aa47eec9e2483891f85f116ad5bc481e",
 		"playtype": "7K",
 		"set": "scratchDan",

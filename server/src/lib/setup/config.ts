@@ -88,6 +88,7 @@ export interface TachiServerConfig {
 		REPO_URL: string;
 		USER_NAME: string | null;
 		USER_EMAIL: string | null;
+		BRANCH?: string;
 	};
 	EMAIL_CONFIG?: {
 		FROM: string;
@@ -231,6 +232,7 @@ const err = p(config, {
 		REPO_URL: "string",
 		USER_NAME: "?string",
 		USER_EMAIL: "?string",
+		BRANCH: "*string",
 	}),
 });
 

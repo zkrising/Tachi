@@ -283,8 +283,12 @@ const PRE_SCHEMAS = {
 				return "Expected a string";
 			}
 
-			if (self.length !== 32 * 4) {
-				return "Expected 32 * 4 characters (4 md5 hashes long).";
+			if (self.length < 32 * 2) {
+				return "Expected at least 2 md5 hashes in a course";
+			}
+
+			if (self.length % 32 !== 0) {
+				return "Expected mod32 characters (an md5 hash is 32 chars long).";
 			}
 
 			if (!/^[a-z0-9]*$/u.exec(self)) {

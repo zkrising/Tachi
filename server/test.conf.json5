@@ -50,6 +50,7 @@
 			"maimai",
 			"maimaidx",
 			"arcaea",
+			"ongeki",
 		],
 		IMPORT_TYPES: [
 			"file/eamusement-iidx-csv",

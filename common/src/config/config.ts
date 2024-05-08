@@ -10,6 +10,7 @@ import { JUBEAT_CONF, JUBEAT_SINGLE_CONF } from "./game-support/jubeat";
 import { MAIMAI_CONF, MAIMAI_SINGLE_CONF } from "./game-support/maimai";
 import { MAIMAI_DX_CONF, MAIMAI_DX_SINGLE_CONF } from "./game-support/maimai-dx";
 import { MUSECA_CONF, MUSECA_SINGLE_CONF } from "./game-support/museca";
+import { ONGEKI_CONF, ONGEKI_SINGLE_CONF } from "./game-support/ongeki";
 import { PMS_CONF, PMS_CONTROLLER_CONF, PMS_KEYBOARD_CONF } from "./game-support/pms";
 import { POPN_9B_CONF, POPN_CONF } from "./game-support/popn";
 import { SDVX_CONF, SDVX_SINGLE_CONF } from "./game-support/sdvx";
@@ -48,6 +49,7 @@ export const GAME_CONFIGS = {
 	pms: PMS_CONF,
 	itg: ITG_CONF,
 	arcaea: ARCAEA_CONF,
+	ongeki: ONGEKI_CONF,
 } as const satisfies Record<string, INTERNAL_GAME_CONFIG>;
 
 /**
@@ -95,6 +97,7 @@ export const GAME_PT_CONFIGS = {
 	"usc:Keyboard": USC_KEYBOARD_CONF,
 	"itg:Stamina": ITG_STAMINA_CONF,
 	"arcaea:Touch": ARCAEA_TOUCH_CONF,
+	"ongeki:Single": ONGEKI_SINGLE_CONF,
 } as const satisfies Record<GPTString, INTERNAL_GAME_PT_CONFIG>;
 
 /**

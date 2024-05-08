@@ -15,6 +15,7 @@ export default function SDVXLampCell({
 		<td
 			style={{
 				backgroundColor: ChangeOpacity(GetEnumColour(score, "lamp"), 0.2),
+				whiteSpace: "nowrap",
 			}}
 		>
 			<strong>{score.scoreData.lamp === "FAILED" ? "PLAYED" : score.scoreData.lamp}</strong>

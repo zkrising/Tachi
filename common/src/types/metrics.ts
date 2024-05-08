@@ -82,6 +82,10 @@ export interface ConfEnumScoreMetric<V extends string> {
 	type: "ENUM";
 	values: ReadonlyArray<V>;
 
+	/**
+	 * The minimum value that users should care about. Used to prevent UI-issues like saying
+	 * "You got 5 new fails/D ranks today!" etc.
+	 */
 	minimumRelevantValue: V;
 }
 

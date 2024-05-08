@@ -1268,3 +1268,17 @@ export const TestingArcaeaSheriruthFTR: ChartDocument<"arcaea:Touch"> = {
 	songID: 19,
 	versions: ["mobile"],
 };
+
+export const TestingOngekiChart: ChartDocument<"ongeki:Single"> = {
+	chartID: "213796bdb6150f80ba6412ce69df1249e16c0cb0",
+	data: {
+		displayVersion: "bright MEMORY Act.3",
+	},
+	difficulty: "MASTER",
+	isPrimary: true,
+	level: "10",
+	levelNum: 10.5,
+	playtype: "Single",
+	songID: 19,
+	versions: ["brightMemory3", "brightMemory3Omni"],
+};

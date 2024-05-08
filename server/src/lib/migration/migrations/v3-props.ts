@@ -35,6 +35,7 @@ function perToScore(goal: GoalDocument) {
 			return v * 10_000_000;
 		case "wacca":
 		case "chunithm":
+		case "ongeki":
 		case "museca":
 			return v * 1_000_000;
 		case "popn":

@@ -7,7 +7,7 @@ import fjsh from "fast-json-stable-hash";
 import { PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import UpdateIsPrimaryStatus from "lib/score-mutation/update-isprimary";
-import { TachiConfig } from "lib/setup/config";
+import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { RemoveStaleFolderShowcaseStats } from "lib/showcase/showcase";
 import { UpdateQuestSubscriptions } from "lib/targets/quests";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
@@ -357,7 +357,10 @@ async function SynchroniseDBWithSeeds() {
 	// Wait for mongo to connect first.
 	await monkDB.then(() => void 0);
 
-	const databaseSeedsRepo = await PullDatabaseSeeds(options.localPath);
+	const databaseSeedsRepo = await PullDatabaseSeeds(
+		options.localPath,
+		ServerConfig.SEEDS_CONFIG?.BRANCH
+	);
 
 	for await (const { collectionName, data } of databaseSeedsRepo.IterateCollections()) {
 		const spawnLogger = CreateLogCtx(`${collectionName} Sync`);

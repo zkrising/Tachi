@@ -310,18 +310,16 @@ export async function BacksyncCollection(
 	collection: ICollection,
 	commitMessage: string
 ) {
-	for (const branch of ["main"]) {
-		const repo = await PullDatabaseSeeds(undefined, branch);
+	const repo = await PullDatabaseSeeds(undefined);
 
-		let charts = await collection.find({});
+	let charts = await collection.find({});
 
-		await repo.WriteCollection(collectionName, charts);
+	await repo.WriteCollection(collectionName, charts);
 
-		// @ts-expect-error Force node to free the memory.
-		charts = null;
+	// @ts-expect-error Force node to free the memory.
+	charts = null;
 
-		await repo.CommitChangesBack(`${commitMessage} ${new Date().toISOString()}`);
+	await repo.CommitChangesBack(`${commitMessage} ${new Date().toISOString()}`);
 
-		await repo.Destroy();
-	}
+	await repo.Destroy();
 }

@@ -1,11 +1,11 @@
 const { MutateCollection, CreateChartID } = require("../../util");
 
-const inGameID = 80017;
-const tachiSongID = 2088;
+const inGameID = 25021;
+const tachiSongID = 1728;
 
 const newCharts = [
-	["SP", "LEGGENDARIA", 1835, 12],
-	["DP", "LEGGENDARIA", 1974, 12],
+	["SP", "LEGGENDARIA", 1903, 12],
+	["DP", "LEGGENDARIA", 1861, 12],
 ];
 
 const shouldBeDeprimaried = (c) =>

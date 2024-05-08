@@ -160,13 +160,14 @@ function SessionScoreStatBreakdown({
 								e.score.chartID === score.chartID
 						);
 
-						if (
-							alreadyInArray &&
-							// @ts-expect-error not justifying this
-							alreadyInArray.score.scoreData.enumIndexes[enumValue] < enumIndex
-						) {
-							alreadyInArray.score = score;
-							alreadyInArray.scoreInfo = scoreInfo;
+						if (alreadyInArray) {
+							if (
+								// @ts-expect-error not justifying this
+								alreadyInArray.score.scoreData.enumIndexes[enumValue] < enumIndex
+							) {
+								alreadyInArray.score = score;
+								alreadyInArray.scoreInfo = scoreInfo;
+							}
 						} else {
 							newEnums[metric][enumValue].push({
 								score,

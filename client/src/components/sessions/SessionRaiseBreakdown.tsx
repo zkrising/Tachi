@@ -128,14 +128,14 @@ function SessionScoreStatBreakdown({
 
 	const enumMetrics = GetScoreMetrics(gptConfig, "ENUM");
 
+	type Datapoint = { score: ScoreDocument; scoreInfo: SessionScoreInfo };
 	const newEnums = useMemo(() => {
-		const newEnums: Record<
-			string,
-			Record<string, { score: ScoreDocument; scoreInfo: SessionScoreInfo }[]>
-		> = {};
+		const newEnums: Record<string, Record<string, Array<Datapoint>>> = {};
 
 		for (const metric of enumMetrics) {
 			newEnums[metric] = {};
+
+			const highestMetric: Record<string, Datapoint> = {};
 
 			for (const scoreInfo of sessionData.scoreInfo) {
 				const score = scoreMap.get(scoreInfo.scoreID);
@@ -147,41 +147,36 @@ function SessionScoreStatBreakdown({
 					continue;
 				}
 
-				if (scoreInfo.isNewScore || scoreInfo.deltas[metric] > 0) {
-					// @ts-expect-error yeah this is fine pls
-					const enumValue = score.scoreData[metric] as string;
-					// @ts-expect-error yeah this is fine pls
-					const enumIndex = score.scoreData.enumIndexes[metric] as integer;
+				if (!scoreInfo.isNewScore && scoreInfo.deltas[metric] <= 0) {
+					// not a raise
+					continue;
+				}
 
-					if (newEnums[metric][enumValue]) {
-						const alreadyInArray = newEnums[metric][enumValue].find(
-							(e) =>
-								e.score.scoreID === score.scoreID ||
-								e.score.chartID === score.chartID
-						);
+				if (highestMetric[score.chartID]) {
+					const prevScore = highestMetric[score.chartID].score;
 
-						if (alreadyInArray) {
-							if (
-								// @ts-expect-error not justifying this
-								alreadyInArray.score.scoreData.enumIndexes[enumValue] < enumIndex
-							) {
-								alreadyInArray.score = score;
-								alreadyInArray.scoreInfo = scoreInfo;
-							}
-						} else {
-							newEnums[metric][enumValue].push({
-								score,
-								scoreInfo,
-							});
-						}
-					} else {
-						newEnums[metric][enumValue] = [
-							{
-								score,
-								scoreInfo,
-							},
-						];
+					// trumps previous score
+					if (
+						// @ts-expect-error yeah this is fine pls
+						prevScore.scoreData.enumIndexes[metric] <
+						// @ts-expect-error yeah this is fine pls
+						score.scoreData.enumIndexes[metric]
+					) {
+						highestMetric[score.chartID] = { score, scoreInfo };
 					}
+				} else {
+					highestMetric[score.chartID] = { score, scoreInfo };
+				}
+			}
+
+			for (const s of Object.values(highestMetric)) {
+				// @ts-expect-error bad metric type
+				const enumValue = s.score.scoreData[metric];
+
+				if (newEnums[metric][enumValue]) {
+					newEnums[metric][enumValue].push(s);
+				} else {
+					newEnums[metric][enumValue] = [s];
 				}
 			}
 		}

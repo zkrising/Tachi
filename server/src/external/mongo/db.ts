@@ -171,7 +171,7 @@ const db = {
 	"game-stats": monkDB.get<UserGameStats>("game-stats"),
 	"kai-auth-tokens": monkDB.get<KaiAuthDocument>("kai-auth-tokens"),
 	"cg-card-info": monkDB.get<CGCardInfo>("cg-card-info"),
-	"myt-card-info": monkDB.get<MytCardInfo>("cg-card-info"),
+	"myt-card-info": monkDB.get<MytCardInfo>("myt-card-info"),
 
 	"bms-course-lookup": monkDB.get<BMSCourseDocument>("bms-course-lookup"),
 	"api-tokens": monkDB.get<APITokenDocument>("api-tokens"),

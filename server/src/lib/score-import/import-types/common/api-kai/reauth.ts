@@ -9,6 +9,7 @@ import type { KaiAuthDocument } from "tachi-common";
 
 const REAUTH_SCHEMA = {
 	access_token: "string",
+	refresh_token: "string",
 };
 
 export function CreateKaiReauthFunction(
@@ -103,6 +104,7 @@ export function CreateKaiReauthFunction(
 		// asserted by prudence
 		const validatedContent = json as {
 			access_token: string;
+			refresh_token: string;
 		};
 
 		await db["kai-auth-tokens"].update(
@@ -113,6 +115,7 @@ export function CreateKaiReauthFunction(
 			{
 				$set: {
 					token: validatedContent.access_token,
+					refreshToken: validatedContent.refresh_token,
 				},
 			}
 		);

@@ -32,6 +32,7 @@ t.test("#CreateKaiReauthFunction", (t) => {
 		const mockFetch = MockJSONFetch({
 			[`${ServerConfig.FLO_API_URL}/oauth/token`]: {
 				access_token: "NEW_ACCESS_TOKEN",
+				refresh_token: "NEW_REFRESH_TOKEN",
 			},
 		});
 

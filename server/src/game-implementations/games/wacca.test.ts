@@ -79,7 +79,7 @@ t.test("WACCA Implementation", (t) => {
 	t.test("Colour Deriver", (t) => {
 		const f = (v: number | null, expected: any) =>
 			t.equal(
-				WACCA_IMPL.classDerivers.colour({ rate: v }),
+				WACCA_IMPL.classDerivers.colour({ naiveRate: v }),
 				expected,
 				`A rating of ${v} should result in ${expected}.`
 			);

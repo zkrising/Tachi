@@ -103,9 +103,6 @@ const scrapeWikiwiki = async (
 			playtype: "Single",
 			data: {
 				displayVersion: CURRENT_VERSION_PRETTY,
-				totalBellCount: bellCount,
-				totalNoteCount: noteCount,
-				isHot: true,
 			},
 			versions: [CURRENT_VERSION, `${CURRENT_VERSION}Omni`],
 		};

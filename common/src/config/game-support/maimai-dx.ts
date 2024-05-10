@@ -151,11 +151,6 @@ export const MAIMAI_DX_SINGLE_CONF = {
 			description: "A naive rating algorithm that just sums your 50 best scores.",
 			formatter: NoDecimalPlace,
 		},
-		rate: {
-			description:
-				"Rating as it's implemented in game, taking 15 scores from the latest version and 35 from all old versions.",
-			formatter: NoDecimalPlace,
-		},
 	},
 
 	defaultScoreRatingAlg: "rate",
@@ -215,9 +210,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 		buddies: "BUDDiES",
 	},
 
-	chartData: z.strictObject({
-		isLatest: z.boolean(),
-	}),
+	chartData: z.strictObject({}),
 
 	preferences: z.strictObject({}),
 	scoreMeta: z.strictObject({}),

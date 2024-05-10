@@ -37,7 +37,7 @@ t.test("#CalculateUGPTClasses", (t) => {
 			"Dora",
 			1,
 			{
-				skill: 9000,
+				naiveSkill: 9000,
 			},
 			null,
 			logger

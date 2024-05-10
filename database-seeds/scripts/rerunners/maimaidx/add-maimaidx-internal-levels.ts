@@ -320,15 +320,6 @@ function addOtherSheet(csvData: string[][], headerRow: number, options: AddOther
 					);
 					chart.levelNum = internalLevel;
 				}
-				if (
-					chart.data.isLatest !== markLatest &&
-					!markLatestExceptions.includes(song.title)
-				) {
-					console.log(
-						`Marking ${song.title} [${chart.difficulty}]'s isLatest to ${markLatest}`
-					);
-					chart.data.isLatest = markLatest;
-				}
 			}
 		}
 		return charts;

@@ -76,14 +76,6 @@ export default function DifficultyCell({
 				{FormatDifficultyShort(chart, game)}
 			</div>
 			<DisplayLevelNum game={game} level={chart.level} levelNum={chart.levelNum} />
-			{(("isHot" in chart.data && chart.data.isHot) ||
-				("isLatest" in chart.data && chart.data.isLatest)) && (
-				<QuickTooltip tooltipContent="This chart is from the latest version of the game!">
-					<div>
-						<Icon type="fire" />
-					</div>
-				</QuickTooltip>
-			)}
 			{!noTierlist && gptImpl.ratingSystems.length > 0 && (
 				<RatingSystemPart chart={chart} game={game} />
 			)}

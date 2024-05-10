@@ -196,9 +196,7 @@ export const WACCA_SINGLE_CONF = {
 		reverse: "REVERSE",
 	},
 
-	chartData: z.strictObject({
-		isHot: z.boolean(),
-	}),
+	chartData: z.strictObject({}),
 
 	preferences: z.strictObject({}),
 	scoreMeta: z.strictObject({ mirror: z.boolean().optional() }),

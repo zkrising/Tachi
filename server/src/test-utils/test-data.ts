@@ -387,9 +387,7 @@ export const TestingMaimaiChart: ChartDocument<"maimai:Single"> = {
 
 export const TestingMaimaiDXChart: ChartDocument<"maimaidx:Single"> = {
 	chartID: "fbde73d543f93cbad9ec67052a7165700c5c8df6",
-	data: {
-		isLatest: false,
-	},
+	data: {},
 	difficulty: "Advanced",
 	isPrimary: true,
 	level: "7",
@@ -576,7 +574,6 @@ export const TestingWaccaPupaExp: ChartDocument<"wacca:Single"> = {
 	levelNum: 13.7,
 	level: "13+",
 	data: {
-		isHot: false,
 		inGameID: 2085,
 	},
 	isPrimary: true,
@@ -589,7 +586,7 @@ export const TestingWaccaPupaSong: SongDocument<"wacca"> = {
 	artist: "モリモリあつし",
 	data: {
 		displayVersion: "lilyr",
-		genre: "バラエティ"
+		genre: "バラエティ",
 	},
 	searchTerms: [],
 	altTitles: [],

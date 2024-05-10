@@ -14,6 +14,7 @@ import RemoveIIDX2dxtraBeginners from "./migrations/remove-iidx-extra-beginners"
 import RemoveMultifolderStats from "./migrations/remove-multifolder-stats";
 import RemoveRandom from "./migrations/remove-random";
 import RemoveSessionViews from "./migrations/remove-session-views";
+import RmHot from "./migrations/rm-hot";
 import SessionsToScoreIDs from "./migrations/sessions-to-scoreIDs";
 import UpdateJubeatPreferredTables from "./migrations/update-jubeat-preferred-tables";
 import V3PropsMigration from "./migrations/v3-props";
@@ -66,7 +67,8 @@ if (Environment.nodeEnv !== "test") {
 			MarkFervidexAsWithoutIntent,
 			MarkKsHookAsWithoutIntent,
 			KtRatingToCuratorSkill,
-			RemoveIIDX2dxtraBeginners
+			RemoveIIDX2dxtraBeginners,
+			RmHot
 		);
 	}
 

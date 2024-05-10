@@ -16379,7 +16379,9 @@
 		"levelNum": 9.8,
 		"playtype": "Single",
 		"songID": 336,
-		"versions": []
+		"versions": [
+			"reverse"
+		]
 	},
 	{
 		"chartID": "cf31db26bb5bc6a022a155641bb82adaff01d26f",
@@ -16393,7 +16395,9 @@
 		"levelNum": 6.9,
 		"playtype": "Single",
 		"songID": 336,
-		"versions": []
+		"versions": [
+			"reverse"
+		]
 	},
 	{
 		"chartID": "510613910d774deea3479b153e0593c3c81a2b2d",
@@ -16407,7 +16411,9 @@
 		"levelNum": 2,
 		"playtype": "Single",
 		"songID": 336,
-		"versions": []
+		"versions": [
+			"reverse"
+		]
 	},
 	{
 		"chartID": "fdd4452046ec225b404e22b8435d0e769f29934c",

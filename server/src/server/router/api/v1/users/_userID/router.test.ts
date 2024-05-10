@@ -353,7 +353,7 @@ t.test("GET /api/v1/users/:userID/game-stats", (t) => {
 				playtype: "Dora",
 				classes: {},
 				ratings: {
-					skill: 4843,
+					naiveSkill: 4843,
 				},
 			},
 		];

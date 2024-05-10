@@ -60,7 +60,6 @@ The default rating algorithm is `skill`.
 
 | Name | Description |
 | :: | :: |
-| `skill` | Your profile skill as it's implemented in game -- 25 HOT and 25 not HOT. |
 | `naiveSkill` | Your best 50 skill levels added together, regardless of whether the chart is HOT or not. |
 
 ## Difficulties

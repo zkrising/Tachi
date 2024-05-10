@@ -267,7 +267,7 @@ const PR_CHART_DOCUMENT = (game: Game) => (self: unknown) => {
 				return "Versions array should not be empty as this game uses versions";
 			}
 
-			if (new Set(...self).size !== self.length) {
+			if (new Set(self).size !== self.length) {
 				return "Versions array shouldn't contain the same version twice";
 			}
 

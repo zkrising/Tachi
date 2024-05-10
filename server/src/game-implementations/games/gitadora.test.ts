@@ -91,7 +91,7 @@ for (const [playtype, impl] of [
 		t.test("Colour Class", (t) => {
 			const f = (v: number | null, expected: any) =>
 				t.equal(
-					impl.classDerivers.colour({ skill: v }),
+					impl.classDerivers.colour({ naiveSkill: v }),
 					expected,
 					`A skill level of ${v} should result in ${expected}.`
 				);

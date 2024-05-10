@@ -127,8 +127,6 @@ const versionOverrides = {
 				return;
 			}
 
-			const isLatest = version >= CURRENT_VERSION_NUM;
-
 			const lvNum = Number(data[`dx_lev_${diff}`].replace(/\+/u, ".7"));
 
 			charts.push({
@@ -139,9 +137,7 @@ const versionOverrides = {
 				isPrimary: true,
 				difficulty: `DX ${diffMap.get(diff)}`,
 				playtype: "Single",
-				data: {
-					isLatest,
-				},
+				data: {},
 				versions: [CURRENT_VERSION],
 			});
 		});
@@ -161,8 +157,6 @@ const versionOverrides = {
 				return;
 			}
 
-			const isLatest = version >= CURRENT_VERSION_NUM;
-
 			const lvNum = Number(data[`lev_${diff}`].replace(/\+/u, ".7"));
 
 			charts.push({
@@ -173,9 +167,7 @@ const versionOverrides = {
 				isPrimary: true,
 				difficulty: diffMap.get(diff),
 				playtype: "Single",
-				data: {
-					isLatest,
-				},
+				data: {},
 				versions: [CURRENT_VERSION],
 			});
 		});

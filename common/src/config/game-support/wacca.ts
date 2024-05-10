@@ -98,10 +98,6 @@ export const WACCA_SINGLE_CONF = {
 		naiveRate: {
 			description: "A naive rating algorithm that just sums your 50 best scores.",
 		},
-		rate: {
-			description:
-				"Rating as it's implemented in game, taking 15 scores from the latest version and 35 from all old versions.",
-		},
 	},
 	sessionRatingAlgs: {
 		rate: { description: "The average of your best 10 ratings this session." },
@@ -141,7 +137,6 @@ export const WACCA_SINGLE_CONF = {
 	},
 
 	chartData: z.strictObject({
-		isHot: z.boolean(),
 		inGameID: zodNonNegativeInt,
 	}),
 

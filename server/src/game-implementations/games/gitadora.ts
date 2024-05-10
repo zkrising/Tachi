@@ -1,40 +1,11 @@
 import { GoalFmtPercent, GoalOutOfFmtPercent, GradeGoalFormatter } from "./_common";
-import db from "external/mongo/db";
 import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
-import { GetBestRatingOnSongs, ProfileSumBestN } from "game-implementations/utils/profile-calc";
+import { ProfileSumBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { GITADORASkill } from "rg-stats";
 import { GITADORA_GBOUNDARIES, GetGrade } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
-import type { Game, Playtype, integer } from "tachi-common";
-
-async function CalculateGitadoraSkill(game: Game, playtype: Playtype, userID: integer) {
-	const hotSongIDs = (
-		await db.songs.gitadora.find({ "data.isHot": true }, { projection: { id: 1 } })
-	).map((e) => e.id);
-
-	// get it
-	const coldSongIDs = (
-		await db.songs.gitadora.find({ "data.isHot": false }, { projection: { id: 1 } })
-	).map((e) => e.id);
-
-	const [bestHotScores, bestScores] = await Promise.all([
-		GetBestRatingOnSongs(hotSongIDs, userID, game, playtype, "skill", 25),
-		GetBestRatingOnSongs(coldSongIDs, userID, game, playtype, "skill", 25),
-	]);
-
-	if (bestHotScores.length + bestScores.length === 0) {
-		return null;
-	}
-
-	let skill = 0;
-
-	skill = skill + bestHotScores.reduce((a, e) => a + e.calculatedData.skill!, 0);
-	skill = skill + bestScores.reduce((a, e) => a + e.calculatedData.skill!, 0);
-
-	return skill;
-}
 
 const GITADORA_IMPL: GPTServerImplementation<"gitadora:Dora" | "gitadora:Gita"> = {
 	chartSpecificValidators: {},
@@ -45,10 +16,10 @@ const GITADORA_IMPL: GPTServerImplementation<"gitadora:Dora" | "gitadora:Gita"> 
 		skill: (scoreData, chart) => GITADORASkill.calculate(scoreData.percent, chart.levelNum),
 	},
 	sessionCalcs: { skill: SessionAvgBest10For("skill") },
-	profileCalcs: { skill: CalculateGitadoraSkill, naiveSkill: ProfileSumBestN("skill", 50) },
+	profileCalcs: { naiveSkill: ProfileSumBestN("skill", 50) },
 	classDerivers: {
 		colour: (ratings) => {
-			const sk = ratings.skill;
+			const sk = ratings.naiveSkill;
 
 			if (IsNullish(sk)) {
 				return null;

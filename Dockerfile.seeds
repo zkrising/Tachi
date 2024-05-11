@@ -15,7 +15,8 @@ COPY database-seeds ./database-seeds
 COPY common ./common
 COPY *.json *.yaml ./
 
-RUN pnpm --filter tachi-database-seeds... --filter . install --offline --frozen-lockfile
+RUN pnpm --filter tachi-common... --filter . install --offline --frozen-lockfile
+RUN pnpm --filter tachi-database-seeds-scripts... --filter . install --offline --frozen-lockfile
 
 WORKDIR /app/database-seeds
 

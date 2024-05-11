@@ -1,6 +1,6 @@
 #! /bin/bash
 
-set -eo pipefail
+set -eox pipefail
 
 
 # https://stackoverflow.com/questions/59895/how-can-i-get-the-directory-where-a-bash-script-is-located-from-within-the-scrip

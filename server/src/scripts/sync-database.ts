@@ -67,9 +67,14 @@ async function GenericUpsert<T extends Record<string, any>>(
 	remove = false,
 	update = true
 ) {
+	if (remove) {
+		await RemoveNotPresent(documents, collection, field, logger);
+	}
+
 	logger.verbose(`Running bulkwrite.`);
 
-	const bwriteOps: Array<BulkWriteOperation<T>> = [];
+	const updateOps: Array<BulkWriteOperation<T>> = [];
+	const insertOps: Array<BulkWriteOperation<T>> = [];
 
 	const allExistingDocs = await collection.find({});
 
@@ -92,12 +97,15 @@ async function GenericUpsert<T extends Record<string, any>>(
 		const exists = map.get(document[field]);
 
 		if (exists === undefined) {
-			bwriteOps.push({
+			logger.verbose(`Inserting new: ${document[field]}`);
+			insertOps.push({
 				// @ts-expect-error Actually, T is assignable to OptionalId<T>.
 				insertOne: { document },
 			});
 		} else if (update && fjsh.hash(document, "sha256") !== fjsh.hash(exists, "sha256")) {
-			bwriteOps.push({
+			logger.verbose(`Updating ${document[field]}`);
+
+			updateOps.push({
 				replaceOne: {
 					// @ts-expect-error Known X->Y generic issue.
 					filter: {
@@ -109,32 +117,34 @@ async function GenericUpsert<T extends Record<string, any>>(
 
 			changedFields.push(document[field]);
 		}
-
-		// free some memory.
-		map.delete(document[field]);
 	}
 
-	if (bwriteOps.length === 0) {
+	const thingsChanged = updateOps.length + insertOps.length;
+
+	if (thingsChanged === 0) {
 		logger.verbose(`No differences. Not performing any update.`);
 	} else {
-		const { deletedCount, insertedCount, matchedCount, upsertedCount, modifiedCount } =
-			await collection.bulkWrite(bwriteOps);
+		// update first, then insert new docs
+		let up;
+
+		if (updateOps.length > 0) {
+			up = await collection.bulkWrite(updateOps);
+		}
+
+		let ins;
+
+		if (insertOps.length > 0) {
+			ins = await collection.bulkWrite(insertOps);
+		}
 
 		logger.info(`Performed bulkWrite.`, {
-			deletedCount,
-			insertedCount,
-			matchedCount,
-			upsertedCount,
-			modifiedCount,
+			up,
+			ins,
 		});
 	}
 
-	if (remove) {
-		await RemoveNotPresent(documents, collection, field, logger);
-	}
-
 	return {
-		thingsChanged: bwriteOps.length,
+		thingsChanged,
 		changedFields,
 	};
 }

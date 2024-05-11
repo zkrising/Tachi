@@ -17,9 +17,9 @@ import type { KtLogger } from "lib/logger/logger";
 import type { LookupResponse } from "proto/generated/cards/cards_pb";
 import type { Game } from "tachi-common";
 
-// Hardcode all requests to time out after 30s.
-// It seems we can stream 1000+ scores in <4s.
-const GRPC_TIMEOUT_SECS = 30;
+// Hardcode all requests to time out after 10m.
+// 6000 scores seems to take more than 30 seconds. 5mins seems like a safe upper bound.
+const GRPC_TIMEOUT_SECS = 10 * 60;
 
 export function GetMytHostname(): string {
 	const hostname = ServerConfig.MYT_API_HOST;

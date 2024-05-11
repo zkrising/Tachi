@@ -2,8 +2,6 @@ files: "src/test-utils/single-process-tap.ts"
 test-env:
   - NODE_ENV=test
   - PORT=8080
-  - MONGO_URL=127.0.0.1
-  - REDIS_URL=127.0.0.1
   - TCHIS_CONF_LOCATION=test.conf.json5
   - LOG_LEVEL=info
 # On a local machine, these tests run in under 2-3 minutes.

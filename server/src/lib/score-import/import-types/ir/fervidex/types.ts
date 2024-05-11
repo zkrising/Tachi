@@ -32,7 +32,13 @@ export interface FervidexScore {
 	};
 
 	option?: {
-		gauge?: "ASSISTED_EASY" | "EASY" | "EX_HARD" | "HARD" | null;
+		gauge?:
+			| "ASSISTED_EASY"
+			| "EASY"
+			| "EX_HARD"
+			| "HARD"
+			| `EROSION_LV${"1" | "2" | "3" | "4" | "5"}`
+			| null;
 		range?:
 			| "HIDDEN_PLUS"
 			| "LIFT_SUD_PLUS"

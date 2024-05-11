@@ -57,6 +57,11 @@ export function TachifyGauge(
 			return "HARD";
 		case null:
 		case undefined:
+		case "EROSION_LV1":
+		case "EROSION_LV2":
+		case "EROSION_LV3":
+		case "EROSION_LV4":
+		case "EROSION_LV5":
 			return "NORMAL";
 	}
 }

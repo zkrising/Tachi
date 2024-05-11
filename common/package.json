@@ -21,7 +21,8 @@
 		"@types/mongodb": "3.6.20",
 		"deepmerge": "^4.2.2",
 		"prudence": "0.10.0",
-		"zod": "^3.20.2"
+		"zod": "^3.20.2",
+		"typescript": "4.9.4"
 	},
 	"devDependencies": {
 		"@types/tap": "^15.0.7",

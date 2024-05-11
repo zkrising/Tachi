@@ -3,6 +3,10 @@ site_description: Documentation for Kamaitachi, Bokutachi and related things.
 site_author: zkldi
 site_url: https://docs.tachi.ac
 
+watch:
+  - "docs/"
+  - "mkdocs.yml"
+
 theme:
   name: material
   features:
@@ -35,43 +39,43 @@ nav:
               - "contributing/components/seeds.md"
 
           - Cookbook:
-            - "contributing/cookbook/iidx-mdb.md"
-            - "contributing/cookbook/sdvx-mdb.md"
-            - "contributing/cookbook/bms-tables.md"
+              - "contributing/cookbook/iidx-mdb.md"
+              - "contributing/cookbook/sdvx-mdb.md"
+              - "contributing/cookbook/bms-tables.md"
 
       - Supporting New Games:
           - "game-support/index.md"
 
           - Common Config:
-            - "game-support/common-config/index.md"
-            - "game-support/common-config/metrics.md"
-            - "game-support/common-config/metric-groups.md"
-            - "game-support/common-config/match-types.md"
-            - "game-support/common-config/versions.md"
+              - "game-support/common-config/index.md"
+              - "game-support/common-config/metrics.md"
+              - "game-support/common-config/metric-groups.md"
+              - "game-support/common-config/match-types.md"
+              - "game-support/common-config/versions.md"
 
           - "game-support/server-impl.md"
           - "game-support/client-impl.md"
 
           - Game Information:
-            - "game-support/games/iidx-SP.md"
-            - "game-support/games/iidx-DP.md"
-            - "game-support/games/museca-Single.md"
-            - "game-support/games/chunithm-Single.md"
-            - "game-support/games/bms-7K.md"
-            - "game-support/games/bms-14K.md"
-            - "game-support/games/gitadora-Gita.md"
-            - "game-support/games/gitadora-Dora.md"
-            - "game-support/games/jubeat-Single.md"
-            - "game-support/games/maimaidx-Single.md"
-            - "game-support/games/popn-9B.md"
-            - "game-support/games/sdvx-Single.md"
-            - "game-support/games/usc-Controller.md"
-            - "game-support/games/usc-Keyboard.md"
-            - "game-support/games/wacca-Single.md"
-            - "game-support/games/pms-Controller.md"
-            - "game-support/games/pms-Keyboard.md"
-            - "game-support/games/itg-Stamina.md"
-            - "game-support/games/ongeki-Single.md"
+              - "game-support/games/iidx-SP.md"
+              - "game-support/games/iidx-DP.md"
+              - "game-support/games/museca-Single.md"
+              - "game-support/games/chunithm-Single.md"
+              - "game-support/games/bms-7K.md"
+              - "game-support/games/bms-14K.md"
+              - "game-support/games/gitadora-Gita.md"
+              - "game-support/games/gitadora-Dora.md"
+              - "game-support/games/jubeat-Single.md"
+              - "game-support/games/maimaidx-Single.md"
+              - "game-support/games/popn-9B.md"
+              - "game-support/games/sdvx-Single.md"
+              - "game-support/games/usc-Controller.md"
+              - "game-support/games/usc-Keyboard.md"
+              - "game-support/games/wacca-Single.md"
+              - "game-support/games/pms-Controller.md"
+              - "game-support/games/pms-Keyboard.md"
+              - "game-support/games/itg-Stamina.md"
+              - "game-support/games/ongeki-Single.md"
 
   - Wiki:
       - "wiki/index.md"

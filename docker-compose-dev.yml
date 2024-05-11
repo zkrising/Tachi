@@ -3,18 +3,18 @@ services:
   mongo:
     container_name: mongo
     image: mongo:5
-    restart: always
+    restart: unless-stopped
     ports:
-      - '27017:27017'
+      - "27017:27017"
     volumes:
       - tachi-volume:/data/db
   redis:
     container_name: redis
     command: redis-server --save 60 1 --loglevel warning
     image: redis:6
-    restart: always
+    restart: unless-stopped
     ports:
-      - '6379:6379'
+      - "6379:6379"
     volumes:
       - tachi-redis:/data
   tachi-server:
@@ -35,7 +35,7 @@ services:
     volumes:
       - ./:/app
     ports:
-      - '8080:8080'
+      - "8080:8080"
     environment:
       REDIS_URL: redis
       MONGO_URL: mongo
@@ -53,7 +53,7 @@ services:
     volumes:
       - ./:/app
     ports:
-      - '3000:3000'
+      - "3000:3000"
   tachi-seeds:
     container_name: tachi-seeds
     build:
@@ -74,6 +74,14 @@ services:
       MONGO_URL: mongo
       PORT: 8080
       NODE_ENV: "dev"
+  tachi-docs:
+    container_name: tachi-docs
+    build:
+      dockerfile: Dockerfile.docs
+    ports:
+      - "3001:8000"
+    volumes:
+      - ./:/app
 volumes:
   tachi-volume:
   tachi-redis:

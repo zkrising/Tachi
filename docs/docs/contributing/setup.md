@@ -34,16 +34,7 @@ However, for Windows users we recommend installing the [Windows Terminal](https:
 
 With a terminal open you can proceed to the next steps!
 
-## 1. Getting Node and Docker.
-
-You'll need `node` and `npm` in order to run Tachi. Install this from [the official NodeJS website](https://nodejs.org).
-
-!!! info
-	If you are on linux, NodeJS will be provided by your package manager instead.
-	
-	You may wish to use that instead. It honestly doesn't matter all too much.
-
-Check that the install has worked by running `npm -v`. If you get an error message saying that `npm` was not found, try restarting the terminal.
+## 1. Getting Docker.
 
 To set everything else up for local development, we'll use [Docker](https://docker.com).
 
@@ -118,7 +109,17 @@ You should now be properly authenticated!
 
 ## 4. Start Tachi!
 
-With a terminal open inside the `Tachi` folder you just cloned, run `npm start`.
+With a terminal open inside the `Tachi` folder you just cloned, run this command:
+
+=== "Windows"
+	```bat
+	run start
+	```
+
+=== "Linux, MacOS"
+	```sh
+	./run.sh start
+	```
 
 The frontend will be running on `http://127.0.0.1:3000`.
 The backend will be running on `https://127.0.0.1:8080`.
@@ -130,6 +131,9 @@ The backend will be running on `https://127.0.0.1:8080`.
 	You **need** to navigate to your running instance of the backend in a browser, and tell
 	the browser that you trust these certificates. Otherwise, all client requests to
 	the server will silently be chomped by the browser.
+
+!!! tip
+	Open the `run.bat` or `run.sh` files in vscode to see what other commands are available.
 
 ## 5. Editor Plugins
 
@@ -144,7 +148,7 @@ Namely, Install the ESLint plugin, and enable "Format On Save" in your settings.
 
 	It's ridiculously convenient, and there's a bunch of other stuff that VSCode helps with.
 
-## 8. OK, Now what.
+## 6. OK, Now what.
 
 Now that you've got a working version of Tachi running on your local PC, you should go check out the [component-specific contribution guides](./components.md)!
 

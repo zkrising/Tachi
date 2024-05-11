@@ -4,4 +4,4 @@ RUN pip install mkdocs-material==9.5.17
 
 COPY docs ./
 
-CMD ["mkdocs", "serve"]
+CMD ["mkdocs", "serve", "-a", "0.0.0.0:8000"]

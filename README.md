@@ -22,9 +22,19 @@ There are way more features that Tachi has, and you can read about all of them [
 
 ## Setup
 
+Tachi maintains a setup guide that is easy to follow even if you've never programmed before.
+
 Check the [Documentation](https://docs.tachi.ac/contributing/setup) for how to set Tachi up.
 
-You can then check the component-specific guides to see how to run those components and contribute back.
+You can then check the component-specific guides to see how to run those components and contribute back!
+
+## Quick Setup For Nerds
+
+Already know what you're doing?
+
+Install docker + docker-compose and use `./run.sh start` or `./run.bat start` to start Tachi.
+
+Other commands you might want to execute are included inside the `run` file.
 
 ## Repository Info
 

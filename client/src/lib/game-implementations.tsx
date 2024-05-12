@@ -20,6 +20,7 @@ import WaccaJudgementCell from "components/tables/cells/WACCAJudgementCell";
 import OngekiJudgementCell from "components/tables/cells/OngekiJudgementCell";
 import React from "react";
 import OngekiLampCell from "components/tables/cells/OngekiLampCell";
+import OngekiPlatinumCell from "components/tables/cells/OngekiPlatinumCell";
 import { CreateRatingSys, bgc } from "./games/_util";
 import { BMS_14K_IMPL, BMS_7K_IMPL, PMS_IMPL } from "./games/bms-pms";
 import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
@@ -786,6 +787,8 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 					(x) => x.scoreData.score * 10000 + (x.scoreData.optional.platScore ?? 0)
 				),
 			],
+			// TODO: this should be sorted by %
+			["Platinum Score", "Score", NumericSOV((x) => x.scoreData.optional.platScore ?? 0)],
 			["Judgements", "Hits", NumericSOV((x) => x.scoreData.score)],
 			[
 				"Lamp",
@@ -798,22 +801,16 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		],
 		scoreCoreCells: ({ sc, chart }) => (
 			<>
-				<td
-					style={{
-						backgroundColor: ChangeOpacity(GetEnumColour(sc, "grade"), 0.2),
-					}}
-				>
-					<strong>{sc.scoreData.grade}</strong>
-					<br />
-					{FormatMillions(sc.scoreData.score)}
-					{typeof sc.scoreData.optional.platScore === "number" &&
-						(chart.difficulty === "MASTER" || chart.difficulty === "LUNATIC") && (
-							<>
-								<br />
-								[Plat: {sc.scoreData.optional.platScore}]
-							</>
-						)}
-				</td>
+				<MillionsScoreCell
+					score={sc.scoreData.score}
+					grade={sc.scoreData.grade}
+					colour={GetEnumColour(sc, "grade")}
+				/>
+				<OngekiPlatinumCell
+					platScore={sc.scoreData.optional.platScore}
+					maxPlatScore={chart.data.maxPlatScore}
+					difficulty={chart.difficulty}
+				/>
 				<OngekiJudgementCell score={sc} />
 				<OngekiLampCell
 					lamp1={sc.scoreData.noteLamp}

@@ -15,13 +15,12 @@ export const OngekiPlatDiff = (diff: Difficulties["ongeki:Single"]) =>
 export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	chartSpecificValidators: {
 		platScore: (platScore, chart) => {
-			if (!OngekiPlatDiff(chart.difficulty)) {
-				// We don't care about other difficulties
-				return true;
-			}
-
 			if (platScore < 0) {
 				return `Platinum Score must be non-negative. Got ${platScore}`;
+			}
+
+			if (platScore > chart.data.maxPlatScore) {
+				return `Platinum Score is too large: ${platScore}>${chart.data.maxPlatScore}`;
 			}
 
 			return true;

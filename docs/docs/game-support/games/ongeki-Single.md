@@ -85,7 +85,6 @@ Note: since bright MEMORY Act.3, "crazy" charts and "Re:MASTER" charts are in se
 
 | ID | Pretty Name |
 | :: | :: |
-| `brightMemory2` | bright MEMORY Act.2 |
 | `brightMemory3` | bright MEMORY Act.3 |
 
 ## Supported Match Types

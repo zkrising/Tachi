@@ -141,7 +141,6 @@ export const ONGEKI_SINGLE_CONF = {
 
 	chartData: z.strictObject({
 		displayVersion: z.string(),
-		isUnranked: z.boolean().optional(),
 		isReMaster: z.boolean().optional(),
 		maxPlatScore: z.number().int(),
 		inGameID: z.number().int(),

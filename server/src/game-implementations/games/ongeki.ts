@@ -52,7 +52,7 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	},
 	scoreCalcs: {
 		rating: (scoreData, chart) =>
-			chart.data.isUnranked || chart.levelNum === 0.0
+			(chart.data.inGameID >= 7000 && chart.data.inGameID < 8000) || chart.levelNum === 0.0
 				? 0
 				: ONGEKIRating.calculate(scoreData.score, chart.levelNum),
 	},

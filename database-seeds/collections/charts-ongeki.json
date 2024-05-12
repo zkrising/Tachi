@@ -1876,7 +1876,6 @@
 			"displayVersion": "bright MEMORY",
 			"inGameID": 8113,
 			"isReMaster": false,
-			"isUnranked": true,
 			"maxPlatScore": 1568
 		},
 		"difficulty": "LUNATIC",
@@ -4011,7 +4010,6 @@
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 8009,
 			"isReMaster": false,
-			"isUnranked": true,
 			"maxPlatScore": 1672
 		},
 		"difficulty": "LUNATIC",
@@ -4410,7 +4408,6 @@
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 8015,
 			"isReMaster": false,
-			"isUnranked": true,
 			"maxPlatScore": 2452
 		},
 		"difficulty": "LUNATIC",
@@ -8149,7 +8146,6 @@
 			"displayVersion": "bright MEMORY",
 			"inGameID": 8158,
 			"isReMaster": false,
-			"isUnranked": true,
 			"maxPlatScore": 4434
 		},
 		"difficulty": "LUNATIC",
@@ -8792,7 +8788,6 @@
 			"displayVersion": "R.E.D.",
 			"inGameID": 8056,
 			"isReMaster": false,
-			"isUnranked": true,
 			"maxPlatScore": 628
 		},
 		"difficulty": "LUNATIC",
@@ -12007,7 +12002,6 @@
 			"displayVersion": "R.E.D.",
 			"inGameID": 8052,
 			"isReMaster": false,
-			"isUnranked": true,
 			"maxPlatScore": 3120
 		},
 		"difficulty": "LUNATIC",
@@ -16831,7 +16825,6 @@
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 8086,
 			"isReMaster": false,
-			"isUnranked": true,
 			"maxPlatScore": 634
 		},
 		"difficulty": "LUNATIC",
@@ -23442,7 +23435,6 @@
 			"displayVersion": "SUMMER PLUS",
 			"inGameID": 8045,
 			"isReMaster": false,
-			"isUnranked": true,
 			"maxPlatScore": 1476
 		},
 		"difficulty": "LUNATIC",
@@ -26205,7 +26197,6 @@
 			"displayVersion": "bright MEMORY",
 			"inGameID": 8160,
 			"isReMaster": false,
-			"isUnranked": true,
 			"maxPlatScore": 4572
 		},
 		"difficulty": "LUNATIC",
@@ -28104,7 +28095,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7001,
-			"isUnranked": true,
 			"maxPlatScore": 864
 		},
 		"difficulty": "ADVANCED",
@@ -28123,7 +28113,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7001,
-			"isUnranked": true,
 			"maxPlatScore": 738
 		},
 		"difficulty": "BASIC",
@@ -28142,7 +28131,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7001,
-			"isUnranked": true,
 			"maxPlatScore": 1664
 		},
 		"difficulty": "EXPERT",
@@ -28161,7 +28149,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7001,
-			"isUnranked": true,
 			"maxPlatScore": 1638
 		},
 		"difficulty": "MASTER",
@@ -28180,7 +28167,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7002,
-			"isUnranked": true,
 			"maxPlatScore": 864
 		},
 		"difficulty": "ADVANCED",
@@ -28199,7 +28185,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7002,
-			"isUnranked": true,
 			"maxPlatScore": 738
 		},
 		"difficulty": "BASIC",
@@ -28218,7 +28203,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7002,
-			"isUnranked": true,
 			"maxPlatScore": 1664
 		},
 		"difficulty": "EXPERT",
@@ -28237,7 +28221,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7002,
-			"isUnranked": true,
 			"maxPlatScore": 1638
 		},
 		"difficulty": "MASTER",
@@ -28256,7 +28239,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7003,
-			"isUnranked": true,
 			"maxPlatScore": 864
 		},
 		"difficulty": "ADVANCED",
@@ -28275,7 +28257,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7003,
-			"isUnranked": true,
 			"maxPlatScore": 738
 		},
 		"difficulty": "BASIC",
@@ -28294,7 +28275,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7003,
-			"isUnranked": true,
 			"maxPlatScore": 1664
 		},
 		"difficulty": "EXPERT",
@@ -28313,7 +28293,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7003,
-			"isUnranked": true,
 			"maxPlatScore": 1638
 		},
 		"difficulty": "MASTER",
@@ -29978,7 +29957,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7006,
-			"isUnranked": true,
 			"maxPlatScore": 1418
 		},
 		"difficulty": "ADVANCED",
@@ -29997,7 +29975,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7006,
-			"isUnranked": true,
 			"maxPlatScore": 808
 		},
 		"difficulty": "BASIC",
@@ -30016,7 +29993,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7006,
-			"isUnranked": true,
 			"maxPlatScore": 2254
 		},
 		"difficulty": "EXPERT",
@@ -30035,7 +30011,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7006,
-			"isUnranked": true,
 			"maxPlatScore": 2944
 		},
 		"difficulty": "MASTER",
@@ -30054,7 +30029,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7007,
-			"isUnranked": true,
 			"maxPlatScore": 1418
 		},
 		"difficulty": "ADVANCED",
@@ -30073,7 +30047,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7007,
-			"isUnranked": true,
 			"maxPlatScore": 808
 		},
 		"difficulty": "BASIC",
@@ -30092,7 +30065,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7007,
-			"isUnranked": true,
 			"maxPlatScore": 2254
 		},
 		"difficulty": "EXPERT",
@@ -30111,7 +30083,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7007,
-			"isUnranked": true,
 			"maxPlatScore": 2944
 		},
 		"difficulty": "MASTER",
@@ -30130,7 +30101,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7008,
-			"isUnranked": true,
 			"maxPlatScore": 1418
 		},
 		"difficulty": "ADVANCED",
@@ -30149,7 +30119,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7008,
-			"isUnranked": true,
 			"maxPlatScore": 808
 		},
 		"difficulty": "BASIC",
@@ -30168,7 +30137,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7008,
-			"isUnranked": true,
 			"maxPlatScore": 2254
 		},
 		"difficulty": "EXPERT",
@@ -30187,7 +30155,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7008,
-			"isUnranked": true,
 			"maxPlatScore": 2944
 		},
 		"difficulty": "MASTER",
@@ -30855,7 +30822,6 @@
 			"displayVersion": "R.E.D.",
 			"inGameID": 8051,
 			"isReMaster": false,
-			"isUnranked": true,
 			"maxPlatScore": 2586
 		},
 		"difficulty": "LUNATIC",
@@ -31901,7 +31867,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7004,
-			"isUnranked": true,
 			"maxPlatScore": 924
 		},
 		"difficulty": "ADVANCED",
@@ -31920,7 +31885,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7004,
-			"isUnranked": true,
 			"maxPlatScore": 532
 		},
 		"difficulty": "BASIC",
@@ -31939,7 +31903,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7004,
-			"isUnranked": true,
 			"maxPlatScore": 1520
 		},
 		"difficulty": "EXPERT",
@@ -31958,7 +31921,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7004,
-			"isUnranked": true,
 			"maxPlatScore": 1780
 		},
 		"difficulty": "MASTER",
@@ -31977,7 +31939,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7005,
-			"isUnranked": true,
 			"maxPlatScore": 924
 		},
 		"difficulty": "ADVANCED",
@@ -31996,7 +31957,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7005,
-			"isUnranked": true,
 			"maxPlatScore": 532
 		},
 		"difficulty": "BASIC",
@@ -32015,7 +31975,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7005,
-			"isUnranked": true,
 			"maxPlatScore": 1520
 		},
 		"difficulty": "EXPERT",
@@ -32034,7 +31993,6 @@
 		"data": {
 			"displayVersion": "R.E.D.",
 			"inGameID": 7005,
-			"isUnranked": true,
 			"maxPlatScore": 1780
 		},
 		"difficulty": "MASTER",
@@ -34391,7 +34349,6 @@
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 8178,
 			"isReMaster": false,
-			"isUnranked": true,
 			"maxPlatScore": 3118
 		},
 		"difficulty": "LUNATIC",
@@ -34644,7 +34601,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7009,
-			"isUnranked": true,
 			"maxPlatScore": 856
 		},
 		"difficulty": "ADVANCED",
@@ -34663,7 +34619,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7009,
-			"isUnranked": true,
 			"maxPlatScore": 488
 		},
 		"difficulty": "BASIC",
@@ -34682,7 +34637,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7009,
-			"isUnranked": true,
 			"maxPlatScore": 1258
 		},
 		"difficulty": "EXPERT",
@@ -34701,7 +34655,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7009,
-			"isUnranked": true,
 			"maxPlatScore": 1878
 		},
 		"difficulty": "MASTER",
@@ -34720,7 +34673,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7010,
-			"isUnranked": true,
 			"maxPlatScore": 856
 		},
 		"difficulty": "ADVANCED",
@@ -34739,7 +34691,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7010,
-			"isUnranked": true,
 			"maxPlatScore": 488
 		},
 		"difficulty": "BASIC",
@@ -34758,7 +34709,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7010,
-			"isUnranked": true,
 			"maxPlatScore": 1258
 		},
 		"difficulty": "EXPERT",
@@ -34777,7 +34727,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7010,
-			"isUnranked": true,
 			"maxPlatScore": 1878
 		},
 		"difficulty": "MASTER",
@@ -34796,7 +34745,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7011,
-			"isUnranked": true,
 			"maxPlatScore": 856
 		},
 		"difficulty": "ADVANCED",
@@ -34815,7 +34763,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7011,
-			"isUnranked": true,
 			"maxPlatScore": 488
 		},
 		"difficulty": "BASIC",
@@ -34834,7 +34781,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7011,
-			"isUnranked": true,
 			"maxPlatScore": 1258
 		},
 		"difficulty": "EXPERT",
@@ -34853,7 +34799,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7011,
-			"isUnranked": true,
 			"maxPlatScore": 1878
 		},
 		"difficulty": "MASTER",
@@ -35978,7 +35923,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7012,
-			"isUnranked": true,
 			"maxPlatScore": 1052
 		},
 		"difficulty": "ADVANCED",
@@ -35997,7 +35941,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7012,
-			"isUnranked": true,
 			"maxPlatScore": 790
 		},
 		"difficulty": "BASIC",
@@ -36016,7 +35959,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7012,
-			"isUnranked": true,
 			"maxPlatScore": 1784
 		},
 		"difficulty": "EXPERT",
@@ -36035,7 +35977,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7012,
-			"isUnranked": true,
 			"maxPlatScore": 2592
 		},
 		"difficulty": "MASTER",
@@ -36054,7 +35995,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7013,
-			"isUnranked": true,
 			"maxPlatScore": 1052
 		},
 		"difficulty": "ADVANCED",
@@ -36073,7 +36013,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7013,
-			"isUnranked": true,
 			"maxPlatScore": 790
 		},
 		"difficulty": "BASIC",
@@ -36092,7 +36031,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7013,
-			"isUnranked": true,
 			"maxPlatScore": 1784
 		},
 		"difficulty": "EXPERT",
@@ -36111,7 +36049,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7013,
-			"isUnranked": true,
 			"maxPlatScore": 2592
 		},
 		"difficulty": "MASTER",
@@ -37910,7 +37847,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7022,
-			"isUnranked": true,
 			"maxPlatScore": 1056
 		},
 		"difficulty": "ADVANCED",
@@ -37929,7 +37865,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7022,
-			"isUnranked": true,
 			"maxPlatScore": 646
 		},
 		"difficulty": "BASIC",
@@ -37948,7 +37883,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7022,
-			"isUnranked": true,
 			"maxPlatScore": 1788
 		},
 		"difficulty": "EXPERT",
@@ -37967,7 +37901,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7022,
-			"isUnranked": true,
 			"maxPlatScore": 2622
 		},
 		"difficulty": "MASTER",
@@ -37986,7 +37919,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7023,
-			"isUnranked": true,
 			"maxPlatScore": 1056
 		},
 		"difficulty": "ADVANCED",
@@ -38005,7 +37937,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7023,
-			"isUnranked": true,
 			"maxPlatScore": 646
 		},
 		"difficulty": "BASIC",
@@ -38024,7 +37955,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7023,
-			"isUnranked": true,
 			"maxPlatScore": 1788
 		},
 		"difficulty": "EXPERT",
@@ -38043,7 +37973,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7023,
-			"isUnranked": true,
 			"maxPlatScore": 2622
 		},
 		"difficulty": "MASTER",
@@ -38062,7 +37991,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7024,
-			"isUnranked": true,
 			"maxPlatScore": 1056
 		},
 		"difficulty": "ADVANCED",
@@ -38081,7 +38009,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7024,
-			"isUnranked": true,
 			"maxPlatScore": 646
 		},
 		"difficulty": "BASIC",
@@ -38100,7 +38027,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7024,
-			"isUnranked": true,
 			"maxPlatScore": 1788
 		},
 		"difficulty": "EXPERT",
@@ -38119,7 +38045,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7024,
-			"isUnranked": true,
 			"maxPlatScore": 2622
 		},
 		"difficulty": "MASTER",
@@ -39089,7 +39014,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7017,
-			"isUnranked": true,
 			"maxPlatScore": 1186
 		},
 		"difficulty": "ADVANCED",
@@ -39108,7 +39032,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7017,
-			"isUnranked": true,
 			"maxPlatScore": 574
 		},
 		"difficulty": "BASIC",
@@ -39127,7 +39050,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7017,
-			"isUnranked": true,
 			"maxPlatScore": 1916
 		},
 		"difficulty": "EXPERT",
@@ -39146,7 +39068,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7017,
-			"isUnranked": true,
 			"maxPlatScore": 2926
 		},
 		"difficulty": "MASTER",
@@ -39165,7 +39086,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7018,
-			"isUnranked": true,
 			"maxPlatScore": 1186
 		},
 		"difficulty": "ADVANCED",
@@ -39184,7 +39104,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7018,
-			"isUnranked": true,
 			"maxPlatScore": 574
 		},
 		"difficulty": "BASIC",
@@ -39203,7 +39122,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7018,
-			"isUnranked": true,
 			"maxPlatScore": 1916
 		},
 		"difficulty": "EXPERT",
@@ -39222,7 +39140,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7018,
-			"isUnranked": true,
 			"maxPlatScore": 2926
 		},
 		"difficulty": "MASTER",
@@ -39241,7 +39158,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7019,
-			"isUnranked": true,
 			"maxPlatScore": 1186
 		},
 		"difficulty": "ADVANCED",
@@ -39260,7 +39176,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7019,
-			"isUnranked": true,
 			"maxPlatScore": 574
 		},
 		"difficulty": "BASIC",
@@ -39279,7 +39194,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7019,
-			"isUnranked": true,
 			"maxPlatScore": 1916
 		},
 		"difficulty": "EXPERT",
@@ -39298,7 +39212,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7019,
-			"isUnranked": true,
 			"maxPlatScore": 2926
 		},
 		"difficulty": "MASTER",
@@ -39317,7 +39230,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7020,
-			"isUnranked": true,
 			"maxPlatScore": 1186
 		},
 		"difficulty": "ADVANCED",
@@ -39336,7 +39248,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7020,
-			"isUnranked": true,
 			"maxPlatScore": 574
 		},
 		"difficulty": "BASIC",
@@ -39355,7 +39266,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7020,
-			"isUnranked": true,
 			"maxPlatScore": 1916
 		},
 		"difficulty": "EXPERT",
@@ -39374,7 +39284,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7020,
-			"isUnranked": true,
 			"maxPlatScore": 2926
 		},
 		"difficulty": "MASTER",
@@ -39393,7 +39302,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7021,
-			"isUnranked": true,
 			"maxPlatScore": 1186
 		},
 		"difficulty": "ADVANCED",
@@ -39412,7 +39320,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7021,
-			"isUnranked": true,
 			"maxPlatScore": 574
 		},
 		"difficulty": "BASIC",
@@ -39431,7 +39338,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7021,
-			"isUnranked": true,
 			"maxPlatScore": 1916
 		},
 		"difficulty": "EXPERT",
@@ -39450,7 +39356,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7021,
-			"isUnranked": true,
 			"maxPlatScore": 2926
 		},
 		"difficulty": "MASTER",
@@ -40461,7 +40366,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7014,
-			"isUnranked": true,
 			"maxPlatScore": 1102
 		},
 		"difficulty": "ADVANCED",
@@ -40480,7 +40384,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7014,
-			"isUnranked": true,
 			"maxPlatScore": 774
 		},
 		"difficulty": "BASIC",
@@ -40499,7 +40402,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7014,
-			"isUnranked": true,
 			"maxPlatScore": 1870
 		},
 		"difficulty": "EXPERT",
@@ -40518,7 +40420,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7014,
-			"isUnranked": true,
 			"maxPlatScore": 2618
 		},
 		"difficulty": "MASTER",
@@ -40537,7 +40438,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7015,
-			"isUnranked": true,
 			"maxPlatScore": 1102
 		},
 		"difficulty": "ADVANCED",
@@ -40556,7 +40456,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7015,
-			"isUnranked": true,
 			"maxPlatScore": 774
 		},
 		"difficulty": "BASIC",
@@ -40575,7 +40474,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7015,
-			"isUnranked": true,
 			"maxPlatScore": 1870
 		},
 		"difficulty": "EXPERT",
@@ -40594,7 +40492,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7015,
-			"isUnranked": true,
 			"maxPlatScore": 2618
 		},
 		"difficulty": "MASTER",
@@ -40613,7 +40510,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7016,
-			"isUnranked": true,
 			"maxPlatScore": 1102
 		},
 		"difficulty": "ADVANCED",
@@ -40632,7 +40528,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7016,
-			"isUnranked": true,
 			"maxPlatScore": 774
 		},
 		"difficulty": "BASIC",
@@ -40651,7 +40546,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7016,
-			"isUnranked": true,
 			"maxPlatScore": 1870
 		},
 		"difficulty": "EXPERT",
@@ -40670,7 +40564,6 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 7016,
-			"isUnranked": true,
 			"maxPlatScore": 2618
 		},
 		"difficulty": "MASTER",
@@ -41267,7 +41160,6 @@
 			"displayVersion": "bright",
 			"inGameID": 8081,
 			"isReMaster": false,
-			"isUnranked": true,
 			"maxPlatScore": 3184
 		},
 		"difficulty": "LUNATIC",
@@ -41647,7 +41539,6 @@
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 8087,
 			"isReMaster": false,
-			"isUnranked": true,
 			"maxPlatScore": 3712
 		},
 		"difficulty": "LUNATIC",
@@ -43522,7 +43413,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7025,
-			"isUnranked": true,
 			"maxPlatScore": 1014
 		},
 		"difficulty": "ADVANCED",
@@ -43541,7 +43431,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7025,
-			"isUnranked": true,
 			"maxPlatScore": 726
 		},
 		"difficulty": "BASIC",
@@ -43560,7 +43449,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7025,
-			"isUnranked": true,
 			"maxPlatScore": 1716
 		},
 		"difficulty": "EXPERT",
@@ -43579,7 +43467,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7025,
-			"isUnranked": true,
 			"maxPlatScore": 2418
 		},
 		"difficulty": "MASTER",
@@ -43598,7 +43485,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7026,
-			"isUnranked": true,
 			"maxPlatScore": 1014
 		},
 		"difficulty": "ADVANCED",
@@ -43617,7 +43503,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7026,
-			"isUnranked": true,
 			"maxPlatScore": 726
 		},
 		"difficulty": "BASIC",
@@ -43636,7 +43521,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7026,
-			"isUnranked": true,
 			"maxPlatScore": 1716
 		},
 		"difficulty": "EXPERT",
@@ -43655,7 +43539,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7026,
-			"isUnranked": true,
 			"maxPlatScore": 2418
 		},
 		"difficulty": "MASTER",
@@ -43674,7 +43557,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7027,
-			"isUnranked": true,
 			"maxPlatScore": 1014
 		},
 		"difficulty": "ADVANCED",
@@ -43693,7 +43575,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7027,
-			"isUnranked": true,
 			"maxPlatScore": 726
 		},
 		"difficulty": "BASIC",
@@ -43712,7 +43593,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7027,
-			"isUnranked": true,
 			"maxPlatScore": 1716
 		},
 		"difficulty": "EXPERT",
@@ -43731,7 +43611,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7027,
-			"isUnranked": true,
 			"maxPlatScore": 2418
 		},
 		"difficulty": "MASTER",
@@ -43750,7 +43629,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7028,
-			"isUnranked": true,
 			"maxPlatScore": 1014
 		},
 		"difficulty": "ADVANCED",
@@ -43769,7 +43647,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7028,
-			"isUnranked": true,
 			"maxPlatScore": 726
 		},
 		"difficulty": "BASIC",
@@ -43788,7 +43665,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7028,
-			"isUnranked": true,
 			"maxPlatScore": 1716
 		},
 		"difficulty": "EXPERT",
@@ -43807,7 +43683,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7028,
-			"isUnranked": true,
 			"maxPlatScore": 2418
 		},
 		"difficulty": "MASTER",
@@ -43826,7 +43701,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7029,
-			"isUnranked": true,
 			"maxPlatScore": 1014
 		},
 		"difficulty": "ADVANCED",
@@ -43845,7 +43719,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7029,
-			"isUnranked": true,
 			"maxPlatScore": 726
 		},
 		"difficulty": "BASIC",
@@ -43864,7 +43737,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7029,
-			"isUnranked": true,
 			"maxPlatScore": 1716
 		},
 		"difficulty": "EXPERT",
@@ -43883,7 +43755,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7029,
-			"isUnranked": true,
 			"maxPlatScore": 2418
 		},
 		"difficulty": "MASTER",
@@ -44425,7 +44296,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7040,
-			"isUnranked": true,
 			"maxPlatScore": 988
 		},
 		"difficulty": "ADVANCED",
@@ -44444,7 +44314,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7040,
-			"isUnranked": true,
 			"maxPlatScore": 476
 		},
 		"difficulty": "BASIC",
@@ -44463,7 +44332,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7040,
-			"isUnranked": true,
 			"maxPlatScore": 1588
 		},
 		"difficulty": "EXPERT",
@@ -44482,7 +44350,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7040,
-			"isUnranked": true,
 			"maxPlatScore": 2964
 		},
 		"difficulty": "MASTER",
@@ -44501,7 +44368,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7041,
-			"isUnranked": true,
 			"maxPlatScore": 988
 		},
 		"difficulty": "ADVANCED",
@@ -44520,7 +44386,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7041,
-			"isUnranked": true,
 			"maxPlatScore": 476
 		},
 		"difficulty": "BASIC",
@@ -44539,7 +44404,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7041,
-			"isUnranked": true,
 			"maxPlatScore": 1588
 		},
 		"difficulty": "EXPERT",
@@ -44558,7 +44422,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7041,
-			"isUnranked": true,
 			"maxPlatScore": 2964
 		},
 		"difficulty": "MASTER",
@@ -44577,7 +44440,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7042,
-			"isUnranked": true,
 			"maxPlatScore": 988
 		},
 		"difficulty": "ADVANCED",
@@ -44596,7 +44458,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7042,
-			"isUnranked": true,
 			"maxPlatScore": 476
 		},
 		"difficulty": "BASIC",
@@ -44615,7 +44476,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7042,
-			"isUnranked": true,
 			"maxPlatScore": 1588
 		},
 		"difficulty": "EXPERT",
@@ -44634,7 +44494,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7042,
-			"isUnranked": true,
 			"maxPlatScore": 2964
 		},
 		"difficulty": "MASTER",
@@ -45589,7 +45448,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7030,
-			"isUnranked": true,
 			"maxPlatScore": 1144
 		},
 		"difficulty": "ADVANCED",
@@ -45608,7 +45466,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7030,
-			"isUnranked": true,
 			"maxPlatScore": 528
 		},
 		"difficulty": "BASIC",
@@ -45627,7 +45484,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7030,
-			"isUnranked": true,
 			"maxPlatScore": 1494
 		},
 		"difficulty": "EXPERT",
@@ -45646,7 +45502,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7030,
-			"isUnranked": true,
 			"maxPlatScore": 2814
 		},
 		"difficulty": "MASTER",
@@ -45665,7 +45520,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7031,
-			"isUnranked": true,
 			"maxPlatScore": 1144
 		},
 		"difficulty": "ADVANCED",
@@ -45684,7 +45538,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7031,
-			"isUnranked": true,
 			"maxPlatScore": 528
 		},
 		"difficulty": "BASIC",
@@ -45703,7 +45556,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7031,
-			"isUnranked": true,
 			"maxPlatScore": 1494
 		},
 		"difficulty": "EXPERT",
@@ -45722,7 +45574,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7031,
-			"isUnranked": true,
 			"maxPlatScore": 2814
 		},
 		"difficulty": "MASTER",
@@ -45741,7 +45592,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7032,
-			"isUnranked": true,
 			"maxPlatScore": 1144
 		},
 		"difficulty": "ADVANCED",
@@ -45760,7 +45610,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7032,
-			"isUnranked": true,
 			"maxPlatScore": 528
 		},
 		"difficulty": "BASIC",
@@ -45779,7 +45628,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7032,
-			"isUnranked": true,
 			"maxPlatScore": 1494
 		},
 		"difficulty": "EXPERT",
@@ -45798,7 +45646,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7032,
-			"isUnranked": true,
 			"maxPlatScore": 2814
 		},
 		"difficulty": "MASTER",
@@ -46969,7 +46816,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7037,
-			"isUnranked": true,
 			"maxPlatScore": 1048
 		},
 		"difficulty": "ADVANCED",
@@ -46988,7 +46834,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7037,
-			"isUnranked": true,
 			"maxPlatScore": 626
 		},
 		"difficulty": "BASIC",
@@ -47007,7 +46852,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7037,
-			"isUnranked": true,
 			"maxPlatScore": 1726
 		},
 		"difficulty": "EXPERT",
@@ -47026,7 +46870,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7037,
-			"isUnranked": true,
 			"maxPlatScore": 2304
 		},
 		"difficulty": "MASTER",
@@ -47045,7 +46888,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7038,
-			"isUnranked": true,
 			"maxPlatScore": 1048
 		},
 		"difficulty": "ADVANCED",
@@ -47064,7 +46906,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7038,
-			"isUnranked": true,
 			"maxPlatScore": 626
 		},
 		"difficulty": "BASIC",
@@ -47083,7 +46924,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7038,
-			"isUnranked": true,
 			"maxPlatScore": 1726
 		},
 		"difficulty": "EXPERT",
@@ -47102,7 +46942,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7038,
-			"isUnranked": true,
 			"maxPlatScore": 2304
 		},
 		"difficulty": "MASTER",
@@ -47121,7 +46960,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7039,
-			"isUnranked": true,
 			"maxPlatScore": 1048
 		},
 		"difficulty": "ADVANCED",
@@ -47140,7 +46978,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7039,
-			"isUnranked": true,
 			"maxPlatScore": 626
 		},
 		"difficulty": "BASIC",
@@ -47159,7 +46996,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7039,
-			"isUnranked": true,
 			"maxPlatScore": 1726
 		},
 		"difficulty": "EXPERT",
@@ -47178,7 +47014,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7039,
-			"isUnranked": true,
 			"maxPlatScore": 2304
 		},
 		"difficulty": "MASTER",
@@ -48368,7 +48203,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7035,
-			"isUnranked": true,
 			"maxPlatScore": 892
 		},
 		"difficulty": "ADVANCED",
@@ -48387,7 +48221,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7035,
-			"isUnranked": true,
 			"maxPlatScore": 590
 		},
 		"difficulty": "BASIC",
@@ -48406,7 +48239,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7035,
-			"isUnranked": true,
 			"maxPlatScore": 1744
 		},
 		"difficulty": "EXPERT",
@@ -48425,7 +48257,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7035,
-			"isUnranked": true,
 			"maxPlatScore": 2310
 		},
 		"difficulty": "MASTER",
@@ -48444,7 +48275,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7036,
-			"isUnranked": true,
 			"maxPlatScore": 892
 		},
 		"difficulty": "ADVANCED",
@@ -48463,7 +48293,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7036,
-			"isUnranked": true,
 			"maxPlatScore": 590
 		},
 		"difficulty": "BASIC",
@@ -48482,7 +48311,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7036,
-			"isUnranked": true,
 			"maxPlatScore": 1744
 		},
 		"difficulty": "EXPERT",
@@ -48501,7 +48329,6 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 7036,
-			"isUnranked": true,
 			"maxPlatScore": 2310
 		},
 		"difficulty": "MASTER",
@@ -50498,7 +50325,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7069,
-			"isUnranked": true,
 			"maxPlatScore": 1362
 		},
 		"difficulty": "ADVANCED",
@@ -50517,7 +50343,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7069,
-			"isUnranked": true,
 			"maxPlatScore": 720
 		},
 		"difficulty": "BASIC",
@@ -50536,7 +50361,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7069,
-			"isUnranked": true,
 			"maxPlatScore": 1746
 		},
 		"difficulty": "EXPERT",
@@ -50555,7 +50379,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7069,
-			"isUnranked": true,
 			"maxPlatScore": 2598
 		},
 		"difficulty": "MASTER",
@@ -50574,7 +50397,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7070,
-			"isUnranked": true,
 			"maxPlatScore": 1362
 		},
 		"difficulty": "ADVANCED",
@@ -50593,7 +50415,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7070,
-			"isUnranked": true,
 			"maxPlatScore": 720
 		},
 		"difficulty": "BASIC",
@@ -50612,7 +50433,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7070,
-			"isUnranked": true,
 			"maxPlatScore": 1746
 		},
 		"difficulty": "EXPERT",
@@ -50631,7 +50451,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7070,
-			"isUnranked": true,
 			"maxPlatScore": 2598
 		},
 		"difficulty": "MASTER",
@@ -50650,7 +50469,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7071,
-			"isUnranked": true,
 			"maxPlatScore": 1362
 		},
 		"difficulty": "ADVANCED",
@@ -50669,7 +50487,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7071,
-			"isUnranked": true,
 			"maxPlatScore": 720
 		},
 		"difficulty": "BASIC",
@@ -50688,7 +50505,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7071,
-			"isUnranked": true,
 			"maxPlatScore": 1746
 		},
 		"difficulty": "EXPERT",
@@ -50707,7 +50523,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7071,
-			"isUnranked": true,
 			"maxPlatScore": 2598
 		},
 		"difficulty": "MASTER",
@@ -50726,7 +50541,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7072,
-			"isUnranked": true,
 			"maxPlatScore": 1362
 		},
 		"difficulty": "ADVANCED",
@@ -50745,7 +50559,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7072,
-			"isUnranked": true,
 			"maxPlatScore": 720
 		},
 		"difficulty": "BASIC",
@@ -50764,7 +50577,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7072,
-			"isUnranked": true,
 			"maxPlatScore": 1746
 		},
 		"difficulty": "EXPERT",
@@ -50783,7 +50595,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7072,
-			"isUnranked": true,
 			"maxPlatScore": 2598
 		},
 		"difficulty": "MASTER",
@@ -50802,7 +50613,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7073,
-			"isUnranked": true,
 			"maxPlatScore": 1362
 		},
 		"difficulty": "ADVANCED",
@@ -50821,7 +50631,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7073,
-			"isUnranked": true,
 			"maxPlatScore": 720
 		},
 		"difficulty": "BASIC",
@@ -50840,7 +50649,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7073,
-			"isUnranked": true,
 			"maxPlatScore": 1746
 		},
 		"difficulty": "EXPERT",
@@ -50859,7 +50667,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7073,
-			"isUnranked": true,
 			"maxPlatScore": 2598
 		},
 		"difficulty": "MASTER",
@@ -52572,7 +52379,6 @@
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 8070,
 			"isReMaster": false,
-			"isUnranked": true,
 			"maxPlatScore": 1194
 		},
 		"difficulty": "LUNATIC",
@@ -52754,7 +52560,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7055,
-			"isUnranked": true,
 			"maxPlatScore": 1290
 		},
 		"difficulty": "ADVANCED",
@@ -52773,7 +52578,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7055,
-			"isUnranked": true,
 			"maxPlatScore": 814
 		},
 		"difficulty": "BASIC",
@@ -52792,7 +52596,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7055,
-			"isUnranked": true,
 			"maxPlatScore": 2002
 		},
 		"difficulty": "EXPERT",
@@ -52811,7 +52614,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7055,
-			"isUnranked": true,
 			"maxPlatScore": 2572
 		},
 		"difficulty": "MASTER",
@@ -52830,7 +52632,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7056,
-			"isUnranked": true,
 			"maxPlatScore": 1290
 		},
 		"difficulty": "ADVANCED",
@@ -52849,7 +52650,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7056,
-			"isUnranked": true,
 			"maxPlatScore": 814
 		},
 		"difficulty": "BASIC",
@@ -52868,7 +52668,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7056,
-			"isUnranked": true,
 			"maxPlatScore": 2002
 		},
 		"difficulty": "EXPERT",
@@ -52887,7 +52686,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7056,
-			"isUnranked": true,
 			"maxPlatScore": 2572
 		},
 		"difficulty": "MASTER",
@@ -52906,7 +52704,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7057,
-			"isUnranked": true,
 			"maxPlatScore": 1290
 		},
 		"difficulty": "ADVANCED",
@@ -52925,7 +52722,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7057,
-			"isUnranked": true,
 			"maxPlatScore": 814
 		},
 		"difficulty": "BASIC",
@@ -52944,7 +52740,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7057,
-			"isUnranked": true,
 			"maxPlatScore": 2002
 		},
 		"difficulty": "EXPERT",
@@ -52963,7 +52758,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7057,
-			"isUnranked": true,
 			"maxPlatScore": 2572
 		},
 		"difficulty": "MASTER",
@@ -52982,7 +52776,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7058,
-			"isUnranked": true,
 			"maxPlatScore": 1290
 		},
 		"difficulty": "ADVANCED",
@@ -53001,7 +52794,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7058,
-			"isUnranked": true,
 			"maxPlatScore": 814
 		},
 		"difficulty": "BASIC",
@@ -53020,7 +52812,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7058,
-			"isUnranked": true,
 			"maxPlatScore": 2002
 		},
 		"difficulty": "EXPERT",
@@ -53039,7 +52830,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7058,
-			"isUnranked": true,
 			"maxPlatScore": 2572
 		},
 		"difficulty": "MASTER",
@@ -53058,7 +52848,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7059,
-			"isUnranked": true,
 			"maxPlatScore": 1290
 		},
 		"difficulty": "ADVANCED",
@@ -53077,7 +52866,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7059,
-			"isUnranked": true,
 			"maxPlatScore": 814
 		},
 		"difficulty": "BASIC",
@@ -53096,7 +52884,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7059,
-			"isUnranked": true,
 			"maxPlatScore": 2002
 		},
 		"difficulty": "EXPERT",
@@ -53115,7 +52902,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7059,
-			"isUnranked": true,
 			"maxPlatScore": 2572
 		},
 		"difficulty": "MASTER",
@@ -54358,7 +54144,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7099,
-			"isUnranked": true,
 			"maxPlatScore": 972
 		},
 		"difficulty": "ADVANCED",
@@ -54377,7 +54162,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7099,
-			"isUnranked": true,
 			"maxPlatScore": 630
 		},
 		"difficulty": "BASIC",
@@ -54396,7 +54180,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7099,
-			"isUnranked": true,
 			"maxPlatScore": 1320
 		},
 		"difficulty": "EXPERT",
@@ -54415,7 +54198,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7099,
-			"isUnranked": true,
 			"maxPlatScore": 2610
 		},
 		"difficulty": "MASTER",
@@ -54434,7 +54216,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7100,
-			"isUnranked": true,
 			"maxPlatScore": 972
 		},
 		"difficulty": "ADVANCED",
@@ -54453,7 +54234,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7100,
-			"isUnranked": true,
 			"maxPlatScore": 630
 		},
 		"difficulty": "BASIC",
@@ -54472,7 +54252,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7100,
-			"isUnranked": true,
 			"maxPlatScore": 1320
 		},
 		"difficulty": "EXPERT",
@@ -54491,7 +54270,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7100,
-			"isUnranked": true,
 			"maxPlatScore": 2610
 		},
 		"difficulty": "MASTER",
@@ -54510,7 +54288,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7101,
-			"isUnranked": true,
 			"maxPlatScore": 972
 		},
 		"difficulty": "ADVANCED",
@@ -54529,7 +54306,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7101,
-			"isUnranked": true,
 			"maxPlatScore": 630
 		},
 		"difficulty": "BASIC",
@@ -54548,7 +54324,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7101,
-			"isUnranked": true,
 			"maxPlatScore": 1320
 		},
 		"difficulty": "EXPERT",
@@ -54567,7 +54342,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7101,
-			"isUnranked": true,
 			"maxPlatScore": 2610
 		},
 		"difficulty": "MASTER",
@@ -54586,7 +54360,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7102,
-			"isUnranked": true,
 			"maxPlatScore": 972
 		},
 		"difficulty": "ADVANCED",
@@ -54605,7 +54378,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7102,
-			"isUnranked": true,
 			"maxPlatScore": 630
 		},
 		"difficulty": "BASIC",
@@ -54624,7 +54396,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7102,
-			"isUnranked": true,
 			"maxPlatScore": 1320
 		},
 		"difficulty": "EXPERT",
@@ -54643,7 +54414,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7102,
-			"isUnranked": true,
 			"maxPlatScore": 2610
 		},
 		"difficulty": "MASTER",
@@ -54662,7 +54432,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7103,
-			"isUnranked": true,
 			"maxPlatScore": 972
 		},
 		"difficulty": "ADVANCED",
@@ -54681,7 +54450,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7103,
-			"isUnranked": true,
 			"maxPlatScore": 630
 		},
 		"difficulty": "BASIC",
@@ -54700,7 +54468,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7103,
-			"isUnranked": true,
 			"maxPlatScore": 1320
 		},
 		"difficulty": "EXPERT",
@@ -54719,7 +54486,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7103,
-			"isUnranked": true,
 			"maxPlatScore": 2610
 		},
 		"difficulty": "MASTER",
@@ -56466,7 +56232,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7043,
-			"isUnranked": true,
 			"maxPlatScore": 1296
 		},
 		"difficulty": "ADVANCED",
@@ -56485,7 +56250,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7043,
-			"isUnranked": true,
 			"maxPlatScore": 794
 		},
 		"difficulty": "BASIC",
@@ -56504,7 +56268,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7043,
-			"isUnranked": true,
 			"maxPlatScore": 2116
 		},
 		"difficulty": "EXPERT",
@@ -56523,7 +56286,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7043,
-			"isUnranked": true,
 			"maxPlatScore": 2798
 		},
 		"difficulty": "MASTER",
@@ -56542,7 +56304,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7044,
-			"isUnranked": true,
 			"maxPlatScore": 1296
 		},
 		"difficulty": "ADVANCED",
@@ -56561,7 +56322,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7044,
-			"isUnranked": true,
 			"maxPlatScore": 794
 		},
 		"difficulty": "BASIC",
@@ -56580,7 +56340,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7044,
-			"isUnranked": true,
 			"maxPlatScore": 2116
 		},
 		"difficulty": "EXPERT",
@@ -56599,7 +56358,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7044,
-			"isUnranked": true,
 			"maxPlatScore": 2798
 		},
 		"difficulty": "MASTER",
@@ -56618,7 +56376,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7045,
-			"isUnranked": true,
 			"maxPlatScore": 1296
 		},
 		"difficulty": "ADVANCED",
@@ -56637,7 +56394,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7045,
-			"isUnranked": true,
 			"maxPlatScore": 794
 		},
 		"difficulty": "BASIC",
@@ -56656,7 +56412,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7045,
-			"isUnranked": true,
 			"maxPlatScore": 2116
 		},
 		"difficulty": "EXPERT",
@@ -56675,7 +56430,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7045,
-			"isUnranked": true,
 			"maxPlatScore": 2798
 		},
 		"difficulty": "MASTER",
@@ -56694,7 +56448,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7046,
-			"isUnranked": true,
 			"maxPlatScore": 1296
 		},
 		"difficulty": "ADVANCED",
@@ -56713,7 +56466,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7046,
-			"isUnranked": true,
 			"maxPlatScore": 794
 		},
 		"difficulty": "BASIC",
@@ -56732,7 +56484,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7046,
-			"isUnranked": true,
 			"maxPlatScore": 2116
 		},
 		"difficulty": "EXPERT",
@@ -56751,7 +56502,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7046,
-			"isUnranked": true,
 			"maxPlatScore": 2798
 		},
 		"difficulty": "MASTER",
@@ -56770,7 +56520,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7047,
-			"isUnranked": true,
 			"maxPlatScore": 1296
 		},
 		"difficulty": "ADVANCED",
@@ -56789,7 +56538,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7047,
-			"isUnranked": true,
 			"maxPlatScore": 794
 		},
 		"difficulty": "BASIC",
@@ -56808,7 +56556,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7047,
-			"isUnranked": true,
 			"maxPlatScore": 2116
 		},
 		"difficulty": "EXPERT",
@@ -56827,7 +56574,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7047,
-			"isUnranked": true,
 			"maxPlatScore": 2798
 		},
 		"difficulty": "MASTER",
@@ -57730,7 +57476,6 @@
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 8090,
 			"isReMaster": false,
-			"isUnranked": true,
 			"maxPlatScore": 5400
 		},
 		"difficulty": "LUNATIC",
@@ -58037,7 +57782,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7104,
-			"isUnranked": true,
 			"maxPlatScore": 1508
 		},
 		"difficulty": "ADVANCED",
@@ -58056,7 +57800,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7104,
-			"isUnranked": true,
 			"maxPlatScore": 1040
 		},
 		"difficulty": "BASIC",
@@ -58075,7 +57818,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7104,
-			"isUnranked": true,
 			"maxPlatScore": 2506
 		},
 		"difficulty": "EXPERT",
@@ -58094,7 +57836,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7104,
-			"isUnranked": true,
 			"maxPlatScore": 3362
 		},
 		"difficulty": "MASTER",
@@ -58113,7 +57854,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7105,
-			"isUnranked": true,
 			"maxPlatScore": 1508
 		},
 		"difficulty": "ADVANCED",
@@ -58132,7 +57872,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7105,
-			"isUnranked": true,
 			"maxPlatScore": 1040
 		},
 		"difficulty": "BASIC",
@@ -58151,7 +57890,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7105,
-			"isUnranked": true,
 			"maxPlatScore": 2506
 		},
 		"difficulty": "EXPERT",
@@ -58170,7 +57908,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7105,
-			"isUnranked": true,
 			"maxPlatScore": 3362
 		},
 		"difficulty": "MASTER",
@@ -58189,7 +57926,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7106,
-			"isUnranked": true,
 			"maxPlatScore": 1508
 		},
 		"difficulty": "ADVANCED",
@@ -58208,7 +57944,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7106,
-			"isUnranked": true,
 			"maxPlatScore": 1040
 		},
 		"difficulty": "BASIC",
@@ -58227,7 +57962,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7106,
-			"isUnranked": true,
 			"maxPlatScore": 2506
 		},
 		"difficulty": "EXPERT",
@@ -58246,7 +57980,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 7106,
-			"isUnranked": true,
 			"maxPlatScore": 3362
 		},
 		"difficulty": "MASTER",
@@ -58410,7 +58143,6 @@
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 8003,
 			"isReMaster": false,
-			"isUnranked": true,
 			"maxPlatScore": 2146
 		},
 		"difficulty": "LUNATIC",
@@ -58861,7 +58593,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7066,
-			"isUnranked": true,
 			"maxPlatScore": 1250
 		},
 		"difficulty": "ADVANCED",
@@ -58880,7 +58611,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7066,
-			"isUnranked": true,
 			"maxPlatScore": 688
 		},
 		"difficulty": "BASIC",
@@ -58899,7 +58629,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7066,
-			"isUnranked": true,
 			"maxPlatScore": 2212
 		},
 		"difficulty": "EXPERT",
@@ -58918,7 +58647,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7066,
-			"isUnranked": true,
 			"maxPlatScore": 3022
 		},
 		"difficulty": "MASTER",
@@ -58937,7 +58665,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7067,
-			"isUnranked": true,
 			"maxPlatScore": 1250
 		},
 		"difficulty": "ADVANCED",
@@ -58956,7 +58683,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7067,
-			"isUnranked": true,
 			"maxPlatScore": 688
 		},
 		"difficulty": "BASIC",
@@ -58975,7 +58701,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7067,
-			"isUnranked": true,
 			"maxPlatScore": 2212
 		},
 		"difficulty": "EXPERT",
@@ -58994,7 +58719,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7067,
-			"isUnranked": true,
 			"maxPlatScore": 3022
 		},
 		"difficulty": "MASTER",
@@ -59013,7 +58737,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7068,
-			"isUnranked": true,
 			"maxPlatScore": 1250
 		},
 		"difficulty": "ADVANCED",
@@ -59032,7 +58755,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7068,
-			"isUnranked": true,
 			"maxPlatScore": 688
 		},
 		"difficulty": "BASIC",
@@ -59051,7 +58773,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7068,
-			"isUnranked": true,
 			"maxPlatScore": 2212
 		},
 		"difficulty": "EXPERT",
@@ -59070,7 +58791,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7068,
-			"isUnranked": true,
 			"maxPlatScore": 3022
 		},
 		"difficulty": "MASTER",
@@ -59305,7 +59025,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7107,
-			"isUnranked": true,
 			"maxPlatScore": 920
 		},
 		"difficulty": "ADVANCED",
@@ -59324,7 +59043,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7107,
-			"isUnranked": true,
 			"maxPlatScore": 484
 		},
 		"difficulty": "BASIC",
@@ -59343,7 +59061,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7107,
-			"isUnranked": true,
 			"maxPlatScore": 1852
 		},
 		"difficulty": "EXPERT",
@@ -59362,7 +59079,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7107,
-			"isUnranked": true,
 			"maxPlatScore": 3566
 		},
 		"difficulty": "MASTER",
@@ -59381,7 +59097,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7108,
-			"isUnranked": true,
 			"maxPlatScore": 920
 		},
 		"difficulty": "ADVANCED",
@@ -59400,7 +59115,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7108,
-			"isUnranked": true,
 			"maxPlatScore": 484
 		},
 		"difficulty": "BASIC",
@@ -59419,7 +59133,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7108,
-			"isUnranked": true,
 			"maxPlatScore": 1852
 		},
 		"difficulty": "EXPERT",
@@ -59438,7 +59151,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7108,
-			"isUnranked": true,
 			"maxPlatScore": 3566
 		},
 		"difficulty": "MASTER",
@@ -59457,7 +59169,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7110,
-			"isUnranked": true,
 			"maxPlatScore": 920
 		},
 		"difficulty": "ADVANCED",
@@ -59476,7 +59187,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7110,
-			"isUnranked": true,
 			"maxPlatScore": 484
 		},
 		"difficulty": "BASIC",
@@ -59495,7 +59205,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7110,
-			"isUnranked": true,
 			"maxPlatScore": 1852
 		},
 		"difficulty": "EXPERT",
@@ -59514,7 +59223,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7110,
-			"isUnranked": true,
 			"maxPlatScore": 3566
 		},
 		"difficulty": "MASTER",
@@ -59533,7 +59241,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7109,
-			"isUnranked": true,
 			"maxPlatScore": 920
 		},
 		"difficulty": "ADVANCED",
@@ -59552,7 +59259,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7109,
-			"isUnranked": true,
 			"maxPlatScore": 484
 		},
 		"difficulty": "BASIC",
@@ -59571,7 +59277,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7109,
-			"isUnranked": true,
 			"maxPlatScore": 1852
 		},
 		"difficulty": "EXPERT",
@@ -59590,7 +59295,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7109,
-			"isUnranked": true,
 			"maxPlatScore": 3566
 		},
 		"difficulty": "MASTER",
@@ -60113,7 +59817,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7114,
-			"isUnranked": true,
 			"maxPlatScore": 1512
 		},
 		"difficulty": "ADVANCED",
@@ -60132,7 +59835,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7114,
-			"isUnranked": true,
 			"maxPlatScore": 1228
 		},
 		"difficulty": "BASIC",
@@ -60151,7 +59853,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7114,
-			"isUnranked": true,
 			"maxPlatScore": 2708
 		},
 		"difficulty": "EXPERT",
@@ -60170,7 +59871,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7114,
-			"isUnranked": true,
 			"maxPlatScore": 4044
 		},
 		"difficulty": "MASTER",
@@ -60189,7 +59889,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7115,
-			"isUnranked": true,
 			"maxPlatScore": 1512
 		},
 		"difficulty": "ADVANCED",
@@ -60208,7 +59907,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7115,
-			"isUnranked": true,
 			"maxPlatScore": 1228
 		},
 		"difficulty": "BASIC",
@@ -60227,7 +59925,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7115,
-			"isUnranked": true,
 			"maxPlatScore": 2708
 		},
 		"difficulty": "EXPERT",
@@ -60246,7 +59943,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7115,
-			"isUnranked": true,
 			"maxPlatScore": 4044
 		},
 		"difficulty": "MASTER",
@@ -60265,7 +59961,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7116,
-			"isUnranked": true,
 			"maxPlatScore": 1512
 		},
 		"difficulty": "ADVANCED",
@@ -60284,7 +59979,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7116,
-			"isUnranked": true,
 			"maxPlatScore": 1228
 		},
 		"difficulty": "BASIC",
@@ -60303,7 +59997,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7116,
-			"isUnranked": true,
 			"maxPlatScore": 2708
 		},
 		"difficulty": "EXPERT",
@@ -60322,7 +60015,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7116,
-			"isUnranked": true,
 			"maxPlatScore": 4044
 		},
 		"difficulty": "MASTER",
@@ -60341,7 +60033,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7117,
-			"isUnranked": true,
 			"maxPlatScore": 1512
 		},
 		"difficulty": "ADVANCED",
@@ -60360,7 +60051,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7117,
-			"isUnranked": true,
 			"maxPlatScore": 1228
 		},
 		"difficulty": "BASIC",
@@ -60379,7 +60069,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7117,
-			"isUnranked": true,
 			"maxPlatScore": 2708
 		},
 		"difficulty": "EXPERT",
@@ -60398,7 +60087,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7117,
-			"isUnranked": true,
 			"maxPlatScore": 4044
 		},
 		"difficulty": "MASTER",
@@ -60417,7 +60105,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7118,
-			"isUnranked": true,
 			"maxPlatScore": 1512
 		},
 		"difficulty": "ADVANCED",
@@ -60436,7 +60123,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7118,
-			"isUnranked": true,
 			"maxPlatScore": 1228
 		},
 		"difficulty": "BASIC",
@@ -60455,7 +60141,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7118,
-			"isUnranked": true,
 			"maxPlatScore": 2708
 		},
 		"difficulty": "EXPERT",
@@ -60474,7 +60159,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7118,
-			"isUnranked": true,
 			"maxPlatScore": 4044
 		},
 		"difficulty": "MASTER",
@@ -60493,7 +60177,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7119,
-			"isUnranked": true,
 			"maxPlatScore": 1512
 		},
 		"difficulty": "ADVANCED",
@@ -60512,7 +60195,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7119,
-			"isUnranked": true,
 			"maxPlatScore": 1228
 		},
 		"difficulty": "BASIC",
@@ -60531,7 +60213,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7119,
-			"isUnranked": true,
 			"maxPlatScore": 2708
 		},
 		"difficulty": "EXPERT",
@@ -60550,7 +60231,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7119,
-			"isUnranked": true,
 			"maxPlatScore": 4044
 		},
 		"difficulty": "MASTER",
@@ -60569,7 +60249,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7120,
-			"isUnranked": true,
 			"maxPlatScore": 1512
 		},
 		"difficulty": "ADVANCED",
@@ -60588,7 +60267,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7120,
-			"isUnranked": true,
 			"maxPlatScore": 1228
 		},
 		"difficulty": "BASIC",
@@ -60607,7 +60285,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7120,
-			"isUnranked": true,
 			"maxPlatScore": 2708
 		},
 		"difficulty": "EXPERT",
@@ -60626,7 +60303,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7120,
-			"isUnranked": true,
 			"maxPlatScore": 4044
 		},
 		"difficulty": "MASTER",
@@ -60645,7 +60321,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7121,
-			"isUnranked": true,
 			"maxPlatScore": 1512
 		},
 		"difficulty": "ADVANCED",
@@ -60664,7 +60339,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7121,
-			"isUnranked": true,
 			"maxPlatScore": 1228
 		},
 		"difficulty": "BASIC",
@@ -60683,7 +60357,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7121,
-			"isUnranked": true,
 			"maxPlatScore": 2708
 		},
 		"difficulty": "EXPERT",
@@ -60702,7 +60375,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7121,
-			"isUnranked": true,
 			"maxPlatScore": 4044
 		},
 		"difficulty": "MASTER",
@@ -60721,7 +60393,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7122,
-			"isUnranked": true,
 			"maxPlatScore": 1512
 		},
 		"difficulty": "ADVANCED",
@@ -60740,7 +60411,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7122,
-			"isUnranked": true,
 			"maxPlatScore": 1228
 		},
 		"difficulty": "BASIC",
@@ -60759,7 +60429,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7122,
-			"isUnranked": true,
 			"maxPlatScore": 2708
 		},
 		"difficulty": "EXPERT",
@@ -60778,7 +60447,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7122,
-			"isUnranked": true,
 			"maxPlatScore": 4044
 		},
 		"difficulty": "MASTER",
@@ -60797,7 +60465,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7123,
-			"isUnranked": true,
 			"maxPlatScore": 896
 		},
 		"difficulty": "ADVANCED",
@@ -60816,7 +60483,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7123,
-			"isUnranked": true,
 			"maxPlatScore": 624
 		},
 		"difficulty": "BASIC",
@@ -60835,7 +60501,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7123,
-			"isUnranked": true,
 			"maxPlatScore": 1460
 		},
 		"difficulty": "EXPERT",
@@ -60854,7 +60519,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7123,
-			"isUnranked": true,
 			"maxPlatScore": 1754
 		},
 		"difficulty": "MASTER",
@@ -60873,7 +60537,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7124,
-			"isUnranked": true,
 			"maxPlatScore": 896
 		},
 		"difficulty": "ADVANCED",
@@ -60892,7 +60555,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7124,
-			"isUnranked": true,
 			"maxPlatScore": 624
 		},
 		"difficulty": "BASIC",
@@ -60911,7 +60573,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7124,
-			"isUnranked": true,
 			"maxPlatScore": 1460
 		},
 		"difficulty": "EXPERT",
@@ -60930,7 +60591,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7124,
-			"isUnranked": true,
 			"maxPlatScore": 1754
 		},
 		"difficulty": "MASTER",
@@ -61760,7 +61420,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7081,
-			"isUnranked": true,
 			"maxPlatScore": 1086
 		},
 		"difficulty": "ADVANCED",
@@ -61779,7 +61438,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7081,
-			"isUnranked": true,
 			"maxPlatScore": 620
 		},
 		"difficulty": "BASIC",
@@ -61798,7 +61456,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7081,
-			"isUnranked": true,
 			"maxPlatScore": 1294
 		},
 		"difficulty": "EXPERT",
@@ -61817,7 +61474,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7081,
-			"isUnranked": true,
 			"maxPlatScore": 2686
 		},
 		"difficulty": "MASTER",
@@ -61836,7 +61492,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7082,
-			"isUnranked": true,
 			"maxPlatScore": 1086
 		},
 		"difficulty": "ADVANCED",
@@ -61855,7 +61510,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7082,
-			"isUnranked": true,
 			"maxPlatScore": 620
 		},
 		"difficulty": "BASIC",
@@ -61874,7 +61528,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7082,
-			"isUnranked": true,
 			"maxPlatScore": 1294
 		},
 		"difficulty": "EXPERT",
@@ -61893,7 +61546,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7082,
-			"isUnranked": true,
 			"maxPlatScore": 2686
 		},
 		"difficulty": "MASTER",
@@ -61912,7 +61564,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7083,
-			"isUnranked": true,
 			"maxPlatScore": 1086
 		},
 		"difficulty": "ADVANCED",
@@ -61931,7 +61582,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7083,
-			"isUnranked": true,
 			"maxPlatScore": 620
 		},
 		"difficulty": "BASIC",
@@ -61950,7 +61600,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7083,
-			"isUnranked": true,
 			"maxPlatScore": 1294
 		},
 		"difficulty": "EXPERT",
@@ -61969,7 +61618,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7083,
-			"isUnranked": true,
 			"maxPlatScore": 2686
 		},
 		"difficulty": "MASTER",
@@ -62924,7 +62572,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7096,
-			"isUnranked": true,
 			"maxPlatScore": 1324
 		},
 		"difficulty": "ADVANCED",
@@ -62943,7 +62590,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7096,
-			"isUnranked": true,
 			"maxPlatScore": 680
 		},
 		"difficulty": "BASIC",
@@ -62962,7 +62608,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7096,
-			"isUnranked": true,
 			"maxPlatScore": 2482
 		},
 		"difficulty": "EXPERT",
@@ -62981,7 +62626,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7096,
-			"isUnranked": true,
 			"maxPlatScore": 3300
 		},
 		"difficulty": "MASTER",
@@ -63000,7 +62644,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7097,
-			"isUnranked": true,
 			"maxPlatScore": 1324
 		},
 		"difficulty": "ADVANCED",
@@ -63019,7 +62662,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7097,
-			"isUnranked": true,
 			"maxPlatScore": 680
 		},
 		"difficulty": "BASIC",
@@ -63038,7 +62680,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7097,
-			"isUnranked": true,
 			"maxPlatScore": 2482
 		},
 		"difficulty": "EXPERT",
@@ -63057,7 +62698,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7097,
-			"isUnranked": true,
 			"maxPlatScore": 3300
 		},
 		"difficulty": "MASTER",
@@ -63076,7 +62716,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7098,
-			"isUnranked": true,
 			"maxPlatScore": 1324
 		},
 		"difficulty": "ADVANCED",
@@ -63095,7 +62734,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7098,
-			"isUnranked": true,
 			"maxPlatScore": 680
 		},
 		"difficulty": "BASIC",
@@ -63114,7 +62752,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7098,
-			"isUnranked": true,
 			"maxPlatScore": 2482
 		},
 		"difficulty": "EXPERT",
@@ -63133,7 +62770,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7098,
-			"isUnranked": true,
 			"maxPlatScore": 3300
 		},
 		"difficulty": "MASTER",
@@ -63872,7 +63508,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7086,
-			"isUnranked": true,
 			"maxPlatScore": 1194
 		},
 		"difficulty": "ADVANCED",
@@ -63891,7 +63526,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7086,
-			"isUnranked": true,
 			"maxPlatScore": 510
 		},
 		"difficulty": "BASIC",
@@ -63910,7 +63544,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7086,
-			"isUnranked": true,
 			"maxPlatScore": 1694
 		},
 		"difficulty": "EXPERT",
@@ -63929,7 +63562,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7086,
-			"isUnranked": true,
 			"maxPlatScore": 3156
 		},
 		"difficulty": "MASTER",
@@ -63948,7 +63580,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7087,
-			"isUnranked": true,
 			"maxPlatScore": 1194
 		},
 		"difficulty": "ADVANCED",
@@ -63967,7 +63598,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7087,
-			"isUnranked": true,
 			"maxPlatScore": 510
 		},
 		"difficulty": "BASIC",
@@ -63986,7 +63616,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7087,
-			"isUnranked": true,
 			"maxPlatScore": 1694
 		},
 		"difficulty": "EXPERT",
@@ -64005,7 +63634,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7087,
-			"isUnranked": true,
 			"maxPlatScore": 3156
 		},
 		"difficulty": "MASTER",
@@ -64888,7 +64516,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7125,
-			"isUnranked": true,
 			"maxPlatScore": 958
 		},
 		"difficulty": "ADVANCED",
@@ -64907,7 +64534,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7125,
-			"isUnranked": true,
 			"maxPlatScore": 680
 		},
 		"difficulty": "BASIC",
@@ -64926,7 +64552,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7125,
-			"isUnranked": true,
 			"maxPlatScore": 1364
 		},
 		"difficulty": "EXPERT",
@@ -64945,7 +64570,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7125,
-			"isUnranked": true,
 			"maxPlatScore": 2056
 		},
 		"difficulty": "MASTER",
@@ -64964,7 +64588,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7126,
-			"isUnranked": true,
 			"maxPlatScore": 958
 		},
 		"difficulty": "ADVANCED",
@@ -64983,7 +64606,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7126,
-			"isUnranked": true,
 			"maxPlatScore": 680
 		},
 		"difficulty": "BASIC",
@@ -65002,7 +64624,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7126,
-			"isUnranked": true,
 			"maxPlatScore": 1364
 		},
 		"difficulty": "EXPERT",
@@ -65021,7 +64642,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7126,
-			"isUnranked": true,
 			"maxPlatScore": 2056
 		},
 		"difficulty": "MASTER",
@@ -65040,7 +64660,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7127,
-			"isUnranked": true,
 			"maxPlatScore": 958
 		},
 		"difficulty": "ADVANCED",
@@ -65059,7 +64678,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7127,
-			"isUnranked": true,
 			"maxPlatScore": 680
 		},
 		"difficulty": "BASIC",
@@ -65078,7 +64696,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7127,
-			"isUnranked": true,
 			"maxPlatScore": 1364
 		},
 		"difficulty": "EXPERT",
@@ -65097,7 +64714,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7127,
-			"isUnranked": true,
 			"maxPlatScore": 2056
 		},
 		"difficulty": "MASTER",
@@ -65116,7 +64732,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7128,
-			"isUnranked": true,
 			"maxPlatScore": 958
 		},
 		"difficulty": "ADVANCED",
@@ -65135,7 +64750,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7128,
-			"isUnranked": true,
 			"maxPlatScore": 680
 		},
 		"difficulty": "BASIC",
@@ -65154,7 +64768,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7128,
-			"isUnranked": true,
 			"maxPlatScore": 1364
 		},
 		"difficulty": "EXPERT",
@@ -65173,7 +64786,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7128,
-			"isUnranked": true,
 			"maxPlatScore": 2056
 		},
 		"difficulty": "MASTER",
@@ -65192,7 +64804,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7129,
-			"isUnranked": true,
 			"maxPlatScore": 958
 		},
 		"difficulty": "ADVANCED",
@@ -65211,7 +64822,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7129,
-			"isUnranked": true,
 			"maxPlatScore": 680
 		},
 		"difficulty": "BASIC",
@@ -65230,7 +64840,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7129,
-			"isUnranked": true,
 			"maxPlatScore": 1364
 		},
 		"difficulty": "EXPERT",
@@ -65249,7 +64858,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7129,
-			"isUnranked": true,
 			"maxPlatScore": 2056
 		},
 		"difficulty": "MASTER",
@@ -65268,7 +64876,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7130,
-			"isUnranked": true,
 			"maxPlatScore": 1238
 		},
 		"difficulty": "ADVANCED",
@@ -65287,7 +64894,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7130,
-			"isUnranked": true,
 			"maxPlatScore": 888
 		},
 		"difficulty": "BASIC",
@@ -65306,7 +64912,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7130,
-			"isUnranked": true,
 			"maxPlatScore": 2002
 		},
 		"difficulty": "EXPERT",
@@ -65325,7 +64930,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7130,
-			"isUnranked": true,
 			"maxPlatScore": 3258
 		},
 		"difficulty": "MASTER",
@@ -65344,7 +64948,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7131,
-			"isUnranked": true,
 			"maxPlatScore": 1238
 		},
 		"difficulty": "ADVANCED",
@@ -65363,7 +64966,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7131,
-			"isUnranked": true,
 			"maxPlatScore": 888
 		},
 		"difficulty": "BASIC",
@@ -65382,7 +64984,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7131,
-			"isUnranked": true,
 			"maxPlatScore": 2002
 		},
 		"difficulty": "EXPERT",
@@ -65401,7 +65002,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7131,
-			"isUnranked": true,
 			"maxPlatScore": 3258
 		},
 		"difficulty": "MASTER",
@@ -65420,7 +65020,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7132,
-			"isUnranked": true,
 			"maxPlatScore": 1238
 		},
 		"difficulty": "ADVANCED",
@@ -65439,7 +65038,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7132,
-			"isUnranked": true,
 			"maxPlatScore": 888
 		},
 		"difficulty": "BASIC",
@@ -65458,7 +65056,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7132,
-			"isUnranked": true,
 			"maxPlatScore": 2002
 		},
 		"difficulty": "EXPERT",
@@ -65477,7 +65074,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7132,
-			"isUnranked": true,
 			"maxPlatScore": 3258
 		},
 		"difficulty": "MASTER",
@@ -65496,7 +65092,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7133,
-			"isUnranked": true,
 			"maxPlatScore": 1238
 		},
 		"difficulty": "ADVANCED",
@@ -65515,7 +65110,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7133,
-			"isUnranked": true,
 			"maxPlatScore": 888
 		},
 		"difficulty": "BASIC",
@@ -65534,7 +65128,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7133,
-			"isUnranked": true,
 			"maxPlatScore": 2002
 		},
 		"difficulty": "EXPERT",
@@ -65553,7 +65146,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7133,
-			"isUnranked": true,
 			"maxPlatScore": 3258
 		},
 		"difficulty": "MASTER",
@@ -65932,7 +65524,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7088,
-			"isUnranked": true,
 			"maxPlatScore": 1086
 		},
 		"difficulty": "ADVANCED",
@@ -65951,7 +65542,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7088,
-			"isUnranked": true,
 			"maxPlatScore": 730
 		},
 		"difficulty": "BASIC",
@@ -65970,7 +65560,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7088,
-			"isUnranked": true,
 			"maxPlatScore": 1950
 		},
 		"difficulty": "EXPERT",
@@ -65989,7 +65578,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7088,
-			"isUnranked": true,
 			"maxPlatScore": 2642
 		},
 		"difficulty": "MASTER",
@@ -66008,7 +65596,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7089,
-			"isUnranked": true,
 			"maxPlatScore": 1086
 		},
 		"difficulty": "ADVANCED",
@@ -66027,7 +65614,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7089,
-			"isUnranked": true,
 			"maxPlatScore": 730
 		},
 		"difficulty": "BASIC",
@@ -66046,7 +65632,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7089,
-			"isUnranked": true,
 			"maxPlatScore": 1950
 		},
 		"difficulty": "EXPERT",
@@ -66065,7 +65650,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7089,
-			"isUnranked": true,
 			"maxPlatScore": 2642
 		},
 		"difficulty": "MASTER",
@@ -66084,7 +65668,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7090,
-			"isUnranked": true,
 			"maxPlatScore": 1086
 		},
 		"difficulty": "ADVANCED",
@@ -66103,7 +65686,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7090,
-			"isUnranked": true,
 			"maxPlatScore": 730
 		},
 		"difficulty": "BASIC",
@@ -66122,7 +65704,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7090,
-			"isUnranked": true,
 			"maxPlatScore": 1950
 		},
 		"difficulty": "EXPERT",
@@ -66141,7 +65722,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7090,
-			"isUnranked": true,
 			"maxPlatScore": 2642
 		},
 		"difficulty": "MASTER",
@@ -67240,7 +66820,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7091,
-			"isUnranked": true,
 			"maxPlatScore": 1594
 		},
 		"difficulty": "ADVANCED",
@@ -67259,7 +66838,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7091,
-			"isUnranked": true,
 			"maxPlatScore": 972
 		},
 		"difficulty": "BASIC",
@@ -67278,7 +66856,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7091,
-			"isUnranked": true,
 			"maxPlatScore": 2040
 		},
 		"difficulty": "EXPERT",
@@ -67297,7 +66874,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7091,
-			"isUnranked": true,
 			"maxPlatScore": 3926
 		},
 		"difficulty": "MASTER",
@@ -67316,7 +66892,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7092,
-			"isUnranked": true,
 			"maxPlatScore": 1594
 		},
 		"difficulty": "ADVANCED",
@@ -67335,7 +66910,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7092,
-			"isUnranked": true,
 			"maxPlatScore": 972
 		},
 		"difficulty": "BASIC",
@@ -67354,7 +66928,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7092,
-			"isUnranked": true,
 			"maxPlatScore": 2040
 		},
 		"difficulty": "EXPERT",
@@ -67373,7 +66946,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7092,
-			"isUnranked": true,
 			"maxPlatScore": 3926
 		},
 		"difficulty": "MASTER",
@@ -67392,7 +66964,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7093,
-			"isUnranked": true,
 			"maxPlatScore": 1594
 		},
 		"difficulty": "ADVANCED",
@@ -67411,7 +66982,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7093,
-			"isUnranked": true,
 			"maxPlatScore": 972
 		},
 		"difficulty": "BASIC",
@@ -67430,7 +67000,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7093,
-			"isUnranked": true,
 			"maxPlatScore": 2040
 		},
 		"difficulty": "EXPERT",
@@ -67449,7 +67018,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7093,
-			"isUnranked": true,
 			"maxPlatScore": 3926
 		},
 		"difficulty": "MASTER",
@@ -68404,7 +67972,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7094,
-			"isUnranked": true,
 			"maxPlatScore": 1530
 		},
 		"difficulty": "ADVANCED",
@@ -68423,7 +67990,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7094,
-			"isUnranked": true,
 			"maxPlatScore": 666
 		},
 		"difficulty": "BASIC",
@@ -68442,7 +68008,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7094,
-			"isUnranked": true,
 			"maxPlatScore": 1426
 		},
 		"difficulty": "EXPERT",
@@ -68461,7 +68026,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7094,
-			"isUnranked": true,
 			"maxPlatScore": 2978
 		},
 		"difficulty": "MASTER",
@@ -68480,7 +68044,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7095,
-			"isUnranked": true,
 			"maxPlatScore": 1530
 		},
 		"difficulty": "ADVANCED",
@@ -68499,7 +68062,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7095,
-			"isUnranked": true,
 			"maxPlatScore": 666
 		},
 		"difficulty": "BASIC",
@@ -68518,7 +68080,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7095,
-			"isUnranked": true,
 			"maxPlatScore": 1426
 		},
 		"difficulty": "EXPERT",
@@ -68537,7 +68098,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 7095,
-			"isUnranked": true,
 			"maxPlatScore": 2978
 		},
 		"difficulty": "MASTER",
@@ -69386,7 +68946,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7134,
-			"isUnranked": true,
 			"maxPlatScore": 1052
 		},
 		"difficulty": "ADVANCED",
@@ -69405,7 +68964,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7134,
-			"isUnranked": true,
 			"maxPlatScore": 858
 		},
 		"difficulty": "BASIC",
@@ -69424,7 +68982,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7134,
-			"isUnranked": true,
 			"maxPlatScore": 2108
 		},
 		"difficulty": "EXPERT",
@@ -69443,7 +69000,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7134,
-			"isUnranked": true,
 			"maxPlatScore": 3112
 		},
 		"difficulty": "MASTER",
@@ -69462,7 +69018,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7135,
-			"isUnranked": true,
 			"maxPlatScore": 1052
 		},
 		"difficulty": "ADVANCED",
@@ -69481,7 +69036,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7135,
-			"isUnranked": true,
 			"maxPlatScore": 858
 		},
 		"difficulty": "BASIC",
@@ -69500,7 +69054,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7135,
-			"isUnranked": true,
 			"maxPlatScore": 2108
 		},
 		"difficulty": "EXPERT",
@@ -69519,7 +69072,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7135,
-			"isUnranked": true,
 			"maxPlatScore": 3112
 		},
 		"difficulty": "MASTER",
@@ -69538,7 +69090,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7140,
-			"isUnranked": true,
 			"maxPlatScore": 1976
 		},
 		"difficulty": "ADVANCED",
@@ -69557,7 +69108,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7140,
-			"isUnranked": true,
 			"maxPlatScore": 1020
 		},
 		"difficulty": "BASIC",
@@ -69576,7 +69126,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7140,
-			"isUnranked": true,
 			"maxPlatScore": 2498
 		},
 		"difficulty": "EXPERT",
@@ -69595,7 +69144,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7140,
-			"isUnranked": true,
 			"maxPlatScore": 4674
 		},
 		"difficulty": "MASTER",
@@ -69614,7 +69162,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7141,
-			"isUnranked": true,
 			"maxPlatScore": 1976
 		},
 		"difficulty": "ADVANCED",
@@ -69633,7 +69180,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7141,
-			"isUnranked": true,
 			"maxPlatScore": 1020
 		},
 		"difficulty": "BASIC",
@@ -69652,7 +69198,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7141,
-			"isUnranked": true,
 			"maxPlatScore": 2498
 		},
 		"difficulty": "EXPERT",
@@ -69671,7 +69216,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7141,
-			"isUnranked": true,
 			"maxPlatScore": 4674
 		},
 		"difficulty": "MASTER",
@@ -69834,7 +69378,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7139,
-			"isUnranked": true,
 			"maxPlatScore": 1262
 		},
 		"difficulty": "ADVANCED",
@@ -69853,7 +69396,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7139,
-			"isUnranked": true,
 			"maxPlatScore": 786
 		},
 		"difficulty": "BASIC",
@@ -69872,7 +69414,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7139,
-			"isUnranked": true,
 			"maxPlatScore": 2192
 		},
 		"difficulty": "EXPERT",
@@ -69891,7 +69432,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7139,
-			"isUnranked": true,
 			"maxPlatScore": 2670
 		},
 		"difficulty": "MASTER",
@@ -69910,7 +69450,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7136,
-			"isUnranked": true,
 			"maxPlatScore": 1262
 		},
 		"difficulty": "ADVANCED",
@@ -69929,7 +69468,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7136,
-			"isUnranked": true,
 			"maxPlatScore": 786
 		},
 		"difficulty": "BASIC",
@@ -69948,7 +69486,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7136,
-			"isUnranked": true,
 			"maxPlatScore": 2192
 		},
 		"difficulty": "EXPERT",
@@ -69967,7 +69504,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7136,
-			"isUnranked": true,
 			"maxPlatScore": 2670
 		},
 		"difficulty": "MASTER",
@@ -69986,7 +69522,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7137,
-			"isUnranked": true,
 			"maxPlatScore": 1262
 		},
 		"difficulty": "ADVANCED",
@@ -70005,7 +69540,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7137,
-			"isUnranked": true,
 			"maxPlatScore": 786
 		},
 		"difficulty": "BASIC",
@@ -70024,7 +69558,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7137,
-			"isUnranked": true,
 			"maxPlatScore": 2192
 		},
 		"difficulty": "EXPERT",
@@ -70043,7 +69576,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7137,
-			"isUnranked": true,
 			"maxPlatScore": 2670
 		},
 		"difficulty": "MASTER",
@@ -70062,7 +69594,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7138,
-			"isUnranked": true,
 			"maxPlatScore": 1262
 		},
 		"difficulty": "ADVANCED",
@@ -70081,7 +69612,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7138,
-			"isUnranked": true,
 			"maxPlatScore": 786
 		},
 		"difficulty": "BASIC",
@@ -70100,7 +69630,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7138,
-			"isUnranked": true,
 			"maxPlatScore": 2192
 		},
 		"difficulty": "EXPERT",
@@ -70119,7 +69648,6 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 7138,
-			"isUnranked": true,
 			"maxPlatScore": 2670
 		},
 		"difficulty": "MASTER",

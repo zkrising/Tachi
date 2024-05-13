@@ -16,6 +16,7 @@ case "$cmd" in
 		docker compose -f docker-compose-dev.yml up --build -d
 		echo "Go to http://127.0.0.1:3000 to view Tachi!"
 		echo "Go to http://127.0.0.1:3001 to view Tachi's Documentation!"
+		echo "Run './run.sh enter-seeds' to get a terminal for working on the seeds."
 		;;
 	stop)
 		docker compose -f docker-compose-dev.yml down
@@ -36,7 +37,7 @@ case "$cmd" in
 		docker exec tachi-seeds pnpm --filter ./scripts test
 		;;
 	enter-seeds)
-		docker exec tachi-seeds bash
+		docker exec -it tachi-seeds bash
 		;;
 	sort-seeds)
 		docker exec tachi-seeds node scripts/deterministic-collection-sort.js

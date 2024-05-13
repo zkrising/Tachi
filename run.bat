@@ -20,6 +20,7 @@ if "%cmd%" == "start" (
 	docker compose -f docker-compose-dev.yml up --build -d
 	echo "Go to http://127.0.0.1:3000 to view Tachi!"
 	echo "Go to http://127.0.0.1:3001 to view Tachi's Documentation!"
+	echo "Run 'run.bat enter-seeds' to get a terminal for working on the seeds."
 ) else if "%cmd%" == "stop" (
 	docker compose -f docker-compose-dev.yml down
 ) else if "%cmd%" == "logs-server" (
@@ -33,7 +34,7 @@ if "%cmd%" == "start" (
 ) else if "%cmd%" == "test-seeds" (
 	docker exec tachi-seeds pnpm --filter ./scripts test
 ) else if "%cmd%" == "enter-seeds" (
-	docker exec tachi-seeds bash
+	docker exec -it tachi-seeds bash
 ) else if "%cmd%" == "sort-seeds" (
 	docker exec tachi-seeds node scripts/deterministic-collection-sort.js
 ) else if "%cmd%" == "load-seeds" (

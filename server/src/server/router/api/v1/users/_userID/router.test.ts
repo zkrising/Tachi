@@ -201,6 +201,16 @@ t.test("PATCH /api/v1/users/:userID", async (t) => {
 
 		t.equal(dbUser2?.socialMedia.youtube, "zkldi");
 
+		const res3 = await mockApi.patch("/api/v1/users/1").set("Cookie", cookie).send({
+			youtube: "https://youtube.com/@zkldi",
+		});
+
+		t.equal(res3.body.body.socialMedia.youtube, "zkldi");
+
+		const dbUser3 = await db.users.findOne({ id: 1 });
+
+		t.equal(dbUser3?.socialMedia.youtube, "zkldi");
+
 		t.end();
 	});
 

@@ -102,10 +102,7 @@ export function UserHeaderBody({ reqUser }: { reqUser: UserDocument }) {
 					/>
 					<ConditionalSocialMediaRender href="https://twitch.tv/" mode="twitch" />
 					<ConditionalSocialMediaRender href="https://twitter.com/" mode="twitter" />
-					<ConditionalSocialMediaRender
-						href="https://youtube.com/channel/"
-						mode="youtube"
-					/>
+					<ConditionalSocialMediaRender href="https://youtube.com/@" mode="youtube" />
 					<li>
 						<Muted>UserID: {reqUser.id}</Muted>
 					</li>

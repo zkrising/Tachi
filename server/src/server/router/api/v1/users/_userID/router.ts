@@ -127,9 +127,10 @@ router.patch(
 		}
 
 		if (IsNonEmptyString(body.youtube)) {
-			// youtube has two user urls lol
+			// youtube has THREE user urls lol
 			body.youtube = StripUrl("youtube.com/user/", body.youtube);
 			body.youtube = StripUrl("youtube.com/channel/", body.youtube);
+			body.youtube = StripUrl("youtube.com/@", body.youtube);
 		}
 
 		if (IsNonEmptyString(body.twitch)) {

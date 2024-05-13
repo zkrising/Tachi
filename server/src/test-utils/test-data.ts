@@ -1269,6 +1269,8 @@ export const TestingOngekiChart: ChartDocument<"ongeki:Single"> = {
 	chartID: "213796bdb6150f80ba6412ce69df1249e16c0cb0",
 	data: {
 		displayVersion: "bright MEMORY Act.3",
+		inGameID: 2137,
+		maxPlatScore: 1000,
 	},
 	difficulty: "MASTER",
 	isPrimary: true,

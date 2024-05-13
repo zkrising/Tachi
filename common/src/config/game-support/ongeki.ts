@@ -39,14 +39,14 @@ export const ONGEKI_SINGLE_CONF = {
 			type: "ENUM",
 			values: ["LOSS", "CLEAR", "FULL COMBO", "ALL BREAK"],
 			minimumRelevantValue: "CLEAR",
-			description: "The first lamp. A clear is either a draw or a win.",
+			description: "The primary lamp. A clear is either a draw or a win.",
 		},
 		bellLamp: {
 			type: "ENUM",
 			values: ["NONE", "FULL BELL"],
 			minimumRelevantValue: "NONE",
 			description:
-				"The second lamp that tracks whether all bells in the chart have been collected.",
+				"Tracks whether all bells in the chart have been collected.",
 		},
 	},
 
@@ -135,21 +135,20 @@ export const ONGEKI_SINGLE_CONF = {
 	orderedJudgements: ["cbreak", "break", "hit", "miss"],
 
 	versions: {
-		brightMemory2: "bright MEMORY Act.II",
-		brightMemory2Omni: "bright MEMORY Act.II Omnimix",
 		brightMemory3: "bright MEMORY Act.III",
 		brightMemory3Omni: "bright MEMORY Act.III Omnimix",
 	},
 
 	chartData: z.strictObject({
 		displayVersion: z.string(),
-		isUnranked: z.boolean().optional(),
 		isReMaster: z.boolean().optional(),
+		maxPlatScore: z.number().int(),
+		inGameID: z.number().int(),
 	}),
 
 	preferences: z.strictObject({}),
 
 	scoreMeta: z.strictObject({}),
 
-	supportedMatchTypes: ["songTitle", "tachiSongID"],
+	supportedMatchTypes: ["songTitle", "tachiSongID", "inGameID"],
 } as const satisfies INTERNAL_GAME_PT_CONFIG;

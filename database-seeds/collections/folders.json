@@ -34641,45 +34641,13 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"difficulty": "ADVANCED",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F36fcfc0fcef6d056963e01643ded484e491bc95c04b10addfaece815d67347cd",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "ADVANCED (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"difficulty": "ADVANCED",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Fbcb6bb96b104a5229321b0fd292418f20e6881c5a9304e610dff985e17231bfa",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "ADVANCED (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~lt": 7000
 			},
 			"difficulty": "ADVANCED",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F5abeae4a2952c9d0d4df7ae03f71634fcb1b02076841c35a5820aa88f8d7551f",
+		"folderID": "F652bb1af4e067f7702be021b78cd5e65400831e878c1aad7f8378c59ad6d0b91",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -34689,13 +34657,13 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~lt": 7000
 			},
 			"difficulty": "ADVANCED",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F21adc25f54a6ce919f75a18f6575569b0869a4762f776f9a844945222c1b8ecd",
+		"folderID": "F3462b0a17574425bde8b7c37995cb004fc581d4f89e58c1d11710d687a213690",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -34705,45 +34673,13 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"difficulty": "BASIC",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "Fa6dfd0428218be473c5d1f305cd333cce405d77c9e8e6df7edb9775c2cbc2c05",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "BASIC (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"difficulty": "BASIC",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Fc6eb78670ec730d94de7e2b422f9db8d5c8e096e225a0769efc9818cdbf76e9c",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "BASIC (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~lt": 7000
 			},
 			"difficulty": "BASIC",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F8a5a5d7424c21898a445961d185812c95e53f668863aed7a1e6e693e76ff7c11",
+		"folderID": "F57af019f3a219b19c27d08384c5406ff1745dae541da4c3c874e75fda3254bdf",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -34753,13 +34689,13 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~lt": 7000
 			},
 			"difficulty": "BASIC",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F73070f7c2edc7e037775d9965a151dfb6d55df53a68211df7805784d063427b6",
+		"folderID": "F78324dd4b99662a14299f4a79e387134304e43bf32370a359706619f829a0ee8",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -34769,12 +34705,12 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": true,
-			"level": {
-				"~ne": "0"
+			"data¬inGameID": {
+				"~gte": 7000,
+				"~lt": 8000
 			}
 		},
-		"folderID": "Ff89481f7c3303e85a89fdac84dc90eb04a137964584275524e9b31445379be33",
+		"folderID": "F34a8b0ba9ab1d49b73d4cb0c68aca2ca2fff5ef4f0eaa0d169c8cabaaf7f24e3",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -34784,45 +34720,13 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"difficulty": "EXPERT",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F7e323d1a7496ca5adcec5c501fe9b5ff7bceec3da3cc7a137d70cdbc9abf80d9",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "EXPERT (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"difficulty": "EXPERT",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Ff12aac666f9f280d4a60025984c64609f671d992e13c9009d90a4ff8bde0662f",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "EXPERT (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~lt": 7000
 			},
 			"difficulty": "EXPERT",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F2454301003bbd29013d4626a05a16680a38d9d54a8dd265b5b3dfceb7a994c51",
+		"folderID": "F0c60ce5e02ca76c77a41c00df9f2a4909474195b5d04e2d9148a5eeb943d483e",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -34832,44 +34736,18 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~lt": 7000
 			},
 			"difficulty": "EXPERT",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F222a2f1516fd944711e27feb6de3c2502cc21324a1cc5d1af6c6a562d7bf78bf",
+		"folderID": "F27605e21edd9f6753e44977aa7c30a85acd21d4ee6c28a176af93477d3bbd198",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "EXPERT (bright MEMORY Act.3)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"level": "0",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F9d846efcecb94b8379983e966007b5ebb19a060840dabfd959b3325b5ca871c2",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 0 (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"level": "0",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Ffd9cf2a106b24860953efb32318714ff2c221a74b79fd57e5182a389f44cb1dc",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 0 (bright MEMORY Act.2)",
 		"type": "charts"
 	},
 	{
@@ -34900,45 +34778,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "1",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F272a16ebce16a4e751a0b6baf081be9dc8bb3c3e006edb55f6865f7ec158d9f7",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 1 (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "1",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Fb1bbc8ce3fe6208ab25c385398a2e27fad6c6f5fa040d621ed066ce83633bbed",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 1 (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "1",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "Fdb1ec28d31c8618ee2b3dd739e3140e9e3f7e2095f316b691c66af6a876a72c5",
+		"folderID": "F5acebab94a8b1d8824a5862cdeed6f4aa1b3ad5374cf30befdc9817b9487f14b",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -34948,13 +34797,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "1",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F3cddb7852bcd011e080ecbf8636d9b00240d2f4d9c1859933fefc949e2776b0e",
+		"folderID": "F57210acc1e0285914ceac88b341c372fae3e785c8191e461c8c663bc4518694b",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -34964,45 +34816,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "10",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F35d2721aeffcd77d5350bc62601e4eeaa154cfe89ca1aa47b86f22f6da999503",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 10 (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "10",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Faaa32dc865025f5d188905c008d48c4a79e8c0ad7dad6284542d51923005520b",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 10 (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "10",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F10663b393c3337602e8064f924c3f9ec8ae4db5309aa772492bcbb7d8b690adf",
+		"folderID": "Fb060da955527304b59c51e6ccbe959590fda4b46306599629f6115cfcb784b63",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35012,13 +34835,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "10",
 			"versions": "brightMemory3"
 		},
-		"folderID": "Faa63073e3a3316175b6f87aa8eb6ac87f54284aa19d10671479811adf1776d56",
+		"folderID": "Fc742f4657847cde003fc80df9f629667636d67c86e8e698052d005f0fe20422d",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35028,45 +34854,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "10+",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F9ebe2cd32f49220392c2605c01d90b02597a56c1673fddaea32036b0798b3283",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 10+ (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "10+",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Fae137e8a9092a18bd058a831f2f02febc752ddedea54b8b24750d74115d7e654",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 10+ (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "10+",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F0a6fb91e9726baaa8b37995f5bb50613d08674017117fd86732a2743ec9cdba2",
+		"folderID": "Fa869483f698a6e4c1bc58c8c2923d778980bccab25321c549257bf83c8d78558",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35076,13 +34873,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "10+",
 			"versions": "brightMemory3"
 		},
-		"folderID": "Fbec6b88a363b3f928a1eafe16c3ad2328b31c98bb8187b6736dba6e6db985806",
+		"folderID": "Fca7eb11a8f7505fec8a6f4a651e30c1629d30227642821cae1796baa9ad55492",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35092,45 +34892,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "11",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F8856f8ceb286ccdd6226e8e439553e6e2488a7777bdb252392dbca9889e94da2",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 11 (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "11",
-			"versions": "brightMemory2"
-		},
-		"folderID": "F20fb32ddaec6609c127e1ffabdaa28a36707f50fc52636463beeba9e733ce771",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 11 (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "11",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F640450d271c7477fdeb75f80b4091debfcb4543c623f380f5561a17f9aaf74d9",
+		"folderID": "F261f4824da2c5cc641f01df3f10cb478eaa1c8ef2f2c8f6c2c306c17ab9e5204",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35140,13 +34911,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "11",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F60644ce31e027d968a123f6fe62e3af7c5de74049703dbb04429417a54cbc60f",
+		"folderID": "F2d66be8c998e9c75a05c7dc572b7f1d3b8ad909734b0ff07e84277faa89f3062",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35156,45 +34930,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "11+",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F4d40825a38bae2fc95457d90378a60f08ee56a5db94c5f3799ee71ae75e1404a",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 11+ (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "11+",
-			"versions": "brightMemory2"
-		},
-		"folderID": "F7da3a8dbba05d8bfc2963e23ee890f6f3276ce77f0bcf39ed821d3d6134edf2a",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 11+ (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "11+",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F14881345781cc7f04e92dc26b28c6e888e1ce0dc35dc60de79aea41d384fff3e",
+		"folderID": "F4028d6a4780aeb0971efdd5de08f376c995ba85094c0d9da6b562437e3c93c5d",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35204,13 +34949,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "11+",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F93b8b04bced6a044e569b2a76c3aaec19ea1e3cbba5d30a5f1d7e4bda76f727e",
+		"folderID": "Fca0ac80c053a131feba68dceca7a2e0c5558ab2ae5129d3482a67be803df5a84",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35220,45 +34968,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "12",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "Fdf848c21a5e32cc6db1a56f338bc665b5d9a8fc8182cda51141f88d8ec4dba6b",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 12 (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "12",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Fb71c7dc0fa7cc24714575a03770c3506dca63e7a46f56afe78acb6b10482500a",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 12 (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "12",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F22918c2040d224a851cf20ad6d20f6b01f8f882b0bb7e5e6a924951902ae139c",
+		"folderID": "Fff68ad32f2ad2bf1007137b96a850154935697eb8b4d40885df05e136fc0fbe3",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35268,13 +34987,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "12",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F305c511b904f21ff3741127b35fbd6f90e27b7cbeda76445423be58609671aad",
+		"folderID": "F275d326f92c9aaec500f841ec376c20e7df37bfab74d4854f07be061b1c1fdca",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35284,45 +35006,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "12+",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "Fb4d6948fb690aa0a8572b9e9db05d8c9755778c4f28d7cdb2393b1875e2d946e",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 12+ (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "12+",
-			"versions": "brightMemory2"
-		},
-		"folderID": "F572f54b15e0742ff686b237a055ade44fcafc565f1a728d4741d51a1d70a0885",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 12+ (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "12+",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "Ff2f03e6934cb5304eb6692341b0fcf479f6234c3eac2d20e2d3c14dec226fab0",
+		"folderID": "F6edad91b176d42e0bcb10ef0f46d56a9f873f06e7bf56fb230676a31466ae7c7",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35332,13 +35025,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "12+",
 			"versions": "brightMemory3"
 		},
-		"folderID": "Feaec120e8f6f1814a3f7500d7d0658310a6facf0ebafde55aadee9dbe530e6c8",
+		"folderID": "F22d71ff3b20a28619360e01c6afa29fb661a4edfb393439182bb6e160bbf4277",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35348,45 +35044,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "13",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F5ab75ac4a2433e6afaf65462e1b36e4588fd13e1f4238b3418eb62ce00061b3d",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 13 (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "13",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Faef2411d9d27e6893ba721b3e437b2a5e69cad70eae5d87194f618701230b139",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 13 (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "13",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "Ff1d306ffa2d62ba67e000e8acfdc2ab745fe79edee27f4b8207342cea022cc9d",
+		"folderID": "Fd7dfc091c2f0ecfde4fafa2b25198e7fac6fb448f3b745f8c9196f498a212c6f",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35396,13 +35063,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "13",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F7d37163f40263b6fb60f41632b13fbdb472d0814f683e8ef8430ccdaf2a8b8cf",
+		"folderID": "F71f7f8d35efbb2e444947cb4a8108ec5b4029d77b3fe6098e859b6ae6db85b6a",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35412,45 +35082,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "13+",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F81f69854d7965c855719ec99bfa16f6b86fc53ce1deddd9b871ea9c233778a47",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 13+ (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "13+",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Fab85a25c2f20412d242995d441d840323442d989256c6b8c97e4a0d8c03821d2",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 13+ (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "13+",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F48746c903310d676745370e1de478a1acfdf431769af3268e2495d1089f31ce0",
+		"folderID": "F768aae13fb84a97565843dd72279dc173253a941dff8bac4350115dfedc6f5c2",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35460,13 +35101,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "13+",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F6bef8e774b33e452a515158e5d830dba5a29a535a969b3b3a20a105c79b51646",
+		"folderID": "F02ff26a0fe73ea70dc2f45d98468f3fdddade10b328e4be791486f99c163a832",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35476,45 +35120,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "14",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F1129428c65176fd73f322afe157f9a62e7d88df7c409ae8e047962af6225dc44",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 14 (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "14",
-			"versions": "brightMemory2"
-		},
-		"folderID": "F1c5ccbba8da3bde18b6c9b2c345949bae4ca9aba14adc21ec5dd4122f7d8e3bf",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 14 (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "14",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "Fa5ff25ddff12ecece13aa3b7995b0daeb9c9af3e6c2a484eb15a02e4a977096a",
+		"folderID": "Ff6b3db87a9ffee0fbf15a7c4e60c92382766f1a332896e7f625c6dfa3c6b883c",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35524,13 +35139,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "14",
 			"versions": "brightMemory3"
 		},
-		"folderID": "Fab36c11cc2fc91225bddc1eb2608fdcd0d229975d714045e6da22453cfbcce90",
+		"folderID": "Fe8686a32b2051c1a58acfd30da0ff4c28f4c41d5722886eee7f6250a1a5504da",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35540,45 +35158,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "14+",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F45b9bb20da3100ddd68cf0e9744e7c343900a68509763c2e9cb0a937cf94db26",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 14+ (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "14+",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Fc726778bfc50de7e77b246d86b25d10d48025c2eb0d8de7b0f77df5a9a114502",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 14+ (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "14+",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F81d2d29ad4378b2c0018e7edf60597913bd8fa0120a2b9bcdeff07a73e83be61",
+		"folderID": "Fc0eab890500bd1620e9e8cec96fb1981541c7a610978a24e5cc5d87e28769c3a",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35588,13 +35177,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "14+",
 			"versions": "brightMemory3"
 		},
-		"folderID": "Fc4be7c884f942a7233b31261828f155290f86d3f7d9e333964004ffd7d6cae22",
+		"folderID": "Ff32f1712c3209b3c7d0da5d4928b8a909773b5c3eada589470410fe7e859b38e",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35604,45 +35196,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "15",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F8ac34ecb186a405c0b70968d276687b72e23e85c43ea5fe80eadfc1e3649fc46",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 15 (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "15",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Faaf526ea4c67d1456a091d19ffd7c9fb1a504da98dd33f4fa4687d37aa64c407",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 15 (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "15",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F4a8669b7afd6fc7de1d901495c0f5ec8d59038d60020466d8dbf8c962fbea019",
+		"folderID": "F0749bb75febf7fec29660011800cf23d3dd6fcb78f8393c7b33df2e3b32349e7",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35652,13 +35215,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "15",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F611bba57563b06bf96e3a110a7ad542817ebb5b46049c6a7ef29c4fe3c61259b",
+		"folderID": "Fc03828d1947ce99ee1c8f8332c773797d9e5c611e549518bcf16f5bc6738e459",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35668,45 +35234,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "15+",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F76f935699b091e1de36f52b8572ab882a3c339def09e8e1f8fdae1166fa43cd9",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 15+ (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "15+",
-			"versions": "brightMemory2"
-		},
-		"folderID": "F290de9ba414d8ed6d8ea5889fcc981d1845e8edb78ce16ee203e51b5698eb15d",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 15+ (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "15+",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "Fb25a317f41d1e3125750a24d489b3949165adc7fc6a0462bcbf0d79e5314ed52",
+		"folderID": "F13726e32d4050d17bf7d9084398767e47b52a4f81529d1b63f54da0ad21d3a9a",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35716,13 +35253,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "15+",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F798dd21ed158a1bbd9113e1fe46672e708e233281ac77596be4d6431a5cd5005",
+		"folderID": "F86294efc958b008dd48c16739a7024dc36820a2d7bd54c3a6d6588460eedb960",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35732,45 +35272,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "2",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "Fa37c407703c21ebf12ce798182e2a664954d30dee1c9eb8e3e6c4ea2e7bef731",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 2 (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "2",
-			"versions": "brightMemory2"
-		},
-		"folderID": "F0e20686c106aab0a897f52cd3eaf3a5139ef03ec1dedb9eb3282574be03969c8",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 2 (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "2",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F5ab7e27e7f8b8812df8819acb5332b3a0c326f9b958d75bbf096cff7d1d5ceb3",
+		"folderID": "F39279dde79ba740b67a5baf2ca462afbce97497257eb49e046007bda9635f15e",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35780,13 +35291,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "2",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F397987bca64f279caecdebbb8a2a61673d2a93b39463687ebe6423c05260712f",
+		"folderID": "F8944f057f0eee2ef521db8194f09128acf115750ff34aabe768d14f2e8ed6b12",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35796,45 +35310,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "3",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F13740536865b6c573ee1585270a10093936cad43e35ee8e0e6fec74c92a67ec9",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 3 (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "3",
-			"versions": "brightMemory2"
-		},
-		"folderID": "F51a06f5da5e38a853c37126de751551954f6f931ca82e747663f86449b0ff205",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 3 (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "3",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F0ecbb82f7553a35e9e5289637f37c5be1d3dc6afc92c9a329ddce1758f040060",
+		"folderID": "Fb5d274f6ece57acf5f0c0247a91cd51d89cde7f1c98ada2d4a348aaa696b46d4",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35844,13 +35329,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "3",
 			"versions": "brightMemory3"
 		},
-		"folderID": "Fd3889e704d3acfaf6bb2ae6a742a313484ee4b3ecb62dd762448ef6b1871b7ed",
+		"folderID": "F0ff7fa955deeb305461cc234141b967ce2ccd25def5d4008c1c2746861a0844e",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35860,45 +35348,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "4",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "Fb8d0753c792ab6c654f1d00304ed5ec44f883b6f24e2b4b0f1d5643e8a134afd",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 4 (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "4",
-			"versions": "brightMemory2"
-		},
-		"folderID": "F583db98ee120691cdf78e20117cf94aa86a3fa657326cff4a37a38bfdcbe651b",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 4 (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "4",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F57cd134859f56236e8bf8546ff0b785dfbe62e1b812f9d314135a3154ff7fb03",
+		"folderID": "Fda26f82b1e60ff6df8398c837bd8c7921456c10114c332f984d10fa1f29a2c88",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35908,13 +35367,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "4",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F0efbcbb1855f01aa38df74843fcccfdd4ddcd25a761ce3deaf855ce5d091dd2f",
+		"folderID": "Fe6199786609825fa50b5a84aa72a16c56bdf4318d0051f8a9faabae70a57aa7d",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35924,45 +35386,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "5",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F2071665eb9e5ae130766d4a1ea52e54d8429820fca1a53b631f504d2f2c21f3d",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 5 (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "5",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Ff098d916c6b9a5302cd884c5f7f95902fdd032a5d5c0659f46bf0a740133b580",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 5 (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "5",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "Ff9d5dd4f1d9b5de66b11bffaf8ff3cae8f03db1a7c6555113a57cae957f870cb",
+		"folderID": "F4f06197c3542575c84b2baab00c6fd3cc75a8d067bd6454c33a4eaa26976a399",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35972,13 +35405,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "5",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F90ff22aeff14e65c5fe05d10cd195e781a54e491b46b9c5cc800b2da610f1017",
+		"folderID": "F6e5fd9dc8ab6d1278e4215d202365c4d110ea45628e7b65b122412f5e19bd8fd",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -35988,45 +35424,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "6",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F0f49415e52dfc6a8a7f26c6f46640fcbf9c7234e0fc90c79063c921ab18df7d4",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 6 (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "6",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Ff170ebb1b4e6435bd2ea60de9e0eb3ec115ae799ec4d0dc0fc0cfdb4bb784864",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 6 (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "6",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "Fde0e368cd05bfffc1ad239e229de4e8ae7bdcce74723590ffff149f89758d920",
+		"folderID": "F0793a12545311857263af1522460803b7265ca1661b02642f251f35dcfe59d90",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -36036,13 +35443,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "6",
 			"versions": "brightMemory3"
 		},
-		"folderID": "Fe0f86791caa1f387010c773ecabc1d9f5a9089529605d6c78dfef8f5a6a9de8f",
+		"folderID": "F5ab3033bf5332a795a96e35b0ba91cf19892fb11034bc557a964ea4d4d2c4e63",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -36052,45 +35462,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "7",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "Ffaeb5a16a8aa1977a61aac60e5b162e94436f99848d687939bae7debf69bb5ff",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 7 (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "7",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Fb74568edd41f9fa68307baef37d7e952286b6727c5c0539dd2b0c652b8542682",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 7 (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "7",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "Faf59d0fe492d2272d0d3a67e9853e1d1c36bcad7e3e9bf565856980a66ec65df",
+		"folderID": "Fd18bc3bb93412949eea6e975152ccf9abc7122a4c9971bd1c84a3f3ffc8a835d",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -36100,13 +35481,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "7",
 			"versions": "brightMemory3"
 		},
-		"folderID": "Fbc73d737f1a345fac411dcd40a3d1a8cef44d4a58c6a9c6cf906b728bb3e5fbb",
+		"folderID": "Fe13967a8ac33ee342c5e09048fb2b3fb536949cb7722413f57b11e18e57d1ccd",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -36116,45 +35500,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "7+",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F7bef76d81570df63374a69330f2b36802ab1ae64c69aa2343c2062017bd6b2e1",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 7+ (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "7+",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Fe17b5de32044eb9075c5a828afcd74f646e41ee1a46e04fbdf2bd4a23709ebb5",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 7+ (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "7+",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F912cb7870f729765b2714e3f0ae7d7f3b45b4d37fa871deb98f135906a263f26",
+		"folderID": "Fb93160d227e5468d0f287c875e594302a08e4c4b827c21130bd879c538a2ea97",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -36164,13 +35519,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "7+",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F68790dcd063be0e97a4be28792f0df2b18404e5766e96262b4ad6602c2906d1f",
+		"folderID": "F5dbf3709559338cbdce4b055435cf2b64b87e5e9a9befc4fa65d71d4965b4e05",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -36180,45 +35538,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "8",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "Fa57648770688d3e7dbfcae723fbb81b1992c8b5aa858ccc304075b39efe33faf",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 8 (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "8",
-			"versions": "brightMemory2"
-		},
-		"folderID": "F406cce9133fb1693c6bd9cc8285b142cbba8178be681b57eed40670f7e7fd396",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 8 (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "8",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "Ff47f3a0a4c8d41b28f33ec39ef2f2a0f0ee92ef022607629dc77b68da5245e9f",
+		"folderID": "F27bec374e201e69d4419498330961868e62e56651333b6ddffd1772cd64401e9",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -36228,13 +35557,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "8",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F32051d649f84cab8153ccbf0d470e59d8db3ddf597e0626079503a40474c4590",
+		"folderID": "Fb94d23d5dc158363ef53d2fbc2034fefed6a9a7ebbeeabcbfa9b318904515b9c",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -36244,45 +35576,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "8+",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "Fc4deabf9610a80f9a9c5761ab37464c817f98a8b787d5e2d21690ef56cfbce34",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 8+ (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "8+",
-			"versions": "brightMemory2"
-		},
-		"folderID": "F71d69895bfd9a6fab8e0a6a067be68dc7e5c6b1d370a415d8380a4549bc5e25a",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 8+ (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "8+",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F910f2ee1b8f1710cf39032a65c4f9abefe243612b63afdb1342e372362fb89e8",
+		"folderID": "Fb390d08099d263303f85d1b6f02ae0798ba3e4e3348482e65fab32e6a32ff996",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -36292,13 +35595,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "8+",
 			"versions": "brightMemory3"
 		},
-		"folderID": "Fbb86790e40e74657fdb8c09fc4bc0734d2ff1324d0947fac7c0765b475282e2e",
+		"folderID": "Ff2db63c5482aa620bdab5eaea332fbe0388bfeea94d19072639bb87f05cd1f81",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -36308,45 +35614,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "9",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "Fad38dc6d28b0963e8937e1902159ca56a0fb0391b63b10b62b0cc59d1027be39",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 9 (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "9",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Fcedc5b2197356f5059b68811257932212753fa3db373cdb130c0e858eca2d75c",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 9 (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "9",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F4062d8cceb274e9d167b4f51e396219f229b9cf459ded3779a354929aa0d6e32",
+		"folderID": "F60255d538dbb5c30a18e2e3cef2500aac985794b73dfaa428b805264bd567b01",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -36356,13 +35633,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "9",
 			"versions": "brightMemory3"
 		},
-		"folderID": "Fa0e81b5ea91c4d7dfe5cea5737219d3c0f951c2d946244af2f5a0a8a8364f6b9",
+		"folderID": "F99cf5bf0296feb4e726926177affbede0964e79b6f8f9db4e72667a95bf2a7e1",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -36372,45 +35652,16 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "9+",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "Fff292ed9235a780a3ca7587060a77e546f5094bd14643ad7c7e6e057fb3ee4e2",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 9+ (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"level": "9+",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Fac27c3384aba808c30ea1e5255c31fd4438130ac3ac59f053c36f3b4e949ed27",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Level 9+ (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "9+",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F082e8b4dc8831a1fd5c1819d88125d8460695130f59616188fa13dbc45cf4263",
+		"folderID": "F634a6d47adc06b89d1232abdccc6f4d9f95b50d465fc83d2b86e26b5ecfe3408",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -36420,46 +35671,21 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
 			},
 			"level": "9+",
 			"versions": "brightMemory3"
 		},
-		"folderID": "F5b62e48240db08753dd1231943d9b74153f36a9efb5654c6eec3e769a51cf764",
+		"folderID": "F213d8669e814fc8ba15e5c109407265aafb93b134e1487980493ec559ab0056d",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9+ (bright MEMORY Act.3)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isReMaster": false,
-			"difficulty": "LUNATIC",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "F6c7768ca1c35243b0fd34b0db875e6f1c5b890c5b1f86be888d28ce91bce92eb",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "LUNATIC (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isReMaster": false,
-			"difficulty": "LUNATIC",
-			"versions": "brightMemory2"
-		},
-		"folderID": "Fe5cfcd9c118e8eca4b3397019947e0287cfe09f296d381e0528af02724ac60fe",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "LUNATIC (bright MEMORY Act.2)",
 		"type": "charts"
 	},
 	{
@@ -36492,45 +35718,13 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"difficulty": "MASTER",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "Fc9a0662ab06e11e68f4700446f9ab0c7ed9a01442b0acaf812114234461e3ea9",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "MASTER (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
-			},
-			"difficulty": "MASTER",
-			"versions": "brightMemory2"
-		},
-		"folderID": "F0c4c33417aae13c49ff36e548d4d2b8a481718491a3272377465800de046af02",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "MASTER (bright MEMORY Act.2)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~lt": 7000
 			},
 			"difficulty": "MASTER",
 			"versions": "brightMemory3Omni"
 		},
-		"folderID": "F86c6409ff8b9ace572714e3361d456f346708b45eaf1652fd5d86e81b2111989",
+		"folderID": "F52d744e85dd5d03c08ac9bdb4d4e412ac41159916cbc3cb924f4aded30c830ed",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
@@ -36540,46 +35734,18 @@
 	},
 	{
 		"data": {
-			"data¬isUnranked": {
-				"~ne": true
+			"data¬inGameID": {
+				"~lt": 7000
 			},
 			"difficulty": "MASTER",
 			"versions": "brightMemory3"
 		},
-		"folderID": "Fc783b12bc69fe0f7ee6ccecfa14a329e25aa8e7274c8696ee9d9f9dc61f11992",
+		"folderID": "F429c5805303941ee8be692b54d5932f37675da4cf06a1e7d00d7ea59c7db3f6e",
 		"game": "ongeki",
 		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "MASTER (bright MEMORY Act.3)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isReMaster": true,
-			"difficulty": "LUNATIC",
-			"versions": "brightMemory2Omni"
-		},
-		"folderID": "Fe38407fda4f0e77274d6ae67614e51a3a44202a600f0749b3ccb2745da241928",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Re:MASTER (bright MEMORY Act.2 Omnimix)",
-		"type": "charts"
-	},
-	{
-		"data": {
-			"data¬isReMaster": true,
-			"difficulty": "LUNATIC",
-			"versions": "brightMemory2"
-		},
-		"folderID": "F8c55bc4cbe3654d5a5a38073b7c4cc40966a5c33fc8d4087ccd7e34ad3ca10da",
-		"game": "ongeki",
-		"inactive": false,
-		"playtype": "Single",
-		"searchTerms": [],
-		"title": "Re:MASTER (bright MEMORY Act.2)",
 		"type": "charts"
 	},
 	{

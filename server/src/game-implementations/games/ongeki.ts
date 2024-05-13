@@ -7,21 +7,18 @@ import { ONGEKIRating } from "rg-stats";
 import { ONGEKI_GBOUNDARIES, FmtNum, GetGrade } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
-import type { Difficulties } from "tachi-common";
 
-export const OngekiPlatDiff = (diff: Difficulties["ongeki:Single"]) =>
-	diff === "MASTER" || diff === "LUNATIC";
+const isBonusTrack = (inGameID: number) => inGameID >= 7000 && inGameID < 8000;
 
 export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	chartSpecificValidators: {
 		platScore: (platScore, chart) => {
-			if (!OngekiPlatDiff(chart.difficulty)) {
-				// We don't care about other difficulties
-				return true;
-			}
-
 			if (platScore < 0) {
 				return `Platinum Score must be non-negative. Got ${platScore}`;
+			}
+
+			if (platScore > chart.data.maxPlatScore) {
+				return `Platinum Score is too large: ${platScore}>${chart.data.maxPlatScore}`;
 			}
 
 			return true;
@@ -53,7 +50,7 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	},
 	scoreCalcs: {
 		rating: (scoreData, chart) =>
-			chart.data.isUnranked || chart.levelNum === 0.0
+			isBonusTrack(chart.data.inGameID) || chart.levelNum === 0.0
 				? 0
 				: ONGEKIRating.calculate(scoreData.score, chart.levelNum),
 	},

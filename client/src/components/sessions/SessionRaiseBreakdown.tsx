@@ -49,6 +49,7 @@ export default function SessionRaiseBreakdown({
 }) {
 	const game = sessionData.session.game;
 	const playtype = sessionData.session.playtype;
+	const lampName = game === "ongeki" ? "noteLamp" : "lamp";
 
 	const { user } = useContext(UserContext);
 
@@ -82,14 +83,12 @@ export default function SessionRaiseBreakdown({
 						<div className="col-12 col-lg-6 offset-lg-3">
 							<div className="d-none d-lg-flex justify-content-center">
 								<div className="btn-group">
-									<SelectButton value={view} setValue={setView} id="lamp">
+									<SelectButton value={view} setValue={setView} id={lampName}>
 										<Icon type="lightbulb" /> Lamps Only
 									</SelectButton>
-
 									<SelectButton value={view} setValue={setView} id={null}>
 										<Icon type="bolt" /> All
 									</SelectButton>
-
 									<SelectButton value={view} setValue={setView} id="grade">
 										<Icon type="sort-alpha-up" /> Grades Only
 									</SelectButton>

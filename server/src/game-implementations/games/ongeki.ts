@@ -7,10 +7,8 @@ import { ONGEKIRating } from "rg-stats";
 import { ONGEKI_GBOUNDARIES, FmtNum, GetGrade } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
-import type { Difficulties } from "tachi-common";
 
-export const OngekiPlatDiff = (diff: Difficulties["ongeki:Single"]) =>
-	diff === "MASTER" || diff === "LUNATIC";
+const isBonusTrack = (inGameID: number) => inGameID >= 7000 && inGameID < 8000;
 
 export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	chartSpecificValidators: {
@@ -52,7 +50,7 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	},
 	scoreCalcs: {
 		rating: (scoreData, chart) =>
-			(chart.data.inGameID >= 7000 && chart.data.inGameID < 8000) || chart.levelNum === 0.0
+			isBonusTrack(chart.data.inGameID) || chart.levelNum === 0.0
 				? 0
 				: ONGEKIRating.calculate(scoreData.score, chart.levelNum),
 	},

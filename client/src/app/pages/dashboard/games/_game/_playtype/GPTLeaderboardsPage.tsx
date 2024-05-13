@@ -152,18 +152,20 @@ function ProfileLeaderboard({ game, playtype }: GamePT) {
 							{Object.keys(r.classes).length === 0 ? (
 								<Muted>None</Muted>
 							) : (
-								Object.entries(r.classes).map(
-									([k, v]) =>
-										v && (
-											<ClassBadge
-												key={k}
-												classSet={k as keyof typeof r.classes}
-												game={game}
-												playtype={playtype}
-												classValue={v}
-											/>
-										)
-								)
+								Object.entries(r.classes)
+									.sort(StrSOV((x) => x[0]))
+									.map(
+										([k, v]) =>
+											v && (
+												<ClassBadge
+													key={k}
+													classSet={k as keyof typeof r.classes}
+													game={game}
+													playtype={playtype}
+													classValue={v}
+												/>
+											)
+									)
 							)}
 						</td>
 					</tr>

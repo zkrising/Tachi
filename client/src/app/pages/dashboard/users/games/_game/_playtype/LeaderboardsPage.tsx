@@ -11,7 +11,6 @@ import LoadingWrapper from "components/util/LoadingWrapper";
 import { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
 import {
 	COLOUR_SET,
 	FormatGame,

@@ -47,7 +47,7 @@ export default function ProfilePicture({
 	if (link) {
 		let addendum = "";
 		if (toGPT) {
-			addendum = `/${toGPT.game}/${toGPT.playtype}`;
+			addendum = `/games/${toGPT.game}/${toGPT.playtype}`;
 		}
 
 		return (

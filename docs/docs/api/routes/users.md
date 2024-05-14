@@ -144,7 +144,7 @@ GET /api/v1/users/me IF authenticated as userID 1.
 		"twitter": null,
 		"steam": "zkldi",
 		// this property was already here, and not modified by the request.
-		"discord": "zkldi#2965",
+		"discord": "chatbpd",
 	},
 	"about": "#Hello!**I'm zkldi**",
 	"status": "I'm cool!",

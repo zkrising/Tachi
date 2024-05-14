@@ -37,7 +37,7 @@ to it. See the [Contribution Guide](./contributing)!
 This is for end user reference, such as score importing tutorials, documentation on tachi's
 statistics. It requires no programming knowledge, and is mostly used as a wiki-like reference.
 
-View it [here](./user).
+View it [here](./wiki).
 
 *****
 

@@ -30,8 +30,7 @@ The API has a rate limit of 500 requests every minute. This is a very
 generous rate limit, and you should not even be close to hitting it.
 
 If you are in a scenario where you might be hitting even 100 requests a minute consistently,
-please contact me at `zkldi#2965`. Otherwise, you might have your tokens revoked
-for API abuse.
+send an email to `zk@tachi.ac` and let me know what you're up to. Otherwise, I might revoke your tokens for abuse.
 
 ## License
 
@@ -95,7 +94,7 @@ The HTTP Status Code for any Failed Response will always be of either 4XX or 5XX
 ## Footnote
 
 That should be everything. If you have any questions about the API, you can
-contact me on discord at `zkldi#2965`. You can also write an issue on the 
+contact me at `zk@tachi.ac`. You can also write an issue on the 
 [Issue Tracker](https://github.com/zkldi/Tachi). I'll get around to either.
 
 It's entirely possible that I might've made a typo or wrote a poor explaination

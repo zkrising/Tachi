@@ -328,7 +328,12 @@ function SongInfoHeader({
 				{activeChart && (
 					<Col xs={12}>
 						<hr />
-						<ChartInfoFormat playtype={playtype} chart={activeChart} game={game} />
+						<ChartInfoFormat
+							song={song}
+							playtype={playtype}
+							chart={activeChart}
+							game={game}
+						/>
 					</Col>
 				)}
 			</Row>

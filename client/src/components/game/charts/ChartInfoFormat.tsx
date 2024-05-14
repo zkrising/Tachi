@@ -14,14 +14,26 @@ import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import React, { useContext } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { ChartDocument, FolderDocument, Game, GetGPTString } from "tachi-common";
+import {
+	ChartDocument,
+	FolderDocument,
+	FormatDifficulty,
+	FormatDifficultySearch,
+	FormatDifficultyShort,
+	Game,
+	GetGameConfig,
+	GetGamePTConfig,
+	GetGPTString,
+	SongDocument,
+} from "tachi-common";
 import { GamePT } from "types/react";
 
 export default function ChartInfoFormat({
+	song,
 	chart,
 	game,
 	playtype,
-}: { chart: ChartDocument } & GamePT) {
+}: { chart: ChartDocument; song: SongDocument } & GamePT) {
 	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, playtype)];
 
 	const ratingSystems = gptImpl.ratingSystems;
@@ -71,7 +83,7 @@ export default function ChartInfoFormat({
 				)}
 			</Col>
 			<Col xs={12} lg={4}>
-				<ChartInfoMiddle chart={chart} game={game} />
+				<ChartInfoMiddle song={song} chart={chart} game={game} />
 			</Col>
 			<Col xs={12} lg={3}>
 				{ratingSystems.length !== 0 &&
@@ -121,7 +133,15 @@ export default function ChartInfoFormat({
 	);
 }
 
-function ChartInfoMiddle({ game, chart }: { chart: ChartDocument; game: Game }) {
+function ChartInfoMiddle({
+	game,
+	song,
+	chart,
+}: {
+	song: SongDocument;
+	chart: ChartDocument;
+	game: Game;
+}) {
 	if (game === "bms") {
 		const bmsChart = chart as ChartDocument<"bms:7K" | "bms:14K">;
 
@@ -154,5 +174,22 @@ function ChartInfoMiddle({ game, chart }: { chart: ChartDocument; game: Game }) 
 		);
 	}
 
-	return <></>;
+	const gameConfig = GetGameConfig(game);
+
+	const diff = FormatDifficultySearch(chart, game);
+	let search = `${gameConfig.name} ${song.title}`;
+
+	if (diff !== null) {
+		search += ` ${diff}`;
+	}
+
+	return (
+		<>
+			<ExternalLink
+				href={`https://youtube.com/results?search_query=${encodeURIComponent(search)}`}
+			>
+				Search YouTube
+			</ExternalLink>
+		</>
+	);
 }

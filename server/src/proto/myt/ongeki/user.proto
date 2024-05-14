@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package mythos.ongeki.v0;
+
+import "ongeki/playlog.proto";
+
+service OngekiUser {
+  rpc GetPlaylog(GetPlaylogRequest) returns (stream GetPlaylogStreamItem);
+}
+
+// PLAYLOG
+
+message GetPlaylogRequest {
+  string profile_api_id = 1;
+  optional string last_user_play_date = 2;
+  optional uint64 limit = 3;
+}
+
+message GetPlaylogStreamItem {
+  string playlog_api_id = 1;
+  PlaylogInfo info = 2;
+  PlaylogJudge judge = 3;
+}

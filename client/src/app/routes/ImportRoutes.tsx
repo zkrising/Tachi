@@ -222,6 +222,9 @@ export default function ImportRoutes() {
 							<Route exact path="/import/myt-wacca">
 								<MytIntegrationPage game="wacca" />
 							</Route>
+							<Route exact path="/import/myt-ongeki">
+								<MytIntegrationPage game="ongeki" />
+							</Route>
 
 							<Route exact path="/import/wacca-mypage-scraper">
 								<WACCAMyPageScraperPage />

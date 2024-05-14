@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package mythos.ongeki.v0;
+
+import "ongeki/common.proto";
+
+message PlaylogInfo {
+  int32 music_id = 1;
+  OngekiLevel level = 2;
+  int32 tech_score = 3;
+  int32 battle_score = 4;
+  int32 over_damage = 5;
+  int32 platinum_score = 6;
+  OngekiTechScoreRank tech_score_rank = 7;
+  OngekiBattleScoreRank battle_score_rank = 8;
+  OngekiComboStatus combo_status = 9;
+  OngekiClearStatus clear_status = 10;
+  bool is_full_bell = 11;
+  bool is_tech_new_record = 12;
+  bool is_battle_new_record = 13;
+  bool is_over_damage_new_record = 14;
+  string user_play_date = 15;
+}
+
+message PlaylogJudge {
+  int32 judge_critical_break = 17;
+  int32 judge_break = 18;
+  int32 judge_hit = 19;
+  int32 judge_miss = 20;
+  int32 max_combo = 21;
+  int32 bell_count = 22;
+  int32 total_bell_count = 23;
+  int32 damage_count = 24;
+}
+
+message PlaylogJudgeRate {
+  int32 rate_tap = 1;
+  int32 rate_hold = 2;
+  int32 rate_flick = 3;
+  int32 rate_side_tap = 4;
+  int32 rate_side_hold = 5;
+}
+
+message PlaylogMatchingUser {
+  string user_name = 1;
+  OngekiLevel music_level = 2;
+}
+
+message PlaylogCard {
+  int32 card_id = 1;
+  int32 card_level = 2;
+  int32 card_attack = 3;
+}
+
+message PlaylogBoss {
+  int32 boss_id = 1;
+  int32 boss_level = 2;
+  OngekiBossAttribute boss_attribute = 3;
+}
+
+message PlaylogEvent {
+  int32 event_id = 1;
+  string event_name = 2;
+  int32 event_point = 3;
+}
+

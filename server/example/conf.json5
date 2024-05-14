@@ -80,6 +80,7 @@
 			"api/cg-gan-sdvx",
 			"api/cg-gan-popn",
 			"api/cg-gan-museca",
+			"api/myt-ongeki",
 			"api/myt-wacca",
 		],
 	},

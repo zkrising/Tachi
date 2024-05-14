@@ -6,13 +6,15 @@ import db, { monkDB } from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
 import { PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
+import { UpdateGoalsInFolder } from "lib/score-import/framework/goals/goals";
 import UpdateIsPrimaryStatus from "lib/score-mutation/update-isprimary";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { RemoveStaleFolderShowcaseStats } from "lib/showcase/showcase";
+import { GetRelevantFolderGoals } from "lib/targets/goals";
 import { UpdateQuestSubscriptions } from "lib/targets/quests";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import { UpdateGameSongIDCounter } from "utils/db";
-import { InitaliseFolderChartLookup } from "utils/folder";
+import { GetFolderChartIDs, InitaliseFolderChartLookup } from "utils/folder";
 import { ArrayDiff, IsSupported, WrapScriptPromise } from "utils/misc";
 import type { KtLogger } from "lib/logger/logger";
 import type { BulkWriteOperation, DeleteWriteOpResultObject } from "mongodb";
@@ -265,6 +267,12 @@ const syncInstructions: Array<SyncInstructions> = [
 				);
 
 				await RemoveStaleFolderShowcaseStats(removedFolderIDs);
+
+				// update goals for everyone that was affected
+
+				await Promise.all(
+					keptFolderIDs.map((f) => UpdateGoalsInFolder(f.folderID, logger))
+				);
 			}
 		},
 	},

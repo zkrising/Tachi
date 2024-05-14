@@ -29,13 +29,18 @@ export async function UpdateGoalsForUser(
 	goals: Array<GoalDocument>,
 	goalSubsMap: Map<string, GoalSubscriptionDocument>,
 	userID: integer,
-	logger: KtLogger
+	logger: KtLogger,
+	skipMismatch = false
 ) {
 	const returns = await Promise.all(
 		goals.map((goal: GoalDocument) => {
 			const goalSub = goalSubsMap.get(goal.goalID);
 
 			if (!goalSub) {
+				if (skipMismatch) {
+					return null;
+				}
+
 				logger.error(
 					`UserGoal:GoalID mismatch ${goal.goalID} - this user has no goalSub for this, yet it is set.`
 				);
@@ -49,7 +54,7 @@ export async function UpdateGoalsForUser(
 					{ goal, err, userID, goalSub }
 				);
 
-				return undefined;
+				return null;
 			});
 		})
 	);
@@ -197,4 +202,45 @@ export async function ProcessGoal(
 		},
 		webhookEvent,
 	};
+}
+
+export async function UpdateGoalsInFolder(folderID: string, logger: KtLogger) {
+	const goals = await db.goals.find({
+		"charts.type": "folder",
+		"charts.data": folderID,
+	});
+
+	logger.info(`Updating ${goals.length} goals for ${folderID}`);
+
+	const goalSubs = await db["goal-subs"].find({
+		goalID: { $in: goals.map((e) => e.goalID) },
+	});
+
+	logger.info(`Updating ${goalSubs.length} goal subs for ${folderID}`);
+
+	// (User -> (goalID -> GoalSub))
+	const ugsMap = new Map<integer, Map<string, GoalSubscriptionDocument>>();
+
+	for (const gSub of goalSubs) {
+		const userID = gSub.userID;
+
+		if (ugsMap.has(userID)) {
+			ugsMap.get(userID)!.set(gSub.goalID, gSub);
+		} else {
+			ugsMap.set(userID, new Map());
+			ugsMap.get(userID)!.set(gSub.goalID, gSub);
+		}
+	}
+
+	const promises = [];
+
+	for (const [userID, goalSubsMap] of ugsMap.entries()) {
+		promises.push(async () => {
+			// hack: pass *all* goals here to avoid mass allocations
+			// use `skipMismatch` to ignore the cases where they don't match
+			await UpdateGoalsForUser(goals, goalSubsMap, userID, logger, true);
+		});
+	}
+
+	await Promise.all(promises);
 }

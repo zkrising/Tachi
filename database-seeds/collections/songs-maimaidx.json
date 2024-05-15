@@ -15385,6 +15385,7 @@
 		"searchTerms": [ "dual roses" ],
 		"title": "DUAL ROZES"
 	},
+	//missed an id, don't want to redo everything
 	{
 		"altTitles": [],
 		"artist": "A-One",
@@ -15392,7 +15393,7 @@
 			"displayVersion": "BUDDiES PLUS",
 			"genre": "オンゲキ＆CHUNITHM"
 		},
-		"id": 1218,
+		"id": 1207,
 		"searchTerms": [ "Music prayer" ],
 		"title": "MUSIC PЯAYER"
 	},

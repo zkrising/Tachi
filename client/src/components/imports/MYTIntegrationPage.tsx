@@ -17,7 +17,7 @@ import ImportStateRenderer from "./ImportStateRenderer";
 
 interface Props {
 	// Other games will be added in the future.
-	game: "wacca";
+	game: "wacca" | "ongeki";
 }
 
 export default function MytIntegrationPage({ game }: Props) {

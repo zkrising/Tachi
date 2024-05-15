@@ -39,7 +39,10 @@ export default async function ParseMytWACCA(
 		// Note: I don't think this actually does anything on the network, so
 		// it shouldn't really fail. Still, wrap just in case.
 
-		logger.error(`Unexpected MYT during WaccaUserClient creation for ${userID}: ${err}`);
+		logger.error(`Unexpected MYT during WaccaUserClient creation for ${userID}: ${err}`, {
+			userID,
+			err,
+		});
 
 		throw new ScoreImportFatalError(500, `Failed to connect to MYT.`);
 	}

@@ -1,3 +1,4 @@
+import ConvertAPIMytOngeki from "./api/myt-ongeki/converter";
 import ConvertAPIMytWACCA from "./api/myt-wacca/converter";
 import { ConverterAPICGMuseca } from "./common/api-cg/museca/converter";
 import { ConverterAPICGPopn } from "./common/api-cg/popn/converter";
@@ -43,6 +44,7 @@ export const Converters: ConverterMap = {
 	"api/flo-iidx": ConvertAPIKaiIIDX,
 	"api/flo-sdvx": ConvertAPIKaiSDVX,
 	"api/min-sdvx": ConvertAPIKaiSDVX,
+	"api/myt-ongeki": ConvertAPIMytOngeki,
 	"api/myt-wacca": ConvertAPIMytWACCA,
 
 	"ir/barbatos": ConverterIRBarbatos,

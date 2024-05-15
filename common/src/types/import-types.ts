@@ -13,6 +13,7 @@ export type APIImportTypes =
 	| "api/flo-iidx"
 	| "api/flo-sdvx"
 	| "api/min-sdvx"
+	| "api/myt-ongeki"
 	| "api/myt-wacca"
 
 	// cg has dev and prod supported

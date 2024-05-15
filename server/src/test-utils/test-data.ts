@@ -1280,3 +1280,30 @@ export const TestingOngekiChart: ChartDocument<"ongeki:Single"> = {
 	songID: 19,
 	versions: ["brightMemory3", "brightMemory3Omni"],
 };
+
+export const TestingOngekiChartConverter: ChartDocument<"ongeki:Single"> = {
+	chartID: "e5e4ee3d4feb233c399751b3ba3daf8ba149c9e6",
+	data: {
+		displayVersion: "bright",
+		inGameID: 678,
+		maxPlatScore: 2768,
+	},
+	difficulty: "MASTER",
+	isPrimary: true,
+	level: "13+",
+	levelNum: 13.7,
+	playtype: "Single",
+	songID: 683,
+	versions: ["brightMemory3Omni", "brightMemory3"],
+};
+
+export const TestingOngekiSongConverter: SongDocument<"ongeki"> = {
+	altTitles: ["SENOTETOHETSUTEITSUTENNO"],
+	artist: "本城香澄（CV：岩橋由佳）「Re:ステージ！プリズムステップ」",
+	data: {
+		genre: "POPS＆ANIME",
+	},
+	id: 683,
+	searchTerms: [],
+	title: "せーので跳べって言ってんの！",
+};

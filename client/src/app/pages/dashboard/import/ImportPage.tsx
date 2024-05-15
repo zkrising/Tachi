@@ -342,7 +342,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				key="SL-ITG"
 			/>
 		);
-	} else if (game === 'ongeki') {
+	} else if (game === "ongeki") {
 		Content.unshift(
 			<ImportInfoCard
 				name="ARTEMiS Exporter"
@@ -355,9 +355,10 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 					</>
 				}
 				key="ARTEMiS Exporter"
-			/>
+			/>,
+			<ImportTypeInfoCard key="api/myt-ongeki" importType="api/myt-ongeki" />
 		);
-	}// else if (game === "jubeat") {
+	} // else if (game === "jubeat") {
 	// 	Content.unshift(
 	// 		<ImportTypeInfoCard key="api/cg-dev-jubeat" importType="api/cg-dev-jubeat" />,
 	// 		<ImportTypeInfoCard key="api/cg-prod-jubeat" importType="api/cg-prod-jubeat" />
@@ -534,6 +535,16 @@ function ImportTypeInfoCard({
 					desc="Pull your WACCA scores from the MYT Network."
 					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 					key="myt-wacca"
+				/>
+			);
+		case "api/myt-ongeki":
+			return (
+				<ImportInfoCard
+					name="MYT Integration"
+					href="myt-ongeki"
+					desc="Pull your Ongeki scores from the MYT Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
+					key="myt-ongeki"
 				/>
 			);
 		case "file/eamusement-iidx-csv":

@@ -219,11 +219,14 @@ export default function ImportRoutes() {
 								<CGIntegrationPage cgType="gan" game="museca" />
 							</Route>
 
-							<Route exact path="/import/myt-wacca">
-								<MytIntegrationPage game="wacca" />
+							<Route exact path="/import/myt-chunithm">
+								<MytIntegrationPage game="chunithm" />
 							</Route>
 							<Route exact path="/import/myt-ongeki">
 								<MytIntegrationPage game="ongeki" />
+							</Route>
+							<Route exact path="/import/myt-wacca">
+								<MytIntegrationPage game="wacca" />
 							</Route>
 
 							<Route exact path="/import/wacca-mypage-scraper">

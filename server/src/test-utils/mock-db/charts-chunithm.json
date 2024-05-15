@@ -13,5 +13,24 @@
 		"versions": [
 			"paradiselost"
 		]
+	},
+	{
+		"chartID": "fbba26a6a223b1dd0bf8ef139cfee83114b91086",
+		"data": {
+			"inGameID": 956
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12,
+		"playtype": "Single",
+		"songID": 956,
+		"versions": [
+			"paradiselost",
+			"sun",
+			"sun-omni",
+			"sunplus-omni",
+			"luminous-omni"
+		]
 	}
 ]

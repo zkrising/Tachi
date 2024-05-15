@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package mythos.chunithm.v0;
+
+import "chunithm/common.proto";
+
+message PlaylogInfo {
+  int32 music_id = 1; 
+  ChunithmLevel level = 2;
+  int32 score = 3; 
+  ChunithmScoreRank score_rank = 4; // rank
+  ChunithmComboStatus combo_status = 5;
+  ChunithmFullChainStatus full_chain_status = 6; // full_chain_kind
+  ChunithmClearStatus clear_status = 7;
+  bool is_new_record = 8;
+  int32 track = 9;
+  string user_play_date = 10;
+}
+
+message PlaylogJudge {
+  int32 judge_heaven = 1;
+  int32 judge_critical = 2;
+  int32 judge_justice = 3;
+  int32 judge_attack = 4;
+  int32 judge_miss = 5; // judge_guilty
+  int32 max_combo = 6;
+}

@@ -1307,3 +1307,35 @@ export const TestingOngekiSongConverter: SongDocument<"ongeki"> = {
 	searchTerms: [],
 	title: "せーので跳べって言ってんの！",
 };
+
+export const TestingChunithmChartConverter: ChartDocument<"chunithm:Single"> = 	{
+	chartID: "fbba26a6a223b1dd0bf8ef139cfee83114b91086",
+	data: {
+		"inGameID": 956
+	},
+	difficulty: "MASTER",
+	isPrimary: true,
+	level: "12",
+	levelNum: 12,
+	playtype: "Single",
+	songID: 956,
+	versions: [
+		"paradiselost",
+		"sun",
+		"sun-omni",
+		"sunplus-omni",
+		"luminous-omni"
+	]
+}
+
+export const TestingChunithmSongConverter: SongDocument<"chunithm"> = {
+	altTitles: [],
+	artist: "分島花音「selector infected WIXOSS」",
+	data: {
+		displayVersion: "crystalplus",
+		genre: "POPS & ANIME"
+	},
+	id: 956,
+	searchTerms: [],
+	title: "killy killy JOKER"	
+}

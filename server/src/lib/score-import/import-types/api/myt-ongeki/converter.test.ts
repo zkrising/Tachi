@@ -1,5 +1,4 @@
 import ConvertAPIMytOngeki from "./converter";
-import { dmf } from "test-utils/misc";
 import CreateLogCtx from "lib/logger/logger";
 import { ParseDateFromString } from "lib/score-import/framework/common/score-utils";
 import {
@@ -10,11 +9,9 @@ import {
 	OngekiTechScoreRank,
 } from "proto/generated/ongeki/common_pb";
 import t from "tap";
+import { dmf } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
-import {
-	TestingOngekiChartConverter,
-	TestingOngekiSongConverter,
-} from "test-utils/test-data";
+import { TestingOngekiChartConverter, TestingOngekiSongConverter } from "test-utils/test-data";
 import type { MytOngekiScore } from "./types";
 
 const logger = CreateLogCtx(__filename);
@@ -54,16 +51,12 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 	t.beforeEach(ResetDBState);
 
 	function convert(modifier: any = {}) {
-		return ConvertAPIMytOngeki(
-			dmf(parsedScore, modifier),
-			{},
-			"api/myt-ongeki",
-			logger,
-		);
+		return ConvertAPIMytOngeki(dmf(parsedScore, modifier), {}, "api/myt-ongeki", logger);
 	}
 
 	t.test("Should return a dryScore on valid input.", async (t) => {
 		const res = await convert();
+
 		t.strictSame(res, {
 			song: TestingOngekiSongConverter,
 			chart: TestingOngekiChartConverter,
@@ -106,7 +99,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 				}),
 			{
 				message: /Can't process a score with unspecified difficulty/u,
-			},
+			}
 		);
 		t.end();
 	});
@@ -121,7 +114,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 			}),
 			{
 				dryScore: { scoreData: { noteLamp: "ALL BREAK" } },
-			},
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -132,7 +125,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 			}),
 			{
 				dryScore: { scoreData: { noteLamp: "FULL COMBO" } },
-			},
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -143,7 +136,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 			}),
 			{
 				dryScore: { scoreData: { noteLamp: "CLEAR" } },
-			},
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -154,7 +147,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 			}),
 			{
 				dryScore: { scoreData: { noteLamp: "CLEAR" } },
-			},
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -165,7 +158,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 			}),
 			{
 				dryScore: { scoreData: { noteLamp: "LOSS" } },
-			},
+			}
 		);
 		t.end();
 	});
@@ -179,7 +172,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 			}),
 			{
 				dryScore: { scoreData: { optional: { platScore: null } } },
-			},
+			}
 		);
 		t.end();
 	});
@@ -193,9 +186,8 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 					},
 				}),
 			{
-				message:
-					/Can't process a score with an invalid combo status and\/or clear status/u,
-			},
+				message: /Can't process a score with an invalid combo status and\/or clear status/u,
+			}
 		);
 		t.end();
 	});

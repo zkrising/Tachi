@@ -41,11 +41,11 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 		<>
 			<div>
 				<h4>
-					Here, you can import score files, Synchronise with existing services,
-					or set up in-game automatic score uploading!
+					Here, you can import score files, Synchronise with existing services, or set up
+					in-game automatic score uploading!
 				</h4>
-				Don't see what you want here? Make a <a>Feature Request</a>, or ask
-				around on the <DiscordLink>Discord</DiscordLink>.
+				Don't see what you want here? Make a <a>Feature Request</a>, or ask around on the{" "}
+				<DiscordLink>Discord</DiscordLink>.
 				<br />
 				Know how to program, and want to write a script yourself? Check out{" "}
 				<ExternalLink href="https://docs.tachi.ac/codebase/batch-manual">
@@ -58,9 +58,7 @@ export default function ImportPage({ user }: { user: UserDocument }) {
 			</div>
 			<hr />
 			<Form.Select
-				onChange={(e) =>
-					setGame(e.target.value === "" ? null : (e.target.value as Game))
-				}
+				onChange={(e) => setGame(e.target.value === "" ? null : (e.target.value as Game))}
 				value={game ?? ""}
 			>
 				<option value="">Please select a game.</option>
@@ -88,9 +86,9 @@ function ShowRecentImports() {
 }
 
 function InnerShowRecentImports({ user }: { user: UserDocument }) {
-	const { data, error } = useApiQuery<
-		{ importType: ImportTypes; count: integer }[]
-	>(`/users/${user.id}/recent-imports`);
+	const { data, error } = useApiQuery<{ importType: ImportTypes; count: integer }[]>(
+		`/users/${user.id}/recent-imports`
+	);
 
 	if (error) {
 		return <ApiError error={error} />;
@@ -101,7 +99,7 @@ function InnerShowRecentImports({ user }: { user: UserDocument }) {
 	}
 
 	const filteredData = data.filter(
-		(e) => e.importType.startsWith("file/") || e.importType.startsWith("api/"),
+		(e) => e.importType.startsWith("file/") || e.importType.startsWith("api/")
 	);
 
 	if (filteredData.length === 0) {
@@ -127,12 +125,7 @@ function InnerShowRecentImports({ user }: { user: UserDocument }) {
 function ImportInfoDisplayer({ game }: { game: Game }) {
 	const gameConfig = GetGameConfig(game);
 
-	const Content = [
-		<ImportTypeInfoCard
-			key="file/batch-manual"
-			importType="file/batch-manual"
-		/>,
-	];
+	const Content = [<ImportTypeInfoCard key="file/batch-manual" importType="file/batch-manual" />];
 
 	if (game === "iidx") {
 		Content.unshift(
@@ -149,14 +142,8 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			/>,
 			<ImportTypeInfoCard key="api/flo-iidx" importType="api/flo-iidx" />,
 			<ImportTypeInfoCard key="api/eag-iidx" importType="api/eag-iidx" />,
-			<ImportTypeInfoCard
-				key="file/solid-state-squad"
-				importType="file/solid-state-squad"
-			/>,
-			<ImportTypeInfoCard
-				key="file/pli-iidx-csv"
-				importType="file/pli-iidx-csv"
-			/>,
+			<ImportTypeInfoCard key="file/solid-state-squad" importType="file/solid-state-squad" />,
+			<ImportTypeInfoCard key="file/pli-iidx-csv" importType="file/pli-iidx-csv" />
 		);
 	} else if (game === "sdvx") {
 		Content.unshift(
@@ -195,7 +182,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			<ImportTypeInfoCard key="api/cg-dev-sdvx" importType="api/cg-dev-sdvx" />,
 			<ImportTypeInfoCard key="api/cg-gan-sdvx" importType="api/cg-gan-sdvx" />,
 			<ImportTypeInfoCard key="api/cg-nag-sdvx" importType="api/cg-nag-sdvx" />,
-			<ImportTypeInfoCard key="api/min-sdvx" importType="api/min-sdvx" />,
+			<ImportTypeInfoCard key="api/min-sdvx" importType="api/min-sdvx" />
 		);
 	} else if (game === "chunithm") {
 		Content.unshift(
@@ -219,8 +206,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc="Export your scores from an Aqua/ARTEMiS instance."
 				moreInfo={
 					<>
-						This is a script that exports scores from an Aqua/ARTEMiS instance.{" "}
-						<br />
+						This is a script that exports scores from an Aqua/ARTEMiS instance. <br />
 						Note: You will need direct access to the server instance.
 					</>
 				}
@@ -231,10 +217,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				href="chunithm-myt-exporter"
 				desc="Export your scores from MYT."
 				moreInfo={
-					<>
-						This is an userscript that exports scores from the MYT web
-						interface.
-					</>
+					<>This is an userscript that exports scores from the MYT web interface.</>
 				}
 				key="MYT Exporter"
 			/>,
@@ -244,13 +227,13 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc="Automatically import scores, whenever you get them!"
 				moreInfo={
 					<>
-						This is the recommended way to import CHUNITHM scores, as it
-						provides high quality data in real-time. <br />
+						This is the recommended way to import CHUNITHM scores, as it provides high
+						quality data in real-time. <br />
 						Note: Only for versions PARADISE and PARADISE LOST.
 					</>
 				}
 				key="Chunitachi"
-			/>,
+			/>
 		);
 	} else if (game === "bms") {
 		Content.unshift(
@@ -281,7 +264,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc="Import scores from a LR2 score database file."
 				moreInfo="This should be done once initially to sync scores up, but not all the time, as it provides worse quality data."
 				key="LR2 Database Import"
-			/>,
+			/>
 		);
 	} else if (game === "usc") {
 		Content.unshift(
@@ -298,7 +281,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc="Import scores from a USC score database file."
 				moreInfo="This should be done once initially to sync scores up, but not all the time, as it provides worse quality data."
 				key="USC Database Import"
-			/>,
+			/>
 		);
 	} else if (game === "popn") {
 		Content.unshift(
@@ -311,7 +294,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			/>,
 			<ImportTypeInfoCard key="api/cg-dev-popn" importType="api/cg-dev-popn" />,
 			<ImportTypeInfoCard key="api/cg-gan-popn" importType="api/cg-gan-popn" />,
-			<ImportTypeInfoCard key="api/cg-nag-popn" importType="api/cg-nag-popn" />,
+			<ImportTypeInfoCard key="api/cg-nag-popn" importType="api/cg-nag-popn" />
 		);
 	} else if (game === "pms") {
 		Content.unshift(
@@ -321,7 +304,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc="Automatically import scores, whenever you get them!"
 				moreInfo="This is the recommended way to import PMS scores, as it provides high quality data in real-time."
 				key="Beatoraja IR"
-			/>,
+			/>
 		);
 	} else if (game === "wacca") {
 		Content.unshift(
@@ -332,7 +315,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc="Use your data from WaccaMyPageScraper."
 				moreInfo="If you saved your play data from MyPage using XezolesS's WaccaMyPageScraper project, you can import it here."
 				key="WACCA MyPage Scraper"
-			/>,
+			/>
 		);
 	} else if (game === "maimaidx") {
 		Content.unshift(
@@ -342,22 +325,13 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc="Use your data from maimai DX NET."
 				moreInfo="If you are currently playing on maimai DX International, you can import play data from it here."
 				key="maimai DX NET Importer"
-			/>,
+			/>
 		);
 	} else if (game === "museca") {
 		Content.unshift(
-			<ImportTypeInfoCard
-				key="api/cg-dev-museca"
-				importType="api/cg-dev-museca"
-			/>,
-			<ImportTypeInfoCard
-				key="api/cg-gan-museca"
-				importType="api/cg-gan-museca"
-			/>,
-			<ImportTypeInfoCard
-				key="api/cg-nag-museca"
-				importType="api/cg-nag-museca"
-			/>,
+			<ImportTypeInfoCard key="api/cg-dev-museca" importType="api/cg-dev-museca" />,
+			<ImportTypeInfoCard key="api/cg-gan-museca" importType="api/cg-gan-museca" />,
+			<ImportTypeInfoCard key="api/cg-nag-museca" importType="api/cg-nag-museca" />
 		);
 	} else if (game === "itg") {
 		Content.unshift(
@@ -366,7 +340,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				href="itghook"
 				desc="Automatically import scores, whenever you get them (in ITGMania)!"
 				key="SL-ITG"
-			/>,
+			/>
 		);
 	} else if (game === "ongeki") {
 		Content.unshift(
@@ -376,14 +350,13 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc="Export your scores from an ARTEMiS instance."
 				moreInfo={
 					<>
-						This is a script that exports scores from an ARTEMiS instance.{" "}
-						<br />
+						This is a script that exports scores from an ARTEMiS instance. <br />
 						Note: You will need direct access to the server instance.
 					</>
 				}
 				key="ARTEMiS Exporter"
 			/>,
-			<ImportTypeInfoCard key="api/myt-ongeki" importType="api/myt-ongeki" />,
+			<ImportTypeInfoCard key="api/myt-ongeki" importType="api/myt-ongeki" />
 		);
 	} // else if (game === "jubeat") {
 	// 	Content.unshift(
@@ -592,12 +565,11 @@ function ImportTypeInfoCard({
 					desc="Use a SOLID STATE SQUAD XML file to import scores."
 					moreInfo={
 						<>
-							This service is rather old, and was originally for manually
-							tracking CS scores. However, it still exports data, and we still
-							support it! <br />
+							This service is rather old, and was originally for manually tracking CS
+							scores. However, it still exports data, and we still support it! <br />
 							<br />
-							Also, these guys provide pretty good quality data, especially for
-							the time.
+							Also, these guys provide pretty good quality data, especially for the
+							time.
 						</>
 					}
 					key="SOLID STATE SQUAD .xml"
@@ -621,8 +593,8 @@ function ImportTypeInfoCard({
 					desc={`A JSON format ${TachiConfig.NAME} recognises and can import scores from.`}
 					moreInfo={
 						<>
-							This is for programmers to create their own import scripts. <br />{" "}
-							Check the{" "}
+							This is for programmers to create their own import scripts. <br /> Check
+							the{" "}
 							<ExternalLink href="https://docs.tachi.ac/codebase/batch-manual">
 								documentation
 							</ExternalLink>

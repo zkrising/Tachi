@@ -142,8 +142,8 @@ function MytImporter({
 			</div>
 			<Divider />
 			<div>
-				Play on MYT a lot? You can synchronise your scores straight from the
-				discord by typing <code>/sync</code>!
+				Play on MYT a lot? You can synchronise your scores straight from the discord by
+				typing <code>/sync</code>!
 			</div>
 			<Divider />
 			<ImportStateRenderer state={importState} />
@@ -158,15 +158,10 @@ export function MytNeedsIntegrate({
 	initialCardAccessCode?: string;
 	onSubmit: (cardAccessCode: string) => Promise<void>;
 }) {
-	const [cardAccessCode, setCardAccessCode] = useState(
-		initialCardAccessCode ?? ""
-	);
+	const [cardAccessCode, setCardAccessCode] = useState(initialCardAccessCode ?? "");
 
 	// strip any whitespace the user feels like entering
-	const realCardAccessCode = useMemo(
-		() => cardAccessCode.replace(/\s+/gu, ""),
-		[cardAccessCode]
-	);
+	const realCardAccessCode = useMemo(() => cardAccessCode.replace(/\s+/gu, ""), [cardAccessCode]);
 
 	const validCardAccessCode = useMemo(
 		// Note: valid Myt cards must start with 0 or 3 as 0008, sega, or aime cards.
@@ -187,19 +182,15 @@ export function MytNeedsIntegrate({
 				value={cardAccessCode}
 			/>
 			<Form.Label>
-				This is the card access code that's displayed in game. It should be 20
-				digits.
+				This is the card access code that's displayed in game. It should be 20 digits.
 				<br />
 				{cardAccessCode.length > 0 && !validCardAccessCode ? (
 					<span className="text-danger">
-						Invalid card access code. This should be exactly 20 digits as
-						displayed in game. It may not be the same as the code on the back of
-						your card.
+						Invalid card access code. This should be exactly 20 digits as displayed in
+						game. It may not be the same as the code on the back of your card.
 					</span>
 				) : (
-					cardAccessCode.length > 0 && (
-						<span className="text-success">Looking good!</span>
-					)
+					cardAccessCode.length > 0 && <span className="text-success">Looking good!</span>
 				)}
 			</Form.Label>
 

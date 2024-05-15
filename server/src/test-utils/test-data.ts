@@ -355,9 +355,7 @@ export const TestingJubeatChart: ChartDocument<"jubeat:Single"> = {
 	versions: ["festo"],
 };
 
-export const TestingGitadoraChart: ChartDocument<
-	"gitadora:Dora" | "gitadora:Gita"
-> = {
+export const TestingGitadoraChart: ChartDocument<"gitadora:Dora" | "gitadora:Gita"> = {
 	chartID: "bf62dd6c78afaf6b4f95cce70b5b08af193c0c57",
 	data: {
 		inGameID: 0,
@@ -416,8 +414,7 @@ export const TestingMusecaChart: ChartDocument<"museca:Single"> = {
 export const TestingPopnChart: ChartDocument<"popn:9B"> = {
 	chartID: "7489166ddfb6ec780249823d5bda255611fbc528",
 	data: {
-		hashSHA256:
-			"83287260cb32c5c54b06b76967ba8620dd3735063959d9fbaf2cffc0dba8a049",
+		hashSHA256: "83287260cb32c5c54b06b76967ba8620dd3735063959d9fbaf2cffc0dba8a049",
 		inGameID: 0,
 	},
 	difficulty: "EX",
@@ -509,8 +506,7 @@ export const BMSGazerChart: ChartDocument<"bms:7K"> = {
 		aiLevel: "0",
 		notecount: 2256,
 		hashMD5: "38616b85332037cc12924f2ae2840262",
-		hashSHA256:
-			"195fe1be5c3e74fccd04dc426e05f8a9cfa8a1059c339d0a23e99f63661f0b7d",
+		hashSHA256: "195fe1be5c3e74fccd04dc426e05f8a9cfa8a1059c339d0a23e99f63661f0b7d",
 		tableFolders: [
 			{
 				level: "17",
@@ -627,18 +623,18 @@ export const TestingGITADORADoraDryScore: DryScore<"gitadora:Dora"> = {
 };
 
 export const TestingIIDXEamusementCSV26 = GetKTDataBuffer(
-	"./eamusement-iidx-csv/pre-leggendaria.csv",
+	"./eamusement-iidx-csv/pre-leggendaria.csv"
 );
 export const TestingIIDXEamusementCSV27 = GetKTDataBuffer(
-	"./eamusement-iidx-csv/post-leggendaria.csv",
+	"./eamusement-iidx-csv/post-leggendaria.csv"
 );
 
 export const TestingSDVXEamusementCSV = GetKTDataBuffer(
-	"./eamusement-sdvx-csv/exceed-gear-score.csv",
+	"./eamusement-sdvx-csv/exceed-gear-score.csv"
 );
 
 export const TestingWaccaMyPageScraperRecordsCSV = GetKTDataBuffer(
-	"./wacca-mypage-scraper/records.csv",
+	"./wacca-mypage-scraper/records.csv"
 );
 
 export const TestingBarbatosScore: BarbatosScore = {
@@ -741,14 +737,8 @@ export const TestingIIDXSPQuest: QuestDocument = {
 export const IIDXSPQuestGoals: Array<GoalDocument> = [
 	dm(HC511Goal, { goalID: "eg_goal_1" }) as GoalDocument,
 	dm(HC511Goal, { goalID: "eg_goal_2", criteria: { value: 2 } }),
-	dm(HC511Goal, {
-		goalID: "eg_goal_3",
-		criteria: { key: "score", value: 300 },
-	}),
-	dm(HC511Goal, {
-		goalID: "eg_goal_4",
-		criteria: { key: "score", value: 1100 },
-	}),
+	dm(HC511Goal, { goalID: "eg_goal_3", criteria: { key: "score", value: 300 } }),
+	dm(HC511Goal, { goalID: "eg_goal_4", criteria: { key: "score", value: 1100 } }),
 ];
 
 export const IIDXSPQuestGoalSubs: Array<GoalSubscriptionDocument> = [
@@ -771,10 +761,7 @@ export const TestingIIDXSPQuestSub: QuestSubscriptionDocument = {
 };
 
 let KTDATA_CACHE:
-	| {
-			songs: Array<SongDocument<"iidx">>;
-			charts: Array<ChartDocument<"iidx:DP" | "iidx:SP">>;
-	  }
+	| { songs: Array<SongDocument<"iidx">>; charts: Array<ChartDocument<"iidx:DP" | "iidx:SP">> }
 	| undefined;
 
 export async function LoadTachiIIDXData() {
@@ -785,9 +772,7 @@ export async function LoadTachiIIDXData() {
 		songs = KTDATA_CACHE.songs;
 		charts = KTDATA_CACHE.charts;
 	} else {
-		songs = GetKTDataJSON("./tachi/tachi-songs-iidx.json") as Array<
-			SongDocument<"iidx">
-		>;
+		songs = GetKTDataJSON("./tachi/tachi-songs-iidx.json") as Array<SongDocument<"iidx">>;
 		charts = GetKTDataJSON("./tachi/tachi-charts-iidx.json") as Array<
 			ChartDocument<"iidx:DP" | "iidx:SP">
 		>;
@@ -855,23 +840,22 @@ export const MockBarbatosSDVX6Score: BarbatosSDVX6Score = {
 	vol_error: 15,
 };
 
-export const TestingUSCChart: ChartDocument<"usc:Controller" | "usc:Keyboard"> =
-	{
-		chartID: "USC_CHART_ID",
-		difficulty: "NOV",
-		songID: 1,
-		playtype: "Keyboard",
-		levelNum: 1,
-		level: "1",
-		data: {
-			hashSHA1: "USC_CHART_HASH",
-			isOfficial: false,
-			effector: "foo",
-			tableFolders: [],
-		},
-		isPrimary: true,
-		versions: [],
-	};
+export const TestingUSCChart: ChartDocument<"usc:Controller" | "usc:Keyboard"> = {
+	chartID: "USC_CHART_ID",
+	difficulty: "NOV",
+	songID: 1,
+	playtype: "Keyboard",
+	levelNum: 1,
+	level: "1",
+	data: {
+		hashSHA1: "USC_CHART_HASH",
+		isOfficial: false,
+		effector: "foo",
+		tableFolders: [],
+	},
+	isPrimary: true,
+	versions: [],
+};
 
 export const uscScore: USCClientScore = {
 	crit: 100,

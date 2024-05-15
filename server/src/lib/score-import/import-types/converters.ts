@@ -1,5 +1,5 @@
-import ConvertAPIMytWACCA from "./api/myt-wacca/converter";
 import ConvertAPIMytOngeki from "./api/myt-ongeki/converter";
+import ConvertAPIMytWACCA from "./api/myt-wacca/converter";
 import { ConverterAPICGMuseca } from "./common/api-cg/museca/converter";
 import { ConverterAPICGPopn } from "./common/api-cg/popn/converter";
 import { ConverterAPICGSDVX } from "./common/api-cg/sdvx/converter";
@@ -19,18 +19,11 @@ import { ConverterIRKsHookSV6C } from "./ir/kshook-sv6c/converter";
 import { ConverterLR2Hook } from "./ir/lr2hook/converter";
 import { ConverterIRUSC } from "./ir/usc/converter";
 import { Never } from "utils/misc";
-import type {
-	ConverterFunction,
-	ImportTypeContextMap,
-	ImportTypeDataMap,
-} from "./common/types";
+import type { ConverterFunction, ImportTypeContextMap, ImportTypeDataMap } from "./common/types";
 import type { ImportTypes } from "tachi-common";
 
 export type ConverterMap = {
-	[I in ImportTypes]: ConverterFunction<
-		ImportTypeDataMap[I],
-		ImportTypeContextMap[I]
-	>;
+	[I in ImportTypes]: ConverterFunction<ImportTypeDataMap[I], ImportTypeContextMap[I]>;
 };
 
 export const Converters: ConverterMap = {

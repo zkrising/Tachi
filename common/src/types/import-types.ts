@@ -13,8 +13,8 @@ export type APIImportTypes =
 	| "api/flo-iidx"
 	| "api/flo-sdvx"
 	| "api/min-sdvx"
-	| "api/myt-wacca"
 	| "api/myt-ongeki"
+	| "api/myt-wacca"
 
 	// cg has dev and prod supported
 	// with four games.
@@ -32,7 +32,4 @@ export type IRImportTypes =
 	| "ir/lr2hook"
 	| "ir/usc";
 
-export type ImportTypes =
-	| APIImportTypes
-	| FileUploadImportTypes
-	| IRImportTypes;
+export type ImportTypes = APIImportTypes | FileUploadImportTypes | IRImportTypes;

@@ -208,6 +208,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 		festival: "FESTiVAL",
 		festivalplus: "FESTiVAL PLUS",
 		buddies: "BUDDiES",
+		buddiesplus: "BUDDiES PLUS",
 	},
 
 	chartData: z.strictObject({}),

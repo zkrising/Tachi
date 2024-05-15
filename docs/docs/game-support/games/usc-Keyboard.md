@@ -1,4 +1,4 @@
-# USC (Keyboard) Support
+# USC (Keyboard/Other) Support
 
 This game has the internal GPTString of `usc:Keyboard`.
 

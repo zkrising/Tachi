@@ -3,7 +3,9 @@
 	"private": true,
 	"version": "1.0.0",
 	"description": "Scripts for automatically generating Tachi documentation.",
-	"scripts": {},
+	"scripts": {
+		"run": "ts-node src/main.ts"
+	},
 	"keywords": [],
 	"author": "zkldi",
 	"license": "MIT",

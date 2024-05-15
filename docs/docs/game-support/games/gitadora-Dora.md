@@ -56,8 +56,6 @@ The folowing judgements are defined:
 
 ### Profile Rating Algorithms
 
-The default rating algorithm is `skill`.
-
 | Name | Description |
 | :: | :: |
 | `naiveSkill` | Your best 50 skill levels added together, regardless of whether the chart is HOT or not. |

@@ -1,4 +1,4 @@
-# Arcaea support
+# Arcaea Support
 
 This game has the internal GPTString of `arcaea:Touch`.
 
@@ -13,7 +13,7 @@ For more information on what metrics are and how they work, see [TODO]!
 
 | Metric Name | Type | Description |
 | :: | :: | :: |
-| `score` | Integer | The score value. This is between 0 and 10 million, plus one point for each note. |
+| `score` | Integer | The score value. This is between 0 and 10 million, plus bonus points dependent on how many shiny PUREs you get. |
 | `lamp` | "LOST", "EASY CLEAR", "CLEAR", "HARD CLEAR", "FULL RECALL", "PURE MEMORY" | The type of clear this was. |
 
 ### Derived Metrics
@@ -44,7 +44,7 @@ The folowing judgements are defined:
 
 | Name | Description |
 | :: | :: |
-| `potential` | The potential value of this score. The same as the system used in game. |
+| `potential` | Potential as it is implemented in Arcaea. |
 
 ### Session Rating Algorithms
 
@@ -56,7 +56,7 @@ The folowing judgements are defined:
 
 | Name | Description |
 | :: | :: |
-| `naivePotential` | The average of your best 30 potentials. This is different to in-game, as it does not take into account your recent scores in any way. |
+| `naivePotential` | The average of your best 30 potential values. This is different to in-game, as it does not take into account your recent scores in any way. |
 
 ## Difficulties
 
@@ -69,8 +69,8 @@ The folowing judgements are defined:
 
 | Name | Type | Values |
 | :: | :: | :: |
-| `badge` | DERIVED | BLUE, GREEN, ASH_PURPLE, PURPLE, RED, ONE_STAR, TWO_STARS, THREE_STARS |
-| `courseBanner` | PROVIDED | PHASE_1, PHASE_2, PHASE_3, PHASE_4, PHASE_5, PHASE_6, PHASE_7, PHASE_8, PHASE_9, PHASE_10, PHASE_11 |
+| `badge` | DERIVED | BLUE, GREEN, ASH_PURPLE, PURPLE, RED, ONE_STAR, TWO_STARS, THREE_STARS
+| `courseBanner` | PROVIDED | PHASE_1, PHASE_2, PHASE_3, PHASE_4, PHASE_5, PHASE_6, PHASE_7, PHASE_8, PHASE_9, PHASE_10, PHASE_11
 
 ## Versions
 
@@ -81,6 +81,6 @@ The folowing judgements are defined:
 
 ## Supported Match Types
 
-- `inGameID`
+- `inGameStrID`
 - `songTitle`
 - `tachiSongID`

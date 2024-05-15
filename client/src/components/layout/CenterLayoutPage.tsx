@@ -14,7 +14,6 @@ export default function CenterLayoutPage({ children }: JustChildren) {
 				alignItems: "center",
 				justifyContent: "center",
 				flexDirection: "column",
-				backgroundColor: "#131313",
 				textAlign: "center",
 				fontSize: "2rem",
 			}}

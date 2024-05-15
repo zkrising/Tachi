@@ -15186,5 +15186,346 @@
 		"id": 1199,
 		"searchTerms": [],
 		"title": "さよならプリンセス"
+	},
+	{
+		"altTitles": [],
+		"artist": "カロンズベカラズ",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "maimai"
+		},
+		"id": 1200,
+		"searchTerms": [ "SOS" ],
+		"title": "エスオーエス"
+	},
+	{
+		"altTitles": [],
+		"artist": "なみぐる feat.ちょこ 桃寝ちのい",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "maimai"
+		},
+		"id": 1201,
+		"searchTerms": [ "NOJA LOLIC" ],
+		"title": "のじゃロリック"
+	},
+	{
+		"altTitles": [],
+		"artist": "やどりぎ",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "maimai"
+		},
+		"id": 1202,
+		"searchTerms": [],
+		"title": "Edelweiss"
+	},
+	{
+		"altTitles": [],
+		"artist": "owl＊tree feat.nie＊tree",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "maimai"
+		},
+		"id": 1203,
+		"searchTerms": [],
+		"title": "QuiQ"
+	},
+	{
+		"altTitles": [],
+		"artist": "MisoilePunch♪",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "オンゲキ＆CHUNITHM"
+		},
+		"id": 1204,
+		"searchTerms": [],
+		"title": "MarbleBlue."
+	},
+	{
+		"altTitles": [],
+		"artist": "Aiobahn feat. KOTOKO",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1205,
+		"searchTerms": [],
+		"title": "INTERNET YAMERO"
+	},
+	{
+		"altTitles": [],
+		"artist": "花譜",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1206,
+		"searchTerms": [ "Kako wo kurau" ],
+		"title": "過去を喰らう"
+	},
+	{
+		"altTitles": [],
+		"artist": "ゆこぴ",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1208,
+		"searchTerms": [ "kyoufuu all back" ],
+		"title": "強風オールバック"
+	},
+	{
+		"altTitles": [],
+		"artist": "ゆこぴ",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1209,
+		"searchTerms": [ "Neoki yashi no ki" ],
+		"title": "寝起きヤシの木"
+	},
+	{
+		"altTitles": [],
+		"artist": "YOASOBI",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1210,
+		"searchTerms": [ "Idol" ],
+		"title": "アイドル"
+	},
+	{
+		"altTitles": [],
+		"artist": "DECO*27",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1211,
+		"searchTerms": [ "Rabbit hole" ],
+		"title": "ラビットホール"
+	},
+	{
+		"altTitles": [],
+		"artist": "Kanaria",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1212,
+		"searchTerms": [ "Yoidore shirazu" ],
+		"title": "酔いどれ知らず"
+	},
+	{
+		"altTitles": [],
+		"artist": "雄之助 feat. POPY & ROSE",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1213,
+		"searchTerms": [ "freak out hour" ],
+		"title": "Freak Out Hr."
+	},
+	{
+		"altTitles": [],
+		"artist": "森羅万象",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "東方Project"
+		},
+		"id": 1214,
+		"searchTerms": [ "sayonara history" ],
+		"title": "さよならヒストリー"
+	},
+	{
+		"altTitles": [],
+		"artist": "saaa + kei_iwata + stuv + わかどり",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "ゲーム＆バラエティ"
+		},
+		"id": 1215,
+		"searchTerms": [],
+		"title": "New York Back Raise"
+	},
+	{
+		"altTitles": [],
+		"artist": "ピノキオピー",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1216,
+		"searchTerms": [ "Tokumei M", "Anonymous M" ],
+		"title": "匿名M"
+	},
+	{
+		"altTitles": [],
+		"artist": "MyGO!!!!!",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1217,
+		"searchTerms": [ "hitoshizuku" ],
+		"title": "壱雫空"
+	},
+	{
+		"altTitles": [],
+		"artist": "SOUND HOLIC Vs. Eurobeat Union feat. Nana Takahashi",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "ゲーム＆バラエティ"
+		},
+		"id": 1218,
+		"searchTerms": [ "dual roses" ],
+		"title": "DUAL ROZES"
+	},
+	{
+		"altTitles": [],
+		"artist": "A-One",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "オンゲキ＆CHUNITHM"
+		},
+		"id": 1218,
+		"searchTerms": [ "Music prayer" ],
+		"title": "MUSIC PЯAYER"
+	},
+	{
+		"altTitles": [],
+		"artist": "MisoilePunch♪",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "maimai"
+		},
+		"id": 1219,
+		"searchTerms": [],
+		"title": "IF:U"
+	},
+	{
+		"altTitles": [],
+		"artist": "aran",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "ゲーム＆バラエティ"
+		},
+		"id": 1220,
+		"searchTerms": [],
+		"title": "VOLT"
+	},
+	{
+		"altTitles": [],
+		"artist": "黒魔",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "ゲーム＆バラエティ"
+		},
+		"id": 1221,
+		"searchTerms": [],
+		"title": "tiny tales continue"
+	},
+	{
+		"altTitles": [],
+		"artist": "Cranky VS MASAKI",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "ゲーム＆バラエティ"
+		},
+		"id": 1222,
+		"searchTerms": [],
+		"title": "ouroboros -twin stroke of the end-"
+	},
+	{
+		"altTitles": [],
+		"artist": "かいりきベア",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1223,
+		"searchTerms": ["carnival happy"],
+		"title": "カーニバルハッピー"
+	},
+	{
+		"altTitles": [],
+		"artist": "いよわ",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1224,
+		"searchTerms": [ "tsudzumigasu" ],
+		"title": "つづみぐさ"
+	},
+	{
+		"altTitles": [],
+		"artist": "EZFG",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1225,
+		"searchTerms": ["cyber thunder cider"],
+		"title": "サイバーサンダーサイダー"
+	},
+	{
+		"altTitles": [],
+		"artist": "もちうつね",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1226,
+		"searchTerms": ["o kusuri nonde neyou"],
+		"title": "おくすり飲んで寝よう"
+	},
+	{
+		"altTitles": [],
+		"artist": "Ryo Fukuda",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "maimai"
+		},
+		"id": 1227,
+		"searchTerms": ["cider party"],
+		"title": "Cider P@rty"
+	},
+	{
+		"altTitles": [],
+		"artist": "siqlo",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "maimai"
+		},
+		"id": 1228,
+		"searchTerms": ["soumetsu"],
+		"title": "勦滅"
+	},
+	{
+		"altTitles": [],
+		"artist": "K-forest",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "maimai"
+		},
+		"id": 1229,
+		"searchTerms": [],
+		"title": "Lunatic Vibes"
+	},
+	{
+		"altTitles": [],
+		"artist": "Hommarju",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "maimai"
+		},
+		"id": 1230,
+		"searchTerms": [],
+		"title": "Bloody Trail"
 	}
 ]

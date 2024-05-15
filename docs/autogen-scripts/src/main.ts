@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable operator-assignment */
 // Generate documentation for all GPT configs in-tree.
 
@@ -198,5 +199,6 @@ for (const game of allSupportedGames) {
 	}
 }
 
-console.log("Done! Paste this config into your mkdocs.yml.");
+console.error("Done! Paste this config into your mkdocs.yml.");
+
 console.log(mkdocsConf);

@@ -65,19 +65,30 @@ The folowing judgements are defined:
 - `ADVANCED`
 - `EXPERT`
 - `MASTER`
+- `ULTIMA`
 
 ## Classes
 
 | Name | Type | Values |
 | :: | :: | :: |
-| `colour` | DERIVED | BLUE, GREEN, ORANGE, RED, PURPLE, COPPER, SILVER, GOLD, PLATINUM, RAINBOW |
+| `colour` | DERIVED | BLUE, GREEN, ORANGE, RED, PURPLE, COPPER, SILVER, GOLD, PLATINUM, RAINBOW
+| `dan` | PROVIDED | DAN_I, DAN_II, DAN_III, DAN_IV, DAN_V, DAN_INFINITE
+| `emblem` | PROVIDED | DAN_I, DAN_II, DAN_III, DAN_IV, DAN_V, DAN_INFINITE
 
 ## Versions
 
 | ID | Pretty Name |
 | :: | :: |
-| `paradiselost` | Paradise Lost |
+| `paradiselost` | PARADISE LOST |
 | `sun` | SUN |
+| `sun-intl` | SUN International |
+| `sun-omni` | SUN Omnimix |
+| `sunplus` | SUN PLUS |
+| `sunplus-intl` | SUN PLUS International |
+| `sunplus-omni` | SUN PLUS Omnimix |
+| `luminous` | LUMINOUS |
+| `luminous-intl` | LUMINOUS International |
+| `luminous-omni` | LUMINOUS Omnimix |
 
 ## Supported Match Types
 

@@ -30,6 +30,7 @@ For more information on what metrics are and how they work, see [TODO]!
 | `fast` | Integer | The amount of mistakes in this score that were a result of hitting early. |
 | `slow` | Integer | The amount of mistakes in this score that were a result of hitting late. |
 | `maxCombo` | Integer | The largest combo in this score. |
+| `musicBar` | Array&lt;Decimal&gt; | A snapshot of how well the player did in each part of the song |
 
 ## Judgements
 
@@ -92,6 +93,7 @@ The default rating algorithm is `jubility`.
 | `qubell` | Qubell |
 | `clan` | clan |
 | `festo` | festo |
+| `festo-omni` | festo Omnimix |
 | `ave` | Ave. |
 
 ## Supported Match Types

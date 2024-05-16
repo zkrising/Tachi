@@ -11224,6 +11224,24 @@
 		]
 	},
 	{
+		"chartID": "49db821ff250b6d4568a1d0fabeeed5ee9c786e5",
+		"data": {
+			"displayVersion": "オンゲキ PLUS",
+			"inGameID": 8025,
+			"isReMaster": false,
+			"maxPlatScore": 1998
+		},
+		"difficulty": "LUNATIC",
+		"isPrimary": true,
+		"level": "0",
+		"levelNum": 0,
+		"playtype": "Single",
+		"songID": 152,
+		"versions": [
+			"brightMemory3Omni"
+		]
+	},
+	{
 		"chartID": "cab61ec5ceeb13e9d8bd1b8bf686379f3d491edb",
 		"data": {
 			"displayVersion": "オンゲキ PLUS",

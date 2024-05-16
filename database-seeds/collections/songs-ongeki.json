@@ -1,7 +1,7 @@
 [
 	{
 		"altTitles": [
-			"KIMINOSHIRANAIMONOKATARI"
+			"KIMINOSHIRANAIMONOGATARI"
 		],
 		"artist": "supercell 「化物語」",
 		"data": {
@@ -13,7 +13,7 @@
 	},
 	{
 		"altTitles": [
-			"SHIYUKASONKUTOHITASUTETSUFU"
+			"SHUGASONGUTOBITASUTEPPU"
 		],
 		"artist": "UNISON SQUARE GARDEN",
 		"data": {
@@ -72,9 +72,7 @@
 		"title": "かくしん的☆めたまるふぉ～ぜっ!"
 	},
 	{
-		"altTitles": [
-			"THISGAME"
-		],
+		"altTitles": [],
 		"artist": "鈴木このみ「ノーゲーム・ノーライフ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -84,9 +82,7 @@
 		"title": "This game"
 	},
 	{
-		"altTitles": [
-			"LOSLOSLOS"
-		],
+		"altTitles": [],
 		"artist": "ターニャ・デグレチャフ(CV.悠木碧)「幼女戦記」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -96,9 +92,7 @@
 		"title": "Los! Los! Los!"
 	},
 	{
-		"altTitles": [
-			"SAVIOROFSONG"
-		],
+		"altTitles": [],
 		"artist": "ナノ feat.MY FIRST STORY 「蒼き鋼のアルペジオ ‐アルス・ノヴァ‐」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -108,9 +102,7 @@
 		"title": "SAVIOR OF SONG"
 	},
 	{
-		"altTitles": [
-			"REDREDUCTIONDIVISION"
-		],
+		"altTitles": [],
 		"artist": "fripSide",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -132,9 +124,7 @@
 		"title": "鳥の詩"
 	},
 	{
-		"altTitles": [
-			"SAKURA"
-		],
+		"altTitles": [],
 		"artist": "WITCH NUMBER 4「Tokyo 7th シスターズ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -156,9 +146,7 @@
 		"title": "ときめきエクスペリエンス！"
 	},
 	{
-		"altTitles": [
-			"THATISHOWIROLL"
-		],
+		"altTitles": [],
 		"artist": "Afterglow「バンドリ！ ガールズバンドパーティ！」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -180,9 +168,7 @@
 		"title": "しゅわりん☆どり〜みん"
 	},
 	{
-		"altTitles": [
-			"BLACKSHOUT"
-		],
+		"altTitles": [],
 		"artist": "Roselia「バンドリ！ ガールズバンドパーティ！」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -253,7 +239,7 @@
 	},
 	{
 		"altTitles": [
-			"SENHONSAKURA"
+			"SENBONZAKURA"
 		],
 		"artist": "黒うさP",
 		"data": {
@@ -301,7 +287,7 @@
 	},
 	{
 		"altTitles": [
-			"HOKURANO16BITUOSU"
+			"BOKURANO16BITUOSU"
 		],
 		"artist": "sasakure.UK",
 		"data": {
@@ -313,7 +299,7 @@
 	},
 	{
 		"altTitles": [
-			"HATSUNEMIKUNOKEKISHIYOU"
+			"HATSUNEMIKUNOGEKISHOU"
 		],
 		"artist": "Storyteller",
 		"data": {
@@ -384,9 +370,7 @@
 		"title": "ブリキノダンス"
 	},
 	{
-		"altTitles": [
-			"BADAPPLEFEATNOMICO"
-		],
+		"altTitles": [],
 		"artist": "Masayoshi Minoshima",
 		"data": {
 			"genre": "東方Project"
@@ -408,9 +392,7 @@
 		"title": "ナイト・オブ・ナイツ"
 	},
 	{
-		"altTitles": [
-			"GRIPANDBREAKDOWN"
-		],
+		"altTitles": [],
 		"artist": "SOUND HOLIC feat. Nana Takahashi",
 		"data": {
 			"genre": "東方Project"
@@ -480,9 +462,7 @@
 		"title": "れみりあ☆デスティニー"
 	},
 	{
-		"altTitles": [
-			"SWEETLITTLESISTER"
-		],
+		"altTitles": [],
 		"artist": "Silver Forest",
 		"data": {
 			"genre": "東方Project"
@@ -492,9 +472,7 @@
 		"title": "sweet little sister"
 	},
 	{
-		"altTitles": [
-			"DESTINYRUNNER"
-		],
+		"altTitles": [],
 		"artist": "さわわ",
 		"data": {
 			"genre": "東方Project"
@@ -528,9 +506,7 @@
 		"title": "檄!帝国華撃団"
 	},
 	{
-		"altTitles": [
-			"THEFORMULA"
-		],
+		"altTitles": [],
 		"artist": "Junk",
 		"data": {
 			"genre": "VARIETY"
@@ -540,9 +516,7 @@
 		"title": "The Formula"
 	},
 	{
-		"altTitles": [
-			"BRAINPOWER"
-		],
+		"altTitles": [],
 		"artist": "NOMA",
 		"data": {
 			"genre": "VARIETY"
@@ -552,9 +526,7 @@
 		"title": "Brain Power"
 	},
 	{
-		"altTitles": [
-			"HALCYON"
-		],
+		"altTitles": [],
 		"artist": "xi",
 		"data": {
 			"genre": "VARIETY"
@@ -588,9 +560,7 @@
 		"title": "神威"
 	},
 	{
-		"altTitles": [
-			"AEVENTYR"
-		],
+		"altTitles": [],
 		"artist": "Grand Thaw / Rigel Theatre",
 		"data": {
 			"genre": "VARIETY"
@@ -612,9 +582,7 @@
 		"title": "ＧＯ！ＧＯ！ラブリズム♥"
 	},
 	{
-		"altTitles": [
-			"OSHAMASCRAMBLE"
-		],
+		"altTitles": [],
 		"artist": "t+pazolite",
 		"data": {
 			"genre": "チュウマイ"
@@ -636,9 +604,7 @@
 		"title": "心象蜃気楼"
 	},
 	{
-		"altTitles": [
-			"MAREMARIS"
-		],
+		"altTitles": [],
 		"artist": "M2U",
 		"data": {
 			"genre": "チュウマイ"
@@ -648,9 +614,7 @@
 		"title": "Mare Maris"
 	},
 	{
-		"altTitles": [
-			"HYPERACTIVE"
-		],
+		"altTitles": [],
 		"artist": "HiTECH NINJA",
 		"data": {
 			"genre": "チュウマイ"
@@ -672,9 +636,7 @@
 		"title": "天火明命"
 	},
 	{
-		"altTitles": [
-			"CYBEROZAR"
-		],
+		"altTitles": [],
 		"artist": "削除",
 		"data": {
 			"genre": "チュウマイ"
@@ -684,9 +646,7 @@
 		"title": "Cyberozar"
 	},
 	{
-		"altTitles": [
-			"AMAZINGMIGHTYYYY"
-		],
+		"altTitles": [],
 		"artist": "WAiKURO",
 		"data": {
 			"genre": "チュウマイ"
@@ -696,9 +656,7 @@
 		"title": "AMAZING MIGHTYYYY!!!!"
 	},
 	{
-		"altTitles": [
-			"GATEOFDOOM"
-		],
+		"altTitles": [],
 		"artist": "Masahiro “Godspeed” Aoki",
 		"data": {
 			"genre": "チュウマイ"
@@ -708,9 +666,7 @@
 		"title": "Gate of Doom"
 	},
 	{
-		"altTitles": [
-			"FIRSTTWINKLE"
-		],
+		"altTitles": [],
 		"artist": "折戸伸治 feat.北沢綾香",
 		"data": {
 			"genre": "チュウマイ"
@@ -720,9 +676,7 @@
 		"title": "First Twinkle"
 	},
 	{
-		"altTitles": [
-			"PAQQIN"
-		],
+		"altTitles": [],
 		"artist": "owl＊tree",
 		"data": {
 			"genre": "チュウマイ"
@@ -732,9 +686,7 @@
 		"title": "Paqqin"
 	},
 	{
-		"altTitles": [
-			"WEGONNAJOURNEY"
-		],
+		"altTitles": [],
 		"artist": "Queen P.A.L.",
 		"data": {
 			"genre": "チュウマイ"
@@ -756,9 +708,7 @@
 		"title": "閃鋼のブリューナク"
 	},
 	{
-		"altTitles": [
-			"OBORO"
-		],
+		"altTitles": [],
 		"artist": "ヒゲドライバー",
 		"data": {
 			"genre": "チュウマイ"
@@ -768,9 +718,7 @@
 		"title": "oboro"
 	},
 	{
-		"altTitles": [
-			"7THSENSE"
-		],
+		"altTitles": [],
 		"artist": "削除",
 		"data": {
 			"genre": "チュウマイ"
@@ -792,9 +740,7 @@
 		"title": "今ぞ♡崇め奉れ☆オマエらよ！！～姫の秘メタル渇望～"
 	},
 	{
-		"altTitles": [
-			"KATTOBIKEIKYURIDER"
-		],
+		"altTitles": [],
 		"artist": "Sampling Masters MEGA",
 		"data": {
 			"genre": "チュウマイ"
@@ -816,9 +762,7 @@
 		"title": "エンドマークに希望と涙を添えて"
 	},
 	{
-		"altTitles": [
-			"PERFECTSHINING"
-		],
+		"altTitles": [],
 		"artist": "曲：宮崎誠／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
 			"genre": "オンゲキ"
@@ -828,9 +772,7 @@
 		"title": "Perfect Shining!!"
 	},
 	{
-		"altTitles": [
-			"STARTLINER"
-		],
+		"altTitles": [],
 		"artist": "曲：kz(livetune)／歌：オンゲキシューターズ",
 		"data": {
 			"genre": "オンゲキ"
@@ -852,9 +794,7 @@
 		"title": "みんな Happy!!"
 	},
 	{
-		"altTitles": [
-			"ZESTOFBLUE"
-		],
+		"altTitles": [],
 		"artist": "曲：上松範廉(Elements Garden)／歌：三角 葵(CV：春野 杏)",
 		"data": {
 			"genre": "オンゲキ"
@@ -864,9 +804,7 @@
 		"title": "Zest of Blue"
 	},
 	{
-		"altTitles": [
-			"HEREWEGO"
-		],
+		"altTitles": [],
 		"artist": "曲：TeddyLoid／歌：高瀬 梨緒(CV：久保 ユリカ)",
 		"data": {
 			"genre": "オンゲキ"
@@ -876,9 +814,7 @@
 		"title": "Here We Go"
 	},
 	{
-		"altTitles": [
-			"DOLPHIKA"
-		],
+		"altTitles": [],
 		"artist": "HiTECH NINJA",
 		"data": {
 			"genre": "オンゲキ"
@@ -912,9 +848,7 @@
 		"title": "タテマエと本心の大乱闘"
 	},
 	{
-		"altTitles": [
-			"AINOV"
-		],
+		"altTitles": [],
 		"artist": "Feryquitous",
 		"data": {
 			"genre": "オンゲキ"
@@ -948,9 +882,7 @@
 		"title": "ブツメツビーターズ"
 	},
 	{
-		"altTitles": [
-			"SWEETSHAKE"
-		],
+		"altTitles": [],
 		"artist": "曲：佐藤純一（fhána）／歌：桜井 春菜(CV：近藤 玲奈)",
 		"data": {
 			"genre": "オンゲキ"
@@ -960,9 +892,7 @@
 		"title": "SWEET SHAKE!!"
 	},
 	{
-		"altTitles": [
-			"WHATCOLOR"
-		],
+		"altTitles": [],
 		"artist": "曲：NAOKI／歌：早乙女 彩華(CV：中島 唯)",
 		"data": {
 			"genre": "オンゲキ"
@@ -972,9 +902,7 @@
 		"title": "What color..."
 	},
 	{
-		"altTitles": [
-			"SWORDOFSECRET"
-		],
+		"altTitles": [],
 		"artist": "Cranky,Morrigan feat.Lily",
 		"data": {
 			"genre": "オンゲキ"
@@ -984,9 +912,7 @@
 		"title": "Sword of Secret"
 	},
 	{
-		"altTitles": [
-			"MAQRITE"
-		],
+		"altTitles": [],
 		"artist": "owl＊tree",
 		"data": {
 			"genre": "オンゲキ"
@@ -996,9 +922,7 @@
 		"title": "Maqrite"
 	},
 	{
-		"altTitles": [
-			"EVERLASTINGTODAY"
-		],
+		"altTitles": [],
 		"artist": "void (Mournfinale)",
 		"data": {
 			"genre": "オンゲキ"
@@ -1008,9 +932,7 @@
 		"title": "Everlasting Today"
 	},
 	{
-		"altTitles": [
-			"GAMEISLIFE"
-		],
+		"altTitles": [],
 		"artist": "曲：ヒゲドライバー／歌：井之原 小星(CV：ももの はるな)",
 		"data": {
 			"genre": "オンゲキ"
@@ -1020,9 +942,7 @@
 		"title": "GAME IS LIFE"
 	},
 	{
-		"altTitles": [
-			"GRANFATALITE"
-		],
+		"altTitles": [],
 		"artist": "曲：ZAQ／歌：柏木 咲姫(CV：石見 舞菜香)",
 		"data": {
 			"genre": "オンゲキ"
@@ -1032,9 +952,7 @@
 		"title": "GranFatalité"
 	},
 	{
-		"altTitles": [
-			"DAZZLEHOP"
-		],
+		"altTitles": [],
 		"artist": "Sampling Masters MEGA",
 		"data": {
 			"genre": "オンゲキ"
@@ -1044,9 +962,7 @@
 		"title": "Dazzle hop"
 	},
 	{
-		"altTitles": [
-			"YURUSHITE"
-		],
+		"altTitles": [],
 		"artist": "t+pazolite",
 		"data": {
 			"genre": "オンゲキ"
@@ -1056,9 +972,7 @@
 		"title": "YURUSHITE"
 	},
 	{
-		"altTitles": [
-			"NOREMORSE"
-		],
+		"altTitles": [],
 		"artist": "並木 学「ケツイ ～絆地獄たち～」",
 		"data": {
 			"genre": "LUNATIC"
@@ -1068,9 +982,7 @@
 		"title": "No Remorse"
 	},
 	{
-		"altTitles": [
-			"TOMORROW"
-		],
+		"altTitles": [],
 		"artist": "Machico「この素晴らしい世界に祝福を！2」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1128,9 +1040,7 @@
 		"title": "チュルリラ・チュルリラ・ダッダッダ！"
 	},
 	{
-		"altTitles": [
-			"REDBATTLE"
-		],
+		"altTitles": [],
 		"artist": "めぐみん（CV：高橋李依）、ゆんゆん（CV：豊崎愛生）「この素晴らしい世界に祝福を！2」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1164,9 +1074,7 @@
 		"title": "連れ去って・閉じ込めて・好きにして"
 	},
 	{
-		"altTitles": [
-			"GOODRAGE"
-		],
+		"altTitles": [],
 		"artist": "EBIMAYO",
 		"data": {
 			"genre": "VARIETY"
@@ -1176,9 +1084,7 @@
 		"title": "GOODRAGE"
 	},
 	{
-		"altTitles": [
-			"DRAGOON"
-		],
+		"altTitles": [],
 		"artist": "Shandy kubota",
 		"data": {
 			"genre": "チュウマイ"
@@ -1200,9 +1106,7 @@
 		"title": "月に叢雲華に風"
 	},
 	{
-		"altTitles": [
-			"CIRCLING"
-		],
+		"altTitles": [],
 		"artist": "Poppin’Party「バンドリ！ ガールズバンドパーティ！」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1236,9 +1140,7 @@
 		"title": "ゆら・ゆらRing-Dong-Dance"
 	},
 	{
-		"altTitles": [
-			"OPERAOFTHEWASTELAND"
-		],
+		"altTitles": [],
 		"artist": "Roselia「バンドリ！ ガールズバンドパーティ！」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1249,7 +1151,7 @@
 	},
 	{
 		"altTitles": [
-			"KOKAKOKAIFUANTOMUSHIFU"
+			"GOKAGOKAIFUANTOMUSHIFU"
 		],
 		"artist": "ハロー、ハッピーワールド！「バンドリ！ ガールズバンドパーティ！」",
 		"data": {
@@ -1261,7 +1163,7 @@
 	},
 	{
 		"altTitles": [
-			"IKATSUCHI"
+			"IKAZUCHI"
 		],
 		"artist": "光吉猛修",
 		"data": {
@@ -1273,7 +1175,8 @@
 	},
 	{
 		"altTitles": [
-			"KONTONWOKOESHIWARERAKASHINSEINARUCHIYOURITSUSHIYUWOTATAEYO"
+			"KONTONWOKOESHIWARERAGASHINSEINARUCHOURITSUSHIYUWOTATAEYO",
+			"GOLDENKING"
 		],
 		"artist": "穴山大輔",
 		"data": {
@@ -1284,9 +1187,7 @@
 		"title": "混沌を越えし我らが神聖なる調律主を讃えよ"
 	},
 	{
-		"altTitles": [
-			"OPFER"
-		],
+		"altTitles": [],
 		"artist": "かねこちはる",
 		"data": {
 			"genre": "オンゲキ"
@@ -1296,9 +1197,7 @@
 		"title": "Opfer"
 	},
 	{
-		"altTitles": [
-			"TITANIA"
-		],
+		"altTitles": [],
 		"artist": "xi",
 		"data": {
 			"genre": "オンゲキ"
@@ -1308,9 +1207,7 @@
 		"title": "Titania"
 	},
 	{
-		"altTitles": [
-			"HARMONIZE"
-		],
+		"altTitles": [],
 		"artist": "日向 美海(CV：相坂 優歌)「アンジュ・ヴィエルジュ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1332,9 +1229,7 @@
 		"title": "secret base ～君がくれたもの～ (10 years after Ver.)"
 	},
 	{
-		"altTitles": [
-			"GODKNOWS"
-		],
+		"altTitles": [],
 		"artist": "涼宮ハルヒ（CV.平野 綾） TVアニメ「涼宮ハルヒの憂鬱」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1344,9 +1239,7 @@
 		"title": "God knows..."
 	},
 	{
-		"altTitles": [
-			"STEPBYSTEPUP"
-		],
+		"altTitles": [],
 		"artist": "fourfolium［涼風青葉（CV：高田憂希）／滝本ひふみ（CV：山口 愛）／篠田はじめ（CV：戸田めぐみ）／飯島ゆん（CV：竹尾歩美）］「NEW GAME!!」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1356,9 +1249,7 @@
 		"title": "STEP by STEP UP↑↑↑↑"
 	},
 	{
-		"altTitles": [
-			"LINKOFDESTINY"
-		],
+		"altTitles": [],
 		"artist": "相坂 優歌「アンジュ・ヴィエルジュ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1368,9 +1259,7 @@
 		"title": "Link of Destiny"
 	},
 	{
-		"altTitles": [
-			"LOVEISMYRAIL"
-		],
+		"altTitles": [],
 		"artist": "鈴木このみ「アンジュ・ヴィエルジュ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1380,9 +1269,7 @@
 		"title": "Love is MY RAIL"
 	},
 	{
-		"altTitles": [
-			"LINKWITHU"
-		],
+		"altTitles": [],
 		"artist": "L.I.N.K.s（相坂優歌／石原 舞／高橋李依／生田善子／山本希望）「アンジュ・ヴィエルジュ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1428,9 +1315,7 @@
 		"title": "時の冒険者"
 	},
 	{
-		"altTitles": [
-			"REDO"
-		],
+		"altTitles": [],
 		"artist": "鈴木このみ「Re:ゼロから始める異世界生活」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1440,9 +1325,7 @@
 		"title": "Redo"
 	},
 	{
-		"altTitles": [
-			"GRANDSYMPHONY"
-		],
+		"altTitles": [],
 		"artist": "佐咲紗花",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1464,9 +1347,7 @@
 		"title": "流星"
 	},
 	{
-		"altTitles": [
-			"SISTERSNOISE"
-		],
+		"altTitles": [],
 		"artist": "fripSide「とある科学の超電磁砲S」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1525,7 +1406,7 @@
 	},
 	{
 		"altTitles": [
-			"KUINOFUHATO"
+			"KUINOBUHATO"
 		],
 		"artist": "奏音69×巡音ルカ",
 		"data": {
@@ -1536,9 +1417,7 @@
 		"title": "クイーンオブハート"
 	},
 	{
-		"altTitles": [
-			"CALAMITYFORTUNE"
-		],
+		"altTitles": [],
 		"artist": "LeaF",
 		"data": {
 			"genre": "東方Project"
@@ -1548,9 +1427,7 @@
 		"title": "Calamity Fortune"
 	},
 	{
-		"altTitles": [
-			"JUMPJUMPJUMP"
-		],
+		"altTitles": [],
 		"artist": "曲：宮崎誠／歌：オンゲキシューターズ",
 		"data": {
 			"genre": "オンゲキ"
@@ -1560,9 +1437,7 @@
 		"title": "Jump!! Jump!! Jump!!"
 	},
 	{
-		"altTitles": [
-			"TAKEONTHEWORLD"
-		],
+		"altTitles": [],
 		"artist": "REDALiCE",
 		"data": {
 			"genre": "オンゲキ"
@@ -1572,9 +1447,7 @@
 		"title": "TAKE ON THE WORLD"
 	},
 	{
-		"altTitles": [
-			"TEA"
-		],
+		"altTitles": [],
 		"artist": "ガリガリさむし",
 		"data": {
 			"genre": "オンゲキ"
@@ -1584,9 +1457,7 @@
 		"title": "TeA"
 	},
 	{
-		"altTitles": [
-			"FULGENTE"
-		],
+		"altTitles": [],
 		"artist": "Junk",
 		"data": {
 			"genre": "オンゲキ"
@@ -1596,9 +1467,7 @@
 		"title": "fulgente"
 	},
 	{
-		"altTitles": [
-			"ONLYMYRAILGUN"
-		],
+		"altTitles": [],
 		"artist": "fripSide「とある科学の超電磁砲」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1632,9 +1501,7 @@
 		"title": "アンハッピーリフレイン"
 	},
 	{
-		"altTitles": [
-			"DAYBREAKFRONTLINE"
-		],
+		"altTitles": [],
 		"artist": "Orangestar",
 		"data": {
 			"genre": "niconico"
@@ -1656,9 +1523,7 @@
 		"title": "本能的 Survivor"
 	},
 	{
-		"altTitles": [
-			"MEGATONBLAST"
-		],
+		"altTitles": [],
 		"artist": "BlackY vs. Yooh",
 		"data": {
 			"genre": "オンゲキ"
@@ -1669,7 +1534,7 @@
 	},
 	{
 		"altTitles": [
-			"HATSUNEMIKUNOSHIYOUSHITSU"
+			"HATSUNEMIKUNOSHOUSHITSU"
 		],
 		"artist": "cosMo＠暴走P",
 		"data": {
@@ -1704,9 +1569,7 @@
 		"title": "星屑ユートピア"
 	},
 	{
-		"altTitles": [
-			"TELLYOURWORLD"
-		],
+		"altTitles": [],
 		"artist": "livetune",
 		"data": {
 			"genre": "niconico"
@@ -1740,9 +1603,7 @@
 		"title": "からくりピエロ"
 	},
 	{
-		"altTitles": [
-			"CREAMMINT"
-		],
+		"altTitles": [],
 		"artist": "KOTOKO",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1752,9 +1613,7 @@
 		"title": "Cream+Mint"
 	},
 	{
-		"altTitles": [
-			"KISSMEKISS"
-		],
+		"altTitles": [],
 		"artist": "曲：大畑拓也／歌：bitter flavor [桜井 春菜(CV：近藤 玲奈)、早乙女 彩華(CV：中島 唯)]",
 		"data": {
 			"genre": "オンゲキ"
@@ -1764,9 +1623,7 @@
 		"title": "Kiss Me Kiss"
 	},
 	{
-		"altTitles": [
-			"DEATHDOLL"
-		],
+		"altTitles": [],
 		"artist": "SHIKI",
 		"data": {
 			"genre": "オンゲキ"
@@ -1776,9 +1633,7 @@
 		"title": "Death Doll"
 	},
 	{
-		"altTitles": [
-			"CHELLYSPLASH"
-		],
+		"altTitles": [],
 		"artist": "まらしぃ",
 		"data": {
 			"genre": "オンゲキ"
@@ -1788,9 +1643,7 @@
 		"title": "Chelly spLash♪♪"
 	},
 	{
-		"altTitles": [
-			"SAKURAFUBUKI"
-		],
+		"altTitles": [],
 		"artist": "Street",
 		"data": {
 			"genre": "LUNATIC"
@@ -1801,7 +1654,7 @@
 	},
 	{
 		"altTitles": [
-			"ONKEKISENIKIAKANESAMA"
+			"ONGEKISENIKIAKANESAMA"
 		],
 		"artist": "曲：MOSAIC.WAV／歌：逢坂 茜(CV：大空 直美)",
 		"data": {
@@ -1812,7 +1665,9 @@
 		"title": "オンゲキ全域★アカネサマ？"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"IKAZUCHI"
+		],
 		"artist": "光吉猛修",
 		"data": {
 			"genre": "LUNATIC"
@@ -1822,9 +1677,7 @@
 		"title": "怒槌～光吉猛修一部謎～"
 	},
 	{
-		"altTitles": [
-			"LOSTPRINCESS"
-		],
+		"altTitles": [],
 		"artist": "ペコリーヌ（M・A・O）、コッコロ（伊藤美来）、キャル（立花理香）「プリンセスコネクト！Re:Dive」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1846,9 +1699,7 @@
 		"title": "極上スマイル"
 	},
 	{
-		"altTitles": [
-			"HIGHFREESPIRITS"
-		],
+		"altTitles": [],
 		"artist": "TrySail",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1858,9 +1709,7 @@
 		"title": "High Free Spirits"
 	},
 	{
-		"altTitles": [
-			"PARADISELOST"
-		],
+		"altTitles": [],
 		"artist": "茅原実里",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1882,9 +1731,7 @@
 		"title": "アリサのテーマ"
 	},
 	{
-		"altTitles": [
-			"CONNECTINGHAPPY"
-		],
+		"altTitles": [],
 		"artist": "ペコリーヌ（M・A・O）、コッコロ（伊藤美来）、キャル（立花理香）「プリンセスコネクト！Re:Dive」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -1954,9 +1801,7 @@
 		"title": "エピクロスの虹はもう見えない"
 	},
 	{
-		"altTitles": [
-			"SENTIMENTALSNOW"
-		],
+		"altTitles": [],
 		"artist": "霜月はるか",
 		"data": {
 			"genre": "チュウマイ"
@@ -1978,9 +1823,7 @@
 		"title": "めんどーい！やっほーい！ともだち！"
 	},
 	{
-		"altTitles": [
-			"BOUNCEANDDANCE"
-		],
+		"altTitles": [],
 		"artist": "IOSYS TRAX",
 		"data": {
 			"genre": "オンゲキ"
@@ -2050,9 +1893,7 @@
 		"title": "妖狐仙楽踏"
 	},
 	{
-		"altTitles": [
-			"NECROFANTASIA"
-		],
+		"altTitles": [],
 		"artist": "Masayoshi Minoshima",
 		"data": {
 			"genre": "東方Project"
@@ -2062,9 +1903,7 @@
 		"title": "Necro Fantasia"
 	},
 	{
-		"altTitles": [
-			"COLORS"
-		],
+		"altTitles": [],
 		"artist": "REDALiCE feat.野宮あゆみ",
 		"data": {
 			"genre": "東方Project"
@@ -2086,9 +1925,7 @@
 		"title": "櫻結び"
 	},
 	{
-		"altTitles": [
-			"MELODY"
-		],
+		"altTitles": [],
 		"artist": "あ～るの～と（いえろ～ぜぶら）",
 		"data": {
 			"genre": "東方Project"
@@ -2099,7 +1936,7 @@
 	},
 	{
 		"altTitles": [
-			"SCREAMOUTONKEKIYOUREBREAK"
+			"SCREAMOUTONGEKIYOUREBREAK"
 		],
 		"artist": "A-One",
 		"data": {
@@ -2110,9 +1947,7 @@
 		"title": "Scream out! -音華鏡 Re:BREAK-"
 	},
 	{
-		"altTitles": [
-			"CONFLICT"
-		],
+		"altTitles": [],
 		"artist": "siromaru + cranky",
 		"data": {
 			"genre": "VARIETY"
@@ -2122,9 +1957,7 @@
 		"title": "conflict"
 	},
 	{
-		"altTitles": [
-			"UTAKATA"
-		],
+		"altTitles": [],
 		"artist": "曲：ゆよゆっぺ／歌：九條 楓(CV：佳村 はるか)",
 		"data": {
 			"genre": "オンゲキ"
@@ -2134,9 +1967,7 @@
 		"title": "UTAKATA"
 	},
 	{
-		"altTitles": [
-			"RULETHEWORLD"
-		],
+		"altTitles": [],
 		"artist": "曲：八木雄一 feat. Marty Friedman／歌：逢坂 茜(CV：大空 直美)",
 		"data": {
 			"genre": "オンゲキ"
@@ -2170,9 +2001,7 @@
 		"title": "Y.Y.Y.計画!!!!"
 	},
 	{
-		"altTitles": [
-			"FANTASTICDREAMER"
-		],
+		"altTitles": [],
 		"artist": "Machico「この素晴らしい世界に祝福を！」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -2182,9 +2011,7 @@
 		"title": "fantastic dreamer"
 	},
 	{
-		"altTitles": [
-			"DREAMRISER"
-		],
+		"altTitles": [],
 		"artist": "ChouCho",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -2194,9 +2021,7 @@
 		"title": "DreamRiser"
 	},
 	{
-		"altTitles": [
-			"RISINGHOPE"
-		],
+		"altTitles": [],
 		"artist": "LiSA",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -2206,9 +2031,7 @@
 		"title": "Rising Hope"
 	},
 	{
-		"altTitles": [
-			"HANDINHAND"
-		],
+		"altTitles": [],
 		"artist": "ユーフィリア(CV：高橋 李依)「アンジュ・ヴィエルジュ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -2218,9 +2041,7 @@
 		"title": "Hand in Hand"
 	},
 	{
-		"altTitles": [
-			"39"
-		],
+		"altTitles": [],
 		"artist": "sasakure.UK x DECO*27",
 		"data": {
 			"genre": "niconico"
@@ -2242,9 +2063,7 @@
 		"title": "メルト"
 	},
 	{
-		"altTitles": [
-			"GARAKUTADOLLPLAY"
-		],
+		"altTitles": [],
 		"artist": "t+pazolite",
 		"data": {
 			"genre": "チュウマイ"
@@ -2254,9 +2073,7 @@
 		"title": "Garakuta Doll Play"
 	},
 	{
-		"altTitles": [
-			"THEWHEELTOTHERIGHT"
-		],
+		"altTitles": [],
 		"artist": "Sampling Masters MEGA",
 		"data": {
 			"genre": "チュウマイ"
@@ -2266,9 +2083,7 @@
 		"title": "The wheel to the right"
 	},
 	{
-		"altTitles": [
-			"STARRINGSTARS"
-		],
+		"altTitles": [],
 		"artist": "曲：馬渕直純／歌：ASTERISM [星咲 あかり(CV：赤尾 ひかる)、藤沢 柚子(CV：久保田 梨沙)、三角 葵(CV：春野 杏)]",
 		"data": {
 			"genre": "オンゲキ"
@@ -2278,9 +2093,7 @@
 		"title": "Starring Stars"
 	},
 	{
-		"altTitles": [
-			"VIYELLASTEARS"
-		],
+		"altTitles": [],
 		"artist": "Laur",
 		"data": {
 			"genre": "オンゲキ"
@@ -2302,9 +2115,7 @@
 		"title": "チルノのパーフェクトさんすう教室"
 	},
 	{
-		"altTitles": [
-			"AENBHARR"
-		],
+		"altTitles": [],
 		"artist": "Project Grimoire",
 		"data": {
 			"genre": "オンゲキ"
@@ -2314,9 +2125,7 @@
 		"title": "Aenbharr"
 	},
 	{
-		"altTitles": [
-			"ω4"
-		],
+		"altTitles": [],
 		"artist": "穴山大輔 VS 光吉猛修 VS Kai",
 		"data": {
 			"genre": "オンゲキ"
@@ -2386,9 +2195,7 @@
 		"title": "徒花ネクロマンシー"
 	},
 	{
-		"altTitles": [
-			"ADAMAS"
-		],
+		"altTitles": [],
 		"artist": "LiSA",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -2398,9 +2205,7 @@
 		"title": "ADAMAS"
 	},
 	{
-		"altTitles": [
-			"GOGOMANIAC"
-		],
+		"altTitles": [],
 		"artist": "放課後ティータイム",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -2410,9 +2215,7 @@
 		"title": "GO! GO! MANIAC"
 	},
 	{
-		"altTitles": [
-			"PRESERVEDROSES"
-		],
+		"altTitles": [],
 		"artist": "T.M.Revolution×水樹奈々",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -2422,9 +2225,7 @@
 		"title": "Preserved Roses"
 	},
 	{
-		"altTitles": [
-			"THEEVERLASTINGGUILTYCROWN"
-		],
+		"altTitles": [],
 		"artist": "EGOIST",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -2434,9 +2235,7 @@
 		"title": "The Everlasting Guilty Crown"
 	},
 	{
-		"altTitles": [
-			"DOLLSDESTINY"
-		],
+		"altTitles": [],
 		"artist": "DOLLS「プロジェクト東京ドールズ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -2446,9 +2245,7 @@
 		"title": "Doll's Destiny"
 	},
 	{
-		"altTitles": [
-			"STARDIVINE"
-		],
+		"altTitles": [],
 		"artist": "スタァライト九九組「少女☆歌劇 レヴュースタァライト」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -2518,9 +2315,7 @@
 		"title": "ブレス・ユア・ブレス"
 	},
 	{
-		"altTitles": [
-			"METEOR"
-		],
+		"altTitles": [],
 		"artist": "DIVELA",
 		"data": {
 			"genre": "niconico"
@@ -2554,9 +2349,7 @@
 		"title": "患部で止まってすぐ溶ける～狂気の優曇華院"
 	},
 	{
-		"altTitles": [
-			"FREEDOMDIVETPZOVERCUTEREMIX"
-		],
+		"altTitles": [],
 		"artist": "t+pazolite",
 		"data": {
 			"genre": "VARIETY"
@@ -2590,9 +2383,7 @@
 		"title": "まっすぐ→→→ストリーム！"
 	},
 	{
-		"altTitles": [
-			"TOUCHANDGO"
-		],
+		"altTitles": [],
 		"artist": "Noah",
 		"data": {
 			"genre": "オンゲキ"
@@ -2602,9 +2393,7 @@
 		"title": "Touch and Go"
 	},
 	{
-		"altTitles": [
-			"BAQEELA"
-		],
+		"altTitles": [],
 		"artist": "owl＊tree",
 		"data": {
 			"genre": "オンゲキ"
@@ -2626,9 +2415,7 @@
 		"title": "トリドリ⇒モリモリ！Lovely fruits☆"
 	},
 	{
-		"altTitles": [
-			"LAZYADDICTION"
-		],
+		"altTitles": [],
 		"artist": "sky_delta",
 		"data": {
 			"genre": "オンゲキ"
@@ -2650,9 +2437,7 @@
 		"title": "夜明けのストリング"
 	},
 	{
-		"altTitles": [
-			"DESPERADOWALTZ"
-		],
+		"altTitles": [],
 		"artist": "ぺのれり",
 		"data": {
 			"genre": "オンゲキ"
@@ -2698,9 +2483,7 @@
 		"title": "星のダイアローグ"
 	},
 	{
-		"altTitles": [
-			"HELLOMORNING"
-		],
+		"altTitles": [],
 		"artist": "Kizuna AI",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -2770,9 +2553,7 @@
 		"title": "レプリカの恋"
 	},
 	{
-		"altTitles": [
-			"HELPMEERINNNNNN"
-		],
+		"altTitles": [],
 		"artist": "ビートまりお（COOL&CREATE）",
 		"data": {
 			"genre": "東方Project"
@@ -2818,9 +2599,7 @@
 		"title": "MAKING！ハイタッチ！"
 	},
 	{
-		"altTitles": [
-			"GEOMETRICDANCE"
-		],
+		"altTitles": [],
 		"artist": "山本真央樹",
 		"data": {
 			"genre": "オンゲキ"
@@ -2854,9 +2633,7 @@
 		"title": "青春サイダー"
 	},
 	{
-		"altTitles": [
-			"PETITETOILE"
-		],
+		"altTitles": [],
 		"artist": "petit corolla「温泉むすめ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -2866,9 +2643,7 @@
 		"title": "Petit Etoile"
 	},
 	{
-		"altTitles": [
-			"IMPERISHABLENIGHT20062016REFINE"
-		],
+		"altTitles": [],
 		"artist": "ゆうゆ / 篠螺悠那",
 		"data": {
 			"genre": "東方Project"
@@ -2926,9 +2701,7 @@
 		"title": "ポケットからぬりつぶせ！"
 	},
 	{
-		"altTitles": [
-			"MINISKIRT"
-		],
+		"altTitles": [],
 		"artist": "はるなば",
 		"data": {
 			"genre": "オンゲキ"
@@ -2938,9 +2711,7 @@
 		"title": "Mini skirt"
 	},
 	{
-		"altTitles": [
-			"HONEYQ"
-		],
+		"altTitles": [],
 		"artist": "こふ",
 		"data": {
 			"genre": "オンゲキ"
@@ -2950,9 +2721,7 @@
 		"title": "HONEY-Q"
 	},
 	{
-		"altTitles": [
-			"SILENTBLUE"
-		],
+		"altTitles": [],
 		"artist": "かねこちはる",
 		"data": {
 			"genre": "チュウマイ"
@@ -2962,9 +2731,7 @@
 		"title": "SILENT BLUE"
 	},
 	{
-		"altTitles": [
-			"WORLDVANQUISHER"
-		],
+		"altTitles": [],
 		"artist": "void (Mournfinale)",
 		"data": {
 			"genre": "チュウマイ"
@@ -3034,9 +2801,7 @@
 		"title": "感情アクセラレイション"
 	},
 	{
-		"altTitles": [
-			"AMANINTHEMIRROR"
-		],
+		"altTitles": [],
 		"artist": "orangentle",
 		"data": {
 			"genre": "オンゲキ"
@@ -3046,9 +2811,7 @@
 		"title": "A Man In The Mirror"
 	},
 	{
-		"altTitles": [
-			"GIRLSTALK"
-		],
+		"altTitles": [],
 		"artist": "NI+CORA「Tokyo 7th シスターズ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -3094,9 +2857,7 @@
 		"title": "裏表ラバーズ"
 	},
 	{
-		"altTitles": [
-			"LEVEL5JUDGELIGHT"
-		],
+		"altTitles": [],
 		"artist": "fripSide「とある科学の超電磁砲」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -3142,9 +2903,7 @@
 		"title": "トーキョーゲットー"
 	},
 	{
-		"altTitles": [
-			"SNOWFAIRYSTORY"
-		],
+		"altTitles": [],
 		"artist": "40mP",
 		"data": {
 			"genre": "niconico"
@@ -3166,9 +2925,7 @@
 		"title": "白い雪のプリンセスは"
 	},
 	{
-		"altTitles": [
-			"LETSSTARRYPARTY"
-		],
+		"altTitles": [],
 		"artist": "曲：原田篤（Arte Refact）／歌：⊿TRiEDGE [高瀬 梨緒(CV：久保 ユリカ)、結城 莉玖(CV：朝日奈 丸佳)、藍原 椿(CV：橋本 ちなみ)]",
 		"data": {
 			"genre": "オンゲキ"
@@ -3190,9 +2947,7 @@
 		"title": "ジングルベル"
 	},
 	{
-		"altTitles": [
-			"CHANGEOURMIRAIOUR7LIGHTS"
-		],
+		"altTitles": [],
 		"artist": "イロドリミドリ",
 		"data": {
 			"genre": "チュウマイ"
@@ -3226,9 +2981,7 @@
 		"title": "猫祭り"
 	},
 	{
-		"altTitles": [
-			"HEARTCOOKINGRECIPE"
-		],
+		"altTitles": [],
 		"artist": "曲：睦月周平／歌：LEAFシューターズ",
 		"data": {
 			"genre": "オンゲキ"
@@ -3238,9 +2991,7 @@
 		"title": "Heart Cooking Recipe"
 	},
 	{
-		"altTitles": [
-			"HONEYBEAR"
-		],
+		"altTitles": [],
 		"artist": "Freezer",
 		"data": {
 			"genre": "オンゲキ"
@@ -3250,9 +3001,7 @@
 		"title": "Honey Bear"
 	},
 	{
-		"altTitles": [
-			"MYSOULYOURBEATS"
-		],
+		"altTitles": [],
 		"artist": "Lia「Angel Beats!」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -3286,9 +3035,7 @@
 		"title": "セツナトリップ"
 	},
 	{
-		"altTitles": [
-			"ECHO"
-		],
+		"altTitles": [],
 		"artist": "CIRCRUSH",
 		"data": {
 			"genre": "niconico"
@@ -3298,9 +3045,7 @@
 		"title": "ECHO"
 	},
 	{
-		"altTitles": [
-			"INSIDEIDENTITY"
-		],
+		"altTitles": [],
 		"artist": "Black Raison d'être",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -3322,9 +3067,7 @@
 		"title": "ヒトリボッチサテライト"
 	},
 	{
-		"altTitles": [
-			"GOODBYEMERRYGOROUND"
-		],
+		"altTitles": [],
 		"artist": "Yooh",
 		"data": {
 			"genre": "オンゲキ"
@@ -3334,9 +3077,7 @@
 		"title": "Good bye, Merry-Go-Round."
 	},
 	{
-		"altTitles": [
-			"BRAVESONG"
-		],
+		"altTitles": [],
 		"artist": "多田葵「Angel Beats!」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -3346,9 +3087,7 @@
 		"title": "Brave Song"
 	},
 	{
-		"altTitles": [
-			"CROWSONG"
-		],
+		"altTitles": [],
 		"artist": "Girls Dead Monster (marina)「Angel Beats!」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -3370,9 +3109,7 @@
 		"title": "地球最後の告白を"
 	},
 	{
-		"altTitles": [
-			"DOLLJUDGMENT"
-		],
+		"altTitles": [],
 		"artist": "ぬるはち",
 		"data": {
 			"genre": "東方Project"
@@ -3394,9 +3131,7 @@
 		"title": "しゅわスパ大作戦☆"
 	},
 	{
-		"altTitles": [
-			"DUELLO"
-		],
+		"altTitles": [],
 		"artist": "Cranky vs t+pazolite",
 		"data": {
 			"genre": "VARIETY"
@@ -3406,9 +3141,7 @@
 		"title": "Duello"
 	},
 	{
-		"altTitles": [
-			"FOLERN"
-		],
+		"altTitles": [],
 		"artist": "ぬゆり",
 		"data": {
 			"genre": "チュウマイ"
@@ -3418,9 +3151,7 @@
 		"title": "folern"
 	},
 	{
-		"altTitles": [
-			"RADIANCE"
-		],
+		"altTitles": [],
 		"artist": "Nhato",
 		"data": {
 			"genre": "オンゲキ"
@@ -3430,9 +3161,7 @@
 		"title": "Radiance"
 	},
 	{
-		"altTitles": [
-			"SHAKEIT"
-		],
+		"altTitles": [],
 		"artist": "向日葵",
 		"data": {
 			"genre": "niconico"
@@ -3454,9 +3183,7 @@
 		"title": "おねがいダーリン"
 	},
 	{
-		"altTitles": [
-			"BOKUTO"
-		],
+		"altTitles": [],
 		"artist": "じーざすP feat.kradness",
 		"data": {
 			"genre": "チュウマイ"
@@ -3502,9 +3229,7 @@
 		"title": "ピースサイン"
 	},
 	{
-		"altTitles": [
-			"CATCHTHEMOMENT"
-		],
+		"altTitles": [],
 		"artist": "LiSA",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -3586,9 +3311,7 @@
 		"title": "疾走あんさんぶる"
 	},
 	{
-		"altTitles": [
-			"SPLASHDANCE"
-		],
+		"altTitles": [],
 		"artist": "曲：Q-MHz／歌：オンゲキシューターズ",
 		"data": {
 			"genre": "オンゲキ"
@@ -3598,9 +3321,7 @@
 		"title": "Splash Dance!!"
 	},
 	{
-		"altTitles": [
-			"SPARKLE"
-		],
+		"altTitles": [],
 		"artist": "Maozon",
 		"data": {
 			"genre": "オンゲキ"
@@ -3610,9 +3331,7 @@
 		"title": "Sparkle"
 	},
 	{
-		"altTitles": [
-			"LASTKINGDOM"
-		],
+		"altTitles": [],
 		"artist": "USAO",
 		"data": {
 			"genre": "オンゲキ"
@@ -3622,9 +3341,7 @@
 		"title": "Last Kingdom"
 	},
 	{
-		"altTitles": [
-			"VIBES2K20"
-		],
+		"altTitles": [],
 		"artist": "Sound Artz",
 		"data": {
 			"genre": "オンゲキ"
@@ -3634,9 +3351,7 @@
 		"title": "Vibes 2k20"
 	},
 	{
-		"altTitles": [
-			"RNRMONSTA"
-		],
+		"altTitles": [],
 		"artist": "Lite Show Magic",
 		"data": {
 			"genre": "オンゲキ"
@@ -3658,9 +3373,7 @@
 		"title": "どどんぱち大音頭"
 	},
 	{
-		"altTitles": [
-			"SMILEAGAIN"
-		],
+		"altTitles": [],
 		"artist": "DOLLS「プロジェクト東京ドールズ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -3694,9 +3407,7 @@
 		"title": "エブリデイワールド"
 	},
 	{
-		"altTitles": [
-			"DREADNOUGHT"
-		],
+		"altTitles": [],
 		"artist": "Mastermind(xi+nora2r)",
 		"data": {
 			"genre": "VARIETY"
@@ -3718,9 +3429,7 @@
 		"title": "ホシノキズナ"
 	},
 	{
-		"altTitles": [
-			"INDETERMINATEUNIVERSE"
-		],
+		"altTitles": [],
 		"artist": "ゆうゆ feat. ケムリクサ",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -3766,9 +3475,7 @@
 		"title": "撩乱乙女†無双劇"
 	},
 	{
-		"altTitles": [
-			"AIDREW"
-		],
+		"altTitles": [],
 		"artist": "Feryquitous",
 		"data": {
 			"genre": "オンゲキ"
@@ -3778,9 +3485,7 @@
 		"title": "Ai Drew"
 	},
 	{
-		"altTitles": [
-			"DEEPCONNECT"
-		],
+		"altTitles": [],
 		"artist": "f*f（CV：本渡楓・下地紫野）「バトルガール ハイスクール」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -3814,9 +3519,7 @@
 		"title": "物凄い狂っとるフランちゃんが物凄いうた"
 	},
 	{
-		"altTitles": [
-			"OTORIIINNOVATEDI3"
-		],
+		"altTitles": [],
 		"artist": "NAOKI underground",
 		"data": {
 			"genre": "チュウマイ"
@@ -3838,9 +3541,7 @@
 		"title": "ぱくぱく☆がーる"
 	},
 	{
-		"altTitles": [
-			"DAWNBREAKER"
-		],
+		"altTitles": [],
 		"artist": "DJ Noriken",
 		"data": {
 			"genre": "オンゲキ"
@@ -3886,9 +3587,7 @@
 		"title": "進め！マイウェイ！"
 	},
 	{
-		"altTitles": [
-			"GALAXYBLASTER"
-		],
+		"altTitles": [],
 		"artist": "ああああ",
 		"data": {
 			"genre": "オンゲキ"
@@ -3898,9 +3597,7 @@
 		"title": "Galaxy Blaster"
 	},
 	{
-		"altTitles": [
-			"TRINITYDEPARTURE"
-		],
+		"altTitles": [],
 		"artist": "Soleily",
 		"data": {
 			"genre": "オンゲキ"
@@ -3922,9 +3619,7 @@
 		"title": "ハッピータイフーン"
 	},
 	{
-		"altTitles": [
-			"PURPLERAYS"
-		],
+		"altTitles": [],
 		"artist": "オルタンシア「Re:ステージ！プリズムステップ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -3934,9 +3629,7 @@
 		"title": "Purple Rays"
 	},
 	{
-		"altTitles": [
-			"STAGEOFSTAR"
-		],
+		"altTitles": [],
 		"artist": "ステラマリス「Re:ステージ！プリズムステップ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -3946,9 +3639,7 @@
 		"title": "Stage of Star"
 	},
 	{
-		"altTitles": [
-			"CATCHTHEWAVE"
-		],
+		"altTitles": [],
 		"artist": "livetune",
 		"data": {
 			"genre": "niconico"
@@ -3958,9 +3649,7 @@
 		"title": "Catch the Wave"
 	},
 	{
-		"altTitles": [
-			"BELIEVE"
-		],
+		"altTitles": [],
 		"artist": "星月みき(CV：洲崎綾)「バトルガール ハイスクール」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -3970,9 +3659,7 @@
 		"title": "Believe"
 	},
 	{
-		"altTitles": [
-			"NAMELESSSTORY"
-		],
+		"altTitles": [],
 		"artist": "寺島拓篤「転生したらスライムだった件」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -4006,9 +3693,7 @@
 		"title": "でらっくmaimai♪てんてこまい!"
 	},
 	{
-		"altTitles": [
-			"SUMMERISOVER"
-		],
+		"altTitles": [],
 		"artist": "TORIENA",
 		"data": {
 			"genre": "チュウマイ"
@@ -4030,9 +3715,7 @@
 		"title": "夏色花火"
 	},
 	{
-		"altTitles": [
-			"HANDINHAND"
-		],
+		"altTitles": [],
 		"artist": "livetune",
 		"data": {
 			"genre": "niconico"
@@ -4090,9 +3773,7 @@
 		"title": "絆はずっとGrowing Up!!!"
 	},
 	{
-		"altTitles": [
-			"ASTRONOTES"
-		],
+		"altTitles": [],
 		"artist": "MisoilePunch♪",
 		"data": {
 			"genre": "オンゲキ"
@@ -4114,9 +3795,7 @@
 		"title": "深海のリトルクライ feat. 土岐麻子"
 	},
 	{
-		"altTitles": [
-			"AIR"
-		],
+		"altTitles": [],
 		"artist": "SHIKI",
 		"data": {
 			"genre": "VARIETY"
@@ -4126,9 +3805,7 @@
 		"title": "Air"
 	},
 	{
-		"altTitles": [
-			"DESTR0YER"
-		],
+		"altTitles": [],
 		"artist": "削除 feat. Nikki Simmons",
 		"data": {
 			"genre": "VARIETY"
@@ -4150,9 +3827,7 @@
 		"title": "NATSUKAGE-夏陰-"
 	},
 	{
-		"altTitles": [
-			"SNOWINILOVEYOU"
-		],
+		"altTitles": [],
 		"artist": "777☆SISTERS「Tokyo 7th シスターズ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -4198,9 +3873,7 @@
 		"title": "ベースラインやってる？笑"
 	},
 	{
-		"altTitles": [
-			"ENDTIME"
-		],
+		"altTitles": [],
 		"artist": "Cres.",
 		"data": {
 			"genre": "VARIETY"
@@ -4210,9 +3883,7 @@
 		"title": "End Time"
 	},
 	{
-		"altTitles": [
-			"GENESIS"
-		],
+		"altTitles": [],
 		"artist": "Morrigan feat.Lily",
 		"data": {
 			"genre": "チュウマイ"
@@ -4222,9 +3893,7 @@
 		"title": "Genesis"
 	},
 	{
-		"altTitles": [
-			"GLORIOUSCROWNTPZOVEROVEROVERCUTEREMIX"
-		],
+		"altTitles": [],
 		"artist": "t+pazolite",
 		"data": {
 			"genre": "チュウマイ"
@@ -4234,9 +3903,7 @@
 		"title": "Glorious Crown (tpz over-Over-OVERCUTE REMIX)"
 	},
 	{
-		"altTitles": [
-			"IUDICIUMAPOCALYPSISMIX"
-		],
+		"altTitles": [],
 		"artist": "曲：Powerless／歌：柏木 咲姫(CV：石見 舞菜香)、柏木 美亜(CV：和氣 あず未)",
 		"data": {
 			"genre": "オンゲキ"
@@ -4246,9 +3913,7 @@
 		"title": "Iudicium “Apocalypsis Mix”"
 	},
 	{
-		"altTitles": [
-			"MYFIRSTPHONE"
-		],
+		"altTitles": [],
 		"artist": "cubesato",
 		"data": {
 			"genre": "LUNATIC"
@@ -4258,9 +3923,7 @@
 		"title": "My First Phone"
 	},
 	{
-		"altTitles": [
-			"LUNABLU"
-		],
+		"altTitles": [],
 		"artist": "WASi303",
 		"data": {
 			"genre": "LUNATIC"
@@ -4330,9 +3993,7 @@
 		"title": "ヒトガタ"
 	},
 	{
-		"altTitles": [
-			"SINGULARITY"
-		],
+		"altTitles": [],
 		"artist": "technoplanet",
 		"data": {
 			"genre": "オンゲキ"
@@ -4378,9 +4039,7 @@
 		"title": "スパッと！スパイ＆スパイス"
 	},
 	{
-		"altTitles": [
-			"FELYSFINALREMIX"
-		],
+		"altTitles": [],
 		"artist": "onoken",
 		"data": {
 			"genre": "VARIETY"
@@ -4390,9 +4049,7 @@
 		"title": "felys -final remix-"
 	},
 	{
-		"altTitles": [
-			"JORQER"
-		],
+		"altTitles": [],
 		"artist": "owl＊tree feat.yu＊tree",
 		"data": {
 			"genre": "オンゲキ"
@@ -4402,9 +4059,7 @@
 		"title": "Jörqer"
 	},
 	{
-		"altTitles": [
-			"PINQPIQXOVEXOXREMIX"
-		],
+		"altTitles": [],
 		"artist": "owl＊tree Remixed by sasakure.UK",
 		"data": {
 			"genre": "オンゲキ"
@@ -4426,9 +4081,7 @@
 		"title": "カラフル"
 	},
 	{
-		"altTitles": [
-			"FOREVERFRIENDS"
-		],
+		"altTitles": [],
 		"artist": "AiRBLUE「CUE!」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -4450,9 +4103,7 @@
 		"title": "紅蓮華"
 	},
 	{
-		"altTitles": [
-			"PHANTOMJOKE"
-		],
+		"altTitles": [],
 		"artist": "UNISON SQUARE GARDEN",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -4546,9 +4197,7 @@
 		"title": "ナイト・オブ・ナイツ (xi Remix)"
 	},
 	{
-		"altTitles": [
-			"SOUNDCHIMERA"
-		],
+		"altTitles": [],
 		"artist": "Laur",
 		"data": {
 			"genre": "VARIETY"
@@ -4570,9 +4219,7 @@
 		"title": "雷切-RAIKIRI-"
 	},
 	{
-		"altTitles": [
-			"NOLIMITREDFORCE"
-		],
+		"altTitles": [],
 		"artist": "曲：本多友紀（Arte Refact）／歌：オンゲキシューターズ",
 		"data": {
 			"genre": "オンゲキ"
@@ -4582,9 +4229,7 @@
 		"title": "No Limit RED Force"
 	},
 	{
-		"altTitles": [
-			"GLITTERGLITTER"
-		],
+		"altTitles": [],
 		"artist": "曲：睦月周平／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
 			"genre": "オンゲキ"
@@ -4606,9 +4251,7 @@
 		"title": "ウキウキ☆Candy!"
 	},
 	{
-		"altTitles": [
-			"ALLRIGHT"
-		],
+		"altTitles": [],
 		"artist": "曲：DJ Genki／歌：三角 葵(CV：春野 杏)",
 		"data": {
 			"genre": "オンゲキ"
@@ -4618,9 +4261,7 @@
 		"title": "All Right!"
 	},
 	{
-		"altTitles": [
-			"REDTORED"
-		],
+		"altTitles": [],
 		"artist": "REDALiCE",
 		"data": {
 			"genre": "オンゲキ"
@@ -4630,9 +4271,7 @@
 		"title": "RED to RED"
 	},
 	{
-		"altTitles": [
-			"DAYDREAMA"
-		],
+		"altTitles": [],
 		"artist": "HiTECH NINJA",
 		"data": {
 			"genre": "オンゲキ"
@@ -4642,9 +4281,7 @@
 		"title": "Daydreama"
 	},
 	{
-		"altTitles": [
-			"LOSTWIZZ"
-		],
+		"altTitles": [],
 		"artist": "s-don",
 		"data": {
 			"genre": "オンゲキ"
@@ -4654,9 +4291,7 @@
 		"title": "Lostwizz"
 	},
 	{
-		"altTitles": [
-			"STARGAZINGDREAMER"
-		],
+		"altTitles": [],
 		"artist": "xi",
 		"data": {
 			"genre": "オンゲキ"
@@ -4667,7 +4302,7 @@
 	},
 	{
 		"altTitles": [
-			"STARTLINERHOSHISAKIAKARISOROVER"
+			"STARTLINERHOSHIZAKIAKARI"
 		],
 		"artist": "曲：kz(livetune)／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
@@ -4679,7 +4314,7 @@
 	},
 	{
 		"altTitles": [
-			"STARTLINERFUSHISAWAYUSUSOROVER"
+			"STARTLINERFUJISAWAYUZU"
 		],
 		"artist": "曲：kz(livetune)／歌：藤沢 柚子(CV：久保田 梨沙)",
 		"data": {
@@ -4691,7 +4326,7 @@
 	},
 	{
 		"altTitles": [
-			"STARTLINERMISUMIAOISOROVER"
+			"STARTLINERMISUMIAOI"
 		],
 		"artist": "曲：kz(livetune)／歌：三角 葵(CV：春野 杏)",
 		"data": {
@@ -4714,9 +4349,7 @@
 		"title": "東亞 -O.N.G.E.K.I. MIX-"
 	},
 	{
-		"altTitles": [
-			"OSHAMASCRAMBLECRANKYREMIX"
-		],
+		"altTitles": [],
 		"artist": "Cranky",
 		"data": {
 			"genre": "チュウマイ"
@@ -4738,9 +4371,7 @@
 		"title": "コネクト"
 	},
 	{
-		"altTitles": [
-			"BEAUTIFULTOMORROW"
-		],
+		"altTitles": [],
 		"artist": "AiRBLUE「CUE!」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -4750,9 +4381,7 @@
 		"title": "beautiful tomorrow"
 	},
 	{
-		"altTitles": [
-			"SHINYSMILYSTORY"
-		],
+		"altTitles": [],
 		"artist": "hololive IDOL PROJECT",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -4786,9 +4415,7 @@
 		"title": "ガヴリールドロップキック"
 	},
 	{
-		"altTitles": [
-			"JACKTHERIPPER"
-		],
+		"altTitles": [],
 		"artist": "有形ランペイジ",
 		"data": {
 			"genre": "VARIETY"
@@ -4906,9 +4533,7 @@
 		"title": "キミは“見ていたね”？"
 	},
 	{
-		"altTitles": [
-			"LIFTOFF"
-		],
+		"altTitles": [],
 		"artist": "MAYA AKAI",
 		"data": {
 			"genre": "オンゲキ"
@@ -4930,9 +4555,7 @@
 		"title": "ナイト・オブ・ナイツ (かめりあ’s“ワンス・アポン・ア・ナイト”Remix)"
 	},
 	{
-		"altTitles": [
-			"REACHFORTHESTARS"
-		],
+		"altTitles": [],
 		"artist": "ソニック カラーズ",
 		"data": {
 			"genre": "VARIETY"
@@ -4954,9 +4577,7 @@
 		"title": "ヤミツキ"
 	},
 	{
-		"altTitles": [
-			"SIGN"
-		],
+		"altTitles": [],
 		"artist": "内田彩「五等分の花嫁」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -4966,9 +4587,7 @@
 		"title": "Sign"
 	},
 	{
-		"altTitles": [
-			"OVERVOLTAGE"
-		],
+		"altTitles": [],
 		"artist": "曲：R・O・N／歌：高瀬 梨緒(CV：久保 ユリカ)",
 		"data": {
 			"genre": "オンゲキ"
@@ -4978,9 +4597,7 @@
 		"title": "Over Voltage"
 	},
 	{
-		"altTitles": [
-			"FLUFFYFLASH"
-		],
+		"altTitles": [],
 		"artist": "Kobaryo",
 		"data": {
 			"genre": "オンゲキ"
@@ -4991,7 +4608,7 @@
 	},
 	{
 		"altTitles": [
-			"LETSSTARRYPARTYTAKASERIOSOROVER"
+			"LETSSTARRYPARTYTAKASERIO"
 		],
 		"artist": "曲：原田篤（Arte Refact）／歌：高瀬 梨緒(CV：久保 ユリカ)",
 		"data": {
@@ -5003,7 +4620,7 @@
 	},
 	{
 		"altTitles": [
-			"LETSSTARRYPARTYYUUKIRIKUSOROVER"
+			"LETSSTARRYPARTYYUUKIRIKU"
 		],
 		"artist": "曲：原田篤（Arte Refact）／歌：結城 莉玖(CV：朝日奈 丸佳)",
 		"data": {
@@ -5015,7 +4632,7 @@
 	},
 	{
 		"altTitles": [
-			"LETSSTARRYPARTYAIHARATSUHAKISOROVER"
+			"LETSSTARRYPARTYAIHARATSUBAKI"
 		],
 		"artist": "曲：原田篤（Arte Refact）／歌：藍原 椿(CV：橋本 ちなみ)",
 		"data": {
@@ -5038,9 +4655,7 @@
 		"title": "聖少女サクリファイス"
 	},
 	{
-		"altTitles": [
-			"LOVERS"
-		],
+		"altTitles": [],
 		"artist": "暁Records",
 		"data": {
 			"genre": "東方Project"
@@ -5050,9 +4665,7 @@
 		"title": "LOVERS"
 	},
 	{
-		"altTitles": [
-			"SATORI3RDEYES2020RECALL"
-		],
+		"altTitles": [],
 		"artist": "くっちー (DARKSIDE APPROACH)",
 		"data": {
 			"genre": "東方Project"
@@ -5062,9 +4675,7 @@
 		"title": "Satori ～3rd EyEs (2020 Recall)"
 	},
 	{
-		"altTitles": [
-			"PARANOIA"
-		],
+		"altTitles": [],
 		"artist": "DiGiTAL WiNG feat. 花たん",
 		"data": {
 			"genre": "東方Project"
@@ -5086,9 +4697,7 @@
 		"title": "愛されなくても君がいる"
 	},
 	{
-		"altTitles": [
-			"SINGULARITY"
-		],
+		"altTitles": [],
 		"artist": "ETIA.「Arcaea」",
 		"data": {
 			"genre": "VARIETY"
@@ -5098,9 +4707,7 @@
 		"title": "Singularity"
 	},
 	{
-		"altTitles": [
-			"GRIEVOUSLADY"
-		],
+		"altTitles": [],
 		"artist": "Team Grimoire vs Laur「Arcaea」",
 		"data": {
 			"genre": "VARIETY"
@@ -5122,9 +4729,7 @@
 		"title": "迷える音色は恋の唄"
 	},
 	{
-		"altTitles": [
-			"BURNINGSTEELINFERNO"
-		],
+		"altTitles": [],
 		"artist": "水野健治 VS Kai「Wonderland Wars」",
 		"data": {
 			"genre": "VARIETY"
@@ -5134,9 +4739,7 @@
 		"title": "Burning Steel Inferno"
 	},
 	{
-		"altTitles": [
-			"REDANDBLUEANDGREEN"
-		],
+		"altTitles": [],
 		"artist": "fn(ArcaeaSoundTeam)「Arcaea」",
 		"data": {
 			"genre": "LUNATIC"
@@ -5182,9 +4785,7 @@
 		"title": "YAMINABE☆PANIC ～ご馳走詰め込みフルコース～"
 	},
 	{
-		"altTitles": [
-			"FALSUMATLANTIS"
-		],
+		"altTitles": [],
 		"artist": "kanone",
 		"data": {
 			"genre": "オンゲキ"
@@ -5194,9 +4795,7 @@
 		"title": "Falsum Atlantis."
 	},
 	{
-		"altTitles": [
-			"DONTFIGHTTHEMUSIC"
-		],
+		"altTitles": [],
 		"artist": "黒魔",
 		"data": {
 			"genre": "オンゲキ"
@@ -5230,9 +4829,7 @@
 		"title": "ツギハギスタッカート"
 	},
 	{
-		"altTitles": [
-			"CLIMAX"
-		],
+		"altTitles": [],
 		"artist": "USAO",
 		"data": {
 			"genre": "チュウマイ"
@@ -5242,9 +4839,7 @@
 		"title": "Climax"
 	},
 	{
-		"altTitles": [
-			"STORIA"
-		],
+		"altTitles": [],
 		"artist": "トロワアンジュ「Re:ステージ！プリズムステップ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -5302,9 +4897,7 @@
 		"title": "明星ロケット"
 	},
 	{
-		"altTitles": [
-			"FULGENTEFLIPSIDECOLORMIX"
-		],
+		"altTitles": [],
 		"artist": "穴山大輔",
 		"data": {
 			"genre": "オンゲキ"
@@ -5327,7 +4920,7 @@
 	},
 	{
 		"altTitles": [
-			"KISSMEKISSSAOTOMEAYAKASOROVER"
+			"KISSMEKISSSAOTOMEAYAKA"
 		],
 		"artist": "曲：大畑拓也／歌：早乙女 彩華(CV：中島 唯)",
 		"data": {
@@ -5374,9 +4967,7 @@
 		"title": "スクランブル交際"
 	},
 	{
-		"altTitles": [
-			"RULERCOUNTZERO"
-		],
+		"altTitles": [],
 		"artist": "曲：本多友紀（Arte Refact）／歌：R.B.P. [九條 楓(CV：佳村 はるか)、逢坂 茜(CV：大空 直美)、珠洲島 有栖(CV：長縄 まりあ)]",
 		"data": {
 			"genre": "オンゲキ"
@@ -5386,9 +4977,7 @@
 		"title": "Ruler Count, Zero"
 	},
 	{
-		"altTitles": [
-			"SAYGOODBYE"
-		],
+		"altTitles": [],
 		"artist": "yaseta",
 		"data": {
 			"genre": "オンゲキ"
@@ -5434,9 +5023,7 @@
 		"title": "SAKURAスキップ"
 	},
 	{
-		"altTitles": [
-			"JUMPINJUMPUP"
-		],
+		"altTitles": [],
 		"artist": "fourfolium［涼風青葉（CV：高田憂希）／滝本ひふみ（CV：山口 愛）／篠田はじめ（CV：戸田めぐみ）／飯島ゆん（CV：竹尾歩美）］「NEW GAME!!」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -5470,9 +5057,7 @@
 		"title": "Bad Apple!! feat.nomico (豚乙女 Ver.)"
 	},
 	{
-		"altTitles": [
-			"SEETHELIGHT"
-		],
+		"altTitles": [],
 		"artist": "anubasu-anubasu",
 		"data": {
 			"genre": "オンゲキ"
@@ -5518,9 +5103,7 @@
 		"title": "サクライロフワリ"
 	},
 	{
-		"altTitles": [
-			"LARVA"
-		],
+		"altTitles": [],
 		"artist": "ガリガリさむし",
 		"data": {
 			"genre": "チュウマイ"
@@ -5530,9 +5113,7 @@
 		"title": "larva"
 	},
 	{
-		"altTitles": [
-			"VIYELLASSCREAM"
-		],
+		"altTitles": [],
 		"artist": "Laur",
 		"data": {
 			"genre": "オンゲキ"
@@ -5554,9 +5135,7 @@
 		"title": "天空カフェテリア"
 	},
 	{
-		"altTitles": [
-			"LINK"
-		],
+		"altTitles": [],
 		"artist": "Two for all「モンソニ！」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -5578,9 +5157,7 @@
 		"title": "初恋は君色メモリー"
 	},
 	{
-		"altTitles": [
-			"REALIZE"
-		],
+		"altTitles": [],
 		"artist": "鈴木このみ",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -5590,9 +5167,7 @@
 		"title": "Realize"
 	},
 	{
-		"altTitles": [
-			"JOINT"
-		],
+		"altTitles": [],
 		"artist": "川田まみ",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -5638,9 +5213,7 @@
 		"title": "心予報"
 	},
 	{
-		"altTitles": [
-			"HENCEFORTH"
-		],
+		"altTitles": [],
 		"artist": "Orangestar",
 		"data": {
 			"genre": "niconico"
@@ -5662,9 +5235,7 @@
 		"title": "ロストワードクロニカル"
 	},
 	{
-		"altTitles": [
-			"ALTALE"
-		],
+		"altTitles": [],
 		"artist": "削除",
 		"data": {
 			"genre": "VARIETY"
@@ -5674,9 +5245,7 @@
 		"title": "Altale"
 	},
 	{
-		"altTitles": [
-			"BBBLOWREBUILD"
-		],
+		"altTitles": [],
 		"artist": "onoken feat. 佐々木正明",
 		"data": {
 			"genre": "VARIETY"
@@ -5686,9 +5255,7 @@
 		"title": "BBBLOW -rebuild-"
 	},
 	{
-		"altTitles": [
-			"QZKAGOREQUIEM"
-		],
+		"altTitles": [],
 		"artist": "t+pazolite",
 		"data": {
 			"genre": "チュウマイ"
@@ -5698,9 +5265,7 @@
 		"title": "QZKago Requiem"
 	},
 	{
-		"altTitles": [
-			"STARREDHEART"
-		],
+		"altTitles": [],
 		"artist": "曲：広川恵一 (MONACA)／歌：オンゲキシューターズ",
 		"data": {
 			"genre": "オンゲキ"
@@ -5722,9 +5287,7 @@
 		"title": "最っ高のエンタメだ!!"
 	},
 	{
-		"altTitles": [
-			"RANDOMACCESSEMOTIONS"
-		],
+		"altTitles": [],
 		"artist": "aran",
 		"data": {
 			"genre": "オンゲキ"
@@ -5734,9 +5297,7 @@
 		"title": "Random Access Emotions"
 	},
 	{
-		"altTitles": [
-			"ADAYINTHEPATISSERIE"
-		],
+		"altTitles": [],
 		"artist": "kamome sano",
 		"data": {
 			"genre": "オンゲキ"
@@ -5746,9 +5307,7 @@
 		"title": "A Day in the Patisserie"
 	},
 	{
-		"altTitles": [
-			"DAREDAVILGLAIVE"
-		],
+		"altTitles": [],
 		"artist": "Artifact",
 		"data": {
 			"genre": "オンゲキ"
@@ -5758,9 +5317,7 @@
 		"title": "Daredevil Glaive"
 	},
 	{
-		"altTitles": [
-			"ADVERSEGAFF"
-		],
+		"altTitles": [],
 		"artist": "siromaru",
 		"data": {
 			"genre": "オンゲキ"
@@ -5771,7 +5328,7 @@
 	},
 	{
 		"altTitles": [
-			"HOKETSUTOKARANURITSUFUSEHINATACHINATSUSOROVER"
+			"HOKETSUTOKARANURITSUFUSEHINATACHINATSU"
 		],
 		"artist": "曲：中山真斗／歌：日向 千夏(CV：岡咲 美保)",
 		"data": {
@@ -5783,7 +5340,7 @@
 	},
 	{
 		"altTitles": [
-			"HOKETSUTOKARANURITSUFUSEKASHIWAKIMIASOROVER"
+			"HOKETSUTOKARANURITSUFUSEKASHIWAGIMIA"
 		],
 		"artist": "曲：中山真斗／歌：柏木 美亜(CV：和氣 あず未)",
 		"data": {
@@ -5795,7 +5352,7 @@
 	},
 	{
 		"altTitles": [
-			"HOKETSUTOKARANURITSUFUSESHINONOMETSUMUKISOROVER"
+			"HOKETSUTOKARANURITSUFUSESHINONOMETSUMUGI"
 		],
 		"artist": "曲：中山真斗／歌：東雲 つむぎ(CV：和泉 風花)",
 		"data": {
@@ -5806,9 +5363,7 @@
 		"title": "ポケットからぬりつぶせ！ -東雲 つむぎソロver.-"
 	},
 	{
-		"altTitles": [
-			"FLYTOTHELEADENSKYONGEKIMIX"
-		],
+		"altTitles": [],
 		"artist": "原曲：並木 学「バトルガレッガ(AC)」",
 		"data": {
 			"genre": "LUNATIC"
@@ -5818,9 +5373,7 @@
 		"title": "Fly to the Leaden Sky -O.N.G.E.K.I. MIX-"
 	},
 	{
-		"altTitles": [
-			"SINGULARITY"
-		],
+		"altTitles": [],
 		"artist": "SEGA SOUND STAFF「セガNET麻雀 MJ」",
 		"data": {
 			"genre": "VARIETY"
@@ -5842,9 +5395,7 @@
 		"title": "セガNET麻雀MJ -O.N.G.E.K.I. MIX-"
 	},
 	{
-		"altTitles": [
-			"BATTLENO1"
-		],
+		"altTitles": [],
 		"artist": "TANO*C Sound Team",
 		"data": {
 			"genre": "VARIETY"
@@ -5854,9 +5405,7 @@
 		"title": "BATTLE NO.1"
 	},
 	{
-		"altTitles": [
-			"DAYDREAMCAFE"
-		],
+		"altTitles": [],
 		"artist": "Petit Rabbit's「ご注文はうさぎですか？」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -5866,9 +5415,7 @@
 		"title": "Daydream café"
 	},
 	{
-		"altTitles": [
-			"VIRTUALTOLIVE"
-		],
+		"altTitles": [],
 		"artist": "にじさんじ",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -5962,9 +5509,7 @@
 		"title": "無敵のフロンティア三銃士"
 	},
 	{
-		"altTitles": [
-			"COLORFULTRANPARENCY"
-		],
+		"altTitles": [],
 		"artist": "zts",
 		"data": {
 			"genre": "オンゲキ"
@@ -5986,9 +5531,7 @@
 		"title": "Ahoy!! 我ら宝鐘海賊団☆"
 	},
 	{
-		"altTitles": [
-			"EZDODANCE"
-		],
+		"altTitles": [],
 		"artist": "Prizmmy☆",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -6011,7 +5554,7 @@
 	},
 	{
 		"altTitles": [
-			"MENTOIYATSUHOITOMOTACHIINOHARAKOHOSHISOROVER"
+			"MENTOIYATSUHOITOMOTACHIINOHARAKOBOSHI"
 		],
 		"artist": "曲：前山田健一／歌：井之原 小星(CV：ももの はるな)",
 		"data": {
@@ -6023,7 +5566,7 @@
 	},
 	{
 		"altTitles": [
-			"MENTOIYATSUHOITOMOTACHIKASHIWAKISAKISOROVER"
+			"MENTOIYATSUHOITOMOTACHIKASHIWAGISAKI"
 		],
 		"artist": "曲：前山田健一／歌：柏木 咲姫(CV：石見 舞菜香)",
 		"data": {
@@ -6034,9 +5577,7 @@
 		"title": "めんどーい！やっほーい！ともだち！  -柏木 咲姫ソロver.-"
 	},
 	{
-		"altTitles": [
-			"CHECKMYSOUL"
-		],
+		"altTitles": [],
 		"artist": "azusa",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -6070,9 +5611,7 @@
 		"title": "ラストリゾート"
 	},
 	{
-		"altTitles": [
-			"REALIZE"
-		],
+		"altTitles": [],
 		"artist": "i☆Ris",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -6082,9 +5621,7 @@
 		"title": "Realize!"
 	},
 	{
-		"altTitles": [
-			"CSQN"
-		],
+		"altTitles": [],
 		"artist": "Aoi",
 		"data": {
 			"genre": "VARIETY"
@@ -6094,9 +5631,7 @@
 		"title": "c.s.q.n."
 	},
 	{
-		"altTitles": [
-			"AMPHISBAENA"
-		],
+		"altTitles": [],
 		"artist": "光吉猛修の兄",
 		"data": {
 			"genre": "VARIETY"
@@ -6106,9 +5641,7 @@
 		"title": "Amphisbaena"
 	},
 	{
-		"altTitles": [
-			"GIVEITUPTOYOU"
-		],
+		"altTitles": [],
 		"artist": "曲：中土智博／歌：bitter flavor [桜井 春菜(CV：近藤 玲奈)、早乙女 彩華(CV：中島 唯)]",
 		"data": {
 			"genre": "オンゲキ"
@@ -6118,9 +5651,7 @@
 		"title": "give it up to you"
 	},
 	{
-		"altTitles": [
-			"PASTELSPRINKLES"
-		],
+		"altTitles": [],
 		"artist": "pan",
 		"data": {
 			"genre": "オンゲキ"
@@ -6130,9 +5661,7 @@
 		"title": "Pastel Sprinkles"
 	},
 	{
-		"altTitles": [
-			"CULTFUTURE"
-		],
+		"altTitles": [],
 		"artist": "LV.4",
 		"data": {
 			"genre": "オンゲキ"
@@ -6166,9 +5695,7 @@
 		"title": "雨とペトラ"
 	},
 	{
-		"altTitles": [
-			"SECRETSLEUTH"
-		],
+		"altTitles": [],
 		"artist": "島爺×蜂屋ななし",
 		"data": {
 			"genre": "チュウマイ"
@@ -6226,9 +5753,7 @@
 		"title": "撥条少女時計"
 	},
 	{
-		"altTitles": [
-			"ONCEINMYLIFE"
-		],
+		"altTitles": [],
 		"artist": "Junk feat.nananao",
 		"data": {
 			"genre": "VARIETY"
@@ -6310,9 +5835,7 @@
 		"title": "とても素敵な六月でした"
 	},
 	{
-		"altTitles": [
-			"LOVEJUSTICE"
-		],
+		"altTitles": [],
 		"artist": "BACO",
 		"data": {
 			"genre": "VARIETY"
@@ -6322,9 +5845,7 @@
 		"title": "Love & Justice"
 	},
 	{
-		"altTitles": [
-			"MEGATONBLASTTPZOVERCUTEREMIX"
-		],
+		"altTitles": [],
 		"artist": "t+pazolite",
 		"data": {
 			"genre": "オンゲキ"
@@ -6335,7 +5856,7 @@
 	},
 	{
 		"altTitles": [
-			"RULERCOUNTZEROOUSAKAAKANESOROVER"
+			"RULERCOUNTZEROOUSAKAAKANE"
 		],
 		"artist": "曲：本多友紀（Arte Refact）／歌：逢坂 茜(CV：大空 直美)",
 		"data": {
@@ -6347,7 +5868,7 @@
 	},
 	{
 		"altTitles": [
-			"RULERCOUNTZEROKUSHIYOUKAETESOROVER"
+			"RULERCOUNTZEROKUJOKAEDE"
 		],
 		"artist": "曲：本多友紀（Arte Refact）／歌：九條 楓(CV：佳村 はるか)",
 		"data": {
@@ -6359,7 +5880,7 @@
 	},
 	{
 		"altTitles": [
-			"RULERCOUNTZEROSUSUSHIMAARISUSOROVER"
+			"RULERCOUNTZEROSUZUSHIMAARISU"
 		],
 		"artist": "曲：本多友紀（Arte Refact）／歌：珠洲島 有栖(CV：長縄 まりあ)",
 		"data": {
@@ -6406,9 +5927,7 @@
 		"title": "幾望の月"
 	},
 	{
-		"altTitles": [
-			"BADAPPLEFEATNOMICOCAMELLIASBADPSYREMIX"
-		],
+		"altTitles": [],
 		"artist": "かめりあ",
 		"data": {
 			"genre": "東方Project"
@@ -6418,9 +5937,7 @@
 		"title": "Bad Apple!! feat.nomico (Camellia’s “Bad Psy” Remix)"
 	},
 	{
-		"altTitles": [
-			"DRAGONLADY"
-		],
+		"altTitles": [],
 		"artist": "Nankumo",
 		"data": {
 			"genre": "VARIETY"
@@ -6430,9 +5947,7 @@
 		"title": "DRAGONLADY"
 	},
 	{
-		"altTitles": [
-			"STAR"
-		],
+		"altTitles": [],
 		"artist": "SEXY-SYNTHESIZER",
 		"data": {
 			"genre": "チュウマイ"
@@ -6442,9 +5957,7 @@
 		"title": "STAR"
 	},
 	{
-		"altTitles": [
-			"RENDEZVOUS"
-		],
+		"altTitles": [],
 		"artist": "Crusher-P",
 		"data": {
 			"genre": "チュウマイ"
@@ -6454,9 +5967,7 @@
 		"title": "Rendezvous"
 	},
 	{
-		"altTitles": [
-			"XEVEL"
-		],
+		"altTitles": [],
 		"artist": "Tatsh",
 		"data": {
 			"genre": "チュウマイ"
@@ -6466,9 +5977,7 @@
 		"title": "Xevel"
 	},
 	{
-		"altTitles": [
-			"SUPERSONICGENERATION"
-		],
+		"altTitles": [],
 		"artist": "Massive New Krew",
 		"data": {
 			"genre": "チュウマイ"
@@ -6490,9 +5999,7 @@
 		"title": "レーイレーイ ～超絶最強アメちゃん Mix～"
 	},
 	{
-		"altTitles": [
-			"MACROCOSMOS"
-		],
+		"altTitles": [],
 		"artist": "LeaF",
 		"data": {
 			"genre": "LUNATIC"
@@ -6502,9 +6009,7 @@
 		"title": "macrocosmos"
 	},
 	{
-		"altTitles": [
-			"UARE"
-		],
+		"altTitles": [],
 		"artist": "MK&Kanae Asaba",
 		"data": {
 			"genre": "チュウマイ"
@@ -6526,9 +6031,7 @@
 		"title": "おやすみのうた"
 	},
 	{
-		"altTitles": [
-			"MAGNETARGIRL"
-		],
+		"altTitles": [],
 		"artist": "Yu-dachi",
 		"data": {
 			"genre": "オンゲキ"
@@ -6539,7 +6042,7 @@
 	},
 	{
 		"altTitles": [
-			"SPLASHDANCEHOSHISAKIAKARISOROVER"
+			"SPLASHDANCEHOSHIZAKIAKARI"
 		],
 		"artist": "曲：Q-MHz／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
@@ -6551,7 +6054,7 @@
 	},
 	{
 		"altTitles": [
-			"SPLASHDANCETAKASERIOSOROVER"
+			"SPLASHDANCETAKASERIO"
 		],
 		"artist": "曲：Q-MHz／歌：高瀬 梨緒(CV：久保 ユリカ)",
 		"data": {
@@ -6563,7 +6066,7 @@
 	},
 	{
 		"altTitles": [
-			"SPLASHDANCESAKURAIHARUNASOROVER"
+			"SPLASHDANCESAKURAIHARUNA"
 		],
 		"artist": "曲：Q-MHz／歌：桜井 春菜(CV：近藤 玲奈)",
 		"data": {
@@ -6575,7 +6078,7 @@
 	},
 	{
 		"altTitles": [
-			"SPLASHDANCEINOHARAKOHOSHISOROVER"
+			"SPLASHDANCEINOHARAKOBOSHI"
 		],
 		"artist": "曲：Q-MHz／歌：井之原 小星(CV：ももの はるな)",
 		"data": {
@@ -6587,7 +6090,7 @@
 	},
 	{
 		"altTitles": [
-			"SPLASHDANCEHINATACHINATSUSOROVER"
+			"SPLASHDANCEHINATACHINATSU"
 		],
 		"artist": "曲：Q-MHz／歌：日向 千夏(CV：岡咲 美保)",
 		"data": {
@@ -6610,9 +6113,7 @@
 		"title": "ネクストネスト"
 	},
 	{
-		"altTitles": [
-			"SNOWSONGSHOW"
-		],
+		"altTitles": [],
 		"artist": "sasakure.UK x DECO*27",
 		"data": {
 			"genre": "niconico"
@@ -6622,9 +6123,7 @@
 		"title": "Snow Song Show"
 	},
 	{
-		"altTitles": [
-			"TIAMATFMINOR"
-		],
+		"altTitles": [],
 		"artist": "Team Grimoire",
 		"data": {
 			"genre": "チュウマイ"
@@ -6634,9 +6133,7 @@
 		"title": "TiamaT：F minor"
 	},
 	{
-		"altTitles": [
-			"LUNADIALVERSIONXSAKUYA"
-		],
+		"altTitles": [],
 		"artist": "激戦の人",
 		"data": {
 			"genre": "東方Project"
@@ -6646,9 +6143,7 @@
 		"title": "LUNA DIAL -Version X-SAKUYA-"
 	},
 	{
-		"altTitles": [
-			"NOWHEREGIRL"
-		],
+		"altTitles": [],
 		"artist": "あ～るの～と（いえろ～ぜぶら）",
 		"data": {
 			"genre": "東方Project"
@@ -6658,9 +6153,7 @@
 		"title": "Nowhere Girl"
 	},
 	{
-		"altTitles": [
-			"WEEKENDCLOCK"
-		],
+		"altTitles": [],
 		"artist": "XL Project",
 		"data": {
 			"genre": "東方Project"
@@ -6682,9 +6175,7 @@
 		"title": "悪戯センセーション"
 	},
 	{
-		"altTitles": [
-			"PARADISUSPARADOXUM"
-		],
+		"altTitles": [],
 		"artist": "MYTH & ROID「Re:ゼロから始める異世界生活」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -6706,9 +6197,7 @@
 		"title": "エータ・ベータ・イータ"
 	},
 	{
-		"altTitles": [
-			"MYPRECIOUSHOLIDAY"
-		],
+		"altTitles": [],
 		"artist": "曲：篠崎あやと、橘亮祐／歌：桜井 春菜(CV：近藤 玲奈)",
 		"data": {
 			"genre": "オンゲキ"
@@ -6742,9 +6231,7 @@
 		"title": "その群青が愛しかったようだった"
 	},
 	{
-		"altTitles": [
-			"STYXHELIX"
-		],
+		"altTitles": [],
 		"artist": "MYTH & ROID「Re:ゼロから始める異世界生活」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -6754,9 +6241,7 @@
 		"title": "STYX HELIX"
 	},
 	{
-		"altTitles": [
-			"REENDOFADREAM"
-		],
+		"altTitles": [],
 		"artist": "uma vs. モリモリあつし",
 		"data": {
 			"genre": "VARIETY"
@@ -6767,7 +6252,7 @@
 	},
 	{
 		"altTitles": [
-			"STARRINGSTARSHOSHISAKIAKARISOROVER"
+			"STARRINGSTARSHOSHIZAKIAKARI"
 		],
 		"artist": "曲：馬渕直純／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
@@ -6779,7 +6264,7 @@
 	},
 	{
 		"altTitles": [
-			"STARRINGSTARSFUSHISAWAYUSUSOROVER"
+			"STARRINGSTARSFUJISAWAYUZU"
 		],
 		"artist": "曲：馬渕直純／歌：藤沢 柚子(CV：久保田 梨沙)",
 		"data": {
@@ -6791,7 +6276,7 @@
 	},
 	{
 		"altTitles": [
-			"STARRINGSTARSMISUMIAOISOROVER"
+			"STARRINGSTARSMISUMIAOI"
 		],
 		"artist": "曲：馬渕直純／歌：三角 葵(CV：春野 杏)",
 		"data": {
@@ -6826,9 +6311,7 @@
 		"title": "空奏列車"
 	},
 	{
-		"altTitles": [
-			"CO5MICR4ILR0AD"
-		],
+		"altTitles": [],
 		"artist": "kanone",
 		"data": {
 			"genre": "VARIETY"
@@ -6838,9 +6321,7 @@
 		"title": "CO5M1C R4ILR0AD"
 	},
 	{
-		"altTitles": [
-			"GODLINESS"
-		],
+		"altTitles": [],
 		"artist": "曲：椿山日南子／歌：皇城 セツナ(CV：八巻 アンナ)",
 		"data": {
 			"genre": "オンゲキ"
@@ -6850,9 +6331,7 @@
 		"title": "GODLINESS"
 	},
 	{
-		"altTitles": [
-			"LAMIA"
-		],
+		"altTitles": [],
 		"artist": "BlackY",
 		"data": {
 			"genre": "オンゲキ"
@@ -6862,9 +6341,7 @@
 		"title": "LAMIA"
 	},
 	{
-		"altTitles": [
-			"APOLLO"
-		],
+		"altTitles": [],
 		"artist": "TJ.hangneil",
 		"data": {
 			"genre": "オンゲキ"
@@ -6958,9 +6435,7 @@
 		"title": "蛙石"
 	},
 	{
-		"altTitles": [
-			"ENERGYSYNERGYMATRIX"
-		],
+		"altTitles": [],
 		"artist": "Tanchiky",
 		"data": {
 			"genre": "VARIETY"
@@ -7006,9 +6481,7 @@
 		"title": "なんどでも笑おう"
 	},
 	{
-		"altTitles": [
-			"HIDEATTACK"
-		],
+		"altTitles": [],
 		"artist": "ストレイライト「アイドルマスター シャイニーカラーズ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -7030,9 +6503,7 @@
 		"title": "よんでミラクるん!"
 	},
 	{
-		"altTitles": [
-			"NEXTCOLORPLANET"
-		],
+		"altTitles": [],
 		"artist": "星街すいせい(ホロライブ)",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -7078,9 +6549,7 @@
 		"title": "春を告げる"
 	},
 	{
-		"altTitles": [
-			"KING"
-		],
+		"altTitles": [],
 		"artist": "Kanaria",
 		"data": {
 			"genre": "niconico"
@@ -7138,9 +6607,7 @@
 		"title": "色は匂へど散りぬるを"
 	},
 	{
-		"altTitles": [
-			"DEMENTAFTERLEGEND"
-		],
+		"altTitles": [],
 		"artist": "Cosmograph",
 		"data": {
 			"genre": "VARIETY"
@@ -7150,9 +6617,7 @@
 		"title": "Dement ～after legend～"
 	},
 	{
-		"altTitles": [
-			"LASTCELEBRATION"
-		],
+		"altTitles": [],
 		"artist": "Laur vs CK",
 		"data": {
 			"genre": "チュウマイ"
@@ -7162,9 +6627,7 @@
 		"title": "Last Celebration"
 	},
 	{
-		"altTitles": [
-			"TEMPTATION"
-		],
+		"altTitles": [],
 		"artist": "かねこちはる",
 		"data": {
 			"genre": "チュウマイ"
@@ -7174,9 +6637,7 @@
 		"title": "TEmPTaTiON"
 	},
 	{
-		"altTitles": [
-			"TRANSCENDLIGHTS"
-		],
+		"altTitles": [],
 		"artist": "曲：小高光太郎／歌：オンゲキシューターズ",
 		"data": {
 			"genre": "オンゲキ"
@@ -7186,9 +6647,7 @@
 		"title": "Transcend Lights"
 	},
 	{
-		"altTitles": [
-			"HAPPINESSONTHETABLE"
-		],
+		"altTitles": [],
 		"artist": "曲：原田篤（Arte Refact）／歌：柏木 咲姫(CV：石見 舞菜香)",
 		"data": {
 			"genre": "オンゲキ"
@@ -7222,9 +6681,7 @@
 		"title": "ゲーミングポーラーベア"
 	},
 	{
-		"altTitles": [
-			"ELUSIVEEMOTES"
-		],
+		"altTitles": [],
 		"artist": "polysha",
 		"data": {
 			"genre": "オンゲキ"
@@ -7246,9 +6703,7 @@
 		"title": "ミラージュ・フレイグランス"
 	},
 	{
-		"altTitles": [
-			"SUPERAMBULANCE"
-		],
+		"altTitles": [],
 		"artist": "AJURIKA",
 		"data": {
 			"genre": "オンゲキ"
@@ -7259,7 +6714,7 @@
 	},
 	{
 		"altTitles": [
-			"NOLIMITREDFORCEHOSHISAKIAKARISOROVER"
+			"NOLIMITREDFORCEHOSHIZAKIAKARI"
 		],
 		"artist": "曲：本多友紀（Arte Refact）／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
@@ -7271,7 +6726,7 @@
 	},
 	{
 		"altTitles": [
-			"NOLIMITREDFORCEAIHARATSUHAKISOROVER"
+			"NOLIMITREDFORCEAIHARATSUBAKI"
 		],
 		"artist": "曲：本多友紀（Arte Refact）／歌：藍原 椿(CV：橋本 ちなみ)",
 		"data": {
@@ -7283,7 +6738,7 @@
 	},
 	{
 		"altTitles": [
-			"NOLIMITREDFORCESAOTOMEAYAKASOROVER"
+			"NOLIMITREDFORCESAOTOMEAYAKA"
 		],
 		"artist": "曲：本多友紀（Arte Refact）／歌：早乙女 彩華(CV：中島 唯)",
 		"data": {
@@ -7295,7 +6750,7 @@
 	},
 	{
 		"altTitles": [
-			"NOLIMITREDFORCEKASHIWAKISAKISOROVER"
+			"NOLIMITREDFORCEKASHIWAGISAKI"
 		],
 		"artist": "曲：本多友紀（Arte Refact）／歌：柏木 咲姫(CV：石見 舞菜香)",
 		"data": {
@@ -7307,7 +6762,7 @@
 	},
 	{
 		"altTitles": [
-			"NOLIMITREDFORCEKASHIWAKIMIASOROVER"
+			"NOLIMITREDFORCEKASHIWAGIMIA"
 		],
 		"artist": "曲：本多友紀（Arte Refact）／歌：柏木 美亜(CV：和氣 あず未)",
 		"data": {
@@ -7342,9 +6797,7 @@
 		"title": "竹"
 	},
 	{
-		"altTitles": [
-			"CUTTER"
-		],
+		"altTitles": [],
 		"artist": "EmoCosine",
 		"data": {
 			"genre": "VARIETY"
@@ -7415,7 +6868,7 @@
 	},
 	{
 		"altTitles": [
-			"YYYKEIKAKUOUSAKAAKANESOROVER"
+			"YYYKEIKAKUOUSAKAAKANE"
 		],
 		"artist": "曲：烏屋茶房／歌：逢坂 茜(CV：大空 直美)",
 		"data": {
@@ -7427,7 +6880,7 @@
 	},
 	{
 		"altTitles": [
-			"YYYKEIKAKUKUSHIYOUKAETESOROVER"
+			"YYYKEIKAKUKUJOKAEDE"
 		],
 		"artist": "曲：烏屋茶房／歌：九條 楓(CV：佳村 はるか)",
 		"data": {
@@ -7439,7 +6892,7 @@
 	},
 	{
 		"altTitles": [
-			"YYYKEIKAKUSUSUSHIMAARISUSOROVER"
+			"YYYKEIKAKUSUZUSHIMAARISU"
 		],
 		"artist": "曲：烏屋茶房／歌：珠洲島 有栖(CV：長縄 まりあ)",
 		"data": {
@@ -7450,9 +6903,7 @@
 		"title": "Y.Y.Y.計画!!!! -珠洲島 有栖ソロver.-"
 	},
 	{
-		"altTitles": [
-			"CATCHMEIFYOUCAN"
-		],
+		"altTitles": [],
 		"artist": "曲：TAKU INOUE／歌：早乙女 彩華(CV：中島 唯)",
 		"data": {
 			"genre": "オンゲキ"
@@ -7462,9 +6913,7 @@
 		"title": "Catch Me If You Can"
 	},
 	{
-		"altTitles": [
-			"SKIPSMILE"
-		],
+		"altTitles": [],
 		"artist": "梅干茶漬け",
 		"data": {
 			"genre": "オンゲキ"
@@ -7474,9 +6923,7 @@
 		"title": "Skip & Smile!!"
 	},
 	{
-		"altTitles": [
-			"μάγια"
-		],
+		"altTitles": [],
 		"artist": "Street",
 		"data": {
 			"genre": "オンゲキ"
@@ -7558,9 +7005,7 @@
 		"title": "ぽかぽか温泉音頭"
 	},
 	{
-		"altTitles": [
-			"MIZUTAMATRIPSTER"
-		],
+		"altTitles": [],
 		"artist": "こふ",
 		"data": {
 			"genre": "オンゲキ"
@@ -7607,7 +7052,7 @@
 	},
 	{
 		"altTitles": [
-			"MUTEKINOFURONTEIASANSHIYUUSHIMISUMIAOISOROVER"
+			"MUTEKINOFURONTEIASANSHIYUUSHIMISUMIAOI"
 		],
 		"artist": "曲：本田正樹(Dream Monster)／歌：三角 葵(CV：春野 杏)",
 		"data": {
@@ -7619,7 +7064,7 @@
 	},
 	{
 		"altTitles": [
-			"MUTEKINOFURONTEIASANSHIYUUSHIKUSHIYOUKAETESOROVER"
+			"MUTEKINOFURONTEIASANSHIYUUSHIKUJOKAEDE"
 		],
 		"artist": "曲：本田正樹(Dream Monster)／歌：九條 楓(CV：佳村 はるか)",
 		"data": {
@@ -7631,7 +7076,7 @@
 	},
 	{
 		"altTitles": [
-			"MUTEKINOFURONTEIASANSHIYUUSHIHINATACHINATSUSOROVER"
+			"MUTEKINOFURONTEIASANSHIYUUSHIHINATACHINATSU"
 		],
 		"artist": "曲：本田正樹(Dream Monster)／歌：日向 千夏(CV：岡咲 美保)",
 		"data": {
@@ -7666,9 +7111,7 @@
 		"title": "シャノワール"
 	},
 	{
-		"altTitles": [
-			"MANIERAREMASTERED"
-		],
+		"altTitles": [],
 		"artist": "ABE_YUTA",
 		"data": {
 			"genre": "VARIETY"
@@ -7690,9 +7133,7 @@
 		"title": "お空のニュークリアフュージョン道場"
 	},
 	{
-		"altTitles": [
-			"EVERYTHINGWILLFREEZE"
-		],
+		"altTitles": [],
 		"artist": "UNDEAD CORPORATION",
 		"data": {
 			"genre": "東方Project"
@@ -7702,9 +7143,7 @@
 		"title": "Everything Will Freeze"
 	},
 	{
-		"altTitles": [
-			"REPRAYER"
-		],
+		"altTitles": [],
 		"artist": "Aliesrite* (Ym1024 feat. lamie*)",
 		"data": {
 			"genre": "VARIETY"
@@ -7714,9 +7153,7 @@
 		"title": "rePrayer"
 	},
 	{
-		"altTitles": [
-			"SHAMSHIRROUGHPT2"
-		],
+		"altTitles": [],
 		"artist": "mommy",
 		"data": {
 			"genre": "VARIETY"
@@ -7726,9 +7163,7 @@
 		"title": "Shamshir -rough Pt.2-"
 	},
 	{
-		"altTitles": [
-			"RELOAD"
-		],
+		"altTitles": [],
 		"artist": "sky_delta",
 		"data": {
 			"genre": "オンゲキ"
@@ -7738,9 +7173,7 @@
 		"title": "RELOAD"
 	},
 	{
-		"altTitles": [
-			"PARTY4UHOLYNITEMIX"
-		],
+		"altTitles": [],
 		"artist": "Cranky",
 		"data": {
 			"genre": "VARIETY"
@@ -7750,9 +7183,7 @@
 		"title": "Party 4U ''holy nite mix''"
 	},
 	{
-		"altTitles": [
-			"WHITEMAGICNIGHT"
-		],
+		"altTitles": [],
 		"artist": "曲：矢鴇つかさ（Arte Refact）／歌：桜井 春菜(CV：近藤 玲奈)、柏木 咲姫(CV：石見 舞菜香)",
 		"data": {
 			"genre": "オンゲキ"
@@ -7810,9 +7241,7 @@
 		"title": "悔やむと書いてミライ"
 	},
 	{
-		"altTitles": [
-			"READYSTEADY"
-		],
+		"altTitles": [],
 		"artist": "Giga / 初音ミク / Vivid BAD SQUAD「プロジェクトセカイ カラフルステージ！ feat. 初音ミク」",
 		"data": {
 			"genre": "niconico"
@@ -7822,9 +7251,7 @@
 		"title": "Ready Steady"
 	},
 	{
-		"altTitles": [
-			"SHOWGUTS"
-		],
+		"altTitles": [],
 		"artist": "Ninja Action Team",
 		"data": {
 			"genre": "VARIETY"
@@ -7835,7 +7262,7 @@
 	},
 	{
 		"altTitles": [
-			"HEARTCOOKINGRECIPEFUSHISAWAYUSUSOROVER"
+			"HEARTCOOKINGRECIPEFUJISAWAYUZU"
 		],
 		"artist": "曲：睦月周平／歌：藤沢 柚子(CV：久保田 梨沙)",
 		"data": {
@@ -7847,7 +7274,7 @@
 	},
 	{
 		"altTitles": [
-			"HEARTCOOKINGRECIPEINOHARAKOHOSHISOROVER"
+			"HEARTCOOKINGRECIPEINOHARAKOBOSHI"
 		],
 		"artist": "曲：睦月周平／歌：井之原 小星(CV：ももの はるな)",
 		"data": {
@@ -7859,7 +7286,7 @@
 	},
 	{
 		"altTitles": [
-			"HEARTCOOKINGRECIPEKUSHIYOUKAETESOROVER"
+			"HEARTCOOKINGRECIPEKUJOKAEDE"
 		],
 		"artist": "曲：睦月周平／歌：九條 楓(CV：佳村 はるか)",
 		"data": {
@@ -7870,9 +7297,7 @@
 		"title": "Heart Cooking Recipe -九條 楓ソロver.-"
 	},
 	{
-		"altTitles": [
-			"IGOTAGIGTONIGHT"
-		],
+		"altTitles": [],
 		"artist": "曲：大熊淳生（Arte Refact）／歌：結城 莉玖(CV：朝日奈 丸佳)",
 		"data": {
 			"genre": "オンゲキ"
@@ -7894,9 +7319,7 @@
 		"title": "いつか花咲くその前に"
 	},
 	{
-		"altTitles": [
-			"BWIZU"
-		],
+		"altTitles": [],
 		"artist": "Getty",
 		"data": {
 			"genre": "オンゲキ"
@@ -7906,9 +7329,7 @@
 		"title": "B WiZ U"
 	},
 	{
-		"altTitles": [
-			"DIAMONDDUST"
-		],
+		"altTitles": [],
 		"artist": "Masahiro “Godspeed” Aoki",
 		"data": {
 			"genre": "オンゲキ"
@@ -7954,9 +7375,7 @@
 		"title": "君のStarlight Road"
 	},
 	{
-		"altTitles": [
-			"STARLIGHTTWILIGHTGCEDIT"
-		],
+		"altTitles": [],
 		"artist": "Tatsh feat.彩音「グルーヴコースター」",
 		"data": {
 			"genre": "VARIETY"
@@ -7966,9 +7385,7 @@
 		"title": "STARLIGHT TWILIGHT -GC edit-"
 	},
 	{
-		"altTitles": [
-			"2112410403927243233368 "
-		],
+		"altTitles": [],
 		"artist": "253215「グルーヴコースター」",
 		"data": {
 			"genre": "VARIETY"
@@ -7978,9 +7395,7 @@
 		"title": "2112410403927243233368"
 	},
 	{
-		"altTitles": [
-			"CRIMSONPHOENIX"
-		],
+		"altTitles": [],
 		"artist": "xi vs MASAKI「グルーヴコースター」",
 		"data": {
 			"genre": "VARIETY"
@@ -7990,9 +7405,7 @@
 		"title": "Crimson Phoenix"
 	},
 	{
-		"altTitles": [
-			"THEWORLDOFSPIRIT"
-		],
+		"altTitles": [],
 		"artist": "土屋昇平(ZUNTATA)「ダライアスバースト」",
 		"data": {
 			"genre": "LUNATIC"
@@ -8014,9 +7427,7 @@
 		"title": "腐れ外道とチョコレゐト"
 	},
 	{
-		"altTitles": [
-			"CHOCOLATEBOMB"
-		],
+		"altTitles": [],
 		"artist": "YUC'e",
 		"data": {
 			"genre": "チュウマイ"
@@ -8026,9 +7437,7 @@
 		"title": "CHOCOLATE BOMB!!!!"
 	},
 	{
-		"altTitles": [
-			"HANDMADEGOODDAY"
-		],
+		"altTitles": [],
 		"artist": "曲：矢鴇つかさ（Arte Refact）／歌：珠洲島 有栖(CV：長縄 まりあ)、皇城 セツナ(CV：八巻 アンナ)",
 		"data": {
 			"genre": "オンゲキ"
@@ -8038,9 +7447,7 @@
 		"title": "Handmade Good Day"
 	},
 	{
-		"altTitles": [
-			"SUSPIRO"
-		],
+		"altTitles": [],
 		"artist": "とろまる",
 		"data": {
 			"genre": "オンゲキ"
@@ -8051,7 +7458,7 @@
 	},
 	{
 		"altTitles": [
-			"KIMIHAMITEITANEYUUKIRIKUSOROVER"
+			"KIMIHAMITEITANEYUUKIRIKU"
 		],
 		"artist": "曲：篠崎あやと、橘亮祐／歌：結城 莉玖(CV：朝日奈 丸佳)",
 		"data": {
@@ -8063,7 +7470,7 @@
 	},
 	{
 		"altTitles": [
-			"KIMIHAMITEITANESHINONOMETSUMUKISOROVER"
+			"KIMIHAMITEITANESHINONOMETSUMUGI"
 		],
 		"artist": "曲：篠崎あやと、橘亮祐／歌：東雲 つむぎ(CV：和泉 風花)",
 		"data": {
@@ -8075,7 +7482,7 @@
 	},
 	{
 		"altTitles": [
-			"GIVEITUPTOYOUSAKURAIHARUNASOROVER"
+			"GIVEITUPTOYOUSAKURAIHARUNA"
 		],
 		"artist": "曲：中土智博／歌：桜井 春菜(CV：近藤 玲奈)",
 		"data": {
@@ -8087,7 +7494,7 @@
 	},
 	{
 		"altTitles": [
-			"GIVEITUPTOYOUSAOTOMEAYAKASOROVER"
+			"GIVEITUPTOYOUSAOTOMEAYAKA"
 		],
 		"artist": "曲：中土智博／歌：早乙女 彩華(CV：中島 唯)",
 		"data": {
@@ -8122,9 +7529,7 @@
 		"title": "霧の書斎"
 	},
 	{
-		"altTitles": [
-			"MAGICALPANICADVENTURE"
-		],
+		"altTitles": [],
 		"artist": "削除",
 		"data": {
 			"genre": "オンゲキ"
@@ -8146,9 +7551,7 @@
 		"title": "私たち、四季を遊ぶんです！！"
 	},
 	{
-		"altTitles": [
-			"LIKETHESUNLIKETHEMOON"
-		],
+		"altTitles": [],
 		"artist": "ステラマリス「Re:ステージ！プリズムステップ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -8182,9 +7585,7 @@
 		"title": "エピトゥリカの祀"
 	},
 	{
-		"altTitles": [
-			"VELACIELAHYPERMIX"
-		],
+		"altTitles": [],
 		"artist": "naotyu-",
 		"data": {
 			"genre": "VARIETY"
@@ -8194,9 +7595,7 @@
 		"title": "Velaciela (Hyper Mix)"
 	},
 	{
-		"altTitles": [
-			"BABYLON"
-		],
+		"altTitles": [],
 		"artist": "SHIKI",
 		"data": {
 			"genre": "VARIETY"
@@ -8242,9 +7641,7 @@
 		"title": "うまぴょい伝説"
 	},
 	{
-		"altTitles": [
-			"HEAVENSRAVE"
-		],
+		"altTitles": [],
 		"artist": "AXiS「Tokyo 7th シスターズ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -8278,9 +7675,7 @@
 		"title": "金木犀 feat.Ado"
 	},
 	{
-		"altTitles": [
-			"LETMEKNOWFEATMASAYOSHIIIMORI"
-		],
+		"altTitles": [],
 		"artist": "電音部、鳳凰火凛 (CV: 健屋花那)、瀬戸海月 (CV: シスター・クレア)、大賀ルキア (CV: 星川サラ)",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -8326,9 +7721,7 @@
 		"title": "回転 feat.あやぽんず＊"
 	},
 	{
-		"altTitles": [
-			"8OROCHI"
-		],
+		"altTitles": [],
 		"artist": "REDALiCE「太鼓の達人」",
 		"data": {
 			"genre": "VARIETY"
@@ -8338,9 +7731,7 @@
 		"title": "8OROCHI"
 	},
 	{
-		"altTitles": [
-			"FREEDOMDIVE"
-		],
+		"altTitles": [],
 		"artist": "xi",
 		"data": {
 			"genre": "VARIETY"
@@ -8350,9 +7741,7 @@
 		"title": "FREEDOM DiVE"
 	},
 	{
-		"altTitles": [
-			"ALEAJACTAEST"
-		],
+		"altTitles": [],
 		"artist": "BlackY fused with WAiKURO",
 		"data": {
 			"genre": "チュウマイ"
@@ -8362,9 +7751,7 @@
 		"title": "Alea jacta est!"
 	},
 	{
-		"altTitles": [
-			"BUTTERFLYWAVE"
-		],
+		"altTitles": [],
 		"artist": "曲：馬渕直純／歌：3年生シューターズ",
 		"data": {
 			"genre": "オンゲキ"
@@ -8374,9 +7761,7 @@
 		"title": "Butterfly Wave"
 	},
 	{
-		"altTitles": [
-			"ISLANDBREEZE"
-		],
+		"altTitles": [],
 		"artist": "Palme",
 		"data": {
 			"genre": "オンゲキ"
@@ -8386,9 +7771,7 @@
 		"title": "Island Breeze"
 	},
 	{
-		"altTitles": [
-			"ICEBURN"
-		],
+		"altTitles": [],
 		"artist": "Srav3R",
 		"data": {
 			"genre": "オンゲキ"
@@ -8398,9 +7781,7 @@
 		"title": "ICEBURN"
 	},
 	{
-		"altTitles": [
-			"KNOCKINGHARDER"
-		],
+		"altTitles": [],
 		"artist": "Massive New Krew",
 		"data": {
 			"genre": "オンゲキ"
@@ -8410,9 +7791,7 @@
 		"title": "Knocking Harder"
 	},
 	{
-		"altTitles": [
-			"FINALFLASHFLIGHT"
-		],
+		"altTitles": [],
 		"artist": "かめりあ",
 		"data": {
 			"genre": "オンゲキ"
@@ -8423,7 +7802,7 @@
 	},
 	{
 		"altTitles": [
-			"JUMPJUMPJUMPHOSHISAKIAKARISOROVER"
+			"JUMPJUMPJUMPHOSHIZAKIAKARI"
 		],
 		"artist": "曲：宮崎誠／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
@@ -8435,7 +7814,7 @@
 	},
 	{
 		"altTitles": [
-			"JUMPJUMPJUMPFUSHISAWAYUSUSOROVER"
+			"JUMPJUMPJUMPFUJISAWAYUZU"
 		],
 		"artist": "曲：宮崎誠／歌：藤沢 柚子(CV：久保田 梨沙)",
 		"data": {
@@ -8447,7 +7826,7 @@
 	},
 	{
 		"altTitles": [
-			"JUMPJUMPJUMPMISUMIAOISOROVER"
+			"JUMPJUMPJUMPMISUMIAOI"
 		],
 		"artist": "曲：宮崎誠／歌：三角 葵(CV：春野 杏)",
 		"data": {
@@ -8459,7 +7838,7 @@
 	},
 	{
 		"altTitles": [
-			"JUMPJUMPJUMPTAKASERIOSOROVER"
+			"JUMPJUMPJUMPTAKASERIO"
 		],
 		"artist": "曲：宮崎誠／歌：高瀬 梨緒(CV：久保 ユリカ)",
 		"data": {
@@ -8471,7 +7850,7 @@
 	},
 	{
 		"altTitles": [
-			"JUMPJUMPJUMPOUSAKAAKANESOROVER"
+			"JUMPJUMPJUMPOUSAKAAKANE"
 		],
 		"artist": "曲：宮崎誠／歌：逢坂 茜(CV：大空 直美)",
 		"data": {
@@ -8482,9 +7861,7 @@
 		"title": "Jump!! Jump!! Jump!! -逢坂 茜ソロver.-"
 	},
 	{
-		"altTitles": [
-			"YOKAIDISCO"
-		],
+		"altTitles": [],
 		"artist": "安井洋介「まもるクンは呪われてしまった！」",
 		"data": {
 			"genre": "VARIETY"
@@ -8494,9 +7871,7 @@
 		"title": "YO-KAI Disco"
 	},
 	{
-		"altTitles": [
-			"Ἀταραξία"
-		],
+		"altTitles": [],
 		"artist": "Taku Takahashi(m-flo, block.fm), Mitsunori Ikeda(Tachytelic Inc.)「プロジェクト東京ドールズ」",
 		"data": {
 			"genre": "LUNATIC"
@@ -8506,9 +7881,7 @@
 		"title": "Ἀταραξία"
 	},
 	{
-		"altTitles": [
-			"UTOPIACRASH"
-		],
+		"altTitles": [],
 		"artist": "曲：本多友紀（Arte Refact）／歌：逢坂 茜(CV：大空 直美)",
 		"data": {
 			"genre": "オンゲキ"
@@ -8530,9 +7903,7 @@
 		"title": "涙隠しておんな道"
 	},
 	{
-		"altTitles": [
-			"FANTASYBABY"
-		],
+		"altTitles": [],
 		"artist": "曲：Tomggg／歌：珠洲島 有栖(CV：長縄 まりあ)",
 		"data": {
 			"genre": "オンゲキ"
@@ -8542,9 +7913,7 @@
 		"title": "FANTASY BABY"
 	},
 	{
-		"altTitles": [
-			"YURUSHITELEAFREMIX"
-		],
+		"altTitles": [],
 		"artist": "t+pazolite / LeaF",
 		"data": {
 			"genre": "オンゲキ"
@@ -8554,9 +7923,7 @@
 		"title": "YURUSHITE (LeaF Remix)"
 	},
 	{
-		"altTitles": [
-			"GIRLSPARTYPLANET"
-		],
+		"altTitles": [],
 		"artist": "曲：山本恭平（Arte Refact）／歌：桜井 春菜(CV：近藤 玲奈)、早乙女 彩華(CV：中島 唯)、井之原 小星(CV：ももの はるな)、柏木 咲姫(CV：石見 舞菜香)",
 		"data": {
 			"genre": "オンゲキ"
@@ -8566,9 +7933,7 @@
 		"title": "Girl's Party Planet!"
 	},
 	{
-		"altTitles": [
-			"PRINCESSESHOLIDAY"
-		],
+		"altTitles": [],
 		"artist": "pan",
 		"data": {
 			"genre": "オンゲキ"
@@ -8602,9 +7967,7 @@
 		"title": "其のエメラルドを見よ"
 	},
 	{
-		"altTitles": [
-			"OPIFEARTITAN"
-		],
+		"altTitles": [],
 		"artist": "xi vs かねこちはる",
 		"data": {
 			"genre": "オンゲキ"
@@ -8614,9 +7977,7 @@
 		"title": "Op.I《fear-TITΛN-》"
 	},
 	{
-		"altTitles": [
-			"SOMUCHLOVINGYOUDIVAEDIT"
-		],
+		"altTitles": [],
 		"artist": "古墳P",
 		"data": {
 			"genre": "niconico"
@@ -8698,9 +8059,7 @@
 		"title": "ワガママMIRROR HEART"
 	},
 	{
-		"altTitles": [
-			"INCHAOS"
-		],
+		"altTitles": [],
 		"artist": "Hiro「Crackin'DJ」",
 		"data": {
 			"genre": "VARIETY"
@@ -8734,9 +8093,7 @@
 		"title": "マイオドレ！舞舞タイム"
 	},
 	{
-		"altTitles": [
-			"BLOWSUPEVERYTHING"
-		],
+		"altTitles": [],
 		"artist": "USAO",
 		"data": {
 			"genre": "チュウマイ"
@@ -8746,9 +8103,7 @@
 		"title": "Blows Up Everything"
 	},
 	{
-		"altTitles": [
-			"HELLOSOFMAPWORLD"
-		],
+		"altTitles": [],
 		"artist": "ソフマップ 店内BGM　歌：光吉猛修 コーラス：音撃譜面部",
 		"data": {
 			"genre": "VARIETY"
@@ -8758,9 +8113,7 @@
 		"title": "HELLO,SOFMAP WORLD"
 	},
 	{
-		"altTitles": [
-			"BLUEZONE"
-		],
+		"altTitles": [],
 		"artist": "Tatsh x NAOKI",
 		"data": {
 			"genre": "VARIETY"
@@ -8794,9 +8147,7 @@
 		"title": "空色メモリーズ"
 	},
 	{
-		"altTitles": [
-			"DEPARTURE"
-		],
+		"altTitles": [],
 		"artist": "f*f（CV：本渡楓・下地紫野）「バトルガール ハイスクール」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -8807,7 +8158,7 @@
 	},
 	{
 		"altTitles": [
-			"SAIKIYOUTHESAMATAIMUHOSHISAKIAKARISOROVER"
+			"SAIKIYOUTHESAMATAIMUHOSHIZAKIAKARI"
 		],
 		"artist": "曲：村カワ基成／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
@@ -8819,7 +8170,7 @@
 	},
 	{
 		"altTitles": [
-			"SAIKIYOUTHESAMATAIMUTAKASERIOSOROVER"
+			"SAIKIYOUTHESAMATAIMUTAKASERIO"
 		],
 		"artist": "曲：村カワ基成／歌：高瀬 梨緒(CV：久保 ユリカ)",
 		"data": {
@@ -8831,7 +8182,7 @@
 	},
 	{
 		"altTitles": [
-			"SAIKIYOUTHESAMATAIMUHINATACHINATSUSOROVER"
+			"SAIKIYOUTHESAMATAIMUHINATACHINATSU"
 		],
 		"artist": "曲：村カワ基成／歌：日向 千夏(CV：岡咲 美保)",
 		"data": {
@@ -8843,7 +8194,7 @@
 	},
 	{
 		"altTitles": [
-			"SAIKIYOUTHESAMATAIMUKASHIWAKIMIASOROVER"
+			"SAIKIYOUTHESAMATAIMUKASHIWAGIMIA"
 		],
 		"artist": "曲：村カワ基成／歌：柏木 美亜(CV：和氣 あず未)",
 		"data": {
@@ -8855,7 +8206,7 @@
 	},
 	{
 		"altTitles": [
-			"SAIKIYOUTHESAMATAIMUSHINONOMETSUMUKISOROVER"
+			"SAIKIYOUTHESAMATAIMUSHINONOMETSUMUGI"
 		],
 		"artist": "曲：村カワ基成／歌：東雲 つむぎ(CV：和泉 風花)",
 		"data": {
@@ -8890,9 +8241,7 @@
 		"title": "ランダムサンデー"
 	},
 	{
-		"altTitles": [
-			"LITTLETWINKLE"
-		],
+		"altTitles": [],
 		"artist": "曲：馬渕直純／歌：東雲 つむぎ(CV：和泉 風花)",
 		"data": {
 			"genre": "オンゲキ"
@@ -8902,9 +8251,7 @@
 		"title": "Little Twinkle"
 	},
 	{
-		"altTitles": [
-			"BAQEELACREEPYREMIX"
-		],
+		"altTitles": [],
 		"artist": "owl＊tree Remixed by Sampling Masters MEGA",
 		"data": {
 			"genre": "オンゲキ"
@@ -8914,9 +8261,7 @@
 		"title": "Baqeela (Creepy Remix)"
 	},
 	{
-		"altTitles": [
-			"VIBES2K20OWLAGINGREMIX"
-		],
+		"altTitles": [],
 		"artist": "owl＊tree",
 		"data": {
 			"genre": "オンゲキ"
@@ -8938,9 +8283,7 @@
 		"title": "オンソクデイズ!!"
 	},
 	{
-		"altTitles": [
-			"MARBLEBLUE"
-		],
+		"altTitles": [],
 		"artist": "MisoilePunch♪",
 		"data": {
 			"genre": "オンゲキ"
@@ -8962,9 +8305,7 @@
 		"title": "タイガーランペイジ"
 	},
 	{
-		"altTitles": [
-			"TRRRICKSTERS"
-		],
+		"altTitles": [],
 		"artist": "s-don vs. 翡乃イスカ",
 		"data": {
 			"genre": "チュウマイ"
@@ -8986,9 +8327,7 @@
 		"title": "ロング・スロー・アライブ"
 	},
 	{
-		"altTitles": [
-			"ELECTRICEMOTION"
-		],
+		"altTitles": [],
 		"artist": "nmk feat.橘花音",
 		"data": {
 			"genre": "VARIETY"
@@ -8998,9 +8337,7 @@
 		"title": "Electric Emotion"
 	},
 	{
-		"altTitles": [
-			"AKASAGARBHAREINCARNATE"
-		],
+		"altTitles": [],
 		"artist": "wa. vs ETIA.",
 		"data": {
 			"genre": "VARIETY"
@@ -9010,9 +8347,7 @@
 		"title": "Akasagarbha -reincarnate-"
 	},
 	{
-		"altTitles": [
-			"REALVOICE"
-		],
+		"altTitles": [],
 		"artist": "達見 恵 featured by 佐野 宏晃",
 		"data": {
 			"genre": "チュウマイ"
@@ -9071,7 +8406,7 @@
 	},
 	{
 		"altTitles": [
-			"STARREDHEARTHOSHISAKIAKARISOROVER"
+			"STARREDHEARTHOSHIZAKIAKARI"
 		],
 		"artist": "曲：広川恵一 (MONACA)／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
@@ -9083,7 +8418,7 @@
 	},
 	{
 		"altTitles": [
-			"STARREDHEARTYUUKIRIKUSOROVER"
+			"STARREDHEARTYUUKIRIKU"
 		],
 		"artist": "曲：広川恵一 (MONACA)／歌：結城 莉玖(CV：朝日奈 丸佳)",
 		"data": {
@@ -9095,7 +8430,7 @@
 	},
 	{
 		"altTitles": [
-			"STARREDHEARTKUSHIYOUKAETESOROVER"
+			"STARREDHEARTKUJOKAEDE"
 		],
 		"artist": "曲：広川恵一 (MONACA)／歌：九條 楓(CV：佳村 はるか)",
 		"data": {
@@ -9107,7 +8442,7 @@
 	},
 	{
 		"altTitles": [
-			"STARREDHEARTSUSUSHIMAARISUSOROVER"
+			"STARREDHEARTSUZUSHIMAARISU"
 		],
 		"artist": "曲：広川恵一 (MONACA)／歌：珠洲島 有栖(CV：長縄 まりあ)",
 		"data": {
@@ -9119,7 +8454,7 @@
 	},
 	{
 		"altTitles": [
-			"STARREDHEARTSHINONOMETSUMUKISOROVER"
+			"STARREDHEARTSHINONOMETSUMUGI"
 		],
 		"artist": "曲：広川恵一 (MONACA)／歌：東雲 つむぎ(CV：和泉 風花)",
 		"data": {
@@ -9142,9 +8477,7 @@
 		"title": "U.N.オーエンは彼女なのか？ - Greater Scarlet"
 	},
 	{
-		"altTitles": [
-			"SINGINGTOTHEGODS"
-		],
+		"altTitles": [],
 		"artist": "来兎「東方幻想麻雀」",
 		"data": {
 			"genre": "東方Project"
@@ -9166,9 +8499,7 @@
 		"title": "キュアリアス光吉古牌　－祭－"
 	},
 	{
-		"altTitles": [
-			"NEWWORLD"
-		],
+		"altTitles": [],
 		"artist": "FELT",
 		"data": {
 			"genre": "東方Project"
@@ -9202,9 +8533,7 @@
 		"title": "幽闇に目醒めしは"
 	},
 	{
-		"altTitles": [
-			"ARMAGEDDON"
-		],
+		"altTitles": [],
 		"artist": "LeaF",
 		"data": {
 			"genre": "東方Project"
@@ -9214,9 +8543,7 @@
 		"title": "Armageddon"
 	},
 	{
-		"altTitles": [
-			"OVERTHEBORDER"
-		],
+		"altTitles": [],
 		"artist": "COOL&CREATE × 宝鐘マリン feat.不知火フレア",
 		"data": {
 			"genre": "東方Project"
@@ -9226,9 +8553,7 @@
 		"title": "Over the Border"
 	},
 	{
-		"altTitles": [
-			"RESOLUTION"
-		],
+		"altTitles": [],
 		"artist": "曲：ANCHOR／歌：皇城 セツナ(CV：八巻 アンナ)",
 		"data": {
 			"genre": "オンゲキ"
@@ -9250,9 +8575,7 @@
 		"title": "ロッキンピンクモンスター (豚乙女ランコVo Ver.)"
 	},
 	{
-		"altTitles": [
-			"FLUFFYFLASHCSHOWMAOZONREMIX"
-		],
+		"altTitles": [],
 		"artist": "C-Show & Maozon",
 		"data": {
 			"genre": "オンゲキ"
@@ -9274,9 +8597,7 @@
 		"title": "ヒストリー×ブレイカー"
 	},
 	{
-		"altTitles": [
-			"AIC"
-		],
+		"altTitles": [],
 		"artist": "Feryquitous",
 		"data": {
 			"genre": "オンゲキ"
@@ -9298,9 +8619,7 @@
 		"title": "ゼーレンヴァンデルング"
 	},
 	{
-		"altTitles": [
-			"STARDUSTRAY"
-		],
+		"altTitles": [],
 		"artist": "kanone vs. BlackY",
 		"data": {
 			"genre": "オンゲキ"
@@ -9358,9 +8677,7 @@
 		"title": "マチガイサガシ"
 	},
 	{
-		"altTitles": [
-			"CYAEGHA"
-		],
+		"altTitles": [],
 		"artist": "USAO「Arcaea」",
 		"data": {
 			"genre": "VARIETY"
@@ -9370,9 +8687,7 @@
 		"title": "Cyaegha"
 	},
 	{
-		"altTitles": [
-			"MALICIOUSMISCHANCE"
-		],
+		"altTitles": [],
 		"artist": "s-don「Arcaea」",
 		"data": {
 			"genre": "VARIETY"
@@ -9382,9 +8697,7 @@
 		"title": "Malicious Mischance"
 	},
 	{
-		"altTitles": [
-			"ALICESSUITCASE"
-		],
+		"altTitles": [],
 		"artist": "Endorfin.「Arcaea」",
 		"data": {
 			"genre": "VARIETY"
@@ -9394,9 +8707,7 @@
 		"title": "Alice's Suitcase"
 	},
 	{
-		"altTitles": [
-			"LOSCHEN"
-		],
+		"altTitles": [],
 		"artist": "BlackY feat. Risa Yuzuki「Arcaea」",
 		"data": {
 			"genre": "VARIETY"
@@ -9406,9 +8717,7 @@
 		"title": "Löschen"
 	},
 	{
-		"altTitles": [
-			"TEMPESTISSIMO"
-		],
+		"altTitles": [],
 		"artist": "t+pazolite「Arcaea」",
 		"data": {
 			"genre": "VARIETY"
@@ -9419,7 +8728,7 @@
 	},
 	{
 		"altTitles": [
-			"TRANSCENDLIGHTSHOSHISAKIAKARISOROVER"
+			"TRANSCENDLIGHTSHOSHIZAKIAKARI"
 		],
 		"artist": "曲：小高光太郎／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
@@ -9431,7 +8740,7 @@
 	},
 	{
 		"altTitles": [
-			"TRANSCENDLIGHTSTAKASERIOSOROVER"
+			"TRANSCENDLIGHTSTAKASERIO"
 		],
 		"artist": "曲：小高光太郎／歌：高瀬 梨緒(CV：久保 ユリカ)",
 		"data": {
@@ -9443,7 +8752,7 @@
 	},
 	{
 		"altTitles": [
-			"TRANSCENDLIGHTSKASHIWAKIMIASOROVER"
+			"TRANSCENDLIGHTSKASHIWAGIMIA"
 		],
 		"artist": "曲：小高光太郎／歌：柏木 美亜(CV：和氣 あず未)",
 		"data": {
@@ -9455,7 +8764,7 @@
 	},
 	{
 		"altTitles": [
-			"TRANSCENDLIGHTSSHINONOMETSUMUKISOROVER"
+			"TRANSCENDLIGHTSSHINONOMETSUMUGI"
 		],
 		"artist": "曲：小高光太郎／歌：東雲 つむぎ(CV：和泉 風花)",
 		"data": {
@@ -9467,7 +8776,7 @@
 	},
 	{
 		"altTitles": [
-			"TRANSCENDLIGHTSSUMERAKISETSUNASOROVER"
+			"TRANSCENDLIGHTSSUMERAGISETSUNA"
 		],
 		"artist": "曲：小高光太郎／歌：皇城 セツナ(CV：八巻 アンナ)",
 		"data": {
@@ -9478,9 +8787,7 @@
 		"title": "Transcend Lights -皇城 セツナソロver.-"
 	},
 	{
-		"altTitles": [
-			"MAGIC"
-		],
+		"altTitles": [],
 		"artist": "niki feat.noire",
 		"data": {
 			"genre": "チュウマイ"
@@ -9490,9 +8797,7 @@
 		"title": "Magic"
 	},
 	{
-		"altTitles": [
-			"LEPILOGUE"
-		],
+		"altTitles": [],
 		"artist": "SOUND HOLIC feat. Nana Takahashi",
 		"data": {
 			"genre": "チュウマイ"
@@ -9514,9 +8819,7 @@
 		"title": "青空コントレール"
 	},
 	{
-		"altTitles": [
-			"SELENADIA"
-		],
+		"altTitles": [],
 		"artist": "Lime",
 		"data": {
 			"genre": "オンゲキ"
@@ -9526,9 +8829,7 @@
 		"title": "Selenadia"
 	},
 	{
-		"altTitles": [
-			"FLOWER"
-		],
+		"altTitles": [],
 		"artist": "曲：白戸佑輔(Dream Monster)／歌：ASTERISM [星咲 あかり(CV：赤尾 ひかる)、藤沢 柚子(CV：久保田 梨沙)、三角 葵(CV：春野 杏)]",
 		"data": {
 			"genre": "オンゲキ"
@@ -9562,9 +8863,7 @@
 		"title": "イルミネーション"
 	},
 	{
-		"altTitles": [
-			"DIAMONDDUSTCRYSTALPIANOARR"
-		],
+		"altTitles": [],
 		"artist": "igel",
 		"data": {
 			"genre": "オンゲキ"
@@ -9599,7 +8898,7 @@
 	},
 	{
 		"altTitles": [
-			"ONKEKI"
+			"ONGEKI"
 		],
 		"artist": "細江慎治",
 		"data": {
@@ -9611,7 +8910,8 @@
 	},
 	{
 		"altTitles": [
-			"μ3"
+			"MU3",
+			"MYU3"
 		],
 		"artist": "水野健治 VS 穴山大輔",
 		"data": {
@@ -9622,9 +8922,7 @@
 		"title": "μ3"
 	},
 	{
-		"altTitles": [
-			"HEADLINER"
-		],
+		"altTitles": [],
 		"artist": "曲：田中秀和／歌：オンゲキシューターズ",
 		"data": {
 			"genre": "オンゲキ"
@@ -9635,7 +8933,7 @@
 	},
 	{
 		"altTitles": [
-			"ONKEKISHIN"
+			"ONGEKISHIN"
 		],
 		"artist": "細江慎治",
 		"data": {
@@ -9646,9 +8944,7 @@
 		"title": "怨撃・真"
 	},
 	{
-		"altTitles": [
-			"RECOLLECTLINES"
-		],
+		"altTitles": [],
 		"artist": "ああああ vs ぺのれり",
 		"data": {
 			"genre": "オンゲキ"
@@ -9658,9 +8954,7 @@
 		"title": "Recollect Lines"
 	},
 	{
-		"altTitles": [
-			"MEMORIESOFONGEKI"
-		],
+		"altTitles": [],
 		"artist": "SEGA SOUND STAFF arranged by Kanon Oguni",
 		"data": {
 			"genre": "オンゲキ"
@@ -9695,7 +8989,7 @@
 	},
 	{
 		"altTitles": [
-			"KISUNAHASUTSUTOGROWINGUPHOSHISAKIAKARISOROVER"
+			"KISUNAHASUTSUTOGROWINGUPHOSHIZAKIAKARI"
 		],
 		"artist": "曲：原田篤（Arte Refact）／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
@@ -9707,7 +9001,7 @@
 	},
 	{
 		"altTitles": [
-			"KISUNAHASUTSUTOGROWINGUPFUSHISAWAYUSUSOROVER"
+			"KISUNAHASUTSUTOGROWINGUPFUJISAWAYUZU"
 		],
 		"artist": "曲：原田篤（Arte Refact）／歌：藤沢 柚子(CV：久保田 梨沙)",
 		"data": {
@@ -9719,7 +9013,7 @@
 	},
 	{
 		"altTitles": [
-			"KISUNAHASUTSUTOGROWINGUPMISUMIAOISOROVER"
+			"KISUNAHASUTSUTOGROWINGUPMISUMIAOI"
 		],
 		"artist": "曲：原田篤（Arte Refact）／歌：三角 葵(CV：春野 杏)",
 		"data": {
@@ -9754,9 +9048,7 @@
 		"title": "コスモポップファンクラブ"
 	},
 	{
-		"altTitles": [
-			"PERFECTSHINING"
-		],
+		"altTitles": [],
 		"artist": "曲：宮崎誠／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
 			"genre": "オンゲキ"
@@ -9766,9 +9058,7 @@
 		"title": "Perfect Shining!! (location test)"
 	},
 	{
-		"altTitles": [
-			"PARADISODA"
-		],
+		"altTitles": [],
 		"artist": "魂音泉",
 		"data": {
 			"genre": "チュウマイ"
@@ -9802,9 +9092,7 @@
 		"title": "ハードコア・シンドローム"
 	},
 	{
-		"altTitles": [
-			"RING"
-		],
+		"altTitles": [],
 		"artist": "R Sound Design feat.向日葵",
 		"data": {
 			"genre": "チュウマイ"
@@ -9814,9 +9102,7 @@
 		"title": "Ring"
 	},
 	{
-		"altTitles": [
-			"FESTIVALIGHT"
-		],
+		"altTitles": [],
 		"artist": "霜月はるか",
 		"data": {
 			"genre": "チュウマイ"
@@ -9826,9 +9112,7 @@
 		"title": "FestivaLight"
 	},
 	{
-		"altTitles": [
-			"CALIBURNESTORYOFTHELEGENDARYSWORD"
-		],
+		"altTitles": [],
 		"artist": "Project Grimoire",
 		"data": {
 			"genre": "チュウマイ"
@@ -9839,7 +9123,7 @@
 	},
 	{
 		"altTitles": [
-			"RIYOURANOTOMEMUSOUKEKITAKASERIOSOROVER"
+			"RIYOURANOTOMEMUSOUKEKITAKASERIO"
 		],
 		"artist": "曲：Haggy Rock & 佐藤厚仁／歌：高瀬 梨緒(CV：久保 ユリカ)",
 		"data": {
@@ -9851,7 +9135,7 @@
 	},
 	{
 		"altTitles": [
-			"RIYOURANOTOMEMUSOUKEKIAIHARATSUHAKISOROVER"
+			"RIYOURANOTOMEMUSOUKEKIAIHARATSUBAKI"
 		],
 		"artist": "曲：Haggy Rock & 佐藤厚仁／歌：藍原 椿(CV：橋本 ちなみ)",
 		"data": {
@@ -9863,7 +9147,7 @@
 	},
 	{
 		"altTitles": [
-			"RIYOURANOTOMEMUSOUKEKIYUUKIRIKUSOROVER"
+			"RIYOURANOTOMEMUSOUKEKIYUUKIRIKU"
 		],
 		"artist": "曲：Haggy Rock & 佐藤厚仁／歌：結城 莉玖(CV：朝日奈 丸佳)",
 		"data": {
@@ -9899,7 +9183,7 @@
 	},
 	{
 		"altTitles": [
-			"SHIYUKUSEISHINHAN"
+			"SHUKUSEISHINPAN"
 		],
 		"artist": "suzu",
 		"data": {
@@ -9911,7 +9195,7 @@
 	},
 	{
 		"altTitles": [
-			"GIRLSPARTYPLANETSAKURAIHARUNASOROVER"
+			"GIRLSPARTYPLANETSAKURAIHARUNA"
 		],
 		"artist": "曲：山本恭平（Arte Refact）／歌：桜井 春菜(CV：近藤 玲奈)",
 		"data": {
@@ -9923,7 +9207,7 @@
 	},
 	{
 		"altTitles": [
-			"GIRLSPARTYPLANETSAOTOMEAYAKASOROVER"
+			"GIRLSPARTYPLANETSAOTOMEAYAKA"
 		],
 		"artist": "曲：山本恭平（Arte Refact）／歌：早乙女 彩華(CV：中島 唯)",
 		"data": {
@@ -9935,7 +9219,7 @@
 	},
 	{
 		"altTitles": [
-			"GIRLSPARTYPLANETINOHARAKOHOSHISOROVER"
+			"GIRLSPARTYPLANETINOHARAKOBOSHI"
 		],
 		"artist": "曲：山本恭平（Arte Refact）／歌：井之原 小星(CV：ももの はるな)",
 		"data": {
@@ -9947,7 +9231,7 @@
 	},
 	{
 		"altTitles": [
-			"GIRLSPARTYPLANETKASHIWAKISAKISOROVER"
+			"GIRLSPARTYPLANETKASHIWAGISAKI"
 		],
 		"artist": "曲：山本恭平（Arte Refact）／歌：柏木 咲姫(CV：石見 舞菜香)",
 		"data": {
@@ -9958,9 +9242,7 @@
 		"title": "Girl's Party Planet! -柏木 咲姫ソロver.-"
 	},
 	{
-		"altTitles": [
-			"C&B"
-		],
+		"altTitles": [],
 		"artist": "PSYQUI feat.Such",
 		"data": {
 			"genre": "チュウマイ"
@@ -9994,9 +9276,7 @@
 		"title": "キャットラビング"
 	},
 	{
-		"altTitles": [
-			"MUSICPRAYER"
-		],
+		"altTitles": [],
 		"artist": "A-One",
 		"data": {
 			"genre": "チュウマイ"
@@ -10006,9 +9286,7 @@
 		"title": "MUSIC PЯAYER"
 	},
 	{
-		"altTitles": [
-			"THEEMPERROR"
-		],
+		"altTitles": [],
 		"artist": "sasakure.UK",
 		"data": {
 			"genre": "チュウマイ"
@@ -10018,9 +9296,7 @@
 		"title": "the EmpErroR"
 	},
 	{
-		"altTitles": [
-			"COSMICTRAIN"
-		],
+		"altTitles": [],
 		"artist": "Shoichiro Hirata feat.SUIMI",
 		"data": {
 			"genre": "チュウマイ"
@@ -10043,7 +9319,7 @@
 	},
 	{
 		"altTitles": [
-			"HEADLINERHOSHISAKIAKARISOROVER"
+			"HEADLINERHOSHIZAKIAKARI"
 		],
 		"artist": "曲：田中秀和／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
@@ -10055,7 +9331,7 @@
 	},
 	{
 		"altTitles": [
-			"HEADLINERFUSHISAWAYUSUSOROVER"
+			"HEADLINERFUJISAWAYUZU"
 		],
 		"artist": "曲：田中秀和／歌：藤沢 柚子(CV：久保田 梨沙)",
 		"data": {
@@ -10067,7 +9343,7 @@
 	},
 	{
 		"altTitles": [
-			"HEADLINERMISUMIAOISOROVER"
+			"HEADLINERMISUMIAOI"
 		],
 		"artist": "曲：田中秀和／歌：三角 葵(CV：春野 杏)",
 		"data": {
@@ -10079,7 +9355,7 @@
 	},
 	{
 		"altTitles": [
-			"HEADLINERTAKASERIOSOROVER"
+			"HEADLINERTAKASERIO"
 		],
 		"artist": "曲：田中秀和／歌：高瀬 梨緒(CV：久保 ユリカ)",
 		"data": {
@@ -10091,7 +9367,7 @@
 	},
 	{
 		"altTitles": [
-			"HEADLINERSAKURAIHARUNASOROVER"
+			"HEADLINERSAKURAIHARUNA"
 		],
 		"artist": "曲：田中秀和／歌：桜井 春菜(CV：近藤 玲奈)",
 		"data": {
@@ -10103,7 +9379,7 @@
 	},
 	{
 		"altTitles": [
-			"HEADLINERKASHIWAKISAKISOROVER"
+			"HEADLINERKASHIWAGISAKI"
 		],
 		"artist": "曲：田中秀和／歌：柏木 咲姫(CV：石見 舞菜香)",
 		"data": {
@@ -10115,7 +9391,7 @@
 	},
 	{
 		"altTitles": [
-			"HEADLINEROUSAKAAKANESOROVER"
+			"HEADLINEROUSAKAAKANE"
 		],
 		"artist": "曲：田中秀和／歌：逢坂 茜(CV：大空 直美)",
 		"data": {
@@ -10127,7 +9403,7 @@
 	},
 	{
 		"altTitles": [
-			"HEADLINERHINATACHINATSUSOROVER"
+			"HEADLINERHINATACHINATSU"
 		],
 		"artist": "曲：田中秀和／歌：日向 千夏(CV：岡咲 美保)",
 		"data": {
@@ -10139,7 +9415,7 @@
 	},
 	{
 		"altTitles": [
-			"HEADLINERSUMERAKISETSUNASOROVER"
+			"HEADLINERSUMERAGISETSUNA"
 		],
 		"artist": "曲：田中秀和／歌：皇城 セツナ(CV：八巻 アンナ)",
 		"data": {
@@ -10151,7 +9427,7 @@
 	},
 	{
 		"altTitles": [
-			"AOSORAKONTORERUHOSHISAKIAKARISOROVER"
+			"AOSORAKONTORERUHOSHIZAKIAKARI"
 		],
 		"artist": "曲：脇眞富（Arte Refact）／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
@@ -10163,7 +9439,7 @@
 	},
 	{
 		"altTitles": [
-			"AOSORAKONTORERUHINATACHINATSUSOROVER"
+			"AOSORAKONTORERUHINATACHINATSU"
 		],
 		"artist": "曲：脇眞富（Arte Refact）／歌：日向 千夏(CV：岡咲 美保)",
 		"data": {
@@ -10198,9 +9474,7 @@
 		"title": "レイニーカラー・ウォーターカラー"
 	},
 	{
-		"altTitles": [
-			"TECHNOPOLIS2085"
-		],
+		"altTitles": [],
 		"artist": "PRASTIK DANCEFLOOR",
 		"data": {
 			"genre": "チュウマイ"
@@ -10234,9 +9508,7 @@
 		"title": "ヴァンパイア"
 	},
 	{
-		"altTitles": [
-			"STARRYCOLORS"
-		],
+		"altTitles": [],
 		"artist": "BlackY feat. Risa Yuzuki",
 		"data": {
 			"genre": "チュウマイ"
@@ -10307,7 +9579,7 @@
 	},
 	{
 		"altTitles": [
-			"YAMINABEPANICKOCHISOUTSUMEKOMEFURUKOSUMISUMIAOISOROVER"
+			"YAMINABEPANICKOCHISOUTSUMEKOMEFURUKOSUMISUMIAOI"
 		],
 		"artist": "曲：高木龍一(Dream Monster)／歌：三角 葵(CV：春野 杏)",
 		"data": {
@@ -10319,7 +9591,7 @@
 	},
 	{
 		"altTitles": [
-			"YAMINABEPANICKOCHISOUTSUMEKOMEFURUKOSUSAKURAIHARUNASOROVER"
+			"YAMINABEPANICKOCHISOUTSUMEKOMEFURUKOSUSAKURAIHARUNA"
 		],
 		"artist": "曲：高木龍一(Dream Monster)／歌：桜井 春菜(CV：近藤 玲奈)",
 		"data": {
@@ -10331,7 +9603,7 @@
 	},
 	{
 		"altTitles": [
-			"YAMINABEPANICKOCHISOUTSUMEKOMEFURUKOSUSUSUSHIMAARISUSOROVER"
+			"YAMINABEPANICKOCHISOUTSUMEKOMEFURUKOSUSUZUSHIMAARISU"
 		],
 		"artist": "曲：高木龍一(Dream Monster)／歌：珠洲島 有栖(CV：長縄 まりあ)",
 		"data": {
@@ -10354,9 +9626,7 @@
 		"title": "フォニイ"
 	},
 	{
-		"altTitles": [
-			"HAINUWELE"
-		],
+		"altTitles": [],
 		"artist": "ETIA.",
 		"data": {
 			"genre": "チュウマイ"
@@ -10366,9 +9636,7 @@
 		"title": "Hainuwele"
 	},
 	{
-		"altTitles": [
-			"POTENTIAL"
-		],
+		"altTitles": [],
 		"artist": "TAG",
 		"data": {
 			"genre": "チュウマイ"
@@ -10378,9 +9646,7 @@
 		"title": "POTENTIAL"
 	},
 	{
-		"altTitles": [
-			"BREAKBREAKBREAK"
-		],
+		"altTitles": [],
 		"artist": "HiTECH NINJA vs Cranky",
 		"data": {
 			"genre": "チュウマイ"
@@ -10390,9 +9656,7 @@
 		"title": "BREaK! BREaK! BREaK!"
 	},
 	{
-		"altTitles": [
-			"FESTAOFPANDEMONIUM"
-		],
+		"altTitles": [],
 		"artist": "山本真央樹 vs Masahiro \"Godspeed\" Aoki (feat. Dylan Reavey)",
 		"data": {
 			"genre": "オンゲキ"
@@ -10402,9 +9666,7 @@
 		"title": "FestA of PandemoniuM"
 	},
 	{
-		"altTitles": [
-			"TIMEANDSPACE"
-		],
+		"altTitles": [],
 		"artist": "ステラマリス「Re:ステージ！プリズムステップ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -10438,9 +9700,7 @@
 		"title": "宣誓センセーション"
 	},
 	{
-		"altTitles": [
-			"IMITATIONLOUDLOUNGE"
-		],
+		"altTitles": [],
 		"artist": "Ino(chronoize)",
 		"data": {
 			"genre": "チュウマイ"
@@ -10451,7 +9711,7 @@
 	},
 	{
 		"altTitles": [
-			"ICHIKEKINOTEMA"
+			"ICHIGEKINOTEMA"
 		],
 		"artist": "曲：ヒゲドライバー／歌：いちげきしゅーたーず！",
 		"data": {
@@ -10462,9 +9722,7 @@
 		"title": "いちげき！のテーマ"
 	},
 	{
-		"altTitles": [
-			"PARALLELPRISM"
-		],
+		"altTitles": [],
 		"artist": "P*Light「WACCA」",
 		"data": {
 			"genre": "VARIETY"
@@ -10474,9 +9732,7 @@
 		"title": "PARALLEL★PRISM"
 	},
 	{
-		"altTitles": [
-			"QUON"
-		],
+		"altTitles": [],
 		"artist": "DJ Noriken「WACCA」",
 		"data": {
 			"genre": "VARIETY"
@@ -10486,9 +9742,7 @@
 		"title": "Quon"
 	},
 	{
-		"altTitles": [
-			"LETYOUDIVE"
-		],
+		"altTitles": [],
 		"artist": "HARDCORE TANO*C & エリザベス（CV:大西沙織）「WACCA」",
 		"data": {
 			"genre": "VARIETY"
@@ -10499,7 +9753,7 @@
 	},
 	{
 		"altTitles": [
-			"BUTTERFLYWAVESAOTOMEAYAKASOROVER"
+			"BUTTERFLYWAVESAOTOMEAYAKA"
 		],
 		"artist": "曲：馬渕直純／歌：早乙女 彩華(CV：中島 唯)",
 		"data": {
@@ -10511,7 +9765,7 @@
 	},
 	{
 		"altTitles": [
-			"BUTTERFLYWAVEKUSHIYOUKAETESOROVER"
+			"BUTTERFLYWAVEKUJOKAEDE"
 		],
 		"artist": "曲：馬渕直純／歌：九條 楓(CV：佳村 はるか)",
 		"data": {
@@ -10523,7 +9777,7 @@
 	},
 	{
 		"altTitles": [
-			"BUTTERFLYWAVESUMERAKISETSUNASOROVER"
+			"BUTTERFLYWAVESUMERAGISETSUNA"
 		],
 		"artist": "曲：馬渕直純／歌：皇城 セツナ(CV：八巻 アンナ)",
 		"data": {
@@ -10546,9 +9800,7 @@
 		"title": "星めぐり、果ての君へ。"
 	},
 	{
-		"altTitles": [
-			"STARLIGHTLIMITED"
-		],
+		"altTitles": [],
 		"artist": "カタオカツグミ",
 		"data": {
 			"genre": "オンゲキ"
@@ -10558,9 +9810,7 @@
 		"title": "Starlight★Limited"
 	},
 	{
-		"altTitles": [
-			"SEVENTEENFEELS"
-		],
+		"altTitles": [],
 		"artist": "テトラルキア「Re:ステージ！プリズムステップ」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -10582,9 +9832,7 @@
 		"title": "月影のトロイメライ"
 	},
 	{
-		"altTitles": [
-			"REGULUS"
-		],
+		"altTitles": [],
 		"artist": "お月さま交響曲",
 		"data": {
 			"genre": "チュウマイ"
@@ -10642,9 +9890,7 @@
 		"title": "ラグトレイン"
 	},
 	{
-		"altTitles": [
-			"SNOWCOLOREDSCORE"
-		],
+		"altTitles": [],
 		"artist": "イロドリミドリ",
 		"data": {
 			"genre": "チュウマイ"
@@ -10655,7 +9901,7 @@
 	},
 	{
 		"altTitles": [
-			"SHINTERERATEISUKOAIHARATSUHAKISOROVER"
+			"SHINTERERATEISUKOAIHARATSUBAKI"
 		],
 		"artist": "曲：橘亮祐、篠崎あやと／歌：藍原 椿(CV：橋本 ちなみ)",
 		"data": {
@@ -10667,7 +9913,7 @@
 	},
 	{
 		"altTitles": [
-			"SHINTERERATEISUKOSAOTOMEAYAKASOROVER"
+			"SHINTERERATEISUKOSAOTOMEAYAKA"
 		],
 		"artist": "曲：橘亮祐、篠崎あやと／歌：早乙女 彩華(CV：中島 唯)",
 		"data": {
@@ -10678,9 +9924,7 @@
 		"title": "シンデレラディスコ -早乙女 彩華ソロver.-"
 	},
 	{
-		"altTitles": [
-			"CANDYTALLWOMAN"
-		],
+		"altTitles": [],
 		"artist": "naotyu- feat. 佐々木恵梨",
 		"data": {
 			"genre": "チュウマイ"
@@ -10690,9 +9934,7 @@
 		"title": "Candy Tall Woman"
 	},
 	{
-		"altTitles": [
-			"AZUCAR"
-		],
+		"altTitles": [],
 		"artist": "litmus*",
 		"data": {
 			"genre": "オンゲキ"
@@ -10702,9 +9944,7 @@
 		"title": "Azucar"
 	},
 	{
-		"altTitles": [
-			"RAINBOWRUSHSTORY"
-		],
+		"altTitles": [],
 		"artist": "いるかアイス feat.ちょこ",
 		"data": {
 			"genre": "チュウマイ"
@@ -10714,9 +9954,7 @@
 		"title": "Rainbow Rush Story"
 	},
 	{
-		"altTitles": [
-			"INVISIBLEFRENZY"
-		],
+		"altTitles": [],
 		"artist": "Kobaryo「WACCA」",
 		"data": {
 			"genre": "VARIETY"
@@ -10726,9 +9964,7 @@
 		"title": "Invisible Frenzy"
 	},
 	{
-		"altTitles": [
-			"KNIGHTRIDER"
-		],
+		"altTitles": [],
 		"artist": "USAO「WACCA」",
 		"data": {
 			"genre": "VARIETY"
@@ -10738,9 +9974,7 @@
 		"title": "Knight Rider"
 	},
 	{
-		"altTitles": [
-			"WITHU"
-		],
+		"altTitles": [],
 		"artist": "t+pazolite & Massive New Krew feat. リリィ(CV:青木志貴)「WACCA」",
 		"data": {
 			"genre": "VARIETY"
@@ -10774,9 +10008,7 @@
 		"title": "夏宵スターマイン"
 	},
 	{
-		"altTitles": [
-			"SNOOZE"
-		],
+		"altTitles": [],
 		"artist": "wotaku feat. SHIKI",
 		"data": {
 			"genre": "niconico"
@@ -10798,9 +10030,7 @@
 		"title": "居並ぶ穀物と溜息まじりの運送屋"
 	},
 	{
-		"altTitles": [
-			"SCYTHEOFDEATH"
-		],
+		"altTitles": [],
 		"artist": "Masahiro “Godspeed” Aoki",
 		"data": {
 			"genre": "チュウマイ"
@@ -10810,9 +10040,7 @@
 		"title": "Scythe of Death"
 	},
 	{
-		"altTitles": [
-			"DEATHSCYTHE"
-		],
+		"altTitles": [],
 		"artist": "SHIKI",
 		"data": {
 			"genre": "チュウマイ"
@@ -10823,7 +10051,7 @@
 	},
 	{
 		"altTitles": [
-			"NATSUYOISUTAMAINMISUMIAOISOROVER"
+			"NATSUYOISUTAMAINMISUMIAOI"
 		],
 		"artist": "曲：本多友紀（Arte Refact）／歌：三角 葵(CV：春野 杏)",
 		"data": {
@@ -10835,7 +10063,7 @@
 	},
 	{
 		"altTitles": [
-			"NATSUYOISUTAMAINAIHARATSUHAKISOROVER"
+			"NATSUYOISUTAMAINAIHARATSUBAKI"
 		],
 		"artist": "曲：本多友紀（Arte Refact）／歌：藍原 椿(CV：橋本 ちなみ)",
 		"data": {
@@ -10847,7 +10075,7 @@
 	},
 	{
 		"altTitles": [
-			"NATSUYOISUTAMAINSAOTOMEAYAKASOROVER"
+			"NATSUYOISUTAMAINSAOTOMEAYAKA"
 		],
 		"artist": "曲：本多友紀（Arte Refact）／歌：早乙女 彩華(CV：中島 唯)",
 		"data": {
@@ -10859,7 +10087,7 @@
 	},
 	{
 		"altTitles": [
-			"NATSUYOISUTAMAINKUSHOUKAETESOROVER"
+			"NATSUYOISUTAMAINKUSHOUKAETE"
 		],
 		"artist": "曲：本多友紀（Arte Refact）／歌：九條 楓(CV：佳村 はるか)",
 		"data": {
@@ -10871,7 +10099,7 @@
 	},
 	{
 		"altTitles": [
-			"NATSUYOISUTAMAINSHINONOMETSUMUKISOROVER"
+			"NATSUYOISUTAMAINSHINONOMETSUMUGI"
 		],
 		"artist": "曲：本多友紀（Arte Refact）／歌：東雲 つむぎ(CV：和泉 風花)",
 		"data": {
@@ -10883,7 +10111,7 @@
 	},
 	{
 		"altTitles": [
-			"ICHIKEKINOTEMAFUSHISAWAYUSUSOROVER"
+			"ICHIGEKINOTEMAFUJISAWAYUZU"
 		],
 		"artist": "曲：ヒゲドライバー／歌：藤沢 柚子(CV：久保田 梨沙)",
 		"data": {
@@ -10895,7 +10123,7 @@
 	},
 	{
 		"altTitles": [
-			"ICHIKEKINOTEMAYUUKIRIKUSOROVER"
+			"ICHIGEKINOTEMAYUUKIRIKU"
 		],
 		"artist": "曲：ヒゲドライバー／歌：結城 莉玖(CV：朝日奈 丸佳)",
 		"data": {
@@ -10907,7 +10135,7 @@
 	},
 	{
 		"altTitles": [
-			"ICHIKEKINOTEMASUSUSHIMAARISUSOROVER"
+			"ICHIGEKINOTEMASUZUSHIMAARISU"
 		],
 		"artist": "曲：ヒゲドライバー／歌：珠洲島 有栖(CV：長縄 まりあ)",
 		"data": {
@@ -10919,7 +10147,7 @@
 	},
 	{
 		"altTitles": [
-			"ICHIKEKINOTEMAHINATACHINATSUSOROVER"
+			"ICHIGEKINOTEMAHINATACHINATSU"
 		],
 		"artist": "曲：ヒゲドライバー／歌：日向 千夏(CV：岡咲 美保)",
 		"data": {
@@ -10942,9 +10170,7 @@
 		"title": "月詠に鳴る"
 	},
 	{
-		"altTitles": [
-			"METEORSNOW"
-		],
+		"altTitles": [],
 		"artist": "あず♪",
 		"data": {
 			"genre": "オンゲキ"
@@ -10978,9 +10204,7 @@
 		"title": "レータイスパークEx"
 	},
 	{
-		"altTitles": [
-			"VIIIBITEXPLORER"
-		],
+		"altTitles": [],
 		"artist": "Lime",
 		"data": {
 			"genre": "チュウマイ"
@@ -10991,7 +10215,7 @@
 	},
 	{
 		"altTitles": [
-			"HOKAHOKAONSENONTOMISUMIAOISOROVER"
+			"HOKAHOKAONSENONTOMISUMIAOI"
 		],
 		"artist": "曲：橘亮祐、篠崎あやと／歌：三角 葵(CV：春野 杏)",
 		"data": {
@@ -11003,7 +10227,7 @@
 	},
 	{
 		"altTitles": [
-			"HOKAHOKAONSENONTOOUSAKAAKANESOROVER"
+			"HOKAHOKAONSENONTOOUSAKAAKANE"
 		],
 		"artist": "曲：橘亮祐、篠崎あやと／歌：逢坂 茜(CV：大空 直美)",
 		"data": {
@@ -11015,7 +10239,7 @@
 	},
 	{
 		"altTitles": [
-			"HOKAHOKAONSENONTOHINATACHINATSUSOROVER"
+			"HOKAHOKAONSENONTOHINATACHINATSU"
 		],
 		"artist": "曲：橘亮祐、篠崎あやと／歌：日向 千夏(CV：岡咲 美保)",
 		"data": {
@@ -11026,9 +10250,7 @@
 		"title": "ぽかぽか温泉音頭 -日向 千夏ソロver.-"
 	},
 	{
-		"altTitles": [
-			"STARLIGHTDISCO"
-		],
+		"altTitles": [],
 		"artist": "loos feat. Meramipop",
 		"data": {
 			"genre": "チュウマイ"
@@ -11038,9 +10260,7 @@
 		"title": "Starlight Disco"
 	},
 	{
-		"altTitles": [
-			"WEGONNAPARTY"
-		],
+		"altTitles": [],
 		"artist": "Cranky",
 		"data": {
 			"genre": "チュウマイ"
@@ -11050,9 +10270,7 @@
 		"title": "We Gonna Party"
 	},
 	{
-		"altTitles": [
-			"FRAGRANCE"
-		],
+		"altTitles": [],
 		"artist": "Tsukasa(Arte Refact)",
 		"data": {
 			"genre": "チュウマイ"
@@ -11062,9 +10280,7 @@
 		"title": "Fragrance"
 	},
 	{
-		"altTitles": [
-			"INTERNETYAMERO"
-		],
+		"altTitles": [],
 		"artist": "Aiobahn feat. KOTOKO",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -11074,9 +10290,7 @@
 		"title": "INTERNET YAMERO"
 	},
 	{
-		"altTitles": [
-			"GOODBYEINNOCENCE"
-		],
+		"altTitles": [],
 		"artist": "She is Legend「ヘブンバーンズレッド」",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -11098,9 +10312,7 @@
 		"title": "天つ風 feat. 夏川陽子"
 	},
 	{
-		"altTitles": [
-			"BUCKSFIZZ"
-		],
+		"altTitles": [],
 		"artist": "わかどり",
 		"data": {
 			"genre": "オンゲキ"
@@ -11110,9 +10322,7 @@
 		"title": "Buck's Fizz"
 	},
 	{
-		"altTitles": [
-			"TRICKYTREAT"
-		],
+		"altTitles": [],
 		"artist": "曲：Kijibato(Dream Monster)／歌：逢坂 茜(CV：大空 直美)、高瀬 梨緒(CV：久保 ユリカ)、柏木 咲姫(CV：石見 舞菜香)",
 		"data": {
 			"genre": "オンゲキ"
@@ -11122,9 +10332,7 @@
 		"title": "Tricky Treat!!!"
 	},
 	{
-		"altTitles": [
-			"RIFFRAIN"
-		],
+		"altTitles": [],
 		"artist": "夏代孝明",
 		"data": {
 			"genre": "チュウマイ"
@@ -11134,9 +10342,7 @@
 		"title": "RIFFRAIN"
 	},
 	{
-		"altTitles": [
-			"STELLARDREAM"
-		],
+		"altTitles": [],
 		"artist": "EmoCosine + Synthion",
 		"data": {
 			"genre": "オンゲキ"
@@ -11146,9 +10352,7 @@
 		"title": "Stellar:Dream"
 	},
 	{
-		"altTitles": [
-			"OUROBOROSTWINSTROKEOFTHEEND"
-		],
+		"altTitles": [],
 		"artist": "Cranky VS MASAKI「グルーヴコースター」",
 		"data": {
 			"genre": "VARIETY"
@@ -11182,9 +10386,7 @@
 		"title": "アルカンシエル"
 	},
 	{
-		"altTitles": [
-			"N3V3RG3TOVER"
-		],
+		"altTitles": [],
 		"artist": "C-Show",
 		"data": {
 			"genre": "チュウマイ"
@@ -11194,9 +10396,7 @@
 		"title": "N3V3R G3T OV3R"
 	},
 	{
-		"altTitles": [
-			"WEREBACK"
-		],
+		"altTitles": [],
 		"artist": "Zekk",
 		"data": {
 			"genre": "チュウマイ"
@@ -11207,7 +10407,7 @@
 	},
 	{
 		"altTitles": [
-			"GEKIGEKIKEKITOUBREAKOUTFUSHISAWAYUSUSOROVER"
+			"GEKIGEKIKEKITOUBREAKOUTFUJISAWAYUZU"
 		],
 		"artist": "曲：Haggy Rock(Dream Monster)／歌：藤沢 柚子(CV：久保田 梨沙)",
 		"data": {
@@ -11219,7 +10419,7 @@
 	},
 	{
 		"altTitles": [
-			"GEKIGEKIKEKITOUBREAKOUTINOHARAKOHOSHISOROVER"
+			"GEKIGEKIKEKITOUBREAKOUTINOHARAKOBOSHI"
 		],
 		"artist": "曲：Haggy Rock(Dream Monster)／歌：井之原 小星(CV：ももの はるな)",
 		"data": {
@@ -11231,7 +10431,7 @@
 	},
 	{
 		"altTitles": [
-			"GEKIGEKIKEKITOUBREAKOUTOUSAKAAKANESOROVER"
+			"GEKIGEKIKEKITOUBREAKOUTOUSAKAAKANE"
 		],
 		"artist": "曲：Haggy Rock(Dream Monster)／歌：逢坂 茜(CV：大空 直美)",
 		"data": {
@@ -11242,9 +10442,7 @@
 		"title": "Geki Geki!! 激闘Break Out!! -逢坂 茜ソロver.-"
 	},
 	{
-		"altTitles": [
-			"APOLLOONOKENAXSWINGREMIX"
-		],
+		"altTitles": [],
 		"artist": "onoken",
 		"data": {
 			"genre": "オンゲキ"
@@ -11254,9 +10452,7 @@
 		"title": "Apollo -onoken AxSwing Remix-"
 	},
 	{
-		"altTitles": [
-			"PROMINENCE"
-		],
+		"altTitles": [],
 		"artist": "曲：下野 隼／歌：皇城 セツナ(CV：八巻 アンナ)、式宮 碧音(CV：髙橋 ミナミ)",
 		"data": {
 			"genre": "オンゲキ"
@@ -11278,9 +10474,7 @@
 		"title": "予感のシグナル"
 	},
 	{
-		"altTitles": [
-			"SAGE"
-		],
+		"altTitles": [],
 		"artist": "かめりあ",
 		"data": {
 			"genre": "チュウマイ"
@@ -11326,9 +10520,7 @@
 		"title": "ステラ"
 	},
 	{
-		"altTitles": [
-			"ELEMENTALETHNIC"
-		],
+		"altTitles": [],
 		"artist": "Yooh",
 		"data": {
 			"genre": "チュウマイ"
@@ -11350,9 +10542,7 @@
 		"title": "つっぱれ！にゃんきー魂"
 	},
 	{
-		"altTitles": [
-			"GAMECHANGER"
-		],
+		"altTitles": [],
 		"artist": "uma vs. ガリガリさむし",
 		"data": {
 			"genre": "オンゲキ"
@@ -11362,9 +10552,7 @@
 		"title": "GAME：CHANGER"
 	},
 	{
-		"altTitles": [
-			"ZITRONECTAR"
-		],
+		"altTitles": [],
 		"artist": "Reku Mochizuki",
 		"data": {
 			"genre": "オンゲキ"
@@ -11399,7 +10587,7 @@
 	},
 	{
 		"altTitles": [
-			"HANKEKITOTSUKEKIBACKTOBACKHOSHISAKIAKARISOROVER"
+			"HANKEKITOTSUKEKIBACKTOBACKHOSHIZAKIAKARI"
 		],
 		"artist": "曲：矢鴇つかさ & 脇眞富（Arte Refact）／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
@@ -11411,7 +10599,7 @@
 	},
 	{
 		"altTitles": [
-			"HANKEKITOTSUKEKIBACKTOBACKTAKASERIOSOROVER"
+			"HANKEKITOTSUKEKIBACKTOBACKTAKASERIO"
 		],
 		"artist": "曲：矢鴇つかさ & 脇眞富（Arte Refact）／歌：高瀬 梨緒(CV：久保 ユリカ)",
 		"data": {
@@ -11434,9 +10622,7 @@
 		"title": "シリウスの輝きのように"
 	},
 	{
-		"altTitles": [
-			"INTERNETOVERDOSE"
-		],
+		"altTitles": [],
 		"artist": "Aiobahn feat. KOTOKO",
 		"data": {
 			"genre": "POPS＆ANIME"
@@ -11458,9 +10644,7 @@
 		"title": "きゅうくらりん"
 	},
 	{
-		"altTitles": [
-			"MEGALOVANIA"
-		],
+		"altTitles": [],
 		"artist": "Toby Fox「UNDERTALE」",
 		"data": {
 			"genre": "VARIETY"
@@ -11470,9 +10654,7 @@
 		"title": "MEGALOVANIA"
 	},
 	{
-		"altTitles": [
-			"GRAYEDOUTANTIFRONT"
-		],
+		"altTitles": [],
 		"artist": "Getty vs. DJ DiA",
 		"data": {
 			"genre": "VARIETY"
@@ -11482,9 +10664,7 @@
 		"title": "Grayed Out-Antifront-"
 	},
 	{
-		"altTitles": [
-			"ANDREVIVETHEMELODY"
-		],
+		"altTitles": [],
 		"artist": "黒魔",
 		"data": {
 			"genre": "オンゲキ"
@@ -11494,9 +10674,7 @@
 		"title": "And Revive The Melody"
 	},
 	{
-		"altTitles": [
-			"DRAMATIC"
-		],
+		"altTitles": [],
 		"artist": "曲：Kijibato／歌：星咲 あかり(CV：赤尾 ひかる)、珠洲島 有栖(CV：長縄 まりあ)、日向 千夏(CV：岡咲 美保)、皇城 セツナ(CV：八巻 アンナ)",
 		"data": {
 			"genre": "オンゲキ"
@@ -11506,9 +10684,7 @@
 		"title": "Dramatic…?"
 	},
 	{
-		"altTitles": [
-			"STEPBYSTEP"
-		],
+		"altTitles": [],
 		"artist": "曲：竹内サティフォ／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
 			"genre": "オンゲキ"
@@ -11530,9 +10706,7 @@
 		"title": "はっぴ～しゅ～てぃんぐすた～"
 	},
 	{
-		"altTitles": [
-			"EVENTHORIZON"
-		],
+		"altTitles": [],
 		"artist": "曲：5u5h1／歌：三角 葵(CV：春野 杏)",
 		"data": {
 			"genre": "オンゲキ"
@@ -11542,9 +10716,7 @@
 		"title": "Event Horizon"
 	},
 	{
-		"altTitles": [
-			"SATORAIANKURU"
-		],
+		"altTitles": [],
 		"artist": "Yuta Imai",
 		"data": {
 			"genre": "オンゲキ"
@@ -11555,7 +10727,7 @@
 	},
 	{
 		"altTitles": [
-			"ONSUTESHIHOSHISAKIAKARISOROVER"
+			"ONSUTESHIHOSHIZAKIAKARI"
 		],
 		"artist": "曲：塩野 海／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
@@ -11567,7 +10739,7 @@
 	},
 	{
 		"altTitles": [
-			"ONSUTESHISHIKIMIYAMAINASOROVER"
+			"ONSUTESHISHIKIMIYAMAINA"
 		],
 		"artist": "曲：塩野 海／歌：式宮 舞菜(CV：牧野 天音)",
 		"data": {
@@ -11579,7 +10751,7 @@
 	},
 	{
 		"altTitles": [
-			"FUROMINENSUSUMERAKISETSUNASOROVER"
+			"FUROMINENSUSUMERAGISETSUNA"
 		],
 		"artist": "曲：下野 隼／歌：皇城 セツナ(CV：八巻 アンナ)",
 		"data": {
@@ -11591,7 +10763,7 @@
 	},
 	{
 		"altTitles": [
-			"FUROMINENSUSHIKIMIYAAONESOROVER"
+			"FUROMINENSUSHIKIMIYAAONE"
 		],
 		"artist": "曲：下野 隼／歌：式宮 碧音(CV：髙橋 ミナミ)",
 		"data": {
@@ -11627,7 +10799,7 @@
 	},
 	{
 		"altTitles": [
-			"TORAMATEIKUHOSHISAKIAKARISOROVER"
+			"DRAMATICHOSHIZAKIAKARI"
 		],
 		"artist": "曲：Kijibato／歌：星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
@@ -11639,7 +10811,7 @@
 	},
 	{
 		"altTitles": [
-			"TORAMATEIKUSUSUSHIMAARISUSOROVER"
+			"DRAMATICSUZUSHIMAARISU"
 		],
 		"artist": "曲：Kijibato／歌：珠洲島 有栖(CV：長縄 まりあ)",
 		"data": {
@@ -11651,7 +10823,7 @@
 	},
 	{
 		"altTitles": [
-			"TORAMATEIKUHINATACHINATSUSOROVER"
+			"DRAMATICHINATACHINATSU"
 		],
 		"artist": "曲：Kijibato／歌：日向 千夏(CV：岡咲 美保)",
 		"data": {
@@ -11663,7 +10835,7 @@
 	},
 	{
 		"altTitles": [
-			"TORAMATEIKUSUMERAKISETSUNASOROVER"
+			"DRAMATICSUMERAGISETSUNA"
 		],
 		"artist": "曲：Kijibato／歌：皇城 セツナ(CV：八巻 アンナ)",
 		"data": {

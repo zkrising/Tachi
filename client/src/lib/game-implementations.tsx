@@ -788,7 +788,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				),
 			],
 			// TODO: this should be sorted by %
-			["Platinum Score", "Score", NumericSOV((x) => x.scoreData.optional.platScore ?? 0)],
+			["Platinum Score", "P-Score", NumericSOV((x) => x.scoreData.optional.platScore ?? 0)],
 			["Judgements", "Hits", NumericSOV((x) => x.scoreData.score)],
 			[
 				"Lamp",

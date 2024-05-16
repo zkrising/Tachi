@@ -112,8 +112,12 @@ export async function PerformScoreImport(
 	);
 
 	if (!initRes.success) {
-		logger.error(`Failed to perform score import on ${url}.`, { body });
-		throw new Error(`Failed to perform import on ${url}.`);
+		if (initRes.statusCode >= 500) {
+			logger.error(`Failed to perform score import on ${url}.`, { body });
+			throw new Error(`Failed to perform import on ${url}.`);
+		} else {
+			return initRes.description;
+		}
 	}
 
 	// this server does not defer imports to a scorequeue

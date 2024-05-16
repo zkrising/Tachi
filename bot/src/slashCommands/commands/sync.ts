@@ -51,6 +51,10 @@ const command: SlashCommand = {
 			interaction
 		);
 
+		if (typeof importDoc === "string") {
+			return importDoc;
+		}
+
 		return CreateImportEmbed(importDoc);
 	},
 };

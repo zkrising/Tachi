@@ -70,7 +70,7 @@ interface MusicXML {
 }
 
 function calculateLevel(data: Pick<NotesData, "level" | "levelDecimal">) {
-	return `${data.level}${data.levelDecimal >= 6 && data.level >= 6 ? "+" : ""}`;
+	return `${data.level}${data.levelDecimal >= 6 && data.level >= 7 ? "+" : ""}`;
 }
 
 function calculateLevelNum(data: Pick<NotesData, "level" | "levelDecimal">) {

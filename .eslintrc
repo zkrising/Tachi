@@ -6,6 +6,12 @@
 		"plugin:cadence/recommended"
 	],
 	"root": true,
+	"ignorePatterns": [
+		"node_modules",
+		"js",
+		"package.json",
+		"*.d.ts"
+	],
 	"rules": {},
 	"overrides": [
 		{

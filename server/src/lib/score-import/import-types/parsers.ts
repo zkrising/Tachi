@@ -3,6 +3,7 @@ import { ParseEagSDVX } from "./api/eag-sdvx/parser";
 import { ParseFloIIDX } from "./api/flo-iidx/parser";
 import { ParseFloSDVX } from "./api/flo-sdvx/parser";
 import { ParseMinSDVX } from "./api/min-sdvx/parser";
+import ParseMytChunithm from "./api/myt-chunithm/parser";
 import ParseMytOngeki from "./api/myt-ongeki/parser";
 import ParseMytWACCA from "./api/myt-wacca/parser";
 import {
@@ -66,6 +67,7 @@ export const Parsers = {
 	"api/cg-gan-popn": ParseCGGanPopn,
 	"api/cg-gan-museca": ParseCGGanMuseca,
 
+	"api/myt-chunithm": ParseMytChunithm,
 	"api/myt-ongeki": ParseMytOngeki,
 	"api/myt-wacca": ParseMytWACCA,
 

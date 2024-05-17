@@ -212,15 +212,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				}
 				key="Aqua/ARTEMiS Exporter"
 			/>,
-			<ImportInfoCard
-				name="MYT Exporter"
-				href="chunithm-myt-exporter"
-				desc="Export your scores from MYT."
-				moreInfo={
-					<>This is an userscript that exports scores from the MYT web interface.</>
-				}
-				key="MYT Exporter"
-			/>,
+			<ImportTypeInfoCard key="api/myt-chunithm" importType="api/myt-chunithm" />,
 			<ImportInfoCard
 				name="Chunitachi"
 				href="chunitachi"
@@ -527,14 +519,14 @@ function ImportTypeInfoCard({
 					key="cg-nag-museca"
 				/>
 			);
-		case "api/myt-wacca":
+		case "api/myt-chunithm":
 			return (
 				<ImportInfoCard
 					name="MYT Integration"
-					href="myt-wacca"
-					desc="Pull your WACCA scores from the MYT Network."
+					href="myt-chunithm"
+					desc="Pull your Chunithm scores from the MYT Network."
 					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
-					key="myt-wacca"
+					key="myt-chunithm"
 				/>
 			);
 		case "api/myt-ongeki":
@@ -545,6 +537,16 @@ function ImportTypeInfoCard({
 					desc="Pull your Ongeki scores from the MYT Network."
 					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 					key="myt-ongeki"
+				/>
+			);
+		case "api/myt-wacca":
+			return (
+				<ImportInfoCard
+					name="MYT Integration"
+					href="myt-wacca"
+					desc="Pull your WACCA scores from the MYT Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
+					key="myt-wacca"
 				/>
 			);
 		case "file/eamusement-iidx-csv":

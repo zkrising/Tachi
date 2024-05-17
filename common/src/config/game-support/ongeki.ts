@@ -45,8 +45,7 @@ export const ONGEKI_SINGLE_CONF = {
 			type: "ENUM",
 			values: ["NONE", "FULL BELL"],
 			minimumRelevantValue: "NONE",
-			description:
-				"Tracks whether all bells in the chart have been collected.",
+			description: "Tracks whether all bells in the chart have been collected.",
 		},
 	},
 

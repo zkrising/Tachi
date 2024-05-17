@@ -15,7 +15,7 @@ import type { integer } from "tachi-common";
 import type { EmptyObject } from "utils/types";
 
 async function* getObjectsFromGrpcIterable(
-	iterable: AsyncIterable<GetPlaylogStreamItem>,
+	iterable: AsyncIterable<GetPlaylogStreamItem>
 ): AsyncIterable<MytChunithmScore> {
 	for await (const item of iterable) {
 		yield item.toObject();
@@ -24,7 +24,7 @@ async function* getObjectsFromGrpcIterable(
 
 export default async function ParseMytChunithm(
 	userID: integer,
-	logger: KtLogger,
+	logger: KtLogger
 ): Promise<ParserFunctionReturns<MytChunithmScore, EmptyObject>> {
 	const profileApiId = await FetchMytTitleAPIID(userID, "chunithm", logger);
 	const endpoint = GetMytHostname();
@@ -36,16 +36,12 @@ export default async function ParseMytChunithm(
 	let iterable;
 
 	try {
-		const stream = StreamRPCAsAsync(
-			client.getPlaylog.bind(client),
-			request,
-			logger,
-		);
+		const stream = StreamRPCAsAsync(client.getPlaylog.bind(client), request, logger);
 
 		iterable = getObjectsFromGrpcIterable(stream);
 	} catch (err) {
 		logger.error(
-			`Unexpected MYT error while streaming Chunithm playlog items for userID ${userID}: ${err}`,
+			`Unexpected MYT error while streaming Chunithm playlog items for userID ${userID}: ${err}`
 		);
 
 		throw new ScoreImportFatalError(500, `Failed to get scores from MYT.`);

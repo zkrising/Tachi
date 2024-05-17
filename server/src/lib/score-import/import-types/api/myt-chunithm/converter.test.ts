@@ -11,11 +11,8 @@ import {
 import t from "tap";
 import { dmf } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
+import { TestingChunithmChartConverter, TestingChunithmSongConverter } from "test-utils/test-data";
 import type { MytChunithmScore } from "./types";
-import {
-	TestingChunithmChartConverter,
-	TestingChunithmSongConverter,
-} from "test-utils/test-data";
 
 const logger = CreateLogCtx(__filename);
 
@@ -47,12 +44,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 	t.beforeEach(ResetDBState);
 
 	function convert(modifier: any = {}) {
-		return ConvertAPIMytChunithm(
-			dmf(parsedScore, modifier),
-			{},
-			"api/myt-chunithm",
-			logger,
-		);
+		return ConvertAPIMytChunithm(dmf(parsedScore, modifier), {}, "api/myt-chunithm", logger);
 	}
 
 	t.test("Should return a dryScore on valid input.", async (t) => {
@@ -97,10 +89,10 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 				}),
 			{
 				message: /WORLD'S END charts are not supported/u,
-			},
+			}
 		);
 		t.end();
-	})
+	});
 
 	t.test("Should reject unspecified difficulty", (t) => {
 		t.rejects(
@@ -112,7 +104,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 				}),
 			{
 				message: /Can't process a score with unspecified difficulty/u,
-			},
+			}
 		);
 		t.end();
 	});
@@ -121,14 +113,13 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 		t.hasStrict(
 			await convert({
 				info: {
-					comboStatus:
-						ChunithmComboStatus.CHUNITHM_COMBO_STATUS_ALL_JUSTICE_CRITICAL,
+					comboStatus: ChunithmComboStatus.CHUNITHM_COMBO_STATUS_ALL_JUSTICE_CRITICAL,
 					clearStatus: ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_FAILED,
 				},
 			}),
 			{
 				dryScore: { scoreData: { lamp: "ALL JUSTICE CRITICAL" } },
-			},
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -139,7 +130,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 			}),
 			{
 				dryScore: { scoreData: { lamp: "ALL JUSTICE" } },
-			},
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -150,7 +141,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 			}),
 			{
 				dryScore: { scoreData: { lamp: "FULL COMBO" } },
-			},
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -161,7 +152,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 			}),
 			{
 				dryScore: { scoreData: { lamp: "CLEAR" } },
-			},
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -172,7 +163,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 			}),
 			{
 				dryScore: { scoreData: { lamp: "CLEAR" } },
-			},
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -183,7 +174,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 			}),
 			{
 				dryScore: { scoreData: { lamp: "CLEAR" } },
-			},
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -194,7 +185,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 			}),
 			{
 				dryScore: { scoreData: { lamp: "CLEAR" } },
-			},
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -205,7 +196,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 			}),
 			{
 				dryScore: { scoreData: { lamp: "CLEAR" } },
-			},
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -216,7 +207,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 			}),
 			{
 				dryScore: { scoreData: { lamp: "FAILED" } },
-			},
+			}
 		);
 		t.end();
 	});
@@ -230,9 +221,8 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 					},
 				}),
 			{
-				message:
-					/Can't process a score with an invalid combo status and\/or clear status/u,
-			},
+				message: /Can't process a score with an invalid combo status and\/or clear status/u,
+			}
 		);
 		t.end();
 	});

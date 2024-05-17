@@ -25,7 +25,10 @@ const DIFFICULTIES = {
 	[OngekiLevel.ONGEKI_LEVEL_LUNATIC]: "LUNATIC",
 };
 
-const getNoteLamp = (comboStatus: number, clearStatus: number) => {
+function getNoteLamp(
+	comboStatus: number,
+	clearStatus: number
+): ScoreData<"chunithm:Single">["lamp"] | undefined {
 	if (
 		comboStatus === OngekiComboStatus.ONGEKI_COMBO_STATUS_UNSPECIFIED ||
 		clearStatus === OngekiClearStatus.ONGEKI_CLEAR_STATUS_UNSPECIFIED
@@ -53,7 +56,7 @@ const getNoteLamp = (comboStatus: number, clearStatus: number) => {
 	}
 
 	return undefined;
-};
+}
 
 const ConvertAPIMytOngeki: ConverterFunction<MytOngekiScore, EmptyObject> = async (
 	data,

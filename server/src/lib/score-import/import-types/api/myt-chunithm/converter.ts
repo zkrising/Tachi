@@ -15,27 +15,32 @@ import { FindSongOnID } from "utils/queries/songs";
 import type { ConverterFunction } from "../../common/types";
 import type { MytChunithmScore } from "./types";
 import type { DryScore } from "lib/score-import/framework/common/types";
+import type { ScoreData } from "tachi-common";
 import type { EmptyObject } from "utils/types";
 
-const getLamp = (comboStatus: number, clearStatus: number) => {
+function getLamp(
+	comboStatus: number,
+	clearStatus: number
+): ScoreData<"chunithm:Single">["lamp"] | undefined {
 	if (
 		comboStatus === ChunithmComboStatus.CHUNITHM_COMBO_STATUS_UNSPECIFIED ||
 		clearStatus === ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_UNSPECIFIED
 	) {
 		return undefined;
 	}
-	if (
-		comboStatus ===
-		ChunithmComboStatus.CHUNITHM_COMBO_STATUS_ALL_JUSTICE_CRITICAL
-	) {
+
+	if (comboStatus === ChunithmComboStatus.CHUNITHM_COMBO_STATUS_ALL_JUSTICE_CRITICAL) {
 		return "ALL JUSTICE CRITICAL";
 	}
+
 	if (comboStatus === ChunithmComboStatus.CHUNITHM_COMBO_STATUS_ALL_JUSTICE) {
 		return "ALL JUSTICE";
 	}
+
 	if (comboStatus === ChunithmComboStatus.CHUNITHM_COMBO_STATUS_FULL_COMBO) {
 		return "FULL COMBO";
 	}
+
 	if (
 		clearStatus === ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_CLEAR ||
 		clearStatus === ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_HARD ||
@@ -45,23 +50,17 @@ const getLamp = (comboStatus: number, clearStatus: number) => {
 	) {
 		return "CLEAR";
 	}
-	return "FAILED";
-};
 
-const DIFFICULTIES = {
-	[ChunithmLevel.CHUNITHM_LEVEL_UNSPECIFIED]: undefined,
-	[ChunithmLevel.CHUNITHM_LEVEL_BASIC]: "BASIC",
-	[ChunithmLevel.CHUNITHM_LEVEL_ADVANCED]: "ADVANCED",
-	[ChunithmLevel.CHUNITHM_LEVEL_EXPERT]: "EXPERT",
-	[ChunithmLevel.CHUNITHM_LEVEL_MASTER]: "MASTER",
 	[ChunithmLevel.CHUNITHM_LEVEL_ULTIMA]: "ULTIMA",
 	[ChunithmLevel.CHUNITHM_LEVEL_WORLDS_END]: "WORLD'S END",
 };
 
-const ConvertAPIMytChunithm: ConverterFunction<
-	MytChunithmScore,
-	EmptyObject
-> = async (data, _context, importType, logger) => {
+const ConvertAPIMytChunithm: ConverterFunction<MytChunithmScore, EmptyObject> = async (
+	data,
+	_context,
+	importType,
+	logger
+) => {
 	if (data.info === undefined || data.judge === undefined) {
 		throw new InvalidScoreFailure("Failed to receive score data from MYT API");
 	}
@@ -70,46 +69,36 @@ const ConvertAPIMytChunithm: ConverterFunction<
 
 	if (difficulty === undefined) {
 		throw new InvalidScoreFailure(
-			`Can't process a score with unspecified difficulty (musicId ${data.info.musicId})`,
+			`Can't process a score with unspecified difficulty (musicId ${data.info.musicId})`
 		);
 	} else if (difficulty === "WORLD'S END") {
-		throw new SkipScoreFailure("WORLD'S END charts are not supported")
+		throw new SkipScoreFailure("WORLD'S END charts are not supported");
 	}
 
 	const lamp = getLamp(data.info.comboStatus, data.info.clearStatus);
 
 	if (lamp === undefined) {
 		throw new InvalidScoreFailure(
-			"Can't process a score with an invalid combo status and/or clear status",
+			"Can't process a score with an invalid combo status and/or clear status"
 		);
 	}
 
-	const chart = await FindChartOnInGameID(
-		"chunithm",
-		data.info.musicId,
-		"Single",
-		difficulty,
-	);
+	const chart = await FindChartOnInGameID("chunithm", data.info.musicId, "Single", difficulty);
 
 	if (chart === null) {
 		throw new SongOrChartNotFoundFailure(
 			`Can't find chart with id ${data.info.musicId} and difficulty ${difficulty}`,
 			importType,
 			data,
-			{},
+			{}
 		);
 	}
 
 	const song = await FindSongOnID("chunithm", chart.songID);
 
 	if (song === null) {
-		logger.severe(
-			`Song/chart desync: ${chart.songID} for chart ${chart.chartID}`,
-			{ chart },
-		);
-		throw new InternalFailure(
-			`Song/chart desync: ${chart.songID} for chart ${chart.chartID}`,
-		);
+		logger.severe(`Song/chart desync: ${chart.songID} for chart ${chart.chartID}`, { chart });
+		throw new InternalFailure(`Song/chart desync: ${chart.songID} for chart ${chart.chartID}`);
 	}
 
 	const dryScore: DryScore<"chunithm:Single"> = {

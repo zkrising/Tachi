@@ -14,6 +14,7 @@ import { FindSongOnID } from "utils/queries/songs";
 import type { ConverterFunction } from "../../common/types";
 import type { MytOngekiScore } from "./types";
 import type { DryScore } from "lib/score-import/framework/common/types";
+import type { ScoreData } from "tachi-common";
 import type { EmptyObject } from "utils/types";
 
 const DIFFICULTIES = {
@@ -28,7 +29,7 @@ const DIFFICULTIES = {
 function getNoteLamp(
 	comboStatus: number,
 	clearStatus: number
-): ScoreData<"chunithm:Single">["lamp"] | undefined {
+): ScoreData<"ongeki:Single">["noteLamp"] | undefined {
 	if (
 		comboStatus === OngekiComboStatus.ONGEKI_COMBO_STATUS_UNSPECIFIED ||
 		clearStatus === OngekiClearStatus.ONGEKI_CLEAR_STATUS_UNSPECIFIED

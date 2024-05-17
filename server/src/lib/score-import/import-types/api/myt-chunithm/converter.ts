@@ -51,6 +51,15 @@ function getLamp(
 		return "CLEAR";
 	}
 
+	return "FAILED";
+}
+
+const DIFFICULTIES = {
+	[ChunithmLevel.CHUNITHM_LEVEL_UNSPECIFIED]: undefined,
+	[ChunithmLevel.CHUNITHM_LEVEL_BASIC]: "BASIC",
+	[ChunithmLevel.CHUNITHM_LEVEL_ADVANCED]: "ADVANCED",
+	[ChunithmLevel.CHUNITHM_LEVEL_EXPERT]: "EXPERT",
+	[ChunithmLevel.CHUNITHM_LEVEL_MASTER]: "MASTER",
 	[ChunithmLevel.CHUNITHM_LEVEL_ULTIMA]: "ULTIMA",
 	[ChunithmLevel.CHUNITHM_LEVEL_WORLDS_END]: "WORLD'S END",
 };

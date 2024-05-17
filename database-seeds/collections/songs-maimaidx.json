@@ -15266,6 +15266,17 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "A-One",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "オンゲキ＆CHUNITHM"
+		},
+		"id": 1207,
+		"searchTerms": [ "Music prayer" ],
+		"title": "MUSIC PЯAYER"
+	},
+	{
+		"altTitles": [],
 		"artist": "ゆこぴ",
 		"data": {
 			"displayVersion": "BUDDiES PLUS",
@@ -15387,17 +15398,6 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "A-One",
-		"data": {
-			"displayVersion": "BUDDiES PLUS",
-			"genre": "オンゲキ＆CHUNITHM"
-		},
-		"id": 1218,
-		"searchTerms": [ "Music prayer" ],
-		"title": "MUSIC PЯAYER"
-	},
-	{
-		"altTitles": [],
 		"artist": "MisoilePunch♪",
 		"data": {
 			"displayVersion": "BUDDiES PLUS",
@@ -15448,7 +15448,7 @@
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1223,
-		"searchTerms": ["carnival happy"],
+		"searchTerms": [ "carnival happy" ],
 		"title": "カーニバルハッピー"
 	},
 	{
@@ -15470,7 +15470,7 @@
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1225,
-		"searchTerms": ["cyber thunder cider"],
+		"searchTerms": [ "cyber thunder cider" ],
 		"title": "サイバーサンダーサイダー"
 	},
 	{
@@ -15481,7 +15481,7 @@
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1226,
-		"searchTerms": ["o kusuri nonde neyou"],
+		"searchTerms": [ "o kusuri nonde neyou" ],
 		"title": "おくすり飲んで寝よう"
 	},
 	{
@@ -15492,7 +15492,7 @@
 			"genre": "maimai"
 		},
 		"id": 1227,
-		"searchTerms": ["cider party"],
+		"searchTerms": [ "cider party" ],
 		"title": "Cider P@rty"
 	},
 	{
@@ -15503,7 +15503,7 @@
 			"genre": "maimai"
 		},
 		"id": 1228,
-		"searchTerms": ["soumetsu"],
+		"searchTerms": [ "soumetsu" ],
 		"title": "勦滅"
 	},
 	{

@@ -32,6 +32,11 @@ jobs:
       - name: Install dependencies
         run: pnpm --filter tachi-common... --filter . install
 
+      - name: Run Linter
+        run: pnpm --filter tachi-common lint
+        env:
+          NODE_ENV: "test"
+
       - name: Run Tests
         run: pnpm --filter tachi-common test
         env:

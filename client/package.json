@@ -6,7 +6,8 @@
 	"scripts": {
 		"start": "vite",
 		"build": "vite build",
-		"lint": "eslint src --fix",
+		"lint": "eslint src",
+		"lint-fix": "eslint src --fix",
 		"preview": "vite build && vite preview",
 		"typecheck": "tsc -b"
 	},

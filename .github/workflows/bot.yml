@@ -54,4 +54,4 @@ jobs:
       - name: Deploy updates
         run: ssh ci@"$TACHI_HOST" /home/ci/tachi-devops/scripts/deploy_bot.sh
         env:
-            TACHI_HOST: ${{secrets.TACHI_HOST}}
+          TACHI_HOST: ${{secrets.TACHI_HOST}}

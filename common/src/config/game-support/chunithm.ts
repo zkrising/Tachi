@@ -140,6 +140,8 @@ export const CHUNITHM_SINGLE_CONF = {
 
 	versions: {
 		paradiselost: "PARADISE LOST",
+		new: "NEW",
+		newplus: "NEW PLUS",
 		sun: "SUN",
 		"sun-intl": "SUN International",
 		"sun-omni": "SUN Omnimix",

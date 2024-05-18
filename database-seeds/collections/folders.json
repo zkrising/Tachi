@@ -8622,6 +8622,32 @@
 	{
 		"data": {
 			"difficulty": "ADVANCED",
+			"versions": "newplus"
+		},
+		"folderID": "Fbacc32764c26df97a99a3f18b49d285c3a5498038d2242639e337ce079d65a70",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ADVANCED (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "ADVANCED",
+			"versions": "new"
+		},
+		"folderID": "F7031914a25f787b3d14fe61beeca7d650216c0729f83af43026187e119cccaca",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ADVANCED (NEW)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "ADVANCED",
 			"versions": "sun-omni"
 		},
 		"folderID": "F48a64dd4f9898b515f9138d069e35c2108d773546e818f6d363653969248b127",
@@ -8721,6 +8747,32 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "BASIC (LUMINOUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "BASIC",
+			"versions": "newplus"
+		},
+		"folderID": "F5900484f6e911861f4a5e8d67c4a18f765f49eaec2ea13451dd796815b1b4849",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "BASIC (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "BASIC",
+			"versions": "new"
+		},
+		"folderID": "Fe568e9370c88cdeab88f42a0cfab2ebe8a06fd24c0046d7c0b753e4582253740",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "BASIC (NEW)",
 		"type": "charts"
 	},
 	{
@@ -8830,6 +8882,32 @@
 	{
 		"data": {
 			"difficulty": "EXPERT",
+			"versions": "newplus"
+		},
+		"folderID": "F030f9e8f91f34439558fee25dae5704af704cfc453fab64ec17df348a12debaa",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "EXPERT (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "EXPERT",
+			"versions": "new"
+		},
+		"folderID": "Feab929b5150b1089d428178fbd4a1eb1d677ad8e1c7a922579ef7da4077ed4e5",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "EXPERT (NEW)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "EXPERT",
 			"versions": "sun-omni"
 		},
 		"folderID": "Fd5c4e8caf273eceb4eb202902846ac6a1dd00154c646b82f83c0034467b1f764",
@@ -8929,6 +9007,32 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 1 (LUMINOUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
+			"versions": "newplus"
+		},
+		"folderID": "F8119e2745ef35932b68b1b4683d36006c5bf3ce5392f8e007f2b2ec4e088e7ac",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
+			"versions": "new"
+		},
+		"folderID": "Faae366d77f525e3b8b4281d68b75cdfa084740189be666f270d5e91e62e4478d",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (NEW)",
 		"type": "charts"
 	},
 	{
@@ -9168,6 +9272,32 @@
 	{
 		"data": {
 			"level": "10+",
+			"versions": "newplus"
+		},
+		"folderID": "F1cf51f3c6cd9aa844154e499b52799c35f5e3107f8ba27c4b7e7ef1c0f7c16e3",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10+ (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10+",
+			"versions": "new"
+		},
+		"folderID": "F6a4008a2435693d9a602ce0567474e4d8e0fbd2296a475bddc59273a297711b9",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10+ (NEW)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10+",
 			"versions": "paradiselost"
 		},
 		"folderID": "Fd58eab69698d06c996784cb22440646e1183e2e74d6b7b9d5f9128a875966dc6",
@@ -9397,6 +9527,32 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 11+ (LUMINOUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11+",
+			"versions": "newplus"
+		},
+		"folderID": "F20a04e95f1671afb3c778d6cebba88febaf01a87f1a18d4a5857298d84483660",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11+ (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11+",
+			"versions": "new"
+		},
+		"folderID": "F304021d9cd7cb629eaffde14209f612e49b79bfed16011ec74882558b65c223a",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11+ (NEW)",
 		"type": "charts"
 	},
 	{
@@ -9636,6 +9792,32 @@
 	{
 		"data": {
 			"level": "12+",
+			"versions": "newplus"
+		},
+		"folderID": "Fecd00e18b8c34e3808d221cd104434fdaef7748e1e99ff4cce8199d7bef2cabd",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12+ (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12+",
+			"versions": "new"
+		},
+		"folderID": "F5a3d8f288c3b1f69ae03fbfaa9e63a58ab99b93e96a7a464f5b035765fe4085b",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12+ (NEW)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12+",
 			"versions": "paradiselost"
 		},
 		"folderID": "F40ef585b0f469755f094caa3a8dd376bb6f75ef40d1f80acaa001ee573cb446c",
@@ -9865,6 +10047,32 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 13+ (LUMINOUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13+",
+			"versions": "newplus"
+		},
+		"folderID": "Fcedf902212bfa0b9fa5e0687d2e6f4a0657554de42db7430368069851f030072",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13+ (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13+",
+			"versions": "new"
+		},
+		"folderID": "F74940aa991fa7099b35ad512d79fa9c000cd3468d89ee80ca293be273672c5f3",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13+ (NEW)",
 		"type": "charts"
 	},
 	{
@@ -10104,6 +10312,32 @@
 	{
 		"data": {
 			"level": "14+",
+			"versions": "newplus"
+		},
+		"folderID": "F17a6a205675610e2c287c113342bece8e5c28f2878800a7732d5f51ccabb5e2c",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14+ (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14+",
+			"versions": "new"
+		},
+		"folderID": "F5a7a32fa22ae341c55f5a468d9ac021119deff1dded20ba8c539d424fe408774",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14+ (NEW)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14+",
 			"versions": "paradiselost"
 		},
 		"folderID": "Fb138e45b7b5d571c85c7ae6393831d26970e8fbd074ba87738b3e452bef6316e",
@@ -10221,6 +10455,32 @@
 	{
 		"data": {
 			"level": "15",
+			"versions": "newplus"
+		},
+		"folderID": "F5f260a335a1d003fc9be961463c6bc5ca1b841daeb6cb36b70bf21490c565cfb",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15 (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
+			"versions": "new"
+		},
+		"folderID": "F4ae4ff28f75b1bc33c7f7c2d3c730bff99ba0e7299505b89ad927fb92b25d1e1",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15 (NEW)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
 			"versions": "sun-omni"
 		},
 		"folderID": "F5e5636161b64bf379b8dcc64359a8fca187456d2e26e12d03a026aa4a50a4cdc",
@@ -10320,6 +10580,32 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 2 (LUMINOUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "newplus"
+		},
+		"folderID": "F11b28ad6bd1dd7871f5302f94c4c19983948ac4008615ccbefe5de760c9a5511",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "new"
+		},
+		"folderID": "Fd6040b233f17fce9da86190238b05ef5b296f93eeff64fe62983d44d09dfe216",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (NEW)",
 		"type": "charts"
 	},
 	{
@@ -10442,6 +10728,32 @@
 	{
 		"data": {
 			"level": "3",
+			"versions": "newplus"
+		},
+		"folderID": "Ffdc92de07754c065e578e5f88c94fd5d0ae3d13c177d2b1e499d75dfe8909176",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "new"
+		},
+		"folderID": "F1bcd95f170d25ff230693d03e365db1b46507bd2bd421d47abfbc7e298004e4a",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (NEW)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
 			"versions": "paradiselost"
 		},
 		"folderID": "F897a7ed2429917a5d1f87913eeb36f08e4e57919fd9b1336e319b7b836fc7b60",
@@ -10554,6 +10866,32 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 4 (LUMINOUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "newplus"
+		},
+		"folderID": "F5806ad4b353ef6571ee7e899ddf8d1a68d1bb9cbadc4423f60524a945a2f0bec",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "new"
+		},
+		"folderID": "F475898799639ed5e94eae173e52064b4ca194186e4152ee50ed8bca78b823e6b",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (NEW)",
 		"type": "charts"
 	},
 	{
@@ -10676,6 +11014,32 @@
 	{
 		"data": {
 			"level": "5",
+			"versions": "newplus"
+		},
+		"folderID": "Fb9543aef95418b601353953ccca0f809a0b8e05c8f63cd80987a0315de0ecb27",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "new"
+		},
+		"folderID": "Fa25a21341c7a05955bed151f74b3f7cc525f6b7a1b94ae6b9127d1689e35654c",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (NEW)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
 			"versions": "paradiselost"
 		},
 		"folderID": "Fe8a7e436f0da7a3ac2529476706192f82bdb96e15491ed2cdde6860dc1019018",
@@ -10788,6 +11152,32 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 6 (LUMINOUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "newplus"
+		},
+		"folderID": "F0f9cab08b085ea4690834ddb8939f3d745e0119f0f2141d7ca0e147c209b1a34",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "new"
+		},
+		"folderID": "Fe2bebbe2c2e58675d5998c097758ca66b293440d49da791729adc40bdf814b07",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (NEW)",
 		"type": "charts"
 	},
 	{
@@ -11027,6 +11417,32 @@
 	{
 		"data": {
 			"level": "7+",
+			"versions": "newplus"
+		},
+		"folderID": "Fd4bbcbe48640317cfb159e45e23aef5d4a811194c672d4c77f163f2952a643cc",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7+ (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7+",
+			"versions": "new"
+		},
+		"folderID": "Ff2d439d0d1aaedb6a960bf9c706b04e9cab6cbb1d1ca49971c4e73dcbd81ebbd",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7+ (NEW)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7+",
 			"versions": "paradiselost"
 		},
 		"folderID": "Fe02e4f35e878508c5b1dcb24e7c13e74f840ccd8762341d8348c7a23550d6fa3",
@@ -11256,6 +11672,32 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 8+ (LUMINOUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8+",
+			"versions": "newplus"
+		},
+		"folderID": "F6077441a3b9caf7bb7ed913be885230747370a87ea82ad9cabfea4c9b3c867be",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8+ (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8+",
+			"versions": "new"
+		},
+		"folderID": "F9f73c3305de89387c1f06929304a412a0714ea523ef39e4178e748b2b16fa7ad",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8+ (NEW)",
 		"type": "charts"
 	},
 	{
@@ -11495,6 +11937,32 @@
 	{
 		"data": {
 			"level": "9+",
+			"versions": "newplus"
+		},
+		"folderID": "Fe0cb7257cce8dcad60c1a88eb0423a6e6656486a146f76686fed16988be0a8b3",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9+ (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9+",
+			"versions": "new"
+		},
+		"folderID": "Fb5f1f783adbd2911a82c263483696a7eee0c70c9773fa9f7a0709784d5b0b51f",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9+ (NEW)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9+",
 			"versions": "paradiselost"
 		},
 		"folderID": "Ff3a04b25e1100d17e5b030ab275534ce950b8afab1f0eca5e96eb99b837c24eb",
@@ -11612,6 +12080,32 @@
 	{
 		"data": {
 			"difficulty": "MASTER",
+			"versions": "newplus"
+		},
+		"folderID": "F6a8bc92d71dfc73ea5da3d7c5744137b6a1bc4090186997161d66c278a2c16de",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "MASTER (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "MASTER",
+			"versions": "new"
+		},
+		"folderID": "F0e6859f484a3abdd40f9f4ecf9366c7807b8ec83144f02bd117742a11ad9e392",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "MASTER (NEW)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "MASTER",
 			"versions": "sun-omni"
 		},
 		"folderID": "F68951200549b9cd90b5f300bb1c2e8c8e69072cfd7485ae5e7b8c6b381807ce5",
@@ -11711,6 +12205,32 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "ULTIMA (LUMINOUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "ULTIMA",
+			"versions": "newplus"
+		},
+		"folderID": "Fd6a94db3cac613d154a826fb210ed7de035d9ae77814a46f852f091adb474828",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ULTIMA (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "ULTIMA",
+			"versions": "new"
+		},
+		"folderID": "F6523178bc12cf2ea88bd4d1d00cc00d94165d4fb4d3170d5cd826f227fe12c7a",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ULTIMA (NEW)",
 		"type": "charts"
 	},
 	{

@@ -945,6 +945,90 @@
 	},
 	{
 		"default": false,
+		"description": "Levels for CHUNITHM in NEW PLUS.",
+		"folders": [
+			"F8119e2745ef35932b68b1b4683d36006c5bf3ce5392f8e007f2b2ec4e088e7ac",
+			"F11b28ad6bd1dd7871f5302f94c4c19983948ac4008615ccbefe5de760c9a5511",
+			"Ffdc92de07754c065e578e5f88c94fd5d0ae3d13c177d2b1e499d75dfe8909176",
+			"F5806ad4b353ef6571ee7e899ddf8d1a68d1bb9cbadc4423f60524a945a2f0bec",
+			"Fb9543aef95418b601353953ccca0f809a0b8e05c8f63cd80987a0315de0ecb27",
+			"F0f9cab08b085ea4690834ddb8939f3d745e0119f0f2141d7ca0e147c209b1a34",
+			"Fd4bbcbe48640317cfb159e45e23aef5d4a811194c672d4c77f163f2952a643cc",
+			"F6077441a3b9caf7bb7ed913be885230747370a87ea82ad9cabfea4c9b3c867be",
+			"Fe0cb7257cce8dcad60c1a88eb0423a6e6656486a146f76686fed16988be0a8b3",
+			"F1cf51f3c6cd9aa844154e499b52799c35f5e3107f8ba27c4b7e7ef1c0f7c16e3",
+			"F20a04e95f1671afb3c778d6cebba88febaf01a87f1a18d4a5857298d84483660",
+			"Fecd00e18b8c34e3808d221cd104434fdaef7748e1e99ff4cce8199d7bef2cabd",
+			"Fcedf902212bfa0b9fa5e0687d2e6f4a0657554de42db7430368069851f030072",
+			"F17a6a205675610e2c287c113342bece8e5c28f2878800a7732d5f51ccabb5e2c",
+			"F5f260a335a1d003fc9be961463c6bc5ca1b841daeb6cb36b70bf21490c565cfb"
+		],
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "chunithm-Single-newplus-levels",
+		"title": "CHUNITHM (NEW PLUS)"
+	},
+	{
+		"default": false,
+		"description": "Difficulties for CHUNITHM in NEW PLUS.",
+		"folders": [
+			"F5900484f6e911861f4a5e8d67c4a18f765f49eaec2ea13451dd796815b1b4849",
+			"Fbacc32764c26df97a99a3f18b49d285c3a5498038d2242639e337ce079d65a70",
+			"F030f9e8f91f34439558fee25dae5704af704cfc453fab64ec17df348a12debaa",
+			"F6a8bc92d71dfc73ea5da3d7c5744137b6a1bc4090186997161d66c278a2c16de",
+			"Fd6a94db3cac613d154a826fb210ed7de035d9ae77814a46f852f091adb474828"
+		],
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "chunithm-Single-newplus-difficulties",
+		"title": "CHUNITHM (NEW PLUS) (Difficulties)"
+	},
+	{
+		"default": false,
+		"description": "Levels for CHUNITHM in NEW.",
+		"folders": [
+			"Faae366d77f525e3b8b4281d68b75cdfa084740189be666f270d5e91e62e4478d",
+			"Fd6040b233f17fce9da86190238b05ef5b296f93eeff64fe62983d44d09dfe216",
+			"F1bcd95f170d25ff230693d03e365db1b46507bd2bd421d47abfbc7e298004e4a",
+			"F475898799639ed5e94eae173e52064b4ca194186e4152ee50ed8bca78b823e6b",
+			"Fa25a21341c7a05955bed151f74b3f7cc525f6b7a1b94ae6b9127d1689e35654c",
+			"Fe2bebbe2c2e58675d5998c097758ca66b293440d49da791729adc40bdf814b07",
+			"Ff2d439d0d1aaedb6a960bf9c706b04e9cab6cbb1d1ca49971c4e73dcbd81ebbd",
+			"F9f73c3305de89387c1f06929304a412a0714ea523ef39e4178e748b2b16fa7ad",
+			"Fb5f1f783adbd2911a82c263483696a7eee0c70c9773fa9f7a0709784d5b0b51f",
+			"F6a4008a2435693d9a602ce0567474e4d8e0fbd2296a475bddc59273a297711b9",
+			"F304021d9cd7cb629eaffde14209f612e49b79bfed16011ec74882558b65c223a",
+			"F5a3d8f288c3b1f69ae03fbfaa9e63a58ab99b93e96a7a464f5b035765fe4085b",
+			"F74940aa991fa7099b35ad512d79fa9c000cd3468d89ee80ca293be273672c5f3",
+			"F5a7a32fa22ae341c55f5a468d9ac021119deff1dded20ba8c539d424fe408774",
+			"F4ae4ff28f75b1bc33c7f7c2d3c730bff99ba0e7299505b89ad927fb92b25d1e1"
+		],
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "chunithm-Single-new-levels",
+		"title": "CHUNITHM (NEW)"
+	},
+	{
+		"default": false,
+		"description": "Difficulties for CHUNITHM in NEW.",
+		"folders": [
+			"Fe568e9370c88cdeab88f42a0cfab2ebe8a06fd24c0046d7c0b753e4582253740",
+			"F7031914a25f787b3d14fe61beeca7d650216c0729f83af43026187e119cccaca",
+			"Feab929b5150b1089d428178fbd4a1eb1d677ad8e1c7a922579ef7da4077ed4e5",
+			"F0e6859f484a3abdd40f9f4ecf9366c7807b8ec83144f02bd117742a11ad9e392",
+			"F6523178bc12cf2ea88bd4d1d00cc00d94165d4fb4d3170d5cd826f227fe12c7a"
+		],
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "chunithm-Single-new-difficulties",
+		"title": "CHUNITHM (NEW) (Difficulties)"
+	},
+	{
+		"default": false,
 		"description": "Levels for CHUNITHM in Paradise Lost.",
 		"folders": [
 			"F7ab54c2dff3a2bcd7fa5129aae7e03d6c9b1998cfc06bf360cbcd9ac05653c71",
@@ -971,7 +1055,7 @@
 			"Fb138e45b7b5d571c85c7ae6393831d26970e8fbd074ba87738b3e452bef6316e"
 		],
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-paradiselost-levels",
 		"title": "CHUNITHM (Paradise Lost)"

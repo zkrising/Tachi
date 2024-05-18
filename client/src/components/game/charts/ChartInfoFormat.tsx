@@ -61,23 +61,25 @@ export default function ChartInfoFormat({
 				justifyContent: "space-evenly",
 			}}
 		>
-			<Col xs={12} lg={3}>
+			<Col xs={12} lg={3} style={{ textAlign: "left" }}>
 				<h4>Appears In</h4>
 				{data.length !== 0 ? (
-					data.map((e) => (
-						<li key={e.folderID}>
-							{user && ugs ? (
-								<Link
-									className="text-decoration-none"
-									to={`/u/${user.username}/games/${game}/${playtype}/folders/${e.folderID}`}
-								>
-									{e.title}
-								</Link>
-							) : (
-								<span>{e.title}</span>
-							)}
-						</li>
-					))
+					data
+						.sort((a, b) => a.title.localeCompare(b.title))
+						.map((e) => (
+							<li key={e.folderID}>
+								{user && ugs ? (
+									<Link
+										className="text-decoration-none"
+										to={`/u/${user.username}/games/${game}/${playtype}/folders/${e.folderID}`}
+									>
+										{e.title}
+									</Link>
+								) : (
+									<span>{e.title}</span>
+								)}
+							</li>
+						))
 				) : (
 					<Muted>No folders...</Muted>
 				)}

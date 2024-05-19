@@ -54,7 +54,10 @@ export async function StartTrackingImport(jobData: ScoreImportJobData<ImportType
 				`Failed to save score-import-input for import '${
 					jobData.importID
 				}' at path '${GetScoreImportInputURL(jobData.importID)}'.`,
-				{ reason: err }
+
+				// $response is a circular struct and we really don't like logging
+				// cicular structs. gf.
+				{ reason: { ...err.$error, $response: undefined } }
 			);
 		}
 	);

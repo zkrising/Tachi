@@ -10507,6 +10507,19 @@
 	{
 		"data": {
 			"level": "15",
+			"versions": "paradiselost"
+		},
+		"folderID": "F6b841d35bd4ded62327aca9a6374fc2ba7d69c98970e620bfc8d1db9545a0cb2",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15 (Paradise Lost)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
 			"versions": "sun-omni"
 		},
 		"folderID": "F5e5636161b64bf379b8dcc64359a8fca187456d2e26e12d03a026aa4a50a4cdc",

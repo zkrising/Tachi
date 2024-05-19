@@ -9679,7 +9679,7 @@
 		},
 		"folderID": "Fd84984975ceafd2636d334c8090863eeda7fac95ab09a2a839b5e730ccff8183",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 12 (Paradise Lost)",

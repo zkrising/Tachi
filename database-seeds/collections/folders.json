@@ -10195,6 +10195,32 @@
 	{
 		"data": {
 			"level": "14",
+			"versions": "newplus"
+		},
+		"folderID": "Ff879b4e964eb2abb469bbb22b82434e52791b7e5ee792da27f29ffcb4b152f5a",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14 (NEW PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
+			"versions": "new"
+		},
+		"folderID": "Fb86f5c491b769ac33025727e907713fd6866b0ec2b0142f0a0257580148ffa38",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14 (NEW)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
 			"versions": "paradiselost"
 		},
 		"folderID": "F59b31a7f803e9dfa228b7ad22a6788a4736ccbdd276a0ec62a330643395c00dd",

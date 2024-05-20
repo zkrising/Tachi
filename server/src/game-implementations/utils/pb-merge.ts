@@ -66,6 +66,8 @@ export function CreatePBMergeFor<GPT extends GPTString>(
 			{
 				sort: {
 					[`scoreData.${metric as string}`]: direction === "largest" ? -1 : 1,
+					// always grab the oldest possible score
+					timeAchieved: 1,
 				},
 			}
 		)) as ScoreDocument<GPT> | null;

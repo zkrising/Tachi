@@ -1,6 +1,7 @@
 import { APIFetchV1 } from "util/api";
 import { CreateSongMap } from "util/data";
 import { UppercaseFirst } from "util/misc";
+import { StrSOV } from "util/sorts";
 import { useFormik } from "formik";
 import React, { ChangeEventHandler, useContext, useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
@@ -251,7 +252,7 @@ function UGPTStatInnerSearchyBit({ game, playtype, onCreate, setShow }: Props) {
 								className="mt-4"
 							>
 								<option value="">Select a folder...</option>
-								{folderData.map((e, i) => (
+								{folderData.sort(StrSOV((e) => e.name)).map((e, i) => (
 									<option key={i} value={e.folderID}>
 										{e.name}
 									</option>

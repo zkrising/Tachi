@@ -34,6 +34,7 @@ const VERSION_DISPLAY_NAMES = [
 	"FESTiVAL",
 	"FESTiVAL PLUS",
 	"BUDDiES",
+	"BUDDiES PLUS",
 ];
 
 interface IDWithDisplayName {
@@ -69,8 +70,7 @@ interface MusicXML {
 }
 
 function calculateLevel(data: Pick<NotesData, "level" | "levelDecimal">) {
-	// TODO: Change levelDecimal condition to 6 when updating to BUDDiES+
-	return `${data.level}${data.levelDecimal >= 7 && data.level >= 7 ? "+" : ""}`;
+	return `${data.level}${data.levelDecimal >= 6 && data.level >= 7 ? "+" : ""}`;
 }
 
 function calculateLevelNum(data: Pick<NotesData, "level" | "levelDecimal">) {

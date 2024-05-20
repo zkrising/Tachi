@@ -129,7 +129,11 @@ function UGPTStatInnerSearchyBit({ game, playtype, onCreate, setShow }: Props) {
 				throw new Error(res.description);
 			}
 
-			setFolderData(res.body.map((e) => ({ folderID: e.folderID, name: e.title })));
+			setFolderData(
+				res.body
+					.map((e) => ({ folderID: e.folderID, name: e.title }))
+					.sort(StrSOV((e) => e.name))
+			);
 		})();
 	}, [folderSearch]);
 
@@ -166,6 +170,8 @@ function UGPTStatInnerSearchyBit({ game, playtype, onCreate, setShow }: Props) {
 					name: `${song!.title} ${FormatDifficulty(chart, game)}`,
 				});
 			}
+
+			data.sort(StrSOV((e) => e.name));
 
 			setChartData(data);
 		})();
@@ -252,7 +258,7 @@ function UGPTStatInnerSearchyBit({ game, playtype, onCreate, setShow }: Props) {
 								className="mt-4"
 							>
 								<option value="">Select a folder...</option>
-								{folderData.sort(StrSOV((e) => e.name)).map((e, i) => (
+								{folderData.map((e, i) => (
 									<option key={i} value={e.folderID}>
 										{e.name}
 									</option>

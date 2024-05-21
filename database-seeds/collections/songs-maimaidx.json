@@ -15195,7 +15195,9 @@
 			"genre": "maimai"
 		},
 		"id": 1200,
-		"searchTerms": [ "SOS" ],
+		"searchTerms": [
+			"SOS"
+		],
 		"title": "エスオーエス"
 	},
 	{
@@ -15206,7 +15208,9 @@
 			"genre": "maimai"
 		},
 		"id": 1201,
-		"searchTerms": [ "NOJA LOLIC" ],
+		"searchTerms": [
+			"NOJA LOLIC"
+		],
 		"title": "のじゃロリック"
 	},
 	{
@@ -15261,7 +15265,9 @@
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1206,
-		"searchTerms": [ "Kako wo kurau" ],
+		"searchTerms": [
+			"Kako wo kurau"
+		],
 		"title": "過去を喰らう"
 	},
 	{
@@ -15272,7 +15278,9 @@
 			"genre": "オンゲキ＆CHUNITHM"
 		},
 		"id": 1207,
-		"searchTerms": [ "Music prayer" ],
+		"searchTerms": [
+			"Music prayer"
+		],
 		"title": "MUSIC PЯAYER"
 	},
 	{
@@ -15283,7 +15291,9 @@
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1208,
-		"searchTerms": [ "kyoufuu all back" ],
+		"searchTerms": [
+			"kyoufuu all back"
+		],
 		"title": "強風オールバック"
 	},
 	{
@@ -15294,7 +15304,9 @@
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1209,
-		"searchTerms": [ "Neoki yashi no ki" ],
+		"searchTerms": [
+			"Neoki yashi no ki"
+		],
 		"title": "寝起きヤシの木"
 	},
 	{
@@ -15305,7 +15317,9 @@
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1210,
-		"searchTerms": [ "Idol" ],
+		"searchTerms": [
+			"Idol"
+		],
 		"title": "アイドル"
 	},
 	{
@@ -15316,7 +15330,9 @@
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1211,
-		"searchTerms": [ "Rabbit hole" ],
+		"searchTerms": [
+			"Rabbit hole"
+		],
 		"title": "ラビットホール"
 	},
 	{
@@ -15327,7 +15343,9 @@
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1212,
-		"searchTerms": [ "Yoidore shirazu" ],
+		"searchTerms": [
+			"Yoidore shirazu"
+		],
 		"title": "酔いどれ知らず"
 	},
 	{
@@ -15338,7 +15356,9 @@
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1213,
-		"searchTerms": [ "freak out hour" ],
+		"searchTerms": [
+			"freak out hour"
+		],
 		"title": "Freak Out Hr."
 	},
 	{
@@ -15349,7 +15369,9 @@
 			"genre": "東方Project"
 		},
 		"id": 1214,
-		"searchTerms": [ "sayonara history" ],
+		"searchTerms": [
+			"sayonara history"
+		],
 		"title": "さよならヒストリー"
 	},
 	{
@@ -15371,7 +15393,10 @@
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1216,
-		"searchTerms": [ "Tokumei M", "Anonymous M" ],
+		"searchTerms": [
+			"Tokumei M",
+			"Anonymous M"
+		],
 		"title": "匿名M"
 	},
 	{
@@ -15382,7 +15407,9 @@
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1217,
-		"searchTerms": [ "hitoshizuku" ],
+		"searchTerms": [
+			"hitoshizuku"
+		],
 		"title": "壱雫空"
 	},
 	{
@@ -15393,7 +15420,9 @@
 			"genre": "ゲーム＆バラエティ"
 		},
 		"id": 1218,
-		"searchTerms": [ "dual roses" ],
+		"searchTerms": [
+			"dual roses"
+		],
 		"title": "DUAL ROZES"
 	},
 	{
@@ -15448,7 +15477,9 @@
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1223,
-		"searchTerms": [ "carnival happy" ],
+		"searchTerms": [
+			"carnival happy"
+		],
 		"title": "カーニバルハッピー"
 	},
 	{
@@ -15459,7 +15490,9 @@
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1224,
-		"searchTerms": [ "tsudzumigasu" ],
+		"searchTerms": [
+			"tsudzumigasu"
+		],
 		"title": "つづみぐさ"
 	},
 	{
@@ -15470,7 +15503,9 @@
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1225,
-		"searchTerms": [ "cyber thunder cider" ],
+		"searchTerms": [
+			"cyber thunder cider"
+		],
 		"title": "サイバーサンダーサイダー"
 	},
 	{
@@ -15481,7 +15516,9 @@
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1226,
-		"searchTerms": [ "o kusuri nonde neyou" ],
+		"searchTerms": [
+			"o kusuri nonde neyou"
+		],
 		"title": "おくすり飲んで寝よう"
 	},
 	{
@@ -15492,7 +15529,9 @@
 			"genre": "maimai"
 		},
 		"id": 1227,
-		"searchTerms": [ "cider party" ],
+		"searchTerms": [
+			"cider party"
+		],
 		"title": "Cider P@rty"
 	},
 	{
@@ -15503,7 +15542,9 @@
 			"genre": "maimai"
 		},
 		"id": 1228,
-		"searchTerms": [ "soumetsu" ],
+		"searchTerms": [
+			"soumetsu"
+		],
 		"title": "勦滅"
 	},
 	{

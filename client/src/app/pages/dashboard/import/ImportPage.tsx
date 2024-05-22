@@ -337,6 +337,13 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 	} else if (game === "ongeki") {
 		Content.unshift(
 			<ImportInfoCard
+				name="Inohara"
+				href="inohara"
+				desc="Automatically import scores, whenever you get them."
+				key="Inohara"
+				moreInfo="This is the recommended way to import O.N.G.E.K.I. scores; data is submitted at the end of each play."
+			/>,
+			<ImportInfoCard
 				name="ARTEMiS Exporter"
 				href="ongeki-artemis-exporter"
 				desc="Export your scores from an ARTEMiS instance."

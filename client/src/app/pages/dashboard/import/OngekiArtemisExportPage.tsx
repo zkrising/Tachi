@@ -4,7 +4,7 @@ import ExternalLink from "components/util/ExternalLink";
 import { TachiConfig } from "lib/config";
 import React from "react";
 
-export default function OngekiArtemisExport() {
+export default function OngekiArtemisExportPage() {
 	useSetSubheader(["Import Scores", "O.N.G.E.K.I. ARTEMiS Exporter"]);
 
 	return (

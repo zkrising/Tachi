@@ -223,6 +223,47 @@ import = '/ir/direct-manual/import'
 # Your Tachi API key
 api_key = '%%TACHI_KEY%%'`,
 	},
+	{
+		clientID: "CXInohara",
+		requestedPermissions: ["submit_score"],
+		name: "Inohara",
+		redirectUri: null,
+		webhookUri: null,
+		apiKeyFilename: "inohara.cfg",
+		apiKeyTemplate: `[Options]
+
+# Whether to enable score submissions
+Enable = true
+
+# Timeout for web requests, in seconds
+Timeout = 3
+
+# Tachi instance base URL
+BaseUrl = ${ServerConfig.OUR_URL}
+
+# Tachi status endpoint
+Status = /api/v1/status
+
+# Tachi score import endpoint
+Import = /ir/direct-manual/import
+
+# Whether to display status on-screen (rudimentarily)
+EnableOSD = false
+
+# Whether to export your PBs for batch-manual (saved to batch-manual.json)
+# This is very, very bad and should only be used as last resort
+ExportPBs = false
+
+[Keys]
+
+* = %%TACHI_KEY%%
+
+# If you have a multi-user setup, you can configure
+# keys per-profile:
+# InGameUsername = TachiApiKey
+#
+# An * matches everyone else`,
+	},
 ];
 
 const BokuDefaultClients: DefaultClients = [

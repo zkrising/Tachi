@@ -191,7 +191,8 @@ const MAIN_ERR_HANDLER: express.ErrorRequestHandler = (err, req, res, _next) => 
 		if (expErr.status === 400 && "body" in expErr) {
 			logger.info(`JSON Parsing Error?`, {
 				url: req.originalUrl,
-				userID: req[SYMBOL_TACHI_API_AUTH].userID,
+				// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+				userID: req[SYMBOL_TACHI_API_AUTH]?.userID,
 			});
 			return res.status(400).send({ success: false, description: err.message });
 		}

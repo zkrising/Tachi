@@ -29,8 +29,9 @@ import ChunithmSiteImportPage from "app/pages/dashboard/import/ChunithmSiteImpor
 import SaekawaPage from "app/pages/dashboard/import/SaekawaPage";
 import AquaArtemisExport from "app/pages/dashboard/import/AquaArtemisExportPage";
 import ChunithmMYTExport from "app/pages/dashboard/import/ChunithmMYTExportPage";
-import OngekiArtemisExport from "app/pages/dashboard/import/OngekiArtemisExportPage";
+import OngekiArtemisExportPage from "app/pages/dashboard/import/OngekiArtemisExportPage";
 import MytIntegrationPage from "components/imports/MYTIntegrationPage";
+import OngekiInoharaPage from "app/pages/dashboard/import/OngekiInoharaPage";
 
 export default function ImportRoutes() {
 	const { user } = useContext(UserContext);
@@ -238,7 +239,11 @@ export default function ImportRoutes() {
 							</Route>
 
 							<Route exact path="/import/ongeki-artemis-exporter">
-								<OngekiArtemisExport />
+								<OngekiArtemisExportPage />
+							</Route>
+
+							<Route exact path="/import/inohara">
+								<OngekiInoharaPage />
 							</Route>
 						</>
 					)}

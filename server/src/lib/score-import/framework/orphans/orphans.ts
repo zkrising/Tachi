@@ -99,10 +99,13 @@ export async function ReprocessOrphan(
 		// this is impossible to test, so we're going to ignore it
 		/* istanbul ignore next */
 		if (!("failureType" in err)) {
-			logger.error(`Converter function ${orphan.importType} returned unexpected error.`, {
-				err,
-				orphan,
-			});
+			logger.error(
+				`Converter function ${orphan.importType} returned unexpected error. ID=${orphan.orphanID}`,
+				{
+					err,
+					orphan,
+				}
+			);
 
 			// throw this higher up, i guess.
 			throw err;

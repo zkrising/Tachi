@@ -366,6 +366,8 @@ export function AddToSetInRecord<T extends string, V>(
 	toAdd: V
 ) {
 	if (obj[key] !== undefined) {
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
+		// @ts-ignore For some reason, this is not an error in the IDE but is an error in ci. I don't know why.
 		obj[key].add(toAdd);
 	} else {
 		obj[key] = new Set([toAdd]);

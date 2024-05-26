@@ -7,7 +7,7 @@ import { OrphanScore } from "../orphans/orphans";
 import db from "external/mongo/db";
 import { AppendLogCtx } from "lib/logger/logger";
 import { GetGPTString } from "tachi-common";
-import { ClassToObject } from "utils/misc";
+import { ClassToObject, DeleteUndefinedProps } from "utils/misc";
 import type { ConverterFnSuccessReturn, ConverterFunction } from "../../import-types/common/types";
 import type { ConverterFailure, SongOrChartNotFoundFailure } from "../common/converter-failures";
 import type { DryScore } from "../common/types";
@@ -248,6 +248,11 @@ export async function ProcessSuccessfulConverterReturn(
 	logger: KtLogger,
 	forceImmediateImport = false
 ): Promise<ImportProcessingInfo | null> {
+	// important: for whatever reason, parsers are free to send "undefined" over the wire
+	// here. however, we can't really work with "undefined" as a property. If we see
+	// undefined used as a value, delete it.
+	DeleteUndefinedProps(cfnReturn.dryScore);
+
 	const result = await HydrateCheckAndInsertScore(
 		userID,
 		cfnReturn.dryScore,

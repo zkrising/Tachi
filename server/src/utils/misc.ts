@@ -119,6 +119,9 @@ export function DeleteUndefinedProps(record: any) {
 		if (rec[key] === undefined) {
 			// eslint-disable-next-line @typescript-eslint/no-dynamic-delete
 			delete rec[key];
+		} else if (rec[key] && typeof rec[key] === "object" && !Array.isArray(rec[key])) {
+			// Recurse.
+			DeleteUndefinedProps(rec[key]);
 		}
 	}
 }
@@ -363,7 +366,6 @@ export function AddToSetInRecord<T extends string, V>(
 	toAdd: V
 ) {
 	if (obj[key] !== undefined) {
-		// @ts-expect-error definitely exists.
 		obj[key].add(toAdd);
 	} else {
 		obj[key] = new Set([toAdd]);

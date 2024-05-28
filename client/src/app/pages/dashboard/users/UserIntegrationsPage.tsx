@@ -641,7 +641,8 @@ function ServicesPage({ reqUser }: { reqUser: UserDocument }) {
 			<Col xs={12}>
 				<div className="btn-group">
 					<SelectLinkButton to={`${baseUrl}/fervidex`}>Fervidex</SelectLinkButton>
-					<SelectLinkButton to={`${baseUrl}/cg`}>CG</SelectLinkButton>
+					<SelectLinkButton to={`${baseUrl}/cg-gan`}>CG GAN</SelectLinkButton>
+					<SelectLinkButton to={`${baseUrl}/cg-nag`}>CG NAG</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/cg-dev`}>CG Dev</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/myt`}>MYT</SelectLinkButton>
 					<SelectLinkButton to={`${baseUrl}/kshook`}>KsHook</SelectLinkButton>

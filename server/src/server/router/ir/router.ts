@@ -30,12 +30,12 @@ router.use(async (req, res, next) => {
 		user = null;
 	}
 
-	logger.info(
-		`IR import request received from: ${
-			user ? FormatUserDoc(user) : `#${req[SYMBOL_TACHI_API_AUTH].userID}`
-		}`,
-		{ user, body: req.body, query: req.query, url: req.url }
-	);
+	logger.info(`IR import request received from: ${user ? FormatUserDoc(user) : "Unknown"}`, {
+		user,
+		body: req.body,
+		query: req.query,
+		url: req.url,
+	});
 
 	next();
 });

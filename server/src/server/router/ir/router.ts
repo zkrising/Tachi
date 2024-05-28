@@ -22,6 +22,18 @@ const router: Router = Router({ mergeParams: true });
 const logger = CreateLogCtx(__filename);
 
 router.use(async (req, res, next) => {
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+	if (!req[SYMBOL_TACHI_API_AUTH]) {
+		logger.info(`IR import request received from: ${req.header("Authorization")}`, {
+			body: req.body,
+			query: req.query,
+			url: req.url,
+		});
+
+		next();
+		return;
+	}
+
 	let user;
 
 	if (req[SYMBOL_TACHI_API_AUTH].userID) {

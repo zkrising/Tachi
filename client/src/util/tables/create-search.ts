@@ -62,8 +62,23 @@ export function GetMetricSearchParams(
 		switch (conf.type) {
 			case "ENUM":
 				searchFns[metric] = {
-					// @ts-expect-error lol this is fine pls
-					valueGetter: (x) => kMapper(x)?.scoreData[metric] ?? null,
+					valueGetter: (x) => {
+						// @ts-expect-error lol this is fine pls
+						const sv = kMapper(x)?.scoreData[metric];
+
+						if (sv === undefined) {
+							return null;
+						}
+
+						// @ts-expect-error lol this is fine pls
+						const dv = kMapper(x)?.scoreData.enumIndexes[metric];
+
+						if (dv === undefined) {
+							return null;
+						}
+
+						return [sv, dv];
+					},
 					strToNum: HumanFriendlyStrToEnumIndex(game, playtype, metric),
 				};
 				break;

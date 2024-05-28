@@ -125,8 +125,10 @@ for (const optionFolder of options.input) {
 
 		const inGameID = musicData.name.id;
 
-		if (inGameID >= 8000) {
-			// 8000 and above is reserved for WORLD'S END songs, don't care.
+		if (inGameID >= 8000 || inGameID === 50 || inGameID === 81) {
+			// IDs 8000 and above are reserved for WORLD'S END songs
+			// ID 50 is the basic tutorial song
+			// ID 81 is the master tutorial song
 			continue;
 		}
 

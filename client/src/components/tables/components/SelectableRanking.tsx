@@ -36,33 +36,35 @@ export default function SelectableRanking({
 	}
 
 	return (
-		<th className="vstack gap-1 align-items-center justify-content-center">
-			<select
-				onChange={(v) => setRankingViewMode(v.target.value as RankingViewMode)}
-				value={rankingViewMode}
-				className="border-0 p-0.5 text-body fw-bolder rounded focus-ring focus-ring-light bg-transparent"
-			>
-				<option value="global">Global Ranking</option>
-				<option value="rival">Rival Ranking</option>
-			</select>
-			<div onClick={() => changeSort("Site Ranking")}>
-				<div className="d-flex justify-content-center gap-1">
-					<Icon
-						type="arrow-up"
-						className={
-							currentSortMode === "Rating" && reverseSort
-								? "opacity-100"
-								: "opacity-25"
-						}
-					/>
-					<Icon
-						type="arrow-down"
-						className={
-							currentSortMode === "Rating" && !reverseSort
-								? "opacity-100"
-								: "opacity-25"
-						}
-					/>
+		<th>
+			<div className="vstack gap-1 align-items-center justify-content-center">
+				<select
+					onChange={(v) => setRankingViewMode(v.target.value as RankingViewMode)}
+					value={rankingViewMode}
+					className="border-0 p-0.5 text-body fw-bolder rounded focus-ring focus-ring-light bg-transparent"
+				>
+					<option value="global">Global Ranking</option>
+					<option value="rival">Rival Ranking</option>
+				</select>
+				<div onClick={() => changeSort("Site Ranking")}>
+					<div className="d-flex justify-content-center gap-1">
+						<Icon
+							type="arrow-up"
+							className={
+								currentSortMode === "Rating" && reverseSort
+									? "opacity-100"
+									: "opacity-25"
+							}
+						/>
+						<Icon
+							type="arrow-down"
+							className={
+								currentSortMode === "Rating" && !reverseSort
+									? "opacity-100"
+									: "opacity-25"
+							}
+						/>
+					</div>
 				</div>
 			</div>
 		</th>

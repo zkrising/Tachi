@@ -18,7 +18,7 @@ export default function SelectableCompareType({
 	gptConfig: GamePTConfig;
 } & ZTableTHProps) {
 	return (
-		<th className="vstack gap-1 align-items-center justify-content-center">
+		<th className="gap-1 align-items-center justify-content-center">
 			<select
 				onChange={(v) => setMetric(v.target.value)}
 				value={metric}

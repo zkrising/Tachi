@@ -54,7 +54,10 @@ client.on("interactionCreate", async (interaction) => {
 			await handleIsCommand(interaction, requestingUser);
 		}
 	} catch (e) {
-		logger.error("Failed to run interaction.", { interaction });
+		await interaction.channel?.send(
+			"We failed to handle this request. Are your DMs shut to non-friends?"
+		);
+		logger.error("Failed to run interaction.", { interaction, e });
 	}
 });
 

@@ -65,7 +65,15 @@ export const RequestLoggerMiddleware: RequestHandler = (req, res, next) => {
 		}
 
 		if (res.statusCode < 400 || res.statusCode === 404) {
-			logger.verbose(
+			let level: "info" | "verbose";
+
+			if (req.url.includes("/ir/")) {
+				level = "info";
+			} else {
+				level = "verbose";
+			}
+
+			logger[level](
 				`(${req.method} ${req.originalUrl}) Returned ${res.statusCode}.`,
 				contents
 			);

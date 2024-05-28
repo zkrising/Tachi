@@ -13,8 +13,32 @@ import {
 } from "../../middleware/auth";
 import { RequireBokutachi, RequireKamaitachi } from "../../middleware/type-require";
 import { Router } from "express";
+import { SYMBOL_TACHI_API_AUTH } from "lib/constants/tachi";
+import CreateLogCtx from "lib/logger/logger";
+import { FormatUserDoc, GetUserWithID } from "utils/user";
 
 const router: Router = Router({ mergeParams: true });
+
+const logger = CreateLogCtx(__filename);
+
+router.use(async (req, res, next) => {
+	let user;
+
+	if (req[SYMBOL_TACHI_API_AUTH].userID) {
+		user = await GetUserWithID(req[SYMBOL_TACHI_API_AUTH].userID);
+	} else {
+		user = null;
+	}
+
+	logger.info(
+		`IR import request received from: ${
+			user ? FormatUserDoc(user) : `#${req[SYMBOL_TACHI_API_AUTH].userID}`
+		}`,
+		{ user, body: req.body, query: req.query, url: req.url }
+	);
+
+	next();
+});
 
 // Common IRs
 

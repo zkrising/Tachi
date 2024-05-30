@@ -17,7 +17,7 @@ type DefaultClients = Array<Omit<TachiAPIClientDocument, "author" | "clientSecre
 // Defines some Tachi API Clients that should come default with a Tachi
 // environment.
 // These use the special Client ID prefix "CX" instead of "CI", which
-// means they cannot possibly be collided.1
+// means they cannot possibly be collided.
 const KamaiDefaultClients: DefaultClients = [
 	{
 		name: "Fervidex",

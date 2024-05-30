@@ -248,11 +248,6 @@ export async function ProcessSuccessfulConverterReturn(
 	logger: KtLogger,
 	forceImmediateImport = false
 ): Promise<ImportProcessingInfo | null> {
-	// important: for whatever reason, parsers are free to send "undefined" over the wire
-	// here. however, we can't really work with "undefined" as a property. If we see
-	// undefined used as a value, delete it.
-	DeleteUndefinedProps(cfnReturn.dryScore);
-
 	const result = await HydrateCheckAndInsertScore(
 		userID,
 		cfnReturn.dryScore,
@@ -304,7 +299,7 @@ async function HydrateCheckAndInsertScore(
 ): Promise<ScoreDocument | null> {
 	const gptString = GetGPTString(dryScore.game, chart.playtype);
 
-	const scoreID = CreateScoreID(gptString, userID, dryScore, chart.chartID);
+	const scoreID = CreateScoreID(gptString, userID, dryScore, chart.chartID, importLogger);
 
 	// sub-context the logger so the below logs are more accurate
 	const logger = AppendLogCtx(scoreID, importLogger);

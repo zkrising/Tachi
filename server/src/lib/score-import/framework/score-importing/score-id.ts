@@ -15,7 +15,7 @@ export function CreateScoreID(
 	userID: integer,
 	dryScore: DryScore,
 	chartID: string,
-	logger: KtLogger
+	logger?: KtLogger
 ) {
 	const elements: Record<string, number | string> = { userID, chartID };
 
@@ -45,7 +45,7 @@ export function CreateScoreID(
 	try {
 		hash = fjsh.hash(elements, "sha256");
 	} catch (err) {
-		logger.error(`Failed to checksum score: ${err}`, { elements, dryScore });
+		logger?.error(`Failed to checksum score: ${err}`, { elements, dryScore });
 		throw err;
 	}
 

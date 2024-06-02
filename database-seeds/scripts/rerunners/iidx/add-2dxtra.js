@@ -74,6 +74,11 @@ for (const info of data.entries.music) {
 
 		const { playtype, difficulty } = SplitFervidexChartRef(diff);
 
+		// Skip Beginner Charts since we don't track those anyways
+		if (difficulty == "BEGINNER") {
+			continue;
+		}
+
 		parsedData.push({
 			id,
 			hash,
@@ -110,6 +115,19 @@ MutateCollection("charts-iidx.json", (charts) => {
 				continue;
 			}
 
+			// Deprimary old charts if there are new ones
+			for (const chart of charts) {
+				if (
+					Array.isArray(chart.data.inGameID)
+						? chart.data.inGameID.includes(data.id)
+						: chart.data.inGameID === data.id &&
+							chart.difficulty === `${options.name} ${data.difficulty}` &&
+							chart.playtype === data.playtype
+				) {
+					chart.isPrimary = false;
+				}
+			}
+
 			charts.push({
 				chartID: CreateChartID(),
 				data: {
@@ -117,15 +135,16 @@ MutateCollection("charts-iidx.json", (charts) => {
 					hashSHA256: data.hash,
 					inGameID: data.id,
 					notecount: data.notes,
+					bpiCoefficient: null,
+					kaidenAverage: null,
+					worldRecord: null,
 				},
 				difficulty: `${options.name} ${data.difficulty}`,
 				isPrimary: true,
 				level: "?",
 				levelNum: 0,
 				playtype: data.playtype,
-				rgcID: null,
 				songID: existingReference.songID,
-				tierlistInfo: {},
 				versions: [options.version],
 			});
 		}

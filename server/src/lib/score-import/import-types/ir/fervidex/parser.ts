@@ -116,10 +116,11 @@ export function SoftwareIDToVersion(
 					return "30";
 				} else if (data.rev === REV_OMNIMIX) {
 					return "30-omni";
+				} else if (data.rev === REV_2DXTRA) {
+					return "30-2dxtra";
 				}
-			}
 		}
-
+	}
 		throw new ScoreImportFatalError(400, `Unsupported Software Model ${model}.`);
 	} catch (err) {
 		logger.warn(`Unsupported Software Model ${model}.`, { err });

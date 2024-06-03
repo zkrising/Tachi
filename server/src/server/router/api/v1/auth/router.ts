@@ -199,6 +199,9 @@ router.post(
 			captcha: string;
 		};
 
+		// force lowercase for emails to avoid case-confusion in lookups...
+		body.email = body.email.toLowerCase();
+
 		if (body.inviteCode === undefined && ServerConfig.INVITE_CODE_CONFIG) {
 			return res.status(400).json({
 				success: false,
@@ -468,6 +471,8 @@ router.post(
 		const body = req.safeBody as {
 			email: string;
 		};
+
+		body.email = body.email.toLowerCase();
 
 		logger.debug(`received password reset request for ${body.email}.`);
 

@@ -151,10 +151,12 @@ export default function TachiTable<D>({
 							placeholder={`Filter ${entryName}`}
 							value={search}
 						/>
-						<FilterDirectivesIndicator
-							searchFunctions={searchFunctions}
-							doc={dataset[0]}
-						/>
+						{dataset[0] && (
+							<FilterDirectivesIndicator
+								searchFunctions={searchFunctions}
+								doc={dataset[0]}
+							/>
+						)}
 					</InputGroup>
 				)}
 			</div>

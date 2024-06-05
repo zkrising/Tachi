@@ -23,6 +23,8 @@ import {
 	UserDocument,
 } from "tachi-common";
 import Col from "react-bootstrap/Col";
+import { Alert } from "react-bootstrap";
+import Icon from "components/util/Icon";
 
 export default function ImportPage({ user }: { user: UserDocument }) {
 	useSetSubheader(["Import Scores"]);
@@ -369,10 +371,93 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			<div className="text-center mb-4">
 				<h1>{gameConfig.name}</h1>
 			</div>
+			<Row xs={{ cols: 1 }}>
+				<Col xs={12}>
+					<InputAlert game={game} />
+				</Col>
+			</Row>
 			<Row xs={{ cols: 1 }} lg={{ cols: 2 }}>
 				{Content}
 			</Row>
 		</>
+	);
+}
+
+function InputAlert({ game }: { game: Game }) {
+	function doit(game: Game): JSX.Element | null {
+		switch (game) {
+			case "jubeat":
+			case "maimai":
+			case "iidx":
+			case "museca":
+			case "chunithm":
+			case "gitadora":
+			case "maimaidx":
+			case "popn":
+			case "wacca":
+			case "ongeki":
+				return (
+					<>
+						<strong>Scores must be achieved on an arcade-size controller!</strong>
+						<br />
+						Playing on other input devices (like a keyboard) will get you in trouble.
+					</>
+				);
+			case "sdvx":
+				return (
+					<>
+						<strong>Scores must be achieved on an arcade-size controller!</strong>
+						<br />
+						Playing on other input devices (like a keyboard) will get you in trouble.
+						<br />
+						<strong>
+							A Pocket-Voltex DOES NOT count as an <i>ARCADE SIZE</i> controller!
+						</strong>
+					</>
+				);
+
+			case "usc":
+				return (
+					<>
+						<strong>Please use the right leaderboard for your controller!</strong>
+						<br />
+						<br />
+						<strong>Arcade-sized controllers</strong> should go on the controller
+						leaderboards.
+						<br />
+						<strong>Keyboards and anything else</strong> go on the Keyboard/Other
+						leaderboards.
+						<br />
+						<br />
+						<strong>
+							A Pocket-Voltex DOES NOT count as an <i>ARCADE SIZE</i> controller!
+						</strong>
+					</>
+				);
+
+			case "itg":
+			case "arcaea":
+			case "bms":
+			case "pms":
+				return null;
+		}
+	}
+
+	const ct = doit(game);
+
+	if (!ct) {
+		return <></>;
+	}
+
+	return (
+		<Alert variant="warning">
+			<div className="d-flex" style={{ alignItems: "center", gap: "1rem", fontSize: "2rem" }}>
+				<div style={{ fontSize: "4rem" }}>
+					<Icon type="exclamation-triangle" />
+				</div>
+				<div className="text-body">{ct}</div>
+			</div>
+		</Alert>
 	);
 }
 

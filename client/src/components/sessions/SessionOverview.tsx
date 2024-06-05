@@ -52,7 +52,7 @@ export default function SessionOverview({
 	const [importantScores, setImportantScores] = useState<null | ScoreDataset>(null);
 
 	const { data } = useApiQuery<Array<{ pbs: Array<PBScoreDocument> }>>(
-		Object.keys(gptConfig.profileRatingAlgs).map(
+		Object.keys(gptConfig.scoreRatingAlgs).map(
 			(e) =>
 				`/users/${reqUser.id}/games/${session.game}/${session.playtype}/pbs/best?alg=${e}`
 		)

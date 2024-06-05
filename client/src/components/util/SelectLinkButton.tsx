@@ -19,17 +19,26 @@ export default function SelectLinkButton({
 } & LinkButtonProps) {
 	const match = DoesMatchRoute(window.location.href, to, !matchIfStartsWith);
 	const variant = match ? onVariant : offVariant;
-	const classNames = `${match ? "" : "text-body text-light-hover text-light-focus"} ${className}`;
+	const classNames = `${
+		match ? "" : "text-body text-light-hover text-light-focus"
+	} ${className} text-wrap`;
 
 	return (
 		<LinkButton
 			to={to}
+			size="lg"
 			isActive={() => match}
 			variant={variant}
 			{...props}
 			className={classNames}
 		>
-			{children}
+			<div className="d-none d-lg-block">{children}</div>
+			<div
+				className="d-lg-none"
+				style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+			>
+				{children}
+			</div>
 		</LinkButton>
 	);
 }

@@ -12,6 +12,7 @@ import { GetEnumColour } from "lib/game-implementations";
 import { CreateRatingSys, bgc } from "./_util";
 
 const BASE_IMPL: GPTClientImplementation<GPTStrings["bms" | "pms"]> = {
+	sessionImportantScoreCount: 20,
 	difficultyColours: {
 		CHART: COLOUR_SET.gray, // lol
 	},

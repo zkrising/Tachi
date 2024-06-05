@@ -1,6 +1,5 @@
 import { NumericSOV } from "util/sorts";
 import { ChangeOpacity } from "util/color-opacity";
-import { FormatMillions } from "util/misc";
 import { COLOUR_SET, GPTString, GetGPTString, PBScoreDocument, ScoreDocument } from "tachi-common";
 import CHUNITHMJudgementCell from "components/tables/cells/CHUNITHMJudgementCell";
 import ITGJudgementCell from "components/tables/cells/ITGJudgementCell";
@@ -42,6 +41,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 	"iidx:SP": IIDX_SP_IMPL,
 	"iidx:DP": IIDX_DP_IMPL,
 	"chunithm:Single": {
+		sessionImportantScoreCount: 30,
 		enumIcons: defaultEnumIcons,
 		classColours: {
 			colour: {
@@ -129,6 +129,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"jubeat:Single": {
+		sessionImportantScoreCount: 30,
 		enumIcons: defaultEnumIcons,
 		enumColours: {
 			lamp: {
@@ -187,6 +188,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		ratingCell: ({ sc }) => <JubilityCell score={sc} />,
 	},
 	"maimai:Single": {
+		sessionImportantScoreCount: 30,
 		enumIcons: defaultEnumIcons,
 		enumColours: {
 			lamp: {
@@ -287,6 +289,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"maimaidx:Single": {
+		sessionImportantScoreCount: 30,
 		enumIcons: defaultEnumIcons,
 		enumColours: {
 			lamp: {
@@ -429,6 +432,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"museca:Single": {
+		sessionImportantScoreCount: 20,
 		enumIcons: defaultEnumIcons,
 		enumColours: {
 			grade: {
@@ -476,6 +480,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"popn:9B": {
+		sessionImportantScoreCount: 20,
 		enumIcons: {
 			grade: "sort-alpha-up",
 			lamp: "lightbulb",
@@ -551,6 +556,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"wacca:Single": {
+		sessionImportantScoreCount: 50,
 		enumIcons: defaultEnumIcons,
 		enumColours: {
 			grade: {
@@ -635,6 +641,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"itg:Stamina": {
+		sessionImportantScoreCount: 10,
 		enumIcons: defaultEnumIcons,
 		enumColours: {
 			grade: {
@@ -722,6 +729,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		),
 	},
 	"ongeki:Single": {
+		sessionImportantScoreCount: 45,
 		enumIcons: {
 			grade: "sort-alpha-up",
 			noteLamp: "lightbulb",

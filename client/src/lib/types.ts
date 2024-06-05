@@ -8,6 +8,7 @@ import {
 	Difficulties,
 	ExtractedClasses,
 	GPTString,
+	integer,
 	PBScoreDocument,
 	ScoreDocument,
 	ScoreRatingAlgorithms,
@@ -124,4 +125,10 @@ export interface GPTClientImplementation<GPT extends GPTString = GPTString> {
 		chart: ChartDocument<GPT>;
 		rating: ScoreRatingAlgorithms[GPT];
 	}) => JSX.Element;
+
+	/**
+	 * How many scores should we consider for the topX in the session important scores
+	 * display?
+	 */
+	sessionImportantScoreCount: integer;
 }

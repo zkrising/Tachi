@@ -155,7 +155,7 @@ export default function SessionOverview({
 						path="/u/:userID/games/:game/:playtype/sessions/:sessionID/important"
 					>
 						{importantScores && importantScores.length > 0 && (
-							<Card header={`Scores in your top ${MAX_SCORES}!`}>
+							<Card header={`Scores in ${reqUser.username}'s top ${MAX_SCORES}!`}>
 								<ScoreTable
 									game={session.game}
 									playtype={session.playtype}
@@ -166,7 +166,7 @@ export default function SessionOverview({
 						{importantScores &&
 							importantScores?.length > 0 &&
 							highlightedScores.length > 0 && <Divider />}
-						<Card header="Scores you've highlighted">
+						<Card header="Highlighted Scores">
 							<ScoreTable
 								game={session.game}
 								playtype={session.playtype}

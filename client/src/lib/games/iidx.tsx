@@ -128,6 +128,7 @@ const IIDXRatingCell: GPTClientImplementation<GPTStrings["iidx"]>["ratingCell"] 
 );
 
 export const IIDX_SP_IMPL: GPTClientImplementation<"iidx:SP"> = {
+	sessionImportantScoreCount: 20,
 	difficultyColours: IIDX_DIFF_COLOURS,
 	enumColours: IIDX_ENUM_COLOURS,
 	enumIcons: {
@@ -167,6 +168,7 @@ export const IIDX_SP_IMPL: GPTClientImplementation<"iidx:SP"> = {
 };
 
 export const IIDX_DP_IMPL: GPTClientImplementation<"iidx:DP"> = {
+	sessionImportantScoreCount: 20,
 	difficultyColours: IIDX_DIFF_COLOURS,
 	enumColours: IIDX_ENUM_COLOURS,
 	enumIcons: {

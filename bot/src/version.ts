@@ -2,23 +2,12 @@ const MAJOR = 2;
 const MINOR = 2;
 const PATCH = 0;
 
-const TOKYO_SHOEGAZER_MOONDIVER = [
-	"Into the Deep Sky",
-	"Your Relief",
-	"In Full Bloom",
-	"Night Dance",
-	"Bedtime Story",
-	"Moondive",
-	"Stay White",
-];
-
 export const VERSION_INFO = {
 	major: MAJOR,
 	minor: MINOR,
 	patch: PATCH,
-	name: TOKYO_SHOEGAZER_MOONDIVER[MINOR],
 };
 
 export const VERSION_STR = `${MAJOR}.${MINOR}.${PATCH}`;
 
-export const VERSION_PRETTY = `v${VERSION_STR} (${VERSION_INFO.name})`;
+export const VERSION_PRETTY = `v${VERSION_STR}`;

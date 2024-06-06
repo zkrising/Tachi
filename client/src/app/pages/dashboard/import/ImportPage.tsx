@@ -199,7 +199,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				name="CHUNITHM Site Importer"
 				href="kt-chunithm-site-importer"
 				desc="Use your data from CHUNITHM NET."
-				moreInfo="If you are playing on an official chunithm server, you can import play data from it here."
+				moreInfo="If you are playing on an official CHUNITHM server, you can import play data from it here."
 				key="CHUNITHM Site Importer"
 			/>,
 			<ImportInfoCard

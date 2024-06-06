@@ -81,9 +81,13 @@ for (const { game, matchType, playtype } of uniquenessChecks) {
 			: ReadCollection(`songs-${game}.json`);
 
 	const uniqueIDs = new Set();
-	for (const el of data.filter((e) => e.playtype === playtype)) {
+	for (const el of data) {
 		// skip non-primaries as they can't really be matched anyway.
 		if (handler.type === "CHARTS" && !el.isPrimary) {
+			continue;
+		}
+
+		if (handler.type === "CHARTS" && el.playtype !== playtype) {
 			continue;
 		}
 
@@ -123,7 +127,7 @@ for (const { game, matchType, playtype } of uniquenessChecks) {
 		console.log(chalk.green(`[GOOD] ${name}. ${report}.`));
 	}
 
-	suites.push({ name, report, good: fails === 0 });
+	suites.push({ name, report, good: success > 0 && fails === 0 });
 }
 
 console.log(`=== Suite Overview ===`);

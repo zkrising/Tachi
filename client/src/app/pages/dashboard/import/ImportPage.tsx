@@ -317,7 +317,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				name="maimai DX Site Importer"
 				href="kt-maimaidx-site-importer"
 				desc="Use your data from maimai DX NET."
-				moreInfo="If you are playing on an official maimai server, you can import play data from it here."
+				moreInfo="If you are playing on an official maimai DX server, you can import play data from it here."
 				key="maimai DX NET Importer"
 			/>
 		);

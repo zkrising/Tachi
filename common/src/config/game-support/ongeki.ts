@@ -44,7 +44,7 @@ export const ONGEKI_SINGLE_CONF = {
 		bellLamp: {
 			type: "ENUM",
 			values: ["NONE", "FULL BELL"],
-			minimumRelevantValue: "NONE",
+			minimumRelevantValue: "FULL BELL",
 			description: "Tracks whether all bells in the chart have been collected.",
 		},
 	},

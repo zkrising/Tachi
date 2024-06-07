@@ -29,6 +29,7 @@ import {
 import { GamePT, SetState, UGPT } from "types/react";
 import usePreferredRanking from "components/util/usePreferredRanking";
 import { Col, Form, Row } from "react-bootstrap";
+import useApiQuery from "components/util/query/useApiQuery";
 
 export default function ScoresPage({
 	reqUser,
@@ -135,21 +136,16 @@ function AlgSelector({
 }
 
 function useFetchPBs(url: string, reqUser: UserDocument) {
-	const { data, error } = useQuery(url, async () => {
-		const res = await APIFetchV1<{
-			pbs: PBScoreDocument[];
-			charts: ChartDocument[];
-			songs: SongDocument[];
-		}>(url);
+	const { data, error } = useApiQuery<{
+		pbs: PBScoreDocument[];
+		charts: ChartDocument[];
+		songs: SongDocument[];
+	}>(url);
 
-		if (!res.success) {
-			throw res;
-		}
-
-		return FormatData(res.body.pbs, res.body.songs, res.body.charts, reqUser);
-	});
-
-	return { error: error as UnsuccessfulAPIResponse, data };
+	return {
+		error: error as UnsuccessfulAPIResponse,
+		data: data ? FormatData(data.pbs, data.songs, data.charts, reqUser) : undefined,
+	};
 }
 
 function PBsOverview({
@@ -229,21 +225,16 @@ function FormatData<
 }
 
 function useFetchScores(url: string, reqUser: UserDocument) {
-	const { data, error } = useQuery(url, async () => {
-		const res = await APIFetchV1<{
-			scores: ScoreDocument[];
-			charts: ChartDocument[];
-			songs: SongDocument[];
-		}>(url);
+	const { data, error } = useApiQuery<{
+		scores: ScoreDocument[];
+		charts: ChartDocument[];
+		songs: SongDocument[];
+	}>(url);
 
-		if (!res.success) {
-			throw res;
-		}
-
-		return FormatData(res.body.scores, res.body.songs, res.body.charts, reqUser);
-	});
-
-	return { error: error as UnsuccessfulAPIResponse, data };
+	return {
+		error: error as UnsuccessfulAPIResponse,
+		data: data ? FormatData(data.scores, data.songs, data.charts, reqUser) : undefined,
+	};
 }
 
 function PBsSearch({

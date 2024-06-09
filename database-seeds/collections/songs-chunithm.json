@@ -18413,7 +18413,9 @@
 			"genre": "POPS & ANIME"
 		},
 		"id": 2504,
-		"searchTerms": [],
+		"searchTerms": [
+			"tomadoi→recipe"
+		],
 		"title": "とまどい→レシピ"
 	},
 	{
@@ -18607,7 +18609,9 @@
 			"genre": "niconico"
 		},
 		"id": 2520,
-		"searchTerms": [],
+		"searchTerms": [
+			"under kids"
+		],
 		"title": "アンダーキッズ"
 	},
 	{
@@ -18629,7 +18633,10 @@
 			"genre": "niconico"
 		},
 		"id": 2522,
-		"searchTerms": [],
+		"searchTerms": [
+			"hiasobi",
+			"play with fire"
+		],
 		"title": "ヒアソビ"
 	},
 	{

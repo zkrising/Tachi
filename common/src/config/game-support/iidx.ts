@@ -263,6 +263,7 @@ export const IIDX_SP_CONF = {
 		"30-omni": "Resident Omnimix",
 		"27-2dxtra": "HEROIC VERSE 2dxtra",
 		"28-2dxtra": "BISTROVER 2dxtra",
+		"30-2dxtra": "RESIDENT 2dxtra",
 		bmus: "BEATMANIA US",
 		inf: "INFINITAS",
 	},

@@ -107,7 +107,6 @@ for (const [collection, uniqueIDs] of Object.entries(UniqueKeys)) {
 
 	for (const uniqueID of uniqueIDs) {
 		const set = new Set<string>();
-
 		for (const d of data) {
 			const pretty = formatFn(d, game as Game);
 
@@ -116,6 +115,14 @@ for (const [collection, uniqueIDs] of Object.entries(UniqueKeys)) {
 			// insane parallelisation code
 			if (Array.isArray(uniqueID)) {
 				const mappedProps = uniqueID.map((e) => get(d, e));
+
+				// Charts are special and can be a duplicate if it's not primary
+				if (collection.startsWith("charts-")) {
+					if (mappedProps[uniqueID.lastIndexOf("isPrimary")] === false) {
+						success++;
+						continue;
+					}
+				}
 
 				value = mappedProps;
 			} else {

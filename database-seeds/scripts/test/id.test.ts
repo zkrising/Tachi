@@ -117,10 +117,10 @@ for (const [collection, uniqueIDs] of Object.entries(UniqueKeys)) {
 				const mappedProps = uniqueID.map((e) => get(d, e));
 
 				// Charts are special and can be a duplicate if it's not primary
-				if(collection.startsWith("charts-")) {
-					if(mappedProps[uniqueID.lastIndexOf("isPrimary")] == false ) {
+				if (collection.startsWith("charts-")) {
+					if (mappedProps[uniqueID.lastIndexOf("isPrimary")] === false) {
 						success++;
-						continue
+						continue;
 					}
 				}
 

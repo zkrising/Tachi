@@ -1,10 +1,10 @@
 const { MutateCollection, CreateFolderID } = require("../../util");
+const { GetGamePTConfig } = require("tachi-common");
 
 const tableMainFolders = [];
 const tableAllFolders = [];
 
 const { Command } = require("commander");
-const { PrettyFormatGameVersion } = require("tachi-common/config/static-config");
 
 const program = new Command();
 program.requiredOption("-v, --version <version>");
@@ -12,7 +12,7 @@ program.requiredOption("-v, --version <version>");
 program.parse(process.argv);
 const options = program.opts();
 
-const fmtVersion = PrettyFormatGameVersion("popn:9B", options.version);
+const fmtVersion = GetGamePTConfig("popn", "9B").versions[options.version];
 
 MutateCollection("folders.json", (folders) => {
 	for (let i = 0; i < 3; i++) {

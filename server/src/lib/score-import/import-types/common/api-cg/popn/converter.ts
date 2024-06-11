@@ -90,6 +90,8 @@ function ConvertDifficulty(diff: number): Difficulties["popn:9B"] {
 
 function ConvertVersion(ver: number): Versions["popn:9B"] {
 	switch (ver) {
+		case 27:
+			return "unilab";
 		case 26:
 			return "kaimei";
 		case 25:

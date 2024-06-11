@@ -101,14 +101,12 @@ for (const [key, d] of Object.entries(data)) {
 
 	charts.push({
 		chartID: CreateChartID(),
-		rgcID: null,
 		songID: ids[maybeUniqueSongID],
 		level: d.level.toString(),
 		levelNum: d.level,
 		isPrimary: true,
 		difficulty: d.chartHash,
 		playtype: "Stamina",
-		tierlistInfo: {},
 		versions: [],
 		data: {
 			difficultyTag: difficulty,

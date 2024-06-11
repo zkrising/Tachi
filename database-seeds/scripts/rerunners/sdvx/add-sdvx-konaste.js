@@ -104,8 +104,6 @@ for (const music of xmlData.mdb.music) {
 				},
 				isPrimary: true,
 				versions: ["konaste"],
-				tierlistInfo: {},
-				rgcID: null,
 			});
 
 			if (!newSong) {

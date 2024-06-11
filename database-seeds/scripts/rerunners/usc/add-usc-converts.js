@@ -93,9 +93,7 @@ for (const chart of dbRows) {
 			level: chart.level.toString(),
 			levelNum: chart.level,
 			playtype,
-			rgcID: null,
 			songID,
-			tierlistInfo: {},
 			versions: [],
 		});
 	}

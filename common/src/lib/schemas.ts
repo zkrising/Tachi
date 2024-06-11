@@ -261,11 +261,16 @@ const PR_CHART_DOCUMENT = (game: Game) => (self: unknown) => {
 				return "Array contained invalid versions";
 			}
 
-			const gameUsesVersions = versions.length > 0;
+			// yeah, so versions array *shouldn't* be empty, and yet we've ended up
+			// in a real, unignorable situation in which a chart has no versions.
+			//
+			// just allow this, for now.
 
-			if (gameUsesVersions && self.length === 0) {
-				return "Versions array should not be empty as this game uses versions";
-			}
+			// const gameUsesVersions = versions.length > 0;
+			//
+			// if (gameUsesVersions && self.length === 0) {
+			// 	return "Versions array should not be empty as this game uses versions";
+			// }
 
 			if (new Set(self).size !== self.length) {
 				return "Versions array shouldn't contain the same version twice";

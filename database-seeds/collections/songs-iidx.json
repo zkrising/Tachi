@@ -26432,7 +26432,9 @@
 		"title": "TRIP THE DEEP"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"ACT0"
+		],
 		"artist": "モリモリあつし",
 		"data": {
 			"displayVersion": "31",

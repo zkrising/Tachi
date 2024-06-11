@@ -78,6 +78,30 @@ for (const song of data) {
 			continue;
 		}
 
+		// try to find the chart anyway (match inGameID, difficulty and level)
+		const existingChartManual = curCharts.find(
+			(curchart) =>
+				curchart.data.inGameID === song.music_entry &&
+				curchart.difficulty === chart.difficulty &&
+				curchart.levelNum === chart.level
+		);
+		if (existingChartManual) {
+			// it means the chart hash has changed, but the chart did not get rerated.
+			console.warn(
+				`${song.title} [${chart.difficulty} ${chart.level}] has changed hash but has not been rerated. Make sure to check if the chart has changed or not!`
+			);
+			if (!existingChartManual.versions.includes(options.version)) {
+				existingChartManual.versions.push(options.version);
+			}
+			if (Array.isArray(existingChartManual.data.hashSHA256)) {
+				existingChartManual.data.hashSHA256.push(chart.hash);
+			} else {
+				const newHashes = [existingChartManual.data.hashSHA256, chart.hash];
+				existingChartManual.data.hashSHA256 = newHashes;
+			}
+			continue;
+		}
+
 		charts.push({
 			songID,
 			chartID: CreateChartID(),
@@ -89,13 +113,11 @@ for (const song of data) {
 			playtype: "9B",
 			level: chart.level.toString(),
 			levelNum: chart.level,
-			rgcID: null,
 			isPrimary: true,
 			data: {
 				hashSHA256: chart.hash,
 				inGameID: index,
 			},
-			tierlistInfo: {},
 			versions: [options.version],
 		});
 	}

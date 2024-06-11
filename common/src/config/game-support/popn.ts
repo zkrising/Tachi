@@ -136,7 +136,7 @@ export const POPN_9B_CONF = {
 	versions: {
 		peace: "peace",
 		kaimei: "Kaimei Riddles",
-		unilab: "Unilab"
+		unilab: "Unilab",
 	},
 
 	chartData: z.strictObject({

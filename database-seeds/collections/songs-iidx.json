@@ -26351,7 +26351,9 @@
 			"genre": "IIDX EDITION"
 		},
 		"id": 2357,
-		"searchTerms": [],
+		"searchTerms": [
+			"Yoidore shirazu"
+		],
 		"title": "酔いどれ知らず"
 	},
 	{
@@ -26384,7 +26386,9 @@
 			"genre": "PROLOGUE"
 		},
 		"id": 2360,
-		"searchTerms": [],
+		"searchTerms": [
+			"Planetary Express"
+		],
 		"title": "惑星鉄道"
 	},
 	{
@@ -26406,7 +26410,9 @@
 			"genre": "ALTERNATIVE"
 		},
 		"id": 2362,
-		"searchTerms": [],
+		"searchTerms": [
+			"Kamisama, Tsurenai"
+		],
 		"title": "神様、つれない。"
 	},
 	{
@@ -26417,7 +26423,9 @@
 			"genre": "BREAKCORE"
 		},
 		"id": 2363,
-		"searchTerms": [],
+		"searchTerms": [
+			"Dennou Toshi"
+		],
 		"title": "電腦都市"
 	},
 	{
@@ -26477,7 +26485,9 @@
 			"genre": "J-POP"
 		},
 		"id": 2368,
-		"searchTerms": [],
+		"searchTerms": [
+			"Show"
+		],
 		"title": "唱"
 	},
 	{
@@ -26488,7 +26498,9 @@
 			"genre": "IIDX EDITION"
 		},
 		"id": 2369,
-		"searchTerms": [],
+		"searchTerms": [
+			"Yuusha"
+		],
 		"title": "勇者"
 	},
 	{
@@ -26499,7 +26511,9 @@
 			"genre": "IIDX EDITION"
 		},
 		"id": 2370,
-		"searchTerms": [],
+		"searchTerms": [
+			"Marshall Maximizer"
+		],
 		"title": "マーシャル・マキシマイザー"
 	}
 ]

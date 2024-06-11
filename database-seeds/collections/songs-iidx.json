@@ -26439,8 +26439,11 @@
 			"genre": "NEOTRANCE CORE"
 		},
 		"id": 2365,
-		"searchTerms": [],
-		"title": "ACT?"
+		"searchTerms": [
+			"ACT0",
+			"Act"
+		],
+		"title": "ACTØ"
 	},
 	{
 		"altTitles": [],

@@ -123,9 +123,7 @@ MutateCollection("charts-iidx.json", (charts) => {
 				level: "?",
 				levelNum: 0,
 				playtype: data.playtype,
-				rgcID: null,
 				songID: existingReference.songID,
-				tierlistInfo: {},
 				versions: [options.version],
 			});
 		}

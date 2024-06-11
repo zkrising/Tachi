@@ -45,19 +45,12 @@ chart, `songID` refers to the above song document:
 
 ```json
 {
-	"rgcID": null,
 	"chartID": "c2311194e3897ddb5745b1760d2c0141f933e683",
 	"difficulty": "ANOTHER",
 	"songID": 1,
 	"playtype": "SP",
 	"levelNum": 10,
 	"level": "10",
-	"flags": {
-		"IN BASE GAME": true,
-		"OMNIMIX": true,
-		"N-1": true,
-		"2dxtra": false
-	},
 	"data": {
 		"inGameID": 1000,
 		"notecount": 786,
@@ -100,19 +93,12 @@ For example:
 
 ```json
 {
-	"rgcID": null,
 	"chartID": "103ff8bb004e1a8a005f808c025c3feb",
 	"difficulty": "ANOTHER",
 	"songID": 1,
 	"playtype": "SP",
 	"levelNum": 5,
 	"level": "5",
-	"flags": {
-		"IN BASE GAME": true,
-		"OMNIMIX": true,
-		"N-1": true,
-		"2dxtra": false
-	},
 	"data": {
 		"inGameID": 1000,
 		"notecount": 433

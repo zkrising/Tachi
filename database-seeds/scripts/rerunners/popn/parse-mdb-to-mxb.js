@@ -4,7 +4,6 @@ const iconv = require("iconv-lite");
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
-const { execSync } = require("child_process");
 
 const program = new Command();
 program

@@ -20,13 +20,6 @@ export default function PopnLampCell({
 			}}
 		>
 			<strong>{score.scoreData.lamp}</strong>
-			<br />
-			<img
-				style={{
-					maxWidth: "32px",
-				}}
-				src={ToCDNURL(`/misc/popn/${score.scoreData.clearMedal}.png`)}
-			/>
 		</td>
 	);
 }

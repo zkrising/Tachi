@@ -9,7 +9,7 @@ import SDVXLampCell from "components/tables/cells/SDVXLampCell";
 import { GetEnumColour } from "lib/game-implementations";
 import React from "react";
 import VF6Cell from "components/tables/cells/VF6Cell";
-import { CreateRatingSys, bg, bgc } from "./_util";
+import { CreateRatingSys, bgc } from "./_util";
 
 type SDVXLikes = GPTStrings["usc" | "sdvx"];
 
@@ -75,6 +75,7 @@ const SDVXRatingCell: GPTClientImplementation<SDVXLikes>["ratingCell"] = ({ sc, 
 );
 
 export const SDVX_IMPL: GPTClientImplementation<"sdvx:Single"> = {
+	sessionImportantScoreCount: 50,
 	enumColours: SDVXLIKE_ENUM_COLOURS,
 	enumIcons: {
 		grade: "sort-alpha-up",
@@ -168,6 +169,7 @@ export const SDVX_IMPL: GPTClientImplementation<"sdvx:Single"> = {
 	ratingCell: SDVXRatingCell,
 };
 export const USC_IMPL: GPTClientImplementation<GPTStrings["usc"]> = {
+	sessionImportantScoreCount: 50,
 	enumColours: SDVXLIKE_ENUM_COLOURS,
 	enumIcons: {
 		grade: "sort-alpha-up",

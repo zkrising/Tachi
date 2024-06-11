@@ -18407,6 +18407,19 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "みかくにんぐッ！「未確認で進行形」",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "POPS & ANIME"
+		},
+		"id": 2504,
+		"searchTerms": [
+			"tomadoi→recipe"
+		],
+		"title": "とまどい→レシピ"
+	},
+	{
+		"altTitles": [],
 		"artist": "柊キライ",
 		"data": {
 			"displayVersion": "luminous",
@@ -18587,6 +18600,44 @@
 			"Black Rock Shooter"
 		],
 		"title": "ブラック★ロックシューター"
+	},
+	{
+		"altTitles": [],
+		"artist": "ツユ",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "niconico"
+		},
+		"id": 2520,
+		"searchTerms": [
+			"under kids"
+		],
+		"title": "アンダーキッズ"
+	},
+	{
+		"altTitles": [],
+		"artist": "R Sound Design",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "niconico"
+		},
+		"id": 2521,
+		"searchTerms": [],
+		"title": "flos"
+	},
+	{
+		"altTitles": [],
+		"artist": "かめりあ",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "niconico"
+		},
+		"id": 2522,
+		"searchTerms": [
+			"hiasobi",
+			"play with fire"
+		],
+		"title": "ヒアソビ"
 	},
 	{
 		"altTitles": [],
@@ -18895,6 +18946,17 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "月鈴 白奈(CV:高野 麻里佳)",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "イロドリミドリ"
+		},
+		"id": 2552,
+		"searchTerms": [],
+		"title": "ALL I WANNA DO"
+	},
+	{
+		"altTitles": [],
 		"artist": "曲：塩野 海／歌：星咲 あかり(CV：赤尾 ひかる)、式宮 舞菜(CV：牧野 天音)",
 		"data": {
 			"displayVersion": "luminous",
@@ -18973,6 +19035,61 @@
 			"April showers"
 		],
 		"title": "四月の雨"
+	},
+	{
+		"altTitles": [],
+		"artist": "曲：宮崎誠／歌：オンゲキシューターズ",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "ゲキマイ"
+		},
+		"id": 2561,
+		"searchTerms": [],
+		"title": "Jump!! Jump!! Jump!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "曲：下野 隼／歌：皇城 セツナ(CV：八巻 アンナ)、式宮 碧音(CV：髙橋 ミナミ)",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "ゲキマイ"
+		},
+		"id": 2562,
+		"searchTerms": [],
+		"title": "Prominence"
+	},
+	{
+		"altTitles": [],
+		"artist": "xi",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "ゲキマイ"
+		},
+		"id": 2563,
+		"searchTerms": [],
+		"title": "Stargazing Dreamer"
+	},
+	{
+		"altTitles": [],
+		"artist": "PSYQUI",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "ゲキマイ"
+		},
+		"id": 2564,
+		"searchTerms": [],
+		"title": "Beautiful Future"
+	},
+	{
+		"altTitles": [],
+		"artist": "PRASTIK DANCEFLOOR",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "ゲキマイ"
+		},
+		"id": 2565,
+		"searchTerms": [],
+		"title": "Alcyone"
 	},
 	{
 		"altTitles": [],
@@ -19162,6 +19279,17 @@
 		"id": 2581,
 		"searchTerms": [],
 		"title": "Dèfandour"
+	},
+	{
+		"altTitles": [],
+		"artist": "削除",
+		"data": {
+			"displayVersion": "luminous",
+			"genre": "ORIGINAL"
+		},
+		"id": 2582,
+		"searchTerms": [],
+		"title": "Ultimate Force"
 	},
 	{
 		"altTitles": [],

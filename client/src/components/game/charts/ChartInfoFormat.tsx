@@ -158,9 +158,9 @@ function ChartInfoMiddle({
 		return (
 			<>
 				<ExternalLink
-					href={`http://www.ribbit.xyz/bms/score/view?md5=${bmsChart.data.hashMD5}`}
+					href={`https://bms-score-viewer.pages.dev/view?md5=${bmsChart.data.hashMD5}`}
 				>
-					View Chart on Ribbit
+					View Chart
 				</ExternalLink>
 				<br />
 				<ExternalLink

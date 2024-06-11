@@ -7,7 +7,6 @@ import DropdownIndicatorCell from "components/tables/cells/DropdownIndicatorCell
 import DropdownRow from "components/tables/components/DropdownRow";
 import MiniTable from "components/tables/components/MiniTable";
 import ApiError from "components/util/ApiError";
-import Divider from "components/util/Divider";
 import Loading from "components/util/Loading";
 import Muted from "components/util/Muted";
 import useApiQuery from "components/util/query/useApiQuery";
@@ -48,7 +47,6 @@ export default function SessionFolderRaiseBreakdown({
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	const [selectedTable, setSelectedTable] = useState<"LOADING" | null | TableDocument>("LOADING");
-	const [shouldLimit, setShouldLimit] = useState(true);
 
 	const { data, error } = useApiQuery<Array<SessionFolderRaises>>(
 		`/sessions/${sessionData.session.sessionID}/folder-raises`
@@ -139,16 +137,14 @@ export default function SessionFolderRaiseBreakdown({
 	}
 
 	return (
-		<Col xs={12}>
-			<Divider />
-
+		<>
 			<h1 className="w-100 text-center">Folder Raises</h1>
 
-			{filteredTables.length > 1 && (
+			{filteredTables.length > 1 && selectedTable !== null && (
 				<div className="w-100">
 					<Select
 						name="Table"
-						value={selectedTable?.tableID ?? null}
+						value={selectedTable.tableID}
 						setValue={(t) => setSelectedTable(tableData.find((e) => e.tableID === t)!)}
 					>
 						{filteredTables.map((e) => (
@@ -161,7 +157,7 @@ export default function SessionFolderRaiseBreakdown({
 			)}
 
 			<Row>
-				{folders.slice(0, shouldLimit ? 6 : Infinity).map((folder, i) => (
+				{folders.map((folder, i) => (
 					<Col key={i} xs={12} lg={6} xl={4}>
 						<Card
 							className="my-4"
@@ -195,18 +191,7 @@ export default function SessionFolderRaiseBreakdown({
 					</Col>
 				))}
 			</Row>
-			{shouldLimit && folders.length > 6 && (
-				<Row>
-					<div
-						className="w-100 text-center text-hover-primary"
-						onClick={() => setShouldLimit(false)}
-					>
-						{folders.length - 6} {folders.length > 6 + 1 ? "folders" : "folder"} hidden.
-						View more?
-					</div>
-				</Row>
-			)}
-		</Col>
+		</>
 	);
 }
 

@@ -7,7 +7,7 @@ import ScoreCell from "components/tables/cells/ScoreCell";
 import { GetEnumColour } from "lib/game-implementations";
 import React from "react";
 import RatingCell from "components/tables/cells/RatingCell";
-import { bg, bgc } from "./_util";
+import { bgc } from "./_util";
 
 const GITADORA_ENUM_COLOURS: GPTClientImplementation<
 	"gitadora:Dora" | "gitadora:Gita"
@@ -82,6 +82,7 @@ const GITADORARatingCell: GPTClientImplementation<GPTStrings["gitadora"]>["ratin
 }) => <RatingCell score={sc} rating={rating} />;
 
 export const GITADORA_GITA_IMPL: GPTClientImplementation<"gitadora:Gita"> = {
+	sessionImportantScoreCount: 50,
 	enumIcons: {
 		grade: "sort-alpha-up",
 		lamp: "lightbulb",
@@ -105,6 +106,7 @@ export const GITADORA_GITA_IMPL: GPTClientImplementation<"gitadora:Gita"> = {
 };
 
 export const GITADORA_DORA_IMPL: GPTClientImplementation<"gitadora:Dora"> = {
+	sessionImportantScoreCount: 50,
 	enumIcons: {
 		grade: "sort-alpha-up",
 		lamp: "lightbulb",

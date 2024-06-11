@@ -427,7 +427,9 @@ function BreakdownChartContents({
 	}
 
 	if (fullSize) {
-		let preScoreCell = <td colSpan={3}>No Play</td>;
+		const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(score.game, score.playtype)];
+
+		let preScoreCell = <td colSpan={gptImpl.scoreHeaders.length}>No Play</td>;
 
 		if (!scoreInfo.isNewScore) {
 			const newScoreData = cloneDeep(score.scoreData);

@@ -3,25 +3,44 @@ import { FormatDuration } from "util/time";
 import Card from "components/layout/page/Card";
 import ScoreTable from "components/tables/scores/ScoreTable";
 import Divider from "components/util/Divider";
-import React from "react";
-import { Col, Row } from "react-bootstrap";
-import { AnySessionRatingAlg, GetGamePTConfig, ScoreDocument, SessionDocument } from "tachi-common";
+import React, { useEffect, useState } from "react";
+import { Badge, Col, Row } from "react-bootstrap";
+import {
+	AnySessionRatingAlg,
+	GetGamePTConfig,
+	GetGPTString,
+	PBScoreDocument,
+	ScoreDocument,
+	SessionDocument,
+	UserDocument,
+} from "tachi-common";
 import { SessionReturns } from "types/api-returns";
 import { ScoreDataset } from "types/tables";
 import { SetState } from "types/react";
-import SessionRaiseBreakdown from "./SessionRaiseBreakdown";
+import SelectLinkButton from "components/util/SelectLinkButton";
+import Icon from "components/util/Icon";
+import useUGPTBase from "components/util/useUGPTBase";
+import { Route, Switch } from "react-router-dom";
+import useApiQuery from "components/util/query/useApiQuery";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import SessionFolderRaiseBreakdown from "./SessionFolderRaiseBreakdown";
+import SessionRaiseBreakdown from "./SessionRaiseBreakdown";
 
 export default function SessionOverview({
 	sessionData,
 	setSessionData,
 	scoreDataset,
+	reqUser,
 }: {
 	sessionData: SessionReturns;
 	setSessionData: SetState<SessionReturns>;
 	scoreDataset: ScoreDataset;
+	reqUser: UserDocument;
 }) {
 	const { scores, session } = sessionData;
+	const gptConfig = GetGamePTConfig(session.game, session.playtype);
+	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(session.game, session.playtype)];
+	const MAX_SCORES = gptImpl.sessionImportantScoreCount;
 
 	const setScores = (scores: ScoreDocument[]) => {
 		setSessionData({
@@ -29,6 +48,41 @@ export default function SessionOverview({
 			scores,
 		});
 	};
+
+	const [importantScores, setImportantScores] = useState<null | ScoreDataset>(null);
+
+	const { data } = useApiQuery<Array<{ pbs: Array<PBScoreDocument> }>>(
+		Object.keys(gptConfig.scoreRatingAlgs).map(
+			(e) =>
+				`/users/${reqUser.id}/games/${session.game}/${session.playtype}/pbs/best?alg=${e}`
+		)
+	);
+
+	useEffect(() => {
+		if (!data) {
+			setImportantScores(null);
+			return;
+		}
+
+		const important: Array<string> = [];
+
+		for (const d of data) {
+			for (const pb of d.pbs.slice(0, MAX_SCORES)) {
+				const didFind = pb.composedFrom.find((e) => session.scoreIDs.includes(e.scoreID));
+
+				if (didFind) {
+					important.push(didFind.scoreID);
+				}
+			}
+		}
+
+		setImportantScores(scoreDataset.filter((e) => important.includes(e.scoreID)));
+	}, [data]);
+
+	const base = useUGPTBase({ game: session.game, playtype: session.playtype, reqUser });
+	const baseUrl = `${base}/sessions/${session.sessionID}`;
+
+	const highlightedScores = scoreDataset.filter((e) => e.highlight);
 
 	return (
 		<>
@@ -40,28 +94,107 @@ export default function SessionOverview({
 				/>
 				<StatThing name="Highlights" value={scores.filter((e) => e.highlight).length} />
 			</Row>
-			<SessionFolderRaiseBreakdown sessionData={sessionData} />
-			<Col xs={12}>
+
+			<div className="p-4">
+				<RatingsOverview session={session} />
+			</div>
+
+			<Row xs={12}>
 				<Divider />
 
-				<Card header="Raise Breakdown">
-					<Row>
-						<SessionRaiseBreakdown sessionData={sessionData} setScores={setScores} />
-					</Row>
-				</Card>
-			</Col>
+				<Col className="text-center">
+					<div className="btn-group d-flex justify-content-center mb-4">
+						<SelectLinkButton to={`${baseUrl}`}>
+							<Icon type="chart-line" /> Raises
+						</SelectLinkButton>
+						<SelectLinkButton to={`${baseUrl}/folders`}>
+							<Icon type="sort-numeric-up-alt" /> Folder Stats
+						</SelectLinkButton>
+						<SelectLinkButton to={`${baseUrl}/important`}>
+							<Icon type="star" /> Important Scores{" "}
+							{importantScores && importantScores.length > 0 && (
+								<Badge style={{ marginLeft: "5px" }} bg="primary">
+									{importantScores.length} new top {MAX_SCORES}
+									{importantScores.length === 1 ? "" : "s"}!
+								</Badge>
+							)}
+						</SelectLinkButton>
+						<SelectLinkButton to={`${baseUrl}/scores`}>
+							<Icon type="database" /> All Scores
+						</SelectLinkButton>
+					</div>
+				</Col>
+			</Row>
+
 			<Col xs={12}>
 				<Divider />
-				<Card header="Highlights">
-					<ScoreTable
-						game={session.game}
-						playtype={session.playtype}
-						dataset={scoreDataset.filter((e) => e.highlight)}
-					/>
-				</Card>
 			</Col>
 
-			<RatingsOverview session={session} />
+			<Col xs={12}>
+				<Switch>
+					<Route exact path="/u/:userID/games/:game/:playtype/sessions/:sessionID">
+						<Card header="Raise Breakdown">
+							<Row>
+								<SessionRaiseBreakdown
+									sessionData={sessionData}
+									setScores={setScores}
+								/>
+							</Row>
+						</Card>
+					</Route>
+
+					<Route
+						exact
+						path="/u/:userID/games/:game/:playtype/sessions/:sessionID/folders"
+					>
+						<SessionFolderRaiseBreakdown sessionData={sessionData} />
+					</Route>
+
+					<Route
+						exact
+						path="/u/:userID/games/:game/:playtype/sessions/:sessionID/important"
+					>
+						{importantScores && importantScores.length > 0 && (
+							<Card header={`Scores in ${reqUser.username}'s top ${MAX_SCORES}!`}>
+								<ScoreTable
+									game={session.game}
+									playtype={session.playtype}
+									dataset={importantScores}
+								/>
+							</Card>
+						)}
+						{importantScores &&
+							importantScores?.length > 0 &&
+							highlightedScores.length > 0 && <Divider />}
+						<Card header="Highlighted Scores">
+							<ScoreTable
+								game={session.game}
+								playtype={session.playtype}
+								dataset={highlightedScores}
+							/>
+						</Card>
+					</Route>
+
+					<Route exact path="/u/:userID/games/:game/:playtype/sessions/:sessionID/scores">
+						<ScoreTable
+							dataset={scoreDataset}
+							game={session.game}
+							playtype={session.playtype}
+							onScoreUpdate={(sc) => {
+								const newScores = [
+									...sessionData.scores.filter((e) => e.scoreID !== sc.scoreID),
+									sc,
+								];
+
+								setSessionData({
+									...sessionData,
+									scores: newScores,
+								});
+							}}
+						/>
+					</Route>
+				</Switch>
+			</Col>
 		</>
 	);
 }
@@ -71,27 +204,34 @@ export default function SessionOverview({
 function RatingsOverview({ session }: { session: SessionDocument }) {
 	const gptConfig = GetGamePTConfig(session.game, session.playtype);
 
-	return (
-		<Col xs={12}>
-			<Divider />
-			<Card header="Ratings">
-				<div className="d-flex text-center" style={{ justifyContent: "space-evenly" }}>
-					{Object.keys(gptConfig.sessionRatingAlgs).map((e) => (
-						<div key={e}>
-							<div className="display-4">{UppercaseFirst(e)}</div>
-							<div style={{ fontSize: "1.2rem" }}>
-								{FormatSessionRating(
-									session.game,
-									session.playtype,
-									e as AnySessionRatingAlg,
-									session.calculatedData[e as AnySessionRatingAlg]
-								)}
-							</div>
-						</div>
-					))}
+	function Thing({ value, name }: { value: string | number; name: string }) {
+		return (
+			<div className="d-flex" style={{ flexGrow: 1 }}>
+				<div className="card" style={{ flexGrow: 1 }}>
+					<div className="card-body">
+						<div className="display-4">{value}</div>
+						<div style={{ fontSize: "1.2rem" }}>{name}</div>
+					</div>
 				</div>
-			</Card>
-		</Col>
+			</div>
+		);
+	}
+
+	return (
+		<div className="d-flex text-center" style={{ justifyContent: "space-evenly", gap: "1rem" }}>
+			{Object.keys(gptConfig.sessionRatingAlgs).map((e) => (
+				<Thing
+					key={e}
+					name={`Average ${UppercaseFirst(e)}`}
+					value={FormatSessionRating(
+						session.game,
+						session.playtype,
+						e as AnySessionRatingAlg,
+						session.calculatedData[e as AnySessionRatingAlg]
+					)}
+				/>
+			))}
+		</div>
 	);
 }
 

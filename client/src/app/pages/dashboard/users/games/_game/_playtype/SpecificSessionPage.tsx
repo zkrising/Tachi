@@ -3,7 +3,6 @@ import { CreateChartMap, CreateScoreIDMap, CreateSongMap } from "util/data";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
 import SessionOverview from "components/sessions/SessionOverview";
-import ScoreTable from "components/tables/scores/ScoreTable";
 import ApiError from "components/util/ApiError";
 import DebugContent from "components/util/DebugContent";
 import Divider from "components/util/Divider";
@@ -250,27 +249,8 @@ function SessionPage({ data, game, playtype }: UGPT & { data: SessionReturns }) 
 				scoreDataset={scoreDataset}
 				sessionData={sessionData}
 				setSessionData={setSessionData}
+				reqUser={data.user}
 			/>
-			<Col xs={12}>
-				<Divider />
-
-				<ScoreTable
-					dataset={scoreDataset}
-					game={session.game}
-					playtype={session.playtype}
-					onScoreUpdate={(sc) => {
-						const newScores = [
-							...sessionData.scores.filter((e) => e.scoreID !== sc.scoreID),
-							sc,
-						];
-
-						setSessionData({
-							...sessionData,
-							scores: newScores,
-						});
-					}}
-				/>
-			</Col>
 			{settings?.preferences.developerMode && (
 				<Col xs={12}>
 					<Divider />

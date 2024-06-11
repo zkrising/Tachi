@@ -89,6 +89,7 @@ const ArcaeaRatingCell: GPTClientImplementation<GPTStrings["arcaea"]>["ratingCel
 }) => <RatingCell score={sc} rating={rating} />;
 
 export const ARCAEA_TOUCH_IMPL: GPTClientImplementation<"arcaea:Touch"> = {
+	sessionImportantScoreCount: 30,
 	ratingSystems: [],
 	enumIcons: {
 		grade: "sort-alpha-up",

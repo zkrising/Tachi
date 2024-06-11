@@ -33,10 +33,17 @@ export default function USCIRPage() {
 					Fill out IR Base URL with <code>{ToServerURL("/ir/usc/Keyboard")}</code>.
 				</li>
 				<Alert variant="danger" className="mt-4">
-					You <b>MUST</b> select the right IR! These leaderboards are separated because it
-					is unfair to compare the two input devices.
+					You <b>MUST</b> select the right IR! These leaderboards are separated because
+					it's unfair to compare controller and keyboard scores.
 					<br />
-					<b>DELIBERATELY SELECTING THE WRONG IR WILL RESULT IN A PERMANENT BAN!</b>
+					Ignoring this will get you in trouble, please don't!
+					<br />
+					<br />
+					<strong>Arcade-sized controllers</strong> should go on the controller
+					leaderboards.
+					<br />
+					<strong>Keyboards and anything else</strong> go on the Keyboard/Other
+					leaderboards.
 				</Alert>
 				<Divider />
 				<li>
@@ -46,12 +53,6 @@ export default function USCIRPage() {
 				</li>
 				<li>That's it! Your scores will now automatically upload to the server.</li>
 			</ol>
-			<Divider />
-			<Muted>
-				Note: If you submit a score on a chart that {TachiConfig.NAME} doesn't recognise,
-				you'll need to wait until atleast 2 other players submit scores for that chart
-				before it'll show up. This is to combat accidental IR spam.
-			</Muted>
 		</div>
 	);
 }

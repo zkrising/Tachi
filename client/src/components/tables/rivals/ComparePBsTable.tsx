@@ -1,8 +1,9 @@
 import { NumericSOV, StrSOV } from "util/sorts";
 import { CreatePBCompareSearchParams } from "util/tables/create-search";
 import React, { useEffect, useState } from "react";
-import { Game, GetGamePTConfig, GetScoreMetricConf, Playtype } from "tachi-common";
+import { Game, GetGamePTConfig, GetGPTString, GetScoreMetricConf, Playtype } from "tachi-common";
 import { ComparePBsDataset } from "types/tables";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import DifficultyCell from "../cells/DifficultyCell";
 import PBCompareCell from "../cells/PBCompareCell";
 import TitleCell from "../cells/TitleCell";
@@ -25,6 +26,7 @@ export default function ComparePBsTable({
 	compareUser: string;
 }) {
 	const gptConfig = GetGamePTConfig(game, playtype);
+	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, playtype)];
 
 	const [metric, setMetric] = useState<string>(gptConfig.defaultMetric);
 
@@ -35,7 +37,7 @@ export default function ComparePBsTable({
 	const headers: Header<ComparePBsDataset[0]>[] = [
 		ChartHeader(game, (d) => d.chart),
 		["Song", "Song", StrSOV((x) => x.song.title)],
-		["", "", () => 1, () => <td colSpan={3}>{baseUser}</td>],
+		["", "", () => 1, () => <td colSpan={gptImpl.scoreHeaders.length}>{baseUser}</td>],
 		[
 			"Vs.",
 			"Vs.",
@@ -83,7 +85,7 @@ export default function ComparePBsTable({
 				/>
 			),
 		],
-		["", "", () => 1, () => <td colSpan={3}>{compareUser}</td>],
+		["", "", () => 1, () => <td colSpan={gptImpl.scoreHeaders.length}>{compareUser}</td>],
 	];
 
 	return (
@@ -100,6 +102,7 @@ export default function ComparePBsTable({
 }
 
 function Row({ data, game, metric }: { data: ComparePBsDataset[0]; game: Game; metric: string }) {
+	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, data.chart.playtype)];
 	const metricConf = GetScoreMetricConf(GetGamePTConfig(game, data.chart.playtype), metric)!;
 
 	return (
@@ -109,7 +112,7 @@ function Row({ data, game, metric }: { data: ComparePBsDataset[0]; game: Game; m
 			{data.base ? (
 				<ScoreCoreCells short score={data.base} game={game} chart={data.chart} />
 			) : (
-				<td colSpan={3}>Not Played</td>
+				<td colSpan={gptImpl.scoreHeaders.length}>Not Played</td>
 			)}
 			<PBCompareCell
 				base={data.base}
@@ -122,7 +125,7 @@ function Row({ data, game, metric }: { data: ComparePBsDataset[0]; game: Game; m
 			{data.compare ? (
 				<ScoreCoreCells short score={data.compare} game={game} chart={data.chart} />
 			) : (
-				<td colSpan={3}>Not Played</td>
+				<td colSpan={gptImpl.scoreHeaders.length}>Not Played</td>
 			)}
 		</tr>
 	);

@@ -1,43 +1,56 @@
 import { GetValueGetter, SearchFunctions } from "util/ztable/search";
+import { RFA } from "util/misc";
 import Divider from "components/util/Divider";
 import ExternalLink from "components/util/ExternalLink";
-import HoverText from "components/util/HoverText";
 import SmallText from "components/util/SmallText";
 import StickyPopover from "components/util/StickyPopover";
-import { nanoid } from "nanoid";
 import React, { useState } from "react";
-import { Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
-function AdditionalTableProps({
+function ExampleQueries({
+	keyName: key,
 	value,
 }: {
+	keyName: string;
 	value: string | number | [string, number] | boolean | null;
 }) {
-	let typeName;
-
-	if (Array.isArray(value)) {
-		typeName = "Hybrid";
-	} else if (typeof value === "string") {
-		typeName = "Text";
+	if (typeof value === "string") {
+		return (
+			<>
+				<code>
+					{key}={value}
+				</code>
+				.{" "}
+				<small className="text-body-secondary" style={{ fontSize: "1rem" }}>
+					(You can use <code>==</code> for exact matching)
+				</small>
+			</>
+		);
 	} else if (value === null) {
-		typeName = "Cannot Infer :(";
+		return <code>{key}=asdf</code>;
 	} else if (typeof value === "boolean") {
-		typeName = "Presence";
-	} else {
-		typeName = "Number";
+		return (
+			<>
+				<code>{key}=yes</code>, <code>{key}=no</code>
+			</>
+		);
 	}
 
+	let v;
+	if (Array.isArray(value)) {
+		v = value[0];
+	} else {
+		v = Number.isInteger(value) ? value : value.toFixed(2);
+	}
+
+	const randomMathOp = RFA([">", "<", "<=", ">="]);
+
 	return (
-		<>
-			<td>{typeName}</td>
-			<td>
-				{typeof value === "boolean"
-					? "Yes/No/True/False"
-					: Array.isArray(value)
-					? `${value[0]} (${value[1]})`
-					: value}
-			</td>
-		</>
+		<code>
+			{key}
+			{randomMathOp}
+			{v}
+		</code>
 	);
 }
 
@@ -46,7 +59,7 @@ export default function FilterDirectivesIndicator<D>({
 	doc,
 }: {
 	searchFunctions: SearchFunctions<D>;
-	doc?: D;
+	doc: D;
 }) {
 	const [modalShow, setModalShow] = useState(false);
 
@@ -72,99 +85,41 @@ export default function FilterDirectivesIndicator<D>({
 			</StickyPopover>
 			<Modal show={modalShow} onHide={() => setModalShow(false)} size="xl">
 				<Modal.Header closeButton>
-					<Modal.Title>Available Directives</Modal.Title>
+					<Modal.Title>Table Filters</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<p>
-						This is a slightly advanced feature for{" "}
-						<HoverText hover="nerds">power users</HoverText>. You can read about it{" "}
-						<a href="https://docs.tachi.ac/wiki/filter-directives/">here</a>
-						.<br />
-						The quick explanation is that you can use directives like{" "}
-						<code>Title=conflict Score&gt;=100</code> to perform advanced filters!
+						You can use filters on this table to show just what you care about. The list
+						of filters you can use here is shown below!
 					</p>
 					<Divider className="mb-4" />
-
-					{doc ? (
-						<table className="table table-striped table-hover text-center">
-							<thead>
-								<tr>
-									<th>Key</th>
-									<OverlayTrigger
-										overlay={
-											<Tooltip className="tooltip tooltip-wide" id={nanoid()}>
-												<table className="table table-sm table-striped table-hover">
-													<thead>
-														<tr>
-															<th>Type</th>
-															<th>Description</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td>
-																<strong>Text</strong>
-															</td>
-															<td>
-																Works like text. <code>&gt;</code>{" "}
-																and similar operators compare
-																alphabetically.
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<strong>Number</strong>
-															</td>
-															<td>Works like a number.</td>
-														</tr>
-														<tr>
-															<td>
-																<strong>Hybrid</strong>
-															</td>
-															<td>
-																Although displayed as a string, and
-																works like a string,{" "}
-																<code>&gt;</code> and similar
-																operators compare numerically on a
-																hidden number. This is so things
-																like <code>grade:&gt;AAA</code>
-																get all the grades better than AAA,
-																instead of alphabeticalising.
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											</Tooltip>
-										}
-										placement="right"
-									>
-										<th>Data Type</th>
-									</OverlayTrigger>
-									<th>Example Data</th>
-								</tr>
-							</thead>
-							<tbody>
-								{Object.keys(searchFunctions).map((key) => (
-									<tr key={key}>
-										<td>
-											<strong>
-												{key[0].toUpperCase()}
-												{key.substring(1)}
-											</strong>
-										</td>
-										<AdditionalTableProps
-											value={GetValueGetter(searchFunctions[key])(doc)}
-										/>
-									</tr>
-								))}
-							</tbody>
-						</table>
-					) : (
-						<span className="text-center">
-							Looks like this table has no data. We can't show anything about the
-							directives.
-						</span>
-					)}
+					<ul style={{ fontSize: "1.5rem" }}>
+						{Object.keys(searchFunctions).map((key) => (
+							<li>
+								<ExampleQueries
+									keyName={key}
+									value={GetValueGetter(searchFunctions[key])(doc)}
+								/>
+							</li>
+						))}
+					</ul>
+					<Divider className="mb-4" />
+					Option List
+					<ul>
+						<li>
+							<code>=</code> (Equal to)
+						</li>
+						<li>
+							<code>==</code> (Text is EXACTLY equal to)
+						</li>
+						<li>
+							<code>&gt;</code>, <code>&lt;</code> (Greater than, Less than)
+						</li>
+						<li>
+							<code>&gt;=</code>, <code>&lt;=</code> (Greater than or equal to, Less
+							than or equal to)
+						</li>
+					</ul>
 					<span>
 						<small className="text-body-secondary">
 							You can <SmallText small="tap" large="click" /> anywhere off this dialog

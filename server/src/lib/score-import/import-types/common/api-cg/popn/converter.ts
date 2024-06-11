@@ -2,6 +2,7 @@ import { FormatCGService } from "../util";
 import {
 	InternalFailure,
 	InvalidScoreFailure,
+	SkipScoreFailure,
 	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
 import { ParseDateFromString } from "lib/score-import/framework/common/score-utils";
@@ -83,6 +84,9 @@ function ConvertDifficulty(diff: number): Difficulties["popn:9B"] {
 			return "Hyper";
 		case 3:
 			return "EX";
+		case 4:
+		case 5:
+			throw new SkipScoreFailure("Battle Mode scores are not supported!");
 	}
 
 	throw new InvalidScoreFailure(`Invalid difficulty of ${diff} - Could not convert.`);

@@ -3,7 +3,7 @@ const { XMLParser } = require("fast-xml-parser");
 const iconv = require("iconv-lite");
 const fs = require("fs");
 const path = require("path");
-// const crypto = require('crypto');
+const crypto = require("crypto");
 const { execSync } = require("child_process");
 
 const program = new Command();
@@ -54,12 +54,7 @@ function getSha256ForChart(filename, folder, idx) {
 		`${filename}_ifs`,
 		`${filename}_${idx}.bin`
 	);
-	/*
-    const input = fs.readFileSync(filepath);
-    const hash = crypto.createHash('sha256');
-    hash.update(input);
-    return hash.digest('hex');
-    */
+
 	if (filename === "tour" && idx === "op") {
 		// silly workaround for one song which is in another directory for no fucking reason
 		filepath = path.join(
@@ -71,8 +66,11 @@ function getSha256ForChart(filename, folder, idx) {
 			`${filename}_${idx}.bin`
 		);
 	}
-	const child = execSync(`sha256sum ${filepath} | cut -f 1 -d " "`);
-	return child.toString().replace("\n", ""); // execSync doesn't strip \n from stdout
+
+	const input = fs.readFileSync(filepath);
+	const hash = crypto.createHash("sha256");
+	hash.update(input);
+	return hash.digest("hex");
 }
 
 for (const mdb of mdbs) {

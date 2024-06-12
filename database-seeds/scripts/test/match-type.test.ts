@@ -74,6 +74,7 @@ for (const { game, matchType, playtype } of uniquenessChecks) {
 
 	let success = 0;
 	let fails = 0;
+	let warns = 0;
 
 	const data =
 		handler.type === "CHARTS"
@@ -100,15 +101,27 @@ for (const { game, matchType, playtype } of uniquenessChecks) {
 
 		for (const maybeUnique of newUniqueThingies) {
 			if (uniqueIDs.has(maybeUnique)) {
-				console.log(
-					chalk.red(
-						`ID ${maybeUnique} wasn't unique in ${FormatGame(
-							game,
-							playtype
-						)} (matchType=${matchType}). It needs to be for this matchType to be legal.`
-					)
-				);
-				fails++;
+				if (matchType === "songTitle") {
+					console.log(
+						chalk.yellow(
+							`Song title ${maybeUnique} wasn't unique in ${FormatGame(
+								game,
+								playtype
+							)}. Imports using this song title *will* have their scores rejected.`
+						)
+					);
+					warns++;
+				} else {
+					console.log(
+						chalk.red(
+							`ID ${maybeUnique} wasn't unique in ${FormatGame(
+								game,
+								playtype
+							)} (matchType=${matchType}). It needs to be for this matchType to be legal.`
+						)
+					);
+					fails++;
+				}
 			} else {
 				success++;
 				uniqueIDs.add(maybeUnique);
@@ -116,13 +129,15 @@ for (const { game, matchType, playtype } of uniquenessChecks) {
 		}
 	}
 
-	const report = `GOOD: ${success}, BAD: ${fails}(${Math.min(
-		(success * 100) / fails,
+	const report = `GOOD: ${success}, WARNS: ${warns}, BAD: ${fails}(${Math.min(
+		(success * 100) / (success + fails),
 		100
 	).toFixed(2)}%)`;
 	if (fails > 0) {
 		console.error(chalk.red(`[FAILED] ${name}. ${report}.`));
 		exitCode++;
+	} else if (warns > 0) {
+		console.error(chalk.yellow(`[GOOD ISH] ${name}. ${report}.`));
 	} else {
 		console.log(chalk.green(`[GOOD] ${name}. ${report}.`));
 	}

@@ -9,6 +9,7 @@
 	"private": true,
 	"scripts": {
 		"test": "tap",
+		"one-test": "tap $2",
 		"snap": "TAP_SNAPSHOT=1 tap",
 		"watchtest": "tap --watch",
 		"regen-grpc": "grpc_tools_node_protoc --plugin=protoc-gen-ts=node_modules/.bin/protoc-gen-ts --js_out=import_style=commonjs,binary:src/proto/generated --ts_out=service=grpc-node,mode=grpc-js:src/proto/generated --grpc_out=grpc_js:src/proto/generated --proto_path=src/proto/myt src/proto/myt/*/*.proto",

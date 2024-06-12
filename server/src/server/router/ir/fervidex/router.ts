@@ -56,7 +56,7 @@ const ValidateFervidexHeader: RequestHandler = (req, res, next) => {
 
 	// version.minor
 	// asserted to exist based on versions.length being greater than 3.
-	if (versions[1]! < 3) {
+	if (versions[0] === 1 && versions[1]! < 3) {
 		logger.debug(
 			`Rejected outdated fervidex client from user ${req[SYMBOL_TACHI_API_AUTH].userID}.`
 		);

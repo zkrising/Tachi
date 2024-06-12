@@ -140,7 +140,6 @@ const baseDryScore = {
 			gauge: 50,
 			bp: 6,
 			comboBreak: 6,
-			gsm: undefined,
 		},
 	},
 	scoreMeta: {

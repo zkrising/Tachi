@@ -1,6 +1,9 @@
 import { EscapeStringRegexp } from "../misc";
 import db from "external/mongo/db";
-import { InternalFailure } from "lib/score-import/framework/common/converter-failures";
+import {
+	AmbiguousTitleFailure,
+	InternalFailure,
+} from "lib/score-import/framework/common/converter-failures";
 import type { KtLogger } from "lib/logger/logger";
 import type { FindOneResult } from "monk";
 import type { Game, integer, SongDocument } from "tachi-common";
@@ -13,42 +16,70 @@ import type { Game, integer, SongDocument } from "tachi-common";
  * @param title - The song title to match.
  * @returns SongDocument
  */
-export function FindSongOnTitle(game: Game, title: string): Promise<FindOneResult<SongDocument>> {
+export async function FindSongOnTitle(game: Game, title: string): Promise<SongDocument | null> {
 	// @optimisable: Performance should be tested here by having a utility field for all-titles.
-	return db.anySongs[game].findOne({
-		$or: [
-			{
-				title,
-			},
-			{
-				altTitles: title,
-			},
-		],
-	});
+	const res = await db.anySongs[game].find(
+		{
+			$or: [
+				{
+					title,
+				},
+				{
+					altTitles: title,
+				},
+			],
+		},
+		{
+			limit: 2,
+		}
+	);
+
+	if (res.length === 2) {
+		throw new AmbiguousTitleFailure(
+			title,
+			`Multiple songs exist with the title ${title}. We cannot resolve this. Please try and use a different song resolution method.`
+		);
+	}
+
+	return res[0] ?? null;
 }
 
 /**
  * Finds a song on a song title case-insensitively.
  * This is needed for services that provide horrifically mutated string titles.
  */
-export function FindSongOnTitleInsensitive(
+export async function FindSongOnTitleInsensitive(
 	game: Game,
 	title: string
-): Promise<FindOneResult<SongDocument>> {
+): Promise<SongDocument | null> {
 	// @optimisable: Performance should be tested here by having a utility field for all-titles.
 
 	const regex = new RegExp(`^${EscapeStringRegexp(title)}$`, "iu");
 
-	return db.anySongs[game].findOne({
-		$or: [
-			{
-				title: { $regex: regex },
-			},
-			{
-				altTitles: { $regex: regex },
-			},
-		],
-	});
+	const res = await db.anySongs[game].find(
+		{
+			$or: [
+				{
+					title: { $regex: regex },
+				},
+				{
+					altTitles: { $regex: regex },
+				},
+			],
+		},
+		{
+			limit: 2,
+		}
+	);
+
+	if (res.length === 2) {
+		throw new AmbiguousTitleFailure(
+			title,
+			`Multiple songs exist with the case-insensitive title ${title}. We cannot resolve this. Please try and use a different song resolution method.`
+		);
+	}
+
+	return res[0] ?? null;
 }
 
 /**

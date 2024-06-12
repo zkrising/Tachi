@@ -514,6 +514,15 @@ export interface ImportProcessInfoInvalidDatapoint {
 	content: Record<string, never>;
 }
 
+export interface ImportProcessInfoAmbiguousTitle {
+	success: false;
+	type: "AmbiguousTitle";
+	message: string;
+	content: {
+		title: string;
+	};
+}
+
 export interface ImportProcessInfoScoreImported<GPT extends GPTString = GPTString> {
 	success: true;
 	type: "ScoreImported";
@@ -543,6 +552,7 @@ export interface ImportProcessInfoSongOrChartNotFound {
 }
 
 export type ImportProcessingInfo<GPT extends GPTString = GPTString> =
+	| ImportProcessInfoAmbiguousTitle
 	| ImportProcessInfoInternalError
 	| ImportProcessInfoInvalidDatapoint
 	| ImportProcessInfoOrphanExists

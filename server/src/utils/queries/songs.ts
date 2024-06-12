@@ -36,6 +36,7 @@ export async function FindSongOnTitle(game: Game, title: string): Promise<SongDo
 
 	if (res.length === 2) {
 		throw new AmbiguousTitleFailure(
+			title,
 			`Multiple songs exist with the title ${title}. We cannot resolve this. Please try and use a different song resolution method.`
 		);
 	}
@@ -73,6 +74,7 @@ export async function FindSongOnTitleInsensitive(
 
 	if (res.length === 2) {
 		throw new AmbiguousTitleFailure(
+			title,
 			`Multiple songs exist with the case-insensitive title ${title}. We cannot resolve this. Please try and use a different song resolution method.`
 		);
 	}

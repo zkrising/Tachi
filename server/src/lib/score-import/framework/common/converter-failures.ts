@@ -33,8 +33,12 @@ export class ConverterFailure extends Error {
  * `songTitle` matching system, yet multiple songs share this title.
  */
 export class AmbiguousTitleFailure extends ConverterFailure {
-	constructor(message: string) {
+	title: string;
+
+	constructor(songTitle: string, message: string) {
 		super(message, "AmbiguousTitle");
+
+		this.title = songTitle;
 	}
 }
 

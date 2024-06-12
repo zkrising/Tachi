@@ -7,9 +7,13 @@ import { OrphanScore } from "../orphans/orphans";
 import db from "external/mongo/db";
 import { AppendLogCtx } from "lib/logger/logger";
 import { GetGPTString } from "tachi-common";
-import { ClassToObject, DeleteUndefinedProps } from "utils/misc";
+import { ClassToObject } from "utils/misc";
 import type { ConverterFnSuccessReturn, ConverterFunction } from "../../import-types/common/types";
-import type { ConverterFailure, SongOrChartNotFoundFailure } from "../common/converter-failures";
+import type {
+	AmbiguousTitleFailure,
+	ConverterFailure,
+	SongOrChartNotFoundFailure,
+} from "../common/converter-failures";
 import type { DryScore } from "../common/types";
 import type { KtLogger } from "lib/logger/logger";
 import type { ScoreImportJob } from "lib/score-import/worker/types";
@@ -220,6 +224,21 @@ export async function ImportIterableDatapoint<D, C>(
 					// could return cfnReturn.message here, but we might want to hide the details of the crash.
 					message: "An internal error has occured.",
 					content: {},
+				};
+			}
+
+			case "AmbiguousTitle": {
+				const atErr = err as AmbiguousTitleFailure;
+
+				logger.info(`AmbiguousTitleFailure: ${err.message}`, { err: ClassToObject(err) });
+
+				return {
+					type: "AmbiguousTitle",
+					success: false,
+					message: err.message,
+					content: {
+						title: atErr.title,
+					},
 				};
 			}
 

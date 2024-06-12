@@ -3,7 +3,12 @@
 import type { ImportTypeContextMap, ImportTypeDataMap } from "../../import-types/common/types";
 import type { ImportTypes } from "tachi-common";
 
-export type FailureTypes = "Internal" | "InvalidScore" | "SkipScore" | "SongOrChartNotFound";
+export type FailureTypes =
+	| "AmbiguousTitle"
+	| "Internal"
+	| "InvalidScore"
+	| "SkipScore"
+	| "SongOrChartNotFound";
 
 export class ConverterFailure extends Error {
 	message: string;
@@ -20,6 +25,16 @@ export class ConverterFailure extends Error {
 		// to stably assert what kind of error was thrown, we use a tagged string
 		// instead.
 		this.failureType = failureType;
+	}
+}
+
+/**
+ * AmbiguousTitleFailure - This score could not be processed because it uses the
+ * `songTitle` matching system, yet multiple songs share this title.
+ */
+export class AmbiguousTitleFailure extends ConverterFailure {
+	constructor(message: string) {
+		super(message, "AmbiguousTitle");
 	}
 }
 

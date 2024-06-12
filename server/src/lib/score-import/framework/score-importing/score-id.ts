@@ -8,7 +8,6 @@ import type { integer, GPTString, ProvidedMetrics, OptionalMetrics } from "tachi
 /**
  * Creates an identifier for this score.
  * This is used to deduplicate repeated scores.
- * @returns @see HashScoreIDString - prefixed with R.
  */
 export function CreateScoreID(
 	gptString: GPTString,

@@ -388,7 +388,7 @@ export const TestingMaimaiChart: ChartDocument<"maimai:Single"> = {
 export const TestingMaimaiDXChart: ChartDocument<"maimaidx:Single"> = {
 	chartID: "fbde73d543f93cbad9ec67052a7165700c5c8df6",
 	data: {
-		inGameID: 1
+		inGameID: 1,
 	},
 	difficulty: "Advanced",
 	isPrimary: true,

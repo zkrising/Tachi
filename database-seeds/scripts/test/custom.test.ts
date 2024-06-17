@@ -20,7 +20,7 @@ const CHART_CHECKS: { [G in Game]?: Array<Test<ChartDocument<GPTStrings[G]>>> } 
 		test("Level should not be 0", (c) => c.level !== "0"),
 		test("LevelNum should be an integer greater than 0 if level is known", (c) =>
 			c.level === "?" || c.levelNum > 0),
-		test("Level and LevelNum should align", (c) => c.level === "?" || c.level === c.levelNum.toString()),
+		test("Level and LevelNum should align", (c) => (c.level === "?" && c.levelNum === 0) || c.level === c.levelNum.toString()),
 	],
 	chunithm: [
 		test("Level should not be 0", (c) => c.level !== "0"),

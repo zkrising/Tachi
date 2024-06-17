@@ -129,7 +129,7 @@ const staticIndexes: Partial<Record<Databases, Array<Index>>> = {
 	],
 	"charts-maimai": [
 		index({ "data.inGameID": 1, difficulty: 1 }, UNIQUE),
-		index({ "data.inGameStrID": 1, difficulty: 1 }, UNIQUE)
+		index({ "data.inGameStrID": 1, difficulty: 1 }, UNIQUE),
 	],
 	"import-locks": [index({ userID: 1 }, UNIQUE)],
 	"score-blacklist": [index({ scoreID: 1 }, UNIQUE)],

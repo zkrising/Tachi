@@ -73,8 +73,8 @@ for (const { game, matchType, playtype } of uniquenessChecks) {
 	const handler = MATCH_TYPE_CHECKS[matchType];
 
 	let success = 0;
-	let warns = 0;
 	let fails = 0;
+	let warns = 0;
 
 	const data =
 		handler.type === "CHARTS"

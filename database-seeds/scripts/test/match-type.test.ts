@@ -73,8 +73,8 @@ for (const { game, matchType, playtype } of uniquenessChecks) {
 	const handler = MATCH_TYPE_CHECKS[matchType];
 
 	let success = 0;
-	let fails = 0;
 	let warns = 0;
+	let fails = 0;
 
 	const data =
 		handler.type === "CHARTS"
@@ -89,6 +89,36 @@ for (const { game, matchType, playtype } of uniquenessChecks) {
 		}
 
 		if (handler.type === "CHARTS" && el.playtype !== playtype) {
+			continue;
+		}
+
+		if (
+			(matchType === "inGameID" || matchType === "sdvxInGameID")
+			&& (el.data.inGameID === null || el.data.inGameID === undefined)
+		) {
+			console.log(
+				chalk.yellow(
+					`Chart ID ${el.chartID} (song ID ${el.songID}) cannot be matched using matchType=${
+						matchType
+					} because its inGameID is unknown.`,
+				)
+			);
+			warns++;
+			continue;
+		}
+
+		if (
+			matchType === "inGameStrID"
+			&& (el.data.inGameStrID === null && el.data.inGameStrID === undefined)
+		) {
+			console.log(
+				chalk.yellow(
+					`Chart ID ${el.chartID} (song ID ${el.songID}) cannot be matched using matchType=${
+						matchType
+					} because its inGameStrID is unknown.`,
+				)
+			);
+			warns++;
 			continue;
 		}
 

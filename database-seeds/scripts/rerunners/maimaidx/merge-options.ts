@@ -237,6 +237,8 @@ for (const optionFolder of options.input) {
 			if (exists) {
 				const versionIndex = exists.versions.indexOf(options.version);
 
+				exists.data.inGameID = inGameID;
+
 				if (versionIndex === -1) {
 					exists.versions.push(options.version);
 				}
@@ -258,7 +260,9 @@ for (const optionFolder of options.input) {
 				levelNum,
 				versions: [options.version],
 				playtype: "Single",
-				data: {},
+				data: {
+					inGameID,
+				},
 			};
 			newCharts.push(chartDoc);
 		}

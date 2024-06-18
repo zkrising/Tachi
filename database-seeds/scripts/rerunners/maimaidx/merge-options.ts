@@ -207,7 +207,7 @@ for (const optionsDir of options.input) {
 							const versionIndex = c.versions.indexOf(options.version);
 
 							if (versionIndex !== -1) {
-								c.versions.splice(versionIndex);
+								c.versions.splice(versionIndex, 1);
 							}
 						});
 				}

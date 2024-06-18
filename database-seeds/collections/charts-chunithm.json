@@ -101076,7 +101076,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -101101,7 +101100,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -101126,7 +101124,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -101151,7 +101148,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -143613,6 +143609,7 @@
 		"songID": 2515,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -143629,6 +143626,7 @@
 		"songID": 2515,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -143645,6 +143643,7 @@
 		"songID": 2515,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -143661,6 +143660,7 @@
 		"songID": 2515,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -143677,6 +143677,7 @@
 		"songID": 2517,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -143693,6 +143694,7 @@
 		"songID": 2517,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -143709,6 +143711,7 @@
 		"songID": 2517,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -143725,6 +143728,7 @@
 		"songID": 2517,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -145725,6 +145729,7 @@
 		"songID": 2550,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -145741,6 +145746,7 @@
 		"songID": 2550,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -145757,6 +145763,7 @@
 		"songID": 2550,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -145773,6 +145780,7 @@
 		"songID": 2550,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -146121,6 +146129,7 @@
 		"songID": 2557,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -146137,6 +146146,7 @@
 		"songID": 2557,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -146153,6 +146163,7 @@
 		"songID": 2557,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -146169,6 +146180,7 @@
 		"songID": 2557,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -146953,6 +146965,7 @@
 		"songID": 2571,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -146969,6 +146982,7 @@
 		"songID": 2571,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -146985,6 +146999,7 @@
 		"songID": 2571,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -147001,6 +147016,7 @@
 		"songID": 2571,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -147017,6 +147033,7 @@
 		"songID": 2572,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -147033,6 +147050,7 @@
 		"songID": 2572,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -147049,6 +147067,7 @@
 		"songID": 2572,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -147065,6 +147084,7 @@
 		"songID": 2572,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -147081,6 +147101,7 @@
 		"songID": 2573,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -147097,6 +147118,7 @@
 		"songID": 2573,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -147113,6 +147135,7 @@
 		"songID": 2573,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -147129,6 +147152,7 @@
 		"songID": 2573,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},

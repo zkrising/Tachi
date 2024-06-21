@@ -3,8 +3,12 @@ import { XMLParser } from "fast-xml-parser";
 import { existsSync, readFileSync, readdirSync, statSync } from "fs";
 import path from "path";
 import { CreateChartID, MutateCollection, ReadCollection, WriteCollection } from "../../util";
-import { ChartDocument, Difficulties, SongDocument } from "tachi-common";
+import { ChartDocument, Difficulties, GetGamePTConfig, SongDocument } from "tachi-common";
+import { CreateLogger } from "mei-logger";
 
+const logger = CreateLogger("chunithm/merge-options");
+
+const OMNIMIX_OPTION_NAMES = ["AOMN", "AOLD", "AKON"];
 const VERSIONS = [
 	"chuni",
 	"chuniplus",
@@ -69,18 +73,46 @@ function calculateLevelNum(data: Pick<MusicFumenData, "level" | "levelDecimal">)
 	return Number(`${data.level}.${data.levelDecimal}`);
 }
 
-const program = new Command();
-program.requiredOption("-i, --input <OPTION FOLDERS...>");
-program.requiredOption("-v, --version <VERSION>");
+if (require.main !== module) {
+	throw new Error(
+		`This is a script. It should be ran directly from the command line with ts-node.`
+	);
+}
 
-program.parse(process.argv);
+const program = new Command()
+	.requiredOption("-i, --input <OPTIONS DIRS...>", "The options directories of your CHUNITHM install. Typically App/data and Option.")
+	.requiredOption("-v, --version <VERSION>", "The version of this CHUNITHM install.")
+	.option("-f, --force", "Forces overwrites where it shouldn't be done automatically.")
+	.parse(process.argv);
 const options = program.opts();
 
-const isLatestVersion =
-	VERSIONS.indexOf(options.version.replace(/(-intl|-omni)$/u, "")) === VERSIONS.length - 1;
+const baseVersion = options.version.replace(/(-intl|-omni)$/u, "");
+const tachiVersions = Object.keys(GetGamePTConfig("chunithm", "Single").versions);
 
-const existingChartDocs = ReadCollection("charts-chunithm.json");
+if (!VERSIONS.includes(baseVersion)) {
+	throw new Error(
+		`Invalid base version ${baseVersion}. Expected any of ${
+			VERSIONS.join(",")
+		}. Update the VERSIONS array in database-seeds/scripts/rerunners/chunithm/merge-options.ts.`
+	);
+}
 
+if (!tachiVersions.includes(options.version)) {
+	throw new Error(
+		`Invalid version ${options.version}. Expected any of ${
+			tachiVersions.join(",")
+		}. If you're adding a new version, go update common/src/config/game-config/chunithm.ts.`
+	);
+}
+
+const isOmnimixVersion = /-omni$/u.test(options.version);
+const isLatestVersion = VERSIONS.indexOf(baseVersion) === VERSIONS.length - 1;
+
+const existingSongDocs: Array<SongDocument<"chunithm">> = ReadCollection("songs-chunithm.json");
+const existingChartDocs: Array<ChartDocument<"chunithm:Single">> = ReadCollection("charts-chunithm.json");
+
+const songMap = new Map(existingSongDocs.map((s) => [s.id, s]));
+const songTitleMap = new Map(existingSongDocs.map((s) => [s.title, s]));
 const inGameIDToSongIDMap = new Map<number, number>();
 const existingCharts = new Map<string, ChartDocument<"chunithm:Single">>();
 
@@ -94,129 +126,203 @@ const parser = new XMLParser();
 const newSongs: Array<SongDocument<"chunithm">> = [];
 const newCharts: Array<ChartDocument<"chunithm:Single">> = [];
 
-for (const optionFolder of options.input) {
-	const musicFolder = path.join(optionFolder, "music");
-
-	if (!existsSync(musicFolder)) {
-		console.warn(`Option at ${optionFolder} does not have a "music" folder.`);
-		continue;
-	}
-
-	for (const song of readdirSync(musicFolder)) {
-		if (!song.startsWith("music")) {
+for (const optionsDir of options.input) {
+	for (const option of readdirSync(optionsDir)) {
+		if (!isOmnimixVersion && OMNIMIX_OPTION_NAMES.includes(option)) {
+			logger.warn(`Ignoring omnimix option ${option} because the version specified is not an omnimix version.`);
 			continue;
 		}
 
-		const songFolder = path.join(musicFolder, song);
-
-		if (!statSync(songFolder).isDirectory()) {
+		if (!/[A-Z]\d{3}/u.test(option) && !OMNIMIX_OPTION_NAMES.includes(option)) {
 			continue;
 		}
 
-		const musicXmlLocation = path.join(songFolder, "Music.xml");
+		const optionDir = path.join(optionsDir, option);
+		const musicsDir = path.join(optionDir, "music");
 
-		if (!existsSync(musicXmlLocation)) {
-			console.warn(`Music folder at ${songFolder} does not have a Music.xml file.`);
+		if (!existsSync(musicsDir) || !statSync(musicsDir).isDirectory()) {
+			logger.warn(`Option at ${optionDir} does not have a "music" directory.`);
 			continue;
 		}
 
-		const data = parser.parse(readFileSync(musicXmlLocation)) as MusicXML;
-		const musicData = data.MusicData;
+		logger.info(`Scanning music directory ${musicsDir} for songs.`);
 
-		const inGameID = musicData.name.id;
+		for (const music of readdirSync(musicsDir)) {
+			const musicDir = path.join(musicsDir, music);
+		
+			if (!/music\d+$/.test(music)) {
+				continue
+			}
 
-		if (inGameID >= 8000 || inGameID === 50 || inGameID === 81) {
-			// IDs 8000 and above are reserved for WORLD'S END songs
-			// ID 50 is the basic tutorial song
-			// ID 81 is the master tutorial song
-			continue;
-		}
-
-		let songID = inGameIDToSongIDMap.get(inGameID);
-
-		if (songID === undefined) {
-			if (musicData.disableFlag) {
-				// Sometimes, removed songs slip into the base game,
-				// and are "removed" later by marking the disableFlag.
+			if (!statSync(musicDir).isDirectory()) {
+				logger.warn(`Ignoring ${musicDir} because it is not a directory.`);
 				continue;
 			}
 
-			songID = musicData.name.id;
+			const musicXmlLocation = path.join(musicDir, "Music.xml");
 
-			const displayVersion = VERSIONS[musicData.releaseTagName.id];
-			if (!displayVersion) {
-				throw new Error(
-					`Unknown version ID ${musicData.releaseTagName.id}. Update merge-options.ts.`
-				);
+			if (!existsSync(musicXmlLocation) || !statSync(musicXmlLocation).isFile()) {
+				logger.warn(`Music directory at ${musicDir} does not have a Music.xml file.`);
+				continue;
 			}
 
-			const songDoc: SongDocument<"chunithm"> = {
-				title: musicData.name.str,
-				altTitles: [],
-				searchTerms: [],
-				artist: musicData.artistName.str,
-				id: songID,
-				data: {
-					displayVersion,
-					genre: musicData.genreNames.list.StringID.str,
-				},
-			};
+			const data = parser.parse(readFileSync(musicXmlLocation)) as MusicXML;
+			const musicData = data.MusicData;
+			const inGameID = musicData.name.id;
 
-			newSongs.push(songDoc);
-			inGameIDToSongIDMap.set(inGameID, songID);
-		}
+			if (inGameID >= 8000 || inGameID === 50 || inGameID === 81) {
+				// Ignoring WORLD'S END charts, the basic tutorial chart,
+				// and the master tutorial chart.
+				continue;
+			}
 
-		for (const difficulty of musicData.fumens.MusicFumenData) {
-			const difficultyName = difficulty.type.data;
+			let tachiSongID = inGameIDToSongIDMap.get(inGameID);
 
-			const exists = existingCharts.get(`${inGameID}-${difficultyName}`);
-			const level = calculateLevel(difficulty);
-			const levelNum = calculateLevelNum(difficulty);
+			// Has this song been disabled in-game?
+			if (musicData.disableFlag) {
+				if (tachiSongID !== undefined) {
+					logger.info(
+						`Removing charts of song ${musicData.artistName.str} - ${
+							musicData.name.str
+						} (ID ${tachiSongID}) from version ${
+							options.version
+						}, because disableFlag is enabled.`
+					);
 
-			if (exists) {
-				const versionIndex = exists.versions.indexOf(options.version);
+					existingChartDocs
+						.filter((c) => c.songID === tachiSongID)
+						.forEach((c) => {
+							const index = c.versions.indexOf(options.version);
 
-				if (musicData.disableFlag && versionIndex !== -1) {
-					exists.versions.splice(versionIndex);
+							if (index !== -1) {
+								c.versions.splice(index, 1);
+							}
+						});
+				}
+
+				continue;
+			}
+
+			// New song?
+			if (tachiSongID === undefined) {
+				const existingTitle = songTitleMap.get(musicData.name.str);
+
+				if (existingTitle) {
+					logger.warn(
+						`A song called ${musicData.name.str} already exists in songs-chunithm (ID ${
+							existingTitle.id
+						}). Is this a duplicate with a given inGameID?`,
+					)
+
+					if (options.force) {
+						logger.warn("--force was requested, adding this song anyways.");
+					} else {
+						logger.warn("Must be resolved manually. Use --force to overwrite anyways.");
+						continue;
+					}
+				}
+
+				tachiSongID = musicData.name.id;
+
+				const displayVersion = VERSIONS[musicData.releaseTagName.id];
+				
+				if (!displayVersion) {
+					throw new Error(
+						`Unknown version ID ${
+							musicData.releaseTagName.id
+						}. Update database-seeds/scripts/rerunners/chunithm/merge-options.ts.`
+					);
+				}
+
+				const songDoc: SongDocument<"chunithm"> = {
+					title: musicData.name.str,
+					altTitles: [],
+					searchTerms: [],
+					artist: musicData.artistName.str,
+					id: tachiSongID,
+					data: {
+						displayVersion,
+						genre: musicData.genreNames.list.StringID.str,
+					},
+				};
+	
+				newSongs.push(songDoc);
+				inGameIDToSongIDMap.set(inGameID, tachiSongID);
+
+				logger.info(`Added new song ${songDoc.artist} - ${songDoc.title}.`);
+			} else if (!songMap.has(tachiSongID)) {
+				throw new Error(`CONSISTENCY ERROR: Song ID ${tachiSongID} does not belong to any songs!`);
+			}
+
+			for (const difficulty of musicData.fumens.MusicFumenData) {
+				const difficultyName = difficulty.type.data;
+
+				const exists = existingCharts.get(`${inGameID}-${difficultyName}`);
+				const level = calculateLevel(difficulty);
+				const levelNum = calculateLevelNum(difficulty);
+
+				if (exists) {
+					const displayName = `${musicData.artistName.str} - ${musicData.name.str} [${difficultyName}] (${exists.chartID})`;
+					const versionIndex = exists.versions.indexOf(options.version);
+
+					if (!difficulty.enable) {
+						if (versionIndex !== -1) {
+							logger.info(`Removing ${displayName} from version ${options.version} because it has been disabled.`);
+							exists.versions.splice(versionIndex, 1);
+						}
+						
+						continue;
+					}
+
+					if (versionIndex === -1) {
+						logger.info(`Adding ${displayName} to version ${options.version}.`)
+						exists.versions.push(options.version);
+					}
+
+					if (isLatestVersion && exists.level !== level) {
+						logger.info(`Chart ${displayName} has had a level change: ${exists.level} -> ${level}`);
+						exists.level = level;
+					}
+
+					if (isLatestVersion && exists.levelNum !== levelNum) {
+						logger.info(`Chart ${displayName} has had a levelNum change: ${exists.levelNum} -> ${levelNum}`);
+						exists.levelNum = levelNum;
+					}
+
 					continue;
 				}
 
-				if (versionIndex === -1) {
-					exists.versions.push(options.version);
+				if (!difficulty.enable) {
+					continue;
 				}
 
-				if (isLatestVersion) {
-					exists.level = level;
-					exists.levelNum = levelNum;
+				if (difficultyName === "WORLD'S END") {
+					logger.warn(
+						`Song ${musicData.artistName.str} - ${
+							musicData.name.str
+						} (inGameID=${musicData.name.id}) contains a WORLD'S END chart, which should be impossible. Refusing to process this difficulty.`
+					);
+					continue;
 				}
 
-				continue;
-			}
+				const chartDoc: ChartDocument<"chunithm:Single"> = {
+					chartID: CreateChartID(),
+					songID: tachiSongID,
+					difficulty: difficultyName as Difficulties["chunithm:Single"],
+					isPrimary: true,
+					level,
+					levelNum,
+					versions: [options.version],
+					playtype: "Single",
+					data: {
+						inGameID,
+					},
+				};
+				
+				newCharts.push(chartDoc);
 
-			if (!difficulty.enable) {
-				continue;
+				logger.info(`Added chart ${musicData.artistName.str} - ${musicData.name.str} [${difficultyName}] (${chartDoc.chartID}).`);
 			}
-
-			if (difficulty.type.data === "WORLD'S END") {
-				// This shouldn't happen, because songs under ID 8000 should **not** have
-				// WORLD'S END charts. Just in case though.
-				continue;
-			}
-
-			const chartDoc: ChartDocument<"chunithm:Single"> = {
-				chartID: CreateChartID(),
-				songID,
-				difficulty: difficultyName as Difficulties["chunithm:Single"],
-				isPrimary: true,
-				level,
-				levelNum,
-				versions: [options.version],
-				playtype: "Single",
-				data: {
-					inGameID,
-				},
-			};
-			newCharts.push(chartDoc);
 		}
 	}
 }

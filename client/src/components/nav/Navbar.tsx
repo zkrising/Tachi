@@ -29,6 +29,9 @@ export interface NavbarProps {
 export default function Navbar({ children }: NavbarProps) {
 	const location = useLocation();
 
+	const navRef = useRef<HTMLDivElement>(null);
+	const itemsListRef = useRef<HTMLDivElement>(null);
+
 	const [mounted, setMounted] = useState(false);
 	const [indicatorStyle, setIndicatorStyle] = useState({
 		left: 0,
@@ -36,9 +39,6 @@ export default function Navbar({ children }: NavbarProps) {
 	});
 	const [showScrollLeft, setShowScrollLeft] = useState(false);
 	const [showScrollRight, setShowScrollRight] = useState(false);
-
-	const navRef = useRef<HTMLDivElement>(null);
-	const itemsListRef = useRef<HTMLDivElement>(null);
 
 	const links = useMemo(
 		() =>
@@ -131,12 +131,10 @@ export default function Navbar({ children }: NavbarProps) {
 			const navRect = nav.getBoundingClientRect();
 			const activeElementRect = activeElement.getBoundingClientRect();
 
-			const newIndicatorStyle = {
+			setIndicatorStyle({
 				left: activeElementRect.left - navRect.left + nav.scrollLeft,
 				width: activeElementRect.width,
-			};
-
-			setIndicatorStyle(newIndicatorStyle);
+			});
 		}
 	};
 
@@ -265,8 +263,8 @@ export default function Navbar({ children }: NavbarProps) {
 				itemsList.firstElementChild &&
 				itemsList.lastElementChild
 			) {
-				firstObserver.observe(itemsList!.firstElementChild);
-				lastObserver.observe(itemsList!.lastElementChild);
+				firstObserver.observe(itemsList.firstElementChild);
+				lastObserver.observe(itemsList.lastElementChild);
 			}
 		};
 
@@ -294,11 +292,14 @@ export default function Navbar({ children }: NavbarProps) {
 		};
 
 		const mutationObserver = new MutationObserver(handleMutation);
+		mutationObserver.observe(itemsList, { childList: true });
 
 		const resizeObserver = new ResizeObserver(() => {
 			debouncedUpdateIndicator();
 			scrollActiveElementIntoView();
 		});
+		Array.from(itemsList.children).forEach((item) => resizeObserver.observe(item));
+		resizeObserver.observe(nav);
 
 		const observerOptions = {
 			root: nav,
@@ -306,11 +307,7 @@ export default function Navbar({ children }: NavbarProps) {
 		};
 		const firstObserver = new IntersectionObserver(handleFirstIntersect, observerOptions);
 		const lastObserver = new IntersectionObserver(handleLastIntersect, observerOptions);
-
-		Array.from(itemsList.children).forEach((item) => resizeObserver.observe(item));
 		observeChildren();
-
-		resizeObserver.observe(nav);
 
 		return () => {
 			scrollActiveElementIntoView.cancel();

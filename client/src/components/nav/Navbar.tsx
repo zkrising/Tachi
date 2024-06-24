@@ -234,12 +234,18 @@ export default function Navbar({ children }: NavbarProps) {
 
 	useEffect(() => {
 		setMounted(true);
+
+		return () => {
+			setMounted(false);
+		};
 	}, []);
 
 	useEffect(() => {
-		updateIndicator();
-		scrollActiveElementIntoView();
-	}, [nav, itemsList, activeElement]);
+		if (mounted) {
+			updateIndicator();
+			scrollActiveElementIntoView();
+		}
+	}, [mounted, nav, itemsList, activeElement]);
 
 	useEffect(() => {
 		if (!nav || !itemsList) {

@@ -56,7 +56,9 @@ export default function GameRoutes() {
 		return <ErrorPage statusCode={404} customMessage={`The game ${game} is not supported.`} />;
 	}
 
-	setBackground(ToCDNURL(`/game-banners/${game}`));
+	useEffect(() => {
+		setBackground(ToCDNURL(`/game-banners/${game}`));
+	}, [game]);
 
 	const gameConfig = GetGameConfig(game);
 

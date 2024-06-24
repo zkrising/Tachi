@@ -26,6 +26,8 @@ import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import SessionFolderRaiseBreakdown from "./SessionFolderRaiseBreakdown";
 import SessionRaiseBreakdown from "./SessionRaiseBreakdown";
 
+type PBsData = { pbs: Array<PBScoreDocument> };
+
 export default function SessionOverview({
 	sessionData,
 	setSessionData,
@@ -51,12 +53,17 @@ export default function SessionOverview({
 
 	const [importantScores, setImportantScores] = useState<null | ScoreDataset>(null);
 
-	const { data } = useApiQuery<Array<{ pbs: Array<PBScoreDocument> }>>(
-		Object.keys(gptConfig.scoreRatingAlgs).map(
-			(e) =>
-				`/users/${reqUser.id}/games/${session.game}/${session.playtype}/pbs/best?alg=${e}`
-		)
-	);
+	const scoreRatingAlgsKeys = Object.keys(gptConfig.scoreRatingAlgs);
+
+	const query =
+		scoreRatingAlgsKeys.length === 1
+			? `/users/${reqUser.id}/games/${session.game}/${session.playtype}/pbs/best?alg=${scoreRatingAlgsKeys[0]}`
+			: scoreRatingAlgsKeys.map(
+					(alg) =>
+						`/users/${reqUser.id}/games/${session.game}/${session.playtype}/pbs/best?alg=${alg}`
+			  );
+
+	const { data } = useApiQuery<PBsData | PBsData[]>(query);
 
 	useEffect(() => {
 		if (!data) {
@@ -66,14 +73,22 @@ export default function SessionOverview({
 
 		const important: Array<string> = [];
 
-		for (const d of data) {
-			for (const pb of d.pbs.slice(0, MAX_SCORES)) {
+		const findImportant = (data: PBsData) => {
+			for (const pb of data.pbs.slice(0, MAX_SCORES)) {
 				const didFind = pb.composedFrom.find((e) => session.scoreIDs.includes(e.scoreID));
 
 				if (didFind) {
 					important.push(didFind.scoreID);
 				}
 			}
+		};
+
+		if (Array.isArray(data)) {
+			for (const d of data) {
+				findImportant(d);
+			}
+		} else {
+			findImportant(data);
 		}
 
 		setImportantScores(scoreDataset.filter((e) => important.includes(e.scoreID)));

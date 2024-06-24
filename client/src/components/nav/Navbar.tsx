@@ -1,15 +1,15 @@
 import Icon from "components/util/Icon";
-import { debounce } from "lodash";
+import { debounce, type DebouncedFunc } from "lodash";
 import React, {
 	cloneElement,
-	KeyboardEventHandler,
-	ReactElement,
 	useEffect,
 	useMemo,
 	useRef,
 	useState,
+	type KeyboardEventHandler,
+	type ReactElement,
 } from "react";
-import { useLocation, Link, LinkProps } from "react-router-dom";
+import { useLocation, Link, type LinkProps } from "react-router-dom";
 
 export interface NavbarItemProps extends LinkProps<HTMLAnchorElement> {
 	to: string;
@@ -29,9 +29,6 @@ export interface NavbarProps {
 export default function Navbar({ children }: NavbarProps) {
 	const location = useLocation();
 
-	const navRef = useRef<HTMLDivElement>(null);
-	const itemsListRef = useRef<HTMLDivElement>(null);
-
 	const [mounted, setMounted] = useState(false);
 	const [indicatorStyle, setIndicatorStyle] = useState({
 		left: 0,
@@ -39,6 +36,9 @@ export default function Navbar({ children }: NavbarProps) {
 	});
 	const [showScrollLeft, setShowScrollLeft] = useState(false);
 	const [showScrollRight, setShowScrollRight] = useState(false);
+
+	const navRef = useRef<HTMLDivElement>(null);
+	const itemsListRef = useRef<HTMLDivElement>(null);
 
 	const links = useMemo(
 		() =>
@@ -131,10 +131,12 @@ export default function Navbar({ children }: NavbarProps) {
 			const navRect = nav.getBoundingClientRect();
 			const activeElementRect = activeElement.getBoundingClientRect();
 
-			setIndicatorStyle({
+			const newIndicatorStyle = {
 				left: activeElementRect.left - navRect.left + nav.scrollLeft,
 				width: activeElementRect.width,
-			});
+			};
+
+			setIndicatorStyle(newIndicatorStyle);
 		}
 	};
 
@@ -232,34 +234,27 @@ export default function Navbar({ children }: NavbarProps) {
 		}
 	};
 
+	// needing this just to properly render the component is truly beyond my understanding
 	useEffect(() => {
 		setMounted(true);
-
-		return () => {
-			setMounted(false);
-		};
 	}, []);
-
-	useEffect(() => {
-		if (mounted) {
-			updateIndicator();
-			scrollActiveElementIntoView();
-		}
-	}, [mounted, nav, itemsList, activeElement]);
 
 	useEffect(() => {
 		if (!nav || !itemsList) {
 			return;
 		}
 
+		updateIndicator();
+		scrollActiveElementIntoView();
+
 		const debouncedUpdateIndicator = debounce(updateIndicator, 75, { trailing: true });
 
 		const debounceIntersectOptions = [125, { leading: true }] as const;
-		const handleFirstIntersect: IntersectionObserverCallback = debounce(
+		const handleFirstIntersect: DebouncedFunc<IntersectionObserverCallback> = debounce(
 			(entries) => setShowScrollLeft(!entries[0].isIntersecting),
 			...debounceIntersectOptions
 		);
-		const handleLastIntersect: IntersectionObserverCallback = debounce(
+		const handleLastIntersect: DebouncedFunc<IntersectionObserverCallback> = debounce(
 			(entries) => setShowScrollRight(!entries[0].isIntersecting),
 			...debounceIntersectOptions
 		);
@@ -270,8 +265,8 @@ export default function Navbar({ children }: NavbarProps) {
 				itemsList.firstElementChild &&
 				itemsList.lastElementChild
 			) {
-				firstObserver.observe(itemsList.firstElementChild);
-				lastObserver.observe(itemsList.lastElementChild);
+				firstObserver.observe(itemsList!.firstElementChild);
+				lastObserver.observe(itemsList!.lastElementChild);
 			}
 		};
 
@@ -299,14 +294,11 @@ export default function Navbar({ children }: NavbarProps) {
 		};
 
 		const mutationObserver = new MutationObserver(handleMutation);
-		mutationObserver.observe(itemsList, { childList: true });
 
 		const resizeObserver = new ResizeObserver(() => {
 			debouncedUpdateIndicator();
 			scrollActiveElementIntoView();
 		});
-		Array.from(itemsList.children).forEach((item) => resizeObserver.observe(item));
-		resizeObserver.observe(nav);
 
 		const observerOptions = {
 			root: nav,
@@ -314,9 +306,17 @@ export default function Navbar({ children }: NavbarProps) {
 		};
 		const firstObserver = new IntersectionObserver(handleFirstIntersect, observerOptions);
 		const lastObserver = new IntersectionObserver(handleLastIntersect, observerOptions);
+
+		Array.from(itemsList.children).forEach((item) => resizeObserver.observe(item));
 		observeChildren();
 
+		resizeObserver.observe(nav);
+
 		return () => {
+			scrollActiveElementIntoView.cancel();
+			debouncedUpdateIndicator.cancel();
+			handleFirstIntersect.cancel();
+			handleLastIntersect.cancel();
 			mutationObserver.disconnect();
 			resizeObserver.disconnect();
 			firstObserver.disconnect();

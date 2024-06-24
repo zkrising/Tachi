@@ -44,6 +44,7 @@ export default function FolderInfoHeader({
 					{enumGraphs.flatMap((g) =>
 						Object.keys(enumConf).flatMap((en) => (
 							<SelectButton
+								key={`${en}-${g}`}
 								className={
 									g === "minimap" ? "d-none d-lg-block text-wrap" : "text-wrap"
 								}

@@ -95,7 +95,7 @@ export default function FilterDirectivesIndicator<D>({
 					<Divider className="mb-4" />
 					<ul style={{ fontSize: "1.5rem" }}>
 						{Object.keys(searchFunctions).map((key) => (
-							<li>
+							<li key={key}>
 								<ExampleQueries
 									keyName={key}
 									value={GetValueGetter(searchFunctions[key])(doc)}

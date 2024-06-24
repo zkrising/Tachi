@@ -53,11 +53,13 @@ function GetSortFunctions<D>(headers: Header<D>[]) {
 function ParseHeaders<D>(headers: Header<D>[], thProps: ZTableTHProps) {
 	const headerElements: JSX.Element[] = [];
 
-	for (const header of headers) {
+	headers.forEach((header, index) => {
 		const [name, shortName, sortFn, componentYielder] = header;
 
 		if (componentYielder) {
-			headerElements.push(componentYielder(thProps));
+			headerElements.push(
+				<React.Fragment key={index}>{componentYielder(thProps)}</React.Fragment>
+			);
 		} else if (sortFn) {
 			headerElements.push(
 				<SortableTH key={`header-${name}`} name={name} shortName={shortName} {...thProps} />
@@ -70,7 +72,7 @@ function ParseHeaders<D>(headers: Header<D>[], thProps: ZTableTHProps) {
 				</th>
 			);
 		}
-	}
+	});
 
 	return <tr>{headerElements}</tr>;
 }
@@ -164,7 +166,11 @@ export default function TachiTable<D>({
 				<table className="table table-striped table-hover table-vertical-center text-center">
 					<thead>{headersRow}</thead>
 					<tbody>
-						<NoDataWrapper>{window.map((e) => rowFunction(e))}</NoDataWrapper>
+						<NoDataWrapper>
+							{window.map((e, i) => (
+								<React.Fragment key={i}>{rowFunction(e)}</React.Fragment>
+							))}
+						</NoDataWrapper>
 					</tbody>
 				</table>
 			</div>

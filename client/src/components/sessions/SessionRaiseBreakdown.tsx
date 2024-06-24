@@ -198,7 +198,7 @@ function SessionScoreStatBreakdown({
 					}}
 				>
 					{enumMetrics.map((metric) => (
-						<div style={{ flex: 1 }}>
+						<div key={metric} style={{ flex: 1 }}>
 							<MiniTable
 								headers={[
 									`${UppercaseFirst(metric)}s`,

@@ -71,7 +71,7 @@ function GamesInfo({ ugs, reqUser }: { ugs: UserGameStats[]; reqUser: UserDocume
 				const e = ugsMap.get(`${game}:${playtype}`);
 
 				if (!e) {
-					return <></>;
+					return <React.Fragment key={`${game}:${playtype}`}></React.Fragment>;
 				}
 
 				return <GameStatContainer key={`${game}:${playtype}`} ugs={e} reqUser={reqUser} />;

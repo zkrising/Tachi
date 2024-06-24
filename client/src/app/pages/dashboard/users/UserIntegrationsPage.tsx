@@ -270,8 +270,8 @@ function CreateNewOAuthClient({ setClients }: { setClients: SetState<TachiAPICli
 						<Divider />
 						<h4>Permissions</h4>
 						<div className="px-4">
-							{allPermissions.map((permission) => (
-								<>
+							{allPermissions.map((permission, i) => (
+								<React.Fragment key={i}>
 									<input
 										key={permission}
 										className="form-check-input"
@@ -288,7 +288,7 @@ function CreateNewOAuthClient({ setClients }: { setClients: SetState<TachiAPICli
 									/>
 									<label className="form-check-label">{permission}</label>
 									<br />
-								</>
+								</React.Fragment>
 							))}
 						</div>
 
@@ -867,8 +867,8 @@ function CreateAPIKeyModal({
 					<Divider />
 					<h4>Permissions</h4>
 					<div className="px-4">
-						{allPermissions.map((permission) => (
-							<>
+						{allPermissions.map((permission, i) => (
+							<React.Fragment key={i}>
 								<input
 									key={permission}
 									className="form-check-input"
@@ -885,7 +885,7 @@ function CreateAPIKeyModal({
 								/>
 								<label className="form-check-label">{permission}</label>
 								<br />
-							</>
+							</React.Fragment>
 						))}
 					</div>
 

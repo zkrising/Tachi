@@ -2,7 +2,12 @@ node_modules
 
 # ide stuffs
 .idea
-.vscode
+
+# i am un-ignoring this to make sure that vscode users get the right typescript version
+# picked for them. Future typescript design decisions cause phantom type errors that
+# don't exist on the version we actually compile for.
+#
+# .vscode
 .vs
 
 # PNPM noise

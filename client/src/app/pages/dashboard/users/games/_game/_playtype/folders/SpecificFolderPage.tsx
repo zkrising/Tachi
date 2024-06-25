@@ -431,9 +431,11 @@ function TierlistBreakdown({ game, folderDataset, playtype, reqUser }: InfoProps
 		[tierlist]
 	);
 
-	const tierlistImpl = gptImpl.ratingSystems.find(
+	// @ts-expect-error Typescript doesn't like our unioning here for some reason
+	// and i can't be bothered to figure it out
+	const tierlistImpl: GPTRatingSystem<GPTString> = gptImpl.ratingSystems.find(
 		(rs) => rs.name === tierlist
-	) as GPTRatingSystem<GPTString>;
+	);
 
 	if (!tierlistImpl) {
 		return <>(E) no tierlist impl (howd you get here?)</>;
@@ -762,9 +764,10 @@ function FolderDatasetAchievedStatus(
 ) {
 	const tierlistInfo: Record<string, { status: AchievedStatuses; score: string | null }> = {};
 
-	const fn = GPT_CLIENT_IMPLEMENTATIONS[`${game}:${playtype}` as GPTString].ratingSystems.find(
-		(e) => e.name === tierlist
-	)?.achievementFn as GPTRatingSystem<GPTString>["achievementFn"];
+	// @ts-expect-error shut up
+	const fn: GPTRatingSystem<GPTString>["achievementFn"] = GPT_CLIENT_IMPLEMENTATIONS[
+		`${game}:${playtype}` as GPTString
+	].ratingSystems.find((e) => e.name === tierlist)?.achievementFn;
 
 	for (const data of folderDataset) {
 		let achieved: AchievedStatuses;

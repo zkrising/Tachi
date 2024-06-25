@@ -1,15 +1,15 @@
 import Icon from "components/util/Icon";
-import { debounce } from "lodash";
+import { debounce, type DebouncedFunc } from "lodash";
 import React, {
 	cloneElement,
-	KeyboardEventHandler,
-	ReactElement,
 	useEffect,
 	useMemo,
 	useRef,
 	useState,
+	type KeyboardEventHandler,
+	type ReactElement,
 } from "react";
-import { useLocation, Link, LinkProps } from "react-router-dom";
+import { useLocation, Link, type LinkProps } from "react-router-dom";
 
 export interface NavbarItemProps extends LinkProps<HTMLAnchorElement> {
 	to: string;
@@ -232,28 +232,27 @@ export default function Navbar({ children }: NavbarProps) {
 		}
 	};
 
+	// needing this just to properly render the component is truly beyond my understanding
 	useEffect(() => {
 		setMounted(true);
 	}, []);
-
-	useEffect(() => {
-		updateIndicator();
-		scrollActiveElementIntoView();
-	}, [nav, itemsList, activeElement]);
 
 	useEffect(() => {
 		if (!nav || !itemsList) {
 			return;
 		}
 
+		updateIndicator();
+		scrollActiveElementIntoView();
+
 		const debouncedUpdateIndicator = debounce(updateIndicator, 75, { trailing: true });
 
 		const debounceIntersectOptions = [125, { leading: true }] as const;
-		const handleFirstIntersect: IntersectionObserverCallback = debounce(
+		const handleFirstIntersect: DebouncedFunc<IntersectionObserverCallback> = debounce(
 			(entries) => setShowScrollLeft(!entries[0].isIntersecting),
 			...debounceIntersectOptions
 		);
-		const handleLastIntersect: IntersectionObserverCallback = debounce(
+		const handleLastIntersect: DebouncedFunc<IntersectionObserverCallback> = debounce(
 			(entries) => setShowScrollRight(!entries[0].isIntersecting),
 			...debounceIntersectOptions
 		);
@@ -311,6 +310,10 @@ export default function Navbar({ children }: NavbarProps) {
 		observeChildren();
 
 		return () => {
+			scrollActiveElementIntoView.cancel();
+			debouncedUpdateIndicator.cancel();
+			handleFirstIntersect.cancel();
+			handleLastIntersect.cancel();
 			mutationObserver.disconnect();
 			resizeObserver.disconnect();
 			firstObserver.disconnect();

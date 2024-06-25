@@ -231,7 +231,9 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 					onChange={formik.handleChange}
 				>
 					{GetScoreMetrics(gptConfig, "ENUM").map((e) => (
-						<option value={e}>{UppercaseFirst(e)}</option>
+						<option key={e} value={e}>
+							{UppercaseFirst(e)}
+						</option>
 					))}
 				</Form.Select>
 				<Form.Text className="text-body-secondary">

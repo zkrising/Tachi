@@ -28,7 +28,7 @@ export default function GPTDevInfo({ game, playtype }: GamePT) {
 			<Card className="mt-4" header="Class Badges">
 				<div className="d-flex w-100 justify-content-center" style={{ gap: "30px" }}>
 					{Object.entries(gptConfig.classes).map(([classSet, conf]) => (
-						<div>
+						<div key={classSet}>
 							<MiniTable headers={[classSet]} colSpan={2}>
 								{conf.values.map((e) => (
 									<tr key={e.id}>

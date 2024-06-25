@@ -137,17 +137,18 @@ function ActivityInner({
 			Tip: You can click on an event to learn more about it.
 			<div className="timeline activity-timeline timeline-2 mt-4">
 				<div className="timeline-bar"></div>
-				{data.map((e) => {
+				{data.map((e, i) => {
 					const user = userMap.get(e.type === "SCORES" ? e.scores[0]?.userID : e.userID);
 
 					if (!user) {
-						return <div>This user doesn't exist? Whoops.</div>;
+						return <div key={i}>This user doesn't exist? Whoops.</div>;
 					}
 
 					switch (e.type) {
 						case "SCORES":
 							return (
 								<ScoresActivity
+									key={e.scores[0].scoreID}
 									shouldShowGame={shouldShowGame}
 									data={e}
 									user={user}
@@ -156,6 +157,7 @@ function ActivityInner({
 						case "SESSION":
 							return (
 								<SessionActivity
+									key={e.sessionID}
 									shouldShowGame={shouldShowGame}
 									data={e}
 									user={user}
@@ -164,6 +166,7 @@ function ActivityInner({
 						case "CLASS_ACHIEVEMENT":
 							return (
 								<ClassAchievementActivity
+									key={`${e.userID}${e.classValue}${e.timeAchieved}`}
 									shouldShowGame={shouldShowGame}
 									data={e}
 									user={user}
@@ -172,6 +175,7 @@ function ActivityInner({
 						case "GOAL_ACHIEVEMENTS":
 							return (
 								<GoalActivity
+									key={i}
 									shouldShowGame={shouldShowGame}
 									data={e}
 									user={user}
@@ -180,6 +184,7 @@ function ActivityInner({
 						case "QUEST_ACHIEVEMENT":
 							return (
 								<QuestActivity
+									key={i}
 									shouldShowGame={shouldShowGame}
 									data={e}
 									user={user}

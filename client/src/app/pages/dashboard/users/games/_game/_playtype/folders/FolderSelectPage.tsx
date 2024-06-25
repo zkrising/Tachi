@@ -137,7 +137,7 @@ export function FolderInfoComponent({
 					<div className="col-12">
 						<div className="btn-group">
 							{GetScoreMetrics(gptConfig, "ENUM").map((e) => (
-								<SelectButton value={metric} setValue={setMetric} id={e}>
+								<SelectButton key={e} value={metric} setValue={setMetric} id={e}>
 									{/* @ts-expect-error this access is legal zzz */}
 									<Icon type={gptImpl.enumIcons[e]} /> {UppercaseFirst(e)}s
 								</SelectButton>

@@ -130,7 +130,7 @@ function SearchResults({ search, hasPlayedGame }: { search: string; hasPlayedGam
 						const [game, playtype] = SplitGPT(gpt);
 
 						return (
-							<SelectButton id={gpt} value={mode} setValue={setMode}>
+							<SelectButton key={gpt} id={gpt} value={mode} setValue={setMode}>
 								{FormatGame(game, playtype)}
 								<Badge bg="secondary" className="ms-2 text-light">
 									{charts.length}
@@ -222,7 +222,7 @@ function UsersView({ users }: { users: Array<UserDocument> }) {
 				}}
 			></div>
 			{users.map((user) => (
-				<Col xs={12} lg={6}>
+				<Col key={user.id} xs={12} lg={6}>
 					<Card className="mb-4">
 						<div className="d-flex h-100">
 							<div>

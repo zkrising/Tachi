@@ -306,16 +306,18 @@ function TimelineMain({
 			if (!lastDay || lastDay !== dayNum) {
 				lastDay = dayNum;
 				elements.push(
-					<TimelineDivider>{FormatDate(scoreData.timeAchieved)}</TimelineDivider>
+					<TimelineDivider key={scoreData.timeAchieved}>
+						{FormatDate(scoreData.timeAchieved)}
+					</TimelineDivider>
 				);
 			}
 		} else if (!hasHitNulls) {
-			elements.push(<TimelineDivider>Unknown Time</TimelineDivider>);
+			elements.push(<TimelineDivider key={index}>Unknown Time</TimelineDivider>);
 			hasHitNulls = true;
 		}
 
 		elements.push(
-			<TimelineElement index={index} scoreData={scoreData} key={scoreData.scoreID} />
+			<TimelineElement key={scoreData.scoreID} index={index} scoreData={scoreData} />
 		);
 		index++;
 	}
@@ -429,9 +431,9 @@ function TierlistBreakdown({ game, folderDataset, playtype, reqUser }: InfoProps
 		[tierlist]
 	);
 
-	// @ts-expect-error i don't care to resolve this typeissue and i'm tired
-	// of typescript
-	const tierlistImpl = gptImpl.ratingSystems.find((rs) => rs.name === tierlist);
+	const tierlistImpl = gptImpl.ratingSystems.find(
+		(rs) => rs.name === tierlist
+	) as GPTRatingSystem<GPTString>;
 
 	if (!tierlistImpl) {
 		return <>(E) no tierlist impl (howd you get here?)</>;
@@ -444,6 +446,7 @@ function TierlistBreakdown({ game, folderDataset, playtype, reqUser }: InfoProps
 					<div className="btn-group d-flex">
 						{gptImpl.ratingSystems.map((e) => (
 							<SelectButton
+								key={e.name}
 								className="btn-lg"
 								id={e.name}
 								setValue={setTierlist}
@@ -759,10 +762,9 @@ function FolderDatasetAchievedStatus(
 ) {
 	const tierlistInfo: Record<string, { status: AchievedStatuses; score: string | null }> = {};
 
-	// @ts-expect-error i'm sick of this language and i'm sick of type hacks
 	const fn = GPT_CLIENT_IMPLEMENTATIONS[`${game}:${playtype}` as GPTString].ratingSystems.find(
-		(e: GPTRatingSystem<GPTString>) => e.name === tierlist
-	)?.achievementFn;
+		(e) => e.name === tierlist
+	)?.achievementFn as GPTRatingSystem<GPTString>["achievementFn"];
 
 	for (const data of folderDataset) {
 		let achieved: AchievedStatuses;
@@ -774,7 +776,7 @@ function FolderDatasetAchievedStatus(
 			const v = fn(data.__related.pb);
 
 			achieved = v[1] ? AchievedStatuses.ACHIEVED : AchievedStatuses.FAILED;
-			score = v[0];
+			score = typeof v[0] === "number" ? v[0].toString() : v[0];
 		} else {
 			achieved = AchievedStatuses.SCORE_BASED;
 		}

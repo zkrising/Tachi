@@ -25,7 +25,7 @@ export default function FervidexPage() {
 					<ExternalLink href="https://client.fervidex.net/latest.zip">here</ExternalLink>.
 				</li>
 				<li>
-					Download your <code>fervidex.json</code> config file{" "}
+					Download your <code>kamaitachi.fervidex.json</code> config file{" "}
 					<ExternalLink href="/client-file-flow/CXFervidex">here</ExternalLink>
 					. <br />
 					<Alert variant="warning" className="mt-2">

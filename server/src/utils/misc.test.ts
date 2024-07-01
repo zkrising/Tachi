@@ -1,10 +1,39 @@
-import { GetMillisecondsSince, IsValidURL, RoundToNDecimalPlaces } from "./misc";
+import {
+	DeleteUndefinedProps,
+	GetMillisecondsSince,
+	IsValidURL,
+	RoundToNDecimalPlaces,
+} from "./misc";
 import t from "tap";
 
 t.test("#GetMillisecondsSince", (t) => {
 	const time = GetMillisecondsSince(10n);
 
 	t.ok(typeof time === "number" && time > 0, "Should return a number greater than 0.");
+
+	t.end();
+});
+
+t.test("#DeleteUndefinedProps", (t) => {
+	const v = {
+		a: 1,
+		b: 2,
+		c: undefined,
+		d: {
+			e: 3,
+			f: undefined,
+		},
+	};
+
+	DeleteUndefinedProps(v);
+
+	t.strictSame(v, {
+		a: 1,
+		b: 2,
+		d: {
+			e: 3,
+		},
+	});
 
 	t.end();
 });

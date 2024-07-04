@@ -58,11 +58,11 @@ app.webhooks.on(["pull_request.opened", "pull_request.edited"], async ({ octokit
 				mkSeedDiffViewMsg(
 					payload.pull_request.base.repo.url,
 					payload.pull_request.base.sha,
-					payload.pull_request.head.repo.url,
+					payload.pull_request.head.repo!.url,
 					payload.pull_request.head.sha
 				),
 				octokit,
-				payload.repository,
+				payload.repository as any,
 				payload.pull_request.number
 			);
 		}
@@ -82,11 +82,11 @@ ${err}
 ${mkSeedDiffViewMsg(
 	payload.pull_request.base.repo.url,
 	payload.pull_request.base.sha,
-	payload.pull_request.head.repo.url,
+	payload.pull_request.head.repo!.url,
 	payload.pull_request.head.sha
 )}`,
 			octokit,
-			payload.repository,
+			payload.repository as any,
 			payload.pull_request.number
 		);
 	}
@@ -103,7 +103,7 @@ app.webhooks.on(["issue_comment.created"], async ({ octokit, payload }) => {
 
 		switch (cmd) {
 			case "ping": {
-				await sendMsg("pong!", octokit, payload.repository, payload.issue.number);
+				await sendMsg("pong!", octokit, payload.repository as any, payload.issue.number);
 				break;
 			}
 
@@ -124,7 +124,7 @@ app.webhooks.on(["issue_comment.created"], async ({ octokit, payload }) => {
 						pr.head.sha
 					),
 					octokit,
-					payload.repository,
+					payload.repository as any,
 					pr.number
 				);
 				break;
@@ -134,7 +134,7 @@ app.webhooks.on(["issue_comment.created"], async ({ octokit, payload }) => {
 				await sendMsg(
 					`No idea what to do with command \`${cmd}\`, sorry!`,
 					octokit,
-					payload.repository,
+					payload.repository as any,
 					payload.issue.number
 				);
 		}

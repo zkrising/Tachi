@@ -80,7 +80,10 @@ if (require.main !== module) {
 }
 
 const program = new Command()
-	.requiredOption("-i, --input <OPTIONS DIRS...>", "The options directories of your CHUNITHM install. Typically App/data and Option.")
+	.requiredOption(
+		"-i, --input <OPTIONS DIRS...>",
+		"The options directories of your CHUNITHM install. Typically App/data and Option."
+	)
 	.requiredOption("-v, --version <VERSION>", "The version of this CHUNITHM install.")
 	.option("-f, --force", "Forces overwrites where it shouldn't be done automatically.")
 	.parse(process.argv);
@@ -91,17 +94,17 @@ const tachiVersions = Object.keys(GetGamePTConfig("chunithm", "Single").versions
 
 if (!VERSIONS.includes(baseVersion)) {
 	throw new Error(
-		`Invalid base version ${baseVersion}. Expected any of ${
-			VERSIONS.join(",")
-		}. Update the VERSIONS array in database-seeds/scripts/rerunners/chunithm/merge-options.ts.`
+		`Invalid base version ${baseVersion}. Expected any of ${VERSIONS.join(
+			","
+		)}. Update the VERSIONS array in database-seeds/scripts/rerunners/chunithm/merge-options.ts.`
 	);
 }
 
 if (!tachiVersions.includes(options.version)) {
 	throw new Error(
-		`Invalid version ${options.version}. Expected any of ${
-			tachiVersions.join(",")
-		}. If you're adding a new version, go update common/src/config/game-config/chunithm.ts.`
+		`Invalid version ${options.version}. Expected any of ${tachiVersions.join(
+			","
+		)}. If you're adding a new version, go update common/src/config/game-config/chunithm.ts.`
 	);
 }
 
@@ -109,7 +112,8 @@ const isOmnimixVersion = /-omni$/u.test(options.version);
 const isLatestVersion = VERSIONS.indexOf(baseVersion) === VERSIONS.length - 1;
 
 const existingSongDocs: Array<SongDocument<"chunithm">> = ReadCollection("songs-chunithm.json");
-const existingChartDocs: Array<ChartDocument<"chunithm:Single">> = ReadCollection("charts-chunithm.json");
+const existingChartDocs: Array<ChartDocument<"chunithm:Single">> =
+	ReadCollection("charts-chunithm.json");
 
 const songMap = new Map(existingSongDocs.map((s) => [s.id, s]));
 const songTitleMap = new Map(existingSongDocs.map((s) => [s.title, s]));
@@ -129,7 +133,9 @@ const newCharts: Array<ChartDocument<"chunithm:Single">> = [];
 for (const optionsDir of options.input) {
 	for (const option of readdirSync(optionsDir)) {
 		if (!isOmnimixVersion && OMNIMIX_OPTION_NAMES.includes(option)) {
-			logger.warn(`Ignoring omnimix option ${option} because the version specified is not an omnimix version.`);
+			logger.warn(
+				`Ignoring omnimix option ${option} because the version specified is not an omnimix version.`
+			);
 			continue;
 		}
 
@@ -149,9 +155,9 @@ for (const optionsDir of options.input) {
 
 		for (const music of readdirSync(musicsDir)) {
 			const musicDir = path.join(musicsDir, music);
-		
-			if (!/music\d+$/.test(music)) {
-				continue
+
+			if (!/music\d+$/u.test(music)) {
+				continue;
 			}
 
 			if (!statSync(musicDir).isDirectory()) {
@@ -182,11 +188,7 @@ for (const optionsDir of options.input) {
 			if (musicData.disableFlag) {
 				if (tachiSongID !== undefined) {
 					logger.info(
-						`Removing charts of song ${musicData.artistName.str} - ${
-							musicData.name.str
-						} (ID ${tachiSongID}) from version ${
-							options.version
-						}, because disableFlag is enabled.`
+						`Removing charts of song ${musicData.artistName.str} - ${musicData.name.str} (ID ${tachiSongID}) from version ${options.version}, because disableFlag is enabled.`
 					);
 
 					existingChartDocs
@@ -209,10 +211,8 @@ for (const optionsDir of options.input) {
 
 				if (existingTitle) {
 					logger.warn(
-						`A song called ${musicData.name.str} already exists in songs-chunithm (ID ${
-							existingTitle.id
-						}). Is this a duplicate with a given inGameID?`,
-					)
+						`A song called ${musicData.name.str} already exists in songs-chunithm (ID ${existingTitle.id}). Is this a duplicate with a given inGameID?`
+					);
 
 					if (options.force) {
 						logger.warn("--force was requested, adding this song anyways.");
@@ -225,12 +225,10 @@ for (const optionsDir of options.input) {
 				tachiSongID = musicData.name.id;
 
 				const displayVersion = VERSIONS[musicData.releaseTagName.id];
-				
+
 				if (!displayVersion) {
 					throw new Error(
-						`Unknown version ID ${
-							musicData.releaseTagName.id
-						}. Update database-seeds/scripts/rerunners/chunithm/merge-options.ts.`
+						`Unknown version ID ${musicData.releaseTagName.id}. Update database-seeds/scripts/rerunners/chunithm/merge-options.ts.`
 					);
 				}
 
@@ -245,13 +243,15 @@ for (const optionsDir of options.input) {
 						genre: musicData.genreNames.list.StringID.str,
 					},
 				};
-	
+
 				newSongs.push(songDoc);
 				inGameIDToSongIDMap.set(inGameID, tachiSongID);
 
 				logger.info(`Added new song ${songDoc.artist} - ${songDoc.title}.`);
 			} else if (!songMap.has(tachiSongID)) {
-				throw new Error(`CONSISTENCY ERROR: Song ID ${tachiSongID} does not belong to any songs!`);
+				throw new Error(
+					`CONSISTENCY ERROR: Song ID ${tachiSongID} does not belong to any songs!`
+				);
 			}
 
 			for (const difficulty of musicData.fumens.MusicFumenData) {
@@ -267,25 +267,31 @@ for (const optionsDir of options.input) {
 
 					if (!difficulty.enable) {
 						if (versionIndex !== -1) {
-							logger.info(`Removing ${displayName} from version ${options.version} because it has been disabled.`);
+							logger.info(
+								`Removing ${displayName} from version ${options.version} because it has been disabled.`
+							);
 							exists.versions.splice(versionIndex, 1);
 						}
-						
+
 						continue;
 					}
 
 					if (versionIndex === -1) {
-						logger.info(`Adding ${displayName} to version ${options.version}.`)
+						logger.info(`Adding ${displayName} to version ${options.version}.`);
 						exists.versions.push(options.version);
 					}
 
 					if (isLatestVersion && exists.level !== level) {
-						logger.info(`Chart ${displayName} has had a level change: ${exists.level} -> ${level}`);
+						logger.info(
+							`Chart ${displayName} has had a level change: ${exists.level} -> ${level}`
+						);
 						exists.level = level;
 					}
 
 					if (isLatestVersion && exists.levelNum !== levelNum) {
-						logger.info(`Chart ${displayName} has had a levelNum change: ${exists.levelNum} -> ${levelNum}`);
+						logger.info(
+							`Chart ${displayName} has had a levelNum change: ${exists.levelNum} -> ${levelNum}`
+						);
 						exists.levelNum = levelNum;
 					}
 
@@ -298,9 +304,7 @@ for (const optionsDir of options.input) {
 
 				if (difficultyName === "WORLD'S END") {
 					logger.warn(
-						`Song ${musicData.artistName.str} - ${
-							musicData.name.str
-						} (inGameID=${musicData.name.id}) contains a WORLD'S END chart, which should be impossible. Refusing to process this difficulty.`
+						`Song ${musicData.artistName.str} - ${musicData.name.str} (inGameID=${musicData.name.id}) contains a WORLD'S END chart, which should be impossible. Refusing to process this difficulty.`
 					);
 					continue;
 				}
@@ -318,10 +322,12 @@ for (const optionsDir of options.input) {
 						inGameID,
 					},
 				};
-				
+
 				newCharts.push(chartDoc);
 
-				logger.info(`Added chart ${musicData.artistName.str} - ${musicData.name.str} [${difficultyName}] (${chartDoc.chartID}).`);
+				logger.info(
+					`Added chart ${musicData.artistName.str} - ${musicData.name.str} [${difficultyName}] (${chartDoc.chartID}).`
+				);
 			}
 		}
 	}

@@ -116,7 +116,6 @@ jobs:
           TACHI_HOST: ${{secrets.TACHI_HOST}}
 
       - name: Build Staging
-        if: github.ref == 'refs/heads/staging'
         run: pnpm --filter tachi-client build
         env:
           VITE_MANDATE_LOGIN: true
@@ -130,7 +129,6 @@ jobs:
           BUILD_OUT_DIR: /home/runner/staging
 
       - name: Deploy Staging
-        if: github.ref == 'refs/heads/staging'
         run: scp -r ~/staging ci@"$TACHI_HOST":tachi-client
         env:
           TACHI_HOST: ${{secrets.TACHI_HOST}}

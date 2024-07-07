@@ -77,10 +77,6 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: 'echo "DOCKER_TAG=stable" >> $GITHUB_ENV'
 
-      - name: Docker Tag
-        if: github.ref == 'refs/heads/staging'
-        run: 'echo "DOCKER_TAG=staging" >> $GITHUB_ENV'
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 

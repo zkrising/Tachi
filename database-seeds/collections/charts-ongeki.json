@@ -123,7 +123,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"inGameID": 8162,
-			"isReMaster": false,
+			"isReMaster": true,
 			"maxPlatScore": 2340
 		},
 		"difficulty": "LUNATIC",
@@ -209,7 +209,7 @@
 		"data": {
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 8058,
-			"isReMaster": false,
+			"isReMaster": true,
 			"maxPlatScore": 3014
 		},
 		"difficulty": "LUNATIC",
@@ -295,7 +295,7 @@
 		"data": {
 			"displayVersion": "オンゲキ PLUS",
 			"inGameID": 8022,
-			"isReMaster": false,
+			"isReMaster": true,
 			"maxPlatScore": 2396
 		},
 		"difficulty": "LUNATIC",
@@ -2351,7 +2351,7 @@
 		"data": {
 			"displayVersion": "bright",
 			"inGameID": 8067,
-			"isReMaster": false,
+			"isReMaster": true,
 			"maxPlatScore": 2234
 		},
 		"difficulty": "LUNATIC",
@@ -16481,7 +16481,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY",
 			"inGameID": 8083,
-			"isReMaster": false,
+			"isReMaster": true,
 			"maxPlatScore": 3558
 		},
 		"difficulty": "LUNATIC",

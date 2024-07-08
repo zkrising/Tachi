@@ -51,33 +51,32 @@ export default function UserInvitesPage({ reqUser }: { reqUser: UserDocument }) 
 					</span>
 					<Divider />
 				</Col>
-				{newInvites !== 0 ||
-					(reqUser.authLevel === UserAuthLevels.ADMIN && (
-						<Col xs={12}>
-							<div className="d-flex justify-content-center">
-								<Button
-									onClick={async () => {
-										const r = await APIFetchV1(
-											`/users/${reqUser.id}/invites/create`,
-											{
-												method: "POST",
-											},
-											true,
-											true
-										);
+				{(newInvites !== 0 || reqUser.authLevel === UserAuthLevels.ADMIN) && (
+					<Col xs={12}>
+						<div className="d-flex justify-content-center">
+							<Button
+								onClick={async () => {
+									const r = await APIFetchV1(
+										`/users/${reqUser.id}/invites/create`,
+										{
+											method: "POST",
+										},
+										true,
+										true
+									);
 
-										if (r.success) {
-											DelayedPageReload();
-										}
-									}}
-									className="btn btn-primary"
-								>
-									Create new Invite
-								</Button>
-							</div>
-							<Divider />
-						</Col>
-					))}
+									if (r.success) {
+										DelayedPageReload();
+									}
+								}}
+								className="btn btn-primary"
+							>
+								Create new Invite
+							</Button>
+						</div>
+						<Divider />
+					</Col>
+				)}
 				<Col xs={12}>
 					<h4 className="text-center mb-4">Your Invites</h4>
 					<InviteList reqUser={reqUser} />

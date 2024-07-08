@@ -16,15 +16,17 @@ export default function CHUNITHMRatingCell({
 		color =
 			"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)";
 		return (
-			<td
-				style={{
-					background: color,
-					backgroundClip: "text",
-					outline: "white",
-					WebkitTextFillColor: "transparent",
-				}}
-			>
-				<strong>{score.calculatedData.rating?.toFixed(2) ?? "N/A"}</strong>
+			<td>
+				<div
+					style={{
+						background: color,
+						backgroundClip: "text",
+						outline: "white",
+						WebkitTextFillColor: "transparent",
+					}}
+				>
+					<strong>{score.calculatedData.rating?.toFixed(2) ?? "N/A"}</strong>
+				</div>
 			</td>
 		);
 	} else if (rating >= 15.25) {

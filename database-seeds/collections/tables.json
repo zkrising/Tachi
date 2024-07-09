@@ -1008,7 +1008,7 @@
 			"F4ae4ff28f75b1bc33c7f7c2d3c730bff99ba0e7299505b89ad927fb92b25d1e1"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-new-levels",
 		"title": "CHUNITHM (NEW)"
@@ -1024,7 +1024,7 @@
 			"F6523178bc12cf2ea88bd4d1d00cc00d94165d4fb4d3170d5cd826f227fe12c7a"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-new-difficulties",
 		"title": "CHUNITHM (NEW) (Difficulties)"
@@ -1142,7 +1142,7 @@
 			"Fb6ec940925c9ef2a598a5425293b1c30a1533a37ea3546c5672ef111944578b0"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sunplus-intl-levels",
 		"title": "CHUNITHM (SUN PLUS International)"
@@ -1158,7 +1158,7 @@
 			"F95235a5e7bdec38e18306a2e9d49c14699dac4b8117dec637eade33e1b34ca1a"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sunplus-intl-difficulties",
 		"title": "CHUNITHM (SUN PLUS International) (Difficulties)"

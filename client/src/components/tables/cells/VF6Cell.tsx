@@ -37,17 +37,13 @@ export default function VF6Cell({
 	const vf6Target = settings?.preferences.gameSpecific.vf6Target;
 
 	const gptConfig = GetSpecificGPTConfig<VF6GPTString>(
-		GetGPTString(score.game, score.playtype) as VF6GPTString,
+		GetGPTString(score.game, score.playtype) as VF6GPTString
 	);
 
 	const targets: Record<string, number | null> = {};
 
 	if (vf6Target && score.userID === user?.id) {
-		for (const lamp of [
-			"CLEAR",
-			"EXCESSIVE CLEAR",
-			"ULTIMATE CHAIN",
-		] as const) {
+		for (const lamp of ["CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN"] as const) {
 			if (
 				score.scoreData.enumIndexes.lamp <=
 				gptConfig.providedMetrics.lamp.values.indexOf(lamp)
@@ -64,11 +60,7 @@ export default function VF6Cell({
 		}
 	}
 
-	const maxVF = Volforce.calculateVF6(
-		10_000_000,
-		"PERFECT ULTIMATE CHAIN",
-		chart.levelNum,
-	);
+	const maxVF = Volforce.calculateVF6(10_000_000, "PERFECT ULTIMATE CHAIN", chart.levelNum);
 
 	let color = undefined;
 	const vf = score.calculatedData.VF6;
@@ -112,9 +104,7 @@ export default function VF6Cell({
 
 					<div>
 						{score.calculatedData.VF6! >= vf6Target ? (
-							<small className="text-success">
-								{vf6Target}VF Target Achieved!
-							</small>
+							<small className="text-success">{vf6Target}VF Target Achieved!</small>
 						) : vf6Target > maxVF ? (
 							<small className="text-body-secondary">
 								{vf6Target}VF Not Possible (Max {maxVF})
@@ -143,7 +133,7 @@ export default function VF6Cell({
 function InverseVF6(
 	vf6: number,
 	lamp: "CLEAR" | "EXCESSIVE CLEAR" | "ULTIMATE CHAIN",
-	level: number,
+	level: number
 ) {
 	try {
 		return Volforce.inverseVF6(vf6, lamp, level);

@@ -1,11 +1,7 @@
 import React from "react";
 import { PBScoreDocument, ScoreDocument } from "tachi-common";
 
-export default function MaimaiDXRatingCell({
-	score,
-}: {
-	score: ScoreDocument | PBScoreDocument;
-}) {
+export default function MaimaiDXRatingCell({ score }: { score: ScoreDocument | PBScoreDocument }) {
 	let color: undefined | string = undefined;
 
 	const rating = score.calculatedData.rate;

@@ -1,12 +1,6 @@
 import { NumericSOV } from "util/sorts";
 import { ChangeOpacity } from "util/color-opacity";
-import {
-	COLOUR_SET,
-	GPTString,
-	GetGPTString,
-	PBScoreDocument,
-	ScoreDocument,
-} from "tachi-common";
+import { COLOUR_SET, GPTString, GetGPTString, PBScoreDocument, ScoreDocument } from "tachi-common";
 import CHUNITHMJudgementCell from "components/tables/cells/CHUNITHMJudgementCell";
 import ITGJudgementCell from "components/tables/cells/ITGJudgementCell";
 import JubeatJudgementCell from "components/tables/cells/JubeatJudgementCell";
@@ -26,6 +20,10 @@ import OngekiJudgementCell from "components/tables/cells/OngekiJudgementCell";
 import React from "react";
 import OngekiLampCell from "components/tables/cells/OngekiLampCell";
 import OngekiPlatinumCell from "components/tables/cells/OngekiPlatinumCell";
+import CHUNITHMRatingCell from "components/tables/cells/CHUNITHMRatingCell";
+import MaimaiDXRatingCell from "components/tables/cells/MaimaiDXRatingCell";
+import MaimaiRatingCell from "components/tables/cells/MaimaiRatingCell";
+import OngekiRatingCell from "components/tables/cells/OngekiRatingCell";
 import { CreateRatingSys, bgc } from "./games/_util";
 import { BMS_14K_IMPL, BMS_7K_IMPL, PMS_IMPL } from "./games/bms-pms";
 import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
@@ -33,10 +31,6 @@ import { GPTClientImplementation } from "./types";
 import { SDVX_IMPL, USC_IMPL } from "./games/sdvx-usc";
 import { GITADORA_DORA_IMPL, GITADORA_GITA_IMPL } from "./games/gitadora";
 import { ARCAEA_TOUCH_IMPL } from "./games/arcaea";
-import CHUNITHMRatingCell from "components/tables/cells/CHUNITHMRatingCell";
-import MaimaiDXRatingCell from "components/tables/cells/MaimaiDXRatingCell";
-import MaimaiRatingCell from "components/tables/cells/MaimaiRatingCell";
-import OngekiRatingCell from "components/tables/cells/OngekiRatingCell";
 
 type GPTClientImplementations = {
 	[GPT in GPTString]: GPTClientImplementation<GPT>;
@@ -185,16 +179,8 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		ratingSystems: [],
 		scoreHeaders: [
 			["Score", "Score", NumericSOV((x) => x?.scoreData.score ?? -Infinity)],
-			[
-				"Judgements",
-				"Hits",
-				NumericSOV((x) => x?.scoreData.musicRate ?? -Infinity),
-			],
-			[
-				"Lamp",
-				"Lamp",
-				NumericSOV((x) => x?.scoreData.enumIndexes.lamp ?? -Infinity),
-			],
+			["Judgements", "Hits", NumericSOV((x) => x?.scoreData.musicRate ?? -Infinity)],
+			["Lamp", "Lamp", NumericSOV((x) => x?.scoreData.enumIndexes.lamp ?? -Infinity)],
 		],
 		scoreCoreCells: ({ sc }) => (
 			<>
@@ -699,7 +685,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 						? `Failed ${s.scoreData.survivedPercent.toFixed(2)}%`
 						: s.scoreData.lamp,
 					s.scoreData.lamp !== "FAILED",
-				],
+				]
 			),
 		],
 		scoreHeaders: [
@@ -736,8 +722,8 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 							{chart.data.rankedLevel === null
 								? "Unranked Chart."
 								: sc.calculatedData.blockRating === null
-									? "Failed"
-									: sc.calculatedData.blockRating}
+								? "Failed"
+								: sc.calculatedData.blockRating}
 						</strong>
 					</td>
 				) : (
@@ -810,24 +796,18 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				"Score",
 				"Score",
 				NumericSOV(
-					(x) =>
-						x.scoreData.score * 10000 + (x.scoreData.optional.platScore ?? 0),
+					(x) => x.scoreData.score * 10000 + (x.scoreData.optional.platScore ?? 0)
 				),
 			],
 			// TODO: this should be sorted by %
-			[
-				"Platinum Score",
-				"P-Score",
-				NumericSOV((x) => x.scoreData.optional.platScore ?? 0),
-			],
+			["Platinum Score", "P-Score", NumericSOV((x) => x.scoreData.optional.platScore ?? 0)],
 			["Judgements", "Hits", NumericSOV((x) => x.scoreData.score)],
 			[
 				"Lamp",
 				"Lamp",
 				NumericSOV(
 					(x) =>
-						(x.scoreData.enumIndexes.noteLamp << 8) +
-						x.scoreData.enumIndexes.bellLamp,
+						(x.scoreData.enumIndexes.noteLamp << 8) + x.scoreData.enumIndexes.bellLamp
 				),
 			],
 		],
@@ -865,12 +845,8 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 	"usc:Keyboard": USC_IMPL,
 };
 
-export function GetEnumColour(
-	score: ScoreDocument | PBScoreDocument,
-	enumName: string,
-) {
-	const gptImpl =
-		GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(score.game, score.playtype)];
+export function GetEnumColour(score: ScoreDocument | PBScoreDocument, enumName: string) {
+	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(score.game, score.playtype)];
 
 	// @ts-expect-error lol
 	return gptImpl.enumColours[enumName][score.scoreData[enumName]];

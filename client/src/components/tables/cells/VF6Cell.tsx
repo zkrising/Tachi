@@ -5,6 +5,7 @@ import React, { useContext } from "react";
 import { Volforce } from "rg-stats";
 import {
 	ChartDocument,
+	COLOUR_SET,
 	GetGPTString,
 	GetSpecificGPTConfig,
 	PBScoreDocument,
@@ -36,13 +37,17 @@ export default function VF6Cell({
 	const vf6Target = settings?.preferences.gameSpecific.vf6Target;
 
 	const gptConfig = GetSpecificGPTConfig<VF6GPTString>(
-		GetGPTString(score.game, score.playtype) as VF6GPTString
+		GetGPTString(score.game, score.playtype) as VF6GPTString,
 	);
 
 	const targets: Record<string, number | null> = {};
 
 	if (vf6Target && score.userID === user?.id) {
-		for (const lamp of ["CLEAR", "EXCESSIVE CLEAR", "ULTIMATE CHAIN"] as const) {
+		for (const lamp of [
+			"CLEAR",
+			"EXCESSIVE CLEAR",
+			"ULTIMATE CHAIN",
+		] as const) {
 			if (
 				score.scoreData.enumIndexes.lamp <=
 				gptConfig.providedMetrics.lamp.values.indexOf(lamp)
@@ -59,10 +64,46 @@ export default function VF6Cell({
 		}
 	}
 
-	const maxVF = Volforce.calculateVF6(10_000_000, "PERFECT ULTIMATE CHAIN", chart.levelNum);
+	const maxVF = Volforce.calculateVF6(
+		10_000_000,
+		"PERFECT ULTIMATE CHAIN",
+		chart.levelNum,
+	);
+
+	let color = undefined;
+	const vf = score.calculatedData.VF6;
+
+	if (vf === null || vf === undefined) {
+		color = undefined;
+	} else if (vf >= 0.4) {
+		color = COLOUR_SET.vibrantPurple;
+	} else if (vf >= 0.38) {
+		color = COLOUR_SET.vibrantRed;
+	} else if (vf >= 0.36) {
+		color = "var(--bs-warning)";
+	} else if (vf >= 0.34) {
+		color = COLOUR_SET.white;
+	} else if (vf >= 0.32) {
+		color = COLOUR_SET.pink;
+	} else if (vf >= 0.3) {
+		color = COLOUR_SET.vibrantPink;
+	} else if (vf >= 0.28) {
+		color = COLOUR_SET.teal;
+	} else if (vf >= 0.24) {
+		color = COLOUR_SET.gold;
+	} else if (vf >= 0.2) {
+		color = COLOUR_SET.paleBlue;
+	} else if (vf >= 0) {
+		color = COLOUR_SET.red;
+	}
 
 	return (
-		<td>
+		<td
+			style={{
+				color,
+				outline: "white",
+			}}
+		>
 			<strong className="underline-on-hover">{score.calculatedData.VF6}</strong>
 
 			{vf6Target !== 0 && vf6Target && user?.id === score.userID && (
@@ -71,7 +112,9 @@ export default function VF6Cell({
 
 					<div>
 						{score.calculatedData.VF6! >= vf6Target ? (
-							<small className="text-success">{vf6Target}VF Target Achieved!</small>
+							<small className="text-success">
+								{vf6Target}VF Target Achieved!
+							</small>
 						) : vf6Target > maxVF ? (
 							<small className="text-body-secondary">
 								{vf6Target}VF Not Possible (Max {maxVF})
@@ -100,7 +143,7 @@ export default function VF6Cell({
 function InverseVF6(
 	vf6: number,
 	lamp: "CLEAR" | "EXCESSIVE CLEAR" | "ULTIMATE CHAIN",
-	level: number
+	level: number,
 ) {
 	try {
 		return Volforce.inverseVF6(vf6, lamp, level);

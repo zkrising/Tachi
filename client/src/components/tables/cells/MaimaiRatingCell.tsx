@@ -8,7 +8,7 @@ export default function MaimaiRatingCell({
 }) {
 	let color: undefined | string = undefined;
 
-	const rating = score.calculatedData.rating;
+	const rating = score.calculatedData.rate;
 
 	if (rating === null || rating === undefined) {
 		color = undefined;

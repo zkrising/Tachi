@@ -35,6 +35,8 @@ import { GITADORA_DORA_IMPL, GITADORA_GITA_IMPL } from "./games/gitadora";
 import { ARCAEA_TOUCH_IMPL } from "./games/arcaea";
 import CHUNITHMRatingCell from "components/tables/cells/CHUNITHMRatingCell";
 import MaimaiDXRatingCell from "components/tables/cells/MaimaiDXRatingCell";
+import MaimaiRatingCell from "components/tables/cells/MaimaiRatingCell";
+import OngekiRatingCell from "components/tables/cells/OngekiRatingCell";
 
 type GPTClientImplementations = {
 	[GPT in GPTString]: GPTClientImplementation<GPT>;
@@ -302,7 +304,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
 			</>
 		),
-		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
+		ratingCell: ({ sc }) => <MaimaiRatingCell score={sc} />,
 	},
 	"maimaidx:Single": {
 		sessionImportantScoreCount: 30,
@@ -849,7 +851,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				/>
 			</>
 		),
-		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
+		ratingCell: ({ sc }) => <OngekiRatingCell score={sc} />,
 	},
 	"arcaea:Touch": ARCAEA_TOUCH_IMPL,
 	"gitadora:Dora": GITADORA_DORA_IMPL,

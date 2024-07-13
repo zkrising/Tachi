@@ -101,3 +101,11 @@ void (async () => {
 		process.exit(1);
 	}
 })();
+
+// taken from https://nodejs.org/api/process.html#process_event_unhandledrejection
+// to avoid future deprecation.
+process.on("unhandledRejection", (reason, promise) => {
+	// @ts-expect-error reason is an error, and the logger can handle errors
+	// it just refuses.
+	logger.error(reason, { promise });
+});

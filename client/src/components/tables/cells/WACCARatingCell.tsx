@@ -28,7 +28,7 @@ export default function WACCARatingCell({ score }: { score: ScoreDocument | PBSc
 	} else if (rating >= 44) {
 		color = "var(--bs-warning)";
 	} else if (rating >= 38) {
-  	color = "silver";
+		color = "silver";
 	} else if (rating >= 32) {
 		color = "var(--bs-info)";
 	} else if (rating >= 26) {

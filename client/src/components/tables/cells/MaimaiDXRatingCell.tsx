@@ -44,7 +44,7 @@ export default function MaimaiDXRatingCell({ score }: { score: ScoreDocument | P
 	} else if (rating >= 20) {
 		color = "blue";
 	} else if (rating >= 0) {
-		color = "white";
+		color = undefined;
 	}
 
 	return (

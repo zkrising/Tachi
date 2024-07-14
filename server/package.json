@@ -27,7 +27,7 @@
 		"dev": "NODE_PATH=js/ nodemon",
 		"set-indexes": "ts-node src/scripts/set-indexes.ts"
 	},
-	"author": "zkldi",
+	"author": "zk",
 	"license": "AGPL3",
 	"devDependencies": {
 		"@grpc/grpc-js": "^1.10.6",

@@ -6,7 +6,7 @@ Tachi is a fully-open rhythm game score tracking engine, and is the name of the 
 both [Bokutachi](https://boku.tachi.ac) and [Kamaitachi](https://kamai.tachi.ac).
 
 !!! help
-	Tachi is **fully open**. The core is almost exclusively maintained by [one person](https://github.com/zkldi).
+	Tachi is **fully open**. The core is almost exclusively maintained by [one person](https://github.com/zkrising).
 	However, we support nearly twenty games and playtypes now. Said one person cannot reasonably keep up
 	with all the new things coming out in those games.
 

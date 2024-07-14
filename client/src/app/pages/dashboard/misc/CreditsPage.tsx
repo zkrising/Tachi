@@ -76,7 +76,7 @@ export default function CreditsPage() {
 							"Nutcase",
 							"IIDX 'player'"
 						)}
-						: <strong>zkldi</strong>
+						: <strong>zk</strong>
 					</li>
 				</ul>
 			</div>

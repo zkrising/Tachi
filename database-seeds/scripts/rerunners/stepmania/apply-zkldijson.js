@@ -3,7 +3,7 @@ const { Command } = require("commander");
 const fs = require("fs");
 
 const program = new Command();
-program.option("-f, --file <zkldi.json>");
+program.option("-f, --file <zk.json>");
 program.option("-a, --append");
 
 program.parse(process.argv);

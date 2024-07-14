@@ -8,17 +8,17 @@ But, what *can* you contribute, and where can you help out?
 Contrary to what you might already think, contributing to Tachi actually has remarkably little to
 do with code.
 
-The primary Tachi maintainer (henceforth referred to as `zkldi`, because that's their name)
+The primary Tachi maintainer (henceforth referred to as `zkrising`, because that's their name)
 deals with the core of the codebase; things like importing scores, adding new features and most of the UI work
 is handled by them.
 
 Tachi actually doesn't really have a shortage of people who can write good code, and the core of the codebase
-feature-wise is maintainable entirely by `zkldi` comfortably.
+feature-wise is maintainable entirely by `zkrising` comfortably.
 
-What **isn't** possible to maintain, is the sheer amount of things going on in every game! `zkldi`
+What **isn't** possible to maintain, is the sheer amount of things going on in every game! `zkrising`
 cannot reasonably keep track of all the games we support and everything that's going on in them.
 
-That's where you step in - people who actually actively *play* games on Tachi! By letting `zkldi`
+That's where you step in - people who actually actively *play* games on Tachi! By letting `zkrising`
 know about things going on in your game - and even contributing things yourself - you help make their life easier
 and Tachi's support for your favourite game even better!
 

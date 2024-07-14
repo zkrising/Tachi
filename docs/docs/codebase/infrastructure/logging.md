@@ -6,7 +6,7 @@ of winston, but the same basic logging principles apply.
 
 !!! note
 	If you like my defaults for logging, they can be quickly
-	invoked with the [Mei](https://github.com/zkldi/mei) wrapper.
+	invoked with the [Mei](https://github.com/zkrising/mei) wrapper.
 
 *****
 
@@ -144,7 +144,7 @@ logger with the user's name and import type as "context".
 const logger = CreateLogCtx(`${username} ${userID}`);
 
 logger.info("foo");
-// [zkldi 1] INFO: foo
+// [zkrising 1] INFO: foo
 
 SomeOtherFunction(argument1, argument2, logger);
 ```

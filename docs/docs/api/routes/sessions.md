@@ -33,7 +33,7 @@ GET /api/v1/sessions/Qe7b00261b1d3ba8e5c9ee4e76e77ea9f07d9493b
 {
 	user: {
 		id: 1,
-		username: "zkldi",
+		username: "zkrising",
 		// ...
 	},
 	session: {

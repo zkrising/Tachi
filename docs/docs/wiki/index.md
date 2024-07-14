@@ -63,6 +63,6 @@ The rules can be found [here](./rules.md).
 
 ## I have a bug report or feature request.
 
-Please reach out on discord or [GitHub Issues](https://github.com/zkldi/Tachi)!
+Please reach out on discord or [GitHub Issues](https://github.com/zkrising/Tachi)!
 
 --8<-- "includes/abbreviations.md"

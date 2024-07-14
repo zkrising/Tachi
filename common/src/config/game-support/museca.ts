@@ -41,7 +41,7 @@ export const MUSECA_SINGLE_CONF = {
 			values: ["没", "拙", "凡", "佳", "良", "優", "秀", "傑", "傑G"],
 
 			// This is equal to 900K.
-			// In my opinion (zkldi) this is a little too low for this
+			// In my opinion (zk) this is a little too low for this
 			// game, as 900K is pretty easy to get. Ah well!
 			minimumRelevantValue: "優",
 

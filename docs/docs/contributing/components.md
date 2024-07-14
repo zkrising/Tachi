@@ -19,23 +19,23 @@ contribute to it.
 
 ### Issue Reports
 
-You can report issues on the [GitHub](https://github.com/zkldi/Tachi) repository. This requires
+You can report issues on the [GitHub](https://github.com/zkrising/Tachi) repository. This requires
 *absolutely no programming knowledge* on your part. All you have to do is write up a nice summary
 of the bug.
 
 !!! note
 	Although they're called GitHub *issues*, they're actually used for tracking anything. If you've
-	came up with a cool feature idea, send it over as an issue! `zkldi` will read and Triage them.
+	came up with a cool feature idea, send it over as an issue! `zkrising` will read and Triage them.
 
 For more information, read our [Issue Reporting Guide](./components/issues.md).
 
 ### Documentation
 
-We store our documentation as a series of markdown files in the [Main Repository](https://github.com/zkldi/Tachi). You can find it under the `docs/` folder.
+We store our documentation as a series of markdown files in the [Main Repository](https://github.com/zkrising/Tachi). You can find it under the `docs/` folder.
 
 Writing, maintaining and proofreading the documentation is something that is **severely** neglected
 at the moment. Simple things like typo fixes, all the way up to writing new explanations about major features
-are **thoroughly** appreciated, as `zkldi` prioritises maintaining the core of working code.
+are **thoroughly** appreciated, as `zkrising` prioritises maintaining the core of working code.
 
 If you're interested in this, check out the [Documentation Contribution Guide](./components/documentation.md).
 
@@ -56,9 +56,9 @@ our GitHub repository! That means you can:
 
 !!! important
 	This part of Tachi is the most important part for external contributors.
-	You guys know these games better than `zkldi` does, and you guys keep an eye on all the updates for your games!
+	You guys know these games better than `zkrising` does, and you guys keep an eye on all the updates for your games!
 
-	If people don't add songs/charts to this database, `zkldi` will **not** keep an eye on the game for you! Someone *has* to pick up the reigns for each game!
+	If people don't add songs/charts to this database, `zkrising` will **not** keep an eye on the game for you! Someone *has* to pick up the reigns for each game!
 
 	If you want to add/fix songs, charts, folders or tables for your favourite game - **START HERE!**
 

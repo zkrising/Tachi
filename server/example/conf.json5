@@ -85,7 +85,7 @@
 		],
 	},
 	SEEDS_CONFIG: {
-		REPO_URL: "https://github.com/zkldi/Tachi",
+		REPO_URL: "https://github.com/zkrising/Tachi",
 		USER_NAME: null,
 		USER_EMAIL: null,
 	},

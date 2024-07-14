@@ -221,7 +221,7 @@ None.
 
 #### Request
 ```
-GET /api/v1/games/iidx/SP/targets/goals/some_goal_id/evaluate-for?userID=zkldi
+GET /api/v1/games/iidx/SP/targets/goals/some_goal_id/evaluate-for?userID=zkrising
 ```
 
 #### Response
@@ -229,7 +229,7 @@ GET /api/v1/games/iidx/SP/targets/goals/some_goal_id/evaluate-for?userID=zkldi
 ```js
 {
 	user: {
-		username: "zkldi",
+		username: "zkrising",
 		id: 1,
 		// ...
 	},

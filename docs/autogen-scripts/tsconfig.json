@@ -9,7 +9,7 @@
 			"DOM" // here's some life advice
 			// don't make your server side code
 			// use client side types
-			// - zkldi
+			// - zk
 		],
 		"outDir": "js/",
 		"rootDir": "src"

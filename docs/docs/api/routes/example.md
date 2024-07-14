@@ -46,7 +46,7 @@ Not providing required parameters will result in a 400 error.
 		"success": true,
 		"description": "Greeted user.",
 		"body": {
-			"greeting": "Hello, zkldi!",
+			"greeting": "Hello, zkrising!",
 			"wasBirthday": false,
 		}
 	}
@@ -74,7 +74,7 @@ Not providing required parameters will result in a 400 error.
 	{
 		"success": true,
 		"description": "Greeted user.",
-		"body": "Hello, zkldi!"
+		"body": "Hello, zkrising!"
 	}
 	```
 
@@ -83,14 +83,14 @@ Not providing required parameters will result in a 400 error.
 #### Request
 
 ```
-GET /greet?name=zkldi
+GET /greet?name=zkrising
 ```
 
 #### Response
 
 ```json
 {
-	"greeting": "Hello, zkldi!",
+	"greeting": "Hello, zkrising!",
 	"wasBirthday": false
 }
 ```
@@ -104,7 +104,7 @@ GET /greet?name=zkldi
 		"success": true,
 		"description": "Greeted user.",
 		"body": {
-			"greeting": "Hello, zkldi!",
+			"greeting": "Hello, zkrising!",
 			"wasBirthday": false
 		}
 	}

@@ -57,7 +57,7 @@ POST /api/v1/auth/login
 
 ```json
 {
-	"username": "zkldi",
+	"username": "zkrising",
 	"!password": "my_password",
 	"captcha": "herebedragons"
 }
@@ -238,13 +238,13 @@ Empty Object. The endpoint immediately returns 202 to avoid giving away informat
 #### Request
 ```js
 {
-	"email": "zkldi.dev@gmail.com"
+	"email": "zkrising.dev@gmail.com"
 }
 ```
 
 #### Response
 
-Although the request body returns nothing, `zkldi.dev@gmail.com` will have recieved an email with
+Although the request body returns nothing, `zkrising.dev@gmail.com` will have recieved an email with
 a URL containing the password reset code.
 
 *****
@@ -270,7 +270,7 @@ Empty Object.
 ```js
 {
 	"code": "1234567890abcdef",
-	"!password": "zkldi_is_so_cool",
+	"!password": "zkrising_is_so_cool",
 }
 ```
 

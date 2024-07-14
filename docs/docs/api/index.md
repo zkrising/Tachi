@@ -34,7 +34,7 @@ send an email to `zk@tachi.ac` and let me know what you're up to. Otherwise, I m
 
 ## License
 
-[Tachi-Server](https://github.com/zkldi/Tachi/tree/main/server) (Where the API is wrote) is licensed under the [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html).
+[Tachi-Server](https://github.com/zkrising/Tachi/tree/main/server) (Where the API is wrote) is licensed under the [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html).
 
 To quote GitHub:
 
@@ -95,7 +95,7 @@ The HTTP Status Code for any Failed Response will always be of either 4XX or 5XX
 
 That should be everything. If you have any questions about the API, you can
 contact me at `zk@tachi.ac`. You can also write an issue on the 
-[Issue Tracker](https://github.com/zkldi/Tachi). I'll get around to either.
+[Issue Tracker](https://github.com/zkrising/Tachi). I'll get around to either.
 
 It's entirely possible that I might've made a typo or wrote a poor explaination
 of something, so please reach out!

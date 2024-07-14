@@ -8,7 +8,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"calc-v1": "ts-node src/main.ts $@"
 	},
-	"author": "zkldi",
+	"author": "zk",
 	"license": "MIT",
 	"dependencies": {
 		"@types/node-fetch": "2",

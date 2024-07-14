@@ -16,7 +16,7 @@ an implementation here. You can declare a function that takes in the metric's va
 and the chart the score is on and validate accordingly.
 
 These functions should return a string on error, and true on success. This is aligned
-with how [Prudence](https://github.com/zkldi/Prudence) works, so you can re-use prudence
+with how [Prudence](https://github.com/zkrising/Prudence) works, so you can re-use prudence
 functions here.
 
 !!! example

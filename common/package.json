@@ -15,7 +15,7 @@
 		"lint": "eslint . --ext .ts",
 		"lint-fix": "eslint . --ext .ts --fix"
 	},
-	"author": "zkldi",
+	"author": "zk",
 	"license": "MIT",
 	"dependencies": {
 		"@types/express-serve-static-core": "4.17.29",

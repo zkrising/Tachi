@@ -19,7 +19,7 @@ const command: SlashCommand = {
 
 		if (Array.isArray(interaction.member.roles)) {
 			// No idea why this might happen.
-			return "Failed to assign role: `roles` wasn't a RoleManager. (Why? If this ever happens, laugh at zkldi for daring to think this was sensible.)";
+			return "Failed to assign role: `roles` wasn't a RoleManager. (Why? If this ever happens, laugh at zk for daring to think this was sensible.)";
 		}
 
 		await interaction.member.roles.add(BotConfig.DISCORD.APPROVED_ROLE);

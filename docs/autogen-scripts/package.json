@@ -7,7 +7,7 @@
 		"run": "ts-node src/main.ts"
 	},
 	"keywords": [],
-	"author": "zkldi",
+	"author": "zk",
 	"license": "MIT",
 	"engines": {
 		"node": ">= 16.0.0"

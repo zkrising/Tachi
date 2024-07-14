@@ -158,7 +158,7 @@ an error message on failure:
 
 !!! tip
 	The reason for this rather strange type signature (`string | true`) is because we
-	can use our validation library - [Prudence](https://github.com/zkldi/Prudence) - to create validators for us. Instead
+	can use our validation library - [Prudence](https://github.com/zkrising/Prudence) - to create validators for us. Instead
 	of writing out that validation code, we can use `p.isBetween(0, 100_000)`!
 
 However, it might not be possible to validate a metric without knowing what chart

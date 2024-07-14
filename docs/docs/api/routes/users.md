@@ -37,7 +37,7 @@ GET /api/v1/users
 ```js
 [{
 	"id": 1,
-	"username": "zkldi",
+	"username": "zkrising",
 	// ... continued
 }]
 ```
@@ -54,7 +54,7 @@ GET /api/v1/users
 	functionality is supported.
 
 	You may pass the integer userID for this user - 1.
-	You may also pass the username - zkldi (This is also case-insensitive, so you could pass ZkLDi).
+	You may also pass the username - zkrising (This is also case-insensitive, so you could pass zkrising).
 	You may also pass the special string - `me` - which
 	will select whatever user you are authenticated as.
 
@@ -71,18 +71,18 @@ None.
 ### Example
 
 !!! note
-	`zkldi` is the username for the user with userID 1.
+	`zkrising` is the username for the user with userID 1.
 
 	it's also the username of the person writing these
 	docs. Hi!
 
 #### Request
 ```
-GET /api/v1/users/zkldi
+GET /api/v1/users/zkrising
 OR
 GET /api/v1/users/1
 OR
-GET /api/v1/users/zkLDI (It's case insensitive!)
+GET /api/v1/users/zkrising (It's case insensitive!)
 OR
 GET /api/v1/users/me IF authenticated as userID 1.
 ```
@@ -92,7 +92,7 @@ GET /api/v1/users/me IF authenticated as userID 1.
 ```js
 {
 	id: 1,
-	username: "zkldi",
+	username: "zkrising",
 	// ... so on
 }
 ```
@@ -126,10 +126,10 @@ GET /api/v1/users/me IF authenticated as userID 1.
 #### Request
 ```js
 {
-	"about": "#Hello!**I'm zkldi**",
+	"about": "#Hello!**I'm zkrising**",
 	"status": "I'm cool!",
 	"twitter": null,
-	"steam": "zkldi"
+	"steam": "zkrising"
 }
 ```
 
@@ -138,15 +138,15 @@ GET /api/v1/users/me IF authenticated as userID 1.
 ```js
 {
 	"id": 1,
-	"username": "zkldi",
-	"usernameLowercase": "zkldi",
+	"username": "zkrising",
+	"usernameLowercase": "zkrising",
 	"socialMedia": {
 		"twitter": null,
-		"steam": "zkldi",
+		"steam": "zkrising",
 		// this property was already here, and not modified by the request.
 		"discord": "chatbpd",
 	},
-	"about": "#Hello!**I'm zkldi**",
+	"about": "#Hello!**I'm zkrising**",
 	"status": "I'm cool!",
 	// and other user props...
 }
@@ -175,7 +175,7 @@ None.
 
 #### Request
 ```
-GET /api/v1/users/zkldi/game-stats
+GET /api/v1/users/zkrising/game-stats
 OR
 GET /api/v1/users/1/game-stats
 ```

@@ -89,7 +89,7 @@ GET /api/v1/games/iidx/SP/leaderboard
 	}],
 	"users": [{
 		"id": 1,
-		"username": "zkldi"
+		"username": "zkrising"
 	}]
 }
 ```
@@ -312,7 +312,7 @@ GET /api/v1/games/iidx/SP/charts/some_chart/pbs
 	],
 	"users": [{
 		"id": 1,
-		"username": "zkldi",
+		"username": "zkrising",
 		// ...
 	},
 		// ...
@@ -570,7 +570,7 @@ GET /api/v1/games/bms/7K/player-distribution?class=stslDan
 !!! info
 	You can find the humanised conversions for these classes in the gptConfig for this GPT.
 
-	See [tachi/common](https://github.com/zkldi/Tachi/tree/main/common) for more information.
+	See [tachi/common](https://github.com/zkrising/Tachi/tree/main/common) for more information.
 
 *****
 

@@ -9,7 +9,7 @@
 		"test": "./run-tests.sh",
 		"sort": "node deterministic-collection-sort.js"
 	},
-	"author": "zkldi",
+	"author": "zk",
 	"license": "MIT",
 	"devDependencies": {
 		"tsconfig-paths": "3.12.0"

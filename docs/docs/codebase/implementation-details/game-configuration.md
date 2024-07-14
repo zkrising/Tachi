@@ -19,4 +19,4 @@ lamps for the game.
 
 *****
 
-This documentation is unfinished. It is probably easier for you to [just read the config.ts file](https://github.com/zkldi/Tachi/tree/main/common/src/config/config.ts)
+This documentation is unfinished. It is probably easier for you to [just read the config.ts file](https://github.com/zkrising/Tachi/tree/main/common/src/config/config.ts)

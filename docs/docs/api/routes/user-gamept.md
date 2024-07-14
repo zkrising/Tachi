@@ -28,7 +28,7 @@ None.
 
 #### Request
 ```
-GET /api/v1/users/zkldi/games/iidx/SP
+GET /api/v1/users/zkrising/games/iidx/SP
 ```
 
 #### Response
@@ -90,7 +90,7 @@ GET /api/v1/users/zkldi/games/iidx/SP
 
 #### Request
 ```
-GET /api/v1/users/zkldi/games/iidx/SP/pbs?search=Verfl
+GET /api/v1/users/zkrising/games/iidx/SP/pbs?search=Verfl
 ```
 
 #### Response
@@ -151,7 +151,7 @@ different rating algorithm to sort under.
 
 #### Request
 ```
-GET /api/v1/users/zkldi/games/iidx/SP/pbs/best?alg=BPI
+GET /api/v1/users/zkrising/games/iidx/SP/pbs/best?alg=BPI
 ```
 
 #### Response
@@ -219,7 +219,7 @@ None.
 
 #### Request
 ```
-GET /api/v1/users/zkldi/games/iidx/SP/pbs/all
+GET /api/v1/users/zkrising/games/iidx/SP/pbs/all
 ```
 
 #### Response
@@ -324,7 +324,7 @@ GET /api/v1/users/1/games/iidx/SP/pbs/some_chart_id
 
 #### Request
 ```
-GET /api/v1/users/zkldi/games/iidx/SP/scores?search=Verfl
+GET /api/v1/users/zkrising/games/iidx/SP/scores?search=Verfl
 ```
 
 #### Response
@@ -377,7 +377,7 @@ None.
 
 #### Request
 ```
-GET /api/v1/users/zkldi/games/iidx/SP/scores/recent
+GET /api/v1/users/zkrising/games/iidx/SP/scores/recent
 ```
 
 #### Response
@@ -434,7 +434,7 @@ song titles of played songs inside sessions.
 
 #### Request
 ```
-GET /api/v1/users/zkldi/games/iidx/SP/sessions?search=epic%20session
+GET /api/v1/users/zkrising/games/iidx/SP/sessions?search=epic%20session
 ```
 
 #### Response
@@ -477,7 +477,7 @@ These are returned in descending order.
 
 #### Request
 ```
-GET /api/v1/users/zkldi/games/iidx/SP/sessions/best
+GET /api/v1/users/zkrising/games/iidx/SP/sessions/best
 ```
 
 #### Response
@@ -551,7 +551,7 @@ None.
 
 #### Request
 ```
-GET /api/v1/users/zkldi/games/iidx/SP/sessions/last
+GET /api/v1/users/zkrising/games/iidx/SP/sessions/last
 ```
 
 #### Response
@@ -587,7 +587,7 @@ None.
 
 #### Request
 ```
-GET /api/v1/users/zkldi/games/iidx/SP/sessions/highlighted
+GET /api/v1/users/zkrising/games/iidx/SP/sessions/highlighted
 ```
 
 #### Response
@@ -630,7 +630,7 @@ None.
 
 #### Request
 ```
-GET /api/v1/users/zkldi/games/iidx/SP/most-played
+GET /api/v1/users/zkrising/games/iidx/SP/most-played
 ```
 
 #### Response
@@ -700,7 +700,7 @@ GET /api/v1/users/zkldi/games/iidx/SP/most-played
 
 #### Request
 ```
-GET /api/v1/users/zkldi/games/iidx/SP/leaderboard-adjacent
+GET /api/v1/users/zkrising/games/iidx/SP/leaderboard-adjacent
 ```
 
 #### Response

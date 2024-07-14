@@ -11,7 +11,7 @@ export function ErrorPage({
 	statusCode: number;
 	customMessage?: string;
 }) {
-	useSetSubheader(statusCode ? statusCode.toString() : "Completely Screwed.");
+	useSetSubheader(statusCode ? statusCode.toString() : "Lost Connection.");
 
 	let message;
 
@@ -39,7 +39,7 @@ export function ErrorPage({
 				break;
 			case undefined:
 				message =
-					"Looks like the server has completely crashed. Ah well. Try reloading, but there's no promises.";
+					"Looks like we've lost connection to the server. Ah well. Try reloading, but there's no promises.";
 				break;
 			default:
 				message = "An unexpected error has occurred. This has been reported!";
@@ -70,7 +70,7 @@ export function ErrorPage({
 			style={style}
 		>
 			<h1 className="display-1 enable-rfs fw-bold mt-15">
-				{statusCode || "Completely Screwed."}
+				{statusCode || "Lost Connection"}
 			</h1>
 			<p className="fs-3">{message}</p>
 			<a

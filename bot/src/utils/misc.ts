@@ -78,7 +78,10 @@ export function FormatClass(
 	const gptConfig = GetGamePTConfig(game, playtype);
 
 	// @ts-expect-error hacky access
-	const classInfo: ClassInfo = gptConfig.classes[classSet]?.find?.((k) => k.id === classValue);
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+	const classInfo: ClassInfo = gptConfig.classes[classSet]?.values?.find?.(
+		(k) => k.id === classValue
+	);
 
 	if (!classInfo) {
 		throw new Error(

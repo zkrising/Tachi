@@ -20,10 +20,6 @@ import OngekiJudgementCell from "components/tables/cells/OngekiJudgementCell";
 import React from "react";
 import OngekiLampCell from "components/tables/cells/OngekiLampCell";
 import OngekiPlatinumCell from "components/tables/cells/OngekiPlatinumCell";
-import CHUNITHMRatingCell from "components/tables/cells/CHUNITHMRatingCell";
-import MaimaiDXRatingCell from "components/tables/cells/MaimaiDXRatingCell";
-import MaimaiRatingCell from "components/tables/cells/MaimaiRatingCell";
-import OngekiRatingCell from "components/tables/cells/OngekiRatingCell";
 import { CreateRatingSys, bgc } from "./games/_util";
 import { BMS_14K_IMPL, BMS_7K_IMPL, PMS_IMPL } from "./games/bms-pms";
 import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
@@ -130,7 +126,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
 			</>
 		),
-		ratingCell: ({ sc }) => <CHUNITHMRatingCell score={sc} />,
+		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"jubeat:Single": {
 		sessionImportantScoreCount: 30,
@@ -290,7 +286,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
 			</>
 		),
-		ratingCell: ({ sc }) => <MaimaiRatingCell score={sc} />,
+		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"maimaidx:Single": {
 		sessionImportantScoreCount: 30,
@@ -433,7 +429,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
 			</>
 		),
-		ratingCell: ({ sc }) => <MaimaiDXRatingCell score={sc} />,
+		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"museca:Single": {
 		sessionImportantScoreCount: 20,
@@ -831,7 +827,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				/>
 			</>
 		),
-		ratingCell: ({ sc }) => <OngekiRatingCell score={sc} />,
+		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"arcaea:Touch": ARCAEA_TOUCH_IMPL,
 	"gitadora:Dora": GITADORA_DORA_IMPL,

@@ -1,7 +1,7 @@
 import { NumericSOV } from "util/sorts";
 import { GPTClientImplementation } from "lib/types";
 import { COLOUR_SET, GPTStrings } from "tachi-common";
-import GitadoraJudgementCell from "components/tables/cells/GitadoraJudgementCell copy";
+import GitadoraJudgementCell from "components/tables/cells/GitadoraJudgementCell";
 import LampCell from "components/tables/cells/LampCell";
 import ScoreCell from "components/tables/cells/ScoreCell";
 import { GetEnumColour } from "lib/game-implementations";

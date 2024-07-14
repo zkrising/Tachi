@@ -21,7 +21,7 @@ export default function MaimaiRatingCell({ score }: { score: ScoreDocument | PBS
 						WebkitTextFillColor: "transparent",
 					}}
 				>
-					<strong>{score.calculatedData.rating?.toFixed(2) ?? "N/A"}</strong>
+					<strong>{score.calculatedData.rate?.toFixed(2) ?? "N/A"}</strong>
 				</div>
 			</td>
 		);
@@ -53,7 +53,7 @@ export default function MaimaiRatingCell({ score }: { score: ScoreDocument | PBS
 				outline: "white",
 			}}
 		>
-			<strong>{score.calculatedData.rating?.toFixed(2) ?? "N/A"}</strong>
+			<strong>{score.calculatedData.rate?.toFixed(2) ?? "N/A"}</strong>
 		</td>
 	);
 }

@@ -216,7 +216,7 @@ t.test("PATCH /api/v1/users/:userID", async (t) => {
 
 	t.test("Should correctly strip github urls.", async (t) => {
 		const res = await mockApi.patch("/api/v1/users/1").set("Cookie", cookie).send({
-			github: "https://github.com/zkrising",
+			github: "https://github.com/zkldi",
 		});
 
 		t.equal(res.body.body.socialMedia.github, "zkldi");

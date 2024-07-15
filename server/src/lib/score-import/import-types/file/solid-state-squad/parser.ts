@@ -21,7 +21,6 @@ const PR_SOLID_STATE: PrudenceSchema = {
 					id: p.isPositiveInteger,
 					diff: p.isIn("L7", 7, "A", "B", 5, "L14", 14, "A14", "B14"),
 
-					// https://github.com/zkrising/Tachi-server/issues/718
 					// The song title '.59' is automatically coerced into a float
 					// by our XML parser. Despite the fact that it's in a CData field.
 					// Regardless of the mess that is XML, we need to accept numbers in

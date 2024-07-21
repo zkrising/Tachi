@@ -117,7 +117,8 @@ export const worker = new Worker(
 			if ("statusCode" in err) {
 				logger.info(
 					`Job ${job.id} hit ScoreImportFatalError (User Fault) with message: ${err.message}`,
-					err
+					err,
+					job.data
 				);
 				return { success: false, statusCode: err.statusCode, description: err.message };
 			}

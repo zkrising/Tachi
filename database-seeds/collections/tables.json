@@ -3830,7 +3830,7 @@
 		"title": "maimai (FiNALE)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for maimai DX in BUDDiES PLUS.",
 		"folders": [
 			"Fef2e84ea3c606f9276e059649901ba85b6b142a974e7de2f9d6ba59282843630",
@@ -3864,7 +3864,7 @@
 		"title": "maimai DX (BUDDiES PLUS)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for maimai DX in BUDDiES.",
 		"folders": [
 			"F6368ee35170f27874d3869158e738981a5dc8e2a0c0ca74d783d8006269bd1dd",

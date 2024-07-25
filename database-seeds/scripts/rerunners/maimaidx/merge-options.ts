@@ -39,13 +39,7 @@ const VERSION_DISPLAY_NAMES = [
 	"BUDDiES",
 	"BUDDiES PLUS",
 ];
-const DIFFICULTIES = [
-	"Basic",
-	"Advanced",
-	"Expert",
-	"Master",
-	"Re:Master",
-];
+const DIFFICULTIES = ["Basic", "Advanced", "Expert", "Master", "Re:Master"];
 
 interface IDWithDisplayName {
 	id: number;
@@ -72,6 +66,7 @@ interface MusicXML {
 		artistName: IDWithDisplayName;
 		AddVersion: IDWithDisplayName;
 		genreName: IDWithDisplayName;
+		eventName: IDWithDisplayName;
 
 		notesData: {
 			Notes: NotesData[];
@@ -95,7 +90,10 @@ if (require.main !== module) {
 
 const program = new Command();
 program
-	.requiredOption("-i, --input <OPTIONS DIRS...>", "The options directories of your maimai DX install.")
+	.requiredOption(
+		"-i, --input <OPTIONS DIRS...>",
+		"The options directories of your maimai DX install."
+	)
 	.requiredOption("-v, --version <VERSION>", "The version of this maimai DX install.")
 	.option("-f, --force", "Forces inGameID overwrites where it shouldn't be automatically done.");
 program.parse(process.argv);
@@ -105,9 +103,9 @@ const versions = Object.keys(GetGamePTConfig("maimaidx", "Single").versions);
 
 if (versions.indexOf(options.version) === -1) {
 	throw new Error(
-		`Invalid version of '${options.version}'. Expected any of ${
-			versions.join(",")
-		}. If you're adding a new version, go update common/src/config/game-config/maimai-dx.ts.`
+		`Invalid version of '${options.version}'. Expected any of ${versions.join(
+			","
+		)}. If you're adding a new version, go update common/src/config/game-config/maimai-dx.ts.`
 	);
 }
 
@@ -186,17 +184,16 @@ for (const optionsDir of options.input) {
 
 			// Manual override since the song's title is empty in the dataset and not
 			// IDEOGRAPHIC SPACE (U+3000).
-			let tachiSongID = inGameID === 11422
-				? 959
-				: songTitleArtistMap.get(`${musicData.name.str}-${musicData.artistName.str}`);
-			
+			let tachiSongID =
+				inGameID === 11422
+					? 959
+					: songTitleArtistMap.get(`${musicData.name.str}-${musicData.artistName.str}`);
+
 			// Has this song been disabled in-game?
-			if (musicData.disable) {
+			if (musicData.disable || musicData.eventName.id === 0) {
 				if (tachiSongID !== undefined) {
 					logger.info(
-						`Removing charts of song ID ${tachiSongID} from version ${
-							options.version
-						}, because the disable flag in Music.xml is enabled.`
+						`Removing charts of song ID ${tachiSongID} from version ${options.version}, because the disable flag in Music.xml is enabled.`
 					);
 
 					// Songs are removed mid-version by marking the `disable` flag,
@@ -211,19 +208,17 @@ for (const optionsDir of options.input) {
 							}
 						});
 				}
-				
+
 				continue;
 			}
-			
+
 			// New song?
 			if (tachiSongID === undefined) {
 				const displayVersion = VERSION_DISPLAY_NAMES[musicData.AddVersion.id];
 
 				if (!displayVersion) {
 					throw new Error(
-						`Unknown version ID ${
-							musicData.AddVersion.id
-						}. Update database-seeds/scripts/rerunners/maimaidx/merge-options.ts.`
+						`Unknown version ID ${musicData.AddVersion.id}. Update database-seeds/scripts/rerunners/maimaidx/merge-options.ts.`
 					);
 				}
 
@@ -248,7 +243,10 @@ for (const optionsDir of options.input) {
 			}
 
 			for (const [index, difficulty] of musicData.notesData.Notes.entries()) {
-				if (!difficulty.isEnable || !existsSync(path.join(musicDir, difficulty.file.path))) {
+				if (
+					!difficulty.isEnable ||
+					!existsSync(path.join(musicDir, difficulty.file.path))
+				) {
 					continue;
 				}
 
@@ -256,18 +254,16 @@ for (const optionsDir of options.input) {
 
 				if (difficultyName === undefined) {
 					throw new Error(
-						`Unknown difficulty ID ${
-							index
-						}. Update database-seeds/scripts/rerunners/maimaidx/merge-options.ts and possibly common/src/config/game-support/maimai-dx.ts.`
+						`Unknown difficulty ID ${index}. Update database-seeds/scripts/rerunners/maimaidx/merge-options.ts and possibly common/src/config/game-support/maimai-dx.ts.`
 					);
 				}
-	
+
 				if (inGameID > 10000) {
 					difficultyName = `DX ${difficultyName}`;
 				}
-	
+
 				let exists: ChartDocument<"maimaidx:Single"> | undefined;
-	
+
 				if (inGameID === 11422) {
 					exists = chartMap.get(`-x0o0x_-${difficultyName}`);
 				} else {
@@ -275,10 +271,10 @@ for (const optionsDir of options.input) {
 						`${musicData.name.str}-${musicData.artistName.str}-${difficultyName}`
 					);
 				}
-	
+
 				const level = calculateLevel(difficulty);
 				const levelNum = calculateLevelNum(difficulty);
-	
+
 				if (exists) {
 					const displayName = `${musicData.artistName.str} - ${musicData.name.str} [${exists.difficulty}] (${exists.chartID})`;
 
@@ -287,40 +283,44 @@ for (const optionsDir of options.input) {
 						exists.data.inGameID = inGameID;
 					} else if (exists.data.inGameID !== inGameID) {
 						logger.warn(
-							`The chart ${displayName} already exists in charts-maimaidx under a different inGameID (${
-								exists.data.inGameID
-							} != ${inGameID}). Is this a duplicate with a different inGameID?`
+							`The chart ${displayName} already exists in charts-maimaidx under a different inGameID (${exists.data.inGameID} != ${inGameID}). Is this a duplicate with a different inGameID?`
 						);
 
 						if (options.force) {
 							logger.warn("Overwriting anyways, because --force has been requested.");
 							exists.data.inGameID = inGameID;
 						} else {
-							logger.warn("Must be resolved manually. Use --force to overwrite anyways.");
+							logger.warn(
+								"Must be resolved manually. Use --force to overwrite anyways."
+							);
 						}
 					}
-					
+
 					const versionIndex = exists.versions.indexOf(options.version);
-	
+
 					if (versionIndex === -1) {
 						exists.versions.push(options.version);
 					}
-	
+
 					if (isLatestVersion) {
 						if (exists.level !== level) {
-							logger.info(`Chart ${displayName} has had a level change: ${exists.level} -> ${level}.`);
+							logger.info(
+								`Chart ${displayName} has had a level change: ${exists.level} -> ${level}.`
+							);
 							exists.level = level;
 						}
 
 						if (exists.levelNum !== levelNum) {
-							logger.info(`Chart ${displayName} has had a levelNum change: ${exists.levelNum} -> ${levelNum}.`);
+							logger.info(
+								`Chart ${displayName} has had a levelNum change: ${exists.levelNum} -> ${levelNum}.`
+							);
 							exists.levelNum = levelNum;
 						}
 					}
-	
+
 					continue;
 				}
-	
+
 				const chartDoc: ChartDocument<"maimaidx:Single"> = {
 					chartID: CreateChartID(),
 					songID: tachiSongID,
@@ -334,14 +334,16 @@ for (const optionsDir of options.input) {
 						inGameID,
 					},
 				};
-				
+
 				newCharts.push(chartDoc);
 
-				logger.info(`Inserted new chart ${musicData.artistName.str} - ${musicData.name.str} [${chartDoc.difficulty}] (${chartDoc.chartID}).`);
+				logger.info(
+					`Inserted new chart ${musicData.artistName.str} - ${musicData.name.str} [${chartDoc.difficulty}] (${chartDoc.chartID}).`
+				);
 			}
 		}
 	}
-} 
+}
 
 MutateCollection("songs-maimaidx.json", (songs: Array<SongDocument<"maimaidx">>) => [
 	...songs,

@@ -3830,6 +3830,40 @@
 		"title": "maimai (FiNALE)"
 	},
 	{
+		"default": false,
+		"description": "Levels for maimai DX in BUDDiES PLUS.",
+		"folders": [
+			"Fef2e84ea3c606f9276e059649901ba85b6b142a974e7de2f9d6ba59282843630",
+			"F74b6493bfd7ea5da6943e96a5931278fc7d6fc28b9077703892f507dcc5dc57d",
+			"F0fc01c632ea6da2ea0d749d68ed3e584bbc1b2c5c5849e117deda4510fea3549",
+			"F45117e65389a9cfe946265f1a9c337c14cc70874d1e9086310bcc6ecc5bd6266",
+			"Fdde7542d0215cffea61437e2427f9084dc47e6b1bf8e8b4af4a795f394cda954",
+			"F9b0bd0bd2d7f2df3cf898ee1239eb2f83e94958386650d2355feb6b336c2568e",
+			"Fd82cdb730ee281616accc5a1195b6fbbe532b8fd96fccd4856fc2d29e89020db",
+			"F75c3d6ac386e7e85dd6dc4c6638b877de1a82f8ce7f653a53538827667283b2f",
+			"F18a62c4ea18e3b94a19110bcc4831bca51e6cb8834808fc689199c47aa7415df",
+			"Fa34aef19a4453b76485f9079be7cdf8bd8a6cb9b3cc0942ac35867cff71d8243",
+			"Fd136268d1daefafce66c0703d4cb8af0571b0ac5083048f5529cda07e65cb84d",
+			"Fc78dea6db6604fd646428a49cf9de6791e385e7003942522d88976d5123069c3",
+			"Fa117b16d37438d927d47801e1bf1ddd215d28016d14c0d133d67546e0809a3cd",
+			"F9925170992bdec8794b7d13a843c52630a442ee63293e8d23b2f3bf37bdef652",
+			"F09843bf05a7113bb2fc7c758659269d8a9ccbb6e7adde1ce1be0809f8afb2511",
+			"F51e05a887207012ebde7865a85ec6f2481628fea23e8734f4692f983a041e100",
+			"Fdc9bc25d76b268e48b24964c4db5193dc405874ea593ba6ce71ca35ad9d143be",
+			"F1fa7dd4ca7ec86afb9459c170c1a80a4c456624fa8a906ba86bf347e966adf8b",
+			"Ff411e0c8e8ebeb3bba69ff93ced04760cbf7557b62cb833d143d4c5878d5718c",
+			"Fa09dcc2155876643750834faea81f2a881b14badea5531ea47f201634e0a156d",
+			"Ff76d7681a0d04f8e52e9b5dd306ad9b996ef50d7e05673e8cf13a40f4b6951b9",
+			"F47e93c31737047e344feddb1c3ff4038f66536bcfe7fa29a548568e9fd580060",
+			"Fd85a7efb82e9080d09ec23e458cc708bb4983e779168d51af7cea02f96ec1ef4"
+		],
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "maimaidx-Single-buddiesplus-levels",
+		"title": "maimai DX (BUDDiES PLUS)"
+	},
+	{
 		"default": true,
 		"description": "Levels for maimai DX in BUDDiES.",
 		"folders": [
@@ -3858,7 +3892,7 @@
 			"F27358f4f2d040acfe4fa4994e2764ff9e980f4fd3d68e5af2d2e6e38484b444a"
 		],
 		"game": "maimaidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "maimaidx-Single-buddies-levels",
 		"title": "maimai DX (BUDDiES)"

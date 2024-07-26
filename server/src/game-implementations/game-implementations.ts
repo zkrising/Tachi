@@ -1,6 +1,7 @@
 import { ARCAEA_IMPL } from "./games/arcaea";
 import { BMS_14K_IMPL, BMS_7K_IMPL, PMS_CONTROLLER_IMPL, PMS_KEYBOARD_IMPL } from "./games/bms-pms";
 import { CHUNITHM_IMPL } from "./games/chunithm";
+import { DDR_IMPL } from "./games/ddr";
 import { GITADORA_DORA_IMPL, GITADORA_GITA_IMPL } from "./games/gitadora";
 import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
 import { ITG_STAMINA_IMPL } from "./games/itg";
@@ -45,4 +46,6 @@ export const GPT_SERVER_IMPLEMENTATIONS: GPTImplementations = {
 	"sdvx:Single": SDVX_IMPL,
 	"arcaea:Touch": ARCAEA_IMPL,
 	"ongeki:Single": ONGEKI_IMPL,
+	"ddr:SP": DDR_IMPL,
+	"ddr:DP": DDR_IMPL,
 };

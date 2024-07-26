@@ -1,13 +1,12 @@
 const { MutateCollection, CreateFolderID } = require("../util");
 
 // Change these for whatever table you are adding.
-const GAME = "pms";
-const PLAYTYPES = ["Controller", "Keyboard"];
-const PREFIX = "PLv";
-const TITLE = "Normal PMS Database";
-const SHORTTITLE = "normalpmsdb"; // this is used in the tableID
-const DESCRIPTION =
-	"The Normal PMS Database. This contains almost every PMS file ever created, lv1-45.";
+const GAME = "ddr";
+const PLAYTYPES = ["SP", "DP"];
+const PREFIX = "Level ";
+const TITLE = "DDR A3";
+const SHORTTITLE = "a3"; // this is used in the tableID
+const DESCRIPTION = "All songs in DDR A3";
 const LEVELS = [
 	"1",
 	"2",
@@ -28,34 +27,6 @@ const LEVELS = [
 	"17",
 	"18",
 	"19",
-	"20",
-	"21",
-	"22",
-	"23",
-	"24",
-	"25",
-	"26",
-	"27",
-	"28",
-	"29",
-	"30",
-	"31",
-	"32",
-	"33",
-	"34",
-	"35",
-	"36",
-	"37",
-	"38",
-	"39",
-	"40",
-	"41",
-	"42",
-	"43",
-	"44",
-	"45",
-	"45+",
-	"?",
 ];
 
 const ptFolders = {};

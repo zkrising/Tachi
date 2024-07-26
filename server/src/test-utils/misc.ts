@@ -4,7 +4,7 @@ import {
 	FakeNotification,
 	FakeOtherUser,
 	HC511Goal,
-	HC511UserGoal,
+	HC511UserGoal, TestingDDRSPScorePB,
 	TestingIIDXSPScore,
 	TestingIIDXSPScorePB,
 	TestingJubeatPB,
@@ -99,6 +99,10 @@ export function mkFakeScoreSDVX(modifant: DeepPartial<ScoreDocument<"sdvx:Single
 
 export function mkFakePBIIDXSP(modifant: DeepPartial<PBScoreDocument<"iidx:SP">> = {}) {
 	return dmf(TestingIIDXSPScorePB, modifant);
+}
+
+export function mkFakePBDDRSP(modifant: DeepPartial<PBScoreDocument<"ddr:SP">> = {}) {
+	return dmf(TestingDDRSPScorePB, modifant);
 }
 
 export function mkFakePBJubeat(modifant: DeepPartial<PBScoreDocument<"jubeat:Single">> = {}) {

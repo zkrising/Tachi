@@ -396,6 +396,7 @@ function InputAlert({ game }: { game: Game }) {
 			case "popn":
 			case "wacca":
 			case "ongeki":
+			case "ddr":
 				return (
 					<>
 						<strong>Scores must be achieved on an arcade-size controller!</strong>

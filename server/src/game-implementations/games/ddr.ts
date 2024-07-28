@@ -9,6 +9,7 @@ import db from "../../external/mongo/db";
 import { IsNullish } from "../../utils/misc";
 import { CreatePBMergeFor } from "../utils/pb-merge";
 import { SessionAvgBest10For } from "../utils/session-calc";
+import { DDRFlare } from "rg-stats";
 import {
 	DDR_GBOUNDARIES,
 	FmtNum,
@@ -325,13 +326,13 @@ export const DDR_IMPL: GPTServerImplementation<"ddr:DP" | "ddr:SP"> = {
 				return 0;
 			}
 
-			const flareIndex = scoreData.optional.flare
+			const flareLevel = scoreData.optional.flare
 				? GetSpecificGPTConfig("ddr:SP").optionalMetrics.flare.values.indexOf(
 						scoreData.optional.flare
 				  )
 				: 0;
 
-			return Math.floor((FLARE_0_POINTS[chart.levelNum - 1]! * (100 + flareIndex * 6)) / 100);
+			return DDRFlare.calculate(chart.levelNum, flareLevel);
 		},
 	},
 	scoreValidators: DDR_SCORE_VALIDATORS,

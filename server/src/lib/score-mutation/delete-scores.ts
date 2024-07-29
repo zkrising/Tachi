@@ -199,7 +199,7 @@ export async function DeleteMultipleScores(scores: Array<ScoreDocument>, blackli
 	for (const score of scores) {
 		const userHasOtherScores = await db.scores.findOne({
 			userID: score.userID,
-			chart: score.chartID,
+			chartID: score.chartID,
 		});
 
 		if (userHasOtherScores) {

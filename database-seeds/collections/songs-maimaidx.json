@@ -15568,5 +15568,18 @@
 		"id": 1230,
 		"searchTerms": [],
 		"title": "Bloody Trail"
+	},
+	{
+		"altTitles": [],
+		"artist": "☆リズムに合わせてボタンを叩き達成率を競うゲームです☆",
+		"data": {
+			"displayVersion": "Splash",
+			"genre": "maimai"
+		},
+		"id": 1231,
+		"searchTerms": [
+			"THE RHYTHM SENSE TEST"
+		],
+		"title": "全世界共通リズム感テスト"
 	}
 ]

@@ -1,12 +1,10 @@
 /**
  * Run parse-maimaidx-dataset.js first.
  *
- * Internal levels for BUDDiES songs are at
- * https://docs.google.com/spreadsheets/d/1vSqx2ghJKjWwCLrDEyZTUMSy5wkq_gY4i0GrJgSreQc/edit
+ * Internal levels for BUDDiES+ songs are at
+ * https://docs.google.com/spreadsheets/d/1d1AjO92Hj-iay10MsqdR_5TswEaikzC988aEOtFyybo/edit
  *
  * Download sheets as CSV and use `-f <CSV filename>`.
- *
- * If you have a `music` folder from a current maimai DX dump, pass it with `-d path/to/music`.
  */
 import fs from "fs";
 import path from "path";
@@ -250,8 +248,8 @@ function addOtherSheet(csvData: string[][], headerRow: number, options: AddOther
 	const {
 		parseCategory = false,
 		hasCategoryColumn = false,
-		markLatest = false,
-		markLatestExceptions = [],
+		// markLatest = false,
+		// markLatestExceptions = [],
 	} = options;
 
 	const songs = ReadCollection("songs-maimaidx.json");

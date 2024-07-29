@@ -10,11 +10,10 @@ import { UpdateGoalsInFolder } from "lib/score-import/framework/goals/goals";
 import UpdateIsPrimaryStatus from "lib/score-mutation/update-isprimary";
 import { ServerConfig, TachiConfig } from "lib/setup/config";
 import { RemoveStaleFolderShowcaseStats } from "lib/showcase/showcase";
-import { GetRelevantFolderGoals } from "lib/targets/goals";
 import { UpdateQuestSubscriptions } from "lib/targets/quests";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import { UpdateGameSongIDCounter } from "utils/db";
-import { GetFolderChartIDs, InitaliseFolderChartLookup } from "utils/folder";
+import { InitaliseFolderChartLookup } from "utils/folder";
 import { ArrayDiff, IsSupported, WrapScriptPromise } from "utils/misc";
 import type { KtLogger } from "lib/logger/logger";
 import type { BulkWriteOperation, DeleteWriteOpResultObject } from "mongodb";
@@ -169,8 +168,8 @@ const syncInstructions: Array<SyncInstructions> = [
 				await UpdateGameSongIDCounter(collectionName.includes("bms") ? "bms" : "pms");
 
 				await RecalcAllScores({
+					game: collectionName.split("-")[1],
 					chartID: { $in: r.changedFields },
-					game: collectionName.split("-")[0],
 				});
 			}
 		},
@@ -190,8 +189,8 @@ const syncInstructions: Array<SyncInstructions> = [
 				await UpdateIsPrimaryStatus();
 
 				await RecalcAllScores({
+					game: collName.split("-")[1],
 					chartID: { $in: r.changedFields },
-					game: collName.split("-")[0],
 				});
 			}
 		},
@@ -208,8 +207,8 @@ const syncInstructions: Array<SyncInstructions> = [
 
 			if (r.thingsChanged) {
 				await RecalcAllScores({
+					game: collName.split("-")[1],
 					songID: { $in: r.changedFields },
-					game: collName.split("-")[0],
 				});
 			}
 		},
@@ -226,8 +225,8 @@ const syncInstructions: Array<SyncInstructions> = [
 
 			if (r.thingsChanged) {
 				await RecalcAllScores({
+					game: collName.split("-")[1],
 					songID: { $in: r.changedFields },
-					game: collName.split("-")[0],
 				});
 			}
 		},

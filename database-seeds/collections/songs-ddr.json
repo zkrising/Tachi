@@ -4170,6 +4170,17 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "Pink Lemonade",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 37513
+		},
+		"id": 37513,
+		"searchTerms": [],
+		"title": "ポリリズム"
+	},
+	{
+		"altTitles": [],
 		"artist": "NAOKI feat. Fracus",
 		"data": {
 			"flareCategory": "CLASSIC",
@@ -4632,6 +4643,39 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 37607
+		},
+		"id": 37607,
+		"searchTerms": [],
+		"title": "おどるポンポコリン"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 37608
+		},
+		"id": 37608,
+		"searchTerms": [],
+		"title": "空色デイズ"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 37609
+		},
+		"id": 37609,
+		"searchTerms": [],
+		"title": "創聖のアクエリオン"
+	},
+	{
+		"altTitles": [],
 		"artist": "NAOKI feat. Anna Kaelin",
 		"data": {
 			"flareCategory": "CLASSIC",
@@ -4706,6 +4750,17 @@
 		"id": 37623,
 		"searchTerms": [],
 		"title": "Crazy Control"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 37630
+		},
+		"id": 37630,
+		"searchTerms": [],
+		"title": "HOT LIMIT"
 	},
 	{
 		"altTitles": [],
@@ -5688,6 +5743,17 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 37805
+		},
+		"id": 37805,
+		"searchTerms": [],
+		"title": "コネクト"
+	},
+	{
+		"altTitles": [],
 		"artist": "Another Infinity feat. Mayumi Morinaga",
 		"data": {
 			"flareCategory": "CLASSIC",
@@ -6062,6 +6128,28 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 37891
+		},
+		"id": 37891,
+		"searchTerms": [],
+		"title": "マジLOVE1000％"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 37892
+		},
+		"id": 37892,
+		"searchTerms": [],
+		"title": "つけまつける"
+	},
+	{
+		"altTitles": [],
 		"artist": "Mutsuhiko Izumi",
 		"data": {
 			"flareCategory": "WHITE",
@@ -6117,6 +6205,17 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 37898
+		},
+		"id": 37898,
+		"searchTerms": [],
+		"title": "BRIGHT STREAM"
+	},
+	{
+		"altTitles": [],
 		"artist": "Royz",
 		"data": {
 			"flareCategory": "WHITE",
@@ -6147,6 +6246,17 @@
 		"id": 37902,
 		"searchTerms": [],
 		"title": "JOKER"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 37903
+		},
+		"id": 37903,
+		"searchTerms": [],
+		"title": "ヘビーローテーション"
 	},
 	{
 		"altTitles": [],
@@ -6312,6 +6422,28 @@
 		"id": 37921,
 		"searchTerms": [],
 		"title": "GAIA"
+	},
+	{
+		"altTitles": [],
+		"artist": "Risk Junk",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 37922
+		},
+		"id": 37922,
+		"searchTerms": [],
+		"title": "LOVE & JOY -Risk Junk MIX-"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 37923
+		},
+		"id": 37923,
+		"searchTerms": [],
+		"title": "ジョジョ～その血の運命～"
 	},
 	{
 		"altTitles": [],
@@ -11639,6 +11771,127 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38469
+		},
+		"id": 38469,
+		"searchTerms": [],
+		"title": "紅蓮華"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38470
+		},
+		"id": 38470,
+		"searchTerms": [],
+		"title": "夜に駆ける"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38471
+		},
+		"id": 38471,
+		"searchTerms": [],
+		"title": "怪物"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38472
+		},
+		"id": 38472,
+		"searchTerms": [],
+		"title": "群青"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38473
+		},
+		"id": 38473,
+		"searchTerms": [],
+		"title": "勿忘"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38474
+		},
+		"id": 38474,
+		"searchTerms": [],
+		"title": "ドライフラワー"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38476
+		},
+		"id": 38476,
+		"searchTerms": [],
+		"title": "Pretender"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38477
+		},
+		"id": 38477,
+		"searchTerms": [],
+		"title": "さくらんぼ"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38478
+		},
+		"id": 38478,
+		"searchTerms": [],
+		"title": "愛のために。"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38479
+		},
+		"id": 38479,
+		"searchTerms": [],
+		"title": "恋愛レボリューション21"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38480
+		},
+		"id": 38480,
+		"searchTerms": [],
+		"title": "ルカルカ★ナイトフィーバー"
+	},
+	{
+		"altTitles": [],
 		"artist": "BEMANI Sound Team \"猫叉Master & あさき & Yvya\"",
 		"data": {
 			"flareCategory": "GOLD",
@@ -11647,6 +11900,39 @@
 		"id": 38481,
 		"searchTerms": [],
 		"title": "Aftermath"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38482
+		},
+		"id": 38482,
+		"searchTerms": [],
+		"title": "10年桜"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38483
+		},
+		"id": 38483,
+		"searchTerms": [],
+		"title": "夏祭り"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38484
+		},
+		"id": 38484,
+		"searchTerms": [],
+		"title": "じょいふる"
 	},
 	{
 		"altTitles": [],
@@ -11793,6 +12079,39 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38498
+		},
+		"id": 38498,
+		"searchTerms": [],
+		"title": "Lemon"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38499
+		},
+		"id": 38499,
+		"searchTerms": [],
+		"title": "秒針を噛む"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38500
+		},
+		"id": 38500,
+		"searchTerms": [],
+		"title": "廻廻奇譚"
+	},
+	{
+		"altTitles": [],
 		"artist": "BEMANI Sound Team \"Sota F.\"",
 		"data": {
 			"flareCategory": "GOLD",
@@ -11812,6 +12131,39 @@
 		"id": 38502,
 		"searchTerms": [],
 		"title": "perditus†paradisus"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38503
+		},
+		"id": 38503,
+		"searchTerms": [],
+		"title": "オリオンをなぞる"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38504
+		},
+		"id": 38504,
+		"searchTerms": [],
+		"title": "Trickster"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38505
+		},
+		"id": 38505,
+		"searchTerms": [],
+		"title": "only my railgun"
 	},
 	{
 		"altTitles": [],
@@ -12288,6 +12640,17 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "kaco",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38549
+		},
+		"id": 38549,
+		"searchTerms": [],
+		"title": "ラムのラブソング"
+	},
+	{
+		"altTitles": [],
 		"artist": "undefined",
 		"data": {
 			"flareCategory": "GOLD",
@@ -12461,6 +12824,28 @@
 		"id": 38565,
 		"searchTerms": [],
 		"title": "Crystarium"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38566
+		},
+		"id": 38566,
+		"searchTerms": [],
+		"title": "星が泳ぐ"
+	},
+	{
+		"altTitles": [],
+		"artist": "",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38567
+		},
+		"id": 38567,
+		"searchTerms": [],
+		"title": "POP STAR"
 	},
 	{
 		"altTitles": [],
@@ -12681,6 +13066,17 @@
 		"id": 38587,
 		"searchTerms": [],
 		"title": "spring pony"
+	},
+	{
+		"altTitles": [],
+		"artist": "パーキッツ",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38588
+		},
+		"id": 38588,
+		"searchTerms": [],
+		"title": "すいみん不足"
 	},
 	{
 		"altTitles": [],
@@ -13377,6 +13773,237 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "Kaname",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38659
+		},
+		"id": 38659,
+		"searchTerms": [],
+		"title": "Ødyssey"
+	},
+	{
+		"altTitles": [],
+		"artist": "アツムワンダフル",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38660
+		},
+		"id": 38660,
+		"searchTerms": [],
+		"title": "DanRevoAthlon"
+	},
+	{
+		"altTitles": [],
+		"artist": "SK MUSIC",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38661
+		},
+		"id": 38661,
+		"searchTerms": [],
+		"title": "HyperNOAH"
+	},
+	{
+		"altTitles": [],
+		"artist": "みーに feat. はらもりよしな",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38662
+		},
+		"id": 38662,
+		"searchTerms": [],
+		"title": "バッドユース・アウェイク"
+	},
+	{
+		"altTitles": [],
+		"artist": "OMOCHI feat.星野奏子",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38663
+		},
+		"id": 38663,
+		"searchTerms": [],
+		"title": "Arcadia"
+	},
+	{
+		"altTitles": [],
+		"artist": "赤木エリ & BJ.chika feat. 菜月なこ",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38664
+		},
+		"id": 38664,
+		"searchTerms": [],
+		"title": "Dozen Flower"
+	},
+	{
+		"altTitles": [],
+		"artist": "X-END",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38665
+		},
+		"id": 38665,
+		"searchTerms": [],
+		"title": "Gravity Collapse"
+	},
+	{
+		"altTitles": [],
+		"artist": "Malixi",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38666
+		},
+		"id": 38666,
+		"searchTerms": [],
+		"title": "Sweetin' Fruity"
+	},
+	{
+		"altTitles": [],
+		"artist": "Kolaa",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38667
+		},
+		"id": 38667,
+		"searchTerms": [],
+		"title": "極地大衝撃"
+	},
+	{
+		"altTitles": [],
+		"artist": "MUGIPONG",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38668
+		},
+		"id": 38668,
+		"searchTerms": [],
+		"title": "WONDER COASTER"
+	},
+	{
+		"altTitles": [],
+		"artist": "Felysrator",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38669
+		},
+		"id": 38669,
+		"searchTerms": [],
+		"title": "Roche Limit"
+	},
+	{
+		"altTitles": [],
+		"artist": "Amebre Kizami",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38670
+		},
+		"id": 38670,
+		"searchTerms": [],
+		"title": "Heavy Rain"
+	},
+	{
+		"altTitles": [],
+		"artist": "MYUKKE.",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38671
+		},
+		"id": 38671,
+		"searchTerms": [],
+		"title": "The 88's Instigation"
+	},
+	{
+		"altTitles": [],
+		"artist": "Se-U-Ra",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38672
+		},
+		"id": 38672,
+		"searchTerms": [],
+		"title": "The Ashes of Boreas"
+	},
+	{
+		"altTitles": [],
+		"artist": "Alkome",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38680
+		},
+		"id": 38680,
+		"searchTerms": [],
+		"title": "Origin Pulsation"
+	},
+	{
+		"altTitles": [],
+		"artist": "Halv",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38688
+		},
+		"id": 38688,
+		"searchTerms": [],
+		"title": "Don't Stop The HYPERCORE"
+	},
+	{
+		"altTitles": [],
+		"artist": "nagomu tamaki feat. ぽめ",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38691
+		},
+		"id": 38691,
+		"searchTerms": [],
+		"title": "きらきら☆ユニバース"
+	},
+	{
+		"altTitles": [],
+		"artist": "kors k feat. haru",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38692
+		},
+		"id": 38692,
+		"searchTerms": [],
+		"title": "Move On"
+	},
+	{
+		"altTitles": [],
+		"artist": "nc feat. TOCORO十 ",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38693
+		},
+		"id": 38693,
+		"searchTerms": [],
+		"title": "踊れ！！バーチャルアニマル！！"
+	},
+	{
+		"altTitles": [],
+		"artist": "SOUND HOLIC feat. taru",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38694
+		},
+		"id": 38694,
+		"searchTerms": [],
+		"title": "Niji no Sekai"
+	},
+	{
+		"altTitles": [],
+		"artist": "Shoichiro Hirata feat. ちょぴん ",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38695
+		},
+		"id": 38695,
+		"searchTerms": [],
+		"title": "Happy Dance Day 2 U"
+	},
+	{
+		"altTitles": [],
 		"artist": "青龍",
 		"data": {
 			"flareCategory": "GOLD",
@@ -13421,6 +14048,116 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "Zektbach",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38710
+		},
+		"id": 38710,
+		"searchTerms": [],
+		"title": "蛇神"
+	},
+	{
+		"altTitles": [],
+		"artist": "Des-ROW・組",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38711
+		},
+		"id": 38711,
+		"searchTerms": [],
+		"title": "雪上断火"
+	},
+	{
+		"altTitles": [],
+		"artist": "猫叉Master",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38712
+		},
+		"id": 38712,
+		"searchTerms": [],
+		"title": "Beyond The Earth"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"HuΣeR\" feat.Fernweh",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38713
+		},
+		"id": 38713,
+		"searchTerms": [],
+		"title": "逆月"
+	},
+	{
+		"altTitles": [],
+		"artist": "SOUND HOLIC feat. Nana Takahashi",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38714
+		},
+		"id": 38714,
+		"searchTerms": [],
+		"title": "TYCOON"
+	},
+	{
+		"altTitles": [],
+		"artist": "technoplanet",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38715
+		},
+		"id": 38715,
+		"searchTerms": [],
+		"title": "Fly Like You"
+	},
+	{
+		"altTitles": [],
+		"artist": "Risk Junk",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38716
+		},
+		"id": 38716,
+		"searchTerms": [],
+		"title": "quaver♪"
+	},
+	{
+		"altTitles": [],
+		"artist": "度胸兄弟",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38717
+		},
+		"id": 38717,
+		"searchTerms": [],
+		"title": "DIAVOLO"
+	},
+	{
+		"altTitles": [],
+		"artist": "DJ Mass MAD Izm*",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38718
+		},
+		"id": 38718,
+		"searchTerms": [],
+		"title": "Red. by Full Metal Jacket"
+	},
+	{
+		"altTitles": [],
+		"artist": "Xceon feat. Mayumi Morinaga",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38719
+		},
+		"id": 38719,
+		"searchTerms": [],
+		"title": "罪と罰"
+	},
+	{
+		"altTitles": [],
 		"artist": "Moe Shop",
 		"data": {
 			"flareCategory": "GOLD",
@@ -13429,5 +14166,93 @@
 		"id": 38720,
 		"searchTerms": [],
 		"title": "melody H4CKER"
+	},
+	{
+		"altTitles": [],
+		"artist": "Pizuya's Cell VS BEMANI Sound Team \"dj TAKA\"",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38727
+		},
+		"id": 38727,
+		"searchTerms": [],
+		"title": "閉塞的フレーション"
+	},
+	{
+		"altTitles": [],
+		"artist": "SOUND HOLIC Vs. BEMANI Sound Team \"KE!JU\" feat. Nana Takahashi",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38728
+		},
+		"id": 38728,
+		"searchTerms": [],
+		"title": "残像ニ繋ガレタ追憶ノHIDEAWAY"
+	},
+	{
+		"altTitles": [],
+		"artist": "日向美ビタースイーツ♪",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38733
+		},
+		"id": 38733,
+		"searchTerms": [],
+		"title": "イマココ！この瞬間"
+	},
+	{
+		"altTitles": [],
+		"artist": "豚乙女×BEMANI Sound Team \"PON\"",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38735
+		},
+		"id": 38735,
+		"searchTerms": [],
+		"title": "弾幕信仰"
+	},
+	{
+		"altTitles": [],
+		"artist": "Amateras Records vs BEMANI Sound Team \"TATSUYA\" feat. miko",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38736
+		},
+		"id": 38736,
+		"searchTerms": [],
+		"title": "SUPER HEROINE!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"SYUNN\"",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38737
+		},
+		"id": 38737,
+		"searchTerms": [],
+		"title": "THE SAFARI (STARDOM Remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "cosMo＠暴走P",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38738
+		},
+		"id": 38738,
+		"searchTerms": [],
+		"title": "音楽 (STARDOM Remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "幽閉サテライト feat. senya",
+		"data": {
+			"flareCategory": "NONE",
+			"inGameID": 38739
+		},
+		"id": 38739,
+		"searchTerms": [],
+		"title": "月に叢雲華に風"
 	}
 ]

@@ -17,7 +17,7 @@ export default function ChunithmMYTExport() {
 			<Divider />
 			<h1 className="text-center my-4">Setup Instructions</h1>
 			Instructions are available on{" "}
-			<ExternalLink href="https://gist.github.com/beerpiss/90e7df9c6aacc5a295eb5a90dbd8d537">
+			<ExternalLink href="https://gist.github.com/beer-psi/90e7df9c6aacc5a295eb5a90dbd8d537">
 				the GitHub gist
 			</ExternalLink>
 			.

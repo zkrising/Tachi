@@ -17,7 +17,7 @@ export default function ChunithmSiteImportPage() {
 			<Divider />
 			<h1 className="text-center my-4">Setup Instructions</h1>
 			Instructions are available on{" "}
-			<ExternalLink href="https://github.com/beerpiss/kt-chunithm-site-importer">
+			<ExternalLink href="https://github.com/beer-psi/kt-chunithm-site-importer">
 				the GitHub repository
 			</ExternalLink>
 			.

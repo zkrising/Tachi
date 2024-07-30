@@ -18,7 +18,7 @@ export default function AquaArtemisExport() {
 			<Divider />
 			<h1 className="text-center my-4">Setup Instructions</h1>
 			Instructions are available on{" "}
-			<ExternalLink href="https://gist.github.com/beerpiss/52b0d0c85e20262ae3ab9b2c65effdda">
+			<ExternalLink href="https://gist.github.com/beer-psi/52b0d0c85e20262ae3ab9b2c65effdda">
 				the GitHub gist
 			</ExternalLink>
 			.

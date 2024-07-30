@@ -744,8 +744,8 @@ importers:
         specifier: ^8.3.0
         version: 8.3.0
       fast-xml-parser:
-        specifier: 4.1.2
-        version: 4.1.2
+        specifier: 4.4.1
+        version: 4.4.1
       mei-logger:
         specifier: ^1.0.1
         version: 1.0.3
@@ -6450,6 +6450,13 @@ packages:
 
   /fast-xml-parser@4.2.7:
     resolution: {integrity: sha512-J8r6BriSLO1uj2miOk1NW0YVm8AGOOu3Si2HQp/cSmo6EA4m3fcwu2WKjJ4RK9wMLBtg69y1kS8baDiQBR41Ig==}
+    hasBin: true
+    dependencies:
+      strnum: 1.0.5
+    dev: false
+
+  /fast-xml-parser@4.4.1:
+    resolution: {integrity: sha512-xkjOecfnKGkSsOwtZ5Pz7Us/T6mrbPQrq0nh+aCO5V9nk5NLWmasAHumTKjiPJPWANe+kAZ84Jc8ooJkzZ88Sw==}
     hasBin: true
     dependencies:
       strnum: 1.0.5

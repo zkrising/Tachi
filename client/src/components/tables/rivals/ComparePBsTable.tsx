@@ -1,7 +1,13 @@
 import { NumericSOV, StrSOV } from "util/sorts";
 import { CreatePBCompareSearchParams } from "util/tables/create-search";
 import React, { useEffect, useState } from "react";
-import { Game, GetGamePTConfig, GetGPTString, GetScoreMetricConf, Playtype } from "tachi-common";
+import {
+	Game,
+	GetGamePTConfig,
+	GetGPTString,
+	GetScoreMetricConf,
+	Playtype,
+} from "tachi-common";
 import { ComparePBsDataset } from "types/tables";
 import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import DifficultyCell from "../cells/DifficultyCell";
@@ -37,7 +43,12 @@ export default function ComparePBsTable({
 	const headers: Header<ComparePBsDataset[0]>[] = [
 		ChartHeader(game, (d) => d.chart),
 		["Song", "Song", StrSOV((x) => x.song.title)],
-		["", "", () => 1, () => <td colSpan={gptImpl.scoreHeaders.length}>{baseUser}</td>],
+		[
+			"",
+			"",
+			() => 1,
+			() => <td colSpan={gptImpl.scoreHeaders.length}>{baseUser}</td>,
+		],
 		[
 			"Vs.",
 			"Vs.",
@@ -47,7 +58,7 @@ export default function ComparePBsTable({
 				}
 
 				if (!x.compare) {
-					return -Infinity;
+					return Infinity;
 				}
 
 				const conf = GetScoreMetricConf(gptConfig, metric);
@@ -85,7 +96,12 @@ export default function ComparePBsTable({
 				/>
 			),
 		],
-		["", "", () => 1, () => <td colSpan={gptImpl.scoreHeaders.length}>{compareUser}</td>],
+		[
+			"",
+			"",
+			() => 1,
+			() => <td colSpan={gptImpl.scoreHeaders.length}>{compareUser}</td>,
+		],
 	];
 
 	return (
@@ -101,16 +117,33 @@ export default function ComparePBsTable({
 	);
 }
 
-function Row({ data, game, metric }: { data: ComparePBsDataset[0]; game: Game; metric: string }) {
-	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, data.chart.playtype)];
-	const metricConf = GetScoreMetricConf(GetGamePTConfig(game, data.chart.playtype), metric)!;
+function Row({
+	data,
+	game,
+	metric,
+}: {
+	data: ComparePBsDataset[0];
+	game: Game;
+	metric: string;
+}) {
+	const gptImpl =
+		GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, data.chart.playtype)];
+	const metricConf = GetScoreMetricConf(
+		GetGamePTConfig(game, data.chart.playtype),
+		metric,
+	)!;
 
 	return (
 		<tr>
 			<DifficultyCell chart={data.chart} game={game} alwaysShort />
 			<TitleCell game={game} song={data.song} chart={data.chart} />
 			{data.base ? (
-				<ScoreCoreCells short score={data.base} game={game} chart={data.chart} />
+				<ScoreCoreCells
+					short
+					score={data.base}
+					game={game}
+					chart={data.chart}
+				/>
 			) : (
 				<td colSpan={gptImpl.scoreHeaders.length}>Not Played</td>
 			)}
@@ -123,7 +156,12 @@ function Row({ data, game, metric }: { data: ComparePBsDataset[0]; game: Game; m
 				metric={metric}
 			/>
 			{data.compare ? (
-				<ScoreCoreCells short score={data.compare} game={game} chart={data.chart} />
+				<ScoreCoreCells
+					short
+					score={data.compare}
+					game={game}
+					chart={data.chart}
+				/>
 			) : (
 				<td colSpan={gptImpl.scoreHeaders.length}>Not Played</td>
 			)}

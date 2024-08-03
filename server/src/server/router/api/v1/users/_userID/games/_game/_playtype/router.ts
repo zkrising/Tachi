@@ -53,7 +53,7 @@ router.get("/", async (req, res) => {
 
 	const stats = GetTachiData(req, "requestedUserGameStats");
 
-	const [totalScores, firstScore, mostRecentScore, rankingData] = await Promise.all([
+	const [totalScores, firstScore, mostRecentScore, rankingData, playtime] = await Promise.all([
 		db.scores.count({
 			userID: user.id,
 			game,
@@ -86,6 +86,26 @@ router.get("/", async (req, res) => {
 			}
 		),
 		GetAllRankings(stats),
+		db.sessions.aggregate<[{ playtime: number }]>([
+			{
+				$match: {
+					userID: user.id,
+					game,
+					playtype,
+				},
+			},
+			{
+				$project: {
+					duration: { $subtract: ["$timeEnded", "$timeStarted"] },
+				},
+			},
+			{
+				$group: {
+					_id: null,
+					playtime: { $sum: "$duration" },
+				},
+			},
+		]),
 	]);
 
 	return res.status(200).json({
@@ -97,6 +117,7 @@ router.get("/", async (req, res) => {
 			mostRecentScore,
 			totalScores,
 			rankingData,
+			playtime: playtime[0].playtime,
 		},
 	});
 });

@@ -1197,6 +1197,7 @@
 		"songID": 20,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -87946,7 +87947,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -87972,7 +87972,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -87998,7 +87997,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -88024,7 +88022,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -119500,7 +119497,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -119524,7 +119520,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -119548,7 +119543,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -119572,7 +119566,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -119596,7 +119589,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -119620,7 +119612,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -119644,7 +119635,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -119668,7 +119658,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -119692,7 +119681,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -119716,7 +119704,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -119740,7 +119727,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -119764,7 +119750,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -139045,7 +139030,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -139065,7 +139049,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -139085,7 +139068,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -139105,7 +139087,6 @@
 			"sunplus-intl",
 			"sunplus-omni",
 			"luminous",
-			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -142562,6 +142543,7 @@
 		"songID": 2500,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -142578,6 +142560,7 @@
 		"songID": 2500,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -142594,6 +142577,7 @@
 		"songID": 2500,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -142610,6 +142594,7 @@
 		"songID": 2500,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -142626,6 +142611,7 @@
 		"songID": 2501,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -142642,6 +142628,7 @@
 		"songID": 2501,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -142658,6 +142645,7 @@
 		"songID": 2501,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -142674,6 +142662,7 @@
 		"songID": 2501,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -143682,6 +143671,7 @@
 		"songID": 2518,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -143698,6 +143688,7 @@
 		"songID": 2518,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -143714,6 +143705,7 @@
 		"songID": 2518,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -143730,6 +143722,7 @@
 		"songID": 2518,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -143746,6 +143739,7 @@
 		"songID": 2519,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -143762,6 +143756,7 @@
 		"songID": 2519,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -143778,6 +143773,7 @@
 		"songID": 2519,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -143794,6 +143790,7 @@
 		"songID": 2519,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -144822,6 +144819,7 @@
 		"songID": 2536,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -144838,6 +144836,7 @@
 		"songID": 2536,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -144854,6 +144853,7 @@
 		"songID": 2536,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -144870,6 +144870,7 @@
 		"songID": 2536,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -144886,6 +144887,7 @@
 		"songID": 2537,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -144902,6 +144904,7 @@
 		"songID": 2537,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -144918,6 +144921,7 @@
 		"songID": 2537,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -144934,6 +144938,7 @@
 		"songID": 2537,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -144950,6 +144955,7 @@
 		"songID": 2538,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -144966,6 +144972,7 @@
 		"songID": 2538,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -144982,6 +144989,7 @@
 		"songID": 2538,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -144998,6 +145006,7 @@
 		"songID": 2538,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -145014,6 +145023,7 @@
 		"songID": 2539,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -145030,6 +145040,7 @@
 		"songID": 2539,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -145046,6 +145057,7 @@
 		"songID": 2539,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -145062,6 +145074,7 @@
 		"songID": 2539,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -145078,6 +145091,7 @@
 		"songID": 2540,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -145094,6 +145108,7 @@
 		"songID": 2540,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -145110,6 +145125,7 @@
 		"songID": 2540,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -145126,6 +145142,7 @@
 		"songID": 2540,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -146150,6 +146167,7 @@
 		"songID": 2559,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -146166,6 +146184,7 @@
 		"songID": 2559,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -146182,6 +146201,7 @@
 		"songID": 2559,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},
@@ -146198,6 +146218,7 @@
 		"songID": 2559,
 		"versions": [
 			"luminous",
+			"luminous-intl",
 			"luminous-omni"
 		]
 	},

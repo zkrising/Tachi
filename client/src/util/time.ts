@@ -20,6 +20,13 @@ export function FormatDuration(ms: number) {
 	});
 }
 
+export function FormatDurationHours(ms: number) {
+	return humaniseDuration(ms, {
+		units: ["h"],
+		maxDecimalPoints: 0,
+	});
+}
+
 export function FormatTimeSmall(ms: number) {
 	return DateTime.fromMillis(ms).toLocaleString(DateTime.DATE_SHORT);
 }

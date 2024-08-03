@@ -3,7 +3,7 @@
 # does need to boot. You should consider using docker-compose for this.
 
 # base image
-FROM node:20-alpine as base
+FROM node:20-alpine AS base
 ARG COMMIT_HASH
 ENV COMMIT_HASH=${COMMIT_HASH}
 

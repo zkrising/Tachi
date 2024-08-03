@@ -41,6 +41,7 @@ export interface UGPTStatsReturn<GPT extends GPTString = GPTString> {
 			outOf: integer;
 		}
 	>;
+	playtime: number;
 }
 
 export interface UGPTLeaderboardAdjacent {

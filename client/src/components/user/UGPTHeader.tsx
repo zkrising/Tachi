@@ -1,4 +1,4 @@
-import { MillisToSince } from "util/time";
+import { FormatDurationHours, MillisToSince } from "util/time";
 import { APIFetchV1 } from "util/api";
 import { HumaniseError } from "util/humanise-error";
 import { SendErrorToast, SendSuccessToast } from "util/toaster";
@@ -16,6 +16,8 @@ import { GetGPTUtilsName } from "components/gpt-utils/GPTUtils";
 import ApiError from "components/util/ApiError";
 import Loading from "components/util/Loading";
 import useApiQuery from "components/util/query/useApiQuery";
+import QuickTooltip from "components/layout/misc/QuickTooltip";
+import { TachiConfig } from "lib/config";
 import ProfileBadges from "./ProfileBadges";
 import ProfilePicture from "./ProfilePicture";
 import RankingData from "./UGPTRankingData";
@@ -81,6 +83,23 @@ export function UGPTHeaderBody({
 								? "Unknown."
 								: MillisToSince(stats.firstScore.timeAchieved)}
 						</td>
+					</tr>
+					<tr>
+						<td>
+							<QuickTooltip
+								tooltipContent={`All of your session lengths added together. This makes for a rough estimate of playtime, depending on how much you use ${TachiConfig.NAME}.`}
+							>
+								<div
+									style={{
+										textDecoration: "underline",
+										textDecorationStyle: "dotted",
+									}}
+								>
+									Session Playtime
+								</div>
+							</QuickTooltip>
+						</td>
+						<td>{FormatDurationHours(stats.playtime)}</td>
 					</tr>
 				</MiniTable>
 			</div>

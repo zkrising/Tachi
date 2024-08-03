@@ -28,15 +28,15 @@ if "%cmd%" == "start" (
 ) else if "%cmd%" == "logs-client" (
 	docker logs tachi-client -f
 ) else if "%cmd%" == "logs-seeds" (
-	docker logs tachi-seeds -f
+	docker logs tachi-dev -f
 ) else if "%cmd%" == "test-server" (
 	docker exec tachi-server pnpm test
 ) else if "%cmd%" == "test-seeds" (
-	docker exec tachi-seeds pnpm --filter ./scripts test
+	docker exec tachi-dev pnpm --filter ./scripts test
 ) else if "%cmd%" == "enter-seeds" (
-	docker exec -it tachi-seeds bash
+	docker exec -it tachi-dev bash
 ) else if "%cmd%" == "sort-seeds" (
-	docker exec tachi-seeds node scripts/deterministic-collection-sort.js
+	docker exec tachi-dev node scripts/deterministic-collection-sort.js
 ) else if "%cmd%" == "load-seeds" (
 	docker exec tachi-server pnpm sync-database-local
 ) else if "%cmd%" == "validate-db" (

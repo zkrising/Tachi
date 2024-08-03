@@ -1,0 +1,23 @@
+# For use via `devcontainer.json`. The docker-compose-dev file sets some other
+# important variables.
+
+FROM debian:12
+WORKDIR /tachi
+
+RUN apt update
+RUN apt install -y git fish npm
+RUN npm install --silent -g pnpm@8.15.6
+
+RUN git clone https://mpr.makedeb.org/just && \
+	cd just \
+	makedeb -si \
+	cd .. \
+	rm -rf just
+
+RUN pnpm fetch
+RUN pnpm install
+
+# keep container alive indefinitely
+# we just have this container so db-seeds maintainers have a nice "context"
+# to work with
+CMD ["/bin/fish"]

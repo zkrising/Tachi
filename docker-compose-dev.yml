@@ -42,37 +42,22 @@ services:
       NODE_ENV: "dev"
   tachi-client:
     container_name: tachi-client
-
     depends_on:
       bootstrap:
         condition: service_completed_successfully
-
     build:
       dockerfile: Dockerfile.client
     volumes:
       - ./:/app
     ports:
       - "3000:3000"
-  tachi-seeds:
-    container_name: tachi-seeds
+  tachi-dev:
+    tty: true
+    container_name: tachi-dev
     build:
-      dockerfile: Dockerfile.seeds
+      dockerfile: Dockerfile.dev
     volumes:
-      - ./:/app
-  bootstrap:
-    container_name: tachi-bootstrap
-    build:
-      dockerfile: Dockerfile.bootstrap
-    volumes:
-      - ./:/app
-    links:
-      - redis
-      - mongo
-    environment:
-      REDIS_URL: redis
-      MONGO_URL: mongo
-      PORT: 8080
-      NODE_ENV: "dev"
+      - ./:/tachi
   tachi-docs:
     container_name: tachi-docs
     build:

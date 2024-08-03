@@ -28,19 +28,19 @@ case "$cmd" in
 		docker logs tachi-client -f
 		;;
 	logs-seeds)
-		docker logs tachi-seeds -f
+		docker logs tachi-dev -f
 		;;
 	test-server)
 		docker exec tachi-server pnpm test
 		;;
 	test-seeds)
-		docker exec tachi-seeds pnpm --filter ./scripts test
+		docker exec tachi-dev pnpm --filter ./scripts test
 		;;
 	enter-seeds)
-		docker exec -it tachi-seeds bash
+		docker exec -it tachi-dev bash
 		;;
 	sort-seeds)
-		docker exec tachi-seeds node scripts/deterministic-collection-sort.js
+		docker exec tachi-dev node scripts/deterministic-collection-sort.js
 		;;
 	load-seeds)
 		docker exec tachi-server pnpm sync-database-local

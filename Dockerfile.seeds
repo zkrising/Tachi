@@ -1,5 +1,5 @@
 # no alpine here as we want bash + general nice-to-haves
-FROM node:20 as base
+FROM node:20 AS base
 
 RUN npm install --silent -g pnpm@8.15.6
 

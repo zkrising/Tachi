@@ -1,4 +1,4 @@
-FROM node:20-alpine as base
+FROM node:20-alpine AS base
 
 RUN npm install --silent -g pnpm@8.15.6
 

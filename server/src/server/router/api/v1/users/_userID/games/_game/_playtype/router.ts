@@ -86,7 +86,7 @@ router.get("/", async (req, res) => {
 			}
 		),
 		GetAllRankings(stats),
-		db.sessions.aggregate<[{ playtime: number }]>([
+		db.sessions.aggregate<[] | [{ playtime: number }]>([
 			{
 				$match: {
 					userID: user.id,
@@ -117,7 +117,7 @@ router.get("/", async (req, res) => {
 			mostRecentScore,
 			totalScores,
 			rankingData,
-			playtime: playtime[0].playtime,
+			playtime: playtime[0]?.playtime ?? 0,
 		},
 	});
 });

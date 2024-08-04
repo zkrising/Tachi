@@ -208,14 +208,18 @@ async function FindImportJob(importID: string) {
 		possibleImportIDs.push(`${importID}:TRY${i}`);
 	}
 
-	// Note that instead of the cleaner await-inside-for here, we parallelise this
-	// for performance.
-	// Just for scalings sake.
-	const maybeJob = (
-		await Promise.all(possibleImportIDs.map((i) => ScoreImportQueue.getJob(i)))
-	).find((k) => k);
+	try {
+		// Note that instead of the cleaner await-inside-for here, we parallelise this
+		// for performance.
+		// Just for scalings sake.
+		const maybeJob = (
+			await Promise.all(possibleImportIDs.map((i) => ScoreImportQueue.getJob(i)))
+		).find((k) => k);
 
-	return maybeJob;
+		return maybeJob;
+	} catch (err) {
+		return undefined;
+	}
 }
 
 /**
@@ -294,16 +298,34 @@ router.get("/:importID/poll-status", async (req, res) => {
 		}
 	}
 
+	let isFailed;
+
+	try {
+		isFailed = await job.isFailed();
+	} catch (err) {
+		logger.info(`Failed to read job: ${err}`);
+		isFailed = true;
+	}
+
+	let isCompleted;
+
+	try {
+		isCompleted = await job.isCompleted();
+	} catch (err) {
+		logger.info(`Failed to read job: ${err}`);
+		isCompleted = false;
+	}
+
 	// job.isFailed() actually means a critical error has occured.
 	// As in, an unhandled exception was thrown.
-	if (await job.isFailed()) {
+	if (isFailed) {
 		logger.error("Internal Server Error with job?", { job });
 
 		return res.status(500).json({
 			success: false,
 			description: `An internal service error has occured with this import. This has been reported!`,
 		});
-	} else if (await job.isCompleted()) {
+	} else if (isCompleted) {
 		const content = (await job.waitUntilFinished(
 			ScoreImportQueueEvents
 		)) as ScoreImportWorkerReturns;

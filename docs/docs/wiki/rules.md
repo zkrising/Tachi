@@ -4,23 +4,7 @@ To ensure that the score tracker stays accurate,
 and everyone has a nice time, Tachi enforces some
 rules.
 
-## R1: Be civil.
-
-In various places in Tachi you may write things, such
-as comments on your scores, or a profile about me.
-
-Be civil. That means no Homophobia, Racism, and anything
-else under that umbrella. Use your common sense to determine
-whether something is nice or not.
-
-This rule also applies to the discord. Please do not insult
-other members of the community or make personal attacks.
-
-The punishment for this ranges from warnings to permanent bans, depending on the severity.
-
-Generally, just be a nice person. Please!
-
-## R2: You **MUST NOT** deliberately fake score submissions to Tachi.
+## R1: You **MUST NOT** deliberately fake score submissions to Tachi.
 
 The punishment for this is an instant, permanent
 IP ban.
@@ -43,7 +27,7 @@ may be warned.
 	You do not get a second chance. If you fake scores, you
 	revoke all access to the tracker.
 
-## R3: You **MUST NOT** play on invalid input devices.
+## R2: You **MUST NOT** play on invalid input devices.
 
 Games on Tachi have specific requirements for what kind of
 setups are 'legitimate'. That means that you **MUST NOT**
@@ -84,69 +68,23 @@ The valid input devices are listed below.
 !!! info
 	As always though, exercise some common sense. I'm not going to whitelist controllers on here, because that's asking for trouble. Use your head as for whether something is fair or not, and if you're not certain still, ask in the discord.
 
-## R4: Do not harm other people in the community.
-
-This rule is depressing to write, but it has to be said.
-
-This rule exists to make sure that the Tachi community is
-filled with good people, and that bad actors do not have
-a platform to be legitimised further. Unlike the civility
-rule, This rule covers interactions **outside of Tachi**,
-which includes, **but is not limited to**:
-
-- Assault of other community members (Physical, Sexual etc.).
-- Relationships with minors (When the offender is an adult of unreasonable age).
-
-!!! info
-	This is generally disgusting to write, but there are
-	a lot of predators in this community (especially
-	concerning with a community that has a lot of children.)
-
-	If you are a predator, Tachi has an absolutely
-	zero-tolerance policy on this. Your data **WILL** be forwarded to the local authorities, and you **WILL**
-	immediately lose all access to your account.
-
-	If you are uncomfortable with someone in the community
-	for the above reasons, you may let
-	any member of staff know, and it will be dealt with
-	appropriately.
-
-!!! note
-	This rule does not mean you will be banned for:
-
-	- Political viewpoints (While the rule of 'Be Civil' still applies, you
-	wont be banned for having edgy political opinions
-	or anything similar - even if they are completely
-	stupid.)
-	- Not liking another community member.
-
-## R5: You are only allowed one account.
+## R3: You are only allowed one account.
 
 Do not make multiple accounts, we track account IPs and it
 lets us know. This is to keep the leaderboards fair
 and avoid one player from taking up multiple spaces.
 
-## R6: Do not set NSFW artwork as your avatar or banner.
+## R4: Keep things appropriate
 
-Tachi does not allow you to set suggestive or NSFW
-artwork as your avatar or banner. Your avatar will be
-deleted and you will be warned.
+Don't set your profile picture or banner or whatnot to something inappropriate.
 
-Don't try and push this rule either. If you wouldn't
-show it to your mother, it doesn't belong here.
+Kids use this website to track their scores too! Don't be a creep.
 
-!!! info
-	This includes anything illegal under EU law.
+Similarly, try and keep session names and about me's and whatnot appropriate.
 
-	Uploading illegal (under international common or EU law)
-	material will result in an immediate permanent ban.
+In general, just don't be an ass.
 
-!!! warning
-	This rule **especially** applies to loli or shota stuff.
-
-	I don't want to see that garbage, don't upload it, you'll get in trouble.
-
-## R7: Use Common Sense.
+## R4: Use Common Sense.
 
 This list of rules isn't exhaustive, and staff reserve the
 right to ban you at any time for any reason. You should use

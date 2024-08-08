@@ -320,7 +320,7 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				moreInfo="If you are playing on an official maimai DX server, you can import play data from it here."
 				key="maimai DX NET Importer"
 			/>,
-			<ImportTypeInfoCard key="api/myt-maimaidx" importType="api/myt-maimaidx" />,
+			<ImportTypeInfoCard key="api/myt-maimaidx" importType="api/myt-maimaidx" />
 		);
 	} else if (game === "museca") {
 		Content.unshift(

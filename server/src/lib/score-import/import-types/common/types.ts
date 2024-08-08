@@ -1,6 +1,7 @@
 import type { ConverterFailure } from "../../framework/common/converter-failures";
 import type { DryScore } from "../../framework/common/types";
 import type { MytChunithmScore } from "../api/myt-chunithm/types";
+import { MytMaimaiDxScore } from "../api/myt-maimaidx/types";
 import type { MytOngekiScore } from "../api/myt-ongeki/types";
 import type { MytWaccaScore } from "../api/myt-wacca/types";
 import type { SDVXEamusementCSVData } from "../file/eamusement-sdvx-csv/types";
@@ -59,6 +60,7 @@ export interface ImportTypeDataMap {
 	"api/eag-sdvx": unknown;
 
 	"api/myt-chunithm": MytChunithmScore;
+	"api/myt-maimaidx": MytMaimaiDxScore;
 	"api/myt-ongeki": MytOngekiScore;
 	"api/myt-wacca": MytWaccaScore;
 
@@ -104,6 +106,7 @@ export interface ImportTypeContextMap {
 	"api/eag-iidx": KaiContext;
 	"api/eag-sdvx": KaiContext;
 	"api/myt-chunithm": EmptyObject;
+	"api/myt-maimaidx": EmptyObject;
 	"api/myt-ongeki": EmptyObject;
 	"api/myt-wacca": EmptyObject;
 

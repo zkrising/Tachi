@@ -40,7 +40,7 @@ const parsedScore: MytChunithmScore = {
 	},
 };
 
-t.test("#ConvertAPIMytOngeki", (t) => {
+t.test("#ConvertAPIMytChunithm", (t) => {
 	t.beforeEach(ResetDBState);
 
 	function convert(modifier: any = {}) {

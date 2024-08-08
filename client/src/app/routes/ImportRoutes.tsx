@@ -223,6 +223,9 @@ export default function ImportRoutes() {
 							<Route exact path="/import/myt-chunithm">
 								<MytIntegrationPage game="chunithm" />
 							</Route>
+							<Route exact path="/import/myt-maimaidx">
+								<MytIntegrationPage game="maimaidx" />
+							</Route>
 							<Route exact path="/import/myt-ongeki">
 								<MytIntegrationPage game="ongeki" />
 							</Route>

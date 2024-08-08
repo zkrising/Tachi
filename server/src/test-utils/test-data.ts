@@ -1335,3 +1335,39 @@ export const TestingChunithmSongConverter: SongDocument<"chunithm"> = {
 	searchTerms: [],
 	title: "killy killy JOKER",
 };
+
+export const TestingMaimaiDXSongConverter: SongDocument<"maimaidx"> = {
+	altTitles: [],
+	artist: "suzu",
+	data: {
+		displayVersion: "UNiVERSE",
+		genre: "オンゲキ＆CHUNITHM"
+	},
+	id: 844,
+	searchTerms: [
+		"Shukusei",
+		"Shukusei Shinpan",
+		"Syukusei Shinpan"
+	],
+	title: "宿星審判"
+}
+
+export const TestingMaimaiDXChartConverter: ChartDocument<"maimaidx:Single"> = {
+	chartID: "be94febb411c6894e202f4daefdb683124c40339",
+	data: {
+		inGameID: 11294
+	},
+	difficulty: "DX Advanced",
+	isPrimary: true,
+	level: "8",
+	levelNum: 8.2,
+	playtype: "Single",
+	songID: 844,
+	versions: [
+		"universeplus",
+		"festival",
+		"festivalplus",
+		"buddies",
+		"buddiesplus"
+	]
+}

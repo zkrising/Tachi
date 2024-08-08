@@ -14,6 +14,7 @@ export type APIImportTypes =
 	| "api/flo-sdvx"
 	| "api/min-sdvx"
 	| "api/myt-chunithm"
+	| "api/myt-maimaidx"
 	| "api/myt-ongeki"
 	| "api/myt-wacca"
 

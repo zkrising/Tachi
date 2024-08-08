@@ -16,8 +16,7 @@ import Icon from "components/util/Icon";
 import ImportStateRenderer from "./ImportStateRenderer";
 
 interface Props {
-	// Other games will be added in the future.
-	game: "chunithm" | "ongeki" | "wacca";
+	game: "chunithm" | "maimaidx" | "ongeki" | "wacca";
 }
 
 export default function MytIntegrationPage({ game }: Props) {

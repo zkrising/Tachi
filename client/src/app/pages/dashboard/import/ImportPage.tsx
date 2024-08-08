@@ -622,6 +622,16 @@ function ImportTypeInfoCard({
 					key="myt-chunithm"
 				/>
 			);
+		case "api/myt-maimaidx":
+			return (
+				<ImportInfoCard
+					name="MYT Integration"
+					href="myt-maimaidx"
+					desc="Pull your MaiMai DX scores from the MYT Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
+					key="myt-maimaidx"
+				/>
+			);
 		case "api/myt-ongeki":
 			return (
 				<ImportInfoCard

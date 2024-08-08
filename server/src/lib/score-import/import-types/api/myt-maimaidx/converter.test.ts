@@ -60,11 +60,11 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 				service: "MYT",
 				game: "maimaidx",
 				scoreMeta: {},
-				timeAchieved: ParseDateFromString("2022-11-03T04:21:05.000Z+09:00"),
+				timeAchieved: ParseDateFromString("2022-11-03T04:21:05.000+09:00"),
 				comment: null,
 				importType: "api/myt-maimaidx",
 				scoreData: {
-					score: 99.0562,
+					percent: 99.0562,
 					lamp: "CLEAR",
 					judgements: {
 						pcrit: 10,
@@ -197,8 +197,8 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 	});
 
 	t.test("Should throw on missing chart", (t) => {
-		t.rejects(() => convert({ info: { musicId: 999999 } }), {
-			message: /Can't find chart with id 999999 and difficulty Master/u,
+		t.rejects(() => convert({ info: { musicId: 999999, level: MaimaiLevel.MAIMAI_LEVEL_MASTER } }), {
+			message: /Can't find chart with id 999999 and difficulty DX Master/u,
 		});
 		t.end();
 	});

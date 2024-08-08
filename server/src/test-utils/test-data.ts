@@ -1353,14 +1353,14 @@ export const TestingMaimaiDXSongConverter: SongDocument<"maimaidx"> = {
 }
 
 export const TestingMaimaiDXChartConverter: ChartDocument<"maimaidx:Single"> = {
-	chartID: "be94febb411c6894e202f4daefdb683124c40339",
+	chartID: "fab3d632610b9b98ee1e4f68e9ecf0161f9cb8cd",
 	data: {
 		inGameID: 11294
 	},
-	difficulty: "DX Advanced",
+	difficulty: "DX Expert",
 	isPrimary: true,
-	level: "8",
-	levelNum: 8.2,
+	level: "12",
+	levelNum: 12.2,
 	playtype: "Single",
 	songID: 844,
 	versions: [

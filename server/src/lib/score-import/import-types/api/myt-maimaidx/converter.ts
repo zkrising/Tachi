@@ -6,8 +6,8 @@ import {
 } from "lib/score-import/framework/common/converter-failures";
 import { ParseDateFromString } from "lib/score-import/framework/common/score-utils";
 import {
-  MaimaiComboStatus,
-  MaimaiLevel
+	MaimaiComboStatus,
+	MaimaiLevel,
 } from "proto/generated/maimai/common_pb";
 import { FindChartOnInGameID } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
@@ -24,22 +24,20 @@ const DIFFICULTIES = {
 	[MaimaiLevel.MAIMAI_LEVEL_EXPERT]: "Expert",
 	[MaimaiLevel.MAIMAI_LEVEL_MASTER]: "Master",
 	[MaimaiLevel.MAIMAI_LEVEL_REMASTER]: "Re:Master",
-  [MaimaiLevel.MAIMAI_LEVEL_UTAGE]: "Utage",
+	[MaimaiLevel.MAIMAI_LEVEL_UTAGE]: "Utage",
 };
 
 function getLamp(
 	comboStatus: number,
 	isClear: boolean,
 ): ScoreData<"maimaidx:Single">["lamp"] | undefined {
-	if (
-		comboStatus === MaimaiComboStatus.MAIMAI_COMBO_STATUS_UNSPECIFIED
-	) {
+	if (comboStatus === MaimaiComboStatus.MAIMAI_COMBO_STATUS_UNSPECIFIED) {
 		return undefined;
 	}
 
-  if (isClear === false) {
+	if (isClear === false) {
 		return "FAILED";
-  }
+	}
 
 	if (comboStatus === MaimaiComboStatus.MAIMAI_COMBO_STATUS_NONE) {
 		return "CLEAR";
@@ -64,52 +62,61 @@ function getLamp(
 	return undefined;
 }
 
-const ConvertAPIMytMaimaiDx: ConverterFunction<MytMaimaiDxScore, EmptyObject> = async (
-	data,
-	_context,
-	importType,
-	logger
-) => {
+const ConvertAPIMytMaimaiDx: ConverterFunction<
+	MytMaimaiDxScore,
+	EmptyObject
+> = async (data, _context, importType, logger) => {
 	if (data.info === undefined || data.judge === undefined) {
 		throw new InvalidScoreFailure("Failed to receive score data from MYT API");
 	}
 
-  const baseDifficulty = DIFFICULTIES[data.info.level];
+	const baseDifficulty = DIFFICULTIES[data.info.level];
 	if (baseDifficulty === undefined) {
 		throw new InvalidScoreFailure(
-			`Can't process a score with unspecified difficulty (musicId ${data.info.musicId})`
+			`Can't process a score with unspecified difficulty (musicId ${data.info.musicId})`,
 		);
-  }
-  if (baseDifficulty === "Utage") {
+	}
+	if (baseDifficulty === "Utage") {
 		throw new SkipScoreFailure("Utage charts are not supported");
-  }
-  // Songs with an ID higher than 10000 are considered DX charts
-  const difficulty = data.info.musicId >= 10000 ? `DX ${baseDifficulty}` : baseDifficulty;
+	}
+	// Songs with an ID higher than 10000 are considered DX charts
+	const difficulty =
+		data.info.musicId >= 10000 ? `DX ${baseDifficulty}` : baseDifficulty;
 
 	const lamp = getLamp(data.info.comboStatus, data.info.isClear);
 
 	if (lamp === undefined) {
 		throw new InvalidScoreFailure(
-			"Can't process a score with an invalid combo status and/or clear status"
+			"Can't process a score with an invalid combo status and/or clear status",
 		);
 	}
 
-	const chart = await FindChartOnInGameID("maimaidx", data.info.musicId, "Single", difficulty);
+	const chart = await FindChartOnInGameID(
+		"maimaidx",
+		data.info.musicId,
+		"Single",
+		difficulty,
+	);
 
 	if (chart === null) {
 		throw new SongOrChartNotFoundFailure(
 			`Can't find chart with id ${data.info.musicId} and difficulty ${difficulty}`,
 			importType,
 			data,
-			{}
+			{},
 		);
 	}
 
 	const song = await FindSongOnID("maimaidx", chart.songID);
 
 	if (song === null) {
-		logger.severe(`Song/chart desync: ${chart.songID} for chart ${chart.chartID}`, { chart });
-		throw new InternalFailure(`Song/chart desync: ${chart.songID} for chart ${chart.chartID}`);
+		logger.severe(
+			`Song/chart desync: ${chart.songID} for chart ${chart.chartID}`,
+			{ chart },
+		);
+		throw new InternalFailure(
+			`Song/chart desync: ${chart.songID} for chart ${chart.chartID}`,
+		);
 	}
 
 	const dryScore: DryScore<"maimaidx:Single"> = {
@@ -123,17 +130,17 @@ const ConvertAPIMytMaimaiDx: ConverterFunction<MytMaimaiDxScore, EmptyObject> = 
 			percent: data.info.achievement / 10000,
 			lamp,
 			judgements: {
-        pcrit: data.judge.judgeCriticalPerfect,
-        perfect: data.judge.judgePerfect,
-        great: data.judge.judgeGreat,
-        good: data.judge.judgeGood,
-        miss: data.judge.judgeMiss
+				pcrit: data.judge.judgeCriticalPerfect,
+				perfect: data.judge.judgePerfect,
+				great: data.judge.judgeGreat,
+				good: data.judge.judgeGood,
+				miss: data.judge.judgeMiss,
 			},
-      optional: {
-        fast: data.judge.fastCount,
-        slow: data.judge.lateCount,
-        maxCombo: data.judge.maxCombo
-      }
+			optional: {
+				fast: data.judge.fastCount,
+				slow: data.judge.lateCount,
+				maxCombo: data.judge.maxCombo,
+			},
 		},
 	};
 

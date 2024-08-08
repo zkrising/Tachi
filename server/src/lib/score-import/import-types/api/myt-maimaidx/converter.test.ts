@@ -10,10 +10,7 @@ import {
 import t from "tap";
 import { dmf } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
-import {
-	TestingMaimaiDXChartConverter,
-	TestingMaimaiDXSongConverter,
-} from "test-utils/test-data";
+import { TestingMaimaiDXChartConverter, TestingMaimaiDXSongConverter } from "test-utils/test-data";
 import type { MytMaimaiDxScore } from "./types";
 
 const logger = CreateLogCtx(__filename);
@@ -50,12 +47,7 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 	t.beforeEach(ResetDBState);
 
 	function convert(modifier: any = {}) {
-		return ConvertAPIMytMaimaiDx(
-			dmf(parsedScore, modifier),
-			{},
-			"api/myt-maimaidx",
-			logger,
-		);
+		return ConvertAPIMytMaimaiDx(dmf(parsedScore, modifier), {}, "api/myt-maimaidx", logger);
 	}
 
 	t.test("Should return a dryScore on valid input.", async (t) => {
@@ -102,7 +94,7 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 					},
 				}),
 			{
-				message: /Utage charts are not supported/u,
+				message: /Utage charts are not supported/u
 			},
 		);
 		t.end();
@@ -117,7 +109,7 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 					},
 				}),
 			{
-				message: /Can't process a score with unspecified difficulty/u,
+				message: /Can't process a score with unspecified difficulty/u
 			},
 		);
 		t.end();
@@ -132,7 +124,7 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "ALL PERFECT+" } },
+				dryScore: { scoreData: { lamp: "ALL PERFECT+" } }
 			},
 		);
 		t.hasStrict(
@@ -143,7 +135,7 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "ALL PERFECT" } },
+				dryScore: { scoreData: { lamp: "ALL PERFECT" } }
 			},
 		);
 		t.hasStrict(
@@ -154,7 +146,7 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "FULL COMBO+" } },
+				dryScore: { scoreData: { lamp: "FULL COMBO+" } }
 			},
 		);
 		t.hasStrict(
@@ -165,7 +157,7 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "FULL COMBO" } },
+				dryScore: { scoreData: { lamp: "FULL COMBO" } }
 			},
 		);
 		t.hasStrict(
@@ -176,7 +168,7 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "CLEAR" } },
+				dryScore: { scoreData: { lamp: "CLEAR" } }
 			},
 		);
 		t.hasStrict(
@@ -187,7 +179,7 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "FAILED" } },
+				dryScore: { scoreData: { lamp: "FAILED" } }
 			},
 		);
 		t.hasStrict(
@@ -198,7 +190,7 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "FAILED" } },
+				dryScore: { scoreData: { lamp: "FAILED" } }
 			},
 		);
 		t.end();

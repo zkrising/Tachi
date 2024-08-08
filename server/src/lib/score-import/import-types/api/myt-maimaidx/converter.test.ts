@@ -94,8 +94,8 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 					},
 				}),
 			{
-				message: /Utage charts are not supported/u
-			},
+				message: /Utage charts are not supported/u,
+			}
 		);
 		t.end();
 	});
@@ -109,8 +109,8 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 					},
 				}),
 			{
-				message: /Can't process a score with unspecified difficulty/u
-			},
+				message: /Can't process a score with unspecified difficulty/u,
+			}
 		);
 		t.end();
 	});
@@ -124,8 +124,8 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "ALL PERFECT+" } }
-			},
+				dryScore: { scoreData: { lamp: "ALL PERFECT+" } },
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -135,8 +135,8 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "ALL PERFECT" } }
-			},
+				dryScore: { scoreData: { lamp: "ALL PERFECT" } },
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -146,8 +146,8 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "FULL COMBO+" } }
-			},
+				dryScore: { scoreData: { lamp: "FULL COMBO+" } },
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -157,8 +157,8 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "FULL COMBO" } }
-			},
+				dryScore: { scoreData: { lamp: "FULL COMBO" } },
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -168,8 +168,8 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "CLEAR" } }
-			},
+				dryScore: { scoreData: { lamp: "CLEAR" } },
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -179,8 +179,8 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "FAILED" } }
-			},
+				dryScore: { scoreData: { lamp: "FAILED" } },
+			}
 		);
 		t.hasStrict(
 			await convert({
@@ -190,8 +190,8 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "FAILED" } }
-			},
+				dryScore: { scoreData: { lamp: "FAILED" } },
+			}
 		);
 		t.end();
 	});
@@ -204,7 +204,7 @@ t.test("#ConvertAPIMytMaimaiDx", (t) => {
 				}),
 			{
 				message: /Can't find chart with id 999999 and difficulty DX Master/u,
-			},
+			}
 		);
 		t.end();
 	});

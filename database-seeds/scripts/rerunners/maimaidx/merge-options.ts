@@ -141,7 +141,7 @@ const songIDGenerator = GetFreshSongIDGenerator("maimaidx");
 
 for (const optionsDir of options.input) {
 	for (const option of readdirSync(optionsDir)) {
-		if (!option.match(/[A-Z]\d{3}/u)) {
+		if (!option.match(/^[A-Z]\d{3}$/u)) {
 			continue;
 		}
 

@@ -4939,6 +4939,66 @@
 		]
 	},
 	{
+		"chartID": "5e83907a337e295e583973bca144afd986784bf5",
+		"data": {
+			"inGameID": 10117
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5.8,
+		"playtype": "Single",
+		"songID": 59,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "7bfc5bdd91e838f579d5d5351ee8bea43b9a9878",
+		"data": {
+			"inGameID": 10117
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"songID": 59,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "4072c131a05f734bd919c75ee01c11c15dd1aed6",
+		"data": {
+			"inGameID": 10117
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "9+",
+		"levelNum": 9.8,
+		"playtype": "Single",
+		"songID": 59,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "dcd512e9baad2b8f8321655b46a42216f561847b",
+		"data": {
+			"inGameID": 10117
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"songID": 59,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
 		"chartID": "fdd04ac20f69ef24e929601606cf0666011cf57e",
 		"data": {
 			"inGameID": 117
@@ -5371,7 +5431,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -5389,7 +5450,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -5407,7 +5469,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -5425,7 +5488,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -5443,7 +5507,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -5461,7 +5526,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -5479,7 +5545,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -5497,7 +5564,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -5546,7 +5614,7 @@
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
 		"level": "6",
-		"levelNum": 6,
+		"levelNum": 6.8,
 		"playtype": "Single",
 		"songID": 66,
 		"versions": [
@@ -5576,7 +5644,7 @@
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "10+",
-		"levelNum": 10.6,
+		"levelNum": 10.7,
 		"playtype": "Single",
 		"songID": 66,
 		"versions": [
@@ -8816,7 +8884,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -8834,7 +8903,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -8852,7 +8922,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -8870,7 +8941,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -14802,7 +14874,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -14820,7 +14893,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -14838,7 +14912,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -14856,7 +14931,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -14874,7 +14950,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -14892,7 +14969,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -14910,7 +14988,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -14928,7 +15007,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -15117,7 +15197,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -15135,7 +15216,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -15153,7 +15235,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -15171,7 +15254,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -16154,7 +16238,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -16172,7 +16257,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -16190,7 +16276,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -16208,7 +16295,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -18715,7 +18803,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -18733,7 +18822,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -18751,7 +18841,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -18769,7 +18860,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -22426,7 +22518,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -22444,7 +22537,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -22454,7 +22548,7 @@
 		},
 		"difficulty": "Expert",
 		"isPrimary": true,
-		"level": "10",
+		"level": "10+",
 		"levelNum": 10.6,
 		"playtype": "Single",
 		"songID": 257,
@@ -22462,7 +22556,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -22480,7 +22575,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -22498,7 +22594,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -22516,7 +22613,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -22534,7 +22632,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -22552,7 +22651,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -22570,7 +22670,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -22588,7 +22689,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -22606,7 +22708,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -22624,7 +22727,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -22642,7 +22746,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -22660,7 +22765,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -22678,7 +22784,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -22696,7 +22803,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -24841,7 +24949,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -24859,7 +24968,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -24877,7 +24987,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -24895,7 +25006,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -27573,7 +27685,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -27591,7 +27704,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -27609,7 +27723,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -27627,7 +27742,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28040,7 +28156,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28058,7 +28175,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28076,7 +28194,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28094,7 +28213,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28112,7 +28232,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28130,7 +28251,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28148,7 +28270,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28166,7 +28289,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28336,7 +28460,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28354,7 +28479,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28372,7 +28498,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28390,7 +28517,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28560,7 +28688,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28578,7 +28707,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28596,7 +28726,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28614,7 +28745,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28708,7 +28840,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28726,7 +28859,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28744,7 +28878,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28762,7 +28897,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -28780,7 +28916,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -31161,7 +31298,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -31179,7 +31317,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -31197,7 +31336,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -31215,7 +31355,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -31233,7 +31374,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -31251,7 +31393,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -31269,7 +31412,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -31287,7 +31431,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -34484,7 +34629,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -34502,7 +34648,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -34520,7 +34667,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -34538,7 +34686,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -36775,7 +36924,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -36793,7 +36943,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -36811,7 +36962,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -36829,7 +36981,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -36847,7 +37000,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -36865,7 +37019,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -36883,7 +37038,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -36901,7 +37057,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37215,7 +37372,7 @@
 		},
 		"difficulty": "Advanced",
 		"isPrimary": true,
-		"level": "7",
+		"level": "7+",
 		"levelNum": 7.6,
 		"playtype": "Single",
 		"songID": 437,
@@ -37223,7 +37380,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37241,7 +37399,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37259,7 +37418,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37277,7 +37437,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37295,7 +37456,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37313,7 +37475,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37331,7 +37494,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37349,7 +37513,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37367,7 +37532,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37761,7 +37927,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37779,7 +37946,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37797,7 +37965,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37815,7 +37984,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37833,7 +38003,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37851,7 +38022,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37869,7 +38041,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37887,7 +38060,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37905,7 +38079,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37923,7 +38098,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37941,7 +38117,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -37959,7 +38136,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -39409,7 +39587,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -39427,7 +39606,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -39445,7 +39625,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -39463,7 +39644,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -42592,7 +42774,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -42610,7 +42793,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -42628,7 +42812,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -42638,7 +42823,7 @@
 		},
 		"difficulty": "Master",
 		"isPrimary": true,
-		"level": "11",
+		"level": "11+",
 		"levelNum": 11.6,
 		"playtype": "Single",
 		"songID": 502,
@@ -42646,7 +42831,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -42664,7 +42850,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -42682,7 +42869,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -42700,7 +42888,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -42718,7 +42907,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -42812,7 +43002,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -42830,7 +43021,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -42848,7 +43040,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -42866,7 +43059,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -43446,7 +43640,7 @@
 		},
 		"difficulty": "Advanced",
 		"isPrimary": true,
-		"level": "7",
+		"level": "7+",
 		"levelNum": 7.6,
 		"playtype": "Single",
 		"songID": 513,
@@ -43454,7 +43648,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -43472,7 +43667,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -43490,7 +43686,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -43508,7 +43705,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -45084,7 +45282,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -45102,7 +45301,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -45120,7 +45320,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -45130,7 +45331,7 @@
 		},
 		"difficulty": "Master",
 		"isPrimary": true,
-		"level": "12",
+		"level": "12+",
 		"levelNum": 12.6,
 		"playtype": "Single",
 		"songID": 534,
@@ -45138,7 +45339,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46060,7 +46262,7 @@
 		},
 		"difficulty": "Advanced",
 		"isPrimary": true,
-		"level": "8",
+		"level": "8+",
 		"levelNum": 8.6,
 		"playtype": "Single",
 		"songID": 546,
@@ -46068,7 +46270,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46086,7 +46289,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46104,7 +46308,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46122,7 +46327,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46311,7 +46517,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46329,7 +46536,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46347,7 +46555,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46365,7 +46574,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46383,7 +46593,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46401,7 +46612,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46419,7 +46631,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46437,7 +46650,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46550,7 +46764,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46568,7 +46783,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46586,7 +46802,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46604,7 +46821,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46717,7 +46935,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46735,7 +46954,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46753,7 +46973,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46771,7 +46992,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46789,7 +47011,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46807,7 +47030,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46825,7 +47049,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -46843,7 +47068,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -47792,7 +48018,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -47810,7 +48037,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -47828,7 +48056,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -47846,7 +48075,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -47864,7 +48094,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -47882,7 +48113,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -47900,7 +48132,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -47918,7 +48151,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -47936,7 +48170,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -47954,7 +48189,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -49207,7 +49443,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -49225,7 +49462,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -49243,7 +49481,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -49253,7 +49492,7 @@
 		},
 		"difficulty": "Master",
 		"isPrimary": true,
-		"level": "12",
+		"level": "12+",
 		"levelNum": 12.6,
 		"playtype": "Single",
 		"songID": 584,
@@ -49261,7 +49500,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -56839,7 +57079,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -56857,7 +57098,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -56867,7 +57109,7 @@
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
-		"level": "9",
+		"level": "9+",
 		"levelNum": 9.6,
 		"playtype": "Single",
 		"songID": 677,
@@ -56875,7 +57117,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -56893,7 +57136,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -61462,7 +61706,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -61480,7 +61725,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -61498,7 +61744,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -61516,7 +61763,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -66930,7 +67178,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -66948,7 +67197,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -66966,7 +67216,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -66984,7 +67235,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -73754,7 +74006,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -73772,7 +74025,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -73790,7 +74044,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -73808,7 +74063,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -74054,7 +74310,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -74072,7 +74329,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -74090,7 +74348,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -74108,7 +74367,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -77485,7 +77745,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -77503,7 +77764,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -77521,7 +77783,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -77531,7 +77794,7 @@
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
-		"level": "12",
+		"level": "12+",
 		"levelNum": 12.6,
 		"playtype": "Single",
 		"songID": 946,
@@ -77539,7 +77802,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -77719,7 +77983,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -77737,7 +78002,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -77755,7 +78021,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -77773,7 +78040,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -77791,7 +78059,8 @@
 			"universeplus",
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -81499,7 +81768,8 @@
 		"versions": [
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -81516,7 +81786,8 @@
 		"versions": [
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -81533,7 +81804,8 @@
 		"versions": [
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -81550,7 +81822,8 @@
 		"versions": [
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -83637,7 +83910,8 @@
 		"versions": [
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -83654,7 +83928,8 @@
 		"versions": [
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -83671,7 +83946,8 @@
 		"versions": [
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -83688,7 +83964,8 @@
 		"versions": [
 			"festival",
 			"festivalplus",
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -92298,7 +92575,8 @@
 		"playtype": "Single",
 		"songID": 1156,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -92313,7 +92591,8 @@
 		"playtype": "Single",
 		"songID": 1156,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -92328,7 +92607,8 @@
 		"playtype": "Single",
 		"songID": 1156,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -92343,7 +92623,8 @@
 		"playtype": "Single",
 		"songID": 1156,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -92358,7 +92639,8 @@
 		"playtype": "Single",
 		"songID": 1156,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -92961,7 +93243,8 @@
 		"playtype": "Single",
 		"songID": 1166,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -92976,7 +93259,8 @@
 		"playtype": "Single",
 		"songID": 1166,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -92991,7 +93275,8 @@
 		"playtype": "Single",
 		"songID": 1166,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -93006,7 +93291,8 @@
 		"playtype": "Single",
 		"songID": 1166,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -93469,7 +93755,8 @@
 		"playtype": "Single",
 		"songID": 1174,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -93484,7 +93771,8 @@
 		"playtype": "Single",
 		"songID": 1174,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -93499,7 +93787,8 @@
 		"playtype": "Single",
 		"songID": 1174,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -93514,7 +93803,8 @@
 		"playtype": "Single",
 		"songID": 1174,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -93529,7 +93819,8 @@
 		"playtype": "Single",
 		"songID": 1175,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -93544,7 +93835,8 @@
 		"playtype": "Single",
 		"songID": 1175,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -93559,7 +93851,8 @@
 		"playtype": "Single",
 		"songID": 1175,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -93574,7 +93867,8 @@
 		"playtype": "Single",
 		"songID": 1175,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -93589,7 +93883,8 @@
 		"playtype": "Single",
 		"songID": 1176,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -93604,7 +93899,8 @@
 		"playtype": "Single",
 		"songID": 1176,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -93619,7 +93915,8 @@
 		"playtype": "Single",
 		"songID": 1176,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -93634,7 +93931,8 @@
 		"playtype": "Single",
 		"songID": 1176,
 		"versions": [
-			"buddies"
+			"buddies",
+			"buddiesplus"
 		]
 	},
 	{
@@ -95435,12 +95733,12 @@
 	{
 		"chartID": "e530dac94aaf405ca735caa351a10f884a7fb583",
 		"data": {
-			"inGameID": null
+			"inGameID": 11733
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
 		"level": "6",
-		"levelNum": 6,
+		"levelNum": 6.5,
 		"playtype": "Single",
 		"songID": 1207,
 		"versions": [
@@ -95450,7 +95748,7 @@
 	{
 		"chartID": "f696e34ac0974fd6bcb6df3070bd6a494560b18d",
 		"data": {
-			"inGameID": null
+			"inGameID": 11733
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -95465,7 +95763,7 @@
 	{
 		"chartID": "1cbee56d295841e69a5e914fdfcc689149af9f98",
 		"data": {
-			"inGameID": null
+			"inGameID": 11733
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -95480,7 +95778,7 @@
 	{
 		"chartID": "e9b6a1d9de0d4aa693c137071191998a43758252",
 		"data": {
-			"inGameID": null
+			"inGameID": 11733
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -96140,12 +96438,12 @@
 	{
 		"chartID": "aff8b7ea655a4a15aed9e65575f0ed6f4e54ac81",
 		"data": {
-			"inGameID": null
+			"inGameID": 11704
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
 		"level": "6",
-		"levelNum": 6,
+		"levelNum": 6.2,
 		"playtype": "Single",
 		"songID": 1218,
 		"versions": [
@@ -96155,7 +96453,7 @@
 	{
 		"chartID": "50e9836e25c5413ab8169dabdec89f694808bbbc",
 		"data": {
-			"inGameID": null
+			"inGameID": 11704
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -96170,7 +96468,7 @@
 	{
 		"chartID": "ca3bf3857b564e869134fca6de14690b409d8a10",
 		"data": {
-			"inGameID": null
+			"inGameID": 11704
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -96185,7 +96483,7 @@
 	{
 		"chartID": "c7bf3866e7f047efbfaa03e36f857c6e49a293c2",
 		"data": {
-			"inGameID": null
+			"inGameID": 11704
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -96260,12 +96558,12 @@
 	{
 		"chartID": "ab660068f3df4277883adcfff5e68d834cbca427",
 		"data": {
-			"inGameID": null
+			"inGameID": 11705
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
 		"level": "7",
-		"levelNum": 7,
+		"levelNum": 7.5,
 		"playtype": "Single",
 		"songID": 1220,
 		"versions": [
@@ -96275,7 +96573,7 @@
 	{
 		"chartID": "bdce4ee122114fa0bf0f6f458f260a3d44e59310",
 		"data": {
-			"inGameID": null
+			"inGameID": 11705
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -96290,7 +96588,7 @@
 	{
 		"chartID": "70bcee2f960140b5824c4602d9b527ef4b398c99",
 		"data": {
-			"inGameID": null
+			"inGameID": 11705
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -96305,7 +96603,7 @@
 	{
 		"chartID": "b46374ef2dd84b778f32a2678f773be34be18c2e",
 		"data": {
-			"inGameID": null
+			"inGameID": 11705
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -96320,7 +96618,7 @@
 	{
 		"chartID": "114a31232e6f446aab8995d91311bd5f444fa814",
 		"data": {
-			"inGameID": null
+			"inGameID": 11706
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -96335,7 +96633,7 @@
 	{
 		"chartID": "a2793992368e4dbaaf2c57cc5bb02922466f9b47",
 		"data": {
-			"inGameID": null
+			"inGameID": 11706
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -96350,7 +96648,7 @@
 	{
 		"chartID": "d6fd1dd6ff044ce2ad9f5b9202e7f4da47c08e36",
 		"data": {
-			"inGameID": null
+			"inGameID": 11706
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -96365,7 +96663,7 @@
 	{
 		"chartID": "d2f1d3fbea4f4ba4aba493dadd9e75ce47daa2fa",
 		"data": {
-			"inGameID": null
+			"inGameID": 11706
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -96380,7 +96678,7 @@
 	{
 		"chartID": "99aa88cccfa443c1b42249f9c96651ec4a6b9d42",
 		"data": {
-			"inGameID": null
+			"inGameID": 11707
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -96395,7 +96693,7 @@
 	{
 		"chartID": "89ae677dc6274ed7bc9c5857db5eb7dc4794b236",
 		"data": {
-			"inGameID": null
+			"inGameID": 11707
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -96410,7 +96708,7 @@
 	{
 		"chartID": "a5da7121b015434fa2b3fbbb663897744dd78dec",
 		"data": {
-			"inGameID": null
+			"inGameID": 11707
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -96425,7 +96723,7 @@
 	{
 		"chartID": "47bb81fa23a643498b0835c2d8c622f44e45b70c",
 		"data": {
-			"inGameID": null
+			"inGameID": 11707
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -96440,7 +96738,7 @@
 	{
 		"chartID": "12bc3b4b04f5419cae7ce0bec67d1db9467cbe82",
 		"data": {
-			"inGameID": null
+			"inGameID": 11708
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -96455,7 +96753,7 @@
 	{
 		"chartID": "47771cb5cedf4f37abc434d34589228b420e9300",
 		"data": {
-			"inGameID": null
+			"inGameID": 11708
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -96470,7 +96768,7 @@
 	{
 		"chartID": "d81f509523d648ad9cf83a398616aaba4ddb8774",
 		"data": {
-			"inGameID": null
+			"inGameID": 11708
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -96485,7 +96783,7 @@
 	{
 		"chartID": "88ba92f618a94e62b67123fe9b9427684245a78b",
 		"data": {
-			"inGameID": null
+			"inGameID": 11708
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -96500,7 +96798,7 @@
 	{
 		"chartID": "0c987e829c184f94bd8c7bca3812a970465cb295",
 		"data": {
-			"inGameID": null
+			"inGameID": 11709
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
@@ -96515,7 +96813,7 @@
 	{
 		"chartID": "1a1f0abf9c77494abb52e9bac778a4c84728b244",
 		"data": {
-			"inGameID": null
+			"inGameID": 11709
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -96530,7 +96828,7 @@
 	{
 		"chartID": "090ebde204604cb8b0d242949958da294fdfbe1e",
 		"data": {
-			"inGameID": null
+			"inGameID": 11709
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -96545,7 +96843,7 @@
 	{
 		"chartID": "30a40ee1e53043b2b42bca62fe597a074d9b8beb",
 		"data": {
-			"inGameID": null
+			"inGameID": 11709
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -96560,12 +96858,12 @@
 	{
 		"chartID": "7ab3fb0f0254490ca7b7aff040639f9346c7a200",
 		"data": {
-			"inGameID": null
+			"inGameID": 11710
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
 		"level": "6",
-		"levelNum": 6,
+		"levelNum": 6.5,
 		"playtype": "Single",
 		"songID": 1225,
 		"versions": [
@@ -96575,7 +96873,7 @@
 	{
 		"chartID": "ad84619a470d48e4ac38a02a89f75d2845889fa8",
 		"data": {
-			"inGameID": null
+			"inGameID": 11710
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -96590,7 +96888,7 @@
 	{
 		"chartID": "e0569494bf77421a929cbb6add9fec904830bd99",
 		"data": {
-			"inGameID": null
+			"inGameID": 11710
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -96605,7 +96903,7 @@
 	{
 		"chartID": "5bf1ddee371147d9bd8af37033ee5c1b4cbe9e78",
 		"data": {
-			"inGameID": null
+			"inGameID": 11710
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -96620,12 +96918,12 @@
 	{
 		"chartID": "a3bddbfb045346d3ad6df2d1bd12650a446a933f",
 		"data": {
-			"inGameID": null
+			"inGameID": 11711
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
 		"level": "6",
-		"levelNum": 6,
+		"levelNum": 6.5,
 		"playtype": "Single",
 		"songID": 1226,
 		"versions": [
@@ -96635,7 +96933,7 @@
 	{
 		"chartID": "1e4c1554d88b4047b3a5ea51fd69ab8744ff80d2",
 		"data": {
-			"inGameID": null
+			"inGameID": 11711
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -96650,12 +96948,12 @@
 	{
 		"chartID": "aabeaba1bfcb4634a6d1fb46dc57bbb24a4586c4",
 		"data": {
-			"inGameID": null
+			"inGameID": 11711
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "9+",
-		"levelNum": 9.6,
+		"levelNum": 9.7,
 		"playtype": "Single",
 		"songID": 1226,
 		"versions": [
@@ -96665,7 +96963,7 @@
 	{
 		"chartID": "4344f19eacd84301ade71dc316a528f648a7a469",
 		"data": {
-			"inGameID": null
+			"inGameID": 11711
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -96680,12 +96978,12 @@
 	{
 		"chartID": "26d4b2d8d8bc4c8aad4c58b75ff0a6274db8954c",
 		"data": {
-			"inGameID": null
+			"inGameID": 11674
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
 		"level": "7+",
-		"levelNum": 7.6,
+		"levelNum": 7.8,
 		"playtype": "Single",
 		"songID": 1227,
 		"versions": [
@@ -96695,7 +96993,7 @@
 	{
 		"chartID": "a93707e1468b4b31be31c68a50e4b5e449e99c82",
 		"data": {
-			"inGameID": null
+			"inGameID": 11674
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -96710,7 +97008,7 @@
 	{
 		"chartID": "1e8f4e454b134277b637882acda88f96450f92eb",
 		"data": {
-			"inGameID": null
+			"inGameID": 11674
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -96725,7 +97023,7 @@
 	{
 		"chartID": "2d177779fdf34dcea8a4845852792ae44e96a959",
 		"data": {
-			"inGameID": null
+			"inGameID": 11674
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -96740,12 +97038,12 @@
 	{
 		"chartID": "463403693aa44f658c86bb8ff0d490e540548d1a",
 		"data": {
-			"inGameID": null
+			"inGameID": 11675
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
-		"level": "7.6",
-		"levelNum": 11.6,
+		"level": "7+",
+		"levelNum": 7.8,
 		"playtype": "Single",
 		"songID": 1228,
 		"versions": [
@@ -96755,7 +97053,7 @@
 	{
 		"chartID": "1447243cf674416bbdefa03e9823c16942d68b16",
 		"data": {
-			"inGameID": null
+			"inGameID": 11675
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -96770,7 +97068,7 @@
 	{
 		"chartID": "61931ccd77b24129b9d4c9f20262f22a4d49ae08",
 		"data": {
-			"inGameID": null
+			"inGameID": 11675
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -96785,7 +97083,7 @@
 	{
 		"chartID": "d6a8b5e9755c46f48330fbfc3a54f26c4fafaf14",
 		"data": {
-			"inGameID": null
+			"inGameID": 11675
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -96800,12 +97098,12 @@
 	{
 		"chartID": "db5a93bd843a4101956901c0b20a091a4cda8ace",
 		"data": {
-			"inGameID": null
+			"inGameID": 11676
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
 		"level": "7+",
-		"levelNum": 7.6,
+		"levelNum": 7.7,
 		"playtype": "Single",
 		"songID": 1229,
 		"versions": [
@@ -96815,7 +97113,7 @@
 	{
 		"chartID": "e23aacf859ea47abb66a7912753d567c4170b259",
 		"data": {
-			"inGameID": null
+			"inGameID": 11676
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -96830,12 +97128,12 @@
 	{
 		"chartID": "2cc7f8dd3a3941bea4b6d85c19284948416b93f6",
 		"data": {
-			"inGameID": null
+			"inGameID": 11676
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
 		"level": "11",
-		"levelNum": 11,
+		"levelNum": 11.2,
 		"playtype": "Single",
 		"songID": 1229,
 		"versions": [
@@ -96845,7 +97143,7 @@
 	{
 		"chartID": "164e44c7d4864257a0da3fd6e255179743dfade8",
 		"data": {
-			"inGameID": null
+			"inGameID": 11676
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -96860,12 +97158,12 @@
 	{
 		"chartID": "caba4af5051945df85a1b994a5b6e7ea45de93ef",
 		"data": {
-			"inGameID": null
+			"inGameID": 11677
 		},
 		"difficulty": "DX Advanced",
 		"isPrimary": true,
 		"level": "8+",
-		"levelNum": 8.6,
+		"levelNum": 8.8,
 		"playtype": "Single",
 		"songID": 1230,
 		"versions": [
@@ -96875,7 +97173,7 @@
 	{
 		"chartID": "3fd9144f38154748befe4a2c726c88f64b2cba93",
 		"data": {
-			"inGameID": null
+			"inGameID": 11677
 		},
 		"difficulty": "DX Basic",
 		"isPrimary": true,
@@ -96890,7 +97188,7 @@
 	{
 		"chartID": "928b2769df7340dab49d001fd7759b39446abf13",
 		"data": {
-			"inGameID": null
+			"inGameID": 11677
 		},
 		"difficulty": "DX Expert",
 		"isPrimary": true,
@@ -96905,7 +97203,7 @@
 	{
 		"chartID": "4eac8ccf486044c8944dff31708188b248eea54c",
 		"data": {
-			"inGameID": null
+			"inGameID": 11677
 		},
 		"difficulty": "DX Master",
 		"isPrimary": true,
@@ -96973,6 +97271,366 @@
 		"levelNum": 12,
 		"playtype": "Single",
 		"songID": 1231,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "d85a00364c1b2259741d247f719acbec2fb97e3e",
+		"data": {
+			"inGameID": 11713
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "8+",
+		"levelNum": 8.8,
+		"playtype": "Single",
+		"songID": 1232,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "b67f51de24c4290fe72adb06fcfcf08d590d4683",
+		"data": {
+			"inGameID": 11713
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 1232,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "4337a86e78d508f4fb329b1fff6d7f24154e5305",
+		"data": {
+			"inGameID": 11713
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"songID": 1232,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "32710cd1ae0dc01c2cb9e937de4c2c1ae66b6ec9",
+		"data": {
+			"inGameID": 11713
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14.5,
+		"playtype": "Single",
+		"songID": 1232,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "d0c494d92aa3330a942f70903f440c1c7b7ce42a",
+		"data": {
+			"inGameID": 11699
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6.5,
+		"playtype": "Single",
+		"songID": 1233,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "6be2a53b34ac8cc8efe444260d10828af96a00a0",
+		"data": {
+			"inGameID": 11699
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 1233,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "c66a69e0621bfa59a4edf446ec984f1a81e48d7f",
+		"data": {
+			"inGameID": 11699
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "10+",
+		"levelNum": 10.7,
+		"playtype": "Single",
+		"songID": 1233,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "b4d34905ecd90eed293d36a7b75026db2d9b1299",
+		"data": {
+			"inGameID": 11699
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.7,
+		"playtype": "Single",
+		"songID": 1233,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "aa87068faffcbf82dbcd7814d6099a68aaf1a0d8",
+		"data": {
+			"inGameID": 11712
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 1234,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "a528d3c2f6260e0047698b40317bf253242393a9",
+		"data": {
+			"inGameID": 11712
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"songID": 1234,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "656748ea99e185a3c63137f38d2c650ecb610134",
+		"data": {
+			"inGameID": 11712
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "10+",
+		"levelNum": 10.7,
+		"playtype": "Single",
+		"songID": 1234,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "25730123b25493cacd3589eae22933ba9d895915",
+		"data": {
+			"inGameID": 11712
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.7,
+		"playtype": "Single",
+		"songID": 1234,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "17a9cd7d25e1fef61891af3f364d628259567c16",
+		"data": {
+			"inGameID": 11715
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7.5,
+		"playtype": "Single",
+		"songID": 1235,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "7e92bfb84110421812212b9e6d1fe0a02f802270",
+		"data": {
+			"inGameID": 11715
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 1235,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "b6d94af07216a91337f6e17a7d096e77e7740ecf",
+		"data": {
+			"inGameID": 11715
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "Single",
+		"songID": 1235,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "31c89aa92be01a31b30a4f08371ad05b1d3f1239",
+		"data": {
+			"inGameID": 11715
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.2,
+		"playtype": "Single",
+		"songID": 1235,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "3a0ba5fc9f5435e633f7e7e347f74f63699b98f1",
+		"data": {
+			"inGameID": 11716
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.9,
+		"playtype": "Single",
+		"songID": 1236,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "a1b1158c252298547a4aa1dbb7ca6bb83f1264c8",
+		"data": {
+			"inGameID": 11716
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"songID": 1236,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "926db31612f727929caa40faa94b106446c45d6e",
+		"data": {
+			"inGameID": 11716
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "11",
+		"levelNum": 11,
+		"playtype": "Single",
+		"songID": 1236,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "ea170ff8ff22475ed63794d243e7c56f8af60ff5",
+		"data": {
+			"inGameID": 11716
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.7,
+		"playtype": "Single",
+		"songID": 1236,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "1dc750090e16945a1fbe8fa296eb6f55e8c49b77",
+		"data": {
+			"inGameID": 11735
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6.5,
+		"playtype": "Single",
+		"songID": 1237,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "8a66c4a09c456faad51e225b01ec33529fa18050",
+		"data": {
+			"inGameID": 11735
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "1",
+		"levelNum": 1,
+		"playtype": "Single",
+		"songID": 1237,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "9d4fbe8502b9f9c813450b11f9d99b669e0fb14c",
+		"data": {
+			"inGameID": 11735
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "9+",
+		"levelNum": 9.8,
+		"playtype": "Single",
+		"songID": 1237,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "6dfe3652d6dd24a45a3642d740fac11a39d3c185",
+		"data": {
+			"inGameID": 11735
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.9,
+		"playtype": "Single",
+		"songID": 1237,
 		"versions": [
 			"buddiesplus"
 		]

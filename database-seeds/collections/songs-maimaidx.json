@@ -15581,5 +15581,71 @@
 			"THE RHYTHM SENSE TEST"
 		],
 		"title": "全世界共通リズム感テスト"
+	},
+	{
+		"altTitles": [],
+		"artist": "打打だいず Vs. Tanchiky Vs. からめる",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "ゲームバラエティ"
+		},
+		"id": 1232,
+		"searchTerms": [],
+		"title": "QUATTUORUX"
+	},
+	{
+		"altTitles": [],
+		"artist": "まらしぃ×じん×堀江晶太(kemu) feat.鏡音リン",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1233,
+		"searchTerms": [],
+		"title": "新人類"
+	},
+	{
+		"altTitles": [],
+		"artist": "花畑チャイカ＆椎名唯華",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "POPSアニメ"
+		},
+		"id": 1234,
+		"searchTerms": [],
+		"title": "バラバラ〜仮初レインボーローズ〜"
+	},
+	{
+		"altTitles": [],
+		"artist": "マサラダ",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1235,
+		"searchTerms": [],
+		"title": "ライアーダンサー"
+	},
+	{
+		"altTitles": [],
+		"artist": "isonosuke",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1236,
+		"searchTerms": [],
+		"title": "バカ通信"
+	},
+	{
+		"altTitles": [],
+		"artist": "てにをは",
+		"data": {
+			"displayVersion": "BUDDiES PLUS",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1237,
+		"searchTerms": [],
+		"title": "ザムザ"
 	}
 ]

@@ -50,6 +50,7 @@
 			"maimai",
 			"maimaidx",
 			"itg",
+			"ddr"
 		],
 		IMPORT_TYPES: [
 			"file/eamusement-iidx-csv",

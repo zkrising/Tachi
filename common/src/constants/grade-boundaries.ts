@@ -221,3 +221,23 @@ export const ONGEKI_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<"ongeki:Singl
 	SSS: 1_000_000,
 	"SSS+": 1_007_500,
 });
+
+export const DDR_GBOUNDARIES = MakeGradeBoundaries<GetEnumValue<GPTStrings["ddr"], "grade">>({
+	AAA: 990000,
+	"AA+": 950000,
+	AA: 900000,
+	"AA-": 890000,
+	"A+": 850000,
+	A: 800000,
+	"A-": 790000,
+	"B+": 750000,
+	B: 700000,
+	"B-": 690000,
+	"C+": 650000,
+	C: 600000,
+	"C-": 590000,
+	"D+": 550000,
+	D: 0,
+	// cannot be achieved. This can only be attained if the player failed the chart.
+	E: -Infinity,
+});

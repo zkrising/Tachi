@@ -48,7 +48,7 @@ export class DatabaseSeedsRepo {
 	pull() {
 		if (Environment.nodeEnv === "dev") {
 			// prevent an awful interaction where a user edits stuff on their disk
-			// and tries to run pnpm sync-database-local
+			// and tries to run pnpm load-seeds
 			// but it fails because pull can't rebase with changes.
 			this.logger.warn(`Not pulling any updates to seeds as we're in local dev.`);
 			return;
@@ -146,6 +146,10 @@ export class DatabaseSeedsRepo {
 			throw new Error(`Cannot commit changes back. SEEDS_CONFIG is not set.`);
 		}
 
+		if (ServerConfig.SEEDS_CONFIG.TYPE !== "GIT_REPO") {
+			throw new Error(`Cannot commit changes back: this is a local filesystem.`);
+		}
+
 		if (!ServerConfig.SEEDS_CONFIG.USER_NAME || !ServerConfig.SEEDS_CONFIG.USER_EMAIL) {
 			throw new Error(
 				`Cannot commit changes back if SEEDS_CONFIG.USER_NAME/SEEDS_CONFIG.USER_EMAIL aren't defined.`
@@ -236,72 +240,57 @@ export class DatabaseSeedsRepo {
 
 /**
  * Pulls the database seeds from github, returns an object that can be used to manipulate them.
- *
- * @param fetchFromLocalPath - Whether or not to fetch this from a local instance, like a
- * monorepo database-seeds directory.
- *
- * You can use the environment variable "FORCE_LOCAL_SEEDS_PATH" to override all calls
- * to PullDatabaseSeeds to use a local repo instead of the configured remote.
  */
-export async function PullDatabaseSeeds(
-	fetchFromLocalPath: string | null = process.env.FORCE_LOCAL_SEEDS_PATH ?? null,
-	branch = "main"
-) {
-	if (fetchFromLocalPath) {
-		const local = new DatabaseSeedsRepo(fetchFromLocalPath);
+export async function PullDatabaseSeeds() {
+	if (ServerConfig.SEEDS_CONFIG?.TYPE === "GIT_REPO") {
+		const seedsDir = await fs.mkdtemp(path.join(os.tmpdir(), "tachi-database-seeds-"));
 
-		// make sure we're on the right branch
-		// and up to date.
-		if (Environment.nodeEnv !== "dev") {
-			await local.switchBranch(branch);
+		logger.info(`Cloning data to ${seedsDir}.`);
+
+		await fs.rm(seedsDir, { recursive: true, force: true });
+
+		try {
+			const branch = ServerConfig.SEEDS_CONFIG.BRANCH ?? "main";
+
+			// stderr in git clone is normal output.
+			// stdout is for errors.
+			// there were expletives below this comment, but I have removed them.
+			const { stdout: cloneStdout } = await asyncExec(
+				`git clone --sparse --depth=1 "${ServerConfig.SEEDS_CONFIG.REPO_URL}" -b "${branch}" "${seedsDir}"`
+			);
+
+			if (cloneStdout) {
+				throw new Error(cloneStdout);
+			}
+
+			const { stdout: checkoutStdout } = await asyncExec(
+				`git sparse-checkout add database-seeds`,
+				seedsDir
+			);
+
+			// ^ now that we're in a monorepo, we only want the seeds.
+			// this shaves quite a bit of time off of the clone.
+
+			if (checkoutStdout) {
+				throw new Error(checkoutStdout);
+			}
+
+			return new DatabaseSeedsRepo(
+				`${seedsDir}/database-seeds/collections`,
+				"YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD"
+			);
+		} catch ({ err, stderr }) {
+			logger.error(`Error cloning database-seeds. ${stderr}.`);
+			throw err;
 		}
+	} else if (ServerConfig.SEEDS_CONFIG?.TYPE === "LOCAL_FILES") {
+		const local = new DatabaseSeedsRepo(ServerConfig.SEEDS_CONFIG.PATH);
 
 		await local.pull();
 
 		return local;
-	}
-
-	if (!ServerConfig.SEEDS_CONFIG) {
+	} else {
 		throw new Error(`SEEDS_CONFIG was not defined. You cannot pull a seeds repo.`);
-	}
-
-	const seedsDir = await fs.mkdtemp(path.join(os.tmpdir(), "tachi-database-seeds-"));
-
-	logger.info(`Cloning data to ${seedsDir}.`);
-
-	await fs.rm(seedsDir, { recursive: true, force: true });
-
-	try {
-		// stderr in git clone is normal output.
-		// stdout is for errors.
-		// there were expletives below this comment, but I have removed them.
-		const { stdout: cloneStdout } = await asyncExec(
-			`git clone --sparse --depth=1 "${ServerConfig.SEEDS_CONFIG.REPO_URL}" -b "${branch}" "${seedsDir}"`
-		);
-
-		if (cloneStdout) {
-			throw new Error(cloneStdout);
-		}
-
-		const { stdout: checkoutStdout } = await asyncExec(
-			`git sparse-checkout add database-seeds`,
-			seedsDir
-		);
-
-		// ^ now that we're in a monorepo, we only want the seeds.
-		// this shaves quite a bit of time off of the clone.
-
-		if (checkoutStdout) {
-			throw new Error(checkoutStdout);
-		}
-
-		return new DatabaseSeedsRepo(
-			`${seedsDir}/database-seeds/collections`,
-			"YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD"
-		);
-	} catch ({ err, stderr }) {
-		logger.error(`Error cloning database-seeds. ${stderr}.`);
-		throw err;
 	}
 }
 
@@ -310,7 +299,7 @@ export async function BacksyncCollection(
 	collection: ICollection,
 	commitMessage: string
 ) {
-	const repo = await PullDatabaseSeeds(undefined);
+	const repo = await PullDatabaseSeeds();
 
 	let charts = await collection.find({});
 

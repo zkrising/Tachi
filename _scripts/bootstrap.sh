@@ -2,7 +2,6 @@
 
 set -eox pipefail
 
-
 # https://stackoverflow.com/questions/59895/how-can-i-get-the-directory-where-a-bash-script-is-located-from-within-the-scrip
 # if you actually think bash is a good programming language you are
 # *straight up delusional*
@@ -10,6 +9,14 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 cd "$SCRIPT_DIR";
 cd ..;
+
+function setupShell {
+	echo "Setting up fish..."
+	fish _scripts/setup-fish.fish
+}
+
+# always setup the shell
+setupShell
 
 if [ -e I_HAVE_BOOTSTRAPPED_OK ]; then
 	echo "Already bootstrapped."
@@ -55,6 +62,7 @@ function pnpmInstall {
 		exit 1
 	fi
 
+	pnpm fetch
 	pnpm install
 
 	# install ts-node aswell so people can use that inside enter-seeds.
@@ -87,7 +95,7 @@ function syncDatabaseWithSeeds {
 	(
 		cd server
 
-		pnpm run sync-database-local
+		pnpm run load-seeds
 	)
 
 	echo "Synced."

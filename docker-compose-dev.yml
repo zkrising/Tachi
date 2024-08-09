@@ -16,56 +16,20 @@ services:
       - "6379:6379"
     volumes:
       - tachi-redis:/data
-  tachi-server:
-    container_name: tachi-server
-    build:
-      dockerfile: Dockerfile.server
-      target: dev
-    depends_on:
-      bootstrap:
-        condition: service_completed_successfully
-      redis:
-        condition: service_started
-      mongo:
-        condition: service_started
-    links:
-      - redis
-      - mongo
-    volumes:
-      - ./:/app
-    ports:
-      - "8080:8080"
-    environment:
-      REDIS_URL: redis
-      MONGO_URL: mongo
-      PORT: 8080
-      NODE_ENV: "dev"
-  tachi-client:
-    container_name: tachi-client
-    depends_on:
-      bootstrap:
-        condition: service_completed_successfully
-    build:
-      dockerfile: Dockerfile.client
-    volumes:
-      - ./:/app
-    ports:
-      - "3000:3000"
   tachi-dev:
     tty: true
     container_name: tachi-dev
     build:
       dockerfile: Dockerfile.dev
+    ports:
+      - "8080:8080" # server
+      - "3000:3000" # client
+      - "3001:3001" # docs
     volumes:
       - ./:/tachi
-  tachi-docs:
-    container_name: tachi-docs
-    build:
-      dockerfile: Dockerfile.docs
-    ports:
-      - "3001:8000"
-    volumes:
-      - ./:/app
+      # don't let pnpm's node_modules linkery bleed out of its container
+      - /tachi/node_modules/
+      - /tachi/.pnpm-store
 volumes:
   tachi-volume:
   tachi-redis:

@@ -120,7 +120,7 @@ router.get(
 		const file = req.query.file as string | undefined;
 		const branch = req.query.branch as string;
 
-		const seeds = await PullDatabaseSeeds(LOCAL_SEEDS_PATH);
+		const seeds = await PullDatabaseSeeds();
 		const collections = (await seeds.ListCollections()).map((e) => `${e}.json`);
 
 		if (IsString(file) && !collections.includes(file)) {

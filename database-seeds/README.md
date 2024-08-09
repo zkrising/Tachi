@@ -59,7 +59,7 @@ install `mongodb-tools` (You'll want mongoimport in `$PATH`) from your favourite
 
 `../_scripts/bootstrap` will synchronise these seeds with your local development install on first setup.
 
-You can use `server/src/scripts/sync-database` to re-synchronise whenever you want.
+You can use `server/src/scripts/load-seeds` to re-synchronise whenever you want.
 
 ## Contribution
 

@@ -4,7 +4,7 @@
 	"private": true,
 	"license": "AGPL3",
 	"scripts": {
-		"start": "vite",
+		"dev": "vite",
 		"build": "vite build",
 		"lint": "eslint src",
 		"lint-fix": "eslint src --fix",

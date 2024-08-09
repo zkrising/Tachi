@@ -4,13 +4,6 @@
 	"private": true,
 	"description": "The root of the Tachi monorepo. Contains common utils like linters.",
 	"scripts": {
-		"start": "docker compose -f docker-compose-dev.yml up --build -d",
-		"stop": "docker compose -f docker-compose-dev.yml down",
-		"raw-start-server": "pnpm --filter ./server start",
-		"raw-start-client": "pnpm --filter ./client start",
-		"raw-start-dbs": "redis-server --daemonize yes; sudo systemctl start mongodb.service",
-		"^^ DEV STUFF IS HERE ^^": "comment",
-		"vv PROD STUFF YOU WON'T TOUCH vv": "comment",
 		"build": "pnpm -r build",
 		"sync-database": "pnpm --filter ./server sync-database",
 		"start-score-import-worker": "pnpm --filter ./server runscoreworker"

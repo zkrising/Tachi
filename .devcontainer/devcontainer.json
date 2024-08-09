@@ -5,5 +5,11 @@
 	],
 	"service": "tachi-dev",
 	"workspaceFolder": "/tachi",
-	"postAttachCommand": "./.devcontainer/setup.sh"
+	"postAttachCommand": "_scripts/bootstrap.sh",
+	"customizations": {
+		"vscode": {
+			"settings": {},
+			"extensions": []
+		}
+	}
 }

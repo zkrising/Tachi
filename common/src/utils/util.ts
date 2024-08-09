@@ -131,6 +131,7 @@ export function FormatDifficultySearch(chart: ChartDocument, game: Game): string
 		case "arcaea":
 		case "ongeki":
 		case "chunithm":
+		case "ddr":
 		case "usc":
 			return chart.difficulty;
 		case "iidx":

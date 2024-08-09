@@ -29,6 +29,8 @@ const GPT_UTILS: Record<GPTString, Array<GPTUtility>> = {
 	"maimaidx:Single": [],
 	"maimai:Single": [],
 	"ongeki:Single": [],
+	"ddr:SP": [],
+	"ddr:DP": [],
 };
 
 export function GetGPTUtils(game: Game, playtype: Playtype) {

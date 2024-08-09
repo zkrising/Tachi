@@ -88,6 +88,8 @@ const scoreMovers: ScoreMovers = {
 	"sdvx:Single": NEUTRAL_MV,
 	"wacca:Single": NEUTRAL_MV,
 	"museca:Single": NEUTRAL_MV,
+	"ddr:SP": NEUTRAL_MV,
+	"ddr:DP": NEUTRAL_MV,
 	"maimai:Single": (old) => ({
 		percent: old.percent,
 		judgements: old.judgements,

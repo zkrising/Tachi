@@ -27,6 +27,7 @@ import { GPTClientImplementation } from "./types";
 import { SDVX_IMPL, USC_IMPL } from "./games/sdvx-usc";
 import { GITADORA_DORA_IMPL, GITADORA_GITA_IMPL } from "./games/gitadora";
 import { ARCAEA_TOUCH_IMPL } from "./games/arcaea";
+import { DDR_DP_IMPL, DDR_SP_IMPL } from "./games/ddr";
 
 type GPTClientImplementations = {
 	[GPT in GPTString]: GPTClientImplementation<GPT>;
@@ -40,6 +41,8 @@ const defaultEnumIcons = {
 export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 	"iidx:SP": IIDX_SP_IMPL,
 	"iidx:DP": IIDX_DP_IMPL,
+	"ddr:SP": DDR_SP_IMPL,
+	"ddr:DP": DDR_DP_IMPL,
 	"chunithm:Single": {
 		sessionImportantScoreCount: 30,
 		enumIcons: defaultEnumIcons,

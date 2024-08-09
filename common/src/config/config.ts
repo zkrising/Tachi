@@ -3,6 +3,7 @@
 import { ARCAEA_CONF, ARCAEA_TOUCH_CONF } from "./game-support/arcaea";
 import { BMS_14K_CONF, BMS_7K_CONF, BMS_CONF } from "./game-support/bms";
 import { CHUNITHM_CONF, CHUNITHM_SINGLE_CONF } from "./game-support/chunithm";
+import { DDR_CONF, DDR_DP_CONF, DDR_SP_CONF } from "./game-support/ddr";
 import { GITADORA_CONF, GITADORA_DORA_CONF, GITADORA_GITA_CONF } from "./game-support/gitadora";
 import { IIDX_CONF, IIDX_DP_CONF, IIDX_SP_CONF } from "./game-support/iidx";
 import { ITG_CONF, ITG_STAMINA_CONF } from "./game-support/itg";
@@ -50,6 +51,7 @@ export const GAME_CONFIGS = {
 	itg: ITG_CONF,
 	arcaea: ARCAEA_CONF,
 	ongeki: ONGEKI_CONF,
+	ddr: DDR_CONF,
 } as const satisfies Record<string, INTERNAL_GAME_CONFIG>;
 
 /**
@@ -98,6 +100,8 @@ export const GAME_PT_CONFIGS = {
 	"itg:Stamina": ITG_STAMINA_CONF,
 	"arcaea:Touch": ARCAEA_TOUCH_CONF,
 	"ongeki:Single": ONGEKI_SINGLE_CONF,
+	"ddr:SP": DDR_SP_CONF,
+	"ddr:DP": DDR_DP_CONF,
 } as const satisfies Record<GPTString, INTERNAL_GAME_PT_CONFIG>;
 
 /**

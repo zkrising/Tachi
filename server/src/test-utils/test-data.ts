@@ -101,6 +101,44 @@ export const TestingIIDXSPScorePB: PBScoreDocument<"iidx:SP"> = {
 	timeAchieved: 10000,
 };
 
+export const TestingDDRSPScorePB: PBScoreDocument<"ddr:SP"> = {
+	calculatedData: {
+		flareSkill: 545,
+	},
+	chartID: "f14bc72ad8336625ce64fc42571192e1ec168113",
+	composedFrom: [
+		{
+			name: "Best Score",
+			scoreID: "Te065000f08b49458f8b0aa3eabf0b857b79c562d7cf9eb34f6dabd7a1c3c3fa6",
+		},
+	],
+	game: "ddr",
+	highlight: false,
+	isPrimary: true,
+	playtype: "SP",
+	rankingData: {
+		rank: 1,
+		outOf: 1,
+		rivalRank: null,
+	},
+	scoreData: {
+		score: 914400,
+		lamp: "CLEAR",
+		judgements: {},
+		optional: {
+			enumIndexes: {},
+		},
+		grade: "AA",
+		enumIndexes: {
+			lamp: 2,
+			grade: 13,
+		},
+	},
+	songID: 37691,
+	timeAchieved: null,
+	userID: 1,
+};
+
 export const TestingJubeatPB: PBScoreDocument<"jubeat:Single"> = {
 	chartID: "b90a319f18d1a746b330b8f4cd6f74874f664421",
 	userID: 1,
@@ -170,6 +208,39 @@ export const TestingIIDXSPScore: ScoreDocument<"iidx:SP"> = {
 	timeAdded: 1,
 	scoreID: "TESTING_SCORE_ID",
 	importType: "ir/direct-manual",
+};
+
+export const TestingDDRSPScore: ScoreDocument<"ddr:SP"> = {
+	calculatedData: {
+		flareSkill: 545,
+	},
+	chartID: "2fc2e0cfdda42addb7840b58be1df1f545310d66",
+	comment: null,
+	game: "ddr",
+	highlight: false,
+	importType: "file/batch-manual",
+	isPrimary: true,
+	playtype: "SP",
+	scoreData: {
+		score: 914400,
+		lamp: "CLEAR",
+		judgements: {},
+		optional: {
+			enumIndexes: {},
+		},
+		grade: "AA",
+		enumIndexes: {
+			lamp: 2,
+			grade: 13,
+		},
+	},
+	scoreID: "Te065000f08b49458f8b0aa3eabf0b857b79c562d7cf9eb34f6dabd7a1c3c3fa6",
+	scoreMeta: {},
+	service: "History (BATCH-MANUAL)",
+	songID: 10,
+	timeAchieved: null,
+	timeAdded: 1722084133807,
+	userID: 1,
 };
 
 export const TestingSDVXScore: ScoreDocument<"sdvx:Single"> = {
@@ -473,6 +544,32 @@ export const Testing511Song: SongDocument<"iidx"> = {
 		genre: "PIANO AMBIENT",
 		displayVersion: "1",
 	},
+};
+
+export const TestingDDRSP: ChartDocument<"ddr:SP"> = {
+	chartID: "2fc2e0cfdda42addb7840b58be1df1f545310d66",
+	data: {
+		inGameID: 10,
+	},
+	difficulty: "BASIC",
+	isPrimary: true,
+	level: "6",
+	levelNum: 6,
+	playtype: "SP",
+	songID: 10,
+	versions: ["a3"],
+};
+
+export const TestingDDRSong: SongDocument<"ddr"> = {
+	altTitles: [],
+	artist: "UZI-LAY",
+	data: {
+		flareCategory: "CLASSIC",
+		inGameID: 10,
+	},
+	id: 10,
+	searchTerms: [],
+	title: "PUT YOUR FAITH IN ME",
 };
 
 export const TestingAlbidaADV: ChartDocument<"sdvx:Single"> = {

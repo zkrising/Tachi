@@ -38,7 +38,10 @@ RUN echo "LC_ALL=en_US.UTF-8\nLANG=en_US.UTF-8" > /etc/default/locale
 RUN git config --global --add safe.directory /tachi
 
 # nice to haves
-RUN apt install -y fish just fzf curl wget parallel neovim
+RUN apt install -y fish just fzf curl wget parallel neovim fd-find bat
+
+# `fd` is called `find-fd` on ubuntu. Awesome.
+RUN ln -s $(which fdfind) ~/.local/bin/fd
 
 # keep container alive indefinitely
 CMD ["/bin/fish"]

@@ -319,7 +319,8 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 				desc="Use your data from maimai DX NET."
 				moreInfo="If you are playing on an official maimai DX server, you can import play data from it here."
 				key="maimai DX NET Importer"
-			/>
+			/>,
+			<ImportTypeInfoCard key="api/myt-maimaidx" importType="api/myt-maimaidx" />
 		);
 	} else if (game === "museca") {
 		Content.unshift(
@@ -619,6 +620,16 @@ function ImportTypeInfoCard({
 					desc="Pull your Chunithm scores from the MYT Network."
 					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 					key="myt-chunithm"
+				/>
+			);
+		case "api/myt-maimaidx":
+			return (
+				<ImportInfoCard
+					name="MYT Integration"
+					href="myt-maimaidx"
+					desc="Pull your MaiMai DX scores from the MYT Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
+					key="myt-maimaidx"
 				/>
 			);
 		case "api/myt-ongeki":

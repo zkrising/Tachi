@@ -1,4 +1,5 @@
 import ConvertAPIMytChunithm from "./api/myt-chunithm/converter";
+import ConvertAPIMytMaimaiDx from "./api/myt-maimaidx/converter";
 import ConvertAPIMytOngeki from "./api/myt-ongeki/converter";
 import ConvertAPIMytWACCA from "./api/myt-wacca/converter";
 import { ConverterAPICGMuseca } from "./common/api-cg/museca/converter";
@@ -46,6 +47,7 @@ export const Converters: ConverterMap = {
 	"api/flo-sdvx": ConvertAPIKaiSDVX,
 	"api/min-sdvx": ConvertAPIKaiSDVX,
 	"api/myt-chunithm": ConvertAPIMytChunithm,
+	"api/myt-maimaidx": ConvertAPIMytMaimaiDx,
 	"api/myt-ongeki": ConvertAPIMytOngeki,
 	"api/myt-wacca": ConvertAPIMytWACCA,
 

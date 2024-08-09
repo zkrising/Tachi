@@ -18,6 +18,7 @@ const choices: Array<[string, string]> = (
 		["CG MUSECA", "api/cg-prod-museca"],
 		["CG Pop'n", "api/cg-prod-popn"],
 		["MYT CHUNITHM", "api/myt-chunithm"],
+		["MYT MAIMAI DX", "api/myt-maimaidx"],
 		["MYT ONGEKI", "api/myt-ongeki"],
 		["MYT WACCA", "api/myt-wacca"],
 	] as Array<[string, string]>

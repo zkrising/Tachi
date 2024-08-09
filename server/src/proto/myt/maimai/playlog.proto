@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package mythos.maimai.v0;
+
+import "maimai/common.proto";
+
+message PlaylogInfo {
+  int32 music_id = 1; 
+  MaimaiLevel level = 2;
+  int32 achievement = 3; 
+  int32 deluxscore = 4;
+  MaimaiScoreRank score_rank = 5;
+  MaimaiComboStatus combo_status = 6;
+  MaimaiSyncStatus sync_status = 7;
+  bool is_clear = 8;
+  bool is_achieve_new_record = 9;
+  bool is_deluxscore_new_record = 10;
+  int32 track = 11;
+  string user_play_date = 12;
+}
+
+message PlaylogJudge {
+  int32 judge_critical_perfect = 1;
+  int32 judge_perfect = 2;
+  int32 judge_great = 3;
+  int32 judge_good = 4;
+  int32 judge_miss = 5;
+  int32 max_combo = 6;
+  int32 fast_count = 7;
+  int32 late_count = 8;
+}

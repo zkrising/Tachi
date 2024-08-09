@@ -75,6 +75,10 @@ const CHART_CHECKS: { [G in Game]?: Array<Test<ChartDocument<GPTStrings[G]>>> } 
 			"inGameID should not exceed 100000, which is reserved for UTAGE charts.",
 			(c) => c.data.inGameID === null || c.data.inGameID < 100000,
 		),
+		test(
+			"Levels equal to 6 and lower don't have a plus variant.",
+			(c) => c.levelNum >= 7 || !c.level.endsWith("+"),
+		)
 	],
 };
 

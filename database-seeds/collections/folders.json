@@ -33589,6 +33589,19 @@
 	{
 		"data": {
 			"level": "1",
+			"versions": "buddies-omni"
+		},
+		"folderID": "F0e3e7919c74c9c82aa8a7baa99825f2a86efd7970a58c88c604adf0ca5bb4407",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (BUDDiES Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
 			"versions": "buddiesplus"
 		},
 		"folderID": "Fef2e84ea3c606f9276e059649901ba85b6b142a974e7de2f9d6ba59282843630",
@@ -33649,6 +33662,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 1 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "buddies-omni"
+		},
+		"folderID": "F1461c5f4c949b9d3116bac8e692a2675d9c01806ac7216be04cae31cd08716c2",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10 (BUDDiES Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -33719,6 +33745,19 @@
 	{
 		"data": {
 			"level": "10+",
+			"versions": "buddies-omni"
+		},
+		"folderID": "F4b5a6c7625460b1253ece7e182d3dad22682d388c6f1226d9fe83039b9281896",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10+ (BUDDiES Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10+",
 			"versions": "buddiesplus"
 		},
 		"folderID": "F9925170992bdec8794b7d13a843c52630a442ee63293e8d23b2f3bf37bdef652",
@@ -33779,6 +33818,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10+ (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "buddies-omni"
+		},
+		"folderID": "F161d1f128b1120d97307a9b700ee59b9695e035a1f3781426a007fcd0ca44ae1",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11 (BUDDiES Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -33849,6 +33901,19 @@
 	{
 		"data": {
 			"level": "11+",
+			"versions": "buddies-omni"
+		},
+		"folderID": "Fd4211efa9de8287b84536132976cd9f3c1e225141811ee90a13e90d47cf8b803",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11+ (BUDDiES Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11+",
 			"versions": "buddiesplus"
 		},
 		"folderID": "F51e05a887207012ebde7865a85ec6f2481628fea23e8734f4692f983a041e100",
@@ -33909,6 +33974,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 11+ (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "buddies-omni"
+		},
+		"folderID": "F42ce75cb660804636f87fc97c33ff038e7449404658b12172190eda17c62ec76",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12 (BUDDiES Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -33979,6 +34057,19 @@
 	{
 		"data": {
 			"level": "12+",
+			"versions": "buddies-omni"
+		},
+		"folderID": "F02b90e070d3d1a5558ae00d05a16662cb2d247f4bac9dab9ab76938fd457c082",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12+ (BUDDiES Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12+",
 			"versions": "buddiesplus"
 		},
 		"folderID": "F1fa7dd4ca7ec86afb9459c170c1a80a4c456624fa8a906ba86bf347e966adf8b",
@@ -34039,6 +34130,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 12+ (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
+			"versions": "buddies-omni"
+		},
+		"folderID": "F751d1bd69663fef1a3e0e6f39646efbce0a8f473451751986c9c796f5a5b1c73",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13 (BUDDiES Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -34109,6 +34213,19 @@
 	{
 		"data": {
 			"level": "13+",
+			"versions": "buddies-omni"
+		},
+		"folderID": "Fb169568019fd0e60bf150938b904f2887dfd93c9972f493759f44b216d5c93ec",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13+ (BUDDiES Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13+",
 			"versions": "buddiesplus"
 		},
 		"folderID": "Fa09dcc2155876643750834faea81f2a881b14badea5531ea47f201634e0a156d",
@@ -34169,6 +34286,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 13+ (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
+			"versions": "buddies-omni"
+		},
+		"folderID": "F581810c6dba545a6584754e9d7bb73ce071fdb6597bcec031f5aa13179fc6053",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14 (BUDDiES Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -34239,6 +34369,19 @@
 	{
 		"data": {
 			"level": "14+",
+			"versions": "buddies-omni"
+		},
+		"folderID": "Fbe3b384189d630eb6f44c55a82b8047acc3cb625f2123796fc12ad2ac1d32dc5",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14+ (BUDDiES Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14+",
 			"versions": "buddiesplus"
 		},
 		"folderID": "F47e93c31737047e344feddb1c3ff4038f66536bcfe7fa29a548568e9fd580060",
@@ -34299,6 +34442,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 14+ (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
+			"versions": "buddies-omni"
+		},
+		"folderID": "Fcb58b6812a244eee2cc82fc45dca05205f6be7b75a55bdd213811fc063e02670",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15 (BUDDiES Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -34369,6 +34525,19 @@
 	{
 		"data": {
 			"level": "2",
+			"versions": "buddies-omni"
+		},
+		"folderID": "F6872d4a3f74c38eece093f94ccba83a8d3cc00d300db7aeb093064f23d66e7ae",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (BUDDiES Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
 			"versions": "buddiesplus"
 		},
 		"folderID": "F74b6493bfd7ea5da6943e96a5931278fc7d6fc28b9077703892f507dcc5dc57d",
@@ -34429,6 +34598,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 2 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "buddies-omni"
+		},
+		"folderID": "Fe51379e75d7468601646f9fd10eccd7f8c900634e3c2836a82a2dd9aefb6da5d",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (BUDDiES Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -34499,6 +34681,19 @@
 	{
 		"data": {
 			"level": "4",
+			"versions": "buddies-omni"
+		},
+		"folderID": "F316aee196cbd08222c4bce288e9dfc7712270aaf75b13a3895eb4134f5c2cbf4",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (BUDDiES Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
 			"versions": "buddiesplus"
 		},
 		"folderID": "F45117e65389a9cfe946265f1a9c337c14cc70874d1e9086310bcc6ecc5bd6266",
@@ -34559,6 +34754,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 4 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "buddies-omni"
+		},
+		"folderID": "Fca6bd60cdc44cb5882599af9296ae5dd31b9f88e547d739b9f871da12c62a937",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (BUDDiES Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -34629,6 +34837,19 @@
 	{
 		"data": {
 			"level": "6",
+			"versions": "buddies-omni"
+		},
+		"folderID": "F82750edced4830290ecc5451212ae39353ec010447b59ec0a58ca48f08522de4",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (BUDDiES Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
 			"versions": "buddiesplus"
 		},
 		"folderID": "F9b0bd0bd2d7f2df3cf898ee1239eb2f83e94958386650d2355feb6b336c2568e",
@@ -34689,6 +34910,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 6 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "buddies-omni"
+		},
+		"folderID": "Fcddd74a8e0ec2dd38954bf185d83ea6bd8a3bf3acdf81d20363b37aa65dbcb27",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7 (BUDDiES Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -34759,6 +34993,19 @@
 	{
 		"data": {
 			"level": "7+",
+			"versions": "buddies-omni"
+		},
+		"folderID": "F85c39f61741a2817d1b056747ae59443fb3f5344a8f49d1e0704f9b3a4c61d1d",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7+ (BUDDiES Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7+",
 			"versions": "buddiesplus"
 		},
 		"folderID": "F75c3d6ac386e7e85dd6dc4c6638b877de1a82f8ce7f653a53538827667283b2f",
@@ -34819,6 +35066,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 7+ (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "buddies-omni"
+		},
+		"folderID": "Fdf42c543637bf04e75eefa6c3ceaa966e9a947f444d099046a6ef8fcb1b50e67",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8 (BUDDiES Omnimix)",
 		"type": "charts"
 	},
 	{
@@ -34889,6 +35149,19 @@
 	{
 		"data": {
 			"level": "8+",
+			"versions": "buddies-omni"
+		},
+		"folderID": "F72771be20374af5d0fad2e0e5bba74df0a5a4cc6710d7975fa8c100e947f1668",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8+ (BUDDiES Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8+",
 			"versions": "buddiesplus"
 		},
 		"folderID": "Fa34aef19a4453b76485f9079be7cdf8bd8a6cb9b3cc0942ac35867cff71d8243",
@@ -34954,6 +35227,19 @@
 	{
 		"data": {
 			"level": "9",
+			"versions": "buddies-omni"
+		},
+		"folderID": "F47921e943dcdcadf61e353cec6902e53200c0d0666d4c68b8f12b51584548a6e",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9 (BUDDiES Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
 			"versions": "buddiesplus"
 		},
 		"folderID": "Fd136268d1daefafce66c0703d4cb8af0571b0ac5083048f5529cda07e65cb84d",
@@ -35014,6 +35300,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9 (UNiVERSE PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9+",
+			"versions": "buddies-omni"
+		},
+		"folderID": "F09897b1f3c61588da6b51767c7e6411ff386212c57b088484529788f3252ae7b",
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9+ (BUDDiES Omnimix)",
 		"type": "charts"
 	},
 	{

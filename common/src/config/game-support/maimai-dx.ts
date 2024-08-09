@@ -208,6 +208,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 		festival: "FESTiVAL",
 		festivalplus: "FESTiVAL PLUS",
 		buddies: "BUDDiES",
+		"buddies-omni": "BUDDiES Omnimix",
 		buddiesplus: "BUDDiES PLUS",
 	},
 

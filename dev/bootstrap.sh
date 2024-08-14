@@ -1,10 +1,8 @@
-#! /bin/bash
+#!/bin/bash
+# moves example .env files, generates certificates, etc.
 
 set -eox pipefail
 
-# https://stackoverflow.com/questions/59895/how-can-i-get-the-directory-where-a-bash-script-is-located-from-within-the-scrip
-# if you actually think bash is a good programming language you are
-# *straight up delusional*
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 cd "$SCRIPT_DIR";
@@ -12,16 +10,8 @@ cd ..;
 
 function setupShell {
 	echo "Setting up fish..."
-	fish _scripts/setup-fish.fish
+	just setup-fish
 }
-
-# always setup the shell
-setupShell
-
-if [ -e I_HAVE_BOOTSTRAPPED_OK ]; then
-	echo "Already bootstrapped."
-	exit 0
-fi
 
 function mvExampleFiles {
 	echo "Moving example config files into usable places..."
@@ -101,10 +91,18 @@ function syncDatabaseWithSeeds {
 	echo "Synced."
 }
 
+# always setup the shell
+setupShell
+
+if [ -e I_HAVE_BOOTSTRAPPED_OK ]; then
+	echo "Already bootstrapped."
+	exit 0
+fi
+
 mvExampleFiles
 selfSignHTTPS
-pnpmInstall
 setIndexes
+pnpmInstall
 syncDatabaseWithSeeds
 
 echo "Bootstrap Complete."

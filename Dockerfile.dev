@@ -41,7 +41,7 @@ RUN git config --global --add safe.directory /tachi
 RUN apt install -y fish just fzf curl wget parallel neovim fd-find bat
 
 # `fd` is called `find-fd` on ubuntu. Awesome.
-RUN ln -s $(which fdfind) ~/.local/bin/fd
+RUN ln -s $(which fdfind) /usr/bin/fd
 
 # keep container alive indefinitely
 CMD ["/bin/fish"]

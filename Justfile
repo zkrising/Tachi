@@ -1,3 +1,5 @@
+mod database-seeds
+
 default:
 	-@just --choose
 
@@ -13,6 +15,7 @@ test:
 # Load the contents of the database seeds into MongoDB
 load-seeds:
 	cd server/ && pnpm load-seeds
+
 
 # Check that the data in MongoDB makes any sense.
 validate-db:
@@ -40,6 +43,9 @@ test-server:
 	cd server/ && pnpm test
 
 test-client:
+
+setup-fish:
+	fish dev/setup.fish
 
 # force a re-bootstrap
 bootstrap:

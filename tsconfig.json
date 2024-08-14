@@ -33,7 +33,7 @@
 			"path": "./sieglinde"
 		},
 		{
-			"path": "./database-seeds/scripts"
+			"path": "./seeds/scripts"
 		}
 	]
 }

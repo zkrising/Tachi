@@ -34,10 +34,10 @@ docs:
 	cd docs/ && mkdocs serve -a 0.0.0.0:3001
 
 sort-seeds:
-	node database-seeds/scripts/deterministic-collection-sort.js
+	node seeds/scripts/deterministic-collection-sort.js
 
 test-seeds:
-	cd database-seeds/scripts && pnpm test
+	cd seeds/scripts && pnpm test
 
 test-server:
 	cd server/ && pnpm test

@@ -1,17 +1,17 @@
-name: Database-Seeds CI/CD
+name: Seeds CI/CD
 
 on:
   push:
     branches:
       - "main"
     paths:
-      - "database-seeds/**"
+      - "seeds/**"
       - "common/**"
   pull_request:
     branches:
       - "main"
     paths:
-      - "database-seeds/**"
+      - "seeds/**"
       - "common/**"
   workflow_dispatch:
 

@@ -10,7 +10,7 @@ This is convenient for when you want to provide an update for SDVX based off of 
 
 ## How to use
 
-Navigate to `database-seeds/scripts/rerunners/sdvx`.
+Navigate to `seeds/scripts/rerunners/sdvx`.
 
 The file you're looking to run is `merge-mdb.ts`, but it needs two arguments:
 

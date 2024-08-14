@@ -52,7 +52,7 @@ app.webhooks.on(["pull_request.opened", "pull_request.edited"], async ({ octokit
 		).then((r) => r.json())) as Array<{ filename: string }>;
 
 		// if any file modified in this pr is a collection
-		if (filesChanged.some((k) => k.filename.startsWith("database-seeds/collections"))) {
+		if (filesChanged.some((k) => k.filename.startsWith("seeds/collections"))) {
 			// post a link to the diff viewer in the PR comments.
 			await sendMsg(
 				mkSeedDiffViewMsg(

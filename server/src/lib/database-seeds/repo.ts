@@ -102,7 +102,7 @@ export class DatabaseSeedsRepo {
 	/**
 	 * Get all available collections as bare filenames, without any extension.
 	 *
-	 * As an example, database-seeds/collections/songs-iidx.json would be "songs-iidx".
+	 * As an example, seeds/collections/songs-iidx.json would be "songs-iidx".
 	 */
 	async ListCollections() {
 		const colls = await fs.readdir(this.baseDir);
@@ -276,7 +276,7 @@ export async function PullDatabaseSeeds() {
 			}
 
 			return new DatabaseSeedsRepo(
-				`${seedsDir}/database-seeds/collections`,
+				`${seedsDir}/seeds/collections`,
 				"YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD"
 			);
 		} catch ({ err, stderr }) {

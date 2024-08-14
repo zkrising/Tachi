@@ -218,7 +218,7 @@ for (const optionsDir of options.input) {
 
 				if (!displayVersion) {
 					throw new Error(
-						`Unknown version ID ${musicData.AddVersion.id}. Update database-seeds/scripts/rerunners/maimaidx/merge-options.ts.`
+						`Unknown version ID ${musicData.AddVersion.id}. Update seeds/scripts/rerunners/maimaidx/merge-options.ts.`
 					);
 				}
 
@@ -254,7 +254,7 @@ for (const optionsDir of options.input) {
 
 				if (difficultyName === undefined) {
 					throw new Error(
-						`Unknown difficulty ID ${index}. Update database-seeds/scripts/rerunners/maimaidx/merge-options.ts and possibly common/src/config/game-support/maimai-dx.ts.`
+						`Unknown difficulty ID ${index}. Update seeds/scripts/rerunners/maimaidx/merge-options.ts and possibly common/src/config/game-support/maimai-dx.ts.`
 					);
 				}
 

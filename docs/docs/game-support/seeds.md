@@ -6,7 +6,7 @@ Lets load them into the database seeds.
 
 ## Quick Primer
 
-The database seeds are a folder in the monorepo: `database-seeds/collections`, which contain JSON files.
+The database seeds are a folder in the monorepo: `seeds/collections`, which contain JSON files.
 
 These JSON files contain the state of a lot of our databases that need to be loaded. When changes are made to these seeds and committed to the main repository, a script will automatically apply those changes to the database.
 
@@ -24,11 +24,11 @@ Once you've gotten that data, you need to convert it into Tachi's song/chart for
 
 ## Writing the files
 
-You can modify the JSON files however you want. It really doesn't matter. However, there is a `database-seeds/scripts/` folder with a bunch of scripts you can use
+You can modify the JSON files however you want. It really doesn't matter. However, there is a `seeds/scripts/` folder with a bunch of scripts you can use
 to ease this process.
 
-For things you only want to run a single time, place the script in the `database-seeds/scripts/single-time` folder.
-For things you want to keep around, place the script in the `database-seeds/rerunners` folder. Simple.
+For things you only want to run a single time, place the script in the `seeds/scripts/single-time` folder.
+For things you want to keep around, place the script in the `seeds/rerunners` folder. Simple.
 
 The file `util.js` contains a bunch of miscellaneous utils for helping out, like `CreateChartID` or `MutateCollection`.
 
@@ -93,6 +93,6 @@ There are various utilities for this, like `scripts/rerunners/add-level-version-
 
 ## Loading the seeds
 
-Once you've modified the database seeds, test them with `pnpm test` inside the `database-seeds/scripts` folder. This will check a bunch of properties about the songs and charts you just made.
+Once you've modified the database seeds, test them with `pnpm test` inside the `seeds/scripts` folder. This will check a bunch of properties about the songs and charts you just made.
 
 If they fail, read why and make appropriate changes. If they pass, move to the root of the Tachi repository and run `pnpm sync-database-local`. This will load the changes into your MongoDB instance.

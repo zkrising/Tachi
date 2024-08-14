@@ -89,6 +89,6 @@
 	},
 	SEEDS_CONFIG: {
 		TYPE: "LOCAL_FILES",
-		PATH: "../database-seeds/collections",
+		PATH: "../seeds/collections",
 	},
 }

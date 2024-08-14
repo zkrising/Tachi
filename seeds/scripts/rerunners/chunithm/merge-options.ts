@@ -96,7 +96,7 @@ if (!VERSIONS.includes(baseVersion)) {
 	throw new Error(
 		`Invalid base version ${baseVersion}. Expected any of ${VERSIONS.join(
 			","
-		)}. Update the VERSIONS array in database-seeds/scripts/rerunners/chunithm/merge-options.ts.`
+		)}. Update the VERSIONS array in seeds/scripts/rerunners/chunithm/merge-options.ts.`
 	);
 }
 
@@ -228,7 +228,7 @@ for (const optionsDir of options.input) {
 
 				if (!displayVersion) {
 					throw new Error(
-						`Unknown version ID ${musicData.releaseTagName.id}. Update database-seeds/scripts/rerunners/chunithm/merge-options.ts.`
+						`Unknown version ID ${musicData.releaseTagName.id}. Update seeds/scripts/rerunners/chunithm/merge-options.ts.`
 					);
 				}
 

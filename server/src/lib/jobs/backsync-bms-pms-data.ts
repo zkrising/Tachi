@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
 import { VERSION_INFO } from "lib/constants/version";
-import { PullDatabaseSeeds } from "lib/database-seeds/repo";
+import { PullDatabaseSeeds } from "lib/seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import { WrapScriptPromise } from "utils/misc";
 

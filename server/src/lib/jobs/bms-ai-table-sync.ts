@@ -1,5 +1,5 @@
 /* eslint-disable no-await-in-loop */
-import { PullDatabaseSeeds } from "lib/database-seeds/repo";
+import { PullDatabaseSeeds } from "lib/seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import fetch from "node-fetch";
 import { WrapScriptPromise } from "utils/misc";

@@ -48,7 +48,7 @@ The client and the server are fairly decoupled. Someone could trivially create t
 
 This contains all of our API calls, and interfaces with our database, and powers the actual score import engine.
 
-- `database-seeds/`, Which is a git-tracked set of data to be synced with Tachi. (unlicense)
+- `seeds/`, Which is a git-tracked set of data to be synced with Tachi. (unlicense)
 
 **This is the source of truth for the songs, charts, and more on the site!**
 By submitting PRs to this, you can fix bugs on the website, add new charts, and more.

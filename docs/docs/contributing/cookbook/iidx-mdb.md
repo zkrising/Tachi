@@ -11,7 +11,7 @@ Updating seeds via IIDX data is a complicated endeavour. Luckily, we've automate
 
 You will need `ifstools` in your `$PATH`. You can do this by installing `python3` and then running `pip install ifstools`.
 
-Navigate to `database-seeds/scripts/rerunners/iidx/iidx-mdb-parse`.
+Navigate to `seeds/scripts/rerunners/iidx/iidx-mdb-parse`.
 
 Run `ts-node merge-mdb.ts --help` for information on what arguments are needed.
 

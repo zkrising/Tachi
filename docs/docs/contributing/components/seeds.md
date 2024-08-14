@@ -21,7 +21,7 @@ If you don't know, or aren't comfortable with all of the things on this list, cl
 
 ## Component Overview
 
-All of the content for this component is inside the `database-seeds/` folder.
+All of the content for this component is inside the `seeds/` folder.
 
 It contains the `collections/` folder, which contains JSON files for their respective databases.
 

@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import db from "external/mongo/db";
-import { BacksyncCollection, PullDatabaseSeeds } from "lib/database-seeds/repo";
+import { BacksyncCollection, PullDatabaseSeeds } from "lib/seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import { RecalcAllScores } from "utils/calculations/recalc-scores";
 import fetch from "utils/fetch";

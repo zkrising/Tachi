@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import db, { monkDB } from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
-import { PullDatabaseSeeds } from "lib/database-seeds/repo";
+import { PullDatabaseSeeds } from "lib/seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import { UpdateGoalsInFolder } from "lib/score-import/framework/goals/goals";
 import UpdateIsPrimaryStatus from "lib/score-mutation/update-isprimary";

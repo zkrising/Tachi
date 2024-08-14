@@ -2,7 +2,7 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable no-param-reassign */
 import db from "external/mongo/db";
-import { BacksyncCollection } from "lib/database-seeds/repo";
+import { BacksyncCollection } from "lib/seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import fetch from "node-fetch";
 import { p } from "prudence";

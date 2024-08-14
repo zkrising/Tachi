@@ -25,7 +25,7 @@ The client and the server are fairly decoupled. Someone could trivially create t
 
 This contains all of our API calls, and interfaces with our database, and powers the actual score import engine.
 
-- `database-seeds/`, Which is a git-tracked set of data to be synced with Tachi.
+- `seeds/`, Which is a git-tracked set of data to be synced with Tachi.
 
 **This is the source of truth for the songs, charts, and more on the site!**
 By submitting PRs to this, you can fix bugs on the website, add new charts, and more.
@@ -40,4 +40,4 @@ This is also published to NPM when it hits production.
 
 - `sieglinde/`, Which contains our BMS/PMS analysis functions.
 
-Of these, `server/` and `client/` are licensed under the AGPL3. The `database-seeds/` are licensed under the unlicense, and everything else is MIT.
+Of these, `server/` and `client/` are licensed under the AGPL3. The `seeds/` are licensed under the unlicense, and everything else is MIT.

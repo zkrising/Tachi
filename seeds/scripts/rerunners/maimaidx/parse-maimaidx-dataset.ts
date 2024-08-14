@@ -188,7 +188,7 @@ async function ParseMaimaiDXDataset() {
 
 		if (displayVersion === null || displayVersion === undefined) {
 			throw new Error(
-				`Unknown version number ${version} (from ${data.version}). Update database-seeds/scripts/rerunners/maimaidx/parse-maimaidx-dataset.ts.`
+				`Unknown version number ${version} (from ${data.version}). Update seeds/scripts/rerunners/maimaidx/parse-maimaidx-dataset.ts.`
 			);
 		}
 

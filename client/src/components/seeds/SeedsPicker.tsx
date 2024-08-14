@@ -271,9 +271,9 @@ function RevSelector({
 				const params = new URLSearchParams();
 
 				if (collection) {
-					params.set("path", `database-seeds/collections/${collection}`);
+					params.set("path", `seeds/collections/${collection}`);
 				} else {
-					params.set("path", "database-seeds/collections");
+					params.set("path", "seeds/collections");
 				}
 
 				const res = await fetch(

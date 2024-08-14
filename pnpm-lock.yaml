@@ -372,7 +372,7 @@ importers:
         specifier: 4.9.4
         version: 4.9.4
 
-  database-seeds/scripts:
+  seeds/scripts:
     dependencies:
       '@types/lodash.get':
         specifier: ^4.4.7

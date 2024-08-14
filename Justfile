@@ -1,4 +1,4 @@
-mod database-seeds
+mod seeds
 
 default:
 	-@just --choose
@@ -11,11 +11,6 @@ start:
 test:
 	just test-server
 	just test-seeds
-
-# Load the contents of the database seeds into MongoDB
-load-seeds:
-	cd server/ && pnpm load-seeds
-
 
 # Check that the data in MongoDB makes any sense.
 validate-db:

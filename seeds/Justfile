@@ -1,2 +1,10 @@
 default:
 	-@just --choose
+
+# Run a seeds script interactively
+run:
+	exit 1
+
+# Load the seeds into your local server's database
+load:
+	cd ../server && pnpm load-seeds

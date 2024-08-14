@@ -12,10 +12,6 @@ test:
 	just test-server
 	just test-seeds
 
-# Check that the data in MongoDB makes any sense.
-validate-db:
-	cd server/ && pnpm validate-database
-
 # start just the server
 server:
 	cd server/ && pnpm dev
@@ -31,14 +27,21 @@ docs:
 sort-seeds:
 	node seeds/scripts/deterministic-collection-sort.js
 
-test-seeds:
-	cd seeds/scripts && pnpm test
-
 test-server:
 	cd server/ && pnpm test
 
+# Test that the client compiles and passes the linter.
 test-client:
+	cd client/ && pnpm typecheck
+	cd client/ && pnpm lint
 
+# Check that the data in MongoDB makes any sense.
+validate-db:
+	cd server/ && pnpm validate-database
+
+
+
+# reload the shell setup
 setup-fish:
 	fish dev/setup.fish
 

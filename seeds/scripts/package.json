@@ -1,8 +1,8 @@
 {
-	"name": "tachi-database-seeds-scripts",
+	"name": "tachi-seeds-scripts",
 	"version": "0.1.0-see-project-root",
 	"private": true,
-	"description": "Scripts for dealing with tachi-database-seeds.",
+	"description": "Scripts for dealing with tachi-seeds.",
 	"main": "",
 	"scripts": {
 		"build": "tsc -b",

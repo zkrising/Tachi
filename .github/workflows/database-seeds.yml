@@ -32,10 +32,10 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm --filter tachi-database-seeds-scripts... --filter . install
+        run: pnpm --filter tachi-seeds-scripts... --filter . install
 
       - name: Run Tests
-        run: pnpm --filter tachi-database-seeds-scripts test
+        run: pnpm --filter tachi-seeds-scripts test
         env:
           NODE_ENV: "test"
   deploy:

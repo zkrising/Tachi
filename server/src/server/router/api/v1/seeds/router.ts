@@ -12,7 +12,7 @@ import path from "path";
 
 const logger = CreateLogCtx(__filename);
 
-// Routes for interacting with the `database-seeds` folder in this instance of Tachi.
+// Routes for interacting with the `seeds` folder in this instance of Tachi.
 
 // Why do we have this, and why is it limited to only local development?
 // The answer is that we have a "Seeds UI" that runs in the client. For local development
@@ -63,7 +63,7 @@ router.get("/", (req, res) => {
 });
 
 /**
- * Check whether there are changes to the database-seeds in this local development
+ * Check whether there are changes to the seeds in this local development
  * instance that have not been committed yet.
  *
  * @name GET /api/v1/seeds/has-uncommitted-changes
@@ -87,7 +87,7 @@ router.get("/has-uncommitted-changes", async (req, res) => {
 		// note that doing this properly is frustrating. This has false positives for
 		// routes that partially contain this route. I've ameliorated this slightly with
 		// a leading space, but that is not a proper solution.
-		.some((row) => / database-seeds\/collections/u.exec(row));
+		.some((row) => / seeds\/collections/u.exec(row));
 
 	return res.status(200).json({
 		success: true,
@@ -138,7 +138,7 @@ router.get(
 		// only check commits in seeds/collections
 		const commits = await ListGitCommitsInPath(
 			branch,
-			path.join("database-seeds", "collections", realFile)
+			path.join("seeds", "collections", realFile)
 		);
 
 		return res.status(200).json({

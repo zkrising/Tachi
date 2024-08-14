@@ -5,7 +5,7 @@ import type { Migration } from "utils/types";
 const migration: Migration = {
 	id: "remove-iidx-beginners",
 	up: async () => {
-		// copied from database-seeds before they were removed
+		// copied from seeds before they were removed
 		// the charts themselves are not guaranteed to be in the db
 		// so they have to be hardcoded.
 		const beginners = [

@@ -10,7 +10,7 @@ See 'Game Information' in the sidebar for a list of all supported games and thei
 
 ## How do I write support for a game?
 
-Adding support for a game requires configuration in three places and a loading of `database-seeds`.
+Adding support for a game requires configuration in three places and a loading of `seeds`.
 
 You will need to:
 

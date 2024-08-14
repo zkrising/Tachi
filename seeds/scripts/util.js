@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const DeterministicCollectionSort = require("./deterministic-collection-sort");
+const DeterministicCollectionSort = require("./sort-seeds");
 const crypto = require("crypto");
 const fjsh = require("fast-json-stable-hash");
 

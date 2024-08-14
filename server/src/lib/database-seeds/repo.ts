@@ -26,12 +26,12 @@ export class DatabaseSeedsRepo {
 	private readonly shouldDestroy: "YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD" | false;
 
 	/**
-	 * Create a database-seeds repository.
+	 * Create a seeds repository.
 	 *
-	 * @param baseDir - A path to the `collections` folder in database-seeds.
+	 * @param baseDir - A path to the `collections` folder in seeds.
 	 * @param shouldDestroy - Whether this repository should be destroyed when .Destroy()
 	 * is called or not. This defaults to false, and will result in nothing happening
-	 * on cleanup. This behaviour is useful for things like local database-seeds work.
+	 * on cleanup. This behaviour is useful for things like local seeds work.
 	 */
 	constructor(
 		baseDir: string,
@@ -243,7 +243,7 @@ export class DatabaseSeedsRepo {
  */
 export async function PullDatabaseSeeds() {
 	if (ServerConfig.SEEDS_CONFIG?.TYPE === "GIT_REPO") {
-		const seedsDir = await fs.mkdtemp(path.join(os.tmpdir(), "tachi-database-seeds-"));
+		const seedsDir = await fs.mkdtemp(path.join(os.tmpdir(), "tachi-seeds-"));
 
 		logger.info(`Cloning data to ${seedsDir}.`);
 
@@ -264,7 +264,7 @@ export async function PullDatabaseSeeds() {
 			}
 
 			const { stdout: checkoutStdout } = await asyncExec(
-				`git sparse-checkout add database-seeds`,
+				`git sparse-checkout add seeds`,
 				seedsDir
 			);
 
@@ -280,7 +280,7 @@ export async function PullDatabaseSeeds() {
 				"YES_IM_SURE_PLEASE_LET_THIS_DIRECTORY_BE_RM_RFD"
 			);
 		} catch ({ err, stderr }) {
-			logger.error(`Error cloning database-seeds. ${stderr}.`);
+			logger.error(`Error cloning seeds. ${stderr}.`);
 			throw err;
 		}
 	} else if (ServerConfig.SEEDS_CONFIG?.TYPE === "LOCAL_FILES") {

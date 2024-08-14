@@ -1,9 +1,26 @@
 default:
 	-@just --choose
 
-# Run a seeds script interactively
+# Pick a seeds script and run it!
 run:
-	exit 1
+	#!/bin/fish
+	set selected_file (fd -e ts -e js | fzf)
+
+	if test -n "$selected_file"
+		ts-node ./$selected_file
+	else 
+		echo "no file selected"
+	end
+
+# Make sure the data in the seeds is ordered correctly.
+#
+# The seeds have a determinsistic order to make git diffs more sensible!
+sort:
+	node scripts/sort-seeds.js
+
+# Test that the seeds pass their checks.
+test:
+	cd scripts/ && pnpm test
 
 # Load the seeds into your local server's database
 load:

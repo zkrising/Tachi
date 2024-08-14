@@ -74,7 +74,7 @@ subscribe to that quest, and all the goals will be managed for them.
 
 Quests are identified by their `questID`, which is a completely arbitrary string.
 
-At the moment, users cannot create quests directly, they are hard-defined by the [Database Seeds](../infrastructure/database-seeds.md).
+At the moment, users cannot create quests directly, they are hard-defined by the [Database Seeds](../infrastructure/seeds.md).
 
 ### Evaluating a User's Progress
 

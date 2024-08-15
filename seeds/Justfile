@@ -1,16 +1,6 @@
-default:
-	-@just --choose
-
-# Pick a seeds script and run it!
-run:
-	#!/bin/fish
-	set selected_file (fd -e ts -e js | fzf)
-
-	if test -n "$selected_file"
-		ts-node ./$selected_file
-	else 
-		echo "no file selected"
-	end
+[private]
+interactive:
+	-@cd ../; just
 
 # Make sure the data in the seeds is ordered correctly.
 #

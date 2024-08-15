@@ -1,51 +1,48 @@
 mod seeds
+mod server
+mod client
+mod docs
 
-default:
+[private]
+interactive:
 	-@just --choose
 
-# run the server and client at the same time...
+# Run the frontend and backend for Tachi.
+#
+# This is the main command you want to use to start up tachi. Go for it!
 start:
-	parallel --lb ::: 'just server' 'just client'
+	parallel --lb ::: 'FORCE_COLOR=1 just server start' 'FORCE_COLOR=1 just client start'
 
 # test everything
 test:
-	just test-server
-	just test-seeds
+	just server test
+	just client test
+	just seeds test
 
-# start just the server
-server:
-	cd server/ && pnpm dev
+latest_dataset := "2024-05"
+# Load the latest Kamaitachi dataset. This is put in the "anon-kamai" database. 
+load-kamai-dataset:
+	wget -O- https://cdn-kamai.tachi.ac/datasets/{{latest_dataset}}.dump | mongorestore --uri='mongodb://mongo' --gzip --archive
 
-# start just the client
-client:
-	cd client/ && pnpm dev
+	echo "Successfully loaded. You should change 'server/conf.json5' to use anon-kamai as the database."
 
-# start just the docs
-docs:
-	cd docs/ && mkdocs serve -a 0.0.0.0:3001
+# Load the latest Kamaitachi dataset. This is put in the "anon-kamai" database. 
+load-boku-dataset:
+	wget -O- https://cdn-boku.tachi.ac/datasets/{{latest_dataset}}.dump | mongorestore --uri='mongodb://mongo' --gzip --archive
 
-sort-seeds:
-	node seeds/scripts/deterministic-collection-sort.js
-
-test-server:
-	cd server/ && pnpm test
-
-# Test that the client compiles and passes the linter.
-test-client:
-	cd client/ && pnpm typecheck
-	cd client/ && pnpm lint
+	echo "Successfully loaded. You should change 'server/conf.json5' to use anon-boku as the database."
 
 # Check that the data in MongoDB makes any sense.
 validate-db:
 	cd server/ && pnpm validate-database
 
-
-
 # reload the shell setup
 setup-fish:
-	fish dev/setup.fish
+	@fish dev/setup.fish
+
+	@exec fish
 
 # force a re-bootstrap
 bootstrap:
-	rm I_HAVE_BOOTSTRAPPED_OK
+	-@rm I_HAVE_BOOTSTRAPPED_OK
 	./dev/bootstrap.sh

@@ -27,7 +27,7 @@ Once you've gotten that data, you need to convert it into Tachi's song/chart for
 You can modify the JSON files however you want. It really doesn't matter. However, there is a `seeds/scripts/` folder with a bunch of scripts you can use
 to ease this process.
 
-For things you only want to run a single time, place the script in the `seeds/scripts/single-time` folder.
+For things you only want to run a single time, place the script in the `seeds/scripts/single-use` folder.
 For things you want to keep around, place the script in the `seeds/rerunners` folder. Simple.
 
 The file `util.js` contains a bunch of miscellaneous utils for helping out, like `CreateChartID` or `MutateCollection`.

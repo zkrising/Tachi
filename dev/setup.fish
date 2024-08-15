@@ -1,5 +1,8 @@
 #!/bin/fish
 
+# add a local bin for ts-node
+fish_add_path ~/.local/pnpm
+
 source ./dev/fish-plugins/fisher/functions/fisher.fish
 
 for file in ./dev/fish-plugins/*
@@ -13,3 +16,5 @@ source ./dev/functions.fish
 
 # define new permanent aliases here...
 source ./dev/aliases.fish
+
+# rr

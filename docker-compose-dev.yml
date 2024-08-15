@@ -17,7 +17,7 @@ services:
     volumes:
       - tachi-redis:/data
   tachi-dev:
-    user: "${UID}:${GID}"
+    user: "1000:1000"
     tty: true
     container_name: tachi-dev
     build:

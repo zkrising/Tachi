@@ -1,16 +1,22 @@
 #!/bin/bash
 # moves example .env files, generates certificates, etc.
 
-set -eox pipefail
+set -eo pipefail
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 cd "$SCRIPT_DIR";
 cd ..;
 
+function installLocalDebs {
+	for file in /tachi/dev/deb/*.deb; do
+		sudo apt install -f -y "$file";
+	done
+}
+
 function setupShell {
 	echo "Setting up fish..."
-	just setup-fish
+	fish dev/setup.fish
 }
 
 function mvExampleFiles {
@@ -57,12 +63,9 @@ function pnpmInstall {
 
 	# install ts-node aswell so people can use that inside enter-seeds.
 	#
-	# forcibly install this to /usr/local/bin because otherwise pnpm needs
-	# a bunch of other env vars and needs to modify .bashrc and all that jazz
-	#
-	# we're installing a global binary; it should go in a global binary place
-	# and this just works. sweet
-	PNPM_HOME=/usr/local/bin pnpm install ts-node -g
+	# This requires quite a bit of ceremony as pnpm wants to install to PNPM_HOME
+	PATH=$PATH:~/.local/pnpm
+	PNPM_HOME=~/.local/pnpm pnpm install ts-node -g
 
 	echo "Installed dependencies."
 }
@@ -101,9 +104,10 @@ fi
 
 mvExampleFiles
 selfSignHTTPS
-setIndexes
 pnpmInstall
 syncDatabaseWithSeeds
+setIndexes
+installLocalDebs
 
 echo "Bootstrap Complete."
 

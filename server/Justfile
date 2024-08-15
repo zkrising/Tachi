@@ -1,0 +1,11 @@
+[private]
+interactive:
+	-@cd ../ && just
+
+# Run the server interactively. Changes made to files will trigger reloads.
+start:
+	pnpm dev
+
+# Test the server.
+test:
+	pnpm test

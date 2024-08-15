@@ -30,16 +30,30 @@ end
 function fish_greeting
 	echo "Welcome to $(rgb "Tachi" e61c6e 131313)!"
 
+	if ! test -e /tachi/I_HAVE_BOOTSTRAPPED_OK
+		echo ""
+		echo $(rgb "Something went wrong and Tachi didn't set up correctly." ff0000 000000)
+		echo ""
+		echo $(rgb "Please run" ff0000 000000) $(cmd "just bootstrap"). $(rgb "An incorrectly setup Tachi might not launch." ff0000 000000)
+		return
+	end
+
 	if ! test -e ~/.config/fish/NO_GREET
 		echo ""
-		echo $(rgb "This terminal is set up inside a Linux Machine!" 007700 000000)
-		echo $(rgb "This machine comes pre-installed with Tachi and helpful tools." 007700 000000)
+		echo $(rgb "This terminal is set up inside a Linux Machine!" ffffff 000000)
+		echo $(rgb "This machine comes pre-installed with Tachi and helpful tools." ffffff 000000)
 		echo ""
 		echo "Type $(cmd "just start") to start up a frontend and backend."
-		echo "Type $(cmd "just seeds run") to run seeds scripts."
+		echo "    $(rgb "The server will start on http://127.0.0.1:3000." ffff00 000000)"
+		echo "    $(rgb "Use Ctrl+C to stop the server." ffff00 000000)"
+		echo ""
+		echo "Type $(cmd "seeds") to run seeds scripts."
+		echo "    $(rgb "Create new script files in seeds/scripts." ffff00 000000)"
+		echo "    $(rgb "Use seeds/scripts/_PERSONAL for personal scripts you don't need to share with others!" ffff00 000000)"
+		echo ""
 		echo "Type $(cmd "just") to see all of Tachi's scripts."
 		echo ""
-		echo "$(rgb "Thank you for showing up and contributing!" 832700 000000) Feel free to reach out if you need anything."
+		echo "$(rgb "Thank you for showing up and contributing!" 1cffff 000000) Feel free to reach out if you need anything."
 		echo "To turn off this long message, run $(cmd "disable_greeting")"
 	end
 end
@@ -61,7 +75,7 @@ end
 
 # create a new alias and permanently save it
 function defnew
-	alias --save "$argv"
+	alias --save "$argv" > /dev/null
 end
 
 # delete an alias permanently
@@ -71,5 +85,33 @@ function funcdel
 		echo "Deleted $argv[1]."
 	else
 		echo "$argv[1] doesn't exist."
+	end
+end
+
+function seeds
+	cd /tachi/seeds
+
+	set fzfcmd fzf --border
+
+	set mode (echo "Single Use"\n"Rerunners" | $fzfcmd)
+
+	if test -z "$mode"
+		exit 0
+	end
+
+	if test $mode = "Single Use"
+		cd ./scripts/single-use
+	else if test $mode = "Rerunners"
+		cd ./scripts/rerunners
+	end
+
+	set selected_file (fd -e ts -e js --strip-cwd-prefix | $fzfcmd)
+
+
+	if test -n "$selected_file"
+		printf "%s" "ts-node ./$selected_file" | fish_clipboard_copy
+		fish_clipboard_paste
+	else 
+		echo No file selected. Not running anything!
 	end
 end

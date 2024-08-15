@@ -20,7 +20,7 @@ for kind in "kamai" "boku"; do
 
 	mongodump --archive --port=$remote_port --db=$kind | mongorestore --archive --nsFrom="$kind.*" --nsTo="anon-$kind.*"
 
-	pnpm ts-node src/scripts/anonymise-db 127.0.0.1:27017/anon-$kind
+	ts-node src/scripts/anonymise-db 127.0.0.1:27017/anon-$kind
 
 	TCHIS_CONF_LOCATION=$kind.dataset.conf.json5 pnpm set-indexes
 

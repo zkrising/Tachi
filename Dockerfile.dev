@@ -4,6 +4,7 @@
 # we use ubuntu because 'just' isn't available on debian 13
 # haha.. haha...
 FROM ubuntu:24.10
+
 WORKDIR /tachi
 
 RUN apt update
@@ -23,6 +24,7 @@ RUN npm install --silent -g pnpm@8.15.6
 
 # docs pythonisms
 RUN apt install -y python-is-python3 pip mkdocs mkdocs-material
+
 
 # https://github.com/python-babel/babel/issues/990
 # it wouldn't be python without needing absurd global state manipulation to fix

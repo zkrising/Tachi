@@ -48,4 +48,4 @@ setup-fish:
 # force a re-bootstrap
 bootstrap:
 	rm I_HAVE_BOOTSTRAPPED_OK
-	./_scripts/bootstrap.sh
+	./dev/bootstrap.sh

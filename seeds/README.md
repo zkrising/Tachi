@@ -57,7 +57,7 @@ take the files and do whatever.
 If you want to analyse this data in a more advanced fashion,
 install `mongodb-tools` (You'll want mongoimport in `$PATH`) from your favourite location.
 
-`../_scripts/bootstrap` will synchronise these seeds with your local development install on first setup.
+`./dev/bootstrap` will synchronise these seeds with your local development install on first setup.
 
 You can use `server/src/scripts/load-seeds` to re-synchronise whenever you want.
 

@@ -5,7 +5,9 @@
 	],
 	"service": "tachi-dev",
 	"workspaceFolder": "/tachi",
-	"postAttachCommand": "_scripts/bootstrap.sh",
+	"postAttachCommand": "./dev/bootstrap.sh",
+	"updateRemoteUserUID": true,
+	"containerUser": "ubuntu",
 	"customizations": {
 		"vscode": {
 			"settings": {},

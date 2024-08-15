@@ -93,7 +93,7 @@ function seeds
 	set mode (echo "Single Use"\n"Rerunners" | $fzfcmd)
 
 	if test -z "$mode"
-		exit 0
+		return
 	end
 
 	if test $mode = "Single Use"

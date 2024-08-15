@@ -48,12 +48,13 @@ async function RunOnInit() {
 	});
 
 	if (Environment.nodeEnv === "dev") {
-		logger.info("First time setup in LOCAL DEV: Creating an admin user for you.");
 		const exists = await db.users.findOne({ id: 1 });
 
 		if (!exists) {
+			logger.info("First time setup in LOCAL DEV: Creating an admin user for you.");
 			await AddNewUser("admin", "password", "admin@example.com", 1);
 			await db.users.update({ id: 1 }, { $set: { authLevel: UserAuthLevels.ADMIN } });
+			logger.info("Done! You have an admin user with password 'password'");
 		}
 	}
 

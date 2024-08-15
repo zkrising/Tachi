@@ -109,6 +109,7 @@ function seeds
 
 
 	if test -n "$selected_file"
+		# epic trickshot to type the command out *for* the user.
 		printf "%s" "ts-node ./$selected_file" | fish_clipboard_copy
 		fish_clipboard_paste
 	else 

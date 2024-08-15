@@ -88,8 +88,6 @@ function funcdel
 end
 
 function seeds
-	cd /tachi/seeds
-
 	set fzfcmd fzf --border
 
 	set mode (echo "Single Use"\n"Rerunners" | $fzfcmd)
@@ -99,13 +97,14 @@ function seeds
 	end
 
 	if test $mode = "Single Use"
-		cd ./scripts/single-use
+		set place single-use
 	else if test $mode = "Rerunners"
-		cd ./scripts/rerunners
+		set place rerunners
 	end
 
-	set selected_file (fd -e ts -e js --strip-cwd-prefix | $fzfcmd)
+	cd /tachi/seeds/scripts/$place
 
+	set selected_file (fd -e ts -e js --strip-cwd-prefix | $fzfcmd)
 
 	if test -n "$selected_file"
 		# epic trickshot to type the command out *for* the user.

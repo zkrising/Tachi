@@ -1,10 +1,10 @@
 /* eslint-disable no-await-in-loop */
 import db, { monkDB } from "external/mongo/db";
 import fjsh from "fast-json-stable-hash";
-import { PullDatabaseSeeds } from "lib/seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
 import { UpdateGoalsInFolder } from "lib/score-import/framework/goals/goals";
 import UpdateIsPrimaryStatus from "lib/score-mutation/update-isprimary";
+import { PullDatabaseSeeds } from "lib/seeds/repo";
 import { TachiConfig } from "lib/setup/config";
 import { RemoveStaleFolderShowcaseStats } from "lib/showcase/showcase";
 import { UpdateQuestSubscriptions } from "lib/targets/quests";
@@ -95,7 +95,6 @@ async function GenericUpsert<T extends Record<string, any>>(
 		const exists = map.get(document[field]);
 
 		if (exists === undefined) {
-			logger.verbose(`Inserting new: ${document[field]}`);
 			insertOps.push({
 				// @ts-expect-error Actually, T is assignable to OptionalId<T>.
 				insertOne: { document },

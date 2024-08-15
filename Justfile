@@ -26,7 +26,7 @@ load-kamai-dataset:
 
 	echo "Successfully loaded. You should change 'server/conf.json5' to use anon-kamai as the database."
 
-# Load the latest Kamaitachi dataset. This is put in the "anon-kamai" database. 
+# Load the latest Bokutachi dataset. This is put in the "anon-boku" database. 
 load-boku-dataset:
 	wget -O- https://cdn-boku.tachi.ac/datasets/{{latest_dataset}}.dump | mongorestore --uri='mongodb://mongo' --gzip --archive
 

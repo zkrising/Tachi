@@ -25,7 +25,6 @@ RUN npm install --silent -g pnpm@8.15.6
 # docs pythonisms
 RUN apt install -y python-is-python3 pip mkdocs mkdocs-material
 
-
 # https://github.com/python-babel/babel/issues/990
 # it wouldn't be python without needing absurd global state manipulation to fix
 # an incoherent error message
@@ -44,6 +43,10 @@ RUN apt install -y fish just fzf curl wget parallel neovim fd-find bat
 
 # `fd` is called `find-fd` on ubuntu. Awesome.
 RUN ln -s $(which fdfind) /usr/bin/fd
+
+# rename ubuntu user to tachi
+RUN usermod -l tachi ubuntu
+RUN usermod -d /home/tachi -m tachi
 
 # keep container alive indefinitely
 CMD ["/bin/fish"]

@@ -105,8 +105,8 @@ fi
 mvExampleFiles
 selfSignHTTPS
 pnpmInstall
-syncDatabaseWithSeeds
 setIndexes
+syncDatabaseWithSeeds
 installLocalDebs
 
 echo "Bootstrap Complete."

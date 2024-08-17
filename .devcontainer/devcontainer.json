@@ -37,7 +37,12 @@
 				},
 				"terminal.integrated.defaultProfile.linux": "fish",
 				"terminal.integrated.defaultProfile.windows": "fish",
-				"terminal.integrated.defaultProfile.osx": "fish"
+				"terminal.integrated.defaultProfile.osx": "fish",
+				"eslint.workingDirectories": [
+					{
+						"mode": "auto"
+					}
+				]
 			},
 			"extensions": [
 				"dbaeumer.vscode-eslint"

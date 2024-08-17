@@ -4,12 +4,6 @@ The Tachi repository that you just set up is made up of multiple "components".
 
 All of them have their own things going on, so this page has all the guides for each specific component.
 
-## For Professionals...
-
-If you're already very familiar with `git`, the terminal, `node` and JSON, and care more about Tachi specific stuff (how to get the components running, what our architecture looks like), you should skip over that stuff in each guide.
-
-We maintain these guides so that people with knowledge about how to improve Tachi can help out, regardless of their skill level! As such, not all of the information will be of use to you - Skip over the tooling explanations.
-
 ## What can I contribute to?
 
 In order of difficulty, here are the components of Tachi you can contribute to!
@@ -25,7 +19,7 @@ of the bug.
 
 !!! note
 	Although they're called GitHub *issues*, they're actually used for tracking anything. If you've
-	came up with a cool feature idea, send it over as an issue! `zkrising` will read and Triage them.
+	came up with a cool feature idea, send it over as an issue! `zk` will read and Triage them.
 
 For more information, read our [Issue Reporting Guide](./components/issues.md).
 
@@ -35,15 +29,11 @@ We store our documentation as a series of markdown files in the [Main Repository
 
 Writing, maintaining and proofreading the documentation is something that is **severely** neglected
 at the moment. Simple things like typo fixes, all the way up to writing new explanations about major features
-are **thoroughly** appreciated, as `zkrising` prioritises maintaining the core of working code.
+are **thoroughly** appreciated, as `zk` prioritises maintaining the core of working code.
 
 If you're interested in this, check out the [Documentation Contribution Guide](./components/documentation.md).
 
-It'll teach you `shell` and `git` basics,
-setting up a programming environment for Tachi,
-and how to use our documentation builder.
-
-### Database Seeds
+j### Database Seeds
 
 We use an interesting system for parts of our database. We actually store a game's songs and charts *in*
 our GitHub repository! That means you can:
@@ -56,20 +46,15 @@ our GitHub repository! That means you can:
 
 !!! important
 	This part of Tachi is the most important part for external contributors.
-	You guys know these games better than `zkrising` does, and you guys keep an eye on all the updates for your games!
+	You guys know these games better than `zk` does, and you guys keep an eye on all the updates for your games!
 
-	If people don't add songs/charts to this database, `zkrising` will **not** keep an eye on the game for you! Someone *has* to pick up the reigns for each game!
+	If people don't add songs/charts to this database, `zk` will **not** keep an eye on the game for you! Someone *has* to pick up the reigns for each game!
 
 	If you want to add/fix songs, charts, folders or tables for your favourite game - **START HERE!**
 
 	Or in general, if you just want to contribute and don't know what to -- **this is the MOST in need of help. Always.**
 
 Want to get started on contributing to the Database? Check out our [Database Contribution Guide](./components/seeds.md).
-
-It'll teach you `shell` and `git` basics,
-setting up a programming environment for Tachi,
-`json`,
-and we'll even do a little scripting as a treat!
 
 ### Server, Client
 

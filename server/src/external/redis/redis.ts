@@ -28,8 +28,9 @@ function EmitCritical() {
 	}
 }
 
-// extend the timeout in testing because of awful github test runner perf
-const ref = setTimeout(EmitCritical, Environment.nodeEnv === "test" ? ONE_MINUTE * 5 : ONE_MINUTE);
+// awful performance on windows and in test runners mean that connecting to redis can be a
+// nearly FIVE minute endeavour!
+const ref = setTimeout(EmitCritical, ONE_MINUTE * 5);
 
 RedisClient.on("connect", () => {
 	logger.info(`Connected to Redis. Took ${GetMillisecondsSince(startConnect)}ms`, {

@@ -12,7 +12,9 @@ import { HandleSIGTERMGracefully } from "lib/handlers/sigterm";
 import CreateLogCtx from "lib/logger/logger";
 import { ApplyUnappliedMigrations } from "lib/migration/migrations";
 import { Environment, ServerConfig, TachiConfig } from "lib/setup/config";
+import { AddNewUser } from "server/router/api/v1/auth/auth";
 import server from "server/server";
+import { UserAuthLevels } from "tachi-common";
 import fetch from "utils/fetch";
 import { InitaliseFolderChartLookup } from "utils/folder";
 import { spawn } from "child_process";
@@ -44,6 +46,17 @@ async function RunOnInit() {
 			});
 		}
 	});
+
+	if (Environment.nodeEnv === "dev") {
+		const exists = await db.users.findOne({ id: 1 });
+
+		if (!exists) {
+			logger.info("First time setup in LOCAL DEV: Creating an admin user for you.");
+			await AddNewUser("admin", "password", "admin@example.com", 1);
+			await db.users.update({ id: 1 }, { $set: { authLevel: UserAuthLevels.ADMIN } });
+			logger.info("Done! You have an admin user with password 'password'");
+		}
+	}
 
 	await LoadDefaultClients();
 
@@ -99,7 +112,7 @@ if (process.env.INVOKE_JOB_RUNNER) {
 
 	if (Environment.nodeEnv === "production") {
 		logger.warn(
-			`Spawning inline tachi-server job runner in production. Is this actually what you want? You should run a tool like Ofelia to manage this.`,
+			`Spawning inline tachi-server job runner in production. This is bad for performance.`,
 			{ bootInfo: true }
 		);
 	}

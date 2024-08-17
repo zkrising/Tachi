@@ -10,7 +10,7 @@ This is convenient for when you want to provide an update for SDVX based off of 
 
 ## How to use
 
-Navigate to `database-seeds/scripts/rerunners/sdvx`.
+Navigate to `seeds/scripts/rerunners/sdvx`.
 
 The file you're looking to run is `merge-mdb.ts`, but it needs two arguments:
 
@@ -19,5 +19,3 @@ The file you're looking to run is `merge-mdb.ts`, but it needs two arguments:
 
 You can run this script by typing `ts-node merge-mdb.ts --input YOUR_INPUT_HERE --version YOUR_VERSION_HERE` in the terminal.
 
-!!! tip
-	Make sure you have `ts-node` installed. If you don't, you can get it with `pnpm add -g ts-node`.

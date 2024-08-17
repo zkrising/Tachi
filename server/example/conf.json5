@@ -88,8 +88,7 @@
 		],
 	},
 	SEEDS_CONFIG: {
-		REPO_URL: "https://github.com/zkrising/Tachi",
-		USER_NAME: null,
-		USER_EMAIL: null,
+		TYPE: "LOCAL_FILES",
+		PATH: "../seeds/collections",
 	},
 }

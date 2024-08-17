@@ -36,25 +36,26 @@ try {
 		}
 	</style>
 	<div class="box">
-		<h1>Failed to connect!</h1>
-		<div>Welp. Looks like we're down. Sorry about that.</div>
-		<div>Chances are, this is just a temporary outage and will be fixed soon.</div>
-		<div style="font-size: 1.25rem; margin-top: 1rem; margin-bottom: 1rem;">
-			Please be patient, <a href="https://github.com/zkrising/Tachi">Tachi is maintained by a very small team.</a>
-		</div>
-		<div>An error message can be found in the console. (<code>Ctrl-Shift-I</code>)</div>
+
 		${
 			process.env.VITE_IS_LOCAL_DEV
 				? `
 			<hr />
-			<div><b>You're in local development mode.</b>
+			<h1><b>Couldn't connect to the server.</b></h1>
+			<h3>You are in local development mode.</h3>
 			<ul style="font-size: 2rem;">
 				<li>Have you accepted the HTTPS certificates for <a href="${ToAPIURL(
 					"/status"
 				)}">the server?</a>. If not, the site won't load.</li>
 			</ul>
 		`
-				: ""
+				: `<h1>Failed to connect!</h1>
+		<div>Welp. Looks like we're down. Sorry about that.</div>
+		<div>Chances are, this is just a temporary outage and will be fixed soon.</div>
+		<div style="font-size: 1.25rem; margin-top: 1rem; margin-bottom: 1rem;">
+			Please be patient, <a href="https://github.com/zkrising/Tachi">Tachi is maintained by a very small team.</a>
+		</div>
+		<div>An error message can be found in the console. (<code>Ctrl-Shift-I</code>)</div>`
 		}
 	</div>
 	`);

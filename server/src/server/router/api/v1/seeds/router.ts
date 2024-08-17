@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { PullDatabaseSeeds } from "lib/database-seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
+import { PullDatabaseSeeds } from "lib/seeds/repo";
 import { Environment } from "lib/setup/config";
 import prValidate from "server/middleware/prudence-validate";
 import { RequireLocalDevelopment } from "server/middleware/type-require";
@@ -12,7 +12,7 @@ import path from "path";
 
 const logger = CreateLogCtx(__filename);
 
-// Routes for interacting with the `database-seeds` folder in this instance of Tachi.
+// Routes for interacting with the `seeds` folder in this instance of Tachi.
 
 // Why do we have this, and why is it limited to only local development?
 // The answer is that we have a "Seeds UI" that runs in the client. For local development
@@ -33,7 +33,7 @@ const LOCAL_DEV_SEEDS_PATH = path.join(
 	__dirname,
 
 	// and she's buying a...
-	"../../../../../../../database-seeds/collections"
+	"../../../../../../../seeds/collections"
 );
 const TEST_SEEDS_PATH = path.join(__dirname, "../../../../../test-utils/mock-db");
 
@@ -42,7 +42,7 @@ const LOCAL_SEEDS_PATH = Environment.nodeEnv === "test" ? TEST_SEEDS_PATH : LOCA
 if (Environment.nodeEnv === "dev" || Environment.nodeEnv === "test") {
 	if (!fsSync.existsSync(LOCAL_SEEDS_PATH)) {
 		logger.error(
-			`Failed to load seeds routes, could not find any database-seeds/collections checked out at ${LOCAL_SEEDS_PATH}.
+			`Failed to load seeds routes, could not find any seeds/collections checked out at ${LOCAL_SEEDS_PATH}.
 These were expected to be present as this is local-development!
 All seeds routes will return 500.`
 		);
@@ -63,7 +63,7 @@ router.get("/", (req, res) => {
 });
 
 /**
- * Check whether there are changes to the database-seeds in this local development
+ * Check whether there are changes to the seeds in this local development
  * instance that have not been committed yet.
  *
  * @name GET /api/v1/seeds/has-uncommitted-changes
@@ -79,7 +79,7 @@ router.get("/has-uncommitted-changes", async (req, res) => {
 		});
 	}
 
-	// if any change contains database-seeds/collections, it's probably uncommitted
+	// if any change contains seeds/collections, it's probably uncommitted
 	// local changes.
 	const hasUncommittedChanges = stdout
 		.split("\n")
@@ -87,7 +87,7 @@ router.get("/has-uncommitted-changes", async (req, res) => {
 		// note that doing this properly is frustrating. This has false positives for
 		// routes that partially contain this route. I've ameliorated this slightly with
 		// a leading space, but that is not a proper solution.
-		.some((row) => / database-seeds\/collections/u.exec(row));
+		.some((row) => / seeds\/collections/u.exec(row));
 
 	return res.status(200).json({
 		success: true,
@@ -120,7 +120,7 @@ router.get(
 		const file = req.query.file as string | undefined;
 		const branch = req.query.branch as string;
 
-		const seeds = await PullDatabaseSeeds(LOCAL_SEEDS_PATH);
+		const seeds = await PullDatabaseSeeds();
 		const collections = (await seeds.ListCollections()).map((e) => `${e}.json`);
 
 		if (IsString(file) && !collections.includes(file)) {
@@ -135,10 +135,10 @@ router.get(
 		// if we don't have a file, use the do-nothing path.
 		const realFile = file ?? ".";
 
-		// only check commits in database-seeds/collections
+		// only check commits in seeds/collections
 		const commits = await ListGitCommitsInPath(
 			branch,
-			path.join("database-seeds", "collections", realFile)
+			path.join("seeds", "collections", realFile)
 		);
 
 		return res.status(200).json({
@@ -251,7 +251,7 @@ router.get(
 			// @warn we don't actually bother doing any real shell
 			// escaping here, since these routes are only enabled in local development.
 			const { stdout: fileStdout } = await asyncExec(
-				`PAGER=cat git show '${rev}:database-seeds/collections' | tail -n +3`
+				`PAGER=cat git show '${rev}:seeds/collections' | tail -n +3`
 			);
 
 			// @warn this breaks for files that have newlines in
@@ -267,7 +267,7 @@ router.get(
 					// files in the collection as of this commit, so, this should never
 					// crash in that way, right?
 					const { stdout: content } = await asyncExec(
-						`PAGER=cat git show '${rev}:database-seeds/collections/${file}'`
+						`PAGER=cat git show '${rev}:seeds/collections/${file}'`
 					);
 
 					data[file] = JSON.parse(content);

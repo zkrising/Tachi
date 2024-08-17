@@ -64,10 +64,10 @@ if (Environment.nodeEnv === "test") {
 logger.info(`Connecting to database ${Environment.mongoUrl}/${dbName}...`, { bootInfo: true });
 const dbtime = process.hrtime.bigint();
 
-// By default the connectTimeoutMS is 30 seconds. This has been upped to 5 minutes, due to poor performance
-// inside githubs test runners.
 export const monkDB = monk(`${Environment.mongoUrl}/${dbName}`, {
-	serverSelectionTimeoutMS: Environment.nodeEnv === "test" ? ONE_MINUTE * 5 : ONE_MINUTE,
+	// Various things cause bizarre issues with mongodb connections. Windows+Docker especially so.
+	// 5 minutes is excessive, but believe it or not, some setups are exceeding 2 minutes!
+	serverSelectionTimeoutMS: ONE_MINUTE * 5,
 
 	// in local dev, don't **ever** add _id onto objects you're inserting
 	// in production, this might have a performance hit.

@@ -28,13 +28,28 @@ Check the [Documentation](https://docs.tachi.ac/contributing/setup) for how to s
 
 You can then check the component-specific guides to see how to run those components and contribute back!
 
-## Quick Setup For Nerds
+## Quick Setup For Experienced Programmers
 
-Already know what you're doing?
+Install VSCode and use the dev container extension.
+This is my the supported way of working and will ensure you have the correct versions of everything.
 
-Install docker + docker-compose and use `./run.sh start` or `./run.bat start` to start Tachi.
+### Unsupported stuff
 
-Other commands you might want to execute are included inside the `run` file.
+Tachi is intended to be developed inside a container. This ensures that you have the correct version of MongoDB, Redis, Typescript and all that jazz.
+
+VSCode has excellent native support for dev containers, and as such this is the only method of local development we officially support.
+
+Over the years we have had a *lot* of issues with people having subtle variations on their system (or on windows). Given the contributor-centricity of Tachi, it's untenable to expect every contributor to be an expert with local dev setup.
+
+The devcontainer provides us with the most simple, consistent experience, and allows us to put nice-to-haves inside the user's shell.
+
+That said, if you're ardently against using VSCode or Docker...
+
+**DO NOT REPORT ISSUES TO ME IF YOU DO THIS**
+
+You can run the docker-compose file and `dev/boostrap.sh` inside the container yourself. Work inside the container.
+
+Alternatively if you want to work outside of docker you're on your own. Figure out the correct versions for everything (npm, pnpm, mongo, redis, ts-node...) and `dev/bootstrap.sh`.
 
 ## Repository Info
 
@@ -48,7 +63,7 @@ The client and the server are fairly decoupled. Someone could trivially create t
 
 This contains all of our API calls, and interfaces with our database, and powers the actual score import engine.
 
-- `database-seeds/`, Which is a git-tracked set of data to be synced with Tachi. (unlicense)
+- `seeds/`, Which is a git-tracked set of data to be synced with Tachi. (unlicense)
 
 **This is the source of truth for the songs, charts, and more on the site!**
 By submitting PRs to this, you can fix bugs on the website, add new charts, and more.

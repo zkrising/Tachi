@@ -86,12 +86,18 @@ export interface TachiServerConfig {
 	USE_EXTERNAL_SCORE_IMPORT_WORKER: boolean;
 	EXTERNAL_SCORE_IMPORT_WORKER_CONCURRENCY?: integer;
 	ENABLE_METRICS: boolean;
-	SEEDS_CONFIG?: {
-		REPO_URL: string;
-		USER_NAME: string | null;
-		USER_EMAIL: string | null;
-		BRANCH?: string;
-	};
+	SEEDS_CONFIG?:
+		| {
+				TYPE: "GIT_REPO";
+				REPO_URL: string;
+				USER_NAME: string | null;
+				USER_EMAIL: string | null;
+				BRANCH?: string;
+		  }
+		| {
+				TYPE: "LOCAL_FILES";
+				PATH: string;
+		  };
 	EMAIL_CONFIG?: {
 		FROM: string;
 		DKIM?: SendMailOptions["dkim"];
@@ -232,12 +238,21 @@ const err = p(config, {
 			}
 		),
 	},
-	SEEDS_CONFIG: p.optional({
-		REPO_URL: "string",
-		USER_NAME: "?string",
-		USER_EMAIL: "?string",
-		BRANCH: "*string",
-	}),
+	SEEDS_CONFIG: p.optional(
+		p.or(
+			{
+				TYPE: p.is("GIT_REPO"),
+				REPO_URL: "string",
+				USER_NAME: "?string",
+				USER_EMAIL: "?string",
+				BRANCH: "*string",
+			},
+			{
+				TYPE: p.is("LOCAL_FILES"),
+				PATH: "string",
+			}
+		)
+	),
 });
 
 if (err) {

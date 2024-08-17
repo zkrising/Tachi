@@ -1,17 +1,17 @@
-name: Database-Seeds CI/CD
+name: Seeds CI/CD
 
 on:
   push:
     branches:
       - "main"
     paths:
-      - "database-seeds/**"
+      - "seeds/**"
       - "common/**"
   pull_request:
     branches:
       - "main"
     paths:
-      - "database-seeds/**"
+      - "seeds/**"
       - "common/**"
   workflow_dispatch:
 
@@ -32,10 +32,10 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm --filter tachi-database-seeds-scripts... --filter . install
+        run: pnpm --filter tachi-seeds-scripts... --filter . install
 
       - name: Run Tests
-        run: pnpm --filter tachi-database-seeds-scripts test
+        run: pnpm --filter tachi-seeds-scripts test
         env:
           NODE_ENV: "test"
   deploy:

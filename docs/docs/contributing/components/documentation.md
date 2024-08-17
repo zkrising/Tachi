@@ -2,14 +2,9 @@
 
 The documentation component of Tachi powers the website you're currently viewing. Hi!
 
-## Tool Knowledge
+## Pre-Setup
 
-To properly contribute to the documentation, you'll need to know the following things:
-
-- [The Terminal](../tools/terminal.md)
-- [Git](../tools/git.md)
-
-If you don't know, or aren't comfortable with all of the things on this list, click on them to learn about them!
+You must have [Setup a local dev environment](../setup.md) in order to work nicely with the docs!
 
 ## Component Overview
 
@@ -20,33 +15,20 @@ It contains another folder, inconveniently called `docs/`, which contains all of
 There's another folder called `includes/`, which contains some things that are constantly
 referenced throughout the documentation.
 
-At the top level, there's `mkdocs.yml`, which we'll go over later.
+At the top level, there's `mkdocs.yml` which configures how our documentation works later.
 
 ## Software Overview
 
 We use [MKDocs Material](https://squidfunk.github.io/mkdocs-material/) for our documentation.
 It extends markdown a bit to let us add things like admonitions and references.
 
-This is a Python package, making it the only part of our codebase that is Python based. As such, you'll need a way of installing python packages.
+Their documentation is **incredibly** good, so check their stuff out there if you want to see what features are available.
 
-Their documentation is **incredibly** good, so check their stuff out there if you want to use their markdown extensions.
-
-Other than that, our documentation is vanilla [markdown](https://www.markdownguide.org/basic-syntax/). If you know how to write a reddit comment, you know how to write documentation.
-
-## Dependencies
-
-Use `pip` to install `mkdocs` and `mkdocs-material`.
-
-!!! danger
-	[Python package management is an utter disasterous mess](https://stackoverflow.com/questions/48941116/does-python-pip-have-the-equivalent-of-nodes-package-json). Feel free to set up a venv or some other elaborate rube-goldberg machine to ensure that your packages don't bleed everywhere.
-	
-	Either way, you want to install such that is `mkdocs` on your terminal.
-
-	You might have to restart your terminal after installing it, depending on the alignment of `pip` with the sun.
+Other than that, our documentation is [markdown](https://www.markdownguide.org/basic-syntax/). If you know how to format a discord message, you know how to write documentation!
 
 ## Running the Documentation
 
-Use `mkdocs serve` inside Tachi's `docs/` folder to start up a local documentation viewer on port `8000`.
+Use `just docs start` inside Tachi to start up a local documentation viewer on http://127.0.0.1:8001.
 
 This will automatically refresh when you edit anything related to the documentation, so you can quickly see how your stuff goes.
 

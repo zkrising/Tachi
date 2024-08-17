@@ -5,5 +5,5 @@ node_modules
 **/.tsbuildinfo
 
 # Extracted data from iidx merge script
-database-seeds/scripts/rerunners/iidx/iidx-mdb-parse/ifs-output
-database-seeds/scripts/rerunners/iidx/iidx-mdb-parse/logs
+seeds/scripts/rerunners/iidx/iidx-mdb-parse/ifs-output
+seeds/scripts/rerunners/iidx/iidx-mdb-parse/logs

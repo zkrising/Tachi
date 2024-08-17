@@ -1,0 +1,55 @@
+# For use via `devcontainer.json`. The docker-compose-dev file sets some other
+# important variables.
+
+# we use ubuntu because 'just' isn't available on debian 13
+# haha.. haha...
+FROM ubuntu:24.10
+
+WORKDIR /tachi
+
+RUN apt update
+
+# essentials
+RUN apt install -y git npm locales sudo
+
+# setup locales
+# https://stackoverflow.com/questions/28405902/how-to-set-the-locale-inside-a-debian-ubuntu-docker-container
+RUN echo 'en_US.UTF-8' > /etc/locale.gen && locale-gen
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+# nodeisms
+RUN npm install --silent -g pnpm@8.15.6
+
+# docs pythonisms
+RUN apt install -y python-is-python3 pip mkdocs mkdocs-material
+
+# https://github.com/python-babel/babel/issues/990
+# it wouldn't be python without needing absurd global state manipulation to fix
+# an incoherent error message
+RUN rm -f /etc/localtime && ln -s /usr/share/zoneinfo/Etc/UTC /etc/localtime
+
+# Fix locale issue perl repeatedly complains about
+RUN echo "LC_ALL=en_US.UTF-8\nLANG=en_US.UTF-8" > /etc/default/locale
+
+# nice to haves
+RUN apt install -y gh fish just fzf curl wget parallel neovim fd-find bat
+
+# `fd` is called `find-fd` on ubuntu. Awesome.
+RUN ln -s $(which fdfind) /usr/bin/fd
+
+# rename ubuntu user to tachi and give them sudo
+RUN usermod -l tachi ubuntu          && \
+	usermod -d /home/tachi -m tachi  && \
+	echo "tachi ALL = NOPASSWD : ALL" >> /etc/sudoers
+
+# Docker volumes are mounted as root UNLESS the folder already exists inside the host
+# and has non-root ownership. This is the only way to declare a volume in docker has
+# non-root ownership. Unbelievably obscure.
+RUN mkdir node_modules && \
+	mkdir .pnpm-store  && \
+	chown tachi:1000 node_modules .pnpm-store
+
+# keep container alive indefinitely
+CMD ["/bin/fish"]

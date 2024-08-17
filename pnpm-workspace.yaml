@@ -2,7 +2,7 @@ packages:
   - "client/**"
   - "common/**"
   - "bot/**"
-  - "database-seeds/**"
+  - "seeds/**"
   - "server/**"
   - "sieglinde/**"
   - "github-bot/**"

@@ -26,7 +26,7 @@
 	},
 	"devDependencies": {
 		"@types/tap": "^15.0.7",
-		"tap": "15.1.6",
+		"tap": "workspace:../vendor/tap",
 		"typescript": "4.9.4"
 	},
 	"nyc": {

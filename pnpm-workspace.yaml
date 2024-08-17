@@ -8,3 +8,4 @@ packages:
   - "github-bot/**"
   - "homepage/**"
   - "docs/autogen-scripts/**"
+  - "vendor/**"

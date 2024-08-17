@@ -39,7 +39,7 @@
 		"node-mocks-http": "1.11.0",
 		"nodemon": "^2.0.20",
 		"supertest": "6.2.2",
-		"tap": "15.1.6",
+		"tap": "workspace:../vendor/tap",
 		"ts-protoc-gen": "^0.15.0",
 		"tsconfig-paths": "3.12.0"
 	},

@@ -20,6 +20,21 @@
 					"editor.formatOnSave": true,
 					"editor.defaultFormatter": "dbaeumer.vscode-eslint"
 				},
+				"terminal.integrated.profiles.linux": {
+					"fish": {
+						"path": "fish"
+					}
+				},
+				"terminal.integrated.profiles.windows": {
+					"fish": {
+						"path": "fish"
+					}
+				},
+				"terminal.integrated.profiles.osx": {
+					"fish": {
+						"path": "fish"
+					}
+				},
 				"terminal.integrated.defaultProfile.linux": "fish",
 				"terminal.integrated.defaultProfile.windows": "fish",
 				"terminal.integrated.defaultProfile.osx": "fish"

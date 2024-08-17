@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { PullDatabaseSeeds } from "lib/seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
+import { PullDatabaseSeeds } from "lib/seeds/repo";
 import { Environment } from "lib/setup/config";
 import prValidate from "server/middleware/prudence-validate";
 import { RequireLocalDevelopment } from "server/middleware/type-require";

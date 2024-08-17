@@ -8,4 +8,9 @@ start:
 
 # Test the server.
 test:
+	pnpm lint
 	pnpm test
+
+# Clean up the code and fix any automatically fixable mistakes.
+lintfix:
+	pnpm lint-fix

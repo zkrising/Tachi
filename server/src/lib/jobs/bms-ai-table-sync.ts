@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
-import { PullDatabaseSeeds } from "lib/seeds/repo";
 import CreateLogCtx from "lib/logger/logger";
+import { PullDatabaseSeeds } from "lib/seeds/repo";
 import fetch from "node-fetch";
 import { WrapScriptPromise } from "utils/misc";
 import type { ChartDocument } from "tachi-common";

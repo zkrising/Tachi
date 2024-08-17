@@ -20,7 +20,6 @@
     "node": ">=10"
   },
   "dependencies": {
-    "@types/react": "^16.9.23",
     "chokidar": "^3.3.0",
     "coveralls": "^3.0.11",
     "findit": "^2.0.0",
@@ -37,7 +36,6 @@
     "mkdirp": "^1.0.4",
     "nyc": "^15.1.0",
     "opener": "^1.5.1",
-    "react": "^16.12.0",
     "rimraf": "^3.0.0",
     "signal-exit": "^3.0.0",
     "source-map-support": "^0.5.16",

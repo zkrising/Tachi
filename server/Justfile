@@ -7,9 +7,14 @@ start:
 	pnpm dev
 
 # Test the server.
-test:
-	pnpm lint
+test: lint typecheck
 	pnpm test
+
+lint:
+	pnpm lint
+
+typecheck:
+	pnpm typecheck
 
 # Clean up the code and fix any automatically fixable mistakes.
 lintfix:

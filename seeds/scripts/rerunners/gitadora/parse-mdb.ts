@@ -86,15 +86,15 @@ const DIFFICULTIES: (Difficulties["gitadora:Gita" | "gitadora:Dora"] | null)[] =
 	"EXTREME",
 	"MASTER",
 	null,
-	"BASS BASIC",
-	"BASS ADVANCED",
-	"BASS EXTREME",
-	"BASS MASTER",
-	null,
 	"BASIC",
 	"ADVANCED",
 	"EXTREME",
 	"MASTER",
+	null,
+	"BASS BASIC",
+	"BASS ADVANCED",
+	"BASS EXTREME",
+	"BASS MASTER",
 ];
 const PLAYTYPE_DIFFICULTY_MAP: (Playtypes["gitadora"] | null)[] = [
 	null,
@@ -103,15 +103,15 @@ const PLAYTYPE_DIFFICULTY_MAP: (Playtypes["gitadora"] | null)[] = [
 	"Gita",
 	"Gita",
 	null,
-	"Gita",
-	"Gita",
-	"Gita",
-	"Gita",
+	"Dora",
+	"Dora",
+	"Dora",
+	"Dora",
 	null,
-	"Dora",
-	"Dora",
-	"Dora",
-	"Dora",
+	"Gita",
+	"Gita",
+	"Gita",
+	"Gita",
 ];
 
 function buildSong(entry: Entry): SongDocument<"gitadora"> {
@@ -172,7 +172,7 @@ for (const entry of data.mdb.mdb_data as Entry[]) {
 		newSongs.push(newSong);
 	}
 
-	// Mode:    |  GUITAR              |  BASS                |  DRUMS
+	// Mode:    |  GUITAR              |  DRUMS               | BASS
 	// Diff:    |  BSC  ADV  EXT  MAS  |  BSC ADV EXT MAS     |  BSC ADV EXT MAS
 	// Array:  [0, 100, 200, 300, 400, 0, 100, 200, 300, 400, 0, 100, 200, 300, 400]
 	const splitDiff = entry.xg_diff_list["#text"].split(" ");

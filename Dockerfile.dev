@@ -34,7 +34,7 @@ RUN rm -f /etc/localtime && ln -s /usr/share/zoneinfo/Etc/UTC /etc/localtime
 RUN echo "LC_ALL=en_US.UTF-8\nLANG=en_US.UTF-8" > /etc/default/locale
 
 # nice to haves
-RUN apt install -y fish just fzf curl wget parallel neovim fd-find bat
+RUN apt install -y gh fish just fzf curl wget parallel neovim fd-find bat
 
 # `fd` is called `find-fd` on ubuntu. Awesome.
 RUN ln -s $(which fdfind) /usr/bin/fd

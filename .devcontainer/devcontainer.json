@@ -7,10 +7,20 @@
 	"workspaceFolder": "/tachi",
 	"postAttachCommand": "./dev/bootstrap.sh",
 	"updateRemoteUserUID": true,
-	// "containerUser": "tachi",
+	"containerUser": "tachi",
 	"customizations": {
 		"vscode": {
-			"settings": {},
+			"settings": {
+				"typescript.tsdk": "node_modules/typescript/lib",
+				"[typescriptreact]": {
+					"editor.formatOnSave": true,
+					"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+				},
+				"[typescript]": {
+					"editor.formatOnSave": true,
+					"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+				}
+			},
 			"extensions": [
 				"dbaeumer.vscode-eslint"
 			]

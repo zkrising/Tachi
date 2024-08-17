@@ -5,19 +5,9 @@ The database seeds component of Tachi controls the actual data inside the app.
 Changes made in this component are automatically synchronised with the live Tachi database,
 it's kind of a cool system, and allows anyone to contribute patches to songs, charts, folders, and more!
 
-## Tool Knowledge
+## Pre-Setup
 
-To properly contribute to the documentation, you'll need to know the following things:
-
-- [The Terminal](../tools/terminal.md)
-- [Git](../tools/git.md)
-- [JSON](../tools/json.md)
-
-If you know JavaScript, that will be helpful for the scripting sections when we go over how
-to batch-apply updates.
-However, we don't maintain a JS guide (yet). You'll have to ask in the discord!
-
-If you don't know, or aren't comfortable with all of the things on this list, click on them to learn about them!
+You must have [Setup a local dev environment](../setup.md) in order to work nicely with the docs!
 
 ## Component Overview
 
@@ -38,10 +28,6 @@ The collections are all just plain JSON files.
 
 The scripts are written in either TypeScript or JavaScript.
 
-## Dependencies
-
-Installation of dependencies for this part of the codebase should be already handled, if you ran the `bootstrap.sh` script.
-
 ## How do I know what a song is meant to look like?
 
 These are called schemas (or interfaces) and you can find them in two places:
@@ -60,14 +46,11 @@ We also maintain a bit more human readable form for schemas in this documentatio
 
 ## Important Scripts
 
-After doing **anything** to the collections, such as adding a new item to the database, you **MUST** run `pnpm run sort` inside the `scripts/` folder.
+After doing **anything** to the collections, such as adding a new item to the database, you **MUST** run `just seeds sort` inside the `scripts/` folder.
 
 This will deterministically sort the data you put into the collections, making sure that `git` history stays sane (i.e. it only says things that actually changed, changed).
 
-!!! info
-	`pnpm run sort` is an alias for `node deterministic-collection-sort.js`
-
-Before sending any changes, run `pnpm test` to check all your data. If anything you've sent is invalid, it'll be logged in `failed-tests.log`, and the command won't pass.
+Before sending any changes, run `just seeds test` to check all your data. If anything you've sent is invalid, it'll be logged in `failed-tests.log`, and the command won't pass.
 
 This is automatically ran when changes are sent to me, but you should run it yourself before committing anyway!
 
@@ -87,11 +70,16 @@ It should be obvious what each one does, though.
 
 If you're looking to add a BMS table to Tachi for an example, you'd look into the rerunner scripts.
 
-## Single-Time Scripts
+## Single-Use Scripts
 
-Some scripts we only want to run once, and we don't really need to keep them around. These are saved into the `single-time` folder, and will never be tracked by `git`.
+Some scripts we only want to run once, and we don't really need to keep them around. These are saved into the `single-use` folder, and will never be tracked by `git`.
 
 You can make quick hacky scripts here.
+
+!!! warning
+	Anything in this folder will *NOT* be shared. Please be generous with what you share,
+	far too many people have assumed nobody is interested in their scripts, and then lost
+	the scripts when moving machines!
 
 ## Scripting Changes
 
@@ -143,3 +131,8 @@ Below are some examples of what you can do with this API.
 	```
 
 For even more examples, see the `rerunners/` folder, as it makes liberal use of this API.
+
+## Running scripts
+
+To run a seeds script, type `seeds` and pick your script. This will type out the
+command for you.

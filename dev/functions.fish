@@ -28,6 +28,11 @@ end
 
 
 function fish_greeting
+	# check $PATH is correct
+	if not contains ~/.local/pnpm $PATH
+		fish_add_path ~/.local/pnpm
+	end
+
 	echo "Welcome to $(rgb "Tachi" e61c6e 131313)!"
 
 	if ! test -e /tachi/I_HAVE_BOOTSTRAPPED_OK

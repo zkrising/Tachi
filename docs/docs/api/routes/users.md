@@ -71,7 +71,7 @@ None.
 ### Example
 
 !!! note
-	`zkrising` is the username for the user with userID 1.
+	`zk` is the username for the user with userID 1.
 
 	it's also the username of the person writing these
 	docs. Hi!

@@ -173,7 +173,7 @@ for (const entry of data.mdb.mdb_data as Entry[]) {
 	}
 
 	// Mode:    |  GUITAR              |  DRUMS               | BASS
-	// Diff:    |  BSC  ADV  EXT  MAS  |  BSC ADV EXT MAS     |  BSC ADV EXT MAS
+	// Diff:    |  BSC  ADV  EXT  MAS  |  BSC  ADV  EXT  MAS  |  BSC  ADV  EXT  MAS
 	// Array:  [0, 100, 200, 300, 400, 0, 100, 200, 300, 400, 0, 100, 200, 300, 400]
 	const splitDiff = entry.xg_diff_list["#text"].split(" ");
 	for (let i = 0; i < 15; i++) {

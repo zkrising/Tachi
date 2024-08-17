@@ -120,7 +120,7 @@ function buildSong(entry: Entry): SongDocument<"gitadora"> {
 		title: entry.title_name["#text"],
 		id: entry.music_id["#text"],
 		altTitles: [],
-		searchTerms: entry.title_ascii ? [entry.title_ascii["#text"]] : [],
+		searchTerms: entry.title_ascii["#text"] ? [entry.title_ascii["#text"]] : [],
 		data: {},
 	};
 }
@@ -163,17 +163,7 @@ for (const entry of data.mdb.mdb_data as Entry[]) {
 	// For logging purposes - song may not exist, not safe to access for logging
 	const mid = entry.music_id["#text"];
 	const title = entry.title_name["#text"];
-	const artist = entry.artist_title_ascii["#text"];
-
-	if (!artist) {
-		console.warn(`Bailing early... null artist? (id: ${mid})`);
-		continue;
-	}
-
-	if (!title) {
-		console.warn(`Bailing early... null title? (id: ${mid})`);
-		continue;
-	}
+	const artist = entry.artist_title_ascii["#text"] || ""; // Sometimes artist is just not there - this is valid!
 
 	const song = songs.find((s: SongDocument<"gitadora">) => s.id === mid);
 	if (!song) {

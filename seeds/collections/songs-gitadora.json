@@ -1601,6 +1601,15 @@
 	},
 	{
 		"altTitles": [],
+		"data": {},
+		"id": 928,
+		"searchTerms": [
+			"TOCCATA"
+		],
+		"title": "TOCCATA"
+	},
+	{
+		"altTitles": [],
 		"artist": "",
 		"data": {},
 		"id": 929,
@@ -4511,6 +4520,24 @@
 	},
 	{
 		"altTitles": [],
+		"data": {},
+		"id": 1757,
+		"searchTerms": [
+			"KIMAGUREROMANTI"
+		],
+		"title": "気まぐれロマンティック"
+	},
+	{
+		"altTitles": [],
+		"data": {},
+		"id": 1759,
+		"searchTerms": [
+			"GO ON"
+		],
+		"title": "GO-ON"
+	},
+	{
+		"altTitles": [],
 		"artist": "FUZZY CONTROL",
 		"data": {},
 		"id": 1760,
@@ -5078,6 +5105,15 @@
 			"HIT IN THE USA"
 		],
 		"title": "HIT IN THE USA"
+	},
+	{
+		"altTitles": [],
+		"data": {},
+		"id": 1852,
+		"searchTerms": [
+			"MARTIAL ARTS"
+		],
+		"title": "MARTIAL ARTS"
 	},
 	{
 		"altTitles": [],
@@ -5721,6 +5757,24 @@
 	},
 	{
 		"altTitles": [],
+		"data": {},
+		"id": 1946,
+		"searchTerms": [
+			"IN MY WORLD"
+		],
+		"title": "IN MY WORLD"
+	},
+	{
+		"altTitles": [],
+		"data": {},
+		"id": 1947,
+		"searchTerms": [
+			"DOKI DOKI"
+		],
+		"title": "DOKI DOKI"
+	},
+	{
+		"altTitles": [],
 		"artist": "SUPER GIRLS",
 		"data": {},
 		"id": 1948,
@@ -5948,6 +6002,15 @@
 			"RIOT OF COLOR "
 		],
 		"title": "Riot of Color "
+	},
+	{
+		"altTitles": [],
+		"data": {},
+		"id": 1971,
+		"searchTerms": [
+			"CRAZY FOR YOU"
+		],
+		"title": "CRAZY FOR YOU"
 	},
 	{
 		"altTitles": [],
@@ -6751,6 +6814,15 @@
 	},
 	{
 		"altTitles": [],
+		"data": {},
+		"id": 2066,
+		"searchTerms": [
+			"LOVE JOY GITADO"
+		],
+		"title": "LOVE & JOY -GITADORA MIX-"
+	},
+	{
+		"altTitles": [],
 		"artist": "CAPTAIN PUNK",
 		"data": {},
 		"id": 2067,
@@ -6941,6 +7013,33 @@
 	},
 	{
 		"altTitles": [],
+		"data": {},
+		"id": 2086,
+		"searchTerms": [
+			"V.I.P"
+		],
+		"title": "V.I.P"
+	},
+	{
+		"altTitles": [],
+		"data": {},
+		"id": 2087,
+		"searchTerms": [
+			"REALWORLD"
+		],
+		"title": "リアルワールド"
+	},
+	{
+		"altTitles": [],
+		"data": {},
+		"id": 2088,
+		"searchTerms": [
+			"BRIGHT STREAM"
+		],
+		"title": "BRIGHT STREAM"
+	},
+	{
+		"altTitles": [],
 		"artist": "",
 		"data": {},
 		"id": 2089,
@@ -6951,6 +7050,15 @@
 	},
 	{
 		"altTitles": [],
+		"data": {},
+		"id": 2090,
+		"searchTerms": [
+			"ESCAPE"
+		],
+		"title": "Escape"
+	},
+	{
+		"altTitles": [],
 		"artist": "",
 		"data": {},
 		"id": 2091,
@@ -6958,6 +7066,15 @@
 			"FASHION MONSTER"
 		],
 		"title": "ファッションモンスター"
+	},
+	{
+		"altTitles": [],
+		"data": {},
+		"id": 2092,
+		"searchTerms": [
+			"ZONE//ALONE"
+		],
+		"title": "ZONE//ALONE"
 	},
 	{
 		"altTitles": [],
@@ -10031,6 +10148,15 @@
 	},
 	{
 		"altTitles": [],
+		"data": {},
+		"id": 2400,
+		"searchTerms": [
+			"UMINO KOE"
+		],
+		"title": "海の声"
+	},
+	{
+		"altTitles": [],
 		"artist": "GALNERYUS",
 		"data": {},
 		"id": 2401,
@@ -12771,6 +12897,15 @@
 	},
 	{
 		"altTitles": [],
+		"data": {},
+		"id": 2675,
+		"searchTerms": [
+			"PROLETARIAN KYO"
+		],
+		"title": "プロレタリア狂騒歌"
+	},
+	{
+		"altTitles": [],
 		"artist": "YVYA FEAT GORYU",
 		"data": {},
 		"id": 2676,
@@ -14014,9 +14149,7 @@
 		"artist": "YOSHIMI KUDO BA",
 		"data": {},
 		"id": 2802,
-		"searchTerms": [
-			null
-		],
+		"searchTerms": [],
 		"title": "シュボレアちゃん星の交信"
 	},
 	{
@@ -14964,9 +15097,7 @@
 		"artist": "YVYA",
 		"data": {},
 		"id": 2899,
-		"searchTerms": [
-			null
-		],
+		"searchTerms": [],
 		"title": "ちくわパフェだよ☆ＣＫＰ (Yvya Remix)"
 	},
 	{

@@ -116,7 +116,7 @@ const PLAYTYPE_DIFFICULTY_MAP: (Playtypes["gitadora"] | null)[] = [
 
 function buildSong(entry: Entry): SongDocument<"gitadora"> {
 	return {
-		artist: entry.artist_title_ascii["#text"],
+		artist: entry.artist_title_ascii["#text"] || "",
 		title: entry.title_name["#text"],
 		id: entry.music_id["#text"],
 		altTitles: [],

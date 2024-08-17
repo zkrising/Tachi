@@ -19,7 +19,10 @@
 				"[typescript]": {
 					"editor.formatOnSave": true,
 					"editor.defaultFormatter": "dbaeumer.vscode-eslint"
-				}
+				},
+				"terminal.integrated.defaultProfile.linux": "fish",
+				"terminal.integrated.defaultProfile.windows": "fish",
+				"terminal.integrated.defaultProfile.osx": "fish"
 			},
 			"extensions": [
 				"dbaeumer.vscode-eslint"

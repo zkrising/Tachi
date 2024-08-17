@@ -44,5 +44,5 @@ setup-fish:
 
 # force a re-bootstrap
 bootstrap:
-	-@rm I_HAVE_BOOTSTRAPPED_OK
+	-@rm BOOTSTRAP_OK
 	./dev/bootstrap.sh

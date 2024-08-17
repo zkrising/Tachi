@@ -97,7 +97,7 @@ function syncDatabaseWithSeeds {
 # always setup the shell
 setupShell
 
-if [ -e I_HAVE_BOOTSTRAPPED_OK ]; then
+if [ -e BOOTSTRAP_OK ]; then
 	echo "Already bootstrapped."
 	exit 0
 fi
@@ -111,7 +111,7 @@ installLocalDebs
 
 echo "Bootstrap Complete."
 
-cat << EOF > I_HAVE_BOOTSTRAPPED_OK
+cat << EOF > BOOTSTRAP_OK
 Tachi was bootstrapped here on $(date).
 
 The existence of this file stops Tachi from bootstrapping again.

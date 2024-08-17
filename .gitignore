@@ -44,5 +44,7 @@ failed-tests.log
 
 .tsbuildinfo
 
-# bootstrap flag
+# legacy bootstrap flag
 I_HAVE_BOOTSTRAPPED_OK
+# new bootstrap flag
+BOOTSTRAP_OK

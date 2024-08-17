@@ -116,7 +116,7 @@ const PLAYTYPE_DIFFICULTY_MAP: (Playtypes["gitadora"] | null)[] = [
 
 function buildSong(entry: Entry): SongDocument<"gitadora"> {
 	return {
-		artist: entry.artist_title_ascii["#text"] || "",
+		artist: entry.artist_title_ascii["#text"] || "", // Sometimes artist is just not there - this is valid!
 		title: entry.title_name["#text"],
 		id: entry.music_id["#text"],
 		altTitles: [],
@@ -163,7 +163,7 @@ for (const entry of data.mdb.mdb_data as Entry[]) {
 	// For logging purposes - song may not exist, not safe to access for logging
 	const mid = entry.music_id["#text"];
 	const title = entry.title_name["#text"];
-	const artist = entry.artist_title_ascii["#text"] || ""; // Sometimes artist is just not there - this is valid!
+	const artist = entry.artist_title_ascii["#text"] || "";
 
 	const song = songs.find((s: SongDocument<"gitadora">) => s.id === mid);
 	if (!song) {
@@ -172,20 +172,20 @@ for (const entry of data.mdb.mdb_data as Entry[]) {
 		newSongs.push(newSong);
 	}
 
-	// | GUITAR          | BASS            | DRUMS
-	// | BSC ADV EXT MAS | BSC ADV EXT MAS | BSC ADV EXT MAS
-	// 0 100 200 300 400 0 100 200 300 400 0 100 200 300 400
+	// Mode:    |  GUITAR              |  BASS                |  DRUMS
+	// Diff:    |  BSC  ADV  EXT  MAS  |  BSC ADV EXT MAS     |  BSC ADV EXT MAS
+	// Array:  [0, 100, 200, 300, 400, 0, 100, 200, 300, 400, 0, 100, 200, 300, 400]
 	const splitDiff = entry.xg_diff_list["#text"].split(" ");
 	for (let i = 0; i < 15; i++) {
 		const diff = splitDiff[i]!;
 		if (diff === "0") {
-			continue; // There is no score for this difficulty
+			continue; // There is no chart for this difficulty
 		}
 
 		const difficulty = DIFFICULTIES[i];
 		const playType = PLAYTYPE_DIFFICULTY_MAP[i];
 		if (!difficulty || !playType) {
-			continue; // We're at the padding byte
+			continue; // We're at the padding byte, and it somehow wasn't caught above - fixes types though!
 		}
 
 		const exists = existingCharts.get(`${mid}-${difficulty}-${playType}`);
@@ -194,6 +194,9 @@ for (const entry of data.mdb.mdb_data as Entry[]) {
 				console.log(
 					`Adding version ${version} to chart ${exists.playtype} ${exists.difficulty} of song ${song.artist} - ${song.title} (id ${mid})`
 				);
+
+				// JS Pointer weirdness - copied from DDR code.
+				// exists is a pointer to the existing chart, so we can mutate it.
 				exists.versions.push(version);
 			}
 		} else {

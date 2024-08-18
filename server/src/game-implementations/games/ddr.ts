@@ -62,34 +62,40 @@ const DDR_GOAL_PG_FMT: GPTGoalProgressFormatters<"ddr:DP" | "ddr:SP"> = {
 };
 
 export const DDR_SCORE_VALIDATORS: Array<ScoreValidator<"ddr:DP" | "ddr:SP">> = [
-	(s) => {
-		const { MARVELOUS, PERFECT, GREAT, GOOD, OK, MISS } = s.scoreData.judgements;
-
-		if (
-			IsNullish(MARVELOUS) ||
-			IsNullish(PERFECT) ||
-			IsNullish(GREAT) ||
-			IsNullish(GOOD) ||
-			IsNullish(OK) ||
-			IsNullish(MISS)
-		) {
-			return;
-		}
-
-		const stepScore = 1_000_000 / (MARVELOUS + PERFECT + GREAT + GOOD + OK + MISS);
-		const calculatedScore =
-			Math.floor(
-				(stepScore * (MARVELOUS + OK) +
-					(stepScore - 10) * PERFECT +
-					((stepScore * 3) / 5 - 10) * GREAT +
-					(stepScore / 5 - 10) * GOOD) /
-					10
-			) * 10;
-
-		if (calculatedScore !== s.scoreData.score) {
-			return `Expected calculated score from judgements of ${calculatedScore} to equal score of ${s.scoreData.score}.`;
-		}
-	},
+	// Score validation with judgements is disabled until we have stepCount + holdCount for every chart.
+	// Using the sum of all judgements does not work in case of missed holds.
+	// (s) => {
+	// if (s.scoreData.lamp === "FAILED") {
+	// return;
+	// }
+	//
+	// const { MARVELOUS, PERFECT, GREAT, GOOD, OK, MISS } = s.scoreData.judgements;
+	//
+	// if (
+	// IsNullish(MARVELOUS) ||
+	// IsNullish(PERFECT) ||
+	// IsNullish(GREAT) ||
+	// IsNullish(GOOD) ||
+	// IsNullish(OK) ||
+	// IsNullish(MISS)
+	// ) {
+	// return;
+	// }
+	//
+	// const stepScore = 1_000_000 / (MARVELOUS + PERFECT + GREAT + GOOD + OK + MISS);
+	// const calculatedScore =
+	// Math.floor(
+	// (stepScore * (MARVELOUS + OK) +
+	// 				(stepScore - 10) * PERFECT +
+	// 				((stepScore * 3) / 5 - 10) * GREAT +
+	// 				(stepScore / 5 - 10) * GOOD) /
+	// 				10
+	// ) * 10;
+	//
+	// if (calculatedScore !== s.scoreData.score) {
+	// return `Expected calculated score from judgements of ${calculatedScore} to equal score of ${s.scoreData.score}.`;
+	// }
+	// },
 	(s) => {
 		const { MARVELOUS, PERFECT, GREAT, GOOD, MISS } = s.scoreData.judgements;
 

@@ -112,9 +112,17 @@ function seeds
 	set selected_file (fd -e ts -e js --strip-cwd-prefix | $fzfcmd)
 
 	if test -n "$selected_file"
+		set cmd "ts-node ./$selected_file"
+		echo $cmd
+	
+		$cmd
+
 		# epic trickshot to type the command out *for* the user.
-		printf "%s" "ts-node ./$selected_file" | fish_clipboard_copy
-		fish_clipboard_paste
+		#
+		# causes a crash on windows, awesome!
+		#
+		# printf "%s" | fish_clipboard_copy
+		# fish_clipboard_paste
 	else 
 		echo No file selected. Not running anything!
 	end

@@ -112,6 +112,7 @@ export const GITADORA_GITA_CONF = {
 
 	versions: {
 		konaste: "Konaste",
+		fuzzUp: "Fuzz Up",
 	},
 
 	chartData: z.strictObject({

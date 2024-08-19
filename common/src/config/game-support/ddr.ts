@@ -176,6 +176,9 @@ export const DDR_SP_CONF = {
 	orderedJudgements: ["MARVELOUS", "PERFECT", "GREAT", "GOOD", "MISS", "OK"],
 
 	versions: {
+		a: "A",
+		a20: "A20",
+		a20plus: "A20+",
 		a3: "A3",
 		konaste: "Konaste",
 	},

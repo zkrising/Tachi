@@ -34,6 +34,7 @@ export type BatchManualScore<GPT extends GPTString = GPTString> = ExtractMetrics
 	comment?: string | null;
 	judgements?: Record<Judgements[GPT], integer>;
 	timeAchieved?: number | null;
+	artist?: string | null;
 	optional?: AllFieldsNullableOptional<ExtractMetrics<ConfOptionalMetrics[GPT]>>;
 
 	/**

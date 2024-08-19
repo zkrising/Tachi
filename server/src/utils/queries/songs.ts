@@ -56,7 +56,7 @@ export async function FindSongOnTitleInsensitive(
 	// @optimisable: Performance should be tested here by having a utility field for all-titles.
 
 	const regexTitle = new RegExp(`^${EscapeStringRegexp(title)}$`, "iu");
-	const regexArtist = new RegExp(`^${EscapeStringRegexp(artist ?? '')}$`, "iu");
+	const regexArtist = new RegExp(`^${EscapeStringRegexp(artist ?? "")}$`, "iu");
 
 	const res = await db.anySongs[game].find(
 		{
@@ -71,10 +71,12 @@ export async function FindSongOnTitleInsensitive(
 						},
 					],
 				},
-				artist ? {
-					artist: { $regex: regexArtist }
-				} : {}
-			]
+				artist
+					? {
+							artist: { $regex: regexArtist },
+					  }
+					: {},
+			],
 		},
 		{
 			limit: 2,

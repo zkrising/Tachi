@@ -31,7 +31,7 @@ You can then check the component-specific guides to see how to run those compone
 ## Quick Setup For Experienced Programmers
 
 Install VSCode and use the dev container extension.
-This is my the supported way of working and will ensure you have the correct versions of everything.
+This is the supported way of working and will ensure you have the correct versions of everything.
 
 ### Unsupported stuff
 

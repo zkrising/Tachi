@@ -24378,5 +24378,101 @@
 			"whatanamazing_watame"
 		],
 		"title": "What an amazing swing"
+	},
+	{
+		"altTitles": [],
+		"artist": "kuro",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2254,
+		"searchTerms": [
+			"ainoshizuku_kuro"
+		],
+		"title": "アイの雫"
+	},
+	{
+		"altTitles": [],
+		"artist": "Symholic feat.狛茉璃奈",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2255,
+		"searchTerms": [
+			"jamawoshinaide_symholic"
+		],
+		"title": "邪魔をしないで"
+	},
+	{
+		"altTitles": [],
+		"artist": "GrivR.",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2256,
+		"searchTerms": [
+			"hopscotch_grivr"
+		],
+		"title": "Hopscotch"
+	},
+	{
+		"altTitles": [],
+		"artist": "7mai",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2257,
+		"searchTerms": [
+			"almandeite_7mai"
+		],
+		"title": "Almandite"
+	},
+	{
+		"altTitles": [],
+		"artist": "Pizuya's Cell VS BEMANI Sound Team \"dj TAKA\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2258,
+		"searchTerms": [
+			"heisokuteki_pizuyataka"
+		],
+		"title": "閉塞的フレーション"
+	},
+	{
+		"altTitles": [],
+		"artist": "SOUND HOLIC Vs. BEMANI Sound Team \"KE!JU\" feat. Nana Takahashi",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2259,
+		"searchTerms": [
+			"zanzouni_soundholickeiju"
+		],
+		"title": "残像ニ繋ガレタ追憶ノHIDEAWAY"
+	},
+	{
+		"altTitles": [],
+		"artist": "豚乙女×BEMANI Sound Team \"PON\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2260,
+		"searchTerms": [
+			"danmakushinkou_butaotomepon"
+		],
+		"title": "弾幕信仰"
+	},
+	{
+		"altTitles": [],
+		"artist": "Amateras Records vs BEMANI Sound Team \"TATSUYA\" feat. miko",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2261,
+		"searchTerms": [
+			"superheroine_amaterasutatsuya"
+		],
+		"title": "SUPER HEROINE!!"
 	}
 ]

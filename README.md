@@ -30,8 +30,14 @@ You can then check the component-specific guides to see how to run those compone
 
 ## Quick Setup For Experienced Programmers
 
-Install VSCode and use the dev container extension.
-This is the supported way of working and will ensure you have the correct versions of everything.
+- Open `Tachi` in vscode
+- Install the `Dev Containers` extension
+- Run `Dev Container: Rebuild and Open in Container`
+- (It can take a couple minutes to build and bootstrap)
+- You should be placed inside a vscode instance called `Tachi (dev-container)`
+- Inside there, you'll have a perfectly set up shell with fancy utils and fancy graphics. Use `just start` to start Tachi, use `seeds` to run seeds scripts, etc.
+
+You should not be doing Tachi dev outside of the container. The container is set up perfectly with the right versions of everything and working ESLint and all that.
 
 ### Unsupported stuff
 

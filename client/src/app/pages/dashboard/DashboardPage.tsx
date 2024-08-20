@@ -1,4 +1,3 @@
-import { APIFetchV1 } from "util/api";
 import { CreateGoalMap } from "util/data";
 import { RFA } from "util/misc";
 import { NumericSOV } from "util/sorts";
@@ -9,7 +8,6 @@ import { DashboardHeader } from "components/dashboard/DashboardHeader";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import SessionCard from "components/sessions/SessionCard";
 import ApiError from "components/util/ApiError";
-import AsyncLoader from "components/util/AsyncLoader";
 import Divider from "components/util/Divider";
 import GoalLink from "components/util/GoalLink";
 import LinkButton from "components/util/LinkButton";
@@ -21,13 +19,12 @@ import { TachiConfig } from "lib/config";
 import React, { useContext, useMemo } from "react";
 import Alert from "react-bootstrap/Alert";
 import Stack from "react-bootstrap/Stack";
-import Row from "react-bootstrap/Row";
 import { Link, Route, Switch } from "react-router-dom";
-import { GetGameConfig, UserDocument } from "tachi-common";
-import { UGSWithRankingData, UserRecentSummary } from "types/api-returns";
+import { UserDocument } from "tachi-common";
+import { UserRecentSummary } from "types/api-returns";
 import SessionCalendar from "components/sessions/SessionCalendar";
 import { WindowContext } from "context/WindowContext";
-import { GameStatContainer } from "./users/UserGamesPage";
+import UGPTProfiles from "components/user/UGPTProfiles";
 import SupportBanner from "./misc/SupportBanner";
 
 export function DashboardPage() {
@@ -70,7 +67,7 @@ function DashboardLoggedIn({ user }: { user: UserDocument }) {
 					/>
 				</Route>
 				<Route exact path="/profiles">
-					<UserGameStatsInfo user={user} />
+					<UGPTProfiles />
 				</Route>
 				<Route exact path="/global-activity">
 					<Activity url="/activity" />
@@ -185,46 +182,6 @@ function RecentInfo({ user }: { user: UserDocument }) {
 				</>
 			)} */}
 		</>
-	);
-}
-
-function UserGameStatsInfo({ user }: { user: UserDocument }) {
-	return (
-		<Row xs={{ cols: 1 }} lg={{ cols: 2 }}>
-			<AsyncLoader
-				promiseFn={async () => {
-					const res = await APIFetchV1<UGSWithRankingData[]>(
-						`/users/${user.id}/game-stats`
-					);
-
-					if (!res.success) {
-						throw new Error(res.description);
-					}
-
-					return res.body.sort((a, b) => {
-						if (a.game === b.game) {
-							const gameConfig = GetGameConfig(a.game);
-
-							return (
-								gameConfig.playtypes.indexOf(a.playtype) -
-								gameConfig.playtypes.indexOf(b.playtype)
-							);
-						}
-
-						const i1 = TachiConfig.GAMES.indexOf(a.game);
-						const i2 = TachiConfig.GAMES.indexOf(b.game);
-
-						return i1 - i2;
-					});
-				}}
-			>
-				{(ugs) =>
-					ugs.map((e) => (
-						<GameStatContainer ugs={e} reqUser={user} key={`${e.game}:${e.playtype}`} />
-					))
-				}
-			</AsyncLoader>
-		</Row>
 	);
 }
 

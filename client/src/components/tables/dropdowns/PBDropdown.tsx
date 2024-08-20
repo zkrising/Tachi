@@ -181,9 +181,11 @@ export default function PBDropdown({
 							{targetData && ` (${targetData.goals.length})`}
 						</SelectButton>
 					)}
-					<SelectButton setValue={setView} value={view} id="rivals">
-						<Icon type="users" /> Rivals
-					</SelectButton>
+					{currentUser && (
+						<SelectButton setValue={setView} value={view} id="rivals">
+							<Icon type="users" /> Rivals
+						</SelectButton>
+					)}
 					<HasDevModeOn>
 						<SelectButton setValue={setView} value={view} id="debug">
 							<Icon type="bug" /> Debug Info

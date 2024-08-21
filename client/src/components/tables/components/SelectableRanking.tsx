@@ -31,6 +31,7 @@ export default function SelectableRanking({
 				name="Ranking"
 				reverseSort={reverseSort}
 				shortName="Ranking"
+				sortingName="Site Ranking"
 			/>
 		);
 	}

@@ -4,6 +4,7 @@ import {
 	EXT_CASTHOUR,
 	EXT_HEROIC_VERSE,
 	EXT_RESIDENT,
+	EXT_EPOLIS,
 	MODEL_IIDX,
 	MODEL_IIDX_LIGHTNING,
 	MODEL_INFINITAS_2,
@@ -118,6 +119,10 @@ export function SoftwareIDToVersion(
 					return "30-omni";
 				} else if (data.rev === REV_2DXTRA) {
 					return "30-2dxtra";
+				}
+			} else if (EXT_EPOLIS.includes(data.ext)) {
+				if (data.rev === REV_NORMAL) {
+					return "31";
 				}
 			}
 		}

@@ -32,10 +32,6 @@ interface PBScoreDocumentWithSong extends PBScoreDocument<"ddr:DP" | "ddr:SP"> {
 	top?: number;
 }
 
-const FLARE_0_POINTS = [
-	145, 155, 170, 185, 205, 230, 255, 290, 335, 400, 465, 510, 545, 575, 600, 620, 635, 650, 665,
-];
-
 const DDR_GOAL_FMT: GPTGoalFormatters<"ddr:DP" | "ddr:SP"> = {
 	score: GoalFmtScore,
 };

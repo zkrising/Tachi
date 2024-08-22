@@ -51,8 +51,8 @@ const DDR_DIFF_COLOURS: GPTClientImplementation<GPTStrings["ddr"]>["difficultyCo
 
 const DDR_HEADERS: GPTClientImplementation<"ddr:SP" | "ddr:DP">["scoreHeaders"] = [
 	["Score", "Score", NumericSOV((x) => x.scoreData.score)],
-	["Lamp", "Lamp", NumericSOV((x) => x.scoreData.enumIndexes.lamp)],
 	["Flare", "Flare", NumericSOV((x) => x.scoreData.optional.enumIndexes.flare ?? 0)],
+	["Lamp", "Lamp", NumericSOV((x) => x.scoreData.enumIndexes.lamp)],
 ];
 
 const DDR_COLOURS: GPTClientImplementation<"ddr:SP" | "ddr:DP">["classColours"] = {
@@ -111,8 +111,8 @@ const DDRCoreCells: GPTClientImplementation<GPTStrings["ddr"]>["scoreCoreCells"]
 			grade={sc.scoreData.grade}
 			score={sc.scoreData.score}
 		/>
-		<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
 		<FlareCell value={sc.scoreData.optional.flare ?? "0"}></FlareCell>
+		<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
 	</>
 );
 

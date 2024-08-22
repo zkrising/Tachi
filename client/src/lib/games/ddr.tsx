@@ -7,8 +7,8 @@ import React from "react";
 import RatingCell from "components/tables/cells/RatingCell";
 import LampCell from "../../components/tables/cells/LampCell";
 import DDRScoreCell from "../../components/tables/cells/DDRScoreCell";
-import { bg, bgc } from "./_util";
 import FlareCell from "../../components/tables/cells/FlareCell";
+import { bg, bgc } from "./_util";
 
 const DDR_ENUM_COLOURS: GPTClientImplementation<GPTStrings["ddr"]>["enumColours"] = {
 	grade: {

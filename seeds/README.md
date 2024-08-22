@@ -54,14 +54,4 @@ Groups of quests that are registered by default.
 Depends what you want. If you're familiar with JSON, just
 take the files and do whatever.
 
-If you want to analyse this data in a more advanced fashion,
-install `mongodb-tools` (You'll want mongoimport in `$PATH`) from your favourite location.
-
-`./dev/bootstrap` will synchronise these seeds with your local development install on first setup.
-
-You can use `server/src/scripts/load-seeds` to re-synchronise whenever you want.
-
-## Contribution
-
-If your change involves inserting or removing records, you **must** run `node scripts/deterministic-collection-sort.js`.
-This will ensure diffs stay somewhat sane.
+Make a new script in `scripts/rerunners` and run it with `seeds`. You can really do whatever you want, though.

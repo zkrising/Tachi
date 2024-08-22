@@ -7,7 +7,7 @@
 	"scripts": {
 		"build": "tsc -b",
 		"test": "./run-tests.sh",
-		"sort": "node deterministic-collection-sort.js"
+		"sort": "node sort.js"
 	},
 	"author": "zk",
 	"license": "MIT",

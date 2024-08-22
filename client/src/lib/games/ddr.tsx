@@ -8,6 +8,7 @@ import RatingCell from "components/tables/cells/RatingCell";
 import LampCell from "../../components/tables/cells/LampCell";
 import DDRScoreCell from "../../components/tables/cells/DDRScoreCell";
 import { bg, bgc } from "./_util";
+import FlareCell from "../../components/tables/cells/FlareCell";
 
 const DDR_ENUM_COLOURS: GPTClientImplementation<GPTStrings["ddr"]>["enumColours"] = {
 	grade: {
@@ -51,6 +52,7 @@ const DDR_DIFF_COLOURS: GPTClientImplementation<GPTStrings["ddr"]>["difficultyCo
 const DDR_HEADERS: GPTClientImplementation<"ddr:SP" | "ddr:DP">["scoreHeaders"] = [
 	["Score", "Score", NumericSOV((x) => x.scoreData.score)],
 	["Lamp", "Lamp", NumericSOV((x) => x.scoreData.enumIndexes.lamp)],
+	["Flare", "Flare", NumericSOV((x) => x.scoreData.optional.enumIndexes.flare ?? 0)],
 ];
 
 const DDR_COLOURS: GPTClientImplementation<"ddr:SP" | "ddr:DP">["classColours"] = {
@@ -110,6 +112,7 @@ const DDRCoreCells: GPTClientImplementation<GPTStrings["ddr"]>["scoreCoreCells"]
 			score={sc.scoreData.score}
 		/>
 		<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
+		<FlareCell value={sc.scoreData.optional.flare ?? "0"}></FlareCell>
 	</>
 );
 

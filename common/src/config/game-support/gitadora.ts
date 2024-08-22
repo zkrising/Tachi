@@ -113,6 +113,10 @@ export const GITADORA_GITA_CONF = {
 	versions: {
 		konaste: "Konaste",
 		fuzzUp: "Fuzz Up",
+		highVoltage: "High Voltage",
+		nexage: "NEX+AGE",
+		exchain: "EXCHAIN",
+		matixx: "MATIXX",
 	},
 
 	chartData: z.strictObject({

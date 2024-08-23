@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { ProcessEnv } from "./config";
+import { ProcessEnv } from "./config.js";
 import { App, createNodeMiddleware } from "@octokit/app";
 import express from "express";
 import fetch from "node-fetch";

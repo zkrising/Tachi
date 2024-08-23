@@ -233,7 +233,7 @@ export async function ResolveMatchTypeToTachiData(
 		}
 
 		case "songTitle": {
-			const song = await FindSongOnTitleInsensitive(game, data.identifier);
+			const song = await FindSongOnTitleInsensitive(game, data.identifier, data.artist);
 
 			if (!song) {
 				throw new SongOrChartNotFoundFailure(

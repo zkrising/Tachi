@@ -50,21 +50,32 @@ export async function FindSongOnTitle(game: Game, title: string): Promise<SongDo
  */
 export async function FindSongOnTitleInsensitive(
 	game: Game,
-	title: string
+	title: string,
+	artist?: string | null
 ): Promise<SongDocument | null> {
 	// @optimisable: Performance should be tested here by having a utility field for all-titles.
 
-	const regex = new RegExp(`^${EscapeStringRegexp(title)}$`, "iu");
+	const regexTitle = new RegExp(`^${EscapeStringRegexp(title)}$`, "iu");
+	const regexArtist = new RegExp(`^${EscapeStringRegexp(artist ?? "")}$`, "iu");
 
 	const res = await db.anySongs[game].find(
 		{
-			$or: [
+			$and: [
 				{
-					title: { $regex: regex },
+					$or: [
+						{
+							title: { $regex: regexTitle },
+						},
+						{
+							altTitles: { $regex: regexTitle },
+						},
+					],
 				},
-				{
-					altTitles: { $regex: regex },
-				},
+				artist
+					? {
+							artist: { $regex: regexArtist },
+					  }
+					: {},
 			],
 		},
 		{
@@ -75,7 +86,9 @@ export async function FindSongOnTitleInsensitive(
 	if (res.length === 2) {
 		throw new AmbiguousTitleFailure(
 			title,
-			`Multiple songs exist with the case-insensitive title ${title}. We cannot resolve this. Please try and use a different song resolution method.`
+			artist
+				? `Multiple songs exist with the case-insensitive title ${title} by artist ${artist}. We cannot resolve this. Please try and use a different song resolution method.`
+				: `Multiple songs exist with the case-insensitive title ${title}. We cannot resolve this. Please try adding an artist field.`
 		);
 	}
 

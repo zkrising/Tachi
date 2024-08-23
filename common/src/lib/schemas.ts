@@ -880,6 +880,7 @@ const PR_BATCH_MANUAL_SCORE = (game: Game, playtype: Playtype): PrudenceSchema =
 		identifier: "string",
 		comment: optNull(p.isBoundedString(3, 240)),
 		difficulty: "*?string",
+		artist: "*?string",
 
 		// this is checked in converting instead
 		// the lowest acceptable time is september 9th 2001 - this check saves people who dont

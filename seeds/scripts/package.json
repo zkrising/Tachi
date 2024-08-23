@@ -7,7 +7,7 @@
 	"scripts": {
 		"build": "tsc -b",
 		"test": "./run-tests.sh",
-		"sort": "node sort.js"
+		"sort": "node sort-seeds.js"
 	},
 	"author": "zk",
 	"license": "MIT",

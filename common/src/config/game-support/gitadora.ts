@@ -114,7 +114,7 @@ export const GITADORA_GITA_CONF = {
 		konaste: "Konaste",
 		fuzzUp: "FUZZ-UP",
 		highVoltage: "HIGH-VOLTAGE",
-		nexage: "NEX+AGE",
+		nextage: "NEX+AGE",
 		exchain: "EXCHAIN",
 		matixx: "Matixx",
 	},

@@ -1,10 +1,10 @@
+import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { IIDXDans } from "./iidx";
 import { FmtNum, FmtPercent, FmtScoreNoCommas } from "../../utils/util";
 import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
-import {FAST_SLOW_MAXCOMBO} from "./_common";
 
 export const DDR_FLARE_CATEGORIES = z.enum(["CLASSIC", "WHITE", "GOLD", "NONE"]);
 
@@ -135,7 +135,7 @@ export const DDR_SP_CONF = {
 			description:
 				"The EXScore value. Marvelous and O.K. judgements are worth 3 points, Perfect judgements are worth 2 points, Great judgements are worth 1 point, and Good and lower judgements are not worth any points.",
 		},
-		...FAST_SLOW_MAXCOMBO
+		...FAST_SLOW_MAXCOMBO,
 	},
 
 	defaultMetric: "score",

@@ -1,11 +1,6 @@
-import {
-	GoalFmtPercent,
-	GoalFmtScore,
-	GoalOutOfFmtPercent,
-	GoalOutOfFmtScore,
-	GradeGoalFormatter,
-} from "./_common";
+import { GoalFmtScore, GoalOutOfFmtScore, GradeGoalFormatter } from "./_common";
 import db from "../../external/mongo/db";
+import CreateLogCtx from "../../lib/logger/logger";
 import { IsNullish } from "../../utils/misc";
 import { CreatePBMergeFor } from "../utils/pb-merge";
 import { SessionAvgBest10For } from "../utils/session-calc";
@@ -25,7 +20,9 @@ import type {
 	GPTServerImplementation,
 	ScoreValidator,
 } from "game-implementations/types";
-import type { PBScoreDocument, SongDocument } from "tachi-common";
+import type { ChartDocument, PBScoreDocument, ScoreDocument, SongDocument } from "tachi-common";
+
+const logger = CreateLogCtx(__filename);
 
 interface PBScoreDocumentWithSong extends PBScoreDocument<"ddr:DP" | "ddr:SP"> {
 	song: SongDocument<"ddr">;
@@ -58,40 +55,43 @@ const DDR_GOAL_PG_FMT: GPTGoalProgressFormatters<"ddr:DP" | "ddr:SP"> = {
 };
 
 export const DDR_SCORE_VALIDATORS: Array<ScoreValidator<"ddr:DP" | "ddr:SP">> = [
-	// Score validation with judgements is disabled until we have stepCount + holdCount for every chart.
-	// Using the sum of all judgements does not work in case of missed holds.
-	// (s) => {
-	// if (s.scoreData.lamp === "FAILED") {
-	// return;
-	// }
-	//
-	// const { MARVELOUS, PERFECT, GREAT, GOOD, OK, MISS } = s.scoreData.judgements;
-	//
-	// if (
-	// IsNullish(MARVELOUS) ||
-	// IsNullish(PERFECT) ||
-	// IsNullish(GREAT) ||
-	// IsNullish(GOOD) ||
-	// IsNullish(OK) ||
-	// IsNullish(MISS)
-	// ) {
-	// return;
-	// }
-	//
-	// const stepScore = 1_000_000 / (MARVELOUS + PERFECT + GREAT + GOOD + OK + MISS);
-	// const calculatedScore =
-	// Math.floor(
-	// (stepScore * (MARVELOUS + OK) +
-	// 				(stepScore - 10) * PERFECT +
-	// 				((stepScore * 3) / 5 - 10) * GREAT +
-	// 				(stepScore / 5 - 10) * GOOD) /
-	// 				10
-	// ) * 10;
-	//
-	// if (calculatedScore !== s.scoreData.score) {
-	// return `Expected calculated score from judgements of ${calculatedScore} to equal score of ${s.scoreData.score}.`;
-	// }
-	// },
+	(s: ScoreDocument<"ddr:DP" | "ddr:SP">, chart?: ChartDocument<"ddr:DP" | "ddr:SP">) => {
+		if (
+			s.scoreData.lamp === "FAILED" ||
+			!chart ||
+			IsNullish(chart.data.okCount) ||
+			IsNullish(chart.data.stepCount)
+		) {
+			return;
+		}
+
+		const { MARVELOUS, PERFECT, GREAT, GOOD, OK, MISS } = s.scoreData.judgements;
+
+		if (
+			IsNullish(MARVELOUS) ||
+			IsNullish(PERFECT) ||
+			IsNullish(GREAT) ||
+			IsNullish(GOOD) ||
+			IsNullish(OK) ||
+			IsNullish(MISS)
+		) {
+			return;
+		}
+
+		const stepScore = 1_000_000 / (chart.data.okCount + chart.data.stepCount);
+		const calculatedScore =
+			Math.floor(
+				(stepScore * (MARVELOUS + OK) +
+					(stepScore - 10) * PERFECT +
+					((stepScore * 3) / 5 - 10) * GREAT +
+					(stepScore / 5 - 10) * GOOD) /
+					10
+			) * 10;
+
+		if (calculatedScore !== s.scoreData.score) {
+			return `Expected calculated score from judgements of ${calculatedScore} to equal score of ${s.scoreData.score}.`;
+		}
+	},
 	(s) => {
 		const { MARVELOUS, PERFECT, GREAT, GOOD, MISS } = s.scoreData.judgements;
 

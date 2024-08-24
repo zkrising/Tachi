@@ -185,6 +185,8 @@ export const DDR_SP_CONF = {
 
 	chartData: z.strictObject({
 		inGameID: zodNonNegativeInt,
+		stepCount: zodNonNegativeInt.optional(),
+		okCount: zodNonNegativeInt.optional(),
 	}),
 
 	preferences: z.strictObject({}),

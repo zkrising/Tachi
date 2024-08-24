@@ -4,6 +4,7 @@ import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
+import {FAST_SLOW_MAXCOMBO} from "./_common";
 
 export const DDR_FLARE_CATEGORIES = z.enum(["CLASSIC", "WHITE", "GOLD", "NONE"]);
 
@@ -122,6 +123,19 @@ export const DDR_SP_CONF = {
 			minimumRelevantValue: "0",
 			description: "The Flare rank. If no Flare is provided, Flare 0 is chosen by default.",
 		},
+		exScore: {
+			type: "INTEGER",
+			formatter: FmtNum,
+			validate: p.isPositiveInteger,
+
+			// We want to track the best EXScore a user gets, but it is an optional
+			// metric.
+			partOfScoreID: true,
+
+			description:
+				"The EXScore value. Marvelous and O.K. judgements are worth 3 points, Perfect judgements are worth 2 points, Great judgements are worth 1 point, and Good and lower judgements are not worth any points.",
+		},
+		...FAST_SLOW_MAXCOMBO
 	},
 
 	defaultMetric: "score",
@@ -132,11 +146,19 @@ export const DDR_SP_CONF = {
 			description: "Flare Skill as it's implemented in DDR World.",
 			formatter: FmtScoreNoCommas,
 		},
+		exScore: {
+			description: "The EXScore.",
+			formatter: FmtScoreNoCommas,
+		},
 	},
 
 	sessionRatingAlgs: {
 		flareSkill: {
 			description: "Average of your 10 best Flare Points this session",
+			formatter: FmtScoreNoCommas,
+		},
+		exScore: {
+			description: "Average of your 10 best EXScores this session",
 			formatter: FmtScoreNoCommas,
 		},
 	},

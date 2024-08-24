@@ -77,10 +77,7 @@ export function CreateEnumIndexes<GPT extends GPTString>(gpt: GPT, metrics: any,
 		indexes[key] = index;
 	}
 
-	for (const [key, conf] of [
-		...Object.entries(gptConfig.providedMetrics),
-		...Object.entries(gptConfig.derivedMetrics),
-	]) {
+	for (const [key, conf] of [...Object.entries(gptConfig.optionalMetrics)]) {
 		if (conf.type !== "ENUM") {
 			continue;
 		}
@@ -103,7 +100,7 @@ export function CreateEnumIndexes<GPT extends GPTString>(gpt: GPT, metrics: any,
 			);
 		}
 
-		indexes[key] = index;
+		optionalIndexes[key] = index;
 	}
 
 	return {

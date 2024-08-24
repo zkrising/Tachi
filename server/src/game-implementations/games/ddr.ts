@@ -1,10 +1,4 @@
-import {
-	GoalFmtPercent,
-	GoalFmtScore,
-	GoalOutOfFmtPercent,
-	GoalOutOfFmtScore,
-	GradeGoalFormatter,
-} from "./_common";
+import { GoalFmtScore, GoalOutOfFmtScore, GradeGoalFormatter } from "./_common";
 import db from "../../external/mongo/db";
 import { IsNullish } from "../../utils/misc";
 import { CreatePBMergeFor } from "../utils/pb-merge";
@@ -259,6 +253,16 @@ export const DDR_IMPL: GPTServerImplementation<"ddr:DP" | "ddr:SP"> = {
 		CreatePBMergeFor("largest", "score", "Best Score", (base, score) => {
 			base.scoreData.score = score.scoreData.score;
 			base.scoreData.grade = score.scoreData.grade;
+		}),
+		CreatePBMergeFor("largest", "optional.enumIndexes.flare", "Best Flare", (base, score) => {
+			base.scoreData.optional.flare =
+				score.scoreData.lamp !== "FAILED"
+					? score.scoreData.optional.flare
+					: base.scoreData.optional.flare;
+			base.calculatedData.flareSkill =
+				score.scoreData.lamp !== "FAILED"
+					? score.calculatedData.flareSkill
+					: base.calculatedData.flareSkill;
 		}),
 	],
 	profileCalcs: {

@@ -23,10 +23,6 @@ export default function useApiQuery<T>(
 	return useQuery<T, UnsuccessfulAPIFetchResponse>(
 		deps,
 		async () => {
-			if (skip) {
-				throw new Error("Skipped");
-			}
-
 			if (Array.isArray(url)) {
 				const results = await Promise.all(url.map((u) => APIFetchV1(u, options)));
 
@@ -48,6 +44,7 @@ export default function useApiQuery<T>(
 		},
 		{
 			retry: false,
+			enabled: !skip,
 		}
 	);
 }

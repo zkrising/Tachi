@@ -58,7 +58,7 @@ function ValidateScoreGameSpecific(score: ScoreDocument, chart: ChartDocument): 
 		true
 	);
 
-	const moreErrors = RunValidators(gptImpl.scoreValidators as any, score);
+	const moreErrors = RunValidators(gptImpl.scoreValidators as any, score, chart);
 
 	if (moreErrors) {
 		errs.push(...moreErrors);

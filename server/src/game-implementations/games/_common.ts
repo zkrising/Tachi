@@ -32,6 +32,7 @@ import type {
 	SpecificUserGameStats,
 	GPTString,
 	ScoreDocument,
+	ChartDocument,
 } from "tachi-common";
 
 export const EX_SCORE_CHECK: ChartSpecificMetricValidator<IIDXLikes> = (exScore, chart) => {
@@ -335,12 +336,13 @@ export function GradeGoalFormatter<G extends string>(
  */
 export function RunValidators<GPT extends GPTString>(
 	validators: Array<ScoreValidator<GPT>>,
-	score: ScoreDocument<GPT>
+	score: ScoreDocument<GPT>,
+	chart: ChartDocument<GPT>
 ) {
 	const errs = [];
 
 	for (const validator of validators) {
-		const err = validator(score);
+		const err = validator(score, chart);
 
 		if (err !== undefined) {
 			errs.push(err);

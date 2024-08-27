@@ -172,7 +172,7 @@ t.test("WACCA Implementation", (t) => {
 
 	t.test("Score Validations", (t) => {
 		const f = (s: DeepPartial<ScoreDocument<"wacca:Single">>) =>
-			RunValidators(WACCA_IMPL.scoreValidators, dmf(mockScore, s));
+			RunValidators(WACCA_IMPL.scoreValidators, dmf(mockScore, s), TestingWaccaPupaExp);
 
 		t.strictSame(f({ scoreData: { lamp: "ALL MARVELOUS", score: 1_000_000 } }), undefined);
 		t.strictSame(f({ scoreData: { lamp: "FULL COMBO", judgements: { miss: 0 } } }), undefined);

@@ -8,8 +8,8 @@ import t from "tap";
 import { dmf, mkMockPB, mkMockScore } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
 import { TestSnapshot } from "test-utils/single-process-snapshot";
-import { TestingArcaeaSheriruthFTR } from "test-utils/test-data";
-import type { ProvidedMetrics, ScoreData, ScoreDocument } from "tachi-common";
+import { TestingArcaeaSheriruthFTR, TestingWaccaPupaExp } from "test-utils/test-data";
+import type { ProvidedMetrics, ScoreData, ScoreDocument, ChartDocument } from "tachi-common";
 import type { DeepPartial } from "utils/types";
 
 const baseMetrics: ProvidedMetrics["arcaea:Touch"] = {
@@ -169,7 +169,11 @@ t.test("Arcaea Implementation", (t) => {
 
 	t.test("Score Validations", (t) => {
 		const f = (s: DeepPartial<ScoreDocument<"arcaea:Touch">>) =>
-			RunValidators(ARCAEA_IMPL.scoreValidators, dmf(mockScore, s));
+			RunValidators(
+				ARCAEA_IMPL.scoreValidators,
+				dmf(mockScore, s),
+				TestingArcaeaSheriruthFTR
+			);
 
 		t.strictSame(
 			f({

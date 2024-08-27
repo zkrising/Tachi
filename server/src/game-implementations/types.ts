@@ -164,7 +164,8 @@ export type GPTGoalProgressFormatters<GPT extends GPTString> = {
  * indicating what the error was on failure.
  */
 export type ScoreValidator<GPT extends GPTString> = (
-	score: ScoreDocument<GPT>
+	score: ScoreDocument<GPT>,
+	chart: ChartDocument<GPT>
 ) => string | undefined;
 
 export interface GPTServerImplementation<GPT extends GPTString> {

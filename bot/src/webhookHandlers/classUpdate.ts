@@ -115,6 +115,8 @@ function GetMinimumScores(
 		return 20;
 	} else if (game === "pms") {
 		return 20;
+	} else if (game === "ddr") {
+		return 90;
 	}
 
 	return null;

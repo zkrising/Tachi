@@ -6,12 +6,14 @@ export default function DDRScoreCell({
 	score,
 	colour,
 	grade,
+	exScore,
 	scoreRenderFn,
 }: {
 	score?: integer;
 	grade: string;
 	colour: string;
 	showScore?: boolean;
+	exScore?: integer;
 	scoreRenderFn?: (s: number) => string;
 }) {
 	return (
@@ -23,6 +25,12 @@ export default function DDRScoreCell({
 			<strong>{grade}</strong>
 			<br />
 			{score !== undefined && <>{scoreRenderFn ? scoreRenderFn(score) : score}</>}
+			{(!!exScore || exScore === 0) && (
+				<>
+					<br />
+					[EX: {exScore}]
+				</>
+			)}
 		</td>
 	);
 }

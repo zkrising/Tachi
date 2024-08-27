@@ -1,6 +1,5 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
-import { IIDXDans } from "./iidx";
-import { FmtNum, FmtPercent, FmtScoreNoCommas } from "../../utils/util";
+import { FmtNum, FmtScoreNoCommas } from "../../utils/util";
 import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
@@ -146,19 +145,11 @@ export const DDR_SP_CONF = {
 			description: "Flare Skill as it's implemented in DDR World.",
 			formatter: FmtScoreNoCommas,
 		},
-		exScore: {
-			description: "The EXScore.",
-			formatter: FmtScoreNoCommas,
-		},
 	},
 
 	sessionRatingAlgs: {
 		flareSkill: {
 			description: "Average of your 10 best Flare Points this session",
-			formatter: FmtScoreNoCommas,
-		},
-		exScore: {
-			description: "Average of your 10 best EXScores this session",
 			formatter: FmtScoreNoCommas,
 		},
 	},

@@ -358,13 +358,9 @@ export const DDR_IMPL: GPTServerImplementation<"ddr:DP" | "ddr:SP"> = {
 
 			return DDRFlare.calculate(chart.levelNum, flareLevel);
 		},
-		exScore: (scoreData) => {
-			return scoreData.optional.exScore ?? 0;
-		},
 	},
 	scoreValidators: DDR_SCORE_VALIDATORS,
 	sessionCalcs: {
 		flareSkill: SessionAvgBest10For("flareSkill"),
-		exScore: SessionAvgBest10For("exScore"),
 	},
 };

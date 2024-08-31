@@ -1,5 +1,5 @@
 import db from "external/mongo/db";
-import { ONE_HOUR } from "lib/constants/time";
+import { ONE_DAY, ONE_HOUR } from "lib/constants/time";
 import CreateLogCtx from "lib/logger/logger";
 import type { integer } from "tachi-common";
 
@@ -24,6 +24,17 @@ export async function CheckAndSetOngoingImportLock(userID: integer) {
 			locked: false,
 			lockedAt: null,
 		});
+	} else if (lockExists.locked && lockExists.lockedAt! + ONE_DAY < Date.now()) {
+		logger.warn(`Removed import lock for ${userID} as it is ostensibly stuck.`);
+		await db["import-locks"].update(
+			{
+				userID,
+			},
+			{
+				locked: false,
+				lockedAt: null,
+			}
+		);
 	}
 
 	const lockWasSet = await db["import-locks"].findOneAndUpdate(

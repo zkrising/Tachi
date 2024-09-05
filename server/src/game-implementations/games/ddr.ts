@@ -59,7 +59,6 @@ export const DDR_SCORE_VALIDATORS: Array<ScoreValidator<"ddr:DP" | "ddr:SP">> = 
 		if (
 			s.scoreData.lamp === "FAILED" ||
 			!chart ||
-			IsNullish(chart.data.okCount) ||
 			IsNullish(chart.data.stepCount)
 		) {
 			return;
@@ -78,7 +77,7 @@ export const DDR_SCORE_VALIDATORS: Array<ScoreValidator<"ddr:DP" | "ddr:SP">> = 
 			return;
 		}
 
-		const stepScore = 1_000_000 / (chart.data.okCount + chart.data.stepCount);
+		const stepScore = 1_000_000 / (chart.data.stepCount);
 		const calculatedScore =
 			Math.floor(
 				(stepScore * (MARVELOUS + OK) +

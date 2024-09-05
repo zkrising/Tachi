@@ -60,6 +60,7 @@ function buildSong(music: Music): SongDocument<"ddr"> {
 		data: {
 			inGameID: music.mcode,
 			flareCategory: seriesToFlareCategory(music.series),
+			basename: music.basename,
 		},
 		altTitles: [],
 		searchTerms: [],
@@ -108,6 +109,9 @@ export function parseGameData(version: Versions["ddr:SP" | "ddr:DP"], gameData: 
 			);
 			newSongs.push(buildSong(music));
 		}
+		else {
+			song.data.basename = music.basename;
+		}
 		const splitDiff = music.diffLv.split(" ");
 		for (let i = 0; i < 10; i++) {
 			if (parseInt(splitDiff[i]!, 10) > 0) {
@@ -135,13 +139,10 @@ export function parseGameData(version: Versions["ddr:SP" | "ddr:DP"], gameData: 
 		}
 	}
 
-	MutateCollection("songs-ddr.json", (songs: Array<SongDocument<"ddr">>) => [
-		...songs,
-		...newSongs,
-	]);
+	// overwrite the collections instead of mutating them
+	// we already know the existing docs and might have mutated them to
+	// declare the new versions, or update constants.
 
-	// overwrite this collection instead of mutating it
-	// we already know the existing chart docs and might have mutated them to
-	// declare the new versions, or update chart constants.
+	WriteCollection("songs-ddr.json", [...songs, ...newSongs]);
 	WriteCollection("charts-ddr.json", [...existingChartDocs, ...newCharts]);
 }

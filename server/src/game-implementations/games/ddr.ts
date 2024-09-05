@@ -56,11 +56,7 @@ const DDR_GOAL_PG_FMT: GPTGoalProgressFormatters<"ddr:DP" | "ddr:SP"> = {
 
 export const DDR_SCORE_VALIDATORS: Array<ScoreValidator<"ddr:DP" | "ddr:SP">> = [
 	(s: ScoreDocument<"ddr:DP" | "ddr:SP">, chart?: ChartDocument<"ddr:DP" | "ddr:SP">) => {
-		if (
-			s.scoreData.lamp === "FAILED" ||
-			!chart ||
-			IsNullish(chart.data.stepCount)
-		) {
+		if (s.scoreData.lamp === "FAILED" || !chart || IsNullish(chart.data.stepCount)) {
 			return;
 		}
 
@@ -77,7 +73,7 @@ export const DDR_SCORE_VALIDATORS: Array<ScoreValidator<"ddr:DP" | "ddr:SP">> = 
 			return;
 		}
 
-		const stepScore = 1_000_000 / (chart.data.stepCount);
+		const stepScore = 1_000_000 / chart.data.stepCount;
 		const calculatedScore =
 			Math.floor(
 				(stepScore * (MARVELOUS + OK) +

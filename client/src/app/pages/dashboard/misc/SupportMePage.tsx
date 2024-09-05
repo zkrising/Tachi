@@ -5,7 +5,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function SupportMePage() {
-	useSetSubheader("Support / Patreon");
+	useSetSubheader("Support / Ko-fi");
 
 	return (
 		<div style={{ fontSize: "1.15rem" }}>
@@ -15,7 +15,7 @@ export default function SupportMePage() {
 			</p>
 			<p>
 				If you want to support {TachiConfig.NAME} development, you can donate to my{" "}
-				<ExternalLink href="https://ko-fi.com/zkrising">Ko-Fi</ExternalLink>.
+				<ExternalLink href="https://ko-fi.com/zkrising">Ko-fi</ExternalLink>.
 			</p>
 			<p>
 				Alternatively, you can star the{" "}

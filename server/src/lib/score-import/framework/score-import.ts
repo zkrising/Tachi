@@ -14,6 +14,7 @@ import { ServerConfig } from "lib/setup/config";
 import { Sleep } from "utils/misc";
 import type { ScoreImportJobData, ScoreImportWorkerReturns } from "../worker/types";
 import type { ImportDocument, ImportTypes, integer } from "tachi-common";
+import { UnsetOngoingImportLock } from "./import-locks/lock";
 
 const logger = CreateLogCtx(__filename);
 
@@ -101,6 +102,10 @@ async function MakeScoreImportInner<I extends ImportTypes>(
 			`User ${jobData.userID} didn't get an import through in around 6 hours. Has their lock gotten stuck?`,
 			jobData
 		);
+
+		await UnsetOngoingImportLock(jobData.userID);
+
+		logger.error(`Forcing off ${jobData.userID}'s import lock. Sketchy.`);
 
 		throw new ScoreImportFatalError(
 			409,

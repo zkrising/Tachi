@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import { GetInputParser } from "./common/get-input-parser";
+import { UnsetOngoingImportLock } from "./import-locks/lock";
 import ScoreImportFatalError from "./score-importing/score-import-error";
 import ScoreImportMain from "./score-importing/score-import-main";
 import {
@@ -14,7 +15,6 @@ import { ServerConfig } from "lib/setup/config";
 import { Sleep } from "utils/misc";
 import type { ScoreImportJobData, ScoreImportWorkerReturns } from "../worker/types";
 import type { ImportDocument, ImportTypes, integer } from "tachi-common";
-import { UnsetOngoingImportLock } from "./import-locks/lock";
 
 const logger = CreateLogCtx(__filename);
 

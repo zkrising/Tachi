@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import { GetInputParser } from "./common/get-input-parser";
+import { UnsetOngoingImportLock } from "./import-locks/lock";
 import ScoreImportFatalError from "./score-importing/score-import-error";
 import ScoreImportMain from "./score-importing/score-import-main";
 import {
@@ -101,6 +102,10 @@ async function MakeScoreImportInner<I extends ImportTypes>(
 			`User ${jobData.userID} didn't get an import through in around 6 hours. Has their lock gotten stuck?`,
 			jobData
 		);
+
+		await UnsetOngoingImportLock(jobData.userID);
+
+		logger.error(`Forcing off ${jobData.userID}'s import lock. Sketchy.`);
 
 		throw new ScoreImportFatalError(
 			409,

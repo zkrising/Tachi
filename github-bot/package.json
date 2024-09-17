@@ -13,7 +13,7 @@
 		"@octokit/app": "15.1.0",
 		"@octokit/webhooks-types": "7.5.1",
 		"dotenv": "16.0.0",
-		"express": "4.17.2",
+		"express": "4.20.0",
 		"node-fetch": "3.3.2",
 		"prudence": "0.10.0"
 	},

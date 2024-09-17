@@ -76,7 +76,7 @@
 		"csv-parse": "^5.0.3",
 		"deepmerge": "4.2.2",
 		"dotenv": "16.0.0",
-		"express": "4.19.2",
+		"express": "4.20.0",
 		"express-async-errors": "3.1.1",
 		"express-prom-bundle": "^7.0.0",
 		"express-rate-limit": "5.5.1",

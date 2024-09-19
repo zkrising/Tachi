@@ -105,13 +105,13 @@ jobs:
 
       - name: Deploy Kamaitachi
         if: github.ref == 'refs/heads/main'
-        run: ssh ci@"$TACHI_HOST" 'rm -rf ~/tachi-client/kamai' && scp -r ~/kamai ci@"$TACHI_HOST":tachi-client
+        run: rsync --recursive --compress --delete --progress ~/kamai ci@"$TACHI_HOST":tachi-client/kamai
         env:
           TACHI_HOST: ${{secrets.TACHI_HOST}}
 
       - name: Deploy Bokutachi
         if: github.ref == 'refs/heads/main'
-        run: ssh ci@"$TACHI_HOST" 'rm -rf ~/tachi-client/boku' && scp -r ~/boku ci@"$TACHI_HOST":tachi-client
+        run: rsync --recursive --compress --delete --progress ~/boku ci@"$TACHI_HOST":tachi-client/boku
         env:
           TACHI_HOST: ${{secrets.TACHI_HOST}}
 
@@ -129,6 +129,6 @@ jobs:
           BUILD_OUT_DIR: /home/runner/staging
 
       - name: Deploy Staging
-        run: ssh ci@"$TACHI_HOST" 'rm -rf ~/tachi-client/staging' && scp -r ~/staging ci@"$TACHI_HOST":tachi-client
+        run: rsync --recursive --compress --delete --progress ~/staging ci@"$TACHI_HOST":tachi-client/staging
         env:
           TACHI_HOST: ${{secrets.TACHI_HOST}}

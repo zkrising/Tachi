@@ -41,6 +41,6 @@ jobs:
         run: pnpm --filter tachi-homepage build
 
       - name: Deploy
-        run: scp -r homepage/dist/* ci@"$TACHI_HOST":tachi
+        run: rsync --recursive --compress --delete --progress ./homepage/dist/. ci@"$TACHI_HOST":tachi
         env:
           TACHI_HOST: ${{secrets.TACHI_HOST}}

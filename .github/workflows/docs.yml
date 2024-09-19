@@ -32,7 +32,10 @@ jobs:
       - name: Build Docs
         run: docker run -v ./site:/site --entrypoint="mkdocs" docs build
 
+      - name: Install rsync
+        run: apt install -y rsync
+
       - name: Deploy docs
-        run: scp -r ./site ci@"$TACHI_HOST":tachi-docs
+        run: rsync --recursive --compress --delete --progress ./site/. ci@"$TACHI_HOST":tachi-docs
         env:
           TACHI_HOST: ${{secrets.TACHI_HOST}}

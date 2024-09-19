@@ -24474,5 +24474,139 @@
 			"superheroine_amaterasutatsuya"
 		],
 		"title": "SUPER HEROINE!!"
+	},
+	{
+		"altTitles": [
+			"鬮鬮Fanta∽cramble!!"
+		],
+		"artist": "Potwi",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2262,
+		"searchTerms": [
+			"fantacramble_potwi"
+		],
+		"title": "¡¡Fanta∽cramble!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "coTatsu",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2263,
+		"searchTerms": [
+			"haganenotsurugi_cotatsu"
+		],
+		"title": "ハガネノツルギ"
+	},
+	{
+		"altTitles": [],
+		"artist": "Lime",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2264,
+		"searchTerms": [
+			"8vituniverse_lime"
+		],
+		"title": "∞vitUniverse"
+	},
+	{
+		"altTitles": [],
+		"artist": "Ninja Never DieS!",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2265,
+		"searchTerms": [
+			"wearegamerz_nnds"
+		],
+		"title": "We Are GamerZ!"
+	},
+	{
+		"altTitles": [],
+		"artist": "かめりあ & BEMANI Sound Team \"PHQUASE\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2266,
+		"searchTerms": [
+			"lichtsaule_kameriaphquase"
+		],
+		"title": "Lichts頽ule"
+	},
+	{
+		"altTitles": [],
+		"artist": "Hommarju & BEMANI Sound Team \"兎々\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2267,
+		"searchTerms": [
+			"orochistrike_hommarjutotto"
+		],
+		"title": "OROCHI STRIKE"
+	},
+	{
+		"altTitles": [],
+		"artist": "OSTER project & RoughSketch",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2268,
+		"searchTerms": [
+			"bloodyconcerto_osterrough"
+		],
+		"title": "Blφφdy Cφncertφ"
+	},
+	{
+		"altTitles": [],
+		"artist": "P*Light",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2269,
+		"searchTerms": [
+			"reincarnation_plight"
+		],
+		"title": "REINCARNATION"
+	},
+	{
+		"altTitles": [],
+		"artist": "beatnation RHYZE",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2270,
+		"searchTerms": [
+			"rerhyze_beatnationrhyze"
+		],
+		"title": "Re:RHYZE"
+	},
+	{
+		"altTitles": [],
+		"artist": "movies(moimoi×Xceon×Dai.)",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2271,
+		"searchTerms": [
+			"enka_movies"
+		],
+		"title": "焔華"
+	},
+	{
+		"altTitles": [],
+		"artist": "佐々木博史",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2272,
+		"searchTerms": [
+			"timepiecephaseii_sasaki"
+		],
+		"title": "Timepiece phase Ⅱ"
 	}
 ]

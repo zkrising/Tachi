@@ -13,7 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3 
+        uses: actions/checkout@v3
+
+      - name: Install rsync
+        run: sudo apt install -y rsync
 
       - name: Enable SSH Key
         run: |
@@ -31,9 +34,6 @@ jobs:
       # (lol)
       - name: Build Docs
         run: docker run -v ./site:/site --entrypoint="mkdocs" docs build
-
-      - name: Install rsync
-        run: apt install -y rsync
 
       - name: Deploy docs
         run: rsync --recursive --compress --delete --progress ./site/. ci@"$TACHI_HOST":tachi-docs

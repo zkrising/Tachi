@@ -15,6 +15,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Install rsync
+        run: sudo apt install -y rsync
+
       - uses: pnpm/action-setup@v4
         with:
           version: 8.15.6

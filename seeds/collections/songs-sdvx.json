@@ -24474,5 +24474,29 @@
 			"superheroine_amaterasutatsuya"
 		],
 		"title": "SUPER HEROINE!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "movies(moimoi×Xceon×Dai.)",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2262,
+		"searchTerms": [
+			"enka_movies"
+		],
+		"title": "焔華"
+	},
+	{
+		"altTitles": [],
+		"artist": "佐々木博史",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2263,
+		"searchTerms": [
+			"timepiecephaseii_sasaki"
+		],
+		"title": "Timepiece phase Ⅱ"
 	}
 ]

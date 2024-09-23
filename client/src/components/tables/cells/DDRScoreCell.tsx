@@ -25,7 +25,7 @@ export default function DDRScoreCell({
 			<strong>{grade}</strong>
 			<br />
 			{score !== undefined && <>{scoreRenderFn ? scoreRenderFn(score) : score}</>}
-			{(!!exScore || exScore === 0) && (
+			{typeof exScore === "number" && (
 				<>
 					<br />
 					[EX: {exScore}]

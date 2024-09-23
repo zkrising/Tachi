@@ -59,6 +59,7 @@ export const DDR_CONF = {
 	songData: z.strictObject({
 		inGameID: zodNonNegativeInt,
 		flareCategory: DDR_FLARE_CATEGORIES,
+		basename: z.string().optional(),
 	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
@@ -185,6 +186,7 @@ export const DDR_SP_CONF = {
 
 	chartData: z.strictObject({
 		inGameID: zodNonNegativeInt,
+		stepCount: zodNonNegativeInt.optional(),
 	}),
 
 	preferences: z.strictObject({}),

@@ -435,6 +435,9 @@ importers:
       better-sqlite3:
         specifier: 9.4.5
         version: 9.4.5
+      binary-parser:
+        specifier: ^2.2.1
+        version: 2.2.1
       bms-table-loader:
         specifier: 2.0.0
         version: 2.0.0
@@ -4397,6 +4400,11 @@ packages:
   /binary-extensions@2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
+
+  /binary-parser@2.2.1:
+    resolution: {integrity: sha512-5ATpz/uPDgq5GgEDxTB4ouXCde7q2lqAQlSdBRQVl/AJnxmQmhIfyxJx+0MGu//D5rHQifkfGbWWlaysG0o9NA==}
+    engines: {node: '>=12'}
+    dev: false
 
   /binary@0.3.0:
     resolution: {integrity: sha512-D4H1y5KYwpJgK8wk1Cue5LLPgmwHKYSChkbspQg5JtVuR5ulGckxfR62H3AE9UDkdMC8yyXlqYihuz3Aqg2XZg==}

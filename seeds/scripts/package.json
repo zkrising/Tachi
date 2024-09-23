@@ -15,11 +15,13 @@
 		"tsconfig-paths": "3.12.0"
 	},
 	"dependencies": {
-		"@types/node": "18.11.18",
 		"@types/lodash.get": "^4.4.7",
+		"@types/node": "18.11.18",
 		"better-sqlite3": "9.4.5",
+		"binary-parser": "^2.2.1",
 		"bms-table-loader": "2.0.0",
 		"chalk": "4",
+		"cheerio": "^1.0.0-rc.12",
 		"commander": "^8.2.0",
 		"csv-parse": "^5.0.3",
 		"deepmerge": "^4.2.2",
@@ -34,7 +36,6 @@
 		"monk": "^7.3.4",
 		"node-fetch": "2.6.7",
 		"prudence": "0.10.0",
-		"cheerio": "^1.0.0-rc.12",
 		"tachi-common": "workspace:../../common"
 	}
 }

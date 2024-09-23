@@ -136,6 +136,25 @@ export const DDR_SCORE_VALIDATORS: Array<ScoreValidator<"ddr:DP" | "ddr:SP">> = 
 			default:
 		}
 	},
+	(s) => {
+		const { MARVELOUS, PERFECT, GREAT, OK } = s.scoreData.judgements;
+
+		if (
+			IsNullish(MARVELOUS) ||
+			IsNullish(PERFECT) ||
+			IsNullish(GREAT) ||
+			IsNullish(OK) ||
+			IsNullish(s.scoreData.optional.exScore)
+		) {
+			return;
+		}
+
+		const calculatedExScore = MARVELOUS * 3 + OK * 3 + PERFECT * 2 + GREAT;
+
+		if (calculatedExScore !== s.scoreData.optional.exScore) {
+			return `EXScore expected to be ${calculatedExScore} instead of ${s.scoreData.optional.exScore}`;
+		}
+	},
 ];
 
 export const DDR_IMPL: GPTServerImplementation<"ddr:DP" | "ddr:SP"> = {
@@ -254,6 +273,9 @@ export const DDR_IMPL: GPTServerImplementation<"ddr:DP" | "ddr:SP"> = {
 		CreatePBMergeFor("largest", "score", "Best Score", (base, score) => {
 			base.scoreData.score = score.scoreData.score;
 			base.scoreData.grade = score.scoreData.grade;
+		}),
+		CreatePBMergeFor("largest", "optional.exScore", "Best EX Score", (base, score) => {
+			base.scoreData.optional.exScore = score.scoreData.optional.exScore;
 		}),
 	],
 	profileCalcs: {

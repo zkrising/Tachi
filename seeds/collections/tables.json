@@ -972,7 +972,7 @@
 			"F5f260a335a1d003fc9be961463c6bc5ca1b841daeb6cb36b70bf21490c565cfb"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-newplus-levels",
 		"title": "CHUNITHM (NEW PLUS)"
@@ -988,7 +988,7 @@
 			"Fd6a94db3cac613d154a826fb210ed7de035d9ae77814a46f852f091adb474828"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-newplus-difficulties",
 		"title": "CHUNITHM (NEW PLUS) (Difficulties)"

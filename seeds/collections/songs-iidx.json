@@ -26506,5 +26506,239 @@
 			"Marshall Maximizer"
 		],
 		"title": "マーシャル・マキシマイザー"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"Sota F. feat. Yvya\"",
+		"data": {
+			"displayVersion": "31",
+			"genre": "NEO-CLASSICAL CORE"
+		},
+		"id": 2371,
+		"searchTerms": [],
+		"title": "The Last Apocalypse"
+	},
+	{
+		"altTitles": [],
+		"artist": "Rainy。",
+		"data": {
+			"displayVersion": "31",
+			"genre": "THEME SONG"
+		},
+		"id": 2372,
+		"searchTerms": [
+			"riff rain"
+		],
+		"title": "Riff//rain"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"ZAQUVA\"",
+		"data": {
+			"displayVersion": "31",
+			"genre": "VARIABLE CORE"
+		},
+		"id": 2373,
+		"searchTerms": [],
+		"title": "Vulnerability"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"謎の勢力\"",
+		"data": {
+			"displayVersion": "31",
+			"genre": "00's TECHNO"
+		},
+		"id": 2374,
+		"searchTerms": [],
+		"title": "Cult Invitation"
+	},
+	{
+		"altTitles": [],
+		"artist": "kors k & Numb'n'dub",
+		"data": {
+			"displayVersion": "31",
+			"genre": "HARDCORE"
+		},
+		"id": 2375,
+		"searchTerms": [],
+		"title": "See You Again"
+	},
+	{
+		"altTitles": [],
+		"artist": "まろん feat. Rikotan",
+		"data": {
+			"displayVersion": "31",
+			"genre": "和風歌謡硬核音楽"
+		},
+		"id": 2376,
+		"searchTerms": [
+			"Tonight, Romance Alley"
+		],
+		"title": "今宵、ロマンス横丁。"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"猫叉Master\" & かめりあ",
+		"data": {
+			"displayVersion": "31",
+			"genre": "DRUM'N'BASS"
+		},
+		"id": 2377,
+		"searchTerms": [],
+		"title": "Resonant"
+	},
+	{
+		"altTitles": [],
+		"artist": "Yamato",
+		"data": {
+			"displayVersion": "31",
+			"genre": "Drumstep / Bass House / Dnb"
+		},
+		"id": 2378,
+		"searchTerms": [],
+		"title": "Level 5"
+	},
+	{
+		"altTitles": [],
+		"artist": "Pizuya's Cell VS BEMANI Sound Team \"dj TAKA\"",
+		"data": {
+			"displayVersion": "31",
+			"genre": "ROCK"
+		},
+		"id": 2379,
+		"searchTerms": [
+			"Feelings that oscillate while in a closed space"
+		],
+		"title": "閉塞的フレーション"
+	},
+	{
+		"altTitles": [],
+		"artist": "HEXA",
+		"data": {
+			"displayVersion": "31",
+			"genre": "HARD TECHNO"
+		},
+		"id": 2380,
+		"searchTerms": [],
+		"title": "CODE:2"
+	},
+	{
+		"altTitles": [],
+		"artist": "SOUND HOLIC Vs. BEMANI Sound Team \"KE!JU\" feat. Nana Takahashi",
+		"data": {
+			"displayVersion": "31",
+			"genre": "HYPER DIG!ROCK"
+		},
+		"id": 2381,
+		"searchTerms": [
+			"Zanzou ni Tsunagareta Tsuioku no hideaway"
+		],
+		"title": "残像ニ繋ガレタ追憶ノHIDEAWAY"
+	},
+	{
+		"altTitles": [],
+		"artist": "crayvxn",
+		"data": {
+			"displayVersion": "31",
+			"genre": "TRAP"
+		},
+		"id": 2382,
+		"searchTerms": [],
+		"title": "PILGRIM"
+	},
+	{
+		"altTitles": [],
+		"artist": "Pizuya's Cell",
+		"data": {
+			"displayVersion": "31",
+			"genre": "ROCK"
+		},
+		"id": 2383,
+		"searchTerms": [],
+		"title": "NEEDLESS MY LOVE FOR YOU"
+	},
+	{
+		"altTitles": [],
+		"artist": "PRIDASK",
+		"data": {
+			"displayVersion": "31",
+			"genre": "LOUD TRAP"
+		},
+		"id": 2384,
+		"searchTerms": [],
+		"title": "Akatsuki"
+	},
+	{
+		"altTitles": [],
+		"artist": "PRIDASK",
+		"data": {
+			"displayVersion": "31",
+			"genre": "BASS HOUSE"
+		},
+		"id": 2385,
+		"searchTerms": [],
+		"title": "So What"
+	},
+	{
+		"altTitles": [],
+		"artist": "DECO*27",
+		"data": {
+			"displayVersion": "31",
+			"genre": "J-POP"
+		},
+		"id": 2386,
+		"searchTerms": [
+			"Rabbit Hole"
+		],
+		"title": "ラビットホール"
+	},
+	{
+		"altTitles": [],
+		"artist": "HIMEHINA",
+		"data": {
+			"displayVersion": "31",
+			"genre": "J-POP"
+		},
+		"id": 2387,
+		"searchTerms": [
+			"Heart Pie Dancehall"
+		],
+		"title": "愛包ダンスホール"
+	},
+	{
+		"altTitles": [],
+		"artist": "Hommarju",
+		"data": {
+			"displayVersion": "31",
+			"genre": "UK HARDCORE"
+		},
+		"id": 2388,
+		"searchTerms": [],
+		"title": "Seven Times Four"
+	},
+	{
+		"altTitles": [],
+		"artist": "Yuta Imai",
+		"data": {
+			"displayVersion": "31",
+			"genre": "RAWSTYLE"
+		},
+		"id": 2389,
+		"searchTerms": [
+			"TROLL"
+		],
+		"title": "T.R.O.L.L."
+	},
+	{
+		"altTitles": [],
+		"artist": "RoughSketch",
+		"data": {
+			"displayVersion": "31",
+			"genre": "FRENCHCORE"
+		},
+		"id": 2390,
+		"searchTerms": [],
+		"title": "The Onlyonez"
 	}
 ]

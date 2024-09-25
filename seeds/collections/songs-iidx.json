@@ -26740,5 +26740,99 @@
 		"id": 2390,
 		"searchTerms": [],
 		"title": "The Onlyonez"
+	},
+	{
+		"altTitles": [],
+		"artist": "東雲蛍 feat. はぁち",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "NIGHT J-POP"
+		},
+		"id": 2391,
+		"searchTerms": [
+			"exister"
+		],
+		"title": "イグジスター"
+	},
+	{
+		"altTitles": [],
+		"artist": "ikaruga_nex fw.tcheb",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "Hi-NRG RAVECORE"
+		},
+		"id": 2392,
+		"searchTerms": [],
+		"title": "Spirit of the Beast"
+	},
+	{
+		"altTitles": [],
+		"artist": "android52",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "FUTURE GROOVE"
+		},
+		"id": 2393,
+		"searchTerms": [],
+		"title": "GROOVE 04"
+	},
+	{
+		"altTitles": [],
+		"artist": "DJ ミラクル☆ストーン",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "YEAPPY HARDCORE"
+		},
+		"id": 2394,
+		"searchTerms": [],
+		"title": "HAPPY☆LUCKY☆YEAPPY"
+	},
+	{
+		"altTitles": [],
+		"artist": "Orange Lounge",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "SPECIAL COOKING"
+		},
+		"id": 2395,
+		"searchTerms": [],
+		"title": "100sec. Kitchen Battle!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "ねこまんまチーム！",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "ハイスピードラブ一首"
+		},
+		"id": 2396,
+		"searchTerms": [
+			"LOVE SONG GALE! KARUTA QUEEN IROHA"
+		],
+		"title": "恋歌疾風！かるたクイーンいろは"
+	},
+	{
+		"altTitles": [],
+		"artist": "Mutsuhiko Izumi",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "ハードカントリー"
+		},
+		"id": 2397,
+		"searchTerms": [],
+		"title": "JET WORLD"
+	},
+	{
+		"altTitles": [],
+		"artist": "工藤吉三（ベイシスケイプ）",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "COSMIC PROG ROCK"
+		},
+		"id": 2398,
+		"searchTerms": [
+			"KIYARORA EISEI NO KISEKI"
+		],
+		"title": "キヤロラ衛星の軌跡"
 	}
 ]

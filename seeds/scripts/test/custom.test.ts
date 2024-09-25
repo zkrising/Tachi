@@ -71,7 +71,7 @@ const CHART_CHECKS: { [G in Game]?: Array<Test<ChartDocument<GPTStrings[G]>>> } 
 		test(
 			"Levels <0.7 is not plus.",
 			(c) => {
-				if (c.levelNum % 1 < 0.7) {
+				if ((c.levelNum * 10) % 10 < 7) {
 					return !c.level.endsWith("+");
 				}
 
@@ -82,7 +82,7 @@ const CHART_CHECKS: { [G in Game]?: Array<Test<ChartDocument<GPTStrings[G]>>> } 
 		test(
 			"Levels >=0.7 should end in a +.",
 			(c) => {
-				if (c.levelNum % 1 >= 0.7) {
+				if ((c.levelNum * 10) % 10 >= 7) {
 					return c.level.endsWith("+");
 				}
 

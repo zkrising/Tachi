@@ -1,5 +1,5 @@
-import { IIDXDans } from "./iidx";
-import { FmtNum, FmtPercent, FmtScoreNoCommas } from "../../utils/util";
+import { FAST_SLOW_MAXCOMBO } from "./_common";
+import { FmtNum, FmtScoreNoCommas } from "../../utils/util";
 import { ClassValue, zodNonNegativeInt } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
@@ -59,6 +59,7 @@ export const DDR_CONF = {
 	songData: z.strictObject({
 		inGameID: zodNonNegativeInt,
 		flareCategory: DDR_FLARE_CATEGORIES,
+		basename: z.string().optional(),
 	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
@@ -122,6 +123,19 @@ export const DDR_SP_CONF = {
 			minimumRelevantValue: "0",
 			description: "The Flare rank. If no Flare is provided, Flare 0 is chosen by default.",
 		},
+		exScore: {
+			type: "INTEGER",
+			formatter: FmtNum,
+			validate: p.isPositiveInteger,
+
+			// We want to track the best EXScore a user gets, but it is an optional
+			// metric.
+			partOfScoreID: true,
+
+			description:
+				"The EXScore value. Marvelous and O.K. judgements are worth 3 points, Perfect judgements are worth 2 points, Great judgements are worth 1 point, and Good and lower judgements are not worth any points.",
+		},
+		...FAST_SLOW_MAXCOMBO,
 	},
 
 	defaultMetric: "score",
@@ -185,6 +199,7 @@ export const DDR_SP_CONF = {
 
 	chartData: z.strictObject({
 		inGameID: zodNonNegativeInt,
+		stepCount: zodNonNegativeInt.optional(),
 	}),
 
 	preferences: z.strictObject({}),

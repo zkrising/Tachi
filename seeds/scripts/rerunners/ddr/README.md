@@ -28,3 +28,10 @@ File must be stored in the same folder as the script with the name `musicdb.xml`
 
 2) At the last line of the script, eventually change the version if necessary. Current supported versions are `a3` and `konaste` (which are very similar since konaste is based on a3)
 3) Run `ts-node parse-gameData-xml.ts`
+
+# Update stepCounts
+
+Step counts are generated from SSQ files. You're on your own to find them.
+
+1) Put all your SSQ files in the `ssq` folder. The name of each file should correspond to the `basename` of each song (a 4~5 characters identifier)
+2) Run `ts-node parse-charts.ts`

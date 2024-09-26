@@ -15,6 +15,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Install rsync
+        run: sudo apt install -y rsync
+
       - uses: pnpm/action-setup@v4
         with:
           version: 8.15.6
@@ -41,6 +44,6 @@ jobs:
         run: pnpm --filter tachi-homepage build
 
       - name: Deploy
-        run: scp -r homepage/dist/* ci@"$TACHI_HOST":tachi
+        run: rsync --recursive --compress --delete --progress ./homepage/dist/. ci@"$TACHI_HOST":tachi
         env:
           TACHI_HOST: ${{secrets.TACHI_HOST}}

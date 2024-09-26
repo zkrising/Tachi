@@ -93,14 +93,12 @@ for (const { game, matchType, playtype } of uniquenessChecks) {
 		}
 
 		if (
-			(matchType === "inGameID" || matchType === "sdvxInGameID")
-			&& (el.data.inGameID === null || el.data.inGameID === undefined)
+			(matchType === "inGameID" || matchType === "sdvxInGameID") &&
+			(el.data.inGameID === null || el.data.inGameID === undefined)
 		) {
 			console.log(
 				chalk.yellow(
-					`Chart ID ${el.chartID} (song ID ${el.songID}) cannot be matched using matchType=${
-						matchType
-					} because its inGameID is unknown.`,
+					`Chart ID ${el.chartID} (song ID ${el.songID}) cannot be matched using matchType=${matchType} because its inGameID is unknown.`
 				)
 			);
 			warns++;
@@ -108,14 +106,13 @@ for (const { game, matchType, playtype } of uniquenessChecks) {
 		}
 
 		if (
-			matchType === "inGameStrID"
-			&& (el.data.inGameStrID === null && el.data.inGameStrID === undefined)
+			matchType === "inGameStrID" &&
+			el.data.inGameStrID === null &&
+			el.data.inGameStrID === undefined
 		) {
 			console.log(
 				chalk.yellow(
-					`Chart ID ${el.chartID} (song ID ${el.songID}) cannot be matched using matchType=${
-						matchType
-					} because its inGameStrID is unknown.`,
+					`Chart ID ${el.chartID} (song ID ${el.songID}) cannot be matched using matchType=${matchType} because its inGameStrID is unknown.`
 				)
 			);
 			warns++;

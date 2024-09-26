@@ -24608,5 +24608,65 @@
 			"rerhyze_beatnationrhyze"
 		],
 		"title": "Re:RHYZE"
+	},
+	{
+		"altTitles": [],
+		"artist": "かめりあ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2273,
+		"searchTerms": [
+			"paniholirmx_kameria"
+		],
+		"title": "PANIC HOLIC (かめりあ's \"24600 POWER\" Remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "Whitelily.(みーに&しろさきあや)",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2274,
+		"searchTerms": [
+			"fourleavesrmx_whitelily"
+		],
+		"title": "Four Leaves (Whitelily. remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "brz1128",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2275,
+		"searchTerms": [
+			"gigibabarmx_brz1128"
+		],
+		"title": "GIGI BABA(brz_style)"
+	},
+	{
+		"altTitles": [],
+		"artist": "Acotto",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2276,
+		"searchTerms": [
+			"v2vrmx_acotto"
+		],
+		"title": "Voice 2 Voice n Voice"
+	},
+	{
+		"altTitles": [],
+		"artist": "Machico",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2277,
+		"searchTerms": [
+			"growingup_machico"
+		],
+		"title": "Growing Up／アニメ「この素晴らしい世界に祝福を！３」より"
 	}
 ]

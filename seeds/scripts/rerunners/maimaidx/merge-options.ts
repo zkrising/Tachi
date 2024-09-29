@@ -43,7 +43,10 @@ const DIFFICULTIES = ["Basic", "Advanced", "Expert", "Master", "Re:Master"];
 
 interface IDWithDisplayName {
 	id: number;
-	str: string;
+
+	// fast-xml-parser will coerce anything that looks like a number into a
+	// number, so the song "39" will be converted into a number.
+	str: string | number;
 }
 
 interface NotesData {
@@ -225,14 +228,14 @@ for (const optionsDir of options.input) {
 				tachiSongID = songIDGenerator();
 
 				const songDoc: SongDocument<"maimaidx"> = {
-					title: musicData.name.str,
+					title: musicData.name.str.toString(),
 					altTitles: [],
 					searchTerms: [],
-					artist: musicData.artistName.str,
+					artist: musicData.artistName.str.toString(),
 					id: tachiSongID,
 					data: {
 						displayVersion,
-						genre: musicData.genreName.str,
+						genre: musicData.genreName.str.toString(),
 					},
 				};
 

@@ -1,5 +1,5 @@
 import { CreateUserMap } from "util/data";
-import { FormatGPTProfileRating, ToFixedFloor, UppercaseFirst } from "util/misc";
+import { FormatGPTProfileRating, UppercaseFirst } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
 import ClassBadge from "components/game/ClassBadge";
 import ScoreLeaderboard from "components/game/ScoreLeaderboard";

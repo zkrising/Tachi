@@ -40,7 +40,7 @@ export default function TimelineChart({
 		<div style={graphStyle}>
 			<ResponsiveLine
 				data={data}
-				margin={{ top: 40, bottom: 40, left: 50, right: 50 }}
+				margin={{ top: 40, bottom: 40, left: 60, right: 40 }}
 				xScale={{ type: "time", format: "%Q" }}
 				xFormat="time:%Q"
 				gridXValues={3}

@@ -1,6 +1,6 @@
 import { ChangeOpacity } from "util/color-opacity";
 import { TACHI_BAR_THEME } from "util/constants/chart-theme";
-import { Reverse, StepFromToMax, PercentFrom } from "util/misc";
+import { StepFromToMax, PercentFrom } from "util/misc";
 import { ResponsiveBar } from "@nivo/bar";
 import { BarChartTooltip } from "components/charts/ChartTooltip";
 import MiniTable from "components/tables/components/MiniTable";
@@ -63,7 +63,7 @@ function FolderThermometer<T extends string>({
 	return (
 		<td rowSpan={keys.length} style={{ width: 200, height: 40 * keys.length }}>
 			<ResponsiveBar
-				keys={Reverse(keys)}
+				keys={keys}
 				data={[Object.assign({ id: "" }, values)]}
 				theme={Object.assign({}, TACHI_BAR_THEME)}
 				// @ts-expect-error temp

@@ -70,6 +70,7 @@ export const MUSECA_SINGLE_CONF = {
 		curatorSkill: {
 			description:
 				"The sum of your best 20 Curator Skills. This is identical to how it's calculated in-game.",
+			formatter: NoDecimalPlace,
 		},
 	},
 

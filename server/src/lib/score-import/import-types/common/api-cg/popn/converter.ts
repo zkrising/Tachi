@@ -23,6 +23,10 @@ export const ConverterAPICGPopn: ConverterFunction<CGPopnScore, CGContext> = asy
 	const difficulty = ConvertDifficulty(data.difficulty);
 	const version = ConvertVersion(data.version);
 
+	if (data.score > 100_000) {
+		throw new InvalidScoreFailure(`Score is > 100_000 (got ${data.score})`);
+	}
+
 	const chart = await FindChartOnInGameIDVersion(
 		"popn",
 		data.internalId,

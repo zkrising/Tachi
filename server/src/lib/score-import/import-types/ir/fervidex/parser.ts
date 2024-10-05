@@ -52,7 +52,19 @@ const PR_FERVIDEX: PrudenceSchema = {
 	} as unknown as ValidSchemaValue),
 
 	option: p.optional({
-		gauge: optNull(p.isIn("ASSISTED_EASY", "EASY", "HARD", "EX_HARD")),
+		gauge: optNull(
+			p.isIn(
+				"ASSISTED_EASY",
+				"EASY",
+				"HARD",
+				"EX_HARD",
+				"EROSION_LV1",
+				"EROSION_LV2",
+				"EROSION_LV3",
+				"EROSION_LV4",
+				"EROSION_LV5"
+			)
+		),
 		range: optNull(
 			p.isIn("SUDDEN_PLUS", "HIDDEN_PLUS", "SUD_PLUS_HID_PLUS", "LIFT", "LIFT_SUD_PLUS")
 		),

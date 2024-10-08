@@ -1,10 +1,12 @@
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import {
 	EXT_BISTROVER,
+	EXT_CANNON_BALLERS,
 	EXT_CASTHOUR,
+	EXT_EPOLIS,
 	EXT_HEROIC_VERSE,
 	EXT_RESIDENT,
-	EXT_EPOLIS,
+	EXT_ROOTAGE,
 	MODEL_IIDX,
 	MODEL_IIDX_LIGHTNING,
 	MODEL_INFINITAS_2,

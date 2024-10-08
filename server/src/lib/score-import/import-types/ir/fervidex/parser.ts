@@ -1,10 +1,12 @@
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import {
 	EXT_BISTROVER,
+	EXT_CANNON_BALLERS,
 	EXT_CASTHOUR,
+	EXT_EPOLIS,
 	EXT_HEROIC_VERSE,
 	EXT_RESIDENT,
-	EXT_EPOLIS,
+	EXT_ROOTAGE,
 	MODEL_IIDX,
 	MODEL_IIDX_LIGHTNING,
 	MODEL_INFINITAS_2,
@@ -102,7 +104,17 @@ export function SoftwareIDToVersion(
 		} else if (data.model === MODEL_IIDX || data.model === MODEL_IIDX_LIGHTNING) {
 			// pretty icky yandere-dev tier if statements, but hey
 			// that's just how it works...
-			if (data.ext === EXT_HEROIC_VERSE) {
+			if (data.ext === EXT_CANNON_BALLERS) {
+				if (data.rev === REV_NORMAL) {
+					return "25";
+				}
+			} else if (data.ext === EXT_ROOTAGE) {
+				if (data.rev === REV_OMNIMIX) {
+					return "26-omni";
+				} else if (data.rev === REV_NORMAL) {
+					return "26";
+				}
+			} else if (data.ext === EXT_HEROIC_VERSE) {
 				if (data.rev === REV_OMNIMIX) {
 					return "27-omni";
 				} else if (data.rev === REV_2DXTRA) {

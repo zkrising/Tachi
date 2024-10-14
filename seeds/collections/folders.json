@@ -12521,648 +12521,2472 @@
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "1",
-					"table": "Level "
-				}
-			}
+			"level": "1",
+			"versions": "a"
 		},
-		"folderID": "F0c09b0447497e6ce7016e593f26fb860526c47705e4823fe8e31079b8dc20814",
+		"folderID": "F122233e24f8b841183b974b0171db3931b0ea237fe7e9be7e90331220f94c3a2",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 1",
+		"title": "Level 1 (a)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "10",
-					"table": "Level "
-				}
-			}
+			"level": "1",
+			"versions": "a20"
 		},
-		"folderID": "F0c9a877c6bedb79a8a49edfc353b1051f85752b57c91a2ae6d12bed0a3196417",
+		"folderID": "F9cfb5fc3b40592366d252c9c52a66bb965076cf14905ae48c2d2868a2850cc12",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 10",
+		"title": "Level 1 (a20)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "11",
-					"table": "Level "
-				}
-			}
+			"level": "1",
+			"versions": "a20plus"
 		},
-		"folderID": "F520973c7d85f0d197862a897b1a81fc931080e185f6b098be2028ba22c492fc7",
+		"folderID": "Fc5135f25fab0e9ec929ec5a3518da32f28998d7eaac9bd310ef60187fcc0eb99",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 11",
+		"title": "Level 1 (a20plus)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "12",
-					"table": "Level "
-				}
-			}
+			"level": "1",
+			"versions": "a3"
 		},
-		"folderID": "Fc5acf2723ed0ae888f129be0b77d5414a6fab3420eb5e02d5eb3c08a3fa49741",
+		"folderID": "F3087a1086b380d2bb05bd1287c6fb7cd0ec6e4ab7390cac360e8fa8db0bc2184",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 12",
+		"title": "Level 1 (a3)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "13",
-					"table": "Level "
-				}
-			}
+			"level": "1",
+			"versions": "konaste"
 		},
-		"folderID": "F80d3a7b581735e1b0c8f1669937fad455ec66b34f3c55457278f4cfd36b1c115",
+		"folderID": "F32672e622d8b6ae5d3c41731aa15d53fe2dd7d07cc128b1721e14facfc5907f3",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 13",
+		"title": "Level 1 (konaste)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "14",
-					"table": "Level "
-				}
-			}
+			"level": "10",
+			"versions": "a"
 		},
-		"folderID": "Ff975e532c7589db66cc619384cf45ee1d9a14d775be4efd2c9253ba8630b13ed",
+		"folderID": "F093e4dbdc1c3e69751576cdc6eb80e99faf2ed59e871650745248daf5e4fd0de",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 14",
+		"title": "Level 10 (a)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "15",
-					"table": "Level "
-				}
-			}
+			"level": "10",
+			"versions": "a20"
 		},
-		"folderID": "Fcdd639a6c30acc4703b98ba6ee87613229bfe726c0f5a3438ce913b52c68e537",
+		"folderID": "Fdbaaa3a3962160e35d47a4c28d4bacce81163e86c627f512b704a4601565ff27",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 15",
+		"title": "Level 10 (a20)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "16",
-					"table": "Level "
-				}
-			}
+			"level": "10",
+			"versions": "a20plus"
 		},
-		"folderID": "F408f16670afeff015eb0d8f1c149013a3cb2b29bd474bc676e5993ca25b312cd",
+		"folderID": "Fd4e7d30407a052044e31330bba25af71cf6649211e3783f2be3ccb0a6c983a17",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 16",
+		"title": "Level 10 (a20plus)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "17",
-					"table": "Level "
-				}
-			}
+			"level": "10",
+			"versions": "a3"
 		},
-		"folderID": "Fdde615d765569b32535711ef67fd85dde59c31999dda1f48176529f03b6e5de3",
+		"folderID": "Fe3e323c84ec7dca96d941ad20d2e9c97e9b203cd8d41045d4455afb1475be609",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 17",
+		"title": "Level 10 (a3)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "18",
-					"table": "Level "
-				}
-			}
+			"level": "10",
+			"versions": "konaste"
 		},
-		"folderID": "F9934345ea33451bd21be4151a5ddc130aa735960e8bf9ff66a060e42819f3888",
+		"folderID": "Fc2e213917d62243888ae885989c07bfcc0a012f3293e5191be867d079927af16",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 18",
+		"title": "Level 10 (konaste)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "19",
-					"table": "Level "
-				}
-			}
+			"level": "11",
+			"versions": "a"
 		},
-		"folderID": "Fc6d420869984a20cc8954cff43df46c49b0e2c06998b94e3226655bf13c75d3c",
+		"folderID": "F56da82bc6a5eed8657d26d7a23e11ad6f94b11bfd0225984efe40d7f05ee07d4",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 19",
+		"title": "Level 11 (a)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "2",
-					"table": "Level "
-				}
-			}
+			"level": "11",
+			"versions": "a20"
 		},
-		"folderID": "F1e62ed269483936c348678b307c649bf674e0d3a3735d9635ed43dae79caa7c0",
+		"folderID": "Fa975a4e6a0ec3aedfa805a5565c93f7db3e48dc9ed8dd9a23c92c99cc0009344",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 2",
+		"title": "Level 11 (a20)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "3",
-					"table": "Level "
-				}
-			}
+			"level": "11",
+			"versions": "a20plus"
 		},
-		"folderID": "F848646e7a6689964ef7ca99672e32d41560dd4e50b49a2247e800fbff1958323",
+		"folderID": "F139f7c1829cdedd07251a2cc85f19cb86b1564fe0d476ab711d30014795cb00d",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 3",
+		"title": "Level 11 (a20plus)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "4",
-					"table": "Level "
-				}
-			}
+			"level": "11",
+			"versions": "a3"
 		},
-		"folderID": "F83239573a4f29a9ac847425afba58cf41fc43bc74d415daf5826611936b59da2",
+		"folderID": "F64d4f33b3253b0b953b95d1683fa2dd3131bc7e85f8eda1005dba41fc24a1e61",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 4",
+		"title": "Level 11 (a3)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "5",
-					"table": "Level "
-				}
-			}
+			"level": "11",
+			"versions": "konaste"
 		},
-		"folderID": "F37df248ab2f58f732f24940293c5e91c4aaf5e64344d5fb1cd192a9e4b0d8d45",
+		"folderID": "F4724371eaadf8ec6ea6256a3c73c3642e90a5af4d54abcc08379834c4722e68b",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 5",
+		"title": "Level 11 (konaste)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "6",
-					"table": "Level "
-				}
-			}
+			"level": "12",
+			"versions": "a"
 		},
-		"folderID": "F1e794bc73e08cd2843130b7a9df76877941b3a4d2789ec76c2c3bab878c9f43d",
+		"folderID": "F1ecb8ece5c332e9f0f2b2ed07fa1052ccf27f185f29350916c332a9f7794f647",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 6",
+		"title": "Level 12 (a)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "7",
-					"table": "Level "
-				}
-			}
+			"level": "12",
+			"versions": "a20"
 		},
-		"folderID": "Fb59f8945c3d7b0eaa113c9899e9ae55d5a7ad7e157d374c0d9a74235287d4794",
+		"folderID": "F5ba0a35c7a0c5808b497034c872ffcb6a6e0fecf890566e1112ebe69732dc199",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 7",
+		"title": "Level 12 (a20)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "8",
-					"table": "Level "
-				}
-			}
+			"level": "12",
+			"versions": "a20plus"
 		},
-		"folderID": "F2463f6bc988f960f2b6e822187805a35b7c66412e9cfecf2ba0f81c2a9aacebc",
+		"folderID": "F676cc7bf0fd76d52ed7db69a3fc4949e09f18f4f543717d5b94a8ae01bd64b9b",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 8",
+		"title": "Level 12 (a20plus)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "9",
-					"table": "Level "
-				}
-			}
+			"level": "12",
+			"versions": "a3"
 		},
-		"folderID": "F5efd26d77d73dc52c934ff7e97b554de63e20ead805525069bc4993cf4d50ffb",
+		"folderID": "F031c7211015c785822790ae412b3991821077636f9c62b4fd0d698678998c2c3",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 9",
+		"title": "Level 12 (a3)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "1",
-					"table": "Level "
-				}
-			}
+			"level": "12",
+			"versions": "konaste"
 		},
-		"folderID": "F298d0411534d7b38b7cbca14a43a1e4de71f30d73a5bdbb7f677b30fcc6e6cc2",
+		"folderID": "Fde33c443872eaa900ea76da4f4fd13d2725a3caebd838f0368463721dc840e43",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 1",
+		"title": "Level 12 (konaste)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "10",
-					"table": "Level "
-				}
-			}
+			"level": "13",
+			"versions": "a"
 		},
-		"folderID": "Ff99e411eb0e3dbaa2dab8e52dda4ef35ccc327c788140c10c2d2a286c55cdd46",
+		"folderID": "Fe8827b7bfad1bcbc305cc2d73a75db9024045141492ee4330d7d8966fc4ed5d7",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 10",
+		"title": "Level 13 (a)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "11",
-					"table": "Level "
-				}
-			}
+			"level": "13",
+			"versions": "a20"
 		},
-		"folderID": "F5437f25765ead737606c7fd9042163a0063532c125fe17d9e77d113b7d1ac7ef",
+		"folderID": "Fbf188a3ec95be6b503e878e32bc7a4393770e2b4804d56a4ab9bd37d536e3bb7",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 11",
+		"title": "Level 13 (a20)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "12",
-					"table": "Level "
-				}
-			}
+			"level": "13",
+			"versions": "a20plus"
 		},
-		"folderID": "F9ad83b2f07753c7fbebee715cbaddd0e444bf6c808e4b26fdb8fcd42a46bab92",
+		"folderID": "F69183f1b184c4f9a90879efe0b65de9aecfd54b08e644c21fb64e8e1f0f24a22",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 12",
+		"title": "Level 13 (a20plus)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "13",
-					"table": "Level "
-				}
-			}
+			"level": "13",
+			"versions": "a3"
 		},
-		"folderID": "Fe80638cfba7c94e1dbf7c6a8e094ee1b771f886f9b083b5d9ed6d89fbe24290d",
+		"folderID": "F056062b64da89c352a477d6a2c5aec69458e975baf94ed77940b0fcba5dd81d8",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 13",
+		"title": "Level 13 (a3)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "14",
-					"table": "Level "
-				}
-			}
+			"level": "13",
+			"versions": "konaste"
 		},
-		"folderID": "F5a72b2268e14987eec04b9bd471740109354a683151443469ad44cada067fb12",
+		"folderID": "F3563e7c30b943a68d8b11b739734d2a40f24e0b53259a0cf2e86f6a696abe2cb",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 14",
+		"title": "Level 13 (konaste)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "15",
-					"table": "Level "
-				}
-			}
+			"level": "14",
+			"versions": "a"
 		},
-		"folderID": "F8a04baa09fb2466d8f5c45d3223a4fd75dd2cff80b09dd3db87d54bee98ee49c",
+		"folderID": "F5eba15c745577b28db1aa1bd6beab0d4698aafe794623f9107c42440998fc896",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 15",
+		"title": "Level 14 (a)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "16",
-					"table": "Level "
-				}
-			}
+			"level": "14",
+			"versions": "a20"
 		},
-		"folderID": "F50bad5092469b33ef153acb28aa545a7f5cd0b6ff699ef5e6145667f4377508d",
+		"folderID": "F8749f635eb2d174af2f8e190180164199e6d511ee20262eff0eed0fafe8d91c2",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 16",
+		"title": "Level 14 (a20)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "17",
-					"table": "Level "
-				}
-			}
+			"level": "14",
+			"versions": "a20plus"
 		},
-		"folderID": "F0d6274231e5060bb8f1b4f72f3e0b132825629bbc9a193b3fe8781aa10c628e3",
+		"folderID": "F2624a1f475df5b6ed1a2a4aaea524e8129feaeb6595c024348b3ff983f9f14f0",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 17",
+		"title": "Level 14 (a20plus)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "18",
-					"table": "Level "
-				}
-			}
+			"level": "14",
+			"versions": "a3"
 		},
-		"folderID": "Ffb7d33d91fc0ab5c613dd200a51d595fca03d9252f5c10d0a55952c769aeae66",
+		"folderID": "F433ab1c5349310c9bb14a149d3f13362736af411e8304d8362dc9f9d321d8c92",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 18",
+		"title": "Level 14 (a3)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "19",
-					"table": "Level "
-				}
-			}
+			"level": "14",
+			"versions": "konaste"
 		},
-		"folderID": "F210ff4a4b62852c199717f07532d74371db48ac8922fec0496b8f97813d8c1c7",
+		"folderID": "Fe8a2ff1ac201a7d43749921e875ae53d451122a8ddd999ccb918d6c70c7eb605",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 19",
+		"title": "Level 14 (konaste)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "2",
-					"table": "Level "
-				}
-			}
+			"level": "15",
+			"versions": "a"
 		},
-		"folderID": "F2f3c320dcb69a9810f88f1bef0ec357b6f25d1200dab5daea6c7d88b4021f0ea",
+		"folderID": "F2af784eea48de13a809f94739ae93ef8dfe0394c611cdcbc6b87a77516954d7d",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 2",
+		"title": "Level 15 (a)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "3",
-					"table": "Level "
-				}
-			}
+			"level": "15",
+			"versions": "a20"
 		},
-		"folderID": "F0f6e04147a238bb365fa78d8b45d53f8fb7af3b2b0084c0e7630512c6fb28f94",
+		"folderID": "F9b22bc418bba915a62e5344f329e616fb98a6f136af9e69306edf927fd8c90af",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 3",
+		"title": "Level 15 (a20)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "4",
-					"table": "Level "
-				}
-			}
+			"level": "15",
+			"versions": "a20plus"
 		},
-		"folderID": "F374c59150d51b54d8096c9873095e4e425d615f35ed88bb03ff1f8c939dcf345",
+		"folderID": "F4289ed998762d10518c4a8e13889d986b422b531e6fd7dffc78ae911c6fb1189",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 4",
+		"title": "Level 15 (a20plus)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "5",
-					"table": "Level "
-				}
-			}
+			"level": "15",
+			"versions": "a3"
 		},
-		"folderID": "F319b480a6607d528b8a630d5a08904c01b5d1357e5c80a23bab5e03cb2d8d6fa",
+		"folderID": "F545f9be1276c0282dcc9763d17f61bc361fcfc3981aaa5ebc010932a7640e6e0",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 5",
+		"title": "Level 15 (a3)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "6",
-					"table": "Level "
-				}
-			}
+			"level": "15",
+			"versions": "konaste"
 		},
-		"folderID": "F8f4111b72204384257bfd6acd615dd50e28414348efc773a28073fed4165c71f",
+		"folderID": "F256322cb549b8a9a8fdb8a22cebf0c31a4b549f982317829f5d93ab623a9cd90",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 6",
+		"title": "Level 15 (konaste)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "7",
-					"table": "Level "
-				}
-			}
+			"level": "16",
+			"versions": "a"
 		},
-		"folderID": "F20ee236c6cb25263eac9af9c9d873b741499778995e3f6ca97a688410ee948b2",
+		"folderID": "F5c23e6fca61f2d37e8c815f96e05c6f1d2d66efd9883b6b3b460a1bc3a54b06f",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 7",
+		"title": "Level 16 (a)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "8",
-					"table": "Level "
-				}
-			}
+			"level": "16",
+			"versions": "a20"
 		},
-		"folderID": "F35e045b4f2b46bf783ff17ab67e2e834f36561cc7eb7ffeeba2a69e5538bcb01",
+		"folderID": "F20c7307be73871e15100e5dfcb327cc17800d3e7b920a9639484eb6c764d3193",
 		"game": "ddr",
 		"inactive": false,
-		"playtype": "SP",
+		"playtype": "DP",
 		"searchTerms": [],
-		"title": "Level 8",
+		"title": "Level 16 (a20)",
 		"type": "charts"
 	},
 	{
 		"data": {
-			"data¬tableFolders": {
-				"~elemMatch": {
-					"level": "9",
-					"table": "Level "
-				}
-			}
+			"level": "16",
+			"versions": "a20plus"
 		},
-		"folderID": "F5379a63559ac7925560c02e98fc8a32c4a8210c989203cb8deaac01120c017b0",
+		"folderID": "F407fc4fba6b80efd671109ad6fb25d2bd96b538c1bef2893296a34e8fe6409f8",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 16 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "16",
+			"versions": "a3"
+		},
+		"folderID": "Fa1ce54cd462d8902f7a28c428e6e955f8c3ec2f6217b01e55e65419b38e76baa",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 16 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "16",
+			"versions": "konaste"
+		},
+		"folderID": "Fc3f43119f88ad3cc8d61f96c72447aef8301e2ec887e06f059181e1d840d302d",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 16 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "17",
+			"versions": "a"
+		},
+		"folderID": "F30c746df3f8cd925a69a047be6813219f46ccaf1345bb7cd4eded4263ab43257",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 17 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "17",
+			"versions": "a20"
+		},
+		"folderID": "Ffaa25b4f3c96db8dcab8a19cad510ac414c26aff2b20e857fcf03a0cbf48840e",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 17 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "17",
+			"versions": "a20plus"
+		},
+		"folderID": "Fdef22cc054e094cd24c53513d7582369409efa1fdd8a3cd96bba7f2e0fbced55",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 17 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "17",
+			"versions": "a3"
+		},
+		"folderID": "F4d94ab6211c3d1a8beefbe4b751ec5e71c1b0eb115b2633520c67ef8770d74a8",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 17 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "17",
+			"versions": "konaste"
+		},
+		"folderID": "F4032128e44c5dc9fb4e3a36ea638ff153318f8e87519d5117132d477d7898f18",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 17 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "18",
+			"versions": "a"
+		},
+		"folderID": "F62b471d44e26dd5ef71ad1c7753d6ae7306f117a8f22d53c56d550f32506658c",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 18 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "18",
+			"versions": "a20"
+		},
+		"folderID": "Ff771880a2e26ebc7be8b64eb87205b67c6f547d17d8afa440ad2a807e99eec13",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 18 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "18",
+			"versions": "a20plus"
+		},
+		"folderID": "F26f784b26e2247c195a8a4d55a6602f173dc62d6dbdca00cbec9d97b3fb77ffc",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 18 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "18",
+			"versions": "a3"
+		},
+		"folderID": "Fcaf066fdb5630578635b03950094d8c36d8f10816a06a2683bc32b5d5e64c122",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 18 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "18",
+			"versions": "konaste"
+		},
+		"folderID": "Fabab243c8f21e7c9412fa30a1cc90cd88564ada75511c07d6bffc2060018986d",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 18 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "19",
+			"versions": "a"
+		},
+		"folderID": "F26574862eed021ea575abbc27fe396fb23a5f894b7e164d88f2ad2e5bfc0674d",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 19 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "19",
+			"versions": "a20"
+		},
+		"folderID": "F975eab679523200f7092ac3ad9559b55af31eb37f86d4d50d4d3fe4a15aef5b1",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 19 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "19",
+			"versions": "a20plus"
+		},
+		"folderID": "F41f6821b43a4446b380e5a27b4088b57c92b5e5bf6bc46509ff20c7906b5c21a",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 19 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "19",
+			"versions": "a3"
+		},
+		"folderID": "Ffd863b43d6d4995a6be3bcb3c631ef93324751b1464d7c611894332b91f610e6",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 19 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "19",
+			"versions": "konaste"
+		},
+		"folderID": "F8d43d6e58c3a5fe5b136c40e949229f25beb8d18502db2f531b806a0d2d3c924",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 19 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "a"
+		},
+		"folderID": "Fd20c45fa1d63f4145edf24b8f0b006f18e309f2af84677653430b0182912d2e5",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 2 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "a20"
+		},
+		"folderID": "Fac6c9a7c503835a797424e6dba2bd721aa8e4322258e9e8660cf909ce94c1927",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 2 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "a20plus"
+		},
+		"folderID": "F079d2f1831ade00be1ec4e9f4fa4d2d4d6ff951f0e5afffc83ad28bdd8fb4be3",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 2 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "a3"
+		},
+		"folderID": "F8244bb1b94108a0e1dded145a412afaead4f3a7bdcb0c065ccde792c32e954d5",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 2 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "konaste"
+		},
+		"folderID": "F7ad9ebf58e146d4c464232633a2445bcb66d7a1941802670bc10403508187574",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 2 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "a"
+		},
+		"folderID": "Fc78aa149ae561f31b5869a761562978e7738f4059151fce388c35066b7c44af5",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 3 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "a20"
+		},
+		"folderID": "F3f54774013e6b9dbb703a11552fd02af588456576fd11cda74ac8da9c600f2c4",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 3 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "a20plus"
+		},
+		"folderID": "F59c8b5653050b86b06b2f376f500d9bf8dea53a20dcf20a13574f37b5d1c7319",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 3 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "a3"
+		},
+		"folderID": "F6f5f09306126c01a2b78668399abfb3b76ece7887cc85f2f1e316b23db1e5c61",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 3 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "konaste"
+		},
+		"folderID": "F5ca4b7b5c697f53a38e6037f887cb1f682e1ab57066d17fcf602e061633822b6",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 3 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "a"
+		},
+		"folderID": "Fa944c29e29ef20810d14f536af49078f4af622337a779c19bbf127c7e8b24d4d",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 4 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "a20"
+		},
+		"folderID": "Fcc311feadbb193b25a42c5d8b1bf282b889342542c1494332b1ecb8b313b7f5e",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 4 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "a20plus"
+		},
+		"folderID": "Fbfc1fa19afca65bc146b2d72850f0be013f8772ff41849d69c60082f70d625e7",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 4 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "a3"
+		},
+		"folderID": "F59aee925ecf6fc6b92ab57a9c4da9bdfd96b8f9fef4a63fd1919ab1995160590",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 4 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "konaste"
+		},
+		"folderID": "F7c5bb58ca192959792f2ac6393e3eb134fe5611c617fdc204a9360fa5076fb75",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 4 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "a"
+		},
+		"folderID": "Fb20026f48b2bac0440e661845cbc92d732cec76b1b13a4065524c771550f099a",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 5 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "a20"
+		},
+		"folderID": "F8329c6d632a94cb8bb4716b87044c85f3b97d22f6f1f2caed033d23f87a134f7",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 5 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "a20plus"
+		},
+		"folderID": "F9155c45256b7682c3a2f8eb46c30333d9379c4c7d7b5345c64a07139a1c11ad7",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 5 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "a3"
+		},
+		"folderID": "F6ad596460698a99f327c8fce36c807eede6660e4999e472e4cfd48bc0f387ce6",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 5 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "konaste"
+		},
+		"folderID": "F7763bd432aae7cf40b4d792ca3d4e34518c3aab9908005e9d74aa5de971cab26",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 5 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "a"
+		},
+		"folderID": "Fb71635bc5735cdeb29d7e540c649513c0f7cd82a50a8faa56cdca3b79ae9a203",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 6 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "a20"
+		},
+		"folderID": "F45f7166a1fe726136f82850c91c04af8057c8d18c8c9ba644473bdf9758b6160",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 6 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "a20plus"
+		},
+		"folderID": "F4598e38f9bbb4559973dfd6918f1a7efa8b777c6ebde16332cffa8af5758b170",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 6 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "a3"
+		},
+		"folderID": "Fea26c9c3a64c01d53aaccee9bdaa1d1724b441cb3d09c1c7943b7dd3a10ceca0",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 6 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "konaste"
+		},
+		"folderID": "Fbe7bcdaba4f40ef50b4f3545cb7224c7ce173b3fff1b3ce367654f9ef37e6449",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 6 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "a"
+		},
+		"folderID": "F5bdd32061c766ee957ae001e2821f64ce767780bd431a578c491c9634cd3e672",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 7 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "a20"
+		},
+		"folderID": "F304107d1e6a9778e59e505e748185e97010e4896c7d93dc85759c86d8466258c",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 7 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "a20plus"
+		},
+		"folderID": "F5e16a5a72daa435475488df7ef8e4b2b7e04bfb3aed6544205c1ceb284d7a96e",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 7 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "a3"
+		},
+		"folderID": "Ffc22b6c292946b47e1c08def5f891b29427609d25a12528a2e33562abd6c6a54",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 7 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "konaste"
+		},
+		"folderID": "Fc94fde141bb74746c3972041db3981e291c6c9e5aff6ba7a448c84a4e70e74e9",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 7 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "a"
+		},
+		"folderID": "F4dcbb6212d40b2f1cd0f090f11bc6a175f46eb37fb3a514b0c60794f54c77ba8",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 8 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "a20"
+		},
+		"folderID": "F3c369334efdcf5ba7b346db437b03d707ae2578e44b892c13f05a8fb750856d7",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 8 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "a20plus"
+		},
+		"folderID": "F64a5254c7fa94344c54ca0af9dcbe4bd98bb1c3003f695ef7fa0f4926b29a3e2",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 8 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "a3"
+		},
+		"folderID": "F7bdeee34ae6682575bea98cfb8d729269779cb842f0ddd35ee6c544d0be1870c",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 8 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "konaste"
+		},
+		"folderID": "Fd4168eb3f1cf05815de85345ab857c414b8cb74c478f6dc8411a60993cff306d",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 8 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "a"
+		},
+		"folderID": "F947e30f7455f784673aa14ed3bc026fa32098fff3d09ac343ac5419b68f7473a",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 9 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "a20"
+		},
+		"folderID": "F44512013d26887815d0d23445608d5bc270d560ea61dfc7a55765872daf7b0f0",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 9 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "a20plus"
+		},
+		"folderID": "Ff0c23b192f6c2ba97fde560f6124fce9bd1aa1687dd1375de53147e8c1e95a30",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 9 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "a3"
+		},
+		"folderID": "Fde9f6d9165de06af01f05ffb0b4cc2f6cc798e7c7081325dd9a92e738ddbd499",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 9 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "konaste"
+		},
+		"folderID": "F102b21d52b6f0b079e279ca6485dca33d39e26aaa2d698fe207fafbe81d9a716",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 9 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
+			"versions": "a"
+		},
+		"folderID": "F75f576a0fd1d015935843d923083f940ef92b684e0ece6436d30eaff371dde16",
 		"game": "ddr",
 		"inactive": false,
 		"playtype": "SP",
 		"searchTerms": [],
-		"title": "Level 9",
+		"title": "Level 1 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
+			"versions": "a20"
+		},
+		"folderID": "Fbd426239e8fd94b9ed6d54b50ac1fe2d1f39f26926b27d91ebc5b76cb0b1dc87",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 1 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
+			"versions": "a20plus"
+		},
+		"folderID": "Fc1feb10adcd7cbb29bce81db3620f5df81b731b771b322a0d6e5b19fd87a577c",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 1 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
+			"versions": "a3"
+		},
+		"folderID": "Fe2ebd0daed8a85df1dc6ccfd48d603f26c455e05ffeebd9a6c784273e001af37",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 1 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
+			"versions": "konaste"
+		},
+		"folderID": "Fec0865e5706b5356f2797e4bb51bc099df1022489bed35ca6c87c395281353c7",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 1 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "a"
+		},
+		"folderID": "F290db9b1a25430229fed8044dba14e3425cb026264024ecdac2e223aea5db871",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 10 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "a20"
+		},
+		"folderID": "Fb57ec3d31ce4c0764746dcb873fd128d6534926b5685484acc7f6e56c34a1431",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 10 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "a20plus"
+		},
+		"folderID": "F354a2a5309347fa26136b7fff77859fa7d039d563b4cf8762b63a82d63fb59c0",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 10 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "a3"
+		},
+		"folderID": "F3b54ced0bc526b3abd9ec54bb3748106bf510e16e22cfc2c77395d361cd1bfac",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 10 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "konaste"
+		},
+		"folderID": "F5aa66ceae1366b2fe2e6cf3fb72e1406cdd8633b99f0c223467f7736706cf09f",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 10 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "a"
+		},
+		"folderID": "Fc6c4674896e52c2b8fd910da6dd48aee5c7ba92923bb2dc3faa1694b0994acdd",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 11 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "a20"
+		},
+		"folderID": "F85ca9eba3da38d16f2ef38ae6f5d5b70e48c55da661c1bace69778c62c9d9fd5",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 11 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "a20plus"
+		},
+		"folderID": "Fe1a853471db894efb78687fb0e848d69faf7a1105a2cb62568e563c73e239ba3",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 11 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "a3"
+		},
+		"folderID": "Fec33d26ca14fe19b7f1e230f89b4e407d249bdc6cfff9e8d0bcee2d8fdcdd040",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 11 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "konaste"
+		},
+		"folderID": "F45a73830ba0c4f6807de163e1d9e40a0ce4ff75e7e08e7de4a31c2d8fc0542ed",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 11 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "a"
+		},
+		"folderID": "Faa2d4922ed6e35f42c0b0c17d14f24d7ce65225102d47ea3094f47e13e499352",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 12 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "a20"
+		},
+		"folderID": "F4fd192c9c844f85a24b920c89cab852210e84df39fdc05f15832f3d84bfeed74",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 12 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "a20plus"
+		},
+		"folderID": "F28a030a2eb0f5f5c46ee9d4f48dd2d56601517644ec94e5195c422ee81a2f713",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 12 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "a3"
+		},
+		"folderID": "F35ea43191dc0393e3dd485542895df4c1762d1e4f1061d999cc4c15704df4175",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 12 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "konaste"
+		},
+		"folderID": "Fb9e0b01c0366f535263e774e942e6977e5fec20a89d12e20c58628f3af13e3f7",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 12 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
+			"versions": "a"
+		},
+		"folderID": "F4a9930b1701446ed8033c544861690fe4d55c47d86931b0d761ea5e5f840ac4c",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 13 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
+			"versions": "a20"
+		},
+		"folderID": "F78cd2a32010bb7c65a8512ec0a2c7af0f0b472f522eedcb84687c817a3b6fe39",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 13 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
+			"versions": "a20plus"
+		},
+		"folderID": "F12b61a24df5e564b4e03d954dd9b7ff6fe2fac8b93e2acf093d1980408826cb4",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 13 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
+			"versions": "a3"
+		},
+		"folderID": "F6759e239397a497fff2ad881e48b35b302690c88ffd1b71c23f953b19f916778",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 13 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
+			"versions": "konaste"
+		},
+		"folderID": "F41a0db4a7e8ee66aa233f979d88a38d55a4ce46e70623be790355d428da41a87",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 13 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
+			"versions": "a"
+		},
+		"folderID": "F733db9930230804b3eeeafc934a7232e5428cb6bb2790582d1f23de014815ea4",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 14 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
+			"versions": "a20"
+		},
+		"folderID": "F9e7a5a198434e1656bca927bf13eace2599f6cc2db316220043c90ff4a8dcadf",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 14 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
+			"versions": "a20plus"
+		},
+		"folderID": "Fef80dbd4112b895f8cd12ad5e7500017566ad8eb49da44c2251e0fb52b541261",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 14 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
+			"versions": "a3"
+		},
+		"folderID": "Fef12345762762537575586aae976bbecc8bf9ffa7ddce5ddce1a29402889ed88",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 14 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
+			"versions": "konaste"
+		},
+		"folderID": "F5fa26b3aa1bfa8749ccdcd770983159bce231e300074c9ac96f82fe311aff771",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 14 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
+			"versions": "a"
+		},
+		"folderID": "F9e52a35e16df5c57195f415c92f3811e53d4fd8106cf9bcc9f63ad529a314f52",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 15 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
+			"versions": "a20"
+		},
+		"folderID": "F467d665a6f614fd479bab54e83ffb1e0d62fcdb4d8696cdbc95c238415ea06aa",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 15 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
+			"versions": "a20plus"
+		},
+		"folderID": "F63a1f95eec8a4915f1db3a9d1405948cf05498b42b077f1a7ce1f76d678961fa",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 15 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
+			"versions": "a3"
+		},
+		"folderID": "Fd6eb0b58afb220174ca65791149c429c439e87b2ab90f60a6334ac8cc6002fd7",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 15 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
+			"versions": "konaste"
+		},
+		"folderID": "F6510f706100ca8fadf66d2cef64f746aca0d576cc4317929718cec9e7e581297",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 15 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "16",
+			"versions": "a"
+		},
+		"folderID": "F58302830c25e1b44070739f98ea59e89e21f3d58d3b38788c0db2fd076460125",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 16 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "16",
+			"versions": "a20"
+		},
+		"folderID": "F7c4c087b8cb1fcea8d896b78d0567d12ee60cbad9c29c099c48c6f7ee71d32fa",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 16 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "16",
+			"versions": "a20plus"
+		},
+		"folderID": "Fd7c85e392b4648a6bd042875e73e36e86ea410327d98d7146e6bfdb139c6e766",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 16 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "16",
+			"versions": "a3"
+		},
+		"folderID": "F655ff75b1b52195e560497b0be721b8d6077faeda27784613daad7d163f9c47c",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 16 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "16",
+			"versions": "konaste"
+		},
+		"folderID": "F2e5d4140a7809d5b098f2513fe69c817d08e687f989d045d119df4a0227f70ab",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 16 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "17",
+			"versions": "a"
+		},
+		"folderID": "F303d6396f95e0f6edfbd7262c89abb01a49c21e46e92c9a7d14bd78d739d4075",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 17 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "17",
+			"versions": "a20"
+		},
+		"folderID": "F62e6546b97c96bfc0c86b7db5059a490f6e42eb0037651580bd6342b212dfac7",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 17 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "17",
+			"versions": "a20plus"
+		},
+		"folderID": "Fa85f8d90db33f480bdda8491e5f9462aab4e8ca1cd3dc93de7346c6b2e86263e",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 17 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "17",
+			"versions": "a3"
+		},
+		"folderID": "F2defd0a78ed6c63bb6b91f36b672698e79c250b1b80879be86242d1fed723a94",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 17 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "17",
+			"versions": "konaste"
+		},
+		"folderID": "Fbdc1303b1a70405a777eb2b2ae0e1a55298101d7f05059e05352b5805aba8c56",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 17 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "18",
+			"versions": "a"
+		},
+		"folderID": "F2a51a68d8c5c9e536da79a28c3fdb7160cfe4f3349fcbc87268d7e1e67faf4d4",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 18 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "18",
+			"versions": "a20"
+		},
+		"folderID": "F6bf85dde4849ce7a7c96c2ec57e8a12908646011ff16e079398dd44ef757abdc",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 18 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "18",
+			"versions": "a20plus"
+		},
+		"folderID": "Ff6a8597ccaa139ecb1d7dc8f0e41d824e79afff3d651f88614f676f71bf060b6",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 18 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "18",
+			"versions": "a3"
+		},
+		"folderID": "F0d217a116adb2d4c2421f3f08a752f20203594a788481cd81f7f9d751c8dd3cf",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 18 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "18",
+			"versions": "konaste"
+		},
+		"folderID": "F111d5eaa60b87a9f4ee279d6bde4b8b207165096acdb95e6ac2be263b272cd47",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 18 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "19",
+			"versions": "a"
+		},
+		"folderID": "F8f89630c7f593a97c241bdf758903664e2dd6f0a4737ec34186f4d49a8c49563",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 19 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "19",
+			"versions": "a20"
+		},
+		"folderID": "Fac84915cfeeb206a3758c83d53c63d51bb4b0061d9fe597b72cae4c5f6317675",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 19 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "19",
+			"versions": "a20plus"
+		},
+		"folderID": "F508818f77f6e173e548b4bcad0a0ade1449de07184a4cb2090a643bf7fb5e82e",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 19 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "19",
+			"versions": "a3"
+		},
+		"folderID": "Fc82f934fdc932b46b0aed8702aaabf50d31fd6705f488358db828962be184c47",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 19 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "19",
+			"versions": "konaste"
+		},
+		"folderID": "F6441f83032bd6fced4a635ffa8a1301c8e9d4b83de187ef6c8caa6cf006259ab",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 19 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "a"
+		},
+		"folderID": "F942a1ea9c928dda50133aa28d43808cef7939dd7cb274b5193982dd0d81dd4dd",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 2 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "a20"
+		},
+		"folderID": "Fbdbe830277086bf4b0e0b6b9ab36956c36ee88037a91eac02253e19a2930dcb4",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 2 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "a20plus"
+		},
+		"folderID": "F29dc320eec48459c9201d1a9666a13fa669ca2bfefb6b0e584dde61e850de69e",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 2 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "a3"
+		},
+		"folderID": "F3ae32eb5ec63ddc5cd41d46afb5b917ab211f2356d4ee425fcf1ece3b37bcd0c",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 2 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "konaste"
+		},
+		"folderID": "F1695b73c020bd79d4443d370efdb9564a9d21076d370c58d512b20da831a42b1",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 2 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "a"
+		},
+		"folderID": "Fcb801a5a69685f851ac1e179a39557b5427b35ac1d6995dc4abf67632ed903b2",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 3 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "a20"
+		},
+		"folderID": "F516050b95fd07f322770abccaa0b3476dd6d6fe8ca080503686d9fb2b7ff4ae0",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 3 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "a20plus"
+		},
+		"folderID": "Fc77523d545e239787dca9dd6aaa04de3eac516856a7f16f0369a7e93685bf5ba",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 3 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "a3"
+		},
+		"folderID": "Fa242a02a2075e5b119a8384595e1869d6f5e200dac23c07723a9f5144ca46d5a",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 3 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "konaste"
+		},
+		"folderID": "F3059622c5fe9ead4a598ff22becc16dcc68472d8735e520a225f9fa8267cf246",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 3 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "a"
+		},
+		"folderID": "Fbd1ad6822b14321c739de69d81e830d133315a5e5ed01fe7eb8b53ca5d7eb167",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 4 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "a20"
+		},
+		"folderID": "Fabad5cd4ecfa2540000ee0ac820b592c0282b7c2583be946922b0618988ce6f5",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 4 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "a20plus"
+		},
+		"folderID": "F55aa665b8c525d114c4daf3ac9f4be6013f41aef36b72017664cc7f9c84f5992",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 4 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "a3"
+		},
+		"folderID": "Ffc3a11473d1c711c2aa1177427e0ddc800f66446f5fd65c868d0df0549a611da",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 4 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "konaste"
+		},
+		"folderID": "F892e11d06e8ad5973d79f7d0131b00b7895aa76d590a21f3efc5bf1abe5f09f6",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 4 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "a"
+		},
+		"folderID": "F385293fd208b2390af1dd12eaf4d7979266c161195cd1f04d55495b24c9f6b26",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 5 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "a20"
+		},
+		"folderID": "F356eafa4794f629335da17bfc8a63d2fa39beb9187e9fba6e469fbe3023c9d53",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 5 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "a20plus"
+		},
+		"folderID": "Fd12ba80de32539d7e285db9e8fd8db046e0d10039c12e8d63188e712c3d9546d",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 5 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "a3"
+		},
+		"folderID": "F81f3a6426b91472da606712565af745b3ac1936f0bad921a778a659a0663b99b",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 5 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "konaste"
+		},
+		"folderID": "F6e8ac6004d0d1d32181d5a5d1541bb16f69758f55452cb5ccef8484c994edb22",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 5 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "a"
+		},
+		"folderID": "F914e31e8a530b2996a3c371d06a4298a4d2f12d076f2f4af96c4a0e3f157c228",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 6 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "a20"
+		},
+		"folderID": "F2a2e47b5ad91ff8a7acf4378d5179fb215e1fd74273b3c51d14e0a0379b376c9",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 6 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "a20plus"
+		},
+		"folderID": "Fff2f537b331b312e4aa74b985dae017d02619c1f4a0bfd37be27a1eb69a4d16a",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 6 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "a3"
+		},
+		"folderID": "Fde54a68769142fb14a2e51e29a138f55a8b137317182e16557536f7959ab97d3",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 6 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "konaste"
+		},
+		"folderID": "Ff0041be5b1ed5e0bed3f75162c86525e947cfddc0cc5771890058742af5cc4d8",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 6 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "a"
+		},
+		"folderID": "F6ddca1fe8468dda1e22a9e028fd9eb518cb1661cece3cba7de6869350dcbf1e8",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 7 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "a20"
+		},
+		"folderID": "Fb78941ab7057011e14e5037cc85a07b0a6f9477b51b9c7cfac8aeaaa57ca10fb",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 7 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "a20plus"
+		},
+		"folderID": "Fb243b385b7a996cedaaa6fcb8e0104cb8cef49fb69541d950233666c3a23feda",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 7 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "a3"
+		},
+		"folderID": "Ff9b1587b5360d55b33af44f3ee53fdec1b2c68b3165f7f04b26662048794066e",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 7 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "konaste"
+		},
+		"folderID": "F02c1e0bd43bd6e7ac1ceb969ef69d4a4b7fec15e87c212bdff46735d266cea2a",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 7 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "a"
+		},
+		"folderID": "F87e01a5ba7f9b17e68318b90b1d1fc70ab0bc519df6de6e83d9ce59c8c8cf57d",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 8 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "a20"
+		},
+		"folderID": "Ffb0b66e41f3c891b21eeb5208d7fcd68aac7ee429ace0f388c0511b84ef037fb",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 8 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "a20plus"
+		},
+		"folderID": "Faec8af54acb11e376919359a7e536a0c905e3cb4fe1f97cb67ed8fd008bd4df7",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 8 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "a3"
+		},
+		"folderID": "F84573ac4ed880c5157209edb6af1a0a0fa229d5972dc8f63656d8eb90b407817",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 8 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "konaste"
+		},
+		"folderID": "Fe9673fe186c984c981c2c5d34199920b52a80788ac8c88660d12e47295ac8560",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 8 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "a"
+		},
+		"folderID": "F5075513fb6f2d4d5013ac64342393137934dafc6a3a0e28f3c2eeec9aa88cdbc",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 9 (a)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "a20"
+		},
+		"folderID": "Fe8ce9267abfaaf6c51f3c2472beebf31820fee50055006ee64d4a7bd06ee6ed5",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 9 (a20)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "a20plus"
+		},
+		"folderID": "F27aabd1e5fbe550f459da3f17c2338fb8a56b07f8d814d1a788907683509d24d",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 9 (a20plus)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "a3"
+		},
+		"folderID": "Fb23a361a65e1000de21438689f4feb60abc2985383f08ec4632a5c586d4bf636",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 9 (a3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "konaste"
+		},
+		"folderID": "F92361080194ce28d6e61457ea41961061bdbfb43269dfc949391448f63c21734",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 9 (konaste)",
 		"type": "charts"
 	},
 	{

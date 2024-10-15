@@ -1418,7 +1418,7 @@
 		"title": "DDR (DP) (a20plus)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for DDR (DP) in a3",
 		"folders": [
 			"F3087a1086b380d2bb05bd1287c6fb7cd0ec6e4ab7390cac360e8fa8db0bc2184",
@@ -1568,7 +1568,7 @@
 		"title": "DDR (SP) (a20plus)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for DDR (SP) in a3",
 		"folders": [
 			"Fe2ebd0daed8a85df1dc6ccfd48d603f26c455e05ffeebd9a6c784273e001af37",

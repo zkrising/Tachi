@@ -151,6 +151,9 @@ export const CHUNITHM_SINGLE_CONF = {
 		luminous: "LUMINOUS",
 		"luminous-intl": "LUMINOUS International",
 		"luminous-omni": "LUMINOUS Omnimix",
+		luminousplus: "LUMINOUS PLUS",
+		"luminousplus-intl": "LUMINOUS PLUS International",
+		"luminousplus-omni": "LUMINOUS PLUS Omnimix",
 	},
 
 	chartData: z.strictObject({

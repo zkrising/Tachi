@@ -27,11 +27,12 @@ const VERSIONS = [
 	"sun",
 	"sunplus",
 	"luminous",
+	"luminousplus",
 ];
 
 interface IDWithDisplayName {
 	id: number;
-	str: string;
+	str: string | number; // "39" -> 39, fast-xml-parser things
 	data: string;
 }
 
@@ -207,7 +208,7 @@ for (const optionsDir of options.input) {
 
 			// New song?
 			if (tachiSongID === undefined) {
-				const existingTitle = songTitleMap.get(musicData.name.str);
+				const existingTitle = songTitleMap.get(musicData.name.str.toString());
 
 				if (existingTitle) {
 					logger.warn(
@@ -233,19 +234,20 @@ for (const optionsDir of options.input) {
 				}
 
 				const songDoc: SongDocument<"chunithm"> = {
-					title: musicData.name.str,
+					title: musicData.name.str.toString(),
 					altTitles: [],
 					searchTerms: [],
-					artist: musicData.artistName.str,
+					artist: musicData.artistName.str.toString(),
 					id: tachiSongID,
 					data: {
 						displayVersion,
-						genre: musicData.genreNames.list.StringID.str,
+						genre: musicData.genreNames.list.StringID.str.toString(),
 					},
 				};
 
 				newSongs.push(songDoc);
 				inGameIDToSongIDMap.set(inGameID, tachiSongID);
+				songMap.set(tachiSongID, songDoc);
 
 				logger.info(`Added new song ${songDoc.artist} - ${songDoc.title}.`);
 			} else if (!songMap.has(tachiSongID)) {

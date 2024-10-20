@@ -8609,6 +8609,45 @@
 	{
 		"data": {
 			"difficulty": "ADVANCED",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F4ddc3cf363675b0b23408b3950c80c326eded2538772053e593578c6e8e15004",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ADVANCED (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "ADVANCED",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F5e157a27168bd0966071ba63388b2755626b503c3777f3709ca04dba4c51ec1b",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ADVANCED (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "ADVANCED",
+			"versions": "luminousplus"
+		},
+		"folderID": "F3f905a38a0b9f64afc304097cbfa7ba523015fbb81f25615a1cbd5405aa4ac32",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ADVANCED (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "ADVANCED",
 			"versions": "luminous"
 		},
 		"folderID": "F849d1219ea7da91e541fc5da62a78c2895f2276456a4de8e73428836b4bddc0c",
@@ -8652,7 +8691,7 @@
 		},
 		"folderID": "F48a64dd4f9898b515f9138d069e35c2108d773546e818f6d363653969248b127",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "ADVANCED (SUN Omnimix)",
@@ -8739,6 +8778,45 @@
 	{
 		"data": {
 			"difficulty": "BASIC",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "Fc755aba8f1fa91a490c56ca6efb6a33be312beb4b9be2b57cc99ac17731e62dd",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "BASIC (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "BASIC",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F5dae56bc2d0c202e7ac4ce7d7b251ab5a01ffa29b2916b6597f09ef17aae6e64",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "BASIC (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "BASIC",
+			"versions": "luminousplus"
+		},
+		"folderID": "F7fc7f6e9599e5c2476b0e2f71bd72386a6146295e25c974029199fa82b07065e",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "BASIC (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "BASIC",
 			"versions": "luminous"
 		},
 		"folderID": "F7793fa0dc580bc24b52b246775bba674028aab5857c190dad67f6224481c542e",
@@ -8782,7 +8860,7 @@
 		},
 		"folderID": "F83348d50dd5cd8047e635c079c648c866f7be33c83f842ba20844ad61e0f2f74",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "BASIC (SUN Omnimix)",
@@ -8869,6 +8947,45 @@
 	{
 		"data": {
 			"difficulty": "EXPERT",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F3f9be32435c7d30ac01177d1f1b0588da5273fe09c0303cacf8342a4ee9aaa6d",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "EXPERT (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "EXPERT",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F77f852035c55c63a03864e3dab62ff747b704f2e6b69c2e02907773fca5ca688",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "EXPERT (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "EXPERT",
+			"versions": "luminousplus"
+		},
+		"folderID": "Fc50ace09ee83e28115d1651ffd61f0b94ef6460e4b86838c5b38584de3985467",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "EXPERT (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "EXPERT",
 			"versions": "luminous"
 		},
 		"folderID": "F3397558a8bc06de6c5d0ef0b1e266b57c8a7a471a5b65f50f1f12e2f884c64a4",
@@ -8912,7 +9029,7 @@
 		},
 		"folderID": "Fd5c4e8caf273eceb4eb202902846ac6a1dd00154c646b82f83c0034467b1f764",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "EXPERT (SUN Omnimix)",
@@ -8999,6 +9116,45 @@
 	{
 		"data": {
 			"level": "1",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "Faa250d84f92203ffa02522bc59c4c98a1429304de220f1abec7b2d923a026074",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F7e875668d847f93d97341ebfb5d24d5dccb90f9a06c3af0cfb38b8b1563add8f",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
+			"versions": "luminousplus"
+		},
+		"folderID": "F5e6f84b3158d6e1a58be88901d1410bd2df343bee6fc6efea01736024f6a8df8",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
 			"versions": "luminous"
 		},
 		"folderID": "F0e650704ddc8a045e5a944b660c9e16492b3d956891e8a3d1279af9648e37d62",
@@ -9055,7 +9211,7 @@
 		},
 		"folderID": "Fa912441b906993391a1d285ac085fc7debab18ef9c8beef5c61dbd272334aba8",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 1 (SUN Omnimix)",
@@ -9142,6 +9298,45 @@
 	{
 		"data": {
 			"level": "10",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F34c156a92790842d57f10835d0b4ce4e2f9c548b657a41c628859c8cfaec502f",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10 (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F4a4614f8326d2921b7fa4d0bfa5ad4f36d09b33578bb82adc284b998fec0957a",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10 (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "luminousplus"
+		},
+		"folderID": "F56d7d1c08b8ef638a0e1fef1efa979d85184a102185087755bfcbeb0f3fd7c12",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10 (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
 			"versions": "luminous"
 		},
 		"folderID": "F09f03f11dfc57e165dea49ef8e51cce80d95272c9f2ad160328c7f80a05a508d",
@@ -9198,7 +9393,7 @@
 		},
 		"folderID": "Fca2faf662ce0e51670fbceff985c995c631eb7db48750709ac965b4bf0e097a6",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10 (SUN Omnimix)",
@@ -9285,6 +9480,45 @@
 	{
 		"data": {
 			"level": "10+",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F9b32ffa90ca2374958d436464ec9c9c32a673908b22ae06d92d73dc3c851c400",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10+ (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10+",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "Fec6704b2b24fe1d569f1acf95ee0c2d303201ca4d2710633fb67324feeea97bf",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10+ (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10+",
+			"versions": "luminousplus"
+		},
+		"folderID": "F53b47ca1157f1dd495d3421c6555af9024992f80726e5d06a8ae2dac4dd137b9",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10+ (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10+",
 			"versions": "luminous"
 		},
 		"folderID": "F5005170f4537eb4aeb68712d2cb5acf99ad2696afca1a0b5b554efaa7bb8dcf6",
@@ -9341,7 +9575,7 @@
 		},
 		"folderID": "F9e1a5656702b1bacf406b903b8a3f8158fd2606fb4b2c6601a7f11febdee780f",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10+ (SUN Omnimix)",
@@ -9428,6 +9662,45 @@
 	{
 		"data": {
 			"level": "11",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "Fb4e3433b47bbd96a40946ce34aef065fada071471ee34e994c17c9936768c389",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11 (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "Fab4bbdf1da29793bff4597238344a275e0bd1f23c5579e4fb944886067f0511c",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11 (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "luminousplus"
+		},
+		"folderID": "F5ddd7b845ba850f0ef4b1cc87e925d8a58015341c996e9b6f0a5b454f1eb5386",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11 (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
 			"versions": "luminous"
 		},
 		"folderID": "F82e46a87626ba99a85b484fafde7fdcd8de289c786d11d9a605bb48a989633fc",
@@ -9484,7 +9757,7 @@
 		},
 		"folderID": "F02d3c632c90080fd5cf423785f0f7a3f8309571a84078102c83001bd1b6fb1af",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 11 (SUN Omnimix)",
@@ -9571,6 +9844,45 @@
 	{
 		"data": {
 			"level": "11+",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F1e102f168e0f04c17f451411735570651e11e6e2b0686545c7c37b143c043896",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11+ (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11+",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "Fec2be89847b17b47dde2a2fb3ddeb6768df17198ae73280b940048ee9fd3d880",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11+ (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11+",
+			"versions": "luminousplus"
+		},
+		"folderID": "F2d8f570c83f92608598422094b58f614fea4c42524fb65b534d931f9940ff29f",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11+ (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11+",
 			"versions": "luminous"
 		},
 		"folderID": "F25fe7023fb30ae2a400ef9cca5300fc9db11bee396936da41f2009ffa9e812fd",
@@ -9627,7 +9939,7 @@
 		},
 		"folderID": "Fc0976284ff39ed167af7f32e7ca1f9c1dc70b11befca05de4c64c3a730dcbfb6",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 11+ (SUN Omnimix)",
@@ -9714,6 +10026,45 @@
 	{
 		"data": {
 			"level": "12",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F3947fa3ab08a26aacae7dedf60416d9ff4a477f406bbe983ab8478b7b39f544e",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12 (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F81a94a399f82c60ab2b63401b2cd904e9835e5b69a865a4414b0e5bf3d324541",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12 (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "luminousplus"
+		},
+		"folderID": "Fd3f59b425532d36e22ccf0a236c115953b103830644eb7a6ec515a48c35c9f85",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12 (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
 			"versions": "luminous"
 		},
 		"folderID": "F50af106c804cae8655b64716baeb9d23ccc2866b940329a82a8e26ae90e9f1c4",
@@ -9770,7 +10121,7 @@
 		},
 		"folderID": "F2d5c0c4600016f84cebd98372400dc7cc7033a3ec9c64398d115db10b6fbeb5d",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 12 (SUN Omnimix)",
@@ -9857,6 +10208,45 @@
 	{
 		"data": {
 			"level": "12+",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "Fad46bc10c51f6f21f41b440e3e560d14010dbfee5784fac7a0dc40f98ca2e50d",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12+ (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12+",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F1b09424d71b2534437846a6bc39d9d449a34a39d3550c70197df269ef4e87557",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12+ (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12+",
+			"versions": "luminousplus"
+		},
+		"folderID": "F10d77863f08278032e97b85d7ed59345b8b3f568c404b3c288fdd78956a19f8c",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12+ (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12+",
 			"versions": "luminous"
 		},
 		"folderID": "F0dcd2d1a882a8ff297b37c9a2a81acec7cae06bf098affd55724d44342ec3db2",
@@ -9913,7 +10303,7 @@
 		},
 		"folderID": "Fd2c6dab740da557b59260f9e06d519f84715c41382bf03a3609c8982283a0fc8",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 12+ (SUN Omnimix)",
@@ -10000,6 +10390,45 @@
 	{
 		"data": {
 			"level": "13",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F757860688134ba74a0695124c40d8965633365c5e37f171e1031a1566af1c04c",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13 (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "Fff10bddd4fa79f4df04b0b56897cc5254317da53e58d6607cc593deb6ef49381",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13 (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
+			"versions": "luminousplus"
+		},
+		"folderID": "F7b452f2dbf7db460a5a70ee2cbe7fc9fb533ff71ea3e1387681a069b34fa7f3c",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13 (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
 			"versions": "luminous"
 		},
 		"folderID": "F305e2c7b26bbc1c60aa21c383b9eca8dd2934af6de4ad8ed23d3b5825201ee92",
@@ -10056,7 +10485,7 @@
 		},
 		"folderID": "F8f6bc81e6d27023cfcac950c22653fbbda48503d90545802f9f6d56a800a1733",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 13 (SUN Omnimix)",
@@ -10143,6 +10572,45 @@
 	{
 		"data": {
 			"level": "13+",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F999fb8ce60a68018725a30aa01ab988620fd4cc294e3fedc265fa4729cfb3239",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13+ (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13+",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F8cd01aee1c8285b109a59499817bd229d7188f2fcc69e7e66511f1eeea2e225e",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13+ (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13+",
+			"versions": "luminousplus"
+		},
+		"folderID": "F4b28a9e418a4636652551dc974e80dee5df2536a7e4b7f63d7f81665be8b5274",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13+ (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13+",
 			"versions": "luminous"
 		},
 		"folderID": "F91a3dfe0c0c43740095dc5a4d4881c3faa6b7075e969a7ccceacba56039b7b14",
@@ -10199,7 +10667,7 @@
 		},
 		"folderID": "F006061d48893b76c0f8c68919639c7d77aa4588c551409375bff885acca1542f",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 13+ (SUN Omnimix)",
@@ -10286,6 +10754,45 @@
 	{
 		"data": {
 			"level": "14",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F7aae6c5575dda555ad16a857d9fbc57a5ce70629ed5db357534caba068642bce",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14 (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F89d71f6616a90fde8636b1c6ae71fdd98534ee9b40f59c08bfb9933fcc32badc",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14 (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
+			"versions": "luminousplus"
+		},
+		"folderID": "Fabf60d5b531ddca17b8783bed9280e17e9140b9cb98495624893bef2569cbddc",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14 (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
 			"versions": "luminous"
 		},
 		"folderID": "Fff5733595eaec1e0da26a8c32d083735a96f4c4650858a470df5a599ebc13bca",
@@ -10342,7 +10849,7 @@
 		},
 		"folderID": "F18426b36571b8ae93e0264ff4f81f35003fc7077323ba265514e7c7a546112f2",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 14 (SUN Omnimix)",
@@ -10429,6 +10936,45 @@
 	{
 		"data": {
 			"level": "14+",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F1b8ee8afb684960a671309623329c972426924a7b72567292523609679ad5226",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14+ (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14+",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "Fd0fcee881f2c725b1a4ffeb604708dcd446fb057c3f1a534818c2135f5e69f06",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14+ (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14+",
+			"versions": "luminousplus"
+		},
+		"folderID": "F97b92feba00ef773f53d8d8ec93fe12e95b23efbb6a794cba76a891b0d54d58a",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14+ (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14+",
 			"versions": "luminous"
 		},
 		"folderID": "F75dabdd8e04330d6d60836b96edba63c68cefe6164c7f609f6bf2027ce1984c0",
@@ -10485,7 +11031,7 @@
 		},
 		"folderID": "Fe40992304d5598dae52cca23992c99e5665d1ea8ee7392193d1dded4af82cb90",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 14+ (SUN Omnimix)",
@@ -10572,6 +11118,45 @@
 	{
 		"data": {
 			"level": "15",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F2670896329a520a9449ac22ea408ff3b4d5d128f412e3470dcbdb65f7dce5461",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15 (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F247e4c376c8f4b475c99c480e4c24dc6b4dcf6ce34c0cd21d83b0b9227fc3325",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15 (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
+			"versions": "luminousplus"
+		},
+		"folderID": "Fc57597ba4bdaa406377c442c511fd8f8f43a69b0d27e3154285e79a3e121786e",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15 (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
 			"versions": "luminous"
 		},
 		"folderID": "Fbeb5d474cbf40cad4435ec535479e6da020ff0f316cc3250162cd71ee89d5bdb",
@@ -10628,7 +11213,7 @@
 		},
 		"folderID": "F5e5636161b64bf379b8dcc64359a8fca187456d2e26e12d03a026aa4a50a4cdc",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 15 (SUN Omnimix)",
@@ -10715,6 +11300,45 @@
 	{
 		"data": {
 			"level": "2",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "Fa2450d6aa9ddd2ecb25ed04d7e557578bb94346984f018fdd652ec61f36bea3c",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F430d4b1a0eefc1ee71758a622796d14b7aa463de2059c6fbfb5e0b1ea485c7db",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "luminousplus"
+		},
+		"folderID": "Fa6f8e5fdfcb19343dfb3c05ffa3dcf07ff472c42c0404b95dc0e07c279fa46a2",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
 			"versions": "luminous"
 		},
 		"folderID": "Fed1f58125c7792fabc73afa21c98558c42ab077ccbad54464b575493a6b064db",
@@ -10771,7 +11395,7 @@
 		},
 		"folderID": "F54a007227353ee72f435f9efce665a2cf18c881c46829a8dfa8bb114ee890e27",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 2 (SUN Omnimix)",
@@ -10858,6 +11482,45 @@
 	{
 		"data": {
 			"level": "3",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "Fa9abd6931747a150847f4bdf8bfc351924120873c123f25a9b898ea9ba011d84",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "Ff0c4b52da89a071f50bbab803e21524d4943d4bef62a589e089109400e736996",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "luminousplus"
+		},
+		"folderID": "Fff2759f683bf6232fd49280c6ae954622f35db575848ec5b59c3725252515227",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
 			"versions": "luminous"
 		},
 		"folderID": "Fa0d74e202f1349cc1d8bc8bc660026b6ae450530a4ec97468d616cfa2af4d1fc",
@@ -10914,7 +11577,7 @@
 		},
 		"folderID": "F51635f3eaa05cb99797c73ed7d6c6be82084ccacdc412dbe05983686ad15f5ee",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 3 (SUN Omnimix)",
@@ -11001,6 +11664,45 @@
 	{
 		"data": {
 			"level": "4",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F336021ea1d4434aa65f28a74963d07bcdc360f8b4e36b945afc578b6e70397f3",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F3878605a7bd226c24af6008daafe63bbc071a36137f6d40982b8dcc54ab9a0a4",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "luminousplus"
+		},
+		"folderID": "Fff53f98069409423ba8ae6d0db8bfd5245d57d1280fc9039bccd0152118cfaa4",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
 			"versions": "luminous"
 		},
 		"folderID": "F80e466f00513a9d7ed139f7ed3c48f33ca712f327c72d4fec6cefaf4e70a7ba9",
@@ -11057,7 +11759,7 @@
 		},
 		"folderID": "Fb10e04c260027eed8cf04679b709c9defccf4627a67bc67137ad3d4af0f8ff05",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 4 (SUN Omnimix)",
@@ -11144,6 +11846,45 @@
 	{
 		"data": {
 			"level": "5",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "Fc62548d392fe77c11004457648240aabd3fbec40efde7fc8c907b9be72dabf44",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F7a6f82598b75165bd261fa1cafeb8f9fb043a16c2850e0d3271629520f52c2fa",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "luminousplus"
+		},
+		"folderID": "Fe25f5af40c59e404a79bb164a8ae93f960665d2f915ff9007464b82fb1ce7445",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
 			"versions": "luminous"
 		},
 		"folderID": "F36a80e458587babf6792423ff21bd4632634c674d52e58471021e7c6e06a92bc",
@@ -11200,7 +11941,7 @@
 		},
 		"folderID": "Facbd0324726bc81b7eb22264068502f492bf5ee33c6585842043b1d969618e5c",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 5 (SUN Omnimix)",
@@ -11287,6 +12028,45 @@
 	{
 		"data": {
 			"level": "6",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F0695258b1e9e60d4b79465ce54aa99a49c5c8aa3dfb85c91f352744ebb44490b",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F5c49dc35158184f0a34245143df319fae394f53c6f21b78e7a20567425001850",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "luminousplus"
+		},
+		"folderID": "Fea8b433664f69404d3a56979b620ae3691c24728dee9a382580342bb75919931",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
 			"versions": "luminous"
 		},
 		"folderID": "F8dafcd7ee52c08cd4f33a0e570289e94406c493b9a9430470df312dd6945e565",
@@ -11343,7 +12123,7 @@
 		},
 		"folderID": "F35efabd7daa1cfdea362dbf13cc77fb3cd6843b17552b8af5f65cddfb98898fe",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 6 (SUN Omnimix)",
@@ -11430,6 +12210,45 @@
 	{
 		"data": {
 			"level": "7",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "Fcdb4c59d93c9106a245990eb2f0940729172f3418753488d0670983fcf96da47",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7 (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "Ffb812d95d35bc15c343bcdb7f2828a144ea5d9d5430e97daca2ceda4c82905f0",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7 (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "luminousplus"
+		},
+		"folderID": "Fabe8788e27cb6307e556a6fc010102278401ded52a03f1b216e4d2f145784e11",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7 (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
 			"versions": "luminous"
 		},
 		"folderID": "Fcc65c9348c52f250fefea82fd44fc73e4b426b1c99af52485f64a7a23203fd70",
@@ -11486,7 +12305,7 @@
 		},
 		"folderID": "F8f702b1c93cf393b37dbdffef7da6ba40b197db91f0a39d53835d3fc4bdca7f2",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 7 (SUN Omnimix)",
@@ -11573,6 +12392,45 @@
 	{
 		"data": {
 			"level": "7+",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F870f85275946a027c43cb3e2788e4c178b81ee178c98ee687ef4a8246554ef39",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7+ (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7+",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F4081c4180e46b45ccc3580758e14629b8815dfe7de8de29cb81c0cf29a1a7fc2",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7+ (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7+",
+			"versions": "luminousplus"
+		},
+		"folderID": "Fe9dbbfe99163063d9eddc1bed0985161df9905569d9729ed5c2fe107ac97f219",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7+ (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7+",
 			"versions": "luminous"
 		},
 		"folderID": "Ff7f5a11995c904bb2c64f8283115944a3b8e48d0a69fcae17d9730657a23bca4",
@@ -11629,7 +12487,7 @@
 		},
 		"folderID": "F3267cfb34b3a885318146edccd3811d0aca519f9f06aa261d8a38fd0e59cba30",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 7+ (SUN Omnimix)",
@@ -11716,6 +12574,45 @@
 	{
 		"data": {
 			"level": "8",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F79650fbf8bb42b7e0d50bcf0d3ca0050433690a37dd3caf7a746756f68820f72",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8 (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F29d05d578578284bfe71c5678b0c9b2cd6f2bdda99913498452ccfcf8c932680",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8 (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "luminousplus"
+		},
+		"folderID": "F39acf448f99291a353e704ac6bc0959117b78e8abdf7b2249bd15baa840746d8",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8 (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
 			"versions": "luminous"
 		},
 		"folderID": "F7b23d0c2a540f69e4d87e44f364d66be358cff433db959cffcb690137c026db0",
@@ -11772,7 +12669,7 @@
 		},
 		"folderID": "F8f96042306eadc90f9553fc1910b9d9011a05af57e1ecd8f79cfd37ba6208fb5",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 8 (SUN Omnimix)",
@@ -11859,6 +12756,45 @@
 	{
 		"data": {
 			"level": "8+",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F1db57045b5e323f45502aabc1389c25e298db7b7efb023eb5239dd4a00a6e64b",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8+ (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8+",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F6489d9da41523bfe0227b27d00ffcc53a18d520af99b514076fcca8393e05981",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8+ (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8+",
+			"versions": "luminousplus"
+		},
+		"folderID": "F0edb55167a88b402b23cfae6db578ea32f5d26fa41807f2b1286138b6ee43f1c",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8+ (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8+",
 			"versions": "luminous"
 		},
 		"folderID": "Fc1ab6ba6670eea7d9f6bcb55d71583c07716b9dc4edac41db820c44abfd8caab",
@@ -11915,7 +12851,7 @@
 		},
 		"folderID": "F11692d498d01fbd1ade153f8e6816f1cc69d1e2e35491d1f979b1f5c894d3648",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 8+ (SUN Omnimix)",
@@ -12002,6 +12938,45 @@
 	{
 		"data": {
 			"level": "9",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F4232dd3d2521febed8b67966b907dcfc63e097232c95fb88c88b1238f1040a5c",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9 (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F850739281b03d25d7c0cb19616eb6b9b8cd97d1ed28fbdd820fd8860aca7bc35",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9 (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "luminousplus"
+		},
+		"folderID": "Fcf6bad4316640b217d7e9415a939ba640613fd36b28f4cf6b48d41ad93b09d3e",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9 (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
 			"versions": "luminous"
 		},
 		"folderID": "F7408737de948a0821d8f9ef999cb5f1cfc550b10b486e70f02e950da36e061c3",
@@ -12058,7 +13033,7 @@
 		},
 		"folderID": "F7f97db16a4c66fdb4ffe998f8dc2c040c4a1cb0921d20896b117c917068ccdb3",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9 (SUN Omnimix)",
@@ -12145,6 +13120,45 @@
 	{
 		"data": {
 			"level": "9+",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F08f7ad9714d17dbe103c653307fb3996027c6ae969173551eb08fbcf30076ffd",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9+ (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9+",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "Fb07c3e51e26e968b608c4beb678a2fe96451e3bc9c280ba7ea6cf6cdd7905950",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9+ (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9+",
+			"versions": "luminousplus"
+		},
+		"folderID": "Fa255dba103d90581cf69d3d8a61296932fc06ee65b2fb90d9e23bf3f0c7717cb",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9+ (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9+",
 			"versions": "luminous"
 		},
 		"folderID": "Fba599b0ca4a0e40dd820f0ef8df88a6e2fbe293185d04b4b5dcdf1705d5479b0",
@@ -12201,7 +13215,7 @@
 		},
 		"folderID": "Fd89d43ad4028245895acd793dbdb503db0051cf3a848d5174a4f9fb0948b1589",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9+ (SUN Omnimix)",
@@ -12288,6 +13302,45 @@
 	{
 		"data": {
 			"difficulty": "MASTER",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "Fb18726ae0ee60d218a4cad912b01c557c60a01da506d59b38207949d09cf31d1",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "MASTER (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "MASTER",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "Fa7290721adc0412398202b87e0d49894cf008da9399bfd52c6426456bfeb2c4e",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "MASTER (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "MASTER",
+			"versions": "luminousplus"
+		},
+		"folderID": "F2a6420ee644d2adca885820d2810bce78108eca0b79897dad75b2557868603e7",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "MASTER (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "MASTER",
 			"versions": "luminous"
 		},
 		"folderID": "F9ea15d2aa0a17e9902019e851d7ba78ac4f68019e25dc4230c437dce296d96a6",
@@ -12331,7 +13384,7 @@
 		},
 		"folderID": "F68951200549b9cd90b5f300bb1c2e8c8e69072cfd7485ae5e7b8c6b381807ce5",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "MASTER (SUN Omnimix)",
@@ -12418,6 +13471,45 @@
 	{
 		"data": {
 			"difficulty": "ULTIMA",
+			"versions": "luminousplus-intl"
+		},
+		"folderID": "F341bd38f44b01bba76ce22e8bb7b285f82457038b4ce978d884d1bf8c2012e7b",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ULTIMA (LUMINOUS PLUS International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "ULTIMA",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F20a16eab0f0cdccb3065b9fae9cc9e68da8d53889415fac7969c989b30eed597",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ULTIMA (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "ULTIMA",
+			"versions": "luminousplus"
+		},
+		"folderID": "F94dec7f14167a9ae0209e8169fc56d6cdea2b31f940cfb98b8e111c4d3abd541",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ULTIMA (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "ULTIMA",
 			"versions": "luminous"
 		},
 		"folderID": "Fb1440a42e16b38e3aff4d0ce3973ab96d622b80357305e46dff66726afebde73",
@@ -12461,7 +13553,7 @@
 		},
 		"folderID": "F81e330f6b88a5c7715a84a9842a8900ed54f63a16da4f0a05ec55ca880705d41",
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "ULTIMA (SUN Omnimix)",

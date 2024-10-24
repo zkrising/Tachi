@@ -1352,7 +1352,7 @@
 			"F26574862eed021ea575abbc27fe396fb23a5f894b7e164d88f2ad2e5bfc0674d"
 		],
 		"game": "ddr",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"tableID": "ddr-DP-a",
 		"title": "DDR (DP) (a)"
@@ -1502,7 +1502,7 @@
 			"F8f89630c7f593a97c241bdf758903664e2dd6f0a4737ec34186f4d49a8c49563"
 		],
 		"game": "ddr",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"tableID": "ddr-SP-a",
 		"title": "DDR (SP) (a)"

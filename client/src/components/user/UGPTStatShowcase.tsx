@@ -297,7 +297,12 @@ function StatDelta({
 	let delta = null;
 
 	// don't bother highlighting grade/lamp deltas, since they're kinda meaningless
-	if (property === "percent" || property === "score" || property === "playcount") {
+	if (
+		property === "percent" ||
+		property === "score" ||
+		property === "playcount" ||
+		mode === "folder"
+	) {
 		delta = ` (${v2 > v1 ? `+${d}` : v2 === v1 ? `±${d}` : d})`;
 	}
 

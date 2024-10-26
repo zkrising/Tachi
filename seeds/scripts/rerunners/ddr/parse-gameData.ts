@@ -114,7 +114,8 @@ export function parseGameData(version: Versions["ddr:SP" | "ddr:DP"], gameData: 
 		}
 		const splitDiff = music.diffLv.split(" ");
 		for (let i = 0; i < 10; i++) {
-			if (parseInt(splitDiff[i]!, 10) > 0) {
+			const diff = parseInt(splitDiff[i]!, 10);
+			if (diff > 0 && diff <= 19) {
 				const playtype = gameConfig.playtypes.at(Math.floor(i / 5))!;
 				const difficulty = DIFFICULTIES.at(i % 5)!;
 				const exists = existingCharts.get(`${music.mcode}-${difficulty}-${playtype}`);
@@ -127,7 +128,7 @@ export function parseGameData(version: Versions["ddr:SP" | "ddr:DP"], gameData: 
 					}
 
 					exists.level = splitDiff[i]!;
-					exists.levelNum = parseInt(splitDiff[i]!, 10);
+					exists.levelNum = diff;
 				} else {
 					const newChart = buildChart(music, playtype, difficulty, version);
 					console.log(

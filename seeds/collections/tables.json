@@ -1629,6 +1629,36 @@
 	},
 	{
 		"default": false,
+		"description": "Levels for DDR (DP) in world",
+		"folders": [
+			"Fa1613160d15a414f057cac84ef3c2ebf6da5e1365f472ce291a729113d9bfdaa",
+			"F4f12ec2926b9397635beff55c74d943a109efed2b4bae3f9f9aca1d8b10f5ebc",
+			"Fafce5c5fd35e83a243079278b80a2ac79b49ee6e44b228037f9e7f345307171f",
+			"F3d88e81dcf92da6d1735f10b4446afb46a52963a930b942047b96b008b87b456",
+			"F30cefed8e5cf10538567015fe831a1e43e1db81f14a69f8f0a2d3e9db4aef666",
+			"F2bd4d95fc1ad87bdc4f3780047d36dda40c49b863f73190d3a09e4c3aab7caae",
+			"F6010c2a24e669c7f9fb8b342f9c048c625cf833dc837c575ca068337b740fde4",
+			"Fefce269769fc55fe045ceded8fe97df82d403b7712624cd20165ef9e5eb0b166",
+			"F175fe25d30384ee88b2dbdc013f6b518f42f7ed9b0e41326382af91006d2cf40",
+			"F8c56542310d56d843cb0e36514013adec01a3c1c30939fd1891b56d1df2fe52c",
+			"Fede179f7e56c295d7c5a5d75c62e00d486b1753413eb24e84389d13588841705",
+			"F6c2ce7e89580f08c24ff4cc733519971a6d17363c9597f5f7981538d8436b9a3",
+			"F39759da0051b0f83aab9c6f4014b55173d06942a191cf41d16ebe22f17031866",
+			"Fae150b7168c0006ddc977488443733d5cb9abcb2a49a7ac78c2275b0a31c1775",
+			"F2258fbc49434b9ed5497d704ed28541e88b6ea44cc9c4ef817ea44c712f990a6",
+			"F4d7c3db8cee537140b1be892b73bb946f84a883d5797950c63d131d0746c6320",
+			"F75c3a342dcc59a9f67c79431209c60011798a54ea4fdea8bc63128e490d8b289",
+			"F8c4d318bdaf67fd17339974b4e9799ff3b1ea8a98e8479ffe956e1cfdd468f09",
+			"F3a6e4587d9955d23f57f11a5a7106db188c39a64a69c188dd0cd43bc9befb5bc"
+		],
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"tableID": "ddr-DP-world",
+		"title": "DDR (DP) (world)"
+	},
+	{
+		"default": false,
 		"description": "Levels for DDR (SP) in a",
 		"folders": [
 			"F75f576a0fd1d015935843d923083f940ef92b684e0ece6436d30eaff371dde16",
@@ -1776,6 +1806,36 @@
 		"playtype": "SP",
 		"tableID": "ddr-SP-konaste",
 		"title": "DDR (SP) (konaste)"
+	},
+	{
+		"default": false,
+		"description": "Levels for DDR (SP) in world",
+		"folders": [
+			"Fde0848ff994b4bbab2f4b2f65b920ee40a4816db5d015425ade7a5e3221737a5",
+			"F5761226aebebacb3b7dfd9f2801dc8f457e64edab70b29c458e2bc265144fe0a",
+			"F43d653371351c82921ca88fc433fc1350dc5ea6a1d8fcb3d9f93fbfb62355a60",
+			"F0435b8c216be06fb3894c80abc1bc52fdf87861c6009e3f3b9d479695dd7dc18",
+			"F65640be7e586ed7bc022fd7cf4e130f81dab5fbfa714246a70cb507cf2cc55da",
+			"F70cd3987abc609f8b74a6fcec8bc0742fdd0dd34033c570c2a4e77e0819e2e07",
+			"Fa55df3c1dfeaf2039d0e7a8d60389446c8067611be3c96b5c2bd5ef72b9300f0",
+			"Fc4ed03c88638a4b2e7c615a958d43702bcdf802aca9a9738d221284eb2da9b9d",
+			"Ff5d554f76b9da739b5f0f2e58f0512f4a74a63c08fbb4ce3c42041dbbb51e561",
+			"F19eb67b105ac0edf0f3dafd3fe1cab95c985c473b6c6c4bfa071596c7c213025",
+			"F83b713346d9f76873b652d65d7f05dc13a4cca5747bb284a151c4de9a7ea5d33",
+			"F6a88b21a690c289cc628df323e528c8d22203bb616f8b1025b3476625930f146",
+			"Fe8cc44d50b362e8202b7ce589b0187778d6905e5d1e2a4833ac69aaf247d3b5e",
+			"Fee9e6609b6f59c5d33c4d72cf8c64a9ea844207fdcff7569b2f75a75a803eaa1",
+			"F9074ce3402c44ec4b6c371752e4ccd5aedc4d8321b0e0d21ca2840243e5e65c7",
+			"F64de6e6180695be6caf8cef64601604db19416ce33367c42e752e5cf652f409d",
+			"Fa5ae2477acb78416bd72a293cbea0093767b4c4d76c401348484736cfe3c2aa6",
+			"F37351356f2a65fe0e5ce2b8313191d0f4f83ac6824ac976e894b42d372ce5587",
+			"F12834d34f1445bb489bab24a5948c52c30be21f47804d866b8b3807a305d78a0"
+		],
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"tableID": "ddr-SP-world",
+		"title": "DDR (SP) (world)"
 	},
 	{
 		"default": true,

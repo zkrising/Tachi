@@ -195,6 +195,7 @@ export const DDR_SP_CONF = {
 		a20plus: "A20+",
 		a3: "A3",
 		konaste: "Konaste",
+		world: "World"
 	},
 
 	chartData: z.strictObject({

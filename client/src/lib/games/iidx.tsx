@@ -185,7 +185,7 @@ export const IIDX_DP_IMPL: GPTClientImplementation<"iidx:DP"> = {
 			(c) => c.data.dpTier?.value,
 			(c) => c.data.dpTier?.text,
 			() => undefined,
-			(s) => [s.scoreData.lamp, s.scoreData.enumIndexes.lamp >= IIDX_LAMPS.EASY_CLEAR]
+			(s) => [s.scoreData.lamp, s.scoreData.enumIndexes.lamp >= IIDX_LAMPS.CLEAR]
 		),
 	],
 	scoreHeaders: IIDX_HEADERS,

@@ -22,7 +22,7 @@ import ReferToUser from "components/util/ReferToUser";
 import SelectLinkButton from "components/util/SelectLinkButton";
 import useApiQuery from "components/util/query/useApiQuery";
 import useUGPTBase from "components/util/useUGPTBase";
-import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
+import { GetEnumColour, GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import { GPTRatingSystem } from "lib/types";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
@@ -40,6 +40,7 @@ import {
 	SongDocument,
 	UserDocument,
 	integer,
+	GetGPTString,
 } from "tachi-common";
 import { ConfEnumScoreMetric } from "tachi-common/types/metrics";
 import { UGPTFolderReturns } from "types/api-returns";
@@ -425,6 +426,8 @@ function TierlistBreakdown({ game, folderDataset, playtype, reqUser }: InfoProps
 	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[`${game}:${playtype}` as GPTString];
 
 	const [tierlist, setTierlist] = useState<string>(gptImpl.ratingSystems[0].name);
+	const [useFancyColour, setUseFancyColour] = useState(false);
+	const [forceGridView, setForceGridView] = useState(false);
 
 	const playerStats = useMemo(
 		() => FolderDatasetAchievedStatus(folderDataset, game, playtype, tierlist),
@@ -464,6 +467,30 @@ function TierlistBreakdown({ game, folderDataset, playtype, reqUser }: InfoProps
 			)}
 			<Col xs={12}>
 				<Divider />
+				<Form.Check
+					type="checkbox"
+					checked={!useFancyColour}
+					onChange={() => {
+						setUseFancyColour((e) => !e);
+					}}
+					label="Use simple clear/fail colours"
+				/>
+				<Form.Text>
+					<span>
+						If enabled, this will show green when you've achieved the tierlist
+						requirements, and red if you haven't, instead of fancier colours.
+					</span>
+				</Form.Text>
+				<Form.Check
+					className="d-block d-lg-none"
+					type="checkbox"
+					checked={forceGridView}
+					onChange={() => {
+						setForceGridView((e) => !e);
+					}}
+					label="Force desktop grid view"
+				/>
+				<Divider />
 			</Col>
 			<Col xs={12}>
 				<TierlistInfoLadder
@@ -473,6 +500,8 @@ function TierlistBreakdown({ game, folderDataset, playtype, reqUser }: InfoProps
 					reqUser={reqUser}
 					folderDataset={folderDataset}
 					tierlistImpl={tierlistImpl}
+					useFancyColour={useFancyColour}
+					forceGridView={forceGridView}
 				/>
 			</Col>
 		</Row>
@@ -486,6 +515,8 @@ function TierlistInfoLadder({
 	reqUser,
 	folderDataset,
 	tierlistImpl,
+	useFancyColour,
+	forceGridView,
 }: {
 	playerStats: Record<string, { status: AchievedStatuses; score: string | null }>;
 	game: Game;
@@ -493,6 +524,8 @@ function TierlistInfoLadder({
 	reqUser: UserDocument;
 	tierlistImpl: GPTRatingSystem<GPTString>;
 	folderDataset: FolderDataset;
+	useFancyColour: boolean;
+	forceGridView: boolean;
 }) {
 	const buckets: TierlistInfo[][] = useMemo(() => {
 		const buckets: TierlistInfo[][] = [];
@@ -569,7 +602,17 @@ function TierlistInfoLadder({
 							)
 						</div>
 
-						<TierlistBucket {...{ bucket, game, playtype, reqUser }} />
+						<TierlistBucket
+							{...{
+								bucket,
+								game,
+								playtype,
+								reqUser,
+								useFancyColour,
+								tierlistImpl,
+								forceGridView,
+							}}
+						/>
 					</div>
 				))}
 		</>
@@ -579,18 +622,25 @@ function TierlistInfoLadder({
 function TierlistBucket({
 	bucket,
 	game,
+	playtype,
 	reqUser,
+	useFancyColour,
+	forceGridView,
+	tierlistImpl,
 }: {
 	game: Game;
 	playtype: Playtype;
 	reqUser: UserDocument;
 	bucket: TierlistInfo[];
+	useFancyColour: boolean;
+	forceGridView: boolean;
+	tierlistImpl: GPTRatingSystem<GPTString>;
 }) {
 	const {
 		breakpoint: { isLg },
 	} = useContext(WindowContext);
 	// xs view is tabular
-	if (!isLg) {
+	if (!isLg && !forceGridView) {
 		return (
 			<MiniTable>
 				{bucket.map((tierlistInfo, i) => (
@@ -598,9 +648,13 @@ function TierlistBucket({
 						tierlistInfo={tierlistInfo}
 						key={`${tierlistInfo.chart.chartID}-${tierlistInfo.text}`}
 						game={game}
+						playtype={playtype}
 						bucket={bucket}
 						i={i}
 						reqUser={reqUser}
+						useFancyColour={useFancyColour}
+						tierlistImpl={tierlistImpl}
+						forceGridView={forceGridView}
 					/>
 				))}
 			</MiniTable>
@@ -614,9 +668,13 @@ function TierlistBucket({
 					tierlistInfo={tierlistInfo}
 					key={`${tierlistInfo.chart.chartID}-${tierlistInfo.text}`}
 					game={game}
+					playtype={playtype}
 					bucket={bucket}
 					i={i}
 					reqUser={reqUser}
+					useFancyColour={useFancyColour}
+					forceGridView={forceGridView}
+					tierlistImpl={tierlistImpl}
 				/>
 			))}
 		</div>
@@ -626,13 +684,21 @@ function TierlistBucket({
 function TierlistInfoBucketValues({
 	tierlistInfo,
 	game,
+	playtype,
 	reqUser,
+	useFancyColour,
+	forceGridView,
+	tierlistImpl,
 }: {
 	tierlistInfo: TierlistInfo;
 	bucket: TierlistInfo[];
 	game: Game;
+	playtype: Playtype;
 	i: integer;
 	reqUser: UserDocument;
+	useFancyColour: boolean;
+	forceGridView: boolean;
+	tierlistImpl: GPTRatingSystem<GPTString>;
 }) {
 	const { breakpoint } = useContext(WindowContext);
 
@@ -643,10 +709,26 @@ function TierlistInfoBucketValues({
 		[AchievedStatuses.SCORE_BASED]: "bg-transparent",
 	};
 
+	let colourClass: string | undefined;
+	let colourCss: string | undefined;
+
+	if (useFancyColour) {
+		const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, playtype)];
+
+		// @ts-expect-error lol
+		colourCss = gptImpl.enumColours[tierlistImpl.enumName][tierlistInfo.score];
+	} else {
+		colourClass = statusClasses[tierlistInfo.status];
+	}
+
+	if (tierlistInfo.status === AchievedStatuses.NOT_PLAYED) {
+		colourClass = "bg-body-tertiary";
+	}
+
 	const data = tierlistInfo.chart;
 
 	// xs view
-	if (!breakpoint.isLg) {
+	if (!breakpoint.isLg && !forceGridView) {
 		return (
 			<tr>
 				<DifficultyCell game={game} chart={tierlistInfo.chart} alwaysShort noTierlist />
@@ -664,7 +746,7 @@ function TierlistInfoBucketValues({
 						)}
 					</div>
 				</td>
-				<TierlistInfoCell tierlistInfo={tierlistInfo} />
+				<TierlistInfoCell tierlistInfo={tierlistInfo} colourCss={colourCss} />
 			</tr>
 		);
 	}
@@ -682,7 +764,10 @@ function TierlistInfoBucketValues({
 				) : undefined
 			}
 		>
-			<div className={`${statusClasses[tierlistInfo.status]} bg-opacity-50 rounded p-2`}>
+			<div
+				className={`${colourClass} bg-opacity-50 rounded p-2`}
+				style={{ backgroundColor: colourCss ? ChangeOpacity(colourCss, 0.5) : undefined }}
+			>
 				<Link className="text-decoration-none" to={CreateChartLink(data, game)}>
 					{data.__related.song.title}
 				</Link>{" "}
@@ -714,28 +799,35 @@ function TierlistInfoBucketValues({
 	);
 }
 
-function TierlistInfoCell({ tierlistInfo }: { tierlistInfo: TierlistInfo }) {
-	let colour;
-	const text = tierlistInfo.score ?? "NOT PLAYED";
+function TierlistInfoCell({
+	tierlistInfo,
+	colourCss,
+}: {
+	tierlistInfo: TierlistInfo;
+	colourCss: string | undefined;
+}) {
+	let colour = colourCss;
 
-	if (tierlistInfo.status === AchievedStatuses.FAILED) {
-		colour = COLOUR_SET.red;
-	} else if (tierlistInfo.status === AchievedStatuses.NOT_PLAYED) {
-		colour = COLOUR_SET.red;
-	} else {
-		colour = COLOUR_SET.green;
+	if (!colour) {
+		if (tierlistInfo.status === AchievedStatuses.FAILED) {
+			colour = COLOUR_SET.red;
+		} else if (tierlistInfo.status === AchievedStatuses.NOT_PLAYED) {
+			colour = COLOUR_SET.red;
+		} else {
+			colour = COLOUR_SET.green;
+		}
 	}
 
 	return (
 		<td
 			style={{
-				backgroundColor: ChangeOpacity(colour, 0.2),
+				backgroundColor: colour ? ChangeOpacity(colour, 0.5) : undefined,
 				width: "60px",
 				minWidth: "60px",
 				maxWidth: "60px",
 			}}
 		>
-			{text}
+			{tierlistInfo.score ?? "NOT PLAYED"}
 		</td>
 	);
 }

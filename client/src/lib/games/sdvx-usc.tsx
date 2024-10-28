@@ -154,6 +154,7 @@ export const SDVX_IMPL: GPTClientImplementation<"sdvx:Single"> = {
 		CreateRatingSys(
 			"Tierlist",
 			"The unofficial SDVX clearing tierlist",
+			"lamp",
 			(c) => c.data.clearTier?.value,
 			(c) => c.data.clearTier?.text,
 			(c) => c.data.clearTier?.individualDifference,

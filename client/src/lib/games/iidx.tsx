@@ -139,6 +139,7 @@ export const IIDX_SP_IMPL: GPTClientImplementation<"iidx:SP"> = {
 		CreateRatingSys(
 			"NC Tier",
 			"Tierlist Ratings for Normal Clears.",
+			"lamp",
 			(c) => c.data.ncTier?.value,
 			(c) => c.data.ncTier?.text,
 			(c) => c.data.ncTier?.individualDifference,
@@ -147,6 +148,7 @@ export const IIDX_SP_IMPL: GPTClientImplementation<"iidx:SP"> = {
 		CreateRatingSys(
 			"HC Tier",
 			"Tierlist Ratings for Hard Clears.",
+			"lamp",
 			(c) => c.data.hcTier?.value,
 			(c) => c.data.hcTier?.text,
 			(c) => c.data.hcTier?.individualDifference,
@@ -155,6 +157,7 @@ export const IIDX_SP_IMPL: GPTClientImplementation<"iidx:SP"> = {
 		CreateRatingSys(
 			"EXHC Tier",
 			"Tierlist Ratings for EX-HARD Clears.",
+			"lamp",
 			(c) => c.data.exhcTier?.value,
 			(c) => c.data.exhcTier?.text,
 			(c) => c.data.exhcTier?.individualDifference,
@@ -182,7 +185,7 @@ export const IIDX_DP_IMPL: GPTClientImplementation<"iidx:DP"> = {
 			(c) => c.data.dpTier?.value,
 			(c) => c.data.dpTier?.text,
 			() => undefined,
-			(s) => [s.scoreData.lamp, s.scoreData.enumIndexes.lamp >= IIDX_LAMPS.CLEAR]
+			(s) => [s.scoreData.lamp, s.scoreData.enumIndexes.lamp >= IIDX_LAMPS.EASY_CLEAR]
 		),
 	],
 	scoreHeaders: IIDX_HEADERS,

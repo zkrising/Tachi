@@ -672,21 +672,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			// this game has dynamic difficulties. Formatting is handled elsewhere.
 		},
 		classColours: {},
-		ratingSystems: [
-			CreateRatingSys(
-				"BPM",
-				"How fast are the streams in this chart?",
-				(c) => c.data.streamBPM,
-				(c) => c.data.streamBPM?.toString(),
-				() => undefined,
-				(s) => [
-					s.scoreData.lamp === "FAILED"
-						? `Failed ${s.scoreData.survivedPercent.toFixed(2)}%`
-						: s.scoreData.lamp,
-					s.scoreData.lamp !== "FAILED",
-				]
-			),
-		],
+		ratingSystems: [],
 		scoreHeaders: [
 			["Score", "Score", NumericSOV((x) => x.scoreData.finalPercent)],
 			["Judgements", "Hits", NumericSOV((x) => x.scoreData.scorePercent)],

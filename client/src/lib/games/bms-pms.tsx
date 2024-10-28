@@ -49,12 +49,14 @@ const BASE_IMPL: GPTClientImplementation<GPTStrings["bms" | "pms"]> = {
 		CreateRatingSys(
 			"Sieglinde EC",
 			"TODO lol",
+			"lamp",
 			(c) => c.data.sglEC,
 			(c) => (IsNullish(c.data.sglEC) ? null : FormatSieglindeBMS(c.data.sglEC!))
 		),
 		CreateRatingSys(
 			"Sieglinde HC",
 			"TODO lol",
+			"lamp",
 			(c) => c.data.sglHC,
 			(c) => (IsNullish(c.data.sglHC) ? null : FormatSieglindeBMS(c.data.sglHC!))
 		),

@@ -481,7 +481,7 @@ function TierlistBreakdown({ game, folderDataset, playtype, reqUser }: InfoProps
 						requirements, and red if you haven't, instead of fancier colours.
 					</span>
 				</Form.Text>
-				<Form.Check
+				{/* <Form.Check
 					className="d-block d-lg-none"
 					type="checkbox"
 					checked={forceGridView}
@@ -489,7 +489,7 @@ function TierlistBreakdown({ game, folderDataset, playtype, reqUser }: InfoProps
 						setForceGridView((e) => !e);
 					}}
 					label="Force desktop grid view"
-				/>
+				/> */}
 				<Divider />
 			</Col>
 			<Col xs={12}>

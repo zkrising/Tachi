@@ -13678,6 +13678,19 @@
 	},
 	{
 		"data": {
+			"level": "1",
+			"versions": "world"
+		},
+		"folderID": "Fa1613160d15a414f057cac84ef3c2ebf6da5e1365f472ce291a729113d9bfdaa",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 1 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "10",
 			"versions": "a"
 		},
@@ -13739,6 +13752,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 10 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "world"
+		},
+		"folderID": "F8c56542310d56d843cb0e36514013adec01a3c1c30939fd1891b56d1df2fe52c",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 10 (world)",
 		"type": "charts"
 	},
 	{
@@ -13808,6 +13834,19 @@
 	},
 	{
 		"data": {
+			"level": "11",
+			"versions": "world"
+		},
+		"folderID": "Fede179f7e56c295d7c5a5d75c62e00d486b1753413eb24e84389d13588841705",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 11 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "12",
 			"versions": "a"
 		},
@@ -13869,6 +13908,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 12 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "world"
+		},
+		"folderID": "F6c2ce7e89580f08c24ff4cc733519971a6d17363c9597f5f7981538d8436b9a3",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 12 (world)",
 		"type": "charts"
 	},
 	{
@@ -13938,6 +13990,19 @@
 	},
 	{
 		"data": {
+			"level": "13",
+			"versions": "world"
+		},
+		"folderID": "F39759da0051b0f83aab9c6f4014b55173d06942a191cf41d16ebe22f17031866",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 13 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "14",
 			"versions": "a"
 		},
@@ -13999,6 +14064,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 14 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
+			"versions": "world"
+		},
+		"folderID": "Fae150b7168c0006ddc977488443733d5cb9abcb2a49a7ac78c2275b0a31c1775",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 14 (world)",
 		"type": "charts"
 	},
 	{
@@ -14068,6 +14146,19 @@
 	},
 	{
 		"data": {
+			"level": "15",
+			"versions": "world"
+		},
+		"folderID": "F2258fbc49434b9ed5497d704ed28541e88b6ea44cc9c4ef817ea44c712f990a6",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 15 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "16",
 			"versions": "a"
 		},
@@ -14129,6 +14220,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 16 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "16",
+			"versions": "world"
+		},
+		"folderID": "F4d7c3db8cee537140b1be892b73bb946f84a883d5797950c63d131d0746c6320",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 16 (world)",
 		"type": "charts"
 	},
 	{
@@ -14198,6 +14302,19 @@
 	},
 	{
 		"data": {
+			"level": "17",
+			"versions": "world"
+		},
+		"folderID": "F75c3a342dcc59a9f67c79431209c60011798a54ea4fdea8bc63128e490d8b289",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 17 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "18",
 			"versions": "a"
 		},
@@ -14259,6 +14376,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 18 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "18",
+			"versions": "world"
+		},
+		"folderID": "F8c4d318bdaf67fd17339974b4e9799ff3b1ea8a98e8479ffe956e1cfdd468f09",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 18 (world)",
 		"type": "charts"
 	},
 	{
@@ -14328,6 +14458,19 @@
 	},
 	{
 		"data": {
+			"level": "19",
+			"versions": "world"
+		},
+		"folderID": "F3a6e4587d9955d23f57f11a5a7106db188c39a64a69c188dd0cd43bc9befb5bc",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 19 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "2",
 			"versions": "a"
 		},
@@ -14389,6 +14532,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 2 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "world"
+		},
+		"folderID": "F4f12ec2926b9397635beff55c74d943a109efed2b4bae3f9f9aca1d8b10f5ebc",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 2 (world)",
 		"type": "charts"
 	},
 	{
@@ -14458,6 +14614,19 @@
 	},
 	{
 		"data": {
+			"level": "3",
+			"versions": "world"
+		},
+		"folderID": "Fafce5c5fd35e83a243079278b80a2ac79b49ee6e44b228037f9e7f345307171f",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 3 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "4",
 			"versions": "a"
 		},
@@ -14519,6 +14688,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 4 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "world"
+		},
+		"folderID": "F3d88e81dcf92da6d1735f10b4446afb46a52963a930b942047b96b008b87b456",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 4 (world)",
 		"type": "charts"
 	},
 	{
@@ -14588,6 +14770,19 @@
 	},
 	{
 		"data": {
+			"level": "5",
+			"versions": "world"
+		},
+		"folderID": "F30cefed8e5cf10538567015fe831a1e43e1db81f14a69f8f0a2d3e9db4aef666",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 5 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "6",
 			"versions": "a"
 		},
@@ -14649,6 +14844,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 6 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "world"
+		},
+		"folderID": "F2bd4d95fc1ad87bdc4f3780047d36dda40c49b863f73190d3a09e4c3aab7caae",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 6 (world)",
 		"type": "charts"
 	},
 	{
@@ -14718,6 +14926,19 @@
 	},
 	{
 		"data": {
+			"level": "7",
+			"versions": "world"
+		},
+		"folderID": "F6010c2a24e669c7f9fb8b342f9c048c625cf833dc837c575ca068337b740fde4",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 7 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "8",
 			"versions": "a"
 		},
@@ -14779,6 +15000,19 @@
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 8 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "world"
+		},
+		"folderID": "Fefce269769fc55fe045ceded8fe97df82d403b7712624cd20165ef9e5eb0b166",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 8 (world)",
 		"type": "charts"
 	},
 	{
@@ -14848,6 +15082,19 @@
 	},
 	{
 		"data": {
+			"level": "9",
+			"versions": "world"
+		},
+		"folderID": "F175fe25d30384ee88b2dbdc013f6b518f42f7ed9b0e41326382af91006d2cf40",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 9 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "1",
 			"versions": "a"
 		},
@@ -14909,6 +15156,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 1 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
+			"versions": "world"
+		},
+		"folderID": "Fde0848ff994b4bbab2f4b2f65b920ee40a4816db5d015425ade7a5e3221737a5",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 1 (world)",
 		"type": "charts"
 	},
 	{
@@ -14978,6 +15238,19 @@
 	},
 	{
 		"data": {
+			"level": "10",
+			"versions": "world"
+		},
+		"folderID": "F19eb67b105ac0edf0f3dafd3fe1cab95c985c473b6c6c4bfa071596c7c213025",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 10 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "11",
 			"versions": "a"
 		},
@@ -15039,6 +15312,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 11 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "world"
+		},
+		"folderID": "F83b713346d9f76873b652d65d7f05dc13a4cca5747bb284a151c4de9a7ea5d33",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 11 (world)",
 		"type": "charts"
 	},
 	{
@@ -15108,6 +15394,19 @@
 	},
 	{
 		"data": {
+			"level": "12",
+			"versions": "world"
+		},
+		"folderID": "F6a88b21a690c289cc628df323e528c8d22203bb616f8b1025b3476625930f146",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 12 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "13",
 			"versions": "a"
 		},
@@ -15169,6 +15468,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 13 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
+			"versions": "world"
+		},
+		"folderID": "Fe8cc44d50b362e8202b7ce589b0187778d6905e5d1e2a4833ac69aaf247d3b5e",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 13 (world)",
 		"type": "charts"
 	},
 	{
@@ -15238,6 +15550,19 @@
 	},
 	{
 		"data": {
+			"level": "14",
+			"versions": "world"
+		},
+		"folderID": "Fee9e6609b6f59c5d33c4d72cf8c64a9ea844207fdcff7569b2f75a75a803eaa1",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 14 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "15",
 			"versions": "a"
 		},
@@ -15299,6 +15624,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 15 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
+			"versions": "world"
+		},
+		"folderID": "F9074ce3402c44ec4b6c371752e4ccd5aedc4d8321b0e0d21ca2840243e5e65c7",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 15 (world)",
 		"type": "charts"
 	},
 	{
@@ -15368,6 +15706,19 @@
 	},
 	{
 		"data": {
+			"level": "16",
+			"versions": "world"
+		},
+		"folderID": "F64de6e6180695be6caf8cef64601604db19416ce33367c42e752e5cf652f409d",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 16 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "17",
 			"versions": "a"
 		},
@@ -15429,6 +15780,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 17 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "17",
+			"versions": "world"
+		},
+		"folderID": "Fa5ae2477acb78416bd72a293cbea0093767b4c4d76c401348484736cfe3c2aa6",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 17 (world)",
 		"type": "charts"
 	},
 	{
@@ -15498,6 +15862,19 @@
 	},
 	{
 		"data": {
+			"level": "18",
+			"versions": "world"
+		},
+		"folderID": "F37351356f2a65fe0e5ce2b8313191d0f4f83ac6824ac976e894b42d372ce5587",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 18 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "19",
 			"versions": "a"
 		},
@@ -15559,6 +15936,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 19 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "19",
+			"versions": "world"
+		},
+		"folderID": "F12834d34f1445bb489bab24a5948c52c30be21f47804d866b8b3807a305d78a0",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 19 (world)",
 		"type": "charts"
 	},
 	{
@@ -15628,6 +16018,19 @@
 	},
 	{
 		"data": {
+			"level": "2",
+			"versions": "world"
+		},
+		"folderID": "F5761226aebebacb3b7dfd9f2801dc8f457e64edab70b29c458e2bc265144fe0a",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 2 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "3",
 			"versions": "a"
 		},
@@ -15689,6 +16092,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 3 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "world"
+		},
+		"folderID": "F43d653371351c82921ca88fc433fc1350dc5ea6a1d8fcb3d9f93fbfb62355a60",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 3 (world)",
 		"type": "charts"
 	},
 	{
@@ -15758,6 +16174,19 @@
 	},
 	{
 		"data": {
+			"level": "4",
+			"versions": "world"
+		},
+		"folderID": "F0435b8c216be06fb3894c80abc1bc52fdf87861c6009e3f3b9d479695dd7dc18",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 4 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "5",
 			"versions": "a"
 		},
@@ -15819,6 +16248,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 5 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "world"
+		},
+		"folderID": "F65640be7e586ed7bc022fd7cf4e130f81dab5fbfa714246a70cb507cf2cc55da",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 5 (world)",
 		"type": "charts"
 	},
 	{
@@ -15888,6 +16330,19 @@
 	},
 	{
 		"data": {
+			"level": "6",
+			"versions": "world"
+		},
+		"folderID": "F70cd3987abc609f8b74a6fcec8bc0742fdd0dd34033c570c2a4e77e0819e2e07",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 6 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "7",
 			"versions": "a"
 		},
@@ -15949,6 +16404,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 7 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "world"
+		},
+		"folderID": "Fa55df3c1dfeaf2039d0e7a8d60389446c8067611be3c96b5c2bd5ef72b9300f0",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 7 (world)",
 		"type": "charts"
 	},
 	{
@@ -16018,6 +16486,19 @@
 	},
 	{
 		"data": {
+			"level": "8",
+			"versions": "world"
+		},
+		"folderID": "Fc4ed03c88638a4b2e7c615a958d43702bcdf802aca9a9738d221284eb2da9b9d",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 8 (world)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "9",
 			"versions": "a"
 		},
@@ -16079,6 +16560,19 @@
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 9 (konaste)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "world"
+		},
+		"folderID": "Ff5d554f76b9da739b5f0f2e58f0512f4a74a63c08fbb4ce3c42041dbbb51e561",
+		"game": "ddr",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 9 (world)",
 		"type": "charts"
 	},
 	{

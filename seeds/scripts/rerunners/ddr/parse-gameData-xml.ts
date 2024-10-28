@@ -6,4 +6,4 @@ const parser = new XMLParser();
 
 const gameData: Music[] = parser.parse(fs.readFileSync("musicdb.xml")).mdb.music;
 
-parseGameData("a3", gameData);
+parseGameData("world", gameData);

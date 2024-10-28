@@ -1,7 +1,7 @@
 const { MutateCollection, CreateFolderID } = require("../../util");
 
 const PLAYTYPES = ["SP", "DP"];
-const VERSIONS = ["konaste", "a3", "a20plus", "a20", "a"];
+const VERSIONS = ["world", "konaste", "a3", "a20plus", "a20", "a"];
 const LEVELS = [
 	"1",
 	"2",
@@ -55,7 +55,10 @@ MutateCollection("folders.json", (foldersCol) => {
 				}
 				ptFolders[playtype][ver].push(realFolder);
 
-				foldersCol.push(realFolder);
+
+				if(foldersCol.filter(folder => folder.folderID === folderID).length === 0){
+					foldersCol.push(realFolder);
+				}
 			}
 		}
 	}
@@ -65,16 +68,19 @@ MutateCollection("folders.json", (foldersCol) => {
 MutateCollection("tables.json", (tables) => {
 	for (const playtype of PLAYTYPES) {
 		for (const ver of VERSIONS) {
-			tables.push({
-				tableID: `ddr-${playtype}-${ver}`,
-				title: `DDR (${playtype}) (${ver})`,
-				description: `Levels for DDR (${playtype}) in ${ver}`,
-				folders: ptFolders[playtype][ver].map((e) => e.folderID),
-				game: "ddr",
-				playtype,
-				inactive: false,
-				default: false,
-			});
+			const tableID = `ddr-${playtype}-${ver}`;
+			if(tables.filter(table => table.tableID === tableID).length === 0){
+				tables.push({
+					tableID: `ddr-${playtype}-${ver}`,
+					title: `DDR (${playtype}) (${ver})`,
+					description: `Levels for DDR (${playtype}) in ${ver}`,
+					folders: ptFolders[playtype][ver].map((e) => e.folderID),
+					game: "ddr",
+					playtype,
+					inactive: false,
+					default: false,
+				});
+			}
 		}
 	}
 	return tables;

@@ -147,6 +147,8 @@ export function SoftwareIDToVersion(
 			} else if (EXT_EPOLIS.includes(data.ext)) {
 				if (data.rev === REV_NORMAL) {
 					return "31";
+				} else if (data.rev === REV_OMNIMIX) {
+					return "31-omni";
 				}
 			}
 		}

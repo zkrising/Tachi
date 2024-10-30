@@ -17260,6 +17260,19 @@
 	{
 		"data": {
 			"level": "1",
+			"versions": "31-omni"
+		},
+		"folderID": "Fce0f83e4232f13acf7e4755083c91006f470a7f0bae3ff104b91db35ddad92b5",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 1 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
 			"versions": "31"
 		},
 		"folderID": "F433523a3d513a07b3e1e4e4b9441eec2337f748bd6e8a249ea49dd4bcae92d7b",
@@ -17381,7 +17394,7 @@
 		},
 		"folderID": "Ff4de2cc21bffa3e6e9eb8725e0fbe0986c231dab88178d584c41c7b3c256b118",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 1 (Resident Omnimix)",
@@ -17394,7 +17407,7 @@
 		},
 		"folderID": "F1218170b008e056f1651d6bca37c6cf5eb0f3bc1f770c94c5a56677a3a468314",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 1 (Resident)",
@@ -17702,6 +17715,19 @@
 	{
 		"data": {
 			"level": "10",
+			"versions": "31-omni"
+		},
+		"folderID": "F11e79bbeaa28b8ff54b8e3905d7ff4d39a93ed972a294f31378e230b900f21e9",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 10 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
 			"versions": "31"
 		},
 		"folderID": "Fbe4f47c37dd0902394f94049e63c95e1da77686f6b71e38782adb3985d0264b1",
@@ -17823,7 +17849,7 @@
 		},
 		"folderID": "F1efd11cef63058f3bbd628f263e69c3550db00f101600164ecdb2bdbbf700e4c",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 10 (Resident Omnimix)",
@@ -17836,7 +17862,7 @@
 		},
 		"folderID": "F8894726fd2e4bc4f453b10db1f1f640d527c97627bf5e2549a0b13655eabb0ed",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 10 (Resident)",
@@ -18144,6 +18170,19 @@
 	{
 		"data": {
 			"level": "11",
+			"versions": "31-omni"
+		},
+		"folderID": "Fdae84f4eb3c7a88e480c42389b2f88c12e4b449d5fea1ff121aa229b2382f9a9",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 11 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
 			"versions": "31"
 		},
 		"folderID": "F9c0a1ec60283b225f62eb8cd5ad240651fad00c1cbdfc2b1ca3fe3cb0e0689a4",
@@ -18265,7 +18304,7 @@
 		},
 		"folderID": "Fe59d635ed6e06f7f2962324bf8381d2b02cdcd706bee31a2c95b9f5fb87504d2",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 11 (Resident Omnimix)",
@@ -18278,7 +18317,7 @@
 		},
 		"folderID": "F48eaed0a62996f00c7aabe9b2830e3cc40f00dfb13584e2e795fa0d6cfafc863",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 11 (Resident)",
@@ -18586,6 +18625,19 @@
 	{
 		"data": {
 			"level": "12",
+			"versions": "31-omni"
+		},
+		"folderID": "F7b18f594d7d131fc42909104cadd19521596fa953d9adf2c82adb37c6110dcf7",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 12 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
 			"versions": "31"
 		},
 		"folderID": "F534cb868ae0066629b76a5e92d4c21fbb86d6ff1b8ede167a1a46c4dd8a0fb6f",
@@ -18707,7 +18759,7 @@
 		},
 		"folderID": "Fac017a39ab8c4084178808f92c5c7109e3165a03f1f08b091a697196e88ec77d",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 12 (Resident Omnimix)",
@@ -18720,7 +18772,7 @@
 		},
 		"folderID": "Faada4f588a096bfae62f5dc8970cc772e93c79d52c12aad72f5da499b41db7b8",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 12 (Resident)",
@@ -19028,6 +19080,19 @@
 	{
 		"data": {
 			"level": "2",
+			"versions": "31-omni"
+		},
+		"folderID": "Fbc436e860e309cb518da1c27ca7af7c0b83c5a967fb738a8d0a673fb3d48faab",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 2 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
 			"versions": "31"
 		},
 		"folderID": "F8121a7d8a56e9c0e599af7dbed57c370b8ada2221830861f0694d3411c346ce1",
@@ -19149,7 +19214,7 @@
 		},
 		"folderID": "F5143df7a36805fd4aacf65be0645bdceab4ce3c01177ad14268e3d6bce362801",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 2 (Resident Omnimix)",
@@ -19162,7 +19227,7 @@
 		},
 		"folderID": "F9b579da9bf99227878c473acb9182cc28a35402388b039b41264f55ea7e608c1",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 2 (Resident)",
@@ -19470,6 +19535,19 @@
 	{
 		"data": {
 			"level": "3",
+			"versions": "31-omni"
+		},
+		"folderID": "F4c55a47ec903a3c1d7d0177b1ce3333d9985041219a655c54106da37a2267646",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 3 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
 			"versions": "31"
 		},
 		"folderID": "Fc80b3b1dfa2b007e4f23cd2c60f28a8d45485f95ba879eda08d858de574321bf",
@@ -19591,7 +19669,7 @@
 		},
 		"folderID": "F158445e29f4436e616866b7f126130e290a4463c0e12ff6f3e79bc41f1bb1ea2",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 3 (Resident Omnimix)",
@@ -19604,7 +19682,7 @@
 		},
 		"folderID": "F8d88c9042dc5a3916febedb5319705559a13a6e51983b44177449ff2e3592166",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 3 (Resident)",
@@ -19912,6 +19990,19 @@
 	{
 		"data": {
 			"level": "4",
+			"versions": "31-omni"
+		},
+		"folderID": "F866d1516892a7b8df968e0323133c266a1ca9dc1224117c00f4af78081ba76fd",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 4 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
 			"versions": "31"
 		},
 		"folderID": "F35ed77db0f54982b25fef631bddfe278eaaa84b372edbfc2d4c5660804e77f11",
@@ -20033,7 +20124,7 @@
 		},
 		"folderID": "F48c35137077a2f7c712e6c9877bbdc672d0ff02918991632dacdf02d4d179548",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 4 (Resident Omnimix)",
@@ -20046,7 +20137,7 @@
 		},
 		"folderID": "Ff4efa0aeb48ee072de2bb896b3f6e9afe374ff3a0d5f954390b9b446fb69a71f",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 4 (Resident)",
@@ -20354,6 +20445,19 @@
 	{
 		"data": {
 			"level": "5",
+			"versions": "31-omni"
+		},
+		"folderID": "F2e59dcd38a44d2db14ef3d0961bd3a74c0efd93b60ce55af4082d55e70bd19b2",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 5 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
 			"versions": "31"
 		},
 		"folderID": "Fba8ebce8e849a290a5e50457761661a6def785120125ec77a821bc9d516f7e76",
@@ -20475,7 +20579,7 @@
 		},
 		"folderID": "F621bb8be1f078964d89badb33a17bf43725423beda57f2b842a914b71949caeb",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 5 (Resident Omnimix)",
@@ -20488,7 +20592,7 @@
 		},
 		"folderID": "Fa0fc607ab004e3db7171be042b8924d82ed53833c1f1d335ebb17e20cbf996f1",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 5 (Resident)",
@@ -20796,6 +20900,19 @@
 	{
 		"data": {
 			"level": "6",
+			"versions": "31-omni"
+		},
+		"folderID": "Ffebfc8e96592a0bac5e9fdaf52a8f490fb1b94c480e0cfb7a6e95e03f746d7f2",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 6 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
 			"versions": "31"
 		},
 		"folderID": "Fcfef278758f7e22d1670c1c9e57a9bc7de1b1b533b135eeeb541513d6502a7cc",
@@ -20917,7 +21034,7 @@
 		},
 		"folderID": "Fca26035746a97558a28c975e6b40c312acd53e285205feb35b6b1e3e5d52281d",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 6 (Resident Omnimix)",
@@ -20930,7 +21047,7 @@
 		},
 		"folderID": "Fc631ee868c7ae1ff52179d7d6ddc14d21afde020786b9d7e338d2dc5c351a687",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 6 (Resident)",
@@ -21238,6 +21355,19 @@
 	{
 		"data": {
 			"level": "7",
+			"versions": "31-omni"
+		},
+		"folderID": "F136af5d00ccaa0e948140d66fd6645f9ad438e16f1a20d3eb1750fd628ba83c2",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 7 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
 			"versions": "31"
 		},
 		"folderID": "F958bb839b8b6d7af5a3dd3628c8f1852b906e9cc308fd51abfa394ea8dd768a2",
@@ -21359,7 +21489,7 @@
 		},
 		"folderID": "F637669b160cb74f26b2a36de16a32985141b3e1eaddca9efacca1e4b1f8f8c4d",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 7 (Resident Omnimix)",
@@ -21372,7 +21502,7 @@
 		},
 		"folderID": "F0eeb939f674588d20c9fc506a7c5cc7f7eab744cd920e0d64411a83a553c67fa",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 7 (Resident)",
@@ -21680,6 +21810,19 @@
 	{
 		"data": {
 			"level": "8",
+			"versions": "31-omni"
+		},
+		"folderID": "Fa99b566ee02d66922a81ccc938047a345a3cf632a0857db1cf46572444efa0cc",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 8 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
 			"versions": "31"
 		},
 		"folderID": "F4abbb092a1e14c1d26c31049d8344cb99f163e3bf170fb26f3f0671d86e82b4c",
@@ -21801,7 +21944,7 @@
 		},
 		"folderID": "F9d8efd8f6382861fc04ef3dbb53a2ac42e9187cea52341422ecf47395885f4d9",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 8 (Resident Omnimix)",
@@ -21814,7 +21957,7 @@
 		},
 		"folderID": "F767970d0fdad6f2859f41b4e12a6c9061457c6dca642d717b4ff4ac104711185",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 8 (Resident)",
@@ -22122,6 +22265,19 @@
 	{
 		"data": {
 			"level": "9",
+			"versions": "31-omni"
+		},
+		"folderID": "F48736df4ff40d1e15bfd710587f2febd1096e9c8f6016fa5c00585c07735bdb7",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"searchTerms": [],
+		"title": "Level 9 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
 			"versions": "31"
 		},
 		"folderID": "F93c7ad860631314b85e54be7ba4cd1fb5fc7279d94583182806e872303cbacf7",
@@ -22243,7 +22399,7 @@
 		},
 		"folderID": "Fea4d31db72d354155d069e15cc51aa80493fd599fa0388f916086f9eb736556d",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 9 (Resident Omnimix)",
@@ -22256,7 +22412,7 @@
 		},
 		"folderID": "F2195f643591e3bc90df35ae0a9938d33849a157052e15f2987159dc2b97c8549",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"searchTerms": [],
 		"title": "Level 9 (Resident)",
@@ -22564,6 +22720,19 @@
 	{
 		"data": {
 			"level": "1",
+			"versions": "31-omni"
+		},
+		"folderID": "F5d4303ec11f0523aabbf51ebdeb8bd76318c0ee1b84ded0568637a770e5a9e11",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 1 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
 			"versions": "31"
 		},
 		"folderID": "Feb083d47b06dd6752591125bf41299e35596c168fb4946ba731ad9123b646aac",
@@ -22685,7 +22854,7 @@
 		},
 		"folderID": "Fc8eff46b03da944c5bbc149a02af7341e454c869cc5657efc069a80ed32d99bc",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 1 (Resident Omnimix)",
@@ -22698,7 +22867,7 @@
 		},
 		"folderID": "F59452de8dbd5280583f1a9626229b6f63c08b50dd9da07917d6bf62785f82cdc",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 1 (Resident)",
@@ -23006,6 +23175,19 @@
 	{
 		"data": {
 			"level": "10",
+			"versions": "31-omni"
+		},
+		"folderID": "Ff086c90a64fe3d4f8d4c879c7585419b916f998c80a400a20dc273e3c1fa721f",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 10 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
 			"versions": "31"
 		},
 		"folderID": "F35c24c57f47fc0e1e6de909b284129527caba84848dc55e221ebca64febce978",
@@ -23127,7 +23309,7 @@
 		},
 		"folderID": "F4d45367f5f15769025d7fc31169b10c96d71ffe9e6e4885fc4fd93a6385fc616",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 10 (Resident Omnimix)",
@@ -23140,7 +23322,7 @@
 		},
 		"folderID": "Ff2ab48f201a0421127d6336179e0486f5255bc6a9449dc6e590c7d5ca038ba0e",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 10 (Resident)",
@@ -23448,6 +23630,19 @@
 	{
 		"data": {
 			"level": "11",
+			"versions": "31-omni"
+		},
+		"folderID": "F2d5e0ebaf67f8021e097340e2f553e14eb617db25e89eabebafb1c14f0405f5c",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 11 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
 			"versions": "31"
 		},
 		"folderID": "F29c545c484d4079de3b40cfcb1e7cca18361a50d158d83dfdff1a14c12efeeae",
@@ -23569,7 +23764,7 @@
 		},
 		"folderID": "F412ec5dc3d521cce489e3804ec2d660f1fcd9bfcebea5223d908f3562bae2622",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 11 (Resident Omnimix)",
@@ -23582,7 +23777,7 @@
 		},
 		"folderID": "F133264d22c30a31e04d08a1017219fd3c7c5e5d2d775547e3a659f18ac403efa",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 11 (Resident)",
@@ -23890,6 +24085,19 @@
 	{
 		"data": {
 			"level": "12",
+			"versions": "31-omni"
+		},
+		"folderID": "F6266050bc50393bb0a88e7a80b57c800efeaca437f1e95efd08694348d77165f",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 12 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
 			"versions": "31"
 		},
 		"folderID": "F2b0542125b7def38e87972d7016c11d8751f51671be778669769417cd4c74204",
@@ -24011,7 +24219,7 @@
 		},
 		"folderID": "F2b886412954844875e7dc96de42c8ff11703344436fb580e3b3ff76b3d7424ff",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 12 (Resident Omnimix)",
@@ -24024,7 +24232,7 @@
 		},
 		"folderID": "Ff922056a52212d7e1be2a37a13dcbb886ba46ae34f89c981241a3d982dad834f",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 12 (Resident)",
@@ -24332,6 +24540,19 @@
 	{
 		"data": {
 			"level": "2",
+			"versions": "31-omni"
+		},
+		"folderID": "Fdc44254cb16ad94b0714d4a9e69dd7a07aa06b65d03bf685452e5effd1f6c5a4",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 2 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
 			"versions": "31"
 		},
 		"folderID": "Fec975ebc2bd28de6cc6d12174e8825963f52596534d72a5eed73ca5283622439",
@@ -24453,7 +24674,7 @@
 		},
 		"folderID": "F91865a3cdebfb5d54a276d1efb8953bdd74229deed086051eee979102e1244f9",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 2 (Resident Omnimix)",
@@ -24466,7 +24687,7 @@
 		},
 		"folderID": "F9e8974e0908c0b2aa66a633e1fd87db4cd4a49de76eaa1c1dbbcbf4b289afd3d",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 2 (Resident)",
@@ -24774,6 +24995,19 @@
 	{
 		"data": {
 			"level": "3",
+			"versions": "31-omni"
+		},
+		"folderID": "F0be057a81f2e35336643032105b3ebc61abe95d92dc2d0e3a407b5a03b38f8a7",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 3 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
 			"versions": "31"
 		},
 		"folderID": "F705f2fcc57ea4844e5698ae520cd5dc5ceb1e6fee24592e03dbead7560372f45",
@@ -24895,7 +25129,7 @@
 		},
 		"folderID": "Fccce99caba93454ce72a0ed614bd411fc3ad92f18053c39ca0e8b593b4bf142b",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 3 (Resident Omnimix)",
@@ -24908,7 +25142,7 @@
 		},
 		"folderID": "Fb90b54a097e5752c046361381045d40e5a588ca0ba8b5bc79ec33ceef7afe9a0",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 3 (Resident)",
@@ -25216,6 +25450,19 @@
 	{
 		"data": {
 			"level": "4",
+			"versions": "31-omni"
+		},
+		"folderID": "Fdcd6ecae79ad5ab1d269a69ea3a71b7139269119cf9cef33c7c1295724e9921e",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 4 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
 			"versions": "31"
 		},
 		"folderID": "F6f44d23e0b72a4fec04d8cb2c7e7b059459e84d589e43675eb9e84607c63572b",
@@ -25337,7 +25584,7 @@
 		},
 		"folderID": "F90adf2d5125d0d7550d991631e8c3d19b5d18a3b0627e0bcca68330808c9c085",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 4 (Resident Omnimix)",
@@ -25350,7 +25597,7 @@
 		},
 		"folderID": "Fc551356526d26eae601714be6a43cdf13d8fedde52a648b6843cdaa2eade1f1a",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 4 (Resident)",
@@ -25658,6 +25905,19 @@
 	{
 		"data": {
 			"level": "5",
+			"versions": "31-omni"
+		},
+		"folderID": "F27b50d2715c17d27100a446488a22c35b735a250dcd2261bac280913e1c82d41",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 5 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
 			"versions": "31"
 		},
 		"folderID": "F732113e45ebdede9bbd785aec4f602f529e8685ebcd7e6fa6f7e082967e47646",
@@ -25779,7 +26039,7 @@
 		},
 		"folderID": "Fdf8c3ec3a65a21acdcfc2addd1d64b38e48fd627a0206ba42bdde6e96c83e3fc",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 5 (Resident Omnimix)",
@@ -25792,7 +26052,7 @@
 		},
 		"folderID": "F05d9f5f9cc6081e0828131fbd363fd315f58fb0626755868ed8b4ded6db76ebc",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 5 (Resident)",
@@ -26100,6 +26360,19 @@
 	{
 		"data": {
 			"level": "6",
+			"versions": "31-omni"
+		},
+		"folderID": "F0315bc5dece0b4786068ead0d52780e24db39fef1a5ba9794eb22e3a9227e966",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 6 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
 			"versions": "31"
 		},
 		"folderID": "F51160a77a38a043628b0ad132429c465a0fd1eccefa1758deed23f02f844842f",
@@ -26221,7 +26494,7 @@
 		},
 		"folderID": "F4ce32f0b4a2242dd2f26871db885d30c86f24cce356469ba4523282b582a4cb7",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 6 (Resident Omnimix)",
@@ -26234,7 +26507,7 @@
 		},
 		"folderID": "Fdd8050f9477441aa6e231589b9dc82c5bc8afc586236759d97d1a789bc9574ec",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 6 (Resident)",
@@ -26542,6 +26815,19 @@
 	{
 		"data": {
 			"level": "7",
+			"versions": "31-omni"
+		},
+		"folderID": "Fbb09366ec528e2c6c87d79301fcdfeb763b85c961f1438437aca7676a20f514c",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 7 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
 			"versions": "31"
 		},
 		"folderID": "Fc9269ab7a3b52690208795fb203a91bbfc79e969006adad4f5d3d0fdb1c606fc",
@@ -26663,7 +26949,7 @@
 		},
 		"folderID": "Fd493959f12d46fabf56a0ac7da8c4c3a01abec4344ec909e725f35be76d293c1",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 7 (Resident Omnimix)",
@@ -26676,7 +26962,7 @@
 		},
 		"folderID": "Fd48754a0ba9c04d0d3059589f0a3f2dbbc9f0debe00f8fd9f96848b3bc78d768",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 7 (Resident)",
@@ -26984,6 +27270,19 @@
 	{
 		"data": {
 			"level": "8",
+			"versions": "31-omni"
+		},
+		"folderID": "Fa1b4fb7133452d2ee923ddb91aef0823b104db16e17d3d53012754c00515c11b",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 8 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
 			"versions": "31"
 		},
 		"folderID": "Fcdc6aa3dd48511a6b7c219a3cbcadfad6f1a03583ea530023235a3cc52353e39",
@@ -27105,7 +27404,7 @@
 		},
 		"folderID": "F6bcff59330c8aeb312728de2c4880e4448fc50289b686dfe6dacd1e0734b8410",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 8 (Resident Omnimix)",
@@ -27118,7 +27417,7 @@
 		},
 		"folderID": "F1288491e824bad195bc8c14bd6d388eaacb3da26d2ab076235c5c8d662f4e4c4",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 8 (Resident)",
@@ -27426,6 +27725,19 @@
 	{
 		"data": {
 			"level": "9",
+			"versions": "31-omni"
+		},
+		"folderID": "F6c07f8fd553e532e0dc1e2ee3f8f4264d80b6481a66342ce77ffd0bf1a392343",
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"searchTerms": [],
+		"title": "Level 9 (Epolis Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
 			"versions": "31"
 		},
 		"folderID": "F437949ea3ab0e2996a999ce3ae5b825f08d2fee6bc14e160402130cc02ce968e",
@@ -27547,7 +27859,7 @@
 		},
 		"folderID": "Fa4b4b04fb2090b24fae6f67711109ca572661804e9c21d219bd3b7caff13ed82",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 9 (Resident Omnimix)",
@@ -27560,7 +27872,7 @@
 		},
 		"folderID": "F96f40e5b849ecf2be1a215ccd4af4f3df9ed499bd2c5be4b998a8891177ab337",
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"searchTerms": [],
 		"title": "Level 9 (Resident)",

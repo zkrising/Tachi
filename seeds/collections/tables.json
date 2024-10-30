@@ -2303,6 +2303,29 @@
 	},
 	{
 		"default": false,
+		"description": "Levels for beatmania IIDX (DP) in Epolis Omnimix.",
+		"folders": [
+			"Fce0f83e4232f13acf7e4755083c91006f470a7f0bae3ff104b91db35ddad92b5",
+			"Fbc436e860e309cb518da1c27ca7af7c0b83c5a967fb738a8d0a673fb3d48faab",
+			"F4c55a47ec903a3c1d7d0177b1ce3333d9985041219a655c54106da37a2267646",
+			"F866d1516892a7b8df968e0323133c266a1ca9dc1224117c00f4af78081ba76fd",
+			"F2e59dcd38a44d2db14ef3d0961bd3a74c0efd93b60ce55af4082d55e70bd19b2",
+			"Ffebfc8e96592a0bac5e9fdaf52a8f490fb1b94c480e0cfb7a6e95e03f746d7f2",
+			"F136af5d00ccaa0e948140d66fd6645f9ad438e16f1a20d3eb1750fd628ba83c2",
+			"Fa99b566ee02d66922a81ccc938047a345a3cf632a0857db1cf46572444efa0cc",
+			"F48736df4ff40d1e15bfd710587f2febd1096e9c8f6016fa5c00585c07735bdb7",
+			"F11e79bbeaa28b8ff54b8e3905d7ff4d39a93ed972a294f31378e230b900f21e9",
+			"Fdae84f4eb3c7a88e480c42389b2f88c12e4b449d5fea1ff121aa229b2382f9a9",
+			"F7b18f594d7d131fc42909104cadd19521596fa953d9adf2c82adb37c6110dcf7"
+		],
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"tableID": "iidx-DP-31-omni-levels",
+		"title": "beatmania IIDX (DP) (Epolis Omnimix)"
+	},
+	{
+		"default": true,
 		"description": "Levels for beatmania IIDX (DP) in Epolis.",
 		"folders": [
 			"F433523a3d513a07b3e1e4e4b9441eec2337f748bd6e8a249ea49dd4bcae92d7b",
@@ -2526,13 +2549,13 @@
 			"Fac017a39ab8c4084178808f92c5c7109e3165a03f1f08b091a697196e88ec77d"
 		],
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"tableID": "iidx-DP-30-omni-levels",
 		"title": "beatmania IIDX (DP) (Resident Omnimix)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for beatmania IIDX (DP) in Resident.",
 		"folders": [
 			"F1218170b008e056f1651d6bca37c6cf5eb0f3bc1f770c94c5a56677a3a468314",
@@ -2549,7 +2572,7 @@
 			"Faada4f588a096bfae62f5dc8970cc772e93c79d52c12aad72f5da499b41db7b8"
 		],
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"tableID": "iidx-DP-30-levels",
 		"title": "beatmania IIDX (DP) (Resident)"
@@ -3085,6 +3108,29 @@
 	},
 	{
 		"default": false,
+		"description": "Levels for beatmania IIDX (SP) in Epolis Omnimix.",
+		"folders": [
+			"F5d4303ec11f0523aabbf51ebdeb8bd76318c0ee1b84ded0568637a770e5a9e11",
+			"Fdc44254cb16ad94b0714d4a9e69dd7a07aa06b65d03bf685452e5effd1f6c5a4",
+			"F0be057a81f2e35336643032105b3ebc61abe95d92dc2d0e3a407b5a03b38f8a7",
+			"Fdcd6ecae79ad5ab1d269a69ea3a71b7139269119cf9cef33c7c1295724e9921e",
+			"F27b50d2715c17d27100a446488a22c35b735a250dcd2261bac280913e1c82d41",
+			"F0315bc5dece0b4786068ead0d52780e24db39fef1a5ba9794eb22e3a9227e966",
+			"Fbb09366ec528e2c6c87d79301fcdfeb763b85c961f1438437aca7676a20f514c",
+			"Fa1b4fb7133452d2ee923ddb91aef0823b104db16e17d3d53012754c00515c11b",
+			"F6c07f8fd553e532e0dc1e2ee3f8f4264d80b6481a66342ce77ffd0bf1a392343",
+			"Ff086c90a64fe3d4f8d4c879c7585419b916f998c80a400a20dc273e3c1fa721f",
+			"F2d5e0ebaf67f8021e097340e2f553e14eb617db25e89eabebafb1c14f0405f5c",
+			"F6266050bc50393bb0a88e7a80b57c800efeaca437f1e95efd08694348d77165f"
+		],
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"tableID": "iidx-SP-31-omni-levels",
+		"title": "beatmania IIDX (SP) (Epolis Omnimix)"
+	},
+	{
+		"default": true,
 		"description": "Levels for beatmania IIDX (SP) in Epolis.",
 		"folders": [
 			"Feb083d47b06dd6752591125bf41299e35596c168fb4946ba731ad9123b646aac",
@@ -3308,13 +3354,13 @@
 			"F2b886412954844875e7dc96de42c8ff11703344436fb580e3b3ff76b3d7424ff"
 		],
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"tableID": "iidx-SP-30-omni-levels",
 		"title": "beatmania IIDX (SP) (Resident Omnimix)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for beatmania IIDX (SP) in Resident.",
 		"folders": [
 			"F59452de8dbd5280583f1a9626229b6f63c08b50dd9da07917d6bf62785f82cdc",
@@ -3331,7 +3377,7 @@
 			"Ff922056a52212d7e1be2a37a13dcbb886ba46ae34f89c981241a3d982dad834f"
 		],
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"tableID": "iidx-SP-30-levels",
 		"title": "beatmania IIDX (SP) (Resident)"

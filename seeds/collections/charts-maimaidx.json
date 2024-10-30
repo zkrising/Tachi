@@ -118944,5 +118944,65 @@
 			"buddiesplus",
 			"buddiesplus-omni"
 		]
+	},
+	{
+		"chartID": "818f486033c8e465fdeb91feeaa0c86a8c5122ae",
+		"data": {
+			"inGameID": 11746
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "8",
+		"levelNum": 8,
+		"playtype": "Single",
+		"songID": 1399,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "128a7ac66902406b1abf2deec210083e4e427414",
+		"data": {
+			"inGameID": 11746
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 1399,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "05533f3580b4f83298899ccd417a5f9aeda70249",
+		"data": {
+			"inGameID": 11746
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.9,
+		"playtype": "Single",
+		"songID": 1399,
+		"versions": [
+			"buddiesplus"
+		]
+	},
+	{
+		"chartID": "a6a267a5e338ecabf534f26d9176f6976017ace4",
+		"data": {
+			"inGameID": 11746
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "14+",
+		"levelNum": 14.8,
+		"playtype": "Single",
+		"songID": 1399,
+		"versions": [
+			"buddiesplus"
+		]
 	}
 ]

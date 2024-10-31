@@ -77,7 +77,11 @@ const PR_CG_POPN = {
 	difficulty: p.isPositiveInteger,
 	version: p.isPositiveInteger,
 	clearFlag: p.isPositiveInteger,
-	score: p.isBoundedInteger(0, 100_000),
+
+	// edge case. Score can go above 100k in battle mode.
+	// although we don't support battle mode,
+	// we cannot reject this in the parser - as it will cancel the entire import.
+	score: p.isPositiveInteger,
 
 	coolCount: p.isPositiveInteger,
 	greatCount: p.isPositiveInteger,

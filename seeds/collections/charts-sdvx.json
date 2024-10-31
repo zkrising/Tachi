@@ -145412,5 +145412,725 @@
 		"versions": [
 			"exceed"
 		]
+	},
+	{
+		"chartID": "de3c8f0ee6172b2944ab3639995a4787bff1061d",
+		"data": {
+			"inGameID": 1989
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"songID": 2273,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "839b8e896e6b5d1e0a9a9615a13149abb443ed82",
+		"data": {
+			"inGameID": 1989
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "16",
+		"levelNum": 16,
+		"playtype": "Single",
+		"songID": 2273,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "1c8b031602ad386b8a03249344e19bc1436aef54",
+		"data": {
+			"inGameID": 1989
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "18",
+		"levelNum": 18,
+		"playtype": "Single",
+		"songID": 2273,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "bcf3e9f9d410354001af9f96f8e9f57e4a396a24",
+		"data": {
+			"inGameID": 1989
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 2273,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "33dd7f0db47e17511f57877c52f3b8b3011dabef",
+		"data": {
+			"inGameID": 1991
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "11",
+		"levelNum": 11,
+		"playtype": "Single",
+		"songID": 2274,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "3c7a40ec60409cd8149a6e945c2e640ab31c9c02",
+		"data": {
+			"inGameID": 1991
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "Single",
+		"songID": 2274,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "6f0e2b871ceec07866069714d95d56afc2ca7527",
+		"data": {
+			"inGameID": 1991
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "17",
+		"levelNum": 17,
+		"playtype": "Single",
+		"songID": 2274,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "968764790c517768c3728da3f35db0ed99bb0cfe",
+		"data": {
+			"inGameID": 1991
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "4",
+		"levelNum": 4,
+		"playtype": "Single",
+		"songID": 2274,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "c3ff205eb0b61a1ab58118aec900ac9ab8ce8fab",
+		"data": {
+			"inGameID": 2009
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12,
+		"playtype": "Single",
+		"songID": 2275,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "129804bc6b851195dfa63c554b35cf93d9d5cced",
+		"data": {
+			"inGameID": 2009
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "15",
+		"levelNum": 15,
+		"playtype": "Single",
+		"songID": 2275,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "ca44d1cfc0191bc55d300ab81974c9e8e9323980",
+		"data": {
+			"inGameID": 2009
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "18",
+		"levelNum": 18,
+		"playtype": "Single",
+		"songID": 2275,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "13d4aed0d99d961e6cff43df0abde5a3ca198422",
+		"data": {
+			"inGameID": 2009
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"songID": 2275,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "49727687c72c6a2e2f96afd9a92bc0fc1bb72efc",
+		"data": {
+			"inGameID": 2015
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12,
+		"playtype": "Single",
+		"songID": 2276,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "d4bb53955c83dcaaa49f7c4f297507e797599d2e",
+		"data": {
+			"inGameID": 2015
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "15",
+		"levelNum": 15,
+		"playtype": "Single",
+		"songID": 2276,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "81c5f50828c176a587d599ba379fe02e0cc0a881",
+		"data": {
+			"inGameID": 2015
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "17",
+		"levelNum": 17,
+		"playtype": "Single",
+		"songID": 2276,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "d57cb67692fdcfb28e8d81bab5dba8bcbab762d6",
+		"data": {
+			"inGameID": 2015
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"songID": 2276,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "c849e710e471e7d9e38eb1744d90a60d9e08a715",
+		"data": {
+			"inGameID": 2193
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "Single",
+		"songID": 2277,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "41a3dd80df43d2044ebe79ad9a7bd47c16524ce5",
+		"data": {
+			"inGameID": 2193
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "Single",
+		"songID": 2277,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "35c55b5b8c30a884f6977a494877db1e1072bec9",
+		"data": {
+			"inGameID": 2193
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "17",
+		"levelNum": 17,
+		"playtype": "Single",
+		"songID": 2277,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "d46f9164cefb2fb84dac17b45c8c6db8ebd863a1",
+		"data": {
+			"inGameID": 2193
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 2277,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "82f774908ce06e2c085487e8ae34f164828bbba1",
+		"data": {
+			"inGameID": 2086
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "Single",
+		"songID": 2278,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "6c0c6d21b9d9ca33e9cdfa490b6fa5c35f5c3148",
+		"data": {
+			"inGameID": 2086
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "17",
+		"levelNum": 17,
+		"playtype": "Single",
+		"songID": 2278,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "103bba7d97027858633d92ca768839c719ef3405",
+		"data": {
+			"inGameID": 2086
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "19",
+		"levelNum": 19,
+		"playtype": "Single",
+		"songID": 2278,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "88b1615265df78621e8338a14ce8579e874c5129",
+		"data": {
+			"inGameID": 2086
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7,
+		"playtype": "Single",
+		"songID": 2278,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "b5f3c1fe036367d31ec5274422e126076b9939cf",
+		"data": {
+			"inGameID": 2087
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "15",
+		"levelNum": 15,
+		"playtype": "Single",
+		"songID": 2279,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "3d9be7a23eaf5fa04539173cfcb12777edf3514c",
+		"data": {
+			"inGameID": 2087
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "18",
+		"levelNum": 18,
+		"playtype": "Single",
+		"songID": 2279,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "cfa27a30dee2e927d26fc324b41dd7427d15dfd2",
+		"data": {
+			"inGameID": 2087
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "20",
+		"levelNum": 20,
+		"playtype": "Single",
+		"songID": 2279,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "24a6b3cde4a01441c44def7bff1011e2da66dc3a",
+		"data": {
+			"inGameID": 2087
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "8",
+		"levelNum": 8,
+		"playtype": "Single",
+		"songID": 2279,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "329d5a3a114f439c16333249029f2135577a5b5c",
+		"data": {
+			"inGameID": 2088
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "Single",
+		"songID": 2280,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "f10b6128b8fbccc233de4e99c2e757557335774b",
+		"data": {
+			"inGameID": 2088
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "17",
+		"levelNum": 17,
+		"playtype": "Single",
+		"songID": 2280,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "9b5b9f1baf1bd2f618dbd630b320ad0d29afc59d",
+		"data": {
+			"inGameID": 2088
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "19",
+		"levelNum": 19,
+		"playtype": "Single",
+		"songID": 2280,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "f5584cea95047397b83501a9cae9fadddc60ab9f",
+		"data": {
+			"inGameID": 2088
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7,
+		"playtype": "Single",
+		"songID": 2280,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "6559275ab06feb3a87dadf0dfbba71cd72482207",
+		"data": {
+			"inGameID": 2089
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"songID": 2281,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "0c611b3d58781b6222f254dfede616fc8689f4ab",
+		"data": {
+			"inGameID": 2089
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "16",
+		"levelNum": 16,
+		"playtype": "Single",
+		"songID": 2281,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "e2b334a1e859ee8279e9e2f3947a3d3f8649bd82",
+		"data": {
+			"inGameID": 2089
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "18",
+		"levelNum": 18,
+		"playtype": "Single",
+		"songID": 2281,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "99974d7b24432c2b1a25313bce0979f28d929035",
+		"data": {
+			"inGameID": 2089
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 2281,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "683a5755efe0cccf8e0ade442e7beb598382babb",
+		"data": {
+			"inGameID": 2090
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"songID": 2282,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "ded70344aeec6ca65c09819b589c8f5e9e539135",
+		"data": {
+			"inGameID": 2090
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "16",
+		"levelNum": 16,
+		"playtype": "Single",
+		"songID": 2282,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "cfa9e306277ae7ea5dc5358a0df757aa103e3575",
+		"data": {
+			"inGameID": 2090
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "18",
+		"levelNum": 18,
+		"playtype": "Single",
+		"songID": 2282,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "5c42affda4f4e8aa4b6efcea5d3145fc39cedfdf",
+		"data": {
+			"inGameID": 2090
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 2282,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "3d3d321bf37255a0ad8b0d7cdfa7a8408c6dd5ff",
+		"data": {
+			"inGameID": 2091
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"songID": 2283,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "7f6edc91b3186c6c26b9c34dcc19211cba80933c",
+		"data": {
+			"inGameID": 2091
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "16",
+		"levelNum": 16,
+		"playtype": "Single",
+		"songID": 2283,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "84c739ddfd0ee10a1bb8259dcd536507d7a8677f",
+		"data": {
+			"inGameID": 2091
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "18",
+		"levelNum": 18,
+		"playtype": "Single",
+		"songID": 2283,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "793f3e29f8d8251d575ce5b1e7744e7bb0d08962",
+		"data": {
+			"inGameID": 2091
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 2283,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "0e6a096ce173d60cdcc7af2715c1fcbb7a18e0e3",
+		"data": {
+			"inGameID": 2092
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"songID": 2284,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "2282e540810d55c03da13e1af1c491780bd525b3",
+		"data": {
+			"inGameID": 2092
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "16",
+		"levelNum": 16,
+		"playtype": "Single",
+		"songID": 2284,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "72b95ebff89ddf82745fd0b9ff504c232d7c69cb",
+		"data": {
+			"inGameID": 2092
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "18",
+		"levelNum": 18,
+		"playtype": "Single",
+		"songID": 2284,
+		"versions": [
+			"exceed"
+		]
+	},
+	{
+		"chartID": "7f67af91ab18ff43d590a7f5ec82c45141ae9139",
+		"data": {
+			"inGameID": 2092
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 2284,
+		"versions": [
+			"exceed"
+		]
 	}
 ]

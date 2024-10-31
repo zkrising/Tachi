@@ -6,79 +6,90 @@ import { FormatFunctions } from "./test-utils";
 import { ChartDocument, Game, GPTStrings, SongDocument } from "tachi-common";
 
 type TestFn<T> = (self: T) => boolean;
+type FmtFn<T> = (self: T) => string;
 type Test<T> = {
 	fn: TestFn<T>;
 	desc: string;
+	reason?: FmtFn<T>;
 };
 
-function test<T>(desc: string, fn: TestFn<T>): Test<T> {
-	return { desc, fn };
+function test<T>(desc: string, fn: TestFn<T>, reason?: FmtFn<T>): Test<T> {
+	return { desc, fn, reason: reason };
 }
 
 const CHART_CHECKS: { [G in Game]?: Array<Test<ChartDocument<GPTStrings[G]>>> } = {
 	iidx: [
 		test("Level should not be 0", (c) => c.level !== "0"),
-		test(
-			"LevelNum should be an integer greater than 0 if level is known",
-			(c) =>	c.level === "?" || c.levelNum > 0
-		),
-		test(
-			"Level and LevelNum should align",
-			(c) => (c.level === "?" && c.levelNum === 0) || c.level === c.levelNum.toString()
-		),
+		test("LevelNum should be an integer greater than 0 if level is known", (c) =>
+			c.level === "?" || c.levelNum > 0),
+		test("Level and LevelNum should align", (c) =>
+			(c.level === "?" && c.levelNum === 0) || c.level === c.levelNum.toString()),
 	],
 	chunithm: [
 		test("Level should not be 0", (c) => c.level !== "0"),
 		test("LevelNum should be a number greater than 0", (c) => c.levelNum > 0),
-		test(
-			"Level and LevelNum should align (X+ should be X.5 or higher)",
-			(c) => {
-				if (c.level.endsWith("+")) {
-					return c.levelNum * 10 % 10 >= 5
-				} else {
-					return c.levelNum * 10 % 10 < 5
-				}
-			},
-		),
-		test(
-			"inGameID should not exceed 8000, which is reserved for WORLD'S END charts.",
-			(c) => c.data.inGameID === null || c.data.inGameID < 8000,
-		)
+		test("Level and LevelNum should align (X+ should be X.5 or higher)", (c) => {
+			if (c.level.endsWith("+")) {
+				return (c.levelNum * 10) % 10 >= 5;
+			} else {
+				return (c.levelNum * 10) % 10 < 5;
+			}
+		}),
+		test("inGameID should not exceed 8000, which is reserved for WORLD'S END charts.", (c) =>
+			c.data.inGameID === null || c.data.inGameID < 8000),
 	],
 	maimaidx: [
 		test("Level should not be 0", (c) => c.level !== "0"),
 		test("LevelNum should be an number greater than 0", (c) => c.levelNum > 0),
-		test("inGameID for ST charts should be smaller than 10000",
-			(c) => {
-				if (c.difficulty.startsWith("DX")) {
-					return true;
-				}
+		test("inGameID for ST charts should be smaller than 10000", (c) => {
+			if (c.difficulty.startsWith("DX")) {
+				return true;
+			}
 
-				return c.data.inGameID === null || c.data.inGameID < 10000;
-			},
-		),
-		test(
-			"inGameID for DX charts should be between 10000 (inclusive) and 20000 (exclusive)",
-			(c) => {
-				if (!c.difficulty.startsWith("DX")) {
-					return true;
-				}
+			return c.data.inGameID === null || c.data.inGameID < 10000;
+		}),
+		test("inGameID for DX charts should be between 10000 (inclusive) and 20000 (exclusive)", (c) => {
+			if (!c.difficulty.startsWith("DX")) {
+				return true;
+			}
 
-				if (c.data.inGameID === null) {
-					return true;
-				}
+			if (c.data.inGameID === null) {
+				return true;
+			}
 
-				return c.data.inGameID >= 10000 && c.data.inGameID < 20000;
-			},
-		),
-		test(
-			"inGameID should not exceed 100000, which is reserved for UTAGE charts.",
-			(c) => c.data.inGameID === null || c.data.inGameID < 100000,
-		),
+			return c.data.inGameID >= 10000 && c.data.inGameID < 20000;
+		}),
+		test("inGameID should not exceed 100000, which is reserved for UTAGE charts.", (c) =>
+			c.data.inGameID === null || c.data.inGameID < 100000),
 		test(
 			"Levels equal to 6 and lower don't have a plus variant.",
 			(c) => c.levelNum >= 7 || !c.level.endsWith("+"),
-		)
+			(c) => c.levelNum.toString()
+		),
+	],
+	wacca: [
+		test(
+			"Levels <0.7 is not plus.",
+			(c) => {
+				if ((c.levelNum * 10) % 10 < 7) {
+					return !c.level.endsWith("+");
+				}
+
+				return true;
+			},
+			(c) => c.levelNum.toString()
+		),
+		test(
+			"Levels >=0.7 should end in a +.",
+			(c) => {
+				if ((c.levelNum * 10) % 10 >= 7) {
+					return c.level.endsWith("+");
+				}
+
+				return true;
+			},
+			(c) => c.levelNum.toString()
+		),
 	],
 };
 
@@ -131,9 +142,12 @@ for (const collection of collections) {
 			if (!check.fn(d)) {
 				console.error(
 					chalk.red(
-						`[ERR] ${collectionName} | ${check.desc} | ${pretty}`,
+						`[ERR] ${collectionName} | ${check.desc} | ${pretty}${
+							check.reason ? ` | Got ${check.reason(d)}` : ""
+						}`
 					)
 				);
+
 				failed = true;
 			}
 		}

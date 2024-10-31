@@ -210,6 +210,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 		buddies: "BUDDiES",
 		"buddies-omni": "BUDDiES Omnimix",
 		buddiesplus: "BUDDiES PLUS",
+		"buddiesplus-omni": "BUDDiES PLUS Omnimix",
 	},
 
 	chartData: z.strictObject({

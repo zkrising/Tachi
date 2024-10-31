@@ -5,6 +5,7 @@ import { GPTString } from "tachi-common";
 export function CreateRatingSys<GPT extends GPTString>(
 	name: string,
 	description: string,
+	enumName: string,
 	toNumber: GPTRatingSystem<GPT>["toNumber"],
 	toString: GPTRatingSystem<GPT>["toString"],
 	idvDifference: GPTRatingSystem<GPT>["idvDifference"] = () => false,
@@ -12,6 +13,7 @@ export function CreateRatingSys<GPT extends GPTString>(
 ): GPTRatingSystem<GPT> {
 	return {
 		description,
+		enumName,
 		name,
 		toNumber,
 		toString,

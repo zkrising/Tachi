@@ -33,6 +33,8 @@ export type GPTDifficultyColours<GPT extends GPTString> = Record<Difficulties[GP
 export type GPTRatingSystem<GPT extends GPTString> = {
 	name: string;
 	description: string;
+	enumName: string;
+
 	toNumber: (c: ChartDocument<GPT>) => number | null | undefined;
 	toString: (c: ChartDocument<GPT>) => string | null | undefined;
 

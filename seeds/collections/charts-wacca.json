@@ -1687,7 +1687,7 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "12+",
-		"levelNum": 12.8,
+		"levelNum": 12.7,
 		"playtype": "Single",
 		"songID": 37,
 		"versions": [
@@ -11662,7 +11662,7 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "12",
-		"levelNum": 12,
+		"levelNum": 12.1,
 		"playtype": "Single",
 		"songID": 256,
 		"versions": [
@@ -17766,7 +17766,7 @@
 		},
 		"difficulty": "EXPERT",
 		"isPrimary": true,
-		"level": "10+",
+		"level": "10",
 		"levelNum": 10.4,
 		"playtype": "Single",
 		"songID": 387,

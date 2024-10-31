@@ -8,7 +8,7 @@ import { GetEnumColour } from "lib/game-implementations";
 import React from "react";
 import BPICell from "components/tables/cells/BPICell";
 import RatingCell from "components/tables/cells/RatingCell";
-import { CreateRatingSys, bg, bgc } from "./_util";
+import { CreateRatingSys, bgc } from "./_util";
 
 const IIDX_ENUM_COLOURS: GPTClientImplementation<GPTStrings["iidx"]>["enumColours"] = {
 	grade: {
@@ -139,6 +139,7 @@ export const IIDX_SP_IMPL: GPTClientImplementation<"iidx:SP"> = {
 		CreateRatingSys(
 			"NC Tier",
 			"Tierlist Ratings for Normal Clears.",
+			"lamp",
 			(c) => c.data.ncTier?.value,
 			(c) => c.data.ncTier?.text,
 			(c) => c.data.ncTier?.individualDifference,
@@ -147,6 +148,7 @@ export const IIDX_SP_IMPL: GPTClientImplementation<"iidx:SP"> = {
 		CreateRatingSys(
 			"HC Tier",
 			"Tierlist Ratings for Hard Clears.",
+			"lamp",
 			(c) => c.data.hcTier?.value,
 			(c) => c.data.hcTier?.text,
 			(c) => c.data.hcTier?.individualDifference,
@@ -155,6 +157,7 @@ export const IIDX_SP_IMPL: GPTClientImplementation<"iidx:SP"> = {
 		CreateRatingSys(
 			"EXHC Tier",
 			"Tierlist Ratings for EX-HARD Clears.",
+			"lamp",
 			(c) => c.data.exhcTier?.value,
 			(c) => c.data.exhcTier?.text,
 			(c) => c.data.exhcTier?.individualDifference,
@@ -179,6 +182,7 @@ export const IIDX_DP_IMPL: GPTClientImplementation<"iidx:DP"> = {
 		CreateRatingSys(
 			"DP Tier",
 			"The unofficial DP tiers, taken from https://zasa.sakura.ne.jp/dp/run.php.",
+			"lamp",
 			(c) => c.data.dpTier?.value,
 			(c) => c.data.dpTier?.text,
 			() => undefined,

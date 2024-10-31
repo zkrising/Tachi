@@ -24501,7 +24501,7 @@
 	},
 	{
 		"altTitles": [
-			"鬮鬮Fanta∽cramble!!"
+			"¡¡Fanta∽cramble!!"
 		],
 		"artist": "Potwi",
 		"data": {
@@ -24559,7 +24559,7 @@
 		"searchTerms": [
 			"lichtsaule_kameriaphquase"
 		],
-		"title": "Lichts頽ule"
+		"title": "Lichtsäule"
 	},
 	{
 		"altTitles": [],
@@ -24608,5 +24608,149 @@
 			"rerhyze_beatnationrhyze"
 		],
 		"title": "Re:RHYZE"
+	},
+	{
+		"altTitles": [],
+		"artist": "かめりあ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2273,
+		"searchTerms": [
+			"paniholirmx_kameria"
+		],
+		"title": "PANIC HOLIC (かめりあ's \"24600 POWER\" Remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "Whitelily.(みーに&しろさきあや)",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2274,
+		"searchTerms": [
+			"fourleavesrmx_whitelily"
+		],
+		"title": "Four Leaves (Whitelily. remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "brz1128",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2275,
+		"searchTerms": [
+			"gigibabarmx_brz1128"
+		],
+		"title": "GIGI BABA(brz_style)"
+	},
+	{
+		"altTitles": [],
+		"artist": "Acotto",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2276,
+		"searchTerms": [
+			"v2vrmx_acotto"
+		],
+		"title": "Voice 2 Voice n Voice"
+	},
+	{
+		"altTitles": [],
+		"artist": "Machico",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2277,
+		"searchTerms": [
+			"growingup_machico"
+		],
+		"title": "Growing Up／アニメ「この素晴らしい世界に祝福を！３」より"
+	},
+	{
+		"altTitles": [],
+		"artist": "打打だいず vs. siromaru",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2278,
+		"searchTerms": [
+			"jacktheking_dadadaizusiromaru"
+		],
+		"title": "JACK -the KING Ki11ing-"
+	},
+	{
+		"altTitles": [],
+		"artist": "technoplanet feat. Tamako Kinoshita",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2279,
+		"searchTerms": [
+			"dontyoudare_technoplanet"
+		],
+		"title": "Don't you dare play GOD"
+	},
+	{
+		"altTitles": [],
+		"artist": "隣の庭は青い(庭師+Aoi)",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2280,
+		"searchTerms": [
+			"xinca_tonarinoniwa"
+		],
+		"title": "Xinca"
+	},
+	{
+		"altTitles": [],
+		"artist": "CHUBAY",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2281,
+		"searchTerms": [
+			"skfanfare_chubay"
+		],
+		"title": "憧憬のファンファーレ"
+	},
+	{
+		"altTitles": [],
+		"artist": "荒谷サトル",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2282,
+		"searchTerms": [
+			"imitatedvisions_aratanisatoru"
+		],
+		"title": "Imitated Visions"
+	},
+	{
+		"altTitles": [],
+		"artist": "iru feat. 桃寝ちのい",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2283,
+		"searchTerms": [
+			"kodomokakushi_iru"
+		],
+		"title": "こどもかくしのアンダーランド"
+	},
+	{
+		"altTitles": [],
+		"artist": "ke-ji",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2284,
+		"searchTerms": [
+			"subetewo_keji"
+		],
+		"title": "すべてを賭して"
 	}
 ]

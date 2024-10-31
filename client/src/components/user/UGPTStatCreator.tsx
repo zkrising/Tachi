@@ -66,7 +66,7 @@ function UGPTStatInnerSearchyBit({ game, playtype, onCreate, setShow }: Props) {
 	const formik = useFormik({
 		initialValues: {
 			mode: "chart",
-			metric: "lamp",
+			metric: GetScoreMetrics(gptConfig, ["DECIMAL", "INTEGER", "ENUM"])[0],
 			folderID: undefined,
 			chartID: undefined,
 		},

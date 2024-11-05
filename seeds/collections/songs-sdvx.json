@@ -24752,5 +24752,41 @@
 			"subetewo_keji"
 		],
 		"title": "すべてを賭して"
+	},
+	{
+		"altTitles": [],
+		"artist": "ARM (IOSYS) feat. Nicole Curry",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2285,
+		"searchTerms": [
+			"cometolife_arm"
+		],
+		"title": "Come to Life"
+	},
+	{
+		"altTitles": [],
+		"artist": "Yuta Imai Vs. BEMANI Sound Team \"Yvya\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2286,
+		"searchTerms": [
+			"solareclipse_yutayvya"
+		],
+		"title": "SOLAR ECLIPSE"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"Coyaan & KE!JU & ZAQUVA\"",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2287,
+		"searchTerms": [
+			"cosmicv3locity_coyaankeijuzaquva"
+		],
+		"title": "COSMIC V3LOCITY"
 	}
 ]

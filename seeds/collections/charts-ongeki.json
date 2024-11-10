@@ -69678,5 +69678,2885 @@
 			"brightMemory3Omni",
 			"brightMemory3"
 		]
+	},
+	{
+		"chartID": "1f4562b68f9f7314921b7a981581b0f12a8ec64d",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1000,
+			"maxPlatScore": 1108
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7,
+		"playtype": "Single",
+		"songID": 977,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "4c2c651f500f685db43c8c5eaccdae123c4bfa6d",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1000,
+			"maxPlatScore": 910
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 977,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "8afd84d416482c17a554dd604d82a3e24c431d3f",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1000,
+			"maxPlatScore": 1682
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "Single",
+		"songID": 977,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "a15eb3e8bac9260d4af06c4af5ced889739872dc",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1000,
+			"maxPlatScore": 3218
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.8,
+		"playtype": "Single",
+		"songID": 977,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "7f4597f3c9998be66f9491f1d95b82631c7b2e7d",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1001,
+			"maxPlatScore": 1070
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "8+",
+		"levelNum": 8.7,
+		"playtype": "Single",
+		"songID": 978,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "aa2f1b1f8b642bda2f13ce5e349f01e981661e29",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1001,
+			"maxPlatScore": 860
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "4",
+		"levelNum": 4,
+		"playtype": "Single",
+		"songID": 978,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "c52db280f9ced8f020b43708f7c8828526d5868f",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1001,
+			"maxPlatScore": 1788
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "11+",
+		"levelNum": 11.8,
+		"playtype": "Single",
+		"songID": 978,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "6bf8167297235bead9363b25821762c18dd34ad8",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1001,
+			"maxPlatScore": 2956
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.7,
+		"playtype": "Single",
+		"songID": 978,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "34d35882572a84d45f9a56f1cd44b19fd2517509",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1002,
+			"maxPlatScore": 916
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 979,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "c13a54ed1bbb3adee4aa23da11edb2afe0480434",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1002,
+			"maxPlatScore": 876
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 979,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "efb38f0aac665538c4f18ae76e659f8e73b50565",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1002,
+			"maxPlatScore": 1762
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "9+",
+		"levelNum": 9.7,
+		"playtype": "Single",
+		"songID": 979,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "36e48306875062794c8a26dc58ac0d76e2ed27dd",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1002,
+			"maxPlatScore": 2206
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.7,
+		"playtype": "Single",
+		"songID": 979,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "1af84d77884ed4a5f93536ad0b4832abfb6f7dae",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7111,
+			"maxPlatScore": 902
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7.4,
+		"playtype": "Single",
+		"songID": 980,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "cb53762d8dfb2a90d7aba571a814085e9dbc971c",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7111,
+			"maxPlatScore": 454
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"songID": 980,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "a6cdaaae5a0dcf1a88d090cb176b5a505df365e6",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7111,
+			"maxPlatScore": 1418
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "11",
+		"levelNum": 11,
+		"playtype": "Single",
+		"songID": 980,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "096e0165963a1ecf7b87d3d986a7454aa7f08736",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7111,
+			"maxPlatScore": 2558
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.3,
+		"playtype": "Single",
+		"songID": 980,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "edb23b76cc291124f2df100bf52d4f978b23ff3f",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7112,
+			"maxPlatScore": 902
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7.4,
+		"playtype": "Single",
+		"songID": 981,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "7d4ab5956f74c97487aceac6ac2edab465f74514",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7112,
+			"maxPlatScore": 454
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"songID": 981,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "d44701163b443a016cde7d2a0d75b4d0b9b9155e",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7112,
+			"maxPlatScore": 1418
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "11",
+		"levelNum": 11,
+		"playtype": "Single",
+		"songID": 981,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "316b9778852f8df493dc0bc39ebe3a24266dc19d",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7112,
+			"maxPlatScore": 2558
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.3,
+		"playtype": "Single",
+		"songID": 981,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "7f41fd7fffa3bd744370ec0f30f61ea6febe328e",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7113,
+			"maxPlatScore": 902
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7.4,
+		"playtype": "Single",
+		"songID": 982,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "f0fe6bc816eb6cdea7771057d11d31464cacb7ed",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7113,
+			"maxPlatScore": 454
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"songID": 982,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "a97c5fa8773c786ec705791c60a570836308d96e",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7113,
+			"maxPlatScore": 1418
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "11",
+		"levelNum": 11,
+		"playtype": "Single",
+		"songID": 982,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "d44ea47deca72072fbca8459a36f6878a64ceb29",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7113,
+			"maxPlatScore": 2558
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.3,
+		"playtype": "Single",
+		"songID": 982,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "6ed7bdaa5611683ebfc86ee6bc9cd9c5adc577ea",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 970,
+			"maxPlatScore": 936
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "8+",
+		"levelNum": 8.7,
+		"playtype": "Single",
+		"songID": 983,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "e7853f15bfd0f5caf5ee3807f0f6d18fc7862a1d",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 970,
+			"maxPlatScore": 648
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"songID": 983,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "7d0d07235976081aa884a97b5749b35b0a9667b4",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 970,
+			"maxPlatScore": 1784
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "11",
+		"levelNum": 11,
+		"playtype": "Single",
+		"songID": 983,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "fcb34a1b7b5151099f7c7415192a56f1275f3604",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 970,
+			"maxPlatScore": 2046
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.9,
+		"playtype": "Single",
+		"songID": 983,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "0afdb8621b14307d0eafbf78e42d8c6361905fed",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1003,
+			"maxPlatScore": 1166
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "9+",
+		"levelNum": 9.7,
+		"playtype": "Single",
+		"songID": 984,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "00bba8999f032cb34489bd05dc544847b2eaba34",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1003,
+			"maxPlatScore": 546
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 984,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "a036541de921abd657f7be6c24a96d1ec6dec162",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1003,
+			"maxPlatScore": 2076
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"songID": 984,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "fafccf436dce7fa62922e29c7aa434e5f4ca3dfd",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1003,
+			"maxPlatScore": 3136
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "14+",
+		"levelNum": 14.7,
+		"playtype": "Single",
+		"songID": 984,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "6245c51eff0613221f2da771cd59ea001326e783",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1004,
+			"maxPlatScore": 1020
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 985,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "14e29b91f56ab1573d71f0f97cae46263852b43c",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1004,
+			"maxPlatScore": 754
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 985,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "e2aa0af4153f2e7ed312b09f04ca2606ed30192a",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1004,
+			"maxPlatScore": 1872
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "10+",
+		"levelNum": 10.7,
+		"playtype": "Single",
+		"songID": 985,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "1e591a855e1c7b451d003ff2bc30056ffcf731e4",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1004,
+			"maxPlatScore": 2278
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.9,
+		"playtype": "Single",
+		"songID": 985,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "8dee8c86f86aab7ca20c41aefa3201f4c44c7c47",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1005,
+			"maxPlatScore": 970
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "8",
+		"levelNum": 8,
+		"playtype": "Single",
+		"songID": 986,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "269349f6079e6d010137bdff28ce6f1831f89475",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1005,
+			"maxPlatScore": 646
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"songID": 986,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "60f379bf692e3edf81c4c5c9cf7286cc5fcc8ae8",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1005,
+			"maxPlatScore": 1522
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10.4,
+		"playtype": "Single",
+		"songID": 986,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "12b71f3afc3cc8378d92e868ac6741916679a4c0",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1005,
+			"maxPlatScore": 2484
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.5,
+		"playtype": "Single",
+		"songID": 986,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "30b0a0fdf99be13e4b908aa4ff106edeb20bdf5a",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1006,
+			"maxPlatScore": 824
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7,
+		"playtype": "Single",
+		"songID": 987,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "4e79648f40adb895527a1ff36b60908f967d92ff",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1006,
+			"maxPlatScore": 694
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 987,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "3b98e9ba88440401e73c13d502bccc3c6249901f",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1006,
+			"maxPlatScore": 1404
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "9+",
+		"levelNum": 9.7,
+		"playtype": "Single",
+		"songID": 987,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "7470cd1a3e2d70ae070526e55deb9d10af1f223b",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1006,
+			"maxPlatScore": 2282
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.6,
+		"playtype": "Single",
+		"songID": 987,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "32a60880c30667e2105a369580f99e6ba003998f",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 822,
+			"maxPlatScore": 1154
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "10+",
+		"levelNum": 10.7,
+		"playtype": "Single",
+		"songID": 988,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "51cae476347ea8a961517841ef568dbe1e867c8f",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 822,
+			"maxPlatScore": 802
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 988,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "421bb5f2c85d93ef6e599bd5726ea821af7c1cf8",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 822,
+			"maxPlatScore": 1854
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.6,
+		"playtype": "Single",
+		"songID": 988,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "fad4b09f007fe2ff3e16d33dbb00c7c51b449f0a",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 822,
+			"maxPlatScore": 2908
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "15",
+		"levelNum": 15.1,
+		"playtype": "Single",
+		"songID": 988,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "62a970922d5b348d93ee2b649c30e1b832fa7924",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1007,
+			"maxPlatScore": 1262
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "9",
+		"levelNum": 9,
+		"playtype": "Single",
+		"songID": 989,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "57ddd51bed97d4bef90d98f6e459f9bca4c615c8",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1007,
+			"maxPlatScore": 1086
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"songID": 989,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "e21bd6f96a5b68c3727e65cda7ba91b1aa70db6b",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1007,
+			"maxPlatScore": 2282
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.7,
+		"playtype": "Single",
+		"songID": 989,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "383a43c20642f1b7eff07d27253e319b937dcc97",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1007,
+			"maxPlatScore": 3638
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14.4,
+		"playtype": "Single",
+		"songID": 989,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "518fd67d795a1ac4d4166eeb2c4ed3fc45baf63a",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 993,
+			"maxPlatScore": 1198
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "9",
+		"levelNum": 9,
+		"playtype": "Single",
+		"songID": 990,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "2a5b6ea476a58ae8d658cc37603a89298d0fd6be",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 993,
+			"maxPlatScore": 768
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "4",
+		"levelNum": 4,
+		"playtype": "Single",
+		"songID": 990,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "0a6e879231674cf9e12931c98764686498bf14af",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 993,
+			"maxPlatScore": 1854
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12.1,
+		"playtype": "Single",
+		"songID": 990,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "eb23b96bd01a54450cc9771a6cbe2c50cff8b761",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 993,
+			"maxPlatScore": 2528
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14.4,
+		"playtype": "Single",
+		"songID": 990,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "22b8079b2f9a68944fb8eacc760d9151989ca071",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 994,
+			"maxPlatScore": 1292
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "Single",
+		"songID": 991,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "14d84738cbd5892a5eea92954922e1dd38b94b0d",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 994,
+			"maxPlatScore": 850
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.7,
+		"playtype": "Single",
+		"songID": 991,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "fdbf43b0ccd3f47c3de058033b023c56619747e2",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 994,
+			"maxPlatScore": 2778
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.7,
+		"playtype": "Single",
+		"songID": 991,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "be406f41427fdc19e06de626e4933bc9a00e1175",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 994,
+			"maxPlatScore": 2928
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "14+",
+		"levelNum": 14.8,
+		"playtype": "Single",
+		"songID": 991,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "008c0aa1d2c60f927ac59a3b71b7b30502156e39",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 995,
+			"maxPlatScore": 1064
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "9+",
+		"levelNum": 9.7,
+		"playtype": "Single",
+		"songID": 992,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "3fd80b8463871e1315a66078c3ee3365732c7939",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 995,
+			"maxPlatScore": 804
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"songID": 992,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "7e7463eb942af64f32de5582b7c6a1cb3c1602f0",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 995,
+			"maxPlatScore": 1822
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.7,
+		"playtype": "Single",
+		"songID": 992,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "001ac3ba1fed4eb8eabb78f9eb38d18d1ec8b3da",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 995,
+			"maxPlatScore": 2064
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.9,
+		"playtype": "Single",
+		"songID": 992,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "00683e3cafb7db107e32fd4743affb8d6c9d6afa",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1009,
+			"maxPlatScore": 782
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 993,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "69f66fe20662218086aec7b479c4184c5ee8886c",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1009,
+			"maxPlatScore": 704
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"songID": 993,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "d43eecbccf0b143cf65726bdd0f91472d3cbca79",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1009,
+			"maxPlatScore": 1428
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "10+",
+		"levelNum": 10.7,
+		"playtype": "Single",
+		"songID": 993,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "5a0a31e2d7e95bde1d837e2160bd2cb0ce71de75",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1009,
+			"maxPlatScore": 2356
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.8,
+		"playtype": "Single",
+		"songID": 993,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "f44201bc35e07029d9648c97bd6d692a4b7415ab",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1022,
+			"maxPlatScore": 1462
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "9+",
+		"levelNum": 9.7,
+		"playtype": "Single",
+		"songID": 994,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "eb2e4ea513457115730a1e8576a1b71d0da2ebae",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1022,
+			"maxPlatScore": 822
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "4",
+		"levelNum": 4,
+		"playtype": "Single",
+		"songID": 994,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "2a2189eff52a64bb74f23b40e6956c13ba20e1f0",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1022,
+			"maxPlatScore": 3180
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"songID": 994,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "6597d9ada6836c2d9a28b4a2a5ef390b0808c0a5",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1022,
+			"maxPlatScore": 3342
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "14+",
+		"levelNum": 14.9,
+		"playtype": "Single",
+		"songID": 994,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "b8d5bdc2dd487895a802bbffee1bfead08a6d466",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 990,
+			"maxPlatScore": 1528
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "Single",
+		"songID": 995,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "c982d078bb42632542f73c91ddbf6ddc6c42373e",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 990,
+			"maxPlatScore": 1146
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 995,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "8c755f5055bbe0b357370f9e1218f61a67fb4465",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 990,
+			"maxPlatScore": 2816
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.4,
+		"playtype": "Single",
+		"songID": 995,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "7c0b72d64382c78a70be8eea5a2a44c720792ab4",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 990,
+			"maxPlatScore": 3588
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "14+",
+		"levelNum": 14.9,
+		"playtype": "Single",
+		"songID": 995,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "adbd6bbc27a26d0a1ed0b53f6027bd74fbf95a3d",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1011,
+			"maxPlatScore": 1494
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "9+",
+		"levelNum": 9.7,
+		"playtype": "Single",
+		"songID": 996,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "2a2b646cc13902f5b27750b5dd9ee695f132d7fb",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1011,
+			"maxPlatScore": 978
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "4",
+		"levelNum": 4,
+		"playtype": "Single",
+		"songID": 996,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "c443293e9d374a481fddbbcd8d150e9fee58f5ae",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1011,
+			"maxPlatScore": 2238
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.2,
+		"playtype": "Single",
+		"songID": 996,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "9644b97efd77b3b8541c3ba020c2922fd92b019e",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1011,
+			"maxPlatScore": 3654
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "14+",
+		"levelNum": 14.7,
+		"playtype": "Single",
+		"songID": 996,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "19e2d71886f64e509ec3bbe227af1fa1c0e6ecac",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1012,
+			"maxPlatScore": 1344
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "8",
+		"levelNum": 8,
+		"playtype": "Single",
+		"songID": 997,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "ee49c41c59601d70b1d78dda1f36abe0be542eac",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1012,
+			"maxPlatScore": 850
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"songID": 997,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "c1b83619650c95baf3d37c5a1a8aff04ccb5c0e9",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1012,
+			"maxPlatScore": 2006
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "11+",
+		"levelNum": 11.8,
+		"playtype": "Single",
+		"songID": 997,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "fd7e67b2ea2eecd0d9348cc0b9b02d0dbd58bf00",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1012,
+			"maxPlatScore": 3148
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.8,
+		"playtype": "Single",
+		"songID": 997,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "527f014a3840d349f26cf08292bc4d77e1bf3b1b",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1013,
+			"maxPlatScore": 704
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"songID": 998,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "10487da6435c21209aa550ca6cdc296e0427c551",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1013,
+			"maxPlatScore": 506
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"songID": 998,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "050f3676593a417be32b87e40d0a8b1ec46e4aad",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1013,
+			"maxPlatScore": 1188
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "9",
+		"levelNum": 9.4,
+		"playtype": "Single",
+		"songID": 998,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "1e2f13be03d4346bea164bbc2e6770d98e9e5ec1",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1013,
+			"maxPlatScore": 2004
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12.6,
+		"playtype": "Single",
+		"songID": 998,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "73ee72080be26f4eac9c0f6ed46d26501c01dca3",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 947,
+			"maxPlatScore": 942
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7,
+		"playtype": "Single",
+		"songID": 999,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "b6d5f8ae2bbed2c5626935ab0b961b93ce80088d",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 947,
+			"maxPlatScore": 776
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 999,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "a5cddb934a970d816bd6647f998d028a5c19bbea",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 947,
+			"maxPlatScore": 1516
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "11",
+		"levelNum": 11,
+		"playtype": "Single",
+		"songID": 999,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "0898be11febc3c9b975c7b23145612ce6b7ddb85",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 947,
+			"maxPlatScore": 3004
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.4,
+		"playtype": "Single",
+		"songID": 999,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "9cb02ffbeb0a364eaa93e7f3559186884ddd5fcc",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1010,
+			"maxPlatScore": 574
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 1000,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "6fe14a20d4ca4a2f2e96853dd4dc3295e9b18c49",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1010,
+			"maxPlatScore": 412
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"songID": 1000,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "b93cf8152d7d0b4b71484eed8c2cbc99f9ffd56f",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1010,
+			"maxPlatScore": 1256
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "10+",
+		"levelNum": 10.7,
+		"playtype": "Single",
+		"songID": 1000,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "e4ed099635f6a10864a78f1a970a8185dbb480c3",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1010,
+			"maxPlatScore": 1536
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.9,
+		"playtype": "Single",
+		"songID": 1000,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "6c17c42d5dee0b215f03b3e781db01d2729d4b88",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1014,
+			"maxPlatScore": 1090
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.7,
+		"playtype": "Single",
+		"songID": 1001,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "dd0ca2282702600638b3783d0658d9e2d951e22e",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1014,
+			"maxPlatScore": 1028
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 1001,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "543d40dfd0ab7c278f3608a0cb81aea308f10e70",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1014,
+			"maxPlatScore": 1714
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "Single",
+		"songID": 1001,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "07e04a894eacc0b22c6b6f58a9a174c6dbfeb9b0",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1014,
+			"maxPlatScore": 3564
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"songID": 1001,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "db41e7642c3d02454307a5ff2d48e872bfe9fd7c",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1015,
+			"maxPlatScore": 1342
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "8+",
+		"levelNum": 8.7,
+		"playtype": "Single",
+		"songID": 1002,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "7fdc85bade4e4c890af2ba0efd1c4f3e8c5d22b2",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1015,
+			"maxPlatScore": 1048
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"songID": 1002,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "6c29cd84e1ad9e698215c0b91fd41a5c0f4955fd",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1015,
+			"maxPlatScore": 2978
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.9,
+		"playtype": "Single",
+		"songID": 1002,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "52ffaaf089848912fd0f12584d7647591bfa822b",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1015,
+			"maxPlatScore": 3678
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.9,
+		"playtype": "Single",
+		"songID": 1002,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "6f2b16a36fb87bbc6a77cfbf8699232a65a59bb6",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1016,
+			"maxPlatScore": 558
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 1003,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "4ca59d69e89570b2c9280538ff71124c616ccd73",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1016,
+			"maxPlatScore": 416
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"songID": 1003,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "d830871567799731ad3bcf2a43286ef47d3bdf84",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1016,
+			"maxPlatScore": 878
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "9+",
+		"levelNum": 9.7,
+		"playtype": "Single",
+		"songID": 1003,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "5286027e39c3063de47ba6f58b0ec729801af5cb",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1016,
+			"maxPlatScore": 1274
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.9,
+		"playtype": "Single",
+		"songID": 1003,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "d31e983d23188137f33e2f8c8ab78f9133a4ee5e",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7142,
+			"maxPlatScore": 1108
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "9",
+		"levelNum": 9,
+		"playtype": "Single",
+		"songID": 1004,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "bae708c8f98372c77714fba7b9421fd8a68090ba",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7142,
+			"maxPlatScore": 730
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"songID": 1004,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "5d7d0f0285bbe34266c2e53d84fe70af8c4a5775",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7142,
+			"maxPlatScore": 1634
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.7,
+		"playtype": "Single",
+		"songID": 1004,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "75f4832d4b8d49b0dd99f6e94c0f7e0e222c8240",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7142,
+			"maxPlatScore": 1884
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14.2,
+		"playtype": "Single",
+		"songID": 1004,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "2a93937eff32e99c72847f84dee23d098c6768d7",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7143,
+			"maxPlatScore": 1108
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "9",
+		"levelNum": 9,
+		"playtype": "Single",
+		"songID": 1005,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "bd77a62f1a62580cb9b3f707442f74824360dcc4",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7143,
+			"maxPlatScore": 730
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"songID": 1005,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "cdd291c63f2cc125acaec6b1dc2f51a9f257c0ec",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7143,
+			"maxPlatScore": 1634
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.7,
+		"playtype": "Single",
+		"songID": 1005,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "e9b70f8ccb45277e56efa675c09633daabc96eaf",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7143,
+			"maxPlatScore": 1884
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14.2,
+		"playtype": "Single",
+		"songID": 1005,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "9e738076d380b87f96f8a8b1b9255f73aa5bafff",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7144,
+			"maxPlatScore": 1108
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "9",
+		"levelNum": 9,
+		"playtype": "Single",
+		"songID": 1006,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "7d3775e1241beedb02317c103b1d63d628369849",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7144,
+			"maxPlatScore": 730
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"songID": 1006,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "990829f8775b360b3ac2aaf6180590634ce5ba90",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7144,
+			"maxPlatScore": 1634
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "12+",
+		"levelNum": 12.7,
+		"playtype": "Single",
+		"songID": 1006,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "f7e22c3bdbd7162b947860effdfdcbba08acdb10",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7144,
+			"maxPlatScore": 1884
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14.2,
+		"playtype": "Single",
+		"songID": 1006,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "35d87bd9525acac67a8b0b8265db9d49e685c636",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7145,
+			"maxPlatScore": 1090
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.7,
+		"playtype": "Single",
+		"songID": 1007,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "19f968434f24dd6f523f1c27ad2f50f122cecf75",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7145,
+			"maxPlatScore": 1028
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 1007,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "6555dca61a975ecbb88292e342b2002312e10f2a",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7145,
+			"maxPlatScore": 1714
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "Single",
+		"songID": 1007,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "0ffc303a1a36465fe81c58cccc85cd9b550d76d2",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7145,
+			"maxPlatScore": 3564
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"songID": 1007,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "f60d9c178e207bd42384873b2fb56772acb66040",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7146,
+			"maxPlatScore": 1090
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.7,
+		"playtype": "Single",
+		"songID": 1008,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "446219f73576c0f31b20b454b4c13ccd2d7f5251",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7146,
+			"maxPlatScore": 1028
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 1008,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "32a44c2b3625d5e293c7c44cdc7de5b3c483af7c",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7146,
+			"maxPlatScore": 1714
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "Single",
+		"songID": 1008,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "5b5b45832bac79b98d3c8c98080998f3ceaa924c",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7146,
+			"maxPlatScore": 3564
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"songID": 1008,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "9b1f8619f0ff96d734471ac6257065b8f2eae4eb",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7147,
+			"maxPlatScore": 1090
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.7,
+		"playtype": "Single",
+		"songID": 1009,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "3813cc5489fcce1130251a86f0014500610e2b6d",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7147,
+			"maxPlatScore": 1028
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 1009,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "c77afcf005f312905c0a482cac25f1803fad02de",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7147,
+			"maxPlatScore": 1714
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "Single",
+		"songID": 1009,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "5cca1da0b2389fd28801983c585d16da43584d29",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7147,
+			"maxPlatScore": 3564
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"songID": 1009,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "739f8aa522b64fed434d3b3d0aa907f11f678d09",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7148,
+			"maxPlatScore": 1090
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.7,
+		"playtype": "Single",
+		"songID": 1010,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "e39793f07700a66e1fa2da98fe7da19f8a90be4e",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7148,
+			"maxPlatScore": 1028
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 1010,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "956b0e63670fbd9def73797a835fa416ce76d0cc",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7148,
+			"maxPlatScore": 1714
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "Single",
+		"songID": 1010,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "75e89d8f260d8e609be268466d3cb9ddef2287d1",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7148,
+			"maxPlatScore": 3564
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"songID": 1010,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "7c61de0575f170c8ae1cb84cfd722657a6eef035",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7149,
+			"maxPlatScore": 1090
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.7,
+		"playtype": "Single",
+		"songID": 1011,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "5553a6db7b7cf97d39044c6b16601abab95b2a60",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7149,
+			"maxPlatScore": 1028
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 1011,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "58bc208a7fbb210f7ff8d761400d1ec7f37487cb",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7149,
+			"maxPlatScore": 1714
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "Single",
+		"songID": 1011,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "7e87f3a4277ee2917b1b89518a323a8da2c48b00",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 7149,
+			"maxPlatScore": 3564
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "Single",
+		"songID": 1011,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "b3f685962eabf6c478d6b3db81df46507b25ddbb",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 848,
+			"maxPlatScore": 1680
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "9+",
+		"levelNum": 9.7,
+		"playtype": "Single",
+		"songID": 1012,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "c2a2e30ef38d8a052820ac01c410d921ea8e90fd",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 848,
+			"maxPlatScore": 972
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "4",
+		"levelNum": 4,
+		"playtype": "Single",
+		"songID": 1012,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "3f2800a3e9c66935d5bdd8ae0e840ba721c9f829",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 848,
+			"maxPlatScore": 2500
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.2,
+		"playtype": "Single",
+		"songID": 1012,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "5f388d8505d649210ab1230aa8376fdf6f0d4631",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 848,
+			"maxPlatScore": 2938
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "14+",
+		"levelNum": 14.8,
+		"playtype": "Single",
+		"songID": 1012,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "ceb66db1e3adc1123de73c2d57b8f475d379b1d0",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1017,
+			"maxPlatScore": 1102
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "8+",
+		"levelNum": 8.7,
+		"playtype": "Single",
+		"songID": 1013,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "35c4956b8525f7419d41e2472fee6ae09ee74a18",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1017,
+			"maxPlatScore": 896
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 1013,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "17c70ab509bddf04b850d4ff6e9fe348d97e49ea",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1017,
+			"maxPlatScore": 1708
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10.4,
+		"playtype": "Single",
+		"songID": 1013,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "6d8db298ac15e8693b5cb6e3170065eb288ce5be",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1017,
+			"maxPlatScore": 2926
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.3,
+		"playtype": "Single",
+		"songID": 1013,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "50ae99c6a01219119be391a55a1fb3cc5c0a7df6",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1018,
+			"maxPlatScore": 874
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 1014,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "a873a67a1febe7dfa416bcefe0964c83a3f23aaa",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1018,
+			"maxPlatScore": 752
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 1014,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "a831d2075f7f2901520d364782d908e85281b7a5",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1018,
+			"maxPlatScore": 1532
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "10+",
+		"levelNum": 10.7,
+		"playtype": "Single",
+		"songID": 1014,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "1c8fa40408136b16e6321939c1f5936b7934e3a9",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1018,
+			"maxPlatScore": 2594
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12.5,
+		"playtype": "Single",
+		"songID": 1014,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "c84e209bd3e9b9d31f3707f55d80a1e4d56931b5",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1019,
+			"maxPlatScore": 752
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7,
+		"playtype": "Single",
+		"songID": 1015,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "6bfad9bcc2b52f813374fe038e4c84a9726c412a",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1019,
+			"maxPlatScore": 576
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"songID": 1015,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "37596f99a1fa7b604f0592379bc53cddb078aee0",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1019,
+			"maxPlatScore": 1272
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "10+",
+		"levelNum": 10.7,
+		"playtype": "Single",
+		"songID": 1015,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "38de5659c01b891bd777eaaf7174d9ee7b373320",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1019,
+			"maxPlatScore": 2588
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.3,
+		"playtype": "Single",
+		"songID": 1015,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "8ccf57d97d85ef5e949514e3168160d38cd4fccb",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1020,
+			"maxPlatScore": 1142
+		},
+		"difficulty": "ADVANCED",
+		"isPrimary": true,
+		"level": "9",
+		"levelNum": 9,
+		"playtype": "Single",
+		"songID": 1016,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "f1692195c144ea928cd2dd8c2ade8df6dd3baadf",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1020,
+			"maxPlatScore": 796
+		},
+		"difficulty": "BASIC",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"songID": 1016,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "005f8e3cc882007f91fe74bd4b8a40704ef6d3c6",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1020,
+			"maxPlatScore": 1998
+		},
+		"difficulty": "EXPERT",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12.3,
+		"playtype": "Single",
+		"songID": 1016,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
+	},
+	{
+		"chartID": "79c526a37d38c89fe6c3e830ac9740b81511ac0c",
+		"data": {
+			"displayVersion": "bright MEMORY Act.3",
+			"inGameID": 1020,
+			"maxPlatScore": 3298
+		},
+		"difficulty": "MASTER",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14.4,
+		"playtype": "Single",
+		"songID": 1016,
+		"versions": [
+			"brightMemory3",
+			"brightMemory3Omni"
+		]
 	}
 ]

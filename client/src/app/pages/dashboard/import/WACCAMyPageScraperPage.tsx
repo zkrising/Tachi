@@ -7,7 +7,7 @@ import React from "react";
 function RecordsParseFunction(data: string) {
 	if (
 		!data.startsWith(
-			"music_id,music_title,music_artist,music_genre,music_levels,music_play_counts,music_scores,music_achieves\n"
+			"music_id,music_title,music_artist,music_genre,music_levels,music_play_counts,music_scores,music_achieves"
 		)
 	) {
 		throw new Error(
@@ -30,7 +30,7 @@ function RecordsParseFunction(data: string) {
 function PlayerParseFunction(data: string) {
 	if (
 		!data.startsWith(
-			"player_name,player_level,player_rate,player_stage,player_play_count,player_play_count_versus,player_play_count_coop,player_total_rp_earned,player_total_rp_spent\n"
+			"player_name,player_level,player_rate,player_stage,player_play_count,player_play_count_versus,player_play_count_coop,player_total_rp_earned,player_total_rp_spent"
 		)
 	) {
 		throw new Error(

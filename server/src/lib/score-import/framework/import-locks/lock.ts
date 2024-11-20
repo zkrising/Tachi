@@ -34,7 +34,7 @@ export async function CheckAndSetOngoingImportLock(userID: integer) {
 				$set: {
 					locked: false,
 					lockedAt: null,
-				}
+				},
 			}
 		);
 	}

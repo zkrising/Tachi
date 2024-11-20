@@ -31,8 +31,10 @@ export async function CheckAndSetOngoingImportLock(userID: integer) {
 				userID,
 			},
 			{
-				locked: false,
-				lockedAt: null,
+				$set: {
+					locked: false,
+					lockedAt: null,
+				}
 			}
 		);
 	}

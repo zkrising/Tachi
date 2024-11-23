@@ -22030,5 +22030,725 @@
 		"id": 1836,
 		"searchTerms": [],
 		"title": "F/S"
+	},
+	{
+		"altTitles": [],
+		"artist": "98",
+		"data": {
+			"displayVersion": null,
+			"genre": "遊戯大熊猫",
+			"genreEN": null
+		},
+		"id": 1837,
+		"searchTerms": [],
+		"title": "遊戯大熊猫"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"meteorologists\"",
+		"data": {
+			"displayVersion": null,
+			"genre": "天泣",
+			"genreEN": null
+		},
+		"id": 1838,
+		"searchTerms": [],
+		"title": "天泣"
+	},
+	{
+		"altTitles": [],
+		"artist": "RENO feat.夕霧",
+		"data": {
+			"displayVersion": null,
+			"genre": "The Escape",
+			"genreEN": null
+		},
+		"id": 1839,
+		"searchTerms": [],
+		"title": "The Escape"
+	},
+	{
+		"altTitles": [],
+		"artist": "SHIN feat.MiA & BEMANI Sound Team \"あさき\"",
+		"data": {
+			"displayVersion": null,
+			"genre": "TAKE YOU AWAY",
+			"genreEN": null
+		},
+		"id": 1840,
+		"searchTerms": [],
+		"title": "TAKE YOU AWAY"
+	},
+	{
+		"altTitles": [],
+		"artist": "山本真央樹",
+		"data": {
+			"displayVersion": null,
+			"genre": "REFLEXES MANIPULATION",
+			"genreEN": null
+		},
+		"id": 1841,
+		"searchTerms": [],
+		"title": "REFLEXES MANIPULATION"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"あさき\" ＆ RENO",
+		"data": {
+			"displayVersion": null,
+			"genre": "Dragon Blade -The Arrange-",
+			"genreEN": null
+		},
+		"id": 1842,
+		"searchTerms": [],
+		"title": "Dragon Blade -The Arrange-"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"HuΣeR\" feat.ゆきまめ",
+		"data": {
+			"displayVersion": null,
+			"genre": "Liar×Girl",
+			"genreEN": null
+		},
+		"id": 1843,
+		"searchTerms": [],
+		"title": "Liar×Girl"
+	},
+	{
+		"altTitles": [],
+		"artist": "猫叉Master+",
+		"data": {
+			"displayVersion": null,
+			"genre": "encounter",
+			"genreEN": null
+		},
+		"id": 1844,
+		"searchTerms": [],
+		"title": "encounter"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"Power Of Nature\"",
+		"data": {
+			"displayVersion": null,
+			"genre": "Hades Doll",
+			"genreEN": null
+		},
+		"id": 1845,
+		"searchTerms": [],
+		"title": "Hades Doll"
+	},
+	{
+		"altTitles": [],
+		"artist": "ARM (IOSYS) + Brasscapsule",
+		"data": {
+			"displayVersion": null,
+			"genre": "Jazz is Rad",
+			"genreEN": null
+		},
+		"id": 1846,
+		"searchTerms": [],
+		"title": "Jazz is Rad"
+	},
+	{
+		"altTitles": [],
+		"artist": "OSTER project",
+		"data": {
+			"displayVersion": null,
+			"genre": "不可説不可説転",
+			"genreEN": null
+		},
+		"id": 1847,
+		"searchTerms": [],
+		"title": "不可説不可説転"
+	},
+	{
+		"altTitles": [],
+		"artist": "八月二雪",
+		"data": {
+			"displayVersion": null,
+			"genre": "アモ",
+			"genreEN": null
+		},
+		"id": 1848,
+		"searchTerms": [],
+		"title": "アモ"
+	},
+	{
+		"altTitles": [],
+		"artist": "L.E.D. feat. YURiCa/花たん",
+		"data": {
+			"displayVersion": null,
+			"genre": "UROBOROS OVERDIVE",
+			"genreEN": null
+		},
+		"id": 1849,
+		"searchTerms": [],
+		"title": "UROBOROS OVERDIVE"
+	},
+	{
+		"altTitles": [],
+		"artist": "SYUNN",
+		"data": {
+			"displayVersion": null,
+			"genre": "Megalara Garuda",
+			"genreEN": null
+		},
+		"id": 1850,
+		"searchTerms": [],
+		"title": "Megalara Garuda"
+	},
+	{
+		"altTitles": [],
+		"artist": "red glasses feat.藤野マナミ",
+		"data": {
+			"displayVersion": null,
+			"genre": "Knockin' on Red Button",
+			"genreEN": null
+		},
+		"id": 1851,
+		"searchTerms": [],
+		"title": "Knockin' on Red Button"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"seiya-murai\" feat ALT",
+		"data": {
+			"displayVersion": null,
+			"genre": "Tan♪Tan♪Tan♪",
+			"genreEN": null
+		},
+		"id": 1852,
+		"searchTerms": [],
+		"title": "Tan♪Tan♪Tan♪"
+	},
+	{
+		"altTitles": [],
+		"artist": "吾龍",
+		"data": {
+			"displayVersion": null,
+			"genre": "Keep the Faith",
+			"genreEN": null
+		},
+		"id": 1853,
+		"searchTerms": [],
+		"title": "Keep the Faith"
+	},
+	{
+		"altTitles": [],
+		"artist": "NU-KO",
+		"data": {
+			"displayVersion": null,
+			"genre": "Lovin' You",
+			"genreEN": null
+		},
+		"id": 1854,
+		"searchTerms": [],
+		"title": "Lovin' You"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"劇団レコード\" feat.T4K",
+		"data": {
+			"displayVersion": null,
+			"genre": "Redemption Tears",
+			"genreEN": null
+		},
+		"id": 1855,
+		"searchTerms": [],
+		"title": "Redemption Tears"
+	},
+	{
+		"altTitles": [],
+		"artist": "阿部靖広 feat.Shiori",
+		"data": {
+			"displayVersion": null,
+			"genre": "Dancin' in シャングリラ",
+			"genreEN": null
+		},
+		"id": 1856,
+		"searchTerms": [],
+		"title": "Dancin' in シャングリラ"
+	},
+	{
+		"altTitles": [],
+		"artist": "ウッチーズ",
+		"data": {
+			"displayVersion": null,
+			"genre": "ココロコースター",
+			"genreEN": null
+		},
+		"id": 1857,
+		"searchTerms": [],
+		"title": "ココロコースター"
+	},
+	{
+		"altTitles": [],
+		"artist": "Lie☆Rays",
+		"data": {
+			"displayVersion": null,
+			"genre": "螺旋",
+			"genreEN": null
+		},
+		"id": 1858,
+		"searchTerms": [],
+		"title": "螺旋"
+	},
+	{
+		"altTitles": [],
+		"artist": "藤野マナミ & うさおりーぬ",
+		"data": {
+			"displayVersion": null,
+			"genre": "いばら姫",
+			"genreEN": null
+		},
+		"id": 1859,
+		"searchTerms": [],
+		"title": "いばら姫"
+	},
+	{
+		"altTitles": [],
+		"artist": "nonuplet VS BEMANI Sound Team \"Power Of Nature\"",
+		"data": {
+			"displayVersion": null,
+			"genre": "ma plume",
+			"genreEN": null
+		},
+		"id": 1860,
+		"searchTerms": [],
+		"title": "ma plume"
+	},
+	{
+		"altTitles": [],
+		"artist": "nonuplet VS BEMANI Sound Team \"Power Of Nature\"",
+		"data": {
+			"displayVersion": null,
+			"genre": "ma plume",
+			"genreEN": null
+		},
+		"id": 1861,
+		"searchTerms": [],
+		"title": "ma plume (UPPER)"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"HuΣeR\"",
+		"data": {
+			"displayVersion": null,
+			"genre": "Stylus",
+			"genreEN": null
+		},
+		"id": 1862,
+		"searchTerms": [],
+		"title": "Stylus"
+	},
+	{
+		"altTitles": [],
+		"artist": "ここなつ2.0",
+		"data": {
+			"displayVersion": null,
+			"genre": "ポラリスノウタ",
+			"genreEN": null
+		},
+		"id": 1863,
+		"searchTerms": [],
+		"title": "ポラリスノウタ"
+	},
+	{
+		"altTitles": [],
+		"artist": "Remixed by BEMANI Sound Team \"ZAQUVA\"",
+		"data": {
+			"displayVersion": null,
+			"genre": "めうめうぺったんたん！！ (ZAQUVA Remix)",
+			"genreEN": null
+		},
+		"id": 1864,
+		"searchTerms": [],
+		"title": "めうめうぺったんたん！！ (ZAQUVA Remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "Remixed by BEMANI Sound Team \"Yvya\"",
+		"data": {
+			"displayVersion": null,
+			"genre": "ちくわパフェだよ☆ＣＫＰ (Yvya Remix)",
+			"genreEN": null
+		},
+		"id": 1865,
+		"searchTerms": [],
+		"title": "ちくわパフェだよ☆ＣＫＰ (Yvya Remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "♪♪♪♪♪",
+		"data": {
+			"displayVersion": null,
+			"genre": "第ゼロ感",
+			"genreEN": null
+		},
+		"id": 1866,
+		"searchTerms": [],
+		"title": "第ゼロ感"
+	},
+	{
+		"altTitles": [],
+		"artist": "Yukopi",
+		"data": {
+			"displayVersion": null,
+			"genre": "強風オールバック",
+			"genreEN": null
+		},
+		"id": 1867,
+		"searchTerms": [],
+		"title": "強風オールバック"
+	},
+	{
+		"altTitles": [],
+		"artist": "キミのね",
+		"data": {
+			"displayVersion": null,
+			"genre": "恋愛パクチー",
+			"genreEN": null
+		},
+		"id": 1868,
+		"searchTerms": [],
+		"title": "恋愛パクチー"
+	},
+	{
+		"altTitles": [],
+		"artist": "Des-ROW・組スペシアル",
+		"data": {
+			"displayVersion": null,
+			"genre": "狼弦暴威",
+			"genreEN": null
+		},
+		"id": 1869,
+		"searchTerms": [],
+		"title": "狼弦暴威"
+	},
+	{
+		"altTitles": [],
+		"artist": "Xceon",
+		"data": {
+			"displayVersion": null,
+			"genre": "謎情の雫 ft. Kanae Asaba",
+			"genreEN": null
+		},
+		"id": 1870,
+		"searchTerms": [],
+		"title": "謎情の雫 ft. Kanae Asaba"
+	},
+	{
+		"altTitles": [],
+		"artist": "Yocke",
+		"data": {
+			"displayVersion": null,
+			"genre": "黒猫と珈琲",
+			"genreEN": null
+		},
+		"id": 1871,
+		"searchTerms": [],
+		"title": "黒猫と珈琲"
+	},
+	{
+		"altTitles": [],
+		"artist": "ヨナヲスナヲ×北川翔也",
+		"data": {
+			"displayVersion": null,
+			"genre": "Head Scratcher",
+			"genreEN": null
+		},
+		"id": 1872,
+		"searchTerms": [],
+		"title": "Head Scratcher"
+	},
+	{
+		"altTitles": [],
+		"artist": "ハチ",
+		"data": {
+			"displayVersion": null,
+			"genre": "ドーナツホール",
+			"genreEN": null
+		},
+		"id": 1873,
+		"searchTerms": [],
+		"title": "ドーナツホール (UPPER)"
+	},
+	{
+		"altTitles": [],
+		"artist": "ハチ",
+		"data": {
+			"displayVersion": null,
+			"genre": "マトリョシカ",
+			"genreEN": null
+		},
+		"id": 1874,
+		"searchTerms": [],
+		"title": "マトリョシカ (UPPER)"
+	},
+	{
+		"altTitles": [],
+		"artist": "Yooh",
+		"data": {
+			"displayVersion": null,
+			"genre": "Crazy Shuffle",
+			"genreEN": null
+		},
+		"id": 1875,
+		"searchTerms": [],
+		"title": "Crazy Shuffle"
+	},
+	{
+		"altTitles": [],
+		"artist": "m@sumi",
+		"data": {
+			"displayVersion": null,
+			"genre": "speedstar[02]",
+			"genreEN": null
+		},
+		"id": 1876,
+		"searchTerms": [],
+		"title": "speedstar[02]"
+	},
+	{
+		"altTitles": [],
+		"artist": "Remixed by 少年ラジオ",
+		"data": {
+			"displayVersion": null,
+			"genre": "少年A",
+			"genreEN": null
+		},
+		"id": 1877,
+		"searchTerms": [],
+		"title": "少年A"
+	},
+	{
+		"altTitles": [],
+		"artist": "E.S.P. feat.星野奏子",
+		"data": {
+			"displayVersion": null,
+			"genre": "what I wish",
+			"genreEN": null
+		},
+		"id": 1878,
+		"searchTerms": [],
+		"title": "what I wish"
+	},
+	{
+		"altTitles": [],
+		"artist": "RoughSketch",
+		"data": {
+			"displayVersion": null,
+			"genre": "pump up dA CORE",
+			"genreEN": null
+		},
+		"id": 1879,
+		"searchTerms": [],
+		"title": "pump up dA CORE"
+	},
+	{
+		"altTitles": [],
+		"artist": "キミのね",
+		"data": {
+			"displayVersion": null,
+			"genre": "レイドバックジャーニー",
+			"genreEN": null
+		},
+		"id": 1880,
+		"searchTerms": [],
+		"title": "レイドバックジャーニー"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"Ota Master\"",
+		"data": {
+			"displayVersion": null,
+			"genre": "オッタマゲッター",
+			"genreEN": null
+		},
+		"id": 1881,
+		"searchTerms": [],
+		"title": "オッタマゲッター"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"DJ KOMACHI\"",
+		"data": {
+			"displayVersion": null,
+			"genre": "オーバー",
+			"genreEN": null
+		},
+		"id": 1882,
+		"searchTerms": [],
+		"title": "オーバー"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"Sota F. with Mr.Screamer\"",
+		"data": {
+			"displayVersion": null,
+			"genre": "TURBO BOOSTER",
+			"genreEN": null
+		},
+		"id": 1883,
+		"searchTerms": [],
+		"title": "TURBO BOOSTER"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"HuΣeR\"",
+		"data": {
+			"displayVersion": null,
+			"genre": "夜虹",
+			"genreEN": null
+		},
+		"id": 1884,
+		"searchTerms": [],
+		"title": "夜虹"
+	},
+	{
+		"altTitles": [],
+		"artist": "Serph",
+		"data": {
+			"displayVersion": null,
+			"genre": "luck",
+			"genreEN": null
+		},
+		"id": 1885,
+		"searchTerms": [],
+		"title": "luck (UPPER)"
+	},
+	{
+		"altTitles": [],
+		"artist": "れるりり feat.ぐるたみん",
+		"data": {
+			"displayVersion": null,
+			"genre": "脳漿炸裂ガール",
+			"genreEN": null
+		},
+		"id": 1886,
+		"searchTerms": [],
+		"title": "脳漿炸裂ガール (UPPER)"
+	},
+	{
+		"altTitles": [],
+		"artist": "BlackY",
+		"data": {
+			"displayVersion": null,
+			"genre": "TYPH彑N",
+			"genreEN": null
+		},
+		"id": 1887,
+		"searchTerms": [],
+		"title": "TYPH彑N"
+	},
+	{
+		"altTitles": [],
+		"artist": "REI",
+		"data": {
+			"displayVersion": null,
+			"genre": "The Metalist",
+			"genreEN": null
+		},
+		"id": 1888,
+		"searchTerms": [],
+		"title": "The Metalist"
+	},
+	{
+		"altTitles": [],
+		"artist": "日向美ビタースイーツ♪",
+		"data": {
+			"displayVersion": null,
+			"genre": "イマココ！この瞬間",
+			"genreEN": null
+		},
+		"id": 1889,
+		"searchTerms": [],
+		"title": "イマココ！この瞬間"
+	},
+	{
+		"altTitles": [],
+		"artist": "日向美ビタースイーツ♪ & ここなつ",
+		"data": {
+			"displayVersion": null,
+			"genre": "チョコレートスマイル",
+			"genreEN": null
+		},
+		"id": 1890,
+		"searchTerms": [],
+		"title": "チョコレートスマイル (UPPER)"
+	},
+	{
+		"altTitles": [],
+		"artist": "東雲夏陽",
+		"data": {
+			"displayVersion": null,
+			"genre": "キリステゴメン",
+			"genreEN": null
+		},
+		"id": 1891,
+		"searchTerms": [],
+		"title": "キリステゴメン (UPPER)"
+	},
+	{
+		"altTitles": [],
+		"artist": "SYUNN",
+		"data": {
+			"displayVersion": null,
+			"genre": "Megalara Garuda",
+			"genreEN": null
+		},
+		"id": 1892,
+		"searchTerms": [],
+		"title": "Megalara Garuda (UPPER)"
+	},
+	{
+		"altTitles": [],
+		"artist": "Pizuya's Cell VS BEMANI Sound Team \"dj TAKA\"",
+		"data": {
+			"displayVersion": null,
+			"genre": "閉塞的フレーション",
+			"genreEN": null
+		},
+		"id": 1893,
+		"searchTerms": [],
+		"title": "閉塞的フレーション"
+	},
+	{
+		"altTitles": [],
+		"artist": "SOUND HOLIC Vs. BEMANI Sound Team \"KE!JU\" feat. Nana Takahashi",
+		"data": {
+			"displayVersion": null,
+			"genre": "残像ニ繋ガレタ追憶ノHIDEAWAY",
+			"genreEN": null
+		},
+		"id": 1894,
+		"searchTerms": [],
+		"title": "残像ニ繋ガレタ追憶ノHIDEAWAY"
+	},
+	{
+		"altTitles": [],
+		"artist": "豚乙女×BEMANI Sound Team \"PON\"",
+		"data": {
+			"displayVersion": null,
+			"genre": "弾幕信仰",
+			"genreEN": null
+		},
+		"id": 1895,
+		"searchTerms": [],
+		"title": "弾幕信仰"
+	},
+	{
+		"altTitles": [],
+		"artist": "Amateras Records vs BEMANI Sound Team \"TATSUYA\" feat. miko",
+		"data": {
+			"displayVersion": null,
+			"genre": "SUPER HEROINE!!",
+			"genreEN": null
+		},
+		"id": 1896,
+		"searchTerms": [],
+		"title": "SUPER HEROINE!!"
 	}
 ]

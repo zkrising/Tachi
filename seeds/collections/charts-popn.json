@@ -90676,8 +90676,7 @@
 		"songID": 1515,
 		"versions": [
 			"peace",
-			"kaimei",
-			"unilab"
+			"kaimei"
 		]
 	},
 	{
@@ -90694,8 +90693,7 @@
 		"songID": 1515,
 		"versions": [
 			"peace",
-			"kaimei",
-			"unilab"
+			"kaimei"
 		]
 	},
 	{
@@ -90712,8 +90710,7 @@
 		"songID": 1515,
 		"versions": [
 			"peace",
-			"kaimei",
-			"unilab"
+			"kaimei"
 		]
 	},
 	{
@@ -90730,8 +90727,7 @@
 		"songID": 1515,
 		"versions": [
 			"peace",
-			"kaimei",
-			"unilab"
+			"kaimei"
 		]
 	},
 	{
@@ -99717,8 +99713,7 @@
 		"playtype": "9B",
 		"songID": 1643,
 		"versions": [
-			"kaimei",
-			"unilab"
+			"kaimei"
 		]
 	},
 	{
@@ -99734,8 +99729,7 @@
 		"playtype": "9B",
 		"songID": 1643,
 		"versions": [
-			"kaimei",
-			"unilab"
+			"kaimei"
 		]
 	},
 	{
@@ -99751,8 +99745,7 @@
 		"playtype": "9B",
 		"songID": 1643,
 		"versions": [
-			"kaimei",
-			"unilab"
+			"kaimei"
 		]
 	},
 	{
@@ -99768,8 +99761,7 @@
 		"playtype": "9B",
 		"songID": 1643,
 		"versions": [
-			"kaimei",
-			"unilab"
+			"kaimei"
 		]
 	},
 	{
@@ -100018,8 +100010,8 @@
 		},
 		"difficulty": "Hyper",
 		"isPrimary": true,
-		"level": "42",
-		"levelNum": 42,
+		"level": "43",
+		"levelNum": 43,
 		"playtype": "9B",
 		"songID": 1647,
 		"versions": [
@@ -100205,8 +100197,8 @@
 		},
 		"difficulty": "EX",
 		"isPrimary": true,
-		"level": "44",
-		"levelNum": 44,
+		"level": "42",
+		"levelNum": 42,
 		"playtype": "9B",
 		"songID": 1650,
 		"versions": [
@@ -100222,8 +100214,8 @@
 		},
 		"difficulty": "Hyper",
 		"isPrimary": true,
-		"level": "37",
-		"levelNum": 37,
+		"level": "35",
+		"levelNum": 35,
 		"playtype": "9B",
 		"songID": 1650,
 		"versions": [
@@ -100873,8 +100865,7 @@
 		"playtype": "9B",
 		"songID": 1660,
 		"versions": [
-			"kaimei",
-			"unilab"
+			"kaimei"
 		]
 	},
 	{
@@ -100890,8 +100881,7 @@
 		"playtype": "9B",
 		"songID": 1660,
 		"versions": [
-			"kaimei",
-			"unilab"
+			"kaimei"
 		]
 	},
 	{
@@ -100907,8 +100897,7 @@
 		"playtype": "9B",
 		"songID": 1660,
 		"versions": [
-			"kaimei",
-			"unilab"
+			"kaimei"
 		]
 	},
 	{
@@ -100924,8 +100913,7 @@
 		"playtype": "9B",
 		"songID": 1660,
 		"versions": [
-			"kaimei",
-			"unilab"
+			"kaimei"
 		]
 	},
 	{
@@ -104302,8 +104290,8 @@
 		},
 		"difficulty": "Hyper",
 		"isPrimary": true,
-		"level": "44",
-		"levelNum": 44,
+		"level": "42",
+		"levelNum": 42,
 		"playtype": "9B",
 		"songID": 1710,
 		"versions": [
@@ -104608,8 +104596,8 @@
 		},
 		"difficulty": "Easy",
 		"isPrimary": true,
-		"level": "11",
-		"levelNum": 11,
+		"level": "12",
+		"levelNum": 12,
 		"playtype": "9B",
 		"songID": 1715,
 		"versions": [
@@ -104846,8 +104834,8 @@
 		},
 		"difficulty": "Hyper",
 		"isPrimary": true,
-		"level": "39",
-		"levelNum": 39,
+		"level": "40",
+		"levelNum": 40,
 		"playtype": "9B",
 		"songID": 1718,
 		"versions": [
@@ -104863,8 +104851,8 @@
 		},
 		"difficulty": "Normal",
 		"isPrimary": true,
-		"level": "26",
-		"levelNum": 26,
+		"level": "30",
+		"levelNum": 30,
 		"playtype": "9B",
 		"songID": 1718,
 		"versions": [
@@ -104965,8 +104953,8 @@
 		},
 		"difficulty": "EX",
 		"isPrimary": true,
-		"level": "40",
-		"levelNum": 40,
+		"level": "38",
+		"levelNum": 38,
 		"playtype": "9B",
 		"songID": 1720,
 		"versions": [
@@ -106824,8 +106812,8 @@
 		},
 		"difficulty": "Normal",
 		"isPrimary": true,
-		"level": "22",
-		"levelNum": 22,
+		"level": "19",
+		"levelNum": 19,
 		"playtype": "9B",
 		"songID": 1747,
 		"versions": [
@@ -106872,8 +106860,8 @@
 		},
 		"difficulty": "Hyper",
 		"isPrimary": true,
-		"level": "34",
-		"levelNum": 34,
+		"level": "33",
+		"levelNum": 33,
 		"playtype": "9B",
 		"songID": 1748,
 		"versions": [
@@ -107128,8 +107116,8 @@
 		},
 		"difficulty": "Hyper",
 		"isPrimary": true,
-		"level": "35",
-		"levelNum": 35,
+		"level": "33",
+		"levelNum": 33,
 		"playtype": "9B",
 		"songID": 1752,
 		"versions": [
@@ -107144,8 +107132,8 @@
 		},
 		"difficulty": "Normal",
 		"isPrimary": true,
-		"level": "23",
-		"levelNum": 23,
+		"level": "26",
+		"levelNum": 26,
 		"playtype": "9B",
 		"songID": 1752,
 		"versions": [
@@ -107164,9 +107152,7 @@
 		"levelNum": 6,
 		"playtype": "9B",
 		"songID": 1753,
-		"versions": [
-			"unilab"
-		]
+		"versions": []
 	},
 	{
 		"chartID": "7196e2918485e6b73da7e478a106418d3989b5e6",
@@ -107176,13 +107162,11 @@
 		},
 		"difficulty": "EX",
 		"isPrimary": true,
-		"level": "44",
-		"levelNum": 44,
+		"level": "42",
+		"levelNum": 42,
 		"playtype": "9B",
 		"songID": 1753,
-		"versions": [
-			"unilab"
-		]
+		"versions": []
 	},
 	{
 		"chartID": "48da5854c44aaeaac034e50d9f1c9c83ccf55b8d",
@@ -107192,13 +107176,11 @@
 		},
 		"difficulty": "Hyper",
 		"isPrimary": true,
-		"level": "33",
-		"levelNum": 33,
+		"level": "31",
+		"levelNum": 31,
 		"playtype": "9B",
 		"songID": 1753,
-		"versions": [
-			"unilab"
-		]
+		"versions": []
 	},
 	{
 		"chartID": "7f2ddb222759089aafe11b251f143500c065c0ed",
@@ -107208,13 +107190,11 @@
 		},
 		"difficulty": "Normal",
 		"isPrimary": true,
-		"level": "20",
-		"levelNum": 20,
+		"level": "15",
+		"levelNum": 15,
 		"playtype": "9B",
 		"songID": 1753,
-		"versions": [
-			"unilab"
-		]
+		"versions": []
 	},
 	{
 		"chartID": "688f5ddf24dffe9aade0fe448a596ff387151587",
@@ -107832,8 +107812,8 @@
 		},
 		"difficulty": "Hyper",
 		"isPrimary": true,
-		"level": "37",
-		"levelNum": 37,
+		"level": "35",
+		"levelNum": 35,
 		"playtype": "9B",
 		"songID": 1763,
 		"versions": [
@@ -108024,8 +108004,8 @@
 		},
 		"difficulty": "Hyper",
 		"isPrimary": true,
-		"level": "37",
-		"levelNum": 37,
+		"level": "39",
+		"levelNum": 39,
 		"playtype": "9B",
 		"songID": 1766,
 		"versions": [
@@ -108120,8 +108100,8 @@
 		},
 		"difficulty": "Easy",
 		"isPrimary": true,
-		"level": "10",
-		"levelNum": 10,
+		"level": "15",
+		"levelNum": 15,
 		"playtype": "9B",
 		"songID": 1768,
 		"versions": [
@@ -108168,8 +108148,8 @@
 		},
 		"difficulty": "Normal",
 		"isPrimary": true,
-		"level": "25",
-		"levelNum": 25,
+		"level": "26",
+		"levelNum": 26,
 		"playtype": "9B",
 		"songID": 1768,
 		"versions": [
@@ -109352,8 +109332,8 @@
 		},
 		"difficulty": "EX",
 		"isPrimary": true,
-		"level": "47",
-		"levelNum": 47,
+		"level": "48",
+		"levelNum": 48,
 		"playtype": "9B",
 		"songID": 1787,
 		"versions": [
@@ -109624,8 +109604,8 @@
 		},
 		"difficulty": "Hyper",
 		"isPrimary": true,
-		"level": "38",
-		"levelNum": 38,
+		"level": "36",
+		"levelNum": 36,
 		"playtype": "9B",
 		"songID": 1791,
 		"versions": [
@@ -109976,8 +109956,8 @@
 		},
 		"difficulty": "Easy",
 		"isPrimary": true,
-		"level": "16",
-		"levelNum": 16,
+		"level": "20",
+		"levelNum": 20,
 		"playtype": "9B",
 		"songID": 1797,
 		"versions": [
@@ -110456,8 +110436,8 @@
 		},
 		"difficulty": "Hyper",
 		"isPrimary": true,
-		"level": "40",
-		"levelNum": 40,
+		"level": "42",
+		"levelNum": 42,
 		"playtype": "9B",
 		"songID": 1804,
 		"versions": [
@@ -110872,8 +110852,8 @@
 		},
 		"difficulty": "Easy",
 		"isPrimary": true,
-		"level": "9",
-		"levelNum": 9,
+		"level": "13",
+		"levelNum": 13,
 		"playtype": "9B",
 		"songID": 1811,
 		"versions": [
@@ -110936,8 +110916,8 @@
 		},
 		"difficulty": "Easy",
 		"isPrimary": true,
-		"level": "16",
-		"levelNum": 16,
+		"level": "21",
+		"levelNum": 21,
 		"playtype": "9B",
 		"songID": 1812,
 		"versions": [
@@ -112524,6 +112504,3846 @@
 		"levelNum": 34,
 		"playtype": "9B",
 		"songID": 1836,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "032ae3e84deefb7e0cb8922221c24530fa394300",
+		"data": {
+			"hashSHA256": "9adaa37bf0ba8e66d56e9c35e98dd5395c9488560dff91942c43ec792c13b94b",
+			"inGameID": 2063
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "9B",
+		"songID": 1837,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "02300e1feac937a50b07d2204e9a4e8af2563ca4",
+		"data": {
+			"hashSHA256": "6b9446b6b36dcdc200210a4dcad7b07752bf131eb396555aa51e9a4b58b197a2",
+			"inGameID": 2063
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "48",
+		"levelNum": 48,
+		"playtype": "9B",
+		"songID": 1837,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "244d9495cd210ac9daf057f5b15aec02fe14e7bb",
+		"data": {
+			"hashSHA256": "bbf7080247f4b3ef128aec2b3873d12d8997d5dc03e7c4d19e2deed17ee42aea",
+			"inGameID": 2063
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "41",
+		"levelNum": 41,
+		"playtype": "9B",
+		"songID": 1837,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "8972f2c5f5f86392d8a790fb1da99eb08e534326",
+		"data": {
+			"hashSHA256": "b677b8570d82df45da6a90e684b815619d09078b321efdfe743664de89ba2bc6",
+			"inGameID": 2063
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "31",
+		"levelNum": 31,
+		"playtype": "9B",
+		"songID": 1837,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "8bf4bc85dcf9d4f61378ab94d077245807026e32",
+		"data": {
+			"hashSHA256": "f7bbd8537e2d71361ed347724ace2116529902caafeb9656efd89273496d91e2",
+			"inGameID": 2066
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "18",
+		"levelNum": 18,
+		"playtype": "9B",
+		"songID": 1838,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "1a590eb085ca2c830e7474ffb2da5d768c7bad7f",
+		"data": {
+			"hashSHA256": "2d0be5949f29dddd63be30352cea6c1861faf54d3087c00e88aace8f430b5ea1",
+			"inGameID": 2066
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "49",
+		"levelNum": 49,
+		"playtype": "9B",
+		"songID": 1838,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "624f91a457fc08bf232632f481888d76bfae9b7c",
+		"data": {
+			"hashSHA256": "acd2d5fc17954743054e6a9842d5ac7fc5e7f71f63c2c049a07faece55c63d0d",
+			"inGameID": 2066
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "44",
+		"levelNum": 44,
+		"playtype": "9B",
+		"songID": 1838,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "7b9dd5517e0df7a9789b6c27d37ea78a40fb487b",
+		"data": {
+			"hashSHA256": "a096dc129e332b77adb16e296fbcddb0bfc0cb214fabb5e957e1e4acde1f86a0",
+			"inGameID": 2066
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "34",
+		"levelNum": 34,
+		"playtype": "9B",
+		"songID": 1838,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "5c641a484a9672ccfe1f91a7491239f8d18e4385",
+		"data": {
+			"hashSHA256": "8a74278b5e3976e9d65e0803ba976dd4acc7518beef4e80da8e4848e2ff86132",
+			"inGameID": 2067
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "11",
+		"levelNum": 11,
+		"playtype": "9B",
+		"songID": 1839,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "c82f4a3ab1f1f690397f5ffd82663f7b0e7d5713",
+		"data": {
+			"hashSHA256": "7390f940f130c9ef2aa08d15c35cd599f6175bce279cda8222f1aa9261cb5e88",
+			"inGameID": 2067
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "45",
+		"levelNum": 45,
+		"playtype": "9B",
+		"songID": 1839,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "3a4645353fd5638d220034320439e3571cae5206",
+		"data": {
+			"hashSHA256": "905d9284fe4aee053ce1a2506ed77afc1c5665b9b769b8fda8c0d7829cc137f0",
+			"inGameID": 2067
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "39",
+		"levelNum": 39,
+		"playtype": "9B",
+		"songID": 1839,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "a973710ac539f3226b339225190d9ab43b022018",
+		"data": {
+			"hashSHA256": "768467421302833f1a6001cea848fb227b0d20a3f95ca26ff4c29031c5692004",
+			"inGameID": 2067
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "26",
+		"levelNum": 26,
+		"playtype": "9B",
+		"songID": 1839,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "36461a731a092643a0ef02f09fed53e8b0b1ddd5",
+		"data": {
+			"hashSHA256": "ea23a10c04087b7715b2ccb66b2138096ee55dc8cdfd41c33c22d6fd2503573e",
+			"inGameID": 2068
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12,
+		"playtype": "9B",
+		"songID": 1840,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "b7afce6f4ff139b184f0a34aafa6dc0b61258a49",
+		"data": {
+			"hashSHA256": "86fe541de7eb8a1ac0e777265a5f99387b56940ccbf1dfebc0730e2bc52dff4b",
+			"inGameID": 2068
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "46",
+		"levelNum": 46,
+		"playtype": "9B",
+		"songID": 1840,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "667fe5f1e002a886cfe260661b39dfbb1a891524",
+		"data": {
+			"hashSHA256": "87f34c4e41d49c95a06c4d215082bbd3421cfba8800691d059961a1e21d3ebcc",
+			"inGameID": 2068
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "40",
+		"levelNum": 40,
+		"playtype": "9B",
+		"songID": 1840,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "5829dfce56747e15a32fff60f2b05734cfc01760",
+		"data": {
+			"hashSHA256": "a96bc2913772c04cf0a35dc2a22663d66c7ec3e8697150adc30aa1474248972c",
+			"inGameID": 2068
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "27",
+		"levelNum": 27,
+		"playtype": "9B",
+		"songID": 1840,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "93cbff6601d24bbb035a7d29b6a83bc3d6ab4b15",
+		"data": {
+			"hashSHA256": "bd7d3eda2d25086dea366a0019c859f7319002e523fecb84cc0b47410848a385",
+			"inGameID": 2069
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "9B",
+		"songID": 1841,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "5619151b3127ef66c3599dcf2b092205024bf09b",
+		"data": {
+			"hashSHA256": "4bbeaa0b12673bfbd5eaa40126e504aacf377a4d3f163a982c31e2fee5379666",
+			"inGameID": 2069
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "46",
+		"levelNum": 46,
+		"playtype": "9B",
+		"songID": 1841,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "dcb49a69c6c160f530b75b50bb922fed343a9522",
+		"data": {
+			"hashSHA256": "06da922f8c10ec4441c831a0a004324f8ab178e217d4a1ff44e6b47a4b66902d",
+			"inGameID": 2069
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "41",
+		"levelNum": 41,
+		"playtype": "9B",
+		"songID": 1841,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "b46fe799dfc0daaa56fc5d463c3ca9f4ac3bd378",
+		"data": {
+			"hashSHA256": "3b88753a22a6b1f080b696a4959e095455276ceb64c044400b9b6792451e296b",
+			"inGameID": 2069
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "30",
+		"levelNum": 30,
+		"playtype": "9B",
+		"songID": 1841,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "78e3ba15a4de556fc58c1668ec9e18a51be036f2",
+		"data": {
+			"hashSHA256": "311353b1e400bd9ba9be936c6e700e60694dfea1b9101a572a8d6a3222b1d9d6",
+			"inGameID": 2070
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "17",
+		"levelNum": 17,
+		"playtype": "9B",
+		"songID": 1842,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "c0531d5bbc83d45c4c21f63c7838255f97c8c1b6",
+		"data": {
+			"hashSHA256": "4cecf7f458018b1ce8c3f668dc8ec767a6cb865f4becb3ecd17e17de44927976",
+			"inGameID": 2070
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "48",
+		"levelNum": 48,
+		"playtype": "9B",
+		"songID": 1842,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "f8153fe001c3f27ae58028d9fe9840ef31f88287",
+		"data": {
+			"hashSHA256": "5f7878ef70fb660b0f68af238e173ba47b8ffaff824ef531844a67d6e63b423b",
+			"inGameID": 2070
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "41",
+		"levelNum": 41,
+		"playtype": "9B",
+		"songID": 1842,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "2ae2fdec6568a40f6d39238bd4abb73a321f3945",
+		"data": {
+			"hashSHA256": "94909fad5601a96520fc4ccdfa601897f9cb005f1478fa4937ee19210ac51b76",
+			"inGameID": 2070
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "32",
+		"levelNum": 32,
+		"playtype": "9B",
+		"songID": 1842,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "3b3235f0554d2424b0c92b9e9d63951cff6373d2",
+		"data": {
+			"hashSHA256": "8ce1bef2f6c8fd98fa130f29e7a87c1bda5377dbeb73e8f0faaa7dc1947b48e3",
+			"inGameID": 2099
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "11",
+		"levelNum": 11,
+		"playtype": "9B",
+		"songID": 1843,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "6883c65e7cfb8816367d51dd1c6879dfca92f900",
+		"data": {
+			"hashSHA256": "82457632898c4af8c19b0f967ce87f8930b0f2d79b18cc67dda12a38ae8caeed",
+			"inGameID": 2099
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "46",
+		"levelNum": 46,
+		"playtype": "9B",
+		"songID": 1843,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "40948e44f349c17db8fee6732bd928e1f3564852",
+		"data": {
+			"hashSHA256": "0ee8b28027a1f159d6e2a84657774aede37e6219a3a3d78f0f309b629d1d4cf0",
+			"inGameID": 2099
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "40",
+		"levelNum": 40,
+		"playtype": "9B",
+		"songID": 1843,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "499c49181364beb8c852510f311abda05d247ffd",
+		"data": {
+			"hashSHA256": "12a22eaf39283e37a504351aa006b3b5e869be91983d2d8be19365f9171d1db5",
+			"inGameID": 2099
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "29",
+		"levelNum": 29,
+		"playtype": "9B",
+		"songID": 1843,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "55bcd09eceb9f802181e3db96a259f2499096863",
+		"data": {
+			"hashSHA256": "56fa35aa51c5c70fe12203e13891440531fd12bb421c9ac0cbe9da8d805c6557",
+			"inGameID": 2100
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "9B",
+		"songID": 1844,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "a51a756eb78c3ced7fcdf7f2211399a60918ba48",
+		"data": {
+			"hashSHA256": "1c67488ddb8001def28fcd7d4d2fad4747f1e85e498289eb22b7152b74ee7875",
+			"inGameID": 2100
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "48",
+		"levelNum": 48,
+		"playtype": "9B",
+		"songID": 1844,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "dc166c9e9417819c62da3188099f3e663102b405",
+		"data": {
+			"hashSHA256": "089f336658a2f7754b629ee624c77566bbcbb44ac4a351803a45e9105600345c",
+			"inGameID": 2100
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "41",
+		"levelNum": 41,
+		"playtype": "9B",
+		"songID": 1844,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "44bce2aedbb7968c021d7ff3b73d22bbb5fdb313",
+		"data": {
+			"hashSHA256": "8b49fc0606eee49526f024ec74cf73d1c54be67d7c917874b97b7486fcafafa3",
+			"inGameID": 2100
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "30",
+		"levelNum": 30,
+		"playtype": "9B",
+		"songID": 1844,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "49ae634ab1b6f425344ac83f7fd1e225afcbe412",
+		"data": {
+			"hashSHA256": "69b770dbe6fa6477df3c8197f29551f831071bf4fe65a9c29ea80e7ac6630dce",
+			"inGameID": 2101
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "16",
+		"levelNum": 16,
+		"playtype": "9B",
+		"songID": 1845,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "6bb256584cfe61305676df8285c8076f6a47580b",
+		"data": {
+			"hashSHA256": "09bff332a2f2318c37fb86d46bdfa76f7bb73cc3fd5167af48adbd025762f454",
+			"inGameID": 2101
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "49",
+		"levelNum": 49,
+		"playtype": "9B",
+		"songID": 1845,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "1c7ef45a8f15b5296d84c0dc72745febae964e14",
+		"data": {
+			"hashSHA256": "6cb9437a4f2ca664f439a383e66bec0bbee4b1d54cd259da7e8d68555a78f028",
+			"inGameID": 2101
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "42",
+		"levelNum": 42,
+		"playtype": "9B",
+		"songID": 1845,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "10f917465031dad6e6f617d2ba8e0d60455c3c05",
+		"data": {
+			"hashSHA256": "0f1ecc5218d7a466807b507c1dc80813358d3dc1fe6902be63d3e72a47db9f5a",
+			"inGameID": 2101
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "32",
+		"levelNum": 32,
+		"playtype": "9B",
+		"songID": 1845,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "852967122ee77873a3fbcacaff7f7b4448a2dd28",
+		"data": {
+			"hashSHA256": "874739c436f2457e8382151f1defe80b28e889d1f4966dee3dcce595543ba191",
+			"inGameID": 2102
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "9B",
+		"songID": 1846,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "98d2dc8c188491a41a600146e93065fec998c5e0",
+		"data": {
+			"hashSHA256": "a746051b2a96ecf9fc8edcba12c9d681f0a290aadd33f1e7705e9040c14c0c2f",
+			"inGameID": 2102
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "48",
+		"levelNum": 48,
+		"playtype": "9B",
+		"songID": 1846,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "cfd475f2e38b54c6c8312d7c8d36bdc86b35446e",
+		"data": {
+			"hashSHA256": "8c259806aa6464c0043d6b1bec409b959360eb20b99cf1b3d1b83bbddd43467c",
+			"inGameID": 2102
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "40",
+		"levelNum": 40,
+		"playtype": "9B",
+		"songID": 1846,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "9f7d43e422dfdc6bf3ff0171cf0bb8559cc9de31",
+		"data": {
+			"hashSHA256": "a70c22d278b781511d351b79ef95d9375129f55fe6291734b4f97b2216a71495",
+			"inGameID": 2102
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "30",
+		"levelNum": 30,
+		"playtype": "9B",
+		"songID": 1846,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "c15905a3c6d5b345505c7a752433fb3d47d9a743",
+		"data": {
+			"hashSHA256": "15cd731fb86fff4d96c0579b892a03fbbb41472324ed73e75862f8ca7e5f8ee1",
+			"inGameID": 2103
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12,
+		"playtype": "9B",
+		"songID": 1847,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "3a6b6544f9bccebdc84c0e4b797cc774f758db3f",
+		"data": {
+			"hashSHA256": "94ebe619c566cc89cbaa1dbe9fef53c9b56738f4616bdc637603144141fe06d5",
+			"inGameID": 2103
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "46",
+		"levelNum": 46,
+		"playtype": "9B",
+		"songID": 1847,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "91df0e434e44534dce196fe12170b3e5a62c19ed",
+		"data": {
+			"hashSHA256": "ca4ea50eb630c35b638314c024e223015361515fa062032e57d0ed5957c96ece",
+			"inGameID": 2103
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "39",
+		"levelNum": 39,
+		"playtype": "9B",
+		"songID": 1847,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "0ef468b43af99de4c05f067040e973c250ee569e",
+		"data": {
+			"hashSHA256": "cac20e9128af387739886089537325843499e48ae41d01084b403744ee7c8343",
+			"inGameID": 2103
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "31",
+		"levelNum": 31,
+		"playtype": "9B",
+		"songID": 1847,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "e5cbd0cd264a414a6d403183139d15fa5d7fcd33",
+		"data": {
+			"hashSHA256": "1bb0a99dbd2a29863f3f8925a9883e88f4d0eaaf9cc9d61246d2beccbc461afe",
+			"inGameID": 2104
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "9B",
+		"songID": 1848,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "1cedc7d831ad9ada37f7e6d9f51831d44b78679e",
+		"data": {
+			"hashSHA256": "f4f31ac76f642fd692e17166384ee63cbbf7642fa319719d1d42610c428eccbe",
+			"inGameID": 2104
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "45",
+		"levelNum": 45,
+		"playtype": "9B",
+		"songID": 1848,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "d80cebef860329b290662057e300b08487245048",
+		"data": {
+			"hashSHA256": "73506f4f94f54601e7e7957578f50c9bca308f9aba77ba4826bbbcf18a0bdc07",
+			"inGameID": 2104
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "39",
+		"levelNum": 39,
+		"playtype": "9B",
+		"songID": 1848,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "7812fbc59a90599c1c2f8ac55130c6aa0cb02396",
+		"data": {
+			"hashSHA256": "6e39ac0aa609a4c351f7ef5bef65abf8e749061421c9c317096097513769b967",
+			"inGameID": 2104
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "26",
+		"levelNum": 26,
+		"playtype": "9B",
+		"songID": 1848,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "70a835a22197c6c10224f09478d396538514ef65",
+		"data": {
+			"hashSHA256": "2c512ed616260a87b4ec8e4b777dcc6995d5dbb5e6e77405fd8c561772bb92cb",
+			"inGameID": 2105
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12,
+		"playtype": "9B",
+		"songID": 1849,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "30e08e75e336e508a41e5b0324091c81bb80d9e1",
+		"data": {
+			"hashSHA256": "4d24f663ef4e1eb5d1a7eb37a26c1719759a7c3ed79f275df8ef3324c4b972e9",
+			"inGameID": 2105
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "47",
+		"levelNum": 47,
+		"playtype": "9B",
+		"songID": 1849,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "d9149ccab7000ef074931597e55cfbcdacde54af",
+		"data": {
+			"hashSHA256": "ecac9492dbdbf0e4f23ca9d8f1f619c28535c9b2366f51c7c8780513f69ebe55",
+			"inGameID": 2105
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "41",
+		"levelNum": 41,
+		"playtype": "9B",
+		"songID": 1849,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "b15aa6ac70b7500787637c10e3e68926acb26c96",
+		"data": {
+			"hashSHA256": "f0e03751aeea2feb76ad168b9fcaf08a3468c950281482bcffd95e08183ac859",
+			"inGameID": 2105
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "31",
+		"levelNum": 31,
+		"playtype": "9B",
+		"songID": 1849,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "d2578a04917e726b83f381c94a608f5c9f4265e3",
+		"data": {
+			"hashSHA256": "24589d2a9fcad7d4bb4f42619951b000785e579c0c2aa9da267527073a0d2479",
+			"inGameID": 2106
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "15",
+		"levelNum": 15,
+		"playtype": "9B",
+		"songID": 1850,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "7206bc7de6795066814cf8bc10f7554ea58c20f0",
+		"data": {
+			"hashSHA256": "45d0b9af63e25f8de91b3e4cb881bc7de54dd7ff2fde8a5924bdecbdfb10aa38",
+			"inGameID": 2106
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "49",
+		"levelNum": 49,
+		"playtype": "9B",
+		"songID": 1850,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "8dee93a224755cbd6e6119ba7d7b70a948a60fec",
+		"data": {
+			"hashSHA256": "b345c729c31751130971ab456c9902a0e7fca3fae9a284426250933ab968b442",
+			"inGameID": 2106
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "42",
+		"levelNum": 42,
+		"playtype": "9B",
+		"songID": 1850,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "95af907fccb855c033d35ec46cceb19dc0fde19d",
+		"data": {
+			"hashSHA256": "ccab878b6e42fb4211290c6c723dcd4b6c8dfa8846019a88e298f99b5c7a3582",
+			"inGameID": 2106
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "34",
+		"levelNum": 34,
+		"playtype": "9B",
+		"songID": 1850,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "aed665a84e1e7c1bb4ae6652b55d354439bfe13c",
+		"data": {
+			"hashSHA256": "bb89b560bcd5a64a80aa851bd3eec3069be06c1e59084b9b4bbcfe83f3dd596b",
+			"inGameID": 2115
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "9B",
+		"songID": 1851,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "182d2911b30a89e74999c273f7c32ae7a31cc052",
+		"data": {
+			"hashSHA256": "0b9fbd9ea8a67d31ee5adf2b5e0691883f8122d91da5629320464912997036ff",
+			"inGameID": 2115
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "48",
+		"levelNum": 48,
+		"playtype": "9B",
+		"songID": 1851,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "0c1303f88112917fe35935162c6e3a208480face",
+		"data": {
+			"hashSHA256": "a09052fa4eb871334e1e00e5f7f2121301045c4b9f203abb622b7786a958a27b",
+			"inGameID": 2115
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "41",
+		"levelNum": 41,
+		"playtype": "9B",
+		"songID": 1851,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "3d8d7e35bfcf45095ffd6bc02d4e31289fbad959",
+		"data": {
+			"hashSHA256": "b2f3d9e86892685d1bc0e86e9318626b810367d49c761b9b372ce0888079ecdd",
+			"inGameID": 2115
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "30",
+		"levelNum": 30,
+		"playtype": "9B",
+		"songID": 1851,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "ac468b3f4617ead1b5d63f12be627ba43118ae6b",
+		"data": {
+			"hashSHA256": "821f526d2fa98751a0c2cfa632fac0f3974f49263a5f44a8fa6716eed178d6e4",
+			"inGameID": 2128
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "9B",
+		"songID": 1852,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "0b4c9807025f3d5502ccb6ba74d1d86374506c77",
+		"data": {
+			"hashSHA256": "d255fde27549b63fe90c5356792fb8c6be66e8edcd2339fde4f3df4607914a6a",
+			"inGameID": 2128
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "44",
+		"levelNum": 44,
+		"playtype": "9B",
+		"songID": 1852,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "dd0314701946c412929d34ddbb36bc6740449a7b",
+		"data": {
+			"hashSHA256": "087fc64e0f4ebda11f072a9637c608c20e11522b7389bf0eced466a6c6e063ec",
+			"inGameID": 2128
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "36",
+		"levelNum": 36,
+		"playtype": "9B",
+		"songID": 1852,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "2ee837fa1f2e62c78ac9091b479b814d496b22b1",
+		"data": {
+			"hashSHA256": "d7b8d61db72b6b0c56deee28c32b37608253cb717a0d1a00ab9dff2a3a6d771c",
+			"inGameID": 2128
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "26",
+		"levelNum": 26,
+		"playtype": "9B",
+		"songID": 1852,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "78adb562208150918c33a12208da9b66c370120e",
+		"data": {
+			"hashSHA256": "94b6e78b6e3609e0d5157915e9d073a182e626557ede566b50038aa6143a926c",
+			"inGameID": 2129
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7,
+		"playtype": "9B",
+		"songID": 1853,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "615eee0bf3c8568076e3f79575c4d843a92fb6be",
+		"data": {
+			"hashSHA256": "415d806126dfe79294e36a17b8bacb1b9d1dfb5efedca0a894d8cbd3d0a1abc3",
+			"inGameID": 2129
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "45",
+		"levelNum": 45,
+		"playtype": "9B",
+		"songID": 1853,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "61c4956d27bff7a52b5c259ba17b659150cb77e6",
+		"data": {
+			"hashSHA256": "a0c3eac670c1e420b68932e40a82b0c38df2ffbb66a8a4a23b1019af1f7dd1c3",
+			"inGameID": 2129
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "37",
+		"levelNum": 37,
+		"playtype": "9B",
+		"songID": 1853,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "d9ad151849bef8b9fb4851980f1e5ad393ebe1cf",
+		"data": {
+			"hashSHA256": "de6a4f2d8a1076a8c923ec720aaef6a3fc9488dff10c53b0e48b5ef9d11880b8",
+			"inGameID": 2129
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "23",
+		"levelNum": 23,
+		"playtype": "9B",
+		"songID": 1853,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "7e89a0d5adc1604f60ede441b41d77cfd9845faa",
+		"data": {
+			"hashSHA256": "6045c7c99880d84064d74a2439e1e48f9a2ba7d0b8f6cf6887578ad48ffdac0c",
+			"inGameID": 2130
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "9",
+		"levelNum": 9,
+		"playtype": "9B",
+		"songID": 1854,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "aed2e8767ce3254b776cf27f3929fbbf9c4dcd3a",
+		"data": {
+			"hashSHA256": "887ca7421c7b3b00d1f4e727b3c1104b4248a254358c730bf9b4046754c0f356",
+			"inGameID": 2130
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "46",
+		"levelNum": 46,
+		"playtype": "9B",
+		"songID": 1854,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "c799a3d55b0e9b5e935f75cb63d5c03f3b928677",
+		"data": {
+			"hashSHA256": "6980cffd611a256e2f0296e8d1512a3511e45a73cb2cb0e01918eb6508d5d80d",
+			"inGameID": 2130
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "39",
+		"levelNum": 39,
+		"playtype": "9B",
+		"songID": 1854,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "aa77c3dbd7d8c4725c7de62032ae4bfbbde30ab7",
+		"data": {
+			"hashSHA256": "fc90cc5e0d08b9f9069b6595e3934f91d49b8dec1fce86781ad64fe32c055029",
+			"inGameID": 2130
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "29",
+		"levelNum": 29,
+		"playtype": "9B",
+		"songID": 1854,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "3ce6e3c2f1fa9b9c236fd6e33e511e114d8b25c1",
+		"data": {
+			"hashSHA256": "628ef2d54f29c2c29afe204ee27790d2d9d56b937f68260b9792d35212fdcedb",
+			"inGameID": 2131
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "9B",
+		"songID": 1855,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "55d6fcd552bfca47010f276ec501d157e67198b4",
+		"data": {
+			"hashSHA256": "b3779450c1facb9b8f23833b066763f00c624dfae944e4758e269573ae5c25a4",
+			"inGameID": 2131
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "45",
+		"levelNum": 45,
+		"playtype": "9B",
+		"songID": 1855,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "7f65fcb99b253ea1d3175161187ed792b0408a11",
+		"data": {
+			"hashSHA256": "6f0d31e202afbde495300929b525828bc78b29d565430c90b3089979c73f1495",
+			"inGameID": 2131
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "38",
+		"levelNum": 38,
+		"playtype": "9B",
+		"songID": 1855,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "fd3429521e7c724fa1ffce15c01be8c209897568",
+		"data": {
+			"hashSHA256": "e585c70d58a15b7a0540964c0fbcb1ffe408752500c18c460c32ba969b6d062e",
+			"inGameID": 2131
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "28",
+		"levelNum": 28,
+		"playtype": "9B",
+		"songID": 1855,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "576096b3bfc4cf2e202a526b80e31faf4b6dec63",
+		"data": {
+			"hashSHA256": "f61ed6d929f765c6bb63f2992cacd5fa06832c4b0d0fb95060746d53107c2e49",
+			"inGameID": 2132
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "11",
+		"levelNum": 11,
+		"playtype": "9B",
+		"songID": 1856,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "56a5db9f0567adf7804cd050ee222f07a7698244",
+		"data": {
+			"hashSHA256": "3d7f1c1598adb69abfb494b112224445505a68475582b3d45e22ba3d4a4154c0",
+			"inGameID": 2132
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "43",
+		"levelNum": 43,
+		"playtype": "9B",
+		"songID": 1856,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "d6782e51ad00b67abbf1818113e4db68a455002d",
+		"data": {
+			"hashSHA256": "3696b6198601177f29b3d9c9e2648f5eef1693d3bf6d2af79a5e3ef3f6c858f1",
+			"inGameID": 2132
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "36",
+		"levelNum": 36,
+		"playtype": "9B",
+		"songID": 1856,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "fd4d6bb1cbad6078037a075136fcc1e172e5e079",
+		"data": {
+			"hashSHA256": "409800cf7b7acd9f52de4c1e597fa5ce9f8ae15561a20520b7f8649ae03cbb5b",
+			"inGameID": 2132
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "25",
+		"levelNum": 25,
+		"playtype": "9B",
+		"songID": 1856,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "b19c261eca97fef94ca684dd57f29ddf7c634df4",
+		"data": {
+			"hashSHA256": "7f8c530a81af1611b59f9f0b798e85ec3bafcab2f7b1c194dc8475e5ba9edf4a",
+			"inGameID": 2133
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "9B",
+		"songID": 1857,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "429373df8950ec69a3aa729df37a5a4238ce2631",
+		"data": {
+			"hashSHA256": "91b8c69a7a45f0e78b8f7296eb29b84c5fb9b09f712030ea9eb273d2a18c7dfa",
+			"inGameID": 2133
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "46",
+		"levelNum": 46,
+		"playtype": "9B",
+		"songID": 1857,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "af3b77c2c399dc60125f7c13d6121ed1bdc5bc4c",
+		"data": {
+			"hashSHA256": "dc53a091c2fea55ef4363e4d206296b3e19226cb97c0e6f55d0a7a366de34130",
+			"inGameID": 2133
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "38",
+		"levelNum": 38,
+		"playtype": "9B",
+		"songID": 1857,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "f263025fa6c3b2b263b01df4a016d98ce53cefab",
+		"data": {
+			"hashSHA256": "5bcb47e9afca102b30ae7d75ea5446e73e6c40b4e740150b43d4592311f280c0",
+			"inGameID": 2133
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "24",
+		"levelNum": 24,
+		"playtype": "9B",
+		"songID": 1857,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "376f094e988ccb8860f891e27a501f4341fc8f3a",
+		"data": {
+			"hashSHA256": "94dbe546cdaa05ce74d4aa2b5ac94991480d39d30c589648cae0d2832ab83b5b",
+			"inGameID": 2134
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "9",
+		"levelNum": 9,
+		"playtype": "9B",
+		"songID": 1858,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "16064d09f076dc4c55f4ecf7c32fec2289e353fc",
+		"data": {
+			"hashSHA256": "2ddeeae9ecfc600a739d8973e7835b281540343bcec1539c61e503df3580a020",
+			"inGameID": 2134
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "45",
+		"levelNum": 45,
+		"playtype": "9B",
+		"songID": 1858,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "7e75da2b28c40d15285858fbff8022b9d47617d7",
+		"data": {
+			"hashSHA256": "24b9cfc2253095555bf31fb5707a3c06d277e25e24a88b92a66b9ba641a7d841",
+			"inGameID": 2134
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "38",
+		"levelNum": 38,
+		"playtype": "9B",
+		"songID": 1858,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "776838d2b857c1a59f456339c347c03cae1197e1",
+		"data": {
+			"hashSHA256": "31ae54ca4047f0c9360a9b2d0bcd323c1594e2bd13b9dadd1eeac59628fa6f87",
+			"inGameID": 2134
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "25",
+		"levelNum": 25,
+		"playtype": "9B",
+		"songID": 1858,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "bcebbaf6bba37ed1d2ed5ba93de9e42cf183b1fd",
+		"data": {
+			"hashSHA256": "0faff34f87bf73c9c6fa7637b5bb0a4d15d91674e1df418b0be7b1b8a88de78f",
+			"inGameID": 2135
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "9",
+		"levelNum": 9,
+		"playtype": "9B",
+		"songID": 1859,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "0223b12717c81cd2086c52c6b2b8c5da70ed8d6a",
+		"data": {
+			"hashSHA256": "d7d27adce0d662d7c45f07dc8d8cf468ab447a4e4ac9081a1c9b03cac07525d3",
+			"inGameID": 2135
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "43",
+		"levelNum": 43,
+		"playtype": "9B",
+		"songID": 1859,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "f67bd4b603469c58f64a93bc44cad131cdfe0144",
+		"data": {
+			"hashSHA256": "78f8ea691a62281bd26f0b401f3eadf2a6d0fa06a332c7fb2a93262832f4530a",
+			"inGameID": 2135
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "37",
+		"levelNum": 37,
+		"playtype": "9B",
+		"songID": 1859,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "5c719dbe0bfb519373112f86cb4f6db27c2172a9",
+		"data": {
+			"hashSHA256": "1fe5a8d54fe9a13cfb2d7646623e5d0e936f910424faa60f254e195a7be08bbf",
+			"inGameID": 2135
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "27",
+		"levelNum": 27,
+		"playtype": "9B",
+		"songID": 1859,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "88a64f76c3d35ae09ed13cbdb78603ccd3458e75",
+		"data": {
+			"hashSHA256": "02bed6f695f439285195a6294686371fcf50423ead1c88a6f4ecf5c9cc873ae4",
+			"inGameID": 2136
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "9B",
+		"songID": 1860,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "ff75c3c21a73f87df8f2307b6c52048d98fe6b7e",
+		"data": {
+			"hashSHA256": "07afd3eecaa6efe5ef8b892f837e4c8c7fd264c553eac19959c205104aa5f8fa",
+			"inGameID": 2136
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "49",
+		"levelNum": 49,
+		"playtype": "9B",
+		"songID": 1860,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "4380bad64541b0cea3549d735df7bf7de48a7a17",
+		"data": {
+			"hashSHA256": "a671a7d7db98b3c0d367cb5e4b5ee1e121f673017d4248288bb19383a49bd045",
+			"inGameID": 2136
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "42",
+		"levelNum": 42,
+		"playtype": "9B",
+		"songID": 1860,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "1673cd294c2cbe55f5eafc5a1bf5984ddcea8d53",
+		"data": {
+			"hashSHA256": "5e5f9b6b66e67667a891654b11286adf969a9a6e527594d55d76460a0ce01dad",
+			"inGameID": 2136
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "30",
+		"levelNum": 30,
+		"playtype": "9B",
+		"songID": 1860,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "70c2106957203bb5a1e88764c3d036fab067eb4b",
+		"data": {
+			"hashSHA256": "2c00838927df9ea9c1f6382d1a9a79d9cc11b7a5272666ca8b956cd2ed165d46",
+			"inGameID": 2137
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "19",
+		"levelNum": 19,
+		"playtype": "9B",
+		"songID": 1861,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "cd5919bd934969e6c373ab3fdbfa864888c209f0",
+		"data": {
+			"hashSHA256": "8665ab61e2af06cb30bde8dd2e5c79d11fff8342be0540dd1ed7a6dc0221550c",
+			"inGameID": 2137
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "50",
+		"levelNum": 50,
+		"playtype": "9B",
+		"songID": 1861,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "63d2c2bd7e1e6fc48d269573f1fe96f2b0b5a0e2",
+		"data": {
+			"hashSHA256": "912c1574dffc2c033985d7012ff746b3580acb2806d8b97ba08ae367a5bcc77f",
+			"inGameID": 2137
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "44",
+		"levelNum": 44,
+		"playtype": "9B",
+		"songID": 1861,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "401b36e811c32c77de78fa9970ddfaeb00adbf51",
+		"data": {
+			"hashSHA256": "bdedcd5362a26bd64e5a8bc6850f5162b73f167a0bca4fb50ea68c8788c8e081",
+			"inGameID": 2137
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "34",
+		"levelNum": 34,
+		"playtype": "9B",
+		"songID": 1861,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "b9b5d944eebf8efc9ad5a9948f93286341dcc380",
+		"data": {
+			"hashSHA256": "4b74c0fb4716f592aa8bac6fde6c60532d68f270c502066938c484b917c4624f",
+			"inGameID": 2138
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "9B",
+		"songID": 1862,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "92644cef20d848875032719409529b100e98a2ee",
+		"data": {
+			"hashSHA256": "85a3806fa6d57956137e54ab954fabd4fee5ed6bf560e9f5b830173844e10039",
+			"inGameID": 2138
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "46",
+		"levelNum": 46,
+		"playtype": "9B",
+		"songID": 1862,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "02e17e6ff9fb3cb66e5a78262f6f2caf073df3ba",
+		"data": {
+			"hashSHA256": "f00af176dda981e8d0ca534d7977df43a93c9bcb9445f4ecd12fc8ef763b61ee",
+			"inGameID": 2138
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "42",
+		"levelNum": 42,
+		"playtype": "9B",
+		"songID": 1862,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "eaafde3e2ee8d2ea1172d93c1cd56e32efe98e63",
+		"data": {
+			"hashSHA256": "67d37546ebaa30017746a4c9ba6addba5609a6cf68e2585ef9056686c79d411d",
+			"inGameID": 2138
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "31",
+		"levelNum": 31,
+		"playtype": "9B",
+		"songID": 1862,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "c7edeec393205ba63e8214e4394b7e7a0465a275",
+		"data": {
+			"hashSHA256": "fb8bbfbcd6828103489ac9062eb7640d00e5da02167f5e514ff772dbcb87acb2",
+			"inGameID": 2146
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12,
+		"playtype": "9B",
+		"songID": 1863,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "8ff376a57c74169488a679143c52b8d5965351db",
+		"data": {
+			"hashSHA256": "24a473ad62caa5d928eaae1dc0df987fe7cdcb206627074dd83d3d70b354a669",
+			"inGameID": 2146
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "43",
+		"levelNum": 43,
+		"playtype": "9B",
+		"songID": 1863,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "1c297dceaea76ab6a135df9d083ad7d3f25a64fe",
+		"data": {
+			"hashSHA256": "c18acb8be9878c128483086b7edba418d6187ef9b1527d6384c3512bd093b432",
+			"inGameID": 2146
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "36",
+		"levelNum": 36,
+		"playtype": "9B",
+		"songID": 1863,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "d060552e75b326b128f133b950d410351aa860a5",
+		"data": {
+			"hashSHA256": "015a4e30b8275e0a9c2352695adffdf1262c7d128d63dbff1d6f140ac145176a",
+			"inGameID": 2146
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "23",
+		"levelNum": 23,
+		"playtype": "9B",
+		"songID": 1863,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "9383b1d19714024bd42ce148b04b6c243a9cfd36",
+		"data": {
+			"hashSHA256": "de529666bc69285d01a8755350c4f5c5ab8983be1b775e0acab0add136602f43",
+			"inGameID": 2147
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "16",
+		"levelNum": 16,
+		"playtype": "9B",
+		"songID": 1864,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "42de9df0c5efb47a1ca94a240b71c7708909c5d6",
+		"data": {
+			"hashSHA256": "28b70306f14e4dd96c0a878e1d1effa6c85094eda4ce1fae9db641350592b988",
+			"inGameID": 2147
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "47",
+		"levelNum": 47,
+		"playtype": "9B",
+		"songID": 1864,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "9ca5046eb28451d2a830951367d7c4f80d66bfdd",
+		"data": {
+			"hashSHA256": "a2f35d5d5d86d661d258c9d93859ca920350773f852edf312aaea0a09fc362a4",
+			"inGameID": 2147
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "41",
+		"levelNum": 41,
+		"playtype": "9B",
+		"songID": 1864,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "f62d8027c17a3a7835e0885434c81a60feb55b80",
+		"data": {
+			"hashSHA256": "7bb6c65b99c9d036c10bb57818881191f5f34dd02fedd75f2ad531e553acb165",
+			"inGameID": 2147
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "29",
+		"levelNum": 29,
+		"playtype": "9B",
+		"songID": 1864,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "73cee98e19385d0dc62079291095e88095c37e82",
+		"data": {
+			"hashSHA256": "3d4abfb150f02d2733775857e97c23d6b0cb476b8bff07464019d4d4f60b505b",
+			"inGameID": 2148
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "15",
+		"levelNum": 15,
+		"playtype": "9B",
+		"songID": 1865,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "db7674866bc75b6984e5e94f3f338154a274fdbb",
+		"data": {
+			"hashSHA256": "22c638c35c84319c0f80153f2bc3429b602cdc19b02798de2fab3bd8d989a2ab",
+			"inGameID": 2148
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "48",
+		"levelNum": 48,
+		"playtype": "9B",
+		"songID": 1865,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "5c681e477dfe3f096a5e683ed39fce5b2d7a8479",
+		"data": {
+			"hashSHA256": "4cb7642b75f7fe69c2b5cf6f2b1e38503989c4eee0d2a57241842cd25b981ca0",
+			"inGameID": 2148
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "43",
+		"levelNum": 43,
+		"playtype": "9B",
+		"songID": 1865,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "a50b6a74f506bf67a0eebff17b138ee799bd77df",
+		"data": {
+			"hashSHA256": "05e15d5f24e3d9126e0f63f90c6c5585e716835a85c2456ebbf463b299313f0b",
+			"inGameID": 2148
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "31",
+		"levelNum": 31,
+		"playtype": "9B",
+		"songID": 1865,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "5fa3a4cc47fefdcf2adf33c2335a947a79553d0e",
+		"data": {
+			"hashSHA256": "0e919771ec94586ab4312fbea5dca2b531ab8f255be01e726888a7be4307ddb8",
+			"inGameID": 2149
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "4",
+		"levelNum": 4,
+		"playtype": "9B",
+		"songID": 1866,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "ae5bdee0e782c0cc11636ad6b1e10ed80a2785bd",
+		"data": {
+			"hashSHA256": "9437b46d85d353e2d16404cfa11c313b2d003ad56da8801445d4950fd5ecfe2d",
+			"inGameID": 2149
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "38",
+		"levelNum": 38,
+		"playtype": "9B",
+		"songID": 1866,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "ed7ac9160ef81e4e764c157e11eec15b54e0bacf",
+		"data": {
+			"hashSHA256": "3ee0ef2d0f26ad9e611e91d01639e1f43cf2b9f657143f03fa8f6d6ff6a7072f",
+			"inGameID": 2149
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "30",
+		"levelNum": 30,
+		"playtype": "9B",
+		"songID": 1866,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "20c5612989c187fff018e7c6b98862621600007e",
+		"data": {
+			"hashSHA256": "217da651f17af79544f0e1d903bc422ba433521c3b51a7c33fec04093d1b8c45",
+			"inGameID": 2149
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "19",
+		"levelNum": 19,
+		"playtype": "9B",
+		"songID": 1866,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "38b9db1d867243ebde040653b8eb7ba4820ee3e2",
+		"data": {
+			"hashSHA256": "250742392b9df42a52d377f457947c63109f37dbf88355dc1cb7e912b7d33c8b",
+			"inGameID": 2150
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "9B",
+		"songID": 1867,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "96bbf1776cc016b93e19c58e4ae58c5ca96d0ffd",
+		"data": {
+			"hashSHA256": "b2b6035343dfb280f398cd9f96a8ccb15873bfa6330dac65d6d54ec964316806",
+			"inGameID": 2150
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "40",
+		"levelNum": 40,
+		"playtype": "9B",
+		"songID": 1867,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "7f788074ec79bd8a0d79a187cb384b0dc1210484",
+		"data": {
+			"hashSHA256": "64fca25f96c5466b45a5be395d67729a858dda9dfeb21cd4a6590e1460896bab",
+			"inGameID": 2150
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "29",
+		"levelNum": 29,
+		"playtype": "9B",
+		"songID": 1867,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "fc5c61471aa39ac6140bdc465abd799bd08d0f35",
+		"data": {
+			"hashSHA256": "b9bb0fa998299f1555d0ea94d86590b69edc8b77752937a24d6328223fc7d07d",
+			"inGameID": 2150
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "19",
+		"levelNum": 19,
+		"playtype": "9B",
+		"songID": 1867,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "9d3dc8562f37d12da68519b1191914e62acba632",
+		"data": {
+			"hashSHA256": "3fb914ef58ba856162fc667d9c98c187c801b4e7af247d3da7900e98cff1aa3e",
+			"inGameID": 2151
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "9B",
+		"songID": 1868,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "aba4609128806b3d0e0172108d62bef7bf113d44",
+		"data": {
+			"hashSHA256": "5a43b961bd9ae5e7a25f01297673c840ec4c5657fd4825b38a41a2048dbccb42",
+			"inGameID": 2151
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "39",
+		"levelNum": 39,
+		"playtype": "9B",
+		"songID": 1868,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "5b547796a9cc5cf1db9dfa92d12a501ab89d41c7",
+		"data": {
+			"hashSHA256": "7e482ef142cecf96034d7f1abae3547447aaf5156f7e3400346013408cd0ed24",
+			"inGameID": 2151
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "28",
+		"levelNum": 28,
+		"playtype": "9B",
+		"songID": 1868,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "3f268e5e99fa543ad5d5a427201cd18a92ff5ebd",
+		"data": {
+			"hashSHA256": "d04e70ff282be668e871a438402779f5cb2340c6259f5bcc44f5669062e2414e",
+			"inGameID": 2151
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "20",
+		"levelNum": 20,
+		"playtype": "9B",
+		"songID": 1868,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "9e8e7e65634d53bfb14057de6f1bbc0c70c5ed29",
+		"data": {
+			"hashSHA256": "ad55dbc5d6a4ffb649444f945bdfc7826c755a193decdd26f5d675c677fcccf2",
+			"inGameID": 2152
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "17",
+		"levelNum": 17,
+		"playtype": "9B",
+		"songID": 1869,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "ec85af4618dc9625eeb21f8b80eb9a5a46ae6778",
+		"data": {
+			"hashSHA256": "c8749c81964d4882c26e08684aad3a325ca9cce32ea1d661c6b2f26c63a98e8d",
+			"inGameID": 2152
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "48",
+		"levelNum": 48,
+		"playtype": "9B",
+		"songID": 1869,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "bbe8a7f4505c7853d3867e818c95664f37388324",
+		"data": {
+			"hashSHA256": "feed5366fec61471f78c161527d757e345efdefb784c33de626731092227f1e9",
+			"inGameID": 2152
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "42",
+		"levelNum": 42,
+		"playtype": "9B",
+		"songID": 1869,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "c11ee33b9c7f59914957aa881819c16ca02b464d",
+		"data": {
+			"hashSHA256": "79a7ea2d386887b6506e5547ddd9bc3aafa614455c8252cbc2207d53ecd747ef",
+			"inGameID": 2152
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "32",
+		"levelNum": 32,
+		"playtype": "9B",
+		"songID": 1869,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "78bf008ec934da36cf86733ce987fe1f60e253b7",
+		"data": {
+			"hashSHA256": "d629996d8b23987f87cdd4ec9ab21e7e5e9fc8357fb8805856c9c7d30d2e6b11",
+			"inGameID": 2153
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "9",
+		"levelNum": 9,
+		"playtype": "9B",
+		"songID": 1870,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "72ae5a86dc22c768cb6cb4f496309ad08c1b4cd1",
+		"data": {
+			"hashSHA256": "3059660570de35f49a265cdbf62aa4b91f1220e92e489a062417b01485a72cfd",
+			"inGameID": 2153
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "45",
+		"levelNum": 45,
+		"playtype": "9B",
+		"songID": 1870,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "a147f5300f25c1646270814adbb3599d31d7c6b3",
+		"data": {
+			"hashSHA256": "9a0538b071a37aebbf2029dbccd7d24fed2ffd95bf3f11a80d83a8024295250d",
+			"inGameID": 2153
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "37",
+		"levelNum": 37,
+		"playtype": "9B",
+		"songID": 1870,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "f3bbb6bd8eed77dc61d98c3141aa21c9d43f76c8",
+		"data": {
+			"hashSHA256": "a06d4fe8e867331434dfdad08ea2c0db90ea0b916b79525f089d6bd174d92e00",
+			"inGameID": 2153
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "28",
+		"levelNum": 28,
+		"playtype": "9B",
+		"songID": 1870,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "14de0c4139528968d505f149a6d57a3503e8a13d",
+		"data": {
+			"hashSHA256": "cfdcc08285409aaacd888217e669ed4060823c7d79141e25d22b869777c703ea",
+			"inGameID": 2154
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12,
+		"playtype": "9B",
+		"songID": 1871,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "0f1e369cc00478e088a657fea585236c73378f96",
+		"data": {
+			"hashSHA256": "b0516a2f453ad59a519b55ec160ead4c757b80bf2b04d56b701b5a47ba9a1af9",
+			"inGameID": 2154
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "46",
+		"levelNum": 46,
+		"playtype": "9B",
+		"songID": 1871,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "59892857411fca4744cbc268af302f7f671aff21",
+		"data": {
+			"hashSHA256": "c59fa1121f3f2bc28caf32b548b9e3cab2e7a914c42b5b73a1b813eb0ed9daec",
+			"inGameID": 2154
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "39",
+		"levelNum": 39,
+		"playtype": "9B",
+		"songID": 1871,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "318a282a0924a3467e4547a39268c7ef0e26aa5b",
+		"data": {
+			"hashSHA256": "ae11b2dae7aa49f94368e61739435fe0e5fea3fce28e4c3e7e6da102de5d25e6",
+			"inGameID": 2154
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "27",
+		"levelNum": 27,
+		"playtype": "9B",
+		"songID": 1871,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "a9612c9b93b7da13fa2bc78d2373f979414b89a3",
+		"data": {
+			"hashSHA256": "7c17e488b8f9caf181a5cf20834480dff5f942b3b7d6ee422b91dca2a5b568e8",
+			"inGameID": 2155
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "9B",
+		"songID": 1872,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "1cabea8f66b1d0449d684caf7d34623270655abf",
+		"data": {
+			"hashSHA256": "d040717b3056ecbfbd0171d84f9b763666b287f1ae2cf0d02f23be703e39a1e7",
+			"inGameID": 2155
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "47",
+		"levelNum": 47,
+		"playtype": "9B",
+		"songID": 1872,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "19a0c602a34dfd2c902276506397dbfa6ee6424f",
+		"data": {
+			"hashSHA256": "23f29aed1e7cedb61b535424742406d0b80f8461605a58a2e9af0077deaf4bc0",
+			"inGameID": 2155
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "42",
+		"levelNum": 42,
+		"playtype": "9B",
+		"songID": 1872,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "8db44f1bb1b5e8710d2298e6faf677db4767ed8b",
+		"data": {
+			"hashSHA256": "48af23ebe560a683a80ecc157b86311d8f2ef76228a43f9a0a7dcb2ca03d7e7d",
+			"inGameID": 2155
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "30",
+		"levelNum": 30,
+		"playtype": "9B",
+		"songID": 1872,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "960db096f0a8e633b600b9a9d2ddf67700ffd699",
+		"data": {
+			"hashSHA256": "c5ed2b30b62e3f53af82228f9da2a5f3f2d29f444dab40a6d42aa945e8ddd66d",
+			"inGameID": 2156
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "9B",
+		"songID": 1873,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "446ff6c7bb31ded152e66d357a3d3eb818874fc8",
+		"data": {
+			"hashSHA256": "d30b5a9e82314dd8a8d3e7f3a6ce69a8d8f126f87b55036f1ccf177e83a45070",
+			"inGameID": 2156
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "46",
+		"levelNum": 46,
+		"playtype": "9B",
+		"songID": 1873,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "744f263ae1896e558827ebadf4a584244a1385db",
+		"data": {
+			"hashSHA256": "e32dc65d590a8afff7a7897507d0a010e0182ddcf6ae8d22abe6d604f35635da",
+			"inGameID": 2156
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "33",
+		"levelNum": 33,
+		"playtype": "9B",
+		"songID": 1873,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "f2d6b4cd82c226c0340bfb03f725bea07534ab1b",
+		"data": {
+			"hashSHA256": "982c7a762c0927dfb9a7b58f7b260a2f8eb6fb4be39f133ef39a1095fd45ec82",
+			"inGameID": 2156
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "24",
+		"levelNum": 24,
+		"playtype": "9B",
+		"songID": 1873,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "a27e4123124e0d78644300ff7addd2a3a821a2ee",
+		"data": {
+			"hashSHA256": "98d989563c95e026012db6af7dfbae831ac78fef38bc507417326f0240b8ac9d",
+			"inGameID": 2157
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "11",
+		"levelNum": 11,
+		"playtype": "9B",
+		"songID": 1874,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "d252b0fcd2811cdc2b66adb2f5a88ff565843cc8",
+		"data": {
+			"hashSHA256": "6876e5ab35ec9da664835a1de37fa4c85d7bad145570bc742097fe67586f348c",
+			"inGameID": 2157
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "45",
+		"levelNum": 45,
+		"playtype": "9B",
+		"songID": 1874,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "f10de3a546a0abce7fc8d240e1489329ee98bc93",
+		"data": {
+			"hashSHA256": "c0a767394dc9a9f7c63cc655d465d267bbceee7555e06293605c9325bd85d95d",
+			"inGameID": 2157
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "31",
+		"levelNum": 31,
+		"playtype": "9B",
+		"songID": 1874,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "834a34d5c73d19aed749d85fc67d73ea8f27c551",
+		"data": {
+			"hashSHA256": "5ca5a75f75451f4b1954e15ddee12c78b2fabc22af4976d06d1678773b4b703c",
+			"inGameID": 2157
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "25",
+		"levelNum": 25,
+		"playtype": "9B",
+		"songID": 1874,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "bc09d9fd6fa33807b44853fa13852b5183eae9d2",
+		"data": {
+			"hashSHA256": "f8b021ef0edd6350ef22809bcf5eca6b4dfc52106841ad4d847d22f18e83da7b",
+			"inGameID": 2158
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "9",
+		"levelNum": 9,
+		"playtype": "9B",
+		"songID": 1875,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "469e68e0c8ea057662b0ef2f11ed4526bb7f87e9",
+		"data": {
+			"hashSHA256": "ba87b3772e7b1e47d6953b6205513df40a7b0670b25470083d62c1193b173f72",
+			"inGameID": 2158
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "45",
+		"levelNum": 45,
+		"playtype": "9B",
+		"songID": 1875,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "1d54a75d142383a692812bc49cf42a9b40ea93eb",
+		"data": {
+			"hashSHA256": "878df9e5520b266beb36c2dce99617850effade12cdb059995f98023649068e3",
+			"inGameID": 2158
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "36",
+		"levelNum": 36,
+		"playtype": "9B",
+		"songID": 1875,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "446da28a09c9dd3134c01b20b07c3e684f901a2d",
+		"data": {
+			"hashSHA256": "194a5ee17095f49a77178810a8b4a7184c7f0686fa62c79bc6f075491136fe56",
+			"inGameID": 2158
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "27",
+		"levelNum": 27,
+		"playtype": "9B",
+		"songID": 1875,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "8aa9a6aeb278ab9c2b6f272d7eb7fccc3f5d1d61",
+		"data": {
+			"hashSHA256": "8b6906ab0ad47882b2f6d579ee47e6fb3b520ff081c456d39f2c7b17be0d3ac8",
+			"inGameID": 2159
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "9B",
+		"songID": 1876,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "ec71d5684b901b3a3b14823402f4cbec8ea69421",
+		"data": {
+			"hashSHA256": "9e58f997a2061671db71d49715ed96a9f50c21fb1f80e18c764d2d50808d08e3",
+			"inGameID": 2159
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "47",
+		"levelNum": 47,
+		"playtype": "9B",
+		"songID": 1876,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "12249c62860898c81b7a1ff24d29bda191c6ebdc",
+		"data": {
+			"hashSHA256": "93f8be078c5e984fdf13a4e9ed2df7aeee796f449a07cbe299282052d1ff0e48",
+			"inGameID": 2159
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "40",
+		"levelNum": 40,
+		"playtype": "9B",
+		"songID": 1876,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "4cb38ec4336e266906db3c24116c6c7d46606b59",
+		"data": {
+			"hashSHA256": "968fc31269c03ff4d6780c14b980951207617fd7a40afd7b0a081d16b1ce30e8",
+			"inGameID": 2159
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "30",
+		"levelNum": 30,
+		"playtype": "9B",
+		"songID": 1876,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "5d73e268a098a6f85b6a0a828e38e3002a3b8a0c",
+		"data": {
+			"hashSHA256": "da0b4a263e29c93e660703828b07c37a6ab0dc72a6a5cf604530e032ade8e837",
+			"inGameID": 2160
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12,
+		"playtype": "9B",
+		"songID": 1877,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "2d125172e47a561456484ff5ca23da3eddd9dc8e",
+		"data": {
+			"hashSHA256": "d13a7df33ae865877be0418649bca3c1cd5d392c502211248e6976be4920b573",
+			"inGameID": 2160
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "48",
+		"levelNum": 48,
+		"playtype": "9B",
+		"songID": 1877,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "100f65b6fc10056d783fa3aea6686ebbcfcba9f5",
+		"data": {
+			"hashSHA256": "74594c4b4d4782a4b1092f15d14f28ad3103fb64b83622e73612cf1110a80e19",
+			"inGameID": 2160
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "43",
+		"levelNum": 43,
+		"playtype": "9B",
+		"songID": 1877,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "be4fef3453c86ef5ca11b211d06a96ab5e41e42a",
+		"data": {
+			"hashSHA256": "09b2c6397aaa94328f9f7c4056e038416b39134b3138939e0804a07801b36018",
+			"inGameID": 2160
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "31",
+		"levelNum": 31,
+		"playtype": "9B",
+		"songID": 1877,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "eff90fe9840b06732f63435b3c5072000f5105ba",
+		"data": {
+			"hashSHA256": "db56a7082f093591878f1b0113e9773c28366e276d217f9f0d8c02e368ab5c70",
+			"inGameID": 2161
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "9B",
+		"songID": 1878,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "95688e6bc52db13c9082370d1816e6f56105597f",
+		"data": {
+			"hashSHA256": "1e0c81c4e87b206f56f601455821d565ac2e50fc6a1ac4df7237b544558e97f7",
+			"inGameID": 2161
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "45",
+		"levelNum": 45,
+		"playtype": "9B",
+		"songID": 1878,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "72c6aab83157f1f98be1266963561f9fac4b2ef4",
+		"data": {
+			"hashSHA256": "597f7fea727464b07bf2895c6655d55e838374469678c773502fc546e13cc611",
+			"inGameID": 2161
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "38",
+		"levelNum": 38,
+		"playtype": "9B",
+		"songID": 1878,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "9646d0c3f17dedb83d5d036a790f5c630728c5f4",
+		"data": {
+			"hashSHA256": "69961194d017bdaaf186503cfe8a31d16aba75ebda0a11ac170a1d9ea1ab5894",
+			"inGameID": 2161
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "25",
+		"levelNum": 25,
+		"playtype": "9B",
+		"songID": 1878,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "63d4606475f359e9217b4aaff3a4c87013cbc9a8",
+		"data": {
+			"hashSHA256": "5954701bb3cf077d1a95e5a88d214d6c89f0c3e1eb04af0ebcb3e8b7e408b3ed",
+			"inGameID": 2162
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "17",
+		"levelNum": 17,
+		"playtype": "9B",
+		"songID": 1879,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "d8f1cbf7d6f265a47d5adc61b23605cfa75c6c11",
+		"data": {
+			"hashSHA256": "554cd518b7845d3ba5142c0f88bb19b1370a959fb05865a6910f4d1160c50717",
+			"inGameID": 2162
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "49",
+		"levelNum": 49,
+		"playtype": "9B",
+		"songID": 1879,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "1a72125afb882633034feb039351b804da24a227",
+		"data": {
+			"hashSHA256": "a80b324805d5edcbe18fa39ac96d3ec591c542cd44279b92f155e484f208d6d1",
+			"inGameID": 2162
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "42",
+		"levelNum": 42,
+		"playtype": "9B",
+		"songID": 1879,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "ec7c9ad0a6ba1f3c9d27b1dcebe80f96297b6f61",
+		"data": {
+			"hashSHA256": "0b43025702837087c854cadf380f16f458c04d9f11ac4716a0b349736bfcd0be",
+			"inGameID": 2162
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "31",
+		"levelNum": 31,
+		"playtype": "9B",
+		"songID": 1879,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "dea56db078bd5b5a5c3fb6c9b02c8ccf38cf1008",
+		"data": {
+			"hashSHA256": "9498ab581837ab1231724d5f6bfefcfb28bfc06a6f27cf46eade3c7cc90a60f8",
+			"inGameID": 2172
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "9B",
+		"songID": 1880,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "26fe45d6a62e19ec76ceded7d2d27ce67b571672",
+		"data": {
+			"hashSHA256": "6dbe57c71a147871a17572d734011a14b5ca0a3c629c7683bdcad879f2ceefb9",
+			"inGameID": 2172
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "39",
+		"levelNum": 39,
+		"playtype": "9B",
+		"songID": 1880,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "fd38d3993623fee0dab85fb655b6072d4ea96ee4",
+		"data": {
+			"hashSHA256": "cbaf0570faeecd9c30208e09ccdb60264a432d912b09dc6b882fdcadfc83183b",
+			"inGameID": 2172
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "33",
+		"levelNum": 33,
+		"playtype": "9B",
+		"songID": 1880,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "96c888f106288937b271093952dda9e3b977243a",
+		"data": {
+			"hashSHA256": "ce1b78bf21304431873ac4061812e8304705707c2b21f057a000eca1968e270c",
+			"inGameID": 2172
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "22",
+		"levelNum": 22,
+		"playtype": "9B",
+		"songID": 1880,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "cded01b24acf1e1277547e2e24467d0e092acc7c",
+		"data": {
+			"hashSHA256": "035fcbae1a6e30ddc93d3c8518152dfe8f38667205343e604cfbd32258e352c2",
+			"inGameID": 2173
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12,
+		"playtype": "9B",
+		"songID": 1881,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "2c71843a23a97517439ec4fd03fd63b2acc032b7",
+		"data": {
+			"hashSHA256": "b1ea66ab01914db8b83c47b420e8cecb1459e91c26575bca8320e97f245ececa",
+			"inGameID": 2173
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "47",
+		"levelNum": 47,
+		"playtype": "9B",
+		"songID": 1881,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "0d22c6d00857e2fa59e6fd61fa52841132a77933",
+		"data": {
+			"hashSHA256": "0ae64bf5a1de5943695dd9a59e14e81d97a9cb27307a8cec980cf308fef389a7",
+			"inGameID": 2173
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "39",
+		"levelNum": 39,
+		"playtype": "9B",
+		"songID": 1881,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "2dad5b66efb9d2edaf68e6925a184c73c5fa16cf",
+		"data": {
+			"hashSHA256": "4e900de0ddf24601a8117df1107ea5db74be8939fba02a016a0a552a40fdc0a6",
+			"inGameID": 2173
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "28",
+		"levelNum": 28,
+		"playtype": "9B",
+		"songID": 1881,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "6b574bf8571b20ddca61c3a19e2d9f77e675630e",
+		"data": {
+			"hashSHA256": "231eddc19afe034c865dbd69a1dad5bd95f357f984da1f113ba1df5f6ac502ac",
+			"inGameID": 2174
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "9B",
+		"songID": 1882,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "43d73d6ae524e2151aacef9bdeafcc15ed0cb628",
+		"data": {
+			"hashSHA256": "3196916db58cc877195eb093ad315e709b7ce64ada1bbe15b34068bd3aa36224",
+			"inGameID": 2174
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "45",
+		"levelNum": 45,
+		"playtype": "9B",
+		"songID": 1882,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "48926530c22e112774a03aceafbe690832a6cb95",
+		"data": {
+			"hashSHA256": "d5c3a3e4eb1519819823b87d1e1376a3fd45bb933a1f151740f3045f2ad80d4d",
+			"inGameID": 2174
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "42",
+		"levelNum": 42,
+		"playtype": "9B",
+		"songID": 1882,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "4de426a99bac131ec78aee31db926c54d5637550",
+		"data": {
+			"hashSHA256": "e9d823287ca14fab7eb24525ab12cd66664dd4a91731227cad890c24b4cabd29",
+			"inGameID": 2174
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "29",
+		"levelNum": 29,
+		"playtype": "9B",
+		"songID": 1882,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "c8a5823da0069c912754e254e60b7ce564614b71",
+		"data": {
+			"hashSHA256": "8c8072b96bfa0dcbd93a28a8fe6d4d49b3092ed190dddb5009599497d8ce629f",
+			"inGameID": 2175
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "9B",
+		"songID": 1883,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "f37d5055357545c485a6a984d662943a40237169",
+		"data": {
+			"hashSHA256": "04b6e21faa5b714a678c2a5e63735efe18a89b3c115adb47ef58ba59c2093178",
+			"inGameID": 2175
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "46",
+		"levelNum": 46,
+		"playtype": "9B",
+		"songID": 1883,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "2fda3a1e49d823ab5272f21e76e5dd5a1f3944c2",
+		"data": {
+			"hashSHA256": "a058019c29622ace88c501c342077621f59d95f7436d6c40d17692b116a77118",
+			"inGameID": 2175
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "40",
+		"levelNum": 40,
+		"playtype": "9B",
+		"songID": 1883,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "351a25130fa1cc4134b6cd3f2bec8a95d3f8f2f8",
+		"data": {
+			"hashSHA256": "2bced81e7b08e9f74eebf2191f2e7f803a77becc14e07eb54c679a0b77e49b11",
+			"inGameID": 2175
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "28",
+		"levelNum": 28,
+		"playtype": "9B",
+		"songID": 1883,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "029a854e1383f1697747e3ead332800148b2832f",
+		"data": {
+			"hashSHA256": "6bf239ba6d24c54082421c367e21ddf45fec9a16ebd87d31ab4c24b24b5a79d8",
+			"inGameID": 2176
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "15",
+		"levelNum": 15,
+		"playtype": "9B",
+		"songID": 1884,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "70d6fe73e5202b98a5eac786b2082493ce5408f7",
+		"data": {
+			"hashSHA256": "1e646d756855e970c8e785bd316b7af700d6328fc55364b456b1b62163673116",
+			"inGameID": 2176
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "48",
+		"levelNum": 48,
+		"playtype": "9B",
+		"songID": 1884,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "0a58677e373c4abac9b24091b08774a524612d46",
+		"data": {
+			"hashSHA256": "a2d6f3f5e12958e49c898e466592f2d6ab42855a4f0f2cf3bc9402e07820fcc4",
+			"inGameID": 2176
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "42",
+		"levelNum": 42,
+		"playtype": "9B",
+		"songID": 1884,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "091b18407fb81d7853f6486943299f2d83358ccc",
+		"data": {
+			"hashSHA256": "089e79bb10a9ca4a2bcdb1fea8f5630b76df6d200f22f75ded076151d682ac0d",
+			"inGameID": 2176
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "30",
+		"levelNum": 30,
+		"playtype": "9B",
+		"songID": 1884,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "d9309ee3403be405c68b9f8ad276087b605d357b",
+		"data": {
+			"hashSHA256": "26c36c124d1409cb3344c3fc324b70c45f3ae9ed983a698baa0e826377f1b81f",
+			"inGameID": 2177
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "9B",
+		"songID": 1885,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "53ab969acb5589e3f3846dd9d66f6a4b0f3d8ca2",
+		"data": {
+			"hashSHA256": "b995fe3c95d2338224a84b44a4d330c1b57c572390cf108d8018f20f8fbd5775",
+			"inGameID": 2177
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "45",
+		"levelNum": 45,
+		"playtype": "9B",
+		"songID": 1885,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "eaa68b3e3292cc7228333aeda0fcbf1c0ec5d77d",
+		"data": {
+			"hashSHA256": "bed2bf4c875254815ce9fde5f41641a9a3b2b9852fbde82bab5ba45c473b213e",
+			"inGameID": 2177
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "36",
+		"levelNum": 36,
+		"playtype": "9B",
+		"songID": 1885,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "6d3c3d1e3b90aff42dfb8770e433c1785db120a6",
+		"data": {
+			"hashSHA256": "2517a75386365e44abd8b57e7930973f8fc305bf0f638cd92896ece665e05d63",
+			"inGameID": 2177
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "27",
+		"levelNum": 27,
+		"playtype": "9B",
+		"songID": 1885,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "b0c63600eb749921fd399b2b6787db6b45559697",
+		"data": {
+			"hashSHA256": "a7cbfe11bff0d387f30a03a298d71c76892492ece7c0edfb39e8f2744cf593bd",
+			"inGameID": 2178
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "9B",
+		"songID": 1886,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "6f1f3fcaafddbd1eecf139acb29019342e0aa7f7",
+		"data": {
+			"hashSHA256": "3a4f61371fad13dac8b536badef645fb74281b51865b58d3ce56931ff16972ec",
+			"inGameID": 2178
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "46",
+		"levelNum": 46,
+		"playtype": "9B",
+		"songID": 1886,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "c8863cb5a4925f3089e8df01e876b40e56057b4d",
+		"data": {
+			"hashSHA256": "1b36b30531f29096bf89d12ce50b42114006ce16cc3c2998595444134d4008c7",
+			"inGameID": 2178
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "37",
+		"levelNum": 37,
+		"playtype": "9B",
+		"songID": 1886,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "d4b4e8ab7a686e853077ec61f007a1b81d1cbcc3",
+		"data": {
+			"hashSHA256": "ff0e7eca575ec4242e0b10110229d0fc7af6164ff176b9521d1385da3bd98549",
+			"inGameID": 2178
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "26",
+		"levelNum": 26,
+		"playtype": "9B",
+		"songID": 1886,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "f135da3034a4df1d0a955f3b225a964fd2c18d69",
+		"data": {
+			"hashSHA256": "7b6966dc56787fee2a6e2dba24581334695814b2e3b99398820a5c43fda79b3a",
+			"inGameID": 2179
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "9B",
+		"songID": 1887,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "71f60737924020c7f7252b812d87c9c5a1697aa2",
+		"data": {
+			"hashSHA256": "7fae8621859d62b4cfc8a0c505550c52b636fc477a02006e77d990573c089ced",
+			"inGameID": 2179
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "48",
+		"levelNum": 48,
+		"playtype": "9B",
+		"songID": 1887,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "c353ff3799b53798110d5e399c047e6c9c2c2a0d",
+		"data": {
+			"hashSHA256": "383b050e774f7438caabbc7ee41f31c5b5de0f55577aa483b53637861ecb4d06",
+			"inGameID": 2179
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "41",
+		"levelNum": 41,
+		"playtype": "9B",
+		"songID": 1887,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "2f249e6d7fd0df91ce52505b22b7b4646331ed2b",
+		"data": {
+			"hashSHA256": "31bc8fc5e158c167da1f7a04334dafd379f8db26e6d13331e70f169fbb6ee4c7",
+			"inGameID": 2179
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "32",
+		"levelNum": 32,
+		"playtype": "9B",
+		"songID": 1887,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "2c8ae2deb930f34ff9028b531bda4a742df2544b",
+		"data": {
+			"hashSHA256": "ffa7c4737b7d15827d98c175a6081d0b42e46872dad708ea288609469be0563e",
+			"inGameID": 2180
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "9B",
+		"songID": 1888,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "2a7dd4355ad6f64afa1cdd3cb3112717ef9264b0",
+		"data": {
+			"hashSHA256": "fbf236242b5ced81120f4996fa703f16b2dd783af1cdc475cdc03be63079b8e9",
+			"inGameID": 2180
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "48",
+		"levelNum": 48,
+		"playtype": "9B",
+		"songID": 1888,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "54a63401040331e42dfc3690fd7ef240cb006776",
+		"data": {
+			"hashSHA256": "d9d6c3dee0f43f6e820431258436d8bf98efd3a2eb01c685a071824f066db7d4",
+			"inGameID": 2180
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "42",
+		"levelNum": 42,
+		"playtype": "9B",
+		"songID": 1888,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "824d26d2e536801cdc5e62fceed51d469b6d2094",
+		"data": {
+			"hashSHA256": "93b4a0fcff8d531d7b3ee49901a78b9adc67883a79e1ec634af95a4ac010f4a5",
+			"inGameID": 2180
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "30",
+		"levelNum": 30,
+		"playtype": "9B",
+		"songID": 1888,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "bdfd4929db94416439b0ba4a3c2dadd2097079d9",
+		"data": {
+			"hashSHA256": "7bb859a7d2fab7b3b70aa5a9ec8d42177fe22d853fe362552be84ce8460dbb42",
+			"inGameID": 2181
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7,
+		"playtype": "9B",
+		"songID": 1889,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "14dfc0d58539432c8c06d9992bf4ec6173ecf219",
+		"data": {
+			"hashSHA256": "2e0ddac4543d54c081cfb4513344da881efcaea8a7d1c4be11dc96c1722be838",
+			"inGameID": 2181
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "42",
+		"levelNum": 42,
+		"playtype": "9B",
+		"songID": 1889,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "674e6936fb0500541e8499b44e1452327328eebe",
+		"data": {
+			"hashSHA256": "58f0453509f1c389abe6954780c8f02c9da4654e474daa58629194185c89619b",
+			"inGameID": 2181
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "32",
+		"levelNum": 32,
+		"playtype": "9B",
+		"songID": 1889,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "74e7294eb7fa35b52f9662c16caa154094545f4a",
+		"data": {
+			"hashSHA256": "fece609cd1819302e3ea941fd9d306779f19ae547e8a5af7d9a1a806d0538501",
+			"inGameID": 2181
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "22",
+		"levelNum": 22,
+		"playtype": "9B",
+		"songID": 1889,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "c9f6fbc795b216b19cec042f68036e2b004057f8",
+		"data": {
+			"hashSHA256": "8b775bcde66d038b22a696433ad56fec30cb7290a0c9ebc82085587bffde0eb4",
+			"inGameID": 2182
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12,
+		"playtype": "9B",
+		"songID": 1890,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "daa8ca44246e24d193dc9f9e94d18f99b1bd1970",
+		"data": {
+			"hashSHA256": "0b8aaa72b9af399006af9ca36fb96e8af6738ca6180594a617e55edf73473529",
+			"inGameID": 2182
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "46",
+		"levelNum": 46,
+		"playtype": "9B",
+		"songID": 1890,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "b5ddc481ccececa8f8784224cb2e659d75a7c568",
+		"data": {
+			"hashSHA256": "0b6340c32cb948dd94b49fdba1604b3e87f746608afe6c87ce54013d323f8e13",
+			"inGameID": 2182
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "42",
+		"levelNum": 42,
+		"playtype": "9B",
+		"songID": 1890,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "5c6fe83b6248e048d490c7f4c6a5e974b3149829",
+		"data": {
+			"hashSHA256": "38d6c7e008416fa7516e581af5bd0a48a7d56ed8cf127b054cf2771e6c51b458",
+			"inGameID": 2182
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "31",
+		"levelNum": 31,
+		"playtype": "9B",
+		"songID": 1890,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "32d61284441f60180b9e6edd20e0ec50c0b9136b",
+		"data": {
+			"hashSHA256": "f22b7756a0864ca8004e9b871e008c06f219ac327d662f4d4ab17df4ed9cda11",
+			"inGameID": 2183
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "9B",
+		"songID": 1891,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "9480efd0b352dd3487e6096f42879ee4cdd379c2",
+		"data": {
+			"hashSHA256": "d8b3aa65068ce6220322cb258a285cf27663bf1c00c1ffb756a8e61ab1b207a2",
+			"inGameID": 2183
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "47",
+		"levelNum": 47,
+		"playtype": "9B",
+		"songID": 1891,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "bf2edc14d205f5399fca71e1dfb3c8171ab0d2db",
+		"data": {
+			"hashSHA256": "694194fc9c6f8b2622b676b0fccb9f64bfe5464fdd1137a9587d6f83ab3c2c08",
+			"inGameID": 2183
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "41",
+		"levelNum": 41,
+		"playtype": "9B",
+		"songID": 1891,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "f69662e8eb5e19a5b5d02a22cb1c3cc95ba098e8",
+		"data": {
+			"hashSHA256": "2836a87fbf6ab905eb35eea3c37e3aef30aaed58fb15c813a29c6bce22d07960",
+			"inGameID": 2183
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "32",
+		"levelNum": 32,
+		"playtype": "9B",
+		"songID": 1891,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "b67ed537ee9d891fb011b655932e68436d654545",
+		"data": {
+			"hashSHA256": "7fb5bd42a5a425680f9b8a7ec5fde377af00f842b76a0f1ddbbfb8c0d08206f0",
+			"inGameID": 2184
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "20",
+		"levelNum": 20,
+		"playtype": "9B",
+		"songID": 1892,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "c2118465ff7d39a6bd84d45e1915e2201344b73c",
+		"data": {
+			"hashSHA256": "c4f1368033b4c0d2b9733dbadf4cf0ffc9858fc8d088eb435164bca9a96f13d2",
+			"inGameID": 2184
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "50",
+		"levelNum": 50,
+		"playtype": "9B",
+		"songID": 1892,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "851cd6e70d7b68d2b78dd0b0848c8ca5a6598377",
+		"data": {
+			"hashSHA256": "e633f321f6503f31f61de656611c67073e98db3ca0ae3f8de0cc61b4ccb45673",
+			"inGameID": 2184
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "46",
+		"levelNum": 46,
+		"playtype": "9B",
+		"songID": 1892,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "45d02bbb2eb1decc39e9a5464c0a292cb168fcae",
+		"data": {
+			"hashSHA256": "f7dcc9189755f1ff9a6f79f73b441d664e47d6af427c5135ec567b04031f6fdd",
+			"inGameID": 2184
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "37",
+		"levelNum": 37,
+		"playtype": "9B",
+		"songID": 1892,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "d71e597e1bcc400bf5097ff773f1168121a92ef2",
+		"data": {
+			"hashSHA256": "5319d2111bc117c33a9beefa4cac1b5b029b0b991896a964af434a070f262ff3",
+			"inGameID": 2185
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "9B",
+		"songID": 1893,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "c4e8b344980c8d635d755f90bca5618ece618587",
+		"data": {
+			"hashSHA256": "5c3c16274bdab56be6ecbe422a6b481498d4f9a7bd369c32a08ae42004cc5e6a",
+			"inGameID": 2185
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "48",
+		"levelNum": 48,
+		"playtype": "9B",
+		"songID": 1893,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "faca17c55c3734118625a568b039b8f4ed5d58dd",
+		"data": {
+			"hashSHA256": "ff436afa6a8ebbb2192a526763a8ec4caaaba20950a4a059e4c8a6edaf6f43e8",
+			"inGameID": 2185
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "42",
+		"levelNum": 42,
+		"playtype": "9B",
+		"songID": 1893,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "c82d79e791c9de0f90568308ef8acc82d90708a5",
+		"data": {
+			"hashSHA256": "117a8865d71a1ee1dbf6beb26d78f30011a341a241120222e9231b64b5541f95",
+			"inGameID": 2185
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "27",
+		"levelNum": 27,
+		"playtype": "9B",
+		"songID": 1893,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "776f7abb953aa69d4b9703ea634eabf2812ec8dc",
+		"data": {
+			"hashSHA256": "d6f1a7b79aba5ea62f01225190aa57d511bd94702eae2ce8bd6a49aed3ec82e5",
+			"inGameID": 2186
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "8",
+		"levelNum": 8,
+		"playtype": "9B",
+		"songID": 1894,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "703d1ab93e50b4ab30a5fc83a92dd82c1136808f",
+		"data": {
+			"hashSHA256": "f4db9e51fa14b69ff9fcc195166959e748035476ba2fcae7669e7d01654855df",
+			"inGameID": 2186
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "46",
+		"levelNum": 46,
+		"playtype": "9B",
+		"songID": 1894,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "29914dfc326f15549749339ae3a554148e022397",
+		"data": {
+			"hashSHA256": "9d3ee94af1ef448ad5f6a32ab334c235283e04519a026dec23b0a5b88cdf0724",
+			"inGameID": 2186
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "40",
+		"levelNum": 40,
+		"playtype": "9B",
+		"songID": 1894,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "3d1611caab44a2fd6280273f43a9f748c29dfe35",
+		"data": {
+			"hashSHA256": "e96aba14a6f507568311871114049bc61b7c4b7a0d3dac9fa635bc64b760a614",
+			"inGameID": 2186
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "24",
+		"levelNum": 24,
+		"playtype": "9B",
+		"songID": 1894,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "848b6479f620914a6d7c69b8823f98a7cac17c5a",
+		"data": {
+			"hashSHA256": "a7ca814ebc77028a19e391d791cdd0cf6a291c7de8d7ccbbab2ad6a6c5d35e32",
+			"inGameID": 2187
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13,
+		"playtype": "9B",
+		"songID": 1895,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "be0f2748b6f93875cefcc28b0ed82c4cb750a7f5",
+		"data": {
+			"hashSHA256": "aec2d398dc2b9dabde229030f31c1b58c73dcf9cf7ffd0b0e8d4bcecdf750b9d",
+			"inGameID": 2187
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "47",
+		"levelNum": 47,
+		"playtype": "9B",
+		"songID": 1895,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "28cc2958b24dfc5a755d58c7525cc29627c4fcfd",
+		"data": {
+			"hashSHA256": "4df8d92b8fd2c1c13103d7562f425400443fcc237ba7caee28beaca7430ed287",
+			"inGameID": 2187
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "41",
+		"levelNum": 41,
+		"playtype": "9B",
+		"songID": 1895,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "2fa15dcb31703f0e217a845abbb36956a4c17399",
+		"data": {
+			"hashSHA256": "4e4881c727de87f9599d7691924af29bd0e56e0e1dbc394df78b5e2e599cbe97",
+			"inGameID": 2187
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "26",
+		"levelNum": 26,
+		"playtype": "9B",
+		"songID": 1895,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "f0e8483c6f958f39a7873dcc938cd81cc57b635b",
+		"data": {
+			"hashSHA256": "81f4f470e1c2634a5768f0b82ccfa7fe3ba282cb5fa8561db0be0bbcc6c20b94",
+			"inGameID": 2188
+		},
+		"difficulty": "Easy",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10,
+		"playtype": "9B",
+		"songID": 1896,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "58be2db7a90ad3716c7482baa0d9f9c3a1db3863",
+		"data": {
+			"hashSHA256": "30ac79721ad0fa0545b030e1ad9d3995b98f36d1c9529c1352885f7b79804d75",
+			"inGameID": 2188
+		},
+		"difficulty": "EX",
+		"isPrimary": true,
+		"level": "45",
+		"levelNum": 45,
+		"playtype": "9B",
+		"songID": 1896,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "f7e5d534ac550b20d439b12b0f9d8f6a0908dce5",
+		"data": {
+			"hashSHA256": "7e3e5c782bd98a550f298db6935811a66aa5f0a47a45a4d3b45d03f9d1e18e4d",
+			"inGameID": 2188
+		},
+		"difficulty": "Hyper",
+		"isPrimary": true,
+		"level": "40",
+		"levelNum": 40,
+		"playtype": "9B",
+		"songID": 1896,
+		"versions": [
+			"unilab"
+		]
+	},
+	{
+		"chartID": "50676845172c5a60d1c95b4ed8b7ffa37c2b0e4d",
+		"data": {
+			"hashSHA256": "d249e184f72cd1e5e3a122e032c0a16beafd509f68d9bb2c3991257e320a24fc",
+			"inGameID": 2188
+		},
+		"difficulty": "Normal",
+		"isPrimary": true,
+		"level": "27",
+		"levelNum": 27,
+		"playtype": "9B",
+		"songID": 1896,
 		"versions": [
 			"unilab"
 		]

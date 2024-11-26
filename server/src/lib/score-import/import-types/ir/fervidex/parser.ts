@@ -108,7 +108,7 @@ export function SoftwareIDToVersion(
 				if (data.rev === REV_NORMAL) {
 					return "25";
 				}
-			} else if (data.ext === EXT_ROOTAGE) {
+			} else if (EXT_ROOTAGE.includes(data.ext)) {
 				if (data.rev === REV_OMNIMIX) {
 					return "26-omni";
 				} else if (data.rev === REV_NORMAL) {

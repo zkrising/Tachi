@@ -43,19 +43,22 @@ You should not be doing Tachi dev outside of the container. The container is set
 
 Tachi is intended to be developed inside a container. This ensures that you have the correct version of MongoDB, Redis, Typescript and all that jazz.
 
-VSCode has excellent native support for dev containers, and as such this is the only method of local development we officially support.
+VSCode has excellent native support for dev containers, and as such this is the only method of local development we recommend.
 
 Over the years we have had a *lot* of issues with people having subtle variations on their system (or on windows). Given the contributor-centricity of Tachi, it's untenable to expect every contributor to be an expert with local dev setup.
 
 The devcontainer provides us with the most simple, consistent experience, and allows us to put nice-to-haves inside the user's shell.
 
-That said, if you're ardently against using VSCode or Docker...
+That said, if you're against using vscode you can:
 
-**DO NOT REPORT ISSUES TO ME IF YOU DO THIS**
+- Start up the docker-compose file.
+- `docker exec` your way into the dev container to get a shell
+- Run `./dev/bootstrap.sh` inside the container.
+- Use this shell from now on to run Tachi commands! Edit the code in whatever editor you want.
 
-You can run the docker-compose file and `dev/boostrap.sh` inside the container yourself. Work inside the container.
+If those instructions don't make sense to you, I really recommend just using dev containers.
 
-Alternatively if you want to work outside of docker you're on your own. Figure out the correct versions for everything (npm, pnpm, mongo, redis, ts-node...) and `dev/bootstrap.sh`.
+Alternatively **if you want to work outside of docker you're on your own**. Figure out the correct versions for everything (npm, pnpm, mongo, redis, ts-node...) and `dev/bootstrap.sh`.
 
 ## Repository Info
 

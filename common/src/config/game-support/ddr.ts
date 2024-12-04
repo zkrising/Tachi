@@ -201,12 +201,13 @@ export const DDR_SP_CONF = {
 	chartData: z.strictObject({
 		inGameID: zodNonNegativeInt,
 		stepCount: zodNonNegativeInt.optional(),
+		ddrSongHash: z.string().optional(), // optional because konaste-only songs have no hashes
 	}),
 
 	preferences: z.strictObject({}),
 	scoreMeta: z.strictObject({}),
 
-	supportedMatchTypes: ["inGameID", "songTitle", "tachiSongID"],
+	supportedMatchTypes: ["inGameID", "songTitle", "tachiSongID", "ddrSongHash"],
 } as const satisfies INTERNAL_GAME_PT_CONFIG;
 
 export const DDR_DP_CONF = {

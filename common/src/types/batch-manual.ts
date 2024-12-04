@@ -23,7 +23,8 @@ type MatchTypesWithDifficulty =
 	| "inGameStrID"
 	| "sdvxInGameID"
 	| "songTitle"
-	| "tachiSongID";
+	| "tachiSongID"
+	| "ddrSongHash";
 
 export type MatchTypes = MatchTypesNoDifficulty | MatchTypesWithDifficulty;
 

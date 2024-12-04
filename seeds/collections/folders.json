@@ -11273,6 +11273,32 @@
 	},
 	{
 		"data": {
+			"level": "15+",
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F037e606c874253d9825e2e404738bd13dae384a50e9591ce1fd62912ab00df92",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15+ (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15+",
+			"versions": "luminousplus"
+		},
+		"folderID": "F1e2dad337f35f872fcb9d9726bd4012570c5ce0c644c2d68f97f2f3c9c884d76",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15+ (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "2",
 			"versions": "luminous-intl"
 		},

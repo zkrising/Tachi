@@ -432,6 +432,46 @@ export async function ResolveMatchTypeToTachiData(
 			return { song, chart };
 		}
 
+		case "ddrSongHash": {
+			const difficulty = AssertStrAsDifficulty(data.difficulty, game, playtype);
+
+			let chart: ChartDocument | null;
+
+			if (context.version) {
+				chart = await db.anyCharts.ddr.findOne({
+					"data.ddrSongHash": data.identifier,
+					playtype,
+					difficulty,
+					versions: context.version,
+				});
+			} else {
+				chart = await db.anyCharts.ddr.findOne({
+					"data.ddrSongHash": data.identifier,
+					playtype,
+					difficulty,
+					isPrimary: true,
+				});
+			}
+
+			if (!chart) {
+				throw new SongOrChartNotFoundFailure(
+					`Cannot find chart for ddrSongHash ${data.identifier} (${playtype}).`,
+					importType,
+					data,
+					context
+				);
+			}
+
+			const song = await db.anySongs.ddr.findOne({ id: chart.songID });
+
+			if (!song) {
+				logger.severe(`Song-Chart desync on ${chart.songID}.`);
+				throw new InternalFailure(`Failed to get song for a chart that exists.`);
+			}
+
+			return { song, chart };
+		}
+
 		default: {
 			const { matchType } = data;
 

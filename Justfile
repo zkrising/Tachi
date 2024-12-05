@@ -7,10 +7,13 @@ mod docs
 interactive:
 	-@just --choose
 
+install:
+	pnpm install
+
 # Run the frontend and backend for Tachi.
 #
 # This is the main command you want to use to start up tachi. Go for it!
-start:
+start: install
 	parallel --lb ::: 'FORCE_COLOR=1 just server start' 'FORCE_COLOR=1 just client start'
 
 # test everything

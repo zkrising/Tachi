@@ -995,7 +995,7 @@
 		"title": "CHUNITHM (LUMINOUS PLUS Omnimix) (Difficulties)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for CHUNITHM in LUMINOUS PLUS.",
 		"folders": [
 			"F5e6f84b3158d6e1a58be88901d1410bd2df343bee6fc6efea01736024f6a8df8",
@@ -1046,7 +1046,7 @@
 		"title": "CHUNITHM (LUMINOUS PLUS) (Difficulties)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for CHUNITHM in LUMINOUS.",
 		"folders": [
 			"F0e650704ddc8a045e5a944b660c9e16492b3d956891e8a3d1279af9648e37d62",

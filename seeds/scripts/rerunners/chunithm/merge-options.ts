@@ -147,6 +147,10 @@ for (const optionsDir of options.input) {
 		const optionDir = path.join(optionsDir, option);
 		const musicsDir = path.join(optionDir, "music");
 
+		if (!statSync(optionDir).isDirectory()) {
+			continue;
+		}
+
 		if (!existsSync(musicsDir) || !statSync(musicsDir).isDirectory()) {
 			logger.warn(`Option at ${optionDir} does not have a "music" directory.`);
 			continue;

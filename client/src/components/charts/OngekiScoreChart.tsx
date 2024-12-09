@@ -83,7 +83,6 @@ export default function OngekiScoreChart({
 	mobileWidth = width,
 	type,
 	maxBells,
-	chartSize,
 	data,
 }: {
 	mobileHeight?: number | string;
@@ -92,7 +91,6 @@ export default function OngekiScoreChart({
 	height?: number | string;
 	type: "Score" | "Bells" | "Life";
 	maxBells: number;
-	chartSize: number;
 	data: Serie[];
 } & ResponsiveLine["props"]) {
 	const realData =

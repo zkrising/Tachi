@@ -90,6 +90,22 @@ export const ONGEKI_SINGLE_CONF = {
 			description: "The Platinum Score value. Only exists in MASTER and LUNATIC charts.",
 			partOfScoreID: true,
 		},
+		scoreGraph: {
+			type: "NULLABLE_GRAPH",
+			validate: p.isBetween(0, 1010000),
+			description: "The history of the projected score, queried in one-second intervals.",
+		},
+		bellGraph: {
+			type: "NULLABLE_GRAPH",
+			validate: p.isBetween(-10000, 0),
+			description:
+				"The history of the number of bells missed, queried in one-second intervals.",
+		},
+		lifeGraph: {
+			type: "NULLABLE_GRAPH",
+			validate: p.isBetween(0, 100),
+			description: "The life gauge history, queried in one-second intervals.",
+		},
 	},
 
 	scoreRatingAlgs: {

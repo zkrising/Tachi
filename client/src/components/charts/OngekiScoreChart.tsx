@@ -39,7 +39,7 @@ const typeSpecificParams = (t: "Score" | "Bells" | "Life", maxBells: number) => 
 				gridYValues: [970000, 980000, 990000, 1000000, 1007500, 1010000],
 				colors: COLOUR_SET.blue,
 				areaBaselineValue: 970000,
-				tooltip: (d) => (
+				tooltip: (d: any) => (
 					<ChartTooltip>
 						{d.point.data.y === 970000 ? "≤ " : ""}
 						{d.point.data.yFormatted} @ {formatTime(d.point.data.x)}
@@ -50,10 +50,10 @@ const typeSpecificParams = (t: "Score" | "Bells" | "Life", maxBells: number) => 
 			return {
 				yScale: { type: "linear", min: minBells, max: 0, stacked: false },
 				enableGridY: false,
-				axisLeft: { format: (e) => Math.floor(e) === e && e },
+				axisLeft: { format: (e: number) => Math.floor(e) === e && e },
 				colors: COLOUR_SET.vibrantYellow,
 				areaBaselineValue: minBells,
-				tooltip: (d) => (
+				tooltip: (d: any) => (
 					<ChartTooltip>
 						MAX{d.point.data.y === 0 ? "" : d.point.data.y} @{" "}
 						{formatTime(d.point.data.x)}
@@ -65,14 +65,16 @@ const typeSpecificParams = (t: "Score" | "Bells" | "Life", maxBells: number) => 
 				colors: COLOUR_SET.green,
 				enableGridY: false,
 				yScale: { type: "linear", min: 0, max: 100 },
-				axisLeft: { format: (d) => `${d}%` },
+				axisLeft: { format: (d: number) => `${d}%` },
 				areaBaselineValue: 0,
-				tooltip: (d) => (
+				tooltip: (d: any) => (
 					<ChartTooltip>
 						{d.point.data.y}% @ {formatTime(d.point.data.x)}
 					</ChartTooltip>
 				),
 			};
+		default:
+			return {};
 	}
 };
 
@@ -116,11 +118,11 @@ export default function OngekiScoreChart({
 			useMesh={true}
 			enableGridX={false}
 			theme={TACHI_LINE_THEME}
-			axisBottom={{ format: (d) => formatTime(d) }}
+			axisBottom={{ format: (d: number) => formatTime(d) }}
 			curve="linear"
 			legends={[]}
 			enableArea
-			{...typeSpecificParams(type, maxBells)}
+			{...(typeSpecificParams(type, maxBells) as any)}
 		/>
 	);
 

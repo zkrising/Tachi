@@ -151251,7 +151251,12 @@
 	{
 		"chartID": "5ecb57da236556de83eb15023840f0ba053f808b",
 		"data": {
-			"inGameID": 2154
+			"inGameID": 2154,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 5",
+				"value": 17.5
+			}
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -151267,7 +151272,12 @@
 	{
 		"chartID": "7e5d7cb7010fd6adef79b54a22b1c9ef2ce11343",
 		"data": {
-			"inGameID": 2154
+			"inGameID": 2154,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 5",
+				"value": 19.5
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,

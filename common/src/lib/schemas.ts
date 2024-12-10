@@ -875,7 +875,8 @@ const PR_BATCH_MANUAL_SCORE = (game: Game, playtype: Playtype): PrudenceSchema =
 			"inGameID",
 			"inGameStrID",
 			"uscChartHash",
-			"popnChartHash"
+			"popnChartHash",
+			"ddrSongHash"
 		),
 		identifier: "string",
 		comment: optNull(p.isBoundedString(3, 240)),

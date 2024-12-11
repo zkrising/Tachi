@@ -43,14 +43,10 @@ If `"ANY_INF"` is the difficulty, then that difficulty will try to find a chart 
 
 ### `songTitle`
 
-Looks up the song on its title or any of its defined `altTitles`.
+Looks up the song on its title or any of its defined `altTitles`. Can also match the artist field of the song if an `artist` property is defined.
 
 !!! warning
-	This *requires* that your game never has two songs with the same title. By enabling
-	this, the seeds tests will check and enforce this for you.
-
-	You should generally *never* enable this option, as you *really* can't guarantee
-	the uniqueness of song titles short of the game being dead.
+	It is generally not recommended to enable this method, as it's particularly error-prone. Scores that can't be unequivocally identified will get rejected.
 
 ### `tachiSongID`
 

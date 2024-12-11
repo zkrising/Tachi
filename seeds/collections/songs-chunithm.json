@@ -19100,7 +19100,8 @@
 		},
 		"id": 2566,
 		"searchTerms": [
-			"Shoujo PastQ"
+			"Shoujo PastQ",
+			"Past Question Girl"
 		],
 		"title": "少女PastQ"
 	},
@@ -19172,7 +19173,8 @@
 		},
 		"id": 2572,
 		"searchTerms": [
-			"Kyoui no Mahou"
+			"Kyoui no Mahou",
+			"Marvelous Magic"
 		],
 		"title": "驚異の魔法"
 	},
@@ -19505,7 +19507,8 @@
 		"id": 2602,
 		"searchTerms": [
 			"gensou road of king",
-			"fantasy road of king"
+			"fantasy road of king",
+			"gensou the lord of the kings"
 		],
 		"title": "幻想ロードオブキング"
 	},
@@ -19545,7 +19548,8 @@
 		},
 		"id": 2605,
 		"searchTerms": [
-			"yusho princess"
+			"yusho princess",
+			"winner's princess"
 		],
 		"title": "優勝Princess♡"
 	},
@@ -19747,7 +19751,9 @@
 			"genre": "POPS & ANIME"
 		},
 		"id": 2629,
-		"searchTerms": [],
+		"searchTerms": [
+			"hitoshizuku"
+		],
 		"title": "壱雫空"
 	},
 	{
@@ -19758,7 +19764,9 @@
 			"genre": "POPS & ANIME"
 		},
 		"id": 2630,
-		"searchTerms": [],
+		"searchTerms": [
+			"mayoiuta"
+		],
 		"title": "迷星叫"
 	},
 	{
@@ -19769,7 +19777,10 @@
 			"genre": "niconico"
 		},
 		"id": 2631,
-		"searchTerms": [],
+		"searchTerms": [
+			"scorpion girl no kichou na houshoku shiin",
+			"a scene of the scorpion girl's precious predation"
+		],
 		"title": "スコーピオンガールの貴重な捕食シーン"
 	},
 	{
@@ -19780,7 +19791,9 @@
 			"genre": "niconico"
 		},
 		"id": 2632,
-		"searchTerms": [],
+		"searchTerms": [
+			"zunda party night"
+		],
 		"title": "ずんだパーリナイ"
 	},
 	{
@@ -19825,7 +19838,8 @@
 		},
 		"id": 2636,
 		"searchTerms": [
-			"come quest"
+			"come quest",
+			"kome quest"
 		],
 		"title": "コメクエスト"
 	},
@@ -19877,7 +19891,9 @@
 			"genre": "niconico"
 		},
 		"id": 2641,
-		"searchTerms": [],
+		"searchTerms": [
+			"machinegun poem doll"
+		],
 		"title": "マシンガンポエムドール"
 	},
 	{
@@ -20076,7 +20092,9 @@
 			"genre": "niconico"
 		},
 		"id": 2661,
-		"searchTerms": [],
+		"searchTerms": [
+			"manimani"
+		],
 		"title": "まにまに"
 	},
 	{
@@ -20098,7 +20116,9 @@
 			"genre": "ゲキマイ"
 		},
 		"id": 2665,
-		"searchTerms": [],
+		"searchTerms": [
+			"Wonder Panda Traveller"
+		],
 		"title": "超熊猫的周遊記（ワンダーパンダートラベラー）"
 	},
 	{
@@ -20109,7 +20129,10 @@
 			"genre": "niconico"
 		},
 		"id": 2670,
-		"searchTerms": [],
+		"searchTerms": [
+			"Jishou, Ongaku Aikouka",
+			"Self-Proclaimed Music Enthusiast"
+		],
 		"title": "自称、音楽愛好家"
 	},
 	{
@@ -20171,7 +20194,9 @@
 			"genre": "POPS & ANIME"
 		},
 		"id": 2676,
-		"searchTerms": [],
+		"searchTerms": [
+			"heart thermography"
+		],
 		"title": "ハートサーモグラフィー"
 	},
 	{
@@ -20182,7 +20207,9 @@
 			"genre": "POPS & ANIME"
 		},
 		"id": 2677,
-		"searchTerms": [],
+		"searchTerms": [
+			"mondai nightripper"
+		],
 		"title": "モンダイナイトリッパー！"
 	},
 	{
@@ -20193,7 +20220,9 @@
 			"genre": "POPS & ANIME"
 		},
 		"id": 2679,
-		"searchTerms": [],
+		"searchTerms": [
+			"tokusya-seizon wonder-la-der!!"
+		],
 		"title": "特者生存ワンダラダー!!"
 	},
 	{
@@ -20215,7 +20244,10 @@
 			"genre": "ゲキマイ"
 		},
 		"id": 2681,
-		"searchTerms": [],
+		"searchTerms": [
+			"gunjou signal",
+			"ultramarine signal"
+		],
 		"title": "群青シグナル"
 	}
 ]

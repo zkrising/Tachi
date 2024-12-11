@@ -38,7 +38,12 @@ export function OngekiGraphsComponent({
 				{available ? (
 					<GraphComponent type={chart} scoreData={score.scoreData} />
 				) : (
-					"No charts available"
+					<div
+						className="d-flex align-items-center justify-content-center"
+						style={{ height: "200px" }}
+					>
+						<span className="text-body-secondary">No charts available</span>
+					</div>
 				)}
 			</div>
 		</>
@@ -63,7 +68,6 @@ function GraphComponent({
 			height="360px"
 			mobileHeight="175px"
 			type={type}
-			maxBells={scoreData.optional.totalBellCount!}
 			data={[
 				{
 					id: type,

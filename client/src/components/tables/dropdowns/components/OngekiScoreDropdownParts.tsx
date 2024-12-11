@@ -68,6 +68,7 @@ function GraphComponent({
 			height="360px"
 			mobileHeight="175px"
 			type={type}
+			totalBellCount={scoreData.optional.totalBellCount!}
 			data={[
 				{
 					id: type,

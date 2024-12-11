@@ -53,7 +53,8 @@ const MaimaiDXColours = [
 	ClassValue("SILVER", "Silver", "13000 - 13999 Rating"),
 	ClassValue("GOLD", "Gold", "14000 - 14499 Rating"),
 	ClassValue("PLATINUM", "Platinum", "14500 - 14999 Rating"),
-	ClassValue("RAINBOW", "Rainbow", ">=15000 Rating"),
+	ClassValue("RAINBOW", "Rainbow", "15000 - 15999 Rating"),
+	ClassValue("RAINBOW_EX", "Rainbow (EX)", ">=16000 Rating"),
 ];
 
 const MaimaiDXMatchingClasses = [

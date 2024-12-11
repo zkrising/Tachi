@@ -62,6 +62,11 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 						"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
 					color: "var(--bs-dark)",
 				},
+				RAINBOW_EX: {
+					background:
+						"linear-gradient(-45deg, #0fa091, #0f98d5, #67087f, #d9007e, #f56e06)",
+					color: "var(--bs-light)",
+				},
 			},
 			dan: {
 				DAN_I: bgc("#3b66f1", "var(--bs-light)"),
@@ -368,6 +373,11 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 					background:
 						"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
 					color: "var(--bs-dark)",
+				},
+				RAINBOW_EX: {
+					background:
+						"linear-gradient(-45deg, #0fa091, #0f98d5, #67087f, #d9007e, #f56e06)",
+					color: "var(--bs-light)",
 				},
 			},
 			matchingClass: {
@@ -739,6 +749,16 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 					background:
 						"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
 					color: "var(--bs-dark)",
+				},
+				RAINBOW_PLUS: {
+					background:
+						"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
+					color: "var(--bs-dark)",
+				},
+				RAINBOW_EX: {
+					background:
+						"linear-gradient(-45deg, #0fa091, #0f98d5, #67087f, #d9007e, #f56e06)",
+					color: "var(--bs-light)",
 				},
 			},
 		},

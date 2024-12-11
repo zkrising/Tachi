@@ -366,6 +366,7 @@ export enum CHUNITHM_COLOURS {
 	GOLD = 7,
 	PLATINUM = 8,
 	RAINBOW = 9,
+	RAINBOW_EX = 10,
 }
 
 export enum WACCA_STAGEUPS {
@@ -433,6 +434,7 @@ export enum MAIMAIDX_COLOURS {
 	GOLD = 8,
 	PLATINUM = 9,
 	RAINBOW = 10,
+	RAINBOW_EX = 11,
 }
 
 export enum MAIMAIDX_DANS {
@@ -595,4 +597,6 @@ export enum ONGEKI_COLOURS {
 	GOLD = 7,
 	PLATINUM = 8,
 	RAINBOW = 9,
+	RAINBOW_PLUS = 10,
+	RAINBOW_EX = 11,
 }

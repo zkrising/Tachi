@@ -27,7 +27,9 @@ export const MAIMAIDX_IMPL: GPTServerImplementation<"maimaidx:Single"> = {
 				return null;
 			}
 
-			if (rate >= 15000) {
+			if (rate >= 16000) {
+				return "RAINBOW_EX";
+			} else if (rate >= 15000) {
 				return "RAINBOW";
 			} else if (rate >= 14500) {
 				return "PLATINUM";

@@ -90,6 +90,7 @@ t.test("CHUNITHM Implementation", (t) => {
 		f(14.5, "GOLD");
 		f(15.25, "PLATINUM");
 		f(16, "RAINBOW");
+		f(17, "RAINBOW_EX");
 
 		t.end();
 	});

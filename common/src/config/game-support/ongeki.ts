@@ -14,16 +14,18 @@ export const ONGEKI_CONF = {
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 export const OngekiColours = [
-	ClassValue("BLUE", "青", "Blue: 0 - 1.99 Rating"),
-	ClassValue("GREEN", "緑", "Green: 2 - 3.99 Rating"),
-	ClassValue("ORANGE", "橙", "Orange: 4 - 6.99 Rating"),
-	ClassValue("RED", "赤", "Red: 7 - 9.99 Rating"),
-	ClassValue("PURPLE", "紫", "Purple: 10 - 11.99 Rating"),
-	ClassValue("COPPER", "銅", "Copper: 12 - 12.99 Rating"),
-	ClassValue("SILVER", "銀", "Silver: 13 - 13.99 Rating"),
-	ClassValue("GOLD", "金", "Gold: 14.00 - 14.49 Rating"),
+	ClassValue("BLUE", "青", "Blue: 0.00 – 1.99 Rating"),
+	ClassValue("GREEN", "緑", "Green: 2.00 – 3.99 Rating"),
+	ClassValue("ORANGE", "橙", "Orange: 4.00 – 6.99 Rating"),
+	ClassValue("RED", "赤", "Red: 7.00 – 9.99 Rating"),
+	ClassValue("PURPLE", "紫", "Purple: 10.00 – 11.99 Rating"),
+	ClassValue("COPPER", "銅", "Copper: 12.00 – 12.99 Rating"),
+	ClassValue("SILVER", "銀", "Silver: 13.00 – 13.99 Rating"),
+	ClassValue("GOLD", "金", "Gold: 14.00 – 14.49 Rating"),
 	ClassValue("PLATINUM", "鉑", "Platinum: 14.50 - 14.99 Rating"),
-	ClassValue("RAINBOW", "虹", "Rainbow: >=15 Rating"),
+	ClassValue("RAINBOW", "虹", "Rainbow: 15.00 – 15.99 Rating"),
+	ClassValue("RAINBOW_PLUS", "虹+", "Rainbow +: 16.00 – 16.99 Rating"),
+	ClassValue("RAINBOW_EX", "虹(極)", "Rainbow (Extreme): >=17.00 Rating"),
 ];
 
 export const ONGEKI_SINGLE_CONF = {

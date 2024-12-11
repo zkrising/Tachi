@@ -92,6 +92,8 @@ t.test("ONGEKI Implementation", (t) => {
 		f(14, "GOLD");
 		f(14.5, "PLATINUM");
 		f(15, "RAINBOW");
+		f(16, "RAINBOW_PLUS");
+		f(17, "RAINBOW_EX");
 
 		t.end();
 	});

@@ -76,6 +76,7 @@ t.test("Maimai DX Implementation", (t) => {
 		f(null, null);
 		f(0, "WHITE");
 
+		f(16000, "RAINBOW_EX");
 		f(15000, "RAINBOW");
 		f(14500, "PLATINUM");
 		f(14000, "GOLD");

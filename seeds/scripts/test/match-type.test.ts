@@ -31,7 +31,7 @@ const MATCH_TYPE_CHECKS: Record<
 	MatchTypes,
 	| {
 			type: "SONGS";
-			fn: (s: SongDocument) => string | Array<string>;
+			fn: (s: any) => string | Array<string>;
 	  }
 	| {
 			type: "CHARTS";
@@ -62,31 +62,14 @@ const MATCH_TYPE_CHECKS: Record<
 	},
 	uscChartHash: { type: "CHARTS", fn: (c) => c.data.hashSHA1 },
 	ddrSongHash: {
-		type: "CHARTS",
-		fn: (c) => {
-			// if there's no ddrSongHash then it must be a konaste song
+		type: "SONGS",
+		fn: (s: SongDocument<"ddr">) => {
+			// if there's no ddrSongHash then it's a konaste song / we're missing seed data
 			// so just use the inGameID
-			if (c.data.ddrSongHash === undefined) {
-				return `${c.data.inGameID}-${c.difficulty}`;
+			if (s.data.ddrSongHash === undefined) {
+				return `${s.data.inGameID}`;
 			}
-
-			// edge case for the song "B4U (The Acolyte mix)"
-			//
-			// for some reason konmai decided to change its inGameID in DDR A3
-			// so now there's an a20plus version and an a3 version
-			// (see songIDs 37225 and 37310)
-			//
-			// unfortunately, they decided to keep the same ddrSongHash across both!
-			// so we manually distinguish it here.
-			const B4UAcolyteSongHash = "01lbO69qQiP691ll6DIiqPbIdd9O806o";
-			if (c.data.ddrSongHash === B4UAcolyteSongHash) {
-				if (c.versions[0] === "a20plus") {
-					return `${c.data.ddrSongHash}-${c.difficulty}-a20plus`;
-				}
-			}
-			// perhaps we could just merge the two "songs" together in the seeds to avoid all this?
-
-			return `${c.data.ddrSongHash}-${c.difficulty}`;
+			return s.data.ddrSongHash;
 		},
 	},
 };

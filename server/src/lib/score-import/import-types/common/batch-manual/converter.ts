@@ -433,21 +433,44 @@ export async function ResolveMatchTypeToTachiData(
 		}
 
 		case "ddrSongHash": {
-			const difficulty = AssertStrAsDifficulty(data.difficulty, game, playtype);
+			const difficulty = AssertStrAsDifficulty(data.difficulty, game, context.playtype);
 
-			let chart: ChartDocument | null;
+			const song = await db.anySongs.ddr.findOne({
+				"data.ddrSongHash": data.identifier,
+			});
+
+			if (!song) {
+				throw new SongOrChartNotFoundFailure(
+					`Cannot find song with ddrSongHash ${data.identifier}.`,
+					importType,
+					data,
+					context
+				);
+			}
+
+			// check that a chart with the song's id exists
+			const chartSync = await db.anyCharts.ddr.findOne({
+				songID: song.id,
+			});
+
+			if (!chartSync) {
+				logger.severe(`Song-Chart desync on ${song.id}.`);
+				throw new InternalFailure(`Failed to get chart for a song that exists.`);
+			}
+
+			let chart;
 
 			if (context.version) {
 				chart = await db.anyCharts.ddr.findOne({
-					"data.ddrSongHash": data.identifier,
-					playtype,
+					songID: song.id,
+					playtype: context.playtype,
 					difficulty,
 					versions: context.version,
 				});
 			} else {
 				chart = await db.anyCharts.ddr.findOne({
-					"data.ddrSongHash": data.identifier,
-					playtype,
+					songID: song.id,
+					playtype: context.playtype,
 					difficulty,
 					isPrimary: true,
 				});
@@ -455,18 +478,11 @@ export async function ResolveMatchTypeToTachiData(
 
 			if (!chart) {
 				throw new SongOrChartNotFoundFailure(
-					`Cannot find chart for ddrSongHash ${data.identifier} (${playtype}).`,
+					`Found song with ddrSongHash ${data.identifier} but cannot find chart ${context.playtype} ${difficulty}.`,
 					importType,
 					data,
 					context
 				);
-			}
-
-			const song = await db.anySongs.ddr.findOne({ id: chart.songID });
-
-			if (!song) {
-				logger.severe(`Song-Chart desync on ${chart.songID}.`);
-				throw new InternalFailure(`Failed to get song for a chart that exists.`);
 			}
 
 			return { song, chart };

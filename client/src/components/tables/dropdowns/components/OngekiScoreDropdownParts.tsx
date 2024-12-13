@@ -1,17 +1,25 @@
 import SelectNav from "components/util/SelectNav";
 import React, { useState } from "react";
 import { Nav } from "react-bootstrap";
-import { PBScoreDocument, ScoreData, ScoreDocument } from "tachi-common";
+import {
+	ChartDocument,
+	Difficulties,
+	PBScoreDocument,
+	ScoreData,
+	ScoreDocument,
+} from "tachi-common";
 import OngekiScoreChart from "components/charts/OngekiScoreChart";
 
 type ChartTypes = "Score" | "Bells" | "Life";
 
 export function OngekiGraphsComponent({
 	score,
+	chart,
 }: {
 	score: ScoreDocument<"ongeki:Single"> | PBScoreDocument<"ongeki:Single">;
+	chart: ChartDocument<"ongeki:Single">;
 }) {
-	const [chart, setChart] = useState<ChartTypes>("Score");
+	const [graph, setGraph] = useState<ChartTypes>("Score");
 	const available =
 		score.scoreData.optional.scoreGraph &&
 		score.scoreData.optional.bellGraph &&
@@ -23,20 +31,24 @@ export function OngekiGraphsComponent({
 		<>
 			<div className="col-12 d-flex justify-content-center">
 				<Nav variant="pills">
-					<SelectNav id="Score" value={chart} setValue={setChart} disabled={!available}>
+					<SelectNav id="Score" value={graph} setValue={setGraph} disabled={!available}>
 						Score
 					</SelectNav>
-					<SelectNav id="Bells" value={chart} setValue={setChart} disabled={!available}>
+					<SelectNav id="Bells" value={graph} setValue={setGraph} disabled={!available}>
 						Bells
 					</SelectNav>
-					<SelectNav id="Life" value={chart} setValue={setChart} disabled={!available}>
+					<SelectNav id="Life" value={graph} setValue={setGraph} disabled={!available}>
 						Life
 					</SelectNav>
 				</Nav>
 			</div>
 			<div className="col-12">
 				{available ? (
-					<GraphComponent type={chart} scoreData={score.scoreData} />
+					<GraphComponent
+						type={graph}
+						scoreData={score.scoreData}
+						difficulty={chart.difficulty}
+					/>
 				) : (
 					<div
 						className="d-flex align-items-center justify-content-center"
@@ -53,9 +65,11 @@ export function OngekiGraphsComponent({
 function GraphComponent({
 	type,
 	scoreData,
+	difficulty,
 }: {
 	type: ChartTypes;
 	scoreData: ScoreData<"ongeki:Single">;
+	difficulty: Difficulties["ongeki:Single"];
 }) {
 	const values =
 		type === "Score"
@@ -69,6 +83,7 @@ function GraphComponent({
 			mobileHeight="175px"
 			type={type}
 			totalBellCount={scoreData.optional.totalBellCount!}
+			difficulty={difficulty}
 			data={[
 				{
 					id: type,

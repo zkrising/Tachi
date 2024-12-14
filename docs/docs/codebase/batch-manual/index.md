@@ -150,6 +150,11 @@ means that it will check for any of `INF/GRV/HVN/VVD/XCD` for this song.
 
 This is useful for services that store all of those as the same difficulty.
 
+- ddrSongHash
+
+This is a 32-character hash used by the official DDR e-amusement website to
+identify a song; you must specify the difficulty for this chart as well.
+
 ## Example
 
 A final example of a simple BATCH MANUAL format

@@ -31,6 +31,10 @@ Uses `identifier` as a SHA1 hash, since that's what USC uses.
 
 These match types need both `identifier` and a `difficulty` defined.
 
+### `ddrSongHash`
+
+Looks up on the 32-character song hash for this chart, where the hash is from the official DDR e-amusement website.
+
 ### `inGameID`
 
 Looks up on the in game ID for this chart.

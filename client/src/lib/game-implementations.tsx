@@ -759,7 +759,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			},
 			noteLamp: {
 				LOSS: COLOUR_SET.red,
-				CLEAR: COLOUR_SET.teal,
+				CLEAR: COLOUR_SET.green,
 				"FULL COMBO": COLOUR_SET.gold,
 				"ALL BREAK": COLOUR_SET.white,
 			},
@@ -810,8 +810,8 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				/>
 				<OngekiJudgementCell score={sc} />
 				<OngekiLampCell
-					lamp1={sc.scoreData.noteLamp}
-					lamp2={sc.scoreData.bellLamp}
+					noteLamp={sc.scoreData.noteLamp}
+					bellLamp={sc.scoreData.bellLamp}
 					colour={GetEnumColour(sc, "noteLamp")}
 				/>
 			</>

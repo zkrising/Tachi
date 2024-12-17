@@ -433,6 +433,10 @@ export async function ResolveMatchTypeToTachiData(
 		}
 
 		case "ddrSongHash": {
+			if (game !== "ddr") {
+				throw new InvalidScoreFailure(`ddrSongHash matchType can only be used on DDR.`);
+			}
+
 			const difficulty = AssertStrAsDifficulty(data.difficulty, game, context.playtype);
 
 			const song = await db.anySongs.ddr.findOne({

@@ -218,33 +218,31 @@ base_url = "${ServerConfig.OUR_URL}"`,
 Enable = true
 
 # Timeout for web requests, in seconds
-Timeout = 3
+Timeout = 5
 
 # Tachi instance base URL
 BaseUrl = ${ServerConfig.OUR_URL}
 
-# Tachi status endpoint
-Status = /api/v1/status
+# Tachi API v1 route
+ApiRoute = /api/v1
 
 # Tachi score import endpoint
 Import = /ir/direct-manual/import
 
-# Whether to display status on-screen (rudimentarily)
-EnableOSD = false
-
-# Whether to export your PBs for batch-manual (saved to batch-manual.json)
-# This is very, very bad and should only be used as last resort
-ExportPBs = false
+# Whether to generate score/bell/life charts
+EnableGraphs = true
 
 [Keys]
 
 * = %%TACHI_KEY%%
 
 # If you have a multi-user setup, you can configure
-# keys per-profile:
-# InGameUsername = TachiApiKey
+# keys per-profile, using in-game name or access code:
 #
-# An * matches everyone else`,
+# InGameUsername = TachiApiKey
+# 00081111222233334444 = AnotherTachiApiKey
+#
+# If present, an * matches everyone else`,
 	},
 ];
 

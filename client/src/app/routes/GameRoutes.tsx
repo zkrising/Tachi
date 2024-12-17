@@ -392,31 +392,25 @@ function DifficultyButton({
 					: undefined,
 			}}
 		>
-			{activeChart?.chartID === chart.chartID ? (
-				<strong>
-					{FormatDifficulty(chart, game)}
-					{chart.isPrimary ? (
-						""
-					) : (
-						<>
-							{" "}
-							<Muted>{chart.versions.join("/")}</Muted>
-						</>
-					)}
-				</strong>
-			) : (
-				<>
-					{FormatDifficulty(chart, game)}
-					{chart.isPrimary ? (
-						""
-					) : (
-						<>
-							{" "}
-							<Muted>{chart.versions.join("/")}</Muted>
-						</>
-					)}
-				</>
-			)}
+			<div
+				className={activeChart?.chartID === chart.chartID ? "fw-bolder" : ""}
+				style={{
+					color:
+						game === "ongeki" && diffTag === "LUNATIC"
+							? "light-dark(rgba(140, 30, 40, 1), rgba(255, 180, 180, 1))"
+							: undefined,
+				}}
+			>
+				{FormatDifficulty(chart, game)}
+				{chart.isPrimary ? (
+					""
+				) : (
+					<>
+						{" "}
+						<Muted>{chart.versions.join("/")}</Muted>
+					</>
+				)}
+			</div>
 		</LinkButton>
 	);
 }

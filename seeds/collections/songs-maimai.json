@@ -48,7 +48,9 @@
 		"title": "Love You"
 	},
 	{
-		"altTitles": ["コネクト"],
+		"altTitles": [
+			"コネクト"
+		],
 		"artist": "ClariS “PUELLA MAGI MADOKA MAGICA”",
 		"data": {
 			"artistJP": "ClariS「魔法少女まどか☆マギカ」",
@@ -108,7 +110,9 @@
 		"title": "Sweets×Sweets"
 	},
 	{
-		"altTitles": ["Love or Lies"],
+		"altTitles": [
+			"Love or Lies"
+		],
 		"artist": "capsule [cover]",
 		"data": {
 			"artistJP": "capsule [cover]",
@@ -120,7 +124,9 @@
 		"title": "Love or Lies "
 	},
 	{
-		"altTitles": ["ネコ日和。"],
+		"altTitles": [
+			"ネコ日和。"
+		],
 		"artist": "Kai/ARISA NOTO",
 		"data": {
 			"artistJP": "Kai/能登有沙",
@@ -132,7 +138,9 @@
 		"title": "Cats"
 	},
 	{
-		"altTitles": ["虹と太陽"],
+		"altTitles": [
+			"虹と太陽"
+		],
 		"artist": "GOSH/manami",
 		"data": {
 			"artistJP": "GOSH/manami",
@@ -144,7 +152,9 @@
 		"title": "Turn To The Rainbow"
 	},
 	{
-		"altTitles": ["炭★坑★節"],
+		"altTitles": [
+			"炭★坑★節"
+		],
 		"artist": "Kai/Takenobu Mitsuyoshi",
 		"data": {
 			"artistJP": "Kai/光吉猛修",
@@ -192,7 +202,9 @@
 		"title": "jelly"
 	},
 	{
-		"altTitles": ["ハッピーシンセサイザ"],
+		"altTitles": [
+			"ハッピーシンセサイザ"
+		],
 		"artist": "EasyPop",
 		"data": {
 			"artistJP": "EasyPop",
@@ -204,7 +216,9 @@
 		"title": "HAPPY SYNTHESIZER"
 	},
 	{
-		"altTitles": ["ルカルカ★ナイトフィーバー"],
+		"altTitles": [
+			"ルカルカ★ナイトフィーバー"
+		],
 		"artist": "samfree",
 		"data": {
 			"artistJP": "samfree",
@@ -216,7 +230,9 @@
 		"title": "LukaLuka★Night Fever"
 	},
 	{
-		"altTitles": ["源平大戦絵巻テーマソング"],
+		"altTitles": [
+			"源平大戦絵巻テーマソング"
+		],
 		"artist": "Shin-Oda Mudo ＆ Kira ★ Rosso",
 		"data": {
 			"artistJP": "新小田夢童 ＆ キラ★ロッソ",
@@ -228,7 +244,9 @@
 		"title": "Samurai Bloodshow"
 	},
 	{
-		"altTitles": ["美しく燃える森"],
+		"altTitles": [
+			"美しく燃える森"
+		],
 		"artist": "Tokyo Ska Paradise Orchestra [cover]",
 		"data": {
 			"artistJP": "東京スカパラダイスオーケストラ [cover]",
@@ -240,7 +258,9 @@
 		"title": "Utsukushiku Moeru Mori"
 	},
 	{
-		"altTitles": ["ウッーウッーウマウマ(ﾟ∀ﾟ)"],
+		"altTitles": [
+			"ウッーウッーウマウマ(ﾟ∀ﾟ)"
+		],
 		"artist": "Caramell [cover]",
 		"data": {
 			"artistJP": "Caramell/Caramelldansen [cover]",
@@ -276,7 +296,9 @@
 		"title": "Beat Of Mind"
 	},
 	{
-		"altTitles": ["檄！帝国華撃団(改)"],
+		"altTitles": [
+			"檄！帝国華撃団(改)"
+		],
 		"artist": "“Sakura Taisen”",
 		"data": {
 			"artistJP": "「サクラ大戦」",
@@ -288,7 +310,9 @@
 		"title": "GEKI！TEIKOKUKAGEKIDAN(KAI)"
 	},
 	{
-		"altTitles": ["メランコリック"],
+		"altTitles": [
+			"メランコリック"
+		],
 		"artist": "Junky",
 		"data": {
 			"artistJP": "Junky",
@@ -300,7 +324,9 @@
 		"title": "MELANCHOLIC"
 	},
 	{
-		"altTitles": ["教えて!! 魔法のLyric"],
+		"altTitles": [
+			"教えて!! 魔法のLyric"
+		],
 		"artist": "ChomP/<advanced mix>",
 		"data": {
 			"artistJP": "ちょむP <advanced mix>",
@@ -324,7 +350,9 @@
 		"title": "ZIGG-ZAGG"
 	},
 	{
-		"altTitles": ["ワールズエンド・ダンスホール"],
+		"altTitles": [
+			"ワールズエンド・ダンスホール"
+		],
 		"artist": "wowaka",
 		"data": {
 			"artistJP": "wowaka",
@@ -336,7 +364,9 @@
 		"title": "WORLD'S END DANCE HALL"
 	},
 	{
-		"altTitles": ["パンダヒーロー"],
+		"altTitles": [
+			"パンダヒーロー"
+		],
 		"artist": "Hachi",
 		"data": {
 			"artistJP": "ハチ",
@@ -348,7 +378,9 @@
 		"title": "PANDA HERO"
 	},
 	{
-		"altTitles": ["オレンジの夏"],
+		"altTitles": [
+			"オレンジの夏"
+		],
 		"artist": "Hiro/Taku-Maro",
 		"data": {
 			"artistJP": "Hiro/タクマロ",
@@ -360,7 +392,9 @@
 		"title": "Lost Summer"
 	},
 	{
-		"altTitles": ["BaBan!! －甘い罠－"],
+		"altTitles": [
+			"BaBan!! －甘い罠－"
+		],
 		"artist": "Hiro/RINA NAGAE",
 		"data": {
 			"artistJP": "Hiro/永江理奈",
@@ -372,7 +406,9 @@
 		"title": "Honey Trap"
 	},
 	{
-		"altTitles": ["ジングルベル"],
+		"altTitles": [
+			"ジングルベル"
+		],
 		"artist": "SEGA Sound Unit [H.]",
 		"data": {
 			"artistJP": "SEGA Sound Unit [H.]",
@@ -384,7 +420,9 @@
 		"title": "Jinglebell"
 	},
 	{
-		"altTitles": ["マトリョシカ"],
+		"altTitles": [
+			"マトリョシカ"
+		],
 		"artist": "Hachi",
 		"data": {
 			"artistJP": "ハチ",
@@ -396,7 +434,9 @@
 		"title": "MATRYOSHKA"
 	},
 	{
-		"altTitles": ["メグメグ☆ファイアーエンドレスナイト"],
+		"altTitles": [
+			"メグメグ☆ファイアーエンドレスナイト"
+		],
 		"artist": "samfree",
 		"data": {
 			"artistJP": "samfree",
@@ -408,7 +448,9 @@
 		"title": "MeguMegu☆Fire Endless Night"
 	},
 	{
-		"altTitles": ["天国と地獄"],
+		"altTitles": [
+			"天国と地獄"
+		],
 		"artist": "Super Rubbers “The Rub Rabbits!”",
 		"data": {
 			"artistJP": "スーパーラバーズ「赤ちゃんはどこからくるの？」",
@@ -420,7 +462,9 @@
 		"title": "Orpheus in the Underworld"
 	},
 	{
-		"altTitles": ["きみのためなら死ねる"],
+		"altTitles": [
+			"きみのためなら死ねる"
+		],
 		"artist": "Super Rubbers “Feel the Magic -XY♥XX-”",
 		"data": {
 			"artistJP": "スーパーラバーズ「きみのためなら死ねる」",
@@ -432,7 +476,9 @@
 		"title": "Feel the Magic -XY♥XX-"
 	},
 	{
-		"altTitles": ["怪盗Rのテーマ"],
+		"altTitles": [
+			"怪盗Rのテーマ"
+		],
 		"artist": "Tomoya Ohtani “Rhythm Thief & the Emperor's Treasure”",
 		"data": {
 			"artistJP": "大谷智哉「リズム怪盗R 皇帝ナポレオンの遺産」",
@@ -444,7 +490,9 @@
 		"title": "Theme of Phantom R"
 	},
 	{
-		"altTitles": ["マリアをはげませ"],
+		"altTitles": [
+			"マリアをはげませ"
+		],
 		"artist": "Tomoya Ohtani “Rhythm Thief & the Emperor's Treasure”",
 		"data": {
 			"artistJP": "大谷智哉「リズム怪盗R 皇帝ナポレオンの遺産」",
@@ -456,7 +504,9 @@
 		"title": "Cheering Marie"
 	},
 	{
-		"altTitles": ["SHOW TIME"],
+		"altTitles": [
+			"SHOW TIME"
+		],
 		"artist": "Naofumi Hataya “Rhythm Thief & the Emperor's Treasure”",
 		"data": {
 			"artistJP": "幡谷尚史「リズム怪盗R 皇帝ナポレオンの遺産」",
@@ -552,7 +602,9 @@
 		"title": "Tell Your World"
 	},
 	{
-		"altTitles": ["おちゃめ機能"],
+		"altTitles": [
+			"おちゃめ機能"
+		],
 		"artist": "gojimajiP",
 		"data": {
 			"artistJP": "ゴジマジP",
@@ -564,7 +616,9 @@
 		"title": "ochamekinou"
 	},
 	{
-		"altTitles": ["ダンシング☆サムライ"],
+		"altTitles": [
+			"ダンシング☆サムライ"
+		],
 		"artist": "mathru(KanimisoP)",
 		"data": {
 			"artistJP": "mathru(かにみそP)",
@@ -588,7 +642,9 @@
 		"title": "BAD∞END∞NIGHT"
 	},
 	{
-		"altTitles": ["ロミオとシンデレラ"],
+		"altTitles": [
+			"ロミオとシンデレラ"
+		],
 		"artist": "doriko",
 		"data": {
 			"artistJP": "doriko",
@@ -612,7 +668,9 @@
 		"title": "Sweetiex2"
 	},
 	{
-		"altTitles": ["腐れ外道とチョコレゐト"],
+		"altTitles": [
+			"腐れ外道とチョコレゐト"
+		],
 		"artist": "pinocchioP",
 		"data": {
 			"artistJP": "ピノキオP",
@@ -696,7 +754,9 @@
 		"title": "DADDY MULK -Groove remix-"
 	},
 	{
-		"altTitles": ["ぴぴぱぷぅ！"],
+		"altTitles": [
+			"ぴぴぱぷぅ！"
+		],
 		"artist": "Hiro/Akari Koyama",
 		"data": {
 			"artistJP": "Hiro/小山あかり ",
@@ -708,7 +768,9 @@
 		"title": "Pi Pi Pa Puu!"
 	},
 	{
-		"altTitles": ["炎歌 -ほむらうた-"],
+		"altTitles": [
+			"炎歌 -ほむらうた-"
+		],
 		"artist": "Hiro/Aiko Moriyama",
 		"data": {
 			"artistJP": "Hiro/森山愛子",
@@ -720,7 +782,9 @@
 		"title": "HOMURA-UTA"
 	},
 	{
-		"altTitles": ["犬日和。"],
+		"altTitles": [
+			"犬日和。"
+		],
 		"artist": "RYOHEI KOHNO/Ayaka Mori",
 		"data": {
 			"artistJP": "RYOHEI KOHNO/森綾香",
@@ -732,7 +796,9 @@
 		"title": "Dogs"
 	},
 	{
-		"altTitles": ["ソーラン☆節"],
+		"altTitles": [
+			"ソーラン☆節"
+		],
 		"artist": "Takenobu Mitsuyoshi",
 		"data": {
 			"artistJP": "光吉猛修",
@@ -744,7 +810,9 @@
 		"title": "Soran☆Bushi"
 	},
 	{
-		"altTitles": ["デコボコ体操第二"],
+		"altTitles": [
+			"デコボコ体操第二"
+		],
 		"artist": "Takenobu Mitsuyoshi",
 		"data": {
 			"artistJP": "光吉猛修＆体操隊",
@@ -756,7 +824,9 @@
 		"title": "Dekoboko Taisou No.2"
 	},
 	{
-		"altTitles": ["スイートマジック"],
+		"altTitles": [
+			"スイートマジック"
+		],
 		"artist": "Lon×Junky",
 		"data": {
 			"artistJP": "ろん×Junky",
@@ -768,7 +838,9 @@
 		"title": "Sweet Magic"
 	},
 	{
-		"altTitles": ["ゴーゴー幽霊船"],
+		"altTitles": [
+			"ゴーゴー幽霊船"
+		],
 		"artist": "Kenshi Yonezu",
 		"data": {
 			"artistJP": "米津玄師",
@@ -780,7 +852,9 @@
 		"title": "Go Go Yureisen"
 	},
 	{
-		"altTitles": ["千本桜"],
+		"altTitles": [
+			"千本桜"
+		],
 		"artist": "KurousaP",
 		"data": {
 			"artistJP": "黒うさP",
@@ -792,7 +866,9 @@
 		"title": "Senbon Zakura"
 	},
 	{
-		"altTitles": ["御旗のもとに"],
+		"altTitles": [
+			"御旗のもとに"
+		],
 		"artist": "“Sakura Taisen”",
 		"data": {
 			"artistJP": "「サクラ大戦」",
@@ -1008,7 +1084,9 @@
 		"title": "39"
 	},
 	{
-		"altTitles": ["地上の戦士"],
+		"altTitles": [
+			"地上の戦士"
+		],
 		"artist": "“Sakura Taisen”",
 		"data": {
 			"artistJP": "「サクラ大戦」",
@@ -1020,7 +1098,9 @@
 		"title": "Chizyou no senshi"
 	},
 	{
-		"altTitles": ["超絶！Superlative"],
+		"altTitles": [
+			"超絶！Superlative"
+		],
 		"artist": "Keitarou Hanada “SENGOKU TAISEN”",
 		"data": {
 			"artistJP": "Keitarou Hanada「戦国大戦」",
@@ -1032,7 +1112,9 @@
 		"title": "Superlative"
 	},
 	{
-		"altTitles": ["采配の刻 Power of order"],
+		"altTitles": [
+			"采配の刻 Power of order"
+		],
 		"artist": "Keitarou Hanada “SENGOKU TAISEN”",
 		"data": {
 			"artistJP": "Keitarou Hanada「戦国大戦」",
@@ -1056,7 +1138,9 @@
 		"title": "DO RORO DERODERO ON DO RORO"
 	},
 	{
-		"altTitles": ["泣き虫O'clock"],
+		"altTitles": [
+			"泣き虫O'clock"
+		],
 		"artist": "Hiro/Yuka",
 		"data": {
 			"artistJP": "Hiro/友香",
@@ -1080,7 +1164,9 @@
 		"title": "Natural Flow"
 	},
 	{
-		"altTitles": ["maimaiちゃんのテーマ"],
+		"altTitles": [
+			"maimaiちゃんのテーマ"
+		],
 		"artist": "YMCK",
 		"data": {
 			"artistJP": "YMCK",
@@ -1092,7 +1178,9 @@
 		"title": "maimai chan"
 	},
 	{
-		"altTitles": ["君の知らない物語"],
+		"altTitles": [
+			"君の知らない物語"
+		],
 		"artist": "supercell/“Bakemonogatari”",
 		"data": {
 			"artistJP": "supercell「化物語」",
@@ -1116,7 +1204,9 @@
 		"title": "I ♥"
 	},
 	{
-		"altTitles": ["＊ハロー、プラネット。"],
+		"altTitles": [
+			"＊ハロー、プラネット。"
+		],
 		"artist": "sasakure.UK",
 		"data": {
 			"artistJP": "sasakure.UK",
@@ -1128,7 +1218,9 @@
 		"title": "*Hello, Planet."
 	},
 	{
-		"altTitles": ["イアイア★ナイトオブデザイア"],
+		"altTitles": [
+			"イアイア★ナイトオブデザイア"
+		],
 		"artist": "samfree",
 		"data": {
 			"artistJP": "samfree",
@@ -1140,7 +1232,9 @@
 		"title": "IAIA★NIGHT OF DESIRE"
 	},
 	{
-		"altTitles": ["ローリンガール"],
+		"altTitles": [
+			"ローリンガール"
+		],
 		"artist": "wowaka",
 		"data": {
 			"artistJP": "wowaka",
@@ -1152,7 +1246,9 @@
 		"title": "Rollin’Girl"
 	},
 	{
-		"altTitles": ["天ノ弱"],
+		"altTitles": [
+			"天ノ弱"
+		],
 		"artist": "164",
 		"data": {
 			"artistJP": "164",
@@ -1164,7 +1260,9 @@
 		"title": "amanojaku"
 	},
 	{
-		"altTitles": ["弱虫モンブラン"],
+		"altTitles": [
+			"弱虫モンブラン"
+		],
 		"artist": "DECO*27",
 		"data": {
 			"artistJP": "DECO*27",
@@ -1176,7 +1274,9 @@
 		"title": "Yowamushi Mont Blanc"
 	},
 	{
-		"altTitles": ["モザイクロール"],
+		"altTitles": [
+			"モザイクロール"
+		],
 		"artist": "DECO*27",
 		"data": {
 			"artistJP": "DECO*27",
@@ -1188,7 +1288,9 @@
 		"title": "Mozaik Role"
 	},
 	{
-		"altTitles": ["脳漿炸裂ガール"],
+		"altTitles": [
+			"脳漿炸裂ガール"
+		],
 		"artist": "rerulili",
 		"data": {
 			"artistJP": "れるりり",
@@ -1212,7 +1314,9 @@
 		"title": "SPiCa"
 	},
 	{
-		"altTitles": ["セツナトリップ"],
+		"altTitles": [
+			"セツナトリップ"
+		],
 		"artist": "Last Note.",
 		"data": {
 			"artistJP": "Last Note.",
@@ -1224,7 +1328,9 @@
 		"title": "Setsuna Trip"
 	},
 	{
-		"altTitles": ["放課後ストライド"],
+		"altTitles": [
+			"放課後ストライド"
+		],
 		"artist": "Last Note.",
 		"data": {
 			"artistJP": "Last Note.",
@@ -1236,7 +1342,9 @@
 		"title": "Houkago Stride"
 	},
 	{
-		"altTitles": ["カゲロウデイズ"],
+		"altTitles": [
+			"カゲロウデイズ"
+		],
 		"artist": "Jin",
 		"data": {
 			"artistJP": "じん",
@@ -1248,7 +1356,9 @@
 		"title": "Kagerou Days"
 	},
 	{
-		"altTitles": ["チルノのパーフェクトさんすう教室"],
+		"altTitles": [
+			"チルノのパーフェクトさんすう教室"
+		],
 		"artist": "ARM + Yoshimi YOUNO(IOSYS)feat. miko",
 		"data": {
 			"artistJP": "ARM＋夕野ヨシミ(IOSYS)feat. miko",
@@ -1272,7 +1382,9 @@
 		"title": "Bad Apple!! feat nomico"
 	},
 	{
-		"altTitles": ["魔理沙は大変なものを盗んでいきました"],
+		"altTitles": [
+			"魔理沙は大変なものを盗んでいきました"
+		],
 		"artist": "ARM + Yoshimi YOUNO(IOSYS)",
 		"data": {
 			"artistJP": "ARM＋夕野ヨシミ(IOSYS)feat. 藤咲かりん",
@@ -1308,7 +1420,9 @@
 		"title": "Help me, ERINNNNNN!!"
 	},
 	{
-		"altTitles": ["ナイト・オブ・ナイツ"],
+		"altTitles": [
+			"ナイト・オブ・ナイツ"
+		],
 		"artist": "beatMARIO(COOL＆CREATE)",
 		"data": {
 			"artistJP": "ビートまりお(COOL＆CREATE)",
@@ -1320,7 +1434,9 @@
 		"title": "Night of Knights/Knight of Nights"
 	},
 	{
-		"altTitles": ["全人類ノ非想天則"],
+		"altTitles": [
+			"全人類ノ非想天則"
+		],
 		"artist": "SOUND HOLIC feat. Shouma",
 		"data": {
 			"artistJP": "SOUND HOLIC feat. 匠眞",
@@ -1332,7 +1448,9 @@
 		"title": "Zen-Jinrui no Hisoutensoku"
 	},
 	{
-		"altTitles": ["しゅわスパ大作戦☆"],
+		"altTitles": [
+			"しゅわスパ大作戦☆"
+		],
 		"artist": "SOUND HOLIC feat. Nana Takahashi",
 		"data": {
 			"artistJP": "SOUND HOLIC feat. Nana Takahashi",
@@ -1344,7 +1462,9 @@
 		"title": "ShuwaSupa Daisakusen"
 	},
 	{
-		"altTitles": ["時空を超えて久しぶり！"],
+		"altTitles": [
+			"時空を超えて久しぶり！"
+		],
 		"artist": "Arle/Mie Sonozaki“PUYOPUYO”",
 		"data": {
 			"artistJP": "アルル(CV 園崎未恵)「ぷよぷよ」",
@@ -1368,7 +1488,9 @@
 		"title": "Her Dream Is To Be A Fantastic Sorceress"
 	},
 	{
-		"altTitles": ["ココロスキャンのうた"],
+		"altTitles": [
+			"ココロスキャンのうた"
+		],
 		"artist": "Tomoko Sasaki“KOKOROSCAN”",
 		"data": {
 			"artistJP": "ササキトモコ「音声感情測定器ココロスキャン」",
@@ -1380,7 +1502,9 @@
 		"title": "KOKOROSCAN"
 	},
 	{
-		"altTitles": ["神室雪月花"],
+		"altTitles": [
+			"神室雪月花"
+		],
 		"artist": "Kazuma Kiryu “Yakuza”",
 		"data": {
 			"artistJP": "桐生 一馬「龍が如く」",
@@ -1392,7 +1516,9 @@
 		"title": "KAMURO-SETSUGEKKA"
 	},
 	{
-		"altTitles": ["KONNANじゃないっ！"],
+		"altTitles": [
+			"KONNANじゃないっ！"
+		],
 		"artist": "Haruka Sawamura “Yakuza”",
 		"data": {
 			"artistJP": "澤村 遥「龍が如く５ 夢、叶えし者」",
@@ -1452,7 +1578,9 @@
 		"title": "Terminal Storm"
 	},
 	{
-		"altTitles": ["記憶、記録"],
+		"altTitles": [
+			"記憶、記録"
+		],
 		"artist": "LOPIT(SEGA)",
 		"data": {
 			"artistJP": "LOPIT(SEGA)",
@@ -1464,7 +1592,9 @@
 		"title": "kioku,kiroku"
 	},
 	{
-		"altTitles": ["セガサターン起動音[H.][Remix]"],
+		"altTitles": [
+			"セガサターン起動音[H.][Remix]"
+		],
 		"artist": "Hiro",
 		"data": {
 			"artistJP": "Hiro",
@@ -1476,7 +1606,9 @@
 		"title": "SEGA SATURN Startup Sound[H.][Remix]"
 	},
 	{
-		"altTitles": ["夜咄ディセイブ"],
+		"altTitles": [
+			"夜咄ディセイブ"
+		],
 		"artist": "Jin",
 		"data": {
 			"artistJP": "じん",
@@ -1488,7 +1620,9 @@
 		"title": "Yobanashi Deceive"
 	},
 	{
-		"altTitles": ["ウサテイ"],
+		"altTitles": [
+			"ウサテイ"
+		],
 		"artist": "Amane + beatMARIO(COOL＆CREATE)",
 		"data": {
 			"artistJP": "あまね＋ビートまりお(COOL＆CREATE)",
@@ -1548,7 +1682,9 @@
 		"title": "Dreampainter"
 	},
 	{
-		"altTitles": ["ぐるぐるWASH！コインランドリー・ディスコ"],
+		"altTitles": [
+			"ぐるぐるWASH！コインランドリー・ディスコ"
+		],
 		"artist": "D.watt(IOSYS)feat.Chiyoko",
 		"data": {
 			"artistJP": "D.watt(IOSYS)feat.ちよこ",
@@ -1620,7 +1756,9 @@
 		"title": "End of Twilight"
 	},
 	{
-		"altTitles": ["火炎地獄"],
+		"altTitles": [
+			"火炎地獄"
+		],
 		"artist": "Michiru Yamane",
 		"data": {
 			"artistJP": "山根ミチル",
@@ -1632,7 +1770,9 @@
 		"title": "HELL FLAME"
 	},
 	{
-		"altTitles": ["ユビキリ"],
+		"altTitles": [
+			"ユビキリ"
+		],
 		"artist": "Michiru Yamane",
 		"data": {
 			"artistJP": "山根ミチル",
@@ -1704,7 +1844,9 @@
 		"title": "Cosmic Train"
 	},
 	{
-		"altTitles": ["ナミダと流星"],
+		"altTitles": [
+			"ナミダと流星"
+		],
 		"artist": "Yoshino Yoshikawa",
 		"data": {
 			"artistJP": "芳川よしの",
@@ -1716,7 +1858,9 @@
 		"title": "Tears and Meteor"
 	},
 	{
-		"altTitles": ["おても☆Yan"],
+		"altTitles": [
+			"おても☆Yan"
+		],
 		"artist": "Takenobu Mitsuyoshi",
 		"data": {
 			"artistJP": "光吉猛修",
@@ -1728,7 +1872,9 @@
 		"title": "OTEMO☆Yan"
 	},
 	{
-		"altTitles": ["maiム・maiム feat.週刊少年マガジン"],
+		"altTitles": [
+			"maiム・maiム feat.週刊少年マガジン"
+		],
 		"artist": "“choi mori”",
 		"data": {
 			"artistJP": "にしもと先生、タクマ、どんちゃん「ちょっと盛りました。」",
@@ -1752,7 +1898,9 @@
 		"title": "Danza zandA"
 	},
 	{
-		"altTitles": ["Backyun! －悪い女－"],
+		"altTitles": [
+			"Backyun! －悪い女－"
+		],
 		"artist": "Chihiro Aoki/Manami",
 		"data": {
 			"artistJP": "青木千紘/愛海",
@@ -1776,7 +1924,9 @@
 		"title": "Monochrome Rainbow"
 	},
 	{
-		"altTitles": ["みんなのマイマイマー"],
+		"altTitles": [
+			"みんなのマイマイマー"
+		],
 		"artist": "beat MARIO(COOL＆CREATE)+ ARM(IOSYS)",
 		"data": {
 			"artistJP": "ビートまりお(COOL＆CREATE)+ ARM(IOSYS)",
@@ -1788,7 +1938,9 @@
 		"title": "minna no maimaimaa"
 	},
 	{
-		"altTitles": ["円舞曲、君に"],
+		"altTitles": [
+			"円舞曲、君に"
+		],
 		"artist": "“Sakura Taisen Kanadegumi”",
 		"data": {
 			"artistJP": "「サクラ大戦奏組」",
@@ -1812,7 +1964,9 @@
 		"title": "Live & Learn"
 	},
 	{
-		"altTitles": ["Burning Hearts ～炎のANGEL～"],
+		"altTitles": [
+			"Burning Hearts ～炎のANGEL～"
+		],
 		"artist": "Naofumi Hataya Arranged by SEGA Sound Unit [H.]“Burning rangers”",
 		"data": {
 			"artistJP": "幡谷尚史 Arranged by SEGA Sound Unit [H.]「バーニングレンジャー」",
@@ -1824,7 +1978,9 @@
 		"title": "Angels with Burning Hearts"
 	},
 	{
-		"altTitles": ["いーあるふぁんくらぶ"],
+		"altTitles": [
+			"いーあるふぁんくらぶ"
+		],
 		"artist": "mikitoP",
 		"data": {
 			"artistJP": "みきとP",
@@ -1848,7 +2004,9 @@
 		"title": "Nyan Cat EX"
 	},
 	{
-		"altTitles": ["ぽっぴっぽー"],
+		"altTitles": [
+			"ぽっぴっぽー"
+		],
 		"artist": "",
 		"data": {
 			"artistJP": "",
@@ -1956,7 +2114,9 @@
 		"title": "Ignite Infinity"
 	},
 	{
-		"altTitles": ["トルコ行進曲 - オワタ＼(^o^)／"],
+		"altTitles": [
+			"トルコ行進曲 - オワタ＼(^o^)／"
+		],
 		"artist": "OWATA-P",
 		"data": {
 			"artistJP": "オワタP",
@@ -1968,7 +2128,9 @@
 		"title": "Turkish March - OWATA＼(^o^)／"
 	},
 	{
-		"altTitles": ["裏表ラバーズ"],
+		"altTitles": [
+			"裏表ラバーズ"
+		],
 		"artist": "wowaka",
 		"data": {
 			"artistJP": "wowaka",
@@ -2004,7 +2166,9 @@
 		"title": "Brand-new Japanesque"
 	},
 	{
-		"altTitles": ["レッツゴー!陰陽師"],
+		"altTitles": [
+			"レッツゴー!陰陽師"
+		],
 		"artist": "“SHIN-GOKETSUJI ICHIZOKU -Bonnoukaihou-”",
 		"data": {
 			"artistJP": "「新豪血寺一族 -煩悩解放-」",
@@ -2016,7 +2180,9 @@
 		"title": "Let's go! Onmyoji"
 	},
 	{
-		"altTitles": ["炉心融解"],
+		"altTitles": [
+			"炉心融解"
+		],
 		"artist": "iroha(sasaki)／kuma(alfred)",
 		"data": {
 			"artistJP": "iroha(sasaki)／kuma(alfred)",
@@ -2028,7 +2194,9 @@
 		"title": "Roshin Yukai"
 	},
 	{
-		"altTitles": ["ダブルラリアット"],
+		"altTitles": [
+			"ダブルラリアット"
+		],
 		"artist": "Agoaniki",
 		"data": {
 			"artistJP": "アゴアニキ",
@@ -2040,7 +2208,9 @@
 		"title": "Double Lariat"
 	},
 	{
-		"altTitles": ["からくりピエロ"],
+		"altTitles": [
+			"からくりピエロ"
+		],
 		"artist": "40mP",
 		"data": {
 			"artistJP": "40mP",
@@ -2052,7 +2222,9 @@
 		"title": "Karakuri Pierrot"
 	},
 	{
-		"altTitles": ["ネトゲ廃人シュプレヒコール"],
+		"altTitles": [
+			"ネトゲ廃人シュプレヒコール"
+		],
 		"artist": "TENKOMORI",
 		"data": {
 			"artistJP": "さつき が てんこもり",
@@ -2064,7 +2236,9 @@
 		"title": "The MMORPG Addict's Anthem"
 	},
 	{
-		"altTitles": ["むかしむかしのきょうのぼく"],
+		"altTitles": [
+			"むかしむかしのきょうのぼく"
+		],
 		"artist": "DECO*27",
 		"data": {
 			"artistJP": "DECO*27",
@@ -2088,7 +2262,9 @@
 		"title": "magician's operation"
 	},
 	{
-		"altTitles": ["六兆年と一夜物語"],
+		"altTitles": [
+			"六兆年と一夜物語"
+		],
 		"artist": "kemu",
 		"data": {
 			"artistJP": "kemu",
@@ -2100,7 +2276,9 @@
 		"title": "Six Trillion Years and Overnight Story"
 	},
 	{
-		"altTitles": ["みくみくにしてあげる♪【してやんよ】"],
+		"altTitles": [
+			"みくみくにしてあげる♪【してやんよ】"
+		],
 		"artist": "ika",
 		"data": {
 			"artistJP": "ika",
@@ -2112,7 +2290,9 @@
 		"title": "I'll Miku-Miku You♪(For Reals)"
 	},
 	{
-		"altTitles": ["リリリリ★バーニングナイト"],
+		"altTitles": [
+			"リリリリ★バーニングナイト"
+		],
 		"artist": "samfree",
 		"data": {
 			"artistJP": "samfree",
@@ -2124,7 +2304,9 @@
 		"title": "Lily Lily★Burning Night"
 	},
 	{
-		"altTitles": ["ハロ／ハワユ"],
+		"altTitles": [
+			"ハロ／ハワユ"
+		],
 		"artist": "nanou",
 		"data": {
 			"artistJP": "ナノウ",
@@ -2148,7 +2330,9 @@
 		"title": "Our Fighting"
 	},
 	{
-		"altTitles": ["緋色のDance"],
+		"altTitles": [
+			"緋色のDance"
+		],
 		"artist": "kisida kyoudan &The akeboshi rockets",
 		"data": {
 			"artistJP": "岸田教団＆THE明星ロケッツ",
@@ -2160,7 +2344,9 @@
 		"title": "hiiro no dance"
 	},
 	{
-		"altTitles": ["明星ロケット"],
+		"altTitles": [
+			"明星ロケット"
+		],
 		"artist": "kisida kyoudan &The akeboshi rockets",
 		"data": {
 			"artistJP": "岸田教団＆THE明星ロケッツ",
@@ -2184,7 +2370,9 @@
 		"title": "The Great Journey"
 	},
 	{
-		"altTitles": ["お嫁にしなさいっ！"],
+		"altTitles": [
+			"お嫁にしなさいっ！"
+		],
 		"artist": "ARM + Yoshimi YOUNO(IOSYS)",
 		"data": {
 			"artistJP": "ARM＋夕野ヨシミ(IOSYS)",
@@ -2196,7 +2384,9 @@
 		"title": "Oyome ni Shinasai!"
 	},
 	{
-		"altTitles": ["ロストワンの号哭"],
+		"altTitles": [
+			"ロストワンの号哭"
+		],
 		"artist": "Neru",
 		"data": {
 			"artistJP": "Neru",
@@ -2220,7 +2410,9 @@
 		"title": "Sweet Devil"
 	},
 	{
-		"altTitles": ["患部で止まってすぐ溶ける～狂気の優曇華院"],
+		"altTitles": [
+			"患部で止まってすぐ溶ける～狂気の優曇華院"
+		],
 		"artist": "ARM + Yoshimi YOUNO(IOSYS)feat. miko",
 		"data": {
 			"artistJP": "ARM＋夕野ヨシミ(IOSYS)feat. miko",
@@ -2232,7 +2424,9 @@
 		"title": "Kanbu de Tomatte Sugu Tokeru"
 	},
 	{
-		"altTitles": ["ケロ⑨destiny"],
+		"altTitles": [
+			"ケロ⑨destiny"
+		],
 		"artist": "Silver Forest",
 		"data": {
 			"artistJP": "Silver Forest",
@@ -2280,7 +2474,9 @@
 		"title": "Back 2 Back"
 	},
 	{
-		"altTitles": ["神々の祈り"],
+		"altTitles": [
+			"神々の祈り"
+		],
 		"artist": "maikaze/sasaasuka",
 		"data": {
 			"artistJP": "舞風-MAIKAZE/沙紗飛鳥",
@@ -2292,7 +2488,9 @@
 		"title": "kamigaminoinori"
 	},
 	{
-		"altTitles": ["エピクロスの虹はもう見えない"],
+		"altTitles": [
+			"エピクロスの虹はもう見えない"
+		],
 		"artist": "SYNC.ART'S feat. Misato",
 		"data": {
 			"artistJP": "SYNC.ART'S feat. 美里",
@@ -2304,7 +2502,9 @@
 		"title": "Epikouros no niji wa mou mienai"
 	},
 	{
-		"altTitles": ["シアワセうさぎ"],
+		"altTitles": [
+			"シアワセうさぎ"
+		],
 		"artist": "amane+beatMARIO(COOL&CREATE)",
 		"data": {
 			"artistJP": "あまね＋ビートまりお(COOL＆CREATE)",
@@ -2316,7 +2516,9 @@
 		"title": "Shiawase Usagi"
 	},
 	{
-		"altTitles": ["ってゐ！ ～えいえんてゐVer～"],
+		"altTitles": [
+			"ってゐ！ ～えいえんてゐVer～"
+		],
 		"artist": "SEKKENYA",
 		"data": {
 			"artistJP": "石鹸屋",
@@ -2328,7 +2530,9 @@
 		"title": "TEWI！ ～EIENTEWIVer～"
 	},
 	{
-		"altTitles": ["待チ人ハ来ズ。"],
+		"altTitles": [
+			"待チ人ハ来ズ。"
+		],
 		"artist": "butaotome",
 		"data": {
 			"artistJP": "豚乙女",
@@ -2352,7 +2556,9 @@
 		"title": "Cosmic Magic Shooter"
 	},
 	{
-		"altTitles": ["深海少女"],
+		"altTitles": [
+			"深海少女"
+		],
 		"artist": "yuuyu",
 		"data": {
 			"artistJP": "ゆうゆ",
@@ -2376,7 +2582,9 @@
 		"title": "M.S.S.Planet"
 	},
 	{
-		"altTitles": ["東方スイーツ！～鬼畜姉妹と受難メイド～"],
+		"altTitles": [
+			"東方スイーツ！～鬼畜姉妹と受難メイド～"
+		],
 		"artist": "Innocent Key",
 		"data": {
 			"artistJP": "Innocent Keyと小宮真央、ココ、樹詩音",
@@ -2388,7 +2596,9 @@
 		"title": "Touhou Sweets! ~The Brutal Sisters and Suffering Maid~"
 	},
 	{
-		"altTitles": ["幻想のサテライト"],
+		"altTitles": [
+			"幻想のサテライト"
+		],
 		"artist": "butaotome",
 		"data": {
 			"artistJP": "豚乙女",
@@ -2400,7 +2610,9 @@
 		"title": "gensounosateraito"
 	},
 	{
-		"altTitles": ["最速最高シャッターガール"],
+		"altTitles": [
+			"最速最高シャッターガール"
+		],
 		"artist": "beatMARIO(COOL＆CREATE)",
 		"data": {
 			"artistJP": "ビートまりお(COOL＆CREATE)",
@@ -2412,7 +2624,9 @@
 		"title": "Saisoku Saikou Shutter Girl"
 	},
 	{
-		"altTitles": ["バラライカ"],
+		"altTitles": [
+			"バラライカ"
+		],
 		"artist": "Performed by Takenobu Mitsuyoshi",
 		"data": {
 			"artistJP": "Performed by 光吉猛修",
@@ -2424,7 +2638,9 @@
 		"title": "Balalaika"
 	},
 	{
-		"altTitles": ["林檎華憐歌"],
+		"altTitles": [
+			"林檎華憐歌"
+		],
 		"artist": "beatMARIO's Mother(Junko Ozaki)",
 		"data": {
 			"artistJP": "ビートまりお母(尾崎順子)",
@@ -2472,7 +2688,9 @@
 		"title": "Windy Hill -Zone 1"
 	},
 	{
-		"altTitles": ["コトバ・カラフル"],
+		"altTitles": [
+			"コトバ・カラフル"
+		],
 		"artist": "Utayome575＜Yuka Otsubo・Ayaka Ohashi＞",
 		"data": {
 			"artistJP": "うたよめ575＜正岡小豆(大坪由佳)小林抹茶(大橋彩香)＞",
@@ -2484,7 +2702,9 @@
 		"title": "Kotoba・Colorful"
 	},
 	{
-		"altTitles": ["タカハせ！名人マン"],
+		"altTitles": [
+			"タカハせ！名人マン"
+		],
 		"artist": "beatMARIO+ARM feat. Takahashi-Meijin",
 		"data": {
 			"artistJP": "ビートまりお + ARM feat. 高橋名人",
@@ -2496,7 +2716,9 @@
 		"title": "Takahase! Meijin-Man"
 	},
 	{
-		"altTitles": ["言ノ葉カルマ"],
+		"altTitles": [
+			"言ノ葉カルマ"
+		],
 		"artist": "Soraru・Lon×rerulili",
 		"data": {
 			"artistJP": "そらる・ろん×れるりり",
@@ -2508,7 +2730,9 @@
 		"title": "KOTONOHA Karma"
 	},
 	{
-		"altTitles": ["かせげ！ジャリンコヒーロー"],
+		"altTitles": [
+			"かせげ！ジャリンコヒーロー"
+		],
 		"artist": "Nobuaki Kakuda“HERO BANK”",
 		"data": {
 			"artistJP": "角田信朗「ヒーローバンク」",
@@ -2520,7 +2744,9 @@
 		"title": "Kasege！Jarinko Hero"
 	},
 	{
-		"altTitles": ["キズナの物語"],
+		"altTitles": [
+			"キズナの物語"
+		],
 		"artist": "Trefle“CHAIN CHRONICLE”",
 		"data": {
 			"artistJP": "Trefle「チェインクロニクル」",
@@ -2544,7 +2770,9 @@
 		"title": "Heart Beats"
 	},
 	{
-		"altTitles": ["アゲアゲアゲイン"],
+		"altTitles": [
+			"アゲアゲアゲイン"
+		],
 		"artist": "Mitchie M",
 		"data": {
 			"artistJP": "Mitchie M",
@@ -2556,7 +2784,9 @@
 		"title": "Ageage Again "
 	},
 	{
-		"altTitles": ["紅蓮の弓矢"],
+		"altTitles": [
+			"紅蓮の弓矢"
+		],
 		"artist": "Linked Horizon“Attack on Titan” [Animetion PV]",
 		"data": {
 			"artistJP": "Linked Horizon「進撃の巨人」 [アニメPV]",
@@ -2568,7 +2798,9 @@
 		"title": "Guren no Yumiya"
 	},
 	{
-		"altTitles": ["鼓動"],
+		"altTitles": [
+			"鼓動"
+		],
 		"artist": "Chihiro Aoki“Ryu ga Gotoku Ishin!”",
 		"data": {
 			"artistJP": "青木 千紘「龍が如く 維新！」",
@@ -2592,7 +2824,9 @@
 		"title": "DRAGONLADY"
 	},
 	{
-		"altTitles": ["二息歩行"],
+		"altTitles": [
+			"二息歩行"
+		],
 		"artist": "DECO*27",
 		"data": {
 			"artistJP": "DECO*27",
@@ -2604,7 +2838,9 @@
 		"title": "Ni SoKu Ho Kou"
 	},
 	{
-		"altTitles": ["ファンタジーゾーン OPA-OPA! -GMT remix-"],
+		"altTitles": [
+			"ファンタジーゾーン OPA-OPA! -GMT remix-"
+		],
 		"artist": "Hiro(SEGA)“FANTASY ZONE”",
 		"data": {
 			"artistJP": "Hiro(SEGA)「ファンタジーゾーン」",
@@ -2616,7 +2852,9 @@
 		"title": "FANTASY ZONE OPA-OPA! -GMT remix-"
 	},
 	{
-		"altTitles": ["電車で電車でGO!GO!GO!GC! -GMT remix-"],
+		"altTitles": [
+			"電車で電車でGO!GO!GO!GC! -GMT remix-"
+		],
 		"artist": "COSIO(ZUNTATA/TAITO)/Chiharu Sawashiro“Densha de GO!”",
 		"data": {
 			"artistJP": "COSIO(ZUNTATA/TAITO)/沢城千春「電車でGO!」",
@@ -2640,7 +2878,9 @@
 		"title": "RIDGE RACER STEPS -GMT remix-"
 	},
 	{
-		"altTitles": ["リッジでリッジでGO!GO!GO! -GMT mashup-"],
+		"altTitles": [
+			"リッジでリッジでGO!GO!GO! -GMT mashup-"
+		],
 		"artist": "Hiro(SEGA)“RIDGE RACER”“Densha de GO!”",
 		"data": {
 			"artistJP": "Hiro(SEGA)「RIDGE RACER」「電車でGO!」",
@@ -2652,7 +2892,9 @@
 		"title": "RIDGE de RIDGE de GO!GO!GO! -GMT mashup-"
 	},
 	{
-		"altTitles": ["オパ! オパ! RACER -GMT mashup-"],
+		"altTitles": [
+			"オパ! オパ! RACER -GMT mashup-"
+		],
 		"artist": "COSIO(ZUNTATA/TAITO)“FANTASY ZONE”“RIDGE RACER”",
 		"data": {
 			"artistJP": "COSIO(ZUNTATA/TAITO)「ファンタジーゾーン」「RIDGE RACER」",
@@ -2664,7 +2906,9 @@
 		"title": "OPA! OPA! RACER -GMT mashup-"
 	},
 	{
-		"altTitles": ["電車で電車でOPA!OPA!OPA! -GMT mashup-"],
+		"altTitles": [
+			"電車で電車でOPA!OPA!OPA! -GMT mashup-"
+		],
 		"artist": "Yuji Masubuchi(BNGI)“Densha de GO!”“FANTASY ZONE”",
 		"data": {
 			"artistJP": "Yuji Masubuchi(BNGI)「電車でGO!」「ファンタジーゾーン」",
@@ -2688,7 +2932,9 @@
 		"title": "Axeria"
 	},
 	{
-		"altTitles": ["ピーマンたべたら"],
+		"altTitles": [
+			"ピーマンたべたら"
+		],
 		"artist": "Tsugumi Kataoka",
 		"data": {
 			"artistJP": "カタオカツグミ",
@@ -2712,7 +2958,9 @@
 		"title": "MIRROR of MAGIC"
 	},
 	{
-		"altTitles": ["究極焼肉レストラン！お燐の地獄亭！"],
+		"altTitles": [
+			"究極焼肉レストラン！お燐の地獄亭！"
+		],
 		"artist": "ARM + Yoshimi YOUNO feat. Akane Fujieda",
 		"data": {
 			"artistJP": "ARM＋夕野ヨシミ(IOSYS)feat. 藤枝あかね",
@@ -2736,7 +2984,9 @@
 		"title": "shake it!"
 	},
 	{
-		"altTitles": ["1/3の純情な感情"],
+		"altTitles": [
+			"1/3の純情な感情"
+		],
 		"artist": "SIAM SHADE [covered by yuge]",
 		"data": {
 			"artistJP": "SIAM SHADE [covered by 湯毛]",
@@ -2748,7 +2998,9 @@
 		"title": "1/3 No Junjou Na Kanjou"
 	},
 	{
-		"altTitles": ["毒占欲"],
+		"altTitles": [
+			"毒占欲"
+		],
 		"artist": "DECO*27",
 		"data": {
 			"artistJP": "DECO*27",
@@ -2772,7 +3024,9 @@
 		"title": "YU-MU"
 	},
 	{
-		"altTitles": ["物凄い勢いでけーねが物凄いうた"],
+		"altTitles": [
+			"物凄い勢いでけーねが物凄いうた"
+		],
 		"artist": "Halozy",
 		"data": {
 			"artistJP": "Halozy",
@@ -2820,7 +3074,9 @@
 		"title": "D✪N’T  ST✪P  R✪CKIN’"
 	},
 	{
-		"altTitles": ["ガラテアの螺旋"],
+		"altTitles": [
+			"ガラテアの螺旋"
+		],
 		"artist": "sasakure.UK",
 		"data": {
 			"artistJP": "sasakure.UK",
@@ -2868,7 +3124,9 @@
 		"title": "Stand Up!!!!"
 	},
 	{
-		"altTitles": ["アンハッピーリフレイン"],
+		"altTitles": [
+			"アンハッピーリフレイン"
+		],
 		"artist": "wowaka",
 		"data": {
 			"artistJP": "wowaka",
@@ -2928,7 +3186,9 @@
 		"title": "Caliburne ～Story of the Legendary sword～"
 	},
 	{
-		"altTitles": ["どうしてこうなった"],
+		"altTitles": [
+			"どうしてこうなった"
+		],
 		"artist": "UDONGERGE",
 		"data": {
 			"artistJP": "うどんゲルゲ",
@@ -2952,7 +3212,9 @@
 		"title": "B.B.K.K.B.K.K."
 	},
 	{
-		"altTitles": ["おこちゃま戦争"],
+		"altTitles": [
+			"おこちゃま戦争"
+		],
 		"artist": "Giga/Reol",
 		"data": {
 			"artistJP": "ギガ/れをる",
@@ -3060,7 +3322,9 @@
 		"title": "Got more raves？"
 	},
 	{
-		"altTitles": ["不毛！"],
+		"altTitles": [
+			"不毛！"
+		],
 		"artist": "potential-0",
 		"data": {
 			"artistJP": "ぽてんしゃる0",
@@ -3072,7 +3336,9 @@
 		"title": "fumou!"
 	},
 	{
-		"altTitles": ["デッドレッドガールズ"],
+		"altTitles": [
+			"デッドレッドガールズ"
+		],
 		"artist": "MARUDARUMA",
 		"data": {
 			"artistJP": "MARUDARUMA",
@@ -3084,7 +3350,9 @@
 		"title": "DEAD RED GIRLS"
 	},
 	{
-		"altTitles": ["赤心性：カマトト荒療治"],
+		"altTitles": [
+			"赤心性：カマトト荒療治"
+		],
 		"artist": "Suzumu",
 		"data": {
 			"artistJP": "スズム",
@@ -3096,7 +3364,9 @@
 		"title": "Sekishinsei：Kamatoto Araryoji"
 	},
 	{
-		"altTitles": ["悪戯"],
+		"altTitles": [
+			"悪戯"
+		],
 		"artist": "Lon×Hidekazu Tanaka(MONACA)",
 		"data": {
 			"artistJP": "ろん×田中秀和(MONACA)",
@@ -3108,7 +3378,9 @@
 		"title": "Itazura"
 	},
 	{
-		"altTitles": ["響縁"],
+		"altTitles": [
+			"響縁"
+		],
 		"artist": "Butaotome",
 		"data": {
 			"artistJP": "豚乙女",
@@ -3132,7 +3404,9 @@
 		"title": "LOL -lots of laugh-"
 	},
 	{
-		"altTitles": ["クローバー♣クラブ"],
+		"altTitles": [
+			"クローバー♣クラブ"
+		],
 		"artist": "Yuuyu",
 		"data": {
 			"artistJP": "ゆうゆ ",
@@ -3144,7 +3418,9 @@
 		"title": "Clover♣Club"
 	},
 	{
-		"altTitles": ["妄想税"],
+		"altTitles": [
+			"妄想税"
+		],
 		"artist": "DECO*27",
 		"data": {
 			"artistJP": "DECO*27",
@@ -3156,7 +3432,9 @@
 		"title": "Delusion Tax"
 	},
 	{
-		"altTitles": ["どういうことなの！？"],
+		"altTitles": [
+			"どういうことなの！？"
+		],
 		"artist": "Kuchibashi P",
 		"data": {
 			"artistJP": "くちばしP",
@@ -3168,7 +3446,9 @@
 		"title": "What Do You Mean!?"
 	},
 	{
-		"altTitles": ["初音ミクの消失"],
+		"altTitles": [
+			"初音ミクの消失"
+		],
 		"artist": "cosMo@Bousou-P",
 		"data": {
 			"artistJP": "cosMo＠暴走P",
@@ -3180,7 +3460,9 @@
 		"title": "The Disappearance of Hatsune Miku"
 	},
 	{
-		"altTitles": ["イノコリ先生"],
+		"altTitles": [
+			"イノコリ先生"
+		],
 		"artist": "HoneyWorks",
 		"data": {
 			"artistJP": "HoneyWorks",
@@ -3192,7 +3474,9 @@
 		"title": "Inokori Sensei"
 	},
 	{
-		"altTitles": ["キャプテン・ムラサのケツアンカー"],
+		"altTitles": [
+			"キャプテン・ムラサのケツアンカー"
+		],
 		"artist": "ARM + YOUNO feat. Yamamoto Momiji",
 		"data": {
 			"artistJP": "ARM＋夕野ヨシミ(IOSYS)feat.山本椛",
@@ -3204,7 +3488,9 @@
 		"title": "Captain Murasa's Ketsu Anchor"
 	},
 	{
-		"altTitles": ["若い力 -SEGA HARD GIRLS MIX-"],
+		"altTitles": [
+			"若い力 -SEGA HARD GIRLS MIX-"
+		],
 		"artist": "SC-3000(Mai Aizawa),SG-1000(Yu Serizawa),SG-1000Ⅱ(Naomi Ozora),GAMEGEAR(Minami Tanaka)、ROBO-PITCHER(Haruna Momono)“Hi☆sCoool!Sehagirl” [Animetion PV]",
 		"data": {
 			"artistJP": "SC-3000(シーさん)/CV.相沢 舞、SG-1000(せん)/CV.芹澤 優、SG-1000Ⅱ(せんつー)/CV.大空直美、ゲームギア(ムギ)/CV.田中美海、ロボピッチャ(ぴっちゃん)/CV.もものはるな「Hi☆sCoool! セハガール」 [アニメPV]",
@@ -3216,7 +3502,9 @@
 		"title": "WAKAICHIKARA -SEGA HARD GIRLS MIX-"
 	},
 	{
-		"altTitles": ["ウミユリ海底譚"],
+		"altTitles": [
+			"ウミユリ海底譚"
+		],
 		"artist": "n-buna",
 		"data": {
 			"artistJP": "n-buna",
@@ -3228,7 +3516,9 @@
 		"title": "Umiyuri Kaiteitan"
 	},
 	{
-		"altTitles": ["welcome to maimai!! with マイマイマー"],
+		"altTitles": [
+			"welcome to maimai!! with マイマイマー"
+		],
 		"artist": "Hiro feat.TAKAHITO “Rute” KOSHIDA＆beatMARIO",
 		"data": {
 			"artistJP": "Hiro feat.越田Rute隆人&ビートまりお",
@@ -3240,7 +3530,9 @@
 		"title": "welcome to maimai!! with maimaimaa"
 	},
 	{
-		"altTitles": ["ストリーミングハート"],
+		"altTitles": [
+			"ストリーミングハート"
+		],
 		"artist": "DECO*27",
 		"data": {
 			"artistJP": "DECO*27",
@@ -3300,7 +3592,9 @@
 		"title": "SAVIOR OF SONG"
 	},
 	{
-		"altTitles": ["橙の幻想郷音頭"],
+		"altTitles": [
+			"橙の幻想郷音頭"
+		],
 		"artist": "Hatsunetsumiko's",
 		"data": {
 			"artistJP": "発熱巫女〜ず",
@@ -3312,7 +3606,9 @@
 		"title": "Chen No Gensoukyo Ondo"
 	},
 	{
-		"altTitles": ["東方妖々夢 ～the maximum moving about～"],
+		"altTitles": [
+			"東方妖々夢 ～the maximum moving about～"
+		],
 		"artist": "SEKKENYA",
 		"data": {
 			"artistJP": "石鹸屋",
@@ -3324,7 +3620,9 @@
 		"title": "toho yoyomu -the maximum moving about-"
 	},
 	{
-		"altTitles": ["蒼空に舞え、墨染の桜"],
+		"altTitles": [
+			"蒼空に舞え、墨染の桜"
+		],
 		"artist": "Silver Forest",
 		"data": {
 			"artistJP": "Silver Forest",
@@ -3336,7 +3634,9 @@
 		"title": "Soranimae Sumizomenosakura"
 	},
 	{
-		"altTitles": ["少女幻葬戦慄曲 ～ Necro Fantasia"],
+		"altTitles": [
+			"少女幻葬戦慄曲 ～ Necro Fantasia"
+		],
 		"artist": "dBu",
 		"data": {
 			"artistJP": "どぶウサギ",
@@ -3360,7 +3660,9 @@
 		"title": "Contrapasso -paradiso-"
 	},
 	{
-		"altTitles": ["幸せになれる隠しコマンドがあるらしい"],
+		"altTitles": [
+			"幸せになれる隠しコマンドがあるらしい"
+		],
 		"artist": "UtataP",
 		"data": {
 			"artistJP": "うたたP",
@@ -3372,7 +3674,9 @@
 		"title": "Shiawase ni Nareru Kakushi Command ga Arurashii"
 	},
 	{
-		"altTitles": ["フラグメンツ -T.V. maimai edit-"],
+		"altTitles": [
+			"フラグメンツ -T.V. maimai edit-"
+		],
 		"artist": "Hatsunetsumiko's",
 		"data": {
 			"artistJP": "発熱巫女〜ず",
@@ -3384,7 +3688,9 @@
 		"title": "Fragments -T.V. maimai edit-"
 	},
 	{
-		"altTitles": ["願いを呼ぶ季節"],
+		"altTitles": [
+			"願いを呼ぶ季節"
+		],
 		"artist": "maikaze/tokine",
 		"data": {
 			"artistJP": "舞風-MAIKAZE/時音-TOKINE",
@@ -3396,7 +3702,9 @@
 		"title": "negaiwoyobukisetsu"
 	},
 	{
-		"altTitles": ["おじゃま虫"],
+		"altTitles": [
+			"おじゃま虫"
+		],
 		"artist": "DECO*27",
 		"data": {
 			"artistJP": "DECO*27",
@@ -3408,7 +3716,9 @@
 		"title": "Ojamamushi"
 	},
 	{
-		"altTitles": ["Yet Another ”drizzly rain” "],
+		"altTitles": [
+			"Yet Another ”drizzly rain” "
+		],
 		"artist": "myu314 feat.amane(COOL&CREATE)",
 		"data": {
 			"artistJP": "myu314 feat.あまね(COOL&CREATE)",
@@ -3420,7 +3730,9 @@
 		"title": "Yet Another ”drizzly rain”"
 	},
 	{
-		"altTitles": ["四次元跳躍機関"],
+		"altTitles": [
+			"四次元跳躍機関"
+		],
 		"artist": "koutaq",
 		"data": {
 			"artistJP": "koutaq",
@@ -3432,7 +3744,9 @@
 		"title": "Four-Dimensional Warp Device"
 	},
 	{
-		"altTitles": ["最終鬼畜妹・一部声"],
+		"altTitles": [
+			"最終鬼畜妹・一部声"
+		],
 		"artist": "beatMARIO",
 		"data": {
 			"artistJP": "ビートまりお",
@@ -3444,7 +3758,9 @@
 		"title": "Saishuu kichiku imouto ichibu koe"
 	},
 	{
-		"altTitles": ["はじめまして地球人さん"],
+		"altTitles": [
+			"はじめまして地球人さん"
+		],
 		"artist": "PinocchioP",
 		"data": {
 			"artistJP": "ピノキオピー",
@@ -3528,7 +3844,9 @@
 		"title": "+♂"
 	},
 	{
-		"altTitles": ["ありふれたせかいせいふく"],
+		"altTitles": [
+			"ありふれたせかいせいふく"
+		],
 		"artist": "PinocchioP",
 		"data": {
 			"artistJP": "ピノキオピー",
@@ -3540,7 +3858,9 @@
 		"title": "Arifureta sekai seifuku"
 	},
 	{
-		"altTitles": ["すろぉもぉしょん"],
+		"altTitles": [
+			"すろぉもぉしょん"
+		],
 		"artist": "PinocchioP",
 		"data": {
 			"artistJP": "ピノキオピー",
@@ -3552,7 +3872,9 @@
 		"title": "SLoWMoTIoN"
 	},
 	{
-		"altTitles": ["絵の上手かった友達"],
+		"altTitles": [
+			"絵の上手かった友達"
+		],
 		"artist": "PinocchioP",
 		"data": {
 			"artistJP": "ピノキオピー",
@@ -3564,7 +3886,9 @@
 		"title": "My Old Friend Who Was Good At Drawing"
 	},
 	{
-		"altTitles": ["頓珍漢の宴"],
+		"altTitles": [
+			"頓珍漢の宴"
+		],
 		"artist": "PinocchioP",
 		"data": {
 			"artistJP": "ピノキオピー",
@@ -3624,7 +3948,9 @@
 		"title": "Glorious Crown"
 	},
 	{
-		"altTitles": ["言ノ葉遊戯"],
+		"altTitles": [
+			"言ノ葉遊戯"
+		],
 		"artist": "S!N・Nana Takahashi×Hitoshizuku・Yama△",
 		"data": {
 			"artistJP": "S!N・高橋菜々×ひとしずく・やま△",
@@ -3636,7 +3962,9 @@
 		"title": "KOTONOHA Yu-Gi"
 	},
 	{
-		"altTitles": ["りばーぶ"],
+		"altTitles": [
+			"りばーぶ"
+		],
 		"artist": "Nana Takahashi×Keiichi Okabe(MONACA)",
 		"data": {
 			"artistJP": "高橋菜々×岡部啓一(MONACA)",
@@ -3648,7 +3976,9 @@
 		"title": "Reverb"
 	},
 	{
-		"altTitles": ["幾四音-Ixion-"],
+		"altTitles": [
+			"幾四音-Ixion-"
+		],
 		"artist": "M.S.S Project",
 		"data": {
 			"artistJP": "M.S.S Project",
@@ -3660,7 +3990,9 @@
 		"title": "IKUSHION-Ixion-"
 	},
 	{
-		"altTitles": ["閃鋼のブリューナク"],
+		"altTitles": [
+			"閃鋼のブリューナク"
+		],
 		"artist": "sasakure.UK",
 		"data": {
 			"artistJP": "sasakure.UK",
@@ -3672,7 +4004,9 @@
 		"title": "Brionac of Steel-flash"
 	},
 	{
-		"altTitles": ["無敵We are one!!"],
+		"altTitles": [
+			"無敵We are one!!"
+		],
 		"artist": "IRODORIMIDORI",
 		"data": {
 			"artistJP": "イロドリミドリ「CHUNITHM」",
@@ -3720,7 +4054,9 @@
 		"title": "Revive The Rave"
 	},
 	{
-		"altTitles": ["スリップフリップ"],
+		"altTitles": [
+			"スリップフリップ"
+		],
 		"artist": "tilt-six feat.Kushii Tomomi",
 		"data": {
 			"artistJP": "tilt-six feat.串伊トモミ",
@@ -3744,7 +4080,9 @@
 		"title": "Jimang Shot"
 	},
 	{
-		"altTitles": ["儚きもの人間"],
+		"altTitles": [
+			"儚きもの人間"
+		],
 		"artist": "Butaotome",
 		"data": {
 			"artistJP": "豚乙女",
@@ -3756,7 +4094,9 @@
 		"title": "Hakanakimono Ningen"
 	},
 	{
-		"altTitles": ["ラブリー☆えんじぇる!!"],
+		"altTitles": [
+			"ラブリー☆えんじぇる!!"
+		],
 		"artist": "ave;new project feat.Saori Sakura&Miyu Inoue“Twin Angel”",
 		"data": {
 			"artistJP": "あべにゅうぷろじぇくと feat.佐倉紗織&井上みゆ「パチスロ快盗天使ツインエンジェル」",
@@ -3768,7 +4108,9 @@
 		"title": "Lovely☆Angel!!"
 	},
 	{
-		"altTitles": ["オモイヨシノ"],
+		"altTitles": [
+			"オモイヨシノ"
+		],
 		"artist": "loos feat. 柊莉杏",
 		"data": {
 			"artistJP": "loos feat. 柊莉杏",
@@ -3780,7 +4122,9 @@
 		"title": "Omoiyoshino"
 	},
 	{
-		"altTitles": ["アージェントシンメトリー"],
+		"altTitles": [
+			"アージェントシンメトリー"
+		],
 		"artist": "Sta feat.b",
 		"data": {
 			"artistJP": "Sta feat.b",
@@ -3792,7 +4136,9 @@
 		"title": "Argent Symmetry"
 	},
 	{
-		"altTitles": ["かくしん的☆めたまるふぉ～ぜっ！"],
+		"altTitles": [
+			"かくしん的☆めたまるふぉ～ぜっ！"
+		],
 		"artist": "Umaru Doma [CV.Aimi Tanaka]“Himouto!Umaru chan”",
 		"data": {
 			"artistJP": "土間うまる [CV.田中あいみ]「干物妹！うまるちゃん」",
@@ -3804,7 +4150,9 @@
 		"title": "KAKUSHINTEKI METAMARUFOOZE"
 	},
 	{
-		"altTitles": ["極上スマイル"],
+		"altTitles": [
+			"極上スマイル"
+		],
 		"artist": "Wake Up, Girls！",
 		"data": {
 			"artistJP": "Wake Up, Girls！",
@@ -3816,7 +4164,9 @@
 		"title": "GOKUJOU SUMAIRU"
 	},
 	{
-		"altTitles": ["厨病激発ボーイ"],
+		"altTitles": [
+			"厨病激発ボーイ"
+		],
 		"artist": "rerulili",
 		"data": {
 			"artistJP": "れるりり",
@@ -3828,7 +4178,9 @@
 		"title": "Young disease outburst Boy"
 	},
 	{
-		"altTitles": ["HIMITSUスパーク"],
+		"altTitles": [
+			"HIMITSUスパーク"
+		],
 		"artist": "A crow is white",
 		"data": {
 			"artistJP": "カラスは真っ白",
@@ -3852,7 +4204,9 @@
 		"title": "Party 4U ”holy nite mix”"
 	},
 	{
-		"altTitles": ["囲い無き世は一期の月影"],
+		"altTitles": [
+			"囲い無き世は一期の月影"
+		],
 		"artist": "BUTAOTOME",
 		"data": {
 			"artistJP": "豚乙女",
@@ -3960,7 +4314,9 @@
 		"title": "fake!fake!"
 	},
 	{
-		"altTitles": ["夏祭り"],
+		"altTitles": [
+			"夏祭り"
+		],
 		"artist": "Jitterin' Jinn  [covered by Lon]",
 		"data": {
 			"artistJP": "Jitterin' Jinn [covered by ろん]",
@@ -3972,7 +4328,9 @@
 		"title": "NATSUMATSURI"
 	},
 	{
-		"altTitles": ["シュガーソングとビターステップ"],
+		"altTitles": [
+			"シュガーソングとビターステップ"
+		],
 		"artist": "UNISON SQUARE GARDEN",
 		"data": {
 			"artistJP": "UNISON SQUARE GARDEN",
@@ -4008,7 +4366,9 @@
 		"title": "ちょちょちょ！ゆるゆり☆かぷりっちょ！！！"
 	},
 	{
-		"altTitles": ["セハガガガンバッちゃう！！"],
+		"altTitles": [
+			"セハガガガンバッちゃう！！"
+		],
 		"artist": "Hi☆sCoool! Seha Girls",
 		"data": {
 			"artistJP": "Hi☆sCoool! セハガール",
@@ -4020,7 +4380,9 @@
 		"title": "SEHA GA GA GANBATCHAU"
 	},
 	{
-		"altTitles": ["キミノヨゾラ哨戒班"],
+		"altTitles": [
+			"キミノヨゾラ哨戒班"
+		],
 		"artist": "Orangestar",
 		"data": {
 			"artistJP": "Orangestar",
@@ -4032,7 +4394,9 @@
 		"title": "KIMINO YOZORA SHOUKAIHAN"
 	},
 	{
-		"altTitles": ["恋愛裁判"],
+		"altTitles": [
+			"恋愛裁判"
+		],
 		"artist": "40mP",
 		"data": {
 			"artistJP": "40mP",
@@ -4056,7 +4420,9 @@
 		"title": "Just Be Friends"
 	},
 	{
-		"altTitles": ["ヒビカセ"],
+		"altTitles": [
+			"ヒビカセ"
+		],
 		"artist": "GigaReol",
 		"data": {
 			"artistJP": "GigaReol",
@@ -4068,7 +4434,9 @@
 		"title": "Hibikase"
 	},
 	{
-		"altTitles": ["パーフェクト生命"],
+		"altTitles": [
+			"パーフェクト生命"
+		],
 		"artist": "Nayutalien",
 		"data": {
 			"artistJP": "ナユタン星人",
@@ -4092,7 +4460,9 @@
 		"title": "StargazeR"
 	},
 	{
-		"altTitles": ["だんだん早くなる"],
+		"altTitles": [
+			"だんだん早くなる"
+		],
 		"artist": "40mP",
 		"data": {
 			"artistJP": "40mP",
@@ -4104,7 +4474,9 @@
 		"title": "Getting Faster and Faster"
 	},
 	{
-		"altTitles": ["ヘルシーエンド"],
+		"altTitles": [
+			"ヘルシーエンド"
+		],
 		"artist": "siinamota(powapowaP)",
 		"data": {
 			"artistJP": "椎名もた (ぽわぽわP)",
@@ -4116,7 +4488,9 @@
 		"title": "healthy end"
 	},
 	{
-		"altTitles": ["クノイチでも恋がしたい"],
+		"altTitles": [
+			"クノイチでも恋がしたい"
+		],
 		"artist": "MikitoP",
 		"data": {
 			"artistJP": "みきとP",
@@ -4128,7 +4502,9 @@
 		"title": "Kunoichi demo Koi ga shitai"
 	},
 	{
-		"altTitles": ["ココロ"],
+		"altTitles": [
+			"ココロ"
+		],
 		"artist": "TORABORUTA",
 		"data": {
 			"artistJP": "トラボルタ",
@@ -4140,7 +4516,9 @@
 		"title": "KOKORO"
 	},
 	{
-		"altTitles": ["東京リアルワールド"],
+		"altTitles": [
+			"東京リアルワールド"
+		],
 		"artist": "out of service",
 		"data": {
 			"artistJP": "out of service",
@@ -4152,7 +4530,9 @@
 		"title": "TOKYO REAL WORLD"
 	},
 	{
-		"altTitles": ["やめろ！聴くな！"],
+		"altTitles": [
+			"やめろ！聴くな！"
+		],
 		"artist": "SLAVE.V-V-R",
 		"data": {
 			"artistJP": "SLAVE.V-V-R",
@@ -4164,7 +4544,9 @@
 		"title": "YAMERO!KIKUNA!"
 	},
 	{
-		"altTitles": ["ゆっくりしていってね！！！"],
+		"altTitles": [
+			"ゆっくりしていってね！！！"
+		],
 		"artist": "kyouken",
 		"data": {
 			"artistJP": "今日犬",
@@ -4176,7 +4558,9 @@
 		"title": "Please don‘t worry"
 	},
 	{
-		"altTitles": ["木彫り鯰と右肩ゾンビ"],
+		"altTitles": [
+			"木彫り鯰と右肩ゾンビ"
+		],
 		"artist": "hanzo/SEKIHAN Vocal Ver",
 		"data": {
 			"artistJP": "hanzo/赤飯歌唱Ver",
@@ -4212,7 +4596,9 @@
 		"title": "Mr. Wonderland"
 	},
 	{
-		"altTitles": ["しんでしまうとはなさけない！"],
+		"altTitles": [
+			"しんでしまうとはなさけない！"
+		],
 		"artist": "WONODERFUL★OPPORTUNITY!",
 		"data": {
 			"artistJP": "ワンダフル☆オポチュニティ！",
@@ -4236,7 +4622,9 @@
 		"title": "Hand in Hand"
 	},
 	{
-		"altTitles": ["ブリキノダンス"],
+		"altTitles": [
+			"ブリキノダンス"
+		],
 		"artist": "hinata denko",
 		"data": {
 			"artistJP": "日向電工",
@@ -4260,7 +4648,9 @@
 		"title": "brilliant better"
 	},
 	{
-		"altTitles": ["ハート・ビート"],
+		"altTitles": [
+			"ハート・ビート"
+		],
 		"artist": "Serina Akesaka(CV:Emi Nitta)",
 		"data": {
 			"artistJP": "明坂 芹菜(CV:新田 恵海)",
@@ -4296,7 +4686,9 @@
 		"title": "connecting with you"
 	},
 	{
-		"altTitles": ["高気圧ねこロック"],
+		"altTitles": [
+			"高気圧ねこロック"
+		],
 		"artist": "Hideyuki Ono with Jimmy Weckl",
 		"data": {
 			"artistJP": "小野隊長とJimmy親分",
@@ -4320,7 +4712,9 @@
 		"title": "Prophesy One"
 	},
 	{
-		"altTitles": ["洗脳"],
+		"altTitles": [
+			"洗脳"
+		],
 		"artist": "Yurin・Kakichoco×Neru",
 		"data": {
 			"artistJP": "ゆりん・柿チョコ×Neru",
@@ -4356,7 +4750,9 @@
 		"title": "Nitrous Fury"
 	},
 	{
-		"altTitles": ["色は匂へど散りぬるを"],
+		"altTitles": [
+			"色は匂へど散りぬるを"
+		],
 		"artist": "Yuuhei Satellite",
 		"data": {
 			"artistJP": "幽閉サテライト",
@@ -4368,7 +4764,9 @@
 		"title": "Iro Ha Nioedo Chirinuruwo"
 	},
 	{
-		"altTitles": ["月に叢雲華に風"],
+		"altTitles": [
+			"月に叢雲華に風"
+		],
 		"artist": "Yuuhei Satellite",
 		"data": {
 			"artistJP": "幽閉サテライト",
@@ -4392,7 +4790,9 @@
 		"title": "No Routine"
 	},
 	{
-		"altTitles": ["ひれ伏せ愚民どもっ！"],
+		"altTitles": [
+			"ひれ伏せ愚民どもっ！"
+		],
 		"artist": "ARM + Yoshimi YOUNO feat. miko",
 		"data": {
 			"artistJP": "ARM＋夕野ヨシミ (IOSYS) feat.miko",
@@ -4404,7 +4804,9 @@
 		"title": "Hirefuse Gumin-domo!"
 	},
 	{
-		"altTitles": ["エテルニタス・ルドロジー"],
+		"altTitles": [
+			"エテルニタス・ルドロジー"
+		],
 		"artist": "IRON ATTACK!",
 		"data": {
 			"artistJP": "IRON ATTACK!",
@@ -4416,7 +4818,9 @@
 		"title": "～AETERNITAS LUDOLOGY～"
 	},
 	{
-		"altTitles": ["泡沫、哀のまほろば"],
+		"altTitles": [
+			"泡沫、哀のまほろば"
+		],
 		"artist": "Yuuhei Satellite",
 		"data": {
 			"artistJP": "幽閉サテライト",
@@ -4428,7 +4832,9 @@
 		"title": "Utakata, Ai No Mahoroba"
 	},
 	{
-		"altTitles": ["華鳥風月"],
+		"altTitles": [
+			"華鳥風月"
+		],
 		"artist": "Yuuhei Satellite",
 		"data": {
 			"artistJP": "幽閉サテライト",
@@ -4452,7 +4858,9 @@
 		"title": "METATRON"
 	},
 	{
-		"altTitles": ["終わりなき物語"],
+		"altTitles": [
+			"終わりなき物語"
+		],
 		"artist": "Quna(CV Eri Kitamura)“PHANTASY STAR ONLINE 2”",
 		"data": {
 			"artistJP": "クーナ(CV 喜多村英梨)「PHANTASY STAR ONLINE 2」",
@@ -4476,7 +4884,9 @@
 		"title": "ゆりゆららららゆるゆり大事件"
 	},
 	{
-		"altTitles": ["フォルテシモBELL"],
+		"altTitles": [
+			"フォルテシモBELL"
+		],
 		"artist": "Nazuna Tennozu(CV:Ayano Yamamoto)",
 		"data": {
 			"artistJP": "天王洲 なずな(CV:山本 彩乃)",
@@ -4524,7 +4934,9 @@
 		"title": "PERFECT HUMAN"
 	},
 	{
-		"altTitles": ["ファッとして桃源郷"],
+		"altTitles": [
+			"ファッとして桃源郷"
+		],
 		"artist": "Kanae Shinjo(CV:Suzuko Mimori)“tekyu”",
 		"data": {
 			"artistJP": "新庄かなえ(CV:三森すずこ)「てーきゅう」",
@@ -4536,7 +4948,9 @@
 		"title": "FA TOSHITE TOGENKYO"
 	},
 	{
-		"altTitles": ["ゴーストルール"],
+		"altTitles": [
+			"ゴーストルール"
+		],
 		"artist": "DECO*27",
 		"data": {
 			"artistJP": "DECO*27",
@@ -4548,7 +4962,9 @@
 		"title": "Ghost Rule"
 	},
 	{
-		"altTitles": ["チュルリラ・チュルリラ・ダッダッダ！"],
+		"altTitles": [
+			"チュルリラ・チュルリラ・ダッダッダ！"
+		],
 		"artist": "Takeaki Wada(KurageP)",
 		"data": {
 			"artistJP": "和田たけあき(くらげP)",
@@ -4608,7 +5024,9 @@
 		"title": "STAIRWAY TO GENERATION"
 	},
 	{
-		"altTitles": ["空威張りビヘイビア"],
+		"altTitles": [
+			"空威張りビヘイビア"
+		],
 		"artist": "un:c・Lon×Jesus-P",
 		"data": {
 			"artistJP": "un:c・ろん×じーざすP",
@@ -4632,7 +5050,9 @@
 		"title": "回レ！雪月花"
 	},
 	{
-		"altTitles": ["いっしそう電☆舞舞神拳！"],
+		"altTitles": [
+			"いっしそう電☆舞舞神拳！"
+		],
 		"artist": "TENKOMORI feat. YURiCa/HANATAN",
 		"data": {
 			"artistJP": "さつき が てんこもり feat. YURiCa/花たん",
@@ -4668,7 +5088,9 @@
 		"title": "ENJOY POLIS"
 	},
 	{
-		"altTitles": ["生きてるおばけは生きている"],
+		"altTitles": [
+			"生きてるおばけは生きている"
+		],
 		"artist": "Utsu-P feat.flower",
 		"data": {
 			"artistJP": "鬱P feat.flower",
@@ -4680,7 +5102,9 @@
 		"title": "Living ghost is alive"
 	},
 	{
-		"altTitles": ["天火明命"],
+		"altTitles": [
+			"天火明命"
+		],
 		"artist": "Sakuzyo",
 		"data": {
 			"artistJP": "削除",
@@ -4704,7 +5128,9 @@
 		"title": "HERA"
 	},
 	{
-		"altTitles": ["分からない"],
+		"altTitles": [
+			"分からない"
+		],
 		"artist": "Lon×Chroma",
 		"data": {
 			"artistJP": "ろん×黒魔",
@@ -4740,7 +5166,9 @@
 		"title": "Scream out! -maimai SONIC WASHER Edit-"
 	},
 	{
-		"altTitles": ["四月の雨"],
+		"altTitles": [
+			"四月の雨"
+		],
 		"artist": "cubesato",
 		"data": {
 			"artistJP": "cubesato",
@@ -4788,7 +5216,9 @@
 		"title": "H-A-J-I-M-A-R-I-U-T-A-!!"
 	},
 	{
-		"altTitles": ["ドキドキDREAM!!!"],
+		"altTitles": [
+			"ドキドキDREAM!!!"
+		],
 		"artist": "IRODORIMIDORI",
 		"data": {
 			"artistJP": "イロドリミドリ「CHUNITHM」",
@@ -4800,7 +5230,9 @@
 		"title": "DOKIDOKI DREAM!!!"
 	},
 	{
-		"altTitles": ["ポップミュージックは僕のもの"],
+		"altTitles": [
+			"ポップミュージックは僕のもの"
+		],
 		"artist": "ONIGAWARA",
 		"data": {
 			"artistJP": "ONIGAWARA",
@@ -4812,7 +5244,9 @@
 		"title": "Popmusic Wa Bokunomono"
 	},
 	{
-		"altTitles": ["吉原ラメント"],
+		"altTitles": [
+			"吉原ラメント"
+		],
 		"artist": "Asa",
 		"data": {
 			"artistJP": "亜沙",
@@ -4824,7 +5258,9 @@
 		"title": "YOSHIWARALAMENTO"
 	},
 	{
-		"altTitles": ["ねぇ、壊れタ人形ハ何処へ棄テらレるノ？"],
+		"altTitles": [
+			"ねぇ、壊れタ人形ハ何処へ棄テらレるノ？"
+		],
 		"artist": "cosMo@Bousou-P",
 		"data": {
 			"artistJP": "cosMo＠暴走P",
@@ -4836,7 +5272,9 @@
 		"title": "Doll wAndeRing iN tHe NighTmARe"
 	},
 	{
-		"altTitles": ["幽闇に目醒めしは"],
+		"altTitles": [
+			"幽闇に目醒めしは"
+		],
 		"artist": "SEVENTH-HEAVEN MAXION",
 		"data": {
 			"artistJP": "セブンスヘブンMAXION",
@@ -4884,7 +5322,9 @@
 		"title": "Phantasm Brigade"
 	},
 	{
-		"altTitles": ["永遠のメロディ"],
+		"altTitles": [
+			"永遠のメロディ"
+		],
 		"artist": "R-note(Yellow Zebra)",
 		"data": {
 			"artistJP": "あ～るの～と（いえろ～ぜぶら）",
@@ -4896,7 +5336,9 @@
 		"title": "Eternal Melody"
 	},
 	{
-		"altTitles": ["白ゆき"],
+		"altTitles": [
+			"白ゆき"
+		],
 		"artist": "n-buna",
 		"data": {
 			"artistJP": "n-buna",
@@ -4944,7 +5386,9 @@
 		"title": "conflict"
 	},
 	{
-		"altTitles": ["すーぱーぬこになりたい"],
+		"altTitles": [
+			"すーぱーぬこになりたい"
+		],
 		"artist": "mafumafu",
 		"data": {
 			"artistJP": "まふまふ",
@@ -4956,7 +5400,9 @@
 		"title": "Super Nuko Ni Naritai"
 	},
 	{
-		"altTitles": ["踊れオーケストラ"],
+		"altTitles": [
+			"踊れオーケストラ"
+		],
 		"artist": "YASUHIRO",
 		"data": {
 			"artistJP": "YASUHIRO(康寛)",
@@ -4968,7 +5414,9 @@
 		"title": "Dance Orchestra"
 	},
 	{
-		"altTitles": ["SUSHI食べたい feat.ソイソース"],
+		"altTitles": [
+			"SUSHI食べたい feat.ソイソース"
+		],
 		"artist": "ORANGE RANGE",
 		"data": {
 			"artistJP": "ORANGE RANGE",
@@ -4980,7 +5428,9 @@
 		"title": "SUSHITABETAI feat.SoySauce"
 	},
 	{
-		"altTitles": ["きらっせ☆ウッド村ファーム"],
+		"altTitles": [
+			"きらっせ☆ウッド村ファーム"
+		],
 		"artist": "uno(IOSYS) feat.miko",
 		"data": {
 			"artistJP": "uno(IOSYS) feat.miko",
@@ -5052,7 +5502,9 @@
 		"title": "The wheel to the right"
 	},
 	{
-		"altTitles": ["前前前世"],
+		"altTitles": [
+			"前前前世"
+		],
 		"artist": "RADWIMPS",
 		"data": {
 			"artistJP": "RADWIMPS",
@@ -5076,7 +5528,9 @@
 		"title": "SAKURAスキップ"
 	},
 	{
-		"altTitles": ["リンカーネイション"],
+		"altTitles": [
+			"リンカーネイション"
+		],
 		"artist": "kemu",
 		"data": {
 			"artistJP": "kemu",
@@ -5088,7 +5542,9 @@
 		"title": "reincarnation"
 	},
 	{
-		"altTitles": ["宿題が終わらないっ！"],
+		"altTitles": [
+			"宿題が終わらないっ！"
+		],
 		"artist": "Innocent Key＆Yuri Nashimoto、JUNCA、Mao Komiya、Shion Itsuki、Ai Ohsera",
 		"data": {
 			"artistJP": "Innocent Keyと梨本悠里、JUNCA、小宮真央、樹詩音、大瀬良あい",
@@ -5112,7 +5568,9 @@
 		"title": "GO BACK 2 YOUR RAVE"
 	},
 	{
-		"altTitles": ["天国と地獄 -言ノ葉リンネ-"],
+		"altTitles": [
+			"天国と地獄 -言ノ葉リンネ-"
+		],
 		"artist": "ITO KASHITARO・Lon×rerulili",
 		"data": {
 			"artistJP": "伊東歌詞太郎・ろん×れるりり",
@@ -5124,7 +5582,9 @@
 		"title": "tengokutojigokukotonoharinne"
 	},
 	{
-		"altTitles": ["夢花火"],
+		"altTitles": [
+			"夢花火"
+		],
 		"artist": "BUTAOTOME",
 		"data": {
 			"artistJP": "豚乙女",
@@ -5148,7 +5608,9 @@
 		"title": "Paradisus-Paradoxum"
 	},
 	{
-		"altTitles": ["オトヒメモリー☆ウタゲーション"],
+		"altTitles": [
+			"オトヒメモリー☆ウタゲーション"
+		],
 		"artist": "Junky",
 		"data": {
 			"artistJP": "Junky",
@@ -5160,7 +5622,9 @@
 		"title": "OTOHIMEMORY☆UTAGATION"
 	},
 	{
-		"altTitles": ["ラブチーノ"],
+		"altTitles": [
+			"ラブチーノ"
+		],
 		"artist": "Junky",
 		"data": {
 			"artistJP": "Junky",
@@ -5172,7 +5636,9 @@
 		"title": "LOVE CINO"
 	},
 	{
-		"altTitles": ["東京レトロ"],
+		"altTitles": [
+			"東京レトロ"
+		],
 		"artist": "Scop",
 		"data": {
 			"artistJP": "すこっぷ",
@@ -5196,7 +5662,9 @@
 		"title": "ARROW"
 	},
 	{
-		"altTitles": ["バッド・ダンス・ホール"],
+		"altTitles": [
+			"バッド・ダンス・ホール"
+		],
 		"artist": "panaman/karasuyasabou",
 		"data": {
 			"artistJP": "ぱなまん/カラスヤサボウ",
@@ -5232,7 +5700,9 @@
 		"title": "Maxi"
 	},
 	{
-		"altTitles": ["相思創愛"],
+		"altTitles": [
+			"相思創愛"
+		],
 		"artist": "ITO KASHITARO・Lon×marasy",
 		"data": {
 			"artistJP": "伊東歌詞太郎・ろん×まらしぃ",
@@ -5244,7 +5714,9 @@
 		"title": "soushisouai"
 	},
 	{
-		"altTitles": ["心象蜃気楼"],
+		"altTitles": [
+			"心象蜃気楼"
+		],
 		"artist": "Orangestar",
 		"data": {
 			"artistJP": "Orangestar",
@@ -5256,7 +5728,9 @@
 		"title": "Imagined Mirage"
 	},
 	{
-		"altTitles": ["光線チューニング"],
+		"altTitles": [
+			"光線チューニング"
+		],
 		"artist": "Nayutalien",
 		"data": {
 			"artistJP": "ナユタン星人",
@@ -5280,7 +5754,9 @@
 		"title": "Limit Break"
 	},
 	{
-		"altTitles": ["曖昧mind"],
+		"altTitles": [
+			"曖昧mind"
+		],
 		"artist": "Halozy",
 		"data": {
 			"artistJP": "Halozy",
@@ -5316,7 +5792,9 @@
 		"title": "Ultranova"
 	},
 	{
-		"altTitles": ["GET!! 夢&DREAM"],
+		"altTitles": [
+			"GET!! 夢&DREAM"
+		],
 		"artist": "加賀美 祥“GAKUEN HANDSOME”",
 		"data": {
 			"artistJP": "加賀美 祥「学園ハンサム」",
@@ -5328,7 +5806,9 @@
 		"title": "GET!! YUME&DREAM"
 	},
 	{
-		"altTitles": ["日本の米は世界一"],
+		"altTitles": [
+			"日本の米は世界一"
+		],
 		"artist": "UCHIKUBIGOKUMON-DOUKOUKAI",
 		"data": {
 			"artistJP": "打首獄門同好会",
@@ -5340,7 +5820,9 @@
 		"title": "nihon no kome ha sekaiichi"
 	},
 	{
-		"altTitles": ["ないせんのうた"],
+		"altTitles": [
+			"ないせんのうた"
+		],
 		"artist": "naisen - momoco-",
 		"data": {
 			"artistJP": "ナイセン - momoco-",
@@ -5364,7 +5846,9 @@
 		"title": "Starlight Dance Floor"
 	},
 	{
-		"altTitles": ["妖精村の月誕祭 ～Lunate Elf"],
+		"altTitles": [
+			"妖精村の月誕祭 ～Lunate Elf"
+		],
 		"artist": "dBu",
 		"data": {
 			"artistJP": "どぶウサギ",
@@ -5424,7 +5908,9 @@
 		"title": "ホシトハナ"
 	},
 	{
-		"altTitles": ["名探偵連続殺人事件"],
+		"altTitles": [
+			"名探偵連続殺人事件"
+		],
 		"artist": "teniwoha",
 		"data": {
 			"artistJP": "てにをは",
@@ -5436,7 +5922,9 @@
 		"title": "MEITANTEIRENZOKUSATSUJINJIKEN"
 	},
 	{
-		"altTitles": ["エイリアンエイリアン"],
+		"altTitles": [
+			"エイリアンエイリアン"
+		],
 		"artist": "Nayutalien",
 		"data": {
 			"artistJP": "ナユタン星人",
@@ -5460,7 +5948,9 @@
 		"title": "My Dearest Song"
 	},
 	{
-		"altTitles": ["猛進ソリストライフ！"],
+		"altTitles": [
+			"猛進ソリストライフ！"
+		],
 		"artist": "Nachi Tsukisuzu(CV:Ayaka Imamura)",
 		"data": {
 			"artistJP": "月鈴 那知(CV:今村 彩夏)",
@@ -5496,7 +5986,9 @@
 		"title": "Now Loading!!!!"
 	},
 	{
-		"altTitles": ["真・ハンサム体操でズンドコホイ"],
+		"altTitles": [
+			"真・ハンサム体操でズンドコホイ"
+		],
 		"artist": "10Re;“GAKUEN HANDSOME”",
 		"data": {
 			"artistJP": "10Re;「学園ハンサム」",
@@ -5508,7 +6000,9 @@
 		"title": "SHIN HANDSOME TAISOU DE ZUNDOKOHOI"
 	},
 	{
-		"altTitles": ["フラジール"],
+		"altTitles": [
+			"フラジール"
+		],
 		"artist": "nuyuri",
 		"data": {
 			"artistJP": "ぬゆり",
@@ -5520,7 +6014,9 @@
 		"title": "fragile"
 	},
 	{
-		"altTitles": ["オーディエンスを沸かす程度の能力 feat.タイツォン"],
+		"altTitles": [
+			"オーディエンスを沸かす程度の能力 feat.タイツォン"
+		],
 		"artist": "D.watt(IOSYS) + Rapbit",
 		"data": {
 			"artistJP": "D.watt(IOSYS)＋らっぷびと",
@@ -5532,7 +6028,9 @@
 		"title": "Audience wo wakasu teido no nouryoku feat.Tights-on"
 	},
 	{
-		"altTitles": ["人里に下ったアタイがいつの間にか社畜になっていた件"],
+		"altTitles": [
+			"人里に下ったアタイがいつの間にか社畜になっていた件"
+		],
 		"artist": "nekomirin + nora2r feat.Mao Komiya",
 		"data": {
 			"artistJP": "ねこみりん + nora2r feat. 小宮真央",
@@ -5544,7 +6042,9 @@
 		"title": "hitozato ni kudatta atai ga itsunomanika syachiku ni natteita ken"
 	},
 	{
-		"altTitles": ["ギリギリ最強あいまいみー！"],
+		"altTitles": [
+			"ギリギリ最強あいまいみー！"
+		],
 		"artist": "Ai“Yuka Otsubo” Mai“Aya Uchida” Mi“Maya Uchida”",
 		"data": {
 			"artistJP": "愛(C.V.大坪由佳) 麻衣(C.V.内田彩) ミイ(C.V.内田真礼)「あいまいみー」",
@@ -5580,7 +6080,9 @@
 		"title": "Sunshine world tour"
 	},
 	{
-		"altTitles": ["ちがう!!!"],
+		"altTitles": [
+			"ちがう!!!"
+		],
 		"artist": "CarlosHakamada（SaizeP）",
 		"data": {
 			"artistJP": "カルロス袴田(サイゼP) ",
@@ -5604,7 +6106,9 @@
 		"title": "Moon of Noon"
 	},
 	{
-		"altTitles": ["チルノのパーフェクトさんすう教室　⑨周年バージョン"],
+		"altTitles": [
+			"チルノのパーフェクトさんすう教室　⑨周年バージョン"
+		],
 		"artist": "IOSYS with kyu friends",
 		"data": {
 			"artistJP": "IOSYSと愉快な⑨周年フレンズ",
@@ -5616,7 +6120,9 @@
 		"title": "Cirno's Perfect Math Class ⑨ver"
 	},
 	{
-		"altTitles": ["デスパレイト"],
+		"altTitles": [
+			"デスパレイト"
+		],
 		"artist": "owl＊tree",
 		"data": {
 			"artistJP": "owl＊tree",
@@ -5628,7 +6134,9 @@
 		"title": "Desperate"
 	},
 	{
-		"altTitles": ["ようこそジャパリパークへ"],
+		"altTitles": [
+			"ようこそジャパリパークへ"
+		],
 		"artist": "Doubutsu Biscuits x PPP“Kemono Friends”",
 		"data": {
 			"artistJP": "どうぶつビスケッツ×PPP「けものフレンズ」",
@@ -5640,7 +6148,9 @@
 		"title": "Welcome to the Japari Park"
 	},
 	{
-		"altTitles": ["あ・え・い・う・え・お・あお!!"],
+		"altTitles": [
+			"あ・え・い・う・え・お・あお!!"
+		],
 		"artist": "hitotose Troupe“Hinako Note”",
 		"data": {
 			"artistJP": "劇団ひととせ「ひなこのーと」",
@@ -5652,7 +6162,9 @@
 		"title": "A・E・I・U・E・O・AO!!"
 	},
 	{
-		"altTitles": ["ドーナツホール"],
+		"altTitles": [
+			"ドーナツホール"
+		],
 		"artist": "Hachi",
 		"data": {
 			"artistJP": "ハチ",
@@ -5676,7 +6188,9 @@
 		"title": "MilK"
 	},
 	{
-		"altTitles": ["咲キ誇レ常世ノ華"],
+		"altTitles": [
+			"咲キ誇レ常世ノ華"
+		],
 		"artist": "Sou×Machigerita",
 		"data": {
 			"artistJP": "Sou×マチゲリータ",
@@ -5700,7 +6214,9 @@
 		"title": "Magical Flavor"
 	},
 	{
-		"altTitles": ["白い雪のプリンセスは"],
+		"altTitles": [
+			"白い雪のプリンセスは"
+		],
 		"artist": "Noboru↑",
 		"data": {
 			"artistJP": "のぼる↑",
@@ -5712,7 +6228,9 @@
 		"title": "The Snow White Princess is"
 	},
 	{
-		"altTitles": ["好き！雪！本気マジック"],
+		"altTitles": [
+			"好き！雪！本気マジック"
+		],
 		"artist": "Mitchie M",
 		"data": {
 			"artistJP": "Mitchie M",
@@ -5724,7 +6242,9 @@
 		"title": "Love! Snow! Really Magic"
 	},
 	{
-		"altTitles": ["スターナイトスノウ"],
+		"altTitles": [
+			"スターナイトスノウ"
+		],
 		"artist": "n-buna × Orangestar",
 		"data": {
 			"artistJP": "n-buna × Orangestar",
@@ -5784,7 +6304,9 @@
 		"title": "Signature"
 	},
 	{
-		"altTitles": ["人生リセットボタン"],
+		"altTitles": [
+			"人生リセットボタン"
+		],
 		"artist": "kemu",
 		"data": {
 			"artistJP": "kemu",
@@ -5796,7 +6318,9 @@
 		"title": "Life Reset Button"
 	},
 	{
-		"altTitles": ["しねばいいのに"],
+		"altTitles": [
+			"しねばいいのに"
+		],
 		"artist": "dBu",
 		"data": {
 			"artistJP": "どぶウサギ",
@@ -5808,7 +6332,9 @@
 		"title": "Shinebaiinoni"
 	},
 	{
-		"altTitles": ["もうみんなしねばいいのに"],
+		"altTitles": [
+			"もうみんなしねばいいのに"
+		],
 		"artist": "Raku Taniya",
 		"data": {
 			"artistJP": "谷屋楽",
@@ -5820,7 +6346,9 @@
 		"title": "MOU MINNA SHINEBA IINONI."
 	},
 	{
-		"altTitles": ["共感覚おばけ"],
+		"altTitles": [
+			"共感覚おばけ"
+		],
 		"artist": "sasanomaly",
 		"data": {
 			"artistJP": "ササノマリイ",
@@ -5832,7 +6360,9 @@
 		"title": "The Synesthesia Ghost"
 	},
 	{
-		"altTitles": ["麒麟"],
+		"altTitles": [
+			"麒麟"
+		],
 		"artist": "sasakure.UK",
 		"data": {
 			"artistJP": "sasakure.UK",
@@ -5856,7 +6386,9 @@
 		"title": "Credits"
 	},
 	{
-		"altTitles": ["ダンスロボットダンス"],
+		"altTitles": [
+			"ダンスロボットダンス"
+		],
 		"artist": "Nayutalien",
 		"data": {
 			"artistJP": "ナユタン星人",
@@ -5868,7 +6400,9 @@
 		"title": "Dance Robot Dance"
 	},
 	{
-		"altTitles": ["アルカリレットウセイ"],
+		"altTitles": [
+			"アルカリレットウセイ"
+		],
 		"artist": "Kairiki Bear",
 		"data": {
 			"artistJP": "かいりきベア",
@@ -5880,7 +6414,9 @@
 		"title": "Arukari Rettousei"
 	},
 	{
-		"altTitles": ["ドクハク"],
+		"altTitles": [
+			"ドクハク"
+		],
 		"artist": "MARETU",
 		"data": {
 			"artistJP": "MARETU",
@@ -5892,7 +6428,9 @@
 		"title": "Monologue"
 	},
 	{
-		"altTitles": ["キレキャリオン"],
+		"altTitles": [
+			"キレキャリオン"
+		],
 		"artist": "Police Piccadilly",
 		"data": {
 			"artistJP": "ポリスピカデリー",
@@ -5904,7 +6442,9 @@
 		"title": "Kire Kyari On"
 	},
 	{
-		"altTitles": ["猫祭り"],
+		"altTitles": [
+			"猫祭り"
+		],
 		"artist": "Naru Hakobe(CV:M・A・O)",
 		"data": {
 			"artistJP": "箱部 なる(CV:M・A・O)",
@@ -5940,7 +6480,9 @@
 		"title": "Still"
 	},
 	{
-		"altTitles": ["ガヴリールドロップキック"],
+		"altTitles": [
+			"ガヴリールドロップキック"
+		],
 		"artist": "Gabriel (CV: Miyu Tomita)／Vignette (CV: Saori Oonishi)／Satanichia (CV: Naomi Oozora)／Raphiel (CV: Kana Hanazawa)“Gabriel DropOut”",
 		"data": {
 			"artistJP": "ガヴリール（富田美憂），ヴィーネ（大西沙織），サターニャ（大空直美），ラフィエル（花澤香菜）「ガヴリールドロップアウト」",
@@ -5964,7 +6506,9 @@
 		"title": "fantastic dreamer"
 	},
 	{
-		"altTitles": ["天狗の落とし文 feat. ｙｔｒ"],
+		"altTitles": [
+			"天狗の落とし文 feat. ｙｔｒ"
+		],
 		"artist": "TamaOnSen",
 		"data": {
 			"artistJP": "魂音泉",
@@ -5976,7 +6520,9 @@
 		"title": "Tengu No Otoshibumi feat. Ytr"
 	},
 	{
-		"altTitles": ["疾走あんさんぶる"],
+		"altTitles": [
+			"疾走あんさんぶる"
+		],
 		"artist": "beatMARIO(COOL&CREATE)",
 		"data": {
 			"artistJP": "ビートまりお（COOL&CREATE）",
@@ -6036,7 +6582,9 @@
 		"title": "Mare Maris"
 	},
 	{
-		"altTitles": ["シャルル"],
+		"altTitles": [
+			"シャルル"
+		],
 		"artist": "Balloon",
 		"data": {
 			"artistJP": "バルーン",
@@ -6048,7 +6596,9 @@
 		"title": "Charles"
 	},
 	{
-		"altTitles": ["フリィダム ロリィタ"],
+		"altTitles": [
+			"フリィダム ロリィタ"
+		],
 		"artist": "Nejishiki",
 		"data": {
 			"artistJP": "ねじ式",
@@ -6060,7 +6610,9 @@
 		"title": "Freedom Lolita"
 	},
 	{
-		"altTitles": ["バレリーコ"],
+		"altTitles": [
+			"バレリーコ"
+		],
 		"artist": "MikitoP",
 		"data": {
 			"artistJP": "みきとP",
@@ -6072,7 +6624,9 @@
 		"title": "Balleriko"
 	},
 	{
-		"altTitles": ["アウターサイエンス"],
+		"altTitles": [
+			"アウターサイエンス"
+		],
 		"artist": "Jin",
 		"data": {
 			"artistJP": "じん",
@@ -6084,7 +6638,9 @@
 		"title": "Outer Science"
 	},
 	{
-		"altTitles": ["REVIVER オルタンシア・サーガ -蒼の騎士団- オリジナルVer."],
+		"altTitles": [
+			"REVIVER オルタンシア・サーガ -蒼の騎士団- オリジナルVer."
+		],
 		"artist": "MY FIRST STORY",
 		"data": {
 			"artistJP": "MY FIRST STORY",
@@ -6096,7 +6652,9 @@
 		"title": "REVIVER Hortensia SAGA Original Ver."
 	},
 	{
-		"altTitles": ["拝啓ドッペルゲンガー"],
+		"altTitles": [
+			"拝啓ドッペルゲンガー"
+		],
 		"artist": "kemu",
 		"data": {
 			"artistJP": "kemu",
@@ -6108,7 +6666,9 @@
 		"title": "Dear Doppelganger"
 	},
 	{
-		"altTitles": ["ミラクル・ショッピング"],
+		"altTitles": [
+			"ミラクル・ショッピング"
+		],
 		"artist": "Maimi Tanaka",
 		"data": {
 			"artistJP": "田中マイミ ",
@@ -6132,7 +6692,9 @@
 		"title": "Kinda Way"
 	},
 	{
-		"altTitles": ["ラブって♡ジュエリー♪えんじぇる☆ブレイク！！"],
+		"altTitles": [
+			"ラブって♡ジュエリー♪えんじぇる☆ブレイク！！"
+		],
 		"artist": "ave;new project feat. Meguru Amatsuki & Sumire Kisaragi“Twin Angel BREAK”",
 		"data": {
 			"artistJP": "あべにゅうぷろじぇくと feat.天月めぐる＆如月すみれ「ツインエンジェルBREAK」",
@@ -6144,7 +6706,9 @@
 		"title": "lovette jewelry angel break"
 	},
 	{
-		"altTitles": ["ヤバい○○"],
+		"altTitles": [
+			"ヤバい○○"
+		],
 		"artist": "Sumire Uesaka",
 		"data": {
 			"artistJP": "上坂すみれ",
@@ -6156,7 +6720,9 @@
 		"title": "YABAi○○"
 	},
 	{
-		"altTitles": ["エンドマークに希望と涙を添えて"],
+		"altTitles": [
+			"エンドマークに希望と涙を添えて"
+		],
 		"artist": "cosMo@Bousou-P",
 		"data": {
 			"artistJP": "cosMo＠暴走P",
@@ -6168,7 +6734,9 @@
 		"title": "End Mark ni Kibou to Namida wo soete"
 	},
 	{
-		"altTitles": ["ナンセンス文学"],
+		"altTitles": [
+			"ナンセンス文学"
+		],
 		"artist": "Eve",
 		"data": {
 			"artistJP": "Eve",
@@ -6216,7 +6784,9 @@
 		"title": "SPICY SWINGY STYLE"
 	},
 	{
-		"altTitles": ["砂の惑星 feat. HATSUNE MIKU"],
+		"altTitles": [
+			"砂の惑星 feat. HATSUNE MIKU"
+		],
 		"artist": "Hachi",
 		"data": {
 			"artistJP": "ハチ",
@@ -6228,7 +6798,9 @@
 		"title": "DUNE feat. Hatsune Miku"
 	},
 	{
-		"altTitles": ["アンノウン・マザーグース"],
+		"altTitles": [
+			"アンノウン・マザーグース"
+		],
 		"artist": "wowaka",
 		"data": {
 			"artistJP": "wowaka",
@@ -6276,7 +6848,9 @@
 		"title": "うまるん体操"
 	},
 	{
-		"altTitles": ["妄想感傷代償連盟"],
+		"altTitles": [
+			"妄想感傷代償連盟"
+		],
 		"artist": "DECO*27",
 		"data": {
 			"artistJP": "DECO*27",
@@ -6324,7 +6898,9 @@
 		"title": "ENERGY SYNERGY MATRIX"
 	},
 	{
-		"altTitles": ["Session High⤴"],
+		"altTitles": [
+			"Session High⤴"
+		],
 		"artist": "IRODORIMIDORI",
 		"data": {
 			"artistJP": "イロドリミドリ「CHUNITHM」",
@@ -6372,7 +6948,9 @@
 		"title": "Brain Power"
 	},
 	{
-		"altTitles": ["進め！イッスン軍団 -Rebellion of the Dwarfs-"],
+		"altTitles": [
+			"進め！イッスン軍団 -Rebellion of the Dwarfs-"
+		],
 		"artist": "dawn-system",
 		"data": {
 			"artistJP": "dawn-system",
@@ -6396,7 +6974,9 @@
 		"title": "ULTRA B+K"
 	},
 	{
-		"altTitles": ["インビジブル"],
+		"altTitles": [
+			"インビジブル"
+		],
 		"artist": "kemu",
 		"data": {
 			"artistJP": "kemu",
@@ -6408,7 +6988,9 @@
 		"title": "Invisible"
 	},
 	{
-		"altTitles": ["彗星ハネムーン"],
+		"altTitles": [
+			"彗星ハネムーン"
+		],
 		"artist": "NayutalieN",
 		"data": {
 			"artistJP": "ナユタン星人",
@@ -6420,7 +7002,9 @@
 		"title": "Comet Honeymoon"
 	},
 	{
-		"altTitles": ["アンチクロックワイズ"],
+		"altTitles": [
+			"アンチクロックワイズ"
+		],
 		"artist": "After the Rain",
 		"data": {
 			"artistJP": "After the Rain（そらる×まふまふ）",
@@ -6468,7 +7052,9 @@
 		"title": "larva"
 	},
 	{
-		"altTitles": ["えれくとりっく・えんじぇぅ"],
+		"altTitles": [
+			"えれくとりっく・えんじぇぅ"
+		],
 		"artist": "Yasuo",
 		"data": {
 			"artistJP": "ヤスオ",
@@ -6480,7 +7066,9 @@
 		"title": "Electric Angel"
 	},
 	{
-		"altTitles": ["ミラクルペイント"],
+		"altTitles": [
+			"ミラクルペイント"
+		],
 		"artist": "OSTER project",
 		"data": {
 			"artistJP": "OSTER project",
@@ -6504,7 +7092,9 @@
 		"title": "Ievan Polkka"
 	},
 	{
-		"altTitles": ["初音ミクの激唱"],
+		"altTitles": [
+			"初音ミクの激唱"
+		],
 		"artist": "Storyteller",
 		"data": {
 			"artistJP": "Storyteller",
@@ -6516,7 +7106,9 @@
 		"title": "The Intense Singing of Hatsune Miku"
 	},
 	{
-		"altTitles": ["ガチャガチャきゅ～と・ふぃぎゅ@メイト"],
+		"altTitles": [
+			"ガチャガチャきゅ～と・ふぃぎゅ@メイト"
+		],
 		"artist": "MOSAIC.WAV",
 		"data": {
 			"artistJP": "MOSAIC.WAV",
@@ -6600,7 +7192,9 @@
 		"title": "INFINITE WORLD"
 	},
 	{
-		"altTitles": ["サドマミホリック"],
+		"altTitles": [
+			"サドマミホリック"
+		],
 		"artist": "beatMARIO(COOL&CREATE)",
 		"data": {
 			"artistJP": "ビートまりお（COOL&CREATE）",
@@ -6624,7 +7218,9 @@
 		"title": "Ragnarok"
 	},
 	{
-		"altTitles": ["このふざけた素晴らしき世界は、僕の為にある"],
+		"altTitles": [
+			"このふざけた素晴らしき世界は、僕の為にある"
+		],
 		"artist": "n.k",
 		"data": {
 			"artistJP": "n.k",
@@ -6636,7 +7232,9 @@
 		"title": "This Messed-Up Wonderful World Exists For Me"
 	},
 	{
-		"altTitles": ["このピアノでお前を8759632145回ぶん殴る"],
+		"altTitles": [
+			"このピアノでお前を8759632145回ぶん殴る"
+		],
 		"artist": "SLAVE.V-V-R",
 		"data": {
 			"artistJP": "SLAVE.V-V-R",
@@ -6648,7 +7246,9 @@
 		"title": "Kono Piano de Omae o 8759632145kai Bunnaguru"
 	},
 	{
-		"altTitles": ["はやくそれになりたい！"],
+		"altTitles": [
+			"はやくそれになりたい！"
+		],
 		"artist": "kinoshita feat. Otomachi Una",
 		"data": {
 			"artistJP": "キノシタ feat. 音街ウナ",
@@ -6660,7 +7260,9 @@
 		"title": "I wanna be it!"
 	},
 	{
-		"altTitles": ["フィクサー"],
+		"altTitles": [
+			"フィクサー"
+		],
 		"artist": "nuyuri",
 		"data": {
 			"artistJP": "ぬゆり",
@@ -6672,7 +7274,9 @@
 		"title": "Fixer"
 	},
 	{
-		"altTitles": ["みんなの"],
+		"altTitles": [
+			"みんなの"
+		],
 		"artist": "BUTAOTOME",
 		"data": {
 			"artistJP": "豚乙女",
@@ -6684,7 +7288,9 @@
 		"title": "Everyone's"
 	},
 	{
-		"altTitles": ["アマノジャクリバース feat. ｙｔｒ"],
+		"altTitles": [
+			"アマノジャクリバース feat. ｙｔｒ"
+		],
 		"artist": "TamaOnSen",
 		"data": {
 			"artistJP": "魂音泉",
@@ -6696,7 +7302,9 @@
 		"title": "Amanojaku Reverse (feat. ｙｔｒ)"
 	},
 	{
-		"altTitles": ["進捗どうですか？"],
+		"altTitles": [
+			"進捗どうですか？"
+		],
 		"artist": "sumijun(Halozy) feat. nanahira(Confetto)",
 		"data": {
 			"artistJP": "sumijun(Halozy) feat. ななひら(Confetto)",
@@ -6780,7 +7388,9 @@
 		"title": "SILENT BLUE"
 	},
 	{
-		"altTitles": ["甲賀忍法帖"],
+		"altTitles": [
+			"甲賀忍法帖"
+		],
 		"artist": "ONMYO-ZA",
 		"data": {
 			"artistJP": "陰陽座",
@@ -6792,7 +7402,9 @@
 		"title": "Kouganinpouchou"
 	},
 	{
-		"altTitles": ["ジンギスカン"],
+		"altTitles": [
+			"ジンギスカン"
+		],
 		"artist": "Niiyama Yukihiro Feat. GREAT G and surprise",
 		"data": {
 			"artistJP": "仁井山征弘 Feat. GREAT G and surprise",
@@ -6804,7 +7416,9 @@
 		"title": "Genghis Khan"
 	},
 	{
-		"altTitles": ["にじよめちゃん体操第一億"],
+		"altTitles": [
+			"にじよめちゃん体操第一億"
+		],
 		"artist": "NIJIYOMECHAN and ZIPTAN",
 		"data": {
 			"artistJP": "にじよめちゃんとZIPたん",
@@ -6816,7 +7430,9 @@
 		"title": "NIJIYOMECHAN Exercise No 100,000,000"
 	},
 	{
-		"altTitles": ["花と、雪と、ドラムンベース。"],
+		"altTitles": [
+			"花と、雪と、ドラムンベース。"
+		],
 		"artist": "kanone feat. Sennzai",
 		"data": {
 			"artistJP": "kanone feat. せんざい",
@@ -6840,7 +7456,9 @@
 		"title": "Conquista Ciela"
 	},
 	{
-		"altTitles": ["怒槌"],
+		"altTitles": [
+			"怒槌"
+		],
 		"artist": "Takenobu Mitsuyoshi",
 		"data": {
 			"artistJP": "光吉猛修",
@@ -6852,7 +7470,9 @@
 		"title": "Ikazuchi"
 	},
 	{
-		"altTitles": ["Seyana. ～何でも言うことを聞いてくれるアカネチャン～"],
+		"altTitles": [
+			"Seyana. ～何でも言うことを聞いてくれるアカネチャン～"
+		],
 		"artist": "GYARI",
 		"data": {
 			"artistJP": "GYARI",
@@ -6864,7 +7484,9 @@
 		"title": "Seyana. ～AKANE's anything ok～"
 	},
 	{
-		"altTitles": ["おねがいダーリン"],
+		"altTitles": [
+			"おねがいダーリン"
+		],
 		"artist": "ONE (song by Nanahoshi Kangen Gakudan)",
 		"data": {
 			"artistJP": "ONE (song by ナナホシ管弦楽団)",
@@ -6888,7 +7510,9 @@
 		"title": "My First Phone"
 	},
 	{
-		"altTitles": ["SHINY DAYS"],
+		"altTitles": [
+			"SHINY DAYS"
+		],
 		"artist": "ASAKA",
 		"data": {
 			"artistJP": "亜咲花",
@@ -6900,7 +7524,9 @@
 		"title": "SHINYDAYS"
 	},
 	{
-		"altTitles": ["NOISY LOVE POWER☆"],
+		"altTitles": [
+			"NOISY LOVE POWER☆"
+		],
 		"artist": "AyakaOhashi",
 		"data": {
 			"artistJP": "大橋彩香",
@@ -6912,7 +7538,9 @@
 		"title": "NOISYLOVEPOWER"
 	},
 	{
-		"altTitles": ["ネ！コ！"],
+		"altTitles": [
+			"ネ！コ！"
+		],
 		"artist": "Patricia Of End / Michi Kuroki / Shachi Yuri / Yuki Asuhara “Nora to Oujo to Noraneko Heart”",
 		"data": {
 			"artistJP": "パトリシア・オブ・エンド・黒木未知・夕莉シャチ・明日原ユウキ「ノラと皇女と野良猫ハート」",
@@ -6936,7 +7564,9 @@
 		"title": "only my railgun"
 	},
 	{
-		"altTitles": ["ロールプレイングゲーム"],
+		"altTitles": [
+			"ロールプレイングゲーム"
+		],
 		"artist": "Soramafuurasaka",
 		"data": {
 			"artistJP": "そらまふうらさか",
@@ -6948,7 +7578,9 @@
 		"title": "Role-playing game"
 	},
 	{
-		"altTitles": ["ヒバナ"],
+		"altTitles": [
+			"ヒバナ"
+		],
 		"artist": "DECO*27",
 		"data": {
 			"artistJP": "DECO*27",
@@ -6960,7 +7592,9 @@
 		"title": "HIBANA"
 	},
 	{
-		"altTitles": ["ロキ"],
+		"altTitles": [
+			"ロキ"
+		],
 		"artist": "mikitoP",
 		"data": {
 			"artistJP": "みきとP",
@@ -6984,7 +7618,9 @@
 		"title": "Money Money"
 	},
 	{
-		"altTitles": ["極圏"],
+		"altTitles": [
+			"極圏"
+		],
 		"artist": "cosMo VS dj TAKA「SOUND VOLTEX」より",
 		"data": {
 			"artistJP": "cosMo VS dj TAKA「SOUND VOLTEX」より",
@@ -7008,7 +7644,9 @@
 		"title": "Scarlet Lance"
 	},
 	{
-		"altTitles": ["セイクリッド　ルイン"],
+		"altTitles": [
+			"セイクリッド　ルイン"
+		],
 		"artist": "Drop＆祇羽 feat. 葉月ゆら「太鼓の達人」より",
 		"data": {
 			"artistJP": "Drop＆祇羽 feat. 葉月ゆら「太鼓の達人」より",
@@ -7044,7 +7682,9 @@
 		"title": "EVERGREEN"
 	},
 	{
-		"altTitles": ["金の聖夜霜雪に朽ちて"],
+		"altTitles": [
+			"金の聖夜霜雪に朽ちて"
+		],
 		"artist": "Deadball P",
 		"data": {
 			"artistJP": "デッドボールP",
@@ -7056,7 +7696,9 @@
 		"title": "GoldenHolyNightRottingintotheFrostandSnow"
 	},
 	{
-		"altTitles": ["不思議の国のクリスマス"],
+		"altTitles": [
+			"不思議の国のクリスマス"
+		],
 		"artist": "SOUND HOLIC feat. 3L",
 		"data": {
 			"artistJP": "SOUND HOLIC feat. 3L",
@@ -7080,7 +7722,9 @@
 		"title": "Schwarzschild"
 	},
 	{
-		"altTitles": ["Magical Sound Shower"],
+		"altTitles": [
+			"Magical Sound Shower"
+		],
 		"artist": "HIRO/Kusemono P",
 		"data": {
 			"artistJP": "HIRO/曲者P",
@@ -7092,7 +7736,9 @@
 		"title": "MagicalSoundShower"
 	},
 	{
-		"altTitles": ["片想いサンバ"],
+		"altTitles": [
+			"片想いサンバ"
+		],
 		"artist": "Owata P",
 		"data": {
 			"artistJP": "オワタP",
@@ -7104,7 +7750,9 @@
 		"title": "Unrequited Love Samba"
 	},
 	{
-		"altTitles": ["ナイトメア☆パーティーナイト"],
+		"altTitles": [
+			"ナイトメア☆パーティーナイト"
+		],
 		"artist": "Kuchibashi P",
 		"data": {
 			"artistJP": "くちばしP",
@@ -7116,7 +7764,9 @@
 		"title": "Nightmare Party Night"
 	},
 	{
-		"altTitles": ["フキゲンワルツ"],
+		"altTitles": [
+			"フキゲンワルツ"
+		],
 		"artist": "OSTER project",
 		"data": {
 			"artistJP": "OSTER project",
@@ -7128,7 +7778,9 @@
 		"title": "Grumpy Waltz"
 	},
 	{
-		"altTitles": ["結ンデ開イテ羅刹ト骸"],
+		"altTitles": [
+			"結ンデ開イテ羅刹ト骸"
+		],
 		"artist": "Hachi",
 		"data": {
 			"artistJP": "ハチ",
@@ -7140,7 +7792,9 @@
 		"title": "Close and Open Demons and the Dead"
 	},
 	{
-		"altTitles": ["サウンド"],
+		"altTitles": [
+			"サウンド"
+		],
 		"artist": "baker",
 		"data": {
 			"artistJP": "baker",
@@ -7152,7 +7806,9 @@
 		"title": "sound"
 	},
 	{
-		"altTitles": ["右肩の蝶"],
+		"altTitles": [
+			"右肩の蝶"
+		],
 		"artist": "noripy",
 		"data": {
 			"artistJP": "のりP",
@@ -7176,7 +7832,9 @@
 		"title": "Alea jacta est!"
 	},
 	{
-		"altTitles": ["L4TS:2018 (feat. あひる & KTA)"],
+		"altTitles": [
+			"L4TS:2018 (feat. あひる & KTA)"
+		],
 		"artist": "Sprite Recordings",
 		"data": {
 			"artistJP": "Sprite Recordings",
@@ -7188,7 +7846,9 @@
 		"title": "L4TS:2018 (feat. Ah1ru  &KTA)"
 	},
 	{
-		"altTitles": ["クレイジークレイジーダンサーズ"],
+		"altTitles": [
+			"クレイジークレイジーダンサーズ"
+		],
 		"artist": "beatMARIO + Amane (COOL&CREATE)",
 		"data": {
 			"artistJP": "ビートまりお＋あまね（COOL&CREATE）",
@@ -7200,7 +7860,9 @@
 		"title": "Crazy Crazy Dancers"
 	},
 	{
-		"altTitles": ["【東方ニコカラ】秘神マターラ feat.魂音泉【IOSYS】"],
+		"altTitles": [
+			"【東方ニコカラ】秘神マターラ feat.魂音泉【IOSYS】"
+		],
 		"artist": "ARM (IOSYS)",
 		"data": {
 			"artistJP": "ARM (IOSYS)",
@@ -7212,7 +7874,9 @@
 		"title": "[Toho nicokara]Secret God Matara feat.TAMAONSEN[IOSYS]"
 	},
 	{
-		"altTitles": ["隠然"],
+		"altTitles": [
+			"隠然"
+		],
 		"artist": "BUTAOTOME",
 		"data": {
 			"artistJP": "豚乙女",
@@ -7260,7 +7924,9 @@
 		"title": "-OutsideR:RequieM-"
 	},
 	{
-		"altTitles": ["イロトリドリのメロディ"],
+		"altTitles": [
+			"イロトリドリのメロディ"
+		],
 		"artist": "Nagi Kobotoke (CV:Kaoru Sakura)",
 		"data": {
 			"artistJP": "小仏 凪(CV:佐倉 薫)",
@@ -7272,7 +7938,9 @@
 		"title": "Irotoridori no melody"
 	},
 	{
-		"altTitles": ["奏者はただ背中と提琴で語るのみ"],
+		"altTitles": [
+			"奏者はただ背中と提琴で語るのみ"
+		],
 		"artist": "Nachi Tsukisuzu (CV:Ayaka Imamura)",
 		"data": {
 			"artistJP": "月鈴 那知(CV:今村 彩夏)",
@@ -7296,7 +7964,9 @@
 		"title": "Deep in Abyss"
 	},
 	{
-		"altTitles": ["雷切-RAIKIRI-"],
+		"altTitles": [
+			"雷切-RAIKIRI-"
+		],
 		"artist": "kanone",
 		"data": {
 			"artistJP": "kanone",
@@ -7344,7 +8014,9 @@
 		"title": "アリサのテーマ"
 	},
 	{
-		"altTitles": ["敗北の少年"],
+		"altTitles": [
+			"敗北の少年"
+		],
 		"artist": "kemu",
 		"data": {
 			"artistJP": "kemu",
@@ -7356,7 +8028,9 @@
 		"title": "The Defeated Boy"
 	},
 	{
-		"altTitles": ["立ち入り禁止"],
+		"altTitles": [
+			"立ち入り禁止"
+		],
 		"artist": "Mafumafu",
 		"data": {
 			"artistJP": "まふまふ",
@@ -7368,7 +8042,9 @@
 		"title": "No Entry"
 	},
 	{
-		"altTitles": ["お気に召すまま"],
+		"altTitles": [
+			"お気に召すまま"
+		],
 		"artist": "Eve",
 		"data": {
 			"artistJP": "Eve",
@@ -7380,7 +8056,9 @@
 		"title": "Okinimesumama"
 	},
 	{
-		"altTitles": ["命ばっかり"],
+		"altTitles": [
+			"命ばっかり"
+		],
 		"artist": "nulut",
 		"data": {
 			"artistJP": "ぬゆり",
@@ -7452,7 +8130,9 @@
 		"title": "Altale"
 	},
 	{
-		"altTitles": ["最終鬼畜妹フランドール・S"],
+		"altTitles": [
+			"最終鬼畜妹フランドール・S"
+		],
 		"artist": "beatMARIO(COOL&CREATE)",
 		"data": {
 			"artistJP": "ビートまりお（COOL&CREATE）",
@@ -7464,7 +8144,9 @@
 		"title": "Last Brutal Sister Flandre S"
 	},
 	{
-		"altTitles": ["ネクロファンタジア ～ Arr.Demetori"],
+		"altTitles": [
+			"ネクロファンタジア ～ Arr.Demetori"
+		],
 		"artist": "Demetori",
 		"data": {
 			"artistJP": "Demetori",
@@ -7488,7 +8170,9 @@
 		"title": "Imperishable Night 2006 (2016 Refine)"
 	},
 	{
-		"altTitles": ["終点"],
+		"altTitles": [
+			"終点"
+		],
 		"artist": "cosMo@Bousou-P",
 		"data": {
 			"artistJP": "cosMo@暴走P",
@@ -7512,7 +8196,9 @@
 		"title": "WORLD'S END UMBRELLA"
 	},
 	{
-		"altTitles": ["ワンダーラスト"],
+		"altTitles": [
+			"ワンダーラスト"
+		],
 		"artist": "sasakure.UK",
 		"data": {
 			"artistJP": "sasakure.UK",
@@ -7536,7 +8222,9 @@
 		"title": "End Time"
 	},
 	{
-		"altTitles": ["カラフル×メロディ"],
+		"altTitles": [
+			"カラフル×メロディ"
+		],
 		"artist": "Team MOER",
 		"data": {
 			"artistJP": "ちーむMOER",
@@ -7548,7 +8236,9 @@
 		"title": "Colorful × Melody "
 	},
 	{
-		"altTitles": ["魔法少女になるしかねぇ"],
+		"altTitles": [
+			"魔法少女になるしかねぇ"
+		],
 		"artist": "nekomirin feat. Mao Komiya",
 		"data": {
 			"artistJP": "ねこみりん feat.小宮真央",

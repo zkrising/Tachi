@@ -19,6 +19,7 @@ type MatchTypesNoDifficulty = "bmsChartHash" | "itgChartHash" | "popnChartHash" 
 
 // These MatchTypes need `difficulty` set in the batch manual.
 type MatchTypesWithDifficulty =
+	| "ddrSongHash"
 	| "inGameID"
 	| "inGameStrID"
 	| "sdvxInGameID"

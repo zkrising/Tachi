@@ -31,7 +31,7 @@ const MATCH_TYPE_CHECKS: Record<
 	MatchTypes,
 	| {
 			type: "SONGS";
-			fn: (s: SongDocument) => string | Array<string>;
+			fn: (s: any) => string | Array<string>;
 	  }
 	| {
 			type: "CHARTS";
@@ -61,6 +61,17 @@ const MATCH_TYPE_CHECKS: Record<
 		},
 	},
 	uscChartHash: { type: "CHARTS", fn: (c) => c.data.hashSHA1 },
+	ddrSongHash: {
+		type: "SONGS",
+		fn: (s: SongDocument<"ddr">) => {
+			// if there's no ddrSongHash then it's a konaste song / we're missing seed data
+			// so just use the inGameID
+			if (s.data.ddrSongHash === undefined) {
+				return `${s.data.inGameID}`;
+			}
+			return s.data.ddrSongHash;
+		},
+	},
 };
 
 let exitCode = 0;

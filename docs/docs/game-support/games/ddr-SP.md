@@ -84,3 +84,4 @@ The folowing judgements are defined:
 - `inGameID`
 - `songTitle`
 - `tachiSongID`
+- `ddrSongHash`

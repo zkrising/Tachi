@@ -432,6 +432,66 @@ export async function ResolveMatchTypeToTachiData(
 			return { song, chart };
 		}
 
+		case "ddrSongHash": {
+			if (game !== "ddr") {
+				throw new InvalidScoreFailure(`ddrSongHash matchType can only be used on DDR.`);
+			}
+
+			const difficulty = AssertStrAsDifficulty(data.difficulty, game, context.playtype);
+
+			const song = await db.anySongs.ddr.findOne({
+				"data.ddrSongHash": data.identifier,
+			});
+
+			if (!song) {
+				throw new SongOrChartNotFoundFailure(
+					`Cannot find song with ddrSongHash ${data.identifier}.`,
+					importType,
+					data,
+					context
+				);
+			}
+
+			// check that a chart with the song's id exists
+			const chartSync = await db.anyCharts.ddr.findOne({
+				songID: song.id,
+			});
+
+			if (!chartSync) {
+				logger.severe(`Song-Chart desync on ${song.id}.`);
+				throw new InternalFailure(`Failed to get chart for a song that exists.`);
+			}
+
+			let chart;
+
+			if (context.version) {
+				chart = await db.anyCharts.ddr.findOne({
+					songID: song.id,
+					playtype: context.playtype,
+					difficulty,
+					versions: context.version,
+				});
+			} else {
+				chart = await db.anyCharts.ddr.findOne({
+					songID: song.id,
+					playtype: context.playtype,
+					difficulty,
+					isPrimary: true,
+				});
+			}
+
+			if (!chart) {
+				throw new SongOrChartNotFoundFailure(
+					`Found song with ddrSongHash ${data.identifier} but cannot find chart ${context.playtype} ${difficulty}.`,
+					importType,
+					data,
+					context
+				);
+			}
+
+			return { song, chart };
+		}
+
 		default: {
 			const { matchType } = data;
 

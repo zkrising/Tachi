@@ -9,6 +9,7 @@ import KtRatingToCuratorSkill from "./migrations/ktRating-to-curator-skill";
 import MarkFervidexAsWithoutIntent from "./migrations/mark-fervidex-as-without-intent";
 import MarkKsHookAsWithoutIntent from "./migrations/mark-kshook-as-without-intent";
 import NullLR2HookFailedBPs from "./migrations/null-lr2hook-failed-bps";
+import RemoveAbove100pc from "./migrations/remove-above-100pc";
 import RemoveIIDXBeginners from "./migrations/remove-iidx-beginners";
 import RemoveIIDX2dxtraBeginners from "./migrations/remove-iidx-extra-beginners";
 import RemoveMultifolderStats from "./migrations/remove-multifolder-stats";
@@ -74,7 +75,12 @@ if (Environment.nodeEnv !== "test") {
 
 	// bokutachi specific migrations
 	if (TachiConfig.TYPE !== "kamai") {
-		REGISTERED_MIGRATIONS.push(NullLR2HookFailedBPs, FixUndefinedBMSData, RemoveRandom);
+		REGISTERED_MIGRATIONS.push(
+			NullLR2HookFailedBPs,
+			FixUndefinedBMSData,
+			RemoveRandom,
+			RemoveAbove100pc
+		);
 	}
 }
 

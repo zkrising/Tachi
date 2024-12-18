@@ -75,6 +75,7 @@ The properties are described as this:
 | `matchType` | "songTitle" \| "ddrSongHash" \| "tachiSongID" \| "bmsChartHash" \| "inGameID" \| "uscChartHash" | This determines how `identifier` will be used to match your scores' chart with Tachi's database of songs and charts. |
 | `identifier` | String | A string that Tachi uses to identify what chart this is for. How this is used depends on the `matchType`. |
 | `difficulty` (Conditional) | String | If `matchType` is "tachiSongID", "inGameID", "ddrSongHash" or "songTitle", this field must be present, and describe the difficulty of the chart this score is for. |
+| `artist` (Conditional) | String | If `matchType` is "songTitle", this field can be present, and describe the artist name for less equivocal matching. This field is optional for legacy purposes. |
 | `timeAchieved` (Optional) | integer \| null | This is *when* the score was achieved in unix milliseconds. This should be provided if possible, as Tachi uses it for a LOT of features. |
 | `comment` (Optional) | string \| null | A comment from the user about this score. |
 | `judgements` (Optional) | Record&lt;Game Judgement, integer&gt; | This should be a record of the judgements for your game + playtype, and the integer indicating how often they occured. |
@@ -95,13 +96,28 @@ in a different way.
 
 - songTitle
 
-As the name implies, this searches for a song who's title
-resembles `identifier`. **THIS IS NOT FUZZY MATCHING**,
+As the name implies, this searches for a song whose title
+is exactly `identifier`. **THIS IS NOT FUZZY MATCHING**,
 and is by far the least reliable way to send scores to
 Tachi. This is kept for compatibility purposes with poor quality APIs.
 
 This match type *necessitates* that `difficulty` be defined
 and set to a valid difficulty for this game + playtype.
+
+This match type can be augmented with a secondary identifier `artist`
+which resolves title clashes:
+
+```json
+{
+	"score": 500,
+	"lamp": "HARD CLEAR",
+	"matchType": "songTitle",
+	"identifier": "5.1.1.",
+	"artist": "dj nagureo",
+	"difficulty": "ANOTHER",
+	"timeAchieved": 1624324467489
+}
+```
 
 - tachiSongID
 
@@ -167,6 +183,7 @@ looks like this:
 		"lamp": "HARD CLEAR",
 		"matchType": "songTitle",
 		"identifier": "5.1.1.",
+		"artist": "dj nagureo",
 		"difficulty": "ANOTHER"
 	}, {
 		"score": 123,

@@ -752,28 +752,28 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				A: COLOUR_SET.paleGreen,
 				AA: COLOUR_SET.green,
 				AAA: COLOUR_SET.vibrantGreen,
-				S: COLOUR_SET.orange,
-				SS: COLOUR_SET.vibrantYellow,
-				SSS: COLOUR_SET.teal,
+				S: COLOUR_SET.teal,
+				SS: COLOUR_SET.paleOrange,
+				SSS: COLOUR_SET.gold,
 				"SSS+": COLOUR_SET.white,
 			},
 			noteLamp: {
 				LOSS: COLOUR_SET.red,
-				CLEAR: COLOUR_SET.paleGreen,
-				"FULL COMBO": COLOUR_SET.paleBlue,
-				"ALL BREAK": COLOUR_SET.gold,
+				CLEAR: COLOUR_SET.green,
+				"FULL COMBO": COLOUR_SET.gold,
+				"ALL BREAK": COLOUR_SET.white,
 			},
 			bellLamp: {
-				NONE: COLOUR_SET.red,
+				NONE: COLOUR_SET.gray,
 				"FULL BELL": COLOUR_SET.gold,
 			},
 		},
 		difficultyColours: {
-			BASIC: COLOUR_SET.blue,
+			BASIC: COLOUR_SET.green,
 			ADVANCED: COLOUR_SET.orange,
-			EXPERT: COLOUR_SET.red,
+			EXPERT: COLOUR_SET.vibrantPink,
 			MASTER: COLOUR_SET.purple,
-			LUNATIC: COLOUR_SET.vibrantRed,
+			LUNATIC: COLOUR_SET.white,
 		},
 		ratingSystems: [],
 		scoreHeaders: [
@@ -810,8 +810,8 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				/>
 				<OngekiJudgementCell score={sc} />
 				<OngekiLampCell
-					lamp1={sc.scoreData.noteLamp}
-					lamp2={sc.scoreData.bellLamp}
+					noteLamp={sc.scoreData.noteLamp}
+					bellLamp={sc.scoreData.bellLamp}
 					colour={GetEnumColour(sc, "noteLamp")}
 				/>
 			</>

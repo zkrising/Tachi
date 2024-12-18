@@ -1,34 +1,41 @@
 import { ChangeOpacity } from "util/color-opacity";
 import React from "react";
+import { COLOUR_SET } from "tachi-common";
 
 export default function OngekiLampCell({
-	lamp1,
-	lamp2,
+	noteLamp,
+	bellLamp,
 	colour,
 }: {
-	lamp1: string;
-	lamp2: string;
+	noteLamp: "ALL BREAK" | "FULL COMBO" | "CLEAR" | "LOSS";
+	bellLamp: "FULL BELL" | "NONE";
 	colour: string;
 }) {
-	let content = <div>{lamp1}</div>;
+	let content = <div>{noteLamp}</div>;
 
-	if (lamp2 !== "NONE") {
-		if (lamp1 === "CLEAR") {
-			content = <div>{lamp2}</div>;
+	if (bellLamp !== "NONE") {
+		if (noteLamp === "CLEAR") {
+			content = <div>{bellLamp}</div>;
 		} else {
 			content = (
 				<span>
-					<div>{lamp1}</div>
-					<div>{lamp2}</div>
+					<div>{noteLamp}</div>
+					<div>{bellLamp}</div>
 				</span>
 			);
 		}
 	}
 
+	const low = ChangeOpacity(colour, 0.2);
+	const lowCorner = ChangeOpacity(COLOUR_SET.gold, 0.4);
+
 	return (
 		<td
 			style={{
-				backgroundColor: ChangeOpacity(colour, 0.2),
+				background:
+					bellLamp === "FULL BELL"
+						? `linear-gradient(-45deg, ${lowCorner} 0%,${lowCorner} 12%,${low} 12%,${low} 100%)`
+						: low,
 				whiteSpace: "nowrap",
 			}}
 		>

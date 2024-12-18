@@ -61,7 +61,7 @@ function FolderThermometer<T extends string>({
 	max: integer;
 }) {
 	return (
-		<td rowSpan={keys.length} style={{ width: 200, height: 40 * keys.length }}>
+		<td rowSpan={keys.length} style={{ width: 200, height: Math.max(160, 40 * keys.length) }}>
 			<ResponsiveBar
 				keys={keys}
 				data={[Object.assign({ id: "" }, values)]}

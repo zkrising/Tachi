@@ -822,7 +822,7 @@
 			"F29e9f4412272cfe2c485151879b9bf6576ff531c693971d185d8353264eae471"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-luminous-intl-levels",
 		"title": "CHUNITHM (LUMINOUS International)"
@@ -838,7 +838,7 @@
 			"F4d248317eb75d3de99114bd421a0dd2db878190136e2c72c9eb38159802b98fe"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-luminous-intl-difficulties",
 		"title": "CHUNITHM (LUMINOUS International) (Difficulties)"
@@ -872,7 +872,7 @@
 			"F6a39f0d51982cfecea6fc8f9cb75e085f1f676f9f76872b0f9729c75fe4ae6b7"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-luminous-omni-levels",
 		"title": "CHUNITHM (LUMINOUS Omnimix)"
@@ -888,7 +888,7 @@
 			"F441dec800cb26c96b8305ce9a1ea2ff56608a4e2b889f4676b6d4eaa814b27f7"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-luminous-omni-difficulties",
 		"title": "CHUNITHM (LUMINOUS Omnimix) (Difficulties)"
@@ -969,7 +969,8 @@
 			"F8cd01aee1c8285b109a59499817bd229d7188f2fcc69e7e66511f1eeea2e225e",
 			"F89d71f6616a90fde8636b1c6ae71fdd98534ee9b40f59c08bfb9933fcc32badc",
 			"Fd0fcee881f2c725b1a4ffeb604708dcd446fb057c3f1a534818c2135f5e69f06",
-			"F247e4c376c8f4b475c99c480e4c24dc6b4dcf6ce34c0cd21d83b0b9227fc3325"
+			"F247e4c376c8f4b475c99c480e4c24dc6b4dcf6ce34c0cd21d83b0b9227fc3325",
+			"F037e606c874253d9825e2e404738bd13dae384a50e9591ce1fd62912ab00df92"
 		],
 		"game": "chunithm",
 		"inactive": false,
@@ -994,7 +995,7 @@
 		"title": "CHUNITHM (LUMINOUS PLUS Omnimix) (Difficulties)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for CHUNITHM in LUMINOUS PLUS.",
 		"folders": [
 			"F5e6f84b3158d6e1a58be88901d1410bd2df343bee6fc6efea01736024f6a8df8",
@@ -1019,7 +1020,8 @@
 			"F4b28a9e418a4636652551dc974e80dee5df2536a7e4b7f63d7f81665be8b5274",
 			"Fabf60d5b531ddca17b8783bed9280e17e9140b9cb98495624893bef2569cbddc",
 			"F97b92feba00ef773f53d8d8ec93fe12e95b23efbb6a794cba76a891b0d54d58a",
-			"Fc57597ba4bdaa406377c442c511fd8f8f43a69b0d27e3154285e79a3e121786e"
+			"Fc57597ba4bdaa406377c442c511fd8f8f43a69b0d27e3154285e79a3e121786e",
+			"F1e2dad337f35f872fcb9d9726bd4012570c5ce0c644c2d68f97f2f3c9c884d76"
 		],
 		"game": "chunithm",
 		"inactive": false,
@@ -1044,7 +1046,7 @@
 		"title": "CHUNITHM (LUMINOUS PLUS) (Difficulties)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for CHUNITHM in LUMINOUS.",
 		"folders": [
 			"F0e650704ddc8a045e5a944b660c9e16492b3d956891e8a3d1279af9648e37d62",
@@ -1072,7 +1074,7 @@
 			"Fbeb5d474cbf40cad4435ec535479e6da020ff0f316cc3250162cd71ee89d5bdb"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-luminous-levels",
 		"title": "CHUNITHM (LUMINOUS)"
@@ -1088,7 +1090,7 @@
 			"Fb1440a42e16b38e3aff4d0ce3973ab96d622b80357305e46dff66726afebde73"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-luminous-difficulties",
 		"title": "CHUNITHM (LUMINOUS) (Difficulties)"
@@ -1356,7 +1358,7 @@
 			"F78e12b6d6f218366399229fa6e0de86da2ee4e994a9a41bc4fbd0ffa2cc8512b"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sunplus-omni-levels",
 		"title": "CHUNITHM (SUN PLUS Omnimix)"
@@ -1372,7 +1374,7 @@
 			"F3c4525fa43cd873d5d089e91ba88becc448a5b0c2249b8fc39cd61b854800de6"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sunplus-omni-difficulties",
 		"title": "CHUNITHM (SUN PLUS Omnimix) (Difficulties)"
@@ -1406,7 +1408,7 @@
 			"F274a34226d167d9d8d51be0dcfd2c893f7051d964d80b232d3d021dc9aa9fdc7"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sunplus-levels",
 		"title": "CHUNITHM (SUN PLUS)"
@@ -1422,7 +1424,7 @@
 			"Fd64cc883d1107033fdecf9154d8e158f26b4a04144c285b3a38490b38e43de8a"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sunplus-difficulties",
 		"title": "CHUNITHM (SUN PLUS) (Difficulties)"
@@ -4690,6 +4692,58 @@
 		"playtype": "Single",
 		"tableID": "museca-Single-1.5-levels",
 		"title": "MÚSECA (1 + 1/2)"
+	},
+	{
+		"default": false,
+		"description": "Levels for O.N.G.E.K.I. in bright MEMORY Act.2 Omnimix.",
+		"folders": [
+			"F9d846efcecb94b8379983e966007b5ebb19a060840dabfd959b3325b5ca871c2",
+			"Ffa12bf18b5972cb731dea1ebf4176ff2bc94e1acd45e2d0a3772c1df9a96536b",
+			"F6bb31ecb1546577581915363ba25492d50016e3c0b390dfc2535cf743982b957",
+			"Fec51c5b12461b198bd3baaf2465bc97ccf70c9b1d8e8ea3b922cfee59a457580",
+			"Fb075e2722e3eb427bdee6c568f1058daa7120ee03038d08281d2e892994861c0",
+			"F463f37929b6643fb22d3195fc2ddc920f71bd0878a8ea5ee2aadb266c93eb0e7",
+			"F4ee039b745af346c1f9ad5502f6ad7e0b1547e8204ada7455ba9c7095454ea66",
+			"F2bbf55e9d6a9749ffcc04a661c097928008722a2087e575666e22c453d637c7f",
+			"Fbee9632921aaae5ddf87fc4372392e8cf5f9649b6d2c5e831bf76d597ef0969a",
+			"F7adcb7d81d0f626300c9a64a50fe940b3038308443eadd3a8fd4a49d984d0525",
+			"Fcec71331f03ae6c446809e48927dcb3b98b4306dc5fd082b5ae8c2bb6c67e182",
+			"F4f63ccf6e174bef78b4c0d5eee11593fb42f823ad07def8b65130c2401f4251e",
+			"F1337d8a3b3f813270d691cc0b0dfeba3168c7b1a8d20df477d0ed4e2b32ad8a8",
+			"F0ba4c77645385e7a56356888ca70a997fc275bd17171fdbeaff69e26cb43dc0f",
+			"Ffd89626baa00e8a61e970a8d99623e2349e457d17c515632ea3968aedce81275",
+			"F708faf85fa072155c1d17f6f923e108b4ed58fb255365655d1303f73e58f057c",
+			"F6b90d7cd9925650a018c6e2fbee2c38fbebfb52920d772be481687a849ece4ce",
+			"F1f0dd1639ed0204b5824e18816b5227cc924099fbe2c60b7ecfcdeef7f4f22c2",
+			"Fb3f1d6f643a8980b222451abc22b76c89a58933600555a60e59156a7015c656b",
+			"F03dfd9ab66ee36df9c755571856525960dd88df53a2ed3e09fa9c21c4c17f63c",
+			"F4c4c22d80d06b037df77787d776cfac622e2ba59f24535ee7e846ed3a1fc2b2e",
+			"F9901df91a94d83585f713470bb9a3565578eaef2174f44efa7ee792a9847271f",
+			"F7e21dff91f5e6d9dacd10ee8d1db152dc452c36b752920a283268af71bb228cb",
+			"Fde49c21512ee303bfb8dcd84db6e4546a648691106b74b5d5a30c54f995706c9",
+			"F80a36fbb268bdf8d7e8293149192de4ed245d22a809b9442db1faa434b0160ac"
+		],
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "ongeki-Single-brightMemory2Omni-levels",
+		"title": "O.N.G.E.K.I. (bright MEMORY Act.2 Omnimix)"
+	},
+	{
+		"default": false,
+		"description": "Difficulties for O.N.G.E.K.I. in bright MEMORY Act.2 Omnimix.",
+		"folders": [
+			"F087a2527248b01ad86e42bbde0ee9cd62848440e1d9a860cfd2d6a610896cf51",
+			"F305e869a319eed3730401d30ab9949d79960940cdf4b175d33b8134679f4a6be",
+			"Fb31352b04aa6e67f1e6596f90281ad7c65b8fa4d5aca71af0c903be7b10b0d71",
+			"F00ae78d6354d5f27e55943c22f09e81b024a35e88c651dad7bc65cdbb21a9362",
+			"F7df57e1be3f591b417fe94e10cd157d251b9780325a9812f9e7b1ed3ea207080"
+		],
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "ongeki-Single-brightMemory2Omni-difficulties",
+		"title": "O.N.G.E.K.I. (bright MEMORY Act.2 Omnimix) (Difficulties)"
 	},
 	{
 		"default": false,

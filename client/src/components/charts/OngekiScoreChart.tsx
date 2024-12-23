@@ -151,7 +151,7 @@ export default function OngekiScoreChart({
 				tooltip={(d: PointTooltipProps) => (
 					<ChartTooltip>
 						{d.point.data.y === 969999 ? "< 970,000 " : d.point.data.yFormatted}@{" "}
-						{formatTime(d.point.data.x)} {difficulty}
+						{formatTime(d.point.data.x)}
 					</ChartTooltip>
 				)}
 			/>

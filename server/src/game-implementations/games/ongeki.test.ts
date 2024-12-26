@@ -6,7 +6,7 @@ import { ONGEKI_BELL_LAMPS, ONGEKI_GRADES, ONGEKI_NOTE_LAMPS } from "tachi-commo
 import t from "tap";
 import { dmf, mkMockPB, mkMockScore } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
-import { TestingOngekiChart } from "test-utils/test-data";
+import { TestingOngekiChart, TestingOngekiScorePB } from "test-utils/test-data";
 import type { ProvidedMetrics, ScoreData } from "tachi-common";
 
 const baseMetrics: ProvidedMetrics["ongeki:Single"] = {
@@ -71,7 +71,56 @@ t.test("ONGEKI Implementation", (t) => {
 	});
 
 	t.todo("Session Calcs");
-	t.todo("Profile Calcs");
+
+	t.test("Profile Calcs", (t) => {
+		t.beforeEach(ResetDBState);
+
+		const mockPBs = async (ratings: Array<number>) => {
+			const p = [];
+
+			for (const [idx, rating] of ratings.entries()) {
+				p.push(
+					db["personal-bests"].insert({
+						...TestingOngekiScorePB,
+						chartID: `TEST${idx}`,
+						calculatedData: {
+							...TestingOngekiScorePB.calculatedData,
+							rating,
+						},
+					})
+				);
+			}
+
+			await Promise.all(p);
+		};
+
+		t.test("Floating-point edge case", async (t) => {
+			await mockPBs([
+				17, 16.9, 16.7, 16.61, 16.55, 16.4, 16.4, 16.4, 16.39, 16.35, 16.33, 16.32, 16.31,
+				16.3, 16.28, 16.28, 16.27, 16.27, 16.25, 16.25, 16.24, 16.24, 16.23, 16.21, 16.2,
+				16.2, 16.2, 16.2, 16.18, 16.17, 16.17, 16.16, 16.15, 16.14, 16.14, 16.13, 16.11,
+				16.1, 16.1, 16.06, 16.06, 16.06, 16.05, 16.05, 16.04, 16.02, 16.01, 16.01, 16, 16,
+				16, 16, 15.98, 15.98, 15.98, 15.97, 15.97, 15.94, 15.94, 15.93, 15.93, 15.92, 15.92,
+				15.92, 15.91, 15.91, 15.91, 15.9, 15.9, 15.9, 15.9, 15.9, 15.9, 15.9, 15.9, 15.9,
+				15.88, 15.88, 15.88, 15.88, 15.87, 15.87, 15.87, 15.86, 15.86, 15.85, 15.84, 15.83,
+				15.82, 15.8, 15.8, 15.8, 15.8, 15.8, 15.79, 15.79, 15.78, 15.78, 15.78, 15.77,
+			]);
+
+			t.equal(await ONGEKI_IMPL.profileCalcs.naiveRating("ongeki", "Single", 1), 16.27);
+
+			t.end();
+		});
+
+		t.test("Profile with fewer than 45 scores", async (t) => {
+			await mockPBs([16, 16, 16, 16]);
+
+			t.equal(await ONGEKI_IMPL.profileCalcs.naiveRating("ongeki", "Single", 1), 1.42);
+
+			t.end();
+		});
+
+		t.end();
+	});
 
 	t.test("Colour Deriver", (t) => {
 		const f = (v: number | null, expected: any) =>

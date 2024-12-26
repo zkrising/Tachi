@@ -15,6 +15,7 @@ import type {
  * @param n - The amount of rating values to pull.
  * @param returnMean - Optionally, if true, return the sum of these values divided by N.
  * @param nullIfNotEnoughScores - If true, return null if the total scores this user has is less than N.
+ * @param multiplier - If defined, ratings will be multiplied by this value and converted to integers.
  *
  * @returns - Number if the user has scores with that rating algorithm, null if they have
  * no scores with this rating algorithm that are non-null.
@@ -23,7 +24,8 @@ function CalcN<GPT extends GPTString>(
 	key: ScoreRatingAlgorithms[GPT],
 	n: integer,
 	returnMean = false,
-	nullIfNotEnoughScores = false
+	nullIfNotEnoughScores = false,
+	multiplier = 1
 ) {
 	return async (game: Game, playtype: Playtype, userID: integer) => {
 		const sc = await db["personal-bests"].find(
@@ -48,6 +50,19 @@ function CalcN<GPT extends GPTString>(
 			return null;
 		}
 
+		if (multiplier !== 1) {
+			const result = sc.reduce(
+				(a, e) => a + Math.round((e.calculatedData[key] ?? 0) * multiplier),
+				0
+			);
+
+			if (returnMean) {
+				return Math.floor(result / n) / multiplier;
+			}
+
+			return result / multiplier;
+		}
+
 		let result = sc.reduce((a, e) => a + e.calculatedData[key]!, 0);
 
 		if (returnMean) {
@@ -61,17 +76,19 @@ function CalcN<GPT extends GPTString>(
 export function ProfileSumBestN<GPT extends GPTString>(
 	key: ScoreRatingAlgorithms[GPT],
 	n: integer,
-	nullIfNotEnoughScores = false
+	nullIfNotEnoughScores = false,
+	multiplier = 1
 ) {
-	return CalcN(key, n, false, nullIfNotEnoughScores);
+	return CalcN(key, n, false, nullIfNotEnoughScores, multiplier);
 }
 
 export function ProfileAvgBestN<GPT extends GPTString>(
 	key: ScoreRatingAlgorithms[GPT],
 	n: integer,
-	nullIfNotEnoughScores = false
+	nullIfNotEnoughScores = false,
+	multiplier = 1
 ) {
-	return CalcN(key, n, true, nullIfNotEnoughScores);
+	return CalcN(key, n, true, nullIfNotEnoughScores, multiplier);
 }
 
 export async function GetBestRatingOnSongs(

@@ -1380,6 +1380,41 @@ export const TestingOngekiChart: ChartDocument<"ongeki:Single"> = {
 	versions: ["brightMemory3", "brightMemory3Omni"],
 };
 
+export const TestingOngekiScorePB: PBScoreDocument<"ongeki:Single"> = {
+	chartID: "213796bdb6150f80ba6412ce69df1249e16c0cb0",
+	userID: 1,
+	calculatedData: {
+		rating: 17,
+	},
+	composedFrom: [{ name: "Best Score", scoreID: "TESTING_SCORE_ID" }],
+	highlight: false,
+	isPrimary: true,
+	scoreData: {
+		score: 1010000,
+		noteLamp: "ALL BREAK",
+		bellLamp: "FULL BELL",
+		grade: "SSS+",
+		enumIndexes: {
+			grade: 11,
+			noteLamp: 3,
+			bellLamp: 1,
+		},
+		judgements: {},
+		optional: {
+			enumIndexes: {},
+		},
+	},
+	rankingData: {
+		rank: 1,
+		outOf: 1,
+		rivalRank: null,
+	},
+	songID: 19,
+	game: "ongeki",
+	playtype: "Single",
+	timeAchieved: 10000,
+};
+
 export const TestingOngekiChartConverter: ChartDocument<"ongeki:Single"> = {
 	chartID: "e5e4ee3d4feb233c399751b3ba3daf8ba149c9e6",
 	data: {

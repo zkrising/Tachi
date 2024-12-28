@@ -1,6 +1,6 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
 import { FmtNum } from "../../utils/util";
-import { ClassValue, zodNonNegativeInt } from "../config-utils";
+import { ClassValue, ToDecimalPlaces, zodNonNegativeInt } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
 import type { INTERNAL_GAME_CONFIG, INTERNAL_GAME_PT_CONFIG } from "../../types/internals";
@@ -87,15 +87,20 @@ export const CHUNITHM_SINGLE_CONF = {
 		rating: {
 			description:
 				"The rating value of this score. This is identical to the system used in game.",
+			formatter: ToDecimalPlaces(2),
 		},
 	},
 	sessionRatingAlgs: {
-		naiveRating: { description: "The average of your best 10 ratings this session." },
+		naiveRating: {
+			description: "The average of your best 10 ratings this session.",
+			formatter: ToDecimalPlaces(2),
+		},
 	},
 	profileRatingAlgs: {
 		naiveRating: {
 			description:
 				"The average of your best 30 ratings. This is different to in-game, as it does not take into account your recent scores in any way.",
+			formatter: ToDecimalPlaces(2),
 		},
 	},
 

@@ -24790,5 +24790,55 @@
 			"cosmicv3locity_coyaankeijuzaquva"
 		],
 		"title": "COSMIC V3LOCITY"
+	},
+	{
+		"altTitles": [],
+		"artist": "宝鐘マリン",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2288,
+		"searchTerms": [
+			"ahoywarera_marine"
+		],
+		"title": "Ahoy!! 我ら宝鐘海賊団☆"
+	},
+	{
+		"altTitles": [],
+		"artist": "宝鐘マリン",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2289,
+		"searchTerms": [
+			"treasurebox_marine"
+		],
+		"title": "I'm Your Treasure Box ＊あなたは マリンせんちょうを たからばこからみつけた。"
+	},
+	{
+		"altTitles": [
+			"美少女無罪齶パイレーツ"
+		],
+		"artist": "宝鐘マリン",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2290,
+		"searchTerms": [
+			"bisyojomuzai_marine"
+		],
+		"title": "美少女無罪♡パイレーツ"
+	},
+	{
+		"altTitles": [],
+		"artist": "宝鐘マリン",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2291,
+		"searchTerms": [
+			"yuureisendan_marine"
+		],
+		"title": "幽霊船戦"
 	}
 ]

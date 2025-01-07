@@ -1,3 +1,4 @@
+/* eslint-disable no-control-regex */
 import fs, { mkdirSync } from "fs";
 import path from "path";
 import iconv from "iconv-lite";
@@ -7,8 +8,25 @@ import logger from "../../../logger";
 import { IIDXConvertOutput } from "./dot-one-parser/types";
 import { integer } from "tachi-common";
 
-function sjisHack(b: Buffer, i: number) {
-	return iconv.decode(b.slice(i, i + 64).filter((e) => e !== 0) as Buffer, "shift_jis");
+function readSjisName(b: Buffer, offset: number, length = 0x40): string {
+	return iconv.decode(
+		b.slice(offset, offset + length).filter((e) => e !== 0) as Buffer,
+		"shift_jis"
+	);
+}
+
+function readAsciiName(b: Buffer, offset: number, length = 0x40): string {
+	return b
+		.slice(offset, offset + length)
+		.filter((e) => e !== 0)
+		.toString();
+}
+
+function readUtf16Name(b: Buffer, offset: number, length: number): string {
+	return b
+		.slice(offset, offset + length)
+		.toString("utf16le")
+		.replace(/\x00/gu, "");
 }
 
 // where to store extracted IFS output
@@ -50,9 +68,11 @@ export async function ParseIIDXData(
 		throw new Error("Invalid MDB File.");
 	}
 
-	const start = buffer.readInt16LE(0xa) * 2 + 0x10;
+	let start: integer, structSize: integer, levelsOffset: integer;
 
-	let structSize: integer;
+	// mdb format: [16 byte header][songID bank][song structs]
+	// the length of the 2nd part is (num of available entries * num bytes per songID)
+	// so our starting offset for song metadata is that + (header length)
 
 	switch (buffer[4]) {
 		case 27:
@@ -60,7 +80,14 @@ export async function ParseIIDXData(
 		case 29:
 		case 30:
 		case 31:
+			start = buffer.readUInt16LE(0xa) * 2 + 0x10;
 			structSize = 0x52c;
+			levelsOffset = 0x120;
+			break;
+		case 32:
+			start = buffer.readUInt16LE(0xc) * 4 + 0x10;
+			structSize = 0x7f8;
+			levelsOffset = 0x3ec;
 			break;
 		default:
 			throw new Error("Unknown version of MDB.");
@@ -76,7 +103,8 @@ export async function ParseIIDXData(
 		const struct = buffer.slice(curLoc, curLoc + structSize);
 
 		// laziest hack
-		const levels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((e) => struct.readUInt8(288 + e));
+		// eslint-disable-next-line prettier/prettier
+		const levels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((e) => struct.readUInt8(levelsOffset + e));
 
 		// remember that i get paid real money to program in this language
 		const [spb, spn, sph, spa, spl, _dpb, dpn, dph, dpa, dpl] = levels as [
@@ -92,13 +120,28 @@ export async function ParseIIDXData(
 			number
 		];
 
-		const songID = struct.readUInt16LE(944);
+		let songID: integer,
+			title: string,
+			marquee: string,
+			genre: string,
+			artist: string,
+			folder: integer;
 
-		const title = sjisHack(struct, 0);
-		const marquee = sjisHack(struct, 64);
-		const genre = sjisHack(struct, 128);
-		const artist = sjisHack(struct, 192);
-		const folder = struct.readUInt8(280);
+		if (buffer[4] < 32) {
+			songID = struct.readUInt16LE(0x3b0);
+			title = readSjisName(struct, 0x0);
+			marquee = readAsciiName(struct, 0x40);
+			genre = readSjisName(struct, 0x80);
+			artist = readSjisName(struct, 0xc0);
+			folder = struct.readUInt8(0x118);
+		} else {
+			songID = struct.readUInt16LE(0x67c);
+			title = readUtf16Name(struct, 0x0, 256);
+			marquee = readAsciiName(struct, 0x100);
+			genre = readUtf16Name(struct, 0x140, 128);
+			artist = readUtf16Name(struct, 0x1c0, 256);
+			folder = struct.readUInt8(0x3dc);
+		}
 
 		const notecounts: Record<string, number> = {};
 

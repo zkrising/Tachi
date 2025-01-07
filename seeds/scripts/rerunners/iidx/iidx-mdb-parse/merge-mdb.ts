@@ -163,7 +163,7 @@ async function ParseIIDXMDB() {
 				}
 			}
 
-			const searchTerms = [inp.genre];
+			const searchTerms: string[] = [];
 			if (inp.marquee.toLowerCase() !== inp.title.toLowerCase()) {
 				searchTerms.push(inp.marquee);
 			}
@@ -176,7 +176,7 @@ async function ParseIIDXMDB() {
 					genre: inp.genre,
 					displayVersion: inp.folder.toString(),
 				},
-				searchTerms: [],
+				searchTerms: searchTerms,
 				altTitles: [],
 			};
 

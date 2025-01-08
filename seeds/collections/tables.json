@@ -2535,6 +2535,29 @@
 	},
 	{
 		"default": false,
+		"description": "Levels for beatmania IIDX (DP) in Pinky Crush.",
+		"folders": [
+			"F2b2fcda94a766584618391be7c46b9dac6b7914f92386ad0171b97403a4f849f",
+			"F166cfacd26723310870e4efc93341af713135145284b054b9020270245e8c5cb",
+			"Fc1dfd93347e8b69cbf964684e89cf8aebd18413841e43a64d53f9004d0a349e4",
+			"Fc3dde78cc02ca22ffcf1e20ea6673f7d55f5a1595a61fc96028097ec32fa9d57",
+			"Fb98a7db6546c42f3c015a5ba2bc846b5363dccaf1c9ef2804de81a16290d5c03",
+			"F623a451f7495805159079174a46fca394252b49ad9e2b96fbd8c9c79b39cc32c",
+			"F7fbee99fdeffde18a9691ba4889b728eedb26d6bdfd62ae7dca7d2ebd843db9c",
+			"Fb8af9c89a5c1403788857a49a6adc33b498cbb992661149b27ebfe5dfce87d3b",
+			"F05f2f8e88514747d601ed0f62fe9774267741222ed9680a9f05388e788d270c6",
+			"Ff7de366cce345e873c464922e6d9ac098dc90cc6790896b11a5170c0842b0ae6",
+			"F2f12724378cd72e4d55d309bf8168f9313f9b5d1f65a06ca7a1b12be4f48a4fe",
+			"F7fffb3d5ebf0d000d1c8d8aa9e3fe6190e940286e623870d38b11edc9502502a"
+		],
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"tableID": "iidx-DP-32-levels",
+		"title": "beatmania IIDX (DP) (Pinky Crush)"
+	},
+	{
+		"default": false,
 		"description": "Levels for beatmania IIDX (DP) in Resident Omnimix.",
 		"folders": [
 			"Ff4de2cc21bffa3e6e9eb8725e0fbe0986c231dab88178d584c41c7b3c256b118",
@@ -3337,6 +3360,29 @@
 		"playtype": "SP",
 		"tableID": "iidx-SP-22-levels",
 		"title": "beatmania IIDX (SP) (PENDUAL)"
+	},
+	{
+		"default": false,
+		"description": "Levels for beatmania IIDX (SP) in Pinky Crush.",
+		"folders": [
+			"F414a38ddc83bbe981e09331b7f254c3163520e4357286039fe8c33da64808545",
+			"Fc08cb877c833790324ccb0afac9bca1dc88d4d46f105826bf8ff4bbb59aedc74",
+			"Fabda68ee64002b6f5df4438f85b90c664c92553aee52c69a181f9e1f3183ee0b",
+			"F3b8224cb7b11dde3ca4db9fcdc2e368afbbd10605bf6de6d7674df1338708c44",
+			"F7a3a7de4e067bd524ae191f6597923c692f30909708afe6f72bfc5c8dc6477d5",
+			"F0d502fb445f73dd3c432f4ab75a092a84131975b4bd851b071cafe215c74e149",
+			"F7b540271711dae047bb3c2359338d917ec30d607279e094c2fe3d246a408b59f",
+			"F877376c9f0b76da0be8b85fca69d608d4274fc7da595bb87c955e2d02746e892",
+			"Fd9bf1060d183a680bc80892ab83cbb6a63f0288d8db7093eba3e2d6d659f4af8",
+			"F9360022ed3e9a10d14765ce461a23d63b11cd0b9e51a1698d0bba33e1ddb5c7f",
+			"F57b065b790f15c0ff80b1f608f2ce470a380788d1a66c555e26c8eb5ffd72130",
+			"F9792eaf29418651dd05d6b6a9b98d470d3b3b637247c65237d8344ba662517f4"
+		],
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"tableID": "iidx-SP-32-levels",
+		"title": "beatmania IIDX (SP) (Pinky Crush)"
 	},
 	{
 		"default": false,

@@ -118,11 +118,12 @@ MutateCollection("charts-iidx.json", (charts) => {
 			// Deprimary old charts if there are new ones
 			for (const chart of charts) {
 				if (
-					Array.isArray(chart.data.inGameID)
+					(Array.isArray(chart.data.inGameID)
 						? chart.data.inGameID.includes(data.id)
-						: chart.data.inGameID === data.id &&
-							chart.difficulty === `${options.name} ${data.difficulty}` &&
-							chart.playtype === data.playtype
+						: chart.data.inGameID === data.id) &&
+					chart.difficulty === `${options.name} ${data.difficulty}` &&
+					chart.playtype === data.playtype &&
+					chart.data["2dxtraSet"] === options.name
 				) {
 					chart.isPrimary = false;
 				}

@@ -149,6 +149,8 @@ export function SoftwareIDToVersion(
 					return "31";
 				} else if (data.rev === REV_OMNIMIX) {
 					return "31-omni";
+				} else if (data.rev === REV_2DXTRA) {
+					return "31-2dxtra";
 				}
 			}
 		}

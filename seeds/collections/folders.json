@@ -50847,6 +50847,19 @@
 	{
 		"data": {
 			"level": "1",
+			"versions": "plus"
+		},
+		"folderID": "Fb0a6ca6fbfcd8d41f93af1451de0d0181659f9797b75c551b100f46254864704",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
 			"versions": "reverse"
 		},
 		"folderID": "F8aeb3d7ad32ceb71da28d6d1a14840063cdb0c6e44ea42ec4452cd8a82bf631d",
@@ -50855,6 +50868,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 1 (Reverse)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "plus"
+		},
+		"folderID": "F0f0b033accd752211c5860094ba217fd2c376c8b8a3242b8162bbe9fe6a76d97",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10 (PLUS)",
 		"type": "charts"
 	},
 	{
@@ -50873,6 +50899,19 @@
 	{
 		"data": {
 			"level": "10+",
+			"versions": "plus"
+		},
+		"folderID": "Fd989ab273c0d8b119d5bea40af154ca619f5fbcacf44b2c66c0c605721e70f30",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10+ (PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10+",
 			"versions": "reverse"
 		},
 		"folderID": "Fde9fe05041c82439cf8d69c89b1a22ae6515711f3f7a9e6d385ede613e237350",
@@ -50881,6 +50920,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10+ (Reverse)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "plus"
+		},
+		"folderID": "F95af268f73984e42cfff5c2df549b39c922c59b85d833f30f0f6d28358540f27",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11 (PLUS)",
 		"type": "charts"
 	},
 	{
@@ -50899,6 +50951,19 @@
 	{
 		"data": {
 			"level": "11+",
+			"versions": "plus"
+		},
+		"folderID": "Fd0655c050adb398a56e55647a09471b846c4343e6f255a0c2a0f69652f90b75b",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11+ (PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11+",
 			"versions": "reverse"
 		},
 		"folderID": "Fb8d9e28453ce0f925c043afd8debb9de99fe0a79c77ff68ebea6dee5da414687",
@@ -50907,6 +50972,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 11+ (Reverse)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "plus"
+		},
+		"folderID": "F6c06095cac9eb7c46de71c907161ec41bf4b274ca9458fbd76b391a31dcf1030",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12 (PLUS)",
 		"type": "charts"
 	},
 	{
@@ -50925,6 +51003,19 @@
 	{
 		"data": {
 			"level": "12+",
+			"versions": "plus"
+		},
+		"folderID": "F09b6d0e2f00ff88cd1c8dafb21903c12c3889b96050dda16d9d5551b1632eba6",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12+ (PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12+",
 			"versions": "reverse"
 		},
 		"folderID": "F6c447417ca4140d4ef60ec936d0e9a0ba7e652dc2fc27f3558579c2600deff1d",
@@ -50938,6 +51029,19 @@
 	{
 		"data": {
 			"level": "13",
+			"versions": "plus"
+		},
+		"folderID": "F66d8e7c44cb9bc67a393f76b6b315dc7c2284750c69901d551f566bd031dea8f",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13 (PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
 			"versions": "reverse"
 		},
 		"folderID": "Fa12e4e2a6803ee48877e63904ffa515a3702b403da003ce51fb868c9d2e466d0",
@@ -50946,6 +51050,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 13 (Reverse)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13+",
+			"versions": "plus"
+		},
+		"folderID": "F05849be934f20cc451d75c06dfb55bd8afbcefba1c21b20837d7371d72c1d3b2",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13+ (PLUS)",
 		"type": "charts"
 	},
 	{
@@ -50969,6 +51086,24 @@
 					"15"
 				]
 			},
+			"versions": "plus"
+		},
+		"folderID": "Fe4bfd6bbcd097b94f1d34554b1c84f681896cf75190732bd0a5373b587fd0297",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14-15 (PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": {
+				"~in": [
+					"14",
+					"15"
+				]
+			},
 			"versions": "reverse"
 		},
 		"folderID": "F1d578f3601945f74ab33d78fab134889ebd215e191ed66df8a960fdcaca14fb3",
@@ -50977,6 +51112,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 14-15 (Reverse)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "plus"
+		},
+		"folderID": "F16d1c0d92b88d253e6716e87138cf92be4179f90f669a819b416c8264eab740a",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (PLUS)",
 		"type": "charts"
 	},
 	{
@@ -50995,6 +51143,19 @@
 	{
 		"data": {
 			"level": "3",
+			"versions": "plus"
+		},
+		"folderID": "Fad342f4e6ebae828bd3345997b857e7203af1684dd40132f131603f6806a16e6",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
 			"versions": "reverse"
 		},
 		"folderID": "F1f5755b2b402e55b60cf8bc6bdedf78c81d3f8448b01e634880d15b0fc893b85",
@@ -51003,6 +51164,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 3 (Reverse)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "plus"
+		},
+		"folderID": "F01a87577a5fcf2d88c0acb933958e7bd05d13edd754114ca77589a36a8815854",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (PLUS)",
 		"type": "charts"
 	},
 	{
@@ -51021,6 +51195,19 @@
 	{
 		"data": {
 			"level": "5",
+			"versions": "plus"
+		},
+		"folderID": "F41b69b5c2d6b118db454e077ca6b6ae816d20b7b618afcb46a110d13e9ab9f1c",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
 			"versions": "reverse"
 		},
 		"folderID": "F4ec0b5ae74cb213d3a04102742f73ea03dc487e36f4d38a4c3015cd9c6ba93b8",
@@ -51029,6 +51216,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 5 (Reverse)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5+",
+			"versions": "plus"
+		},
+		"folderID": "Fec2188a562aa409cc74dfb5ac1511fe376046b8a7bf8f8060b15f90fd8bc773f",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5+ (PLUS)",
 		"type": "charts"
 	},
 	{
@@ -51047,6 +51247,19 @@
 	{
 		"data": {
 			"level": "6",
+			"versions": "plus"
+		},
+		"folderID": "F1657ed1c3f6be2aee363c83bbce907ab362590ac864d1c184a5f5f00e0aa3497",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
 			"versions": "reverse"
 		},
 		"folderID": "F778b4a27d947039d1ff100f32d61f45084e7572dd6a2aa0c319c32644fe082d8",
@@ -51055,6 +51268,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 6 (Reverse)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6+",
+			"versions": "plus"
+		},
+		"folderID": "F6927196d6f92f6b45eec36189280a3249360eb85e7ab0a310893f77ac598770e",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6+ (PLUS)",
 		"type": "charts"
 	},
 	{
@@ -51073,6 +51299,19 @@
 	{
 		"data": {
 			"level": "7",
+			"versions": "plus"
+		},
+		"folderID": "F307c1c8d67db461e62a7a1184638d38c6054a5e6e5ff534c5033572588cc62ff",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7 (PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
 			"versions": "reverse"
 		},
 		"folderID": "Ffdf1ed3c801a0070b14a435248eb662a46916618d842fbb1206b0381613b3bf1",
@@ -51081,6 +51320,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 7 (Reverse)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7+",
+			"versions": "plus"
+		},
+		"folderID": "Fb6a5be4cf06b3f6ab0371465538fc9667deeba4051f228f1dafb3339597cb6fa",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7+ (PLUS)",
 		"type": "charts"
 	},
 	{
@@ -51099,6 +51351,19 @@
 	{
 		"data": {
 			"level": "8",
+			"versions": "plus"
+		},
+		"folderID": "F989a34ddf2f491e87de271bd0891dfd6fa57e48478d296062fe0cbfc58e80ee3",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8 (PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
 			"versions": "reverse"
 		},
 		"folderID": "Fea798eda8dddc669eac1e37f1ed7d7e53ff405128559894dc1e8b03efe40ee8c",
@@ -51107,6 +51372,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 8 (Reverse)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8+",
+			"versions": "plus"
+		},
+		"folderID": "Faa8d851948cfcfbd18e7158df90ce84d93de7cfe652a53bf7003ff72a5e4cbd7",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8+ (PLUS)",
 		"type": "charts"
 	},
 	{
@@ -51125,6 +51403,19 @@
 	{
 		"data": {
 			"level": "9",
+			"versions": "plus"
+		},
+		"folderID": "Fc3f5317104e4a67356754ec02ef548924811b96396971ffc431685b2a2abb297",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9 (PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
 			"versions": "reverse"
 		},
 		"folderID": "Fbf908742ada0ccaf6f1f8cc7c0552a28e35184e73ea93cee018e828c51dfde4d",
@@ -51133,6 +51424,19 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9 (Reverse)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9+",
+			"versions": "plus"
+		},
+		"folderID": "Ffcdff71dec349ddce6571accfddc70e7c11fcc6f2912f954197c04545915df7a",
+		"game": "wacca",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9+ (PLUS)",
 		"type": "charts"
 	},
 	{

@@ -651,6 +651,39 @@ export const CHUNITHMBBKKChart: ChartDocument<"chunithm:Single"> = {
 	versions: ["paradiselost"],
 };
 
+export const TestingChunithmScorePB: PBScoreDocument<"chunithm:Single"> = {
+	chartID: "192b96bdb6150f80ba6412ce02df1249e16c0cb0",
+	userID: 1,
+	calculatedData: {
+		rating: 5,
+	},
+	composedFrom: [{ name: "Best Score", scoreID: "TESTING_SCORE_ID" }],
+	highlight: false,
+	isPrimary: true,
+	scoreData: {
+		score: 1010000,
+		lamp: "ALL JUSTICE CRITICAL",
+		grade: "SSS+",
+		enumIndexes: {
+			grade: 13,
+			lamp: 4,
+		},
+		judgements: {},
+		optional: {
+			enumIndexes: {},
+		},
+	},
+	rankingData: {
+		rank: 1,
+		outOf: 1,
+		rivalRank: null,
+	},
+	songID: 3,
+	game: "chunithm",
+	playtype: "Single",
+	timeAchieved: 10000,
+};
+
 export const TestingDoraChart: ChartDocument<"gitadora:Dora"> = {
 	songID: 0,
 	chartID: "29f0bfab357ba54e3fd0176fb3cbc578c9ec8df5",
@@ -1378,6 +1411,41 @@ export const TestingOngekiChart: ChartDocument<"ongeki:Single"> = {
 	playtype: "Single",
 	songID: 19,
 	versions: ["brightMemory3", "brightMemory3Omni"],
+};
+
+export const TestingOngekiScorePB: PBScoreDocument<"ongeki:Single"> = {
+	chartID: "213796bdb6150f80ba6412ce69df1249e16c0cb0",
+	userID: 1,
+	calculatedData: {
+		rating: 17,
+	},
+	composedFrom: [{ name: "Best Score", scoreID: "TESTING_SCORE_ID" }],
+	highlight: false,
+	isPrimary: true,
+	scoreData: {
+		score: 1010000,
+		noteLamp: "ALL BREAK",
+		bellLamp: "FULL BELL",
+		grade: "SSS+",
+		enumIndexes: {
+			grade: 11,
+			noteLamp: 3,
+			bellLamp: 1,
+		},
+		judgements: {},
+		optional: {
+			enumIndexes: {},
+		},
+	},
+	rankingData: {
+		rank: 1,
+		outOf: 1,
+		rivalRank: null,
+	},
+	songID: 19,
+	game: "ongeki",
+	playtype: "Single",
+	timeAchieved: 10000,
 };
 
 export const TestingOngekiChartConverter: ChartDocument<"ongeki:Single"> = {

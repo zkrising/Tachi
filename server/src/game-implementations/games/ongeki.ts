@@ -56,7 +56,7 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	},
 	sessionCalcs: { naiveRating: SessionAvgBest10For("rating") },
 	profileCalcs: {
-		naiveRating: ProfileAvgBestN("rating", 45),
+		naiveRating: ProfileAvgBestN("rating", 45, false, 100),
 	},
 	classDerivers: {
 		colour: (ratings) => {

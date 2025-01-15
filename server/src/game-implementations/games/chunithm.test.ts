@@ -6,7 +6,7 @@ import { CHUNITHM_GRADES, CHUNITHM_LAMPS } from "tachi-common";
 import t from "tap";
 import { dmf, mkMockPB, mkMockScore } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
-import { CHUNITHMBBKKChart } from "test-utils/test-data";
+import { CHUNITHMBBKKChart, TestingChunithmScorePB } from "test-utils/test-data";
 import type { ProvidedMetrics, ScoreData } from "tachi-common";
 
 const baseMetrics: ProvidedMetrics["chunithm:Single"] = {
@@ -69,7 +69,43 @@ t.test("CHUNITHM Implementation", (t) => {
 	});
 
 	t.todo("Session Calcs");
-	t.todo("Profile Calcs");
+
+	t.test("Profile Calcs", (t) => {
+		t.beforeEach(ResetDBState);
+
+		const mockPBs = async (ratings: Array<number>) => {
+			await Promise.all(
+				ratings.map((rating, idx) =>
+					db["personal-bests"].insert({
+						...TestingChunithmScorePB,
+						chartID: `TEST${idx}`,
+						calculatedData: {
+							...TestingChunithmScorePB.calculatedData,
+							rating,
+						},
+					})
+				)
+			);
+		};
+
+		t.test("Floating-point edge case", async (t) => {
+			await mockPBs(Array(30).fill(17.15));
+
+			t.equal(await CHUNITHM_IMPL.profileCalcs.naiveRating("chunithm", "Single", 1), 17.15);
+
+			t.end();
+		});
+
+		t.test("Profile with fewer than 30 scores", async (t) => {
+			await mockPBs([16, 16, 16, 16]);
+
+			t.equal(await CHUNITHM_IMPL.profileCalcs.naiveRating("chunithm", "Single", 1), 2.13);
+
+			t.end();
+		});
+
+		t.end();
+	});
 
 	t.test("Colour Deriver", (t) => {
 		const f = (v: number | null, expected: any) =>

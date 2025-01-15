@@ -26,11 +26,7 @@ const APPLICATION_ORDER = [
 ];
 
 function fmtSgl(sgl) {
-	if (sgl < 13) {
-		return `☆${sgl.toFixed(2)}`;
-	}
-
-	return `★${(sgl - 12).toFixed(2)}`;
+	return `sgl${(sgl - 12).toFixed(1)}`;
 }
 
 function sl12Fix(x) {

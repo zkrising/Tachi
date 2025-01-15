@@ -17,11 +17,7 @@ export const BMS_CONF = {
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 export function FormatSieglindeBMS(sgl: number): string {
-	if (sgl < 13) {
-		return `☆${sgl.toFixed(2)}`;
-	}
-
-	return `★${(sgl - 12).toFixed(2)}`;
+	return `sgl${sgl.toFixed(1)}`;
 }
 
 // works for both 7K and 14K.

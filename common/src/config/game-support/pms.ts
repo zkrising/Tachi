@@ -33,11 +33,7 @@ const PMSDans = [
 ];
 
 function FormatSieglindePMS(sgl: number): string {
-	if (sgl < 13) {
-		return `○${sgl.toFixed(2)}`;
-	}
-
-	return `●${(sgl - 12).toFixed(2)}`;
+	return `psgl${sgl.toFixed(1)}`;
 }
 
 export const PMS_CONTROLLER_CONF = {

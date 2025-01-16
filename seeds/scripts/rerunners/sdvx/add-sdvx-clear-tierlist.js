@@ -1,3 +1,5 @@
+/* eslint no-labels: "off", require-unicode-regexp: "off", no-irregular-whitespace: "off" */
+
 const { Command } = require("commander");
 const { parse } = require("csv-parse/sync");
 const fs = require("fs");
@@ -7,6 +9,7 @@ const { ReadCollection, MutateCollection } = require("../../util");
 // https://docs.google.com/spreadsheets/d/1cFltguBvPplBem-x1STHnG3k4TZzFfyNEZ-RwsQszoo/edit
 // Download a given level's tierlist as CSV and use -f <CSV filename>.
 // The level number will be picked up from the filename.
+// For level 16 and 17, remove (更新停止) after the level from the filename
 
 const SUPER_INDIV_DIFFERENCE = "超個人差";
 
@@ -206,7 +209,7 @@ const MANUAL_TITLE_MAP = {
 	"FIRST:DREAM": "FIRST：DREAMS",
 	"Flaa Behaivor": "Flaa Behavior",
 	FlwoerNation: "FlowerNation",
-	"けもののおうじゃ めうめう": "けもののおうじゃ🐾めうめう",
+	"けもののおうじゃ めうめう": "けもののおうじゃ★めうめう",
 	すきなことでいいです: "すきなことだけでいいです",
 	"U.N.オーエンは彼女なのか(TO-HOlic)": "U.N.オーエンは彼女なのか？(TO-HOlic mix)",
 	"Elemental Creation(Kamome mix)": "Elemental Creation (kamome sano Remix)",
@@ -242,6 +245,8 @@ const MANUAL_TITLE_MAP = {
 	SuperMiracleEmsemble: "SuperMiracleEnsemble",
 	"仔羊のナヴァラン・クリシェを添えて": "～仔羊のナヴァラン・クリシェを添えて～",
 	あいあむなんばーわんぱとらちゃん様: "あいあむなんばーわんパトラちゃん様", // hirigana/katakana
+	"無意識レクイエム(cosmobsp mix)": "無意識レクイエム (cosmobsp rmx)",
+	マーメイドペレパシィ: "マーメイドペレパスィ",
 
 	// 17s
 	"Emperors divide": "Emperor's Divide",
@@ -272,6 +277,9 @@ const MANUAL_TITLE_MAP = {
 	"ABSOLUTE(ismk passionate mix)": "ABSOLUTE(ismK passionate remix)",
 	泥の分際で私だけの大切を奪おうなんて: "泥の分際で私だけの大切を奪おうだなんて",
 	"Rhapsody ⚙︎f Triumph": "Rhapsody ⚙f Triumph", // There is some weird non-printing character here fml
+	"［E］": "[E]",
+	"トウキョーサマーナイト（華金Remix）": "トーキョーサマーナイト（華金Remix）",
+	"Pixelated Platform（Superhoney）": "Pixelated Platform (Super Honey!)",
 
 	// 18s
 	"*Erm,～ ShockWAVE Syndrome...?": "* Erm, could it be a Spatiotemporal ShockWAVE Syndrome...?",
@@ -288,10 +296,24 @@ const MANUAL_TITLE_MAP = {
 	"怪盗Fの台本 ～消えたダイヤの謎～": "怪盗Ｆの台本～消えたダイヤの謎～", // F
 	"アルティメットトゥルース_-Phantasm-": "アルティメットトゥルース -Phantasm-",
 	"G4ME OVEЯ": "G4ME ØVEЯ", // This is also in 16s spelled differently :////
+	"＝∴NOMADE∵OTION＝": "=∴NOMADE∵OTION=",
+	"めうめうぺったんたん!!(ZAQUVA)": "めうめうぺったんたん！！ (ZAQUVA Remix)",
+	"Sayonara Planet Wars(Sot-c)": "Sayonara Planet Wars (Sot-C Remix)",
+	"stella rain": "stellar rain",
+	graduaition: "graduation",
+	"ちくわパフェだよ☆ＣＫＰ(Yvya)": "ちくわパフェだよ☆ＣＫＰ (Yvya Remix)",
+	"Hello､Hologram": "Hello, Hologram",
+	"ませまてぃっく♡ま＋ま＝まじっく！(リミ)":
+		"ませまてぃっく♡ま＋ま＝まじっく！　～徹夜の追込みエナジーまっくす！～",
+	"ドリームエンド・サバイバー(Hidra-Xjeil)": "ドリームエンド・サバイバー(Hidra-Xjeil Remix)",
+	Redo: "Redo／アニメ「Re:ゼロから始める異世界生活」より",
+	色は匂えど散りぬるを: "色は匂へど散りぬるを",
 
 	// 19s
 	// See Blue Forest
+	"Breakneek Pursuit": "Breakneck Pursuit",
 	"Cross Fire[MXM": "Cross Fire",
+	'Spectacular"V"Adventure!': "Spectacular“V”Adventure!",
 };
 
 function validTiers(levelNum) {
@@ -318,8 +340,13 @@ function normalizeTitle(title) {
 function findSong(songs, title) {
 	// There are two songs called "Life is [Bb]eautiful". Yes, really.
 	// I CANNOT be assed to search both songs by level or case-sensitive.
+	// There are also two level 18's called "Prayer"
 	if (title === "Life is beautiful") {
 		return songs.find((song) => song.id === 1264);
+	} else if (title === "Prayer(溝口ゆうま)") {
+		return songs.find((song) => song.id === 2129);
+	} else if (title === "Prayer(ぺのれり)") {
+		return songs.find((song) => song.id === 803);
 	}
 
 	const song = songs.find(
@@ -358,12 +385,22 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 
 		tierLoop: while (col < csvData[headerRow].length) {
 			let tierName = csvData[row][col];
-			if (levelNum === 17 && tierName.match(/ +曲数:[0-9]+/)) {
-				// For 17, apparently they include the number of songs in each tier.
-				// e.g. "A                         曲数:54"
-				// So we cut this out.
-				tierName = tierName.split(" ")[0];
+
+			// Try to remove the total number of songs in each tier.
+			// e.g. "      A          曲数:54"
+			//                        ^^^^^^
+			// They use irregular spaces for these cases
+			// Level 16 shouldn't have these replaced though
+			if (levelNum !== 16) {
+				tierName = tierName.replace(/\u3000/g, " ");
 			}
+
+			const totalCount = tierName.match(/曲数:[0-9]+/);
+
+			if (totalCount) {
+				tierName = tierName.slice(0, totalCount.index).trim();
+			}
+
 			if (tierName === "" && col > leftOffset) {
 				// This might be a double column (two columns for the same tier),
 				// so check the cell to the left.
@@ -374,7 +411,7 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 				console.log(`"${tierName}" does not match a known tier, so we should be finished.`);
 				break;
 			}
-			console.log(`Processing tier ${tierName} at [${row}, ${col}]`);
+			console.log(`\nProcessing tier ${tierName} at [${row}, ${col}]`);
 			row++;
 
 			const superDiff = tierName === SUPER_INDIV_DIFFERENCE;
@@ -476,17 +513,13 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 					console.log(`at [${difficulty}] ${levelNum}`);
 					continue;
 				}
-				if (
-					"clear" in chart.tierlistInfo &&
-					chart.tierlistInfo.clear.value !== tier.value
-				) {
-					console.log(`Overwriting tier for ${song.title} [${chart.difficulty}]`);
+				if ("clearTier" in chart.data && chart.data.clearTier.value !== tier.value) {
+					console.log(`\nOverwriting tier for ${song.title} [${chart.difficulty}]`);
 					console.log(
-						`Old tier ${chart.tierlistInfo.clear.text} (${chart.tierlistInfo.clear.value})`
+						`${chart.data.clearTier.text} (${chart.data.clearTier.value}) -> ${tier.text} (${tier.value})`
 					);
-					console.log(`New tier ${tier.text} (${tier.value})`);
 				}
-				chart.tierlistInfo.clear = tier;
+				chart.data.clearTier = tier;
 			}
 
 			if (simple || row >= csvData.length) {
@@ -525,10 +558,10 @@ function addTiers(levelNum, csvData, headerRow, leftOffset, simple) {
 		}
 
 		const missingTiers = charts.filter(
-			(chart) => chart.levelNum === levelNum && !("clear" in chart.tierlistInfo)
+			(chart) => chart.levelNum === levelNum && !("clearTier" in chart.data)
 		);
 		if (missingTiers.length > 0) {
-			console.log(`The following lv${levelNum} charts are still missing a tier:`);
+			console.log(`\nThe following lv${levelNum} charts are still missing a tier:`);
 			for (const chart of missingTiers) {
 				const song = songs.find((song) => song.id === chart.songID);
 				console.log(
@@ -566,8 +599,9 @@ switch (levelIndicator[1]) {
 		addTiers(20, csvData, 1, 1, true);
 
 		// Locate start of 19s
+		// eslint-disable-next-line
 		let header19 = -1;
-		for (rowIdx in csvData) {
+		for (const rowIdx in csvData) {
 			if (csvData[rowIdx][0] === "Lv19") {
 				header19 = rowIdx;
 				break;

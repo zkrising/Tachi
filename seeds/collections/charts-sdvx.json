@@ -646,6 +646,11 @@
 	{
 		"chartID": "1468f2cc24449b3fb0c6ac533e0f69f466497dc0",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17B",
+				"value": 17.5
+			},
 			"inGameID": 8,
 			"sTier": {
 				"individualDifference": false,
@@ -1407,8 +1412,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 19
 		},
@@ -2668,6 +2673,11 @@
 	{
 		"chartID": "830ee39db145150ff1867fdf809a0e8be99520aa",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 37,
 			"sTier": {
 				"individualDifference": false,
@@ -4592,6 +4602,11 @@
 	{
 		"chartID": "85d29d13bb0e441c7f3e2a67c63a4a7ffd8fda52",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 64,
 			"sTier": {
 				"individualDifference": false,
@@ -5001,8 +5016,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 69
 		},
@@ -6526,6 +6541,11 @@
 	{
 		"chartID": "62bc9f5ea5fd50aa8da5caa6db083c9d024f9d4a",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 88,
 			"sTier": {
 				"individualDifference": false,
@@ -8263,6 +8283,11 @@
 	{
 		"chartID": "6577ee720a225249b64c52357a4d23c119ebc0b1",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 111,
 			"sTier": {
 				"individualDifference": false,
@@ -8896,8 +8921,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 120
 		},
@@ -9256,8 +9281,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": true,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 124
 		},
@@ -9912,6 +9937,11 @@
 	{
 		"chartID": "e500fd253391000e8be8232322a443e2d5f5658b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 131,
 			"sTier": {
 				"individualDifference": false,
@@ -9992,6 +10022,11 @@
 	{
 		"chartID": "7fb4550cb92110bbaa780679893b4b15f373c3c3",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17F",
+				"value": 17.1
+			},
 			"inGameID": 132,
 			"sTier": {
 				"individualDifference": false,
@@ -11975,6 +12010,11 @@
 	{
 		"chartID": "d2024517bde832edc02632d50d59c01a1fb3df32",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 165,
 			"sTier": {
 				"individualDifference": false,
@@ -15020,8 +15060,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "18C",
-				"value": 18.5
+				"text": "18D",
+				"value": 18.3
 			},
 			"inGameID": 216,
 			"sTier": {
@@ -16533,6 +16573,11 @@
 	{
 		"chartID": "09d3ac50d1805ce26be8dfd43c45efe395c494bf",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 239,
 			"sTier": {
 				"individualDifference": false,
@@ -16673,6 +16718,11 @@
 	{
 		"chartID": "72729d6f20d81e0d93456fc205f88f210fa582d0",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 241,
 			"sTier": {
 				"individualDifference": false,
@@ -17055,8 +17105,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 250
 		},
@@ -17480,8 +17530,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 255
 		},
@@ -17795,8 +17845,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "19A",
-				"value": 19.7
+				"text": "19A+",
+				"value": 19.9
 			},
 			"inGameID": 259,
 			"sTier": {
@@ -18649,8 +18699,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 273
 		},
@@ -18816,8 +18866,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 275
 		},
@@ -19239,6 +19289,11 @@
 	{
 		"chartID": "0917ccb7b6f982cd912eaa2fa3d0cd96049ab08c",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 281,
 			"sTier": {
 				"individualDifference": false,
@@ -19709,6 +19764,11 @@
 	{
 		"chartID": "834d0b23bfc944a96498c333d3d6161dff726a58",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19B",
+				"value": 19.5
+			},
 			"inGameID": 289,
 			"sTier": {
 				"individualDifference": false,
@@ -20546,8 +20606,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 302
 		},
@@ -21862,6 +21922,11 @@
 	{
 		"chartID": "770687bec477aa55d87ac4c37a54be419fa24351",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 323,
 			"sTier": {
 				"individualDifference": false,
@@ -22034,8 +22099,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 326
 		},
@@ -22452,6 +22517,11 @@
 	{
 		"chartID": "1cb5a51db97afc8852ebb043e955225c3aeae0b0",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 332,
 			"sTier": {
 				"individualDifference": false,
@@ -23197,6 +23267,11 @@
 	{
 		"chartID": "0be59a0b3f7b7956bac1d814838ecbe6025355b6",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19A+",
+				"value": 19.9
+			},
 			"inGameID": 342,
 			"sTier": {
 				"individualDifference": false,
@@ -23239,8 +23314,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 343
 		},
@@ -23612,6 +23687,11 @@
 	{
 		"chartID": "8ef6223712c4fc80cd9942573e748601511087d2",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 348,
 			"sTier": {
 				"individualDifference": false,
@@ -24194,8 +24274,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 359
 		},
@@ -24909,8 +24989,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "19A",
-				"value": 19.7
+				"text": "19A+",
+				"value": 19.9
 			},
 			"inGameID": 366,
 			"sTier": {
@@ -26147,6 +26227,11 @@
 	{
 		"chartID": "f6aecf751d27d1a3d337b6018da7eeb0a5790c36",
 		"data": {
+			"clearTier": {
+				"individualDifference": true,
+				"text": "19C",
+				"value": 19.4
+			},
 			"inGameID": 381,
 			"sTier": {
 				"individualDifference": false,
@@ -26746,6 +26831,11 @@
 	{
 		"chartID": "674f9bb7298722823419febe18eb9bb9f3ed425a",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 390,
 			"sTier": {
 				"individualDifference": false,
@@ -33598,8 +33688,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 497
 		},
@@ -34503,6 +34593,11 @@
 	{
 		"chartID": "c4c9db40fda17d7f202933a90e54e14d18b8e54d",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 510,
 			"sTier": {
 				"individualDifference": false,
@@ -35154,8 +35249,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 521
 		},
@@ -40777,6 +40872,11 @@
 	{
 		"chartID": "056e6591c4d42341d872bd6c6efd07e3a082964d",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19A+",
+				"value": 19.9
+			},
 			"inGameID": 610,
 			"sTier": {
 				"individualDifference": false,
@@ -40926,6 +41026,11 @@
 	{
 		"chartID": "e95aa8d657f2aa32c02653f183826159d2fb6deb",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 612,
 			"sTier": {
 				"individualDifference": false,
@@ -42162,6 +42267,11 @@
 	{
 		"chartID": "4594e57115566905f71b82bab689e76259935bee",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19A",
+				"value": 19.7
+			},
 			"inGameID": 632,
 			"sTier": {
 				"individualDifference": false,
@@ -42249,6 +42359,11 @@
 	{
 		"chartID": "4662697eb7e2e6e8d2dc92f28538aa941fefc67c",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19A+",
+				"value": 19.9
+			},
 			"inGameID": 633,
 			"sTier": {
 				"individualDifference": false,
@@ -42336,6 +42451,11 @@
 	{
 		"chartID": "a8426c4750796a6e3eea874d2a0e22188ef30686",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19C",
+				"value": 19.4
+			},
 			"inGameID": 634,
 			"sTier": {
 				"individualDifference": false,
@@ -43503,8 +43623,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 651
 		},
@@ -45881,8 +46001,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": true,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 687
 		},
@@ -46340,8 +46460,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": true,
-				"text": "19A",
-				"value": 19.7
+				"text": "19A+",
+				"value": 19.9
 			},
 			"inGameID": 693,
 			"sTier": {
@@ -47723,6 +47843,11 @@
 	{
 		"chartID": "1ac9baec926329d444cd7b36364cd4f3a9e323de",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 711,
 			"sTier": {
 				"individualDifference": false,
@@ -49673,8 +49798,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 742
 		},
@@ -50283,8 +50408,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 752
 		},
@@ -50764,8 +50889,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 760
 		},
@@ -51079,8 +51204,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": true,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 765
 		},
@@ -52271,8 +52396,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 785
 		},
@@ -52379,6 +52504,11 @@
 	{
 		"chartID": "dbb9f5cef3a6ac179332e32bc1ae5c269c6af9a9",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 786,
 			"sTier": {
 				"individualDifference": false,
@@ -52553,6 +52683,11 @@
 	{
 		"chartID": "6b55439540fea88815bd7f6436cc7ac0dee81baa",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 788,
 			"sTier": {
 				"individualDifference": false,
@@ -52640,6 +52775,11 @@
 	{
 		"chartID": "3ef1448f84ff79f57870a7b66d7aa5c9e55d52d7",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19C",
+				"value": 19.4
+			},
 			"inGameID": 789,
 			"sTier": {
 				"individualDifference": false,
@@ -52727,6 +52867,11 @@
 	{
 		"chartID": "68a80c6b1b4b045b958cc7f1e080f00cf35ae77b",
 		"data": {
+			"clearTier": {
+				"individualDifference": true,
+				"text": "19B",
+				"value": 19.5
+			},
 			"inGameID": 790,
 			"sTier": {
 				"individualDifference": false,
@@ -54848,8 +54993,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 822
 		},
@@ -55006,8 +55151,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "19A+",
-				"value": 19.9
+				"text": "19S",
+				"value": 20
 			},
 			"inGameID": 824,
 			"sTier": {
@@ -55155,8 +55300,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 826
 		},
@@ -56319,6 +56464,11 @@
 	{
 		"chartID": "e38f5e16b3cb78028c317d329beb860a058f9772",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 842,
 			"sTier": {
 				"individualDifference": false,
@@ -58120,6 +58270,11 @@
 	{
 		"chartID": "331b02b417de66f1afafa4d844c8f6897796bec4",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 871,
 			"sTier": {
 				"individualDifference": false,
@@ -58202,6 +58357,11 @@
 	{
 		"chartID": "43ba9a2df6ea45ffa863f6bda19ae0a983992174",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 872,
 			"sTier": {
 				"individualDifference": false,
@@ -58977,8 +59137,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 883
 		},
@@ -60453,8 +60613,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 903
 		},
@@ -60763,8 +60923,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 908
 		},
@@ -60854,8 +61014,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 909
 		},
@@ -60945,8 +61105,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 910
 		},
@@ -61850,8 +62010,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "17D",
-				"value": 17.3
+				"text": "17E",
+				"value": 17.2
 			},
 			"inGameID": 920,
 			"sTier": {
@@ -61936,8 +62096,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "17D",
-				"value": 17.3
+				"text": "17E",
+				"value": 17.2
 			},
 			"inGameID": 921,
 			"sTier": {
@@ -63987,8 +64147,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 948
 		},
@@ -70799,8 +70959,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "19F",
-				"value": 19
+				"text": "19E",
+				"value": 19.1
 			},
 			"inGameID": 1033,
 			"sTier": {
@@ -71718,8 +71878,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 1044
 		},
@@ -73191,8 +73351,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 1062
 		},
@@ -75828,8 +75988,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 1096
 		},
@@ -76997,8 +77157,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "17E",
-				"value": 17.2
+				"text": "17F",
+				"value": 17.1
 			},
 			"inGameID": 1109,
 			"sTier": {
@@ -77461,8 +77621,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 1115
 		},
@@ -78245,8 +78405,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16E",
-				"value": 16.1
+				"text": "16F",
+				"value": 16
 			},
 			"inGameID": 1125
 		},
@@ -78481,8 +78641,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "17E",
-				"value": 17.2
+				"text": "17F",
+				"value": 17.1
 			},
 			"inGameID": 1128,
 			"sTier": {
@@ -82485,8 +82645,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "19B",
-				"value": 19.5
+				"text": "19C",
+				"value": 19.4
 			},
 			"inGameID": 1177,
 			"sTier": {
@@ -83340,8 +83500,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "19A",
-				"value": 19.7
+				"text": "19B",
+				"value": 19.5
 			},
 			"inGameID": 1188,
 			"sTier": {
@@ -83431,9 +83591,9 @@
 		"chartID": "6edd54b4d0563d69b7cdd768899db47fa668bed8",
 		"data": {
 			"clearTier": {
-				"individualDifference": true,
-				"text": "19B",
-				"value": 19.5
+				"individualDifference": false,
+				"text": "19C",
+				"value": 19.4
 			},
 			"inGameID": 1189,
 			"sTier": {
@@ -83583,8 +83743,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 1191
 		},
@@ -85199,8 +85359,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 1210
 		},
@@ -86121,8 +86281,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16A/B",
+				"value": 16.5
 			},
 			"inGameID": 1222
 		},
@@ -87496,8 +87656,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 1240
 		},
@@ -90091,8 +90251,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "19B",
-				"value": 19.5
+				"text": "19A",
+				"value": 19.7
 			},
 			"inGameID": 1272,
 			"sTier": {
@@ -91867,8 +92027,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 1294
 		},
@@ -93578,8 +93738,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": true,
-				"text": "17B",
-				"value": 17.5
+				"text": "17C",
+				"value": 17.4
 			},
 			"inGameID": 1316,
 			"sTier": {
@@ -102502,8 +102662,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16C/D",
-				"value": 16.3
+				"text": "16A/B",
+				"value": 16.5
 			},
 			"inGameID": 1429
 		},
@@ -102575,8 +102735,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 1430
 		},
@@ -105329,8 +105489,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "19A+",
-				"value": 19.9
+				"text": "19S",
+				"value": 20
 			},
 			"inGameID": 1467,
 			"sTier": {
@@ -106436,7 +106596,7 @@
 		"chartID": "8def3cacbcafb2f4020bc893524fd2c739144893",
 		"data": {
 			"clearTier": {
-				"individualDifference": false,
+				"individualDifference": true,
 				"text": "19C",
 				"value": 19.4
 			},
@@ -108806,8 +108966,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 1521
 		},
@@ -110683,8 +110843,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": true,
-				"text": "19A+",
-				"value": 19.9
+				"text": "19S",
+				"value": 20
 			},
 			"inGameID": 1547,
 			"sTier": {
@@ -113532,8 +113692,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "19C",
-				"value": 19.4
+				"text": "19D",
+				"value": 19.3
 			},
 			"inGameID": 1583,
 			"sTier": {
@@ -113764,8 +113924,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 1586
 		},
@@ -115172,8 +115332,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "18C",
-				"value": 18.5
+				"text": "18D",
+				"value": 18.3
 			},
 			"inGameID": 1603,
 			"sTier": {
@@ -115899,8 +116059,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "19A+",
-				"value": 19.9
+				"text": "19S",
+				"value": 20
 			},
 			"inGameID": 1612,
 			"sTier": {
@@ -118499,8 +118659,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "19B",
-				"value": 19.5
+				"text": "19A",
+				"value": 19.7
 			},
 			"inGameID": 1648,
 			"sTier": {
@@ -119222,9 +119382,9 @@
 		"chartID": "a5f47fda289dcddec51d635a0eb675df992d561a",
 		"data": {
 			"clearTier": {
-				"individualDifference": false,
-				"text": "19A",
-				"value": 19.7
+				"individualDifference": true,
+				"text": "19B",
+				"value": 19.5
 			},
 			"inGameID": 1659,
 			"sTier": {
@@ -124489,8 +124649,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": true,
-				"text": "19A+",
-				"value": 19.9
+				"text": "19S",
+				"value": 20
 			},
 			"inGameID": 1734,
 			"sTier": {
@@ -125324,8 +125484,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A/B",
-				"value": 16.5
+				"text": "16C/D",
+				"value": 16.3
 			},
 			"inGameID": 1748
 		},
@@ -125984,8 +126144,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16A+",
-				"value": 16.7
+				"text": "16S",
+				"value": 16.9
 			},
 			"inGameID": 1759
 		},
@@ -126364,8 +126524,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "19A+",
-				"value": 19.9
+				"text": "19S",
+				"value": 20
 			},
 			"inGameID": 1764,
 			"sTier": {
@@ -126868,8 +127028,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "19A",
-				"value": 19.7
+				"text": "19A+",
+				"value": 19.9
 			},
 			"inGameID": 1770,
 			"sTier": {
@@ -126952,8 +127112,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "19A+",
-				"value": 19.9
+				"text": "19S",
+				"value": 20
 			},
 			"inGameID": 1771,
 			"sTier": {
@@ -127036,8 +127196,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "19A",
-				"value": 19.7
+				"text": "19A+",
+				"value": 19.9
 			},
 			"inGameID": 1772,
 			"sTier": {
@@ -128180,8 +128340,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "16E",
-				"value": 16.1
+				"text": "16F",
+				"value": 16
 			},
 			"inGameID": 1809
 		},
@@ -130483,8 +130643,8 @@
 		"data": {
 			"clearTier": {
 				"individualDifference": false,
-				"text": "19A",
-				"value": 19.7
+				"text": "19A+",
+				"value": 19.9
 			},
 			"inGameID": 1847,
 			"sTier": {
@@ -131521,6 +131681,11 @@
 	{
 		"chartID": "b29c31508c6ab97b4da3b97bbb0a7ef284242d97",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1883
 		},
 		"difficulty": "EXH",
@@ -131537,6 +131702,11 @@
 	{
 		"chartID": "a453eca07d495f63ed48b6ba8a7fda72b645fe5a",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1883,
 			"sTier": {
 				"individualDifference": false,
@@ -131606,6 +131776,11 @@
 	{
 		"chartID": "33224e0f5fa6630df0bcc9332c2caed55dc6670f",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 1884,
 			"sTier": {
 				"individualDifference": false,
@@ -131659,6 +131834,11 @@
 	{
 		"chartID": "bbac2e8daa6d1068a6a70d9f2b3ff299aa835fb9",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1885
 		},
 		"difficulty": "EXH",
@@ -131675,6 +131855,11 @@
 	{
 		"chartID": "09e55bc5aaad4c6879c58d726bab74e8531f09df",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1885,
 			"sTier": {
 				"individualDifference": false,
@@ -131744,6 +131929,11 @@
 	{
 		"chartID": "d658f7d928a83dbe5dcc36e27da9549a4098f716",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 1886,
 			"sTier": {
 				"individualDifference": false,
@@ -131797,6 +131987,11 @@
 	{
 		"chartID": "65153e9ab35685c2bc5d52910564d75aeee9bc38",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1902,
 			"sTier": {
 				"individualDifference": false,
@@ -131818,6 +132013,11 @@
 	{
 		"chartID": "5f41fffac1e9ea008dc0bf516871cde6e76743d1",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "20S",
+				"value": 20.5
+			},
 			"inGameID": 1902,
 			"sTier": {
 				"individualDifference": false,
@@ -132045,6 +132245,11 @@
 	{
 		"chartID": "4ed7ece132c39de9fed6937b3c8882f45ed8b37e",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19C",
+				"value": 19.4
+			},
 			"inGameID": 1963,
 			"sTier": {
 				"individualDifference": false,
@@ -132114,6 +132319,11 @@
 	{
 		"chartID": "d0af5e957885abaff758bffa0e1a197d97fdbe42",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1964,
 			"sTier": {
 				"individualDifference": false,
@@ -132321,6 +132531,11 @@
 	{
 		"chartID": "085fee45d19b03065b68d62c7032ab65f06f8366",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1967,
 			"sTier": {
 				"individualDifference": false,
@@ -132390,6 +132605,11 @@
 	{
 		"chartID": "80106fb4a32a8ceade84b1a102b2c2838aee77d5",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1968,
 			"sTier": {
 				"individualDifference": false,
@@ -132443,6 +132663,11 @@
 	{
 		"chartID": "98a95660217992dc96d894a3bd6469bb8a1e00f1",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17B",
+				"value": 17.5
+			},
 			"inGameID": 1674,
 			"sTier": {
 				"individualDifference": false,
@@ -132464,6 +132689,11 @@
 	{
 		"chartID": "c455da7447b6b1ab3994a5d3fad7b99226072ce7",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19A+",
+				"value": 19.9
+			},
 			"inGameID": 1674,
 			"sTier": {
 				"individualDifference": false,
@@ -132533,6 +132763,11 @@
 	{
 		"chartID": "5e1a92ec6be0b50c65b093fe8c0fc359feb06447",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1688
 		},
 		"difficulty": "MXM",
@@ -132597,6 +132832,11 @@
 	{
 		"chartID": "9c288ba6fcd1a7f885a9868f0d0173a5da4c59cd",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1691,
 			"sTier": {
 				"individualDifference": false,
@@ -132666,6 +132906,11 @@
 	{
 		"chartID": "10e34a8d1a8dc89ed492fbc65818b416c6aeea18",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1706
 		},
 		"difficulty": "MXM",
@@ -132730,6 +132975,11 @@
 	{
 		"chartID": "5d611a7a2d3dcc5363254ecce2cc6ef53bb4098c",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1733,
 			"sTier": {
 				"individualDifference": false,
@@ -132783,6 +133033,11 @@
 	{
 		"chartID": "5f85ffba26044111bab3b13bddb0ff8880670c04",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1742
 		},
 		"difficulty": "EXH",
@@ -132799,6 +133054,11 @@
 	{
 		"chartID": "46e206bf37161accca7e94a50c9445daf569ce30",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1742,
 			"sTier": {
 				"individualDifference": false,
@@ -132852,6 +133112,11 @@
 	{
 		"chartID": "665051a5742bcf6a659165d8c97e5607e815178b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1743
 		},
 		"difficulty": "EXH",
@@ -132868,6 +133133,11 @@
 	{
 		"chartID": "4388ab388e128c7e69929225f730d6d599f27c55",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1743,
 			"sTier": {
 				"individualDifference": false,
@@ -132920,6 +133190,11 @@
 	{
 		"chartID": "0ac9dd63ccd9f5fe210d77d7e67a1cb841baa189",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1745
 		},
 		"difficulty": "EXH",
@@ -132935,6 +133210,11 @@
 	{
 		"chartID": "d9debcbed4ae9750e9813fb64bea64a4f2a22945",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1745,
 			"sTier": {
 				"individualDifference": false,
@@ -133002,6 +133282,11 @@
 	{
 		"chartID": "29a46ba045639e73f96b1b64097814c9eba40e2b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1780,
 			"sTier": {
 				"individualDifference": false,
@@ -133055,6 +133340,11 @@
 	{
 		"chartID": "52093d7e0bda3ba476de864314c3fe8920805cd8",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1781
 		},
 		"difficulty": "EXH",
@@ -133071,6 +133361,11 @@
 	{
 		"chartID": "85f38e1266b97d1086ac8c7edeecc548636f40c2",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 1781,
 			"sTier": {
 				"individualDifference": false,
@@ -133140,6 +133435,11 @@
 	{
 		"chartID": "0b21d784b6defccd2f7a042d5415e78cb1ac066b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 1782,
 			"sTier": {
 				"individualDifference": false,
@@ -133209,6 +133509,11 @@
 	{
 		"chartID": "d550897ce3d244c2a5cc87b296f787ec4dec112b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18E",
+				"value": 18.1
+			},
 			"inGameID": 1783,
 			"sTier": {
 				"individualDifference": false,
@@ -133262,6 +133567,11 @@
 	{
 		"chartID": "273e13e181a0b37c22af384c3b0f3283895db572",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1784
 		},
 		"difficulty": "EXH",
@@ -133278,6 +133588,11 @@
 	{
 		"chartID": "ab26bb27b17817589d60e3671703879a412e767b",
 		"data": {
+			"clearTier": {
+				"individualDifference": true,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 1784,
 			"sTier": {
 				"individualDifference": false,
@@ -133331,6 +133646,11 @@
 	{
 		"chartID": "0b274341bfc7c8d6045b39e5618bcd87c6228ea9",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1785
 		},
 		"difficulty": "EXH",
@@ -133347,6 +133667,11 @@
 	{
 		"chartID": "17ce0bc522fd8269d756a23c0637229e037b60d4",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1785,
 			"sTier": {
 				"individualDifference": false,
@@ -133416,6 +133741,11 @@
 	{
 		"chartID": "ad927bc7d51f53f7278a3ea57a1f29eaf9c5ad23",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1786,
 			"sTier": {
 				"individualDifference": false,
@@ -133485,6 +133815,11 @@
 	{
 		"chartID": "fbde648661029a4b251ed9c22e79adaf9e919034",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1787,
 			"sTier": {
 				"individualDifference": false,
@@ -133538,6 +133873,11 @@
 	{
 		"chartID": "bffbf5926e0760e596e9518af7f65ce646b37d92",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1788
 		},
 		"difficulty": "EXH",
@@ -133554,6 +133894,11 @@
 	{
 		"chartID": "42e8e5f3cea3e75dd0b58e255d2913bcf86613f9",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1788,
 			"sTier": {
 				"individualDifference": false,
@@ -133607,6 +133952,11 @@
 	{
 		"chartID": "5b013d3039633cefe6964b713586d0afd1458fa7",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1789
 		},
 		"difficulty": "EXH",
@@ -133623,6 +133973,11 @@
 	{
 		"chartID": "09104fd7e82ea7015c9e404e8f2fd62b9764efab",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1789,
 			"sTier": {
 				"individualDifference": false,
@@ -133676,6 +134031,11 @@
 	{
 		"chartID": "f4781ac34b160469f86b06b25fb705d52619974a",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16S",
+				"value": 16.9
+			},
 			"inGameID": 1790
 		},
 		"difficulty": "EXH",
@@ -133692,6 +134052,11 @@
 	{
 		"chartID": "cc913ab6bec4dfa67be7418bd8d7f6eea42f11b1",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1790,
 			"sTier": {
 				"individualDifference": false,
@@ -133745,6 +134110,11 @@
 	{
 		"chartID": "16a3ecae1e4dd566b7b286edcd77e06e0dcd55ad",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16A/B",
+				"value": 16.5
+			},
 			"inGameID": 1791
 		},
 		"difficulty": "EXH",
@@ -133761,6 +134131,11 @@
 	{
 		"chartID": "211ff881af0876011bdf77ab03fc9dd3ec0d9f42",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 1791,
 			"sTier": {
 				"individualDifference": false,
@@ -133830,6 +134205,11 @@
 	{
 		"chartID": "0fa5e4702e3f65a0e152c9a048f0a228aa6f624c",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1792,
 			"sTier": {
 				"individualDifference": false,
@@ -133899,6 +134279,11 @@
 	{
 		"chartID": "cc55540c1118d93de833d4aa84a65c22616959f0",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 1793,
 			"sTier": {
 				"individualDifference": false,
@@ -133968,6 +134353,11 @@
 	{
 		"chartID": "de84fea8f0aebc78554e41c213dad5bd47fbefeb",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1794,
 			"sTier": {
 				"individualDifference": false,
@@ -134021,6 +134411,11 @@
 	{
 		"chartID": "33bf5c1aae48ee4c8e1ab68003873ba3af832413",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1795
 		},
 		"difficulty": "EXH",
@@ -134037,6 +134432,11 @@
 	{
 		"chartID": "c6ff74918f6b3fa8d66149edd117387e3517f323",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 1795,
 			"sTier": {
 				"individualDifference": false,
@@ -134106,6 +134506,11 @@
 	{
 		"chartID": "4da8ff714deba48d8de12769a8c1424551bd2ef9",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 1796,
 			"sTier": {
 				"individualDifference": false,
@@ -134159,6 +134564,11 @@
 	{
 		"chartID": "6228571ec3f56d14cbadda5b82a99c247aef170c",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1797
 		},
 		"difficulty": "EXH",
@@ -134175,6 +134585,11 @@
 	{
 		"chartID": "2e820ee157e4042a1b6edc797f1dd457391bd70d",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 1797,
 			"sTier": {
 				"individualDifference": false,
@@ -134244,6 +134659,11 @@
 	{
 		"chartID": "41568256a0fab97a51469e3eb071fb4f2707f6fb",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1798,
 			"sTier": {
 				"individualDifference": false,
@@ -134313,6 +134733,11 @@
 	{
 		"chartID": "b9fb19eedf8721b2779758bee22c682f03e03e83",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17A",
+				"value": 17.7
+			},
 			"inGameID": 1799,
 			"sTier": {
 				"individualDifference": false,
@@ -134366,6 +134791,11 @@
 	{
 		"chartID": "cf171d23e993860222b9cdb67c620ae26f2cf30a",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16A/B",
+				"value": 16.5
+			},
 			"inGameID": 1800
 		},
 		"difficulty": "EXH",
@@ -134382,6 +134812,11 @@
 	{
 		"chartID": "0e1c627ec884d634e800ad6530d483a2fb5931c8",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1800,
 			"sTier": {
 				"individualDifference": false,
@@ -134451,6 +134886,11 @@
 	{
 		"chartID": "bba826f6b1a6295f5d32632365fa2107b6a03ee2",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17F",
+				"value": 17.1
+			},
 			"inGameID": 1801,
 			"sTier": {
 				"individualDifference": false,
@@ -134518,6 +134958,11 @@
 	{
 		"chartID": "904050c5d68c6ce7e73be515d8804d9a732e4a60",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17F-",
+				"value": 17
+			},
 			"inGameID": 1821,
 			"sTier": {
 				"individualDifference": false,
@@ -134585,6 +135030,11 @@
 	{
 		"chartID": "ebe25fb7642566fabc3c3eabb5bfb3e8a882130a",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 1833,
 			"sTier": {
 				"individualDifference": false,
@@ -134654,6 +135104,11 @@
 	{
 		"chartID": "e49ec0945de03ad4e0acd4d406763fb338499d69",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 1834,
 			"sTier": {
 				"individualDifference": false,
@@ -134723,6 +135178,11 @@
 	{
 		"chartID": "32aa064a9fee58b8fd170b20d37e0de86b2a091f",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1836
 		},
 		"difficulty": "MXM",
@@ -134771,6 +135231,11 @@
 	{
 		"chartID": "6f08454686ab5bd0abdf23a0c327ba2df1389abc",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1837
 		},
 		"difficulty": "EXH",
@@ -134787,6 +135252,11 @@
 	{
 		"chartID": "ebcd98dc6f3497e7d4a1edda5ac7371080aa2a22",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1837,
 			"sTier": {
 				"individualDifference": false,
@@ -134840,6 +135310,11 @@
 	{
 		"chartID": "e1c9f6444d674c211a29a7f52bd760033f52fdc9",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16F",
+				"value": 16
+			},
 			"inGameID": 1850
 		},
 		"difficulty": "EXH",
@@ -134856,6 +135331,11 @@
 	{
 		"chartID": "0315e97c49046addd79b86dceba1b09bf30af7b6",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18E",
+				"value": 18.1
+			},
 			"inGameID": 1850,
 			"sTier": {
 				"individualDifference": false,
@@ -134925,6 +135405,11 @@
 	{
 		"chartID": "ea3be8c3b2fcd8e1f94470e6fb5bdb085004ea36",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 1851,
 			"sTier": {
 				"individualDifference": false,
@@ -134978,6 +135463,11 @@
 	{
 		"chartID": "fb91827c49b0cfb1d2438a82bfacef4c586613ff",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1852
 		},
 		"difficulty": "EXH",
@@ -134994,6 +135484,11 @@
 	{
 		"chartID": "099276ef519ddf2c36d24d35dd52121879443d15",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1852,
 			"sTier": {
 				"individualDifference": false,
@@ -135063,6 +135558,11 @@
 	{
 		"chartID": "c1e7a25d58eb5e41b664602b2bc398db6c2339f0",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1853,
 			"sTier": {
 				"individualDifference": false,
@@ -135116,6 +135616,11 @@
 	{
 		"chartID": "0dad7bb56ad308df63f517bdba97a8f58b53bf95",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 1854,
 			"sTier": {
 				"individualDifference": false,
@@ -135137,6 +135642,11 @@
 	{
 		"chartID": "2a1734315c19d9638c2c5c50097318a4c10fb160",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19D",
+				"value": 19.3
+			},
 			"inGameID": 1854,
 			"sTier": {
 				"individualDifference": false,
@@ -135204,6 +135714,11 @@
 	{
 		"chartID": "ea38ea54ff890050806320534ccbfb3108e6b820",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1855,
 			"sTier": {
 				"individualDifference": false,
@@ -135269,6 +135784,11 @@
 	{
 		"chartID": "8e164a79de009a5e208d400cc4296cbe03d5ae6e",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 1867,
 			"sTier": {
 				"individualDifference": false,
@@ -135334,6 +135854,11 @@
 	{
 		"chartID": "3b3c120df842c7c2bc77c94f07680a3c1aea9f6b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1868,
 			"sTier": {
 				"individualDifference": false,
@@ -135399,6 +135924,11 @@
 	{
 		"chartID": "9aa26703c93961abcd831d656b1ed13e8089c5a8",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17B",
+				"value": 17.5
+			},
 			"inGameID": 1869,
 			"sTier": {
 				"individualDifference": false,
@@ -135449,6 +135979,11 @@
 	{
 		"chartID": "13a7e54b624ce53d270bfd498ee324f90ed59380",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1870
 		},
 		"difficulty": "EXH",
@@ -135464,6 +135999,11 @@
 	{
 		"chartID": "ba28e1ac0a3e4a729aa9d89d754dee312c0092fc",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18E",
+				"value": 18.1
+			},
 			"inGameID": 1870,
 			"sTier": {
 				"individualDifference": false,
@@ -135529,6 +136069,11 @@
 	{
 		"chartID": "610a0b3e26e7dd60fd6f92c1b349087581713aae",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17B",
+				"value": 17.5
+			},
 			"inGameID": 1871,
 			"sTier": {
 				"individualDifference": false,
@@ -135594,6 +136139,11 @@
 	{
 		"chartID": "d7c57aa7779ba50f20f5a716e86e3d2de9ce4f30",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 1872,
 			"sTier": {
 				"individualDifference": false,
@@ -135659,6 +136209,11 @@
 	{
 		"chartID": "368a80d90dc8403fab0f3f1056f6fdd96ba1c7d7",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 1873
 		},
 		"difficulty": "MXM",
@@ -135719,6 +136274,11 @@
 	{
 		"chartID": "c12407a97911a67cf65fab4614b443912e344298",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 1874
 		},
 		"difficulty": "MXM",
@@ -135781,6 +136341,11 @@
 	{
 		"chartID": "da6ed2b0e7163abdb7582e858f95f91ec2effedc",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 1875,
 			"sTier": {
 				"individualDifference": false,
@@ -135850,6 +136415,11 @@
 	{
 		"chartID": "e451484f2b79e536b466593090c5129bc5b501d8",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1876,
 			"sTier": {
 				"individualDifference": false,
@@ -135919,6 +136489,11 @@
 	{
 		"chartID": "e82348d684d22c2a40f2fbad30becf2f42b9c140",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 1877,
 			"sTier": {
 				"individualDifference": false,
@@ -135988,6 +136563,11 @@
 	{
 		"chartID": "b964445f800187206ee0f2790c636f7a41ea1438",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1878
 		},
 		"difficulty": "MXM",
@@ -136050,6 +136630,11 @@
 	{
 		"chartID": "4377beb3c0cd3e83ba35b1fb2a311909de397b31",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16F",
+				"value": 16
+			},
 			"inGameID": 1879
 		},
 		"difficulty": "MXM",
@@ -136112,6 +136697,11 @@
 	{
 		"chartID": "f5a9cab68bce629c8fe4e5846a7e12fb622f46a8",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1880,
 			"sTier": {
 				"individualDifference": false,
@@ -136181,6 +136771,11 @@
 	{
 		"chartID": "41910699c2ff0cca0c9d03285f4ba64ef3e1d493",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1881
 		},
 		"difficulty": "MXM",
@@ -136228,6 +136823,11 @@
 	{
 		"chartID": "a00f370bd2d447b686d0a2a2e6161afc9dde7015",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 1887,
 			"sTier": {
 				"individualDifference": false,
@@ -136248,6 +136848,11 @@
 	{
 		"chartID": "df207c6610474c079ff39254b3cb6565aa37b88a",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19S",
+				"value": 20
+			},
 			"inGameID": 1887,
 			"sTier": {
 				"individualDifference": false,
@@ -136299,6 +136904,11 @@
 	{
 		"chartID": "8aec18d656ebb4135c04f4ec9a266669d26c3b78",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 1888,
 			"sTier": {
 				"individualDifference": false,
@@ -136320,6 +136930,11 @@
 	{
 		"chartID": "de224200047a744f1fe1171b2a038dbce113bbc8",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "20B",
+				"value": 20.1
+			},
 			"inGameID": 1888,
 			"sTier": {
 				"individualDifference": false,
@@ -136373,6 +136988,11 @@
 	{
 		"chartID": "af8acbd8a6a65c1ceae2405504d97935c0201075",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1889,
 			"sTier": {
 				"individualDifference": false,
@@ -136394,6 +137014,11 @@
 	{
 		"chartID": "f2f1349c4e410c4e408ef846489fe6bd679ff287",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "20S",
+				"value": 20.5
+			},
 			"inGameID": 1889,
 			"sTier": {
 				"individualDifference": false,
@@ -136447,6 +137072,11 @@
 	{
 		"chartID": "bf5a366492beeeeea3208ff2e573b944821a3a82",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1890,
 			"sTier": {
 				"individualDifference": false,
@@ -136468,6 +137098,11 @@
 	{
 		"chartID": "4ac754a21858dab54c26e2522a61b4f40891b42b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19B",
+				"value": 19.5
+			},
 			"inGameID": 1890,
 			"sTier": {
 				"individualDifference": false,
@@ -136521,6 +137156,11 @@
 	{
 		"chartID": "4c1176d62a7fd38d0397adef87c543b992908863",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 1891,
 			"sTier": {
 				"individualDifference": false,
@@ -136542,6 +137182,11 @@
 	{
 		"chartID": "ee37d240e1e072706d433506d8e4a3c164b71d19",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19B",
+				"value": 19.5
+			},
 			"inGameID": 1891,
 			"sTier": {
 				"individualDifference": false,
@@ -136595,6 +137240,11 @@
 	{
 		"chartID": "b482c1740c36af81f25d3be94b17247e9edb8129",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 1892,
 			"sTier": {
 				"individualDifference": false,
@@ -136616,6 +137266,11 @@
 	{
 		"chartID": "73c1b2154c5446f75285e96e70fd5a825a914504",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19D",
+				"value": 19.3
+			},
 			"inGameID": 1892,
 			"sTier": {
 				"individualDifference": false,
@@ -136669,6 +137324,11 @@
 	{
 		"chartID": "ca8589e672db6184fe23bf7159eb95b3fd468cc7",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 1893,
 			"sTier": {
 				"individualDifference": false,
@@ -136690,6 +137350,11 @@
 	{
 		"chartID": "c515f03d374fa7b065aa05c47666e3058f66f1a9",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19D",
+				"value": 19.3
+			},
 			"inGameID": 1893,
 			"sTier": {
 				"individualDifference": false,
@@ -136743,6 +137408,11 @@
 	{
 		"chartID": "4a3f0921687331f0edae6038259ee0a150fdfbde",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17B",
+				"value": 17.5
+			},
 			"inGameID": 1894,
 			"sTier": {
 				"individualDifference": false,
@@ -136764,6 +137434,11 @@
 	{
 		"chartID": "7ee3a67e9a01cebc6eb4d003ed083d4c928c7386",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19A+",
+				"value": 19.9
+			},
 			"inGameID": 1894,
 			"sTier": {
 				"individualDifference": false,
@@ -136817,6 +137492,11 @@
 	{
 		"chartID": "fb4553bb5709ff977dfb5083cc78c49117467ad6",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 1895,
 			"sTier": {
 				"individualDifference": false,
@@ -136838,6 +137518,11 @@
 	{
 		"chartID": "03020752716d2fc30d5f28547dd5cce29a758226",
 		"data": {
+			"clearTier": {
+				"individualDifference": true,
+				"text": "19C",
+				"value": 19.4
+			},
 			"inGameID": 1895,
 			"sTier": {
 				"individualDifference": false,
@@ -136891,6 +137576,11 @@
 	{
 		"chartID": "771f8c79b02a3dd86f0856a73dae61c5423b07a0",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1896
 		},
 		"difficulty": "EXH",
@@ -136907,6 +137597,11 @@
 	{
 		"chartID": "d5ad16fd12752313d35dfb8af417eea1e24de4df",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 1896,
 			"sTier": {
 				"individualDifference": false,
@@ -136960,6 +137655,11 @@
 	{
 		"chartID": "9fcb17a5765c44d4b7dae993f15735da82f1a525",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1897
 		},
 		"difficulty": "EXH",
@@ -136976,6 +137676,11 @@
 	{
 		"chartID": "c850b33e6161833f4e258878e0a9d8612c523745",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 1897,
 			"sTier": {
 				"individualDifference": false,
@@ -137029,6 +137734,11 @@
 	{
 		"chartID": "dfa02072483ffd34839f273941e9303c672c61eb",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1898
 		},
 		"difficulty": "EXH",
@@ -137045,6 +137755,11 @@
 	{
 		"chartID": "6aa472f194f3f58f5f3141979188bea29675b618",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1898,
 			"sTier": {
 				"individualDifference": false,
@@ -137098,6 +137813,11 @@
 	{
 		"chartID": "e49e1f4ea60489db22dc23b88022fcd964b4fea8",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16A/B",
+				"value": 16.5
+			},
 			"inGameID": 1899
 		},
 		"difficulty": "EXH",
@@ -137114,6 +137834,11 @@
 	{
 		"chartID": "5637370561cef0c31f63d8779564275547118bd1",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 1899,
 			"sTier": {
 				"individualDifference": false,
@@ -137167,6 +137892,11 @@
 	{
 		"chartID": "3f78635eb4c9cae773116101d3f1d6d96616883c",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1900
 		},
 		"difficulty": "EXH",
@@ -137183,6 +137913,11 @@
 	{
 		"chartID": "dc48ca1349e14967671f0e8a8f805b3a2840e793",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1900,
 			"sTier": {
 				"individualDifference": false,
@@ -137236,6 +137971,11 @@
 	{
 		"chartID": "acf7672774a0d1d3ea47fc95da31ec60131f5635",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1901
 		},
 		"difficulty": "EXH",
@@ -137252,6 +137992,11 @@
 	{
 		"chartID": "bdaa0deed30a6455c207dc9253e402d6f2b561d8",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1901,
 			"sTier": {
 				"individualDifference": false,
@@ -137305,6 +138050,11 @@
 	{
 		"chartID": "1567cb8cc3942d731afed1ec600701267a91e04b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 1906,
 			"sTier": {
 				"individualDifference": false,
@@ -137326,6 +138076,11 @@
 	{
 		"chartID": "53962258c9ebc512bdbd59d0d18046692827e1c1",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19B",
+				"value": 19.5
+			},
 			"inGameID": 1906,
 			"sTier": {
 				"individualDifference": false,
@@ -137379,6 +138134,11 @@
 	{
 		"chartID": "8a15bc931e433cb49e11619bbc0284d821f6d8e9",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1907
 		},
 		"difficulty": "EXH",
@@ -137395,6 +138155,11 @@
 	{
 		"chartID": "0b2d5c755204850bfd7a9cedee9b82a002c695b0",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 1907,
 			"sTier": {
 				"individualDifference": false,
@@ -137448,6 +138213,11 @@
 	{
 		"chartID": "1321dbc130778f285e58c463aed977c5a8ed1ef4",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1908,
 			"sTier": {
 				"individualDifference": false,
@@ -137469,6 +138239,11 @@
 	{
 		"chartID": "f5a058b6c8426ac1f37e476c6a7d2bab97235adb",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19B",
+				"value": 19.5
+			},
 			"inGameID": 1908,
 			"sTier": {
 				"individualDifference": false,
@@ -137522,6 +138297,11 @@
 	{
 		"chartID": "8c1290c95b0f026b07da0b7200d157f0e3e47fbd",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1909
 		},
 		"difficulty": "EXH",
@@ -137538,6 +138318,11 @@
 	{
 		"chartID": "30f148b70f006b366582097ed0709866d43cb987",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 1909,
 			"sTier": {
 				"individualDifference": false,
@@ -137591,6 +138376,11 @@
 	{
 		"chartID": "cc4e3ca4a23808a620fd83226e4f4cdb9952bd63",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 1910,
 			"sTier": {
 				"individualDifference": false,
@@ -137612,6 +138402,11 @@
 	{
 		"chartID": "354966e14f0252ef0cb54cccfba0f97221b6297f",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19C",
+				"value": 19.4
+			},
 			"inGameID": 1910,
 			"sTier": {
 				"individualDifference": false,
@@ -137679,6 +138474,11 @@
 	{
 		"chartID": "de8235dd23e0c8f5822506b81713518f8170f5f9",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 1911,
 			"sTier": {
 				"individualDifference": false,
@@ -137744,6 +138544,11 @@
 	{
 		"chartID": "18878644fdc54f80c89aec50ddaf693e5197478b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1914,
 			"sTier": {
 				"individualDifference": false,
@@ -137809,6 +138614,11 @@
 	{
 		"chartID": "5f1f0aaf7aac9c221e53da6697ead47e1154142f",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 1915,
 			"sTier": {
 				"individualDifference": false,
@@ -137874,6 +138684,11 @@
 	{
 		"chartID": "cfb2feee842dc2131458271e66d14cc3cccb39ab",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17B",
+				"value": 17.5
+			},
 			"inGameID": 1916,
 			"sTier": {
 				"individualDifference": false,
@@ -137939,6 +138754,11 @@
 	{
 		"chartID": "0ebac2411d16fbc9053f026c1f0933b1b0169df6",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 1917,
 			"sTier": {
 				"individualDifference": false,
@@ -138004,6 +138824,11 @@
 	{
 		"chartID": "02722aed13461785e1c74ba06ad5b8d8f38e73ee",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17B",
+				"value": 17.5
+			},
 			"inGameID": 1918,
 			"sTier": {
 				"individualDifference": false,
@@ -138071,6 +138896,11 @@
 	{
 		"chartID": "1703c144fed9956656ca16ffd7216f4faf9ac342",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 1943,
 			"sTier": {
 				"individualDifference": false,
@@ -138124,6 +138954,11 @@
 	{
 		"chartID": "b22693adcd2cd9b20f4caef3f478e0c360ee4800",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16F",
+				"value": 16
+			},
 			"inGameID": 1946
 		},
 		"difficulty": "EXH",
@@ -138140,6 +138975,11 @@
 	{
 		"chartID": "b3dfd39af12c23c42dc92f8f4765029cba9bf39c",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1946,
 			"sTier": {
 				"individualDifference": false,
@@ -138193,6 +139033,11 @@
 	{
 		"chartID": "87cf1d9abd870542ef22f888260f3a1cb8e63bb7",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1947
 		},
 		"difficulty": "EXH",
@@ -138209,6 +139054,11 @@
 	{
 		"chartID": "9d96db06e00c2478874078ed14d2801f0b7979a3",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1947,
 			"sTier": {
 				"individualDifference": false,
@@ -138262,6 +139112,11 @@
 	{
 		"chartID": "4d29a8214579e6c55dfea72a336ae7c99e2751a8",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1948
 		},
 		"difficulty": "EXH",
@@ -138278,6 +139133,11 @@
 	{
 		"chartID": "ad69cb78665ba62529d841e2f142b45472dc0524",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 1948,
 			"sTier": {
 				"individualDifference": false,
@@ -138331,6 +139191,11 @@
 	{
 		"chartID": "03b6e9e87697b78cab75b90e2829791f711e7177",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16A/B",
+				"value": 16.5
+			},
 			"inGameID": 1949
 		},
 		"difficulty": "EXH",
@@ -138347,6 +139212,11 @@
 	{
 		"chartID": "ffb95e91fd6e330df8c970c1bf1dea37560f5253",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 1949,
 			"sTier": {
 				"individualDifference": false,
@@ -138400,6 +139270,11 @@
 	{
 		"chartID": "12da32bec4684f252ac7c4c4f1c112142c564158",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1951
 		},
 		"difficulty": "EXH",
@@ -138416,6 +139291,11 @@
 	{
 		"chartID": "b0b3bcc782286c0c662c9a107a6e38d042f6cb7b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1951,
 			"sTier": {
 				"individualDifference": false,
@@ -138469,6 +139349,11 @@
 	{
 		"chartID": "7c2e8a64671a2ed411e9f1934fe127f6663f530d",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1952
 		},
 		"difficulty": "EXH",
@@ -138485,6 +139370,11 @@
 	{
 		"chartID": "1ed1a59aecbda2fef545fe3d4156d2c43f46f766",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1952,
 			"sTier": {
 				"individualDifference": false,
@@ -138554,6 +139444,11 @@
 	{
 		"chartID": "bfbbd28cb01b0b2b3a6431c5b2e5de51c5cf3768",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1953,
 			"sTier": {
 				"individualDifference": false,
@@ -138607,6 +139502,11 @@
 	{
 		"chartID": "0c433495fd3c23495306c86734dd50e91c7dd514",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1955
 		},
 		"difficulty": "EXH",
@@ -138623,6 +139523,11 @@
 	{
 		"chartID": "dfc25f65bdd0373051157e455ecbd96bf9dacbac",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1955,
 			"sTier": {
 				"individualDifference": false,
@@ -138692,6 +139597,11 @@
 	{
 		"chartID": "c0b1be4baa1bd0819c73b64ebce46c64eade60ed",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1956,
 			"sTier": {
 				"individualDifference": false,
@@ -138761,6 +139671,11 @@
 	{
 		"chartID": "ef3c69a2c171a5ce24942be4bca9971fadc2f42c",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 1957,
 			"sTier": {
 				"individualDifference": false,
@@ -138814,6 +139729,11 @@
 	{
 		"chartID": "3f840481fc69f28b5ee1bbaede4bd499ba59e146",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16A/B",
+				"value": 16.5
+			},
 			"inGameID": 1958
 		},
 		"difficulty": "EXH",
@@ -138830,6 +139750,11 @@
 	{
 		"chartID": "4385ded2b50f4482a793d15141233d1a770dd81a",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1958,
 			"sTier": {
 				"individualDifference": false,
@@ -138899,6 +139824,11 @@
 	{
 		"chartID": "16a0f3a47b8916273dcd50c2a6d9f2a6a4fcb45c",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17F-",
+				"value": 17
+			},
 			"inGameID": 1959,
 			"sTier": {
 				"individualDifference": false,
@@ -138951,6 +139881,11 @@
 	{
 		"chartID": "a5c5c89f601b74e07bdff63088817f23ba8ec8b7",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1846
 		},
 		"difficulty": "EXH",
@@ -138966,6 +139901,11 @@
 	{
 		"chartID": "a614b04a0172913b156d1653055426fd6fc1066b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1846,
 			"sTier": {
 				"individualDifference": false,
@@ -139017,6 +139957,11 @@
 	{
 		"chartID": "edbf9a3857a1d2f38cdbfd1a900b80145f470d69",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 1939,
 			"sTier": {
 				"individualDifference": false,
@@ -139038,6 +139983,11 @@
 	{
 		"chartID": "619ba0e3f5a79833cc8a84ba5ff1e518d5dc2139",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19A+",
+				"value": 19.9
+			},
 			"inGameID": 1939,
 			"sTier": {
 				"individualDifference": false,
@@ -139091,6 +140041,11 @@
 	{
 		"chartID": "17afe3f15273c2a4bc4c8581471e234c8fe3c093",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1940,
 			"sTier": {
 				"individualDifference": false,
@@ -139112,6 +140067,11 @@
 	{
 		"chartID": "cb6c5e41615ec221a3e041e7dc98d75521a2882c",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19B",
+				"value": 19.5
+			},
 			"inGameID": 1940,
 			"sTier": {
 				"individualDifference": false,
@@ -139165,6 +140125,11 @@
 	{
 		"chartID": "601432f63457e10afa3de6a8128979aaa2213dcf",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17B",
+				"value": 17.5
+			},
 			"inGameID": 1942,
 			"sTier": {
 				"individualDifference": false,
@@ -139186,6 +140151,11 @@
 	{
 		"chartID": "953ff1f5929de1c1f494657453b77e57efcc9816",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19A",
+				"value": 19.7
+			},
 			"inGameID": 1942,
 			"sTier": {
 				"individualDifference": false,
@@ -139239,6 +140209,11 @@
 	{
 		"chartID": "f4b41a043f9af7ae0936b20ae6f86cfc557ffe2b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1944
 		},
 		"difficulty": "EXH",
@@ -139255,6 +140230,11 @@
 	{
 		"chartID": "2239b8be06762deee52e63d1d1cfafe126362d92",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 1944,
 			"sTier": {
 				"individualDifference": false,
@@ -139308,6 +140288,11 @@
 	{
 		"chartID": "02df4c32f15b2591e678c5c1dc327466ac61c921",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1945
 		},
 		"difficulty": "EXH",
@@ -139324,6 +140309,11 @@
 	{
 		"chartID": "a8bee1d4ab097f6ae908e8aa00e736040d78ec1f",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 1945,
 			"sTier": {
 				"individualDifference": false,
@@ -139393,6 +140383,11 @@
 	{
 		"chartID": "90549457aa94efae4ff56a88ab4c710b3d7425ff",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1950,
 			"sTier": {
 				"individualDifference": false,
@@ -139446,6 +140441,11 @@
 	{
 		"chartID": "fa9ee73a9ac0b2f23f8719d357a5640a71d12167",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16A/B",
+				"value": 16.5
+			},
 			"inGameID": 1954
 		},
 		"difficulty": "EXH",
@@ -139462,6 +140462,11 @@
 	{
 		"chartID": "3afbaf9a830b4ebd81cc1c855cd747346c725fc8",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 1954,
 			"sTier": {
 				"individualDifference": false,
@@ -139515,6 +140520,11 @@
 	{
 		"chartID": "ac3ea1bb220630733f5202dcd7a39a332f907548",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1978,
 			"sTier": {
 				"individualDifference": false,
@@ -139536,6 +140546,11 @@
 	{
 		"chartID": "62d4e04d9ce423bb14cc91f546e49068705c25d0",
 		"data": {
+			"clearTier": {
+				"individualDifference": true,
+				"text": "19A+",
+				"value": 19.9
+			},
 			"inGameID": 1978,
 			"sTier": {
 				"individualDifference": false,
@@ -139605,6 +140620,11 @@
 	{
 		"chartID": "df2746c38aa51c3a9d491d9e2c311c78cf0cffba",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1979,
 			"sTier": {
 				"individualDifference": false,
@@ -139658,6 +140678,11 @@
 	{
 		"chartID": "0465ff2263f409a52ee0210f4218364e15a4986c",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1980
 		},
 		"difficulty": "EXH",
@@ -139674,6 +140699,11 @@
 	{
 		"chartID": "d55c1132a74db345706ea98cad1ac60fcf0dce13",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 1980,
 			"sTier": {
 				"individualDifference": false,
@@ -139727,6 +140757,11 @@
 	{
 		"chartID": "fd91f27b5488601f9b94c75febaf20d2f4e4c7d7",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17B",
+				"value": 17.5
+			},
 			"inGameID": 1941,
 			"sTier": {
 				"individualDifference": false,
@@ -139748,6 +140783,11 @@
 	{
 		"chartID": "9740faef8b1b10733d0915aaefd41885286dd9d2",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19S",
+				"value": 20
+			},
 			"inGameID": 1941,
 			"sTier": {
 				"individualDifference": false,
@@ -139815,6 +140855,11 @@
 	{
 		"chartID": "0c61f8ac1bd776b124a5d164bcccfa020203268b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 1960,
 			"sTier": {
 				"individualDifference": false,
@@ -139880,6 +140925,11 @@
 	{
 		"chartID": "cced31c88b76f60077875b040a23783f23e1b623",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1961
 		},
 		"difficulty": "MXM",
@@ -139940,6 +140990,11 @@
 	{
 		"chartID": "fa9a986ecb8694e72a5282fb7fd0f42682d6c6e1",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17B",
+				"value": 17.5
+			},
 			"inGameID": 1962,
 			"sTier": {
 				"individualDifference": false,
@@ -139991,6 +141046,11 @@
 	{
 		"chartID": "f7dc9dc6ffdde3c01edc93e34c9a8d7b45a5f591",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 1919,
 			"sTier": {
 				"individualDifference": false,
@@ -140012,6 +141072,11 @@
 	{
 		"chartID": "0c4b43ca17f3bde4491182295e1584a765e96e67",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19C",
+				"value": 19.4
+			},
 			"inGameID": 1919,
 			"sTier": {
 				"individualDifference": false,
@@ -140065,6 +141130,11 @@
 	{
 		"chartID": "77acc66d9a58af4e4f909c67964e800bfe78453b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1920
 		},
 		"difficulty": "EXH",
@@ -140081,6 +141151,11 @@
 	{
 		"chartID": "35a79282728371843498fef78e4f1ee4d413d8af",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1920,
 			"sTier": {
 				"individualDifference": false,
@@ -140134,6 +141209,11 @@
 	{
 		"chartID": "2fe92242e9add6a227904a6be31e4d939d1448b5",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1921,
 			"sTier": {
 				"individualDifference": false,
@@ -140155,6 +141235,11 @@
 	{
 		"chartID": "e02d7f5f37cad1db447530c13d66fbac6de554f9",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19D",
+				"value": 19.3
+			},
 			"inGameID": 1921,
 			"sTier": {
 				"individualDifference": false,
@@ -140224,6 +141309,11 @@
 	{
 		"chartID": "3becc480e3567143a05fa05bb11bb9466a9b04dd",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 1922,
 			"sTier": {
 				"individualDifference": false,
@@ -140277,6 +141367,11 @@
 	{
 		"chartID": "edfa309cb2883a6a6717c35243361183b8cf4417",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1923
 		},
 		"difficulty": "EXH",
@@ -140293,6 +141388,11 @@
 	{
 		"chartID": "f5fd582b71a0984314ede880b8e2316062bccdc2",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 1923,
 			"sTier": {
 				"individualDifference": false,
@@ -140346,6 +141446,11 @@
 	{
 		"chartID": "3eed08b83f51e8aa283f6756a02f4fd292fc7bdd",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16A/B",
+				"value": 16.5
+			},
 			"inGameID": 1924
 		},
 		"difficulty": "EXH",
@@ -140362,6 +141467,11 @@
 	{
 		"chartID": "aa81c2febcac0dd6bc8e6f679eeb9afaea1a261a",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 1924,
 			"sTier": {
 				"individualDifference": false,
@@ -140431,6 +141541,11 @@
 	{
 		"chartID": "3dfe3037d1e68f6e4a7ce1d17a6a18dc00dd7747",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1925,
 			"sTier": {
 				"individualDifference": false,
@@ -140500,6 +141615,11 @@
 	{
 		"chartID": "88dcf34d921da6f917dbb895669800ebba296683",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1926,
 			"sTier": {
 				"individualDifference": false,
@@ -140553,6 +141673,11 @@
 	{
 		"chartID": "db086bb0e9f6ae3d44678e7793e942a8f95a38e8",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 1938,
 			"sTier": {
 				"individualDifference": false,
@@ -140574,6 +141699,11 @@
 	{
 		"chartID": "c7251253169960affdceb8bf2a13318d7d96520d",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "20S",
+				"value": 20.5
+			},
 			"inGameID": 1938,
 			"sTier": {
 				"individualDifference": false,
@@ -140627,6 +141757,11 @@
 	{
 		"chartID": "c8e3fbd28aec093d8279e2f617f1f6658e0b05fc",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16F",
+				"value": 16
+			},
 			"inGameID": 1983
 		},
 		"difficulty": "EXH",
@@ -140643,6 +141778,11 @@
 	{
 		"chartID": "9bca6cf5326eda425cd34a335df2e5064a17a30c",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1983,
 			"sTier": {
 				"individualDifference": false,
@@ -140712,6 +141852,11 @@
 	{
 		"chartID": "9efb48f28fcfef19228e90f231c068c6954727f2",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 1984,
 			"sTier": {
 				"individualDifference": false,
@@ -140765,6 +141910,11 @@
 	{
 		"chartID": "9337ccc5e56fed9f02f2372e1aa3bd6ef15edef7",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1985
 		},
 		"difficulty": "EXH",
@@ -140781,6 +141931,11 @@
 	{
 		"chartID": "774b04bdfa1dd1b7f778a742c68d66061cf6ec70",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 1985,
 			"sTier": {
 				"individualDifference": false,
@@ -140850,6 +142005,11 @@
 	{
 		"chartID": "540af6dda40feaab6d10a579f50295eb9fd42774",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17B",
+				"value": 17.5
+			},
 			"inGameID": 1986,
 			"sTier": {
 				"individualDifference": false,
@@ -140919,6 +142079,11 @@
 	{
 		"chartID": "1d700e223953c8669e09a7544f0740f7648a744b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1987,
 			"sTier": {
 				"individualDifference": false,
@@ -140971,6 +142136,11 @@
 	{
 		"chartID": "bc9ad5370058990ed9ad0d11be47012f10324c73",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16F",
+				"value": 16
+			},
 			"inGameID": 1912
 		},
 		"difficulty": "EXH",
@@ -140986,6 +142156,11 @@
 	{
 		"chartID": "bc52ae13779046b7856302d42fb1904c84ae44b0",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1912,
 			"sTier": {
 				"individualDifference": false,
@@ -141036,6 +142211,11 @@
 	{
 		"chartID": "5689c8700edba3e67be900158a69d1ccd8f6513a",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1913
 		},
 		"difficulty": "EXH",
@@ -141051,6 +142231,11 @@
 	{
 		"chartID": "271521cbba15a012eb4dbf07a3db76c11ac7f55c",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18E",
+				"value": 18.1
+			},
 			"inGameID": 1913,
 			"sTier": {
 				"individualDifference": false,
@@ -141118,6 +142303,11 @@
 	{
 		"chartID": "06884b4b5e7f252ca1cc29e61c9d88ac30a6773b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 1928,
 			"sTier": {
 				"individualDifference": false,
@@ -141187,6 +142377,11 @@
 	{
 		"chartID": "97a47858933cf864e548c202413954f13104ac6d",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 1931,
 			"sTier": {
 				"individualDifference": false,
@@ -141256,6 +142451,11 @@
 	{
 		"chartID": "f00304388c03fedb0b130739b7a27f4cd79051c3",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17B",
+				"value": 17.5
+			},
 			"inGameID": 2000,
 			"sTier": {
 				"individualDifference": false,
@@ -141325,6 +142525,11 @@
 	{
 		"chartID": "796d6a715aeb790208e4afb2fd0ce3eba83b0f42",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 2017,
 			"sTier": {
 				"individualDifference": false,
@@ -141378,6 +142583,11 @@
 	{
 		"chartID": "f923acf1f0a4c7382dd43971646bd94f175a7a2b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 2025
 		},
 		"difficulty": "EXH",
@@ -141394,6 +142604,11 @@
 	{
 		"chartID": "23a229c5bede974635efccbc169ed40cdc461023",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18F",
+				"value": 18
+			},
 			"inGameID": 2025,
 			"sTier": {
 				"individualDifference": false,
@@ -141461,6 +142676,11 @@
 	{
 		"chartID": "418aee5ab0531001279de4f71b19d0d68687b24d",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 2027,
 			"sTier": {
 				"individualDifference": false,
@@ -141526,6 +142746,11 @@
 	{
 		"chartID": "14b317f3b2a5a71224f038e77872e280736a7f1b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2028,
 			"sTier": {
 				"individualDifference": false,
@@ -141591,6 +142816,11 @@
 	{
 		"chartID": "e21db108c41efc2f6917d5b499cc44a4199bf35d",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 2029,
 			"sTier": {
 				"individualDifference": false,
@@ -141656,6 +142886,11 @@
 	{
 		"chartID": "09a16cfd0decec5d692ede7983c730c2ac46b3fb",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 2030,
 			"sTier": {
 				"individualDifference": false,
@@ -141723,6 +142958,11 @@
 	{
 		"chartID": "1790b5834fbeba25e1445f470704ded97020cea5",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 1905,
 			"sTier": {
 				"individualDifference": false,
@@ -141776,6 +143016,11 @@
 	{
 		"chartID": "6218fbe24be9b8b778d9420ef3374c1b18129db7",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1927
 		},
 		"difficulty": "EXH",
@@ -141792,6 +143037,11 @@
 	{
 		"chartID": "b3d96b87e28463b2995d9d04d69cbd956cb1f222",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 1927,
 			"sTier": {
 				"individualDifference": false,
@@ -141845,6 +143095,11 @@
 	{
 		"chartID": "8f5d883fba352575fb320e3bc18ba1323cf37d51",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16A/B",
+				"value": 16.5
+			},
 			"inGameID": 1929
 		},
 		"difficulty": "EXH",
@@ -141861,6 +143116,11 @@
 	{
 		"chartID": "4f9285473c59835dbf1a243802a73336bc6b527f",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1929,
 			"sTier": {
 				"individualDifference": false,
@@ -141914,6 +143174,11 @@
 	{
 		"chartID": "d0806bf7c103927dda217c5a0afac64f56264a05",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 1930
 		},
 		"difficulty": "EXH",
@@ -141930,6 +143195,11 @@
 	{
 		"chartID": "e20bcd12cedbfe79385d0543ce99da7cfd457be2",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 1930,
 			"sTier": {
 				"individualDifference": false,
@@ -141999,6 +143269,11 @@
 	{
 		"chartID": "e735da66c7c26c31701eff6eff861700fc98b3ca",
 		"data": {
+			"clearTier": {
+				"individualDifference": true,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 1932,
 			"sTier": {
 				"individualDifference": false,
@@ -142068,6 +143343,11 @@
 	{
 		"chartID": "0e2b8daae3ddb832956d741d583c09b7c8c887cc",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17B",
+				"value": 17.5
+			},
 			"inGameID": 1933,
 			"sTier": {
 				"individualDifference": false,
@@ -142137,6 +143417,11 @@
 	{
 		"chartID": "c7ffcbe5b528f413c6cb3ec839c84afbdd95e438",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18E",
+				"value": 18.1
+			},
 			"inGameID": 1934,
 			"sTier": {
 				"individualDifference": false,
@@ -142206,6 +143491,11 @@
 	{
 		"chartID": "7e82dd0d8b17641746efddc27bbab31915ffac07",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 1935,
 			"sTier": {
 				"individualDifference": false,
@@ -142259,6 +143549,11 @@
 	{
 		"chartID": "72b4477a47573b104f4f6a4e861daa5baa7893ae",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16A/B",
+				"value": 16.5
+			},
 			"inGameID": 1936
 		},
 		"difficulty": "EXH",
@@ -142275,6 +143570,11 @@
 	{
 		"chartID": "ed99b25abba8d4c40ecb9ec24e55a03348a1fce4",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 1936,
 			"sTier": {
 				"individualDifference": false,
@@ -142344,6 +143644,11 @@
 	{
 		"chartID": "eb39e0b2334db9e11b73d2b8e04325d448006d3e",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 1937,
 			"sTier": {
 				"individualDifference": false,
@@ -142413,6 +143718,11 @@
 	{
 		"chartID": "71915f39163d4b6bae27e8c710f3a7f0ffdf2d96",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18F",
+				"value": 18
+			},
 			"inGameID": 1835,
 			"sTier": {
 				"individualDifference": false,
@@ -142547,6 +143857,11 @@
 	{
 		"chartID": "55a20320a3a7f27310847b570f6db5788d15188d",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 1990,
 			"sTier": {
 				"individualDifference": false,
@@ -142600,6 +143915,11 @@
 	{
 		"chartID": "e790f89e4391bba87496a9da26afdd9251bb0f8a",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 1995
 		},
 		"difficulty": "EXH",
@@ -142616,6 +143936,11 @@
 	{
 		"chartID": "74dd435b1af1d9d7653c4f647e468493849e02b9",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 1995,
 			"sTier": {
 				"individualDifference": false,
@@ -142690,6 +144015,11 @@
 	{
 		"chartID": "c280794b1a5384a1ae5d89f2e60a4ca69c4b3938",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19C",
+				"value": 19.4
+			},
 			"inGameID": 1997,
 			"sTier": {
 				"individualDifference": false,
@@ -142759,6 +144089,11 @@
 	{
 		"chartID": "72ba21c824a05e99bb989e927e1a87d22079830f",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 2014,
 			"sTier": {
 				"individualDifference": false,
@@ -142812,6 +144147,11 @@
 	{
 		"chartID": "b2f5381f8b446dc6c13e2f3b60775af8421afacd",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 2016
 		},
 		"difficulty": "EXH",
@@ -142828,6 +144168,11 @@
 	{
 		"chartID": "88ab5cf933fe3973e3bfaea8bbd75d9bd8cde7d8",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 2016,
 			"sTier": {
 				"individualDifference": false,
@@ -142897,6 +144242,11 @@
 	{
 		"chartID": "a9cb1a79b82c6cc39c7dd469db42c754e691a819",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 2021,
 			"sTier": {
 				"individualDifference": false,
@@ -142949,6 +144299,11 @@
 	{
 		"chartID": "083e70feba7197151b4f7256a8413d485a4f6156",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16E",
+				"value": 16.1
+			},
 			"inGameID": 2031
 		},
 		"difficulty": "EXH",
@@ -142964,6 +144319,11 @@
 	{
 		"chartID": "62b13b5825adca8240c41b47c495e83975a84fb3",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 2031,
 			"sTier": {
 				"individualDifference": false,
@@ -143029,6 +144389,11 @@
 	{
 		"chartID": "bb88a6bae0390be659beaccb97446479865b97f8",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 2032,
 			"sTier": {
 				"individualDifference": false,
@@ -143094,6 +144459,11 @@
 	{
 		"chartID": "e8c8daa9cf6741d0392944469c6bfa27503ec89c",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17C",
+				"value": 17.4
+			},
 			"inGameID": 2033,
 			"sTier": {
 				"individualDifference": false,
@@ -143144,6 +144514,11 @@
 	{
 		"chartID": "f0287d63cb600ea727b724f5bb5d164ea6a73396",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "16C/D",
+				"value": 16.3
+			},
 			"inGameID": 2034
 		},
 		"difficulty": "EXH",
@@ -143159,6 +144534,11 @@
 	{
 		"chartID": "6bd6ad1c62c93417ff3cc618411cbc87b9a0760a",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19D",
+				"value": 19.3
+			},
 			"inGameID": 2034,
 			"sTier": {
 				"individualDifference": false,
@@ -143224,6 +144604,11 @@
 	{
 		"chartID": "dff702d69b9ce34030b359f3918e63cdd57cfe5d",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17E",
+				"value": 17.2
+			},
 			"inGameID": 2035,
 			"sTier": {
 				"individualDifference": false,
@@ -143289,6 +144674,11 @@
 	{
 		"chartID": "91f7cc232faaac044950a9a844d5097fcdd40cae",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "17D",
+				"value": 17.3
+			},
 			"inGameID": 2036,
 			"sTier": {
 				"individualDifference": false,
@@ -143356,6 +144746,11 @@
 	{
 		"chartID": "5b1398a4e3e3b227623560510ec8af170b3a56b4",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2051,
 			"sTier": {
 				"individualDifference": false,
@@ -143425,6 +144820,11 @@
 	{
 		"chartID": "a9ba5e4cbc7600cc8dd8838245a049448915b2e3",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 2052,
 			"sTier": {
 				"individualDifference": false,
@@ -143543,6 +144943,11 @@
 	{
 		"chartID": "400f6307223a065558c547be2792276647a945a2",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 2037,
 			"sTier": {
 				"individualDifference": false,
@@ -143564,6 +144969,11 @@
 	{
 		"chartID": "1bdb6469278306b8e0b6a70b33603b989b5454a6",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "20A",
+				"value": 20.3
+			},
 			"inGameID": 2037,
 			"sTier": {
 				"individualDifference": false,
@@ -143638,6 +145048,11 @@
 	{
 		"chartID": "058f444f1a27e17d3703e08779abf43d745e59de",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19A+",
+				"value": 19.9
+			},
 			"inGameID": 2039,
 			"sTier": {
 				"individualDifference": false,
@@ -143712,6 +145127,11 @@
 	{
 		"chartID": "34d306729251aceba8e8b1288c0c41a984af9157",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19C",
+				"value": 19.4
+			},
 			"inGameID": 2040,
 			"sTier": {
 				"individualDifference": false,
@@ -143781,6 +145201,11 @@
 	{
 		"chartID": "65eaa15ebc71a17130d090f7d596ce421671658c",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 2044,
 			"sTier": {
 				"individualDifference": false,
@@ -143850,6 +145275,11 @@
 	{
 		"chartID": "398b216bae720406943f9d41e3b5cc69399c04a1",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 2046,
 			"sTier": {
 				"individualDifference": false,
@@ -143919,6 +145349,11 @@
 	{
 		"chartID": "00d50ec60c19bb2857f8d2e934cacc86910b91b4",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 2047,
 			"sTier": {
 				"individualDifference": false,
@@ -143988,6 +145423,11 @@
 	{
 		"chartID": "1075860690289a456965a84b2c5ad6e84f00d564",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2050,
 			"sTier": {
 				"individualDifference": false,
@@ -144055,6 +145495,11 @@
 	{
 		"chartID": "aea6543cab8baaf92a6d3bd74d3044d8fadbde85",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2059,
 			"sTier": {
 				"individualDifference": false,
@@ -144122,6 +145567,11 @@
 	{
 		"chartID": "c558accdb450731f73b147b186451a8296bead06",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2060,
 			"sTier": {
 				"individualDifference": false,
@@ -144189,6 +145639,11 @@
 	{
 		"chartID": "bd963449b0aea80c9be6ebfef80f44d146464046",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2063,
 			"sTier": {
 				"individualDifference": false,
@@ -144254,6 +145709,11 @@
 	{
 		"chartID": "e98967aeea84d46bf5a6582d1f62028859e9fc07",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 2064,
 			"sTier": {
 				"individualDifference": false,
@@ -144319,6 +145779,11 @@
 	{
 		"chartID": "65f53d387bd079de18c41e8f9978f27cd3e13d00",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 2065,
 			"sTier": {
 				"individualDifference": false,
@@ -144386,6 +145851,11 @@
 	{
 		"chartID": "62c35625ceec119e2b15c01dbcd02f59856c1af7",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 1992,
 			"sTier": {
 				"individualDifference": false,
@@ -144524,6 +145994,11 @@
 	{
 		"chartID": "d50561293bd36261508af4fd8e5cfe71a3a3b039",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 2006,
 			"sTier": {
 				"individualDifference": false,
@@ -144646,6 +146121,11 @@
 	{
 		"chartID": "ec0526b94988c6394a7d6ae940823b21dbe613da",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 2038,
 			"sTier": {
 				"individualDifference": false,
@@ -144667,6 +146147,11 @@
 	{
 		"chartID": "7ffc1141cc3d6cf64ddd8e2f1b02ee8999531208",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "20A+",
+				"value": 20.5
+			},
 			"inGameID": 2038,
 			"sTier": {
 				"individualDifference": false,
@@ -144741,6 +146226,11 @@
 	{
 		"chartID": "6a78d19a315c15f30a29e7f495a9fe47e77e23ea",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19A+",
+				"value": 19.9
+			},
 			"inGameID": 2041,
 			"sTier": {
 				"individualDifference": false,
@@ -144815,6 +146305,11 @@
 	{
 		"chartID": "23c3796249cb73a272b434ee2ef5419a60339f5b",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19A+",
+				"value": 19.9
+			},
 			"inGameID": 2042,
 			"sTier": {
 				"individualDifference": false,
@@ -144884,6 +146379,11 @@
 	{
 		"chartID": "0d99bf96e3e72051457af23b08159a35b5ca8e6a",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2043,
 			"sTier": {
 				"individualDifference": false,
@@ -144953,6 +146453,11 @@
 	{
 		"chartID": "a4dec39ae262cb8d2737f0f46588e49611688293",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 2045,
 			"sTier": {
 				"individualDifference": false,
@@ -145022,6 +146527,11 @@
 	{
 		"chartID": "0118f69e6afef34d8de6801497efe9f7966e75e5",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2048,
 			"sTier": {
 				"individualDifference": false,
@@ -145091,6 +146601,11 @@
 	{
 		"chartID": "08498df9aa935c55d2cc2f28395e3d95bd2e7915",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2049,
 			"sTier": {
 				"individualDifference": false,
@@ -145160,6 +146675,11 @@
 	{
 		"chartID": "599ab19831e88a3b499931af7ca348996796cc74",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2061,
 			"sTier": {
 				"individualDifference": false,
@@ -145234,6 +146754,11 @@
 	{
 		"chartID": "0c3861871342cae8ff0f1e4ac0181ef647ad7c4a",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19D",
+				"value": 19.3
+			},
 			"inGameID": 2062,
 			"sTier": {
 				"individualDifference": false,
@@ -145372,6 +146897,11 @@
 	{
 		"chartID": "902101beffc564518dd6a913c57751c10aff3a54",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 2070,
 			"sTier": {
 				"individualDifference": false,
@@ -145988,6 +147518,11 @@
 	{
 		"chartID": "f3bb1b5134db13d6597ff19993098ca404dc8f2f",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 1996,
 			"sTier": {
 				"individualDifference": false,
@@ -146126,6 +147661,11 @@
 	{
 		"chartID": "2754dfb626c2611c240bbd82d1ee5abe361b0a9d",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 2012,
 			"sTier": {
 				"individualDifference": false,
@@ -146517,6 +148057,11 @@
 	{
 		"chartID": "741aaf4374ea35ce12b636df8f2fe756ff3eedfc",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2077,
 			"sTier": {
 				"individualDifference": false,
@@ -146582,6 +148127,11 @@
 	{
 		"chartID": "3e0257ebb8a32ff495e9effd62843601932397be",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 2078,
 			"sTier": {
 				"individualDifference": false,
@@ -146649,6 +148199,11 @@
 	{
 		"chartID": "3c88ec60f480fe68ad9e562ed2ae572ed082800f",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 2079,
 			"sTier": {
 				"individualDifference": false,
@@ -146718,6 +148273,11 @@
 	{
 		"chartID": "5e1130d0df91b2e492530d9f88c56fda7254f92f",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 2080,
 			"sTier": {
 				"individualDifference": false,
@@ -146787,6 +148347,11 @@
 	{
 		"chartID": "d46f3d19f58d2135d715a051645c1b849d7379cd",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 2081,
 			"sTier": {
 				"individualDifference": false,
@@ -146856,6 +148421,11 @@
 	{
 		"chartID": "bf1de0d409ca968fee1e77e1e67255be5c358b62",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2082,
 			"sTier": {
 				"individualDifference": false,
@@ -146930,6 +148500,11 @@
 	{
 		"chartID": "e24fe2f99370a181626671018c7a95efaa74cc6e",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19C",
+				"value": 19.4
+			},
 			"inGameID": 2083,
 			"sTier": {
 				"individualDifference": false,
@@ -147004,6 +148579,11 @@
 	{
 		"chartID": "19deae28043d2fd012f06995a92e115644dd4367",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19B",
+				"value": 19.5
+			},
 			"inGameID": 2084,
 			"sTier": {
 				"individualDifference": false,
@@ -147057,6 +148637,11 @@
 	{
 		"chartID": "9d3b82719d12c6b345c604a9f600b9f0abcdaaf4",
 		"data": {
+			"clearTier": {
+				"individualDifference": true,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 2085,
 			"sTier": {
 				"individualDifference": false,
@@ -147078,6 +148663,11 @@
 	{
 		"chartID": "4052fda03a9aa1c20afe9c76ddc676554872f34f",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "20A+",
+				"value": 20.5
+			},
 			"inGameID": 2085,
 			"sTier": {
 				"individualDifference": false,
@@ -147210,6 +148800,11 @@
 	{
 		"chartID": "914ea735f0ece547ec6c375789a867a8bc1f1722",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 2067,
 			"sTier": {
 				"individualDifference": false,
@@ -147345,6 +148940,11 @@
 	{
 		"chartID": "f023fcae27eeb1beb90bad5a3e79fa46835f926d",
 		"data": {
+			"clearTier": {
+				"individualDifference": true,
+				"text": "19B",
+				"value": 19.5
+			},
 			"inGameID": 2119,
 			"sTier": {
 				"individualDifference": false,
@@ -147412,6 +149012,11 @@
 	{
 		"chartID": "261ec571050f71d30213a2f8f0b3089cd438b6de",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 2129,
 			"sTier": {
 				"individualDifference": false,
@@ -147481,6 +149086,11 @@
 	{
 		"chartID": "e98514c0fa4fdb1164be81927b7c1e46af619cfc",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2130,
 			"sTier": {
 				"individualDifference": false,
@@ -147688,6 +149298,11 @@
 	{
 		"chartID": "6a8a3c1bd7e8fd2a36cb2eac6382e13a4486ede4",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18E",
+				"value": 18.1
+			},
 			"inGameID": 2167,
 			"sTier": {
 				"individualDifference": false,
@@ -147757,6 +149372,11 @@
 	{
 		"chartID": "52ce3fd59d44ffcdbd18c827308b3ceff116eecc",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 2132,
 			"sTier": {
 				"individualDifference": false,
@@ -147826,6 +149446,11 @@
 	{
 		"chartID": "92b559f30c4addd532d2632f6ce68eb83e221e60",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 2133,
 			"sTier": {
 				"individualDifference": false,
@@ -147895,6 +149520,11 @@
 	{
 		"chartID": "5856f8b84e0d15171f0c1b220854cfef9068544e",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 2134,
 			"sTier": {
 				"individualDifference": false,
@@ -147964,6 +149594,11 @@
 	{
 		"chartID": "a3ff5cfc30e6b865aa416b35d456aa21d06c9b81",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2135,
 			"sTier": {
 				"individualDifference": false,
@@ -148033,6 +149668,11 @@
 	{
 		"chartID": "2c5d0db2ab04cadf6704494dbf4534a2afde99f5",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 2136,
 			"sTier": {
 				"individualDifference": false,
@@ -148102,6 +149742,11 @@
 	{
 		"chartID": "2b5c8a1e970ad8ef00d55417868f0996ce8a2259",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 2137,
 			"sTier": {
 				"individualDifference": false,
@@ -148234,6 +149879,11 @@
 	{
 		"chartID": "af13eb4dac93ea321b0c9d6c4414abd955a75daa",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2163,
 			"sTier": {
 				"individualDifference": false,
@@ -148304,6 +149954,11 @@
 	{
 		"chartID": "d003a874d0955479db59a4e648cb974abe06ce26",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19A",
+				"value": 19.7
+			},
 			"inGameID": 2164,
 			"sTier": {
 				"individualDifference": false,
@@ -148993,6 +150648,11 @@
 	{
 		"chartID": "55ec01ca1d4650877addc051189d350d21637b42",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2131,
 			"sTier": {
 				"individualDifference": false,
@@ -149062,6 +150722,11 @@
 	{
 		"chartID": "438e9e925c0e6d7fc7e7fd27f8391682e575fa35",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 2138,
 			"sTier": {
 				"individualDifference": false,
@@ -149131,6 +150796,11 @@
 	{
 		"chartID": "8a739337910fe0ba6263834182eb42f49e2a0688",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 2139,
 			"sTier": {
 				"individualDifference": false,
@@ -149200,6 +150870,11 @@
 	{
 		"chartID": "ab2b9b23bbdabd49941c38052826b6e6fe13240c",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18C",
+				"value": 18.5
+			},
 			"inGameID": 2140,
 			"sTier": {
 				"individualDifference": false,
@@ -149269,6 +150944,11 @@
 	{
 		"chartID": "f6e250df9b76398f89d131fbf3b38b01f0cbef06",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2141,
 			"sTier": {
 				"individualDifference": false,
@@ -149338,6 +151018,11 @@
 	{
 		"chartID": "013687c6bb8c88c7abbbe9b466272f199a1697f5",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2142,
 			"sTier": {
 				"individualDifference": false,
@@ -149407,6 +151092,11 @@
 	{
 		"chartID": "dcee2c7e5aff3e194ecc7fb380fc9d4c96f019cf",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 2143,
 			"sTier": {
 				"individualDifference": false,
@@ -149476,6 +151166,11 @@
 	{
 		"chartID": "6cfd12a65da1a23b4c470b063399c04c9881e499",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 2144,
 			"sTier": {
 				"individualDifference": false,
@@ -149545,6 +151240,11 @@
 	{
 		"chartID": "4cbfbab054417b5a36145da7dcb2a51a931aff88",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18E",
+				"value": 18.1
+			},
 			"inGameID": 2145,
 			"sTier": {
 				"individualDifference": false,
@@ -149614,6 +151314,11 @@
 	{
 		"chartID": "2ba79108066f659cd3dc93201965fe9909120f35",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 2146,
 			"sTier": {
 				"individualDifference": false,
@@ -149683,6 +151388,11 @@
 	{
 		"chartID": "ecf6c034f67e2da35111798ea17b582c7bf22985",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A",
+				"value": 18.7
+			},
 			"inGameID": 2147,
 			"sTier": {
 				"individualDifference": false,
@@ -149752,6 +151462,11 @@
 	{
 		"chartID": "214388f328d8e25b4e53626e76c8d4aff0e408dd",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2148,
 			"sTier": {
 				"individualDifference": false,
@@ -149821,6 +151536,11 @@
 	{
 		"chartID": "2ecdf76e75923cf4ad0776ac92b2ae70526af373",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18A+",
+				"value": 18.8
+			},
 			"inGameID": 2149,
 			"sTier": {
 				"individualDifference": false,
@@ -149895,6 +151615,11 @@
 	{
 		"chartID": "960b363c15ba44dfa85f69c841d9c8c356dc465d",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19A+",
+				"value": 19.9
+			},
 			"inGameID": 2150,
 			"sTier": {
 				"individualDifference": false,
@@ -149969,6 +151694,11 @@
 	{
 		"chartID": "17da3f31b6fe80f6c54ef582f5e3f459a67cf5a2",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "19A",
+				"value": 19.7
+			},
 			"inGameID": 2151,
 			"sTier": {
 				"individualDifference": false,
@@ -150022,6 +151752,11 @@
 	{
 		"chartID": "0bf9634e4a03265a9207c5bf2db3052f6c528c0f",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18B",
+				"value": 18.6
+			},
 			"inGameID": 2152,
 			"sTier": {
 				"individualDifference": false,
@@ -150043,6 +151778,11 @@
 	{
 		"chartID": "02193665aebdd5fa1771910ff4c5eea21cbaa1d5",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "20S",
+				"value": 20.5
+			},
 			"inGameID": 2152,
 			"sTier": {
 				"individualDifference": false,
@@ -150253,6 +151993,11 @@
 	{
 		"chartID": "1545417cdb5f43a86d3b54700f4e99bc8ca4c675",
 		"data": {
+			"clearTier": {
+				"individualDifference": false,
+				"text": "18D",
+				"value": 18.3
+			},
 			"inGameID": 2169,
 			"sTier": {
 				"individualDifference": false,

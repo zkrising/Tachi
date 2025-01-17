@@ -24840,5 +24840,199 @@
 			"yuureisendan_marine"
 		],
 		"title": "幽霊船戦"
+	},
+	{
+		"altTitles": [],
+		"artist": "BlackY",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2292,
+		"searchTerms": [
+			"x1gnus_blacky"
+		],
+		"title": "X1GNUS"
+	},
+	{
+		"altTitles": [],
+		"artist": "かめりあ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2293,
+		"searchTerms": [
+			"nebuladysorder_kameria"
+		],
+		"title": "Nebula Dysorder"
+	},
+	{
+		"altTitles": [],
+		"artist": "cosMo＠暴走P",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2294,
+		"searchTerms": [
+			"forallthechallengers_cosmo"
+		],
+		"title": "For All The Challengers"
+	},
+	{
+		"altTitles": [],
+		"artist": "ぺのれり",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2295,
+		"searchTerms": [
+			"guinevere_penoreri"
+		],
+		"title": "Guinevere～白き妖精～"
+	},
+	{
+		"altTitles": [],
+		"artist": "かねこちはる",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2296,
+		"searchTerms": [
+			"saihyou_kanekochiharu"
+		],
+		"title": "細氷"
+	},
+	{
+		"altTitles": [],
+		"artist": "kamome sano",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2297,
+		"searchTerms": [
+			"while_kamome"
+		],
+		"title": "while (screen is blue)"
+	},
+	{
+		"altTitles": [],
+		"artist": "黒魔",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2298,
+		"searchTerms": [
+			"neverforgetevergreen_kuroma"
+		],
+		"title": "Never Forget Evergreen"
+	},
+	{
+		"altTitles": [],
+		"artist": "すっかりBPM200以下の曲を作れない体に改造されてしまった哀れなかぼちゃを見るがいい",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2299,
+		"searchTerms": [
+			"walpugisnight_kabocha"
+		],
+		"title": "ヴァルプルギスの夜"
+	},
+	{
+		"altTitles": [],
+		"artist": "RoughSketch",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2300,
+		"searchTerms": [
+			"littleredridinghood_roughsketch"
+		],
+		"title": "Little Red Riding Hood"
+	},
+	{
+		"altTitles": [],
+		"artist": "Super Shrimp",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2301,
+		"searchTerms": [
+			"koolawesome_supershrimp"
+		],
+		"title": "Kool Awesome Croon"
+	},
+	{
+		"altTitles": [
+			"驩verwriteTheCatastrophe"
+		],
+		"artist": "deli.+駄々子",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2302,
+		"searchTerms": [
+			"overwrite_deli"
+		],
+		"title": "ØverwriteTheCatastrophe"
+	},
+	{
+		"altTitles": [],
+		"artist": "Hidra-Xjeil",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2303,
+		"searchTerms": [
+			"cumulonimbus_hidra"
+		],
+		"title": "Cumulonimbus"
+	},
+	{
+		"altTitles": [],
+		"artist": "Ashrount",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2304,
+		"searchTerms": [
+			"anxinentlegaxies_ashrount"
+		],
+		"title": "ΛNXIENT:LEGΛXIEZ"
+	},
+	{
+		"altTitles": [],
+		"artist": "nora2r Remixed by USAO",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2305,
+		"searchTerms": [
+			"bbkkremix_usao"
+		],
+		"title": "B.B.K.K.B.K.K. (USAO Remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "nora2r Remixed by 影虎。 & siqlo",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2306,
+		"searchTerms": [
+			"bbkkremix_kagetorasiqlo"
+		],
+		"title": "B.B.K.K.B.K.K. (影虎。 & siqlo PsyRemix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "nora2r",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2307,
+		"searchTerms": [
+			"everythingbk_nora2r"
+		],
+		"title": "Everything B.K."
 	}
 ]

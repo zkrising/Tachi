@@ -126,6 +126,7 @@ export const loggedInSplashes = [
 	"Love in all things.",
 	"You're trolling?",
 	"We teach the users how to cook a full English Breakfast.",
+	"95% Faster according to internal testing",
 ];
 
 const curTime = new Date();

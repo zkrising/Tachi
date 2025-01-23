@@ -22,9 +22,16 @@ router.use(RequireSelfRequestFromUser);
 router.get("/", async (req, res) => {
 	const user = GetTachiData(req, "requestedUser");
 
-	const invites = await db.invites.find({
-		createdBy: user.id,
-	});
+	const invites = await db.invites.find(
+		{
+			createdBy: user.id,
+		},
+		{
+			sort: {
+				consumedAt: -1,
+			},
+		}
+	);
 
 	const consumers = await GetUsersWithIDs(
 		invites.map((e) => e.consumedBy).filter((e) => e !== null) as Array<number>

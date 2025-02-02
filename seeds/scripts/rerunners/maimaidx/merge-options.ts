@@ -38,6 +38,7 @@ const VERSION_DISPLAY_NAMES = [
 	"FESTiVAL PLUS",
 	"BUDDiES",
 	"BUDDiES PLUS",
+	"PRiSM",
 ];
 const DIFFICULTIES = ["Basic", "Advanced", "Expert", "Master", "Re:Master"];
 

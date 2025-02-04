@@ -24804,7 +24804,9 @@
 		"title": "Ahoy!! 我ら宝鐘海賊団☆"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"I’m Your Treasure Box ＊あなたは マリンせんちょうを たからばこからみつけた。"
+		],
 		"artist": "宝鐘マリン",
 		"data": {
 			"displayVersion": "exceed"

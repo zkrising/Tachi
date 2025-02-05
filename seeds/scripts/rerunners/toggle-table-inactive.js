@@ -14,7 +14,7 @@ let table;
 for (const findTable of tables) {
 	if (findTable.tableID === options.tableID) {
 		table = findTable;
-		findTable.inactive = true;
+		findTable.inactive = !findTable.inactive;
 		break;
 	}
 }
@@ -26,7 +26,7 @@ if (!table) {
 MutateCollection("folders.json", (folders) => {
 	for (const folder of folders) {
 		if (table.folders.includes(folder.folderID)) {
-			folder.inactive = true;
+			folder.inactive = !folder.inactive;
 		}
 	}
 

@@ -1258,7 +1258,7 @@
 			"F5e5636161b64bf379b8dcc64359a8fca187456d2e26e12d03a026aa4a50a4cdc"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sun-omni-levels",
 		"title": "CHUNITHM (SUN Omnimix)"
@@ -1274,7 +1274,7 @@
 			"F81e330f6b88a5c7715a84a9842a8900ed54f63a16da4f0a05ec55ca880705d41"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sun-omni-difficulties",
 		"title": "CHUNITHM (SUN Omnimix) (Difficulties)"
@@ -1358,7 +1358,7 @@
 			"F78e12b6d6f218366399229fa6e0de86da2ee4e994a9a41bc4fbd0ffa2cc8512b"
 		],
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sunplus-omni-levels",
 		"title": "CHUNITHM (SUN PLUS Omnimix)"
@@ -1374,7 +1374,7 @@
 			"F3c4525fa43cd873d5d089e91ba88becc448a5b0c2249b8fc39cd61b854800de6"
 		],
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sunplus-omni-difficulties",
 		"title": "CHUNITHM (SUN PLUS Omnimix) (Difficulties)"
@@ -1408,7 +1408,7 @@
 			"F274a34226d167d9d8d51be0dcfd2c893f7051d964d80b232d3d021dc9aa9fdc7"
 		],
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sunplus-levels",
 		"title": "CHUNITHM (SUN PLUS)"
@@ -1424,7 +1424,7 @@
 			"Fd64cc883d1107033fdecf9154d8e158f26b4a04144c285b3a38490b38e43de8a"
 		],
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sunplus-difficulties",
 		"title": "CHUNITHM (SUN PLUS) (Difficulties)"
@@ -4650,6 +4650,40 @@
 		"playtype": "Single",
 		"tableID": "maimaidx-Single-festival-levels",
 		"title": "maimai DX (FESTiVAL)"
+	},
+	{
+		"default": false,
+		"description": "Levels for maimai DX in PRiSM.",
+		"folders": [
+			"F1a87377aebbd3d97f370b63899d439d5d2af657c16f8ab146b29b48fa9b03cca",
+			"F3fb8670665ce0587500f73ddda5ec584ba4b5d2ff7fea17d5e472590f7e978f3",
+			"Fb7d6ce63fbd83ccf25672e3ee30f5f5d963af51624261f59bf7108d64027fc61",
+			"F87209fa50325972a3de0b068be2684ca8b143c4a5a8383de909382233d329d9c",
+			"Febf0ccd7019da1946ea99b735c0cd92f3109d5dc570eef47ce2cd5f720e54204",
+			"Fd91d6a826d3e1d079073435a6fb556ffdfa23716c9575d21a05742cd6517eebd",
+			"F930fe91d13c6248c8f3d16d68fcf1dd4b453d8bc2d18dbf54cde45811105464b",
+			"Ff6244798c3254973109be81385e4b4d9e1a07bf5a2d02a04ebbefedaeb6a3a21",
+			"Fb7e926dcdd2703bbef78fab09ab8dcb9061624883f7e1f19b9c2d5f16d6520f0",
+			"F6197c76dd2564d94e2b2e063b6f625f635238d2bd1a18dffa5200bf5be38e8b3",
+			"F2b98cd8e7ef3508a6555ef851d32c0831183a337b86c6f21fd8ebff71e560418",
+			"F5926171d049b0cc45476c5015dc64197a4ca7388fbe185ed866714800677c0b4",
+			"Ffa6e86155f045af8303565324a276907ed11cf8bc0a75dcd9660ec1a19458b7d",
+			"F2d02b5860d0296fdf63a7ea7a45fabdc2648fee72a7c6c1fc5bdadbd2f6e6c93",
+			"F64a9175cc6650b27a86e39e3d633acdc37d817790e9f55e180b2c87d9f7c9b39",
+			"F55ff85eb87f42536687d2aac9acc1294fe05ad24de67560d95c0646e2b512a75",
+			"F33f4880412015931f358239818b1263c3b6688f026e166806ceaba1cd861e824",
+			"F26947e241645f4dea4cea8a4120bca40648a1b22c81e921eed57fb847a94243b",
+			"Fa1b069cf4bda491cc0968d8e3e0fbfbb42300ab0f89e26875bced844465ffcb1",
+			"Fb87194e9c8f2adb097421dcae5c30202aed9650c5a0aa85dee22545eed96ef34",
+			"Fbc1b4c018a07b7fe2344fd2a5aa7da96a1c056a73d8330d877c8d215d999454d",
+			"Ff6657197d9f199043bb3dcead56ea2fad14c26ab41bbf048dd5d20967bf27b95",
+			"Fc8644419818f6095bdf08eec2847234a9a34ecb8097f0fe9001d714c1d4efeca"
+		],
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "maimaidx-Single-prism-levels",
+		"title": "maimai DX (PRiSM)"
 	},
 	{
 		"default": false,

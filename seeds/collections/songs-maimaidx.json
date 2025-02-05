@@ -4463,7 +4463,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "幽閉サテライト",
+		"artist": "幽閉サテライト(Produce:嵯峨飛鳥 Arranged:Iceon)",
 		"data": {
 			"displayVersion": "MURASAKi",
 			"genre": "東方Project"
@@ -4478,7 +4478,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "幽閉サテライト",
+		"artist": "幽閉サテライト(Produce:嵯峨飛鳥 Arranged:Iceon)",
 		"data": {
 			"displayVersion": "PiNK PLUS",
 			"genre": "東方Project"
@@ -4531,7 +4531,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "幽閉サテライト",
+		"artist": "幽閉サテライト(Produce:嵯峨飛鳥 Arranged:Iceon)",
 		"data": {
 			"displayVersion": "MiLK",
 			"genre": "東方Project"
@@ -4544,7 +4544,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "幽閉サテライト",
+		"artist": "幽閉サテライト(Produce:嵯峨飛鳥 Arranged:Iceon)",
 		"data": {
 			"displayVersion": "MURASAKi PLUS",
 			"genre": "東方Project"
@@ -10703,7 +10703,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "幽閉サテライト",
+		"artist": "幽閉サテライト(Produce:嵯峨飛鳥 Arranged:Iceon)",
 		"data": {
 			"displayVersion": "Splash PLUS",
 			"genre": "東方Project"
@@ -12636,7 +12636,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "幽閉サテライト",
+		"artist": "幽閉サテライト(Produce:嵯峨飛鳥 Arranged:Iceon)",
 		"data": {
 			"displayVersion": "UNiVERSE PLUS",
 			"genre": "東方Project"
@@ -17619,7 +17619,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "岸田教団&THE明星ロケッツ",
+		"artist": "岸田教団&THE明星ロケッツ×草野華余子",
 		"data": {
 			"displayVersion": "BUDDiES PLUS",
 			"genre": "東方Project"
@@ -17892,5 +17892,302 @@
 		"id": 1399,
 		"searchTerms": [],
 		"title": "Divide et impera!"
+	},
+	{
+		"altTitles": [],
+		"artist": "Shoichiro Hirata feat.Sana",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "maimai"
+		},
+		"id": 1400,
+		"searchTerms": [],
+		"title": "プリズム△▽リズム"
+	},
+	{
+		"altTitles": [],
+		"artist": "Teary Planet",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "maimai"
+		},
+		"id": 1401,
+		"searchTerms": [],
+		"title": "パラドクスイヴ"
+	},
+	{
+		"altTitles": [],
+		"artist": "r-906",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "maimai"
+		},
+		"id": 1402,
+		"searchTerms": [],
+		"title": "YKWTD"
+	},
+	{
+		"altTitles": [],
+		"artist": "Pizuya's Cell feat.中村さん",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "maimai"
+		},
+		"id": 1403,
+		"searchTerms": [],
+		"title": "184億回のマルチトニック"
+	},
+	{
+		"altTitles": [],
+		"artist": "TAKU1175 ft.駄々子",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "maimai"
+		},
+		"id": 1404,
+		"searchTerms": [],
+		"title": "果ての空、僕らが見た光。"
+	},
+	{
+		"altTitles": [],
+		"artist": "Yooh",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "オンゲキCHUNITHM"
+		},
+		"id": 1405,
+		"searchTerms": [],
+		"title": "Elemental Ethnic"
+	},
+	{
+		"altTitles": [],
+		"artist": "かいりきベア",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1406,
+		"searchTerms": [],
+		"title": "病み垢ステロイド"
+	},
+	{
+		"altTitles": [],
+		"artist": "かいりきベア",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1407,
+		"searchTerms": [],
+		"title": "ダーリンダンス"
+	},
+	{
+		"altTitles": [],
+		"artist": "Ado",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "POPSアニメ"
+		},
+		"id": 1408,
+		"searchTerms": [],
+		"title": "唱"
+	},
+	{
+		"altTitles": [],
+		"artist": "HIMEHINA",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "POPSアニメ"
+		},
+		"id": 1409,
+		"searchTerms": [],
+		"title": "愛包ダンスホール"
+	},
+	{
+		"altTitles": [],
+		"artist": "松平健 [covered by 光吉猛修]",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "POPSアニメ"
+		},
+		"id": 1410,
+		"searchTerms": [],
+		"title": "マツケンサンバⅡ"
+	},
+	{
+		"altTitles": [],
+		"artist": "DECO*27, ピノキオピー",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1411,
+		"searchTerms": [],
+		"title": "デビルじゃないもん"
+	},
+	{
+		"altTitles": [],
+		"artist": "なみぐる feat.ずんだもん",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1412,
+		"searchTerms": [],
+		"title": "ずんだパーリナイ"
+	},
+	{
+		"altTitles": [],
+		"artist": "ぱらどっと",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "東方Project"
+		},
+		"id": 1413,
+		"searchTerms": [],
+		"title": "Ultimate taste"
+	},
+	{
+		"altTitles": [],
+		"artist": "Lime",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "ゲームバラエティ"
+		},
+		"id": 1414,
+		"searchTerms": [],
+		"title": "Chronomia"
+	},
+	{
+		"altTitles": [],
+		"artist": "Street",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "ゲームバラエティ"
+		},
+		"id": 1415,
+		"searchTerms": [],
+		"title": "Empire of Winter"
+	},
+	{
+		"altTitles": [],
+		"artist": "からとP⍺ոchii少年 feat.はるの",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "ゲームバラエティ"
+		},
+		"id": 1416,
+		"searchTerms": [],
+		"title": "迷える音色は恋の唄"
+	},
+	{
+		"altTitles": [],
+		"artist": "BlackY feat. Risa Yuzuki",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "ゲームバラエティ"
+		},
+		"id": 1417,
+		"searchTerms": [],
+		"title": "Löschen"
+	},
+	{
+		"altTitles": [],
+		"artist": "Ashrount vs. 打打だいず",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "ゲームバラエティ"
+		},
+		"id": 1418,
+		"searchTerms": [],
+		"title": "Abstruse Dilemma"
+	},
+	{
+		"altTitles": [],
+		"artist": "柊マグネタイト",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1419,
+		"searchTerms": [],
+		"title": "リアライズ"
+	},
+	{
+		"altTitles": [],
+		"artist": "削除",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "maimai"
+		},
+		"id": 1420,
+		"searchTerms": [],
+		"title": "Cryptarithm"
+	},
+	{
+		"altTitles": [],
+		"artist": "YOASOBI",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "POPSアニメ"
+		},
+		"id": 1421,
+		"searchTerms": [],
+		"title": "勇者"
+	},
+	{
+		"altTitles": [],
+		"artist": "原口沙輔 feat.重音テト",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1422,
+		"searchTerms": [],
+		"title": "人マニア"
+	},
+	{
+		"altTitles": [],
+		"artist": "MonsterZ MATE",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "POPSアニメ"
+		},
+		"id": 1423,
+		"searchTerms": [],
+		"title": "メイトなやつら（FEAT. 天開司, 佐藤ホームズ, あっくん大魔王 & 歌衣メイカ）"
+	},
+	{
+		"altTitles": [],
+		"artist": "魂音泉",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "東方Project"
+		},
+		"id": 1424,
+		"searchTerms": [],
+		"title": "ゆけむり魂温泉 II"
+	},
+	{
+		"altTitles": [],
+		"artist": "ビートまりお",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "東方Project"
+		},
+		"id": 1425,
+		"searchTerms": [],
+		"title": "人間が大好きなこわれた妖怪の唄"
+	},
+	{
+		"altTitles": [],
+		"artist": "原口沙輔 feat.重音テト",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1426,
+		"searchTerms": [],
+		"title": "イガク"
 	}
 ]

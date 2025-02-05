@@ -68,9 +68,10 @@ const VERSION_MAP = new Map([
 	[235, "FESTiVAL PLUS"],
 	[240, "BUDDiES"],
 	[245, "BUDDiES PLUS"],
+	[250, "PRiSM"],
 ]);
-const CURRENT_VERSION_NUM = 245;
-const CURRENT_VERSION = "buddiesplus";
+const CURRENT_VERSION_NUM = 250;
+const CURRENT_VERSION = "prism";
 const DIFFICULTY_TO_TACHI_DIFFICULTY: Record<MaimaiDXDifficulty, Difficulties["maimaidx:Single"]> =
 	{
 		lev_bas: "Basic",

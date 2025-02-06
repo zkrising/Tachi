@@ -8935,7 +8935,7 @@
 		"difficulty": "INFERNO",
 		"isPrimary": true,
 		"level": "13+",
-		"levelNum": 13.8,
+		"levelNum": 13.9,
 		"playtype": "Single",
 		"songID": 183,
 		"versions": [
@@ -19521,7 +19521,7 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13,
+		"levelNum": 13.1,
 		"playtype": "Single",
 		"songID": 398,
 		"versions": [
@@ -19835,8 +19835,8 @@
 		},
 		"difficulty": "EXPERT",
 		"isPrimary": true,
-		"level": "13",
-		"levelNum": 13.5,
+		"level": "13+",
+		"levelNum": 13.7,
 		"playtype": "Single",
 		"songID": 404,
 		"versions": [
@@ -19971,7 +19971,7 @@
 		"difficulty": "EXPERT",
 		"isPrimary": true,
 		"level": "13",
-		"levelNum": 13.5,
+		"levelNum": 13.3,
 		"playtype": "Single",
 		"songID": 407,
 		"versions": [

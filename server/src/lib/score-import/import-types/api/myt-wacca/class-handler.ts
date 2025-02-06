@@ -24,12 +24,15 @@ export default async function CreateMytWACCAClassHandler(
 		// 3 -> Lily R
 		// 4 -> Reverse
 		// 5 -> Plus
-		// Currently (Apr 2024) only Reverse and Plus are supported on Myt, with Plus in loctest only.
+		// Currently (Feb. 2025) Reverse and Plus are supported on Myt.
+		// We look for both Reverse and PLUS version data, PLUS being prioritized if exists.
+		// If / when custom dans are added, this will need to change.
 		// Also, these may change to be 1-indexed at some point.
-		// Tachi only supports reverse, so we only look at the version data for reverse.
-		// We will need to update this once Plus is supported.
 		const REVERSE_VERSION = 4;
-		const versionData = data.getVersionDataMap().get(REVERSE_VERSION);
+		const PLUS_VERSION = 5;
+		const versionData = data.getVersionDataMap().has(PLUS_VERSION)
+			? data.getVersionDataMap().get(PLUS_VERSION)
+			: data.getVersionDataMap().get(REVERSE_VERSION);
 
 		// rank:
 		// 0 -> none

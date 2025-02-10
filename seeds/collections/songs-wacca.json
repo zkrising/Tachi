@@ -4872,5 +4872,84 @@
 		"id": 408,
 		"searchTerms": [],
 		"title": "Make Up Your World feat. キョンシーのCiちゃん & らっぷびと"
+	},
+	{
+		"altTitles": [],
+		"artist": "DJ NECOJITA",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "TANO*C"
+		},
+		"id": 409,
+		"searchTerms": [],
+		"title": "Asteroid [feat. blaxervant]"
+	},
+	{
+		"altTitles": [],
+		"artist": "nora2r",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 410,
+		"searchTerms": [],
+		"title": "B.B.K.K.B.K.K."
+	},
+	{
+		"altTitles": [],
+		"artist": "Caramella Girls",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "アニメ／ＰＯＰ"
+		},
+		"id": 411,
+		"searchTerms": [],
+		"title": "Caramelldansen (Speedycake Remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "t+pazolite",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 412,
+		"searchTerms": [],
+		"title": "Cheatreal"
+	},
+	{
+		"altTitles": [],
+		"artist": "onumi VS DossyX",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "オリジナル"
+		},
+		"id": 413,
+		"searchTerms": [],
+		"title": "IMPULSE // WEAVER"
+	},
+	{
+		"altTitles": [],
+		"artist": "Aiobahn feat. KOTOKO",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 414,
+		"searchTerms": [],
+		"title": "Internet Yamero"
+	},
+	{
+		"altTitles": [
+			"Show"
+		],
+		"artist": "Ado",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 415,
+		"searchTerms": [],
+		"title": "唱"
 	}
 ]

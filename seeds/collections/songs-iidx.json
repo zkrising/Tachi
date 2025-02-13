@@ -27463,5 +27463,49 @@
 			"DONUT HOLE 2024"
 		],
 		"title": "ドーナツホール 2024"
+	},
+	{
+		"altTitles": [],
+		"artist": "Ryu☆",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "MOON CORE"
+		},
+		"id": 2452,
+		"searchTerms": [],
+		"title": "Cold Moon"
+	},
+	{
+		"altTitles": [],
+		"artist": "ウッチーズ",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "ROCK FUSION"
+		},
+		"id": 2453,
+		"searchTerms": [],
+		"title": "airflow -dreaming of the sky- Game Edition"
+	},
+	{
+		"altTitles": [],
+		"artist": "nana(Sevencolors)",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "KAWAII FUTURE BASS"
+		},
+		"id": 2454,
+		"searchTerms": [],
+		"title": "Poppin' Soda"
+	},
+	{
+		"altTitles": [],
+		"artist": "lapix (Remixed by Blacklolita)",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "NEO HiTECH FUTURE"
+		},
+		"id": 2455,
+		"searchTerms": [],
+		"title": "Inner Spirit -GIGA HiTECH MIX-"
 	}
 ]

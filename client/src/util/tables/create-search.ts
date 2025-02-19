@@ -35,6 +35,7 @@ export function CreateDefaultScoreSearchParams<GPT extends GPTString = GPTString
 		difficulty: (x) => x.__related.chart.difficulty,
 		level: (x) => x.__related.chart.levelNum,
 		highlight: (x) => !!x.highlight,
+		service: (x) => x.service,
 		...GetMetricSearchParams(game, playtype),
 		...CreateCalcDataSearchFns(gptConfig),
 	};

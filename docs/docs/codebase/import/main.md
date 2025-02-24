@@ -147,10 +147,9 @@ value of this function.
 
 ### Import Timings
 
-Every step in this process is timed in miliseconds.
+Every step in this process is timed in milliseconds.
 
 The time each step took is saved alongside the ImportID.
 
 This is used for internal debugging and degraded performance
 checks.
-

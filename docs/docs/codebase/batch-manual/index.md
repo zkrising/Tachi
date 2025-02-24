@@ -143,7 +143,7 @@ can only be used for USC.
 - inGameID
 
 This uses the in-game-ID for this **SONG**. You, therefore,
-**MUST** specify the difficulty for this chart aswell.
+**MUST** specify the difficulty for this chart as well.
 
 This is supported for the following games:
 
@@ -158,7 +158,7 @@ This is supported for the following games:
 - sdvxInGameID
 
 This uses the in-game-ID for this SDVX song. You must specify
-the difficulty for this chart aswell.
+the difficulty for this chart as well.
 
 The reason SDVX gets its own special `matchType` is because this
 matchType supports `difficulty: "ANY_INF"`. This special difficulty

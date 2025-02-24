@@ -5,7 +5,7 @@ Tachi supports webhooks. You can set a `webhookUri` as part of your
 
 ## Usage and Security
 
-When a given event happens on Tachi, your webhookUri will recieve a POST
+When a given event happens on Tachi, your webhookUri will receive a POST
 request with some content and the type of event.
 
 You **MUST** validate that this request was from Tachi! Otherwise, anyone

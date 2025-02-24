@@ -17,7 +17,7 @@ To use authentication with a request, you should set a HTTP header of:
 Authorization: Bearer API_KEY
 ```
 
-Where API_KEY is the api key you wish to use.
+Where API_KEY is the API key you wish to use.
 
 ### Self-Key Authentication
 

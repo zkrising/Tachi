@@ -28,4 +28,3 @@ Search for existing issues before opening a new one. There might already be one 
 ## That's it!
 
 Don't fret too much about writing perfect issues, but put some effort into them. The development team look at everything that comes through, and will tidy up bits of your issue for you if you make a mistake.
-

@@ -33,7 +33,7 @@ are **thoroughly** appreciated, as `zk` prioritises maintaining the core of work
 
 If you're interested in this, check out the [Documentation Contribution Guide](./components/documentation.md).
 
-j### Database Seeds
+### Database Seeds
 
 We use an interesting system for parts of our database. We actually store a game's songs and charts *in*
 our GitHub repository! That means you can:

@@ -84,7 +84,7 @@ Similarly, try and keep session names and about me's and whatnot appropriate.
 
 In general, just don't be an ass.
 
-## R4: Use Common Sense.
+## R5: Use Common Sense.
 
 This list of rules isn't exhaustive, and staff reserve the
 right to ban you at any time for any reason. You should use

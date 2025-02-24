@@ -19,7 +19,7 @@ Else, the import is logged as debug.
 
 An internal document - Import Timings - is created by
 storing the time each step of the import process took
-in miliseconds.
+in milliseconds.
 
 This is analysed regularly to check for performance
 degradation and look for potential optimisations.

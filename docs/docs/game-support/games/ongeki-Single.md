@@ -37,7 +37,7 @@ For more information on what metrics are and how they work, see [TODO]!
 
 ## Judgements
 
-The folowing judgements are defined:
+The following judgements are defined:
 
 - `cbreak`
 - `break`
@@ -91,7 +91,7 @@ The folowing judgements are defined:
 - `tachiSongID`
 - `inGameID`
 
-### Song Title matching
+### Song Title Matching
 There are numerous songs with non-unique names (e.g. Singularity, Singularity and Singularity), but this can be resolved by providing the `artist` field. The only exception is Perfect Shining, which uniquely has two LUNATIC charts and has to be matched by `inGameID`:
 
 - LUNATIC 0 (Loctest chart) `inGameID: 8003`

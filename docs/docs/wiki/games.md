@@ -63,7 +63,5 @@ The following games are supported on [Bokutachi](https://boku.tachi.ac).
 | PMS | `pms` | `Controller`, `Keyboard`[^2] |
 | unnamed_sdvx_clone | `usc` | `Controller` `Keyboard`[^2] |
 
-
-
 [^1]: Pop'n *had* some other playtypes, namely a 5-Button mode, but it seems to be removed now. 9B is used instead of single here for futureproofing.
 [^2]: This use of playtypes is a small hack to make separate leaderboards for keyboard and controller players. The split is necessary because the two input mechanisms are *very* different at high levels, but there are still a lot of keyboard players. It's a compromise!

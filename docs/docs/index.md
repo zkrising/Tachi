@@ -66,6 +66,6 @@ View it [here](./codebase).
 
 ## Acknowledgements
 
-This documentation is built ontop of the beautiful [Material MKDocs](https://squidfunk.github.io/mkdocs-material) theme.
+This documentation is built on top of the beautiful [Material MKDocs](https://squidfunk.github.io/mkdocs-material) theme.
 
 --8<-- "includes/abbreviations.md"

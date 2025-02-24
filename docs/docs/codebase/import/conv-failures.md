@@ -43,7 +43,7 @@ An example of this would be an IIDX score with -1 EX Score.
 ## Internal Failure
 
 This is an internal failure, and thrown when something bad
-has occured on our end.
+has occurred on our end.
 
 The most common case for throwing this is the "Song-Chart"
 desync. This occurs when a chart has no parent song (and

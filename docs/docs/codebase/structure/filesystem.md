@@ -130,7 +130,7 @@ https://boku.tachi.ac/api/v1/foo/bar
 
 The only files allowed to declare endpoints are `router.ts` files.
 
-This allows us to seperate functionality from API structure
+This allows us to separate functionality from API structure
 in cases where an API call needs to do a lot of things.
 
 ## Test Files

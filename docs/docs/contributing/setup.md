@@ -85,7 +85,7 @@ To set everything else up for local development, we'll use [Docker](https://dock
 
 ## 2. Fork and pull the repo.
 
-Since you can't just commit straight to someone elses codebase (that would be a massive security issue), you need to make a fork of Tachi - One owned by you!
+Since you can't just commit straight to someone else's codebase (that would be a massive security issue), you need to make a fork of Tachi - One owned by you!
 
 Go to [the Tachi repository](https://github.com/zkrising/Tachi) and click the Fork button in the top right (Make sure you're signed in).
 

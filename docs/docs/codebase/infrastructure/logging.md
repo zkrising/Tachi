@@ -37,7 +37,7 @@ logger.severe("foo");
 
 `severe` is the second most severe log level in tachi.
 
-Calling this means an error has occured, and that error implies
+Calling this means an error has occurred, and that error implies
 it will apply to multiple parts of the codebase.
 
 This log level is used with things like a Song-Chart
@@ -54,7 +54,7 @@ logger.error("foo");
 
 `error` is the third most severe log level in tachi.
 
-Calling this means an error has occured, but the impact of
+Calling this means an error has occurred, but the impact of
 it is limited to the function or general area it was called in.
 
 Errors may be recovered from or ignored by the code, but generally that should be reserved for `warn`.

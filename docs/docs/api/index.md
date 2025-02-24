@@ -3,7 +3,7 @@
 Tachi exposes a public API which allows programs to interact with Tachi.
 
 This means you could make your own applications that work off of Tachi's
-datasets. 
+datasets.
 
 !!! warning
 	This documentation assumes some basic programming knowledge, such as how to make
@@ -38,7 +38,7 @@ send an email to `zk@tachi.ac` and let me know what you're up to. Otherwise, I m
 
 To quote GitHub:
 
-!!! quote 
+!!! quote
 	Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.
 
 This is not legal advice.

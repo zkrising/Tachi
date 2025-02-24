@@ -91,4 +91,3 @@ space inside a value, you should quote it, like this:
 	`artist="A Tribe Called \"Quest\"" percent>50`
 
 	However, it is likely you will never need to use this.
-

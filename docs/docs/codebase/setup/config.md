@@ -179,7 +179,6 @@ If present, and a string, this points to the local dev server for a react app. H
 option set results in CORS being enabled for *that* specific URL. This is useful for local
 development, but should not be used in production.
 
-
 ### RATE_LIMIT
 
 - Type: Positive Integer
@@ -241,7 +240,6 @@ How many unique players have to have played a chart on the beatoraja IR for it t
 Where *this* server is hosted. This is used to
 provide callback URLs inside emails. You may stub
 it out if emails are unsupported.
-
 
 ### EMAIL_CONFIG
 

@@ -87,7 +87,7 @@ A chart in Tachi looks like this:
 
 ## Tables and Folders
 
-You'll probably want to create atleast one table and some folders for your game.
+You'll probably want to create at least one table and some folders for your game.
 
 There are various utilities for this, like `scripts/rerunners/add-level-version-folders.js` for creating a traditional "Level 1, Level 2, Level 3" kind of table.
 

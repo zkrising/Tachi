@@ -100,4 +100,3 @@ These metrics are defined like any other, but are all allowed to be not-provided
 	doesn't necessarily have to be enabled by the user - but if it does exist, we want
 	to track it properly. That is to say, if the user raises their `exScore` but nothing
 	else, we should still count that as a new score - despite `exScore` being optional!
-

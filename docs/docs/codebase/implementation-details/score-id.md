@@ -40,4 +40,3 @@ pieces of info (i.e. no judgements), then trying to import that same score with
 judgements later will not work, as the scoreID sees it as a duplicate.
 
 See [Clobbering](todo).
-

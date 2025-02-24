@@ -17,7 +17,7 @@ fledged Tachi score, and then goes over how it is imported.
 
 ## Return Format
 
-The `ImportIterableDatapoint` returns 
+The `ImportIterableDatapoint` returns
 `ImportProcessingInfo` or `null`. The format for the former
 can be found in `tachi-common`, and **should be read** before
 following this document!

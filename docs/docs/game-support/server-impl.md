@@ -139,7 +139,7 @@ However, this is often not the case, and there are certain things you expect to 
 between the metrics of a score.
 
 For example, you shouldn't be able to submit a `PERFECT ULTIMATE CHAIN` if your score
-isn't 10 million - the two imply eachother!
+isn't 10 million - the two imply each other!
 
 In this part of the server implementation, you may specify as many validation functions
 as you like. These assert relations between the fields on a score, and allow you

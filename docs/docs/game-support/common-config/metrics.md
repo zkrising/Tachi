@@ -96,7 +96,7 @@ This metric is an array of numbers or null.
 Metrics of type `ENUM` are special in many ways. Most importantly, they don't require
 any sort of validation - the input is either a member of `values` or it isn't.
 
-An ENUM metric looks like this: 
+An ENUM metric looks like this:
 ```ts
 {
 	type: "ENUM",
@@ -173,7 +173,7 @@ We will have to write the validator later in the server implementation.
 ### Formatting
 
 We also want to format these metrics into a string. For example, a `percent` metric may want to stringify into `92.45%` instead of `92.49938222293842`.
-More subtle formatting rules can be defined here too, such as how in jubeat, scores are
+More subtle formatting rules can be defined here too, such as how in Jubeat, scores are
 easier to read written like `903,283` instead of `903283`.
 
 ## Graph Metrics

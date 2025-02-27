@@ -27509,6 +27509,66 @@
 		]
 	},
 	{
+		"chartID": "fbd66698f2e75ec92e321ea6f6337d5804beeccb",
+		"data": {
+			"inGameID": 10422
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.8,
+		"playtype": "Single",
+		"songID": 270,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "d26692448ac867b430781083c780ee59b96cf7b4",
+		"data": {
+			"inGameID": 10422
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "4",
+		"levelNum": 4,
+		"playtype": "Single",
+		"songID": 270,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "91ca20e6e0350db884bd9c730a4403d9e4927055",
+		"data": {
+			"inGameID": 10422
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "11",
+		"levelNum": 11,
+		"playtype": "Single",
+		"songID": 270,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "5606ae894101850bf4d1f5838f0bec52bbc760a5",
+		"data": {
+			"inGameID": 10422
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.9,
+		"playtype": "Single",
+		"songID": 270,
+		"versions": [
+			"prism"
+		]
+	},
+	{
 		"chartID": "27a09317052c606a3a18405e76612f8d62326c80",
 		"data": {
 			"inGameID": 422
@@ -90941,8 +91001,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -90963,8 +91022,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -90985,8 +91043,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -91007,8 +91064,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -91029,8 +91085,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -91051,8 +91106,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -91073,8 +91127,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -91095,8 +91148,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -91817,8 +91869,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -91839,8 +91890,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -91861,8 +91911,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -91883,8 +91932,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -91905,8 +91953,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -91927,8 +91974,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -91949,8 +91995,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -91971,8 +92016,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -93401,8 +93445,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -93423,8 +93466,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -93445,8 +93487,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -93467,8 +93508,7 @@
 			"buddies",
 			"buddies-omni",
 			"buddiesplus",
-			"buddiesplus-omni",
-			"prism"
+			"buddiesplus-omni"
 		]
 	},
 	{
@@ -125738,6 +125778,546 @@
 		"levelNum": 13.8,
 		"playtype": "Single",
 		"songID": 1426,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "2f16a238e49315fb5a211084a3b5f8dd4884d67a",
+		"data": {
+			"inGameID": 11750
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.7,
+		"playtype": "Single",
+		"songID": 1427,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "b2f043fa049d872839b33adc85e15bad4524f6a1",
+		"data": {
+			"inGameID": 11750
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "4",
+		"levelNum": 4,
+		"playtype": "Single",
+		"songID": 1427,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "37e58ac374eb739f25d5f685089a47cc483387df",
+		"data": {
+			"inGameID": 11750
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "11",
+		"levelNum": 11.5,
+		"playtype": "Single",
+		"songID": 1427,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "0c1e8295e5096a5f65787e3b4d18db8d296277d0",
+		"data": {
+			"inGameID": 11750
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.9,
+		"playtype": "Single",
+		"songID": 1427,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "a92263b5b9f9cbbf69066ca9e71ba44af4159549",
+		"data": {
+			"inGameID": 11751
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.7,
+		"playtype": "Single",
+		"songID": 1428,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "3300f14a9c22fdfe29653d2fb14a19ce8ef75f4a",
+		"data": {
+			"inGameID": 11751
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"songID": 1428,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "2ca50f03854f6f8f0476690a791b38ddc69645c7",
+		"data": {
+			"inGameID": 11751
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "11+",
+		"levelNum": 11.7,
+		"playtype": "Single",
+		"songID": 1428,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "19ce20e73369fb73692659436c8a31b6bdf5d86d",
+		"data": {
+			"inGameID": 11751
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.8,
+		"playtype": "Single",
+		"songID": 1428,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "4477c623c355349cdb01918c502999f53f472674",
+		"data": {
+			"inGameID": 11752
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "9",
+		"levelNum": 9,
+		"playtype": "Single",
+		"songID": 1429,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "09bf3566bf05419d74473096e567924af99f31f1",
+		"data": {
+			"inGameID": 11752
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 1429,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "c25e13c8bb93c81118b6fb0f6a90480342730432",
+		"data": {
+			"inGameID": 11752
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.5,
+		"playtype": "Single",
+		"songID": 1429,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "67bd9641dbba01bb64bf27585ec2c8fe8eeb0c9c",
+		"data": {
+			"inGameID": 11752
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "14+",
+		"levelNum": 14.7,
+		"playtype": "Single",
+		"songID": 1429,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "0e9c65d8584a3bf17f5c9922b27e191d9a606507",
+		"data": {
+			"inGameID": 11753
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "8+",
+		"levelNum": 8.9,
+		"playtype": "Single",
+		"songID": 1430,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "c3942bc3b4b3f7c8cf8f0d87e941d4a371364075",
+		"data": {
+			"inGameID": 11753
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 1430,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "357403664416af8bd54488e3b939b8eb5fb4aefe",
+		"data": {
+			"inGameID": 11753
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.5,
+		"playtype": "Single",
+		"songID": 1430,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "f163911776850bf53e8697e4e498b8929b68b8b3",
+		"data": {
+			"inGameID": 11753
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "14+",
+		"levelNum": 14.9,
+		"playtype": "Single",
+		"songID": 1430,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "03c7f2b339f9622942f1e4f67535523bc97703c2",
+		"data": {
+			"inGameID": 11755
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.9,
+		"playtype": "Single",
+		"songID": 1431,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "5914c252b2d7587cba3a90040499fd8c38a7341d",
+		"data": {
+			"inGameID": 11755
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "5",
+		"levelNum": 5,
+		"playtype": "Single",
+		"songID": 1431,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "6476e0c5446199f0cb5f478db49766c7a6c9fb9f",
+		"data": {
+			"inGameID": 11755
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12.2,
+		"playtype": "Single",
+		"songID": 1431,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "d76e70652060fc3cb52616819b2cf404a5a2b009",
+		"data": {
+			"inGameID": 11755
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14.2,
+		"playtype": "Single",
+		"songID": 1431,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "d10cafc555a77947d083610c25fc07d6b4a19d58",
+		"data": {
+			"inGameID": 11773
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6.5,
+		"playtype": "Single",
+		"songID": 1432,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "b86d7fb045e9e6321f489702975288e2cadb1925",
+		"data": {
+			"inGameID": 11773
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "2",
+		"levelNum": 2,
+		"playtype": "Single",
+		"songID": 1432,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "2791e51b841213e0990d6bcf4aa8cc51cdff0d30",
+		"data": {
+			"inGameID": 11773
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "9+",
+		"levelNum": 9.8,
+		"playtype": "Single",
+		"songID": 1432,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "5f89499e2d59c523a6bd1a56f2c2730f40c3a4fe",
+		"data": {
+			"inGameID": 11773
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.1,
+		"playtype": "Single",
+		"songID": 1432,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "986baf46b7d16c316ad6ae7ecc6b165ac852d341",
+		"data": {
+			"inGameID": 11782
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7+",
+		"levelNum": 7.8,
+		"playtype": "Single",
+		"songID": 1433,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "8f0413719b184307045e688b12c0f96d2483339d",
+		"data": {
+			"inGameID": 11782
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 1433,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "b722511ddcc100aeecd6222cfdbeaf0cc3b6ce57",
+		"data": {
+			"inGameID": 11782
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "10+",
+		"levelNum": 10.7,
+		"playtype": "Single",
+		"songID": 1433,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "ec6960d35ba2466bef322811b09ce0b8d51626e2",
+		"data": {
+			"inGameID": 11782
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.4,
+		"playtype": "Single",
+		"songID": 1433,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "65be34fcaf8b89c6d37512a8d9b153dc49382007",
+		"data": {
+			"inGameID": 11783
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6.8,
+		"playtype": "Single",
+		"songID": 1434,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "25a968b772e52ec16bac270ce3923e4f56305467",
+		"data": {
+			"inGameID": 11783
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "4",
+		"levelNum": 4,
+		"playtype": "Single",
+		"songID": 1434,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "47a58ff00a813793d168137f4e6d05c6724dbe1b",
+		"data": {
+			"inGameID": 11783
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "10+",
+		"levelNum": 10.7,
+		"playtype": "Single",
+		"songID": 1434,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "803992b65a2ba10a2289a4eec92bedcbf8c0ba70",
+		"data": {
+			"inGameID": 11783
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.7,
+		"playtype": "Single",
+		"songID": 1434,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "e30c2bae4e119add71d9f04bbab6eae7c755839a",
+		"data": {
+			"inGameID": 11785
+		},
+		"difficulty": "DX Advanced",
+		"isPrimary": true,
+		"level": "7",
+		"levelNum": 7.2,
+		"playtype": "Single",
+		"songID": 1435,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "302ed72bb391f86965c5edae404a8111b6d93186",
+		"data": {
+			"inGameID": 11785
+		},
+		"difficulty": "DX Basic",
+		"isPrimary": true,
+		"level": "3",
+		"levelNum": 3,
+		"playtype": "Single",
+		"songID": 1435,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "cc1117e7899f107962a498bdd6c635db82d56e2a",
+		"data": {
+			"inGameID": 11785
+		},
+		"difficulty": "DX Expert",
+		"isPrimary": true,
+		"level": "10",
+		"levelNum": 10.5,
+		"playtype": "Single",
+		"songID": 1435,
+		"versions": [
+			"prism"
+		]
+	},
+	{
+		"chartID": "9c95de7010fa5f56cdf2ffbebae31cca010196cd",
+		"data": {
+			"inGameID": 11785
+		},
+		"difficulty": "DX Master",
+		"isPrimary": true,
+		"level": "13",
+		"levelNum": 13.1,
+		"playtype": "Single",
+		"songID": 1435,
 		"versions": [
 			"prism"
 		]

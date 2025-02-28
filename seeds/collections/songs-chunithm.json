@@ -20249,5 +20249,27 @@
 			"ultramarine signal"
 		],
 		"title": "群青シグナル"
+	},
+	{
+		"altTitles": [],
+		"artist": "void (Mournfinale) × 水野健治",
+		"data": {
+			"displayVersion": "luminousplus",
+			"genre": "ORIGINAL"
+		},
+		"id": 2739,
+		"searchTerms": [],
+		"title": "Aether Crest: Celestial"
+	},
+	{
+		"altTitles": [],
+		"artist": "MintJam vs Masahiro \"Godspeed\" Aoki",
+		"data": {
+			"displayVersion": "luminousplus",
+			"genre": "ORIGINAL"
+		},
+		"id": 2744,
+		"searchTerms": [],
+		"title": "Crush the Dystopia"
 	}
 ]

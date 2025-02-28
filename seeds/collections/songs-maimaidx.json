@@ -17901,7 +17901,9 @@
 			"genre": "maimai"
 		},
 		"id": 1400,
-		"searchTerms": [],
+		"searchTerms": [
+			"prism rhythm"
+		],
 		"title": "プリズム△▽リズム"
 	},
 	{
@@ -17912,7 +17914,9 @@
 			"genre": "maimai"
 		},
 		"id": 1401,
-		"searchTerms": [],
+		"searchTerms": [
+			"paradox eve"
+		],
 		"title": "パラドクスイヴ"
 	},
 	{
@@ -17934,7 +17938,9 @@
 			"genre": "maimai"
 		},
 		"id": 1403,
-		"searchTerms": [],
+		"searchTerms": [
+			"184oku kai no multitonic"
+		],
 		"title": "184億回のマルチトニック"
 	},
 	{
@@ -17945,7 +17951,9 @@
 			"genre": "maimai"
 		},
 		"id": 1404,
-		"searchTerms": [],
+		"searchTerms": [
+			"hate no sora, bokura ga mita hikari."
+		],
 		"title": "果ての空、僕らが見た光。"
 	},
 	{
@@ -17967,7 +17975,9 @@
 			"genre": "niconicoボーカロイド"
 		},
 		"id": 1406,
-		"searchTerms": [],
+		"searchTerms": [
+			"yamiaka steroid"
+		],
 		"title": "病み垢ステロイド"
 	},
 	{
@@ -17978,7 +17988,9 @@
 			"genre": "niconicoボーカロイド"
 		},
 		"id": 1407,
-		"searchTerms": [],
+		"searchTerms": [
+			"darling dance"
+		],
 		"title": "ダーリンダンス"
 	},
 	{
@@ -17989,7 +18001,9 @@
 			"genre": "POPSアニメ"
 		},
 		"id": 1408,
-		"searchTerms": [],
+		"searchTerms": [
+			"show"
+		],
 		"title": "唱"
 	},
 	{
@@ -18000,7 +18014,9 @@
 			"genre": "POPSアニメ"
 		},
 		"id": 1409,
-		"searchTerms": [],
+		"searchTerms": [
+			"heart pie dancehall"
+		],
 		"title": "愛包ダンスホール"
 	},
 	{
@@ -18011,7 +18027,9 @@
 			"genre": "POPSアニメ"
 		},
 		"id": 1410,
-		"searchTerms": [],
+		"searchTerms": [
+			"matsuken samba II"
+		],
 		"title": "マツケンサンバⅡ"
 	},
 	{
@@ -18022,7 +18040,9 @@
 			"genre": "niconicoボーカロイド"
 		},
 		"id": 1411,
-		"searchTerms": [],
+		"searchTerms": [
+			"(not) a devil"
+		],
 		"title": "デビルじゃないもん"
 	},
 	{
@@ -18033,7 +18053,9 @@
 			"genre": "niconicoボーカロイド"
 		},
 		"id": 1412,
-		"searchTerms": [],
+		"searchTerms": [
+			"zunda party night"
+		],
 		"title": "ずんだパーリナイ"
 	},
 	{
@@ -18077,7 +18099,10 @@
 			"genre": "ゲームバラエティ"
 		},
 		"id": 1416,
-		"searchTerms": [],
+		"searchTerms": [
+			"a wandering melody of love",
+			"mayoeru neiro wa koi no uta"
+		],
 		"title": "迷える音色は恋の唄"
 	},
 	{
@@ -18110,7 +18135,9 @@
 			"genre": "niconicoボーカロイド"
 		},
 		"id": 1419,
-		"searchTerms": [],
+		"searchTerms": [
+			"realize"
+		],
 		"title": "リアライズ"
 	},
 	{
@@ -18132,7 +18159,10 @@
 			"genre": "POPSアニメ"
 		},
 		"id": 1421,
-		"searchTerms": [],
+		"searchTerms": [
+			"yuusha",
+			"the brave"
+		],
 		"title": "勇者"
 	},
 	{
@@ -18143,7 +18173,9 @@
 			"genre": "niconicoボーカロイド"
 		},
 		"id": 1422,
-		"searchTerms": [],
+		"searchTerms": [
+			"hito mania"
+		],
 		"title": "人マニア"
 	},
 	{
@@ -18154,7 +18186,9 @@
 			"genre": "POPSアニメ"
 		},
 		"id": 1423,
-		"searchTerms": [],
+		"searchTerms": [
+			"mate na yatsura"
+		],
 		"title": "メイトなやつら（FEAT. 天開司, 佐藤ホームズ, あっくん大魔王 & 歌衣メイカ）"
 	},
 	{
@@ -18165,7 +18199,9 @@
 			"genre": "東方Project"
 		},
 		"id": 1424,
-		"searchTerms": [],
+		"searchTerms": [
+			"yukemuri tamaonsen II"
+		],
 		"title": "ゆけむり魂温泉 II"
 	},
 	{
@@ -18176,7 +18212,10 @@
 			"genre": "東方Project"
 		},
 		"id": 1425,
-		"searchTerms": [],
+		"searchTerms": [
+			"Ningen ga Daisuki na Kowareta Youkai no Uta",
+			"The Song of a Broken/Loved Youkai Who Loved a Human"
+		],
 		"title": "人間が大好きなこわれた妖怪の唄"
 	},
 	{
@@ -18187,7 +18226,122 @@
 			"genre": "niconicoボーカロイド"
 		},
 		"id": 1426,
-		"searchTerms": [],
+		"searchTerms": [
+			"igaku",
+			"medicine"
+		],
 		"title": "イガク"
+	},
+	{
+		"altTitles": [],
+		"artist": "RiraN",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "maimai"
+		},
+		"id": 1427,
+		"searchTerms": [],
+		"title": "Flashback"
+	},
+	{
+		"altTitles": [],
+		"artist": "Reku Mochizuki",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "maimai"
+		},
+		"id": 1428,
+		"searchTerms": [],
+		"title": "Colorfull:Encounter"
+	},
+	{
+		"altTitles": [],
+		"artist": "かねこちはる vs t+pazolite",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "maimai"
+		},
+		"id": 1429,
+		"searchTerms": [
+			"urosousetsu"
+		],
+		"title": "雨露霜雪"
+	},
+	{
+		"altTitles": [],
+		"artist": "t+pazolite vs かねこちはる",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "maimai"
+		},
+		"id": 1430,
+		"searchTerms": [
+			"chuuten"
+		],
+		"title": "宙天"
+	},
+	{
+		"altTitles": [],
+		"artist": "かゆき",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "オンゲキCHUNITHM"
+		},
+		"id": 1431,
+		"searchTerms": [
+			"moon:reflection"
+		],
+		"title": "美夜月鏡"
+	},
+	{
+		"altTitles": [],
+		"artist": "ピノキオピー",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1432,
+		"searchTerms": [
+			"reincarnation apple"
+		],
+		"title": "転生林檎"
+	},
+	{
+		"altTitles": [],
+		"artist": "夢限大みゅーたいぷ",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "POPSアニメ"
+		},
+		"id": 1433,
+		"searchTerms": [
+			"mugen my world"
+		],
+		"title": "夢現妄想世界"
+	},
+	{
+		"altTitles": [],
+		"artist": "wotaku feat.SHIKI",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1434,
+		"searchTerms": [],
+		"title": "snooze"
+	},
+	{
+		"altTitles": [],
+		"artist": "和田たけあき",
+		"data": {
+			"displayVersion": "PRiSM",
+			"genre": "niconicoボーカロイド"
+		},
+		"id": 1435,
+		"searchTerms": [
+			"teratera",
+			"show off"
+		],
+		"title": "てらてら"
 	}
 ]

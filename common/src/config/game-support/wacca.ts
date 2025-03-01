@@ -144,5 +144,5 @@ export const WACCA_SINGLE_CONF = {
 	preferences: z.strictObject({}),
 	scoreMeta: z.strictObject({ mirror: z.boolean().optional() }),
 
-	supportedMatchTypes: ["songTitle", "tachiSongID"],
+	supportedMatchTypes: ["songTitle", "tachiSongID", "inGameID"],
 } as const satisfies INTERNAL_GAME_PT_CONFIG;

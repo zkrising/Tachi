@@ -28,6 +28,7 @@ const VERSIONS = [
 	"sunplus",
 	"luminous",
 	"luminousplus",
+	"verse",
 ];
 
 interface IDWithDisplayName {

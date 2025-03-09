@@ -25,6 +25,7 @@ export const CHUNITHMColours = [
 	ClassValue("GOLD", "金", "Gold: 14.50 - 15.24 Rating"),
 	ClassValue("PLATINUM", "鉑", "Platinum: 15.25 - 15.99 Rating"),
 	ClassValue("RAINBOW", "虹", "Rainbow: >=16 Rating"),
+	ClassValue("RAINBOW_EXTREME", "虹(極)", "Rainbow Extreme: >=17 Rating"),
 ];
 
 export const CHUNITHMClasses = [
@@ -159,6 +160,9 @@ export const CHUNITHM_SINGLE_CONF = {
 		luminousplus: "LUMINOUS PLUS",
 		"luminousplus-intl": "LUMINOUS PLUS International",
 		"luminousplus-omni": "LUMINOUS PLUS Omnimix",
+		verse: "VERSE",
+		"verse-intl": "VERSE International",
+		"verse-omni": "VERSE Omnimix",
 	},
 
 	chartData: z.strictObject({

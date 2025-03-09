@@ -25,7 +25,9 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 				return null;
 			}
 
-			if (rating >= 16) {
+			if (rating >= 17) {
+				return "RAINBOW_EXTREME";
+			} else if (rating >= 16) {
 				return "RAINBOW";
 			} else if (rating >= 15.25) {
 				return "PLATINUM";

@@ -20736,6 +20736,61 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "Reku Mochizuki",
+		"data": {
+			"displayVersion": "verse",
+			"genre": "VARIETY"
+		},
+		"id": 2750,
+		"searchTerms": [],
+		"title": "INFiNiTE ENERZY -Overdoze-"
+	},
+	{
+		"altTitles": [],
+		"artist": "歌：Trickstar 作詞：松井洋平　作曲/編曲：中土智博（APDREAM）",
+		"data": {
+			"displayVersion": "verse",
+			"genre": "POPS & ANIME"
+		},
+		"id": 2753,
+		"searchTerms": [],
+		"title": "ONLY YOUR STARS!（Trickstar Ver.）"
+	},
+	{
+		"altTitles": [],
+		"artist": "歌：ALKALOID 作詞：こだまさおり　作曲：桑原聖（Arte Refact）、編曲：脇眞富（Arte Refact）",
+		"data": {
+			"displayVersion": "verse",
+			"genre": "POPS & ANIME"
+		},
+		"id": 2754,
+		"searchTerms": [],
+		"title": "BRAND NEW STARS!! (ALKALOID ver.)"
+	},
+	{
+		"altTitles": [],
+		"artist": "歌：Eden 作詞：こだま さおり　作曲 / 編曲：佐藤 厚仁（Dream Monster）",
+		"data": {
+			"displayVersion": "verse",
+			"genre": "POPS & ANIME"
+		},
+		"id": 2755,
+		"searchTerms": [],
+		"title": "One with One (Eden ver.)"
+	},
+	{
+		"altTitles": [],
+		"artist": "歌：Crazy:B 作詞：松井洋平　作曲 / 編曲：伊藤和馬 (Arte Refact)",
+		"data": {
+			"displayVersion": "verse",
+			"genre": "POPS & ANIME"
+		},
+		"id": 2756,
+		"searchTerms": [],
+		"title": "Surprising Thanks!! (Crazy:B ver.)"
+	},
+	{
+		"altTitles": [],
 		"artist": "Rocco808,Randy Marx,GRP,寺山善也「ストリートファイター6」",
 		"data": {
 			"displayVersion": "verse",

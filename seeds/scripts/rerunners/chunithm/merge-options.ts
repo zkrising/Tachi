@@ -332,6 +332,10 @@ for (const optionsDir of options.input) {
 
 				newCharts.push(chartDoc);
 
+				// A later option may modify a new song in an earlier option, so we have to keep
+				// track of that too. Awesome.
+				existingCharts.set(`${inGameID}-${difficultyName}`, chartDoc);
+
 				logger.info(
 					`Added chart ${musicData.artistName.str} - ${musicData.name.str} [${difficultyName}] (${chartDoc.chartID}).`
 				);

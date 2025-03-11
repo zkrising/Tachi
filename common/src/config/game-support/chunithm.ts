@@ -24,8 +24,13 @@ export const CHUNITHMColours = [
 	ClassValue("SILVER", "銀", "Silver: 13.25 - 14.49 Rating"),
 	ClassValue("GOLD", "金", "Gold: 14.50 - 15.24 Rating"),
 	ClassValue("PLATINUM", "鉑", "Platinum: 15.25 - 15.99 Rating"),
-	ClassValue("RAINBOW", "虹", "Rainbow: >=16 Rating"),
-	ClassValue("RAINBOW_EXTREME", "虹(極)", "Rainbow Extreme: >=17 Rating"),
+	ClassValue("RAINBOW", "虹★", "Rainbow I: >=16 Rating"),
+	ClassValue("RAINBOW_II", "虹★★", "Rainbow II: >=16.25 Rating"),
+	ClassValue("RAINBOW_III", "虹★★★", "Rainbow III: >=16.5 Rating"),
+	ClassValue("RAINBOW_IV", "虹★★★★", "Rainbow IV: >=16.75 Rating"),
+	ClassValue("RAINBOW_EX_I", "虹(極)★", "Rainbow Extreme I: >=17 Rating"),
+	ClassValue("RAINBOW_EX_II", "虹(極)★★", "Rainbow Extreme II: >=17.25 Rating"),
+	ClassValue("RAINBOW_EX_III", "虹(極)★★★", "Rainbow Extreme III: >=17.5 Rating"),
 ];
 
 export const CHUNITHMClasses = [

@@ -89,17 +89,17 @@ t.test("CHUNITHM Implementation", (t) => {
 		};
 
 		t.test("Floating-point edge case", async (t) => {
-			await mockPBs(Array(30).fill(17.15));
+			await mockPBs(Array(50).fill(17.15));
 
 			t.equal(await CHUNITHM_IMPL.profileCalcs.naiveRating("chunithm", "Single", 1), 17.15);
 
 			t.end();
 		});
 
-		t.test("Profile with fewer than 30 scores", async (t) => {
+		t.test("Profile with fewer than 50 scores", async (t) => {
 			await mockPBs([16, 16, 16, 16]);
 
-			t.equal(await CHUNITHM_IMPL.profileCalcs.naiveRating("chunithm", "Single", 1), 2.13);
+			t.equal(await CHUNITHM_IMPL.profileCalcs.naiveRating("chunithm", "Single", 1), 1.28);
 
 			t.end();
 		});
@@ -126,7 +126,12 @@ t.test("CHUNITHM Implementation", (t) => {
 		f(14.5, "GOLD");
 		f(15.25, "PLATINUM");
 		f(16, "RAINBOW");
-		f(17, "RAINBOW_EXTREME");
+		f(16.25, "RAINBOW_II");
+		f(16.5, "RAINBOW_III");
+		f(16.75, "RAINBOW_IV");
+		f(17, "RAINBOW_EX_I");
+		f(17.25, "RAINBOW_EX_II");
+		f(17.5, "RAINBOW_EX_III");
 
 		t.end();
 	});

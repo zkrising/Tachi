@@ -99,8 +99,8 @@ function GetMinimumScores(
 	playtype: Playtype,
 	classSet: Classes[GPTString]
 ): integer | null {
-	if (game === "chunithm") {
-		return 20;
+	if (game === "chunithm" && classSet === "colour") {
+		return 50;
 	} else if (game === "sdvx" && classSet === "vfClass") {
 		return 50;
 	} else if (game === "gitadora") {

@@ -117,6 +117,10 @@ function GetMinimumScores(
 		return 20;
 	} else if (game === "ddr") {
 		return 90;
+	} else if (game === "maimai" && classSet === "colour") {
+		return 30;
+	} else if (game === "maimaidx" && classSet === "colour") {
+		return 50;
 	}
 
 	return null;

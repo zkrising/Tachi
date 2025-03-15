@@ -20,7 +20,7 @@ import OngekiJudgementCell from "components/tables/cells/OngekiJudgementCell";
 import React from "react";
 import OngekiLampCell from "components/tables/cells/OngekiLampCell";
 import OngekiPlatinumCell from "components/tables/cells/OngekiPlatinumCell";
-import { CreateRatingSys, bgc } from "./games/_util";
+import { bgc, RAINBOW_EX_GRADIENT, RAINBOW_GRADIENT } from "./games/_util";
 import { BMS_14K_IMPL, BMS_7K_IMPL, PMS_IMPL } from "./games/bms-pms";
 import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
 import { GPTClientImplementation } from "./types";
@@ -57,11 +57,13 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				SILVER: bgc("gray", "var(--bs-light)"),
 				GOLD: bgc("var(--bs-warning)", "var(--bs-dark)"),
 				PLATINUM: bgc("silver", "var(--bs-dark)"),
-				RAINBOW: {
-					background:
-						"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
-					color: "var(--bs-dark)",
-				},
+				RAINBOW: RAINBOW_GRADIENT,
+				RAINBOW_II: RAINBOW_GRADIENT,
+				RAINBOW_III: RAINBOW_GRADIENT,
+				RAINBOW_IV: RAINBOW_GRADIENT,
+				RAINBOW_EX_I: RAINBOW_EX_GRADIENT,
+				RAINBOW_EX_II: RAINBOW_EX_GRADIENT,
+				RAINBOW_EX_III: RAINBOW_EX_GRADIENT,
 			},
 			dan: {
 				DAN_I: bgc("#3b66f1", "var(--bs-light)"),

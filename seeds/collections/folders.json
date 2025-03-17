@@ -8751,6 +8751,45 @@
 	},
 	{
 		"data": {
+			"difficulty": "ADVANCED",
+			"versions": "verse-intl"
+		},
+		"folderID": "Fbde8d144ba9d0e46bcdc02d34e7f4417f87acc36ee7d2dbe7d33f95a01c2c720",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ADVANCED (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "ADVANCED",
+			"versions": "verse-omni"
+		},
+		"folderID": "F68fbcd566ffd50be0152f38b423ae4d758515313a2e787849161714389e59710",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ADVANCED (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "ADVANCED",
+			"versions": "verse"
+		},
+		"folderID": "F9d742e64b9a92877c584a31422ddb655df2fa26e2be3ab5bc5e9a764211638a7",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ADVANCED (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": "BASIC",
 			"versions": "luminous-intl"
 		},
@@ -8920,6 +8959,45 @@
 	},
 	{
 		"data": {
+			"difficulty": "BASIC",
+			"versions": "verse-intl"
+		},
+		"folderID": "Fbb7dd8e5ece5ad364429a6510ca5d6bfd0e5421a5a3c57e7084d0f67f1660958",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "BASIC (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "BASIC",
+			"versions": "verse-omni"
+		},
+		"folderID": "F1e1c11d94aae70ef4982701adee2782047ad6703cdac5586fff8a772439d78e7",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "BASIC (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "BASIC",
+			"versions": "verse"
+		},
+		"folderID": "Fc1ac7c0101b7a99e1d7b2d331da49d2dcad41c146ff8437e6033ed04612d56f6",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "BASIC (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": "EXPERT",
 			"versions": "luminous-intl"
 		},
@@ -9085,6 +9163,45 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "EXPERT (SUN)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "EXPERT",
+			"versions": "verse-intl"
+		},
+		"folderID": "F98f726ecb709c1749f5c846a2917c07c5f7005471c8a95a7e818080d148f5c6c",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "EXPERT (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "EXPERT",
+			"versions": "verse-omni"
+		},
+		"folderID": "F16310d18c6785cb0911db787da4ecad69fba93d207082a95739f51898d42a9a2",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "EXPERT (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "EXPERT",
+			"versions": "verse"
+		},
+		"folderID": "F8a05dc919c85a6665d67a3d7579fb9fbccc077124f75b593a1be38d5ea109e26",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "EXPERT (VERSE)",
 		"type": "charts"
 	},
 	{
@@ -9271,6 +9388,45 @@
 	},
 	{
 		"data": {
+			"level": "1",
+			"versions": "verse-intl"
+		},
+		"folderID": "F3b70690a722d006da2afd326fab66a4bc47fd8cf16544277c985aab7c62aa0a0",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
+			"versions": "verse-omni"
+		},
+		"folderID": "Fb8724b824df13f28a63ee26a5a864dffe1485843a4db09c7745b7c91023adcd1",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "1",
+			"versions": "verse"
+		},
+		"folderID": "Fcb7b909c3fc5eabb7211cc7e6c92b2f0af58f5d03d48f9b2d859acfe5510b20e",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "10",
 			"versions": "luminous-intl"
 		},
@@ -9449,6 +9605,45 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10 (SUN)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "verse-intl"
+		},
+		"folderID": "Ff952cb48eb97a303fdf2a222c85e3003ea09664187bc86b7423c44d19546cbdd",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10 (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "verse-omni"
+		},
+		"folderID": "Fe9b7c052a29d84284a23ed7e6d165983236a80aebf909bd8198ef663f8789a4e",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10 (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10",
+			"versions": "verse"
+		},
+		"folderID": "F9ce9afb30ec683c2d1b27750c98550c9364aad6d7e3f4dd0517eefc00421bd7a",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10 (VERSE)",
 		"type": "charts"
 	},
 	{
@@ -9635,6 +9830,45 @@
 	},
 	{
 		"data": {
+			"level": "10+",
+			"versions": "verse-intl"
+		},
+		"folderID": "F26543bb04b9ce71973d860a5fa77d0045e574c581288775f325e8f9ee8f6d9d2",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10+ (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10+",
+			"versions": "verse-omni"
+		},
+		"folderID": "Ff6e7fd0a13f817ffecd50354485e2cbcaba97f1fe4e7941f8532f90a2c1e8eee",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10+ (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "10+",
+			"versions": "verse"
+		},
+		"folderID": "Fa2eef49af6f43a6d8bb676a7542a44150f4156077654c4da69bb5ea597a790c3",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10+ (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "11",
 			"versions": "luminous-intl"
 		},
@@ -9813,6 +10047,45 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 11 (SUN)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "verse-intl"
+		},
+		"folderID": "F030ccf2d81b27c1a11f94efa72c7f364da754f0cbab9553ea13a71cb882ef451",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11 (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "verse-omni"
+		},
+		"folderID": "Fe1cd47eb8c63a7d5730613a6ee2a22b19797a26b4dc5f56cb262bb3623f179d0",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11 (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11",
+			"versions": "verse"
+		},
+		"folderID": "F633fb332687955d9d1491ae0e423b52d24d17bc94902d4e11b9cf4dfd2a5f86c",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11 (VERSE)",
 		"type": "charts"
 	},
 	{
@@ -9999,6 +10272,45 @@
 	},
 	{
 		"data": {
+			"level": "11+",
+			"versions": "verse-intl"
+		},
+		"folderID": "F98e70ef40500aa3eb24bb5fa8b20540495ab4feb72cb420f4918f459daf973a2",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11+ (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11+",
+			"versions": "verse-omni"
+		},
+		"folderID": "F90924b2c0f7d131ff95f579ce669fdb0bcf838bffa8bd85e18c3d035f45d24c4",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11+ (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "11+",
+			"versions": "verse"
+		},
+		"folderID": "F3efaf1bd5717a9100f621b008f2ce66ece8d4999b32b807762b0d4d768e30c5e",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11+ (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "12",
 			"versions": "luminous-intl"
 		},
@@ -10177,6 +10489,45 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 12 (SUN)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "verse-intl"
+		},
+		"folderID": "Fce00d38d8277ab601fac1e34c83f5058c98d6bc4f0ffc22dcd477877345d7b45",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12 (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "verse-omni"
+		},
+		"folderID": "Faebfa7e985a6f8e7f25ec43c1ed2fe85b4874df4611ba8859f6941f595b5d485",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12 (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12",
+			"versions": "verse"
+		},
+		"folderID": "Ffc48aacabe9867e330d482dddc554b2c4d018141d93939dee98cad40b2185e1f",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12 (VERSE)",
 		"type": "charts"
 	},
 	{
@@ -10363,6 +10714,45 @@
 	},
 	{
 		"data": {
+			"level": "12+",
+			"versions": "verse-intl"
+		},
+		"folderID": "Fee640e7a4b0f5c4c7aaa5eff2288655096ef18f27937848de3ce48859c90c9c5",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12+ (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12+",
+			"versions": "verse-omni"
+		},
+		"folderID": "F1d3f2a455d9f37adc81fa15701efa1cdbc25e716f8fe94acb162e945b2e46478",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12+ (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "12+",
+			"versions": "verse"
+		},
+		"folderID": "Fa4d0dde1a2177112db95e0a726a677d5672f8e354a46e8a639265a872d3518be",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12+ (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "13",
 			"versions": "luminous-intl"
 		},
@@ -10541,6 +10931,45 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 13 (SUN)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
+			"versions": "verse-intl"
+		},
+		"folderID": "F1f301b905c32f302835eb3f6d79ab9eb319bd769aebaf8cba5ce33f2aa93648b",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13 (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
+			"versions": "verse-omni"
+		},
+		"folderID": "Ff766fa43208aaf525c8be9a3b20d38e0bec61b51971c79f5e56e75a25b6756aa",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13 (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13",
+			"versions": "verse"
+		},
+		"folderID": "Fafd97d37b04893445ab963e0abf9b3e31212545aa2d4f1e5697c2cc07d1eecaf",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13 (VERSE)",
 		"type": "charts"
 	},
 	{
@@ -10727,6 +11156,45 @@
 	},
 	{
 		"data": {
+			"level": "13+",
+			"versions": "verse-intl"
+		},
+		"folderID": "F0d83f9bc3c12c1dfeac9356658eda0bf9a2d9115a1aaa7c66409be1377af0620",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13+ (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13+",
+			"versions": "verse-omni"
+		},
+		"folderID": "F9900795caec964cf16646e0286598dea5cf9f6e95e8bcf11b5f28539e00dd6a5",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13+ (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "13+",
+			"versions": "verse"
+		},
+		"folderID": "F9888445c0ef83aaf87b594942d4fcc5ced8034f071a026c5106d47cb8b4bb335",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13+ (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "14",
 			"versions": "luminous-intl"
 		},
@@ -10905,6 +11373,45 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 14 (SUN)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
+			"versions": "verse-intl"
+		},
+		"folderID": "Fe460cfa2b20628c2c18a5e49e0c67b003d4a132e48f61ca702cdcecc7cf3d5c6",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14 (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
+			"versions": "verse-omni"
+		},
+		"folderID": "F6e6c14ffff411a691681994c38e507f4f82d4ef5c6068fc08bec47fd4a1b9a0a",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14 (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14",
+			"versions": "verse"
+		},
+		"folderID": "F0f224467c1b1ac0e577b2d21046f8785cbea3cbc22b9c5487f53d9353a88f802",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14 (VERSE)",
 		"type": "charts"
 	},
 	{
@@ -11091,6 +11598,45 @@
 	},
 	{
 		"data": {
+			"level": "14+",
+			"versions": "verse-intl"
+		},
+		"folderID": "Fba3bedbb9f339e325f7926461bd5ad071981882e8d4ed7fb946088a69075a0cd",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14+ (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14+",
+			"versions": "verse-omni"
+		},
+		"folderID": "F8bdc76a09ea5a6a7c7e124142976e59557a94be51b0bafc84d23b8791e75a03d",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14+ (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "14+",
+			"versions": "verse"
+		},
+		"folderID": "Ff2943154ad00ded3d3959330fbf0473529f3630ec5d6b4e39155ff8cfd987a82",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14+ (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "15",
 			"versions": "luminous-intl"
 		},
@@ -11273,6 +11819,45 @@
 	},
 	{
 		"data": {
+			"level": "15",
+			"versions": "verse-intl"
+		},
+		"folderID": "F31b0be4fefc27749651de74dac4b681a2995365cd31833d6b1bf523d0a8a048a",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15 (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
+			"versions": "verse-omni"
+		},
+		"folderID": "Fa140add8a4a8233ef273b807347f76ed184d2d2d7d8593d3a932d6d31e765e77",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15 (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15",
+			"versions": "verse"
+		},
+		"folderID": "Feab1396f47dd8be4298e45d6f7025397d78372da65b2156d33f3a9b45455d21b",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15 (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "15+",
 			"versions": "luminousplus-omni"
 		},
@@ -11295,6 +11880,45 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 15+ (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15+",
+			"versions": "verse-intl"
+		},
+		"folderID": "F6e3bab8efa50af337873432c574f96c039e8b7ac678632d8ff4fc4cd1fc5f1b2",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15+ (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15+",
+			"versions": "verse-omni"
+		},
+		"folderID": "F5a9f10ba46112815e2a16e6732e412e7af9ebc2cc4e2404e2cc1114fc0b537e2",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15+ (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "15+",
+			"versions": "verse"
+		},
+		"folderID": "F46c1359635eb10809bed8eba53cd0da7fa0b09abe5caa31f195096c12d6a71f4",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15+ (VERSE)",
 		"type": "charts"
 	},
 	{
@@ -11481,6 +12105,45 @@
 	},
 	{
 		"data": {
+			"level": "2",
+			"versions": "verse-intl"
+		},
+		"folderID": "F06b7f101ca20476fa91e2f69e71d271fb204381da101acb1afe29dea1198d8ae",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "verse-omni"
+		},
+		"folderID": "Fd1ce83305bdc9e32c5ea0602f8d1d995989aad75ae0af009633a3275147f6caf",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "2",
+			"versions": "verse"
+		},
+		"folderID": "F409ab0da0dd0a8f4397bf007e13eb6bd3f1a874fdc9cff9bd1d2095877df805c",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "3",
 			"versions": "luminous-intl"
 		},
@@ -11659,6 +12322,45 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 3 (SUN)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "verse-intl"
+		},
+		"folderID": "F9e20358e4b0ad68b7d1ced72139737e77e4d12d01c7f19a5166d7ba1ba2d7480",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "verse-omni"
+		},
+		"folderID": "Ff40723529cf4d55d7adcce78c6362b78d3d90408b41d1bcfef005ee149c08982",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "3",
+			"versions": "verse"
+		},
+		"folderID": "F2b7ccdd434e7031f7d0089fb2322e205cac7f2ed3aae520c86caa330ae7417b7",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (VERSE)",
 		"type": "charts"
 	},
 	{
@@ -11845,6 +12547,45 @@
 	},
 	{
 		"data": {
+			"level": "4",
+			"versions": "verse-intl"
+		},
+		"folderID": "Fa9ea16a63cbb5449c8ac33c5b0a8ab4993265ea389125a62983c14495033a8e5",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "verse-omni"
+		},
+		"folderID": "Fc51bce45ec2030f42a6184fc5bcb66f76dd0ab6885ced4ff74a01de5db3d5752",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "4",
+			"versions": "verse"
+		},
+		"folderID": "Fa8608951f672e499428a98369b7f09d031ff027a4008a3666f67a8efb5eff276",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "5",
 			"versions": "luminous-intl"
 		},
@@ -12023,6 +12764,45 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 5 (SUN)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "verse-intl"
+		},
+		"folderID": "F3c1ab9430b7d13421f139a06c737935a8d5ca1fe1d437b59460edbb30eace415",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "verse-omni"
+		},
+		"folderID": "Fcd427f8b7dd133f31ee0730bc4357928d12387ae47e81ceb851382614a458dc1",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "5",
+			"versions": "verse"
+		},
+		"folderID": "F486a93b3aba7d49560c4ab81c91ca42417ec17a3127102722930092db42c1967",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (VERSE)",
 		"type": "charts"
 	},
 	{
@@ -12209,6 +12989,45 @@
 	},
 	{
 		"data": {
+			"level": "6",
+			"versions": "verse-intl"
+		},
+		"folderID": "F0524c09f14047070b26400b07cbd89d932c47883ee05c1447fa9e855d62103e8",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "verse-omni"
+		},
+		"folderID": "Fdf276e950b1666ef413e2b6e138768651aa1fa2a4d570d694d598712becc10a4",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "6",
+			"versions": "verse"
+		},
+		"folderID": "F6c113f868868dba2b6b071c4fe9b3f2a2e57a2bd408201b79ff8064dabf49100",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "7",
 			"versions": "luminous-intl"
 		},
@@ -12387,6 +13206,45 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 7 (SUN)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "verse-intl"
+		},
+		"folderID": "F0e4967b94a69a3c9095d201f92c15fff2f5e905b3ac0c08874f0807921f9da48",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7 (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "verse-omni"
+		},
+		"folderID": "F890017677653162f699190d7c24f186893a1569d5651204de85dc4bf841ab39e",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7 (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7",
+			"versions": "verse"
+		},
+		"folderID": "F97c6b250c2a9c1332b95cdd519a55e0eab2f82e5c2c07eeb4c0bc016af665019",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7 (VERSE)",
 		"type": "charts"
 	},
 	{
@@ -12573,6 +13431,45 @@
 	},
 	{
 		"data": {
+			"level": "7+",
+			"versions": "verse-intl"
+		},
+		"folderID": "F20996cb23ed6275e54108dbae480a729fdcce1e539c3309ba32476eddd0fd677",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7+ (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7+",
+			"versions": "verse-omni"
+		},
+		"folderID": "F0bda1b95ee8e7f038e6ec6f0fb0eab06a65c22fe6ce4482612fd5426dbe4612c",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7+ (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "7+",
+			"versions": "verse"
+		},
+		"folderID": "Fe6163698276b1761318029526a258c86c08b411f1ca97f79a22e97ba8b79e03a",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7+ (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "8",
 			"versions": "luminous-intl"
 		},
@@ -12751,6 +13648,45 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 8 (SUN)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "verse-intl"
+		},
+		"folderID": "Fd6a6e308006c407fc684344eff547666ff5812ca672bd04999c7a864a2b5cf29",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8 (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "verse-omni"
+		},
+		"folderID": "Fd4a9d5cd2f299f6afc1dc6ea7db301760920bf0321df7e1d2d4add7147f4707a",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8 (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8",
+			"versions": "verse"
+		},
+		"folderID": "Fd7e821ebd4bec3d9e6603ce2dd25f9298563fd1127123d1b3daa7242d1a8d7a5",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8 (VERSE)",
 		"type": "charts"
 	},
 	{
@@ -12937,6 +13873,45 @@
 	},
 	{
 		"data": {
+			"level": "8+",
+			"versions": "verse-intl"
+		},
+		"folderID": "Fbab8be33f1ccb08a6f134b5daf9742797b9008d6752e62d19f73fe6b1f40c231",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8+ (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8+",
+			"versions": "verse-omni"
+		},
+		"folderID": "Fe30a4652f31d90ce4bbe370db7e3732d339528295492edb70088430e5d10edfb",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8+ (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "8+",
+			"versions": "verse"
+		},
+		"folderID": "Ff7ed7743d4f8ac64ae70bd373b15b91f83e0825ad9a79345cb28a68a58ae575c",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8+ (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"level": "9",
 			"versions": "luminous-intl"
 		},
@@ -13115,6 +14090,45 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9 (SUN)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "verse-intl"
+		},
+		"folderID": "Fa89bcaf0580e432bf1c9514c57f01b77bb5f810337e51b3a53b8e6cf1fe7e54a",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9 (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "verse-omni"
+		},
+		"folderID": "Fb95d6cfc40c2f082e53d584c59e0a500db3a658a0d3ca9d9a292fb2c334d8f03",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9 (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9",
+			"versions": "verse"
+		},
+		"folderID": "F8095deec17ca582f3d51c860f65d4b6fd612ee1040bce896ba64dfc69fdfe427",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9 (VERSE)",
 		"type": "charts"
 	},
 	{
@@ -13301,6 +14315,45 @@
 	},
 	{
 		"data": {
+			"level": "9+",
+			"versions": "verse-intl"
+		},
+		"folderID": "Fb874f12accd7cfd5fc052b29893b15b289a57b4bef6c16aed6a0f17d37e8b3c8",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9+ (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9+",
+			"versions": "verse-omni"
+		},
+		"folderID": "F0c44329d76573d70c94af14daa00ff50752e31a31a855ee663487fe25bad0c26",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9+ (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "9+",
+			"versions": "verse"
+		},
+		"folderID": "Fb5caebfca2d9e65c0a19d844634c0fb6e924684f5a97340cb010d51607472156",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9+ (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": "MASTER",
 			"versions": "luminous-intl"
 		},
@@ -13470,6 +14523,45 @@
 	},
 	{
 		"data": {
+			"difficulty": "MASTER",
+			"versions": "verse-intl"
+		},
+		"folderID": "F875924b229ee264a74d08c1b9f0519bd44a433fb123d8803ad0f4de2b509e5fa",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "MASTER (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "MASTER",
+			"versions": "verse-omni"
+		},
+		"folderID": "Faf2fd8d2bbd61e3222725121a9865ef271b2ac29d405d2929a0f74be5a462b85",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "MASTER (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "MASTER",
+			"versions": "verse"
+		},
+		"folderID": "Fc1925199b5141d40001d302fdb7842e82e650fbe7d850749f8922f1264818ca4",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "MASTER (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": "ULTIMA",
 			"versions": "luminous-intl"
 		},
@@ -13635,6 +14727,45 @@
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "ULTIMA (SUN)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "ULTIMA",
+			"versions": "verse-intl"
+		},
+		"folderID": "F3c55f07102751c31dc008af7cae3982340515cf4e68c802ecb7ac04a9c760a84",
+		"game": "chunithm",
+		"inactive": true,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ULTIMA (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "ULTIMA",
+			"versions": "verse-omni"
+		},
+		"folderID": "Ffcf22e8ec59471aaf485559436aa87f744695e5942c28fd45e24b4b9c22838dd",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ULTIMA (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": "ULTIMA",
+			"versions": "verse"
+		},
+		"folderID": "F285ddbd751c99661c03a15adbc52bf7bffac4f23312025876638cbf612f36348",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ULTIMA (VERSE)",
 		"type": "charts"
 	},
 	{

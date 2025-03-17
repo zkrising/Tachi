@@ -26,6 +26,7 @@ const LEVELS = [
 	"14",
 	"14+",
 	"15",
+	"15+",
 ];
 const DIFFICULTIES = ["BASIC", "ADVANCED", "EXPERT", "MASTER", "ULTIMA"];
 

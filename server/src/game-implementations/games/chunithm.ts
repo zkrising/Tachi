@@ -16,7 +16,7 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 		rating: (scoreData, chart) => CHUNITHMRating.calculate(scoreData.score, chart.levelNum),
 	},
 	sessionCalcs: { naiveRating: SessionAvgBest10For("rating") },
-	profileCalcs: { naiveRating: ProfileAvgBestN("rating", 30, false, 100) },
+	profileCalcs: { naiveRating: ProfileAvgBestN("rating", 50, false, 100) },
 	classDerivers: {
 		colour: (ratings) => {
 			const rating = ratings.naiveRating;
@@ -25,7 +25,19 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 				return null;
 			}
 
-			if (rating >= 16) {
+			if (rating >= 17.5) {
+				return "RAINBOW_EX_III";
+			} else if (rating >= 17.25) {
+				return "RAINBOW_EX_II";
+			} else if (rating >= 17) {
+				return "RAINBOW_EX_I";
+			} else if (rating >= 16.75) {
+				return "RAINBOW_IV";
+			} else if (rating >= 16.5) {
+				return "RAINBOW_III";
+			} else if (rating >= 16.25) {
+				return "RAINBOW_II";
+			} else if (rating >= 16) {
 				return "RAINBOW";
 			} else if (rating >= 15.25) {
 				return "PLATINUM";

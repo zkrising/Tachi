@@ -1,12 +1,5 @@
-/* eslint-disable import/first */
-// see: https://www.npmjs.com/package/fix-esm
-// fzf *mandates* esm, but we don't use it (ts transpiles to cjs)
-// sick of this headache.
-// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
-require("fix-esm").register();
-
+import { AsyncFzf } from "./fzf/main";
 import db from "external/mongo/db";
-import { AsyncFzf } from "fzf";
 import CreateLogCtx from "lib/logger/logger";
 import { TachiConfig } from "lib/setup/config";
 import { CreateSongMap, SplitGPT } from "tachi-common";

@@ -35,7 +35,7 @@ export default function ImportFileInfo({
 
 	const [errMsg, setErrMsg] = useState<string | null>("");
 	const [data, setData] = useState<ParseFunctionReturn | null>(null);
-	const valid = useMemo(() => errMsg === null && file && file.size < 4e6, [errMsg]);
+	const valid = useMemo(() => errMsg === null && file && file.size < 8e6, [errMsg]);
 
 	const [moreInfo, setMoreInfo] = useState<Record<string, string>>({});
 	const [moreInfoFulfilled, setMoreInfoFulfilled] = useState(!MoreDataForm);
@@ -67,7 +67,7 @@ export default function ImportFileInfo({
 			return null;
 		}
 
-		const isTooLarge = file.size > 4e6;
+		const isTooLarge = file.size > 8e6;
 
 		if (!data || !file) {
 			return null;
@@ -87,7 +87,7 @@ export default function ImportFileInfo({
 						<span className={isTooLarge ? "text-danger" : ""}>
 							{prettyBytes(file.size)}
 							{isTooLarge
-								? " (File too large, Can't be larger than 4MB. Sorry!)"
+								? " (File too large, Can't be larger than 8MB. Sorry!)"
 								: ""}
 						</span>
 					</td>

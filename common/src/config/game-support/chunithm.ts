@@ -104,8 +104,7 @@ export const CHUNITHM_SINGLE_CONF = {
 	},
 	profileRatingAlgs: {
 		naiveRating: {
-			description:
-				"The average of your best 30 ratings. This is different to in-game, as it does not take into account your recent scores in any way.",
+			description: "The average of your best 50 ratings.",
 			formatter: ToDecimalPlaces(2),
 		},
 	},

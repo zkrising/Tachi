@@ -44,7 +44,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 	"ddr:SP": DDR_SP_IMPL,
 	"ddr:DP": DDR_DP_IMPL,
 	"chunithm:Single": {
-		sessionImportantScoreCount: 30,
+		sessionImportantScoreCount: 50,
 		enumIcons: defaultEnumIcons,
 		classColours: {
 			colour: {
@@ -294,7 +294,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
 	},
 	"maimaidx:Single": {
-		sessionImportantScoreCount: 30,
+		sessionImportantScoreCount: 50,
 		enumIcons: defaultEnumIcons,
 		enumColours: {
 			lamp: {

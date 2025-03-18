@@ -128,7 +128,7 @@
 	{
 		"chartID": "da0b54788a8f2d6c1af1bc939a550618173cff21",
 		"data": {
-			"displayVersion": "bright MEMORY",
+			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 8162,
 			"isReMaster": true,
 			"maxPlatScore": 2340
@@ -1682,6 +1682,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 8179,
+			"isReMaster": true,
 			"maxPlatScore": 3006
 		},
 		"difficulty": "LUNATIC",
@@ -1999,7 +2000,7 @@
 	{
 		"chartID": "82af4b500fa87a1bcaf1d7ee19cb7f205a215532",
 		"data": {
-			"displayVersion": "bright MEMORY",
+			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 8113,
 			"isReMaster": false,
 			"maxPlatScore": 1568
@@ -8619,7 +8620,7 @@
 	{
 		"chartID": "6d2a79bdd3f5b22c8b987cdbdd1416d25d885e53",
 		"data": {
-			"displayVersion": "bright MEMORY",
+			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 8158,
 			"isReMaster": false,
 			"maxPlatScore": 4434
@@ -17424,7 +17425,7 @@
 	{
 		"chartID": "07824ad99157e022fe8e599dbd3425d63f0f087b",
 		"data": {
-			"displayVersion": "bright MEMORY",
+			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 8083,
 			"isReMaster": true,
 			"maxPlatScore": 3558
@@ -27705,7 +27706,7 @@
 	{
 		"chartID": "13fbd25074d50ed589f46dc4ac431ec40f2e30fb",
 		"data": {
-			"displayVersion": "bright MEMORY",
+			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 8160,
 			"isReMaster": false,
 			"maxPlatScore": 4572
@@ -42956,6 +42957,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 8180,
+			"isReMaster": true,
 			"maxPlatScore": 3902
 		},
 		"difficulty": "LUNATIC",
@@ -43298,6 +43300,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 8139,
+			"isReMaster": false,
 			"maxPlatScore": 5006
 		},
 		"difficulty": "LUNATIC",
@@ -51909,7 +51912,7 @@
 	{
 		"chartID": "8f78b6d7f7d9a0030c5f3b6d52eb549e60bba7b7",
 		"data": {
-			"displayVersion": "bright MEMORY",
+			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 717,
 			"maxPlatScore": 1110
 		},
@@ -51927,7 +51930,7 @@
 	{
 		"chartID": "58b60cb00a2abc8a36ecc9e8663d770bf890661e",
 		"data": {
-			"displayVersion": "bright MEMORY",
+			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 717,
 			"maxPlatScore": 798
 		},
@@ -51945,7 +51948,7 @@
 	{
 		"chartID": "43986e90ddeb93b84e2ce15b05d3bedb5a0fcd6e",
 		"data": {
-			"displayVersion": "bright MEMORY",
+			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 717,
 			"maxPlatScore": 2014
 		},
@@ -51963,7 +51966,7 @@
 	{
 		"chartID": "fc473cdf5c1f4078be0fcc5e0985fb85190593b2",
 		"data": {
-			"displayVersion": "bright MEMORY",
+			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 717,
 			"maxPlatScore": 2710
 		},
@@ -53693,7 +53696,7 @@
 	{
 		"chartID": "246cb643492085f5dee8435b5f8a8ae1d83e1b3c",
 		"data": {
-			"displayVersion": "bright MEMORY",
+			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 8071,
 			"isReMaster": false,
 			"maxPlatScore": 2126
@@ -60671,6 +60674,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 8145,
+			"isReMaster": false,
 			"maxPlatScore": 5798
 		},
 		"difficulty": "LUNATIC",
@@ -78876,6 +78880,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 8181,
+			"isReMaster": false,
 			"maxPlatScore": 4266
 		},
 		"difficulty": "LUNATIC",
@@ -78966,6 +78971,7 @@
 		"data": {
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 8182,
+			"isReMaster": false,
 			"maxPlatScore": 1946
 		},
 		"difficulty": "LUNATIC",

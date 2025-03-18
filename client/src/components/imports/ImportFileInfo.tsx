@@ -35,7 +35,7 @@ export default function ImportFileInfo({
 
 	const [errMsg, setErrMsg] = useState<string | null>("");
 	const [data, setData] = useState<ParseFunctionReturn | null>(null);
-	const valid = useMemo(() => errMsg === null && file && file.size < 8e6, [errMsg]);
+	const valid = useMemo(() => errMsg === null && file && file.size <= 8e6, [errMsg]);
 
 	const [moreInfo, setMoreInfo] = useState<Record<string, string>>({});
 	const [moreInfoFulfilled, setMoreInfoFulfilled] = useState(!MoreDataForm);

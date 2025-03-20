@@ -12,7 +12,7 @@ import GPTSongsPage from "app/pages/dashboard/games/_game/_playtype/GPTSongsPage
 import { ErrorPage } from "app/pages/ErrorPage";
 import ChartInfoFormat from "components/game/charts/ChartInfoFormat";
 import { GPTBottomNav } from "components/game/GPTHeader";
-import SongInfoFormat from "components/game/songs/SongInfoFormat";
+import SongChartInfoFormat from "components/game/songs/SongChartInfoFormat";
 import Card from "components/layout/page/Card";
 import DebugContent from "components/util/DebugContent";
 import Divider from "components/util/Divider";
@@ -291,7 +291,7 @@ function SongInfoHeader({
 					</Col>
 				)}
 				<Col xs={12} lg={4} className="text-center">
-					<SongInfoFormat {...{ game, song, chart: activeChart }} />
+					<SongChartInfoFormat {...{ game, song, chart: activeChart }} />
 				</Col>
 				{game !== "bms" && game !== "pms" && (
 					<Col xs={12} lg={3} className="text-center">

@@ -11,7 +11,6 @@ import Muted from "components/util/Muted";
 import DifficultyCell from "components/tables/cells/DifficultyCell";
 import TitleCell from "components/tables/cells/TitleCell";
 import ScoreCoreCells from "components/tables/game-core-cells/ScoreCoreCells";
-import SongChartInfoFormat from "../songs/SongInfoFormat";
 
 export default function FolderScoreAverages({
 	folderDataset,

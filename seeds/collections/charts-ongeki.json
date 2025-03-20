@@ -128,7 +128,7 @@
 	{
 		"chartID": "da0b54788a8f2d6c1af1bc939a550618173cff21",
 		"data": {
-			"displayVersion": "bright MEMORY Act.1",
+			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 8162,
 			"isReMaster": true,
 			"maxPlatScore": 2340
@@ -2000,7 +2000,7 @@
 	{
 		"chartID": "82af4b500fa87a1bcaf1d7ee19cb7f205a215532",
 		"data": {
-			"displayVersion": "bright MEMORY Act.1",
+			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 8113,
 			"isReMaster": false,
 			"maxPlatScore": 1568
@@ -8620,7 +8620,7 @@
 	{
 		"chartID": "6d2a79bdd3f5b22c8b987cdbdd1416d25d885e53",
 		"data": {
-			"displayVersion": "bright MEMORY Act.1",
+			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 8158,
 			"isReMaster": false,
 			"maxPlatScore": 4434
@@ -27706,7 +27706,7 @@
 	{
 		"chartID": "13fbd25074d50ed589f46dc4ac431ec40f2e30fb",
 		"data": {
-			"displayVersion": "bright MEMORY Act.1",
+			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 8160,
 			"isReMaster": false,
 			"maxPlatScore": 4572

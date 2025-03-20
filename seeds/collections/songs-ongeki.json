@@ -978,7 +978,9 @@
 			"genre": "LUNATIC"
 		},
 		"id": 89,
-		"searchTerms": [],
+		"searchTerms": [
+			"Ketsui"
+		],
 		"title": "No Remorse"
 	},
 	{
@@ -2458,7 +2460,8 @@
 		},
 		"id": 223,
 		"searchTerms": [
-			"Hibachi"
+			"Hibachi",
+			"Dodonpachi"
 		],
 		"title": "緋蜂"
 	},
@@ -3372,7 +3375,9 @@
 		},
 		"id": 305,
 		"searchTerms": [
-			"Dodonpachi dai ondo"
+			"Dodonpachi dai ondo",
+			"daiondo",
+			"daifukkatsu"
 		],
 		"title": "どどんぱち大音頭"
 	},
@@ -4015,7 +4020,8 @@
 		},
 		"id": 363,
 		"searchTerms": [
-			"Nouten chokugeki"
+			"Nouten chokugeki",
+			"Noten"
 		],
 		"title": "脳天直撃"
 	},
@@ -4352,7 +4358,8 @@
 		},
 		"id": 393,
 		"searchTerms": [
-			"Toua -O.N.G.E.K.I. MIX-"
+			"Toua -O.N.G.E.K.I. MIX-",
+			"Dodonpachi"
 		],
 		"title": "東亞 -O.N.G.E.K.I. MIX-"
 	},
@@ -5387,7 +5394,9 @@
 			"genre": "LUNATIC"
 		},
 		"id": 486,
-		"searchTerms": [],
+		"searchTerms": [
+			"Battle Garegga"
+		],
 		"title": "Fly to the Leaden Sky -O.N.G.E.K.I. MIX-"
 	},
 	{
@@ -6982,7 +6991,9 @@
 			"genre": "オンゲキ"
 		},
 		"id": 626,
-		"searchTerms": [],
+		"searchTerms": [
+			"magia"
+		],
 		"title": "μάγια"
 	},
 	{
@@ -7947,7 +7958,9 @@
 			"genre": "LUNATIC"
 		},
 		"id": 711,
-		"searchTerms": [],
+		"searchTerms": [
+			"Ataraxia"
+		],
 		"title": "Ἀταραξία"
 	},
 	{
@@ -8701,7 +8714,8 @@
 		},
 		"id": 778,
 		"searchTerms": [
-			"Seelenwanderung"
+			"Seelenwanderung",
+			"Zeerenwanderung"
 		],
 		"title": "ゼーレンヴァンデルング"
 	},
@@ -10540,7 +10554,9 @@
 			"genre": "チュウマイ"
 		},
 		"id": 936,
-		"searchTerms": [],
+		"searchTerms": [
+			"NEVER GET OVER"
+		],
 		"title": "N3V3R G3T OV3R"
 	},
 	{
@@ -11176,7 +11192,9 @@
 			"genre": "VARIETY"
 		},
 		"id": 990,
-		"searchTerms": [],
+		"searchTerms": [
+			"temptation"
+		],
 		"title": "10pt8ion"
 	},
 	{
@@ -11460,7 +11478,9 @@
 			"genre": "POPS＆ANIME"
 		},
 		"id": 1014,
-		"searchTerms": [],
+		"searchTerms": [
+			"Love labyrinth"
+		],
 		"title": "ラブ・ラビリンス"
 	},
 	{
@@ -11470,7 +11490,9 @@
 			"genre": "POPS＆ANIME"
 		},
 		"id": 1015,
-		"searchTerms": [],
+		"searchTerms": [
+			"idol life flight"
+		],
 		"title": "アイドライフライト"
 	},
 	{
@@ -11480,7 +11502,9 @@
 			"genre": "POPS＆ANIME"
 		},
 		"id": 1016,
-		"searchTerms": [],
+		"searchTerms": [
+			"Kiraira"
+		],
 		"title": "キライラ"
 	},
 	{
@@ -11490,7 +11514,9 @@
 			"genre": "チュウマイ"
 		},
 		"id": 1017,
-		"searchTerms": [],
+		"searchTerms": [
+			"Slow arise"
+		],
 		"title": "スローアライズ"
 	},
 	{
@@ -11520,7 +11546,9 @@
 			"genre": "VARIETY"
 		},
 		"id": 1020,
-		"searchTerms": [],
+		"searchTerms": [
+			"Crimson teiou"
+		],
 		"title": "クリムゾン帝王"
 	},
 	{
@@ -11540,7 +11568,9 @@
 			"genre": "niconico"
 		},
 		"id": 1022,
-		"searchTerms": [],
+		"searchTerms": [
+			"Hiasobi"
+		],
 		"title": "ヒアソビ"
 	},
 	{
@@ -11550,7 +11580,9 @@
 			"genre": "niconico"
 		},
 		"id": 1023,
-		"searchTerms": [],
+		"searchTerms": [
+			"Sayonara princess"
+		],
 		"title": "さよならプリンセス"
 	},
 	{
@@ -11560,7 +11592,10 @@
 			"genre": "POPS＆ANIME"
 		},
 		"id": 1024,
-		"searchTerms": [],
+		"searchTerms": [
+			"Deae Ex Machina",
+			"Deus Ex Machina"
+		],
 		"title": "デアエ・エクス・マキナ！"
 	},
 	{
@@ -11630,7 +11665,9 @@
 			"genre": "VARIETY"
 		},
 		"id": 1031,
-		"searchTerms": [],
+		"searchTerms": [
+			"KYOREN ROMANCE"
+		],
 		"title": "狂恋ROMANCE"
 	},
 	{
@@ -11650,7 +11687,9 @@
 			"genre": "VARIETY"
 		},
 		"id": 1033,
-		"searchTerms": [],
+		"searchTerms": [
+			"Big Cloud Salt Candy"
+		],
 		"title": "Small Cloud Sugar Candy"
 	},
 	{
@@ -11660,7 +11699,10 @@
 			"genre": "VARIETY"
 		},
 		"id": 1034,
-		"searchTerms": [],
+		"searchTerms": [
+			"SAIKYO STRONGER",
+			"SAIKYO WEAKER"
+		],
 		"title": "最強STRONGER"
 	},
 	{
@@ -11670,7 +11712,9 @@
 			"genre": "POPS＆ANIME"
 		},
 		"id": 1035,
-		"searchTerms": [],
+		"searchTerms": [
+			"Kimi yo"
+		],
 		"title": "君よ"
 	},
 	{
@@ -11680,7 +11724,9 @@
 			"genre": "POPS＆ANIME"
 		},
 		"id": 1036,
-		"searchTerms": [],
+		"searchTerms": [
+			"Koi no illusionista"
+		],
 		"title": "恋のイリュージョニスタ"
 	},
 	{
@@ -11710,7 +11756,11 @@
 			"genre": "チュウマイ"
 		},
 		"id": 1039,
-		"searchTerms": [],
+		"searchTerms": [
+			"Kurutta minzoku",
+			"Gyoza",
+			"Pravargyoza"
+		],
 		"title": "#狂った民族2 PRAVARGYAZOOQA"
 	},
 	{
@@ -11720,7 +11770,9 @@
 			"genre": "niconico"
 		},
 		"id": 1040,
-		"searchTerms": [],
+		"searchTerms": [
+			"Kodoku no hate"
+		],
 		"title": "孤独の果て"
 	},
 	{
@@ -11730,7 +11782,9 @@
 			"genre": "niconico"
 		},
 		"id": 1041,
-		"searchTerms": [],
+		"searchTerms": [
+			"Yomosugara kimi omofu"
+		],
 		"title": "夜もすがら君想ふ"
 	},
 	{
@@ -11740,7 +11794,9 @@
 			"genre": "POPS＆ANIME"
 		},
 		"id": 1042,
-		"searchTerms": [],
+		"searchTerms": [
+			"Aria no saikyou shimobe keikaku"
+		],
 		"title": "アリアの最強しもべ計画♡"
 	},
 	{
@@ -11770,7 +11826,9 @@
 			"genre": "チュウマイ"
 		},
 		"id": 1045,
-		"searchTerms": [],
+		"searchTerms": [
+			"Gunjou signal"
+		],
 		"title": "群青シグナル"
 	},
 	{
@@ -11780,7 +11838,9 @@
 			"genre": "オンゲキ"
 		},
 		"id": 1046,
-		"searchTerms": [],
+		"searchTerms": [
+			"Tsumugiboshi"
+		],
 		"title": "ツムギボシ（starring オンゲキシューターズ）"
 	},
 	{
@@ -11810,7 +11870,9 @@
 			"genre": "POPS＆ANIME"
 		},
 		"id": 1049,
-		"searchTerms": [],
+		"searchTerms": [
+			"Gensou roukaku"
+		],
 		"title": "幻想楼閣"
 	},
 	{
@@ -11880,7 +11942,9 @@
 			"genre": "オンゲキ"
 		},
 		"id": 1056,
-		"searchTerms": [],
+		"searchTerms": [
+			"MAKING! High touch! Hoshizaki Akari solo"
+		],
 		"title": "MAKING！ハイタッチ！ -星咲 あかりソロver.-"
 	},
 	{
@@ -11890,7 +11954,9 @@
 			"genre": "オンゲキ"
 		},
 		"id": 1057,
-		"searchTerms": [],
+		"searchTerms": [
+			"MAKING! High touch! Sakurai Haruna solo"
+		],
 		"title": "MAKING！ハイタッチ！ -桜井 春菜ソロver.-"
 	},
 	{
@@ -11900,7 +11966,9 @@
 			"genre": "オンゲキ"
 		},
 		"id": 1058,
-		"searchTerms": [],
+		"searchTerms": [
+			"MAKING! High touch! Ōsaka Akane solo"
+		],
 		"title": "MAKING！ハイタッチ！ -逢坂 茜ソロver.-"
 	},
 	{
@@ -11910,7 +11978,9 @@
 			"genre": "オンゲキ"
 		},
 		"id": 1059,
-		"searchTerms": [],
+		"searchTerms": [
+			"Susume! My way! Hinata Chinatsu solo"
+		],
 		"title": "進め！マイウェイ！ -日向 千夏ソロver.-"
 	},
 	{
@@ -11920,7 +11990,9 @@
 			"genre": "オンゲキ"
 		},
 		"id": 1060,
-		"searchTerms": [],
+		"searchTerms": [
+			"Susume! My way! Kashiwagi Mia solo"
+		],
 		"title": "進め！マイウェイ！ -柏木 美亜ソロver.-"
 	},
 	{
@@ -11930,7 +12002,9 @@
 			"genre": "オンゲキ"
 		},
 		"id": 1061,
-		"searchTerms": [],
+		"searchTerms": [
+			"Susume! My way! Shinonome Tsumugi solo"
+		],
 		"title": "進め！マイウェイ！ -東雲 つむぎソロver.-"
 	}
 ]

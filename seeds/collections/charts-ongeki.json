@@ -5309,6 +5309,7 @@
 	{
 		"chartID": "a3d6cc69c4618a04c42fe6e7c802cca0baf0485d",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/01/01087mst.htm",
 			"displayVersion": "オンゲキ",
 			"inGameID": 108,
 			"maxPlatScore": 2730
@@ -5540,6 +5541,7 @@
 	{
 		"chartID": "e40321552a19989236d69680354ea5d73d554a61",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/luna/01038luna.htm",
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 8091,
 			"isReMaster": true,
@@ -10185,6 +10187,7 @@
 	{
 		"chartID": "9004620b4213cb32a8948fe864c88dddcc98f93d",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/luna/01127luna.htm",
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 8173,
 			"isReMaster": true,
@@ -18977,6 +18980,7 @@
 	{
 		"chartID": "01a58b367e3a9946e66e972cb859d50e13d23a5c",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/02/02042mst.htm",
 			"displayVersion": "SUMMER",
 			"inGameID": 9,
 			"maxPlatScore": 2378
@@ -24048,6 +24052,7 @@
 	{
 		"chartID": "a0b2aa48a51ea0a044f22f7ddec2b0a0c7730616",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/02/02109mst.htm",
 			"displayVersion": "SUMMER PLUS",
 			"inGameID": 341,
 			"maxPlatScore": 2000
@@ -28085,6 +28090,7 @@
 	{
 		"chartID": "26d816861b76565c270a7e1de5eb91ffa2b49f05",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/02/02164exp.htm",
 			"displayVersion": "SUMMER PLUS",
 			"inGameID": 391,
 			"maxPlatScore": 2022
@@ -28104,6 +28110,7 @@
 	{
 		"chartID": "6afb4d78db6858bd5bac788d6512df3ab0b2cc1a",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/02/02164mst.htm",
 			"displayVersion": "SUMMER PLUS",
 			"inGameID": 391,
 			"maxPlatScore": 4436
@@ -31821,6 +31828,7 @@
 	{
 		"chartID": "af23d23998418f25aae563109e192aed98550475",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/03/03040mst.htm",
 			"displayVersion": "R.E.D.",
 			"inGameID": 481,
 			"maxPlatScore": 3422
@@ -32894,6 +32902,7 @@
 	{
 		"chartID": "040a8978193fc30dcc5f4d0625756d4f79933d2b",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/03/03050mst.htm",
 			"displayVersion": "R.E.D.",
 			"inGameID": 454,
 			"maxPlatScore": 2534
@@ -37439,6 +37448,7 @@
 	{
 		"chartID": "3f01f6d541d2d282ced688896af83b3ef74ea28a",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/luna/03106luna.htm",
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 8057,
 			"isReMaster": false,
@@ -37516,6 +37526,7 @@
 	{
 		"chartID": "e08996ec42ecf3ec9e4c25d674e576bae5e89791",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/03/03107mst.htm",
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 516,
 			"maxPlatScore": 2872
@@ -37535,6 +37546,7 @@
 	{
 		"chartID": "9d50cacf62b4740c42c5442a43fc0b1f91f67824",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/luna/03109luna.htm",
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 8059,
 			"isReMaster": false,
@@ -42515,6 +42527,7 @@
 	{
 		"chartID": "621012130d6c5dd95e8966161d047a51701e28a0",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/03/03164exp.htm",
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 574,
 			"maxPlatScore": 2496
@@ -42534,6 +42547,7 @@
 	{
 		"chartID": "3a8b6e26b949ba760b43a79d600e71fb2bec8dda",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/03/03164mst.htm",
 			"displayVersion": "R.E.D. PLUS",
 			"inGameID": 574,
 			"maxPlatScore": 4212
@@ -58806,6 +58820,7 @@
 	{
 		"chartID": "ed5e47edb7083912a6092263482ed6c6a45fddb0",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/04/04148mst.htm",
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 708,
 			"maxPlatScore": 2636
@@ -58959,6 +58974,7 @@
 	{
 		"chartID": "9fa7e498388069c79102ca0b89320b245ee44725",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/04/04150mst.htm",
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 686,
 			"maxPlatScore": 2984
@@ -61886,6 +61902,7 @@
 	{
 		"chartID": "94e267d5293f3d908b03b0169eace6e4a3fe0cb4",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/04/04182mst.htm",
 			"displayVersion": "bright MEMORY Act.1",
 			"inGameID": 771,
 			"maxPlatScore": 8000
@@ -62966,6 +62983,7 @@
 	{
 		"chartID": "b50992fed817fbba49476629236c645e307d5a6e",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/04/04195exp.htm",
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 790,
 			"maxPlatScore": 1884
@@ -62985,6 +63003,7 @@
 	{
 		"chartID": "2af8e79f8750ed5b9e4bc73fa9919c1749959d3c",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/04/04195mst.htm",
 			"displayVersion": "bright MEMORY Act.2",
 			"inGameID": 790,
 			"maxPlatScore": 3510
@@ -74829,6 +74848,7 @@
 	{
 		"chartID": "a15eb3e8bac9260d4af06c4af5ced889739872dc",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/04/04298mst.htm",
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 1000,
 			"maxPlatScore": 3218
@@ -75320,6 +75340,7 @@
 	{
 		"chartID": "a036541de921abd657f7be6c24a96d1ec6dec162",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/04/04301exp.htm",
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 1003,
 			"maxPlatScore": 2076
@@ -75338,6 +75359,7 @@
 	{
 		"chartID": "fafccf436dce7fa62922e29c7aa434e5f4ca3dfd",
 		"data": {
+			"chartViewURL": "https://sdvx.in/ongeki/04/04301mst.htm",
 			"displayVersion": "bright MEMORY Act.3",
 			"inGameID": 1003,
 			"maxPlatScore": 3136

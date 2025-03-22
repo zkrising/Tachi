@@ -204,6 +204,12 @@ function ChartInfoMiddle({
 			>
 				Search YouTube
 			</ExternalLink>
+			{"chartViewURL" in chart.data && (
+				<>
+					<br />
+					<ExternalLink href={chart.data.chartViewURL}>Chart view</ExternalLink>
+				</>
+			)}
 		</>
 	);
 }

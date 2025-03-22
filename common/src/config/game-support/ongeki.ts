@@ -165,6 +165,7 @@ export const ONGEKI_SINGLE_CONF = {
 		isReMaster: z.boolean().optional(),
 		maxPlatScore: z.number().int(),
 		inGameID: z.number().int(),
+		chartViewURL: z.string().optional(),
 	}),
 
 	preferences: z.strictObject({}),

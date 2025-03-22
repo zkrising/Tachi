@@ -9,7 +9,16 @@ export const ONGEKI_CONF = {
 	name: "O.N.G.E.K.I.",
 	playtypes: ["Single"],
 	songData: z.strictObject({
-		genre: z.string(),
+		genre: z.enum([
+			"POPS＆ANIME",
+			"niconico",
+			"東方Project",
+			"VARIETY",
+			"チュウマイ",
+			"オンゲキ",
+			"LUNATIC",
+			"ボーナストラック",
+		]),
 	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
@@ -161,7 +170,19 @@ export const ONGEKI_SINGLE_CONF = {
 	},
 
 	chartData: z.strictObject({
-		displayVersion: z.string(),
+		displayVersion: z.enum([
+			"オンゲキ",
+			"オンゲキ PLUS",
+			"オンゲキ SUMMER",
+			"オンゲキ SUMMER PLUS",
+			"オンゲキ R.E.D.",
+			"オンゲキ R.E.D. PLUS",
+			"オンゲキ bright",
+			"オンゲキ bright MEMORY Act.1",
+			"オンゲキ bright MEMORY Act.2",
+			"オンゲキ bright MEMORY Act.3",
+			"オンゲキ Re:Fresh",
+		]),
 		isReMaster: z.boolean().optional(),
 		maxPlatScore: z.number().int(),
 		inGameID: z.number().int(),

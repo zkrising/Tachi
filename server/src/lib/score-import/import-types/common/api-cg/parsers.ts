@@ -35,6 +35,7 @@ const PR_CG_JUBEAT = {
 	goodCount: p.isPositiveInteger,
 	poorCount: p.isPositiveInteger,
 	missCount: p.isPositiveInteger,
+	musicRate: p.isBoundedInteger(0, 120_0),
 	dateTime: "string",
 };
 

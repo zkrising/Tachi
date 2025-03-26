@@ -28,13 +28,18 @@ const DIFFICULTIES = {
 
 function getNoteLamp(
 	comboStatus: number,
-	clearStatus: number
+	clearStatus: number,
+	techScore: number
 ): ScoreData<"ongeki:Single">["noteLamp"] | undefined {
 	if (
 		comboStatus === OngekiComboStatus.ONGEKI_COMBO_STATUS_UNSPECIFIED ||
 		clearStatus === OngekiClearStatus.ONGEKI_CLEAR_STATUS_UNSPECIFIED
 	) {
 		return undefined;
+	}
+
+	if (techScore === 1010000) {
+		return "ALL BREAK+";
 	}
 
 	if (comboStatus === OngekiComboStatus.ONGEKI_COMBO_STATUS_ALL_BREAK) {
@@ -77,7 +82,7 @@ const ConvertAPIMytOngeki: ConverterFunction<MytOngekiScore, EmptyObject> = asyn
 		);
 	}
 
-	const noteLamp = getNoteLamp(data.info.comboStatus, data.info.clearStatus);
+	const noteLamp = getNoteLamp(data.info.comboStatus, data.info.clearStatus, data.info.techScore);
 
 	if (noteLamp === undefined) {
 		throw new InvalidScoreFailure(
@@ -114,9 +119,10 @@ const ConvertAPIMytOngeki: ConverterFunction<MytOngekiScore, EmptyObject> = asyn
 			score: data.info.techScore,
 			noteLamp,
 			bellLamp: data.info.isFullBell ? "FULL BELL" : "NONE",
+			platinumScore: data.info.platinumScore,
 			judgements: {
 				cbreak: data.judge.judgeCriticalBreak,
-				break: data.judge.judgeBreak,
+				rbreak: data.judge.judgeBreak,
 				hit: data.judge.judgeHit,
 				miss: data.judge.judgeMiss,
 			},
@@ -124,10 +130,6 @@ const ConvertAPIMytOngeki: ConverterFunction<MytOngekiScore, EmptyObject> = asyn
 				damage: data.judge.damageCount,
 				bellCount: data.judge.bellCount,
 				totalBellCount: data.judge.totalBellCount,
-				// Set platinum score to explicitly null if the value is 0
-				// There is no distinction between 0 and null/undefined in gRPC
-				// Handles playlogs from older versions when Platinum Score didn't exist
-				platScore: data.info.platinumScore || null,
 			},
 		},
 	};

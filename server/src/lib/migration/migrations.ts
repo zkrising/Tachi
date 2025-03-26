@@ -1,5 +1,6 @@
 import UserFollowersMigration from "./migrations/add-following-to-users";
 import AddLockedAt from "./migrations/add-lockedat";
+import OngekiAddAllBreakPlus from "./migrations/add-ongeki-abplus";
 import UGPTAddPreferredRanking from "./migrations/add-preferredRanking-to-ugpt";
 import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
 import ChunithmLampSplit from "./migrations/chunithm-lamp-split";
@@ -71,7 +72,8 @@ if (Environment.nodeEnv !== "test") {
 			KtRatingToCuratorSkill,
 			RemoveIIDX2dxtraBeginners,
 			RmHot,
-			ChunithmLampSplit
+			ChunithmLampSplit,
+			OngekiAddAllBreakPlus,
 		);
 	}
 

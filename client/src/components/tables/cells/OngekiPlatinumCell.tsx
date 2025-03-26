@@ -1,34 +1,51 @@
 import React from "react";
-import { Difficulties, integer } from "tachi-common";
+import { FmtStars, integer } from "tachi-common";
 
 export default function OngekiPlatinumCell({
-	platScore: platScore,
+	platinumScore: platinumScore,
 	maxPlatScore: maxPlatScore,
-	difficulty,
+	stars: stars,
 }: {
-	platScore: integer | null | undefined;
+	platinumScore: integer | null | undefined;
 	maxPlatScore: integer;
-	difficulty: Difficulties["ongeki:Single"];
+	stars: number;
 }) {
-	if (difficulty !== "MASTER" && difficulty !== "LUNATIC") {
-		return <td>N/A</td>;
+	if (platinumScore === null || platinumScore === undefined) {
+		return (
+			<td>
+				Unknown
+				<br />
+				☆☆☆☆☆
+			</td>
+		);
 	}
 
-	if (platScore === null || platScore === undefined) {
-		return <td>Unknown</td>;
-	}
+	const percentage = Math.round((platinumScore * 10000.0) / maxPlatScore) / 100.0;
 
 	return (
 		<td>
-			<strong>MAX-{maxPlatScore - platScore}</strong>
-			{platScore !== undefined && (
-				<>
-					<br />
-					<small className="text-body-secondary">
-						[{platScore}/{maxPlatScore}]
-					</small>
-				</>
-			)}
+			<strong>{percentage.toFixed(2)}%</strong>
+			<br />
+			<>
+				{stars < 6 ? (
+					FmtStars(true)(stars)
+				) : (
+					<span
+						style={{
+							background:
+								"linear-gradient(30deg, #f0788a 5%, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a 85%)",
+							color: "transparent",
+							backgroundClip: "text",
+						}}
+					>
+						★★★★★
+					</span>
+				)}
+			</>
+			<br />
+			<small className="text-body-secondary">
+				[{platinumScore}/{maxPlatScore}]
+			</small>
 		</td>
 	);
 }

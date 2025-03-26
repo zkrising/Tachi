@@ -288,6 +288,19 @@ export function FmtPercent(v: number, dp = 2) {
 }
 
 /**
+ * Formats a number into "★★★★★"
+ */
+export function FmtStars(printEmpty: boolean) {
+	return (num: number) => {
+		if (num > 5) {
+			return "★★★★★(虹)";
+		}
+
+		return "★".repeat(num) + (printEmpty ? "☆".repeat(5 - num) : "");
+	};
+}
+
+/**
  * Turns a number of 12834 into "12834" instead of "12,834".
  */
 export function FmtScoreNoCommas(v: number) {

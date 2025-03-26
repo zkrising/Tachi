@@ -20,8 +20,12 @@ import OngekiJudgementCell from "components/tables/cells/OngekiJudgementCell";
 import React from "react";
 import OngekiLampCell from "components/tables/cells/OngekiLampCell";
 import OngekiPlatinumCell from "components/tables/cells/OngekiPlatinumCell";
+<<<<<<< HEAD
 import CHUNITHMLampCell from "components/tables/cells/CHUNITHMLampCell";
 import { bgc, RAINBOW_EX_GRADIENT, RAINBOW_GRADIENT } from "./games/_util";
+=======
+import { bgc, RAINBOW_EX_GRADIENT, RAINBOW_GRADIENT, RAINBOW_SHINY_GRADIENT } from "./games/_util";
+>>>>>>> 7c2267639 (feat: O.N.G.E.K.I. Re:Fresh support)
 import { BMS_14K_IMPL, BMS_7K_IMPL, PMS_IMPL } from "./games/bms-pms";
 import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
 import { GPTClientImplementation } from "./types";
@@ -772,11 +776,9 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				SILVER: bgc("gray", "var(--bs-light)"),
 				GOLD: bgc("var(--bs-warning)", "var(--bs-dark)"),
 				PLATINUM: bgc("silver", "var(--bs-dark)"),
-				RAINBOW: {
-					background:
-						"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
-					color: "var(--bs-dark)",
-				},
+				RAINBOW: RAINBOW_GRADIENT,
+				RAINBOW_SHINY: RAINBOW_SHINY_GRADIENT,
+				RAINBOW_EX: RAINBOW_EX_GRADIENT,
 			},
 		},
 		enumColours: {
@@ -799,6 +801,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				CLEAR: COLOUR_SET.green,
 				"FULL COMBO": COLOUR_SET.gold,
 				"ALL BREAK": COLOUR_SET.white,
+				"ALL BREAK+": COLOUR_SET.white,
 			},
 			bellLamp: {
 				NONE: COLOUR_SET.gray,
@@ -828,12 +831,9 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			[
 				"Score",
 				"Score",
-				NumericSOV(
-					(x) => x.scoreData.score * 10000 + (x.scoreData.optional.platScore ?? 0)
-				),
+				NumericSOV((x) => x.scoreData.score * 10000 + x.scoreData.platinumScore),
 			],
-			// TODO: this should be sorted by %
-			["Platinum Score", "P-Score", NumericSOV((x) => x.scoreData.optional.platScore ?? 0)],
+			["Platinum Score", "P-Score", NumericSOV((x) => x.scoreData.platinumStars)],
 			["Judgements", "Hits", NumericSOV((x) => x.scoreData.score)],
 			[
 				"Lamp",
@@ -852,9 +852,9 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 					colour={GetEnumColour(sc, "grade")}
 				/>
 				<OngekiPlatinumCell
-					platScore={sc.scoreData.optional.platScore}
+					platinumScore={sc.scoreData.platinumScore}
 					maxPlatScore={chart.data.maxPlatScore}
-					difficulty={chart.difficulty}
+					stars={sc.scoreData.platinumStars}
 				/>
 				<OngekiJudgementCell score={sc} />
 				<OngekiLampCell

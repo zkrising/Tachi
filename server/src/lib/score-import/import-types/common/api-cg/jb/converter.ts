@@ -18,7 +18,7 @@ export const ConverterAPICGJubeat: ConverterFunction<CGJubeatScore, CGContext> =
 	importType,
 	logger
 ) => {
-	const difficulty = ConvertDifficulty(data.difficulty);
+	const difficulty = ConvertDifficulty(data.difficulty, data.hardMode);
 	const version = ConvertVersion(data.version);
 	const scoreMusicRate = ConvertMusicRate(data.musicRate);
 	const scoreJudgements = {
@@ -76,24 +76,35 @@ export const ConverterAPICGJubeat: ConverterFunction<CGJubeatScore, CGContext> =
 	return { song, chart, dryScore };
 };
 
-function ConvertDifficulty(diff: number) {
+function ConvertDifficulty(diff: number, hardMode: boolean) {
+	let baseDiff: string;
+
 	// FIXME: I don't know the values for the mappings
 	switch (diff) {
-		case 0:
-			return "BSC";
-		case 1:
-			return "ADV";
-		case 2:
-			return "EXT";
-		case 3:
-			return "HARD BSC";
-		case 4:
-			return "HARD ADV";
-		case 5:
-			return "HARD EXT";
+		case 0: {
+			baseDiff = "BSC";
+			break;
+		}
+
+		case 1: {
+			baseDiff = "ADV";
+			break;
+		}
+
+		case 2: {
+			baseDiff = "EXT";
+			break;
+		}
+
+		default:
+			throw new InvalidScoreFailure(`Invalid difficulty of ${diff} - Could not convert.`);
 	}
 
-	throw new InvalidScoreFailure(`Invalid difficulty of ${diff} - Could not convert.`);
+	if (hardMode) {
+		baseDiff = `HARD ${baseDiff}`;
+	}
+
+	return baseDiff;
 }
 
 function ConvertVersion(ver: number): Versions["jubeat:Single"] {
@@ -136,6 +147,10 @@ function GuessLamp(judgments: Record<Judgements["jubeat:Single"], integer | null
 		judgments.miss === 0 &&
 		judgments.poor === 0
 	) {
+		if (score !== 1_000_000) {
+			throw new InvalidScoreFailure(`Score is an EXC, yet score !== 1_000_000.`);
+		}
+
 		return "EXCELLENT";
 	} else if (judgments.miss === 0 && judgments.poor === 0) {
 		return "FULL COMBO";

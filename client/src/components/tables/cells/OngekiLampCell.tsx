@@ -7,7 +7,7 @@ export default function OngekiLampCell({
 	bellLamp,
 	colour,
 }: {
-	noteLamp: "ALL BREAK" | "FULL COMBO" | "CLEAR" | "LOSS";
+	noteLamp: "ALL BREAK+" | "ALL BREAK" | "FULL COMBO" | "CLEAR" | "LOSS";
 	bellLamp: "FULL BELL" | "NONE";
 	colour: string;
 }) {

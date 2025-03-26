@@ -13,6 +13,13 @@ export interface RatingAlgorithmConfig {
 	 * for this algorithm.
 	 */
 	formatter?: (value: number) => string;
+
+	/**
+	 * This field can be used to replace the display name of the algorithm.
+	 * (Which defaults to `UppercaseFirst(key)`)
+	 * This is particularly useful for renaming old algorithms.
+	 */
+	nameOverride?: string;
 }
 
 export interface ClassInfo<ClassID extends string> {

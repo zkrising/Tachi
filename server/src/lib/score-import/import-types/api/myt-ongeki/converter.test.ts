@@ -71,9 +71,10 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 					score: 1003385,
 					noteLamp: "CLEAR",
 					bellLamp: "FULL BELL",
+					platinumScore: 893,
 					judgements: {
 						cbreak: 967,
-						break: 19,
+						rbreak: 19,
 						hit: 0,
 						miss: 5,
 					},
@@ -81,7 +82,6 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 						damage: 0,
 						bellCount: 174,
 						totalBellCount: 174,
-						platScore: 893,
 					},
 				},
 			},
@@ -158,20 +158,6 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 			}),
 			{
 				dryScore: { scoreData: { noteLamp: "LOSS" } },
-			}
-		);
-		t.end();
-	});
-
-	t.test("platinum score should be null if value is 0", async (t) => {
-		t.hasStrict(
-			await convert({
-				info: {
-					platinumScore: 0,
-				},
-			}),
-			{
-				dryScore: { scoreData: { optional: { platScore: null } } },
 			}
 		);
 		t.end();

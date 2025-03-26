@@ -13,15 +13,18 @@ const baseMetrics: ProvidedMetrics["ongeki:Single"] = {
 	noteLamp: "CLEAR",
 	bellLamp: "FULL BELL",
 	score: 1_001_500,
+	platinumScore: 1000,
 };
 
 const scoreData: ScoreData<"ongeki:Single"> = {
 	noteLamp: "CLEAR",
 	bellLamp: "FULL BELL",
 	score: 1_001_500,
+	platinumScore: 1000,
+	platinumStars: 6,
 	grade: "SSS",
 	judgements: {},
-	optional: { enumIndexes: {}, bellCount: 100, platScore: 1000 },
+	optional: { enumIndexes: {}, bellCount: 100 },
 	enumIndexes: {
 		grade: ONGEKI_GRADES.SSS,
 		noteLamp: ONGEKI_NOTE_LAMPS.CLEAR,
@@ -65,6 +68,18 @@ t.test("ONGEKI Implementation", (t) => {
 			ONGEKI_IMPL.scoreCalcs.rating(scoreData, TestingOngekiChart),
 			12.1,
 			"Basic rating check"
+		);
+
+		t.equal(
+			ONGEKI_IMPL.scoreCalcs.ratingV2(scoreData, TestingOngekiChart),
+			12.1,
+			"Basic ratingV2 check"
+		);
+
+		t.equal(
+			ONGEKI_IMPL.scoreCalcs.starRating(scoreData, TestingOngekiChart),
+			Math.floor(5 * 10.5 * 10.5) / 1000.0,
+			"Basic star rating check"
 		);
 
 		t.end();
@@ -112,22 +127,24 @@ t.test("ONGEKI Implementation", (t) => {
 	t.test("Colour Deriver", (t) => {
 		const f = (v: number | null, expected: any) =>
 			t.equal(
-				ONGEKI_IMPL.classDerivers.colour({ naiveRating: v }),
+				ONGEKI_IMPL.classDerivers.colour({ naiveRatingRefresh: v }),
 				expected,
-				`A naiveRating of ${v} should result in ${expected}.`
+				`A naiveRatingRefresh of ${v} should result in ${expected}.`
 			);
 
 		f(null, null);
 		f(0, "BLUE");
-		f(2, "GREEN");
-		f(4, "ORANGE");
-		f(7, "RED");
-		f(10, "PURPLE");
-		f(12, "COPPER");
-		f(13, "SILVER");
-		f(14, "GOLD");
-		f(14.5, "PLATINUM");
-		f(15, "RAINBOW");
+		f(4, "GREEN");
+		f(7, "ORANGE");
+		f(9, "RED");
+		f(11, "PURPLE");
+		f(13, "COPPER");
+		f(15, "SILVER");
+		f(17, "GOLD");
+		f(18, "PLATINUM");
+		f(19, "RAINBOW");
+		f(20, "RAINBOW_SHINY");
+		f(21, "RAINBOW_EX");
 
 		t.end();
 	});

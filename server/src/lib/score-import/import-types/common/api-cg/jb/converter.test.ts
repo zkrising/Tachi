@@ -10,12 +10,12 @@ const logger = CreateLogCtx(__filename);
 
 function mkInput(modifant: Partial<CGJubeatScore> = {}) {
 	const validInput: CGJubeatScore = {
-		internalId: 1, // FIXME: what chart is this?
-		difficulty: 2, // HARD ADV
-		version: 10, // ave
+		internalId: 10000001,
+		difficulty: 1, // ADV
+		version: 9, // festo
 		dateTime: "2019-06-06 08:14:22",
 		score: 947_184,
-		hardMode: true,
+		hardMode: false,
 		perfectCount: 100,
 		greatCount: 50,
 		goodCount: 25,
@@ -74,9 +74,9 @@ t.test("#ConverterAPICGJubeat", (t) => {
 				id: 1,
 			},
 			chart: {
-				difficulty: "HARD ADV",
+				difficulty: "ADV",
 				data: {
-					inGameID: 1,
+					inGameID: 10000001,
 				},
 			},
 			dryScore: mkOutput(),

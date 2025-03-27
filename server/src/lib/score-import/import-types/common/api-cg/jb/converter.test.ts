@@ -92,7 +92,15 @@ t.test("#ConverterAPICGJubeat", (t) => {
 				missCount: 1, // at least a miss otherwise it's an FC
 			}),
 			{
-				dryScore: mkOutput({ scoreData: { lamp: "FAILED" } }),
+				dryScore: mkOutput({
+					scoreData: {
+						lamp: "FAILED",
+						score: 690_000,
+						judgements: {
+							miss: 1,
+						},
+					},
+				}),
 			}
 		);
 		t.hasStrict(
@@ -101,7 +109,15 @@ t.test("#ConverterAPICGJubeat", (t) => {
 				missCount: 1,
 			}),
 			{
-				dryScore: mkOutput({ scoreData: { lamp: "CLEAR" } }),
+				dryScore: mkOutput({
+					scoreData: {
+						lamp: "CLEAR",
+						score: 700_000,
+						judgements: {
+							miss: 1,
+						},
+					},
+				}),
 			}
 		);
 		t.hasStrict(
@@ -110,16 +126,15 @@ t.test("#ConverterAPICGJubeat", (t) => {
 				poorCount: 0,
 			}),
 			{
-				dryScore: mkOutput({ scoreData: { lamp: "FULL COMBO" } }),
-			}
-		);
-		t.hasStrict(
-			await convert({
-				missCount: 0,
-				poorCount: 0,
-			}),
-			{
-				dryScore: mkOutput({ scoreData: { lamp: "FULL COMBO" } }),
+				dryScore: mkOutput({
+					scoreData: {
+						lamp: "FULL COMBO",
+						judgements: {
+							poor: 0,
+							miss: 0,
+						},
+					},
+				}),
 			}
 		);
 		t.hasStrict(
@@ -131,7 +146,18 @@ t.test("#ConverterAPICGJubeat", (t) => {
 				score: 1_000_000,
 			}),
 			{
-				dryScore: mkOutput({ scoreData: { lamp: "EXCELLENT" } }),
+				dryScore: mkOutput({
+					scoreData: {
+						lamp: "EXCELLENT",
+						score: 1_000_000,
+						judgements: {
+							great: 0,
+							good: 0,
+							poor: 0,
+							miss: 0,
+						},
+					},
+				}),
 			}
 		);
 

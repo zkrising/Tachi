@@ -5,12 +5,12 @@ import {
 	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
 import { ParseDateFromString } from "lib/score-import/framework/common/score-utils";
-import { FindChartOnInGameIDVersion } from "utils/queries/charts";
+import { FindChartOnInGameID } from "utils/queries/charts";
 import { FindSongOnID } from "utils/queries/songs";
 import type { ConverterFunction } from "../../types";
 import type { CGContext, CGJubeatScore } from "../types";
 import type { DryScore } from "lib/score-import/framework/common/types";
-import type { integer, Judgements, Versions } from "tachi-common";
+import type { Difficulties, integer, Judgements, Versions } from "tachi-common";
 
 export const ConverterAPICGJubeat: ConverterFunction<CGJubeatScore, CGContext> = async (
 	data,
@@ -20,28 +20,21 @@ export const ConverterAPICGJubeat: ConverterFunction<CGJubeatScore, CGContext> =
 ) => {
 	const difficulty = ConvertDifficulty(data.difficulty, data.hardMode);
 	const version = ConvertVersion(data.version);
-	const scoreMusicRate = ConvertMusicRate(data.musicRate);
-	const scoreJudgements = {
+	const musicRate = ConvertMusicRate(data.musicRate);
+	const judgements = {
 		perfect: data.perfectCount,
 		great: data.greatCount,
 		good: data.goodCount,
 		poor: data.poorCount,
 		miss: data.missCount,
 	};
-	const scoreLamp = GuessLamp(scoreJudgements, data.score);
+	const lamp = GuessLamp(judgements, data.score);
 
-	// does this even work?
-	const chart = await FindChartOnInGameIDVersion(
-		"jubeat",
-		data.internalId,
-		"Single",
-		difficulty,
-		version
-	);
+	const chart = await FindChartOnInGameID("jubeat", data.internalId, "Single", difficulty);
 
 	if (!chart) {
 		throw new SongOrChartNotFoundFailure(
-			`Could not find chart with songID ${data.internalId} (${difficulty} - Version ${version})`,
+			`Could not find chart with internalId ${data.internalId} (${difficulty} - Version ${version})`,
 			importType,
 			data,
 			context
@@ -65,9 +58,9 @@ export const ConverterAPICGJubeat: ConverterFunction<CGJubeatScore, CGContext> =
 		service: FormatCGService(context.service),
 		scoreData: {
 			score: data.score,
-			musicRate: scoreMusicRate,
-			lamp: scoreLamp,
-			judgements: scoreJudgements,
+			musicRate,
+			lamp,
+			judgements,
 			optional: {},
 		},
 		scoreMeta: {},
@@ -76,35 +69,29 @@ export const ConverterAPICGJubeat: ConverterFunction<CGJubeatScore, CGContext> =
 	return { song, chart, dryScore };
 };
 
-function ConvertDifficulty(diff: number, hardMode: boolean) {
-	let baseDiff: string;
-
+function ConvertDifficulty(diff: number, hardMode: boolean): Difficulties["jubeat:Single"] {
 	// FIXME: I don't know the values for the mappings
-	switch (diff) {
-		case 0: {
-			baseDiff = "BSC";
-			break;
+	if (!hardMode) {
+		switch (diff) {
+			case 0:
+				return "BSC";
+			case 1:
+				return "ADV";
+			case 2:
+				return "EXT";
 		}
-
-		case 1: {
-			baseDiff = "ADV";
-			break;
+	} else {
+		switch (diff) {
+			case 0:
+				return "HARD BSC";
+			case 1:
+				return "HARD ADV";
+			case 2:
+				return "HARD EXT";
 		}
-
-		case 2: {
-			baseDiff = "EXT";
-			break;
-		}
-
-		default:
-			throw new InvalidScoreFailure(`Invalid difficulty of ${diff} - Could not convert.`);
 	}
 
-	if (hardMode) {
-		baseDiff = `HARD ${baseDiff}`;
-	}
-
-	return baseDiff;
+	throw new InvalidScoreFailure(`Invalid difficulty of ${diff} - Could not convert.`);
 }
 
 function ConvertVersion(ver: number): Versions["jubeat:Single"] {
@@ -137,7 +124,7 @@ function ConvertVersion(ver: number): Versions["jubeat:Single"] {
 
 function ConvertMusicRate(rate: number): number {
 	// FIXME: I also don't know how musicRate is formatted in CG
-	return Math.round(rate * 10);
+	return Math.round(rate / 10);
 }
 
 function GuessLamp(judgments: Record<Judgements["jubeat:Single"], integer | null>, score: number) {

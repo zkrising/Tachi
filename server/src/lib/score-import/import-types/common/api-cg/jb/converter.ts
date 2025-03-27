@@ -70,7 +70,6 @@ export const ConverterAPICGJubeat: ConverterFunction<CGJubeatScore, CGContext> =
 };
 
 function ConvertDifficulty(diff: number, hardMode: boolean): Difficulties["jubeat:Single"] {
-	// FIXME: I don't know the values for the mappings
 	if (!hardMode) {
 		switch (diff) {
 			case 0:
@@ -95,7 +94,6 @@ function ConvertDifficulty(diff: number, hardMode: boolean): Difficulties["jubea
 }
 
 function ConvertVersion(ver: number): Versions["jubeat:Single"] {
-	// FIXME: I don't know the values for the mappings
 	switch (ver) {
 		case 1:
 			return "jubeat";
@@ -114,8 +112,9 @@ function ConvertVersion(ver: number): Versions["jubeat:Single"] {
 		case 8:
 			return "clan";
 		case 9:
+		case 10: // special case for omni
 			return "festo";
-		case 10:
+		case 11:
 			return "ave";
 	}
 
@@ -123,7 +122,6 @@ function ConvertVersion(ver: number): Versions["jubeat:Single"] {
 }
 
 function ConvertMusicRate(rate: number): number {
-	// FIXME: I also don't know how musicRate is formatted in CG
 	return Math.round(rate / 10);
 }
 

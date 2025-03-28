@@ -20798,6 +20798,61 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "原口沙輔 feat.重音テト",
+		"data": {
+			"displayVersion": "verse",
+			"genre": "niconico"
+		},
+		"id": 2745,
+		"searchTerms": [],
+		"title": "人マニア"
+	},
+	{
+		"altTitles": [],
+		"artist": "吉田夜世",
+		"data": {
+			"displayVersion": "verse",
+			"genre": "niconico"
+		},
+		"id": 2746,
+		"searchTerms": [],
+		"title": "オーバーライド"
+	},
+	{
+		"altTitles": [],
+		"artist": "マサラダ",
+		"data": {
+			"displayVersion": "verse",
+			"genre": "niconico"
+		},
+		"id": 2747,
+		"searchTerms": [],
+		"title": "ライアーダンサー"
+	},
+	{
+		"altTitles": [],
+		"artist": "フロクロ",
+		"data": {
+			"displayVersion": "verse",
+			"genre": "niconico"
+		},
+		"id": 2748,
+		"searchTerms": [],
+		"title": "黒塗り世界宛て書簡"
+	},
+	{
+		"altTitles": [],
+		"artist": "曲：eba／歌：⊿TRiEDGE [高瀬 梨緒(CV：久保 ユリカ)、結城 莉玖(CV：朝日奈 丸佳)、藍原 椿(CV：橋本 ちなみ)]",
+		"data": {
+			"displayVersion": "verse",
+			"genre": "ゲキマイ"
+		},
+		"id": 2749,
+		"searchTerms": [],
+		"title": "本能的 Survivor"
+	},
+	{
+		"altTitles": [],
 		"artist": "Reku Mochizuki",
 		"data": {
 			"displayVersion": "verse",
@@ -20908,6 +20963,17 @@
 			"funeral song for you and me"
 		],
 		"title": "キミとボクへの葬送歌"
+	},
+	{
+		"altTitles": [],
+		"artist": "打打だいず vs. siromaru vs. Tanchiky",
+		"data": {
+			"displayVersion": "verse",
+			"genre": "ゲキマイ"
+		},
+		"id": 2800,
+		"searchTerms": [],
+		"title": "淵底のグレイ・ユークロニア"
 	},
 	{
 		"altTitles": [],

@@ -37,14 +37,11 @@ export default function SongChartInfoFormat({
 								prefix="Internal Level: "
 							/>
 						</h6>
-						<h6>
-							<Muted>
-								From オンゲキ{" "}
-								{(chart as ChartDocument<"ongeki:Single">).data.displayVersion
-									.replace("オンゲキ", "")
-									.trim()}
-							</Muted>
-						</h6>
+						{"displayVersion" in chart.data && (
+							<h6>
+								<Muted>From {chart.data.displayVersion}</Muted>
+							</h6>
+						)}
 					</>
 				)}
 			</>

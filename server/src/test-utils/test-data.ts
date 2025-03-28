@@ -1400,7 +1400,7 @@ export const TestingArcaeaSheriruthFTR: ChartDocument<"arcaea:Touch"> = {
 export const TestingOngekiChart: ChartDocument<"ongeki:Single"> = {
 	chartID: "213796bdb6150f80ba6412ce69df1249e16c0cb0",
 	data: {
-		displayVersion: "bright MEMORY Act.3",
+		displayVersion: "オンゲキ bright MEMORY Act.3",
 		inGameID: 2137,
 		maxPlatScore: 1000,
 	},
@@ -1451,7 +1451,7 @@ export const TestingOngekiScorePB: PBScoreDocument<"ongeki:Single"> = {
 export const TestingOngekiChartConverter: ChartDocument<"ongeki:Single"> = {
 	chartID: "e5e4ee3d4feb233c399751b3ba3daf8ba149c9e6",
 	data: {
-		displayVersion: "bright",
+		displayVersion: "オンゲキ bright",
 		inGameID: 678,
 		maxPlatScore: 2768,
 	},

@@ -80,6 +80,7 @@ export interface CGJubeatScore {
 	goodCount: integer;
 	poorCount: integer;
 	missCount: integer;
+	musicRate: integer;
 	dateTime: string;
 }
 

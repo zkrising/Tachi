@@ -360,12 +360,13 @@ function ImportInfoDisplayer({ game }: { game: Game }) {
 			/>,
 			<ImportTypeInfoCard key="api/myt-ongeki" importType="api/myt-ongeki" />
 		);
-	} // else if (game === "jubeat") {
-	// 	Content.unshift(
-	// 		<ImportTypeInfoCard key="api/cg-dev-jubeat" importType="api/cg-dev-jubeat" />,
-	// 		<ImportTypeInfoCard key="api/cg-prod-jubeat" importType="api/cg-prod-jubeat" />
-	// 	);
-	// }
+	} else if (game === "jubeat") {
+		Content.unshift(
+			<ImportTypeInfoCard key="api/cg-dev-jubeat" importType="api/cg-dev-jubeat" />,
+			<ImportTypeInfoCard key="api/cg-gan-jubeat" importType="api/cg-gan-jubeat" />,
+			<ImportTypeInfoCard key="api/cg-nag-jubeat" importType="api/cg-nag-jubeat" />
+		);
+	}
 
 	return (
 		<>
@@ -611,6 +612,36 @@ function ImportTypeInfoCard({
 					desc="Pull your MUSECA scores from the NAG Network."
 					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
 					key="cg-nag-museca"
+				/>
+			);
+		case "api/cg-dev-jubeat":
+			return (
+				<ImportInfoCard
+					name="CG Dev Integration"
+					href="cg-dev-jubeat"
+					desc="Pull your Jubeat scores from the CG Dev Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
+					key="cg-dev-jubeat"
+				/>
+			);
+		case "api/cg-nag-jubeat":
+			return (
+				<ImportInfoCard
+					name="CG NAG Integration"
+					href="cg-nag-jubeat"
+					desc="Pull your Jubeat scores from the NAG Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
+					key="cg-nag-jubeat"
+				/>
+			);
+		case "api/cg-gan-jubeat":
+			return (
+				<ImportInfoCard
+					name="CG GAN Integration"
+					href="cg-gan-jubeat"
+					desc="Pull your Jubeat scores from the GAN Network."
+					moreInfo="Note: All networks are reduced to their first three letters for anonymity reasons."
+					key="cg-gan-jubeat"
 				/>
 			);
 		case "api/myt-chunithm":

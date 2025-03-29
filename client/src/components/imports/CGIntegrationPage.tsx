@@ -17,7 +17,7 @@ import ImportStateRenderer from "./ImportStateRenderer";
 
 interface Props {
 	cgType: "dev" | "gan" | "nag";
-	game: "sdvx" | "popn" | "museca";
+	game: "sdvx" | "popn" | "museca" | "jubeat";
 }
 
 export default function CGIntegrationPage({ cgType, game }: Props) {

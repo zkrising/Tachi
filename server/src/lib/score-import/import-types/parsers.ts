@@ -11,6 +11,7 @@ import {
 	ParseCGDevMuseca,
 	ParseCGDevPopn,
 	ParseCGDevSDVX,
+	ParseCGDevJubeat,
 	ParseCGGanMuseca,
 	ParseCGGanPopn,
 	ParseCGGanSDVX,
@@ -55,18 +56,17 @@ export const Parsers = {
 	"api/cg-dev-sdvx": ParseCGDevSDVX,
 	"api/cg-dev-popn": ParseCGDevPopn,
 	"api/cg-dev-museca": ParseCGDevMuseca,
-
-	// temporarily disabled as no musicRate is provided.
-	// "api/cg-dev-jubeat": ParseCGDevJubeat,
-	// "api/cg-prod-jubeat": ParseCGProdJubeat,
+	"api/cg-dev-jubeat": ParseCGDevJubeat,
 
 	"api/cg-nag-sdvx": ParseCGNagSDVX,
 	"api/cg-nag-popn": ParseCGNagPopn,
 	"api/cg-nag-museca": ParseCGNagMuseca,
+	"api/cg-nag-jubeat": ParseCGDevJubeat,
 
 	"api/cg-gan-sdvx": ParseCGGanSDVX,
 	"api/cg-gan-popn": ParseCGGanPopn,
 	"api/cg-gan-museca": ParseCGGanMuseca,
+	"api/cg-gan-jubeat": ParseCGDevJubeat,
 
 	"api/myt-chunithm": ParseMytChunithm,
 	"api/myt-maimaidx": ParseMytMaimaiDx,

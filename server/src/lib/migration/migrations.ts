@@ -1,6 +1,5 @@
 import UserFollowersMigration from "./migrations/add-following-to-users";
 import AddLockedAt from "./migrations/add-lockedat";
-import OngekiAddAllBreakPlus from "./migrations/add-ongeki-abplus";
 import UGPTAddPreferredRanking from "./migrations/add-preferredRanking-to-ugpt";
 import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
 import ChunithmLampSplit from "./migrations/chunithm-lamp-split";
@@ -11,6 +10,7 @@ import KtRatingToCuratorSkill from "./migrations/ktRating-to-curator-skill";
 import MarkFervidexAsWithoutIntent from "./migrations/mark-fervidex-as-without-intent";
 import MarkKsHookAsWithoutIntent from "./migrations/mark-kshook-as-without-intent";
 import NullLR2HookFailedBPs from "./migrations/null-lr2hook-failed-bps";
+import OngekiV2 from "./migrations/ongeki-v2";
 import RemoveAbove100pc from "./migrations/remove-above-100pc";
 import RemoveIIDXBeginners from "./migrations/remove-iidx-beginners";
 import RemoveIIDX2dxtraBeginners from "./migrations/remove-iidx-extra-beginners";
@@ -73,7 +73,7 @@ if (Environment.nodeEnv !== "test") {
 			RemoveIIDX2dxtraBeginners,
 			RmHot,
 			ChunithmLampSplit,
-			OngekiAddAllBreakPlus,
+			OngekiV2
 		);
 	}
 

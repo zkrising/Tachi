@@ -833,7 +833,11 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				"Score",
 				NumericSOV((x) => x.scoreData.score * 10000 + x.scoreData.platinumScore),
 			],
-			["Platinum Score", "P-Score", NumericSOV((x) => x.scoreData.platinumStars)],
+			[
+				"Platinum Score",
+				"P-Score",
+				NumericSOV((x) => x.scoreData.platinumStars * 100000 + x.scoreData.platinumScore),
+			],
 			["Judgements", "Hits", NumericSOV((x) => x.scoreData.score)],
 			[
 				"Lamp",

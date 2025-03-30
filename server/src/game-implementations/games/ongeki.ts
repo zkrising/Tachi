@@ -143,7 +143,7 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	goalOutOfFormatters: {
 		score: GoalOutOfFmtScore,
 		platinumScore: GoalOutOfFmtScore,
-		platinumStars: () => "★★★★★",
+		platinumStars: () => "★★★★★(虹)",
 	},
 	pbMergeFunctions: [
 		CreatePBMergeFor("largest", "platinumScore", "Best Platinum Score", (base, score) => {
@@ -159,7 +159,7 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	],
 	defaultMergeRefName: "Best Score",
 	scoreValidators: [
-		(s) => {
+		(s, chart) => {
 			let { hit, miss, rbreak } = s.scoreData.judgements;
 
 			hit ??= 0;
@@ -169,6 +169,10 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 			if (s.scoreData.noteLamp === "ALL BREAK+") {
 				if (hit + miss + rbreak > 0) {
 					return "Cannot have an ALL BREAK+ if not all hits were critical break or better.";
+				}
+
+				if (s.scoreData.score < 1010000) {
+					return "Cannot have an ALL BREAK+ if the score is not 1,010,000";
 				}
 			}
 
@@ -193,6 +197,10 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 
 			if (s.scoreData.bellLamp === "FULL BELL" && s.scoreData.noteLamp === "LOSS") {
 				return "Cannot have a LOSS with a FULL BELL.";
+			}
+
+			if (s.scoreData.platinumScore > chart.data.maxPlatScore) {
+				return `Cannot have ${s.scoreData.platinumScore}/${chart.data.maxPlatScore} Platinum Score.`;
 			}
 		},
 	],

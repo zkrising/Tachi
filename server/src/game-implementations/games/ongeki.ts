@@ -75,12 +75,15 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	profileCalcs: {
 		naiveRating: ProfileAvgBestN("rating", 45, false, 100),
 		naiveRatingRefresh: async (game: Game, playtype: Playtype, userID: integer) => {
-			const [a, b] = await Promise.all([
+			const [v2, star] = await Promise.all([
 				ProfileAvgBestN("ratingV2", 60, false, 1000)(game, playtype, userID),
 				ProfileAvgBestN("starRating", 50, false, 1000)(game, playtype, userID),
 			]);
 
-			return (a! * 6) / 5 + b!;
+			const v21k = Math.round((v2 ?? 0) * 1000);
+			const star1k = Math.round((star ?? 0) * 1000);
+
+			return (Math.floor(v21k * 1.2) + star1k) / 1000.0;
 		},
 	},
 	classDerivers: {
@@ -120,7 +123,7 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	},
 	goalCriteriaFormatters: {
 		score: GoalFmtScore,
-		platinumScore: GoalFmtScore,
+		platinumScore: (val: number) => `Get ${val.toLocaleString("en-GB")} Platinum Score on`,
 		platinumStars: (val: number) => `Get ${FmtStars(true)(val)} on`,
 	},
 	goalProgressFormatters: {
@@ -145,6 +148,7 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	pbMergeFunctions: [
 		CreatePBMergeFor("largest", "platinumScore", "Best Platinum Score", (base, score) => {
 			base.scoreData.platinumScore = score.scoreData.platinumScore;
+			base.scoreData.platinumStars = score.scoreData.platinumStars;
 		}),
 		CreatePBMergeFor("largest", "enumIndexes.noteLamp", "Best Note Lamp", (base, score) => {
 			base.scoreData.noteLamp = score.scoreData.noteLamp;

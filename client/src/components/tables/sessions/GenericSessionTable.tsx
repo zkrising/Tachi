@@ -129,7 +129,7 @@ function Row({
 				{data.scoreIDs.length}
 				<br />
 				<small className="text-body-secondary">
-					PBs: {GetPBs(data.__related.scoreInfo).length}
+					{data.__related?.scoreInfo && `PBs: ${GetPBs(data.__related.scoreInfo).length}`}
 				</small>
 			</td>
 			<td>

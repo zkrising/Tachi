@@ -139,21 +139,18 @@ export const MAIMAI_DX_SINGLE_CONF = {
 
 	scoreRatingAlgs: {
 		rate: {
-			nameOverride: "Rating",
 			description: "Rating as it's implemented in game.",
 			formatter: NoDecimalPlace,
 		},
 	},
 	sessionRatingAlgs: {
 		rate: {
-			nameOverride: "Rating",
 			description: "The average of your best 10 ratings this session.",
 			formatter: NoDecimalPlace,
 		},
 	},
 	profileRatingAlgs: {
 		naiveRate: {
-			nameOverride: "NaiveRating",
 			description: "A naive rating algorithm that just sums your 50 best scores.",
 			formatter: NoDecimalPlace,
 		},

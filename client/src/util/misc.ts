@@ -1,4 +1,5 @@
 import fjsh from "fast-json-stable-hash";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 import {
@@ -8,6 +9,7 @@ import {
 	ChartDocument,
 	Game,
 	GamePTConfig,
+	GetGPTString,
 	GetGamePTConfig,
 	Playtype,
 	QuestDocument,
@@ -91,18 +93,18 @@ export function FormatGPTSessionRating(
 }
 
 export function FormatGPTProfileRatingName(game: Game, playtype: Playtype, key: string) {
-	const gptConfig = GetGamePTConfig(game, playtype);
-	return gptConfig.profileRatingAlgs[key].nameOverride ?? UppercaseFirst(key);
+	const gptConfig = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, playtype)];
+	return gptConfig.ratingAlgNameOverrides?.profile?.[key] ?? UppercaseFirst(key);
 }
 
 export function FormatGPTSessionRatingName(game: Game, playtype: Playtype, key: string) {
-	const gptConfig = GetGamePTConfig(game, playtype);
-	return gptConfig.sessionRatingAlgs[key].nameOverride ?? UppercaseFirst(key);
+	const gptConfig = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, playtype)];
+	return gptConfig.ratingAlgNameOverrides?.session?.[key] ?? UppercaseFirst(key);
 }
 
 export function FormatGPTScoreRatingName(game: Game, playtype: Playtype, key: string) {
-	const gptConfig = GetGamePTConfig(game, playtype);
-	return gptConfig.scoreRatingAlgs[key].nameOverride ?? UppercaseFirst(key);
+	const gptConfig = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, playtype)];
+	return gptConfig.ratingAlgNameOverrides?.score?.[key] ?? UppercaseFirst(key);
 }
 
 export function ReverseStr(str: string) {

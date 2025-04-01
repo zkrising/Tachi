@@ -50,19 +50,19 @@ The following judgements are defined:
 
 | Name | Description |
 | :: | :: |
-| `rating` | The rating value of this score. This is identical to the system used in game. |
+| `rating` | A rating value of this score, capping at +2.0 at SSS+. This is identical to the system used in bright MEMORY and earlier versions. |
 
 ### Session Rating Algorithms
 
 | Name | Description |
 | :: | :: |
-| `naiveRating` | The average of your best 10 ratings this session. |
+| `naiveRating` | The average of your best 10 classic ratings this session. |
 
 ### Profile Rating Algorithms
 
 | Name | Description |
 | :: | :: |
-| `naiveRating` | The average of your best 45 scores. |
+| `naiveRating` | The average of your best 45 classic ratings. This is a simpler variant of the rating algorithm used in bright MEMORY and earlier versions, without distinguishing between new and old charts, and without taking recent scores into account. |
 
 ## Difficulties
 

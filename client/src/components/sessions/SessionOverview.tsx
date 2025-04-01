@@ -1,4 +1,4 @@
-import { FormatSessionRating, UppercaseFirst } from "util/misc";
+import { FormatGPTSessionRatingName, FormatSessionRating, UppercaseFirst } from "util/misc";
 import { FormatDuration } from "util/time";
 import Card from "components/layout/page/Card";
 import ScoreTable from "components/tables/scores/ScoreTable";
@@ -237,7 +237,11 @@ function RatingsOverview({ session }: { session: SessionDocument }) {
 			{Object.keys(gptConfig.sessionRatingAlgs).map((e) => (
 				<Thing
 					key={e}
-					name={`Average ${UppercaseFirst(e)}`}
+					name={`Average ${FormatGPTSessionRatingName(
+						session.game,
+						session.playtype,
+						e
+					)}`}
 					value={FormatSessionRating(
 						session.game,
 						session.playtype,

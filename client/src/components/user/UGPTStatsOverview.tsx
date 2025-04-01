@@ -1,4 +1,9 @@
-import { FormatGPTProfileRating, UppercaseFirst } from "util/misc";
+import {
+	FormatGPTProfileRating,
+	FormatGPTProfileRatingName,
+	FormatGPTScoreRatingName,
+	UppercaseFirst,
+} from "util/misc";
 import { StrSOV } from "util/sorts";
 import ClassBadge from "components/game/ClassBadge";
 import QuickTooltip from "components/layout/misc/QuickTooltip";
@@ -48,8 +53,13 @@ export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 										{gptConfig.profileRatingAlgs[k].description}
 										{k in gptConfig.scoreRatingAlgs && (
 											<>
-												<Divider />({UppercaseFirst(k)}:{" "}
-												{gptConfig.scoreRatingAlgs[k].description})
+												<Divider />(
+												{FormatGPTScoreRatingName(
+													ugs.game,
+													ugs.playtype,
+													k
+												)}
+												: {gptConfig.scoreRatingAlgs[k].description})
 											</>
 										)}
 									</div>
@@ -62,7 +72,7 @@ export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 										textDecorationStyle: "dotted",
 									}}
 								>
-									{UppercaseFirst(k)}
+									{FormatGPTProfileRatingName(ugs.game, ugs.playtype, k)}
 								</div>
 							</QuickTooltip>
 						</td>

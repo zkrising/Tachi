@@ -90,6 +90,21 @@ export function FormatGPTSessionRating(
 	return value.toFixed(2);
 }
 
+export function FormatGPTProfileRatingName(game: Game, playtype: Playtype, key: string) {
+	const gptConfig = GetGamePTConfig(game, playtype);
+	return gptConfig.profileRatingAlgs[key].nameOverride ?? UppercaseFirst(key);
+}
+
+export function FormatGPTSessionRatingName(game: Game, playtype: Playtype, key: string) {
+	const gptConfig = GetGamePTConfig(game, playtype);
+	return gptConfig.sessionRatingAlgs[key].nameOverride ?? UppercaseFirst(key);
+}
+
+export function FormatGPTScoreRatingName(game: Game, playtype: Playtype, key: string) {
+	const gptConfig = GetGamePTConfig(game, playtype);
+	return gptConfig.scoreRatingAlgs[key].nameOverride ?? UppercaseFirst(key);
+}
+
 export function ReverseStr(str: string) {
 	return str.split("").reverse().join("");
 }

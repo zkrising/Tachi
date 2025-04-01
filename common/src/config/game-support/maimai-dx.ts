@@ -138,10 +138,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 	optionalMetrics: FAST_SLOW_MAXCOMBO,
 
 	scoreRatingAlgs: {
-		rate: {
-			description: "Rating as it's implemented in game.",
-			formatter: NoDecimalPlace,
-		},
+		rate: { description: "Rating as it's implemented in game.", formatter: NoDecimalPlace },
 	},
 	sessionRatingAlgs: {
 		rate: {

@@ -167,6 +167,8 @@ export const ONGEKI_SINGLE_CONF = {
 		brightMemory2Omni: "bright MEMORY Act.II Omnimix",
 		brightMemory3: "bright MEMORY Act.III",
 		brightMemory3Omni: "bright MEMORY Act.III Omnimix",
+		refresh: "Re:Fresh",
+		refreshOmni: "Re:Fresh Omnimix",
 	},
 
 	chartData: z.strictObject({

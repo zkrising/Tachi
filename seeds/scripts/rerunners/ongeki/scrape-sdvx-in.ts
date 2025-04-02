@@ -138,7 +138,7 @@ const listMissing = async (charts: OngekiChart[], songs: OngekiSong[], minLevel:
 		}
 		if (chart.levelNum >= minLevel && !chart.data.chartViewURL) {
 			const song = songs.find((s) => s.id === chart.songID);
-            // @ts-ignore The linter disagrees with the compiler
+			// @ts-ignore The linter disagrees with the compiler
 			chart.data.chartViewURL = await prompt(
 				`Missing: ${song?.artist} ${song?.title} ${chart.difficulty} ${chart.level}\n`
 			);

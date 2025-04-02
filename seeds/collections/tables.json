@@ -5032,7 +5032,7 @@
 		"title": "O.N.G.E.K.I. (bright MEMORY Act.3 Omnimix) (Difficulties)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for O.N.G.E.K.I. in bright MEMORY Act.3.",
 		"folders": [
 			"Fad5e5eb714f0e8d039f533564c92cb95990ca1f5e864ff8cb4766032283e2de2",
@@ -5062,7 +5062,7 @@
 			"F86294efc958b008dd48c16739a7024dc36820a2d7bd54c3a6d6588460eedb960"
 		],
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "ongeki-Single-brightMemory3-levels",
 		"title": "O.N.G.E.K.I. (bright MEMORY Act.3)"
@@ -5079,10 +5079,116 @@
 			"Fddd5da8078803f869db6dc4e92220c3291a1163f25f375d32525160aed09dc8e"
 		],
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "ongeki-Single-brightMemory3-difficulties",
 		"title": "O.N.G.E.K.I. (bright MEMORY Act.3) (Difficulties)"
+	},
+	{
+		"default": false,
+		"description": "Levels for O.N.G.E.K.I. in Re:Fresh Omnimix.",
+		"folders": [
+			"Fd8e306cee04a195610cb6b504cba6a3a76d04523ea6a510275859949fea9c1fc",
+			"F6153fa5d95ea654c5ce6ef8b3582444b4a771e1d549f0e11a5fccd995b4b5c52",
+			"F7d798153e4f69dbb8d73015ce78318287cda1d8386bb58368bbb43f0325bd912",
+			"F235bb603eb18252b492f1832ee514b8f9486afcdd77e3812b35364421cb24908",
+			"F1a99521b9b71c5a1dd9e7305a911d2200a0e92585c700127e24bcafafeeae557",
+			"F0df2faf8990e125c2fb5a4a0152f03a08553dcdd8964e4bad9f323d9b3aacb00",
+			"F38f9ef2100458ae414d19b9b30173e3add874cd5878e306cf1f7262745823187",
+			"F5bc76d43c23b60567e779ce96f1bae4cd68783c715f0fcc1915be7c905b95cdc",
+			"Ff664d4785d2adec8607a6df9198e09181c81dfeffee23f70e44b88d2b73bd61b",
+			"Fb2bb451e447cccd32f09657620c86883db8cdc46420f2dae7891c47cb86a800e",
+			"Fc1a625eca8c6df9c318fd45a97105f2b9565b1a3a430e2191a3d505bb42d0736",
+			"F06660ee6a2e0cc55ed0a619ffdae9ffde5edfe2d970f9da94f331a394f8797d8",
+			"F3fbc01fda64baeb4ca08294e7e1d9717b5566a9bcc425388b940aad0e6c2f00b",
+			"F83efac88509a0c9dec80b8e65ced1fbe04b90b959fa363794770658edce71bb0",
+			"Fa68a04e80b382dca1402e601293b8e1758ad6592b7cf4c8f2170dcca0da94347",
+			"F018b461820721d56e478ea2e234c6c6ca5fa0f700408e42b004ad3fa94a87303",
+			"F441bd43de7b24b297c8a8fa9842dc8c2182e444435f137aaa7d5e12ed7005bc1",
+			"Fe9b5fc9e21aafd0cca4221ce85b8506c593c79e7b7c8b5e907128b03109a8e63",
+			"F3fcd73d7fa1a31186bb9d48c3c615496b887c791f022efb5db354e4c2151adb2",
+			"F88e4061441b54406b89eae8970f78dc3bb47d641c67c50ec8d23ffe17b2c3d83",
+			"Faac3724955c27679c9cbf30139e9850db72a019bf9f4c7393150f70b129872e8",
+			"F3ec740b29bfa01dba1962dc3754b96cc5788544ccde91217671765ecb6dc42c8",
+			"F6a96eeb5acea0f446f057325665cdf3e66183183635cf9d46c446ba1344ddcb8",
+			"F58b522c9c7858ddd194375e2b87ee44b396560a04a3732e17b4a9f959edeb5e5",
+			"F8fa29b4aadc6248d20fbf805eff3634a570b02e7caf6781e87d59a0b391b5771"
+		],
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "ongeki-Single-refreshOmni-levels",
+		"title": "O.N.G.E.K.I. (Re:Fresh Omnimix)"
+	},
+	{
+		"default": false,
+		"description": "Difficulties for O.N.G.E.K.I. in Re:Fresh Omnimix.",
+		"folders": [
+			"F6e0f79828e049cf59d5bf3f69fee1eca55b8c2ee973dd1f9a4c1e9181d80827b",
+			"F926f58195b6e502654570b7ae179a293a1996be8356389b5ac65f2f99632b191",
+			"Fe6dd33f70ca2a79fcce76739d1cf00a5ce0efaa6b62e22a90a33c3acf7f6ccfe",
+			"Fe1c195cb0076220594ffc04a8dd94bcd903a2e2f9ed59d8ccd7b194bf37d0543",
+			"F2d15f52de88e1ecfefb23a5c245aa47166b8717262c09750e952978df1416e5d",
+			"F543fcc76da5eb064c53309bc6170b9ae8fe0fc34ada85cb358d56282a3ea326b"
+		],
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "ongeki-Single-refreshOmni-difficulties",
+		"title": "O.N.G.E.K.I. (Re:Fresh Omnimix) (Difficulties)"
+	},
+	{
+		"default": true,
+		"description": "Levels for O.N.G.E.K.I. in Re:Fresh.",
+		"folders": [
+			"F4f2b698877b5bc95a61f5a855505f46cad196722785a6f77fae3e6fe8d8b7ce7",
+			"Fafdee855b3eb2b7f15320ba5b612a9ace651ae577937a8fd617704638a66e164",
+			"F97e8b43aad0c3a62110b09bf723044d88743c2eb44069b43ffc7164cf0d49676",
+			"F8d1c16529d7f38f214556d21ff392e9f2b6c478382ebdf6418db2baf6743b79e",
+			"F6de5de1517ac2cf6ee05d229d9e9db719167acf3837dcb8b93cb58d3e8fd7480",
+			"Ffe603e48a940ab8552b87806ae94acaa4c143d78f7f828d9e6afc5313fafe698",
+			"F2141400b79e91a3dbb7183f3c5b35e92484492ede65b2ddc767d5d8d088f5984",
+			"Fc29571054ff042500576479a66dc1620463a7f65100955171aa5b6a7386a5aa3",
+			"F4dc79ff218752a3f1f6aa51221056d7bd49a84d499310aaf069e916fe33848ad",
+			"F92734fd0505344aaeca3a329fe7c228107eb5dc59ab92b7a45fb6db21e263003",
+			"F2d299c8bf66e5e4f0666765984d4aa069ab844ccedba5e51f13ac449c846c399",
+			"F8aa7a85b829aaebbb3c7832dee28d7e7ebd72479f10bb18d6209574a3cd43752",
+			"Fd6ea6197839c9af4d62b58f3554fb07b3230586cc3da9c9e746c8f6046a7a1e6",
+			"Ff2d48b2f8c8b08f48a50096fa4770e3d4e356a357b7f65acc477a81648b4836a",
+			"F980ee749bfb7d592e49408764441ad62066773055b2595e21c5a945b31daf106",
+			"F35d077e25e91ebcef00668a81e3c761cdf36f0875252eb093edd4476ee6861a8",
+			"F0cad8733c234b93715c25070853cfb506f5eab043312679fa498585e9839f77a",
+			"Fa126a4bfb5c021c029a5c60e417c4b52134868c7a66c7cb6cacfd4231847cd51",
+			"F324e892317cbe183e0baff6fc27ed55df54f721c9175588853d5c07aa8f2c0a6",
+			"F576605e9d7276fe2e280eadc61a5415ff0f8bcc13aaef68aca6149ba0aa0c6e6",
+			"F72d6326c3746cd58a3395f910085843bef6c8499edded40bbdd7e19821d514b1",
+			"Fdaed73b57b1148ab86196d301a7e9e68430f33c362cf17c1cea4a6d7a6bad313",
+			"Fb6164fc4bf400f691c290e06fb6780046461a105ada1d2f6b15ce53bdb6a98ae",
+			"F726a8bbdcacd7936192b90fdb79400b99ee444eb8ce37fdd6122826e1f9ab582",
+			"Fef8139461c072d28b5261418f1487f1983cdac913fff218a4b395bc2054f9116"
+		],
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "ongeki-Single-refresh-levels",
+		"title": "O.N.G.E.K.I. (Re:Fresh)"
+	},
+	{
+		"default": false,
+		"description": "Difficulties for O.N.G.E.K.I. in Re:Fresh.",
+		"folders": [
+			"F2478c0debc6ab076945b12b501dcb110a0e2277ef56595b7b981c21d8b0e09c3",
+			"F08f88693a50f0d3d5a3019d6b0095901fa83b440efd1ca17a3a38ae0d0534355",
+			"F9a0e4dfbdf5d0dfd51c0f738033de9e924df4ac5651e95e8087225052466695a",
+			"Fe4a9d5778b692ee1e73acaa424da2f996a0b0939f46f346e16c2adc69a896453",
+			"F2de5fd8f784e94c6e2c60c5960b1306aadb76c54ce9b502421813cfa66532a36",
+			"F591906452a12c984f9a5e436543802e493d15782b678b518dbeba3705720c77c"
+		],
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "ongeki-Single-refresh-difficulties",
+		"title": "O.N.G.E.K.I. (Re:Fresh) (Difficulties)"
 	},
 	{
 		"default": true,

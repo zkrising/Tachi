@@ -2567,7 +2567,7 @@
 		},
 		"id": 232,
 		"searchTerms": [],
-		"title": "Help me, ERINNNNNN!!"
+		"title": "Help me, ERINNNNNN!!（Band ver.）"
 	},
 	{
 		"altTitles": [],
@@ -11700,7 +11700,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "大国奏音／歌：東雲 つむぎ(CV：和泉 風花)、井之原 小星(CV：ももの はるな)、星咲 あかり(CV：赤尾 ひかる)",
+		"artist": "曲：大国奏音／歌：東雲 つむぎ(CV：和泉 風花)、井之原 小星(CV：ももの はるな)、星咲 あかり(CV：赤尾 ひかる)",
 		"data": {
 			"genre": "オンゲキ"
 		},
@@ -11873,5 +11873,251 @@
 			"Susume! My way! Shinonome Tsumugi solo"
 		],
 		"title": "進め！マイウェイ！ -東雲 つむぎソロver.-"
+	},
+	{
+		"altTitles": [],
+		"artist": "t+pazolite",
+		"data": {
+			"genre": "チュウマイ"
+		},
+		"id": 1062,
+		"searchTerms": [],
+		"title": "Our Wrenally"
+	},
+	{
+		"altTitles": [],
+		"artist": "曲：アオワイファイ／歌：オンゲキシューターズ",
+		"data": {
+			"genre": "オンゲキ"
+		},
+		"id": 1063,
+		"searchTerms": [],
+		"title": "WakeUP MakeUP FEVER!"
+	},
+	{
+		"altTitles": [],
+		"artist": "曲：ヘリP／歌：Trium Tone＆⊿TRiEDGE",
+		"data": {
+			"genre": "オンゲキ"
+		},
+		"id": 1064,
+		"searchTerms": [],
+		"title": "Earthly Light"
+	},
+	{
+		"altTitles": [],
+		"artist": "ミツキヨ",
+		"data": {
+			"genre": "オンゲキ"
+		},
+		"id": 1065,
+		"searchTerms": [],
+		"title": "Crazy Party Rush"
+	},
+	{
+		"altTitles": [],
+		"artist": "ARForest",
+		"data": {
+			"genre": "オンゲキ"
+		},
+		"id": 1066,
+		"searchTerms": [],
+		"title": "Flow Into You"
+	},
+	{
+		"altTitles": [],
+		"artist": "COOL&CREATE feat.ビートまりおとまろん「東方ダンマクカグラ」",
+		"data": {
+			"genre": "東方Project"
+		},
+		"id": 1067,
+		"searchTerms": [
+			"Matsuyoi nightbug"
+		],
+		"title": "マツヨイナイトバグ"
+	},
+	{
+		"altTitles": [],
+		"artist": "にじさんじ",
+		"data": {
+			"genre": "POPS＆ANIME"
+		},
+		"id": 1068,
+		"searchTerms": [],
+		"title": "Hurrah!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "蓮ノ空女学院スクールアイドルクラブ",
+		"data": {
+			"genre": "POPS＆ANIME"
+		},
+		"id": 1069,
+		"searchTerms": [],
+		"title": "DEEPNESS（ReC Ver.）"
+	},
+	{
+		"altTitles": [],
+		"artist": "sasakure.UK",
+		"data": {
+			"genre": "niconico"
+		},
+		"id": 1070,
+		"searchTerms": [
+			"Tondemo wonders"
+		],
+		"title": "トンデモワンダーズ"
+	},
+	{
+		"altTitles": [],
+		"artist": "サツキ feat.初音ミク・重音テト",
+		"data": {
+			"genre": "niconico"
+		},
+		"id": 1071,
+		"searchTerms": [
+			"Mesmerizer"
+		],
+		"title": "メズマライザー"
+	},
+	{
+		"altTitles": [],
+		"artist": "吉田夜世",
+		"data": {
+			"genre": "niconico"
+		},
+		"id": 1072,
+		"searchTerms": [
+			"Override"
+		],
+		"title": "オーバーライド"
+	},
+	{
+		"altTitles": [],
+		"artist": "Lime",
+		"data": {
+			"genre": "VARIETY"
+		},
+		"id": 1073,
+		"searchTerms": [],
+		"title": "Chronomia"
+	},
+	{
+		"altTitles": [],
+		"artist": "ああああ",
+		"data": {
+			"genre": "VARIETY"
+		},
+		"id": 1074,
+		"searchTerms": [
+			"A"
+		],
+		"title": "∀"
+	},
+	{
+		"altTitles": [],
+		"artist": "Sampling Masters AYA",
+		"data": {
+			"genre": "チュウマイ"
+		},
+		"id": 1075,
+		"searchTerms": [
+			"ATM"
+		],
+		"title": "8-EM"
+	},
+	{
+		"altTitles": [],
+		"artist": "Tanchiky feat.からめる",
+		"data": {
+			"genre": "オンゲキ"
+		},
+		"id": 1076,
+		"searchTerms": [
+			"Kyoumei gattai Otogelion"
+		],
+		"title": "共鳴合体 オトゲリヲン"
+	},
+	{
+		"altTitles": [],
+		"artist": "アーリャ（CV：上坂すみれ）",
+		"data": {
+			"genre": "POPS＆ANIME"
+		},
+		"id": 1077,
+		"searchTerms": [
+			"Ichiban kagayaku hoshi"
+		],
+		"title": "1番輝く星"
+	},
+	{
+		"altTitles": [],
+		"artist": "星街すいせい(ホロライブ)",
+		"data": {
+			"genre": "POPS＆ANIME"
+		},
+		"id": 1078,
+		"searchTerms": [
+			"Bibbidiba"
+		],
+		"title": "ビビデバ"
+	},
+	{
+		"altTitles": [],
+		"artist": "B小町 ルビー（CV：伊駒ゆりえ）、有馬かな（CV：潘めぐみ）、MEMちょ（CV：大久保瑠美）",
+		"data": {
+			"genre": "POPS＆ANIME"
+		},
+		"id": 1079,
+		"searchTerms": [],
+		"title": "POP IN 2"
+	},
+	{
+		"altTitles": [],
+		"artist": "曲：eba／歌：高瀬 梨緒(CV：久保 ユリカ)",
+		"data": {
+			"genre": "ボーナストラック"
+		},
+		"id": 1080,
+		"searchTerms": [
+			"Honnouteki Survivor Takase Rio solo"
+		],
+		"title": "本能的 Survivor -高瀬 梨緒ソロver.-"
+	},
+	{
+		"altTitles": [],
+		"artist": "曲：eba／歌：結城 莉玖(CV：朝日奈 丸佳)",
+		"data": {
+			"genre": "ボーナストラック"
+		},
+		"id": 1081,
+		"searchTerms": [
+			"Honnouteki Survivor Yuuki Riku solo"
+		],
+		"title": "本能的 Survivor -結城 莉玖ソロver.-"
+	},
+	{
+		"altTitles": [],
+		"artist": "曲：eba／歌：藍原 椿(CV：橋本 ちなみ)",
+		"data": {
+			"genre": "ボーナストラック"
+		},
+		"id": 1082,
+		"searchTerms": [
+			"Honnouteki Survivor Aihara Tsubaki solo"
+		],
+		"title": "本能的 Survivor -藍原 椿ソロver.-"
+	},
+	{
+		"altTitles": [],
+		"artist": "曲：渡部チェル／歌：藤沢 柚子(CV：保科 李沙)",
+		"data": {
+			"genre": "ボーナストラック"
+		},
+		"id": 1083,
+		"searchTerms": [
+			"Individual on parade Fujisawa Yuzu solo"
+		],
+		"title": "Individual on parade! -藤沢 柚子ソロver.-"
 	}
 ]

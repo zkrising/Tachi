@@ -42455,10 +42455,42 @@
 		},
 		"folderID": "F3462b0a17574425bde8b7c37995cb004fc581d4f89e58c1d11710d687a213690",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "ADVANCED (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~lt": 7000
+			},
+			"difficulty": "ADVANCED",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F926f58195b6e502654570b7ae179a293a1996be8356389b5ac65f2f99632b191",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ADVANCED (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~lt": 7000
+			},
+			"difficulty": "ADVANCED",
+			"versions": "refresh"
+		},
+		"folderID": "F08f88693a50f0d3d5a3019d6b0095901fa83b440efd1ca17a3a38ae0d0534355",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "ADVANCED (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -42503,10 +42535,42 @@
 		},
 		"folderID": "F78324dd4b99662a14299f4a79e387134304e43bf32370a359706619f829a0ee8",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "BASIC (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~lt": 7000
+			},
+			"difficulty": "BASIC",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F6e0f79828e049cf59d5bf3f69fee1eca55b8c2ee973dd1f9a4c1e9181d80827b",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "BASIC (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~lt": 7000
+			},
+			"difficulty": "BASIC",
+			"versions": "refresh"
+		},
+		"folderID": "F2478c0debc6ab076945b12b501dcb110a0e2277ef56595b7b981c21d8b0e09c3",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "BASIC (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -42566,10 +42630,42 @@
 		},
 		"folderID": "F27605e21edd9f6753e44977aa7c30a85acd21d4ee6c28a176af93477d3bbd198",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "EXPERT (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~lt": 7000
+			},
+			"difficulty": "EXPERT",
+			"versions": "refreshOmni"
+		},
+		"folderID": "Fe6dd33f70ca2a79fcce76739d1cf00a5ce0efaa6b62e22a90a33c3acf7f6ccfe",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "EXPERT (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~lt": 7000
+			},
+			"difficulty": "EXPERT",
+			"versions": "refresh"
+		},
+		"folderID": "F9a0e4dfbdf5d0dfd51c0f738033de9e924df4ac5651e95e8087225052466695a",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "EXPERT (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -42605,10 +42701,36 @@
 		},
 		"folderID": "Fad5e5eb714f0e8d039f533564c92cb95990ca1f5e864ff8cb4766032283e2de2",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 0 (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "0",
+			"versions": "refreshOmni"
+		},
+		"folderID": "Fd8e306cee04a195610cb6b504cba6a3a76d04523ea6a510275859949fea9c1fc",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 0 (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"level": "0",
+			"versions": "refresh"
+		},
+		"folderID": "F4f2b698877b5bc95a61f5a855505f46cad196722785a6f77fae3e6fe8d8b7ce7",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 0 (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -42675,10 +42797,48 @@
 		},
 		"folderID": "F57210acc1e0285914ceac88b341c372fae3e785c8191e461c8c663bc4518694b",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 1 (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "1",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F6153fa5d95ea654c5ce6ef8b3582444b4a771e1d549f0e11a5fccd995b4b5c52",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "1",
+			"versions": "refresh"
+		},
+		"folderID": "Fafdee855b3eb2b7f15320ba5b612a9ace651ae577937a8fd617704638a66e164",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 1 (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -42745,10 +42905,48 @@
 		},
 		"folderID": "Fc742f4657847cde003fc80df9f629667636d67c86e8e698052d005f0fe20422d",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10 (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "10",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F83efac88509a0c9dec80b8e65ced1fbe04b90b959fa363794770658edce71bb0",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10 (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "10",
+			"versions": "refresh"
+		},
+		"folderID": "Ff2d48b2f8c8b08f48a50096fa4770e3d4e356a357b7f65acc477a81648b4836a",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10 (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -42815,10 +43013,48 @@
 		},
 		"folderID": "Fca7eb11a8f7505fec8a6f4a651e30c1629d30227642821cae1796baa9ad55492",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 10+ (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "10+",
+			"versions": "refreshOmni"
+		},
+		"folderID": "Fa68a04e80b382dca1402e601293b8e1758ad6592b7cf4c8f2170dcca0da94347",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10+ (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "10+",
+			"versions": "refresh"
+		},
+		"folderID": "F980ee749bfb7d592e49408764441ad62066773055b2595e21c5a945b31daf106",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 10+ (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -42885,10 +43121,48 @@
 		},
 		"folderID": "F2d66be8c998e9c75a05c7dc572b7f1d3b8ad909734b0ff07e84277faa89f3062",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 11 (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "11",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F018b461820721d56e478ea2e234c6c6ca5fa0f700408e42b004ad3fa94a87303",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11 (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "11",
+			"versions": "refresh"
+		},
+		"folderID": "F35d077e25e91ebcef00668a81e3c761cdf36f0875252eb093edd4476ee6861a8",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11 (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -42955,10 +43229,48 @@
 		},
 		"folderID": "Fca0ac80c053a131feba68dceca7a2e0c5558ab2ae5129d3482a67be803df5a84",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 11+ (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "11+",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F441bd43de7b24b297c8a8fa9842dc8c2182e444435f137aaa7d5e12ed7005bc1",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11+ (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "11+",
+			"versions": "refresh"
+		},
+		"folderID": "F0cad8733c234b93715c25070853cfb506f5eab043312679fa498585e9839f77a",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 11+ (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -43025,10 +43337,48 @@
 		},
 		"folderID": "F275d326f92c9aaec500f841ec376c20e7df37bfab74d4854f07be061b1c1fdca",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 12 (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "12",
+			"versions": "refreshOmni"
+		},
+		"folderID": "Fe9b5fc9e21aafd0cca4221ce85b8506c593c79e7b7c8b5e907128b03109a8e63",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12 (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "12",
+			"versions": "refresh"
+		},
+		"folderID": "Fa126a4bfb5c021c029a5c60e417c4b52134868c7a66c7cb6cacfd4231847cd51",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12 (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -43095,10 +43445,48 @@
 		},
 		"folderID": "F22d71ff3b20a28619360e01c6afa29fb661a4edfb393439182bb6e160bbf4277",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 12+ (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "12+",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F3fcd73d7fa1a31186bb9d48c3c615496b887c791f022efb5db354e4c2151adb2",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12+ (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "12+",
+			"versions": "refresh"
+		},
+		"folderID": "F324e892317cbe183e0baff6fc27ed55df54f721c9175588853d5c07aa8f2c0a6",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 12+ (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -43165,10 +43553,48 @@
 		},
 		"folderID": "F71f7f8d35efbb2e444947cb4a8108ec5b4029d77b3fe6098e859b6ae6db85b6a",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 13 (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "13",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F88e4061441b54406b89eae8970f78dc3bb47d641c67c50ec8d23ffe17b2c3d83",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13 (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "13",
+			"versions": "refresh"
+		},
+		"folderID": "F576605e9d7276fe2e280eadc61a5415ff0f8bcc13aaef68aca6149ba0aa0c6e6",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13 (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -43235,10 +43661,48 @@
 		},
 		"folderID": "F02ff26a0fe73ea70dc2f45d98468f3fdddade10b328e4be791486f99c163a832",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 13+ (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "13+",
+			"versions": "refreshOmni"
+		},
+		"folderID": "Faac3724955c27679c9cbf30139e9850db72a019bf9f4c7393150f70b129872e8",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13+ (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "13+",
+			"versions": "refresh"
+		},
+		"folderID": "F72d6326c3746cd58a3395f910085843bef6c8499edded40bbdd7e19821d514b1",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 13+ (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -43305,10 +43769,48 @@
 		},
 		"folderID": "Fe8686a32b2051c1a58acfd30da0ff4c28f4c41d5722886eee7f6250a1a5504da",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 14 (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "14",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F3ec740b29bfa01dba1962dc3754b96cc5788544ccde91217671765ecb6dc42c8",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14 (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "14",
+			"versions": "refresh"
+		},
+		"folderID": "Fdaed73b57b1148ab86196d301a7e9e68430f33c362cf17c1cea4a6d7a6bad313",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14 (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -43375,10 +43877,48 @@
 		},
 		"folderID": "Ff32f1712c3209b3c7d0da5d4928b8a909773b5c3eada589470410fe7e859b38e",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 14+ (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "14+",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F6a96eeb5acea0f446f057325665cdf3e66183183635cf9d46c446ba1344ddcb8",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14+ (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "14+",
+			"versions": "refresh"
+		},
+		"folderID": "Fb6164fc4bf400f691c290e06fb6780046461a105ada1d2f6b15ce53bdb6a98ae",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 14+ (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -43445,10 +43985,48 @@
 		},
 		"folderID": "Fc03828d1947ce99ee1c8f8332c773797d9e5c611e549518bcf16f5bc6738e459",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 15 (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "15",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F58b522c9c7858ddd194375e2b87ee44b396560a04a3732e17b4a9f959edeb5e5",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15 (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "15",
+			"versions": "refresh"
+		},
+		"folderID": "F726a8bbdcacd7936192b90fdb79400b99ee444eb8ce37fdd6122826e1f9ab582",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15 (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -43515,10 +44093,48 @@
 		},
 		"folderID": "F86294efc958b008dd48c16739a7024dc36820a2d7bd54c3a6d6588460eedb960",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 15+ (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "15+",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F8fa29b4aadc6248d20fbf805eff3634a570b02e7caf6781e87d59a0b391b5771",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15+ (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "15+",
+			"versions": "refresh"
+		},
+		"folderID": "Fef8139461c072d28b5261418f1487f1983cdac913fff218a4b395bc2054f9116",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 15+ (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -43585,10 +44201,48 @@
 		},
 		"folderID": "F8944f057f0eee2ef521db8194f09128acf115750ff34aabe768d14f2e8ed6b12",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 2 (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "2",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F7d798153e4f69dbb8d73015ce78318287cda1d8386bb58368bbb43f0325bd912",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "2",
+			"versions": "refresh"
+		},
+		"folderID": "F97e8b43aad0c3a62110b09bf723044d88743c2eb44069b43ffc7164cf0d49676",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 2 (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -43655,10 +44309,48 @@
 		},
 		"folderID": "F0ff7fa955deeb305461cc234141b967ce2ccd25def5d4008c1c2746861a0844e",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 3 (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "3",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F235bb603eb18252b492f1832ee514b8f9486afcdd77e3812b35364421cb24908",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "3",
+			"versions": "refresh"
+		},
+		"folderID": "F8d1c16529d7f38f214556d21ff392e9f2b6c478382ebdf6418db2baf6743b79e",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 3 (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -43725,10 +44417,48 @@
 		},
 		"folderID": "Fe6199786609825fa50b5a84aa72a16c56bdf4318d0051f8a9faabae70a57aa7d",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 4 (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "4",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F1a99521b9b71c5a1dd9e7305a911d2200a0e92585c700127e24bcafafeeae557",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "4",
+			"versions": "refresh"
+		},
+		"folderID": "F6de5de1517ac2cf6ee05d229d9e9db719167acf3837dcb8b93cb58d3e8fd7480",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 4 (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -43795,10 +44525,48 @@
 		},
 		"folderID": "F6e5fd9dc8ab6d1278e4215d202365c4d110ea45628e7b65b122412f5e19bd8fd",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 5 (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "5",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F0df2faf8990e125c2fb5a4a0152f03a08553dcdd8964e4bad9f323d9b3aacb00",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "5",
+			"versions": "refresh"
+		},
+		"folderID": "Ffe603e48a940ab8552b87806ae94acaa4c143d78f7f828d9e6afc5313fafe698",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 5 (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -43865,10 +44633,48 @@
 		},
 		"folderID": "F5ab3033bf5332a795a96e35b0ba91cf19892fb11034bc557a964ea4d4d2c4e63",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 6 (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "6",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F38f9ef2100458ae414d19b9b30173e3add874cd5878e306cf1f7262745823187",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "6",
+			"versions": "refresh"
+		},
+		"folderID": "F2141400b79e91a3dbb7183f3c5b35e92484492ede65b2ddc767d5d8d088f5984",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 6 (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -43935,10 +44741,48 @@
 		},
 		"folderID": "Fe13967a8ac33ee342c5e09048fb2b3fb536949cb7722413f57b11e18e57d1ccd",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 7 (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "7",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F5bc76d43c23b60567e779ce96f1bae4cd68783c715f0fcc1915be7c905b95cdc",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7 (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "7",
+			"versions": "refresh"
+		},
+		"folderID": "Fc29571054ff042500576479a66dc1620463a7f65100955171aa5b6a7386a5aa3",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7 (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -44005,10 +44849,48 @@
 		},
 		"folderID": "F5dbf3709559338cbdce4b055435cf2b64b87e5e9a9befc4fa65d71d4965b4e05",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 7+ (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "7+",
+			"versions": "refreshOmni"
+		},
+		"folderID": "Ff664d4785d2adec8607a6df9198e09181c81dfeffee23f70e44b88d2b73bd61b",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7+ (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "7+",
+			"versions": "refresh"
+		},
+		"folderID": "F4dc79ff218752a3f1f6aa51221056d7bd49a84d499310aaf069e916fe33848ad",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 7+ (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -44075,10 +44957,48 @@
 		},
 		"folderID": "Fb94d23d5dc158363ef53d2fbc2034fefed6a9a7ebbeeabcbfa9b318904515b9c",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 8 (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "8",
+			"versions": "refreshOmni"
+		},
+		"folderID": "Fb2bb451e447cccd32f09657620c86883db8cdc46420f2dae7891c47cb86a800e",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8 (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "8",
+			"versions": "refresh"
+		},
+		"folderID": "F92734fd0505344aaeca3a329fe7c228107eb5dc59ab92b7a45fb6db21e263003",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8 (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -44145,10 +45065,48 @@
 		},
 		"folderID": "Ff2db63c5482aa620bdab5eaea332fbe0388bfeea94d19072639bb87f05cd1f81",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 8+ (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "8+",
+			"versions": "refreshOmni"
+		},
+		"folderID": "Fc1a625eca8c6df9c318fd45a97105f2b9565b1a3a430e2191a3d505bb42d0736",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8+ (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "8+",
+			"versions": "refresh"
+		},
+		"folderID": "F2d299c8bf66e5e4f0666765984d4aa069ab844ccedba5e51f13ac449c846c399",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 8+ (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -44215,10 +45173,48 @@
 		},
 		"folderID": "F99cf5bf0296feb4e726926177affbede0964e79b6f8f9db4e72667a95bf2a7e1",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9 (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "9",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F06660ee6a2e0cc55ed0a619ffdae9ffde5edfe2d970f9da94f331a394f8797d8",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9 (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "9",
+			"versions": "refresh"
+		},
+		"folderID": "F8aa7a85b829aaebbb3c7832dee28d7e7ebd72479f10bb18d6209574a3cd43752",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9 (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -44285,10 +45281,48 @@
 		},
 		"folderID": "F213d8669e814fc8ba15e5c109407265aafb93b134e1487980493ec559ab0056d",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Level 9+ (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "9+",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F3fbc01fda64baeb4ca08294e7e1d9717b5566a9bcc425388b940aad0e6c2f00b",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9+ (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~not": {
+					"~gte": 7000,
+					"~lt": 8000
+				}
+			},
+			"level": "9+",
+			"versions": "refresh"
+		},
+		"folderID": "Fd6ea6197839c9af4d62b58f3554fb07b3230586cc3da9c9e746c8f6046a7a1e6",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Level 9+ (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -44326,10 +45360,38 @@
 		},
 		"folderID": "F095c535be64825c713bebc26d34a0ac8449d487bee1fed3f7df37c16f30b37e4",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "LUNATIC (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isReMaster": false,
+			"difficulty": "LUNATIC",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F2d15f52de88e1ecfefb23a5c245aa47166b8717262c09750e952978df1416e5d",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "LUNATIC (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isReMaster": false,
+			"difficulty": "LUNATIC",
+			"versions": "refresh"
+		},
+		"folderID": "F2de5fd8f784e94c6e2c60c5960b1306aadb76c54ce9b502421813cfa66532a36",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "LUNATIC (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -44388,10 +45450,42 @@
 		},
 		"folderID": "F429c5805303941ee8be692b54d5932f37675da4cf06a1e7d00d7ea59c7db3f6e",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "MASTER (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~lt": 7000
+			},
+			"difficulty": "MASTER",
+			"versions": "refreshOmni"
+		},
+		"folderID": "Fe1c195cb0076220594ffc04a8dd94bcd903a2e2f9ed59d8ccd7b194bf37d0543",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "MASTER (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬inGameID": {
+				"~lt": 7000
+			},
+			"difficulty": "MASTER",
+			"versions": "refresh"
+		},
+		"folderID": "Fe4a9d5778b692ee1e73acaa424da2f996a0b0939f46f346e16c2adc69a896453",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "MASTER (Re:Fresh)",
 		"type": "charts"
 	},
 	{
@@ -44416,10 +45510,38 @@
 		},
 		"folderID": "Fddd5da8078803f869db6dc4e92220c3291a1163f25f375d32525160aed09dc8e",
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"searchTerms": [],
 		"title": "Re:MASTER (bright MEMORY Act.3)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isReMaster": true,
+			"difficulty": "LUNATIC",
+			"versions": "refreshOmni"
+		},
+		"folderID": "F543fcc76da5eb064c53309bc6170b9ae8fe0fc34ada85cb358d56282a3ea326b",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Re:MASTER (Re:Fresh Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"data¬isReMaster": true,
+			"difficulty": "LUNATIC",
+			"versions": "refresh"
+		},
+		"folderID": "F591906452a12c984f9a5e436543802e493d15782b678b518dbeba3705720c77c",
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "Re:MASTER (Re:Fresh)",
 		"type": "charts"
 	},
 	{

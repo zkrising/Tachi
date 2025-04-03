@@ -97,7 +97,7 @@
 		"prudence": "0.10.0",
 		"rate-limit-redis": "2.1.0",
 		"redis": "3.1.2",
-		"rg-stats": "0.5.10",
+		"rg-stats": "1.0.0",
 		"rimraf": "3.0.2",
 		"safe-json-stringify": "1.2.0",
 		"semver": "^7.3.7",

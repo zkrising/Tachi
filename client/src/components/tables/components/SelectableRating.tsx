@@ -1,4 +1,4 @@
-import { UppercaseFirst } from "util/misc";
+import { FormatGPTScoreRatingName, FormatGPTSessionRatingName, UppercaseFirst } from "util/misc";
 import React from "react";
 import { Game, GetGamePTConfig, GPTString, Playtypes } from "tachi-common";
 import { SetState } from "types/react";
@@ -45,7 +45,9 @@ export default function SelectableRating<GPT extends GPTString>({
 				>
 					{Object.keys(gptConfig[key]).map((s) => (
 						<option key={s} value={s}>
-							{UppercaseFirst(s)}
+							{mode === "session"
+								? FormatGPTSessionRatingName(game, playtype, s)
+								: FormatGPTScoreRatingName(game, playtype, s)}
 						</option>
 					))}
 				</select>

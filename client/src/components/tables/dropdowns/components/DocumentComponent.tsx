@@ -1,5 +1,5 @@
 import { IsScore } from "util/asserts";
-import { UppercaseFirst } from "util/misc";
+import { FormatGPTProfileRatingName, UppercaseFirst } from "util/misc";
 import TimestampCell from "components/tables/cells/TimestampCell";
 import ScoreCoreCells from "components/tables/game-core-cells/ScoreCoreCells";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
@@ -31,7 +31,7 @@ export function ScoreInfo({
 				<thead>
 					<tr>
 						<td colSpan={gptImpl.scoreHeaders.length}>Score Info</td>
-						<td>{UppercaseFirst(rating)}</td>
+						<td>{FormatGPTProfileRatingName(score.game, score.playtype, rating)}</td>
 						<td>Timestamp</td>
 					</tr>
 				</thead>

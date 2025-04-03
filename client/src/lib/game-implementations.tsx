@@ -418,6 +418,17 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			"DX Re:Master": COLOUR_SET.white,
 		},
 		ratingSystems: [],
+		ratingAlgNameOverrides: {
+			score: {
+				rate: "Rating",
+			},
+			session: {
+				rate: "Rating",
+			},
+			profile: {
+				naiveRate: "NaiveRating",
+			},
+		},
 		scoreHeaders: [
 			["Percent", "%", NumericSOV((x) => x?.scoreData.percent)],
 			["Judgements", "Hits", NumericSOV((x) => x?.scoreData.percent)],
@@ -778,6 +789,17 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			LUNATIC: COLOUR_SET.white,
 		},
 		ratingSystems: [],
+		ratingAlgNameOverrides: {
+			score: {
+				rating: "Classic Rating",
+			},
+			session: {
+				rating: "Classic Rating",
+			},
+			profile: {
+				naiveRating: "Classic NaiveRating",
+			},
+		},
 		scoreHeaders: [
 			[
 				"Score",

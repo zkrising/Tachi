@@ -1,6 +1,6 @@
 import { DEFAULT_BAR_PROPS } from "util/charts";
 import { CreateChartMap, CreateUserMap } from "util/data";
-import { UppercaseFirst } from "util/misc";
+import { FormatGPTScoreRatingName } from "util/misc";
 import { NumericSOV } from "util/sorts";
 import { ResponsiveBar } from "@nivo/bar";
 import PBTable from "components/tables/pbs/PBTable";
@@ -42,7 +42,7 @@ export default function ScoreLeaderboard({
 			<Form.Select value={alg} onChange={(e) => setAlg(e.target.value as any)}>
 				{Object.keys(gptConfig.scoreRatingAlgs).map((e) => (
 					<option key={e} value={e}>
-						{UppercaseFirst(e)}
+						{FormatGPTScoreRatingName(game, playtype, e)}
 					</option>
 				))}
 			</Form.Select>

@@ -1,4 +1,5 @@
 import { APIFetchV1 } from "util/api";
+import { FormatGPTScoreRatingName } from "util/misc";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import PBTable from "components/tables/pbs/PBTable";
 import ScoreTable from "components/tables/scores/ScoreTable";
@@ -76,7 +77,7 @@ export default function ScoresPage({
 					<Route exact path="/u/:userID/games/:game/:playtype/scores">
 						<>
 							{Object.keys(gptConfig.scoreRatingAlgs).length > 1 && (
-								<AlgSelector {...{ alg, setAlg, gptConfig }} />
+								<AlgSelector {...{ alg, setAlg, game, playtype }} />
 							)}
 							<PBsOverview
 								url={`/users/${reqUser.id}/games/${game}/${playtype}/pbs/best?alg=${alg}`}
@@ -115,20 +116,21 @@ export default function ScoresPage({
 }
 
 function AlgSelector({
-	gptConfig,
+	game,
+	playtype,
 	alg,
 	setAlg,
 }: {
-	gptConfig: GamePTConfig;
 	alg: ScoreRatingAlgorithms[GPTString];
 	setAlg: SetState<ScoreRatingAlgorithms[GPTString]>;
-}) {
+} & GamePT) {
+	const gptConfig = GetGamePTConfig(game, playtype);
 	return (
 		<Form.Group className="d-flex flex-column gap-1">
 			<div>Best 100 PBs according to</div>
 			<Form.Select value={alg} onChange={(e) => setAlg(e.target.value as any)}>
 				{Object.keys(gptConfig.scoreRatingAlgs).map((e) => (
-					<option key={e}>{e}</option>
+					<option key={e}>{FormatGPTScoreRatingName(game, playtype, e)}</option>
 				))}
 			</Form.Select>
 		</Form.Group>

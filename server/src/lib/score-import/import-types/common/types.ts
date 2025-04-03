@@ -15,7 +15,13 @@ import type { KsHookSV6CStaticScore } from "../ir/kshook-sv6c-static/types";
 import type { KsHookSV6CContext, KsHookSV6CScore } from "../ir/kshook-sv6c/types";
 import type { LR2HookContext, LR2HookScore } from "../ir/lr2hook/types";
 import type { IRUSCContext } from "../ir/usc/types";
-import type { CGContext, CGMusecaScore, CGPopnScore, CGSDVXScore } from "./api-cg/types";
+import type {
+	CGContext,
+	CGJubeatScore,
+	CGMusecaScore,
+	CGPopnScore,
+	CGSDVXScore,
+} from "./api-cg/types";
 import type { KaiContext } from "./api-kai/types";
 import type { BatchManualContext } from "./batch-manual/types";
 import type { IIDXEamusementCSVContext, IIDXEamusementCSVData } from "./eamusement-iidx-csv/types";
@@ -67,18 +73,17 @@ export interface ImportTypeDataMap {
 	"api/cg-dev-sdvx": CGSDVXScore;
 	"api/cg-dev-museca": CGMusecaScore;
 	"api/cg-dev-popn": CGPopnScore;
-
-	// temporarily disabled as no musicRate is provided.
-	// "api/cg-dev-jubeat": CGJubeatScore;
-	// "api/cg-prod-jubeat": CGJubeatScore;
+	"api/cg-dev-jubeat": CGJubeatScore;
 
 	"api/cg-nag-sdvx": CGSDVXScore;
 	"api/cg-nag-museca": CGMusecaScore;
 	"api/cg-nag-popn": CGPopnScore;
+	"api/cg-nag-jubeat": CGJubeatScore;
 
 	"api/cg-gan-sdvx": CGSDVXScore;
 	"api/cg-gan-museca": CGMusecaScore;
 	"api/cg-gan-popn": CGPopnScore;
+	"api/cg-gan-jubeat": CGJubeatScore;
 }
 
 export interface ImportTypeContextMap {

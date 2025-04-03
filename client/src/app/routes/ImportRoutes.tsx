@@ -199,6 +199,9 @@ export default function ImportRoutes() {
 							<Route exact path="/import/cg-dev-museca">
 								<CGIntegrationPage cgType="dev" game="museca" />
 							</Route>
+							<Route exact path="/import/cg-dev-jubeat">
+								<CGIntegrationPage cgType="dev" game="jubeat" />
+							</Route>
 
 							<Route exact path="/import/cg-nag-sdvx">
 								<CGIntegrationPage cgType="nag" game="sdvx" />
@@ -209,6 +212,9 @@ export default function ImportRoutes() {
 							<Route exact path="/import/cg-nag-museca">
 								<CGIntegrationPage cgType="nag" game="museca" />
 							</Route>
+							<Route exact path="/import/cg-nag-jubeat">
+								<CGIntegrationPage cgType="nag" game="jubeat" />
+							</Route>
 
 							<Route exact path="/import/cg-gan-sdvx">
 								<CGIntegrationPage cgType="gan" game="sdvx" />
@@ -218,6 +224,9 @@ export default function ImportRoutes() {
 							</Route>
 							<Route exact path="/import/cg-gan-museca">
 								<CGIntegrationPage cgType="gan" game="museca" />
+							</Route>
+							<Route exact path="/import/cg-gan-jubeat">
+								<CGIntegrationPage cgType="gan" game="jubeat" />
 							</Route>
 
 							<Route exact path="/import/myt-chunithm">

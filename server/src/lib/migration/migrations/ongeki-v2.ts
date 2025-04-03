@@ -1,70 +1,62 @@
 import db from "external/mongo/db";
+import { rootLogger } from "lib/logger/logger";
+import UpdateScore from "lib/score-mutation/update-score";
+import { EfficientDBIterate } from "utils/efficient-db-iterate";
+import { ONGEKI_NOTE_LAMPS, type ScoreDocument } from "tachi-common";
 import type { Migration } from "utils/types";
-
-const applyScoreAndPb = async (p1: any, p2: any) => {
-	await db.scores.update(p1, p2, { multi: true });
-	await db["personal-bests"].update(p1, p2, { multi: true });
-};
 
 const migration: Migration = {
 	id: "ongeki-v2",
 	up: async () => {
-		await applyScoreAndPb(
-			{ $and: [{ game: "ongeki" }, { "scoreData.score": 1010000 }] },
-			{
-				$set: {
-					"scoreData.noteLamp": "ALL BREAK+",
-					"scoreData.enumIndexes.noteLamp": 4,
-				},
-			}
-		);
+		const failedScores = [];
 
-		await applyScoreAndPb(
-			{ $and: [{ game: "ongeki" }, { "scoreData.judgements.break": { $exists: true } }] },
-			{
-				$rename: {
-					"scoreData.judgements.break": "scoreData.judgements.rbreak",
-				},
-			}
-		);
+		await EfficientDBIterate(
+			db.scores,
+			(score) => {
+				return score as ScoreDocument<"ongeki:Single">;
+			},
+			async (scores: Array<ScoreDocument<"ongeki:Single">>) => {
+				for (const score of scores) {
+					try {
+						const newScore = {
+							...score,
+						};
 
-		await applyScoreAndPb(
-			{ $and: [{ game: "ongeki" }, { "scoreData.optional.platScore": { $exists: true } }] },
-			{
-				$rename: {
-					"scoreData.optional.platScore": "scoreData.platinumScore",
-				},
-			}
+						if (newScore.scoreData.score === 1010000) {
+							newScore.scoreData.noteLamp = "ALL BREAK+";
+							newScore.scoreData.enumIndexes.noteLamp = ONGEKI_NOTE_LAMPS.ALL_BREAK_PLUS;
+						}
+
+						if ("break" in newScore.scoreData.judgements) {
+							newScore.scoreData.judgements = {
+								...newScore.scoreData.judgements,
+								rbreak: newScore.scoreData.judgements.break as number,
+							};
+							delete (newScore.scoreData.judgements as any).break;
+						}
+
+						if ("platScore" in newScore.scoreData.optional) {
+							newScore.scoreData.platinumScore = newScore.scoreData.optional
+								.platScore as number;
+							delete newScore.scoreData.optional.platScore;
+						} else {
+							newScore.scoreData.platinumScore = 0;
+						}
+
+						await UpdateScore(score, newScore);
+					} catch (err) {
+						rootLogger.warn(err);
+						rootLogger.warn("Continuing through the error.");
+
+						failedScores.push(score.scoreID);
+					}
+				}
+			},
+			{ game: "ongeki" }
 		);
 	},
-	down: async () => {
-		await applyScoreAndPb(
-			{ $and: [{ game: "ongeki" }, { "scoreData.noteLamp": "ALL BREAK+" }] },
-			{
-				$set: {
-					"scoreData.noteLamp": "ALL BREAK",
-					"scoreData.enumIndexes.noteLamp": 3,
-				},
-			}
-		);
-
-		await applyScoreAndPb(
-			{ $and: [{ game: "ongeki" }, { "scoreData.judgements.rbreak": { $exists: true } }] },
-			{
-				$rename: {
-					"scoreData.judgements.rbreak": "scoreData.judgements.break",
-				},
-			}
-		);
-
-		await applyScoreAndPb(
-			{ $and: [{ game: "ongeki" }, { "scoreData.platinumScore": { $exists: true } }] },
-			{
-				$rename: {
-					"scoreData.platinumScore": "scoreData.optional.platScore",
-				},
-			}
-		);
+	down: () => {
+		throw new Error(`Reverting this change is not possible.`);
 	},
 };
 

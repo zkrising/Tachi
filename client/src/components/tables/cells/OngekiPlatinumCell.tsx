@@ -6,20 +6,10 @@ export default function OngekiPlatinumCell({
 	maxPlatScore: maxPlatScore,
 	stars: stars,
 }: {
-	platinumScore: integer | null | undefined;
+	platinumScore: integer;
 	maxPlatScore: integer;
 	stars: number;
 }) {
-	if (platinumScore === null || platinumScore === undefined) {
-		return (
-			<td>
-				Unknown
-				<br />
-				☆☆☆☆☆
-			</td>
-		);
-	}
-
 	const percentage = Math.round((platinumScore * 10000.0) / maxPlatScore) / 100.0;
 
 	return (

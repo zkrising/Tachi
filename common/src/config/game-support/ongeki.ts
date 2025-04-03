@@ -128,19 +128,16 @@ export const ONGEKI_SINGLE_CONF = {
 
 	scoreRatingAlgs: {
 		rating: {
-			nameOverride: "Classic Rating",
 			description:
 				"A rating value of this score, capping at +2.0 at SSS+. This is identical to the system used in bright MEMORY and earlier versions.",
 			formatter: ToDecimalPlaces(2),
 		},
 		ratingV2: {
-			nameOverride: "Rating",
 			description:
 				"A rating value of this score, capping at +2.7 at 1,010,000. This is identical to the system used in Re:Fresh.",
 			formatter: ToDecimalPlaces(3),
 		},
 		starRating: {
-			nameOverride: "Star Rating",
 			description: "An additional rating value of this score, based on platinum score.",
 			formatter: ToDecimalPlaces(3),
 		},
@@ -151,12 +148,10 @@ export const ONGEKI_SINGLE_CONF = {
 			formatter: ToDecimalPlaces(2),
 		},
 		ratingV2: {
-			nameOverride: "Rating",
 			description: "The average of your best 10 ratings this session.",
 			formatter: ToDecimalPlaces(3),
 		},
 		starRating: {
-			nameOverride: "Star Rating",
 			description: "The average of your best 10 star ratings this session.",
 			formatter: ToDecimalPlaces(3),
 		},
@@ -168,7 +163,6 @@ export const ONGEKI_SINGLE_CONF = {
 			formatter: ToDecimalPlaces(2),
 		},
 		naiveRatingRefresh: {
-			nameOverride: "NaiveRating",
 			description:
 				"A weighted sum of the average of your best 60 regular ratings, and your best 50 platinum ratings. This is a simpler variant of the rating algorithm used in Re:Fresh, without distinguishing between new and old charts.",
 			formatter: ToDecimalPlaces(3),

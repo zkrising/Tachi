@@ -181,7 +181,7 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 			// - JUDGE+: 10 misses
 			// - EMBLEM: 300 justices or below
 			// Since we do not have information about the skill used, we simply validate that a
-			// hard clear is not completely impossible, i.e. more than 20 misses and more than 150 justices.
+			// hard clear is not completely impossible, i.e. more than 20 misses and more than 300 justices.
 			if (s.scoreData.clearLamp === "HARD" && justice + attack + miss >= 300 && miss >= 20) {
 				return "Cannot have a HARD clear with 300 or more non-jcrit judgements, and over 20 misses.";
 			}

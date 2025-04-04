@@ -4,10 +4,16 @@ import CreateLogCtx from "lib/logger/logger";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
 import UpdateScore from "lib/score-mutation/update-score";
 import { CreateGoalID } from "lib/targets/goals";
-import { GetGPTString } from "tachi-common";
+import { GetGPTString, PBScoreDocument } from "tachi-common";
 import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 import { EfficientDBIterate } from "utils/efficient-db-iterate";
-import type { ScoreDocument, GoalDocument, integer, GoalSubscriptionDocument } from "tachi-common";
+import type {
+	ScoreDocument,
+	GoalDocument,
+	integer,
+	GoalSubscriptionDocument,
+	UGPTSettingsDocument,
+} from "tachi-common";
 import type { Migration } from "utils/types";
 
 const logger = CreateLogCtx(__filename);
@@ -178,15 +184,10 @@ const migration: Migration = {
 
 		await monkDB.get("temp-update-map").drop();
 
-		logger.info("Updating stats showcase settings...");
+		logger.info("Updating folder stat showcases...");
 		for (const lamp of ["FULL COMBO", "ALL JUSTICE", "ALL JUSTICE CRITICAL"] as const) {
 			await db["game-settings"].update(
-				{
-					game: "chunithm",
-					"preferences.stats.mode": "folder",
-					"preferences.stats.metric": "lamp",
-					"preferences.stats.gte": OLD_LAMP_INDEXES[lamp],
-				},
+				{ game: "chunithm" },
 				{
 					$set: {
 						"preferences.stats.$[e].metric": "comboLamp",
@@ -207,12 +208,7 @@ const migration: Migration = {
 
 		for (const lamp of ["FAILED", "CLEAR"] as const) {
 			await db["game-settings"].update(
-				{
-					game: "chunithm",
-					"preferences.stats.mode": "folder",
-					"preferences.stats.metric": "lamp",
-					"preferences.stats.gte": OLD_LAMP_INDEXES[lamp],
-				},
+				{ game: "chunithm" },
 				{
 					$set: {
 						"preferences.stats.$[e].metric": "comboLamp",
@@ -231,8 +227,22 @@ const migration: Migration = {
 			);
 		}
 
-		logger.info("Updating goals...");
+		// Unfortunately we don't have enough data to accurately migrate
+		// over chart lamp showcases, so we'll have to remove them
+		logger.info("Removing chart stat showcases...");
+		await db["game-settings"].update(
+			{ game: "chunithm" },
+			{
+				$pull: {
+					"preferences.stats": {
+						mode: "chart",
+						metric: "lamp",
+					},
+				},
+			}
+		);
 
+		logger.info("Updating goals...");
 		await EfficientDBIterate(
 			db.goals,
 			async (goal: GoalDocument) => {

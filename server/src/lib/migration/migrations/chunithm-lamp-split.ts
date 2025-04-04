@@ -200,6 +200,10 @@ const migration: Migration = {
 
 		logger.info("Updating folder stat showcases...");
 		for (const lamp of ["FULL COMBO", "ALL JUSTICE", "ALL JUSTICE CRITICAL"] as const) {
+			logger.info(
+				`Updating folder stat showcases for ${lamp}: lamp ${OLD_LAMP_INDEXES[lamp]} -> comboLamp ${NEW_COMBO_LAMP_INDEXES[lamp]}`
+			);
+
 			await db["game-settings"].update(
 				{ game: "chunithm", playtype: "Single" },
 				{
@@ -216,11 +220,16 @@ const migration: Migration = {
 							"e.gte": OLD_LAMP_INDEXES[lamp],
 						},
 					],
+					multi: true,
 				}
 			);
 		}
 
 		for (const lamp of ["FAILED", "CLEAR"] as const) {
+			logger.info(
+				`Updating folder stat showcases for ${lamp}: lamp ${OLD_LAMP_INDEXES[lamp]} -> clearLamp ${NEW_CLEAR_LAMP_INDEXES[lamp]}`
+			);
+
 			await db["game-settings"].update(
 				{ game: "chunithm", playtype: "Single" },
 				{
@@ -237,6 +246,7 @@ const migration: Migration = {
 							"e.gte": OLD_LAMP_INDEXES[lamp],
 						},
 					],
+					multi: true,
 				}
 			);
 		}
@@ -259,6 +269,7 @@ const migration: Migration = {
 						"e.metric": "lamp",
 					},
 				],
+				multi: true,
 			}
 		);
 

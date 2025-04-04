@@ -334,20 +334,16 @@ const migration: Migration = {
 		);
 
 		logger.info("Updating folder stat showcases...");
-		for (const lamp of ["FULL COMBO", "ALL JUSTICE", "ALL JUSTICE CRITICAL"] as const) {
-			logger.info(
-				`Updating folder stat showcases for ${lamp}: lamp ${OLD_LAMP_INDEXES[lamp]} -> comboLamp ${NEW_COMBO_LAMP_INDEXES[lamp]}`
-			);
-
-			await db["game-settings"].update(
-				{ game: "chunithm", playtype: "Single" },
-				{
-					$set: {
-						"preferences.stats.$[e].metric": "comboLamp",
-						"preferences.stats.$[e].gte": NEW_COMBO_LAMP_INDEXES[lamp],
+		await db["user-settings"].bulkWrite([
+			...(["FULL COMBO", "ALL JUSTICE", "ALL JUSTICE CRITICAL"] as const).map((lamp) => ({
+				updateMany: {
+					filter: { game: "chunithm", playtype: "Single" },
+					update: {
+						$set: {
+							"preferences.stats.$[e].metric": "comboLamp",
+							"preferences.stats.$[e].gte": NEW_COMBO_LAMP_INDEXES[lamp],
+						},
 					},
-				},
-				{
 					arrayFilters: [
 						{
 							"e.mode": "folder",
@@ -355,25 +351,17 @@ const migration: Migration = {
 							"e.gte": OLD_LAMP_INDEXES[lamp],
 						},
 					],
-					multi: true,
-				}
-			);
-		}
-
-		for (const lamp of ["FAILED", "CLEAR"] as const) {
-			logger.info(
-				`Updating folder stat showcases for ${lamp}: lamp ${OLD_LAMP_INDEXES[lamp]} -> clearLamp ${NEW_CLEAR_LAMP_INDEXES[lamp]}`
-			);
-
-			await db["game-settings"].update(
-				{ game: "chunithm", playtype: "Single" },
-				{
-					$set: {
-						"preferences.stats.$[e].metric": "clearLamp",
-						"preferences.stats.$[e].gte": NEW_CLEAR_LAMP_INDEXES[lamp],
-					},
 				},
-				{
+			})),
+			...(["FAILED", "CLEAR"] as const).map((lamp) => ({
+				updateMany: {
+					filter: { game: "chunithm", playtype: "Single" },
+					update: {
+						$set: {
+							"preferences.stats.$[e].metric": "clearLamp",
+							"preferences.stats.$[e].gte": NEW_CLEAR_LAMP_INDEXES[lamp],
+						},
+					},
 					arrayFilters: [
 						{
 							"e.mode": "folder",
@@ -381,10 +369,9 @@ const migration: Migration = {
 							"e.gte": OLD_LAMP_INDEXES[lamp],
 						},
 					],
-					multi: true,
-				}
-			);
-		}
+				},
+			})),
+		]);
 
 		// Unfortunately we don't have enough data to accurately migrate
 		// over chart lamp showcases, so we'll automatically migrate everyone

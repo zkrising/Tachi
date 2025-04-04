@@ -334,10 +334,10 @@ const migration: Migration = {
 		);
 
 		logger.info("Updating folder stat showcases...");
-		await db["user-settings"].bulkWrite([
+		await db["game-settings"].bulkWrite([
 			...(["FULL COMBO", "ALL JUSTICE", "ALL JUSTICE CRITICAL"] as const).map((lamp) => ({
 				updateMany: {
-					filter: { game: "chunithm", playtype: "Single" },
+					filter: { game: "chunithm", playtype: "Single" } as const,
 					update: {
 						$set: {
 							"preferences.stats.$[e].metric": "comboLamp",
@@ -355,7 +355,7 @@ const migration: Migration = {
 			})),
 			...(["FAILED", "CLEAR"] as const).map((lamp) => ({
 				updateMany: {
-					filter: { game: "chunithm", playtype: "Single" },
+					filter: { game: "chunithm", playtype: "Single" } as const,
 					update: {
 						$set: {
 							"preferences.stats.$[e].metric": "clearLamp",

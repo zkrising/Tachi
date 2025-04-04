@@ -45,7 +45,7 @@
 		"searchTerms": [
 			"rfts"
 		],
-		"title": "Reach for the Stars"
+		"title": "Reach For The Stars"
 	},
 	{
 		"altTitles": [],
@@ -981,7 +981,7 @@
 		"searchTerms": [
 			"Help Me ERIN"
 		],
-		"title": "Help me, ERINNNNNN!!"
+		"title": "Help me, ERINNNNNN!!（Band ver.）"
 	},
 	{
 		"altTitles": [],
@@ -7334,7 +7334,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "ノマ",
+		"artist": "NOMA",
 		"data": {
 			"displayVersion": "AMAZON",
 			"genre": "VARIETY"
@@ -10705,7 +10705,7 @@
 		"artist": "Yunomi & nicamoq",
 		"data": {
 			"displayVersion": "CRYSTAL PLUS",
-			"genre": "POPS & ANIME"
+			"genre": "VARIETY"
 		},
 		"id": 958,
 		"searchTerms": [
@@ -11558,7 +11558,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "Ring feat.SLS",
+		"artist": "Ring feat.SLSMusic",
 		"data": {
 			"displayVersion": "PARADISE",
 			"genre": "ORIGINAL"
@@ -12350,7 +12350,7 @@
 		"artist": "かめりあ feat. ななひら",
 		"data": {
 			"displayVersion": "PARADISE LOST",
-			"genre": "POPS & ANIME"
+			"genre": "VARIETY"
 		},
 		"id": 1096,
 		"searchTerms": [
@@ -13322,7 +13322,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "星街すいせい(ホロライブ)",
+		"artist": "星街すいせい（ホロライブ）",
 		"data": {
 			"displayVersion": "PARADISE LOST",
 			"genre": "ORIGINAL"
@@ -17239,7 +17239,7 @@
 		"altTitles": [],
 		"artist": "kanone",
 		"data": {
-			"displayVersion": "SUN",
+			"displayVersion": "SUN PLUS",
 			"genre": "ゲキマイ"
 		},
 		"id": 2399,
@@ -17250,7 +17250,7 @@
 		"altTitles": [],
 		"artist": "BlackY",
 		"data": {
-			"displayVersion": "SUN",
+			"displayVersion": "SUN PLUS",
 			"genre": "ゲキマイ"
 		},
 		"id": 2400,
@@ -17347,7 +17347,7 @@
 		"altTitles": [],
 		"artist": "Zekk「WACCA」",
 		"data": {
-			"displayVersion": "SUN",
+			"displayVersion": "SUN PLUS",
 			"genre": "VARIETY"
 		},
 		"id": 2409,
@@ -17361,7 +17361,7 @@
 		"altTitles": [],
 		"artist": "Kobaryo「WACCA」",
 		"data": {
-			"displayVersion": "SUN",
+			"displayVersion": "SUN PLUS",
 			"genre": "VARIETY"
 		},
 		"id": 2410,
@@ -17372,7 +17372,7 @@
 		"altTitles": [],
 		"artist": "DJ Noriken「WACCA」",
 		"data": {
-			"displayVersion": "SUN",
+			"displayVersion": "SUN PLUS",
 			"genre": "VARIETY"
 		},
 		"id": 2411,
@@ -18728,7 +18728,7 @@
 		"altTitles": [],
 		"artist": "Massive New Krew「WACCA」",
 		"data": {
-			"displayVersion": "SUN PLUS",
+			"displayVersion": "LUMINOUS",
 			"genre": "VARIETY"
 		},
 		"id": 2531,
@@ -18814,7 +18814,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "cosMo@暴走P",
+		"artist": "cosMo＠暴走P",
 		"data": {
 			"displayVersion": "LUMINOUS",
 			"genre": "VARIETY"
@@ -19451,7 +19451,7 @@
 		"altTitles": [],
 		"artist": "Yuta Imai",
 		"data": {
-			"displayVersion": "LUMINOUS",
+			"displayVersion": "LUMINOUS PLUS",
 			"genre": "ゲキマイ"
 		},
 		"id": 2598,

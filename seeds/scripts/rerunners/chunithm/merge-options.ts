@@ -2,14 +2,14 @@ import { Command } from "commander";
 import { XMLParser } from "fast-xml-parser";
 import { existsSync, readFileSync, readdirSync, statSync } from "fs";
 import path from "path";
-import { CreateChartID, MutateCollection, ReadCollection, WriteCollection } from "../../util";
+import { CreateChartID, ReadCollection, WriteCollection } from "../../util";
 import { ChartDocument, Difficulties, GetGamePTConfig, SongDocument } from "tachi-common";
 import { CreateLogger } from "mei-logger";
 
 const logger = CreateLogger("chunithm/merge-options");
 
 const OMNIMIX_OPTION_NAMES = ["AOMN", "AOLD", "AKON"];
-const VERSIONS = [
+const DISPLAY_VERSIONS = [
 	"CHUNITHM",
 	"CHUNITHM PLUS",
 	"AIR",
@@ -30,6 +30,7 @@ const VERSIONS = [
 	"LUMINOUS PLUS",
 	"VERSE",
 ];
+const VERSIONS = ["paradiselost", "sun", "sunplus", "luminous", "luminousplus", "verse"];
 
 interface IDWithDisplayName {
 	id: number;
@@ -188,6 +189,10 @@ for (const optionsDir of options.input) {
 				continue;
 			}
 
+			if (inGameID === 320) {
+				musicData.name.str = "010"; // wow i hate fast-xml-parser
+			}
+
 			let tachiSongID = inGameIDToSongIDMap.get(inGameID);
 
 			// Has this song been disabled in-game?
@@ -230,7 +235,7 @@ for (const optionsDir of options.input) {
 
 				tachiSongID = musicData.name.id;
 
-				const displayVersion = VERSIONS[musicData.releaseTagName.id];
+				const displayVersion = DISPLAY_VERSIONS[musicData.releaseTagName.id];
 
 				if (!displayVersion) {
 					throw new Error(
@@ -258,7 +263,7 @@ for (const optionsDir of options.input) {
 			} else if (songMap.has(tachiSongID)) {
 				const songDoc = songMap.get(tachiSongID)!;
 
-				const displayVersion = VERSIONS[musicData.releaseTagName.id];
+				const displayVersion = DISPLAY_VERSIONS[musicData.releaseTagName.id];
 
 				if (!displayVersion) {
 					throw new Error(
@@ -359,10 +364,7 @@ for (const optionsDir of options.input) {
 	}
 }
 
-MutateCollection("songs-chunithm.json", (songs: Array<SongDocument<"chunithm">>) => [
-	...songs,
-	...newSongs,
-]);
+WriteCollection("songs-chunithm.json", [...existingSongDocs, ...newSongs]);
 
 // overwrite this collection instead of mutating it
 // we already know the existing chart docs and might have mutated them to

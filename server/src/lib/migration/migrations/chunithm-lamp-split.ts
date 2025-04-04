@@ -189,9 +189,18 @@ const migration: Migration = {
 				},
 				{
 					$set: {
-						"preferences.stats.$[].metric": "comboLamp",
-						"preferences.stats.$[].gte": NEW_COMBO_LAMP_INDEXES[lamp],
+						"preferences.stats.$[e].metric": "comboLamp",
+						"preferences.stats.$[e].gte": NEW_COMBO_LAMP_INDEXES[lamp],
 					},
+				},
+				{
+					arrayFilters: [
+						{
+							"e.mode": "folder",
+							"e.metric": "lamp",
+							"e.gte": OLD_LAMP_INDEXES[lamp],
+						},
+					],
 				}
 			);
 		}
@@ -206,9 +215,18 @@ const migration: Migration = {
 				},
 				{
 					$set: {
-						"preferences.stats.$[].metric": "clearLamp",
-						"preferences.stats.$[].gte": NEW_CLEAR_LAMP_INDEXES[lamp],
+						"preferences.stats.$[e].metric": "comboLamp",
+						"preferences.stats.$[e].gte": NEW_CLEAR_LAMP_INDEXES[lamp],
 					},
+				},
+				{
+					arrayFilters: [
+						{
+							"e.mode": "folder",
+							"e.metric": "lamp",
+							"e.gte": OLD_LAMP_INDEXES[lamp],
+						},
+					],
 				}
 			);
 		}

@@ -1,11 +1,11 @@
 /* eslint-disable no-await-in-loop */
 import db, { monkDB } from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
+import { ProcessPBs } from "lib/score-import/framework/pb/process-pbs";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
 import UpdateScore from "lib/score-mutation/update-score";
 import { CreateGoalID } from "lib/targets/goals";
 import { GetGPTString } from "tachi-common";
-import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 import { EfficientDBIterate } from "utils/efficient-db-iterate";
 import type { ScoreDocument, GoalDocument, integer, GoalSubscriptionDocument } from "tachi-common";
 import type { Migration } from "utils/types";
@@ -162,15 +162,35 @@ const migration: Migration = {
 			(_scores) => Promise.resolve(),
 			{
 				game: "chunithm",
+				playtype: "Single",
 				"scoreData.comboLamp": { $exists: false },
 				"scoreData.clearLamp": { $exists: false },
 			}
 		);
 
 		logger.info("Reconstructing PBs...");
-		const usersWithChuniScores = await db.scores.distinct("userID", { game: "chunithm" });
+		const usersWithChuniScores = await db.scores.distinct("userID", {
+			game: "chunithm",
+			playtype: "Single",
+		});
 
-		await UpdateAllPBs(usersWithChuniScores, { game: "chunithm" });
+		// We don't use UpdateAllPBs here because it re-PBs all of a user's
+		// games and playtypes which is fairly wasteful.
+		for (const userID of usersWithChuniScores) {
+			const chartIDs = await db.scores.distinct("chartID", {
+				userID,
+				game: "chunithm",
+				playtype: "Single",
+			});
+
+			if (chartIDs.length === 0) {
+				continue;
+			}
+
+			logger.verbose(`PBing #${userID}'s scores.`);
+
+			await ProcessPBs("chunithm", "Single", userID, new Set(chartIDs), logger);
+		}
 
 		logger.info("Updating references to scores...");
 		await FastUpdateSessions();
@@ -181,7 +201,7 @@ const migration: Migration = {
 		logger.info("Updating folder stat showcases...");
 		for (const lamp of ["FULL COMBO", "ALL JUSTICE", "ALL JUSTICE CRITICAL"] as const) {
 			await db["game-settings"].update(
-				{ game: "chunithm" },
+				{ game: "chunithm", playtype: "Single" },
 				{
 					$set: {
 						"preferences.stats.$[e].metric": "comboLamp",
@@ -202,7 +222,7 @@ const migration: Migration = {
 
 		for (const lamp of ["FAILED", "CLEAR"] as const) {
 			await db["game-settings"].update(
-				{ game: "chunithm" },
+				{ game: "chunithm", playtype: "Single" },
 				{
 					$set: {
 						"preferences.stats.$[e].metric": "comboLamp",
@@ -222,17 +242,23 @@ const migration: Migration = {
 		}
 
 		// Unfortunately we don't have enough data to accurately migrate
-		// over chart lamp showcases, so we'll have to remove them
-		logger.info("Removing chart stat showcases...");
+		// over chart lamp showcases, so we'll automatically migrate everyone
+		// over to comboLamp, which is what people usually showcase.
+		logger.info("Updating chart stat showcases...");
 		await db["game-settings"].update(
-			{ game: "chunithm" },
+			{ game: "chunithm", playtype: "Single" },
 			{
-				$pull: {
-					"preferences.stats": {
-						mode: "chart",
-						metric: "lamp",
-					},
+				$set: {
+					"preferences.stats.$[e].metric": "comboLamp",
 				},
+			},
+			{
+				arrayFilters: [
+					{
+						"e.mode": "chart",
+						"e.metric": "lamp",
+					},
+				],
 			}
 		);
 

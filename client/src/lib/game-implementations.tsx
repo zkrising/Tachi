@@ -135,7 +135,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				"Lamp",
 				NumericSOV(
 					(x) =>
-						x.scoreData.enumIndexes.comboLamp << (3 + x.scoreData.enumIndexes.clearLamp)
+						(x.scoreData.enumIndexes.comboLamp << 3) + x.scoreData.enumIndexes.clearLamp
 				),
 			],
 		],

@@ -659,8 +659,8 @@ importers:
         specifier: 3.1.2
         version: 3.1.2
       rg-stats:
-        specifier: 0.5.10
-        version: 0.5.10
+        specifier: 1.0.0
+        version: 1.0.0
       rimraf:
         specifier: 3.0.2
         version: 3.0.2
@@ -10246,6 +10246,10 @@ packages:
 
   /rg-stats@0.5.10:
     resolution: {integrity: sha512-UZfB5PFnaiSInlcQMTYXgvMvWqd9wiHd9mQX5Ecf1VT/JJI2ycdFYJXU8lVLA6eyxYaHpx66E+HvweCIt+q4fw==}
+    dev: false
+
+  /rg-stats@1.0.0:
+    resolution: {integrity: sha512-Itt3OJden5riCkSY7o5whJTqK/DQNteJdQ+AXZ2upNNESOO/7JnWx+n/jJiSimR+XOE/rSggTxXLujHcE4Z0nA==}
     dev: false
 
   /rimraf@2.4.5:

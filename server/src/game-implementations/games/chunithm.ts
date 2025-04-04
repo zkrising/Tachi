@@ -165,15 +165,15 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 			}
 
 			if (s.scoreData.clearLamp === "CATASTROPHY" && justice + attack + miss >= 10) {
-				return "Cannot have a CATASTROPHY clear with 10 or more justices, attacks and misses.";
+				return "Cannot have a CATASTROPHY clear with 10 or more non-jcrit judgements.";
 			}
 
 			if (s.scoreData.clearLamp === "ABSOLUTE" && justice + attack + miss >= 50) {
-				return "Cannot have an ABSOLUTE clear with 50 or more justices, attacks and misses.";
+				return "Cannot have an ABSOLUTE clear with 50 or more non-jcrit judgements.";
 			}
 
 			if (s.scoreData.clearLamp === "BRAVE" && justice + attack + miss >= 150) {
-				return "Cannot have a BRAVE clear with 150 or more justices, attacks and misses.";
+				return "Cannot have a BRAVE clear with 150 or more non-jcrit judgements.";
 			}
 
 			// The condition for a HARD clear varies based on the skill used:
@@ -183,7 +183,7 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 			// Since we do not have information about the skill used, we simply validate that a
 			// hard clear is not completely impossible, i.e. more than 20 misses and more than 150 justices.
 			if (s.scoreData.clearLamp === "HARD" && justice + attack + miss >= 300 && miss >= 20) {
-				return "Cannot have a HARD clear with 300 or more justices, attacks and misses, and over 20 misses.";
+				return "Cannot have a HARD clear with 300 or more non-jcrit judgements, and over 20 misses.";
 			}
 		},
 	],

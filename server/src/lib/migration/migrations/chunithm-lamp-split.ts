@@ -349,7 +349,7 @@ const migration: Migration = {
 					// CLEAR: 1 -> NONE: 0
 					// FULL COMBO: 2 -> FULL COMBO: 1
 					// ...
-					newProgress = Math.min(NEW_COMBO_LAMP_INDEXES.NONE, subscription.progress - 1);
+					newProgress = Math.max(NEW_COMBO_LAMP_INDEXES.NONE, subscription.progress - 1);
 					// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 					newProgressHuman = NEW_COMBO_LAMPS[newProgress]!;
 				}

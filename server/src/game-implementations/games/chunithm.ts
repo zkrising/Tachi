@@ -128,5 +128,55 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 				}
 			}
 		},
+		(s) => {
+			const { maxCombo } = s.scoreData.optional;
+			const { attack, jcrit, justice, miss } = s.scoreData.judgements;
+
+			if (
+				IsNullish(maxCombo) ||
+				IsNullish(attack) ||
+				IsNullish(jcrit) ||
+				IsNullish(justice) ||
+				IsNullish(miss)
+			) {
+				return;
+			}
+
+			if (s.scoreData.comboLamp !== "NONE" && jcrit + justice + attack + miss !== maxCombo) {
+				const article = s.scoreData.comboLamp === "FULL COMBO" ? "a" : "an";
+
+				return `Cannot have ${article} ${s.scoreData.comboLamp} if maxCombo is not equal to the sum of judgements.`;
+			}
+		},
+		(s) => {
+			const { attack, justice, miss } = s.scoreData.judgements;
+
+			// Assume the clear lamp is correct if judgements aren't provided.
+			if (IsNullish(attack) || IsNullish(justice) || IsNullish(miss)) {
+				return;
+			}
+
+			if (s.scoreData.clearLamp === "CATASTROPHY" && justice + attack + miss >= 10) {
+				return "Cannot have a CATASTROPHY clear with 10 or more justices, attacks and misses.";
+			}
+
+			if (s.scoreData.clearLamp === "ABSOLUTE" && justice + attack + miss >= 50) {
+				return "Cannot have an ABSOLUTE clear with 50 or more justices, attacks and misses.";
+			}
+
+			if (s.scoreData.clearLamp === "BRAVE" && justice + attack + miss >= 150) {
+				return "Cannot have a BRAVE clear with 150 or more justices, attacks and misses.";
+			}
+
+			// The condition for a HARD clear varies based on the skill used:
+			// - JUDGE: 20 misses
+			// - JUDGE+: 10 misses
+			// - EMBLEM: 300 justices or below
+			// Since we do not have information about the skill used, we simply validate that a
+			// hard clear is not completely impossible, i.e. more than 20 misses and more than 150 justices.
+			if (s.scoreData.clearLamp === "HARD" && justice + attack + miss >= 300 && miss >= 20) {
+				return "Cannot have a HARD clear with 300 or more justices, attacks and misses, and over 20 misses.";
+			}
+		},
 	],
 };

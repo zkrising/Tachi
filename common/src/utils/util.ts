@@ -288,16 +288,25 @@ export function FmtPercent(v: number, dp = 2) {
 }
 
 /**
- * Formats a number into "★★★★★"
+ * Formats a number into "★★★☆☆"
  */
-export function FmtStars(printEmpty: boolean) {
-	return (num: number) => {
-		if (num > 5) {
-			return "★★★★★(虹)";
-		}
+export function FmtStars(num: number) {
+	if (num > 5) {
+		return "★★★★★(虹)";
+	}
 
-		return "★".repeat(num) + (printEmpty ? "☆".repeat(5 - num) : "");
-	};
+	return "★".repeat(num) + "☆".repeat(5 - num);
+}
+
+/**
+ * Formats a number into "★★★"
+ */
+export function FmtStarsCompact(num: number) {
+	if (num > 5) {
+		return "★★★★★(虹)";
+	}
+
+	return "★".repeat(num);
 }
 
 /**

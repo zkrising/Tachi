@@ -1356,7 +1356,8 @@ export const FakeChunitachiBatchManual = {
 	scores: [
 		{
 			score: 900000,
-			lamp: "CLEAR",
+			clearLamp: "CLEAR",
+			comboLamp: "NONE",
 			matchType: "songTitle",
 			identifier: "B.B.K.K.B.K.K.",
 			difficulty: "BASIC",

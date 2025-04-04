@@ -7,7 +7,7 @@ export default function IIDXStyleSongChartInfoFormat({
 	chart,
 	game,
 }: {
-	song: SongDocument<"iidx" | "popn" | "bms" | "pms" | "ongeki">;
+	song: SongDocument<"iidx" | "popn" | "bms" | "pms" | "ongeki" | "chunithm">;
 	chart: ChartDocument | null;
 	game: Game;
 }) {

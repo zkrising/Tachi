@@ -18,7 +18,7 @@ export default function OngekiPlatinumCell({
 			<br />
 			<>
 				{stars < 6 ? (
-					FmtStars(true)(stars)
+					FmtStars(stars)
 				) : (
 					<span
 						style={{

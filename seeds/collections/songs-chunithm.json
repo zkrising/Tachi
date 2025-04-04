@@ -20804,7 +20804,9 @@
 			"genre": "niconico"
 		},
 		"id": 2745,
-		"searchTerms": [],
+		"searchTerms": [
+			"hito mania"
+		],
 		"title": "人マニア"
 	},
 	{
@@ -20815,7 +20817,9 @@
 			"genre": "niconico"
 		},
 		"id": 2746,
-		"searchTerms": [],
+		"searchTerms": [
+			"override"
+		],
 		"title": "オーバーライド"
 	},
 	{
@@ -20826,7 +20830,9 @@
 			"genre": "niconico"
 		},
 		"id": 2747,
-		"searchTerms": [],
+		"searchTerms": [
+			"liar dancer"
+		],
 		"title": "ライアーダンサー"
 	},
 	{
@@ -20837,7 +20843,11 @@
 			"genre": "niconico"
 		},
 		"id": 2748,
-		"searchTerms": [],
+		"searchTerms": [
+			"letter to the black world",
+			"kuronuri sekai ate shokan",
+			"kuronuri"
+		],
 		"title": "黒塗り世界宛て書簡"
 	},
 	{
@@ -20848,7 +20858,10 @@
 			"genre": "ゲキマイ"
 		},
 		"id": 2749,
-		"searchTerms": [],
+		"searchTerms": [
+			"honnouteki survivor",
+			"honnouteki"
+		],
 		"title": "本能的 Survivor"
 	},
 	{
@@ -20972,7 +20985,11 @@
 			"genre": "ゲキマイ"
 		},
 		"id": 2800,
-		"searchTerms": [],
+		"searchTerms": [
+			"abyssal gray euchronia",
+			"euchronia",
+			"entei no gray euchronia"
+		],
 		"title": "淵底のグレイ・ユークロニア"
 	},
 	{

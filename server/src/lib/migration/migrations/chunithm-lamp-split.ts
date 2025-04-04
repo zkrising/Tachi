@@ -256,7 +256,7 @@ const migration: Migration = {
 				{ game: "chunithm", playtype: "Single" },
 				{
 					$set: {
-						"preferences.stats.$[e].metric": "comboLamp",
+						"preferences.stats.$[e].metric": "clearLamp",
 						"preferences.stats.$[e].gte": NEW_CLEAR_LAMP_INDEXES[lamp],
 					},
 				},

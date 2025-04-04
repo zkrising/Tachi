@@ -2,6 +2,7 @@ import UserFollowersMigration from "./migrations/add-following-to-users";
 import AddLockedAt from "./migrations/add-lockedat";
 import UGPTAddPreferredRanking from "./migrations/add-preferredRanking-to-ugpt";
 import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
+import ChunithmLampSplit from "./migrations/chunithm-lamp-split";
 import FixUndefinedBMSData from "./migrations/fix-undefined-bms-data";
 import JoinINFCastHourCharts from "./migrations/join-inf-casthour-charts";
 import JoinINFCastHourSongs from "./migrations/join-inf-casthour-songs";
@@ -69,7 +70,8 @@ if (Environment.nodeEnv !== "test") {
 			MarkKsHookAsWithoutIntent,
 			KtRatingToCuratorSkill,
 			RemoveIIDX2dxtraBeginners,
-			RmHot
+			RmHot,
+			ChunithmLampSplit
 		);
 	}
 

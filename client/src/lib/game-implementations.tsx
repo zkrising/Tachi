@@ -20,6 +20,7 @@ import OngekiJudgementCell from "components/tables/cells/OngekiJudgementCell";
 import React from "react";
 import OngekiLampCell from "components/tables/cells/OngekiLampCell";
 import OngekiPlatinumCell from "components/tables/cells/OngekiPlatinumCell";
+import CHUNITHMLampCell from "components/tables/cells/CHUNITHMLampCell";
 import { bgc, RAINBOW_EX_GRADIENT, RAINBOW_GRADIENT } from "./games/_util";
 import { BMS_14K_IMPL, BMS_7K_IMPL, PMS_IMPL } from "./games/bms-pms";
 import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
@@ -45,7 +46,11 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 	"ddr:DP": DDR_DP_IMPL,
 	"chunithm:Single": {
 		sessionImportantScoreCount: 50,
-		enumIcons: defaultEnumIcons,
+		enumIcons: {
+			grade: "sort-alpha-up",
+			clearLamp: "lightbulb",
+			comboLamp: "lightbulb",
+		},
 		classColours: {
 			colour: {
 				BLUE: bgc("var(--bs-info)", "var(--bs-light)"),
@@ -99,10 +104,17 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				SSS: COLOUR_SET.teal,
 				"SSS+": COLOUR_SET.white,
 			},
-			lamp: {
+			clearLamp: {
 				FAILED: COLOUR_SET.red,
 				CLEAR: COLOUR_SET.paleGreen,
-				"FULL COMBO": COLOUR_SET.paleBlue,
+				HARD: COLOUR_SET.vibrantPurple,
+				BRAVE: COLOUR_SET.vibrantPurple,
+				ABSOLUTE: COLOUR_SET.purple,
+				CATASTROPHY: COLOUR_SET.purple,
+			},
+			comboLamp: {
+				NONE: COLOUR_SET.gray,
+				"FULL COMBO": COLOUR_SET.green,
 				"ALL JUSTICE": COLOUR_SET.gold,
 				"ALL JUSTICE CRITICAL": COLOUR_SET.white,
 			},
@@ -118,7 +130,14 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		scoreHeaders: [
 			["Score", "Score", NumericSOV((x) => x.scoreData.score)],
 			["Judgements", "Hits", NumericSOV((x) => x.scoreData.score)],
-			["Lamp", "Lamp", NumericSOV((x) => x.scoreData.enumIndexes.lamp)],
+			[
+				"Lamp",
+				"Lamp",
+				NumericSOV(
+					(x) =>
+						x.scoreData.enumIndexes.comboLamp << (3 + x.scoreData.enumIndexes.clearLamp)
+				),
+			],
 		],
 		scoreCoreCells: ({ sc }) => (
 			<>
@@ -128,7 +147,12 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 					colour={GetEnumColour(sc, "grade")}
 				/>
 				<CHUNITHMJudgementCell score={sc} />
-				<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />
+				<CHUNITHMLampCell
+					clearLamp={sc.scoreData.clearLamp}
+					comboLamp={sc.scoreData.comboLamp}
+					clearLampColour={GetEnumColour(sc, "clearLamp")}
+					comboLampColour={GetEnumColour(sc, "comboLamp")}
+				/>
 			</>
 		),
 		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,

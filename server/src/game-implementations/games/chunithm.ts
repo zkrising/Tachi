@@ -71,26 +71,35 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 				pb.scoreData.score,
 				CHUNITHM_GBOUNDARIES[gradeIndex]!.name
 			),
-
-		lamp: (pb) => pb.scoreData.lamp,
+		clearLamp: (pb) => pb.scoreData.clearLamp,
+		comboLamp: (pb) => pb.scoreData.comboLamp,
 		score: (pb) => FmtNum(pb.scoreData.score),
 	},
 	goalOutOfFormatters: {
 		score: GoalOutOfFmtScore,
 	},
 	pbMergeFunctions: [
-		CreatePBMergeFor("largest", "enumIndexes.lamp", "Best Lamp", (base, score) => {
-			base.scoreData.lamp = score.scoreData.lamp;
+		CreatePBMergeFor("largest", "enumIndexes.clearLamp", "Best Lamp", (base, score) => {
+			base.scoreData.clearLamp = score.scoreData.clearLamp;
+		}),
+		CreatePBMergeFor("largest", "enumIndexes.comboLamp", "Best Lamp", (base, score) => {
+			base.scoreData.comboLamp = score.scoreData.comboLamp;
 		}),
 	],
 	defaultMergeRefName: "Best Score",
 	scoreValidators: [
 		(s) => {
-			if (s.scoreData.lamp === "ALL JUSTICE CRITICAL" && s.scoreData.score !== 1_010_000) {
+			if (
+				s.scoreData.comboLamp === "ALL JUSTICE CRITICAL" &&
+				s.scoreData.score !== 1_010_000
+			) {
 				return "An ALL JUSTICE CRITICAL must have a score of 1.01 million.";
 			}
 
-			if (s.scoreData.lamp !== "ALL JUSTICE CRITICAL" && s.scoreData.score === 1_010_000) {
+			if (
+				s.scoreData.comboLamp !== "ALL JUSTICE CRITICAL" &&
+				s.scoreData.score === 1_010_000
+			) {
 				return "A score of 1.01 million must have a lamp of ALL JUSTICE CRITICAL.";
 			}
 		},
@@ -101,19 +110,19 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 			attack ??= 0;
 			miss ??= 0;
 
-			if (s.scoreData.lamp === "ALL JUSTICE CRITICAL") {
+			if (s.scoreData.comboLamp === "ALL JUSTICE CRITICAL") {
 				if (attack + justice + miss > 0) {
 					return "Cannot have an ALL JUSTICE CRITICAL with any non-jcrit judgements.";
 				}
 			}
 
-			if (s.scoreData.lamp === "ALL JUSTICE") {
+			if (s.scoreData.comboLamp === "ALL JUSTICE") {
 				if (attack + miss > 0) {
 					return "Cannot have an ALL JUSTICE if not all hits were justice or better.";
 				}
 			}
 
-			if (s.scoreData.lamp === "FULL COMBO") {
+			if (s.scoreData.comboLamp === "FULL COMBO") {
 				if (miss > 0) {
 					return "Cannot have a FULL COMBO if the score has misses.";
 				}

@@ -9,12 +9,20 @@ export enum IIDX_LAMPS {
 	FULL_COMBO = 7,
 }
 
-export enum CHUNITHM_LAMPS {
+export enum CHUNITHM_CLEAR_LAMPS {
 	FAILED = 0,
 	CLEAR = 1,
-	FULL_COMBO = 2,
-	ALL_JUSTICE = 3,
-	ALL_JUSTICE_CRITICAL = 4,
+	HARD = 2,
+	BRAVE = 3,
+	ABSOLUTE = 4,
+	CATASTROPHY = 5,
+}
+
+export enum CHUNITHM_COMBO_LAMPS {
+	NONE = 0,
+	FULL_COMBO = 1,
+	ALL_JUSTICE = 2,
+	ALL_JUSTICE_CRITICAL = 3,
 }
 
 export enum SDVX_LAMPS {

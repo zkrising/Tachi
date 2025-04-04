@@ -7,6 +7,7 @@ import {
 	USC_DEFAULT_PERFECT,
 	USC_DEFAULT_SLAM,
 } from "lib/constants/usc-ir";
+import { CHUNITHM_COMBO_LAMPS, CHUNITHM_GRADES, CHUNITHM_CLEAR_LAMPS } from "tachi-common";
 import { ApplyNTimes, RFA } from "utils/misc";
 import fs from "fs";
 import path from "path";
@@ -662,11 +663,13 @@ export const TestingChunithmScorePB: PBScoreDocument<"chunithm:Single"> = {
 	isPrimary: true,
 	scoreData: {
 		score: 1010000,
-		lamp: "ALL JUSTICE CRITICAL",
+		clearLamp: "BRAVE",
+		comboLamp: "ALL JUSTICE CRITICAL",
 		grade: "SSS+",
 		enumIndexes: {
-			grade: 13,
-			lamp: 4,
+			grade: CHUNITHM_GRADES.SSS_PLUS,
+			clearLamp: CHUNITHM_CLEAR_LAMPS.BRAVE,
+			comboLamp: CHUNITHM_COMBO_LAMPS.ALL_JUSTICE_CRITICAL,
 		},
 		judgements: {},
 		optional: {

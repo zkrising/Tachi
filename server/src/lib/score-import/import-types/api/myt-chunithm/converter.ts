@@ -15,44 +15,7 @@ import { FindSongOnID } from "utils/queries/songs";
 import type { ConverterFunction } from "../../common/types";
 import type { MytChunithmScore } from "./types";
 import type { DryScore } from "lib/score-import/framework/common/types";
-import type { ScoreData } from "tachi-common";
 import type { EmptyObject } from "utils/types";
-
-function getLamp(
-	comboStatus: number,
-	clearStatus: number
-): ScoreData<"chunithm:Single">["lamp"] | undefined {
-	if (
-		comboStatus === ChunithmComboStatus.CHUNITHM_COMBO_STATUS_UNSPECIFIED ||
-		clearStatus === ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_UNSPECIFIED
-	) {
-		return undefined;
-	}
-
-	if (comboStatus === ChunithmComboStatus.CHUNITHM_COMBO_STATUS_ALL_JUSTICE_CRITICAL) {
-		return "ALL JUSTICE CRITICAL";
-	}
-
-	if (comboStatus === ChunithmComboStatus.CHUNITHM_COMBO_STATUS_ALL_JUSTICE) {
-		return "ALL JUSTICE";
-	}
-
-	if (comboStatus === ChunithmComboStatus.CHUNITHM_COMBO_STATUS_FULL_COMBO) {
-		return "FULL COMBO";
-	}
-
-	if (
-		clearStatus === ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_CLEAR ||
-		clearStatus === ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_HARD ||
-		clearStatus === ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_ABSOLUTE ||
-		clearStatus === ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_ABSOLUTE_PLUS ||
-		clearStatus === ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_CATASTROPHY
-	) {
-		return "CLEAR";
-	}
-
-	return "FAILED";
-}
 
 const DIFFICULTIES = {
 	[ChunithmLevel.CHUNITHM_LEVEL_UNSPECIFIED]: undefined,
@@ -63,6 +26,24 @@ const DIFFICULTIES = {
 	[ChunithmLevel.CHUNITHM_LEVEL_ULTIMA]: "ULTIMA",
 	[ChunithmLevel.CHUNITHM_LEVEL_WORLDS_END]: "WORLD'S END",
 };
+
+const CLEAR_LAMPS = {
+	[ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_UNSPECIFIED]: undefined,
+	[ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_FAILED]: "FAILED",
+	[ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_CLEAR]: "CLEAR",
+	[ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_HARD]: "HARD",
+	[ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_ABSOLUTE]: "BRAVE",
+	[ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_ABSOLUTE_PLUS]: "ABSOLUTE",
+	[ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_CATASTROPHY]: "CATASTROPHY",
+} as const;
+
+const COMBO_LAMPS = {
+	[ChunithmComboStatus.CHUNITHM_COMBO_STATUS_UNSPECIFIED]: undefined,
+	[ChunithmComboStatus.CHUNITHM_COMBO_STATUS_NONE]: "NONE",
+	[ChunithmComboStatus.CHUNITHM_COMBO_STATUS_FULL_COMBO]: "FULL COMBO",
+	[ChunithmComboStatus.CHUNITHM_COMBO_STATUS_ALL_JUSTICE]: "ALL JUSTICE",
+	[ChunithmComboStatus.CHUNITHM_COMBO_STATUS_ALL_JUSTICE_CRITICAL]: "ALL JUSTICE CRITICAL",
+} as const;
 
 const ConvertAPIMytChunithm: ConverterFunction<MytChunithmScore, EmptyObject> = async (
 	data,
@@ -84,12 +65,16 @@ const ConvertAPIMytChunithm: ConverterFunction<MytChunithmScore, EmptyObject> = 
 		throw new SkipScoreFailure("WORLD'S END charts are not supported");
 	}
 
-	const lamp = getLamp(data.info.comboStatus, data.info.clearStatus);
+	const clearLamp = CLEAR_LAMPS[data.info.clearStatus];
 
-	if (lamp === undefined) {
-		throw new InvalidScoreFailure(
-			"Can't process a score with an invalid combo status and/or clear status"
-		);
+	if (clearLamp === undefined) {
+		throw new InvalidScoreFailure("Can't process a score with an invalid clear status");
+	}
+
+	const comboLamp = COMBO_LAMPS[data.info.comboStatus];
+
+	if (comboLamp === undefined) {
+		throw new InvalidScoreFailure("Can't process a score with an invalid combo status");
 	}
 
 	const chart = await FindChartOnInGameID("chunithm", data.info.musicId, "Single", difficulty);
@@ -119,7 +104,8 @@ const ConvertAPIMytChunithm: ConverterFunction<MytChunithmScore, EmptyObject> = 
 		importType,
 		scoreData: {
 			score: data.info.score,
-			lamp,
+			clearLamp,
+			comboLamp,
 			judgements: {
 				jcrit: data.judge.judgeCritical + data.judge.judgeHeaven,
 				justice: data.judge.judgeJustice,

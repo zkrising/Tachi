@@ -62,7 +62,8 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				importType: "api/myt-chunithm",
 				scoreData: {
 					score: 1001715,
-					lamp: "CLEAR",
+					clearLamp: "CLEAR",
+					comboLamp: "NONE",
 					judgements: {
 						jcrit: 1459,
 						justice: 37,
@@ -118,7 +119,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "ALL JUSTICE CRITICAL" } },
+				dryScore: { scoreData: { comboLamp: "ALL JUSTICE CRITICAL", clearLamp: "FAILED" } },
 			}
 		);
 		t.hasStrict(
@@ -129,7 +130,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "ALL JUSTICE" } },
+				dryScore: { scoreData: { comboLamp: "ALL JUSTICE", clearLamp: "FAILED" } },
 			}
 		);
 		t.hasStrict(
@@ -140,7 +141,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "FULL COMBO" } },
+				dryScore: { scoreData: { comboLamp: "FULL COMBO", clearLamp: "FAILED" } },
 			}
 		);
 		t.hasStrict(
@@ -151,7 +152,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "CLEAR" } },
+				dryScore: { scoreData: { comboLamp: "NONE", clearLamp: "HARD" } },
 			}
 		);
 		t.hasStrict(
@@ -162,7 +163,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "CLEAR" } },
+				dryScore: { scoreData: { comboLamp: "NONE", clearLamp: "BRAVE" } },
 			}
 		);
 		t.hasStrict(
@@ -173,7 +174,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "CLEAR" } },
+				dryScore: { scoreData: { comboLamp: "NONE", clearLamp: "ABSOLUTE" } },
 			}
 		);
 		t.hasStrict(
@@ -184,7 +185,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "CLEAR" } },
+				dryScore: { scoreData: { comboLamp: "NONE", clearLamp: "CATASTROPHY" } },
 			}
 		);
 		t.hasStrict(
@@ -195,7 +196,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "CLEAR" } },
+				dryScore: { scoreData: { comboLamp: "NONE", clearLamp: "CLEAR" } },
 			}
 		);
 		t.hasStrict(
@@ -206,7 +207,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { lamp: "FAILED" } },
+				dryScore: { scoreData: { comboLamp: "NONE", clearLamp: "FAILED" } },
 			}
 		);
 		t.end();

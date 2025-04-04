@@ -4,7 +4,7 @@ import { CreatePBMergeFor } from "game-implementations/utils/pb-merge";
 import { ProfileAvgBestN } from "game-implementations/utils/profile-calc";
 import { SessionAvgBest10For } from "game-implementations/utils/session-calc";
 import { ONGEKIRating } from "rg-stats";
-import { ONGEKI_GBOUNDARIES, FmtNum, GetGrade, FmtStars } from "tachi-common";
+import { ONGEKI_GBOUNDARIES, FmtNum, GetGrade, FmtStars, FmtStarsCompact } from "tachi-common";
 import { IsNullish } from "utils/misc";
 import type { GPTServerImplementation } from "game-implementations/types";
 import type { ChartDocument, Game, integer, Playtype } from "tachi-common";
@@ -124,7 +124,7 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	goalCriteriaFormatters: {
 		score: GoalFmtScore,
 		platinumScore: (val: number) => `Get ${val.toLocaleString("en-GB")} Platinum Score on`,
-		platinumStars: (val: number) => `Get ${FmtStars(true)(val)} on`,
+		platinumStars: (val: number) => `Get ${FmtStars(val)} on`,
 	},
 	goalProgressFormatters: {
 		grade: (pb, gradeIndex) =>
@@ -138,12 +138,12 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 		bellLamp: (pb) => pb.scoreData.bellLamp,
 		score: (pb) => FmtNum(pb.scoreData.score),
 		platinumScore: (pb) => FmtNum(pb.scoreData.platinumScore),
-		platinumStars: (pb) => FmtStars(false)(pb.scoreData.platinumStars),
+		platinumStars: (pb) => FmtStarsCompact(pb.scoreData.platinumStars),
 	},
 	goalOutOfFormatters: {
 		score: GoalOutOfFmtScore,
 		platinumScore: GoalOutOfFmtScore,
-		platinumStars: () => "★★★★★(虹)",
+		platinumStars: () => FmtStarsCompact(6),
 	},
 	pbMergeFunctions: [
 		CreatePBMergeFor("largest", "platinumScore", "Best Platinum Score", (base, score) => {

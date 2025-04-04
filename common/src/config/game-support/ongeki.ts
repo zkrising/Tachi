@@ -77,7 +77,7 @@ export const ONGEKI_SINGLE_CONF = {
 		platinumStars: {
 			type: "INTEGER",
 			validate: p.isBetween(0, 6),
-			formatter: FmtStars(true),
+			formatter: FmtStars,
 			description: "The number of platinum stars of this score",
 		},
 	},

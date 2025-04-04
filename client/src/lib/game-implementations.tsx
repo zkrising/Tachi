@@ -105,7 +105,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				"SSS+": COLOUR_SET.white,
 			},
 			clearLamp: {
-				FAILED: COLOUR_SET.red,
+				FAILED: COLOUR_SET.vibrantRed,
 				CLEAR: COLOUR_SET.paleGreen,
 				HARD: COLOUR_SET.vibrantPurple,
 				BRAVE: COLOUR_SET.vibrantPurple,

@@ -333,7 +333,7 @@ const migration: Migration = {
 			}
 		);
 
-		logger.info("Updating folder stat showcases...");
+		logger.info("Updating stat showcases...");
 		await db["game-settings"].bulkWrite([
 			...(["FULL COMBO", "ALL JUSTICE", "ALL JUSTICE CRITICAL"] as const).map((lamp) => ({
 				updateMany: {
@@ -371,29 +371,26 @@ const migration: Migration = {
 					],
 				},
 			})),
-		]);
-
-		// Unfortunately we don't have enough data to accurately migrate
-		// over chart lamp showcases, so we'll automatically migrate everyone
-		// over to comboLamp, which is what people usually showcase.
-		logger.info("Updating chart stat showcases...");
-		await db["game-settings"].update(
-			{ game: "chunithm", playtype: "Single" },
+			// Unfortunately we don't have enough data to accurately migrate
+			// over chart lamp showcases, so we'll automatically migrate everyone
+			// over to comboLamp, which is what people usually showcase.
 			{
-				$set: {
-					"preferences.stats.$[e].metric": "comboLamp",
+				updateMany: {
+					filter: { game: "chunithm", playtype: "Single" } as const,
+					update: {
+						$set: {
+							"preferences.stats.$[e].metric": "comboLamp",
+						},
+					},
+					arrayFilters: [
+						{
+							"e.mode": "chart",
+							"e.metric": "lamp",
+						},
+					],
 				},
 			},
-			{
-				arrayFilters: [
-					{
-						"e.mode": "chart",
-						"e.metric": "lamp",
-					},
-				],
-				multi: true,
-			}
-		);
+		]);
 
 		logger.info("Updating goals...");
 		await EfficientDBIterate(

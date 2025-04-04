@@ -114,6 +114,7 @@ const migration: Migration = {
 				};
 
 				// This score has already been migrated.
+				// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 				if (newScore.scoreData.clearLamp && newScore.scoreData.comboLamp) {
 					return;
 				}

@@ -4,16 +4,10 @@ import CreateLogCtx from "lib/logger/logger";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
 import UpdateScore from "lib/score-mutation/update-score";
 import { CreateGoalID } from "lib/targets/goals";
-import { GetGPTString, PBScoreDocument } from "tachi-common";
+import { GetGPTString } from "tachi-common";
 import { UpdateAllPBs } from "utils/calculations/recalc-scores";
 import { EfficientDBIterate } from "utils/efficient-db-iterate";
-import type {
-	ScoreDocument,
-	GoalDocument,
-	integer,
-	GoalSubscriptionDocument,
-	UGPTSettingsDocument,
-} from "tachi-common";
+import type { ScoreDocument, GoalDocument, integer, GoalSubscriptionDocument } from "tachi-common";
 import type { Migration } from "utils/types";
 
 const logger = CreateLogCtx(__filename);

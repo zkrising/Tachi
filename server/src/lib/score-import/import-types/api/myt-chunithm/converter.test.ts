@@ -222,7 +222,22 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 					},
 				}),
 			{
-				message: /Can't process a score with an invalid combo status and\/or clear status/u,
+				message: /Can't process a score with an invalid clear status/u,
+			}
+		);
+		t.end();
+	});
+
+	t.test("Should reject unspecified combo status", (t) => {
+		t.rejects(
+			() =>
+				convert({
+					info: {
+						comboStatus: ChunithmComboStatus.CHUNITHM_COMBO_STATUS_UNSPECIFIED,
+					},
+				}),
+			{
+				message: /Can't process a score with an invalid combo status/u,
 			}
 		);
 		t.end();

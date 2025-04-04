@@ -4,7 +4,6 @@ import CreateLogCtx from "lib/logger/logger";
 import { ProcessPBs } from "lib/score-import/framework/pb/process-pbs";
 import { CreateFullScoreData } from "lib/score-import/framework/score-importing/derivers";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
-import UpdateScore from "lib/score-mutation/update-score";
 import { CreateGoalID } from "lib/targets/goals";
 import { GetGPTString } from "tachi-common";
 import { EfficientDBIterate } from "utils/efficient-db-iterate";
@@ -156,11 +155,15 @@ function MoveLamps(
 		clearLamp = "FAILED";
 	}
 
-	return {
+	const newScoreData = {
 		...scoreData,
 		comboLamp,
 		clearLamp,
 	};
+
+	delete newScoreData.lamp;
+
+	return newScoreData;
 }
 
 const migration: Migration = {
@@ -172,7 +175,7 @@ const migration: Migration = {
 		await EfficientDBIterate(
 			// @ts-expect-error filter assures we're getting only chuni scores
 			db.scores,
-			async (score: ScoreDocument<"chunithm:Single"> & { scoreData: { lamp?: string } }) => {
+			(score: ScoreDocument<"chunithm:Single"> & { scoreData: { lamp?: string } }) => {
 				// @ts-expect-error it does exist sometimes
 				delete score._id;
 
@@ -180,7 +183,6 @@ const migration: Migration = {
 					...score,
 					scoreData: MoveLamps(score.scoreData),
 				};
-
 				const newScoreID = CreateScoreID(
 					gptString,
 					newScore.userID,
@@ -188,22 +190,47 @@ const migration: Migration = {
 					newScore.chartID
 				);
 
-				await monkDB.get("temp-update-map").insert({
-					old: score.scoreID,
-					new: newScoreID,
-				});
+				// To make this faster, we update only the relevant parts of the scores instead
+				// of having it go through the UpdateScore process, which requires querying
+				// a chart from the database every UpdateScore call.
+				//
+				// We skip calculating calculatedData since that is outside the scope
+				// of this lamp move; no CHUNITHM calculated metrics depend on lamp.
+				newScore.scoreID = newScoreID;
+				newScore.scoreData = CreateFullScoreData(
+					gptString,
+					newScore.scoreData,
+					// @ts-expect-error This is intentional, CHUNITHM derivers do not
+					// depend on the chart.
+					null,
+					logger
+				);
 
-				await UpdateScore(
-					score,
+				return {
+					oldScoreID: score.scoreID,
 					newScore,
-					undefined,
-					true, // skipUpdatingPBs because we'll do it after
-					// all scores are guaranteeably correct.
-					true // dangerously skip updating refs
-					// as we're gonna do it ourselves
+				};
+			},
+			async (changes) => {
+				await db.scores.bulkWrite(
+					changes.map((c) => ({
+						updateOne: {
+							filter: {
+								scoreID: c.oldScoreID,
+							},
+							update: {
+								$set: c.newScore,
+							},
+						},
+					}))
+				);
+				await monkDB.get("temp-update-map").insert(
+					changes.map((c) => ({
+						old: c.oldScoreID,
+						new: c.newScore.scoreID,
+					}))
 				);
 			},
-			(_scores) => Promise.resolve(),
 			{
 				game: "chunithm",
 				playtype: "Single",
@@ -231,7 +258,7 @@ const migration: Migration = {
 				continue;
 			}
 
-			logger.verbose(`PBing #${userID}'s scores.`);
+			logger.info(`PBing #${userID}'s scores.`);
 
 			await ProcessPBs("chunithm", "Single", userID, new Set(chartIDs), logger);
 		}
@@ -246,7 +273,7 @@ const migration: Migration = {
 		await EfficientDBIterate(
 			// @ts-expect-error this works because of the filter restricting game and playtype
 			db["score-blacklist"],
-			async (blacklistedScore: {
+			(blacklistedScore: {
 				scoreID: string;
 				userID: integer;
 				score: ScoreDocument<"chunithm:Single">;
@@ -255,20 +282,6 @@ const migration: Migration = {
 					...blacklistedScore.score,
 					scoreData: MoveLamps(blacklistedScore.score.scoreData),
 				};
-				const chartID = newScore.chartID;
-				const chart = await db.anyCharts.chunithm.findOne({ chartID });
-
-				if (!chart) {
-					logger.warning(
-						`Blacklisted score contains a nonexistent chart ID ${chartID}. Ignoring.`
-					);
-					return {
-						oldScoreID: blacklistedScore.scoreID,
-						newScoreID: blacklistedScore.scoreID,
-						newScore: blacklistedScore.score,
-					};
-				}
-
 				const newScoreID = CreateScoreID(
 					gptString,
 					blacklistedScore.userID,
@@ -280,8 +293,9 @@ const migration: Migration = {
 				newScore.scoreData = CreateFullScoreData(
 					gptString,
 					newScore.scoreData,
-					// @ts-expect-error idk why this happens
-					chart,
+					// @ts-expect-error This is intentional. CHUNITHM derivers
+					// do not need a chart.
+					null,
 					logger
 				);
 
@@ -397,7 +411,7 @@ const migration: Migration = {
 		logger.info("Updating goals...");
 		await EfficientDBIterate(
 			db.goals,
-			async (goal: GoalDocument) => {
+			(goal: GoalDocument) => {
 				const oldGoalID = goal.goalID;
 
 				if (goal.criteria.value <= OLD_LAMP_INDEXES.CLEAR) {
@@ -418,26 +432,39 @@ const migration: Migration = {
 					goal.playtype
 				);
 
-				await db.goals.update(
-					{ goalID: oldGoalID },
-					{
-						$set: {
-							goalID: newGoalID,
-							criteria: goal.criteria,
-						},
-					}
-				);
-
 				// @ts-expect-error it exists
 				delete goal._id;
 
-				await monkDB.get("temp-update-goal-map").insert({
-					old: oldGoalID,
-					new: newGoalID,
+				return {
+					oldGoalID,
+					newGoalID,
 					goal,
-				});
+				};
 			},
-			(_goals) => Promise.resolve(),
+			async (changes) => {
+				await db.goals.bulkWrite(
+					changes.map((c) => ({
+						updateOne: {
+							filter: {
+								goalID: c.oldGoalID,
+							},
+							update: {
+								$set: {
+									goalID: c.newGoalID,
+									criteria: c.goal.criteria,
+								},
+							},
+						},
+					}))
+				);
+				await monkDB.get("temp-update-goal-map").insert(
+					changes.map((c) => ({
+						old: c.oldGoalID,
+						new: c.newGoalID,
+						goal: c.goal,
+					}))
+				);
+			},
 			{ game: "chunithm", "criteria.key": "lamp" }
 		);
 

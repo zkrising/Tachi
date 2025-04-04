@@ -102,6 +102,14 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 			) {
 				return "A score of 1.01 million must have a lamp of ALL JUSTICE CRITICAL.";
 			}
+
+			if (s.scoreData.comboLamp === "ALL JUSTICE" && s.scoreData.score < 1_000_000) {
+				return `A score of ${s.scoreData.score} cannot be an ALL JUSTICE.`;
+			}
+
+			if (s.scoreData.comboLamp === "FULL COMBO" && s.scoreData.score < 500_000) {
+				return `A score of ${s.scoreData.score} cannot be a FULL COMBO.`;
+			}
 		},
 		(s) => {
 			let { attack, justice, miss } = s.scoreData.judgements;

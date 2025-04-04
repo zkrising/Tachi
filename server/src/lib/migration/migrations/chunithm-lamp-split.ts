@@ -2,12 +2,20 @@
 import db, { monkDB } from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { ProcessPBs } from "lib/score-import/framework/pb/process-pbs";
+import { CreateFullScoreData } from "lib/score-import/framework/score-importing/derivers";
 import { CreateScoreID } from "lib/score-import/framework/score-importing/score-id";
 import UpdateScore from "lib/score-mutation/update-score";
 import { CreateGoalID } from "lib/targets/goals";
 import { GetGPTString } from "tachi-common";
 import { EfficientDBIterate } from "utils/efficient-db-iterate";
-import type { ScoreDocument, GoalDocument, integer, GoalSubscriptionDocument } from "tachi-common";
+import type {
+	ScoreDocument,
+	GoalDocument,
+	integer,
+	GoalSubscriptionDocument,
+	ScoreData,
+} from "tachi-common";
+import type { GetEnumValue } from "tachi-common/types/metrics";
 import type { Migration } from "utils/types";
 
 const logger = CreateLogCtx(__filename);
@@ -116,10 +124,51 @@ async function FastUpdateImports() {
 	);
 }
 
+function MoveLamps(
+	scoreData: ScoreData<"chunithm:Single"> & { lamp?: string }
+): ScoreData<"chunithm:Single"> {
+	// This score has already been migrated.
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+	if (scoreData.clearLamp && scoreData.comboLamp && !scoreData.lamp) {
+		return scoreData;
+	}
+
+	const oldLamp = scoreData.lamp;
+
+	let comboLamp: GetEnumValue<"chunithm:Single", "comboLamp">;
+	let clearLamp: GetEnumValue<"chunithm:Single", "clearLamp">;
+
+	// If the old score had a combo lamp, we assume that the score was at least a clear.
+	// While it is theoretically possible for there to be a failed all justice, the chance
+	// is small.
+	if (oldLamp === "FAILED" || oldLamp === "CLEAR") {
+		comboLamp = "NONE";
+		clearLamp = oldLamp;
+	} else if (
+		oldLamp === "FULL COMBO" ||
+		oldLamp === "ALL JUSTICE" ||
+		oldLamp === "ALL JUSTICE CRITICAL"
+	) {
+		comboLamp = oldLamp;
+		clearLamp = "CLEAR";
+	} else {
+		comboLamp = "NONE";
+		clearLamp = "FAILED";
+	}
+
+	return {
+		...scoreData,
+		comboLamp,
+		clearLamp,
+	};
+}
+
 const migration: Migration = {
 	id: "chunithm-lamp-split",
 	up: async () => {
 		logger.info("Migrating CHUNITHM scores to new lamps...");
+		const gptString = GetGPTString("chunithm", "Single") as "chunithm:Single";
+
 		await EfficientDBIterate(
 			// @ts-expect-error filter assures we're getting only chuni scores
 			db.scores,
@@ -127,40 +176,13 @@ const migration: Migration = {
 				// @ts-expect-error it does exist sometimes
 				delete score._id;
 
-				const oldLamp = score.scoreData.lamp;
 				const newScore = {
 					...score,
-					scoreData: {
-						...score.scoreData,
-					},
+					scoreData: MoveLamps(score.scoreData),
 				};
 
-				// This score has already been migrated.
-				// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-				if (newScore.scoreData.clearLamp && newScore.scoreData.comboLamp) {
-					return;
-				}
-
-				// If the old score had a combo lamp, we assume that the score was at least a clear.
-				// While it is theoretically possible for there to be a failed all justice, the chance
-				// is small.
-				if (oldLamp === "FAILED" || oldLamp === "CLEAR") {
-					newScore.scoreData.clearLamp = oldLamp;
-					newScore.scoreData.comboLamp = "NONE";
-				} else if (
-					oldLamp === "FULL COMBO" ||
-					oldLamp === "ALL JUSTICE" ||
-					// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-					oldLamp === "ALL JUSTICE CRITICAL"
-				) {
-					newScore.scoreData.clearLamp = "CLEAR";
-					newScore.scoreData.comboLamp = oldLamp;
-				}
-
-				delete newScore.scoreData.lamp;
-
 				const newScoreID = CreateScoreID(
-					GetGPTString(score.game, score.playtype),
+					gptString,
 					newScore.userID,
 					newScore,
 					newScore.chartID
@@ -219,6 +241,83 @@ const migration: Migration = {
 		await FastUpdateImports();
 
 		await monkDB.get("temp-update-map").drop();
+
+		logger.info("Updating blacklisted scores...");
+		await EfficientDBIterate(
+			// @ts-expect-error this works because of the filter restricting game and playtype
+			db["score-blacklist"],
+			async (blacklistedScore: {
+				scoreID: string;
+				userID: integer;
+				score: ScoreDocument<"chunithm:Single">;
+			}) => {
+				const newScore = {
+					...blacklistedScore.score,
+					scoreData: MoveLamps(blacklistedScore.score.scoreData),
+				};
+				const chartID = newScore.chartID;
+				const chart = await db.anyCharts.chunithm.findOne({ chartID });
+
+				if (!chart) {
+					logger.warning(
+						`Blacklisted score contains a nonexistent chart ID ${chartID}. Ignoring.`
+					);
+					return {
+						oldScoreID: blacklistedScore.scoreID,
+						newScoreID: blacklistedScore.scoreID,
+						newScore: blacklistedScore.score,
+					};
+				}
+
+				const newScoreID = CreateScoreID(
+					gptString,
+					blacklistedScore.userID,
+					newScore,
+					newScore.chartID
+				);
+
+				newScore.scoreID = newScoreID;
+				newScore.scoreData = CreateFullScoreData(
+					gptString,
+					newScore.scoreData,
+					// @ts-expect-error idk why this happens
+					chart,
+					logger
+				);
+
+				return {
+					oldScoreID: blacklistedScore.scoreID,
+					newScoreID,
+					newScore,
+				};
+			},
+			async (changes) => {
+				await db["score-blacklist"].bulkWrite(
+					changes
+						.filter((c) => c.oldScoreID !== c.newScoreID)
+						.map((c) => ({
+							updateOne: {
+								filter: {
+									scoreID: c.oldScoreID,
+								},
+								update: {
+									$set: {
+										scoreID: c.newScoreID,
+										score: c.newScore,
+									},
+								},
+							},
+						}))
+				);
+			},
+			{
+				"score.game": "chunithm",
+				"score.playtype": "Single",
+				"score.scoreData.lamp": { $exists: true },
+				"score.scoreData.comboLamp": { $exists: false },
+				"score.scoreData.clearLamp": { $exists: false },
+			}
+		);
 
 		logger.info("Updating folder stat showcases...");
 		for (const lamp of ["FULL COMBO", "ALL JUSTICE", "ALL JUSTICE CRITICAL"] as const) {

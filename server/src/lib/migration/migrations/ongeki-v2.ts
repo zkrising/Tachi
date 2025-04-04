@@ -1,8 +1,8 @@
 import db from "external/mongo/db";
 import { rootLogger } from "lib/logger/logger";
 import UpdateScore from "lib/score-mutation/update-score";
-import { EfficientDBIterate } from "utils/efficient-db-iterate";
 import { ONGEKI_NOTE_LAMPS, type ScoreDocument } from "tachi-common";
+import { EfficientDBIterate } from "utils/efficient-db-iterate";
 import type { Migration } from "utils/types";
 
 const migration: Migration = {
@@ -24,7 +24,8 @@ const migration: Migration = {
 
 						if (newScore.scoreData.score === 1010000) {
 							newScore.scoreData.noteLamp = "ALL BREAK+";
-							newScore.scoreData.enumIndexes.noteLamp = ONGEKI_NOTE_LAMPS.ALL_BREAK_PLUS;
+							newScore.scoreData.enumIndexes.noteLamp =
+								ONGEKI_NOTE_LAMPS.ALL_BREAK_PLUS;
 						}
 
 						if ("break" in newScore.scoreData.judgements) {

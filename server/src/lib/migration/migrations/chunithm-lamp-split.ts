@@ -41,26 +41,37 @@ const NEW_COMBO_LAMP_INDEXES = {
 const NEW_COMBO_LAMPS = ["NONE", "FULL COMBO", "ALL JUSTICE", "ALL JUSTICE CRITICAL"] as const;
 
 async function FastUpdateSessions() {
-	const sessions = await db.sessions.find({ game: "chunithm" });
+	const sessions = await db.sessions.find({ game: "chunithm", playtype: "Single" });
 	const newScoreIDRefs: Array<{ old: string; new: string }> = await monkDB
 		.get("temp-update-map")
 		.find({});
 	const lookup = new Map(newScoreIDRefs.map((r) => [r.old, r.new]));
+	const newScoreIDs = new Set(newScoreIDRefs.map((r) => r.new));
 
 	await Promise.allSettled(
 		sessions.map(async (session) => {
-			const newScoreIDs: Array<string> = [];
+			const updatedScoreIDs: Array<string> = [];
 
 			for (const oldScoreID of session.scoreIDs) {
 				const newScoreID = lookup.get(oldScoreID);
 
-				newScoreIDs.push(newScoreID ?? oldScoreID);
+				// If the migration died here before, we might run into sessions where the scoreIDs
+				// are already the migrated ones. Therefore, we only emit errors for IDs that are
+				// actually non-existent.
+				if (!newScoreID && !newScoreIDs.has(oldScoreID)) {
+					logger.error(
+						`[session ${session.sessionID}] No such score ${oldScoreID} exists in lookup, nor is it a new scoreID. Ignoring this score.`
+					);
+					continue;
+				}
+
+				updatedScoreIDs.push(newScoreID ?? oldScoreID);
 			}
 
 			await db.sessions.update(
 				{ sessionID: session.sessionID },
 				{
-					$set: { scoreIDs: newScoreIDs },
+					$set: { scoreIDs: updatedScoreIDs },
 				}
 			);
 		})
@@ -68,26 +79,37 @@ async function FastUpdateSessions() {
 }
 
 async function FastUpdateImports() {
-	const sessions = await db.imports.find({ game: "chunithm" });
+	const imports = await db.imports.find({ game: "chunithm", playtypes: "Single" });
 	const newScoreIDRefs: Array<{ old: string; new: string }> = await monkDB
 		.get("temp-update-map")
 		.find({});
 	const lookup = new Map(newScoreIDRefs.map((r) => [r.old, r.new]));
+	const newScoreIDs = new Set(newScoreIDRefs.map((r) => r.new));
 
 	await Promise.allSettled(
-		sessions.map(async (importDoc) => {
-			const newScoreIDs: Array<string> = [];
+		imports.map(async (importDoc) => {
+			const updatedScoreIDs: Array<string> = [];
 
 			for (const oldScoreID of importDoc.scoreIDs) {
 				const newScoreID = lookup.get(oldScoreID);
 
-				newScoreIDs.push(newScoreID ?? oldScoreID);
+				// If the migration died here before, we might run into sessions where the scoreIDs
+				// are already the migrated ones. Therefore, we only emit errors for IDs that are
+				// actually non-existent.
+				if (!newScoreID && !newScoreIDs.has(oldScoreID)) {
+					logger.error(
+						`[import ${importDoc.importID}] No such score ${oldScoreID} exists in lookup, nor is it a new scoreID. Ignoring this score.`
+					);
+					continue;
+				}
+
+				updatedScoreIDs.push(newScoreID ?? oldScoreID);
 			}
 
 			await db.imports.update(
 				{ importID: importDoc.importID },
 				{
-					$set: { scoreIDs: newScoreIDs },
+					$set: { scoreIDs: updatedScoreIDs },
 				}
 			);
 		})

@@ -66,7 +66,7 @@ async function FastUpdateSessions() {
 				// are already the migrated ones. Therefore, we only emit errors for IDs that are
 				// actually non-existent.
 				if (!newScoreID && !newScoreIDs.has(oldScoreID)) {
-					logger.error(
+					logger.warning(
 						`[session ${session.sessionID}] No such score ${oldScoreID} exists in lookup, nor is it a new scoreID. Ignoring this score.`
 					);
 					continue;
@@ -104,7 +104,7 @@ async function FastUpdateImports() {
 				// are already the migrated ones. Therefore, we only emit errors for IDs that are
 				// actually non-existent.
 				if (!newScoreID && !newScoreIDs.has(oldScoreID)) {
-					logger.error(
+					logger.warning(
 						`[import ${importDoc.importID}] No such score ${oldScoreID} exists in lookup, nor is it a new scoreID. Ignoring this score.`
 					);
 					continue;
@@ -327,7 +327,6 @@ const migration: Migration = {
 			{
 				"score.game": "chunithm",
 				"score.playtype": "Single",
-				"score.scoreData.lamp": { $exists: true },
 				"score.scoreData.comboLamp": { $exists: false },
 				"score.scoreData.clearLamp": { $exists: false },
 			}
@@ -449,7 +448,7 @@ const migration: Migration = {
 					}))
 				);
 			},
-			{ game: "chunithm", "criteria.key": "lamp" }
+			{ game: "chunithm", playtype: "Single", "criteria.key": "lamp" }
 		);
 
 		logger.info("Updating goal subscriptions...");
@@ -463,20 +462,44 @@ const migration: Migration = {
 			(subscription: GoalSubscriptionDocument) => {
 				// We're 100% sure the goal ID exists in updatedGoals due to the query.
 				// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-				const goal = updatedGoalIDMap.get(subscription.goalID)!.goal;
+				const { goal, new: newGoalID } = updatedGoalIDMap.get(subscription.goalID)!;
 
 				if (goal.criteria.key !== "clearLamp" && goal.criteria.key !== "comboLamp") {
 					throw new Error(`Received invalid criteria key ${goal.criteria.key}`);
 				}
 
+				// We don't update goal progress for goals that are "absolute" | "proportion"
+				// since the progress is the number of items already done, and not the lamp.
+				// Simply migrate them over to the new goal ID.
+				if (goal.criteria.mode !== "single") {
+					return {
+						userID: subscription.userID,
+						goalID: subscription.goalID,
+						newGoalID,
+						progress: subscription.progress,
+						progressHuman: subscription.progressHuman,
+						outOf: subscription.outOf,
+						outOfHuman: subscription.outOfHuman,
+					};
+				}
+
 				let newProgress: integer | null;
-				let newProgressHuman: string;
+				let newProgressHuman: string | undefined;
 				const newOutOfHuman =
 					goal.criteria.key === "clearLamp"
-						? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-						  NEW_CLEAR_LAMPS[goal.criteria.value]!
-						: // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-						  NEW_COMBO_LAMPS[goal.criteria.value]!;
+						? NEW_CLEAR_LAMPS[goal.criteria.value]
+						: NEW_COMBO_LAMPS[goal.criteria.value];
+
+				if (!newOutOfHuman) {
+					logger.severe(`Received invalid criteria value for a goal of mode "single".`, {
+						mode: goal.criteria.mode,
+						key: goal.criteria.key,
+						value: goal.criteria.value,
+					});
+					throw new Error(
+						`Received invalid progress for a goal of mode "single". criteria_mode=${goal.criteria.mode} criteria_key=${goal.criteria.key} criteria_value=${goal.criteria.value}`
+					);
+				}
 
 				if (subscription.progress === null) {
 					newProgress = null;
@@ -484,8 +507,7 @@ const migration: Migration = {
 				} else if (goal.criteria.key === "clearLamp") {
 					// Clamp back to CLEAR if the user has made better progress (e.g. FULL COMBO).
 					newProgress = Math.min(NEW_CLEAR_LAMP_INDEXES.CLEAR, subscription.progress);
-					// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-					newProgressHuman = NEW_CLEAR_LAMPS[newProgress]!;
+					newProgressHuman = NEW_CLEAR_LAMPS[newProgress];
 				} else {
 					// Clamp back to NONE if the user has made worse progress (e.g. FAILED).
 					// Otherwise, the -1 maps the old progress onto the new progress nicely:
@@ -493,13 +515,27 @@ const migration: Migration = {
 					// FULL COMBO: 2 -> FULL COMBO: 1
 					// ...
 					newProgress = Math.max(NEW_COMBO_LAMP_INDEXES.NONE, subscription.progress - 1);
-					// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-					newProgressHuman = NEW_COMBO_LAMPS[newProgress]!;
+					newProgressHuman = NEW_COMBO_LAMPS[newProgress];
+				}
+
+				if (!newProgressHuman) {
+					logger.severe(`Received invalid progress for a goal of mode "single".`, {
+						criteria: {
+							mode: goal.criteria.mode,
+							key: goal.criteria.key,
+						},
+						progress: subscription.progress,
+						newProgress,
+					});
+					throw new Error(
+						`Received invalid progress for a goal of mode "single". criteria_key=${goal.criteria.key} criteria_mode=${goal.criteria.mode} progress=${subscription.progress} newProgress=${newProgress}`
+					);
 				}
 
 				return {
 					userID: subscription.userID,
 					goalID: subscription.goalID,
+					newGoalID,
 					progress: newProgress,
 					progressHuman: newProgressHuman,
 					outOf: goal.criteria.value,
@@ -516,8 +552,7 @@ const migration: Migration = {
 							},
 							update: {
 								$set: {
-									// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-									goalID: updatedGoalIDMap.get(u.goalID)!.new,
+									goalID: u.newGoalID,
 									progress: u.progress,
 									progressHuman: u.progressHuman,
 									outOf: u.outOf,

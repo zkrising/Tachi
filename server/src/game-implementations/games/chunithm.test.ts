@@ -196,7 +196,7 @@ t.test("CHUNITHM Implementation", (t) => {
 			await db.scores.insert(mockScore);
 			await db.scores.insert(
 				dmf(mockScore, {
-					scoreID: "bestLamp",
+					scoreID: "bestComboLamp",
 					scoreData: {
 						score: 0,
 						comboLamp: "FULL COMBO",
@@ -204,13 +204,31 @@ t.test("CHUNITHM Implementation", (t) => {
 					},
 				})
 			);
+			await db.scores.insert(
+				dmf(mockScore, {
+					scoreID: "bestClearLamp",
+					scoreData: {
+						score: 0,
+						clearLamp: "ABSOLUTE",
+						enumIndexes: { clearLamp: CHUNITHM_CLEAR_LAMPS.ABSOLUTE },
+					},
+				})
+			);
 
 			t.hasStrict(await CreatePBDoc("chunithm:Single", 1, CHUNITHMBBKKChart, logger), {
-				composedFrom: [{ name: "Best Score" }, { name: "Best Lamp", scoreID: "bestLamp" }],
+				composedFrom: [
+					{ name: "Best Score" },
+					{ name: "Best Combo Lamp", scoreID: "bestComboLamp" },
+					{ name: "Best Clear Lamp", scoreID: "bestClearLamp" },
+				],
 				scoreData: {
 					score: mockScore.scoreData.score,
+					clearLamp: "ABSOLUTE",
 					comboLamp: "FULL COMBO",
-					enumIndexes: { comboLamp: CHUNITHM_COMBO_LAMPS.FULL_COMBO },
+					enumIndexes: {
+						clearLamp: CHUNITHM_CLEAR_LAMPS.ABSOLUTE,
+						comboLamp: CHUNITHM_COMBO_LAMPS.FULL_COMBO,
+					},
 				},
 			});
 

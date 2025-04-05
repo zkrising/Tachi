@@ -79,10 +79,10 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 		score: GoalOutOfFmtScore,
 	},
 	pbMergeFunctions: [
-		CreatePBMergeFor("largest", "enumIndexes.clearLamp", "Best Lamp", (base, score) => {
+		CreatePBMergeFor("largest", "enumIndexes.clearLamp", "Best Clear Lamp", (base, score) => {
 			base.scoreData.clearLamp = score.scoreData.clearLamp;
 		}),
-		CreatePBMergeFor("largest", "enumIndexes.comboLamp", "Best Lamp", (base, score) => {
+		CreatePBMergeFor("largest", "enumIndexes.comboLamp", "Best Combo Lamp", (base, score) => {
 			base.scoreData.comboLamp = score.scoreData.comboLamp;
 		}),
 	],

@@ -4669,7 +4669,7 @@
 		"title": "maimai DX (BUDDiES PLUS Omnimix)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for maimai DX in BUDDiES PLUS.",
 		"folders": [
 			"Fef2e84ea3c606f9276e059649901ba85b6b142a974e7de2f9d6ba59282843630",
@@ -4839,7 +4839,7 @@
 		"title": "maimai DX (PRiSM Omnimix)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for maimai DX in PRiSM.",
 		"folders": [
 			"F1a87377aebbd3d97f370b63899d439d5d2af657c16f8ab146b29b48fa9b03cca",

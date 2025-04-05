@@ -4663,7 +4663,7 @@
 			"F5c46879cba07b51173cb31ef153b894344c9e25835b7f8b72885b871f575f47b"
 		],
 		"game": "maimaidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "maimaidx-Single-buddiesplus-omni-levels",
 		"title": "maimai DX (BUDDiES PLUS Omnimix)"
@@ -4697,7 +4697,7 @@
 			"Fd85a7efb82e9080d09ec23e458cc708bb4983e779168d51af7cea02f96ec1ef4"
 		],
 		"game": "maimaidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "maimaidx-Single-buddiesplus-levels",
 		"title": "maimai DX (BUDDiES PLUS)"

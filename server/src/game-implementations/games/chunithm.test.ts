@@ -218,8 +218,8 @@ t.test("CHUNITHM Implementation", (t) => {
 			t.hasStrict(await CreatePBDoc("chunithm:Single", 1, CHUNITHMBBKKChart, logger), {
 				composedFrom: [
 					{ name: "Best Score" },
-					{ name: "Best Combo Lamp", scoreID: "bestComboLamp" },
 					{ name: "Best Clear Lamp", scoreID: "bestClearLamp" },
+					{ name: "Best Combo Lamp", scoreID: "bestComboLamp" },
 				],
 				scoreData: {
 					score: mockScore.scoreData.score,

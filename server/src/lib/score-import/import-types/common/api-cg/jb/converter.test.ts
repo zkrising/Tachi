@@ -21,7 +21,7 @@ function mkInput(modifant: Partial<CGJubeatScore> = {}) {
 		goodCount: 25,
 		poorCount: 0,
 		missCount: 0,
-		musicRate: 950,
+		musicRate: 952,
 		clearFlag: 0, // unknown, unused
 	};
 
@@ -48,7 +48,7 @@ function mkOutput(modifant: any = {}): DryScore<"jubeat:Single"> {
 				good: 25,
 				poor: 0,
 			},
-			musicRate: 95.0,
+			musicRate: 95.2,
 			optional: {},
 		},
 		scoreMeta: {},

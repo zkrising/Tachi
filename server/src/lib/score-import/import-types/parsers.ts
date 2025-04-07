@@ -15,9 +15,11 @@ import {
 	ParseCGGanMuseca,
 	ParseCGGanPopn,
 	ParseCGGanSDVX,
+	ParseCGGanJubeat,
 	ParseCGNagMuseca,
 	ParseCGNagPopn,
 	ParseCGNagSDVX,
+	ParseCGNagJubeat,
 } from "./common/api-cg/parsers";
 import ParseBatchManual from "./file/batch-manual/parser";
 import ParseEamusementIIDXCSV from "./file/eamusement-iidx-csv/parser";
@@ -61,12 +63,12 @@ export const Parsers = {
 	"api/cg-nag-sdvx": ParseCGNagSDVX,
 	"api/cg-nag-popn": ParseCGNagPopn,
 	"api/cg-nag-museca": ParseCGNagMuseca,
-	"api/cg-nag-jubeat": ParseCGDevJubeat,
+	"api/cg-nag-jubeat": ParseCGNagJubeat,
 
 	"api/cg-gan-sdvx": ParseCGGanSDVX,
 	"api/cg-gan-popn": ParseCGGanPopn,
 	"api/cg-gan-museca": ParseCGGanMuseca,
-	"api/cg-gan-jubeat": ParseCGDevJubeat,
+	"api/cg-gan-jubeat": ParseCGGanJubeat,
 
 	"api/myt-chunithm": ParseMytChunithm,
 	"api/myt-maimaidx": ParseMytMaimaiDx,

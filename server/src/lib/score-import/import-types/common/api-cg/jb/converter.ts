@@ -122,7 +122,7 @@ function ConvertVersion(ver: number): Versions["jubeat:Single"] {
 }
 
 function ConvertMusicRate(rate: number): number {
-	return Math.round(rate / 10);
+	return rate / 10;
 }
 
 function GuessLamp(judgments: Record<Judgements["jubeat:Single"], integer | null>, score: number) {

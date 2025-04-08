@@ -50,7 +50,7 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	scoreCalcs: {
 		rating: (scoreData, chart) =>
 			isUnranked(chart) ? 0 : ONGEKIRating.calculate(scoreData.score, chart.levelNum),
-		ratingV2: (scoreData, chart) =>
+		scoreRating: (scoreData, chart) =>
 			isUnranked(chart)
 				? 0
 				: ONGEKIRating.calculateRefresh(
@@ -69,14 +69,14 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	},
 	sessionCalcs: {
 		naiveRating: SessionAvgBest10For("rating"),
-		ratingV2: SessionAvgBest10For("ratingV2"),
+		naiveScoreRating: SessionAvgBest10For("scoreRating"),
 		starRating: SessionAvgBest10For("starRating"),
 	},
 	profileCalcs: {
 		naiveRating: ProfileAvgBestN("rating", 45, false, 100),
 		naiveRatingRefresh: async (game: Game, playtype: Playtype, userID: integer) => {
 			const [v2, star] = await Promise.all([
-				ProfileAvgBestN("ratingV2", 60, false, 1000)(game, playtype, userID),
+				ProfileAvgBestN("scoreRating", 60, false, 1000)(game, playtype, userID),
 				ProfileAvgBestN("starRating", 50, false, 1000)(game, playtype, userID),
 			]);
 

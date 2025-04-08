@@ -169,12 +169,7 @@ t.test("CHUNITHM Implementation", (t) => {
 			f("grade", { grade: "S+", score: 997_342 }, CHUNITHM_GRADES.SS, "SS-2.7K");
 			f("score", { score: 982_123 }, 1_000_000, "982,123");
 			f("clearLamp", { clearLamp: "CLEAR" }, CHUNITHM_CLEAR_LAMPS.CLEAR, "CLEAR");
-			f(
-				"noteLamp",
-				{ noteLamp: "FULL COMBO" },
-				CHUNITHM_NOTE_LAMPS.FULL_COMBO,
-				"FULL COMBO"
-			);
+			f("noteLamp", { noteLamp: "FULL COMBO" }, CHUNITHM_NOTE_LAMPS.FULL_COMBO, "FULL COMBO");
 
 			t.end();
 		});
@@ -196,7 +191,7 @@ t.test("CHUNITHM Implementation", (t) => {
 			await db.scores.insert(mockScore);
 			await db.scores.insert(
 				dmf(mockScore, {
-					scoreID: "bestnoteLamp",
+					scoreID: "bestNoteLamp",
 					scoreData: {
 						score: 0,
 						noteLamp: "FULL COMBO",
@@ -218,8 +213,8 @@ t.test("CHUNITHM Implementation", (t) => {
 			t.hasStrict(await CreatePBDoc("chunithm:Single", 1, CHUNITHMBBKKChart, logger), {
 				composedFrom: [
 					{ name: "Best Score" },
+					{ name: "Best Note Lamp", scoreID: "bestNoteLamp" },
 					{ name: "Best Clear Lamp", scoreID: "bestClearLamp" },
-					{ name: "Best Combo Lamp", scoreID: "bestnoteLamp" },
 				],
 				scoreData: {
 					score: mockScore.scoreData.score,

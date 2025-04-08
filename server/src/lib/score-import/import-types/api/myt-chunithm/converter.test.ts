@@ -63,7 +63,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				scoreData: {
 					score: 1001715,
 					clearLamp: "CLEAR",
-					comboLamp: "NONE",
+					noteLamp: "NONE",
 					judgements: {
 						jcrit: 1459,
 						justice: 37,
@@ -119,7 +119,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { comboLamp: "ALL JUSTICE CRITICAL", clearLamp: "FAILED" } },
+				dryScore: { scoreData: { noteLamp: "ALL JUSTICE CRITICAL", clearLamp: "FAILED" } },
 			}
 		);
 		t.hasStrict(
@@ -130,7 +130,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { comboLamp: "ALL JUSTICE", clearLamp: "FAILED" } },
+				dryScore: { scoreData: { noteLamp: "ALL JUSTICE", clearLamp: "FAILED" } },
 			}
 		);
 		t.hasStrict(
@@ -141,7 +141,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { comboLamp: "FULL COMBO", clearLamp: "FAILED" } },
+				dryScore: { scoreData: { noteLamp: "FULL COMBO", clearLamp: "FAILED" } },
 			}
 		);
 		t.hasStrict(
@@ -152,7 +152,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { comboLamp: "NONE", clearLamp: "HARD" } },
+				dryScore: { scoreData: { noteLamp: "NONE", clearLamp: "HARD" } },
 			}
 		);
 		t.hasStrict(
@@ -163,7 +163,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { comboLamp: "NONE", clearLamp: "BRAVE" } },
+				dryScore: { scoreData: { noteLamp: "NONE", clearLamp: "BRAVE" } },
 			}
 		);
 		t.hasStrict(
@@ -174,7 +174,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { comboLamp: "NONE", clearLamp: "ABSOLUTE" } },
+				dryScore: { scoreData: { noteLamp: "NONE", clearLamp: "ABSOLUTE" } },
 			}
 		);
 		t.hasStrict(
@@ -185,7 +185,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { comboLamp: "NONE", clearLamp: "CATASTROPHY" } },
+				dryScore: { scoreData: { noteLamp: "NONE", clearLamp: "CATASTROPHY" } },
 			}
 		);
 		t.hasStrict(
@@ -196,7 +196,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { comboLamp: "NONE", clearLamp: "CLEAR" } },
+				dryScore: { scoreData: { noteLamp: "NONE", clearLamp: "CLEAR" } },
 			}
 		);
 		t.hasStrict(
@@ -207,7 +207,7 @@ t.test("#ConvertAPIMytChunithm", (t) => {
 				},
 			}),
 			{
-				dryScore: { scoreData: { comboLamp: "NONE", clearLamp: "FAILED" } },
+				dryScore: { scoreData: { noteLamp: "NONE", clearLamp: "FAILED" } },
 			}
 		);
 		t.end();

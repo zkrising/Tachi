@@ -3,33 +3,33 @@ import React from "react";
 import { GetEnumValue } from "tachi-common/types/metrics";
 
 export default function CHUNITHMLampCell({
-	comboLamp,
+	noteLamp,
 	clearLamp,
-	comboLampColour,
+	noteLampColour,
 	clearLampColour,
 }: {
 	clearLamp: GetEnumValue<"chunithm:Single", "clearLamp">;
-	comboLamp: GetEnumValue<"chunithm:Single", "comboLamp">;
-	comboLampColour: string;
+	noteLamp: GetEnumValue<"chunithm:Single", "noteLamp">;
+	noteLampColour: string;
 	clearLampColour: string;
 }) {
 	let content = <div>{clearLamp}</div>;
 	let background = ChangeOpacity(clearLampColour, 0.2);
 
-	if (comboLamp !== "NONE") {
-		background = ChangeOpacity(comboLampColour, 0.2);
+	if (noteLamp !== "NONE") {
+		background = ChangeOpacity(noteLampColour, 0.2);
 
 		if (clearLamp === "CLEAR") {
-			content = <div>{comboLamp}</div>;
+			content = <div>{noteLamp}</div>;
 		} else {
 			const clearLampLow = ChangeOpacity(clearLampColour, 0.2);
-			const comboLampLow = ChangeOpacity(comboLampColour, 0.2);
+			const noteLampLow = ChangeOpacity(noteLampColour, 0.2);
 
-			background = `linear-gradient(-45deg, ${clearLampLow} 0%, ${clearLampLow} 12%, ${comboLampLow} 12%, ${comboLampLow} 100%)`;
+			background = `linear-gradient(-45deg, ${clearLampLow} 0%, ${clearLampLow} 12%, ${noteLampLow} 12%, ${noteLampLow} 100%)`;
 
 			content = (
 				<span>
-					<div>{comboLamp}</div>
+					<div>{noteLamp}</div>
 					<div>{clearLamp}</div>
 				</span>
 			);

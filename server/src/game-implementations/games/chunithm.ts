@@ -71,43 +71,43 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 				pb.scoreData.score,
 				CHUNITHM_GBOUNDARIES[gradeIndex]!.name
 			),
+		noteLamp: (pb) => pb.scoreData.noteLamp,
 		clearLamp: (pb) => pb.scoreData.clearLamp,
-		comboLamp: (pb) => pb.scoreData.comboLamp,
 		score: (pb) => FmtNum(pb.scoreData.score),
 	},
 	goalOutOfFormatters: {
 		score: GoalOutOfFmtScore,
 	},
 	pbMergeFunctions: [
+		CreatePBMergeFor("largest", "enumIndexes.noteLamp", "Best Note Lamp", (base, score) => {
+			base.scoreData.noteLamp = score.scoreData.noteLamp;
+		}),
 		CreatePBMergeFor("largest", "enumIndexes.clearLamp", "Best Clear Lamp", (base, score) => {
 			base.scoreData.clearLamp = score.scoreData.clearLamp;
-		}),
-		CreatePBMergeFor("largest", "enumIndexes.comboLamp", "Best Combo Lamp", (base, score) => {
-			base.scoreData.comboLamp = score.scoreData.comboLamp;
 		}),
 	],
 	defaultMergeRefName: "Best Score",
 	scoreValidators: [
 		(s) => {
 			if (
-				s.scoreData.comboLamp === "ALL JUSTICE CRITICAL" &&
+				s.scoreData.noteLamp === "ALL JUSTICE CRITICAL" &&
 				s.scoreData.score !== 1_010_000
 			) {
 				return "An ALL JUSTICE CRITICAL must have a score of 1.01 million.";
 			}
 
 			if (
-				s.scoreData.comboLamp !== "ALL JUSTICE CRITICAL" &&
+				s.scoreData.noteLamp !== "ALL JUSTICE CRITICAL" &&
 				s.scoreData.score === 1_010_000
 			) {
 				return "A score of 1.01 million must have a lamp of ALL JUSTICE CRITICAL.";
 			}
 
-			if (s.scoreData.comboLamp === "ALL JUSTICE" && s.scoreData.score < 1_000_000) {
+			if (s.scoreData.noteLamp === "ALL JUSTICE" && s.scoreData.score < 1_000_000) {
 				return `A score of ${s.scoreData.score} cannot be an ALL JUSTICE.`;
 			}
 
-			if (s.scoreData.comboLamp === "FULL COMBO" && s.scoreData.score < 500_000) {
+			if (s.scoreData.noteLamp === "FULL COMBO" && s.scoreData.score < 500_000) {
 				return `A score of ${s.scoreData.score} cannot be a FULL COMBO.`;
 			}
 		},
@@ -118,19 +118,19 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 			attack ??= 0;
 			miss ??= 0;
 
-			if (s.scoreData.comboLamp === "ALL JUSTICE CRITICAL") {
+			if (s.scoreData.noteLamp === "ALL JUSTICE CRITICAL") {
 				if (attack + justice + miss > 0) {
 					return "Cannot have an ALL JUSTICE CRITICAL with any non-jcrit judgements.";
 				}
 			}
 
-			if (s.scoreData.comboLamp === "ALL JUSTICE") {
+			if (s.scoreData.noteLamp === "ALL JUSTICE") {
 				if (attack + miss > 0) {
 					return "Cannot have an ALL JUSTICE if not all hits were justice or better.";
 				}
 			}
 
-			if (s.scoreData.comboLamp === "FULL COMBO") {
+			if (s.scoreData.noteLamp === "FULL COMBO") {
 				if (miss > 0) {
 					return "Cannot have a FULL COMBO if the score has misses.";
 				}
@@ -150,10 +150,10 @@ export const CHUNITHM_IMPL: GPTServerImplementation<"chunithm:Single"> = {
 				return;
 			}
 
-			if (s.scoreData.comboLamp !== "NONE" && jcrit + justice + attack + miss !== maxCombo) {
-				const article = s.scoreData.comboLamp === "FULL COMBO" ? "a" : "an";
+			if (s.scoreData.noteLamp !== "NONE" && jcrit + justice + attack + miss !== maxCombo) {
+				const article = s.scoreData.noteLamp === "FULL COMBO" ? "a" : "an";
 
-				return `Cannot have ${article} ${s.scoreData.comboLamp} if maxCombo is not equal to the sum of judgements.`;
+				return `Cannot have ${article} ${s.scoreData.noteLamp} if maxCombo is not equal to the sum of judgements.`;
 			}
 		},
 		(s) => {

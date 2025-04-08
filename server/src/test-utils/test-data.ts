@@ -664,12 +664,12 @@ export const TestingChunithmScorePB: PBScoreDocument<"chunithm:Single"> = {
 	scoreData: {
 		score: 1010000,
 		clearLamp: "BRAVE",
-		comboLamp: "ALL JUSTICE CRITICAL",
+		noteLamp: "ALL JUSTICE CRITICAL",
 		grade: "SSS+",
 		enumIndexes: {
 			grade: CHUNITHM_GRADES.SSS_PLUS,
 			clearLamp: CHUNITHM_CLEAR_LAMPS.BRAVE,
-			comboLamp: CHUNITHM_COMBO_LAMPS.ALL_JUSTICE_CRITICAL,
+			noteLamp: CHUNITHM_COMBO_LAMPS.ALL_JUSTICE_CRITICAL,
 		},
 		judgements: {},
 		optional: {
@@ -1357,7 +1357,7 @@ export const FakeChunitachiBatchManual = {
 		{
 			score: 900000,
 			clearLamp: "CLEAR",
-			comboLamp: "NONE",
+			noteLamp: "NONE",
 			matchType: "songTitle",
 			identifier: "B.B.K.K.B.K.K.",
 			difficulty: "BASIC",

@@ -128,36 +128,36 @@ function MoveLamps(
 ): ScoreData<"chunithm:Single"> {
 	// This score has already been migrated.
 	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-	if (scoreData.clearLamp && scoreData.comboLamp && !scoreData.lamp) {
+	if (scoreData.clearLamp && scoreData.noteLamp && !scoreData.lamp) {
 		return scoreData;
 	}
 
 	const oldLamp = scoreData.lamp;
 
-	let comboLamp: GetEnumValue<"chunithm:Single", "comboLamp">;
+	let noteLamp: GetEnumValue<"chunithm:Single", "noteLamp">;
 	let clearLamp: GetEnumValue<"chunithm:Single", "clearLamp">;
 
 	// If the old score had a combo lamp, we assume that the score was at least a clear.
 	// While it is theoretically possible for there to be a failed all justice, the chance
 	// is small.
 	if (oldLamp === "FAILED" || oldLamp === "CLEAR") {
-		comboLamp = "NONE";
+		noteLamp = "NONE";
 		clearLamp = oldLamp;
 	} else if (
 		oldLamp === "FULL COMBO" ||
 		oldLamp === "ALL JUSTICE" ||
 		oldLamp === "ALL JUSTICE CRITICAL"
 	) {
-		comboLamp = oldLamp;
+		noteLamp = oldLamp;
 		clearLamp = "CLEAR";
 	} else {
-		comboLamp = "NONE";
+		noteLamp = "NONE";
 		clearLamp = "FAILED";
 	}
 
 	const newScoreData = {
 		...scoreData,
-		comboLamp,
+		noteLamp,
 		clearLamp,
 	};
 
@@ -234,7 +234,7 @@ const migration: Migration = {
 			{
 				game: "chunithm",
 				playtype: "Single",
-				"scoreData.comboLamp": { $exists: false },
+				"scoreData.noteLamp": { $exists: false },
 				"scoreData.clearLamp": { $exists: false },
 			}
 		);
@@ -327,7 +327,7 @@ const migration: Migration = {
 			{
 				"score.game": "chunithm",
 				"score.playtype": "Single",
-				"score.scoreData.comboLamp": { $exists: false },
+				"score.scoreData.noteLamp": { $exists: false },
 				"score.scoreData.clearLamp": { $exists: false },
 			}
 		);
@@ -339,7 +339,7 @@ const migration: Migration = {
 					filter: { game: "chunithm", playtype: "Single" } as const,
 					update: {
 						$set: {
-							"preferences.stats.$[e].metric": "comboLamp",
+							"preferences.stats.$[e].metric": "noteLamp",
 							"preferences.stats.$[e].gte": NEW_COMBO_LAMP_INDEXES[lamp],
 						},
 					},
@@ -372,13 +372,13 @@ const migration: Migration = {
 			})),
 			// Unfortunately we don't have enough data to accurately migrate
 			// over chart lamp showcases, so we'll automatically migrate everyone
-			// over to comboLamp, which is what people usually showcase.
+			// over to noteLamp, which is what people usually showcase.
 			{
 				updateMany: {
 					filter: { game: "chunithm", playtype: "Single" } as const,
 					update: {
 						$set: {
-							"preferences.stats.$[e].metric": "comboLamp",
+							"preferences.stats.$[e].metric": "noteLamp",
 						},
 					},
 					arrayFilters: [
@@ -401,10 +401,10 @@ const migration: Migration = {
 					goal.criteria.key = "clearLamp";
 					// goal.criteria.value remains unchanged
 				} else {
-					goal.criteria.key = "comboLamp";
+					goal.criteria.key = "noteLamp";
 
 					// old lamps have FC = 2, AJ = 3, AJC = 4
-					// new comboLamps have FC = 1, AJ = 2, AJC = 3
+					// new noteLamps have FC = 1, AJ = 2, AJC = 3
 					goal.criteria.value = goal.criteria.value - 1;
 				}
 
@@ -464,7 +464,7 @@ const migration: Migration = {
 				// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 				const { goal, new: newGoalID } = updatedGoalIDMap.get(subscription.goalID)!;
 
-				if (goal.criteria.key !== "clearLamp" && goal.criteria.key !== "comboLamp") {
+				if (goal.criteria.key !== "clearLamp" && goal.criteria.key !== "noteLamp") {
 					throw new Error(`Received invalid criteria key ${goal.criteria.key}`);
 				}
 

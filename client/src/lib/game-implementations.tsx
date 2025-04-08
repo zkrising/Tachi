@@ -49,7 +49,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		enumIcons: {
 			grade: "sort-alpha-up",
 			clearLamp: "lightbulb",
-			comboLamp: "lightbulb",
+			noteLamp: "lightbulb",
 		},
 		classColours: {
 			colour: {
@@ -112,7 +112,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				ABSOLUTE: "#8544BC",
 				CATASTROPHY: "#742999",
 			},
-			comboLamp: {
+			noteLamp: {
 				NONE: COLOUR_SET.gray,
 				"FULL COMBO": COLOUR_SET.darkGreen,
 				"ALL JUSTICE": COLOUR_SET.gold,
@@ -135,7 +135,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				"Lamp",
 				NumericSOV(
 					(x) =>
-						(x.scoreData.enumIndexes.comboLamp << 3) + x.scoreData.enumIndexes.clearLamp
+						(x.scoreData.enumIndexes.noteLamp << 3) + x.scoreData.enumIndexes.clearLamp
 				),
 			],
 		],
@@ -149,9 +149,9 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				<CHUNITHMJudgementCell score={sc} />
 				<CHUNITHMLampCell
 					clearLamp={sc.scoreData.clearLamp}
-					comboLamp={sc.scoreData.comboLamp}
+					noteLamp={sc.scoreData.noteLamp}
 					clearLampColour={GetEnumColour(sc, "clearLamp")}
-					comboLampColour={GetEnumColour(sc, "comboLamp")}
+					noteLampColour={GetEnumColour(sc, "noteLamp")}
 				/>
 			</>
 		),

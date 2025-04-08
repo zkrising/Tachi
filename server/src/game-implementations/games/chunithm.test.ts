@@ -11,13 +11,13 @@ import type { ProvidedMetrics, ScoreData } from "tachi-common";
 
 const baseMetrics: ProvidedMetrics["chunithm:Single"] = {
 	clearLamp: "CLEAR",
-	comboLamp: "NONE",
+	noteLamp: "NONE",
 	score: 1_003_000,
 };
 
 const scoreData: ScoreData<"chunithm:Single"> = {
 	clearLamp: "CLEAR",
-	comboLamp: "NONE",
+	noteLamp: "NONE",
 	score: 1_003_000,
 	grade: "SS",
 	judgements: {},
@@ -25,7 +25,7 @@ const scoreData: ScoreData<"chunithm:Single"> = {
 	enumIndexes: {
 		grade: CHUNITHM_GRADES.SS,
 		clearLamp: CHUNITHM_CLEAR_LAMPS.CLEAR,
-		comboLamp: CHUNITHM_COMBO_LAMPS.NONE,
+		noteLamp: CHUNITHM_COMBO_LAMPS.NONE,
 	},
 };
 
@@ -170,8 +170,8 @@ t.test("CHUNITHM Implementation", (t) => {
 			f("score", { score: 982_123 }, 1_000_000, "982,123");
 			f("clearLamp", { clearLamp: "CLEAR" }, CHUNITHM_CLEAR_LAMPS.CLEAR, "CLEAR");
 			f(
-				"comboLamp",
-				{ comboLamp: "FULL COMBO" },
+				"noteLamp",
+				{ noteLamp: "FULL COMBO" },
 				CHUNITHM_COMBO_LAMPS.FULL_COMBO,
 				"FULL COMBO"
 			);
@@ -196,11 +196,11 @@ t.test("CHUNITHM Implementation", (t) => {
 			await db.scores.insert(mockScore);
 			await db.scores.insert(
 				dmf(mockScore, {
-					scoreID: "bestComboLamp",
+					scoreID: "bestnoteLamp",
 					scoreData: {
 						score: 0,
-						comboLamp: "FULL COMBO",
-						enumIndexes: { comboLamp: CHUNITHM_COMBO_LAMPS.FULL_COMBO },
+						noteLamp: "FULL COMBO",
+						enumIndexes: { noteLamp: CHUNITHM_COMBO_LAMPS.FULL_COMBO },
 					},
 				})
 			);
@@ -219,15 +219,15 @@ t.test("CHUNITHM Implementation", (t) => {
 				composedFrom: [
 					{ name: "Best Score" },
 					{ name: "Best Clear Lamp", scoreID: "bestClearLamp" },
-					{ name: "Best Combo Lamp", scoreID: "bestComboLamp" },
+					{ name: "Best Combo Lamp", scoreID: "bestnoteLamp" },
 				],
 				scoreData: {
 					score: mockScore.scoreData.score,
 					clearLamp: "ABSOLUTE",
-					comboLamp: "FULL COMBO",
+					noteLamp: "FULL COMBO",
 					enumIndexes: {
 						clearLamp: CHUNITHM_CLEAR_LAMPS.ABSOLUTE,
-						comboLamp: CHUNITHM_COMBO_LAMPS.FULL_COMBO,
+						noteLamp: CHUNITHM_COMBO_LAMPS.FULL_COMBO,
 					},
 				},
 			});

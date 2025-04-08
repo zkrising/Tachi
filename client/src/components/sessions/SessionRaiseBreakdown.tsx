@@ -55,7 +55,7 @@ export default function SessionRaiseBreakdown({
 	if (game === "ongeki") {
 		lampName = "noteLamp";
 	} else if (game === "chunithm") {
-		lampName = "comboLamp";
+		lampName = "noteLamp";
 	}
 
 	const { user } = useContext(UserContext);

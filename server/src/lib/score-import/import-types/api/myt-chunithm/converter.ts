@@ -71,9 +71,9 @@ const ConvertAPIMytChunithm: ConverterFunction<MytChunithmScore, EmptyObject> = 
 		throw new InvalidScoreFailure("Can't process a score with an invalid clear status");
 	}
 
-	const comboLamp = COMBO_LAMPS[data.info.comboStatus];
+	const noteLamp = COMBO_LAMPS[data.info.comboStatus];
 
-	if (comboLamp === undefined) {
+	if (noteLamp === undefined) {
 		throw new InvalidScoreFailure("Can't process a score with an invalid combo status");
 	}
 
@@ -105,7 +105,7 @@ const ConvertAPIMytChunithm: ConverterFunction<MytChunithmScore, EmptyObject> = 
 		scoreData: {
 			score: data.info.score,
 			clearLamp,
-			comboLamp,
+			noteLamp,
 			judgements: {
 				jcrit: data.judge.judgeCritical + data.judge.judgeHeaven,
 				justice: data.judge.judgeJustice,

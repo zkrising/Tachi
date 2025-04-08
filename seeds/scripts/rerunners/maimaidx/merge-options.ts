@@ -5,7 +5,6 @@ import path from "path";
 import {
 	CreateChartID,
 	GetFreshSongIDGenerator,
-	MutateCollection,
 	ReadCollection,
 	WriteCollection,
 } from "../../util";
@@ -17,30 +16,39 @@ const logger = CreateLogger("merge-options");
 const VERSION_DISPLAY_NAMES = [
 	"maimai",
 	"maimai PLUS",
-	"GreeN",
-	"GreeN PLUS",
-	"ORANGE",
-	"ORANGE PLUS",
-	"PiNK",
-	"PiNK PLUS",
-	"MURASAKi",
-	"MURASAKi PLUS",
-	"MiLK",
-	"MiLK PLUS",
-	"FiNALE",
+	"maimai GreeN",
+	"maimai GreeN PLUS",
+	"maimai ORANGE",
+	"maimai ORANGE PLUS",
+	"maimai PiNK",
+	"maimai PiNK PLUS",
+	"maimai MURASAKi",
+	"maimai MURASAKi PLUS",
+	"maimai MiLK",
+	"maimai MiLK PLUS",
+	"maimai FiNALE",
 	"maimaiでらっくす",
 	"maimaiでらっくす PLUS",
-	"Splash",
-	"Splash PLUS",
-	"UNiVERSE",
-	"UNiVERSE PLUS",
-	"FESTiVAL",
-	"FESTiVAL PLUS",
-	"BUDDiES",
-	"BUDDiES PLUS",
-	"PRiSM",
+	"maimaiでらっくす Splash",
+	"maimaiでらっくす Splash PLUS",
+	"maimaiでらっくす UNiVERSE",
+	"maimaiでらっくす UNiVERSE PLUS",
+	"maimaiでらっくす FESTiVAL",
+	"maimaiでらっくす FESTiVAL PLUS",
+	"maimaiでらっくす BUDDiES",
+	"maimaiでらっくす BUDDiES PLUS",
+	"maimaiでらっくす PRiSM",
+	"maimaiでらっくす PRiSM PLUS",
 ];
 const DIFFICULTIES = ["Basic", "Advanced", "Expert", "Master", "Re:Master"];
+const GENRE_MAP = {
+	101: "POPS＆アニメ",
+	102: "niconico＆ボーカロイド",
+	103: "東方Project",
+	104: "ゲーム＆バラエティ",
+	105: "maimai",
+	106: "オンゲキ＆CHUNITHM",
+};
 
 interface IDWithDisplayName {
 	id: number;
@@ -216,16 +224,24 @@ for (const optionsDir of options.input) {
 				continue;
 			}
 
+			const displayVersion = VERSION_DISPLAY_NAMES[musicData.AddVersion.id];
+
+			if (!displayVersion) {
+				throw new Error(
+					`Unknown version ID ${musicData.AddVersion.id}. Update seeds/scripts/rerunners/maimaidx/merge-options.ts.`
+				);
+			}
+
+			const genre = GENRE_MAP[musicData.genreName.id];
+
+			if (!genre) {
+				throw new Error(
+					`Unknown genre ID ${musicData.genreName.id}. Update seeds/scripts/rerunners/maimaidx/merge-options.ts`
+				);
+			}
+
 			// New song?
 			if (tachiSongID === undefined) {
-				const displayVersion = VERSION_DISPLAY_NAMES[musicData.AddVersion.id];
-
-				if (!displayVersion) {
-					throw new Error(
-						`Unknown version ID ${musicData.AddVersion.id}. Update seeds/scripts/rerunners/maimaidx/merge-options.ts.`
-					);
-				}
-
 				tachiSongID = songIDGenerator();
 
 				const songDoc: SongDocument<"maimaidx"> = {
@@ -235,15 +251,21 @@ for (const optionsDir of options.input) {
 					artist: musicData.artistName.str.toString(),
 					id: tachiSongID,
 					data: {
-						displayVersion,
-						genre: musicData.genreName.str.toString(),
+						genre,
 					},
 				};
 
 				newSongs.push(songDoc);
 				songTitleArtistMap.set(`${songDoc.title}-${songDoc.artist}`, tachiSongID);
+				songMap.set(tachiSongID, songDoc);
 
 				logger.info(`Added new song ${songDoc.artist} - ${songDoc.title}.`);
+			} else {
+				const songDoc = songMap.get(tachiSongID)!;
+
+				songDoc.title = musicData.name.str.toString();
+				songDoc.artist = musicData.artistName.str.toString();
+				songDoc.data = { genre };
 			}
 
 			for (const [index, difficulty] of musicData.notesData.Notes.entries()) {
@@ -322,6 +344,8 @@ for (const optionsDir of options.input) {
 						}
 					}
 
+					exists.data.displayVersion = displayVersion;
+
 					continue;
 				}
 
@@ -335,6 +359,7 @@ for (const optionsDir of options.input) {
 					versions: [options.version],
 					playtype: "Single",
 					data: {
+						displayVersion,
 						inGameID,
 					},
 				};
@@ -349,12 +374,8 @@ for (const optionsDir of options.input) {
 	}
 }
 
-MutateCollection("songs-maimaidx.json", (songs: Array<SongDocument<"maimaidx">>) => [
-	...songs,
-	...newSongs,
-]);
-
 // overwrite this collection instead of mutating it
 // we already know the existing chart docs and might have mutated them to
 // declare the new versions, or update chart constants.
+WriteCollection("songs-maimaidx.json", [...existingSongs, ...newSongs]);
 WriteCollection("charts-maimaidx.json", [...existingCharts, ...newCharts]);

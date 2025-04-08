@@ -21,11 +21,15 @@ export default function SongChartInfoFormat({
 			/>
 		);
 	}
-	if (game === "ongeki" || game === "chunithm") {
+	if (game === "ongeki" || game === "chunithm" || game === "maimaidx") {
 		return (
 			<>
 				<IIDXStyleSongChartInfoFormat
-					{...{ song: song as SongDocument<"ongeki" | "chunithm">, chart, game }}
+					{...{
+						song: song as SongDocument<"ongeki" | "chunithm" | "maimaidx">,
+						chart,
+						game,
+					}}
 				/>
 				{chart && (
 					<>

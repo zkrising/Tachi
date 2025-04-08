@@ -75,15 +75,15 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	profileCalcs: {
 		naiveRating: ProfileAvgBestN("rating", 45, false, 100),
 		naiveRatingRefresh: async (game: Game, playtype: Playtype, userID: integer) => {
-			const [v2, star] = await Promise.all([
+			const [score, star] = await Promise.all([
 				ProfileAvgBestN("scoreRating", 60, false, 1000)(game, playtype, userID),
 				ProfileAvgBestN("starRating", 50, false, 1000)(game, playtype, userID),
 			]);
 
-			const v21k = Math.round((v2 ?? 0) * 1000);
+			const score1k = Math.round((score ?? 0) * 1000);
 			const star1k = Math.round((star ?? 0) * 1000);
 
-			return (Math.floor(v21k * 1.2) + star1k) / 1000.0;
+			return (Math.floor(score1k * 1.2) + star1k) / 1000.0;
 		},
 	},
 	classDerivers: {

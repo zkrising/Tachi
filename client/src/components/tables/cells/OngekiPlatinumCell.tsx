@@ -1,6 +1,23 @@
 import React from "react";
 import { FmtStars, integer } from "tachi-common";
 
+export function StarField(stars: number) {
+	return stars < 6 ? (
+		FmtStars(stars)
+	) : (
+		<span
+			style={{
+				background:
+					"linear-gradient(30deg, #f0788a 5%, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a 85%)",
+				color: "transparent",
+				backgroundClip: "text",
+			}}
+		>
+			★★★★★
+		</span>
+	);
+}
+
 export default function OngekiPlatinumCell({
 	platinumScore: platinumScore,
 	maxPlatScore: maxPlatScore,
@@ -16,22 +33,7 @@ export default function OngekiPlatinumCell({
 		<td>
 			<strong>{percentage.toFixed(2)}%</strong>
 			<br />
-			<>
-				{stars < 6 ? (
-					FmtStars(stars)
-				) : (
-					<span
-						style={{
-							background:
-								"linear-gradient(30deg, #f0788a 5%, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a 85%)",
-							color: "transparent",
-							backgroundClip: "text",
-						}}
-					>
-						★★★★★
-					</span>
-				)}
-			</>
+			{StarField(stars)}
 			<br />
 			<small className="text-body-secondary">
 				[{platinumScore}/{maxPlatScore}]

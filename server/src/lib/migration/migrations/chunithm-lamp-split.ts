@@ -146,6 +146,7 @@ function MoveLamps(
 	} else if (
 		oldLamp === "FULL COMBO" ||
 		oldLamp === "ALL JUSTICE" ||
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 		oldLamp === "ALL JUSTICE CRITICAL"
 	) {
 		noteLamp = oldLamp;

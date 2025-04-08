@@ -87,6 +87,7 @@ export default function TachiTable<D>({
 	defaultReverseSort,
 	searchFunctions,
 	noTopDisplayStr = false,
+	noBottomDisplayPager = false,
 }: {
 	dataset: D[];
 	rowFunction: (data: D) => JSX.Element;
@@ -94,6 +95,7 @@ export default function TachiTable<D>({
 	entryName: string;
 	pageLen?: integer;
 	noTopDisplayStr?: boolean;
+	noBottomDisplayPager?: boolean;
 	defaultSortMode?: string;
 	defaultReverseSort?: boolean;
 	searchFunctions?: SearchFunctions<D>;
@@ -176,7 +178,7 @@ export default function TachiTable<D>({
 			</div>
 			<div className="row row-gap-4">
 				<div className="col-lg-4 d-flex justify-content-center justify-content-lg-start">
-					{dataset.length > 10 && (
+					{dataset.length > 10 && !noBottomDisplayPager && (
 						<Select
 							name={`Show this many ${entryName}:`}
 							value={ztable.pageLen.toString()}
@@ -209,7 +211,7 @@ export default function TachiTable<D>({
 					)}
 				</div>
 				<div className="col-lg-4 ms-auto d-flex justify-content-center justify-content-lg-end">
-					{dataset.length > 10 && (
+					{dataset.length > 10 && !noBottomDisplayPager && (
 						<div className="btn-group">
 							<Button
 								variant="secondary"

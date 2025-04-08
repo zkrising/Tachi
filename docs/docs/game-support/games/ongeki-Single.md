@@ -51,15 +51,15 @@ The following judgements are defined:
 | Name | Description |
 | :: | :: |
 | `rating` | A rating value of this score, capping at +2.0 at SSS+. This is identical to the system used in bright MEMORY and earlier versions. |
-| `ratingV2` | A rating value of this score, capping at +2.7 at 1,010,000. This is identical to the system used in Re:Fresh. |
-| `starRating` | An additional rating value of this score, based on platinum score. |
+| `scoreRating` | A rating value of this score, capping at +2.7 at 1,010,000. This is identical to the system used in Re:Fresh. |
+| `starRating` | A rating value of this score, based on platinum score. |
 
 ### Session Rating Algorithms
 
 | Name | Description |
 | :: | :: |
 | `naiveRating` | The average of your best 10 classic ratings this session. |
-| `ratingV2` | The average of your best 10 ratings this session. |
+| `naiveScoreRating` | The average of your best 10 score ratings this session. |
 | `starRating` | The average of your best 10 star ratings this session. |
 
 ### Profile Rating Algorithms
@@ -67,7 +67,7 @@ The following judgements are defined:
 | Name | Description |
 | :: | :: |
 | `naiveRating` | The average of your best 45 classic ratings. This is a simpler variant of the rating algorithm used in bright MEMORY and earlier versions, without distinguishing between new and old charts, and without taking recent scores into account. |
-| `naiveRatingRefresh` | A weighted sum of the average of your best 60 ratings (v2), and your best 50 platinum ratings. This is a simpler variant of the rating algorithm used in Re:Fresh, without distinguishing between new and old charts. |
+| `naiveRatingRefresh` | A weighted sum of the average of your best 60 score ratings, and your best 50 star ratings. This is a simpler variant of the rating algorithm used in Re:Fresh, without distinguishing between new and old charts. |
 
 ## Difficulties
 

@@ -818,16 +818,13 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		ratingSystems: [],
 		ratingAlgNameOverrides: {
 			score: {
-				rating: "Classic Rating",
-				ratingV2: "Rating",
+				rating: "RatingClassic",
 			},
 			session: {
-				naiveRating: "Classic Rating",
-				ratingV2: "Rating",
+				naiveRating: "NaiveRatingClassic",
 			},
 			profile: {
-				naiveRating: "Classic NaiveRating",
-				naiveRatingRefresh: "NaiveRating",
+				naiveRating: "NaiveRatingClassic",
 			},
 		},
 		scoreHeaders: [

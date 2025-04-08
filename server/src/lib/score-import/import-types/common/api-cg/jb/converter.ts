@@ -126,22 +126,18 @@ function ConvertMusicRate(rate: number): number {
 }
 
 function GuessLamp(judgments: Record<Judgements["jubeat:Single"], integer | null>, score: number) {
-	if (
+	if (score < 700_000) { // Fail always takes precedence
+		return "FAILED";
+	} else if (
 		judgments.good === 0 &&
 		judgments.great === 0 &&
 		judgments.miss === 0 &&
 		judgments.poor === 0
 	) {
-		if (score !== 1_000_000) {
-			throw new InvalidScoreFailure(`Score is an EXC, yet score !== 1_000_000.`);
-		}
-
 		return "EXCELLENT";
 	} else if (judgments.miss === 0 && judgments.poor === 0) {
 		return "FULL COMBO";
-	} else if (score >= 700_000) {
+	} else {
 		return "CLEAR";
 	}
-
-	return "FAILED";
 }

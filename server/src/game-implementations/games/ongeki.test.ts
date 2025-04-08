@@ -92,13 +92,13 @@ t.test("ONGEKI Implementation", (t: any) => {
 		t.equal(
 			ONGEKI_IMPL.scoreCalcs.rating(scoreData, TestingOngekiChart),
 			12.1,
-			"Basic rating check"
+			"Basic classic rating check"
 		);
 
 		t.equal(
-			ONGEKI_IMPL.scoreCalcs.ratingV2(scoreData, TestingOngekiChart),
+			ONGEKI_IMPL.scoreCalcs.scoreRating(scoreData, TestingOngekiChart),
 			12.1,
-			"Basic ratingV2 check"
+			"Basic score rating check"
 		);
 
 		t.equal(
@@ -118,7 +118,7 @@ t.test("ONGEKI Implementation", (t: any) => {
 
 		const mockPBs = async (
 			ratings: Array<number>,
-			field: "rating" | "ratingV2" | "starRating"
+			field: "rating" | "scoreRating" | "starRating"
 		) => {
 			await Promise.all(
 				ratings.map((rating, idx) => {
@@ -126,10 +126,10 @@ t.test("ONGEKI Implementation", (t: any) => {
 						// Leave me and my ternaries alone
 						// eslint-disable-next-line no-nested-ternary
 						field === "rating"
-							? { rating, ratingV2: 0, starRating: 0 }
-							: field === "ratingV2"
-							? { rating: 0, ratingV2: rating, starRating: 0 }
-							: { rating: 0, ratingV2: 0, starRating: rating };
+							? { rating, scoreRating: 0, starRating: 0 }
+							: field === "scoreRating"
+							? { rating: 0, scoreRating: rating, starRating: 0 }
+							: { rating: 0, scoreRating: 0, starRating: rating };
 
 					return db["personal-bests"].insert({
 						...TestingOngekiScorePB,
@@ -145,7 +145,7 @@ t.test("ONGEKI Implementation", (t: any) => {
 
 		t.test("Floating-point edge case", async (t: any) => {
 			await mockPBs(Array(45).fill(16.27), "rating");
-			await mockPBs(Array(60).fill(16.271), "ratingV2");
+			await mockPBs(Array(60).fill(16.271), "scoreRating");
 
 			t.equal(await ONGEKI_IMPL.profileCalcs.naiveRating("ongeki", "Single", 1), 16.27);
 			t.equal(
@@ -165,7 +165,7 @@ t.test("ONGEKI Implementation", (t: any) => {
 
 		t.test("Profile with few scores #1", async (t: any) => {
 			await mockPBs([16, 16, 16, 16], "rating");
-			await mockPBs([16, 16, 16, 16], "ratingV2");
+			await mockPBs([16, 16, 16, 16], "scoreRating");
 
 			t.equal(await ONGEKI_IMPL.profileCalcs.naiveRating("ongeki", "Single", 1), 1.42);
 			t.equal(

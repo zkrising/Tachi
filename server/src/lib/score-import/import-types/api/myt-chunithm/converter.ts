@@ -37,7 +37,7 @@ const CLEAR_LAMPS = {
 	[ChunithmClearStatus.CHUNITHM_CLEAR_STATUS_CATASTROPHY]: "CATASTROPHY",
 } as const;
 
-const COMBO_LAMPS = {
+const NOTE_LAMPS = {
 	[ChunithmComboStatus.CHUNITHM_COMBO_STATUS_UNSPECIFIED]: undefined,
 	[ChunithmComboStatus.CHUNITHM_COMBO_STATUS_NONE]: "NONE",
 	[ChunithmComboStatus.CHUNITHM_COMBO_STATUS_FULL_COMBO]: "FULL COMBO",
@@ -71,7 +71,7 @@ const ConvertAPIMytChunithm: ConverterFunction<MytChunithmScore, EmptyObject> = 
 		throw new InvalidScoreFailure("Can't process a score with an invalid clear status");
 	}
 
-	const noteLamp = COMBO_LAMPS[data.info.comboStatus];
+	const noteLamp = NOTE_LAMPS[data.info.comboStatus];
 
 	if (noteLamp === undefined) {
 		throw new InvalidScoreFailure("Can't process a score with an invalid combo status");

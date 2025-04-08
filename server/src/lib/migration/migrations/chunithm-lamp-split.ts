@@ -38,14 +38,14 @@ const NEW_CLEAR_LAMP_INDEXES = {
 
 const NEW_CLEAR_LAMPS = ["FAILED", "CLEAR", "HARD", "BRAVE", "ABSOLUTE", "CATASTROPHY"] as const;
 
-const NEW_COMBO_LAMP_INDEXES = {
+const NEW_NOTE_LAMP_INDEXES = {
 	NONE: 0,
 	"FULL COMBO": 1,
 	"ALL JUSTICE": 2,
 	"ALL JUSTICE CRITICAL": 3,
 } as const;
 
-const NEW_COMBO_LAMPS = ["NONE", "FULL COMBO", "ALL JUSTICE", "ALL JUSTICE CRITICAL"] as const;
+const NEW_NOTE_LAMPS = ["NONE", "FULL COMBO", "ALL JUSTICE", "ALL JUSTICE CRITICAL"] as const;
 
 async function FastUpdateSessions() {
 	const sessions = await db.sessions.find({ game: "chunithm", playtype: "Single" });
@@ -341,7 +341,7 @@ const migration: Migration = {
 					update: {
 						$set: {
 							"preferences.stats.$[e].metric": "noteLamp",
-							"preferences.stats.$[e].gte": NEW_COMBO_LAMP_INDEXES[lamp],
+							"preferences.stats.$[e].gte": NEW_NOTE_LAMP_INDEXES[lamp],
 						},
 					},
 					arrayFilters: [
@@ -489,7 +489,7 @@ const migration: Migration = {
 				const newOutOfHuman =
 					goal.criteria.key === "clearLamp"
 						? NEW_CLEAR_LAMPS[goal.criteria.value]
-						: NEW_COMBO_LAMPS[goal.criteria.value];
+						: NEW_NOTE_LAMPS[goal.criteria.value];
 
 				if (!newOutOfHuman) {
 					logger.severe(`Received invalid criteria value for a goal of mode "single".`, {
@@ -515,8 +515,8 @@ const migration: Migration = {
 					// CLEAR: 1 -> NONE: 0
 					// FULL COMBO: 2 -> FULL COMBO: 1
 					// ...
-					newProgress = Math.max(NEW_COMBO_LAMP_INDEXES.NONE, subscription.progress - 1);
-					newProgressHuman = NEW_COMBO_LAMPS[newProgress];
+					newProgress = Math.max(NEW_NOTE_LAMP_INDEXES.NONE, subscription.progress - 1);
+					newProgressHuman = NEW_NOTE_LAMPS[newProgress];
 				}
 
 				if (!newProgressHuman) {

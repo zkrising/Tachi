@@ -2,7 +2,7 @@ import { CHUNITHM_IMPL } from "./chunithm";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { CreatePBDoc } from "lib/score-import/framework/pb/create-pb-doc";
-import { CHUNITHM_GRADES, CHUNITHM_COMBO_LAMPS, CHUNITHM_CLEAR_LAMPS } from "tachi-common";
+import { CHUNITHM_GRADES, CHUNITHM_NOTE_LAMPS, CHUNITHM_CLEAR_LAMPS } from "tachi-common";
 import t from "tap";
 import { dmf, mkMockPB, mkMockScore } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
@@ -25,7 +25,7 @@ const scoreData: ScoreData<"chunithm:Single"> = {
 	enumIndexes: {
 		grade: CHUNITHM_GRADES.SS,
 		clearLamp: CHUNITHM_CLEAR_LAMPS.CLEAR,
-		noteLamp: CHUNITHM_COMBO_LAMPS.NONE,
+		noteLamp: CHUNITHM_NOTE_LAMPS.NONE,
 	},
 };
 
@@ -172,7 +172,7 @@ t.test("CHUNITHM Implementation", (t) => {
 			f(
 				"noteLamp",
 				{ noteLamp: "FULL COMBO" },
-				CHUNITHM_COMBO_LAMPS.FULL_COMBO,
+				CHUNITHM_NOTE_LAMPS.FULL_COMBO,
 				"FULL COMBO"
 			);
 
@@ -200,7 +200,7 @@ t.test("CHUNITHM Implementation", (t) => {
 					scoreData: {
 						score: 0,
 						noteLamp: "FULL COMBO",
-						enumIndexes: { noteLamp: CHUNITHM_COMBO_LAMPS.FULL_COMBO },
+						enumIndexes: { noteLamp: CHUNITHM_NOTE_LAMPS.FULL_COMBO },
 					},
 				})
 			);
@@ -227,7 +227,7 @@ t.test("CHUNITHM Implementation", (t) => {
 					noteLamp: "FULL COMBO",
 					enumIndexes: {
 						clearLamp: CHUNITHM_CLEAR_LAMPS.ABSOLUTE,
-						noteLamp: CHUNITHM_COMBO_LAMPS.FULL_COMBO,
+						noteLamp: CHUNITHM_NOTE_LAMPS.FULL_COMBO,
 					},
 				},
 			});

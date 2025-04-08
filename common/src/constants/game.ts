@@ -18,7 +18,7 @@ export enum CHUNITHM_CLEAR_LAMPS {
 	CATASTROPHY = 5,
 }
 
-export enum CHUNITHM_COMBO_LAMPS {
+export enum CHUNITHM_NOTE_LAMPS {
 	NONE = 0,
 	FULL_COMBO = 1,
 	ALL_JUSTICE = 2,

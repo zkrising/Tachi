@@ -28,17 +28,12 @@ const migration: Migration = {
 								ONGEKI_NOTE_LAMPS.ALL_BREAK_PLUS;
 						}
 
-						if ("break" in newScore.scoreData.judgements) {
-							newScore.scoreData.judgements = {
-								...newScore.scoreData.judgements,
-								rbreak: newScore.scoreData.judgements.break as number,
-							};
-							delete (newScore.scoreData.judgements as any).break;
-						}
-
-						if ("platScore" in newScore.scoreData.optional) {
-							newScore.scoreData.platinumScore = newScore.scoreData.optional
-								.platScore as number;
+						if (
+							"platScore" in newScore.scoreData.optional &&
+							typeof newScore.scoreData.optional.platScore === "number"
+						) {
+							newScore.scoreData.platinumScore =
+								newScore.scoreData.optional.platScore;
 							delete newScore.scoreData.optional.platScore;
 						} else {
 							newScore.scoreData.platinumScore = 0;

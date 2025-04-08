@@ -40,7 +40,7 @@ For more information on what metrics are and how they work, see [TODO]!
 The following judgements are defined:
 
 - `cbreak` (critical break)
-- `rbreak` (red/regular break)
+- `break` (red/regular break)
 - `hit`
 - `miss`
 

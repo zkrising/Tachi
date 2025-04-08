@@ -74,7 +74,7 @@ t.test("#ConvertAPIMytOngeki", (t) => {
 					platinumScore: 893,
 					judgements: {
 						cbreak: 967,
-						rbreak: 19,
+						break: 19,
 						hit: 0,
 						miss: 5,
 					},

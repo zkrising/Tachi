@@ -122,7 +122,7 @@ const ConvertAPIMytOngeki: ConverterFunction<MytOngekiScore, EmptyObject> = asyn
 			platinumScore: data.info.platinumScore,
 			judgements: {
 				cbreak: data.judge.judgeCriticalBreak,
-				rbreak: data.judge.judgeBreak,
+				break: data.judge.judgeBreak,
 				hit: data.judge.judgeHit,
 				miss: data.judge.judgeMiss,
 			},

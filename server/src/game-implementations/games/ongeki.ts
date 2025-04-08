@@ -160,7 +160,8 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 	defaultMergeRefName: "Best Score",
 	scoreValidators: [
 		(s, chart) => {
-			let { hit, miss, rbreak } = s.scoreData.judgements;
+			let { hit, miss } = s.scoreData.judgements;
+			let rbreak = s.scoreData.judgements.break;
 
 			hit ??= 0;
 			miss ??= 0;

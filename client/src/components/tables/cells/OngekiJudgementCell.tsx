@@ -12,7 +12,7 @@ export default function OngekiJudgementCell({
 	if (
 		IsNullish(judgements.miss) ||
 		IsNullish(judgements.hit) ||
-		IsNullish(judgements.rbreak) ||
+		IsNullish(judgements.break) ||
 		IsNullish(judgements.cbreak)
 	) {
 		return <td>No Data.</td>;
@@ -23,7 +23,7 @@ export default function OngekiJudgementCell({
 			<strong>
 				<div>
 					<span style={{ color: COLOUR_SET.gold }}>{judgements.cbreak}</span>-
-					<span style={{ color: COLOUR_SET.orange }}>{judgements.rbreak}</span>-
+					<span style={{ color: COLOUR_SET.orange }}>{judgements.break}</span>-
 					<span style={{ color: COLOUR_SET.vibrantBlue }}>{judgements.hit}</span>-
 					<span style={{ color: COLOUR_SET.gray }}>{judgements.miss}</span>
 				</div>

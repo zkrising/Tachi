@@ -192,7 +192,7 @@ export const ONGEKI_SINGLE_CONF = {
 		},
 	},
 
-	orderedJudgements: ["cbreak", "rbreak", "hit", "miss"],
+	orderedJudgements: ["cbreak", "break", "hit", "miss"],
 
 	versions: {
 		brightMemory2Omni: "bright MEMORY Act.II Omnimix",

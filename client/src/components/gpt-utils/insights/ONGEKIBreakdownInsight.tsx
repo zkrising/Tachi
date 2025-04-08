@@ -189,9 +189,9 @@ function ComponentRefresh({ game, playtype, reqUser }: UGPT) {
 								playtype={playtype}
 								count={50}
 								scoreField={(pb, chart) =>
-									`${FmtNum(pb.scoreData.platinumScore)}/${
+									`${FmtNum(pb.scoreData.platinumScore)}/${FmtNum(
 										chart.data.maxPlatScore
-									}`
+									)}`
 								}
 								ratingField={(pb) =>
 									pb.calculatedData.starRating?.toFixed(3) ?? "0.000"
@@ -336,7 +336,7 @@ function CreateFlatDataset<T extends GPTString>(data: any, alg: AnyScoreRatingAl
 	const chartMap = CreateChartMap<T>(data.charts);
 
 	const sortedRatings = data.pbs
-		.map((e) => e.calculatedData[alg])
+		.map((e: PBScoreDocument) => e.calculatedData[alg])
 		.sort(NumericSOV((x: number) => x ?? -Infinity, true));
 
 	for (const pb of data.pbs.slice(0, count)) {

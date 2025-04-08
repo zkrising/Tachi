@@ -4,6 +4,7 @@ import { BMSCustomTablesTool } from "./tools/BMSCustomTablesTool";
 import { IIDXEamusementExportTool } from "./tools/IIDXEamusementExportTool";
 import { IIDXPlaylistsTool } from "./tools/IIDXPlaylistsTool";
 import { JubilityBreakdownInsight } from "./insights/JubilityBreakdownInsight";
+import { ONGEKIBreakdownInsight } from "./insights/ONGEKIBreakdownInsight";
 import { BMSSieglindeInfoTool } from "./tools/BMSSieglindeInfoTool";
 
 // What utils does each game support?
@@ -28,7 +29,7 @@ const GPT_UTILS: Record<GPTString, Array<GPTUtility>> = {
 	"wacca:Single": [],
 	"maimaidx:Single": [],
 	"maimai:Single": [],
-	"ongeki:Single": [],
+	"ongeki:Single": [ONGEKIBreakdownInsight],
 	"ddr:SP": [],
 	"ddr:DP": [],
 };

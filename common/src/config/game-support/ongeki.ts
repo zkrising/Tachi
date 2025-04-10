@@ -113,6 +113,11 @@ export const ONGEKI_SINGLE_CONF = {
 			validate: p.isBetween(0, 1010000),
 			description: "The history of the projected score, queried in one-second intervals.",
 		},
+		platinumGraph: {
+			type: "NULLABLE_GRAPH",
+			validate: p.isBetween(-100000, 0),
+			description: "The Platinum Score history, queried in one-second intervals.",
+		},
 		bellGraph: {
 			type: "NULLABLE_GRAPH",
 			validate: p.isBetween(-10000, 0),

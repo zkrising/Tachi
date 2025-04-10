@@ -1,16 +1,10 @@
 import SelectNav from "components/util/SelectNav";
 import React, { useState } from "react";
 import { Nav } from "react-bootstrap";
-import {
-	ChartDocument,
-	Difficulties,
-	PBScoreDocument,
-	ScoreData,
-	ScoreDocument,
-} from "tachi-common";
+import { ChartDocument, PBScoreDocument, ScoreData, ScoreDocument } from "tachi-common";
 import OngekiScoreChart from "components/charts/OngekiScoreChart";
 
-type ChartTypes = "Score" | "Bells" | "Life";
+type ChartTypes = "Score" | "Platinum" | "Bells" | "Life";
 
 export function OngekiGraphsComponent({
 	score,
@@ -27,12 +21,23 @@ export function OngekiGraphsComponent({
 		score.scoreData.optional.totalBellCount !== null &&
 		score.scoreData.optional.totalBellCount !== undefined;
 
+	// Platinum graphs were added later so they need a separate check
+	const availablePlat = score.scoreData.optional.platinumGraph;
+
 	return (
 		<>
 			<div className="col-12 d-flex justify-content-center">
 				<Nav variant="pills">
 					<SelectNav id="Score" value={graph} setValue={setGraph} disabled={!available}>
 						Score
+					</SelectNav>
+					<SelectNav
+						id="Platinum"
+						value={graph}
+						setValue={setGraph}
+						disabled={!availablePlat}
+					>
+						P-Score
 					</SelectNav>
 					<SelectNav id="Bells" value={graph} setValue={setGraph} disabled={!available}>
 						Bells
@@ -44,11 +49,7 @@ export function OngekiGraphsComponent({
 			</div>
 			<div className="col-12">
 				{available ? (
-					<GraphComponent
-						type={graph}
-						scoreData={score.scoreData}
-						difficulty={chart.difficulty}
-					/>
+					<GraphComponent type={graph} scoreData={score.scoreData} chart={chart} />
 				) : (
 					<div
 						className="d-flex align-items-center justify-content-center"
@@ -65,25 +66,29 @@ export function OngekiGraphsComponent({
 function GraphComponent({
 	type,
 	scoreData,
-	difficulty,
+	chart,
 }: {
 	type: ChartTypes;
 	scoreData: ScoreData<"ongeki:Single">;
-	difficulty: Difficulties["ongeki:Single"];
+	chart: ChartDocument<"ongeki:Single">;
 }) {
 	const values =
 		type === "Score"
 			? scoreData.optional.scoreGraph!
 			: type === "Bells"
 			? scoreData.optional.bellGraph!
-			: scoreData.optional.lifeGraph!;
+			: type === "Life"
+			? scoreData.optional.lifeGraph!
+			: scoreData.optional.platinumGraph!;
 	return (
 		<OngekiScoreChart
 			height="360px"
 			mobileHeight="175px"
 			type={type}
-			totalBellCount={scoreData.optional.totalBellCount!}
-			difficulty={difficulty}
+			maximumAbsoluteValue={
+				type === "Bells" ? scoreData.optional.totalBellCount! : chart.data.maxPlatScore
+			}
+			difficulty={chart.difficulty}
 			data={[
 				{
 					id: type,

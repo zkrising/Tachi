@@ -1,5 +1,11 @@
 import { APIFetchV1 } from "util/api";
-import { ToFixedFloor, UppercaseFirst } from "util/misc";
+import {
+	FormatGPTProfileRatingName,
+	FormatGPTScoreRatingName,
+	FormatGPTSessionRatingName,
+	ToFixedFloor,
+	UppercaseFirst,
+} from "util/misc";
 import { ErrorPage } from "app/pages/ErrorPage";
 import useSetSubheader from "components/layout/header/useSetSubheader";
 import Card from "components/layout/page/Card";
@@ -178,7 +184,9 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 						onChange={formik.handleChange}
 					>
 						{Object.keys(gptConfig.scoreRatingAlgs).map((e) => (
-							<option key={e}>{e}</option>
+							<option key={e} value={e}>
+								{FormatGPTScoreRatingName(game, playtype, e)}
+							</option>
 						))}
 					</Form.Select>
 					<Form.Text className="text-body-secondary">
@@ -196,7 +204,9 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 						onChange={formik.handleChange}
 					>
 						{Object.keys(gptConfig.sessionRatingAlgs).map((e) => (
-							<option key={e}>{e}</option>
+							<option key={e} value={e}>
+								{FormatGPTSessionRatingName(game, playtype, e)}
+							</option>
 						))}
 					</Form.Select>
 					<Form.Text className="text-body-secondary">
@@ -214,7 +224,9 @@ function PreferencesForm({ reqUser, game, playtype }: UGPT) {
 						onChange={formik.handleChange}
 					>
 						{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
-							<option key={e}>{e}</option>
+							<option key={e} value={e}>
+								{FormatGPTProfileRatingName(game, playtype, e)}
+							</option>
 						))}
 					</Form.Select>
 					<Form.Text className="text-body-secondary">

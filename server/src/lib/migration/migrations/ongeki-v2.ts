@@ -17,6 +17,9 @@ const migration: Migration = {
 			},
 			async (scores: Array<ScoreDocument<"ongeki:Single">>) => {
 				for (const score of scores) {
+					// @ts-expect-error just incase
+					delete score._id;
+
 					try {
 						const newScore = {
 							...score,

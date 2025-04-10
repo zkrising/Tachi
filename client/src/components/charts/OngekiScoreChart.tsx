@@ -11,7 +11,7 @@ import {
 	PointTooltipProps,
 	LineSvgProps,
 } from "@nivo/line";
-import { COLOUR_SET, Difficulties } from "tachi-common";
+import { COLOUR_SET, Difficulties, FmtStars } from "tachi-common";
 import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 import ChartTooltip from "./ChartTooltip";
 
@@ -54,27 +54,54 @@ const strokeColor = (type: Difficulties["ongeki:Single"] | "BELLS") => {
 	}
 };
 
-const limitScoreGraph = (data: Serie[]) => {
+const limitScoreGraph = (data: Serie[], minval: number) => {
 	for (const val of data[0].data) {
 		if (val.y === null || val.y === undefined) {
 			break;
 		}
-		if (val.y < 970000) {
-			// 969999 will be used to represent values below S
+		if (val.y < minval) {
+			// (minval-1) (969999 for tech score) will be used
+			// to represent values below S
 			// Without this, the line would cross the bottom axis
 			// which looks very bad
-			val.y = 969999;
+			val.y = minval - 1;
 		}
 	}
 	return data;
 };
 
-const bellFloor = (data: Datum[], totalBellCount: number) => {
+const scaleFloor = (data: Datum[], maximum: number | undefined) => {
+	if (maximum === undefined) {
+		return 0;
+	}
 	// Scale the chart so that it drops by 3/4, unless it's a flatline
 	const lowestValue = Number(data.filter((v) => v.y !== null).pop()?.y ?? 0);
-	return lowestValue === 0
-		? -totalBellCount
-		: clamp(-totalBellCount, Math.floor(lowestValue * 1.333), -1);
+	return lowestValue === 0 ? -maximum : clamp(-maximum, Math.floor(lowestValue * 1.333), -1);
+};
+
+const platinumTooltip = (d: Datum, starValues: number[]) => {
+	if (d.point.data.y < starValues[0]) {
+		return (
+			<>
+				{"< 1★"} @ {formatTime(d.point.data.x)}
+			</>
+		);
+	}
+	for (let i = 1; i < 6; ++i) {
+		if (d.point.data.y < starValues[i]) {
+			return (
+				<>
+					MAX{d.point.data.y} ({i < 5 ? i + 1 : "虹"}
+					{"★"}-{starValues[i] - d.point.data.y}) @ {formatTime(d.point.data.x)}
+				</>
+			);
+		}
+	}
+	return (
+		<>
+			MAX{d.point.data.y === 0 ? "" : d.point.data.y} @ {formatTime(d.point.data.x)}
+		</>
+	);
 };
 
 export default function OngekiScoreChart({
@@ -84,16 +111,16 @@ export default function OngekiScoreChart({
 	mobileWidth = width,
 	type,
 	difficulty,
-	totalBellCount,
+	maximumAbsoluteValue,
 	data,
 }: {
 	mobileHeight?: number | string;
 	mobileWidth?: number | string;
 	width?: number | string;
 	height?: number | string;
-	type: "Score" | "Bells" | "Life";
+	type: "Score" | "Platinum" | "Bells" | "Life";
 	difficulty: Difficulties["ongeki:Single"];
-	totalBellCount: number;
+	maximumAbsoluteValue?: number;
 	data: Serie[];
 } & ResponsiveLine["props"]) {
 	const color =
@@ -101,7 +128,9 @@ export default function OngekiScoreChart({
 			? GPT_CLIENT_IMPLEMENTATIONS["ongeki:Single"].difficultyColours[difficulty]
 			: type === "Bells"
 			? COLOUR_SET.vibrantYellow
-			: COLOUR_SET.vibrantGreen;
+			: type === "Life"
+			? COLOUR_SET.vibrantGreen
+			: COLOUR_SET.white;
 	const gradientId = type === "Score" ? difficulty : type;
 
 	const commonProps: Omit<LineSvgProps, "data"> = {
@@ -137,7 +166,7 @@ export default function OngekiScoreChart({
 		component = (
 			<ResponsiveLine
 				{...commonProps}
-				data={limitScoreGraph(data)}
+				data={limitScoreGraph(data, 970000)}
 				yScale={{ type: "linear", min: 970000, max: 1010000 }}
 				yFormat={">-,.0f"}
 				axisLeft={{
@@ -150,7 +179,7 @@ export default function OngekiScoreChart({
 				areaBaselineValue={970000}
 				tooltip={(d: PointTooltipProps) => (
 					<ChartTooltip>
-						{d.point.data.y === 969999 ? "< 970,000 " : d.point.data.yFormatted}@{" "}
+						{d.point.data.y === 969999 ? "< 970,000" : d.point.data.yFormatted} @{" "}
 						{formatTime(d.point.data.x)}
 					</ChartTooltip>
 				)}
@@ -163,14 +192,14 @@ export default function OngekiScoreChart({
 				data={data}
 				yScale={{
 					type: "linear",
-					min: bellFloor(data[0].data, totalBellCount),
+					min: scaleFloor(data[0].data, maximumAbsoluteValue),
 					max: 0,
 					stacked: false,
 				}}
 				enableGridY={false}
 				axisLeft={{ format: (e: number) => Math.floor(e) === e && e }}
 				colors={strokeColor("BELLS")}
-				areaBaselineValue={bellFloor(data[0].data, totalBellCount)}
+				areaBaselineValue={scaleFloor(data[0].data, maximumAbsoluteValue)}
 				tooltip={(d: PointTooltipProps) => (
 					<ChartTooltip>
 						MAX{d.point.data.y === 0 ? "" : d.point.data.y} @{" "}
@@ -179,7 +208,7 @@ export default function OngekiScoreChart({
 				)}
 			/>
 		);
-	} else {
+	} else if (type === "Life") {
 		component = (
 			<ResponsiveLine
 				{...commonProps}
@@ -193,6 +222,45 @@ export default function OngekiScoreChart({
 					<ChartTooltip>
 						{d.point.data.y}% @ {formatTime(d.point.data.x)}
 					</ChartTooltip>
+				)}
+			/>
+		);
+	} else {
+		const mav = maximumAbsoluteValue ?? 0; // shorthand
+		const starValues = [
+			Math.floor(mav * 0.94) - mav,
+			Math.floor(mav * 0.95) - mav,
+			Math.floor(mav * 0.96) - mav,
+			Math.floor(mav * 0.97) - mav,
+			Math.floor(mav * 0.98) - mav,
+			Math.floor(mav * 0.99) - mav,
+		];
+		component = (
+			<ResponsiveLine
+				{...commonProps}
+				data={limitScoreGraph(data, starValues[0])}
+				yScale={{ type: "linear", min: starValues[0], max: 0 }}
+				yFormat={">-,.0f"}
+				axisLeft={{
+					tickValues: starValues,
+					format: (count: number) => {
+						if (count === starValues[5]) {
+							return "虹★";
+						}
+						for (let i = 0; i < 5; ++i) {
+							if (count === starValues[i]) {
+								return `${i + 1}★`;
+							}
+						}
+						return "Error";
+					},
+				}}
+				gridYValues={starValues}
+				enableGridY={true}
+				colors={strokeColor("LUNATIC")}
+				areaBaselineValue={starValues[0]}
+				tooltip={(d: PointTooltipProps) => (
+					<ChartTooltip>{platinumTooltip(d, starValues)}</ChartTooltip>
 				)}
 			/>
 		);

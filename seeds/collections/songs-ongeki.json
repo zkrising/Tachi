@@ -4738,7 +4738,9 @@
 		},
 		"id": 427,
 		"searchTerms": [
-			"Mayoeru neiro wa koi no uta"
+			"Mayoeru neiro wa koi no uta",
+			"A Wandering Melody of Love",
+			"AWMOL"
 		],
 		"title": "迷える音色は恋の唄"
 	},
@@ -4759,7 +4761,10 @@
 			"genre": "LUNATIC"
 		},
 		"id": 429,
-		"searchTerms": [],
+		"searchTerms": [
+			"RBG",
+			"RGB"
+		],
 		"title": "Red and Blue and Green"
 	},
 	{
@@ -4815,7 +4820,10 @@
 			"genre": "オンゲキ"
 		},
 		"id": 434,
-		"searchTerms": [],
+		"searchTerms": [
+			"DFTM",
+			"Donfai"
+		],
 		"title": "Don't Fight The Music"
 	},
 	{
@@ -8734,7 +8742,9 @@
 			"genre": "VARIETY"
 		},
 		"id": 785,
-		"searchTerms": [],
+		"searchTerms": [
+			"malmis"
+		],
 		"title": "Malicious Mischance"
 	},
 	{
@@ -8754,7 +8764,9 @@
 			"genre": "VARIETY"
 		},
 		"id": 787,
-		"searchTerms": [],
+		"searchTerms": [
+			"Loeschen"
+		],
 		"title": "Löschen"
 	},
 	{
@@ -10733,7 +10745,9 @@
 			"genre": "オンゲキ"
 		},
 		"id": 961,
-		"searchTerms": [],
+		"searchTerms": [
+			"ARTM"
+		],
 		"title": "And Revive The Melody"
 	},
 	{

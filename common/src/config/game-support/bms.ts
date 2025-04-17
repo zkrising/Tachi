@@ -76,6 +76,7 @@ export const BMSStSlDans = [
 	ClassValue("ST9", "st9", "Stella 9"),
 	ClassValue("ST10", "st10", "Stella 10"),
 	ClassValue("ST11", "st11", "Stella 11"),
+	ClassValue("ST12", "st12", "Stella 12"),
 ];
 
 export const BMSNewGenerationDans = [

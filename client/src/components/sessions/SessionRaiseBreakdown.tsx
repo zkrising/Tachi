@@ -49,7 +49,7 @@ export default function SessionRaiseBreakdown({
 }) {
 	const game = sessionData.session.game;
 	const playtype = sessionData.session.playtype;
-	const lampName = game === "ongeki" ? "noteLamp" : "lamp";
+	const lampName = game === "ongeki" || game === "chunithm" ? "noteLamp" : "lamp";
 
 	const { user } = useContext(UserContext);
 

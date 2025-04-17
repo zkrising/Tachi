@@ -206,6 +206,7 @@ export const BMS_7K_IMPL: GPTClientImplementation<"bms:7K"> = {
 			ST9: bgc("var(--bs-dark)", "var(--bs-light)"),
 			ST10: bgc("var(--bs-dark)", "var(--bs-light)"),
 			ST11: bgc("var(--bs-dark)", "var(--bs-light)"),
+			ST12: bgc("var(--bs-dark)", "var(--bs-light)"),
 		},
 	},
 };

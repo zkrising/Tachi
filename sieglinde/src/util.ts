@@ -7,9 +7,9 @@ import logger from "./logger";
 import TableValueGetters from "./lookups";
 import { XMLParser } from "fast-xml-parser";
 import fetch from "node-fetch";
-import { writeFile, readFile } from "fs/promises";
+import { writeFile, readFile, mkdir } from "fs/promises";
 import type { BMSTablesDataset } from "./types";
-import type { BMSTableEntry, BMSTableEntryMD5 } from "bms-table-loader";
+import type { BMSTableEntryMD5 } from "bms-table-loader";
 
 const parser = new XMLParser();
 
@@ -40,6 +40,7 @@ export async function FetchScoresForMD5(md5: string) {
 			d.name = d.name.toString();
 		}
 
+		await mkdir(`${__dirname}/cache/lr2ir`, { recursive: true });
 		await writeFile(`${__dirname}/cache/lr2ir/${md5}.json`, JSON.stringify(data, null, "\t"));
 
 		return data;

@@ -1,5 +1,5 @@
 import logger from "../../logger";
-import fs from "fs";
+import { mkdirSync, writeFileSync } from "fs";
 import path from "path";
 
 type MD5 = string;
@@ -236,7 +236,8 @@ export class DifficultyComputer {
 
 		logger.info("Writing regression info...");
 
-		fs.writeFileSync(
+		mkdirSync(`${__dirname}/../../cache/v1-calc-regressions`, { recursive: true });
+		writeFileSync(
 			path.join(__dirname, `../../cache/v1-calc-regressions/${tag}.json`),
 			JSON.stringify({
 				songDifficulty: mapToObj(this.songDifficulty),

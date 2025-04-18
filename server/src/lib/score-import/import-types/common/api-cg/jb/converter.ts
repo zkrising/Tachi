@@ -28,7 +28,7 @@ export const ConverterAPICGJubeat: ConverterFunction<CGJubeatScore, CGContext> =
 		poor: data.poorCount,
 		miss: data.missCount,
 	};
-	const lamp = GuessLamp(judgements, data.score);
+	const lamp = GetLamp(data.clearFlag);
 
 	const chart = await FindChartOnInGameID("jubeat", data.internalId, "Single", difficulty);
 
@@ -125,23 +125,23 @@ function ConvertMusicRate(rate: number): number {
 	return rate / 10;
 }
 
-function GuessLamp(judgments: Record<Judgements["jubeat:Single"], integer | null>, score: number) {
-	if (
-		judgments.good === 0 &&
-		judgments.great === 0 &&
-		judgments.miss === 0 &&
-		judgments.poor === 0
-	) {
-		if (score !== 1_000_000) {
-			throw new InvalidScoreFailure(`Score is an EXC, yet score !== 1_000_000.`);
-		}
-
+/* eslint-disable no-bitwise */
+function GetLamp(clearFlag: integer) {
+	if ((clearFlag & (1 << 3)) !== 0) {
 		return "EXCELLENT";
-	} else if (judgments.miss === 0 && judgments.poor === 0) {
+	}
+
+	if ((clearFlag & (1 << 2)) !== 0) {
 		return "FULL COMBO";
-	} else if (score >= 700_000) {
+	}
+
+	if ((clearFlag & (1 << 1)) !== 0) {
 		return "CLEAR";
 	}
 
-	return "FAILED";
+	if ((clearFlag & (1 << 0)) !== 0) {
+		return "FAILED";
+	}
+
+	throw new InvalidScoreFailure("Failed to decode Lamp using bitfield clearFlag.");
 }

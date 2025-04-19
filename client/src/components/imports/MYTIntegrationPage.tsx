@@ -181,7 +181,8 @@ export function MytNeedsIntegrate({
 				value={cardAccessCode}
 			/>
 			<Form.Label>
-				This is the card access code that's displayed in game. It should be 20 digits.
+				This is the card access code that's displayed in game, which may not be the same as
+				the code on the back of your card. It should be 20 digits.
 				<br />
 				{cardAccessCode.length > 0 && !validCardAccessCode ? (
 					<span className="text-danger">

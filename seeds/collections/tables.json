@@ -4991,7 +4991,7 @@
 			"F9aeebd014e88080ea4a7d7c2f47bee2a7444471e34c6446f3dbbd70ba1872c78"
 		],
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "ongeki-Single-brightMemory2Omni-levels",
 		"title": "O.N.G.E.K.I. (bright MEMORY Act.2 Omnimix)"
@@ -5007,7 +5007,7 @@
 			"F7df57e1be3f591b417fe94e10cd157d251b9780325a9812f9e7b1ed3ea207080"
 		],
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "ongeki-Single-brightMemory2Omni-difficulties",
 		"title": "O.N.G.E.K.I. (bright MEMORY Act.2 Omnimix) (Difficulties)"

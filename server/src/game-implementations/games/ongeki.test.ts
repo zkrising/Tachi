@@ -1,13 +1,13 @@
 import { ONGEKI_IMPL } from "./ongeki";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
-import { CreatePBDoc } from "lib/score-import/framework/pb/create-pb-doc";
+import { CreatePBDoc, UpdateChartRanking } from "lib/score-import/framework/pb/create-pb-doc";
 import { ONGEKI_BELL_LAMPS, ONGEKI_GRADES, ONGEKI_NOTE_LAMPS } from "tachi-common";
 import t from "tap";
 import { dmf, mkMockPB, mkMockScore } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
 import { TestingOngekiChart, TestingOngekiScorePB } from "test-utils/test-data";
-import type { ProvidedMetrics, ScoreData } from "tachi-common";
+import type { PBScoreDocument, ProvidedMetrics, ScoreData } from "tachi-common";
 
 const baseMetrics: ProvidedMetrics["ongeki:Single"] = {
 	noteLamp: "CLEAR",
@@ -207,6 +207,69 @@ t.test("ONGEKI Implementation", (t) => {
 					},
 				},
 			});
+
+			t.end();
+		});
+
+		t.end();
+	});
+
+	t.test("Ranking", (t) => {
+		t.beforeEach(ResetDBState);
+
+		t.test("Should tiebreak according to platinum score", async (t) => {
+			await db["personal-bests"].insert({
+				...TestingOngekiScorePB,
+				scoreData: {
+					...TestingOngekiScorePB.scoreData,
+					optional: {
+						platScore: 1000,
+					},
+				} as ScoreData<"ongeki:Single">,
+				timeAchieved: 3,
+				userID: 1,
+			});
+
+			await db["personal-bests"].insert({
+				...TestingOngekiScorePB,
+				scoreData: {
+					...TestingOngekiScorePB.scoreData,
+					optional: {
+						platScore: 1001,
+					},
+				} as ScoreData<"ongeki:Single">,
+				timeAchieved: 2,
+				userID: 2,
+			});
+
+			await db["personal-bests"].insert({
+				...TestingOngekiScorePB,
+				scoreData: {
+					...TestingOngekiScorePB.scoreData,
+					optional: {
+						platScore: 999,
+					},
+				} as ScoreData<"ongeki:Single">,
+				timeAchieved: 1,
+				userID: 3,
+			});
+
+			await UpdateChartRanking("ongeki", "Single", TestingOngekiChart.chartID);
+
+			const pbs = (await db["personal-bests"].find({
+				chartID: TestingOngekiChart.chartID,
+			})) as Array<PBScoreDocument<"ongeki:Single">>;
+
+			for (const pb of pbs) {
+				t.strictSame(pb.rankingData.outOf, 3);
+				if (pb.scoreData.optional.platScore === 999) {
+					t.strictSame(pb.rankingData.rank, 3);
+				} else if (pb.scoreData.optional.platScore === 1000) {
+					t.strictSame(pb.rankingData.rank, 2);
+				} else {
+					t.strictSame(pb.rankingData.rank, 1);
+				}
+			}
 
 			t.end();
 		});

@@ -223,9 +223,10 @@ t.test("ONGEKI Implementation", (t) => {
 				scoreData: {
 					...TestingOngekiScorePB.scoreData,
 					optional: {
+						...TestingOngekiScorePB.scoreData.optional,
 						platScore: 1000,
 					},
-				} as ScoreData<"ongeki:Single">,
+				},
 				timeAchieved: 3,
 				userID: 1,
 			});
@@ -235,9 +236,10 @@ t.test("ONGEKI Implementation", (t) => {
 				scoreData: {
 					...TestingOngekiScorePB.scoreData,
 					optional: {
+						...TestingOngekiScorePB.scoreData.optional,
 						platScore: 1001,
 					},
-				} as ScoreData<"ongeki:Single">,
+				},
 				timeAchieved: 2,
 				userID: 2,
 			});
@@ -247,9 +249,10 @@ t.test("ONGEKI Implementation", (t) => {
 				scoreData: {
 					...TestingOngekiScorePB.scoreData,
 					optional: {
+						...TestingOngekiScorePB.scoreData.optional,
 						platScore: 999,
 					},
-				} as ScoreData<"ongeki:Single">,
+				},
 				timeAchieved: 1,
 				userID: 3,
 			});
@@ -259,6 +262,8 @@ t.test("ONGEKI Implementation", (t) => {
 			const pbs = (await db["personal-bests"].find({
 				chartID: TestingOngekiChart.chartID,
 			})) as Array<PBScoreDocument<"ongeki:Single">>;
+
+			t.strictSame(pbs.length, 3);
 
 			for (const pb of pbs) {
 				t.strictSame(pb.rankingData.outOf, 3);
@@ -270,6 +275,55 @@ t.test("ONGEKI Implementation", (t) => {
 					t.strictSame(pb.rankingData.rank, 1);
 				}
 			}
+
+			t.end();
+		});
+
+		t.test("Should not tiebreak if tech scores differ", async (t) => {
+			await db["personal-bests"].insert({
+				...TestingOngekiScorePB,
+				scoreData: {
+					...TestingOngekiScorePB.scoreData,
+					score: 1010000,
+					optional: {
+						...TestingOngekiScorePB.scoreData.optional,
+						platScore: 0,
+					},
+				},
+				userID: 1,
+			});
+
+			await db["personal-bests"].insert({
+				...TestingOngekiScorePB,
+				scoreData: {
+					...TestingOngekiScorePB.scoreData,
+					score: 1009999,
+					optional: {
+						...TestingOngekiScorePB.scoreData.optional,
+						platScore: 1001,
+					},
+				},
+				userID: 2,
+			});
+
+			await UpdateChartRanking("ongeki", "Single", TestingOngekiChart.chartID);
+
+			const [pb1, pb2] = (await db["personal-bests"].find(
+				{
+					chartID: TestingOngekiChart.chartID,
+				},
+				{
+					sort: {
+						[`rankingData.rank`]: 1,
+					},
+				}
+			)) as Array<PBScoreDocument<"ongeki:Single">>;
+
+			t.strictSame(pb1?.rankingData.outOf, 2);
+			t.strictSame(pb1?.rankingData.rank, 1);
+			t.strictSame(pb2?.rankingData.rank, 2);
+			t.strictSame(pb1?.scoreData.optional.platScore, 0);
+			t.strictSame(pb2?.scoreData.optional.platScore, 1001);
 
 			t.end();
 		});

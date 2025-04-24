@@ -129,17 +129,7 @@ export async function CreatePBDoc(
  * Updates rankings on a given chart.
  */
 export async function UpdateChartRanking(game: Game, playtype: Playtype, chartID: string) {
-	const gptConfig = GetGamePTConfig(game, playtype);
-
-	const scores = await db["personal-bests"].find(
-		{ chartID },
-		{
-			sort: {
-				[`scoreData.${gptConfig.defaultMetric}`]: -1,
-				timeAchieved: 1,
-			},
-		}
-	);
+	const scores = await GetSortedPBs(game, playtype, chartID);
 
 	const allRivals = await GetEveryonesRivalIDs(game, playtype);
 
@@ -185,4 +175,31 @@ export async function UpdateChartRanking(game: Game, playtype: Playtype, chartID
 	}
 
 	await db["personal-bests"].bulkWrite(bwrite, { ordered: false });
+}
+
+async function GetSortedPBs(game: Game, playtype: Playtype, chartID: string) {
+	const gptConfig = GetGamePTConfig(game, playtype);
+
+	if (game === "ongeki") {
+		return db["personal-bests"].find(
+			{ chartID },
+			{
+				sort: {
+					[`scoreData.score`]: -1,
+					[`scoreData.optional.platScore`]: -1,
+					timeAchieved: 1,
+				},
+			}
+		);
+	}
+
+	return db["personal-bests"].find(
+		{ chartID },
+		{
+			sort: {
+				[`scoreData.${gptConfig.defaultMetric}`]: -1,
+				timeAchieved: 1,
+			},
+		}
+	);
 }

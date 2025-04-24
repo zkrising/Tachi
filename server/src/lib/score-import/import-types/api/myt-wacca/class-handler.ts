@@ -1,5 +1,6 @@
 import { UnaryRPCAsAsync } from "../../common/api-myt/traverse-api";
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
+import { WaccaVersion } from "proto/generated/wacca/common_pb";
 import { DataRequest } from "proto/generated/wacca/user_pb";
 import { WaccaStageUps } from "tachi-common/config/game-support/wacca";
 import type { ClassProvider } from "lib/score-import/framework/calculated-data/types";
@@ -17,22 +18,26 @@ export default async function CreateMytWACCAClassHandler(
 	const data = dataRes;
 
 	return (_gptString, _userID, _ratings, _logger) => {
-		// versions are 0-indexed, so
-		// 0 -> WACCA
-		// 1 -> S
-		// 2 -> Lily
-		// 3 -> Lily R
-		// 4 -> Reverse
-		// 5 -> Plus
-		// Currently (Feb. 2025) Reverse and Plus are supported on Myt.
+		// In Apr/May 2025, the keys for version data are changing from
+		// 0-indexed (starting at WACCA) to custom enum values.
+		// TODO: Once MYT transitions over to the new enum, remove the _OLD
+		// values from the enum proto definition, and remove the compatibility
+		// code below.
+		// Currently (Apr. 2025) Reverse and Plus are supported on Myt.
 		// We look for both Reverse and PLUS version data, PLUS being prioritized if exists.
 		// If / when custom dans are added, this will need to change.
-		// Also, these may change to be 1-indexed at some point.
-		const REVERSE_VERSION = 4;
-		const PLUS_VERSION = 5;
-		const versionData = data.getVersionDataMap().has(PLUS_VERSION)
-			? data.getVersionDataMap().get(PLUS_VERSION)
-			: data.getVersionDataMap().get(REVERSE_VERSION);
+		const versionDataMap = data.getVersionDataMap();
+		let versionData: DataResponse.VersionData | undefined;
+
+		if (versionDataMap.has(WaccaVersion.WACCA_VERSION_PLUS)) {
+			versionData = versionDataMap.get(WaccaVersion.WACCA_VERSION_PLUS);
+		} else if (versionDataMap.has(WaccaVersion.WACCA_VERSION_PLUS_OLD)) {
+			versionData = versionDataMap.get(WaccaVersion.WACCA_VERSION_PLUS_OLD);
+		} else if (versionDataMap.has(WaccaVersion.WACCA_VERSION_REVERSE)) {
+			versionData = versionDataMap.get(WaccaVersion.WACCA_VERSION_REVERSE);
+		} else if (versionDataMap.has(WaccaVersion.WACCA_VERSION_REVERSE_OLD)) {
+			versionData = versionDataMap.get(WaccaVersion.WACCA_VERSION_REVERSE_OLD);
+		}
 
 		// rank:
 		// 0 -> none

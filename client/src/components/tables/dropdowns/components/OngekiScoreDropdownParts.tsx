@@ -8,7 +8,7 @@ import {
 	ScoreData,
 	ScoreDocument,
 } from "tachi-common";
-import OngekiScoreChart from "components/charts/OngekiScoreChart";
+import GekichuScoreChart from "components/charts/GekichuScoreChart";
 
 type ChartTypes = "Score" | "Bells" | "Life";
 
@@ -78,7 +78,7 @@ function GraphComponent({
 			? scoreData.optional.bellGraph!
 			: scoreData.optional.lifeGraph!;
 	return (
-		<OngekiScoreChart
+		<GekichuScoreChart
 			height="360px"
 			mobileHeight="175px"
 			type={type}
@@ -90,6 +90,7 @@ function GraphComponent({
 					data: values.map((e, i) => ({ x: i, y: e })),
 				},
 			]}
+			game="ongeki"
 		/>
 	);
 }

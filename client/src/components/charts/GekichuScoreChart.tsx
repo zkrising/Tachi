@@ -123,23 +123,24 @@ export default function GekichuScoreChart({
 } & ResponsiveLine["props"]) {
 	let color = COLOUR_SET.gray;
 
-	if (game === "chunithm") {
-		color =
-			GPT_CLIENT_IMPLEMENTATIONS["chunithm:Single"].difficultyColours[
-				difficulty as Difficulties["chunithm:Single"]
-			];
-	} else if (game === "ongeki") {
-		if (type === "Score") {
+	if (type === "Score") {
+		if (game === "chunithm") {
+			color =
+				GPT_CLIENT_IMPLEMENTATIONS["chunithm:Single"].difficultyColours[
+					difficulty as Difficulties["chunithm:Single"]
+				];
+		} else if (game === "ongeki") {
 			color =
 				GPT_CLIENT_IMPLEMENTATIONS["ongeki:Single"].difficultyColours[
 					difficulty as Difficulties["ongeki:Single"]
 				];
-		} else if (type === "Bells") {
-			color = COLOUR_SET.vibrantYellow;
-		} else {
-			color = COLOUR_SET.vibrantGreen;
 		}
+	} else if (type === "Bells") {
+		color = COLOUR_SET.vibrantYellow;
+	} else {
+		color = COLOUR_SET.vibrantGreen;
 	}
+
 	const gradientId = type === "Score" ? difficulty : type;
 
 	const commonProps: Omit<LineSvgProps, "data"> = {
@@ -195,7 +196,7 @@ export default function GekichuScoreChart({
 					)}
 				/>
 			);
-		} else {
+		} else if (game === "chunithm") {
 			component = (
 				<ResponsiveLine
 					{...commonProps}
@@ -242,19 +243,22 @@ export default function GekichuScoreChart({
 				)}
 			/>
 		);
-	} else {
+	} else if (type === "Life") {
+		const max = game === "ongeki" ? 100 : (data[0].data[0].y as number);
+		const suffix = game === "ongeki" ? "%" : "";
 		component = (
 			<ResponsiveLine
 				{...commonProps}
 				data={data}
-				yScale={{ type: "linear", min: 0, max: 100 }}
+				yScale={{ type: "linear", min: 0, max }}
 				enableGridY={false}
-				axisLeft={{ format: (d: number) => `${d}%` }}
+				axisLeft={{ format: (d: number) => `${d}${suffix}` }}
 				colors={strokeColor("BASIC")}
 				areaBaselineValue={0}
 				tooltip={(d: PointTooltipProps) => (
 					<ChartTooltip>
-						{d.point.data.y}% @ {formatTime(d.point.data.x)}
+						{d.point.data.y}
+						{suffix} @ {formatTime(d.point.data.x)}
 					</ChartTooltip>
 				)}
 			/>

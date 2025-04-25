@@ -92,6 +92,11 @@ export const CHUNITHM_SINGLE_CONF = {
 			validate: p.isBetween(0, 1010000),
 			description: "The history of the projected score, queried in one-second intervals.",
 		},
+		lifeGraph: {
+			type: "NULLABLE_GRAPH",
+			validate: p.isBetween(0, 999),
+			description: "Challenge gauge history, queried in one-second intervals.",
+		},
 	},
 
 	scoreRatingAlgs: {

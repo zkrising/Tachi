@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	ChartDocument,
 	Difficulties,
@@ -7,6 +7,10 @@ import {
 	ScoreDocument,
 } from "tachi-common";
 import GekichuScoreChart from "components/charts/GekichuScoreChart";
+import SelectNav from "components/util/SelectNav";
+import { Nav } from "react-bootstrap";
+
+type ChartTypes = "Score" | "Life";
 
 export function ChunithmGraphsComponent({
 	score,
@@ -15,13 +19,28 @@ export function ChunithmGraphsComponent({
 	score: ScoreDocument<"chunithm:Single"> | PBScoreDocument<"chunithm:Single">;
 	chart: ChartDocument<"chunithm:Single">;
 }) {
-	const available = score.scoreData.optional.scoreGraph;
+	const [graph, setGraph] = useState<ChartTypes>("Score");
+	const available = score.scoreData.optional.scoreGraph && score.scoreData.optional.lifeGraph;
 
 	return (
 		<>
+			<div className="col-12 d-flex justify-content-center">
+				<Nav variant="pills">
+					<SelectNav id="Score" value={graph} setValue={setGraph} disabled={!available}>
+						Score
+					</SelectNav>
+					<SelectNav id="Life" value={graph} setValue={setGraph} disabled={!available}>
+						Life
+					</SelectNav>
+				</Nav>
+			</div>
 			<div className="col-12">
 				{available ? (
-					<GraphComponent scoreData={score.scoreData} difficulty={chart.difficulty} />
+					<GraphComponent
+						type={graph}
+						scoreData={score.scoreData}
+						difficulty={chart.difficulty}
+					/>
 				) : (
 					<div
 						className="d-flex align-items-center justify-content-center"
@@ -38,20 +57,23 @@ export function ChunithmGraphsComponent({
 function GraphComponent({
 	scoreData,
 	difficulty,
+	type,
 }: {
 	scoreData: ScoreData<"chunithm:Single">;
 	difficulty: Difficulties["chunithm:Single"];
+	type: ChartTypes;
 }) {
-	const values = scoreData.optional.scoreGraph!;
+	const values =
+		type === "Score" ? scoreData.optional.scoreGraph! : scoreData.optional.lifeGraph!;
 	return (
 		<GekichuScoreChart
 			height="360px"
 			mobileHeight="175px"
-			type="Score"
+			type={type}
 			difficulty={difficulty}
 			data={[
 				{
-					id: "Score",
+					id: type,
 					data: values.map((e, i) => ({ x: i, y: e })),
 				},
 			]}

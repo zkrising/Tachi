@@ -11,6 +11,7 @@ export const CHUNITHM_CONF = {
 	songData: z.strictObject({
 		genre: z.string(),
 		displayVersion: z.string(),
+		duration: z.number(),
 	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 

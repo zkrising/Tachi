@@ -1470,6 +1470,7 @@ export const TestingOngekiSongConverter: SongDocument<"ongeki"> = {
 	artist: "本城香澄（CV：岩橋由佳）「Re:ステージ！プリズムステップ」",
 	data: {
 		genre: "POPS＆ANIME",
+		duration: 120,
 	},
 	id: 683,
 	searchTerms: [],
@@ -1496,6 +1497,7 @@ export const TestingChunithmSongConverter: SongDocument<"chunithm"> = {
 	data: {
 		displayVersion: "crystalplus",
 		genre: "POPS & ANIME",
+		duration: 120,
 	},
 	id: 956,
 	searchTerms: [],

@@ -5,21 +5,24 @@ import {
 	PBScoreDocument,
 	ScoreData,
 	ScoreDocument,
+	SongDocument,
 } from "tachi-common";
 import GekichuScoreChart from "components/charts/GekichuScoreChart";
 import SelectNav from "components/util/SelectNav";
 import { Nav } from "react-bootstrap";
 
-type ChartTypes = "Score" | "Life";
+type ChartType = "Score" | "Life";
 
 export function ChunithmGraphsComponent({
 	score,
 	chart,
+	song,
 }: {
 	score: ScoreDocument<"chunithm:Single"> | PBScoreDocument<"chunithm:Single">;
 	chart: ChartDocument<"chunithm:Single">;
+	song: SongDocument<"chunithm">;
 }) {
-	const [graph, setGraph] = useState<ChartTypes>("Score");
+	const [graph, setGraph] = useState<ChartType>("Score");
 	const available = score.scoreData.optional.scoreGraph && score.scoreData.optional.lifeGraph;
 
 	return (
@@ -40,6 +43,7 @@ export function ChunithmGraphsComponent({
 						type={graph}
 						scoreData={score.scoreData}
 						difficulty={chart.difficulty}
+						song={song}
 					/>
 				) : (
 					<div
@@ -56,12 +60,14 @@ export function ChunithmGraphsComponent({
 
 function GraphComponent({
 	scoreData,
+	song,
 	difficulty,
 	type,
 }: {
 	scoreData: ScoreData<"chunithm:Single">;
+	song: SongDocument<"chunithm">;
 	difficulty: Difficulties["chunithm:Single"];
-	type: ChartTypes;
+	type: ChartType;
 }) {
 	const values =
 		type === "Score" ? scoreData.optional.scoreGraph! : scoreData.optional.lifeGraph!;
@@ -78,6 +84,7 @@ function GraphComponent({
 				},
 			]}
 			game="chunithm"
+			duration={song.data.duration}
 		/>
 	);
 }

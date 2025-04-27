@@ -148,6 +148,7 @@ export default function PBDropdown({
 				pbData={data}
 				scoreState={scoreState}
 				chart={chart}
+				song={song}
 			/>
 		);
 	}

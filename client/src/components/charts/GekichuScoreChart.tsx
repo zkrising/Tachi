@@ -110,6 +110,7 @@ export default function GekichuScoreChart({
 	totalBellCount,
 	data,
 	game,
+	duration,
 }: {
 	mobileHeight?: number | string;
 	mobileWidth?: number | string;
@@ -120,6 +121,7 @@ export default function GekichuScoreChart({
 	totalBellCount?: number;
 	data: Serie[];
 	game: Game;
+	duration: number;
 } & ResponsiveLine["props"]) {
 	let color = COLOUR_SET.gray;
 
@@ -146,7 +148,7 @@ export default function GekichuScoreChart({
 	const commonProps: Omit<LineSvgProps, "data"> = {
 		margin: { top: 30, bottom: 50, left: 50, right: 50 },
 		enableGridX: false,
-		xScale: { type: "linear", min: 0, max: data[0].data.length - 1 },
+		xScale: { type: "linear", min: 0, max: duration },
 		axisBottom: { format: (d: number) => formatTime(d) },
 		motionConfig: "stiff",
 		crosshairType: "x",

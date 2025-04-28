@@ -190938,7 +190938,9 @@
 		"playtype": "Single",
 		"songID": 2751,
 		"versions": [
-			"verse-intl"
+			"verse",
+			"verse-intl",
+			"verse-omni"
 		]
 	},
 	{
@@ -190953,7 +190955,9 @@
 		"playtype": "Single",
 		"songID": 2751,
 		"versions": [
-			"verse-intl"
+			"verse",
+			"verse-intl",
+			"verse-omni"
 		]
 	},
 	{
@@ -190968,7 +190972,9 @@
 		"playtype": "Single",
 		"songID": 2751,
 		"versions": [
-			"verse-intl"
+			"verse",
+			"verse-intl",
+			"verse-omni"
 		]
 	},
 	{
@@ -190983,7 +190989,9 @@
 		"playtype": "Single",
 		"songID": 2751,
 		"versions": [
-			"verse-intl"
+			"verse",
+			"verse-intl",
+			"verse-omni"
 		]
 	},
 	{

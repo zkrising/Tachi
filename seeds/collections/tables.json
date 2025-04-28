@@ -922,7 +922,7 @@
 			"F2670896329a520a9449ac22ea408ff3b4d5d128f412e3470dcbdb65f7dce5461"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-luminousplus-intl-levels",
 		"title": "CHUNITHM (LUMINOUS PLUS International)"
@@ -938,7 +938,7 @@
 			"F341bd38f44b01bba76ce22e8bb7b285f82457038b4ce978d884d1bf8c2012e7b"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-luminousplus-intl-difficulties",
 		"title": "CHUNITHM (LUMINOUS PLUS International) (Difficulties)"
@@ -1509,7 +1509,7 @@
 			"F6e3bab8efa50af337873432c574f96c039e8b7ac678632d8ff4fc4cd1fc5f1b2"
 		],
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-verse-intl-levels",
 		"title": "CHUNITHM (VERSE International)"
@@ -1525,7 +1525,7 @@
 			"F3c55f07102751c31dc008af7cae3982340515cf4e68c802ecb7ac04a9c760a84"
 		],
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-verse-intl-difficulties",
 		"title": "CHUNITHM (VERSE International) (Difficulties)"

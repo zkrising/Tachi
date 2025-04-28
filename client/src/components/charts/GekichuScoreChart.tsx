@@ -22,7 +22,7 @@ const formatTime = (s: DatumValue) =>
 		.toString()
 		.padStart(2, "0")}`;
 
-const scoreToLamp = (game: Game) => (s: number) => {
+const getScoreYAxisNotch = (game: Game) => (s: number) => {
 	if (game === "ongeki") {
 		switch (s) {
 			case 970_000:
@@ -184,7 +184,7 @@ export default function GekichuScoreChart({
 					yFormat={">-,.0f"}
 					axisLeft={{
 						tickValues: [970000, 990000, 1000000, 1007500, 1010000],
-						format: scoreToLamp(game),
+						format: getScoreYAxisNotch(game),
 					}}
 					gridYValues={[970000, 980000, 990000, 1000000, 1007500, 1010000]}
 					enableGridY={true}
@@ -207,7 +207,7 @@ export default function GekichuScoreChart({
 					yFormat={">-,.0f"}
 					axisLeft={{
 						tickValues: [990_000, 1000_000, 1005_000, 1007_500, 1009_000, 1010_000],
-						format: scoreToLamp(game),
+						format: getScoreYAxisNotch(game),
 					}}
 					gridYValues={[990_000, 1000_000, 1005_000, 1007_500, 1009_000, 1010_000]}
 					enableGridY={true}

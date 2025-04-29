@@ -339,18 +339,15 @@ t.test("ONGEKI Implementation", (t: any) => {
 		t.end();
 	});
 
-	t.test("Ranking", (t) => {
+	t.test("Ranking", (t: any) => {
 		t.beforeEach(ResetDBState);
 
-		t.test("Should tiebreak according to platinum score", async (t) => {
+		t.test("Should tiebreak according to platinum score", async (t: any) => {
 			await db["personal-bests"].insert({
 				...TestingOngekiScorePB,
 				scoreData: {
 					...TestingOngekiScorePB.scoreData,
-					optional: {
-						...TestingOngekiScorePB.scoreData.optional,
-						platScore: 1000,
-					},
+					platinumScore: 1000,
 				},
 				timeAchieved: 3,
 				userID: 1,
@@ -360,10 +357,7 @@ t.test("ONGEKI Implementation", (t: any) => {
 				...TestingOngekiScorePB,
 				scoreData: {
 					...TestingOngekiScorePB.scoreData,
-					optional: {
-						...TestingOngekiScorePB.scoreData.optional,
-						platScore: 1001,
-					},
+					platinumScore: 1001,
 				},
 				timeAchieved: 2,
 				userID: 2,
@@ -373,10 +367,7 @@ t.test("ONGEKI Implementation", (t: any) => {
 				...TestingOngekiScorePB,
 				scoreData: {
 					...TestingOngekiScorePB.scoreData,
-					optional: {
-						...TestingOngekiScorePB.scoreData.optional,
-						platScore: 999,
-					},
+					platinumScore: 999,
 				},
 				timeAchieved: 1,
 				userID: 3,
@@ -392,9 +383,9 @@ t.test("ONGEKI Implementation", (t: any) => {
 
 			for (const pb of pbs) {
 				t.strictSame(pb.rankingData.outOf, 3);
-				if (pb.scoreData.optional.platScore === 999) {
+				if (pb.scoreData.platinumScore === 999) {
 					t.strictSame(pb.rankingData.rank, 3);
-				} else if (pb.scoreData.optional.platScore === 1000) {
+				} else if (pb.scoreData.platinumScore === 1000) {
 					t.strictSame(pb.rankingData.rank, 2);
 				} else {
 					t.strictSame(pb.rankingData.rank, 1);
@@ -404,16 +395,13 @@ t.test("ONGEKI Implementation", (t: any) => {
 			t.end();
 		});
 
-		t.test("Should not tiebreak if tech scores differ", async (t) => {
+		t.test("Should not tiebreak if tech scores differ", async (t: any) => {
 			await db["personal-bests"].insert({
 				...TestingOngekiScorePB,
 				scoreData: {
 					...TestingOngekiScorePB.scoreData,
 					score: 1010000,
-					optional: {
-						...TestingOngekiScorePB.scoreData.optional,
-						platScore: 0,
-					},
+					platinumScore: 0,
 				},
 				userID: 1,
 			});
@@ -423,10 +411,7 @@ t.test("ONGEKI Implementation", (t: any) => {
 				scoreData: {
 					...TestingOngekiScorePB.scoreData,
 					score: 1009999,
-					optional: {
-						...TestingOngekiScorePB.scoreData.optional,
-						platScore: 1001,
-					},
+					platinumScore: 1001,
 				},
 				userID: 2,
 			});
@@ -447,8 +432,8 @@ t.test("ONGEKI Implementation", (t: any) => {
 			t.strictSame(pb1?.rankingData.outOf, 2);
 			t.strictSame(pb1?.rankingData.rank, 1);
 			t.strictSame(pb2?.rankingData.rank, 2);
-			t.strictSame(pb1?.scoreData.optional.platScore, 0);
-			t.strictSame(pb2?.scoreData.optional.platScore, 1001);
+			t.strictSame(pb1?.scoreData.platinumScore, 0);
+			t.strictSame(pb2?.scoreData.platinumScore, 1001);
 
 			t.end();
 		});

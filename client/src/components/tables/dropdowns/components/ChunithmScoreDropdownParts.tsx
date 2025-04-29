@@ -23,7 +23,10 @@ export function ChunithmGraphsComponent({
 	song: SongDocument<"chunithm">;
 }) {
 	const [graph, setGraph] = useState<ChartType>("Score");
-	const available = score.scoreData.optional.scoreGraph && score.scoreData.optional.lifeGraph;
+	const available =
+		score.scoreData.optional.scoreGraph &&
+		score.scoreData.optional.lifeGraph &&
+		song.data.duration !== undefined;
 
 	return (
 		<>
@@ -84,7 +87,7 @@ function GraphComponent({
 				},
 			]}
 			game="chunithm"
-			duration={song.data.duration}
+			duration={song.data.duration!}
 		/>
 	);
 }

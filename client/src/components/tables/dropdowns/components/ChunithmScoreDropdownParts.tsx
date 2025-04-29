@@ -1,6 +1,4 @@
-import SelectNav from "components/util/SelectNav";
 import React, { useState } from "react";
-import { Nav } from "react-bootstrap";
 import {
 	ChartDocument,
 	Difficulties,
@@ -10,25 +8,25 @@ import {
 	SongDocument,
 } from "tachi-common";
 import GekichuScoreChart from "components/charts/GekichuScoreChart";
+import SelectNav from "components/util/SelectNav";
+import { Nav } from "react-bootstrap";
 
-type ChartType = "Score" | "Bells" | "Life";
+type ChartType = "Score" | "Life";
 
-export function OngekiGraphsComponent({
+export function ChunithmGraphsComponent({
 	score,
 	chart,
 	song,
 }: {
-	score: ScoreDocument<"ongeki:Single"> | PBScoreDocument<"ongeki:Single">;
-	chart: ChartDocument<"ongeki:Single">;
-	song: SongDocument<"ongeki">;
+	score: ScoreDocument<"chunithm:Single"> | PBScoreDocument<"chunithm:Single">;
+	chart: ChartDocument<"chunithm:Single">;
+	song: SongDocument<"chunithm">;
 }) {
 	const [graph, setGraph] = useState<ChartType>("Score");
 	const available =
 		score.scoreData.optional.scoreGraph &&
-		score.scoreData.optional.bellGraph &&
 		score.scoreData.optional.lifeGraph &&
-		score.scoreData.optional.totalBellCount !== null &&
-		score.scoreData.optional.totalBellCount !== undefined;
+		song.data.duration !== undefined;
 
 	return (
 		<>
@@ -36,9 +34,6 @@ export function OngekiGraphsComponent({
 				<Nav variant="pills">
 					<SelectNav id="Score" value={graph} setValue={setGraph} disabled={!available}>
 						Score
-					</SelectNav>
-					<SelectNav id="Bells" value={graph} setValue={setGraph} disabled={!available}>
-						Bells
 					</SelectNav>
 					<SelectNav id="Life" value={graph} setValue={setGraph} disabled={!available}>
 						Life
@@ -50,8 +45,8 @@ export function OngekiGraphsComponent({
 					<GraphComponent
 						type={graph}
 						scoreData={score.scoreData}
-						song={song}
 						difficulty={chart.difficulty}
+						song={song}
 					/>
 				) : (
 					<div
@@ -67,28 +62,23 @@ export function OngekiGraphsComponent({
 }
 
 function GraphComponent({
-	type,
 	scoreData,
 	song,
 	difficulty,
+	type,
 }: {
+	scoreData: ScoreData<"chunithm:Single">;
+	song: SongDocument<"chunithm">;
+	difficulty: Difficulties["chunithm:Single"];
 	type: ChartType;
-	scoreData: ScoreData<"ongeki:Single">;
-	song: SongDocument<"ongeki">;
-	difficulty: Difficulties["ongeki:Single"];
 }) {
 	const values =
-		type === "Score"
-			? scoreData.optional.scoreGraph!
-			: type === "Bells"
-			? scoreData.optional.bellGraph!
-			: scoreData.optional.lifeGraph!;
+		type === "Score" ? scoreData.optional.scoreGraph! : scoreData.optional.lifeGraph!;
 	return (
 		<GekichuScoreChart
 			height="360px"
 			mobileHeight="175px"
 			type={type}
-			totalBellCount={scoreData.optional.totalBellCount!}
 			difficulty={difficulty}
 			data={[
 				{
@@ -96,8 +86,8 @@ function GraphComponent({
 					data: values.map((e, i) => ({ x: i, y: e })),
 				},
 			]}
-			game="ongeki"
-			duration={song.data.duration}
+			game="chunithm"
+			duration={song.data.duration!}
 		/>
 	);
 }

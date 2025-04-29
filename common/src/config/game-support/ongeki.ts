@@ -19,6 +19,7 @@ export const ONGEKI_CONF = {
 			"LUNATIC",
 			"ボーナストラック",
 		]),
+		duration: z.number(),
 	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 

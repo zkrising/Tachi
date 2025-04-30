@@ -23,7 +23,7 @@ import DropdownIndicatorCell from "../cells/DropdownIndicatorCell";
 
 export default function HistoryScoreTable({
 	dataset,
-	pageLen = 5,
+	pageLen = 10,
 	playtype,
 	game,
 	chart,

@@ -2,7 +2,7 @@ import { USC_CONTROLLER_IMPL, USC_KEYBOARD_IMPL } from "./usc";
 import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { CreatePBDoc } from "lib/score-import/framework/pb/create-pb-doc";
-import { GetGPTString, SDVX_GRADES, SDVX_LAMPS } from "tachi-common";
+import { GetGPTString, SDVX_GRADES, USC_LAMPS } from "tachi-common";
 import t from "tap";
 import { dmf, mkMockPB, mkMockScore } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
@@ -24,7 +24,7 @@ const scoreData: ScoreData<GPTStrings["usc"]> = {
 	optional: { enumIndexes: {} },
 	enumIndexes: {
 		grade: SDVX_GRADES.AAA,
-		lamp: SDVX_LAMPS.CLEAR,
+		lamp: USC_LAMPS.CLEAR,
 	},
 };
 
@@ -142,7 +142,7 @@ for (const [playtype, impl] of [
 
 				f("grade", { grade: "AAA+", score: 9_817_342 }, SDVX_GRADES.S, "S-83K");
 				f("score", { score: 9_820_123 }, 1_000_000, "9,820,123");
-				f("lamp", { lamp: "CLEAR" }, SDVX_LAMPS.CLEAR, "CLEAR");
+				f("lamp", { lamp: "CLEAR" }, USC_LAMPS.CLEAR, "CLEAR");
 
 				t.end();
 			});
@@ -168,7 +168,7 @@ for (const [playtype, impl] of [
 						scoreData: {
 							score: 0,
 							lamp: "ULTIMATE CHAIN",
-							enumIndexes: { lamp: SDVX_LAMPS.ULTIMATE_CHAIN },
+							enumIndexes: { lamp: USC_LAMPS.ULTIMATE_CHAIN },
 						},
 					})
 				);
@@ -183,7 +183,7 @@ for (const [playtype, impl] of [
 						scoreData: {
 							score: mockScore.scoreData.score,
 							lamp: "ULTIMATE CHAIN",
-							enumIndexes: { lamp: SDVX_LAMPS.ULTIMATE_CHAIN },
+							enumIndexes: { lamp: USC_LAMPS.ULTIMATE_CHAIN },
 						},
 					}
 				);

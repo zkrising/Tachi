@@ -26,6 +26,14 @@ export enum SDVX_LAMPS {
 	PERFECT_ULTIMATE_CHAIN = 5,
 }
 
+export enum USC_LAMPS {
+	FAILED = 0,
+	CLEAR = 1,
+	EXCESSIVE_CLEAR = 2,
+	ULTIMATE_CHAIN = 3,
+	PERFECT_ULTIMATE_CHAIN = 4,
+}
+
 export enum MUSECA_LAMPS {
 	FAILED = 0,
 	CLEAR = 1,

@@ -7,19 +7,22 @@ import {
 	PBScoreDocument,
 	ScoreData,
 	ScoreDocument,
+	SongDocument,
 } from "tachi-common";
-import OngekiScoreChart from "components/charts/OngekiScoreChart";
+import GekichuScoreChart from "components/charts/GekichuScoreChart";
 
-type ChartTypes = "Score" | "Bells" | "Life";
+type ChartType = "Score" | "Bells" | "Life";
 
 export function OngekiGraphsComponent({
 	score,
 	chart,
+	song,
 }: {
 	score: ScoreDocument<"ongeki:Single"> | PBScoreDocument<"ongeki:Single">;
 	chart: ChartDocument<"ongeki:Single">;
+	song: SongDocument<"ongeki">;
 }) {
-	const [graph, setGraph] = useState<ChartTypes>("Score");
+	const [graph, setGraph] = useState<ChartType>("Score");
 	const available =
 		score.scoreData.optional.scoreGraph &&
 		score.scoreData.optional.bellGraph &&
@@ -47,6 +50,7 @@ export function OngekiGraphsComponent({
 					<GraphComponent
 						type={graph}
 						scoreData={score.scoreData}
+						song={song}
 						difficulty={chart.difficulty}
 					/>
 				) : (
@@ -65,10 +69,12 @@ export function OngekiGraphsComponent({
 function GraphComponent({
 	type,
 	scoreData,
+	song,
 	difficulty,
 }: {
-	type: ChartTypes;
+	type: ChartType;
 	scoreData: ScoreData<"ongeki:Single">;
+	song: SongDocument<"ongeki">;
 	difficulty: Difficulties["ongeki:Single"];
 }) {
 	const values =
@@ -78,7 +84,7 @@ function GraphComponent({
 			? scoreData.optional.bellGraph!
 			: scoreData.optional.lifeGraph!;
 	return (
-		<OngekiScoreChart
+		<GekichuScoreChart
 			height="360px"
 			mobileHeight="175px"
 			type={type}
@@ -90,6 +96,8 @@ function GraphComponent({
 					data: values.map((e, i) => ({ x: i, y: e })),
 				},
 			]}
+			game="ongeki"
+			duration={song.data.duration}
 		/>
 	);
 }

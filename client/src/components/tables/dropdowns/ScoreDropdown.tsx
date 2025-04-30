@@ -120,10 +120,11 @@ export default function ScoreDropdown({
 				onScoreUpdate={onScoreUpdate}
 				pbData={data}
 				chart={chart}
+				song={song}
 			/>
 		);
 	} else if (view === "vsPB") {
-		body = <PBCompare data={data} DocComponent={DocComponent} scoreState={scoreState} />;
+		body = <PBCompare data={data} DocComponent={DocComponent as any} scoreState={scoreState} />;
 	} else if (view === "manage") {
 		body = <DeleteScoreBtn score={thisScore} />;
 	} else if (view === "targets") {

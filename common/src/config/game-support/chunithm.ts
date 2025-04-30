@@ -11,6 +11,7 @@ export const CHUNITHM_CONF = {
 	songData: z.strictObject({
 		genre: z.string(),
 		displayVersion: z.string(),
+		duration: z.number().optional(),
 	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
@@ -87,6 +88,16 @@ export const CHUNITHM_SINGLE_CONF = {
 
 	optionalMetrics: {
 		...FAST_SLOW_MAXCOMBO,
+		scoreGraph: {
+			type: "GRAPH",
+			validate: p.isBetween(0, 1010000),
+			description: "The history of the projected score, queried in one-second intervals.",
+		},
+		lifeGraph: {
+			type: "GRAPH",
+			validate: p.isBetween(0, 999),
+			description: "Challenge gauge history, queried in one-second intervals.",
+		},
 	},
 
 	scoreRatingAlgs: {

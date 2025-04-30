@@ -186,7 +186,7 @@ async function GetSortedPBs(game: Game, playtype: Playtype, chartID: string) {
 			{
 				sort: {
 					[`scoreData.score`]: -1,
-					[`scoreData.optional.platScore`]: -1,
+					[`scoreData.platinumScore`]: -1,
 					timeAchieved: 1,
 				},
 			}

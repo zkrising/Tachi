@@ -25,7 +25,7 @@ export function ChunithmGraphsComponent({
 	const available = score.scoreData.optional.scoreGraph && score.scoreData.optional.lifeGraph;
 
 	if (!available) {
-		return Box("No charts available");
+		return <Box message="No charts available" />;
 	}
 
 	const { data, error } = useApiQuery<{
@@ -33,11 +33,11 @@ export function ChunithmGraphsComponent({
 	}>(`/games/chunithm/Single/songs/${score.songID}`);
 
 	if (error !== null || data === undefined) {
-		return Box("Error retrieving chart");
+		return <Box message="Error retrieving chart" />;
 	}
 
 	if (data.song.data.duration === null) {
-		return Box("No charts available");
+		return <Box message="No charts available" />;
 	}
 
 	return (
@@ -95,7 +95,7 @@ function GraphComponent({
 	);
 }
 
-function Box(message: string) {
+function Box({ message }: { message: string }) {
 	return (
 		<div className="col-12">
 			<div

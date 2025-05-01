@@ -30,14 +30,14 @@ export function OngekiGraphsComponent({
 		score.scoreData.optional.totalBellCount !== undefined;
 
 	if (!available) {
-		return Box("No charts available");
+		return <Box message="No charts available" />;
 	}
 
 	const { data, error } = useApiQuery<{
 		song: SongDocument<"ongeki">;
 	}>(`/games/ongeki/Single/songs/${score.songID}`);
 	if (error !== null || data === undefined) {
-		return Box("Error retrieving chart");
+		return <Box message="Error retrieving chart" />;
 	}
 	const song = data.song;
 
@@ -104,7 +104,7 @@ function GraphComponent({
 	);
 }
 
-function Box(message: string) {
+function Box({ message }: { message: string }) {
 	return (
 		<div className="col-12">
 			<div

@@ -10,17 +10,16 @@ import {
 	SongDocument,
 } from "tachi-common";
 import GekichuScoreChart from "components/charts/GekichuScoreChart";
+import useApiQuery from "components/util/query/useApiQuery";
 
 type ChartType = "Score" | "Bells" | "Life";
 
 export function OngekiGraphsComponent({
 	score,
 	chart,
-	song,
 }: {
 	score: ScoreDocument<"ongeki:Single"> | PBScoreDocument<"ongeki:Single">;
 	chart: ChartDocument<"ongeki:Single">;
-	song: SongDocument<"ongeki">;
 }) {
 	const [graph, setGraph] = useState<ChartType>("Score");
 	const available =
@@ -29,6 +28,18 @@ export function OngekiGraphsComponent({
 		score.scoreData.optional.lifeGraph &&
 		score.scoreData.optional.totalBellCount !== null &&
 		score.scoreData.optional.totalBellCount !== undefined;
+
+	if (!available) {
+		return <Box message="No charts available" />;
+	}
+
+	const { data, error } = useApiQuery<{
+		song: SongDocument<"ongeki">;
+	}>(`/games/ongeki/Single/songs/${score.songID}`);
+	if (error !== null || data === undefined) {
+		return <Box message="Error retrieving chart" />;
+	}
+	const song = data.song;
 
 	return (
 		<>
@@ -46,21 +57,12 @@ export function OngekiGraphsComponent({
 				</Nav>
 			</div>
 			<div className="col-12">
-				{available ? (
-					<GraphComponent
-						type={graph}
-						scoreData={score.scoreData}
-						song={song}
-						difficulty={chart.difficulty}
-					/>
-				) : (
-					<div
-						className="d-flex align-items-center justify-content-center"
-						style={{ height: "200px" }}
-					>
-						<span className="text-body-secondary">No charts available</span>
-					</div>
-				)}
+				<GraphComponent
+					type={graph}
+					scoreData={score.scoreData}
+					song={song}
+					difficulty={chart.difficulty}
+				/>
 			</div>
 		</>
 	);
@@ -99,5 +101,18 @@ function GraphComponent({
 			game="ongeki"
 			duration={song.data.duration}
 		/>
+	);
+}
+
+function Box({ message }: { message: string }) {
+	return (
+		<div className="col-12">
+			<div
+				className="d-flex align-items-center justify-content-center"
+				style={{ height: "200px" }}
+			>
+				<span className="text-body-secondary">{message}</span>
+			</div>
+		</div>
 	);
 }

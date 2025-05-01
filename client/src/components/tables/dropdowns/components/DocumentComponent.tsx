@@ -4,13 +4,7 @@ import TimestampCell from "components/tables/cells/TimestampCell";
 import ScoreCoreCells from "components/tables/game-core-cells/ScoreCoreCells";
 import useScoreRatingAlg from "components/util/useScoreRatingAlg";
 import React, { useContext, useEffect, useState } from "react";
-import {
-	ChartDocument,
-	GetGPTString,
-	PBScoreDocument,
-	ScoreDocument,
-	SongDocument,
-} from "tachi-common";
+import { ChartDocument, GetGPTString, PBScoreDocument, ScoreDocument } from "tachi-common";
 import { UGPTChartPBComposition } from "types/api-returns";
 import { SetState } from "types/react";
 import { UserContext } from "context/UserContext";
@@ -74,7 +68,6 @@ export default function DocumentComponent({
 	forceScoreData = false,
 	pbData,
 	chart,
-	song,
 	onScoreUpdate,
 }: {
 	score: ScoreDocument | PBScoreDocument;
@@ -88,17 +81,14 @@ export default function DocumentComponent({
 	pbData: UGPTChartPBComposition;
 	forceScoreData?: boolean;
 	chart: ChartDocument;
-	song: SongDocument;
 	onScoreUpdate?: (sc: ScoreDocument) => void;
 	GraphComponent?:
 		| (({
 				score,
 				chart,
-				song,
 		  }: {
 				score: ScoreDocument | PBScoreDocument;
 				chart: ChartDocument;
-				song: SongDocument;
 		  }) => JSX.Element)
 		| null;
 }) {
@@ -121,7 +111,7 @@ export default function DocumentComponent({
 			<div style={{ flex: 9 }}>
 				<div className="row h-100 justify-content-center">
 					{GraphComponent ? (
-						<GraphComponent chart={chart} score={score} song={song} />
+						<GraphComponent chart={chart} score={score} />
 					) : (
 						<div
 							className="d-flex align-items-center justify-content-center"

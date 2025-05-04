@@ -44,6 +44,7 @@ const migration: Migration = {
 
 						await UpdateScore(score, newScore);
 					} catch (err) {
+						rootLogger.warn(`Error applying ${score.scoreID}:`);
 						rootLogger.warn(err);
 						rootLogger.warn("Continuing through the error.");
 
@@ -53,6 +54,12 @@ const migration: Migration = {
 			},
 			{ game: "ongeki" }
 		);
+
+		if (failedScores.length > 0) {
+			throw new Error(
+				`${failedScores.length} failed to be migrated. Resolve these manually, please.`
+			);
+		}
 	},
 	down: () => {
 		throw new Error(`Reverting this change is not possible.`);

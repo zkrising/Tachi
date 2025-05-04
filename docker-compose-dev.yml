@@ -28,6 +28,8 @@ services:
       - "3001:3001" # docs
     volumes:
       - ./:/tachi
+      # Mount your home files under your-pc, so you can easily access them
+      - /:/host-pc
       # don't let pnpm's node_modules linkery bleed out of its container
       - /tachi/node_modules/
       - /tachi/.pnpm-store

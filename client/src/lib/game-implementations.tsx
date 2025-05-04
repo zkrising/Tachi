@@ -107,10 +107,10 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 			clearLamp: {
 				FAILED: COLOUR_SET.vibrantRed,
 				CLEAR: COLOUR_SET.green,
-				HARD: "#A374FC",
-				BRAVE: "#8D51CE",
-				ABSOLUTE: "#8544BC",
-				CATASTROPHY: "#742999",
+				HARD: "#E12AFB",
+				BRAVE: "#A21CAF",
+				ABSOLUTE: "#701A75",
+				CATASTROPHY: "#4A044E",
 			},
 			noteLamp: {
 				NONE: COLOUR_SET.gray,

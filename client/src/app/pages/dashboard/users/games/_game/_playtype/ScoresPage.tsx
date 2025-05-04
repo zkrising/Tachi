@@ -130,7 +130,9 @@ function AlgSelector({
 			<div>Best 100 PBs according to</div>
 			<Form.Select value={alg} onChange={(e) => setAlg(e.target.value as any)}>
 				{Object.keys(gptConfig.scoreRatingAlgs).map((e) => (
-					<option key={e}>{FormatGPTScoreRatingName(game, playtype, e)}</option>
+					<option key={e} value={e}>
+						{FormatGPTScoreRatingName(game, playtype, e)}
+					</option>
 				))}
 			</Form.Select>
 		</Form.Group>

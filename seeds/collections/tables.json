@@ -819,7 +819,8 @@
 			"Facdb4143037ccfcc2afb57a62f96ab35220f201c454175bd1bdfe5d0418edd3f",
 			"F00c78eb77972151749c4352b97b310c5eab807a890a333f2ce3957c6bc7dd552",
 			"F03fda48efbaff831d3f3a23666b59b4922b65a1ed6b937d4c9594263b18b9a15",
-			"F29e9f4412272cfe2c485151879b9bf6576ff531c693971d185d8353264eae471"
+			"F29e9f4412272cfe2c485151879b9bf6576ff531c693971d185d8353264eae471",
+			"F086b755e3b9bafd1feef8f4bfa18b80dcc6ae1ed75bde059aa26c4d7c05b7c38"
 		],
 		"game": "chunithm",
 		"inactive": true,
@@ -869,7 +870,8 @@
 			"F61ca1fc711e7a3b31f687cea456fba37119ce036e15e4334fdfe5d3e1c634254",
 			"F83d1316896cb7acf36aefe5458e9269dbe4d415fc50224cdabe68f3cd40e8756",
 			"Fd4f0be51a94222cc136afb48f11b5ca8fd26dd982f7d7698c44736d15e054477",
-			"F6a39f0d51982cfecea6fc8f9cb75e085f1f676f9f76872b0f9729c75fe4ae6b7"
+			"F6a39f0d51982cfecea6fc8f9cb75e085f1f676f9f76872b0f9729c75fe4ae6b7",
+			"F510f6d6507c82f94bdf79c39c6fdfef5089613419425088b555329dd0d19e1b1"
 		],
 		"game": "chunithm",
 		"inactive": true,
@@ -919,10 +921,11 @@
 			"F999fb8ce60a68018725a30aa01ab988620fd4cc294e3fedc265fa4729cfb3239",
 			"F7aae6c5575dda555ad16a857d9fbc57a5ce70629ed5db357534caba068642bce",
 			"F1b8ee8afb684960a671309623329c972426924a7b72567292523609679ad5226",
-			"F2670896329a520a9449ac22ea408ff3b4d5d128f412e3470dcbdb65f7dce5461"
+			"F2670896329a520a9449ac22ea408ff3b4d5d128f412e3470dcbdb65f7dce5461",
+			"Fc6f5cf264a1ced8f937ec301bb5e11c43f0bfb0d48103e1486714b259b5501e6"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-luminousplus-intl-levels",
 		"title": "CHUNITHM (LUMINOUS PLUS International)"
@@ -938,7 +941,7 @@
 			"F341bd38f44b01bba76ce22e8bb7b285f82457038b4ce978d884d1bf8c2012e7b"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-luminousplus-intl-difficulties",
 		"title": "CHUNITHM (LUMINOUS PLUS International) (Difficulties)"
@@ -1071,7 +1074,8 @@
 			"F91a3dfe0c0c43740095dc5a4d4881c3faa6b7075e969a7ccceacba56039b7b14",
 			"Fff5733595eaec1e0da26a8c32d083735a96f4c4650858a470df5a599ebc13bca",
 			"F75dabdd8e04330d6d60836b96edba63c68cefe6164c7f609f6bf2027ce1984c0",
-			"Fbeb5d474cbf40cad4435ec535479e6da020ff0f316cc3250162cd71ee89d5bdb"
+			"Fbeb5d474cbf40cad4435ec535479e6da020ff0f316cc3250162cd71ee89d5bdb",
+			"F0e506601a0a0bc2be88650efd5c5216c535166a4cd14abbd0afe9840dcc2a9f5"
 		],
 		"game": "chunithm",
 		"inactive": true,
@@ -1121,7 +1125,8 @@
 			"Fcedf902212bfa0b9fa5e0687d2e6f4a0657554de42db7430368069851f030072",
 			"Ff879b4e964eb2abb469bbb22b82434e52791b7e5ee792da27f29ffcb4b152f5a",
 			"F17a6a205675610e2c287c113342bece8e5c28f2878800a7732d5f51ccabb5e2c",
-			"F5f260a335a1d003fc9be961463c6bc5ca1b841daeb6cb36b70bf21490c565cfb"
+			"F5f260a335a1d003fc9be961463c6bc5ca1b841daeb6cb36b70bf21490c565cfb",
+			"Fd268425c7ed207ebe4082f5e4f25f4c62ce65d22f457fcb3559f13f9e40a0dd2"
 		],
 		"game": "chunithm",
 		"inactive": true,
@@ -1171,7 +1176,8 @@
 			"F74940aa991fa7099b35ad512d79fa9c000cd3468d89ee80ca293be273672c5f3",
 			"Fb86f5c491b769ac33025727e907713fd6866b0ec2b0142f0a0257580148ffa38",
 			"F5a7a32fa22ae341c55f5a468d9ac021119deff1dded20ba8c539d424fe408774",
-			"F4ae4ff28f75b1bc33c7f7c2d3c730bff99ba0e7299505b89ad927fb92b25d1e1"
+			"F4ae4ff28f75b1bc33c7f7c2d3c730bff99ba0e7299505b89ad927fb92b25d1e1",
+			"F0f888f5afa16921cd8355deb7e88fc7d3bff861ba97541e62ebea40b376db34e"
 		],
 		"game": "chunithm",
 		"inactive": true,
@@ -1221,7 +1227,8 @@
 			"F4e788bbf78710a3972fec8fbd0029bccc6c166381a2667a3b2a26c025da6e286",
 			"F59b31a7f803e9dfa228b7ad22a6788a4736ccbdd276a0ec62a330643395c00dd",
 			"Fb138e45b7b5d571c85c7ae6393831d26970e8fbd074ba87738b3e452bef6316e",
-			"F6b841d35bd4ded62327aca9a6374fc2ba7d69c98970e620bfc8d1db9545a0cb2"
+			"F6b841d35bd4ded62327aca9a6374fc2ba7d69c98970e620bfc8d1db9545a0cb2",
+			"F7a8e094af89165a8ef852a53adf2d9bf7662f9e3b18b4865da687223041e74e4"
 		],
 		"game": "chunithm",
 		"inactive": false,
@@ -1255,7 +1262,8 @@
 			"F006061d48893b76c0f8c68919639c7d77aa4588c551409375bff885acca1542f",
 			"F18426b36571b8ae93e0264ff4f81f35003fc7077323ba265514e7c7a546112f2",
 			"Fe40992304d5598dae52cca23992c99e5665d1ea8ee7392193d1dded4af82cb90",
-			"F5e5636161b64bf379b8dcc64359a8fca187456d2e26e12d03a026aa4a50a4cdc"
+			"F5e5636161b64bf379b8dcc64359a8fca187456d2e26e12d03a026aa4a50a4cdc",
+			"Fcf9f50152db2e2f21c0357d776ab9b1717a8410b7817ffdae8a214b67c6e656d"
 		],
 		"game": "chunithm",
 		"inactive": true,
@@ -1305,7 +1313,8 @@
 			"F4037c32849d28b13ccbbe0dd6be243c8cd14812f1ffbd934954c647930b331ac",
 			"F84dff6b29d8118085b2fdc39fe46ee685e32b9012a736e6daf4491b59e1ddbd3",
 			"Fc033b474560eee48879a288c10219c35265b893151726288c8ae41a42559848d",
-			"Fb6ec940925c9ef2a598a5425293b1c30a1533a37ea3546c5672ef111944578b0"
+			"Fb6ec940925c9ef2a598a5425293b1c30a1533a37ea3546c5672ef111944578b0",
+			"Feb7414739f43785ae2dc1bd280fcc36a1733cfdfbdac31a216c69a6abcc86496"
 		],
 		"game": "chunithm",
 		"inactive": true,
@@ -1355,7 +1364,8 @@
 			"F0cc1aaa34aed35ff7997c5440596447ecdc8f5fbb63c0c32d74db4e1b12f127f",
 			"F42fa6d6d2d92218397615c8ef4cf565076bdf5142f1dc868e12cb9d4849eca1a",
 			"F03c2d98c1d9b4cfaec94e30d91e9c350e52d69ac4a5fc9c225f5472e36ae6ccc",
-			"F78e12b6d6f218366399229fa6e0de86da2ee4e994a9a41bc4fbd0ffa2cc8512b"
+			"F78e12b6d6f218366399229fa6e0de86da2ee4e994a9a41bc4fbd0ffa2cc8512b",
+			"Fb01b7757746ca8ed30c9d73ff87134e4708a7c9de8217ba6e355732f784b6ed7"
 		],
 		"game": "chunithm",
 		"inactive": false,
@@ -1405,7 +1415,8 @@
 			"F70a443abc6611e00738097e41f90e99f15a8f65beaf0fa5bf284843ea317053c",
 			"F7dc2f23552539ed34b812f475de7650dab3eaef88a36b737b08dad9d582a90d0",
 			"F8746714de6357ceab3337cee5dadbe7362a6894517bf9b72c29776ee32602291",
-			"F274a34226d167d9d8d51be0dcfd2c893f7051d964d80b232d3d021dc9aa9fdc7"
+			"F274a34226d167d9d8d51be0dcfd2c893f7051d964d80b232d3d021dc9aa9fdc7",
+			"F5084aec9b8037b717571862c1b03fdcc6808e9d049163bfb85282c708eade31f"
 		],
 		"game": "chunithm",
 		"inactive": false,
@@ -1455,7 +1466,8 @@
 			"Fc9e606ce11b1bc05540edfc5c73a4d889c8ca77e356d8f5868ab2bcef637f062",
 			"F2e39bdd8b9adf7c96f934f4db3c35f388ec5c52b0005b2b54f7463dcd328bb31",
 			"Fedd085e270284fbd3192477f4e536fe727f5e1c7b642e7335aa161ee67d2349a",
-			"F0dbda68e409a25d9ffe0db61ea2a51ee7692cef3f3ef71537c26f8f1e1eab311"
+			"F0dbda68e409a25d9ffe0db61ea2a51ee7692cef3f3ef71537c26f8f1e1eab311",
+			"F48bb2aff46315b47c196df6cb92d19d48ff9b2c735a76918c5872d568e2d7a60"
 		],
 		"game": "chunithm",
 		"inactive": true,
@@ -1509,7 +1521,7 @@
 			"F6e3bab8efa50af337873432c574f96c039e8b7ac678632d8ff4fc4cd1fc5f1b2"
 		],
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-verse-intl-levels",
 		"title": "CHUNITHM (VERSE International)"
@@ -1525,7 +1537,7 @@
 			"F3c55f07102751c31dc008af7cae3982340515cf4e68c802ecb7ac04a9c760a84"
 		],
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-verse-intl-difficulties",
 		"title": "CHUNITHM (VERSE International) (Difficulties)"
@@ -4663,13 +4675,13 @@
 			"F5c46879cba07b51173cb31ef153b894344c9e25835b7f8b72885b871f575f47b"
 		],
 		"game": "maimaidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "maimaidx-Single-buddiesplus-omni-levels",
 		"title": "maimai DX (BUDDiES PLUS Omnimix)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for maimai DX in BUDDiES PLUS.",
 		"folders": [
 			"Fef2e84ea3c606f9276e059649901ba85b6b142a974e7de2f9d6ba59282843630",
@@ -4697,7 +4709,7 @@
 			"Fd85a7efb82e9080d09ec23e458cc708bb4983e779168d51af7cea02f96ec1ef4"
 		],
 		"game": "maimaidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "maimaidx-Single-buddiesplus-levels",
 		"title": "maimai DX (BUDDiES PLUS)"
@@ -4806,6 +4818,40 @@
 	},
 	{
 		"default": false,
+		"description": "Levels for maimai DX in PRiSM Omnimix.",
+		"folders": [
+			"F699f13160b40954c61ac7ef12ea870716e5c77c57b48bf0308d8e6bda13f2afd",
+			"F910c8d7ca397c828993e2744d93f27b2f57db95098cdc4a92942c0c3c9b68752",
+			"F4479bcd50183a2c46342b59abb06d4aa1988b9cc747949e9d4e1d20bb5e3a680",
+			"F8c7777d1f9da29990412f6803f1893e42f17855b12506f2e203f84fc9fcb5dbe",
+			"Fd418c704cd9905df2447895654b2406cb8e28663eb0611108f8b6345b10b0e6d",
+			"F92602bba126abae062018290b5859a301c23505b799c4628a6d0bd9cd8cf8cf6",
+			"F3ba7be069f854fe73d456644e08d82c9b886efd20d6db6627adcf4dd52ec7242",
+			"F254e5497a3d3fc0cf598b760fbe4433c95d2bd55717d2595801bf2af93b9cef5",
+			"F89e77bb3aae464e971663d77ea004be66f13e286f25df12920d9a9d689edd9fd",
+			"Fa1bbe79c17a47455883342dfda921f4b83743e5e03cd5bd472e7dea46bfa221a",
+			"F68e2c1cf2bfb1de771e62cbe6f06b95ccebae88e55ecafddac009efd2034cd5d",
+			"F27931074d9e6b4c69502d71252fc342cfbaf193bf188d63be7d7c0c327bde194",
+			"Fe4980c2ffc76aeeed9af903a694c6fa23c9fa51779b52836280160fce0b00c68",
+			"F6390104a5351514c7aa5ca17822788a152498f3f5d73f34f3901b4cb0be0f0d7",
+			"F3e5a19833775017fe9f95d9499edd049685ddb7916350e54ea630f62ea0154c0",
+			"F0ca5948108478b8003134fde6eece4dfcf1132db07f647e8b815d81d170f3b96",
+			"F3385b0a70b56dea479e46916f1b26d10a3d1b3ca3231936aa009e5aa2df8d6ef",
+			"F1d193868363ae75791e8a850119e9f7d6e48c9716b7b97afae8f3a31f975f0f4",
+			"F9a2396c30c0ded0b8cb5524fbb7afe041bbbd64a4337ef10334632b0909feaa3",
+			"Fd9e5e33e55c3e23470e0b5eea673cc2879d3121d656f9a032fd2efbfbaf394f3",
+			"F584e77973f0c0e56b1d87e493ab6071372077a353a4342ef580ebc58f54762b3",
+			"Fe4bd60295b2d0a49149c5c114f97300e1304be94da437e20f21be4024dc21a72",
+			"Ff919e95125827edb34d0edb412c8ad4b1d3b4dc5dd8ea68442d5ffed14eab4ac"
+		],
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "maimaidx-Single-prism-omni-levels",
+		"title": "maimai DX (PRiSM Omnimix)"
+	},
+	{
+		"default": true,
 		"description": "Levels for maimai DX in PRiSM.",
 		"folders": [
 			"F1a87377aebbd3d97f370b63899d439d5d2af657c16f8ab146b29b48fa9b03cca",
@@ -4957,7 +5003,7 @@
 			"F9aeebd014e88080ea4a7d7c2f47bee2a7444471e34c6446f3dbbd70ba1872c78"
 		],
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "ongeki-Single-brightMemory2Omni-levels",
 		"title": "O.N.G.E.K.I. (bright MEMORY Act.2 Omnimix)"
@@ -4973,7 +5019,7 @@
 			"F7df57e1be3f591b417fe94e10cd157d251b9780325a9812f9e7b1ed3ea207080"
 		],
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "ongeki-Single-brightMemory2Omni-difficulties",
 		"title": "O.N.G.E.K.I. (bright MEMORY Act.2 Omnimix) (Difficulties)"
@@ -5032,7 +5078,7 @@
 		"title": "O.N.G.E.K.I. (bright MEMORY Act.3 Omnimix) (Difficulties)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for O.N.G.E.K.I. in bright MEMORY Act.3.",
 		"folders": [
 			"Fad5e5eb714f0e8d039f533564c92cb95990ca1f5e864ff8cb4766032283e2de2",
@@ -5062,7 +5108,7 @@
 			"F86294efc958b008dd48c16739a7024dc36820a2d7bd54c3a6d6588460eedb960"
 		],
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "ongeki-Single-brightMemory3-levels",
 		"title": "O.N.G.E.K.I. (bright MEMORY Act.3)"
@@ -5079,10 +5125,116 @@
 			"Fddd5da8078803f869db6dc4e92220c3291a1163f25f375d32525160aed09dc8e"
 		],
 		"game": "ongeki",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "ongeki-Single-brightMemory3-difficulties",
 		"title": "O.N.G.E.K.I. (bright MEMORY Act.3) (Difficulties)"
+	},
+	{
+		"default": false,
+		"description": "Levels for O.N.G.E.K.I. in Re:Fresh Omnimix.",
+		"folders": [
+			"Fd8e306cee04a195610cb6b504cba6a3a76d04523ea6a510275859949fea9c1fc",
+			"F6153fa5d95ea654c5ce6ef8b3582444b4a771e1d549f0e11a5fccd995b4b5c52",
+			"F7d798153e4f69dbb8d73015ce78318287cda1d8386bb58368bbb43f0325bd912",
+			"F235bb603eb18252b492f1832ee514b8f9486afcdd77e3812b35364421cb24908",
+			"F1a99521b9b71c5a1dd9e7305a911d2200a0e92585c700127e24bcafafeeae557",
+			"F0df2faf8990e125c2fb5a4a0152f03a08553dcdd8964e4bad9f323d9b3aacb00",
+			"F38f9ef2100458ae414d19b9b30173e3add874cd5878e306cf1f7262745823187",
+			"F5bc76d43c23b60567e779ce96f1bae4cd68783c715f0fcc1915be7c905b95cdc",
+			"Ff664d4785d2adec8607a6df9198e09181c81dfeffee23f70e44b88d2b73bd61b",
+			"Fb2bb451e447cccd32f09657620c86883db8cdc46420f2dae7891c47cb86a800e",
+			"Fc1a625eca8c6df9c318fd45a97105f2b9565b1a3a430e2191a3d505bb42d0736",
+			"F06660ee6a2e0cc55ed0a619ffdae9ffde5edfe2d970f9da94f331a394f8797d8",
+			"F3fbc01fda64baeb4ca08294e7e1d9717b5566a9bcc425388b940aad0e6c2f00b",
+			"F83efac88509a0c9dec80b8e65ced1fbe04b90b959fa363794770658edce71bb0",
+			"Fa68a04e80b382dca1402e601293b8e1758ad6592b7cf4c8f2170dcca0da94347",
+			"F018b461820721d56e478ea2e234c6c6ca5fa0f700408e42b004ad3fa94a87303",
+			"F441bd43de7b24b297c8a8fa9842dc8c2182e444435f137aaa7d5e12ed7005bc1",
+			"Fe9b5fc9e21aafd0cca4221ce85b8506c593c79e7b7c8b5e907128b03109a8e63",
+			"F3fcd73d7fa1a31186bb9d48c3c615496b887c791f022efb5db354e4c2151adb2",
+			"F88e4061441b54406b89eae8970f78dc3bb47d641c67c50ec8d23ffe17b2c3d83",
+			"Faac3724955c27679c9cbf30139e9850db72a019bf9f4c7393150f70b129872e8",
+			"F3ec740b29bfa01dba1962dc3754b96cc5788544ccde91217671765ecb6dc42c8",
+			"F6a96eeb5acea0f446f057325665cdf3e66183183635cf9d46c446ba1344ddcb8",
+			"F58b522c9c7858ddd194375e2b87ee44b396560a04a3732e17b4a9f959edeb5e5",
+			"F8fa29b4aadc6248d20fbf805eff3634a570b02e7caf6781e87d59a0b391b5771"
+		],
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "ongeki-Single-refreshOmni-levels",
+		"title": "O.N.G.E.K.I. (Re:Fresh Omnimix)"
+	},
+	{
+		"default": false,
+		"description": "Difficulties for O.N.G.E.K.I. in Re:Fresh Omnimix.",
+		"folders": [
+			"F6e0f79828e049cf59d5bf3f69fee1eca55b8c2ee973dd1f9a4c1e9181d80827b",
+			"F926f58195b6e502654570b7ae179a293a1996be8356389b5ac65f2f99632b191",
+			"Fe6dd33f70ca2a79fcce76739d1cf00a5ce0efaa6b62e22a90a33c3acf7f6ccfe",
+			"Fe1c195cb0076220594ffc04a8dd94bcd903a2e2f9ed59d8ccd7b194bf37d0543",
+			"F2d15f52de88e1ecfefb23a5c245aa47166b8717262c09750e952978df1416e5d",
+			"F543fcc76da5eb064c53309bc6170b9ae8fe0fc34ada85cb358d56282a3ea326b"
+		],
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "ongeki-Single-refreshOmni-difficulties",
+		"title": "O.N.G.E.K.I. (Re:Fresh Omnimix) (Difficulties)"
+	},
+	{
+		"default": true,
+		"description": "Levels for O.N.G.E.K.I. in Re:Fresh.",
+		"folders": [
+			"F4f2b698877b5bc95a61f5a855505f46cad196722785a6f77fae3e6fe8d8b7ce7",
+			"Fafdee855b3eb2b7f15320ba5b612a9ace651ae577937a8fd617704638a66e164",
+			"F97e8b43aad0c3a62110b09bf723044d88743c2eb44069b43ffc7164cf0d49676",
+			"F8d1c16529d7f38f214556d21ff392e9f2b6c478382ebdf6418db2baf6743b79e",
+			"F6de5de1517ac2cf6ee05d229d9e9db719167acf3837dcb8b93cb58d3e8fd7480",
+			"Ffe603e48a940ab8552b87806ae94acaa4c143d78f7f828d9e6afc5313fafe698",
+			"F2141400b79e91a3dbb7183f3c5b35e92484492ede65b2ddc767d5d8d088f5984",
+			"Fc29571054ff042500576479a66dc1620463a7f65100955171aa5b6a7386a5aa3",
+			"F4dc79ff218752a3f1f6aa51221056d7bd49a84d499310aaf069e916fe33848ad",
+			"F92734fd0505344aaeca3a329fe7c228107eb5dc59ab92b7a45fb6db21e263003",
+			"F2d299c8bf66e5e4f0666765984d4aa069ab844ccedba5e51f13ac449c846c399",
+			"F8aa7a85b829aaebbb3c7832dee28d7e7ebd72479f10bb18d6209574a3cd43752",
+			"Fd6ea6197839c9af4d62b58f3554fb07b3230586cc3da9c9e746c8f6046a7a1e6",
+			"Ff2d48b2f8c8b08f48a50096fa4770e3d4e356a357b7f65acc477a81648b4836a",
+			"F980ee749bfb7d592e49408764441ad62066773055b2595e21c5a945b31daf106",
+			"F35d077e25e91ebcef00668a81e3c761cdf36f0875252eb093edd4476ee6861a8",
+			"F0cad8733c234b93715c25070853cfb506f5eab043312679fa498585e9839f77a",
+			"Fa126a4bfb5c021c029a5c60e417c4b52134868c7a66c7cb6cacfd4231847cd51",
+			"F324e892317cbe183e0baff6fc27ed55df54f721c9175588853d5c07aa8f2c0a6",
+			"F576605e9d7276fe2e280eadc61a5415ff0f8bcc13aaef68aca6149ba0aa0c6e6",
+			"F72d6326c3746cd58a3395f910085843bef6c8499edded40bbdd7e19821d514b1",
+			"Fdaed73b57b1148ab86196d301a7e9e68430f33c362cf17c1cea4a6d7a6bad313",
+			"Fb6164fc4bf400f691c290e06fb6780046461a105ada1d2f6b15ce53bdb6a98ae",
+			"F726a8bbdcacd7936192b90fdb79400b99ee444eb8ce37fdd6122826e1f9ab582",
+			"Fef8139461c072d28b5261418f1487f1983cdac913fff218a4b395bc2054f9116"
+		],
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "ongeki-Single-refresh-levels",
+		"title": "O.N.G.E.K.I. (Re:Fresh)"
+	},
+	{
+		"default": false,
+		"description": "Difficulties for O.N.G.E.K.I. in Re:Fresh.",
+		"folders": [
+			"F2478c0debc6ab076945b12b501dcb110a0e2277ef56595b7b981c21d8b0e09c3",
+			"F08f88693a50f0d3d5a3019d6b0095901fa83b440efd1ca17a3a38ae0d0534355",
+			"F9a0e4dfbdf5d0dfd51c0f738033de9e924df4ac5651e95e8087225052466695a",
+			"Fe4a9d5778b692ee1e73acaa424da2f996a0b0939f46f346e16c2adc69a896453",
+			"F2de5fd8f784e94c6e2c60c5960b1306aadb76c54ce9b502421813cfa66532a36",
+			"F591906452a12c984f9a5e436543802e493d15782b678b518dbeba3705720c77c"
+		],
+		"game": "ongeki",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "ongeki-Single-refresh-difficulties",
+		"title": "O.N.G.E.K.I. (Re:Fresh) (Difficulties)"
 	},
 	{
 		"default": true,

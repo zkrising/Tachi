@@ -4951,5 +4951,117 @@
 		"id": 415,
 		"searchTerms": [],
 		"title": "唱"
+	},
+	{
+		"altTitles": [],
+		"artist": "USAO",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 416,
+		"searchTerms": [],
+		"title": "Blows Up Everything"
+	},
+	{
+		"altTitles": [],
+		"artist": "SAWTOWNE",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "ボカロ"
+		},
+		"id": 417,
+		"searchTerms": [],
+		"title": "Confessions of a Rotten Girl ft. Hatsune Miku"
+	},
+	{
+		"altTitles": [],
+		"artist": "USAO",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "TANO*C"
+		},
+		"id": 418,
+		"searchTerms": [],
+		"title": "Got It Bad"
+	},
+	{
+		"altTitles": [
+			"Kyoufuu All Back (feat. Kaai Yuki)"
+		],
+		"artist": "Yukopi",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "ボカロ"
+		},
+		"id": 419,
+		"searchTerms": [],
+		"title": "強風オールバック (feat.歌愛ユキ)"
+	},
+	{
+		"altTitles": [],
+		"artist": "crayvxn",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 420,
+		"searchTerms": [],
+		"title": "my flow"
+	},
+	{
+		"altTitles": [],
+		"artist": "C-Show",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 421,
+		"searchTerms": [],
+		"title": "N3V3R G3T OV3R"
+	},
+	{
+		"altTitles": [],
+		"artist": "Zekk",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 422,
+		"searchTerms": [],
+		"title": "POWER OF UNITY"
+	},
+	{
+		"altTitles": [],
+		"artist": "Cosmograph",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 423,
+		"searchTerms": [],
+		"title": "Straight into the lights"
+	},
+	{
+		"altTitles": [],
+		"artist": "EasyPop",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 424,
+		"searchTerms": [],
+		"title": "Happy Synthesizer"
+	},
+	{
+		"altTitles": [],
+		"artist": "Laur vs 大国奏音",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 425,
+		"searchTerms": [],
+		"title": "Latent Kingdom"
 	}
 ]

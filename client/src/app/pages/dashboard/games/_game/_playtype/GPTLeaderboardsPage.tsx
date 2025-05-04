@@ -1,5 +1,5 @@
 import { CreateUserMap } from "util/data";
-import { FormatGPTProfileRating, UppercaseFirst } from "util/misc";
+import { FormatGPTProfileRating, FormatGPTProfileRatingName } from "util/misc";
 import { NumericSOV, StrSOV } from "util/sorts";
 import ClassBadge from "components/game/ClassBadge";
 import ScoreLeaderboard from "components/game/ScoreLeaderboard";
@@ -71,7 +71,7 @@ function ProfileLeaderboard({ game, playtype }: GamePT) {
 			<Form.Select value={alg} onChange={(e) => setAlg(e.target.value as any)}>
 				{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
 					<option key={e} value={e}>
-						{UppercaseFirst(e)}
+						{FormatGPTProfileRatingName(game, playtype, e)}
 					</option>
 				))}
 			</Form.Select>
@@ -126,8 +126,8 @@ function ProfileLeaderboard({ game, playtype }: GamePT) {
 					...(Object.keys(gptConfig.profileRatingAlgs) as Array<AnyProfileRatingAlg>).map(
 						(e) =>
 							[
-								UppercaseFirst(e),
-								UppercaseFirst(e),
+								FormatGPTProfileRatingName(game, playtype, e),
+								FormatGPTProfileRatingName(game, playtype, e),
 								NumericSOV((x) => x.ratings[e] ?? -Infinity),
 							] as Header<UGSDataset[0]>
 					),

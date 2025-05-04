@@ -98,6 +98,17 @@ export interface GPTClientImplementation<GPT extends GPTString = GPTString> {
 	ratingSystems: Array<GPTRatingSystem<GPT>>;
 
 	/**
+	 * Can be used to replace the display name of the algorithm.
+	 * (Which defaults to `UppercaseFirst(key)`)
+	 * This is particularly useful for renaming old algorithms.
+	 */
+	ratingAlgNameOverrides?: {
+		score?: Record<string, string>;
+		session?: Record<string, string>;
+		profile?: Record<string, string>;
+	};
+
+	/**
 	 * What headers should be used when rendering scores in a table for this game?
 	 */
 	scoreHeaders: Array<Header<ScoreDocument<GPT> | PBScoreDocument<GPT>>>;

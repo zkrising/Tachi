@@ -163,11 +163,11 @@ export function MytNeedsIntegrate({
 	const realCardAccessCode = useMemo(() => cardAccessCode.replace(/\s+/gu, ""), [cardAccessCode]);
 
 	const validCardAccessCode = useMemo(
-		// Note: valid Myt cards must start with 0 or 3 as 0008, sega, or aime cards.
-		// See https://sega.bsnk.me/misc/card_convert/#lookup-a-card / https://sega.bsnk.me/allnet/access_codes/
-		// We only implement this in client-side because it's just meant to be a
-		// user hint, in case someone tries to enter an AIC code or something.
-		() => /^[03][0-9]{19}$/u.exec(realCardAccessCode),
+		// Note that access codes on MYT can be any combination of 20 digits. While they commonly start
+		// with a 0 (official Aime/Amusement IC cards) or a 3 (old Banapassports), this is a bad check
+		// because you can card in with any FeliCa-enabled devices, whose IDm might not start with
+		// 012E (Amusement IC) and therefore is not converted to a 0008 prefix.
+		() => /^[0-9]{20}$/u.exec(realCardAccessCode),
 		[realCardAccessCode]
 	);
 
@@ -181,7 +181,8 @@ export function MytNeedsIntegrate({
 				value={cardAccessCode}
 			/>
 			<Form.Label>
-				This is the card access code that's displayed in game. It should be 20 digits.
+				This is the card access code that's displayed in game, which may not be the same as
+				the code on the back of your card. It should be 20 digits.
 				<br />
 				{cardAccessCode.length > 0 && !validCardAccessCode ? (
 					<span className="text-danger">

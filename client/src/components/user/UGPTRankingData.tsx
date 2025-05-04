@@ -1,4 +1,4 @@
-import { UppercaseFirst } from "util/misc";
+import { FormatGPTProfileRatingName, UppercaseFirst } from "util/misc";
 import { useProfileRatingAlg } from "components/util/useScoreRatingAlg";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -30,7 +30,8 @@ export default function RankingData({
 			extendData.push(
 				<div key={key} className="col-12">
 					<small className="text-body-secondary">
-						{UppercaseFirst(key)}: #{rankingData[key].ranking}/{rankingData[key].outOf}
+						{FormatGPTProfileRatingName(game, playtype, key)}: #
+						{rankingData[key].ranking}/{rankingData[key].outOf}
 					</small>
 				</div>
 			);
@@ -40,7 +41,12 @@ export default function RankingData({
 	return (
 		<div className="row text-center">
 			<div className="col-12">
-				<h4>Ranking{extendData.length ? ` (${UppercaseFirst(alg)})` : ""}</h4>
+				<h4>
+					Ranking
+					{extendData.length
+						? ` (${FormatGPTProfileRatingName(game, playtype, alg)})`
+						: ""}
+				</h4>
 			</div>
 			<div className="col-12">
 				<Link

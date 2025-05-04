@@ -460,6 +460,7 @@ export const TestingMaimaiChart: ChartDocument<"maimai:Single"> = {
 export const TestingMaimaiDXChart: ChartDocument<"maimaidx:Single"> = {
 	chartID: "fbde73d543f93cbad9ec67052a7165700c5c8df6",
 	data: {
+		displayVersion: "maimai",
 		inGameID: 1,
 	},
 	difficulty: "Advanced",
@@ -1473,6 +1474,7 @@ export const TestingOngekiSongConverter: SongDocument<"ongeki"> = {
 	artist: "本城香澄（CV：岩橋由佳）「Re:ステージ！プリズムステップ」",
 	data: {
 		genre: "POPS＆ANIME",
+		duration: 120,
 	},
 	id: 683,
 	searchTerms: [],
@@ -1499,6 +1501,7 @@ export const TestingChunithmSongConverter: SongDocument<"chunithm"> = {
 	data: {
 		displayVersion: "crystalplus",
 		genre: "POPS & ANIME",
+		duration: 120,
 	},
 	id: 956,
 	searchTerms: [],
@@ -1509,7 +1512,6 @@ export const TestingMaimaiDXSongConverter: SongDocument<"maimaidx"> = {
 	altTitles: [],
 	artist: "suzu",
 	data: {
-		displayVersion: "UNiVERSE",
 		genre: "オンゲキ＆CHUNITHM",
 	},
 	id: 844,
@@ -1520,6 +1522,7 @@ export const TestingMaimaiDXSongConverter: SongDocument<"maimaidx"> = {
 export const TestingMaimaiDXChartConverter: ChartDocument<"maimaidx:Single"> = {
 	chartID: "fab3d632610b9b98ee1e4f68e9ecf0161f9cb8cd",
 	data: {
+		displayVersion: "maimaiでらっくす UNiVERSE",
 		inGameID: 11294,
 	},
 	difficulty: "DX Expert",

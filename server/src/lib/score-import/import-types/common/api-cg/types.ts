@@ -71,7 +71,7 @@ export interface CGJubeatScore {
 	internalId: integer;
 	difficulty: integer;
 	version: integer;
-	clearFlag: unknown; // Weird bitwise field, unused.
+	clearFlag: integer; // Weird bitwise field, unused.
 
 	score: integer;
 	hardMode: boolean;
@@ -80,6 +80,7 @@ export interface CGJubeatScore {
 	goodCount: integer;
 	poorCount: integer;
 	missCount: integer;
+	musicRate: integer;
 	dateTime: string;
 }
 

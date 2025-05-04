@@ -19,6 +19,7 @@ export const ONGEKI_CONF = {
 			"LUNATIC",
 			"ボーナストラック",
 		]),
+		duration: z.number(),
 	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
@@ -120,19 +121,20 @@ export const ONGEKI_SINGLE_CONF = {
 	scoreRatingAlgs: {
 		rating: {
 			description:
-				"The rating value of this score. This is identical to the system used in game.",
+				"A rating value of this score, capping at +2.0 at SSS+. This is identical to the system used in bright MEMORY and earlier versions.",
 			formatter: ToDecimalPlaces(2),
 		},
 	},
 	sessionRatingAlgs: {
 		naiveRating: {
-			description: "The average of your best 10 ratings this session.",
+			description: "The average of your best 10 classic ratings this session.",
 			formatter: ToDecimalPlaces(2),
 		},
 	},
 	profileRatingAlgs: {
 		naiveRating: {
-			description: "The average of your best 45 scores.",
+			description:
+				"The average of your best 45 classic ratings. This is a simpler variant of the rating algorithm used in bright MEMORY and earlier versions, without distinguishing between new and old charts, and without taking recent scores into account.",
 			formatter: ToDecimalPlaces(2),
 		},
 	},
@@ -167,6 +169,8 @@ export const ONGEKI_SINGLE_CONF = {
 		brightMemory2Omni: "bright MEMORY Act.II Omnimix",
 		brightMemory3: "bright MEMORY Act.III",
 		brightMemory3Omni: "bright MEMORY Act.III Omnimix",
+		refresh: "Re:Fresh",
+		refreshOmni: "Re:Fresh Omnimix",
 	},
 
 	chartData: z.strictObject({

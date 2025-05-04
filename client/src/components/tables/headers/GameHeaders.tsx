@@ -1,4 +1,4 @@
-import { UppercaseFirst } from "util/misc";
+import { FormatGPTScoreRatingName } from "util/misc";
 import { NumericSOV } from "util/sorts";
 import React from "react";
 import {
@@ -41,8 +41,8 @@ export function GetGPTCoreHeaders<
 		const alg = Object.keys(gptConfig.scoreRatingAlgs)[0] as AnyScoreRatingAlg;
 
 		RatingHeader = [
-			UppercaseFirst(alg),
-			UppercaseFirst(alg),
+			FormatGPTScoreRatingName(game, playtype, alg),
+			FormatGPTScoreRatingName(game, playtype, alg),
 			NumericSOV((x) => kMapToScoreOrPB(x)?.calculatedData[alg] ?? -Infinity),
 		];
 	} else {

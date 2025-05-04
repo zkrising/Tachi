@@ -21,11 +21,15 @@ export default function SongChartInfoFormat({
 			/>
 		);
 	}
-	if (game === "ongeki") {
+	if (game === "ongeki" || game === "chunithm" || game === "maimaidx") {
 		return (
 			<>
 				<IIDXStyleSongChartInfoFormat
-					{...{ song: song as SongDocument<"ongeki">, chart, game }}
+					{...{
+						song: song as SongDocument<"ongeki" | "chunithm" | "maimaidx">,
+						chart,
+						game,
+					}}
 				/>
 				{chart && (
 					<>
@@ -37,10 +41,16 @@ export default function SongChartInfoFormat({
 								prefix="Internal Level: "
 							/>
 						</h6>
-						{"displayVersion" in chart.data && (
+						{"displayVersion" in chart.data ? (
 							<h6>
 								<Muted>From {chart.data.displayVersion}</Muted>
 							</h6>
+						) : (
+							"displayVersion" in song.data && (
+								<h6>
+									<Muted>From {song.data.displayVersion}</Muted>
+								</h6>
+							)
 						)}
 					</>
 				)}

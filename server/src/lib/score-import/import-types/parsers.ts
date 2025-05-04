@@ -11,12 +11,15 @@ import {
 	ParseCGDevMuseca,
 	ParseCGDevPopn,
 	ParseCGDevSDVX,
+	ParseCGDevJubeat,
 	ParseCGGanMuseca,
 	ParseCGGanPopn,
 	ParseCGGanSDVX,
+	ParseCGGanJubeat,
 	ParseCGNagMuseca,
 	ParseCGNagPopn,
 	ParseCGNagSDVX,
+	ParseCGNagJubeat,
 } from "./common/api-cg/parsers";
 import ParseBatchManual from "./file/batch-manual/parser";
 import ParseEamusementIIDXCSV from "./file/eamusement-iidx-csv/parser";
@@ -55,18 +58,17 @@ export const Parsers = {
 	"api/cg-dev-sdvx": ParseCGDevSDVX,
 	"api/cg-dev-popn": ParseCGDevPopn,
 	"api/cg-dev-museca": ParseCGDevMuseca,
-
-	// temporarily disabled as no musicRate is provided.
-	// "api/cg-dev-jubeat": ParseCGDevJubeat,
-	// "api/cg-prod-jubeat": ParseCGProdJubeat,
+	"api/cg-dev-jubeat": ParseCGDevJubeat,
 
 	"api/cg-nag-sdvx": ParseCGNagSDVX,
 	"api/cg-nag-popn": ParseCGNagPopn,
 	"api/cg-nag-museca": ParseCGNagMuseca,
+	"api/cg-nag-jubeat": ParseCGNagJubeat,
 
 	"api/cg-gan-sdvx": ParseCGGanSDVX,
 	"api/cg-gan-popn": ParseCGGanPopn,
 	"api/cg-gan-museca": ParseCGGanMuseca,
+	"api/cg-gan-jubeat": ParseCGGanJubeat,
 
 	"api/myt-chunithm": ParseMytChunithm,
 	"api/myt-maimaidx": ParseMytMaimaiDx,

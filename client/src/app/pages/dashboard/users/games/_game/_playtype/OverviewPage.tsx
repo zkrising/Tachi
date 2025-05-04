@@ -1,4 +1,4 @@
-import { FormatGPTProfileRating, UppercaseFirst } from "util/misc";
+import { FormatGPTProfileRating, FormatGPTProfileRatingName, UppercaseFirst } from "util/misc";
 import { FormatDate, MillisToSince } from "util/time";
 import TimelineChart from "components/charts/TimelineChart";
 import useSetSubheader from "components/layout/header/useSetSubheader";
@@ -106,9 +106,9 @@ function UserHistory({
 
 	const propName = useMemo(() => {
 		if (mode === "rating" && rating) {
-			return UppercaseFirst(rating);
+			return FormatGPTProfileRatingName(game, playtype, rating);
 		} else if (mode === "ranking") {
-			return `${UppercaseFirst(rating)} Ranking`;
+			return `${FormatGPTProfileRatingName(game, playtype, rating)} Ranking`;
 		}
 
 		return UppercaseFirst(mode);
@@ -180,7 +180,7 @@ function UserHistory({
 							>
 								{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
 									<option key={e} value={e}>
-										{UppercaseFirst(e)}
+										{FormatGPTProfileRatingName(game, playtype, e)}
 									</option>
 								))}
 							</FormSelect>
@@ -233,7 +233,7 @@ function UserHistory({
 							>
 								{Object.keys(gptConfig.profileRatingAlgs).map((e) => (
 									<option key={e} value={e}>
-										{UppercaseFirst(e)}
+										{FormatGPTProfileRatingName(game, playtype, e)}
 									</option>
 								))}
 							</FormSelect>
@@ -288,7 +288,7 @@ function RatingTimeline({
 									p.point.data.y as number
 							  )
 							: "N/A"}{" "}
-						{UppercaseFirst(rating)}
+						{FormatGPTProfileRatingName(game, playtype, rating)}
 					</div>
 					<small className="text-body-secondary">
 						{MillisToSince(+p.point.data.xFormatted)}

@@ -14,6 +14,7 @@ const choices: Array<[string, string]> = (
 		["CG DEV SDVX", "api/cg-dev-sdvx"],
 		["CG DEV MUSECA", "api/cg-dev-museca"],
 		["CG DEV Pop'n", "api/cg-dev-popn"],
+		["CG DEV Jubeat", "api/cg-dev-jubeat"],
 		["CG SDVX", "api/cg-prod-sdvx"],
 		["CG MUSECA", "api/cg-prod-museca"],
 		["CG Pop'n", "api/cg-prod-popn"],

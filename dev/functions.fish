@@ -54,6 +54,7 @@ function fish_greeting
 		echo ""
 		echo "Type $(cmd "seeds") to run seeds scripts."
 		echo "    $(rgb "Create new script files in seeds/scripts." ffff00 000000)"
+		echo "    Your host PC files can be found in $(rgb "/host-pc" ffff00 000000)."
 		echo ""
 		echo "Type $(cmd "just") to see everything else we have going on."
 		echo ""

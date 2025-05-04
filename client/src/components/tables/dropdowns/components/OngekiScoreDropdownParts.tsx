@@ -7,10 +7,12 @@ import {
 	PBScoreDocument,
 	ScoreData,
 	ScoreDocument,
+	SongDocument,
 } from "tachi-common";
-import OngekiScoreChart from "components/charts/OngekiScoreChart";
+import GekichuScoreChart from "components/charts/GekichuScoreChart";
+import useApiQuery from "components/util/query/useApiQuery";
 
-type ChartTypes = "Score" | "Bells" | "Life";
+type ChartType = "Score" | "Bells" | "Life";
 
 export function OngekiGraphsComponent({
 	score,
@@ -19,13 +21,25 @@ export function OngekiGraphsComponent({
 	score: ScoreDocument<"ongeki:Single"> | PBScoreDocument<"ongeki:Single">;
 	chart: ChartDocument<"ongeki:Single">;
 }) {
-	const [graph, setGraph] = useState<ChartTypes>("Score");
+	const [graph, setGraph] = useState<ChartType>("Score");
 	const available =
 		score.scoreData.optional.scoreGraph &&
 		score.scoreData.optional.bellGraph &&
 		score.scoreData.optional.lifeGraph &&
 		score.scoreData.optional.totalBellCount !== null &&
 		score.scoreData.optional.totalBellCount !== undefined;
+
+	if (!available) {
+		return <Box message="No charts available" />;
+	}
+
+	const { data, error } = useApiQuery<{
+		song: SongDocument<"ongeki">;
+	}>(`/games/ongeki/Single/songs/${score.songID}`);
+	if (error !== null || data === undefined) {
+		return <Box message="Error retrieving chart" />;
+	}
+	const song = data.song;
 
 	return (
 		<>
@@ -43,20 +57,12 @@ export function OngekiGraphsComponent({
 				</Nav>
 			</div>
 			<div className="col-12">
-				{available ? (
-					<GraphComponent
-						type={graph}
-						scoreData={score.scoreData}
-						difficulty={chart.difficulty}
-					/>
-				) : (
-					<div
-						className="d-flex align-items-center justify-content-center"
-						style={{ height: "200px" }}
-					>
-						<span className="text-body-secondary">No charts available</span>
-					</div>
-				)}
+				<GraphComponent
+					type={graph}
+					scoreData={score.scoreData}
+					song={song}
+					difficulty={chart.difficulty}
+				/>
 			</div>
 		</>
 	);
@@ -65,10 +71,12 @@ export function OngekiGraphsComponent({
 function GraphComponent({
 	type,
 	scoreData,
+	song,
 	difficulty,
 }: {
-	type: ChartTypes;
+	type: ChartType;
 	scoreData: ScoreData<"ongeki:Single">;
+	song: SongDocument<"ongeki">;
 	difficulty: Difficulties["ongeki:Single"];
 }) {
 	const values =
@@ -78,7 +86,7 @@ function GraphComponent({
 			? scoreData.optional.bellGraph!
 			: scoreData.optional.lifeGraph!;
 	return (
-		<OngekiScoreChart
+		<GekichuScoreChart
 			height="360px"
 			mobileHeight="175px"
 			type={type}
@@ -90,6 +98,21 @@ function GraphComponent({
 					data: values.map((e, i) => ({ x: i, y: e })),
 				},
 			]}
+			game="ongeki"
+			duration={song.data.duration}
 		/>
+	);
+}
+
+function Box({ message }: { message: string }) {
+	return (
+		<div className="col-12">
+			<div
+				className="d-flex align-items-center justify-content-center"
+				style={{ height: "200px" }}
+			>
+				<span className="text-body-secondary">{message}</span>
+			</div>
+		</div>
 	);
 }

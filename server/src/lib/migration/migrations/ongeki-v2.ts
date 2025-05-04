@@ -39,7 +39,7 @@ const migration: Migration = {
 								newScore.scoreData.optional.platScore;
 							delete newScore.scoreData.optional.platScore;
 						} else {
-							newScore.scoreData.platinumScore = 0;
+							newScore.scoreData.platinumScore ??= 0;
 						}
 
 						await UpdateScore(score, newScore);

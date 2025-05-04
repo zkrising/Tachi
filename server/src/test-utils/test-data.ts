@@ -7,6 +7,7 @@ import {
 	USC_DEFAULT_PERFECT,
 	USC_DEFAULT_SLAM,
 } from "lib/constants/usc-ir";
+import { CHUNITHM_NOTE_LAMPS, CHUNITHM_GRADES, CHUNITHM_CLEAR_LAMPS } from "tachi-common";
 import { ApplyNTimes, RFA } from "utils/misc";
 import fs from "fs";
 import path from "path";
@@ -663,11 +664,13 @@ export const TestingChunithmScorePB: PBScoreDocument<"chunithm:Single"> = {
 	isPrimary: true,
 	scoreData: {
 		score: 1010000,
-		lamp: "ALL JUSTICE CRITICAL",
+		clearLamp: "BRAVE",
+		noteLamp: "ALL JUSTICE CRITICAL",
 		grade: "SSS+",
 		enumIndexes: {
-			grade: 13,
-			lamp: 4,
+			grade: CHUNITHM_GRADES.SSS_PLUS,
+			clearLamp: CHUNITHM_CLEAR_LAMPS.BRAVE,
+			noteLamp: CHUNITHM_NOTE_LAMPS.ALL_JUSTICE_CRITICAL,
 		},
 		judgements: {},
 		optional: {
@@ -1354,7 +1357,8 @@ export const FakeChunitachiBatchManual = {
 	scores: [
 		{
 			score: 900000,
-			lamp: "CLEAR",
+			clearLamp: "CLEAR",
+			noteLamp: "NONE",
 			matchType: "songTitle",
 			identifier: "B.B.K.K.B.K.K.",
 			difficulty: "BASIC",

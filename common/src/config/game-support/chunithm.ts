@@ -51,9 +51,15 @@ export const CHUNITHM_SINGLE_CONF = {
 			formatter: FmtNum,
 			description: "The score value. This is between 0 and 1.01 million.",
 		},
-		lamp: {
+		noteLamp: {
 			type: "ENUM",
-			values: ["FAILED", "CLEAR", "FULL COMBO", "ALL JUSTICE", "ALL JUSTICE CRITICAL"],
+			values: ["NONE", "FULL COMBO", "ALL JUSTICE", "ALL JUSTICE CRITICAL"],
+			minimumRelevantValue: "FULL COMBO",
+			description: "The type of combo this was.",
+		},
+		clearLamp: {
+			type: "ENUM",
+			values: ["FAILED", "CLEAR", "HARD", "BRAVE", "ABSOLUTE", "CATASTROPHY"],
 			minimumRelevantValue: "CLEAR",
 			description: "The type of clear this was.",
 		},

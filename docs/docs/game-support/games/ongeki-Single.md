@@ -16,7 +16,7 @@ For more information on what metrics are and how they work, see [TODO]!
 | `score` | Integer | Known in-game as 'Technical Score'. It ranges between 0 and 1,010,000, where notes are worth 950,000, and bells 60,000. |
 | `noteLamp` | "LOSS", "CLEAR", "FULL COMBO", "ALL BREAK", "ALL BREAK+" | The primary lamp. A clear is a draw or a win in-game. |
 | `bellLamp` | "NONE", "FULL BELL" | Tracks whether all bells in the chart have been collected. |
-| `platScore` | Integer | The Platinum Score value. |
+| `platinumScore` | Integer | The Platinum Score value. |
 
 ### Derived Metrics
 

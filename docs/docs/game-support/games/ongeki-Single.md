@@ -52,7 +52,7 @@ The following judgements are defined:
 | :: | :: |
 | `rating` | A rating value of this score, capping at +2.0 at SSS+. This is identical to the system used in bright MEMORY and earlier versions. |
 | `scoreRating` | A rating value of this score, capping at +2.7 at 1,010,000. This is identical to the system used in Re:Fresh. |
-| `starRating` | A rating value of this score, based on platinum score. |
+| `starRating` | A rating value of this score, based on stars derived from Platinum Score. This is identical to the system used in Re:Fresh. |
 
 ### Session Rating Algorithms
 

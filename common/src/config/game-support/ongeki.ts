@@ -143,7 +143,8 @@ export const ONGEKI_SINGLE_CONF = {
 			formatter: ToDecimalPlaces(3),
 		},
 		starRating: {
-			description: "A rating value of this score, based on platinum score.",
+			description:
+				"A rating value of this score, based on stars derived from Platinum Score. This is identical to the system used in Re:Fresh.",
 			formatter: ToDecimalPlaces(3),
 		},
 	},

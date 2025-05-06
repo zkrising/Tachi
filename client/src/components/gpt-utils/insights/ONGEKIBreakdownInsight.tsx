@@ -278,19 +278,21 @@ function CompactCell({
 
 	return (
 		<td style={{ width: "300px" }} className={className}>
-			<div style={{ textAlign: "left" }}>
+			<div style={{ textAlign: "left" }} className="d-flex flex-column gap-2">
 				<div>
-					<GentleLink to={CreateChartLink(chart, "ongeki")}>{song.title}</GentleLink>
+					<GentleLink to={CreateChartLink(chart, "ongeki")}>
+						<span style={{ fontSize: "120%" }}>{song.title}</span>
+					</GentleLink>
 				</div>
 				<div
 					style={{
 						display: "grid",
 						gridTemplateColumns: "repeat(3, 1fr)",
-						gap: "5px",
+						gap: "15px",
 					}}
 				>
 					<span>{scoreField(pb, chart)}</span>
-					<span>{ratingField(pb)}</span>
+					<strong style={{ fontSize: "105%" }}>{ratingField(pb)}</strong>
 					<span>{lampField(pb)}</span>
 				</div>
 			</div>
@@ -317,15 +319,18 @@ function IndexCellCustom({ index }: { index: integer }) {
 function ShortLamp(noteLamp: string, bellLamp: string) {
 	let res = "";
 	if (noteLamp === "ALL BREAK+") {
-		return "ABFB+";
-	}
-	if (noteLamp === "ALL BREAK") {
-		res = "AB";
+		res = "🔵";
+	} else if (noteLamp === "ALL BREAK") {
+		res = "⚪";
 	} else if (noteLamp === "FULL COMBO") {
-		res = "FC";
+		res = "🟡";
+	} else {
+		res = "⚫";
 	}
 	if (bellLamp === "FULL BELL") {
-		res += "FB";
+		res += "🟡";
+	} else {
+		res += "⚫";
 	}
 	return res;
 }

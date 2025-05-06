@@ -41,6 +41,17 @@ export const ONGEKI_IMPL: GPTServerImplementation<"ongeki:Single"> = {
 
 			return true;
 		},
+		platinumScore: (platinumScore, chart) => {
+			if (platinumScore < 0) {
+				return `Platinum Score must be non-negative. Got ${platinumScore}`;
+			}
+
+			if (platinumScore > chart.data.maxPlatScore) {
+				return `Platinum Score must not exceed the chart's maximum Platinum Score. Got ${platinumScore}/${chart.data.maxPlatScore}`;
+			}
+
+			return true;
+		},
 	},
 	derivers: {
 		grade: ({ score }) => GetGrade(ONGEKI_GBOUNDARIES, score),

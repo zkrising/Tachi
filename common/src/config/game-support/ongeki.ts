@@ -61,7 +61,7 @@ export const ONGEKI_SINGLE_CONF = {
 		},
 		platinumScore: {
 			type: "INTEGER",
-			validate: p.isPositiveInteger,
+			chartDependentMax: true,
 			formatter: FmtNum,
 			description:
 				"The Platinum Score value, similar to the scoring system used in beatmania IIDX.",

@@ -32,6 +32,7 @@ export default function OngekiLampCell({
 	return (
 		<td
 			style={{
+				verticalAlign: "middle",
 				background:
 					bellLamp === "FULL BELL"
 						? `linear-gradient(-45deg, ${lowCorner} 0%,${lowCorner} 12%,${low} 12%,${low} 100%)`

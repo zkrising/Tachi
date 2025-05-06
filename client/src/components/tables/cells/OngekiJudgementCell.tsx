@@ -19,7 +19,7 @@ export default function OngekiJudgementCell({
 	}
 
 	return (
-		<td>
+		<td style={{ verticalAlign: "middle" }}>
 			<strong>
 				<div>
 					<span style={{ color: COLOUR_SET.gold }}>{judgements.cbreak}</span>-

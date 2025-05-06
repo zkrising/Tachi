@@ -18,7 +18,6 @@ import {
 	GPTString,
 	integer,
 	PBScoreDocument,
-	Playtype,
 	SongDocument,
 } from "tachi-common";
 import { UGPT } from "types/react";
@@ -74,7 +73,6 @@ function ComponentClassic({ game, playtype, reqUser }: UGPT) {
 							<CompactRow
 								pbs={pbs}
 								game={game}
-								playtype={playtype}
 								scoreField={(pb) => FormatMillions(pb.scoreData.score)}
 								ratingField={(pb) => pb.calculatedData.rating?.toFixed(2) ?? "0.00"}
 								lampField={(pb) =>
@@ -163,7 +161,6 @@ function ComponentRefresh({ game, playtype, reqUser }: UGPT) {
 							<CompactRow
 								pbs={pbs}
 								game={game}
-								playtype={playtype}
 								scoreField={(pb) => FormatMillions(pb.scoreData.score)}
 								ratingField={(pb) =>
 									pb.calculatedData.scoreRating?.toFixed(3) ?? "0.000"
@@ -186,7 +183,6 @@ function ComponentRefresh({ game, playtype, reqUser }: UGPT) {
 							<CompactRow
 								pbs={pbs}
 								game={game}
-								playtype={playtype}
 								count={50}
 								scoreField={(pb, chart) =>
 									`${FmtNum(pb.scoreData.platinumScore)}/${FmtNum(
@@ -196,7 +192,14 @@ function ComponentRefresh({ game, playtype, reqUser }: UGPT) {
 								ratingField={(pb) =>
 									pb.calculatedData.starRating?.toFixed(3) ?? "0.000"
 								}
-								lampField={(pb) => StarField(pb.scoreData.platinumStars)}
+								lampField={(pb) => (
+									<>
+										<StarField
+											stars={pb.scoreData.platinumStars}
+											compact={true}
+										/>
+									</>
+								)}
 							/>
 						)}
 					/>
@@ -209,7 +212,6 @@ function ComponentRefresh({ game, playtype, reqUser }: UGPT) {
 function CompactRow({
 	pbs,
 	game,
-	playtype,
 	count,
 	scoreField,
 	ratingField,
@@ -217,7 +219,6 @@ function CompactRow({
 }: {
 	pbs: PBDataset<"ongeki:Single">[0][];
 	game: Game;
-	playtype: Playtype;
 	count?: number;
 	scoreField: (
 		pb: PBScoreDocument<"ongeki:Single">,

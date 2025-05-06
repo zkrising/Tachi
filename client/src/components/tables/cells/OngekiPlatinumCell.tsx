@@ -1,10 +1,17 @@
 import React from "react";
-import { FmtStars, integer } from "tachi-common";
+import { FmtStars, FmtStarsCompact, integer } from "tachi-common";
 
-export function StarField(stars: number) {
-	return stars < 6 ? (
-		FmtStars(stars)
-	) : (
+export function StarField({
+	stars: stars,
+	compact: compact,
+}: {
+	stars: integer;
+	compact: boolean;
+}) {
+	if (stars < 6) {
+		return <>{compact ? FmtStarsCompact(stars) : FmtStars(stars)}</>;
+	}
+	return (
 		<span
 			style={{
 				background:
@@ -31,13 +38,13 @@ export default function OngekiPlatinumCell({
 
 	return (
 		<td>
-			<strong>{percentage.toFixed(2)}%</strong>
-			<br />
-			{StarField(stars)}
-			<br />
-			<small className="text-body-secondary">
-				[{platinumScore}/{maxPlatScore}]
-			</small>
+			<div className="d-flex flex-column">
+				<strong>{percentage.toFixed(2)}%</strong>
+				<StarField stars={stars} compact={false} />
+				<small className="text-body-secondary">
+					[{platinumScore}/{maxPlatScore}]
+				</small>
+			</div>
 		</td>
 	);
 }

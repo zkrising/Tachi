@@ -798,7 +798,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				CLEAR: COLOUR_SET.green,
 				"FULL COMBO": COLOUR_SET.gold,
 				"ALL BREAK": COLOUR_SET.white,
-				"ALL BREAK+": COLOUR_SET.white,
+				"ALL BREAK+": COLOUR_SET.vibrantBlue,
 			},
 			bellLamp: {
 				NONE: COLOUR_SET.gray,

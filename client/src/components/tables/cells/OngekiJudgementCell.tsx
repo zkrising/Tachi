@@ -27,14 +27,9 @@ export default function OngekiJudgementCell({
 					<span style={{ color: COLOUR_SET.vibrantBlue }}>{judgements.hit}</span>-
 					<span style={{ color: COLOUR_SET.gray }}>{judgements.miss}</span>
 				</div>
-				<div>
-					<span style={{ color: COLOUR_SET.vibrantYellow }}>
-						{score.scoreData.optional.bellCount ?? "?"}/
-						{score.scoreData.optional.totalBellCount ?? "?"}
-					</span>
-					<span style={{ color: COLOUR_SET.red, marginLeft: "0.5em" }}>
-						{score.scoreData.optional.damage ?? "?"}
-					</span>
+				<div style={{ color: COLOUR_SET.vibrantYellow }}>
+					{score.scoreData.optional.bellCount ?? "?"}/
+					{score.scoreData.optional.totalBellCount ?? "?"}
 				</div>
 			</strong>
 		</td>

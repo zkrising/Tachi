@@ -21,6 +21,7 @@ import React from "react";
 import OngekiLampCell from "components/tables/cells/OngekiLampCell";
 import OngekiPlatinumCell from "components/tables/cells/OngekiPlatinumCell";
 import CHUNITHMLampCell from "components/tables/cells/CHUNITHMLampCell";
+import OngekiDamageCell from "components/tables/cells/OngekiDamageCell";
 import { bgc, RAINBOW_EX_GRADIENT, RAINBOW_GRADIENT, RAINBOW_SHINY_GRADIENT } from "./games/_util";
 import { BMS_14K_IMPL, BMS_7K_IMPL, PMS_IMPL } from "./games/bms-pms";
 import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
@@ -834,7 +835,12 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				"P-Score",
 				NumericSOV((x) => x.scoreData.platinumStars * 100000 + x.scoreData.platinumScore),
 			],
-			["Judgements", "Hits", NumericSOV((x) => x.scoreData.score)],
+			["Judgements", "Notes", NumericSOV((x) => x.scoreData.judgements.cbreak ?? 0)],
+			[
+				"Hits",
+				"Hits",
+				NumericSOV((x) => x.scoreData.optional.damage ?? Number.MAX_SAFE_INTEGER, true),
+			],
 			[
 				"Lamp",
 				"Lamp",
@@ -857,6 +863,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 					stars={sc.scoreData.platinumStars}
 				/>
 				<OngekiJudgementCell score={sc} />
+				<OngekiDamageCell damage={sc.scoreData.optional.damage} />
 				<OngekiLampCell
 					noteLamp={sc.scoreData.noteLamp}
 					bellLamp={sc.scoreData.bellLamp}

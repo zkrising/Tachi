@@ -28,6 +28,7 @@ import TachiTable from "components/tables/components/TachiTable";
 import GentleLink from "components/util/GentleLink";
 import Divider from "components/util/Divider";
 import { StarField } from "components/tables/cells/OngekiPlatinumCell";
+import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
 
 function ComponentClassic({ game, playtype, reqUser }: UGPT) {
 	if (game !== "ongeki" || playtype !== "Single") {
@@ -75,9 +76,13 @@ function ComponentClassic({ game, playtype, reqUser }: UGPT) {
 								game={game}
 								scoreField={(pb) => FormatMillions(pb.scoreData.score)}
 								ratingField={(pb) => pb.calculatedData.rating?.toFixed(2) ?? "0.00"}
-								lampField={(pb) =>
-									ShortLamp(pb.scoreData.noteLamp, pb.scoreData.bellLamp)
-								}
+								lampField={(pb) => (
+									<ShortLamp
+										noteLamp={pb.scoreData.noteLamp}
+										bellLamp={pb.scoreData.bellLamp}
+										grade={pb.scoreData.grade}
+									/>
+								)}
 							/>
 						)}
 					/>
@@ -165,9 +170,13 @@ function ComponentRefresh({ game, playtype, reqUser }: UGPT) {
 								ratingField={(pb) =>
 									pb.calculatedData.scoreRating?.toFixed(3) ?? "0.000"
 								}
-								lampField={(pb) =>
-									ShortLamp(pb.scoreData.noteLamp, pb.scoreData.bellLamp)
-								}
+								lampField={(pb) => (
+									<ShortLamp
+										noteLamp={pb.scoreData.noteLamp}
+										bellLamp={pb.scoreData.bellLamp}
+										grade={pb.scoreData.grade}
+									/>
+								)}
 							/>
 						)}
 					/>
@@ -288,7 +297,7 @@ function CompactCell({
 					style={{
 						display: "grid",
 						gridTemplateColumns: "repeat(3, 1fr)",
-						gap: "15px",
+						gap: "5px",
 					}}
 				>
 					<span>{scoreField(pb, chart)}</span>
@@ -316,23 +325,66 @@ function IndexCellCustom({ index }: { index: integer }) {
 	);
 }
 
-function ShortLamp(noteLamp: string, bellLamp: string) {
-	let res = "";
+function ShortLamp({
+	noteLamp,
+	bellLamp,
+	grade,
+}: {
+	noteLamp: string;
+	bellLamp: string;
+	grade: "D" | "C" | "B" | "A" | "AA" | "AAA" | "S" | "SS" | "BB" | "BBB" | "SSS" | "SSS+";
+}) {
+	let color1 = COLOUR_SET.gray;
+	let text1 = "";
+	let color2 = COLOUR_SET.gray;
+	let text2 = "";
+	const color3 = GPT_CLIENT_IMPLEMENTATIONS["ongeki:Single"].enumColours.grade[grade];
+
 	if (noteLamp === "ALL BREAK+") {
-		res = "🔵";
+		color1 = COLOUR_SET.vibrantBlue;
+		text1 = "AB+";
 	} else if (noteLamp === "ALL BREAK") {
-		res = "⚪";
+		color1 = COLOUR_SET.white;
+		text1 = "AB";
 	} else if (noteLamp === "FULL COMBO") {
-		res = "🟡";
-	} else {
-		res = "⚫";
+		color1 = COLOUR_SET.gold;
+		text1 = "FC";
 	}
+
 	if (bellLamp === "FULL BELL") {
-		res += "🟡";
-	} else {
-		res += "⚫";
+		color2 = COLOUR_SET.gold;
+		text2 = "FB";
 	}
-	return res;
+
+	const style = {
+		width: "2em",
+		height: "2em",
+		fontSize: "90%",
+		paddingTop: "3px",
+	};
+
+	return (
+		<span className="d-flex flex-row gap-1 text-center text-nowrap align-items-center">
+			<span
+				className="rounded-circle"
+				style={{ ...style, backgroundColor: ChangeOpacity(color1, 0.2) }}
+			>
+				{text1}
+			</span>
+			<span
+				className="rounded-circle"
+				style={{ ...style, backgroundColor: ChangeOpacity(color2, 0.2) }}
+			>
+				{text2}
+			</span>
+			<span
+				className="rounded-circle"
+				style={{ ...style, backgroundColor: ChangeOpacity(color3, 0.2) }}
+			>
+				{grade}
+			</span>
+		</span>
+	);
 }
 
 function CreateFlatDataset<T extends GPTString>(data: any, alg: AnyScoreRatingAlg, count: number) {

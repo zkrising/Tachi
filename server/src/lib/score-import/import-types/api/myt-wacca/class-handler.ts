@@ -18,12 +18,7 @@ export default async function CreateMytWACCAClassHandler(
 	const data = dataRes;
 
 	return (_gptString, _userID, _ratings, _logger) => {
-		// In Apr/May 2025, the keys for version data are changing from
-		// 0-indexed (starting at WACCA) to custom enum values.
-		// TODO: Once MYT transitions over to the new enum, remove the _OLD
-		// values from the enum proto definition, and remove the compatibility
-		// code below.
-		// Currently (Apr. 2025) Reverse and Plus are supported on Myt.
+		// Currently (May 2025) Reverse and Plus are supported on Myt.
 		// We look for both Reverse and PLUS version data, PLUS being prioritized if exists.
 		// If / when custom dans are added, this will need to change.
 		const versionDataMap = data.getVersionDataMap();
@@ -31,12 +26,8 @@ export default async function CreateMytWACCAClassHandler(
 
 		if (versionDataMap.has(WaccaVersion.WACCA_VERSION_PLUS)) {
 			versionData = versionDataMap.get(WaccaVersion.WACCA_VERSION_PLUS);
-		} else if (versionDataMap.has(WaccaVersion.WACCA_VERSION_PLUS_OLD)) {
-			versionData = versionDataMap.get(WaccaVersion.WACCA_VERSION_PLUS_OLD);
 		} else if (versionDataMap.has(WaccaVersion.WACCA_VERSION_REVERSE)) {
 			versionData = versionDataMap.get(WaccaVersion.WACCA_VERSION_REVERSE);
-		} else if (versionDataMap.has(WaccaVersion.WACCA_VERSION_REVERSE_OLD)) {
-			versionData = versionDataMap.get(WaccaVersion.WACCA_VERSION_REVERSE_OLD);
 		}
 
 		// rank:

@@ -544,11 +544,6 @@ proto.mythos.wacca.v0.WaccaJudge.prototype.setMiss = function(value) {
  */
 proto.mythos.wacca.v0.WaccaVersion = {
   WACCA_VERSION_UNSPECIFIED: 0,
-  WACCA_VERSION_S_OLD: 1,
-  WACCA_VERSION_LILY_OLD: 2,
-  WACCA_VERSION_LILY_R_OLD: 3,
-  WACCA_VERSION_REVERSE_OLD: 4,
-  WACCA_VERSION_PLUS_OLD: 5,
   WACCA_VERSION_WACCA: 100,
   WACCA_VERSION_S: 150,
   WACCA_VERSION_LILY: 200,

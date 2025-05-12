@@ -22,6 +22,7 @@ import OngekiLampCell from "components/tables/cells/OngekiLampCell";
 import OngekiPlatinumCell from "components/tables/cells/OngekiPlatinumCell";
 import CHUNITHMLampCell from "components/tables/cells/CHUNITHMLampCell";
 import OngekiDamageCell from "components/tables/cells/OngekiDamageCell";
+import OngekiScoreRatingCell from "components/tables/cells/OngekiScoreRatingCell";
 import { bgc, RAINBOW_EX_GRADIENT, RAINBOW_GRADIENT, RAINBOW_SHINY_GRADIENT } from "./games/_util";
 import { BMS_14K_IMPL, BMS_7K_IMPL, PMS_IMPL } from "./games/bms-pms";
 import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
@@ -871,7 +872,15 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				/>
 			</>
 		),
-		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
+		ratingCell: ({ sc, rating }) => (
+			<>
+				{rating === "scoreRating" ? (
+					<OngekiScoreRatingCell score={sc} />
+				) : (
+					<RatingCell score={sc} rating={rating} />
+				)}
+			</>
+		),
 	},
 	"arcaea:Touch": ARCAEA_TOUCH_IMPL,
 	"gitadora:Dora": GITADORA_DORA_IMPL,

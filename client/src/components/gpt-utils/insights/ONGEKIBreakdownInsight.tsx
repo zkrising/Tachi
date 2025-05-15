@@ -29,6 +29,7 @@ import GentleLink from "components/util/GentleLink";
 import Divider from "components/util/Divider";
 import { StarField } from "components/tables/cells/OngekiPlatinumCell";
 import { GPT_CLIENT_IMPLEMENTATIONS } from "lib/game-implementations";
+import OngekiScoreRatingCell from "components/tables/cells/OngekiScoreRatingCell";
 
 function ComponentClassic({ game, playtype, reqUser }: UGPT) {
 	if (game !== "ongeki" || playtype !== "Single") {
@@ -167,9 +168,7 @@ function ComponentRefresh({ game, playtype, reqUser }: UGPT) {
 								pbs={pbs}
 								game={game}
 								scoreField={(pb) => FormatMillions(pb.scoreData.score)}
-								ratingField={(pb) =>
-									pb.calculatedData.scoreRating?.toFixed(3) ?? "0.000"
-								}
+								ratingField={(pb) => <OngekiScoreRatingCell score={pb} />}
 								lampField={(pb) => (
 									<ShortLamp
 										noteLamp={pb.scoreData.noteLamp}

@@ -52,16 +52,6 @@ export default function OngekiScoreRatingCell({
 								<td>{techRating.toFixed(3)}</td>
 							</tr>
 							<tr>
-								<td
-									style={{
-										backgroundColor: gradeColor,
-									}}
-								>
-									<strong>{score.scoreData.grade}</strong>
-								</td>
-								<td>{gradeRating.toFixed(3)}</td>
-							</tr>
-							<tr>
 								<LampCell
 									lamp={noteLamp}
 									colour={
@@ -80,6 +70,16 @@ export default function OngekiScoreRatingCell({
 									}
 								/>
 								<td>{bellRating.toFixed(3)}</td>
+							</tr>
+							<tr>
+								<td
+									style={{
+										backgroundColor: gradeColor,
+									}}
+								>
+									<strong>{score.scoreData.grade}</strong>
+								</td>
+								<td>{gradeRating.toFixed(3)}</td>
 							</tr>
 						</MiniTable>
 					</>

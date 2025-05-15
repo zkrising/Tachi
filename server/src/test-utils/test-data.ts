@@ -1429,12 +1429,14 @@ export const TestingOngekiScorePB: PBScoreDocument<"ongeki:Single"> = {
 	isPrimary: true,
 	scoreData: {
 		score: 1010000,
-		noteLamp: "ALL BREAK",
+		noteLamp: "ALL BREAK+",
 		bellLamp: "FULL BELL",
+		platinumScore: 1000,
+		platinumStars: 6,
 		grade: "SSS+",
 		enumIndexes: {
 			grade: 11,
-			noteLamp: 3,
+			noteLamp: 4,
 			bellLamp: 1,
 		},
 		judgements: {},

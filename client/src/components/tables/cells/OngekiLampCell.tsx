@@ -7,7 +7,7 @@ export default function OngekiLampCell({
 	bellLamp,
 	colour,
 }: {
-	noteLamp: "ALL BREAK" | "FULL COMBO" | "CLEAR" | "LOSS";
+	noteLamp: "ALL BREAK+" | "ALL BREAK" | "FULL COMBO" | "CLEAR" | "LOSS";
 	bellLamp: "FULL BELL" | "NONE";
 	colour: string;
 }) {
@@ -32,6 +32,7 @@ export default function OngekiLampCell({
 	return (
 		<td
 			style={{
+				verticalAlign: "middle",
 				background:
 					bellLamp === "FULL BELL"
 						? `linear-gradient(-45deg, ${lowCorner} 0%,${lowCorner} 12%,${low} 12%,${low} 100%)`

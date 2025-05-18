@@ -1,5 +1,5 @@
 import { FAST_SLOW_MAXCOMBO } from "./_common";
-import { FmtNum } from "../../utils/util";
+import { FmtNum, FmtStars } from "../../utils/util";
 import { ClassValue, ToDecimalPlaces } from "../config-utils";
 import { p } from "prudence";
 import { z } from "zod";
@@ -24,16 +24,18 @@ export const ONGEKI_CONF = {
 } as const satisfies INTERNAL_GAME_CONFIG;
 
 export const OngekiColours = [
-	ClassValue("BLUE", "青", "Blue: 0 - 1.99 Rating"),
-	ClassValue("GREEN", "緑", "Green: 2 - 3.99 Rating"),
-	ClassValue("ORANGE", "橙", "Orange: 4 - 6.99 Rating"),
-	ClassValue("RED", "赤", "Red: 7 - 9.99 Rating"),
-	ClassValue("PURPLE", "紫", "Purple: 10 - 11.99 Rating"),
-	ClassValue("COPPER", "銅", "Copper: 12 - 12.99 Rating"),
-	ClassValue("SILVER", "銀", "Silver: 13 - 13.99 Rating"),
-	ClassValue("GOLD", "金", "Gold: 14.00 - 14.49 Rating"),
-	ClassValue("PLATINUM", "鉑", "Platinum: 14.50 - 14.99 Rating"),
-	ClassValue("RAINBOW", "虹", "Rainbow: >=15 Rating"),
+	ClassValue("BLUE", "水", "Blue: 0.000~3.999 Rating"),
+	ClassValue("GREEN", "緑", "Green: 4.000~6.999 Rating"),
+	ClassValue("ORANGE", "橙", "Orange: 7.000~8.999 Rating"),
+	ClassValue("RED", "赤", "Red: 9.000~10.999 Rating"),
+	ClassValue("PURPLE", "紫", "Purple: 11.000~12.999 Rating"),
+	ClassValue("COPPER", "銅", "Copper: 13.000~14.999 Rating"),
+	ClassValue("SILVER", "銀", "Silver: 15.000~16.999 Rating"),
+	ClassValue("GOLD", "金", "Gold: 17.000~17.999 Rating"),
+	ClassValue("PLATINUM", "鉑", "Platinum: 18.000~18.999 Rating"),
+	ClassValue("RAINBOW", "虹", "Rainbow: 19.000~19.999 Rating"),
+	ClassValue("RAINBOW_SHINY", "虹(光)", "Rainbow Shiny: 20.000~20.999 Rating"),
+	ClassValue("RAINBOW_EX", "虹(極)", "Rainbow Extreme: 21.000~ Rating"),
 ];
 
 export const ONGEKI_SINGLE_CONF = {
@@ -47,7 +49,7 @@ export const ONGEKI_SINGLE_CONF = {
 		},
 		noteLamp: {
 			type: "ENUM",
-			values: ["LOSS", "CLEAR", "FULL COMBO", "ALL BREAK"],
+			values: ["LOSS", "CLEAR", "FULL COMBO", "ALL BREAK", "ALL BREAK+"],
 			minimumRelevantValue: "CLEAR",
 			description: "The primary lamp. A clear is either a draw or a win.",
 		},
@@ -57,6 +59,13 @@ export const ONGEKI_SINGLE_CONF = {
 			minimumRelevantValue: "FULL BELL",
 			description: "Tracks whether all bells in the chart have been collected.",
 		},
+		platinumScore: {
+			type: "INTEGER",
+			chartDependentMax: true,
+			formatter: FmtNum,
+			description:
+				"The Platinum Score value, similar to the scoring system used in beatmania IIDX.",
+		},
 	},
 
 	derivedMetrics: {
@@ -65,6 +74,12 @@ export const ONGEKI_SINGLE_CONF = {
 			values: ["D", "C", "B", "BB", "BBB", "A", "AA", "AAA", "S", "SS", "SSS", "SSS+"],
 			minimumRelevantValue: "A",
 			description: "The grade this score was.",
+		},
+		platinumStars: {
+			type: "INTEGER",
+			validate: p.isBetween(0, 6),
+			formatter: FmtStars,
+			description: "The number of platinum stars of this score",
 		},
 	},
 
@@ -93,17 +108,15 @@ export const ONGEKI_SINGLE_CONF = {
 			formatter: FmtNum,
 			description: "The total number of bells.",
 		},
-		platScore: {
-			type: "INTEGER",
-			chartDependentMax: true,
-			formatter: FmtNum,
-			description: "The Platinum Score value. Only exists in MASTER and LUNATIC charts.",
-			partOfScoreID: true,
-		},
 		scoreGraph: {
 			type: "NULLABLE_GRAPH",
 			validate: p.isBetween(0, 1010000),
 			description: "The history of the projected score, queried in one-second intervals.",
+		},
+		platinumGraph: {
+			type: "NULLABLE_GRAPH",
+			validate: p.isBetween(-100000, 0),
+			description: "The Platinum Score history, queried in one-second intervals.",
 		},
 		bellGraph: {
 			type: "NULLABLE_GRAPH",
@@ -124,11 +137,29 @@ export const ONGEKI_SINGLE_CONF = {
 				"A rating value of this score, capping at +2.0 at SSS+. This is identical to the system used in bright MEMORY and earlier versions.",
 			formatter: ToDecimalPlaces(2),
 		},
+		scoreRating: {
+			description:
+				"A rating value of this score, capping at +2.7 at 1,010,000. This is identical to the system used in Re:Fresh.",
+			formatter: ToDecimalPlaces(3),
+		},
+		starRating: {
+			description:
+				"A rating value of this score, based on stars derived from Platinum Score. This is identical to the system used in Re:Fresh.",
+			formatter: ToDecimalPlaces(3),
+		},
 	},
 	sessionRatingAlgs: {
 		naiveRating: {
 			description: "The average of your best 10 classic ratings this session.",
 			formatter: ToDecimalPlaces(2),
+		},
+		naiveScoreRating: {
+			description: "The average of your best 10 score ratings this session.",
+			formatter: ToDecimalPlaces(3),
+		},
+		starRating: {
+			description: "The average of your best 10 star ratings this session.",
+			formatter: ToDecimalPlaces(3),
 		},
 	},
 	profileRatingAlgs: {
@@ -136,6 +167,11 @@ export const ONGEKI_SINGLE_CONF = {
 			description:
 				"The average of your best 45 classic ratings. This is a simpler variant of the rating algorithm used in bright MEMORY and earlier versions, without distinguishing between new and old charts, and without taking recent scores into account.",
 			formatter: ToDecimalPlaces(2),
+		},
+		naiveRatingRefresh: {
+			description:
+				"A weighted sum of the average of your best 60 score ratings, and your best 50 star ratings. This is a simpler variant of the rating algorithm used in Re:Fresh, without distinguishing between new and old charts.",
+			formatter: ToDecimalPlaces(3),
 		},
 	},
 

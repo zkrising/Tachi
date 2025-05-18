@@ -295,8 +295,8 @@ importers:
         specifier: ^5.6.1
         version: 5.6.1(@babel/core@7.1.0)(@types/react@17.0.13)(react-dom@17.0.2)(react@17.0.2)
       rg-stats:
-        specifier: 0.5.10
-        version: 0.5.10
+        specifier: 1.1.0
+        version: 1.1.0
       sync-fetch:
         specifier: ^0.3.1
         version: 0.3.1
@@ -659,8 +659,8 @@ importers:
         specifier: 3.1.2
         version: 3.1.2
       rg-stats:
-        specifier: 0.5.10
-        version: 0.5.10
+        specifier: 1.1.0
+        version: 1.1.0
       rimraf:
         specifier: 3.0.2
         version: 3.0.2
@@ -10244,8 +10244,8 @@ packages:
     resolution: {integrity: sha512-V2hovdzFbOi77/WajaSMXk2OLm+xNIeQdMMuB7icj7bk6zi2F8GGAxigcnDFpJHbNyNcgyJDiP+8nOrY5cZGrA==}
     dev: false
 
-  /rg-stats@0.5.10:
-    resolution: {integrity: sha512-UZfB5PFnaiSInlcQMTYXgvMvWqd9wiHd9mQX5Ecf1VT/JJI2ycdFYJXU8lVLA6eyxYaHpx66E+HvweCIt+q4fw==}
+  /rg-stats@1.1.0:
+    resolution: {integrity: sha512-KQxSjnHXvb2B9Z+y/OwtUzStIjyXsn78c1XSF0t5L9G5UsVjyyO250eq4ih00X1WjvPRE9AtC4h38gBZEWClkw==}
     dev: false
 
   /rimraf@2.4.5:

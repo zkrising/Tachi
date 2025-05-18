@@ -10,23 +10,35 @@ import {
 import GekichuScoreChart from "components/charts/GekichuScoreChart";
 import SelectNav from "components/util/SelectNav";
 import { Nav } from "react-bootstrap";
+import useApiQuery from "components/util/query/useApiQuery";
 
 type ChartType = "Score" | "Life";
 
 export function ChunithmGraphsComponent({
 	score,
 	chart,
-	song,
 }: {
 	score: ScoreDocument<"chunithm:Single"> | PBScoreDocument<"chunithm:Single">;
 	chart: ChartDocument<"chunithm:Single">;
-	song: SongDocument<"chunithm">;
 }) {
 	const [graph, setGraph] = useState<ChartType>("Score");
-	const available =
-		score.scoreData.optional.scoreGraph &&
-		score.scoreData.optional.lifeGraph &&
-		song.data.duration !== undefined;
+	const available = score.scoreData.optional.scoreGraph && score.scoreData.optional.lifeGraph;
+
+	if (!available) {
+		return <Box message="No charts available" />;
+	}
+
+	const { data, error } = useApiQuery<{
+		song: SongDocument<"chunithm">;
+	}>(`/games/chunithm/Single/songs/${score.songID}`);
+
+	if (error !== null || data === undefined) {
+		return <Box message="Error retrieving chart" />;
+	}
+
+	if (data.song.data.duration === null) {
+		return <Box message="No charts available" />;
+	}
 
 	return (
 		<>
@@ -41,21 +53,12 @@ export function ChunithmGraphsComponent({
 				</Nav>
 			</div>
 			<div className="col-12">
-				{available ? (
-					<GraphComponent
-						type={graph}
-						scoreData={score.scoreData}
-						difficulty={chart.difficulty}
-						song={song}
-					/>
-				) : (
-					<div
-						className="d-flex align-items-center justify-content-center"
-						style={{ height: "200px" }}
-					>
-						<span className="text-body-secondary">No charts available</span>
-					</div>
-				)}
+				<GraphComponent
+					type={graph}
+					song={data.song}
+					scoreData={score.scoreData}
+					difficulty={chart.difficulty}
+				/>
 			</div>
 		</>
 	);
@@ -89,5 +92,18 @@ function GraphComponent({
 			game="chunithm"
 			duration={song.data.duration!}
 		/>
+	);
+}
+
+function Box({ message }: { message: string }) {
+	return (
+		<div className="col-12">
+			<div
+				className="d-flex align-items-center justify-content-center"
+				style={{ height: "200px" }}
+			>
+				<span className="text-body-secondary">{message}</span>
+			</div>
+		</div>
 	);
 }

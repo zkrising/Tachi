@@ -25276,5 +25276,101 @@
 			"tetoris_hiiragimagnetite"
 		],
 		"title": "テトリス"
+	},
+	{
+		"altTitles": [],
+		"artist": "otoshi.b×でか大×みゅい",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2328,
+		"searchTerms": [
+			"kodokunodrop_otoshidekadai"
+		],
+		"title": "孤独のドロップハンター"
+	},
+	{
+		"altTitles": [],
+		"artist": "#EmoCosine",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2329,
+		"searchTerms": [
+			"mirai_emocosine"
+		],
+		"title": "MiR瀑i"
+	},
+	{
+		"altTitles": [],
+		"artist": "setu-O",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2330,
+		"searchTerms": [
+			"restartyour_setuo"
+		],
+		"title": "reSTART yOUR STORIES"
+	},
+	{
+		"altTitles": [],
+		"artist": "Shiron+こふ×モリモリあつしと提供でお送りしました。",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2331,
+		"searchTerms": [
+			"bokurano_shironkohu"
+		],
+		"title": "ぼくらのはじまりのおと"
+	},
+	{
+		"altTitles": [],
+		"artist": "打打だいず",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2332,
+		"searchTerms": [
+			"linemarker_dadadaizu"
+		],
+		"title": "Line markeR"
+	},
+	{
+		"altTitles": [],
+		"artist": "日向美ビタースイーツ♪ & ここなつ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2333,
+		"searchTerms": [
+			"choclatesmile_hinabita"
+		],
+		"title": "チョコレートスマイル"
+	},
+	{
+		"altTitles": [],
+		"artist": "ホララ・ホリック with 日向美ビタースイーツ♪",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2334,
+		"searchTerms": [
+			"jimotokkosweets_hinabita"
+		],
+		"title": "じもとっこスイーツ♪"
+	},
+	{
+		"altTitles": [],
+		"artist": "ここなつ2.0",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2335,
+		"searchTerms": [
+			"romancingescape_kokonatsu"
+		],
+		"title": "ロマンシングエスケープ"
 	}
 ]

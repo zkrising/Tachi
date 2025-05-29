@@ -159329,21 +159329,6 @@
 		]
 	},
 	{
-		"chartID": "b99ad0fa73af8ed151336c1bfd562ebfa909fb1f",
-		"data": {
-			"inGameID": 1999
-		},
-		"difficulty": "NOV",
-		"isPrimary": true,
-		"level": "5",
-		"levelNum": 5,
-		"playtype": "Single",
-		"songID": 2336,
-		"versions": [
-			"konaste"
-		]
-	},
-	{
 		"chartID": "815930a92f1e3f20ead7804e292dbfa27bc7eff0",
 		"data": {
 			"inGameID": 1999
@@ -159373,7 +159358,7 @@
 			"konaste"
 		]
 	},
-		{
+	{
 		"chartID": "4a87cd8d77cc9cdec294751545c73d223fd62d87",
 		"data": {
 			"inGameID": 1999
@@ -159389,16 +159374,16 @@
 		]
 	},
 	{
-		"chartID": "8e14c6fd47c3b4f500f6e9556a2e6599fc68f3e8",
+		"chartID": "b99ad0fa73af8ed151336c1bfd562ebfa909fb1f",
 		"data": {
-			"inGameID": 2010
+			"inGameID": 1999
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
-		"level": "7",
-		"levelNum": 7,
+		"level": "5",
+		"levelNum": 5,
 		"playtype": "Single",
-		"songID": 2337,
+		"songID": 2336,
 		"versions": [
 			"konaste"
 		]
@@ -159449,16 +159434,16 @@
 		]
 	},
 	{
-		"chartID": "3ce40edbf25dc38f8595f86b46775ed59afd76fc",
+		"chartID": "8e14c6fd47c3b4f500f6e9556a2e6599fc68f3e8",
 		"data": {
-			"inGameID": 2013
+			"inGameID": 2010
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
-		"level": "6",
-		"levelNum": 6,
+		"level": "7",
+		"levelNum": 7,
 		"playtype": "Single",
-		"songID": 2338,
+		"songID": 2337,
 		"versions": [
 			"konaste"
 		]
@@ -159509,21 +159494,21 @@
 		]
 	},
 	{
-		"chartID": "2934ff821a4ba7d81200ffaaaf5a1c2bffe1c353",
+		"chartID": "3ce40edbf25dc38f8595f86b46775ed59afd76fc",
 		"data": {
-			"inGameID": 2018
+			"inGameID": 2013
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
-		"level": "5",
-		"levelNum": 5,
+		"level": "6",
+		"levelNum": 6,
 		"playtype": "Single",
-		"songID": 2339,
+		"songID": 2338,
 		"versions": [
 			"konaste"
 		]
 	},
-{
+	{
 		"chartID": "2a5f93314a02afed7459b161cfbdc45cb11f5edc",
 		"data": {
 			"inGameID": 2018
@@ -159538,7 +159523,7 @@
 			"konaste"
 		]
 	},
-{
+	{
 		"chartID": "673888362db8a00593007680c89bfacd18877bf8",
 		"data": {
 			"inGameID": 2018
@@ -159553,7 +159538,7 @@
 			"konaste"
 		]
 	},
-{
+	{
 		"chartID": "9c9b86c9ab2ed7312e87276318f1ae2eaf97337a",
 		"data": {
 			"inGameID": 2018
@@ -159569,16 +159554,16 @@
 		]
 	},
 	{
-		"chartID": "ab656260a1e948926e753f233631340e6bd9e350",
+		"chartID": "2934ff821a4ba7d81200ffaaaf5a1c2bffe1c353",
 		"data": {
-			"inGameID": 2023
+			"inGameID": 2018
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
-		"level": "6",
-		"levelNum": 6,
+		"level": "5",
+		"levelNum": 5,
 		"playtype": "Single",
-		"songID": 2340,
+		"songID": 2339,
 		"versions": [
 			"konaste"
 		]
@@ -159622,6 +159607,21 @@
 		"isPrimary": true,
 		"level": "18",
 		"levelNum": 18,
+		"playtype": "Single",
+		"songID": 2340,
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "ab656260a1e948926e753f233631340e6bd9e350",
+		"data": {
+			"inGameID": 2023
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
 		"playtype": "Single",
 		"songID": 2340,
 		"versions": [

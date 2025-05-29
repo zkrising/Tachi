@@ -25374,5 +25374,55 @@
 			"romancingescape_kokonatsu"
 		],
 		"title": "ロマンシングエスケープ"
+	},
+	{
+		"altTitles": [],
+		"artist": "Tatsunoshin",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2336,
+		"searchTerms": [],
+		"title": "caramel ribbon (Tatsunoshin Remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "xi",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2337,
+		"searchTerms": [],
+		"title": "XROSS INFECTION -xiRemix-"
+	},
+	{
+		"altTitles": [],
+		"artist": "BlackY feat. Risa Yuzuki",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2338,
+		"searchTerms": [],
+		"title": "The world of sound -celestial mix-"
+	},
+	{
+		"altTitles": [],
+		"artist": "deli.+駄々子",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2339,
+		"searchTerms": [],
+		"title": "回想音楽 - Thank you for your playing music"
+	},
+		{
+		"altTitles": [],
+		"artist": "Ashrount",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2340,
+		"searchTerms": [],
+		"title": "Dynasty -dal segno-"
 	}
 ]

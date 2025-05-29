@@ -6550,8 +6550,8 @@
 			"inGameID": 88,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 8",
-				"value": 17.2
+				"text": "Tier 7",
+				"value": 17.3
 			}
 		},
 		"difficulty": "XCD",
@@ -12028,8 +12028,8 @@
 			"inGameID": 165,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 8",
-				"value": 17.2
+				"text": "Tier 7",
+				"value": 17.3
 			}
 		},
 		"difficulty": "XCD",
@@ -25585,8 +25585,8 @@
 			"inGameID": 373,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 3",
-				"value": 17.7
+				"text": "Tier 4",
+				"value": 17.6
 			}
 		},
 		"difficulty": "GRV",
@@ -28269,8 +28269,8 @@
 			"inGameID": 413,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 7",
-				"value": 17.3
+				"text": "Tier 6",
+				"value": 17.4
 			}
 		},
 		"difficulty": "EXH",
@@ -40646,8 +40646,8 @@
 			"inGameID": 606,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 3",
-				"value": 17.7
+				"text": "Tier 4",
+				"value": 17.6
 			}
 		},
 		"difficulty": "EXH",
@@ -62395,8 +62395,8 @@
 			"inGameID": 923,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 8",
-				"value": 17.2
+				"text": "Tier 7",
+				"value": 17.3
 			}
 		},
 		"difficulty": "VVD",
@@ -64471,8 +64471,8 @@
 			"inGameID": 951,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 9",
-				"value": 17.1
+				"text": "Tier 8",
+				"value": 17.2
 			}
 		},
 		"difficulty": "VVD",
@@ -90413,8 +90413,8 @@
 			"inGameID": 1273,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 4",
-				"value": 17.6
+				"text": "Tier 5",
+				"value": 17.5
 			}
 		},
 		"difficulty": "EXH",
@@ -91515,8 +91515,8 @@
 			"inGameID": 1286,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 9",
-				"value": 17.1
+				"text": "Tier 8",
+				"value": 17.2
 			}
 		},
 		"difficulty": "MXM",
@@ -95794,8 +95794,8 @@
 			"inGameID": 1340,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 8",
-				"value": 17.2
+				"text": "Tier 7",
+				"value": 17.3
 			}
 		},
 		"difficulty": "MXM",
@@ -102051,8 +102051,8 @@
 			"inGameID": 1420,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 5",
-				"value": 17.5
+				"text": "Tier 6",
+				"value": 17.4
 			}
 		},
 		"difficulty": "MXM",
@@ -104763,8 +104763,8 @@
 			"inGameID": 1457,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 7",
-				"value": 17.3
+				"text": "Tier 6",
+				"value": 17.4
 			}
 		},
 		"difficulty": "MXM",
@@ -105960,8 +105960,8 @@
 			"inGameID": 1473,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 7",
-				"value": 17.3
+				"text": "Tier 6",
+				"value": 17.4
 			}
 		},
 		"difficulty": "MXM",
@@ -106357,8 +106357,8 @@
 			"inGameID": 1478,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 5",
-				"value": 17.5
+				"text": "Tier 4",
+				"value": 17.6
 			}
 		},
 		"difficulty": "MXM",
@@ -108154,8 +108154,8 @@
 			"inGameID": 1509,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 7",
-				"value": 17.3
+				"text": "Tier 6",
+				"value": 17.4
 			}
 		},
 		"difficulty": "MXM",
@@ -117025,8 +117025,8 @@
 			"inGameID": 1623,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 5",
-				"value": 17.5
+				"text": "Tier 4",
+				"value": 17.6
 			}
 		},
 		"difficulty": "MXM",
@@ -118536,8 +118536,8 @@
 			"inGameID": 1644,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 5",
-				"value": 17.5
+				"text": "Tier 4",
+				"value": 17.6
 			}
 		},
 		"difficulty": "MXM",
@@ -118831,8 +118831,8 @@
 			"inGameID": 1649,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 7",
-				"value": 17.3
+				"text": "Tier 6",
+				"value": 17.4
 			}
 		},
 		"difficulty": "MXM",
@@ -123770,8 +123770,8 @@
 			"inGameID": 1720,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 7",
-				"value": 17.3
+				"text": "Tier 6",
+				"value": 17.4
 			}
 		},
 		"difficulty": "MXM",
@@ -124441,8 +124441,8 @@
 			"inGameID": 1729,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 5",
-				"value": 17.5
+				"text": "Tier 4",
+				"value": 17.6
 			}
 		},
 		"difficulty": "MXM",
@@ -125655,8 +125655,8 @@
 			"inGameID": 1749,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 6",
-				"value": 17.4
+				"text": "Tier 5",
+				"value": 17.5
 			}
 		},
 		"difficulty": "MXM",
@@ -127332,8 +127332,8 @@
 			"inGameID": 1773,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 7",
-				"value": 17.3
+				"text": "Tier 6",
+				"value": 17.4
 			}
 		},
 		"difficulty": "EXH",
@@ -137396,8 +137396,8 @@
 			"inGameID": 1893,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 5",
-				"value": 17.5
+				"text": "Tier 6",
+				"value": 17.4
 			}
 		},
 		"difficulty": "EXH",
@@ -147886,7 +147886,12 @@
 	{
 		"chartID": "3e384590b0ec4c128aa3a1b945eff1ca58797316",
 		"data": {
-			"inGameID": 2120
+			"inGameID": 2120,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 7",
+				"value": 18.3
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -150105,7 +150110,12 @@
 	{
 		"chartID": "c203c9e327e35a61517a7dc3619b0b9453091d3e",
 		"data": {
-			"inGameID": 2168
+			"inGameID": 2168,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 8",
+				"value": 17.2
+			}
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -150120,7 +150130,12 @@
 	{
 		"chartID": "b7e3d6f51fe84a35cacc793bb9e20d640018db8b",
 		"data": {
-			"inGameID": 2168
+			"inGameID": 2168,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 3",
+				"value": 19.7
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -152513,8 +152528,8 @@
 			"inGameID": 2003,
 			"sTier": {
 				"individualDifference": false,
-				"text": "Tier 6",
-				"value": 17.4
+				"text": "Tier 7",
+				"value": 17.3
 			}
 		},
 		"difficulty": "MXM",
@@ -157625,7 +157640,12 @@
 	{
 		"chartID": "d68dd9bd43f4544bab511dff56d77fc337cabc2a",
 		"data": {
-			"inGameID": 2205
+			"inGameID": 2205,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 6",
+				"value": 17.4
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -157685,7 +157705,12 @@
 	{
 		"chartID": "9ccdbc91fe321052de4b5f0acc0485d106985432",
 		"data": {
-			"inGameID": 2206
+			"inGameID": 2206,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 9",
+				"value": 18.1
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -157745,7 +157770,12 @@
 	{
 		"chartID": "92e83c670cb84ed69bfa0a170aabf481554977c5",
 		"data": {
-			"inGameID": 2207
+			"inGameID": 2207,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 8",
+				"value": 17.2
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -157805,7 +157835,12 @@
 	{
 		"chartID": "ac3036f52cbe840238e2d0dd8574309c3b52a481",
 		"data": {
-			"inGameID": 2208
+			"inGameID": 2208,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 10",
+				"value": 18
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -157985,7 +158020,12 @@
 	{
 		"chartID": "8866f7ab1148d7b488c79764246b54269c258913",
 		"data": {
-			"inGameID": 2224
+			"inGameID": 2224,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 8",
+				"value": 17.2
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -158047,7 +158087,12 @@
 	{
 		"chartID": "d7356f234e1ef3c9b7f05fb698cbb2af7f2902ee",
 		"data": {
-			"inGameID": 2002
+			"inGameID": 2002,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 7",
+				"value": 18.3
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -158111,7 +158156,12 @@
 	{
 		"chartID": "65af8dcc64995d962b6eddbb53d66eac131a2bb8",
 		"data": {
-			"inGameID": 2004
+			"inGameID": 2004,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 3",
+				"value": 18.7
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -158175,7 +158225,12 @@
 	{
 		"chartID": "a9c4dc2890203da92a959d8b0bb1712cb47c13af",
 		"data": {
-			"inGameID": 2011
+			"inGameID": 2011,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 3",
+				"value": 18.7
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -158239,7 +158294,12 @@
 	{
 		"chartID": "c424c1b853c4da9b543bc292990341898b2b4662",
 		"data": {
-			"inGameID": 2024
+			"inGameID": 2024,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 10",
+				"value": 17
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -158303,7 +158363,12 @@
 	{
 		"chartID": "db31a112206788dd87c3c3d112991e900989d215",
 		"data": {
-			"inGameID": 2094
+			"inGameID": 2094,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 7",
+				"value": 18.3
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -158351,7 +158416,12 @@
 	{
 		"chartID": "32cc1a5b5e281e1b88f29464ac79c2df82350558",
 		"data": {
-			"inGameID": 2097
+			"inGameID": 2097,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 5",
+				"value": 17.5
+			}
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -158367,7 +158437,12 @@
 	{
 		"chartID": "9121a70036f4749bdaa0469153a9b62a4d655135",
 		"data": {
-			"inGameID": 2097
+			"inGameID": 2097,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 5",
+				"value": 19.5
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -158431,7 +158506,12 @@
 	{
 		"chartID": "658d6d96daa351a890e4328c79d7eed32662fa77",
 		"data": {
-			"inGameID": 2100
+			"inGameID": 2100,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 8",
+				"value": 17.2
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -158495,7 +158575,12 @@
 	{
 		"chartID": "328c6a010123bdd5438fb963afa69178aeda8a20",
 		"data": {
-			"inGameID": 2107
+			"inGameID": 2107,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 2",
+				"value": 18.8
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -158559,7 +158644,12 @@
 	{
 		"chartID": "a79aa6cd8bdff121403fea041797b46b21ff947d",
 		"data": {
-			"inGameID": 2115
+			"inGameID": 2115,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 8",
+				"value": 18.2
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -158621,7 +158711,12 @@
 	{
 		"chartID": "4cebfabdbc9db49cae8b7379a2e4680722c150e1",
 		"data": {
-			"inGameID": 2213
+			"inGameID": 2213,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 7",
+				"value": 17.3
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -158681,7 +158776,12 @@
 	{
 		"chartID": "427cf5bf25bfd63bac1ef658fe9376fc9289f8de",
 		"data": {
-			"inGameID": 2214
+			"inGameID": 2214,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 6",
+				"value": 17.4
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -158741,7 +158841,12 @@
 	{
 		"chartID": "25ad05651e181f20985ec58b5005c66bd60fa2b7",
 		"data": {
-			"inGameID": 2215
+			"inGameID": 2215,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 8",
+				"value": 18.2
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -158801,7 +158906,12 @@
 	{
 		"chartID": "5e4add45062c91a8624e7095bf8504b26eb2886d",
 		"data": {
-			"inGameID": 2216
+			"inGameID": 2216,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 8",
+				"value": 18.2
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -158863,7 +158973,12 @@
 	{
 		"chartID": "faec19b2bf6ce8b8123f9330ba3ac5c8502572ad",
 		"data": {
-			"inGameID": 2106
+			"inGameID": 2106,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 9",
+				"value": 17.1
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -158927,7 +159042,12 @@
 	{
 		"chartID": "35c73a0b52401d6f5d7971e6f08cc3f4ff6e4e05",
 		"data": {
-			"inGameID": 2108
+			"inGameID": 2108,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 5",
+				"value": 18.5
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -158991,7 +159111,12 @@
 	{
 		"chartID": "e81f3d87f7407cac3b06e427a74d5ed28721eff3",
 		"data": {
-			"inGameID": 2110
+			"inGameID": 2110,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 8",
+				"value": 18.2
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -159055,7 +159180,12 @@
 	{
 		"chartID": "a2c4c06500bd3634e20301dc2f006b261ab89870",
 		"data": {
-			"inGameID": 2113
+			"inGameID": 2113,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 2",
+				"value": 18.8
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -159119,7 +159249,12 @@
 	{
 		"chartID": "7b219757afda88f6d35f9e3ab647a262e6ffe7bd",
 		"data": {
-			"inGameID": 2116
+			"inGameID": 2116,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 3",
+				"value": 18.7
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -159181,7 +159316,12 @@
 	{
 		"chartID": "884e2403d76dea7df86e891cfdfe5bfa64a6b0b0",
 		"data": {
-			"inGameID": 2217
+			"inGameID": 2217,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 10",
+				"value": 17
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -159241,7 +159381,12 @@
 	{
 		"chartID": "7f97c9b65faf9c0f3ac88ca5c381b911362b70ea",
 		"data": {
-			"inGameID": 2218
+			"inGameID": 2218,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 7",
+				"value": 17.3
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -159301,7 +159446,12 @@
 	{
 		"chartID": "133a2a43ea9ff35c353c4c4a55221abfca8cf466",
 		"data": {
-			"inGameID": 2219
+			"inGameID": 2219,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 7",
+				"value": 17.3
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -159326,21 +159476,6 @@
 		"songID": 2335,
 		"versions": [
 			"exceed"
-		]
-	},
-	{
-		"chartID": "b99ad0fa73af8ed151336c1bfd562ebfa909fb1f",
-		"data": {
-			"inGameID": 1999
-		},
-		"difficulty": "NOV",
-		"isPrimary": true,
-		"level": "5",
-		"levelNum": 5,
-		"playtype": "Single",
-		"songID": 2336,
-		"versions": [
-			"konaste"
 		]
 	},
 	{
@@ -159373,10 +159508,15 @@
 			"konaste"
 		]
 	},
-		{
+	{
 		"chartID": "4a87cd8d77cc9cdec294751545c73d223fd62d87",
 		"data": {
-			"inGameID": 1999
+			"inGameID": 1999,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 7",
+				"value": 18.3
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -159389,16 +159529,16 @@
 		]
 	},
 	{
-		"chartID": "8e14c6fd47c3b4f500f6e9556a2e6599fc68f3e8",
+		"chartID": "b99ad0fa73af8ed151336c1bfd562ebfa909fb1f",
 		"data": {
-			"inGameID": 2010
+			"inGameID": 1999
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
-		"level": "7",
-		"levelNum": 7,
+		"level": "5",
+		"levelNum": 5,
 		"playtype": "Single",
-		"songID": 2337,
+		"songID": 2336,
 		"versions": [
 			"konaste"
 		]
@@ -159421,7 +159561,12 @@
 	{
 		"chartID": "18a4552bf6f14f6016f6d0eb2cf6701ca05161c8",
 		"data": {
-			"inGameID": 2010
+			"inGameID": 2010,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 6",
+				"value": 17.4
+			}
 		},
 		"difficulty": "EXH",
 		"isPrimary": true,
@@ -159436,7 +159581,12 @@
 	{
 		"chartID": "e1be33e4800c2aee5416bf293ba57228dda1d5b3",
 		"data": {
-			"inGameID": 2010
+			"inGameID": 2010,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 6",
+				"value": 19.4
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -159449,16 +159599,16 @@
 		]
 	},
 	{
-		"chartID": "3ce40edbf25dc38f8595f86b46775ed59afd76fc",
+		"chartID": "8e14c6fd47c3b4f500f6e9556a2e6599fc68f3e8",
 		"data": {
-			"inGameID": 2013
+			"inGameID": 2010
 		},
 		"difficulty": "NOV",
 		"isPrimary": true,
-		"level": "6",
-		"levelNum": 6,
+		"level": "7",
+		"levelNum": 7,
 		"playtype": "Single",
-		"songID": 2338,
+		"songID": 2337,
 		"versions": [
 			"konaste"
 		]
@@ -159496,7 +159646,12 @@
 	{
 		"chartID": "89af1b7c47f1d78b9b339847ecf9da251dfc7bb1",
 		"data": {
-			"inGameID": 2013
+			"inGameID": 2013,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 3",
+				"value": 18.7
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
@@ -159504,6 +159659,71 @@
 		"levelNum": 18,
 		"playtype": "Single",
 		"songID": 2338,
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "3ce40edbf25dc38f8595f86b46775ed59afd76fc",
+		"data": {
+			"inGameID": 2013
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
+		"playtype": "Single",
+		"songID": 2338,
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "2a5f93314a02afed7459b161cfbdc45cb11f5edc",
+		"data": {
+			"inGameID": 2018
+		},
+		"difficulty": "ADV",
+		"isPrimary": true,
+		"level": "12",
+		"levelNum": 12,
+		"playtype": "Single",
+		"songID": 2339,
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "673888362db8a00593007680c89bfacd18877bf8",
+		"data": {
+			"inGameID": 2018
+		},
+		"difficulty": "EXH",
+		"isPrimary": true,
+		"level": "14",
+		"levelNum": 14,
+		"playtype": "Single",
+		"songID": 2339,
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "9c9b86c9ab2ed7312e87276318f1ae2eaf97337a",
+		"data": {
+			"inGameID": 2018,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 9",
+				"value": 17.1
+			}
+		},
+		"difficulty": "MXM",
+		"isPrimary": true,
+		"level": "17",
+		"levelNum": 17,
+		"playtype": "Single",
+		"songID": 2339,
 		"versions": [
 			"konaste"
 		]
@@ -159519,66 +159739,6 @@
 		"levelNum": 5,
 		"playtype": "Single",
 		"songID": 2339,
-		"versions": [
-			"konaste"
-		]
-	},
-{
-		"chartID": "2a5f93314a02afed7459b161cfbdc45cb11f5edc",
-		"data": {
-			"inGameID": 2018
-		},
-		"difficulty": "ADV",
-		"isPrimary": true,
-		"level": "12",
-		"levelNum": 12,
-		"playtype": "Single",
-		"songID": 2339,
-		"versions": [
-			"konaste"
-		]
-	},
-{
-		"chartID": "673888362db8a00593007680c89bfacd18877bf8",
-		"data": {
-			"inGameID": 2018
-		},
-		"difficulty": "EXH",
-		"isPrimary": true,
-		"level": "14",
-		"levelNum": 14,
-		"playtype": "Single",
-		"songID": 2339,
-		"versions": [
-			"konaste"
-		]
-	},
-{
-		"chartID": "9c9b86c9ab2ed7312e87276318f1ae2eaf97337a",
-		"data": {
-			"inGameID": 2018
-		},
-		"difficulty": "MXM",
-		"isPrimary": true,
-		"level": "17",
-		"levelNum": 17,
-		"playtype": "Single",
-		"songID": 2339,
-		"versions": [
-			"konaste"
-		]
-	},
-	{
-		"chartID": "ab656260a1e948926e753f233631340e6bd9e350",
-		"data": {
-			"inGameID": 2023
-		},
-		"difficulty": "NOV",
-		"isPrimary": true,
-		"level": "6",
-		"levelNum": 6,
-		"playtype": "Single",
-		"songID": 2340,
 		"versions": [
 			"konaste"
 		]
@@ -159616,12 +159776,32 @@
 	{
 		"chartID": "98627003297b161b59ceb23de60fb1d1f45c491c",
 		"data": {
-			"inGameID": 2023
+			"inGameID": 2023,
+			"sTier": {
+				"individualDifference": false,
+				"text": "Tier 8",
+				"value": 18.2
+			}
 		},
 		"difficulty": "MXM",
 		"isPrimary": true,
 		"level": "18",
 		"levelNum": 18,
+		"playtype": "Single",
+		"songID": 2340,
+		"versions": [
+			"konaste"
+		]
+	},
+	{
+		"chartID": "ab656260a1e948926e753f233631340e6bd9e350",
+		"data": {
+			"inGameID": 2023
+		},
+		"difficulty": "NOV",
+		"isPrimary": true,
+		"level": "6",
+		"levelNum": 6,
 		"playtype": "Single",
 		"songID": 2340,
 		"versions": [

@@ -1078,7 +1078,7 @@
 			"F0e506601a0a0bc2be88650efd5c5216c535166a4cd14abbd0afe9840dcc2a9f5"
 		],
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-luminous-levels",
 		"title": "CHUNITHM (LUMINOUS)"
@@ -1094,7 +1094,7 @@
 			"Fb1440a42e16b38e3aff4d0ce3973ab96d622b80357305e46dff66726afebde73"
 		],
 		"game": "chunithm",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-luminous-difficulties",
 		"title": "CHUNITHM (LUMINOUS) (Difficulties)"
@@ -1368,7 +1368,7 @@
 			"Fb01b7757746ca8ed30c9d73ff87134e4708a7c9de8217ba6e355732f784b6ed7"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sunplus-omni-levels",
 		"title": "CHUNITHM (SUN PLUS Omnimix)"
@@ -1384,7 +1384,7 @@
 			"F3c4525fa43cd873d5d089e91ba88becc448a5b0c2249b8fc39cd61b854800de6"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sunplus-omni-difficulties",
 		"title": "CHUNITHM (SUN PLUS Omnimix) (Difficulties)"
@@ -1419,7 +1419,7 @@
 			"F5084aec9b8037b717571862c1b03fdcc6808e9d049163bfb85282c708eade31f"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sunplus-levels",
 		"title": "CHUNITHM (SUN PLUS)"
@@ -1435,7 +1435,7 @@
 			"Fd64cc883d1107033fdecf9154d8e158f26b4a04144c285b3a38490b38e43de8a"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-sunplus-difficulties",
 		"title": "CHUNITHM (SUN PLUS) (Difficulties)"

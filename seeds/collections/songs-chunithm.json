@@ -22615,6 +22615,70 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "cresc.",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"duration": 137.739,
+			"genre": "POPS & ANIME"
+		},
+		"id": 2757,
+		"searchTerms": [],
+		"title": "殺屋中毒"
+	},
+	{
+		"altTitles": [],
+		"artist": "Yu-dachi",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"duration": 146.989,
+			"genre": "ORIGINAL"
+		},
+		"id": 2764,
+		"searchTerms": [
+			"Tabiboshi ni Kawaku"
+		],
+		"title": "旅星に渇く"
+	},
+	{
+		"altTitles": [],
+		"artist": "ずんずんサファリ",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"duration": 142.4,
+			"genre": "ORIGINAL"
+		},
+		"id": 2765,
+		"searchTerms": [
+			"zunzun safari"
+		],
+		"title": "ずんずんサファリ"
+	},
+	{
+		"altTitles": [],
+		"artist": "owl＊tree",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"duration": 147.97,
+			"genre": "ORIGINAL"
+		},
+		"id": 2766,
+		"searchTerms": [],
+		"title": "jaQup"
+	},
+	{
+		"altTitles": [],
+		"artist": "seatrus",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"duration": 138.507,
+			"genre": "ORIGINAL"
+		},
+		"id": 2767,
+		"searchTerms": [],
+		"title": "HeinousЯeaper"
+	},
+	{
+		"altTitles": [],
 		"artist": "Rocco808,Randy Marx,GRP,寺山善也「ストリートファイター6」",
 		"data": {
 			"displayVersion": "CHUNITHM VERSE",

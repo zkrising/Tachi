@@ -221,7 +221,7 @@ for (const optionsDir of options.input) {
 
 			// New song?
 			if (tachiSongID === undefined) {
-				const existingTitle = songTitleMap.get(musicData.name.str.toString());
+				const existingTitle = songTitleMap.get(musicData.name.str);
 
 				if (existingTitle) {
 					logger.warn(
@@ -238,7 +238,7 @@ for (const optionsDir of options.input) {
 
 				tachiSongID = inGameID;
 
-				const displayVersion = DISPLAY_VERSIONS[musicData.releaseTagName.id];
+				const displayVersion = DISPLAY_VERSIONS[Number(musicData.releaseTagName.id)];
 
 				if (!displayVersion) {
 					throw new Error(
@@ -247,14 +247,14 @@ for (const optionsDir of options.input) {
 				}
 
 				const songDoc: SongDocument<"chunithm"> = {
-					title: musicData.name.str.toString(),
+					title: musicData.name.str,
 					altTitles: [],
 					searchTerms: [],
-					artist: musicData.artistName.str.toString(),
+					artist: musicData.artistName.str,
 					id: tachiSongID,
 					data: {
 						displayVersion,
-						genre: musicData.genreNames.list.StringID.str.toString(),
+						genre: musicData.genreNames.list.StringID.str,
 					},
 				};
 
@@ -266,7 +266,7 @@ for (const optionsDir of options.input) {
 			} else if (songMap.has(tachiSongID)) {
 				const songDoc = songMap.get(tachiSongID)!;
 
-				const displayVersion = DISPLAY_VERSIONS[musicData.releaseTagName.id];
+				const displayVersion = DISPLAY_VERSIONS[Number(musicData.releaseTagName.id)];
 
 				if (!displayVersion) {
 					throw new Error(
@@ -274,10 +274,10 @@ for (const optionsDir of options.input) {
 					);
 				}
 
-				songDoc.title = musicData.name.str.toString();
-				songDoc.artist = musicData.artistName.str.toString();
+				songDoc.title = musicData.name.str;
+				songDoc.artist = musicData.artistName.str;
 				songDoc.data.displayVersion = displayVersion;
-				songDoc.data.genre = musicData.genreNames.list.StringID.str.toString();
+				songDoc.data.genre = musicData.genreNames.list.StringID.str;
 			} else {
 				throw new Error(
 					`CONSISTENCY ERROR: Song ID ${tachiSongID} does not belong to any songs!`

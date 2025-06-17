@@ -3199,6 +3199,18 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "ELE ROCKS",
+		"data": {
+			"basename": "bdow",
+			"flareCategory": "GOLD",
+			"inGameID": 37222
+		},
+		"id": 37222,
+		"searchTerms": [],
+		"title": "BRE∀K DOWN! (World Version)"
+	},
+	{
+		"altTitles": [],
 		"artist": "J-RAVERS",
 		"data": {
 			"basename": "spar",
@@ -3312,6 +3324,18 @@
 		"id": 37233,
 		"searchTerms": [],
 		"title": "Heavens and the Earth"
+	},
+	{
+		"altTitles": [],
+		"artist": "J.J. Pops",
+		"data": {
+			"basename": "ngon",
+			"flareCategory": "GOLD",
+			"inGameID": 37234
+		},
+		"id": 37234,
+		"searchTerms": [],
+		"title": "Moving On"
 	},
 	{
 		"altTitles": [],
@@ -4143,6 +4167,18 @@
 		"id": 37362,
 		"searchTerms": [],
 		"title": "I WANT YOUR LOVE (Darwin remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "jun feat.Rita Boudreau",
+		"data": {
+			"basename": "noma",
+			"flareCategory": "GOLD",
+			"inGameID": 37363
+		},
+		"id": 37363,
+		"searchTerms": [],
+		"title": "No Matter What"
 	},
 	{
 		"altTitles": [],
@@ -5494,6 +5530,18 @@
 		"id": 37602,
 		"searchTerms": [],
 		"title": "Gotta Dance"
+	},
+	{
+		"altTitles": [],
+		"artist": "Jeanette Herrera",
+		"data": {
+			"basename": "elrt",
+			"flareCategory": "GOLD",
+			"inGameID": 37604
+		},
+		"id": 37604,
+		"searchTerms": [],
+		"title": "El ritmo te controla"
 	},
 	{
 		"altTitles": [],
@@ -16074,6 +16122,18 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "Savage States",
+		"data": {
+			"basename": "tthd",
+			"flareCategory": "GOLD",
+			"inGameID": 38622
+		},
+		"id": 38622,
+		"searchTerms": [],
+		"title": "Time to HYPERDRIVE"
+	},
+	{
+		"altTitles": [],
 		"artist": "sky_delta",
 		"data": {
 			"basename": "diab",
@@ -16149,6 +16209,18 @@
 		"id": 38628,
 		"searchTerms": [],
 		"title": "suspicions"
+	},
+	{
+		"altTitles": [],
+		"artist": "RoughSketch",
+		"data": {
+			"basename": "hakk",
+			"flareCategory": "GOLD",
+			"inGameID": 38629
+		},
+		"id": 38629,
+		"searchTerms": [],
+		"title": "Is this dance a Hakken?"
 	},
 	{
 		"altTitles": [],
@@ -17152,6 +17224,18 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "PRIDASK",
+		"data": {
+			"basename": "swht",
+			"flareCategory": "GOLD",
+			"inGameID": 38734
+		},
+		"id": 38734,
+		"searchTerms": [],
+		"title": "So What"
+	},
+	{
+		"altTitles": [],
 		"artist": "豚乙女×BEMANI Sound Team \"PON\"",
 		"data": {
 			"basename": "dama",
@@ -17214,5 +17298,149 @@
 		"id": 38739,
 		"searchTerms": [],
 		"title": "月に叢雲華に風"
+	},
+	{
+		"altTitles": [],
+		"artist": "かめりあ & BEMANI Sound Team \"PHQUASE\"",
+		"data": {
+			"basename": "lich",
+			"flareCategory": "GOLD",
+			"inGameID": 38744
+		},
+		"id": 38744,
+		"searchTerms": [],
+		"title": "Lichtsäule"
+	},
+	{
+		"altTitles": [],
+		"artist": "Hommarju & BEMANI Sound Team \"兎々\"",
+		"data": {
+			"basename": "oroc",
+			"flareCategory": "GOLD",
+			"inGameID": 38745
+		},
+		"id": 38745,
+		"searchTerms": [],
+		"title": "OROCHI STRIKE"
+	},
+	{
+		"altTitles": [],
+		"artist": "OSTER project & RoughSketch",
+		"data": {
+			"basename": "blco",
+			"flareCategory": "GOLD",
+			"inGameID": 38746
+		},
+		"id": 38746,
+		"searchTerms": [],
+		"title": "Blφφdy Cφncertφ"
+	},
+	{
+		"altTitles": [],
+		"artist": "P*Light",
+		"data": {
+			"basename": "rein",
+			"flareCategory": "GOLD",
+			"inGameID": 38747
+		},
+		"id": 38747,
+		"searchTerms": [],
+		"title": "REINCARNATION"
+	},
+	{
+		"altTitles": [],
+		"artist": "beatnation RHYZE",
+		"data": {
+			"basename": "rhyz",
+			"flareCategory": "GOLD",
+			"inGameID": 38748
+		},
+		"id": 38748,
+		"searchTerms": [],
+		"title": "Re:RHYZE"
+	},
+	{
+		"altTitles": [],
+		"artist": "PRIDASK",
+		"data": {
+			"basename": "akat",
+			"flareCategory": "GOLD",
+			"inGameID": 38749
+		},
+		"id": 38749,
+		"searchTerms": [],
+		"title": "Akatsuki"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"Coyaan & KE!JU & ZAQUVA\"",
+		"data": {
+			"basename": "cove",
+			"flareCategory": "GOLD",
+			"inGameID": 38756
+		},
+		"id": 38756,
+		"searchTerms": [],
+		"title": "COSMIC V3LOCITY"
+	},
+	{
+		"altTitles": [],
+		"artist": "PRIDASK",
+		"data": {
+			"basename": "mvpp",
+			"flareCategory": "GOLD",
+			"inGameID": 38757
+		},
+		"id": 38757,
+		"searchTerms": [],
+		"title": "MVP"
+	},
+	{
+		"altTitles": [],
+		"artist": "かめりあ feat. ななひら",
+		"data": {
+			"basename": "konr",
+			"flareCategory": "GOLD",
+			"inGameID": 38758
+		},
+		"id": 38758,
+		"searchTerms": [],
+		"title": "混乱少女♥そふらんちゃん!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "lapix ∞ BEMANI Sound Team \"Sota Fujimori\"",
+		"data": {
+			"basename": "hitk",
+			"flareCategory": "GOLD",
+			"inGameID": 38759
+		},
+		"id": 38759,
+		"searchTerms": [],
+		"title": "ハイテックトキオ"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"Dustup\"",
+		"data": {
+			"basename": "itit",
+			"flareCategory": "GOLD",
+			"inGameID": 38760
+		},
+		"id": 38760,
+		"searchTerms": [],
+		"title": "1116"
+	},
+	{
+		"altTitles": [],
+		"artist": "Hommarju",
+		"data": {
+			"basename": "saha",
+			"flareCategory": "GOLD",
+			"inGameID": 38761
+		},
+		"id": 38761,
+		"searchTerms": [],
+		"title": "Sahara"
 	}
 ]

@@ -272,7 +272,7 @@ export default function GekichumaiScoreChart({
 					{...commonProps}
 					data={limitScoreGraph(game, data)}
 					yScale={{ type: "linear", min: 97, max: 101 }}
-					yFormat={">-,.0f"}
+					yFormat={">-,.4f"}
 					axisLeft={{
 						tickValues: [97, 98, 99, 99.5, 100, 100.5, 101],
 						format: getScoreYAxisNotch(game),
@@ -283,8 +283,8 @@ export default function GekichumaiScoreChart({
 					areaBaselineValue={97}
 					tooltip={(d: PointTooltipProps) => (
 						<ChartTooltip>
-							{d.point.data.y === 96.9999 ? "< 97 " : d.point.data.yFormatted}@{" "}
-							{formatTime(d.point.data.x)}
+							{d.point.data.y === 96.9999 ? "< 97% " : `${d.point.data.yFormatted}% `}
+							@ {formatTime(d.point.data.x)}
 						</ChartTooltip>
 					)}
 				/>

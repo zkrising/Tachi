@@ -1,6 +1,4 @@
-import SelectNav from "components/util/SelectNav";
 import React, { useState } from "react";
-import { Nav } from "react-bootstrap";
 import {
 	ChartDocument,
 	Difficulties,
@@ -10,57 +8,59 @@ import {
 	SongDocument,
 } from "tachi-common";
 import GekichumaiScoreChart from "components/charts/GekichumaiScoreChart";
+import SelectNav from "components/util/SelectNav";
+import { Nav } from "react-bootstrap";
 import useApiQuery from "components/util/query/useApiQuery";
 
-type ChartType = "Score" | "Bells" | "Life";
+type ChartType = "Score" | "Life";
 
-export function OngekiGraphsComponent({
+export function MaimaiDXGraphsComponent({
 	score,
 	chart,
 }: {
-	score: ScoreDocument<"ongeki:Single"> | PBScoreDocument<"ongeki:Single">;
-	chart: ChartDocument<"ongeki:Single">;
+	score: ScoreDocument<"maimaidx:Single"> | PBScoreDocument<"maimaidx:Single">;
+	chart: ChartDocument<"maimaidx:Single">;
 }) {
 	const [graph, setGraph] = useState<ChartType>("Score");
-	const available =
-		score.scoreData.optional.scoreGraph &&
-		score.scoreData.optional.bellGraph &&
-		score.scoreData.optional.lifeGraph &&
-		score.scoreData.optional.totalBellCount !== null &&
-		score.scoreData.optional.totalBellCount !== undefined;
+	const { percentGraph, lifeGraph } = score.scoreData.optional;
 
-	if (!available) {
+	if (!percentGraph && !lifeGraph) {
 		return <Box message="No charts available" />;
 	}
 
 	const { data, error } = useApiQuery<{
-		song: SongDocument<"ongeki">;
-	}>(`/games/ongeki/Single/songs/${score.songID}`);
+		song: SongDocument<"maimaidx">;
+	}>(`/games/maimaidx/Single/songs/${score.songID}`);
+
 	if (error !== null || data === undefined) {
 		return <Box message="Error retrieving chart" />;
 	}
-	const song = data.song;
+
+	if (data.song.data.duration === null) {
+		return <Box message="No charts available" />;
+	}
 
 	return (
 		<>
 			<div className="col-12 d-flex justify-content-center">
 				<Nav variant="pills">
-					<SelectNav id="Score" value={graph} setValue={setGraph} disabled={!available}>
-						Score
-					</SelectNav>
-					<SelectNav id="Bells" value={graph} setValue={setGraph} disabled={!available}>
-						Bells
-					</SelectNav>
-					<SelectNav id="Life" value={graph} setValue={setGraph} disabled={!available}>
-						Life
-					</SelectNav>
+					{percentGraph && (
+						<SelectNav id="Score" value={graph} setValue={setGraph}>
+							Percent
+						</SelectNav>
+					)}
+					{lifeGraph && (
+						<SelectNav id="Life" value={graph} setValue={setGraph}>
+							Life
+						</SelectNav>
+					)}
 				</Nav>
 			</div>
 			<div className="col-12">
 				<GraphComponent
 					type={graph}
+					song={data.song}
 					scoreData={score.scoreData}
-					song={song}
 					difficulty={chart.difficulty}
 				/>
 			</div>
@@ -69,28 +69,23 @@ export function OngekiGraphsComponent({
 }
 
 function GraphComponent({
-	type,
 	scoreData,
 	song,
 	difficulty,
+	type,
 }: {
+	scoreData: ScoreData<"maimaidx:Single">;
+	song: SongDocument<"maimaidx">;
+	difficulty: Difficulties["maimaidx:Single"];
 	type: ChartType;
-	scoreData: ScoreData<"ongeki:Single">;
-	song: SongDocument<"ongeki">;
-	difficulty: Difficulties["ongeki:Single"];
 }) {
 	const values =
-		type === "Score"
-			? scoreData.optional.scoreGraph!
-			: type === "Bells"
-			? scoreData.optional.bellGraph!
-			: scoreData.optional.lifeGraph!;
+		type === "Score" ? scoreData.optional.percentGraph! : scoreData.optional.lifeGraph!;
 	return (
 		<GekichumaiScoreChart
 			height="360px"
 			mobileHeight="175px"
 			type={type}
-			totalBellCount={scoreData.optional.totalBellCount!}
 			difficulty={difficulty}
 			data={[
 				{
@@ -98,8 +93,8 @@ function GraphComponent({
 					data: values.map((e, i) => ({ x: i, y: e })),
 				},
 			]}
-			game="ongeki"
-			duration={song.data.duration}
+			game="maimaidx"
+			duration={song.data.duration!}
 		/>
 	);
 }

@@ -35,6 +35,7 @@ const getScoreYAxisNotch = (game: Game) => (s: number) => {
 				return "SSS+";
 		}
 	}
+
 	if (game === "chunithm") {
 		switch (s) {
 			case 990_000:
@@ -49,29 +50,61 @@ const getScoreYAxisNotch = (game: Game) => (s: number) => {
 				return "SSS+";
 		}
 	}
+
+	if (game === "maimaidx") {
+		switch (s) {
+			case 97:
+				return "S";
+			case 98:
+				return "S+";
+			case 99:
+				return "SS";
+			case 99.5:
+				return "SS+";
+			case 100:
+				return "SSS";
+			case 100.5:
+				return "SSS+";
+		}
+	}
+
 	return "";
 };
 
 const strokeColor = (
-	type: Difficulties["ongeki:Single"] | Difficulties["chunithm:Single"] | "BELLS"
+	type:
+		| Difficulties["ongeki:Single"]
+		| Difficulties["chunithm:Single"]
+		| Difficulties["maimaidx:Single"]
+		| "BELLS"
 ) => {
 	const isLight = getTheme() === "light";
-	switch (type) {
-		case "BASIC":
-			return `hsl(120, 60%, ${isLight ? 25 : 47}%)`;
-		case "ADVANCED":
-			return `hsl(35, 60%, ${isLight ? 35 : 60}%)`;
-		case "EXPERT":
-			return `hsl(330, 50%, ${isLight ? 35 : 67}%)`;
-		case "MASTER":
-			return `hsl(280, 60%, ${isLight ? 35 : 67}%)`;
-		case "BELLS":
-			return `hsl(55, 90%, ${isLight ? 35 : 42}%)`;
-		case "ULTIMA":
-			return `hsl(360, 50%, ${isLight ? 35 : 67}%)`;
-		default:
-			return `hsl(0, 0%, ${isLight ? 35 : 67}%)`;
+
+	if (type === "Basic" || type === "DX Basic" || type === "BASIC") {
+		return `hsl(120, 60%, ${isLight ? 25 : 47}%)`;
 	}
+
+	if (type === "Advanced" || type === "DX Advanced" || type === "ADVANCED") {
+		return `hsl(35, 60%, ${isLight ? 35 : 60}%)`;
+	}
+
+	if (type === "Expert" || type === "DX Expert" || type === "EXPERT") {
+		return `hsl(330, 50%, ${isLight ? 35 : 67}%)`;
+	}
+
+	if (type === "Master" || type === "DX Master" || type === "MASTER") {
+		return `hsl(280, 60%, ${isLight ? 35 : 67}%)`;
+	}
+
+	if (type === "ULTIMA") {
+		return `hsl(360, 50%, ${isLight ? 35 : 67}%)`;
+	}
+
+	if (type === "BELLS") {
+		return `hsl(55, 90%, ${isLight ? 35 : 42}%)`;
+	}
+
+	return `hsl(0, 0%, ${isLight ? 35 : 67}%)`;
 };
 
 const limitScoreGraph = (game: Game, data: Serie[]) => {
@@ -88,6 +121,9 @@ const limitScoreGraph = (game: Game, data: Serie[]) => {
 		if (game === "chunithm" && val.y < 990_000) {
 			val.y = 989_999;
 		}
+		if (game === "maimaidx" && val.y < 97) {
+			val.y = 96.9999;
+		}
 	}
 	return data;
 };
@@ -100,7 +136,7 @@ const bellFloor = (data: Datum[], totalBellCount: number) => {
 		: clamp(-totalBellCount, Math.floor(lowestValue * 1.333), -1);
 };
 
-export default function GekichuScoreChart({
+export default function GekichumaiScoreChart({
 	width = "100%",
 	height = "100%",
 	mobileHeight = "100%",
@@ -117,10 +153,13 @@ export default function GekichuScoreChart({
 	width?: number | string;
 	height?: number | string;
 	type: "Score" | "Bells" | "Life";
-	difficulty: Difficulties["ongeki:Single"] | Difficulties["chunithm:Single"];
+	difficulty:
+		| Difficulties["ongeki:Single"]
+		| Difficulties["chunithm:Single"]
+		| Difficulties["maimaidx:Single"];
 	totalBellCount?: number;
 	data: Serie[];
-	game: Game;
+	game: "chunithm" | "ongeki" | "maimaidx";
 	duration: number;
 } & ResponsiveLine["props"]) {
 	let color = COLOUR_SET.gray;
@@ -135,6 +174,11 @@ export default function GekichuScoreChart({
 			color =
 				GPT_CLIENT_IMPLEMENTATIONS["ongeki:Single"].difficultyColours[
 					difficulty as Difficulties["ongeki:Single"]
+				];
+		} else if (game === "maimaidx") {
+			color =
+				GPT_CLIENT_IMPLEMENTATIONS["maimaidx:Single"].difficultyColours[
+					difficulty as Difficulties["maimaidx:Single"]
 				];
 		}
 	} else if (type === "Bells") {
@@ -174,6 +218,7 @@ export default function GekichuScoreChart({
 	};
 
 	let component;
+
 	if (type === "Score") {
 		if (game === "ongeki") {
 			component = (
@@ -216,6 +261,29 @@ export default function GekichuScoreChart({
 					tooltip={(d: PointTooltipProps) => (
 						<ChartTooltip>
 							{d.point.data.y === 989_999 ? "< 990,000 " : d.point.data.yFormatted}@{" "}
+							{formatTime(d.point.data.x)}
+						</ChartTooltip>
+					)}
+				/>
+			);
+		} else if (game === "maimaidx") {
+			component = (
+				<ResponsiveLine
+					{...commonProps}
+					data={limitScoreGraph(game, data)}
+					yScale={{ type: "linear", min: 97, max: 101 }}
+					yFormat={">-,.0f"}
+					axisLeft={{
+						tickValues: [97, 98, 99, 99.5, 100, 100.5, 101],
+						format: getScoreYAxisNotch(game),
+					}}
+					gridYValues={[97, 98, 99, 99.5, 100, 100.5, 101]}
+					enableGridY={true}
+					colors={strokeColor(difficulty)}
+					areaBaselineValue={97}
+					tooltip={(d: PointTooltipProps) => (
+						<ChartTooltip>
+							{d.point.data.y === 96.9999 ? "< 97 " : d.point.data.yFormatted}@{" "}
 							{formatTime(d.point.data.x)}
 						</ChartTooltip>
 					)}

@@ -10,6 +10,7 @@ import {
 } from "../../util";
 import { ChartDocument, Difficulties, GetGamePTConfig, SongDocument } from "tachi-common";
 import { CreateLogger } from "mei-logger";
+import { execFileSync } from "child_process";
 
 const logger = CreateLogger("merge-options");
 
@@ -50,12 +51,9 @@ const GENRE_MAP = {
 	106: "オンゲキ＆CHUNITHM",
 };
 
-interface IDWithDisplayName {
-	id: number;
-
-	// fast-xml-parser will coerce anything that looks like a number into a
-	// number, so the song "39" will be converted into a number.
-	str: string | number;
+interface StringID {
+	id: string;
+	str: string;
 }
 
 interface NotesData {
@@ -63,22 +61,23 @@ interface NotesData {
 		path: string;
 	};
 	isEnable: boolean;
-	level: number;
-	levelDecimal: number;
-	notesDesigner: IDWithDisplayName;
-	notesType: number;
-	musicLevelID: number;
-	maxNotes: number;
+	level: string;
+	levelDecimal: string;
+	notesDesigner: StringID;
+	notesType: string;
+	musicLevelID: string;
+	maxNotes: string;
 }
 
 interface MusicXML {
 	MusicData: {
 		disable: boolean;
-		name: IDWithDisplayName;
-		artistName: IDWithDisplayName;
-		AddVersion: IDWithDisplayName;
-		genreName: IDWithDisplayName;
-		eventName: IDWithDisplayName;
+		name: StringID;
+		artistName: StringID;
+		AddVersion: StringID;
+		genreName: StringID;
+		eventName: StringID;
+		cueName: StringID;
 
 		notesData: {
 			Notes: NotesData[];
@@ -87,7 +86,7 @@ interface MusicXML {
 }
 
 function calculateLevel(data: Pick<NotesData, "level" | "levelDecimal">) {
-	return `${data.level}${data.levelDecimal >= 6 && data.level >= 7 ? "+" : ""}`;
+	return `${data.level}${Number(data.levelDecimal) >= 6 && Number(data.level) >= 7 ? "+" : ""}`;
 }
 
 function calculateLevelNum(data: Pick<NotesData, "level" | "levelDecimal">) {
@@ -100,16 +99,19 @@ if (require.main !== module) {
 	);
 }
 
-const program = new Command();
-program
+const options = new Command()
 	.requiredOption(
 		"-i, --input <OPTIONS DIRS...>",
 		"The options directories of your maimai DX install."
 	)
 	.requiredOption("-v, --version <VERSION>", "The version of this maimai DX install.")
-	.option("-f, --force", "Forces inGameID overwrites where it shouldn't be automatically done.");
-program.parse(process.argv);
-const options = program.opts();
+	.option("-f, --force", "Forces inGameID overwrites where it shouldn't be automatically done.")
+	.option(
+		"--vgms-binary [PATH TO VGMSTREAM CLI]",
+		"Path to vgmstream CLI. If specified, will parse song duration."
+	)
+	.parse(process.argv)
+	.opts();
 
 const versions = Object.keys(GetGamePTConfig("maimaidx", "Single").versions);
 
@@ -129,6 +131,7 @@ const existingCharts: Array<ChartDocument<"maimaidx:Single">> =
 const songMap = new Map(existingSongs.map((s) => [s.id, s]));
 const chartMap = new Map<string, ChartDocument<"maimaidx:Single">>();
 const songTitleArtistMap = new Map<string, number>();
+const durationMap = new Map<string, number>();
 
 for (const chart of existingCharts) {
 	const song = songMap.get(chart.songID);
@@ -144,7 +147,15 @@ for (const chart of existingCharts) {
 	songTitleArtistMap.set(`${song.title}-${song.artist}`, song.id);
 }
 
-const parser = new XMLParser();
+const parser = new XMLParser({
+	numberParseOptions: {
+		hex: false,
+		leadingZeros: false,
+		// do not coerce any number-like strings to numbers, since song titles
+		// may also be numbers. we coerce anything we know to be a number later.
+		skipLike: /.*/u,
+	},
+});
 
 const newSongs: Array<SongDocument<"maimaidx">> = [];
 const newCharts: Array<ChartDocument<"maimaidx:Single">> = [];
@@ -158,7 +169,40 @@ for (const optionsDir of options.input) {
 		}
 
 		const optionDir = path.join(optionsDir, option);
-		const musicsDir = path.join(optionsDir, option, "music");
+		const musicsDir = path.join(optionDir, "music");
+		const soundDataDir = path.join(optionDir, "SoundData");
+
+		if (options.vgmsBinary && existsSync(soundDataDir)) {
+			for (const cueFileName of readdirSync(soundDataDir)) {
+				if (!cueFileName.match(/music\d+\.awb$/u)) {
+					continue;
+				}
+
+				const cueName = cueFileName.replace(/\.awb$/u, "");
+				const cuePath = path.join(soundDataDir, cueFileName);
+				const stdout = execFileSync(options.vgmsBinary, ["-m", "-I", cuePath], {
+					encoding: "utf-8",
+				});
+
+				try {
+					const res = JSON.parse(stdout);
+
+					if (res.sampleRate !== 48000) {
+						logger.warn(
+							`Sample rate of ${cuePath} is not 48000Hz (${res.sampleRate}Hz)`
+						);
+					}
+
+					const duration = Number((res.numberOfSamples / res.sampleRate).toFixed(3));
+
+					durationMap.set(cueName, duration);
+
+					logger.info(`Cue file ${cueName} has duration ${duration} seconds.`);
+				} catch (e) {
+					logger.error(`Error parsing vgmstream-cli output: ${e} ${stdout}`);
+				}
+			}
+		}
 
 		if (!existsSync(musicsDir)) {
 			logger.warn(`Option at ${optionDir} does not have a "music" folder.`);
@@ -187,7 +231,7 @@ for (const optionsDir of options.input) {
 
 			const data = parser.parse(readFileSync(musicXmlLocation)) as MusicXML;
 			const musicData = data.MusicData;
-			const inGameID = musicData.name.id;
+			const inGameID = Number(musicData.name.id);
 
 			if (inGameID >= 100000) {
 				// Ignore UTAGE charts, which are not supported by Tachi.
@@ -202,7 +246,7 @@ for (const optionsDir of options.input) {
 					: songTitleArtistMap.get(`${musicData.name.str}-${musicData.artistName.str}`);
 
 			// Has this song been disabled in-game?
-			if (musicData.disable || musicData.eventName.id === 0) {
+			if (musicData.disable || Number(musicData.eventName.id) === 0) {
 				if (tachiSongID !== undefined) {
 					logger.info(
 						`Removing charts of song ID ${tachiSongID} from version ${options.version}, because the disable flag in Music.xml is enabled.`
@@ -240,18 +284,27 @@ for (const optionsDir of options.input) {
 				);
 			}
 
+			const duration = durationMap.get(`music${musicData.cueName.id.padStart(6, "0")}`);
+
+			if (!duration) {
+				logger.warn(
+					`Unknown duration for music ID ${inGameID}, cue ID ${musicData.cueName.id}.`
+				);
+			}
+
 			// New song?
 			if (tachiSongID === undefined) {
 				tachiSongID = songIDGenerator();
 
 				const songDoc: SongDocument<"maimaidx"> = {
-					title: musicData.name.str.toString(),
+					title: musicData.name.str,
 					altTitles: [],
 					searchTerms: [],
-					artist: musicData.artistName.str.toString(),
+					artist: musicData.artistName.str,
 					id: tachiSongID,
 					data: {
 						genre,
+						duration,
 					},
 				};
 
@@ -263,9 +316,9 @@ for (const optionsDir of options.input) {
 			} else {
 				const songDoc = songMap.get(tachiSongID)!;
 
-				songDoc.title = musicData.name.str.toString();
-				songDoc.artist = musicData.artistName.str.toString();
-				songDoc.data = { genre };
+				songDoc.title = musicData.name.str;
+				songDoc.artist = musicData.artistName.str;
+				songDoc.data = { genre, duration };
 			}
 
 			for (const [index, difficulty] of musicData.notesData.Notes.entries()) {

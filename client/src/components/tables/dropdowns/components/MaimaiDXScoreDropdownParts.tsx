@@ -36,7 +36,7 @@ export function MaimaiDXGraphsComponent({
 		return <Box message="Error retrieving chart" />;
 	}
 
-	if (data.song.data.duration === null) {
+	if (!data.song.data.duration) {
 		return <Box message="No charts available" />;
 	}
 

@@ -5,6 +5,7 @@ import { ITGGraphsComponent } from "./components/ITGScoreDropdownParts";
 import { JubeatGraphsComponent } from "./components/JubeatScoreDropdownParts";
 import { OngekiGraphsComponent } from "./components/OngekiScoreDropdownParts";
 import { ChunithmGraphsComponent } from "./components/ChunithmScoreDropdownParts";
+import { MaimaiDXGraphsComponent } from "./components/MaimaiDXScoreDropdownParts";
 
 export function GPTDropdownSettings(game: Game, playtype: Playtype): any {
 	if (game === "iidx") {
@@ -38,6 +39,11 @@ export function GPTDropdownSettings(game: Game, playtype: Playtype): any {
 		return {
 			renderScoreInfo: true,
 			GraphComponent: ChunithmGraphsComponent as any,
+		};
+	} else if (game === "maimaidx") {
+		return {
+			renderScoreInfo: true,
+			GraphComponent: MaimaiDXGraphsComponent as any,
 		};
 	}
 

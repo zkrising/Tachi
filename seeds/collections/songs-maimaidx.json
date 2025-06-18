@@ -1137,6 +1137,7 @@
 		"altTitles": [],
 		"artist": "supercell「化物語」",
 		"data": {
+			"duration": 91.317,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 91,
@@ -2260,6 +2261,7 @@
 		"altTitles": [],
 		"artist": "クーナ(CV 喜多村英梨)「PHANTASY STAR ONLINE 2」",
 		"data": {
+			"duration": 132.61,
 			"genre": "ゲーム＆バラエティ"
 		},
 		"id": 178,
@@ -2895,6 +2897,7 @@
 		"altTitles": [],
 		"artist": "SIAM SHADE [covered by 湯毛]",
 		"data": {
+			"duration": 116.447,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 227,
@@ -3579,6 +3582,7 @@
 		"altTitles": [],
 		"artist": "DECO*27",
 		"data": {
+			"duration": 133.941,
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 279,
@@ -3631,6 +3635,7 @@
 		"altTitles": [],
 		"artist": "ピノキオピー",
 		"data": {
+			"duration": 101.321,
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 283,
@@ -4152,6 +4157,7 @@
 		"altTitles": [],
 		"artist": "GigaReol",
 		"data": {
+			"duration": 145,
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 323,
@@ -5175,6 +5181,7 @@
 		"altTitles": [],
 		"artist": "MYTH & ROID「Re：ゼロから始める異世界生活」",
 		"data": {
+			"duration": 91.636,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 401,
@@ -5658,6 +5665,7 @@
 		"altTitles": [],
 		"artist": "劇団ひととせ「ひなこのーと」",
 		"data": {
+			"duration": 93.105,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 438,
@@ -5759,6 +5767,7 @@
 		"altTitles": [],
 		"artist": "鈴木このみ「ノーゲーム・ノーライフ」",
 		"data": {
+			"duration": 91.43,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 446,
@@ -5769,6 +5778,7 @@
 		"altTitles": [],
 		"artist": "ターニャ・デグレチャフ(CV.悠木碧)「幼女戦記」",
 		"data": {
+			"duration": 93.268,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 447,
@@ -5969,6 +5979,7 @@
 		"altTitles": [],
 		"artist": "ガヴリール（富田美憂），ヴィーネ（大西沙織），サターニャ（大空直美），ラフィエル（花澤香菜）「ガヴリールドロップアウト」",
 		"data": {
+			"duration": 91.518,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 463,
@@ -6425,6 +6436,7 @@
 		"altTitles": [],
 		"artist": "After the Rain（そらる×まふまふ）",
 		"data": {
+			"duration": 92.993,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 499,
@@ -6887,6 +6899,7 @@
 		"altTitles": [],
 		"artist": "亜咲花",
 		"data": {
+			"duration": 96.394,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 534,
@@ -6911,6 +6924,7 @@
 		"altTitles": [],
 		"artist": "fripSide",
 		"data": {
+			"duration": 104.8,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 536,
@@ -7364,6 +7378,7 @@
 		"altTitles": [],
 		"artist": "Eve",
 		"data": {
+			"duration": 148.5,
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 571,
@@ -8745,6 +8760,7 @@
 		"altTitles": [],
 		"artist": "カクとイムラ(CV：松本慶祐)",
 		"data": {
+			"duration": 149.487,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 676,
@@ -9055,6 +9071,7 @@
 		"altTitles": [],
 		"artist": "六厘舎",
 		"data": {
+			"duration": 118.571,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 701,
@@ -9473,6 +9490,7 @@
 		"altTitles": [],
 		"artist": "Petit Rabbit's",
 		"data": {
+			"duration": 94.177,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 734,
@@ -9485,6 +9503,7 @@
 		"altTitles": [],
 		"artist": "shami momo（吉田優子・千代田桃）／CV：小原好美・鬼頭明里",
 		"data": {
+			"duration": 94.545,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 735,
@@ -9497,6 +9516,7 @@
 		"altTitles": [],
 		"artist": "LiSA",
 		"data": {
+			"duration": 156.444,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 736,
@@ -9509,6 +9529,7 @@
 		"altTitles": [],
 		"artist": "StylipS",
 		"data": {
+			"duration": 93.929,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 737,
@@ -9937,6 +9958,7 @@
 		"altTitles": [],
 		"artist": "Official髭男dism",
 		"data": {
+			"duration": 157.5,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 770,
@@ -10328,6 +10350,7 @@
 		"altTitles": [],
 		"artist": "Mrs. GREEN APPLE",
 		"data": {
+			"duration": 92.477,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 800,
@@ -10340,6 +10363,7 @@
 		"altTitles": [],
 		"artist": "原田知世",
 		"data": {
+			"duration": 116.949,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 801,
@@ -10354,6 +10378,7 @@
 		"altTitles": [],
 		"artist": "涼宮ハルヒ（CV.平野 綾） TVアニメ「涼宮ハルヒの憂鬱」",
 		"data": {
+			"duration": 161.635,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 802,
@@ -10377,6 +10402,7 @@
 		"altTitles": [],
 		"artist": "ずっと真夜中でいいのに。",
 		"data": {
+			"duration": 158.375,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 804,
@@ -10406,6 +10432,7 @@
 		"altTitles": [],
 		"artist": "angela",
 		"data": {
+			"duration": 91.576,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 806,
@@ -10418,6 +10445,7 @@
 		"altTitles": [],
 		"artist": "ビックカメラ",
 		"data": {
+			"duration": 121.936,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 807,
@@ -10444,6 +10472,7 @@
 		"altTitles": [],
 		"artist": "hololive IDOL PROJECT",
 		"data": {
+			"duration": 98.929,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 809,
@@ -11251,6 +11280,7 @@
 		"altTitles": [],
 		"artist": "YOASOBI",
 		"data": {
+			"duration": 166,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 870,
@@ -11267,6 +11297,7 @@
 		"altTitles": [],
 		"artist": "Ado",
 		"data": {
+			"duration": 136.18,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 871,
@@ -11281,6 +11312,7 @@
 		"altTitles": [],
 		"artist": "クレシェンドブルー [最上静香 (CV.田所あずさ)、北上麗花 (CV.平山笑美)、北沢志保 (CV.雨宮 天)、野々原 茜 (CV.小笠原早紀)、箱崎星梨花 (CV.麻倉もも)]",
 		"data": {
+			"duration": 136.02,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 872,
@@ -11291,6 +11323,7 @@
 		"altTitles": [],
 		"artist": "DRAMATIC STARS [天道 輝 (CV.仲村宗悟), 桜庭 薫 (CV.内田雄馬), 柏木 翼 (CV.八代 拓)]",
 		"data": {
+			"duration": 122.553,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 873,
@@ -11543,6 +11576,7 @@
 		"altTitles": [],
 		"artist": "ツユ",
 		"data": {
+			"duration": 133.867,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 892,
@@ -11560,6 +11594,7 @@
 		"altTitles": [],
 		"artist": "Rain Drops",
 		"data": {
+			"duration": 142.268,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 893,
@@ -11611,6 +11646,7 @@
 		"altTitles": [],
 		"artist": "亜咲花",
 		"data": {
+			"duration": 90.416,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 897,
@@ -11781,6 +11817,7 @@
 		"altTitles": [],
 		"artist": "須田景凪",
 		"data": {
+			"duration": 144.013,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 910,
@@ -11804,6 +11841,7 @@
 		"altTitles": [],
 		"artist": "ARuFa",
 		"data": {
+			"duration": 149.143,
 			"genre": "ゲーム＆バラエティ"
 		},
 		"id": 912,
@@ -12153,6 +12191,7 @@
 		"altTitles": [],
 		"artist": "ツユ",
 		"data": {
+			"duration": 151.714,
 			"genre": "オンゲキ＆CHUNITHM"
 		},
 		"id": 938,
@@ -12271,6 +12310,7 @@
 		"altTitles": [],
 		"artist": "ツユ",
 		"data": {
+			"duration": 137.319,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 947,
@@ -12285,6 +12325,7 @@
 		"altTitles": [],
 		"artist": "ツユ",
 		"data": {
+			"duration": 135.5,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 948,
@@ -14895,6 +14936,7 @@
 		"altTitles": [],
 		"artist": "ツユ",
 		"data": {
+			"duration": 162.4,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1157,
@@ -15784,6 +15826,7 @@
 		"altTitles": [],
 		"artist": "☆リズムに合わせてボタンを叩き達成率を競うゲームです☆",
 		"data": {
+			"duration": 71.343,
 			"genre": "maimai"
 		},
 		"id": 1231,
@@ -15876,6 +15919,7 @@
 		"altTitles": [],
 		"artist": "木村由姫 [cover]",
 		"data": {
+			"duration": 105.437,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1238,
@@ -15886,6 +15930,7 @@
 		"altTitles": [],
 		"artist": "いきものがかり [cover]",
 		"data": {
+			"duration": 96.491,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1239,
@@ -15898,6 +15943,7 @@
 		"altTitles": [],
 		"artist": "AKB48 [PV]",
 		"data": {
+			"duration": 141.674,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1240,
@@ -15911,6 +15957,7 @@
 		"altTitles": [],
 		"artist": "「化物語」 [cover]",
 		"data": {
+			"duration": 90.002,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1241,
@@ -15923,6 +15970,7 @@
 		"altTitles": [],
 		"artist": "ClariS　「魔法少女まどか☆マギカ」",
 		"data": {
+			"duration": 111.086,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1242,
@@ -15935,6 +15983,7 @@
 		"altTitles": [],
 		"artist": "EXILE",
 		"data": {
+			"duration": 103.388,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1243,
@@ -15945,6 +15994,7 @@
 		"altTitles": [],
 		"artist": "May J. [cover]",
 		"data": {
+			"duration": 98.776,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1244,
@@ -15955,6 +16005,7 @@
 		"altTitles": [],
 		"artist": "moumoon [PV]",
 		"data": {
+			"duration": 124.9,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1245,
@@ -15965,6 +16016,7 @@
 		"altTitles": [],
 		"artist": "倖田 來未 [PV]",
 		"data": {
+			"duration": 109.158,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1246,
@@ -15978,6 +16030,7 @@
 		"altTitles": [],
 		"artist": "EXILE [PV]",
 		"data": {
+			"duration": 144,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1247,
@@ -15988,6 +16041,7 @@
 		"altTitles": [],
 		"artist": "サカナクション [cover]",
 		"data": {
+			"duration": 97.235,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1248,
@@ -16000,6 +16054,7 @@
 		"altTitles": [],
 		"artist": "AKB48 [PV]",
 		"data": {
+			"duration": 116.93,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1249,
@@ -16012,6 +16067,7 @@
 		"altTitles": [],
 		"artist": "w-inds. [PV]",
 		"data": {
+			"duration": 104.565,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1250,
@@ -16022,6 +16078,7 @@
 		"altTitles": [],
 		"artist": "きゃりーぱみゅぱみゅ [PV]",
 		"data": {
+			"duration": 112.502,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1251,
@@ -16032,6 +16089,7 @@
 		"altTitles": [],
 		"artist": "w-inds. [PV]",
 		"data": {
+			"duration": 115.87,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1252,
@@ -16042,6 +16100,7 @@
 		"altTitles": [],
 		"artist": "きゃりーぱみゅぱみゅ [PV]",
 		"data": {
+			"duration": 105.935,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1253,
@@ -16054,6 +16113,7 @@
 		"altTitles": [],
 		"artist": "MAN WITH A MISSION [PV]",
 		"data": {
+			"duration": 132.447,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1254,
@@ -16064,6 +16124,7 @@
 		"altTitles": [],
 		"artist": "家入レオ [PV]",
 		"data": {
+			"duration": 139.796,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1255,
@@ -16076,6 +16137,7 @@
 		"altTitles": [],
 		"artist": "Acid Black Cherry [PV]",
 		"data": {
+			"duration": 122.742,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1256,
@@ -16086,6 +16148,7 @@
 		"altTitles": [],
 		"artist": "きゃりーぱみゅぱみゅ [PV]",
 		"data": {
+			"duration": 108.925,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1257,
@@ -16096,6 +16159,7 @@
 		"altTitles": [],
 		"artist": "L'Arc～en～Ciel [cover]",
 		"data": {
+			"duration": 100.418,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1258,
@@ -16106,6 +16170,7 @@
 		"altTitles": [],
 		"artist": "ASIAN KUNG-FU GENERATION [cover]",
 		"data": {
+			"duration": 119.43,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1259,
@@ -16118,6 +16183,7 @@
 		"altTitles": [],
 		"artist": "BUMP OF CHICKEN [cover]",
 		"data": {
+			"duration": 99.215,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1260,
@@ -16130,6 +16196,7 @@
 		"altTitles": [],
 		"artist": "FLOW / 「NARUTO」[cover]",
 		"data": {
+			"duration": 107.52,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1261,
@@ -16140,6 +16207,7 @@
 		"altTitles": [],
 		"artist": "club Prince[cover]",
 		"data": {
+			"duration": 122.469,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1262,
@@ -16152,6 +16220,7 @@
 		"altTitles": [],
 		"artist": "galaxias! [PV]",
 		"data": {
+			"duration": 107.565,
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1263,
@@ -16162,6 +16231,7 @@
 		"altTitles": [],
 		"artist": "ゴールデンボンバー [PV]",
 		"data": {
+			"duration": 99.023,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1264,
@@ -16174,6 +16244,7 @@
 		"altTitles": [],
 		"artist": "ももいろクローバーZ [PV]",
 		"data": {
+			"duration": 122.147,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1265,
@@ -16186,6 +16257,7 @@
 		"altTitles": [],
 		"artist": "AKINO[cover]",
 		"data": {
+			"duration": 105.067,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1266,
@@ -16198,6 +16270,7 @@
 		"altTitles": [],
 		"artist": "和田光司 [cover]",
 		"data": {
+			"duration": 96.651,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1267,
@@ -16210,6 +16283,7 @@
 		"altTitles": [],
 		"artist": "高橋洋子 [cover]",
 		"data": {
+			"duration": 92.645,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1268,
@@ -16223,6 +16297,7 @@
 		"altTitles": [],
 		"artist": "SEKAI NO OWARI",
 		"data": {
+			"duration": 102.668,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1269,
@@ -16233,6 +16308,7 @@
 		"altTitles": [],
 		"artist": "mamenoi(MANYO & やなぎなぎ)",
 		"data": {
+			"duration": 128.771,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1270,
@@ -16243,6 +16319,7 @@
 		"altTitles": [],
 		"artist": "ナムコエンジェル「アイドルマスター」",
 		"data": {
+			"duration": 133.338,
 			"genre": "ゲーム＆バラエティ"
 		},
 		"id": 1271,
@@ -16253,6 +16330,7 @@
 		"altTitles": [],
 		"artist": "ナムコエンジェル「アイドルマスター」",
 		"data": {
+			"duration": 142.427,
 			"genre": "ゲーム＆バラエティ"
 		},
 		"id": 1272,
@@ -16263,6 +16341,7 @@
 		"altTitles": [],
 		"artist": "ナムコエンジェル「アイドルマスター」",
 		"data": {
+			"duration": 137.333,
 			"genre": "ゲーム＆バラエティ"
 		},
 		"id": 1273,
@@ -16273,6 +16352,7 @@
 		"altTitles": [],
 		"artist": "Linked Horizon「進撃の巨人」 [アニメPV]",
 		"data": {
+			"duration": 93.545,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1274,
@@ -16285,6 +16365,7 @@
 		"altTitles": [],
 		"artist": "ROOKiEZ is PUNK'D「弱虫ペダル」 [アニメPV]",
 		"data": {
+			"duration": 91.474,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1275,
@@ -16297,6 +16378,7 @@
 		"altTitles": [],
 		"artist": "姫野湖鳥(CV 田村ゆかり)「弱虫ペダル」",
 		"data": {
+			"duration": 94.883,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1276,
@@ -16309,6 +16391,7 @@
 		"altTitles": [],
 		"artist": "SEX MACHINEGUNS [cover]",
 		"data": {
+			"duration": 121.668,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1277,
@@ -16321,6 +16404,7 @@
 		"altTitles": [],
 		"artist": "DECO*27",
 		"data": {
+			"duration": 118.351,
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1278,
@@ -16333,6 +16417,7 @@
 		"altTitles": [],
 		"artist": "藍井エイル「キルラキル」 [アニメPV]",
 		"data": {
+			"duration": 90.714,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1279,
@@ -16345,6 +16430,7 @@
 		"altTitles": [],
 		"artist": "ネコネコカワイイ「ニンジャスレイヤー」",
 		"data": {
+			"duration": 111.325,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1280,
@@ -16357,6 +16443,7 @@
 		"altTitles": [],
 		"artist": "藤澤健至(Team-MAX)「ニンジャスレイヤー」",
 		"data": {
+			"duration": 115.592,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1281,
@@ -16367,6 +16454,7 @@
 		"altTitles": [],
 		"artist": "鈴木結愛(CV:西 明日香)/佐藤陽菜(CV:明坂聡美)/高橋 葵(CV:荻野可鈴)/田中心春(CV:大橋彩香)/「てさぐれ！部活もの」 [アニメPV]",
 		"data": {
+			"duration": 115.387,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1282,
@@ -16377,6 +16465,7 @@
 		"altTitles": [],
 		"artist": "きゃりーぱみゅぱみゅ [PV]",
 		"data": {
+			"duration": 112.583,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1283,
@@ -16389,6 +16478,7 @@
 		"altTitles": [],
 		"artist": "「gdgd妖精s」",
 		"data": {
+			"duration": 94.852,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1284,
@@ -16401,6 +16491,7 @@
 		"altTitles": [],
 		"artist": "GRANRODEO [PV]",
 		"data": {
+			"duration": 97.21,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1285,
@@ -16411,6 +16502,7 @@
 		"altTitles": [],
 		"artist": "GRANRODEO [PV]",
 		"data": {
+			"duration": 96.004,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1286,
@@ -16421,6 +16513,7 @@
 		"altTitles": [],
 		"artist": "BACK-ON [cover]",
 		"data": {
+			"duration": 93.491,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1287,
@@ -16433,6 +16526,7 @@
 		"altTitles": [],
 		"artist": "宮野真守 [PV]",
 		"data": {
+			"duration": 112.299,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1288,
@@ -16446,6 +16540,7 @@
 		"altTitles": [],
 		"artist": "宮野真守 [PV]",
 		"data": {
+			"duration": 106.449,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1289,
@@ -16458,6 +16553,7 @@
 		"altTitles": [],
 		"artist": "nobodyknows+ [cover]",
 		"data": {
+			"duration": 97.531,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1290,
@@ -16470,6 +16566,7 @@
 		"altTitles": [],
 		"artist": "ナノ feat.MY FIRST STORY",
 		"data": {
+			"duration": 90.313,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1291,
@@ -16480,6 +16577,7 @@
 		"altTitles": [],
 		"artist": "目黒 将司",
 		"data": {
+			"duration": 148.416,
 			"genre": "ゲーム＆バラエティ"
 		},
 		"id": 1292,
@@ -16490,6 +16588,7 @@
 		"altTitles": [],
 		"artist": "目黒 将司",
 		"data": {
+			"duration": 135.843,
 			"genre": "ゲーム＆バラエティ"
 		},
 		"id": 1293,
@@ -16500,6 +16599,7 @@
 		"altTitles": [],
 		"artist": "目黒 将司",
 		"data": {
+			"duration": 141.658,
 			"genre": "ゲーム＆バラエティ"
 		},
 		"id": 1294,
@@ -16510,6 +16610,7 @@
 		"altTitles": [],
 		"artist": "目黒 将司 Remixed by 山岡 晃",
 		"data": {
+			"duration": 143.368,
 			"genre": "ゲーム＆バラエティ"
 		},
 		"id": 1295,
@@ -16520,6 +16621,7 @@
 		"altTitles": [],
 		"artist": "ピノキオピー",
 		"data": {
+			"duration": 148.875,
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1296,
@@ -16532,6 +16634,7 @@
 		"altTitles": [],
 		"artist": "アルスマグナ",
 		"data": {
+			"duration": 101.587,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1297,
@@ -16544,6 +16647,7 @@
 		"altTitles": [],
 		"artist": "ハッカドール",
 		"data": {
+			"duration": 91.622,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1298,
@@ -16554,6 +16658,7 @@
 		"altTitles": [],
 		"artist": "キング・クリームソーダ「妖怪ウォッチ」",
 		"data": {
+			"duration": 89.546,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1299,
@@ -16566,6 +16671,7 @@
 		"altTitles": [],
 		"artist": "田村 ゆかり「のうりん」",
 		"data": {
+			"duration": 92.56,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1300,
@@ -16578,6 +16684,7 @@
 		"altTitles": [],
 		"artist": "土間うまる [CV.田中あいみ]「干物妹！うまるちゃん」",
 		"data": {
+			"duration": 93.264,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1301,
@@ -16590,6 +16697,7 @@
 		"altTitles": [],
 		"artist": "Wake Up, Girls！",
 		"data": {
+			"duration": 91.07,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1302,
@@ -16602,6 +16710,7 @@
 		"altTitles": [],
 		"artist": "SEKAI NO OWARI",
 		"data": {
+			"duration": 139.288,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1303,
@@ -16612,6 +16721,7 @@
 		"altTitles": [],
 		"artist": "でんぱ組.Inc",
 		"data": {
+			"duration": 87.662,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1304,
@@ -16624,6 +16734,7 @@
 		"altTitles": [],
 		"artist": "fripSide「フューチャーカード バディファイト ハンドレッド」",
 		"data": {
+			"duration": 93.215,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1305,
@@ -16636,6 +16747,7 @@
 		"altTitles": [],
 		"artist": "シンガンクリムゾンズ「SHOW BY ROCK!!」",
 		"data": {
+			"duration": 96,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1306,
@@ -16646,6 +16758,7 @@
 		"altTitles": [],
 		"artist": "プラズマジカ「SHOW BY ROCK!!」",
 		"data": {
+			"duration": 93.227,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1307,
@@ -16658,6 +16771,7 @@
 		"altTitles": [],
 		"artist": "Dream5「妖怪ウォッチ」",
 		"data": {
+			"duration": 88.866,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1308,
@@ -16670,6 +16784,7 @@
 		"altTitles": [],
 		"artist": "イタリア (CV.浪川大輔)「ヘタリア The World Twinkle」",
 		"data": {
+			"duration": 105.456,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1309,
@@ -16682,6 +16797,7 @@
 		"altTitles": [],
 		"artist": "アルスマグナ",
 		"data": {
+			"duration": 136.703,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1310,
@@ -16694,6 +16810,7 @@
 		"altTitles": [],
 		"artist": "Jitterin' Jinn [covered by ろん]",
 		"data": {
+			"duration": 129.044,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1311,
@@ -16706,6 +16823,7 @@
 		"altTitles": [],
 		"artist": "UNISON SQUARE GARDEN",
 		"data": {
+			"duration": 144.869,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1312,
@@ -16718,6 +16836,7 @@
 		"altTitles": [],
 		"artist": "Petit Rabbit's「ご注文はうさぎですか？」",
 		"data": {
+			"duration": 94.504,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1313,
@@ -16728,6 +16847,7 @@
 		"altTitles": [],
 		"artist": "Scatman John",
 		"data": {
+			"duration": 104.393,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1314,
@@ -16738,6 +16858,7 @@
 		"altTitles": [],
 		"artist": "アイドルカレッジ「俺がお嬢様学校に「庶民サンプル」としてゲッツされた件」",
 		"data": {
+			"duration": 94.725,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1315,
@@ -16750,6 +16871,7 @@
 		"altTitles": [],
 		"artist": "学園生活部「がっこうぐらし！」",
 		"data": {
+			"duration": 92.092,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1316,
@@ -16763,6 +16885,7 @@
 		"altTitles": [],
 		"artist": "七森中☆ごらく部「ゆるゆり さん☆ハイ！」",
 		"data": {
+			"duration": 90.633,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1317,
@@ -16775,6 +16898,7 @@
 		"altTitles": [],
 		"artist": "sasakure.UK",
 		"data": {
+			"duration": 147.671,
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1318,
@@ -16785,6 +16909,7 @@
 		"altTitles": [],
 		"artist": "七森中☆ごらく部「ゆるゆり」",
 		"data": {
+			"duration": 91.373,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1319,
@@ -16797,6 +16922,7 @@
 		"altTitles": [],
 		"artist": "RADIO FISH",
 		"data": {
+			"duration": 104.359,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1320,
@@ -16807,6 +16933,7 @@
 		"altTitles": [],
 		"artist": "新庄かなえ(CV:三森すずこ)「てーきゅう」",
 		"data": {
+			"duration": 100.313,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1321,
@@ -16819,6 +16946,7 @@
 		"altTitles": [],
 		"artist": "七森中☆ごらく部「ゆるゆり♪♪」",
 		"data": {
+			"duration": 91.37,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1322,
@@ -16831,6 +16959,7 @@
 		"altTitles": [],
 		"artist": "セブンスシスターズ",
 		"data": {
+			"duration": 124.212,
 			"genre": "ゲーム＆バラエティ"
 		},
 		"id": 1323,
@@ -16844,6 +16973,7 @@
 		"altTitles": [],
 		"artist": "777☆SISTERS",
 		"data": {
+			"duration": 120.007,
 			"genre": "ゲーム＆バラエティ"
 		},
 		"id": 1324,
@@ -16856,6 +16986,7 @@
 		"altTitles": [],
 		"artist": "ORANGE RANGE",
 		"data": {
+			"duration": 138.446,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1325,
@@ -16868,6 +16999,7 @@
 		"altTitles": [],
 		"artist": "Rhodanthe*",
 		"data": {
+			"duration": 91.646,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1326,
@@ -16878,6 +17010,7 @@
 		"altTitles": [],
 		"artist": "Wake Up, Girls！",
 		"data": {
+			"duration": 90.667,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1327,
@@ -16888,6 +17021,7 @@
 		"altTitles": [],
 		"artist": "fourfolium「NEW GAME!」",
 		"data": {
+			"duration": 93.091,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1328,
@@ -16900,6 +17034,7 @@
 		"altTitles": [],
 		"artist": "讃州中学勇者部「結城友奈は勇者である」",
 		"data": {
+			"duration": 92.166,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1329,
@@ -16912,6 +17047,7 @@
 		"altTitles": [],
 		"artist": "てにをは",
 		"data": {
+			"duration": 136,
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1330,
@@ -16924,6 +17060,7 @@
 		"altTitles": [],
 		"artist": "fourfolium「NEW GAME!」",
 		"data": {
+			"duration": 91.02,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1331,
@@ -16934,6 +17071,7 @@
 		"altTitles": [],
 		"artist": "Questy「ポッピンQ」",
 		"data": {
+			"duration": 96.479,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1332,
@@ -16946,6 +17084,7 @@
 		"altTitles": [],
 		"artist": "夢色キャスト",
 		"data": {
+			"duration": 120.488,
 			"genre": "ゲーム＆バラエティ"
 		},
 		"id": 1333,
@@ -16956,6 +17095,7 @@
 		"altTitles": [],
 		"artist": "夢色キャスト",
 		"data": {
+			"duration": 118.286,
 			"genre": "ゲーム＆バラエティ"
 		},
 		"id": 1334,
@@ -16966,6 +17106,7 @@
 		"altTitles": [],
 		"artist": "上坂すみれ",
 		"data": {
+			"duration": 135.887,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1335,
@@ -16978,6 +17119,7 @@
 		"altTitles": [],
 		"artist": "上坂すみれ「ポプテピピック」",
 		"data": {
+			"duration": 94.69,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1336,
@@ -16988,6 +17130,7 @@
 		"altTitles": [],
 		"artist": "土間うまる（田中あいみ）「干物妹！うまるちゃんR」",
 		"data": {
+			"duration": 92.5,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1337,
@@ -17000,6 +17143,7 @@
 		"altTitles": [],
 		"artist": "妹Ｓ「干物妹！うまるちゃんR」",
 		"data": {
+			"duration": 91.5,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1338,
@@ -17012,6 +17156,7 @@
 		"altTitles": [],
 		"artist": "angela「アホガール」",
 		"data": {
+			"duration": 137.57,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1339,
@@ -17024,6 +17169,7 @@
 		"altTitles": [],
 		"artist": "Otomania feat. 初音ミク",
 		"data": {
+			"duration": 148,
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1340,
@@ -17034,6 +17180,7 @@
 		"altTitles": [],
 		"artist": "彩音",
 		"data": {
+			"duration": 118,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1341,
@@ -17044,6 +17191,7 @@
 		"altTitles": [],
 		"artist": "陰陽座",
 		"data": {
+			"duration": 145,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1342,
@@ -17056,6 +17204,7 @@
 		"altTitles": [],
 		"artist": "大橋彩香",
 		"data": {
+			"duration": 94.5,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1343,
@@ -17066,6 +17215,7 @@
 		"altTitles": [],
 		"artist": "リコ（CV：富田美憂）、レグ（CV：伊瀬茉莉也）",
 		"data": {
+			"duration": 91.5,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1344,
@@ -17076,6 +17226,7 @@
 		"altTitles": [],
 		"artist": "池頼広",
 		"data": {
+			"duration": 140,
 			"genre": "ゲーム＆バラエティ"
 		},
 		"id": 1345,
@@ -17088,6 +17239,7 @@
 		"altTitles": [],
 		"artist": "sasakure.UK",
 		"data": {
+			"duration": 146.5,
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1346,
@@ -17100,6 +17252,7 @@
 		"altTitles": [],
 		"artist": "A-Lin",
 		"data": {
+			"duration": 125.063,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1347,
@@ -17112,6 +17265,7 @@
 		"altTitles": [],
 		"artist": "唐禹哲",
 		"data": {
+			"duration": 106.671,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1348,
@@ -17124,6 +17278,7 @@
 		"altTitles": [],
 		"artist": "信",
 		"data": {
+			"duration": 112.271,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1349,
@@ -17136,6 +17291,7 @@
 		"altTitles": [],
 		"artist": "Roomie",
 		"data": {
+			"duration": 141.465,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1350,
@@ -17146,6 +17302,7 @@
 		"altTitles": [],
 		"artist": "阿蘭",
 		"data": {
+			"duration": 111.336,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1351,
@@ -17158,6 +17315,7 @@
 		"altTitles": [],
 		"artist": "米津玄師",
 		"data": {
+			"duration": 162.645,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1352,
@@ -17168,6 +17326,7 @@
 		"altTitles": [],
 		"artist": "DA PUMP",
 		"data": {
+			"duration": 151.504,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1353,
@@ -17178,6 +17337,7 @@
 		"altTitles": [],
 		"artist": "サカナクション",
 		"data": {
+			"duration": 134.777,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1354,
@@ -17190,6 +17350,7 @@
 		"altTitles": [],
 		"artist": "OxT",
 		"data": {
+			"duration": 92.035,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1355,
@@ -17200,6 +17361,7 @@
 		"altTitles": [],
 		"artist": "どうぶつビスケッツ×PPP「けものフレンズ２」",
 		"data": {
+			"duration": 92.687,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1356,
@@ -17212,6 +17374,7 @@
 		"altTitles": [],
 		"artist": "どうぶつビスケッツ×PPP「けものフレンズ」",
 		"data": {
+			"duration": 94.225,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1357,
@@ -17224,6 +17387,7 @@
 		"altTitles": [],
 		"artist": "Eve",
 		"data": {
+			"duration": 148.954,
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1358,
@@ -17236,6 +17400,7 @@
 		"altTitles": [],
 		"artist": "夏代孝明 feat. 初音ミク",
 		"data": {
+			"duration": 145.895,
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1359,
@@ -17248,6 +17413,7 @@
 		"altTitles": [],
 		"artist": "ポプ子(CV:五十嵐裕美)＆ピピ美(CV:松嵜麗)",
 		"data": {
+			"duration": 139.108,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1360,
@@ -17258,6 +17424,7 @@
 		"altTitles": [],
 		"artist": "OxT",
 		"data": {
+			"duration": 92.687,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1361,
@@ -17268,6 +17435,7 @@
 		"altTitles": [],
 		"artist": "Fear, and Loathing in Las Vegas",
 		"data": {
+			"duration": 92.75,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1362,
@@ -17278,6 +17446,7 @@
 		"altTitles": [],
 		"artist": "フランシュシュ",
 		"data": {
+			"duration": 92.327,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1363,
@@ -17290,6 +17459,7 @@
 		"altTitles": [],
 		"artist": "フランシュシュ",
 		"data": {
+			"duration": 136.639,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1364,
@@ -17302,6 +17472,7 @@
 		"altTitles": [],
 		"artist": "BLACK STARS（ブラック指令・ペガッサ星人・シルバーブルーメ・ノーバ）",
 		"data": {
+			"duration": 142.122,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1365,
@@ -17314,6 +17485,7 @@
 		"altTitles": [],
 		"artist": "アギラ・キングジョー・ガッツ星人（CV：飯田里穂・三森すずこ・松田利冴）",
 		"data": {
+			"duration": 103.151,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1366,
@@ -17324,6 +17496,7 @@
 		"altTitles": [],
 		"artist": "ンダホ&ぺけたん from Fischer's",
 		"data": {
+			"duration": 129.73,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1367,
@@ -17336,6 +17509,7 @@
 		"altTitles": [],
 		"artist": "fhána",
 		"data": {
+			"duration": 94.667,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1368,
@@ -17348,6 +17522,7 @@
 		"altTitles": [],
 		"artist": "鈴木雅之",
 		"data": {
+			"duration": 93.954,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1369,
@@ -17360,6 +17535,7 @@
 		"altTitles": [],
 		"artist": "アインズ(日野聡)、カズマ(福島潤)、スバル(小林裕介)、ターニャ(悠木碧)",
 		"data": {
+			"duration": 93.649,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1370,
@@ -17372,6 +17548,7 @@
 		"altTitles": [],
 		"artist": "オーイシマサヨシ",
 		"data": {
+			"duration": 93.066,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1371,
@@ -17384,6 +17561,7 @@
 		"altTitles": [],
 		"artist": "米津玄師",
 		"data": {
+			"duration": 88,
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1372,
@@ -18504,6 +18682,7 @@
 		"altTitles": [],
 		"artist": "Massive New Krew",
 		"data": {
+			"duration": 122.71,
 			"genre": "オンゲキ＆CHUNITHM"
 		},
 		"id": 1462,

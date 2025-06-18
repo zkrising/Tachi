@@ -180,11 +180,11 @@ for (const optionsDir of options.input) {
 
 				const cueName = cueFileName.replace(/\.awb$/u, "");
 				const cuePath = path.join(soundDataDir, cueFileName);
-				const stdout = execFileSync(options.vgmsBinary, ["-m", "-I", cuePath], {
-					encoding: "utf-8",
-				});
 
 				try {
+					const stdout = execFileSync(options.vgmsBinary, ["-m", "-I", cuePath], {
+						encoding: "utf-8",
+					});
 					const res = JSON.parse(stdout);
 
 					if (res.sampleRate !== 48000) {
@@ -199,7 +199,7 @@ for (const optionsDir of options.input) {
 
 					logger.info(`Cue file ${cueName} has duration ${duration} seconds.`);
 				} catch (e) {
-					logger.error(`Error parsing vgmstream-cli output: ${e} ${stdout}`);
+					logger.error(`Error parsing song duration: ${e}`);
 				}
 			}
 		}

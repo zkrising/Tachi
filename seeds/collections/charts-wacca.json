@@ -13787,6 +13787,21 @@
 		]
 	},
 	{
+		"chartID": "b439553d6a241de2bc38f7da33eef40ea7c45c85",
+		"data": {
+			"inGameID": 1062
+		},
+		"difficulty": "INFERNO",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.7,
+		"playtype": "Single",
+		"songID": 282,
+		"versions": [
+			"plus"
+		]
+	},
+	{
 		"chartID": "ca2682d2c842d435ed309075d1e4b39ee38dc8e8",
 		"data": {
 			"inGameID": 1062
@@ -13879,6 +13894,21 @@
 		"songID": 284,
 		"versions": [
 			"reverse",
+			"plus"
+		]
+	},
+	{
+		"chartID": "4712a828913c1ddcb3521851b2619b1b214a2d3a",
+		"data": {
+			"inGameID": 1077
+		},
+		"difficulty": "INFERNO",
+		"isPrimary": true,
+		"level": "13+",
+		"levelNum": 13.7,
+		"playtype": "Single",
+		"songID": 284,
+		"versions": [
 			"plus"
 		]
 	},

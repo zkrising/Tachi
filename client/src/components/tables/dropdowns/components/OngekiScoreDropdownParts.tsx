@@ -9,7 +9,7 @@ import {
 	ScoreDocument,
 	SongDocument,
 } from "tachi-common";
-import GekichuScoreChart from "components/charts/GekichuScoreChart";
+import GekichumaiScoreChart from "components/charts/GekichumaiScoreChart";
 import useApiQuery from "components/util/query/useApiQuery";
 
 type ChartType = "Score" | "Bells" | "Life";
@@ -86,7 +86,7 @@ function GraphComponent({
 			? scoreData.optional.bellGraph!
 			: scoreData.optional.lifeGraph!;
 	return (
-		<GekichuScoreChart
+		<GekichumaiScoreChart
 			height="360px"
 			mobileHeight="175px"
 			type={type}

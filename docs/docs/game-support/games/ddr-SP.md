@@ -76,7 +76,11 @@ The following judgements are defined:
 
 | ID | Pretty Name |
 | :: | :: |
+| `a` | A |
+| `a20` | A20 |
+| `a20plus` | A20+ |
 | `a3` | A3 |
+| `world` | WORLD |
 | `konaste` | Konaste |
 
 ## Supported Match Types

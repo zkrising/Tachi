@@ -7,7 +7,7 @@ import {
 	ScoreDocument,
 	SongDocument,
 } from "tachi-common";
-import GekichuScoreChart from "components/charts/GekichuScoreChart";
+import GekichumaiScoreChart from "components/charts/GekichumaiScoreChart";
 import SelectNav from "components/util/SelectNav";
 import { Nav } from "react-bootstrap";
 import useApiQuery from "components/util/query/useApiQuery";
@@ -78,7 +78,7 @@ function GraphComponent({
 	const values =
 		type === "Score" ? scoreData.optional.scoreGraph! : scoreData.optional.lifeGraph!;
 	return (
-		<GekichuScoreChart
+		<GekichumaiScoreChart
 			height="360px"
 			mobileHeight="175px"
 			type={type}

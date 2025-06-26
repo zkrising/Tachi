@@ -27518,5 +27518,112 @@
 		"id": 2456,
 		"searchTerms": [],
 		"title": "GHEL NAGARAJA"
+	},
+	{
+		"altTitles": [],
+		"artist": "がるる",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "EURO BEAT"
+		},
+		"id": 2457,
+		"searchTerms": [
+			"Wifi"
+		],
+		"title": "WILD FIRE"
+	},
+	{
+		"altTitles": [],
+		"artist": "#EmoCosine",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "FUTURE CORE"
+		},
+		"id": 2458,
+		"searchTerms": [
+			"VIVID DEBUT"
+		],
+		"title": "VIVID DEBUT!"
+	},
+	{
+		"altTitles": [],
+		"artist": "DJ TOTTO",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "PROGRESSIVE EDM"
+		},
+		"id": 2459,
+		"searchTerms": [],
+		"title": "Astrogazer"
+	},
+	{
+		"altTitles": [],
+		"artist": "Yuta Imai",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "HARD DANCE"
+		},
+		"id": 2460,
+		"searchTerms": [],
+		"title": "STAY GOLD"
+	},
+	{
+		"altTitles": [],
+		"artist": "Des-ROW・組",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "HIP ROCK"
+		},
+		"id": 2461,
+		"searchTerms": [
+			"Daikenkai"
+		],
+		"title": "大見解"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"HuΣeR\" feat.Fernweh",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "JAZZY POP"
+		},
+		"id": 2462,
+		"searchTerms": [],
+		"title": "Inside Insight"
+	},
+	{
+		"altTitles": [],
+		"artist": "豚乙女",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "ROCK"
+		},
+		"id": 2463,
+		"searchTerms": [
+			"Tanpopo"
+		],
+		"title": "タンポポ"
+	},
+	{
+		"altTitles": [],
+		"artist": "山本真央樹",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "FUSION"
+		},
+		"id": 2464,
+		"searchTerms": [],
+		"title": "REFLEXES MANIPULATION"
+	},
+	{
+		"altTitles": [],
+		"artist": "PHQUASE",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "BAHAMŪT CORE"
+		},
+		"id": 2465,
+		"searchTerms": [],
+		"title": "onslaught"
 	}
 ]

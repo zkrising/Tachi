@@ -3,7 +3,7 @@ import { XMLParser } from "fast-xml-parser";
 import { existsSync, readFileSync, readdirSync, statSync } from "fs";
 import path from "path";
 import { CreateChartID, ReadCollection, WriteCollection } from "../../util";
-import { ChartDocument, Difficulties, GetGamePTConfig, SongDocument } from "tachi-common";
+import { ChartDocument, Difficulties, GetGamePTConfig, integer, SongDocument } from "tachi-common";
 import { CreateLogger } from "mei-logger";
 
 const logger = CreateLogger("chunithm/merge-options");
@@ -33,18 +33,18 @@ const DISPLAY_VERSIONS = [
 const VERSIONS = ["paradiselost", "sun", "sunplus", "luminous", "luminousplus", "verse"];
 
 interface IDWithDisplayName {
-	id: number;
-	str: string | number; // "39" -> 39, fast-xml-parser things
+	id: string;
+	str: string;
 	data: string;
 }
 
 interface MusicFumenData {
 	type: IDWithDisplayName;
 	enable: boolean;
-	level: number;
-	levelDecimal: number;
+	level: string;
+	levelDecimal: string;
 	notesDesigner: string;
-	defaultBpm: number;
+	defaultBpm: string;
 }
 
 interface MusicXML {
@@ -68,8 +68,8 @@ interface MusicXML {
 	};
 }
 
-function calculateLevel(data: Pick<MusicFumenData, "level" | "levelDecimal">) {
-	return `${data.level}${data.levelDecimal >= 50 ? "+" : ""}`;
+function calculateLevel(level: integer, levelDecimal: integer) {
+	return `${level}${levelDecimal >= 50 ? "+" : ""}`;
 }
 
 function calculateLevelNum(data: Pick<MusicFumenData, "level" | "levelDecimal">) {
@@ -128,7 +128,15 @@ for (const chart of existingChartDocs) {
 	existingCharts.set(`${chart.data.inGameID}-${chart.difficulty}`, chart);
 }
 
-const parser = new XMLParser();
+const parser = new XMLParser({
+	numberParseOptions: {
+		hex: false,
+		leadingZeros: false,
+		// do not coerce any number-like strings to numbers, since song titles
+		// may also be numbers. we coerce anything we know to be a number later.
+		skipLike: /.*/u,
+	},
+});
 
 const newSongs: Array<SongDocument<"chunithm">> = [];
 const newCharts: Array<ChartDocument<"chunithm:Single">> = [];
@@ -178,19 +186,14 @@ for (const optionsDir of options.input) {
 				logger.warn(`Music directory at ${musicDir} does not have a Music.xml file.`);
 				continue;
 			}
-
 			const data = parser.parse(readFileSync(musicXmlLocation)) as MusicXML;
 			const musicData = data.MusicData;
-			const inGameID = musicData.name.id;
+			const inGameID = Number(musicData.name.id);
 
 			if (inGameID >= 8000 || inGameID === 50 || inGameID === 81) {
 				// Ignoring WORLD'S END charts, the basic tutorial chart,
 				// and the master tutorial chart.
 				continue;
-			}
-
-			if (inGameID === 320) {
-				musicData.name.str = "010"; // wow i hate fast-xml-parser
 			}
 
 			let tachiSongID = inGameIDToSongIDMap.get(inGameID);
@@ -218,7 +221,7 @@ for (const optionsDir of options.input) {
 
 			// New song?
 			if (tachiSongID === undefined) {
-				const existingTitle = songTitleMap.get(musicData.name.str.toString());
+				const existingTitle = songTitleMap.get(musicData.name.str);
 
 				if (existingTitle) {
 					logger.warn(
@@ -233,9 +236,9 @@ for (const optionsDir of options.input) {
 					}
 				}
 
-				tachiSongID = musicData.name.id;
+				tachiSongID = inGameID;
 
-				const displayVersion = DISPLAY_VERSIONS[musicData.releaseTagName.id];
+				const displayVersion = DISPLAY_VERSIONS[Number(musicData.releaseTagName.id)];
 
 				if (!displayVersion) {
 					throw new Error(
@@ -244,14 +247,14 @@ for (const optionsDir of options.input) {
 				}
 
 				const songDoc: SongDocument<"chunithm"> = {
-					title: musicData.name.str.toString(),
+					title: musicData.name.str,
 					altTitles: [],
 					searchTerms: [],
-					artist: musicData.artistName.str.toString(),
+					artist: musicData.artistName.str,
 					id: tachiSongID,
 					data: {
 						displayVersion,
-						genre: musicData.genreNames.list.StringID.str.toString(),
+						genre: musicData.genreNames.list.StringID.str,
 					},
 				};
 
@@ -263,7 +266,7 @@ for (const optionsDir of options.input) {
 			} else if (songMap.has(tachiSongID)) {
 				const songDoc = songMap.get(tachiSongID)!;
 
-				const displayVersion = DISPLAY_VERSIONS[musicData.releaseTagName.id];
+				const displayVersion = DISPLAY_VERSIONS[Number(musicData.releaseTagName.id)];
 
 				if (!displayVersion) {
 					throw new Error(
@@ -271,10 +274,10 @@ for (const optionsDir of options.input) {
 					);
 				}
 
-				songDoc.title = musicData.name.str.toString();
-				songDoc.artist = musicData.artistName.str.toString();
+				songDoc.title = musicData.name.str;
+				songDoc.artist = musicData.artistName.str;
 				songDoc.data.displayVersion = displayVersion;
-				songDoc.data.genre = musicData.genreNames.list.StringID.str.toString();
+				songDoc.data.genre = musicData.genreNames.list.StringID.str;
 			} else {
 				throw new Error(
 					`CONSISTENCY ERROR: Song ID ${tachiSongID} does not belong to any songs!`
@@ -285,7 +288,10 @@ for (const optionsDir of options.input) {
 				const difficultyName = difficulty.type.data;
 
 				const exists = existingCharts.get(`${inGameID}-${difficultyName}`);
-				const level = calculateLevel(difficulty);
+				const level = calculateLevel(
+					Number(difficulty.level),
+					Number(difficulty.levelDecimal)
+				);
 				const levelNum = calculateLevelNum(difficulty);
 
 				if (exists) {

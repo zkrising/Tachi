@@ -4,7 +4,7 @@ import type { Migration } from "utils/types";
 const migration: Migration = {
 	id: "sdvx-maxxive-lamp-rearrange",
 	up: async () => {
-		await db.scores.updateMany(
+		await db.scores.update(
 			{
 				game: "sdvx",
 				"scoreData.lamp": "ULTIMATE CHAIN",
@@ -16,7 +16,7 @@ const migration: Migration = {
 			}
 		);
 
-		await db.scores.updateMany(
+		await db.scores.update(
 			{
 				game: "sdvx",
 				"scoreData.lamp": "PERFECT ULTIMATE CHAIN",
@@ -29,7 +29,7 @@ const migration: Migration = {
 		);
 	},
 	down: async () => {
-		await db.scores.updateMany(
+		await db.scores.update(
 			{
 				game: "sdvx",
 				"scoreData.lamp": "ULTIMATE CHAIN",
@@ -41,7 +41,7 @@ const migration: Migration = {
 			}
 		);
 
-		await db.scores.updateMany(
+		await db.scores.update(
 			{
 				game: "sdvx",
 				"scoreData.lamp": "PERFECT ULTIMATE CHAIN",

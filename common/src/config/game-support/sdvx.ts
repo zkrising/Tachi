@@ -85,7 +85,6 @@ export const SDVX_SINGLE_CONF = {
 				"FAILED",
 				"CLEAR",
 				"EXCESSIVE CLEAR",
-				"MAXXIVE CLEAR",
 				"ULTIMATE CHAIN",
 				"PERFECT ULTIMATE CHAIN",
 			],

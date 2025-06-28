@@ -16,7 +16,6 @@ type VF6GPTString = "sdvx:Single" | "usc:Keyboard" | "usc:Controller";
 const SHORT_LAMPS = {
 	CLEAR: "CLR",
 	"EXCESSIVE CLEAR": "EXC",
-	"MAXXIVE CLEAR": "MXV",
 	"ULTIMATE CHAIN": "UC",
 } as const;
 
@@ -100,7 +99,7 @@ export default function VF6Cell({
 
 function InverseVF6(
 	vf6: number,
-	lamp: "CLEAR" | "EXCESSIVE CLEAR" | "MAXXIVE CLEAR" | "ULTIMATE CHAIN",
+	lamp: "CLEAR" | "EXCESSIVE CLEAR" | "ULTIMATE CHAIN",
 	level: number
 ) {
 	try {

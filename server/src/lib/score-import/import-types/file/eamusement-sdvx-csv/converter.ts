@@ -28,7 +28,6 @@ const LAMP_MAP: Map<string, GetEnumValue<"sdvx:Single", "lamp">> = new Map([
 	["PLAYED", "FAILED"],
 	["COMPLETE", "CLEAR"],
 	["EXCESSIVE COMPLETE", "EXCESSIVE CLEAR"],
-	["MAXXIVE COMPLETE", "MAXXIVE CLEAR"],
 	["ULTIMATE CHAIN", "ULTIMATE CHAIN"],
 	["PERFECT", "PERFECT ULTIMATE CHAIN"],
 ]);

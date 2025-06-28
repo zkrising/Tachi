@@ -31,7 +31,6 @@ const SDVXLIKE_ENUM_COLOURS: GPTClientImplementation<SDVXLikes>["enumColours"] =
 		FAILED: COLOUR_SET.red,
 		CLEAR: COLOUR_SET.green,
 		"EXCESSIVE CLEAR": COLOUR_SET.purple,
-		"MAXXIVE CLEAR": COLOUR_SET.white,
 		"ULTIMATE CHAIN": COLOUR_SET.teal,
 		"PERFECT ULTIMATE CHAIN": COLOUR_SET.gold,
 	},

@@ -17,6 +17,7 @@ import RemoveMultifolderStats from "./migrations/remove-multifolder-stats";
 import RemoveRandom from "./migrations/remove-random";
 import RemoveSessionViews from "./migrations/remove-session-views";
 import RmHot from "./migrations/rm-hot";
+import SdvxMaxxiveGoals from "./migrations/sdvx-maxxive-goals";
 import SdvxMaxxiveLampRearrange from "./migrations/sdvx-maxxive-lamp-rearrange";
 import SessionsToScoreIDs from "./migrations/sessions-to-scoreIDs";
 import UpdateJubeatPreferredTables from "./migrations/update-jubeat-preferred-tables";
@@ -73,7 +74,8 @@ if (Environment.nodeEnv !== "test") {
 			RemoveIIDX2dxtraBeginners,
 			RmHot,
 			ChunithmLampSplit,
-			SdvxMaxxiveLampRearrange
+			SdvxMaxxiveLampRearrange,
+			SdvxMaxxiveGoals
 		);
 	}
 

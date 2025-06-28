@@ -1,5 +1,6 @@
 import {
 	InternalFailure,
+	InvalidScoreFailure,
 	SongOrChartNotFoundFailure,
 } from "lib/score-import/framework/common/converter-failures";
 import { FindSDVXChartOnInGameIDVersion } from "utils/queries/charts";
@@ -64,17 +65,20 @@ export const ConverterIRKsHookSV6C: ConverterFunction<KsHookSV6CScore, KsHookSV6
 export function SV6CConvertLamp(
 	clear: KsHookSV6CScore["clear"]
 ): GetEnumValue<"sdvx:Single", "lamp"> {
-	if (clear === "CLEAR_PLAYED") {
-		return "FAILED";
-	} else if (clear === "CLEAR_EFFECTIVE") {
-		return "CLEAR";
-	} else if (clear === "CLEAR_EXCESSIVE") {
-		return "EXCESSIVE CLEAR";
-	} else if (clear === "CLEAR_ULTIMATE_CHAIN") {
-		return "ULTIMATE CHAIN";
+	switch (clear) {
+		case "CLEAR_PLAYED":
+			return "FAILED";
+		case "CLEAR_EFFECTIVE":
+			return "CLEAR";
+		case "CLEAR_EXCESSIVE":
+			return "EXCESSIVE CLEAR";
+		case "CLEAR_ULTIMATE_CHAIN":
+			return "ULTIMATE CHAIN";
+		case "CLEAR_PERFECT":
+			return "PERFECT ULTIMATE CHAIN";
 	}
 
-	return "PERFECT ULTIMATE CHAIN";
+	throw new InvalidScoreFailure(`Invalid lamp of ${clear} - Could not convert.`);
 }
 
 export function SV6CConvertDifficulty(

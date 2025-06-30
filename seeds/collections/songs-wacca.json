@@ -5063,5 +5063,86 @@
 		"id": 425,
 		"searchTerms": [],
 		"title": "Latent Kingdom"
+	},
+	{
+		"altTitles": [
+			"Null"
+		],
+		"artist": "Schwank",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "オリジナル"
+		},
+		"id": 426,
+		"searchTerms": [],
+		"title": "�"
+	},
+	{
+		"altTitles": [],
+		"artist": "SubjectLoser",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "オリジナル"
+		},
+		"id": 427,
+		"searchTerms": [],
+		"title": "egoIST"
+	},
+	{
+		"altTitles": [
+			"MIRACLE POP ADVENTURE!!!!!"
+		],
+		"artist": "DJ Genki",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "TANO*C"
+		},
+		"id": 428,
+		"searchTerms": [],
+		"title": "ミラクルポップ☆アドベンチャー!!!!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "F. Rabbeat feat. マスタード",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 429,
+		"searchTerms": [],
+		"title": "How To Make 音ゲ~曲!"
+	},
+	{
+		"altTitles": [],
+		"artist": "Mysteka",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 430,
+		"searchTerms": [],
+		"title": "Feels So Right feat. Renko"
+	},
+	{
+		"altTitles": [],
+		"artist": "Sakuzyo",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 431,
+		"searchTerms": [],
+		"title": "Distorted Fate"
+	},
+	{
+		"altTitles": [],
+		"artist": "Team Grimoire",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 432,
+		"searchTerms": [],
+		"title": "Rrhar'il"
 	}
 ]

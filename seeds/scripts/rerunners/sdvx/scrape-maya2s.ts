@@ -21,8 +21,8 @@ async function scrape(charts: SDVXChart[], songs: SDVXSong[], level: number) {
 	const html = await (await fetch(`https://sdvx.maya2silence.com/table/${level}`, {})).text();
 	const $ = cheerio.load(html);
 
-	for (const tierContainer of $(".tier_container")) {
-		const tier = tierContainer.attribs["data-tier"];
+	for (const tierBox of $(".tier_box")) {
+		const tier = tierBox.attribs["data-tier"];
 
 		// Songs under this tier are not yet rated
 		if (!tier || tier === "999") {
@@ -31,9 +31,9 @@ async function scrape(charts: SDVXChart[], songs: SDVXSong[], level: number) {
 
 		const tierText = `Tier ${MANUAL_TIERS[level]?.[tier] ?? tier}`;
 
-		for (const songInfo of $(tierContainer).find(".song_info")) {
-			const title = songInfo.attribs["data-title"] || "";
-			const artist = songInfo.attribs["data-artist"];
+		for (const chartData of $(tierBox).find(".chart_data")) {
+			const title = chartData.attribs["data-title"] || "";
+			const artist = chartData.attribs["data-artist"];
 			const song = songs.find(
 				(s) => s.artist === artist && (s.title === title || s.altTitles.includes(title))
 			);
@@ -44,7 +44,7 @@ async function scrape(charts: SDVXChart[], songs: SDVXSong[], level: number) {
 				continue;
 			}
 
-			const diff = songInfo.attribs["data-diff_type"];
+			const diff = chartData.attribs["data-diff_type"];
 			const chart = charts.find((c) => c.songID === song.id && c.difficulty === diff);
 
 			if (!chart) {

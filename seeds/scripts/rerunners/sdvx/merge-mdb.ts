@@ -160,6 +160,9 @@ const InsaneCharRebinds = {
 	魄: "♃",
 	鬥: "Ã",
 	鬆: "Ý",
+	瀑: "À",
+	疉: "Ö",
+	鑒: "₩",
 };
 
 // apply char rebinds

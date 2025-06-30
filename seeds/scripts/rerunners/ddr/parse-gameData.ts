@@ -46,7 +46,7 @@ function seriesToFlareCategory(series: number) {
 		return DDR_FLARE_CATEGORIES.enum.WHITE;
 	}
 	// Between A20 and WORLD
-	if (series > 17 && series <= 20) {
+	if (series > 17 && series <= 21) {
 		return DDR_FLARE_CATEGORIES.enum.GOLD;
 	}
 	return DDR_FLARE_CATEGORIES.enum.NONE;

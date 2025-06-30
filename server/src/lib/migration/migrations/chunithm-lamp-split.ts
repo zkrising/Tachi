@@ -213,8 +213,22 @@ const migration: Migration = {
 				};
 			},
 			async (changes) => {
+				const changesPrime = [];
+
+				for (const change of changes) {
+					const scoreExists = await db.scores.findOne({
+						scoreID: change.newScore.scoreID,
+					});
+
+					if (scoreExists) {
+						continue;
+					}
+
+					changesPrime.push(change);
+				}
+
 				await db.scores.bulkWrite(
-					changes.map((c) => ({
+					changesPrime.map((c) => ({
 						updateOne: {
 							filter: {
 								scoreID: c.oldScoreID,

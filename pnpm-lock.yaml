@@ -295,8 +295,8 @@ importers:
         specifier: ^5.6.1
         version: 5.6.1(@babel/core@7.1.0)(@types/react@17.0.13)(react-dom@17.0.2)(react@17.0.2)
       rg-stats:
-        specifier: 0.5.10
-        version: 0.5.10
+        specifier: 1.1.0
+        version: 1.1.0
       sync-fetch:
         specifier: ^0.3.1
         version: 0.3.1
@@ -635,8 +635,8 @@ importers:
         specifier: 7.3.4
         version: 7.3.4(patch_hash=vvho35r54xdabf3z6x2eo4lz7q)
       multer:
-        specifier: 1.4.5-lts.1
-        version: 1.4.5-lts.1
+        specifier: 2.0.1
+        version: 2.0.1
       node-cache:
         specifier: 5.1.2
         version: 5.1.2
@@ -659,8 +659,8 @@ importers:
         specifier: 3.1.2
         version: 3.1.2
       rg-stats:
-        specifier: 1.0.0
-        version: 1.0.0
+        specifier: 1.1.0
+        version: 1.1.0
       rimraf:
         specifier: 3.0.2
         version: 3.0.2
@@ -4960,16 +4960,6 @@ packages:
   /concat-map@0.0.1:
     resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
 
-  /concat-stream@1.6.2:
-    resolution: {integrity: sha512-27HBghJxjiZtIk3Ycvn/4kbJk/1uZuJFfuPEns6LaEvpvG1f0hTea8lilrouyo9mVc2GWdcEZ8OLoGmSADlrCw==}
-    engines: {'0': node >= 0.8}
-    dependencies:
-      buffer-from: 1.1.2
-      inherits: 2.0.4
-      readable-stream: 2.3.7
-      typedarray: 0.0.6
-    dev: false
-
   /concat-stream@2.0.0:
     resolution: {integrity: sha512-MWufYdFw53ccGjCA+Ol7XJYpAlW6/prSMzuPOTRnJGcGzuhLn4Scrz7qf6o8bROZ514ltazcIFJZevcfbo0x7A==}
     engines: {'0': node >= 6.0}
@@ -8622,7 +8612,7 @@ packages:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
     hasBin: true
     dependencies:
-      minimist: 1.2.6
+      minimist: 1.2.7
     dev: false
 
   /mkdirp@1.0.4:
@@ -8795,13 +8785,13 @@ packages:
       msgpackr-extract: 2.2.0
     dev: false
 
-  /multer@1.4.5-lts.1:
-    resolution: {integrity: sha512-ywPWvcDMeH+z9gQq5qYHCCy+ethsk4goepZ45GLD63fOu0YcNecQxi64nDs3qluZB+murG3/D4dJ7+dGctcCQQ==}
-    engines: {node: '>= 6.0.0'}
+  /multer@2.0.1:
+    resolution: {integrity: sha512-Ug8bXeTIUlxurg8xLTEskKShvcKDZALo1THEX5E41pYCD2sCVub5/kIRIGqWNoqV6szyLyQKV6mD4QUrWE5GCQ==}
+    engines: {node: '>= 10.16.0'}
     dependencies:
       append-field: 1.0.0
       busboy: 1.6.0
-      concat-stream: 1.6.2
+      concat-stream: 2.0.0
       mkdirp: 0.5.6
       object-assign: 4.1.1
       type-is: 1.6.18
@@ -10244,8 +10234,8 @@ packages:
     resolution: {integrity: sha512-V2hovdzFbOi77/WajaSMXk2OLm+xNIeQdMMuB7icj7bk6zi2F8GGAxigcnDFpJHbNyNcgyJDiP+8nOrY5cZGrA==}
     dev: false
 
-  /rg-stats@0.5.10:
-    resolution: {integrity: sha512-UZfB5PFnaiSInlcQMTYXgvMvWqd9wiHd9mQX5Ecf1VT/JJI2ycdFYJXU8lVLA6eyxYaHpx66E+HvweCIt+q4fw==}
+  /rg-stats@1.1.0:
+    resolution: {integrity: sha512-KQxSjnHXvb2B9Z+y/OwtUzStIjyXsn78c1XSF0t5L9G5UsVjyyO250eq4ih00X1WjvPRE9AtC4h38gBZEWClkw==}
     dev: false
 
   /rg-stats@1.0.0:

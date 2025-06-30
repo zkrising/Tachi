@@ -1,12 +1,15 @@
 /* eslint-disable no-await-in-loop */
 import { Command, InvalidArgumentError } from "commander";
-import { exec } from "node:child_process";
+import { execFile } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { promisify } from "node:util";
 import { ChartDocument, SongDocument } from "tachi-common";
 import { ReadCollection, WriteCollection } from "../../util";
 import { XMLParser } from "fast-xml-parser";
 import { PathLike } from "fs";
+
+const execFileAsync = promisify(execFile);
 
 const command = new Command()
 	.requiredOption("-v, --vgms <path-to-vgmstream-cli>")
@@ -101,24 +104,23 @@ const readOpt = async (
 					continue;
 				}
 
-				/* eslint-disable-next-line */
-				await new Promise<void>((resolve, reject) => {
-					exec(`${vgmsPath} -m -I ${cuePath}`, (err, stdout) => {
-						if (err) {
-							reject(new Error(`${err}`));
-						}
-						const res = JSON.parse(stdout);
-						if (res.sampleRate !== 48000) {
-							console.log(`Warning: Song #${id}'s sample rate is ${res.sampleRate}`);
-						}
-						const duration = res.numberOfSamples / res.sampleRate;
+				const { stdout } = await execFileAsync(vgmsPath, ["-m", "-I", cuePath]);
 
-						song.data.duration = Number(duration.toFixed(3));
-						console.log(`Song #${id}: ${song.data.duration}`);
+				try {
+					const res = JSON.parse(stdout);
 
-						resolve();
-					});
-				});
+					if (res.sampleRate !== 48000) {
+						console.log(`Warning: Song #${id}'s sample rate is ${res.sampleRate}Hz`);
+					}
+
+					const duration = res.numberOfSamples / res.sampleRate;
+
+					song.data.duration = Number(duration.toFixed(3));
+					console.log(`Song #${id}: ${song.data.duration}`);
+				} catch (e) {
+					console.error(`Song #${id}: Error parsing vgmstream output: ${stdout}`);
+					continue;
+				}
 			}
 		}
 	}

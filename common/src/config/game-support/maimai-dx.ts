@@ -10,6 +10,7 @@ export const MAIMAI_DX_CONF = {
 	playtypes: ["Single"],
 	songData: z.strictObject({
 		genre: z.string(),
+		duration: z.number().optional(),
 	}),
 } as const satisfies INTERNAL_GAME_CONFIG;
 
@@ -134,7 +135,20 @@ export const MAIMAI_DX_SINGLE_CONF = {
 	defaultMetric: "percent",
 	preferredDefaultEnum: "grade",
 
-	optionalMetrics: FAST_SLOW_MAXCOMBO,
+	optionalMetrics: {
+		...FAST_SLOW_MAXCOMBO,
+		percentGraph: {
+			type: "NULLABLE_GRAPH",
+			validate: p.isBetween(0, 101),
+			description:
+				"The history of the projected achievement, queried in one-second intervals.",
+		},
+		lifeGraph: {
+			type: "NULLABLE_GRAPH",
+			validate: p.isBetween(0, 999),
+			description: "Life count history, queried in one-second intervals.",
+		},
+	},
 
 	scoreRatingAlgs: {
 		rate: { description: "Rating as it's implemented in game.", formatter: NoDecimalPlace },

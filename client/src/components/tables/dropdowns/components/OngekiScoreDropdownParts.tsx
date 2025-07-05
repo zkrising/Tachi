@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Nav } from "react-bootstrap";
 import {
 	ChartDocument,
-	Difficulties,
 	PBScoreDocument,
 	ScoreData,
 	ScoreDocument,
@@ -12,7 +11,7 @@ import {
 import GekichumaiScoreChart from "components/charts/GekichumaiScoreChart";
 import useApiQuery from "components/util/query/useApiQuery";
 
-type ChartType = "Score" | "Bells" | "Life";
+type ChartType = "Score" | "Platinum" | "Bells" | "Life";
 
 export function OngekiGraphsComponent({
 	score,
@@ -28,6 +27,9 @@ export function OngekiGraphsComponent({
 		score.scoreData.optional.lifeGraph &&
 		score.scoreData.optional.totalBellCount !== null &&
 		score.scoreData.optional.totalBellCount !== undefined;
+
+	// Platinum graphs were added later so they need a separate check
+	const availablePlat = score.scoreData.optional.platinumGraph;
 
 	if (!available) {
 		return <Box message="No charts available" />;
@@ -48,6 +50,14 @@ export function OngekiGraphsComponent({
 					<SelectNav id="Score" value={graph} setValue={setGraph} disabled={!available}>
 						Score
 					</SelectNav>
+					<SelectNav
+						id="Platinum"
+						value={graph}
+						setValue={setGraph}
+						disabled={!availablePlat}
+					>
+						P-Score
+					</SelectNav>
 					<SelectNav id="Bells" value={graph} setValue={setGraph} disabled={!available}>
 						Bells
 					</SelectNav>
@@ -61,7 +71,7 @@ export function OngekiGraphsComponent({
 					type={graph}
 					scoreData={score.scoreData}
 					song={song}
-					difficulty={chart.difficulty}
+					chart={chart}
 				/>
 			</div>
 		</>
@@ -72,26 +82,30 @@ function GraphComponent({
 	type,
 	scoreData,
 	song,
-	difficulty,
+	chart,
 }: {
 	type: ChartType;
 	scoreData: ScoreData<"ongeki:Single">;
 	song: SongDocument<"ongeki">;
-	difficulty: Difficulties["ongeki:Single"];
+	chart: ChartDocument<"ongeki:Single">;
 }) {
 	const values =
 		type === "Score"
 			? scoreData.optional.scoreGraph!
 			: type === "Bells"
 			? scoreData.optional.bellGraph!
-			: scoreData.optional.lifeGraph!;
+			: type === "Life"
+			? scoreData.optional.lifeGraph!
+			: scoreData.optional.platinumGraph!;
 	return (
 		<GekichumaiScoreChart
 			height="360px"
 			mobileHeight="175px"
 			type={type}
-			totalBellCount={scoreData.optional.totalBellCount!}
-			difficulty={difficulty}
+			maximumAbsoluteValue={
+				type === "Bells" ? scoreData.optional.totalBellCount! : chart.data.maxPlatScore
+			}
+			difficulty={chart.difficulty}
 			data={[
 				{
 					id: type,

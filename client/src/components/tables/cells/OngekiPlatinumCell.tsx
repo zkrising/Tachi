@@ -1,34 +1,50 @@
 import React from "react";
-import { Difficulties, integer } from "tachi-common";
+import { FmtStars, FmtStarsCompact, integer } from "tachi-common";
+
+export function StarField({
+	stars: stars,
+	compact: compact,
+}: {
+	stars: integer;
+	compact: boolean;
+}) {
+	if (stars < 6) {
+		return <>{compact ? FmtStarsCompact(stars) : FmtStars(stars)}</>;
+	}
+	return (
+		<span
+			style={{
+				background:
+					"linear-gradient(30deg, #f0788a 5%, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a 85%)",
+				color: "transparent",
+				backgroundClip: "text",
+			}}
+		>
+			★★★★★
+		</span>
+	);
+}
 
 export default function OngekiPlatinumCell({
-	platScore: platScore,
+	platinumScore: platinumScore,
 	maxPlatScore: maxPlatScore,
-	difficulty,
+	stars: stars,
 }: {
-	platScore: integer | null | undefined;
+	platinumScore: integer;
 	maxPlatScore: integer;
-	difficulty: Difficulties["ongeki:Single"];
+	stars: number;
 }) {
-	if (difficulty !== "MASTER" && difficulty !== "LUNATIC") {
-		return <td>N/A</td>;
-	}
-
-	if (platScore === null || platScore === undefined) {
-		return <td>Unknown</td>;
-	}
+	const percentage = Math.round((platinumScore * 10000.0) / maxPlatScore) / 100.0;
 
 	return (
 		<td>
-			<strong>MAX-{maxPlatScore - platScore}</strong>
-			{platScore !== undefined && (
-				<>
-					<br />
-					<small className="text-body-secondary">
-						[{platScore}/{maxPlatScore}]
-					</small>
-				</>
-			)}
+			<div className="d-flex flex-column">
+				<strong>{percentage.toFixed(2)}%</strong>
+				<StarField stars={stars} compact={false} />
+				<small className="text-body-secondary">
+					[{platinumScore}/{maxPlatScore}]
+				</small>
+			</div>
 		</td>
 	);
 }

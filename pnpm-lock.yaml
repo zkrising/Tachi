@@ -10238,6 +10238,10 @@ packages:
     resolution: {integrity: sha512-KQxSjnHXvb2B9Z+y/OwtUzStIjyXsn78c1XSF0t5L9G5UsVjyyO250eq4ih00X1WjvPRE9AtC4h38gBZEWClkw==}
     dev: false
 
+  /rg-stats@1.0.0:
+    resolution: {integrity: sha512-Itt3OJden5riCkSY7o5whJTqK/DQNteJdQ+AXZ2upNNESOO/7JnWx+n/jJiSimR+XOE/rSggTxXLujHcE4Z0nA==}
+    dev: false
+
   /rimraf@2.4.5:
     resolution: {integrity: sha512-J5xnxTyqaiw06JjMftq7L9ouA448dw/E7dKghkP9WpKNuwmARNNg+Gk8/u5ryb9N/Yo2+z3MCwuqFK/+qPOPfQ==}
     deprecated: Rimraf versions prior to v4 are no longer supported

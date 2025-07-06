@@ -21,7 +21,9 @@ import React from "react";
 import OngekiLampCell from "components/tables/cells/OngekiLampCell";
 import OngekiPlatinumCell from "components/tables/cells/OngekiPlatinumCell";
 import CHUNITHMLampCell from "components/tables/cells/CHUNITHMLampCell";
-import { bgc, RAINBOW_EX_GRADIENT, RAINBOW_GRADIENT } from "./games/_util";
+import OngekiDamageCell from "components/tables/cells/OngekiDamageCell";
+import OngekiScoreRatingCell from "components/tables/cells/OngekiScoreRatingCell";
+import { bgc, RAINBOW_EX_GRADIENT, RAINBOW_GRADIENT, RAINBOW_SHINY_GRADIENT } from "./games/_util";
 import { BMS_14K_IMPL, BMS_7K_IMPL, PMS_IMPL } from "./games/bms-pms";
 import { IIDX_DP_IMPL, IIDX_SP_IMPL } from "./games/iidx";
 import { GPTClientImplementation } from "./types";
@@ -772,11 +774,9 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				SILVER: bgc("gray", "var(--bs-light)"),
 				GOLD: bgc("var(--bs-warning)", "var(--bs-dark)"),
 				PLATINUM: bgc("silver", "var(--bs-dark)"),
-				RAINBOW: {
-					background:
-						"linear-gradient(-45deg, #f0788a, #f48fb1, #9174c2, #79bcf2, #70a173, #f7ff99, #faca7d, #ff9d80, #f0788a)",
-					color: "var(--bs-dark)",
-				},
+				RAINBOW: RAINBOW_GRADIENT,
+				RAINBOW_SHINY: RAINBOW_SHINY_GRADIENT,
+				RAINBOW_EX: RAINBOW_EX_GRADIENT,
 			},
 		},
 		enumColours: {
@@ -799,6 +799,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				CLEAR: COLOUR_SET.green,
 				"FULL COMBO": COLOUR_SET.gold,
 				"ALL BREAK": COLOUR_SET.white,
+				"ALL BREAK+": COLOUR_SET.vibrantBlue,
 			},
 			bellLamp: {
 				NONE: COLOUR_SET.gray,
@@ -815,26 +816,32 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 		ratingSystems: [],
 		ratingAlgNameOverrides: {
 			score: {
-				rating: "Classic Rating",
+				rating: "ClassicRating",
 			},
 			session: {
-				rating: "Classic Rating",
+				naiveRating: "NaiveClassicRating",
 			},
 			profile: {
-				naiveRating: "Classic NaiveRating",
+				naiveRating: "NaiveRatingClassic",
 			},
 		},
 		scoreHeaders: [
 			[
 				"Score",
 				"Score",
-				NumericSOV(
-					(x) => x.scoreData.score * 10000 + (x.scoreData.optional.platScore ?? 0)
-				),
+				NumericSOV((x) => x.scoreData.score * 10000 + x.scoreData.platinumScore),
 			],
-			// TODO: this should be sorted by %
-			["Platinum Score", "P-Score", NumericSOV((x) => x.scoreData.optional.platScore ?? 0)],
-			["Judgements", "Hits", NumericSOV((x) => x.scoreData.score)],
+			[
+				"Platinum Score",
+				"P-Score",
+				NumericSOV((x) => x.scoreData.platinumStars * 100000 + x.scoreData.platinumScore),
+			],
+			["Judgements", "Notes", NumericSOV((x) => x.scoreData.judgements.cbreak ?? 0)],
+			[
+				"Hits",
+				"Hits",
+				NumericSOV((x) => x.scoreData.optional.damage ?? Number.MAX_SAFE_INTEGER, true),
+			],
 			[
 				"Lamp",
 				"Lamp",
@@ -852,11 +859,12 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 					colour={GetEnumColour(sc, "grade")}
 				/>
 				<OngekiPlatinumCell
-					platScore={sc.scoreData.optional.platScore}
+					platinumScore={sc.scoreData.platinumScore}
 					maxPlatScore={chart.data.maxPlatScore}
-					difficulty={chart.difficulty}
+					stars={sc.scoreData.platinumStars}
 				/>
 				<OngekiJudgementCell score={sc} />
+				<OngekiDamageCell damage={sc.scoreData.optional.damage} />
 				<OngekiLampCell
 					noteLamp={sc.scoreData.noteLamp}
 					bellLamp={sc.scoreData.bellLamp}
@@ -864,7 +872,15 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 				/>
 			</>
 		),
-		ratingCell: ({ sc, rating }) => <RatingCell score={sc} rating={rating} />,
+		ratingCell: ({ sc, rating }) => (
+			<>
+				{rating === "scoreRating" ? (
+					<OngekiScoreRatingCell score={sc} />
+				) : (
+					<RatingCell score={sc} rating={rating} />
+				)}
+			</>
+		),
 	},
 	"arcaea:Touch": ARCAEA_TOUCH_IMPL,
 	"gitadora:Dora": GITADORA_DORA_IMPL,

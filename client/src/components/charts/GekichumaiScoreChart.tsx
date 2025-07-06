@@ -107,33 +107,53 @@ const strokeColor = (
 	return `hsl(0, 0%, ${isLight ? 35 : 67}%)`;
 };
 
-const limitScoreGraph = (game: Game, data: Serie[]) => {
+const limitScoreGraph = (game: Game, data: Serie[], minval: number) => {
 	for (const val of data[0].data) {
 		if (typeof val.y !== "number") {
 			break;
 		}
-		if (game === "ongeki" && val.y < 970_000) {
-			// 969999 will be used to represent values below S
+		if (val.y < minval) {
+			// minval - 0.001 will be used to represent values below S
 			// Without this, the line would cross the bottom axis
 			// which looks very bad
-			val.y = 969_999;
-		}
-		if (game === "chunithm" && val.y < 990_000) {
-			val.y = 989_999;
-		}
-		if (game === "maimaidx" && val.y < 97) {
-			val.y = 96.9999;
+			val.y = minval - 0.001;
 		}
 	}
 	return data;
 };
 
-const bellFloor = (data: Datum[], totalBellCount: number) => {
+const scaleFloor = (data: Datum[], maximum: number | undefined) => {
+	if (maximum === undefined) {
+		return 0;
+	}
 	// Scale the chart so that it drops by 3/4, unless it's a flatline
 	const lowestValue = Number(data.filter((v) => v.y !== null).pop()?.y ?? 0);
-	return lowestValue === 0
-		? -totalBellCount
-		: clamp(-totalBellCount, Math.floor(lowestValue * 1.333), -1);
+	return lowestValue === 0 ? -maximum : clamp(-maximum, Math.floor(lowestValue * 1.333), -1);
+};
+
+const platinumTooltip = (d: Datum, starValues: number[]) => {
+	if (d.point.data.y < starValues[0]) {
+		return (
+			<>
+				{"< 1★"} @ {formatTime(d.point.data.x)}
+			</>
+		);
+	}
+	for (let i = 1; i < 6; ++i) {
+		if (d.point.data.y < starValues[i]) {
+			return (
+				<>
+					MAX{d.point.data.y} ({i < 5 ? i + 1 : "虹"}
+					{"★"}-{starValues[i] - d.point.data.y}) @ {formatTime(d.point.data.x)}
+				</>
+			);
+		}
+	}
+	return (
+		<>
+			MAX{d.point.data.y === 0 ? "" : d.point.data.y} @ {formatTime(d.point.data.x)}
+		</>
+	);
 };
 
 export default function GekichumaiScoreChart({
@@ -143,7 +163,7 @@ export default function GekichumaiScoreChart({
 	mobileWidth = width,
 	type,
 	difficulty,
-	totalBellCount,
+	maximumAbsoluteValue,
 	data,
 	game,
 	duration,
@@ -152,12 +172,12 @@ export default function GekichumaiScoreChart({
 	mobileWidth?: number | string;
 	width?: number | string;
 	height?: number | string;
-	type: "Score" | "Bells" | "Life";
+	type: "Score" | "Platinum" | "Bells" | "Life";
 	difficulty:
 		| Difficulties["ongeki:Single"]
 		| Difficulties["chunithm:Single"]
 		| Difficulties["maimaidx:Single"];
-	totalBellCount?: number;
+	maximumAbsoluteValue?: number;
 	data: Serie[];
 	game: "chunithm" | "ongeki" | "maimaidx";
 	duration: number;
@@ -183,11 +203,15 @@ export default function GekichumaiScoreChart({
 		}
 	} else if (type === "Bells") {
 		color = COLOUR_SET.vibrantYellow;
-	} else {
+	} else if (type === "Life") {
 		color = COLOUR_SET.vibrantGreen;
+	} else {
+		color = COLOUR_SET.white;
 	}
 
 	const gradientId = type === "Score" ? difficulty : type;
+
+	data.length = Math.min(data.length, duration + 1);
 
 	const commonProps: Omit<LineSvgProps, "data"> = {
 		margin: { top: 30, bottom: 50, left: 50, right: 50 },
@@ -224,21 +248,23 @@ export default function GekichumaiScoreChart({
 			component = (
 				<ResponsiveLine
 					{...commonProps}
-					data={limitScoreGraph(game, data)}
-					yScale={{ type: "linear", min: 970000, max: 1010000 }}
+					data={limitScoreGraph(game, data, 970_000)}
+					yScale={{ type: "linear", min: 970_000, max: 1010_000 }}
 					yFormat={">-,.0f"}
 					axisLeft={{
-						tickValues: [970000, 990000, 1000000, 1007500, 1010000],
+						tickValues: [970_000, 990_000, 1000_000, 1007_500, 1010_000],
 						format: getScoreYAxisNotch(game),
 					}}
-					gridYValues={[970000, 980000, 990000, 1000000, 1007500, 1010000]}
+					gridYValues={[970_000, 980_000, 990_000, 1000_000, 1007_500, 1010_000]}
 					enableGridY={true}
 					colors={strokeColor(difficulty)}
 					areaBaselineValue={970000}
 					tooltip={(d: PointTooltipProps) => (
 						<ChartTooltip>
-							{d.point.data.y === 969999 ? "< 970,000 " : d.point.data.yFormatted}@{" "}
-							{formatTime(d.point.data.x)}
+							{typeof d.point.data.y === "number" && d.point.data.y < 970_000
+								? "< 970,000 "
+								: d.point.data.yFormatted}
+							@ {formatTime(d.point.data.x)}
 						</ChartTooltip>
 					)}
 				/>
@@ -247,7 +273,7 @@ export default function GekichumaiScoreChart({
 			component = (
 				<ResponsiveLine
 					{...commonProps}
-					data={limitScoreGraph(game, data)}
+					data={limitScoreGraph(game, data, 990_000)}
 					yScale={{ type: "linear", min: 990_000, max: 1010_000 }}
 					yFormat={">-,.0f"}
 					axisLeft={{
@@ -260,8 +286,10 @@ export default function GekichumaiScoreChart({
 					areaBaselineValue={990000}
 					tooltip={(d: PointTooltipProps) => (
 						<ChartTooltip>
-							{d.point.data.y === 989_999 ? "< 990,000 " : d.point.data.yFormatted}@{" "}
-							{formatTime(d.point.data.x)}
+							{typeof d.point.data.y === "number" && d.point.data.y < 990_000
+								? "< 990,000 "
+								: d.point.data.yFormatted}
+							@ {formatTime(d.point.data.x)}
 						</ChartTooltip>
 					)}
 				/>
@@ -270,7 +298,7 @@ export default function GekichumaiScoreChart({
 			component = (
 				<ResponsiveLine
 					{...commonProps}
-					data={limitScoreGraph(game, data)}
+					data={limitScoreGraph(game, data, 97)}
 					yScale={{ type: "linear", min: 97, max: 101 }}
 					yFormat={">-,.4f"}
 					axisLeft={{
@@ -283,7 +311,9 @@ export default function GekichumaiScoreChart({
 					areaBaselineValue={97}
 					tooltip={(d: PointTooltipProps) => (
 						<ChartTooltip>
-							{d.point.data.y === 96.9999 ? "< 97% " : `${d.point.data.yFormatted}% `}
+							{typeof d.point.data.y === "number" && d.point.data.y < 97
+								? "< 97% "
+								: `${d.point.data.yFormatted}% `}
 							@ {formatTime(d.point.data.x)}
 						</ChartTooltip>
 					)}
@@ -297,14 +327,14 @@ export default function GekichumaiScoreChart({
 				data={data}
 				yScale={{
 					type: "linear",
-					min: bellFloor(data[0].data, totalBellCount!),
+					min: scaleFloor(data[0].data, maximumAbsoluteValue),
 					max: 0,
 					stacked: false,
 				}}
 				enableGridY={false}
 				axisLeft={{ format: (e: number) => Math.floor(e) === e && e }}
 				colors={strokeColor("BELLS")}
-				areaBaselineValue={bellFloor(data[0].data, totalBellCount!)}
+				areaBaselineValue={scaleFloor(data[0].data, maximumAbsoluteValue)}
 				tooltip={(d: PointTooltipProps) => (
 					<ChartTooltip>
 						MAX{d.point.data.y === 0 ? "" : d.point.data.y} @{" "}
@@ -330,6 +360,45 @@ export default function GekichumaiScoreChart({
 						{d.point.data.y}
 						{suffix} @ {formatTime(d.point.data.x)}
 					</ChartTooltip>
+				)}
+			/>
+		);
+	} else if (type === "Platinum") {
+		const mav = maximumAbsoluteValue ?? 0; // shorthand
+		const starValues = [
+			Math.floor(mav * 0.94) - mav,
+			Math.floor(mav * 0.95) - mav,
+			Math.floor(mav * 0.96) - mav,
+			Math.floor(mav * 0.97) - mav,
+			Math.floor(mav * 0.98) - mav,
+			Math.floor(mav * 0.99) - mav,
+		];
+		component = (
+			<ResponsiveLine
+				{...commonProps}
+				data={limitScoreGraph(game, data, starValues[0])}
+				yScale={{ type: "linear", min: starValues[0], max: 0 }}
+				yFormat={">-,.0f"}
+				axisLeft={{
+					tickValues: starValues,
+					format: (count: number) => {
+						if (count === starValues[5]) {
+							return "虹★";
+						}
+						for (let i = 0; i < 5; ++i) {
+							if (count === starValues[i]) {
+								return `${i + 1}★`;
+							}
+						}
+						return "Error";
+					},
+				}}
+				gridYValues={starValues}
+				enableGridY={true}
+				colors={strokeColor("LUNATIC")}
+				areaBaselineValue={starValues[0]}
+				tooltip={(d: PointTooltipProps) => (
+					<ChartTooltip>{platinumTooltip(d, starValues)}</ChartTooltip>
 				)}
 			/>
 		);

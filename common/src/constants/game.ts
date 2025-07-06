@@ -579,6 +579,7 @@ export enum ONGEKI_NOTE_LAMPS {
 	CLEAR = 1,
 	FULL_COMBO = 2,
 	ALL_BREAK = 3,
+	ALL_BREAK_PLUS = 4,
 }
 
 export enum ONGEKI_BELL_LAMPS {
@@ -612,4 +613,6 @@ export enum ONGEKI_COLOURS {
 	GOLD = 7,
 	PLATINUM = 8,
 	RAINBOW = 9,
+	RAINBOW_SHINY = 10,
+	RAINBOW_EX = 11,
 }

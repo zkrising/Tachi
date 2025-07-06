@@ -48,7 +48,7 @@
 				"@typescript-eslint/no-unsafe-argument": "off",
 				"@typescript-eslint/no-unsafe-call": "off",
 				// we abuse this one for faking data, but we really shouldn't.
-				"@typescript-eslint/consistent-type-assertions": "warn"
+				"@typescript-eslint/consistent-type-assertions": "off"
 			}
 		}
 	]

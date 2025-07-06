@@ -2,7 +2,7 @@ import { CreateBatchManualClassProvider } from "./class-handler";
 import ScoreImportFatalError from "../../../framework/score-importing/score-import-error";
 import { TachiConfig } from "lib/setup/config";
 import { p } from "prudence";
-import { GetGameConfig } from "tachi-common";
+import { GetGameConfig, GetGPTString } from "tachi-common";
 import { PR_BATCH_MANUAL } from "tachi-common/lib/schemas";
 import { IsRecord, IsValidGame, IsValidPlaytype } from "utils/misc";
 import { FormatPrError } from "utils/prudence";
@@ -126,7 +126,7 @@ export function ParseBatchManualFromObject(
 		// if classes are provided, use those as a class handler. Otherwise, we
 		// don't care.
 		classProvider: batchManual.classes
-			? CreateBatchManualClassProvider(batchManual.classes)
+			? CreateBatchManualClassProvider(GetGPTString(game, playtype), batchManual.classes)
 			: null,
 	};
 }

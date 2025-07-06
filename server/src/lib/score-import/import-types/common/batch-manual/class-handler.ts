@@ -6,9 +6,14 @@ import type { Classes, GPTString } from "tachi-common";
 
 // Note: This is tested by batch-manuals parser.test.ts.
 export function CreateBatchManualClassProvider(
+	outerGptString: GPTString,
 	classes: Partial<Record<Classes[GPTString], string | null>>
 ): ClassProvider {
 	return (gptString, userID, ratings, logger) => {
+		if (outerGptString !== gptString) {
+			return {};
+		}
+
 		const gptConfig = GetGPTConfig(gptString);
 
 		const newObj: Partial<Record<Classes[GPTString], string>> = {};

@@ -145,6 +145,8 @@ export function ResolveKaiLamp(clear: number): GetEnumValue<"sdvx:Single", "lamp
 			return "ULTIMATE CHAIN";
 		case 5:
 			return "PERFECT ULTIMATE CHAIN";
+		case 6:
+			return "MAXXIVE CLEAR";
 	}
 
 	throw new InvalidScoreFailure(`Invalid lamp of ${clear} - Could not convert.`);

@@ -40,7 +40,7 @@ export default function IIDXLampCell({
 	let cbrkCount;
 	let cbrkText;
 
-	if (sc.scoreData.optional.comboBreak) {
+	if (IsNotNullish(sc.scoreData.optional.comboBreak)) {
 		cbrkCount = sc.scoreData.optional.comboBreak;
 	} else if (
 		IsNotNullish(sc.scoreData.judgements.pgreat) &&

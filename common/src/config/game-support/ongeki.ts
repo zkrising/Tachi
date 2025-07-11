@@ -133,7 +133,7 @@ export const ONGEKI_SINGLE_CONF = {
 
 	scoreRatingAlgs: {
 		rating: {
-			description: "Technical Score-based Rating as it's implemented in bright MEMORY.",
+			description: "Technical Score-based rating as it's implemented in bright MEMORY.",
 			formatter: ToDecimalPlaces(2),
 		},
 		scoreRating: {
@@ -141,7 +141,7 @@ export const ONGEKI_SINGLE_CONF = {
 			formatter: ToDecimalPlaces(3),
 		},
 		starRating: {
-			description: "Platinum Star-based rating as it's implemented in Re:Fresh.",
+			description: "Platinum Stars-based rating as it's implemented in Re:Fresh.",
 			formatter: ToDecimalPlaces(3),
 		},
 	},

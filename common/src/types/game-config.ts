@@ -4,6 +4,7 @@ import type { MatchTypes } from "./batch-manual";
 import type {
 	ExtractClassValues,
 	FixedDifficulties,
+	ProfileRatingAlgorithmConfig,
 	RatingAlgorithmConfig,
 } from "./game-config-utils";
 import type { INTERNAL_GAME_PT_CONFIG } from "./internals";
@@ -332,7 +333,7 @@ export interface SpecificGamePTConfig<GPT extends GPTString> {
 	 * server config. By defining them here, the typesystem will enforce that you
 	 * implement them elsewhere.
 	 */
-	profileRatingAlgs: Record<ProfileRatingAlgorithms[GPT], RatingAlgorithmConfig>;
+	profileRatingAlgs: Record<ProfileRatingAlgorithms[GPT], ProfileRatingAlgorithmConfig>;
 
 	/**
 	 * What classes may a profile have attached onto it for this GPT?

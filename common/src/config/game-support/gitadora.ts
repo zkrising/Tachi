@@ -72,6 +72,7 @@ export const GITADORA_GITA_CONF = {
 		naiveSkill: {
 			description:
 				"Your best 50 skill levels added together, regardless of whether the chart is HOT or not.",
+			associatedScoreAlgs: ["skill"],
 		},
 	},
 

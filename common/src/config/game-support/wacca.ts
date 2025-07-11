@@ -97,6 +97,7 @@ export const WACCA_SINGLE_CONF = {
 	profileRatingAlgs: {
 		naiveRate: {
 			description: "A naive rating algorithm that just sums your 50 best scores.",
+			associatedScoreAlgs: ["rate"],
 		},
 	},
 	sessionRatingAlgs: {

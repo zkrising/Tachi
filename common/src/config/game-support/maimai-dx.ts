@@ -163,6 +163,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 		naiveRate: {
 			description: "A naive rating algorithm that just sums your 50 best scores.",
 			formatter: NoDecimalPlace,
+			associatedScoreAlgs: ["rate"],
 		},
 	},
 

@@ -51,16 +51,24 @@ export default function UGPTRatingsTable({ ugs }: { ugs: UserGameStats }) {
 								tooltipContent={
 									<div>
 										{gptConfig.profileRatingAlgs[k].description}
-										{k in gptConfig.scoreRatingAlgs && (
+										{(gptConfig.profileRatingAlgs[k].associatedScoreAlgs ?? [])
+											.length > 0 && (
 											<>
-												<Divider />(
-												{FormatGPTScoreRatingName(
-													ugs.game,
-													ugs.playtype,
-													k
-												)}
-												: {gptConfig.scoreRatingAlgs[k].description})
+												<Divider />
 											</>
+										)}
+										{gptConfig.profileRatingAlgs[k].associatedScoreAlgs?.map(
+											(alg) => (
+												<div>
+													(
+													{FormatGPTScoreRatingName(
+														ugs.game,
+														ugs.playtype,
+														alg
+													)}
+													: {gptConfig.scoreRatingAlgs[alg].description})
+												</div>
+											)
 										)}
 									</div>
 								}

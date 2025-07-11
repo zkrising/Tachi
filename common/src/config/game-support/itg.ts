@@ -112,10 +112,12 @@ export const ITG_STAMINA_CONF = {
 		highestBlock: {
 			description: "The highest block level this player has cleared.",
 			formatter: NoDecimalPlace,
+			associatedScoreAlgs: ["blockRating"],
 		},
 		fastest32: {
 			description: "The fastest BPM this user has streamed 32 unbroken measures at.",
 			formatter: NoDecimalPlace,
+			associatedScoreAlgs: ["fastest32"],
 		},
 	},
 

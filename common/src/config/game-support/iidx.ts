@@ -171,8 +171,11 @@ export const IIDX_SP_CONF = {
 	},
 
 	profileRatingAlgs: {
-		ktLampRating: { description: `An average of your best 20 ktLampRatings.` },
-		BPI: { description: `An average of your best 20 BPIs.` },
+		ktLampRating: {
+			description: `An average of your best 20 ktLampRatings.`,
+			associatedScoreAlgs: ["ktLampRating"],
+		},
+		BPI: { description: `An average of your best 20 BPIs.`, associatedScoreAlgs: ["BPI"] },
 	},
 	sessionRatingAlgs: {
 		ktLampRating: { description: `An average of the best 10 ktLampRatings this session.` },

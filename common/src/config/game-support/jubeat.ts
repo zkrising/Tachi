@@ -79,10 +79,12 @@ export const JUBEAT_SINGLE_CONF = {
 		jubility: {
 			description:
 				"Your profile jubility. This takes your best 30 scores on PICK UP songs, and your best 30 elsewhere.",
+			associatedScoreAlgs: ["jubility"],
 		},
 		naiveJubility: {
 			description:
 				"A naive version of jubility which just adds together your best 60 scores.",
+			associatedScoreAlgs: ["jubility"],
 		},
 	},
 

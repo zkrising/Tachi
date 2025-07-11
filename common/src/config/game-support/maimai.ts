@@ -113,6 +113,7 @@ export const MAIMAI_SINGLE_CONF = {
 			description:
 				"An average of your 30 best ratings. This is different from the rating in-game, as that is song-based and takes into account recent scores.",
 			formatter: ToDecimalPlaces(2),
+			associatedScoreAlgs: ["rate"],
 		},
 	},
 

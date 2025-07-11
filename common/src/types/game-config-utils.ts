@@ -15,6 +15,14 @@ export interface RatingAlgorithmConfig {
 	formatter?: (value: number) => string;
 }
 
+export interface ProfileRatingAlgorithmConfig extends RatingAlgorithmConfig {
+	/**
+	 * Which score rating algorithms should be mentioned in the footnote
+	 * of this algorithm's description?
+	 */
+	associatedScoreAlgs: ReadonlyArray<string>;
+}
+
 export interface ClassInfo<ClassID extends string> {
 	display: string;
 	id: ClassID;

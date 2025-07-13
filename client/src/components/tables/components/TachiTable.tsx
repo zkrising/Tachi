@@ -211,7 +211,7 @@ export default function TachiTable<D>({
 					)}
 				</div>
 				<div className="col-lg-4 ms-auto d-flex justify-content-center justify-content-lg-end">
-					{dataset.length > 10 && !noBottomDisplayPager && (
+					{dataset.length > ztable.pageLen && !noBottomDisplayPager && (
 						<div className="btn-group">
 							<Button
 								variant="secondary"

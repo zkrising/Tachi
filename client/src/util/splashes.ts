@@ -127,6 +127,7 @@ export const loggedInSplashes = [
 	"You're trolling?",
 	"We teach the users how to cook a full English Breakfast.",
 	"95% Faster according to internal testing",
+	"How about you 'tachi' some buttons and get good at the video game?",
 ];
 
 const curTime = new Date();

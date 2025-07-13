@@ -311,6 +311,7 @@ export const BMS_7K_CONF = {
 		sieglinde: {
 			description: "The average of your best 20 sieglinde ratings.",
 			formatter: FormatSieglindeBMS,
+			associatedScoreAlgs: ["sieglinde"],
 		},
 	},
 

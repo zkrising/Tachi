@@ -133,18 +133,15 @@ export const ONGEKI_SINGLE_CONF = {
 
 	scoreRatingAlgs: {
 		rating: {
-			description:
-				"A rating value of this score, capping at +2.0 at SSS+. This is identical to the system used in bright MEMORY and earlier versions.",
+			description: "Technical Score-based rating as it's implemented in bright MEMORY.",
 			formatter: ToDecimalPlaces(2),
 		},
 		scoreRating: {
-			description:
-				"A rating value of this score, capping at +2.7 at 1,010,000. This is identical to the system used in Re:Fresh.",
+			description: "Technical Score-based rating as it's implemented in Re:Fresh.",
 			formatter: ToDecimalPlaces(3),
 		},
 		starRating: {
-			description:
-				"A rating value of this score, based on stars derived from Platinum Score. This is identical to the system used in Re:Fresh.",
+			description: "Platinum Stars-based rating as it's implemented in Re:Fresh.",
 			formatter: ToDecimalPlaces(3),
 		},
 	},
@@ -165,13 +162,15 @@ export const ONGEKI_SINGLE_CONF = {
 	profileRatingAlgs: {
 		naiveRating: {
 			description:
-				"The average of your best 45 classic ratings. This is a simpler variant of the rating algorithm used in bright MEMORY and earlier versions, without distinguishing between new and old charts, and without taking recent scores into account.",
+				"The average of your best 45 ClassicRatings. This is a simpler variant of the rating algorithm used in bright MEMORY and earlier versions, without distinguishing between new and old charts, and without taking recent scores into account.",
 			formatter: ToDecimalPlaces(2),
+			associatedScoreAlgs: ["rating"],
 		},
 		naiveRatingRefresh: {
 			description:
-				"A weighted sum of the average of your best 60 score ratings, and your best 50 star ratings. This is a simpler variant of the rating algorithm used in Re:Fresh, without distinguishing between new and old charts.",
+				"A weighted sum of the average of your best 60 ScoreRatings, and your best 50 StarRatings. This is a simpler variant of the rating algorithm used in Re:Fresh, without distinguishing between new and old charts.",
 			formatter: ToDecimalPlaces(3),
+			associatedScoreAlgs: ["scoreRating", "starRating"],
 		},
 	},
 

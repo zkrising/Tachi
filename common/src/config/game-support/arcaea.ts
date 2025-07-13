@@ -87,6 +87,7 @@ export const ARCAEA_TOUCH_CONF = {
 			description:
 				"The average of your best 30 potential values. This is different to in-game, as it does not take into account your recent scores in any way.",
 			formatter: ToDecimalPlaces(2),
+			associatedScoreAlgs: ["potential"],
 		},
 	},
 

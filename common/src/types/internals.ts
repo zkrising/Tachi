@@ -1,5 +1,10 @@
 import type { MatchTypes } from "./batch-manual";
-import type { ClassConfig, DifficultyConfig, RatingAlgorithmConfig } from "./game-config-utils";
+import type {
+	ClassConfig,
+	DifficultyConfig,
+	ProfileRatingAlgorithmConfig,
+	RatingAlgorithmConfig,
+} from "./game-config-utils";
 import type { ConfScoreMetric } from "./metrics";
 import type { AnyZodObject } from "zod";
 
@@ -39,7 +44,7 @@ export type INTERNAL_GAME_PT_CONFIG = Readonly<{
 
 	scoreRatingAlgs: Record<string, RatingAlgorithmConfig>;
 	sessionRatingAlgs: Record<string, RatingAlgorithmConfig>;
-	profileRatingAlgs: Record<string, RatingAlgorithmConfig>;
+	profileRatingAlgs: Record<string, ProfileRatingAlgorithmConfig>;
 
 	defaultScoreRatingAlg: string;
 	defaultSessionRatingAlg: string;

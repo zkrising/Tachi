@@ -111,6 +111,7 @@ export const PMS_CONTROLLER_CONF = {
 		sieglinde: {
 			description: "The average of your best 20 sieglinde ratings.",
 			formatter: FormatSieglindePMS,
+			associatedScoreAlgs: ["sieglinde"],
 		},
 	},
 

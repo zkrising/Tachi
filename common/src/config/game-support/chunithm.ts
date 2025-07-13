@@ -123,6 +123,7 @@ export const CHUNITHM_SINGLE_CONF = {
 		naiveRating: {
 			description: "The average of your best 50 ratings.",
 			formatter: ToDecimalPlaces(2),
+			associatedScoreAlgs: ["rating"],
 		},
 	},
 

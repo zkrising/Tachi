@@ -161,6 +161,7 @@ export const DDR_SP_CONF = {
 			description:
 				"Flare Skill as it's implemented in DDR World, taking 30 best flare points from 3 different categories: CLASSIC (DDR 1st～X3 vs 2ndMIX), WHITE (DDR(2013)～DDR A), GOLD (DDR A20～WORLD).",
 			formatter: FmtScoreNoCommas,
+			associatedScoreAlgs: ["flareSkill"],
 		},
 	},
 

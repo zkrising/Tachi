@@ -22303,6 +22303,74 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "鳳 ここな(CV.石見舞菜香)、静香(CV.長谷川育美)、カトリナ・グリーベル(CV.天城サリー)、新妻八恵(CV.長縄まりあ)、柳場ぱんだ(CV.大空直美)、流石知冴(CV.佐々木李子)「ワールドダイスター 夢のステラリウム」",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "POPS & ANIME"
+		},
+		"id": 2717,
+		"searchTerms": [
+			"sirius",
+			"sirius no kagayaki no you ni",
+			"like the brilliance of sirius"
+		],
+		"title": "シリウスの輝きのように"
+	},
+	{
+		"altTitles": [],
+		"artist": "静香(CV.長谷川育美)「ワールドダイスター 夢のステラリウム」",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "POPS & ANIME"
+		},
+		"id": 2718,
+		"searchTerms": [],
+		"title": "I Wanna"
+	},
+	{
+		"altTitles": [],
+		"artist": "柳場ぱんだ(CV:大空直美)、与那国緋花里(CV:下地紫野)「ワールドダイスター 夢のステラリウム」",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "POPS & ANIME"
+		},
+		"id": 2719,
+		"searchTerms": [
+			"kakumei dance",
+			"revolution dance"
+		],
+		"title": "革命ダンス"
+	},
+	{
+		"altTitles": [],
+		"artist": "原口沙輔 feat.重音テト",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "niconico"
+		},
+		"id": 2720,
+		"searchTerms": [
+			"igaku",
+			"medicine"
+		],
+		"title": "イガク"
+	},
+	{
+		"altTitles": [],
+		"artist": "てにをは",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "niconico"
+		},
+		"id": 2721,
+		"searchTerms": [
+			"zamuza",
+			"samsa"
+		],
+		"title": "ザムザ"
+	},
+	{
+		"altTitles": [],
 		"artist": "南ノ南 feat.9Lana",
 		"data": {
 			"displayVersion": "CHUNITHM VERSE",
@@ -22455,6 +22523,47 @@
 		"id": 2739,
 		"searchTerms": [],
 		"title": "Aether Crest: Celestial"
+	},
+	{
+		"altTitles": [],
+		"artist": "歌：V.I.P 作詞：廉　作曲：廉 「神椿市協奏中。」",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "niconico"
+		},
+		"id": 2740,
+		"searchTerms": [
+			"Moonlight",
+			"Gekkou"
+		],
+		"title": "月光"
+	},
+	{
+		"altTitles": [],
+		"artist": "歌：可不 作詞：MIMI　作曲：MIMI 「神椿市協奏中。」",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "niconico"
+		},
+		"id": 2741,
+		"searchTerms": [
+			"Yurikago"
+		],
+		"title": "ゆりかご"
+	},
+	{
+		"altTitles": [],
+		"artist": "plastic feat. サキト",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "VARIETY"
+		},
+		"id": 2743,
+		"searchTerms": [
+			"Hitsugi to Futago",
+			"Coffin and Twins"
+		],
+		"title": "ひつぎとふたご"
 	},
 	{
 		"altTitles": [],
@@ -22627,6 +22736,62 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "DECO*27",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "niconico"
+		},
+		"id": 2758,
+		"searchTerms": [
+			"rabbit hole"
+		],
+		"title": "ラビットホール"
+	},
+	{
+		"altTitles": [],
+		"artist": "DECO*27",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "niconico"
+		},
+		"id": 2759,
+		"searchTerms": [
+			"aitai seijin",
+			"aitai-lians"
+		],
+		"title": "あいたい星人"
+	},
+	{
+		"altTitles": [],
+		"artist": "DECO*27",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "niconico"
+		},
+		"id": 2760,
+		"searchTerms": [
+			"hao"
+		],
+		"title": "ハオ"
+	},
+	{
+		"altTitles": [],
+		"artist": "隣の庭は青い(庭師+Aoi)",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "ゲキマイ"
+		},
+		"id": 2763,
+		"searchTerms": [
+			"Gravekeeper",
+			"Gravekeeper of the Dead Tree",
+			"hakamori",
+			"mukurojuu no hakamori"
+		],
+		"title": "躯樹の墓守"
+	},
+	{
+		"altTitles": [],
 		"artist": "Yu-dachi",
 		"data": {
 			"displayVersion": "CHUNITHM VERSE",
@@ -22676,6 +22841,148 @@
 		"id": 2767,
 		"searchTerms": [],
 		"title": "HeinousЯeaper"
+	},
+	{
+		"altTitles": [],
+		"artist": "BlackY VS 大国奏音",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "ORIGINAL"
+		},
+		"id": 2768,
+		"searchTerms": [],
+		"title": "MegiddØ"
+	},
+	{
+		"altTitles": [],
+		"artist": "舞ヶ原シンセ研究会",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "イロドリミドリ"
+		},
+		"id": 2769,
+		"searchTerms": [],
+		"title": "We Are Us(IOSYS TRAX Remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "永田泰之",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "VARIETY"
+		},
+		"id": 2771,
+		"searchTerms": [
+			"evening in heiankyo stargazer",
+			"yoi no heiankyo stargazer"
+		],
+		"title": "宵の平安京 Stargazer"
+	},
+	{
+		"altTitles": [],
+		"artist": "富田美憂「デート・ア・ライブ」",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "POPS & ANIME"
+		},
+		"id": 2776,
+		"searchTerms": [],
+		"title": "Paradoxes"
+	},
+	{
+		"altTitles": [],
+		"artist": "作詞、Vocal：癒月 作編曲：dai",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "POPS & ANIME"
+		},
+		"id": 2779,
+		"searchTerms": [],
+		"title": "you (Vocal)"
+	},
+	{
+		"altTitles": [],
+		"artist": "403",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "VARIETY"
+		},
+		"id": 2780,
+		"searchTerms": [],
+		"title": "Southern Cross"
+	},
+	{
+		"altTitles": [],
+		"artist": "IOSYS TRAX",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "ゲキマイ"
+		},
+		"id": 2782,
+		"searchTerms": [],
+		"title": "BOUNCE & DANCE"
+	},
+	{
+		"altTitles": [],
+		"artist": "削除",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "ゲキマイ"
+		},
+		"id": 2783,
+		"searchTerms": [],
+		"title": "7thSense"
+	},
+	{
+		"altTitles": [],
+		"artist": "owl＊tree",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "ゲキマイ"
+		},
+		"id": 2784,
+		"searchTerms": [
+			"Desperate"
+		],
+		"title": "デスパレイト"
+	},
+	{
+		"altTitles": [],
+		"artist": "Laur",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "ゲキマイ"
+		},
+		"id": 2785,
+		"searchTerms": [],
+		"title": "Swift Swing"
+	},
+	{
+		"altTitles": [],
+		"artist": "ビートまりお×まろん",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "東方Project"
+		},
+		"id": 2787,
+		"searchTerms": [
+			"super last brutal sister flandre s",
+			"super flandre s",
+			"cho saishuu kichiku imouto flandre s",
+			"super devil sister flandre s"
+		],
+		"title": "超最終鬼畜妹フランドール・S"
+	},
+	{
+		"altTitles": [],
+		"artist": "ビートまりお",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "東方Project"
+		},
+		"id": 2792,
+		"searchTerms": [],
+		"title": "Help me, ERINNNNNN!!"
 	},
 	{
 		"altTitles": [],
@@ -22755,6 +23062,63 @@
 			"entei no gray euchronia"
 		],
 		"title": "淵底のグレイ・ユークロニア"
+	},
+	{
+		"altTitles": [],
+		"artist": "ビートまりお",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "VARIETY"
+		},
+		"id": 2801,
+		"searchTerms": [],
+		"title": "Destined Marionette"
+	},
+	{
+		"altTitles": [],
+		"artist": "Acotto vs Potwi",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "ORIGINAL"
+		},
+		"id": 2802,
+		"searchTerms": [],
+		"title": "Crossmythos Rhapsodia"
+	},
+	{
+		"altTitles": [],
+		"artist": "Shade feat.仲村芽衣子",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "POPS & ANIME"
+		},
+		"id": 2803,
+		"searchTerms": [],
+		"title": "Running to the straight ver1.01"
+	},
+	{
+		"altTitles": [],
+		"artist": "-45",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "VARIETY"
+		},
+		"id": 2804,
+		"searchTerms": [
+			"Aci-L"
+		],
+		"title": "A c i - L"
+	},
+	{
+		"altTitles": [],
+		"artist": "ああああ",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "ゲキマイ"
+		},
+		"id": 2805,
+		"searchTerms": [],
+		"title": "Galaxy Blaster"
 	},
 	{
 		"altTitles": [],

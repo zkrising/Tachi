@@ -211,7 +211,7 @@ export default function GekichumaiScoreChart({
 
 	const gradientId = type === "Score" ? difficulty : type;
 
-	data.length = Math.min(data.length, duration + 1);
+	data[0].data.length = Math.min(data[0].data.length, duration + 1);
 
 	const commonProps: Omit<LineSvgProps, "data"> = {
 		margin: { top: 30, bottom: 50, left: 50, right: 50 },
@@ -262,8 +262,8 @@ export default function GekichumaiScoreChart({
 					tooltip={(d: PointTooltipProps) => (
 						<ChartTooltip>
 							{typeof d.point.data.y === "number" && d.point.data.y < 970_000
-								? "< 970,000 "
-								: d.point.data.yFormatted}
+								? "< 970,000"
+								: d.point.data.yFormatted}{" "}
 							@ {formatTime(d.point.data.x)}
 						</ChartTooltip>
 					)}
@@ -287,8 +287,8 @@ export default function GekichumaiScoreChart({
 					tooltip={(d: PointTooltipProps) => (
 						<ChartTooltip>
 							{typeof d.point.data.y === "number" && d.point.data.y < 990_000
-								? "< 990,000 "
-								: d.point.data.yFormatted}
+								? "< 990,000"
+								: d.point.data.yFormatted}{" "}
 							@ {formatTime(d.point.data.x)}
 						</ChartTooltip>
 					)}

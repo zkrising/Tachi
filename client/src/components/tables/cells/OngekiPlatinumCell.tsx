@@ -34,12 +34,19 @@ export default function OngekiPlatinumCell({
 	maxPlatScore: integer;
 	stars: number;
 }) {
-	const percentage = Math.round((platinumScore * 10000.0) / maxPlatScore) / 100.0;
+	const percentage = (platinumScore / maxPlatScore) * 100;
 
 	return (
 		<td>
 			<div className="d-flex flex-column">
-				<strong>{percentage.toFixed(2)}%</strong>
+				<strong>
+					{percentage.toLocaleString("en-US", {
+						minimumFractionDigits: 2,
+						maximumFractionDigits: 2,
+						roundingMode: "trunc",
+					} as Intl.NumberFormatOptions)}
+					%
+				</strong>
 				<StarField stars={stars} compact={false} />
 				<small className="text-body-secondary">
 					[{platinumScore}/{maxPlatScore}]

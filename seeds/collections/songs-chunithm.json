@@ -22526,6 +22526,47 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "歌：V.I.P 作詞：廉　作曲：廉 「神椿市協奏中。」",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "niconico"
+		},
+		"id": 2740,
+		"searchTerms": [
+			"Moonlight",
+			"Gekkou"
+		],
+		"title": "月光"
+	},
+	{
+		"altTitles": [],
+		"artist": "歌：可不 作詞：MIMI　作曲：MIMI 「神椿市協奏中。」",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "niconico"
+		},
+		"id": 2741,
+		"searchTerms": [
+			"Yurikago"
+		],
+		"title": "ゆりかご"
+	},
+	{
+		"altTitles": [],
+		"artist": "plastic feat. サキト",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "VARIETY"
+		},
+		"id": 2743,
+		"searchTerms": [
+			"Hitsugi to Futago",
+			"Coffin and Twins"
+		],
+		"title": "ひつぎとふたご"
+	},
+	{
+		"altTitles": [],
 		"artist": "MintJam vs Masahiro \"Godspeed\" Aoki",
 		"data": {
 			"displayVersion": "CHUNITHM VERSE",
@@ -22803,6 +22844,17 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "BlackY VS 大国奏音",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "ORIGINAL"
+		},
+		"id": 2768,
+		"searchTerms": [],
+		"title": "MegiddØ"
+	},
+	{
+		"altTitles": [],
 		"artist": "舞ヶ原シンセ研究会",
 		"data": {
 			"displayVersion": "CHUNITHM VERSE",
@@ -22825,6 +22877,85 @@
 			"yoi no heiankyo stargazer"
 		],
 		"title": "宵の平安京 Stargazer"
+	},
+	{
+		"altTitles": [],
+		"artist": "富田美憂「デート・ア・ライブ」",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "POPS & ANIME"
+		},
+		"id": 2776,
+		"searchTerms": [],
+		"title": "Paradoxes"
+	},
+	{
+		"altTitles": [],
+		"artist": "作詞、Vocal：癒月 作編曲：dai",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "POPS & ANIME"
+		},
+		"id": 2779,
+		"searchTerms": [],
+		"title": "you (Vocal)"
+	},
+	{
+		"altTitles": [],
+		"artist": "403",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "VARIETY"
+		},
+		"id": 2780,
+		"searchTerms": [],
+		"title": "Southern Cross"
+	},
+	{
+		"altTitles": [],
+		"artist": "IOSYS TRAX",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "ゲキマイ"
+		},
+		"id": 2782,
+		"searchTerms": [],
+		"title": "BOUNCE & DANCE"
+	},
+	{
+		"altTitles": [],
+		"artist": "削除",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "ゲキマイ"
+		},
+		"id": 2783,
+		"searchTerms": [],
+		"title": "7thSense"
+	},
+	{
+		"altTitles": [],
+		"artist": "owl＊tree",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "ゲキマイ"
+		},
+		"id": 2784,
+		"searchTerms": [
+			"Desperate"
+		],
+		"title": "デスパレイト"
+	},
+	{
+		"altTitles": [],
+		"artist": "Laur",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "ゲキマイ"
+		},
+		"id": 2785,
+		"searchTerms": [],
+		"title": "Swift Swing"
 	},
 	{
 		"altTitles": [],
@@ -22942,6 +23073,52 @@
 		"id": 2801,
 		"searchTerms": [],
 		"title": "Destined Marionette"
+	},
+	{
+		"altTitles": [],
+		"artist": "Acotto vs Potwi",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "ORIGINAL"
+		},
+		"id": 2802,
+		"searchTerms": [],
+		"title": "Crossmythos Rhapsodia"
+	},
+	{
+		"altTitles": [],
+		"artist": "Shade feat.仲村芽衣子",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "POPS & ANIME"
+		},
+		"id": 2803,
+		"searchTerms": [],
+		"title": "Running to the straight ver1.01"
+	},
+	{
+		"altTitles": [],
+		"artist": "-45",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "VARIETY"
+		},
+		"id": 2804,
+		"searchTerms": [
+			"Aci-L"
+		],
+		"title": "A c i - L"
+	},
+	{
+		"altTitles": [],
+		"artist": "ああああ",
+		"data": {
+			"displayVersion": "CHUNITHM VERSE",
+			"genre": "ゲキマイ"
+		},
+		"id": 2805,
+		"searchTerms": [],
+		"title": "Galaxy Blaster"
 	},
 	{
 		"altTitles": [],

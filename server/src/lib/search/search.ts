@@ -40,6 +40,11 @@ const SEARCH_CONTROLS = {
 	folders: { keys: ["title", "searchTerms"], primary: "folderID" },
 } satisfies Partial<Record<keyof typeof db, SearchControls>>;
 
+interface SearchData {
+	primaryKey: number | string;
+	searchKey: string;
+}
+
 /**
  * Perform a $text index search on a collection.
  *
@@ -63,46 +68,78 @@ export async function SearchCollection<T extends object>(
 	// abysmal. I'm sorry. The performance is fine. I think.
 	const data = (await collection.find(existingMatch, { projection })) as Array<any>;
 
-	const pkeys: Array<string> = [];
+	// instead of creating different AsyncFzf instances for each search control, we instead
+	// pool everything into the same instance. this ensures that all search controls are weighted
+	// equally, avoiding the case where bad results are included because all values for that search
+	// control are quite bad.
+	const searchData: Array<SearchData> = [];
+
+	for (const key of controls.keys) {
+		searchData.push(
+			...data
+				.filter((d) => d[key])
+				.flatMap<SearchData>((d) => {
+					// handles stuff like searchTerms or altTitles being an array
+					if (Array.isArray(d[key])) {
+						return d[key].map((k: any) => ({
+							primaryKey: d[controls.primary],
+							searchKey: k.toString(),
+						}));
+					}
+
+					return [
+						{
+							primaryKey: d[controls.primary],
+							searchKey: d[key].toString(),
+						},
+					];
+				})
+		);
+	}
+
+	// we don't use fzf's limit since our best results may include duplicates,
+	// e.g. "gravekeeper" might match both the search terms "Gravekeeper" and
+	// "Gravekeeper of the Dead Tree" from the same song. The library doesn't do
+	// anything special with the option anyways; it still runs through all results
+	// but simply remove excess items before returning it to us.
+	const fzf = new AsyncFzf(searchData, {
+		selector: (item) => item.searchKey,
+		sort: true,
+	});
+	let results = await fzf.find(search);
+
+	// filter out anything far from the best match
+	// 30 was chosen arbitrarily :)
+	const max = results[0]?.score ?? 0;
+
+	results = results.filter((r) => r.score >= max - 30);
+
+	const pkeys: Set<number | string> = new Set();
 	const scores: Record<string, number> = {};
 
-	// extremely slow, extremely inefficent, but whatever.
-	// we'll live.
-	await Promise.all(
-		controls.keys.map(async (key) => {
-			const fzf = new AsyncFzf(
-				data.filter((e) => e[key]),
-				{
-					selector: (item) => item[key].toString(),
-					limit,
-				}
-			);
+	for (const res of results) {
+		const pkey = res.item.primaryKey;
+		const existingScore = scores[pkey];
 
-			let results = await fzf.find(search);
+		pkeys.add(pkey);
 
-			// filter out anything far from the best match
-			// 30 was chosen arbitrarily :)
-			const max = results[0]?.score ?? 0;
+		if (!existingScore || res.score > existingScore) {
+			scores[pkey] = res.score;
+		}
 
-			results = results.filter((e) => e.score >= max - 30);
-
-			for (const res of results) {
-				const pkey = res.item[controls.primary];
-
-				pkeys.push(pkey);
-
-				const existingScore = scores[pkey];
-
-				if (!existingScore || existingScore < res.score) {
-					scores[pkey] = res.score;
-				}
-			}
-		})
-	);
+		if (pkeys.size > limit) {
+			break;
+		}
+	}
 
 	const documents: Array<any> = await (collection as ICollection).find({
-		[controls.primary]: { $in: pkeys },
+		[controls.primary]: { $in: Array.from(pkeys) },
 	});
+
+	// however, the results we get back from MongoDB are unordered, so we have to sort again.
+	documents.sort(
+		(a, b) => (scores[b[controls.primary]] ?? 0) - (scores[a[controls.primary]] ?? 0)
+	);
 
 	for (const doc of documents) {
 		doc.__textScore = scores[doc[controls.primary]] ?? 0;
@@ -139,7 +176,7 @@ export async function SearchSpecificGameSongsAndCharts(
 		chartQuery.playtype = playtype;
 	}
 
-	const charts = (await db.anyCharts[game].find(chartQuery, { limit })) as Array<ChartDocument>;
+	const charts = (await db.anyCharts[game].find(chartQuery)) as Array<ChartDocument>;
 
 	return { songs, charts };
 }
@@ -163,7 +200,7 @@ export async function SearchGlobalGameSongsAndCharts(
 		chartQuery.playtype = playtype;
 	}
 
-	const charts = (await db.anyCharts[game].find(chartQuery, { limit })) as unknown as Array<
+	const charts = (await db.anyCharts[game].find(chartQuery)) as unknown as Array<
 		ChartDocument & { __playcount: integer }
 	>;
 

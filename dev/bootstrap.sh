@@ -37,8 +37,8 @@ function mvExampleFiles {
 }
 
 function selfSignHTTPS {
-	if [ -e server/cert/key.pem ] && [ -e server/cert/cert.pem ]; then
-		echo "HTTPS Certificates for local-dev server already exists."
+	if [ -e server/cert/key.pem ] && [ -e server/cert/cert.pem ] && openssl x509 -checkend 0 -noout -in server/cert/cert.pem; then
+		echo "HTTPS Certificates for local-dev server already exists and has not expired."
 		return 0
 	fi
 

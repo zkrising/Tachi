@@ -22,21 +22,26 @@ function setupShell {
 function mvExampleFiles {
 	echo "Moving example config files into usable places..."
 
-	cp client/example/.env client/.env
+	cp --update=none client/example/.env client/.env
 
-	cp server/example/conf.json5 server/conf.json5
-	cp server/example/.env server/.env
+	cp --update=none server/example/conf.json5 server/conf.json5
+	cp --update=none server/example/.env server/.env
 
 	mkdir -p server/local-cdn
-	cp -r server/example/default-cdn-contents/* server/local-cdn
+	cp -r --update=none server/example/default-cdn-contents/* server/local-cdn
 
-	cp bot/example/conf.json5 bot/conf.json5
-	cp bot/example/example.env bot/.env
+	cp --update=none bot/example/conf.json5 bot/conf.json5
+	cp --update=none bot/example/example.env bot/.env
 
 	echo "Moved!"
 }
 
 function selfSignHTTPS {
+	if [ -e server/cert/key.pem ] && [ -e server/cert/cert.pem ] && openssl x509 -checkend 0 -noout -in server/cert/cert.pem; then
+		echo "HTTPS Certificates for local-dev server already exists and has not expired."
+		return 0
+	fi
+
 	echo "Self-Signing HTTPS Certificates for local-dev server..."
 
 	# This is for dev servers only! You should use this to
@@ -96,18 +101,18 @@ function syncDatabaseWithSeeds {
 
 # always setup the shell
 setupShell
+mvExampleFiles
+selfSignHTTPS
+pnpmInstall
+installLocalDebs
 
 if [ -e BOOTSTRAP_OK ]; then
 	echo "Already bootstrapped."
 	exit 0
 fi
 
-mvExampleFiles
-selfSignHTTPS
-pnpmInstall
 setIndexes
 syncDatabaseWithSeeds
-installLocalDebs
 
 echo "Bootstrap Complete."
 
@@ -118,6 +123,6 @@ The existence of this file stops Tachi from bootstrapping again.
 There's nothing harmful about this -- you can bootstrap as much as you want!
 We just don't want to necessarily bootstrap *each* time we boot Tachi.
 
-To bootstrap again (incase you think something has gone wrong)
-Delete this file and re-run npm start.
+To bootstrap again (in case you think something has gone wrong)
+Delete this file and re-run ./dev/bootstrap.sh
 EOF

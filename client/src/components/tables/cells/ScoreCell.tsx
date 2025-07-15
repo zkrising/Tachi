@@ -8,7 +8,7 @@ export default function ScoreCell({
 	colour,
 	grade,
 	percent,
-	percentDp = 4,
+	percentDp = 2,
 	scoreRenderFn,
 }: {
 	score?: integer;

@@ -27625,5 +27625,223 @@
 		"id": 2465,
 		"searchTerms": [],
 		"title": "onslaught"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"Cuvelia\"",
+		"data": {
+			"displayVersion": "32",
+			"genre": "ANTHEM"
+		},
+		"id": 2466,
+		"searchTerms": [
+			"Cantata of Angels"
+		],
+		"title": "天使のカンタータ -Cantata of Angels-"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"ZAQUVA\"",
+		"data": {
+			"displayVersion": "32",
+			"genre": "VARIABLE ORIENTAL CORE"
+		},
+		"id": 2467,
+		"searchTerms": [],
+		"title": "Without Heaven"
+	},
+	{
+		"altTitles": [],
+		"artist": "月乃 ＆ BEMANI Sound Team \"劇団レコード\"",
+		"data": {
+			"displayVersion": "32",
+			"genre": "AOHARU MELODY"
+		},
+		"id": 2468,
+		"searchTerms": [
+			"Haruiro Melody"
+		],
+		"title": "ハルイロメロディー"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"めめめ\"",
+		"data": {
+			"displayVersion": "32",
+			"genre": "MULTIGENRE"
+		},
+		"id": 2469,
+		"searchTerms": [
+			"Slumber Party"
+		],
+		"title": "Slumber☆Party"
+	},
+	{
+		"altTitles": [],
+		"artist": "Vandalusia改",
+		"data": {
+			"displayVersion": "32",
+			"genre": "CYBER FLAMENCO"
+		},
+		"id": 2470,
+		"searchTerms": [],
+		"title": "hora de verdad"
+	},
+	{
+		"altTitles": [],
+		"artist": "Maozon",
+		"data": {
+			"displayVersion": "32",
+			"genre": "UPLIFTING TRANCE"
+		},
+		"id": 2471,
+		"searchTerms": [],
+		"title": "Constellation"
+	},
+	{
+		"altTitles": [],
+		"artist": "Nhato",
+		"data": {
+			"displayVersion": "32",
+			"genre": "8-BIT MIXTURE"
+		},
+		"id": 2472,
+		"searchTerms": [
+			"Kiminosekai"
+		],
+		"title": "きみのせかい"
+	},
+	{
+		"altTitles": [],
+		"artist": "Tatsunoshin",
+		"data": {
+			"displayVersion": "32",
+			"genre": "NEO HARD RENAISSANCE"
+		},
+		"id": 2473,
+		"searchTerms": [],
+		"title": "God Mind"
+	},
+	{
+		"altTitles": [],
+		"artist": "REMO-CON",
+		"data": {
+			"displayVersion": "32",
+			"genre": "HARD DANCE"
+		},
+		"id": 2474,
+		"searchTerms": [],
+		"title": "Mid-Corner (Magic Maker)"
+	},
+	{
+		"altTitles": [],
+		"artist": "Hommarju",
+		"data": {
+			"displayVersion": "32",
+			"genre": "NEORAVE"
+		},
+		"id": 2475,
+		"searchTerms": [],
+		"title": "Show Me All Your Love"
+	},
+	{
+		"altTitles": [],
+		"artist": "豚乙女×BEMANI Sound Team \"PON\"",
+		"data": {
+			"displayVersion": "32",
+			"genre": "HARD ORIENTAL"
+		},
+		"id": 2476,
+		"searchTerms": [
+			"DANMAKU SHINKOU"
+		],
+		"title": "弾幕信仰"
+	},
+	{
+		"altTitles": [],
+		"artist": "Amateras Records vs BEMANI Sound Team \"TATSUYA\" feat. Miko",
+		"data": {
+			"displayVersion": "32",
+			"genre": "GENSOU FULLON"
+		},
+		"id": 2477,
+		"searchTerms": [],
+		"title": "SUPER HEROINE!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "Blacklolita",
+		"data": {
+			"displayVersion": "32",
+			"genre": "HARD DANCE"
+		},
+		"id": 2478,
+		"searchTerms": [],
+		"title": "FlyAway"
+	},
+	{
+		"altTitles": [],
+		"artist": "ここなつ2.0",
+		"data": {
+			"displayVersion": "32",
+			"genre": "SYNTHWAVE POP"
+		},
+		"id": 2479,
+		"searchTerms": [
+			"Romancing Escape"
+		],
+		"title": "ロマンシングエスケープ"
+	},
+	{
+		"altTitles": [],
+		"artist": "Yuta Imai",
+		"data": {
+			"displayVersion": "32",
+			"genre": "H4P9Y H@RI>C0RE"
+		},
+		"id": 2480,
+		"searchTerms": [
+			"SUGAR RUSH"
+		],
+		"title": "SµG@R RU$#"
+	},
+	{
+		"altTitles": [],
+		"artist": "TORIENA",
+		"data": {
+			"displayVersion": "32",
+			"genre": "HARDCORE TECHNO"
+		},
+		"id": 2481,
+		"searchTerms": [
+			"DREAMCHU"
+		],
+		"title": "ドリムチウ"
+	},
+	{
+		"altTitles": [],
+		"artist": "DECO*27",
+		"data": {
+			"displayVersion": "32",
+			"genre": "J-POP・VOCALOID"
+		},
+		"id": 2482,
+		"searchTerms": [
+			"hao"
+		],
+		"title": "ハオ"
+	},
+	{
+		"altTitles": [],
+		"artist": "サツキ feat.初音ミク、重音テト",
+		"data": {
+			"displayVersion": "32",
+			"genre": "ボカロ"
+		},
+		"id": 2483,
+		"searchTerms": [
+			"Obsolete Meat"
+		],
+		"title": "オブソミート"
 	}
 ]

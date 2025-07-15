@@ -466,6 +466,7 @@ export const GPT_CLIENT_IMPLEMENTATIONS: GPTClientImplementations = {
 					colour={GetEnumColour(sc, "grade")}
 					grade={sc.scoreData.grade}
 					percent={sc.scoreData.percent}
+					percentDp={4}
 				/>
 				<MaimaiDXJudgementCell score={sc} />
 				<LampCell lamp={sc.scoreData.lamp} colour={GetEnumColour(sc, "lamp")} />

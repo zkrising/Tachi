@@ -53,8 +53,9 @@ export default function DifficultyCell({
 
 	const gptImpl = GPT_CLIENT_IMPLEMENTATIONS[GetGPTString(game, chart.playtype)];
 
-	if (game === "iidx") {
+	if (game === "iidx" || game === "maimaidx") {
 		// IIDX stuff should always be in the form SPA/SPL to save space.
+		// For the same reason, maimai DX stuff should be using (DX) EXP/MAS/Re:MAS.
 		// All players know what this means.
 		// eslint-disable-next-line no-param-reassign
 		alwaysShort = true;

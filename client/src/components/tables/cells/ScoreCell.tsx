@@ -8,10 +8,12 @@ export default function ScoreCell({
 	colour,
 	grade,
 	percent,
+	percentDp = 2,
 	scoreRenderFn,
 }: {
 	score?: integer;
 	percent: number;
+	percentDp?: integer;
 	grade: string;
 	colour: string;
 	showScore?: boolean;
@@ -25,7 +27,7 @@ export default function ScoreCell({
 		>
 			<strong>{grade}</strong>
 			<br />
-			{`${ToFixedFloor(percent, 2)}%`}
+			{`${ToFixedFloor(percent, percentDp)}%`}
 			{score !== undefined && (
 				<>
 					<br />

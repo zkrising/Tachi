@@ -89,7 +89,7 @@
 		"mkdirp": "1.0.4",
 		"mongodb": "3.6.3",
 		"monk": "7.3.4",
-		"multer": "2.0.1",
+		"multer": "2.0.2",
 		"node-cache": "5.1.2",
 		"node-fetch": "2.6.7",
 		"node-html-parser": "^5.3.3",

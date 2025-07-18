@@ -24,6 +24,10 @@ const CHART_CHECKS: { [G in Game]?: Array<Test<ChartDocument<GPTStrings[G]>>> } 
 			c.level === "?" || c.levelNum > 0),
 		test("Level and LevelNum should align", (c) =>
 			(c.level === "?" && c.levelNum === 0) || c.level === c.levelNum.toString()),
+		test("Worldrecord should not exceed MAX", (c) =>
+			(c.data.worldRecord === null || c.data.worldRecord <= c.data.notecount*2)),
+		test("KaidenAvg should not exceed MAX", (c) =>
+			(c.data.kaidenAverage === null || c.data.kaidenAverage <= c.data.notecount*2))
 	],
 	chunithm: [
 		test("Level should not be 0", (c) => c.level !== "0"),

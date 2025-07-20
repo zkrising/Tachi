@@ -986,7 +986,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "Masayoshi Minoshima",
+		"artist": "Alstroemeria Records",
 		"data": {
 			"displayVersion": "booth"
 		},
@@ -1473,7 +1473,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "Halozy",
+		"artist": "Halozy feat. ななひら",
 		"data": {
 			"displayVersion": "booth"
 		},
@@ -1481,8 +1481,7 @@
 		"searchTerms": [
 			"monosugoi ikioi de keine ga monosugoi uta",
 			"stupendously energized keine's stupendous song",
-			"nanahira",
-			"ななひら"
+			"nanahira"
 		],
 		"title": "物凄い勢いでけーねが物凄いうた"
 	},
@@ -6378,7 +6377,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "DiGiTAL WiNG feat. 花たん",
+		"artist": "DiGiTAL WiNG feat.花たん",
 		"data": {
 			"displayVersion": "gw"
 		},
@@ -8961,19 +8960,19 @@
 	},
 	{
 		"altTitles": [
-			"Alice Maestera feat. nomico"
+			"Alice Maestera"
 		],
-		"artist": "Alstroemeria Records feat. nomico",
+		"artist": "Alstroemeria Records",
 		"data": {
 			"displayVersion": "heaven"
 		},
 		"id": 781,
 		"searchTerms": [],
-		"title": "Alice Maestera"
+		"title": "Alice Maestera feat. nomico"
 	},
 	{
 		"altTitles": [
-			"Dreaming feat. nomico"
+			"Dreaming feat.nomico"
 		],
 		"artist": "Alstroemeria Records",
 		"data": {
@@ -8981,7 +8980,7 @@
 		},
 		"id": 782,
 		"searchTerms": [],
-		"title": "Dreaming feat.nomico"
+		"title": "Dreaming feat. nomico"
 	},
 	{
 		"altTitles": [],
@@ -12319,7 +12318,7 @@
 	},
 	{
 		"altTitles": [
-			"SACRIFICE feat. ayame"
+			"SACRIFICE feat.ayame"
 		],
 		"artist": "Alstroemeria Records",
 		"data": {
@@ -12327,7 +12326,7 @@
 		},
 		"id": 1072,
 		"searchTerms": [],
-		"title": "SACRIFICE feat.ayame"
+		"title": "SACRIFICE feat. ayame"
 	},
 	{
 		"altTitles": [],
@@ -12382,7 +12381,7 @@
 	},
 	{
 		"altTitles": [
-			"トーホータノシ (feat. 抹)"
+			"トーホータノシ feat. 抹"
 		],
 		"artist": "魂音泉",
 		"data": {
@@ -12394,7 +12393,7 @@
 			"tamaonsen",
 			"matsu"
 		],
-		"title": "トーホータノシ feat. 抹"
+		"title": "トーホータノシ (feat. 抹)"
 	},
 	{
 		"altTitles": [],
@@ -12478,7 +12477,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "柚木梨沙（少女フラクタル）",
+		"artist": "少女フラクタル",
 		"data": {
 			"displayVersion": "heaven"
 		},
@@ -12821,7 +12820,9 @@
 		"title": "Drizzly Venom"
 	},
 	{
-		"altTitles": [],
+		"altTitles": [
+			"けもののおうじゃ★めうめう"
+		],
 		"artist": "日向美ビタースイーツ♪",
 		"data": {
 			"displayVersion": "heaven"
@@ -12831,7 +12832,7 @@
 			"kemono no ouja Meumeu",
 			"hinabita"
 		],
-		"title": "けもののおうじゃ★めうめう"
+		"title": "けもののおうじゃ🐾めうめう"
 	},
 	{
 		"altTitles": [],
@@ -14834,15 +14835,15 @@
 	},
 	{
 		"altTitles": [
-			"ARROW RAIN feat. ayame"
+			"ARROW RAIN"
 		],
-		"artist": "Alstroemeria Records feat.ayame",
+		"artist": "Alstroemeria Records",
 		"data": {
 			"displayVersion": "vivid"
 		},
 		"id": 1289,
 		"searchTerms": [],
-		"title": "ARROW RAIN"
+		"title": "ARROW RAIN feat. ayame"
 	},
 	{
 		"altTitles": [],
@@ -17640,7 +17641,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "ここなつ",
+		"artist": "ここなつ2.0",
 		"data": {
 			"displayVersion": "vivid"
 		},
@@ -17653,7 +17654,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "ここなつ",
+		"artist": "ここなつ2.0",
 		"data": {
 			"displayVersion": "vivid"
 		},
@@ -21776,7 +21777,7 @@
 	},
 	{
 		"altTitles": [],
-		"artist": "めと(Metomate)",
+		"artist": "めと（Metomate）",
 		"data": {
 			"displayVersion": "exceed"
 		},
@@ -23677,7 +23678,8 @@
 	{
 		"altTitles": [
 			"TOYBOX CANN驩N=墸Σ≡=｡ﾟ:*.:+｡.☆",
-			"TOYBOX CANNØN=墸Σ≡=｡ﾟ:*.:+｡.☆"
+			"TOYBOX CANNØN=墸Σ≡=｡ﾟ:*.:+｡.☆",
+			"TOYBOX CANNØN=͟͟͞ Σ≡=｡ﾟ:*.:+｡.☆"
 		],
 		"artist": "Mono.",
 		"data": {
@@ -23687,7 +23689,7 @@
 		"searchTerms": [
 			"toyboxcannon_mono"
 		],
-		"title": "TOYBOX CANNØN=͟͟͞ Σ≡=｡ﾟ:*.:+｡.☆"
+		"title": "TOYBOX CANNØN= ͟͞ Σ≡=｡ﾟ:*.:+｡.☆"
 	},
 	{
 		"altTitles": [],

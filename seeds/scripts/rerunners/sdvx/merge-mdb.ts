@@ -139,7 +139,7 @@ const InsaneCharRebinds = {
 	霻: "♠",
 	隯: "©",
 	鑈: "♦",
-	// 詹 unknown
+	詹: "Ú",
 	罇: "ê",
 	彜: "ū",
 	鬯: "ī",

@@ -80,7 +80,7 @@ export const DDR_SCORE_VALIDATORS: Array<ScoreValidator<"ddr:DP" | "ddr:SP">> = 
 					(stepScore - 10) * PERFECT +
 					((stepScore * 3) / 5 - 10) * GREAT +
 					(stepScore / 5 - 10) * GOOD +
-					1e-6) / // Floating point inaccuracy can cause 999959.9999999 which gets incorrectly floored
+					1e-9) / // Floating point inaccuracy can cause 999959.9999999 which gets incorrectly floored
 					10
 			) * 10;
 

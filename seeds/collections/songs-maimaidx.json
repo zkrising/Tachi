@@ -1334,7 +1334,7 @@
 		"searchTerms": [
 			"Bad Apple"
 		],
-		"title": "Bad Apple!! feat nomico"
+		"title": "Bad Apple!! feat.nomico"
 	},
 	{
 		"altTitles": [],
@@ -1371,9 +1371,9 @@
 		},
 		"id": 108,
 		"searchTerms": [
-			"Help Me ERIN"
+			"Help me ERIN band ver"
 		],
-		"title": "Help me, ERINNNNNN!!"
+		"title": "Help me, ERINNNNNN!!（Band ver.）"
 	},
 	{
 		"altTitles": [],
@@ -18732,5 +18732,203 @@
 		"id": 1466,
 		"searchTerms": [],
 		"title": "How To Make 音ゲ～曲！"
+	},
+	{
+		"altTitles": [],
+		"artist": "owl＊tree feat. べんざ",
+		"data": {
+			"duration": 151.493,
+			"genre": "maimai"
+		},
+		"id": 1467,
+		"searchTerms": [],
+		"title": "Fraq"
+	},
+	{
+		"altTitles": [],
+		"artist": "yowanecity feat.Eye",
+		"data": {
+			"duration": 129.878,
+			"genre": "maimai"
+		},
+		"id": 1468,
+		"searchTerms": [],
+		"title": "ウタヒメナイトストーム"
+	},
+	{
+		"altTitles": [],
+		"artist": "EmoCosine",
+		"data": {
+			"duration": 147.871,
+			"genre": "maimai"
+		},
+		"id": 1469,
+		"searchTerms": [],
+		"title": "Feel The Luv"
+	},
+	{
+		"altTitles": [],
+		"artist": "ああ…翡翠茶漬け…",
+		"data": {
+			"duration": 144.298,
+			"genre": "maimai"
+		},
+		"id": 1470,
+		"searchTerms": [],
+		"title": "Åntinomiε"
+	},
+	{
+		"altTitles": [],
+		"artist": "Reku Mochizuki",
+		"data": {
+			"duration": 121.622,
+			"genre": "オンゲキ＆CHUNITHM"
+		},
+		"id": 1471,
+		"searchTerms": [],
+		"title": "Zitronectar"
+	},
+	{
+		"altTitles": [],
+		"artist": "D-Cee",
+		"data": {
+			"duration": 121.357,
+			"genre": "オンゲキ＆CHUNITHM"
+		},
+		"id": 1472,
+		"searchTerms": [],
+		"title": "Tidal Wave"
+	},
+	{
+		"altTitles": [],
+		"artist": "超てんちゃん",
+		"data": {
+			"duration": 144.162,
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1473,
+		"searchTerms": [],
+		"title": "きゅびずむ"
+	},
+	{
+		"altTitles": [],
+		"artist": "超てんちゃん",
+		"data": {
+			"duration": 159.568,
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1474,
+		"searchTerms": [],
+		"title": "きゅびびびびずむ"
+	},
+	{
+		"altTitles": [],
+		"artist": "歌：可不／作詞・作曲：MIMI",
+		"data": {
+			"duration": 145,
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1475,
+		"searchTerms": [],
+		"title": "ゆりかご"
+	},
+	{
+		"altTitles": [],
+		"artist": "歌：V.I.P／作詞・作曲：廉",
+		"data": {
+			"duration": 149.538,
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1476,
+		"searchTerms": [],
+		"title": "月光"
+	},
+	{
+		"altTitles": [],
+		"artist": "こっちのけんと",
+		"data": {
+			"duration": 162.037,
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1477,
+		"searchTerms": [],
+		"title": "はいよろこんで"
+	},
+	{
+		"altTitles": [],
+		"artist": "星街すいせい（ホロライブ）",
+		"data": {
+			"duration": 170.5,
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1478,
+		"searchTerms": [],
+		"title": "ビビデバ"
+	},
+	{
+		"altTitles": [],
+		"artist": "シカ部 [鹿乃子のこ (CV.潘めぐみ)、虎視虎子 (CV.藤田 咲)、虎視餡子 (CV.田辺留依)、馬車芽めめ (CV.和泉風花)]",
+		"data": {
+			"duration": 92.131,
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1479,
+		"searchTerms": [],
+		"title": "シカ色デイズ"
+	},
+	{
+		"altTitles": [],
+		"artist": "サツキ feat.初音ミク・重音テト",
+		"data": {
+			"duration": 157.622,
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1480,
+		"searchTerms": [],
+		"title": "メズマライザー"
+	},
+	{
+		"altTitles": [],
+		"artist": "いよわ",
+		"data": {
+			"duration": 133.455,
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1481,
+		"searchTerms": [],
+		"title": "ももいろの鍵"
+	},
+	{
+		"altTitles": [],
+		"artist": "大漠波新",
+		"data": {
+			"duration": 150.423,
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1482,
+		"searchTerms": [],
+		"title": "のだ"
+	},
+	{
+		"altTitles": [],
+		"artist": "A-One",
+		"data": {
+			"duration": 137.382,
+			"genre": "東方Project"
+		},
+		"id": 1483,
+		"searchTerms": [],
+		"title": "Idoratrize World"
+	},
+	{
+		"altTitles": [],
+		"artist": "tn-shi",
+		"data": {
+			"duration": 163.333,
+			"genre": "ゲーム＆バラエティ"
+		},
+		"id": 1484,
+		"searchTerms": [],
+		"title": "Synthesis."
 	}
 ]

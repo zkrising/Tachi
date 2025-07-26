@@ -4851,7 +4851,7 @@
 		"title": "maimai DX (PRiSM Omnimix)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for maimai DX in PRiSM PLUS.",
 		"folders": [
 			"Fb109a12b19d82d0705ea8c34b68cde17fbbde9b3d8f4d44397db8fddae04bd99",
@@ -4885,7 +4885,7 @@
 		"title": "maimai DX (PRiSM PLUS)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for maimai DX in PRiSM.",
 		"folders": [
 			"F1a87377aebbd3d97f370b63899d439d5d2af657c16f8ab146b29b48fa9b03cca",

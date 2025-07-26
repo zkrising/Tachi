@@ -4851,6 +4851,40 @@
 		"title": "maimai DX (PRiSM Omnimix)"
 	},
 	{
+		"default": false,
+		"description": "Levels for maimai DX in PRiSM PLUS.",
+		"folders": [
+			"Fb109a12b19d82d0705ea8c34b68cde17fbbde9b3d8f4d44397db8fddae04bd99",
+			"F2741e3c4774abf3aea7515cd7eb0b7cbf115b03eae75a5ca18d3c2b766bd0e35",
+			"F6ed61315bc580dd626acfd9926a02cfcecc6d64128eeee53d07fc91a2703187e",
+			"F0807b5b8eaf65521b23eeb2f94d922db4f24becd2b10f8baea751579bfa153d3",
+			"F01c75cc582b53a7b19cf81e34fdd000e2db34f3d9a49d0d2a80231bc3d728f4b",
+			"F11812fb1445cbf6854798699dd726a86d87ed682b12c722377b8fa2b1b2fb77e",
+			"F32134b24a7c88186ae3cbd67fb17d715c5bd6353fe5d400e491f801a08c5a07f",
+			"F49de5277fb0154fd7dc06d9b37ca2c0171747dde5fc26cc32c15a2236ca67f85",
+			"F4c7868f27d259eaee66785b2ec5a706a3863555951a43ca63969bcffcb65e377",
+			"F8158c5d9ffe50d5e63046f336492dda65feb10d01c30c6119f984bf6a8ee78be",
+			"F38dac8d5934e6a39c37930ed040bfdec7049c9a18af6b6fc78f54ec77d902215",
+			"F4370275c4dba47e94adcf6885ea831378cae5a59c93df006465e214c2a5f3c2b",
+			"F317b85fe04e754ec29ce4cb4408e33293a9beb3d213e128d73d25580f8f8eada",
+			"F73d4a5c9e83de8df2a0d47b22412b22b9243f41040233bda71f0bb5df5f4f189",
+			"Ffdc14d6d08080f8fe3060ba46d3182ac6e2e105c7e77d427ff2c083dfbd050d8",
+			"Ff537bee0faffc0c7d00e9af0208165ef4e62f6bac62640bc8152b3c2cb631494",
+			"Fb5b8c8d968d87273b397bab441e3527c9a98d408148f4459eaf7df336ac1ebc0",
+			"Fe563867b324acf9e810547259c68ccc6e3df3a809a354e77918f2d213bfc7650",
+			"F145a80566790955d9624ce086b7d7fb7fc9994ad18274307b2177245a60bd9ea",
+			"Fc80e67663bcdb4f8ef3a7d8d7c0375f21173073c220db484bf20e5e16dcaa4e7",
+			"Fb4e867ba6c890e3efe77c198dca502a32776783e0fc456e51c61a09620c80bf0",
+			"Fbf58a6059e1295bb482f6659aae715d395c6031583d053396eef9eb83d1c7507",
+			"F679496e23dabe3f9e700f3fbeb7d85475394808b9ebaf8663a31bec116ef1df8"
+		],
+		"game": "maimaidx",
+		"inactive": false,
+		"playtype": "Single",
+		"tableID": "maimaidx-Single-prismplus-levels",
+		"title": "maimai DX (PRiSM PLUS)"
+	},
+	{
 		"default": true,
 		"description": "Levels for maimai DX in PRiSM.",
 		"folders": [
@@ -4879,7 +4913,7 @@
 			"Fc8644419818f6095bdf08eec2847234a9a34ecb8097f0fe9001d714c1d4efeca"
 		],
 		"game": "maimaidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "maimaidx-Single-prism-levels",
 		"title": "maimai DX (PRiSM)"

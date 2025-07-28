@@ -17,6 +17,10 @@ const MANUAL_TIERS: { [level: number]: { [tier: string]: string } } = {
 	},
 };
 
+function normalizeStr(s: string) {
+	return s.toLowerCase().replace(/ /g, "");
+}
+
 async function scrape(charts: SDVXChart[], songs: SDVXSong[], level: number) {
 	const html = await (await fetch(`https://sdvx.maya2silence.com/table/${level}`, {})).text();
 	const $ = cheerio.load(html);
@@ -33,9 +37,11 @@ async function scrape(charts: SDVXChart[], songs: SDVXSong[], level: number) {
 
 		for (const chartData of $(tierBox).find(".chart_data")) {
 			const title = chartData.attribs["data-title"] || "";
-			const artist = chartData.attribs["data-artist"];
+			const artist = chartData.attribs["data-artist"] || "";
 			const song = songs.find(
-				(s) => s.artist === artist && (s.title === title || s.altTitles.includes(title))
+				(s) =>
+					normalizeStr(s.artist) === normalizeStr(artist) &&
+					(normalizeStr(s.title) === normalizeStr(title) || s.altTitles.includes(title))
 			);
 
 			if (!song) {

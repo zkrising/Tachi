@@ -96,7 +96,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 		percent: {
 			type: "DECIMAL",
 			validate: p.isBetween(0, 101),
-			formatter: FmtPercent,
+			formatter: (v) => FmtPercent(v, 4),
 			description:
 				"The percent this score was worth. Sometimes called 'rate' in game. This is between 0 and 101.",
 		},

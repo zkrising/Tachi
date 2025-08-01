@@ -53,10 +53,10 @@ export const MAIMAIDX_IMPL: GPTServerImplementation<"maimaidx:Single"> = {
 		},
 	},
 	goalCriteriaFormatters: {
-		percent: GoalFmtPercent,
+		percent: (v) => GoalFmtPercent(v, 4),
 	},
 	goalProgressFormatters: {
-		percent: (pb) => `${pb.scoreData.percent.toFixed(2)}%`,
+		percent: (pb) => `${pb.scoreData.percent.toFixed(4)}%`,
 		lamp: (pb) => pb.scoreData.lamp,
 		grade: (pb, gradeIndex) =>
 			GradeGoalFormatter(
@@ -64,11 +64,11 @@ export const MAIMAIDX_IMPL: GPTServerImplementation<"maimaidx:Single"> = {
 				pb.scoreData.grade,
 				pb.scoreData.percent,
 				MAIMAIDX_GBOUNDARIES[gradeIndex]!.name,
-				(v) => `${v.toFixed(2)}%`
+				(v) => `${v.toFixed(4)}%`
 			),
 	},
 	goalOutOfFormatters: {
-		percent: GoalOutOfFmtPercent,
+		percent: (v) => GoalOutOfFmtPercent(v, 4),
 	},
 	pbMergeFunctions: [
 		CreatePBMergeFor("largest", "enumIndexes.lamp", "Best Lamp", (base, score) => {

@@ -92,7 +92,7 @@ t.test("Maimai DX Implementation", (t) => {
 
 	t.test("Goal Formatters", (t) => {
 		t.test("Criteria", (t) => {
-			t.equal(MAIMAIDX_IMPL.goalCriteriaFormatters.percent(93.14), "Get 93.14% on");
+			t.equal(MAIMAIDX_IMPL.goalCriteriaFormatters.percent(93.1415), "Get 93.1415% on");
 
 			t.end();
 		});
@@ -114,15 +114,15 @@ t.test("Maimai DX Implementation", (t) => {
 					expected
 				);
 
-			f("grade", { grade: "S", percent: 97.5 }, GRADES.indexOf("SS"), "(S+)-0.50%");
-			f("percent", { percent: 98.23 }, 1_000_000, "98.23%");
+			f("grade", { grade: "S", percent: 97.5 }, GRADES.indexOf("SS"), "(S+)-0.5000%");
+			f("percent", { percent: 98.23 }, 1_000_000, "98.2300%");
 			f("lamp", { lamp: "CLEAR" }, LAMPS.indexOf("CLEAR"), "CLEAR");
 
 			t.end();
 		});
 
 		t.test("Out Of", (t) => {
-			t.equal(MAIMAIDX_IMPL.goalOutOfFormatters.percent(99.1123), "99.11%");
+			t.equal(MAIMAIDX_IMPL.goalOutOfFormatters.percent(99.1123), "99.1123%");
 
 			t.end();
 		});

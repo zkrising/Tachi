@@ -276,16 +276,16 @@ export const SGLCalc: ScoreCalculator<GPTStrings["bms" | "pms"]> = (scoreData, c
 	}
 };
 
-export function GoalFmtPercent(val: number) {
-	return `Get ${NumToDP(val)}% on`;
+export function GoalFmtPercent(val: number, dp = 2) {
+	return `Get ${NumToDP(val, dp)}% on`;
 }
 
 export function GoalFmtScore(val: number) {
 	return `Get a score of ${val.toLocaleString("en-GB")} on`;
 }
 
-export function GoalOutOfFmtPercent(val: number) {
-	return `${NumToDP(val)}%`;
+export function GoalOutOfFmtPercent(val: number, dp = 2) {
+	return `${NumToDP(val, dp)}%`;
 }
 
 export function GoalOutOfFmtScore(val: number) {

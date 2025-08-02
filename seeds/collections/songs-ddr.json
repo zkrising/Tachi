@@ -15862,6 +15862,18 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "kiraku",
+		"data": {
+			"basename": "ashf",
+			"flareCategory": "GOLD",
+			"inGameID": 38600
+		},
+		"id": 38600,
+		"searchTerms": [],
+		"title": "access super [hyper] focus"
+	},
+	{
+		"altTitles": [],
 		"artist": "Qrispy Joybox feat.mao",
 		"data": {
 			"basename": "comi",
@@ -17031,7 +17043,7 @@
 		"altTitles": [],
 		"artist": "technoplanet",
 		"data": {
-			"basename": "~Yr",
+			"basename": "flly",
 			"ddrSongHash": "Qib986b6oDqPl8IQiOoDOQ06IlbD68bl",
 			"flareCategory": "NONE",
 			"inGameID": 38715
@@ -17442,5 +17454,17 @@
 		"id": 38761,
 		"searchTerms": [],
 		"title": "Sahara"
+	},
+	{
+		"altTitles": [],
+		"artist": "B小町",
+		"data": {
+			"basename": "ware",
+			"flareCategory": "GOLD",
+			"inGameID": 38765
+		},
+		"id": 38765,
+		"searchTerms": [],
+		"title": "我ら完全無敵のアイドル!!"
 	}
 ]

@@ -25704,5 +25704,187 @@
 			"beautifulreceipt_luckyvacuum"
 		],
 		"title": "ビューティフルレシート"
+	},
+	{
+		"altTitles": [],
+		"artist": "fu_mou",
+		"data": {
+			"displayVersion": "booth"
+		},
+		"id": 2364,
+		"searchTerms": [
+			"gentle_stress_fumou"
+		],
+		"title": "gentle stress wobble rmx"
+	},
+	{
+		"altTitles": [],
+		"artist": "八王子P",
+		"data": {
+			"displayVersion": "booth"
+		},
+		"id": 2365,
+		"searchTerms": [
+			"candii_hachiouji"
+		],
+		"title": "candii"
+	},
+	{
+		"altTitles": [],
+		"artist": "kamome sano",
+		"data": {
+			"displayVersion": "booth"
+		},
+		"id": 2366,
+		"searchTerms": [
+			"senkou_hanabi_kamome"
+		],
+		"title": "線香花火 SDVX edit"
+	},
+	{
+		"altTitles": [],
+		"artist": "飛鳥男",
+		"data": {
+			"displayVersion": "booth"
+		},
+		"id": 2367,
+		"searchTerms": [
+			"yuuyake_napalm_asuka"
+		],
+		"title": "夕焼のナパーム (SDVX Edit)"
+	},
+	{
+		"altTitles": [],
+		"artist": "Noriyuki",
+		"data": {
+			"displayVersion": "booth"
+		},
+		"id": 2368,
+		"searchTerms": [
+			"bluesky_noriyuki"
+		],
+		"title": "BlueSky"
+	},
+	{
+		"altTitles": [],
+		"artist": "EZFG",
+		"data": {
+			"displayVersion": "inf"
+		},
+		"id": 2369,
+		"searchTerms": [
+			"cyber_thunder_cider_ezfg"
+		],
+		"title": "サイバーサンダーサイダー"
+	},
+	{
+		"altTitles": [],
+		"artist": "cittan* feat. kalon.&core*mc",
+		"data": {
+			"displayVersion": "inf"
+		},
+		"id": 2370,
+		"searchTerms": [
+			"l4ts_cittan"
+		],
+		"title": "L4TS"
+	},
+	{
+		"altTitles": [],
+		"artist": "nmk feat.日向ももこ",
+		"data": {
+			"displayVersion": "inf"
+		},
+		"id": 2371,
+		"searchTerms": [
+			"skyful_of_stars_nmk"
+		],
+		"title": "skyful of stars-SDVX EDIT-"
+	},
+	{
+		"altTitles": [],
+		"artist": "ノマ",
+		"data": {
+			"displayVersion": "inf"
+		},
+		"id": 2372,
+		"searchTerms": [
+			"brain_power_noma"
+		],
+		"title": "Brain Power"
+	},
+	{
+		"altTitles": [],
+		"artist": "Noriyuki",
+		"data": {
+			"displayVersion": "inf"
+		},
+		"id": 2373,
+		"searchTerms": [
+			"todoke_shootingstar_noriyuki"
+		],
+		"title": "届け！シューティングスター☆"
+	},
+	{
+		"altTitles": [],
+		"artist": "signum/ii feat. irony",
+		"data": {
+			"displayVersion": "inf"
+		},
+		"id": 2374,
+		"searchTerms": [
+			"invitation_sign_signum"
+		],
+		"title": "INVITATION SiGN -SDVX Version-"
+	},
+	{
+		"altTitles": [],
+		"artist": "8284 feat. みかん汁",
+		"data": {
+			"displayVersion": "inf"
+		},
+		"id": 2375,
+		"searchTerms": [
+			"goingmyway_8284"
+		],
+		"title": "ゴーイング マイ ウェイ！"
+	},
+	{
+		"altTitles": [],
+		"artist": "dawn-system",
+		"data": {
+			"displayVersion": "inf"
+		},
+		"id": 2376,
+		"searchTerms": [
+			"susume_issun_dawn_system"
+		],
+		"title": "進め！イッスン軍団 -Rebellion of the Dwarfs-"
+	},
+	{
+		"altTitles": [
+			"Strobe齶Girl"
+		],
+		"artist": "colate",
+		"data": {
+			"displayVersion": "inf"
+		},
+		"id": 2377,
+		"searchTerms": [
+			"strobe_girl_colate"
+		],
+		"title": "Strobe♡Girl"
+	},
+	{
+		"altTitles": [],
+		"artist": "Sota Fujimori",
+		"data": {
+			"displayVersion": "gw"
+		},
+		"id": 2378,
+		"searchTerms": [
+			"monst_medlay_sotafujimori"
+		],
+		"title": "モンスターストライクメドレー(SDVX REMIX)"
 	}
 ]

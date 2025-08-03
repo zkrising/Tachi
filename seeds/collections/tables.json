@@ -4913,7 +4913,7 @@
 			"Fc8644419818f6095bdf08eec2847234a9a34ecb8097f0fe9001d714c1d4efeca"
 		],
 		"game": "maimaidx",
-		"inactive": true,
+		"inactive": false,
 		"playtype": "Single",
 		"tableID": "maimaidx-Single-prism-levels",
 		"title": "maimai DX (PRiSM)"

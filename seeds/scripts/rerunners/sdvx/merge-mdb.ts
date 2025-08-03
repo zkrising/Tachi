@@ -42,7 +42,7 @@ interface MDBEntry {
 		title_yomigana: string;
 		artist_name: string;
 		artist_yomigana: string;
-		inf_ver: XMLText<number>;
+		inf_ver?: XMLText<number>;
 		ascii: string;
 		version: XMLText<number>;
 	};
@@ -232,11 +232,11 @@ for (const entry of data.mdb.music as Array<MDBEntry>) {
 			continue;
 		}
 
-		if (diff === "infinite" && entry.info.inf_ver["#text"] === 0) {
+		if (diff === "infinite" && entry.info.inf_ver !== undefined && entry.info.inf_ver["#text"] === 0) {
 			continue;
 		}
 
-		const difficulty = convertDiff(diff, entry.info.inf_ver["#text"]);
+		const difficulty = convertDiff(diff, (entry.info.inf_ver === undefined) ? 2 : entry.info.inf_ver["#text"]);
 
 		const exists = existingCharts.get(`${inGameID}-${difficulty}`);
 

@@ -18930,5 +18930,49 @@
 		"id": 1484,
 		"searchTerms": [],
 		"title": "Synthesis."
+	},
+	{
+		"altTitles": [],
+		"artist": "kanone",
+		"data": {
+			"duration": 138.846,
+			"genre": "maimai"
+		},
+		"id": 1485,
+		"searchTerms": [],
+		"title": "ATLAS RUSH"
+	},
+	{
+		"altTitles": [],
+		"artist": "tilt-six feat.バル",
+		"data": {
+			"duration": 146.853,
+			"genre": "オンゲキ＆CHUNITHM"
+		},
+		"id": 1486,
+		"searchTerms": [],
+		"title": "サウンドプレイヤー"
+	},
+	{
+		"altTitles": [],
+		"artist": "kamome sano",
+		"data": {
+			"duration": 139.862,
+			"genre": "オンゲキ＆CHUNITHM"
+		},
+		"id": 1487,
+		"searchTerms": [],
+		"title": "crazy (about you)"
+	},
+	{
+		"altTitles": [],
+		"artist": "Taishi",
+		"data": {
+			"duration": 136.978,
+			"genre": "オンゲキ＆CHUNITHM"
+		},
+		"id": 1488,
+		"searchTerms": [],
+		"title": "Drivessover"
 	}
 ]

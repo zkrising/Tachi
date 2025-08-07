@@ -53,8 +53,8 @@ The valid input devices are listed below.
 | GITADORA (Dora) | Any *reasonable* drum kit | There are lots of drum kits. Use common-sense. Keyboard is not allowed for obvious reasons. |
 | maimai DX | Cabinet or any AC-size washing machine | |
 | maimai | Cabinet | |
-| O.N.G.E.K.I. | Cabinet or any AC-like controller | The controller must match the AC layout (WADs have to be vertical and so on) but it does *not* need to be 1:1 to scale (though it should be as close as possible). Keyboard play is not allowed.
-| DDR | Any *reasonable* Pad | There are lots of DDR pads, as long as it has four panels and you have to step on it, it's probably fine. Keyboard play is not allowed for obvious reasons. |
+| O.N.G.E.K.I. | Cabinet or any AC-like controller | The controller must match the AC layout (WADs have to be vertical and so on) but it does *not* need to be 1:1 to scale (though it should be as close as possible). Keyboard is not allowed.
+| DDR | Any *reasonable* Pad | There are lots of DDR pads, as long as it has four panels and you have to step on it, it's probably fine. Keyboard is not allowed for obvious reasons. |
 
 ### Bokutachi
 

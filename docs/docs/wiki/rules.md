@@ -42,28 +42,31 @@ The valid input devices are listed below.
 
 | Game | Devices | Justifications |
 | :: | :: | :: |
-| beatmania IIDX | Any Beatmania Controller or Cabinet | Keyboard is not marked as legitimate for beatmania IIDX play (such as on INFINITAS). |
+| beatmania IIDX | Cabinet or any beatmania IIDX controller | Keyboard is not marked as legitimate for beatmania IIDX play (such as on INFINITAS). |
+| CHUNITHM | Cabinet or any AC-size CHUNITHM controller | *AC-size* means the controller should fit a 32-inch monitor. Keyboard is not allowed. |
 | MÚSECA | Cabinet | |
+| SOUND VOLTEX | Cabinet or any AC-size SDVX controller | Keyboard is not allowed, as it is significantly different from controller play. Pocket Voltexes are not allowed either, as they are similarly different. |
+| WACCA | Cabinet | |
+| pop'n music | Cabinet or any AC-size pop'n controller | Keyboard is not allowed, and neither are smaller-sized pop'n controllers, as they give significant advantages (such as on lively). |
+| jubeat | Cabinet or any AC-size jubeat controller | |
+| GITADORA (Gita) | Any *reasonable* guitar | That just means no keyboard play, really.[^1] |
+| GITADORA (Dora) | Any *reasonable* drum kit | There are lots of drum kits. Use common-sense. Keyboard is not allowed for obvious reasons. |
+| maimai DX | Cabinet or any AC-size washing machine | |
 | maimai | Cabinet | |
-| jubeat | Cabinet & Any AC-Size Controller | |
-| pop'n music | Any AC-Size Pop'n Controller or Cabinet | Keyboard is not allowed, and neither is smaller-sized pop'n controllers, as they give significant advantages (such as on lively) |
-| SOUND VOLTEX | Any AC-Size SDVX Controller Or Cabinet | Keyboard is not allowed, as it is significantly different from controller play. Pocket Voltexes are not allowed either, as they are similarly different. |
+| O.N.G.E.K.I. | Cabinet or any AC-like controller | The controller must match the AC layout (WADs have to be vertical and so on) but it does *not* need to be 1:1 to scale (though it should be as close as possible). Keyboard play is not allowed.
 | DDR | Any *reasonable* Pad | There are lots of DDR pads, as long as it has four panels and you have to step on it, it's probably fine. Keyboard play is not allowed for obvious reasons. |
-| GITADORA (Dora) | Any *reasonable* Drum Kit | There are lots of drum kits. Use common-sense. Keyboard play is not allowed for obvious reasons. |
-| GITADORA (Gita) | Any *reasonable* Guitar | That just means no keyboard play, really.[^1] |
-| CHUNITHM | Cabinet, Any AC-Size Controller | Keyboard play is not allowed, etc. |
 
 ### Bokutachi
 
 | Game | Devices | Justifications |
 | :: | :: | :: |
-| unnamed_sdvx_clone (Controller) | Any Arcade Size Controller | The controller leaderboards are **exclusively** for Arcade **SIZE** controllers. **POCKET VOLTEXES DO NOT COUNT AS ARCADE SIZE CONTROLLERS.** |
-| unnamed_sdvx_clone (Keyboard) | Keyboard | The keyboard leaderboards are **exclusively** for keyboard players. You must not play on these leaderboards with a controller! |
-| PMS (Controller) | Any Arcade Size Controller | The controller leaderboards are **exclusively** for Arcade **SIZE** controllers. **MINI POP'N CONTROLLERS DO NOT COUNT AS ARCADE SIZE CONTROLLERS.** |
-| PMS (Keyboard) | Keyboard | The keyboard leaderboards are **exclusively** for keyboard players. You must not play on these leaderboards with a controller! |
-| ITG (Stamina) | Standard Pad | Any pad that you step on with your feet is probably fine. **DO NOT SUBMIT KEYBOARD SCORES.** |
 | BMS (7K) | Anything | Do whatever. |
 | BMS (14K) | Anything | Do Whatever. |
+| unnamed_sdvx_clone (Controller) | Any arcade-size controller | The controller leaderboards are **exclusively** for arcade **SIZE** controllers. **POCKET VOLTEXES DO NOT COUNT AS ARCADE SIZE CONTROLLERS.** |
+| unnamed_sdvx_clone (Keyboard/Other) | Keyboard | The keyboard leaderboards are **exclusively** for keyboard players. You must not play on these leaderboards with a controller! |
+| PMS (Controller) | Any arcade-size controller | The controller leaderboards are **exclusively** for arcade **SIZE** controllers. **MINI POP'N CONTROLLERS DO NOT COUNT AS ARCADE SIZE CONTROLLERS.** |
+| PMS (Keyboard) | Keyboard | The keyboard leaderboards are **exclusively** for keyboard players. You must not play on these leaderboards with a controller! |
+
 
 !!! info
 	As always though, exercise some common sense. I'm not going to whitelist controllers on here, because that's asking for trouble. Use your head as for whether something is fair or not, and if you're not certain still, ask in the discord.

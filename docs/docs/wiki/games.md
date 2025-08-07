@@ -43,15 +43,17 @@ The following games are supported on [Kamaitachi](https://kamai.tachi.ac).
 | Name | Internal Name | Playtypes |
 | :: | :: | :: |
 | beatmania IIDX | `iidx` | `SP`, `DP` |
+| CHUNITHM | `chunithm` | `Single` |
 | MÚSECA | `museca` | `Single` |
 | SOUND VOLTEX | `sdvx` | `Single` |
-| CHUNITHM | `chunithm` | `Single` |
-| jubeat | `jubeat` | `Single` |
 | WACCA | `wacca` | `Single` |
 | pop'n music | `popn` | `9B`[^1] |
-<!-- | Dance Dance Revolution | `ddr` | `SP`, `DP` | -->
-<!-- | GITADORA | `gitadora` | `Gita`, `Dora` | -->
-<!-- | maimai | `maimai` | `Single` | -->
+| jubeat | `jubeat` | `Single` |
+| GITADORA | `gitadora` | `Gita`, `Dora` |
+| maimai DX | `maimaidx` | `Single` |
+| maimai | `maimai` | `Single` |
+| O.N.G.E.K.I. | `ongeki` | `Single` |
+| Dance Dance Revolution | `ddr` | `SP`, `DP` |
 
 ### Bokutachi
 
@@ -60,8 +62,8 @@ The following games are supported on [Bokutachi](https://boku.tachi.ac).
 | Name | Internal Name | Playtypes |
 | :: | :: | :: |
 | BMS | `bms` | `7K`, `14K` |
-| PMS | `pms` | `Controller`, `Keyboard`[^2] |
 | unnamed_sdvx_clone | `usc` | `Controller` `Keyboard`[^2] |
+| PMS | `pms` | `Controller`, `Keyboard`[^2] |
 
 [^1]: Pop'n *had* some other playtypes, namely a 5-Button mode, but it seems to be removed now. 9B is used instead of single here for futureproofing.
 [^2]: This use of playtypes is a small hack to make separate leaderboards for keyboard and controller players. The split is necessary because the two input mechanisms are *very* different at high levels, but there are still a lot of keyboard players. It's a compromise!

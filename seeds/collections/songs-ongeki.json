@@ -8094,7 +8094,9 @@
 			"genre": "VARIETY"
 		},
 		"id": 667,
-		"searchTerms": [],
+		"searchTerms": [
+            "numbers"
+        ],
 		"title": "2112410403927243233368"
 	},
 	{
@@ -8733,7 +8735,9 @@
 			"genre": "オンゲキ"
 		},
 		"id": 720,
-		"searchTerms": [],
+		"searchTerms": [
+            "op1 fear titan"
+        ],
 		"title": "Op.I《fear-TITΛN-》"
 	},
 	{
@@ -10470,7 +10474,7 @@
 		},
 		"id": 860,
 		"searchTerms": [
-			"Kohi kofu enishi"
+			"Koi kou enshi"
 		],
 		"title": "恋ひ恋ふ縁"
 	},
@@ -10666,7 +10670,9 @@
 			"genre": "VARIETY"
 		},
 		"id": 876,
-		"searchTerms": [],
+		"searchTerms": [
+            "parallel prism"
+        ],
 		"title": "PARALLEL★PRISM"
 	},
 	{
@@ -10751,7 +10757,9 @@
 			"genre": "オンゲキ"
 		},
 		"id": 883,
-		"searchTerms": [],
+		"searchTerms": [
+            "starlight limited"
+        ],
 		"title": "Starlight★Limited"
 	},
 	{
@@ -12045,7 +12053,8 @@
 		},
 		"id": 988,
 		"searchTerms": [
-			"Yukiotoko"
+			"Yukiotoko",
+            "yuki otoko"
 		],
 		"title": "雪男"
 	},
@@ -13058,7 +13067,8 @@
 		},
 		"id": 1071,
 		"searchTerms": [
-			"Mesmerizer"
+			"Mesmerizer",
+            "Mesmeriser"
 		],
 		"title": "メズマライザー"
 	},

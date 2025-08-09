@@ -105,6 +105,7 @@ export async function SearchCollection<T extends object>(
 	const fzf = new AsyncFzf(searchData, {
 		selector: (item) => item.searchKey,
 		sort: true,
+		casing: "case-insensitive",
 	});
 	let results = await fzf.find(search);
 

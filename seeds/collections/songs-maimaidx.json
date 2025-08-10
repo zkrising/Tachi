@@ -18697,7 +18697,9 @@
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1463,
-		"searchTerms": [],
+		"searchTerms": [
+			"Monster Coming"
+		],
 		"title": "モンスターカミング"
 	},
 	{
@@ -18708,7 +18710,9 @@
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1464,
-		"searchTerms": [],
+		"searchTerms": [
+			"Worldwide Wander"
+		],
 		"title": "ワールドワイドワンダー"
 	},
 	{
@@ -18730,7 +18734,9 @@
 			"genre": "ゲーム＆バラエティ"
 		},
 		"id": 1466,
-		"searchTerms": [],
+		"searchTerms": [
+			"How To Make OTOGE MUSIC!"
+		],
 		"title": "How To Make 音ゲ～曲！"
 	},
 	{
@@ -18752,7 +18758,10 @@
 			"genre": "maimai"
 		},
 		"id": 1468,
-		"searchTerms": [],
+		"searchTerms": [
+			"Utahime Night Storm",
+			"Utahime"
+		],
 		"title": "ウタヒメナイトストーム"
 	},
 	{
@@ -18774,7 +18783,9 @@
 			"genre": "maimai"
 		},
 		"id": 1470,
-		"searchTerms": [],
+		"searchTerms": [
+			"Antinomie"
+		],
 		"title": "Åntinomiε"
 	},
 	{
@@ -18807,7 +18818,9 @@
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1473,
-		"searchTerms": [],
+		"searchTerms": [
+			"Cubism"
+		],
 		"title": "きゅびずむ"
 	},
 	{
@@ -18818,7 +18831,9 @@
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1474,
-		"searchTerms": [],
+		"searchTerms": [
+			"Cubibibibism"
+		],
 		"title": "きゅびびびびずむ"
 	},
 	{
@@ -18829,7 +18844,9 @@
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1475,
-		"searchTerms": [],
+		"searchTerms": [
+			"Yurikago"
+		],
 		"title": "ゆりかご"
 	},
 	{
@@ -18840,7 +18857,10 @@
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1476,
-		"searchTerms": [],
+		"searchTerms": [
+			"Gekkou",
+			"Moonlight"
+		],
 		"title": "月光"
 	},
 	{
@@ -18851,7 +18871,9 @@
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1477,
-		"searchTerms": [],
+		"searchTerms": [
+			"Hai Yorokonde"
+		],
 		"title": "はいよろこんで"
 	},
 	{
@@ -18862,7 +18884,9 @@
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1478,
-		"searchTerms": [],
+		"searchTerms": [
+			"BIBIDIBA"
+		],
 		"title": "ビビデバ"
 	},
 	{
@@ -18873,7 +18897,9 @@
 			"genre": "POPS＆アニメ"
 		},
 		"id": 1479,
-		"searchTerms": [],
+		"searchTerms": [
+			"Shikairo Days"
+		],
 		"title": "シカ色デイズ"
 	},
 	{
@@ -18884,7 +18910,9 @@
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1480,
-		"searchTerms": [],
+		"searchTerms": [
+			"Mesmerizer"
+		],
 		"title": "メズマライザー"
 	},
 	{
@@ -18895,7 +18923,10 @@
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1481,
-		"searchTerms": [],
+		"searchTerms": [
+			"Momoiro no Kagi",
+			"The Peachy Key"
+		],
 		"title": "ももいろの鍵"
 	},
 	{
@@ -18906,7 +18937,9 @@
 			"genre": "niconico＆ボーカロイド"
 		},
 		"id": 1482,
-		"searchTerms": [],
+		"searchTerms": [
+			"noda"
+		],
 		"title": "のだ"
 	},
 	{
@@ -18950,7 +18983,10 @@
 			"genre": "オンゲキ＆CHUNITHM"
 		},
 		"id": 1486,
-		"searchTerms": [],
+		"searchTerms": [
+			"Sound Player",
+			"Sound Prayer"
+		],
 		"title": "サウンドプレイヤー"
 	},
 	{
@@ -18974,5 +19010,31 @@
 		"id": 1488,
 		"searchTerms": [],
 		"title": "Drivessover"
+	},
+	{
+		"altTitles": [],
+		"artist": "こっちのけんと",
+		"data": {
+			"duration": 158.367,
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1489,
+		"searchTerms": [
+			"mou ii yo"
+		],
+		"title": "もういいよ"
+	},
+	{
+		"altTitles": [],
+		"artist": "弌誠「ゲーム『ゼンレスゾーンゼロ』エレン・ジョー 同人イメージソング」",
+		"data": {
+			"duration": 158.328,
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1490,
+		"searchTerms": [
+			"MoeChakkaFire"
+		],
+		"title": "モエチャッカファイア"
 	}
 ]

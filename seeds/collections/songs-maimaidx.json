@@ -18734,7 +18734,7 @@
 		},
 		"id": 1463,
 		"searchTerms": [
-			"monster coming"
+			"Monster Coming"
 		],
 		"title": "モンスターカミング"
 	},
@@ -18747,7 +18747,7 @@
 		},
 		"id": 1464,
 		"searchTerms": [
-			"worldwide wonder"
+			"Worldwide Wander"
 		],
 		"title": "ワールドワイドワンダー"
 	},
@@ -18774,6 +18774,7 @@
 		},
 		"id": 1466,
 		"searchTerms": [
+			"How To Make OTOGE MUSIC!",
 			"otoge kyoku"
 		],
 		"title": "How To Make 音ゲ～曲！"
@@ -18798,7 +18799,8 @@
 		},
 		"id": 1468,
 		"searchTerms": [
-			"utahime night storm"
+			"Utahime Night Storm",
+			"Utahime"
 		],
 		"title": "ウタヒメナイトストーム"
 	},
@@ -18824,7 +18826,7 @@
 		},
 		"id": 1470,
 		"searchTerms": [
-			"antinomie"
+			"Antinomie"
 		],
 		"title": "Åntinomiε"
 	},
@@ -18859,7 +18861,7 @@
 		},
 		"id": 1473,
 		"searchTerms": [
-			"cubism",
+			"Cubism",
 			"kyubizumu"
 		],
 		"title": "きゅびずむ"
@@ -18873,8 +18875,8 @@
 		},
 		"id": 1474,
 		"searchTerms": [
-			"kyubibibibizumu",
-			"cubibibibism"
+			"Cubibibibism",
+			"kyubibibibizumu"
 		],
 		"title": "きゅびびびびずむ"
 	},
@@ -18887,7 +18889,7 @@
 		},
 		"id": 1475,
 		"searchTerms": [
-			"yurikago"
+			"Yurikago"
 		],
 		"title": "ゆりかご"
 	},
@@ -18900,9 +18902,8 @@
 		},
 		"id": 1476,
 		"searchTerms": [
-			"tsuki hikari",
-			"moonlight",
-			"gekkou"
+			"Gekkou",
+			"Moonlight"
 		],
 		"title": "月光"
 	},
@@ -18915,7 +18916,7 @@
 		},
 		"id": 1477,
 		"searchTerms": [
-			"hai yorokonde"
+			"Hai Yorokonde"
 		],
 		"title": "はいよろこんで"
 	},
@@ -18928,8 +18929,7 @@
 		},
 		"id": 1478,
 		"searchTerms": [
-			"bibidiba",
-			"suisei"
+			"BIBIDIBA"
 		],
 		"title": "ビビデバ"
 	},
@@ -18942,7 +18942,7 @@
 		},
 		"id": 1479,
 		"searchTerms": [
-			"shika iro days",
+			"Shikairo Days",
 			"shika noko noko noko koshi tan tan"
 		],
 		"title": "シカ色デイズ"
@@ -18956,8 +18956,8 @@
 		},
 		"id": 1480,
 		"searchTerms": [
-			"mesmeriser",
-			"mesmerizer"
+			"Mesmerizer",
+			"Mesmeriser"
 		],
 		"title": "メズマライザー"
 	},
@@ -18970,7 +18970,8 @@
 		},
 		"id": 1481,
 		"searchTerms": [
-			"momo iro no kagi"
+			"Momoiro no Kagi",
+			"The Peachy Key"
 		],
 		"title": "ももいろの鍵"
 	},
@@ -19034,7 +19035,8 @@
 		},
 		"id": 1486,
 		"searchTerms": [
-			"sound player"
+			"Sound Player",
+			"Sound Prayer"
 		],
 		"title": "サウンドプレイヤー"
 	},
@@ -19061,5 +19063,31 @@
 			"drives over"
 		],
 		"title": "Drivessover"
+	},
+	{
+		"altTitles": [],
+		"artist": "こっちのけんと",
+		"data": {
+			"duration": 158.367,
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1489,
+		"searchTerms": [
+			"mou ii yo"
+		],
+		"title": "もういいよ"
+	},
+	{
+		"altTitles": [],
+		"artist": "弌誠「ゲーム『ゼンレスゾーンゼロ』エレン・ジョー 同人イメージソング」",
+		"data": {
+			"duration": 158.328,
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1490,
+		"searchTerms": [
+			"MoeChakkaFire"
+		],
+		"title": "モエチャッカファイア"
 	}
 ]

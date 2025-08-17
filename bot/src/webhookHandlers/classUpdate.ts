@@ -89,6 +89,8 @@ function ShouldRenderUpdate(
 			// All of the other classes in pop'n can be trivially blitzed through.
 			"GOD",
 		].includes(classValue);
+	} else if (game === "ongeki" && classSet === "colour") {
+		return ["RAINBOW", "RAINBOW_SHINY", "RAINBOW_EX"].includes(classValue);
 	}
 
 	return true;

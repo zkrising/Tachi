@@ -186,7 +186,7 @@ export const DDR_SP_CONF = {
 		flare: {
 			type: "DERIVED",
 			values: DDRFlare,
-			minimumScores: 90,
+			minimumRelevantValue: "URANUS",
 		},
 	},
 

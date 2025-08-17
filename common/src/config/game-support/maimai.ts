@@ -147,6 +147,7 @@ export const MAIMAI_SINGLE_CONF = {
 		dan: {
 			type: "PROVIDED",
 			values: MaimaiDans,
+			minimumScores: 30,
 		},
 	},
 

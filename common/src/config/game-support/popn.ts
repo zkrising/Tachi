@@ -129,6 +129,7 @@ export const POPN_9B_CONF = {
 		class: {
 			type: "DERIVED",
 			values: PopnClasses,
+			minimumRelevantValue: "GOD",
 		},
 	},
 

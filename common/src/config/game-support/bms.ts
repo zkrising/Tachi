@@ -378,8 +378,8 @@ export const BMS_14K_CONF = {
 	...BMS_7K_CONF,
 
 	classes: {
-		genocideDan: { type: "PROVIDED", values: BMSGenocideDans },
-		stslDan: { type: "PROVIDED", values: BMSDPSlDans },
+		genocideDan: { type: "PROVIDED", values: BMSGenocideDans, minimumScores: 20 },
+		stslDan: { type: "PROVIDED", values: BMSDPSlDans, minimumScores: 20 },
 	},
 
 	scoreMeta: z.strictObject({

@@ -40,8 +40,6 @@ interface BaseClassConfig<V extends string> {
 	/**
 	 * The ID of the lowest class value that should trigger a discord message.
 	 * Lower values will be ignored to reduce channel spam.
-	 *
-	 * @note This should be in ascending order.
 	 */
 	minimumRelevantValue?: V;
 

@@ -124,6 +124,7 @@ export const WACCA_SINGLE_CONF = {
 		stageUp: {
 			type: "PROVIDED",
 			values: WaccaStageUps,
+			minimumScores: 50,
 		},
 		colour: {
 			type: "DERIVED",

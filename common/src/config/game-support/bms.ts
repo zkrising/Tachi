@@ -339,11 +339,11 @@ export const BMS_7K_CONF = {
 	},
 
 	classes: {
-		genocideDan: { type: "PROVIDED", values: BMSGenocideDans, minimumScores: 20 },
-		stslDan: { type: "PROVIDED", values: BMSStSlDans, minimumScores: 20 },
-		newGenerationDan: { type: "PROVIDED", values: BMSNewGenerationDans, minimumScores: 20 },
-		lnDan: { type: "PROVIDED", values: BMSLNDans, minimumScores: 20 },
-		scratchDan: { type: "PROVIDED", values: BMSScratchDans, minimumScores: 20 },
+		genocideDan: { type: "PROVIDED", values: BMSGenocideDans },
+		stslDan: { type: "PROVIDED", values: BMSStSlDans },
+		newGenerationDan: { type: "PROVIDED", values: BMSNewGenerationDans },
+		lnDan: { type: "PROVIDED", values: BMSLNDans },
+		scratchDan: { type: "PROVIDED", values: BMSScratchDans },
 	},
 
 	orderedJudgements: ["pgreat", "great", "good", "bad", "poor"],
@@ -378,8 +378,8 @@ export const BMS_14K_CONF = {
 	...BMS_7K_CONF,
 
 	classes: {
-		genocideDan: { type: "PROVIDED", values: BMSGenocideDans, minimumScores: 20 },
-		stslDan: { type: "PROVIDED", values: BMSDPSlDans, minimumScores: 20 },
+		genocideDan: { type: "PROVIDED", values: BMSGenocideDans },
+		stslDan: { type: "PROVIDED", values: BMSDPSlDans },
 	},
 
 	scoreMeta: z.strictObject({

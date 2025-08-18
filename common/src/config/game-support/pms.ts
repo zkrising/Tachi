@@ -128,7 +128,7 @@ export const PMS_CONTROLLER_CONF = {
 	},
 
 	classes: {
-		dan: { type: "PROVIDED", values: PMSDans, minimumScores: 20 },
+		dan: { type: "PROVIDED", values: PMSDans },
 	},
 
 	orderedJudgements: ["cool", "great", "good", "bad", "poor"],

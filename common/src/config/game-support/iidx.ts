@@ -227,7 +227,6 @@ export const IIDX_SP_CONF = {
 		dan: {
 			type: "PROVIDED",
 			values: IIDXDans,
-			minimumScores: 20,
 		},
 	},
 

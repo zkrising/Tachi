@@ -143,6 +143,7 @@ export const MAIMAI_SINGLE_CONF = {
 		colour: {
 			type: "DERIVED",
 			values: MaimaiColours,
+			minimumScores: 30,
 		},
 		dan: {
 			type: "PROVIDED",

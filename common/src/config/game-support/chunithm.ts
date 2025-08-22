@@ -151,6 +151,7 @@ export const CHUNITHM_SINGLE_CONF = {
 		colour: {
 			type: "DERIVED",
 			values: CHUNITHMColours,
+			minimumScores: 50,
 		},
 
 		dan: {

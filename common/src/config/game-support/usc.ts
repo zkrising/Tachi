@@ -93,6 +93,7 @@ export const USC_CONTROLLER_CONF = {
 		vfClass: {
 			type: "DERIVED",
 			values: SDVXVFClasses,
+			minimumRelevantValue: "IMPERIAL_I",
 		},
 	},
 

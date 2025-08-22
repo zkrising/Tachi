@@ -33,9 +33,24 @@ interface BaseClassConfig<V extends string> {
 	/**
 	 * What are the possible values for this class field?
 	 *
-	 * @note This should be in ascending order.
+	 * @note This must be in ascending order.
 	 */
 	values: Array<ClassInfo<V>>;
+
+	/**
+	 * The ID of the lowest class value that should trigger a discord message.
+	 * Lower values will be ignored to reduce channel spam.
+	 */
+	minimumRelevantValue?: V;
+
+	/**
+	 * What number of scores is needed to "fill" this class?
+	 * If the number of scores is lower, new class values will not
+	 * trigger discord messages (useful if minimumRelevantValue is undesired)
+	 * For example, a new SDVX player playing their first 50 charts will blitz through
+	 * at least 10 of the volforce ranks, which would just result in channel spam.
+	 */
+	minimumScores?: number;
 }
 
 /**

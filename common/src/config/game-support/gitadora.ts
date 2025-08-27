@@ -106,7 +106,7 @@ export const GITADORA_GITA_CONF = {
 	},
 
 	classes: {
-		colour: { type: "DERIVED", values: GitadoraColours },
+		colour: { type: "DERIVED", values: GitadoraColours, minimumScores: 50 },
 	},
 
 	orderedJudgements: ["perfect", "great", "good", "ok", "miss"],

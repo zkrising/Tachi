@@ -128,6 +128,7 @@ export const WACCA_SINGLE_CONF = {
 		colour: {
 			type: "DERIVED",
 			values: WaccaColours,
+			minimumRelevantValue: "RAINBOW",
 		},
 	},
 

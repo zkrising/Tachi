@@ -195,6 +195,7 @@ export const ONGEKI_SINGLE_CONF = {
 		colour: {
 			type: "DERIVED",
 			values: OngekiColours,
+			minimumRelevantValue: "RAINBOW",
 		},
 	},
 

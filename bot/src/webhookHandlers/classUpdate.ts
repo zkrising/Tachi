@@ -5,7 +5,7 @@ import { CreateEmbed } from "../utils/embeds";
 import { PrependTachiUrl } from "../utils/fetchTachi";
 import logger from "../utils/logger";
 import { FormatClass, GetGameChannel } from "../utils/misc";
-import { FormatGame } from "tachi-common";
+import { FormatGame, GetGamePTConfig } from "tachi-common";
 import type {
 	Classes,
 	GPTString,
@@ -32,15 +32,14 @@ export async function HandleClassUpdateV1(
 	}
 
 	if (!ShouldRenderUpdate(game, playtype, event.set, event.new)) {
+		logger.info(
+			`Not rendering class update ${event.set}: ${event.old} -> ${event.new} (not relevant).`
+		);
 		return 204;
 	}
 
 	const userDoc = await GetUserInfo(event.userID);
 
-	// We don't want to render classes if the user is blitzing through them
-	// because they haven't played enough charts to "average out".
-	// For example, a new player playing their first 50 charts will blitz through
-	// atleast 10 of the volforce ranks, which will just result in channel spam.
 	const minimumNecessaryScores = GetMinimumScores(game, playtype, event.set);
 
 	if (minimumNecessaryScores !== null) {
@@ -48,7 +47,9 @@ export async function HandleClassUpdateV1(
 
 		// Do not render if the user hasn't hit the score cap.
 		if (totalScores < minimumNecessaryScores) {
-			logger.info(`Not rendering class update ${event.set}: ${event.old} -> ${event.new}.`);
+			logger.info(
+				`Not rendering class update ${event.set}: ${event.old} -> ${event.new} (not enough scores).`
+			);
 			return 204;
 		}
 	}
@@ -82,16 +83,34 @@ function ShouldRenderUpdate(
 	classSet: Classes[GPTString],
 	classValue: string
 ) {
-	if (game === "sdvx" && classSet === "vfClass") {
-		return ["IMPERIAL_I", "IMPERIAL_II", "IMPERIAL_III", "IMPERIAL_IV"].includes(classValue);
-	} else if (game === "popn" && classSet === "class") {
-		return [
-			// All of the other classes in pop'n can be trivially blitzed through.
-			"GOD",
-		].includes(classValue);
+	const config = GetGamePTConfig(game, playtype);
+	const classSpec = config.classes[classSet];
+
+	if (classSpec === undefined) {
+		logger.error(`Invalid class ${classSet} for ${game} ${playtype}`);
+		return false;
 	}
 
-	return true;
+	if (classSpec.minimumRelevantValue === undefined) {
+		return true;
+	}
+
+	const ids = classSpec.values.map((c) => c.id);
+
+	const currentId = ids.indexOf(classValue);
+	const minimumId = ids.indexOf(classSpec.minimumRelevantValue);
+
+	if (currentId < 0) {
+		logger.error(`Invalid classValue ${classValue} for ${game} ${playtype}`);
+		return false;
+	}
+
+	if (minimumId < 0) {
+		logger.error(`Invalid minimum classValue ${classValue} for ${game} ${playtype}`);
+		return false;
+	}
+
+	return currentId >= minimumId;
 }
 
 function GetMinimumScores(
@@ -99,29 +118,13 @@ function GetMinimumScores(
 	playtype: Playtype,
 	classSet: Classes[GPTString]
 ): integer | null {
-	if (game === "chunithm" && classSet === "colour") {
-		return 50;
-	} else if (game === "sdvx" && classSet === "vfClass") {
-		return 50;
-	} else if (game === "gitadora") {
-		return 50;
-	} else if (game === "jubeat") {
-		return 60;
-	} else if (game === "wacca") {
-		return 50;
-	} else if (game === "bms") {
-		return 20;
-	} else if (game === "iidx") {
-		return 20;
-	} else if (game === "pms") {
-		return 20;
-	} else if (game === "ddr") {
-		return 90;
-	} else if (game === "maimai" && classSet === "colour") {
-		return 30;
-	} else if (game === "maimaidx" && classSet === "colour") {
-		return 50;
+	const config = GetGamePTConfig(game, playtype);
+	const classSpec = config.classes[classSet];
+
+	if (classSpec === undefined) {
+		logger.error(`Invalid class ${classSet} for ${game} ${playtype}`);
+		return null;
 	}
 
-	return null;
+	return classSpec.minimumScores ?? null;
 }

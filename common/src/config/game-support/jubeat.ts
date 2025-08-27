@@ -107,7 +107,7 @@ export const JUBEAT_SINGLE_CONF = {
 	},
 
 	classes: {
-		colour: { type: "DERIVED", values: JubeatColours },
+		colour: { type: "DERIVED", values: JubeatColours, minimumScores: 60 },
 	},
 
 	orderedJudgements: ["perfect", "great", "good", "poor", "miss"],

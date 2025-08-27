@@ -27843,5 +27843,94 @@
 			"Obsolete Meat"
 		],
 		"title": "オブソミート"
+	},
+	{
+		"altTitles": [],
+		"artist": "uma",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "TRANCE"
+		},
+		"id": 2484,
+		"searchTerms": [],
+		"title": "sink into the dream"
+	},
+	{
+		"altTitles": [],
+		"artist": "TAKU1175 ft.駄々子",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "歌謡エレジヰ (KAYOU ELEGY)"
+		},
+		"id": 2485,
+		"searchTerms": [
+			"reimei no jou",
+			"dadaco"
+		],
+		"title": "黎明の情"
+	},
+	{
+		"altTitles": [],
+		"artist": "RoughSketch vs MAD CHILD",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "TAIHEN HARD DANCE"
+		},
+		"id": 2486,
+		"searchTerms": [],
+		"title": "Metagame Matador"
+	},
+	{
+		"altTitles": [],
+		"artist": "nozakita kazumi",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "COMPLEXTRO"
+		},
+		"id": 2487,
+		"searchTerms": [
+			"settingsunrmx_nozakitakazumi"
+		],
+		"title": "The setting sun(burst)"
+	},
+	{
+		"altTitles": [],
+		"artist": "みーに feat. 杠葉えりか",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "ELECTRO SHERBET"
+		},
+		"id": 2488,
+		"searchTerms": [
+			"rainbowflavor_miini"
+		],
+		"title": "レインボウ・フレーバー"
+	},
+	{
+		"altTitles": [],
+		"artist": "cosMo＠暴走P",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "CHIPTUNE FUSION"
+		},
+		"id": 2489,
+		"searchTerms": [
+			"deux saint-co odyssey!!"
+		],
+		"title": "ドゥサンコオデッセイ!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "影虎。",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "ORIENTAL Hi-TECH FULL ON"
+		},
+		"id": 2490,
+		"searchTerms": [
+			"koufuuseigetsu",
+			"kagetora"
+		],
+		"title": "光風霽月"
 	}
 ]

@@ -204,6 +204,7 @@ export const MAIMAI_DX_SINGLE_CONF = {
 		colour: {
 			type: "DERIVED",
 			values: MaimaiDXColours,
+			minimumRelevantValue: "BRONZE",
 		},
 		dan: {
 			type: "PROVIDED",

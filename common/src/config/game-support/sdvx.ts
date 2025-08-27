@@ -168,6 +168,7 @@ export const SDVX_SINGLE_CONF = {
 		vfClass: {
 			type: "DERIVED",
 			values: SDVXVFClasses,
+			minimumRelevantValue: "IMPERIAL_I",
 		},
 	},
 

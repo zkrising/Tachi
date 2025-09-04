@@ -16236,6 +16236,30 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "Liqo",
+		"data": {
+			"basename": "stmp",
+			"flareCategory": "GOLD",
+			"inGameID": 38630
+		},
+		"id": 38630,
+		"searchTerms": [],
+		"title": "STOMP!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "iso:R",
+		"data": {
+			"basename": "sodd",
+			"flareCategory": "GOLD",
+			"inGameID": 38631
+		},
+		"id": 38631,
+		"searchTerms": [],
+		"title": "S.O.D"
+	},
+	{
+		"altTitles": [],
 		"artist": "暁Records",
 		"data": {
 			"basename": "hani",
@@ -16363,6 +16387,18 @@
 		"id": 38641,
 		"searchTerms": [],
 		"title": "My Drama"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"KE!JU\"",
+		"data": {
+			"basename": "blar",
+			"flareCategory": "GOLD",
+			"inGameID": 38642
+		},
+		"id": 38642,
+		"searchTerms": [],
+		"title": "Blizzard of Arrows"
 	},
 	{
 		"altTitles": [],
@@ -16578,7 +16614,7 @@
 		"data": {
 			"basename": "odys",
 			"ddrSongHash": "I18Iolqio01IlPi9QIqPQ8Q9O6iOod0O",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38659
 		},
 		"id": 38659,
@@ -16591,7 +16627,7 @@
 		"data": {
 			"basename": "drat",
 			"ddrSongHash": "l08OoDq6P9DIQo1Po0Pdd80qoq6QID9o",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38660
 		},
 		"id": 38660,
@@ -16604,7 +16640,7 @@
 		"data": {
 			"basename": "hyno",
 			"ddrSongHash": "DoOoDio1q81OQdoOO0b6bPQPOoq6I0Qi",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38661
 		},
 		"id": 38661,
@@ -16617,7 +16653,7 @@
 		"data": {
 			"basename": "baaw",
 			"ddrSongHash": "iQi1DOQoqI6Q08I89PQD8iIQloPd190I",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38662
 		},
 		"id": 38662,
@@ -16630,7 +16666,7 @@
 		"data": {
 			"basename": "arca",
 			"ddrSongHash": "6qdbqO66oOo1Q0d6I10IIIbQI9D1dDP6",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38663
 		},
 		"id": 38663,
@@ -16643,7 +16679,7 @@
 		"data": {
 			"basename": "dflo",
 			"ddrSongHash": "1d6oI0ol8oO8O1qq16O96d1D19doD0bl",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38664
 		},
 		"id": 38664,
@@ -16656,7 +16692,7 @@
 		"data": {
 			"basename": "grco",
 			"ddrSongHash": "1iPqdbQiqoi9l8D6Q106i01DbOO8191b",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38665
 		},
 		"id": 38665,
@@ -16669,7 +16705,7 @@
 		"data": {
 			"basename": "swfr",
 			"ddrSongHash": "bbID6DO6PiIOQ1oDl1oiOd1bI9bQPi69",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38666
 		},
 		"id": 38666,
@@ -16682,7 +16718,7 @@
 		"data": {
 			"basename": "kyok",
 			"ddrSongHash": "1bo1qQDPidPPOlD16Ii9PoQOlQ996qb8",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38667
 		},
 		"id": 38667,
@@ -16695,7 +16731,7 @@
 		"data": {
 			"basename": "woco",
 			"ddrSongHash": "lDdID1ili0D0i10bdiO06Q8OqDIdo91l",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38668
 		},
 		"id": 38668,
@@ -16708,7 +16744,7 @@
 		"data": {
 			"basename": "roli",
 			"ddrSongHash": "QoD9DQ8QQ11ib0Idob9dbIQqbq0Q8Q6i",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38669
 		},
 		"id": 38669,
@@ -16721,7 +16757,7 @@
 		"data": {
 			"basename": "hera",
 			"ddrSongHash": "1lIi8O100iq1Plolql1biO1QIOOillOQ",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38670
 		},
 		"id": 38670,
@@ -16734,7 +16770,7 @@
 		"data": {
 			"basename": "th88",
 			"ddrSongHash": "D6ql9DIOPi9Id8iiOOi1olOPdO9dl1qQ",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38671
 		},
 		"id": 38671,
@@ -16747,7 +16783,7 @@
 		"data": {
 			"basename": "asbo",
 			"ddrSongHash": "lO990qi9qq9II1boI10ObdbbolQ1Ii0i",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38672
 		},
 		"id": 38672,
@@ -16756,11 +16792,59 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "めと（Metomate）",
+		"data": {
+			"basename": "hage",
+			"flareCategory": "GOLD",
+			"inGameID": 38673
+		},
+		"id": 38673,
+		"searchTerms": [],
+		"title": "白日と幻月"
+	},
+	{
+		"altTitles": [],
+		"artist": "yuichi NAGAO",
+		"data": {
+			"basename": "fufl",
+			"flareCategory": "GOLD",
+			"inGameID": 38674
+		},
+		"id": 38674,
+		"searchTerms": [],
+		"title": "Funky Flux Fusion"
+	},
+	{
+		"altTitles": [],
+		"artist": "Super Shrimp",
+		"data": {
+			"basename": "rofo",
+			"flareCategory": "GOLD",
+			"inGameID": 38675
+		},
+		"id": 38675,
+		"searchTerms": [],
+		"title": "Robot Footwork"
+	},
+	{
+		"altTitles": [],
+		"artist": "seatrus",
+		"data": {
+			"basename": "defl",
+			"flareCategory": "GOLD",
+			"inGameID": 38676
+		},
+		"id": 38676,
+		"searchTerms": [],
+		"title": "Dense Flyer"
+	},
+	{
+		"altTitles": [],
 		"artist": "setu-O",
 		"data": {
 			"basename": "fiac",
 			"ddrSongHash": "odb1D9l8QoDbii0861iP0qo9i1qibqdP",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38677
 		},
 		"id": 38677,
@@ -16773,7 +16857,7 @@
 		"data": {
 			"basename": "haji",
 			"ddrSongHash": "8i0QblodqDQ196b0Oi81I0811QI99Q8b",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38678
 		},
 		"id": 38678,
@@ -16782,11 +16866,23 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "EmoCosine",
+		"data": {
+			"basename": "nmlv",
+			"flareCategory": "GOLD",
+			"inGameID": 38679
+		},
+		"id": 38679,
+		"searchTerms": [],
+		"title": "No More Love"
+	},
+	{
+		"altTitles": [],
 		"artist": "Alkome",
 		"data": {
 			"basename": "orpu",
 			"ddrSongHash": "1PQDi1P0dd6bIi9bQ0P0IQId808bPi1Q",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38680
 		},
 		"id": 38680,
@@ -16795,11 +16891,71 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "AMAZE",
+		"data": {
+			"basename": "dwtr",
+			"flareCategory": "GOLD",
+			"inGameID": 38681
+		},
+		"id": 38681,
+		"searchTerms": [],
+		"title": "Dance wiz the Rhythm"
+	},
+	{
+		"altTitles": [],
+		"artist": "ikaruga_nex",
+		"data": {
+			"basename": "dade",
+			"flareCategory": "GOLD",
+			"inGameID": 38682
+		},
+		"id": 38682,
+		"searchTerms": [],
+		"title": "Dance and Death"
+	},
+	{
+		"altTitles": [],
+		"artist": "諸星なな feat.加藤はるか",
+		"data": {
+			"basename": "ohch",
+			"flareCategory": "GOLD",
+			"inGameID": 38683
+		},
+		"id": 38683,
+		"searchTerms": [],
+		"title": "おひさし中華街！"
+	},
+	{
+		"altTitles": [],
+		"artist": "Tanchiky",
+		"data": {
+			"basename": "hodf",
+			"flareCategory": "GOLD",
+			"inGameID": 38686
+		},
+		"id": 38686,
+		"searchTerms": [],
+		"title": "HYPER OVERR DANCEFLOORRR"
+	},
+	{
+		"altTitles": [],
+		"artist": "deli.+駄々子",
+		"data": {
+			"basename": "aisi",
+			"flareCategory": "GOLD",
+			"inGameID": 38687
+		},
+		"id": 38687,
+		"searchTerms": [],
+		"title": "愛氏AIされ"
+	},
+	{
+		"altTitles": [],
 		"artist": "Halv",
 		"data": {
 			"basename": "dshc",
 			"ddrSongHash": "iQ0qQP11I8I9D9oIdllbP6989PDiiPoI",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38688
 		},
 		"id": 38688,
@@ -16808,11 +16964,23 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "Ashrount",
+		"data": {
+			"basename": "fluc",
+			"flareCategory": "GOLD",
+			"inGameID": 38689
+		},
+		"id": 38689,
+		"searchTerms": [],
+		"title": "fluctus"
+	},
+	{
+		"altTitles": [],
 		"artist": "nagomu tamaki feat. ぽめ",
 		"data": {
 			"basename": "kiun",
 			"ddrSongHash": "id8lqDol8I889lO9ld0Qbqd9O6PoQlld",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38691
 		},
 		"id": 38691,
@@ -16825,7 +16993,7 @@
 		"data": {
 			"basename": "movo",
 			"ddrSongHash": "QQODQlOodQdbOdO6iQPi89PPIQi9oodQ",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38692
 		},
 		"id": 38692,
@@ -16838,7 +17006,7 @@
 		"data": {
 			"basename": "odva",
 			"ddrSongHash": "8IoP10odbqPdPPbIq01OID99o98DIoQl",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38693
 		},
 		"id": 38693,
@@ -16851,7 +17019,7 @@
 		"data": {
 			"basename": "nise",
 			"ddrSongHash": "9QP8IdI00QP101lQPPQbP89DIDQPoD0d",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38694
 		},
 		"id": 38694,
@@ -16864,12 +17032,48 @@
 		"data": {
 			"basename": "hd2u",
 			"ddrSongHash": "OlPqPi1qq1bIlDPOQQPi80D0lOQl8PP8",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38695
 		},
 		"id": 38695,
 		"searchTerms": [],
 		"title": "Happy Dance Day 2 U"
+	},
+	{
+		"altTitles": [],
+		"artist": "kors k",
+		"data": {
+			"basename": "mons",
+			"flareCategory": "GOLD",
+			"inGameID": 38696
+		},
+		"id": 38696,
+		"searchTerms": [],
+		"title": "Monsters Den"
+	},
+	{
+		"altTitles": [],
+		"artist": "nagomu tamaki",
+		"data": {
+			"basename": "thun",
+			"flareCategory": "GOLD",
+			"inGameID": 38697
+		},
+		"id": 38697,
+		"searchTerms": [],
+		"title": "Thunderstorm"
+	},
+	{
+		"altTitles": [],
+		"artist": "DJ TOTTO",
+		"data": {
+			"basename": "eira",
+			"flareCategory": "GOLD",
+			"inGameID": 38700
+		},
+		"id": 38700,
+		"searchTerms": [],
+		"title": "Eira"
 	},
 	{
 		"altTitles": [],
@@ -16916,7 +17120,7 @@
 		"data": {
 			"basename": "kyal",
 			"ddrSongHash": "b86i9lPlObdl1008PO0PIi09q9o9l88i",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38704
 		},
 		"id": 38704,
@@ -16929,7 +17133,7 @@
 		"data": {
 			"basename": "vamp",
 			"ddrSongHash": "Dl09QdQ19IoQl6D81qdlPPIdolP1lDi0",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38705
 		},
 		"id": 38705,
@@ -16942,7 +17146,7 @@
 		"data": {
 			"basename": "tokm",
 			"ddrSongHash": "dQlo0DDqlIPod6bq89DPDODllDOi681i",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38706
 		},
 		"id": 38706,
@@ -16954,7 +17158,7 @@
 		"artist": "BEMANI Sound Team \"Coyaan & KE!JU 1%\"",
 		"data": {
 			"basename": "jitu2",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38707
 		},
 		"id": 38707,
@@ -16976,11 +17180,23 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "BEMANI Sound Team \"Coyaan & KE!JU\"",
+		"data": {
+			"basename": "koma",
+			"flareCategory": "GOLD",
+			"inGameID": 38709
+		},
+		"id": 38709,
+		"searchTerms": [],
+		"title": "Komainu Adventure!"
+	},
+	{
+		"altTitles": [],
 		"artist": "Zektbach",
 		"data": {
 			"basename": "kaga",
 			"ddrSongHash": "88qq1I89IQ8P9PdqbbdD0ood8oi9d68I",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38710
 		},
 		"id": 38710,
@@ -16993,7 +17209,7 @@
 		"data": {
 			"basename": "sets",
 			"ddrSongHash": "qib6O1d6010d8Iql8IQ0q8diqOP6dIqb",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38711
 		},
 		"id": 38711,
@@ -17006,7 +17222,7 @@
 		"data": {
 			"basename": "beea",
 			"ddrSongHash": "bP61iObqb9Oo1IOQOdlQ0idilOII9O66",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38712
 		},
 		"id": 38712,
@@ -17019,7 +17235,7 @@
 		"data": {
 			"basename": "sazu",
 			"ddrSongHash": "Dl89dQdOQooI0i0DoPQd68db6di86PD8",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38713
 		},
 		"id": 38713,
@@ -17032,7 +17248,7 @@
 		"data": {
 			"basename": "tyco",
 			"ddrSongHash": "0ODl10P0O10D1OQID91QiPlQd988bio8",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38714
 		},
 		"id": 38714,
@@ -17045,7 +17261,7 @@
 		"data": {
 			"basename": "flly",
 			"ddrSongHash": "Qib986b6oDqPl8IQiOoDOQ06IlbD68bl",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38715
 		},
 		"id": 38715,
@@ -17058,7 +17274,7 @@
 		"data": {
 			"basename": "quav",
 			"ddrSongHash": "09P10l1q98b1DiDQdlIii0bld111O86D",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38716
 		},
 		"id": 38716,
@@ -17071,7 +17287,7 @@
 		"data": {
 			"basename": "diav",
 			"ddrSongHash": "Pdlib1o06DD6oIbdIdIoIqQqO8P896do",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38717
 		},
 		"id": 38717,
@@ -17084,7 +17300,7 @@
 		"data": {
 			"basename": "redf",
 			"ddrSongHash": "0b8lD690qQO1bDOib1IqiO0OO169o9IQ",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38718
 		},
 		"id": 38718,
@@ -17097,7 +17313,7 @@
 		"data": {
 			"basename": "tsba",
 			"ddrSongHash": "b9iI8O6bd0bq0I1OoooQ9i9iddidODbO",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38719
 		},
 		"id": 38719,
@@ -17123,7 +17339,7 @@
 		"data": {
 			"basename": "saib",
 			"ddrSongHash": "0i8iq6bldDo9l0iDi9q9OqIoQOlqld0q",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38721
 		},
 		"id": 38721,
@@ -17136,7 +17352,7 @@
 		"data": {
 			"basename": "hito",
 			"ddrSongHash": "iDli1d0oP8lI6i8Qobbilo86OIPIqQlb",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38722
 		},
 		"id": 38722,
@@ -17149,7 +17365,7 @@
 		"data": {
 			"basename": "shuk",
 			"ddrSongHash": "618q1bI6Odd9dqQd9Q8OIoOdolqi66lq",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38723
 		},
 		"id": 38723,
@@ -17162,7 +17378,7 @@
 		"data": {
 			"basename": "kyuk",
 			"ddrSongHash": "8OlQb0IDIOD1qIIiIqI0l6ol06bbDiDi",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38724
 		},
 		"id": 38724,
@@ -17171,11 +17387,35 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "BEMANI Sound Team \"TATSUYA\"",
+		"data": {
+			"basename": "flor",
+			"flareCategory": "GOLD",
+			"inGameID": 38725
+		},
+		"id": 38725,
+		"searchTerms": [],
+		"title": "Florence"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"MAX MAXIMIZER\"",
+		"data": {
+			"basename": "mete",
+			"flareCategory": "GOLD",
+			"inGameID": 38726
+		},
+		"id": 38726,
+		"searchTerms": [],
+		"title": "Meteor"
+	},
+	{
+		"altTitles": [],
 		"artist": "Pizuya's Cell VS BEMANI Sound Team \"dj TAKA\"",
 		"data": {
 			"basename": "hesk",
 			"ddrSongHash": "Pbd01POIdQPdl6IDd6D6oP0006o6iO00",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38727
 		},
 		"id": 38727,
@@ -17188,7 +17428,7 @@
 		"data": {
 			"basename": "zanz",
 			"ddrSongHash": "16Qb0Oib60oQ1Oql8P806dDd8D0boDi1",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38728
 		},
 		"id": 38728,
@@ -17201,7 +17441,7 @@
 		"data": {
 			"basename": "neok",
 			"ddrSongHash": "IdOQPlbD9d9IO16Pd1IDO0b88Qo0boO9",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38730
 		},
 		"id": 38730,
@@ -17214,7 +17454,7 @@
 		"data": {
 			"basename": "buta",
 			"ddrSongHash": "0bqi6lPDP1qOl9dIb0DD1I9i8l8OlbQb",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38731
 		},
 		"id": 38731,
@@ -17223,11 +17463,23 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "月乃 ＆ BEMANI Sound Team \"劇団レコード\"",
+		"data": {
+			"basename": "decm",
+			"flareCategory": "GOLD",
+			"inGameID": 38732
+		},
+		"id": 38732,
+		"searchTerms": [],
+		"title": "まにぃまにあ××"
+	},
+	{
+		"altTitles": [],
 		"artist": "日向美ビタースイーツ♪",
 		"data": {
 			"basename": "imkk",
 			"ddrSongHash": "d01QdIl6i69DqIbbQQd6IPOiQOObPdIi",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38733
 		},
 		"id": 38733,
@@ -17252,7 +17504,7 @@
 		"data": {
 			"basename": "dama",
 			"ddrSongHash": "lDIO66Dqili0bD0Qo00iIlO6b100i8i0",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38735
 		},
 		"id": 38735,
@@ -17265,7 +17517,7 @@
 		"data": {
 			"basename": "suhr",
 			"ddrSongHash": "d1bdqOI8IPIO8i00Plq09d189lIbIo0I",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38736
 		},
 		"id": 38736,
@@ -17278,7 +17530,7 @@
 		"data": {
 			"basename": "safa2",
 			"ddrSongHash": "bd9dlo8IQOOdQD0dlPQ0bqqdOdl90ol0",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38737
 		},
 		"id": 38737,
@@ -17291,7 +17543,7 @@
 		"data": {
 			"basename": "onga2",
 			"ddrSongHash": "bdP0IOiPiQ8OlIbD1QQO8O6dPQqqb1Qb",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38738
 		},
 		"id": 38738,
@@ -17304,12 +17556,36 @@
 		"data": {
 			"basename": "tumu",
 			"ddrSongHash": "QQ8IoPqdIb61D8o886oo8b6didDIPqql",
-			"flareCategory": "NONE",
+			"flareCategory": "GOLD",
 			"inGameID": 38739
 		},
 		"id": 38739,
 		"searchTerms": [],
 		"title": "月に叢雲華に風"
+	},
+	{
+		"altTitles": [],
+		"artist": "佐々木博史",
+		"data": {
+			"basename": "tpp2",
+			"flareCategory": "GOLD",
+			"inGameID": 38742
+		},
+		"id": 38742,
+		"searchTerms": [],
+		"title": "Timepiece phase Ⅱ"
+	},
+	{
+		"altTitles": [],
+		"artist": "DJ TOTTO",
+		"data": {
+			"basename": "douw",
+			"flareCategory": "GOLD",
+			"inGameID": 38743
+		},
+		"id": 38743,
+		"searchTerms": [],
+		"title": "童話回廊"
 	},
 	{
 		"altTitles": [],
@@ -17385,6 +17661,78 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "rino & m@sumi from plastic penguin",
+		"data": {
+			"basename": "rmrm",
+			"flareCategory": "GOLD",
+			"inGameID": 38750
+		},
+		"id": 38750,
+		"searchTerms": [],
+		"title": "リメンバーリメンバー"
+	},
+	{
+		"altTitles": [],
+		"artist": "ねこまんまチーム！",
+		"data": {
+			"basename": "koiu",
+			"flareCategory": "GOLD",
+			"inGameID": 38751
+		},
+		"id": 38751,
+		"searchTerms": [],
+		"title": "恋歌疾風！かるたクイーンいろは"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"玄武 feat.二代目朱雀\"",
+		"data": {
+			"basename": "gany2",
+			"flareCategory": "GOLD",
+			"inGameID": 38752
+		},
+		"id": 38752,
+		"searchTerms": [],
+		"title": "Ganymede -re:born-"
+	},
+	{
+		"altTitles": [],
+		"artist": "kors k as teranoid",
+		"data": {
+			"basename": "badm",
+			"flareCategory": "GOLD",
+			"inGameID": 38753
+		},
+		"id": 38753,
+		"searchTerms": [],
+		"title": "Bad Maniacs"
+	},
+	{
+		"altTitles": [],
+		"artist": "Endorfin.",
+		"data": {
+			"basename": "fole",
+			"flareCategory": "GOLD",
+			"inGameID": 38754
+		},
+		"id": 38754,
+		"searchTerms": [],
+		"title": "Four Leaves"
+	},
+	{
+		"altTitles": [],
+		"artist": "Freezer feat.妃苺",
+		"data": {
+			"basename": "chpl",
+			"flareCategory": "GOLD",
+			"inGameID": 38755
+		},
+		"id": 38755,
+		"searchTerms": [],
+		"title": "Chocolate Planet"
+	},
+	{
+		"altTitles": [],
 		"artist": "BEMANI Sound Team \"Coyaan & KE!JU & ZAQUVA\"",
 		"data": {
 			"basename": "cove",
@@ -17457,6 +17805,42 @@
 	},
 	{
 		"altTitles": [],
+		"artist": "kors k×nagomu tamaki×BEMANI Sound Team \"U1\" with taru",
+		"data": {
+			"basename": "stvi",
+			"flareCategory": "GOLD",
+			"inGameID": 38762
+		},
+		"id": 38762,
+		"searchTerms": [],
+		"title": "Steps for Victory"
+	},
+	{
+		"altTitles": [],
+		"artist": "TESSEI TOJO",
+		"data": {
+			"basename": "ambo",
+			"flareCategory": "GOLD",
+			"inGameID": 38763
+		},
+		"id": 38763,
+		"searchTerms": [],
+		"title": "Amazing Bomberman"
+	},
+	{
+		"altTitles": [],
+		"artist": "Yuki Shibasaki feat. Ai Takekawa",
+		"data": {
+			"basename": "dawm",
+			"flareCategory": "GOLD",
+			"inGameID": 38764
+		},
+		"id": 38764,
+		"searchTerms": [],
+		"title": "Dance With Me"
+	},
+	{
+		"altTitles": [],
 		"artist": "B小町",
 		"data": {
 			"basename": "ware",
@@ -17466,5 +17850,437 @@
 		"id": 38765,
 		"searchTerms": [],
 		"title": "我ら完全無敵のアイドル!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "Covered by TOCORO十",
+		"data": {
+			"basename": "tosu",
+			"flareCategory": "GOLD",
+			"inGameID": 38766
+		},
+		"id": 38766,
+		"searchTerms": [],
+		"title": "トラウマ催眠少女さとり！"
+	},
+	{
+		"altTitles": [],
+		"artist": "原口沙輔 feat.重音テト",
+		"data": {
+			"basename": "igak",
+			"flareCategory": "GOLD",
+			"inGameID": 38767
+		},
+		"id": 38767,
+		"searchTerms": [],
+		"title": "イガク"
+	},
+	{
+		"altTitles": [],
+		"artist": "森羅万象",
+		"data": {
+			"basename": "mtor",
+			"flareCategory": "GOLD",
+			"inGameID": 38768
+		},
+		"id": 38768,
+		"searchTerms": [],
+		"title": "メテオラ-meteor-"
+	},
+	{
+		"altTitles": [],
+		"artist": "暁Records",
+		"data": {
+			"basename": "wiza",
+			"flareCategory": "GOLD",
+			"inGameID": 38769
+		},
+		"id": 38769,
+		"searchTerms": [],
+		"title": "Wizards!"
+	},
+	{
+		"altTitles": [],
+		"artist": "BlackY feat. Risa Yuzuki",
+		"data": {
+			"basename": "thst",
+			"flareCategory": "GOLD",
+			"inGameID": 38770
+		},
+		"id": 38770,
+		"searchTerms": [],
+		"title": "THUNDERSTRIKE"
+	},
+	{
+		"altTitles": [],
+		"artist": "OSTER project feat. 花たん",
+		"data": {
+			"basename": "blan",
+			"flareCategory": "GOLD",
+			"inGameID": 38771
+		},
+		"id": 38771,
+		"searchTerms": [],
+		"title": "blue anthem"
+	},
+	{
+		"altTitles": [],
+		"artist": "DÉ DÉ MOUSE",
+		"data": {
+			"basename": "gitg",
+			"flareCategory": "GOLD",
+			"inGameID": 38772
+		},
+		"id": 38772,
+		"searchTerms": [],
+		"title": "Get Into The Groove feat.WaMi"
+	},
+	{
+		"altTitles": [],
+		"artist": "SOUND HOLIC feat. STEVIE(44MAGNUM)",
+		"data": {
+			"basename": "espr",
+			"flareCategory": "GOLD",
+			"inGameID": 38773
+		},
+		"id": 38773,
+		"searchTerms": [],
+		"title": "ESPRIT ONE"
+	},
+	{
+		"altTitles": [],
+		"artist": "nora2r feat. Liqo & DD\"ナカタ\"Metal",
+		"data": {
+			"basename": "mibm",
+			"flareCategory": "GOLD",
+			"inGameID": 38774
+		},
+		"id": 38774,
+		"searchTerms": [],
+		"title": "Mighty Beat Monsterz"
+	},
+	{
+		"altTitles": [],
+		"artist": "DECO*27",
+		"data": {
+			"basename": "rabb",
+			"flareCategory": "GOLD",
+			"inGameID": 38775
+		},
+		"id": 38775,
+		"searchTerms": [],
+		"title": "ラビットホール"
+	},
+	{
+		"altTitles": [],
+		"artist": "サツキ feat.初音ミク・重音テト",
+		"data": {
+			"basename": "mesm",
+			"flareCategory": "GOLD",
+			"inGameID": 38776
+		},
+		"id": 38776,
+		"searchTerms": [],
+		"title": "メズマライザー"
+	},
+	{
+		"altTitles": [],
+		"artist": "ここなつ Produced by はるなば",
+		"data": {
+			"basename": "mrsk",
+			"flareCategory": "GOLD",
+			"inGameID": 38778
+		},
+		"id": 38778,
+		"searchTerms": [],
+		"title": "ムラサキグルマ"
+	},
+	{
+		"altTitles": [],
+		"artist": "P*Light",
+		"data": {
+			"basename": "gale",
+			"flareCategory": "GOLD",
+			"inGameID": 38779
+		},
+		"id": 38779,
+		"searchTerms": [],
+		"title": "Gale Rider"
+	},
+	{
+		"altTitles": [],
+		"artist": "dj TAKA",
+		"data": {
+			"basename": "holl",
+			"flareCategory": "GOLD",
+			"inGameID": 38780
+		},
+		"id": 38780,
+		"searchTerms": [],
+		"title": "Hollywood Galaxy"
+	},
+	{
+		"altTitles": [],
+		"artist": "日向美ビタースイーツ♪",
+		"data": {
+			"basename": "kata",
+			"flareCategory": "GOLD",
+			"inGameID": 38781
+		},
+		"id": 38781,
+		"searchTerms": [],
+		"title": "カタルシスの月"
+	},
+	{
+		"altTitles": [],
+		"artist": "ここなつ2.0",
+		"data": {
+			"basename": "roes",
+			"flareCategory": "GOLD",
+			"inGameID": 38782
+		},
+		"id": 38782,
+		"searchTerms": [],
+		"title": "ロマンシングエスケープ"
+	},
+	{
+		"altTitles": [],
+		"artist": "Covered by 滝沢玻琉",
+		"data": {
+			"basename": "syou",
+			"flareCategory": "GOLD",
+			"inGameID": 38799
+		},
+		"id": 38799,
+		"searchTerms": [],
+		"title": "唱"
+	},
+	{
+		"altTitles": [],
+		"artist": "Porter Robinson",
+		"data": {
+			"basename": "chee",
+			"flareCategory": "GOLD",
+			"inGameID": 38800
+		},
+		"id": 38800,
+		"searchTerms": [],
+		"title": "Cheerleader"
+	},
+	{
+		"altTitles": [],
+		"artist": "Porter Robinson",
+		"data": {
+			"basename": "knyo",
+			"flareCategory": "GOLD",
+			"inGameID": 38801
+		},
+		"id": 38801,
+		"searchTerms": [],
+		"title": "Knock Yourself Out XD"
+	},
+	{
+		"altTitles": [],
+		"artist": "Covered by ぽめ",
+		"data": {
+			"basename": "yush",
+			"flareCategory": "GOLD",
+			"inGameID": 38803
+		},
+		"id": 38803,
+		"searchTerms": [],
+		"title": "勇者"
+	},
+	{
+		"altTitles": [],
+		"artist": "かめりあ",
+		"data": {
+			"basename": "ryum2",
+			"flareCategory": "GOLD",
+			"inGameID": 38804
+		},
+		"id": 38804,
+		"searchTerms": [],
+		"title": "量子の海のリントヴルム (STARDOM Remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "ARM (IOSYS)",
+		"data": {
+			"basename": "dopa2",
+			"flareCategory": "GOLD",
+			"inGameID": 38805
+		},
+		"id": 38805,
+		"searchTerms": [],
+		"title": "ドーパミン (STARDOM Remix)"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"KE!JU\"",
+		"data": {
+			"basename": "loyo",
+			"flareCategory": "GOLD",
+			"inGameID": 38806
+		},
+		"id": 38806,
+		"searchTerms": [],
+		"title": "Love You"
+	},
+	{
+		"altTitles": [],
+		"artist": "GUHROOVY",
+		"data": {
+			"basename": "sabm",
+			"flareCategory": "GOLD",
+			"inGameID": 38807
+		},
+		"id": 38807,
+		"searchTerms": [],
+		"title": "Stand Alone Beat Masta"
+	},
+	{
+		"altTitles": [],
+		"artist": "#FFFFFF",
+		"data": {
+			"basename": "cobl",
+			"flareCategory": "GOLD",
+			"inGameID": 38808
+		},
+		"id": 38808,
+		"searchTerms": [],
+		"title": "Couleur=Blanche"
+	},
+	{
+		"altTitles": [],
+		"artist": "つきみぐー、",
+		"data": {
+			"basename": "gaga",
+			"flareCategory": "GOLD",
+			"inGameID": 38809
+		},
+		"id": 38809,
+		"searchTerms": [],
+		"title": "ギャ・ギャ・ギャ・ギャラクシー！"
+	},
+	{
+		"altTitles": [],
+		"artist": "駄菓子O型",
+		"data": {
+			"basename": "aoba",
+			"flareCategory": "GOLD",
+			"inGameID": 38810
+		},
+		"id": 38810,
+		"searchTerms": [],
+		"title": "あおばの足音"
+	},
+	{
+		"altTitles": [],
+		"artist": "Shu",
+		"data": {
+			"basename": "hhwn",
+			"flareCategory": "GOLD",
+			"inGameID": 38811
+		},
+		"id": 38811,
+		"searchTerms": [],
+		"title": "悲報！ワイ！ニート！"
+	},
+	{
+		"altTitles": [],
+		"artist": "TOMOSUKE feat.あさき",
+		"data": {
+			"basename": "mkss",
+			"flareCategory": "GOLD",
+			"inGameID": 38813
+		},
+		"id": 38813,
+		"searchTerms": [],
+		"title": "明鏡止水"
+	},
+	{
+		"altTitles": [],
+		"artist": "Des-ROW・組ユナイテッド",
+		"data": {
+			"basename": "miti",
+			"flareCategory": "GOLD",
+			"inGameID": 38814
+		},
+		"id": 38814,
+		"searchTerms": [],
+		"title": "路男"
+	},
+	{
+		"altTitles": [],
+		"artist": "NU-KO",
+		"data": {
+			"basename": "potk",
+			"flareCategory": "GOLD",
+			"inGameID": 38815
+		},
+		"id": 38815,
+		"searchTerms": [],
+		"title": "ポチコの幸せな日常"
+	},
+	{
+		"altTitles": [],
+		"artist": "Power Of Nature",
+		"data": {
+			"basename": "babe",
+			"flareCategory": "GOLD",
+			"inGameID": 38816
+		},
+		"id": 38816,
+		"searchTerms": [],
+		"title": "BabeL ～Next Story～"
+	},
+	{
+		"altTitles": [],
+		"artist": "かねこちはる",
+		"data": {
+			"basename": "ztrd",
+			"flareCategory": "GOLD",
+			"inGameID": 38817
+		},
+		"id": 38817,
+		"searchTerms": [],
+		"title": "絶対零度"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"HuΣeR\" feat.ゆきまめ",
+		"data": {
+			"basename": "liag",
+			"flareCategory": "GOLD",
+			"inGameID": 38818
+		},
+		"id": 38818,
+		"searchTerms": [],
+		"title": "Liar×Girl"
+	},
+	{
+		"altTitles": [],
+		"artist": "MAX MAXIMIZER",
+		"data": {
+			"basename": "arac",
+			"flareCategory": "GOLD",
+			"inGameID": 38819
+		},
+		"id": 38819,
+		"searchTerms": [],
+		"title": "ARACHNE"
+	},
+	{
+		"altTitles": [],
+		"artist": "OSTER project",
+		"data": {
+			"basename": "ebiv",
+			"flareCategory": "GOLD",
+			"inGameID": 38820
+		},
+		"id": 38820,
+		"searchTerms": [],
+		"title": "EBONY & IVORY"
 	}
 ]

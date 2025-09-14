@@ -5,6 +5,7 @@ import {
 	EXT_CASTHOUR,
 	EXT_EPOLIS,
 	EXT_HEROIC_VERSE,
+	EXT_PINKYCRUSH,
 	EXT_RESIDENT,
 	EXT_ROOTAGE,
 	MODEL_IIDX,
@@ -151,6 +152,10 @@ export function SoftwareIDToVersion(
 					return "31-omni";
 				} else if (data.rev === REV_2DXTRA) {
 					return "31-2dxtra";
+				}
+			} else if (EXT_PINKYCRUSH.includes(data.ext)) {
+				if (data.rev === REV_NORMAL) {
+					return "32";
 				}
 			}
 		}

@@ -20,7 +20,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
 # so apt doesn't complain about the lack of a dialog-like program
 ENV DEBIAN_FRONTEND=readline
 
-# `fd` is called `fdfind` on ubuntu. Awesome.
+# `fd` is called `fdfind` on debian. Awesome.
 RUN ln -s $(which fdfind) /usr/bin/fd
 
 # setup locales

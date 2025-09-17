@@ -113,6 +113,14 @@ const options = new Command()
 	.parse(process.argv)
 	.opts();
 
+if (!options.vgmsBinary) {
+	try {
+		options.vgmsBinary = execFileSync("which", ["vgmstream-cli"]).toString("utf-8").trim();
+	} catch (e) {
+		// pass
+	}
+}
+
 const versions = Object.keys(GetGamePTConfig("maimaidx", "Single").versions);
 
 if (versions.indexOf(options.version) === -1) {

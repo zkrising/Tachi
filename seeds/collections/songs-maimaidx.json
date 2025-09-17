@@ -19089,5 +19089,112 @@
 			"MoeChakkaFire"
 		],
 		"title": "モエチャッカファイア"
+	},
+	{
+		"altTitles": [],
+		"artist": "SAWTOWNE",
+		"data": {
+			"duration": 159.375,
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1491,
+		"searchTerms": [
+			"Magical Cure Love Shot"
+		],
+		"title": "M@GICAL☆CURE! LOVE ♥ SHOT!"
+	},
+	{
+		"altTitles": [],
+		"artist": "Luna Fozer (BilliumMoto, 黒皇帝, Sobrem feat. vally.exe)",
+		"data": {
+			"duration": 154.406,
+			"genre": "ゲーム＆バラエティ"
+		},
+		"id": 1492,
+		"searchTerms": [
+			"Overjoy OVERDOSE"
+		],
+		"title": "Overjoy ★ OVERDOSE!!"
+	},
+	{
+		"altTitles": [],
+		"artist": "Cosmograph",
+		"data": {
+			"duration": 124.333,
+			"genre": "ゲーム＆バラエティ"
+		},
+		"id": 1493,
+		"searchTerms": [],
+		"title": "DATAERR0R"
+	},
+	{
+		"altTitles": [],
+		"artist": "小田朋美",
+		"data": {
+			"duration": 125.255,
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1494,
+		"searchTerms": [
+			"Manuru neko no Uta",
+			"Pallas's cat song"
+		],
+		"title": "マヌルネコのうた"
+	},
+	{
+		"altTitles": [],
+		"artist": "ぷにぷに電機",
+		"data": {
+			"duration": 114.014,
+			"genre": "POPS＆アニメ"
+		},
+		"id": 1495,
+		"searchTerms": [
+			"Suna neko no Uta",
+			"Sand cat song"
+		],
+		"title": "スナネコのうた"
+	},
+	{
+		"altTitles": [],
+		"artist": "電ǂ鯨",
+		"data": {
+			"duration": 160.941,
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1496,
+		"searchTerms": [
+			"Kuuneru Andgazer",
+			"Eating, Sleeping and Gazing"
+		],
+		"title": "クーネル・エンゲイザー"
+	},
+	{
+		"altTitles": [],
+		"artist": "はるまきごはん",
+		"data": {
+			"duration": 152.03,
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1497,
+		"searchTerms": [
+			"Zero Talking",
+			"Zero Tookingu"
+		],
+		"title": "ゼロトーキング"
+	},
+	{
+		"altTitles": [],
+		"artist": "ナナホシ管弦楽団",
+		"data": {
+			"duration": 146.143,
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1498,
+		"searchTerms": [
+			"batsubyou",
+			"weigh anchor"
+		],
+		"title": "抜錨"
 	}
 ]

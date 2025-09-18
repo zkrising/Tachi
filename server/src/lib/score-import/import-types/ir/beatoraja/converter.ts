@@ -48,6 +48,12 @@ async function HandleOrphanChartProcess(
 ) {
 	const chartName = `${context.chart.artist} (${context.chart.subartist})- ${context.chart.title} (${context.chart.subtitle})`;
 
+	if (context.chart.lntype !== 0) {
+		throw new InvalidScoreFailure(
+			`${TachiConfig.NAME} does not support charts with forced-CN or forced-HCN.`
+		);
+	}
+
 	if (context.chart.hasRandom) {
 		// If you're someone forking tachi looking to remove this
 		// check, remember to change the entire score import

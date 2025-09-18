@@ -48,7 +48,11 @@ async function HandleOrphanChartProcess(
 ) {
 	const chartName = `${context.chart.artist} (${context.chart.subartist})- ${context.chart.title} (${context.chart.subtitle})`;
 
-	if (context.chart.lntype !== 0) {
+	// -1: unspecified in chart
+	// 0: force-LN
+	// 1: force-CN
+	// 2: force-HCN
+	if (context.chart.lntype !== 0 && context.chart.lntype !== -1) {
 		throw new InvalidScoreFailure(
 			`${TachiConfig.NAME} does not support charts with forced-CN or forced-HCN.`
 		);

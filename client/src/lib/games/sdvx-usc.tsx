@@ -92,6 +92,7 @@ export const SDVX_IMPL: GPTClientImplementation<"sdvx:Single"> = {
 		VVD: COLOUR_SET.pink,
 		XCD: COLOUR_SET.blue,
 		MXM: COLOUR_SET.white,
+		ULT: COLOUR_SET.vibrantOrange,
 	},
 	classColours: {
 		dan: {

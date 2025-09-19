@@ -155,7 +155,7 @@ export const SDVX_SINGLE_CONF = {
 
 	difficulties: {
 		type: "FIXED",
-		order: ["NOV", "ADV", "EXH", "INF", "GRV", "HVN", "VVD", "XCD", "MXM"],
+		order: ["NOV", "ADV", "EXH", "INF", "GRV", "HVN", "VVD", "XCD", "MXM", "ULT"],
 		shorthand: {}, // they're all already short enough
 		default: "EXH",
 	},

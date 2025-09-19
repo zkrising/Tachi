@@ -25886,5 +25886,89 @@
 			"monst_medlay_sotafujimori"
 		],
 		"title": "モンスターストライクメドレー(SDVX REMIX)"
+	},
+	{
+		"altTitles": [],
+		"artist": "晴いちばん",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2379,
+		"searchTerms": [
+			"explore_haruichiban"
+		],
+		"title": "エクスプロウル"
+	},
+	{
+		"altTitles": [],
+		"artist": "駄菓子O型",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2380,
+		"searchTerms": [
+			"aobanoashioto_dagashiogata"
+		],
+		"title": "あおばの足音"
+	},
+	{
+		"altTitles": [],
+		"artist": "Shu",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2381,
+		"searchTerms": [
+			"hihouwaineat_shu"
+		],
+		"title": "悲報！ワイ！ニート！"
+	},
+	{
+		"altTitles": [],
+		"artist": "つきみぐー、",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2382,
+		"searchTerms": [
+			"gyagyagya_tsukimiguu"
+		],
+		"title": "ギャ・ギャ・ギャ・ギャラクシー！"
+	},
+	{
+		"altTitles": [],
+		"artist": "マキシウキョウ",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2383,
+		"searchTerms": [
+			"kakugoseyo_makishiukyou"
+		],
+		"title": "覚悟せよ！エンタンメ～ン ～より身の切り売り自暴自棄版～"
+	},
+	{
+		"altTitles": [],
+		"artist": "雪乃イト",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2384,
+		"searchTerms": [
+			"icecreammagic_yukinoito"
+		],
+		"title": "アイスクリームマジック"
+	},
+	{
+		"altTitles": [],
+		"artist": "ナユタン星人",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2385,
+		"searchTerms": [
+			"wakuseiloop_kagasumire"
+		],
+		"title": "惑星ループ (花芽すみれ Cover)"
 	}
 ]

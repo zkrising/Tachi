@@ -45,7 +45,13 @@ export const PR_KSHOOK_SV6C: PrudenceSchema = {
 	near: p.isPositiveInteger,
 	error: p.isPositiveInteger,
 
-	rate: p.isIn("RATE_EFFECTIVE", "RATE_PERMISSIVE", "RATE_EXCESSIVE", "RATE_BLASTIVE"),
+	rate: p.isIn(
+		"RATE_EFFECTIVE",
+		"RATE_PERMISSIVE",
+		"RATE_EXCESSIVE",
+		"RATE_BLASTIVE",
+		"RATE_MAXXIVE"
+	),
 
 	track_no: p.isPositiveInteger,
 	retry_count: p.any,

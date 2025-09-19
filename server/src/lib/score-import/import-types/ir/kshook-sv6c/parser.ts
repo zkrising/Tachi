@@ -12,6 +12,7 @@ export const PR_KSHOOK_SV6C: PrudenceSchema = {
 		"CLEAR_EFFECTIVE",
 		"CLEAR_EXCESSIVE",
 		"CLEAR_ULTIMATE_CHAIN",
+		"CLEAR_MAXXIVE",
 		"CLEAR_PERFECT"
 	),
 	difficulty: p.isIn(
@@ -44,7 +45,13 @@ export const PR_KSHOOK_SV6C: PrudenceSchema = {
 	near: p.isPositiveInteger,
 	error: p.isPositiveInteger,
 
-	rate: p.isIn("RATE_EFFECTIVE", "RATE_PERMISSIVE", "RATE_EXCESSIVE", "RATE_BLASTIVE"),
+	rate: p.isIn(
+		"RATE_EFFECTIVE",
+		"RATE_PERMISSIVE",
+		"RATE_EXCESSIVE",
+		"RATE_BLASTIVE",
+		"RATE_MAXXIVE"
+	),
 
 	track_no: p.isPositiveInteger,
 	retry_count: p.any,

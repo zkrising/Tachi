@@ -4,6 +4,7 @@ export interface KsHookSV6CScore {
 	clear:
 		| "CLEAR_EFFECTIVE"
 		| "CLEAR_EXCESSIVE"
+		| "CLEAR_MAXXIVE"
 		| "CLEAR_PERFECT"
 		| "CLEAR_PLAYED"
 		| "CLEAR_ULTIMATE_CHAIN";

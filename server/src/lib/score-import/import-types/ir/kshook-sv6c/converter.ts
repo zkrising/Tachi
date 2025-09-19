@@ -76,6 +76,8 @@ export function SV6CConvertLamp(
 			return "ULTIMATE CHAIN";
 		case "CLEAR_PERFECT":
 			return "PERFECT ULTIMATE CHAIN";
+		case "CLEAR_MAXXIVE":
+			return "MAXXIVE CLEAR";
 	}
 
 	throw new InvalidScoreFailure(`Invalid lamp of ${clear} - Could not convert.`);

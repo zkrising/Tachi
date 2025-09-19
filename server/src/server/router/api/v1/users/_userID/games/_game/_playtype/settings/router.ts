@@ -4,7 +4,7 @@ import db from "external/mongo/db";
 import CreateLogCtx from "lib/logger/logger";
 import { p } from "prudence";
 import { RequirePermissions } from "server/middleware/auth";
-import { GetGamePTConfig, PrudenceZodShim } from "tachi-common";
+import { GetGamePTConfig, GetScoreMetrics, PrudenceZodShim } from "tachi-common";
 import { FormatPrError, optNull } from "utils/prudence";
 import { GetUGPT } from "utils/req-tachi-data";
 import { FormatUserDoc } from "utils/user";
@@ -46,7 +46,7 @@ router.patch(
 			preferredRanking: optNull(p.isIn("global", "rival")),
 
 			gameSpecific: optNull(gameSpecificSchema),
-			preferredDefaultEnum: optNull(p.isIn("grade", "lamp")),
+			preferredDefaultEnum: optNull(p.isIn(...GetScoreMetrics(gptConfig, "ENUM"))),
 		});
 
 		if (err) {

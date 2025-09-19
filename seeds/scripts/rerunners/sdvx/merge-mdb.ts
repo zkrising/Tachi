@@ -52,6 +52,7 @@ interface MDBEntry {
 		exhaust?: MDBChart;
 		infinite?: MDBChart;
 		maximum?: MDBChart;
+		ultimate?: MDBChart;
 	};
 	"@_id": string;
 }
@@ -118,6 +119,8 @@ function convertDiff(
 			throw new Error(
 				`Unknown inf_ver ${infVer}. Cannot interpret the real difficulty of this chart!`
 			);
+		case "ultimate":
+			return "ULT";
 	}
 }
 
@@ -225,7 +228,7 @@ for (const entry of data.mdb.music as Array<MDBEntry>) {
 		songID = songDoc.id;
 	}
 
-	for (const diff of ["novice", "advanced", "exhaust", "infinite", "maximum"] as const) {
+	for (const diff of ["novice", "advanced", "exhaust", "infinite", "maximum", "ultimate"] as const) {
 		const maybeEntry = entry.difficulty[diff];
 
 		if (!maybeEntry) {

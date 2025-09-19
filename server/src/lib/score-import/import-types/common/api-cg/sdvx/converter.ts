@@ -81,6 +81,8 @@ function ConvertDifficulty(diff: number) {
 			return "ANY_INF";
 		case 4:
 			return "MXM";
+		case 5:
+			return "ULT";
 	}
 
 	throw new InvalidScoreFailure(`Invalid difficulty of ${diff} - Could not convert.`);

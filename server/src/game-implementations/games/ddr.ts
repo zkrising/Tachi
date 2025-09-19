@@ -73,15 +73,11 @@ export const DDR_SCORE_VALIDATORS: Array<ScoreValidator<"ddr:DP" | "ddr:SP">> = 
 			return;
 		}
 
-		const stepScore = 1_000_000 / chart.data.stepCount;
-		const calculatedScore =
-			Math.floor(
-				(stepScore * (MARVELOUS + OK) +
-					(stepScore - 10) * PERFECT +
-					((stepScore * 3) / 5 - 10) * GREAT +
-					(stepScore / 5 - 10) * GOOD) /
-					10
-			) * 10;
+		const maxPoints = 5 * chart.data.stepCount;
+		const scorePoints = 5 * (MARVELOUS + PERFECT + OK) + 3 * GREAT + GOOD;
+
+		const penaltiedPoints = scorePoints * 100_000 - (PERFECT + GREAT + GOOD) * maxPoints;
+		const calculatedScore = Math.floor(penaltiedPoints / maxPoints) * 10;
 
 		if (calculatedScore !== s.scoreData.score) {
 			return `Expected calculated score from judgements of ${calculatedScore} to equal score of ${s.scoreData.score}.`;

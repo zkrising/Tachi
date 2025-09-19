@@ -12,6 +12,7 @@ export const PR_KSHOOK_SV6C: PrudenceSchema = {
 		"CLEAR_EFFECTIVE",
 		"CLEAR_EXCESSIVE",
 		"CLEAR_ULTIMATE_CHAIN",
+		"CLEAR_MAXXIVE",
 		"CLEAR_PERFECT"
 	),
 	difficulty: p.isIn(

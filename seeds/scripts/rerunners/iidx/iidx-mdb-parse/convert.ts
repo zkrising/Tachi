@@ -189,6 +189,9 @@ export async function ParseIIDXData(
 
 		if (!fs.existsSync(dotOnePath)) {
 			curLoc += structSize;
+			if (buffer.length <= curLoc) {
+				moreData = false;
+			}
 			logger.error(`${dotOnePath} cannot find file. neither exist.`);
 			continue;
 		}

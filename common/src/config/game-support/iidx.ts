@@ -260,6 +260,7 @@ export const IIDX_SP_CONF = {
 		"30": "Resident",
 		"31": "Epolis",
 		"32": "Pinky Crush",
+		"33": "Sparkle Shower",
 		"26-omni": "ROOTAGE Omnimix",
 		"27-omni": "HEROIC VERSE Omnimix",
 		"28-omni": "BISTROVER Omnimix",

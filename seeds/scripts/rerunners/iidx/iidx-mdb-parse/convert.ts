@@ -85,6 +85,7 @@ export async function ParseIIDXData(
 			levelsOffset = 0x120;
 			break;
 		case 32:
+		case 33:
 			start = buffer.readUInt16LE(0xc) * 4 + 0x10;
 			structSize = 0x7f8;
 			levelsOffset = 0x3ec;
@@ -189,6 +190,9 @@ export async function ParseIIDXData(
 
 		if (!fs.existsSync(dotOnePath)) {
 			curLoc += structSize;
+			if (buffer.length <= curLoc) {
+				moreData = false;
+			}
 			logger.error(`${dotOnePath} cannot find file. neither exist.`);
 			continue;
 		}

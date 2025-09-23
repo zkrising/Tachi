@@ -2492,7 +2492,7 @@
 		"title": "beatmania IIDX (DP) (Epolis Omnimix)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for beatmania IIDX (DP) in Epolis.",
 		"folders": [
 			"F433523a3d513a07b3e1e4e4b9441eec2337f748bd6e8a249ea49dd4bcae92d7b",
@@ -2509,7 +2509,7 @@
 			"F534cb868ae0066629b76a5e92d4c21fbb86d6ff1b8ede167a1a46c4dd8a0fb6f"
 		],
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "DP",
 		"tableID": "iidx-DP-31-levels",
 		"title": "beatmania IIDX (DP) (EPOLIS)"
@@ -2699,7 +2699,7 @@
 		"title": "beatmania IIDX (DP) (PENDUAL)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for beatmania IIDX (DP) in Pinky Crush.",
 		"folders": [
 			"F2b2fcda94a766584618391be7c46b9dac6b7914f92386ad0171b97403a4f849f",
@@ -2858,6 +2858,29 @@
 		"playtype": "DP",
 		"tableID": "iidx-DP-21-levels",
 		"title": "beatmania IIDX (DP) (SPADA)"
+	},
+	{
+		"default": false,
+		"description": "Levels for beatmania IIDX (DP) in Sparkle Shower.",
+		"folders": [
+			"Fa48be9743bbf5c76506acd751db0e1f9ca6c39ea78e9d32bfd1c120da3a0e675",
+			"F373b83d9e576304cf3725509dea513fc3ee1c033b63fff33c2a7e320b2688bbe",
+			"F39151b7bee37a7188449f3a13f8a0542ffa9330341cdb1f43480df5de3d34a12",
+			"F6430adbf9da78a57eef2f5b65629d8f1effe400eae4a9e84ee33fd55b9075df1",
+			"F6a6742d0d3573b60098f212684d2a8805570a24a842fc90f89a5898cb234624e",
+			"F451fe6994b97642585cb3c0a50296ae9e3c20bc81d9d855be709bfc47c2c5452",
+			"Fdb2b0d04a24ea0f66421a4f176a3cb5951d621a6b01f7b6b07cae3eaa8f28ea7",
+			"F22cb3ed62c98cc0738e38c0900cd9498cb69d30c5ced40e4ad7584c275c919a2",
+			"F3299323feb5be91d8c25546dfbf3717c64fb1b2023f371699ba8537c2a606987",
+			"F79a78c80ea952fac15486636d3dddd9eec70bbd0afa10a6534fea21f2e39b07c",
+			"F74d0073038e258ed6e7430fe73e9d05e575d8b64704d5396d4108c02b8494853",
+			"Fa7d9b63a67e40b46b490bff57762401bf8047413ed882d053a9d78d2f9152fe6"
+		],
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "DP",
+		"tableID": "iidx-DP-33-levels",
+		"title": "beatmania IIDX (DP) (Sparkle Shower)"
 	},
 	{
 		"default": false,
@@ -3320,7 +3343,7 @@
 		"title": "beatmania IIDX (SP) (Epolis Omnimix)"
 	},
 	{
-		"default": true,
+		"default": false,
 		"description": "Levels for beatmania IIDX (SP) in Epolis.",
 		"folders": [
 			"Feb083d47b06dd6752591125bf41299e35596c168fb4946ba731ad9123b646aac",
@@ -3337,7 +3360,7 @@
 			"F2b0542125b7def38e87972d7016c11d8751f51671be778669769417cd4c74204"
 		],
 		"game": "iidx",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "SP",
 		"tableID": "iidx-SP-31-levels",
 		"title": "beatmania IIDX (SP) (EPOLIS)"
@@ -3527,7 +3550,7 @@
 		"title": "beatmania IIDX (SP) (PENDUAL)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for beatmania IIDX (SP) in Pinky Crush.",
 		"folders": [
 			"F414a38ddc83bbe981e09331b7f254c3163520e4357286039fe8c33da64808545",
@@ -3686,6 +3709,29 @@
 		"playtype": "SP",
 		"tableID": "iidx-SP-21-levels",
 		"title": "beatmania IIDX (SP) (SPADA)"
+	},
+	{
+		"default": false,
+		"description": "Levels for beatmania IIDX (SP) in Sparkle Shower.",
+		"folders": [
+			"F126b6d34ca92dfab50d56146b7ebe0b608067a247e8fc12c4bef57d33839903b",
+			"F9998d47390bdf77e57a1f948f9f67a5eb1f2771880334521e0d58645dab110d8",
+			"F435953751febda524e554a9c2b4cfc544398f80628bdbd69844f6c290e250129",
+			"F95af0fa33691cd756266b8505d1c2f0b92ef47e1270ead1d4d55392d9ff316de",
+			"Fde2cd74eebfe6f6002848e2b3904312e2a0a812250dc07944cd9c22972bc0361",
+			"F06e5a7f403c37e967558c3a2d00b08bebf583750bf52948dc732aa453ccb7656",
+			"F56e5d67046950ee59d98106ebe9dcfc73a332149992d761c72995d7e63be6dd4",
+			"F0268a968013866e93c0d2b57efa872f1e7e0c6f8275bce720dbaf1215611fd02",
+			"Fa70d15ab9fc9e57464a295bf1ac5c52b72bd130678f962b0d6787ecf2698741d",
+			"F68eb1793e01cf279e48aedc23be8972dfa0b57bb6c04dfbf03d30346a0940acc",
+			"F10bbea98c9a6b1cb7a25e3d43a7a9233a08baa0fe1ddf2ec55ecc2ae6a3ea62d",
+			"F54097f009126cb586a0c640ad4fe4e9368560416fd5beae44d0a369565788df5"
+		],
+		"game": "iidx",
+		"inactive": false,
+		"playtype": "SP",
+		"tableID": "iidx-SP-33-levels",
+		"title": "beatmania IIDX (SP) (Sparkle Shower)"
 	},
 	{
 		"default": false,

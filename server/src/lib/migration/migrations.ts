@@ -2,6 +2,7 @@ import UserFollowersMigration from "./migrations/add-following-to-users";
 import AddLockedAt from "./migrations/add-lockedat";
 import UGPTAddPreferredRanking from "./migrations/add-preferredRanking-to-ugpt";
 import UGPTRivalsMigration from "./migrations/add-rivals-to-ugpt";
+import ChunithmFixPreferredDefaultEnum from "./migrations/chunithm-fix-preferred-default-enum";
 import ChunithmLampSplit from "./migrations/chunithm-lamp-split";
 import FixUndefinedBMSData from "./migrations/fix-undefined-bms-data";
 import JoinINFCastHourCharts from "./migrations/join-inf-casthour-charts";
@@ -75,7 +76,8 @@ if (Environment.nodeEnv !== "test") {
 			RemoveIIDX2dxtraBeginners,
 			RmHot,
 			ChunithmLampSplit,
-			OngekiV2
+			OngekiV2,
+			ChunithmFixPreferredDefaultEnum
 			// SdvxMaxxiveLampRearrange,
 			// SdvxMaxxiveGoals
 		);

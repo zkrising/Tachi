@@ -162,10 +162,12 @@ export async function ParseIIDXData(
 
 		const extractedIFSLeggLoc = path.join(ifsOUT, `${iSongID}-p0_ifs/${iSongID}/${iSongID}.1`);
 
-		if (fs.existsSync(ifsLeggPath)) {
-			if (!fs.existsSync(extractedIFSLeggLoc)) {
+		if (fs.existsSync(ifsLeggPath) || fs.existsSync(extractedIFSLeggLoc)) {
+			if (!fs.existsSync(extractedIFSLeggLoc) || alwaysExtract) {
 				ifsExtract(ifsLeggPath);
 			}
+
+			dotOnePath = extractedIFSLeggLoc;
 
 			const charts = await ParseDotOneFile(extractedIFSLeggLoc, {
 				genre,
@@ -177,15 +179,15 @@ export async function ParseIIDXData(
 			for (const chart of charts) {
 				notecounts[`${chart.playtype}-${chart.difficulty}`] = chart.notecount;
 			}
-		}
+		} else {
+			// if we've already extracted this, and --always-extract isn't set
+			if (fs.existsSync(extractedIFSLoc) && !alwaysExtract) {
+				dotOnePath = extractedIFSLoc;
+			} else if (fs.existsSync(ifsPath)) {
+				ifsExtract(ifsPath);
 
-		// if we've already extracted this, and --always-extract isn't set
-		if (fs.existsSync(extractedIFSLoc) && !alwaysExtract) {
-			dotOnePath = extractedIFSLoc;
-		} else if (fs.existsSync(ifsPath)) {
-			ifsExtract(ifsPath);
-
-			dotOnePath = extractedIFSLoc;
+				dotOnePath = extractedIFSLoc;
+			}
 		}
 
 		if (!fs.existsSync(dotOnePath)) {

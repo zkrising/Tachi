@@ -94,6 +94,8 @@ t.test("#ParseLR2Hook", (t) => {
 
 	assertFail({}, "Should reject an empty object");
 
+	assertFail(dm({ playerData: { rseed: "foo" } }), "Should reject invalid rseed.");
+
 	for (const key of [
 		"pgreat",
 		"good",

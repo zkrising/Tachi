@@ -33,6 +33,85 @@ t.test("#ConverterLR2Hook", (t) => {
 					score: TestingLR2HookScore.scoreData.exScore,
 					optional: {
 						bp: 56,
+						epg: undefined,
+						lpg: undefined,
+						egr: undefined,
+						lgr: undefined,
+						egd: undefined,
+						lgd: undefined,
+						ebd: undefined,
+						lbd: undefined,
+						epr: undefined,
+						lpr: undefined,
+						fast: undefined,
+						slow: undefined,
+					},
+				},
+				game: "bms",
+				importType: "ir/lr2hook",
+				scoreMeta: {
+					client: "LR2",
+				},
+			},
+		});
+
+		t.end();
+	});
+
+	t.test("Should use optional and extended properties.", async (t) => {
+		const res = await ConverterLR2Hook(
+			dmf(TestingLR2HookScore, {
+				scoreData: {
+					extendedJudgements: {
+						epg: 1,
+						lpg: 2,
+						egr: 3,
+						lgr: 4,
+						egd: 5,
+						lgd: 6,
+						ebd: 7,
+						lbd: 8,
+						epr: 9,
+						lpr: 10,
+						cb: 11,
+						fast: 12,
+						slow: 13,
+						notesPlayed: TestingLR2HookScore.scoreData.notesPlayed,
+					},
+				},
+			} as any),
+			{ timeReceived: 10 },
+			"ir/lr2hook",
+			logger
+		);
+
+		t.hasStrict(res, {
+			song: {
+				id: 27339,
+			},
+			chart: {
+				chartID: "88eb6cc5683e2740cbd07f588a5f3db1db8d467b",
+				data: {
+					hashMD5: TestingLR2HookScore.md5,
+				},
+			},
+			dryScore: {
+				scoreData: {
+					score: TestingLR2HookScore.scoreData.exScore,
+					optional: {
+						bp: 56,
+						epg: 1,
+						lpg: 2,
+						egr: 3,
+						lgr: 4,
+						egd: 5,
+						lgd: 6,
+						ebd: 7,
+						lbd: 8,
+						epr: 9,
+						lpr: 10,
+						fast: 12,
+						slow: 13,
 					},
 				},
 				game: "bms",

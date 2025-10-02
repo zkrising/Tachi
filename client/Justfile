@@ -10,3 +10,7 @@ start:
 test:
 	pnpm typecheck
 	pnpm lint
+
+# Clean up the code and fix any automatically fixable mistakes.
+lintfix:
+	pnpm lint-fix

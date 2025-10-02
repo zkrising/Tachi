@@ -408,6 +408,7 @@ export const TestingLR2HookScore: LR2HookScore = {
 		notesPlayed: 2256,
 		lamp: "HARD",
 		hpGraph: ApplyNTimes(1000, () => RFA([100, 50, 80, 0])),
+		extendedJudgements: undefined,
 	},
 };
 

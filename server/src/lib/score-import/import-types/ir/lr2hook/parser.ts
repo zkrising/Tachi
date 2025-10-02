@@ -48,6 +48,22 @@ export const PR_LR2HOOK: PrudenceSchema = {
 
 			return true;
 		},
+		extendedJudgements: optNull({
+			epg: p.isPositiveInteger,
+			lpg: p.isPositiveInteger,
+			egr: p.isPositiveInteger,
+			lgr: p.isPositiveInteger,
+			egd: p.isPositiveInteger,
+			lgd: p.isPositiveInteger,
+			ebd: p.isPositiveInteger,
+			lbd: p.isPositiveInteger,
+			epr: p.isPositiveInteger,
+			lpr: p.isPositiveInteger,
+			cb: p.isPositiveInteger,
+			fast: p.isPositiveInteger,
+			slow: p.isPositiveInteger,
+			notesPlayed: p.isPositiveInteger,
+		}),
 	},
 };
 

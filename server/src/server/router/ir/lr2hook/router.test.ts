@@ -87,6 +87,7 @@ t.test("POST /ir/lr2hook/import/course", (t) => {
 			notesTotal: 10,
 			pgreat: 10,
 			poor: 10,
+			extendedJudgements: undefined,
 		},
 	};
 

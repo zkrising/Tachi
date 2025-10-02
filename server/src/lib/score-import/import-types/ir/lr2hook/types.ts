@@ -21,6 +21,25 @@ export interface LR2HookScore {
 		notesPlayed: integer;
 		lamp: "EASY" | "FAIL" | "FULL COMBO" | "HARD" | "NO PLAY" | "NORMAL";
 		hpGraph: Array<integer>;
+		extendedJudgements:
+			| {
+					epg: integer;
+					lpg: integer;
+					egr: integer;
+					lgr: integer;
+					egd: integer;
+					lgd: integer;
+					ebd: integer;
+					lbd: integer;
+					epr: integer;
+					lpr: integer;
+					cb: integer;
+					fast: integer;
+					slow: integer;
+					notesPlayed: integer;
+			  }
+			| null
+			| undefined;
 	};
 }
 

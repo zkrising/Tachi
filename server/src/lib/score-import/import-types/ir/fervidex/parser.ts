@@ -156,6 +156,8 @@ export function SoftwareIDToVersion(
 			} else if (EXT_PINKYCRUSH.includes(data.ext)) {
 				if (data.rev === REV_NORMAL) {
 					return "32";
+				} else if (data.rev === REV_OMNIMIX) {
+					return "32-omni";
 				}
 			}
 		}

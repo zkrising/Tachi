@@ -165,6 +165,52 @@ t.test("#ConverterLR2Hook", (t) => {
 		t.end();
 	});
 
+	t.test(
+		"Should calculate BP if the score was exited early but there is extendedJudgements.",
+		async (t) => {
+			const res = await ConverterLR2Hook(
+				dmf(TestingLR2HookScore, {
+					scoreData: {
+						notesPlayed: TestingLR2HookScore.scoreData.notesTotal - 1,
+						extendedJudgements: {
+							notesPlayed: TestingLR2HookScore.scoreData.notesTotal - 1,
+						},
+					},
+				} as any),
+				{ timeReceived: 10 },
+				"ir/lr2hook",
+				logger
+			);
+
+			t.hasStrict(res, {
+				song: {
+					id: 27339,
+				},
+				chart: {
+					chartID: "88eb6cc5683e2740cbd07f588a5f3db1db8d467b",
+					data: {
+						hashMD5: TestingLR2HookScore.md5,
+					},
+				},
+				dryScore: {
+					scoreData: {
+						score: TestingLR2HookScore.scoreData.exScore,
+						optional: {
+							bp: 57,
+						},
+					},
+					game: "bms",
+					importType: "ir/lr2hook",
+					scoreMeta: {
+						client: "LR2",
+					},
+				},
+			});
+
+			t.end();
+		}
+	);
+
 	t.test("Should throw an error if song or chart can't be found.", (t) => {
 		t.rejects(
 			() =>

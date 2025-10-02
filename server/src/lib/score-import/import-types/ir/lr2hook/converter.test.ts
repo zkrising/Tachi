@@ -129,7 +129,7 @@ t.test("#ConverterLR2Hook", (t) => {
 		const res = await ConverterLR2Hook(
 			dmf(TestingLR2HookScore, {
 				scoreData: {
-					notesPlayed: 10,
+					notesPlayed: TestingLR2HookScore.scoreData.notesTotal - 1,
 				},
 			} as any),
 			{ timeReceived: 10 },

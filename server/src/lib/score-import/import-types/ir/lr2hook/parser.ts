@@ -1,6 +1,6 @@
 import ScoreImportFatalError from "lib/score-import/framework/score-importing/score-import-error";
 import { p } from "prudence";
-import { FormatPrError } from "utils/prudence";
+import { optNull, FormatPrError } from "utils/prudence";
 import type { ParserFunctionReturns } from "../../common/types";
 import type { LR2HookContext, LR2HookScore } from "./types";
 import type { KtLogger } from "lib/logger/logger";
@@ -20,6 +20,7 @@ export const PR_LR2HOOK: PrudenceSchema = {
 		// ALLSCR and H-RAN may also be sent, but we don't support them.
 		random: p.isIn(SUPPORTED_RANDOMS),
 		gauge: p.isIn("GROOVE", "HARD", "HAZARD", "EASY", "P-ATTACK", "G-ATTACK"),
+		rseed: p.optional(p.isBoundedInteger(0, 0x7ffe)),
 	},
 	scoreData: {
 		pgreat: p.isPositiveInteger,

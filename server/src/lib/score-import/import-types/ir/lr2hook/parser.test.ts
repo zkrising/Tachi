@@ -158,5 +158,19 @@ t.test("#ParseLR2Hook", (t) => {
 		"Should disallow hp graph with negative element values."
 	);
 
+	assertFail(
+		dms({
+			extendedHpGraphs: {
+				groove: [],
+				hard: ApplyNTimes(1000, () => 100),
+				hazard: ApplyNTimes(1000, () => 100),
+				easy: ApplyNTimes(1000, () => 100),
+				pattack: ApplyNTimes(1000, () => 100),
+				gattack: ApplyNTimes(1000, () => 100),
+			},
+		}),
+		"Should disallow any extendedJudgements with 0 elements."
+	);
+
 	t.end();
 });

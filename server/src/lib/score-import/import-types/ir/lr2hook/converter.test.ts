@@ -12,7 +12,26 @@ t.test("#ConverterLR2Hook", (t) => {
 
 	t.test("Should match a score with its song and chart.", async (t) => {
 		const res = await ConverterLR2Hook(
-			TestingLR2HookScore,
+			dmf(TestingLR2HookScore, {
+				scoreData: {
+					extendedJudgements: {
+						epg: 1,
+						lpg: 2,
+						egr: 3,
+						lgr: 4,
+						egd: 5,
+						lgd: 6,
+						ebd: 7,
+						lbd: 8,
+						epr: 9,
+						lpr: 10,
+						cb: 11,
+						fast: 12,
+						slow: 13,
+						notesPlayed: TestingLR2HookScore.scoreData.notesPlayed,
+					},
+				},
+			} as any),
 			{ timeReceived: 10 },
 			"ir/lr2hook",
 			logger
@@ -33,6 +52,18 @@ t.test("#ConverterLR2Hook", (t) => {
 					score: TestingLR2HookScore.scoreData.exScore,
 					optional: {
 						bp: 56,
+						epg: 1,
+						lpg: 2,
+						egr: 3,
+						lgr: 4,
+						egd: 5,
+						lgd: 6,
+						ebd: 7,
+						lbd: 8,
+						epr: 9,
+						lpr: 10,
+						fast: 12,
+						slow: 13,
 					},
 				},
 				game: "bms",

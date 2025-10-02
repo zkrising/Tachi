@@ -8,6 +8,22 @@ import type { PrudenceSchema } from "prudence";
 
 const SUPPORTED_RANDOMS = ["NORAN", "MIRROR", "RAN", "S-RAN"];
 
+const checkHpGraph = (self: unknown) => {
+	if (!Array.isArray(self)) {
+		return "Expected an array";
+	}
+
+	if (self.length !== 1000) {
+		return "Expected an array with length 1000.";
+	}
+
+	if (self.some((x) => x < 0 || x > 100 || !Number.isInteger(x))) {
+		return "Expected an array of 1000 integers between 0 and 100.";
+	}
+
+	return true;
+};
+
 export const PR_LR2HOOK: PrudenceSchema = {
 	md5: "string",
 	playerData: {
@@ -34,21 +50,7 @@ export const PR_LR2HOOK: PrudenceSchema = {
 		notesTotal: p.isPositiveInteger,
 		notesPlayed: p.isPositiveInteger,
 		lamp: p.isIn("NO PLAY", "FAIL", "EASY", "NORMAL", "HARD", "FULL COMBO"),
-		hpGraph: (self) => {
-			if (!Array.isArray(self)) {
-				return "Expected an array";
-			}
-
-			if (self.length !== 1000) {
-				return "Expected an array with length 1000.";
-			}
-
-			if (self.some((x) => x < 0 || x > 100 || !Number.isInteger(x))) {
-				return "Expected an array of 1000 integers between 0 and 100.";
-			}
-
-			return true;
-		},
+		hpGraph: checkHpGraph,
 		extendedJudgements: optNull({
 			epg: p.isPositiveInteger,
 			lpg: p.isPositiveInteger,
@@ -64,6 +66,14 @@ export const PR_LR2HOOK: PrudenceSchema = {
 			fast: p.isPositiveInteger,
 			slow: p.isPositiveInteger,
 			notesPlayed: p.isPositiveInteger,
+		}),
+		extendedHpGraphs: optNull({
+			groove: checkHpGraph,
+			hard: checkHpGraph,
+			hazard: checkHpGraph,
+			easy: checkHpGraph,
+			pattack: checkHpGraph,
+			gattack: checkHpGraph,
 		}),
 	},
 };

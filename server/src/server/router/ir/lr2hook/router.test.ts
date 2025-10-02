@@ -89,6 +89,7 @@ t.test("POST /ir/lr2hook/import/course", (t) => {
 			pgreat: 10,
 			poor: 10,
 			extendedJudgements: undefined,
+			extendedHpGraphs: undefined,
 		},
 	};
 

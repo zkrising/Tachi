@@ -41,6 +41,17 @@ export interface LR2HookScore {
 			  }
 			| null
 			| undefined;
+		extendedHpGraphs:
+			| {
+					groove: Array<integer>;
+					hard: Array<integer>;
+					hazard: Array<integer>;
+					easy: Array<integer>;
+					pattack: Array<integer>;
+					gattack: Array<integer>;
+			  }
+			| null
+			| undefined;
 	};
 }
 

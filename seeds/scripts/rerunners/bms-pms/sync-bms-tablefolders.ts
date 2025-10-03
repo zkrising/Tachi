@@ -3,7 +3,7 @@ import { CreateFolderIDFromFolder } from "../../util";
 
 const { BMS_TABLES } = require("tachi-common");
 const logger = require("../../logger");
-const { CreateFolderID, ReadCollection, MutateCollection } = require("../../util");
+const { ReadCollection, MutateCollection } = require("../../util");
 const { LoadBMSTable } = require("bms-table-loader");
 
 const existsTables = ReadCollection("tables.json").map((e) => e.tableID);

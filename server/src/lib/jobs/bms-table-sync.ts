@@ -165,6 +165,14 @@ async function ImportTableLevels(
 
 		tableFolders.push({ table: prefix, level: td.content.level.toString() });
 
+		tableFolders.sort((a, b) => {
+			if (a.table !== b.table) {
+				return a.table.localeCompare(b.table);
+			}
+
+			return a.level.localeCompare(b.level);
+		});
+
 		await db.charts.bms.update(
 			{
 				chartID: chart.chartID,

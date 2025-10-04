@@ -86,10 +86,11 @@ function ConvertGauge(
 			return "EASY";
 		case "GROOVE":
 			return "NORMAL";
-		case "HARD":
+		// FIXME: these are actually separate gauges from HARD
 		case "G-ATTACK":
 		case "HAZARD":
 		case "P-ATTACK":
+		case "HARD":
 			return "HARD";
 	}
 }

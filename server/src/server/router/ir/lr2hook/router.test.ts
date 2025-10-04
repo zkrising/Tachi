@@ -73,6 +73,7 @@ t.test("POST /ir/lr2hook/import/course", (t) => {
 			gameMode: "shrug",
 			gauge: "EASY",
 			random: "MIRROR",
+			rseed: undefined,
 		},
 		scoreData: {
 			exScore: 10,
@@ -87,6 +88,8 @@ t.test("POST /ir/lr2hook/import/course", (t) => {
 			notesTotal: 10,
 			pgreat: 10,
 			poor: 10,
+			extendedJudgements: undefined,
+			extendedHpGraphs: undefined,
 		},
 	};
 

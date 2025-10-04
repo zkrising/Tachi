@@ -12,7 +12,26 @@ t.test("#ConverterLR2Hook", (t) => {
 
 	t.test("Should match a score with its song and chart.", async (t) => {
 		const res = await ConverterLR2Hook(
-			TestingLR2HookScore,
+			dmf(TestingLR2HookScore, {
+				scoreData: {
+					extendedJudgements: {
+						epg: 1,
+						lpg: 2,
+						egr: 3,
+						lgr: 4,
+						egd: 5,
+						lgd: 6,
+						ebd: 7,
+						lbd: 8,
+						epr: 9,
+						lpr: 10,
+						cb: 11,
+						fast: 12,
+						slow: 13,
+						notesPlayed: TestingLR2HookScore.scoreData.notesPlayed,
+					},
+				},
+			} as any),
 			{ timeReceived: 10 },
 			"ir/lr2hook",
 			logger
@@ -33,6 +52,18 @@ t.test("#ConverterLR2Hook", (t) => {
 					score: TestingLR2HookScore.scoreData.exScore,
 					optional: {
 						bp: 56,
+						epg: 1,
+						lpg: 2,
+						egr: 3,
+						lgr: 4,
+						egd: 5,
+						lgd: 6,
+						ebd: 7,
+						lbd: 8,
+						epr: 9,
+						lpr: 10,
+						fast: 12,
+						slow: 13,
 					},
 				},
 				game: "bms",
@@ -50,7 +81,7 @@ t.test("#ConverterLR2Hook", (t) => {
 		const res = await ConverterLR2Hook(
 			dmf(TestingLR2HookScore, {
 				scoreData: {
-					notesPlayed: 10,
+					notesPlayed: TestingLR2HookScore.scoreData.notesTotal - 1,
 				},
 			} as any),
 			{ timeReceived: 10 },
@@ -85,6 +116,52 @@ t.test("#ConverterLR2Hook", (t) => {
 
 		t.end();
 	});
+
+	t.test(
+		"Should calculate BP if the score was exited early but there is extendedJudgements.",
+		async (t) => {
+			const res = await ConverterLR2Hook(
+				dmf(TestingLR2HookScore, {
+					scoreData: {
+						notesPlayed: TestingLR2HookScore.scoreData.notesTotal - 1,
+						extendedJudgements: {
+							notesPlayed: TestingLR2HookScore.scoreData.notesTotal - 1,
+						},
+					},
+				} as any),
+				{ timeReceived: 10 },
+				"ir/lr2hook",
+				logger
+			);
+
+			t.hasStrict(res, {
+				song: {
+					id: 27339,
+				},
+				chart: {
+					chartID: "88eb6cc5683e2740cbd07f588a5f3db1db8d467b",
+					data: {
+						hashMD5: TestingLR2HookScore.md5,
+					},
+				},
+				dryScore: {
+					scoreData: {
+						score: TestingLR2HookScore.scoreData.exScore,
+						optional: {
+							bp: 57,
+						},
+					},
+					game: "bms",
+					importType: "ir/lr2hook",
+					scoreMeta: {
+						client: "LR2",
+					},
+				},
+			});
+
+			t.end();
+		}
+	);
 
 	t.test("Should throw an error if song or chart can't be found.", (t) => {
 		t.rejects(

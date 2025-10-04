@@ -37,13 +37,27 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 	const gauge = ConvertGauge(data.playerData.gauge);
 	const lamp = ConvertLamp(data.scoreData.lamp);
 
-	let bp: number | null = data.scoreData.bad + data.scoreData.poor;
+	const bp: number | null = (() => {
+		if (
+			data.scoreData.extendedJudgements !== null &&
+			data.scoreData.extendedJudgements !== undefined
+		) {
+			return (
+				data.scoreData.bad +
+				data.scoreData.poor +
+				data.scoreData.notesTotal -
+				data.scoreData.extendedJudgements.notesPlayed
+			);
+		}
 
-	// lr2hook doesn't send "max" BP so to speak. If you fail really early
-	// or quit out, you can have an early fail with like, 5 BP.
-	if (data.scoreData.notesPlayed !== data.scoreData.notesTotal) {
-		bp = null;
-	}
+		// NOTE: we could count whole BP like above but apparently scoreData.notesPlayed can be wrong after
+		// restarting charts. This has not been investigated further.
+		if (data.scoreData.notesPlayed !== data.scoreData.notesTotal) {
+			return null;
+		}
+
+		return data.scoreData.bad + data.scoreData.poor;
+	})();
 
 	const dryScore: DryScore<"bms:7K" | "bms:14K"> = {
 		game: "bms",
@@ -66,6 +80,18 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 				maxCombo: data.scoreData.maxCombo,
 				gauge: data.scoreData.hpGraph[999] ?? 0,
 				gaugeHistory: data.scoreData.hpGraph,
+				ebd: data.scoreData.extendedJudgements?.ebd,
+				lbd: data.scoreData.extendedJudgements?.lbd,
+				egd: data.scoreData.extendedJudgements?.egd,
+				lgd: data.scoreData.extendedJudgements?.lgd,
+				egr: data.scoreData.extendedJudgements?.egr,
+				lgr: data.scoreData.extendedJudgements?.lgr,
+				epg: data.scoreData.extendedJudgements?.epg,
+				lpg: data.scoreData.extendedJudgements?.lpg,
+				epr: data.scoreData.extendedJudgements?.epr,
+				lpr: data.scoreData.extendedJudgements?.lpr,
+				fast: data.scoreData.extendedJudgements?.fast,
+				slow: data.scoreData.extendedJudgements?.slow,
 			},
 		},
 		scoreMeta: {

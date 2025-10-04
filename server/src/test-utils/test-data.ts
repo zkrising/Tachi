@@ -394,6 +394,7 @@ export const TestingLR2HookScore: LR2HookScore = {
 		gameMode: "7K",
 		random: "RAN",
 		gauge: "GROOVE",
+		rseed: undefined,
 	},
 	scoreData: {
 		pgreat: 1100,
@@ -408,6 +409,8 @@ export const TestingLR2HookScore: LR2HookScore = {
 		notesPlayed: 2256,
 		lamp: "HARD",
 		hpGraph: ApplyNTimes(1000, () => RFA([100, 50, 80, 0])),
+		extendedJudgements: undefined,
+		extendedHpGraphs: undefined,
 	},
 };
 

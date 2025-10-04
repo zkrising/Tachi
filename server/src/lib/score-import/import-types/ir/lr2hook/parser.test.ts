@@ -97,6 +97,9 @@ t.test("#ParseLR2Hook", (t) => {
 	assertFail(dm({ playerData: { rseed: "0" } }), "Should reject string rseed.");
 	assertFail(dm({ playerData: { rseed: 0.5 } }), "Should reject decimal rseed.");
 
+	assertFail(dm({ unixTimestamp: "foo" }), "Should reject string unixTimestamp.");
+	assertFail(dm({ unixTimestamp: 0.5 }), "Should reject decimal unixTimestamp.");
+
 	for (const key of [
 		"pgreat",
 		"good",

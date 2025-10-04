@@ -53,6 +53,7 @@ export interface LR2HookScore {
 			| null
 			| undefined;
 	};
+	unixTimestamp: integer | undefined; // Seconds since Unix epoch
 }
 
 export interface LR2HookContext {

@@ -412,6 +412,7 @@ export const TestingLR2HookScore: LR2HookScore = {
 		extendedJudgements: undefined,
 		extendedHpGraphs: undefined,
 	},
+	unixTimestamp: undefined,
 };
 
 export const TestingJubeatChart: ChartDocument<"jubeat:Single"> = {

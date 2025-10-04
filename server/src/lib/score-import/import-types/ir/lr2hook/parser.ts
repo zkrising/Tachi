@@ -76,6 +76,7 @@ export const PR_LR2HOOK: PrudenceSchema = {
 			gattack: checkHpGraph,
 		}),
 	},
+	unixTimestamp: p.optional(p.isPositiveInteger),
 };
 
 export function ParseLR2Hook(

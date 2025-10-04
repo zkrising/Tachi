@@ -91,6 +91,7 @@ t.test("POST /ir/lr2hook/import/course", (t) => {
 			extendedJudgements: undefined,
 			extendedHpGraphs: undefined,
 		},
+		unixTimestamp: undefined,
 	};
 
 	t.test("Should update a user's class if necessary.", async (t) => {

@@ -13,7 +13,7 @@ t.test("#ConverterLR2Hook", (t) => {
 	t.test("Should match a score with its song and chart.", async (t) => {
 		const res = await ConverterLR2Hook(
 			TestingLR2HookScore,
-			{ timeReceived: 10 },
+			{ timeReceived: 10_000 },
 			"ir/lr2hook",
 			logger
 		);
@@ -29,6 +29,7 @@ t.test("#ConverterLR2Hook", (t) => {
 				},
 			},
 			dryScore: {
+				timeAchieved: 10_000,
 				scoreData: {
 					score: TestingLR2HookScore.scoreData.exScore,
 					optional: {
@@ -79,8 +80,9 @@ t.test("#ConverterLR2Hook", (t) => {
 						notesPlayed: TestingLR2HookScore.scoreData.notesPlayed,
 					},
 				},
+				unixTimestamp: 8,
 			} as any),
-			{ timeReceived: 10 },
+			{ timeReceived: 10_000 },
 			"ir/lr2hook",
 			logger
 		);
@@ -96,6 +98,7 @@ t.test("#ConverterLR2Hook", (t) => {
 				},
 			},
 			dryScore: {
+				timeAchieved: 8_000,
 				scoreData: {
 					score: TestingLR2HookScore.scoreData.exScore,
 					optional: {

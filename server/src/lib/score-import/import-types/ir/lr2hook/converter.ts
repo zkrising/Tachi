@@ -62,7 +62,8 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 		service: "LR2Hook",
 		comment: null,
 		importType: "ir/lr2hook",
-		timeAchieved: context.timeReceived,
+		timeAchieved:
+			data.unixTimestamp !== undefined ? data.unixTimestamp * 1_000 : context.timeReceived,
 		scoreData: {
 			score: data.scoreData.exScore,
 			lamp,

@@ -4,6 +4,7 @@ import t from "tap";
 import { dmf } from "test-utils/misc";
 import ResetDBState from "test-utils/resets";
 import { TestingLR2HookScore } from "test-utils/test-data";
+import { ApplyNTimes } from "utils/misc";
 
 const logger = CreateLogCtx(__filename);
 
@@ -79,6 +80,14 @@ t.test("#ConverterLR2Hook", (t) => {
 						slow: 13,
 						notesPlayed: TestingLR2HookScore.scoreData.notesPlayed,
 					},
+					extendedHpGraphs: {
+						groove: ApplyNTimes(1000, () => 1),
+						hard: ApplyNTimes(1000, () => 2),
+						hazard: ApplyNTimes(1000, () => 3),
+						easy: ApplyNTimes(1000, () => 4),
+						pattack: ApplyNTimes(1000, () => 5),
+						gattack: ApplyNTimes(1000, () => 6),
+					},
 				},
 				unixTimestamp: 8,
 			} as any),
@@ -115,6 +124,9 @@ t.test("#ConverterLR2Hook", (t) => {
 						lpr: 10,
 						fast: 12,
 						slow: 13,
+						gaugeHistoryGroove: ApplyNTimes(1000, () => 1),
+						gaugeHistoryHard: ApplyNTimes(1000, () => 2),
+						gaugeHistoryEasy: ApplyNTimes(1000, () => 4),
 					},
 				},
 				game: "bms",

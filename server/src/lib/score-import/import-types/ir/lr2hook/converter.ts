@@ -91,6 +91,9 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 				lpr: data.scoreData.extendedJudgements?.lpr,
 				fast: data.scoreData.extendedJudgements?.fast,
 				slow: data.scoreData.extendedJudgements?.slow,
+				gaugeHistoryEasy: data.scoreData.extendedHpGraphs?.easy,
+				gaugeHistoryGroove: data.scoreData.extendedHpGraphs?.groove,
+				gaugeHistoryHard: data.scoreData.extendedHpGraphs?.hard,
 			},
 		},
 		scoreMeta: {

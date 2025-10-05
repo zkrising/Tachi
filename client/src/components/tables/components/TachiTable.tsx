@@ -170,7 +170,9 @@ export default function TachiTable<D>({
 					<tbody>
 						<NoDataWrapper>
 							{window.map((e, i) => (
-								<React.Fragment key={i}>{e && rowFunction(e)}</React.Fragment>
+								<React.Fragment key={i + ztable.pageLen * (page - 1)}>
+									{e && rowFunction(e)}
+								</React.Fragment>
 							))}
 						</NoDataWrapper>
 					</tbody>

@@ -13,12 +13,24 @@ export function BMSGraphsComponent({
 	score: ScoreDocument<"bms:7K" | "bms:14K"> | PBScoreDocument<"bms:7K" | "bms:14K">;
 	chart: ChartDocument<"bms:7K" | "bms:14K">;
 }) {
-	const gaugeHistory = score.scoreData.optional.gaugeHistory;
-
 	const [lamp, setLamp] = useState<LampTypes>(LampToKey(score));
 
+	let gaugeStatus: "none" | "single" | "gas" = "none";
+
+	if (
+		score.scoreData.optional.gaugeHistoryEasy &&
+		score.scoreData.optional.gaugeHistoryGroove &&
+		score.scoreData.optional.gaugeHistoryHard
+	) {
+		gaugeStatus = "gas";
+	} else if (score.scoreData.optional.gaugeHistory) {
+		gaugeStatus = "single";
+	}
+
 	const shouldDisable = (r: LampTypes) => {
-		if (gaugeHistory) {
+		if (gaugeStatus === "gas") {
+			return false;
+		} else if (gaugeStatus === "single") {
 			return r !== LampToKey(score);
 		}
 
@@ -28,6 +40,28 @@ export function BMSGraphsComponent({
 	useEffect(() => {
 		setLamp(LampToKey(score));
 	}, [score]);
+
+	const gaugeHistory = (() => {
+		switch (gaugeStatus) {
+			case "gas":
+				return (() => {
+					switch (lamp) {
+						case "Normal":
+							return score.scoreData.optional.gaugeHistoryGroove!;
+						case "Easy":
+							return score.scoreData.optional.gaugeHistoryEasy!;
+						case "Hard":
+							return score.scoreData.optional.gaugeHistoryHard!;
+						case "EXHard":
+							return null;
+					}
+				})();
+			case "single":
+				return score.scoreData.optional.gaugeHistory!;
+			case "none":
+				return null;
+		}
+	})();
 
 	return (
 		<>

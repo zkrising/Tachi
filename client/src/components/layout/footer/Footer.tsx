@@ -63,14 +63,6 @@ export function Footer() {
 						>
 							GDPR
 						</Nav.Link>
-						<Nav.Link
-							as={Link}
-							to="/credits"
-							className={linkClassNames}
-							onClick={() => window.scrollTo(0, 0)}
-						>
-							Credits
-						</Nav.Link>
 						{process.env.VITE_DISCORD && (
 							<Nav.Link
 								as={ExternalLink}

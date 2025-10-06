@@ -13,7 +13,6 @@ import {
 } from "test-utils/test-data";
 import type { PBScoreDocumentNoRank } from "./create-pb-doc";
 import type { KtLogger } from "lib/logger/logger";
-import type { ScoreDocument } from "tachi-common";
 
 const IIDXScore = TestingIIDXSPScore;
 
@@ -231,6 +230,9 @@ t.test("#CreatePBDoc", (t) => {
 						bp: 15,
 						gauge: 12,
 						gaugeHistory: [20, 20, 21, 12],
+						gaugeHistoryEasy: [20, 20, 21, 13],
+						gaugeHistoryGroove: [20, 20, 21, 14],
+						gaugeHistoryHard: [20, 20, 21, 15],
 					},
 					enumIndexes: {
 						lamp: IIDX_LAMPS.FULL_COMBO,
@@ -254,6 +256,9 @@ t.test("#CreatePBDoc", (t) => {
 			{
 				gauge: 12,
 				gaugeHistory: [20, 20, 21, 12],
+				gaugeHistoryEasy: [20, 20, 21, 13],
+				gaugeHistoryGroove: [20, 20, 21, 14],
+				gaugeHistoryHard: [20, 20, 21, 15],
 			},
 			"Should select the lampPBs gauge data and not the score PBs."
 		);

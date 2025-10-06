@@ -37,6 +37,33 @@ t.test("#ParseLR2Hook", (t) => {
 				arrayMerge: (a, b) => b,
 			}
 		);
+	const dmse = (data: any) =>
+		deepmerge(
+			deepmerge(TestingLR2HookScore, {
+				scoreData: {
+					extendedJudgements: {
+						epg: 0,
+						lpg: 0,
+						egr: 0,
+						lgr: 0,
+						egd: 0,
+						lgd: 0,
+						ebd: 0,
+						lbd: 0,
+						epr: 0,
+						lpr: 0,
+						cb: 0,
+						fast: 0,
+						slow: 0,
+						notesPlayed: 0,
+					},
+				},
+			}),
+			{ scoreData: data },
+			{
+				arrayMerge: (a, b) => b,
+			}
+		);
 
 	assertSuccess(TestingLR2HookScore, "Should parse a valid score.");
 	assertSuccess(
@@ -67,6 +94,12 @@ t.test("#ParseLR2Hook", (t) => {
 
 	assertFail({}, "Should reject an empty object");
 
+	assertFail(dm({ playerData: { rseed: "0" } }), "Should reject string rseed.");
+	assertFail(dm({ playerData: { rseed: 0.5 } }), "Should reject decimal rseed.");
+
+	assertFail(dm({ unixTimestamp: "foo" }), "Should reject string unixTimestamp.");
+	assertFail(dm({ unixTimestamp: 0.5 }), "Should reject decimal unixTimestamp.");
+
 	for (const key of [
 		"pgreat",
 		"good",
@@ -88,6 +121,28 @@ t.test("#ParseLR2Hook", (t) => {
 	assertFail(dms({ lamp: null }), "Should reject null lamp.");
 	assertFail(dms({ lamp: undefined }), "Should reject no lamp.");
 
+	for (const key of [
+		"epg",
+		"lpg",
+		"egr",
+		"lgr",
+		"egd",
+		"lgd",
+		"ebd",
+		"lbd",
+		"epr",
+		"lpr",
+		"cb",
+		"fast",
+		"slow",
+		"notesPlayed",
+	]) {
+		assertFail(dmse({ extendedJudgements: { [key]: -1 } }), `Should reject negative ${key}`);
+		assertFail(dmse({ extendedJudgements: { [key]: 0.5 } }), `Should reject decimal ${key}`);
+		assertFail(dmse({ extendedJudgements: { [key]: "0" } }), `Should reject string ${key}`);
+		assertFail(dmse({ extendedJudgements: { [key]: null } }), `Should reject nonsense ${key}`);
+	}
+
 	assertFail(
 		dms({ hpGraph: ApplyNTimes(999, () => 50) }),
 		"Should disallow hp graph with <1000 elements."
@@ -104,6 +159,20 @@ t.test("#ParseLR2Hook", (t) => {
 	assertFail(
 		dms({ hpGraph: ApplyNTimes(1000, () => -1) }),
 		"Should disallow hp graph with negative element values."
+	);
+
+	assertFail(
+		dms({
+			extendedHpGraphs: {
+				groove: [],
+				hard: ApplyNTimes(1000, () => 100),
+				hazard: ApplyNTimes(1000, () => 100),
+				easy: ApplyNTimes(1000, () => 100),
+				pattack: ApplyNTimes(1000, () => 100),
+				gattack: ApplyNTimes(1000, () => 100),
+			},
+		}),
+		"Should disallow any extendedJudgements with 0 elements."
 	);
 
 	t.end();

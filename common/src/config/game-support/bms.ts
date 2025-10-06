@@ -230,6 +230,21 @@ export const BMS_7K_CONF = {
 			description:
 				"A snapshot of the gauge percent throughout the chart. The values should be null from the point the user dies until the end of the chart.",
 		},
+		gaugeHistoryEasy: {
+			type: "GRAPH",
+			validate: p.isBetween(0, 100),
+			description: "The easy gauge history.",
+		},
+		gaugeHistoryGroove: {
+			type: "GRAPH",
+			validate: p.isBetween(0, 100),
+			description: "The groove gauge history.",
+		},
+		gaugeHistoryHard: {
+			type: "GRAPH",
+			validate: p.isBetween(0, 100),
+			description: "The hard gauge history.",
+		},
 		epg: {
 			type: "INTEGER",
 			validate: p.isPositive,

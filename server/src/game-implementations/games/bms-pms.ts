@@ -22,6 +22,9 @@ const BMS_PMS_MERGERS: Array<PBMergeFunction<GPTStrings["bms" | "pms"]>> = [
 		// legal value for these properties it works out.
 		base.scoreData.optional.gauge = lamp.scoreData.optional.gauge;
 		base.scoreData.optional.gaugeHistory = lamp.scoreData.optional.gaugeHistory;
+		base.scoreData.optional.gaugeHistoryEasy = lamp.scoreData.optional.gaugeHistoryEasy;
+		base.scoreData.optional.gaugeHistoryGroove = lamp.scoreData.optional.gaugeHistoryGroove;
+		base.scoreData.optional.gaugeHistoryHard = lamp.scoreData.optional.gaugeHistoryHard;
 	}),
 	CreatePBMergeFor("smallest", "optional.bp", "Lowest BP", (base, bp) => {
 		base.scoreData.optional.bp = bp.scoreData.optional.bp;

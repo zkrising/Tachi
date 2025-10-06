@@ -37,20 +37,33 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 	const gauge = ConvertGauge(data.playerData.gauge);
 	const lamp = ConvertLamp(data.scoreData.lamp);
 
-	let bp: number | null = data.scoreData.bad + data.scoreData.poor;
+	const bp: number | null = (() => {
+		if (
+			data.scoreData.extendedJudgements !== null &&
+			data.scoreData.extendedJudgements !== undefined
+		) {
+			return (
+				data.scoreData.bad +
+				data.scoreData.poor +
+				data.scoreData.notesTotal -
+				data.scoreData.extendedJudgements.notesPlayed
+			);
+		}
 
-	// lr2hook doesn't send "max" BP so to speak. If you fail really early
-	// or quit out, you can have an early fail with like, 5 BP.
-	if (data.scoreData.notesPlayed !== data.scoreData.notesTotal) {
-		bp = null;
-	}
+		// NOTE: we could count whole BP like above but apparently scoreData.notesPlayed can be wrong after
+		// restarting charts. This has not been investigated further.
+		return data.scoreData.notesPlayed === data.scoreData.notesTotal
+			? data.scoreData.bad + data.scoreData.poor
+			: null;
+	})();
 
 	const dryScore: DryScore<"bms:7K" | "bms:14K"> = {
 		game: "bms",
 		service: "LR2Hook",
 		comment: null,
 		importType: "ir/lr2hook",
-		timeAchieved: context.timeReceived,
+		timeAchieved:
+			data.unixTimestamp !== undefined ? data.unixTimestamp * 1_000 : context.timeReceived,
 		scoreData: {
 			score: data.scoreData.exScore,
 			lamp,
@@ -66,6 +79,21 @@ export const ConverterLR2Hook: ConverterFunction<LR2HookScore, LR2HookContext> =
 				maxCombo: data.scoreData.maxCombo,
 				gauge: data.scoreData.hpGraph[999] ?? 0,
 				gaugeHistory: data.scoreData.hpGraph,
+				ebd: data.scoreData.extendedJudgements?.ebd,
+				lbd: data.scoreData.extendedJudgements?.lbd,
+				egd: data.scoreData.extendedJudgements?.egd,
+				lgd: data.scoreData.extendedJudgements?.lgd,
+				egr: data.scoreData.extendedJudgements?.egr,
+				lgr: data.scoreData.extendedJudgements?.lgr,
+				epg: data.scoreData.extendedJudgements?.epg,
+				lpg: data.scoreData.extendedJudgements?.lpg,
+				epr: data.scoreData.extendedJudgements?.epr,
+				lpr: data.scoreData.extendedJudgements?.lpr,
+				fast: data.scoreData.extendedJudgements?.fast,
+				slow: data.scoreData.extendedJudgements?.slow,
+				gaugeHistoryEasy: data.scoreData.extendedHpGraphs?.easy,
+				gaugeHistoryGroove: data.scoreData.extendedHpGraphs?.groove,
+				gaugeHistoryHard: data.scoreData.extendedHpGraphs?.hard,
 			},
 		},
 		scoreMeta: {
@@ -86,10 +114,11 @@ function ConvertGauge(
 			return "EASY";
 		case "GROOVE":
 			return "NORMAL";
-		case "HARD":
+		// FIXME: these are actually separate gauges from HARD
 		case "G-ATTACK":
 		case "HAZARD":
 		case "P-ATTACK":
+		case "HARD":
 			return "HARD";
 	}
 }

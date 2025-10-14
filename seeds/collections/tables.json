@@ -1078,7 +1078,7 @@
 			"F0e506601a0a0bc2be88650efd5c5216c535166a4cd14abbd0afe9840dcc2a9f5"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-luminous-levels",
 		"title": "CHUNITHM (LUMINOUS)"
@@ -1094,7 +1094,7 @@
 			"Fb1440a42e16b38e3aff4d0ce3973ab96d622b80357305e46dff66726afebde73"
 		],
 		"game": "chunithm",
-		"inactive": false,
+		"inactive": true,
 		"playtype": "Single",
 		"tableID": "chunithm-Single-luminous-difficulties",
 		"title": "CHUNITHM (LUMINOUS) (Difficulties)"

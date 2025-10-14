@@ -1598,7 +1598,7 @@
 		"title": "CHUNITHM (VERSE Omnimix) (Difficulties)"
 	},
 	{
-		"default": false,
+		"default": true,
 		"description": "Levels for CHUNITHM in VERSE.",
 		"folders": [
 			"Fcb7b909c3fc5eabb7211cc7e6c92b2f0af58f5d03d48f9b2d859acfe5510b20e",

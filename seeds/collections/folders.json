@@ -14718,6 +14718,96 @@
 	},
 	{
 		"data": {
+			"difficulty": {
+				"~in": [
+					"MASTER",
+					"ULTIMA"
+				]
+			},
+			"versions": "luminousplus-omni"
+		},
+		"folderID": "F73ed1fffd54e77a99e038e340410c776b6d2a2028b115a5c2fc7daf99d44980e",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "MASTER+ULTIMA (LUMINOUS PLUS Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": {
+				"~in": [
+					"MASTER",
+					"ULTIMA"
+				]
+			},
+			"versions": "luminousplus"
+		},
+		"folderID": "Fdc7e7e6ae0b83372f68c4821c4cace37d488f621dad5e009108dc9406cf74957",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "MASTER+ULTIMA (LUMINOUS PLUS)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": {
+				"~in": [
+					"MASTER",
+					"ULTIMA"
+				]
+			},
+			"versions": "verse-intl"
+		},
+		"folderID": "F5c89f008e387271e01a12abfca85aef07e295c478f7266caf82d204d85bb1aa8",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "MASTER+ULTIMA (VERSE International)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": {
+				"~in": [
+					"MASTER",
+					"ULTIMA"
+				]
+			},
+			"versions": "verse-omni"
+		},
+		"folderID": "F5f1b5dea699911f8d656b0c82179b0922eed18684f61f0dc31b4468d12c93f75",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "MASTER+ULTIMA (VERSE Omnimix)",
+		"type": "charts"
+	},
+	{
+		"data": {
+			"difficulty": {
+				"~in": [
+					"MASTER",
+					"ULTIMA"
+				]
+			},
+			"versions": "verse"
+		},
+		"folderID": "F7619677b79823975f6364254b0661e5575814b49713f8e8962d63bcc3b27dfe8",
+		"game": "chunithm",
+		"inactive": false,
+		"playtype": "Single",
+		"searchTerms": [],
+		"title": "MASTER+ULTIMA (VERSE)",
+		"type": "charts"
+	},
+	{
+		"data": {
 			"difficulty": "ULTIMA",
 			"versions": "luminous-intl"
 		},

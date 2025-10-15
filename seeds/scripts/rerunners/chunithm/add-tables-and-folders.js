@@ -1,6 +1,6 @@
 const { Command } = require("commander");
 const { GetGamePTConfig } = require("tachi-common");
-const { CreateFolderID, MutateCollection } = require("../../util");
+const { CreateFolderID, MutateCollection, ReadCollection } = require("../../util");
 
 const LEVELS = [
 	"1",
@@ -28,7 +28,9 @@ const LEVELS = [
 	"15",
 	"15+",
 ];
-const DIFFICULTIES = ["BASIC", "ADVANCED", "EXPERT", "MASTER", "ULTIMA"];
+const DIFFICULTIES = ["BASIC", "ADVANCED", "EXPERT", "MASTER", "ULTIMA", "MASTER+ULTIMA"];
+
+const existingFolderIDs = new Set(ReadCollection("folders.json").map((f) => f.folderID));
 
 const command = new Command().requiredOption("-v, --version <version>").parse(process.argv);
 const options = command.opts();
@@ -53,6 +55,10 @@ for (const level of LEVELS) {
 
 	levelFolderIDs.push(folderID);
 
+	if (existingFolderIDs.has(folderID)) {
+		continue;
+	}
+
 	newFolders.push({
 		data,
 		folderID,
@@ -63,13 +69,25 @@ for (const level of LEVELS) {
 		title: `Level ${level} (${versionName})`,
 		type: "charts",
 	});
+	existingFolderIDs.add(folderID);
 }
 
 for (const difficulty of DIFFICULTIES) {
-	const data = { difficulty, versions: version };
+	const data = { versions: version };
+
+	if (difficulty === "MASTER+ULTIMA") {
+		data.difficulty = { "~in": ["MASTER", "ULTIMA"] };
+	} else {
+		data.difficulty = difficulty;
+	}
+
 	const folderID = CreateFolderID(data, "chunithm", "Single");
 
 	difficultyFolderIDs.push(folderID);
+
+	if (existingFolderIDs.has(folderID)) {
+		continue;
+	}
 
 	newFolders.push({
 		data,
@@ -81,10 +99,18 @@ for (const difficulty of DIFFICULTIES) {
 		title: `${difficulty} (${versionName})`,
 		type: "charts",
 	});
+
+	existingFolderIDs.add(folderID);
 }
 
 MutateCollection("tables.json", (ts) => {
-	ts.push(
+	const filtered = ts.filter(
+		(t) =>
+			t.tableID !== `chunithm-Single-${version}-levels` &&
+			t.tableID !== `chunithm-Single-${version}-difficulties`
+	);
+
+	filtered.push(
 		{
 			default: false,
 			description: `Levels for CHUNITHM in ${versionName}.`,
@@ -107,7 +133,7 @@ MutateCollection("tables.json", (ts) => {
 		}
 	);
 
-	return ts;
+	return filtered;
 });
 
 MutateCollection("folders.json", (fs) => [...fs, ...newFolders]);

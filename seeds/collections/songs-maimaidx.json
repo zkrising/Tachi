@@ -19196,5 +19196,134 @@
 			"weigh anchor"
 		],
 		"title": "抜錨"
+	},
+	{
+		"altTitles": [],
+		"artist": "isonosuke feat.知声",
+		"data": {
+			"duration": 135.353,
+			"genre": "maimai"
+		},
+		"id": 1499,
+		"searchTerms": [
+			"mostly wrong",
+			"gaishite kago"
+		],
+		"title": "概して過誤"
+	},
+	{
+		"altTitles": [],
+		"artist": "SLAVE.V-V-R feat.Sor△",
+		"data": {
+			"duration": 149.108,
+			"genre": "maimai"
+		},
+		"id": 1500,
+		"searchTerms": [],
+		"title": "Unfinished Epic"
+	},
+	{
+		"altTitles": [],
+		"artist": "原口沙輔, 式部めぐり",
+		"data": {
+			"duration": 153.6,
+			"genre": "maimai"
+		},
+		"id": 1501,
+		"searchTerms": [
+			"busy day",
+			"isogashii hi"
+		],
+		"title": "忙シー日"
+	},
+	{
+		"altTitles": [],
+		"artist": "FANTAGIRAFF",
+		"data": {
+			"duration": 135.172,
+			"genre": "maimai"
+		},
+		"id": 1502,
+		"searchTerms": [
+			"flame frost"
+		],
+		"title": "FLΛME/FRΦST"
+	},
+	{
+		"altTitles": [],
+		"artist": "HaNaMiNa feat.Hana",
+		"data": {
+			"duration": 163.875,
+			"genre": "オンゲキ＆CHUNITHM"
+		},
+		"id": 1503,
+		"searchTerms": [
+			"nanka noise ni kikoeru",
+			"sounds like noise"
+		],
+		"title": "なんかノイズにきこえる"
+	},
+	{
+		"altTitles": [],
+		"artist": "鬱P feat.000",
+		"data": {
+			"duration": 146.813,
+			"genre": "オンゲキ＆CHUNITHM"
+		},
+		"id": 1504,
+		"searchTerms": [],
+		"title": "JIGOKU STATION CENTRAL GATE"
+	},
+	{
+		"altTitles": [],
+		"artist": "litmus*",
+		"data": {
+			"duration": 136.154,
+			"genre": "オンゲキ＆CHUNITHM"
+		},
+		"id": 1505,
+		"searchTerms": [],
+		"title": "Lover's Trick"
+	},
+	{
+		"altTitles": [],
+		"artist": "DECO*27",
+		"data": {
+			"duration": 158.4,
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1506,
+		"searchTerms": [
+			"aitai-lians",
+			"aitai seijin"
+		],
+		"title": "あいたい星人"
+	},
+	{
+		"altTitles": [],
+		"artist": "DECO*27",
+		"data": {
+			"duration": 124.019,
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1507,
+		"searchTerms": [
+			"hao"
+		],
+		"title": "ハオ"
+	},
+	{
+		"altTitles": [],
+		"artist": "ンバヂ",
+		"data": {
+			"duration": 122.625,
+			"genre": "niconico＆ボーカロイド"
+		},
+		"id": 1508,
+		"searchTerms": [
+			"suki na souzai happyou dragon",
+			"favorite daily dish announcing dragon"
+		],
+		"title": "好きな惣菜発表ドラゴン"
 	}
 ]

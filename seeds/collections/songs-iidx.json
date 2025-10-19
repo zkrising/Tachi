@@ -28740,5 +28740,97 @@
 		"id": 2559,
 		"searchTerms": [],
 		"title": "Nyan Nyan University "
+	},
+	{
+		"altTitles": [],
+		"artist": "ReGLOSS",
+		"data": {
+			"displayVersion": "33",
+			"genre": "DANCE POP"
+		},
+		"id": 2560,
+		"searchTerms": [],
+		"title": "Shooting Star"
+	},
+	{
+		"altTitles": [],
+		"artist": "seiya-murai feat ALT",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "A.I.デイトポップ"
+		},
+		"id": 2561,
+		"searchTerms": [
+			"Sumidagawa karenka"
+		],
+		"title": "隅田川夏恋歌"
+	},
+	{
+		"altTitles": [],
+		"artist": "Dirty Androids",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "DRUM & BASS"
+		},
+		"id": 2562,
+		"searchTerms": [],
+		"title": "Aerial Skydive"
+	},
+	{
+		"altTitles": [],
+		"artist": "L.E.D.-G",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "HARDSTYLE"
+		},
+		"id": 2563,
+		"searchTerms": [],
+		"title": "THE ANCIENT KING IS BACK"
+	},
+	{
+		"altTitles": [],
+		"artist": "BEMANI Sound Team \"HuΣeR\"",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "ELEGANT MODERN ROCK"
+		},
+		"id": 2564,
+		"searchTerms": [],
+		"title": "Black Apple"
+	},
+	{
+		"altTitles": [],
+		"artist": "Tomoyuki Uchida feat.秋成",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "DANCE POP"
+		},
+		"id": 2565,
+		"searchTerms": [],
+		"title": "insist"
+	},
+	{
+		"altTitles": [],
+		"artist": "S-C-U×PON",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "JUDGMENT"
+		},
+		"id": 2566,
+		"searchTerms": [
+			"Shuumatsu wo ou mono"
+		],
+		"title": "終末を追う者"
+	},
+	{
+		"altTitles": [],
+		"artist": "lapix",
+		"data": {
+			"displayVersion": "inf",
+			"genre": "RIDDIM HARDCORE"
+		},
+		"id": 2567,
+		"searchTerms": [],
+		"title": "Welcome to the Mosh Pit"
 	}
 ]

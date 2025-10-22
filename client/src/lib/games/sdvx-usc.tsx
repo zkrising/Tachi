@@ -2,7 +2,7 @@ import { NumericSOV } from "util/sorts";
 import { ChangeOpacity } from "util/color-opacity";
 import { FormatMillions } from "util/misc";
 import { GPTClientImplementation } from "lib/types";
-import { COLOUR_SET, GPTStrings, SDVX_GRADES } from "tachi-common";
+import { COLOUR_SET, GPTStrings, SDVX_GRADES, SDVX_LAMPS } from "tachi-common";
 import MillionsScoreCell from "components/tables/cells/MillionsScoreCell";
 import SDVXJudgementCell from "components/tables/cells/SDVXJudgementCell";
 import SDVXLampCell from "components/tables/cells/SDVXLampCell";
@@ -161,6 +161,18 @@ export const SDVX_IMPL: GPTClientImplementation<"sdvx:Single"> = {
 			(c) => c.data.clearTier?.text,
 			(c) => c.data.clearTier?.individualDifference,
 			(s) => [s.scoreData.lamp, s.scoreData.lamp !== "FAILED"]
+		),
+		CreateRatingSys(
+			"PUC Tierlist",
+			"Tierlist ratings for PUC lamp",
+			"lamp",
+			(c) => c.data.pucTier?.value,
+			(c) => c.data.pucTier?.text,
+			(c) => c.data.pucTier?.individualDifference,
+			(s) => [
+				s.scoreData.lamp,
+				s.scoreData.enumIndexes.lamp >= SDVX_LAMPS.PERFECT_ULTIMATE_CHAIN,
+			]
 		),
 		CreateRatingSys(
 			"S Tierlist",

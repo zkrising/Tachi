@@ -187,6 +187,7 @@ export const SDVX_SINGLE_CONF = {
 	chartData: z.strictObject({
 		inGameID: zodNonNegativeInt,
 		clearTier: zodTierlistData,
+		pucTier: zodTierlistData,
 		sTier: zodTierlistData,
 	}),
 

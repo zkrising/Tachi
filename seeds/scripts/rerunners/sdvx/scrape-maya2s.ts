@@ -58,8 +58,13 @@ const MANUAL_PUC_TIERS: { [level: number]: { [tier: string]: string } } = {
 	},
 };
 
-// Used for tierlist value sorting, otherwise these tiers would get included with 19.1 charts
+// Used for tierlist value sorting
 const MANUAL_PUC_VALUES: { [tierText: string]: number } = {
+	// ".?" values indicate individual difference and should appear at the bottom of their tierlists
+	"16.?": 15.9,
+	"19.?": 18.9,
+	"20.?": 19.9,
+	// To avoid these tiers getting grouped with 19.1
 	"19.10": 20.0,
 	19.11: 20.1,
 	19.12: 20.2,
@@ -84,9 +89,9 @@ async function scrape(
 	charts: SDVXChart[],
 	songs: SDVXSong[],
 	level: number,
-	sRank = true
+	tierlistType: "S_RANK" | "PUC_LAMP"
 ) {
-	const html = await (await fetch(url, {})).text();
+	const html = await fetch(url).then((r: Response) => r.text());
 	const $ = cheerio.load(html);
 
 	for (const tierBox of $(".tier_box")) {
@@ -97,9 +102,10 @@ async function scrape(
 			continue;
 		}
 
-		const tierText = sRank
-			? `T${MANUAL_S_TIERS[level]?.[tier] ?? tier}`
-			: MANUAL_PUC_TIERS[level]?.[tier] ?? `${level}.${tier}`;
+		const tierText =
+			tierlistType === "S_RANK"
+				? `T${MANUAL_S_TIERS[level]?.[tier] ?? tier}`
+				: MANUAL_PUC_TIERS[level]?.[tier] ?? `${level}.${tier}`;
 
 		for (const chartData of $(tierBox).find(".chart_data")) {
 			const title = chartData.attribs["data-title"] || "";
@@ -125,40 +131,39 @@ async function scrape(
 				continue;
 			}
 
-			// Examples
-			// [S Rank] Level 17 Tier 9 -> 17 + 1 - 9 / 10 = 17.1
-			// [PUC Lamp] 16.? (Individual difference) -> 15.9 (Displays at the bottom of tierlist view)
-			// [PUC Lamp] 19.13 -> 20.3 to maintain proper tierlist sorting
-			const value = sRank
-				? level + 1 - parseInt(tier, 10) / 10
-				: isNaN(Number(tierText))
-				? level - 0.1
-				: MANUAL_PUC_VALUES[tierText] ?? Number(tierText);
-			const tierInfoKey: keyof SDVXChart["data"] = sRank ? "sTier" : "pucTier";
+			// S_RANK value is derived since the S tierlist groups charts under Tier 1, Tier 2, etc.
+			// instead of 17.3, 17.4, etc. like the PUC tierlist
+			// Example: Level 17 Tier 9 -> 17 + 1 - 9 / 10 = 17.1
+			const value =
+				tierlistType === "S_RANK"
+					? level + 1 - parseInt(tier, 10) / 10
+					: MANUAL_PUC_VALUES[tierText] ?? Number(tierText);
+			const individualDifference = tierText.includes("?");
+			const tierInfoKey: keyof SDVXChart["data"] =
+				tierlistType === "S_RANK" ? "sTier" : "pucTier";
 
 			if (chart.data[tierInfoKey]) {
+				const tierInfo = chart.data[tierInfoKey]!;
+
 				if (
-					chart.data[tierInfoKey]!.text !== tierText ||
-					chart.data[tierInfoKey]!.value !== value
+					tierInfo.text !== tierText ||
+					tierInfo.value !== value ||
+					tierInfo.individualDifference !== individualDifference
 				) {
 					console.log(
-						`[${
-							chart.data[tierInfoKey]!.text
-						} -> ${tierText}]: ${title} - ${artist} [${diff}]`
+						`[${chart.data[tierInfoKey]!.text} (${chart.data[tierInfoKey]!.value})
+					} -> ${tierText} (${value})]: ${title} - ${artist} [${diff}]`
 					);
-
-					chart.data[tierInfoKey]!.text = tierText;
-					chart.data[tierInfoKey]!.value = value;
 				}
 			} else {
-				console.log(`[${tierText}] ${title} - ${artist} [${diff}]`);
-
-				chart.data[tierInfoKey] = {
-					individualDifference: tierText.includes("?"),
-					text: tierText,
-					value,
-				};
+				console.log(`[${tierText} (${value})] ${title} - ${artist} [${diff}]`);
 			}
+
+			chart.data[tierInfoKey] = {
+				individualDifference,
+				text: tierText,
+				value,
+			};
 		}
 	}
 }
@@ -170,13 +175,25 @@ async function main() {
 	for (const level of [17, 18, 19]) {
 		console.log(`\n[S Rank] Scraping Level ${level}`);
 
-		await scrape(`https://sdvx.maya2silence.com/table/${level}`, charts, songs, level);
+		await scrape(
+			`https://sdvx.maya2silence.com/table/${level}`,
+			charts,
+			songs,
+			level,
+			"S_RANK"
+		);
 	}
 
 	for (const level of [16, 17, 18, 19, 20]) {
 		console.log(`\n[PUC Lamp] Scraping Level ${level}`);
 
-		await scrape(`https://sdvx.maya2silence.com/table/${level}p`, charts, songs, level, false);
+		await scrape(
+			`https://sdvx.maya2silence.com/table/${level}p`,
+			charts,
+			songs,
+			level,
+			"PUC_LAMP"
+		);
 	}
 
 	WriteCollection("charts-sdvx.json", charts);

@@ -369,9 +369,9 @@ None.
 
 | Property | Type | Description |
 | :: | :: | :: |
+| `scores` | Array&lt;[ScoreDocument](../../schemas/score.md)&gt; | The array of scores this search returned. |
 | `songs` | Array&lt;[SongDocument](../../schemas/song.md)&gt; | The array of songs this search returned. |
 | `charts` | Array&lt;[ChartDocument](../../schemas/chart.md)&gt; | The array of charts this search returned. |
-| `scores` | Array&lt;[ScoreDocument](../../schemas/score.md)&gt; | The array of scores this search returned. This is limited to 30 returns. |
 
 ### Example
 
@@ -422,9 +422,9 @@ None.
 
 | Property | Type | Description |
 | :: | :: | :: |
+| `score` | [ScoreDocument](../../schemas/score.md) | The user's most recent score. |
 | `song` | [SongDocument](../../schemas/song.md) | The user's most recent song. |
 | `chart` | [ChartDocument](../../schemas/chart.md) | The user's most recent chart. |
-| `score` | [ScoreDocument](../../schemas/score.md) | The user's most recent score. |
 
 ### Example
 

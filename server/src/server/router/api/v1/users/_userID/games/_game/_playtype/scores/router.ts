@@ -2,7 +2,7 @@ import { Router } from "express";
 import db from "external/mongo/db";
 import { SearchSpecificGameSongsAndCharts } from "lib/search/search";
 import { HyperAggressiveRateLimitMiddleware } from "server/middleware/rate-limiter";
-import { GetRelevantSongsAndCharts } from "utils/db";
+import { GetRelevantSongAndChart, GetRelevantSongsAndCharts } from "utils/db";
 import { GetUGPT } from "utils/req-tachi-data";
 import { FilterChartsAndSongs } from "utils/scores";
 
@@ -112,6 +112,47 @@ router.get("/recent", async (req, res) => {
 			scores: recentScores,
 			songs,
 			charts,
+		},
+	});
+});
+
+/**
+ * Returns a user's most recent score for this game.
+ *
+ * @name GET /api/v1/users/:userID/games/:game/:playtype/scores/last
+ */
+router.get("/last", async (req, res) => {
+	const { user, game, playtype } = GetUGPT(req);
+
+	const score = await db.scores.findOne(
+		{
+			userID: user.id,
+			game,
+			playtype,
+		},
+		{
+			sort: {
+				timeAchieved: -1,
+			},
+		}
+	);
+
+	if (!score) {
+		return res.status(404).json({
+			success: false,
+			description: `This user has not got any scores!`,
+		});
+	}
+
+	const { song, chart } = await GetRelevantSongAndChart(score, game);
+
+	return res.status(200).json({
+		success: true,
+		description: `Retrieved a score.`,
+		body: {
+			score,
+			song,
+			chart,
 		},
 	});
 });

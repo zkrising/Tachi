@@ -66,6 +66,19 @@ export async function DecrementCounterValue(counterName: string): Promise<intege
 	return sequenceDoc.value;
 }
 
+export async function GetRelevantSongAndChart(score: PBScoreDocument | ScoreDocument, game: Game) {
+	const [song, chart] = await Promise.all([
+		db.anySongs[game].findOne({
+			id: score.songID,
+		}),
+		db.anyCharts[game].findOne({
+			chartID: score.chartID,
+		}),
+	]);
+
+	return { song, chart };
+}
+
 export async function GetRelevantSongsAndCharts(
 	scores: Array<PBScoreDocument | ScoreDocument>,
 	game: Game

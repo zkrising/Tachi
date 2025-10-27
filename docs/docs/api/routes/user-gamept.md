@@ -410,6 +410,55 @@ GET /api/v1/users/zkrising/games/iidx/SP/scores/recent
 
 *****
 
+## Get a user's most recent score.
+
+`GET /api/v1/users/:userID/games/:game/:playtype/scores/last`
+
+### Parameters
+
+None.
+
+### Response
+
+| Property | Type | Description |
+| :: | :: | :: |
+| `song` | [SongDocument](../../schemas/song.md) | The user's most recent song. |
+| `chart` | [ChartDocument](../../schemas/chart.md) | The user's most recent chart. |
+| `score` | [ScoreDocument](../../schemas/score.md) | The user's most recent score. |
+
+### Example
+
+#### Request
+```
+GET /api/v1/users/zkrising/games/iidx/SP/scores/last
+```
+
+#### Response
+
+```js
+{
+	score: {
+		userID: 1,
+		scoreData: {
+			score: 123,
+			// ...
+		}
+	},
+	song: {
+		title: "Verflucht",
+		// ...
+	},
+	chart: {
+		songID: 123,
+		playtype: "SP",
+		difficulty: "ANOTHER",
+		// ...
+	}
+}
+```
+
+*****
+
 ## Search a user's sessions.
 
 `GET /api/v1/users/:userID/games/:game/:playtype/sessions`

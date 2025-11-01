@@ -123,7 +123,8 @@ function FervidexForm({
 							Your Card ID. You can specify multiple by separating them with spaces.
 							<br />
 							<span className="text-warning">
-								Warning: CardIDs are the ones that <b>DON'T</b> start with E004 or 012E.
+								Warning: CardIDs are the ones that <b>DON'T</b> start with E004 or
+								012E.
 							</span>
 						</Form.Label>
 						<Form.Control

@@ -18,6 +18,7 @@ const VERSION_DIFFICULTIES = {
 	3: "GRV",
 	4: "HVN",
 	5: "VVD",
+	6: "XCD",
 };
 
 const DIFFICULTIES = {
@@ -89,7 +90,7 @@ for (const music of xmlData.mdb.music) {
 		const difficulty = getDifficulty(diffKey, music.info.inf_ver["#text"]);
 
 		const chartIndex = charts.findIndex(
-			(chart) => chart.songID === id && chart.difficulty === difficulty
+			(chart) => chart.data.inGameID === id && chart.difficulty === difficulty
 		);
 		if (chartIndex === -1) {
 			charts.push({

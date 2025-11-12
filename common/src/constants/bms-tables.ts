@@ -241,4 +241,22 @@ export const BMS_TABLES: Array<BMSTableInfo> = [
 		url: "https://egret9.github.io/Scramble/",
 		colour: COLOUR_SET.vibrantOrange,
 	},
+	{
+		name: "Supernova",
+		asciiPrefix: "supernova",
+		url: "https://stellabms.xyz/sn/table.html",
+		playtype: "7K",
+		prefix: "sn",
+		description:
+			"Supernova, Stellaverse's alternative table for Insane1-esque charts. Follows the Stella table in difficulty.",
+	},
+	{
+		name: "Solar",
+		asciiPrefix: "solar",
+		url: "https://stellabms.xyz/so/table.html",
+		playtype: "7K",
+		prefix: "so",
+		description:
+			"Solar, Stellaverse's alternative table for Insane1-esque charts. Follows the Satellite table in difficulty.",
+	},
 ];

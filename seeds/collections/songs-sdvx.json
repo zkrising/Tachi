@@ -26416,5 +26416,29 @@
 			"flavorg_utzbo"
 		],
 		"title": "FLAVOR-G"
+	},
+	{
+		"altTitles": [],
+		"artist": "Tsubusare BOZZ feat.madoka*",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2423,
+		"searchTerms": [
+			"magicaldoll_tsubusarebozz"
+		],
+		"title": "マジかる☆doll ユタニケちゃん"
+	},
+	{
+		"altTitles": [],
+		"artist": "Juggernaut. + しーけー",
+		"data": {
+			"displayVersion": "exceed"
+		},
+		"id": 2424,
+		"searchTerms": [
+			"sunlittoybox_juggernautck"
+		],
+		"title": "Sunlit toybox"
 	}
 ]

@@ -454,7 +454,9 @@
 			"Fdfdce10ee518f37c4ab3657abf2ce912cbf523359e2689a96ecf020b0ab8bb26",
 			"F4c7bb7c15715dfece55170d98a1d7ba2c4b4dafb361f348282701aae5fe8baae",
 			"F9bdaa06980b75f3406dbaa93ed2bf1be47b6b60cfb1463a3b7c88d5c350963c6",
-			"F93c9abfd0d678a9f5ec1aac023dd945c971a283fedd1fd0017dea0e4aa9b6528"
+			"F93c9abfd0d678a9f5ec1aac023dd945c971a283fedd1fd0017dea0e4aa9b6528",
+			"F731adc90fd77c9b2cd0e1761bd61c610fb250fe4bee5acfbeee6f69159e33abd",
+			"F4b69207ae5710ca30e42e1019093a71dbba15071d467361bf224a76687936c79"
 		],
 		"game": "bms",
 		"inactive": false,
@@ -719,6 +721,30 @@
 	},
 	{
 		"default": false,
+		"description": "Solar, Stellaverse's alternative table for Insane1-esque charts. Follows the Satellite table in difficulty.",
+		"folders": [
+			"F90018c2ea858993e4a395fa4a86d687c052390a50b97c516cf37d2b5c9969cd4",
+			"F3ae364912dadd34e419f75b41cc8523e83645b6b0074fda8b84f4b3472b6e324",
+			"Fdecb12edc6b325f53bebb8851a3c4eb0ca53327fb656b868156c7f2dc3a842f2",
+			"Fe375353ab7cecd5461e8c0e9e9f34522f9e1d0d75cb83cfbcbc5c1da252d7017",
+			"F41f85a95151aa72239cf2196c5baeadc693b6f4d5c227ec1f96e0f6572fb3cdc",
+			"Fabb672bf47e8dba1473308c91cf94bfdb374fde81bd9eff64ab54b8a30e28963",
+			"Fd6d7e8958d4f385490b12844c23a999a42cf0b87dc5cad487e52aa7f53f9b946",
+			"F70aa698b7282ae39d87863b80ae96bc7172df79d68fe8611f1de09c47ec574ff",
+			"F8a247853ecc1deb3a3d858a4e4cc30fc8500eb47c16bc453c2d7430ee1c85f3f",
+			"F200ede1e5a592cfdd4dfee37f49d902e87404c0db5fef6e726081315c2ed2ad8",
+			"F0d9219bcdfbc9e47a00c519ce3613a14823c4ad5722839d5970d178f78e1921f",
+			"F6f93be9a9100aabcb420b14b49ea607f22fe9ead7105b0049ca8117a695aa6ad",
+			"F569a5ef67ce75df8d232a80feb43923e063c9933da947744fe50923a38af327f"
+		],
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"tableID": "bms-7K-solar",
+		"title": "Solar"
+	},
+	{
+		"default": false,
 		"description": "The 7K Stardust table. This table covers ☆1 to ☆7.",
 		"folders": [
 			"F5223d2972604af59298db03e4bd4551624c5687ab8aa9e46640c4815f50c68a4",
@@ -792,6 +818,30 @@
 		"playtype": "7K",
 		"tableID": "bms-7K-stella",
 		"title": "Stella"
+	},
+	{
+		"default": false,
+		"description": "Supernova, Stellaverse's alternative table for Insane1-esque charts. Follows the Stella table in difficulty.",
+		"folders": [
+			"Fc2ac8a9e56455c7502944fc193575dbed1a885708beb0bc598525a96d5d8374f",
+			"Fc1a0e192dcb76e6ffcf2768339a507724c32ea5eea5ec8ed59d0861bef075064",
+			"F665b0fb22bfb083e7dd102d0962e3ea00a9a0b062d946926b73eeb4368d79c80",
+			"F4d7bf8096511c436e9b4fb0f663d14e2b938bbe2cffad3ea8f40fdd7e1d65f1b",
+			"Feb86a857395601a1d27f84d1578aeceef74c4e83c8fd5f24ff1b248945a64a10",
+			"F1bdfb104793d2cf0a4d8f7462243ea665f701db9f4cc2e953b919692c875187b",
+			"F514f91feb7306b81bcdf89d05b23bd97215a05e9220051aa0e8980c13a8d1c52",
+			"F3d3efbb41eb7395c62f8fe5de1513acf5c7f83316b71a4458629449e4a43aac2",
+			"F179d2df88d5677ce3c2a3ec3ad97c5660fd6505d296507feed2ee1aeaf22f408",
+			"F964275ecd90ebda1fdfc7c7e66243078c13f81908f1257a1418719bb6c410db2",
+			"F66770e27c119af000db4dc73e0f3a9311a96d9be2f32a128db159e60eba1ae71",
+			"F67a277f384072f10d4e6c84d87fe397597ce1ee62e193bdcc3e5642867a67ec0",
+			"F808d9623055b308630b45af06321555a174005bd795a790237b247d64028358b"
+		],
+		"game": "bms",
+		"inactive": false,
+		"playtype": "7K",
+		"tableID": "bms-7K-supernova",
+		"title": "Supernova"
 	},
 	{
 		"default": false,

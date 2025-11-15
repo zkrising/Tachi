@@ -13,9 +13,13 @@ Then run the .js with node.
 
 Clearly not ideal, but it just works.
 
-If the above addition doesn't work, you can try adding the following instead (without the triple quotes):
-"""
+If you get an error about require not being defined, try replacing the first line with:
+```js
 import fs from 'fs';
-fs.writeFileSync('songlist.json', JSON.stringify(a.concat(t)));
-"""
-where 'a' and 't' are the 2 consts in the original .js.
+```
+
+If there are two consts containing song data instead of one, you can replace the variable passed to stringify with:
+```js
+a.concat(b)
+```
+where 'a' and 'b' are the 2 consts.

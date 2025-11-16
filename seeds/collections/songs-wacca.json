@@ -5144,5 +5144,73 @@
 		"id": 432,
 		"searchTerms": [],
 		"title": "Rrhar'il"
+	},
+	{
+		"altTitles": [],
+		"artist": "Lime",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 433,
+		"searchTerms": [],
+		"title": "Chronomia"
+	},
+	{
+		"altTitles": [],
+		"artist": "Porter Robinson",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 434,
+		"searchTerms": [],
+		"title": "Get Your Wish"
+	},
+	{
+		"altTitles": [],
+		"artist": "めろくる | Mellowcle",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "ボカロ"
+		},
+		"id": 435,
+		"searchTerms": [],
+		"title": "Mãos para cima! ~手を上げな~"
+	},
+	{
+		"altTitles": [],
+		"artist": "NoKANY",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "バラエティ"
+		},
+		"id": 436,
+		"searchTerms": [],
+		"title": "Mujinku-Vacuum Track#ADD8E6-"
+	},
+	{
+		"altTitles": [],
+		"artist": "t+pazolite & Getty",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "TANO*C"
+		},
+		"id": 437,
+		"searchTerms": [],
+		"title": "Twisted Drop Party"
+	},
+	{
+		"altTitles": [
+			"Planet Loop"
+		],
+		"artist": "NayutalieN",
+		"data": {
+			"displayVersion": "plus",
+			"genre": "ボカロ"
+		},
+		"id": 438,
+		"searchTerms": [],
+		"title": "惑星ループ"
 	}
 ]
